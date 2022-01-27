@@ -80,372 +80,298 @@
       <trans-unit id="%@ Help" xml:space="preserve">
         <source>%@ Help</source>
         <target state="translated">@ Hỗ trợ</target>
-        <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="About %@" xml:space="preserve">
         <source>About %@</source>
         <target state="translated">Về ứng dụng %@</target>
-        <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Acknowledgments" xml:space="preserve">
         <source>Acknowledgments</source>
         <target state="translated">Ghi nhận</target>
-        <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Before signing the document, it must be saved." xml:space="preserve">
         <source>Before signing the document, it must be saved.</source>
         <target state="translated">Trước khi ký, tài liệu phải được lưu.</target>
-        <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Cancel" xml:space="preserve">
         <source>Cancel</source>
         <target state="translated">Hủy</target>
-        <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Cannot open file of Digital Signature" xml:space="preserve">
         <source>Cannot open file of Digital Signature</source>
         <target state="translated">Không thể mở tập tin Chữ ký điện tử</target>
-        <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Cannot open file of Private Key" xml:space="preserve">
         <source>Cannot open file of Private Key</source>
         <target state="translated">Không thể mở tập tin Mã khóa riêng</target>
-        <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Cannot open folder of the file location." xml:space="preserve">
         <source>Cannot open folder of the file location.</source>
         <target state="translated">Khổng thể mở thư mục chứa tập tin.</target>
-        <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Comma-Separated Values" xml:space="preserve">
         <source>Comma-Separated Values</source>
         <target state="translated">Giá trị được tách bằng dấu phẩy</target>
-        <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Create portal" xml:space="preserve">
         <source>Create portal</source>
         <target state="translated">Tạo cổng</target>
-        <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Delete and Quit" xml:space="preserve">
         <source>Delete and Quit</source>
         <target state="translated">Xóa và thoát</target>
-        <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="DjVu File" xml:space="preserve">
         <source>DjVu File</source>
         <target state="translated">Tập tin DjVu</target>
-        <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Do you want to save the changes made to the document &quot;%@&quot;?" xml:space="preserve">
         <source>Do you want to save the changes made to the document "%@"?</source>
         <target state="translated">Bạn có muốn lưu những thay đổi đã thực hiện đối với tài liệu "%@"?</target>
-        <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Document %ld.docx" xml:space="preserve">
         <source>Document %ld.docx</source>
         <target state="translated">Văn bản %ld.docx</target>
-        <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Document template" xml:space="preserve">
         <source>Document template</source>
         <target state="translated">Mẫu văn bản</target>
-        <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Don't Save" xml:space="preserve">
         <source>Don't Save</source>
         <target state="needs-translation"/>
-        <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Electronic Publication" xml:space="preserve">
         <source>Electronic Publication</source>
         <target state="needs-translation"/>
-        <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Excel 97-2003 Spreadsheet" xml:space="preserve">
         <source>Excel 97-2003 Spreadsheet</source>
         <target state="translated">Bảng tính Excel 97-2003</target>
-        <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Excel 2007 Spreadsheet" xml:space="preserve">
         <source>Excel 2007 Spreadsheet</source>
         <target state="translated">Bảng tính Excel 2007</target>
-        <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="FictionBook File" xml:space="preserve">
         <source>FictionBook File</source>
         <target state="needs-translation"/>
-        <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="File &quot;%@&quot; can not be open or not exist." xml:space="preserve">
         <source>File "%@" can not be open or not exist.</source>
         <target state="translated">Không thể mở tập tin "%@" hoặc nó không tồn tại.</target>
-        <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="File Format:" xml:space="preserve">
         <source>File Format:</source>
         <target state="translated">Định dạng tập tin:</target>
-        <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="File can not be open." xml:space="preserve">
         <source>File can not be open.</source>
         <target state="translated">Không thể mở tập tin.</target>
-        <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="HTML File" xml:space="preserve">
         <source>HTML File</source>
         <target state="needs-translation"/>
-        <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Hide %@" xml:space="preserve">
         <source>Hide %@</source>
         <target state="translated">Ẩn %@</target>
-        <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="If you don't review your documents, all your changeses will be lost." xml:space="preserve">
         <source>If you don't review your documents, all your changeses will be lost.</source>
         <target state="translated">Nếu bạn không xem lại tài liệu của mình, tất cả thay đổi sẽ bị mất.</target>
-        <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="If you have already purchased %@, you should find your activation key in an email confirmation." xml:space="preserve">
         <source>If you have already purchased %@, you should find your activation key in an email confirmation.</source>
         <target state="translated">Nếu bạn đã mua %@, bạn sẽ tìm thấy mã khóa kích hoạt của mình trong email xác thực.</target>
-        <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="License Agreement" xml:space="preserve">
         <source>License Agreement</source>
         <target state="translated">Thỏa thuận cấp phép</target>
-        <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="MHT File" xml:space="preserve">
         <source>MHT File</source>
         <target state="needs-translation"/>
-        <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Mobipocket e-book" xml:space="preserve">
         <source>Mobipocket e-book</source>
         <target state="translated">Sách điện tử Mobipocket</target>
-        <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="No" xml:space="preserve">
         <source>No</source>
         <target state="translated">Không</target>
-        <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="OK" xml:space="preserve">
         <source>OK</source>
         <target state="translated">OK</target>
-        <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="ONLYOFFICE can not open the Digital Signature file. Try opening another file." xml:space="preserve">
         <source>ONLYOFFICE can not open the Digital Signature file. Try opening another file.</source>
         <target state="translated">ONLYOFFICE không thể mở chữ ký điện tử. Hãy thử tập tin khác.</target>
-        <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="ONLYOFFICE can not open the Private Key. Try opening another file." xml:space="preserve">
         <source>ONLYOFFICE can not open the Private Key. Try opening another file.</source>
         <target state="translated">ONLYOFFICE không thể mở mã khóa riêng. Hãy thử mở tập tin khác.</target>
-        <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="OpenDocument Document Template" xml:space="preserve">
         <source>OpenDocument Document Template</source>
         <target state="translated">OpenDocument Mẫu văn bản</target>
-        <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="OpenDocument Presentation Template" xml:space="preserve">
         <source>OpenDocument Presentation Template</source>
         <target state="translated">OpenDocument Mẫu trình chiếu</target>
-        <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="OpenDocument Spreadsheet Template" xml:space="preserve">
         <source>OpenDocument Spreadsheet Template</source>
         <target state="translated">OpenDocument Mẫu bảng tính</target>
-        <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="OpenOffice Document" xml:space="preserve">
         <source>OpenOffice Document</source>
         <target state="translated">OpenOffice Văn bản</target>
-        <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="OpenOffice Presentation" xml:space="preserve">
         <source>OpenOffice Presentation</source>
         <target state="translated">OpenOffice Trình chiếu</target>
-        <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="OpenOffice Spreadsheet" xml:space="preserve">
         <source>OpenOffice Spreadsheet</source>
         <target state="translated">OpenOffice Bảng tính</target>
-        <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Opening" xml:space="preserve">
         <source>Opening</source>
         <target state="translated">Đang mở</target>
-        <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="PDF File" xml:space="preserve">
         <source>PDF File</source>
         <target state="translated">Tập tinh PDF</target>
-        <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="PDF/A File" xml:space="preserve">
         <source>PDF/A File</source>
         <target state="translated">PDF/A File</target>
-        <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Plain Text" xml:space="preserve">
         <source>Plain Text</source>
         <target state="translated">Văn bản thuần</target>
-        <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="PowerPoint 97-2003 Presentation" xml:space="preserve">
         <source>PowerPoint 97-2003 Presentation</source>
         <target state="translated">Trình chiếu PowerPoint 97-2003</target>
-        <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="PowerPoint 2007 Presentation" xml:space="preserve">
         <source>PowerPoint 2007 Presentation</source>
         <target state="translated">Trình chiếu PowerPoint 2007</target>
-        <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="PowerPoint Slide Show" xml:space="preserve">
         <source>PowerPoint Slide Show</source>
         <target state="translated">Trình chiếu PowerPoint</target>
-        <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Preparing..." xml:space="preserve">
         <source>Preparing...</source>
         <target state="translated">Đang chuẩn bị...</target>
-        <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Presentation %ld.pptx" xml:space="preserve">
         <source>Presentation %ld.pptx</source>
         <target state="translated">Trình chiếu %ld.pptx</target>
-        <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Presentation template" xml:space="preserve">
         <source>Presentation template</source>
         <target state="translated">Không có bình luận của kỹ sư.</target>
-        <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Presenter View" xml:space="preserve">
         <source>Presenter View</source>
         <target state="needs-translation"/>
-        <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Quit %@" xml:space="preserve">
         <source>Quit %@</source>
         <target state="translated">Thoát %@</target>
-        <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Review Changes..." xml:space="preserve">
         <source>Review Changes...</source>
         <target state="translated">Xem thay đổi...</target>
-        <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Rich Text Document" xml:space="preserve">
         <source>Rich Text Document</source>
         <target state="translated">Tài liệu nhiều văn bản</target>
-        <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Save" xml:space="preserve">
         <source>Save</source>
         <target state="translated">Lưu</target>
-        <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Save the document?" xml:space="preserve">
         <source>Save the document?</source>
         <target state="translated">Lưu tập tin?</target>
-        <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Signature Details" xml:space="preserve">
         <source>Signature Details</source>
         <target state="needs-translation"/>
-        <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Spreadsheet %ld.xlsx" xml:space="preserve">
         <source>Spreadsheet %ld.xlsx</source>
         <target state="translated">Bảng tính %ld.xlsx</target>
-        <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Spreadsheet template" xml:space="preserve">
         <source>Spreadsheet template</source>
         <target state="translated">Mẫu bảng tính</target>
-        <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Thank you for evaluating %@!" xml:space="preserve">
         <source>Thank you for evaluating %@!</source>
         <target state="translated">Cám ơn bạn đã đánh giá %@!</target>
-        <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="The document &quot;%@&quot; must be built. Continue?" xml:space="preserve">
         <source>The document "%@" must be built. Continue?</source>
         <target state="translated">Tập tin "%@" phải được xây dựng. Tiếp tục?</target>
-        <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="To open the file location, it must be saved." xml:space="preserve">
         <source>To open the file location, it must be saved.</source>
         <target state="translated">Để mở mục chứa tập tin, nó phải được lưu.</target>
-        <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Unconfirmed" xml:space="preserve">
         <source>Unconfirmed</source>
         <target state="translated">Chưa được xác nhận</target>
-        <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Untitled" xml:space="preserve">
         <source>Untitled</source>
         <target state="needs-translation"/>
-        <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Version %@ (%@)" xml:space="preserve">
         <source>Version %1$@ (%2$@)</source>
         <target state="translated">Phiên bản %1$@ (%2$@)</target>
-        <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Web Page" xml:space="preserve">
         <source>Web Page</source>
         <target state="translated">Trang Web</target>
-        <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="With access to pro features" xml:space="preserve">
         <source>With access to pro features</source>
         <target state="needs-translation"/>
-        <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Word 97-2003 Document" xml:space="preserve">
         <source>Word 97-2003 Document</source>
         <target state="translated">Tập tin Word 97-2003</target>
-        <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Word 2007 Document" xml:space="preserve">
         <source>Word 2007 Document</source>
         <target state="translated">Tập tin Word 2007</target>
-        <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="XML Paper Specification" xml:space="preserve">
         <source>XML Paper Specification</source>
         <target state="translated">Tiêu chuẩn giấy XML</target>
-        <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Yes" xml:space="preserve">
         <source>Yes</source>
         <target state="translated">Có</target>
-        <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?" xml:space="preserve">
         <source>You have %1$ld %2$@ documents with unconfirmed changes. Do you want to review these changes before quitting?</source>
         <target state="translated">Bạn có %1$ld %2$@ tập tin chưa được xác nhận thay đổi. Bạn có muốn xem lại những thay đổi này trước khi thoát không?</target>
-        <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="You have successfully activated %@." xml:space="preserve">
         <source>You have successfully activated %@.</source>
         <target state="translated">Bạn đã kích hoạt thành công %@.</target>
-        <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Your changes will be lost if you don’t save them." xml:space="preserve">
         <source>Your changes will be lost if you don’t save them.</source>
         <target state="translated">Những thay đổi của bạn sẽ mất đi nếu bạn không lưu chúng.</target>
-        <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Your subscription has expired.&#10;&#10;The program works in the non-activated mode.&#10;&#10;Now you can prolong or upgrade your subscription with a discount." xml:space="preserve">
         <source>Your subscription has expired.
@@ -458,7 +384,6 @@ Now you can prolong or upgrade your subscription with a discount.</source>
 Chương trình hoạt động ở chế độ không kích hoạt.
 
 Giờ đây bạn có thể kéo dài gói dịch vụ của mình hoặc nâng cấp với ưu đãi giảm phí.</target>
-        <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Your subscription is about to expire&#10;(%d days left).&#10;&#10;We have a special offer for you." xml:space="preserve">
         <source>Your subscription is about to expire
@@ -469,22 +394,18 @@ We have a special offer for you.</source>
 (Còn %d ngày).
 
 Chúng tôi có ưu đãi đặc biệt dành cho bạn.</target>
-        <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="new-document" xml:space="preserve">
         <source>New Document</source>
         <target state="translated">Tài liệu mới</target>
-        <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="new-presentation" xml:space="preserve">
         <source>New Presentation</source>
         <target state="translated">Tập tin trình chiếu mới</target>
-        <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="new-spreadsheet" xml:space="preserve">
         <source>New Spreadsheet</source>
         <target state="translated">Bảng tính mới</target>
-        <note>No comment provided by engineer.</note>
       </trans-unit>
     </body>
   </file>
@@ -496,51 +417,42 @@ Chúng tôi có ưu đãi đặc biệt dành cho bạn.</target>
       <trans-unit id="/%d days are left until the license expiration.:dict/NSStringLocalizedFormatKey:dict/:string" xml:space="preserve">
         <source>%#@days@</source>
         <target state="translated">%#@ngày@</target>
-        <note/>
       </trans-unit>
       <trans-unit id="/%d days are left until the license expiration.:dict/days:dict/one:dict/:string" xml:space="preserve">
         <source>%d day are left until the license expiration.</source>
         <target state="translated">Còn %d ngày nữa bản quyền của bạn sẽ hết hạn.</target>
-        <note/>
       </trans-unit>
       <trans-unit id="/%d days are left until the license expiration.:dict/days:dict/other:dict/:string" xml:space="preserve">
         <source>%d days are left until the license expiration.</source>
         <target state="translated">Còn %d ngày nữa bản quyền của bạn sẽ hết hạn.</target>
-        <note/>
       </trans-unit>
       <trans-unit id="/You are using a trial version of the application.&#10;The trial period will end in %d days, after that you will not be able to create and edit documents.:dict/NSStringLocalizedFormatKey:dict/:string" xml:space="preserve">
         <source>%#@days@</source>
         <target state="translated">%#@ngày@</target>
-        <note/>
       </trans-unit>
       <trans-unit id="/You are using a trial version of the application.&#10;The trial period will end in %d days, after that you will not be able to create and edit documents.:dict/days:dict/one:dict/:string" xml:space="preserve">
         <source>You are using a trial version of the application.
 The trial period will end in %d day, after that you will not be able to create and edit documents.</source>
         <target state="translated">Bạn đang dùng bản dùng thử của ứng dụng.
 Thời gian dùng thử sẽ hết hạn trong %d ngày nữa, sau đó bạn sẽ không thể tạo và chỉnh sửa văn bản.</target>
-        <note/>
       </trans-unit>
       <trans-unit id="/You are using a trial version of the application.&#10;The trial period will end in %d days, after that you will not be able to create and edit documents.:dict/days:dict/other:dict/:string" xml:space="preserve">
         <source>You are using a trial version of the application.
 The trial period will end in %d days, after that you will not be able to create and edit documents.</source>
         <target state="translated">You are using a trial version of the application.
 The trial period will end in %d days, after that you will not be able to create and edit documents.</target>
-        <note/>
       </trans-unit>
       <trans-unit id="/You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?:dict/NSStringLocalizedFormatKey:dict/:string" xml:space="preserve">
         <source>%#@documents@</source>
         <target state="translated">%#@tập tin@</target>
-        <note/>
       </trans-unit>
       <trans-unit id="/You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?:dict/documents:dict/one:dict/:string" xml:space="preserve">
         <source>You have %ld %@ document with unconfirmed changes. Do you want to review these changes before quitting?</source>
         <target state="translated">Bạn có %ld %@ tập tin chưa được xác nhận thay đổi. Bạn có muốn xem lại những thay đổi này trước khi thoát không?</target>
-        <note/>
       </trans-unit>
       <trans-unit id="/You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?:dict/documents:dict/other:dict/:string" xml:space="preserve">
         <source>You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?</source>
         <target state="translated">Bạn có %ld %@ tập tin chưa được xác nhận thay đổi. Bạn có muốn xem lại những thay đổi này trước khi thoát không?</target>
-        <note/>
       </trans-unit>
     </body>
   </file>
@@ -1319,42 +1231,34 @@ The trial period will end in %d days, after that you will not be able to create 
       <trans-unit id="Could not move to Applications folder" xml:space="preserve">
         <source>Could not move to Applications folder</source>
         <target state="translated">Không thể chuyển đến thư mục Ứng dụng</target>
-        <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Do Not Move" xml:space="preserve">
         <source>Do Not Move</source>
         <target state="translated">Không chuyển</target>
-        <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="I can move myself to the Applications folder if you'd like." xml:space="preserve">
         <source>I can move myself to the Applications folder if you'd like.</source>
         <target state="translated">Tôi có thể tự chuyển mình đến thư mục Ứng dụng nếu bạn muốn.</target>
-        <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Move to Applications Folder" xml:space="preserve">
         <source>Move to Applications Folder</source>
         <target state="translated">Chuyển đến thư mục Ứng dụng</target>
-        <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Move to Applications folder in your Home folder?" xml:space="preserve">
         <source>Move to Applications folder in your Home folder?</source>
         <target state="translated">Chuyểnđến thư mục Ứng dụng trong thư mục Nhà của bạn?</target>
-        <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Move to Applications folder?" xml:space="preserve">
         <source>Move to Applications folder?</source>
         <target state="translated">Chuyển đến thư mục Ứng dụng?</target>
-        <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Note that this will require an administrator password." xml:space="preserve">
         <source>Note that this will require an administrator password.</source>
         <target state="translated">Xin lưu ý rằng điều này sẽ yêu cầu mật khẩu của quản trị viên.</target>
-        <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="This will keep your Downloads folder uncluttered." xml:space="preserve">
         <source>This will keep your Downloads folder uncluttered.</source>
         <target state="translated">Điều này sẽ giữ cho thư mục Tải xuống của bạn không bị xáo trộn.</target>
-        <note>No comment provided by engineer.</note>
       </trans-unit>
     </body>
   </file>
