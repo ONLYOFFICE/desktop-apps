@@ -1,6 +1,6 @@
-Ôªø<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.2" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd">
-  <file original="ONLYOFFICE/Base.lproj/Document-Sign.storyboard" source-language="en" target-language="ga-IE" datatype="plaintext">
+  <file original="ONLYOFFICE/Base.lproj/Document-Sign.storyboard" source-language="en" target-language="ga" datatype="plaintext">
     <header>
       <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c" />
     </header>
@@ -67,7 +67,7 @@
       <note>Class = "NSButtonCell"; title = "Load Signature"; ObjectID = "tTF-wa-eJp";</note></trans-unit>
     </body>
   </file>
-  <file original="ONLYOFFICE/Base.lproj/Localizable.strings" source-language="en" target-language="ga-IE" datatype="plaintext">
+  <file original="ONLYOFFICE/Base.lproj/Localizable.strings" source-language="en" target-language="ga" datatype="plaintext">
     <header>
       <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c" />
     </header>
@@ -425,7 +425,7 @@ T√° tairiscint speisialta againn duit.</target>
       <note>No comment provided by engineer.</note></trans-unit>
     </body>
   </file>
-  <file original="ONLYOFFICE/Base.lproj/Localizable.stringsdict" source-language="en" target-language="ga-IE" datatype="plaintext">
+  <file original="ONLYOFFICE/Base.lproj/Localizable.stringsdict" source-language="en" target-language="ga" datatype="plaintext">
     <header>
       <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c" />
     </header>
@@ -532,7 +532,7 @@ Tiocfaidh deireadh leis an tr√©imhse trialach i %d laethanta, ina dhiaidh sin n√
       </trans-unit>
     </body>
   </file>
-  <file original="ONLYOFFICE/Base.lproj/Main.storyboard" source-language="en" target-language="ga-IE" datatype="plaintext">
+  <file original="ONLYOFFICE/Base.lproj/Main.storyboard" source-language="en" target-language="ga" datatype="plaintext">
     <header>
       <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c" />
     </header>
@@ -1299,7 +1299,7 @@ Tiocfaidh deireadh leis an tr√©imhse trialach i %d laethanta, ina dhiaidh sin n√
       <note>Class = "NSTextFieldCell"; title = "Portal:"; ObjectID = "zwS-9G-S0N";</note></trans-unit>
     </body>
   </file>
-  <file original="ONLYOFFICE/Base.lproj/MoveApplication.strings" source-language="en" target-language="ga-IE" datatype="plaintext">
+  <file original="ONLYOFFICE/Base.lproj/MoveApplication.strings" source-language="en" target-language="ga" datatype="plaintext">
     <header>
       <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c" />
     </header>
@@ -1346,7 +1346,7 @@ Tiocfaidh deireadh leis an tr√©imhse trialach i %d laethanta, ina dhiaidh sin n√
       <note>No comment provided by engineer.</note></trans-unit>
     </body>
   </file>
-  <file original="ONLYOFFICE/Base.lproj/Presentation-Reporter.storyboard" source-language="en" target-language="ga-IE" datatype="plaintext">
+  <file original="ONLYOFFICE/Base.lproj/Presentation-Reporter.storyboard" source-language="en" target-language="ga" datatype="plaintext">
     <header>
       <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c" />
     </header>
@@ -1358,7 +1358,7 @@ Tiocfaidh deireadh leis an tr√©imhse trialach i %d laethanta, ina dhiaidh sin n√
       <note>Class = "NSWindow"; title = "Reporter Window"; ObjectID = "Ygx-5K-Hn8";</note></trans-unit>
     </body>
   </file>
-  <file original="ONLYOFFICE/Resources/ONLYOFFICE/Base.lproj/InfoPlist.strings" source-language="en" target-language="ga-IE" datatype="plaintext">
+  <file original="ONLYOFFICE/Resources/ONLYOFFICE/Base.lproj/InfoPlist.strings" source-language="en" target-language="ga" datatype="plaintext">
     <header>
       <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c" />
     </header>
