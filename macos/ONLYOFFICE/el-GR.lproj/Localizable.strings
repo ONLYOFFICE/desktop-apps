@@ -1,0 +1,213 @@
+/* No comment provided by engineer. */
+"%@ Help" = "%@ Βοήθεια";
+
+/* No comment provided by engineer. */
+"About %@" = "Σχετικά %@";
+
+/* No comment provided by engineer. */
+"Acknowledgments" = "Ευχαριστίες";
+
+/* No comment provided by engineer. */
+"Before signing the document, it must be saved." = "Το έγγραφο πρέπει να αποθηκευτεί πριν από την υπογραφή του.";
+
+/* No comment provided by engineer. */
+"Cancel" = "Ακύρωση";
+
+/* No comment provided by engineer. */
+"Cannot open file of Digital Signature" = "Δεν είναι δυνατό το άνοιγμα του αρχείου της ψηφιακής υπογραφής";
+
+/* No comment provided by engineer. */
+"Cannot open file of Private Key" = "Δεν είναι δυνατό το άνοιγμα του αρχείου του ιδιωτικού κλειδιού";
+
+/* No comment provided by engineer. */
+"Cannot open folder of the file location." = "Δεν είναι δυνατό το άνοιγμα του φακέλου της θέσης του αρχείου.";
+
+/* No comment provided by engineer. */
+"Comma-Separated Values" = "Τιμές διαχωρισμένες με κόμμα";
+
+/* No comment provided by engineer. */
+"Create portal" = "Δημιουργία πύλης";
+
+/* No comment provided by engineer. */
+"Delete and Quit" = "Διαγραφή και έξοδος";
+
+/* No comment provided by engineer. */
+"DjVu File" = "Αρχείο DjVu";
+
+/* No comment provided by engineer. */
+"Do you want to save the changes made to the document \"%@\"?" = "Θέλετε να αποθηκεύσετε τις αλλαγές που έγιναν στο έγγραφο \"%@\";";
+
+/* No comment provided by engineer. */
+"Document %ld.docx" = "Έγγραφο %ld.docx";
+
+/* No comment provided by engineer. */
+"Document template" = "Πρότυπο εγγράφου";
+
+/* No comment provided by engineer. */
+"Excel 97-2003 Spreadsheet" = "Υπολογιστικό φύλλο Excel 97-2003";
+
+/* No comment provided by engineer. */
+"Excel 2007 Spreadsheet" = "Υπολογιστικό φύλλο Excel 2007";
+
+/* No comment provided by engineer. */
+"File \"%@\" can not be open or not exist." = "Το αρχείο \"%@\" δεν μπορεί να ανοιχθεί ή δεν υπάρχει.";
+
+/* No comment provided by engineer. */
+"File can not be open." = "Το αρχείο δεν μπορεί να ανοιχθεί.";
+
+/* No comment provided by engineer. */
+"File Format:" = "Μορφή αρχείου:";
+
+/* No comment provided by engineer. */
+"Hide %@" = "Απόκρυψη %@";
+
+/* No comment provided by engineer. */
+"If you don't review your documents, all your changeses will be lost." = "Εάν δεν ελέγξετε τα έγγραφά σας, όλες οι αλλαγές σας θα χαθούν.";
+
+/* No comment provided by engineer. */
+"If you have already purchased %@, you should find your activation key in an email confirmation." = "Εάν έχετε ήδη αγοράσει το %@, θα πρέπει να βρείτε το κλειδί ενεργοποίησης σε μια επιβεβαίωση που έχει σταλεί μέσω email.";
+
+/* No comment provided by engineer. */
+"License Agreement" = "Συμφωνία άδειας χρήσης";
+
+/* No comment provided by engineer. */
+"Mobipocket e-book" = "Ηλεκτρονικό βιβλίο Mobipocket";
+
+/* No comment provided by engineer. */
+"new-document" = "Νέο έγγραφο";
+
+/* No comment provided by engineer. */
+"new-presentation" = "Νέα παρουσίαση";
+
+/* No comment provided by engineer. */
+"new-spreadsheet" = "Νέο υπολογιστικό φύλλο";
+
+/* No comment provided by engineer. */
+"No" = "Όχι";
+
+/* No comment provided by engineer. */
+"OK" = "Εντάξει";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE can not open the Digital Signature file. Try opening another file." = "Το ONLYOFFICE δεν μπορεί να ανοίξει το αρχείο ψηφιακής υπογραφής. Δοκιμάστε να ανοίξετε άλλο αρχείο.";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE can not open the Private Key. Try opening another file." = "Το ONLYOFFICE δεν μπορεί να ανοίξει το ιδιωτικό κλειδί. Δοκιμάστε να ανοίξετε άλλο αρχείο.";
+
+/* No comment provided by engineer. */
+"OpenDocument Document Template" = "Πρότυπο εγγράφου OpenDocument";
+
+/* No comment provided by engineer. */
+"OpenDocument Presentation Template" = "Πρότυπο παρουσίασης OpenDocument";
+
+/* No comment provided by engineer. */
+"OpenDocument Spreadsheet Template" = "Πρότυπο υπολογιστικού φύλλου OpenDocument";
+
+/* No comment provided by engineer. */
+"Opening" = "Άνοιγμα";
+
+/* No comment provided by engineer. */
+"OpenOffice Document" = "Έγγραφο OpenOffice";
+
+/* No comment provided by engineer. */
+"OpenOffice Presentation" = "Παρουσίαση OpenOffice";
+
+/* No comment provided by engineer. */
+"OpenOffice Spreadsheet" = "Υπολογιστικό φύλλο OpenOffice";
+
+/* No comment provided by engineer. */
+"PDF File" = "Αρχείο PDF";
+
+/* No comment provided by engineer. */
+"PDF/A File" = "Αρχείο PDF/A";
+
+/* No comment provided by engineer. */
+"Plain Text" = "Απλό κείμενο";
+
+/* No comment provided by engineer. */
+"PowerPoint 97-2003 Presentation" = "Παρουσίαση PowerPoint 97-2003";
+
+/* No comment provided by engineer. */
+"PowerPoint 2007 Presentation" = "Παρουσίαση PowerPoint 2007";
+
+/* No comment provided by engineer. */
+"PowerPoint Slide Show" = "Παρουσίαση διαφανειών PowerPoint";
+
+/* No comment provided by engineer. */
+"Preparing..." = "Προετοιμασία...";
+
+/* No comment provided by engineer. */
+"Presentation %ld.pptx" = "Παρουσίαση %ld.pptx";
+
+/* No comment provided by engineer. */
+"Presentation template" = "Πρότυπο παρουσίασης";
+
+/* No comment provided by engineer. */
+"Quit %@" = "Έξοδος %@";
+
+/* No comment provided by engineer. */
+"Review Changes..." = "Έλεγχος αλλαγών...";
+
+/* No comment provided by engineer. */
+"Rich Text Document" = "Έγγραφο εμπλουτισμένου κειμένου";
+
+/* No comment provided by engineer. */
+"Save" = "Αποθήκευση";
+
+/* No comment provided by engineer. */
+"Save the document?" = "Αποθήκευση του εγγράφου;";
+
+/* No comment provided by engineer. */
+"Spreadsheet %ld.xlsx" = "Υπολογιστικό φύλλο %ld.xlsx";
+
+/* No comment provided by engineer. */
+"Spreadsheet template" = "Πρότυπο υπολογιστικού φύλλου";
+
+/* No comment provided by engineer. */
+"Thank you for evaluating %@!" = "Σας ευχαριστούμε για την αξιολόγηση %@!";
+
+/* No comment provided by engineer. */
+"The document \"%@\" must be built. Continue?" = "Το έγγραφο «%@» πρέπει να είναι δημιουργημένο. Συνέχεια;";
+
+/* No comment provided by engineer. */
+"To open the file location, it must be saved." = "Για να ανοίξει η θέση του αρχείου, πρέπει να αποθηκευτεί το αρχείο.";
+
+/* No comment provided by engineer. */
+"Unconfirmed" = "Μη επιβεβαιωμένο";
+
+/* No comment provided by engineer. */
+"Untitled" = "Χωρίς τίτλο";
+
+/* No comment provided by engineer. */
+"Version %@ (%@)" = "Έκδοση %1$@ (%2$@)";
+
+/* No comment provided by engineer. */
+"Web Page" = "Ιστοσελίδα";
+
+/* No comment provided by engineer. */
+"Word 97-2003 Document" = "Έγγραφο Word 97-2003";
+
+/* No comment provided by engineer. */
+"Word 2007 Document" = "Έγγραφο Word 2007";
+
+/* No comment provided by engineer. */
+"XML Paper Specification" = "Προδιαγραφή χαρτιού XML";
+
+/* No comment provided by engineer. */
+"Yes" = "Ναι";
+
+/* No comment provided by engineer. */
+"You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?" = "Έχετε %1$ld% 2$@ έγγραφα με μη επιβεβαιωμένες αλλαγές. Θέλετε να ελέγξετε αυτές τις αλλαγές πριν από την έξοδο;";
+
+/* No comment provided by engineer. */
+"You have successfully activated %@." = "Έχετε ενεργοποιήσει με επιτυχία το %@.";
+
+/* No comment provided by engineer. */
+"Your changes will be lost if you don’t save them." = "Οι αλλαγές σας θα χαθούν εάν δεν τις αποθηκεύσετε.";
+
+/* No comment provided by engineer. */
+"Your subscription has expired.\n\nThe program works in the non-activated mode.\n\nNow you can prolong or upgrade your subscription with a discount." = "Η συνδρομή σας έχει λήξει.\n\nΤο πρόγραμμα λειτουργεί σε μη ενεργοποιημένη λειτουργία.\n\nΤώρα μπορείτε να παρατείνετε ή να αναβαθμίσετε τη συνδρομή σας με έκπτωση.";
+
+/* No comment provided by engineer. */
+"Your subscription is about to expire\n(%d days left).\n\nWe have a special offer for you." = "Η συνδρομή σας πρόκειται να λήξει\n(απομένουν %d ημέρες).\n\nΈχουμε μια ειδική προσφορά για εσάς.";
+
