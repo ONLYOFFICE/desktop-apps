@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>%d days are left until the license expiration.</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@days@</string>
+		<key>days</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>few</key>
+			<string>До закінчення терміну дії ліцензії залишилося %d дн.</string>
+			<key>many</key>
+			<string>До закінчення терміну дії ліцензії залишилося %d дн.</string>
+			<key>one</key>
+			<string>До закінчення терміну дії ліцензії залишився %d день.</string>
+			<key>other</key>
+			<string>До закінчення терміну дії ліцензії залишилося %d дн.</string>
+		</dict>
+	</dict>
+	<key>You are using a trial version of the application.
+The trial period will end in %d days, after that you will not be able to create and edit documents.</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@days@</string>
+		<key>days</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>few</key>
+			<string>Ви використовуєте ознайомлювальну версію програми.
+Ознайомлювальний період закінчується через %d дн., після чого ви не зможете створювати та редагувати документи.</string>
+			<key>many</key>
+			<string>Ви використовуєте ознайомлювальну версію програми.
+Ознайомлювальний період закінчується через %d дн., після чого ви не зможете створювати та редагувати документи.</string>
+			<key>one</key>
+			<string>Ви використовуєте ознайомлювальну версію програми.
+Ознайомлювальний період закінчується через %d день, після чого ви не зможете створювати та редагувати документи.</string>
+			<key>other</key>
+			<string>Ви використовуєте ознайомлювальну версію програми.
+Ознайомлювальний період закінчується через %d дн., після чого ви не зможете створювати та редагувати документи.</string>
+		</dict>
+	</dict>
+	<key>You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@documents@</string>
+		<key>documents</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>ld</string>
+			<key>few</key>
+			<string>У вас є документи %@ (%ld) з непідтвердженими змінами. Переглянути ці зміни, перш ніж вийти?</string>
+			<key>many</key>
+			<string>У вас є документи %@ (%ld ) з непідтвердженими змінами. Переглянути ці зміни, перш ніж вийти?</string>
+			<key>one</key>
+			<string>У вас є %ld документ %@ з непідтвердженими змінами. Переглянути ці зміни, перш ніж вийти?</string>
+			<key>other</key>
+			<string>У вас є документи %@ (%ld) з непідтвердженими змінами. Переглянути ці зміни, перш ніж вийти?</string>
+		</dict>
+	</dict>
+</dict>
+</plist>
