@@ -1,5 +1,4 @@
 QTabWidget::pane { border:none; /*border-top: 1px solid #b00; top:-1px;*/}
-QTabWidget[empty=true]::pane { top: 28px; }
 QTabWidget::tab-bar {width: auto; height: 28px; left: 112px; }
 
 QTabBar::tab { width:135px; background-color: #c2c2c2; border: 0 none; min-width: 41px; max-width: 135px;
