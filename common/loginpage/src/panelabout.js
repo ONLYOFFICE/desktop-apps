@@ -64,6 +64,10 @@
         !!_opts.active && (_opts.edition = !!_opts.edition ? _opts.edition + ' ' + _opts.active : _opts.active);
         _opts.edition = !!_opts.edition ? `<div class="ver-edition">${_opts.edition}</div>` : '';
 
+        if ( !!_opts.arch ) {
+            _opts.version += ` (${_opts.arch == 'x64' ? '64' : '32'} bit)`;
+        }
+
         var _lang = utils.Lang;
         let _html = `<div class="flexbox">
                         <div class="box-ver">
