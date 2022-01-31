@@ -1094,7 +1094,7 @@ el.extOFORM =Διαδικτυακή Φόρμα ONLYOFFICE με δυνατότη�
 ;et.extOFORM =ONLYOFFICE täidetav veebivorm
 fi.extOFORM =ONLYOFFICE täytettävä online-lomake
 ;lt.extOFORM =ONLYOFFICE Užpildoma Internetinė Anketa
-lo.extOFORM =ສາມາດຕື່ມແບບຟອມ ອອນລາຍ ໄດ້ OnlyOffice
+lo.extOFORM =ສາມາດຕື່ມແບບຟອມ ອອນລາຍ ໄດ້ ONLYOFFICE
 nl.extOFORM =ONLYOFFICE Invulbaar Online Formulier
 ru.extOFORM =Заполняемая онлайн-форма ONLYOFFICE
 de.extOFORM =ONLYOFFICE-Form für Online-Ausfüllung
