@@ -984,7 +984,8 @@ void CAscApplicationManagerWrapper::initializeApp()
             }
 
 //            QTimer::singleShot(0, []{
-                mainWindow()->bringToTop();
+                if ( mainWindow() )
+                    mainWindow()->bringToTop();
 //            });
         });
     }
