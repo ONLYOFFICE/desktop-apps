@@ -182,8 +182,7 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="222"/>
         <source>Document template (*.dotx)</source>
-        <translatorcomment>ເປີດໄຟລ໌ XML ໃນຮູບແບບເອກະສານ Word (*.dotx)</translatorcomment>
-        <translation>ແບບແຜນເອກະສານ (*.dotx)</translation>
+        <translation>ເປີດໄຟລ໌ XML ໃນຮູບແບບເອກະສານ Word (*.dotx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="223"/>
@@ -193,14 +192,12 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="224"/>
         <source>ODT Document (*.odt)</source>
-        <translatorcomment>ເປີດເອກະສານໄຟລ໌ Text (*.odt)</translatorcomment>
-        <translation>ເອກະສານ ODT (*.odt)</translation>
+        <translation>ເປີດເອກະສານໄຟລ໌ Text (*.odt)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="225"/>
         <source>OpenDocument Document template (*.ott)</source>
-        <translatorcomment>ເປີດເອກະສານ ເປັນຮູບແບບເອກະສານ (*.ott)</translatorcomment>
-        <translation>ແບບເປີດເອກະສານ (*.ott)</translation>
+        <translation>ເປີດເອກະສານ ເປັນຮູບແບບເອກະສານ (*.ott)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="226"/>
@@ -290,7 +287,7 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="245"/>
         <source>XLS File (*.xls)</source>
-        <translation>ເອກະສານ XLS  (*.xls)</translation>
+        <translation type="unfinished">ເອກະສານ XLS (*.xls)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="246"/>
