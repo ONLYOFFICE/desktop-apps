@@ -501,6 +501,8 @@ l10n.ja = {
     ,settOptLaunchMode: 'ファイルを開く'
     ,settOptLaunchInTab: 'タブで'
     ,settOptLaunchInWindow: 'ウィンドウで'
+    ,settSpellcheckDetection: 'スペル言語の検出'
+    ,settOptDisabled: '無効'
 }
 
 l10n.ko = {
@@ -1065,6 +1067,8 @@ l10n.ru = {
     ,settOptLaunchMode: 'Открыть файл'
     ,settOptLaunchInTab: 'Во вкладке'
     ,settOptLaunchInWindow: 'В окне'
+    ,settSpellcheckDetection: 'Распознавание языка проверки правописания'
+    ,settOptDisabled: 'Отключено'
 }
 
 l10n.de = {
@@ -1159,6 +1163,8 @@ l10n.de = {
     ,settOptLaunchMode: 'Datei öffnen'
     ,settOptLaunchInTab: 'in einer Registerkarte'
     ,settOptLaunchInWindow: 'in einem Fenster'
+    ,settSpellcheckDetection: 'Sprachenerkennung für Rechtschreibprüfung'
+    ,settOptDisabled: 'Deaktiviert'
 }
 
 l10n.it_IT = {
@@ -1253,6 +1259,8 @@ l10n.it_IT = {
     ,settOptLaunchMode: 'Apri file'
     ,settOptLaunchInTab: 'Nella scheda'
     ,settOptLaunchInWindow: 'Nella finestra'
+    ,settSpellcheckDetection: 'Rilevamento ortografico della lingua'
+    ,settOptDisabled: 'Disabilitato'
 }
 
 l10n.fr = {
@@ -1347,6 +1355,8 @@ l10n.fr = {
     ,settOptLaunchMode: 'Ouvrir fichier'
     ,settOptLaunchInTab: 'Dans un onglet'
     ,settOptLaunchInWindow: 'Dans une fenêtre'
+    ,settSpellcheckDetection: 'Détection de l\'orthographe de la langue'
+    ,settOptDisabled: 'Désactivé'
 }
 
 l10n.es = {
@@ -1437,6 +1447,8 @@ l10n.es = {
     ,settOptLaunchMode: 'Abrir archivo'
     ,settOptLaunchInTab: 'En pestaña'
     ,settOptLaunchInWindow: 'En ventana'
+    ,settSpellcheckDetection: 'Detección del idioma de ortografía'
+    ,settOptDisabled: 'Deshabilitado'
 }
 
 l10n.pl = {
@@ -1810,6 +1822,8 @@ l10n.ro = {
     ,settOptLaunchMode: 'Deschidere fișie'
     ,settOptLaunchInTab: 'În filă'
     ,settOptLaunchInWindow: 'În fereastră'
+    ,settSpellcheckDetection: 'Detectare a limbii de verificare'
+    ,settOptDisabled: 'Dezactivată'
 }
 
 l10n.sk = {
@@ -2468,6 +2482,8 @@ l10n.zh_CN = {
     ,settOptLaunchMode: '打开文件'
     ,settOptLaunchInTab: '标签页中'
     ,settOptLaunchInWindow: '窗口中'
+    ,settSpellcheckDetection: '拼写语言检测'
+    ,settOptDisabled: '已关闭'
 }
 
 l10n.zh_HK = {
