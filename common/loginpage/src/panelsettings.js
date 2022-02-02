@@ -98,6 +98,18 @@
                                             </section>
                                         </div>
                                     </div>
+                                    <div class='settings-field' id="opts-autoupdate-mode" style='display1:none;'>
+                                        <label class='sett__caption' l10n>${_lang.settUpdatesMode || 'Autoupdate mode'}</label>
+                                        <div class='sett--label-lift-top hbox'>
+                                            <section class='box-cmp-select'>
+                                                <select class='combobox'>
+                                                    <option value='disabled' l10n>${_lang.settOptCheckNever1 || 'Disabled'}</option>
+                                                    <option value='silent' l10n>${_lang.settOptCheckDay1 || 'Silent mode'}</option>
+                                                    <option value='ask' l10n>${_lang.settOptCheckWeek1 || 'Ask to download'}</option>
+                                                </select>
+                                            </section>
+                                        </div>
+                                    </div>
                                     <div class='settings-field' id="opts-ui-theme" style='display:none;'>
                                         <label class='sett__caption' l10n>${_lang.settUITheme}</label>
                                         <div class='sett--label-lift-top hbox'>
@@ -162,7 +174,8 @@
         let $optsLang,
             $optsUIScaling,
             $optsUITheme,
-            $optsLaunchMode;
+            $optsLaunchMode,
+            $optsAutoupdateMode;
 
         function _set_user_name(name) {
             let me = this;
@@ -233,6 +246,11 @@
                 if ( $optsLaunchMode ) {
                     _new_settings.editorwindowmode = $optsLaunchMode.val() == 'inwindow';
                     $optsLaunchMode.selectpicker('refresh');
+                }
+
+                if ( $optsAutoupdateMode ) {
+                    _new_settings.autoupdatemode = $optsAutoupdateMode.val();
+                    $optsAutoupdateMode.selectpicker('refresh');
                 }
 
                 sdk.command("settings:apply", JSON.stringify(_new_settings));
@@ -331,6 +349,14 @@
                         if ( opts.editorwindowmode !== undefined ) {
                             ($optsLaunchMode = ($('#opts-launch-mode', $panel).show().find('select')))
                             .val(opts.editorwindowmode ? 'inwindow' : 'intab')
+                            .selectpicker().on('change', e => {
+                                $btnApply.isdisabled() && $btnApply.disable(false);
+                            });
+                        }
+
+                        if ( opts.autoupdatemode !== undefined ) {
+                            ($optsAutoupdateMode = ($('#opts-autoupdate-mode', $panel).show().find('select')))
+                            .val(opts.autoupdatemode)
                             .selectpicker().on('change', e => {
                                 $btnApply.isdisabled() && $btnApply.disable(false);
                             });

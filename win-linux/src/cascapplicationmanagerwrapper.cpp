@@ -1556,6 +1556,10 @@ bool CAscApplicationManagerWrapper::applySettings(const wstring& wstrjson)
             m_private->m_openEditorWindow = objRoot["editorwindowmode"].toBool();
             _reg_user.setValue("editorWindowMode", m_private->m_openEditorWindow);
         }
+
+        if ( objRoot.contains("autoupdatemode") ) {
+            _reg_user.setValue("autoUpdateMode", objRoot["autoupdatemode"].toString());
+        }
     } else {
         /* parse settings error */
     }

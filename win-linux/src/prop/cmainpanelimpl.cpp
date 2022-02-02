@@ -101,6 +101,7 @@ void CMainPanelImpl::refreshAboutVersion()
 
     GET_REGISTRY_USER(reg_user);
     _json_obj["editorwindowmode"] = reg_user.value("editorWindowMode",false).toBool();
+    _json_obj["autoupdatemode"] = reg_user.value("autoUpdateMode","silent").toString();
 
     AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, "settings:init", Utils::stringifyJson(_json_obj));
     if ( InputArgs::contains(L"--ascdesktop-reveal-app-config") )
