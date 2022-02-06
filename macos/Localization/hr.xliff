@@ -1,1342 +1,1367 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.2" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd">
   <file original="ONLYOFFICE/Base.lproj/Document-Sign.storyboard" source-language="en" target-language="hr-HR" datatype="plaintext">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c" />
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c"/>
     </header>
     <body>
       <trans-unit id="1Fy-mg-aq9.title" xml:space="preserve">
         <source>Enter the password for the digital signature.</source>
-        <target state="new">Unesite lozinku za digitalni potpis.</target>
-        
-      <note>Class = "NSTextFieldCell"; title = "Enter the password for the digital signature."; ObjectID = "1Fy-mg-aq9";</note></trans-unit>
+        <target>Unesite lozinku za digitalni potpis.</target>
+        <note>Class = "NSTextFieldCell"; title = "Enter the password for the digital signature."; ObjectID = "1Fy-mg-aq9";</note>
+      </trans-unit>
       <trans-unit id="1dL-nN-bJI.title" xml:space="preserve">
         <source>Enter the password for the private key.</source>
-        <target state="new">Unesite lozinku za privatni ključ.</target>
-        
-      <note>Class = "NSTextFieldCell"; title = "Enter the password for the private key."; ObjectID = "1dL-nN-bJI";</note></trans-unit>
+        <target>Unesite lozinku za privatni ključ.</target>
+        <note>Class = "NSTextFieldCell"; title = "Enter the password for the private key."; ObjectID = "1dL-nN-bJI";</note>
+      </trans-unit>
       <trans-unit id="2Ck-6y-ygx.title" xml:space="preserve">
         <source>Specify the digital signature file for the document.</source>
-        <target state="new">Odredite datoteku digitalnog potpisa za dokument.</target>
-        
-      <note>Class = "NSTextFieldCell"; title = "Specify the digital signature file for the document."; ObjectID = "2Ck-6y-ygx";</note></trans-unit>
+        <target>Odredite datoteku digitalnog potpisa za dokument.</target>
+        <note>Class = "NSTextFieldCell"; title = "Specify the digital signature file for the document."; ObjectID = "2Ck-6y-ygx";</note>
+      </trans-unit>
       <trans-unit id="4gA-s8-Lne.placeholderString" xml:space="preserve">
         <source>Enter Password</source>
-        <target state="new">Unesite lozinku</target>
-        
-      <note>Class = "NSSecureTextFieldCell"; placeholderString = "Enter Password"; ObjectID = "4gA-s8-Lne";</note></trans-unit>
+        <target>Unesite lozinku</target>
+        <note>Class = "NSSecureTextFieldCell"; placeholderString = "Enter Password"; ObjectID = "4gA-s8-Lne";</note>
+      </trans-unit>
       <trans-unit id="GOU-av-TC1.title" xml:space="preserve">
         <source>Cancel</source>
-        <target state="new">Odustani</target>
-        
-      <note>Class = "NSButtonCell"; title = "Cancel"; ObjectID = "GOU-av-TC1";</note></trans-unit>
+        <target>Odustani</target>
+        <note>Class = "NSButtonCell"; title = "Cancel"; ObjectID = "GOU-av-TC1";</note>
+      </trans-unit>
       <trans-unit id="P3k-kI-w22.title" xml:space="preserve">
         <source>Load a Private Key</source>
-        <target state="new">Učitajte privatni ključ</target>
-        
-      <note>Class = "NSButtonCell"; title = "Load a Private Key"; ObjectID = "P3k-kI-w22";</note></trans-unit>
+        <target>Učitajte privatni ključ</target>
+        <note>Class = "NSButtonCell"; title = "Load a Private Key"; ObjectID = "P3k-kI-w22";</note>
+      </trans-unit>
       <trans-unit id="RbM-Dq-A3K.title" xml:space="preserve">
         <source>Cancel</source>
-        <target state="new">Odustani</target>
-        
-      <note>Class = "NSButtonCell"; title = "Cancel"; ObjectID = "RbM-Dq-A3K";</note></trans-unit>
+        <target>Odustani</target>
+        <note>Class = "NSButtonCell"; title = "Cancel"; ObjectID = "RbM-Dq-A3K";</note>
+      </trans-unit>
       <trans-unit id="Tfc-EF-VnS.title" xml:space="preserve">
         <source>Specify a private key for the digital signature.</source>
-        <target state="new">Odredite privatni ključ za digitalni potpis.</target>
-        
-      <note>Class = "NSTextFieldCell"; title = "Specify a private key for the digital signature."; ObjectID = "Tfc-EF-VnS";</note></trans-unit>
+        <target>Odredite privatni ključ za digitalni potpis.</target>
+        <note>Class = "NSTextFieldCell"; title = "Specify a private key for the digital signature."; ObjectID = "Tfc-EF-VnS";</note>
+      </trans-unit>
       <trans-unit id="Zj5-0h-hpW.placeholderString" xml:space="preserve">
         <source>Enter Password</source>
-        <target state="new">Unesite lozinku</target>
-        
-      <note>Class = "NSSecureTextFieldCell"; placeholderString = "Enter Password"; ObjectID = "Zj5-0h-hpW";</note></trans-unit>
+        <target>Unesite lozinku</target>
+        <note>Class = "NSSecureTextFieldCell"; placeholderString = "Enter Password"; ObjectID = "Zj5-0h-hpW";</note>
+      </trans-unit>
       <trans-unit id="jpH-3g-Gt5.title" xml:space="preserve">
         <source>Cancel</source>
-        <target state="new">Odustani</target>
-        
-      <note>Class = "NSButtonCell"; title = "Cancel"; ObjectID = "jpH-3g-Gt5";</note></trans-unit>
+        <target>Odustani</target>
+        <note>Class = "NSButtonCell"; title = "Cancel"; ObjectID = "jpH-3g-Gt5";</note>
+      </trans-unit>
       <trans-unit id="qZ4-0O-L0G.title" xml:space="preserve">
         <source>Cancel</source>
-        <target state="new">Odustani</target>
-        
-      <note>Class = "NSButtonCell"; title = "Cancel"; ObjectID = "qZ4-0O-L0G";</note></trans-unit>
+        <target>Odustani</target>
+        <note>Class = "NSButtonCell"; title = "Cancel"; ObjectID = "qZ4-0O-L0G";</note>
+      </trans-unit>
       <trans-unit id="tTF-wa-eJp.title" xml:space="preserve">
         <source>Load Signature</source>
-        <target state="new">Učitajte potpis</target>
-        
-      <note>Class = "NSButtonCell"; title = "Load Signature"; ObjectID = "tTF-wa-eJp";</note></trans-unit>
+        <target>Učitajte potpis</target>
+        <note>Class = "NSButtonCell"; title = "Load Signature"; ObjectID = "tTF-wa-eJp";</note>
+      </trans-unit>
     </body>
   </file>
   <file original="ONLYOFFICE/Base.lproj/Localizable.strings" source-language="en" target-language="hr-HR" datatype="plaintext">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c" />
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c"/>
     </header>
     <body>
       <trans-unit id="%@ Help" xml:space="preserve">
         <source>%@ Help</source>
-        <target state="new">%@ Pomoć</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>%@ Pomoć</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="%@ Reporter Window" xml:space="preserve">
-        <source>%@ Reporter Window</source><target state="needs-translation">%@ Reporterski prozor</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <source>%@ Reporter Window</source>
+        <target state="translated">%@ Izvještajni prozor</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="About %@" xml:space="preserve">
         <source>About %@</source>
-        <target state="new">O nama %@</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>O nama %@</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Acknowledgments" xml:space="preserve">
         <source>Acknowledgments</source>
-        <target state="new">Priznanja</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Priznanja</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Before signing the document, it must be saved." xml:space="preserve">
-        <source>Before signing the document, it must be saved.</source><target state="needs-translation">Dokument se mora spremiti prije potpisivanja.</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <source>Before signing the document, it must be saved.</source>
+        <target state="translated">Prije potpisivanja dokumenta potrebno ga je spremiti.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Cancel" xml:space="preserve">
         <source>Cancel</source>
-        <target state="new">Odustani</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Odustani</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Cannot open file of Digital Signature" xml:space="preserve">
-        <source>Cannot open file of Digital Signature</source><target state="needs-translation">Nije moguće otvoriti datoteku digitalnog potpisa</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <source>Cannot open file of Digital Signature</source>
+        <target state="translated">Nije moguće otvoriti datoteku digitalnog potpisa</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Cannot open file of Private Key" xml:space="preserve">
-        <source>Cannot open file of Private Key</source><target state="needs-translation">Nije moguće otvoriti datoteku privatnog ključa</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <source>Cannot open file of Private Key</source>
+        <target state="translated">Nije moguće otvoriti datoteku privatnog ključa</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Cannot open folder of the file location." xml:space="preserve">
-        <source>Cannot open folder of the file location.</source><target state="needs-translation">Nije moguće otvoriti mapu na mjestu datoteke.</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <source>Cannot open folder of the file location.</source>
+        <target state="translated">Nije moguće otvoriti mapu s lokacijom datoteke.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Comma-Separated Values" xml:space="preserve">
         <source>Comma-Separated Values</source>
-        <target state="new">Vrijednosti odvojene zarezom</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Vrijednosti odvojene zarezom</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Create portal" xml:space="preserve">
-        <source>Create portal</source><target state="needs-translation">Izradite portal</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <source>Create portal</source>
+        <target state="translated">Izradite portal</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Delete and Quit" xml:space="preserve">
         <source>Delete and Quit</source>
-        <target state="new">Izbriši i odustani</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Izbriši i odustani</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="DjVu File" xml:space="preserve">
         <source>DjVu File</source>
-        <target state="new">DjVu datoteka</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>DjVu datoteka</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Do you want to save the changes made to the document &quot;%@&quot;?" xml:space="preserve">
         <source>Do you want to save the changes made to the document "%@"?</source>
-        <target state="new">Želite li spremiti izmjene dokumenta "%@"?</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Želite li spremiti izmjene dokumenta "%@"?</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Document %ld.docx" xml:space="preserve">
         <source>Document %ld.docx</source>
-        <target state="new">Dokument %ld.docx</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Dokument %ld.docx</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Document template" xml:space="preserve">
-        <source>Document template</source><target state="needs-translation">Predložak dokumenta</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <source>Document template</source>
+        <target state="translated">Predložak dokumenta</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Excel 97-2003 Spreadsheet" xml:space="preserve">
         <source>Excel 97-2003 Spreadsheet</source>
-        <target state="new">Excel 97-2003 tablica</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Excel 97-2003 tablica</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Excel 2007 Spreadsheet" xml:space="preserve">
         <source>Excel 2007 Spreadsheet</source>
-        <target state="new">Excel 2007 tablica</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Excel 2007 tablica</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="File &quot;%@&quot; can not be open or not exist." xml:space="preserve">
         <source>File "%@" can not be open or not exist.</source>
-        <target state="new">Datoteka "%@" se ne može otvoriti ili ne postoji.</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Datoteka "%@" se ne može otvoriti ili ne postoji.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="File Format:" xml:space="preserve">
         <source>File Format:</source>
-        <target state="new">Format datoteke:</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Format datoteke:</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="File can not be open." xml:space="preserve">
         <source>File can not be open.</source>
-        <target state="new">Datoteka se ne može otvoriti.</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Datoteka se ne može otvoriti.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Hide %@" xml:space="preserve">
         <source>Hide %@</source>
-        <target state="new">Sakrij %@</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Sakrij %@</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="If you don't review your documents, all your changeses will be lost." xml:space="preserve">
-        <source>If you don't review your documents, all your changeses will be lost.</source>
-        <target state="new">Ako ne pregledate svoje dokumente, vaše izmjene bit će izgubljene.</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <source>If you don't review your documents, all your changes will be lost.</source>
+        <target>Ako ne pregledate svoje dokumente, vaše izmjene bit će izgubljene.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="If you have already purchased %@, you should find your activation key in an email confirmation." xml:space="preserve">
         <source>If you have already purchased %@, you should find your activation key in an email confirmation.</source>
-        <target state="new">Ako ste već kupili %@,trebali biste pronaći svoj aktivacijski ključ u potvrdnoj poruci e-pošte.</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Ako ste već kupili %@,trebali biste pronaći svoj aktivacijski ključ u potvrdnoj poruci e-pošte.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="License Agreement" xml:space="preserve">
         <source>License Agreement</source>
-        <target state="new">Sporazum o licenciranju</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Sporazum o licenciranju</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Mobipocket e-book" xml:space="preserve">
         <source>Mobipocket e-book</source>
-        <target state="new">Mobipocket e-knjiga</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Mobipocket e-knjiga</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="No" xml:space="preserve">
         <source>No</source>
-        <target state="new">Ne</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Ne</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="OK" xml:space="preserve">
         <source>OK</source>
-        <target state="new">OK</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>OK</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="ONLYOFFICE can not open the Digital Signature file. Try opening another file." xml:space="preserve">
-        <source>ONLYOFFICE can not open the Digital Signature file. Try opening another file.</source><target state="needs-translation">ONLYOFFICE ne može otvoriti datoteku digitalnog potpisa. Pokušajte otvoriti drugu datoteku.</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <source>ONLYOFFICE can not open the Digital Signature file. Try opening another file.</source>
+        <target state="translated">ONLYOFFICE ne može otvoriti datoteku digitalnog potpisa. Pokušajte otvoriti drugu datoteku.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="ONLYOFFICE can not open the Private Key. Try opening another file." xml:space="preserve">
-        <source>ONLYOFFICE can not open the Private Key. Try opening another file.</source><target state="needs-translation">ONLYOFFICE ne može otvoriti privatni ključ. Pokušajte otvoriti drugu datoteku.</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <source>ONLYOFFICE can not open the Private Key. Try opening another file.</source>
+        <target state="translated">ONLYOFFICE ne može otvoriti privatni ključ. Pokušajte otvoriti drugu datoteku.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="OpenDocument Document Template" xml:space="preserve">
-        <source>OpenDocument Document Template</source><target state="needs-translation">Predložak dokumenta OpenDocument</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <source>OpenDocument Document Template</source>
+        <target state="translated">Predložak dokumenta OpenDocument</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="OpenDocument Presentation Template" xml:space="preserve">
-        <source>OpenDocument Presentation Template</source><target state="needs-translation">Predložak prezentacije OpenDocument</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <source>OpenDocument Presentation Template</source>
+        <target state="translated">Predložak prezentacije OpenDocument</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="OpenDocument Spreadsheet Template" xml:space="preserve">
-        <source>OpenDocument Spreadsheet Template</source><target state="needs-translation">Predložak proračunske tablice OpenDocument</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <source>OpenDocument Spreadsheet Template</source>
+        <target state="translated">Predložak proračunske tablice OpenDocument</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="OpenOffice Document" xml:space="preserve">
         <source>OpenOffice Document</source>
-        <target state="new">OpenOffice dokument</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>OpenOffice dokument</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="OpenOffice Presentation" xml:space="preserve">
         <source>OpenOffice Presentation</source>
-        <target state="new">OpenOffice prezentacija</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>OpenOffice prezentacija</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="OpenOffice Spreadsheet" xml:space="preserve">
         <source>OpenOffice Spreadsheet</source>
-        <target state="new">OpenOffice tablica</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>OpenOffice tablica</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Opening" xml:space="preserve">
         <source>Opening</source>
-        <target state="new">Otvaranje</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Otvaranje</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="PDF File" xml:space="preserve">
         <source>PDF File</source>
-        <target state="new">PDF datoteka</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>PDF datoteka</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="PDF/A File" xml:space="preserve">
-        <source>PDF/A File</source><target state="needs-translation">PDF/A datoteka</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <source>PDF/A File</source>
+        <target state="translated">PDF/A datoteka</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Plain Text" xml:space="preserve">
         <source>Plain Text</source>
-        <target state="new">Običan tekst</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Običan tekst</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="PowerPoint 97-2003 Presentation" xml:space="preserve">
         <source>PowerPoint 97-2003 Presentation</source>
-        <target state="new">PowerPoint 97-2003 prezentacija</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>PowerPoint 97-2003 prezentacija</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="PowerPoint 2007 Presentation" xml:space="preserve">
         <source>PowerPoint 2007 Presentation</source>
-        <target state="new">PowerPoint 2007 prezentacija</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>PowerPoint 2007 prezentacija</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="PowerPoint Slide Show" xml:space="preserve">
         <source>PowerPoint Slide Show</source>
-        <target state="new">PowerPoint prikaz slajdova</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>PowerPoint prikaz slajdova</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Preparing..." xml:space="preserve">
         <source>Preparing...</source>
-        <target state="new">Pripremanje...</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Pripremanje...</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Presentation %ld.pptx" xml:space="preserve">
         <source>Presentation %ld.pptx</source>
-        <target state="new">Prezentacija %ld.pptx</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Prezentacija %ld.pptx</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Presentation template" xml:space="preserve">
-        <source>Presentation template</source><target state="needs-translation">Predložak prezentacije</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <source>Presentation template</source>
+        <target state="translated">Predložak prezentacije</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Quit %@" xml:space="preserve">
         <source>Quit %@</source>
-        <target state="new">Odustani %@</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Odustani %@</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Review Changes..." xml:space="preserve">
         <source>Review Changes...</source>
-        <target state="new">Pregled izmjena...</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Pregled izmjena...</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Rich Text Document" xml:space="preserve">
         <source>Rich Text Document</source>
-        <target state="new">Rich Text dokument</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Rich Text dokument</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Save" xml:space="preserve">
-        <source>Save</source><target state="needs-translation">Spremi</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <source>Save</source>
+        <target state="translated">Spremi</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Save the document?" xml:space="preserve">
-        <source>Save the document?</source><target state="needs-translation">Spremiti dokument?</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <source>Save the document?</source>
+        <target state="translated">Spremiti dokument?</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Spreadsheet %ld.xlsx" xml:space="preserve">
         <source>Spreadsheet %ld.xlsx</source>
-        <target state="new">Tablica %ld.xlsx</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Tablica %ld.xlsx</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Spreadsheet template" xml:space="preserve">
-        <source>Spreadsheet template</source><target state="needs-translation">Predložak proračunske tablice</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <source>Spreadsheet template</source>
+        <target state="translated">Predložak proračunske tablice</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Thank you for evaluating %@!" xml:space="preserve">
         <source>Thank you for evaluating %@!</source>
-        <target state="new">Hvala na procjeni %@!</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Hvala na procjeni %@!</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="The document &quot;%@&quot; must be built. Continue?" xml:space="preserve">
-        <source>The document "%@" must be built. Continue?</source><target state="needs-translation">Dokument "% @" mora biti izrađen. Nastaviti ?</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <source>The document "%@" must be built. Continue?</source>
+        <target state="translated">Dokument "%@" mora biti izrađen. Želite li nastaviti?</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="To open the file location, it must be saved." xml:space="preserve">
-        <source>To open the file location, it must be saved.</source><target state="needs-translation">Da biste otvorili mjesto datoteke, mora se spremiti.</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <source>To open the file location, it must be saved.</source>
+        <target state="translated">Da biste otvorili lokaciju datoteke, morate je spremiti.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Unconfirmed" xml:space="preserve">
         <source>Unconfirmed</source>
-        <target state="new">Nepotvrđeno</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Nepotvrđeno</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Untitled" xml:space="preserve">
         <source>Untitled</source>
-        <target state="new">Bez naslova</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Bez naslova</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Version %@ (%@)" xml:space="preserve">
-        <source>Version %1$@ (%2$@)</source><target state="needs-translation">Verzija %1$@ (%2$@)</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <source>Version %1$@ (%2$@)</source>
+        <target state="translated">Verzija %1$@ (%2$@)</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Web Page" xml:space="preserve">
         <source>Web Page</source>
-        <target state="new">Web stranica</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Web stranica</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Word 97-2003 Document" xml:space="preserve">
         <source>Word 97-2003 Document</source>
-        <target state="new">Word 97-2003 dokument</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Word 97-2003 dokument</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Word 2007 Document" xml:space="preserve">
         <source>Word 2007 Document</source>
-        <target state="new">Word 2007 dokument</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Word 2007 dokument</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="XML Paper Specification" xml:space="preserve">
         <source>XML Paper Specification</source>
-        <target state="new">Specifikacija XML papira</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Specifikacija XML papira</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Yes" xml:space="preserve">
         <source>Yes</source>
-        <target state="new">Da</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Da</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?" xml:space="preserve">
         <source>You have %1$ld %2$@ documents with unconfirmed changes. Do you want to review these changes before quitting?</source>
-        <target state="new">Imate %1$ld %2$@ dokumenata s nepotvrđenim izmjenama. Želite li pregledati ove izmjene prije odustajanja?</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Imate %1$ld %2$@ dokumenata s nepotvrđenim izmjenama. Želite li pregledati ove izmjene prije odustajanja?</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="You have successfully activated %@." xml:space="preserve">
         <source>You have successfully activated %@.</source>
-        <target state="new">Uspješno ste aktivirali %@.</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Uspješno ste aktivirali %@.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Your changes will be lost if you don’t save them." xml:space="preserve">
         <source>Your changes will be lost if you don’t save them.</source>
-        <target state="new">Vaše izmjene bit će izgubljene ako ih ne spremite.</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
-      <trans-unit id="Your subscription has expired.&#xA;&#xA;The program works in the non-activated mode.&#xA;&#xA;Now you can prolong or upgrade your subscription with a discount." xml:space="preserve">
+        <target>Vaše izmjene bit će izgubljene ako ih ne spremite.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Your subscription has expired.&#10;&#10;The program works in the non-activated mode.&#10;&#10;Now you can prolong or upgrade your subscription with a discount." xml:space="preserve">
         <source>Your subscription has expired.
 
 The program works in the non-activated mode.
 
 Now you can prolong or upgrade your subscription with a discount.</source>
-        <target state="new">Vaša pretplata je istekla.
+        <target>Vaša pretplata je istekla.
 
 Program radi u neaktivnom načinu rada.
 
 Sada možete produljiti pretplatu ili je nadograditi s popustom.</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
-      <trans-unit id="Your subscription is about to expire&#xA;(%d days left).&#xA;&#xA;We have a special offer for you." xml:space="preserve">
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Your subscription is about to expire&#10;(%d days left).&#10;&#10;We have a special offer for you." xml:space="preserve">
         <source>Your subscription is about to expire
 (%d days left).
 
 We have a special offer for you.</source>
-        <target state="new">Vaša pretplata uskoro istječe
+        <target>Vaša pretplata uskoro istječe
 (%d dana preostalo).
 
 Imamo posebnu ponudu za vas.</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="new-document" xml:space="preserve">
-        <source>New Document</source><target state="needs-translation">Novi dokument</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <source>New Document</source>
+        <target state="translated">Novi dokument</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="new-presentation" xml:space="preserve">
-        <source>New Presentation</source><target state="needs-translation">Nova prezentacija</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <source>New Presentation</source>
+        <target state="translated">Nova prezentacija</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="new-spreadsheet" xml:space="preserve">
-        <source>New Spreadsheet</source><target state="needs-translation">Nova proračunska tablica</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <source>New Spreadsheet</source>
+        <target state="translated">Nova proračunska tablica</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
     </body>
   </file>
   <file original="ONLYOFFICE/Base.lproj/Localizable.stringsdict" source-language="en" target-language="hr-HR" datatype="plaintext">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c" />
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c"/>
     </header>
     <body>
       <trans-unit id="/%d days are left until the license expiration.:dict/NSStringLocalizedFormatKey:dict/:string" xml:space="preserve">
         <source>%#@days@</source>
-        <target state="new">%#@dana@</target>
-        
+        <target>%#@dana@</target>
+        <note/>
       </trans-unit>
       <trans-unit id="/%d days are left until the license expiration.:dict/days:dict/few:dict/:string" xml:space="preserve">
         <source>%d days are left until the license expiration.</source>
-        <target state="new">%d dana je preostalo do isteka licence.</target>
-        
+        <target>%d dana je preostalo do isteka licence.</target>
+        <note/>
       </trans-unit>
       <trans-unit id="/%d days are left until the license expiration.:dict/days:dict/one:dict/:string" xml:space="preserve">
         <source>%d day are left until the license expiration.</source>
-        <target state="new">%d dan je preostao do isteka licence.</target>
-        
+        <target>%d dan je preostao do isteka licence.</target>
+        <note/>
       </trans-unit>
       <trans-unit id="/%d days are left until the license expiration.:dict/days:dict/other:dict/:string" xml:space="preserve">
         <source>%d days are left until the license expiration.</source>
-        <target state="new">%d dana je preostalo do isteka licence.</target>
-        
+        <target>%d dana je preostalo do isteka licence.</target>
+        <note/>
       </trans-unit>
-      <trans-unit id="/You are using a trial version of the application.&#xA;The trial period will end in %d days, after that you will not be able to create and edit documents.:dict/NSStringLocalizedFormatKey:dict/:string" xml:space="preserve">
+      <trans-unit id="/You are using a trial version of the application.&#10;The trial period will end in %d days, after that you will not be able to create and edit documents.:dict/NSStringLocalizedFormatKey:dict/:string" xml:space="preserve">
         <source>%#@days@</source>
-        <target state="new">%#@dana@</target>
-        
+        <target>%#@dana@</target>
+        <note/>
       </trans-unit>
-      <trans-unit id="/You are using a trial version of the application.&#xA;The trial period will end in %d days, after that you will not be able to create and edit documents.:dict/days:dict/few:dict/:string" xml:space="preserve">
+      <trans-unit id="/You are using a trial version of the application.&#10;The trial period will end in %d days, after that you will not be able to create and edit documents.:dict/days:dict/few:dict/:string" xml:space="preserve">
         <source>You are using a trial version of the application.
 The trial period will end in %d days, after that you will not be able to create and edit documents.</source>
-        <target state="new">Koristite probnu verziju aplikacije.
+        <target>Koristite probnu verziju aplikacije.
 Probno razdoblje će završiti za %d dana, nakon čega nećete moći stvarati i uređivati ​​dokumente.</target>
-        
+        <note/>
       </trans-unit>
-      <trans-unit id="/You are using a trial version of the application.&#xA;The trial period will end in %d days, after that you will not be able to create and edit documents.:dict/days:dict/one:dict/:string" xml:space="preserve">
+      <trans-unit id="/You are using a trial version of the application.&#10;The trial period will end in %d days, after that you will not be able to create and edit documents.:dict/days:dict/one:dict/:string" xml:space="preserve">
         <source>You are using a trial version of the application.
 The trial period will end in %d day, after that you will not be able to create and edit documents.</source>
-        <target state="new">Koristite probnu verziju aplikacije.
+        <target>Koristite probnu verziju aplikacije.
 Probno razdoblje će završiti za %d dan, nakon čega nećete moći stvarati i uređivati ​​dokumente.</target>
-        
+        <note/>
       </trans-unit>
-      <trans-unit id="/You are using a trial version of the application.&#xA;The trial period will end in %d days, after that you will not be able to create and edit documents.:dict/days:dict/other:dict/:string" xml:space="preserve">
+      <trans-unit id="/You are using a trial version of the application.&#10;The trial period will end in %d days, after that you will not be able to create and edit documents.:dict/days:dict/other:dict/:string" xml:space="preserve">
         <source>You are using a trial version of the application.
 The trial period will end in %d days, after that you will not be able to create and edit documents.</source>
-        <target state="new">Koristite probnu verziju aplikacije.
+        <target>Koristite probnu verziju aplikacije.
 Probno razdoblje će završiti za %d dana, nakon čega nećete moći stvarati i uređivati ​​dokumente.</target>
-        
+        <note/>
       </trans-unit>
       <trans-unit id="/You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?:dict/NSStringLocalizedFormatKey:dict/:string" xml:space="preserve">
         <source>%#@documents@</source>
-        <target state="new">%#@dokumenti@</target>
-        
+        <target>%#@dokumenti@</target>
+        <note/>
       </trans-unit>
       <trans-unit id="/You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?:dict/documents:dict/few:dict/:string" xml:space="preserve">
         <source>You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?</source>
-        <target state="new">Imate %ld %@ dokumenata s nepotvrđenim izmjenama. Želite li pregledati te izmjene prije odustajanja?</target>
-        
+        <target>Imate %ld %@ dokumenata s nepotvrđenim izmjenama. Želite li pregledati te izmjene prije odustajanja?</target>
+        <note/>
       </trans-unit>
       <trans-unit id="/You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?:dict/documents:dict/one:dict/:string" xml:space="preserve">
         <source>You have %ld %@ document with unconfirmed changes. Do you want to review these changes before quitting?</source>
-        <target state="new">Imate %ld %@ dokument s nepotvrđenim izmjenama. Želite li pregledati te izmjene prije odustajanja?</target>
-        
+        <target>Imate %ld %@ dokument s nepotvrđenim izmjenama. Želite li pregledati te izmjene prije odustajanja?</target>
+        <note/>
       </trans-unit>
       <trans-unit id="/You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?:dict/documents:dict/other:dict/:string" xml:space="preserve">
         <source>You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?</source>
-        <target state="new">Imate %ld %@ dokumenata s nepotvrđenim izmjenama. Želite li pregledati te izmjene prije odustajanja?</target>
-        
+        <target>Imate %ld %@ dokumenata s nepotvrđenim izmjenama. Želite li pregledati te izmjene prije odustajanja?</target>
+        <note/>
       </trans-unit>
     </body>
   </file>
   <file original="ONLYOFFICE/Base.lproj/Main.storyboard" source-language="en" target-language="hr-HR" datatype="plaintext">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c" />
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c"/>
     </header>
     <body>
       <trans-unit id="1UK-8n-QPP.title" xml:space="preserve">
         <source>Customize Toolbar…</source>
-        <target state="new">Prilagodba alatne trake…</target>
-        
-      <note>Class = "NSMenuItem"; title = "Customize Toolbar…"; ObjectID = "1UK-8n-QPP";</note></trans-unit>
+        <target>Prilagodba alatne trake…</target>
+        <note>Class = "NSMenuItem"; title = "Customize Toolbar…"; ObjectID = "1UK-8n-QPP";</note>
+      </trans-unit>
       <trans-unit id="1Xt-HY-uBw.title" xml:space="preserve">
         <source>ONLYOFFICE</source>
-        <target state="new">ONLYOFFICE</target>
-        
-      <note>Class = "NSMenuItem"; title = "ONLYOFFICE"; ObjectID = "1Xt-HY-uBw";</note></trans-unit>
+        <target>ONLYOFFICE</target>
+        <note>Class = "NSMenuItem"; title = "ONLYOFFICE"; ObjectID = "1Xt-HY-uBw";</note>
+      </trans-unit>
       <trans-unit id="1b7-l0-nxx.title" xml:space="preserve">
         <source>Find</source>
-        <target state="new">Pronađi</target>
-        
-      <note>Class = "NSMenu"; title = "Find"; ObjectID = "1b7-l0-nxx";</note></trans-unit>
+        <target>Pronađi</target>
+        <note>Class = "NSMenu"; title = "Find"; ObjectID = "1b7-l0-nxx";</note>
+      </trans-unit>
       <trans-unit id="1tx-W0-xDw.title" xml:space="preserve">
         <source>Lower</source>
-        <target state="new">Niže</target>
-        
-      <note>Class = "NSMenuItem"; title = "Lower"; ObjectID = "1tx-W0-xDw";</note></trans-unit>
+        <target>Niže</target>
+        <note>Class = "NSMenuItem"; title = "Lower"; ObjectID = "1tx-W0-xDw";</note>
+      </trans-unit>
       <trans-unit id="2h7-ER-AoG.title" xml:space="preserve">
         <source>Raise</source>
-        <target state="new">Povisi</target>
-        
-      <note>Class = "NSMenuItem"; title = "Raise"; ObjectID = "2h7-ER-AoG";</note></trans-unit>
+        <target>Povisi</target>
+        <note>Class = "NSMenuItem"; title = "Raise"; ObjectID = "2h7-ER-AoG";</note>
+      </trans-unit>
       <trans-unit id="2oI-Rn-ZJC.title" xml:space="preserve">
         <source>Transformations</source>
-        <target state="new">Transformacije</target>
-        
-      <note>Class = "NSMenuItem"; title = "Transformations"; ObjectID = "2oI-Rn-ZJC";</note></trans-unit>
+        <target>Transformacije</target>
+        <note>Class = "NSMenuItem"; title = "Transformations"; ObjectID = "2oI-Rn-ZJC";</note>
+      </trans-unit>
       <trans-unit id="3IN-sU-3Bg.title" xml:space="preserve">
         <source>Spelling</source>
-        <target state="new">Pravopis</target>
-        
-      <note>Class = "NSMenu"; title = "Spelling"; ObjectID = "3IN-sU-3Bg";</note></trans-unit>
+        <target>Pravopis</target>
+        <note>Class = "NSMenu"; title = "Spelling"; ObjectID = "3IN-sU-3Bg";</note>
+      </trans-unit>
       <trans-unit id="3Om-Ey-2VK.title" xml:space="preserve">
         <source>Use Default</source>
-        <target state="new">Koristi zadano</target>
-        
-      <note>Class = "NSMenuItem"; title = "Use Default"; ObjectID = "3Om-Ey-2VK";</note></trans-unit>
+        <target>Koristi zadano</target>
+        <note>Class = "NSMenuItem"; title = "Use Default"; ObjectID = "3Om-Ey-2VK";</note>
+      </trans-unit>
       <trans-unit id="3rS-ZA-NoH.title" xml:space="preserve">
         <source>Speech</source>
-        <target state="new">Govor</target>
-        
-      <note>Class = "NSMenu"; title = "Speech"; ObjectID = "3rS-ZA-NoH";</note></trans-unit>
+        <target>Govor</target>
+        <note>Class = "NSMenu"; title = "Speech"; ObjectID = "3rS-ZA-NoH";</note>
+      </trans-unit>
       <trans-unit id="4EN-yA-p0u.title" xml:space="preserve">
         <source>Find</source>
-        <target state="new">Pronađi</target>
-        
-      <note>Class = "NSMenuItem"; title = "Find"; ObjectID = "4EN-yA-p0u";</note></trans-unit>
+        <target>Pronađi</target>
+        <note>Class = "NSMenuItem"; title = "Find"; ObjectID = "4EN-yA-p0u";</note>
+      </trans-unit>
       <trans-unit id="4et-TX-a4m.title" xml:space="preserve">
         <source>License Agreement</source>
-        <target state="new">Sporazum o licenciranju</target>
-        
-      <note>Class = "NSMenuItem"; title = "License Agreement"; ObjectID = "4et-TX-a4m";</note></trans-unit>
+        <target>Sporazum o licenciranju</target>
+        <note>Class = "NSMenuItem"; title = "License Agreement"; ObjectID = "4et-TX-a4m";</note>
+      </trans-unit>
       <trans-unit id="4sb-4s-VLi.title" xml:space="preserve">
         <source>Quit ONLYOFFICE</source>
-        <target state="new">Zatvori ONLYOFFICE</target>
-        
-      <note>Class = "NSMenuItem"; title = "Quit ONLYOFFICE"; ObjectID = "4sb-4s-VLi";</note></trans-unit>
+        <target>Zatvori ONLYOFFICE</target>
+        <note>Class = "NSMenuItem"; title = "Quit ONLYOFFICE"; ObjectID = "4sb-4s-VLi";</note>
+      </trans-unit>
       <trans-unit id="5QF-Oa-p0T.title" xml:space="preserve">
         <source>Edit</source>
-        <target state="new">Uredi</target>
-        
-      <note>Class = "NSMenuItem"; title = "Edit"; ObjectID = "5QF-Oa-p0T";</note></trans-unit>
+        <target>Uredi</target>
+        <note>Class = "NSMenuItem"; title = "Edit"; ObjectID = "5QF-Oa-p0T";</note>
+      </trans-unit>
       <trans-unit id="5Vv-lz-BsD.title" xml:space="preserve">
         <source>Copy Style</source>
-        <target state="new">Kopiraj stil</target>
-        
-      <note>Class = "NSMenuItem"; title = "Copy Style"; ObjectID = "5Vv-lz-BsD";</note></trans-unit>
+        <target>Kopiraj stil</target>
+        <note>Class = "NSMenuItem"; title = "Copy Style"; ObjectID = "5Vv-lz-BsD";</note>
+      </trans-unit>
       <trans-unit id="5kV-Vb-QxS.title" xml:space="preserve">
         <source>About ONLYOFFICE</source>
-        <target state="new">O ONLYOFFICE</target>
-        
-      <note>Class = "NSMenuItem"; title = "About ONLYOFFICE"; ObjectID = "5kV-Vb-QxS";</note></trans-unit>
+        <target>O ONLYOFFICE</target>
+        <note>Class = "NSMenuItem"; title = "About ONLYOFFICE"; ObjectID = "5kV-Vb-QxS";</note>
+      </trans-unit>
       <trans-unit id="6dh-zS-Vam.title" xml:space="preserve">
         <source>Redo</source>
-        <target state="new">Ponovi</target>
-        
-      <note>Class = "NSMenuItem"; title = "Redo"; ObjectID = "6dh-zS-Vam";</note></trans-unit>
+        <target>Ponovi</target>
+        <note>Class = "NSMenuItem"; title = "Redo"; ObjectID = "6dh-zS-Vam";</note>
+      </trans-unit>
       <trans-unit id="8Ga-Cu-VGe.title" xml:space="preserve">
         <source>License agreement</source>
-        <target state="new">Sporazum o licenciranju</target>
-        
-      <note>Class = "NSButtonCell"; title = "License agreement"; ObjectID = "8Ga-Cu-VGe";</note></trans-unit>
+        <target>Sporazum o licenciranju</target>
+        <note>Class = "NSButtonCell"; title = "License agreement"; ObjectID = "8Ga-Cu-VGe";</note>
+      </trans-unit>
       <trans-unit id="8mr-sm-Yjd.title" xml:space="preserve">
         <source>Writing Direction</source>
-        <target state="new">Smjer pisanja</target>
-        
-      <note>Class = "NSMenu"; title = "Writing Direction"; ObjectID = "8mr-sm-Yjd";</note></trans-unit>
+        <target>Smjer pisanja</target>
+        <note>Class = "NSMenu"; title = "Writing Direction"; ObjectID = "8mr-sm-Yjd";</note>
+      </trans-unit>
       <trans-unit id="9aQ-wl-gjS.title" xml:space="preserve">
         <source>New</source>
-        <target state="new">Novo</target>
-        
-      <note>Class = "NSMenuItem"; title = "New"; ObjectID = "9aQ-wl-gjS";</note></trans-unit>
+        <target>Novo</target>
+        <note>Class = "NSMenuItem"; title = "New"; ObjectID = "9aQ-wl-gjS";</note>
+      </trans-unit>
       <trans-unit id="9i7-kj-42B.title" xml:space="preserve">
         <source>none</source>
-        <target state="new">nijedan</target>
-        
-      <note>Class = "NSTextFieldCell"; title = "none"; ObjectID = "9i7-kj-42B";</note></trans-unit>
+        <target>nijedan</target>
+        <note>Class = "NSTextFieldCell"; title = "none"; ObjectID = "9i7-kj-42B";</note>
+      </trans-unit>
       <trans-unit id="9ic-FL-obx.title" xml:space="preserve">
         <source>Substitutions</source>
-        <target state="new">Zamjene</target>
-        
-      <note>Class = "NSMenuItem"; title = "Substitutions"; ObjectID = "9ic-FL-obx";</note></trans-unit>
+        <target>Zamjene</target>
+        <note>Class = "NSMenuItem"; title = "Substitutions"; ObjectID = "9ic-FL-obx";</note>
+      </trans-unit>
       <trans-unit id="9yt-4B-nSM.title" xml:space="preserve">
         <source>Smart Copy/Paste</source>
-        <target state="new">Pametno Kopiraj/Zalijepi</target>
-        
-      <note>Class = "NSMenuItem"; title = "Smart Copy/Paste"; ObjectID = "9yt-4B-nSM";</note></trans-unit>
+        <target>Pametno Kopiraj/Zalijepi</target>
+        <note>Class = "NSMenuItem"; title = "Smart Copy/Paste"; ObjectID = "9yt-4B-nSM";</note>
+      </trans-unit>
       <trans-unit id="46P-cB-AYj.title" xml:space="preserve">
         <source>Tighten</source>
-        <target state="new">Stegni</target>
-        
-      <note>Class = "NSMenuItem"; title = "Tighten"; ObjectID = "46P-cB-AYj";</note></trans-unit>
+        <target>Stegni</target>
+        <note>Class = "NSMenuItem"; title = "Tighten"; ObjectID = "46P-cB-AYj";</note>
+      </trans-unit>
       <trans-unit id="78Y-hA-62v.title" xml:space="preserve">
         <source>Correct Spelling Automatically</source>
-        <target state="new">Automatski ispravi pravopis</target>
-        
-      <note>Class = "NSMenuItem"; title = "Correct Spelling Automatically"; ObjectID = "78Y-hA-62v";</note></trans-unit>
+        <target>Automatski ispravi pravopis</target>
+        <note>Class = "NSMenuItem"; title = "Correct Spelling Automatically"; ObjectID = "78Y-hA-62v";</note>
+      </trans-unit>
       <trans-unit id="AYu-sK-qS6.title" xml:space="preserve">
         <source>Main Menu</source>
-        <target state="new">Glavni izbornik</target>
-        
-      <note>Class = "NSMenu"; title = "Main Menu"; ObjectID = "AYu-sK-qS6";</note></trans-unit>
+        <target>Glavni izbornik</target>
+        <note>Class = "NSMenu"; title = "Main Menu"; ObjectID = "AYu-sK-qS6";</note>
+      </trans-unit>
       <trans-unit id="BOF-NM-1cW.title" xml:space="preserve">
         <source>Preferences…</source>
-        <target state="new">Preferencije…</target>
-        
-      <note>Class = "NSMenuItem"; title = "Preferences…"; ObjectID = "BOF-NM-1cW";</note></trans-unit>
+        <target>Preferencije…</target>
+        <note>Class = "NSMenuItem"; title = "Preferences…"; ObjectID = "BOF-NM-1cW";</note>
+      </trans-unit>
       <trans-unit id="BgM-ve-c93.title" xml:space="preserve">
         <source>	Left to Right</source>
-        <target state="new">	S lijeva na desno</target>
-        
-      <note>Class = "NSMenuItem"; title = "\tLeft to Right"; ObjectID = "BgM-ve-c93";</note></trans-unit>
+        <target>	S lijeva na desno</target>
+        <note>Class = "NSMenuItem"; title = "\tLeft to Right"; ObjectID = "BgM-ve-c93";</note>
+      </trans-unit>
       <trans-unit id="Bw7-FT-i3A.title" xml:space="preserve">
         <source>Save As…</source>
-        <target state="new">Spremi kao…</target>
-        
-      <note>Class = "NSMenuItem"; title = "Save As…"; ObjectID = "Bw7-FT-i3A";</note></trans-unit>
+        <target>Spremi kao…</target>
+        <note>Class = "NSMenuItem"; title = "Save As…"; ObjectID = "Bw7-FT-i3A";</note>
+      </trans-unit>
       <trans-unit id="CJU-dx-a9l.title" xml:space="preserve">
         <source>Acknowledgments</source>
-        <target state="new">Priznanja</target>
-        
-      <note>Class = "NSMenuItem"; title = "Acknowledgments"; ObjectID = "CJU-dx-a9l";</note></trans-unit>
+        <target>Priznanja</target>
+        <note>Class = "NSMenuItem"; title = "Acknowledgments"; ObjectID = "CJU-dx-a9l";</note>
+      </trans-unit>
       <trans-unit id="DOj-j9-dza.title" xml:space="preserve">
         <source>Spreadsheet</source>
-        <target state="new">Tablica</target>
-        
-      <note>Class = "NSMenuItem"; title = "Spreadsheet"; ObjectID = "DOj-j9-dza";</note></trans-unit>
+        <target>Tablica</target>
+        <note>Class = "NSMenuItem"; title = "Spreadsheet"; ObjectID = "DOj-j9-dza";</note>
+      </trans-unit>
       <trans-unit id="DVo-aG-piG.title" xml:space="preserve">
         <source>Close</source>
-        <target state="new">Zatvori</target>
-        
-      <note>Class = "NSMenuItem"; title = "Close"; ObjectID = "DVo-aG-piG";</note></trans-unit>
+        <target>Zatvori</target>
+        <note>Class = "NSMenuItem"; title = "Close"; ObjectID = "DVo-aG-piG";</note>
+      </trans-unit>
       <trans-unit id="Dv1-io-Yv7.title" xml:space="preserve">
         <source>Spelling and Grammar</source>
-        <target state="new">Pravopis i gramatika</target>
-        
-      <note>Class = "NSMenuItem"; title = "Spelling and Grammar"; ObjectID = "Dv1-io-Yv7";</note></trans-unit>
+        <target>Pravopis i gramatika</target>
+        <note>Class = "NSMenuItem"; title = "Spelling and Grammar"; ObjectID = "Dv1-io-Yv7";</note>
+      </trans-unit>
       <trans-unit id="F2S-fz-NVQ.title" xml:space="preserve">
         <source>Help</source>
-        <target state="new">Pomoć</target>
-        
-      <note>Class = "NSMenu"; title = "Help"; ObjectID = "F2S-fz-NVQ";</note></trans-unit>
+        <target>Pomoć</target>
+        <note>Class = "NSMenu"; title = "Help"; ObjectID = "F2S-fz-NVQ";</note>
+      </trans-unit>
       <trans-unit id="FKE-Sm-Kum.title" xml:space="preserve">
         <source>Product Help</source>
-        <target state="new">Pomoć oko proizvoda</target>
-        
-      <note>Class = "NSMenuItem"; title = "Product Help"; ObjectID = "FKE-Sm-Kum";</note></trans-unit>
+        <target>Pomoć oko proizvoda</target>
+        <note>Class = "NSMenuItem"; title = "Product Help"; ObjectID = "FKE-Sm-Kum";</note>
+      </trans-unit>
       <trans-unit id="Fal-I4-PZk.title" xml:space="preserve">
         <source>Text</source>
-        <target state="new">Tekst</target>
-        
-      <note>Class = "NSMenuItem"; title = "Text"; ObjectID = "Fal-I4-PZk";</note></trans-unit>
+        <target>Tekst</target>
+        <note>Class = "NSMenuItem"; title = "Text"; ObjectID = "Fal-I4-PZk";</note>
+      </trans-unit>
       <trans-unit id="FeM-D8-WVr.title" xml:space="preserve">
         <source>Substitutions</source>
-        <target state="new">Zamjene</target>
-        
-      <note>Class = "NSMenu"; title = "Substitutions"; ObjectID = "FeM-D8-WVr";</note></trans-unit>
+        <target>Zamjene</target>
+        <note>Class = "NSMenu"; title = "Substitutions"; ObjectID = "FeM-D8-WVr";</note>
+      </trans-unit>
       <trans-unit id="FoF-wl-Dxi.title" xml:space="preserve">
         <source>User Name</source>
-        <target state="new">Korisničko ime</target>
-        
-      <note>Class = "NSTextFieldCell"; title = "User Name"; ObjectID = "FoF-wl-Dxi";</note></trans-unit>
+        <target>Korisničko ime</target>
+        <note>Class = "NSTextFieldCell"; title = "User Name"; ObjectID = "FoF-wl-Dxi";</note>
+      </trans-unit>
       <trans-unit id="GB9-OM-e27.title" xml:space="preserve">
         <source>Bold</source>
-        <target state="new">Podebljano</target>
-        
-      <note>Class = "NSMenuItem"; title = "Bold"; ObjectID = "GB9-OM-e27";</note></trans-unit>
+        <target>Podebljano</target>
+        <note>Class = "NSMenuItem"; title = "Bold"; ObjectID = "GB9-OM-e27";</note>
+      </trans-unit>
       <trans-unit id="GEO-Iw-cKr.title" xml:space="preserve">
         <source>Format</source>
-        <target state="new">Format</target>
-        
-      <note>Class = "NSMenu"; title = "Format"; ObjectID = "GEO-Iw-cKr";</note></trans-unit>
+        <target>Format</target>
+        <note>Class = "NSMenu"; title = "Format"; ObjectID = "GEO-Iw-cKr";</note>
+      </trans-unit>
       <trans-unit id="GUa-eO-cwY.title" xml:space="preserve">
         <source>Use Default</source>
-        <target state="new">Koristi zadano</target>
-        
-      <note>Class = "NSMenuItem"; title = "Use Default"; ObjectID = "GUa-eO-cwY";</note></trans-unit>
+        <target>Koristi zadano</target>
+        <note>Class = "NSMenuItem"; title = "Use Default"; ObjectID = "GUa-eO-cwY";</note>
+      </trans-unit>
       <trans-unit id="Gi5-1S-RQB.title" xml:space="preserve">
         <source>Font</source>
-        <target state="new">Font</target>
-        
-      <note>Class = "NSMenuItem"; title = "Font"; ObjectID = "Gi5-1S-RQB";</note></trans-unit>
+        <target>Font</target>
+        <note>Class = "NSMenuItem"; title = "Font"; ObjectID = "Gi5-1S-RQB";</note>
+      </trans-unit>
       <trans-unit id="H1b-Si-o9J.title" xml:space="preserve">
         <source>Writing Direction</source>
-        <target state="new">Smjer pisanja</target>
-        
-      <note>Class = "NSMenuItem"; title = "Writing Direction"; ObjectID = "H1b-Si-o9J";</note></trans-unit>
+        <target>Smjer pisanja</target>
+        <note>Class = "NSMenuItem"; title = "Writing Direction"; ObjectID = "H1b-Si-o9J";</note>
+      </trans-unit>
       <trans-unit id="H8h-7b-M4v.title" xml:space="preserve">
         <source>View</source>
-        <target state="new">Prikaz</target>
-        
-      <note>Class = "NSMenuItem"; title = "View"; ObjectID = "H8h-7b-M4v";</note></trans-unit>
+        <target>Prikaz</target>
+        <note>Class = "NSMenuItem"; title = "View"; ObjectID = "H8h-7b-M4v";</note>
+      </trans-unit>
       <trans-unit id="HFQ-gK-NFA.title" xml:space="preserve">
         <source>Text Replacement</source>
-        <target state="new">Zamjena teksta</target>
-        
-      <note>Class = "NSMenuItem"; title = "Text Replacement"; ObjectID = "HFQ-gK-NFA";</note></trans-unit>
+        <target>Zamjena teksta</target>
+        <note>Class = "NSMenuItem"; title = "Text Replacement"; ObjectID = "HFQ-gK-NFA";</note>
+      </trans-unit>
       <trans-unit id="HFo-cy-zxI.title" xml:space="preserve">
         <source>Show Spelling and Grammar</source>
-        <target state="new">Prikaži pravopis i gramatiku</target>
-        
-      <note>Class = "NSMenuItem"; title = "Show Spelling and Grammar"; ObjectID = "HFo-cy-zxI";</note></trans-unit>
+        <target>Prikaži pravopis i gramatiku</target>
+        <note>Class = "NSMenuItem"; title = "Show Spelling and Grammar"; ObjectID = "HFo-cy-zxI";</note>
+      </trans-unit>
       <trans-unit id="HyV-fh-RgO.title" xml:space="preserve">
         <source>View</source>
-        <target state="new">Prikaz</target>
-        
-      <note>Class = "NSMenu"; title = "View"; ObjectID = "HyV-fh-RgO";</note></trans-unit>
+        <target>Prikaz</target>
+        <note>Class = "NSMenu"; title = "View"; ObjectID = "HyV-fh-RgO";</note>
+      </trans-unit>
       <trans-unit id="I0S-gh-46l.title" xml:space="preserve">
         <source>Subscript</source>
-        <target state="new">Supskript</target>
-        
-      <note>Class = "NSMenuItem"; title = "Subscript"; ObjectID = "I0S-gh-46l";</note></trans-unit>
+        <target>Supskript</target>
+        <note>Class = "NSMenuItem"; title = "Subscript"; ObjectID = "I0S-gh-46l";</note>
+      </trans-unit>
       <trans-unit id="IAo-SY-fd9.title" xml:space="preserve">
         <source>Open…</source>
-        <target state="new">Otvori…</target>
-        
-      <note>Class = "NSMenuItem"; title = "Open…"; ObjectID = "IAo-SY-fd9";</note></trans-unit>
+        <target>Otvori…</target>
+        <note>Class = "NSMenuItem"; title = "Open…"; ObjectID = "IAo-SY-fd9";</note>
+      </trans-unit>
       <trans-unit id="IQv-IB-iLA.title" xml:space="preserve">
         <source>ONLYOFFICE</source>
-        <target state="new">ONLYOFFICE</target>
-        
-      <note>Class = "NSWindow"; title = "ONLYOFFICE"; ObjectID = "IQv-IB-iLA";</note></trans-unit>
+        <target>ONLYOFFICE</target>
+        <note>Class = "NSWindow"; title = "ONLYOFFICE"; ObjectID = "IQv-IB-iLA";</note>
+      </trans-unit>
       <trans-unit id="J5U-5w-g23.title" xml:space="preserve">
         <source>Justify</source>
-        <target state="new">Poravnaj</target>
-        
-      <note>Class = "NSMenuItem"; title = "Justify"; ObjectID = "J5U-5w-g23";</note></trans-unit>
+        <target>Poravnaj</target>
+        <note>Class = "NSMenuItem"; title = "Justify"; ObjectID = "J5U-5w-g23";</note>
+      </trans-unit>
       <trans-unit id="J7y-lM-qPV.title" xml:space="preserve">
         <source>Use None</source>
-        <target state="new">Koristi nijedan</target>
-        
-      <note>Class = "NSMenuItem"; title = "Use None"; ObjectID = "J7y-lM-qPV";</note></trans-unit>
+        <target>Koristi nijedan</target>
+        <note>Class = "NSMenuItem"; title = "Use None"; ObjectID = "J7y-lM-qPV";</note>
+      </trans-unit>
       <trans-unit id="KaW-ft-85H.title" xml:space="preserve">
         <source>Revert to Saved</source>
-        <target state="new">Vrati na spremljeno</target>
-        
-      <note>Class = "NSMenuItem"; title = "Revert to Saved"; ObjectID = "KaW-ft-85H";</note></trans-unit>
+        <target>Vrati na spremljeno</target>
+        <note>Class = "NSMenuItem"; title = "Revert to Saved"; ObjectID = "KaW-ft-85H";</note>
+      </trans-unit>
       <trans-unit id="Kd2-mp-pUS.title" xml:space="preserve">
         <source>Show All</source>
-        <target state="new">Prikaži sve</target>
-        
-      <note>Class = "NSMenuItem"; title = "Show All"; ObjectID = "Kd2-mp-pUS";</note></trans-unit>
+        <target>Prikaži sve</target>
+        <note>Class = "NSMenuItem"; title = "Show All"; ObjectID = "Kd2-mp-pUS";</note>
+      </trans-unit>
       <trans-unit id="LE2-aR-0XJ.title" xml:space="preserve">
         <source>Bring All to Front</source>
-        <target state="new">Povuci sve ispred</target>
-        
-      <note>Class = "NSMenuItem"; title = "Bring All to Front"; ObjectID = "LE2-aR-0XJ";</note></trans-unit>
+        <target>Povuci sve ispred</target>
+        <note>Class = "NSMenuItem"; title = "Bring All to Front"; ObjectID = "LE2-aR-0XJ";</note>
+      </trans-unit>
       <trans-unit id="LVM-kO-fVI.title" xml:space="preserve">
         <source>Paste Ruler</source>
-        <target state="new">Zalijepi ravnalo</target>
-        
-      <note>Class = "NSMenuItem"; title = "Paste Ruler"; ObjectID = "LVM-kO-fVI";</note></trans-unit>
+        <target>Zalijepi ravnalo</target>
+        <note>Class = "NSMenuItem"; title = "Paste Ruler"; ObjectID = "LVM-kO-fVI";</note>
+      </trans-unit>
       <trans-unit id="Lbh-J2-qVU.title" xml:space="preserve">
         <source>	Left to Right</source>
-        <target state="new">	S lijeva na desno</target>
-        
-      <note>Class = "NSMenuItem"; title = "\tLeft to Right"; ObjectID = "Lbh-J2-qVU";</note></trans-unit>
+        <target>	S lijeva na desno</target>
+        <note>Class = "NSMenuItem"; title = "\tLeft to Right"; ObjectID = "Lbh-J2-qVU";</note>
+      </trans-unit>
       <trans-unit id="MkV-Pr-PK5.title" xml:space="preserve">
         <source>Copy Ruler</source>
-        <target state="new">Kopiraj ravnalo</target>
-        
-      <note>Class = "NSMenuItem"; title = "Copy Ruler"; ObjectID = "MkV-Pr-PK5";</note></trans-unit>
+        <target>Kopiraj ravnalo</target>
+        <note>Class = "NSMenuItem"; title = "Copy Ruler"; ObjectID = "MkV-Pr-PK5";</note>
+      </trans-unit>
       <trans-unit id="NMo-om-nkz.title" xml:space="preserve">
         <source>Services</source>
-        <target state="new">Usluge</target>
-        
-      <note>Class = "NSMenuItem"; title = "Services"; ObjectID = "NMo-om-nkz";</note></trans-unit>
+        <target>Usluge</target>
+        <note>Class = "NSMenuItem"; title = "Services"; ObjectID = "NMo-om-nkz";</note>
+      </trans-unit>
       <trans-unit id="Nop-cj-93Q.title" xml:space="preserve">
         <source>	Default</source>
-        <target state="new">	Zadano</target>
-        
-      <note>Class = "NSMenuItem"; title = "\tDefault"; ObjectID = "Nop-cj-93Q";</note></trans-unit>
+        <target>	Zadano</target>
+        <note>Class = "NSMenuItem"; title = "\tDefault"; ObjectID = "Nop-cj-93Q";</note>
+      </trans-unit>
       <trans-unit id="OY7-WF-poV.title" xml:space="preserve">
         <source>Minimize</source>
-        <target state="new">Smanji</target>
-        
-      <note>Class = "NSMenuItem"; title = "Minimize"; ObjectID = "OY7-WF-poV";</note></trans-unit>
+        <target>Smanji</target>
+        <note>Class = "NSMenuItem"; title = "Minimize"; ObjectID = "OY7-WF-poV";</note>
+      </trans-unit>
       <trans-unit id="OaQ-X3-Vso.title" xml:space="preserve">
         <source>Baseline</source>
-        <target state="new">Osnovna linija</target>
-        
-      <note>Class = "NSMenuItem"; title = "Baseline"; ObjectID = "OaQ-X3-Vso";</note></trans-unit>
+        <target>Osnovna linija</target>
+        <note>Class = "NSMenuItem"; title = "Baseline"; ObjectID = "OaQ-X3-Vso";</note>
+      </trans-unit>
       <trans-unit id="Olw-nP-bQN.title" xml:space="preserve">
         <source>Hide ONLYOFFICE</source>
-        <target state="new">Sakrij ONLYOFFICE</target>
-        
-      <note>Class = "NSMenuItem"; title = "Hide ONLYOFFICE"; ObjectID = "Olw-nP-bQN";</note></trans-unit>
+        <target>Sakrij ONLYOFFICE</target>
+        <note>Class = "NSMenuItem"; title = "Hide ONLYOFFICE"; ObjectID = "Olw-nP-bQN";</note>
+      </trans-unit>
       <trans-unit id="OwM-mh-QMV.title" xml:space="preserve">
         <source>Find Previous</source>
-        <target state="new">Pronađi prethodno</target>
-        
-      <note>Class = "NSMenuItem"; title = "Find Previous"; ObjectID = "OwM-mh-QMV";</note></trans-unit>
+        <target>Pronađi prethodno</target>
+        <note>Class = "NSMenuItem"; title = "Find Previous"; ObjectID = "OwM-mh-QMV";</note>
+      </trans-unit>
       <trans-unit id="Oyz-dy-DGm.title" xml:space="preserve">
         <source>Stop Speaking</source>
-        <target state="new">Prestani govoriti</target>
-        
-      <note>Class = "NSMenuItem"; title = "Stop Speaking"; ObjectID = "Oyz-dy-DGm";</note></trans-unit>
+        <target>Prestani govoriti</target>
+        <note>Class = "NSMenuItem"; title = "Stop Speaking"; ObjectID = "Oyz-dy-DGm";</note>
+      </trans-unit>
       <trans-unit id="Ptp-SP-VEL.title" xml:space="preserve">
         <source>Bigger</source>
-        <target state="new">Veće</target>
-        
-      <note>Class = "NSMenuItem"; title = "Bigger"; ObjectID = "Ptp-SP-VEL";</note></trans-unit>
+        <target>Veće</target>
+        <note>Class = "NSMenuItem"; title = "Bigger"; ObjectID = "Ptp-SP-VEL";</note>
+      </trans-unit>
       <trans-unit id="Q5e-8K-NDq.title" xml:space="preserve">
         <source>Show Fonts</source>
-        <target state="new">Prikaži fontove</target>
-        
-      <note>Class = "NSMenuItem"; title = "Show Fonts"; ObjectID = "Q5e-8K-NDq";</note></trans-unit>
+        <target>Prikaži fontove</target>
+        <note>Class = "NSMenuItem"; title = "Show Fonts"; ObjectID = "Q5e-8K-NDq";</note>
+      </trans-unit>
       <trans-unit id="R4o-n2-Eq4.title" xml:space="preserve">
         <source>Zoom</source>
-        <target state="new">Zumiraj</target>
-        
-      <note>Class = "NSMenuItem"; title = "Zoom"; ObjectID = "R4o-n2-Eq4";</note></trans-unit>
+        <target>Zumiraj</target>
+        <note>Class = "NSMenuItem"; title = "Zoom"; ObjectID = "R4o-n2-Eq4";</note>
+      </trans-unit>
       <trans-unit id="RB4-Sm-HuC.title" xml:space="preserve">
         <source>	Right to Left</source>
-        <target state="new">	S desna na lijevo</target>
-        
-      <note>Class = "NSMenuItem"; title = "\tRight to Left"; ObjectID = "RB4-Sm-HuC";</note></trans-unit>
+        <target>	S desna na lijevo</target>
+        <note>Class = "NSMenuItem"; title = "\tRight to Left"; ObjectID = "RB4-Sm-HuC";</note>
+      </trans-unit>
       <trans-unit id="Riu-oE-8dj.title" xml:space="preserve">
         <source>Close</source>
-        <target state="new">Zatvori</target>
-        
-      <note>Class = "NSButtonCell"; title = "Close"; ObjectID = "Riu-oE-8dj";</note></trans-unit>
+        <target>Zatvori</target>
+        <note>Class = "NSButtonCell"; title = "Close"; ObjectID = "Riu-oE-8dj";</note>
+      </trans-unit>
       <trans-unit id="Rkd-xb-FRJ.title" xml:space="preserve">
         <source>none</source>
-        <target state="new">nijedan</target>
-        
-      <note>Class = "NSTextFieldCell"; title = "none"; ObjectID = "Rkd-xb-FRJ";</note></trans-unit>
+        <target>nijedan</target>
+        <note>Class = "NSTextFieldCell"; title = "none"; ObjectID = "Rkd-xb-FRJ";</note>
+      </trans-unit>
       <trans-unit id="RmO-tv-UKh.title" xml:space="preserve">
         <source>Logout</source>
-        <target state="new">Odjava</target>
-        
-      <note>Class = "NSButtonCell"; title = "Logout"; ObjectID = "RmO-tv-UKh";</note></trans-unit>
+        <target>Odjava</target>
+        <note>Class = "NSButtonCell"; title = "Logout"; ObjectID = "RmO-tv-UKh";</note>
+      </trans-unit>
       <trans-unit id="Rqc-34-cIF.title" xml:space="preserve">
         <source>Superscript</source>
-        <target state="new">Eksponent</target>
-        
-      <note>Class = "NSMenuItem"; title = "Superscript"; ObjectID = "Rqc-34-cIF";</note></trans-unit>
+        <target>Eksponent</target>
+        <note>Class = "NSMenuItem"; title = "Superscript"; ObjectID = "Rqc-34-cIF";</note>
+      </trans-unit>
       <trans-unit id="Ruw-6m-B2m.title" xml:space="preserve">
         <source>Select All</source>
-        <target state="new">Odaberi sve</target>
-        
-      <note>Class = "NSMenuItem"; title = "Select All"; ObjectID = "Ruw-6m-B2m";</note></trans-unit>
+        <target>Odaberi sve</target>
+        <note>Class = "NSMenuItem"; title = "Select All"; ObjectID = "Ruw-6m-B2m";</note>
+      </trans-unit>
       <trans-unit id="S0p-oC-mLd.title" xml:space="preserve">
         <source>Jump to Selection</source>
-        <target state="new">Skoči na odabir</target>
-        
-      <note>Class = "NSMenuItem"; title = "Jump to Selection"; ObjectID = "S0p-oC-mLd";</note></trans-unit>
+        <target>Skoči na odabir</target>
+        <note>Class = "NSMenuItem"; title = "Jump to Selection"; ObjectID = "S0p-oC-mLd";</note>
+      </trans-unit>
       <trans-unit id="TEm-B8-gsH.title" xml:space="preserve">
         <source>Document</source>
-        <target state="new">Dokument</target>
-        
-      <note>Class = "NSMenuItem"; title = "Document"; ObjectID = "TEm-B8-gsH";</note></trans-unit>
+        <target>Dokument</target>
+        <note>Class = "NSMenuItem"; title = "Document"; ObjectID = "TEm-B8-gsH";</note>
+      </trans-unit>
       <trans-unit id="Td7-aD-5lo.title" xml:space="preserve">
         <source>Window</source>
-        <target state="new">Prozor</target>
-        
-      <note>Class = "NSMenu"; title = "Window"; ObjectID = "Td7-aD-5lo";</note></trans-unit>
+        <target>Prozor</target>
+        <note>Class = "NSMenu"; title = "Window"; ObjectID = "Td7-aD-5lo";</note>
+      </trans-unit>
       <trans-unit id="UEZ-Bs-lqG.title" xml:space="preserve">
         <source>Capitalize</source>
-        <target state="new">Pisanje velikim slovom</target>
-        
-      <note>Class = "NSMenuItem"; title = "Capitalize"; ObjectID = "UEZ-Bs-lqG";</note></trans-unit>
+        <target>Pisanje velikim slovom</target>
+        <note>Class = "NSMenuItem"; title = "Capitalize"; ObjectID = "UEZ-Bs-lqG";</note>
+      </trans-unit>
       <trans-unit id="VIY-Ag-zcb.title" xml:space="preserve">
         <source>Center</source>
-        <target state="new">Centriraj</target>
-        
-      <note>Class = "NSMenuItem"; title = "Center"; ObjectID = "VIY-Ag-zcb";</note></trans-unit>
+        <target>Centriraj</target>
+        <note>Class = "NSMenuItem"; title = "Center"; ObjectID = "VIY-Ag-zcb";</note>
+      </trans-unit>
       <trans-unit id="Vdr-fp-XzO.title" xml:space="preserve">
         <source>Hide Others</source>
-        <target state="new">Sakrij ostale</target>
-        
-      <note>Class = "NSMenuItem"; title = "Hide Others"; ObjectID = "Vdr-fp-XzO";</note></trans-unit>
+        <target>Sakrij ostale</target>
+        <note>Class = "NSMenuItem"; title = "Hide Others"; ObjectID = "Vdr-fp-XzO";</note>
+      </trans-unit>
       <trans-unit id="Vjx-xi-njq.title" xml:space="preserve">
         <source>Italic</source>
-        <target state="new">Kurziv</target>
-        
-      <note>Class = "NSMenuItem"; title = "Italic"; ObjectID = "Vjx-xi-njq";</note></trans-unit>
+        <target>Kurziv</target>
+        <note>Class = "NSMenuItem"; title = "Italic"; ObjectID = "Vjx-xi-njq";</note>
+      </trans-unit>
       <trans-unit id="W48-6f-4Dl.title" xml:space="preserve">
         <source>Edit</source>
-        <target state="new">Uredi</target>
-        
-      <note>Class = "NSMenu"; title = "Edit"; ObjectID = "W48-6f-4Dl";</note></trans-unit>
+        <target>Uredi</target>
+        <note>Class = "NSMenu"; title = "Edit"; ObjectID = "W48-6f-4Dl";</note>
+      </trans-unit>
       <trans-unit id="WRG-CD-K1S.title" xml:space="preserve">
         <source>Underline</source>
-        <target state="new">Podcrtaj</target>
-        
-      <note>Class = "NSMenuItem"; title = "Underline"; ObjectID = "WRG-CD-K1S";</note></trans-unit>
+        <target>Podcrtaj</target>
+        <note>Class = "NSMenuItem"; title = "Underline"; ObjectID = "WRG-CD-K1S";</note>
+      </trans-unit>
       <trans-unit id="WeT-3V-zwk.title" xml:space="preserve">
         <source>Zalijepi i uskladi stil</source>
-        <target state="new">Paste and Match Style</target>
-        
-      <note>Class = "NSMenuItem"; title = "Paste and Match Style"; ObjectID = "WeT-3V-zwk";</note></trans-unit>
+        <target>Paste and Match Style</target>
+        <note>Class = "NSMenuItem"; title = "Paste and Match Style"; ObjectID = "WeT-3V-zwk";</note>
+      </trans-unit>
       <trans-unit id="Xz5-n4-O0W.title" xml:space="preserve">
         <source>Find…</source>
-        <target state="new">Pronađi…</target>
-        
-      <note>Class = "NSMenuItem"; title = "Find…"; ObjectID = "Xz5-n4-O0W";</note></trans-unit>
+        <target>Pronađi…</target>
+        <note>Class = "NSMenuItem"; title = "Find…"; ObjectID = "Xz5-n4-O0W";</note>
+      </trans-unit>
       <trans-unit id="YEy-JH-Tfz.title" xml:space="preserve">
         <source>Find and Replace…</source>
-        <target state="new">Pronađi i zamijeni…</target>
-        
-      <note>Class = "NSMenuItem"; title = "Find and Replace…"; ObjectID = "YEy-JH-Tfz";</note></trans-unit>
+        <target>Pronađi i zamijeni…</target>
+        <note>Class = "NSMenuItem"; title = "Find and Replace…"; ObjectID = "YEy-JH-Tfz";</note>
+      </trans-unit>
       <trans-unit id="YGs-j5-SAR.title" xml:space="preserve">
         <source>	Default</source>
-        <target state="new">	Zadano</target>
-        
-      <note>Class = "NSMenuItem"; title = "\tDefault"; ObjectID = "YGs-j5-SAR";</note></trans-unit>
+        <target>	Zadano</target>
+        <note>Class = "NSMenuItem"; title = "\tDefault"; ObjectID = "YGs-j5-SAR";</note>
+      </trans-unit>
       <trans-unit id="Ynk-f8-cLZ.title" xml:space="preserve">
         <source>Start Speaking</source>
-        <target state="new">Počni govoriti</target>
-        
-      <note>Class = "NSMenuItem"; title = "Start Speaking"; ObjectID = "Ynk-f8-cLZ";</note></trans-unit>
+        <target>Počni govoriti</target>
+        <note>Class = "NSMenuItem"; title = "Start Speaking"; ObjectID = "Ynk-f8-cLZ";</note>
+      </trans-unit>
       <trans-unit id="ZM1-6Q-yy1.title" xml:space="preserve">
         <source>Align Left</source>
-        <target state="new">Poravnaj lijevo</target>
-        
-      <note>Class = "NSMenuItem"; title = "Align Left"; ObjectID = "ZM1-6Q-yy1";</note></trans-unit>
+        <target>Poravnaj lijevo</target>
+        <note>Class = "NSMenuItem"; title = "Align Left"; ObjectID = "ZM1-6Q-yy1";</note>
+      </trans-unit>
       <trans-unit id="ZbA-hc-8PE.title" xml:space="preserve">
         <source>Version</source>
-        <target state="new">Verzija</target>
-        
-      <note>Class = "NSTextFieldCell"; title = "Version"; ObjectID = "ZbA-hc-8PE";</note></trans-unit>
+        <target>Verzija</target>
+        <note>Class = "NSTextFieldCell"; title = "Version"; ObjectID = "ZbA-hc-8PE";</note>
+      </trans-unit>
       <trans-unit id="Zsi-3o-ASl.title" xml:space="preserve">
         <source>Email:</source>
-        <target state="new">E-pošta:</target>
-        
-      <note>Class = "NSTextFieldCell"; title = "Email:"; ObjectID = "Zsi-3o-ASl";</note></trans-unit>
+        <target>E-pošta:</target>
+        <note>Class = "NSTextFieldCell"; title = "Email:"; ObjectID = "Zsi-3o-ASl";</note>
+      </trans-unit>
       <trans-unit id="ZvO-Gk-QUH.title" xml:space="preserve">
         <source>Paragraph</source>
-        <target state="new">Paragraf</target>
-        
-      <note>Class = "NSMenuItem"; title = "Paragraph"; ObjectID = "ZvO-Gk-QUH";</note></trans-unit>
+        <target>Paragraf</target>
+        <note>Class = "NSMenuItem"; title = "Paragraph"; ObjectID = "ZvO-Gk-QUH";</note>
+      </trans-unit>
       <trans-unit id="aTl-1u-JFS.title" xml:space="preserve">
         <source>Print…</source>
-        <target state="new">Tiskanje…</target>
-        
-      <note>Class = "NSMenuItem"; title = "Print…"; ObjectID = "aTl-1u-JFS";</note></trans-unit>
+        <target>Tiskanje…</target>
+        <note>Class = "NSMenuItem"; title = "Print…"; ObjectID = "aTl-1u-JFS";</note>
+      </trans-unit>
       <trans-unit id="aUF-d1-5bR.title" xml:space="preserve">
         <source>Window</source>
-        <target state="new">Prozor</target>
-        
-      <note>Class = "NSMenuItem"; title = "Window"; ObjectID = "aUF-d1-5bR";</note></trans-unit>
+        <target>Prozor</target>
+        <note>Class = "NSMenuItem"; title = "Window"; ObjectID = "aUF-d1-5bR";</note>
+      </trans-unit>
       <trans-unit id="aXa-aM-Jaq.title" xml:space="preserve">
         <source>Font</source>
-        <target state="new">Font</target>
-        
-      <note>Class = "NSMenu"; title = "Font"; ObjectID = "aXa-aM-Jaq";</note></trans-unit>
+        <target>Font</target>
+        <note>Class = "NSMenu"; title = "Font"; ObjectID = "aXa-aM-Jaq";</note>
+      </trans-unit>
       <trans-unit id="agt-UL-0e3.title" xml:space="preserve">
         <source>Use Default</source>
-        <target state="new">Koristi zadano</target>
-        
-      <note>Class = "NSMenuItem"; title = "Use Default"; ObjectID = "agt-UL-0e3";</note></trans-unit>
+        <target>Koristi zadano</target>
+        <note>Class = "NSMenuItem"; title = "Use Default"; ObjectID = "agt-UL-0e3";</note>
+      </trans-unit>
       <trans-unit id="bgn-CT-cEk.title" xml:space="preserve">
         <source>Show Colors</source>
-        <target state="new">Prikaži boje</target>
-        
-      <note>Class = "NSMenuItem"; title = "Show Colors"; ObjectID = "bgn-CT-cEk";</note></trans-unit>
+        <target>Prikaži boje</target>
+        <note>Class = "NSMenuItem"; title = "Show Colors"; ObjectID = "bgn-CT-cEk";</note>
+      </trans-unit>
       <trans-unit id="bib-Uj-vzu.title" xml:space="preserve">
         <source>File</source>
-        <target state="new">Datoteka</target>
-        
-      <note>Class = "NSMenu"; title = "File"; ObjectID = "bib-Uj-vzu";</note></trans-unit>
+        <target>Datoteka</target>
+        <note>Class = "NSMenu"; title = "File"; ObjectID = "bib-Uj-vzu";</note>
+      </trans-unit>
       <trans-unit id="buJ-ug-pKt.title" xml:space="preserve">
         <source>Use Selection for Find</source>
-        <target state="new">Koristi odabir za pronalazak</target>
-        
-      <note>Class = "NSMenuItem"; title = "Use Selection for Find"; ObjectID = "buJ-ug-pKt";</note></trans-unit>
+        <target>Koristi odabir za pronalazak</target>
+        <note>Class = "NSMenuItem"; title = "Use Selection for Find"; ObjectID = "buJ-ug-pKt";</note>
+      </trans-unit>
       <trans-unit id="c8a-y6-VQd.title" xml:space="preserve">
         <source>Transformations</source>
-        <target state="new">Transformacije</target>
-        
-      <note>Class = "NSMenu"; title = "Transformations"; ObjectID = "c8a-y6-VQd";</note></trans-unit>
+        <target>Transformacije</target>
+        <note>Class = "NSMenu"; title = "Transformations"; ObjectID = "c8a-y6-VQd";</note>
+      </trans-unit>
       <trans-unit id="cDB-IK-hbR.title" xml:space="preserve">
         <source>Use None</source>
-        <target state="new">Koristi nijedan</target>
-        
-      <note>Class = "NSMenuItem"; title = "Use None"; ObjectID = "cDB-IK-hbR";</note></trans-unit>
+        <target>Koristi nijedan</target>
+        <note>Class = "NSMenuItem"; title = "Use None"; ObjectID = "cDB-IK-hbR";</note>
+      </trans-unit>
       <trans-unit id="cqv-fj-IhA.title" xml:space="preserve">
         <source>Selection</source>
-        <target state="new">Odabir</target>
-        
-      <note>Class = "NSMenuItem"; title = "Selection"; ObjectID = "cqv-fj-IhA";</note></trans-unit>
+        <target>Odabir</target>
+        <note>Class = "NSMenuItem"; title = "Selection"; ObjectID = "cqv-fj-IhA";</note>
+      </trans-unit>
       <trans-unit id="cwL-P1-jid.title" xml:space="preserve">
         <source>Smart Links</source>
-        <target state="new">Pametne poveznice</target>
-        
-      <note>Class = "NSMenuItem"; title = "Smart Links"; ObjectID = "cwL-P1-jid";</note></trans-unit>
+        <target>Pametne poveznice</target>
+        <note>Class = "NSMenuItem"; title = "Smart Links"; ObjectID = "cwL-P1-jid";</note>
+      </trans-unit>
       <trans-unit id="d9M-CD-aMd.title" xml:space="preserve">
         <source>Make Lower Case</source>
-        <target state="new">Napravi malo slovo</target>
-        
-      <note>Class = "NSMenuItem"; title = "Make Lower Case"; ObjectID = "d9M-CD-aMd";</note></trans-unit>
+        <target>Napravi malo slovo</target>
+        <note>Class = "NSMenuItem"; title = "Make Lower Case"; ObjectID = "d9M-CD-aMd";</note>
+      </trans-unit>
       <trans-unit id="d9c-me-L2H.title" xml:space="preserve">
         <source>Text</source>
-        <target state="new">Tekst</target>
-        
-      <note>Class = "NSMenu"; title = "Text"; ObjectID = "d9c-me-L2H";</note></trans-unit>
+        <target>Tekst</target>
+        <note>Class = "NSMenu"; title = "Text"; ObjectID = "d9c-me-L2H";</note>
+      </trans-unit>
       <trans-unit id="dMs-cI-mzQ.title" xml:space="preserve">
         <source>File</source>
-        <target state="new">Datoteka</target>
-        
-      <note>Class = "NSMenuItem"; title = "File"; ObjectID = "dMs-cI-mzQ";</note></trans-unit>
+        <target>Datoteka</target>
+        <note>Class = "NSMenuItem"; title = "File"; ObjectID = "dMs-cI-mzQ";</note>
+      </trans-unit>
       <trans-unit id="dRJ-4n-Yzg.title" xml:space="preserve">
         <source>Undo</source>
-        <target state="new">Poništi</target>
-        
-      <note>Class = "NSMenuItem"; title = "Undo"; ObjectID = "dRJ-4n-Yzg";</note></trans-unit>
+        <target>Poništi</target>
+        <note>Class = "NSMenuItem"; title = "Undo"; ObjectID = "dRJ-4n-Yzg";</note>
+      </trans-unit>
       <trans-unit id="gVA-U4-sdL.title" xml:space="preserve">
         <source>Paste</source>
-        <target state="new">Zalijepi</target>
-        
-      <note>Class = "NSMenuItem"; title = "Paste"; ObjectID = "gVA-U4-sdL";</note></trans-unit>
+        <target>Zalijepi</target>
+        <note>Class = "NSMenuItem"; title = "Paste"; ObjectID = "gVA-U4-sdL";</note>
+      </trans-unit>
       <trans-unit id="gm3-6i-EnL.title" xml:space="preserve">
         <source>File Name</source>
-        <target state="new">Naziv datoteke</target>
-        
-      <note>Class = "NSTextFieldCell"; title = "File Name"; ObjectID = "gm3-6i-EnL";</note></trans-unit>
+        <target>Naziv datoteke</target>
+        <note>Class = "NSTextFieldCell"; title = "File Name"; ObjectID = "gm3-6i-EnL";</note>
+      </trans-unit>
       <trans-unit id="hD5-Cz-ItX.title" xml:space="preserve">
         <source>New</source>
-        <target state="new">Novo</target>
-        
-      <note>Class = "NSMenu"; title = "New"; ObjectID = "hD5-Cz-ItX";</note></trans-unit>
+        <target>Novo</target>
+        <note>Class = "NSMenu"; title = "New"; ObjectID = "hD5-Cz-ItX";</note>
+      </trans-unit>
       <trans-unit id="hQb-2v-fYv.title" xml:space="preserve">
         <source>Smart Quotes</source>
-        <target state="new">Pametni navodnici</target>
-        
-      <note>Class = "NSMenuItem"; title = "Smart Quotes"; ObjectID = "hQb-2v-fYv";</note></trans-unit>
+        <target>Pametni navodnici</target>
+        <note>Class = "NSMenuItem"; title = "Smart Quotes"; ObjectID = "hQb-2v-fYv";</note>
+      </trans-unit>
       <trans-unit id="hkB-TU-Ps1.title" xml:space="preserve">
         <source>Presentation</source>
-        <target state="new">Prezentacija</target>
-        
-      <note>Class = "NSMenuItem"; title = "Presentation"; ObjectID = "hkB-TU-Ps1";</note></trans-unit>
+        <target>Prezentacija</target>
+        <note>Class = "NSMenuItem"; title = "Presentation"; ObjectID = "hkB-TU-Ps1";</note>
+      </trans-unit>
       <trans-unit id="hz2-CU-CR7.title" xml:space="preserve">
         <source>Check Document Now</source>
-        <target state="new">Provjerite dokument sada</target>
-        
-      <note>Class = "NSMenuItem"; title = "Check Document Now"; ObjectID = "hz2-CU-CR7";</note></trans-unit>
+        <target>Provjerite dokument sada</target>
+        <note>Class = "NSMenuItem"; title = "Check Document Now"; ObjectID = "hz2-CU-CR7";</note>
+      </trans-unit>
       <trans-unit id="hz9-B4-Xy5.title" xml:space="preserve">
         <source>Services</source>
-        <target state="new">Usluge</target>
-        
-      <note>Class = "NSMenu"; title = "Services"; ObjectID = "hz9-B4-Xy5";</note></trans-unit>
+        <target>Usluge</target>
+        <note>Class = "NSMenu"; title = "Services"; ObjectID = "hz9-B4-Xy5";</note>
+      </trans-unit>
       <trans-unit id="i1d-Er-qST.title" xml:space="preserve">
         <source>Smaller</source>
-        <target state="new">Manje</target>
-        
-      <note>Class = "NSMenuItem"; title = "Smaller"; ObjectID = "i1d-Er-qST";</note></trans-unit>
+        <target>Manje</target>
+        <note>Class = "NSMenuItem"; title = "Smaller"; ObjectID = "i1d-Er-qST";</note>
+      </trans-unit>
       <trans-unit id="ijk-EB-dga.title" xml:space="preserve">
         <source>Baseline</source>
-        <target state="new">Osnovna linija</target>
-        
-      <note>Class = "NSMenu"; title = "Baseline"; ObjectID = "ijk-EB-dga";</note></trans-unit>
+        <target>Osnovna linija</target>
+        <note>Class = "NSMenu"; title = "Baseline"; ObjectID = "ijk-EB-dga";</note>
+      </trans-unit>
       <trans-unit id="jBQ-r6-VK2.title" xml:space="preserve">
         <source>Kern</source>
-        <target state="new">Proporcioniranje slova</target>
-        
-      <note>Class = "NSMenuItem"; title = "Kern"; ObjectID = "jBQ-r6-VK2";</note></trans-unit>
+        <target>Proporcioniranje slova</target>
+        <note>Class = "NSMenuItem"; title = "Kern"; ObjectID = "jBQ-r6-VK2";</note>
+      </trans-unit>
       <trans-unit id="jFq-tB-4Kx.title" xml:space="preserve">
         <source>	Right to Left</source>
-        <target state="new">	S desna na lijevo</target>
-        
-      <note>Class = "NSMenuItem"; title = "\tRight to Left"; ObjectID = "jFq-tB-4Kx";</note></trans-unit>
+        <target>	S desna na lijevo</target>
+        <note>Class = "NSMenuItem"; title = "\tRight to Left"; ObjectID = "jFq-tB-4Kx";</note>
+      </trans-unit>
       <trans-unit id="jxT-CU-nIS.title" xml:space="preserve">
         <source>Format</source>
-        <target state="new">Format</target>
-        
-      <note>Class = "NSMenuItem"; title = "Format"; ObjectID = "jxT-CU-nIS";</note></trans-unit>
+        <target>Format</target>
+        <note>Class = "NSMenuItem"; title = "Format"; ObjectID = "jxT-CU-nIS";</note>
+      </trans-unit>
       <trans-unit id="kcg-El-49G.label" xml:space="preserve">
         <source>ONLYOFFICE</source>
-        <target state="new">ONLYOFFICE</target>
-        
-      <note>Class = "NSTabViewItem"; label = "ONLYOFFICE"; ObjectID = "kcg-El-49G";</note></trans-unit>
+        <target>ONLYOFFICE</target>
+        <note>Class = "NSTabViewItem"; label = "ONLYOFFICE"; ObjectID = "kcg-El-49G";</note>
+      </trans-unit>
       <trans-unit id="m0C-e9-0oc.title" xml:space="preserve">
         <source>Cancel</source>
-        <target state="new">Odustani</target>
-        
-      <note>Class = "NSButtonCell"; title = "Cancel"; ObjectID = "m0C-e9-0oc";</note></trans-unit>
+        <target>Odustani</target>
+        <note>Class = "NSButtonCell"; title = "Cancel"; ObjectID = "m0C-e9-0oc";</note>
+      </trans-unit>
       <trans-unit id="mK6-2p-4JG.title" xml:space="preserve">
         <source>Check Grammar With Spelling</source>
-        <target state="new">Provjeri gramatiku pomoću pravopisa</target>
-        
-      <note>Class = "NSMenuItem"; title = "Check Grammar With Spelling"; ObjectID = "mK6-2p-4JG";</note></trans-unit>
+        <target>Provjeri gramatiku pomoću pravopisa</target>
+        <note>Class = "NSMenuItem"; title = "Check Grammar With Spelling"; ObjectID = "mK6-2p-4JG";</note>
+      </trans-unit>
       <trans-unit id="o6e-r0-MWq.title" xml:space="preserve">
         <source>Ligatures</source>
-        <target state="new">Ligature</target>
-        
-      <note>Class = "NSMenuItem"; title = "Ligatures"; ObjectID = "o6e-r0-MWq";</note></trans-unit>
+        <target>Ligature</target>
+        <note>Class = "NSMenuItem"; title = "Ligatures"; ObjectID = "o6e-r0-MWq";</note>
+      </trans-unit>
       <trans-unit id="oas-Oc-fiZ.title" xml:space="preserve">
         <source>Open Recent</source>
-        <target state="new">Otvori nedavno</target>
-        
-      <note>Class = "NSMenu"; title = "Open Recent"; ObjectID = "oas-Oc-fiZ";</note></trans-unit>
+        <target>Otvori nedavno</target>
+        <note>Class = "NSMenu"; title = "Open Recent"; ObjectID = "oas-Oc-fiZ";</note>
+      </trans-unit>
       <trans-unit id="ogc-rX-tC1.title" xml:space="preserve">
         <source>Loosen</source>
-        <target state="new">Otpusti</target>
-        
-      <note>Class = "NSMenuItem"; title = "Loosen"; ObjectID = "ogc-rX-tC1";</note></trans-unit>
+        <target>Otpusti</target>
+        <note>Class = "NSMenuItem"; title = "Loosen"; ObjectID = "ogc-rX-tC1";</note>
+      </trans-unit>
       <trans-unit id="pa3-QI-u2k.title" xml:space="preserve">
         <source>Delete</source>
-        <target state="new">Izbriši</target>
-        
-      <note>Class = "NSMenuItem"; title = "Delete"; ObjectID = "pa3-QI-u2k";</note></trans-unit>
+        <target>Izbriši</target>
+        <note>Class = "NSMenuItem"; title = "Delete"; ObjectID = "pa3-QI-u2k";</note>
+      </trans-unit>
       <trans-unit id="pxx-59-PXV.title" xml:space="preserve">
         <source>Save</source>
-        <target state="new">Spremi</target>
-        
-      <note>Class = "NSMenuItem"; title = "Save"; ObjectID = "pxx-59-PXV";</note></trans-unit>
+        <target>Spremi</target>
+        <note>Class = "NSMenuItem"; title = "Save"; ObjectID = "pxx-59-PXV";</note>
+      </trans-unit>
       <trans-unit id="q09-fT-Sye.title" xml:space="preserve">
         <source>Find Next</source>
-        <target state="new">Pronađi sljedeće</target>
-        
-      <note>Class = "NSMenuItem"; title = "Find Next"; ObjectID = "q09-fT-Sye";</note></trans-unit>
+        <target>Pronađi sljedeće</target>
+        <note>Class = "NSMenuItem"; title = "Find Next"; ObjectID = "q09-fT-Sye";</note>
+      </trans-unit>
       <trans-unit id="qIS-W8-SiK.title" xml:space="preserve">
         <source>Page Setup…</source>
-        <target state="new">Postavljanje stranice…</target>
-        
-      <note>Class = "NSMenuItem"; title = "Page Setup…"; ObjectID = "qIS-W8-SiK";</note></trans-unit>
+        <target>Postavljanje stranice…</target>
+        <note>Class = "NSMenuItem"; title = "Page Setup…"; ObjectID = "qIS-W8-SiK";</note>
+      </trans-unit>
       <trans-unit id="rbD-Rh-wIN.title" xml:space="preserve">
         <source>Check Spelling While Typing</source>
-        <target state="new">Provjera pravopisa prilikom tipkanja</target>
-        
-      <note>Class = "NSMenuItem"; title = "Check Spelling While Typing"; ObjectID = "rbD-Rh-wIN";</note></trans-unit>
+        <target>Provjera pravopisa prilikom tipkanja</target>
+        <note>Class = "NSMenuItem"; title = "Check Spelling While Typing"; ObjectID = "rbD-Rh-wIN";</note>
+      </trans-unit>
       <trans-unit id="rgM-f4-ycn.title" xml:space="preserve">
         <source>Smart Dashes</source>
-        <target state="new">Pametne crtice</target>
-        
-      <note>Class = "NSMenuItem"; title = "Smart Dashes"; ObjectID = "rgM-f4-ycn";</note></trans-unit>
+        <target>Pametne crtice</target>
+        <note>Class = "NSMenuItem"; title = "Smart Dashes"; ObjectID = "rgM-f4-ycn";</note>
+      </trans-unit>
       <trans-unit id="sGd-zc-V0B.title" xml:space="preserve">
         <source>Copyright info</source>
-        <target state="new">Podaci o autorskim pravima</target>
-        
-      <note>Class = "NSTextFieldCell"; title = "Copyright info"; ObjectID = "sGd-zc-V0B";</note></trans-unit>
+        <target>Podaci o autorskim pravima</target>
+        <note>Class = "NSTextFieldCell"; title = "Copyright info"; ObjectID = "sGd-zc-V0B";</note>
+      </trans-unit>
       <trans-unit id="snW-S8-Cw5.title" xml:space="preserve">
         <source>Show Toolbar</source>
-        <target state="new">Prikaži alatnu traku</target>
-        
-      <note>Class = "NSMenuItem"; title = "Show Toolbar"; ObjectID = "snW-S8-Cw5";</note></trans-unit>
+        <target>Prikaži alatnu traku</target>
+        <note>Class = "NSMenuItem"; title = "Show Toolbar"; ObjectID = "snW-S8-Cw5";</note>
+      </trans-unit>
       <trans-unit id="tRr-pd-1PS.title" xml:space="preserve">
         <source>Data Detectors</source>
-        <target state="new">Detektori podataka</target>
-        
-      <note>Class = "NSMenuItem"; title = "Data Detectors"; ObjectID = "tRr-pd-1PS";</note></trans-unit>
+        <target>Detektori podataka</target>
+        <note>Class = "NSMenuItem"; title = "Data Detectors"; ObjectID = "tRr-pd-1PS";</note>
+      </trans-unit>
       <trans-unit id="tXI-mr-wws.title" xml:space="preserve">
         <source>Open Recent</source>
-        <target state="new">Otvori nedavno</target>
-        
-      <note>Class = "NSMenuItem"; title = "Open Recent"; ObjectID = "tXI-mr-wws";</note></trans-unit>
+        <target>Otvori nedavno</target>
+        <note>Class = "NSMenuItem"; title = "Open Recent"; ObjectID = "tXI-mr-wws";</note>
+      </trans-unit>
       <trans-unit id="tlD-Oa-oAM.title" xml:space="preserve">
         <source>Kern</source>
-        <target state="new">Proporcioniranje slova</target>
-        
-      <note>Class = "NSMenu"; title = "Kern"; ObjectID = "tlD-Oa-oAM";</note></trans-unit>
+        <target>Proporcioniranje slova</target>
+        <note>Class = "NSMenu"; title = "Kern"; ObjectID = "tlD-Oa-oAM";</note>
+      </trans-unit>
       <trans-unit id="uQy-DD-JDr.title" xml:space="preserve">
         <source>ONLYOFFICE</source>
-        <target state="new">ONLYOFFICE</target>
-        
-      <note>Class = "NSMenu"; title = "ONLYOFFICE"; ObjectID = "uQy-DD-JDr";</note></trans-unit>
+        <target>ONLYOFFICE</target>
+        <note>Class = "NSMenu"; title = "ONLYOFFICE"; ObjectID = "uQy-DD-JDr";</note>
+      </trans-unit>
       <trans-unit id="uRl-iY-unG.title" xml:space="preserve">
         <source>Cut</source>
-        <target state="new">Izreži</target>
-        
-      <note>Class = "NSMenuItem"; title = "Cut"; ObjectID = "uRl-iY-unG";</note></trans-unit>
+        <target>Izreži</target>
+        <note>Class = "NSMenuItem"; title = "Cut"; ObjectID = "uRl-iY-unG";</note>
+      </trans-unit>
       <trans-unit id="ud7-wC-A79.title" xml:space="preserve">
         <source>Check for Updates…</source>
-        <target state="new">Provjeri ažuriranja…</target>
-        
-      <note>Class = "NSMenuItem"; title = "Check for Updates…"; ObjectID = "ud7-wC-A79";</note></trans-unit>
+        <target>Provjeri ažuriranja…</target>
+        <note>Class = "NSMenuItem"; title = "Check for Updates…"; ObjectID = "ud7-wC-A79";</note>
+      </trans-unit>
       <trans-unit id="vKC-jM-MkH.title" xml:space="preserve">
         <source>Paste Style</source>
-        <target state="new">Kopiraj stil</target>
-        
-      <note>Class = "NSMenuItem"; title = "Paste Style"; ObjectID = "vKC-jM-MkH";</note></trans-unit>
+        <target>Kopiraj stil</target>
+        <note>Class = "NSMenuItem"; title = "Paste Style"; ObjectID = "vKC-jM-MkH";</note>
+      </trans-unit>
       <trans-unit id="vLm-3I-IUL.title" xml:space="preserve">
         <source>Show Ruler</source>
-        <target state="new">Prikaži ravnalo</target>
-        
-      <note>Class = "NSMenuItem"; title = "Show Ruler"; ObjectID = "vLm-3I-IUL";</note></trans-unit>
+        <target>Prikaži ravnalo</target>
+        <note>Class = "NSMenuItem"; title = "Show Ruler"; ObjectID = "vLm-3I-IUL";</note>
+      </trans-unit>
       <trans-unit id="vNY-rz-j42.title" xml:space="preserve">
         <source>Clear Menu</source>
-        <target state="new">Očisti izbornik</target>
-        
-      <note>Class = "NSMenuItem"; title = "Clear Menu"; ObjectID = "vNY-rz-j42";</note></trans-unit>
+        <target>Očisti izbornik</target>
+        <note>Class = "NSMenuItem"; title = "Clear Menu"; ObjectID = "vNY-rz-j42";</note>
+      </trans-unit>
       <trans-unit id="vmV-6d-7jI.title" xml:space="preserve">
         <source>Make Upper Case</source>
-        <target state="new">Napravi veliko slovo</target>
-        
-      <note>Class = "NSMenuItem"; title = "Make Upper Case"; ObjectID = "vmV-6d-7jI";</note></trans-unit>
+        <target>Napravi veliko slovo</target>
+        <note>Class = "NSMenuItem"; title = "Make Upper Case"; ObjectID = "vmV-6d-7jI";</note>
+      </trans-unit>
       <trans-unit id="w0m-vy-SC9.title" xml:space="preserve">
         <source>Ligatures</source>
-        <target state="new">Ligature</target>
-        
-      <note>Class = "NSMenu"; title = "Ligatures"; ObjectID = "w0m-vy-SC9";</note></trans-unit>
+        <target>Ligature</target>
+        <note>Class = "NSMenu"; title = "Ligatures"; ObjectID = "w0m-vy-SC9";</note>
+      </trans-unit>
       <trans-unit id="wb2-vD-lq4.title" xml:space="preserve">
         <source>Align Right</source>
-        <target state="new">Poravnaj desno</target>
-        
-      <note>Class = "NSMenuItem"; title = "Align Right"; ObjectID = "wb2-vD-lq4";</note></trans-unit>
+        <target>Poravnaj desno</target>
+        <note>Class = "NSMenuItem"; title = "Align Right"; ObjectID = "wb2-vD-lq4";</note>
+      </trans-unit>
       <trans-unit id="wpe-8d-5DV.title" xml:space="preserve">
         <source>Text Cell</source>
-        <target state="new">Tekstualna ćelija</target>
-        
-      <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "wpe-8d-5DV";</note></trans-unit>
+        <target>Tekstualna ćelija</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "wpe-8d-5DV";</note>
+      </trans-unit>
       <trans-unit id="wpr-3q-Mcd.title" xml:space="preserve">
         <source>Help</source>
-        <target state="new">Pomoć</target>
-        
-      <note>Class = "NSMenuItem"; title = "Help"; ObjectID = "wpr-3q-Mcd";</note></trans-unit>
+        <target>Pomoć</target>
+        <note>Class = "NSMenuItem"; title = "Help"; ObjectID = "wpr-3q-Mcd";</note>
+      </trans-unit>
       <trans-unit id="x3v-GG-iWU.title" xml:space="preserve">
         <source>Copy</source>
-        <target state="new">Kopiraj</target>
-        
-      <note>Class = "NSMenuItem"; title = "Copy"; ObjectID = "x3v-GG-iWU";</note></trans-unit>
+        <target>Kopiraj</target>
+        <note>Class = "NSMenuItem"; title = "Copy"; ObjectID = "x3v-GG-iWU";</note>
+      </trans-unit>
       <trans-unit id="xCO-ey-2lo.title" xml:space="preserve">
         <source>Product</source>
-        <target state="new">Proizvod</target>
-        
-      <note>Class = "NSTextFieldCell"; title = "Product"; ObjectID = "xCO-ey-2lo";</note></trans-unit>
+        <target>Proizvod</target>
+        <note>Class = "NSTextFieldCell"; title = "Product"; ObjectID = "xCO-ey-2lo";</note>
+      </trans-unit>
       <trans-unit id="xQD-1f-W4t.title" xml:space="preserve">
         <source>Use All</source>
-        <target state="new">Koristi sve</target>
-        
-      <note>Class = "NSMenuItem"; title = "Use All"; ObjectID = "xQD-1f-W4t";</note></trans-unit>
+        <target>Koristi sve</target>
+        <note>Class = "NSMenuItem"; title = "Use All"; ObjectID = "xQD-1f-W4t";</note>
+      </trans-unit>
       <trans-unit id="xrE-MZ-jX0.title" xml:space="preserve">
         <source>Speech</source>
-        <target state="new">Govor</target>
-        
-      <note>Class = "NSMenuItem"; title = "Speech"; ObjectID = "xrE-MZ-jX0";</note></trans-unit>
+        <target>Govor</target>
+        <note>Class = "NSMenuItem"; title = "Speech"; ObjectID = "xrE-MZ-jX0";</note>
+      </trans-unit>
       <trans-unit id="z6F-FW-3nz.title" xml:space="preserve">
         <source>Show Substitutions</source>
-        <target state="new">Prikaži zamjene</target>
-        
-      <note>Class = "NSMenuItem"; title = "Show Substitutions"; ObjectID = "z6F-FW-3nz";</note></trans-unit>
+        <target>Prikaži zamjene</target>
+        <note>Class = "NSMenuItem"; title = "Show Substitutions"; ObjectID = "z6F-FW-3nz";</note>
+      </trans-unit>
       <trans-unit id="zwS-9G-S0N.title" xml:space="preserve">
         <source>Portal:</source>
-        <target state="new">Portal:</target>
-        
-      <note>Class = "NSTextFieldCell"; title = "Portal:"; ObjectID = "zwS-9G-S0N";</note></trans-unit>
+        <target>Portal:</target>
+        <note>Class = "NSTextFieldCell"; title = "Portal:"; ObjectID = "zwS-9G-S0N";</note>
+      </trans-unit>
     </body>
   </file>
   <file original="ONLYOFFICE/Base.lproj/MoveApplication.strings" source-language="en" target-language="hr-HR" datatype="plaintext">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c" />
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c"/>
     </header>
     <body>
       <trans-unit id="Could not move to Applications folder" xml:space="preserve">
-        <source>Nije moguće premještanje u mapu Aplikacije</source>
-        <target state="new">Could not move to Applications folder</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <source>Could not move to Applications folder</source>
+        <target>Nije moguće premještanje u mapu Aplikacije</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Do Not Move" xml:space="preserve">
         <source>Do Not Move</source>
-        <target state="new">Ne premještaj</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Ne premještaj</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="I can move myself to the Applications folder if you'd like." xml:space="preserve">
         <source>I can move myself to the Applications folder if you'd like.</source>
-        <target state="new">Ako želite, mogu se premjestiti u mapu Aplikacije.</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Ako želite, mogu se premjestiti u mapu Aplikacije.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Move to Applications Folder" xml:space="preserve">
         <source>Move to Applications Folder</source>
-        <target state="new">Premjesti u mapu Aplikacije</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Premjesti u mapu Aplikacije</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Move to Applications folder in your Home folder?" xml:space="preserve">
         <source>Move to Applications folder in your Home folder?</source>
-        <target state="new">Premjesti u mapu Aplikacije u vašoj početnoj mapi?</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Premjesti u mapu Aplikacije u vašoj početnoj mapi?</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Move to Applications folder?" xml:space="preserve">
         <source>Move to Applications folder?</source>
-        <target state="new">Premjesti u mapu Aplikacije?</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Premjesti u mapu Aplikacije?</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Note that this will require an administrator password." xml:space="preserve">
         <source>Note that this will require an administrator password.</source>
-        <target state="new">Imajte na umu da će za to biti potrebna lozinka administratora.</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Imajte na umu da će za to biti potrebna lozinka administratora.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="This will keep your Downloads folder uncluttered." xml:space="preserve">
         <source>This will keep your Downloads folder uncluttered.</source>
-        <target state="new">To će učiniti da mapa preuzimanja ne bude pretrpana.</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>To će učiniti da mapa preuzimanja ne bude pretrpana.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
     </body>
   </file>
   <file original="ONLYOFFICE/Base.lproj/Presentation-Reporter.storyboard" source-language="en" target-language="hr-HR" datatype="plaintext">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c" />
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c"/>
     </header>
     <body>
       <trans-unit id="Ygx-5K-Hn8.title" xml:space="preserve">
         <source>Reporter Window</source>
-        <target state="new">Prozor za izvješćivanje</target>
-        
-      <note>Class = "NSWindow"; title = "Reporter Window"; ObjectID = "Ygx-5K-Hn8";</note></trans-unit>
+        <target>Prozor za izvješćivanje</target>
+        <note>Class = "NSWindow"; title = "Reporter Window"; ObjectID = "Ygx-5K-Hn8";</note>
+      </trans-unit>
     </body>
   </file>
   <file original="ONLYOFFICE/Resources/ONLYOFFICE/Base.lproj/InfoPlist.strings" source-language="en" target-language="hr-HR" datatype="plaintext">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c" />
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c"/>
     </header>
     <body>
       <trans-unit id="CFBundleName" xml:space="preserve">
-        <source>ONLYOFFICE</source><target state="needs-translation">ONLYOFFICE</target>
-        
-      <note>Bundle name</note></trans-unit>
+        <source>ONLYOFFICE</source>
+        <target state="translated">ONLYOFFICE</target>
+        <note>Bundle name</note>
+      </trans-unit>
       <trans-unit id="NSHumanReadableCopyright" xml:space="preserve">
-        <source>Copyright © 2020 Ascensio System SIA. All rights reserved.</source><target state="needs-translation">Copyright © 2020 Ascensio System SIA. Sva prava pridržana.</target>
-        
-      <note>Copyright (human-readable)</note></trans-unit>
+        <source>Copyright © 2020 Ascensio System SIA. All rights reserved.</source>
+        <target state="translated">Copyright © 2020 Ascensio System SIA. Sva prava pridržana.</target>
+        <note>Copyright (human-readable)</note>
+      </trans-unit>
     </body>
   </file>
 </xliff>
