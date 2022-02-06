@@ -98,7 +98,7 @@
                                             </section>
                                         </div>
                                     </div>
-                                    <div class='settings-field' id="opts-autoupdate-mode" style='display1:none;'>
+                                    <div class='settings-field' id="opts-autoupdate-mode" style='display:none;'>
                                         <label class='sett__caption' l10n>${_lang.settUpdatesMode || 'Autoupdate mode'}</label>
                                         <div class='sett--label-lift-top hbox'>
                                             <section class='box-cmp-select'>
@@ -228,6 +228,7 @@
                     let $combo = $('select', $optsupdatesrate);
 
                     _new_settings.checkupdatesrate = $combo.val();
+                    _new_settings.checkupdatesinterval = $combo.val();
                     $combo.selectpicker('refresh');
                 }
 
@@ -354,16 +355,32 @@
                             });
                         }
 
-                        if ( opts.autoupdatemode !== undefined ) {
-                            ($optsAutoupdateMode = ($('#opts-autoupdate-mode', $panel).show().find('select')))
-                            .val(opts.autoupdatemode)
-                            .selectpicker().on('change', e => {
-                                $btnApply.isdisabled() && $btnApply.disable(false);
-                            });
+                        if ( !!opts.updates ) {
+                            if ( opts.updates.mode !== undefined ) {
+                                ($optsAutoupdateMode = ($('#opts-autoupdate-mode', $panel).show().find('select')))
+                                    .val(opts.updates.mode)
+                                    .selectpicker().on('change', e => {
+                                        $btnApply.isdisabled() && $btnApply.disable(false);
+                                    });
+                            }
+
+                            if ( opts.updates.interval !== undefined ) {
+                                let $settnode = $('#opts-checkupdate', $panel);
+
+                                if ( !$settnode.is(':visible') ) {
+                                    $settnode.show();
+                                    $('select', $settnode)
+                                        .val(opts.updates.rate)
+                                        .selectpicker().on('change', e => {
+                                            $btnApply.isdisabled() && $btnApply.disable(false);
+                                        });
+                                }
+                            }
                         }
                     }
                 } else
                 if (/updates/.test(cmd)) {
+                    // TODO: will be deprecated soon
                     let $settnode = $('#opts-checkupdate', $panel),
                         $combo = $('select', $settnode);
 

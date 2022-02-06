@@ -1560,6 +1560,10 @@ bool CAscApplicationManagerWrapper::applySettings(const wstring& wstrjson)
         if ( objRoot.contains("autoupdatemode") ) {
             _reg_user.setValue("autoUpdateMode", objRoot["autoupdatemode"].toString());
         }
+
+        if ( objRoot.contains("checkupdatesinterval") ) {
+            _reg_user.setValue("checkUpdatesInterval", objRoot["checkupdatesinterval"].toString());
+        }
     } else {
         /* parse settings error */
     }
