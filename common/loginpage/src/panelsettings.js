@@ -314,6 +314,11 @@
 
                             $combo.val(opts.locale.current);
                             $combo.selectpicker();
+
+                            if ( opts.locale.restart ) {
+                                $panel.find('.settings-field-lang label[l10n]').after(`<label class='sett__caption'>*</label>`);
+                                $('#caption-restart', $panel).show();
+                            }
                         }
 
                         if ( opts.uiscaling != undefined && !$optsUIScaling ) {
