@@ -22,6 +22,9 @@
 
 /* Begin PBXBuildFile section */
 		5A452E4B257688C700C58E01 /* providers in Resources */ = {isa = PBXBuildFile; fileRef = 5A452E4A257688C700C58E01 /* providers */; };
+		5AA06CBD27AC3BA000D67BEE /* ASCLinguist.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AA06CBC27AC3BA000D67BEE /* ASCLinguist.m */; };
+		5AA06CC027B1267200D67BEE /* ASCLinguist.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AA06CBC27AC3BA000D67BEE /* ASCLinguist.m */; };
+		5AA06CC127B1267600D67BEE /* ASCLinguist.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AA06CBC27AC3BA000D67BEE /* ASCLinguist.m */; };
 		5AB20F60274D35F3003732A0 /* file-docxf.icns in Resources */ = {isa = PBXBuildFile; fileRef = 5AB20F5D274D35F2003732A0 /* file-docxf.icns */; };
 		5AB20F62274D360A003732A0 /* file-oform.icns in Resources */ = {isa = PBXBuildFile; fileRef = 5AB20F61274D360A003732A0 /* file-oform.icns */; };
 		5AFA1CF1277A6D2900619952 /* file-docxf.icns in Resources */ = {isa = PBXBuildFile; fileRef = 5AB20F5D274D35F2003732A0 /* file-docxf.icns */; };
@@ -766,6 +769,8 @@
 		5A7F874C27A464D5006B6E27 /* ga */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ga; path = ga.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5A7F874D27A464E0006B6E27 /* ga */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ga; path = ga.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5A7F874E27A464EA006B6E27 /* ga */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = ga; path = ga.lproj/EULA.html; sourceTree = "<group>"; };
+		5AA06CBB27AC3BA000D67BEE /* ASCLinguist.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ASCLinguist.h; sourceTree = "<group>"; };
+		5AA06CBC27AC3BA000D67BEE /* ASCLinguist.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ASCLinguist.m; sourceTree = "<group>"; };
 		5AB20F5D274D35F2003732A0 /* file-docxf.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "file-docxf.icns"; sourceTree = "<group>"; };
 		5AB20F61274D360A003732A0 /* file-oform.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "file-oform.icns"; sourceTree = "<group>"; };
 		BE6251B922BD089100656116 /* dictionaries */ = {isa = PBXFileReference; lastKnownFileType = folder; name = dictionaries; path = ../../../../dictionaries; sourceTree = "<group>"; };
@@ -1700,6 +1705,8 @@
 				FCA9A18F1BA6DC6000ABF3AB /* ASCCommonViewController.mm */,
 				FC3BFE0B1BBEBB7B0040C904 /* ASCApplicationManager.mm */,
 				FC3BFE0C1BBEBB7B0040C904 /* ASCApplicationManager.h */,
+				5AA06CBB27AC3BA000D67BEE /* ASCLinguist.h */,
+				5AA06CBC27AC3BA000D67BEE /* ASCLinguist.m */,
 				FC3B77831BB2A94300DB9705 /* ASCEventsController.h */,
 				FC3B77841BB2A94300DB9705 /* ASCEventsController.mm */,
 				FCF2897F21510C16002FD438 /* ASCExternalController.h */,
@@ -2324,6 +2331,7 @@
 				FC0BD6B8258B63F700C47F95 /* ASCTitleBackground.m in Sources */,
 				FC0BD6B9258B63F700C47F95 /* ASCConstants.m in Sources */,
 				FC0BD6BA258B63F700C47F95 /* GTMNSString+HTML.m in Sources */,
+				5AA06CC127B1267600D67BEE /* ASCLinguist.m in Sources */,
 				FC0BD6BB258B63F700C47F95 /* ASCTabTouchBar.m in Sources */,
 				FC0BD6BC258B63F700C47F95 /* AppDelegate.mm in Sources */,
 				FC0BD6BD258B63F700C47F95 /* NSAlert+SynchronousSheet.m in Sources */,
@@ -2396,6 +2404,7 @@
 				FCB4C6F426DD018B0012C20D /* ASCTitleBackground.m in Sources */,
 				FCB4C6F526DD018B0012C20D /* ASCConstants.m in Sources */,
 				FCB4C6F626DD018B0012C20D /* GTMNSString+HTML.m in Sources */,
+				5AA06CBD27AC3BA000D67BEE /* ASCLinguist.m in Sources */,
 				FCB4C6F726DD018B0012C20D /* ASCTabTouchBar.m in Sources */,
 				FCB4C6F826DD018B0012C20D /* AppDelegate.mm in Sources */,
 				FCB4C6F926DD018B0012C20D /* NSAlert+SynchronousSheet.m in Sources */,
@@ -2468,6 +2477,7 @@
 				FCA0B3521B9F002B0073EDD4 /* ASCTitleBackground.m in Sources */,
 				FCAC6DF81C195FA6003D2457 /* ASCConstants.m in Sources */,
 				FCC77C60206CDBCE001B7837 /* GTMNSString+HTML.m in Sources */,
+				5AA06CC027B1267200D67BEE /* ASCLinguist.m in Sources */,
 				FCCC2FDB21E5E04000FB9209 /* ASCTabTouchBar.m in Sources */,
 				FCBC426F1B9D650400405301 /* AppDelegate.mm in Sources */,
 				FCC77C5D206CDBCE001B7837 /* NSAlert+SynchronousSheet.m in Sources */,
