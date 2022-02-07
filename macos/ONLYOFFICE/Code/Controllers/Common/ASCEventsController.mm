@@ -47,6 +47,7 @@
 #import "NSDictionary+Extensions.h"
 #import "NSString+Extensions.h"
 #import "OfficeFileFormats.h"
+#import "ASCLinguist.h"
 #import "mac_application.h"
 
 #pragma mark -
@@ -612,8 +613,7 @@ public:
                                 }
                                 
                                 if (NSString * langId = json[@"langid"]) {
-                                    [[NSUserDefaults standardUserDefaults] setObject:langId forKey:ASCUserUILanguage];
-                                    [[NSUserDefaults standardUserDefaults] synchronize];
+                                    [ASCLinguist setAppLanguageCode:langId];
                                 }
 
                                 if (NSString * userName = json[@"username"]) {
