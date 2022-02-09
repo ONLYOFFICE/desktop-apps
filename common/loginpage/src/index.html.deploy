@@ -149,7 +149,8 @@
     <inline src="../res/img/logo.svg" />
     </div>
 
-    <script type="text/javascript" replace="yes" src="locale/in.js"></script>
+    <script>var l10n = l10n || {}</script>
+    <script type="text/javascript" replace="yes" src="./langs.js"></script>
 
     <script type="text/javascript" replace="yes" src="jquery.min.js"></script>
     <script type="text/javascript" replace="yes" src="dropdown.js"></script>
