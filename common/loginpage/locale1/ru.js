@@ -1,3 +1,5 @@
+
+!window.l10n && (window.l10n = {});
 l10n.ru = {
     welWelcome: 'Добро пожаловать в ONLYOFFICE!',
     welDescr: 'Работайте с документами офлайн или подключитесь к облаку: ONLYOFFICE, ownCloud, Nextcloud.',
@@ -48,7 +50,6 @@ l10n.ru = {
     newDoc: 'Документ',
     newXlsx: 'Таблица',
     newPptx: 'Презентация',
-    newForm: 'Шаблон формы',
     actCreateNew: 'Создать',
     actRecentFiles: 'Последние файлы',
     actOpenLocal: 'Открыть локальный файл',
@@ -82,12 +83,5 @@ l10n.ru = {
     settOptCheckWeek: 'Каждую неделю',
     settScaling: 'Масштабирование интерфейса',
     settOptScalingAuto: 'Авто',
-    aboutProFeaturesAvailable: 'С доступом к профессиональным функциям',
-    settUITheme: 'Тема интерфейса',
-    settOptThemeLight: 'Светлая',
-    settOptThemeClassicLight: 'Классическая светлая',
-    settOptThemeDark: 'Темная',
-    settOptLaunchMode: 'Открыть файл',
-    settOptLaunchInTab: 'Во вкладке',
-    settOptLaunchInWindow: 'В окне',
+    aboutProFeaturesAvailable: 'С доступом к профессиональным функциям'
 }
