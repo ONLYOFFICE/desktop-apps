@@ -65,6 +65,7 @@ INCLUDEPATH += \
 
 HEADERS += \
     $$PWD/src/asctabwidget.h \
+    $$PWD/src/ctabbarwrapper.h \
     $$PWD/src/version.h \
     $$PWD/src/defines.h \
     $$PWD/src/cdownloadwidget.h \
@@ -109,6 +110,7 @@ HEADERS += \
 
 SOURCES += \
     $$PWD/src/csplash.cpp \
+    $$PWD/src/ctabbarwrapper.cpp \
     $$PWD/src/main.cpp \
     $$PWD/src/asctabwidget.cpp\
     $$PWD/src/cdownloadwidget.cpp \
