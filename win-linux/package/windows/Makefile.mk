@@ -23,6 +23,7 @@ VCREDIST += $(VCREDIST15)
 
 EXE_UPDATE += $(BUILD_DIR)/update/editors_update_$(WIN_ARCH)$(WIN_ARCH_SUFFIX:%=_%).exe
 APPCAST := $(BUILD_DIR)/update/appcast.xml
+APPCAST_PROD := $(BUILD_DIR)/update/appcast-prod.xml
 CHANGES_EN := $(BUILD_DIR)/update/changes.html
 CHANGES_RU := $(BUILD_DIR)/update/changes_ru.html
 CHANGES_DIR := $(BRANDING_DIR)/$(BUILD_DIR)/update/changes/$(PRODUCT_VERSION)
@@ -32,7 +33,7 @@ PACKAGES += $(DESKTOP_EDITORS_ZIP)
 WINSPARKLE += $(EXE_UPDATE)
 ifndef _WIN_XP
 ifeq ($(WIN_ARCH), x64)
-WINSPARKLE += $(APPCAST)
+WINSPARKLE += $(APPCAST) $(APPCAST_PROD)
 ifeq ($(COMPANY_NAME), ONLYOFFICE)
 WINSPARKLE += $(CHANGES_EN)
 endif
@@ -101,8 +102,13 @@ $(BUILD_DIR)/%.zip:
 	
 AWK_PARAMS += -v Version="$(PRODUCT_VERSION)"
 AWK_PARAMS += -v Build="$(BUILD_NUMBER)"
+AWK_PARAMS += -v Branch="$(RELEASE_BRANCH)"
 AWK_PARAMS += -v Timestamp="$(shell date +%s)"
 AWK_PARAMS += -i "$(BRANDING_DIR)/win-linux/package/windows/update/branding.awk"
+
+%/appcast-prod.xml: %/appcast.xml.awk
+	LANG=en_US.UTF-8 \
+	awk $(AWK_PARAMS) -v Prod=1 -f $< > $@
 
 %/appcast.xml: %/appcast.xml.awk
 	LANG=en_US.UTF-8 \
