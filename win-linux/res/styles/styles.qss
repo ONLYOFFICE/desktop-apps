@@ -454,7 +454,7 @@ QTabBar QToolButton,
 }
 
 QTabBar::scroller {
-    width 0px;
+    width: 0px;
 }
 
 QLabel[class=tab-icon] {
