@@ -151,8 +151,7 @@ CAscTabWidget::CAscTabWidget(QWidget *parent, CTabBar *_pBar, QPushButton *_pBut
     , m_tabIconSize(11, 11)
     , m_pBar(_pBar)
 {
-    QTabWidget* _pBaseTabWidget = static_cast<QTabWidget*>(this);
-    _pBaseTabWidget->tabBar()->hide();
+    QTabWidget::tabBar()->hide();
     m_pBar->setObjectName("asc_editors_tabbar");
     m_pBar->setTabTextColor(QPalette::Active, QColor(51, 51, 51));
     m_pBar->setTabTextColor(QPalette::Inactive, QColor(51, 51, 51));
@@ -201,7 +200,7 @@ CAscTabWidget::CAscTabWidget(QWidget *parent, CTabBar *_pBar, QPushButton *_pBut
         this->setCurrentIndex(index);
     });
     QObject::connect(m_pBar, &CTabBar::tabMoved, this, [=](int from, int to) {
-        _pBaseTabWidget->tabBar()->moveTab(from, to);
+        QTabWidget::tabBar()->moveTab(from, to);
     });
 }
 
