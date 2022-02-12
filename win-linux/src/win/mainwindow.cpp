@@ -30,11 +30,11 @@
  *
 */
 
-#include "MainWindow.h"
+#include "mainwindow.h"
 
 #include <dwmapi.h>
 #include <windowsx.h>
-#include <windows.h>
+//#include <windows.h>
 #include <stdexcept>
 #include <functional>
 
@@ -79,11 +79,11 @@ auto refresh_window_scaling_factor(CMainWindow * window) -> void {
 CMainWindow::CMainWindow(QRect& rect) :
     hWnd(nullptr),
     hInstance(GetModuleHandle(nullptr)),
-    borderless( true ),
-    borderlessResizeable( true ),
+    m_pWinPanel(NULL),
     closed( false ),
     visible( false ),
-    m_pWinPanel(NULL)
+    borderless( true ),
+    borderlessResizeable( true )
 {
     // adjust window size
     QRect _window_rect = rect;
