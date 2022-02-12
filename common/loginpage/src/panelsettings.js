@@ -370,7 +370,7 @@
                                 if ( !$settnode.is(':visible') ) {
                                     $settnode.show();
                                     $('select', $settnode)
-                                        .val(opts.updates.rate)
+                                        .val(opts.updates.interval)
                                         .selectpicker().on('change', e => {
                                             $btnApply.isdisabled() && $btnApply.disable(false);
                                         });
