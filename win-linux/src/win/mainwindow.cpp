@@ -58,10 +58,10 @@
 #include <QSettings>
 #include <QDebug>
 
-#ifdef _UPDMODULE
+/*#ifdef _UPDMODULE
   #include "3dparty/WinSparkle/include/winsparkle.h"
   #include "../version.h"
-#endif
+#endif*/
 
 using namespace std::placeholders;
 
@@ -794,7 +794,7 @@ void CMainWindow::slot_mainPageReady()
 {
     CSplash::hideSplash();
 
-#ifdef _UPDMODULE
+/*#ifdef _UPDMODULE
     GET_REGISTRY_SYSTEM(reg_system)
 
     OSVERSIONINFO osvi;
@@ -858,10 +858,11 @@ void CMainWindow::slot_mainPageReady()
 
         AscAppManager::sendCommandTo(0, L"settings:check.updates", _wstr_rate);
     }
-#endif
+#endif*/
+
 }
 
-#if defined(_UPDMODULE)
+/*#if defined(_UPDMODULE)
 void CMainWindow::updateFound()
 {
     CLogger::log("updates found");
@@ -895,7 +896,7 @@ void CMainWindow::setAutocheckUpdatesInterval(const QString& s)
 
     }
 }
-#endif
+#endif*/
 
 void CMainWindow::doClose()
 {

@@ -36,6 +36,7 @@
 #include "qascapplicationmanager.h"
 #include <QObject>
 #include <QMutex>
+#include <QDesktopServices>
 #include <vector>
 #include <memory>
 #include "ccefeventstransformer.h"
@@ -43,6 +44,7 @@
 #include "ceditorwindow.h"
 #include "cwindowsqueue.h"
 #include "ceventdriver.h"
+#include "cupdatemanager.h"
 
 #ifdef _WIN32
 #include "win/mainwindow.h"
@@ -53,7 +55,6 @@
 #include "linux/csinglewindow.h"
 #endif
 
-#include "cappupdater.h"
 #include "cthemes.h"
 
 #define SEND_TO_ALL_START_PAGE nullptr
@@ -110,7 +111,6 @@ private:
     CEventDriver m_eventDriver;
     CMainWindow * m_pMainWindow = nullptr;
 
-    std::shared_ptr<CAppUpdater> m_updater;
     std::shared_ptr<CThemes> m_themes;
 public:
     CWindowsQueue<sWinTag>& closeQueue();
@@ -149,6 +149,10 @@ public slots:
     void onFileChecked(const QString&, int, bool);
     void onEditorWidgetClosed();
 
+private slots:
+    void showStartInstallMessage(const QString &path, const QStringList &args);
+    void showUpdateMessage(const bool &error, const bool &updateExist,
+                           const QString &version, const QString &changelog);
 
 public:
     static CAscApplicationManagerWrapper & getInstance();
@@ -185,7 +189,7 @@ public:
     static void             destroyViewer(QCefView * v);
 
     static void             cancelClose();
-    static void checkUpdates();
+    //static void checkUpdates();
 
     uint logoutCount(const std::wstring& portal) const;
     void Logout(const std::wstring& portal);
@@ -198,6 +202,11 @@ private:
     std::unique_ptr<CAscApplicationManagerWrapper_Private> m_private;
 
     CAscApplicationManagerWrapper(CAscApplicationManagerWrapper_Private *);
+
+    bool need_update_flag;
+    QString update_file_path;
+    QStringList update_arguments;
+    CUpdateManager *updateManager;
 };
 
 #endif // QASCAPPLICATIONMANAGER

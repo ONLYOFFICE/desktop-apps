@@ -86,10 +86,10 @@ public:
     bool pointInTabs(const QPoint& pt) const override;
 #endif
 
-#ifdef _UPDMODULE
+/*#ifdef _UPDMODULE
     static void checkUpdates();
     static void setAutocheckUpdatesInterval(const QString&);
-#endif
+#endif*/
 
 private:
     void captureMouse(int tabindex) override;
@@ -103,11 +103,11 @@ private:
 
     friend auto refresh_window_scaling_factor(CMainWindow * window) -> void;
 
-#ifdef _UPDMODULE
+/*#ifdef _UPDMODULE
     static void updateFound();
     static void updateNotFound();
     static void updateError();
-#endif
+#endif*/
 
 public:
     CWinPanel * m_pWinPanel;
