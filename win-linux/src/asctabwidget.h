@@ -118,6 +118,8 @@ class CAscTabWidget : public QTabWidget, public CScalingWrapper
 
     typedef std::map< int, std::pair<QString, QString> > CTabIconSet;
 
+    using QTabWidget::tabBar;
+
 public:
     QPushButton* m_pMainButton;
 
