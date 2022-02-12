@@ -87,23 +87,23 @@ private:
 #if defined (Q_OS_WIN)
     void onLoadUpdateFinished();
 
-    WString     package_url,
-                package_args;
+    WString     m_packageUrl,
+                m_packageArgs;
 #endif
 
-    uint_fast8_t  current_rate,
-                  downloadMode;
+    uint_fast8_t  m_currentRate,
+                  m_downloadMode;
 
-    QString     locale,
-                new_version;
+    QString     m_locale,
+                m_newVersion;
 
-    time_t      last_check;
+    time_t      m_lastCheck;
 
-    WString     check_url;
+    WString     m_checkUrl;
 
-    QTimer      *timer;
+    QTimer      *m_pTimer;
 
-    Downloader  *downloader;
+    Downloader  *m_pDownloader;
 
     enum Mode {
         CHECK_UPDATES, DOWNLOAD_CHANGELOG, DOWNLOAD_UPDATES

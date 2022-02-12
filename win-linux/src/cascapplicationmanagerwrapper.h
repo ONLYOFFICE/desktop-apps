@@ -205,10 +205,10 @@ private:
 
     CAscApplicationManagerWrapper(CAscApplicationManagerWrapper_Private *);
 
-    bool need_update_flag;
-    QString update_file_path;
-    QStringList update_arguments;
-    CUpdateManager *updateManager;
+    bool m_needUpdateFlag;
+    QString m_updateFilePath;
+    QStringList m_updateArguments;
+    CUpdateManager *m_pUpdateManager;
 };
 
 #endif // QASCAPPLICATIONMANAGER
