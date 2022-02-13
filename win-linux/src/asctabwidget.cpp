@@ -170,7 +170,7 @@ CAscTabWidget::CAscTabWidget(QWidget *parent, CTabBar *_pBar, QPushButton *_pBut
         updateIcons();
         setFocusedView();
         _dropedindex = -1;
-        m_pBar->setCurrentIndex(index);
+        if (index > -1) m_pBar->setCurrentIndex(index);
     });
     QObject::connect(m_pBar, &CTabBar::tabUndock, this, [=](int index, bool * accept) {
         if (index == _dropedindex) return;
