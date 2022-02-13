@@ -166,10 +166,11 @@ CAscTabWidget::CAscTabWidget(QWidget *parent, CTabBar *_pBar, QPushButton *_pBut
     m_pBar->setProperty("active", false);
 
     static int _dropedindex = -1;
-    QObject::connect(this, &CAscTabWidget::currentChanged, this, [=]() {
+    QObject::connect(this, &CAscTabWidget::currentChanged, this, [=](int index) {
         updateIcons();
         setFocusedView();
         _dropedindex = -1;
+        m_pBar->setCurrentIndex(index);
     });
     QObject::connect(m_pBar, &CTabBar::tabUndock, this, [=](int index, bool * accept) {
         if (index == _dropedindex) return;
@@ -266,7 +267,7 @@ int CAscTabWidget::addEditor(const COpenOptions& opts)
         m_pBar->addTab(data->title());
         m_pBar->setTabToolTip(tab_index, data->title());
         m_pBar->tabStartLoading(tab_index);
-        m_pBar->setCurrentIndex(tab_index);
+        //m_pBar->setCurrentIndex(tab_index);
 
         //TODO: test for safe remove
 //        applyDocumentChanging(id_view, opts.type);
@@ -390,7 +391,7 @@ int CAscTabWidget::addPortal(const QString& url, const QString& name, const QStr
     m_pBar->setTabToolTip(tab_index, _url);
     m_pBar->setTabTheme(tab_index, CTabBar::LightTab);
     m_pBar->tabStartLoading(tab_index);
-    m_pBar->setCurrentIndex(tab_index);
+    //m_pBar->setCurrentIndex(tab_index);
 
 //    updateTabIcon(tabIndexByView(id));
 
@@ -431,7 +432,7 @@ int CAscTabWidget::addOAuthPortal(const QString& portal, const QString& type, co
     m_pBar->setTabToolTip(tab_index, portal);
     m_pBar->setTabTheme(tab_index, CTabBar::LightTab);
     m_pBar->tabStartLoading(tab_index);
-    m_pBar->setCurrentIndex(tab_index);
+    //m_pBar->setCurrentIndex(tab_index);
 
     return tab_index;
 }
@@ -450,7 +451,7 @@ int CAscTabWidget::insertPanel(QWidget * panel, int index)
         tabindex = insertTab(index, panelwidget, tabdata->title());
         m_pBar->insertTab(index, tabdata->title());
         m_pBar->setTabToolTip(tabindex, tabdata->title());
-        m_pBar->setCurrentIndex(tabindex);
+        //m_pBar->setCurrentIndex(tabindex);
     }
 
     return tabindex;
