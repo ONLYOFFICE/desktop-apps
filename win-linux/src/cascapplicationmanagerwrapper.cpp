@@ -1955,14 +1955,14 @@ void CAscApplicationManagerWrapper::showUpdateMessage(const bool &error,
         auto msg = [=]() {
             QTimer::singleShot(100, this, [=](){
                 CMessage mbox(mainWindow()->handle(), CMessageOpts::moButtons::mbYesNo);
-                mbox.setButtons({"Yes", "No"});
+//                mbox.setButtons({"Yes", "No"});
                 switch (mbox.info(tr("Do you want to install a new version %1 of the program?").arg(version))) {
                 case MODAL_RESULT_CUSTOM + 0:
-            #ifdef Q_OS_WIN
+#ifdef Q_OS_WIN
                     m_pUpdateManager->loadUpdates();
-            #else
+#else
                     QDesktopServices::openUrl(QUrl(DOWNLOAD_PAGE, QUrl::TolerantMode));
-            #endif
+#endif
                     break;
                 default:
                     break;
@@ -1995,7 +1995,7 @@ void CAscApplicationManagerWrapper::showStartInstallMessage(const QString &path,
 {
     AscAppManager::sendCommandTo(0, "updates:download", "{\"progress\":\"done\"}");
     CMessage mbox(mainWindow()->handle(), CMessageOpts::moButtons::mbYesNo);
-    mbox.setButtons({"Yes", "No"});
+//    mbox.setButtons({"Yes", "No"});
     switch (mbox.info(tr("Do you want to install a new version of the program?\n"
                          "To continue the installation, you must to close current session."))) {
     case MODAL_RESULT_CUSTOM + 0: {
