@@ -64,9 +64,6 @@ CAscApplicationManagerWrapper::CAscApplicationManagerWrapper(CAscApplicationMana
     , CCefEventsTransformer(nullptr)
     , m_queueToClose(new CWindowsQueue<sWinTag>)
     , m_private(ptrprivate)
-    , m_needUpdateFlag(false)
-    , m_updateFilePath(QString(""))
-    , m_updateArguments(QStringList())
 {
     m_private->init();
     CAscApplicationManager::SetEventListener(this);
@@ -1206,14 +1203,7 @@ void CAscApplicationManagerWrapper::launchAppClose()
         if ( !(m_countViews > 1) ) {
 
             // ========== Start update installation ============
-            if (m_needUpdateFlag) {
-                if (QProcess::startDetached(m_updateFilePath, m_updateArguments)) {
-                    qDebug() << "Start installation...";
-                } else {
-                    qDebug() << "Install command not found!";
-                }
-            }
-            m_pUpdateManager->cancelLoading();
+            m_pUpdateManager->handleAppClose();
             // =================================================
 
             DestroyCefView(-1);
@@ -1991,7 +1981,7 @@ void CAscApplicationManagerWrapper::showUpdateMessage(const bool &error,
     }
 }
 
-void CAscApplicationManagerWrapper::showStartInstallMessage(const QString &path, const QStringList &args)
+void CAscApplicationManagerWrapper::showStartInstallMessage()
 {
     AscAppManager::sendCommandTo(0, "updates:download", "{\"progress\":\"done\"}");
     CMessage mbox(mainWindow()->handle(), CMessageOpts::moButtons::mbYesNo);
@@ -1999,10 +1989,8 @@ void CAscApplicationManagerWrapper::showStartInstallMessage(const QString &path,
     switch (mbox.info(tr("Do you want to install a new version of the program?\n"
                          "To continue the installation, you must to close current session."))) {
     case MODAL_RESULT_CUSTOM + 0: {
-        m_needUpdateFlag = true;
-        m_updateFilePath = path;
-        m_updateArguments = args;
-        CAscApplicationManagerWrapper::closeMainWindow();
+        m_pUpdateManager->scheduleRestartForUpdate();
+        closeMainWindow();
         break;
     }
     default:

@@ -31,6 +31,7 @@
  */
 
 #include "cupdatemanager.h"
+#include <QProcess>
 
 
 CUpdateManager::CUpdateManager(QObject *parent):
@@ -259,6 +260,26 @@ QString CUpdateManager::getVersion() const
     return QString("");
 }
 
+QStringList CUpdateManager::getInstallArguments() const
+{
+    if ( !m_packageArgs.empty() ) {
+        QStringList arguments;
+        arguments << QString::fromStdWString(m_packageArgs).split(" ");
+
+        return arguments;
+    } else return QStringList();
+}
+
+QString CUpdateManager::getInstallPackagePath() const
+{
+    GET_REGISTRY_USER(reg_user);
+    reg_user.beginGroup("Updates");
+    const QString path = reg_user.value("Updates/temp_file").toString();
+    reg_user.endGroup();
+
+    return path;
+}
+
 void CUpdateManager::getInstallParams()
 {
     qDebug() << "Get install params...";
@@ -271,7 +292,7 @@ void CUpdateManager::getInstallParams()
         // ========== Start installation signal ============
         QStringList arguments;
         arguments << QString::fromStdWString(m_packageArgs).split(" ");
-        emit updateLoaded(path, arguments);
+        emit updateLoaded();
     }
 }
 
@@ -287,7 +308,7 @@ void CUpdateManager::onLoadUpdateFinished()
     // ========== Start installation signal ============
     QStringList arguments;
     arguments << QString::fromStdWString(m_packageArgs).split(" ");
-    emit updateLoaded(path, arguments);
+    emit updateLoaded();
 }
 #endif
 
@@ -362,6 +383,24 @@ void CUpdateManager::onLoadCheckFinished()
         emit checkFinished(true, false, QString(""), QString("Error receiving updates..."));
     }
     if (QDir().exists(path)) QDir().remove(path);
+}
+
+void CUpdateManager::scheduleRestartForUpdate()
+{
+    m_restartForUpdate = true;
+}
+
+void CUpdateManager::handleAppClose()
+{
+    if ( m_restartForUpdate ) {
+        if ( QProcess::startDetached(getInstallPackagePath(), getInstallArguments())) {
+            qDebug() << "Start installation...";
+        } else {
+            qDebug() << "Install command not found!";
+        }
+    } else {
+        cancelLoading();
+    }
 }
 
 /*void CUpdateManager::loadChangelog(const WString &changelog_url)

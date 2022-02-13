@@ -67,6 +67,10 @@ public:
     ~CUpdateManager();
 
     void setNewUpdateSetting(const QString& _rate);
+    QStringList getInstallArguments() const;
+    QString getInstallPackagePath() const;
+    void scheduleRestartForUpdate();
+    void handleAppClose();
 
 private:
 
@@ -104,6 +108,7 @@ private:
     QTimer      *m_pTimer;
 
     Downloader  *m_pDownloader;
+    bool        m_restartForUpdate = false;
 
     enum Mode {
         CHECK_UPDATES, DOWNLOAD_CHANGELOG, DOWNLOAD_UPDATES
@@ -134,7 +139,7 @@ public slots:
 
     void progresChanged(const int &percent);
 
-    void updateLoaded(const QString &path, const QStringList &args);
+    void updateLoaded();
 
 private slots:
 

@@ -152,7 +152,7 @@ public slots:
     void onEditorWidgetClosed();
 
 private slots:
-    void showStartInstallMessage(const QString &path, const QStringList &args);
+    void showStartInstallMessage();
     void showUpdateMessage(const bool &error, const bool &updateExist,
                            const QString &version, const QString &changelog);
 
@@ -205,9 +205,6 @@ private:
 
     CAscApplicationManagerWrapper(CAscApplicationManagerWrapper_Private *);
 
-    bool m_needUpdateFlag;
-    QString m_updateFilePath;
-    QStringList m_updateArguments;
     CUpdateManager *m_pUpdateManager;
 };
 
