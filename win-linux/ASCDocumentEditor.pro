@@ -24,15 +24,15 @@ DEFINES += __DONT_WRITE_IN_APP_TITLE
 message($$PLATFORM_BUILD)
 
 #win32 {
-    #CONFIG += updmodule
-    #updmodule {
-        #DEFINES += _UPDMODULE
-        #DEFINES += URL_APPCAST_UPDATES=$$join(LINK,,\\\",\\\")
+    CONFIG += updmodule
+    updmodule {
+        DEFINES += _UPDMODULE
+        DEFINES += URL_APPCAST_UPDATES=$$join(LINK,,\\\",\\\")
         #LIBS += -L$$PWD/3dparty/WinSparkle/$$PLATFORM_BUILD -lWinSparkle
 
-        #message(updates is turned on)
-        #message(url: $$join(LINK,,\\\",\\\"))
-    #}
+        message(updates is turned on)
+        message(url: $$join(LINK,,\\\",\\\"))
+    }
 #}
 
 HEADERS += \

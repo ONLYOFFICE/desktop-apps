@@ -78,12 +78,14 @@ CAscApplicationManagerWrapper::CAscApplicationManagerWrapper(CAscApplicationMana
 
     m_themes = std::make_shared<CThemes>();
 
+#ifdef _UPDMODULE
     m_pUpdateManager = new CUpdateManager(this);
     connect(m_pUpdateManager, &CUpdateManager::checkFinished, this, &CAscApplicationManagerWrapper::showUpdateMessage);
     connect(m_pUpdateManager, &CUpdateManager::updateLoaded, this, &CAscApplicationManagerWrapper::showStartInstallMessage);
     connect(m_pUpdateManager, &CUpdateManager::progresChanged, this, [=](const int &percent) {
         AscAppManager::sendCommandTo(0, "updates:download", QString("{\"progress\":\"%1\"}").arg(QString::number(percent)));
     });
+#endif
 }
 
 CAscApplicationManagerWrapper::~CAscApplicationManagerWrapper()
@@ -278,6 +280,7 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
 //            RELEASEINTERFACE(event);
             return true;
         } else
+#ifdef _UPDMODULE
         if ( !(cmd.find(L"update") == std::wstring::npos) ) {   // params: check, download, install, abort
             const QString params = QString::fromStdWString(pData->get_Param());
 #ifdef Q_OS_WIN
@@ -302,6 +305,7 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
 #endif
             return true;
         } else
+#endif
         if ( cmd.compare(L"title:button") == 0 ) {
             map<int, CCefEventsGate *>::const_iterator it = m_receivers.find(event->get_SenderId());
             if ( it != m_receivers.cend() ) {
@@ -1201,11 +1205,13 @@ void CAscApplicationManagerWrapper::launchAppClose()
             }
         } else
         if ( !(m_countViews > 1) ) {
-
+#ifdef _UPDMODULE
+#ifdef Q_OS_WIN
             // ========== Start update installation ============
             m_pUpdateManager->handleAppClose();
             // =================================================
-
+#endif
+#endif
             DestroyCefView(-1);
 
             if ( m_pMainWindow ) {
@@ -1575,7 +1581,7 @@ bool CAscApplicationManagerWrapper::applySettings(const wstring& wstrjson)
             m_private->m_openEditorWindow = objRoot["editorwindowmode"].toBool();
             _reg_user.setValue("editorWindowMode", m_private->m_openEditorWindow);
         }
-
+#ifdef _UPDMODULE
 #ifdef Q_OS_WIN
         if ( objRoot.contains("autoupdatemode") ) {
             _reg_user.setValue("autoUpdateMode", objRoot["autoupdatemode"].toString());
@@ -1587,7 +1593,7 @@ bool CAscApplicationManagerWrapper::applySettings(const wstring& wstrjson)
             m_pUpdateManager->setNewUpdateSetting(interval);
         }
 #endif
-
+#endif
     } else {
         /* parse settings error */
     }
@@ -1936,6 +1942,7 @@ void CAscApplicationManagerWrapper::addStylesheets(CScalingFactor f, const std::
 
 void CAscApplicationManagerWrapper::showUpdateMessage(const bool &error,
                                                       const bool &updateExist,
+#ifdef _UPDMODULE
                                                       const QString &version,
                                                       const QString &changelog)
 {
@@ -1997,3 +2004,4 @@ void CAscApplicationManagerWrapper::showStartInstallMessage()
         break;
     }
 }
+#endif

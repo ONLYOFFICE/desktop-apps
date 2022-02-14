@@ -44,8 +44,9 @@
 #include "ceditorwindow.h"
 #include "cwindowsqueue.h"
 #include "ceventdriver.h"
-#include "cupdatemanager.h"
-
+#ifdef _UPDMODULE
+    #include "cupdatemanager.h"
+#endif
 
 #ifdef _WIN32
     #include "win/mainwindow.h"
@@ -152,9 +153,11 @@ public slots:
     void onEditorWidgetClosed();
 
 private slots:
+#ifdef _UPDMODULE
     void showStartInstallMessage();
-    void showUpdateMessage(const bool &error, const bool &updateExist,
+    void showUpdateMessage(const bool error, const bool updateExist,
                            const QString &version, const QString &changelog);
+#endif
 
 public:
     static CAscApplicationManagerWrapper & getInstance();
@@ -191,7 +194,6 @@ public:
     static void             destroyViewer(QCefView * v);
 
     static void             cancelClose();
-    //static void checkUpdates();
 
     uint logoutCount(const std::wstring& portal) const;
     void Logout(const std::wstring& portal);
@@ -204,8 +206,9 @@ private:
     std::unique_ptr<CAscApplicationManagerWrapper_Private> m_private;
 
     CAscApplicationManagerWrapper(CAscApplicationManagerWrapper_Private *);
-
+#ifdef _UPDMODULE
     CUpdateManager *m_pUpdateManager;
+#endif
 };
 
 #endif // QASCAPPLICATIONMANAGER

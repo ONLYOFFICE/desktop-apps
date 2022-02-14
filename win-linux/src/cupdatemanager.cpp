@@ -33,6 +33,7 @@
 #include "cupdatemanager.h"
 #include <QProcess>
 
+#define URL_APPCAST_UPDATES  "http://nct.onlyoffice.com/sh/XHh" // Temporary URL
 
 CUpdateManager::CUpdateManager(QObject *parent):
     QObject(parent),
