@@ -73,20 +73,13 @@ public:
     void handleAppClose();
 
 private:
-
     void readUpdateSettings();
-
     void updateNeededCheking();
-
     //void loadChangelog(const WString &changelog_url);
-
     void onLoadCheckFinished();
-
     //void onLoadChangelogFinished();
-
-    void onComplete(const int& error);
-
-    void onProgress(const int& percent);
+    void onComplete(const int error);
+    void onProgress(const int percent);
 
 #if defined (Q_OS_WIN)
     void onLoadUpdateFinished();
@@ -95,57 +88,44 @@ private:
                 m_packageArgs;
 #endif
 
-    uint_fast8_t  m_currentRate,
-                  m_downloadMode;
+    int         m_currentRate,
+                m_downloadMode;
 
-    QString     m_locale,
-                m_newVersion;
+    QString     m_newVersion;
 
     time_t      m_lastCheck;
-
     WString     m_checkUrl;
-
     QTimer      *m_pTimer;
 
     Downloader  *m_pDownloader;
     bool        m_restartForUpdate = false;
 
     enum Mode {
-        CHECK_UPDATES, DOWNLOAD_CHANGELOG, DOWNLOAD_UPDATES
+        CHECK_UPDATES=0, DOWNLOAD_CHANGELOG=1, DOWNLOAD_UPDATES=2
     };
 
     enum UpdateInterval {
-        NEVER, DAY, WEEK
+        NEVER=0, DAY=1, WEEK=2
     };
 
 public slots:
-
     void checkUpdates();    
-
     void cancelLoading();
-
 #if defined (Q_OS_WIN)
     void loadUpdates();
-
     QString getVersion() const;
-
     void getInstallParams();
 #endif
 
        signals:
-
-    void checkFinished(const bool &error, const bool &updateExist,
+    void checkFinished(const bool error, const bool updateExist,
                        const QString &version, const QString &changelog);
-
-    void progresChanged(const int &percent);
-
+    void progresChanged(const int percent);
     void updateLoaded();
 
 private slots:
-
-    void onCompleteSlot(const int& error);
-
-    void onProgressSlot(const int& percent);
+    void onCompleteSlot(const int error);
+    void onProgressSlot(const int percent);
 };
 
 

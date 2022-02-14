@@ -1940,9 +1940,9 @@ void CAscApplicationManagerWrapper::addStylesheets(CScalingFactor f, const std::
 
 }
 
-void CAscApplicationManagerWrapper::showUpdateMessage(const bool &error,
-                                                      const bool &updateExist,
 #ifdef _UPDMODULE
+void CAscApplicationManagerWrapper::showUpdateMessage(const bool error,
+                                                      const bool updateExist,
                                                       const QString &version,
                                                       const QString &changelog)
 {
