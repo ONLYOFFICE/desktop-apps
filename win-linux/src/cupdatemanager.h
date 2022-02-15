@@ -35,13 +35,16 @@
 
 #include <QCoreApplication>
 #include <QObject>
+#include <QProcess>
 #include <QSettings>
 #include <QTimer>
 #include <QDir>
+#include <QDirIterator>
 #include <QUuid>
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QRegularExpression>
+#include <QCryptographicHash>
 #include <QDebug>
 #include <ctime>
 #include <algorithm>
@@ -53,10 +56,9 @@
 #include "version.h"
 #include "Network/FileTransporter/include/FileTransporter.h"
 
-typedef std::wstring WString;
-using namespace NSNetwork::NSFileTransport;
+using NSNetwork::NSFileTransport::CFileDownloader;
 using std::vector;
-
+using std::wstring;
 
 class CUpdateManager: public QObject
 {
@@ -65,7 +67,6 @@ class CUpdateManager: public QObject
 public:
 
     explicit CUpdateManager(QObject *parent = nullptr);
-
     ~CUpdateManager();
 
     void setNewUpdateSetting(const QString& _rate);
@@ -73,35 +74,46 @@ public:
     QString getInstallPackagePath() const;
     void scheduleRestartForUpdate();
     void handleAppClose();
+    void cancelLoading();
+#ifdef Q_OS_WIN
+    void loadUpdates();
+    void getInstallParams();
+    QString getVersion() const;
+#endif
 
 private:
-    void readUpdateSettings();
+    void init();
     void updateNeededCheking();
-    //void loadChangelog(const WString &changelog_url);
+    //void loadChangelog(const wstring &changelog_url);
     void onLoadCheckFinished();
     //void onLoadChangelogFinished();
     void onComplete(const int error);
     void onProgress(const int percent);
+    void downloadFile(const wstring &url, const QString &ext);
+    QByteArray getFileHash(const QString &fileName);
 
 #if defined (Q_OS_WIN)
     void onLoadUpdateFinished();
 
-    WString     m_packageUrl,
+    wstring     m_packageUrl,
                 m_packageArgs;
 #endif
 
-    int         m_currentRate,
-                m_downloadMode,
-                m_timerID;
+    wstring     m_checkUrl;
 
-    QString     m_newVersion;
+    int         m_currentRate,
+                m_downloadMode;
 
     time_t      m_lastCheck;
-    WString     m_checkUrl;
-    //QTimer      *m_pTimer;
-
+    QString     m_newVersion,
+                m_savedVersion,
+                m_packageFileName,
+                m_savedPackageFileName;
+    QTimer      *m_pTimer;
     CFileDownloader  *m_pDownloader;
-    bool             m_restartForUpdate;
+    bool        m_restartForUpdate;
+    QByteArray  m_newHash,
+                m_savedHash;
 
     enum Mode {
         CHECK_UPDATES=0, DOWNLOAD_CHANGELOG=1, DOWNLOAD_UPDATES=2
@@ -111,16 +123,10 @@ private:
         NEVER=0, DAY=1, WEEK=2
     };
 
-protected:
-    void timerEvent(QTimerEvent *event) override;
-
 public slots:
-    void checkUpdates();    
-    void cancelLoading();
-#if defined (Q_OS_WIN)
-    void loadUpdates();
-    QString getVersion() const;
-    void getInstallParams();
+    void checkUpdates();
+#ifdef Q_OS_WIN
+
 #endif
 
        signals:
