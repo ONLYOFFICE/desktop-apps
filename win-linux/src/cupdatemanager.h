@@ -47,13 +47,15 @@
 #include <algorithm>
 #include <iostream>
 #include <functional>
+#include <vector>
+#include "utils.h"
 #include "defines.h"
 #include "version.h"
 #include "Network/FileTransporter/include/FileTransporter.h"
 
 typedef std::wstring WString;
-typedef NSNetwork::NSFileTransport::CFileDownloader Downloader;
-
+using namespace NSNetwork::NSFileTransport;
+using std::vector;
 
 
 class CUpdateManager: public QObject
@@ -89,16 +91,17 @@ private:
 #endif
 
     int         m_currentRate,
-                m_downloadMode;
+                m_downloadMode,
+                m_timerID;
 
     QString     m_newVersion;
 
     time_t      m_lastCheck;
     WString     m_checkUrl;
-    QTimer      *m_pTimer;
+    //QTimer      *m_pTimer;
 
-    Downloader  *m_pDownloader;
-    bool        m_restartForUpdate = false;
+    CFileDownloader  *m_pDownloader;
+    bool             m_restartForUpdate;
 
     enum Mode {
         CHECK_UPDATES=0, DOWNLOAD_CHANGELOG=1, DOWNLOAD_UPDATES=2
@@ -107,6 +110,9 @@ private:
     enum UpdateInterval {
         NEVER=0, DAY=1, WEEK=2
     };
+
+protected:
+    void timerEvent(QTimerEvent *event) override;
 
 public slots:
     void checkUpdates();    

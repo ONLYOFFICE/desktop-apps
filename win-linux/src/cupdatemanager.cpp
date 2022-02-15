@@ -39,17 +39,19 @@ CUpdateManager::CUpdateManager(QObject *parent):
     QObject(parent),
     m_currentRate(UpdateInterval::DAY),
     m_downloadMode(Mode::CHECK_UPDATES),
+    m_timerID(-1),
     m_newVersion(""),
-    m_lastCheck(0)
+    m_lastCheck(0),
+    m_restartForUpdate(false)
 {
 #ifdef Q_OS_WIN
     m_packageUrl = L"";
 #endif
     // =========== Set updates URL ============
     bool cmd_flag = false;  // updates URL set from command line argument
-    const QStringList args = QCoreApplication::arguments();
-    foreach (const QString &arg, args) {
-        const QStringList params = arg.split('=');
+    vector<WString> args = InputArgs::arguments();
+    foreach (const WString &arg, args) {
+        const QStringList params = QString::fromStdWString(arg).split('=');
         if (params.size() == 2) {
             if (params.at(0) == QString("--updates-appcast-url")) {
                 m_checkUrl = params.at(1).toStdWString();
@@ -58,16 +60,20 @@ CUpdateManager::CUpdateManager(QObject *parent):
             }
         }
     }
-    if (!cmd_flag) m_checkUrl = QString(URL_APPCAST_UPDATES).toStdWString();
+    if (!cmd_flag) {
+#if defined (URL_APPCAST_UPDATES)
+    m_checkUrl = QString(URL_APPCAST_UPDATES).toStdWString();
+#endif
+    }
     qDebug() << "URL_APPCAST_UPDATES: " << QString::fromStdWString(m_checkUrl);
     // ========================================
 
-    m_pDownloader = new Downloader(m_checkUrl, false);
+    m_pDownloader = new CFileDownloader(m_checkUrl, false);
     m_pDownloader->SetEvent_OnComplete(std::bind(&CUpdateManager::onComplete, this, std::placeholders::_1));
     m_pDownloader->SetEvent_OnProgress(std::bind(&CUpdateManager::onProgress, this, std::placeholders::_1));
-    m_pTimer = new QTimer(this);
+    /*m_pTimer = new QTimer(this);
     m_pTimer->setSingleShot(false);
-    connect(m_pTimer, SIGNAL(timeout()), this, SLOT(checkUpdates()));
+    connect(m_pTimer, SIGNAL(timeout()), this, SLOT(checkUpdates()));*/
     readUpdateSettings();
 }
 
@@ -84,6 +90,13 @@ void CUpdateManager::onComplete(const int error)
 void CUpdateManager::onProgress(const int percent)
 {
     QMetaObject::invokeMethod(this, "onProgressSlot", Qt::QueuedConnection, Q_ARG(int, percent));
+}
+
+void CUpdateManager::timerEvent(QTimerEvent *event)
+{
+    m_timerID = event->timerId();
+    //qDebug() << "Timer ID: " << m_timerID;
+    checkUpdates();
 }
 
 void CUpdateManager::onCompleteSlot(const int error)
@@ -191,11 +204,12 @@ void CUpdateManager::setNewUpdateSetting(const QString& _rate)
     qDebug() << "Set new updates mode: " << m_currentRate;
 }
 
-void CUpdateManager::updateNeededCheking() {    
+void CUpdateManager::updateNeededCheking() {
 #ifdef Q_OS_WIN
     checkUpdates();
 #else
-    m_pTimer->stop();
+    //m_pTimer->stop();
+    if (m_timerID != -1) killTimer(m_timerID);
     int interval = 0;
     const time_t DAY_TO_SEC = 24*3600;
     const time_t WEEK_TO_SEC = 7*24*3600;
@@ -207,8 +221,9 @@ void CUpdateManager::updateNeededCheking() {
             checkUpdates();
         } else {
             interval = static_cast<int>(DAY_TO_SEC - elapsed_time);
-            m_pTimer->setInterval(interval*1000);
-            m_pTimer->start();
+            /*m_pTimer->setInterval(interval*1000);
+            m_pTimer->start();*/
+            startTimer(interval*1000, Qt::PreciseTimer);
         }
         break;
     case UpdateInterval::WEEK:
@@ -216,8 +231,9 @@ void CUpdateManager::updateNeededCheking() {
             checkUpdates();
         } else {
             interval = static_cast<int>(WEEK_TO_SEC - elapsed_time);
-            m_pTimer->setInterval(interval*1000);
-            m_pTimer->start();
+            /*m_pTimer->setInterval(interval*1000);
+            m_pTimer->start();*/
+            startTimer(interval*1000, Qt::PreciseTimer);
         }
         break;
     case UpdateInterval::NEVER:
