@@ -214,7 +214,7 @@ void CMainPanel::attachStartPanel(QCefView * const view)
 #endif
 
     m_pMainWidget->setParent(this);
-    m_pMainGridLayout->addWidget(m_pMainWidget, 2, 0, 1, 4);
+    m_pMainGridLayout->addWidget(m_pMainWidget, 1, 0, 1, 4);
     m_pMainWidget->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 
 
