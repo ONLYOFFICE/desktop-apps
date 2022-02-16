@@ -48,6 +48,8 @@ public:
     void setUseStateOpacity(bool);
     void setFillDark(bool dark);
 
+    bool setProperty(const char *name, const QVariant &value);
+
 private:
     QByteArray m_svglayout;
     QString m_svgnode;

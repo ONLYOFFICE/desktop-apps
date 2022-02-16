@@ -189,7 +189,7 @@ CMainPanel::CMainPanel(QWidget *parent, bool isCustomWindow, double dpi_ratio)
 
 //    m_pTabs->setAutoFillBackground(true);
     // Set TabWidget
-    m_pTabs = new CAscTabWidget(this, tabBar(), m_pButtonMain);
+    m_pTabs = new CAscTabWidget(this, tabBar());
     m_pTabs->setObjectName(QString::fromUtf8("ascTabWidget"));
     m_pMainGridLayout->addWidget(m_pTabs, 1, 0, 1, 4);
     m_pTabs->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
@@ -291,6 +291,7 @@ void CMainPanel::pushButtonMainClicked()
         m_pTabs->activate(false);
         m_pMainWidget->setHidden(false);
         m_pTabs->setFocusedView();
+        m_pButtonMain->setProperty("class", "active");
 
         ((QCefView *)m_pMainWidget)->setFocusToCef();
         onTabChanged(m_pTabs->currentIndex());
@@ -302,11 +303,13 @@ void CMainPanel::toggleButtonMain(bool toggle, bool delay)
     auto _toggle = [=] (bool state) {
         if (m_pTabs->isActiveWidget() == state) {
             if ( state ) {
+                m_pButtonMain->setProperty("class", "active");
                 m_pTabs->activate(false);
                 m_pMainWidget->setHidden(false);
 //                m_pTabs->setFocusedView();
 //                ((QCefView *)m_pMainWidget)->setFocusToCef();
             } else {
+                m_pButtonMain->setProperty("class", "normal");
                 m_pTabs->activate(true);
                 m_pMainWidget->setHidden(true);
                 m_pTabs->setFocusedView();

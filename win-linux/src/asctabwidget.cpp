@@ -140,10 +140,9 @@ auto panelfromwidget(QWidget * panelwidget) -> CTabPanel * {
     return panelwidget->children().count() ? static_cast<CTabPanel *>(panelwidget->findChild<CTabPanel*>()) : nullptr;
 }
 
-CAscTabWidget::CAscTabWidget(QWidget *parent, CTabBar *_pBar, QPushButton *_pButtonMain)
+CAscTabWidget::CAscTabWidget(QWidget *parent, CTabBar *_pBar)
     : QTabWidget(parent)
     , CScalingWrapper(parent)
-    , m_pMainButton(_pButtonMain)
     , m_dataFullScreen(0)
     , m_widthParams({{100, 135, 9}, 68, 3, 0, WINDOW_TITLE_MIN_WIDTH, 140, 0})
     , m_defWidthParams(m_widthParams)
@@ -912,12 +911,7 @@ void CAscTabWidget::activate(bool a)
         this->setProperty("active", a);
         m_pBar->setProperty("active", a);
     }
-    QString strVal = a ? "normal" : "active";
-    if (m_pMainButton != NULL && m_pMainButton->property("class") != strVal) {
-        m_pMainButton->setProperty("class", strVal);
-        m_pMainButton->style()->polish(m_pMainButton);
-        m_pMainButton->update();
-    }
+
     updateTabIcon(currentIndex());
 
     m_pBar->activate(a);
