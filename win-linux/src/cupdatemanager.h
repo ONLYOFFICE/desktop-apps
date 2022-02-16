@@ -33,18 +33,15 @@
 #ifndef CUPDATEMANAGER_H
 #define CUPDATEMANAGER_H
 
-#include <QCoreApplication>
 #include <QObject>
-#include <QProcess>
 #include <QSettings>
-#include <QTimer>
 #include <QDir>
+#include <QTimer>
 #include <QDirIterator>
 #include <QUuid>
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QRegularExpression>
-#include <QCryptographicHash>
 #include <QDebug>
 #include <ctime>
 #include <algorithm>
@@ -55,6 +52,10 @@
 #include "defines.h"
 #include "version.h"
 #include "Network/FileTransporter/include/FileTransporter.h"
+#ifdef Q_OS_WIN
+    #include <QProcess>
+    #include <QCryptographicHash>
+#endif
 
 using NSNetwork::NSFileTransport::CFileDownloader;
 using std::vector;
@@ -63,81 +64,79 @@ using std::wstring;
 class CUpdateManager: public QObject
 {
     Q_OBJECT
-
 public:
-
     explicit CUpdateManager(QObject *parent = nullptr);
     ~CUpdateManager();
 
     void setNewUpdateSetting(const QString& _rate);
-    QStringList getInstallArguments() const;
-    QString getInstallPackagePath() const;
-    void scheduleRestartForUpdate();
-    void handleAppClose();
     void cancelLoading();
 #ifdef Q_OS_WIN
-    void loadUpdates();
-    void getInstallParams();
+    QStringList getInstallArguments() const;
+    QString getInstallPackagePath() const;
     QString getVersion() const;
+    void getInstallParams();
+    void scheduleRestartForUpdate();
+    void handleAppClose();
+    void loadUpdates();
 #endif
 
 private:
     void init();
     void updateNeededCheking();
     //void loadChangelog(const wstring &changelog_url);
-    void onLoadCheckFinished();
     //void onLoadChangelogFinished();
+    void onLoadCheckFinished();
     void onComplete(const int error);
     void onProgress(const int percent);
     void downloadFile(const wstring &url, const QString &ext);
+#ifdef Q_OS_WIN
+    void onLoadUpdateFinished();
     QByteArray getFileHash(const QString &fileName);
 
-#if defined (Q_OS_WIN)
-    void onLoadUpdateFinished();
+    QByteArray  m_savedHash;
+
+    QString     m_savedVersion,
+                m_packageFileName,
+                m_savedPackageFileName;
 
     wstring     m_packageUrl,
                 m_packageArgs;
-#endif
 
-    wstring     m_checkUrl;
-
-    int         m_currentRate,
-                m_downloadMode;
-
-    time_t      m_lastCheck;
-    QString     m_newVersion,
-                m_savedVersion,
-                m_packageFileName,
-                m_savedPackageFileName;
-    QTimer      *m_pTimer;
-    CFileDownloader  *m_pDownloader;
     bool        m_restartForUpdate;
-    QByteArray  m_newHash,
-                m_savedHash;
+#else
+    QTimer      *m_pTimer;
+    time_t      m_lastCheck;
+    int         m_currentRate;
+
+    enum UpdateInterval {
+        NEVER=0, DAY=1, WEEK=2
+    };
+#endif
+    wstring     m_checkUrl;
+    int         m_downloadMode;
+    QString     m_newVersion;
+    CFileDownloader  *m_pDownloader;
 
     enum Mode {
         CHECK_UPDATES=0, DOWNLOAD_CHANGELOG=1, DOWNLOAD_UPDATES=2
     };
 
-    enum UpdateInterval {
-        NEVER=0, DAY=1, WEEK=2
-    };
-
 public slots:
     void checkUpdates();
-#ifdef Q_OS_WIN
-
-#endif
 
        signals:
     void checkFinished(const bool error, const bool updateExist,
                        const QString &version, const QString &changelog);
+#ifdef Q_OS_WIN
     void progresChanged(const int percent);
     void updateLoaded();
+#endif
 
 private slots:
     void onCompleteSlot(const int error);
+#ifdef Q_OS_WIN
     void onProgressSlot(const int percent);
+#endif
 };
 
 

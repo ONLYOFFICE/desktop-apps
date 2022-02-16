@@ -81,10 +81,12 @@ CAscApplicationManagerWrapper::CAscApplicationManagerWrapper(CAscApplicationMana
 #ifdef _UPDMODULE
     m_pUpdateManager = new CUpdateManager(this);
     connect(m_pUpdateManager, &CUpdateManager::checkFinished, this, &CAscApplicationManagerWrapper::showUpdateMessage);
+#ifdef Q_OS_WIN
     connect(m_pUpdateManager, &CUpdateManager::updateLoaded, this, &CAscApplicationManagerWrapper::showStartInstallMessage);
     connect(m_pUpdateManager, &CUpdateManager::progresChanged, this, [=](const int &percent) {
         AscAppManager::sendCommandTo(0, "updates:download", QString("{\"progress\":\"%1\"}").arg(QString::number(percent)));
     });
+#endif
 #endif
 }
 
@@ -1988,6 +1990,7 @@ void CAscApplicationManagerWrapper::showUpdateMessage(const bool error,
     }
 }
 
+#ifdef Q_OS_WIN
 void CAscApplicationManagerWrapper::showStartInstallMessage()
 {
     AscAppManager::sendCommandTo(0, "updates:download", "{\"progress\":\"done\"}");
@@ -2004,4 +2007,5 @@ void CAscApplicationManagerWrapper::showStartInstallMessage()
         break;
     }
 }
+#endif
 #endif
