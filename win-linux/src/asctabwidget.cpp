@@ -916,7 +916,8 @@ void CAscTabWidget::activate(bool a)
 
     m_pBar->activate(a);
     m_pBar->customColors().setCurrentColorGroup(a ? QPalette::Normal : QPalette::Disabled );
-    m_pBar->repaint();
+    m_pBar->update();
+    //m_pBar->repaint();
 }
 
 bool CAscTabWidget::isActiveWidget()
