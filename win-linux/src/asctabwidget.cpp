@@ -166,10 +166,10 @@ CAscTabWidget::CAscTabWidget(QWidget *parent, CTabBar *_pBar)
 
     static int _dropedindex = -1;
     QObject::connect(this, &CAscTabWidget::currentChanged, this, [=](int index) {
+        if (index > -1) m_pBar->setCurrentIndex(index);
         updateIcons();
         setFocusedView();
         _dropedindex = -1;
-        if (index > -1) m_pBar->setCurrentIndex(index);
     });
     QObject::connect(m_pBar, &CTabBar::tabUndock, this, [=](int index, bool * accept) {
         if (index == _dropedindex) return;
