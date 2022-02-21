@@ -44,18 +44,11 @@ CTabBarWrapper::CTabBarWrapper(QWidget *parent):
     _pPaddingWidget->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
 
     QHBoxLayout *_pTabLayout = new QHBoxLayout(this);
-    if (QT_VERSION_MAJOR > 5) {
-        _pTabLayout->setSpacing(32);
-    } else
-    if (QT_VERSION_MAJOR == 5) {
-        if (QT_VERSION_MINOR >= 12) {
-            _pTabLayout->setSpacing(32);
-        } else {
-            _pTabLayout->setSpacing(0);
-        }
-    } else {
-        _pTabLayout->setSpacing(0);
-    }
+#if (QT_VERSION < QT_VERSION_CHECK(5, 12, 2))
+    _pTabLayout->setSpacing(0);
+#else
+    _pTabLayout->setSpacing(32);
+#endif
     _pTabLayout->setContentsMargins(0,0,0,0);
     _pTabLayout->addWidget(m_pBar);
     _pTabLayout->addWidget(_pPaddingWidget);
