@@ -67,7 +67,7 @@
                                         <label class='sett__caption' l10n>${_lang.settLanguage}</label>
                                         <div class='sett--label-lift-top hbox'>
                                             <section class='box-cmp-select'>
-                                                <select class='combobox' data-size="8"></select>
+                                                <select class='combobox' data-size="10"></select>
                                             </section>
                                         </div>
                                     </div>

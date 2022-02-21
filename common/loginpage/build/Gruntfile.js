@@ -106,7 +106,12 @@ module.exports = function(grunt) {
                     files: {
                         '../deploy/build.min.js' : ['../deploy/build.js']
                     }
-                }
+                },
+                langs_target: {
+                    files: {
+                        '../deploy/langs.js' : ['../locale/*.js']
+                    }
+                },
             },
 
             htmlmin: {

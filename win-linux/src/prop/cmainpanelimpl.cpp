@@ -55,10 +55,18 @@ void CMainPanelImpl::refreshAboutVersion()
 
     QJsonObject _json_obj;
     _json_obj["version"]    = VER_FILEVERSION_STR;
+#ifdef Q_OS_WIN
+# ifdef Q_OS_WIN64
+    _json_obj["arch"]       = "x64";
+# else
+    _json_obj["arch"]       = "x86";
+# endif
+#endif
     _json_obj["edition"]    = _license;
     _json_obj["appname"]    = WINDOW_NAME;
     _json_obj["rights"]     = "© " ABOUT_COPYRIGHT_STR;
     _json_obj["link"]       = URL_SITE;
+    _json_obj["changelog"]  = "https://github.com/ONLYOFFICE/DesktopEditors/blob/master/CHANGELOG.md";
 
     AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, "app:version", Utils::stringifyJson(_json_obj));
 
