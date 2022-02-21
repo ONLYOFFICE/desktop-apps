@@ -36,8 +36,6 @@
 #include <QTabBar>
 #include <QToolButton>
 #include <QFrame>
-#include <QHBoxLayout>
-#include <QPushButton>
 #include <QTimer>
 #include <QWheelEvent>
 #include "cscalingwrapper.h"

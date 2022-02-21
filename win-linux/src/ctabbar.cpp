@@ -34,7 +34,6 @@
 //#include "ctabbar_p.h"
 #include "private/qtabbar_p.h"
 #include <QStylePainter>
-#include <QPushButton>
 #include <QHoverEvent>
 #include <QDesktopWidget>
 #include "canimatedicon.h"
