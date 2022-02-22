@@ -88,12 +88,13 @@ CMainWindow::CMainWindow(const QRect& geometry)
     if ( _window_rect.isEmpty() )
         _window_rect = QRect(100, 100, 1324 * m_dpiRatio, 800 * m_dpiRatio);
 
-    QSize _window_min_size{MAIN_WINDOW_MIN_WIDTH * m_dpiRatio, MAIN_WINDOW_MIN_HEIGHT * m_dpiRatio};
-    if ( _window_rect.width() < _window_min_size.width() )
-        _window_rect.setWidth(_window_min_size.width());
+    // TODO: skip window min size for usability test
+//    QSize _window_min_size{MAIN_WINDOW_MIN_WIDTH * m_dpiRatio, MAIN_WINDOW_MIN_HEIGHT * m_dpiRatio};
+//    if ( _window_rect.width() < _window_min_size.width() )
+//        _window_rect.setWidth(_window_min_size.width());
 
-    if ( _window_rect.height() < _window_min_size.height() )
-        _window_rect.setHeight(_window_min_size.height());
+//    if ( _window_rect.height() < _window_min_size.height() )
+//        _window_rect.setHeight(_window_min_size.height());
 
     QRect _screen_size = Utils::getScreenGeometry(_window_rect.topLeft());
     if ( _screen_size.width() < _window_rect.width() + 120 ||
@@ -106,7 +107,8 @@ CMainWindow::CMainWindow(const QRect& geometry)
         if ( _screen_size.height() < _window_rect.height() ) _window_rect.setHeight(_screen_size.height());
     }
 
-    setMinimumSize(WindowHelper::correctWindowMinimumSize(_window_rect, _window_min_size));
+    // TODO: skip window min size for usability test
+//    setMinimumSize(WindowHelper::correctWindowMinimumSize(_window_rect, _window_min_size));
     setGeometry(_window_rect);
 
     m_pMainPanel = new CMainPanelImpl(this, !CX11Decoration::isDecorated(), m_dpiRatio);
@@ -331,7 +333,8 @@ void CMainWindow::setScreenScalingFactor(double factor)
             setGeometry(dest_rect);
         }
 
-        setMinimumSize(WindowHelper::correctWindowMinimumSize(_src_rect, {MAIN_WINDOW_MIN_WIDTH * factor, MAIN_WINDOW_MIN_HEIGHT * factor}));
+        // TODO: skip window min size for usability test
+//        setMinimumSize(WindowHelper::correctWindowMinimumSize(_src_rect, {MAIN_WINDOW_MIN_WIDTH * factor, MAIN_WINDOW_MIN_HEIGHT * factor}));
     }
 }
 
