@@ -10,10 +10,10 @@ VCREDIST22 := $(BUILD_DIR)/data/vcredist/vcredist_2022_$(WIN_ARCH).exe
 
 ifeq ($(WIN_ARCH),x64)
  	VCREDIST13_URL := https://download.microsoft.com/download/2/E/6/2E61CFA4-993B-4DD4-91DA-3737CD5CD6E3/vcredist_x64.exe
-	VCREDIST22_URL := https://aka.ms/vs/17/release/vc_redist.x86.exe
+	VCREDIST22_URL := https://aka.ms/vs/17/release/vc_redist.x64.exe
 else ifeq ($(WIN_ARCH),x86)
  	VCREDIST13_URL := https://download.microsoft.com/download/2/E/6/2E61CFA4-993B-4DD4-91DA-3737CD5CD6E3/vcredist_x86.exe
-	VCREDIST22_URL := https://aka.ms/vs/17/release/vc_redist.x64.exe
+	VCREDIST22_URL := https://aka.ms/vs/17/release/vc_redist.x86.exe
 endif
 
 ifneq ($(COMPANY_NAME), ONLYOFFICE)
