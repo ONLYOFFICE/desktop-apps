@@ -11,6 +11,7 @@ it_IT.UninstallPageLabel=Scegliere Disinstalla per procedere con la disinstallaz
 pt_BR.UninstallPageLabel=Clique em Desinstalar para prosseguir com a desinstalação.
 pl.UninstallPageLabel=Kliknij Odinstaluj, aby rozpocząć proces odinstalowywania.
 lo.UninstallPageLabel=ກົດປຸ່ມຖອນການຕິດຕັ້ງ ເພື່ອດຳເນີນການຖອນການຕິດຕັ້ງ.
+nl.UninstallPageLabel=Druk op Verwijderen om verder te gaan met het verwijderen.
 
 en.UninstallOptionClearData=Clear all user settings and application cached data
 cs.UninstallOptionClearData=Vymažte všechna uživatelská nastavení a data uložená v paměti
@@ -23,6 +24,7 @@ it_IT.UninstallOptionClearData=Cancella le impostazioni utente e i dati memorizz
 pt_BR.UninstallOptionClearData=Limpar todas definições de usuário e dados salvos do programa
 pl.UninstallOptionClearData=Usuń wszystkie ustawienia użytkownika oraz dane pamięci podręcznej aplikacji
 lo.UninstallOptionClearData=ລືບຂໍ້ມູນທີ່ເຫັບໄວ້ໃນແອັບພລິເຄຊັ່ນ ແລະ ລືບການຕັ້ງຄ່າຜູ້ໃຊ້ທັ້ງໝົດ
+nl.UninstallOptionClearData=Alle gebruikersinstellingen en cachegegevens van toepassingen wissen
 
 
 [Code]
