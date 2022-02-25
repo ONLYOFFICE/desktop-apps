@@ -232,6 +232,8 @@ desktopeditor: branding $(LINUX_DEPS)
 	cp -rf ../../../common/package/license/agpl-3.0.htm common/opt/desktopeditors/LICENSE.htm
 	cp -rf ../../../common/package/license/3dparty/3DPARTYLICENSE common/opt/desktopeditors
 
+	cp -rf ../../../common/package/mimetypes common/opt/desktopeditors
+
 	chmod 755 common/opt/desktopeditors/DesktopEditors
 ifneq ($(COMPANY_NAME), ONLYOFFICE)
 	chmod 755 common/opt/mediaviewer/ImageViewer
