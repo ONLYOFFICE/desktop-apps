@@ -37,7 +37,7 @@
 //#include <QtWidgets/QTabWidget>
 #include <QtWidgets/QTabBar>
 #include <QtWidgets/QPushButton>
-
+#include "ctabbarwrapper.h"
 #include "qcefview.h"
 #include "cscalingwrapper.h"
 #include "ctabpanel.h"
@@ -118,8 +118,7 @@ class CAscTabWidget : public QTabWidget, public CScalingWrapper
 
     typedef std::map< int, std::pair<QString, QString> > CTabIconSet;
 
-public:
-    QPushButton* m_pMainButton;
+    using QTabWidget::tabBar;
 
 private:
     std::map<int, QCefView*> m_mapDownloads;
@@ -129,6 +128,7 @@ private:
     bool m_isCustomStyle;
     CTabIconSet m_mapTabIcons;
     QSize m_tabIconSize;
+    CTabBar *m_pBar;
 
 signals:
 //    void sendAddEditor();
@@ -137,9 +137,10 @@ signals:
     void editorRemoved(int, int);
 
 public:
-    CAscTabWidget(QWidget *parent = 0);
+    CAscTabWidget(QWidget *parent = nullptr, CTabBar *_pBar = nullptr);
 
     CTabPanel * panel(int) const;
+    CTabBar *tabBar() const;
 
 //    int  addEditor(QString strName, AscEditorType etType = etDocument, std::wstring strUrl = L"");
     int  addEditor(const COpenOptions&);
@@ -158,7 +159,6 @@ public:
 
     void updateScaling(double) override;
 protected:
-    void resizeEvent(QResizeEvent* e) override;
     void tabInserted(int index) override;
     void tabRemoved(int index) override;
     void closeEditor(int, bool, bool);
@@ -187,7 +187,6 @@ public:
     int         findProcessed() const;
     bool        isProcessed(int index) const;
 
-    void adjustTabsSize();
     void activate(bool);
     bool isActiveWidget();
 
@@ -219,4 +218,3 @@ public slots:
 };
 
 #endif // ASCTABWIDGET
-

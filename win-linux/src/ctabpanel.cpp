@@ -20,11 +20,11 @@ CTabPanel::CTabPanel(QWidget *parent)
     : QWidget(parent)
     , m_pViewer(AscAppManager::createViewer(this))
 {
-//    QGridLayout * _layout = new QGridLayout(this);
-//    setLayout(_layout);
-
-//    _layout->setMargin(0);
-//    _layout->addWidget(m_pViewer);
+    QGridLayout * _layout = new QGridLayout(this);
+    setLayout(_layout);
+    _layout->setSpacing(0);
+    _layout->setContentsMargins(0,0,0,0);
+    _layout->addWidget(m_pViewer);
 
     m_pViewer->SetBackgroundCefColor(244, 244, 244);
 }
@@ -87,19 +87,19 @@ void CTabPanel::initAsEditor()
 # endif
 
     m_pLoader = new QCefView(this);
-    m_pLoader->setGeometry(0,0, width(), height());
+    //m_pLoader->setGeometry(0,0, width(), height());
     m_pLoader->Create(&AscAppManager::getInstance(), cvwtSimple);
     m_pLoader->GetCefView()->load(_loader_path.toStdWString());
 
     m_pViewer->hide();
 #endif
 
-    m_pViewer->Create(&AscAppManager::getInstance(), cvwtEditor);    
+    m_pViewer->Create(&AscAppManager::getInstance(), cvwtEditor);
 }
 
 void CTabPanel::initAsSimple()
 {
-    m_pViewer->Create(&AscAppManager::getInstance(), cvwtSimple);    
+    m_pViewer->Create(&AscAppManager::getInstance(), cvwtSimple);
 }
 
 void CTabPanel::openLocalFile(const std::wstring& path, int format, const std::wstring& params)
@@ -132,15 +132,16 @@ bool CTabPanel::openRecentFile(int id)
     return static_cast<CCefViewEditor *>(m_pViewer->GetCefView())->OpenRecentFile(id);
 }
 
-void CTabPanel::resizeEvent(QResizeEvent *event)
+/*void CTabPanel::resizeEvent(QResizeEvent *event)
 {
+    QWidget::resizeEvent(event);
     m_pViewer->resize(event->size());
-}
+}*/
 
-void CTabPanel::showEvent(QShowEvent *)
+/*void CTabPanel::showEvent(QShowEvent *)
 {
 //    cef()->resizeEvent();
-}
+}*/
 
 void CTabPanel::paintEvent(QPaintEvent *)
 {
@@ -150,7 +151,7 @@ void CTabPanel::paintEvent(QPaintEvent *)
     style()->drawPrimitive(QStyle::PE_Widget, &opt, &p, this);
 }
 
-void CTabPanel::timerEvent(QTimerEvent *)
+/*void CTabPanel::timerEvent(QTimerEvent *)
 {
      if ( m_startSize == m_lastSize ) {
         cef()->resizeEvent();
@@ -160,14 +161,14 @@ void CTabPanel::timerEvent(QTimerEvent *)
     } else {
         m_startSize = m_lastSize;
     }
-}
+}*/
 
 void CTabPanel::closeEvent(QCloseEvent *event)
 {
     emit closePanel(event);
 }
 
-void CTabPanel::resize(int w, int h)
+/*void CTabPanel::resize(int w, int h)
 {
     if ( m_idTimerResize == 0 ) {
         m_startSize = QSize(w, h);
@@ -175,7 +176,7 @@ void CTabPanel::resize(int w, int h)
     }
 
     m_lastSize = QSize(w, h);
-}
+}*/
 
 void CTabPanel::applyLoader(const QString& cmd, const QString& args)
 {
@@ -193,7 +194,7 @@ void CTabPanel::showFullScreen()
 {
     QWidget::setWindowTitle(data()->title());
     QWidget::showFullScreen();
-    m_pViewer->setGeometry(QRect(0,0,width(),height()));
+    //m_pViewer->setGeometry(QRect(0,0,width(),height()));
 }
 
 void CTabPanel::showNormal()

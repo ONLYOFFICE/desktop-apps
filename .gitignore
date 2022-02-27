@@ -1,9 +1,10 @@
 
-win-linux/build/Release/*
-win-linux/build/Debug/*
+win-linux/build
+win-linux/3dparty/WinSparkle/win_32
+win-linux/3dparty/WinSparkle/win_64
+win-linux/extras/projicons/build
 win-linux/ASCDocumentEditor.build/*
 
-win-linux/*.user
 
 win-linux/package/linux/index.html
 win-linux/package/windows/index.html
@@ -38,6 +39,10 @@ common/converter/*
 */.svn/*
 
 .DS_Store
+Makefile
+Makefile.*
+*.stash
+*.user
 *.xcuserstate
 *.xcuserdatad
 *.xcscmblueprint

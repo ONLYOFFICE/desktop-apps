@@ -44,6 +44,7 @@
 #include "ccefeventstransformer.h"
 #include "cscalingwrapper.h"
 #include "csvgpushbutton.h"
+#include <math.h>
 
 
 struct printdata;
@@ -72,7 +73,7 @@ public:
     int  tabCloseRequest(int index = -1);
     void toggleButtonMain(bool, bool delay = false);
     CAscTabWidget * tabWidget();
-
+    CTabBar *tabBar();
     virtual void applyTheme(const std::wstring&);
     virtual void updateScaling(double);
 
@@ -88,12 +89,7 @@ protected:
 private:
 //    bool nativeEvent(const QByteArray &, void *msg, long *result);
 //    void mousePressEvent( QMouseEvent *event );
-
-    void resizeEvent(QResizeEvent* event);
-//    bool eventFilter(QObject *obj, QEvent *event);
-
     int  trySaveDocument(int);
-    void RecalculatePlaces();
 
 signals:
 //    void downloadEvent(NSEditorApi::CAscDownloadFileInfo *);
@@ -151,6 +147,7 @@ public slots:
     void onWebTitleChanged(int, std::wstring json){}
 
 protected:
+    CTabBarWrapper* m_pTabBarWrapper;
     CAscTabWidget * m_pTabs;
     CSVGPushButton* m_pButtonMain;
     bool            m_isCustomWindow;
@@ -159,6 +156,7 @@ private:
     std::wstring    m_sDownloadName;
 
     QWidget*        m_pMainWidget = nullptr;
+    QGridLayout*    m_pMainGridLayout;
 
     QPushButton*    m_pButtonMinimize = nullptr;
     QPushButton*    m_pButtonMaximize = nullptr;
