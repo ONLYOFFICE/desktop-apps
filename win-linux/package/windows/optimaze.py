@@ -1,9 +1,5 @@
 import re
 
-fin = open("DesktopEditorsPortable.evb", "rt")
-data = fin.read()
-fin.close()
-fin = open("DesktopEditorsPortable.evb", "wt")
 attributes = [
     '<ActiveX>False</ActiveX>',
     '<ActiveXInstall>False</ActiveXInstall>',
@@ -12,11 +8,17 @@ attributes = [
     '<OverwriteAttributes>False</OverwriteAttributes>',
     '<PassCommandLine>False</PassCommandLine>',
     '<HideFromDialogs>0</HideFromDialogs>',
-    ]
+]
 
-for i in attributes:
-    data = data.replace(i, '')
-
-data = re.sub(r'\n\s*\n', '\n', data, flags=re.MULTILINE)
-fin.write(data)
-fin.close()
+try:
+    fin = open("DesktopEditorsPortable.evb", "rt")
+    data = fin.read()
+    fin.close()
+    fin = open("DesktopEditorsPortable.evb", "wt")
+    for i in attributes:
+        data = data.replace(i, '')
+    data = re.sub(r'\n\s*\n', '\n', data, flags=re.MULTILINE)
+    fin.write(data)
+    fin.close()
+except FileNotFoundError:
+    exit(2)
