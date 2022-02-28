@@ -1,7 +1,5 @@
 import re
 
-
-
 try:
     fin = open("DesktopEditorsPortable.evb", "rt")
     data = fin.read()
