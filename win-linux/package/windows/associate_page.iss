@@ -1337,7 +1337,11 @@ procedure initExtensions;
 var
   prefix: string;
 begin
+#ifdef _ONLYOFFICE
   SetArrayLength(AudioExts, 18);
+#else
+  SetArrayLength(AudioExts, 16);
+#endif
   SetArrayLength(AudioExtEnabled,  GetArrayLength(AudioExts));
 
   AudioExts[0]  := 'DOC';
@@ -1357,8 +1361,10 @@ begin
   AudioExts[13] := 'PDF';
   AudioExts[14] := 'DJVU';
   AudioExts[15] := 'XPS';
+#ifdef _ONLYOFFICE
   AudioExts[16] := 'OFORM';
   AudioExts[17] := 'DOCXF';
+#endif
   
   SetArrayLength(ExtensionRegistryInfo,  GetArrayLength(AudioExts));
 
@@ -1381,8 +1387,10 @@ begin
   ExtensionRegistryInfo[13] := prefix + 'Pdf:'          + ExpandConstant('{cm:extPDF}')             + ':' + '5';
   ExtensionRegistryInfo[14] := prefix + 'DjVu:'         + ExpandConstant('{cm:extDJVU}')            + ':' + '4';
   ExtensionRegistryInfo[15] := prefix + 'Xps:'          + ExpandConstant('{cm:extXPS}')             + ':' + '6';
+#ifdef _ONLYOFFICE
   ExtensionRegistryInfo[16] := prefix + 'Oform:'        + ExpandConstant('{cm:extOFORM}')           + ':' + '12';
   ExtensionRegistryInfo[17] := prefix + 'Docxf:'        + ExpandConstant('{cm:extDOCXF}')           + ':' + '13';
+#endif
 end;
 
 procedure ChlbAudioClickCheck(Sender: TObject);
