@@ -2,17 +2,21 @@ import re
 
 fin = open("DesktopEditorsPortable.evb", "rt")
 data = fin.read()
-lines = fin.readlines()
 fin.close()
 fin = open("DesktopEditorsPortable.evb", "wt")
-data = data.replace('<ActiveX>False</ActiveX>', '')
-data = data.replace('<ActiveXInstall>False</ActiveXInstall>', '')
-data = data.replace('<Action>0</Action>', '')
-data = data.replace('<OverwriteDateTime>False</OverwriteDateTime>', '')
-data = data.replace('<OverwriteAttributes>False</OverwriteAttributes>', '')
-data = data.replace('<PassCommandLine>False</PassCommandLine>', '')
-data = data.replace('<HideFromDialogs>0</HideFromDialogs>', '')
-data = data.replace('^\h*\R', 'UTF-8')
+attributes = [
+    '<ActiveX>False</ActiveX>',
+    '<ActiveXInstall>False</ActiveXInstall>',
+    '<Action>0</Action>',
+    '<OverwriteDateTime>False</OverwriteDateTime>',
+    '<OverwriteAttributes>False</OverwriteAttributes>',
+    '<PassCommandLine>False</PassCommandLine>',
+    '<HideFromDialogs>0</HideFromDialogs>',
+    ]
+
+for i in attributes:
+    data = data.replace(i, '')
+
 data = re.sub(r'\n\s*\n', '\n', data, flags=re.MULTILINE)
 fin.write(data)
 fin.close()
