@@ -1,5 +1,8 @@
+import re
+
 fin = open("DesktopEditorsPortable.evb", "rt")
 data = fin.read()
+lines = fin.readlines()
 fin.close()
 fin = open("DesktopEditorsPortable.evb", "wt")
 data = data.replace('<ActiveX>False</ActiveX>', '')
@@ -9,5 +12,7 @@ data = data.replace('<OverwriteDateTime>False</OverwriteDateTime>', '')
 data = data.replace('<OverwriteAttributes>False</OverwriteAttributes>', '')
 data = data.replace('<PassCommandLine>False</PassCommandLine>', '')
 data = data.replace('<HideFromDialogs>0</HideFromDialogs>', '')
+data = data.replace('^\h*\R', 'UTF-8')
+data = re.sub(r'\n\s*\n', '\n', data, flags=re.MULTILINE)
 fin.write(data)
 fin.close()
