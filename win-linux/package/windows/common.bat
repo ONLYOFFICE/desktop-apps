@@ -2,7 +2,6 @@ npm install generate-evb --save-dev
 ::if variable isn't defined
 if "%ORG%"=="" (set ORG=onlyoffice)
 if "%PACKAGE%"=="" (SET PACKAGE=DesktopEditors)
-if "%PORTABLEPACKAGE%"=="" (set PORTABLEPACKAGE=DesktopEditorsPortable)
 ::check arch
 if "%PLATFORM%"=="win_32" (
 set ARCH=x86
