@@ -1,4 +1,4 @@
-npm install generate-evb --save-dev
+::npm install generate-evb --save-dev
 ::if variable isn't defined
 if "%ORG%"=="" (set ORG=onlyoffice)
 if "%PACKAGE%"=="" (SET PACKAGE=DesktopEditors)
