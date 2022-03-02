@@ -1,6 +1,8 @@
+npm install generate-evb --save-dev
 ::if variable isn't defined
 if "%ORG%"=="" (set ORG=onlyoffice)
 if "%PACKAGE%"=="" (SET PACKAGE=DesktopEditors)
+if "%PORTABLEPACKAGE%"=="" (set PORTABLEPACKAGE=DesktopEditorsPortable)
 ::check arch
 if "%PLATFORM%"=="win_32" (
 set ARCH=x86
@@ -14,4 +16,5 @@ exit
 %AdvancedInstaller% /edit "DesktopEditors.aip" /AddOsLc -buildname DefaultBuild -arch %ARCH%
 %AdvancedInstaller% /edit "DesktopEditors.aip" /NewSync APPDIR "%~dp0..\..\..\..\build_tools\out\%PLATFORM%\%ORG%\%PACKAGE%"
 %AdvancedInstaller% /build DesktopEditors.aip
-%enigmavbconsole% DesktopEditorsPortable.evb
+%node% "create_portable.js"
+%enigmavbconsole% "DesktopEditorsPortable.evb"
