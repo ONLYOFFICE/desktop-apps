@@ -95,13 +95,13 @@ if [ ! -f "$MIMEAPPS_LIST" ]; then
   echo "[Default Applications]" >"$MIMEAPPS_LIST"
 fi
 if [ $(cat "$MIMEAPPS_LIST" | grep x-scheme-handler/oo-office | wc -l) -eq "0" ]; then
-  echo "x-scheme-handler/oo-office=onlyoffice-desktopeditors.desktop" >>"$MIMEAPPS_LIST"
+  echo "x-scheme-handler/oo-office=%{_desktopeditors_exec}.desktop" >>"$MIMEAPPS_LIST"
 fi
 if [ $(cat "$MIMEAPPS_LIST" | grep text/docxf | wc -l) -eq "0" ]; then
-  echo "text/docxf=onlyoffice-desktopeditors.desktop" >>"$MIMEAPPS_LIST"
+  echo "text/docxf=%{_desktopeditors_exec}.desktop" >>"$MIMEAPPS_LIST"
 fi
 if [ $(cat "$MIMEAPPS_LIST" | grep text/oform | wc -l) -eq "0" ]; then
-  echo "text/oform=onlyoffice-desktopeditors.desktop" >>"$MIMEAPPS_LIST"
+  echo "text/oform=%{_desktopeditors_exec}.desktop" >>"$MIMEAPPS_LIST"
 fi
 
 xdg-mime install --mode system /opt/%{_desktopeditors_prefix}/mimetypes/onlyoffice-docxf.xml
