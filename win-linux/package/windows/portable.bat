@@ -12,4 +12,3 @@ exit
 )
 node create_portable.js
 %enigmavbconsole% DesktopEditorsPortable.evb
-pause
