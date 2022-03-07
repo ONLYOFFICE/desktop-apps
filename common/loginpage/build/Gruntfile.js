@@ -6,12 +6,12 @@ module.exports = function(grunt) {
 
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-copy');
-    grunt.loadNpmTasks('grunt-contrib-uglify-es');
     grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-htmlmin');
     grunt.loadNpmTasks('grunt-text-replace');
     grunt.loadNpmTasks('grunt-inline');
+    grunt.loadNpmTasks('grunt-terser');
 
     function doRegisterInitializeAppTask(name, appName, configFile) {
         return grunt.registerTask('init-build-' + name, 'Initialize build ' + appName, function(){
@@ -80,36 +80,27 @@ module.exports = function(grunt) {
                 }
             },
 
-            uglify: {
+            terser: {
                 options: {
-                    // mangle: {
-                    //     sort:true
-                    // },
-                    /*mangleProperties: true,*/
-                    mangle:false,
+                    format: {
+                        comments: false,
+                    },
                     compress: {
-                        unused:true,
-                        drop_console: true
+                        drop_console: true,
+                    },
+                },
+                langs: {
+                    files: {
+                        '../deploy/langs.js' : '../locale/*.js'
                     }
                 },
-                separate_target: {
-                    options: {
-                        mangle: {
-                            // sort: true
-                        }
-                    },
+                core: {
+                    src: '../deploy/build.js',
+                    dest: '../deploy/build.min.js',
+                },
+                dialogconnect: {
                     files: {
                         '../src/dlglogin.min.js' : ['../src/dlglogin.js','../src/dialogconnect.js']
-                    }
-                },
-                my_target: {
-                    files: {
-                        '../deploy/build.min.js' : ['../deploy/build.js']
-                    }
-                },
-                langs_target: {
-                    files: {
-                        '../deploy/langs.js' : ['../locale/*.js']
                     }
                 },
             },
@@ -175,7 +166,7 @@ module.exports = function(grunt) {
 
     doRegisterInitializeAppTask('startpage', 'Desktop start page', 'startpage.json');
 
-    grunt.registerTask('deploy-desktop-startpage', ['desktop-app-extra', 'copy', 'less', 'uglify:separate_target', 
-        'concat', 'clean', 'inline', 'uglify', 'htmlmin', 'compile-html']);
+    grunt.registerTask('deploy-desktop-startpage', ['desktop-app-extra', 'copy', 'less', 'terser:dialogconnect',
+        'concat', 'clean', 'inline', 'terser:core', 'terser:langs', 'htmlmin', 'compile-html']);
     grunt.registerTask('default', ['init-build-startpage','deploy-desktop-startpage']);
 };
