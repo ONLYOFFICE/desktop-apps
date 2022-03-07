@@ -10,7 +10,7 @@
     "grunt-contrib-less": "^3.0.0",
     "grunt-contrib-clean": "^2.0.0",
     "grunt-contrib-copy": "^1.0.0",
-    "grunt-contrib-uglify-es": "github:gruntjs/grunt-contrib-uglify#harmony",
+    "grunt-terser": "^2.0.0",
     "grunt-contrib-concat": "^1.0.1",
     "grunt-contrib-htmlmin": "^3.1.0",
     "grunt-inline": "0.3.7"
