@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>%d days are left until the license expiration.</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@días@</string>
+		<key>days</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Falta %d día para que expire a licenza.</string>
+			<key>other</key>
+			<string>Faltan %d días para que expire a licenza.</string>
+		</dict>
+	</dict>
+	<key>You are using a trial version of the application.
+The trial period will end in %d days, after that you will not be able to create and edit documents.</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@días@</string>
+		<key>days</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Estás usando unha versión de proba do aplicativo.
+Finalizará en %d día, despois disto non poderás crear e editar documentos.</string>
+			<key>other</key>
+			<string>Estás usando unha versión de proba do aplicativo.
+Finalizará en %d días, despois disto non poderás crear e editar documentos.</string>
+		</dict>
+	</dict>
+	<key>You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@documentos@</string>
+		<key>documents</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>ld</string>
+			<key>one</key>
+			<string>Tes %ld %@ documento con cambios sen gardar. Quere revisar eses cambios antes de saír?</string>
+			<key>other</key>
+			<string>Tes %1$ld %2$@ documentos con cambios sen gardar. Queres revisar eses cambios antes de saír?</string>
+		</dict>
+	</dict>
+</dict>
+</plist>

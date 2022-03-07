@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>%d days are left until the license expiration.</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%s@dies@</string>
+		<key>days</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Queda %d dia fins a l'expiració de la llicència.</string>
+			<key>other</key>
+			<string>Queden %d dies fins a la finalització de la llicència.</string>
+		</dict>
+	</dict>
+	<key>You are using a trial version of the application.
+The trial period will end in %d days, after that you will not be able to create and edit documents.</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%s@dies@</string>
+		<key>days</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Esteu utilitzant una versió de prova de l'aplicació.
+El període de prova finalitzarà en %d dia, després d'això no podreu crear i editar documents.</string>
+			<key>other</key>
+			<string>Esteu utilitzant una versió de prova de l'aplicació.
+El període de prova finalitzarà en %d dies, després d'això no podreu crear i editar documents..</string>
+		</dict>
+	</dict>
+	<key>You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@documents@</string>
+		<key>documents</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>ld</string>
+			<key>one</key>
+			<string>Tens %ld document %@ amb canvis no confirmats. Voleu revisar aquests canvis abans de sortir?</string>
+			<key>other</key>
+			<string>Tens %ld documents %@ amb canvis no confirmats. Voleu revisar aquests canvis abans de sortir?</string>
+		</dict>
+	</dict>
+</dict>
+</plist>

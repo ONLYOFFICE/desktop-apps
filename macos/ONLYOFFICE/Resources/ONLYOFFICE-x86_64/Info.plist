@@ -521,7 +521,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>531</string>
+	<string>532</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.productivity</string>
 	<key>LSMinimumSystemVersion</key>
@@ -531,10 +531,18 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>Once ONLYOFFICE Desktop Editors has permission, document tabs will be able to ask you for access.</string>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>Once ONLYOFFICE Desktop Editors has permission, document tabs will be able to ask you for access.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Once ONLYOFFICE Desktop Editors has permission, document tabs will be able to ask you for access.</string>
 	<key>NSHumanReadableCopyright</key>
 	<string>Copyright © 2021 Ascensio System SIA. All rights reserved.</string>
 	<key>NSMainStoryboardFile</key>
 	<string>Main</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Once ONLYOFFICE Desktop Editors has permission, document tabs will be able to ask you for access.</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 	<key>SUFeedURL</key>
@@ -543,13 +551,5 @@
 	<string>N2LfKoNN6LkD5qNMjt+lEh6LYrQMEFNCEXQ3Kk6nTlM=</string>
 	<key>SUScheduledCheckInterval</key>
 	<integer>86400</integer>
-	<key>NSBluetoothAlwaysUsageDescription</key>
-	<string>Once ONLYOFFICE Desktop Editors has permission, document tabs will be able to ask you for access.</string>
-	<key>NSBluetoothPeripheralUsageDescription</key>
-	<string>Once ONLYOFFICE Desktop Editors has permission, document tabs will be able to ask you for access.</string>
-	<key>NSCameraUsageDescription</key>
-	<string>Once ONLYOFFICE Desktop Editors has permission, document tabs will be able to ask you for access.</string>
-	<key>NSMicrophoneUsageDescription</key>
-	<string>Once ONLYOFFICE Desktop Editors has permission, document tabs will be able to ask you for access.</string>
 </dict>
 </plist>

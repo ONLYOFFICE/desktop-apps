@@ -406,45 +406,45 @@ uk.extMSSlideshow =Показ слайдів Microsoft PowerPoint
 be.extMSSlideshow =Слайд-шоў Microsoft PowerPoint
 gl.extMSSlideshow =Presentación de Microsoft PowerPoint
 
-en.extODT =OpenDocument Text Document
-bg.extODT =OpenDocument текстов документ
-ca.extODT =Document de text OpenDocument
-cs.extODT =Dokumenty OpenDocument
-el.extODT =Έγγραφο κειμένου OpenDocument
-;et.extODT =OpenDocument Text Dokument
-fi.extODT =OpenDocument Tekstidokumentti
-;lt.extODT =OpenDocument Tekstinis dokumentas
+en.extODT =OpenDocument Text File
+bg.extODT =OpenDocument текстов файл
+ca.extODT =Fitxer de text OpenDocument
+cs.extODT =Textový soubor OpenDocument
+el.extODT =Αρχείο κειμένου OpenDocument
+;et.extODT =OpenDocument Teksti fail
+fi.extODT =OpenDocument Tekstitiedosto
+;lt.extODT =OpenDocument Tekstinis failas
 lo.extODT =ເປິດຂໍ້ຄວາມເອກະສານ
-nl.extODT =OpenDocument Tekstdocument
-ru.extODT =Текстовый документ OpenDocument
-de.extODT =OpenDocument Textdokument
-fr.extODT =Document OpenDocument Texte
-es.extODT =Documento de texto de OpenDocument
-id.extODT =Dokumen Teks OpenDocument
-it_IT.extODT =Documento di testo di OpenDocument
-pt_BR.extODT =Documento de Texto do OpenDocument
-;pt_PT.extODT =OpenDocument Documento de Texto
-pl.extODT =Dokument Tekstowy OpenDocument
-ro.extODT =Documet Text OpenDocument
-sk.extODT =Textový dokument OpenDocument
-sl.extODT =OpenDocument Text dokument
-sv.extODT =OpenDocument textdokument
-tr.extODT =OpenDocument Metin Belgesi
-vi.extODT =OpenDocument Tài liệu văn bản
+nl.extODT =OpenDocument Tekstbestand
+ru.extODT =Текстовый файл OpenDocument
+de.extODT =OpenDocument Textdatei
+fr.extODT =Fichier texte OpenDocument
+es.extODT =Archivo de texto de OpenDocument
+id.extODT =File Teks OpenDocument
+it_IT.extODT =File di testo di OpenDocument
+pt_BR.extODT =Arquivo de Texto do OpenDocument
+;pt_PT.extODT =OpenDocument Ficheiro de texto
+pl.extODT =Plik tekstowy OpenDocument
+ro.extODT =Fișierul text OpenDocument
+sk.extODT =Textový súbor OpenDocument
+sl.extODT =OpenDocument Besedilna datoteka
+sv.extODT =OpenDocument Textfil
+tr.extODT =OpenDocument Metin dosyası
+vi.extODT =OpenDocument File văn bản
 zh_CN.extODT =OpenDocument文本文件
 ;hy_AM.extODT =OpenDocument տեսքստային փաստաթուղթ
-;hr.extODT =OpenDocument tekstni dokument
-da.extODT =ÅbenDokument Tekstdokument
+;hr.extODT =OpenDocument tekstni file
+da.extODT =OpenDokument Tekstfil
 ;hi.extODT =ओपनदस्तावेज़ टेक्स्ट दस्तावेज़
-hu.extODT =OpenDocument szöveges dokumentum
-;ga_IE.extODT =Doiciméad Téacs OpenDocument
+hu.extODT =OpenDocument szöveges fájl
+;ga_IE.extODT =Comhad Téacs OpenDocument
 ja.extODT =テキストドキュメントを開く
-ko.extODT =OpenDocument Text Document (오픈도큐먼트 텍스트 문서)
-lv.extODT =OpenDocument Teksta Dokuments
-nn_NO.extODT =OpenDocument-tekstdokument
-uk.extODT =Текстовий документ OpenDocument
-be.extODT =Тэкставы дакумент OpenDocument
-gl.extODT =Documento de texto OpenDocument
+ko.extODT =OpenDocument Text File (오픈도큐먼트 텍스트 문서)
+lv.extODT =OpenDocument Teksta fails
+nn_NO.extODT =OpenDocument-tekstfil
+uk.extODT =Текстовий файл OpenDocument
+be.extODT =Тэкставы файл OpenDocument
+gl.extODT =Ficheiro de texto OpenDocument
 
 en.extODS =OpenDocument Spreadsheet
 bg.extODS =OpenDocument електронна таблица
@@ -606,45 +606,45 @@ uk.extDOCX =Документ Office Open XML
 be.extDOCX =Дакумент Office Open XML
 gl.extDOCX =Documento Office Open XML
 
-en.extDOCXF =ONLYOFFICE Document Form Template
-bg.extDOCXF =ONLYOFFICE шаблон на формуляр за документ
-ca.extDOCXF =Plantilla de formulari document ONLYOFFICE
-cs.extDOCXF =Šablona formuláře dokumentu ONLYOFFICE
-el.extDOCXF =Πρότυπο φόρμας εγγράφου ONLYOFFICE
-;et.extDOCXF =ONLYOFFICE dokumendi vormi mall
-fi.extDOCXF =ONLYOFFICE-asiakirjalomakemalli
-;lt.extDOCXF =ONLYOFFICE Dokumento Anketos Šablonas
+en.extDOCXF =ONLYOFFICE Form Template
+bg.extDOCXF =ONLYOFFICE Шаблон на формуляр
+ca.extDOCXF =Plantilla de formulari ONLYOFFICE
+cs.extDOCXF =Šablona formuláře ONLYOFFICE
+el.extDOCXF =Πρότυπο φόρμας ONLYOFFICE
+;et.extDOCXF =ONLYOFFICE Vormi mall
+fi.extDOCXF =ONLYOFFICE-Lomakemalli
+;lt.extDOCXF =ONLYOFFICE Anketos Šablonas
 lo.extDOCXF =ແບບຟັອມເອກະສານ OnlyOffice
-nl.extDOCXF =ONLYOFFICE Document Formulier Sjabloon
+nl.extDOCXF =ONLYOFFICE Formulier Sjabloon
 ru.extDOCXF =Шаблон формы ONLYOFFICE
 de.extDOCXF =ONLYOFFICE-Formularvorlage
-fr.extDOCXF =Modèle de formulaire de document ONLYOFFICE
-es.extDOCXF =Plantilla de formulario de documento ONLYOFFICE
-id.extDOCXF =ONLYOFFICE Document Form Template
-it_IT.extDOCXF =Modello di modulo di documento ONLYOFFICE
-pt_BR.extDOCXF =Modelo de formulário de documento do ONLYOFFICE
-;pt_PT.extDOCXF =Modelo de formulário de documento ONLYOFFICE
-pl.extDOCXF =Szablon formularza dokumentu ONLYOFFICE
+fr.extDOCXF =Modèle de formulaire ONLYOFFICE
+es.extDOCXF =Plantilla de formulario ONLYOFFICE
+id.extDOCXF =ONLYOFFICE Form Template
+it_IT.extDOCXF =Modello di modulo ONLYOFFICE
+pt_BR.extDOCXF =Modelo de formulário do ONLYOFFICE
+;pt_PT.extDOCXF =Modelo de formulário ONLYOFFICE
+pl.extDOCXF =Szablon formularza ONLYOFFICE
 ro.extDOCXF =Șablon Formă ONLYOFFICE
-sk.extDOCXF =Šablóna formulára dokumentu ONLYOFFICE
-sl.extDOCXF =ONLYOFFICE dokument predloga obrazca
-sv.extDOCXF =ONLYOFFICE formulärmall
-tr.extDOCXF =ONLYOFFICE Belgesi Form Şablonu
-vi.extDOCXF =Mẫu biểu mẫu tài liệu ONLYOFFICE
+sk.extDOCXF =Šablóna formulára ONLYOFFICE
+sl.extDOCXF =ONLYOFFICE Predloga obrazca
+sv.extDOCXF =ONLYOFFICE Formulärmall
+tr.extDOCXF =ONLYOFFICE Form Şablonu
+vi.extDOCXF =Mẫu biểu mẫu ONLYOFFICE
 zh_CN.extDOCXF =ONLYOFFICE 文档表单模板
 ;hy_AM.extDOCXF =ONLYOFFICE փաստաթղթի ձևանմուշ
-;hr.extDOCXF =ONLYOFFICE Predložak obrasca dokumenta
-da.extDOCXF =ONLYOFFICE dokument formularskabelon
+;hr.extDOCXF =ONLYOFFICE Predložak obrasca
+da.extDOCXF =ONLYOFFICE Formularskabelon
 ;hi.extDOCXF =ओनलीऑफिस दस्तावेज़ फॉर्म टेम्पलेट
-hu.extDOCXF =ONLYOFFICE dokumentumformátum-sablon
-;ga_IE.extDOCXF =ONLYOFFICE Document Form Template
+hu.extDOCXF =ONLYOFFICE Formátum-sablon
+;ga_IE.extDOCXF =ONLYOFFICE Form Template
 ja.extDOCXF =ONLYOFFICEドキュメント フォーム テンプレート
 ko.extDOCXF =ONLYOFFICE 문서 양식 템플릿
-lv.extDOCXF =ONLYOFFICE dokumenta veidlapas veidne
-nn_NO.extDOCXF =ONLYOFFICE-dokumentskjemamal
-uk.extDOCXF =Шаблон форми документа ONLYOFFICE
-be.extDOCXF =Шаблон формы дакумента ONLYOFFICE
-gl.extDOCXF =ONLYOFFICE Modelo de Formulario
+lv.extDOCXF =ONLYOFFICE Veidlapas veidne
+nn_NO.extDOCXF =ONLYOFFICE-Skjemamal
+uk.extDOCXF =Шаблон форми ONLYOFFICE
+be.extDOCXF =Шаблон формы ONLYOFFICE
+gl.extDOCXF =ONLYOFFICE Modelo de formulario
 
 en.extXLS =Excel 97-2003 Spreadsheet
 bg.extXLS =Excel 97-2003 таблица
@@ -1046,45 +1046,45 @@ uk.extDJVU =Цифровий документ
 be.extDJVU =Лічбавы дакумент
 gl.extDJVU =Documento dixital
 
-en.extXPS =Open XML Paper Specification
-bg.extXPS =Open XML хартиена спецификация
-ca.extXPS =Especificació de paper Open XML
-cs.extXPS =Specifikace dokumentu Open XML
-el.extXPS =Προδιαγραφή χαρτιού με ανοιχτή μορφή XML
-;et.extXPS =Avatud XML paberispetsifikatsioon
-fi.extXPS =Avaa XML-paperimääritys
-;lt.extXPS =Atidaryti XML Popieriaus Specifikaciją
-lo.extXPS =ເອກະສະເພາະເອກະສານ XML
-nl.extXPS =Open XML Papierspecificatie
-ru.extXPS =Спецификация Open XML Paper
-de.extXPS =Open XML Paper Specification
-fr.extXPS =Spécification papier Open XML
-es.extXPS =Especificación de papel Open XML
-id.extXPS =Open XML Paper Specification
-it_IT.extXPS =Documento di Specificazione Open XML
-pt_BR.extXPS =Open XML Paper Specification
-;pt_PT.extXPS =Especificação de Papel XML Open
-pl.extXPS =Specyfikacja dokumentu Open XML
-ro.extXPS =Fișier cu specificații de hârtie Open XML
-sk.extXPS =Otvorená špecifikácia XML stránky
-sl.extXPS =Open XML Paper specifikacija
-sv.extXPS =XPS-dokument
-tr.extXPS =Open XML Kağıt Belirtimi
-vi.extXPS =Đặc tả giấy Open XML
-zh_CN.extXPS =开放式XML纸张规范
-;hy_AM.extXPS =Open XML Paper Specification
-;hr.extXPS =Otvorena specifikacija XML papira
-da.extXPS =Open XML papirspecifikation
-;hi.extXPS =ओपन एक्सएमएल पेपर विशिष्टता
-hu.extXPS =Open XPS-dokumentumformátum
-;ga_IE.extXPS =Open XML Paper Specification
-ja.extXPS =オープン XML Paper Specification
-ko.extXPS =오픈 XML 문서 규격
-lv.extXPS =Atveriet XML papīra specifikāciju
-nn_NO.extXPS =Open XML-papirspesifikasjon
-uk.extXPS =Відкритий графічний формат фіксованої розмітки на базі XML
-be.extXPS =Папяровая спецыфікацыя Open XML
-gl.extXPS =Especificación do papel Open XML
+en.extXPS =OpenXPS Document
+bg.extXPS =OpenXPS Документ
+ca.extXPS =Document OpenXPS
+cs.extXPS =Dokumentu OpenXPS
+el.extXPS =Έγγραφο OpenXPS
+;et.extXPS =OpenXPS Dokument
+fi.extXPS =OpenXPS-asiakirja
+;lt.extXPS =OpenXPS dokumentas
+lo.extXPS =ເອກະສານ OpenXPS
+nl.extXPS =OpenXPS Document
+ru.extXPS =Документ OpenXPS
+de.extXPS =OpenXPS Dokument
+fr.extXPS =Document OpenXPS
+es.extXPS =Documento OpenXPS
+id.extXPS =OpenXPS Document
+it_IT.extXPS =Documento OpenXPS
+pt_BR.extXPS =Documento OpenXPS
+;pt_PT.extXPS =Documento OpenXPS
+pl.extXPS =Dokument OpenXPS
+ro.extXPS =Document OpenXPS
+sk.extXPS =Dokument OpenXPS
+sl.extXPS =OpenXPS dokument
+sv.extXPS =OpenXPS-Dokument
+tr.extXPS =OpenXPS Döküman
+vi.extXPS =Tài liệu OpenXPS
+zh_CN.extXPS =OpenXPS 文档
+;hy_AM.extXPS =փաստաթուղթ OpenXPS
+;hr.extXPS =Dokument OpenXPS
+da.extXPS =OpenXPS Dokument
+;hi.extXPS =OpenXPS दस्तावेज़
+hu.extXPS =OpenXPS-dokumentum
+;ga_IE.extXPS =OpenXPS Cáipéis
+ja.extXPS =ドキュメント OpenXPS
+ko.extXPS =OpenXPS 문서
+lv.extXPS =OpenXPS Dokuments
+nn_NO.extXPS =OpenXPS-dokument
+uk.extXPS =Документ OpenXPS
+be.extXPS =Дакумент OpenXPS
+gl.extXPS =Documento OpenXPS
 
 en.extOFORM =ONLYOFFICE Fillable Online Form
 bg.extOFORM =ONLYOFFICE Онлайн формуляр за попълване
@@ -1094,7 +1094,7 @@ el.extOFORM =Διαδικτυακή Φόρμα ONLYOFFICE με δυνατότη�
 ;et.extOFORM =ONLYOFFICE täidetav veebivorm
 fi.extOFORM =ONLYOFFICE täytettävä online-lomake
 ;lt.extOFORM =ONLYOFFICE Užpildoma Internetinė Anketa
-lo.extOFORM =ສາມາດຕື່ມແບບຟອມ ອອນລາຍ ໄດ້ OnlyOffice
+lo.extOFORM =ສາມາດຕື່ມແບບຟອມ ອອນລາຍ ໄດ້ ONLYOFFICE
 nl.extOFORM =ONLYOFFICE Invulbaar Online Formulier
 ru.extOFORM =Заполняемая онлайн-форма ONLYOFFICE
 de.extOFORM =ONLYOFFICE-Form für Online-Ausfüllung
@@ -1337,7 +1337,11 @@ procedure initExtensions;
 var
   prefix: string;
 begin
+#ifdef _ONLYOFFICE
   SetArrayLength(AudioExts, 18);
+#else
+  SetArrayLength(AudioExts, 16);
+#endif
   SetArrayLength(AudioExtEnabled,  GetArrayLength(AudioExts));
 
   AudioExts[0]  := 'DOC';
@@ -1357,8 +1361,10 @@ begin
   AudioExts[13] := 'PDF';
   AudioExts[14] := 'DJVU';
   AudioExts[15] := 'XPS';
+#ifdef _ONLYOFFICE
   AudioExts[16] := 'OFORM';
   AudioExts[17] := 'DOCXF';
+#endif
   
   SetArrayLength(ExtensionRegistryInfo,  GetArrayLength(AudioExts));
 
@@ -1381,8 +1387,10 @@ begin
   ExtensionRegistryInfo[13] := prefix + 'Pdf:'          + ExpandConstant('{cm:extPDF}')             + ':' + '5';
   ExtensionRegistryInfo[14] := prefix + 'DjVu:'         + ExpandConstant('{cm:extDJVU}')            + ':' + '4';
   ExtensionRegistryInfo[15] := prefix + 'Xps:'          + ExpandConstant('{cm:extXPS}')             + ':' + '6';
+#ifdef _ONLYOFFICE
   ExtensionRegistryInfo[16] := prefix + 'Oform:'        + ExpandConstant('{cm:extOFORM}')           + ':' + '12';
   ExtensionRegistryInfo[17] := prefix + 'Docxf:'        + ExpandConstant('{cm:extDOCXF}')           + ':' + '13';
+#endif
 end;
 
 procedure ChlbAudioClickCheck(Sender: TObject);

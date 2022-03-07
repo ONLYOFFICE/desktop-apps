@@ -12,8 +12,7 @@ Depends:
 ifelse(M4_PACKAGE_EDITION, full,
 ` x11-common,
   curl | wget,
-  fonts-dejavu | ttf-dejavu,
-  fonts-opensymbol'
+  fonts-dejavu | ttf-dejavu'
 ,
 ` x11-common,
   libasound2,
@@ -27,7 +26,6 @@ ifelse(M4_PACKAGE_EDITION, full,
   libgconf-2-4,
   libstdc++6 (>=4.8),
   fonts-dejavu | ttf-dejavu,
-  fonts-opensymbol,
   fonts-liberation,
   fonts-crosextra-carlito,
   xdg-utils')

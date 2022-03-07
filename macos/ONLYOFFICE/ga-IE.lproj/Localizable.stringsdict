@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>%d days are left until the license expiration.</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@laethanta@</string>
+		<key>days</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>few</key>
+			<string>%d fágtar laethanta go dtí go rachaidh an ceadúnas in éag.</string>
+			<key>many</key>
+			<string>%d fágtar laethanta go dtí go rachaidh an ceadúnas in éag.</string>
+			<key>one</key>
+			<string>%d fágtar laethanta go dtí go rachaidh an ceadúnas in éag.</string>
+			<key>other</key>
+			<string>%d fágtar laethanta go dtí go rachaidh an ceadúnas in éag.</string>
+			<key>two</key>
+			<string>%d fágtar laethanta go dtí go rachaidh an ceadúnas in éag.</string>
+		</dict>
+	</dict>
+	<key>You are using a trial version of the application.
+The trial period will end in %d days, after that you will not be able to create and edit documents.</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@laethanta@</string>
+		<key>days</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>few</key>
+			<string>Tá leagan trialach den fheidhmchlár á úsáid agat.
+Tiocfaidh deireadh leis an tréimhse trialach i %d laethanta, ina dhiaidh sin ní bheidh tú in ann doiciméid a chruthú agus a chur in eagar.</string>
+			<key>many</key>
+			<string>Tá leagan trialach den fheidhmchlár á úsáid agat.
+Tiocfaidh deireadh leis an tréimhse trialach i %d laethanta, ina dhiaidh sin ní bheidh tú in ann doiciméid a chruthú agus a chur in eagar.</string>
+			<key>one</key>
+			<string>Tá leagan trialach den fheidhmchlár á úsáid agat.
+Tiocfaidh deireadh leis an tréimhse trialach i %d laethanta, ina dhiaidh sin ní bheidh tú in ann doiciméid a chruthú agus a chur in eagar.</string>
+			<key>other</key>
+			<string>Tá leagan trialach den fheidhmchlár á úsáid agat.
+Tiocfaidh deireadh leis an tréimhse trialach i %d laethanta, ina dhiaidh sin ní bheidh tú in ann doiciméid a chruthú agus a chur in eagar.</string>
+			<key>two</key>
+			<string>Tá leagan trialach den fheidhmchlár á úsáid agat.
+Tiocfaidh deireadh leis an tréimhse trialach i %d laethanta, ina dhiaidh sin ní bheidh tú in ann doiciméid a chruthú agus a chur in eagar.</string>
+		</dict>
+	</dict>
+	<key>You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@Doiciméads@</string>
+		<key>documents</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>ld</string>
+			<key>few</key>
+			<string>Tá cáipéisí %ld %@ agat le hathruithe neamhdhearbhaithe. Ar mhaith leat na hathruithe seo a athbhreithniú sula scoireann tú?</string>
+			<key>many</key>
+			<string>Tá cáipéisí %ld %@ agat le hathruithe neamhdhearbhaithe. Ar mhaith leat na hathruithe seo a athbhreithniú sula scoireann tú?</string>
+			<key>one</key>
+			<string>Tá cáipéisí %ld %@ agat le hathruithe neamhdhearbhaithe. Ar mhaith leat na hathruithe seo a athbhreithniú sula scoireann tú?</string>
+			<key>other</key>
+			<string>Tá cáipéisí %ld %@ agat le hathruithe neamhdhearbhaithe. Ar mhaith leat na hathruithe seo a athbhreithniú sula scoireann tú?</string>
+			<key>two</key>
+			<string>Tá cáipéisí %ld %@ agat le hathruithe neamhdhearbhaithe. Ar mhaith leat na hathruithe seo a athbhreithniú sula scoireann tú?</string>
+		</dict>
+	</dict>
+</dict>
+</plist>

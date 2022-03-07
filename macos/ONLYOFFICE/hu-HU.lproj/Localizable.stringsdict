@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>%d days are left until the license expiration.</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@nap@</string>
+		<key>days</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d nap maradt a licenc lejáratáig.</string>
+			<key>other</key>
+			<string>%d nap maradt a licenc lejáratáig.</string>
+		</dict>
+	</dict>
+	<key>You are using a trial version of the application.
+The trial period will end in %d days, after that you will not be able to create and edit documents.</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@nap@</string>
+		<key>days</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Ön az alkalmazás próbaverzióját használja.
+A próbaidőszak %d nap múlva véget ér, ezt követően nem fog tudni dokumentumokat létrehozni és szerkeszteni.</string>
+			<key>other</key>
+			<string>Ön az alkalmazás próbaverzióját használja.
+A próbaidőszak %d nap múlva véget ér, ezt követően nem fog tudni dokumentumokat létrehozni és szerkeszteni.</string>
+		</dict>
+	</dict>
+	<key>You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@dokumentumok@</string>
+		<key>documents</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>ld</string>
+			<key>one</key>
+			<string> %ld %@ megerősítés nélküli módosításokkal rendelkező dokumentuma van. Kilpés előtt áttekinti ezeket a módosításokat?</string>
+			<key>other</key>
+			<string>%ld %@ megerősítés nélküli módosításokkal rendelkező dokumentuma van. Kilpés előtt áttekinti ezeket a módosításokat?</string>
+		</dict>
+	</dict>
+</dict>
+</plist>

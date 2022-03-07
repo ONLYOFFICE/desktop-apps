@@ -892,9 +892,9 @@ Name: {commonappdata}\{#APP_PATH}\webdata\cloud; Flags: uninsalwaysuninstall;
 
 
 [Files]
-Source: data\vcredist\vcredist_2015_{#sWinArch}.exe; DestDir: {app}; Flags: deleteafterinstall; \
-  AfterInstall: installVCRedist(ExpandConstant('{app}\vcredist_2015_{#sWinArch}.exe'), ExpandConstant('{cm:InstallAdditionalComponents}')); \
-  Check: not checkVCRedist2015;
+Source: data\vcredist\vcredist_2022_{#sWinArch}.exe; DestDir: {app}; Flags: deleteafterinstall; \
+  AfterInstall: installVCRedist(ExpandConstant('{app}\vcredist_2022_{#sWinArch}.exe'), ExpandConstant('{cm:InstallAdditionalComponents}')); \
+  Check: not checkVCRedist2022;
 
 Source: {#sBrandingFolder}\win-linux\package\windows\data\VisualElementsManifest.xml;        DestDir: {app}; DestName: {#VISEFFECTS_MANIFEST_NAME}; MinVersion: 6.3;
 Source: {#sBrandingFolder}\win-linux\package\windows\data\visual_elements_icon_150x150.png;  DestDir: {app}\browser;   MinVersion: 6.3;

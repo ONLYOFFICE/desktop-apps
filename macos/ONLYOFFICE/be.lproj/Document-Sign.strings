@@ -1,0 +1,36 @@
+/* Class = "NSTextFieldCell"; title = "Enter the password for the private key."; ObjectID = "1dL-nN-bJI"; */
+"1dL-nN-bJI.title" = "Увядзіце пароль для закрытага ключа.";
+
+/* Class = "NSTextFieldCell"; title = "Enter the password for the digital signature."; ObjectID = "1Fy-mg-aq9"; */
+"1Fy-mg-aq9.title" = "Увядзіце пароль для лічбавага подпісу.";
+
+/* Class = "NSTextFieldCell"; title = "Specify the digital signature file for the document."; ObjectID = "2Ck-6y-ygx"; */
+"2Ck-6y-ygx.title" = "Пазначце лічбавы подпіс для дакумента.";
+
+/* Class = "NSSecureTextFieldCell"; placeholderString = "Enter Password"; ObjectID = "4gA-s8-Lne"; */
+"4gA-s8-Lne.placeholderString" = "Увядзіце пароль";
+
+/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "GOU-av-TC1"; */
+"GOU-av-TC1.title" = "Адмяніць";
+
+/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "jpH-3g-Gt5"; */
+"jpH-3g-Gt5.title" = "Адмяніць";
+
+/* Class = "NSButtonCell"; title = "Load a Private Key"; ObjectID = "P3k-kI-w22"; */
+"P3k-kI-w22.title" = "Загрузіць закрыты ключ";
+
+/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "qZ4-0O-L0G"; */
+"qZ4-0O-L0G.title" = "Адмяніць";
+
+/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "RbM-Dq-A3K"; */
+"RbM-Dq-A3K.title" = "Адмяніць";
+
+/* Class = "NSTextFieldCell"; title = "Specify a private key for the digital signature."; ObjectID = "Tfc-EF-VnS"; */
+"Tfc-EF-VnS.title" = "Пазначце закрыты ключ для лічбавага подпісу.";
+
+/* Class = "NSButtonCell"; title = "Load Signature"; ObjectID = "tTF-wa-eJp"; */
+"tTF-wa-eJp.title" = "Загрузіць подпіс";
+
+/* Class = "NSSecureTextFieldCell"; placeholderString = "Enter Password"; ObjectID = "Zj5-0h-hpW"; */
+"Zj5-0h-hpW.placeholderString" = "Увядзіце пароль";
+

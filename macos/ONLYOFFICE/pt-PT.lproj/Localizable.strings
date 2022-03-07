@@ -1,0 +1,213 @@
+/* No comment provided by engineer. */
+"%@ Help" = "%@ Ajuda";
+
+/* No comment provided by engineer. */
+"About %@" = "Sobre %@";
+
+/* No comment provided by engineer. */
+"Acknowledgments" = "Reconhecimentos";
+
+/* No comment provided by engineer. */
+"Before signing the document, it must be saved." = "Antes de assinar o documento, ele deve ser salvo.";
+
+/* No comment provided by engineer. */
+"Cancel" = "Cancelar";
+
+/* No comment provided by engineer. */
+"Cannot open file of Digital Signature" = "Não é possível abrir o arquivo da Assinatura digital";
+
+/* No comment provided by engineer. */
+"Cannot open file of Private Key" = "Não é possível abrir o arquivo da Chave privada";
+
+/* No comment provided by engineer. */
+"Cannot open folder of the file location." = "Não é possível abrir a pasta na localização do arquivo.";
+
+/* No comment provided by engineer. */
+"Comma-Separated Values" = "Valores Separados por Vírgulas";
+
+/* No comment provided by engineer. */
+"Create portal" = "Criar portal";
+
+/* No comment provided by engineer. */
+"Delete and Quit" = "Apagar e Sair";
+
+/* No comment provided by engineer. */
+"DjVu File" = "Ficheiro DjVu ";
+
+/* No comment provided by engineer. */
+"Do you want to save the changes made to the document \"%@\"?" = "Quer guardar as alterações feitas ao documento \"%@\"?";
+
+/* No comment provided by engineer. */
+"Document %ld.docx" = "Documento %ld.docx";
+
+/* No comment provided by engineer. */
+"Document template" = "Modelo de documento";
+
+/* No comment provided by engineer. */
+"Excel 97-2003 Spreadsheet" = "Folha de Cálculo do Excel 97-2003 ";
+
+/* No comment provided by engineer. */
+"Excel 2007 Spreadsheet" = "Folha de Cálculo do Excel 2007";
+
+/* No comment provided by engineer. */
+"File \"%@\" can not be open or not exist." = "Ficheiro \"%@\" não pode ser aberto ou não existe.";
+
+/* No comment provided by engineer. */
+"File can not be open." = "Este ficheiro não pode ser aberto.";
+
+/* No comment provided by engineer. */
+"File Format:" = "Formato do Ficheiro:";
+
+/* No comment provided by engineer. */
+"Hide %@" = "Esconder %@";
+
+/* No comment provided by engineer. */
+"If you don't review your documents, all your changeses will be lost." = "Se não revir os documentos, todas as alterações serão perdidas.";
+
+/* No comment provided by engineer. */
+"If you have already purchased %@, you should find your activation key in an email confirmation." = "Se já comprou %@, deve encontrar a sua chave de ativação num email de confirmação.";
+
+/* No comment provided by engineer. */
+"License Agreement" = "Acordo de Licença ";
+
+/* No comment provided by engineer. */
+"Mobipocket e-book" = "Mobipocket e-book";
+
+/* No comment provided by engineer. */
+"new-document" = "Novo documento";
+
+/* No comment provided by engineer. */
+"new-presentation" = "Nova apresentação";
+
+/* No comment provided by engineer. */
+"new-spreadsheet" = "Nova planilha";
+
+/* No comment provided by engineer. */
+"No" = "Não";
+
+/* No comment provided by engineer. */
+"OK" = "OK";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE can not open the Digital Signature file. Try opening another file." = "O ONLYOFFICE não consegue abrir o arquivo de Assinatura digital. Tente abrir outro arquivo.";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE can not open the Private Key. Try opening another file." = "O ONLYOFFICE não consegue abrir a Chave privada. Tente abrir outro arquivo.";
+
+/* No comment provided by engineer. */
+"OpenDocument Document Template" = "Modelo de documento do OpenDocument";
+
+/* No comment provided by engineer. */
+"OpenDocument Presentation Template" = "Modelo de apresentação do OpenDocument";
+
+/* No comment provided by engineer. */
+"OpenDocument Spreadsheet Template" = "Modelo de planilha do OpenDocument";
+
+/* No comment provided by engineer. */
+"Opening" = "A abrir";
+
+/* No comment provided by engineer. */
+"OpenOffice Document" = "Documento de OpenOffice";
+
+/* No comment provided by engineer. */
+"OpenOffice Presentation" = "Apresentação em OpenOffice";
+
+/* No comment provided by engineer. */
+"OpenOffice Spreadsheet" = "Folha de Cálculo do OpenOffice";
+
+/* No comment provided by engineer. */
+"PDF File" = "Ficheiro PDF";
+
+/* No comment provided by engineer. */
+"PDF/A File" = "Arquivo PDF/A";
+
+/* No comment provided by engineer. */
+"Plain Text" = "Texto Simples";
+
+/* No comment provided by engineer. */
+"PowerPoint 97-2003 Presentation" = "Apresentação em PowerPoint 97-2003 ";
+
+/* No comment provided by engineer. */
+"PowerPoint 2007 Presentation" = "Apresentação em PowerPoint 2007";
+
+/* No comment provided by engineer. */
+"PowerPoint Slide Show" = "Slide Show em PowerPoint";
+
+/* No comment provided by engineer. */
+"Preparing..." = "A preparar...";
+
+/* No comment provided by engineer. */
+"Presentation %ld.pptx" = "Apresentação %ld.pptx";
+
+/* No comment provided by engineer. */
+"Presentation template" = "Modelo de apresentação";
+
+/* No comment provided by engineer. */
+"Quit %@" = "Sair %@";
+
+/* No comment provided by engineer. */
+"Review Changes..." = "Rever as Alterações...";
+
+/* No comment provided by engineer. */
+"Rich Text Document" = "Rich Text Document";
+
+/* No comment provided by engineer. */
+"Save" = "Salvar";
+
+/* No comment provided by engineer. */
+"Save the document?" = "Salvar o documento?";
+
+/* No comment provided by engineer. */
+"Spreadsheet %ld.xlsx" = "Folha de Cálculo %ld.xlsx";
+
+/* No comment provided by engineer. */
+"Spreadsheet template" = "Modelo de planilha";
+
+/* No comment provided by engineer. */
+"Thank you for evaluating %@!" = "Obrigado por avaliar %@!";
+
+/* No comment provided by engineer. */
+"The document \"%@\" must be built. Continue?" = "O documento \"%@\" deve ser criado. Continuar?";
+
+/* No comment provided by engineer. */
+"To open the file location, it must be saved." = "Para abrir a localização do arquivo, ele precisa estar salvo.";
+
+/* No comment provided by engineer. */
+"Unconfirmed" = "Não confirmado";
+
+/* No comment provided by engineer. */
+"Untitled" = "Sem Título";
+
+/* No comment provided by engineer. */
+"Version %@ (%@)" = "Versão %1$@ (%2$@)";
+
+/* No comment provided by engineer. */
+"Web Page" = "Página Web";
+
+/* No comment provided by engineer. */
+"Word 97-2003 Document" = "Documento em Word 97-2003";
+
+/* No comment provided by engineer. */
+"Word 2007 Document" = "Documento em Word 2007";
+
+/* No comment provided by engineer. */
+"XML Paper Specification" = "Especificação XML para Papel";
+
+/* No comment provided by engineer. */
+"Yes" = "Sim";
+
+/* No comment provided by engineer. */
+"You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?" = "Tem %1$ld %2$@ documento com alterações não confirmadas. Quer rever essas alterações e ante de sair?";
+
+/* No comment provided by engineer. */
+"You have successfully activated %@." = "Ativação bem-sucedida%@.";
+
+/* No comment provided by engineer. */
+"Your changes will be lost if you don’t save them." = "As suas alterações serão perdidas se não as guardar.";
+
+/* No comment provided by engineer. */
+"Your subscription has expired.\n\nThe program works in the non-activated mode.\n\nNow you can prolong or upgrade your subscription with a discount." = "A sua subscrição expirou.\n\nThe program works in the non-activated mode.\n\nNow you can prolong or upgrade your subscription with a discount.";
+
+/* No comment provided by engineer. */
+"Your subscription is about to expire\n(%d days left).\n\nWe have a special offer for you." = "A sua subscrição está prestes a expirar\n(%d dia(s) restantes).\n\nNós temos uma oferta especial para si.";
+

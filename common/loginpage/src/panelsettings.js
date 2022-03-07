@@ -299,12 +299,26 @@
                             $panel.find('.settings-field-lang').show();
                             let $combo = $panel.find('.settings-field-lang select');
 
+                            let def_lang;
                             for (let lang in opts.locale.langs) {
+                                /^en/.test(lang) && (def_lang = lang);
                                 $combo.append(`<option value='${lang}'>${opts.locale.langs[lang]}</option>`);
+                            }
+
+                            if ( !opts.locale.langs[opts.locale.current] ) {
+                                opts.locale.current = opts.locale.current.substring(0,2);
+                                if ( !opts.locale.langs[opts.locale.current] && !!def_lang ) {
+                                    opts.locale.current = def_lang;
+                                }
                             }
 
                             $combo.val(opts.locale.current);
                             $combo.selectpicker();
+
+                            if ( opts.locale.restart ) {
+                                $panel.find('.settings-field-lang label[l10n]').after(`<label class='sett__caption'>*</label>`);
+                                $('#caption-restart', $panel).show();
+                            }
                         }
 
                         if ( opts.uiscaling != undefined && !$optsUIScaling ) {

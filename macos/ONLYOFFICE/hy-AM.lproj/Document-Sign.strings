@@ -1,0 +1,36 @@
+/* Class = "NSTextFieldCell"; title = "Enter the password for the private key."; ObjectID = "1dL-nN-bJI"; */
+"1dL-nN-bJI.title" = "Մուտքագրեք գաղտնաբառը անձնական բանալու համար։";
+
+/* Class = "NSTextFieldCell"; title = "Enter the password for the digital signature."; ObjectID = "1Fy-mg-aq9"; */
+"1Fy-mg-aq9.title" = "Մուտքագրեք գաղտնաբառը թվային ստորագրության համար։";
+
+/* Class = "NSTextFieldCell"; title = "Specify the digital signature file for the document."; ObjectID = "2Ck-6y-ygx"; */
+"2Ck-6y-ygx.title" = "Նշեք թվային ստորագրության ֆայլը փաստաթղթի համար։";
+
+/* Class = "NSSecureTextFieldCell"; placeholderString = "Enter Password"; ObjectID = "4gA-s8-Lne"; */
+"4gA-s8-Lne.placeholderString" = "Enter Գաղտնաբառ";
+
+/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "GOU-av-TC1"; */
+"GOU-av-TC1.title" = "Չեղարկել";
+
+/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "jpH-3g-Gt5"; */
+"jpH-3g-Gt5.title" = "Չեղարկել";
+
+/* Class = "NSButtonCell"; title = "Load a Private Key"; ObjectID = "P3k-kI-w22"; */
+"P3k-kI-w22.title" = "Բեռնել անձնական բանալի։";
+
+/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "qZ4-0O-L0G"; */
+"qZ4-0O-L0G.title" = "Չեղարկել";
+
+/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "RbM-Dq-A3K"; */
+"RbM-Dq-A3K.title" = "Չեղարկել";
+
+/* Class = "NSTextFieldCell"; title = "Specify a private key for the digital signature."; ObjectID = "Tfc-EF-VnS"; */
+"Tfc-EF-VnS.title" = "Նշել անձնական բանալի թվային ստորագրության համար։";
+
+/* Class = "NSButtonCell"; title = "Load Signature"; ObjectID = "tTF-wa-eJp"; */
+"tTF-wa-eJp.title" = "Բեռնել ստորագրությունը";
+
+/* Class = "NSSecureTextFieldCell"; placeholderString = "Enter Password"; ObjectID = "Zj5-0h-hpW"; */
+"Zj5-0h-hpW.placeholderString" = "Մուտքագրել գաղտնաբառը։";
+

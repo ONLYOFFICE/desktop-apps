@@ -1,0 +1,36 @@
+/* Class = "NSTextFieldCell"; title = "Enter the password for the private key."; ObjectID = "1dL-nN-bJI"; */
+"1dL-nN-bJI.title" = "Skriv inn passordet for den private nøkkelen.";
+
+/* Class = "NSTextFieldCell"; title = "Enter the password for the digital signature."; ObjectID = "1Fy-mg-aq9"; */
+"1Fy-mg-aq9.title" = "Skriv inn passordet for den digitale signaturen.";
+
+/* Class = "NSTextFieldCell"; title = "Specify the digital signature file for the document."; ObjectID = "2Ck-6y-ygx"; */
+"2Ck-6y-ygx.title" = "Spesifiser dokumentets digitale signaturfil.";
+
+/* Class = "NSSecureTextFieldCell"; placeholderString = "Enter Password"; ObjectID = "4gA-s8-Lne"; */
+"4gA-s8-Lne.placeholderString" = "Oppgi passord";
+
+/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "GOU-av-TC1"; */
+"GOU-av-TC1.title" = "Avbryt";
+
+/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "jpH-3g-Gt5"; */
+"jpH-3g-Gt5.title" = "Avbryt";
+
+/* Class = "NSButtonCell"; title = "Load a Private Key"; ObjectID = "P3k-kI-w22"; */
+"P3k-kI-w22.title" = "Last inn en privat nøkkel";
+
+/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "qZ4-0O-L0G"; */
+"qZ4-0O-L0G.title" = "Avbryt";
+
+/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "RbM-Dq-A3K"; */
+"RbM-Dq-A3K.title" = "Avbryt";
+
+/* Class = "NSTextFieldCell"; title = "Specify a private key for the digital signature."; ObjectID = "Tfc-EF-VnS"; */
+"Tfc-EF-VnS.title" = "Spesifiser en privat nøkkel for den digitale signaturen.";
+
+/* Class = "NSButtonCell"; title = "Load Signature"; ObjectID = "tTF-wa-eJp"; */
+"tTF-wa-eJp.title" = "Hent signatur";
+
+/* Class = "NSSecureTextFieldCell"; placeholderString = "Enter Password"; ObjectID = "Zj5-0h-hpW"; */
+"Zj5-0h-hpW.placeholderString" = "Skriv inn passord";
+
