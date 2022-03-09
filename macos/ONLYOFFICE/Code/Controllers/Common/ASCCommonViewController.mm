@@ -212,7 +212,6 @@
         NSUserDefaults *preferences     = [NSUserDefaults standardUserDefaults];
         NSURLComponents *loginPage      = [NSURLComponents componentsWithString:[[NSBundle mainBundle] pathForResource:@"index" ofType:@"html" inDirectory:@"login"]];
 
-
         NSURLQueryItem *countryCode     = [NSURLQueryItem queryItemWithName:@"lang" value: [ASCLinguist appLanguageCode]];
         NSURLQueryItem *portalAddress   = [NSURLQueryItem queryItemWithName:@"portal" value:[preferences objectForKey:ASCUserSettingsNamePortalUrl]];
 
@@ -225,9 +224,6 @@
         
         [self.cefStartPageView loadWithUrl:[loginPage string]];
     }
-
-    NSString * uiLang = [[NSUserDefaults standardUserDefaults] objectForKey:@"AppleLocale"];
-    NSLog(@"AppleLocale %@", uiLang);
 }
 
 - (void)openLocalPage:(NSString *)path title:(NSString *)title {
