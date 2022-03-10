@@ -1479,14 +1479,18 @@
     
     NSString * uiTheme = [[NSUserDefaults standardUserDefaults] valueForKey:ASCUserUITheme] ?: @"theme-classic-light";
 
-    NSDictionary * json_langs = @{
-        @"locale": @{
-            @"current": [ASCLinguist appLanguageCode],
-            @"langs": [ASCLinguist availableLanguages],
-            @"restart": @true
-        },
+    NSMutableDictionary * json_langs = @{
         @"uitheme": uiTheme
-    };
+    }.mutableCopy;
+
+    NSDictionary * langs = [ASCLinguist availableLanguages];
+    if ( langs ) {
+        [json_langs setObject:@{
+                @"current": [ASCLinguist appLanguageCode],
+                @"langs": langs,
+                @"restart": @true
+            } forKey:@"locale"];
+    }
 
     NSEditorApi::CAscExecCommandJS * pCommand = new NSEditorApi::CAscExecCommandJS;
     pCommand->put_Command(L"settings:init");
