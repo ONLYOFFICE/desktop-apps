@@ -6,8 +6,8 @@ if "%PACKAGE%"=="" (
 )
 
 set ORG=onlyoffice
-set OUTPATH=--output "%~dp0..\..\..\..\build_tools\out\%PLATFORM%\%ORG%\%PACKAGE%"
 set CURL=curl -L
+set OUTPATH=--output "%~dp0..\..\..\..\build_tools\out\%PLATFORM%\%ORG%\%PACKAGE%"
 
 if "%PLATFORM%"=="win_32" (
     set ARCH=x86
