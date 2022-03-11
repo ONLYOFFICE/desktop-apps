@@ -9,7 +9,6 @@ set ORG=onlyoffice
 set OUTPATH=--output "%~dp0..\..\..\..\build_tools\out\%PLATFORM%\%ORG%\%PACKAGE%"
 set CURL=curl -L
 
-echo "%~dp0..\..\..\..\build_tools\out\%PLATFORM%\%ORG%\%PACKAGE%"
 if "%PLATFORM%"=="win_32" (
     set ARCH=x86
     %CURL% https://github.com/eymeen/MSVC.dll/raw/main/32/msvcp140.dll %OUTPATH%\msvcp140.dll
