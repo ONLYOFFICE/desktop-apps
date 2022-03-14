@@ -5,8 +5,6 @@ if "%PACKAGE%"=="" (
     set PACKAGE=DesktopEditors
 )
 
-set LINK86=https://s3.eu-west-1.amazonaws.com/repo-doc-onlyoffice-com/onlyoffice/unstable/windows/99.99.99-2847/desktop/ONLYOFFICE_DesktopEditors_99.99.99.2847_x86.exe
-set LINK64=https://s3.eu-west-1.amazonaws.com/repo-doc-onlyoffice-com/onlyoffice/unstable/windows/99.99.99-2847/desktop/ONLYOFFICE_DesktopEditors_99.99.99.2847_x64.exe
 set ORG=onlyoffice
 set CURL=curl -L
 set OUTPATH="%~dp0..\..\..\..\build_tools\out\%PLATFORM%\%ORG%\%PACKAGE%"
@@ -14,15 +12,16 @@ set SYSTEM32=%SystemRoot%\System32
 
 if "%PLATFORM%"=="win_32" (
     set ARCH=x86
-    %CURL% %LINK86% --output DesktopEditors_x86.exe /w
-    start DesktopEditors_x86.exe /silent /w
+    %CURL% https://aka.ms/vs/17/release/vc_redist.x86.exe --output vcredist_2022_x86.exe /w
+    start vcredist_2022_x86.exe /silent /w
     copy %SYSTEM32%\vcruntime140.dll %OUTPATH%
     copy %SYSTEM32%\msvcp140.dll %OUTPATH%
 ) else if "%PLATFORM%"=="win_64" (
     set ARCH=x64
-    %CURL% %LINK64% --output DesktopEditors_x64.exe /w
-    start /w DesktopEditors_x64.exe /silent
+    %CURL% https://aka.ms/vs/17/release/vc_redist.x64.exe --output vcredist_2022_x64.exe /w
+    start /w vcredist_2022_x64.exe /silent
     copy %SYSTEM32%\vcruntime140.dll %OUTPATH%
+    copy %SYSTEM32%\vcruntime140_1.dll %OUTPATH%
     copy %SYSTEM32%\msvcp140.dll %OUTPATH%
 ) else (
     exit
