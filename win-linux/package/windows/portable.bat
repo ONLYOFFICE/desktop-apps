@@ -9,19 +9,19 @@ set LINK64=https://s3.eu-west-1.amazonaws.com/repo-doc-onlyoffice-com/onlyoffice
 set ORG=onlyoffice
 set CURL=curl -L
 set OUTPATH="%~dp0..\..\..\..\build_tools\out\%PLATFORM%\%ORG%\%PACKAGE%"
-
+set SYSTEM32=%SystemRoot%\System32
 if "%PLATFORM%"=="win_32" (
     set ARCH=x86
     %CURL% %LINK86% --output DesktopEditors_x86.exe /w
     start DesktopEditors_x86.exe /silent /w
-    copy "%SystemRoot%\System32\vcruntime140.dll" %OUTPATH%
-    copy "%SystemRoot%\System32\msvcp140.dll" %OUTPATH%
+    copy %SYSTEM32%\vcruntime140.dll %OUTPATH%
+    copy %SYSTEM32%\msvcp140.dll %OUTPATH%
 ) else if "%PLATFORM%"=="win_64" (
     set ARCH=x64
-    %CURL% %LINK64% --output DesktopEditors_x64.exe /w
+    ::%CURL% %LINK64% --output DesktopEditors_x64.exe /w
     start /w DesktopEditors_x64.exe /silent
-    copy "%SystemRoot%\System32\vcruntime140.dll" %OUTPATH%
-    copy "%SystemRoot%\System32\msvcp140.dll" %OUTPATH%
+    copy %SYSTEM32%\vcruntime140.dll %OUTPATH%
+    copy %SYSTEM32%\msvcp140.dll %OUTPATH%
 ) else (
     exit
 )
