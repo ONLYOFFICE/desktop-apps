@@ -4,6 +4,7 @@ if not exist "node_modules/generate-evb" (
 if "%PACKAGE%"=="" ( 
     set PACKAGE=DesktopEditors
 )
+
 set LINK86=https://s3.eu-west-1.amazonaws.com/repo-doc-onlyoffice-com/onlyoffice/unstable/windows/99.99.99-2847/desktop/ONLYOFFICE_DesktopEditors_99.99.99.2847_x86.exe
 set LINK64=https://s3.eu-west-1.amazonaws.com/repo-doc-onlyoffice-com/onlyoffice/unstable/windows/99.99.99-2847/desktop/ONLYOFFICE_DesktopEditors_99.99.99.2847_x64.exe
 set ORG=onlyoffice
