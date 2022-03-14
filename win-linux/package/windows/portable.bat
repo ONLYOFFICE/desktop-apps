@@ -27,3 +27,4 @@ if "%PLATFORM%"=="win_32" (
 )
 
 node create_portable.js %PLATFORM% %ORG% %PACKAGE%
+%enigmavbconsole% DesktopEditorsPortable.evb
