@@ -12,8 +12,8 @@ set OUTPATH="%~dp0..\..\..\..\build_tools\out\%PLATFORM%\%ORG%\%PACKAGE%"
 
 if "%PLATFORM%"=="win_32" (
     set ARCH=x86
-    for %%I in (msvcp140.dll vcruntime140.dll) do (
-        copy %SystemRoot%\SysWOW64\%%I %OUTPATH%
+    for %%i in (msvcp140.dll vcruntime140.dll) do (
+        copy %SystemRoot%\SysWOW64\%%i %OUTPATH%
         if errorlevel 1 (
             echo dll not found
             exit 1
@@ -21,8 +21,8 @@ if "%PLATFORM%"=="win_32" (
     )
 ) else if "%PLATFORM%"=="win_64" (
     set ARCH=x64
-    for %%I in (msvcp140.dll vcruntime140.dll vcruntime140_1.dll) do (
-        copy %SystemRoot%\System32\%%I %OUTPATH%
+    for %%i in (msvcp140.dll vcruntime140.dll vcruntime140_1.dll) do (
+        copy %SystemRoot%\System32\%%i %OUTPATH%
         if errorlevel 1 (
             echo dll not found
             exit 1
