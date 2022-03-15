@@ -15,7 +15,7 @@ if "%PLATFORM%"=="win_32" (
     for %%i in (msvcp140.dll vcruntime140.dll) do (
         copy %SystemRoot%\SysWOW64\%%i %OUTPATH%
         if errorlevel 1 (
-            echo Dll not found
+            echo "Dll not found"
             exit 1
         )
     )
@@ -24,7 +24,7 @@ if "%PLATFORM%"=="win_32" (
     for %%i in (msvcp140.dll vcruntime140.dll vcruntime140_1.dll) do (
         copy %SystemRoot%\System32\%%i %OUTPATH%
         if errorlevel 1 (
-            echo Dll not found
+            echo "Dll not found"
             exit 1
         )
     )
