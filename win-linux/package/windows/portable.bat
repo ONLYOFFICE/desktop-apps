@@ -12,17 +12,19 @@ set SYSTEM32=%SystemRoot%\System32
 
 if "%PLATFORM%"=="win_32" (
     set ARCH=x86
-    %CURL% https://aka.ms/vs/17/release/vc_redist.x86.exe --output vcredist_2022_x86.exe /w
-    start vcredist_2022_x86.exe /silent /w
     copy %SYSTEM32%\vcruntime140.dll %OUTPATH%
     copy %SYSTEM32%\msvcp140.dll %OUTPATH%
+    if errorlevel 1 (
+            exit 1
+    )
 ) else if "%PLATFORM%"=="win_64" (
     set ARCH=x64
-    %CURL% https://aka.ms/vs/17/release/vc_redist.x64.exe --output vcredist_2022_x64.exe /w
-    start /w vcredist_2022_x64.exe /silent
     copy %SYSTEM32%\vcruntime140.dll %OUTPATH%
     copy %SYSTEM32%\vcruntime140_1.dll %OUTPATH%
-    copy %SYSTEM32%\msvcp140.dll %OUTPATH%
+    copy %SYSTEM32%\msvcp1401.dll %OUTPATH%
+    if errorlevel 1 (
+            exit 1
+    )
 ) else (
     exit
 )
