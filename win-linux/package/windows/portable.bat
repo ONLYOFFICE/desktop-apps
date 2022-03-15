@@ -17,7 +17,7 @@ set files[2]=vcruntime140_1.dll
 
 if "%PLATFORM%"=="win_32" (
     set ARCH=x86
-    for /l %%i in (0 1) do (
+    for /l %%i in (0 1 1) do (
         copy %SYTWOW64%!files[%%i]! %OUTPATH%
         if errorlevel 1 (
             exit 1
