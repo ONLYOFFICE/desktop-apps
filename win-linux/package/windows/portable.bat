@@ -9,11 +9,12 @@ set ORG=onlyoffice
 set CURL=curl -L
 set OUTPATH="%~dp0..\..\..\..\build_tools\out\%PLATFORM%\%ORG%\%PACKAGE%"
 set SYSTEM32=%SystemRoot%\System32
+set SYSWOW64=%SystemRoot%\SysWOW64
 
 if "%PLATFORM%"=="win_32" (
     set ARCH=x86
-    copy %SYSTEM32%\vcruntime140.dll %OUTPATH%
-    copy %SYSTEM32%\msvcp140.dll %OUTPATH%
+    copy %SYSWOW64%\vcruntime140.dll %OUTPATH%
+    copy %SYSWOW64%\msvcp140.dll %OUTPATH%
     if errorlevel 1 (
         exit 1
     )
@@ -21,7 +22,7 @@ if "%PLATFORM%"=="win_32" (
     set ARCH=x64
     copy %SYSTEM32%\vcruntime140.dll %OUTPATH%
     copy %SYSTEM32%\vcruntime140_1.dll %OUTPATH%
-    copy %SYSTEM32%\msvcp1401.dll %OUTPATH%
+    copy %SYSTEM32%\msvcp140.dll %OUTPATH%
     if errorlevel 1 (
         exit 1
     )
