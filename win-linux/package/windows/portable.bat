@@ -24,7 +24,7 @@ if "%PLATFORM%"=="win_32" (
 
 for %%i in (%FILES%) do (
     copy %SOURCE%\%%i %OUTPATH%
-    rem to avoid the error, need to install vcredist 2015-2022 x64 and x86
+    ::to avoid the error, need to install vcredist 2015-2022 x64 and x86
     if errorlevel 1 (
         echo "Dll not found, need to install vcredist_%PLATFORM%"
         exit 1
