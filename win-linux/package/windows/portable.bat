@@ -8,7 +8,7 @@ if "%PACKAGE%"=="" (
 )
 
 set ORG=onlyoffice
-set OUTPATH=%~dp0..\..\..\..\build_tools\out\%PLATFORM%\%ORG%
+set OUTPATH=%~dp0..\..\..\..\build_tools\out\%PLATFORM%\%ORG%\%PACKAGE%
     set FILES=msvcp140.dll vcruntime140.dll
 if "%PLATFORM%"=="win_32" (
     set ARCH=x86
