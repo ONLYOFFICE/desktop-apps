@@ -280,7 +280,7 @@ LRESULT CALLBACK CMainWindow::WndProc( HWND hWnd, UINT message, WPARAM wParam, L
         else
         if (GET_SC_WPARAM(wParam) == SC_RESTORE) {
 //            if ( !WindowHelper::isLeftButtonPressed() )
-                WindowHelper::correctWindowMinimumSize(window->handle());
+//                WindowHelper::correctWindowMinimumSize(window->handle());
 
             break;
         }
@@ -433,7 +433,7 @@ qDebug() << "WM_CLOSE";
     }
 
     case WM_ENTERSIZEMOVE: {
-        WindowHelper::correctWindowMinimumSize(window->handle());
+//        WindowHelper::correctWindowMinimumSize(window->handle());
 
         WINDOWPLACEMENT wp{sizeof(WINDOWPLACEMENT)};
         if ( GetWindowPlacement(hWnd, &wp) ) {
