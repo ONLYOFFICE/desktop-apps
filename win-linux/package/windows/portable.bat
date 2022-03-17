@@ -16,19 +16,16 @@ if "%PLATFORM%"=="win_32" (
 ) else if "%PLATFORM%"=="win_64" (
     set ARCH=x64
     set SOURCE=%SystemRoot%\System32
-    set FILES=%FILES%; vcruntime140_1.dll
+    set FILES=%FILES% vcruntime140_1.dll
 ) else (
     echo "Architecture definition error"
     exit
 )
 
-for %%i in (%FILES%) do (
-    copy %SOURCE%\%%i %OUTPATH%
-    ::to avoid the error, need to install vcredist 2015-2022 x64 and x86
-    if errorlevel 1 (
-        echo "Dll not found, need to install vcredist_%PLATFORM%"
-        exit 1
-    )
+robocopy %SOURCE% %OUTPATH% %FILES%
+if not errorlevel 1 (
+    echo "Dll not found, need to install vcredist_%PLATFORM%"
+    exit
 )
 
 node create_portable.js %PLATFORM% %ORG% %PACKAGE%
