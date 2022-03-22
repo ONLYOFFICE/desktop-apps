@@ -14,5 +14,8 @@
     "grunt-contrib-concat": "^1.0.1",
     "grunt-contrib-htmlmin": "^3.1.0",
     "grunt-inline": "0.3.7"
+  },
+  "devDependencies": {
+    "terser": "^5.12.1"
   }
 }
