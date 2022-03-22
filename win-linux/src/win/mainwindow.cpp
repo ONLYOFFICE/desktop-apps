@@ -200,8 +200,10 @@ LRESULT CALLBACK CMainWindow::WndProc( HWND hWnd, UINT message, WPARAM wParam, L
                 window->m_dpiRatio = dpi_ratio;
                 refresh_window_scaling_factor(window);
                 window->adjustGeometry();
-
             }
+        } else
+        if ( AscAppManager::IsUseSystemScaling() ) {
+            window->updateScaling();
         }
 
         qDebug() << "WM_DPICHANGED: " << LOWORD(wParam);
@@ -474,7 +476,8 @@ qDebug() << "WM_CLOSE";
             window->adjustGeometry();
         }
 #else
-        window->updateScaling();
+        if ( !AscAppManager::IsUseSystemScaling() )
+            window->updateScaling();
 #endif
 
         break;
