@@ -75,7 +75,6 @@
         @"fr": @"Français",
         @"es": @"Español",
         @"it": @"Italiano",
-        @"pl": @"Polski",
         @"pt-BR": @"Português Brasileiro",
         @"zh-CN": @"中文",
         @"sk-SK": @"Slovenčina",
