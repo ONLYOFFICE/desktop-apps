@@ -255,14 +255,10 @@ CFileDialogWrapper::CFileDialogWrapper(QWidget * parent) : QObject(parent)
     m_mapFilters[AVS_OFFICESTUDIO_FILE_IMAGE_JPG]           = tr("JPG Image (*.jpg *.jpeg)");
     m_mapFilters[AVS_OFFICESTUDIO_FILE_IMAGE_PNG]           = tr("PNG Image (*.png)");
 
+#ifdef FILEDIALOG_DONT_USE_NATIVEDIALOGS
     // Set native dialog from command line arguments
-    m_CmdUseNativeDialogFlag = false;
-    foreach (const std::wstring &arg, InputArgs::arguments()) {
-        if (arg == L"--native-file-dialog") {
-            m_CmdUseNativeDialogFlag = true;
-            break;
-        }
-    }
+    m_useNativeDialogFlag = InputArgs::contains(L"--native-file-dialog");
+#endif
 }
 
 CFileDialogWrapper::~CFileDialogWrapper()
@@ -313,14 +309,11 @@ bool CFileDialogWrapper::modalSaveAs(QString& fileName, int selected)
     reFilter.setPattern("\\(\\*(\\.\\w+)\\)$");
 
     auto _exec_dialog = [=] (QWidget * p, QString n, QString f, QString& sf) {
-        QFileDialog::Options _opts;
+        QFileDialog::Options _opts{QFileDialog::DontConfirmOverwrite};
 #ifdef FILEDIALOG_DONT_USE_NATIVEDIALOGS
-        if (m_CmdUseNativeDialogFlag)
-            _opts = QFileDialog::DontConfirmOverwrite;
-        else
-            _opts = QFileDialog::DontConfirmOverwrite | QFileDialog::DontUseNativeDialog;
+        if ( !m_useNativeDialogFlag )
+            _opts |= QFileDialog::DontUseNativeDialog;
 #else
-        _opts = QFileDialog::DontConfirmOverwrite;
 #endif
         return QFileDialog::getSaveFileName(p, tr("Save As"), n, f, &sf, _opts);
     };
@@ -420,9 +413,7 @@ QStringList CFileDialogWrapper::modalOpen(const QString& path, const QString& fi
 #endif
     QFileDialog::Options _opts;
 #ifdef FILEDIALOG_DONT_USE_NATIVEDIALOGS
-    if (m_CmdUseNativeDialogFlag)
-        _opts = QFileDialog::Options();
-    else
+    if ( !m_useNativeDialogFlag )
         _opts = QFileDialog::DontUseNativeDialog;
 #else
     _opts = QFileDialog::Options();
