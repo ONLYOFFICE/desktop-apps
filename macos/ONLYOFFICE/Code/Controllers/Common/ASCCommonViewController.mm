@@ -212,7 +212,6 @@
         NSUserDefaults *preferences     = [NSUserDefaults standardUserDefaults];
         NSURLComponents *loginPage      = [NSURLComponents componentsWithString:[[NSBundle mainBundle] pathForResource:@"index" ofType:@"html" inDirectory:@"login"]];
 
-
         NSURLQueryItem *countryCode     = [NSURLQueryItem queryItemWithName:@"lang" value: [ASCLinguist appLanguageCode]];
         NSURLQueryItem *portalAddress   = [NSURLQueryItem queryItemWithName:@"portal" value:[preferences objectForKey:ASCUserSettingsNamePortalUrl]];
 
@@ -225,9 +224,6 @@
         
         [self.cefStartPageView loadWithUrl:[loginPage string]];
     }
-
-    NSString * uiLang = [[NSUserDefaults standardUserDefaults] objectForKey:@"AppleLocale"];
-    NSLog(@"AppleLocale %@", uiLang);
 }
 
 - (void)openLocalPage:(NSString *)path title:(NSString *)title {
@@ -1483,14 +1479,18 @@
     
     NSString * uiTheme = [[NSUserDefaults standardUserDefaults] valueForKey:ASCUserUITheme] ?: @"theme-classic-light";
 
-    NSDictionary * json_langs = @{
-        @"locale": @{
-            @"current": [ASCLinguist appLanguageCode],
-            @"langs": [ASCLinguist availableLanguages],
-            @"restart": @true
-        },
+    NSMutableDictionary * json_langs = @{
         @"uitheme": uiTheme
-    };
+    }.mutableCopy;
+
+    NSDictionary * langs = [ASCLinguist availableLanguages];
+    if ( langs ) {
+        [json_langs setObject:@{
+                @"current": [ASCLinguist appLanguageCode],
+                @"langs": langs,
+                @"restart": @true
+            } forKey:@"locale"];
+    }
 
     NSEditorApi::CAscExecCommandJS * pCommand = new NSEditorApi::CAscExecCommandJS;
     pCommand->put_Command(L"settings:init");

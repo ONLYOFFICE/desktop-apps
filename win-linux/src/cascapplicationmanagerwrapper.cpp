@@ -226,7 +226,8 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
                         m_receivers[sid]->onWebAppsFeatures(sid,L"\"uitype\":\"fillform\"");
                 }
 
-                if ( editorWindowFromViewId(event->get_SenderId()) ) {
+                auto * editor = editorWindowFromViewId(event->get_SenderId());
+                if ( editor && editor->isCustomWindowStyle() ) {
                     sendCommandTo(ptr, L"window:features", Utils::stringifyJson(QJsonObject{{"singlewindow",true}}).toStdWString());
                 }
             }
@@ -845,7 +846,8 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
                 editor_win->show(false);
 
                 _app.m_vecEditors.push_back(size_t(editor_win));
-                sendCommandTo(panel->cef(), L"window:features",
+                if ( editor_win->isCustomWindowStyle() )
+                    sendCommandTo(panel->cef(), L"window:features",
                               Utils::stringifyJson(QJsonObject{{"skiptoparea", TOOLBTN_HEIGHT},{"singlewindow",true}}).toStdWString());
             } else {
                 if ( !_app.m_pMainWindow ) {
@@ -984,7 +986,8 @@ void CAscApplicationManagerWrapper::initializeApp()
             }
 
 //            QTimer::singleShot(0, []{
-                mainWindow()->bringToTop();
+                if ( mainWindow() )
+                    mainWindow()->bringToTop();
 //            });
         });
     }
@@ -1472,8 +1475,9 @@ bool CAscApplicationManagerWrapper::event(QEvent *event)
                         editor_win->undock(_main_window->isMaximized());
 
                         m_vecEditors.push_back( size_t(editor_win) );
-                        sendCommandTo(_editor->cef(), L"window:features",
-                                Utils::stringifyJson(QJsonObject{{"skiptoparea", TOOLBTN_HEIGHT},{"singlewindow",true}}).toStdWString());
+                        if ( editor_win->isCustomWindowStyle() )
+                            sendCommandTo(_editor->cef(), L"window:features",
+                                    Utils::stringifyJson(QJsonObject{{"skiptoparea", TOOLBTN_HEIGHT},{"singlewindow",true}}).toStdWString());
                     }
 //                });
             }
@@ -1530,6 +1534,10 @@ bool CAscApplicationManagerWrapper::applySettings(const wstring& wstrjson)
                 _editor = reinterpret_cast<CEditorWindow *>(e);
                 _editor->updateScaling();
             }
+        }
+
+        if ( objRoot.contains("spellcheckdetect") ) {
+            setUserSettings(L"spell-check-input-mode", objRoot["spellcheckdetect"].toString() == "off" ? L"0" : L"default");
         }
 
         wstring params = QString("lang=%1&username=%3&location=%2")

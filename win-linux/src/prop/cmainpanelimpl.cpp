@@ -78,25 +78,31 @@ void CMainPanelImpl::refreshAboutVersion()
         })
     );
 
-    std::wstring _force_value = AscAppManager::userSettings(L"force-scale");
-    if ( _force_value == L"1" )
-        _json_obj["uiscaling"] = 100;
-    else
-    if ( _force_value == L"1.25" )
-        _json_obj["uiscaling"] = 125;
-    else
-    if ( _force_value == L"1.5" )
-        _json_obj["uiscaling"] = 150;
-    else
-    if ( _force_value == L"1.75" )
-        _json_obj["uiscaling"] = 175;
-    else
-    if ( _force_value == L"2" )
-        _json_obj["uiscaling"] = 200;
-    else _json_obj["uiscaling"] = 0;
+    if ( !AscAppManager::IsUseSystemScaling() ) {
+        std::wstring _force_value = AscAppManager::userSettings(L"force-scale");
+        if ( _force_value == L"1" )
+            _json_obj["uiscaling"] = 100;
+        else
+        if ( _force_value == L"1.25" )
+            _json_obj["uiscaling"] = 125;
+        else
+        if ( _force_value == L"1.5" )
+            _json_obj["uiscaling"] = 150;
+        else
+        if ( _force_value == L"1.75" )
+            _json_obj["uiscaling"] = 175;
+        else
+        if ( _force_value == L"2" )
+            _json_obj["uiscaling"] = 200;
+        else _json_obj["uiscaling"] = 0;
+    }
 
 #ifndef __OS_WIN_XP
     _json_obj["uitheme"] = QString::fromStdWString(AscAppManager::themes().current().id());
+#endif
+
+#ifdef Q_OS_WIN
+    _json_obj["spellcheckdetect"] = AscAppManager::userSettings(L"spell-check-input-mode") != L"0" ? "auto" : "off";
 #endif
 
     GET_REGISTRY_USER(reg_user);

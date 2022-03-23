@@ -123,6 +123,8 @@ l10n.en = {
     ,settOptLaunchMode: 'Open file'
     ,settOptLaunchInTab: 'In its own tab'
     ,settOptLaunchInWindow: 'In its own window'
+    ,settSpellcheckDetection: 'Spelling language detection'
+    ,settOptDisabled: 'Disabled'
     ,aboutChangelog: 'Changelog'
     ,updateNoUpdates: 'App is up to date'
     ,updateAvialable: 'Version $1 is available. Click to download.'

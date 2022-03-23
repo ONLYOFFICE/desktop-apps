@@ -322,8 +322,9 @@ public:
                 editor_win->show(false);
 
                 m_appmanager.m_vecEditors.push_back(size_t(editor_win));
-                m_appmanager.sendCommandTo(panel->cef(), L"window:features",
-                        Utils::stringifyJson(QJsonObject{{"skiptoparea", TOOLBTN_HEIGHT},{"singlewindow",true}}).toStdWString());
+                if ( editor_win->isCustomWindowStyle() )
+                    m_appmanager.sendCommandTo(panel->cef(), L"window:features",
+                            Utils::stringifyJson(QJsonObject{{"skiptoparea", TOOLBTN_HEIGHT},{"singlewindow",true}}).toStdWString());
             } else {
                 mainWindow()->attachEditor(panel);
             }
