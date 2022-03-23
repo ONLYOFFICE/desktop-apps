@@ -79,6 +79,7 @@
       </trans-unit>
       <trans-unit id="%@ Reporter Window" xml:space="preserve">
         <source>%@ Reporter Window</source>
+        <target state="translated">%@ Παράθυρο αναφοράς</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="About %@" xml:space="preserve">
@@ -93,6 +94,7 @@
       </trans-unit>
       <trans-unit id="Before signing the document, it must be saved." xml:space="preserve">
         <source>Before signing the document, it must be saved.</source>
+        <target state="translated">Το έγγραφο πρέπει να αποθηκευτεί πριν από την υπογραφή του.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Cancel" xml:space="preserve">
@@ -102,14 +104,17 @@
       </trans-unit>
       <trans-unit id="Cannot open file of Digital Signature" xml:space="preserve">
         <source>Cannot open file of Digital Signature</source>
+        <target state="translated">Δεν είναι δυνατό το άνοιγμα του αρχείου της ψηφιακής υπογραφής</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Cannot open file of Private Key" xml:space="preserve">
         <source>Cannot open file of Private Key</source>
+        <target state="translated">Δεν είναι δυνατό το άνοιγμα του αρχείου του ιδιωτικού κλειδιού</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Cannot open folder of the file location." xml:space="preserve">
         <source>Cannot open folder of the file location.</source>
+        <target state="translated">Δεν είναι δυνατό το άνοιγμα του φακέλου της θέσης του αρχείου.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Comma-Separated Values" xml:space="preserve">
@@ -119,6 +124,7 @@
       </trans-unit>
       <trans-unit id="Create portal" xml:space="preserve">
         <source>Create portal</source>
+        <target state="translated">Δημιουργία πύλης</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Delete and Quit" xml:space="preserve">
@@ -143,6 +149,7 @@
       </trans-unit>
       <trans-unit id="Document template" xml:space="preserve">
         <source>Document template</source>
+        <target state="translated">Πρότυπο εγγράφου</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Excel 97-2003 Spreadsheet" xml:space="preserve">
@@ -207,22 +214,27 @@
       </trans-unit>
       <trans-unit id="ONLYOFFICE can not open the Digital Signature file. Try opening another file." xml:space="preserve">
         <source>ONLYOFFICE can not open the Digital Signature file. Try opening another file.</source>
+        <target state="translated">Το ONLYOFFICE δεν μπορεί να ανοίξει το αρχείο ψηφιακής υπογραφής. Δοκιμάστε να ανοίξετε άλλο αρχείο.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="ONLYOFFICE can not open the Private Key. Try opening another file." xml:space="preserve">
         <source>ONLYOFFICE can not open the Private Key. Try opening another file.</source>
+        <target state="translated">Το ONLYOFFICE δεν μπορεί να ανοίξει το ιδιωτικό κλειδί. Δοκιμάστε να ανοίξετε άλλο αρχείο.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="OpenDocument Document Template" xml:space="preserve">
         <source>OpenDocument Document Template</source>
+        <target state="translated">Πρότυπο εγγράφου OpenDocument</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="OpenDocument Presentation Template" xml:space="preserve">
         <source>OpenDocument Presentation Template</source>
+        <target state="translated">Πρότυπο παρουσίασης OpenDocument</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="OpenDocument Spreadsheet Template" xml:space="preserve">
         <source>OpenDocument Spreadsheet Template</source>
+        <target state="translated">Πρότυπο υπολογιστικού φύλλου OpenDocument</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="OpenOffice Document" xml:space="preserve">
@@ -252,6 +264,7 @@
       </trans-unit>
       <trans-unit id="PDF/A File" xml:space="preserve">
         <source>PDF/A File</source>
+        <target state="translated">Αρχείο PDF/A</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Plain Text" xml:space="preserve">
@@ -286,6 +299,7 @@
       </trans-unit>
       <trans-unit id="Presentation template" xml:space="preserve">
         <source>Presentation template</source>
+        <target state="translated">Πρότυπο παρουσίασης</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Quit %@" xml:space="preserve">
@@ -305,10 +319,12 @@
       </trans-unit>
       <trans-unit id="Save" xml:space="preserve">
         <source>Save</source>
+        <target state="translated">Αποθήκευση</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Save the document?" xml:space="preserve">
         <source>Save the document?</source>
+        <target state="translated">Αποθήκευση του εγγράφου;</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Spreadsheet %ld.xlsx" xml:space="preserve">
@@ -318,6 +334,7 @@
       </trans-unit>
       <trans-unit id="Spreadsheet template" xml:space="preserve">
         <source>Spreadsheet template</source>
+        <target state="translated">Πρότυπο υπολογιστικού φύλλου</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Thank you for evaluating %@!" xml:space="preserve">
@@ -327,10 +344,12 @@
       </trans-unit>
       <trans-unit id="The document &quot;%@&quot; must be built. Continue?" xml:space="preserve">
         <source>The document "%@" must be built. Continue?</source>
+        <target state="translated">Το έγγραφο «%@» πρέπει να είναι δημιουργημένο. Συνέχεια;</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="To open the file location, it must be saved." xml:space="preserve">
         <source>To open the file location, it must be saved.</source>
+        <target state="translated">Για να ανοίξει η θέση του αρχείου, πρέπει να αποθηκευτεί το αρχείο.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Unconfirmed" xml:space="preserve">
@@ -345,6 +364,7 @@
       </trans-unit>
       <trans-unit id="Version %@ (%@)" xml:space="preserve">
         <source>Version %1$@ (%2$@)</source>
+        <target state="translated">Έκδοση %1$@ (%2$@)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Web Page" xml:space="preserve">
@@ -413,14 +433,17 @@ We have a special offer for you.</source>
       </trans-unit>
       <trans-unit id="new-document" xml:space="preserve">
         <source>New Document</source>
+        <target state="translated">Νέο έγγραφο</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="new-presentation" xml:space="preserve">
         <source>New Presentation</source>
+        <target state="translated">Νέα παρουσίαση</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="new-spreadsheet" xml:space="preserve">
         <source>New Spreadsheet</source>
+        <target state="translated">Νέο υπολογιστικό φύλλο</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
     </body>
@@ -1314,10 +1337,12 @@ The trial period will end in %d days, after that you will not be able to create 
     <body>
       <trans-unit id="CFBundleName" xml:space="preserve">
         <source>ONLYOFFICE</source>
+        <target state="translated">ONLYOFFICE</target>
         <note>Bundle name</note>
       </trans-unit>
       <trans-unit id="NSHumanReadableCopyright" xml:space="preserve">
         <source>Copyright © 2020 Ascensio System SIA. All rights reserved.</source>
+        <target state="translated">Πνευματικά δικαιώματα © 2020 Ascensio System SIA. Με την επιφύλαξη παντός δικαιώματος.</target>
         <note>Copyright (human-readable)</note>
       </trans-unit>
     </body>

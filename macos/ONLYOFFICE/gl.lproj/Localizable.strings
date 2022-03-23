@@ -1,0 +1,231 @@
+/* No comment provided by engineer. */
+"%@ Help" = "%@ Axuda";
+
+/* No comment provided by engineer. */
+"About %@" = "Sobre %@";
+
+/* No comment provided by engineer. */
+"Acknowledgments" = "Agradecementos";
+
+/* No comment provided by engineer. */
+"Before signing the document, it must be saved." = "Antes de asinar o documento, debe gardarse.";
+
+/* No comment provided by engineer. */
+"Cancel" = "Cancelar";
+
+/* No comment provided by engineer. */
+"Cannot open file of Digital Signature" = "Non pode abrir o ficheiro da Sinatura Dixital";
+
+/* No comment provided by engineer. */
+"Cannot open file of Private Key" = "Non pode abrir o ficheiro da Clave Privada";
+
+/* No comment provided by engineer. */
+"Cannot open folder of the file location." = "Non pode abrir o cartafol da ubicación do ficheiro.";
+
+/* No comment provided by engineer. */
+"Comma-Separated Values" = "Valores separados por comas";
+
+/* No comment provided by engineer. */
+"Create portal" = "Crear portal";
+
+/* No comment provided by engineer. */
+"Delete and Quit" = "Eliminar e saír";
+
+/* No comment provided by engineer. */
+"DjVu File" = "Ficheiro DjVu";
+
+/* No comment provided by engineer. */
+"Do you want to save the changes made to the document \"%@\"?" = "Tes a certeza de querer gardar os cambios feitos ao documento “%@”?";
+
+/* No comment provided by engineer. */
+"Document %ld.docx" = "Documento %ld.docx";
+
+/* No comment provided by engineer. */
+"Document template" = "Modelo do documento";
+
+/* No comment provided by engineer. */
+"Electronic Publication" = "Publicación electrónica";
+
+/* No comment provided by engineer. */
+"Excel 97-2003 Spreadsheet" = "Folla de cálculo de Excel 97-2003";
+
+/* No comment provided by engineer. */
+"Excel 2007 Spreadsheet" = "Folla de cálculo de Excel 2007";
+
+/* No comment provided by engineer. */
+"FictionBook File" = "Ficheiro de libros de ficción";
+
+/* No comment provided by engineer. */
+"File \"%@\" can not be open or not exist." = "O ficheiro “%@” non se pode abrir ou non existe.";
+
+/* No comment provided by engineer. */
+"File can not be open." = "O ficheiro non se pode abrir.";
+
+/* No comment provided by engineer. */
+"File Format:" = "Formato do ficheiro:";
+
+/* No comment provided by engineer. */
+"Hide %@" = "Agochar %@";
+
+/* No comment provided by engineer. */
+"HTML File" = "Ficheiro HTML";
+
+/* No comment provided by engineer. */
+"If you don't review your documents, all your changeses will be lost." = "Se non revisa os seus documentos, perderanse todos os seus cambios.";
+
+/* No comment provided by engineer. */
+"If you have already purchased %@, you should find your activation key in an email confirmation." = "Se xa comprou o %@, debería atopar a súa clave de activación nun correo electrónico de confirmación.";
+
+/* No comment provided by engineer. */
+"License Agreement" = "Acordo da licenza";
+
+/* No comment provided by engineer. */
+"MHT File" = "Ficheiro MHT";
+
+/* No comment provided by engineer. */
+"Mobipocket e-book" = "Libro electrónico Mobipocket";
+
+/* No comment provided by engineer. */
+"new-document" = "Novo documento";
+
+/* No comment provided by engineer. */
+"new-presentation" = "Nova presentación";
+
+/* No comment provided by engineer. */
+"new-spreadsheet" = "Nova folla de cálculo";
+
+/* No comment provided by engineer. */
+"No" = "Non";
+
+/* No comment provided by engineer. */
+"OK" = "Vale";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE can not open the Digital Signature file. Try opening another file." = "ONLYOFFICE non pode abrir o ficheiro de Sinaturas Dixitais. Intenta abrir outro ficheiro.";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE can not open the Private Key. Try opening another file." = "ONLYOFFICE non pode abrir a Clave Privada. Intenta abrir outro ficheiro.";
+
+/* No comment provided by engineer. */
+"OpenDocument Document Template" = "Modelo de documento OpenDocument";
+
+/* No comment provided by engineer. */
+"OpenDocument Presentation Template" = "Modelo de presentación OpenDocument";
+
+/* No comment provided by engineer. */
+"OpenDocument Spreadsheet Template" = "Modelo de folla de cálculo OpenDocument";
+
+/* No comment provided by engineer. */
+"Opening" = "Abrindo";
+
+/* No comment provided by engineer. */
+"OpenOffice Document" = "Documento OpenOffice";
+
+/* No comment provided by engineer. */
+"OpenOffice Presentation" = "Presentación OpenOffice";
+
+/* No comment provided by engineer. */
+"OpenOffice Spreadsheet" = "Folla de cálculo OpenOffice";
+
+/* No comment provided by engineer. */
+"PDF File" = "Ficheiro PDF";
+
+/* No comment provided by engineer. */
+"PDF/A File" = "Ficheiro PDF/A";
+
+/* No comment provided by engineer. */
+"Plain Text" = "Texto plano";
+
+/* No comment provided by engineer. */
+"PowerPoint 97-2003 Presentation" = "Presentación PowerPoint 97-2003";
+
+/* No comment provided by engineer. */
+"PowerPoint 2007 Presentation" = "Presentación PowerPoint 2007";
+
+/* No comment provided by engineer. */
+"PowerPoint Slide Show" = "Presentación de diapositivas de PowerPoint";
+
+/* No comment provided by engineer. */
+"Preparing..." = "Preparando…";
+
+/* No comment provided by engineer. */
+"Presentation %ld.pptx" = "Presentación %ld.pptx";
+
+/* No comment provided by engineer. */
+"Presentation template" = "Modelo da presentación";
+
+/* No comment provided by engineer. */
+"Presenter View" = "Vista do presentador";
+
+/* No comment provided by engineer. */
+"Quit %@" = "Saír %@";
+
+/* No comment provided by engineer. */
+"Review Changes..." = "Revisar os cambios…";
+
+/* No comment provided by engineer. */
+"Rich Text Document" = "Documento de texto enriquecido";
+
+/* No comment provided by engineer. */
+"Save" = "Gardar";
+
+/* No comment provided by engineer. */
+"Save the document?" = "Gardar o documento?";
+
+/* No comment provided by engineer. */
+"Spreadsheet %ld.xlsx" = "Folla de cálculo %ld.xlsx";
+
+/* No comment provided by engineer. */
+"Spreadsheet template" = "Modelo de folla de cálculo";
+
+/* No comment provided by engineer. */
+"Thank you for evaluating %@!" = "Grazas por avaliar %@!";
+
+/* No comment provided by engineer. */
+"The document \"%@\" must be built. Continue?" = "O documento “%@” debe construírse. Continuar?";
+
+/* No comment provided by engineer. */
+"To open the file location, it must be saved." = "Para abrir a ubicación dun ficheiro, debe primeiro estar gardado.";
+
+/* No comment provided by engineer. */
+"Unconfirmed" = "Sen confirmar";
+
+/* No comment provided by engineer. */
+"Untitled" = "Sen título";
+
+/* No comment provided by engineer. */
+"Version %@ (%@)" = "Versión %1$@ (%2$@)";
+
+/* No comment provided by engineer. */
+"Web Page" = "Páxina web";
+
+/* No comment provided by engineer. */
+"With access to pro features" = "Con acceso a características profesionais";
+
+/* No comment provided by engineer. */
+"Word 97-2003 Document" = "Documento Word 97-2003";
+
+/* No comment provided by engineer. */
+"Word 2007 Document" = "Documento Word 2007";
+
+/* No comment provided by engineer. */
+"XML Paper Specification" = "Especificación do papel XML";
+
+/* No comment provided by engineer. */
+"Yes" = "Si";
+
+/* No comment provided by engineer. */
+"You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?" = "Tes %1$ld %2$@ documentos con cambios sen gardar. Queres revisar eses cambios antes de saír?";
+
+/* No comment provided by engineer. */
+"You have successfully activated %@." = "Activaches correctamente o %@.";
+
+/* No comment provided by engineer. */
+"Your changes will be lost if you don’t save them." = "Perderanse os cambios se non os gardas.";
+
+/* No comment provided by engineer. */
+"Your subscription has expired.\n\nThe program works in the non-activated mode.\n\nNow you can prolong or upgrade your subscription with a discount." = "A túa subscrición expirou.\n\nO programa traballa no modo non-activado.\n\nAgora, podes prolongar ou actualizar a túa subscrición cun desconto.";
+
+/* No comment provided by engineer. */
+"Your subscription is about to expire\n(%d days left).\n\nWe have a special offer for you." = "A túa subscrición está a piques de expirar\n(faltan %d días).\n\nTemos unha oferta especial para ti.";
+

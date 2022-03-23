@@ -1,0 +1,213 @@
+/* No comment provided by engineer. */
+"%@ Help" = "Bantuan %@";
+
+/* No comment provided by engineer. */
+"About %@" = "Tentang %@";
+
+/* No comment provided by engineer. */
+"Acknowledgments" = "Pernyataan";
+
+/* No comment provided by engineer. */
+"Before signing the document, it must be saved." = "Sebelum menandatangani dokumen, dokumen harus disimpan.";
+
+/* No comment provided by engineer. */
+"Cancel" = "Batal";
+
+/* No comment provided by engineer. */
+"Cannot open file of Digital Signature" = "Tidak dapat membuka file Tanda Tangan Digital";
+
+/* No comment provided by engineer. */
+"Cannot open file of Private Key" = "Tidak dapat membuka file Kunci Pribadi";
+
+/* No comment provided by engineer. */
+"Cannot open folder of the file location." = "Tidak dapat membuka folder lokasi file.";
+
+/* No comment provided by engineer. */
+"Comma-Separated Values" = "Nilai Koma Terpisah";
+
+/* No comment provided by engineer. */
+"Create portal" = "Buat portal";
+
+/* No comment provided by engineer. */
+"Delete and Quit" = "Hapus dan Keluar";
+
+/* No comment provided by engineer. */
+"DjVu File" = "File DjVu";
+
+/* No comment provided by engineer. */
+"Do you want to save the changes made to the document \"%@\"?" = "Simpan perubahan pada dokumen \"%@\"?";
+
+/* No comment provided by engineer. */
+"Document %ld.docx" = "Dokumen %ld.docx";
+
+/* No comment provided by engineer. */
+"Document template" = "Templat dokumen";
+
+/* No comment provided by engineer. */
+"Excel 97-2003 Spreadsheet" = "Lembar bentang Excel 97-2003";
+
+/* No comment provided by engineer. */
+"Excel 2007 Spreadsheet" = "Lembar bentang Excel 2007";
+
+/* No comment provided by engineer. */
+"File \"%@\" can not be open or not exist." = "File \"%@\" tidak dapat dibuka atau tidak ada.";
+
+/* No comment provided by engineer. */
+"File can not be open." = "File tidak dapat dibuka.";
+
+/* No comment provided by engineer. */
+"File Format:" = "Format File:";
+
+/* No comment provided by engineer. */
+"Hide %@" = "Sembunyikan %@";
+
+/* No comment provided by engineer. */
+"If you don't review your documents, all your changeses will be lost." = "Jika Anda tidak meninjau dokumen, semua perubahan akan hilang.";
+
+/* No comment provided by engineer. */
+"If you have already purchased %@, you should find your activation key in an email confirmation." = "Jika Anda telah membeli %@, Anda akan mendapatkan kunci aktivasi di email konfirmasi.";
+
+/* No comment provided by engineer. */
+"License Agreement" = "Perjanjian Lisensi";
+
+/* No comment provided by engineer. */
+"Mobipocket e-book" = "E-book mobipocket";
+
+/* No comment provided by engineer. */
+"new-document" = "Dokumen Baru";
+
+/* No comment provided by engineer. */
+"new-presentation" = "Presentasi Baru";
+
+/* No comment provided by engineer. */
+"new-spreadsheet" = "Lembar Bentang Baru";
+
+/* No comment provided by engineer. */
+"No" = "Tidak";
+
+/* No comment provided by engineer. */
+"OK" = "OK";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE can not open the Digital Signature file. Try opening another file." = "ONLYOFFICE tidak dapat membuka file Tanda Tangan Digital. Coba buka file lain.";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE can not open the Private Key. Try opening another file." = "ONLYOFFICE tidak dapat membuka Kunci Pribadi. Coba buka file lain.";
+
+/* No comment provided by engineer. */
+"OpenDocument Document Template" = "Templat Dokumen OpenDocument";
+
+/* No comment provided by engineer. */
+"OpenDocument Presentation Template" = "Templat Presentasi OpenDocument";
+
+/* No comment provided by engineer. */
+"OpenDocument Spreadsheet Template" = "Templat Lembar Bentang OpenDocument";
+
+/* No comment provided by engineer. */
+"Opening" = "Membuka";
+
+/* No comment provided by engineer. */
+"OpenOffice Document" = "Dokumen OpenOffice";
+
+/* No comment provided by engineer. */
+"OpenOffice Presentation" = "Presentasi OpenOffice";
+
+/* No comment provided by engineer. */
+"OpenOffice Spreadsheet" = "Lembar Bentang OpenOffice";
+
+/* No comment provided by engineer. */
+"PDF File" = "File PDF";
+
+/* No comment provided by engineer. */
+"PDF/A File" = "File PDF/A ";
+
+/* No comment provided by engineer. */
+"Plain Text" = "Teks Biasa";
+
+/* No comment provided by engineer. */
+"PowerPoint 97-2003 Presentation" = "Presentasi PowerPoint 97-2003";
+
+/* No comment provided by engineer. */
+"PowerPoint 2007 Presentation" = "Presentasi PowerPoint 2007";
+
+/* No comment provided by engineer. */
+"PowerPoint Slide Show" = "Peragaan Slide PowerPoint";
+
+/* No comment provided by engineer. */
+"Preparing..." = "Menyiapkan...";
+
+/* No comment provided by engineer. */
+"Presentation %ld.pptx" = "Presentasi %ld.pptx";
+
+/* No comment provided by engineer. */
+"Presentation template" = "Templat presentasi";
+
+/* No comment provided by engineer. */
+"Quit %@" = "Keluar %@";
+
+/* No comment provided by engineer. */
+"Review Changes..." = "Peninjauan Berubah...";
+
+/* No comment provided by engineer. */
+"Rich Text Document" = "Dokumen Rich Text";
+
+/* No comment provided by engineer. */
+"Save" = "Simpan";
+
+/* No comment provided by engineer. */
+"Save the document?" = "Simpan dokumen?";
+
+/* No comment provided by engineer. */
+"Spreadsheet %ld.xlsx" = "Lembar Bentang %ld.xlsx";
+
+/* No comment provided by engineer. */
+"Spreadsheet template" = "Templat lembar bentang";
+
+/* No comment provided by engineer. */
+"Thank you for evaluating %@!" = "Terima kasih telah mengevaluasi %@!";
+
+/* No comment provided by engineer. */
+"The document \"%@\" must be built. Continue?" = "Dokumen \"%@\" harus dibuat. Lanjutkan?";
+
+/* No comment provided by engineer. */
+"To open the file location, it must be saved." = "Untuk membuka lokasi file, file harus disimpan.";
+
+/* No comment provided by engineer. */
+"Unconfirmed" = "Belum dikonfirmasi";
+
+/* No comment provided by engineer. */
+"Untitled" = "Tanpa Judul";
+
+/* No comment provided by engineer. */
+"Version %@ (%@)" = "Versi %1$@ (%2$@)";
+
+/* No comment provided by engineer. */
+"Web Page" = "Halaman Web";
+
+/* No comment provided by engineer. */
+"Word 97-2003 Document" = "Dokumen Word 97-2003";
+
+/* No comment provided by engineer. */
+"Word 2007 Document" = "Dokumen Word 2007";
+
+/* No comment provided by engineer. */
+"XML Paper Specification" = "Spesifikasi Kertas XML";
+
+/* No comment provided by engineer. */
+"Yes" = "Ya";
+
+/* No comment provided by engineer. */
+"You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?" = "Anda memiliki dokumen %1$ld %2$@ dengan perubahan yang belum dikonfirmasi. Tinjau perubahan ini sebelum keluar?";
+
+/* No comment provided by engineer. */
+"You have successfully activated %@." = "Anda telah berhasil mengaktifkan %@.";
+
+/* No comment provided by engineer. */
+"Your changes will be lost if you don’t save them." = "Perubahan akan hilang jika Anda tidak menyimpannya.";
+
+/* No comment provided by engineer. */
+"Your subscription has expired.\n\nThe program works in the non-activated mode.\n\nNow you can prolong or upgrade your subscription with a discount." = "Langganan Anda telah kedaluwarsa.\n\nProgram bekerja dalam mode nonaktif.\n\nSekarang Anda dapat memperpanjang atau meningkatkan langganan Anda dengan diskon.";
+
+/* No comment provided by engineer. */
+"Your subscription is about to expire\n(%d days left).\n\nWe have a special offer for you." = "Langganan Anda akan kedaluwarsa\n(%d hari tersisa).\n\nKami memiliki penawaran spesial untuk Anda.";
+

@@ -2122,7 +2122,7 @@ l10n.tr = {
     portalEmptyDescr: 'Belgelerinizi bulutta depolayın ve istediğiniz zaman, istediğiniz yerden erişin. Paylaşın ve onlar üzerinde ortak çalışın. Belgenizde sohbet edin, yorumlar ekleyin veya incelenmesi için paylaşın.',
     portalEmptyAdv1: 'Henüz bir bulut hesabınız yok mu? ONLYOFFICE bulut hizmeti ile çevrimiçi olun ve işbirliği imkanlarını ücretsiz deneyin.',
     portalListTitle: 'Bağlı bulutlar',
-    textNoFiles: ' işbirliği imkanlarını ücretsiz deneyin.',
+    textNoFiles: 'Burada dosya yok',
     listRecoveryTitle: 'Dosyaları kurtarın',
     listRecentFileTitle: 'Son dosyalar',
     listRecentDirTitle: 'Son klasörler',
@@ -2198,8 +2198,8 @@ l10n.tr = {
     ,settOptThemeClassicLight: 'Klasik Aydınlık'
     ,settOptThemeDark: 'Karanlık'
     ,settOptLaunchMode: 'Dosya aç'
-    ,settOptLaunchInTab: 'Sekmed'
-    ,settOptLaunchInWindow: 'Pencerede'
+    ,settOptLaunchInTab: 'Kendi sekmesinde'
+    ,settOptLaunchInWindow: 'Kendi penceresinde'
 }
 
 l10n.uk = {
