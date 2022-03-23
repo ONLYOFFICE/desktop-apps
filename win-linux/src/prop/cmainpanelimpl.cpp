@@ -93,6 +93,10 @@ void CMainPanelImpl::refreshAboutVersion()
     _json_obj["uitheme"] = QString::fromStdWString(AscAppManager::themes().current().id());
 #endif
 
+#ifdef Q_OS_WIN
+    _json_obj["spellcheckdetect"] = AscAppManager::userSettings(L"spell-check-input-mode") != L"0" ? "auto" : "off";
+#endif
+
     GET_REGISTRY_USER(reg_user);
     _json_obj["editorwindowmode"] = reg_user.value("editorWindowMode",false).toBool();
 

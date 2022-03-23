@@ -121,6 +121,17 @@
                                             </section>
                                         </div>
                                     </div>
+                                    <div class='settings-field' id="opts-spellcheck-mode" style='display:none;'>
+                                        <label class='sett__caption' l10n>${_lang.settSpellcheckDetection}</label>
+                                        <div class='sett--label-lift-top hbox'>
+                                            <section class='box-cmp-select'>
+                                                <select class='combobox'>
+                                                    <option value='auto' l10n>${_lang.settOptScalingAuto}</option>
+                                                    <option value='off' l10n>${_lang.settOptDisabled}</option>
+                                                </select>
+                                            </section>
+                                        </div>
+                                    </div>
                                     <!-- temporary elements section -->
                                     <div class='settings-field' style='display:none;'>
                                         <section class='switch-labeled hbox' id='sett-box-preview-mode'>
@@ -162,6 +173,7 @@
         let $optsLang,
             $optsUIScaling,
             $optsUITheme,
+            $optsSpellcheckMode,
             $optsLaunchMode;
 
         function _set_user_name(name) {
@@ -233,6 +245,11 @@
                 if ( $optsLaunchMode ) {
                     _new_settings.editorwindowmode = $optsLaunchMode.val() == 'inwindow';
                     $optsLaunchMode.selectpicker('refresh');
+                }
+
+                if ( $optsSpellcheckMode ) {
+                    _new_settings.spellcheckdetect = $optsSpellcheckMode.val();
+                    $optsSpellcheckMode.selectpicker('refresh');
                 }
 
                 sdk.command("settings:apply", JSON.stringify(_new_settings));
@@ -345,6 +362,14 @@
                         if ( opts.editorwindowmode !== undefined ) {
                             ($optsLaunchMode = ($('#opts-launch-mode', $panel).show().find('select')))
                             .val(opts.editorwindowmode ? 'inwindow' : 'intab')
+                            .selectpicker().on('change', e => {
+                                $btnApply.isdisabled() && $btnApply.disable(false);
+                            });
+                        }
+
+                        if ( opts.spellcheckdetect !== undefined ) {
+                            ($optsSpellcheckMode = ($('#opts-spellcheck-mode', $panel).show().find('select')))
+                            .val(opts.spellcheckdetect)
                             .selectpicker().on('change', e => {
                                 $btnApply.isdisabled() && $btnApply.disable(false);
                             });

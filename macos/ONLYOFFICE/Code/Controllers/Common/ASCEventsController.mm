@@ -632,6 +632,8 @@ public:
                                     if ([docopenMode isEqualToString:@"view"]) {
                                         [params addObject:[NSString stringWithFormat:@"mode=%@", @"view"]];
                                     }
+                                    [[NSUserDefaults standardUserDefaults] setObject:docopenMode forKey:@"asc_user_docOpenMode"];
+                                    [[NSUserDefaults standardUserDefaults] synchronize];
                                 }
 
                                 if (NSString * uiTheme = json[@"uitheme"]) {
