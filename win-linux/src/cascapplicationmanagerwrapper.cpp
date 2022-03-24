@@ -708,8 +708,8 @@ auto prepareMainWindow(const QRect& r = QRect()) -> CMainWindow * {
 
     QPointer<QCefView> _startPanel = AscAppManager::createViewer(nullptr);
     _startPanel->Create(&_app, cvwtSimple);
-    _startPanel->setObjectName("mainPanel");
-    _startPanel->resize(_start_rect.width(), _start_rect.height());
+    _startPanel->setObjectName("startPanel");
+    //_startPanel->resize(_start_rect.width(), _start_rect.height());
 
     CMainWindow * _window = new CMainWindow(_start_rect);
     _window->mainPanel()->attachStartPanel(_startPanel);
@@ -1185,7 +1185,8 @@ void CAscApplicationManagerWrapper::launchAppClose()
             DestroyCefView(-1);
 
             if ( m_pMainWindow ) {
-                closeQueue().leave(sWinTag{1,size_t(m_pMainWindow)});
+                m_pMainWindow->close();
+                //closeQueue().leave(sWinTag{1,size_t(m_pMainWindow)});
             }
         }
     } else {

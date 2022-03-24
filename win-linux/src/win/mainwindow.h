@@ -33,26 +33,28 @@
 #ifndef CMAINWINDOW_H
 #define CMAINWINDOW_H
 
-#include <windows.h>
-
-#include "cwinpanel.h"
+#include "framelesswindow.h"
+//#include "cwinpanel.h"
 #include "cmainpanelimpl.h"
-#include "qwinwidget.h"
+//#include "qwinwidget.h"
 #include "cwindowbase.h"
 #include "cmainwindowbase.h"
+#include <QShowEvent>
+#include <QCloseEvent>
+#include <QWindowStateChangeEvent>
 
 #include <QtWidgets/QApplication>
 
-class CMainWindow : public CMainWindowBase
+class CMainWindow : public CMainWindowBase, public CFramelessWindow
 {
 
 public:
     HWND                    hWnd;
-    HINSTANCE               hInstance;
+    //HINSTANCE               hInstance;
 
-    explicit CMainWindow(QRect&);
+    explicit CMainWindow(const QRect &rect = QRect());
     ~CMainWindow() override;
-    static LRESULT CALLBACK WndProc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam );
+    //static LRESULT CALLBACK WndProc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam );
     void show(bool);
     void hide();
     bool isVisible();
@@ -75,9 +77,9 @@ public:
     void applyTheme(const std::wstring&) override;
     void updateScaling() override;
 
-    CMainPanel * mainPanel() const;
-    QRect windowRect() const;
-    bool isMaximized() const;
+    CMainPanel * mainPanel() const override;
+    QRect windowRect() const override;
+    bool isMaximized() const override;
     HWND handle() const;
     void bringToTop() const override;
 
@@ -92,6 +94,9 @@ public:
 #endif
 
 private:
+    void showEvent(QShowEvent *event) override;
+    void closeEvent(QCloseEvent *event) override;
+    void changeEvent(QEvent *event) override;
     void captureMouse(int tabindex) override;
     void setScreenScalingFactor(double);
     void doClose();
@@ -110,7 +115,7 @@ private:
 #endif
 
 public:
-    CWinPanel * m_pWinPanel;
+    //CWinPanel * m_pWinPanel;
 
 private:
     bool closed;
@@ -129,6 +134,8 @@ private:
     HWND m_modalHwnd;
 
     QRect m_moveNormalRect;
+    QRect _window_rect;
+    bool m_windowActivated;
 };
 
 #endif

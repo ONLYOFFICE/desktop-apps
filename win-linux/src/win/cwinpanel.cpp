@@ -108,11 +108,11 @@ void CWinPanel::resizeEvent(QResizeEvent* event)
 {
     QWinWidget::resizeEvent(event);
 
-    if ( !m_pPanel && !children().isEmpty() ) {
+    /*if ( !m_pPanel && !children().isEmpty() ) {
         m_pPanel = findChild<QWidget *>();
     }
 
-    if ( m_pPanel ) m_pPanel->setGeometry(QRect(0, 0, event->size().width(), event->size().height()));
+    if ( m_pPanel ) m_pPanel->setGeometry(QRect(0, 0, event->size().width(), event->size().height()));*/
 }
 
 CMainWindow * CWinPanel::parent()

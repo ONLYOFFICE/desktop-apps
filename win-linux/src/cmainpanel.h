@@ -77,8 +77,8 @@ public:
     virtual void applyTheme(const std::wstring&);
     virtual void updateScaling(double);
 
-#ifdef __linux
     QWidget * getTitleWidget();
+#ifdef __linux
     void setMouseTracking(bool);
 #endif
 

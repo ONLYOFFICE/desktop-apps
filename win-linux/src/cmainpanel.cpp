@@ -121,7 +121,8 @@ CMainPanel::CMainPanel(QWidget *parent, bool isCustomWindow, double dpi_ratio)
     m_boxTitleBtns->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
     m_pMainGridLayout->addWidget(m_boxTitleBtns, 0, 2, 1, 1);
     QHBoxLayout * layoutBtns = new QHBoxLayout(m_boxTitleBtns);
-
+    QSpacerItem *spacer = new QSpacerItem(5, 5, QSizePolicy::Expanding, QSizePolicy::Preferred);
+    layoutBtns->addItem(spacer);
 #ifdef __DONT_WRITE_IN_APP_TITLE
     QLabel * label = new QLabel(m_boxTitleBtns);
 #else
@@ -155,15 +156,15 @@ CMainPanel::CMainPanel(QWidget *parent, bool isCustomWindow, double dpi_ratio)
         };
 
         // Minimize
-        m_pButtonMinimize = _creatToolButton("toolButtonMinimize", this);
+        m_pButtonMinimize = _creatToolButton("toolButtonMinimize", label);
         QObject::connect(m_pButtonMinimize, &QPushButton::clicked, this, &CMainPanel::pushButtonMinimizeClicked);
 
         // Maximize
-        m_pButtonMaximize = _creatToolButton("toolButtonMaximize", this);
+        m_pButtonMaximize = _creatToolButton("toolButtonMaximize", label);
         QObject::connect(m_pButtonMaximize, &QPushButton::clicked, this, &CMainPanel::pushButtonMaximizeClicked);
 
         // Close
-        m_pButtonClose = _creatToolButton("toolButtonClose", this);
+        m_pButtonClose = _creatToolButton("toolButtonClose", label);
         QObject::connect(m_pButtonClose, &QPushButton::clicked, this, &CMainPanel::pushButtonCloseClicked);
 
         layoutBtns->addWidget(m_pButtonMinimize);
@@ -222,12 +223,12 @@ void CMainPanel::attachStartPanel(QCefView * const view)
         m_pMainWidget->show();
 }
 
-#ifdef __linux
+
 QWidget * CMainPanel::getTitleWidget()
 {
     return m_boxTitleBtns;
 }
-
+#ifdef __linux
 void CMainPanel::setMouseTracking(bool enable)
 {
     QWidget::setMouseTracking(enable);
@@ -1322,3 +1323,4 @@ CTabBar *CMainPanel::tabBar()
 {
     return m_pTabBarWrapper->tabBar();
 }
+

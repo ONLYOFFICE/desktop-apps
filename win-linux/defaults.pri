@@ -223,7 +223,8 @@ core_windows {
                 $$PWD/src/win/cwinwindow.h \
                 $$PWD/src/win/csinglewindow.h \
                 $$PWD/src/win/csinglewindowplatform.h \
-                $$PWD/src/win/cprintdialog.h
+                $$PWD/src/win/cprintdialog.h \
+                $$PWD/src/win/framelesswindow.h
 
     SOURCES += $$PWD/src/win/mainwindow.cpp \
                 $$PWD/src/win/qwinwidget.cpp \
@@ -232,7 +233,8 @@ core_windows {
                 $$PWD/src/win/cwinwindow.cpp \
                 $$PWD/src/win/csinglewindow.cpp \
                 $$PWD/src/win/csinglewindowplatform.cpp \
-                $$PWD/src/win/cprintdialog.cpp
+                $$PWD/src/win/cprintdialog.cpp \
+                $$PWD/src/win/framelesswindow.cpp
 
     LIBS += -lwininet \
             -ldnsapi \
@@ -260,8 +262,8 @@ core_windows {
             -lcredui \
             -lnetapi32 \
             -lcomctl32 \
-            -lrpcrt4
-#            -ldwmapi
+            -lrpcrt4 \
+            -ldwmapi
 #            -lOpenGL32
 
     build_xp {
