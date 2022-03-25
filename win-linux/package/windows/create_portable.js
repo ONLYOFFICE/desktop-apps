@@ -7,5 +7,5 @@ var generateEvb = require('generate-evb');
 
 generateEvb('DesktopEditorsPortable.evb',
             '../../../../build_tools/out/' + PLATFORM + '/' + ORG + '/' + PACKAGE + '/DesktopEditors.exe',
-            'DesktopEditorsPortable.exe',
+            'portable/DesktopEditorsPortable.exe',
             '../../../../build_tools/out/' + PLATFORM + '/' + ORG + '/' + PACKAGE);
