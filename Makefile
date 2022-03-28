@@ -42,7 +42,7 @@ QT_PLUGINS ?= $(QT_PATH)/plugins
 
 END2END_ENCRYPT ?= false
 
-UNAME_M := $(shell uname -m)
+UNAME_M ?= $(shell uname -m)
 ifeq ($(UNAME_M),x86_64)
 	ARCHITECTURE := 64
 	WIN_ARCH := x64
