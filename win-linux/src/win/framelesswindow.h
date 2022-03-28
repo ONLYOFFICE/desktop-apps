@@ -9,6 +9,14 @@
 #include <QMargins>
 #include <QRect>
 
+#include <QDebug>
+#include <windowsx.h>
+#include <dwmapi.h>
+#include <objidl.h>
+//#include <gdiplus.h>
+//#include <GdiPlusColor.h>
+#pragma comment (lib,"Dwmapi.lib")
+#pragma comment (lib,"user32.lib")
 
 class CFramelessWindow : public QMainWindow
 {
