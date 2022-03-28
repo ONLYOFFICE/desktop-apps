@@ -37,19 +37,80 @@
 #include <QWindow>
 //#include <QObject>
 #include <QMouseEvent>
+#include <QTimer>
 #include <Windows.h>
+//#include <QDebug>
+
 
 class Caption: public QWidget
 {
     //Q_OBJECT
 public:
     Caption(QWidget *parent = Q_NULLPTR, Qt::WindowFlags f = Qt::WindowFlags()):
-        QWidget(parent, f)
-    {}
+        QWidget(parent, f),
+        m_code(0)
+    {
+        installEventFilter(this);
+        _pTimer = new QTimer(this);
+        _pTimer->setSingleShot(true);
+        _pTimer->setInterval(250);
+        connect(_pTimer, &QTimer::timeout, this, [this]() {
+            HWND hWnd = ::GetAncestor((HWND)(window()->windowHandle()->winId()), GA_ROOT);
+            POINT pt;
+            ::GetCursorPos(&pt);
+            ::ReleaseCapture();
+            if (m_code == 1) {
+                ::SendMessage(hWnd, WM_NCLBUTTONDOWN, HTCAPTION, POINTTOPOINTS(pt));
+            } else
+            if (m_code == 2) {
+                ::SendMessage(hWnd, WM_NCLBUTTONDBLCLK, HTCAPTION, POINTTOPOINTS(pt));
+            }
+        });
+    }
 
-    void mousePressEvent(QMouseEvent* event) override
+private:
+    int m_code;
+    QTimer *_pTimer;
+    bool eventFilter(QObject *object, QEvent *event) override
+    {
+        if (event->type() == QEvent::MouseButtonPress) {
+            QMouseEvent *mouseEvent = static_cast<QMouseEvent*>(event);
+            if (mouseEvent->buttons().testFlag(Qt::LeftButton)) {
+                //qDebug() << "Press";
+                m_code = 1;
+                _pTimer->stop();
+                _pTimer->start();
+                return true;
+            }
+
+        } else
+        if (event->type() == QEvent::MouseButtonDblClick) {
+            QMouseEvent *mouseEvent = static_cast<QMouseEvent*>(event);
+            if (mouseEvent->buttons().testFlag(Qt::LeftButton)) {
+                //qDebug() << "DbClick";
+                m_code = 2;
+                _pTimer->stop();
+                _pTimer->start();
+                return true;
+            }
+
+        } /*else
+        if (event->type() == QEvent::MouseButtonRelease) {
+            QMouseEvent *mouseEvent = static_cast<QMouseEvent*>(event);
+            if (mouseEvent->buttons().testFlag(Qt::LeftButton)) {
+                //qDebug() << "Release";
+                //_pTimer->stop();
+                //_pTimer->start();
+                //return true;
+            }
+        }*/
+        return QWidget::eventFilter(object, event);
+    }
+
+    /*void mousePressEvent(QMouseEvent* event) override
     {
         if (event->buttons().testFlag(Qt::LeftButton)) {
+            qDebug() << "Press";
             HWND hWnd = ::GetAncestor((HWND)(window()->windowHandle()->winId()), GA_ROOT);
             POINT pt;
             ::GetCursorPos(&pt);
@@ -62,6 +123,7 @@ public:
     void mouseDoubleClickEvent(QMouseEvent *event) override
     {
         if (event->buttons().testFlag(Qt::LeftButton)) {
+            qDebug() << "DbClick";
             HWND hWnd = ::GetAncestor((HWND)(window()->windowHandle()->winId()), GA_ROOT);
             POINT pt;
             ::GetCursorPos(&pt);
@@ -69,7 +131,8 @@ public:
             ::SendMessage(hWnd, WM_NCLBUTTONDBLCLK, HTCAPTION, POINTTOPOINTS(pt));
         }
         //QWidget::mouseDoubleClickEvent(event);
-    }
+    }*/
+
 
 };
 
