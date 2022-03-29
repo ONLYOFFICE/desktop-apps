@@ -53,7 +53,7 @@ public:
         installEventFilter(this);
         _pTimer = new QTimer(this);
         _pTimer->setSingleShot(true);
-        _pTimer->setInterval(250);
+        _pTimer->setInterval(240);
         connect(_pTimer, &QTimer::timeout, this, [this]() {
             HWND hWnd = ::GetAncestor((HWND)(window()->windowHandle()->winId()), GA_ROOT);
             POINT pt;
@@ -75,7 +75,7 @@ private:
     {
         if (event->type() == QEvent::MouseButtonPress) {
             QMouseEvent *mouseEvent = static_cast<QMouseEvent*>(event);
-            if (mouseEvent->buttons().testFlag(Qt::LeftButton)) {
+            if (mouseEvent->button() == Qt::LeftButton) {
                 //qDebug() << "Press";
                 m_code = 1;
                 _pTimer->stop();
@@ -86,7 +86,7 @@ private:
         } else
         if (event->type() == QEvent::MouseButtonDblClick) {
             QMouseEvent *mouseEvent = static_cast<QMouseEvent*>(event);
-            if (mouseEvent->buttons().testFlag(Qt::LeftButton)) {
+            if (mouseEvent->button() == Qt::LeftButton) {
                 //qDebug() << "DbClick";
                 m_code = 2;
                 _pTimer->stop();
@@ -97,7 +97,7 @@ private:
         } /*else
         if (event->type() == QEvent::MouseButtonRelease) {
             QMouseEvent *mouseEvent = static_cast<QMouseEvent*>(event);
-            if (mouseEvent->buttons().testFlag(Qt::LeftButton)) {
+            if (mouseEvent->button() == Qt::LeftButton) {
                 //qDebug() << "Release";
                 //_pTimer->stop();
                 //_pTimer->start();
