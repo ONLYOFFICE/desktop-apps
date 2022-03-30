@@ -163,7 +163,7 @@ CMainWindow::CMainWindow(const QRect &rect) :
     QObject::connect(&AscAppManager::getInstance().commonEvents(), &CEventDriver::onModalDialog, bind(&CMainWindow::slot_modalDialog, this, _1, _2));
 
     //m_pWinPanel->show();
-    setTitleBar(mainpanel->getTitleWidget());
+    //setTitleBar(mainpanel->getTitleWidget());
 }
 
 CMainWindow::~CMainWindow()
