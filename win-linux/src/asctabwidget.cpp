@@ -1204,7 +1204,7 @@ void CAscTabWidget::setStyleSheet(const QString& stylesheet)
 
     r.setPattern("QTabBar::tab-icon\\s*\\{([^\\}]+)");
     if ( !(r.indexIn(stylesheet) < 0) ) {
-        QRegExp ri("width:\\s*(\\d+);\\s*height:(\\d+)");
+        QRegExp ri("width:\\s*(\\d+);\\s*height:\\s*(\\d+)");
 
         if ( !(ri.indexIn(r.cap(1)) < 0) ) {
             m_tabIconSize.setWidth(ri.cap(1).toInt());
