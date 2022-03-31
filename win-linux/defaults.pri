@@ -224,7 +224,7 @@ core_windows {
                 $$PWD/src/win/csinglewindow.h \
                 $$PWD/src/win/csinglewindowplatform.h \
                 $$PWD/src/win/cprintdialog.h \
-                $$PWD/src/win/framelesswindow.h \
+                $$PWD/src/win/cframelesswindow.h \
                 $$PWD/src/win/caption.h
 
     SOURCES += $$PWD/src/win/mainwindow.cpp \
@@ -234,8 +234,8 @@ core_windows {
                 $$PWD/src/win/cwinwindow.cpp \
                 $$PWD/src/win/csinglewindow.cpp \
                 $$PWD/src/win/csinglewindowplatform.cpp \
-                $$PWD/src/win/cprintdialog.cpp \
-                $$PWD/src/win/framelesswindow.cpp
+                $$PWD/src/win/cframelesswindow.cpp \
+                $$PWD/src/win/cprintdialog.cpp
 
     LIBS += -lwininet \
             -ldnsapi \

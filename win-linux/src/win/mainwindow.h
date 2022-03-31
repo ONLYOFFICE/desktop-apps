@@ -33,7 +33,7 @@
 #ifndef CMAINWINDOW_H
 #define CMAINWINDOW_H
 
-#include "framelesswindow.h"
+#include "cframelesswindow.h"
 //#include "cwinpanel.h"
 #include "cmainpanelimpl.h"
 //#include "qwinwidget.h"

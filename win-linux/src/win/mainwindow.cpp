@@ -163,7 +163,6 @@ CMainWindow::CMainWindow(const QRect &rect) :
     QObject::connect(&AscAppManager::getInstance().commonEvents(), &CEventDriver::onModalDialog, bind(&CMainWindow::slot_modalDialog, this, _1, _2));
 
     //m_pWinPanel->show();
-    //setTitleBar(mainpanel->getTitleWidget());
 }
 
 CMainWindow::~CMainWindow()
@@ -197,7 +196,7 @@ void CMainWindow::showEvent(QShowEvent *event)
         m_windowActivated = true;
         setGeometry(_window_rect);
         int border_size = int(MAIN_WINDOW_BORDER_WIDTH * m_dpiRatio);
-        setContentsMargins(border_size, border_size, border_size, border_size);
+        setContentsMargins(border_size, border_size + 1, border_size, border_size);
         COLORREF color = AscAppManager::themes().current().colorRef(CTheme::ColorRole::ecrWindowBackground);
         setStyleSheet(QString("background-color: rgb(%1,%2,%3)").arg(QString::number(GetRValue(color)),
                                                                      QString::number(GetGValue(color)),
@@ -769,7 +768,7 @@ void CMainWindow::adjustGeometry()
                                                     clientRect.bottom - (nMaxOffsetY + nMaxOffsetB + 2 * border_size));*/
     //} else {
         border_size = int(MAIN_WINDOW_BORDER_WIDTH * m_dpiRatio);
-        setContentsMargins(border_size,border_size,border_size,border_size);
+        setContentsMargins(border_size,border_size + 1,border_size,border_size);
         // TODO: вот тут бордер!!!
         /*m_pWinPanel->setGeometry(border_size, border_size,
                             clientRect.right - 2 * border_size, clientRect.bottom - 2 * border_size);*/
