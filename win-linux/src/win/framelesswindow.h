@@ -35,10 +35,6 @@ public:
 
 protected:
     void setTitleBar(QWidget* titlebar);
-
-    //generally, we can add widget say "label1" on titlebar, and it will cover the titlebar under it
-    //as a result, we can not drag and move the MainWindow with this "label1" again
-    //we can fix this by add "label1" to a ignorelist, just call addIgnoreWidget(label1)
     void addIgnoreWidget(QWidget* widget);
     bool nativeEvent(const QByteArray &eventType, void *message, long *result);
 
@@ -50,6 +46,8 @@ private:
     QMargins m_frames;
     bool m_bJustMaximized;
     bool m_bResizeable;
+    bool m_taskBarClicked;
+    Qt::WindowStates m_previousState;
 
 public slots:
     void showFullScreen();

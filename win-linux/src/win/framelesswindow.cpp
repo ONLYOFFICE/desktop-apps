@@ -14,7 +14,9 @@ CFramelessWindow::CFramelessWindow(QWidget *parent) :
     m_margins(QMargins()),
     m_frames(QMargins()),
     m_bJustMaximized(false),
-    m_bResizeable(true)
+    m_bResizeable(true),
+    m_taskBarClicked(false),
+    m_previousState(Qt::WindowNoState)
 {
     setWindowFlags(windowFlags() | Qt::Window | Qt::FramelessWindowHint | Qt::WindowSystemMenuHint);
     setResizeable(m_bResizeable);
@@ -82,12 +84,25 @@ bool CFramelessWindow::nativeEvent(const QByteArray &eventType, void *message, l
 
     switch (msg->message)
     {
+    case WM_ACTIVATE : {
+        //qDebug() << "Activate...";
+        break;
+    }
+    case WM_SYSCOMMAND: {
+        if (GET_SC_WPARAM(msg->wParam) == 61728 || GET_SC_WPARAM(msg->wParam) == 61472) {
+            m_taskBarClicked = true;
+        }
+        break;
+    }
     case WM_NCCALCSIZE: {
         NCCALCSIZE_PARAMS& params = *reinterpret_cast<NCCALCSIZE_PARAMS*>(msg->lParam);
-        if (params.rgrc[0].top != 0)
-            params.rgrc[0].top -= 1;
-        //this kills the window frame and title bar we added with WS_THICKFRAME and WS_CAPTION
-        *result = WVR_REDRAW;
+        if (params.rgrc[0].top != 0) params.rgrc[0].top -= 1;
+        Qt::WindowStates _currentState = windowState();
+        if ((m_previousState == Qt::WindowNoState && _currentState == Qt::WindowNoState)
+                && !m_taskBarClicked) {
+            *result = WVR_REDRAW;
+        } else m_taskBarClicked = false;
+        m_previousState = _currentState;
         return true;
     }
 
