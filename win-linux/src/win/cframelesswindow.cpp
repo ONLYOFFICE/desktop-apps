@@ -177,10 +177,10 @@ bool CFramelessWindow::nativeEvent(const QByteArray &eventType, void *message, l
             RECT frame = { 0, 0, 0, 0 };
             AdjustWindowRectEx(&frame, WS_OVERLAPPEDWINDOW, FALSE, 0);
             double dpr = this->devicePixelRatioF();
-            m_frames.setLeft(int(abs(frame.left)/dpr + 0.5));
-            m_frames.setTop(int(abs(frame.bottom)/dpr + 0.5));
-            m_frames.setRight(int(abs(frame.right)/dpr + 0.5));
-            m_frames.setBottom(int(abs(frame.bottom)/dpr + 0.5));
+            m_frames.setLeft(int(double(abs(frame.left))/dpr + 0.5));
+            m_frames.setTop(int(double(abs(frame.bottom))/dpr + 0.5));
+            m_frames.setRight(int(double(abs(frame.right))/dpr + 0.5));
+            m_frames.setBottom(int(double(abs(frame.bottom))/dpr + 0.5));
             QMainWindow::setContentsMargins(m_frames.left() + m_margins.left(),
                                             m_frames.top() + m_margins.top(),
                                             m_frames.right() + m_margins.right(),
