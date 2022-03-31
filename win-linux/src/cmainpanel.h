@@ -55,7 +55,7 @@ class CMainPanel : public QWidget, public CScalingWrapper
 
 public:
     explicit CMainPanel(QWidget *parent, bool isCustomWindow, double scale);
-
+    virtual ~CMainPanel();
     void applyMainWindowState(Qt::WindowState);
 
     void goStart();

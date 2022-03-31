@@ -208,6 +208,11 @@ CMainPanel::CMainPanel(QWidget *parent, bool isCustomWindow, double dpi_ratio)
     m_pTabs->setCustomWindowParams(isCustomWindow);
 }
 
+CMainPanel::~CMainPanel()
+{
+    delete m_printData, m_printData = nullptr;
+}
+
 void CMainPanel::attachStartPanel(QCefView * const view)
 {
     m_pMainWidget = qobject_cast<QWidget *>(view);
