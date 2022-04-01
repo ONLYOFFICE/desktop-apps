@@ -1620,7 +1620,7 @@ begin
   end;
 
   GetWindowsVersionEx(version);
-  if (version.Major = 10) and CheckCommandlineParam('/FORCEADDMENUNEW') then begin
+  if version.Major = 10 then begin
     RegWriteStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.docx', '', '{#ASCC_REG_PREFIX}.Document.12')
     RegWriteStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.xlsx', '', '{#ASCC_REG_PREFIX}.Sheet.12')
     RegWriteStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.pptx', '', '{#ASCC_REG_PREFIX}.Show.12')
