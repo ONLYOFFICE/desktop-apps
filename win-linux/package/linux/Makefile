@@ -189,6 +189,14 @@ apt-rpm: $(APT_RPM)
 
 urpmi: $(URPMI)
 
+rpm_aarch64 : ARCHITECTURE = arm64
+	SRC += ../../../../build_tools/out/linux_$(ARCHITECTURE)/$(DESKTOPEDITORS_PREFIX)
+ifneq ($(COMPANY_NAME), ONLYOFFICE)
+	SRC += ../../../../build_tools/out/linux_$(ARCHITECTURE)/$(MEDIAVIEWER_PREFIX)
+endif
+rpm_aarch64 : RPM_ARCH = aarch64
+rpm_aarch64 : $(RPM)
+
 installer: $(INSTALLER)
 
 PACKAGES += deb rpm apt-rpm urpmi tar
@@ -259,9 +267,10 @@ qt-redist:
 		# $(USR_LIB_X64)/libicuuc.so.52
 
 $(RPM): desktopeditor rpm/$(PACKAGE_NAME).spec
-	cd rpm && setarch $(RPM_ARCH) rpmbuild -bb \
+	cd rpm && rpmbuild -bb \
 		--define "_topdir $(RPM_BUILD_DIR)" \
 		--define "_package_arch $(RPM_ARCH)" \
+		--target $(RPM_ARCH) \
 		$(RPM_PARAMS) \
 		package.spec
 
@@ -275,6 +284,7 @@ $(APT_RPM): desktopeditor apt-rpm/$(PACKAGE_NAME).spec
 	cd apt-rpm && setarch $(APT_RPM_ARCH) rpmbuild -bb \
 		--define "_topdir $(APT_RPM_BUILD_DIR)" \
 		--define "_package_arch $(APT_RPM_ARCH)" \
+		--target $(RPM_ARCH) \
 		$(RPM_PARAMS) \
 		package.spec
 
@@ -282,6 +292,7 @@ $(URPMI): desktopeditor urpmi/$(PACKAGE_NAME).spec
 	cd urpmi && setarch $(URPMI_ARCH) rpmbuild -bb \
 		--define "_topdir $(URPMI_BUILD_DIR)" \
 		--define "_package_arch $(URPMI_ARCH)" \
+		--target $(RPM_ARCH) \
 		$(RPM_PARAMS) \
 		package.spec
 
