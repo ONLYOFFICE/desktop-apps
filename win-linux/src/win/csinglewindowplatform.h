@@ -33,15 +33,17 @@
 #ifndef CSINGLEWINDOWPLATFORM_H
 #define CSINGLEWINDOWPLATFORM_H
 
+#include "cframelesswindow.h"
 #include "csinglewindowbase.h"
 #include "windows.h"
-#include "cwinpanel.h"
+//#include "cwinpanel.h"
 #include "cwindowbase.h"
 #include <QWidget>
+#include <QGridLayout>
 
 #define TOP_NATIVE_WINDOW_HANDLE (HWND)m_pMainPanel->winId()
 
-class CSingleWindowPlatform : public CSingleWindowBase
+class CSingleWindowPlatform : public CSingleWindowBase, public CFramelessWindow
 {
 public:
     CSingleWindowPlatform(const QRect&, const QString&, QWidget *);
@@ -73,7 +75,9 @@ protected:
     bool m_visible = false;
     bool m_closed = false;
     bool m_skipSizing = false;
-    CWinPanel * m_pWinPanel;
+    //CWinPanel * m_pWinPanel;
+    QWidget *m_pCentralWidget;
+    QGridLayout *m_pCentralLayout;
     WindowBase::CWindowGeometry m_minSize;
     WindowBase::CWindowGeometry m_maxSize;
     QMetaObject::Connection m_modalSlotConnection;
@@ -82,7 +86,7 @@ protected:
     WindowBase::CWindowGeometry const& minimumSize() const;
     WindowBase::CWindowGeometry const& maximumSize() const;
 
-    virtual void onSizeEvent(int) override;
+    //virtual void onSizeEvent(int) override;
     virtual void applyWindowState(Qt::WindowState);
     virtual void adjustGeometry() override;
     virtual void setScreenScalingFactor(double f) override;
@@ -97,7 +101,12 @@ protected:
     void slot_modalDialog(bool status, HWND h);
 
 private:
-    static LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
+    bool m_windowActivated;
+    QRect m_window_rect;
+    void showEvent(QShowEvent *event) override;
+    void closeEvent(QCloseEvent *event) override;
+    void changeEvent(QEvent *event) override;
+    //static LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 };
 
 #endif // CSINGLEWINDOWPLATFORM_H

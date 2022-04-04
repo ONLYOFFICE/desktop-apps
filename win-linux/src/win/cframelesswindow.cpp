@@ -57,7 +57,6 @@ void CFramelessWindow::setResizeable(bool resizeable)
     bool visible = isVisible();
     m_bResizeable = resizeable;
     HWND hwnd = (HWND)winId();
-    //setProperty("handleTopWindow", (LONG_PTR)hwnd);
     DWORD style = ::GetWindowLong(hwnd, GWL_STYLE);
     if (m_bResizeable) {
         setWindowFlags(windowFlags() | Qt::WindowMaximizeButtonHint);

@@ -50,7 +50,7 @@ public:
 
     bool nativeEvent(const QByteArray &, void *msg, long *result);
     void mousePressEvent( QMouseEvent *event );
-    void resizeEvent(QResizeEvent* event);
+    //void resizeEvent(QResizeEvent* event);
 
     CMainWindow * parent();
 

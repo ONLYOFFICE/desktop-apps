@@ -48,10 +48,13 @@ Q_GUI_EXPORT HICON qt_pixmapToWinHICON(const QPixmap &);
 
 CSingleWindowPlatform::CSingleWindowPlatform(const QRect& rect, const QString& title, QWidget * panel)
     : CSingleWindowBase(const_cast<QRect&>(rect))
+    , CFramelessWindow(nullptr)
     , m_bgColor(AscAppManager::themes().current().colorRef(CTheme::ColorRole::ecrWindowBackground))
     , m_borderColor(AscAppManager::themes().current().colorRef(CTheme::ColorRole::ecrWindowBorder))
+    , m_windowActivated(false)
 {
-    HINSTANCE hInstance = GetModuleHandle(NULL);
+    m_window_rect = rect;
+    /*HINSTANCE hInstance = GetModuleHandle(NULL);
 
     WNDCLASSEXW wcx{ sizeof(WNDCLASSEX) };
     wcx.style           = CS_HREDRAW | CS_VREDRAW;
@@ -61,23 +64,32 @@ CSingleWindowPlatform::CSingleWindowPlatform(const QRect& rect, const QString& t
     wcx.cbWndExtra      = 0;
     wcx.lpszClassName   = L"SingleWindowClass";
     wcx.hbrBackground   = CreateSolidBrush(m_bgColor);
-    wcx.hCursor         = LoadCursor(hInstance, IDC_ARROW);
+    wcx.hCursor         = LoadCursor(hInstance, IDC_ARROW);*/
 
     QIcon icon = Utils::appIcon();
-    wcx.hIcon = qt_pixmapToWinHICON(icon.pixmap(QSize(32,32)));
+    setWindowIcon(icon);
+    //wcx.hIcon = qt_pixmapToWinHICON(icon.pixmap(QSize(32,32)));
 
-    if ( FAILED(RegisterClassEx(&wcx)) )
-        throw std::runtime_error( "Couldn't register window class" );
+    //if ( FAILED(RegisterClassEx(&wcx)) )
+        //throw std::runtime_error( "Couldn't register window class" );
 
-    m_hWnd = CreateWindow(WINDOW_EDITOR_CLASS_NAME, title.toStdWString().c_str(), static_cast<DWORD>(WindowBase::Style::windowed),
-                                rect.x(), rect.y(), rect.width(), rect.height(), 0, 0, hInstance, nullptr);
+    //m_hWnd = CreateWindow(WINDOW_EDITOR_CLASS_NAME, title.toStdWString().c_str(), static_cast<DWORD>(WindowBase::Style::windowed),
+                                //rect.x(), rect.y(), rect.width(), rect.height(), 0, 0, hInstance, nullptr);
+    m_hWnd = (HWND)winId();
+    //if ( !m_hWnd )
+        //throw std::runtime_error("couldn't create window because of reasons");
 
-    if ( !m_hWnd )
-        throw std::runtime_error("couldn't create window because of reasons");
+    //SetWindowLongPtr(m_hWnd, GWLP_USERDATA, reinterpret_cast<LONG_PTR>(this));
 
-    SetWindowLongPtr(m_hWnd, GWLP_USERDATA, reinterpret_cast<LONG_PTR>(this));
-
-    m_pWinPanel = new CWinPanel(m_hWnd);
+    //m_pWinPanel = new CWinPanel(m_hWnd);
+    m_pCentralWidget = new QWidget(this);
+    //m_pWinPanel->setProperty("handleTopWindow", (LONG_PTR)m_pWinPanel->winId());
+    setCentralWidget(m_pCentralWidget);
+    m_pCentralWidget->setStyleSheet("background-color: transparent");
+    m_pCentralLayout = new QGridLayout(m_pCentralWidget);
+    m_pCentralLayout->setSpacing(0);
+    m_pCentralLayout->setContentsMargins(0,0,0,0);
+    m_pCentralWidget->setLayout(m_pCentralLayout);
 
     m_modalSlotConnection = QObject::connect(&AscAppManager::getInstance().commonEvents(), &CEventDriver::onModalDialog,
                                                 bind(&CSingleWindowPlatform::slot_modalDialog, this, std::placeholders::_1, std::placeholders::_2));
@@ -87,7 +99,7 @@ CSingleWindowPlatform::~CSingleWindowPlatform()
 {
     QObject::disconnect(m_modalSlotConnection);
 
-    if ( !AscAppManager::mainWindow() || !AscAppManager::mainWindow()->isVisible() ) {
+    /*if ( !AscAppManager::mainWindow() || !AscAppManager::mainWindow()->isVisible() ) {
         WINDOWPLACEMENT wp{sizeof(WINDOWPLACEMENT)};
         if (GetWindowPlacement(m_hWnd, &wp)) {
             GET_REGISTRY_USER(reg_user)
@@ -101,12 +113,39 @@ CSingleWindowPlatform::~CSingleWindowPlatform()
 
             reg_user.setValue("position", windowRect);
         }
-    }
+    }*/
 
     m_closed = true;
-    DestroyWindow(m_hWnd);
+    //DestroyWindow(m_hWnd);
 
     qDebug() << "destroy platform window";
+}
+
+void CSingleWindowPlatform::showEvent(QShowEvent *event)
+{
+    QMainWindow::showEvent(event);
+    if (!m_windowActivated) {
+        m_windowActivated = true;
+        setGeometry(m_window_rect);
+        int border_size = int(MAIN_WINDOW_BORDER_WIDTH * m_dpiRatio);
+        setContentsMargins(border_size, border_size + 1, border_size, border_size);
+    }
+}
+
+void CSingleWindowPlatform::closeEvent(QCloseEvent *event)
+{
+    event->ignore();
+    qDebug() << "Close MainWindow...";
+    if (isVisible()) {
+        GET_REGISTRY_USER(reg_user)
+        if (isMaximized()) {
+            reg_user.setValue("maximized", true);
+        } else {
+            reg_user.remove("maximized");
+            reg_user.setValue("position", geometry());
+        }
+    }
+    event->accept();
 }
 
 HWND CSingleWindowPlatform::handle() const
@@ -114,7 +153,7 @@ HWND CSingleWindowPlatform::handle() const
     return m_hWnd;
 }
 
-LRESULT CALLBACK CSingleWindowPlatform::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
+/*LRESULT CALLBACK CSingleWindowPlatform::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     CSingleWindowPlatform * window = reinterpret_cast<CSingleWindowPlatform *>(GetWindowLongPtr(hWnd, GWLP_USERDATA));
     if ( !window )
@@ -396,7 +435,7 @@ LRESULT CALLBACK CSingleWindowPlatform::WndProc(HWND hWnd, UINT message, WPARAM 
     }
 
     return DefWindowProc(hWnd, message, wParam, lParam);
-}
+}*/
 
 void CSingleWindowPlatform::setMinimumSize( const int width, const int height )
 {
@@ -408,10 +447,10 @@ void CSingleWindowPlatform::setMinimumSize( const int width, const int height )
 void CSingleWindowPlatform::toggleBorderless(bool showmax)
 {
     if ( m_visible ) {
-        LONG newStyle = m_borderless ?
-                    long(WindowBase::Style::aero_borderless) : long(WindowBase::Style::windowed)/* & ~WS_CAPTION*/;
+        //LONG newStyle = m_borderless ?
+                    //long(WindowBase::Style::aero_borderless) : long(WindowBase::Style::windowed)/* & ~WS_CAPTION*/;
 
-        SetWindowLongPtr( m_hWnd, GWL_STYLE, newStyle );
+        //SetWindowLongPtr( m_hWnd, GWL_STYLE, newStyle );
 
         m_borderless = !m_borderless;
 
@@ -433,14 +472,16 @@ WindowBase::CWindowGeometry const& CSingleWindowPlatform::maximumSize() const
 
 void CSingleWindowPlatform::show(bool maximized)
 {
-    ShowWindow(m_hWnd, maximized ? SW_MAXIMIZE : SW_SHOW);
+    //ShowWindow(m_hWnd, maximized ? SW_MAXIMIZE : SW_SHOW);
+    maximized ? QMainWindow::showMaximized() : QMainWindow::show();
 //    UpdateWindow(m_hWnd);
     m_visible = true;
 }
 
 void CSingleWindowPlatform::hide()
 {
-    ShowWindow(m_hWnd, SW_HIDE);
+    QMainWindow::hide();
+    //ShowWindow(m_hWnd, SW_HIDE);
     m_visible = false;
 }
 
@@ -462,7 +503,23 @@ void CSingleWindowPlatform::applyWindowState(Qt::WindowState s)
     m_buttonMaximize->style()->polish(m_buttonMaximize);
 }
 
-void CSingleWindowPlatform::onSizeEvent(int type)
+void CSingleWindowPlatform::changeEvent(QEvent *event)
+{
+    QMainWindow::changeEvent(event);
+    if (event->type() == QEvent::WindowStateChange) {
+        if (isMinimized()) {
+            applyWindowState(Qt::WindowMinimized);
+        } else {
+            if (isMaximized())
+                applyWindowState(Qt::WindowMaximized);
+            else applyWindowState(Qt::WindowNoState);
+
+            adjustGeometry();
+        }
+    }
+}
+
+/*void CSingleWindowPlatform::onSizeEvent(int type)
 {
     if (type == SIZE_MINIMIZED) {
         applyWindowState(Qt::WindowMinimized);
@@ -475,7 +532,7 @@ void CSingleWindowPlatform::onSizeEvent(int type)
     }
 
     CSingleWindowBase::onSizeEvent(type);
-}
+}*/
 
 void CSingleWindowPlatform::onExitSizeMove()
 {
@@ -491,18 +548,18 @@ void CSingleWindowPlatform::onExitSizeMove()
 
 void CSingleWindowPlatform::adjustGeometry()
 {
-    RECT lpWindowRect, clientRect;
+    /*RECT lpWindowRect, clientRect;
     GetWindowRect(m_hWnd, &lpWindowRect);
-    GetClientRect(m_hWnd, &clientRect);
+    GetClientRect(m_hWnd, &clientRect);*/
 
-    int border_size = 0,
-        nMaxOffsetX = 0,
+    int border_size = 0;
+        /*nMaxOffsetX = 0,
         nMaxOffsetY = 0,
         nMaxOffsetR = 0,
-        nMaxOffsetB = 0;
+        nMaxOffsetB = 0;*/
 
     if ( IsZoomed(m_hWnd) != 0 ) {      // is window maximized
-        LONG lTestW = 640,
+        /*LONG lTestW = 640,
              lTestH = 480;
 
         QScreen * _screen = Utils::screenAt(QRect(QPoint(lpWindowRect.left, lpWindowRect.top),QPoint(lpWindowRect.right,lpWindowRect.bottom)).center());
@@ -515,36 +572,39 @@ void CSingleWindowPlatform::adjustGeometry()
         if (0 > wrect.top)  nMaxOffsetY = -wrect.top;
 
         if (wrect.right > lTestW)   nMaxOffsetR = (wrect.right - lTestW);
-        if (wrect.bottom > lTestH)  nMaxOffsetB = (wrect.bottom - lTestH);
+        if (wrect.bottom > lTestH)  nMaxOffsetB = (wrect.bottom - lTestH);*/
 
         // TODO: вот тут бордер!!!
-        m_pWinPanel->setGeometry( nMaxOffsetX + border_size, nMaxOffsetY + border_size,
+        /*m_pWinPanel->setGeometry( nMaxOffsetX + border_size, nMaxOffsetY + border_size,
                                                     clientRect.right - (nMaxOffsetX + nMaxOffsetR + 2 * border_size),
-                                                    clientRect.bottom - (nMaxOffsetY + nMaxOffsetB + 2 * border_size));
+                                                    clientRect.bottom - (nMaxOffsetY + nMaxOffsetB + 2 * border_size));*/
     } else {
         border_size = int(MAIN_WINDOW_BORDER_WIDTH * m_dpiRatio);
+        setContentsMargins(border_size,border_size + 1,border_size,border_size);
 
         // TODO: вот тут бордер!!!
-        m_pWinPanel->setGeometry(border_size, border_size,
-                            clientRect.right - 2 * border_size, clientRect.bottom - 2 * border_size);
+        /*m_pWinPanel->setGeometry(border_size, border_size,
+                            clientRect.right - 2 * border_size, clientRect.bottom - 2 * border_size);*/
     }
 
-    HRGN hRgn = CreateRectRgn(nMaxOffsetX, nMaxOffsetY,
+    /*HRGN hRgn = CreateRectRgn(nMaxOffsetX, nMaxOffsetY,
                                 lpWindowRect.right - lpWindowRect.left - nMaxOffsetX,
                                 lpWindowRect.bottom - lpWindowRect.top - nMaxOffsetY);
 
     SetWindowRgn(m_hWnd, hRgn, TRUE);
-    DeleteObject(hRgn);
+    DeleteObject(hRgn);*/
 }
 
 void CSingleWindowPlatform::onMinimizeEvent()
 {
-    ShowWindow(m_hWnd, SW_MINIMIZE);
+    QMainWindow::showMinimized();
+    //ShowWindow(m_hWnd, SW_MINIMIZE);
 }
 
 void CSingleWindowPlatform::onMaximizeEvent()
 {
-    ShowWindow(m_hWnd, IsZoomed(m_hWnd) ? SW_RESTORE : SW_MAXIMIZE);
+    isMaximized() ? QMainWindow::showNormal() : QMainWindow::showMaximized();
+    //ShowWindow(m_hWnd, IsZoomed(m_hWnd) ? SW_RESTORE : SW_MAXIMIZE);
 }
 
 void CSingleWindowPlatform::setScreenScalingFactor(double f)
@@ -591,18 +651,27 @@ Qt::WindowState CSingleWindowPlatform::windowState()
 
 void CSingleWindowPlatform::setWindowState(Qt::WindowState state)
 {
-    switch (state) {
+    /*switch (state) {
     case Qt::WindowMaximized: ShowWindow(m_hWnd, SW_MAXIMIZE); break;
     case Qt::WindowMinimized: ShowWindow(m_hWnd, SW_MINIMIZE); break;
     case Qt::WindowNoState:
     default: ShowWindow(m_hWnd, IsZoomed(m_hWnd) || IsIconic(m_hWnd) ? SW_RESTORE : SW_NORMAL);
+    }*/
+
+    switch (state) {
+    case Qt::WindowMaximized:  showMaximized(); break;
+    case Qt::WindowMinimized:  showMinimized(); break;
+    case Qt::WindowFullScreen: hide(); break;
+    case Qt::WindowNoState:
+    default: showNormal(); break;
     }
 }
 
 void CSingleWindowPlatform::setWindowTitle(const QString& title)
 {
     CSingleWindowBase::setWindowTitle(title);
-    SetWindowText(m_hWnd, title.toStdWString().c_str());
+    //SetWindowText(m_hWnd, title.toStdWString().c_str());
+    QMainWindow::setWindowTitle(title);
 }
 
 void CSingleWindowPlatform::setWindowBackgroundColor(const QColor& color)
@@ -611,7 +680,11 @@ void CSingleWindowPlatform::setWindowBackgroundColor(const QColor& color)
     color.getRgb(&r, &g, &b);
 
     m_bgColor = RGB(r, g, b);
-    RedrawWindow(m_hWnd, NULL, NULL, RDW_INVALIDATE);
+    setStyleSheet(QString("background-color: rgb(%1,%2,%3)")
+                  .arg(QString::number(GetRValue(m_bgColor)),
+                       QString::number(GetGValue(m_bgColor)),
+                       QString::number(GetBValue(m_bgColor))));
+    //RedrawWindow(m_hWnd, NULL, NULL, RDW_INVALIDATE);
 }
 
 void CSingleWindowPlatform::setWindowColors(const QColor& background, const QColor& border)
@@ -622,8 +695,11 @@ void CSingleWindowPlatform::setWindowColors(const QColor& background, const QCol
 
     background.getRgb(&r, &g, &b);
     m_bgColor = RGB(r, g, b);
-
-    RedrawWindow(m_hWnd, NULL, NULL, RDW_INVALIDATE);
+    setStyleSheet(QString("background-color: rgb(%1,%2,%3)")
+                  .arg(QString::number(GetRValue(m_bgColor)),
+                       QString::number(GetGValue(m_bgColor)),
+                       QString::number(GetBValue(m_bgColor))));
+    //RedrawWindow(m_hWnd, NULL, NULL, RDW_INVALIDATE);
 }
 
 QRect CSingleWindowPlatform::geometry() const
@@ -636,13 +712,15 @@ QRect CSingleWindowPlatform::geometry() const
 
 void CSingleWindowPlatform::activateWindow()
 {
-    SetActiveWindow(m_hWnd);
+    //SetActiveWindow(m_hWnd);
+    QMainWindow::activateWindow();
 }
 
 void CSingleWindowPlatform::slot_modalDialog(bool status, HWND h)
 {
     if ( h != m_hWnd ) {
-        EnableWindow(m_hWnd, status ? FALSE : TRUE);
+        //EnableWindow(m_hWnd, status ? FALSE : TRUE);
+        setEnabled(status ? false : true);
         m_modalHwnd = h;
     } else m_modalHwnd = nullptr;
 
@@ -659,7 +737,8 @@ void CSingleWindowPlatform::captureMouse()
         else if ( cursor.x > _g.right() - dpiCorrectValue(150) ) _window_offset_x = _g.right() - dpiCorrectValue(150);
         else _window_offset_x = cursor.x - _g.x();
 
-        SetWindowPos(m_hWnd, nullptr, cursor.x - _window_offset_x, cursor.y - dpiCorrectValue(CAPTURED_WINDOW_CURSOR_OFFSET_Y), 0, 0, SWP_NOSIZE | SWP_NOZORDER);
+        //SetWindowPos(m_hWnd, nullptr, cursor.x - _window_offset_x, cursor.y - dpiCorrectValue(CAPTURED_WINDOW_CURSOR_OFFSET_Y), 0, 0, SWP_NOSIZE | SWP_NOZORDER);
+        move(cursor.x - _window_offset_x, cursor.y - dpiCorrectValue(CAPTURED_WINDOW_CURSOR_OFFSET_Y));
 
         ReleaseCapture();
         PostMessage(m_hWnd, WM_NCLBUTTONDOWN, HTCAPTION, MAKELPARAM(cursor.x, cursor.y));

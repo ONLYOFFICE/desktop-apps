@@ -143,6 +143,7 @@ CMainWindow::CMainWindow(const QRect &rect) :
     //m_pWinPanel = new CWinPanel(this);
 
     QWidget *_pCentralWidget = new QWidget(this);
+    _pCentralWidget->setProperty("handleTopWindow", (LONG_PTR)_pCentralWidget->winId());
     setCentralWidget(_pCentralWidget);
     _pCentralWidget->setStyleSheet("background-color: transparent");
     QGridLayout *_pMainLayout = new QGridLayout(_pCentralWidget);

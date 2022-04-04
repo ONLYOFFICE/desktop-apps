@@ -78,8 +78,9 @@ CEditorWindow::CEditorWindow(const QRect& rect, CTabPanel* panel)
 
     applyTheme(AscAppManager::themes().current().id());
 
-    m_pMainPanel = createMainPanel(m_pWinPanel);
-    m_pWinPanel->show();
+    m_pMainPanel = createMainPanel(m_pCentralWidget);
+    m_pCentralLayout->addWidget(m_pMainPanel);
+    //m_pWinPanel->show();
 
     recalculatePlaces();
 #endif
@@ -204,6 +205,8 @@ QWidget * CEditorWindow::createMainPanel(QWidget * parent, const QString& title)
     mainGridLayout->setContentsMargins(QMargins(b,b,b,b));
 #endif
     mainPanel->setLayout(mainGridLayout);
+    m_boxTitleBtns->setParent(mainPanel);
+    mainGridLayout->addWidget(m_boxTitleBtns, 0, 0);
 //    mainPanel->setStyleSheet(AscAppManager::getWindowStylesheets(m_dpiRatio));
 //    mainPanel->setStyleSheet("background-color:#446995;");
 
@@ -229,12 +232,12 @@ QWidget * CEditorWindow::createMainPanel(QWidget * parent, const QString& title)
 
     if ( isCustomWindowStyle() ) {
         if ( !d_ptr->canExtendTitle() ) {
-            mainGridLayout->addWidget(m_boxTitleBtns);
+            //mainGridLayout->addWidget(m_boxTitleBtns);
             m_labelTitle->setText(APP_TITLE);
         } else {
             if (d_ptr->panel()->data()->contentType() != etUndefined)
                 mainPanel->setProperty("window", "pretty");
-            m_boxTitleBtns->setParent(mainPanel);
+            //m_boxTitleBtns->setParent(mainPanel);
             m_boxTitleBtns->layout()->addWidget(d_ptr.get()->iconUser());
         }
 
@@ -395,7 +398,7 @@ void CEditorWindow::recalculatePlaces()
 //    _s *= m_dpiRatio;
 //    m_boxTitleBtns->setFixedWidth(_s.width());
 #ifdef Q_OS_WIN
-    m_boxTitleBtns->setGeometry(nCaptionL, 0, windowW - nCaptionL, captionH);
+    //m_boxTitleBtns->setGeometry(nCaptionL, 0, windowW - nCaptionL, captionH);
 #else
     int cbw = CX11Decoration::customWindowBorderWith()*m_dpiRatio;
     m_boxTitleBtns->setGeometry(cbw, cbw, windowW - cbw * 2, captionH);

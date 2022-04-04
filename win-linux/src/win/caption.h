@@ -62,7 +62,7 @@ private:
             if (!childAt(pos)) {
                 HWND hWnd = ::GetAncestor((HWND)(window()->windowHandle()->winId()), GA_ROOT);
                 ::ReleaseCapture();
-                ::SendMessage(hWnd, WM_NCLBUTTONDOWN, HTCAPTION, POINTTOPOINTS(pt));
+                ::PostMessage(hWnd, WM_NCLBUTTONDOWN, HTCAPTION, POINTTOPOINTS(pt));
                 return true;
             }
             break;
@@ -74,7 +74,7 @@ private:
             if (!childAt(pos)) {
                 HWND hWnd = ::GetAncestor((HWND)(window()->windowHandle()->winId()), GA_ROOT);
                 ::ReleaseCapture();
-                ::SendMessage(hWnd, WM_NCLBUTTONDBLCLK, HTCAPTION, POINTTOPOINTS(pt));
+                ::PostMessage(hWnd, WM_NCLBUTTONDBLCLK, HTCAPTION, POINTTOPOINTS(pt));
                 return true;
             }
             break;
