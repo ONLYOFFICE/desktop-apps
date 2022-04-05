@@ -206,7 +206,7 @@ QWidget * CEditorWindow::createMainPanel(QWidget * parent, const QString& title)
 #endif
     mainPanel->setLayout(mainGridLayout);
     m_boxTitleBtns->setParent(mainPanel);
-    mainGridLayout->addWidget(m_boxTitleBtns, 0, 0);
+//    mainGridLayout->addWidget(m_boxTitleBtns, 0, 0);
 //    mainPanel->setStyleSheet(AscAppManager::getWindowStylesheets(m_dpiRatio));
 //    mainPanel->setStyleSheet("background-color:#446995;");
 
@@ -315,7 +315,8 @@ void CEditorWindow::onMaximizeEvent()
 
 void CEditorWindow::onSizeEvent(int type)
 {
-    CSingleWindowPlatform::onSizeEvent(type);
+//    CSingleWindowPlatform::onSizeEvent(type);
+    CFramelessWindow::onSizeEvent(type);
     recalculatePlaces();
 }
 
@@ -398,7 +399,7 @@ void CEditorWindow::recalculatePlaces()
 //    _s *= m_dpiRatio;
 //    m_boxTitleBtns->setFixedWidth(_s.width());
 #ifdef Q_OS_WIN
-    //m_boxTitleBtns->setGeometry(nCaptionL, 0, windowW - nCaptionL, captionH);
+    m_boxTitleBtns->setGeometry(nCaptionL, 0, windowW - nCaptionL, captionH);
 #else
     int cbw = CX11Decoration::customWindowBorderWith()*m_dpiRatio;
     m_boxTitleBtns->setGeometry(cbw, cbw, windowW - cbw * 2, captionH);

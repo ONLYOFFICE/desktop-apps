@@ -199,6 +199,14 @@ bool CFramelessWindow::nativeEvent(const QByteArray &eventType, void *message, l
         onMoveEvent(QRect());
         break;
 
+    case WM_SIZE:
+//        if ( !window->m_skipSizing && !window->m_closed )
+        {
+            onSizeEvent(msg->wParam);
+        }
+
+        break;
+
     default:
         break;
     }
