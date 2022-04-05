@@ -207,6 +207,7 @@ QWidget * CEditorWindow::createMainPanel(QWidget * parent, const QString& title)
     mainPanel->setLayout(mainGridLayout);
     m_boxTitleBtns->setParent(mainPanel);
 //    mainGridLayout->addWidget(m_boxTitleBtns, 0, 0);
+    m_boxTitleBtns->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
 //    mainPanel->setStyleSheet(AscAppManager::getWindowStylesheets(m_dpiRatio));
 //    mainPanel->setStyleSheet("background-color:#446995;");
 
@@ -230,14 +231,17 @@ QWidget * CEditorWindow::createMainPanel(QWidget * parent, const QString& title)
     mainPanel->setProperty("uitheme", QString::fromStdWString(AscAppManager::themes().current().id()));
     mainPanel->setStyleSheet(AscAppManager::getWindowStylesheets(m_dpiRatio) + m_css);
 
+    bool _canExtendTitle = false;
     if ( isCustomWindowStyle() ) {
         if ( !d_ptr->canExtendTitle() ) {
             //mainGridLayout->addWidget(m_boxTitleBtns);
+            mainGridLayout->addWidget(m_boxTitleBtns, 0, 0);
             m_labelTitle->setText(APP_TITLE);
         } else {
             if (d_ptr->panel()->data()->contentType() != etUndefined)
                 mainPanel->setProperty("window", "pretty");
             //m_boxTitleBtns->setParent(mainPanel);
+            _canExtendTitle = true;
             m_boxTitleBtns->layout()->addWidget(d_ptr.get()->iconUser());
         }
 
@@ -282,6 +286,17 @@ QWidget * CEditorWindow::createMainPanel(QWidget * parent, const QString& title)
     d_ptr.get()->onScreenScalingFactor(m_dpiRatio);
     mainGridLayout->addWidget(m_pMainView, 1, 0);
     mainGridLayout->setRowStretch(1,1);
+
+    if (_canExtendTitle) {
+        QVBoxLayout *vbox = new QVBoxLayout(mainPanel);
+        vbox->setContentsMargins(0,0,0,0);
+        vbox->setSpacing(0);
+        vbox->addWidget(m_boxTitleBtns);
+        QSpacerItem *spacer = new QSpacerItem(1, 1, QSizePolicy::Preferred, QSizePolicy::Expanding);
+        vbox->addItem(spacer);
+        mainGridLayout->addLayout(vbox, 1, 0);
+    }
+
     return mainPanel;
 }
 
@@ -399,7 +414,7 @@ void CEditorWindow::recalculatePlaces()
 //    _s *= m_dpiRatio;
 //    m_boxTitleBtns->setFixedWidth(_s.width());
 #ifdef Q_OS_WIN
-    m_boxTitleBtns->setGeometry(nCaptionL, 0, windowW - nCaptionL, captionH);
+    //m_boxTitleBtns->setGeometry(nCaptionL, 0, windowW - nCaptionL, captionH);
 #else
     int cbw = CX11Decoration::customWindowBorderWith()*m_dpiRatio;
     m_boxTitleBtns->setGeometry(cbw, cbw, windowW - cbw * 2, captionH);

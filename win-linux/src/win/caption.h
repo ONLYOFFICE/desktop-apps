@@ -36,6 +36,8 @@
 #include <QWidget>
 #include <QWindow>
 #include <Windows.h>
+#include <QPushButton>
+
 
 class Caption: public QWidget
 {
@@ -59,7 +61,8 @@ private:
             POINT pt;
             ::GetCursorPos(&pt);
             QPoint pos = mapFromGlobal(QPoint(int(pt.x), int(pt.y)));
-            if (!childAt(pos)) {
+            QPushButton *pushButton = childAt(pos) ? qobject_cast<QPushButton*>(childAt(pos)) : nullptr;
+            if (!pushButton) {
                 HWND hWnd = ::GetAncestor((HWND)(window()->windowHandle()->winId()), GA_ROOT);
                 ::ReleaseCapture();
                 ::PostMessage(hWnd, WM_NCLBUTTONDOWN, HTCAPTION, POINTTOPOINTS(pt));
@@ -71,7 +74,8 @@ private:
             POINT pt;
             ::GetCursorPos(&pt);
             QPoint pos = mapFromGlobal(QPoint(int(pt.x), int(pt.y)));
-            if (!childAt(pos)) {
+            QPushButton *pushButton = childAt(pos) ? qobject_cast<QPushButton*>(childAt(pos)) : nullptr;
+            if (!pushButton) {
                 HWND hWnd = ::GetAncestor((HWND)(window()->windowHandle()->winId()), GA_ROOT);
                 ::ReleaseCapture();
                 ::PostMessage(hWnd, WM_NCLBUTTONDBLCLK, HTCAPTION, POINTTOPOINTS(pt));

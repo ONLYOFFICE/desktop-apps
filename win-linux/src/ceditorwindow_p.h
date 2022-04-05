@@ -749,8 +749,8 @@ public:
         QHBoxLayout * _layout = qobject_cast<QHBoxLayout *>(window->m_boxTitleBtns->layout());
         _layout->removeWidget(window->m_labelTitle);
 
-        boxtitlelabel = new QWidget;
-        boxtitlelabel->setLayout(new QHBoxLayout);
+        boxtitlelabel = new QWidget(window->m_boxTitleBtns);
+        boxtitlelabel->setLayout(new QHBoxLayout(boxtitlelabel));
         boxtitlelabel->layout()->setSpacing(0);
         boxtitlelabel->layout()->setMargin(0);
 

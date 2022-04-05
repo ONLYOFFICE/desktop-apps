@@ -214,7 +214,7 @@ QWidget * CSingleWindowBase::createMainPanel(QWidget * parent, const QString& ti
 {
     if ( pimpl->is_custom_window() ) {
 #if defined(Q_OS_WIN)
-        m_boxTitleBtns = new Caption;
+        m_boxTitleBtns = static_cast<QWidget*>(new Caption);
 #elif defined(Q_OS_LINUX)
         m_boxTitleBtns = new QWidget;
 #endif
