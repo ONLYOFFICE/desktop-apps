@@ -55,6 +55,7 @@ public:
 protected:
     bool nativeEvent(const QByteArray &eventType, void *message, long *result);
 
+    virtual void onMoveEvent(const QRect&) {};
 private:
     int m_borderWidth;
     QMargins m_margins;

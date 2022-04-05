@@ -194,6 +194,11 @@ bool CFramelessWindow::nativeEvent(const QByteArray &eventType, void *message, l
         }
         return false;
     }
+
+    case WM_MOVING:
+        onMoveEvent(QRect());
+        break;
+
     default:
         break;
     }
