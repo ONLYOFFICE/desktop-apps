@@ -33,28 +33,32 @@
 #ifndef CMAINWINDOW_H
 #define CMAINWINDOW_H
 
-#include "cframelesswindow.h"
-//#include "cwinpanel.h"
 #include "cmainpanelimpl.h"
-//#include "qwinwidget.h"
 #include "cwindowbase.h"
 #include "cmainwindowbase.h"
 #include <QShowEvent>
 #include <QCloseEvent>
 #include <QWindowStateChangeEvent>
+#include <QMainWindow>
+#include <QMargins>
+#include <QRect>
+#include <windowsx.h>
+#include <dwmapi.h>
 
 #include <QtWidgets/QApplication>
 
-class CMainWindow : public CMainWindowBase, public CFramelessWindow
+class CMainWindow : public CMainWindowBase, public QMainWindow
 {
 
 public:
-    HWND                    hWnd;
-    //HINSTANCE               hInstance;
-
-    explicit CMainWindow(const QRect &rect = QRect());
+    explicit CMainWindow(const QRect &rect = QRect(), bool singleMode = false);
     ~CMainWindow() override;
-    //static LRESULT CALLBACK WndProc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam );
+
+    void setResizeable(bool resizeable);
+    bool isResizeable() {return m_isResizeable;}
+    void setResizeableAreaWidth(int width);
+    void setContentsMargins(int left, int top, int right, int bottom);
+
     void show(bool);
     void hide();
     bool isVisible();
@@ -93,6 +97,11 @@ public:
     static void setAutocheckUpdatesInterval(const QString&);
 #endif
 
+protected:
+    bool nativeEvent(const QByteArray &eventType, void *message, long *result) override;
+    virtual void onMoveEvent(const QRect&) {};
+    virtual void onSizeEvent(int) {};
+
 private:
     void showEvent(QShowEvent *event) override;
     void closeEvent(QCloseEvent *event) override;
@@ -118,6 +127,16 @@ public:
     //CWinPanel * m_pWinPanel;
 
 private:
+    HWND hWnd;
+    bool m_singleMode;
+    int  m_borderWidth;
+    QMargins m_margins;
+    QMargins m_frames;
+    bool m_isJustMaximized;
+    bool m_isResizeable;
+    bool m_taskBarClicked;
+    Qt::WindowStates m_previousState;
+
     bool closed;
     bool visible;
     bool skipsizing = false;

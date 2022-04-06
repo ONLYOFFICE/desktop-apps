@@ -66,7 +66,7 @@ void CFramelessWindow::setResizeable(bool resizeable)
         ::SetWindowLong(hwnd, GWL_STYLE, style & ~WS_MAXIMIZEBOX & ~WS_CAPTION);
     }
     const MARGINS shadow = {1, 1, 1, 1};
-    DwmExtendFrameIntoClientArea(HWND(winId()), &shadow);
+    DwmExtendFrameIntoClientArea(hwnd, &shadow);
     setVisible(visible);
 }
 

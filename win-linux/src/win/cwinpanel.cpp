@@ -32,10 +32,10 @@
 
 #include <windows.h>
 #include "cwinpanel.h"
-#include "mainwindow.h"
+#include "cmainwindow.h"
 
 CWinPanel::CWinPanel(CMainWindow * w)
-    : CWinPanel(w->hWnd)
+    : CWinPanel(w->handle())
 {
     m_parent = w;
 }

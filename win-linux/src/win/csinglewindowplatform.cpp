@@ -156,202 +156,24 @@ HWND CSingleWindowPlatform::handle() const
 /*LRESULT CALLBACK CSingleWindowPlatform::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     CSingleWindowPlatform * window = reinterpret_cast<CSingleWindowPlatform *>(GetWindowLongPtr(hWnd, GWLP_USERDATA));
-    if ( !window )
-        return DefWindowProc(hWnd, message, wParam, lParam);
-
     switch ( message ) {
-    case WM_DPICHANGED:
-        if ( !WindowHelper::isLeftButtonPressed() ) {
-            double dpi_ratio = Utils::getScreenDpiRatioByHWND(int(hWnd));
-
-            if ( dpi_ratio != window->m_dpiRatio ) {
-                window->onDpiChanged(dpi_ratio, window->m_dpiRatio);
-            }
-        }
-        break;
-    case WM_KEYDOWN: {
-        if ( wParam != VK_TAB )
-            return DefWindowProc(hWnd, message, wParam, lParam);
-
-        SetFocus( HWND(window->m_pWinPanel->winId()) );
-        break;
-    }
-
-    // ALT + SPACE or F10 system menu
-    case WM_SYSCOMMAND: {
-        if (  GET_SC_WPARAM(wParam) == SC_KEYMENU ) {
-            return 0;
-        } else
-        if ( GET_SC_WPARAM(wParam) == SC_SIZE ) {
-            // TODO: skip window min size for usability test
-//            if ( WindowHelper::isWindowSystemDocked(hWnd) )
-//                window->setMinimumSize(int(EDITOR_WINDOW_MIN_WIDTH * window->m_dpiRatio), int(MAIN_WINDOW_MIN_HEIGHT * window->m_dpiRatio));
-//            else window->setMinimumSize(int(MAIN_WINDOW_MIN_WIDTH * window->m_dpiRatio), int(MAIN_WINDOW_MIN_HEIGHT * window->m_dpiRatio));
-
-            break;
-        } else
-        if (GET_SC_WPARAM(wParam) == SC_RESTORE) {
-//            if ( !WindowHelper::isLeftButtonPressed() ) {
-            // TODO: skip window min size for usability test
-//                WindowHelper::correctWindowMinimumSize(hWnd);
-
-            break;
-        }
-
-        return DefWindowProc( hWnd, message, wParam, lParam );
-    }
-
-    case WM_ACTIVATE: {
-        static bool is_mainwindow_prev;
-        is_mainwindow_prev = false;
-        if ( !IsWindowEnabled(hWnd) && window->m_modalHwnd && window->m_modalHwnd != hWnd )
-        {
-            if ( LOWORD(wParam) != WA_INACTIVE ) {
-                SetActiveWindow(window->m_modalHwnd);
-                SetWindowPos(hWnd, window->m_modalHwnd, 0, 0, 0, 0, SWP_NOACTIVATE | SWP_NOMOVE | SWP_NOSIZE);
-                return 0;
-            }
-        } else {
-            if ( LOWORD(wParam) != WA_INACTIVE ) {
-                static HWND top_window;
-                top_window = NULL;
-
-                EnumWindows([](HWND hw, LPARAM lp){
-                    if (!IsWindowVisible(hw) || GetWindowTextLength(hw) == 0) {
-                        return TRUE;
-                    }
-
-                    if (hw == (HWND)lp) {
-                        top_window = hw;
-                    } else
-                    if ( top_window ) {
-                        top_window = NULL;
-                        if ( AscAppManager::mainWindow() && hw == AscAppManager::mainWindow()->handle() )
-                            is_mainwindow_prev = true;
-                    }
-
-                    return TRUE;
-                }, (LPARAM)hWnd);
-            }
-        }
-        break;
-    }
-
-    case WM_SETFOCUS: {
-        if ( !window->m_closed ) {
-//        window->focusMainPanel();
-            window->focus();
-        }
-        break;
-    }
-
-    case WM_NCCALCSIZE: {
-        //this kills the window frame and title bar we added with
-        //WS_THICKFRAME and WS_CAPTION
-        if (window->m_borderless)
-            return 0;
-
-        break;
-    }
-
-    case WM_CLOSE: {
-        qDebug() << "wm_close";
-        if ( window->m_pMainPanel )
-            QTimer::singleShot(0, window->m_pMainPanel, [=]{
-                AscAppManager::getInstance().closeQueue().enter(sWinTag{2, size_t(window)});
-            });
-        else return 1;
-        }
-        return 0;
-
-    case WM_TIMER:
-        AscAppManager::getInstance().CheckKeyboard();
-        break;
-
-    case WM_NCPAINT:
-        return 0;
-
-    case WM_NCHITTEST: {
-        if ( window->m_borderless ) {
-            const LONG borderWidth = 8; //in pixels
-            RECT winrect;
-            GetWindowRect( hWnd, &winrect );
-            long x = GET_X_LPARAM( lParam );
-            long y = GET_Y_LPARAM( lParam );
-
-//            if ( window->m_borderlessResizeable )
-            {
-                //bottom left corner
-                if ( x >= winrect.left && x < winrect.left + borderWidth &&
-                    y < winrect.bottom && y >= winrect.bottom - borderWidth )
-                {
-                    return HTBOTTOMLEFT;
-                }
-                //bottom right corner
-                if ( x < winrect.right && x >= winrect.right - borderWidth &&
-                    y < winrect.bottom && y >= winrect.bottom - borderWidth )
-                {
-                    return HTBOTTOMRIGHT;
-                }
-                //top left corner
-                if ( x >= winrect.left && x < winrect.left + borderWidth &&
-                    y >= winrect.top && y < winrect.top + borderWidth )
-                {
-                    return HTTOPLEFT;
-                }
-                //top right corner
-                if ( x < winrect.right && x >= winrect.right - borderWidth &&
-                    y >= winrect.top && y < winrect.top + borderWidth )
-                {
-                    return HTTOPRIGHT;
-                }
-                //left border
-                if ( x >= winrect.left && x < winrect.left + borderWidth )
-                {
-                    return HTLEFT;
-                }
-                //right border
-                if ( x < winrect.right && x >= winrect.right - borderWidth )
-                {
-                    return HTRIGHT;
-                }
-                //bottom border
-                if ( y < winrect.bottom && y >= winrect.bottom - borderWidth )
-                {
-                    return HTBOTTOM;
-                }
-                //top border
-                if ( y >= winrect.top && y < winrect.top + borderWidth )
-                {
-                    return HTTOP;
-                }
-            }
-
-            return HTCAPTION;
-        }
-        break;
-    }
 
     case WM_SIZE:
         if ( !window->m_skipSizing && !window->m_closed ) {
             window->onSizeEvent(wParam);
         }
-
         break;
 
     case WM_MOVING: {
         RECT rc = *(RECT*)lParam;
         window->onMoveEvent(QRect(rc.left,rc.top,rc.right,rc.bottom));
-
         return TRUE;}
 
     case WM_ENTERSIZEMOVE: {
-//        WindowHelper::correctWindowMinimumSize(hWnd);
         WINDOWPLACEMENT wp{sizeof(WINDOWPLACEMENT)};
         if ( GetWindowPlacement(hWnd, &wp) ) {
             MONITORINFO info{sizeof(MONITORINFO)};
             GetMonitorInfo(MonitorFromWindow(hWnd, MONITOR_DEFAULTTOPRIMARY), &info);
-
             window->m_moveNormalRect = QRect{QPoint{wp.rcNormalPosition.left - info.rcMonitor.left, wp.rcNormalPosition.top - info.rcMonitor.top},
                                                 QSize{wp.rcNormalPosition.right - wp.rcNormalPosition.left, wp.rcNormalPosition.bottom - wp.rcNormalPosition.top}};
         }
@@ -361,33 +183,6 @@ HWND CSingleWindowPlatform::handle() const
         window->onExitSizeMove();
         return 0;
     }
-
-    case WM_NCACTIVATE:
-        return TRUE;
-
-    case WM_PAINT: {
-        RECT rect;
-        GetClientRect(hWnd, &rect);
-
-        PAINTSTRUCT ps;
-        HDC hDC = ::BeginPaint(hWnd, &ps);
-        HPEN hpenOld = static_cast<HPEN>(::SelectObject(hDC, ::GetStockObject(DC_PEN)));
-        ::SetDCPenColor(hDC, window->m_borderColor);
-
-        HBRUSH hBrush = ::CreateSolidBrush(window->m_bgColor);
-        HBRUSH hbrushOld = static_cast<HBRUSH>(::SelectObject(hDC, hBrush));
-
-        ::Rectangle(hDC, rect.left, rect.top, rect.right, rect.bottom);
-
-        ::SelectObject(hDC, hbrushOld);
-        ::DeleteObject(hBrush);
-
-        ::SelectObject(hDC, hpenOld);
-        ::EndPaint(hWnd, &ps);
-        return 0;}
-
-    case WM_ERASEBKGND: {
-        return TRUE; }
 
     case WM_GETMINMAXINFO: {
         MINMAXINFO * minMaxInfo = (MINMAXINFO *)lParam;
@@ -403,11 +198,6 @@ HWND CSingleWindowPlatform::handle() const
 
         return 1;
     }
-
-    case WM_ENDSESSION:
-//        CAscApplicationManagerWrapper::getInstance().CloseApplication();
-
-        break;
 
     case WM_COPYDATA: {
         COPYDATASTRUCT* pcds = (COPYDATASTRUCT*)lParam;
@@ -429,12 +219,7 @@ HWND CSingleWindowPlatform::handle() const
             LocalFree(szArglist);
         }
         break;}
-
-    case WM_WINDOWPOSCHANGING: { break; }
-    default: break;
     }
-
-    return DefWindowProc(hWnd, message, wParam, lParam);
 }*/
 
 void CSingleWindowPlatform::setMinimumSize( const int width, const int height )

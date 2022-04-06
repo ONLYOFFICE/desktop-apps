@@ -216,9 +216,8 @@ core_windows {
 
     RC_ICONS += ./res/icons/desktop_icons.ico
 
-    HEADERS += $$PWD/src/win/mainwindow.h \
+    HEADERS += $$PWD/src/win/cmainwindow.h \
                 $$PWD/src/win/qwinwidget.h \
-                $$PWD/src/win/qwinhost.h \
                 $$PWD/src/win/cwinpanel.h \
                 $$PWD/src/win/cwinwindow.h \
                 $$PWD/src/win/csinglewindow.h \
@@ -227,9 +226,8 @@ core_windows {
                 $$PWD/src/win/cframelesswindow.h \
                 $$PWD/src/win/caption.h
 
-    SOURCES += $$PWD/src/win/mainwindow.cpp \
+    SOURCES += $$PWD/src/win/cmainwindow.cpp \
                 $$PWD/src/win/qwinwidget.cpp \
-                $$PWD/src/win/qwinhost.cpp \
                 $$PWD/src/win/cwinpanel.cpp \
                 $$PWD/src/win/cwinwindow.cpp \
                 $$PWD/src/win/csinglewindow.cpp \

@@ -45,7 +45,7 @@
 #include "ceventdriver.h"
 
 #ifdef _WIN32
-#include "win/mainwindow.h"
+#include "win/cmainwindow.h"
 #include "win/csinglewindow.h"
 #else
 #include "linux/cmainwindow.h"

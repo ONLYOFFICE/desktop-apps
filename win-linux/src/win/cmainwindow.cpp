@@ -30,17 +30,14 @@
  *
 */
 
-#include "mainwindow.h"
-
+#include "win/cmainwindow.h"
 #include <stdexcept>
 #include <functional>
 
 #include <QtWidgets/QPushButton>
 #include <QFile>
 #include <QPixmap>
-//#include <QDialog>
 #include <QScreen>
-//#include <QDesktopWidget>
 
 #include "../cascapplicationmanagerwrapper.h"
 #include "../defines.h"
@@ -73,31 +70,31 @@ auto refresh_window_scaling_factor(CMainWindow * window) -> void {
     }
 }
 
-CMainWindow::CMainWindow(const QRect &rect) :
-    CFramelessWindow(nullptr),
+CMainWindow::CMainWindow(const QRect &rect, bool singleMode) :
+    QMainWindow(nullptr),
     hWnd(nullptr),
-    //hInstance(GetModuleHandle(nullptr)),
-    //m_pWinPanel(NULL),
+    m_singleMode(singleMode),
+    m_borderWidth(5),
+    m_margins(QMargins()),
+    m_frames(QMargins()),
+    m_isJustMaximized(false),
+    m_isResizeable(true),
+    m_taskBarClicked(false),
+    m_previousState(Qt::WindowNoState),
     closed( false ),
     visible( false ),
     borderless( true ),
     borderlessResizeable( true ),
     m_windowActivated(false)
 {
-    // adjust window size
+    setWindowFlags(windowFlags() | Qt::Window | Qt::FramelessWindowHint | Qt::WindowSystemMenuHint);
+    setResizeable(m_isResizeable);
+
     _window_rect = rect;
     m_dpiRatio = CSplash::startupDpiRatio();
 
     if ( _window_rect.isEmpty() )
         _window_rect = QRect(QPoint(100, 100)*m_dpiRatio, MAIN_WINDOW_DEFAULT_SIZE * m_dpiRatio);
-
-    // TODO: skip window min size for usability test
-//    QSize _window_min_size(int(MAIN_WINDOW_MIN_WIDTH * m_dpiRatio), int(MAIN_WINDOW_MIN_HEIGHT * m_dpiRatio));
-//    if ( _window_rect.width() < _window_min_size.width() )
-//        _window_rect.setWidth(_window_min_size.width());
-
-//    if ( _window_rect.height() < _window_min_size.height() )
-//        _window_rect.setHeight(_window_min_size.height());
 
     QRect _screen_size = Utils::getScreenGeometry(_window_rect.topLeft());
     if ( _screen_size.intersects(_window_rect) ) {
@@ -114,33 +111,9 @@ CMainWindow::CMainWindow(const QRect &rect) :
         _window_rect = QRect(QPoint(100, 100)*m_dpiRatio, QSize(MAIN_WINDOW_MIN_WIDTH, MAIN_WINDOW_MIN_HEIGHT)*m_dpiRatio);
     }
 
-    /*WNDCLASSEXW wcx{ sizeof(WNDCLASSEX) };
-    wcx.style = CS_HREDRAW | CS_VREDRAW;
-    wcx.hInstance = hInstance;
-    wcx.lpfnWndProc = WndProc;
-    wcx.cbClsExtra	= 0;
-    wcx.cbWndExtra	= 0;
-    wcx.lpszClassName = WINDOW_CLASS_NAME;
-//    wcx.hbrBackground = CreateSolidBrush(WINDOW_BACKGROUND_COLOR);
-    wcx.hbrBackground = CreateSolidBrush(AscAppManager::themes().current().colorRef(CTheme::ColorRole::ecrWindowBackground));
-    wcx.hCursor = LoadCursor( hInstance, IDC_ARROW );*/
-
     QIcon icon = Utils::appIcon();
-    /*wcx.hIcon = qt_pixmapToWinHICON(QSysInfo::windowsVersion() == QSysInfo::WV_XP ?
-                                        icon.pixmap(icon.availableSizes().first()) : icon.pixmap(QSize(32,32)) );
-
-    if ( FAILED( RegisterClassExW( &wcx ) ) )
-        throw std::runtime_error( "Couldn't register window class" );*/
     setWindowIcon(icon);
     m_moveNormalRect = _window_rect;
-    /*hWnd = CreateWindow( WINDOW_CLASS_NAME, QString(WINDOW_NAME).toStdWString().c_str(), static_cast<DWORD>(WindowBase::Style::windowed),
-                            _window_rect.x(), _window_rect.y(), _window_rect.width(), _window_rect.height(), 0, 0, hInstance, nullptr );
-    if ( !hWnd )
-        throw std::runtime_error( "couldn't create window because of reasons" );*/
-
-    //SetWindowLongPtr( hWnd, GWLP_USERDATA, reinterpret_cast<LONG_PTR>( this ) );
-    hWnd = (HWND)winId();
-    //m_pWinPanel = new CWinPanel(this);
 
     QWidget *_pCentralWidget = new QWidget(this);
     _pCentralWidget->setProperty("handleTopWindow", (LONG_PTR)_pCentralWidget->winId());
@@ -163,7 +136,7 @@ CMainWindow::CMainWindow(const QRect &rect) :
     QObject::connect(mainpanel, &CMainPanel::mainPageReady, std::bind(&CMainWindow::slot_mainPageReady, this));
     QObject::connect(&AscAppManager::getInstance().commonEvents(), &CEventDriver::onModalDialog, bind(&CMainWindow::slot_modalDialog, this, _1, _2));
 
-    //m_pWinPanel->show();
+    hWnd = (HWND)winId();
 }
 
 CMainWindow::~CMainWindow()
@@ -188,6 +161,291 @@ CMainWindow::~CMainWindow()
 
     hide();
     DestroyWindow( hWnd );*/
+}
+
+void CMainWindow::setResizeable(bool isResizeable)
+{
+    bool visible = isVisible();
+    m_isResizeable = isResizeable;
+    hWnd = (HWND)winId();
+    DWORD style = ::GetWindowLong(hWnd, GWL_STYLE);
+    if (m_isResizeable) {
+        setWindowFlags(windowFlags() | Qt::WindowMaximizeButtonHint);
+        ::SetWindowLong(hWnd, GWL_STYLE, style | WS_MAXIMIZEBOX | WS_THICKFRAME | WS_CAPTION);
+    } else {
+        setWindowFlags(windowFlags() & ~Qt::WindowMaximizeButtonHint);
+        ::SetWindowLong(hWnd, GWL_STYLE, style & ~WS_MAXIMIZEBOX & ~WS_CAPTION);
+    }
+    const MARGINS shadow = {1, 1, 1, 1};
+    DwmExtendFrameIntoClientArea(hWnd, &shadow);
+    setVisible(visible);
+}
+
+void CMainWindow::setResizeableAreaWidth(int width)
+{
+    m_borderWidth = (width < 0) ? 0 : width;
+}
+
+void CMainWindow::setContentsMargins(int left, int top, int right, int bottom)
+{
+    QMainWindow::setContentsMargins(left + m_frames.left(),
+                                    top + m_frames.top(),
+                                    right + m_frames.right(),
+                                    bottom + m_frames.bottom());
+    m_margins.setLeft(left);
+    m_margins.setTop(top);
+    m_margins.setRight(right);
+    m_margins.setBottom(bottom);
+}
+
+bool CMainWindow::nativeEvent(const QByteArray &eventType, void *message, long *result)
+{
+#if (QT_VERSION == QT_VERSION_CHECK(5, 11, 1))
+    MSG* msg = *reinterpret_cast<MSG**>(message);
+#else
+    MSG* msg = reinterpret_cast<MSG*>(message);
+#endif
+
+    switch (msg->message)
+    {
+    case WM_ACTIVATE: {
+        if (!m_singleMode) {
+            if (LOWORD(msg->wParam) != WA_INACTIVE) {
+                WindowHelper::correctModalOrder(hWnd, m_modalHwnd);
+                return false;
+            }
+        } else {
+            static bool is_mainwindow_prev;
+            is_mainwindow_prev = false;
+            if (!IsWindowEnabled(hWnd) && m_modalHwnd && m_modalHwnd != hWnd) {
+                if (LOWORD(msg->wParam) != WA_INACTIVE ) {
+                    SetActiveWindow(m_modalHwnd);
+                    SetWindowPos(hWnd, m_modalHwnd, 0, 0, 0, 0, SWP_NOACTIVATE | SWP_NOMOVE | SWP_NOSIZE);
+                    return 0;
+                }
+            } else {
+                if ( LOWORD(msg->wParam) != WA_INACTIVE ) {
+                    static HWND top_window;
+                    top_window = NULL;
+                    EnumWindows([](HWND hw, LPARAM lp) {
+                        if (!IsWindowVisible(hw) || GetWindowTextLength(hw) == 0) {
+                            return TRUE;
+                        }
+                        if (hw == (HWND)lp) {
+                            top_window = hw;
+                        } else
+                        if (top_window) {
+                            top_window = NULL;
+                            if (AscAppManager::mainWindow() && hw == AscAppManager::mainWindow()->handle())
+                                is_mainwindow_prev = true;
+                        }
+                        return TRUE;
+                    }, (LPARAM)hWnd);
+                }
+            }
+        }
+        break;
+    }
+
+    case WM_DPICHANGED: {
+        if (!WindowHelper::isLeftButtonPressed()) {
+            double dpi_ratio = Utils::getScreenDpiRatioByHWND(LONG_PTR(hWnd));
+            if (dpi_ratio != m_dpiRatio) {
+                if (!m_singleMode) {
+                    m_dpiRatio = dpi_ratio;
+                    refresh_window_scaling_factor(this);
+                    adjustGeometry();
+                } else {
+                    //onDpiChanged(dpi_ratio, m_dpiRatio);
+                }
+            }
+        }
+        qDebug() << "WM_DPICHANGED: " << LOWORD(msg->wParam);
+        break;
+    }
+
+    case WM_SYSKEYDOWN: {
+        if (msg->wParam == VK_SPACE) {
+            RECT winrect;
+            GetWindowRect(msg->hwnd, &winrect);
+            TrackPopupMenu(GetSystemMenu(msg->hwnd, false ), TPM_TOPALIGN | TPM_LEFTALIGN, winrect.left + 5, winrect.top + 5, 0, msg->hwnd, NULL);
+        }
+        break;
+    }
+
+    case WM_KEYDOWN: {
+        if (msg->wParam == VK_F5 || msg->wParam == VK_F6 || msg->wParam == VK_F7) {
+            SendMessage(msg->hwnd, WM_KEYDOWN, msg->wParam, msg->lParam);
+        } else
+        if (msg->wParam == VK_TAB) {
+            SetFocus(HWND(winId()));
+        }
+        break;
+    }
+
+    case WM_SYSCOMMAND: {
+        if (GET_SC_WPARAM(msg->wParam) == SC_KEYMENU) {
+            return false;
+        } else
+        if (GET_SC_WPARAM(msg->wParam) == SC_RESTORE) {
+            m_taskBarClicked = true;
+        } else
+        if (GET_SC_WPARAM(msg->wParam) == SC_MINIMIZE) {
+            m_taskBarClicked = true;
+        } else
+        if (GET_SC_WPARAM(msg->wParam) == SC_SIZE) {
+            break;
+        } else
+        if (GET_SC_WPARAM(msg->wParam) == SC_MOVE) {
+            break;
+        } else
+        if (GET_SC_WPARAM(msg->wParam) == SC_MAXIMIZE) {
+            break;
+        }
+        break;
+    }
+
+    case WM_NCCALCSIZE: {
+        NCCALCSIZE_PARAMS& params = *reinterpret_cast<NCCALCSIZE_PARAMS*>(msg->lParam);
+        if (params.rgrc[0].top != 0) params.rgrc[0].top -= 1;
+        Qt::WindowStates _currentState = windowState();
+        if ((m_previousState == Qt::WindowNoState && _currentState == Qt::WindowNoState)
+                && !m_taskBarClicked) {
+            *result = WVR_REDRAW;
+        } else m_taskBarClicked = false;
+        m_previousState = _currentState;
+        return true;
+    }
+
+    case WM_NCHITTEST: {
+        *result = 0;
+        const LONG border_width = (LONG)m_borderWidth;
+        RECT winrect;
+        GetWindowRect(HWND(winId()), &winrect);
+        long x = GET_X_LPARAM(msg->lParam);
+        long y = GET_Y_LPARAM(msg->lParam);
+
+        if (m_isResizeable) {
+            bool resizeWidth = minimumWidth() != maximumWidth();
+            bool resizeHeight = minimumHeight() != maximumHeight();
+
+            if (resizeWidth) {
+                if (x >= winrect.left && x < winrect.left + border_width) {
+                    *result = HTLEFT;
+                }
+                if (x < winrect.right && x >= winrect.right - border_width) {
+                    *result = HTRIGHT;
+                }
+            }
+            if (resizeHeight) {
+                if (y < winrect.bottom && y >= winrect.bottom - border_width) {
+                    *result = HTBOTTOM;
+                }
+                if (y >= winrect.top && y < winrect.top + border_width) {
+                    *result = HTTOP;
+                }
+            }
+            if (resizeWidth && resizeHeight) {
+                if (x >= winrect.left && x < winrect.left + border_width &&
+                        y < winrect.bottom && y >= winrect.bottom - border_width) {
+                    *result = HTBOTTOMLEFT;
+                }
+                if (x < winrect.right && x >= winrect.right - border_width &&
+                        y < winrect.bottom && y >= winrect.bottom - border_width) {
+                    *result = HTBOTTOMRIGHT;
+                }
+                if (x >= winrect.left && x < winrect.left + border_width &&
+                        y >= winrect.top && y < winrect.top + border_width) {
+                    *result = HTTOPLEFT;
+                }
+                if (x < winrect.right && x >= winrect.right - border_width &&
+                        y >= winrect.top && y < winrect.top + border_width) {
+                    *result = HTTOPRIGHT;
+                }
+            }
+        }
+        if (*result != 0) return true;
+        return false;
+    }
+
+    case WM_GETMINMAXINFO: {
+        if (::IsZoomed(msg->hwnd)) {
+            RECT frame = { 0, 0, 0, 0 };
+            AdjustWindowRectEx(&frame, WS_OVERLAPPEDWINDOW, FALSE, 0);
+            double dpr = this->devicePixelRatioF();
+            m_frames.setLeft(int(double(abs(frame.left))/dpr + 0.5));
+            m_frames.setTop(int(double(abs(frame.bottom))/dpr + 0.5));
+            m_frames.setRight(int(double(abs(frame.right))/dpr + 0.5));
+            m_frames.setBottom(int(double(abs(frame.bottom))/dpr + 0.5));
+            QMainWindow::setContentsMargins(m_frames.left() + m_margins.left(),
+                                            m_frames.top() + m_margins.top(),
+                                            m_frames.right() + m_margins.right(),
+                                            m_frames.bottom() + m_margins.bottom());
+            m_isJustMaximized = true;
+        } else {
+            if (m_isJustMaximized) {
+                QMainWindow::setContentsMargins(m_margins);
+                m_frames = QMargins();
+                m_isJustMaximized = false;
+            }
+        }
+        return false;
+    }
+
+    case WM_MOVING: {
+        if (m_singleMode)
+            onMoveEvent(QRect());
+        break;
+    }
+
+    case WM_SIZE: {
+        if (m_singleMode)
+            onSizeEvent(msg->wParam);
+        break;
+    }
+
+    /*case WM_ERASEBKGND:
+        return true;
+
+    case WM_NCACTIVATE:
+        return true;
+
+    case WM_NCPAINT:
+        return false;*/
+
+    case WM_SETFOCUS: {
+        if (!closed) {
+            if (m_singleMode) {
+                //focus();
+            } else {
+                if (IsWindowEnabled(hWnd))
+                    m_pMainPanel->focus();
+            }
+        }
+        break;
+    }
+
+    case WM_CLOSE: {
+        if (!m_singleMode) {
+            AscAppManager::getInstance().closeQueue().enter(sWinTag{1, size_t(this)});
+        } else {
+            if (m_pMainPanel) {
+                QTimer::singleShot(0, m_pMainPanel, [=]() {
+                    AscAppManager::getInstance().closeQueue().enter(sWinTag{2, size_t(this)});
+                });
+            } else return true;
+        }
+        return false;
+    }
+
+    case WM_TIMER:
+        AscAppManager::getInstance().CheckKeyboard();
+        break;
+
+    default:
+        break;
+    }
+    return QMainWindow::nativeEvent(eventType, message, result);
 }
 
 void CMainWindow::showEvent(QShowEvent *event)
@@ -218,6 +476,7 @@ void CMainWindow::closeEvent(QCloseEvent *event)
             reg_user.setValue("position", geometry());
         }
     }
+    hide();
     event->accept();
 }
 
@@ -248,226 +507,8 @@ void CMainWindow::changeEvent(QEvent *event)
 /*LRESULT CALLBACK CMainWindow::WndProc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam )
 {
     CMainWindow *window = reinterpret_cast<CMainWindow*>( GetWindowLongPtr( hWnd, GWLP_USERDATA ) );
-    if ( !window )
-        return DefWindowProc( hWnd, message, wParam, lParam );
-//static uint count=0;
-//qDebug() << "main window message: " << ++count << QString(" 0x%1").arg(message,4,16,QChar('0'));
-
     switch ( message )
     {
-    case WM_DPICHANGED:
-        if ( !WindowHelper::isLeftButtonPressed() ) {
-            double dpi_ratio = Utils::getScreenDpiRatioByHWND(int(hWnd));
-
-            if ( dpi_ratio != window->m_dpiRatio ) {
-                window->m_dpiRatio = dpi_ratio;
-                refresh_window_scaling_factor(window);
-                window->adjustGeometry();
-
-            }
-        }
-
-        qDebug() << "WM_DPICHANGED: " << LOWORD(wParam);
-        break;
-
-    case WM_ACTIVATE: {
-        if ( LOWORD(wParam) != WA_INACTIVE ) {
-            WindowHelper::correctModalOrder(hWnd, window->m_modalHwnd);
-            return 0;
-        }
-
-        break;
-    }
-
-    case WM_KEYDOWN:
-    {
-        switch ( wParam )
-        {
-            case VK_F4:
-                if ( HIBYTE(GetKeyState(VK_SHIFT)) & 0x80 ) {
-                    qDebug() << "shift pressed";
-                } else {
-                    qDebug() << "shift doesn't pressed";
-                }
-                break;
-            case VK_F5:
-            {
-//                window->borderlessResizeable = !window->borderlessResizeable;
-                break;
-            }
-            case VK_F6:
-            {
-//                window->toggleShadow();
-//                window->toggleBorderless();
-//                SetFocus( winId );
-                break;
-            }
-            case VK_F7:
-            {
-//                window->toggleShadow();
-                break;
-            }
-        }
-
-        if ( wParam != VK_TAB )
-            return DefWindowProc( hWnd, message, wParam, lParam );
-
-        SetFocus( HWND(window->m_pWinPanel->winId()) );
-        break;
-    }
-
-    // ALT + SPACE or F10 system menu
-    case WM_SYSCOMMAND:
-    {
-        if ( GET_SC_WPARAM(wParam) == SC_KEYMENU )
-        {
-//            RECT winrect;
-//            GetWindowRect( hWnd, &winrect );
-//            TrackPopupMenu( GetSystemMenu( hWnd, false ), TPM_TOPALIGN | TPM_LEFTALIGN, winrect.left + 5, winrect.top + 5, 0, hWnd, NULL);
-//            break;
-            return 0;
-        } else
-        if ( GET_SC_WPARAM(wParam) == SC_SIZE ) {
-            // TODO: skip window min size for usability test
-//            window->setMinimumSize(int(MAIN_WINDOW_MIN_WIDTH * window->m_dpiRatio), int(MAIN_WINDOW_MIN_HEIGHT * window->m_dpiRatio));
-            break;
-        } else
-        if ( GET_SC_WPARAM(wParam) == SC_MOVE ) {
-            break;
-        } else
-        if (GET_SC_WPARAM(wParam) == SC_MAXIMIZE) {
-            qDebug() << "wm syscommand maximized";
-            break;
-        }
-        else
-        if (GET_SC_WPARAM(wParam) == SC_RESTORE) {
-//            if ( !WindowHelper::isLeftButtonPressed() )
-//                WindowHelper::correctWindowMinimumSize(window->handle());
-
-            break;
-        }
-        else
-        if (GET_SC_WPARAM(wParam) == SC_MINIMIZE) {
-            break;
-        }
-        else
-        {
-            return DefWindowProc( hWnd, message, wParam, lParam );
-        }
-    }
-
-    case WM_SETFOCUS:
-    {
-//        QString str( "Got focus" );
-//        QWidget *widget = QWidget::find( ( WId )HWND( wParam ) );
-//        if ( widget )
-//            str += QString( " from %1 (%2)" ).arg( widget->objectName() ).arg(widget->metaObject()->className() );
-//        str += "\n";
-//        OutputDebugStringA( str.toLocal8Bit().data() );
-
-        if ( IsWindowEnabled(hWnd) )
-            window->m_pMainPanel->focus();
-        break;
-    }
-
-    case WM_NCCALCSIZE:
-    {
-        //this kills the window frame and title bar we added with
-        //WS_THICKFRAME and WS_CAPTION
-        if (window->borderless)
-        {
-
-            return 0;
-        }
-        break;
-    }
-
-    case WM_KILLFOCUS:
-        break;
-
-    case WM_CLOSE:
-qDebug() << "WM_CLOSE";
-
-        AscAppManager::getInstance().closeQueue().enter(sWinTag{1, size_t(window)});
-        return 0;
-
-    case WM_DESTROY:
-    {
-//        PostQuitMessage(0);
-        break;
-    }
-
-    case WM_TIMER:
-    {
-        CAscApplicationManagerWrapper::getInstance().CheckKeyboard();
-        break;
-    }
-
-    case WM_NCPAINT:
-        return 0;
-
-    case WM_NCHITTEST:
-    {
-        if ( window->borderless )
-        {
-            const LONG borderWidth = 8; //in pixels
-            RECT winrect;
-            GetWindowRect( hWnd, &winrect );
-            long x = GET_X_LPARAM( lParam );
-            long y = GET_Y_LPARAM( lParam );
-            if ( window->borderlessResizeable )
-            {
-                //bottom left corner
-                if ( x >= winrect.left && x < winrect.left + borderWidth &&
-                    y < winrect.bottom && y >= winrect.bottom - borderWidth )
-                {
-                    return HTBOTTOMLEFT;
-                }
-                //bottom right corner
-                if ( x < winrect.right && x >= winrect.right - borderWidth &&
-                    y < winrect.bottom && y >= winrect.bottom - borderWidth )
-                {
-                    return HTBOTTOMRIGHT;
-                }
-                //top left corner
-                if ( x >= winrect.left && x < winrect.left + borderWidth &&
-                    y >= winrect.top && y < winrect.top + borderWidth )
-                {
-                    return HTTOPLEFT;
-                }
-                //top right corner
-                if ( x < winrect.right && x >= winrect.right - borderWidth &&
-                    y >= winrect.top && y < winrect.top + borderWidth )
-                {
-                    return HTTOPRIGHT;
-                }
-                //left border
-                if ( x >= winrect.left && x < winrect.left + borderWidth )
-                {
-                    return HTLEFT;
-                }
-                //right border
-                if ( x < winrect.right && x >= winrect.right - borderWidth )
-                {
-                    return HTRIGHT;
-                }
-                //bottom border
-                if ( y < winrect.bottom && y >= winrect.bottom - borderWidth )
-                {
-                    return HTBOTTOM;
-                }
-                //top border
-                if ( y >= winrect.top && y < winrect.top + borderWidth )
-                {
-                    return HTTOP;
-                }
-            }
-
-            return HTCAPTION;
-        }
-        break;
-    }
-
     case WM_SIZE:
         if ( !window->skipsizing && !window->closed && window->m_pWinPanel) {
             if (wParam == SIZE_MINIMIZED) {
@@ -490,13 +531,7 @@ qDebug() << "WM_CLOSE";
         }
         break;
 
-    case WM_MOVING: {
-        break;
-    }
-
     case WM_ENTERSIZEMOVE: {
-//        WindowHelper::correctWindowMinimumSize(window->handle());
-
         WINDOWPLACEMENT wp{sizeof(WINDOWPLACEMENT)};
         if ( GetWindowPlacement(hWnd, &wp) ) {
             MONITORINFO info{sizeof(MONITORINFO)};
@@ -509,10 +544,8 @@ qDebug() << "WM_CLOSE";
 
     case WM_EXITSIZEMOVE: {
         window->setMinimumSize(0, 0);
-//#define DEBUG_SCALING
 #if defined(DEBUG_SCALING) && defined(_DEBUG)
         QRect windowRect;
-
         WINDOWPLACEMENT wp{sizeof(WINDOWPLACEMENT)};
         if (GetWindowPlacement(hWnd, &wp)) {
             GET_REGISTRY_USER(reg_user)
@@ -544,35 +577,6 @@ qDebug() << "WM_CLOSE";
         break;
     }
 
-    case WM_NCACTIVATE: {
-        return TRUE;
-        break;
-    }
-
-    case WM_PAINT: {
-        RECT rect;
-        GetClientRect(hWnd, &rect);
-
-        PAINTSTRUCT ps;
-        HDC hDC = ::BeginPaint(hWnd, &ps);
-        HPEN hpenOld = static_cast<HPEN>(::SelectObject(hDC, ::GetStockObject(DC_PEN)));
-        ::SetDCPenColor(hDC, AscAppManager::themes().current().colorRef(CTheme::ColorRole::ecrWindowBorder));
-
-        HBRUSH hBrush = ::CreateSolidBrush(AscAppManager::themes().current().colorRef(CTheme::ColorRole::ecrWindowBackground));
-        HBRUSH hbrushOld = static_cast<HBRUSH>(::SelectObject(hDC, hBrush));
-
-        ::Rectangle(hDC, rect.left, rect.top, rect.right, rect.bottom);
-
-        ::SelectObject(hDC, hbrushOld);
-        ::DeleteObject(hBrush);
-
-        ::SelectObject(hDC, hpenOld);
-        ::EndPaint(hWnd, &ps);
-        return 0; }
-
-    case WM_ERASEBKGND: {
-        return TRUE; }
-
     case WM_GETMINMAXINFO:
     {
         MINMAXINFO* minMaxInfo = ( MINMAXINFO* )lParam;
@@ -591,10 +595,8 @@ qDebug() << "WM_CLOSE";
     }
     case WM_ENDSESSION:
         CAscApplicationManagerWrapper::getInstance().CloseApplication();
-
         break;
 
-    case WM_WINDOWPOSCHANGING: { break; }
     case WM_COPYDATA: {
         COPYDATASTRUCT* pcds = (COPYDATASTRUCT*)lParam;
         if (pcds->dwData == 1) {
@@ -641,16 +643,7 @@ void CMainWindow::toggleBorderless(bool showmax)
 {
     if ( visible )
     {
-        // чтобы не было мерцания. перерисовку при "неактивном окне" - перекроем
-        /*LONG newStyle = borderless ?
-                    long(WindowBase::Style::aero_borderless) : long(WindowBase::Style::windowed);*/
-
-        //SetWindowLongPtr( hWnd, GWL_STYLE, newStyle );
-
         borderless = !borderless;
-
-        //redraw frame
-        //SetWindowPos( hWnd, 0, 0, 0, 0, 0, SWP_FRAMECHANGED | SWP_NOMOVE | SWP_NOSIZE);
         show(showmax);
     }
 }
@@ -662,14 +655,12 @@ void CMainWindow::toggleResizeable()
 
 void CMainWindow::show(bool maximized)
 {
-    //ShowWindow( hWnd, maximized ? SW_MAXIMIZE : SW_SHOW);
     maximized ? QMainWindow::showMaximized() : QMainWindow::show();
     visible = true;
 }
 
 void CMainWindow::hide()
 {
-    //ShowWindow( hWnd, SW_HIDE );
     QMainWindow::hide();
     visible = false;
 }
@@ -763,24 +754,10 @@ void CMainWindow::adjustGeometry()
         if (wrect.right > lTestW)   nMaxOffsetR = (wrect.right - lTestW);
         if (wrect.bottom > lTestH)  nMaxOffsetB = (wrect.bottom - lTestH);*/
 
-        // TODO: вот тут бордер!!!
-        /*m_pWinPanel->setGeometry( nMaxOffsetX + border_size, nMaxOffsetY + border_size,
-                                                    clientRect.right - (nMaxOffsetX + nMaxOffsetR + 2 * border_size),
-                                                    clientRect.bottom - (nMaxOffsetY + nMaxOffsetB + 2 * border_size));*/
     //} else {
         border_size = int(MAIN_WINDOW_BORDER_WIDTH * m_dpiRatio);
         setContentsMargins(border_size,border_size + 1,border_size,border_size);
-        // TODO: вот тут бордер!!!
-        /*m_pWinPanel->setGeometry(border_size, border_size,
-                            clientRect.right - 2 * border_size, clientRect.bottom - 2 * border_size);*/
     //}
-
-    /*HRGN hRgn = CreateRectRgn(nMaxOffsetX, nMaxOffsetY,
-                                lpWindowRect.right - lpWindowRect.left - nMaxOffsetX,
-                                lpWindowRect.bottom - lpWindowRect.top - nMaxOffsetY);
-
-    SetWindowRgn(hWnd, hRgn, TRUE);
-    DeleteObject(hRgn);*/
 }
 
 void CMainWindow::setScreenScalingFactor(double factor)
@@ -826,17 +803,6 @@ void CMainWindow::setScreenScalingFactor(double factor)
 
 void CMainWindow::slot_windowChangeState(Qt::WindowState s)
 {
-    /*int cmdShow = SW_RESTORE;
-    switch (s) {
-    case Qt::WindowMaximized:   cmdShow = SW_MAXIMIZE; break;
-    case Qt::WindowMinimized:   cmdShow = SW_MINIMIZE; break;
-    case Qt::WindowFullScreen:  cmdShow = SW_HIDE; break;
-    default:
-    case Qt::WindowNoState: break;
-    }
-
-    ShowWindow(hWnd, cmdShow);*/
-
     switch (s) {
     case Qt::WindowMaximized:  showMaximized(); break;
     case Qt::WindowMinimized:  showMinimized(); break;
@@ -1086,7 +1052,6 @@ void CMainWindow::applyTheme(const std::wstring& theme)
     setStyleSheet(QString("background-color: rgb(%1,%2,%3)").arg(QString::number(GetRValue(color)),
                                                                  QString::number(GetGValue(color)),
                                                                  QString::number(GetBValue(color))));
-    /*RedrawWindow(hWnd, nullptr, nullptr, RDW_INVALIDATE);*/
 }
 
 void CMainWindow::updateScaling()
