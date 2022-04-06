@@ -42,6 +42,14 @@ ifneq ($(filter %86,$(UNAME_M)),)
 	TAR_ARCH = x86
 	ARCHITECTURE = 32
 endif
+ifneq ($(filter aarch%,$(UNAME_M)),)
+	RPM_ARCH = aarch64
+	DEB_ARCH = arm64
+	URPMI_ARCH = aarch64
+	APT_RPM_ARCH = aarch64
+	TAR_ARCH = aarch64
+	ARCHITECTURE = arm64
+endif
 
 RPM_BUILD_DIR = $(PWD)/rpm/builddir
 APT_RPM_BUILD_DIR = $(PWD)/apt-rpm/builddir
