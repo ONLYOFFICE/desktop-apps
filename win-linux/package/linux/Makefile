@@ -193,10 +193,6 @@ apt-rpm: $(APT_RPM)
 urpmi: $(URPMI)
 
 rpm_aarch64 : ARCHITECTURE = arm64
-	SRC += ../../../../build_tools/out/linux_$(ARCHITECTURE)/$(DESKTOPEDITORS_PREFIX)
-ifneq ($(COMPANY_NAME), ONLYOFFICE)
-	SRC += ../../../../build_tools/out/linux_$(ARCHITECTURE)/$(MEDIAVIEWER_PREFIX)
-endif
 rpm_aarch64 : RPM_ARCH = aarch64
 rpm_aarch64 : $(RPM)
 
