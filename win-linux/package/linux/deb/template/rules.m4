@@ -1,17 +1,10 @@
 #!/usr/bin/make -f
 # -*- makefile -*-
 
-# Uncomment this to turn on verbose mode.
-#export DH_VERBOSE=1
+export DH_VERBOSE=1
 
 %:
 	dh $@
-
-override_dh_installdocs:
-	dh_installdocs --no-act
-
-override_dh_installchangelogs:
-	dh_installchangelogs --no-act
 
 override_dh_fixperms:
 	dh_fixperms
@@ -21,8 +14,13 @@ override_dh_fixperms:
 	chmod 755 debian/M4_PACKAGE_NAME/opt/M4_MEDIAVIEWER_PREFIX/VideoPlayer
 	chmod 777 debian/M4_PACKAGE_NAME/etc/M4_PACKAGE_NAME)
 
-override_dh_shlibdeps:
-	dh_shlibdeps --no-act
+ifdef(`M4_ASTRALINUX_SIGN_IMAGE',
+override_dh_strip:
+	dh_strip
+	docker run --rm \
+		-v M4_ASTRALINUX_KEYS_DIR:/root/keys \
+		-v $(shell pwd)/debian/M4_PACKAGE_NAME:/root/buildroot \
+		--name sign-app \
+		M4_ASTRALINUX_SIGN_IMAGE,)
 
-override_dh_builddeb:
-	dh_builddeb --destdir=.
+override_dh_shlibdeps:
