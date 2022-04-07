@@ -32,7 +32,7 @@
 
 #include "ceditorwindow.h"
 #include "utils.h"
-#include "cwindowbase.h"
+#include "cmainwindowbase.h"
 #include "defines.h"
 #include "cascapplicationmanagerwrapper.h"
 #include "cfiledialog.h"

@@ -30,46 +30,6 @@
  *
 */
 
-#ifndef CWINDOWBASE_H
-#define CWINDOWBASE_H
 
-#define WINDOW_MIN_WIDTH    500
-#define WINDOW_MIN_HEIGHT   300
 
-#define MAIN_WINDOW_MIN_WIDTH  960
-#define MAIN_WINDOW_MIN_HEIGHT 661
-#define MAIN_WINDOW_DEFAULT_SIZE QSize(1324,800)
 
-#define BUTTON_MAIN_WIDTH   112
-#define MAIN_WINDOW_BORDER_WIDTH 4
-#define WINDOW_TITLE_MIN_WIDTH 200
-#define TOOLBTN_HEIGHT      28
-#define TOOLBTN_WIDTH       40
-#define TITLE_HEIGHT        28
-
-#ifdef _WIN32
-# include <windows.h>
-#endif
-
-namespace WindowBase
-{
-#ifdef _WIN32
-    enum class Style : DWORD
-    {
-//        windowed        = ( WS_OVERLAPPEDWINDOW | WS_CLIPCHILDREN ),
-        windowed        = ( WS_OVERLAPPED | WS_THICKFRAME | WS_CAPTION | WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_CLIPCHILDREN ),
-        aero_borderless = ( WS_POPUP | WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_THICKFRAME | WS_CLIPCHILDREN )
-    };
-
-    struct CWindowGeometry
-    {
-        CWindowGeometry() {}
-
-        bool required = false;
-        int width = 0;
-        int height = 0;
-    };
-#endif
-}
-
-#endif // CWINDOWBASE_H

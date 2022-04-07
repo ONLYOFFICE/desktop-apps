@@ -36,8 +36,7 @@
 #include <QRect>
 #include <QPushButton>
 #include <QLabel>
-
-#include "cwindowbase.h"
+#include "cmainwindowbase.h"
 #include "cwinpanel.h"
 #include "ctabpanel.h"
 

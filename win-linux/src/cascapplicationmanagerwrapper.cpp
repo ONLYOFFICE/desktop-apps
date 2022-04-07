@@ -1207,7 +1207,7 @@ void CAscApplicationManagerWrapper::closeEditorWindow(const size_t p)
         it = _app.m_vecEditors.begin();
         while ( it != _app.m_vecEditors.end() ) {
             if ( *it == p /*&& !_app.m_vecEditors.empty()*/ ) {
-                CSingleWindowBase * _w = reinterpret_cast<CSingleWindowBase *>(*it);
+                CMainWindowBase * _w = reinterpret_cast<CMainWindowBase *>(*it);
 
                 AscAppManager::unbindReceiver(static_cast<const CCefEventsGate *>(_w->receiver()));
 
@@ -1359,7 +1359,7 @@ void CAscApplicationManagerWrapper::editorWindowMoving(const size_t h, const QPo
         CMainWindow * _main_window = reinterpret_cast<CMainWindow *>(_app.m_vecWindows.at(0));
 
         if ( _main_window && _main_window->pointInTabs(pt) ) {
-            CSingleWindowBase * editor_win = nullptr;
+            CMainWindowBase * editor_win = nullptr;
             for (auto const& w : _app.m_vecEditors) {
                 CEditorWindow * _e = reinterpret_cast<CEditorWindow *>(w);
 

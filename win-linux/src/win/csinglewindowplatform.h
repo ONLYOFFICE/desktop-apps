@@ -34,16 +34,13 @@
 #define CSINGLEWINDOWPLATFORM_H
 
 #include "cframelesswindow.h"
-#include "csinglewindowbase.h"
-#include "windows.h"
-//#include "cwinpanel.h"
-#include "cwindowbase.h"
+#include "cmainwindowbase.h"
 #include <QWidget>
 #include <QGridLayout>
 
 #define TOP_NATIVE_WINDOW_HANDLE (HWND)m_pMainPanel->winId()
 
-class CSingleWindowPlatform : public CSingleWindowBase, public CFramelessWindow
+class CSingleWindowPlatform : public CMainWindowBase, public CFramelessWindow
 {
 public:
     CSingleWindowPlatform(const QRect&, const QString&, QWidget *);

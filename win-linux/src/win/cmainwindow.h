@@ -34,7 +34,6 @@
 #define CMAINWINDOW_H
 
 #include "cmainpanelimpl.h"
-#include "cwindowbase.h"
 #include "cmainwindowbase.h"
 #include <QShowEvent>
 #include <QCloseEvent>
@@ -42,8 +41,7 @@
 #include <QMainWindow>
 #include <QMargins>
 #include <QRect>
-#include <windowsx.h>
-#include <dwmapi.h>
+
 
 #include <QtWidgets/QApplication>
 
@@ -77,13 +75,13 @@ public:
     int getMaximumHeight();
     int getMaximumWidth();
     void removeMaximumSize();
-    void adjustGeometry();
+    void adjustGeometry() override;
     void applyTheme(const std::wstring&) override;
     void updateScaling() override;
 
     CMainPanel * mainPanel() const override;
     QRect windowRect() const override;
-    bool isMaximized() const override;
+    //bool isMaximized() const override;
     HWND handle() const;
     void bringToTop() const override;
 
@@ -99,15 +97,15 @@ public:
 
 protected:
     bool nativeEvent(const QByteArray &eventType, void *message, long *result) override;
-    virtual void onMoveEvent(const QRect&) {};
-    virtual void onSizeEvent(int) {};
+    virtual void onMoveEvent(const QRect&) override {};
+    virtual void onSizeEvent(int) override {};
 
 private:
     void showEvent(QShowEvent *event) override;
     void closeEvent(QCloseEvent *event) override;
     void changeEvent(QEvent *event) override;
     void captureMouse(int tabindex) override;
-    void setScreenScalingFactor(double);
+    void setScreenScalingFactor(double) override;
     void doClose();
 
     void slot_windowChangeState(Qt::WindowState);

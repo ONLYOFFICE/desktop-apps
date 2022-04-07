@@ -965,7 +965,7 @@ QRect CMainWindow::windowRect() const
     return _win_rect;
 }
 
-bool CMainWindow::isMaximized() const
+/*bool CMainWindow::isMaximized() const
 {
     bool _is_maximized = false;
 
@@ -975,7 +975,7 @@ bool CMainWindow::isMaximized() const
     }
 
     return _is_maximized;
-}
+}*/
 
 HWND CMainWindow::handle() const
 {

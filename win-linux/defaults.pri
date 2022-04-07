@@ -86,13 +86,11 @@ HEADERS += \
     $$PWD/src/cfilechecker.h \
     $$PWD/src/clogger.h \
     $$PWD/src/clangater.h \
-    $$PWD/src/cwindowbase.h \
     $$PWD/src/canimatedicon.h \
     $$PWD/src/cscalingwrapper.h \
     $$PWD/src/ctabundockevent.h \
     $$PWD/src/cmainwindowbase.h \
     $$PWD/src/ctabpanel.h \
-    $$PWD/src/csinglewindowbase.h \
     $$PWD/src/ceditorwindow.h \
     $$PWD/src/ccefeventsgate.h \
     $$PWD/src/ceditorwindow_p.h \
@@ -133,7 +131,6 @@ SOURCES += \
     $$PWD/src/ctabundockevent.cpp \
     $$PWD/src/cmainwindowbase.cpp \
     $$PWD/src/ctabpanel.cpp \
-    $$PWD/src/csinglewindowbase.cpp \
     $$PWD/src/ceditorwindow.cpp \
     $$PWD/src/ccefeventsgate.cpp \
     $$PWD/src/ceditortools.cpp \

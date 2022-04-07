@@ -32,7 +32,7 @@
 
 #include "csinglewindow.h"
 #include "utils.h"
-#include "cwindowbase.h"
+#include "cmainwindowbase.h"
 #include "cascapplicationmanagerwrapper.h"
 #include "defines.h"
 #include "defines_p.h"

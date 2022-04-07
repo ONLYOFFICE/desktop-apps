@@ -33,10 +33,8 @@
 #include "csinglewindow.h"
 #include "cascapplicationmanagerwrapper.h"
 #include "../utils.h"
-#include "cwindowbase.h"
 #include "defines.h"
 
-#include <windowsx.h>
 #include <functional>
 #include <QApplication>
 #include <QDesktopWidget>

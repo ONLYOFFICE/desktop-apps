@@ -33,12 +33,12 @@
 #ifndef CSINGLEWINDOWPLATFORM_H
 #define CSINGLEWINDOWPLATFORM_H
 
-#include "csinglewindowbase.h"
+#include "cmainwindowbase.h"
 #include <QMainWindow>
 #include "cx11decoration.h"
 #include <memory>
 
-class CSingleWindowPlatform : public CSingleWindowBase, public QMainWindow, public CX11Decoration
+class CSingleWindowPlatform : public CMainWindowBase, public QMainWindow, public CX11Decoration
 {
 public:
     explicit CSingleWindowPlatform(const QRect& r, const QString& title, QWidget * panel);

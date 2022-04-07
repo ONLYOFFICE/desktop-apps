@@ -31,7 +31,7 @@
 */
 
 #include "csinglewindowplatform.h"
-#include "cwindowbase.h"
+#include "cmainwindowbase.h"
 #include "utils.h"
 #include "defines.h"
 #include "cascapplicationmanagerwrapper.h"
@@ -63,7 +63,7 @@ public:
 };
 
 CSingleWindowPlatform::CSingleWindowPlatform(const QRect& rect, const QString& title, QWidget * panel)
-    : CSingleWindowBase(const_cast<QRect&>(rect))
+    : CMainWindowBase(const_cast<QRect&>(rect))
     , QMainWindow()
     , CX11Decoration(this)
     , pimpl{new impl(this)}
@@ -91,19 +91,19 @@ void CSingleWindowPlatform::resizeEvent(QResizeEvent *)
 
 void CSingleWindowPlatform::onMinimizeEvent()
 {
-    CSingleWindowBase::onMinimizeEvent();
+    CMainWindowBase::onMinimizeEvent();
     setWindowState(Qt::WindowMinimized);
 }
 
 void CSingleWindowPlatform::onMaximizeEvent()
 {
-    CSingleWindowBase::onMaximizeEvent();
+    CMainWindowBase::onMaximizeEvent();
     setWindowState(windowState().testFlag(Qt::WindowMaximized) ? Qt::WindowNoState : Qt::WindowMaximized);
 }
 
 void CSingleWindowPlatform::onSizeEvent(int type)
 {
-    CSingleWindowBase::onSizeEvent(type);
+    CMainWindowBase::onSizeEvent(type);
 
     if ( type == Qt::WindowMinimized ) {
 //        m_buttonMaximize->setProperty("class", s == Qt::WindowMaximized ? "min" : "normal") ;
@@ -230,7 +230,7 @@ void CSingleWindowPlatform::onExitSizeMove()
 
 void CSingleWindowPlatform::setWindowTitle(const QString& t)
 {
-    CSingleWindowBase::setWindowTitle(t);
+    CMainWindowBase::setWindowTitle(t);
     QMainWindow::setWindowTitle(t);
 }
 

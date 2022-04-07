@@ -47,7 +47,7 @@
 Q_GUI_EXPORT HICON qt_pixmapToWinHICON(const QPixmap &);
 
 CSingleWindowPlatform::CSingleWindowPlatform(const QRect& rect, const QString& title, QWidget * panel)
-    : CSingleWindowBase(const_cast<QRect&>(rect))
+    : CMainWindowBase(const_cast<QRect&>(rect))
     , CFramelessWindow(nullptr)
     , m_bgColor(AscAppManager::themes().current().colorRef(CTheme::ColorRole::ecrWindowBackground))
     , m_borderColor(AscAppManager::themes().current().colorRef(CTheme::ColorRole::ecrWindowBorder))
@@ -316,7 +316,7 @@ void CSingleWindowPlatform::changeEvent(QEvent *event)
         adjustGeometry();
     }
 
-    CSingleWindowBase::onSizeEvent(type);
+    CMainWindowBase::onSizeEvent(type);
 }*/
 
 void CSingleWindowPlatform::onExitSizeMove()
@@ -395,7 +395,7 @@ void CSingleWindowPlatform::onMaximizeEvent()
 void CSingleWindowPlatform::setScreenScalingFactor(double f)
 {
     double change_factor = f / m_dpiRatio;
-    CSingleWindowBase::setScreenScalingFactor(f);
+    CMainWindowBase::setScreenScalingFactor(f);
 
     if ( !WindowHelper::isWindowSystemDocked(m_hWnd) ) {
         m_skipSizing = true;
@@ -454,7 +454,7 @@ void CSingleWindowPlatform::setWindowState(Qt::WindowState state)
 
 void CSingleWindowPlatform::setWindowTitle(const QString& title)
 {
-    CSingleWindowBase::setWindowTitle(title);
+    CMainWindowBase::setWindowTitle(title);
     //SetWindowText(m_hWnd, title.toStdWString().c_str());
     QMainWindow::setWindowTitle(title);
 }
