@@ -1846,13 +1846,13 @@ QString CAscApplicationManagerWrapper::newFileName(int format)
 
 void CAscApplicationManagerWrapper::checkUpdates()
 {
-    APP_CAST(_app);
+    //APP_CAST(_app);
 
-    if ( !_app.m_updater ) {
-        _app.m_updater = std::make_shared<CAppUpdater>();
-    }
+    //if ( !_app.m_updater ) {
+        //_app.m_updater = std::make_shared<CAppUpdater>();
+    //}
 
-    _app.m_updater->checkUpdates();
+    //_app.m_updater->checkUpdates();
 }
 
 wstring CAscApplicationManagerWrapper::userSettings(const wstring& name)

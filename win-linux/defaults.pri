@@ -98,7 +98,7 @@ HEADERS += \
     $$PWD/src/cwindowsqueue.h \
     $$PWD/src/ceventdriver.h \
     $$PWD/src/csvgpushbutton.h \
-    $$PWD/src/cappupdater.h \
+    #$$PWD/src/cappupdater.h \
     $$PWD/src/cappeventfilter.h \
     $$PWD/src/cthemes.h
 #    src/ctabbar_p.h \
@@ -136,7 +136,7 @@ SOURCES += \
     $$PWD/src/ceditortools.cpp \
     $$PWD/src/ceventdriver.cpp \
     $$PWD/src/csvgpushbutton.cpp \
-    $$PWD/src/cappupdater.cpp \
+    #$$PWD/src/cappupdater.cpp \
     $$PWD/src/cappeventfilter.cpp \
     $$PWD/src/cthemes.cpp
 #    src/ctabstyle.cpp
