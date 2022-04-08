@@ -51,12 +51,12 @@
 #include "ceditorwindow_p.h"
 
 CEditorWindow::CEditorWindow()
-    : CSingleWindowPlatform(QRect(100, 100, 900, 800), "Desktop Editor", nullptr)
+    : CMainWindow(QRect(100, 100, 900, 800), "Desktop Editor", nullptr)
 {
 }
 
 CEditorWindow::CEditorWindow(const QRect& rect, CTabPanel* panel)
-    : CSingleWindowPlatform(rect, panel->data()->title(), panel)
+    : CMainWindow(rect, panel->data()->title(), panel)
     , d_ptr(new CEditorWindowPrivate(this))
 {
     d_ptr.get()->init(panel);
@@ -104,7 +104,7 @@ CEditorWindow::CEditorWindow(const QRect& rect, CTabPanel* panel)
 }
 
 CEditorWindow::CEditorWindow(const QRect& r, const QString& s, QWidget * w)
-    : CSingleWindowPlatform(r,s,w)
+    : CMainWindow(r,s,w)
 {
 
 }
@@ -135,9 +135,9 @@ void CEditorWindow::undock(bool maximized)
     }
 #endif
 
-    CSingleWindowPlatform::show(maximized);
+    CMainWindow::show(maximized);
     if ( isCustomWindowStyle() )
-        CSingleWindowPlatform::captureMouse();
+        CMainWindow::captureMouse();
 }
 
 int CEditorWindow::closeWindow()
@@ -191,7 +191,7 @@ QWidget * CEditorWindow::createMainPanel(QWidget * parent)
 QWidget * CEditorWindow::createMainPanel(QWidget * parent, const QString& title)
 {
     // create min/max/close buttons
-    CSingleWindowPlatform::createMainPanel(parent, title);
+    CMainWindow::createMainPanel(parent, title);
 
     QWidget * mainPanel = new QWidget(parent);
     mainPanel->setObjectName("mainPanel");
@@ -312,7 +312,7 @@ void CEditorWindow::onCloseEvent()
 void CEditorWindow::onMinimizeEvent()
 {
     if ( !d_ptr->isReporterMode ) {
-        CSingleWindowPlatform::onMinimizeEvent();
+        CMainWindow::onMinimizeEvent();
     }
 }
 
@@ -324,14 +324,14 @@ void CEditorWindow::onClickButtonHome()
 void CEditorWindow::onMaximizeEvent()
 {
     if ( !d_ptr->isReporterMode ) {
-        CSingleWindowPlatform::onMaximizeEvent();
+        CMainWindow::onMaximizeEvent();
     }
 }
 
 void CEditorWindow::onSizeEvent(int type)
 {
-//    CSingleWindowPlatform::onSizeEvent(type);
-    CFramelessWindow::onSizeEvent(type);
+//    CMainWindow::onSizeEvent(type);
+    CMainWindow::onSizeEvent(type);
     recalculatePlaces();
 }
 
@@ -349,11 +349,11 @@ void CEditorWindow::onMoveEvent(const QRect&)
 
 void CEditorWindow::onExitSizeMove()
 {
-    CSingleWindowPlatform::onExitSizeMove();
+    CMainWindow::onExitSizeMove();
 
     if ( m_restoreMaximized ) {
         m_restoreMaximized = false;
-        CSingleWindowPlatform::show(true);
+        CMainWindow::show(true);
     }
 }
 
@@ -363,13 +363,13 @@ void CEditorWindow::onDpiChanged(double newfactor, double prevfactor)
     CX11Decoration::onDpiChanged(newfactor);
 #endif
 
-//    CSingleWindowPlatform::onDpiChanged(newfactor, prevfactor);
+//    CMainWindow::onDpiChanged(newfactor, prevfactor);
     setScreenScalingFactor(newfactor);
 }
 
 void CEditorWindow::setScreenScalingFactor(double newfactor)
 {
-    CSingleWindowPlatform::setScreenScalingFactor(newfactor);
+    CMainWindow::setScreenScalingFactor(newfactor);
 
     if ( newfactor > 1.75 ) m_pMainPanel->setProperty("zoom", "2x"); else
     if ( newfactor > 1.5 ) m_pMainPanel->setProperty("zoom", "1.75x"); else
@@ -478,7 +478,7 @@ AscEditorType CEditorWindow::editorType() const
 
 int CEditorWindow::calcTitleCaptionWidth()
 {
-    int base_width = CSingleWindowPlatform::calcTitleCaptionWidth();
+    int base_width = CMainWindow::calcTitleCaptionWidth();
     return d_ptr->calcTitleLabelWidth(base_width);
 }
 

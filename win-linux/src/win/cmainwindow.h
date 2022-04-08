@@ -33,57 +33,60 @@
 #ifndef CMAINWINDOW_H
 #define CMAINWINDOW_H
 
-#include "cmainpanelimpl.h"
 #include "cmainwindowbase.h"
+#include "cmainpanelimpl.h"
+#include <QtWidgets/QApplication>
+#include <QMainWindow>
 #include <QShowEvent>
 #include <QCloseEvent>
-#include <QWindowStateChangeEvent>
-#include <QMainWindow>
 #include <QMargins>
 #include <QRect>
+#include <QGridLayout>
 
-
-#include <QtWidgets/QApplication>
 
 class CMainWindow : public CMainWindowBase, public QMainWindow
 {
-
 public:
-    explicit CMainWindow(const QRect &rect = QRect(), bool singleMode = false);
-    ~CMainWindow() override;
+    explicit CMainWindow();
+    explicit CMainWindow(const QRect&);
+    explicit CMainWindow(const QRect&, const QString&, QWidget *panel = nullptr);
+    virtual ~CMainWindow();
 
+    HWND handle() const;
     void setResizeable(bool resizeable);
-    bool isResizeable() {return m_isResizeable;}
     void setResizeableAreaWidth(int width);
     void setContentsMargins(int left, int top, int right, int bottom);
-
-    void show(bool);
-    void hide();
-    bool isVisible();
-
     void toggleBorderless(bool);
     void toggleResizeable();
-
-    void setMinimumSize( const int width, const int height );
-    bool isSetMinimumSize();
+    void setMinimumSize(const int width, const int height);
+    void setMaximumSize(const int width, const int height);
     void removeMinimumSize();
+    void removeMaximumSize();
+
     int getMinimumHeight() const;
     int getMinimumWidth() const;
-
-    void setMaximumSize( const int width, const int height );
-    bool isSetMaximumSize();
     int getMaximumHeight();
     int getMaximumWidth();
-    void removeMaximumSize();
-    void adjustGeometry() override;
-    void applyTheme(const std::wstring&) override;
-    void updateScaling() override;
 
-    CMainPanel * mainPanel() const override;
-    QRect windowRect() const override;
-    //bool isMaximized() const override;
-    HWND handle() const;
-    void bringToTop() const override;
+    bool isResizeable() {return m_isResizeable;}    
+    bool isSetMinimumSize();
+    bool isSetMaximumSize();
+
+    virtual CMainPanel * mainPanel() const override;
+    virtual QRect windowRect() const override;
+    virtual void adjustGeometry() override;
+    virtual void applyTheme(const std::wstring&) override;
+    virtual void updateScaling() override;
+    virtual void bringToTop() override;
+    virtual void setWindowTitle(const QString&) override;
+
+    virtual bool isVisible();
+    virtual void show(bool);
+    virtual void hide();
+    virtual void setWindowState(Qt::WindowState);
+    virtual void setWindowBackgroundColor(const QColor&);
+    virtual void setWindowColors(const QColor& background, const QColor& border);
+    virtual void activateWindow();
 
 #if (QT_VERSION < QT_VERSION_CHECK(5, 10, 0))
     // because of QTBUG-67211
@@ -96,23 +99,26 @@ public:
 #endif
 
 protected:
-    bool nativeEvent(const QByteArray &eventType, void *message, long *result) override;
+    WindowBase::CWindowGeometry const& minimumSize() const;
+    WindowBase::CWindowGeometry const& maximumSize() const;
+
+    void captureMouse();
+    void slot_modalDialog(bool status, HWND h);
+
+    virtual bool nativeEvent(const QByteArray &eventType, void *message, long *result) override;
     virtual void onMoveEvent(const QRect&) override {};
     virtual void onSizeEvent(int) override {};
+    virtual void setScreenScalingFactor(double f) override;
+    virtual void onMinimizeEvent() override;
+    virtual void onMaximizeEvent() override;
+    virtual void onExitSizeMove() override;
+    virtual void applyWindowState(Qt::WindowState);
+
+    QGridLayout *m_pCentralLayout;
+    QWidget *m_pCentralWidget;
 
 private:
-    void showEvent(QShowEvent *event) override;
-    void closeEvent(QCloseEvent *event) override;
-    void changeEvent(QEvent *event) override;
-    void captureMouse(int tabindex) override;
-    void setScreenScalingFactor(double) override;
-    void doClose();
-
-    void slot_windowChangeState(Qt::WindowState);
-    void slot_windowClose();
-    void slot_mainPageReady();
-    void slot_modalDialog(bool, HWND);
-
+    explicit CMainWindow(const QRect&, const bool);   
     friend auto refresh_window_scaling_factor(CMainWindow * window) -> void;
 
 #ifdef _UPDMODULE
@@ -121,37 +127,42 @@ private:
     static void updateError();
 #endif
 
-public:
-    //CWinPanel * m_pWinPanel;
+    void doClose();
+    void slot_windowChangeState(Qt::WindowState);
+    void slot_windowClose();
+    void slot_mainPageReady();
 
-private:
-    HWND hWnd;
-    bool m_singleMode;
-    int  m_borderWidth;
-    QMargins m_margins;
-    QMargins m_frames;
-    bool m_isJustMaximized;
-    bool m_isResizeable;
-    bool m_taskBarClicked;
+    virtual void showEvent(QShowEvent *event) override;
+    virtual void closeEvent(QCloseEvent *event) override;
+    virtual void changeEvent(QEvent *event) override;
+    virtual void captureMouse(int tabindex) override;
+
+    WindowBase::CWindowGeometry m_minSize;
+    WindowBase::CWindowGeometry m_maxSize;
+    QMetaObject::Connection m_modalSlotConnection;
+    CMainPanelImpl *_m_pMainPanel;
     Qt::WindowStates m_previousState;
 
-    bool closed;
-    bool visible;
-    bool skipsizing = false;
+    QRect m_moveNormalRect;
+    QRect m_window_rect;
+    QMargins m_margins;
+    QMargins m_frame;
 
-    bool borderless;
-    bool borderlessResizeable;
+    COLORREF m_bgColor;
+    COLORREF m_borderColor;
 
-    CMainPanelImpl * m_pMainPanel;
-
-    WindowBase::CWindowGeometry minimumSize;
-    WindowBase::CWindowGeometry maximumSize;
-
-    double m_dpiRatio = 1;
+    HWND m_hWnd;
     HWND m_modalHwnd;
 
-    QRect m_moveNormalRect;
-    QRect _window_rect;
+    int  m_borderWidth;
+    bool m_singleMode;
+    bool m_borderless;
+    bool m_visible;
+    bool m_closed;
+    bool m_skipSizing;
+    bool m_isMaximized;
+    bool m_isResizeable;
+    bool m_taskBarClicked;
     bool m_windowActivated;
 };
 
