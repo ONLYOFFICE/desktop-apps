@@ -191,8 +191,6 @@ QWidget * CEditorWindow::createMainPanel(QWidget * parent)
 QWidget * CEditorWindow::createMainPanel(QWidget * parent, const QString& title)
 {
     // create min/max/close buttons
-    //CMainWindow::createMainPanel(parent, title);
-
     QWidget * mainPanel = new QWidget(parent);
     mainPanel->setObjectName("mainPanel");
 
@@ -206,8 +204,6 @@ QWidget * CEditorWindow::createMainPanel(QWidget * parent, const QString& title)
 #endif
     mainPanel->setLayout(mainGridLayout);
     CMainWindow::createMainPanel(mainPanel, title);
-    //m_boxTitleBtns->setParent(mainPanel);
-//    mainGridLayout->addWidget(m_boxTitleBtns, 0, 0);
     m_boxTitleBtns->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
 //    mainPanel->setStyleSheet(AscAppManager::getWindowStylesheets(m_dpiRatio));
 //    mainPanel->setStyleSheet("background-color:#446995;");
@@ -292,11 +288,7 @@ QWidget * CEditorWindow::createMainPanel(QWidget * parent, const QString& title)
 #ifdef Q_OS_WIN
         ::SetParent((HWND)m_boxTitleBtns->winId(), (HWND)m_pMainView->winId());
 #endif
-        QVBoxLayout *vbox = new QVBoxLayout(mainPanel);
-        vbox->setContentsMargins(0,0,0,0);
-        vbox->setSpacing(0);
-        vbox->addWidget(m_boxTitleBtns);
-        mainGridLayout->addLayout(vbox, 1, 0, Qt::AlignTop);
+        mainGridLayout->addWidget(m_boxTitleBtns, 1, 0, Qt::AlignTop);
     }
     return mainPanel;
 }
