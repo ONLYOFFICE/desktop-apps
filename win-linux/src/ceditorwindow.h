@@ -49,7 +49,7 @@ class CEditorWindow : public CMainWindow
     Q_DECLARE_TR_FUNCTIONS(CEditorWindow)
 
 public:
-    CEditorWindow();
+    //CEditorWindow();
     CEditorWindow(const QRect& rect, CTabPanel* view);
     ~CEditorWindow();
 

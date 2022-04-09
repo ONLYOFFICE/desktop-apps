@@ -47,9 +47,9 @@
 class CMainWindow : public CMainWindowBase, public QMainWindow
 {
 public:
-    explicit CMainWindow();
     explicit CMainWindow(const QRect&);
-    explicit CMainWindow(const QRect&, const QString&, QWidget *panel = nullptr);
+    explicit CMainWindow(const QRect&, const QString&, QWidget*);
+    explicit CMainWindow(const QRect&, const QString&, QCefView*);
     virtual ~CMainWindow();
 
     HWND handle() const;
@@ -118,7 +118,7 @@ protected:
     QWidget *m_pCentralWidget;
 
 private:
-    explicit CMainWindow(const QRect&, const bool);   
+    explicit CMainWindow(const QRect&, const WindowType, const QString&, QWidget*);
     friend auto refresh_window_scaling_factor(CMainWindow * window) -> void;
 
 #ifdef _UPDMODULE
@@ -137,6 +137,7 @@ private:
     virtual void changeEvent(QEvent *event) override;
     virtual void captureMouse(int tabindex) override;
 
+    WindowType m_winType;
     WindowBase::CWindowGeometry m_minSize;
     WindowBase::CWindowGeometry m_maxSize;
     QMetaObject::Connection m_modalSlotConnection;
@@ -155,7 +156,7 @@ private:
     HWND m_modalHwnd;
 
     int  m_borderWidth;
-    bool m_singleMode;
+    //bool m_singleMode;
     bool m_borderless;
     bool m_visible;
     bool m_closed;

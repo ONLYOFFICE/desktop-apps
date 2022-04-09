@@ -30,22 +30,21 @@
  *
 */
 
+#include "cmainwindowbase.h"
 #include "utils.h"
 #include "ccefeventsgate.h"
 #include "defines.h"
+#include "clangater.h"
 #ifdef _WIN32
-    #include "win/caption.h"
+# include "win/caption.h"
 #endif
 
 #include <QLayout>
 #include <QVariant>
 #include <QSettings>
-#include <QDebug>
-
-#include "cmainwindowbase.h"
-#include "ctabbar.h"
-#include "clangater.h"
-#include <QApplication>
+//#include <QDebug>
+//#include "ctabbar.h"
+//#include <QApplication>
 
 
 class CMainWindowBase::impl {
@@ -124,7 +123,15 @@ auto CElipsisLabel::updateText() -> void
 }
 
 
-CMainWindowBase::CMainWindowBase() : pimpl{new impl}
+CMainWindowBase::CMainWindowBase()
+    : m_boxTitleBtns(nullptr)
+    , m_pMainPanel(nullptr)
+    , m_pMainView(nullptr)
+    , m_buttonMinimize(nullptr)
+    , m_buttonMaximize(nullptr)
+    , m_buttonClose(nullptr)
+    , m_labelTitle(nullptr)
+    , pimpl{new impl}
 {
 
 }
@@ -147,13 +154,6 @@ CMainWindowBase::CMainWindowBase(QRect& rect)
         if ( _screen_size.height() < rect.height() ) rect.setHeight(_screen_size.height());
     }
 }
-
-/*CSingleWindowBase::CSingleWindowBase()
-    : pimpl{new impl}
-{
-
-}*/
-
 
 CMainWindowBase::~CMainWindowBase()
 {
@@ -289,14 +289,6 @@ void CMainWindowBase::applyTheme(const std::wstring& name)
 {
     mainPanel()->applyTheme(name);
 }
-
-
-
-
-
-
-
-
 
 void CMainWindowBase::setScreenScalingFactor(double f)
 {

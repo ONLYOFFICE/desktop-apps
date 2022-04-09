@@ -65,37 +65,28 @@ auto refresh_window_scaling_factor(CMainWindow * window) -> void {
     }
 }
 
-CMainWindow::CMainWindow() :
-    CMainWindow(QRect(0,0,640,480), false)
-{
-
-}
-
 CMainWindow::CMainWindow(const QRect &rect) :
-    CMainWindow(rect, false)
-{
-
-}
+    CMainWindow(rect, WindowType::MAIN, QString(), nullptr)
+{}
 
 CMainWindow::CMainWindow(const QRect &rect, const QString &title, QWidget *panel) :
-    CMainWindow(rect, true)
-{
-    Q_UNUSED(title)
-    Q_UNUSED(panel);
-}
+    CMainWindow(rect, WindowType::SINGLE, title, panel)
+{}
 
-CMainWindow::CMainWindow(const QRect &rect, const bool singleMode) :
+CMainWindow::CMainWindow(const QRect &rect, const QString &title, QCefView *view) :
+    CMainWindow(rect, WindowType::REPORTER, title, static_cast<QWidget*>(view))
+{}
+
+CMainWindow::CMainWindow(const QRect &rect, const WindowType winType, const QString &title, QWidget *widget) :
     CMainWindowBase(const_cast<QRect&>(rect)),
     QMainWindow(nullptr),
-    //m_bgColor(AscAppManager::themes().current().colorRef(CTheme::ColorRole::ecrWindowBackground)),
-    //m_borderColor(AscAppManager::themes().current().colorRef(CTheme::ColorRole::ecrWindowBorder)),
+    m_winType(winType),
     m_previousState(Qt::WindowNoState),
     m_margins(QMargins()),
     m_frame(QMargins()),
     m_hWnd(nullptr),
     m_modalHwnd(nullptr),
-    m_borderWidth(5),
-    m_singleMode(singleMode),
+    m_borderWidth(MAIN_WINDOW_BORDER_WIDTH),
     m_borderless(true),
     m_visible(false),
     m_closed(false),
@@ -122,7 +113,7 @@ CMainWindow::CMainWindow(const QRect &rect, const bool singleMode) :
     m_window_rect = rect;
     m_dpiRatio = CSplash::startupDpiRatio();
 
-    if (!m_singleMode) {
+    if (m_winType == WindowType::MAIN) {
         if (m_window_rect.isEmpty())
             m_window_rect = QRect(QPoint(100, 100)*m_dpiRatio, MAIN_WINDOW_DEFAULT_SIZE * m_dpiRatio);
 
@@ -162,7 +153,7 @@ CMainWindow::CMainWindow(const QRect &rect, const bool singleMode) :
 
 CMainWindow::~CMainWindow()
 {
-    if (m_singleMode) {
+    if (m_winType == WindowType::SINGLE) {
         QObject::disconnect(m_modalSlotConnection);
     }
     m_closed = true;
@@ -232,7 +223,7 @@ bool CMainWindow::nativeEvent(const QByteArray &eventType, void *message, long *
     switch (msg->message)
     {
     case WM_ACTIVATE: {
-        if (!m_singleMode) {
+        if (m_winType == WindowType::MAIN) {
             if (LOWORD(msg->wParam) != WA_INACTIVE) {
                 WindowHelper::correctModalOrder(m_hWnd, m_modalHwnd);
                 return false;
@@ -274,7 +265,7 @@ bool CMainWindow::nativeEvent(const QByteArray &eventType, void *message, long *
         if (!WindowHelper::isLeftButtonPressed()) {
             double dpi_ratio = Utils::getScreenDpiRatioByHWND(LONG_PTR(m_hWnd));
             if (dpi_ratio != m_dpiRatio) {
-                if (!m_singleMode) {
+                if (m_winType == WindowType::MAIN) {
                     m_dpiRatio = dpi_ratio;
                     refresh_window_scaling_factor(this);
                     adjustGeometry();
@@ -416,13 +407,13 @@ bool CMainWindow::nativeEvent(const QByteArray &eventType, void *message, long *
     }
 
     case WM_MOVING: {
-        if (m_singleMode)
+        if (m_winType == WindowType::SINGLE)
             onMoveEvent(QRect());
         break;
     }
 
     case WM_SIZE: {
-        if (m_singleMode)
+        if (m_winType == WindowType::SINGLE)
             onSizeEvent(msg->wParam);
         break;
     }
@@ -438,7 +429,7 @@ bool CMainWindow::nativeEvent(const QByteArray &eventType, void *message, long *
 
     case WM_SETFOCUS: {
         if (!m_closed) {
-            if (m_singleMode) {
+            if (m_winType == WindowType::SINGLE) {
                 focus();
             } else {
                 if (IsWindowEnabled(m_hWnd))
@@ -449,7 +440,7 @@ bool CMainWindow::nativeEvent(const QByteArray &eventType, void *message, long *
     }
 
     case WM_CLOSE: {
-        if (!m_singleMode) {
+        if (m_winType == WindowType::MAIN) {
             AscAppManager::getInstance().closeQueue().enter(sWinTag{1, size_t(this)});
         } else {
             if (m_pMainPanel) {
@@ -479,7 +470,7 @@ void CMainWindow::showEvent(QShowEvent *event)
         setGeometry(m_window_rect);
         int border_size = int(MAIN_WINDOW_BORDER_WIDTH * m_dpiRatio);
         setContentsMargins(border_size, border_size + 1, border_size, border_size);
-        if (!m_singleMode) {
+        if (m_winType == WindowType::MAIN) {
             COLORREF color = AscAppManager::themes().current().colorRef(CTheme::ColorRole::ecrWindowBackground);
             setStyleSheet(QString("background-color: rgb(%1,%2,%3)").arg(QString::number(GetRValue(color)),
                                                                          QString::number(GetGValue(color)),
@@ -508,7 +499,7 @@ void CMainWindow::closeEvent(QCloseEvent *event)
 void CMainWindow::changeEvent(QEvent *event)
 {
     QMainWindow::changeEvent(event);
-    if (!m_singleMode) {
+    if (m_winType == WindowType::MAIN) {
         if (event->type() == QEvent::WindowStateChange) {
             if (isMinimized()) {
                 _m_pMainPanel->applyMainWindowState(Qt::WindowMinimized);
@@ -800,7 +791,7 @@ void CMainWindow::adjustGeometry()
 
 void CMainWindow::setScreenScalingFactor(double factor)
 {
-    if (!m_singleMode) {
+    if (m_winType == WindowType::MAIN) {
         m_skipSizing = true;
 
         QString css(AscAppManager::getWindowStylesheets(factor));
@@ -897,7 +888,7 @@ void CMainWindow::slot_modalDialog(bool status, HWND h)
         m_modalHwnd = h;
     } else {
         m_modalHwnd = nullptr;
-        if (!status && IsWindowEnabled(m_hWnd) && !m_singleMode)
+        if (!status && IsWindowEnabled(m_hWnd) && m_winType == WindowType::MAIN)
             _m_pMainPanel->focus();
     }
 }
@@ -1092,7 +1083,7 @@ auto SetForegroundWindowInternal(HWND hWnd)
 
 void CMainWindow::bringToTop()
 {
-    if (IsIconic(m_hWnd) && !m_singleMode) {
+    if (IsIconic(m_hWnd) && m_winType == WindowType::MAIN) {
         ShowWindow(m_hWnd, SW_SHOWNORMAL);
     }
     SetForegroundWindow(m_hWnd);

@@ -39,7 +39,6 @@
 #include "applicationmanager.h"
 #include "cmainpanelimpl.h"
 #include "cmainwindowbase.h"
-#include "cmainwindowbase.h"
 
 
 class CMainWindow : public QMainWindow, public CX11Decoration, public CMainWindowBase

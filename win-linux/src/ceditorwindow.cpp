@@ -50,10 +50,10 @@
 
 #include "ceditorwindow_p.h"
 
-CEditorWindow::CEditorWindow()
+/*CEditorWindow::CEditorWindow()
     : CMainWindow(QRect(100, 100, 900, 800), "Desktop Editor", nullptr)
 {
-}
+}*/
 
 CEditorWindow::CEditorWindow(const QRect& rect, CTabPanel* panel)
     : CMainWindow(rect, panel->data()->title(), panel)
