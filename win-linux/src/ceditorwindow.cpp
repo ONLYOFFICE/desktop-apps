@@ -289,13 +289,13 @@ QWidget * CEditorWindow::createMainPanel(QWidget * parent, const QString& title)
     mainGridLayout->setRowStretch(1,1);
 
     if (_canExtendTitle) {
+#ifdef Q_OS_WIN
+        ::SetParent((HWND)m_boxTitleBtns->winId(), (HWND)m_pMainView->winId());
+#endif
         QVBoxLayout *vbox = new QVBoxLayout(mainPanel);
         vbox->setContentsMargins(0,0,0,0);
         vbox->setSpacing(0);
         vbox->addWidget(m_boxTitleBtns);
-#ifdef Q_OS_WIN
-        ::SetParent((HWND)m_boxTitleBtns->winId(), (HWND)m_pMainView->winId());
-#endif
         mainGridLayout->addLayout(vbox, 1, 0, Qt::AlignTop);
     }
     return mainPanel;
