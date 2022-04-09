@@ -191,12 +191,12 @@ QWidget * CEditorWindow::createMainPanel(QWidget * parent)
 QWidget * CEditorWindow::createMainPanel(QWidget * parent, const QString& title)
 {
     // create min/max/close buttons
-    CMainWindow::createMainPanel(parent, title);
+    //CMainWindow::createMainPanel(parent, title);
 
     QWidget * mainPanel = new QWidget(parent);
     mainPanel->setObjectName("mainPanel");
 
-    QGridLayout * mainGridLayout = new QGridLayout();
+    QGridLayout * mainGridLayout = new QGridLayout(mainPanel);
     mainGridLayout->setSpacing(0);
 #ifdef Q_OS_WIN
     mainGridLayout->setMargin(0);
@@ -205,7 +205,8 @@ QWidget * CEditorWindow::createMainPanel(QWidget * parent, const QString& title)
     mainGridLayout->setContentsMargins(QMargins(b,b,b,b));
 #endif
     mainPanel->setLayout(mainGridLayout);
-    m_boxTitleBtns->setParent(mainPanel);
+    CMainWindow::createMainPanel(mainPanel, title);
+    //m_boxTitleBtns->setParent(mainPanel);
 //    mainGridLayout->addWidget(m_boxTitleBtns, 0, 0);
     m_boxTitleBtns->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
 //    mainPanel->setStyleSheet(AscAppManager::getWindowStylesheets(m_dpiRatio));
@@ -273,9 +274,9 @@ QWidget * CEditorWindow::createMainPanel(QWidget * parent, const QString& title)
 
 //        m_pMainView = (QWidget *)pMainWidget;
     } else {
-        m_pMainView = d_ptr->panel();
+        m_pMainView = static_cast<QWidget*>(d_ptr->panel());
         m_pMainView->setParent(mainPanel);
-
+        m_pMainView->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 //        m_pMainView->setGeometry(mainPanel->geometry());
 //        m_pMainView->show();
     }
@@ -292,11 +293,11 @@ QWidget * CEditorWindow::createMainPanel(QWidget * parent, const QString& title)
         vbox->setContentsMargins(0,0,0,0);
         vbox->setSpacing(0);
         vbox->addWidget(m_boxTitleBtns);
-        QSpacerItem *spacer = new QSpacerItem(1, 1, QSizePolicy::Preferred, QSizePolicy::Expanding);
-        vbox->addItem(spacer);
-        mainGridLayout->addLayout(vbox, 1, 0);
+#ifdef Q_OS_WIN
+        ::SetParent((HWND)m_boxTitleBtns->winId(), (HWND)m_pMainView->winId());
+#endif
+        mainGridLayout->addLayout(vbox, 1, 0, Qt::AlignTop);
     }
-
     return mainPanel;
 }
 

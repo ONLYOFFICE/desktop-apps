@@ -340,9 +340,9 @@ QWidget * CMainWindowBase::createMainPanel(QWidget * parent, const QString& titl
 {
     if ( pimpl->is_custom_window() ) {
 #if defined(Q_OS_WIN)
-        m_boxTitleBtns = static_cast<QWidget*>(new Caption);
+        m_boxTitleBtns = static_cast<QWidget*>(new Caption(parent));
 #elif defined(Q_OS_LINUX)
-        m_boxTitleBtns = new QWidget;
+        m_boxTitleBtns = new QWidget(parent);
 #endif
         m_boxTitleBtns->setObjectName("box-title-tools");
         m_boxTitleBtns->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
