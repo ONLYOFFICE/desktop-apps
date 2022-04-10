@@ -38,6 +38,7 @@
 #include "csplash.h"
 //#include "clogger.h"
 #include "clangater.h"
+#include <QDesktopWidget>
 #include <QTimer>
 #include <stdexcept>
 #include <functional>
@@ -158,24 +159,7 @@ CMainWindow::~CMainWindow()
     }
     m_closed = true;
 
-    /*if ( isVisible() ) {
-        WINDOWPLACEMENT wp{sizeof(WINDOWPLACEMENT)};
-        if (GetWindowPlacement(m_hWnd, &wp)) {
-            GET_REGISTRY_USER(reg_user)
-            wp.showCmd == SW_MAXIMIZE ?
-                        reg_user.setValue("maximized", true) : reg_user.remove("maximized");
-
-            QRect windowRect;
-            windowRect.setTopLeft(QPoint(wp.rcNormalPosition.left, wp.rcNormalPosition.top));
-            windowRect.setBottomRight(QPoint(wp.rcNormalPosition.right, wp.rcNormalPosition.bottom));
-            windowRect.adjust(0,0,-1,-1);
-
-            reg_user.setValue("position", windowRect);
-        }
-    }
-
-    hide();
-    DestroyWindow( m_hWnd );*/
+    //DestroyWindow( m_hWnd );
 }
 
 void CMainWindow::setResizeable(bool isResizeable)
@@ -228,7 +212,8 @@ bool CMainWindow::nativeEvent(const QByteArray &eventType, void *message, long *
                 WindowHelper::correctModalOrder(m_hWnd, m_modalHwnd);
                 return false;
             }
-        } else {
+        } else
+        if (m_winType == WindowType::SINGLE) {
             static bool is_mainwindow_prev;
             is_mainwindow_prev = false;
             if (!IsWindowEnabled(m_hWnd) && m_modalHwnd && m_modalHwnd != m_hWnd) {
@@ -269,7 +254,8 @@ bool CMainWindow::nativeEvent(const QByteArray &eventType, void *message, long *
                     m_dpiRatio = dpi_ratio;
                     refresh_window_scaling_factor(this);
                     adjustGeometry();
-                } else {
+                } else
+                if (m_winType == WindowType::SINGLE) {
                     onDpiChanged(dpi_ratio, m_dpiRatio);
                 }
             }
@@ -403,18 +389,35 @@ bool CMainWindow::nativeEvent(const QByteArray &eventType, void *message, long *
                 m_isMaximized = false;
             }
         }
-        return false;
+        MINMAXINFO* minMaxInfo = ( MINMAXINFO* )msg->lParam;
+        if (m_minSize.required) {
+            minMaxInfo->ptMinTrackSize.x = getMinimumWidth();
+            minMaxInfo->ptMinTrackSize.y = getMinimumHeight();
+        }
+        if (m_maxSize.required) {
+            minMaxInfo->ptMaxTrackSize.x = getMaximumWidth();
+            minMaxInfo->ptMaxTrackSize.y = getMaximumHeight();
+        }
+        return true;
     }
 
     case WM_MOVING: {
-        if (m_winType == WindowType::SINGLE)
-            onMoveEvent(QRect());
+        if (m_winType == WindowType::MAIN) {
+            //onMoveEvent(QRect());
+            break;
+        } else
+        if (m_winType == WindowType::SINGLE) {
+            onMoveEvent(geometry());
+            return true;
+        }
         break;
     }
 
     case WM_SIZE: {
         if (m_winType == WindowType::SINGLE)
-            onSizeEvent(msg->wParam);
+            if (!m_skipSizing && !m_closed) {
+                onSizeEvent(msg->wParam);
+            }
         break;
     }
 
@@ -429,11 +432,12 @@ bool CMainWindow::nativeEvent(const QByteArray &eventType, void *message, long *
 
     case WM_SETFOCUS: {
         if (!m_closed) {
-            if (m_winType == WindowType::SINGLE) {
-                focus();
-            } else {
+            if (m_winType == WindowType::MAIN) {
                 if (IsWindowEnabled(m_hWnd))
                     _m_pMainPanel->focus();
+            } else
+            if (m_winType == WindowType::SINGLE) {
+                focus();
             }
         }
         break;
@@ -442,7 +446,8 @@ bool CMainWindow::nativeEvent(const QByteArray &eventType, void *message, long *
     case WM_CLOSE: {
         if (m_winType == WindowType::MAIN) {
             AscAppManager::getInstance().closeQueue().enter(sWinTag{1, size_t(this)});
-        } else {
+        } else
+        if (m_winType == WindowType::SINGLE) {
             if (m_pMainPanel) {
                 QTimer::singleShot(0, m_pMainPanel, [=]() {
                     AscAppManager::getInstance().closeQueue().enter(sWinTag{2, size_t(this)});
@@ -455,6 +460,98 @@ bool CMainWindow::nativeEvent(const QByteArray &eventType, void *message, long *
     case WM_TIMER:
         AscAppManager::getInstance().CheckKeyboard();
         break;
+
+    case WM_ENDSESSION:
+        CAscApplicationManagerWrapper::getInstance().CloseApplication();
+        break;
+
+    case UM_INSTALL_UPDATE:
+        doClose();
+        break;
+
+    case WM_ENTERSIZEMOVE: {
+        WINDOWPLACEMENT wp{sizeof(WINDOWPLACEMENT)};
+        if (GetWindowPlacement(m_hWnd, &wp)) {
+            MONITORINFO info{sizeof(MONITORINFO)};
+            GetMonitorInfo(MonitorFromWindow(m_hWnd, MONITOR_DEFAULTTOPRIMARY), &info);
+            m_moveNormalRect = QRect{QPoint{wp.rcNormalPosition.left - info.rcMonitor.left, wp.rcNormalPosition.top - info.rcMonitor.top},
+                                     QSize{wp.rcNormalPosition.right - wp.rcNormalPosition.left, wp.rcNormalPosition.bottom - wp.rcNormalPosition.top}};
+        }
+        break;
+    }
+
+    case WM_EXITSIZEMOVE: {
+        if (m_winType == WindowType::MAIN) {
+            setMinimumSize(0, 0);
+#if defined(DEBUG_SCALING) && defined(_DEBUG)
+            QRect windowRect;
+            WINDOWPLACEMENT wp{sizeof(WINDOWPLACEMENT)};
+            if (GetWindowPlacement(m_hWnd, &wp)) {
+                GET_REGISTRY_USER(reg_user)
+                wp.showCmd == SW_MAXIMIZE ?
+                            reg_user.setValue("maximized", true) : reg_user.remove("maximized");
+
+                windowRect.setTopLeft(QPoint(wp.rcNormalPosition.left, wp.rcNormalPosition.top));
+                windowRect.setBottomRight(QPoint(wp.rcNormalPosition.right, wp.rcNormalPosition.bottom));
+                windowRect.adjust(0,0,-1,-1);
+            }
+
+            int _scr_num = QApplication::desktop()->screenNumber(windowRect.topLeft()) + 1;
+            uchar dpi_ratio = _scr_num;
+
+            if ( dpi_ratio != m_dpiRatio ) {
+                if ( !WindowHelper::isWindowSystemDocked(m_hWnd) ) {
+                    setScreenScalingFactor(dpi_ratio);
+                } else {
+                    m_dpiRatio = dpi_ratio;
+                    refresh_window_scaling_factor(this);
+                }
+                adjustGeometry();
+            }
+#else
+            updateScaling();
+#endif
+        } else
+        if (m_winType == WindowType::SINGLE) {
+            onExitSizeMove();
+            return false;
+        }
+        break;
+    }
+
+    case WM_COPYDATA: {
+        COPYDATASTRUCT* pcds = (COPYDATASTRUCT*)msg->lParam;
+        if (pcds->dwData == 1) {
+            int nArgs;
+            LPWSTR * szArglist = CommandLineToArgvW((WCHAR *)(pcds->lpData), &nArgs);
+            if (szArglist != nullptr) {
+                std::vector<std::wstring> _v_inargs;
+                for(int i(1); i < nArgs; i++) {
+                    _v_inargs.push_back(szArglist[i]);
+                }
+                if ( !_v_inargs.empty() ) {
+                    AscAppManager::handleInputCmd(_v_inargs);
+                }
+            }
+            LocalFree(szArglist);
+            if (m_winType == WindowType::MAIN) {
+                ::SetFocus(m_hWnd);
+                bringToTop();
+            }
+        }
+        break;
+    }
+
+#if 0
+    case WM_INPUTLANGCHANGE:
+    case WM_INPUTLANGCHANGEREQUEST: {
+        if (m_winType == WindowType::MAIN) {
+            int _lang = LOWORD(msg->lParam);
+            m_oLanguage.Check(_lang);
+        }
+        break;
+    }
+#endif
 
     default:
         break;
@@ -519,7 +616,8 @@ void CMainWindow::changeEvent(QEvent *event)
                 adjustGeometry();
             }
         }
-    } else {
+    } else
+    if (m_winType == WindowType::SINGLE) {
         if (event->type() == QEvent::WindowStateChange) {
             if (isMinimized()) {
                 applyWindowState(Qt::WindowMinimized);
@@ -533,141 +631,6 @@ void CMainWindow::changeEvent(QEvent *event)
         }
     }
 }
-
-/*LRESULT CALLBACK CMainWindow::WndProc( HWND m_hWnd, UINT message, WPARAM wParam, LPARAM lParam )
-{
-    CMainWindow *window = reinterpret_cast<CMainWindow*>( GetWindowLongPtr( m_hWnd, GWLP_USERDATA ) );
-    switch ( message )
-    {
-    case WM_SIZE:
-        if ( !window->m_skipSizing && !window->m_closed && window->m_pWinPanel) {
-            if (wParam == SIZE_MINIMIZED) {
-                window->_m_pMainPanel->applyMainWindowState(Qt::WindowMinimized);
-            } else {
-                if ( IsWindowVisible(m_hWnd) ) {
-                    if ( WindowHelper::isLeftButtonPressed() ) {
-                        double dpi_ratio = Utils::getScreenDpiRatioByHWND(int(m_hWnd));
-                        if ( dpi_ratio != window->m_dpiRatio )
-                            window->setScreenScalingFactor(dpi_ratio);
-                    }
-
-                    if ( wParam == SIZE_MAXIMIZED )
-                        window->_m_pMainPanel->applyMainWindowState(Qt::WindowMaximized);  else
-                        window->_m_pMainPanel->applyMainWindowState(Qt::WindowNoState);
-                }
-
-                window->adjustGeometry();
-            }
-        }
-        break;
-
-    case WM_ENTERSIZEMOVE: {
-        WINDOWPLACEMENT wp{sizeof(WINDOWPLACEMENT)};
-        if ( GetWindowPlacement(m_hWnd, &wp) ) {
-            MONITORINFO info{sizeof(MONITORINFO)};
-            GetMonitorInfo(MonitorFromWindow(m_hWnd, MONITOR_DEFAULTTOPRIMARY), &info);
-
-            window->m_moveNormalRect = QRect{QPoint{wp.rcNormalPosition.left - info.rcMonitor.left, wp.rcNormalPosition.top - info.rcMonitor.top},
-                                                QSize{wp.rcNormalPosition.right - wp.rcNormalPosition.left, wp.rcNormalPosition.bottom - wp.rcNormalPosition.top}};
-        }
-        break;}
-
-    case WM_EXITSIZEMOVE: {
-        window->setMinimumSize(0, 0);
-#if defined(DEBUG_SCALING) && defined(_DEBUG)
-        QRect windowRect;
-        WINDOWPLACEMENT wp{sizeof(WINDOWPLACEMENT)};
-        if (GetWindowPlacement(m_hWnd, &wp)) {
-            GET_REGISTRY_USER(reg_user)
-            wp.showCmd == SW_MAXIMIZE ?
-                        reg_user.setValue("maximized", true) : reg_user.remove("maximized");
-
-            windowRect.setTopLeft(QPoint(wp.rcNormalPosition.left, wp.rcNormalPosition.top));
-            windowRect.setBottomRight(QPoint(wp.rcNormalPosition.right, wp.rcNormalPosition.bottom));
-            windowRect.adjust(0,0,-1,-1);
-        }
-
-        int _scr_num = QApplication::desktop()->screenNumber(windowRect.topLeft()) + 1;
-        uchar dpi_ratio = _scr_num;
-
-        if ( dpi_ratio != window->m_dpiRatio ) {
-            if ( !WindowHelper::isWindowSystemDocked(m_hWnd) ) {
-                window->setScreenScalingFactor(dpi_ratio);
-            } else {
-                window->m_dpiRatio = dpi_ratio;
-                refresh_window_scaling_factor(window);
-            }
-
-            window->adjustGeometry();
-        }
-#else
-        window->updateScaling();
-#endif
-
-        break;
-    }
-
-    case WM_GETMINMAXINFO:
-    {
-        MINMAXINFO* minMaxInfo = ( MINMAXINFO* )lParam;
-        if ( window->minimumSize.required )
-        {
-            minMaxInfo->ptMinTrackSize.x = window->getMinimumWidth();;
-            minMaxInfo->ptMinTrackSize.y = window->getMinimumHeight();
-        }
-
-        if ( window->maximumSize.required )
-        {
-            minMaxInfo->ptMaxTrackSize.x = window->getMaximumWidth();
-            minMaxInfo->ptMaxTrackSize.y = window->getMaximumHeight();
-        }
-        return 1;
-    }
-    case WM_ENDSESSION:
-        CAscApplicationManagerWrapper::getInstance().CloseApplication();
-        break;
-
-    case WM_COPYDATA: {
-        COPYDATASTRUCT* pcds = (COPYDATASTRUCT*)lParam;
-        if (pcds->dwData == 1) {
-            int nArgs;
-            LPWSTR * szArglist = CommandLineToArgvW((WCHAR *)(pcds->lpData), &nArgs);
-
-            if (szArglist != nullptr) {
-                std::vector<std::wstring> _v_inargs;
-                for(int i(1); i < nArgs; i++) {
-                    _v_inargs.push_back(szArglist[i]);
-                }
-
-                if ( !_v_inargs.empty() ) {
-                    AscAppManager::handleInputCmd(_v_inargs);
-                }
-            }
-
-            ::SetFocus(m_hWnd);
-            LocalFree(szArglist);
-
-            window->bringToTop();
-        }
-        break;}
-    case UM_INSTALL_UPDATE:
-        window->doClose();
-        break;
-    default: {
-        break;
-    }
-#if 0
-    case WM_INPUTLANGCHANGE:
-    case WM_INPUTLANGCHANGEREQUEST:
-    {
-        int _lang = LOWORD(lParam);
-        m_oLanguage.Check(_lang);
-    }
-#endif
-    }
-    return DefWindowProc(m_hWnd, message, wParam, lParam);
-}
-*/
 
 void CMainWindow::toggleBorderless(bool showmax)
 {

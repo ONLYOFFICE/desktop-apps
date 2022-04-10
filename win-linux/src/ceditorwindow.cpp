@@ -204,7 +204,6 @@ QWidget * CEditorWindow::createMainPanel(QWidget * parent, const QString& title)
 #endif
     mainPanel->setLayout(mainGridLayout);
     CMainWindow::createMainPanel(mainPanel, title);
-    m_boxTitleBtns->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
 //    mainPanel->setStyleSheet(AscAppManager::getWindowStylesheets(m_dpiRatio));
 //    mainPanel->setStyleSheet("background-color:#446995;");
 
