@@ -402,7 +402,7 @@ QWidget * CMainWindowBase::createMainPanel(QWidget * parent, const QString& titl
     return nullptr;
 }
 
-void CMainWindowBase::onCloseEvent()
+/*void CMainWindowBase::onCloseEvent()
 {
 }
 
@@ -414,7 +414,7 @@ void CMainWindowBase::onMinimizeEvent()
 void CMainWindowBase::onMaximizeEvent()
 {
 
-}
+}*/
 
 void CMainWindowBase::onSizeEvent(int)
 {

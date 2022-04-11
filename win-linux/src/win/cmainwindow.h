@@ -44,6 +44,11 @@
 #include <QGridLayout>
 
 
+#include <QPushButton>
+#include <QLabel>
+#include "ctabpanel.h"
+
+
 class CMainWindow : public CMainWindowBase, public QMainWindow
 {
 public:
@@ -87,6 +92,39 @@ public:
     virtual void setWindowBackgroundColor(const QColor&);
     virtual void setWindowColors(const QColor& background, const QColor& border);
     virtual void activateWindow();
+
+
+
+
+
+    //void show(bool maximized = false);
+    //void hide();
+    //bool isVisible();
+
+    //void toggleBorderless(bool);
+    //void toggleResizeable();
+
+    //void setMinimumSize( const int width, const int height );
+    //void removeMinimumSize();
+    //int getMinimumHeight() const;
+    //int getMinimumWidth() const;
+
+    //void setMaximumSize( const int width, const int height );
+    //int getMaximumHeight();
+    //int getMaximumWidth();
+    //void removeMaximumSize();
+    //void adjustGeometry();
+    //void applyTheme(const std::wstring& themeid);
+
+//    void setScreenScalingFactor(uchar);
+//    void doClose();
+
+    virtual bool holdView(int id) const override;
+
+    /*WId handle() const
+    {
+        return (WId)m_hWnd;
+    }*/
 
 #if (QT_VERSION < QT_VERSION_CHECK(5, 10, 0))
     // because of QTBUG-67211
@@ -156,7 +194,6 @@ private:
     HWND m_modalHwnd;
 
     int  m_borderWidth;
-    //bool m_singleMode;
     bool m_borderless;
     bool m_visible;
     bool m_closed;
@@ -165,6 +202,28 @@ private:
     bool m_isResizeable;
     bool m_taskBarClicked;
     bool m_windowActivated;
+
+
+
+
+
+    //uchar m_dpiRatio = 1;
+
+    //QWidget * m_pMainPanel = nullptr;
+    //QWidget * m_pMainView = nullptr;
+    //QWidget * m_boxTitleBtns = nullptr;
+
+    //QPushButton * m_pButtonMinimize;
+    //QPushButton * m_pButtonMaximize;
+    //QPushButton * m_pButtonClose;
+    QLabel * m_pLabelTitle = nullptr;
+
+    QWidget * _createMainPanel(QWidget *, const QString&, bool, QWidget *);
+    void recalculatePlaces();
+    void pushButtonCloseClicked();
+    void pushButtonMinimizeClicked();
+    void pushButtonMaximizeClicked();
+    void focusMainPanel();
 };
 
 #endif

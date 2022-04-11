@@ -46,7 +46,7 @@
 
 #ifdef _WIN32
 #include "win/cmainwindow.h"
-#include "win/csinglewindow.h"
+//#include "win/csinglewindow.h"
 #else
 #include "linux/cmainwindow.h"
 #include "linux/singleapplication.h"
@@ -100,7 +100,7 @@ private:
     std::map<CScalingFactor, std::vector<std::string>> m_mapStyles;
 
     std::map<int, CCefEventsGate *> m_receivers;
-    std::map<int, CSingleWindow *> m_winsReporter;
+    std::map<int, CMainWindow *> m_winsReporter;
 
     uint m_closeCount = 0;
     uint m_countViews = 0;
@@ -154,7 +154,7 @@ public:
     static CAscApplicationManagerWrapper & getInstance();
     static CAscApplicationManager * createInstance();
 
-    CSingleWindow * createReporterWindow(void *, int);
+    CMainWindow * createReporterWindow(void *, int);
 
     static void             startApp();
     static void             initializeApp();

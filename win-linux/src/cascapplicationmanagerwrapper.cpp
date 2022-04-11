@@ -385,7 +385,7 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
         return true; }
 
     case ASC_MENU_EVENT_TYPE_REPORTER_CREATE: {
-        CSingleWindow * reporterWindow = createReporterWindow(event->m_pData, event->get_SenderId());
+        CMainWindow * reporterWindow = createReporterWindow(event->m_pData, event->get_SenderId());
 #ifdef __linux
         reporterWindow->show();
 #else
@@ -443,10 +443,10 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
         --m_countViews;
 
         if ( !m_winsReporter.empty() ) {
-            std::map<int, CSingleWindow *>::const_iterator switer = m_winsReporter.find(event->get_SenderId());
+            std::map<int, CMainWindow *>::const_iterator switer = m_winsReporter.find(event->get_SenderId());
 
             if (switer != m_winsReporter.end() ) {
-                CSingleWindow * reporterWindow = switer->second;
+                CMainWindow * reporterWindow = switer->second;
                 delete reporterWindow, reporterWindow = nullptr;
                 m_winsReporter.erase(switer);
 
@@ -1056,7 +1056,7 @@ void CAscApplicationManagerWrapper::initializeApp()
     AscAppManager::getInstance().SetRendererProcessVariable(Utils::stringifyJson(_json_obj).toStdWString());
 }
 
-CSingleWindow * CAscApplicationManagerWrapper::createReporterWindow(void * data, int parentid)
+CMainWindow * CAscApplicationManagerWrapper::createReporterWindow(void * data, int parentid)
 {
 //    QMutexLocker locker( &m_oMutex );
 
@@ -1093,7 +1093,7 @@ CSingleWindow * CAscApplicationManagerWrapper::createReporterWindow(void * data,
         _windowRect.moveCenter(_scrRect.center());
     }
 
-    CSingleWindow * reporterWindow = new CSingleWindow(_windowRect, tr("Presenter View") + " - " + _doc_name, pView);
+    CMainWindow * reporterWindow = new CMainWindow(_windowRect, tr("Presenter View") + " - " + _doc_name, pView);
     m_winsReporter[pView->GetCefView()->GetId()] = reporterWindow;
 
 //    QTimer::singleShot(5000, [=]{

@@ -215,19 +215,13 @@ core_windows {
 
     HEADERS += $$PWD/src/win/cmainwindow.h \
                 $$PWD/src/win/qwinwidget.h \
-                $$PWD/src/win/cwinpanel.h \
                 $$PWD/src/win/cwinwindow.h \
-                $$PWD/src/win/csinglewindow.h \
-                #$$PWD/src/win/csinglewindowplatform.h \
                 $$PWD/src/win/cprintdialog.h \
                 $$PWD/src/win/caption.h
 
     SOURCES += $$PWD/src/win/cmainwindow.cpp \
                 $$PWD/src/win/qwinwidget.cpp \
-                $$PWD/src/win/cwinpanel.cpp \
                 $$PWD/src/win/cwinwindow.cpp \
-                $$PWD/src/win/csinglewindow.cpp \
-                #$$PWD/src/win/csinglewindowplatform.cpp \
                 $$PWD/src/win/cprintdialog.cpp
 
     LIBS += -lwininet \

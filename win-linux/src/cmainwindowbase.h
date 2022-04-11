@@ -137,9 +137,9 @@ public:
 
 protected:
     virtual QPushButton * createToolButton(QWidget * parent = nullptr);
-    virtual void onCloseEvent();
-    virtual void onMinimizeEvent();
-    virtual void onMaximizeEvent();
+    virtual void onCloseEvent() {};
+    virtual void onMinimizeEvent() {};
+    virtual void onMaximizeEvent() {};
     virtual void onSizeEvent(int);
     virtual void onMoveEvent(const QRect&) {};
     virtual void onExitSizeMove();

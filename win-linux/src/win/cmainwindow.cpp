@@ -44,6 +44,12 @@
 #include <functional>
 
 
+#include <QApplication>
+#include <QIcon>
+#include <QLabel>
+
+#include "caption.h"
+
 #ifdef _UPDMODULE
   #include "3dparty/WinSparkle/include/winsparkle.h"
   #include "../version.h"
@@ -111,18 +117,14 @@ CMainWindow::CMainWindow(const QRect &rect, const WindowType winType, const QStr
     m_pCentralLayout->setContentsMargins(0,0,0,0);
     m_pCentralWidget->setLayout(m_pCentralLayout);
 
-    m_window_rect = rect;
-    m_dpiRatio = CSplash::startupDpiRatio();
-
+    m_window_rect = rect;   
     if (m_winType == WindowType::MAIN) {
+        m_dpiRatio = CSplash::startupDpiRatio();
         if (m_window_rect.isEmpty())
             m_window_rect = QRect(QPoint(100, 100)*m_dpiRatio, MAIN_WINDOW_DEFAULT_SIZE * m_dpiRatio);
-
         QRect _screen_size = Utils::getScreenGeometry(m_window_rect.topLeft());
         if (_screen_size.intersects(m_window_rect)) {
-            if (_screen_size.width() < m_window_rect.width() ||
-                    _screen_size.height() < m_window_rect.height())
-            {
+            if (_screen_size.width() < m_window_rect.width() || _screen_size.height() < m_window_rect.height()) {
                 m_window_rect.setLeft(_screen_size.left()),
                 m_window_rect.setTop(_screen_size.top());
 
@@ -146,9 +148,30 @@ CMainWindow::CMainWindow(const QRect &rect, const WindowType winType, const QStr
         QObject::connect(mainpanel, &CMainPanel::mainPageReady, std::bind(&CMainWindow::slot_mainPageReady, this));
         QObject::connect(&AscAppManager::getInstance().commonEvents(), &CEventDriver::onModalDialog, bind(&CMainWindow::slot_modalDialog, this, _1, _2));
 
-    } else {
+    } else
+    if (m_winType == WindowType::SINGLE) {
+        m_dpiRatio = CSplash::startupDpiRatio();
         m_modalSlotConnection = QObject::connect(&AscAppManager::getInstance().commonEvents(), &CEventDriver::onModalDialog,
                                          bind(&CMainWindow::slot_modalDialog, this, std::placeholders::_1, std::placeholders::_2));
+    } else
+    if (m_winType == WindowType::REPORTER) {
+        m_borderless = false;
+        m_dpiRatio = Utils::getScreenDpiRatio(m_window_rect.topLeft());
+
+        if (m_window_rect.isEmpty())
+            m_window_rect = QRect(QPoint(100, 100)*m_dpiRatio, MAIN_WINDOW_DEFAULT_SIZE * m_dpiRatio);
+        QRect _screen_size = Utils::getScreenGeometry(m_window_rect.topLeft());
+        if (_screen_size.width() < m_window_rect.width() + 120 || _screen_size.height() < m_window_rect.height() + 120) {
+            m_window_rect.setLeft(_screen_size.left()),
+            m_window_rect.setTop(_screen_size.top());
+
+            if (_screen_size.width() < m_window_rect.width()) m_window_rect.setWidth(_screen_size.width());
+            if (_screen_size.height() < m_window_rect.height()) m_window_rect.setHeight(_screen_size.height());
+        }
+
+        setMinimumSize(WINDOW_MIN_WIDTH * m_dpiRatio, WINDOW_MIN_HEIGHT * m_dpiRatio);
+        m_pMainPanel = _createMainPanel(m_pCentralWidget, title, true, widget);
+        recalculatePlaces();
     }
 }
 
@@ -278,7 +301,11 @@ bool CMainWindow::nativeEvent(const QByteArray &eventType, void *message, long *
             SendMessage(msg->hwnd, WM_KEYDOWN, msg->wParam, msg->lParam);
         } else
         if (msg->wParam == VK_TAB) {
-            SetFocus(HWND(winId()));
+            if (m_winType != WindowType::REPORTER) {
+                SetFocus(HWND(winId()));
+            } else {
+                SetFocus(HWND(winId()));
+            }
         }
         break;
     }
@@ -318,54 +345,56 @@ bool CMainWindow::nativeEvent(const QByteArray &eventType, void *message, long *
     }
 
     case WM_NCHITTEST: {
-        *result = 0;
-        const LONG border_width = (LONG)m_borderWidth;
-        RECT winrect;
-        GetWindowRect(HWND(winId()), &winrect);
-        long x = GET_X_LPARAM(msg->lParam);
-        long y = GET_Y_LPARAM(msg->lParam);
+        if (m_borderless) {
+            *result = 0;
+            const LONG border_width = (LONG)m_borderWidth;
+            RECT winrect;
+            GetWindowRect(HWND(winId()), &winrect);
+            long x = GET_X_LPARAM(msg->lParam);
+            long y = GET_Y_LPARAM(msg->lParam);
+            if (m_isResizeable) {
+                bool resizeWidth = minimumWidth() != maximumWidth();
+                bool resizeHeight = minimumHeight() != maximumHeight();
 
-        if (m_isResizeable) {
-            bool resizeWidth = minimumWidth() != maximumWidth();
-            bool resizeHeight = minimumHeight() != maximumHeight();
-
-            if (resizeWidth) {
-                if (x >= winrect.left && x < winrect.left + border_width) {
-                    *result = HTLEFT;
+                if (resizeWidth) {
+                    if (x >= winrect.left && x < winrect.left + border_width) {
+                        *result = HTLEFT;
+                    }
+                    if (x < winrect.right && x >= winrect.right - border_width) {
+                        *result = HTRIGHT;
+                    }
                 }
-                if (x < winrect.right && x >= winrect.right - border_width) {
-                    *result = HTRIGHT;
+                if (resizeHeight) {
+                    if (y < winrect.bottom && y >= winrect.bottom - border_width) {
+                        *result = HTBOTTOM;
+                    }
+                    if (y >= winrect.top && y < winrect.top + border_width) {
+                        *result = HTTOP;
+                    }
                 }
-            }
-            if (resizeHeight) {
-                if (y < winrect.bottom && y >= winrect.bottom - border_width) {
-                    *result = HTBOTTOM;
-                }
-                if (y >= winrect.top && y < winrect.top + border_width) {
-                    *result = HTTOP;
-                }
-            }
-            if (resizeWidth && resizeHeight) {
-                if (x >= winrect.left && x < winrect.left + border_width &&
-                        y < winrect.bottom && y >= winrect.bottom - border_width) {
-                    *result = HTBOTTOMLEFT;
-                }
-                if (x < winrect.right && x >= winrect.right - border_width &&
-                        y < winrect.bottom && y >= winrect.bottom - border_width) {
-                    *result = HTBOTTOMRIGHT;
-                }
-                if (x >= winrect.left && x < winrect.left + border_width &&
-                        y >= winrect.top && y < winrect.top + border_width) {
-                    *result = HTTOPLEFT;
-                }
-                if (x < winrect.right && x >= winrect.right - border_width &&
-                        y >= winrect.top && y < winrect.top + border_width) {
-                    *result = HTTOPRIGHT;
+                if (resizeWidth && resizeHeight) {
+                    if (x >= winrect.left && x < winrect.left + border_width &&
+                            y < winrect.bottom && y >= winrect.bottom - border_width) {
+                        *result = HTBOTTOMLEFT;
+                    }
+                    if (x < winrect.right && x >= winrect.right - border_width &&
+                            y < winrect.bottom && y >= winrect.bottom - border_width) {
+                        *result = HTBOTTOMRIGHT;
+                    }
+                    if (x >= winrect.left && x < winrect.left + border_width &&
+                            y >= winrect.top && y < winrect.top + border_width) {
+                        *result = HTTOPLEFT;
+                    }
+                    if (x < winrect.right && x >= winrect.right - border_width &&
+                            y >= winrect.top && y < winrect.top + border_width) {
+                        *result = HTTOPRIGHT;
+                    }
                 }
             }
+            if (*result != 0) return true;
+            return false;
         }
-        if (*result != 0) return true;
-        return false;
+        break;
     }
 
     case WM_GETMINMAXINFO: {
@@ -438,6 +467,9 @@ bool CMainWindow::nativeEvent(const QByteArray &eventType, void *message, long *
             } else
             if (m_winType == WindowType::SINGLE) {
                 focus();
+            } else
+            if (m_winType == WindowType::REPORTER) {
+                focusMainPanel();
             }
         }
         break;
@@ -453,6 +485,11 @@ bool CMainWindow::nativeEvent(const QByteArray &eventType, void *message, long *
                     AscAppManager::getInstance().closeQueue().enter(sWinTag{2, size_t(this)});
                 });
             } else return true;
+        } else
+        if (m_winType == WindowType::REPORTER) {
+            QTimer::singleShot(0, m_pMainPanel, [=] {
+                pushButtonCloseClicked();
+            });
         }
         return false;
     }
@@ -462,20 +499,24 @@ bool CMainWindow::nativeEvent(const QByteArray &eventType, void *message, long *
         break;
 
     case WM_ENDSESSION:
-        CAscApplicationManagerWrapper::getInstance().CloseApplication();
+        if (m_winType == WindowType::MAIN)
+            CAscApplicationManagerWrapper::getInstance().CloseApplication();
         break;
 
     case UM_INSTALL_UPDATE:
-        doClose();
+        if (m_winType == WindowType::MAIN)
+            doClose();
         break;
 
     case WM_ENTERSIZEMOVE: {
-        WINDOWPLACEMENT wp{sizeof(WINDOWPLACEMENT)};
-        if (GetWindowPlacement(m_hWnd, &wp)) {
-            MONITORINFO info{sizeof(MONITORINFO)};
-            GetMonitorInfo(MonitorFromWindow(m_hWnd, MONITOR_DEFAULTTOPRIMARY), &info);
-            m_moveNormalRect = QRect{QPoint{wp.rcNormalPosition.left - info.rcMonitor.left, wp.rcNormalPosition.top - info.rcMonitor.top},
-                                     QSize{wp.rcNormalPosition.right - wp.rcNormalPosition.left, wp.rcNormalPosition.bottom - wp.rcNormalPosition.top}};
+        if (m_winType != WindowType::REPORTER) {
+            WINDOWPLACEMENT wp{sizeof(WINDOWPLACEMENT)};
+            if (GetWindowPlacement(m_hWnd, &wp)) {
+                MONITORINFO info{sizeof(MONITORINFO)};
+                GetMonitorInfo(MonitorFromWindow(m_hWnd, MONITOR_DEFAULTTOPRIMARY), &info);
+                m_moveNormalRect = QRect{QPoint{wp.rcNormalPosition.left - info.rcMonitor.left, wp.rcNormalPosition.top - info.rcMonitor.top},
+                                         QSize{wp.rcNormalPosition.right - wp.rcNormalPosition.left, wp.rcNormalPosition.bottom - wp.rcNormalPosition.top}};
+            }
         }
         break;
     }
@@ -515,28 +556,35 @@ bool CMainWindow::nativeEvent(const QByteArray &eventType, void *message, long *
         if (m_winType == WindowType::SINGLE) {
             onExitSizeMove();
             return false;
+        } else
+        if (m_winType == WindowType::REPORTER) {
+            double dpi_ratio = Utils::getScreenDpiRatioByHWND(int(m_hWnd));
+            if (dpi_ratio != m_dpiRatio)
+                setScreenScalingFactor(dpi_ratio);
         }
         break;
     }
 
     case WM_COPYDATA: {
-        COPYDATASTRUCT* pcds = (COPYDATASTRUCT*)msg->lParam;
-        if (pcds->dwData == 1) {
-            int nArgs;
-            LPWSTR * szArglist = CommandLineToArgvW((WCHAR *)(pcds->lpData), &nArgs);
-            if (szArglist != nullptr) {
-                std::vector<std::wstring> _v_inargs;
-                for(int i(1); i < nArgs; i++) {
-                    _v_inargs.push_back(szArglist[i]);
+        if (m_winType != WindowType::REPORTER) {
+            COPYDATASTRUCT* pcds = (COPYDATASTRUCT*)msg->lParam;
+            if (pcds->dwData == 1) {
+                int nArgs;
+                LPWSTR * szArglist = CommandLineToArgvW((WCHAR *)(pcds->lpData), &nArgs);
+                if (szArglist != nullptr) {
+                    std::vector<std::wstring> _v_inargs;
+                    for(int i(1); i < nArgs; i++) {
+                        _v_inargs.push_back(szArglist[i]);
+                    }
+                    if ( !_v_inargs.empty() ) {
+                        AscAppManager::handleInputCmd(_v_inargs);
+                    }
                 }
-                if ( !_v_inargs.empty() ) {
-                    AscAppManager::handleInputCmd(_v_inargs);
+                LocalFree(szArglist);
+                if (m_winType == WindowType::MAIN) {
+                    ::SetFocus(m_hWnd);
+                    bringToTop();
                 }
-            }
-            LocalFree(szArglist);
-            if (m_winType == WindowType::MAIN) {
-                ::SetFocus(m_hWnd);
-                bringToTop();
             }
         }
         break;
@@ -596,8 +644,8 @@ void CMainWindow::closeEvent(QCloseEvent *event)
 void CMainWindow::changeEvent(QEvent *event)
 {
     QMainWindow::changeEvent(event);
-    if (m_winType == WindowType::MAIN) {
-        if (event->type() == QEvent::WindowStateChange) {
+    if (event->type() == QEvent::WindowStateChange) {
+        if (m_winType == WindowType::MAIN) {
             if (isMinimized()) {
                 _m_pMainPanel->applyMainWindowState(Qt::WindowMinimized);
             } else {
@@ -615,10 +663,8 @@ void CMainWindow::changeEvent(QEvent *event)
                 }
                 adjustGeometry();
             }
-        }
-    } else
-    if (m_winType == WindowType::SINGLE) {
-        if (event->type() == QEvent::WindowStateChange) {
+        } else
+        if (/*m_winType == WindowType::SINGLE || */m_winType == WindowType::REPORTER) {
             if (isMinimized()) {
                 applyWindowState(Qt::WindowMinimized);
             } else {
@@ -628,6 +674,7 @@ void CMainWindow::changeEvent(QEvent *event)
 
                 adjustGeometry();
             }
+            if (m_winType == WindowType::REPORTER) recalculatePlaces();
         }
     }
 }
@@ -642,7 +689,7 @@ void CMainWindow::toggleBorderless(bool showmax)
 
 void CMainWindow::toggleResizeable()
 {
-    m_isResizeable = m_isResizeable ? false : true;
+    m_isResizeable = !m_isResizeable;
 }
 
 void CMainWindow::show(bool maximized)
@@ -756,13 +803,10 @@ void CMainWindow::setScreenScalingFactor(double factor)
 {
     if (m_winType == WindowType::MAIN) {
         m_skipSizing = true;
-
         QString css(AscAppManager::getWindowStylesheets(factor));
-
         if ( !css.isEmpty() ) {
             double change_factor = factor / m_dpiRatio;
             m_dpiRatio = factor;
-
             _m_pMainPanel->setStyleSheet(css);
             _m_pMainPanel->setScreenScalingFactor(factor);
 
@@ -792,7 +836,8 @@ void CMainWindow::setScreenScalingFactor(double factor)
         }
 
         m_skipSizing = false;
-    } else {
+    } else
+    if (m_winType == WindowType::SINGLE) {
         double change_factor = factor / m_dpiRatio;
         CMainWindowBase::setScreenScalingFactor(factor);
 
@@ -824,6 +869,31 @@ void CMainWindow::setScreenScalingFactor(double factor)
                 }
             }
             m_skipSizing = false;
+        }
+    } else
+    if (m_winType == WindowType::REPORTER) {
+        QString css(AscAppManager::getWindowStylesheets(factor));
+        if ( !css.isEmpty() ) {
+            bool increase = factor > m_dpiRatio;
+            m_dpiRatio = factor;
+            m_pMainPanel->setStyleSheet(css);
+            QSize small_btn_size(40*m_dpiRatio, TOOLBTN_HEIGHT*m_dpiRatio);
+            m_buttonMinimize->setFixedSize(small_btn_size);
+            m_buttonMaximize->setFixedSize(small_btn_size);
+            m_buttonClose->setFixedSize(small_btn_size);
+            m_boxTitleBtns->setFixedHeight(TOOLBTN_HEIGHT*m_dpiRatio);
+            QLayout * layoutBtns = m_boxTitleBtns->layout();
+            layoutBtns->setSpacing(1*m_dpiRatio);
+            setMinimumSize(WINDOW_MIN_WIDTH * factor, WINDOW_MIN_HEIGHT * factor);
+            RECT lpWindowRect;
+            GetWindowRect(m_hWnd, &lpWindowRect);
+            unsigned _new_width = lpWindowRect.right - lpWindowRect.left,
+                     _new_height = lpWindowRect.bottom - lpWindowRect.top;
+            if ( increase )
+                _new_width *= 2, _new_height *= 2;  else
+                _new_width /= 2, _new_height /= 2;
+
+            SetWindowPos(m_hWnd, NULL, 0, 0, _new_width, _new_height, SWP_NOMOVE | SWP_NOZORDER);
         }
     }
 }
@@ -1056,11 +1126,26 @@ void CMainWindow::bringToTop()
 
 void CMainWindow::applyTheme(const std::wstring& theme)
 {
-    CMainWindowBase::applyTheme(theme);
-    COLORREF color = AscAppManager::themes().current().colorRef(CTheme::ColorRole::ecrWindowBackground);
-    setStyleSheet(QString("background-color: rgb(%1,%2,%3)").arg(QString::number(GetRValue(color)),
-                                                                 QString::number(GetGValue(color)),
-                                                                 QString::number(GetBValue(color))));
+    if (m_winType == WindowType::MAIN || m_winType == WindowType::SINGLE) {
+        CMainWindowBase::applyTheme(theme);
+        COLORREF color = AscAppManager::themes().current().colorRef(CTheme::ColorRole::ecrWindowBackground);
+        setStyleSheet(QString("background-color: rgb(%1,%2,%3)").arg(QString::number(GetRValue(color)),
+                                                                     QString::number(GetGValue(color)),
+                                                                     QString::number(GetBValue(color))));
+    } else
+    if (m_winType == WindowType::REPORTER) {
+        m_pMainPanel->setProperty("uitheme", QString::fromStdWString(theme));
+        m_pLabelTitle->style()->polish(m_pLabelTitle);
+        m_buttonMinimize->style()->polish(m_buttonMinimize);
+        m_buttonMaximize->style()->polish(m_buttonMaximize);
+        m_buttonClose->style()->polish(m_buttonClose);
+        m_boxTitleBtns->style()->polish(m_boxTitleBtns);
+        QWidget * centralwidget = m_pMainPanel->layout()->itemAt(0)->widget();
+        centralwidget->style()->polish(centralwidget);
+        m_pMainPanel->style()->polish(m_pMainPanel);
+        update();
+        //RedrawWindow(m_hWnd, nullptr, nullptr, RDW_INVALIDATE);
+    }
 }
 
 void CMainWindow::updateScaling()
@@ -1182,6 +1267,176 @@ void CMainWindow::captureMouse()
 
         ReleaseCapture();
         PostMessage(m_hWnd, WM_NCLBUTTONDOWN, HTCAPTION, MAKELPARAM(cursor.x, cursor.y));
+    }
+}
+
+
+
+
+
+
+QWidget * CMainWindow::_createMainPanel(QWidget * parent, const QString& title, bool custom, QWidget * view)
+{
+    QWidget * mainPanel = new QWidget(parent);
+    m_pCentralLayout->addWidget(mainPanel);
+    mainPanel->setObjectName("mainPanel");
+    mainPanel->setProperty("uitheme", QString::fromStdWString(AscAppManager::themes().current().id()));
+
+    QGridLayout * mainGridLayout = new QGridLayout(mainPanel);
+    mainGridLayout->setSpacing(0);
+    mainGridLayout->setMargin(0);
+    mainPanel->setLayout(mainGridLayout);
+
+    mainPanel->setStyleSheet(AscAppManager::getWindowStylesheets(m_dpiRatio));
+
+    // Central widget
+    /*QWidget * centralWidget = new QWidget(mainPanel);
+    centralWidget->setObjectName("centralWidget");
+    centralWidget->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);*/
+
+#ifdef __linux__
+    m_boxTitleBtns = static_cast<QWidget*>(new CX11Caption(mainPanel));
+#else
+    m_boxTitleBtns = static_cast<QWidget*>(new Caption(mainPanel));
+#endif
+
+    QHBoxLayout * layoutBtns = new QHBoxLayout(m_boxTitleBtns);
+    m_pLabelTitle = new QLabel(title, m_boxTitleBtns);
+    m_pLabelTitle->setObjectName("labelAppTitle");
+    m_pLabelTitle->setAlignment(Qt::AlignHCenter|Qt::AlignVCenter);
+
+    layoutBtns->setContentsMargins(0,0,0,0);
+    QSize small_btn_size(40*m_dpiRatio, TOOLBTN_HEIGHT*m_dpiRatio);
+
+    layoutBtns->setSpacing(1*m_dpiRatio);
+    layoutBtns->addWidget(m_pLabelTitle);
+
+    if ( custom ) {
+        auto _creatToolButton = [small_btn_size](const QString& name, QWidget * _parent) {
+            QPushButton * btn = new QPushButton(_parent);
+            btn->setObjectName(name);
+            btn->setProperty("class", "normal");
+            btn->setProperty("act", "tool");
+            btn->setFixedSize(small_btn_size);
+
+            return btn;
+        };
+
+        // Minimize
+        m_buttonMinimize = _creatToolButton("toolButtonMinimize", m_boxTitleBtns);
+        QObject::connect(m_buttonMinimize, &QPushButton::clicked, std::bind(&CMainWindow::pushButtonMinimizeClicked, this));
+
+        // Maximize
+        m_buttonMaximize = _creatToolButton("toolButtonMaximize", m_boxTitleBtns);
+        QObject::connect(m_buttonMaximize, &QPushButton::clicked, std::bind(&CMainWindow::pushButtonMaximizeClicked, this));
+
+        // Close
+        m_buttonClose = _creatToolButton("toolButtonClose", m_boxTitleBtns);
+        QObject::connect(m_buttonClose, &QPushButton::clicked, std::bind(&CMainWindow::pushButtonCloseClicked, this));
+
+        layoutBtns->addWidget(m_buttonMinimize);
+        layoutBtns->addWidget(m_buttonMaximize);
+        layoutBtns->addWidget(m_buttonClose);
+
+#ifdef __linux__
+        mainGridLayout->setMargin( CX11Decoration::customWindowBorderWith() );
+
+        QPalette _palette(parent->palette());
+        _palette.setColor(QPalette::Background, QColor(0x31, 0x34, 0x37));
+        parent->setAutoFillBackground(true);
+        parent->setPalette(_palette);
+
+        connect(m_boxTitleBtns, SIGNAL(mouseDoubleClicked()), this, SLOT(pushButtonMaximizeClicked()));
+#endif
+
+        QWidget * _lb = new QWidget;
+        _lb->setFixedWidth( (small_btn_size.width() + layoutBtns->spacing()) * 3 );
+        layoutBtns->insertWidget(0, _lb);
+    } else {
+        QLinearGradient gradient(mainPanel->rect().topLeft(), QPoint(mainPanel->rect().left(), 29));
+        gradient.setColorAt(0, QColor("#eee"));
+        gradient.setColorAt(1, QColor("#e4e4e4"));
+
+        m_labelTitle->setFixedHeight(0);
+        m_boxTitleBtns->setFixedHeight(16*m_dpiRatio);
+    }
+    mainGridLayout->addWidget(m_boxTitleBtns, 0, 0, Qt::AlignTop);
+    if ( !view ) {
+        QCefView * pMainWidget = AscAppManager::createViewer(mainPanel);
+        pMainWidget->Create(&AscAppManager::getInstance(), cvwtSimple);
+        pMainWidget->setObjectName( "mainPanel" );
+        pMainWidget->setHidden(false);
+
+        m_pMainView = (QWidget *)pMainWidget;
+    } else {
+        m_pMainView = view;
+        m_pMainView->setParent(mainPanel);
+        m_pMainView->show();
+    }
+    m_pMainView->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+    mainGridLayout->addWidget(m_pMainView, 1, 0);
+
+    return mainPanel;
+}
+
+void CMainWindow::recalculatePlaces()
+{
+    /*int cbw = 0;
+
+#ifdef __linux
+    QWidget * cw = findChild<QWidget *>("centralWidget");
+    int windowW = cw->width(),
+        windowH = cw->height(),
+#else
+    int windowW = m_pMainPanel->width(),
+        windowH = m_pMainPanel->height(),
+#endif
+        captionH = TITLE_HEIGHT * m_dpiRatio;
+
+    int contentH = windowH - captionH;
+    if ( contentH < 1 ) contentH = 1;
+
+    m_boxTitleBtns->setFixedHeight(TOOLBTN_HEIGHT * m_dpiRatio);
+    m_boxTitleBtns->move(windowW - m_boxTitleBtns->width() + cbw, cbw);
+    m_pMainView->setGeometry(cbw, captionH + cbw, windowW, contentH);*/
+}
+
+
+void CMainWindow::pushButtonCloseClicked()
+{
+    if (m_pMainView) {
+        AscAppManager::getInstance().DestroyCefView(((QCefView *)m_pMainView)->GetCefView()->GetId() );
+    }
+}
+
+void CMainWindow::pushButtonMinimizeClicked()
+{
+    ShowWindow(m_hWnd, SW_MINIMIZE);
+}
+
+void CMainWindow::pushButtonMaximizeClicked()
+{
+    bool _is_maximized = IsZoomed(m_hWnd) != FALSE;
+#ifdef __linux__
+        layout()->setMargin(s == _is_maximized ? 0 : CX11Decoration::customWindowBorderWith());
+#endif
+    m_buttonMaximize->setProperty("class", _is_maximized ? "min" : "normal");
+    m_buttonMaximize->style()->polish(m_buttonMaximize);
+
+    ShowWindow(m_hWnd, _is_maximized ? SW_RESTORE : SW_MAXIMIZE );
+}
+
+void CMainWindow::focusMainPanel()
+{
+    if ( m_pMainView ) ((QCefView *)m_pMainView)->setFocusToCef();
+}
+
+bool CMainWindow::holdView(int id) const
+{
+    if (m_winType == WindowType::REPORTER) {
+        return ((QCefView *)m_pMainView)->GetCefView()->GetId() == id;
+    } else {
+        return mainPanel()->holdUid(id);
     }
 }
 
