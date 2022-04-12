@@ -135,7 +135,7 @@ public:
 protected:
     virtual QWidget * createTopPanel(QWidget *, const QString&);
     virtual QWidget * createMainPanel(QWidget *, const QString&, bool custom = true, QWidget * view = nullptr);
-    virtual QPushButton * createToolButton(QWidget * parent = nullptr);
+    virtual QPushButton * createToolButton(QWidget * parent = nullptr, const QString& name = QString(""));
     virtual void onCloseEvent() {};
     virtual void onMinimizeEvent() {};
     virtual void onMaximizeEvent() {};
@@ -166,6 +166,7 @@ protected:
 private:
     class impl;
     std::unique_ptr<impl> pimpl;
+    void initTopButtons(QWidget *parent);
 };
 
 #endif // CMAINWINDOWBASE_H

@@ -662,7 +662,7 @@ void CMainWindow::changeEvent(QEvent *event)
                 adjustGeometry();
             }
         } else
-        if (/*m_winType == WindowType::SINGLE || */m_winType == WindowType::REPORTER) {
+        if (m_winType == WindowType::SINGLE || m_winType == WindowType::REPORTER) {
             if (isMinimized()) {
                 applyWindowState(Qt::WindowMinimized);
             } else {

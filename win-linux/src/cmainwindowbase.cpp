@@ -311,10 +311,32 @@ int CMainWindowBase::calcTitleCaptionWidth()
     return 0;
 }
 
+QPushButton * CMainWindowBase::createToolButton(QWidget * parent, const QString& name)
+{
+    QPushButton * btn = new QPushButton(parent);
+    btn->setObjectName(name);
+    btn->setProperty("class", "normal");
+    btn->setProperty("act", "tool");
+    btn->setFixedSize(int(TOOLBTN_WIDTH*m_dpiRatio), int(TOOLBTN_HEIGHT*m_dpiRatio));
+    return btn;
+}
+
+void CMainWindowBase::initTopButtons(QWidget *parent)
+{
+    // Minimize
+    m_buttonMinimize = createToolButton(parent, "toolButtonMinimize");
+    QObject::connect(m_buttonMinimize, &QPushButton::clicked, [=]{onMinimizeEvent();});
+    // Maximize
+    m_buttonMaximize = createToolButton(parent, "toolButtonMaximize");
+    QObject::connect(m_buttonMaximize, &QPushButton::clicked, [=]{onMaximizeEvent();});
+    // Close
+    m_buttonClose = createToolButton(parent, "toolButtonClose");
+    QObject::connect(m_buttonClose, &QPushButton::clicked, [=]{onCloseEvent();});
+}
+
 QWidget * CMainWindowBase::createTopPanel(QWidget * parent, const QString& title)
 {
-    if ( pimpl->is_custom_window() ) {
-
+    if (pimpl->is_custom_window()) {
 #ifdef __linux__
         m_boxTitleBtns = new QWidget(parent);
 #else
@@ -338,28 +360,7 @@ QWidget * CMainWindowBase::createTopPanel(QWidget * parent, const QString& title
         layoutBtns->addWidget(m_labelTitle, 0);
         layoutBtns->addStretch();
 
-        QSize small_btn_size(TOOLBTN_WIDTH*m_dpiRatio, TOOLBTN_HEIGHT*m_dpiRatio);
-
-        auto _creatToolButton = [&small_btn_size](const QString& name, QWidget * _parent) {
-            QPushButton * btn = new QPushButton(_parent);
-            btn->setObjectName(name);
-            btn->setProperty("class", "normal");
-            btn->setProperty("act", "tool");
-            btn->setFixedSize(small_btn_size);
-            btn->setMouseTracking(true);
-
-            return btn;
-        };
-
-        // Minimize
-        m_buttonMinimize = _creatToolButton("toolButtonMinimize", m_boxTitleBtns);
-        QObject::connect(m_buttonMinimize, &QPushButton::clicked, [=]{onMinimizeEvent();});
-        // Maximize
-        m_buttonMaximize = _creatToolButton("toolButtonMaximize", m_boxTitleBtns);
-        QObject::connect(m_buttonMaximize, &QPushButton::clicked, [=]{onMaximizeEvent();});
-        // Close
-        m_buttonClose = _creatToolButton("toolButtonClose", m_boxTitleBtns);
-        QObject::connect(m_buttonClose, &QPushButton::clicked, [=]{onCloseEvent();});
+        initTopButtons(m_boxTitleBtns);
     }
 
     return nullptr;
@@ -383,40 +384,22 @@ QWidget * CMainWindowBase::createMainPanel(QWidget * parent, const QString& titl
 #else
     m_boxTitleBtns = static_cast<QWidget*>(new Caption(mainPanel));
 #endif
+    m_boxTitleBtns->setObjectName("box-title-tools");
+    m_boxTitleBtns->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
+    m_boxTitleBtns->setFixedHeight(TOOLBTN_HEIGHT * m_dpiRatio);
 
     QHBoxLayout * layoutBtns = new QHBoxLayout(m_boxTitleBtns);
+    layoutBtns->setContentsMargins(0,0,0,0);
+    layoutBtns->setSpacing(1*m_dpiRatio);
+
     m_labelTitle = new CElipsisLabel(title, m_boxTitleBtns);
     m_labelTitle->setObjectName("labelAppTitle");
     m_labelTitle->setAlignment(Qt::AlignHCenter|Qt::AlignVCenter);
 
-    layoutBtns->setContentsMargins(0,0,0,0);
-    QSize small_btn_size(40*m_dpiRatio, TOOLBTN_HEIGHT*m_dpiRatio);
-
-    layoutBtns->setSpacing(1*m_dpiRatio);
     layoutBtns->addWidget(m_labelTitle);
 
     if (custom) {
-        auto _creatToolButton = [small_btn_size](const QString& name, QWidget * _parent) {
-            QPushButton * btn = new QPushButton(_parent);
-            btn->setObjectName(name);
-            btn->setProperty("class", "normal");
-            btn->setProperty("act", "tool");
-            btn->setFixedSize(small_btn_size);
-
-            return btn;
-        };
-
-        // Minimize
-        m_buttonMinimize = _creatToolButton("toolButtonMinimize", m_boxTitleBtns);
-        QObject::connect(m_buttonMinimize, &QPushButton::clicked, [=]{onMinimizeEvent();});
-
-        // Maximize
-        m_buttonMaximize = _creatToolButton("toolButtonMaximize", m_boxTitleBtns);
-        QObject::connect(m_buttonMaximize, &QPushButton::clicked, [=]{onMaximizeEvent();});
-
-        // Close
-        m_buttonClose = _creatToolButton("toolButtonClose", m_boxTitleBtns);
-        QObject::connect(m_buttonClose, &QPushButton::clicked, [=]{onCloseEvent();});
+        initTopButtons(m_boxTitleBtns);
 
         layoutBtns->addWidget(m_buttonMinimize);
         layoutBtns->addWidget(m_buttonMaximize);
@@ -432,7 +415,7 @@ QWidget * CMainWindowBase::createMainPanel(QWidget * parent, const QString& titl
 
         connect(m_boxTitleBtns, SIGNAL(mouseDoubleClicked()), this, SLOT(pushButtonMaximizeClicked()));
 #endif
-
+        QSize small_btn_size(int(TOOLBTN_WIDTH*m_dpiRatio), int(TOOLBTN_HEIGHT*m_dpiRatio));
         QWidget * _lb = new QWidget(m_boxTitleBtns);
         _lb->setFixedWidth( (small_btn_size.width() + layoutBtns->spacing()) * 3 );
         layoutBtns->insertWidget(0, _lb);
@@ -466,16 +449,6 @@ QWidget * CMainWindowBase::createMainPanel(QWidget * parent, const QString& titl
 void CMainWindowBase::onSizeEvent(int)
 {
     updateTitleCaption();
-}
-
-QPushButton * CMainWindowBase::createToolButton(QWidget * parent)
-{
-    QPushButton * btn = new QPushButton(parent);
-    btn->setProperty("class", "normal");
-    btn->setProperty("act", "tool");
-    btn->setFixedSize(QSize(int(TOOLBTN_WIDTH*m_dpiRatio), int(TOOLBTN_HEIGHT*m_dpiRatio)));
-
-    return btn;
 }
 
 bool CMainWindowBase::isCustomWindowStyle()
