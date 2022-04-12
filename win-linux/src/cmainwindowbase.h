@@ -102,21 +102,18 @@ private:
 class CMainWindowBase
 {
 public:
-    CMainWindowBase();
     CMainWindowBase(QRect& rect);
     virtual ~CMainWindowBase();
 
-
-    virtual QWidget * createMainPanel(QWidget * parent, const QString& title);
     virtual QWidget * editor(int index);
     virtual QString documentName(int vid);
     virtual const QObject * receiver() {return nullptr;}
-    virtual CMainPanel * mainPanel() const {return nullptr;}
+    virtual CMainPanel * mainPanel() const = 0;
     virtual QRect windowRect() const {return QRect();}
 
     virtual void setScreenScalingFactor(double);
     virtual void setWindowTitle(const QString&);
-    virtual void adjustGeometry();
+    virtual void adjustGeometry() {};
     virtual void bringToTop() {}
     virtual void focus() {}
     virtual void updateScaling();    
@@ -136,15 +133,18 @@ public:
     virtual bool holdView(int id) const;
 
 protected:
+    virtual QWidget * createTopPanel(QWidget *, const QString&);
+    virtual QWidget * createMainPanel(QWidget *, const QString&, bool custom = true, QWidget * view = nullptr);
     virtual QPushButton * createToolButton(QWidget * parent = nullptr);
     virtual void onCloseEvent() {};
     virtual void onMinimizeEvent() {};
     virtual void onMaximizeEvent() {};
     virtual void onSizeEvent(int);
     virtual void onMoveEvent(const QRect&) {};
-    virtual void onExitSizeMove();
-    virtual void onDpiChanged(double newfactor, double prevfactor);
+    virtual void onExitSizeMove() {};
+    virtual void onDpiChanged(double newfactor, double prevfactor) {};
     virtual void updateTitleCaption();
+    virtual void focusMainPanel();
     virtual int calcTitleCaptionWidth();
     inline int dpiCorrectValue(int v) const
     {
@@ -159,6 +159,9 @@ protected:
     QPushButton * m_buttonClose;
     CElipsisLabel * m_labelTitle;
     double m_dpiRatio;
+
+    QGridLayout *m_pCentralLayout;
+    QWidget *m_pCentralWidget;
 
 private:
     class impl;

@@ -66,7 +66,7 @@ CEditorWindow::CEditorWindow(const QRect& rect, CTabPanel* panel)
         applyTheme(AscAppManager::themes().current().id());
 
     setObjectName("editorWindow");
-    m_pMainPanel = createMainPanel(this);
+    m_pMainPanel = createMainPanel(this, d_ptr->panel()->data()->title());
     setCentralWidget(m_pMainPanel);
 
     if ( !CX11Decoration::isDecorated() ) {
@@ -78,7 +78,7 @@ CEditorWindow::CEditorWindow(const QRect& rect, CTabPanel* panel)
 
     applyTheme(AscAppManager::themes().current().id());
 
-    m_pMainPanel = createMainPanel(m_pCentralWidget);
+    m_pMainPanel = createMainPanel(m_pCentralWidget, d_ptr->panel()->data()->title());
     m_pCentralLayout->addWidget(m_pMainPanel);
     //m_pWinPanel->show();
 
@@ -183,12 +183,12 @@ int CEditorWindow::closeWindow()
     return _reply;
 }
 
-QWidget * CEditorWindow::createMainPanel(QWidget * parent)
+/*QWidget * CEditorWindow::createMainPanel(QWidget * parent)
 {
     return createMainPanel(parent, d_ptr->panel()->data()->title());
-}
+}*/
 
-QWidget * CEditorWindow::createMainPanel(QWidget * parent, const QString& title)
+QWidget * CEditorWindow::createMainPanel(QWidget * parent, const QString& title, bool, QWidget*)
 {
     // create min/max/close buttons
     QWidget * mainPanel = new QWidget(parent);
@@ -203,14 +203,7 @@ QWidget * CEditorWindow::createMainPanel(QWidget * parent, const QString& title)
     mainGridLayout->setContentsMargins(QMargins(b,b,b,b));
 #endif
     mainPanel->setLayout(mainGridLayout);
-    CMainWindow::createMainPanel(mainPanel, title);
-//    mainPanel->setStyleSheet(AscAppManager::getWindowStylesheets(m_dpiRatio));
-//    mainPanel->setStyleSheet("background-color:#446995;");
-
-    // Central widget
-//    QWidget * centralWidget = new QWidget(mainPanel);
-//    centralWidget->setObjectName("centralWidget");
-//    centralWidget->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+    createTopPanel(mainPanel, title);
 
     if ( m_dpiRatio > 1.75 )
         mainPanel->setProperty("zoom", "2x");

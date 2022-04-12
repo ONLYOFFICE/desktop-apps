@@ -72,8 +72,9 @@ private:
 
 private:
     CEditorWindow(const QRect&, const QString&, QWidget *);
-    QWidget * createMainPanel(QWidget * parent);
-    QWidget * createMainPanel(QWidget * parent, const QString& title) override;
+    //QWidget * createMainPanel(QWidget * parent);
+    virtual QWidget * createMainPanel(QWidget *, const QString&, bool custom = true,
+                                      QWidget * view = nullptr) override;
     void recalculatePlaces();
     const QObject * receiver() override;
 

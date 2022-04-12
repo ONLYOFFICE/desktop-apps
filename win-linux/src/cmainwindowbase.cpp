@@ -31,6 +31,7 @@
 */
 
 #include "cmainwindowbase.h"
+#include "cascapplicationmanagerwrapper.h"
 #include "utils.h"
 #include "ccefeventsgate.h"
 #include "defines.h"
@@ -123,7 +124,7 @@ auto CElipsisLabel::updateText() -> void
 }
 
 
-CMainWindowBase::CMainWindowBase()
+CMainWindowBase::CMainWindowBase(QRect& rect)
     : m_boxTitleBtns(nullptr)
     , m_pMainPanel(nullptr)
     , m_pMainView(nullptr)
@@ -132,12 +133,6 @@ CMainWindowBase::CMainWindowBase()
     , m_buttonClose(nullptr)
     , m_labelTitle(nullptr)
     , pimpl{new impl}
-{
-
-}
-
-CMainWindowBase::CMainWindowBase(QRect& rect)
-    : CMainWindowBase()
 {
     m_dpiRatio = Utils::getScreenDpiRatio(rect.topLeft());
     if ( rect.isEmpty() )
@@ -176,18 +171,7 @@ int CMainWindowBase::attachEditor(QWidget * panel, int index)
         _pMainPanel->toggleButtonMain(false);
 
         _pMainPanel->tabWidget()->setCurrentIndex(_index);
-
-//        if ( false ) {
-//            QApplication::sendEvent( tabs,
-//                &QMouseEvent(QEvent::MouseButtonPress,
-//                    tabs->tabRect(_index).topLeft() + (QPoint(10, 65)*m_dpiRatio),
-//                    Qt::LeftButton, Qt::LeftButton, Qt::NoModifier) );
-//        }
     }
-
-//    if (QApplication::mouseButtons().testFlag(Qt::LeftButton))
-//        captureMouse(_index);
-
     return _index;
 }
 
@@ -223,12 +207,6 @@ bool CMainWindowBase::pointInTabs(const QPoint& pt) const
 
     return _rc_title.contains(mainPanel()->mapFromGlobal(pt));
 }
-
-//bool CMainWindowBase::movedByTab()
-//{
-//    return mainPanel()->tabWidget()->count() == 1 &&
-//            ((CTabBar *)mainPanel()->tabWidget()->tabBar())->draggedTabIndex() == 0;
-//}
 
 QWidget * CMainWindowBase::editor(int index)
 {
@@ -303,9 +281,6 @@ void CMainWindowBase::setScreenScalingFactor(double f)
             m_boxTitleBtns->setFixedHeight(int(TOOLBTN_HEIGHT * f));
             m_boxTitleBtns->layout()->setSpacing(int(1 * f));
         }
-
-//        onScreenScalingFactor(f);
-
         m_dpiRatio = f;
     }
 }
@@ -336,13 +311,14 @@ int CMainWindowBase::calcTitleCaptionWidth()
     return 0;
 }
 
-QWidget * CMainWindowBase::createMainPanel(QWidget * parent, const QString& title)
+QWidget * CMainWindowBase::createTopPanel(QWidget * parent, const QString& title)
 {
     if ( pimpl->is_custom_window() ) {
-#if defined(Q_OS_WIN)
-        m_boxTitleBtns = static_cast<QWidget*>(new Caption(parent));
-#elif defined(Q_OS_LINUX)
+
+#ifdef __linux__
         m_boxTitleBtns = new QWidget(parent);
+#else
+        m_boxTitleBtns = static_cast<QWidget*>(new Caption(parent));
 #endif
         m_boxTitleBtns->setObjectName("box-title-tools");
         m_boxTitleBtns->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
@@ -352,7 +328,7 @@ QWidget * CMainWindowBase::createMainPanel(QWidget * parent, const QString& titl
         layoutBtns->setContentsMargins(0,0,0,0);
         layoutBtns->setSpacing(1 * m_dpiRatio);
 
-        m_labelTitle = new CElipsisLabel(title);
+        m_labelTitle = new CElipsisLabel(title, m_boxTitleBtns);
         m_labelTitle->setObjectName("labelTitle");
         m_labelTitle->setMouseTracking(true);
         m_labelTitle->setEllipsisMode(Qt::ElideMiddle);
@@ -384,50 +360,112 @@ QWidget * CMainWindowBase::createMainPanel(QWidget * parent, const QString& titl
         // Close
         m_buttonClose = _creatToolButton("toolButtonClose", m_boxTitleBtns);
         QObject::connect(m_buttonClose, &QPushButton::clicked, [=]{onCloseEvent();});
-//        m_pButtonMaximize = new QPushButton(parent);
-//        m_pButtonMaximize->setFixedSize(small_btn_size);
-//        m_pButtonMaximize->setIconSize(QSize(16,16));
-
-//        QSvgRenderer _svg;
-//        _svg.load(QString(":/tools.svg"));
-//qDebug() << "def size: " << _svg.defaultSize();
-//        QPixmap image(_svg.defaultSize());
-//        image.fill(Qt::transparent);
-//        QPainter painter( &image );
-//        _svg.render(&painter, "svg-g-max");
-
-//        m_pButtonMaximize->setIcon(QIcon(image));
     }
 
     return nullptr;
 }
 
-/*void CMainWindowBase::onCloseEvent()
+QWidget * CMainWindowBase::createMainPanel(QWidget * parent, const QString& title, bool custom, QWidget * view)
 {
+    QWidget * mainPanel = new QWidget(parent);
+    m_pCentralLayout->addWidget(mainPanel);
+    mainPanel->setObjectName("mainPanel");
+    mainPanel->setProperty("uitheme", QString::fromStdWString(AscAppManager::themes().current().id()));
+
+    QGridLayout * mainGridLayout = new QGridLayout(mainPanel);
+    mainGridLayout->setSpacing(0);
+    mainGridLayout->setMargin(0);
+    mainPanel->setLayout(mainGridLayout);
+    mainPanel->setStyleSheet(AscAppManager::getWindowStylesheets(m_dpiRatio));
+
+#ifdef __linux__
+    m_boxTitleBtns = static_cast<QWidget*>(new CX11Caption(mainPanel));
+#else
+    m_boxTitleBtns = static_cast<QWidget*>(new Caption(mainPanel));
+#endif
+
+    QHBoxLayout * layoutBtns = new QHBoxLayout(m_boxTitleBtns);
+    m_labelTitle = new CElipsisLabel(title, m_boxTitleBtns);
+    m_labelTitle->setObjectName("labelAppTitle");
+    m_labelTitle->setAlignment(Qt::AlignHCenter|Qt::AlignVCenter);
+
+    layoutBtns->setContentsMargins(0,0,0,0);
+    QSize small_btn_size(40*m_dpiRatio, TOOLBTN_HEIGHT*m_dpiRatio);
+
+    layoutBtns->setSpacing(1*m_dpiRatio);
+    layoutBtns->addWidget(m_labelTitle);
+
+    if (custom) {
+        auto _creatToolButton = [small_btn_size](const QString& name, QWidget * _parent) {
+            QPushButton * btn = new QPushButton(_parent);
+            btn->setObjectName(name);
+            btn->setProperty("class", "normal");
+            btn->setProperty("act", "tool");
+            btn->setFixedSize(small_btn_size);
+
+            return btn;
+        };
+
+        // Minimize
+        m_buttonMinimize = _creatToolButton("toolButtonMinimize", m_boxTitleBtns);
+        QObject::connect(m_buttonMinimize, &QPushButton::clicked, [=]{onMinimizeEvent();});
+
+        // Maximize
+        m_buttonMaximize = _creatToolButton("toolButtonMaximize", m_boxTitleBtns);
+        QObject::connect(m_buttonMaximize, &QPushButton::clicked, [=]{onMaximizeEvent();});
+
+        // Close
+        m_buttonClose = _creatToolButton("toolButtonClose", m_boxTitleBtns);
+        QObject::connect(m_buttonClose, &QPushButton::clicked, [=]{onCloseEvent();});
+
+        layoutBtns->addWidget(m_buttonMinimize);
+        layoutBtns->addWidget(m_buttonMaximize);
+        layoutBtns->addWidget(m_buttonClose);
+
+#ifdef __linux__
+        mainGridLayout->setMargin( CX11Decoration::customWindowBorderWith() );
+
+        QPalette _palette(parent->palette());
+        _palette.setColor(QPalette::Background, QColor(0x31, 0x34, 0x37));
+        parent->setAutoFillBackground(true);
+        parent->setPalette(_palette);
+
+        connect(m_boxTitleBtns, SIGNAL(mouseDoubleClicked()), this, SLOT(pushButtonMaximizeClicked()));
+#endif
+
+        QWidget * _lb = new QWidget(m_boxTitleBtns);
+        _lb->setFixedWidth( (small_btn_size.width() + layoutBtns->spacing()) * 3 );
+        layoutBtns->insertWidget(0, _lb);
+    } else {
+        QLinearGradient gradient(mainPanel->rect().topLeft(), QPoint(mainPanel->rect().left(), 29));
+        gradient.setColorAt(0, QColor("#eee"));
+        gradient.setColorAt(1, QColor("#e4e4e4"));
+
+        m_labelTitle->setFixedHeight(0);
+        m_boxTitleBtns->setFixedHeight(16*m_dpiRatio);
+    }
+    mainGridLayout->addWidget(m_boxTitleBtns, 0, 0, Qt::AlignTop);
+    if ( !view ) {
+        QCefView * pMainWidget = AscAppManager::createViewer(mainPanel);
+        pMainWidget->Create(&AscAppManager::getInstance(), cvwtSimple);
+        pMainWidget->setObjectName( "mainPanel" );
+        pMainWidget->setHidden(false);
+
+        m_pMainView = (QWidget *)pMainWidget;
+    } else {
+        m_pMainView = view;
+        m_pMainView->setParent(mainPanel);
+        m_pMainView->show();
+    }
+    m_pMainView->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+    mainGridLayout->addWidget(m_pMainView, 1, 0);
+
+    return mainPanel;
 }
-
-void CMainWindowBase::onMinimizeEvent()
-{
-
-}
-
-void CMainWindowBase::onMaximizeEvent()
-{
-
-}*/
 
 void CMainWindowBase::onSizeEvent(int)
 {
     updateTitleCaption();
-}
-
-void CMainWindowBase::onExitSizeMove()
-{
-
-}
-
-void CMainWindowBase::onDpiChanged(double, double)
-{
 }
 
 QPushButton * CMainWindowBase::createToolButton(QWidget * parent)
@@ -438,10 +476,6 @@ QPushButton * CMainWindowBase::createToolButton(QWidget * parent)
     btn->setFixedSize(QSize(int(TOOLBTN_WIDTH*m_dpiRatio), int(TOOLBTN_HEIGHT*m_dpiRatio)));
 
     return btn;
-}
-
-void CMainWindowBase::adjustGeometry()
-{
 }
 
 bool CMainWindowBase::isCustomWindowStyle()
@@ -458,4 +492,10 @@ void CMainWindowBase::updateTitleCaption()
             m_labelTitle->updateText();
         }
     }
+}
+
+void CMainWindowBase::focusMainPanel()
+{
+    if (m_pMainView)
+        ((QCefView *)m_pMainView)->setFocusToCef();
 }

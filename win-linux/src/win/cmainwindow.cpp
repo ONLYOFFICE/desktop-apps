@@ -170,8 +170,7 @@ CMainWindow::CMainWindow(const QRect &rect, const WindowType winType, const QStr
         }
 
         setMinimumSize(WINDOW_MIN_WIDTH * m_dpiRatio, WINDOW_MIN_HEIGHT * m_dpiRatio);
-        m_pMainPanel = _createMainPanel(m_pCentralWidget, title, true, widget);
-        recalculatePlaces();
+        m_pMainPanel = createMainPanel(m_pCentralWidget, title, true, widget);
     }
 }
 
@@ -237,8 +236,8 @@ bool CMainWindow::nativeEvent(const QByteArray &eventType, void *message, long *
             }
         } else
         if (m_winType == WindowType::SINGLE) {
-            static bool is_mainwindow_prev;
-            is_mainwindow_prev = false;
+            //static bool is_mainwindow_prev;
+            //is_mainwindow_prev = false;
             if (!IsWindowEnabled(m_hWnd) && m_modalHwnd && m_modalHwnd != m_hWnd) {
                 if (LOWORD(msg->wParam) != WA_INACTIVE ) {
                     SetActiveWindow(m_modalHwnd);
@@ -258,8 +257,8 @@ bool CMainWindow::nativeEvent(const QByteArray &eventType, void *message, long *
                         } else
                         if (top_window) {
                             top_window = NULL;
-                            if (AscAppManager::mainWindow() && hw == AscAppManager::mainWindow()->handle())
-                                is_mainwindow_prev = true;
+                            //if (AscAppManager::mainWindow() && hw == AscAppManager::mainWindow()->handle())
+                                //is_mainwindow_prev = true;
                         }
                         return TRUE;
                     }, (LPARAM)m_hWnd);
@@ -488,7 +487,7 @@ bool CMainWindow::nativeEvent(const QByteArray &eventType, void *message, long *
         } else
         if (m_winType == WindowType::REPORTER) {
             QTimer::singleShot(0, m_pMainPanel, [=] {
-                pushButtonCloseClicked();
+                onCloseEvent();
             });
         }
         return false;
@@ -615,11 +614,10 @@ void CMainWindow::showEvent(QShowEvent *event)
         setGeometry(m_window_rect);
         int border_size = int(MAIN_WINDOW_BORDER_WIDTH * m_dpiRatio);
         setContentsMargins(border_size, border_size + 1, border_size, border_size);
-        if (m_winType == WindowType::MAIN) {
-            COLORREF color = AscAppManager::themes().current().colorRef(CTheme::ColorRole::ecrWindowBackground);
-            setStyleSheet(QString("background-color: rgb(%1,%2,%3)").arg(QString::number(GetRValue(color)),
-                                                                         QString::number(GetGValue(color)),
-                                                                         QString::number(GetBValue(color))));
+        if (m_winType == WindowType::MAIN || m_winType == WindowType::REPORTER) {
+            QColor color = AscAppManager::themes().current().
+                    color(CTheme::ColorRole::ecrWindowBackground);
+            setWindowBackgroundColor(color);
         }
     }
 }
@@ -674,7 +672,6 @@ void CMainWindow::changeEvent(QEvent *event)
 
                 adjustGeometry();
             }
-            if (m_winType == WindowType::REPORTER) recalculatePlaces();
         }
     }
 }
@@ -767,31 +764,8 @@ int CMainWindow::getMaximumHeight()
 
 void CMainWindow::adjustGeometry()
 {
-    /*RECT lpWindowRect, clientRect;
-    GetWindowRect(m_hWnd, &lpWindowRect);
-    GetClientRect(m_hWnd, &clientRect);*/
-
     int border_size = 0;
-        /*nMaxOffsetX = 0,
-        nMaxOffsetY = 0,
-        nMaxOffsetR = 0,
-        nMaxOffsetB = 0;*/
-
-    if ( IsZoomed(m_hWnd) != 0 ) {      // is window maximized
-        /*LONG lTestW = 640,
-             lTestH = 480;
-
-        QScreen * _screen = Utils::screenAt(QRect(QPoint(lpWindowRect.left, lpWindowRect.top),QPoint(lpWindowRect.right,lpWindowRect.bottom)).center());
-        double _screen_dpi_ratio = _screen->logicalDotsPerInch() / 96;
-
-        RECT wrect{0,0,lTestW,lTestH};
-        WindowHelper::adjustWindowRect(m_hWnd, _screen_dpi_ratio, &wrect);
-
-        if (0 > wrect.left) nMaxOffsetX = -wrect.left;
-        if (0 > wrect.top)  nMaxOffsetY = -wrect.top;
-
-        if (wrect.right > lTestW)   nMaxOffsetR = (wrect.right - lTestW);
-        if (wrect.bottom > lTestH)  nMaxOffsetB = (wrect.bottom - lTestH);*/
+    if (IsZoomed(m_hWnd) != FALSE) {      // is window maximized
 
     } else {
         border_size = int(MAIN_WINDOW_BORDER_WIDTH * m_dpiRatio);
@@ -1036,7 +1010,6 @@ void CMainWindow::setAutocheckUpdatesInterval(const QString& s)
 void CMainWindow::doClose()
 {
     qDebug() << "doClose";
-
     QTimer::singleShot(500, _m_pMainPanel, [=]{
         _m_pMainPanel->pushButtonCloseClicked();
     });
@@ -1126,32 +1099,27 @@ void CMainWindow::bringToTop()
 
 void CMainWindow::applyTheme(const std::wstring& theme)
 {
+    QColor color = AscAppManager::themes().current().
+            color(CTheme::ColorRole::ecrWindowBackground);
+    setWindowBackgroundColor(color);
     if (m_winType == WindowType::MAIN || m_winType == WindowType::SINGLE) {
-        CMainWindowBase::applyTheme(theme);
-        COLORREF color = AscAppManager::themes().current().colorRef(CTheme::ColorRole::ecrWindowBackground);
-        setStyleSheet(QString("background-color: rgb(%1,%2,%3)").arg(QString::number(GetRValue(color)),
-                                                                     QString::number(GetGValue(color)),
-                                                                     QString::number(GetBValue(color))));
-    } else
+        mainPanel()->applyTheme(theme);
+    }
     if (m_winType == WindowType::REPORTER) {
         m_pMainPanel->setProperty("uitheme", QString::fromStdWString(theme));
-        m_pLabelTitle->style()->polish(m_pLabelTitle);
+        m_labelTitle->style()->polish(m_labelTitle);
         m_buttonMinimize->style()->polish(m_buttonMinimize);
         m_buttonMaximize->style()->polish(m_buttonMaximize);
         m_buttonClose->style()->polish(m_buttonClose);
         m_boxTitleBtns->style()->polish(m_boxTitleBtns);
-        QWidget * centralwidget = m_pMainPanel->layout()->itemAt(0)->widget();
-        centralwidget->style()->polish(centralwidget);
         m_pMainPanel->style()->polish(m_pMainPanel);
         update();
-        //RedrawWindow(m_hWnd, nullptr, nullptr, RDW_INVALIDATE);
     }
 }
 
 void CMainWindow::updateScaling()
 {
     double dpi_ratio = Utils::getScreenDpiRatioByHWND(int(m_hWnd));
-
     if ( dpi_ratio != m_dpiRatio ) {
         if ( !WindowHelper::isWindowSystemDocked(m_hWnd) ) {
             setScreenScalingFactor(dpi_ratio);
@@ -1159,7 +1127,6 @@ void CMainWindow::updateScaling()
             m_dpiRatio = dpi_ratio;
             refresh_window_scaling_factor(this);
         }
-
         adjustGeometry();
     }
 }
@@ -1184,7 +1151,6 @@ void CMainWindow::onExitSizeMove()
 {
     setMinimumSize(0, 0);
     double dpi_ratio = Utils::getScreenDpiRatioByHWND(int(m_hWnd));
-
     if ( dpi_ratio != m_dpiRatio ) {
         if ( WindowHelper::isWindowSystemDocked(m_hWnd) )
             onDpiChanged(dpi_ratio, m_dpiRatio);
@@ -1199,7 +1165,22 @@ void CMainWindow::onMinimizeEvent()
 
 void CMainWindow::onMaximizeEvent()
 {
+    if (m_winType == WindowType::REPORTER) {
+        bool _is_maximized = isMaximized();
+#ifdef __linux__
+            layout()->setMargin(s == _is_maximized ? 0 : CX11Decoration::customWindowBorderWith());
+#endif
+        m_buttonMaximize->setProperty("class", _is_maximized ? "min" : "normal");
+        m_buttonMaximize->style()->polish(m_buttonMaximize);
+    }
     isMaximized() ? QMainWindow::showNormal() : QMainWindow::showMaximized();
+}
+
+void CMainWindow::onCloseEvent() // Reporter mode
+{
+    if (m_pMainView) {
+        AscAppManager::getInstance().DestroyCefView(((QCefView *)m_pMainView)->GetCefView()->GetId() );
+    }
 }
 
 void CMainWindow::setWindowState(Qt::WindowState state)
@@ -1223,26 +1204,18 @@ void CMainWindow::setWindowBackgroundColor(const QColor& color)
 {
     int r, g, b;
     color.getRgb(&r, &g, &b);
-
-    m_bgColor = RGB(r, g, b);
     setStyleSheet(QString("background-color: rgb(%1,%2,%3)")
-                  .arg(QString::number(GetRValue(m_bgColor)),
-                       QString::number(GetGValue(m_bgColor)),
-                       QString::number(GetBValue(m_bgColor))));
+                  .arg(QString::number(r), QString::number(g), QString::number(b)));
 }
 
 void CMainWindow::setWindowColors(const QColor& background, const QColor& border)
 {
     int r, g, b;
     border.getRgb(&r, &g, &b);
-    m_borderColor = RGB(r, g, b);
-
+    //COLORREF m_borderColor = RGB(r, g, b);
     background.getRgb(&r, &g, &b);
-    m_bgColor = RGB(r, g, b);
     setStyleSheet(QString("background-color: rgb(%1,%2,%3)")
-                  .arg(QString::number(GetRValue(m_bgColor)),
-                       QString::number(GetGValue(m_bgColor)),
-                       QString::number(GetBValue(m_bgColor))));
+                  .arg(QString::number(r), QString::number(g), QString::number(b)));
 }
 
 void CMainWindow::activateWindow()
@@ -1268,167 +1241,6 @@ void CMainWindow::captureMouse()
         ReleaseCapture();
         PostMessage(m_hWnd, WM_NCLBUTTONDOWN, HTCAPTION, MAKELPARAM(cursor.x, cursor.y));
     }
-}
-
-
-
-
-
-
-QWidget * CMainWindow::_createMainPanel(QWidget * parent, const QString& title, bool custom, QWidget * view)
-{
-    QWidget * mainPanel = new QWidget(parent);
-    m_pCentralLayout->addWidget(mainPanel);
-    mainPanel->setObjectName("mainPanel");
-    mainPanel->setProperty("uitheme", QString::fromStdWString(AscAppManager::themes().current().id()));
-
-    QGridLayout * mainGridLayout = new QGridLayout(mainPanel);
-    mainGridLayout->setSpacing(0);
-    mainGridLayout->setMargin(0);
-    mainPanel->setLayout(mainGridLayout);
-
-    mainPanel->setStyleSheet(AscAppManager::getWindowStylesheets(m_dpiRatio));
-
-    // Central widget
-    /*QWidget * centralWidget = new QWidget(mainPanel);
-    centralWidget->setObjectName("centralWidget");
-    centralWidget->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);*/
-
-#ifdef __linux__
-    m_boxTitleBtns = static_cast<QWidget*>(new CX11Caption(mainPanel));
-#else
-    m_boxTitleBtns = static_cast<QWidget*>(new Caption(mainPanel));
-#endif
-
-    QHBoxLayout * layoutBtns = new QHBoxLayout(m_boxTitleBtns);
-    m_pLabelTitle = new QLabel(title, m_boxTitleBtns);
-    m_pLabelTitle->setObjectName("labelAppTitle");
-    m_pLabelTitle->setAlignment(Qt::AlignHCenter|Qt::AlignVCenter);
-
-    layoutBtns->setContentsMargins(0,0,0,0);
-    QSize small_btn_size(40*m_dpiRatio, TOOLBTN_HEIGHT*m_dpiRatio);
-
-    layoutBtns->setSpacing(1*m_dpiRatio);
-    layoutBtns->addWidget(m_pLabelTitle);
-
-    if ( custom ) {
-        auto _creatToolButton = [small_btn_size](const QString& name, QWidget * _parent) {
-            QPushButton * btn = new QPushButton(_parent);
-            btn->setObjectName(name);
-            btn->setProperty("class", "normal");
-            btn->setProperty("act", "tool");
-            btn->setFixedSize(small_btn_size);
-
-            return btn;
-        };
-
-        // Minimize
-        m_buttonMinimize = _creatToolButton("toolButtonMinimize", m_boxTitleBtns);
-        QObject::connect(m_buttonMinimize, &QPushButton::clicked, std::bind(&CMainWindow::pushButtonMinimizeClicked, this));
-
-        // Maximize
-        m_buttonMaximize = _creatToolButton("toolButtonMaximize", m_boxTitleBtns);
-        QObject::connect(m_buttonMaximize, &QPushButton::clicked, std::bind(&CMainWindow::pushButtonMaximizeClicked, this));
-
-        // Close
-        m_buttonClose = _creatToolButton("toolButtonClose", m_boxTitleBtns);
-        QObject::connect(m_buttonClose, &QPushButton::clicked, std::bind(&CMainWindow::pushButtonCloseClicked, this));
-
-        layoutBtns->addWidget(m_buttonMinimize);
-        layoutBtns->addWidget(m_buttonMaximize);
-        layoutBtns->addWidget(m_buttonClose);
-
-#ifdef __linux__
-        mainGridLayout->setMargin( CX11Decoration::customWindowBorderWith() );
-
-        QPalette _palette(parent->palette());
-        _palette.setColor(QPalette::Background, QColor(0x31, 0x34, 0x37));
-        parent->setAutoFillBackground(true);
-        parent->setPalette(_palette);
-
-        connect(m_boxTitleBtns, SIGNAL(mouseDoubleClicked()), this, SLOT(pushButtonMaximizeClicked()));
-#endif
-
-        QWidget * _lb = new QWidget;
-        _lb->setFixedWidth( (small_btn_size.width() + layoutBtns->spacing()) * 3 );
-        layoutBtns->insertWidget(0, _lb);
-    } else {
-        QLinearGradient gradient(mainPanel->rect().topLeft(), QPoint(mainPanel->rect().left(), 29));
-        gradient.setColorAt(0, QColor("#eee"));
-        gradient.setColorAt(1, QColor("#e4e4e4"));
-
-        m_labelTitle->setFixedHeight(0);
-        m_boxTitleBtns->setFixedHeight(16*m_dpiRatio);
-    }
-    mainGridLayout->addWidget(m_boxTitleBtns, 0, 0, Qt::AlignTop);
-    if ( !view ) {
-        QCefView * pMainWidget = AscAppManager::createViewer(mainPanel);
-        pMainWidget->Create(&AscAppManager::getInstance(), cvwtSimple);
-        pMainWidget->setObjectName( "mainPanel" );
-        pMainWidget->setHidden(false);
-
-        m_pMainView = (QWidget *)pMainWidget;
-    } else {
-        m_pMainView = view;
-        m_pMainView->setParent(mainPanel);
-        m_pMainView->show();
-    }
-    m_pMainView->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-    mainGridLayout->addWidget(m_pMainView, 1, 0);
-
-    return mainPanel;
-}
-
-void CMainWindow::recalculatePlaces()
-{
-    /*int cbw = 0;
-
-#ifdef __linux
-    QWidget * cw = findChild<QWidget *>("centralWidget");
-    int windowW = cw->width(),
-        windowH = cw->height(),
-#else
-    int windowW = m_pMainPanel->width(),
-        windowH = m_pMainPanel->height(),
-#endif
-        captionH = TITLE_HEIGHT * m_dpiRatio;
-
-    int contentH = windowH - captionH;
-    if ( contentH < 1 ) contentH = 1;
-
-    m_boxTitleBtns->setFixedHeight(TOOLBTN_HEIGHT * m_dpiRatio);
-    m_boxTitleBtns->move(windowW - m_boxTitleBtns->width() + cbw, cbw);
-    m_pMainView->setGeometry(cbw, captionH + cbw, windowW, contentH);*/
-}
-
-
-void CMainWindow::pushButtonCloseClicked()
-{
-    if (m_pMainView) {
-        AscAppManager::getInstance().DestroyCefView(((QCefView *)m_pMainView)->GetCefView()->GetId() );
-    }
-}
-
-void CMainWindow::pushButtonMinimizeClicked()
-{
-    ShowWindow(m_hWnd, SW_MINIMIZE);
-}
-
-void CMainWindow::pushButtonMaximizeClicked()
-{
-    bool _is_maximized = IsZoomed(m_hWnd) != FALSE;
-#ifdef __linux__
-        layout()->setMargin(s == _is_maximized ? 0 : CX11Decoration::customWindowBorderWith());
-#endif
-    m_buttonMaximize->setProperty("class", _is_maximized ? "min" : "normal");
-    m_buttonMaximize->style()->polish(m_buttonMaximize);
-
-    ShowWindow(m_hWnd, _is_maximized ? SW_RESTORE : SW_MAXIMIZE );
-}
-
-void CMainWindow::focusMainPanel()
-{
-    if ( m_pMainView ) ((QCefView *)m_pMainView)->setFocusToCef();
 }
 
 bool CMainWindow::holdView(int id) const

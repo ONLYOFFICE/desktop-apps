@@ -44,11 +44,6 @@
 #include <QGridLayout>
 
 
-#include <QPushButton>
-#include <QLabel>
-#include "ctabpanel.h"
-
-
 class CMainWindow : public CMainWindowBase, public QMainWindow
 {
 public:
@@ -79,6 +74,7 @@ public:
 
     virtual CMainPanel * mainPanel() const override;
     virtual QRect windowRect() const override;
+    virtual bool holdView(int id) const override;
     virtual void adjustGeometry() override;
     virtual void applyTheme(const std::wstring&) override;
     virtual void updateScaling() override;
@@ -91,40 +87,7 @@ public:
     virtual void setWindowState(Qt::WindowState);
     virtual void setWindowBackgroundColor(const QColor&);
     virtual void setWindowColors(const QColor& background, const QColor& border);
-    virtual void activateWindow();
-
-
-
-
-
-    //void show(bool maximized = false);
-    //void hide();
-    //bool isVisible();
-
-    //void toggleBorderless(bool);
-    //void toggleResizeable();
-
-    //void setMinimumSize( const int width, const int height );
-    //void removeMinimumSize();
-    //int getMinimumHeight() const;
-    //int getMinimumWidth() const;
-
-    //void setMaximumSize( const int width, const int height );
-    //int getMaximumHeight();
-    //int getMaximumWidth();
-    //void removeMaximumSize();
-    //void adjustGeometry();
-    //void applyTheme(const std::wstring& themeid);
-
-//    void setScreenScalingFactor(uchar);
-//    void doClose();
-
-    virtual bool holdView(int id) const override;
-
-    /*WId handle() const
-    {
-        return (WId)m_hWnd;
-    }*/
+    virtual void activateWindow();   
 
 #if (QT_VERSION < QT_VERSION_CHECK(5, 10, 0))
     // because of QTBUG-67211
@@ -149,11 +112,9 @@ protected:
     virtual void setScreenScalingFactor(double f) override;
     virtual void onMinimizeEvent() override;
     virtual void onMaximizeEvent() override;
+    virtual void onCloseEvent() override;
     virtual void onExitSizeMove() override;
     virtual void applyWindowState(Qt::WindowState);
-
-    QGridLayout *m_pCentralLayout;
-    QWidget *m_pCentralWidget;
 
 private:
     explicit CMainWindow(const QRect&, const WindowType, const QString&, QWidget*);
@@ -187,9 +148,6 @@ private:
     QMargins m_margins;
     QMargins m_frame;
 
-    COLORREF m_bgColor;
-    COLORREF m_borderColor;
-
     HWND m_hWnd;
     HWND m_modalHwnd;
 
@@ -202,28 +160,6 @@ private:
     bool m_isResizeable;
     bool m_taskBarClicked;
     bool m_windowActivated;
-
-
-
-
-
-    //uchar m_dpiRatio = 1;
-
-    //QWidget * m_pMainPanel = nullptr;
-    //QWidget * m_pMainView = nullptr;
-    //QWidget * m_boxTitleBtns = nullptr;
-
-    //QPushButton * m_pButtonMinimize;
-    //QPushButton * m_pButtonMaximize;
-    //QPushButton * m_pButtonClose;
-    QLabel * m_pLabelTitle = nullptr;
-
-    QWidget * _createMainPanel(QWidget *, const QString&, bool, QWidget *);
-    void recalculatePlaces();
-    void pushButtonCloseClicked();
-    void pushButtonMinimizeClicked();
-    void pushButtonMaximizeClicked();
-    void focusMainPanel();
 };
 
 #endif
