@@ -975,6 +975,10 @@ void CAscApplicationManagerWrapper::initializeApp()
     APP_CAST(_app);
     _app.m_private->initializeApp();
 
+    if ( AscAppManager::IsUseSystemScaling() ) {
+        AscAppManager::setUserSettings(L"force-scale", L"default");
+    }
+
 #ifdef _WIN32
 //    CSplash::showSplash();
     QApplication::processEvents();
