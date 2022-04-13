@@ -373,7 +373,7 @@ QWidget * CMainWindowBase::createMainPanel(QWidget * parent, const QString& titl
 {
     QWidget * mainPanel = new QWidget(parent);
 #ifndef __linux__
-    m_pCentralLayout->addWidget(mainPanel);
+    parent->layout()->addWidget(mainPanel);
 #endif
     mainPanel->setObjectName("mainPanel");
     mainPanel->setProperty("uitheme", QString::fromStdWString(AscAppManager::themes().current().id()));

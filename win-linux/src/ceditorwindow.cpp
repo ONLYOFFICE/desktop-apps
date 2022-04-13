@@ -78,8 +78,8 @@ CEditorWindow::CEditorWindow(const QRect& rect, CTabPanel* panel)
 
     applyTheme(AscAppManager::themes().current().id());
 
-    m_pMainPanel = createMainPanel(m_pCentralWidget, d_ptr->panel()->data()->title());
-    m_pCentralLayout->addWidget(m_pMainPanel);
+    m_pMainPanel = createMainPanel(centralWidget(), d_ptr->panel()->data()->title());
+    centralWidget()->layout()->addWidget(m_pMainPanel);
     //m_pWinPanel->show();
 
     recalculatePlaces();

@@ -39,16 +39,13 @@
 //#include "clogger.h"
 #include "clangater.h"
 #include <QDesktopWidget>
+#include <QGridLayout>
 #include <QTimer>
 #include <stdexcept>
 #include <functional>
-
-
 #include <QApplication>
 #include <QIcon>
-#include <QLabel>
 
-#include "caption.h"
 
 #ifdef _UPDMODULE
   #include "3dparty/WinSparkle/include/winsparkle.h"
@@ -57,7 +54,6 @@
 
 #define CAPTURED_WINDOW_CURSOR_OFFSET_X     180
 #define CAPTURED_WINDOW_CURSOR_OFFSET_Y     15
-#define EDITOR_WINDOW_MIN_WIDTH             700
 
 using namespace std::placeholders;
 
@@ -108,11 +104,11 @@ CMainWindow::CMainWindow(const QRect &rect, const WindowType winType, const QStr
     m_hWnd = (HWND)winId();
     setResizeable(m_isResizeable);
 
-    m_pCentralWidget = new QWidget(this);
+    QWidget *m_pCentralWidget = new QWidget(this);
     m_pCentralWidget->setProperty("handleTopWindow", (LONG_PTR)m_pCentralWidget->winId());
     setCentralWidget(m_pCentralWidget);
     m_pCentralWidget->setStyleSheet("background-color: transparent");
-    m_pCentralLayout = new QGridLayout(m_pCentralWidget);
+    QGridLayout *m_pCentralLayout = new QGridLayout(m_pCentralWidget);
     m_pCentralLayout->setSpacing(0);
     m_pCentralLayout->setContentsMargins(0,0,0,0);
     m_pCentralWidget->setLayout(m_pCentralLayout);
@@ -430,10 +426,6 @@ bool CMainWindow::nativeEvent(const QByteArray &eventType, void *message, long *
     }
 
     case WM_MOVING: {
-        if (m_winType == WindowType::MAIN) {
-            //onMoveEvent(QRect());
-            break;
-        } else
         if (m_winType == WindowType::SINGLE) {
             onMoveEvent(geometry());
             return true;

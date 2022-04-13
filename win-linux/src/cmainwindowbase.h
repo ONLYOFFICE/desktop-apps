@@ -161,11 +161,6 @@ protected:
     CElipsisLabel * m_labelTitle;
     double m_dpiRatio;
 
-#ifndef __linux__
-    QGridLayout *m_pCentralLayout;
-    QWidget *m_pCentralWidget;
-#endif
-
 private:
     class impl;
     std::unique_ptr<impl> pimpl;
