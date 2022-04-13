@@ -50,10 +50,9 @@
 #else
 #include "linux/cmainwindow.h"
 #include "linux/singleapplication.h"
-#include "linux/csinglewindow.h"
+//#include "linux/csinglewindow.h"
 #endif
 
-//#include "cappupdater.h"
 #include "cthemes.h"
 
 #define SEND_TO_ALL_START_PAGE nullptr

@@ -387,7 +387,7 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
     case ASC_MENU_EVENT_TYPE_REPORTER_CREATE: {
         CMainWindow * reporterWindow = createReporterWindow(event->m_pData, event->get_SenderId());
 #ifdef __linux
-        reporterWindow->show();
+        reporterWindow->show(false);
 #else
         reporterWindow->show(false);
         reporterWindow->toggleBorderless(false);

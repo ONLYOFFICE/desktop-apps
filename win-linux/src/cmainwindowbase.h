@@ -36,9 +36,10 @@
 #define WINDOW_MIN_WIDTH    500
 #define WINDOW_MIN_HEIGHT   300
 
-#define MAIN_WINDOW_MIN_WIDTH  960
-#define MAIN_WINDOW_MIN_HEIGHT 661
+#define MAIN_WINDOW_MIN_WIDTH    960
+#define MAIN_WINDOW_MIN_HEIGHT   661
 #define MAIN_WINDOW_DEFAULT_SIZE QSize(1324,800)
+#define EDITOR_WINDOW_MIN_WIDTH  920
 
 #define BUTTON_MAIN_WIDTH   112
 #define MAIN_WINDOW_BORDER_WIDTH 4
@@ -160,8 +161,10 @@ protected:
     CElipsisLabel * m_labelTitle;
     double m_dpiRatio;
 
+#ifndef __linux__
     QGridLayout *m_pCentralLayout;
     QWidget *m_pCentralWidget;
+#endif
 
 private:
     class impl;

@@ -318,6 +318,9 @@ QPushButton * CMainWindowBase::createToolButton(QWidget * parent, const QString&
     btn->setProperty("class", "normal");
     btn->setProperty("act", "tool");
     btn->setFixedSize(int(TOOLBTN_WIDTH*m_dpiRatio), int(TOOLBTN_HEIGHT*m_dpiRatio));
+#ifdef __linux__
+    btn->setMouseTracking(true);
+#endif
     return btn;
 }
 
@@ -369,18 +372,20 @@ QWidget * CMainWindowBase::createTopPanel(QWidget * parent, const QString& title
 QWidget * CMainWindowBase::createMainPanel(QWidget * parent, const QString& title, bool custom, QWidget * view)
 {
     QWidget * mainPanel = new QWidget(parent);
+#ifndef __linux__
     m_pCentralLayout->addWidget(mainPanel);
+#endif
     mainPanel->setObjectName("mainPanel");
     mainPanel->setProperty("uitheme", QString::fromStdWString(AscAppManager::themes().current().id()));
+    mainPanel->setStyleSheet(AscAppManager::getWindowStylesheets(m_dpiRatio));
 
     QGridLayout * mainGridLayout = new QGridLayout(mainPanel);
     mainGridLayout->setSpacing(0);
     mainGridLayout->setMargin(0);
     mainPanel->setLayout(mainGridLayout);
-    mainPanel->setStyleSheet(AscAppManager::getWindowStylesheets(m_dpiRatio));
 
 #ifdef __linux__
-    m_boxTitleBtns = static_cast<QWidget*>(new CX11Caption(mainPanel));
+    m_boxTitleBtns = new QWidget(mainPanel);
 #else
     m_boxTitleBtns = static_cast<QWidget*>(new Caption(mainPanel));
 #endif
@@ -391,50 +396,46 @@ QWidget * CMainWindowBase::createMainPanel(QWidget * parent, const QString& titl
     QHBoxLayout * layoutBtns = new QHBoxLayout(m_boxTitleBtns);
     layoutBtns->setContentsMargins(0,0,0,0);
     layoutBtns->setSpacing(1*m_dpiRatio);
+    m_boxTitleBtns->setLayout(layoutBtns);
 
     m_labelTitle = new CElipsisLabel(title, m_boxTitleBtns);
     m_labelTitle->setObjectName("labelAppTitle");
     m_labelTitle->setAlignment(Qt::AlignHCenter|Qt::AlignVCenter);
-
     layoutBtns->addWidget(m_labelTitle);
 
     if (custom) {
         initTopButtons(m_boxTitleBtns);
-
         layoutBtns->addWidget(m_buttonMinimize);
         layoutBtns->addWidget(m_buttonMaximize);
         layoutBtns->addWidget(m_buttonClose);
-
 #ifdef __linux__
-        mainGridLayout->setMargin( CX11Decoration::customWindowBorderWith() );
-
-        QPalette _palette(parent->palette());
-        _palette.setColor(QPalette::Background, QColor(0x31, 0x34, 0x37));
-        parent->setAutoFillBackground(true);
-        parent->setPalette(_palette);
-
-        connect(m_boxTitleBtns, SIGNAL(mouseDoubleClicked()), this, SLOT(pushButtonMaximizeClicked()));
-#endif
+        m_labelTitle->setMouseTracking(true);
+        mainGridLayout->setMargin(CX11Decoration::customWindowBorderWith() * m_dpiRatio);
+        /*QPalette _palette(palette());
+        _palette.setColor(QPalette::Background, QColor("#f1f1f1"));
+        setAutoFillBackground(true);
+        setPalette(_palette);
+        setStyleSheet("QMainWindow{border:1px solid #888;}");*/
+#else
         QSize small_btn_size(int(TOOLBTN_WIDTH*m_dpiRatio), int(TOOLBTN_HEIGHT*m_dpiRatio));
         QWidget * _lb = new QWidget(m_boxTitleBtns);
         _lb->setFixedWidth( (small_btn_size.width() + layoutBtns->spacing()) * 3 );
         layoutBtns->insertWidget(0, _lb);
+#endif
     } else {
         QLinearGradient gradient(mainPanel->rect().topLeft(), QPoint(mainPanel->rect().left(), 29));
         gradient.setColorAt(0, QColor("#eee"));
         gradient.setColorAt(1, QColor("#e4e4e4"));
-
         m_labelTitle->setFixedHeight(0);
         m_boxTitleBtns->setFixedHeight(16*m_dpiRatio);
     }
     mainGridLayout->addWidget(m_boxTitleBtns, 0, 0, Qt::AlignTop);
-    if ( !view ) {
+    if (!view) {
         QCefView * pMainWidget = AscAppManager::createViewer(mainPanel);
         pMainWidget->Create(&AscAppManager::getInstance(), cvwtSimple);
-        pMainWidget->setObjectName( "mainPanel" );
+        pMainWidget->setObjectName("mainPanel");
         pMainWidget->setHidden(false);
-
-        m_pMainView = (QWidget *)pMainWidget;
+        m_pMainView = (QWidget*)pMainWidget;
     } else {
         m_pMainView = view;
         m_pMainView->setParent(mainPanel);

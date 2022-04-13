@@ -98,7 +98,6 @@ HEADERS += \
     $$PWD/src/cwindowsqueue.h \
     $$PWD/src/ceventdriver.h \
     $$PWD/src/csvgpushbutton.h \
-    #$$PWD/src/cappupdater.h \
     $$PWD/src/cappeventfilter.h \
     $$PWD/src/cthemes.h
 #    src/ctabbar_p.h \
@@ -136,7 +135,6 @@ SOURCES += \
     $$PWD/src/ceditortools.cpp \
     $$PWD/src/ceventdriver.cpp \
     $$PWD/src/csvgpushbutton.cpp \
-    #$$PWD/src/cappupdater.cpp \
     $$PWD/src/cappeventfilter.cpp \
     $$PWD/src/cthemes.cpp
 #    src/ctabstyle.cpp
@@ -181,16 +179,16 @@ core_linux {
     HEADERS += $$PWD/src/linux/cmainwindow.h \
                 $$PWD/src/linux/cx11decoration.h \
                 $$PWD/src/linux/gtk_addon.h \
-                $$PWD/src/linux/csinglewindow.h \
-                $$PWD/src/linux/csinglewindowplatform.h \
+                #$$PWD/src/linux/csinglewindow.h \
+                #$$PWD/src/linux/csinglewindowplatform.h \
                 $$PWD/src/linux/singleapplication.h
 
     SOURCES += $$PWD/src/linux/cmainwindow.cpp \
                 $$PWD/src/linux/cx11decoration.cpp \
                 $$PWD/src/linux/gtk_addon.cpp \
                 $$PWD/src/linux/cx11caption.cpp \
-                $$PWD/src/linux/csinglewindow.cpp \
-                $$PWD/src/linux/csinglewindowplatform.cpp \
+                #$$PWD/src/linux/csinglewindow.cpp \
+                #$$PWD/src/linux/csinglewindowplatform.cpp \
                 $$PWD/src/linux/singleapplication.cpp
 
     HEADERS += $$PWD/src/linux/cdialogopenssl.h \

@@ -34,7 +34,7 @@
 #define CEDITORWINDOW_H
 
 #ifdef __linux__
-# include "linux/csinglewindowplatform.h"
+# include "linux/cmainwindow.h"
 #else
 # include "win/cmainwindow.h"
 #endif
