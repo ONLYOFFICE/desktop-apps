@@ -143,7 +143,7 @@ protected:
     virtual int calcTitleCaptionWidth();
 
     virtual CMainPanel * mainPanel() const = 0;
-    virtual void adjustGeometry() = 0;
+    virtual void adjustGeometry() {};
     virtual void bringToTop() = 0;
     virtual void onCloseEvent() = 0;
     virtual void onMinimizeEvent() = 0;

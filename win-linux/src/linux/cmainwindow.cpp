@@ -628,13 +628,13 @@ void CMainWindow::pushButtonCloseClicked()
 
 void CMainWindow::onMinimizeEvent()
 {
-    CMainWindowBase::onMinimizeEvent();
+    //CMainWindowBase::onMinimizeEvent();
     setWindowState(Qt::WindowMinimized);
 }
 
 void CMainWindow::onMaximizeEvent()
 {
-    CMainWindowBase::onMaximizeEvent();
+    //CMainWindowBase::onMaximizeEvent();
     setWindowState(windowState().testFlag(Qt::WindowMaximized) ? Qt::WindowNoState : Qt::WindowMaximized);
 }
 

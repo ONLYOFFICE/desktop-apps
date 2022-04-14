@@ -454,11 +454,11 @@ void CMainWindowBase::onSizeEvent(int)
 
 void CMainWindowBase::onDpiChanged(double newfactor, double prevfactor)
 {
-    Q_UNUSED(prevfactor)
+    /*Q_UNUSED(prevfactor)
 #ifdef Q_OS_LINUX
     CX11Decoration::onDpiChanged(newfactor);
 #endif
-    setScreenScalingFactor(newfactor);
+    setScreenScalingFactor(newfactor);*/
 }
 
 bool CMainWindowBase::isCustomWindowStyle()
