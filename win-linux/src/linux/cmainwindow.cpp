@@ -97,8 +97,7 @@ CMainWindow::CMainWindow(const QRect &rect, const WindowType winType, const QStr
     QMainWindow(nullptr),
     CX11Decoration(this),
     CMainWindowBase(const_cast<QRect&>(rect)),
-    m_winType(winType),
-    pimpl{new impl(this)}
+    m_winType(winType)
 {
     if (m_winType == WindowType::MAIN) {
         setAcceptDrops(true);
@@ -175,6 +174,7 @@ CMainWindow::CMainWindow(const QRect &rect, const WindowType winType, const QStr
         _m_pMainPanel->goStart();
     } else
     if (m_winType == WindowType::SINGLE) {
+        pimpl = std::unique_ptr<impl>(new impl(this));
         if (isCustomWindowStyle())
             CX11Decoration::turnOff();
         CMainWindowBase::setWindowTitle(title);
@@ -611,8 +611,11 @@ void CMainWindow::updateScaling()
 
 bool CMainWindow::holdView(int id) const
 {
-    QWidget * mainView = m_pMainPanel->findChild<QWidget *>("mainView");
-    return mainView && ((QCefView *)mainView)->GetCefView()->GetId() == id;
+    if (m_winType == WindowType::REPORTER) {
+        QWidget * mainView = m_pMainPanel->findChild<QWidget *>("mainView");
+        return mainView && ((QCefView *)mainView)->GetCefView()->GetId() == id;
+    }
+    return false;
 }
 
 void CMainWindow::pushButtonCloseClicked()

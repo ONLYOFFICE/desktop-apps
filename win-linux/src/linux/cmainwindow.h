@@ -45,8 +45,7 @@
 
 class CMainWindow : public QMainWindow, public CX11Decoration, public CMainWindowBase
 {
-    Q_OBJECT
-
+    //Q_OBJECT
 public:
     explicit CMainWindow(const QRect&);
     explicit CMainWindow(const QRect&, const QString&, QWidget*);
@@ -54,48 +53,47 @@ public:
     ~CMainWindow();
 
     QWidget * handle() const;
-    void sendSertificate(int viewid);
     void show(bool maximized);
+    void sendSertificate(int viewid);
     bool isMaximized() const;
-
-    virtual CMainPanel * mainPanel() const override;
-    virtual QRect windowRect() const override;
-    virtual void bringToTop() const override;
+    virtual CMainPanel * mainPanel() const final;
+    virtual QRect windowRect() const final;
+    virtual void bringToTop() final;
+    virtual void updateScaling() final;
     virtual void applyTheme(const std::wstring&) override;
-    virtual void updateScaling() override;
-    virtual void setWindowTitle(const QString &) override;
-    virtual void bringToTop() override;
     virtual bool holdView(int id) const override;
 
 protected:
     void captureMouse();
-
-    virtual void onScreenScalingFactor(double f);
-
-    virtual void closeEvent(QCloseEvent *) override;
-    virtual void showEvent(QShowEvent *) override;
-    virtual bool event(QEvent *event) override;
-    virtual void resizeEvent(QResizeEvent *) override;
-    virtual void mouseMoveEvent(QMouseEvent *) override;
-    virtual void mousePressEvent(QMouseEvent *) override;
-    virtual void mouseReleaseEvent(QMouseEvent *) override;
-    virtual void mouseDoubleClickEvent(QMouseEvent *) override;
-    virtual void captureMouse(int tabindex) override;
-    virtual void dragEnterEvent(QDragEnterEvent *event) override;
-    virtual void dropEvent(QDropEvent *event) override;
     virtual void setScreenScalingFactor(double factor) override;
     virtual void onMinimizeEvent() override;
     virtual void onMaximizeEvent() override;
     virtual void onSizeEvent(int type) override;
     virtual void onExitSizeMove() override;
-    virtual void onCloseEvent() override;
+    virtual void setWindowTitle(const QString &) override;
 
 private:
     explicit CMainWindow(const QRect&, const WindowType, const QString&, QWidget*);
 
+    void onScreenScalingFactor(double f);
+    virtual void closeEvent(QCloseEvent *) final;
+    virtual void showEvent(QShowEvent *) final;
+    virtual bool event(QEvent *event) final;
+    virtual void mouseMoveEvent(QMouseEvent *) final;
+    virtual void mousePressEvent(QMouseEvent *) final;
+    virtual void mouseReleaseEvent(QMouseEvent *) final;
+    virtual void mouseDoubleClickEvent(QMouseEvent *) final;
+    virtual void resizeEvent(QResizeEvent *) final;
+    virtual void dragEnterEvent(QDragEnterEvent *event) final;
+    virtual void dropEvent(QDropEvent *event) final;
+    virtual void captureMouse(int tabindex) final;
+    virtual void bringToTop() const final;
+    virtual void onCloseEvent() override;
+
     using QMainWindow::setWindowTitle;
     WindowType m_winType;
     CMainPanelImpl * _m_pMainPanel;
+
     class impl;
     std::unique_ptr<impl> pimpl;
 
@@ -104,7 +102,6 @@ public slots:
     void slot_windowClose();
     void slot_modalDialog(bool status, WId h);
     void pushButtonCloseClicked();
-
 };
 
 #endif // CMAINWINDOW_H
