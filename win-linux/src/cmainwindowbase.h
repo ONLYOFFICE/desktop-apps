@@ -106,51 +106,49 @@ public:
     CMainWindowBase(QRect& rect);
     virtual ~CMainWindowBase();
 
-    virtual QWidget * editor(int index);
-    virtual QString documentName(int vid);
+    QWidget * editor(int index);
+    QString documentName(int vid);
+    double scaling() const;
+    int editorsCount() const;
+    int editorsCount(const std::wstring& portal) const;
+    int attachEditor(QWidget *, int index = -1);
+    int attachEditor(QWidget *, const QPoint&);
+    void selectView(int id) const;
+    void selectView(const QString& url) const;
+
     virtual const QObject * receiver() {return nullptr;}
-    virtual CMainPanel * mainPanel() const = 0;
-    virtual QRect windowRect() const {return QRect();}
-
-    virtual void setScreenScalingFactor(double);
-    virtual void setWindowTitle(const QString&);
-    virtual void adjustGeometry() {};
-    virtual void bringToTop() {}
-    virtual void focus() {}
-    virtual void updateScaling();    
-    virtual void bringToTop() const {}
-    virtual void selectView(int id) const;
-    virtual void selectView(const QString& url) const;
-    virtual void applyTheme(const std::wstring&);
-    virtual void captureMouse(int tab_index);
-
-    virtual double scaling() const;
-    virtual int attachEditor(QWidget *, int index = -1);
-    virtual int attachEditor(QWidget *, const QPoint&);
-    virtual int editorsCount() const;
-    virtual int editorsCount(const std::wstring& portal) const;
-    virtual bool isCustomWindowStyle();
     virtual bool pointInTabs(const QPoint& pt) const;
-    virtual bool holdView(int id) const;
 
 protected:
+    inline int dpiCorrectValue(int v) const {return int(v * m_dpiRatio);}
+
     virtual QWidget * createTopPanel(QWidget *, const QString&);
     virtual QWidget * createMainPanel(QWidget *, const QString&, bool custom = true, QWidget * view = nullptr);
     virtual QPushButton * createToolButton(QWidget * parent = nullptr, const QString& name = QString(""));
-    virtual void onCloseEvent() {};
-    virtual void onMinimizeEvent() {};
-    virtual void onMaximizeEvent() {};
+    virtual QRect windowRect() const {return QRect();}
+    virtual void setScreenScalingFactor(double);
+    virtual void setWindowTitle(const QString&);
+    virtual void focus() {};
+    virtual void updateScaling();
+    virtual void bringToTop() const {};
+    virtual void applyTheme(const std::wstring&);
+    virtual void captureMouse(int tab_index);
     virtual void onSizeEvent(int);
     virtual void onMoveEvent(const QRect&) {};
-    virtual void onExitSizeMove() {};
-    virtual void onDpiChanged(double newfactor, double prevfactor) {};
+    virtual void onDpiChanged(double newfactor, double prevfactor);
     virtual void updateTitleCaption();
     virtual void focusMainPanel();
+    virtual bool isCustomWindowStyle();
+    virtual bool holdView(int id) const;
     virtual int calcTitleCaptionWidth();
-    inline int dpiCorrectValue(int v) const
-    {
-        return int(v * m_dpiRatio);
-    }
+
+    virtual CMainPanel * mainPanel() const = 0;
+    virtual void adjustGeometry() = 0;
+    virtual void bringToTop() = 0;
+    virtual void onCloseEvent() = 0;
+    virtual void onMinimizeEvent() = 0;
+    virtual void onMaximizeEvent() = 0;
+    virtual void onExitSizeMove() = 0;
 
     QWidget * m_boxTitleBtns;
     QWidget * m_pMainPanel;

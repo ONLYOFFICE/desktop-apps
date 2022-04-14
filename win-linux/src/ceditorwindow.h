@@ -49,53 +49,49 @@ class CEditorWindow : public CMainWindow
     Q_DECLARE_TR_FUNCTIONS(CEditorWindow)
 
 public:
-    //CEditorWindow();
     CEditorWindow(const QRect& rect, CTabPanel* view);
     ~CEditorWindow();
 
-    void focus() override;
-    bool holdView(int id) const override;
-    bool holdView(const std::wstring& portal) const;
-    void undock(bool maximized = false);
-    int closeWindow();
-    CTabPanel * mainView() const;
     CTabPanel * releaseEditorView() const;
-    QString documentName() const;
-    bool closed() const;
     AscEditorType editorType() const;
-
-    void applyTheme(const std::wstring&);
+    QString documentName() const;
+    int closeWindow();
+    bool closed() const;
+    bool holdView(const std::wstring& portal) const;
     void setReporterMode(bool);
-private:
-    QString m_css;
-    bool m_restoreMaximized = false;
+    void undock(bool maximized = false);
+
+    virtual bool holdView(int id) const final;
+    virtual void applyTheme(const std::wstring&) final;
 
 private:
     CEditorWindow(const QRect&, const QString&, QWidget *);
-    //QWidget * createMainPanel(QWidget * parent);
-    virtual QWidget * createMainPanel(QWidget *, const QString&, bool custom = true,
-                                      QWidget * view = nullptr) override;
+
+    CTabPanel * mainView() const;
     void recalculatePlaces();
-    const QObject * receiver() override;
 
-protected:
-    void onCloseEvent() override;
-    void onMinimizeEvent() override;
-    void onMaximizeEvent() override;
-    void onSizeEvent(int) override;
-    void onMoveEvent(const QRect&) override;
-    void onExitSizeMove() override;
-    void onDpiChanged(double,double) override;
+    virtual const QObject * receiver() final;
+    virtual QWidget * createMainPanel(QWidget *, const QString&, bool custom = true,
+                                      QWidget * view = nullptr) final;
+    virtual int calcTitleCaptionWidth() final;
+    virtual void focus() final;
+    virtual void onCloseEvent() final;
+    virtual void onMinimizeEvent() final;
+    virtual void onMaximizeEvent() final;
+    virtual void onSizeEvent(int) final;
+    virtual void onMoveEvent(const QRect&) final;
+    virtual void onExitSizeMove() final;
+    virtual void onDpiChanged(double,double) final;
+    virtual void setScreenScalingFactor(double) final;
 
-    void setScreenScalingFactor(double) override;
-    int calcTitleCaptionWidth() override;
+    QString m_css;
+    bool m_restoreMaximized = false;
+
+    friend class CEditorWindowPrivate;
+    std::unique_ptr<CEditorWindowPrivate> d_ptr;
 
 private slots:
     void onClickButtonHome();
-
-private:
-    friend class CEditorWindowPrivate;
-    std::unique_ptr<CEditorWindowPrivate> d_ptr;
 };
 
 #endif // CEDITORWINDOW_H
