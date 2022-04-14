@@ -68,6 +68,10 @@ void CMainPanelImpl::refreshAboutVersion()
     _json_obj["link"]       = URL_SITE;
     _json_obj["changelog"]  = "https://github.com/ONLYOFFICE/DesktopEditors/blob/master/CHANGELOG.md";
 
+    QString _package = QSettings("./converter/package.config", QSettings::IniFormat).value("package").toString();
+    if ( !_package.isEmpty() )
+        _json_obj["pkg"] = _package;
+
     AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, "app:version", Utils::stringifyJson(_json_obj));
 
     _json_obj.empty();
