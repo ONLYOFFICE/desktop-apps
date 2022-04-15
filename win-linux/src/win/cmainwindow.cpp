@@ -58,9 +58,9 @@ using namespace std::placeholders;
 
 Q_GUI_EXPORT HICON qt_pixmapToWinHICON(const QPixmap &);
 
-auto refresh_window_scaling_factor(CMainWindow * window) -> void {
+auto refresh_window_scaling_factor(CMainWindow * window) -> void
+{
     QString css{AscAppManager::getWindowStylesheets(window->m_dpiRatio)};
-
     if ( !css.isEmpty() ) {
         window->mainPanel()->setStyleSheet(css);
         window->mainPanel()->setScreenScalingFactor(window->m_dpiRatio);
@@ -76,6 +76,37 @@ auto SetForegroundWindowInternal(HWND hWnd)
     SetForegroundWindow(hWnd);
 }
 
+auto adjustRect(QRect& window_rect, QRect& screen_size)->void
+{
+    window_rect.setLeft(screen_size.left()),
+    window_rect.setTop(screen_size.top());
+    if (screen_size.width() < window_rect.width()) window_rect.setWidth(screen_size.width());
+    if (screen_size.height() < window_rect.height()) window_rect.setHeight(screen_size.height());
+}
+
+auto setPlacement(HWND& hwnd, QRect& moveNormalRect, double change_factor)->void
+{
+    WINDOWPLACEMENT wp{sizeof(WINDOWPLACEMENT)};
+    if ( GetWindowPlacement(hwnd, &wp) ) {
+        if ( wp.showCmd == SW_MAXIMIZE ) {
+            MONITORINFO info{sizeof(MONITORINFO)};
+            GetMonitorInfo(MonitorFromWindow(hwnd, MONITOR_DEFAULTTOPRIMARY), &info);
+
+            int dest_width_change = int(moveNormalRect.width() * (1 - change_factor));
+            moveNormalRect = QRect{moveNormalRect.translated(dest_width_change/2,0).topLeft(), moveNormalRect.size() * change_factor};
+            wp.rcNormalPosition.left = info.rcMonitor.left + moveNormalRect.left();
+            wp.rcNormalPosition.top = info.rcMonitor.top + moveNormalRect.top();
+            wp.rcNormalPosition.right = wp.rcNormalPosition.left + moveNormalRect.width();
+            wp.rcNormalPosition.bottom = wp.rcNormalPosition.top + moveNormalRect.height();
+            SetWindowPlacement(hwnd, &wp);
+        } else {
+            QRect source_rect = QRect{QPoint(wp.rcNormalPosition.left, wp.rcNormalPosition.top),QPoint(wp.rcNormalPosition.right,wp.rcNormalPosition.bottom)};
+            int dest_width_change = int(source_rect.width() * (1 - change_factor));
+            QRect dest_rect = QRect{source_rect.translated(dest_width_change/2,0).topLeft(), source_rect.size() * change_factor};
+            SetWindowPos(hwnd, NULL, dest_rect.left(), dest_rect.top(), dest_rect.width(), dest_rect.height(), SWP_NOZORDER);
+        }
+    }
+}
 
 CMainWindow::CMainWindow(const QRect &rect) :
     CMainWindow(rect, WindowType::MAIN, QString(), nullptr)
@@ -130,11 +161,11 @@ CMainWindow::CMainWindow(const QRect &rect, const WindowType winType, const QStr
         QRect _screen_size = Utils::getScreenGeometry(m_window_rect.topLeft());
         if (_screen_size.intersects(m_window_rect)) {
             if (_screen_size.width() < m_window_rect.width() || _screen_size.height() < m_window_rect.height()) {
-                m_window_rect.setLeft(_screen_size.left()),
+                adjustRect(m_window_rect, _screen_size);
+                /*m_window_rect.setLeft(_screen_size.left()),
                 m_window_rect.setTop(_screen_size.top());
-
                 if (_screen_size.width() < m_window_rect.width()) m_window_rect.setWidth(_screen_size.width());
-                if (_screen_size.height() < m_window_rect.height()) m_window_rect.setHeight(_screen_size.height());
+                if (_screen_size.height() < m_window_rect.height()) m_window_rect.setHeight(_screen_size.height());*/
             }
         } else {
             m_window_rect = QRect(QPoint(100, 100)*m_dpiRatio, QSize(MAIN_WINDOW_MIN_WIDTH, MAIN_WINDOW_MIN_HEIGHT)*m_dpiRatio);
@@ -167,11 +198,11 @@ CMainWindow::CMainWindow(const QRect &rect, const WindowType winType, const QStr
             m_window_rect = QRect(QPoint(100, 100)*m_dpiRatio, MAIN_WINDOW_DEFAULT_SIZE * m_dpiRatio);
         QRect _screen_size = Utils::getScreenGeometry(m_window_rect.topLeft());
         if (_screen_size.width() < m_window_rect.width() + 120 || _screen_size.height() < m_window_rect.height() + 120) {
-            m_window_rect.setLeft(_screen_size.left()),
+            adjustRect(m_window_rect, _screen_size);
+            /*m_window_rect.setLeft(_screen_size.left()),
             m_window_rect.setTop(_screen_size.top());
-
             if (_screen_size.width() < m_window_rect.width()) m_window_rect.setWidth(_screen_size.width());
-            if (_screen_size.height() < m_window_rect.height()) m_window_rect.setHeight(_screen_size.height());
+            if (_screen_size.height() < m_window_rect.height()) m_window_rect.setHeight(_screen_size.height());*/
         }
 
         setMinimumSize(WINDOW_MIN_WIDTH * m_dpiRatio, WINDOW_MIN_HEIGHT * m_dpiRatio);
@@ -389,8 +420,8 @@ void CMainWindow::setScreenScalingFactor(double factor)
             m_dpiRatio = factor;
             _m_pMainPanel->setStyleSheet(css);
             _m_pMainPanel->setScreenScalingFactor(factor);
-
-            WINDOWPLACEMENT wp{sizeof(WINDOWPLACEMENT)};
+            setPlacement(m_hWnd, m_moveNormalRect, change_factor);
+            /*WINDOWPLACEMENT wp{sizeof(WINDOWPLACEMENT)};
             if ( GetWindowPlacement(m_hWnd, &wp) ) {
                 if ( wp.showCmd == SW_MAXIMIZE ) {
                     MONITORINFO info{sizeof(MONITORINFO)};
@@ -398,21 +429,18 @@ void CMainWindow::setScreenScalingFactor(double factor)
 
                     int dest_width_change = int(m_moveNormalRect.width() * (1 - change_factor));
                     m_moveNormalRect = QRect{m_moveNormalRect.translated(dest_width_change/2,0).topLeft(), m_moveNormalRect.size() * change_factor};
-
                     wp.rcNormalPosition.left = info.rcMonitor.left + m_moveNormalRect.left();
                     wp.rcNormalPosition.top = info.rcMonitor.top + m_moveNormalRect.top();
                     wp.rcNormalPosition.right = wp.rcNormalPosition.left + m_moveNormalRect.width();
                     wp.rcNormalPosition.bottom = wp.rcNormalPosition.top + m_moveNormalRect.height();
-
                     SetWindowPlacement(m_hWnd, &wp);
                 } else {
                     QRect source_rect = QRect{QPoint(wp.rcNormalPosition.left, wp.rcNormalPosition.top),QPoint(wp.rcNormalPosition.right,wp.rcNormalPosition.bottom)};
                     int dest_width_change = int(source_rect.width() * (1 - change_factor));
                     QRect dest_rect = QRect{source_rect.translated(dest_width_change/2,0).topLeft(), source_rect.size() * change_factor};
-
                     SetWindowPos(m_hWnd, NULL, dest_rect.left(), dest_rect.top(), dest_rect.width(), dest_rect.height(), SWP_NOZORDER);
                 }
-            }
+            }*/
         }
 
         m_skipSizing = false;
@@ -420,34 +448,29 @@ void CMainWindow::setScreenScalingFactor(double factor)
     if (m_winType == WindowType::SINGLE) {
         double change_factor = factor / m_dpiRatio;
         CMainWindowBase::setScreenScalingFactor(factor);
-
         if ( !WindowHelper::isWindowSystemDocked(m_hWnd) ) {
             m_skipSizing = true;
-
-            WINDOWPLACEMENT wp{sizeof(WINDOWPLACEMENT)};
+            setPlacement(m_hWnd, m_moveNormalRect, change_factor);
+            /*WINDOWPLACEMENT wp{sizeof(WINDOWPLACEMENT)};
             if ( GetWindowPlacement(m_hWnd, &wp) ) {
-
                 if ( wp.showCmd == SW_MAXIMIZE ) {
                     MONITORINFO info{sizeof(MONITORINFO)};
                     GetMonitorInfo(MonitorFromWindow(m_hWnd, MONITOR_DEFAULTTOPRIMARY), &info);
 
                     int dest_width_change = int(m_moveNormalRect.width() * (1 - change_factor));
                     m_moveNormalRect = QRect{m_moveNormalRect.translated(dest_width_change/2,0).topLeft(), m_moveNormalRect.size() * change_factor};
-
                     wp.rcNormalPosition.left = info.rcMonitor.left + m_moveNormalRect.left();
                     wp.rcNormalPosition.top = info.rcMonitor.top + m_moveNormalRect.top();
                     wp.rcNormalPosition.right = wp.rcNormalPosition.left + m_moveNormalRect.width();
                     wp.rcNormalPosition.bottom = wp.rcNormalPosition.top + m_moveNormalRect.height();
-
                     SetWindowPlacement(m_hWnd, &wp);
                 } else {
                     QRect source_rect = QRect{QPoint(wp.rcNormalPosition.left, wp.rcNormalPosition.top),QPoint(wp.rcNormalPosition.right,wp.rcNormalPosition.bottom)};
                     int dest_width_change = int(source_rect.width() * (1 - change_factor));
                     QRect dest_rect = QRect{source_rect.translated(dest_width_change/2,0).topLeft(), source_rect.size() * change_factor};
-
                     SetWindowPos(m_hWnd, NULL, dest_rect.left(), dest_rect.top(), dest_rect.width(), dest_rect.height(), SWP_NOZORDER);
                 }
-            }
+            }*/
             m_skipSizing = false;
         }
     } else
@@ -487,9 +510,6 @@ void CMainWindow::onMaximizeEvent()
 {
     if (m_winType == WindowType::REPORTER) {
         bool _is_maximized = isMaximized();
-#ifdef __linux__
-            layout()->setMargin(s == _is_maximized ? 0 : CX11Decoration::customWindowBorderWith());
-#endif
         m_buttonMaximize->setProperty("class", _is_maximized ? "min" : "normal");
         m_buttonMaximize->style()->polish(m_buttonMaximize);
     }
@@ -535,7 +555,7 @@ void CMainWindow::updateError()
 
 void CMainWindow::doClose()
 {
-    qDebug() << "doClose";
+    //qDebug() << "doClose";
     QTimer::singleShot(500, _m_pMainPanel, [=]{
         _m_pMainPanel->pushButtonCloseClicked();
     });
@@ -675,14 +695,9 @@ void CMainWindow::setResizeableAreaWidth(int width)
 
 void CMainWindow::setContentsMargins(int left, int top, int right, int bottom)
 {
-    QMainWindow::setContentsMargins(left + m_frame.left(),
-                                    top + m_frame.top(),
-                                    right + m_frame.right(),
-                                    bottom + m_frame.bottom());
-    m_margins.setLeft(left);
-    m_margins.setTop(top);
-    m_margins.setRight(right);
-    m_margins.setBottom(bottom);
+    m_margins = QMargins(left, top, right, bottom);
+    QMainWindow::setContentsMargins(left + m_frame.left(), top + m_frame.top(),
+                                    right + m_frame.right(), bottom + m_frame.bottom());
 }
 
 void CMainWindow::setMinimumSize( const int width, const int height )
@@ -741,8 +756,8 @@ void CMainWindow::showEvent(QShowEvent *event)
     if (!m_windowActivated) {
         m_windowActivated = true;
         setGeometry(m_window_rect);
-        int border_size = int(MAIN_WINDOW_BORDER_WIDTH * m_dpiRatio);
-        setContentsMargins(border_size, border_size + 1, border_size, border_size);
+        int border = int(MAIN_WINDOW_BORDER_WIDTH * m_dpiRatio);
+        setContentsMargins(border, border + 1, border, border);
         if (m_winType == WindowType::MAIN || m_winType == WindowType::REPORTER) {
             QColor color = AscAppManager::themes().current().
                     color(CTheme::ColorRole::ecrWindowBackground);
@@ -754,7 +769,6 @@ void CMainWindow::showEvent(QShowEvent *event)
 void CMainWindow::closeEvent(QCloseEvent *event)
 {
     event->ignore();
-    qDebug() << "Close MainWindow...";
     if (isVisible()) {
         GET_REGISTRY_USER(reg_user)
         if (isMaximized()) {
