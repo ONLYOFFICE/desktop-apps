@@ -1186,7 +1186,6 @@ void CAscApplicationManagerWrapper::launchAppClose()
             DestroyCefView(-1);
 
             if ( m_pMainWindow ) {
-                //m_pMainWindow->close();
                 closeQueue().leave(sWinTag{1,size_t(m_pMainWindow)});
             }
         }

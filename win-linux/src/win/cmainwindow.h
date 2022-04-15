@@ -98,7 +98,6 @@ private:
 #endif
     void doClose();
     void applyWindowState(Qt::WindowState);
-    void slot_windowChangeState(Qt::WindowState);
     void slot_windowClose();
     void slot_mainPageReady();
     void slot_modalDialog(bool status, HWND h);
@@ -117,7 +116,6 @@ private:
     int dpiCorrectValue(int v) const {return int(v * m_dpiRatio);}
 
     virtual void showEvent(QShowEvent *event) final;
-    virtual void closeEvent(QCloseEvent *event) final;
     virtual void changeEvent(QEvent *event) final;
     virtual bool nativeEvent(const QByteArray &eventType, void *message, long *result) final;
     virtual void captureMouse(int tabindex) final;
