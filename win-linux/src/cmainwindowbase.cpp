@@ -43,9 +43,7 @@
 #include <QLayout>
 #include <QVariant>
 #include <QSettings>
-//#include <QDebug>
-//#include "ctabbar.h"
-//#include <QApplication>
+
 
 
 class CMainWindowBase::impl {
@@ -452,15 +450,6 @@ void CMainWindowBase::onSizeEvent(int)
     updateTitleCaption();
 }
 
-void CMainWindowBase::onDpiChanged(double newfactor, double prevfactor)
-{
-    /*Q_UNUSED(prevfactor)
-#ifdef Q_OS_LINUX
-    CX11Decoration::onDpiChanged(newfactor);
-#endif
-    setScreenScalingFactor(newfactor);*/
-}
-
 bool CMainWindowBase::isCustomWindowStyle()
 {
     return pimpl->is_custom_window();
@@ -477,8 +466,3 @@ void CMainWindowBase::updateTitleCaption()
     }
 }
 
-void CMainWindowBase::focusMainPanel()
-{
-    if (m_pMainView)
-        ((QCefView *)m_pMainView)->setFocusToCef();
-}

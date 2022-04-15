@@ -118,11 +118,12 @@ public:
     virtual bool pointInTabs(const QPoint& pt) const;
 
 protected:
-    inline int dpiCorrectValue(int v) const {return int(v * m_dpiRatio);}
+    QWidget * createTopPanel(QWidget *, const QString&);
+    QPushButton * createToolButton(QWidget * parent = nullptr, const QString& name = QString(""));
+    void updateTitleCaption();
+    bool isCustomWindowStyle();
 
-    virtual QWidget * createTopPanel(QWidget *, const QString&);
     virtual QWidget * createMainPanel(QWidget *, const QString&, bool custom = true, QWidget * view = nullptr);
-    virtual QPushButton * createToolButton(QWidget * parent = nullptr, const QString& name = QString(""));
     virtual void setScreenScalingFactor(double);
     virtual void setWindowTitle(const QString&);
     virtual void updateScaling();
@@ -130,10 +131,6 @@ protected:
     virtual void captureMouse(int tab_index);
     virtual void onSizeEvent(int);
     virtual void onMoveEvent(const QRect&) {}; // Overrides in CEditorWindow
-    virtual void onDpiChanged(double newfactor, double prevfactor);
-    virtual void updateTitleCaption();
-    virtual void focusMainPanel();
-    virtual bool isCustomWindowStyle();
     virtual bool holdView(int id) const;
     virtual int calcTitleCaptionWidth();
 

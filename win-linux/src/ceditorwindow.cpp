@@ -344,10 +344,10 @@ void CEditorWindow::onExitSizeMove()
 
 void CEditorWindow::onDpiChanged(double newfactor, double prevfactor)
 {
+    Q_UNUSED(prevfactor)
 #ifdef Q_OS_LINUX
     CX11Decoration::onDpiChanged(newfactor);
 #endif
-
 //    CMainWindow::onDpiChanged(newfactor, prevfactor);
     setScreenScalingFactor(newfactor);
 }

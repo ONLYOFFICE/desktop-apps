@@ -81,6 +81,7 @@ public:
 protected:
     void captureMouse();
     virtual void focus() {}; // Uses in SINGLE Mode
+    virtual void onDpiChanged(double newfactor, double prevfactor);
     virtual void setScreenScalingFactor(double f) override;
     virtual void onMinimizeEvent() override;
     virtual void onMaximizeEvent() override;
@@ -112,10 +113,12 @@ private:
     void removeMinimumSize();
     void removeMaximumSize();
     void activateWindow();
+    void focusMainPanel();
 
     bool isSetMinimumSize();
     bool isSetMaximumSize();
 
+    int dpiCorrectValue(int v) const {return int(v * m_dpiRatio);}
     int getMinimumHeight() const;
     int getMinimumWidth() const;
     int getMaximumHeight();

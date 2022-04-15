@@ -1244,3 +1244,14 @@ bool CMainWindow::holdView(int id) const
     }
 }
 
+void CMainWindow::focusMainPanel()
+{
+    if (m_pMainView)
+        ((QCefView *)m_pMainView)->setFocusToCef();
+}
+
+void CMainWindow::onDpiChanged(double newfactor, double prevfactor)
+{
+    Q_UNUSED(prevfactor)
+    setScreenScalingFactor(newfactor);
+}
