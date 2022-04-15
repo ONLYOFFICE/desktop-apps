@@ -116,7 +116,7 @@ public:
     void selectView(int id) const;
     void selectView(const QString& url) const;
 
-    virtual const QObject * receiver() {return nullptr;}
+    //virtual const QObject * receiver() {return nullptr;}
     virtual bool pointInTabs(const QPoint& pt) const;
 
 protected:

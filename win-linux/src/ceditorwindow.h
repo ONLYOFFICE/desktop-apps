@@ -52,6 +52,7 @@ public:
     CEditorWindow(const QRect& rect, CTabPanel* view);
     ~CEditorWindow();
 
+    const QObject * receiver();
     CTabPanel * releaseEditorView() const;
     AscEditorType editorType() const;
     QString documentName() const;
@@ -60,7 +61,6 @@ public:
     bool holdView(const std::wstring& portal) const;
     void setReporterMode(bool);
     void undock(bool maximized = false);
-
     virtual bool holdView(int id) const final;
     virtual void applyTheme(const std::wstring&) final;
 
@@ -69,8 +69,6 @@ private:
 
     CTabPanel * mainView() const;
     void recalculatePlaces();
-
-    virtual const QObject * receiver() final;
     virtual QWidget * createMainPanel(QWidget *, const QString&, bool custom = true,
                                       QWidget * view = nullptr) final;
     virtual int calcTitleCaptionWidth() final;

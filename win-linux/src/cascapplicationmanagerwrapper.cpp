@@ -1185,8 +1185,8 @@ void CAscApplicationManagerWrapper::launchAppClose()
             DestroyCefView(-1);
 
             if ( m_pMainWindow ) {
-                m_pMainWindow->close();
-                //closeQueue().leave(sWinTag{1,size_t(m_pMainWindow)});
+                //m_pMainWindow->close();
+                closeQueue().leave(sWinTag{1,size_t(m_pMainWindow)});
             }
         }
     } else {
@@ -1207,7 +1207,7 @@ void CAscApplicationManagerWrapper::closeEditorWindow(const size_t p)
         it = _app.m_vecEditors.begin();
         while ( it != _app.m_vecEditors.end() ) {
             if ( *it == p /*&& !_app.m_vecEditors.empty()*/ ) {
-                CMainWindowBase * _w = reinterpret_cast<CMainWindowBase *>(*it);
+                CEditorWindow * _w = reinterpret_cast<CEditorWindow *>(*it);
 
                 AscAppManager::unbindReceiver(static_cast<const CCefEventsGate *>(_w->receiver()));
 

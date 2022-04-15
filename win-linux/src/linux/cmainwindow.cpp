@@ -446,7 +446,6 @@ void CMainWindow::slot_windowClose()
         reg_user.setValue("maximized", windowState().testFlag(Qt::WindowMaximized));
 //        reg_user.setValue("windowstate", saveState());
     }
-
     AscAppManager::closeMainWindow();
 }
 
@@ -614,8 +613,9 @@ bool CMainWindow::holdView(int id) const
     if (m_winType == WindowType::REPORTER) {
         QWidget * mainView = m_pMainPanel->findChild<QWidget *>("mainView");
         return mainView && ((QCefView *)mainView)->GetCefView()->GetId() == id;
+    } else {
+        return mainPanel()->holdUid(id);
     }
-    return false;
 }
 
 void CMainWindow::pushButtonCloseClicked()
