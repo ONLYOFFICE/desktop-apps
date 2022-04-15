@@ -368,8 +368,9 @@ void CEditorWindow::setScreenScalingFactor(double newfactor)
 
 
     d_ptr.get()->onScreenScalingFactor(newfactor);
-
-    adjustGeometry();
+#ifndef __linux__
+    CMainWindow::adjustGeometry();
+#endif
     recalculatePlaces();
     updateTitleCaption();
 }

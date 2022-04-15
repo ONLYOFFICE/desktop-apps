@@ -486,6 +486,9 @@ void CMainWindow::setScreenScalingFactor(double factor)
     //        setMinimumSize(WindowHelper::correctWindowMinimumSize(_src_rect, {MAIN_WINDOW_MIN_WIDTH * factor, MAIN_WINDOW_MIN_HEIGHT * factor}));
         }
     } else
+    if (m_winType == WindowType::SINGLE) {
+        CMainWindowBase::setScreenScalingFactor(factor);
+    } else
     if (m_winType == WindowType::REPORTER) {
         QString css(AscAppManager::getWindowStylesheets(factor));
         if ( !css.isEmpty() ) {

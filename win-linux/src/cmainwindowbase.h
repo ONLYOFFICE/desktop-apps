@@ -115,8 +115,6 @@ public:
     int attachEditor(QWidget *, const QPoint&);
     void selectView(int id) const;
     void selectView(const QString& url) const;
-
-    //virtual const QObject * receiver() {return nullptr;}
     virtual bool pointInTabs(const QPoint& pt) const;
 
 protected:
@@ -125,16 +123,13 @@ protected:
     virtual QWidget * createTopPanel(QWidget *, const QString&);
     virtual QWidget * createMainPanel(QWidget *, const QString&, bool custom = true, QWidget * view = nullptr);
     virtual QPushButton * createToolButton(QWidget * parent = nullptr, const QString& name = QString(""));
-    virtual QRect windowRect() const {return QRect();}
     virtual void setScreenScalingFactor(double);
     virtual void setWindowTitle(const QString&);
-    virtual void focus() {};
     virtual void updateScaling();
-    virtual void bringToTop() const {};
     virtual void applyTheme(const std::wstring&);
     virtual void captureMouse(int tab_index);
     virtual void onSizeEvent(int);
-    virtual void onMoveEvent(const QRect&) {};
+    virtual void onMoveEvent(const QRect&) {}; // Overrides in CEditorWindow
     virtual void onDpiChanged(double newfactor, double prevfactor);
     virtual void updateTitleCaption();
     virtual void focusMainPanel();
@@ -143,7 +138,7 @@ protected:
     virtual int calcTitleCaptionWidth();
 
     virtual CMainPanel * mainPanel() const = 0;
-    virtual void adjustGeometry() {};
+    virtual QRect windowRect() const = 0;
     virtual void bringToTop() = 0;
     virtual void onCloseEvent() = 0;
     virtual void onMinimizeEvent() = 0;
@@ -160,9 +155,9 @@ protected:
     double m_dpiRatio;
 
 private:
-    class impl;
-    std::unique_ptr<impl> pimpl;
     void initTopButtons(QWidget *parent);
+    class impl;
+    std::unique_ptr<impl> pimpl;  
 };
 
 #endif // CMAINWINDOWBASE_H

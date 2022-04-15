@@ -51,24 +51,22 @@ public:
     explicit CMainWindow(const QRect&, const QString&, QCefView*);
     virtual ~CMainWindow();
 
-    HWND handle() const; //
-    void show(bool); //
-    void hide(); //
-    void toggleBorderless(bool); //
-    void setWindowState(Qt::WindowState); //
-    void setWindowBackgroundColor(const QColor&); //
-    void setWindowColors(const QColor& background, const QColor& border); //
-    bool isVisible(); //
-
-    virtual CMainPanel * mainPanel() const final; //
-    virtual QRect windowRect() const final; //
-    virtual void updateScaling() final; //
-    virtual void bringToTop() final; //
-    virtual void setWindowTitle(const QString&) final; //
-    virtual void adjustGeometry() final; //
-
-    virtual bool holdView(int id) const override;   //
-    virtual void applyTheme(const std::wstring&) override;  //
+    HWND handle() const;
+    void show(bool);
+    void hide();
+    void toggleBorderless(bool);
+    void adjustGeometry();
+    void setWindowState(Qt::WindowState);
+    void setWindowBackgroundColor(const QColor&);
+    void setWindowColors(const QColor& background, const QColor& border);
+    bool isVisible();
+    virtual CMainPanel * mainPanel() const final;
+    virtual QRect windowRect() const final;
+    virtual void updateScaling() final;
+    virtual void bringToTop() final;
+    virtual void setWindowTitle(const QString&) final;
+    virtual void applyTheme(const std::wstring&) override;
+    virtual bool holdView(int id) const override;
 
 #if (QT_VERSION < QT_VERSION_CHECK(5, 10, 0))
     // because of QTBUG-67211
@@ -81,13 +79,13 @@ public:
 #endif
 
 protected:
-    void captureMouse(); //
-
-    virtual void setScreenScalingFactor(double f) override; //
-    virtual void onMinimizeEvent() override; //
-    virtual void onMaximizeEvent() override; //
-    virtual void onExitSizeMove() override; //
-    virtual void onCloseEvent() override; //
+    void captureMouse();
+    virtual void focus() {}; // Uses in SINGLE Mode
+    virtual void setScreenScalingFactor(double f) override;
+    virtual void onMinimizeEvent() override;
+    virtual void onMaximizeEvent() override;
+    virtual void onExitSizeMove() override;
+    virtual void onCloseEvent() override;
 
 private:
     explicit CMainWindow(const QRect&, const WindowType, const QString&, QWidget*);
@@ -97,38 +95,37 @@ private:
     static void updateNotFound();
     static void updateError();
 #endif
-    WindowBase::CWindowGeometry const& minimumSize() const; //
-    WindowBase::CWindowGeometry const& maximumSize() const; //
-    void doClose(); //
-    void applyWindowState(Qt::WindowState); //
-    void slot_windowChangeState(Qt::WindowState); //
-    void slot_windowClose(); //
-    void slot_mainPageReady(); //
-    void slot_modalDialog(bool status, HWND h); //
-    void toggleResizeable(); //
-    void setResizeable(bool resizeable); //
-    void setResizeableAreaWidth(int width); //
-    void setContentsMargins(int left, int top, int right, int bottom); //
-    void setMinimumSize(const int width, const int height); //
-    void setMaximumSize(const int width, const int height); //
-    void removeMinimumSize(); //
-    void removeMaximumSize(); //
-    void activateWindow(); //
+    WindowBase::CWindowGeometry const& minimumSize() const;
+    WindowBase::CWindowGeometry const& maximumSize() const;
+    void doClose();
+    void applyWindowState(Qt::WindowState);
+    void slot_windowChangeState(Qt::WindowState);
+    void slot_windowClose();
+    void slot_mainPageReady();
+    void slot_modalDialog(bool status, HWND h);
+    void toggleResizeable();
+    void setResizeable(bool resizeable);
+    void setResizeableAreaWidth(int width);
+    void setContentsMargins(int left, int top, int right, int bottom);
+    void setMinimumSize(const int width, const int height);
+    void setMaximumSize(const int width, const int height);
+    void removeMinimumSize();
+    void removeMaximumSize();
+    void activateWindow();
 
-    bool isResizeable() {return m_isResizeable;} //
-    bool isSetMinimumSize(); //
-    bool isSetMaximumSize(); //
+    bool isSetMinimumSize();
+    bool isSetMaximumSize();
 
-    int getMinimumHeight() const; //
-    int getMinimumWidth() const; //
-    int getMaximumHeight(); //
-    int getMaximumWidth(); //
+    int getMinimumHeight() const;
+    int getMinimumWidth() const;
+    int getMaximumHeight();
+    int getMaximumWidth();
 
-    virtual void showEvent(QShowEvent *event) final;    //
-    virtual void closeEvent(QCloseEvent *event) final;  //
-    virtual void changeEvent(QEvent *event) final;  //
-    virtual bool nativeEvent(const QByteArray &eventType, void *message, long *result) final; //
-    virtual void captureMouse(int tabindex) final;  //
+    virtual void showEvent(QShowEvent *event) final;
+    virtual void closeEvent(QCloseEvent *event) final;
+    virtual void changeEvent(QEvent *event) final;
+    virtual bool nativeEvent(const QByteArray &eventType, void *message, long *result) final;
+    virtual void captureMouse(int tabindex) final;
 
     WindowType m_winType;
     WindowBase::CWindowGeometry m_minSize;
