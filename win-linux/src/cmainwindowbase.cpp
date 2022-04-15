@@ -45,7 +45,6 @@
 #include <QSettings>
 
 
-
 class CMainWindowBase::impl {
     bool is_custom_window_ = false;
 
@@ -153,6 +152,38 @@ CMainWindowBase::~CMainWindowBase()
 
 }
 
+/** Public **/
+
+QWidget * CMainWindowBase::editor(int index)
+{
+    return mainPanel()->tabWidget()->panel(index);
+}
+
+QString CMainWindowBase::documentName(int vid)
+{
+    int i = mainPanel()->tabWidget()->tabIndexByView(vid);
+    if ( !(i < 0) ) {
+        return mainPanel()->tabWidget()->panel(i)->data()->title();
+    }
+
+    return "";
+}
+
+double CMainWindowBase::scaling() const
+{
+    return m_dpiRatio;
+}
+
+int CMainWindowBase::editorsCount() const
+{
+    return mainPanel()->tabWidget()->count(cvwtEditor);
+}
+
+int CMainWindowBase::editorsCount(const std::wstring& portal) const
+{
+    return mainPanel()->tabWidget()->count(portal, true);
+}
+
 int CMainWindowBase::attachEditor(QWidget * panel, int index)
 {
     CMainPanel * _pMainPanel = mainPanel();
@@ -194,28 +225,6 @@ int CMainWindowBase::attachEditor(QWidget * panel, const QPoint& pt)
     return attachEditor(panel, _index);
 }
 
-bool CMainWindowBase::pointInTabs(const QPoint& pt) const
-{
-    QRect _rc_title(mainPanel()->geometry());
-    _rc_title.setHeight(mainPanel()->tabWidget()->tabBar()->height());
-
-#ifdef Q_OS_LINUX
-    _rc_title.moveTop(1);
-#endif
-
-    return _rc_title.contains(mainPanel()->mapFromGlobal(pt));
-}
-
-QWidget * CMainWindowBase::editor(int index)
-{
-    return mainPanel()->tabWidget()->panel(index);
-}
-
-bool CMainWindowBase::holdView(int id) const
-{
-    return mainPanel()->holdUid(id);
-}
-
 void CMainWindowBase::selectView(int viewid) const
 {
     int _index = mainPanel()->tabWidget()->tabIndexByView(viewid);
@@ -234,106 +243,19 @@ void CMainWindowBase::selectView(const QString& url) const
     }
 }
 
-int CMainWindowBase::editorsCount() const
+bool CMainWindowBase::pointInTabs(const QPoint& pt) const
 {
-    return mainPanel()->tabWidget()->count(cvwtEditor);
-}
+    QRect _rc_title(mainPanel()->geometry());
+    _rc_title.setHeight(mainPanel()->tabWidget()->tabBar()->height());
 
-int CMainWindowBase::editorsCount(const std::wstring& portal) const
-{
-    return mainPanel()->tabWidget()->count(portal, true);
-}
-
-QString CMainWindowBase::documentName(int vid)
-{
-    int i = mainPanel()->tabWidget()->tabIndexByView(vid);
-    if ( !(i < 0) ) {
-        return mainPanel()->tabWidget()->panel(i)->data()->title();
-    }
-
-    return "";
-}
-
-void CMainWindowBase::captureMouse(int)
-{
-#ifdef Q_OS_WIN
-    ReleaseCapture();
+#ifdef Q_OS_LINUX
+    _rc_title.moveTop(1);
 #endif
+
+    return _rc_title.contains(mainPanel()->mapFromGlobal(pt));
 }
 
-void CMainWindowBase::applyTheme(const std::wstring& name)
-{
-    mainPanel()->applyTheme(name);
-}
-
-void CMainWindowBase::setScreenScalingFactor(double f)
-{
-    if ( m_dpiRatio != f ) {
-        if ( isCustomWindowStyle() ) {
-            QSize small_btn_size(int(TOOLBTN_WIDTH * f), int(TOOLBTN_HEIGHT*f));
-
-            m_buttonMinimize->setFixedSize(small_btn_size);
-            m_buttonMaximize->setFixedSize(small_btn_size);
-            m_buttonClose->setFixedSize(small_btn_size);
-
-            m_boxTitleBtns->setFixedHeight(int(TOOLBTN_HEIGHT * f));
-            m_boxTitleBtns->layout()->setSpacing(int(1 * f));
-        }
-        m_dpiRatio = f;
-    }
-}
-
-void CMainWindowBase::updateScaling()
-{
-    onExitSizeMove();
-}
-
-double CMainWindowBase::scaling() const
-{
-    return m_dpiRatio;
-}
-
-void CMainWindowBase::setWindowTitle(const QString& title)
-{
-    if ( m_labelTitle ) {
-        m_labelTitle->setText(title);
-    }
-}
-
-int CMainWindowBase::calcTitleCaptionWidth()
-{
-    if ( pimpl->is_custom_window() ) {
-        return m_boxTitleBtns->width() - (m_buttonMaximize->width() * 3);
-    }
-
-    return 0;
-}
-
-QPushButton * CMainWindowBase::createToolButton(QWidget * parent, const QString& name)
-{
-    QPushButton * btn = new QPushButton(parent);
-    btn->setObjectName(name);
-    btn->setProperty("class", "normal");
-    btn->setProperty("act", "tool");
-    btn->setFixedSize(int(TOOLBTN_WIDTH*m_dpiRatio), int(TOOLBTN_HEIGHT*m_dpiRatio));
-#ifdef __linux__
-    btn->setMouseTracking(true);
-#endif
-    return btn;
-}
-
-void CMainWindowBase::initTopButtons(QWidget *parent)
-{
-    // Minimize
-    m_buttonMinimize = createToolButton(parent, "toolButtonMinimize");
-    QObject::connect(m_buttonMinimize, &QPushButton::clicked, [=]{onMinimizeEvent();});
-    // Maximize
-    m_buttonMaximize = createToolButton(parent, "toolButtonMaximize");
-    QObject::connect(m_buttonMaximize, &QPushButton::clicked, [=]{onMaximizeEvent();});
-    // Close
-    m_buttonClose = createToolButton(parent, "toolButtonClose");
-    QObject::connect(m_buttonClose, &QPushButton::clicked, [=]{onCloseEvent();});
-}
+/** Protected **/
 
 QWidget * CMainWindowBase::createTopPanel(QWidget * parent, const QString& title)
 {
@@ -365,6 +287,35 @@ QWidget * CMainWindowBase::createTopPanel(QWidget * parent, const QString& title
     }
 
     return nullptr;
+}
+
+QPushButton * CMainWindowBase::createToolButton(QWidget * parent, const QString& name)
+{
+    QPushButton * btn = new QPushButton(parent);
+    btn->setObjectName(name);
+    btn->setProperty("class", "normal");
+    btn->setProperty("act", "tool");
+    btn->setFixedSize(int(TOOLBTN_WIDTH*m_dpiRatio), int(TOOLBTN_HEIGHT*m_dpiRatio));
+#ifdef __linux__
+    btn->setMouseTracking(true);
+#endif
+    return btn;
+}
+
+void CMainWindowBase::updateTitleCaption()
+{
+    if ( m_labelTitle ) {
+        int _width = calcTitleCaptionWidth();
+        if ( !(_width < 0) ) {
+            m_labelTitle->setMaximumWidth(_width);
+            m_labelTitle->updateText();
+        }
+    }
+}
+
+bool CMainWindowBase::isCustomWindowStyle()
+{
+    return pimpl->is_custom_window();
 }
 
 QWidget * CMainWindowBase::createMainPanel(QWidget * parent, const QString& title, bool custom, QWidget * view)
@@ -445,24 +396,77 @@ QWidget * CMainWindowBase::createMainPanel(QWidget * parent, const QString& titl
     return mainPanel;
 }
 
+void CMainWindowBase::setScreenScalingFactor(double f)
+{
+    if ( m_dpiRatio != f ) {
+        if ( isCustomWindowStyle() ) {
+            QSize small_btn_size(int(TOOLBTN_WIDTH * f), int(TOOLBTN_HEIGHT*f));
+
+            m_buttonMinimize->setFixedSize(small_btn_size);
+            m_buttonMaximize->setFixedSize(small_btn_size);
+            m_buttonClose->setFixedSize(small_btn_size);
+
+            m_boxTitleBtns->setFixedHeight(int(TOOLBTN_HEIGHT * f));
+            m_boxTitleBtns->layout()->setSpacing(int(1 * f));
+        }
+        m_dpiRatio = f;
+    }
+}
+
+void CMainWindowBase::setWindowTitle(const QString& title)
+{
+    if ( m_labelTitle ) {
+        m_labelTitle->setText(title);
+    }
+}
+
+void CMainWindowBase::updateScaling()
+{
+    onExitSizeMove();
+}
+
+void CMainWindowBase::applyTheme(const std::wstring& name)
+{
+    mainPanel()->applyTheme(name);
+}
+
+void CMainWindowBase::captureMouse(int)
+{
+#ifdef Q_OS_WIN
+    ReleaseCapture();
+#endif
+}
+
 void CMainWindowBase::onSizeEvent(int)
 {
     updateTitleCaption();
 }
 
-bool CMainWindowBase::isCustomWindowStyle()
+bool CMainWindowBase::holdView(int id) const
 {
-    return pimpl->is_custom_window();
+    return mainPanel()->holdUid(id);
 }
 
-void CMainWindowBase::updateTitleCaption()
+int CMainWindowBase::calcTitleCaptionWidth()
 {
-    if ( m_labelTitle ) {
-        int _width = calcTitleCaptionWidth();
-        if ( !(_width < 0) ) {
-            m_labelTitle->setMaximumWidth(_width);
-            m_labelTitle->updateText();
-        }
+    if ( pimpl->is_custom_window() ) {
+        return m_boxTitleBtns->width() - (m_buttonMaximize->width() * 3);
     }
+
+    return 0;
 }
 
+/** Private **/
+
+void CMainWindowBase::initTopButtons(QWidget *parent)
+{
+    // Minimize
+    m_buttonMinimize = createToolButton(parent, "toolButtonMinimize");
+    QObject::connect(m_buttonMinimize, &QPushButton::clicked, [=]{onMinimizeEvent();});
+    // Maximize
+    m_buttonMaximize = createToolButton(parent, "toolButtonMaximize");
+    QObject::connect(m_buttonMaximize, &QPushButton::clicked, [=]{onMaximizeEvent();});
+    // Close
+    m_buttonClose = createToolButton(parent, "toolButtonClose");
+    QObject::connect(m_buttonClose, &QPushButton::clicked, [=]{onCloseEvent();});
+}

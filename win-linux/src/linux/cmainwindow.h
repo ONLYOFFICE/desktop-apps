@@ -36,16 +36,12 @@
 #include "cmainwindowbase.h"
 #include "cmainpanelimpl.h"
 #include "cx11decoration.h"
-#include "applicationmanager.h"
-
 #include <QMainWindow>
-#include <QLabel>
 #include <memory>
 
 
 class CMainWindow : public QMainWindow, public CX11Decoration, public CMainWindowBase
 {
-    //Q_OBJECT
 public:
     explicit CMainWindow(const QRect&);
     explicit CMainWindow(const QRect&, const QString&, QWidget*);

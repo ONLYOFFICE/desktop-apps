@@ -34,15 +34,9 @@
 #include "cascapplicationmanagerwrapper.h"
 #include "defines.h"
 #include "utils.h"
-#include "singleapplication.h"
-
-#include <QProxyStyle>
-#include <QApplication>
-#include <QFileInfo>
 #include <QDesktopWidget>
 #include <QTimer>
 #include <QMimeData>
-#include "defines_p.h"
 
 
 #ifdef DOCUMENTSCORE_OPENSSL_SUPPORT
@@ -72,14 +66,6 @@ public:
         m_disabler->enable();
     }
 };
-
-
-/*CMainWindow::CMainWindow(QWidget *parent)
-    : QMainWindow(parent)
-    , CX11Decoration(this)
-{
-    setAcceptDrops(true);
-}*/
 
 CMainWindow::CMainWindow(const QRect &rect) :
     CMainWindow(rect, WindowType::MAIN, QString(), nullptr)
@@ -231,6 +217,278 @@ CMainWindow::~CMainWindow()
 
 }
 
+/** Public **/
+
+QWidget * CMainWindow::handle() const
+{
+    return qobject_cast<QWidget *>(const_cast<CMainWindow *>(this));
+}
+
+void CMainWindow::show(bool maximized)
+{
+    QMainWindow::show();
+    if (maximized) {
+        if (m_winType == WindowType::MAIN) {
+            slot_windowChangeState(Qt::WindowMaximized);
+        } else if (m_winType == WindowType::SINGLE) {
+            QMainWindow::setWindowState(Qt::WindowMaximized);
+        }
+    }
+}
+
+void CMainWindow::sendSertificate(int viewid)
+{
+#ifdef DOCUMENTSCORE_OPENSSL_SUPPORT
+    CDialogOpenSsl _dialog(this);
+
+    NSEditorApi::CAscOpenSslData * pData = new NSEditorApi::CAscOpenSslData;
+    if ( _dialog.exec() == QDialog::Accepted ) {
+        _dialog.getResult(*pData);
+    }
+
+    NSEditorApi::CAscMenuEvent * pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_PAGE_SELECT_OPENSSL_CERTIFICATE);
+    pEvent->m_pData = pData;
+    AscAppManager::getInstance().GetViewById(viewid)->Apply(pEvent);
+#endif
+}
+
+bool CMainWindow::isMaximized() const
+{
+    return windowState() == Qt::WindowMaximized;
+}
+
+CMainPanel * CMainWindow::mainPanel() const
+{
+    return _m_pMainPanel;
+}
+
+QRect CMainWindow::windowRect() const
+{
+    return normalGeometry();
+}
+
+void CMainWindow::bringToTop()
+{
+    QMainWindow::raise();
+    QMainWindow::activateWindow();
+}
+
+void CMainWindow::updateScaling()
+{
+    double dpi_ratio = Utils::getScreenDpiRatioByWidget(this);
+
+    if ( dpi_ratio != m_dpiRatio )
+        setScreenScalingFactor(dpi_ratio);
+}
+
+void CMainWindow::applyTheme(const std::wstring& theme)
+{
+    if (m_winType == WindowType::MAIN) {
+        CMainWindowBase::applyTheme(theme);
+        if ( !CX11Decoration::isDecorated() ) {
+            QPalette _palette(palette());
+            _palette.setColor(QPalette::Background, AscAppManager::themes().current().color(CTheme::ColorRole::ecrWindowBackground));
+            setStyleSheet(QString("QMainWindow{border:1px solid %1;}").arg(QString::fromStdWString(AscAppManager::themes().current().value(CTheme::ColorRole::ecrWindowBorder))));
+            setAutoFillBackground(true);
+            setPalette(_palette);
+        }
+    } else
+    if (m_winType == WindowType::REPORTER) {
+        m_pMainPanel->setProperty("uitheme", QString::fromStdWString(theme));
+        if ( m_boxTitleBtns ) {
+            m_labelTitle->style()->polish(m_labelTitle);
+            m_buttonMinimize->style()->polish(m_buttonMinimize);
+            m_buttonMaximize->style()->polish(m_buttonMaximize);
+            m_buttonClose->style()->polish(m_buttonClose);
+            m_boxTitleBtns->style()->polish(m_boxTitleBtns);
+        }
+        m_pMainPanel->style()->polish(m_pMainPanel);
+        update();
+    }
+}
+
+bool CMainWindow::holdView(int id) const
+{
+    if (m_winType == WindowType::REPORTER) {
+        QWidget * mainView = m_pMainPanel->findChild<QWidget *>("mainView");
+        return mainView && ((QCefView *)mainView)->GetCefView()->GetId() == id;
+    } else {
+        return mainPanel()->holdUid(id);
+    }
+}
+
+void CMainWindow::slot_windowChangeState(Qt::WindowState s)
+{
+    if (s == Qt::WindowFullScreen) {
+        GET_REGISTRY_USER(reg_user)
+        reg_user.setValue("position", normalGeometry());
+        reg_user.setValue("maximized", windowState().testFlag(Qt::WindowMaximized));
+//        reg_user.setValue("windowstate", saveState());
+//        showFullScreen();
+    } else {
+        if ( s == Qt::WindowMinimized && windowState().testFlag(Qt::WindowMaximized) ) {
+            CX11Decoration::setMinimized();
+        } else setWindowState(s);
+
+        switch (s) {
+        case Qt::WindowMaximized:
+        case Qt::WindowMinimized:
+            break;
+        default:
+        case Qt::WindowNoState:
+            activateWindow();
+            break;
+        }
+    }
+}
+
+void CMainWindow::slot_windowClose()
+{
+    if (windowState() != Qt::WindowFullScreen && isVisible()) {
+        GET_REGISTRY_USER(reg_user)
+        reg_user.setValue("position", normalGeometry());
+        reg_user.setValue("maximized", windowState().testFlag(Qt::WindowMaximized));
+//        reg_user.setValue("windowstate", saveState());
+    }
+    AscAppManager::closeMainWindow();
+}
+
+void CMainWindow::slot_modalDialog(bool status, WId h)
+{
+    Q_UNUSED(h)
+    if (m_winType == WindowType::MAIN) {
+        static WindowHelper::CParentDisable * const _disabler = new WindowHelper::CParentDisable;
+        if ( status ) {
+            _disabler->disable(this);
+        } else _disabler->enable();
+    } else
+    if (m_winType == WindowType::SINGLE) {
+        status ? pimpl->lockParentUI() : pimpl->unlockParentUI();
+    }
+}
+
+void CMainWindow::pushButtonCloseClicked()
+{
+    QWidget * mainView = m_pMainPanel->findChild<QWidget *>("mainView");
+    if ( mainView ) {
+        mainView->setObjectName("destroyed");
+        AscAppManager::getInstance().DestroyCefView(
+                ((QCefView *)mainView)->GetCefView()->GetId() );
+    }
+    hide();
+}
+
+/** Protected **/
+
+void CMainWindow::captureMouse()
+{
+    QMouseEvent _event(QEvent::MouseButtonRelease, QCursor::pos(), Qt::LeftButton, Qt::LeftButton, Qt::NoModifier);
+    QApplication::sendEvent(AscAppManager::mainWindow(), &_event);
+
+    setGeometry(QRect(QCursor::pos() - QPoint(300, 15), size()));
+
+    QPoint pt_in_title = (m_boxTitleBtns->geometry().topLeft() + QPoint(300,15));
+    _event = {QEvent::MouseButtonPress, pt_in_title, Qt::LeftButton, Qt::LeftButton, Qt::NoModifier};
+//    QApplication::sendEvent(this, &_event1);
+    CX11Decoration::dispatchMouseDown(&_event);
+
+    _event = {QEvent::MouseMove, QCursor::pos(), Qt::LeftButton, Qt::LeftButton, Qt::NoModifier};
+//    QApplication::sendEvent(this, &_event);
+    CX11Decoration::dispatchMouseMove(&_event);
+}
+
+void CMainWindow::setScreenScalingFactor(double factor)
+{
+    if (m_winType == WindowType::MAIN) {
+        CX11Decoration::onDpiChanged(factor);
+        QString css(AscAppManager::getWindowStylesheets(factor));
+        if (!css.isEmpty()) {
+            double change_factor = factor / m_dpiRatio;
+            m_dpiRatio = factor;
+
+            _m_pMainPanel->setStyleSheet(css);
+            _m_pMainPanel->setScreenScalingFactor(factor);
+            setMinimumSize({0, 0});
+
+            QRect _src_rect = geometry();
+            if (!isMaximized()) {
+                int dest_width_change = int(_src_rect.width() * (1 - change_factor));
+                QRect dest_rect = QRect{_src_rect.translated(dest_width_change/2,0).topLeft(), _src_rect.size() * change_factor};
+                setGeometry(dest_rect);
+            }
+            // TODO: skip window min size for usability test
+    //        setMinimumSize(WindowHelper::correctWindowMinimumSize(_src_rect, {MAIN_WINDOW_MIN_WIDTH * factor, MAIN_WINDOW_MIN_HEIGHT * factor}));
+        }
+    } else
+    if (m_winType == WindowType::SINGLE) {
+        CMainWindowBase::setScreenScalingFactor(factor);
+    } else
+    if (m_winType == WindowType::REPORTER) {
+        QString css(AscAppManager::getWindowStylesheets(factor));
+        if ( !css.isEmpty() ) {
+            double change_factor = factor / m_dpiRatio;
+            m_dpiRatio = factor;
+
+            m_pMainPanel->setStyleSheet(css);
+            setMinimumSize({0,0});
+
+            QRect _src_rect = geometry();
+            int dest_width_change = int(_src_rect.width() * (1 - change_factor));
+            QRect _dest_rect = QRect{_src_rect.translated(dest_width_change/2,0).topLeft(), _src_rect.size() * change_factor};
+            setGeometry(_dest_rect);
+    //        setMinimumSize(WindowHelper::correctWindowMinimumSize(_dest_rect, {WINDOW_MIN_WIDTH*factor, WINDOW_MIN_HEIGHT*factor}));
+        }
+    }
+}
+
+void CMainWindow::onMinimizeEvent()
+{
+    //CMainWindowBase::onMinimizeEvent();
+    setWindowState(Qt::WindowMinimized);
+}
+
+void CMainWindow::onMaximizeEvent()
+{
+    //CMainWindowBase::onMaximizeEvent();
+    setWindowState(windowState().testFlag(Qt::WindowMaximized) ? Qt::WindowNoState : Qt::WindowMaximized);
+}
+
+void CMainWindow::onSizeEvent(int type)
+{
+    CMainWindowBase::onSizeEvent(type);
+    if ( type == Qt::WindowMinimized ) {
+//        m_buttonMaximize->setProperty("class", s == Qt::WindowMaximized ? "min" : "normal") ;
+//        m_buttonMaximize->style()->polish(m_buttonMaximize);
+    }
+}
+
+void CMainWindow::onExitSizeMove()
+{
+    double dpi_ratio = Utils::getScreenDpiRatioByWidget(this);
+    if ( dpi_ratio != m_dpiRatio )
+        setScreenScalingFactor(dpi_ratio);
+}
+
+void CMainWindow::setWindowTitle(const QString& t)
+{
+    CMainWindowBase::setWindowTitle(t);
+    QMainWindow::setWindowTitle(t);
+}
+
+/** Private **/
+
+void CMainWindow::onScreenScalingFactor(double f)
+{
+    setMinimumSize(QSize(0,0));
+    double change_factor = f / m_dpiRatio;
+    m_dpiRatio = f;
+    QRect _src_rect = geometry();
+    int dest_width_change = int(_src_rect.width() * (1 - change_factor));
+    QRect _dest_rect = QRect{_src_rect.translated(dest_width_change/2,0).topLeft(), _src_rect.size() * change_factor};
+    setGeometry(_dest_rect);
+//    setMinimumSize(WindowHelper::correctWindowMinimumSize(geometry(), {EDITOR_WINDOW_MIN_WIDTH * f, MAIN_WINDOW_MIN_HEIGHT * f}));
+}
+
 void CMainWindow::closeEvent(QCloseEvent * e)
 {
     ((CMainPanel *)_m_pMainPanel)->pushButtonCloseClicked();
@@ -240,15 +498,6 @@ void CMainWindow::closeEvent(QCloseEvent * e)
 void CMainWindow::showEvent(QShowEvent * e)
 {
     QMainWindow::showEvent(e);
-}
-
-void CMainWindow::resizeEvent(QResizeEvent *event)
-{
-    if (m_winType == WindowType::SINGLE) {
-        onSizeEvent(0);
-    } else {
-        QMainWindow::resizeEvent(event);
-    }
 }
 
 bool CMainWindow::event(QEvent * event)
@@ -341,10 +590,12 @@ void CMainWindow::mouseMoveEvent(QMouseEvent *e)
 {
     CX11Decoration::dispatchMouseMove(e);
 }
+
 void CMainWindow::mousePressEvent(QMouseEvent *e)
 {
     CX11Decoration::dispatchMouseDown(e);
 }
+
 void CMainWindow::mouseReleaseEvent(QMouseEvent *e)
 {
     CX11Decoration::dispatchMouseUp(e);
@@ -361,6 +612,15 @@ void CMainWindow::mouseDoubleClickEvent(QMouseEvent *)
     }
 }
 
+void CMainWindow::resizeEvent(QResizeEvent *event)
+{
+    if (m_winType == WindowType::SINGLE) {
+        onSizeEvent(0);
+    } else {
+        QMainWindow::resizeEvent(event);
+    }
+}
+
 void CMainWindow::dragEnterEvent(QDragEnterEvent *event)
 {
     QList<QUrl> urls = event->mimeData()->urls();
@@ -373,7 +633,7 @@ void CMainWindow::dragEnterEvent(QDragEnterEvent *event)
     _exts << "pptx" << "ppt" << "odp" << "ppsx" << "pptt" << "potx" << "otp";
     _exts << "xlsx" << "xls" << "ods" << "csv" << "xlst" << "xltx" << "ots";
     _exts << "pdf" << "djvu" << "xps";
-	_exts << "plugin";
+    _exts << "plugin";
 
     QFileInfo oInfo(urls[0].toString());
 
@@ -413,136 +673,6 @@ void CMainWindow::dropEvent(QDropEvent *event)
     event->acceptProposedAction();
 }
 
-void CMainWindow::slot_windowChangeState(Qt::WindowState s)
-{
-    if (s == Qt::WindowFullScreen) {
-        GET_REGISTRY_USER(reg_user)
-        reg_user.setValue("position", normalGeometry());
-        reg_user.setValue("maximized", windowState().testFlag(Qt::WindowMaximized));
-//        reg_user.setValue("windowstate", saveState());
-//        showFullScreen();
-    } else {
-        if ( s == Qt::WindowMinimized && windowState().testFlag(Qt::WindowMaximized) ) {
-            CX11Decoration::setMinimized();
-        } else setWindowState(s);
-
-        switch (s) {
-        case Qt::WindowMaximized:
-        case Qt::WindowMinimized:
-            break;
-        default:
-        case Qt::WindowNoState:
-            activateWindow();
-            break;
-        }
-    }
-}
-
-void CMainWindow::slot_windowClose()
-{
-    if (windowState() != Qt::WindowFullScreen && isVisible()) {
-        GET_REGISTRY_USER(reg_user)
-        reg_user.setValue("position", normalGeometry());
-        reg_user.setValue("maximized", windowState().testFlag(Qt::WindowMaximized));
-//        reg_user.setValue("windowstate", saveState());
-    }
-    AscAppManager::closeMainWindow();
-}
-
-void CMainWindow::slot_modalDialog(bool status, WId h)
-{
-    Q_UNUSED(h)
-    if (m_winType == WindowType::MAIN) {
-        static WindowHelper::CParentDisable * const _disabler = new WindowHelper::CParentDisable;
-        if ( status ) {
-            _disabler->disable(this);
-        } else _disabler->enable();
-    } else
-    if (m_winType == WindowType::SINGLE) {
-        status ? pimpl->lockParentUI() : pimpl->unlockParentUI();
-    }
-}
-
-void CMainWindow::setScreenScalingFactor(double factor)
-{
-    if (m_winType == WindowType::MAIN) {
-        CX11Decoration::onDpiChanged(factor);
-        QString css(AscAppManager::getWindowStylesheets(factor));
-        if (!css.isEmpty()) {
-            double change_factor = factor / m_dpiRatio;
-            m_dpiRatio = factor;
-
-            _m_pMainPanel->setStyleSheet(css);
-            _m_pMainPanel->setScreenScalingFactor(factor);
-            setMinimumSize({0, 0});
-
-            QRect _src_rect = geometry();
-            if (!isMaximized()) {
-                int dest_width_change = int(_src_rect.width() * (1 - change_factor));
-                QRect dest_rect = QRect{_src_rect.translated(dest_width_change/2,0).topLeft(), _src_rect.size() * change_factor};
-                setGeometry(dest_rect);
-            }
-            // TODO: skip window min size for usability test
-    //        setMinimumSize(WindowHelper::correctWindowMinimumSize(_src_rect, {MAIN_WINDOW_MIN_WIDTH * factor, MAIN_WINDOW_MIN_HEIGHT * factor}));
-        }
-    } else
-    if (m_winType == WindowType::SINGLE) {
-        CMainWindowBase::setScreenScalingFactor(factor);
-    } else
-    if (m_winType == WindowType::REPORTER) {
-        QString css(AscAppManager::getWindowStylesheets(factor));
-        if ( !css.isEmpty() ) {
-            double change_factor = factor / m_dpiRatio;
-            m_dpiRatio = factor;
-
-            m_pMainPanel->setStyleSheet(css);
-            setMinimumSize({0,0});
-
-            QRect _src_rect = geometry();
-            int dest_width_change = int(_src_rect.width() * (1 - change_factor));
-            QRect _dest_rect = QRect{_src_rect.translated(dest_width_change/2,0).topLeft(), _src_rect.size() * change_factor};
-            setGeometry(_dest_rect);
-    //        setMinimumSize(WindowHelper::correctWindowMinimumSize(_dest_rect, {WINDOW_MIN_WIDTH*factor, WINDOW_MIN_HEIGHT*factor}));
-        }
-    }
-}
-
-CMainPanel * CMainWindow::mainPanel() const
-{
-    return _m_pMainPanel;
-}
-
-QRect CMainWindow::windowRect() const
-{
-    return normalGeometry();
-}
-
-bool CMainWindow::isMaximized() const
-{
-    return windowState() == Qt::WindowMaximized;
-}
-
-void CMainWindow::sendSertificate(int viewid)
-{
-#ifdef DOCUMENTSCORE_OPENSSL_SUPPORT
-    CDialogOpenSsl _dialog(this);
-
-    NSEditorApi::CAscOpenSslData * pData = new NSEditorApi::CAscOpenSslData;
-    if ( _dialog.exec() == QDialog::Accepted ) {
-        _dialog.getResult(*pData);
-    }
-
-    NSEditorApi::CAscMenuEvent * pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_PAGE_SELECT_OPENSSL_CERTIFICATE);
-    pEvent->m_pData = pData;
-    AscAppManager::getInstance().GetViewById(viewid)->Apply(pEvent);
-#endif
-}
-
-QWidget * CMainWindow::handle() const
-{
-    return qobject_cast<QWidget *>(const_cast<CMainWindow *>(this));
-}
-
 void CMainWindow::captureMouse(int tabindex)
 {
     CMainWindowBase::captureMouse(tabindex);
@@ -563,145 +693,6 @@ void CMainWindow::captureMouse(int tabindex)
 void CMainWindow::bringToTop() const
 {
     QApplication::setActiveWindow(const_cast<CMainWindow *>(this));
-}
-
-void CMainWindow::show(bool maximized)
-{
-    QMainWindow::show();
-    if (maximized) {
-        if (m_winType == WindowType::MAIN) {
-            slot_windowChangeState(Qt::WindowMaximized);
-        } else if (m_winType == WindowType::SINGLE) {
-            QMainWindow::setWindowState(Qt::WindowMaximized);
-        }
-    }
-}
-
-void CMainWindow::applyTheme(const std::wstring& theme)
-{
-    if (m_winType == WindowType::MAIN) {
-        CMainWindowBase::applyTheme(theme);
-        if ( !CX11Decoration::isDecorated() ) {
-            QPalette _palette(palette());
-            _palette.setColor(QPalette::Background, AscAppManager::themes().current().color(CTheme::ColorRole::ecrWindowBackground));
-            setStyleSheet(QString("QMainWindow{border:1px solid %1;}").arg(QString::fromStdWString(AscAppManager::themes().current().value(CTheme::ColorRole::ecrWindowBorder))));
-            setAutoFillBackground(true);
-            setPalette(_palette);
-        }
-    } else
-    if (m_winType == WindowType::REPORTER) {
-        m_pMainPanel->setProperty("uitheme", QString::fromStdWString(theme));
-        if ( m_boxTitleBtns ) {
-            m_labelTitle->style()->polish(m_labelTitle);
-            m_buttonMinimize->style()->polish(m_buttonMinimize);
-            m_buttonMaximize->style()->polish(m_buttonMaximize);
-            m_buttonClose->style()->polish(m_buttonClose);
-            m_boxTitleBtns->style()->polish(m_boxTitleBtns);
-        }
-        m_pMainPanel->style()->polish(m_pMainPanel);
-        update();
-    }
-}
-
-void CMainWindow::updateScaling()
-{
-    double dpi_ratio = Utils::getScreenDpiRatioByWidget(this);
-
-    if ( dpi_ratio != m_dpiRatio )
-        setScreenScalingFactor(dpi_ratio);
-}
-
-bool CMainWindow::holdView(int id) const
-{
-    if (m_winType == WindowType::REPORTER) {
-        QWidget * mainView = m_pMainPanel->findChild<QWidget *>("mainView");
-        return mainView && ((QCefView *)mainView)->GetCefView()->GetId() == id;
-    } else {
-        return mainPanel()->holdUid(id);
-    }
-}
-
-void CMainWindow::pushButtonCloseClicked()
-{
-    QWidget * mainView = m_pMainPanel->findChild<QWidget *>("mainView");
-    if ( mainView ) {
-        mainView->setObjectName("destroyed");
-        AscAppManager::getInstance().DestroyCefView(
-                ((QCefView *)mainView)->GetCefView()->GetId() );
-    }
-    hide();
-}
-
-void CMainWindow::onMinimizeEvent()
-{
-    //CMainWindowBase::onMinimizeEvent();
-    setWindowState(Qt::WindowMinimized);
-}
-
-void CMainWindow::onMaximizeEvent()
-{
-    //CMainWindowBase::onMaximizeEvent();
-    setWindowState(windowState().testFlag(Qt::WindowMaximized) ? Qt::WindowNoState : Qt::WindowMaximized);
-}
-
-void CMainWindow::onSizeEvent(int type)
-{
-    CMainWindowBase::onSizeEvent(type);
-    if ( type == Qt::WindowMinimized ) {
-//        m_buttonMaximize->setProperty("class", s == Qt::WindowMaximized ? "min" : "normal") ;
-//        m_buttonMaximize->style()->polish(m_buttonMaximize);
-    }
-}
-
-void CMainWindow::bringToTop()
-{
-    QMainWindow::raise();
-    QMainWindow::activateWindow();
-}
-
-void CMainWindow::onScreenScalingFactor(double f)
-{
-    setMinimumSize(QSize(0,0));
-
-    double change_factor = f / m_dpiRatio;
-    m_dpiRatio = f;
-
-    QRect _src_rect = geometry();
-    int dest_width_change = int(_src_rect.width() * (1 - change_factor));
-    QRect _dest_rect = QRect{_src_rect.translated(dest_width_change/2,0).topLeft(), _src_rect.size() * change_factor};
-
-    setGeometry(_dest_rect);
-//    setMinimumSize(WindowHelper::correctWindowMinimumSize(geometry(), {EDITOR_WINDOW_MIN_WIDTH * f, MAIN_WINDOW_MIN_HEIGHT * f}));
-}
-
-void CMainWindow::onExitSizeMove()
-{
-    double dpi_ratio = Utils::getScreenDpiRatioByWidget(this);
-    if ( dpi_ratio != m_dpiRatio )
-        setScreenScalingFactor(dpi_ratio);
-}
-
-void CMainWindow::setWindowTitle(const QString& t)
-{
-    CMainWindowBase::setWindowTitle(t);
-    QMainWindow::setWindowTitle(t);
-}
-
-void CMainWindow::captureMouse()
-{
-    QMouseEvent _event(QEvent::MouseButtonRelease, QCursor::pos(), Qt::LeftButton, Qt::LeftButton, Qt::NoModifier);
-    QApplication::sendEvent(AscAppManager::mainWindow(), &_event);
-
-    setGeometry(QRect(QCursor::pos() - QPoint(300, 15), size()));
-
-    QPoint pt_in_title = (m_boxTitleBtns->geometry().topLeft() + QPoint(300,15));
-    _event = {QEvent::MouseButtonPress, pt_in_title, Qt::LeftButton, Qt::LeftButton, Qt::NoModifier};
-//    QApplication::sendEvent(this, &_event1);
-    CX11Decoration::dispatchMouseDown(&_event);
-
-    _event = {QEvent::MouseMove, QCursor::pos(), Qt::LeftButton, Qt::LeftButton, Qt::NoModifier};
-//    QApplication::sendEvent(this, &_event);
-    CX11Decoration::dispatchMouseMove(&_event);
 }
 
 void CMainWindow::onCloseEvent()
