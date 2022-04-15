@@ -185,8 +185,6 @@ CMainWindow::~CMainWindow()
         QObject::disconnect(m_modalSlotConnection);
     }
     m_closed = true;
-
-    //DestroyWindow( m_hWnd );
 }
 
 /** Public **/
@@ -218,12 +216,9 @@ void CMainWindow::toggleBorderless(bool showmax)
 
 void CMainWindow::adjustGeometry()
 {
-    int border_size = 0;
-    if (IsZoomed(m_hWnd) != FALSE) {      // is window maximized
-
-    } else {
-        border_size = int(MAIN_WINDOW_BORDER_WIDTH * m_dpiRatio);
-        setContentsMargins(border_size,border_size + 1,border_size,border_size);
+    if (!isMaximized()) {
+        const int border = int(MAIN_WINDOW_BORDER_WIDTH * m_dpiRatio);
+        setContentsMargins(border, border + 1, border, border);
     }
 }
 
@@ -237,22 +232,18 @@ void CMainWindow::setWindowState(Qt::WindowState state)
     default: showNormal(); break;}
 }
 
-void CMainWindow::setWindowBackgroundColor(const QColor& color)
+void CMainWindow::setWindowBackgroundColor(const QColor& background)
 {
-    int r, g, b;
-    color.getRgb(&r, &g, &b);
-    setStyleSheet(QString("background-color: rgb(%1,%2,%3)")
-                  .arg(QString::number(r), QString::number(g), QString::number(b)));
+    setWindowColors(background);
 }
 
 void CMainWindow::setWindowColors(const QColor& background, const QColor& border)
 {
-    int r, g, b;
-    border.getRgb(&r, &g, &b);
-    //COLORREF m_borderColor = RGB(r, g, b);
-    background.getRgb(&r, &g, &b);
-    setStyleSheet(QString("background-color: rgb(%1,%2,%3)")
-                  .arg(QString::number(r), QString::number(g), QString::number(b)));
+    Q_UNUSED(border)
+    QPalette pal = QPalette();
+    pal.setColor(QPalette::Window, background);
+    setAutoFillBackground(true);
+    setPalette(pal);
 }
 
 bool CMainWindow::isVisible()
@@ -267,14 +258,7 @@ CMainPanel * CMainWindow::mainPanel() const
 
 QRect CMainWindow::windowRect() const
 {
-    QRect _win_rect;
-    QPoint _top_left;
-    WINDOWPLACEMENT wp{sizeof(WINDOWPLACEMENT)};
-    if ( GetWindowPlacement(m_hWnd, &wp) ) {
-        _top_left = QPoint(wp.rcNormalPosition.left, wp.rcNormalPosition.top);
-        _win_rect = QRect( _top_left, QPoint(wp.rcNormalPosition.right, wp.rcNormalPosition.bottom));
-    }
-    return _win_rect;
+    return normalGeometry();
 }
 
 void CMainWindow::updateScaling()
@@ -313,7 +297,7 @@ void CMainWindow::applyTheme(const std::wstring& theme)
     QColor color = AscAppManager::themes().current().
             color(CTheme::ColorRole::ecrWindowBackground);
     setWindowBackgroundColor(color);
-    if (m_winType == WindowType::MAIN || m_winType == WindowType::SINGLE) {
+    if (m_winType == WindowType::MAIN) {
         mainPanel()->applyTheme(theme);
     }
     if (m_winType == WindowType::REPORTER) {

@@ -104,7 +104,8 @@ CAscApplicationManagerWrapper::~CAscApplicationManagerWrapper()
 
     if ( m_pMainWindow ) {
 #ifdef _WIN32
-        delete m_pMainWindow, m_pMainWindow= nullptr;
+        //delete m_pMainWindow, m_pMainWindow= nullptr;
+        m_pMainWindow->deleteLater();
 #else
         m_pMainWindow->deleteLater();
 #endif

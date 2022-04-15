@@ -58,7 +58,7 @@ public:
     void adjustGeometry();
     void setWindowState(Qt::WindowState);
     void setWindowBackgroundColor(const QColor&);
-    void setWindowColors(const QColor& background, const QColor& border);
+    void setWindowColors(const QColor&, const QColor& border = QColor());
     bool isVisible();
     virtual CMainPanel * mainPanel() const final;
     virtual QRect windowRect() const final;
