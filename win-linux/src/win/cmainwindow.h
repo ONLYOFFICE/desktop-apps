@@ -96,8 +96,6 @@ private:
     static void updateNotFound();
     static void updateError();
 #endif
-    WindowBase::CWindowGeometry const& minimumSize() const;
-    WindowBase::CWindowGeometry const& maximumSize() const;
     void doClose();
     void applyWindowState(Qt::WindowState);
     void slot_windowChangeState(Qt::WindowState);
@@ -114,15 +112,9 @@ private:
     void removeMaximumSize();
     void activateWindow();
     void focusMainPanel();
-
     bool isSetMinimumSize();
     bool isSetMaximumSize();
-
     int dpiCorrectValue(int v) const {return int(v * m_dpiRatio);}
-    int getMinimumHeight() const;
-    int getMinimumWidth() const;
-    int getMaximumHeight();
-    int getMaximumWidth();
 
     virtual void showEvent(QShowEvent *event) final;
     virtual void closeEvent(QCloseEvent *event) final;

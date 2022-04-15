@@ -549,16 +549,6 @@ void CMainWindow::updateError()
 }
 #endif
 
-WindowBase::CWindowGeometry const& CMainWindow::minimumSize() const
-{
-    return m_minSize;
-}
-
-WindowBase::CWindowGeometry const& CMainWindow::maximumSize() const
-{
-    return m_maxSize;
-}
-
 void CMainWindow::doClose()
 {
     qDebug() << "doClose";
@@ -759,26 +749,6 @@ bool CMainWindow::isSetMinimumSize()
 bool CMainWindow::isSetMaximumSize()
 {
     return m_maxSize.required;
-}
-
-int CMainWindow::getMinimumWidth() const
-{
-    return m_minSize.width;
-}
-
-int CMainWindow::getMinimumHeight() const
-{
-    return m_minSize.height;
-}
-
-int CMainWindow::getMaximumWidth()
-{
-    return m_maxSize.width;
-}
-
-int CMainWindow::getMaximumHeight()
-{
-    return m_maxSize.height;
 }
 
 void CMainWindow::showEvent(QShowEvent *event)
@@ -1052,12 +1022,12 @@ bool CMainWindow::nativeEvent(const QByteArray &eventType, void *message, long *
         }
         MINMAXINFO* minMaxInfo = ( MINMAXINFO* )msg->lParam;
         if (m_minSize.required) {
-            minMaxInfo->ptMinTrackSize.x = getMinimumWidth();
-            minMaxInfo->ptMinTrackSize.y = getMinimumHeight();
+            minMaxInfo->ptMinTrackSize.x = m_minSize.width;
+            minMaxInfo->ptMinTrackSize.y = m_minSize.height;
         }
         if (m_maxSize.required) {
-            minMaxInfo->ptMaxTrackSize.x = getMaximumWidth();
-            minMaxInfo->ptMaxTrackSize.y = getMaximumHeight();
+            minMaxInfo->ptMaxTrackSize.x = m_maxSize.width;
+            minMaxInfo->ptMaxTrackSize.y = m_maxSize.height;
         }
         return true;
     }
