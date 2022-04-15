@@ -1,0 +1,228 @@
+/* No comment provided by engineer. */
+"%@ Help" = "%@ Ajuda";
+
+/* No comment provided by engineer. */
+"About %@" = "Quant a %@";
+
+/* No comment provided by engineer. */
+"Acknowledgments" = "Reconeixements";
+
+/* No comment provided by engineer. */
+"Before signing the document, it must be saved." = "Abans de signar el document, s'ha de desar.";
+
+/* No comment provided by engineer. */
+"Cancel" = "Cancel·lar";
+
+/* No comment provided by engineer. */
+"Cannot open file of Digital Signature" = "No es pot obrir el fitxer de signatura digital";
+
+/* No comment provided by engineer. */
+"Cannot open file of Private Key" = "No es pot obrir el fitxer de clau privada";
+
+/* No comment provided by engineer. */
+"Cannot open folder of the file location." = "No es pot obrir la carpeta de la ubicació del fitxer.";
+
+/* No comment provided by engineer. */
+"Comma-Separated Values" = "Valors separats per comes";
+
+/* No comment provided by engineer. */
+"Create portal" = "Crear un portal";
+
+/* No comment provided by engineer. */
+"Delete and Quit" = "Suprimir i surtir";
+
+/* No comment provided by engineer. */
+"DjVu File" = "Fitxer DjVu";
+
+/* No comment provided by engineer. */
+"Do you want to save the changes made to the document \"%@\"?" = "Vols desar els canvis fets al document “%@”?";
+
+/* No comment provided by engineer. */
+"Document %ld.docx" = "Document %ld.docx";
+
+/* No comment provided by engineer. */
+"Document template" = "Plantilla de document";
+
+/* No comment provided by engineer. */
+"Electronic Publication" = "Publicació electrònica";
+
+/* No comment provided by engineer. */
+"Excel 97-2003 Spreadsheet" = "Full de càlcul Excel 97-2003";
+
+/* No comment provided by engineer. */
+"Excel 2007 Spreadsheet" = "Full de càlcul Excel 2007";
+
+/* No comment provided by engineer. */
+"FictionBook File" = "Fitxer FictionBook";
+
+/* No comment provided by engineer. */
+"File \"%@\" can not be open or not exist." = "L'arxiu \"%@\" no es pot obrir o no existeix.";
+
+/* No comment provided by engineer. */
+"File can not be open." = "No es pot obrir el fitxer.";
+
+/* No comment provided by engineer. */
+"File Format:" = "Format del fitxer:";
+
+/* No comment provided by engineer. */
+"Hide %@" = "Ocultar %@";
+
+/* No comment provided by engineer. */
+"HTML File" = "Fitxer HTML";
+
+/* No comment provided by engineer. */
+"If you have already purchased %@, you should find your activation key in an email confirmation." = "Si ja has comprat %@, hauries de trobar la clau d'activació en un correu electronic de confirmació.";
+
+/* No comment provided by engineer. */
+"License Agreement" = "Acord de llicència";
+
+/* No comment provided by engineer. */
+"MHT File" = "Fitxer MHT";
+
+/* No comment provided by engineer. */
+"Mobipocket e-book" = "Llibre electrònic de butxaca";
+
+/* No comment provided by engineer. */
+"new-document" = "Document nou";
+
+/* No comment provided by engineer. */
+"new-presentation" = "Presentació nova";
+
+/* No comment provided by engineer. */
+"new-spreadsheet" = "Full de càlcul nou";
+
+/* No comment provided by engineer. */
+"No" = "No";
+
+/* No comment provided by engineer. */
+"OK" = "D'ACORD";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE can not open the Digital Signature file. Try opening another file." = "ONLYOFFICE no pot obrir el fitxer de Signatura Digital. Prova d'obrir un altre fitxer.";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE can not open the Private Key. Try opening another file." = "ONLYOFFICE no pot obrir la clau privada. Prova d'obrir un altre fitxer.";
+
+/* No comment provided by engineer. */
+"OpenDocument Document Template" = "Obrir Document Plantilla de Document";
+
+/* No comment provided by engineer. */
+"OpenDocument Presentation Template" = "Obrir Document Plantilla de Presentació";
+
+/* No comment provided by engineer. */
+"OpenDocument Spreadsheet Template" = "Obrir Document Plantilla de Full de càlcul";
+
+/* No comment provided by engineer. */
+"Opening" = "Obertura";
+
+/* No comment provided by engineer. */
+"OpenOffice Document" = "Document d'OpenOffice";
+
+/* No comment provided by engineer. */
+"OpenOffice Presentation" = "Presentació de l'OpenOffice";
+
+/* No comment provided by engineer. */
+"OpenOffice Spreadsheet" = "Full de càlcul de l'OpenOffice";
+
+/* No comment provided by engineer. */
+"PDF File" = "Fitxer PDF";
+
+/* No comment provided by engineer. */
+"PDF/A File" = "Fitxer PDF/A";
+
+/* No comment provided by engineer. */
+"Plain Text" = "Text pla";
+
+/* No comment provided by engineer. */
+"PowerPoint 97-2003 Presentation" = "Presentació del PowerPoint 97-2003";
+
+/* No comment provided by engineer. */
+"PowerPoint 2007 Presentation" = "Presentació del PowerPoint 2007";
+
+/* No comment provided by engineer. */
+"PowerPoint Slide Show" = "Presentació de diapositives PowerPoint";
+
+/* No comment provided by engineer. */
+"Preparing..." = "Preparant...";
+
+/* No comment provided by engineer. */
+"Presentation %ld.pptx" = "Presentació %ld.pptx";
+
+/* No comment provided by engineer. */
+"Presentation template" = "Plantilla de presentació";
+
+/* No comment provided by engineer. */
+"Presenter View" = "Vista del presentador";
+
+/* No comment provided by engineer. */
+"Quit %@" = "Sortir de %@";
+
+/* No comment provided by engineer. */
+"Review Changes..." = "Revisa els canvis...";
+
+/* No comment provided by engineer. */
+"Rich Text Document" = "Document de text enriquit";
+
+/* No comment provided by engineer. */
+"Save" = "Desa";
+
+/* No comment provided by engineer. */
+"Save the document?" = "Voleu desar el document?";
+
+/* No comment provided by engineer. */
+"Spreadsheet %ld.xlsx" = "Full de càlcul %ld.xlsx";
+
+/* No comment provided by engineer. */
+"Spreadsheet template" = "Plantilla de full de càlcul";
+
+/* No comment provided by engineer. */
+"Thank you for evaluating %@!" = "Gràcies per avaluar %@!";
+
+/* No comment provided by engineer. */
+"The document \"%@\" must be built. Continue?" = "Cal crear el document \"%@\". Voleu continuar?";
+
+/* No comment provided by engineer. */
+"To open the file location, it must be saved." = "Per obrir la ubicació del fitxer, s'ha de desar.";
+
+/* No comment provided by engineer. */
+"Unconfirmed" = "No confirmat";
+
+/* No comment provided by engineer. */
+"Untitled" = "Sense títol";
+
+/* No comment provided by engineer. */
+"Version %@ (%@)" = "Versió %1$@ (%2$@)";
+
+/* No comment provided by engineer. */
+"Web Page" = "Pàgina web";
+
+/* No comment provided by engineer. */
+"With access to pro features" = "Amb accés a les funcions pro";
+
+/* No comment provided by engineer. */
+"Word 97-2003 Document" = "Document Word 97-2003";
+
+/* No comment provided by engineer. */
+"Word 2007 Document" = "Document Word 2007";
+
+/* No comment provided by engineer. */
+"XML Paper Specification" = "Especificació de paper XML";
+
+/* No comment provided by engineer. */
+"Yes" = "Si";
+
+/* No comment provided by engineer. */
+"You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?" = "Tens %1$ld documents de %2$@ amb canvis no confirmats. Voleu revisar aquests canvis abans de sortir?";
+
+/* No comment provided by engineer. */
+"You have successfully activated %@." = "Has activat correctament %@.";
+
+/* No comment provided by engineer. */
+"Your changes will be lost if you don’t save them." = "Els canvis es perdran si no els deseu.";
+
+/* No comment provided by engineer. */
+"Your subscription has expired.\n\nThe program works in the non-activated mode.\n\nNow you can prolong or upgrade your subscription with a discount." = "La vostra subscripció ha caducat.\n\nEl programa funciona en mode no activat.\n\nAra podeu prolongar o actualitzar la vostra subscripció amb un descompte.";
+
+/* No comment provided by engineer. */
+"Your subscription is about to expire\n(%d days left).\n\nWe have a special offer for you." = "La vostra subscripció està a punt de caducar. \n(%d dies restants).\n\nTenim una oferta especial per a tu.";
+

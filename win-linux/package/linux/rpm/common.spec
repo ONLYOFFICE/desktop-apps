@@ -7,7 +7,6 @@ Group: Applications/Office
 URL: %{_publisher_url}
 Vendor: %{_publisher_name}
 Packager: %{_publisher_name} %{_support_mail}
-BuildArch: %{_package_arch}
 AutoReq: no
 AutoProv: no
 

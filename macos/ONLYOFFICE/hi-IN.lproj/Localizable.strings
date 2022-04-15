@@ -1,0 +1,213 @@
+/* No comment provided by engineer. */
+"%@ Help" = "%@ सहायता";
+
+/* No comment provided by engineer. */
+"About %@" = "इसके बारे में %@";
+
+/* No comment provided by engineer. */
+"Acknowledgments" = "स्वीकृतियाँ";
+
+/* No comment provided by engineer. */
+"Before signing the document, it must be saved." = "दस्तावेज़ पर हस्ताक्षर करने से पहले, इसे सहेजना होगा।";
+
+/* No comment provided by engineer. */
+"Cancel" = "रद्द करें";
+
+/* No comment provided by engineer. */
+"Cannot open file of Digital Signature" = "डिजिटल हस्ताक्षर वाली फ़ाइल खोली नहीं जा सकती है";
+
+/* No comment provided by engineer. */
+"Cannot open file of Private Key" = "निजी कुंजी वाली फ़ाइल खोली नहीं जा सकती है";
+
+/* No comment provided by engineer. */
+"Cannot open folder of the file location." = "फ़ाइल के लोकेशन वाला फ़ोल्डर खोला नहीं जा सकता है। ";
+
+/* No comment provided by engineer. */
+"Comma-Separated Values" = "अल्पविराम से विभाजित मान";
+
+/* No comment provided by engineer. */
+"Create portal" = "पोर्टल बनाए";
+
+/* No comment provided by engineer. */
+"Delete and Quit" = "डिलीट करें  एवं बाहर आ जाएँ";
+
+/* No comment provided by engineer. */
+"DjVu File" = "डीजेवू फ़ाइल";
+
+/* No comment provided by engineer. */
+"Do you want to save the changes made to the document \"%@\"?" = "क्या आप दस्तावेज़ में किए गए बदलावों को सहेजना चाहते हैं \"%@\"?";
+
+/* No comment provided by engineer. */
+"Document %ld.docx" = "दस्तावेज़ %आईडी.डॉक्स";
+
+/* No comment provided by engineer. */
+"Document template" = "दस्तावेज़ टेम्पलेट";
+
+/* No comment provided by engineer. */
+"Excel 97-2003 Spreadsheet" = "एक्सेल 97-2003 स्प्रेडशीट";
+
+/* No comment provided by engineer. */
+"Excel 2007 Spreadsheet" = "एक्सेल 2007 स्प्रेडशीट";
+
+/* No comment provided by engineer. */
+"File \"%@\" can not be open or not exist." = "फ़ाइल \"%@\" को खोला नहीं जा सकता या यह मौजूद नहीं है।";
+
+/* No comment provided by engineer. */
+"File can not be open." = "फ़ाइल को खोला नहीं जा सकता है।";
+
+/* No comment provided by engineer. */
+"File Format:" = "फ़ाइल प्रारूप:";
+
+/* No comment provided by engineer. */
+"Hide %@" = "छिपाएँ %@";
+
+/* No comment provided by engineer. */
+"If you don't review your documents, all your changeses will be lost." = "यदि आप अपने दस्तावेज़ों की समीक्षा नहीं करेंगे, तो आपके सभी बदलाव लुप्त हो जाएँगे।";
+
+/* No comment provided by engineer. */
+"If you have already purchased %@, you should find your activation key in an email confirmation." = "यदि आपने पहले ही खरीद लिया है %@, तो आपको अपनी सक्रियता कुंजी एक पुष्टिकरण ईमेल में मिलनी चाहिए।";
+
+/* No comment provided by engineer. */
+"License Agreement" = "लाइसेंस अनुबंध";
+
+/* No comment provided by engineer. */
+"Mobipocket e-book" = "मोबीपॉकेट ई-बुक";
+
+/* No comment provided by engineer. */
+"new-document" = "नया दस्तावेज़";
+
+/* No comment provided by engineer. */
+"new-presentation" = "नई प्रस्तुति ";
+
+/* No comment provided by engineer. */
+"new-spreadsheet" = "नई स्प्रेडशीट";
+
+/* No comment provided by engineer. */
+"No" = "नहीं";
+
+/* No comment provided by engineer. */
+"OK" = "ठीक है";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE can not open the Digital Signature file. Try opening another file." = "ओनलीऑफिस डिजिटल हस्ताक्षर वाली फ़ाइल नहीं खोल सकता है। अन्य फ़ाइल को खोलने का प्रयास करें।";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE can not open the Private Key. Try opening another file." = "ओनलीऑफिस निजी कुंजी नहीं खोल सकता है। अन्य फ़ाइल को खोलने का प्रयास करें।";
+
+/* No comment provided by engineer. */
+"OpenDocument Document Template" = "ओपनदस्तावेज़ दस्तावेज़ टेम्पलेट";
+
+/* No comment provided by engineer. */
+"OpenDocument Presentation Template" = "ओपनदस्तावेज़ प्रस्तुति टेम्पलेट";
+
+/* No comment provided by engineer. */
+"OpenDocument Spreadsheet Template" = "ओपनदस्तावेज़ स्प्रेडशीट टेम्पलेट";
+
+/* No comment provided by engineer. */
+"Opening" = "खुल रही है";
+
+/* No comment provided by engineer. */
+"OpenOffice Document" = "ओपनऑफिस दस्तावेज़";
+
+/* No comment provided by engineer. */
+"OpenOffice Presentation" = "ओपनऑफिस प्रस्तुति";
+
+/* No comment provided by engineer. */
+"OpenOffice Spreadsheet" = "ओपनऑफिस स्प्रेडशीट";
+
+/* No comment provided by engineer. */
+"PDF File" = "पीडीएफ फ़ाइल";
+
+/* No comment provided by engineer. */
+"PDF/A File" = "पीडीएफ/ए फ़ाइल";
+
+/* No comment provided by engineer. */
+"Plain Text" = "सादा टेक्स्ट";
+
+/* No comment provided by engineer. */
+"PowerPoint 97-2003 Presentation" = "पावरपॉइंट 97-2003 प्रस्तुति";
+
+/* No comment provided by engineer. */
+"PowerPoint 2007 Presentation" = "पावरपॉइंट 2007 प्रस्तुति";
+
+/* No comment provided by engineer. */
+"PowerPoint Slide Show" = "पावरपॉइंट स्लाइड शो";
+
+/* No comment provided by engineer. */
+"Preparing..." = "तैयार कर रहा है...";
+
+/* No comment provided by engineer. */
+"Presentation %ld.pptx" = "प्रस्तुति %आईडी.पीपीटीएक्स";
+
+/* No comment provided by engineer. */
+"Presentation template" = "प्रस्तुति टेम्पलेट";
+
+/* No comment provided by engineer. */
+"Quit %@" = "बाहर आ जाएँ %@";
+
+/* No comment provided by engineer. */
+"Review Changes..." = "बदलावों की समीक्षा करें...";
+
+/* No comment provided by engineer. */
+"Rich Text Document" = "रिच टेक्स्ट दस्तावेज़";
+
+/* No comment provided by engineer. */
+"Save" = "सहेजें";
+
+/* No comment provided by engineer. */
+"Save the document?" = "दस्तावेज़ को सहेजें?";
+
+/* No comment provided by engineer. */
+"Spreadsheet %ld.xlsx" = "स्प्रेडशीट %आईडी.एक्सएलएसएक्स";
+
+/* No comment provided by engineer. */
+"Spreadsheet template" = "स्प्रेडशीट टेम्पलेट";
+
+/* No comment provided by engineer. */
+"Thank you for evaluating %@!" = "मूल्यांकन करने के लिए धन्यवाद %@!";
+
+/* No comment provided by engineer. */
+"The document \"%@\" must be built. Continue?" = "दस्तावेज़ \"%@\" बनाया जाना चाहिए। जारी रखें?";
+
+/* No comment provided by engineer. */
+"To open the file location, it must be saved." = "फ़ाइल लोकेशन को खोलने के लिए, इसे सहेजना होगा।";
+
+/* No comment provided by engineer. */
+"Unconfirmed" = "अपुष्टिकृत";
+
+/* No comment provided by engineer. */
+"Untitled" = "शीर्षकहीन";
+
+/* No comment provided by engineer. */
+"Version %@ (%@)" = "संस्करण %1$@ (%2$@)";
+
+/* No comment provided by engineer. */
+"Web Page" = "वेब पेज";
+
+/* No comment provided by engineer. */
+"Word 97-2003 Document" = "वर्ड 97-2003 दस्तावेज़";
+
+/* No comment provided by engineer. */
+"Word 2007 Document" = "वर्ड 2007 दस्तावेज़";
+
+/* No comment provided by engineer. */
+"XML Paper Specification" = "एक्सएमएल पेपर विनिर्देश";
+
+/* No comment provided by engineer. */
+"Yes" = "हाँ";
+
+/* No comment provided by engineer. */
+"You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?" = "आपके पास %1$ld %2$@ दस्तावेज़ अपुष्ट बदलावों के साथ हैं। क्या आप बाहर जाने से पहले इन बदलावों की समीक्षा करना चाहेंगे?";
+
+/* No comment provided by engineer. */
+"You have successfully activated %@." = "आपने सफलतापूर्वक सक्रिय कर लिया है %@।";
+
+/* No comment provided by engineer. */
+"Your changes will be lost if you don’t save them." = "आपके बदलाव लुप्त हो जाएँगे यदि आप उन्हें  नहीं सहेजेंगे।";
+
+/* No comment provided by engineer. */
+"Your subscription has expired.\n\nThe program works in the non-activated mode.\n\nNow you can prolong or upgrade your subscription with a discount." = "आपकी सदस्यता समाप्त हो गई है।\n\nयह प्रोग्राम गैर-सक्रिय मोड में कार्य करता है।\n\nअब आप अपनी सदस्यता  को स्थगित या अपग्रेड कर सकते हैं छूट के साथ।";
+
+/* No comment provided by engineer. */
+"Your subscription is about to expire\n(%d days left).\n\nWe have a special offer for you." = "आपकी सदस्यता समाप्त होने वाली है\n(%d दिन बचे हैं)।\n\nहमारे पास आपके लिए एक विशेष ऑफर है।";
+

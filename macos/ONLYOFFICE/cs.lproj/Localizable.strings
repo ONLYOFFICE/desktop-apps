@@ -1,0 +1,213 @@
+/* No comment provided by engineer. */
+"%@ Help" = "%@ Pomoc";
+
+/* No comment provided by engineer. */
+"About %@" = "O %@";
+
+/* No comment provided by engineer. */
+"Acknowledgments" = "Poděkování";
+
+/* No comment provided by engineer. */
+"Before signing the document, it must be saved." = "Před podpisem musí být dokument uložen.";
+
+/* No comment provided by engineer. */
+"Cancel" = "Zrušit";
+
+/* No comment provided by engineer. */
+"Cannot open file of Digital Signature" = "Nelze otevřít soubor digitálního podpisu";
+
+/* No comment provided by engineer. */
+"Cannot open file of Private Key" = "Nelze otevřít soubor privátního klíče";
+
+/* No comment provided by engineer. */
+"Cannot open folder of the file location." = "Nelze otevřít složku s umístěním souboru.";
+
+/* No comment provided by engineer. */
+"Comma-Separated Values" = "Hodnoty oddělené čárkami";
+
+/* No comment provided by engineer. */
+"Create portal" = "Vytvořit portál";
+
+/* No comment provided by engineer. */
+"Delete and Quit" = "Smazat a ukončit";
+
+/* No comment provided by engineer. */
+"DjVu File" = "Soubor DjVu";
+
+/* No comment provided by engineer. */
+"Do you want to save the changes made to the document \"%@\"?" = "Chcete uložit změny provedené v dokumentu \"%@\"?";
+
+/* No comment provided by engineer. */
+"Document %ld.docx" = "Dokument %ld.docx";
+
+/* No comment provided by engineer. */
+"Document template" = "Šablona dokumentu";
+
+/* No comment provided by engineer. */
+"Excel 97-2003 Spreadsheet" = "Tabulka Excel 97-2003";
+
+/* No comment provided by engineer. */
+"Excel 2007 Spreadsheet" = "Tabulka Excel 2007";
+
+/* No comment provided by engineer. */
+"File \"%@\" can not be open or not exist." = "Soubor \"%@\" nelze otevřít nebo neexistuje.";
+
+/* No comment provided by engineer. */
+"File can not be open." = "Soubor nelze otevřít.";
+
+/* No comment provided by engineer. */
+"File Format:" = "Formát souboru:";
+
+/* No comment provided by engineer. */
+"Hide %@" = "Skrýt %@";
+
+/* No comment provided by engineer. */
+"If you don't review your documents, all your changeses will be lost." = "Pokud své dokumenty nezkontrolujete, všechny vaše změny budou ztraceny.";
+
+/* No comment provided by engineer. */
+"If you have already purchased %@, you should find your activation key in an email confirmation." = "Pokud jste již zakoupili %@, měli byste svůj aktivační klíč najít v e-mailovém potvrzení.";
+
+/* No comment provided by engineer. */
+"License Agreement" = "Licenční smlouva";
+
+/* No comment provided by engineer. */
+"Mobipocket e-book" = "Elektronická kniha Mobipocket";
+
+/* No comment provided by engineer. */
+"new-document" = "Nový dokument";
+
+/* No comment provided by engineer. */
+"new-presentation" = "Nová prezentace";
+
+/* No comment provided by engineer. */
+"new-spreadsheet" = "Nová tabulka";
+
+/* No comment provided by engineer. */
+"No" = "Ne";
+
+/* No comment provided by engineer. */
+"OK" = "OK";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE can not open the Digital Signature file. Try opening another file." = "ONLYOFFICE nemůže otevřít soubor digitálního podpisu.Zkuste otevřít jiný soubor.";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE can not open the Private Key. Try opening another file." = "ONLYOFFICE nemůže otevřít privátní klíč.Zkuste otevřít jiný soubor.";
+
+/* No comment provided by engineer. */
+"OpenDocument Document Template" = "Šablona dokumentu OpenDocument";
+
+/* No comment provided by engineer. */
+"OpenDocument Presentation Template" = "Šablona prezentace OpenDocument";
+
+/* No comment provided by engineer. */
+"OpenDocument Spreadsheet Template" = "Šablona tabulky OpenDocument";
+
+/* No comment provided by engineer. */
+"Opening" = "Otevírám";
+
+/* No comment provided by engineer. */
+"OpenOffice Document" = "Dokument OpenOffice";
+
+/* No comment provided by engineer. */
+"OpenOffice Presentation" = "Prezentace OpenOffice";
+
+/* No comment provided by engineer. */
+"OpenOffice Spreadsheet" = "Tabulka OpenOffice";
+
+/* No comment provided by engineer. */
+"PDF File" = "Soubor PDF";
+
+/* No comment provided by engineer. */
+"PDF/A File" = "Soubor PDF/A";
+
+/* No comment provided by engineer. */
+"Plain Text" = "Prostý text";
+
+/* No comment provided by engineer. */
+"PowerPoint 97-2003 Presentation" = "Prezentace PowerPoint 97-2003";
+
+/* No comment provided by engineer. */
+"PowerPoint 2007 Presentation" = "Prezentace PowerPoint 2007";
+
+/* No comment provided by engineer. */
+"PowerPoint Slide Show" = "Slide Show PowerPoint";
+
+/* No comment provided by engineer. */
+"Preparing..." = "Připravuji ...";
+
+/* No comment provided by engineer. */
+"Presentation %ld.pptx" = "Prezentace %ld.pptx";
+
+/* No comment provided by engineer. */
+"Presentation template" = "Šablona prezentace";
+
+/* No comment provided by engineer. */
+"Quit %@" = "Opustit %@";
+
+/* No comment provided by engineer. */
+"Review Changes..." = "Zkontrolovat změny...";
+
+/* No comment provided by engineer. */
+"Rich Text Document" = "Soubor RTF";
+
+/* No comment provided by engineer. */
+"Save" = "Uložit";
+
+/* No comment provided by engineer. */
+"Save the document?" = "Uložit dokument";
+
+/* No comment provided by engineer. */
+"Spreadsheet %ld.xlsx" = "Tabulka %ld.xlsx";
+
+/* No comment provided by engineer. */
+"Spreadsheet template" = "Šablona tabulky";
+
+/* No comment provided by engineer. */
+"Thank you for evaluating %@!" = "Děkujeme vám za hodnocení %@!";
+
+/* No comment provided by engineer. */
+"The document \"%@\" must be built. Continue?" = "Dokument \"%@\" musí být vytvořen.Pokračovat?";
+
+/* No comment provided by engineer. */
+"To open the file location, it must be saved." = "Chcete-li otevřít umístění souboru, musí být uloženo.";
+
+/* No comment provided by engineer. */
+"Unconfirmed" = "Nepotvrzeno";
+
+/* No comment provided by engineer. */
+"Untitled" = "Bez názvu";
+
+/* No comment provided by engineer. */
+"Version %@ (%@)" = "Verze %1$@ (%2$@)";
+
+/* No comment provided by engineer. */
+"Web Page" = "Webová stránka";
+
+/* No comment provided by engineer. */
+"Word 97-2003 Document" = "Dokument aplikace Word 97-2003";
+
+/* No comment provided by engineer. */
+"Word 2007 Document" = "Dokument aplikace Word 2007";
+
+/* No comment provided by engineer. */
+"XML Paper Specification" = "Specifikace XML Paper";
+
+/* No comment provided by engineer. */
+"Yes" = "Ano";
+
+/* No comment provided by engineer. */
+"You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?" = "Máte %1$ld %2$@ dokumentů s nepotvrzenými změnami. Chcete tyto změny před ukončením zkontrolovat?";
+
+/* No comment provided by engineer. */
+"You have successfully activated %@." = "Úspěšně jste aktivovali %@.";
+
+/* No comment provided by engineer. */
+"Your changes will be lost if you don’t save them." = "Pokud změny neuložíte, budou ztraceny.";
+
+/* No comment provided by engineer. */
+"Your subscription has expired.\n\nThe program works in the non-activated mode.\n\nNow you can prolong or upgrade your subscription with a discount." = "Platnost vašeho předplatného vypršela.\n\nProgram pracuje v neaktivovaném režimu.\n\nNyní můžete prodloužit nebo upgradovat předplatné se slevou.";
+
+/* No comment provided by engineer. */
+"Your subscription is about to expire\n(%d days left).\n\nWe have a special offer for you." = "Platnost vašeho předplatného brzy vyprší\n(zbývá %d dní).\n\nMáme pro vás speciální nabídku.";
+

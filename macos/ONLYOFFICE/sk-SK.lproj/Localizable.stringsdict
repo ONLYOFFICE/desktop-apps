@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>%d days are left until the license expiration.</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@dní@</string>
+		<key>days</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>few</key>
+			<string>Do vypršania platnosti licencie zostávajú %d dni.</string>
+			<key>many</key>
+			<string>Do vypršania platnosti licencie zostáva %d dní.</string>
+			<key>one</key>
+			<string>Do vypršania platnosti licencie zostáva %d deň.</string>
+			<key>other</key>
+			<string>Do vypršania platnosti licencie zostáva %d dňa.</string>
+		</dict>
+	</dict>
+	<key>You are using a trial version of the application.
+The trial period will end in %d days, after that you will not be able to create and edit documents.</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@dní@</string>
+		<key>days</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>few</key>
+			<string>Používate skúšobnú verziu aplikácie.
+Skúšobná doba sa skončí o %d dni, potom už nebudete môcť vytvárať a upravovať dokumenty.</string>
+			<key>many</key>
+			<string>Používate skúšobnú verziu aplikácie.
+Skúšobná doba sa skončí o %d dní, potom už nebudete môcť vytvárať a upravovať dokumenty.</string>
+			<key>one</key>
+			<string>Používate skúšobnú verziu aplikácie.
+Skúšobná doba sa skončí o %d deň, potom už nebudete môcť vytvárať a upravovať dokumenty.</string>
+			<key>other</key>
+			<string>Používate skúšobnú verziu aplikácie.
+Skúšobná doba sa skončí o %d dňa, potom už nebudete môcť vytvárať a upravovať dokumenty.</string>
+		</dict>
+	</dict>
+	<key>You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@dokumenty@</string>
+		<key>documents</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>ld</string>
+			<key>few</key>
+			<string>Máte %ld%@ dokumenty s nepotvrdenými zmenami. Chcete skontrolovať tieto zmeny pred ukončením?</string>
+			<key>many</key>
+			<string>Máte %ld%@ dokumentov s nepotvrdenými zmenami. Chcete skontrolovať tieto zmeny pred ukončením?</string>
+			<key>one</key>
+			<string>Máte %ld%@ dokument s nepotvrdenými zmenami. Chcete skontrolovať tieto zmeny pred ukončením?</string>
+			<key>other</key>
+			<string>Máte %ld%@ dokumentov s nepotvrdenými zmenami. Chcete skontrolovať tieto zmeny pred ukončením?</string>
+		</dict>
+	</dict>
+</dict>
+</plist>

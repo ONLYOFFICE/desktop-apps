@@ -1,0 +1,213 @@
+/* No comment provided by engineer. */
+"%@ Help" = "%@ Apua";
+
+/* No comment provided by engineer. */
+"About %@" = "Tietoja %@";
+
+/* No comment provided by engineer. */
+"Acknowledgments" = "Suostumus";
+
+/* No comment provided by engineer. */
+"Before signing the document, it must be saved." = "Ennen kuin dokumentti voidaan allekirjoittaa, se tulee tallentaa.";
+
+/* No comment provided by engineer. */
+"Cancel" = "Peruuta";
+
+/* No comment provided by engineer. */
+"Cannot open file of Digital Signature" = "Digitaalisen allekirjoituksen tiedostoa ei voida avata";
+
+/* No comment provided by engineer. */
+"Cannot open file of Private Key" = "Henkilökohtaisen avaimen tiedostoa ei voida avata";
+
+/* No comment provided by engineer. */
+"Cannot open folder of the file location." = "Kansiota, jossa tiedosto sijaitsee ei voida avata.";
+
+/* No comment provided by engineer. */
+"Comma-Separated Values" = "Pilkulla erotetut arvot";
+
+/* No comment provided by engineer. */
+"Create portal" = "Luo portaali";
+
+/* No comment provided by engineer. */
+"Delete and Quit" = "Poista ja Lopeta";
+
+/* No comment provided by engineer. */
+"DjVu File" = "DjVu Tiedosto";
+
+/* No comment provided by engineer. */
+"Do you want to save the changes made to the document \"%@\"?" = "Haluatko tallentaa muutokset, jotka tehtiin dokumentille \"%@\"?";
+
+/* No comment provided by engineer. */
+"Document %ld.docx" = "Dokumentti %ld.docx";
+
+/* No comment provided by engineer. */
+"Document template" = "Asiakirjamalli";
+
+/* No comment provided by engineer. */
+"Excel 97-2003 Spreadsheet" = "Excel 97-2003 Laskentataulukko";
+
+/* No comment provided by engineer. */
+"Excel 2007 Spreadsheet" = "Excel 2007 Laskentataulukko";
+
+/* No comment provided by engineer. */
+"File \"%@\" can not be open or not exist." = "Tiedostoa \"%@\" ei voida avata tai sitä ei ole.";
+
+/* No comment provided by engineer. */
+"File can not be open." = "Tiedostoa ei voida avata.";
+
+/* No comment provided by engineer. */
+"File Format:" = "Tiedostotyyppi:";
+
+/* No comment provided by engineer. */
+"Hide %@" = "Piilota %@";
+
+/* No comment provided by engineer. */
+"If you don't review your documents, all your changeses will be lost." = "Jos et käy läpi dokumentteja, kaikki muutoksesi poistuvat.";
+
+/* No comment provided by engineer. */
+"If you have already purchased %@, you should find your activation key in an email confirmation." = "Jos olet jos ostanut tuotteen %@, aktivointiavaimesi on sähköposti-vahvistuksessasi.";
+
+/* No comment provided by engineer. */
+"License Agreement" = "Lisenssisopimus";
+
+/* No comment provided by engineer. */
+"Mobipocket e-book" = "Mobipocket e-book";
+
+/* No comment provided by engineer. */
+"new-document" = "Uusi asiakirja";
+
+/* No comment provided by engineer. */
+"new-presentation" = "Uusi presentaatio";
+
+/* No comment provided by engineer. */
+"new-spreadsheet" = "Uusi taulukko";
+
+/* No comment provided by engineer. */
+"No" = "Ei";
+
+/* No comment provided by engineer. */
+"OK" = "OK";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE can not open the Digital Signature file. Try opening another file." = "ONLYOFFICE ei voi avata digitaalisen allekirjoituksen tiedostoa. ";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE can not open the Private Key. Try opening another file." = "ONLYOFFICE ei voi avata henkilökohtaista avainta. Yritä avata toinen tiedosto.";
+
+/* No comment provided by engineer. */
+"OpenDocument Document Template" = "OpenDocument asiakirjamalli";
+
+/* No comment provided by engineer. */
+"OpenDocument Presentation Template" = "OpenDocument presentaatiomalli";
+
+/* No comment provided by engineer. */
+"OpenDocument Spreadsheet Template" = "OpenDocument taulukkomalli";
+
+/* No comment provided by engineer. */
+"Opening" = "Avataan";
+
+/* No comment provided by engineer. */
+"OpenOffice Document" = "OpenOffice Dokumentti";
+
+/* No comment provided by engineer. */
+"OpenOffice Presentation" = "OpenOffice Esitys";
+
+/* No comment provided by engineer. */
+"OpenOffice Spreadsheet" = "OpenOffice Laskentataulukko";
+
+/* No comment provided by engineer. */
+"PDF File" = "PDF Tiedosto";
+
+/* No comment provided by engineer. */
+"PDF/A File" = "PDF/A Tiedosto";
+
+/* No comment provided by engineer. */
+"Plain Text" = "Pelkkä Teksti";
+
+/* No comment provided by engineer. */
+"PowerPoint 97-2003 Presentation" = "PowerPoint 97-2003 Esitys";
+
+/* No comment provided by engineer. */
+"PowerPoint 2007 Presentation" = "PowerPoint 2007 Esitys";
+
+/* No comment provided by engineer. */
+"PowerPoint Slide Show" = "PowerPoint Diaesitys";
+
+/* No comment provided by engineer. */
+"Preparing..." = "Valmistellaan...";
+
+/* No comment provided by engineer. */
+"Presentation %ld.pptx" = "Esitys %ld.pptx";
+
+/* No comment provided by engineer. */
+"Presentation template" = "Presentaatiomalli";
+
+/* No comment provided by engineer. */
+"Quit %@" = "Lopeta %@";
+
+/* No comment provided by engineer. */
+"Review Changes..." = "Tarkasta muutokset...";
+
+/* No comment provided by engineer. */
+"Rich Text Document" = "Rich Text Dokumentti";
+
+/* No comment provided by engineer. */
+"Save" = "Tallenna";
+
+/* No comment provided by engineer. */
+"Save the document?" = "Tallenna asiakirja?";
+
+/* No comment provided by engineer. */
+"Spreadsheet %ld.xlsx" = "Laskentataulukko %ld.xlsx";
+
+/* No comment provided by engineer. */
+"Spreadsheet template" = "taulukkomalli";
+
+/* No comment provided by engineer. */
+"Thank you for evaluating %@!" = "Kiitos arviostasi tuotteesta %@!";
+
+/* No comment provided by engineer. */
+"The document \"%@\" must be built. Continue?" = "Asiakirja \"%@\" pitää luoda. Jatka?";
+
+/* No comment provided by engineer. */
+"To open the file location, it must be saved." = "Jotta tiedoston sijainti voidaan avata, se pitää tallentaa.";
+
+/* No comment provided by engineer. */
+"Unconfirmed" = "Vahvistamaton";
+
+/* No comment provided by engineer. */
+"Untitled" = "Nimetön";
+
+/* No comment provided by engineer. */
+"Version %@ (%@)" = "Versio %1$@ (%2$@)";
+
+/* No comment provided by engineer. */
+"Web Page" = "Verkkosivu";
+
+/* No comment provided by engineer. */
+"Word 97-2003 Document" = "Word 97-2003 Dokumentti";
+
+/* No comment provided by engineer. */
+"Word 2007 Document" = "Word 2007 Dokumentti";
+
+/* No comment provided by engineer. */
+"XML Paper Specification" = "XML Asiakirjamuoto";
+
+/* No comment provided by engineer. */
+"Yes" = "Kyllä";
+
+/* No comment provided by engineer. */
+"You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?" = "Sinulla on %1$ld %2$@ dokumenttia, joissa on tarkistamattomia muutoksia. Haluatko tarkistaa muutokset, ennen kuin lopetat?";
+
+/* No comment provided by engineer. */
+"You have successfully activated %@." = "Olet aktivoinut onnistuneesti tuotteen %@.";
+
+/* No comment provided by engineer. */
+"Your changes will be lost if you don’t save them." = "Muutoksesi katoavat, jos et tallenna niitä.";
+
+/* No comment provided by engineer. */
+"Your subscription has expired.\n\nThe program works in the non-activated mode.\n\nNow you can prolong or upgrade your subscription with a discount." = "Tilauksesi on mennyt vanhaksi.\n\nOhjelma toimii ei-aktiivisessa muodossa.\n\nNyt voit pidentää tai päivittää tilauksesi alennettuun hintaan.";
+
+/* No comment provided by engineer. */
+"Your subscription is about to expire\n(%d days left).\n\nWe have a special offer for you." = "Tialuksesi on vanhentumassa\n(%d päivää jäljellä).\n\nMeilä on sinulle erikoistarjous.";
+
