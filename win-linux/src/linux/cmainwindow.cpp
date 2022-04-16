@@ -372,18 +372,9 @@ void CMainWindow::setScreenScalingFactor(double factor)
         CX11Decoration::onDpiChanged(factor);
         QString css(AscAppManager::getWindowStylesheets(factor));
         if (!css.isEmpty()) {
-            double change_factor = factor / m_dpiRatio;
-            m_dpiRatio = factor;
+            onScreenScalingFactor(factor);
             _m_pMainPanel->setStyleSheet(css);
             _m_pMainPanel->setScreenScalingFactor(factor);
-            setMinimumSize({0, 0});
-
-            QRect _src_rect = geometry();
-            if (!isMaximized()) {
-                int dest_width_change = int(_src_rect.width() * (1 - change_factor));
-                QRect dest_rect = QRect{_src_rect.translated(dest_width_change/2,0).topLeft(), _src_rect.size() * change_factor};
-                setGeometry(dest_rect);
-            }
             // TODO: skip window min size for usability test
     //        setMinimumSize(WindowHelper::correctWindowMinimumSize(_src_rect, {MAIN_WINDOW_MIN_WIDTH * factor, MAIN_WINDOW_MIN_HEIGHT * factor}));
         }
@@ -394,15 +385,8 @@ void CMainWindow::setScreenScalingFactor(double factor)
     if (m_winType == WindowType::REPORTER) {
         QString css(AscAppManager::getWindowStylesheets(factor));
         if (!css.isEmpty()) {
-            double change_factor = factor / m_dpiRatio;
-            m_dpiRatio = factor;
+            onScreenScalingFactor(factor);
             m_pMainPanel->setStyleSheet(css);
-            setMinimumSize({0,0});
-
-            QRect _src_rect = geometry();
-            int dest_width_change = int(_src_rect.width() * (1 - change_factor));
-            QRect _dest_rect = QRect{_src_rect.translated(dest_width_change/2,0).topLeft(), _src_rect.size() * change_factor};
-            setGeometry(_dest_rect);
     //        setMinimumSize(WindowHelper::correctWindowMinimumSize(_dest_rect, {WINDOW_MIN_WIDTH*factor, WINDOW_MIN_HEIGHT*factor}));
         }
     }
@@ -444,11 +428,12 @@ void CMainWindow::setWindowTitle(const QString& t)
 
 /** Private **/
 
-void CMainWindow::onScreenScalingFactor(double f)
+void CMainWindow::onScreenScalingFactor(double factor)
 {
     setMinimumSize(QSize(0,0));
-    double change_factor = f / m_dpiRatio;
-    m_dpiRatio = f;
+    double change_factor = factor / m_dpiRatio;
+    m_dpiRatio = factor;
+    if (isMaximized() && m_winType == WindowType::MAIN) return;
     QRect _src_rect = geometry();
     int dest_width_change = int(_src_rect.width() * (1 - change_factor));
     QRect _dest_rect = QRect{_src_rect.translated(dest_width_change/2,0).topLeft(), _src_rect.size() * change_factor};
