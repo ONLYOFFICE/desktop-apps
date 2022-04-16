@@ -512,12 +512,6 @@ void CMainWindow::doClose()
     });
 }
 
-void CMainWindow::applyWindowState(Qt::WindowState s)
-{
-    m_buttonMaximize->setProperty("class", s == Qt::WindowMaximized ? "min" : "normal") ;
-    m_buttonMaximize->style()->polish(m_buttonMaximize);
-}
-
 void CMainWindow::slot_windowClose()
 {
     if (isVisible()) {

@@ -356,14 +356,11 @@ void CMainWindow::captureMouse()
 {
     QMouseEvent _event(QEvent::MouseButtonRelease, QCursor::pos(), Qt::LeftButton, Qt::LeftButton, Qt::NoModifier);
     QApplication::sendEvent(AscAppManager::mainWindow(), &_event);
-
     setGeometry(QRect(QCursor::pos() - QPoint(300, 15), size()));
-
     QPoint pt_in_title = (m_boxTitleBtns->geometry().topLeft() + QPoint(300,15));
     _event = {QEvent::MouseButtonPress, pt_in_title, Qt::LeftButton, Qt::LeftButton, Qt::NoModifier};
 //    QApplication::sendEvent(this, &_event1);
     CX11Decoration::dispatchMouseDown(&_event);
-
     _event = {QEvent::MouseMove, QCursor::pos(), Qt::LeftButton, Qt::LeftButton, Qt::NoModifier};
 //    QApplication::sendEvent(this, &_event);
     CX11Decoration::dispatchMouseMove(&_event);
@@ -489,30 +486,15 @@ bool CMainWindow::event(QEvent * event)
                 ((CMainPanel *)_m_pMainPanel)->applyMainWindowState(Qt::WindowMinimized);
             }
         } else
-        if (m_winType == WindowType::SINGLE) {
-            if (isCustomWindowStyle()) {
-                if(_e_statechange->oldState() == Qt::WindowNoState && windowState() == Qt::WindowMaximized) {
-                    layout()->setMargin(0);
-                    m_buttonMaximize->setProperty("class", "min");
-                    m_buttonMaximize->style()->polish(m_buttonMaximize);
-                } else
-                if (this->windowState() == Qt::WindowNoState) {
-                    layout()->setMargin(CX11Decoration::customWindowBorderWith() * m_dpiRatio);
-                    m_buttonMaximize->setProperty("class", "normal");
-                    m_buttonMaximize->style()->polish(m_buttonMaximize);
-                }
-            }
-        } else
-        if (m_winType == WindowType::REPORTER) {
-            if( _e_statechange->oldState() == Qt::WindowNoState && windowState() == Qt::WindowMaximized ) {
+        if (m_winType == WindowType::SINGLE || m_winType == WindowType::REPORTER) {
+            if (!isCustomWindowStyle() && m_winType == WindowType::SINGLE) return QMainWindow::event(event);
+            if(_e_statechange->oldState() == Qt::WindowNoState && windowState() == Qt::WindowMaximized) {
                 layout()->setMargin(0);
-                m_buttonMaximize->setProperty("class", "min");
-                m_buttonMaximize->style()->polish(m_buttonMaximize);
+                applyWindowState(Qt::WindowMaximized);
             } else
             if (this->windowState() == Qt::WindowNoState) {
-                layout()->setMargin(CX11Decoration::customWindowBorderWith() * dpi_ratio);
-                m_buttonMaximize->setProperty("class", "normal");
-                m_buttonMaximize->style()->polish(m_buttonMaximize);
+                layout()->setMargin(CX11Decoration::customWindowBorderWith() * m_dpiRatio);
+                applyWindowState(Qt::WindowNoState);
             }
         }
     } else

@@ -97,7 +97,6 @@ private:
     static void updateError();
 #endif
     void doClose();
-    void applyWindowState(Qt::WindowState);
     void slot_windowClose();
     void slot_mainPageReady();
     void slot_modalDialog(bool status, HWND h);

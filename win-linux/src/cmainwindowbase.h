@@ -121,6 +121,7 @@ protected:
     QWidget * createTopPanel(QWidget *, const QString&);
     QPushButton * createToolButton(QWidget * parent = nullptr, const QString& name = QString(""));
     void updateTitleCaption();
+    void applyWindowState(Qt::WindowState);
     bool isCustomWindowStyle();
 
     virtual QWidget * createMainPanel(QWidget *, const QString&, bool custom = true, QWidget * view = nullptr);

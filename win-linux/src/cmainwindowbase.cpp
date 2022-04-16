@@ -313,6 +313,12 @@ void CMainWindowBase::updateTitleCaption()
     }
 }
 
+void CMainWindowBase::applyWindowState(Qt::WindowState s)
+{
+    m_buttonMaximize->setProperty("class", s == Qt::WindowMaximized ? "min" : "normal") ;
+    m_buttonMaximize->style()->polish(m_buttonMaximize);
+}
+
 bool CMainWindowBase::isCustomWindowStyle()
 {
     return pimpl->is_custom_window();
