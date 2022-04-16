@@ -137,6 +137,7 @@ protected:
 
     virtual CMainPanel * mainPanel() const = 0;
     virtual QRect windowRect() const = 0;
+    virtual void show(bool) = 0;
     virtual void bringToTop() = 0;
     virtual void onCloseEvent() = 0;
     virtual void onMinimizeEvent() = 0;

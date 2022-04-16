@@ -52,19 +52,17 @@ public:
     virtual ~CMainWindow();
 
     HWND handle() const;
-    void show(bool);
     void hide();
     void toggleBorderless(bool);
     void adjustGeometry();
     void setWindowState(Qt::WindowState);
     void setWindowBackgroundColor(const QColor&);
     void setWindowColors(const QColor&, const QColor& border = QColor());
-    bool isVisible();
     virtual CMainPanel * mainPanel() const final;
     virtual QRect windowRect() const final;
+    virtual void show(bool) final;
     virtual void updateScaling() final;
     virtual void bringToTop() final;
-    virtual void setWindowTitle(const QString&) final;
     virtual void applyTheme(const std::wstring&) override;
     virtual bool holdView(int id) const override;
 
@@ -87,6 +85,7 @@ protected:
     virtual void onMaximizeEvent() override;
     virtual void onExitSizeMove() override;
     virtual void onCloseEvent() override;
+    virtual void setWindowTitle(const QString&) final;
 
 private:
     explicit CMainWindow(const QRect&, const WindowType, const QString&, QWidget*);

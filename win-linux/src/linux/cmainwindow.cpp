@@ -205,18 +205,6 @@ QWidget * CMainWindow::handle() const
     return qobject_cast<QWidget *>(const_cast<CMainWindow *>(this));
 }
 
-void CMainWindow::show(bool maximized)
-{
-    QMainWindow::show();
-    if (maximized) {
-        if (m_winType == WindowType::MAIN) {
-            slot_windowChangeState(Qt::WindowMaximized);
-        } else if (m_winType == WindowType::SINGLE) {
-            QMainWindow::setWindowState(Qt::WindowMaximized);
-        }
-    }
-}
-
 void CMainWindow::sendSertificate(int viewid)
 {
 #ifdef DOCUMENTSCORE_OPENSSL_SUPPORT
@@ -233,11 +221,6 @@ void CMainWindow::sendSertificate(int viewid)
 #endif
 }
 
-bool CMainWindow::isMaximized() const
-{
-    return windowState() == Qt::WindowMaximized;
-}
-
 CMainPanel * CMainWindow::mainPanel() const
 {
     return _m_pMainPanel;
@@ -246,6 +229,18 @@ CMainPanel * CMainWindow::mainPanel() const
 QRect CMainWindow::windowRect() const
 {
     return normalGeometry();
+}
+
+void CMainWindow::show(bool maximized)
+{
+    QMainWindow::show();
+    if (maximized) {
+        if (m_winType == WindowType::MAIN) {
+            slot_windowChangeState(Qt::WindowMaximized);
+        } else if (m_winType == WindowType::SINGLE) {
+            QMainWindow::setWindowState(Qt::WindowMaximized);
+        }
+    }
 }
 
 void CMainWindow::bringToTop()

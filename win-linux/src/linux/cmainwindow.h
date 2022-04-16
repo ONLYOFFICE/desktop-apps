@@ -49,11 +49,10 @@ public:
     ~CMainWindow();
 
     QWidget * handle() const;
-    void show(bool maximized);
     void sendSertificate(int viewid);
-    bool isMaximized() const;
     virtual CMainPanel * mainPanel() const final;
     virtual QRect windowRect() const final;
+    virtual void show(bool) final;
     virtual void bringToTop() final;
     virtual void updateScaling() final;
     virtual void applyTheme(const std::wstring&) override;
@@ -66,7 +65,7 @@ protected:
     virtual void onMaximizeEvent() override;
     virtual void onSizeEvent(int type) override;
     virtual void onExitSizeMove() override;
-    virtual void setWindowTitle(const QString &) override;
+    virtual void setWindowTitle(const QString &) final;
 
 private:
     explicit CMainWindow(const QRect&, const WindowType, const QString&, QWidget*);

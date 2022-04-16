@@ -216,12 +216,6 @@ HWND CMainWindow::handle() const
     return m_hWnd;
 }
 
-void CMainWindow::show(bool maximized)
-{
-    maximized ? QMainWindow::showMaximized() : QMainWindow::show();
-    m_visible = true;
-}
-
 void CMainWindow::hide()
 {
     QMainWindow::hide();
@@ -268,11 +262,6 @@ void CMainWindow::setWindowColors(const QColor& background, const QColor& border
     setPalette(pal);
 }
 
-bool CMainWindow::isVisible()
-{
-    return m_visible;
-}
-
 CMainPanel * CMainWindow::mainPanel() const
 {
     return _m_pMainPanel;
@@ -281,6 +270,12 @@ CMainPanel * CMainWindow::mainPanel() const
 QRect CMainWindow::windowRect() const
 {
     return normalGeometry();
+}
+
+void CMainWindow::show(bool maximized)
+{
+    maximized ? QMainWindow::showMaximized() : QMainWindow::show();
+    m_visible = true;
 }
 
 void CMainWindow::updateScaling()
@@ -305,13 +300,6 @@ void CMainWindow::bringToTop()
     SetForegroundWindow(m_hWnd);
     SetFocus(m_hWnd);
     SetActiveWindow(m_hWnd);
-}
-
-void CMainWindow::setWindowTitle(const QString& title)
-{
-    CMainWindowBase::setWindowTitle(title);
-    //SetWindowText(m_hWnd, title.toStdWString().c_str());
-    QMainWindow::setWindowTitle(title);
 }
 
 void CMainWindow::applyTheme(const std::wstring& theme)
@@ -483,6 +471,13 @@ void CMainWindow::onCloseEvent() // Reporter mode
     if (m_pMainView) {
         AscAppManager::getInstance().DestroyCefView(((QCefView *)m_pMainView)->GetCefView()->GetId() );
     }
+}
+
+void CMainWindow::setWindowTitle(const QString& title)
+{
+    CMainWindowBase::setWindowTitle(title);
+    //SetWindowText(m_hWnd, title.toStdWString().c_str());
+    QMainWindow::setWindowTitle(title);
 }
 
 /** Private **/
