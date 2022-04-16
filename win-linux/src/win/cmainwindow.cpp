@@ -642,20 +642,6 @@ void CMainWindow::setMaximumSize( const int width, const int height )
     m_maxSize.height = height;
 }
 
-void CMainWindow::removeMinimumSize()
-{
-    m_minSize.required = false;
-    m_minSize.width = 0;
-    m_minSize.height = 0;
-}
-
-void CMainWindow::removeMaximumSize()
-{
-    m_maxSize.required = false;
-    m_maxSize.width = 0;
-    m_maxSize.height = 0;
-}
-
 void CMainWindow::activateWindow()
 {
     //SetActiveWindow(m_hWnd);
@@ -666,16 +652,6 @@ void CMainWindow::focusMainPanel()
 {
     if (m_pMainView)
         ((QCefView *)m_pMainView)->setFocusToCef();
-}
-
-bool CMainWindow::isSetMinimumSize()
-{
-    return m_minSize.required;
-}
-
-bool CMainWindow::isSetMaximumSize()
-{
-    return m_maxSize.required;
 }
 
 void CMainWindow::showEvent(QShowEvent *event)

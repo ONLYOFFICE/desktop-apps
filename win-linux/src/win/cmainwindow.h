@@ -79,7 +79,7 @@ public:
 protected:
     void captureMouse();
     virtual void focus() {}; // Uses in SINGLE Mode
-    virtual void onDpiChanged(double newfactor, double prevfactor);
+    virtual void onDpiChanged(double, double);
     virtual void setScreenScalingFactor(double f) override;
     virtual void onMinimizeEvent() override;
     virtual void onMaximizeEvent() override;
@@ -97,25 +97,21 @@ private:
     void doClose();
     void slot_windowClose();
     void slot_mainPageReady();
-    void slot_modalDialog(bool status, HWND h);
+    void slot_modalDialog(bool, HWND);
     void toggleResizeable();
-    void setResizeable(bool resizeable);
-    void setResizeableAreaWidth(int width);
-    void setContentsMargins(int left, int top, int right, int bottom);
-    void setMinimumSize(const int width, const int height);
-    void setMaximumSize(const int width, const int height);
-    void removeMinimumSize();
-    void removeMaximumSize();
+    void setResizeable(bool);
+    void setResizeableAreaWidth(int);
+    void setContentsMargins(int, int, int, int);
+    void setMinimumSize(const int, const int);
+    void setMaximumSize(const int, const int);
     void activateWindow();
     void focusMainPanel();
-    bool isSetMinimumSize();
-    bool isSetMaximumSize();
     int dpiCorrectValue(int v) const {return int(v * m_dpiRatio);}
 
-    virtual void showEvent(QShowEvent *event) final;
-    virtual void changeEvent(QEvent *event) final;
-    virtual bool nativeEvent(const QByteArray &eventType, void *message, long *result) final;
-    virtual void captureMouse(int tabindex) final;
+    virtual void showEvent(QShowEvent*) final;
+    virtual void changeEvent(QEvent*) final;
+    virtual bool nativeEvent(const QByteArray&, void*, long*) final;
+    virtual void captureMouse(int) final;
     virtual void onCloseEvent() override;
 
     WindowType m_winType;
