@@ -467,8 +467,9 @@ public:
             printer->setFromTo(1, pagescount);
 
 #ifdef _WIN32
-            CPrintDialogWinWrapper wrapper(printer, window->handle());
-            QPrintDialog * dialog = wrapper.q_dialog();
+            //CPrintDialogWinWrapper wrapper(printer, window->handle());
+            //QPrintDialog * dialog = wrapper.q_dialog();
+            QPrintDialog * dialog =  new QPrintDialog(printer, window);
 #else
             QPrintDialog * dialog =  new QPrintDialog(printer, window->handle());
 #endif // _WIN32
@@ -481,7 +482,8 @@ public:
 
             int start = -1, finish = -1;
 #ifdef _WIN32
-            if ( wrapper.showModal() == QDialog::Accepted ) {
+            //if ( wrapper.showModal() == QDialog::Accepted ) {
+            if ( dialog->exec() == QDialog::Accepted ) {
 #else
             if ( dialog->exec() == QDialog::Accepted ) {
 #endif
