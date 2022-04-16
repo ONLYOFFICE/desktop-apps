@@ -67,6 +67,21 @@ public:
     }
 };
 
+auto adjustRect(QRect& window_rect, const double dpiRatio)->void
+{
+    if (window_rect.isEmpty())
+        window_rect = QRect(100, 100, 1324 * dpiRatio, 800 * dpiRatio);
+    QRect _screen_size = Utils::getScreenGeometry(window_rect.topLeft());
+    if (_screen_size.width() < window_rect.width() + 120 ||
+            _screen_size.height() < window_rect.height() + 120 )
+    {
+        window_rect.setLeft(_screen_size.left()),
+        window_rect.setTop(_screen_size.top());
+        if (_screen_size.width() < window_rect.width()) window_rect.setWidth(_screen_size.width());
+        if (_screen_size.height() < window_rect.height()) window_rect.setHeight(_screen_size.height());
+    }
+}
+
 CMainWindow::CMainWindow(const QRect &rect) :
     CMainWindow(rect, WindowType::MAIN, QString(), nullptr)
 {}
@@ -85,13 +100,12 @@ CMainWindow::CMainWindow(const QRect &rect, const WindowType winType, const QStr
     CMainWindowBase(const_cast<QRect&>(rect)),
     m_winType(winType)
 {
+    setWindowIcon(Utils::appIcon());
     if (m_winType == WindowType::MAIN) {
         setAcceptDrops(true);
-        setWindowIcon(Utils::appIcon());
         setObjectName("MainWindow");
 
         GET_REGISTRY_USER(reg_user)
-
         if ( InputArgs::contains(L"--system-title-bar") )
             reg_user.setValue("titlebar", "system");
         else
@@ -113,21 +127,7 @@ CMainWindow::CMainWindow(const QRect &rect, const WindowType winType, const QStr
         // adjust window size
         QRect _window_rect = rect;
         m_dpiRatio = Utils::getScreenDpiRatio( QApplication::desktop()->screenNumber(_window_rect.topLeft()) );
-
-        if ( _window_rect.isEmpty() )
-            _window_rect = QRect(100, 100, 1324 * m_dpiRatio, 800 * m_dpiRatio);
-
-        QRect _screen_size = Utils::getScreenGeometry(_window_rect.topLeft());
-        if ( _screen_size.width() < _window_rect.width() + 120 ||
-                _screen_size.height() < _window_rect.height() + 120 )
-        {
-            _window_rect.setLeft(_screen_size.left()),
-            _window_rect.setTop(_screen_size.top());
-
-            if ( _screen_size.width() < _window_rect.width() ) _window_rect.setWidth(_screen_size.width());
-            if ( _screen_size.height() < _window_rect.height() ) _window_rect.setHeight(_screen_size.height());
-        }
-
+        adjustRect(_window_rect, m_dpiRatio);
         // TODO: skip window min size for usability test
         setGeometry(_window_rect);
 
@@ -161,52 +161,33 @@ CMainWindow::CMainWindow(const QRect &rect, const WindowType winType, const QStr
     } else
     if (m_winType == WindowType::SINGLE) {
         pimpl = std::unique_ptr<impl>(new impl(this));
+        CMainWindowBase::setWindowTitle(title);
         if (isCustomWindowStyle())
             CX11Decoration::turnOff();
-        CMainWindowBase::setWindowTitle(title);
-        setWindowIcon(Utils::appIcon());
         setGeometry(rect);
     //    setMinimumSize(WindowHelper::correctWindowMinimumSize(geometry(), {EDITOR_WINDOW_MIN_WIDTH * m_dpiRatio, MAIN_WINDOW_MIN_HEIGHT * m_dpiRatio}));
         connect(&AscAppManager::getInstance().commonEvents(), &CEventDriver::onModalDialog, this, &CMainWindow::slot_modalDialog);
     } else
     if (m_winType == WindowType::REPORTER) {
-        m_dpiRatio = Utils::getScreenDpiRatio(QApplication::desktop()->screenNumber(rect.topLeft()));
+        CMainWindowBase::setWindowTitle(title);
         GET_REGISTRY_SYSTEM(reg_system)
         GET_REGISTRY_USER(reg_user)
         if (reg_user.value("titlebar") == "custom" ||
                 reg_system.value("titlebar") == "custom" )
             CX11Decoration::turnOff();
-
         // adjust window size
         QRect _window_rect = rect;
-
-        if ( _window_rect.isEmpty() )
-            _window_rect = QRect(100, 100, 1324 * m_dpiRatio, 800 * m_dpiRatio);
-
-        QRect _screen_size = Utils::getScreenGeometry(_window_rect.topLeft());
-        if ( _screen_size.width() < _window_rect.width() + 120 ||
-                _screen_size.height() < _window_rect.height() + 120 )
-        {
-            _window_rect.setLeft(_screen_size.left()),
-            _window_rect.setTop(_screen_size.top());
-
-            if ( _screen_size.width() < _window_rect.width() ) _window_rect.setWidth(_screen_size.width());
-            if ( _screen_size.height() < _window_rect.height() ) _window_rect.setHeight(_screen_size.height());
-        }
-
-        CMainWindowBase::setWindowTitle(title);
-        setWindowIcon(Utils::appIcon());
+        m_dpiRatio = Utils::getScreenDpiRatio(QApplication::desktop()->screenNumber(rect.topLeft()));
+        adjustRect(_window_rect, m_dpiRatio);
     //    setMinimumSize(WindowHelper::correctWindowMinimumSize(_window_rect, {WINDOW_MIN_WIDTH * m_dpiRatio, WINDOW_MIN_HEIGHT * m_dpiRatio}));
         setGeometry(_window_rect);
 
         m_pMainPanel = createMainPanel(this, title, !CX11Decoration::isDecorated(), widget);
-
         if ( !CX11Decoration::isDecorated() ) {
             CX11Decoration::setTitleWidget(m_boxTitleBtns);
             m_pMainPanel->setMouseTracking(true);
             setMouseTracking(true);
         }
-
         setCentralWidget(m_pMainPanel);
         updateGeometry();
     }
@@ -276,7 +257,6 @@ void CMainWindow::bringToTop()
 void CMainWindow::updateScaling()
 {
     double dpi_ratio = Utils::getScreenDpiRatioByWidget(this);
-
     if ( dpi_ratio != m_dpiRatio )
         setScreenScalingFactor(dpi_ratio);
 }
@@ -287,8 +267,11 @@ void CMainWindow::applyTheme(const std::wstring& theme)
         CMainWindowBase::applyTheme(theme);
         if ( !CX11Decoration::isDecorated() ) {
             QPalette _palette(palette());
-            _palette.setColor(QPalette::Background, AscAppManager::themes().current().color(CTheme::ColorRole::ecrWindowBackground));
-            setStyleSheet(QString("QMainWindow{border:1px solid %1;}").arg(QString::fromStdWString(AscAppManager::themes().current().value(CTheme::ColorRole::ecrWindowBorder))));
+            _palette.setColor(QPalette::Background, AscAppManager::themes()
+                          .current().color(CTheme::ColorRole::ecrWindowBackground));
+            setStyleSheet(QString("QMainWindow{border:1px solid %1;}")
+                          .arg(QString::fromStdWString(AscAppManager::themes().current()
+                          .value(CTheme::ColorRole::ecrWindowBorder))));
             setAutoFillBackground(true);
             setPalette(_palette);
         }
@@ -405,7 +388,6 @@ void CMainWindow::setScreenScalingFactor(double factor)
         if (!css.isEmpty()) {
             double change_factor = factor / m_dpiRatio;
             m_dpiRatio = factor;
-
             _m_pMainPanel->setStyleSheet(css);
             _m_pMainPanel->setScreenScalingFactor(factor);
             setMinimumSize({0, 0});
@@ -425,10 +407,9 @@ void CMainWindow::setScreenScalingFactor(double factor)
     } else
     if (m_winType == WindowType::REPORTER) {
         QString css(AscAppManager::getWindowStylesheets(factor));
-        if ( !css.isEmpty() ) {
+        if (!css.isEmpty()) {
             double change_factor = factor / m_dpiRatio;
             m_dpiRatio = factor;
-
             m_pMainPanel->setStyleSheet(css);
             setMinimumSize({0,0});
 
