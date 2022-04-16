@@ -350,17 +350,6 @@ void CMainWindow::slot_modalDialog(bool status, WId h)
     }
 }
 
-void CMainWindow::pushButtonCloseClicked()
-{
-    QWidget * mainView = m_pMainPanel->findChild<QWidget *>("mainView");
-    if ( mainView ) {
-        mainView->setObjectName("destroyed");
-        AscAppManager::getInstance().DestroyCefView(
-                ((QCefView *)mainView)->GetCefView()->GetId() );
-    }
-    hide();
-}
-
 /** Protected **/
 
 void CMainWindow::captureMouse()
@@ -659,10 +648,10 @@ void CMainWindow::captureMouse(int tabindex)
     CMainWindowBase::captureMouse(tabindex);
     if (tabindex >= 0 && tabindex < mainPanel()->tabWidget()->count()) {
         QPoint spt = mainPanel()->tabWidget()->tabBar()->tabRect(tabindex).topLeft() + QPoint(30, 10);
-        QPoint gpt = mainPanel()->tabWidget()->tabBar()->mapToGlobal(spt);
+        //QPoint gpt = mainPanel()->tabWidget()->tabBar()->mapToGlobal(spt);
 //        CX11Decoration::setCursorPos(100, 100);
 //        QCursor::setPos(0, 0);
-        QTimer::singleShot(0, [=] {
+        QTimer::singleShot(0, this, [=] {
             QMouseEvent event(QEvent::MouseButtonPress, spt, Qt::LeftButton, Qt::MouseButton::NoButton, Qt::NoModifier);
             QCoreApplication::sendEvent((QWidget *)mainPanel()->tabWidget()->tabBar(), &event);
             mainPanel()->tabWidget()->tabBar()->grabMouse();
@@ -678,5 +667,11 @@ void CMainWindow::bringToTop() const
 
 void CMainWindow::onCloseEvent()
 {
-    pushButtonCloseClicked();
+    QWidget * mainView = m_pMainPanel->findChild<QWidget *>("mainView");
+    if ( mainView ) {
+        mainView->setObjectName("destroyed");
+        AscAppManager::getInstance().DestroyCefView(
+                ((QCefView *)mainView)->GetCefView()->GetId() );
+    }
+    hide();
 }

@@ -97,7 +97,6 @@ public slots:
     void slot_windowChangeState(Qt::WindowState);
     void slot_windowClose();
     void slot_modalDialog(bool status, WId h);
-    void pushButtonCloseClicked();
 };
 
 #endif // CMAINWINDOW_H
