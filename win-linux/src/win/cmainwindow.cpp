@@ -129,9 +129,8 @@ CMainWindow::CMainWindow(const QRect &rect, const WindowType winType, const QStr
     m_frame(QMargins()),
     m_hWnd(nullptr),
     m_modalHwnd(nullptr),
-    m_borderWidth(MAIN_WINDOW_BORDER_WIDTH),
+    m_resAreaWidth(MAIN_WINDOW_BORDER_WIDTH),
     m_borderless(true),
-    m_visible(false),
     m_closed(false),
     m_skipSizing(false),
     m_isMaximized(false),
@@ -219,12 +218,11 @@ HWND CMainWindow::handle() const
 void CMainWindow::hide()
 {
     QMainWindow::hide();
-    m_visible = false;
 }
 
 void CMainWindow::toggleBorderless(bool showmax)
 {
-    if (m_visible) {
+    if (isVisible()) {
         m_borderless = !m_borderless;
         show(showmax);
     }
@@ -275,7 +273,16 @@ QRect CMainWindow::windowRect() const
 void CMainWindow::show(bool maximized)
 {
     maximized ? QMainWindow::showMaximized() : QMainWindow::show();
-    m_visible = true;
+}
+
+void CMainWindow::bringToTop()
+{
+    if (IsIconic(m_hWnd) && m_winType == WindowType::MAIN) {
+        ShowWindow(m_hWnd, SW_SHOWNORMAL);
+    }
+    SetForegroundWindow(m_hWnd);
+    SetFocus(m_hWnd);
+    SetActiveWindow(m_hWnd);
 }
 
 void CMainWindow::updateScaling()
@@ -290,16 +297,6 @@ void CMainWindow::updateScaling()
         }
         adjustGeometry();
     }
-}
-
-void CMainWindow::bringToTop()
-{
-    if (IsIconic(m_hWnd) && m_winType == WindowType::MAIN) {
-        ShowWindow(m_hWnd, SW_SHOWNORMAL);
-    }
-    SetForegroundWindow(m_hWnd);
-    SetFocus(m_hWnd);
-    SetActiveWindow(m_hWnd);
 }
 
 void CMainWindow::applyTheme(const std::wstring& theme)
@@ -466,13 +463,6 @@ void CMainWindow::onExitSizeMove()
     }
 }
 
-void CMainWindow::onCloseEvent() // Reporter mode
-{
-    if (m_pMainView) {
-        AscAppManager::getInstance().DestroyCefView(((QCefView *)m_pMainView)->GetCefView()->GetId() );
-    }
-}
-
 void CMainWindow::setWindowTitle(const QString& title)
 {
     CMainWindowBase::setWindowTitle(title);
@@ -628,7 +618,7 @@ void CMainWindow::setResizeable(bool isResizeable)
 
 void CMainWindow::setResizeableAreaWidth(int width)
 {
-    m_borderWidth = (width < 0) ? 0 : width;
+    m_resAreaWidth = (width < 0) ? 0 : width;
 }
 
 void CMainWindow::setContentsMargins(int left, int top, int right, int bottom)
@@ -869,7 +859,7 @@ bool CMainWindow::nativeEvent(const QByteArray &eventType, void *message, long *
     case WM_NCHITTEST: {
         if (m_borderless) {
             *result = 0;
-            const LONG border_width = (LONG)m_borderWidth;
+            const LONG border_width = (LONG)m_resAreaWidth;
             RECT winrect;
             GetWindowRect(HWND(winId()), &winrect);
             long x = GET_X_LPARAM(msg->lParam);
@@ -924,14 +914,12 @@ bool CMainWindow::nativeEvent(const QByteArray &eventType, void *message, long *
             RECT frame = {0, 0, 0, 0};
             AdjustWindowRectEx(&frame, WS_OVERLAPPEDWINDOW, FALSE, 0);
             double dpr = devicePixelRatioF();
-            m_frame.setLeft(int(double(abs(frame.left))/dpr + 0.5));
-            m_frame.setTop(int(double(abs(frame.bottom))/dpr + 0.5));
-            m_frame.setRight(int(double(abs(frame.right))/dpr + 0.5));
-            m_frame.setBottom(int(double(abs(frame.bottom))/dpr + 0.5));
-            QMainWindow::setContentsMargins(m_frame.left() + m_margins.left(),
-                                            m_frame.top() + m_margins.top(),
-                                            m_frame.right() + m_margins.right(),
-                                            m_frame.bottom() + m_margins.bottom());
+            frame = {abs(frame.left), abs(frame.top), abs(frame.right), abs(frame.bottom)};
+            m_frame = QMargins(int(double(frame.left)/dpr + 0.5),
+                               int(double(frame.bottom)/dpr + 0.5),
+                               int(double(frame.right)/dpr + 0.5),
+                               int(double(frame.bottom)/dpr + 0.5));
+            QMainWindow::setContentsMargins(m_frame + m_margins);
             m_isMaximized = true;
         } else {
             if (m_isMaximized) {
@@ -1151,5 +1139,12 @@ void CMainWindow::captureMouse(int tabindex)
             QCoreApplication::sendEvent(_widget, &event);
             _widget->grabMouse();
         });
+    }
+}
+
+void CMainWindow::onCloseEvent() // Reporter mode
+{
+    if (m_pMainView) {
+        AscAppManager::getInstance().DestroyCefView(((QCefView *)m_pMainView)->GetCefView()->GetId() );
     }
 }

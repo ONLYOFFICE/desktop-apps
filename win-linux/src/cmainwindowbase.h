@@ -133,7 +133,7 @@ protected:
     virtual void onSizeEvent(int);
     virtual void onMoveEvent(const QRect&) {}; // Overrides in CEditorWindow
     virtual bool holdView(int id) const;
-    virtual int calcTitleCaptionWidth();
+    virtual int calcTitleCaptionWidth(); // Overrides in CEditorWindow
 
     virtual CMainPanel * mainPanel() const = 0;
     virtual QRect windowRect() const = 0;

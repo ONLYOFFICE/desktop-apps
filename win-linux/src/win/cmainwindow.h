@@ -61,8 +61,8 @@ public:
     virtual CMainPanel * mainPanel() const final;
     virtual QRect windowRect() const final;
     virtual void show(bool) final;
-    virtual void updateScaling() final;
     virtual void bringToTop() final;
+    virtual void updateScaling() final;
     virtual void applyTheme(const std::wstring&) override;
     virtual bool holdView(int id) const override;
 
@@ -84,7 +84,6 @@ protected:
     virtual void onMinimizeEvent() override;
     virtual void onMaximizeEvent() override;
     virtual void onExitSizeMove() override;
-    virtual void onCloseEvent() override;
     virtual void setWindowTitle(const QString&) final;
 
 private:
@@ -117,6 +116,7 @@ private:
     virtual void changeEvent(QEvent *event) final;
     virtual bool nativeEvent(const QByteArray &eventType, void *message, long *result) final;
     virtual void captureMouse(int tabindex) final;
+    virtual void onCloseEvent() override;
 
     WindowType m_winType;
     WindowBase::CWindowGeometry m_minSize;
@@ -125,23 +125,22 @@ private:
     CMainPanelImpl *_m_pMainPanel;
     Qt::WindowStates m_previousState;
 
-    QRect m_moveNormalRect;
-    QRect m_window_rect;
-    QMargins m_margins;
-    QMargins m_frame;
+    QRect m_moveNormalRect,
+          m_window_rect;
+    QMargins m_margins,
+             m_frame;
 
-    HWND m_hWnd;
-    HWND m_modalHwnd;
+    HWND m_hWnd,
+         m_modalHwnd;
 
-    int  m_borderWidth;
-    bool m_borderless;
-    bool m_visible;
-    bool m_closed;
-    bool m_skipSizing;
-    bool m_isMaximized;
-    bool m_isResizeable;
-    bool m_taskBarClicked;
-    bool m_windowActivated;
+    int  m_resAreaWidth;
+    bool m_borderless,
+         m_closed,
+         m_skipSizing,
+         m_isMaximized,
+         m_isResizeable,
+         m_taskBarClicked,
+         m_windowActivated;
 };
 
 #endif
