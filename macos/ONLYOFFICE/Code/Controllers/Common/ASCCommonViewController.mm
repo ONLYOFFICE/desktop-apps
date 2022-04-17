@@ -1674,8 +1674,15 @@
             }
                 
             case ASCTabActionCreateLocalFile: {
-                int docType = [tab.params[@"type"] intValue];
-                
+                int docType = CEFDocumentDocument;
+                if ( [tab.params[@"type"] isKindOfClass:[NSString class]] ) {
+                    NSString * param = tab.params[@"type"];
+                    if ([param isEqualToString:@"cell"]) docType = CEFDocumentSpreadsheet;
+                    else if ([param isEqualToString:@"slide"]) docType = CEFDocumentPresentation;
+                    else if ([param isEqualToString:@"form"]) docType = CEFDocumentForm;
+                    else /*if ([param isEqualToString:@"word"])*/ docType = CEFDocumentDocument;
+                } else docType = [tab.params[@"type"] intValue];
+
                 NSString * docName = NSLocalizedString(@"Untitled", nil);
                 
                 switch (docType) {
