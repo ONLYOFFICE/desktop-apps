@@ -61,11 +61,6 @@
 
 namespace WindowBase
 {
-    enum class Style : DWORD
-    {
-        windowed = ( WS_OVERLAPPED | WS_THICKFRAME | WS_CAPTION | WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_CLIPCHILDREN ),
-        aero_borderless = ( WS_POPUP | WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_THICKFRAME | WS_CLIPCHILDREN )
-    };
     struct CWindowGeometry
     {
         CWindowGeometry() {}
