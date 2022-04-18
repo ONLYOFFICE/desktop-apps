@@ -316,11 +316,11 @@ bool CFileDialogWrapper::modalSaveAs(QString& fileName, int selected)
 #ifdef FILEDIALOG_DONT_USE_MODAL
     QWidget * _parent = NULL;
 #else
-/*# ifdef _WIN32
-    QWidget * _parent = this;
-# else*/
+# ifdef _WIN32
     QWidget * _parent = (QWidget *)parent();
-//# endif
+# else
+    QWidget * _parent = (QWidget *)parent();
+# endif
 #endif
 
 #ifndef _WIN32
@@ -540,15 +540,15 @@ QStringList CFileDialogWrapper::modalOpenMedia(const QString& type, const QStrin
 QString CFileDialogWrapper::selectFolder(const QString& folder)
 {
     QWidget * _parent =
-/*#ifdef _WIN32
-                        this;
-#else*/
+#ifdef _WIN32
+                        (QWidget *)parent();
+#else
 # ifdef FILEDIALOG_DONT_USE_MODAL
                         NULL;
 # else
                         (QWidget *)parent();
 # endif
-//#endif
+#endif
 
     return QFileDialog::getExistingDirectory(_parent, "", folder);
 }
