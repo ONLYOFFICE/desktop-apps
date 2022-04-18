@@ -124,7 +124,7 @@ public:
     static auto nativeOpenDialog(const CFileDialogOpenArguments& args) -> QStringList {
         QStringList out;
 
-/*#if defined(Q_OS_WIN) && !defined(__OS_WIN_XP)
+#if defined(Q_OS_WIN) && !defined(__OS_WIN_XP)
         HRESULT hr = CoInitializeEx(nullptr, COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE);
         if ( SUCCEEDED(hr) ) {
             IFileOpenDialog * pDialog = nullptr;
@@ -175,7 +175,7 @@ public:
                     hr = pDialog->SetOptions(dwFlags | FOS_FILEMUSTEXIST | FOS_PATHMUSTEXIST);
                 }
 
-                hr = pDialog->Show(args.parent);
+                hr = pDialog->Show((HWND)args.parent->winId());
                 if (SUCCEEDED(hr)) {
                     IShellItemArray * items = nullptr;
                     hr = pDialog->GetResults(&items);
@@ -200,7 +200,7 @@ public:
             CoUninitialize();
         }
 #else
-#endif*/
+#endif
 
         return out;
     }
@@ -397,15 +397,15 @@ QStringList CFileDialogWrapper::modalOpen(const QString& path, const QString& fi
 //    QWidget * p = qobject_cast<QWidget *>(parent());
 
     QWidget * _parent =
-/*#ifdef _WIN32
-                        this;
-#else*/
+#ifdef _WIN32
+                        (QWidget *)parent();
+#else
 # ifdef FILEDIALOG_DONT_USE_MODAL
                         NULL;
 # else
                         (QWidget *)parent();
 # endif
-//#endif
+#endif
     QFileDialog::Options _opts =
 #ifdef FILEDIALOG_DONT_USE_NATIVEDIALOGS
             QFileDialog::DontUseNativeDialog;
@@ -413,16 +413,16 @@ QStringList CFileDialogWrapper::modalOpen(const QString& path, const QString& fi
             QFileDialog::Options();
 #endif
 
-//#ifndef _WIN32
+#ifndef _WIN32
     WindowHelper::CParentDisable oDisabler(qobject_cast<QWidget*>(parent()));
 
     return multi ? QFileDialog::getOpenFileNames(_parent, tr("Open Document"), path, _filter_, &_sel_filter, _opts) :
                 QStringList(QFileDialog::getOpenFileName(_parent, tr("Open Document"), path, _filter_, &_sel_filter, _opts));
-/*#else
-    CInAppEventModal event_(QWinWidget::parentWindow());
+#else
+    CInAppEventModal event_(qobject_cast<QWidget*>(parent())->winId());
     CRunningEventHelper h_(&event_);
 
-    CFileDialogHelper::CFileDialogOpenArguments args{(HWND)_parent->winId(),tr("Open Document").toStdWString()};
+    CFileDialogHelper::CFileDialogOpenArguments args{_parent,tr("Open Document").toStdWString()};
     args.filter = _filter_.toStdWString();
     args.startFilter = _sel_filter.toStdWString();
     args.multiSelect = multi;
@@ -445,7 +445,7 @@ QStringList CFileDialogWrapper::modalOpen(const QString& path, const QString& fi
         return multi ? QFileDialog::getOpenFileNames(_parent, tr("Open Document"), path, _filter_, &_sel_filter, _opts) :
                     QStringList(QFileDialog::getOpenFileName(_parent, tr("Open Document"), path, _filter_, &_sel_filter, _opts));
     }
-#endif*/
+#endif
 }
 
 QString CFileDialogWrapper::modalOpenSingle(const QString& path, const QString& filter, QString * selected)

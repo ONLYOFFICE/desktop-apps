@@ -53,7 +53,7 @@
 #include <QJsonObject>
 
 #ifdef _WIN32
-#include "win/cprintdialog.h"
+//#include "win/cprintdialog.h"
 #else
 #endif
 

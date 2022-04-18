@@ -212,15 +212,10 @@ core_windows {
     RC_ICONS += ./res/icons/desktop_icons.ico
 
     HEADERS += $$PWD/src/win/cmainwindow.h \
-                #$$PWD/src/win/qwinwidget.h \
-                #$$PWD/src/win/cwinwindow.h \
-                #$$PWD/src/win/cprintdialog.h \
                 $$PWD/src/win/caption.h
 
-    SOURCES += $$PWD/src/win/cmainwindow.cpp \
-                #$$PWD/src/win/qwinwidget.cpp \
-                #$$PWD/src/win/cwinwindow.cpp \
-                #$$PWD/src/win/cprintdialog.cpp
+    SOURCES += $$PWD/src/win/cmainwindow.cpp
+
 
     LIBS += -lwininet \
             -ldnsapi \
