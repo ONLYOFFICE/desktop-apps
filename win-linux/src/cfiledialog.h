@@ -36,7 +36,7 @@
 #include <QObject>
 #include <QMap>
 
-#ifdef _WIN32
+/*#ifdef _WIN32
 #include "win/qwinwidget.h"
 
 class CFileDialogHelper;
@@ -46,14 +46,14 @@ class CFileDialogWrapper : public QWinWidget
 
 public:
     explicit CFileDialogWrapper(HWND);
-#else
+#else*/
 class CFileDialogWrapper : public QObject
 {
     Q_OBJECT
 
 public:
     explicit CFileDialogWrapper(QWidget * p = 0);
-#endif
+//#endif
     ~CFileDialogWrapper();
 
     bool    modalSaveAs(QString&, int selected = -1);

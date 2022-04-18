@@ -124,7 +124,7 @@ public:
     static auto nativeOpenDialog(const CFileDialogOpenArguments& args) -> QStringList {
         QStringList out;
 
-#if defined(Q_OS_WIN) && !defined(__OS_WIN_XP)
+/*#if defined(Q_OS_WIN) && !defined(__OS_WIN_XP)
         HRESULT hr = CoInitializeEx(nullptr, COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE);
         if ( SUCCEEDED(hr) ) {
             IFileOpenDialog * pDialog = nullptr;
@@ -200,21 +200,21 @@ public:
             CoUninitialize();
         }
 #else
-#endif
+#endif*/
 
         return out;
     }
 };
 
-#if defined(_WIN32)
+/*#if defined(_WIN32)
 CFileDialogWrapper::CFileDialogWrapper(HWND hParentWnd) : QWinWidget(hParentWnd)
-#else
+#else*/
 // because bug in cef - 'open/save dialog' doesn't open for second time
 #if !defined(FILEDIALOG_DONT_USE_NATIVEDIALOGS) && !defined(FILEDIALOG_DONT_USE_MODAL)
 #define FILEDIALOG_DONT_USE_MODAL
 #endif
 CFileDialogWrapper::CFileDialogWrapper(QWidget * parent) : QObject(parent)
-#endif
+//#endif
 {
     m_mapFilters[AVS_OFFICESTUDIO_FILE_UNKNOWN]         = tr("All files (*.*)");
 
@@ -294,8 +294,9 @@ bool CFileDialogWrapper::modalSaveAs(QString& fileName, int selected)
     QString _croped_name = fileName.contains(QRegExp("\\.[^\\/\\\\]+$")) ?
                                     fileName.left(fileName.lastIndexOf(".")) : fileName;
 
-    HWND _mess_parent = QWinWidget::parentWindow();
-    CInAppEventModal _event(_mess_parent);
+    QWidget * _mess_parent = (QWidget *)parent();
+    /*HWND _mess_parent = QWinWidget::parentWindow();*/
+    CInAppEventModal _event(_mess_parent->winId());
     CRunningEventHelper _h(&_event);
 #else
     QString _croped_name = fileName.left(fileName.lastIndexOf("."));
@@ -315,11 +316,11 @@ bool CFileDialogWrapper::modalSaveAs(QString& fileName, int selected)
 #ifdef FILEDIALOG_DONT_USE_MODAL
     QWidget * _parent = NULL;
 #else
-# ifdef _WIN32
+/*# ifdef _WIN32
     QWidget * _parent = this;
-# else
+# else*/
     QWidget * _parent = (QWidget *)parent();
-# endif
+//# endif
 #endif
 
 #ifndef _WIN32
@@ -396,15 +397,15 @@ QStringList CFileDialogWrapper::modalOpen(const QString& path, const QString& fi
 //    QWidget * p = qobject_cast<QWidget *>(parent());
 
     QWidget * _parent =
-#ifdef _WIN32
+/*#ifdef _WIN32
                         this;
-#else
+#else*/
 # ifdef FILEDIALOG_DONT_USE_MODAL
                         NULL;
 # else
                         (QWidget *)parent();
 # endif
-#endif
+//#endif
     QFileDialog::Options _opts =
 #ifdef FILEDIALOG_DONT_USE_NATIVEDIALOGS
             QFileDialog::DontUseNativeDialog;
@@ -412,12 +413,12 @@ QStringList CFileDialogWrapper::modalOpen(const QString& path, const QString& fi
             QFileDialog::Options();
 #endif
 
-#ifndef _WIN32
+//#ifndef _WIN32
     WindowHelper::CParentDisable oDisabler(qobject_cast<QWidget*>(parent()));
 
     return multi ? QFileDialog::getOpenFileNames(_parent, tr("Open Document"), path, _filter_, &_sel_filter, _opts) :
                 QStringList(QFileDialog::getOpenFileName(_parent, tr("Open Document"), path, _filter_, &_sel_filter, _opts));
-#else
+/*#else
     CInAppEventModal event_(QWinWidget::parentWindow());
     CRunningEventHelper h_(&event_);
 
@@ -444,7 +445,7 @@ QStringList CFileDialogWrapper::modalOpen(const QString& path, const QString& fi
         return multi ? QFileDialog::getOpenFileNames(_parent, tr("Open Document"), path, _filter_, &_sel_filter, _opts) :
                     QStringList(QFileDialog::getOpenFileName(_parent, tr("Open Document"), path, _filter_, &_sel_filter, _opts));
     }
-#endif
+#endif*/
 }
 
 QString CFileDialogWrapper::modalOpenSingle(const QString& path, const QString& filter, QString * selected)
@@ -539,15 +540,15 @@ QStringList CFileDialogWrapper::modalOpenMedia(const QString& type, const QStrin
 QString CFileDialogWrapper::selectFolder(const QString& folder)
 {
     QWidget * _parent =
-#ifdef _WIN32
+/*#ifdef _WIN32
                         this;
-#else
+#else*/
 # ifdef FILEDIALOG_DONT_USE_MODAL
                         NULL;
 # else
                         (QWidget *)parent();
 # endif
-#endif
+//#endif
 
     return QFileDialog::getExistingDirectory(_parent, "", folder);
 }

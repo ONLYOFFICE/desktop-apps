@@ -74,12 +74,12 @@ using namespace NSEditorApi;
 using namespace std::placeholders;
 
 #define QCEF_CAST(Obj) qobject_cast<QCefView *>(Obj)
-#ifdef _WIN32
+/*#ifdef _WIN32
 #define TOP_NATIVE_WINDOW_HANDLE HWND(parentWidget()->property("handleTopWindow").toInt())
-#else
+#else*/
 #define TOP_NATIVE_WINDOW_HANDLE this
 //#define TOP_NATIVE_WINDOW_HANDLE qobject_cast<QWidget *>(parent())
-#endif
+//#endif
 
 
 struct printdata {
@@ -976,11 +976,11 @@ void CMainPanel::onDocumentPrint(void * opts)
                 finish < start && (finish = start);
 
                 if ( pContext->BeginPaint() ) {
-#if defined(_WIN32)
+/*#if defined(_WIN32)
                     CPrintProgress progressDlg((HWND)parentWidget()->winId());
-#else
+#else*/
                     CPrintProgress progressDlg(qobject_cast<QWidget *>(parent()));
-#endif
+//#endif
                     progressDlg.startProgress();
 
                     CAscPrintPage * pData;

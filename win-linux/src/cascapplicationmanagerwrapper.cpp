@@ -578,11 +578,11 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
 
             if ( _editor ) {
                 files.erase(files.begin() + i);
-#ifdef Q_OS_WIN
+/*#ifdef Q_OS_WIN
                 SetForegroundWindow(_editor->handle());
-#else
+#else*/
                 _editor->activateWindow();
-#endif
+//#endif
             }
         }
     }
@@ -595,11 +595,11 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
             CEditorWindow * editor = editorWindowFromViewId(view->GetId());
 
             if ( editor ) {
-#ifdef Q_OS_WIN
+/*#ifdef Q_OS_WIN
                 SetForegroundWindow(editor->handle());
-#else
+#else*/
                 editor->activateWindow();
-#endif
+//#endif
                 return true;
             }
         }
@@ -1761,11 +1761,11 @@ void CAscApplicationManagerWrapper::unbindReceiver(const CCefEventsGate * receiv
 
 void CAscApplicationManagerWrapper::onDownloadSaveDialog(const std::wstring& name, uint id)
 {
-#ifdef Q_OS_WIN
+/*#ifdef Q_OS_WIN
     HWND parent = GetActiveWindow();
-#else
+#else*/
     QWidget * parent = mainWindow();
-#endif
+//#endif
 
     if ( parent ) {
         static bool saveInProcess = false;

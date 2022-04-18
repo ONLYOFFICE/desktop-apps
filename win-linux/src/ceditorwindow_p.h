@@ -466,13 +466,13 @@ public:
             printer->setOutputFileName("");
             printer->setFromTo(1, pagescount);
 
-#ifdef _WIN32
+/*#ifdef _WIN32
             //CPrintDialogWinWrapper wrapper(printer, window->handle());
             //QPrintDialog * dialog = wrapper.q_dialog();
             QPrintDialog * dialog =  new QPrintDialog(printer, window);
-#else
+#else*/
             QPrintDialog * dialog =  new QPrintDialog(printer, window->handle());
-#endif // _WIN32
+//#endif // _WIN32
 
             dialog->setWindowTitle(CEditorWindow::tr("Print Document"));
             dialog->setEnabledOptions(QPrintDialog::PrintPageRange | QPrintDialog::PrintCurrentPage | QPrintDialog::PrintToFile);
@@ -481,12 +481,12 @@ public:
             dialog->setPrintRange(m_printData._print_range);
 
             int start = -1, finish = -1;
-#ifdef _WIN32
+/*#ifdef _WIN32
             //if ( wrapper.showModal() == QDialog::Accepted ) {
             if ( dialog->exec() == QDialog::Accepted ) {
-#else
+#else*/
             if ( dialog->exec() == QDialog::Accepted ) {
-#endif
+//#endif
                 m_printData._printer_info = QPrinterInfo::printerInfo(printer->printerName());
                 m_printData._print_range = dialog->printRange();
 

@@ -210,10 +210,10 @@ CMainWindow::~CMainWindow()
 
 /** Public **/
 
-HWND CMainWindow::handle() const
+/*HWND CMainWindow::handle() const
 {
     return m_hWnd;
-}
+}*/
 
 void CMainWindow::hide()
 {
@@ -642,11 +642,11 @@ void CMainWindow::setMaximumSize( const int width, const int height )
     m_maxSize.height = height;
 }
 
-void CMainWindow::activateWindow()
+/*void CMainWindow::activateWindow()
 {
     //SetActiveWindow(m_hWnd);
     QMainWindow::activateWindow();
-}
+}*/
 
 void CMainWindow::focusMainPanel()
 {

@@ -47,9 +47,10 @@
 #include "cascapplicationmanagerwrapper.h"
 
 
-#if defined(_WIN32)
+/*#if defined(_WIN32)
 # include "win/qwinwidget.h"
-#else
+#else*/
+#ifndef _WIN32
 # include "linux/cx11decoration.h"
 #endif
 
@@ -86,11 +87,11 @@ class CMessagePrivateIntf {
 public:
     explicit CMessagePrivateIntf(CMessage * parent)
         : m_mess(parent)
-#ifdef Q_OS_WIN
+/*#ifdef Q_OS_WIN
         , dpiRatio(Utils::getScreenDpiRatioByHWND(int(parent->handle())))
-#else
+#else*/
         , dpiRatio(Utils::getScreenDpiRatioByWidget(parent))
-#endif
+//#endif
     {}
 
     auto addButton(QPushButton * b) -> void {
@@ -122,35 +123,35 @@ public:
     bool isWindowActive = false;
 };
 
-#if defined(Q_OS_WIN)
+/*#if defined(Q_OS_WIN)
 CMessage::CMessage(HWND p, CMessageOpts::moButtons b)
-#else
+#else*/
 CMessage::CMessage(QWidget * p, CMessageOpts::moButtons b)
-#endif
+//#endif
     : CMessage(p)
 {
     setButtons(b);
 }
 
-#if defined(_WIN32)
+/*#if defined(_WIN32)
 CMessage::CMessage(HWND p)
     : CWinWindow(p, QString(APP_TITLE))
-#else
+#else*/
 CMessage::CMessage(QWidget * p)
     : QDialog(p)
-#endif
+//#endif
     , m_boxButtons(new QWidget)
     , m_message(new QLabel)
     , m_typeIcon(new QLabel)
     , m_modalresult(MODAL_RESULT_CANCEL)
     , m_priv(new CMessagePrivateIntf(this))
 {
-#if defined(_WIN32)
+/*#if defined(_WIN32)
     HWND _hwnd = CWinWindow::m_hSelf;
     m_centralWidget = new QWinWidget(_hwnd);
     m_centralWidget->installEventFilter(
                 new CMessageEventsFilter(this, m_centralWidget) );
-#else
+#else*/
     setWindowTitle(APP_TITLE);
     setLayout(new QVBoxLayout);
     layout()->setContentsMargins(0, 0, 0, 0);
@@ -158,7 +159,7 @@ CMessage::CMessage(QWidget * p)
     m_centralWidget = new QWidget;
     layout()->addWidget(m_centralWidget);
     layout()->setSizeConstraint(QLayout::SetFixedSize);
-#endif
+//#endif
     m_centralWidget->setObjectName("messageBody");
     m_centralWidget->setProperty("uitheme", AscAppManager::themes().current().isDark() ? "theme-dark" : "theme-light");
 
@@ -199,11 +200,11 @@ CMessage::CMessage(QWidget * p)
     QObject::connect(btn_ok, &QPushButton::clicked,
         [=] {
             m_modalresult = MODAL_RESULT_YES;
-#if defined(_WIN32)
+/*#if defined(_WIN32)
             close();
-#else
+#else*/
             close();
-#endif
+//#endif
         }
     );
 
@@ -273,12 +274,12 @@ void CMessage::setButtons(std::initializer_list<QString> btns)
 
         _btn = new QPushButton(reFocus.cap(1));
         if ( !reFocus.cap(2).isEmpty() ) {
-#ifdef Q_OS_WIN
+/*#ifdef Q_OS_WIN
             _btn->setDefault(true);
             m_priv->defaultButton = _btn;
-#else
+#else*/
             _btn->setDefault(true);
-#endif
+//#endif
         }
 
         m_boxButtons->layout()->addWidget(_btn);
@@ -344,41 +345,41 @@ int CMessage::confirm(const QString& mess)
     return m_modalresult;
 }
 
-#if defined(_WIN32)
+/*#if defined(_WIN32)
 int CMessage::confirm(HWND p, const QString& m)
-#else
+#else*/
 int CMessage::confirm(QWidget * p, const QString& m)
-#endif
+//#endif
 {
     CMessage mess(p);
     return mess.confirm(m);
 }
 
-#if defined(_WIN32)
+/*#if defined(_WIN32)
 int CMessage::info(HWND p, const QString& m)
-#else
+#else*/
 int CMessage::info(QWidget * p, const QString& m)
-#endif
+//#endif
 {
     CMessage mess(p);
     return mess.info(m);
 }
 
-#if defined(_WIN32)
+/*#if defined(_WIN32)
 int CMessage::warning(HWND p, const QString& m)
-#else
+#else*/
 int CMessage::warning(QWidget * p, const QString& m)
-#endif
+//#endif
 {
     CMessage mess(p);
     return mess.warning(m);
 }
 
-#if defined(_WIN32)
+/*#if defined(_WIN32)
 int CMessage::error(HWND p, const QString& m)
-#else
+#else*/
 int CMessage::error(QWidget * p, const QString& m)
-#endif
+//#endif
 {
     CMessage mess(p);
     return mess.error(m);
@@ -387,15 +388,16 @@ int CMessage::error(QWidget * p, const QString& m)
 void CMessage::modal()
 {
 #if defined(_WIN32)
-    CInAppEventModal _event(m_hParent);
+    //CInAppEventModal _event(m_hParent);
+    CInAppEventModal _event(parentWidget()->winId());
     CRunningEventHelper _h(&_event);
 
-    m_centralWidget->adjustSize();
+    /*m_centralWidget->adjustSize();
     m_centralWidget->show();
 
-    HWND _focused_handle = nullptr;
+    HWND _focused_handle = nullptr;*/
     if ( m_priv->defaultButton ) {
-        _focused_handle = (HWND)m_priv->defaultButton->winId();
+        //_focused_handle = (HWND)m_priv->defaultButton->winId();
         QTimer::singleShot(50, m_centralWidget, [&]{
             if ( !AscAppManager::themes().current().isDark() )
                 for (auto * btn: m_priv->buttons) {
@@ -406,9 +408,10 @@ void CMessage::modal()
         });
     }
 
-    CWinWindow::setSize(m_centralWidget->width(), m_centralWidget->height());
+    /*CWinWindow::setSize(m_centralWidget->width(), m_centralWidget->height());
     CWinWindow::center();
-    CWinWindow::modal(_focused_handle);
+    CWinWindow::modal(_focused_handle);*/
+    exec();
 #else
     CInAppEventModal _event(parentWidget()->winId());
     CRunningEventHelper _h(&_event);
@@ -452,15 +455,15 @@ bool CMessage::isForAll()
 
 void CMessage::onScreenScaling()
 {
-#if defined(_WIN32)
+/*#if defined(_WIN32)
     double f = Utils::getScreenDpiRatioByHWND( int(CWinWindow::handle()) );
-    if ( m_priv->dpiRatio != f ) {
+    if ( m_priv->dpiRatio != f ) {*/
         /* change scaling factor for elements */
-    }
-#endif
+//    }
+//#endif
 }
 
-#if defined(_WIN32)
+/*#if defined(_WIN32)
 void CMessage::onWindowActivate(bool activate)
 {
     if ( activate ) {
@@ -476,4 +479,4 @@ void CMessage::onWindowActivate(bool activate)
 
     m_priv->isWindowActive = activate;
 }
-#endif
+#endif*/
