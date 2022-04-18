@@ -152,6 +152,7 @@ CMessage::CMessage(QWidget * p)
     m_centralWidget->installEventFilter(
                 new CMessageEventsFilter(this, m_centralWidget) );
 #else*/
+    setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
     setWindowTitle(APP_TITLE);
     setLayout(new QVBoxLayout);
     layout()->setContentsMargins(0, 0, 0, 0);

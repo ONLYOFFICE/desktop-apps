@@ -177,13 +177,14 @@ CMainWindow::CMainWindow(const QRect &rect, const WindowType winType, const QStr
         QObject::connect(mainpanel, &CMainPanel::mainWindowChangeState, bind(&CMainWindow::setWindowState, this, _1));
         QObject::connect(mainpanel, &CMainPanel::mainWindowWantToClose, std::bind(&CMainWindow::slot_windowClose, this));
         QObject::connect(mainpanel, &CMainPanel::mainPageReady, std::bind(&CMainWindow::slot_mainPageReady, this));
-        QObject::connect(&AscAppManager::getInstance().commonEvents(), &CEventDriver::onModalDialog, bind(&CMainWindow::slot_modalDialog, this, _1, _2));
-
+        //QObject::connect(&AscAppManager::getInstance().commonEvents(), &CEventDriver::onModalDialog, bind(&CMainWindow::slot_modalDialog, this, _1, _2));
+        QObject::connect(&AscAppManager::getInstance().commonEvents(), &CEventDriver::onModalDialog, this, &CMainWindow::slot_modalDialog);
     } else
     if (m_winType == WindowType::SINGLE) {
         m_dpiRatio = CSplash::startupDpiRatio();
-        m_modalSlotConnection = QObject::connect(&AscAppManager::getInstance().commonEvents(), &CEventDriver::onModalDialog,
-                                         bind(&CMainWindow::slot_modalDialog, this, std::placeholders::_1, std::placeholders::_2));
+        m_modalSlotConnection = QObject::connect(&AscAppManager::getInstance().commonEvents(), &CEventDriver::onModalDialog, this, &CMainWindow::slot_modalDialog);
+        //m_modalSlotConnection = QObject::connect(&AscAppManager::getInstance().commonEvents(), &CEventDriver::onModalDialog,
+                                        // bind(&CMainWindow::slot_modalDialog, this, std::placeholders::_1, std::placeholders::_2));
     } else
     if (m_winType == WindowType::REPORTER) {
         m_borderless = false;
@@ -582,15 +583,25 @@ void CMainWindow::slot_mainPageReady()
 #endif
 }
 
-void CMainWindow::slot_modalDialog(bool status, HWND h)
+void CMainWindow::slot_modalDialog(bool status,  WId h)
 {
-    if (h != m_hWnd) {
+    /*if (h != m_hWnd) {
         setEnabled(status ? false : true);
         m_modalHwnd = h;
     } else {
         m_modalHwnd = nullptr;
         if (!status && IsWindowEnabled(m_hWnd) && m_winType == WindowType::MAIN)
             _m_pMainPanel->focus();
+    }*/
+    Q_UNUSED(h)
+    if (m_winType == WindowType::MAIN) {
+        static WindowHelper::CParentDisable * const _disabler = new WindowHelper::CParentDisable;
+        if ( status ) {
+            _disabler->disable(this);
+        } else _disabler->enable();
+    } else
+    if (m_winType == WindowType::SINGLE) {
+        //status ? pimpl->lockParentUI() : pimpl->unlockParentUI();
     }
 }
 

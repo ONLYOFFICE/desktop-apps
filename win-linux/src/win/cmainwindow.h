@@ -97,7 +97,7 @@ private:
     void doClose();
     void slot_windowClose();
     void slot_mainPageReady();
-    void slot_modalDialog(bool, HWND);
+    void slot_modalDialog(bool,  WId);
     void toggleResizeable();
     void setResizeable(bool);
     void setResizeableAreaWidth(int);

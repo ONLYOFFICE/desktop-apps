@@ -74,12 +74,13 @@ using namespace NSEditorApi;
 using namespace std::placeholders;
 
 #define QCEF_CAST(Obj) qobject_cast<QCefView *>(Obj)
-/*#ifdef _WIN32
-#define TOP_NATIVE_WINDOW_HANDLE HWND(parentWidget()->property("handleTopWindow").toInt())
-#else*/
+#ifdef _WIN32
+//#define TOP_NATIVE_WINDOW_HANDLE HWND(parentWidget()->property("handleTopWindow").toInt())
+#define TOP_NATIVE_WINDOW_HANDLE parentWidget()->parentWidget()
+#else
 #define TOP_NATIVE_WINDOW_HANDLE this
 //#define TOP_NATIVE_WINDOW_HANDLE qobject_cast<QWidget *>(parent())
-//#endif
+#endif
 
 
 struct printdata {
@@ -937,13 +938,12 @@ void CMainPanel::onDocumentPrint(void * opts)
         printer->setOutputFileName("");
         printer->setFromTo(1, pagesCount);
 
-#ifdef _WIN32
+/*#ifdef _WIN32
         //CPrintDialogWinWrapper wrapper(printer, TOP_NATIVE_WINDOW_HANDLE);
         //QPrintDialog * dialog = wrapper.q_dialog();
+#else*/
         QPrintDialog * dialog =  new QPrintDialog(printer, this);
-#else
-        QPrintDialog * dialog =  new QPrintDialog(printer, this);
-#endif // _WIN32
+//#endif // _WIN32
 
         dialog->setWindowTitle(tr("Print Document"));
         dialog->setEnabledOptions(QPrintDialog::PrintPageRange | QPrintDialog::PrintCurrentPage | QPrintDialog::PrintToFile);
@@ -952,12 +952,11 @@ void CMainPanel::onDocumentPrint(void * opts)
         dialog->setPrintRange(m_printData->_print_range);
 
         int start = -1, finish = -1;
-#ifdef _WIN32
+/*#ifdef _WIN32
         //int res = wrapper.showModal();
+#else*/
         int res = dialog->exec();
-#else
-        int res = dialog->exec();
-#endif
+//#endif
         if (res == QDialog::Accepted) {
             m_printData->_printer_info = QPrinterInfo::printerInfo(printer->printerName());
             m_printData->_print_range = dialog->printRange();
