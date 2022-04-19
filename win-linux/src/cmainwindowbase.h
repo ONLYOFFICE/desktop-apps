@@ -106,8 +106,8 @@ public:
     double scaling() const;
     int editorsCount() const;
     int editorsCount(const std::wstring& portal) const;
-    int attachEditor(QWidget *, int index = -1);
-    int attachEditor(QWidget *, const QPoint&);
+    //int attachEditor(QWidget *, int index = -1);
+    //int attachEditor(QWidget *, const QPoint&);
     void selectView(int id) const;
     void selectView(const QString& url) const;
     virtual bool pointInTabs(const QPoint& pt) const;

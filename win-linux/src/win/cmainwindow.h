@@ -42,6 +42,7 @@
 #include <QMargins>
 #include <QRect>
 
+class CMainWindowPublic_MAIN;
 
 class CMainWindow : public CMainWindowBase, public QMainWindow
 {
@@ -65,6 +66,8 @@ public:
     virtual void updateScaling() final;
     virtual void applyTheme(const std::wstring&) override;
     virtual bool holdView(int id) const override;
+
+    CMainWindowPublic_MAIN* m_pubMainImpl;
 
 #if (QT_VERSION < QT_VERSION_CHECK(5, 10, 0))
     // because of QTBUG-67211
@@ -137,5 +140,55 @@ private:
          m_taskBarClicked,
          m_windowActivated;
 };
+
+
+class CMainWindowPublic_MAIN
+{
+public:
+    CMainWindowPublic_MAIN(CMainWindow * owner) :
+        m_owner(owner)
+    {}
+
+    int attachEditor(QWidget * panel, int index = -1)
+    {
+        CMainPanel * _pMainPanel = m_owner->mainPanel();
+        if (!QCefView::IsSupportLayers()) {
+            CTabPanel * _panel = dynamic_cast<CTabPanel *>(panel);
+            if (_panel)
+                _panel->view()->SetCaptionMaskSize(0);
+        }
+        int _index = _pMainPanel->tabWidget()->insertPanel(panel, index);
+        if (_index >= 0) {
+            _pMainPanel->toggleButtonMain(false);
+            _pMainPanel->tabWidget()->setCurrentIndex(_index);
+        }
+        return _index;
+    }
+
+    int attachEditor(QWidget * panel, const QPoint& pt)
+    {
+        CMainPanel * _pMainPanel = m_owner->mainPanel();
+        QPoint _pt_local = _pMainPanel->tabWidget()->tabBar()->mapFromGlobal(pt);
+    #ifdef Q_OS_WIN
+    # if (QT_VERSION < QT_VERSION_CHECK(5, 10, 0))
+        QPoint _tl = windowRect().topLeft();
+        if ( _tl.x() < _pt_local.x() && _tl.y() < _pt_local.y() )
+            _pt_local -= windowRect().topLeft();
+    # endif
+    #endif
+        int _index = _pMainPanel->tabWidget()->tabBar()->tabAt(_pt_local);
+
+        if ( !(_index < 0) ) {
+            QRect _rc_tab = _pMainPanel->tabWidget()->tabBar()->tabRect(_index);
+            if ( _pt_local.x() > _rc_tab.left() + (_rc_tab.width() / 2) ) ++_index;
+        }
+
+        return attachEditor(panel, _index);
+    }
+
+private:
+    CMainWindow * m_owner;
+};
+
 
 #endif

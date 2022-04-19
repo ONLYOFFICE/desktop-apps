@@ -854,7 +854,7 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
                     _app.m_pMainWindow->show(reg_user.value("maximized", false).toBool());
                 }
 
-                _app.mainWindow()->attachEditor(panel);
+                _app.mainWindow()->m_pubMainImpl->attachEditor(panel);
             }
         }
     }
@@ -1281,7 +1281,7 @@ namespace Drop {
         if ( editor ) {
             CTabPanel * tabpanel = editor->releaseEditorView();
 
-            CAscApplicationManagerWrapper::mainWindow()->attachEditor(tabpanel, QCursor::pos());
+            CAscApplicationManagerWrapper::mainWindow()->m_pubMainImpl->attachEditor(tabpanel, QCursor::pos());
             CAscApplicationManagerWrapper::closeEditorWindow(size_t(editor));
 
             AscAppManager::sendCommandTo(tabpanel->cef(), L"window:features",
@@ -1371,7 +1371,7 @@ void CAscApplicationManagerWrapper::editorWindowMoving(const size_t h, const QPo
 
             if ( editor_win ) {
                 SKIP_EVENTS_QUEUE([=]{
-                    _main_window->attachEditor(tabpanel);
+                    _main_window->m_pubMainImpl->attachEditor(tabpanel);
 
                     closeEditorWindow(size_t(editor_win));
                 });

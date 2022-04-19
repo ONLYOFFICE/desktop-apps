@@ -325,7 +325,7 @@ public:
                 m_appmanager.sendCommandTo(panel->cef(), L"window:features",
                         Utils::stringifyJson(QJsonObject{{"skiptoparea", TOOLBTN_HEIGHT},{"singlewindow",true}}).toStdWString());
             } else {
-                mainWindow()->attachEditor(panel);
+                mainWindow()->m_pubMainImpl->attachEditor(panel);
             }
 
             return true;
