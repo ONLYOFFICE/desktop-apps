@@ -50,8 +50,8 @@ public:
     explicit CMainWindow(const QRect&, const QString&, QWidget*);
     explicit CMainWindow(const QRect&, const QString&, QCefView*);
     virtual ~CMainWindow();
-    QWidget * handle() const {return qobject_cast<QWidget *>(const_cast<CMainWindow *>(this));};
-    //HWND handle() const;
+
+    QWidget * handle() const;
     void hide();
     void toggleBorderless(bool);
     void adjustGeometry();
@@ -104,7 +104,6 @@ private:
     void setContentsMargins(int, int, int, int);
     void setMinimumSize(const int, const int);
     void setMaximumSize(const int, const int);
-    //void activateWindow();
     void focusMainPanel();
     int dpiCorrectValue(int v) const {return int(v * m_dpiRatio);}
 

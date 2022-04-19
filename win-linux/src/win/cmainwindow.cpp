@@ -211,10 +211,9 @@ CMainWindow::~CMainWindow()
 
 /** Public **/
 
-/*HWND CMainWindow::handle() const
-{
-    return m_hWnd;
-}*/
+QWidget * CMainWindow::handle() const {
+    return qobject_cast<QWidget *>(const_cast<CMainWindow *>(this));
+};
 
 void CMainWindow::hide()
 {
@@ -652,12 +651,6 @@ void CMainWindow::setMaximumSize( const int width, const int height )
     m_maxSize.width = width;
     m_maxSize.height = height;
 }
-
-/*void CMainWindow::activateWindow()
-{
-    //SetActiveWindow(m_hWnd);
-    QMainWindow::activateWindow();
-}*/
 
 void CMainWindow::focusMainPanel()
 {
