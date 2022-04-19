@@ -122,7 +122,8 @@ auto CElipsisLabel::updateText() -> void
 
 
 CMainWindowBase::CMainWindowBase(QRect& rect)
-    : m_boxTitleBtns(nullptr)
+    : m_pubMainImpl(nullptr)
+    , m_boxTitleBtns(nullptr)
     , m_pMainPanel(nullptr)
     , m_pMainView(nullptr)
     , m_buttonMinimize(nullptr)

@@ -95,6 +95,8 @@ private:
     Qt::TextElideMode elide_mode = Qt::ElideRight;
 };
 
+class CMainWindowPublic_MAIN;
+
 class CMainWindowBase
 {
 public:
@@ -111,6 +113,9 @@ public:
     void selectView(int id) const;
     void selectView(const QString& url) const;
     virtual bool pointInTabs(const QPoint& pt) const;
+    virtual CMainPanel * mainPanel() const = 0;
+
+    CMainWindowPublic_MAIN* m_pubMainImpl;
 
 protected:
     QWidget * createTopPanel(QWidget *, const QString&);
@@ -130,7 +135,6 @@ protected:
     virtual bool holdView(int id) const;
     virtual int calcTitleCaptionWidth(); // Overrides in CEditorWindow
 
-    virtual CMainPanel * mainPanel() const = 0;
     virtual QRect windowRect() const = 0;
     virtual void show(bool) = 0;
     virtual void bringToTop() = 0;
@@ -153,5 +157,55 @@ private:
     class impl;
     std::unique_ptr<impl> pimpl;  
 };
+
+
+class CMainWindowPublic_MAIN
+{
+public:
+    CMainWindowPublic_MAIN(CMainWindowBase * owner) :
+        m_owner(owner)
+    {}
+
+    int attachEditor(QWidget * panel, int index = -1)
+    {
+        CMainPanel * _pMainPanel = m_owner->mainPanel();
+        if (!QCefView::IsSupportLayers()) {
+            CTabPanel * _panel = dynamic_cast<CTabPanel *>(panel);
+            if (_panel)
+                _panel->view()->SetCaptionMaskSize(0);
+        }
+        int _index = _pMainPanel->tabWidget()->insertPanel(panel, index);
+        if (_index >= 0) {
+            _pMainPanel->toggleButtonMain(false);
+            _pMainPanel->tabWidget()->setCurrentIndex(_index);
+        }
+        return _index;
+    }
+
+    int attachEditor(QWidget * panel, const QPoint& pt)
+    {
+        CMainPanel * _pMainPanel = m_owner->mainPanel();
+        QPoint _pt_local = _pMainPanel->tabWidget()->tabBar()->mapFromGlobal(pt);
+    #ifdef Q_OS_WIN
+    # if (QT_VERSION < QT_VERSION_CHECK(5, 10, 0))
+        QPoint _tl = windowRect().topLeft();
+        if ( _tl.x() < _pt_local.x() && _tl.y() < _pt_local.y() )
+            _pt_local -= windowRect().topLeft();
+    # endif
+    #endif
+        int _index = _pMainPanel->tabWidget()->tabBar()->tabAt(_pt_local);
+
+        if ( !(_index < 0) ) {
+            QRect _rc_tab = _pMainPanel->tabWidget()->tabBar()->tabRect(_index);
+            if ( _pt_local.x() > _rc_tab.left() + (_rc_tab.width() / 2) ) ++_index;
+        }
+
+        return attachEditor(panel, _index);
+    }
+
+private:
+    CMainWindowBase * m_owner;
+};
+
 
 #endif // CMAINWINDOWBASE_H

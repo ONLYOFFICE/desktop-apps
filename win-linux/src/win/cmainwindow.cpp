@@ -123,7 +123,6 @@ CMainWindow::CMainWindow(const QRect &rect, const QString &title, QCefView *view
 CMainWindow::CMainWindow(const QRect &rect, const WindowType winType, const QString &title, QWidget *widget) :
     CMainWindowBase(const_cast<QRect&>(rect)),
     QMainWindow(nullptr),
-    m_pubMainImpl(nullptr),
     m_winType(winType),
     m_previousState(Qt::WindowNoState),
     m_margins(QMargins()),
@@ -209,7 +208,8 @@ CMainWindow::~CMainWindow()
         QObject::disconnect(m_modalSlotConnection);
     }
     m_closed = true;
-    delete m_pubMainImpl, m_pubMainImpl = nullptr;
+    if (m_pubMainImpl)
+        delete m_pubMainImpl, m_pubMainImpl = nullptr;
 }
 
 /** Public **/
