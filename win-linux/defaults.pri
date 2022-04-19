@@ -89,11 +89,14 @@ HEADERS += \
     $$PWD/src/canimatedicon.h \
     $$PWD/src/cscalingwrapper.h \
     $$PWD/src/ctabundockevent.h \
+    $$PWD/src/cmainwindow.h \
     $$PWD/src/cmainwindowbase.h \
+    $$PWD/src/cwindowbase.h \
     $$PWD/src/ctabpanel.h \
     $$PWD/src/ceditorwindow.h \
     $$PWD/src/ccefeventsgate.h \
     $$PWD/src/ceditorwindow_p.h \
+    $$PWD/src/cpresenterwindow.h \
     $$PWD/src/ceditortools.h \
     $$PWD/src/cwindowsqueue.h \
     $$PWD/src/ceventdriver.h \
@@ -128,9 +131,12 @@ SOURCES += \
     $$PWD/src/canimatedicon.cpp \
     $$PWD/src/cscalingwrapper.cpp \
     $$PWD/src/ctabundockevent.cpp \
+    $$PWD/src/cmainwindow.cpp \
     $$PWD/src/cmainwindowbase.cpp \
+    $$PWD/src/cwindowbase.cpp \
     $$PWD/src/ctabpanel.cpp \
     $$PWD/src/ceditorwindow.cpp \
+    $$PWD/src/cpresenterwindow.cpp \
     $$PWD/src/ccefeventsgate.cpp \
     $$PWD/src/ceditortools.cpp \
     $$PWD/src/ceventdriver.cpp \
@@ -179,16 +185,14 @@ core_linux {
     HEADERS += $$PWD/src/linux/cmainwindow.h \
                 $$PWD/src/linux/cx11decoration.h \
                 $$PWD/src/linux/gtk_addon.h \
-                #$$PWD/src/linux/csinglewindow.h \
-                #$$PWD/src/linux/csinglewindowplatform.h \
+                $$PWD/src/linux/cwindowplatform.h \
                 $$PWD/src/linux/singleapplication.h
 
     SOURCES += $$PWD/src/linux/cmainwindow.cpp \
                 $$PWD/src/linux/cx11decoration.cpp \
                 $$PWD/src/linux/gtk_addon.cpp \
                 $$PWD/src/linux/cx11caption.cpp \
-                #$$PWD/src/linux/csinglewindow.cpp \
-                #$$PWD/src/linux/csinglewindowplatform.cpp \
+                $$PWD/src/linux/cwindowplatform.cpp \
                 $$PWD/src/linux/singleapplication.cpp
 
     HEADERS += $$PWD/src/linux/cdialogopenssl.h \
@@ -212,9 +216,11 @@ core_windows {
     RC_ICONS += ./res/icons/desktop_icons.ico
 
     HEADERS += $$PWD/src/win/cmainwindow.h \
+                $$PWD/src/win/cwindowplatform.h \
                 $$PWD/src/win/caption.h
 
-    SOURCES += $$PWD/src/win/cmainwindow.cpp
+    SOURCES += $$PWD/src/win/cmainwindow.cpp \
+                $$PWD/src/win/cwindowplatform.cpp \
 
 
     LIBS += -lwininet \
