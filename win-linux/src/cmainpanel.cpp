@@ -975,11 +975,12 @@ void CMainPanel::onDocumentPrint(void * opts)
                 finish < start && (finish = start);
 
                 if ( pContext->BeginPaint() ) {
-/*#if defined(_WIN32)
-                    CPrintProgress progressDlg((HWND)parentWidget()->winId());
-#else*/
+#if defined(_WIN32)
+                    //CPrintProgress progressDlg((HWND)parentWidget()->winId());
+                    CPrintProgress progressDlg(TOP_NATIVE_WINDOW_HANDLE);
+#else
                     CPrintProgress progressDlg(qobject_cast<QWidget *>(parent()));
-//#endif
+#endif
                     progressDlg.startProgress();
 
                     CAscPrintPage * pData;

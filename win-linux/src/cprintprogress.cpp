@@ -169,11 +169,11 @@ void CPrintProgress::startProgress()
 #endif*/
     m_Dlg.show();
 
-//#ifdef __linux
+#ifdef __linux
     while ( !m_showed ) {
         qApp->processEvents();
     }
-//#endif
+#endif
 }
 
 void CPrintProgress::onCancelClicked()
