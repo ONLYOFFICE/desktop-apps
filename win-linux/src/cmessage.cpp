@@ -157,7 +157,7 @@ CMessage::CMessage(QWidget * p)
     setLayout(new QVBoxLayout);
     layout()->setContentsMargins(0, 0, 0, 0);
 
-    m_centralWidget = new QWidget;
+    m_centralWidget = new QWidget(this);
     layout()->addWidget(m_centralWidget);
     layout()->setSizeConstraint(QLayout::SetFixedSize);
 //#endif
@@ -390,14 +390,14 @@ void CMessage::modal()
 {
 #if defined(_WIN32)
     //CInAppEventModal _event(m_hParent);
-    CInAppEventModal _event(parentWidget()->winId());
-    CRunningEventHelper _h(&_event);
+    //CInAppEventModal _event(parentWidget()->winId());
+    //CRunningEventHelper _h(&_event);
 
     /*m_centralWidget->adjustSize();
     m_centralWidget->show();
 
     HWND _focused_handle = nullptr;*/
-    if ( m_priv->defaultButton ) {
+    /*if ( m_priv->defaultButton ) {
         //_focused_handle = (HWND)m_priv->defaultButton->winId();
         QTimer::singleShot(50, m_centralWidget, [&]{
             if ( !AscAppManager::themes().current().isDark() )
@@ -407,7 +407,7 @@ void CMessage::modal()
 
             m_priv->defaultButton->setFocus();
         });
-    }
+    }*/
 
     /*CWinWindow::setSize(m_centralWidget->width(), m_centralWidget->height());
     CWinWindow::center();
