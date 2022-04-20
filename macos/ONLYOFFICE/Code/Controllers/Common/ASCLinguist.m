@@ -99,7 +99,7 @@
         @"sv-SE": @"Svenska",
         @"tr-TR": @"Türkçe",
         @"ja-JP": @"日本語",
-        @"ko-KR": @"韓國語",
+        @"ko-KR": @"한국어",
         @"bg-BG": @"Български",
         @"nl-NL": @"Nederlands",
         @"vi-VN": @"Tiếng Việt",
