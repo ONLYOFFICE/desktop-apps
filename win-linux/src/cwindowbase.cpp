@@ -30,6 +30,178 @@
  *
 */
 
+#include "cwindowbase.h"
+//#include "cascapplicationmanagerwrapper.h"
+#include "utils.h"
+#include "ccefeventsgate.h"
+//#include "defines.h"
+#include "clangater.h"
+//#include <QLayout>
+#include <QVariant>
+#include <QSettings>
 
 
+class CWindowBase::CWindowBasePrivate {
+    bool is_custom_window_ = false;
 
+public:
+    CWindowBasePrivate() {
+#ifdef Q_OS_LINUX
+        GET_REGISTRY_SYSTEM(reg_system)
+        GET_REGISTRY_USER(reg_user)
+        if ( reg_user.value("titlebar") == "custom" ||
+                reg_system.value("titlebar") == "custom" )
+        {
+            is_custom_window_ = true;
+        }
+#else
+        is_custom_window_ = true;
+#endif
+    }
+
+    auto is_custom_window() -> bool {
+        return is_custom_window_;
+    }
+};
+
+auto ellipsis_text_(const QWidget * widget, const QString& str, Qt::TextElideMode mode = Qt::ElideRight) -> QString {
+    QMargins _margins = widget->contentsMargins();
+    int _padding = _margins.left() + _margins.right();
+    int _width = widget->maximumWidth() != QWIDGETSIZE_MAX ? widget->maximumWidth() : widget->width();
+    QFontMetrics _metrics(widget->font());
+
+    return _metrics.elidedText(str, mode, _width - _padding - 1);
+}
+
+CElipsisLabel::CElipsisLabel(QWidget *parent, Qt::WindowFlags f)
+    : QLabel(parent, f)
+{}
+
+CElipsisLabel::CElipsisLabel(const QString &text, QWidget *parent)
+    : QLabel(text, parent)
+    , orig_text(text)
+{
+//    QString elt = elipsis_text(this, text, Qt::ElideMiddle);
+//    setText(elt);
+}
+
+void CElipsisLabel::resizeEvent(QResizeEvent *event)
+{
+    QLabel::resizeEvent(event);
+
+    if ( event->size().width() != event->oldSize().width() ) {
+        QString elt = ellipsis_text_(this, orig_text, elide_mode);
+        QLabel::setText(elt);
+    }
+}
+
+auto CElipsisLabel::setText(const QString& text) -> void
+{
+    orig_text = text;
+
+    QString elt = ellipsis_text_(this, text, elide_mode);
+    QLabel::setText(elt);
+}
+
+auto CElipsisLabel::setEllipsisMode(Qt::TextElideMode mode) -> void
+{
+    elide_mode = mode;
+}
+
+auto CElipsisLabel::updateText() -> void
+{
+    QString elt = ellipsis_text_(this, orig_text, elide_mode);
+    if ( elt != text() ) {
+        QLabel::setText(elt);
+    }
+}
+
+
+CWindowBase::CWindowBase()
+    : QMainWindow(nullptr)
+    , m_boxTitleBtns(nullptr)
+    , m_pMainPanel(nullptr)
+    , m_pMainView(nullptr)
+    , m_buttonMinimize(nullptr)
+    , m_buttonMaximize(nullptr)
+    , m_buttonClose(nullptr)
+    , m_labelTitle(nullptr)
+    , pimpl{new CWindowBasePrivate}
+{
+    setWindowIcon(Utils::appIcon());
+    /*m_dpiRatio = Utils::getScreenDpiRatio(rect.topLeft());
+    if ( rect.isEmpty() )
+        rect = QRect(100, 100, 1324 * m_dpiRatio, 800 * m_dpiRatio);
+
+    QRect _screen_size = Utils::getScreenGeometry(rect.topLeft());
+    if ( _screen_size.width() < rect.width() + 120 ||
+            _screen_size.height() < rect.height() + 120 )
+    {
+        rect.setLeft(_screen_size.left()),
+        rect.setTop(_screen_size.top());
+
+        if ( _screen_size.width() < rect.width() ) rect.setWidth(_screen_size.width());
+        if ( _screen_size.height() < rect.height() ) rect.setHeight(_screen_size.height());
+    }*/
+}
+
+CWindowBase::~CWindowBase()
+{
+
+}
+
+/** Protected **/
+
+QPushButton * CWindowBase::createToolButton(QWidget * parent, const QString& name)
+{
+    QPushButton * btn = new QPushButton(parent);
+    btn->setObjectName(name);
+    btn->setProperty("class", "normal");
+    btn->setProperty("act", "tool");
+    btn->setFixedSize(int(TOOLBTN_WIDTH*m_dpiRatio), int(TOOLBTN_HEIGHT*m_dpiRatio));
+#ifdef __linux__
+    btn->setMouseTracking(true);
+#endif
+    return btn;
+}
+
+void CWindowBase::initTopButtons(QWidget *parent)
+{
+    // Minimize
+    m_buttonMinimize = createToolButton(parent, "toolButtonMinimize");
+    QObject::connect(m_buttonMinimize, &QPushButton::clicked, [=]{onMinimizeEvent();});
+    // Maximize
+    m_buttonMaximize = createToolButton(parent, "toolButtonMaximize");
+    QObject::connect(m_buttonMaximize, &QPushButton::clicked, [=]{onMaximizeEvent();});
+    // Close
+    m_buttonClose = createToolButton(parent, "toolButtonClose");
+    QObject::connect(m_buttonClose, &QPushButton::clicked, [=]{onCloseEvent();});
+}
+
+bool CWindowBase::isCustomWindowStyle()
+{
+    return pimpl->is_custom_window();
+}
+
+void CWindowBase::applyWindowState(Qt::WindowState s)
+{
+    m_buttonMaximize->setProperty("class", s == Qt::WindowMaximized ? "min" : "normal") ;
+    m_buttonMaximize->style()->polish(m_buttonMaximize);
+}
+
+void CWindowBase::setWindowTitle(const QString& title)
+{
+    QMainWindow::setWindowTitle(title);
+    if (m_labelTitle)
+        m_labelTitle->setText(title);
+}
+
+void CWindowBase::onMinimizeEvent()
+{
+    QMainWindow::showMinimized();
+}
+
+void CWindowBase::onMaximizeEvent()
+{
+    isMaximized() ? QMainWindow::showNormal() : QMainWindow::showMaximized();
+}

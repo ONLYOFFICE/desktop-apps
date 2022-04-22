@@ -121,7 +121,6 @@ CMainWindow::CMainWindow(const QRect &rect, const QString &title, QCefView *view
 {}
 
 CMainWindow::CMainWindow(const QRect &rect, const WindowType winType, const QString &title, QWidget *widget) :
-    CMainWindowBase(const_cast<QRect&>(rect)),
     QMainWindow(nullptr),
     m_winType(winType),
     m_previousState(Qt::WindowNoState),
@@ -154,7 +153,6 @@ CMainWindow::CMainWindow(const QRect &rect, const WindowType winType, const QStr
 
     m_window_rect = rect;   
     if (m_winType == WindowType::MAIN) {
-        m_pubMainImpl = new CMainWindowPublic_MAIN(this);
         m_dpiRatio = CSplash::startupDpiRatio();
         if (m_window_rect.isEmpty())
             m_window_rect = QRect(QPoint(100, 100)*m_dpiRatio, MAIN_WINDOW_DEFAULT_SIZE * m_dpiRatio);
@@ -208,8 +206,6 @@ CMainWindow::~CMainWindow()
         QObject::disconnect(m_modalSlotConnection);
     }
     m_closed = true;
-    if (m_pubMainImpl)
-        delete m_pubMainImpl, m_pubMainImpl = nullptr;
 }
 
 /** Public **/
@@ -406,7 +402,7 @@ void CMainWindow::setScreenScalingFactor(double factor)
     } else
     if (m_winType == WindowType::SINGLE) {
         double change_factor = factor / m_dpiRatio;
-        CMainWindowBase::setScreenScalingFactor(factor);
+        CWindowBase::setScreenScalingFactor(factor);
         if ( !WindowHelper::isWindowSystemDocked(m_hWnd) ) {
             m_skipSizing = true;
             setPlacement(m_hWnd, m_moveNormalRect, change_factor);
@@ -468,7 +464,7 @@ void CMainWindow::onExitSizeMove()
 
 void CMainWindow::setWindowTitle(const QString& title)
 {
-    CMainWindowBase::setWindowTitle(title);
+    CWindowBase::setWindowTitle(title);
     //SetWindowText(m_hWnd, title.toStdWString().c_str());
     QMainWindow::setWindowTitle(title);
 }
@@ -1098,7 +1094,7 @@ bool CMainWindow::nativeEvent(const QByteArray &eventType, void *message, long *
 
 void CMainWindow::captureMouse(int tabindex)
 {
-    CMainWindowBase::captureMouse(tabindex);
+    CWindowBase::captureMouse(tabindex);
 
     if ( !(tabindex < 0) &&
             tabindex < mainPanel()->tabWidget()->count() )

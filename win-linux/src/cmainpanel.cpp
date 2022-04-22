@@ -61,9 +61,7 @@
 #include "../Common/OfficeFileFormats.h"
 
 #ifdef _WIN32
-//#include "win/cprintdialog.h"
 #include "shlobj.h"
-
 #include "win/caption.h"
 #else
 #define gTopWinId this

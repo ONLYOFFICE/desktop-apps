@@ -33,7 +33,7 @@
 #ifndef CMAINWINDOW_H
 #define CMAINWINDOW_H
 
-#include "cmainwindowbase.h"
+#include "cwindowbase.h"
 #include "cmainpanelimpl.h"
 #include <QtWidgets/QApplication>
 #include <QMainWindow>
@@ -43,7 +43,7 @@
 #include <QRect>
 
 
-class CMainWindow : public CMainWindowBase, public QMainWindow
+class CMainWindow : public CWindowBase, public QMainWindow
 {
 public:
     explicit CMainWindow(const QRect&);
@@ -115,8 +115,8 @@ private:
     virtual void onCloseEvent() override;
 
     WindowType m_winType;
-    WindowBase::CWindowGeometry m_minSize;
-    WindowBase::CWindowGeometry m_maxSize;
+    CWindowGeometry m_minSize;
+    CWindowGeometry m_maxSize;
     QMetaObject::Connection m_modalSlotConnection;
     CMainPanelImpl *_m_pMainPanel;
     Qt::WindowStates m_previousState;
@@ -138,9 +138,5 @@ private:
          m_taskBarClicked,
          m_windowActivated;
 };
-
-
-
-
 
 #endif

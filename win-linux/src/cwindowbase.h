@@ -30,6 +30,93 @@
  *
 */
 
+#ifndef CWINDOWBASE_H
+#define CWINDOWBASE_H
 
+#define WINDOW_MIN_WIDTH    500
+#define WINDOW_MIN_HEIGHT   300
 
+#define MAIN_WINDOW_MIN_WIDTH    960
+#define MAIN_WINDOW_MIN_HEIGHT   661
+#define MAIN_WINDOW_DEFAULT_SIZE QSize(1324,800)
+#define EDITOR_WINDOW_MIN_WIDTH  920
 
+#define BUTTON_MAIN_WIDTH   112
+#define MAIN_WINDOW_BORDER_WIDTH 4
+#define WINDOW_TITLE_MIN_WIDTH 200
+#define TOOLBTN_HEIGHT      28
+#define TOOLBTN_WIDTH       40
+#define TITLE_HEIGHT        28
+
+#include <QMainWindow>
+#include <QPushButton>
+#include <QLabel>
+#include <memory>
+#include "cmainpanelimpl.h"
+
+#ifdef _WIN32
+# include <windows.h>
+# include <windowsx.h>
+# include <dwmapi.h>
+#endif
+
+enum class WindowType : uint_fast8_t
+{
+    MAIN, SINGLE, REPORTER
+};
+
+class CElipsisLabel : public QLabel
+{
+public:
+    CElipsisLabel(const QString &text, QWidget *parent = Q_NULLPTR);
+    CElipsisLabel(QWidget *parent = Q_NULLPTR, Qt::WindowFlags f = Qt::WindowFlags());
+
+    auto setText(const QString&) -> void;
+    auto setEllipsisMode(Qt::TextElideMode) -> void;
+    auto updateText() -> void;
+
+protected:
+    void resizeEvent(QResizeEvent *event) override;
+    using QLabel::setText;
+
+private:
+    QString orig_text;
+    Qt::TextElideMode elide_mode = Qt::ElideRight;
+};
+
+class CWindowBase : public QMainWindow
+{
+public:
+    explicit CWindowBase();
+    virtual ~CWindowBase();
+
+protected:
+    QPushButton * createToolButton(QWidget * parent = nullptr,
+                                   const QString& name = QString("")); // temp (only reporter, single)
+    void initTopButtons(QWidget *parent); // temp (only reporter, single)
+    bool isCustomWindowStyle();
+    virtual void applyWindowState(Qt::WindowState);
+    virtual void setWindowTitle(const QString&);
+    virtual void onMinimizeEvent();
+    virtual void onMaximizeEvent();
+    virtual void onCloseEvent() = 0;
+#if defined (_WIN32)
+    virtual void focus() = 0;
+#endif
+
+    QWidget * m_boxTitleBtns;
+    CMainPanelImpl *_m_pMainPanel; // temp
+    QWidget * m_pMainPanel;
+    QWidget * m_pMainView;
+    QPushButton * m_buttonMinimize;
+    QPushButton * m_buttonMaximize;
+    QPushButton * m_buttonClose;
+    CElipsisLabel * m_labelTitle;
+    double m_dpiRatio;
+
+private:
+    class CWindowBasePrivate;
+    std::unique_ptr<CWindowBasePrivate> pimpl;
+};
+
+#endif // CWINDOWBASE_H

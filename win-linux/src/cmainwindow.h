@@ -30,8 +30,55 @@
  *
 */
 
+#ifndef CMAINWINDOW_H
+#define CMAINWINDOW_H
 
 
+#ifdef _WIN32
+# include "win/cwindowplatform.h"
+#else
+# include "linux/cwindowplatform.h"
+#endif
+#include "cmainpanelimpl.h"
 
 
+class CMainWindow : public CWindowPlatform
+{
+public:
+    explicit CMainWindow(const QRect&);
+    virtual ~CMainWindow();
 
+    QWidget * editor(int index);
+    QRect windowRect() const;
+    QString documentName(int vid);
+    void selectView(int id) const;
+    void selectView(const QString& url) const;
+    int attachEditor(QWidget *, int index = -1);
+    int attachEditor(QWidget *, const QPoint&);
+    int editorsCount() const;
+    int editorsCount(const std::wstring& portal) const;
+    bool pointInTabs(const QPoint& pt) const;
+    bool holdView(int id) const;
+    virtual CMainPanel * mainPanel() const final;
+    virtual void applyTheme(const std::wstring&) final;
+#ifdef _UPDMODULE
+    static void checkUpdates();
+    static void setAutocheckUpdatesInterval(const QString&);
+#endif 
+
+private:
+#ifdef _UPDMODULE
+    static void updateFound();
+    static void updateNotFound();
+    static void updateError();
+#endif    
+    void setWindowState(Qt::WindowState);
+    void slot_mainPageReady();
+    virtual void onCloseEvent() final;
+    virtual void applyWindowState(Qt::WindowState) final;
+#if defined (_WIN32)
+    virtual void focus() final;
+#endif
+};
+
+#endif // CMAINWINDOW_H

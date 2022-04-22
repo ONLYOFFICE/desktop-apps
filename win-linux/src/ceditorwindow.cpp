@@ -32,7 +32,7 @@
 
 #include "ceditorwindow.h"
 #include "utils.h"
-#include "cmainwindowbase.h"
+#include "cwindowbase.h"
 #include "defines.h"
 #include "cascapplicationmanagerwrapper.h"
 #include "cfiledialog.h"
@@ -49,14 +49,13 @@
 #include <QDir>
 
 #include "ceditorwindow_p.h"
+#ifdef _WIN32
+# include "win/caption.h"
+#endif
 
-/*CEditorWindow::CEditorWindow()
-    : CMainWindow(QRect(100, 100, 900, 800), "Desktop Editor", nullptr)
-{
-}*/
 
 CEditorWindow::CEditorWindow(const QRect& rect, CTabPanel* panel)
-    : CMainWindow(rect, panel->data()->title(), panel)
+    : CWindowPlatform(rect, WindowType::SINGLE)
     , d_ptr(new CEditorWindowPrivate(this))
 {
     d_ptr.get()->init(panel);
@@ -80,7 +79,6 @@ CEditorWindow::CEditorWindow(const QRect& rect, CTabPanel* panel)
 
     m_pMainPanel = createMainPanel(centralWidget(), d_ptr->panel()->data()->title());
     centralWidget()->layout()->addWidget(m_pMainPanel);
-    //m_pWinPanel->show();
 
     recalculatePlaces();
 #endif
@@ -93,18 +91,10 @@ CEditorWindow::CEditorWindow(const QRect& rect, CTabPanel* panel)
     if ( i.suffix() == "oform" || panel->data()->hasFeature(L"uitype\":\"fillform") ) {
         d_ptr->ffWindowCustomize();
     }
-
-//    QObject::connect(d_ptr.get()->buttonDock(), &QPushButton::clicked, [=]{
-//        if ( !d_ptr->isReporterMode ) {
-//            CAscApplicationManagerWrapper & app = static_cast<CAscApplicationManagerWrapper &>(AscAppManager::getInstance());
-//            app.manageUndocking(
-//                    qobject_cast<CTabPanel *>(m_pMainView)->view()->GetCefView()->GetId(), L"dock");
-//        }
-//    });
 }
 
 CEditorWindow::CEditorWindow(const QRect& r, const QString& s, QWidget * w)
-    : CMainWindow(r,s,w)
+    : CWindowPlatform(r, WindowType::SINGLE)
 {
 
 }
@@ -114,30 +104,32 @@ CEditorWindow::~CEditorWindow()
     m_pMainPanel->deleteLater();
 }
 
-bool CEditorWindow::holdView(int id) const
+/** Public **/
+
+const QObject * CEditorWindow::receiver()
 {
-    return qobject_cast<CTabPanel *>(m_pMainView)->view()->GetCefView()->GetId() == id;
+    return d_ptr.get();
 }
 
-bool CEditorWindow::holdView(const std::wstring& portal) const
+CTabPanel * CEditorWindow::releaseEditorView() const
 {
-    return qobject_cast<CTabPanel *>(m_pMainView)->data()->url().find(portal) != std::wstring::npos;
+    m_pMainView->clearMask();
+    return qobject_cast<CTabPanel *>(m_pMainView);
 }
 
-void CEditorWindow::undock(bool maximized)
+AscEditorType CEditorWindow::editorType() const
 {
-#ifdef Q_OS_LINUX
-    maximized = false;
-#else
-    if ( maximized ) {
-        m_restoreMaximized = true;
-        maximized = false;
-    }
-#endif
+    return d_ptr.get()->panel()->data()->contentType();
+}
 
-    CMainWindow::show(maximized);
-    if ( isCustomWindowStyle() )
-        CMainWindow::captureMouse();
+QString CEditorWindow::documentName() const
+{
+    return d_ptr.get()->panel()->data()->title(true);
+}
+
+double CEditorWindow::scaling() const
+{
+    return m_dpiRatio;
 }
 
 int CEditorWindow::closeWindow()
@@ -183,10 +175,93 @@ int CEditorWindow::closeWindow()
     return _reply;
 }
 
-/*QWidget * CEditorWindow::createMainPanel(QWidget * parent)
+bool CEditorWindow::closed() const
 {
-    return createMainPanel(parent, d_ptr->panel()->data()->title());
-}*/
+    return d_ptr.get()->panel()->data()->closed();
+}
+
+bool CEditorWindow::holdView(const std::wstring& portal) const
+{
+    return qobject_cast<CTabPanel *>(m_pMainView)->data()->url().find(portal) != std::wstring::npos;
+}
+
+void CEditorWindow::setReporterMode(bool apply)
+{
+    if ( apply ) {
+    }
+
+    d_ptr->isReporterMode = apply;
+}
+
+void CEditorWindow::setWindowState(Qt::WindowState state)
+{
+    switch (state) {
+    case Qt::WindowMaximized:  showMaximized(); break;
+    case Qt::WindowMinimized:  showMinimized(); break;
+    case Qt::WindowFullScreen: hide(); break;
+    case Qt::WindowNoState:
+    default: showNormal(); break;}
+}
+
+void CEditorWindow::undock(bool maximized)
+{
+#ifdef Q_OS_LINUX
+    maximized = false;
+#else
+    if ( maximized ) {
+        m_restoreMaximized = true;
+        maximized = false;
+    }
+#endif
+
+    CWindowPlatform::show(maximized);
+    if (isCustomWindowStyle())
+        captureMouse();
+}
+
+bool CEditorWindow::holdView(int id) const
+{
+    return qobject_cast<CTabPanel *>(m_pMainView)->view()->GetCefView()->GetId() == id;
+}
+
+void CEditorWindow::applyTheme(const std::wstring& theme)
+{
+    d_ptr->changeTheme(theme);
+}
+
+/** Private **/
+
+QWidget * CEditorWindow::createTopPanel(QWidget * parent, const QString& title)
+{
+    if (isCustomWindowStyle()) {
+#ifdef __linux__
+        m_boxTitleBtns = new QWidget(parent);
+#else
+        m_boxTitleBtns = static_cast<QWidget*>(new Caption(parent));
+#endif
+        m_boxTitleBtns->setObjectName("box-title-tools");
+        m_boxTitleBtns->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
+        m_boxTitleBtns->setFixedHeight(TOOLBTN_HEIGHT * m_dpiRatio);
+
+        QHBoxLayout * layoutBtns = new QHBoxLayout(m_boxTitleBtns);
+        layoutBtns->setContentsMargins(0,0,0,0);
+        layoutBtns->setSpacing(1 * m_dpiRatio);
+
+        m_labelTitle = new CElipsisLabel(title, m_boxTitleBtns);
+        m_labelTitle->setObjectName("labelTitle");
+        m_labelTitle->setMouseTracking(true);
+        m_labelTitle->setEllipsisMode(Qt::ElideMiddle);
+        m_labelTitle->setMaximumWidth(100);
+
+        layoutBtns->addStretch();
+        layoutBtns->addWidget(m_labelTitle, 0);
+        layoutBtns->addStretch();
+
+        initTopButtons(m_boxTitleBtns);
+    }
+
+    return nullptr;
+}
 
 QWidget * CEditorWindow::createMainPanel(QWidget * parent, const QString& title, bool, QWidget*)
 {
@@ -285,94 +360,9 @@ QWidget * CEditorWindow::createMainPanel(QWidget * parent, const QString& title,
     return mainPanel;
 }
 
-void CEditorWindow::onCloseEvent()
+CTabPanel * CEditorWindow::mainView() const
 {
-    if ( m_pMainView ) {
-        if ( closeWindow() == MODAL_RESULT_YES ) {
-            hide();
-        }
-    }
-}
-
-void CEditorWindow::onMinimizeEvent()
-{
-    if ( !d_ptr->isReporterMode ) {
-        CMainWindow::onMinimizeEvent();
-    }
-}
-
-void CEditorWindow::onClickButtonHome()
-{
-    AscAppManager::gotoMainWindow(size_t(this));
-}
-
-void CEditorWindow::onMaximizeEvent()
-{
-    if ( !d_ptr->isReporterMode ) {
-        CMainWindow::onMaximizeEvent();
-    }
-}
-
-void CEditorWindow::onSizeEvent(int type)
-{
-//    CMainWindow::onSizeEvent(type);
-    CMainWindow::onSizeEvent(type);
-    recalculatePlaces();
-}
-
-void CEditorWindow::onMoveEvent(const QRect&)
-{
-#ifdef Q_OS_WIN
-    POINT pt{0,0};
-    if ( ::GetCursorPos(&pt) ) {
-        AscAppManager::editorWindowMoving((size_t)handle(), QPoint(pt.x,pt.y));
-    }
-#else
-    AscAppManager::editorWindowMoving((size_t)handle(), QCursor::pos());
-#endif
-}
-
-void CEditorWindow::onExitSizeMove()
-{
-    CMainWindow::onExitSizeMove();
-
-    if ( m_restoreMaximized ) {
-        m_restoreMaximized = false;
-        CMainWindow::show(true);
-    }
-}
-
-void CEditorWindow::onDpiChanged(double newfactor, double prevfactor)
-{
-    Q_UNUSED(prevfactor)
-#ifdef Q_OS_LINUX
-    CX11Decoration::onDpiChanged(newfactor);
-#endif
-//    CMainWindow::onDpiChanged(newfactor, prevfactor);
-    setScreenScalingFactor(newfactor);
-}
-
-void CEditorWindow::setScreenScalingFactor(double newfactor)
-{
-    CMainWindow::setScreenScalingFactor(newfactor);
-
-    if ( newfactor > 1.75 ) m_pMainPanel->setProperty("zoom", "2x"); else
-    if ( newfactor > 1.5 ) m_pMainPanel->setProperty("zoom", "1.75x"); else
-    if ( newfactor > 1.25 ) m_pMainPanel->setProperty("zoom", "1.5x"); else
-    if ( newfactor > 1 ) m_pMainPanel->setProperty("zoom", "1.25x");
-    else m_pMainPanel->setProperty("zoom", "1");
-
-    QString css(AscAppManager::getWindowStylesheets(newfactor));
-    css.append(m_css);
-    m_pMainPanel->setStyleSheet(css);
-
-
-    d_ptr.get()->onScreenScalingFactor(newfactor);
-#ifndef __linux__
-    CMainWindow::adjustGeometry();
-#endif
-    recalculatePlaces();
-    updateTitleCaption();
+    return qobject_cast<CTabPanel *>(m_pMainView);
 }
 
 void CEditorWindow::recalculatePlaces()
@@ -418,57 +408,154 @@ void CEditorWindow::recalculatePlaces()
     }
 }
 
+/*void CEditorWindow::resizeEvent(QResizeEvent *event)
+{
+    CWindowPlatform::resizeEvent(event);
+    onSizeEvent(0);
+}
+
+void CEditorWindow::moveEvent(QMoveEvent *event)
+{
+    CWindowPlatform::moveEvent(event);
+    QMoveEvent * _e = static_cast<QMoveEvent *>(event);
+    onMoveEvent(QRect(_e->pos(), QSize(1,1)));
+}*/
+
+bool CEditorWindow::event(QEvent * event)
+{
+    static bool _flg_motion = false;
+    static bool _flg_left_button = false;
+    if (event->type() == QEvent::Resize) {
+        onSizeEvent(0);
+    } else
+    if (event->type() == QEvent::MouseButtonPress) {
+        _flg_left_button = static_cast<QMouseEvent *>(event)->buttons().testFlag(Qt::LeftButton);
+        return true;
+    } else
+    if (event->type() == QEvent::MouseButtonRelease) {
+        if ( _flg_left_button && _flg_motion ) {
+            onExitSizeMove();
+        }
+        _flg_left_button = _flg_motion = false;
+        return true;
+    } else
+    if (event->type() == QEvent::Move) {
+        if (!_flg_motion)
+            _flg_motion = true;
+        QMoveEvent * _e = static_cast<QMoveEvent *>(event);
+        onMoveEvent(QRect(_e->pos(), QSize(1,1)));
+    }
+    return CWindowPlatform::event(event);
+}
+
+void CEditorWindow::updateTitleCaption()
+{
+    if (m_labelTitle) {
+        int _width = calcTitleCaptionWidth();
+        if (_width >= 0) {
+            m_labelTitle->setMaximumWidth(_width);
+            m_labelTitle->updateText();
+        }
+    }
+}
+
+int CEditorWindow::calcTitleCaptionWidth()
+{
+    int base_width = (isCustomWindowStyle()) ? m_boxTitleBtns->width() - (m_buttonMaximize->width() * 3) : 0;
+    return d_ptr->calcTitleLabelWidth(base_width);
+}
+
 void CEditorWindow::focus()
 {
     mainView()->view()->setFocusToCef();
 }
 
-void CEditorWindow::setReporterMode(bool apply)
+void CEditorWindow::onCloseEvent()
 {
-    if ( apply ) {
+    if ( m_pMainView ) {
+        if ( closeWindow() == MODAL_RESULT_YES ) {
+            hide();
+        }
     }
-
-    d_ptr->isReporterMode = apply;
 }
 
-CTabPanel * CEditorWindow::mainView() const
+void CEditorWindow::onMinimizeEvent()
 {
-    return qobject_cast<CTabPanel *>(m_pMainView);
+    if ( !d_ptr->isReporterMode ) {
+        CWindowPlatform::onMinimizeEvent();
+    }
 }
 
-CTabPanel * CEditorWindow::releaseEditorView() const
+void CEditorWindow::onMaximizeEvent()
 {
-    m_pMainView->clearMask();
-    return qobject_cast<CTabPanel *>(m_pMainView);
+    if ( !d_ptr->isReporterMode ) {
+        CWindowPlatform::onMaximizeEvent();
+    }
 }
 
-const QObject * CEditorWindow::receiver()
+void CEditorWindow::onSizeEvent(int type)
 {
-    return d_ptr.get();
+    updateTitleCaption();
+    recalculatePlaces();
 }
 
-QString CEditorWindow::documentName() const
+void CEditorWindow::onMoveEvent(const QRect&)
 {
-    return d_ptr.get()->panel()->data()->title(true);
+#ifdef Q_OS_WIN
+    POINT pt{0,0};
+    if ( ::GetCursorPos(&pt) ) {
+        AscAppManager::editorWindowMoving((size_t)handle(), QPoint(pt.x,pt.y));
+    }
+#else
+    AscAppManager::editorWindowMoving((size_t)handle(), QCursor::pos());
+#endif
 }
 
-bool CEditorWindow::closed() const
+void CEditorWindow::onExitSizeMove()
 {
-    return d_ptr.get()->panel()->data()->closed();
+    //CWindowPlatform::onExitSizeMove();
+    double dpi_ratio = Utils::getScreenDpiRatioByWidget(this);
+    if ( dpi_ratio != m_dpiRatio )
+        setScreenScalingFactor(dpi_ratio);
+    if ( m_restoreMaximized ) {
+        m_restoreMaximized = false;
+        CWindowPlatform::show(true);
+    }
 }
 
-AscEditorType CEditorWindow::editorType() const
+void CEditorWindow::onDpiChanged(double newfactor, double prevfactor)
 {
-    return d_ptr.get()->panel()->data()->contentType();
+    Q_UNUSED(prevfactor)
+#ifdef Q_OS_LINUX
+    CX11Decoration::onDpiChanged(newfactor);
+#endif
+    setScreenScalingFactor(newfactor);
 }
 
-int CEditorWindow::calcTitleCaptionWidth()
+void CEditorWindow::setScreenScalingFactor(double newfactor)
 {
-    int base_width = CMainWindow::calcTitleCaptionWidth();
-    return d_ptr->calcTitleLabelWidth(base_width);
+    CWindowPlatform::setScreenScalingFactor(newfactor);
+
+    if ( newfactor > 1.75 ) m_pMainPanel->setProperty("zoom", "2x"); else
+    if ( newfactor > 1.5 ) m_pMainPanel->setProperty("zoom", "1.75x"); else
+    if ( newfactor > 1.25 ) m_pMainPanel->setProperty("zoom", "1.5x"); else
+    if ( newfactor > 1 ) m_pMainPanel->setProperty("zoom", "1.25x");
+    else m_pMainPanel->setProperty("zoom", "1");
+
+    QString css(AscAppManager::getWindowStylesheets(newfactor));
+    css.append(m_css);
+    m_pMainPanel->setStyleSheet(css);
+
+
+    d_ptr.get()->onScreenScalingFactor(newfactor);
+#ifndef __linux__
+    CWindowPlatform::adjustGeometry();
+#endif
+    recalculatePlaces();
+    updateTitleCaption();
 }
 
-void CEditorWindow::applyTheme(const std::wstring& theme)
+void CEditorWindow::onClickButtonHome()
 {
-    d_ptr->changeTheme(theme);
+    AscAppManager::gotoMainWindow(size_t(this));
 }

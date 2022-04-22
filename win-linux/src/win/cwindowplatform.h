@@ -30,4 +30,83 @@
  *
 */
 
+#ifndef CWINDOWPLATFORM_H
+#define CWINDOWPLATFORM_H
 
+#include "cwindowbase.h"
+#include <QtWidgets/QApplication>
+#include <QShowEvent>
+#include <QMargins>
+#include <QRect>
+
+struct CWindowGeometry
+{
+    CWindowGeometry() {}
+    bool required = false;
+    int width = 0;
+    int height = 0;
+};
+
+class CWindowPlatform : public CWindowBase
+{
+public:
+    explicit CWindowPlatform(const QRect&, const WindowType);
+    virtual ~CWindowPlatform();
+
+    QWidget * handle() const;
+    void toggleBorderless(bool);
+    void toggleResizeable();
+    void adjustGeometry();
+    void bringToTop();
+    void setWindowBackgroundColor(const QColor&);
+    void setWindowColors(const QColor&, const QColor& border = QColor());
+    void show(bool);
+    void updateScaling();
+    virtual void applyTheme(const std::wstring&);
+
+protected:
+    void setMinimumSize(const int, const int);
+    void setMaximumSize(const int, const int);
+    void slot_modalDialog(bool,  WId);
+    virtual void setScreenScalingFactor(double f);
+
+    void captureMouse();
+    void captureMouse(int);
+    //virtual void onExitSizeMove();
+
+private:
+    friend auto refresh_window_scaling_factor(CWindowPlatform * window)->void;
+    void setResizeable(bool);
+    void setResizeableAreaWidth(int);
+    void setContentsMargins(int, int, int, int);
+    int dpiCorrectValue(int v) const;
+
+    virtual void showEvent(QShowEvent*) final;
+    virtual void changeEvent(QEvent*) final;
+    virtual bool nativeEvent(const QByteArray&, void*, long*) final;
+
+
+    WindowType m_winType;
+    CWindowGeometry m_minSize;
+    CWindowGeometry m_maxSize;
+    Qt::WindowStates m_previousState;
+
+    QRect m_moveNormalRect,
+          m_window_rect;
+    QMargins m_margins,
+             m_frame;
+
+    HWND m_hWnd,
+         m_modalHwnd;
+
+    int  m_resAreaWidth;
+    bool m_borderless,
+         m_closed,
+         m_skipSizing,
+         m_isMaximized,
+         m_isResizeable,
+         m_taskBarClicked,
+         m_windowActivated;
+};
+
+#endif // CWINDOWPLATFORM_H

@@ -386,7 +386,7 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
         return true; }
 
     case ASC_MENU_EVENT_TYPE_REPORTER_CREATE: {
-        CMainWindow * reporterWindow = createReporterWindow(event->m_pData, event->get_SenderId());
+        CPresenterWindow * reporterWindow = createReporterWindow(event->m_pData, event->get_SenderId());
 #ifdef __linux
         reporterWindow->show(false);
 #else
@@ -444,10 +444,10 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
         --m_countViews;
 
         if ( !m_winsReporter.empty() ) {
-            std::map<int, CMainWindow *>::const_iterator switer = m_winsReporter.find(event->get_SenderId());
+            std::map<int, CPresenterWindow *>::const_iterator switer = m_winsReporter.find(event->get_SenderId());
 
             if (switer != m_winsReporter.end() ) {
-                CMainWindow * reporterWindow = switer->second;
+                CPresenterWindow * reporterWindow = switer->second;
                 delete reporterWindow, reporterWindow = nullptr;
                 m_winsReporter.erase(switer);
 
@@ -854,7 +854,7 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
                     _app.m_pMainWindow->show(reg_user.value("maximized", false).toBool());
                 }
 
-                _app.mainWindow()->m_pubMainImpl->attachEditor(panel);
+                _app.mainWindow()->attachEditor(panel);
             }
         }
     }
@@ -1057,7 +1057,7 @@ void CAscApplicationManagerWrapper::initializeApp()
     AscAppManager::getInstance().SetRendererProcessVariable(Utils::stringifyJson(_json_obj).toStdWString());
 }
 
-CMainWindow * CAscApplicationManagerWrapper::createReporterWindow(void * data, int parentid)
+CPresenterWindow * CAscApplicationManagerWrapper::createReporterWindow(void * data, int parentid)
 {
 //    QMutexLocker locker( &m_oMutex );
 
@@ -1094,7 +1094,7 @@ CMainWindow * CAscApplicationManagerWrapper::createReporterWindow(void * data, i
         _windowRect.moveCenter(_scrRect.center());
     }
 
-    CMainWindow * reporterWindow = new CMainWindow(_windowRect, tr("Presenter View") + " - " + _doc_name, pView);
+    CPresenterWindow * reporterWindow = new CPresenterWindow(_windowRect, tr("Presenter View") + " - " + _doc_name, pView);
     m_winsReporter[pView->GetCefView()->GetId()] = reporterWindow;
 
 //    QTimer::singleShot(5000, [=]{
@@ -1281,7 +1281,7 @@ namespace Drop {
         if ( editor ) {
             CTabPanel * tabpanel = editor->releaseEditorView();
 
-            CAscApplicationManagerWrapper::mainWindow()->m_pubMainImpl->attachEditor(tabpanel, QCursor::pos());
+            CAscApplicationManagerWrapper::mainWindow()->attachEditor(tabpanel, QCursor::pos());
             CAscApplicationManagerWrapper::closeEditorWindow(size_t(editor));
 
             AscAppManager::sendCommandTo(tabpanel->cef(), L"window:features",
@@ -1359,7 +1359,7 @@ void CAscApplicationManagerWrapper::editorWindowMoving(const size_t h, const QPo
         CMainWindow * _main_window = reinterpret_cast<CMainWindow *>(_app.m_vecWindows.at(0));
 
         if ( _main_window && _main_window->pointInTabs(pt) ) {
-            CMainWindowBase * editor_win = nullptr;
+            CEditorWindow * editor_win = nullptr;
             for (auto const& w : _app.m_vecEditors) {
                 CEditorWindow * _e = reinterpret_cast<CEditorWindow *>(w);
 
@@ -1371,7 +1371,7 @@ void CAscApplicationManagerWrapper::editorWindowMoving(const size_t h, const QPo
 
             if ( editor_win ) {
                 SKIP_EVENTS_QUEUE([=]{
-                    _main_window->m_pubMainImpl->attachEditor(tabpanel);
+                    _main_window->attachEditor(tabpanel);
 
                     closeEditorWindow(size_t(editor_win));
                 });

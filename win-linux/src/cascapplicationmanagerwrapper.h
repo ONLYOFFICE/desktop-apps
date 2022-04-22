@@ -44,13 +44,11 @@
 #include "cwindowsqueue.h"
 #include "ceventdriver.h"
 
-#ifdef _WIN32
-#include "win/cmainwindow.h"
-//#include "win/csinglewindow.h"
-#else
-#include "linux/cmainwindow.h"
+#include "cmainwindow.h"
+#include "cpresenterwindow.h"
+
+#ifndef _WIN32
 #include "linux/singleapplication.h"
-//#include "linux/csinglewindow.h"
 #endif
 
 #include "cthemes.h"
@@ -99,7 +97,7 @@ private:
     std::map<CScalingFactor, std::vector<std::string>> m_mapStyles;
 
     std::map<int, CCefEventsGate *> m_receivers;
-    std::map<int, CMainWindow *> m_winsReporter;
+    std::map<int, CPresenterWindow *> m_winsReporter;
 
     uint m_closeCount = 0;
     uint m_countViews = 0;
@@ -153,7 +151,7 @@ public:
     static CAscApplicationManagerWrapper & getInstance();
     static CAscApplicationManager * createInstance();
 
-    CMainWindow * createReporterWindow(void *, int);
+    CPresenterWindow * createReporterWindow(void *, int);
 
     static void             startApp();
     static void             initializeApp();

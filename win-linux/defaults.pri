@@ -90,7 +90,6 @@ HEADERS += \
     $$PWD/src/cscalingwrapper.h \
     $$PWD/src/ctabundockevent.h \
     $$PWD/src/cmainwindow.h \
-    $$PWD/src/cmainwindowbase.h \
     $$PWD/src/cwindowbase.h \
     $$PWD/src/ctabpanel.h \
     $$PWD/src/ceditorwindow.h \
@@ -132,7 +131,6 @@ SOURCES += \
     $$PWD/src/cscalingwrapper.cpp \
     $$PWD/src/ctabundockevent.cpp \
     $$PWD/src/cmainwindow.cpp \
-    $$PWD/src/cmainwindowbase.cpp \
     $$PWD/src/cwindowbase.cpp \
     $$PWD/src/ctabpanel.cpp \
     $$PWD/src/ceditorwindow.cpp \
@@ -182,14 +180,12 @@ core_linux {
     QMAKE_LFLAGS += "-Wl,-rpath,\'\$$ORIGIN/converter\'"
     QMAKE_LFLAGS += -static-libstdc++ -static-libgcc
 
-    HEADERS += $$PWD/src/linux/cmainwindow.h \
-                $$PWD/src/linux/cx11decoration.h \
+    HEADERS +=  $$PWD/src/linux/cx11decoration.h \
                 $$PWD/src/linux/gtk_addon.h \
                 $$PWD/src/linux/cwindowplatform.h \
                 $$PWD/src/linux/singleapplication.h
 
-    SOURCES += $$PWD/src/linux/cmainwindow.cpp \
-                $$PWD/src/linux/cx11decoration.cpp \
+    SOURCES +=  $$PWD/src/linux/cx11decoration.cpp \
                 $$PWD/src/linux/gtk_addon.cpp \
                 $$PWD/src/linux/cx11caption.cpp \
                 $$PWD/src/linux/cwindowplatform.cpp \
@@ -215,12 +211,10 @@ core_windows {
 
     RC_ICONS += ./res/icons/desktop_icons.ico
 
-    HEADERS += $$PWD/src/win/cmainwindow.h \
-                $$PWD/src/win/cwindowplatform.h \
-                $$PWD/src/win/caption.h
+    HEADERS += $$PWD/src/win/cwindowplatform.h \
+               $$PWD/src/win/caption.h
 
-    SOURCES += $$PWD/src/win/cmainwindow.cpp \
-                $$PWD/src/win/cwindowplatform.cpp \
+    SOURCES += $$PWD/src/win/cwindowplatform.cpp \
 
 
     LIBS += -lwininet \

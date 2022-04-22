@@ -122,8 +122,7 @@ auto CElipsisLabel::updateText() -> void
 
 
 CMainWindowBase::CMainWindowBase(QRect& rect)
-    : m_pubMainImpl(nullptr)
-    , m_boxTitleBtns(nullptr)
+    : m_boxTitleBtns(nullptr)
     , m_pMainPanel(nullptr)
     , m_pMainView(nullptr)
     , m_buttonMinimize(nullptr)
@@ -185,7 +184,7 @@ int CMainWindowBase::editorsCount(const std::wstring& portal) const
     return mainPanel()->tabWidget()->count(portal, true);
 }
 
-/*int CMainWindowBase::attachEditor(QWidget * panel, int index)
+int CMainWindowBase::attachEditor(QWidget * panel, int index)
 {
     CMainPanel * _pMainPanel = mainPanel();
 
@@ -224,7 +223,7 @@ int CMainWindowBase::attachEditor(QWidget * panel, const QPoint& pt)
     }
 
     return attachEditor(panel, _index);
-}*/
+}
 
 void CMainWindowBase::selectView(int viewid) const
 {

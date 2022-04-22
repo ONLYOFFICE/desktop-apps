@@ -30,6 +30,34 @@
  *
 */
 
+#ifndef CPRESENTERWINDOW_H
+#define CPRESENTERWINDOW_H
+
+#ifdef _WIN32
+# include "win/cwindowplatform.h"
+#else
+# include "linux/cwindowplatform.h"
+#endif
 
 
+class CPresenterWindow : public CWindowPlatform
+{
+public:
+    explicit CPresenterWindow(const QRect&, const QString&, QCefView*);
+    virtual ~CPresenterWindow();
 
+
+    virtual void applyTheme(const std::wstring&) final;
+    virtual bool holdView(int id) const final;
+
+private:
+    QWidget * createMainPanel(QWidget *, const QString&, bool custom = true, QWidget * view = nullptr);
+    virtual void onMaximizeEvent() final;
+    virtual void onCloseEvent() final;
+#if defined (_WIN32)
+    virtual void focus() final;
+#endif
+};
+
+
+#endif // CPRESENTERWINDOW_H

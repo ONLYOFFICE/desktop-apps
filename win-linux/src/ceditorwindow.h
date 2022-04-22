@@ -34,9 +34,9 @@
 #define CEDITORWINDOW_H
 
 #ifdef __linux__
-# include "linux/cmainwindow.h"
+# include "linux/cwindowplatform.h"
 #else
-# include "win/cmainwindow.h"
+# include "win/cwindowplatform.h"
 #endif
 
 #include "ctabpanel.h"
@@ -44,7 +44,7 @@
 #include <QCoreApplication>
 
 class CEditorWindowPrivate;
-class CEditorWindow : public CMainWindow
+class CEditorWindow : public CWindowPlatform
 {
     Q_DECLARE_TR_FUNCTIONS(CEditorWindow)
 
@@ -56,10 +56,12 @@ public:
     CTabPanel * releaseEditorView() const;
     AscEditorType editorType() const;
     QString documentName() const;
+    double scaling() const;
     int closeWindow();
     bool closed() const;
     bool holdView(const std::wstring& portal) const;
     void setReporterMode(bool);
+    void setWindowState(Qt::WindowState);
     void undock(bool maximized = false);
     virtual bool holdView(int id) const final;
     virtual void applyTheme(const std::wstring&) final;
@@ -67,21 +69,28 @@ public:
 private:
     CEditorWindow(const QRect&, const QString&, QWidget *);
 
+    QWidget * createTopPanel(QWidget *, const QString&);
+    QWidget * createMainPanel(QWidget *, const QString&, bool custom = true,
+                              QWidget * view = nullptr);
     CTabPanel * mainView() const;
     void recalculatePlaces();
-    virtual QWidget * createMainPanel(QWidget *, const QString&, bool custom = true,
-                                      QWidget * view = nullptr) final;
+    /*void resizeEvent(QResizeEvent *);
+    void moveEvent(QMoveEvent *);*/
+    virtual bool event(QEvent *) final;
+    void updateTitleCaption();
+
     virtual int calcTitleCaptionWidth() final;
     virtual void focus() final;
     virtual void onCloseEvent() final;
     virtual void onMinimizeEvent() final;
     virtual void onMaximizeEvent() final;
-    virtual void onSizeEvent(int) final;
-    virtual void onMoveEvent(const QRect&) final;
-    virtual void onExitSizeMove() final;
+    void onSizeEvent(int);
+    void onMoveEvent(const QRect&);
+    void onExitSizeMove();
     virtual void onDpiChanged(double,double) final;
     virtual void setScreenScalingFactor(double) final;
 
+    QMetaObject::Connection m_modalSlotConnection;
     QString m_css;
     bool m_restoreMaximized = false;
 
