@@ -628,5 +628,12 @@ void CWindowPlatform::onCloseEvent()
     hide();
 }
 
+QPushButton * CWindowPlatform::createToolButton(QWidget * parent, const QString& name) const
+{
+    QPushButton * b = CWindowBase::createToolButton(parent, name);
+    b->setMouseTracking(true);
+
+    return b;
+}
 
 
