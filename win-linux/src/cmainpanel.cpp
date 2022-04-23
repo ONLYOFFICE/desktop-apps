@@ -59,6 +59,7 @@
 #include "clangater.h"
 #include "cascapplicationmanagerwrapper.h"
 #include "../Common/OfficeFileFormats.h"
+#include "cmainwindow.h"
 
 #ifdef _WIN32
 #include "shlobj.h"
@@ -155,17 +156,23 @@ CMainPanel::CMainPanel(QWidget *parent, bool isCustomWindow, double dpi_ratio)
             return btn;
         };
 
-        // Minimize
-        m_pButtonMinimize = _creatToolButton("toolButtonMinimize", m_boxTitleBtns);
-        QObject::connect(m_pButtonMinimize, &QPushButton::clicked, this, &CMainPanel::pushButtonMinimizeClicked);
+//        // Minimize
+//        m_pButtonMinimize = _creatToolButton("toolButtonMinimize", m_boxTitleBtns);
+//        QObject::connect(m_pButtonMinimize, &QPushButton::clicked, this, &CMainPanel::pushButtonMinimizeClicked);
 
-        // Maximize
-        m_pButtonMaximize = _creatToolButton("toolButtonMaximize", m_boxTitleBtns);
-        QObject::connect(m_pButtonMaximize, &QPushButton::clicked, this, &CMainPanel::pushButtonMaximizeClicked);
+//        // Maximize
+//        m_pButtonMaximize = _creatToolButton("toolButtonMaximize", m_boxTitleBtns);
+//        QObject::connect(m_pButtonMaximize, &QPushButton::clicked, this, &CMainPanel::pushButtonMaximizeClicked);
 
-        // Close
-        m_pButtonClose = _creatToolButton("toolButtonClose", m_boxTitleBtns);
-        QObject::connect(m_pButtonClose, &QPushButton::clicked, this, &CMainPanel::pushButtonCloseClicked);
+//        // Close
+//        m_pButtonClose = _creatToolButton("toolButtonClose", m_boxTitleBtns);
+//        QObject::connect(m_pButtonClose, &QPushButton::clicked, this, &CMainPanel::pushButtonCloseClicked);
+
+        CMainWindow * mw = static_cast<CMainWindow *>(parent);
+
+        m_pButtonMinimize = qobject_cast<QPushButton *>(mw->titleWidget(CWindowBase::WindowTitleWidget::twButtonMin));
+        m_pButtonMaximize = qobject_cast<QPushButton *>(mw->titleWidget(CWindowBase::WindowTitleWidget::twButtonMax));
+        m_pButtonClose = qobject_cast<QPushButton *>(mw->titleWidget(CWindowBase::WindowTitleWidget::twButtonClose));
 
         layoutBtns->addWidget(m_pButtonMinimize);
         layoutBtns->addWidget(m_pButtonMaximize);

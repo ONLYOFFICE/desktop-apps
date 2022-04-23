@@ -90,9 +90,14 @@ public:
     explicit CWindowBase();
     virtual ~CWindowBase();
 
+    enum class WindowTitleWidget
+    {
+        twButtonClose, twButtonMin, twButtonMax, twLabelCaption
+    };
+
 protected:
-    QPushButton * createToolButton(QWidget * parent = nullptr,
-                                   const QString& name = QString("")); // temp (only reporter, single)
+    virtual QPushButton * createToolButton(QWidget * parent = nullptr, const QString& name = QString()) const; // temp (only reporter, single)
+
     void initTopButtons(QWidget *parent); // temp (only reporter, single)
     bool isCustomWindowStyle();
     virtual void applyWindowState(Qt::WindowState);
@@ -112,6 +117,7 @@ protected:
     CElipsisLabel * m_labelTitle;
     double m_dpiRatio;
 
+    QWidget * titleWidget(WindowTitleWidget) const;
 private:
     class CWindowBasePrivate;
     std::unique_ptr<CWindowBasePrivate> pimpl;

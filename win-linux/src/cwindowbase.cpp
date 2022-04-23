@@ -143,6 +143,10 @@ CWindowBase::CWindowBase()
         if ( _screen_size.width() < rect.width() ) rect.setWidth(_screen_size.width());
         if ( _screen_size.height() < rect.height() ) rect.setHeight(_screen_size.height());
     }*/
+
+    if ( pimpl->is_custom_window() ) {
+        initTopButtons(this);
+    }
 }
 
 CWindowBase::~CWindowBase()
@@ -174,6 +178,17 @@ void CWindowBase::initTopButtons(QWidget *parent)
     // Close
     m_buttonClose = createToolButton(parent, "toolButtonClose");
     QObject::connect(m_buttonClose, &QPushButton::clicked, [=]{onCloseEvent();});
+}
+
+QWidget * CWindowBase::titleWidget(WindowTitleWidget id) const
+{
+    switch (id) {
+    case WindowTitleWidget::twButtonClose: return m_buttonClose;
+    case WindowTitleWidget::twButtonMax: return m_buttonMaximize;
+    case WindowTitleWidget::twButtonMin: return m_buttonMinimize;
+    case WindowTitleWidget::twLabelCaption: return m_labelTitle;
+    default: return nullptr;
+    }
 }
 
 bool CWindowBase::isCustomWindowStyle()

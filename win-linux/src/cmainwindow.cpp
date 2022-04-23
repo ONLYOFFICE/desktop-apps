@@ -59,7 +59,7 @@ using namespace std::placeholders;
 CMainWindow::CMainWindow(const QRect &rect) :
     CWindowPlatform(rect, WindowType::MAIN)
 {
-    _m_pMainPanel = new CMainPanelImpl(centralWidget(), true, m_dpiRatio);
+    _m_pMainPanel = new CMainPanelImpl(this, true, m_dpiRatio);
     centralWidget()->layout()->addWidget(_m_pMainPanel);
     _m_pMainPanel->setStyleSheet(AscAppManager::getWindowStylesheets(m_dpiRatio));
     _m_pMainPanel->updateScaling(m_dpiRatio);

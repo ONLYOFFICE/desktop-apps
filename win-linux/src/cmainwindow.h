@@ -77,6 +77,8 @@ private:
     virtual void onCloseEvent() final;
     virtual void applyWindowState(Qt::WindowState) final;
     void focus() override;
+
+    friend class CMainPanel;
 };
 
 #endif // CMAINWINDOW_H
