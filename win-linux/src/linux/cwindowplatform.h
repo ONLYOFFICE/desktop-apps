@@ -66,6 +66,8 @@ protected:
     //virtual void onExitSizeMove() override;
     virtual void setWindowTitle(const QString &) final;
 
+    virtual QPushButton * createToolButton(QWidget * parent = nullptr, const QString& name = QString()) const override;
+
 private:
     explicit CWindowPlatform(const QRect&, const WindowType, const QString&, QWidget*);
 

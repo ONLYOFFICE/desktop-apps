@@ -152,16 +152,14 @@ CWindowBase::~CWindowBase()
 
 /** Protected **/
 
-QPushButton * CWindowBase::createToolButton(QWidget * parent, const QString& name)
+QPushButton * CWindowBase::createToolButton(QWidget * parent, const QString& name) const
 {
     QPushButton * btn = new QPushButton(parent);
     btn->setObjectName(name);
     btn->setProperty("class", "normal");
     btn->setProperty("act", "tool");
     btn->setFixedSize(int(TOOLBTN_WIDTH*m_dpiRatio), int(TOOLBTN_HEIGHT*m_dpiRatio));
-#ifdef __linux__
-    btn->setMouseTracking(true);
-#endif
+
     return btn;
 }
 
