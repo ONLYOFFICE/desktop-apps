@@ -100,9 +100,7 @@ protected:
     virtual void onMinimizeEvent();
     virtual void onMaximizeEvent();
     virtual void onCloseEvent() = 0;
-#if defined (_WIN32)
     virtual void focus() = 0;
-#endif
 
     QWidget * m_boxTitleBtns;
     CMainPanelImpl *_m_pMainPanel; // temp

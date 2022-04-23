@@ -76,9 +76,7 @@ private:
     void slot_mainPageReady();
     virtual void onCloseEvent() final;
     virtual void applyWindowState(Qt::WindowState) final;
-#if defined (_WIN32)
-    virtual void focus() final;
-#endif
+    void focus() override;
 };
 
 #endif // CMAINWINDOW_H

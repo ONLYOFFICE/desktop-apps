@@ -335,9 +335,7 @@ void CMainWindow::applyWindowState(Qt::WindowState s)
     _m_pMainPanel->applyMainWindowState(s);
 }
 
-#if defined (_WIN32)
 void CMainWindow::focus()
 {
     _m_pMainPanel->focus();
 }
-#endif
