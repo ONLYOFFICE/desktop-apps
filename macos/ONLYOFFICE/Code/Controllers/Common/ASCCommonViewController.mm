@@ -1496,9 +1496,7 @@
                     if (urlString && urlString.length > 0) {
                         // Offline file is exist
                         if (NSURL * url = [NSURL fileURLWithPath:urlString]) {
-                            if (NSURL * folder = [url URLByDeletingLastPathComponent]) {
-                                [[NSWorkspace sharedWorkspace] openURL:folder];
-                            }
+                            [[NSWorkspace sharedWorkspace] activateFileViewerSelectingURLs:@[url]];
                         }
                     } else {
                         // Offline file is new
