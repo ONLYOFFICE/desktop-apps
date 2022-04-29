@@ -88,7 +88,7 @@
         // @"et-EE": @"Eesti",
         @"fi-FI": @"Suomi",
         // @"ga-IE": @"Gaeilge",
-        @"hi-IN": @"हिन्दी",
+        // @"hi-IN": @"हिन्दी",
         // @"hr-HR": @"Hrvatska",
         @"hu-HU": @"Magyar nyelv",
         // @"hy-AM": @"Հայաստան",
