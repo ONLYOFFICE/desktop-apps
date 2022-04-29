@@ -242,7 +242,7 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="234"/>
         <source>DOCXF Document (*.docxf)</source>
-        <translation>Modèle de formulaire ONLYOFFIC (*.docxf)</translation>
+        <translation type="unfinished">Modèle de formulaire ONLYOFFICE (*.docxf)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="236"/>
