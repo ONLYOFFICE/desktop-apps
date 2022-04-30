@@ -155,7 +155,7 @@ QTabBar QToolButton::right-arrow:pressed {
 
 QTabBar[scroll=var2]::scroller,
 QTabBar::scroller {
-    width:48px;
+    width:96px;
 }
 
 /* download widget */
