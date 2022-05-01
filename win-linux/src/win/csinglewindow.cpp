@@ -125,6 +125,15 @@ LRESULT CALLBACK CSingleWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, 
         return DefWindowProc(hWnd, message, wParam, lParam);
 
     switch ( message ) {
+    case WM_DPICHANGED:
+        if ( AscAppManager::IsUseSystemScaling() ) {
+            const double dpi_ratio = Utils::getScreenDpiRatioByHWND(int(hWnd));
+
+            if ( dpi_ratio != window->m_dpiRatio )
+                window->setScreenScalingFactor(dpi_ratio);
+        }
+        break;
+
     case WM_KEYDOWN: {
         if ( wParam != VK_TAB )
             return DefWindowProc( hWnd, message, wParam, lParam );
@@ -246,14 +255,15 @@ LRESULT CALLBACK CSingleWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, 
         }
         break;
 
-    case WM_EXITSIZEMOVE: {
-        uchar dpi_ratio = Utils::getScreenDpiRatioByHWND(int(hWnd));
+    case WM_EXITSIZEMOVE:
+        if ( !AscAppManager::IsUseSystemScaling() ) {
+            double dpi_ratio = Utils::getScreenDpiRatioByHWND(int(hWnd));
 
-        if ( dpi_ratio != window->m_dpiRatio )
-            window->setScreenScalingFactor(dpi_ratio);
+            if ( dpi_ratio != window->m_dpiRatio )
+                window->setScreenScalingFactor(dpi_ratio);
+        }
 
         break;
-    }
 
     case WM_NCACTIVATE:
         return TRUE;
@@ -460,7 +470,7 @@ void CSingleWindow::applyTheme(const std::wstring& themeid)
     RedrawWindow(m_hWnd, nullptr, nullptr, RDW_INVALIDATE);
 }
 
-void CSingleWindow::setScreenScalingFactor(uchar factor)
+void CSingleWindow::setScreenScalingFactor(double factor)
 {
     QString css(AscAppManager::getWindowStylesheets(factor));
 
@@ -524,6 +534,7 @@ QWidget * CSingleWindow::createMainPanel(QWidget * parent, const QString& title,
     m_boxTitleBtns = new CX11Caption(centralWidget);
 #else
     m_boxTitleBtns = new QWidget(centralWidget);
+    m_boxTitleBtns->winId();
 #endif
 
     QHBoxLayout * layoutBtns = new QHBoxLayout(m_boxTitleBtns);
