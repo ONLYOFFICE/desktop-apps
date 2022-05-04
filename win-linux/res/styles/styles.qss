@@ -443,7 +443,7 @@ QTabBar::scroller {
     /*padding-left: 0px;*/
     /*margin-left: 0px;*/
     /*background-color:#0f0;*/
-    width:16px;
+    width:32px;
 }
 
 QTabBar[scroll=var2] QToolButton::left-arrow {

@@ -50,7 +50,7 @@ private:
     bool m_borderlessResizeable = true;
     bool m_closed = false;
     HWND m_hWnd = 0;
-    uchar m_dpiRatio = 1;
+    double m_dpiRatio = 1;
 
     CWinPanel * m_pWinPanel;
     QWidget * m_pMainPanel = nullptr;
@@ -99,7 +99,7 @@ public:
     void adjustGeometry();
     void applyTheme(const std::wstring& themeid);
 
-    void setScreenScalingFactor(uchar);
+    void setScreenScalingFactor(double);
     void doClose();
 
     bool holdView(int id) const;
