@@ -1302,6 +1302,12 @@ namespace Drop {
             AscAppManager::sendCommandTo(tabpanel->cef(), L"window:features",
                       Utils::stringifyJson(QJsonObject{{"skiptoparea", 0},{"singlewindow",false}}).toStdWString());
             CAscApplicationManagerWrapper::mainWindow()->bringToTop();
+
+#ifdef Q_OS_WIN
+            // TODO: because vs2019 components bug. need to debug
+            QTimer::singleShot(100, []{
+                CAscApplicationManagerWrapper::mainWindow()->mainPanel()->focus();});
+#endif
         }
     }
 

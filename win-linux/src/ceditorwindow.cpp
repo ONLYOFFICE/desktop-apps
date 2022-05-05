@@ -82,6 +82,9 @@ CEditorWindow::CEditorWindow(const QRect& rect, CTabPanel* panel)
     m_pWinPanel->show();
 
     recalculatePlaces();
+
+    // TODO: because vs2019 components bug. need to debug
+    QTimer::singleShot(100, [=]{focus();});
 #endif
 
     QTimer::singleShot(0, [=]{m_pMainView->show();});
