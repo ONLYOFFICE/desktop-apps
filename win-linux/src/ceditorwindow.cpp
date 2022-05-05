@@ -239,6 +239,11 @@ QWidget * CEditorWindow::createMainPanel(QWidget * parent, const QString& title)
                 mainPanel->setProperty("window", "pretty");
             m_boxTitleBtns->setParent(mainPanel);
             m_boxTitleBtns->layout()->addWidget(d_ptr.get()->iconUser());
+
+#ifdef Q_OS_WIN
+            // TODO: because vs2019 components bug. need to debug
+            ::SetParent((HWND)m_boxTitleBtns->winId(), (HWND)parent->winId());
+#endif
         }
 
         m_boxTitleBtns->layout()->addWidget(m_buttonMinimize);
