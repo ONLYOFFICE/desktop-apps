@@ -17,7 +17,7 @@ dialog {
     z-index: 2;
     border-radius: 5px;
     box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-    border: 1px solid @border-tabbar;
+    border: @scaled-one-px solid @border-tabbar;
     overflow-y: visibile;
 
     &::backdrop {
@@ -32,7 +32,7 @@ dialog {
 
     .title {
         height: @title-height;
-        border-bottom: 1px solid @border-tabbar;
+        border-bottom: @scaled-one-px solid @border-tabbar;
         display: flex;
         color: @text-normal;
         align-items: center;
@@ -55,7 +55,7 @@ dialog {
         width: 100%;
         top: @title-height;
         bottom: 0;
-        padding: 20px 30px 30px;
+        padding: 20px 30px 28px;
     }
 
     .tool.close {
@@ -104,7 +104,7 @@ dialog {
     }
 
     .separator {
-        border-top: 1px solid @color-gray-3;
+        border-top: @scaled-one-px solid @color-gray-3;
         margin: 24px 0;
     }
 
