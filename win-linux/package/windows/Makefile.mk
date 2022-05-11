@@ -12,10 +12,10 @@ VCREDIST22 := $(BUILD_DIR)/data/vcredist/vcredist_2022_$(WIN_ARCH).exe
 
 ifeq ($(WIN_ARCH),x64)
  	VCREDIST13_URL := https://download.microsoft.com/download/2/E/6/2E61CFA4-993B-4DD4-91DA-3737CD5CD6E3/vcredist_x64.exe
-	VCREDIST22_URL := https://download.visualstudio.microsoft.com/download/pr/6b6923b0-3045-4379-a96f-ef5506a65d5b/426A34C6F10EA8F7DA58A8C976B586AD84DD4BAB42A0CFDBE941F1763B7755E5/VC_redist.x64.exe
+	VCREDIST22_URL := https://aka.ms/vs/17/release/vc_redist.x64.exe
 else ifeq ($(WIN_ARCH),x86)
  	VCREDIST13_URL := https://download.microsoft.com/download/2/E/6/2E61CFA4-993B-4DD4-91DA-3737CD5CD6E3/vcredist_x86.exe
-	VCREDIST22_URL := https://download.visualstudio.microsoft.com/download/pr/06ed1d94-3f28-47a5-8025-e7bf9da634da/2ACBFE92157C1CF1A7B524A9325824046D83DBFA3FEB1CBD4DD02A42E020F77C/VC_redist.x86.exe
+	VCREDIST22_URL := https://aka.ms/vs/17/release/vc_redist.x86.exe
 endif
 
 ifneq ($(COMPANY_NAME), ONLYOFFICE)
