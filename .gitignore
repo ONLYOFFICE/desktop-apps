@@ -1,9 +1,10 @@
 
-win-linux/build/Release/*
-win-linux/build/Debug/*
+win-linux/build
+win-linux/3dparty/WinSparkle/win_32
+win-linux/3dparty/WinSparkle/win_64
+win-linux/extras/projicons/build
 win-linux/ASCDocumentEditor.build/*
 
-win-linux/*.user
 
 win-linux/package/linux/index.html
 win-linux/package/windows/index.html
@@ -11,21 +12,11 @@ win-linux/package/windows/index.html
 win-linux/package/linux/common/opt
 win-linux/package/linux/common/usr/share/applications/variables.m4
 win-linux/package/linux/common/usr/share/flyfm/templates/desktopeditors.*.desktop
-win-linux/package/linux/deb/debian/.debhelper
-win-linux/package/linux/deb/debian/*.debhelper.log
-win-linux/package/linux/deb/debian/changelog
-win-linux/package/linux/deb/debian/control
-win-linux/package/linux/deb/debian/files
-win-linux/package/linux/deb/debian/*.dirs
-win-linux/package/linux/deb/debian/*.install
-win-linux/package/linux/deb/debian/*.links
-win-linux/package/linux/deb/debian/*.substvars
-win-linux/package/linux/deb/debian/postinst
-win-linux/package/linux/deb/debian/postrm
-win-linux/package/linux/deb/debian/prerm
-win-linux/package/linux/deb/debian/rules
-win-linux/package/linux/deb/i386
-win-linux/package/linux/deb/amd64
+/win-linux/package/linux/deb*/build
+/win-linux/package/linux/deb*/*.buildinfo
+/win-linux/package/linux/deb*/*.changes
+/win-linux/package/linux/deb*/*.ddeb
+/win-linux/package/linux/deb*/*.deb
 win-linux/package/linux/rpm/builddir
 win-linux/package/linux/apt-rpm/builddir
 win-linux/package/linux/urpmi/builddir
@@ -38,6 +29,10 @@ common/converter/*
 */.svn/*
 
 .DS_Store
+Makefile
+Makefile.*
+*.stash
+*.user
 *.xcuserstate
 *.xcuserdatad
 *.xcscmblueprint

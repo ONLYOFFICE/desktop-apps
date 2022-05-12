@@ -35,16 +35,16 @@ public:
 
     void applyLoader(const QString& cmd, const QString& args = QString());
 
-    void resize(int w, int h);
-    void resizeEvent(QResizeEvent *event);
-    void showEvent(QShowEvent *event);
+    //void resize(int w, int h);
+    //void resizeEvent(QResizeEvent *event);
+    //void showEvent(QShowEvent *event);
 
     bool prettyTitle() { return m_prettyTitle; }
     void setPrettyTitle(bool v) { m_prettyTitle = v; }
     void setBackground(const QColor&);
 
 protected:
-    void timerEvent(QTimerEvent *event);
+    //void timerEvent(QTimerEvent *event);
     void paintEvent(QPaintEvent *event);
     void closeEvent(QCloseEvent *event);
 

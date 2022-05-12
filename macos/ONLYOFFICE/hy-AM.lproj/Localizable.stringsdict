@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>%d days are left until the license expiration.</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@օր@</string>
+		<key>days</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d օր է մնացել լիցենզիայի ավարտվելուն։</string>
+			<key>other</key>
+			<string>%d օր է մնացել լիցենզիայի ավարտվելուն։</string>
+		</dict>
+	</dict>
+	<key>You are using a trial version of the application.
+The trial period will end in %d days, after that you will not be able to create and edit documents.</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@օր@</string>
+		<key>days</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Դուք օգտագործում եք հավելվածի փորձնական տարբերակը։
+Փորձնական ժամանակահատվածը կավարտվի %d օրից, որից հետո Դուք չեք կարողանա ստեղծել և խմբագրել փաստաթղթեր։</string>
+			<key>other</key>
+			<string>Դուք օգտագործում եք հավելվածի փորձնական տարբերակը։
+Փորձնական ժամանակահատվածը կավարտվի %d օրից, որից հետո Դուք չեք կարողանա ստեղծել և խմբագրել փաստաթղթեր։</string>
+		</dict>
+	</dict>
+	<key>You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@փաստաթուղթ@</string>
+		<key>documents</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>ld</string>
+			<key>one</key>
+			<string>Դուք ունեք %ld %@ փաստաթուղթ՝ չհաստատված փոփոխություններում։ Ցանկանու՞մ եք վերանայել այս փոփոխությունները դուրս գալուց առաջ։</string>
+			<key>other</key>
+			<string>Դուք ունեք %ld %@ փաստաթուղթ՝ չհաստատված փոփոխություններում։ Ցանկանու՞մ եք վերանայել այս փոփոխությունները դուրս գալուց առաջ։</string>
+		</dict>
+	</dict>
+</dict>
+</plist>

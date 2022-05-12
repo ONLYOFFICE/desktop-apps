@@ -67,6 +67,7 @@
 #import "ASCTouchBarController.h"
 #import "ASCCertificatePreviewController.h"
 #import "ASCCertificateQLPreviewController.h"
+#import "ASCLinguist.h"
 
 #define rootTabId @"1CEF624D-9FF3-432B-9967-61361B5BFE8B"
 #define headerViewTag 7777
@@ -211,10 +212,7 @@
         NSUserDefaults *preferences     = [NSUserDefaults standardUserDefaults];
         NSURLComponents *loginPage      = [NSURLComponents componentsWithString:[[NSBundle mainBundle] pathForResource:@"index" ofType:@"html" inDirectory:@"login"]];
 
-        NSString * ui_lang = [[NSUserDefaults standardUserDefaults] objectForKey:ASCUserUILanguage];
-        if ( !ui_lang ) ui_lang = [NSString stringWithFormat:@"%@-%@", [[NSLocale currentLocale] objectForKey:NSLocaleLanguageCode], [[NSLocale currentLocale] objectForKey:NSLocaleCountryCode]]; // Use onlyoffice iso ¯\_(ツ)_/¯
-
-        NSURLQueryItem *countryCode     = [NSURLQueryItem queryItemWithName:@"lang" value: ui_lang];
+        NSURLQueryItem *countryCode     = [NSURLQueryItem queryItemWithName:@"lang" value: [ASCLinguist appLanguageCode]];
         NSURLQueryItem *portalAddress   = [NSURLQueryItem queryItemWithName:@"portal" value:[preferences objectForKey:ASCUserSettingsNamePortalUrl]];
 
         if (externalDelegate && [externalDelegate respondsToSelector:@selector(onAppPreferredLanguage)]) {
@@ -579,7 +577,7 @@
         NSDictionary * params   = tab.params;
         NSString * path         = params[@"path"];
         NSString * viewId       = params[@"viewId"];
-        NSArray * formats       = params[@"suppertFormats"];
+        NSArray * formats       = params[@"supportedFormats"];
         
         [self.tabsControl selectTab:tab];
         
@@ -1478,29 +1476,21 @@
 }
 
 - (void)onCEFStartPageReady:(NSNotification *)notification {
-    NSString * uiLang = [[NSUserDefaults standardUserDefaults] objectForKey:ASCUserUILanguage];
-    if ( !uiLang )
-        uiLang = [[NSLocale currentLocale] objectForKey:NSLocaleLanguageCode];
     
     NSString * uiTheme = [[NSUserDefaults standardUserDefaults] valueForKey:ASCUserUITheme] ?: @"theme-classic-light";
 
-    NSDictionary * json_langs = @{
-        @"locale_skip": @{
-            @"current": uiLang,
-            @"langs": @{
-                @"en": @"English",
-                @"ru": @"Русский",
-                @"de": @"Deutsch",
-                @"fr": @"Français",
-                @"es": @"Español",
-                @"it": @"Italiano",
-                @"pl": @"Polski",
-                @"pt-BR": @"Português Brasileiro",
-                @"zh-CN": @"中文"
-            }
-        },
+    NSMutableDictionary * json_langs = @{
         @"uitheme": uiTheme
-    };
+    }.mutableCopy;
+
+    NSDictionary * langs = [ASCLinguist availableLanguages];
+    if ( langs ) {
+        [json_langs setObject:@{
+                @"current": [ASCLinguist appLanguageCode],
+                @"langs": langs,
+                @"restart": @true
+            } forKey:@"locale"];
+    }
 
     NSEditorApi::CAscExecCommandJS * pCommand = new NSEditorApi::CAscExecCommandJS;
     pCommand->put_Command(L"settings:init");

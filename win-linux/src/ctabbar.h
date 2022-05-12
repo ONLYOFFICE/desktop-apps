@@ -34,8 +34,13 @@
 #define CTABBAR_H
 
 #include <QTabBar>
+#include <QToolButton>
+#include <QFrame>
+#include <QTimer>
+#include <QWheelEvent>
 #include "cscalingwrapper.h"
 
+#include <math.h>
 //class CTabBarPrivate;
 
 class CTabBar : public QTabBar, public CScalingWrapper
@@ -43,7 +48,7 @@ class CTabBar : public QTabBar, public CScalingWrapper
     Q_OBJECT
 
 public:
-    explicit CTabBar(QWidget * parent = 0);
+    explicit CTabBar(QWidget * parent = nullptr);
     virtual ~CTabBar();
 
     void setTabTextColor(QPalette::ColorGroup, const QColor&);
@@ -66,13 +71,16 @@ public:
     void changeTabTheme(int, TabTheme);
     void setTabTheme(int, TabTheme);
     void setUIThemeType(bool islight);
+    void initCustomScroll(QFrame *, QToolButton *, QToolButton *);
 
 protected:
     bool event(QEvent * e) override;
     void mousePressEvent (QMouseEvent *) override;
     void mouseMoveEvent(QMouseEvent *) override;
     void mouseReleaseEvent (QMouseEvent *) override;
+    void wheelEvent(QWheelEvent *event) override;
     void paintEvent(QPaintEvent *) override;
+    void resizeEvent(QResizeEvent *) override;
     void tabInserted(int) override;
     void tabRemoved(int index) override;
     void drawTabCaption(QPainter *, const QString&, const QStyleOptionTab&);
@@ -97,9 +105,15 @@ private:
 
 signals:
     void tabUndock(int, bool *);
+    void onCurrentChangedByWhell(int index);
 
 private:
     Q_DECLARE_PRIVATE(QTabBar)
+    int m_scrollPos;
+    QFrame *m_pScrollerFrame;
+    QToolButton *m_pLeftButton,
+                *m_pRightButton;
+    void changeCustomScrollerState();
 };
 
 #endif // CTABBAR_H

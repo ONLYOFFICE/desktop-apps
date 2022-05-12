@@ -1,0 +1,36 @@
+/* Class = "NSTextFieldCell"; title = "Enter the password for the private key."; ObjectID = "1dL-nN-bJI"; */
+"1dL-nN-bJI.title" = "非公開鍵のパスワードを入力してください。";
+
+/* Class = "NSTextFieldCell"; title = "Enter the password for the digital signature."; ObjectID = "1Fy-mg-aq9"; */
+"1Fy-mg-aq9.title" = "電子署名のパスワードを入力してください。";
+
+/* Class = "NSTextFieldCell"; title = "Specify the digital signature file for the document."; ObjectID = "2Ck-6y-ygx"; */
+"2Ck-6y-ygx.title" = "ドキュメントの電子署名ファイルを指定します。";
+
+/* Class = "NSSecureTextFieldCell"; placeholderString = "Enter Password"; ObjectID = "4gA-s8-Lne"; */
+"4gA-s8-Lne.placeholderString" = "パスワードの入力";
+
+/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "GOU-av-TC1"; */
+"GOU-av-TC1.title" = "キャンセル";
+
+/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "jpH-3g-Gt5"; */
+"jpH-3g-Gt5.title" = "キャンセル";
+
+/* Class = "NSButtonCell"; title = "Load a Private Key"; ObjectID = "P3k-kI-w22"; */
+"P3k-kI-w22.title" = "非公開鍵を読み込む";
+
+/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "qZ4-0O-L0G"; */
+"qZ4-0O-L0G.title" = "キャンセル";
+
+/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "RbM-Dq-A3K"; */
+"RbM-Dq-A3K.title" = "キャンセル";
+
+/* Class = "NSTextFieldCell"; title = "Specify a private key for the digital signature."; ObjectID = "Tfc-EF-VnS"; */
+"Tfc-EF-VnS.title" = "デジタル署名の非公開鍵を指定します。";
+
+/* Class = "NSButtonCell"; title = "Load Signature"; ObjectID = "tTF-wa-eJp"; */
+"tTF-wa-eJp.title" = "サインを読み込む";
+
+/* Class = "NSSecureTextFieldCell"; placeholderString = "Enter Password"; ObjectID = "Zj5-0h-hpW"; */
+"Zj5-0h-hpW.placeholderString" = "パスワードの入力";
+

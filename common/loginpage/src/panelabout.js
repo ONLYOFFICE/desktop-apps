@@ -64,6 +64,11 @@
         !!_opts.active && (_opts.edition = !!_opts.edition ? _opts.edition + ' ' + _opts.active : _opts.active);
         _opts.edition = !!_opts.edition ? `<div class="ver-edition">${_opts.edition}</div>` : '';
 
+        let _ext_ver = '';
+        if ( !!_opts.arch ) _ext_ver += `${_opts.arch == 'x64' ? '64' : '32'} bit`;
+        if ( !!_opts.pkg ) _ext_ver += ` ${_opts.pkg} package`;
+        if ( !!_ext_ver ) _opts.version += ` (${_ext_ver.trim()})`;
+
         var _lang = utils.Lang;
         let _html = `<div class="flexbox">
                         <div class="box-ver">
@@ -76,7 +81,8 @@
                             <div class="ver-version" l10n>${_opts.appname} ${_lang.strVersion} ${_opts.version}</div>
                             <div id='id-features-available' l10n>${_lang.aboutProFeaturesAvailable}</div>
                             ${_opts.edition}<p></p>
-                            <a class="ver-checkupdate link" draggable='false' href="#" l10n>${_lang.checkUpdates}</a><p />
+                            <a class="ver-checkupdate link" draggable='false' data-state='check' href="#" l10n>${_lang.checkUpdates}</a><p />
+                            <a class="ver-changelog link" draggable='false' target="popup" href=${_opts.changelog} l10n>${_lang.aboutChangelog}</a><p />
                             <div class="ver-copyright">${_opts.rights}</div>
                             <a class="ver-site link" target="popup" href="${_opts.link}">${_opts.site}</a>
                         </div>`+
@@ -137,10 +143,14 @@
                         } 
 
                         this.view.renderpanel(this.view.paneltemplate(args));
-                        this.view.$panel.find('.ver-checkupdate').on('click', (e) => {
-                            window.sdk.execCommand('update', 'check');
+                        const $label = this.view.$panel.find('.ver-checkupdate');
+                        $label.on('click', (e) => {
+                            window.sdk.execCommand('update', $label.data('state'));
                         });
-                        this.view.$panel.find('.ver-checkupdate')[this.updates===true?'show':'hide']();
+                        $label[this.updates===true?'show':'hide']();
+                        if ( args.opts ) {
+                            this.view.$panel.find('.ver-changelog')[!!args.opts.changelog?'show':'hide']();
+                        }
 
                         if ( !!_features && _features.length )
                             _on_features_avalable.call(this, _features);
@@ -150,6 +160,32 @@
 
                         if ( this.view ) {
                             this.view.$panel.find('.ver-checkupdate')[this.updates?'show':'hide']();
+                        }
+                    } else
+                    if (/^updates:checking/.test(cmd)) {
+                        const $label = this.view.$panel.find('.ver-checkupdate');
+                        const opts = JSON.parse(param);
+                        if ( opts.version == 'no' ) {
+                            $label.text(utils.Lang.updateNoUpdates);
+                        } else {
+                            $label.text(utils.Lang.updateAvialable.replace('$1', opts.version));
+                            $label.data('state', 'download');
+                        }
+                        $label.show();
+                    } else
+                    if (/updates:download/.test(cmd)) {
+                        const opts = JSON.parse(param);
+                        const $label = this.view.$panel.find('.ver-checkupdate');
+
+                        if ( opts.progress == 'done' ) {
+                            $label.text(`Downloading finished. Click to restart`);
+                            $label.data('state', 'install');
+                        } else
+                        if ( opts.progress == 'aborted' ) {
+                            $label.text(`Downloading canceled`);
+                        } else {
+                            $label.text(`Downloading ${opts.progress}%. Click to abort`);
+                            $label.data('state', 'abort');
                         }
                     }
                 });

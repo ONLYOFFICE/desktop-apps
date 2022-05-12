@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>%d days are left until the license expiration.</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@dager@</string>
+		<key>days</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d dager igjen til lisensen utløper.</string>
+			<key>other</key>
+			<string>%d dager igjen til lisensen utløper.</string>
+		</dict>
+	</dict>
+	<key>You are using a trial version of the application.
+The trial period will end in %d days, after that you will not be able to create and edit documents.</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@dager@</string>
+		<key>days</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Du bruker en prøveversjon av programmet.
+Prøveperioden avsluttes om %d dag, etter det vil du ikke kunne opprette og redigere dokumenter.</string>
+			<key>other</key>
+			<string>Du bruker en prøveversjon av programmet.
+Prøveperioden avsluttes om %d dager, etter det vil du ikke kunne opprette og redigere dokumenter.</string>
+		</dict>
+	</dict>
+	<key>You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@dokumenter@</string>
+		<key>documents</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>ld</string>
+			<key>one</key>
+			<string>Du har %ld %@ dokument med ubekreftede endringer. Vil du gå gjennom disse endringene før du avslutter?</string>
+			<key>other</key>
+			<string>Du har %ld %@ dokumenter med ubekreftede endringer. Vil du gå gjennom disse endringene før du avslutter?</string>
+		</dict>
+	</dict>
+</dict>
+</plist>

@@ -34,7 +34,6 @@
 //#include "ctabbar_p.h"
 #include "private/qtabbar_p.h"
 #include <QStylePainter>
-#include <QPushButton>
 #include <QHoverEvent>
 #include <QDesktopWidget>
 #include "canimatedicon.h"
@@ -234,7 +233,9 @@ void QTabBarPrivate::Tab::TabBarAnimation::updateState(QAbstractAnimation::State
 CTabBar::CTabBar(QWidget * parent)
     : QTabBar(parent)
     , CScalingWrapper(parent)
+    , m_scrollPos(0)
 {
+    hide();
     setDrawBase(false);
 
     if (Utils::getScreenDpiRatio(
@@ -251,10 +252,39 @@ CTabBar::~CTabBar()
 
 }
 
+void CTabBar::initCustomScroll(QFrame      *_pScrollerFrame,
+                               QToolButton *_pLeftButton,
+                               QToolButton *_pRightButton)
+{
+    // Bypassing the bug with tab scroller
+    m_pScrollerFrame = _pScrollerFrame;
+    m_pLeftButton = _pLeftButton;
+    m_pRightButton = _pRightButton;
+    m_pScrollerFrame->show();
+    m_pScrollerFrame->raise();
+    m_pLeftButton->show();
+    m_pLeftButton->raise();
+    m_pRightButton->show();
+    m_pRightButton->raise();
+    m_pScrollerFrame->setVisible(false);
+    connect(m_pLeftButton, &QToolButton::clicked, this, [=](){
+        Q_D(QTabBar);
+        d->leftB->click();
+        m_scrollPos = d->scrollOffset;
+        changeCustomScrollerState();
+    });
+    connect(m_pRightButton, &QToolButton::clicked, this, [=](){
+        Q_D(QTabBar);
+        d->rightB->click();
+        m_scrollPos = d->scrollOffset;
+        changeCustomScrollerState();
+    }); // End bypassing the bug
+}
+
 void CTabBar::mouseMoveEvent(QMouseEvent * event)
 {
     Q_D(QTabBar);
-
+    this->setCursor(QCursor(Qt::ArrowCursor));
     if (verticalTabs(d->shape)) {
         QTabBar::mouseMoveEvent(event);
         return;
@@ -349,6 +379,12 @@ void CTabBar::mouseReleaseEvent(QMouseEvent * e)
 {
     QTabBar::mouseReleaseEvent(e);
     releaseMouse();
+}
+
+void CTabBar::wheelEvent(QWheelEvent *event)
+{
+    QTabBar::wheelEvent(event);
+    emit onCurrentChangedByWhell(currentIndex());
 }
 
 void CTabBar::drawTabCaption(QPainter * p, const QString& s, const QStyleOptionTab& t)
@@ -572,11 +608,14 @@ void CTabBar::paintEvent(QPaintEvent * event)
     }
 #endif
 
-    if ( scaling() > 1 ) {
-        /* qtabbar scroller doesn't apply big width */
-        d->leftB->setGeometry(d->rightB->geometry().adjusted(0,0,-24,0));
-        d->leftB->raise();
-    }
+}
+
+void CTabBar::resizeEvent(QResizeEvent *event)
+{
+    QTabBar::resizeEvent(event);
+    Q_D(QTabBar);
+    m_scrollPos = d->scrollOffset;
+    changeCustomScrollerState();
 }
 
 void CTabBar::fillTabColor(QPainter * p, const QStyleOptionTab& tab, uint index, const QColor& color)
@@ -638,6 +677,14 @@ void CTabBar::tabInserted(int index)
 
 void CTabBar::onCurrentChanged(int index)
 {
+    Q_D(QTabBar);
+    m_scrollPos = d->scrollOffset;
+    if (this->count() == 0) {
+        this->hide();
+    } else if (this->isHidden()) {
+        this->show();
+    }
+
     QWidget * b = TAB_BTNCLOSE(m_current);
 //    if ( tabData(m_current).isNull() )
     {
@@ -659,6 +706,31 @@ void CTabBar::onCurrentChanged(int index)
     }
 
     m_current = index;
+    changeCustomScrollerState();
+}
+
+void CTabBar::changeCustomScrollerState()
+{
+    // Bypassing the bug with tab scroller
+    Q_D(QTabBar);
+    if (m_pScrollerFrame && m_pLeftButton && m_pRightButton) {
+        if (d->leftB->isVisible()) {
+            m_pScrollerFrame->setVisible(true);
+        } else {
+            m_pScrollerFrame->setVisible(false);
+        }
+        if (d->leftB->isEnabled()) {
+            m_pLeftButton->setEnabled(true);
+        } else {
+            m_pLeftButton->setEnabled(false);
+        }
+        if (d->rightB->isEnabled()) {
+            m_pRightButton->setEnabled(true);
+        } else {
+            m_pRightButton->setEnabled(false);
+        }
+    }
+    // End bypassing the bug
 }
 
 void CTabBar::tabRemoved(int index)
@@ -761,6 +833,36 @@ void CTabBar::setTabTheme(int index, TabTheme theme)
 void CTabBar::setUIThemeType(bool islight)
 {
     m_isUIThemeDark = !islight;
+    if (m_pLeftButton && m_pRightButton) {
+        m_pLeftButton->style()->polish(m_pLeftButton);
+        m_pRightButton->style()->polish(m_pRightButton);
+    }
+    QTimer::singleShot(20, this, [=]() {
+        Q_D(QTabBar);
+        if (d->scrollOffset != m_scrollPos) {
+            const int tabWidth = this->tabSizeHint(0).width();
+            if (m_scrollPos % tabWidth == 0) {
+                for (int i = 0; i < count(); i++) {
+                    if (!d->rightB->isEnabled()) break;
+                    d->rightB->click();
+                }
+                for (int i = 0; i < count(); i++) {
+                    if (d->scrollOffset == m_scrollPos) break;
+                    d->leftB->click();
+                }
+
+            } else {
+                for (int i = 0; i < count(); i++) {
+                    if (!d->leftB->isEnabled()) break;
+                    d->leftB->click();
+                }
+                for (int i = 0; i < count(); i++) {
+                    if (d->scrollOffset == m_scrollPos) break;
+                    d->rightB->click();
+                }
+            }
+        }
+    });
 }
 
 void CTabBar::setActiveTabColor(const QString& color)

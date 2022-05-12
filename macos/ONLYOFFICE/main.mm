@@ -44,6 +44,7 @@
 #import "NSString+Extensions.h"
 #import "ASCConstants.h"
 #import "ASCHelper.h"
+#import "ASCLinguist.h"
 #import "ASCDocSignController.h"
 #import "ASCExternalController.h"
 #import "NSApplication+Extensions.h"
@@ -56,7 +57,8 @@ int main(int argc, const char * argv[]) {
 //    return NSApplicationMain(argc, argv);
     
     [ASCHelper createCloudPath];
-        
+    [ASCLinguist init];
+
     NSAscApplicationWorker * worker = [[NSAscApplicationWorker alloc] initWithCreator:createASCApplicationManager];
     CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
 
@@ -84,9 +86,8 @@ int main(int argc, const char * argv[]) {
     
     // setup localization
     NSMutableArray * params = [NSMutableArray array];
-    NSString * langCode = [[NSLocale currentLocale] objectForKey:NSLocaleLanguageCode];
-    [params addObject:[NSString stringWithFormat:@"lang=%@-%@", [langCode lowercaseString], [langCode uppercaseString]]];
-    
+    [params addObject:[NSString stringWithFormat:@"lang=%@", [ASCLinguist appLanguageCode]]];
+
     // setup username
     NSString * fullName = [[NSUserDefaults standardUserDefaults] valueForKey:ASCUserNameApp];
     

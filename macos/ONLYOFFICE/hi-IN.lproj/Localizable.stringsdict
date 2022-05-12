@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>%d days are left until the license expiration.</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@दिन@</string>
+		<key>days</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d दिन शेष हैं लाइसेंस की समाप्ति तक।</string>
+			<key>other</key>
+			<string>%d दिन शेष हैं लाइसेंस की समाप्ति तक।</string>
+		</dict>
+	</dict>
+	<key>You are using a trial version of the application.
+The trial period will end in %d days, after that you will not be able to create and edit documents.</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@days@</string>
+		<key>days</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>आप इस एप्लीकेशन के एक परीक्षण संस्करण का उपयोग कर रहे हैं।
+परीक्षण अवधि समाप्त होगी %d दिन में, उसके बाद आप दस्तावेज़ों की रचना और  संपादन नहीं कर पाएँगे।</string>
+			<key>other</key>
+			<string>आप इस एप्लिकेशन के एक परीक्षण संस्करण का उपयोग कर रहे हैं।
+परीक्षण अवधि समाप्त होगी %d दिन में, उसके बाद आप दस्तावेज़ों की रचना और संपादन नहीं कर पाएँगे।</string>
+		</dict>
+	</dict>
+	<key>You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@दस्तावेज़ों@</string>
+		<key>documents</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>ld</string>
+			<key>one</key>
+			<string>आपके पास %ld %@ दस्तावेज़ अपुष्ट बदलावों के साथ हैं। क्या आप बाहर जाने से पहले इन बदलावों की समीक्षा करना चाहेंगे?</string>
+			<key>other</key>
+			<string>आपके पास %ld %@ दस्तावेज़ अपुष्ट बदलावों के साथ हैं। क्या आप बाहर जाने से पहले इन बदलावों की समीक्षा करना चाहेंगे?</string>
+		</dict>
+	</dict>
+</dict>
+</plist>

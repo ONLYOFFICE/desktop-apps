@@ -1895,7 +1895,8 @@ void CAscApplicationManagerWrapper::onEditorWidgetClosed()
     if ( m_closeTarget == L"main" ) {
         if ( mainWindow()->mainPanel()->tabCloseRequest() == MODAL_RESULT_CANCEL )
             AscAppManager::cancelClose();
-        else {
+        else
+        if ( mainWindow()->mainPanel()->tabWidget()->count() == 0 ) {
             m_closeTarget.clear();
             mainWindow()->hide();
         }
