@@ -1,0 +1,456 @@
+/* Class = "NSMenu"; title = "Find"; ObjectID = "1b7-l0-nxx"; */
+"1b7-l0-nxx.title" = "ढूँढें";
+
+/* Class = "NSMenuItem"; title = "Lower"; ObjectID = "1tx-W0-xDw"; */
+"1tx-W0-xDw.title" = "निचला";
+
+/* Class = "NSMenuItem"; title = "Customize Toolbar…"; ObjectID = "1UK-8n-QPP"; */
+"1UK-8n-QPP.title" = "टूलबार को कस्टमाइज करें…";
+
+/* Class = "NSMenuItem"; title = "ONLYOFFICE"; ObjectID = "1Xt-HY-uBw"; */
+"1Xt-HY-uBw.title" = "ओनलीऑफिस";
+
+/* Class = "NSMenuItem"; title = "Raise"; ObjectID = "2h7-ER-AoG"; */
+"2h7-ER-AoG.title" = "बढ़ाएँ";
+
+/* Class = "NSMenuItem"; title = "Transformations"; ObjectID = "2oI-Rn-ZJC"; */
+"2oI-Rn-ZJC.title" = "रूपांतरण";
+
+/* Class = "NSMenu"; title = "Spelling"; ObjectID = "3IN-sU-3Bg"; */
+"3IN-sU-3Bg.title" = "वर्तनी";
+
+/* Class = "NSMenuItem"; title = "Use Default"; ObjectID = "3Om-Ey-2VK"; */
+"3Om-Ey-2VK.title" = "डिफ़ाल्ट का प्रयोग करें";
+
+/* Class = "NSMenu"; title = "Speech"; ObjectID = "3rS-ZA-NoH"; */
+"3rS-ZA-NoH.title" = "वाक्";
+
+/* Class = "NSMenuItem"; title = "Find"; ObjectID = "4EN-yA-p0u"; */
+"4EN-yA-p0u.title" = "ढूँढें";
+
+/* Class = "NSMenuItem"; title = "License Agreement"; ObjectID = "4et-TX-a4m"; */
+"4et-TX-a4m.title" = "लाइसेंस अनुबंध";
+
+/* Class = "NSMenuItem"; title = "Quit ONLYOFFICE"; ObjectID = "4sb-4s-VLi"; */
+"4sb-4s-VLi.title" = "ओनलीऑफिस से बाहर आएँ";
+
+/* Class = "NSMenuItem"; title = "About ONLYOFFICE"; ObjectID = "5kV-Vb-QxS"; */
+"5kV-Vb-QxS.title" = "ओनलीऑफिस के बारे में";
+
+/* Class = "NSMenuItem"; title = "Edit"; ObjectID = "5QF-Oa-p0T"; */
+"5QF-Oa-p0T.title" = "संपादन करें";
+
+/* Class = "NSMenuItem"; title = "Copy Style"; ObjectID = "5Vv-lz-BsD"; */
+"5Vv-lz-BsD.title" = "शैली कॉपी करें";
+
+/* Class = "NSMenuItem"; title = "Redo"; ObjectID = "6dh-zS-Vam"; */
+"6dh-zS-Vam.title" = "पुनः करें";
+
+/* Class = "NSButtonCell"; title = "License agreement"; ObjectID = "8Ga-Cu-VGe"; */
+"8Ga-Cu-VGe.title" = "लाइसेंस अनुबंध";
+
+/* Class = "NSMenu"; title = "Writing Direction"; ObjectID = "8mr-sm-Yjd"; */
+"8mr-sm-Yjd.title" = "लेखन की दिशा";
+
+/* Class = "NSMenuItem"; title = "New"; ObjectID = "9aQ-wl-gjS"; */
+"9aQ-wl-gjS.title" = "नया";
+
+/* Class = "NSTextFieldCell"; title = "none"; ObjectID = "9i7-kj-42B"; */
+"9i7-kj-42B.title" = "कोई भी नहीं";
+
+/* Class = "NSMenuItem"; title = "Substitutions"; ObjectID = "9ic-FL-obx"; */
+"9ic-FL-obx.title" = "प्रतिस्थापन";
+
+/* Class = "NSMenuItem"; title = "Smart Copy/Paste"; ObjectID = "9yt-4B-nSM"; */
+"9yt-4B-nSM.title" = "स्मार्ट कॉपी/पेस्ट";
+
+/* Class = "NSMenuItem"; title = "Tighten"; ObjectID = "46P-cB-AYj"; */
+"46P-cB-AYj.title" = "कसें";
+
+/* Class = "NSMenuItem"; title = "Correct Spelling Automatically"; ObjectID = "78Y-hA-62v"; */
+"78Y-hA-62v.title" = "स्वतः वर्तनी सही करें";
+
+/* Class = "NSMenuItem"; title = "Use Default"; ObjectID = "agt-UL-0e3"; */
+"agt-UL-0e3.title" = "डिफ़ाल्ट का प्रयोग करें";
+
+/* Class = "NSMenuItem"; title = "Print…"; ObjectID = "aTl-1u-JFS"; */
+"aTl-1u-JFS.title" = "प्रिंट करें…";
+
+/* Class = "NSMenuItem"; title = "Window"; ObjectID = "aUF-d1-5bR"; */
+"aUF-d1-5bR.title" = "विंडो";
+
+/* Class = "NSMenu"; title = "Font"; ObjectID = "aXa-aM-Jaq"; */
+"aXa-aM-Jaq.title" = "फॉन्ट";
+
+/* Class = "NSMenu"; title = "Main Menu"; ObjectID = "AYu-sK-qS6"; */
+"AYu-sK-qS6.title" = "मुख्य मेनू";
+
+/* Class = "NSMenuItem"; title = "\tLeft to Right"; ObjectID = "BgM-ve-c93"; */
+"BgM-ve-c93.title" = "\tबाएँ से दाएँ";
+
+/* Class = "NSMenuItem"; title = "Show Colors"; ObjectID = "bgn-CT-cEk"; */
+"bgn-CT-cEk.title" = "रंग दिखाएँ";
+
+/* Class = "NSMenu"; title = "File"; ObjectID = "bib-Uj-vzu"; */
+"bib-Uj-vzu.title" = "फ़ाइल";
+
+/* Class = "NSMenuItem"; title = "Preferences…"; ObjectID = "BOF-NM-1cW"; */
+"BOF-NM-1cW.title" = "पसंद…";
+
+/* Class = "NSMenuItem"; title = "Use Selection for Find"; ObjectID = "buJ-ug-pKt"; */
+"buJ-ug-pKt.title" = "ढूँढने के लिए चयन का प्रयोग करें";
+
+/* Class = "NSMenuItem"; title = "Save As…"; ObjectID = "Bw7-FT-i3A"; */
+"Bw7-FT-i3A.title" = "इस रूप में सहेजे…";
+
+/* Class = "NSMenu"; title = "Transformations"; ObjectID = "c8a-y6-VQd"; */
+"c8a-y6-VQd.title" = "रूपांतरण";
+
+/* Class = "NSMenuItem"; title = "Use None"; ObjectID = "cDB-IK-hbR"; */
+"cDB-IK-hbR.title" = "किसी का भी प्रयोग नहीं करें";
+
+/* Class = "NSMenuItem"; title = "Acknowledgments"; ObjectID = "CJU-dx-a9l"; */
+"CJU-dx-a9l.title" = "स्वीकृतियाँ";
+
+/* Class = "NSMenuItem"; title = "Selection"; ObjectID = "cqv-fj-IhA"; */
+"cqv-fj-IhA.title" = "चुनाव";
+
+/* Class = "NSMenuItem"; title = "Smart Links"; ObjectID = "cwL-P1-jid"; */
+"cwL-P1-jid.title" = "स्मार्ट लिंक";
+
+/* Class = "NSMenu"; title = "Text"; ObjectID = "d9c-me-L2H"; */
+"d9c-me-L2H.title" = "टेक्स्ट";
+
+/* Class = "NSMenuItem"; title = "Make Lower Case"; ObjectID = "d9M-CD-aMd"; */
+"d9M-CD-aMd.title" = "छोटे अक्षर करें";
+
+/* Class = "NSMenuItem"; title = "File"; ObjectID = "dMs-cI-mzQ"; */
+"dMs-cI-mzQ.title" = "फ़ाइल";
+
+/* Class = "NSMenuItem"; title = "Spreadsheet"; ObjectID = "DOj-j9-dza"; */
+"DOj-j9-dza.title" = "स्प्रेडशीट";
+
+/* Class = "NSMenuItem"; title = "Undo"; ObjectID = "dRJ-4n-Yzg"; */
+"dRJ-4n-Yzg.title" = "पूर्ववत् करें";
+
+/* Class = "NSMenuItem"; title = "Spelling and Grammar"; ObjectID = "Dv1-io-Yv7"; */
+"Dv1-io-Yv7.title" = "वर्तनी और व्याकरण";
+
+/* Class = "NSMenuItem"; title = "Close"; ObjectID = "DVo-aG-piG"; */
+"DVo-aG-piG.title" = "बंद करें";
+
+/* Class = "NSMenu"; title = "Help"; ObjectID = "F2S-fz-NVQ"; */
+"F2S-fz-NVQ.title" = "सहायता";
+
+/* Class = "NSMenuItem"; title = "Text"; ObjectID = "Fal-I4-PZk"; */
+"Fal-I4-PZk.title" = "टेक्स्ट";
+
+/* Class = "NSMenu"; title = "Substitutions"; ObjectID = "FeM-D8-WVr"; */
+"FeM-D8-WVr.title" = "प्रतिस्थापन";
+
+/* Class = "NSMenuItem"; title = "Product Help"; ObjectID = "FKE-Sm-Kum"; */
+"FKE-Sm-Kum.title" = "उत्पाद सहायता";
+
+/* Class = "NSTextFieldCell"; title = "User Name"; ObjectID = "FoF-wl-Dxi"; */
+"FoF-wl-Dxi.title" = "उपयोगकर्ता का नाम";
+
+/* Class = "NSMenuItem"; title = "Bold"; ObjectID = "GB9-OM-e27"; */
+"GB9-OM-e27.title" = "बोल्ड";
+
+/* Class = "NSMenu"; title = "Format"; ObjectID = "GEO-Iw-cKr"; */
+"GEO-Iw-cKr.title" = "प्रारूप";
+
+/* Class = "NSMenuItem"; title = "Font"; ObjectID = "Gi5-1S-RQB"; */
+"Gi5-1S-RQB.title" = "फॉन्ट";
+
+/* Class = "NSTextFieldCell"; title = "File Name"; ObjectID = "gm3-6i-EnL"; */
+"gm3-6i-EnL.title" = "फ़ाइल का नाम";
+
+/* Class = "NSMenuItem"; title = "Use Default"; ObjectID = "GUa-eO-cwY"; */
+"GUa-eO-cwY.title" = "डिफ़ॉल्ट का प्रयोग करें";
+
+/* Class = "NSMenuItem"; title = "Paste"; ObjectID = "gVA-U4-sdL"; */
+"gVA-U4-sdL.title" = "पेस्ट करें";
+
+/* Class = "NSMenuItem"; title = "Writing Direction"; ObjectID = "H1b-Si-o9J"; */
+"H1b-Si-o9J.title" = "लेखन की दिशा";
+
+/* Class = "NSMenuItem"; title = "View"; ObjectID = "H8h-7b-M4v"; */
+"H8h-7b-M4v.title" = "देखें";
+
+/* Class = "NSMenu"; title = "New"; ObjectID = "hD5-Cz-ItX"; */
+"hD5-Cz-ItX.title" = "नया";
+
+/* Class = "NSMenuItem"; title = "Show Spelling and Grammar"; ObjectID = "HFo-cy-zxI"; */
+"HFo-cy-zxI.title" = "वर्तनी और व्याकरण दिखाएँ";
+
+/* Class = "NSMenuItem"; title = "Text Replacement"; ObjectID = "HFQ-gK-NFA"; */
+"HFQ-gK-NFA.title" = "टेक्स्ट प्रतिस्थापन";
+
+/* Class = "NSMenuItem"; title = "Presentation"; ObjectID = "hkB-TU-Ps1"; */
+"hkB-TU-Ps1.title" = "प्रस्तुति";
+
+/* Class = "NSMenuItem"; title = "Smart Quotes"; ObjectID = "hQb-2v-fYv"; */
+"hQb-2v-fYv.title" = "स्मार्ट कोट्स";
+
+/* Class = "NSMenu"; title = "View"; ObjectID = "HyV-fh-RgO"; */
+"HyV-fh-RgO.title" = "देखें";
+
+/* Class = "NSMenuItem"; title = "Check Document Now"; ObjectID = "hz2-CU-CR7"; */
+"hz2-CU-CR7.title" = "दस्तावेज़ अभी जाँचें";
+
+/* Class = "NSMenu"; title = "Services"; ObjectID = "hz9-B4-Xy5"; */
+"hz9-B4-Xy5.title" = "सेवाएँ";
+
+/* Class = "NSMenuItem"; title = "Subscript"; ObjectID = "I0S-gh-46l"; */
+"I0S-gh-46l.title" = "सबस्क्रिप्ट";
+
+/* Class = "NSMenuItem"; title = "Smaller"; ObjectID = "i1d-Er-qST"; */
+"i1d-Er-qST.title" = "छोटा";
+
+/* Class = "NSMenuItem"; title = "Open…"; ObjectID = "IAo-SY-fd9"; */
+"IAo-SY-fd9.title" = "खोलें…";
+
+/* Class = "NSMenu"; title = "Baseline"; ObjectID = "ijk-EB-dga"; */
+"ijk-EB-dga.title" = "आधार रेखा";
+
+/* Class = "NSWindow"; title = "ONLYOFFICE"; ObjectID = "IQv-IB-iLA"; */
+"IQv-IB-iLA.title" = "ओनलीऑफिस";
+
+/* Class = "NSMenuItem"; title = "Justify"; ObjectID = "J5U-5w-g23"; */
+"J5U-5w-g23.title" = "संरेखित करें";
+
+/* Class = "NSMenuItem"; title = "Use None"; ObjectID = "J7y-lM-qPV"; */
+"J7y-lM-qPV.title" = "किसी का उपयोग नहीं करें";
+
+/* Class = "NSMenuItem"; title = "Kern"; ObjectID = "jBQ-r6-VK2"; */
+"jBQ-r6-VK2.title" = "समायोजित करें";
+
+/* Class = "NSMenuItem"; title = "\tRight to Left"; ObjectID = "jFq-tB-4Kx"; */
+"jFq-tB-4Kx.title" = "\tदाएँ से बाएँ";
+
+/* Class = "NSMenuItem"; title = "Format"; ObjectID = "jxT-CU-nIS"; */
+"jxT-CU-nIS.title" = "प्रारूप";
+
+/* Class = "NSMenuItem"; title = "Revert to Saved"; ObjectID = "KaW-ft-85H"; */
+"KaW-ft-85H.title" = "सहेजें  पर वापस लौटाएँ";
+
+/* Class = "NSTabViewItem"; label = "ONLYOFFICE"; ObjectID = "kcg-El-49G"; */
+"kcg-El-49G.label" = "ओनलीऑफिस";
+
+/* Class = "NSMenuItem"; title = "Show All"; ObjectID = "Kd2-mp-pUS"; */
+"Kd2-mp-pUS.title" = "सभी दिखाएँ";
+
+/* Class = "NSMenuItem"; title = "\tLeft to Right"; ObjectID = "Lbh-J2-qVU"; */
+"Lbh-J2-qVU.title" = "\tबाएँ से दाएँ";
+
+/* Class = "NSMenuItem"; title = "Bring All to Front"; ObjectID = "LE2-aR-0XJ"; */
+"LE2-aR-0XJ.title" = "सभी को सामने की ओर लाएँ";
+
+/* Class = "NSMenuItem"; title = "Paste Ruler"; ObjectID = "LVM-kO-fVI"; */
+"LVM-kO-fVI.title" = "रूलर को पेस्ट करें";
+
+/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "m0C-e9-0oc"; */
+"m0C-e9-0oc.title" = "रद्द करें";
+
+/* Class = "NSMenuItem"; title = "Check Grammar With Spelling"; ObjectID = "mK6-2p-4JG"; */
+"mK6-2p-4JG.title" = "वर्तनी के साथ व्याकरण की जाँच करें";
+
+/* Class = "NSMenuItem"; title = "Copy Ruler"; ObjectID = "MkV-Pr-PK5"; */
+"MkV-Pr-PK5.title" = "रूलर को कॉपी करें";
+
+/* Class = "NSMenuItem"; title = "Services"; ObjectID = "NMo-om-nkz"; */
+"NMo-om-nkz.title" = "सेवाएँ";
+
+/* Class = "NSMenuItem"; title = "\tDefault"; ObjectID = "Nop-cj-93Q"; */
+"Nop-cj-93Q.title" = "\tडिफ़ाल्ट";
+
+/* Class = "NSMenuItem"; title = "Ligatures"; ObjectID = "o6e-r0-MWq"; */
+"o6e-r0-MWq.title" = "संयुक्ताक्षर";
+
+/* Class = "NSMenuItem"; title = "Baseline"; ObjectID = "OaQ-X3-Vso"; */
+"OaQ-X3-Vso.title" = "आधार रेखा";
+
+/* Class = "NSMenu"; title = "Open Recent"; ObjectID = "oas-Oc-fiZ"; */
+"oas-Oc-fiZ.title" = "हालिया खोलें";
+
+/* Class = "NSMenuItem"; title = "Loosen"; ObjectID = "ogc-rX-tC1"; */
+"ogc-rX-tC1.title" = "ढीला करें";
+
+/* Class = "NSMenuItem"; title = "Hide ONLYOFFICE"; ObjectID = "Olw-nP-bQN"; */
+"Olw-nP-bQN.title" = "ओनलीऑफिस को छिपाएँ";
+
+/* Class = "NSMenuItem"; title = "Find Previous"; ObjectID = "OwM-mh-QMV"; */
+"OwM-mh-QMV.title" = "पिछला ढूँढें";
+
+/* Class = "NSMenuItem"; title = "Minimize"; ObjectID = "OY7-WF-poV"; */
+"OY7-WF-poV.title" = "छोटा करें";
+
+/* Class = "NSMenuItem"; title = "Stop Speaking"; ObjectID = "Oyz-dy-DGm"; */
+"Oyz-dy-DGm.title" = "बोलना बंद करें";
+
+/* Class = "NSMenuItem"; title = "Delete"; ObjectID = "pa3-QI-u2k"; */
+"pa3-QI-u2k.title" = "डिलीट करें";
+
+/* Class = "NSMenuItem"; title = "Bigger"; ObjectID = "Ptp-SP-VEL"; */
+"Ptp-SP-VEL.title" = "बड़ा";
+
+/* Class = "NSMenuItem"; title = "Save"; ObjectID = "pxx-59-PXV"; */
+"pxx-59-PXV.title" = "सहेजें";
+
+/* Class = "NSMenuItem"; title = "Show Fonts"; ObjectID = "Q5e-8K-NDq"; */
+"Q5e-8K-NDq.title" = "फॉन्ट दिखाएँ";
+
+/* Class = "NSMenuItem"; title = "Find Next"; ObjectID = "q09-fT-Sye"; */
+"q09-fT-Sye.title" = "अगला ढूँढें";
+
+/* Class = "NSMenuItem"; title = "Page Setup…"; ObjectID = "qIS-W8-SiK"; */
+"qIS-W8-SiK.title" = "पेज सेटअप…";
+
+/* Class = "NSMenuItem"; title = "Zoom"; ObjectID = "R4o-n2-Eq4"; */
+"R4o-n2-Eq4.title" = "ज़ूम करें";
+
+/* Class = "NSMenuItem"; title = "\tRight to Left"; ObjectID = "RB4-Sm-HuC"; */
+"RB4-Sm-HuC.title" = "\tदाएँ से बाएँ";
+
+/* Class = "NSMenuItem"; title = "Check Spelling While Typing"; ObjectID = "rbD-Rh-wIN"; */
+"rbD-Rh-wIN.title" = "टाइप करते हुए वर्तनी की जाँच करें";
+
+/* Class = "NSMenuItem"; title = "Smart Dashes"; ObjectID = "rgM-f4-ycn"; */
+"rgM-f4-ycn.title" = "स्मार्ट डैश";
+
+/* Class = "NSButtonCell"; title = "Close"; ObjectID = "Riu-oE-8dj"; */
+"Riu-oE-8dj.title" = "बंद करें";
+
+/* Class = "NSTextFieldCell"; title = "none"; ObjectID = "Rkd-xb-FRJ"; */
+"Rkd-xb-FRJ.title" = "कोई भी नहीं";
+
+/* Class = "NSButtonCell"; title = "Logout"; ObjectID = "RmO-tv-UKh"; */
+"RmO-tv-UKh.title" = "लॉग आउट करें";
+
+/* Class = "NSMenuItem"; title = "Superscript"; ObjectID = "Rqc-34-cIF"; */
+"Rqc-34-cIF.title" = "सुपरस्क्रिप्ट";
+
+/* Class = "NSMenuItem"; title = "Select All"; ObjectID = "Ruw-6m-B2m"; */
+"Ruw-6m-B2m.title" = "सभी का चयन करें";
+
+/* Class = "NSMenuItem"; title = "Jump to Selection"; ObjectID = "S0p-oC-mLd"; */
+"S0p-oC-mLd.title" = "चयन पर जाएँ";
+
+/* Class = "NSTextFieldCell"; title = "Copyright info"; ObjectID = "sGd-zc-V0B"; */
+"sGd-zc-V0B.title" = "कॉपीराइट जानकारी";
+
+/* Class = "NSMenuItem"; title = "Show Toolbar"; ObjectID = "snW-S8-Cw5"; */
+"snW-S8-Cw5.title" = "टूलबार दिखाएँ";
+
+/* Class = "NSMenu"; title = "Window"; ObjectID = "Td7-aD-5lo"; */
+"Td7-aD-5lo.title" = "विंडो";
+
+/* Class = "NSMenuItem"; title = "Document"; ObjectID = "TEm-B8-gsH"; */
+"TEm-B8-gsH.title" = "दस्तावेज़";
+
+/* Class = "NSMenu"; title = "Kern"; ObjectID = "tlD-Oa-oAM"; */
+"tlD-Oa-oAM.title" = "समायोजित करें";
+
+/* Class = "NSMenuItem"; title = "Data Detectors"; ObjectID = "tRr-pd-1PS"; */
+"tRr-pd-1PS.title" = "डाटा डिटेक्टर";
+
+/* Class = "NSMenuItem"; title = "Open Recent"; ObjectID = "tXI-mr-wws"; */
+"tXI-mr-wws.title" = "हालिया खोलें";
+
+/* Class = "NSMenuItem"; title = "Check for Updates…"; ObjectID = "ud7-wC-A79"; */
+"ud7-wC-A79.title" = "अपडेट की जाँच करें…";
+
+/* Class = "NSMenuItem"; title = "Capitalize"; ObjectID = "UEZ-Bs-lqG"; */
+"UEZ-Bs-lqG.title" = "बड़े अक्षर करें";
+
+/* Class = "NSMenu"; title = "ONLYOFFICE"; ObjectID = "uQy-DD-JDr"; */
+"uQy-DD-JDr.title" = "ओनलीऑफिस";
+
+/* Class = "NSMenuItem"; title = "Cut"; ObjectID = "uRl-iY-unG"; */
+"uRl-iY-unG.title" = "काटें";
+
+/* Class = "NSMenuItem"; title = "Hide Others"; ObjectID = "Vdr-fp-XzO"; */
+"Vdr-fp-XzO.title" = "दूसरों को छिपाएँ";
+
+/* Class = "NSMenuItem"; title = "Center"; ObjectID = "VIY-Ag-zcb"; */
+"VIY-Ag-zcb.title" = "मध्य";
+
+/* Class = "NSMenuItem"; title = "Italic"; ObjectID = "Vjx-xi-njq"; */
+"Vjx-xi-njq.title" = "तिरछे अक्षर";
+
+/* Class = "NSMenuItem"; title = "Paste Style"; ObjectID = "vKC-jM-MkH"; */
+"vKC-jM-MkH.title" = "शैली पेस्ट करें";
+
+/* Class = "NSMenuItem"; title = "Show Ruler"; ObjectID = "vLm-3I-IUL"; */
+"vLm-3I-IUL.title" = "रूलर दिखाएँ";
+
+/* Class = "NSMenuItem"; title = "Make Upper Case"; ObjectID = "vmV-6d-7jI"; */
+"vmV-6d-7jI.title" = "बड़े अक्षर बनाएँ";
+
+/* Class = "NSMenuItem"; title = "Clear Menu"; ObjectID = "vNY-rz-j42"; */
+"vNY-rz-j42.title" = "मेनू खाली करें";
+
+/* Class = "NSMenu"; title = "Ligatures"; ObjectID = "w0m-vy-SC9"; */
+"w0m-vy-SC9.title" = "संयुक्ताक्षर";
+
+/* Class = "NSMenu"; title = "Edit"; ObjectID = "W48-6f-4Dl"; */
+"W48-6f-4Dl.title" = "संपादन करें";
+
+/* Class = "NSMenuItem"; title = "Align Right"; ObjectID = "wb2-vD-lq4"; */
+"wb2-vD-lq4.title" = "दाईं ओर संरेखित करें";
+
+/* Class = "NSMenuItem"; title = "Paste and Match Style"; ObjectID = "WeT-3V-zwk"; */
+"WeT-3V-zwk.title" = "पेस्ट करें और शैली मिलाएँ";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "wpe-8d-5DV"; */
+"wpe-8d-5DV.title" = "टेक्स्ट सेल";
+
+/* Class = "NSMenuItem"; title = "Help"; ObjectID = "wpr-3q-Mcd"; */
+"wpr-3q-Mcd.title" = "सहायता";
+
+/* Class = "NSMenuItem"; title = "Underline"; ObjectID = "WRG-CD-K1S"; */
+"WRG-CD-K1S.title" = "रेखांकन";
+
+/* Class = "NSMenuItem"; title = "Copy"; ObjectID = "x3v-GG-iWU"; */
+"x3v-GG-iWU.title" = "कॉपी करें";
+
+/* Class = "NSTextFieldCell"; title = "Product"; ObjectID = "xCO-ey-2lo"; */
+"xCO-ey-2lo.title" = "उत्पाद";
+
+/* Class = "NSMenuItem"; title = "Use All"; ObjectID = "xQD-1f-W4t"; */
+"xQD-1f-W4t.title" = "सभी का उपयोग करें";
+
+/* Class = "NSMenuItem"; title = "Speech"; ObjectID = "xrE-MZ-jX0"; */
+"xrE-MZ-jX0.title" = "वाक्";
+
+/* Class = "NSMenuItem"; title = "Find…"; ObjectID = "Xz5-n4-O0W"; */
+"Xz5-n4-O0W.title" = "ढूँढें…";
+
+/* Class = "NSMenuItem"; title = "Find and Replace…"; ObjectID = "YEy-JH-Tfz"; */
+"YEy-JH-Tfz.title" = "ढूँढें और बदलें…";
+
+/* Class = "NSMenuItem"; title = "\tDefault"; ObjectID = "YGs-j5-SAR"; */
+"YGs-j5-SAR.title" = "\tडिफ़ाल्ट";
+
+/* Class = "NSMenuItem"; title = "Start Speaking"; ObjectID = "Ynk-f8-cLZ"; */
+"Ynk-f8-cLZ.title" = "बोलना शुरू करें";
+
+/* Class = "NSMenuItem"; title = "Show Substitutions"; ObjectID = "z6F-FW-3nz"; */
+"z6F-FW-3nz.title" = "प्रतिस्थापन दिखाएँ";
+
+/* Class = "NSTextFieldCell"; title = "Version"; ObjectID = "ZbA-hc-8PE"; */
+"ZbA-hc-8PE.title" = "संस्करण";
+
+/* Class = "NSMenuItem"; title = "Align Left"; ObjectID = "ZM1-6Q-yy1"; */
+"ZM1-6Q-yy1.title" = "बाईं ओर संरेखित करें";
+
+/* Class = "NSTextFieldCell"; title = "Email:"; ObjectID = "Zsi-3o-ASl"; */
+"Zsi-3o-ASl.title" = "ईमेल:";
+
+/* Class = "NSMenuItem"; title = "Paragraph"; ObjectID = "ZvO-Gk-QUH"; */
+"ZvO-Gk-QUH.title" = "अनुच्छेद";
+
+/* Class = "NSTextFieldCell"; title = "Portal:"; ObjectID = "zwS-9G-S0N"; */
+"zwS-9G-S0N.title" = "पोर्टल:";
+

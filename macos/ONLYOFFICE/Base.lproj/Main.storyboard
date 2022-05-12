@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17701"/>
-        <plugIn identifier="com.apple.WebKitIBPlugin" version="17701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="20037"/>
+        <plugIn identifier="com.apple.WebKitIBPlugin" version="20037"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -846,8 +846,8 @@
         <scene sceneID="FSG-kQ-eIr">
             <objects>
                 <viewController storyboardIdentifier="ASCDownloadListControllerId" id="e6o-1y-Hxy" customClass="ASCDownloadViewController" sceneMemberID="viewController">
-                    <view key="view" misplaced="YES" id="dEW-yf-Hlp">
-                        <rect key="frame" x="0.0" y="0.0" width="246" height="208"/>
+                    <view key="view" id="dEW-yf-Hlp">
+                        <rect key="frame" x="0.0" y="0.0" width="258" height="208"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="70" horizontalPageScroll="10" verticalLineScroll="70" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="THf-tA-SkY">
@@ -987,8 +987,8 @@
         <scene sceneID="D2C-Q5-vEd">
             <objects>
                 <viewController id="kIG-b2-o2F" customClass="ASCAboutController" sceneMemberID="viewController">
-                    <view key="view" misplaced="YES" id="M7b-J9-CpP">
-                        <rect key="frame" x="0.0" y="0.0" width="370" height="441"/>
+                    <view key="view" id="M7b-J9-CpP">
+                        <rect key="frame" x="0.0" y="0.0" width="370" height="355"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nJK-5u-n8s">
@@ -1176,7 +1176,6 @@ DQ
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="headerView" destination="o1X-fS-PmQ" id="fQk-bt-LhK"/>
                         <outlet property="tabView" destination="N1H-DH-xhd" id="WbH-hq-yHu"/>
                     </connections>
                 </viewController>

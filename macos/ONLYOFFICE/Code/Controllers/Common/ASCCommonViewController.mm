@@ -67,9 +67,9 @@
 #import "ASCTouchBarController.h"
 #import "ASCCertificatePreviewController.h"
 #import "ASCCertificateQLPreviewController.h"
+#import "ASCLinguist.h"
 
 #define rootTabId @"1CEF624D-9FF3-432B-9967-61361B5BFE8B"
-#define headerViewTag 7777
 
 @interface ASCCommonViewController() <ASCTabsControlDelegate, ASCTitleBarControllerDelegate, ASCUserInfoViewControllerDelegate> {
     NSAscPrinterContext * m_pContext;
@@ -82,7 +82,6 @@
 @property (weak) IBOutlet NSTabView *tabView;
 @property (nonatomic) BOOL shouldTerminateApp;
 @property (nonatomic) BOOL shouldLogoutPortal;
-@property (strong) IBOutlet NSView *headerView;
 @property (nonatomic, assign) id <ASCExternalDelegate> externalDelegate;
 @property (nonatomic) ASCTouchBarController *touchBarController;
 @property (nonatomic) NSMutableArray<ASCTabView *> * tabsWithChanges;
@@ -211,10 +210,7 @@
         NSUserDefaults *preferences     = [NSUserDefaults standardUserDefaults];
         NSURLComponents *loginPage      = [NSURLComponents componentsWithString:[[NSBundle mainBundle] pathForResource:@"index" ofType:@"html" inDirectory:@"login"]];
 
-        NSString * ui_lang = [[NSUserDefaults standardUserDefaults] objectForKey:ASCUserUILanguage];
-        if ( !ui_lang ) ui_lang = [NSString stringWithFormat:@"%@-%@", [[NSLocale currentLocale] objectForKey:NSLocaleLanguageCode], [[NSLocale currentLocale] objectForKey:NSLocaleCountryCode]]; // Use onlyoffice iso ¯\_(ツ)_/¯
-
-        NSURLQueryItem *countryCode     = [NSURLQueryItem queryItemWithName:@"lang" value: ui_lang];
+        NSURLQueryItem *countryCode     = [NSURLQueryItem queryItemWithName:@"lang" value: [ASCLinguist appLanguageCode]];
         NSURLQueryItem *portalAddress   = [NSURLQueryItem queryItemWithName:@"portal" value:[preferences objectForKey:ASCUserSettingsNamePortalUrl]];
 
         if (externalDelegate && [externalDelegate respondsToSelector:@selector(onAppPreferredLanguage)]) {
@@ -688,84 +684,6 @@
     return checkedList;
 }
 
-- (void)showHeaderPlaceholderWithIdentifier:(NSString *)uuid forType:(ASCTabViewType)type {
-    NSInteger tabIndex = [self.tabView indexOfTabViewItemWithIdentifier:uuid];
-    NSColor * headerColor = nil;
-
-    switch (type) {
-        case ASCTabViewTypeDocument:
-            headerColor = [NSColor themedDocumentEditor];
-            break;
-        case ASCTabViewTypeSpreadsheet:
-            headerColor = [NSColor themedSpreadsheetEditor];
-            break;
-        case ASCTabViewTypePresentation:
-            headerColor = [NSColor themedPresentationEditor];
-            break;
-        default:
-            break;
-    }
-
-    if (headerColor && self.headerView && tabIndex != NSNotFound) {
-        NSTabViewItem * tabItem = [self.tabView tabViewItemAtIndex:tabIndex];
-
-        if (tabItem) {
-            // Remove dummy
-            for (NSView * view in tabItem.view.subviews) {
-                if (view.uuidTag == headerViewTag) {
-                    [view removeFromSuperview];
-                    break;
-                }
-            }
-
-            NSView * headerView = [self.headerView duplicate];
-            [tabItem.view addSubview:headerView];
-
-            headerView.alphaValue = 1;
-            headerView.uuidTag = headerViewTag;
-            headerView.backgroundColor = headerColor;
-
-            [headerView autoPinEdgeToSuperviewEdge:ALEdgeLeading];
-            [headerView autoPinEdgeToSuperviewEdge:ALEdgeTop];
-            [headerView autoPinEdgeToSuperviewEdge:ALEdgeTrailing];
-            [headerView autoSetDimension:ALDimensionHeight toSize:56.0];
-        }
-
-        ASCTabView * tab = [self.tabsControl tabWithUUID:uuid];
-
-        if (tab) {
-            tab.isProcessing = true;
-        }
-    }
-}
-
-- (void)hideHeaderPlaceholderWithIdentifier:(NSString *)uuid {
-    NSInteger tabIndex = [self.tabView indexOfTabViewItemWithIdentifier:uuid];
-    ASCTabView * tab = [self.tabsControl tabWithUUID:uuid];
-
-    if (tab) {
-        tab.isProcessing = false;
-    }
-
-    if (tabIndex != NSNotFound) {
-        NSTabViewItem * tabItem = [self.tabView tabViewItemAtIndex:tabIndex];
-
-        if (tabItem) {
-            for (NSView * view in tabItem.view.subviews) {
-                if (view.uuidTag == headerViewTag) {
-                    [NSAnimationContext runAnimationGroup:^(NSAnimationContext * _Nonnull context) {
-                        context.duration = 0.3;
-                        view.animator.alphaValue = 0;
-                    } completionHandler:^{
-                        [view removeFromSuperview];
-                    }];
-                    break;
-                }
-            }
-        }
-    }
-}
-
 - (void)requestSaveChangesForTab:(ASCTabView *)tab {
     if (tab && tab.changed) {
         NSAlert *alert = [[NSAlert alloc] init];
@@ -852,8 +770,6 @@
         ASCTabView * tab = [self.tabsControl tabWithUUID:viewId];
         
         if (tab) {
-            [tab.params addEntriesFromDictionary:params];
-            [self hideHeaderPlaceholderWithIdentifier:viewId];
         }
     }
 }
@@ -867,25 +783,6 @@
         ASCTabView * tab = [self.tabsControl tabWithUUID:viewId];
 
         if (tab) {
-            // Blockchain hook
-            NSString * name = tab.params[@"name"];
-            if (name && [name length] > 0) {
-                return;
-            }
-
-            switch (type) {
-                case CEFDocumentDocument:
-                    [self showHeaderPlaceholderWithIdentifier:viewId forType:ASCTabViewTypeDocument];
-                    break;
-                case CEFDocumentSpreadsheet:
-                    [self showHeaderPlaceholderWithIdentifier:viewId forType:ASCTabViewTypeSpreadsheet];
-                    break;
-                case CEFDocumentPresentation:
-                    [self showHeaderPlaceholderWithIdentifier:viewId forType:ASCTabViewTypePresentation];
-                    break;
-                default:
-                    break;
-            }
         }
     }
 }
@@ -1478,29 +1375,21 @@
 }
 
 - (void)onCEFStartPageReady:(NSNotification *)notification {
-    NSString * uiLang = [[NSUserDefaults standardUserDefaults] objectForKey:ASCUserUILanguage];
-    if ( !uiLang )
-        uiLang = [[NSLocale currentLocale] objectForKey:NSLocaleLanguageCode];
     
     NSString * uiTheme = [[NSUserDefaults standardUserDefaults] valueForKey:ASCUserUITheme] ?: @"theme-classic-light";
 
-    NSDictionary * json_langs = @{
-        @"locale_skip": @{
-            @"current": uiLang,
-            @"langs": @{
-                @"en": @"English",
-                @"ru": @"Русский",
-                @"de": @"Deutsch",
-                @"fr": @"Français",
-                @"es": @"Español",
-                @"it": @"Italiano",
-                @"pl": @"Polski",
-                @"pt-BR": @"Português Brasileiro",
-                @"zh-CN": @"中文"
-            }
-        },
+    NSMutableDictionary * json_langs = @{
         @"uitheme": uiTheme
-    };
+    }.mutableCopy;
+
+    NSDictionary * langs = [ASCLinguist availableLanguages];
+    if ( langs ) {
+        [json_langs setObject:@{
+                @"current": [ASCLinguist appLanguageCode],
+                @"langs": langs,
+                @"restart": @true
+            } forKey:@"locale"];
+    }
 
     NSEditorApi::CAscExecCommandJS * pCommand = new NSEditorApi::CAscExecCommandJS;
     pCommand->put_Command(L"settings:init");
@@ -1529,7 +1418,6 @@
         id json = notification.userInfo;
 
         if (NSString * viewId = json[@"viewId"]) {
-            [self hideHeaderPlaceholderWithIdentifier:viewId];
         }
     }
 }
@@ -1608,9 +1496,7 @@
                     if (urlString && urlString.length > 0) {
                         // Offline file is exist
                         if (NSURL * url = [NSURL fileURLWithPath:urlString]) {
-                            if (NSURL * folder = [url URLByDeletingLastPathComponent]) {
-                                [[NSWorkspace sharedWorkspace] openURL:folder];
-                            }
+                            [[NSWorkspace sharedWorkspace] activateFileViewerSelectingURLs:@[url]];
                         }
                     } else {
                         // Offline file is new
@@ -1786,8 +1672,15 @@
             }
                 
             case ASCTabActionCreateLocalFile: {
-                int docType = [tab.params[@"type"] intValue];
-                
+                int docType = CEFDocumentDocument;
+                if ( [tab.params[@"type"] isKindOfClass:[NSString class]] ) {
+                    NSString * param = tab.params[@"type"];
+                    if ([param isEqualToString:@"cell"]) docType = CEFDocumentSpreadsheet;
+                    else if ([param isEqualToString:@"slide"]) docType = CEFDocumentPresentation;
+                    else if ([param isEqualToString:@"form"]) docType = CEFDocumentForm;
+                    else /*if ([param isEqualToString:@"word"])*/ docType = CEFDocumentDocument;
+                } else docType = [tab.params[@"type"] intValue];
+
                 NSString * docName = NSLocalizedString(@"Untitled", nil);
                 
                 switch (docType) {

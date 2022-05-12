@@ -143,7 +143,11 @@ CMainWindow::CMainWindow(QRect& rect) :
     m_pWinPanel = new CWinPanel(this);
 
     m_pMainPanel = new CMainPanelImpl(m_pWinPanel, true, m_dpiRatio);
+#ifdef __OS_WIN_XP
+    m_pMainPanel->setStyleSheet(AscAppManager::getWindowStylesheets(m_dpiRatio) + "QTabBar::scroller{width:16px;}");
+#else
     m_pMainPanel->setStyleSheet(AscAppManager::getWindowStylesheets(m_dpiRatio));
+#endif
     m_pMainPanel->updateScaling(m_dpiRatio);
     m_pMainPanel->goStart();
 
@@ -200,8 +204,10 @@ LRESULT CALLBACK CMainWindow::WndProc( HWND hWnd, UINT message, WPARAM wParam, L
                 window->m_dpiRatio = dpi_ratio;
                 refresh_window_scaling_factor(window);
                 window->adjustGeometry();
-
             }
+        } else
+        if ( AscAppManager::IsUseSystemScaling() ) {
+            window->updateScaling();
         }
 
         qDebug() << "WM_DPICHANGED: " << LOWORD(wParam);
@@ -474,7 +480,8 @@ qDebug() << "WM_CLOSE";
             window->adjustGeometry();
         }
 #else
-        window->updateScaling();
+        if ( !AscAppManager::IsUseSystemScaling() )
+            window->updateScaling();
 #endif
 
         break;
@@ -795,6 +802,8 @@ void CMainWindow::slot_mainPageReady()
     CSplash::hideSplash();
 
 #ifdef _UPDMODULE
+    GET_REGISTRY_SYSTEM(reg_system)
+
     OSVERSIONINFO osvi;
 
     ZeroMemory(&osvi, sizeof(OSVERSIONINFO));
@@ -803,7 +812,7 @@ void CMainWindow::slot_mainPageReady()
     GetVersionEx(&osvi);
 
     // skip updates for XP
-    if ( osvi.dwMajorVersion > 5 ) {
+    if ( osvi.dwMajorVersion > 5 && reg_system.value("CheckForUpdates", true).toBool() ) {
         win_sparkle_set_lang(CLangater::getCurrentLangCode().toLatin1());
 
         const std::wstring argname{L"--updates-appcast-url"};

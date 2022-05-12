@@ -1,0 +1,213 @@
+/* No comment provided by engineer. */
+"%@ Help" = "%@ Help";
+
+/* No comment provided by engineer. */
+"About %@" = "Over %@";
+
+/* No comment provided by engineer. */
+"Acknowledgments" = "Erkenningen";
+
+/* No comment provided by engineer. */
+"Before signing the document, it must be saved." = "Voordat het document wordt ondertekend, moet het worden opgeslagen.";
+
+/* No comment provided by engineer. */
+"Cancel" = "Annuleren";
+
+/* No comment provided by engineer. */
+"Cannot open file of Digital Signature" = "Kan het bestand van de Digitale Handtekening niet openen";
+
+/* No comment provided by engineer. */
+"Cannot open file of Private Key" = "Kan het bestand van de Privésleutel niet openen";
+
+/* No comment provided by engineer. */
+"Cannot open folder of the file location." = "Kan de map van de bestandslocatie niet openen.";
+
+/* No comment provided by engineer. */
+"Comma-Separated Values" = "Komma-Gescheiden Waarden";
+
+/* No comment provided by engineer. */
+"Create portal" = "Maak een portaal";
+
+/* No comment provided by engineer. */
+"Delete and Quit" = "Verwijderen en Afsluiten";
+
+/* No comment provided by engineer. */
+"DjVu File" = "DjVu Bestand";
+
+/* No comment provided by engineer. */
+"Do you want to save the changes made to the document \"%@\"?" = "Wilt u de veranderingen die in het document \"%@\" zijn aangebracht, opslaan?";
+
+/* No comment provided by engineer. */
+"Document %ld.docx" = "Document %ld.docx";
+
+/* No comment provided by engineer. */
+"Document template" = "Document sjabloon";
+
+/* No comment provided by engineer. */
+"Excel 97-2003 Spreadsheet" = "Excel 97-2003 Spreadsheet";
+
+/* No comment provided by engineer. */
+"Excel 2007 Spreadsheet" = "Excel 2007 Spreadsheet";
+
+/* No comment provided by engineer. */
+"File \"%@\" can not be open or not exist." = "Bestand \"%@\" kan niet open zijn of niet bestaan.";
+
+/* No comment provided by engineer. */
+"File can not be open." = "Het bestand kan niet open zijn.";
+
+/* No comment provided by engineer. */
+"File Format:" = "Bestandsformaat:";
+
+/* No comment provided by engineer. */
+"Hide %@" = "Verberg %@";
+
+/* No comment provided by engineer. */
+"If you don't review your documents, all your changeses will be lost." = "Als u uw documenten niet controleert, gaan al uw wijzigingen verloren.";
+
+/* No comment provided by engineer. */
+"If you have already purchased %@, you should find your activation key in an email confirmation." = "Als u al %@ hebt gekocht, moet u uw activeringssleutel terugvinden in een e-mailbevestiging.";
+
+/* No comment provided by engineer. */
+"License Agreement" = "Licentieovereenkomst";
+
+/* No comment provided by engineer. */
+"Mobipocket e-book" = "Mobipocket e-book";
+
+/* No comment provided by engineer. */
+"new-document" = "Nieuw Document";
+
+/* No comment provided by engineer. */
+"new-presentation" = "Nieuwe Presentatie";
+
+/* No comment provided by engineer. */
+"new-spreadsheet" = "Nieuwe Spreadsheet";
+
+/* No comment provided by engineer. */
+"No" = "Nee";
+
+/* No comment provided by engineer. */
+"OK" = "OK";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE can not open the Digital Signature file. Try opening another file." = "ONLYOFFICE kan het bestand met de Digitale Handtekening niet openen. Probeer een ander bestand te openen.";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE can not open the Private Key. Try opening another file." = "ONLYOFFICE kan de Privésleutel niet openen. Probeer een ander bestand te openen.";
+
+/* No comment provided by engineer. */
+"OpenDocument Document Template" = "OpenDocument Document Sjabloon";
+
+/* No comment provided by engineer. */
+"OpenDocument Presentation Template" = "OpenDocument Presentatie Sjabloon";
+
+/* No comment provided by engineer. */
+"OpenDocument Spreadsheet Template" = "OpenDocument Spreadsheet Sjabloon";
+
+/* No comment provided by engineer. */
+"Opening" = "Openen";
+
+/* No comment provided by engineer. */
+"OpenOffice Document" = "OpenOffice Document";
+
+/* No comment provided by engineer. */
+"OpenOffice Presentation" = "OpenOffice Presentatie";
+
+/* No comment provided by engineer. */
+"OpenOffice Spreadsheet" = "OpenOffice Spreadsheet";
+
+/* No comment provided by engineer. */
+"PDF File" = "PDF Bestand";
+
+/* No comment provided by engineer. */
+"PDF/A File" = "PDF/A Bestand";
+
+/* No comment provided by engineer. */
+"Plain Text" = "Standaard Tekst";
+
+/* No comment provided by engineer. */
+"PowerPoint 97-2003 Presentation" = "PowerPoint 97-2003 Presentatie";
+
+/* No comment provided by engineer. */
+"PowerPoint 2007 Presentation" = "PowerPoint 2007 Presentatie";
+
+/* No comment provided by engineer. */
+"PowerPoint Slide Show" = "PowerPoint Diavoorstelling";
+
+/* No comment provided by engineer. */
+"Preparing..." = "Voorbereiden...";
+
+/* No comment provided by engineer. */
+"Presentation %ld.pptx" = "Presentatie %ld.pptx";
+
+/* No comment provided by engineer. */
+"Presentation template" = "Presentatie sjabloon";
+
+/* No comment provided by engineer. */
+"Quit %@" = "Afsluiten %@";
+
+/* No comment provided by engineer. */
+"Review Changes..." = "Veranderingen Beoordelen...";
+
+/* No comment provided by engineer. */
+"Rich Text Document" = "Rich Text Document";
+
+/* No comment provided by engineer. */
+"Save" = "Opslaan";
+
+/* No comment provided by engineer. */
+"Save the document?" = "Het document opslaan?";
+
+/* No comment provided by engineer. */
+"Spreadsheet %ld.xlsx" = "Spreadsheet %ld.xlsx";
+
+/* No comment provided by engineer. */
+"Spreadsheet template" = "Spreadsheet sjabloon";
+
+/* No comment provided by engineer. */
+"Thank you for evaluating %@!" = "Bedankt voor het beoordelen van %@!";
+
+/* No comment provided by engineer. */
+"The document \"%@\" must be built. Continue?" = "Het document \"%@\" moet worden gebouwd. Doorgaan?";
+
+/* No comment provided by engineer. */
+"To open the file location, it must be saved." = "Om de bestandslocatie te openen, moet deze worden opgeslagen.";
+
+/* No comment provided by engineer. */
+"Unconfirmed" = "Onbevestigd";
+
+/* No comment provided by engineer. */
+"Untitled" = "Zonder titel";
+
+/* No comment provided by engineer. */
+"Version %@ (%@)" = "Versie %1$@ (%2$@)";
+
+/* No comment provided by engineer. */
+"Web Page" = "Webpagina";
+
+/* No comment provided by engineer. */
+"Word 97-2003 Document" = "Word 97-2003 Document";
+
+/* No comment provided by engineer. */
+"Word 2007 Document" = "Word 2007 Document";
+
+/* No comment provided by engineer. */
+"XML Paper Specification" = "XML  Papierspecificatie";
+
+/* No comment provided by engineer. */
+"Yes" = "Ja";
+
+/* No comment provided by engineer. */
+"You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?" = "U hebt %1$ld %2$@ documenten met onbevestigde wijzigingen. Wilt u deze wijzigingen bekijken voordat u afsluit?";
+
+/* No comment provided by engineer. */
+"You have successfully activated %@." = "U hebt met succes %@ geactiveerd.";
+
+/* No comment provided by engineer. */
+"Your changes will be lost if you don’t save them." = "Uw wijzigingen gaan verloren als u ze niet opslaat.";
+
+/* No comment provided by engineer. */
+"Your subscription has expired.\n\nThe program works in the non-activated mode.\n\nNow you can prolong or upgrade your subscription with a discount." = "Uw abonnement is verlopen.\n\nHet programma draait in de niet geactiveerde modus.\n\nU kunt nu uw abonnement verlengen of upgraden met een korting.";
+
+/* No comment provided by engineer. */
+"Your subscription is about to expire\n(%d days left).\n\nWe have a special offer for you." = "Uw abonnement loopt af\n(%d dagen over).\n\nWe hebben een speciale aanbieding voor u.";
+

@@ -213,18 +213,6 @@
                      @"description" : NSLocalizedString(@"OpenDocument Spreadsheet Template", nil),
                      @"extension"   : @"ots"
              },
-             @(AVS_OFFICESTUDIO_FILE_DOCUMENT_HTML): @{
-                     @"description" : NSLocalizedString(@"HTML File", nil),
-                     @"extension"   : @"html"
-             },
-             @(AVS_OFFICESTUDIO_FILE_DOCUMENT_MHT): @{
-                     @"description" : NSLocalizedString(@"MHT File", nil),
-                     @"extension"   : @"mht"
-             },
-             @(AVS_OFFICESTUDIO_FILE_DOCUMENT_EPUB): @{
-                     @"description" : NSLocalizedString(@"Electronic Publication", nil),
-                     @"extension"   : @"epub"
-             },
              @(AVS_OFFICESTUDIO_FILE_DOCUMENT_FB2): @{
                      @"description" : NSLocalizedString(@"FictionBook File", nil),
                      @"extension"   : @"fb2"

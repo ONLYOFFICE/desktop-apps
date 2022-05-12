@@ -92,7 +92,7 @@ begin
   Result :=  msiproductupgrade(upgradecode, '12');
 end;
 
-function checkVCRedist2015(): Boolean;
+function checkVCRedist2022(): Boolean;
 var
   upgradecode: String;
 begin

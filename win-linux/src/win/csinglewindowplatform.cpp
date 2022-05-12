@@ -122,7 +122,7 @@ LRESULT CALLBACK CSingleWindowPlatform::WndProc(HWND hWnd, UINT message, WPARAM 
 
     switch ( message ) {
     case WM_DPICHANGED:
-        if ( !WindowHelper::isLeftButtonPressed() ) {
+        if ( !WindowHelper::isLeftButtonPressed() || AscAppManager::IsUseSystemScaling() ) {
             double dpi_ratio = Utils::getScreenDpiRatioByHWND(int(hWnd));
 
             if ( dpi_ratio != window->m_dpiRatio ) {
@@ -197,7 +197,7 @@ LRESULT CALLBACK CSingleWindowPlatform::WndProc(HWND hWnd, UINT message, WPARAM 
     }
 
     case WM_SETFOCUS: {
-        if ( !window->m_closed ) {
+        if ( !window->m_closed && window->visible() ) {
 //        window->focusMainPanel();
             window->focus();
         }

@@ -1,33 +1,33 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.2" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd">
   <file original="ONLYOFFICE/Base.lproj/Document-Sign.storyboard" source-language="en" target-language="lo" datatype="plaintext">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c" />
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c"/>
     </header>
     <body>
       <trans-unit id="1Fy-mg-aq9.title" xml:space="preserve">
         <source>Enter the password for the digital signature.</source>
-        <target state="needs-translation">ກະລຸນນາໃສ່ລະຫັດຜ່ານສໍາລັບລາຍເຊັນດິຈິຕອນ.</target>
+        <target state="translated">ກະລຸນນາໃສ່ລະຫັດຜ່ານສໍາລັບລາຍເຊັນດິຈິຕອນ.</target>
         
       <note>Class = "NSTextFieldCell"; title = "Enter the password for the digital signature."; ObjectID = "1Fy-mg-aq9";</note></trans-unit>
       <trans-unit id="1dL-nN-bJI.title" xml:space="preserve">
         <source>Enter the password for the private key.</source>
-        <target state="needs-translation">ກະລຸນນາໃສ່ລະຫັດຜ່ານສໍາລັບ ກຸນແຈສ່ວນບຸກຄົນ.</target>
+        <target state="translated">ກະລຸນນາໃສ່ລະຫັດຜ່ານສໍາລັບ ກຸນແຈສ່ວນບຸກຄົນ.</target>
         
       <note>Class = "NSTextFieldCell"; title = "Enter the password for the private key."; ObjectID = "1dL-nN-bJI";</note></trans-unit>
       <trans-unit id="2Ck-6y-ygx.title" xml:space="preserve">
         <source>Specify the digital signature file for the document.</source>
-        <target state="needs-translation">ລະບຸຟາຍລາຍເຊັນດິຈິຕອນສໍາລັບເອກະສານ</target>
+        <target state="translated">ລະບຸຟາຍລາຍເຊັນດິຈິຕອນສໍາລັບເອກະສານ</target>
         
       <note>Class = "NSTextFieldCell"; title = "Specify the digital signature file for the document."; ObjectID = "2Ck-6y-ygx";</note></trans-unit>
       <trans-unit id="4gA-s8-Lne.placeholderString" xml:space="preserve">
         <source>Enter Password</source>
-        <target state="needs-translation">ໃສ່ລະຫັດຜ່ານ</target>
+        <target state="translated">ໃສ່ລະຫັດຜ່ານ</target>
         
       <note>Class = "NSSecureTextFieldCell"; placeholderString = "Enter Password"; ObjectID = "4gA-s8-Lne";</note></trans-unit>
       <trans-unit id="GOU-av-TC1.title" xml:space="preserve">
         <source>Cancel</source>
-        <target state="needs-translation">ຍົກເລີກ</target>
+        <target state="translated">ຍົກເລີກ</target>
         
       <note>Class = "NSButtonCell"; title = "Cancel"; ObjectID = "GOU-av-TC1";</note></trans-unit>
       <trans-unit id="P3k-kI-w22.title" xml:space="preserve">
@@ -37,400 +37,400 @@
       <note>Class = "NSButtonCell"; title = "Load a Private Key"; ObjectID = "P3k-kI-w22";</note></trans-unit>
       <trans-unit id="RbM-Dq-A3K.title" xml:space="preserve">
         <source>Cancel</source>
-        <target state="needs-translation">ຍົກເລີກ</target>
+        <target state="translated">ຍົກເລີກ</target>
         
       <note>Class = "NSButtonCell"; title = "Cancel"; ObjectID = "RbM-Dq-A3K";</note></trans-unit>
       <trans-unit id="Tfc-EF-VnS.title" xml:space="preserve">
         <source>Specify a private key for the digital signature.</source>
-        <target state="needs-translation">ລະບຸກຸນແຈສ່ວນບຸກຄົນສໍາລັບລາຍເຊັນດິຈິຕອນ.</target>
+        <target state="translated">ລະບຸກຸນແຈສ່ວນບຸກຄົນສໍາລັບລາຍເຊັນດິຈິຕອນ.</target>
         
       <note>Class = "NSTextFieldCell"; title = "Specify a private key for the digital signature."; ObjectID = "Tfc-EF-VnS";</note></trans-unit>
       <trans-unit id="Zj5-0h-hpW.placeholderString" xml:space="preserve">
         <source>Enter Password</source>
-        <target state="needs-translation">ໃສ່ລະຫັດຜ່ານ</target>
+        <target state="translated">ໃສ່ລະຫັດຜ່ານ</target>
         
       <note>Class = "NSSecureTextFieldCell"; placeholderString = "Enter Password"; ObjectID = "Zj5-0h-hpW";</note></trans-unit>
       <trans-unit id="jpH-3g-Gt5.title" xml:space="preserve">
         <source>Cancel</source>
-        <target state="needs-translation">ຍົກເລີກ</target>
+        <target state="translated">ຍົກເລີກ</target>
         
       <note>Class = "NSButtonCell"; title = "Cancel"; ObjectID = "jpH-3g-Gt5";</note></trans-unit>
       <trans-unit id="qZ4-0O-L0G.title" xml:space="preserve">
         <source>Cancel</source>
-        <target state="needs-translation">ຍົກເລີກ</target>
+        <target state="translated">ຍົກເລີກ</target>
         
       <note>Class = "NSButtonCell"; title = "Cancel"; ObjectID = "qZ4-0O-L0G";</note></trans-unit>
       <trans-unit id="tTF-wa-eJp.title" xml:space="preserve">
         <source>Load Signature</source>
-        <target state="needs-translation">ໂລດ ລາຍເຊັນ</target>
+        <target state="translated">ໂລດ ລາຍເຊັນ</target>
         
       <note>Class = "NSButtonCell"; title = "Load Signature"; ObjectID = "tTF-wa-eJp";</note></trans-unit>
     </body>
   </file>
-  <file original="ONLYOFFICE/Base.lproj/Localizable.strings" source-language="en" target-language="en" datatype="plaintext">
+  <file original="ONLYOFFICE/Base.lproj/Localizable.strings" source-language="en" target-language="lo" datatype="plaintext">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c" />
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c"/>
     </header>
     <body>
       <trans-unit id="%@ Help" xml:space="preserve">
         <source>%@ Help</source>
-        <target state="needs-translation">%@ ຊ່ວຍເຫຼືອ</target>
+        <target state="translated">%@ ຊ່ວຍເຫຼືອ</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="%@ Reporter Window" xml:space="preserve">
         <source>%@ Reporter Window</source>
-        <target state="needs-translation">%@ ປ່ອງຢ້ຽມການລາຍງານ</target>
+        <target state="translated">%@ ປ່ອງຢ້ຽມການລາຍງານ</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="About %@" xml:space="preserve">
         <source>About %@</source>
-        <target state="needs-translation">ປະມານ %@</target>
+        <target state="translated">ປະມານ %@</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Acknowledgments" xml:space="preserve">
         <source>Acknowledgments</source>
-        <target state="needs-translation">ຮັບຊາບ</target>
+        <target state="translated">ຮັບຊາບ</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Before signing the document, it must be saved." xml:space="preserve">
         <source>Before signing the document, it must be saved.</source>
-        <target state="needs-translation">ກະລຸນນາບັນທືກກ່ອນລົງລາຍເຊັນເອກະສານ.</target>
+        <target state="translated">ກະລຸນນາບັນທືກກ່ອນລົງລາຍເຊັນເອກະສານ.</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Cancel" xml:space="preserve">
         <source>Cancel</source>
-        <target state="needs-translation">ຍົກເບີກ</target>
+        <target state="translated">ຍົກເບີກ</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Cannot open file of Digital Signature" xml:space="preserve">
         <source>Cannot open file of Digital Signature</source>
-        <target state="needs-translation">ບໍ່ສາມາດເປີດຟາຍລາຍເຊັນ</target>
+        <target state="translated">ບໍ່ສາມາດເປີດຟາຍລາຍເຊັນ</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Cannot open file of Private Key" xml:space="preserve">
         <source>Cannot open file of Private Key</source>
-        <target state="needs-translation">ບໍ່ສາມາດເປີດຟາຍກຸນແຈສ່ວນບຸກຄົນ</target>
+        <target state="translated">ບໍ່ສາມາດເປີດຟາຍກຸນແຈສ່ວນບຸກຄົນ</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Cannot open folder of the file location." xml:space="preserve">
         <source>Cannot open folder of the file location.</source>
-        <target state="needs-translation">ບໍ່ສາມາດເປີດໂຟນເດີ້ເພື່ອເຂົ້າເຖິງຟາຍ.</target>
+        <target state="translated">ບໍ່ສາມາດເປີດໂຟນເດີ້ເພື່ອເຂົ້າເຖິງຟາຍ.</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Comma-Separated Values" xml:space="preserve">
         <source>Comma-Separated Values</source>
-        <target state="needs-translation">ແຍກປະເພດ</target>
+        <target state="translated">ແຍກປະເພດ</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Create portal" xml:space="preserve">
         <source>Create portal</source>
-        <target state="needs-translation">ສ້າງໜ້າຕ່າງ</target>
+        <target state="translated">ສ້າງໜ້າຕ່າງ</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Delete and Quit" xml:space="preserve">
         <source>Delete and Quit</source>
-        <target state="needs-translation">ລົບແລະຍົກເລີກ</target>
+        <target state="translated">ລົບແລະຍົກເລີກ</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="DjVu File" xml:space="preserve">
         <source>DjVu File</source>
-        <target state="needs-translation">ຟາຍ DjVu</target>
+        <target state="translated">ຟາຍ DjVu</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Do you want to save the changes made to the document &quot;%@&quot;?" xml:space="preserve">
         <source>Do you want to save the changes made to the document "%@"?</source>
-        <target state="needs-translation">ທ່ານຢາກບັນທືກເອກະສານບໍ່"%@"?</target>
+        <target state="translated">ທ່ານຢາກບັນທືກເອກະສານບໍ່"%@"?</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Document %ld.docx" xml:space="preserve">
         <source>Document %ld.docx</source>
-        <target state="needs-translation">ເອກະສານ %ld.docx</target>
+        <target state="translated">ເອກະສານ %ld.docx</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Document template" xml:space="preserve">
         <source>Document template</source>
-        <target state="needs-translation">ແມ່ແບບເອກະສານ</target>
+        <target state="translated">ແມ່ແບບເອກະສານ</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Excel 97-2003 Spreadsheet" xml:space="preserve">
         <source>Excel 97-2003 Spreadsheet</source>
-        <target state="needs-translation">ຕາຕະລາງ ຟາຍ Excel 97-2003</target>
+        <target state="translated">ຕາຕະລາງ ຟາຍ Excel 97-2003</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Excel 2007 Spreadsheet" xml:space="preserve">
         <source>Excel 2007 Spreadsheet</source>
-        <target state="needs-translation">ຕາຕະລາງ ຟາຍ  Excel 2007</target>
+        <target state="translated">ຕາຕະລາງ ຟາຍ  Excel 2007</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="File &quot;%@&quot; can not be open or not exist." xml:space="preserve">
         <source>File "%@" can not be open or not exist.</source>
-        <target state="needs-translation">ຟາຍ "%@" ບໍ່ມີ ຫຼື ບໍ່ສາມາດເປີດ.</target>
+        <target state="translated">ຟາຍ "%@" ບໍ່ມີ ຫຼື ບໍ່ສາມາດເປີດ.</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="File Format:" xml:space="preserve">
         <source>File Format:</source>
-        <target state="needs-translation">ຮູບແບບຟາຍ</target>
+        <target state="translated">ຮູບແບບຟາຍ</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="File can not be open." xml:space="preserve">
         <source>File can not be open.</source>
-        <target state="needs-translation">ຟາຍບໍ່່ສາມາດເປີດ.</target>
+        <target state="translated">ຟາຍບໍ່່ສາມາດເປີດ.</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Hide %@" xml:space="preserve">
         <source>Hide %@</source>
-        <target state="needs-translation">ເຊື່ອງ %@</target>
+        <target state="translated">ເຊື່ອງ %@</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="If you don't review your documents, all your changeses will be lost." xml:space="preserve">
         <source>If you don't review your documents, all your changeses will be lost.</source>
-        <target state="needs-translation">ຖ້າຫາກທ່ານບໍກວດເອກະສານຄືນ, ການປ່ຽນແປງຈະບໍໄດ້ຖືກບັນທືກ.</target>
+        <target state="translated">ຖ້າຫາກທ່ານບໍກວດເອກະສານຄືນ, ການປ່ຽນແປງຈະບໍໄດ້ຖືກບັນທືກ.</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="If you have already purchased %@, you should find your activation key in an email confirmation." xml:space="preserve">
         <source>If you have already purchased %@, you should find your activation key in an email confirmation.</source>
-        <target state="needs-translation">ຖ້າຫາກທ່ານໄດ້ເຮັດການຊຶ່ %@,ທ່ານຈະໄດ້ຮັບອີເມລຢັ້ງຢືນກຸນແຈລະຫັດເປີດການນໍາໃຊ້.</target>
+        <target state="translated">ຖ້າຫາກທ່ານໄດ້ເຮັດການຊຶ່ %@,ທ່ານຈະໄດ້ຮັບອີເມລຢັ້ງຢືນກຸນແຈລະຫັດເປີດການນໍາໃຊ້.</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="License Agreement" xml:space="preserve">
         <source>License Agreement</source>
-        <target state="needs-translation">ສັນຍາ ໃບອະນຸຍາດ</target>
+        <target state="translated">ສັນຍາ ໃບອະນຸຍາດ</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Mobipocket e-book" xml:space="preserve">
         <source>Mobipocket e-book</source>
-        <target state="needs-translation">ປຶ້ມອີເລັກໂຕຮນິກແບບພົກພາ</target>
+        <target state="translated">ປຶ້ມອີເລັກໂຕຮນິກແບບພົກພາ</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="No" xml:space="preserve">
         <source>No</source>
-        <target state="needs-translation">ບໍ່</target>
+        <target state="translated">ບໍ່</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="OK" xml:space="preserve">
         <source>OK</source>
-        <target state="needs-translation">ໄດ້</target>
+        <target state="translated">ໄດ້</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="ONLYOFFICE can not open the Digital Signature file. Try opening another file." xml:space="preserve">
         <source>ONLYOFFICE can not open the Digital Signature file. Try opening another file.</source>
-        <target state="needs-translation">ONLYOFFICE ບໍສາມາດເປີດຟາຍລາຍເຊັນດິຈິຕອນ. ລອງເປີດຟາຍອື່ນ.</target>
+        <target state="translated">ONLYOFFICE ບໍສາມາດເປີດຟາຍລາຍເຊັນດິຈິຕອນ. ລອງເປີດຟາຍອື່ນ.</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="ONLYOFFICE can not open the Private Key. Try opening another file." xml:space="preserve">
         <source>ONLYOFFICE can not open the Private Key. Try opening another file.</source>
-        <target state="needs-translation">ONLYOFFICE ບໍ່ສາມາດເປີດກຸນແຈສ່ວນບຸກຄົນ. ລອງເປີດຟາຍອື່ນ.</target>
+        <target state="translated">ONLYOFFICE ບໍ່ສາມາດເປີດກຸນແຈສ່ວນບຸກຄົນ. ລອງເປີດຟາຍອື່ນ.</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="OpenDocument Document Template" xml:space="preserve">
         <source>OpenDocument Document Template</source>
-        <target state="needs-translation">ເປີດເອກະສານ ແມ່ແບບ ເອກະສານ</target>
+        <target state="translated">ເປີດເອກະສານ ແມ່ແບບ ເອກະສານ</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="OpenDocument Presentation Template" xml:space="preserve">
         <source>OpenDocument Presentation Template</source>
-        <target state="needs-translation">ເປີດເອກະສານ ແມ່ແບບ ຟີເຊັນເທຊັນ</target>
+        <target state="translated">ເປີດເອກະສານ ແມ່ແບບ ຟີເຊັນເທຊັນ</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="OpenDocument Spreadsheet Template" xml:space="preserve">
         <source>OpenDocument Spreadsheet Template</source>
-        <target state="needs-translation">ເປີດເອກະສານ ແມ່ແບບ ຕາຕະລາງເອັກເຊວ</target>
+        <target state="translated">ເປີດເອກະສານ ແມ່ແບບ ຕາຕະລາງເອັກເຊວ</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="OpenOffice Document" xml:space="preserve">
         <source>OpenOffice Document</source>
-        <target state="needs-translation">OpenOffice ເອກະສານ</target>
+        <target state="translated">OpenOffice ເອກະສານ</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="OpenOffice Presentation" xml:space="preserve">
         <source>OpenOffice Presentation</source>
-        <target state="needs-translation">OpenOffice ພີເຊັນເທຊັນ</target>
+        <target state="translated">OpenOffice ພີເຊັນເທຊັນ</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="OpenOffice Spreadsheet" xml:space="preserve">
         <source>OpenOffice Spreadsheet</source>
-        <target state="needs-translation">OpenOffice ຕາຕະລາງ</target>
+        <target state="translated">OpenOffice ຕາຕະລາງ</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Opening" xml:space="preserve">
         <source>Opening</source>
-        <target state="needs-translation">ກໍາລັງເປີດ</target>
+        <target state="translated">ກໍາລັງເປີດ</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="PDF File" xml:space="preserve">
         <source>PDF File</source>
-        <target state="needs-translation">ຟາຍ PDF</target>
+        <target state="translated">ຟາຍ PDF</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="PDF/A File" xml:space="preserve">
         <source>PDF/A File</source>
-        <target state="needs-translation">PDF/A ຟາຍ</target>
+        <target state="translated">PDF/A ຟາຍ</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Plain Text" xml:space="preserve">
         <source>Plain Text</source>
-        <target state="needs-translation">ຂໍຄວາມຫວ່າງເປົ່</target>
+        <target state="translated">ຂໍຄວາມຫວ່າງເປົ່</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="PowerPoint 97-2003 Presentation" xml:space="preserve">
         <source>PowerPoint 97-2003 Presentation</source>
-        <target state="needs-translation">PowerPoint 97-2003 ພີເຊັນເທຊັນ</target>
+        <target state="translated">PowerPoint 97-2003 ພີເຊັນເທຊັນ</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="PowerPoint 2007 Presentation" xml:space="preserve">
         <source>PowerPoint 2007 Presentation</source>
-        <target state="needs-translation">PowerPoint 2007 ພີເຊັນເທຊັນ</target>
+        <target state="translated">PowerPoint 2007 ພີເຊັນເທຊັນ</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="PowerPoint Slide Show" xml:space="preserve">
         <source>PowerPoint Slide Show</source>
-        <target state="needs-translation">PowerPoint ສະໄລໂຊ</target>
+        <target state="translated">PowerPoint ສະໄລໂຊ</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Preparing..." xml:space="preserve">
         <source>Preparing...</source>
-        <target state="needs-translation">ກໍາລັງກະກຽມ...</target>
+        <target state="translated">ກໍາລັງກະກຽມ...</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Presentation %ld.pptx" xml:space="preserve">
         <source>Presentation %ld.pptx</source>
-        <target state="needs-translation">ພີເຊັນເທຊັນ %ld.pptx</target>
+        <target state="translated">ພີເຊັນເທຊັນ %ld.pptx</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Presentation template" xml:space="preserve">
         <source>Presentation template</source>
-        <target state="needs-translation">Presentation ແມ່ແບບ</target>
+        <target state="translated">Presentation ແມ່ແບບ</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Quit %@" xml:space="preserve">
         <source>Quit %@</source>
-        <target state="needs-translation">ຍົກເລີກ %@</target>
+        <target state="translated">ຍົກເລີກ %@</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Review Changes..." xml:space="preserve">
         <source>Review Changes...</source>
-        <target state="needs-translation">ກວດເບີ່ງການປ່ຽນແປງ...</target>
+        <target state="translated">ກວດເບີ່ງການປ່ຽນແປງ...</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Rich Text Document" xml:space="preserve">
         <source>Rich Text Document</source>
-        <target state="needs-translation">ເອກະສານ Rich Text</target>
+        <target state="translated">ເອກະສານ Rich Text</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Save" xml:space="preserve">
         <source>Save</source>
-        <target state="needs-translation">ບັນທືກ</target>
+        <target state="translated">ບັນທືກ</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Save the document?" xml:space="preserve">
         <source>Save the document?</source>
-        <target state="needs-translation">ບັນທືກເອກະສານ?</target>
+        <target state="translated">ບັນທືກເອກະສານ?</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Spreadsheet %ld.xlsx" xml:space="preserve">
         <source>Spreadsheet %ld.xlsx</source>
-        <target state="needs-translation">ຕາຕະລາງ %ld.xlsx</target>
+        <target state="translated">ຕາຕະລາງ %ld.xlsx</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Spreadsheet template" xml:space="preserve">
         <source>Spreadsheet template</source>
-        <target state="needs-translation">Spreadsheet ແມ່ແບບ</target>
+        <target state="translated">Spreadsheet ແມ່ແບບ</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Thank you for evaluating %@!" xml:space="preserve">
         <source>Thank you for evaluating %@!</source>
-        <target state="needs-translation">ຂອບໃຈສໍາລັບການປະເມີນ %@!</target>
+        <target state="translated">ຂອບໃຈສໍາລັບການປະເມີນ %@!</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="The document &quot;%@&quot; must be built. Continue?" xml:space="preserve">
         <source>The document "%@" must be built. Continue?</source>
-        <target state="needs-translation">ເອກະສານ "%@" ຈະຕ້ອງຖືກສ້າງ. ສືບຕໍ່?</target>
+        <target state="translated">ເອກະສານ "%@" ຈະຕ້ອງຖືກສ້າງ. ສືບຕໍ່?</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="To open the file location, it must be saved." xml:space="preserve">
         <source>To open the file location, it must be saved.</source>
-        <target state="needs-translation">ເພື່ອເປີດຟາຍເອກະສານ, ຈະຕ້ອງບັນທືກກ່ອນ.</target>
+        <target state="translated">ເພື່ອເປີດຟາຍເອກະສານ, ຈະຕ້ອງບັນທືກກ່ອນ.</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Unconfirmed" xml:space="preserve">
         <source>Unconfirmed</source>
-        <target state="needs-translation">ບໍ່ໄດ້ຮັບການຢືນຢັນ</target>
+        <target state="translated">ບໍ່ໄດ້ຮັບການຢືນຢັນ</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Untitled" xml:space="preserve">
         <source>Untitled</source>
-        <target state="needs-translation">ບໍ່ມີຊື່</target>
+        <target state="translated">ບໍ່ມີຊື່</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Version %@ (%@)" xml:space="preserve">
         <source>Version %1$@ (%2$@)</source>
-        <target state="needs-translation">ເວີຊັນ %1$@ (%2$@)</target>
+        <target state="translated">ເວີຊັນ %1$@ (%2$@)</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Web Page" xml:space="preserve">
         <source>Web Page</source>
-        <target state="needs-translation">ໜ້າເວັບ</target>
+        <target state="translated">ໜ້າເວັບ</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="With access to pro features" xml:space="preserve">
         <source>With access to pro features</source>
-        <target state="needs-translation">ເຂົ້າເຖິງຄຸນສົມບັດໂປຮ</target>
+        <target state="translated">ເຂົ້າເຖິງຄຸນສົມບັດໂປຮ</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Word 97-2003 Document" xml:space="preserve">
         <source>Word 97-2003 Document</source>
-        <target state="needs-translation">Word 97-2003 ເອກະສານ</target>
+        <target state="translated">Word 97-2003 ເອກະສານ</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Word 2007 Document" xml:space="preserve">
         <source>Word 2007 Document</source>
-        <target state="needs-translation">Word 2007 ເອກະສານ</target>
+        <target state="translated">Word 2007 ເອກະສານ</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="XML Paper Specification" xml:space="preserve">
         <source>XML Paper Specification</source>
-        <target state="needs-translation">XML ຂໍ້ກໍານົດ ເອກະສານ</target>
+        <target state="translated">XML ຂໍ້ກໍານົດ ເອກະສານ</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Yes" xml:space="preserve">
         <source>Yes</source>
-        <target state="needs-translation">ແມ່ນແລ້ວ</target>
+        <target state="translated">ແມ່ນແລ້ວ</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?" xml:space="preserve">
         <source>You have %1$ld %2$@ documents with unconfirmed changes. Do you want to review these changes before quitting?</source>
-        <target state="needs-translation">ເຈົ້າມີ %1$ld %2$@ ເອກະສານ ທີຍັງບໍໄດ້ຮັບການຢົ້ງຢືນການປ່ຽນແປງ . ທ່ານຢາກກວດຄືນເອກະສານ ກ່ອນປີດບໍ່?</target>
+        <target state="translated">ເຈົ້າມີ %1$ld %2$@ ເອກະສານ ທີຍັງບໍໄດ້ຮັບການຢົ້ງຢືນການປ່ຽນແປງ . ທ່ານຢາກກວດຄືນເອກະສານ ກ່ອນປີດບໍ່?</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="You have successfully activated %@." xml:space="preserve">
         <source>You have successfully activated %@.</source>
-        <target state="needs-translation">ທ່ານເປີດໃຊ້ງານສໍາເລັດແລ້ວ %@.</target>
+        <target state="translated">ທ່ານເປີດໃຊ້ງານສໍາເລັດແລ້ວ %@.</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Your changes will be lost if you don’t save them." xml:space="preserve">
         <source>Your changes will be lost if you don’t save them.</source>
-        <target state="needs-translation">ການປ່ຽນແປງຂອງທ່ານຈະຖືກຍົກເລີກ ຖ້າຫາກທ່ານບໍ່ບັນທືກ.</target>
+        <target state="translated">ການປ່ຽນແປງຂອງທ່ານຈະຖືກຍົກເລີກ ຖ້າຫາກທ່ານບໍ່ບັນທືກ.</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
-      <trans-unit id="Your subscription has expired.&#xA;&#xA;The program works in the non-activated mode.&#xA;&#xA;Now you can prolong or upgrade your subscription with a discount." xml:space="preserve">
+      <trans-unit id="Your subscription has expired.&#10;&#10;The program works in the non-activated mode.&#10;&#10;Now you can prolong or upgrade your subscription with a discount." xml:space="preserve">
         <source>Your subscription has expired.
 
 The program works in the non-activated mode.
 
 Now you can prolong or upgrade your subscription with a discount.</source>
-        <target state="needs-translation">ການສະໝັກການນໍາໃຊ້ ໝົດອາຍຸແລ້ວ.
+        <target state="translated">ການສະໝັກການນໍາໃຊ້ ໝົດອາຍຸແລ້ວ.
 
 ໂປແກຼມເຮັດວຽກໃນຮູບແບບທີ່ບໍ່ໄດ້ເປີດໃຊ້ງານ.
 
 ຕອນນີ້ທ່ານສາມາດຍືດຍາວຫລືຍົກລະດັບການສະໝັກໃຊ້ຂອງທ່ານ ແລະມີສ່ວນຫຼຸດ.</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
-      <trans-unit id="Your subscription is about to expire&#xA;(%d days left).&#xA;&#xA;We have a special offer for you." xml:space="preserve">
+      <trans-unit id="Your subscription is about to expire&#10;(%d days left).&#10;&#10;We have a special offer for you." xml:space="preserve">
         <source>Your subscription is about to expire
 (%d days left).
 
 We have a special offer for you.</source>
-        <target state="needs-translation">ການສະໝັ້ກການນໍາໃຊ້ ຂອງທ່ານໄກ້ຈະໝົດອາຍຸແລ້ວ
+        <target state="translated">ການສະໝັ້ກການນໍາໃຊ້ ຂອງທ່ານໄກ້ຈະໝົດອາຍຸແລ້ວ
 (%d ວັນທີ ຍັງເຫຼືອ).
 
 ພວກເຮົາມີຂໍ້ສະເໜີພິເສດສຳລັບທ່ານ.</target>
@@ -438,916 +438,916 @@ We have a special offer for you.</source>
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="new-document" xml:space="preserve">
         <source>New Document</source>
-        <target state="needs-translation">ເອກະສານໃໝ່</target>
+        <target state="translated">ເອກະສານໃໝ່</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="new-presentation" xml:space="preserve">
         <source>New Presentation</source>
-        <target state="needs-translation">ພີເຊັນເທຊັນໃໝ່</target>
+        <target state="translated">ພີເຊັນເທຊັນໃໝ່</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="new-spreadsheet" xml:space="preserve">
         <source>New Spreadsheet</source>
-        <target state="needs-translation">ຕາຕະລາງໃໝ່</target>
+        <target state="translated">ຕາຕະລາງໃໝ່</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
     </body>
   </file>
-  <file original="ONLYOFFICE/Base.lproj/Localizable.stringsdict" source-language="en" target-language="en" datatype="plaintext">
+  <file original="ONLYOFFICE/Base.lproj/Localizable.stringsdict" source-language="en" target-language="lo" datatype="plaintext">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c" />
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c"/>
     </header>
     <body>
       <trans-unit id="/%d days are left until the license expiration.:dict/NSStringLocalizedFormatKey:dict/:string" xml:space="preserve">
         <source>%#@days@</source>
-        <target state="needs-translation">%#ວັນ@</target>
+        <target state="translated">%#ວັນ@</target>
         
       </trans-unit>
       <trans-unit id="/%d days are left until the license expiration.:dict/days:dict/one:dict/:string" xml:space="preserve">
         <source>%d day are left until the license expiration.</source>
-        <target state="needs-translation">%d ວັນທີຍັງເຫຼືອ ກ່ອນໃບອະນຸຍາດໝົດອາຍຸ.</target>
+        <target state="translated">%d ວັນທີຍັງເຫຼືອ ກ່ອນໃບອະນຸຍາດໝົດອາຍຸ.</target>
         
       </trans-unit>
       <trans-unit id="/%d days are left until the license expiration.:dict/days:dict/other:dict/:string" xml:space="preserve">
         <source>%d days are left until the license expiration.</source>
-        <target state="needs-translation">%d ວັນທີຍັງເຫຼືອ ກ່ອນໃບອະນຸຍາດໝົດອາຍຸ.</target>
+        <target state="translated">%d ວັນທີຍັງເຫຼືອ ກ່ອນໃບອະນຸຍາດໝົດອາຍຸ.</target>
         
       </trans-unit>
-      <trans-unit id="/You are using a trial version of the application.&#xA;The trial period will end in %d days, after that you will not be able to create and edit documents.:dict/NSStringLocalizedFormatKey:dict/:string" xml:space="preserve">
+      <trans-unit id="/You are using a trial version of the application.&#10;The trial period will end in %d days, after that you will not be able to create and edit documents.:dict/NSStringLocalizedFormatKey:dict/:string" xml:space="preserve">
         <source>%#@days@</source>
-        <target state="needs-translation">%#@ວັນ@</target>
+        <target state="translated">%#@ວັນ@</target>
         
       </trans-unit>
-      <trans-unit id="/You are using a trial version of the application.&#xA;The trial period will end in %d days, after that you will not be able to create and edit documents.:dict/days:dict/one:dict/:string" xml:space="preserve">
+      <trans-unit id="/You are using a trial version of the application.&#10;The trial period will end in %d days, after that you will not be able to create and edit documents.:dict/days:dict/one:dict/:string" xml:space="preserve">
         <source>You are using a trial version of the application.
 The trial period will end in %d day, after that you will not be able to create and edit documents.</source>
-        <target state="needs-translation">ທ່ານ ກຳລັງໃຊ້ ແອັບພລິເຄຊັນ ໃນຮູບແບບທົດລອງຢູ່
+        <target state="translated">ທ່ານ ກຳລັງໃຊ້ ແອັບພລິເຄຊັນ ໃນຮູບແບບທົດລອງຢູ່
 ໄລຍະເວລາການທົດລອງຈະສິ້ນສຸດໃນ% d ວັນ, ຫລັງຈາກນັ້ນທ່ານຈະບໍ່ສາມາດສ້າງແລະແກ້ໄຂເອກະສານ.</target>
         
       </trans-unit>
-      <trans-unit id="/You are using a trial version of the application.&#xA;The trial period will end in %d days, after that you will not be able to create and edit documents.:dict/days:dict/other:dict/:string" xml:space="preserve">
+      <trans-unit id="/You are using a trial version of the application.&#10;The trial period will end in %d days, after that you will not be able to create and edit documents.:dict/days:dict/other:dict/:string" xml:space="preserve">
         <source>You are using a trial version of the application.
 The trial period will end in %d days, after that you will not be able to create and edit documents.</source>
-        <target state="needs-translation">ທ່ານ ກຳລັງໃຊ້ ແອັບພລິເຄຊັນ ໃນຮູບແບບທົດລອງຢູ່
+        <target state="translated">ທ່ານ ກຳລັງໃຊ້ ແອັບພລິເຄຊັນ ໃນຮູບແບບທົດລອງຢູ່
 ໄລຍະເວລາການທົດລອງຈະສິ້ນສຸດໃນ% d ວັນ, ຫລັງຈາກນັ້ນທ່ານຈະບໍ່ສາມາດສ້າງແລະແກ້ໄຂເອກະສານ.</target>
         
       </trans-unit>
       <trans-unit id="/You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?:dict/NSStringLocalizedFormatKey:dict/:string" xml:space="preserve">
         <source>%#@documents@</source>
-        <target state="needs-translation">%#@ເອກະສານ@</target>
+        <target state="translated">%#@ເອກະສານ@</target>
         
       </trans-unit>
       <trans-unit id="/You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?:dict/documents:dict/one:dict/:string" xml:space="preserve">
         <source>You have %ld %@ document with unconfirmed changes. Do you want to review these changes before quitting?</source>
-        <target state="needs-translation">ທ່ານມີ %ld %@ ເອກະສານທີຍັງບໍ່ທັນໄດ້ຮັບການຢັ້ງຢືນການປ່ຽນແປງ. ທ່ານຢາກກວດສອບຄືນກ່ອນປີດບໍ?</target>
+        <target state="translated">ທ່ານມີ %ld %@ ເອກະສານທີຍັງບໍ່ທັນໄດ້ຮັບການຢັ້ງຢືນການປ່ຽນແປງ. ທ່ານຢາກກວດສອບຄືນກ່ອນປີດບໍ?</target>
         
       </trans-unit>
       <trans-unit id="/You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?:dict/documents:dict/other:dict/:string" xml:space="preserve">
         <source>You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?</source>
-        <target state="needs-translation">ທ່ານມີ %ld %@ ເອກະສານທີຍັງບໍ່ທັນໄດ້ຮັບການຢັ້ງຢືນການປ່ຽນແປງ. ທ່ານຢາກກວດສອບຄືນກ່ອນປີດບໍ?</target>
+        <target state="translated">ທ່ານມີ %ld %@ ເອກະສານທີຍັງບໍ່ທັນໄດ້ຮັບການຢັ້ງຢືນການປ່ຽນແປງ. ທ່ານຢາກກວດສອບຄືນກ່ອນປີດບໍ?</target>
         
       </trans-unit>
     </body>
   </file>
-  <file original="ONLYOFFICE/Base.lproj/Main.storyboard" source-language="en" target-language="en" datatype="plaintext">
+  <file original="ONLYOFFICE/Base.lproj/Main.storyboard" source-language="en" target-language="lo" datatype="plaintext">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c" />
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c"/>
     </header>
     <body>
       <trans-unit id="1UK-8n-QPP.title" xml:space="preserve">
         <source>Customize Toolbar…</source>
-        <target state="needs-translation">Toolbar ແບບສາມາດແກ້ໄຂໄດ້…</target>
+        <target state="translated">Toolbar ແບບສາມາດແກ້ໄຂໄດ້…</target>
         
       <note>Class = "NSMenuItem"; title = "Customize Toolbar…"; ObjectID = "1UK-8n-QPP";</note></trans-unit>
       <trans-unit id="1Xt-HY-uBw.title" xml:space="preserve">
         <source>ONLYOFFICE</source>
-        <target state="new">ONLYOFFICE</target>
+        <target state="translated">ONLYOFFICE</target>
         
       <note>Class = "NSMenuItem"; title = "ONLYOFFICE"; ObjectID = "1Xt-HY-uBw";</note></trans-unit>
       <trans-unit id="1b7-l0-nxx.title" xml:space="preserve">
         <source>Find</source>
-        <target state="needs-translation">ຄົ້ນຫາ</target>
+        <target state="translated">ຄົ້ນຫາ</target>
         
       <note>Class = "NSMenu"; title = "Find"; ObjectID = "1b7-l0-nxx";</note></trans-unit>
       <trans-unit id="1tx-W0-xDw.title" xml:space="preserve">
         <source>Lower</source>
-        <target state="needs-translation">ທາງກ້ອງ</target>
+        <target state="translated">ທາງກ້ອງ</target>
         
       <note>Class = "NSMenuItem"; title = "Lower"; ObjectID = "1tx-W0-xDw";</note></trans-unit>
       <trans-unit id="2h7-ER-AoG.title" xml:space="preserve">
         <source>Raise</source>
-        <target state="needs-translation">ທາງເທີງ</target>
+        <target state="translated">ທາງເທີງ</target>
         
       <note>Class = "NSMenuItem"; title = "Raise"; ObjectID = "2h7-ER-AoG";</note></trans-unit>
       <trans-unit id="2oI-Rn-ZJC.title" xml:space="preserve">
         <source>Transformations</source>
-        <target state="needs-translation">ການປ່ຽນແປງ</target>
+        <target state="translated">ການປ່ຽນແປງ</target>
         
       <note>Class = "NSMenuItem"; title = "Transformations"; ObjectID = "2oI-Rn-ZJC";</note></trans-unit>
       <trans-unit id="3IN-sU-3Bg.title" xml:space="preserve">
         <source>Spelling</source>
-        <target state="needs-translation">ສະກົດ</target>
+        <target state="translated">ສະກົດ</target>
         
       <note>Class = "NSMenu"; title = "Spelling"; ObjectID = "3IN-sU-3Bg";</note></trans-unit>
       <trans-unit id="3Om-Ey-2VK.title" xml:space="preserve">
         <source>Use Default</source>
-        <target state="needs-translation">ນໍາໃຊ້ແບບມາດຕະຖານ</target>
+        <target state="translated">ນໍາໃຊ້ແບບມາດຕະຖານ</target>
         
       <note>Class = "NSMenuItem"; title = "Use Default"; ObjectID = "3Om-Ey-2VK";</note></trans-unit>
       <trans-unit id="3rS-ZA-NoH.title" xml:space="preserve">
         <source>Speech</source>
-        <target state="needs-translation">ຄໍາເວົ່າ</target>
+        <target state="translated">ຄໍາເວົ່າ</target>
         
       <note>Class = "NSMenu"; title = "Speech"; ObjectID = "3rS-ZA-NoH";</note></trans-unit>
       <trans-unit id="4EN-yA-p0u.title" xml:space="preserve">
         <source>Find</source>
-        <target state="needs-translation">ຄົ້ນຫາ</target>
+        <target state="translated">ຄົ້ນຫາ</target>
         
       <note>Class = "NSMenuItem"; title = "Find"; ObjectID = "4EN-yA-p0u";</note></trans-unit>
       <trans-unit id="4et-TX-a4m.title" xml:space="preserve">
         <source>License Agreement</source>
-        <target state="needs-translation">ສັນຍາໃບອະນຸຍາດ</target>
+        <target state="translated">ສັນຍາໃບອະນຸຍາດ</target>
         
       <note>Class = "NSMenuItem"; title = "License Agreement"; ObjectID = "4et-TX-a4m";</note></trans-unit>
       <trans-unit id="4sb-4s-VLi.title" xml:space="preserve">
         <source>Quit ONLYOFFICE</source>
-        <target state="needs-translation">ອອກຈາກ ONLYOFFICE</target>
+        <target state="translated">ອອກຈາກ ONLYOFFICE</target>
         
       <note>Class = "NSMenuItem"; title = "Quit ONLYOFFICE"; ObjectID = "4sb-4s-VLi";</note></trans-unit>
       <trans-unit id="5QF-Oa-p0T.title" xml:space="preserve">
         <source>Edit</source>
-        <target state="needs-translation">ແກ້ໄຂ</target>
+        <target state="translated">ແກ້ໄຂ</target>
         
       <note>Class = "NSMenuItem"; title = "Edit"; ObjectID = "5QF-Oa-p0T";</note></trans-unit>
       <trans-unit id="5Vv-lz-BsD.title" xml:space="preserve">
         <source>Copy Style</source>
-        <target state="needs-translation">ຮູບແບບສໍາເນົາ</target>
+        <target state="translated">ຮູບແບບສໍາເນົາ</target>
         
       <note>Class = "NSMenuItem"; title = "Copy Style"; ObjectID = "5Vv-lz-BsD";</note></trans-unit>
       <trans-unit id="5kV-Vb-QxS.title" xml:space="preserve">
         <source>About ONLYOFFICE</source>
-        <target state="needs-translation">ກ່ຽວກັບ ONLYOFFICE</target>
+        <target state="translated">ກ່ຽວກັບ ONLYOFFICE</target>
         
       <note>Class = "NSMenuItem"; title = "About ONLYOFFICE"; ObjectID = "5kV-Vb-QxS";</note></trans-unit>
       <trans-unit id="6dh-zS-Vam.title" xml:space="preserve">
         <source>Redo</source>
-        <target state="needs-translation">ກັບຄືນ</target>
+        <target state="translated">ກັບຄືນ</target>
         
       <note>Class = "NSMenuItem"; title = "Redo"; ObjectID = "6dh-zS-Vam";</note></trans-unit>
       <trans-unit id="8Ga-Cu-VGe.title" xml:space="preserve">
         <source>License agreement</source>
-        <target state="needs-translation">ສັນຍາໃບອະນຸຍາດ</target>
+        <target state="translated">ສັນຍາໃບອະນຸຍາດ</target>
         
       <note>Class = "NSButtonCell"; title = "License agreement"; ObjectID = "8Ga-Cu-VGe";</note></trans-unit>
       <trans-unit id="8mr-sm-Yjd.title" xml:space="preserve">
         <source>Writing Direction</source>
-        <target state="needs-translation">ທິດທາງການຂຽນ</target>
+        <target state="translated">ທິດທາງການຂຽນ</target>
         
       <note>Class = "NSMenu"; title = "Writing Direction"; ObjectID = "8mr-sm-Yjd";</note></trans-unit>
       <trans-unit id="9aQ-wl-gjS.title" xml:space="preserve">
         <source>New</source>
-        <target state="needs-translation">ໃໝ່</target>
+        <target state="translated">ໃໝ່</target>
         
       <note>Class = "NSMenuItem"; title = "New"; ObjectID = "9aQ-wl-gjS";</note></trans-unit>
       <trans-unit id="9i7-kj-42B.title" xml:space="preserve">
         <source>none</source>
-        <target state="needs-translation">ບໍ່ມີ</target>
+        <target state="translated">ບໍ່ມີ</target>
         
       <note>Class = "NSTextFieldCell"; title = "none"; ObjectID = "9i7-kj-42B";</note></trans-unit>
       <trans-unit id="9ic-FL-obx.title" xml:space="preserve">
         <source>Substitutions</source>
-        <target state="needs-translation">ປ່ຽນແທນ</target>
+        <target state="translated">ປ່ຽນແທນ</target>
         
       <note>Class = "NSMenuItem"; title = "Substitutions"; ObjectID = "9ic-FL-obx";</note></trans-unit>
       <trans-unit id="9yt-4B-nSM.title" xml:space="preserve">
         <source>Smart Copy/Paste</source>
-        <target state="needs-translation">ສໍາເນົາ ສະມາດ/Paste</target>
+        <target state="translated">ສໍາເນົາ ສະມາດ/Paste</target>
         
       <note>Class = "NSMenuItem"; title = "Smart Copy/Paste"; ObjectID = "9yt-4B-nSM";</note></trans-unit>
       <trans-unit id="46P-cB-AYj.title" xml:space="preserve">
         <source>Tighten</source>
-        <target state="needs-translation">ກະຊັບ</target>
+        <target state="translated">ກະຊັບ</target>
         
       <note>Class = "NSMenuItem"; title = "Tighten"; ObjectID = "46P-cB-AYj";</note></trans-unit>
       <trans-unit id="78Y-hA-62v.title" xml:space="preserve">
         <source>Correct Spelling Automatically</source>
-        <target state="needs-translation">ກວດແກ້ການສະກົດແບບອັດຈະໂນມັດ</target>
+        <target state="translated">ກວດແກ້ການສະກົດແບບອັດຈະໂນມັດ</target>
         
       <note>Class = "NSMenuItem"; title = "Correct Spelling Automatically"; ObjectID = "78Y-hA-62v";</note></trans-unit>
       <trans-unit id="AYu-sK-qS6.title" xml:space="preserve">
         <source>Main Menu</source>
-        <target state="needs-translation">ເມນູຫຼັກ</target>
+        <target state="translated">ເມນູຫຼັກ</target>
         
       <note>Class = "NSMenu"; title = "Main Menu"; ObjectID = "AYu-sK-qS6";</note></trans-unit>
       <trans-unit id="BOF-NM-1cW.title" xml:space="preserve">
         <source>Preferences…</source>
-        <target state="needs-translation">ແບບທີຕ້ອງການ…</target>
+        <target state="translated">ແບບທີຕ້ອງການ…</target>
         
       <note>Class = "NSMenuItem"; title = "Preferences…"; ObjectID = "BOF-NM-1cW";</note></trans-unit>
       <trans-unit id="BgM-ve-c93.title" xml:space="preserve">
         <source>	Left to Right</source>
-        <target state="needs-translation">	ຊ້າຍຫາຂວາ</target>
+        <target state="translated">	ຊ້າຍຫາຂວາ</target>
         
       <note>Class = "NSMenuItem"; title = "\tLeft to Right"; ObjectID = "BgM-ve-c93";</note></trans-unit>
       <trans-unit id="Bw7-FT-i3A.title" xml:space="preserve">
         <source>Save As…</source>
-        <target state="needs-translation">ບັນທືກເປັນ…</target>
+        <target state="translated">ບັນທືກເປັນ…</target>
         
       <note>Class = "NSMenuItem"; title = "Save As…"; ObjectID = "Bw7-FT-i3A";</note></trans-unit>
       <trans-unit id="CJU-dx-a9l.title" xml:space="preserve">
         <source>Acknowledgments</source>
-        <target state="needs-translation">ຮັບຊາບ</target>
+        <target state="translated">ຮັບຊາບ</target>
         
       <note>Class = "NSMenuItem"; title = "Acknowledgments"; ObjectID = "CJU-dx-a9l";</note></trans-unit>
       <trans-unit id="DOj-j9-dza.title" xml:space="preserve">
         <source>Spreadsheet</source>
-        <target state="needs-translation">ຕາຕະລາງ</target>
+        <target state="translated">ຕາຕະລາງ</target>
         
       <note>Class = "NSMenuItem"; title = "Spreadsheet"; ObjectID = "DOj-j9-dza";</note></trans-unit>
       <trans-unit id="DVo-aG-piG.title" xml:space="preserve">
         <source>Close</source>
-        <target state="needs-translation">ປິດ</target>
+        <target state="translated">ປິດ</target>
         
       <note>Class = "NSMenuItem"; title = "Close"; ObjectID = "DVo-aG-piG";</note></trans-unit>
       <trans-unit id="Dv1-io-Yv7.title" xml:space="preserve">
         <source>Spelling and Grammar</source>
-        <target state="needs-translation">ສະກົດ ແລະ ໄວຍະກອນ</target>
+        <target state="translated">ສະກົດ ແລະ ໄວຍະກອນ</target>
         
       <note>Class = "NSMenuItem"; title = "Spelling and Grammar"; ObjectID = "Dv1-io-Yv7";</note></trans-unit>
       <trans-unit id="F2S-fz-NVQ.title" xml:space="preserve">
         <source>Help</source>
-        <target state="needs-translation">ຊ່ວຍເຫຼືອ</target>
+        <target state="translated">ຊ່ວຍເຫຼືອ</target>
         
       <note>Class = "NSMenu"; title = "Help"; ObjectID = "F2S-fz-NVQ";</note></trans-unit>
       <trans-unit id="FKE-Sm-Kum.title" xml:space="preserve">
         <source>Product Help</source>
-        <target state="needs-translation">ຜະລິດຕະພັນ ຊ່ວຍເຫຼືອ</target>
+        <target state="translated">ຜະລິດຕະພັນ ຊ່ວຍເຫຼືອ</target>
         
       <note>Class = "NSMenuItem"; title = "Product Help"; ObjectID = "FKE-Sm-Kum";</note></trans-unit>
       <trans-unit id="Fal-I4-PZk.title" xml:space="preserve">
         <source>Text</source>
-        <target state="needs-translation">ເນື້ອຫາ</target>
+        <target state="translated">ເນື້ອຫາ</target>
         
       <note>Class = "NSMenuItem"; title = "Text"; ObjectID = "Fal-I4-PZk";</note></trans-unit>
       <trans-unit id="FeM-D8-WVr.title" xml:space="preserve">
         <source>Substitutions</source>
-        <target state="needs-translation">ປ່ຽນແທນ</target>
+        <target state="translated">ປ່ຽນແທນ</target>
         
       <note>Class = "NSMenu"; title = "Substitutions"; ObjectID = "FeM-D8-WVr";</note></trans-unit>
       <trans-unit id="FoF-wl-Dxi.title" xml:space="preserve">
         <source>User Name</source>
-        <target state="needs-translation">ບັນຊີຜຸ້ໃຊ້ງານ</target>
+        <target state="translated">ບັນຊີຜຸ້ໃຊ້ງານ</target>
         
       <note>Class = "NSTextFieldCell"; title = "User Name"; ObjectID = "FoF-wl-Dxi";</note></trans-unit>
       <trans-unit id="GB9-OM-e27.title" xml:space="preserve">
         <source>Bold</source>
-        <target state="needs-translation">ເຂັ້ມຂື້ນ</target>
+        <target state="translated">ເຂັ້ມຂື້ນ</target>
         
       <note>Class = "NSMenuItem"; title = "Bold"; ObjectID = "GB9-OM-e27";</note></trans-unit>
       <trans-unit id="GEO-Iw-cKr.title" xml:space="preserve">
         <source>Format</source>
-        <target state="needs-translation">ຟໍເມັດ</target>
+        <target state="translated">ຟໍເມັດ</target>
         
       <note>Class = "NSMenu"; title = "Format"; ObjectID = "GEO-Iw-cKr";</note></trans-unit>
       <trans-unit id="GUa-eO-cwY.title" xml:space="preserve">
         <source>Use Default</source>
-        <target state="needs-translation">ນໍາໃຊ້ແບບເລີ່ມຕົ້ນ</target>
+        <target state="translated">ນໍາໃຊ້ແບບເລີ່ມຕົ້ນ</target>
         
       <note>Class = "NSMenuItem"; title = "Use Default"; ObjectID = "GUa-eO-cwY";</note></trans-unit>
       <trans-unit id="Gi5-1S-RQB.title" xml:space="preserve">
         <source>Font</source>
-        <target state="needs-translation">ໂຕໜັງສື</target>
+        <target state="translated">ໂຕໜັງສື</target>
         
       <note>Class = "NSMenuItem"; title = "Font"; ObjectID = "Gi5-1S-RQB";</note></trans-unit>
       <trans-unit id="H1b-Si-o9J.title" xml:space="preserve">
         <source>Writing Direction</source>
-        <target state="needs-translation">ທິດທາງການຂຽນ</target>
+        <target state="translated">ທິດທາງການຂຽນ</target>
         
       <note>Class = "NSMenuItem"; title = "Writing Direction"; ObjectID = "H1b-Si-o9J";</note></trans-unit>
       <trans-unit id="H8h-7b-M4v.title" xml:space="preserve">
         <source>View</source>
-        <target state="needs-translation">ເບີ່ງ</target>
+        <target state="translated">ເບີ່ງ</target>
         
       <note>Class = "NSMenuItem"; title = "View"; ObjectID = "H8h-7b-M4v";</note></trans-unit>
       <trans-unit id="HFQ-gK-NFA.title" xml:space="preserve">
         <source>Text Replacement</source>
-        <target state="needs-translation">ປ່ຽນແທນເນື້ອຫາ</target>
+        <target state="translated">ປ່ຽນແທນເນື້ອຫາ</target>
         
       <note>Class = "NSMenuItem"; title = "Text Replacement"; ObjectID = "HFQ-gK-NFA";</note></trans-unit>
       <trans-unit id="HFo-cy-zxI.title" xml:space="preserve">
         <source>Show Spelling and Grammar</source>
-        <target state="needs-translation">ສະແດງການສະກົດແລະໄວຍະກອນ</target>
+        <target state="translated">ສະແດງການສະກົດແລະໄວຍະກອນ</target>
         
       <note>Class = "NSMenuItem"; title = "Show Spelling and Grammar"; ObjectID = "HFo-cy-zxI";</note></trans-unit>
       <trans-unit id="HyV-fh-RgO.title" xml:space="preserve">
         <source>View</source>
-        <target state="needs-translation">ເບີ່ງ</target>
+        <target state="translated">ເບີ່ງ</target>
         
       <note>Class = "NSMenu"; title = "View"; ObjectID = "HyV-fh-RgO";</note></trans-unit>
       <trans-unit id="I0S-gh-46l.title" xml:space="preserve">
         <source>Subscript</source>
-        <target state="needs-translation">ສະໝັກນໍາໃຊ້</target>
+        <target state="translated">ສະໝັກນໍາໃຊ້</target>
         
       <note>Class = "NSMenuItem"; title = "Subscript"; ObjectID = "I0S-gh-46l";</note></trans-unit>
       <trans-unit id="IAo-SY-fd9.title" xml:space="preserve">
         <source>Open…</source>
-        <target state="needs-translation">ເປີດ…</target>
+        <target state="translated">ເປີດ…</target>
         
       <note>Class = "NSMenuItem"; title = "Open…"; ObjectID = "IAo-SY-fd9";</note></trans-unit>
       <trans-unit id="IQv-IB-iLA.title" xml:space="preserve">
         <source>ONLYOFFICE</source>
-        <target state="new">ONLYOFFICE</target>
+        <target state="translated">ONLYOFFICE</target>
         
       <note>Class = "NSWindow"; title = "ONLYOFFICE"; ObjectID = "IQv-IB-iLA";</note></trans-unit>
       <trans-unit id="J5U-5w-g23.title" xml:space="preserve">
         <source>Justify</source>
-        <target state="needs-translation">ຢືນຢັນ</target>
+        <target state="translated">ຢືນຢັນ</target>
         
       <note>Class = "NSMenuItem"; title = "Justify"; ObjectID = "J5U-5w-g23";</note></trans-unit>
       <trans-unit id="J7y-lM-qPV.title" xml:space="preserve">
         <source>Use None</source>
-        <target state="needs-translation">ນໍາໃຊ້ none</target>
+        <target state="translated">ນໍາໃຊ້ none</target>
         
       <note>Class = "NSMenuItem"; title = "Use None"; ObjectID = "J7y-lM-qPV";</note></trans-unit>
       <trans-unit id="KaW-ft-85H.title" xml:space="preserve">
         <source>Revert to Saved</source>
-        <target state="needs-translation">ກັບໄປຄືນເພື່ອບັນທືກ</target>
+        <target state="translated">ກັບໄປຄືນເພື່ອບັນທືກ</target>
         
       <note>Class = "NSMenuItem"; title = "Revert to Saved"; ObjectID = "KaW-ft-85H";</note></trans-unit>
       <trans-unit id="Kd2-mp-pUS.title" xml:space="preserve">
         <source>Show All</source>
-        <target state="needs-translation">ສະແດງທັງໝົດ</target>
+        <target state="translated">ສະແດງທັງໝົດ</target>
         
       <note>Class = "NSMenuItem"; title = "Show All"; ObjectID = "Kd2-mp-pUS";</note></trans-unit>
       <trans-unit id="LE2-aR-0XJ.title" xml:space="preserve">
         <source>Bring All to Front</source>
-        <target state="needs-translation">ເອົາມາໄວ້ທາງໜ້າ</target>
+        <target state="translated">ເອົາມາໄວ້ທາງໜ້າ</target>
         
       <note>Class = "NSMenuItem"; title = "Bring All to Front"; ObjectID = "LE2-aR-0XJ";</note></trans-unit>
       <trans-unit id="LVM-kO-fVI.title" xml:space="preserve">
         <source>Paste Ruler</source>
-        <target state="needs-translation">ໃຊ້ໄມ້ບັນທັດ</target>
+        <target state="translated">ໃຊ້ໄມ້ບັນທັດ</target>
         
       <note>Class = "NSMenuItem"; title = "Paste Ruler"; ObjectID = "LVM-kO-fVI";</note></trans-unit>
       <trans-unit id="Lbh-J2-qVU.title" xml:space="preserve">
         <source>	Left to Right</source>
-        <target state="needs-translation">	ຊ້າຍຫາຂວາ</target>
+        <target state="translated">	ຊ້າຍຫາຂວາ</target>
         
       <note>Class = "NSMenuItem"; title = "\tLeft to Right"; ObjectID = "Lbh-J2-qVU";</note></trans-unit>
       <trans-unit id="MkV-Pr-PK5.title" xml:space="preserve">
         <source>Copy Ruler</source>
-        <target state="needs-translation">ສໍາເນົາໄມ້ບັນທັດ</target>
+        <target state="translated">ສໍາເນົາໄມ້ບັນທັດ</target>
         
       <note>Class = "NSMenuItem"; title = "Copy Ruler"; ObjectID = "MkV-Pr-PK5";</note></trans-unit>
       <trans-unit id="NMo-om-nkz.title" xml:space="preserve">
         <source>Services</source>
-        <target state="needs-translation">ການບໍລິການ</target>
+        <target state="translated">ການບໍລິການ</target>
         
       <note>Class = "NSMenuItem"; title = "Services"; ObjectID = "NMo-om-nkz";</note></trans-unit>
       <trans-unit id="Nop-cj-93Q.title" xml:space="preserve">
         <source>	Default</source>
-        <target state="needs-translation">	ຄ່າເລີ່ມຕົ້ນ</target>
+        <target state="translated">	ຄ່າເລີ່ມຕົ້ນ</target>
         
       <note>Class = "NSMenuItem"; title = "\tDefault"; ObjectID = "Nop-cj-93Q";</note></trans-unit>
       <trans-unit id="OY7-WF-poV.title" xml:space="preserve">
         <source>Minimize</source>
-        <target state="needs-translation">ລົດຂະໜາດລົງ</target>
+        <target state="translated">ລົດຂະໜາດລົງ</target>
         
       <note>Class = "NSMenuItem"; title = "Minimize"; ObjectID = "OY7-WF-poV";</note></trans-unit>
       <trans-unit id="OaQ-X3-Vso.title" xml:space="preserve">
         <source>Baseline</source>
-        <target state="needs-translation">ກໍານົດເສັ້ນພື້ນ</target>
+        <target state="translated">ກໍານົດເສັ້ນພື້ນ</target>
         
       <note>Class = "NSMenuItem"; title = "Baseline"; ObjectID = "OaQ-X3-Vso";</note></trans-unit>
       <trans-unit id="Olw-nP-bQN.title" xml:space="preserve">
         <source>Hide ONLYOFFICE</source>
-        <target state="needs-translation">ເຊື່ອງ ONLYOFFICE</target>
+        <target state="translated">ເຊື່ອງ ONLYOFFICE</target>
         
       <note>Class = "NSMenuItem"; title = "Hide ONLYOFFICE"; ObjectID = "Olw-nP-bQN";</note></trans-unit>
       <trans-unit id="OwM-mh-QMV.title" xml:space="preserve">
         <source>Find Previous</source>
-        <target state="needs-translation">ຊອກຫາ ກ່ອນໜ້າ</target>
+        <target state="translated">ຊອກຫາ ກ່ອນໜ້າ</target>
         
       <note>Class = "NSMenuItem"; title = "Find Previous"; ObjectID = "OwM-mh-QMV";</note></trans-unit>
       <trans-unit id="Oyz-dy-DGm.title" xml:space="preserve">
         <source>Stop Speaking</source>
-        <target state="needs-translation">ຍຸດການໂອ້ລົມ</target>
+        <target state="translated">ຍຸດການໂອ້ລົມ</target>
         
       <note>Class = "NSMenuItem"; title = "Stop Speaking"; ObjectID = "Oyz-dy-DGm";</note></trans-unit>
       <trans-unit id="Ptp-SP-VEL.title" xml:space="preserve">
         <source>Bigger</source>
-        <target state="needs-translation">ໃຫ່ຍຂື້ນ</target>
+        <target state="translated">ໃຫ່ຍຂື້ນ</target>
         
       <note>Class = "NSMenuItem"; title = "Bigger"; ObjectID = "Ptp-SP-VEL";</note></trans-unit>
       <trans-unit id="Q5e-8K-NDq.title" xml:space="preserve">
         <source>Show Fonts</source>
-        <target state="needs-translation">ສະແດງຕົວອັກສອນ</target>
+        <target state="translated">ສະແດງຕົວອັກສອນ</target>
         
       <note>Class = "NSMenuItem"; title = "Show Fonts"; ObjectID = "Q5e-8K-NDq";</note></trans-unit>
       <trans-unit id="R4o-n2-Eq4.title" xml:space="preserve">
         <source>Zoom</source>
-        <target state="needs-translation">ຊູມ</target>
+        <target state="translated">ຊູມ</target>
         
       <note>Class = "NSMenuItem"; title = "Zoom"; ObjectID = "R4o-n2-Eq4";</note></trans-unit>
       <trans-unit id="RB4-Sm-HuC.title" xml:space="preserve">
         <source>	Right to Left</source>
-        <target state="needs-translation">	ຊ້າຍຫາຂວາ</target>
+        <target state="translated">	ຊ້າຍຫາຂວາ</target>
         
       <note>Class = "NSMenuItem"; title = "\tRight to Left"; ObjectID = "RB4-Sm-HuC";</note></trans-unit>
       <trans-unit id="Riu-oE-8dj.title" xml:space="preserve">
         <source>Close</source>
-        <target state="needs-translation">ປິດ</target>
+        <target state="translated">ປິດ</target>
         
       <note>Class = "NSButtonCell"; title = "Close"; ObjectID = "Riu-oE-8dj";</note></trans-unit>
       <trans-unit id="Rkd-xb-FRJ.title" xml:space="preserve">
         <source>none</source>
-        <target state="needs-translation">ບໍ່ມີ</target>
+        <target state="translated">ບໍ່ມີ</target>
         
       <note>Class = "NSTextFieldCell"; title = "none"; ObjectID = "Rkd-xb-FRJ";</note></trans-unit>
       <trans-unit id="RmO-tv-UKh.title" xml:space="preserve">
         <source>Logout</source>
-        <target state="needs-translation">ອອກຈາກລະບົບ</target>
+        <target state="translated">ອອກຈາກລະບົບ</target>
         
       <note>Class = "NSButtonCell"; title = "Logout"; ObjectID = "RmO-tv-UKh";</note></trans-unit>
       <trans-unit id="Rqc-34-cIF.title" xml:space="preserve">
         <source>Superscript</source>
-        <target state="needs-translation">ອັກສອນຫຍໍ້</target>
+        <target state="translated">ອັກສອນຫຍໍ້</target>
         
       <note>Class = "NSMenuItem"; title = "Superscript"; ObjectID = "Rqc-34-cIF";</note></trans-unit>
       <trans-unit id="Ruw-6m-B2m.title" xml:space="preserve">
         <source>Select All</source>
-        <target state="needs-translation">ເລືອກທັງໝົດ</target>
+        <target state="translated">ເລືອກທັງໝົດ</target>
         
       <note>Class = "NSMenuItem"; title = "Select All"; ObjectID = "Ruw-6m-B2m";</note></trans-unit>
       <trans-unit id="S0p-oC-mLd.title" xml:space="preserve">
         <source>Jump to Selection</source>
-        <target state="needs-translation">ກົດໄປທີເລືອກ</target>
+        <target state="translated">ກົດໄປທີເລືອກ</target>
         
       <note>Class = "NSMenuItem"; title = "Jump to Selection"; ObjectID = "S0p-oC-mLd";</note></trans-unit>
       <trans-unit id="TEm-B8-gsH.title" xml:space="preserve">
         <source>Document</source>
-        <target state="needs-translation">ເອກະສານ</target>
+        <target state="translated">ເອກະສານ</target>
         
       <note>Class = "NSMenuItem"; title = "Document"; ObjectID = "TEm-B8-gsH";</note></trans-unit>
       <trans-unit id="Td7-aD-5lo.title" xml:space="preserve">
         <source>Window</source>
-        <target state="needs-translation">ໜ້າຕ່າງ</target>
+        <target state="translated">ໜ້າຕ່າງ</target>
         
       <note>Class = "NSMenu"; title = "Window"; ObjectID = "Td7-aD-5lo";</note></trans-unit>
       <trans-unit id="UEZ-Bs-lqG.title" xml:space="preserve">
         <source>Capitalize</source>
-        <target state="needs-translation">ໃຫ້ເປັນໂຕອັກສອນໃຫ່ຍ</target>
+        <target state="translated">ໃຫ້ເປັນໂຕອັກສອນໃຫ່ຍ</target>
         
       <note>Class = "NSMenuItem"; title = "Capitalize"; ObjectID = "UEZ-Bs-lqG";</note></trans-unit>
       <trans-unit id="VIY-Ag-zcb.title" xml:space="preserve">
         <source>Center</source>
-        <target state="needs-translation">ທາງກາງ</target>
+        <target state="translated">ທາງກາງ</target>
         
       <note>Class = "NSMenuItem"; title = "Center"; ObjectID = "VIY-Ag-zcb";</note></trans-unit>
       <trans-unit id="Vdr-fp-XzO.title" xml:space="preserve">
         <source>Hide Others</source>
-        <target state="needs-translation">ເຊື່ອງອັນອື່ນໆ</target>
+        <target state="translated">ເຊື່ອງອັນອື່ນໆ</target>
         
       <note>Class = "NSMenuItem"; title = "Hide Others"; ObjectID = "Vdr-fp-XzO";</note></trans-unit>
       <trans-unit id="Vjx-xi-njq.title" xml:space="preserve">
         <source>Italic</source>
-        <target state="needs-translation">ໂຕເນີ້ງ</target>
+        <target state="translated">ໂຕເນີ້ງ</target>
         
       <note>Class = "NSMenuItem"; title = "Italic"; ObjectID = "Vjx-xi-njq";</note></trans-unit>
       <trans-unit id="W48-6f-4Dl.title" xml:space="preserve">
         <source>Edit</source>
-        <target state="needs-translation">ແກ້ໄຂ</target>
+        <target state="translated">ແກ້ໄຂ</target>
         
       <note>Class = "NSMenu"; title = "Edit"; ObjectID = "W48-6f-4Dl";</note></trans-unit>
       <trans-unit id="WRG-CD-K1S.title" xml:space="preserve">
         <source>Underline</source>
-        <target state="needs-translation">ຂີດກ້ອງ</target>
+        <target state="translated">ຂີດກ້ອງ</target>
         
       <note>Class = "NSMenuItem"; title = "Underline"; ObjectID = "WRG-CD-K1S";</note></trans-unit>
       <trans-unit id="WeT-3V-zwk.title" xml:space="preserve">
         <source>Paste and Match Style</source>
-        <target state="needs-translation">ວາງແລະໃຫ້ເປັນຮູບແບບດຽວກັນ</target>
+        <target state="translated">ວາງແລະໃຫ້ເປັນຮູບແບບດຽວກັນ</target>
         
       <note>Class = "NSMenuItem"; title = "Paste and Match Style"; ObjectID = "WeT-3V-zwk";</note></trans-unit>
       <trans-unit id="Xz5-n4-O0W.title" xml:space="preserve">
         <source>Find…</source>
-        <target state="needs-translation">ຄົ້ນຫາ…</target>
+        <target state="translated">ຄົ້ນຫາ…</target>
         
       <note>Class = "NSMenuItem"; title = "Find…"; ObjectID = "Xz5-n4-O0W";</note></trans-unit>
       <trans-unit id="YEy-JH-Tfz.title" xml:space="preserve">
         <source>Find and Replace…</source>
-        <target state="needs-translation">ຊອກຫາແລະປ່ຽນແທນ…</target>
+        <target state="translated">ຊອກຫາແລະປ່ຽນແທນ…</target>
         
       <note>Class = "NSMenuItem"; title = "Find and Replace…"; ObjectID = "YEy-JH-Tfz";</note></trans-unit>
       <trans-unit id="YGs-j5-SAR.title" xml:space="preserve">
         <source>	Default</source>
-        <target state="needs-translation">	ຄ່າເລີ່ມຕົ້ນ</target>
+        <target state="translated">	ຄ່າເລີ່ມຕົ້ນ</target>
         
       <note>Class = "NSMenuItem"; title = "\tDefault"; ObjectID = "YGs-j5-SAR";</note></trans-unit>
       <trans-unit id="Ynk-f8-cLZ.title" xml:space="preserve">
         <source>Start Speaking</source>
-        <target state="needs-translation">ເລີ່ມໂອ້ລົມ</target>
+        <target state="translated">ເລີ່ມໂອ້ລົມ</target>
         
       <note>Class = "NSMenuItem"; title = "Start Speaking"; ObjectID = "Ynk-f8-cLZ";</note></trans-unit>
       <trans-unit id="ZM1-6Q-yy1.title" xml:space="preserve">
         <source>Align Left</source>
-        <target state="needs-translation">ຢັບຊ້າຍ</target>
+        <target state="translated">ຢັບຊ້າຍ</target>
         
       <note>Class = "NSMenuItem"; title = "Align Left"; ObjectID = "ZM1-6Q-yy1";</note></trans-unit>
       <trans-unit id="ZbA-hc-8PE.title" xml:space="preserve">
         <source>Version</source>
-        <target state="needs-translation">ເວີຊັນ</target>
+        <target state="translated">ເວີຊັນ</target>
         
       <note>Class = "NSTextFieldCell"; title = "Version"; ObjectID = "ZbA-hc-8PE";</note></trans-unit>
       <trans-unit id="Zsi-3o-ASl.title" xml:space="preserve">
         <source>Email:</source>
-        <target state="needs-translation">ອີເມລ:</target>
+        <target state="translated">ອີເມລ:</target>
         
       <note>Class = "NSTextFieldCell"; title = "Email:"; ObjectID = "Zsi-3o-ASl";</note></trans-unit>
       <trans-unit id="ZvO-Gk-QUH.title" xml:space="preserve">
         <source>Paragraph</source>
-        <target state="needs-translation">ພາລາກ</target>
+        <target state="translated">ພາລາກ</target>
         
       <note>Class = "NSMenuItem"; title = "Paragraph"; ObjectID = "ZvO-Gk-QUH";</note></trans-unit>
       <trans-unit id="aTl-1u-JFS.title" xml:space="preserve">
         <source>Print…</source>
-        <target state="needs-translation">ພິມ</target>
+        <target state="translated">ພິມ</target>
         
       <note>Class = "NSMenuItem"; title = "Print…"; ObjectID = "aTl-1u-JFS";</note></trans-unit>
       <trans-unit id="aUF-d1-5bR.title" xml:space="preserve">
         <source>Window</source>
-        <target state="needs-translation">ວິນໂດ</target>
+        <target state="translated">ວິນໂດ</target>
         
       <note>Class = "NSMenuItem"; title = "Window"; ObjectID = "aUF-d1-5bR";</note></trans-unit>
       <trans-unit id="aXa-aM-Jaq.title" xml:space="preserve">
         <source>Font</source>
-        <target state="needs-translation">ຟອນຕົວໜັງສື</target>
+        <target state="translated">ຟອນຕົວໜັງສື</target>
         
       <note>Class = "NSMenu"; title = "Font"; ObjectID = "aXa-aM-Jaq";</note></trans-unit>
       <trans-unit id="agt-UL-0e3.title" xml:space="preserve">
         <source>Use Default</source>
-        <target state="needs-translation">ກຳນົດການນຳໃຊ້</target>
+        <target state="translated">ກຳນົດການນຳໃຊ້</target>
         
       <note>Class = "NSMenuItem"; title = "Use Default"; ObjectID = "agt-UL-0e3";</note></trans-unit>
       <trans-unit id="bgn-CT-cEk.title" xml:space="preserve">
         <source>Show Colors</source>
-        <target state="needs-translation">ສະແດງສີ</target>
+        <target state="translated">ສະແດງສີ</target>
         
       <note>Class = "NSMenuItem"; title = "Show Colors"; ObjectID = "bgn-CT-cEk";</note></trans-unit>
       <trans-unit id="bib-Uj-vzu.title" xml:space="preserve">
         <source>File</source>
-        <target state="needs-translation">ຟາຍເອກະສານ</target>
+        <target state="translated">ຟາຍເອກະສານ</target>
         
       <note>Class = "NSMenu"; title = "File"; ObjectID = "bib-Uj-vzu";</note></trans-unit>
       <trans-unit id="buJ-ug-pKt.title" xml:space="preserve">
         <source>Use Selection for Find</source>
-        <target state="needs-translation">ໃຊ້ຕົວເລືອກເພື່ອຊອກຫາ</target>
+        <target state="translated">ໃຊ້ຕົວເລືອກເພື່ອຊອກຫາ</target>
         
       <note>Class = "NSMenuItem"; title = "Use Selection for Find"; ObjectID = "buJ-ug-pKt";</note></trans-unit>
       <trans-unit id="c8a-y6-VQd.title" xml:space="preserve">
         <source>Transformations</source>
-        <target state="needs-translation">ການຫັນປ່ຽນ</target>
+        <target state="translated">ການຫັນປ່ຽນ</target>
         
       <note>Class = "NSMenu"; title = "Transformations"; ObjectID = "c8a-y6-VQd";</note></trans-unit>
       <trans-unit id="cDB-IK-hbR.title" xml:space="preserve">
         <source>Use None</source>
-        <target state="needs-translation">ບໍ່ໄດ້ໃຊ້</target>
+        <target state="translated">ບໍ່ໄດ້ໃຊ້</target>
         
       <note>Class = "NSMenuItem"; title = "Use None"; ObjectID = "cDB-IK-hbR";</note></trans-unit>
       <trans-unit id="cqv-fj-IhA.title" xml:space="preserve">
         <source>Selection</source>
-        <target state="needs-translation">ການເລືອກ</target>
+        <target state="translated">ການເລືອກ</target>
         
       <note>Class = "NSMenuItem"; title = "Selection"; ObjectID = "cqv-fj-IhA";</note></trans-unit>
       <trans-unit id="cwL-P1-jid.title" xml:space="preserve">
         <source>Smart Links</source>
-        <target state="needs-translation">ລິ່ງ</target>
+        <target state="translated">ລິ່ງ</target>
         
       <note>Class = "NSMenuItem"; title = "Smart Links"; ObjectID = "cwL-P1-jid";</note></trans-unit>
       <trans-unit id="d9M-CD-aMd.title" xml:space="preserve">
         <source>Make Lower Case</source>
-        <target state="needs-translation">ສ້າງຕົວພິມນ້ອຍກ່ວາ</target>
+        <target state="translated">ສ້າງຕົວພິມນ້ອຍກ່ວາ</target>
         
       <note>Class = "NSMenuItem"; title = "Make Lower Case"; ObjectID = "d9M-CD-aMd";</note></trans-unit>
       <trans-unit id="d9c-me-L2H.title" xml:space="preserve">
         <source>Text</source>
-        <target state="needs-translation">ຂໍ້ຄວາມ</target>
+        <target state="translated">ຂໍ້ຄວາມ</target>
         
       <note>Class = "NSMenu"; title = "Text"; ObjectID = "d9c-me-L2H";</note></trans-unit>
       <trans-unit id="dMs-cI-mzQ.title" xml:space="preserve">
         <source>File</source>
-        <target state="needs-translation">ຟາຍເອກະສານ</target>
+        <target state="translated">ຟາຍເອກະສານ</target>
         
       <note>Class = "NSMenuItem"; title = "File"; ObjectID = "dMs-cI-mzQ";</note></trans-unit>
       <trans-unit id="dRJ-4n-Yzg.title" xml:space="preserve">
         <source>Undo</source>
-        <target state="needs-translation">ກັບຄືນຄ່າ</target>
+        <target state="translated">ກັບຄືນຄ່າ</target>
         
       <note>Class = "NSMenuItem"; title = "Undo"; ObjectID = "dRJ-4n-Yzg";</note></trans-unit>
       <trans-unit id="gVA-U4-sdL.title" xml:space="preserve">
         <source>Paste</source>
-        <target state="needs-translation">ວາງ</target>
+        <target state="translated">ວາງ</target>
         
       <note>Class = "NSMenuItem"; title = "Paste"; ObjectID = "gVA-U4-sdL";</note></trans-unit>
       <trans-unit id="gm3-6i-EnL.title" xml:space="preserve">
         <source>File Name</source>
-        <target state="needs-translation">ຊື່ຟາຍເອກະສານ</target>
+        <target state="translated">ຊື່ຟາຍເອກະສານ</target>
         
       <note>Class = "NSTextFieldCell"; title = "File Name"; ObjectID = "gm3-6i-EnL";</note></trans-unit>
       <trans-unit id="hD5-Cz-ItX.title" xml:space="preserve">
         <source>New</source>
-        <target state="needs-translation">ໃໝ່</target>
+        <target state="translated">ໃໝ່</target>
         
       <note>Class = "NSMenu"; title = "New"; ObjectID = "hD5-Cz-ItX";</note></trans-unit>
       <trans-unit id="hQb-2v-fYv.title" xml:space="preserve">
         <source>Smart Quotes</source>
-        <target state="needs-translation">ວົງຢືມ</target>
+        <target state="translated">ວົງຢືມ</target>
         
       <note>Class = "NSMenuItem"; title = "Smart Quotes"; ObjectID = "hQb-2v-fYv";</note></trans-unit>
       <trans-unit id="hkB-TU-Ps1.title" xml:space="preserve">
         <source>Presentation</source>
-        <target state="needs-translation">ການນຳສະເໜີ</target>
+        <target state="translated">ການນຳສະເໜີ</target>
         
       <note>Class = "NSMenuItem"; title = "Presentation"; ObjectID = "hkB-TU-Ps1";</note></trans-unit>
       <trans-unit id="hz2-CU-CR7.title" xml:space="preserve">
         <source>Check Document Now</source>
-        <target state="needs-translation">ກວດເອກະສານຕອນນີ້</target>
+        <target state="translated">ກວດເອກະສານຕອນນີ້</target>
         
       <note>Class = "NSMenuItem"; title = "Check Document Now"; ObjectID = "hz2-CU-CR7";</note></trans-unit>
       <trans-unit id="hz9-B4-Xy5.title" xml:space="preserve">
         <source>Services</source>
-        <target state="needs-translation">ການບໍລິການ</target>
+        <target state="translated">ການບໍລິການ</target>
         
       <note>Class = "NSMenu"; title = "Services"; ObjectID = "hz9-B4-Xy5";</note></trans-unit>
       <trans-unit id="i1d-Er-qST.title" xml:space="preserve">
         <source>Smaller</source>
-        <target state="needs-translation">ໜ້ອຍກວ່າ</target>
+        <target state="translated">ໜ້ອຍກວ່າ</target>
         
       <note>Class = "NSMenuItem"; title = "Smaller"; ObjectID = "i1d-Er-qST";</note></trans-unit>
       <trans-unit id="ijk-EB-dga.title" xml:space="preserve">
         <source>Baseline</source>
-        <target state="needs-translation">ພື້ນຖານ</target>
+        <target state="translated">ພື້ນຖານ</target>
         
       <note>Class = "NSMenu"; title = "Baseline"; ObjectID = "ijk-EB-dga";</note></trans-unit>
       <trans-unit id="jBQ-r6-VK2.title" xml:space="preserve">
         <source>Kern</source>
-        <target state="needs-translation">ເຄີແນວ</target>
+        <target state="translated">ເຄີແນວ</target>
         
       <note>Class = "NSMenuItem"; title = "Kern"; ObjectID = "jBQ-r6-VK2";</note></trans-unit>
       <trans-unit id="jFq-tB-4Kx.title" xml:space="preserve">
         <source>	Right to Left</source>
-        <target state="needs-translation">	ຊ້າຍຫາຂວາ</target>
+        <target state="translated">	ຊ້າຍຫາຂວາ</target>
         
       <note>Class = "NSMenuItem"; title = "\tRight to Left"; ObjectID = "jFq-tB-4Kx";</note></trans-unit>
       <trans-unit id="jxT-CU-nIS.title" xml:space="preserve">
         <source>Format</source>
-        <target state="needs-translation">ຮູບແບບ</target>
+        <target state="translated">ຮູບແບບ</target>
         
       <note>Class = "NSMenuItem"; title = "Format"; ObjectID = "jxT-CU-nIS";</note></trans-unit>
       <trans-unit id="kcg-El-49G.label" xml:space="preserve">
         <source>ONLYOFFICE</source>
-        <target state="needs-translation">ຫ້ອງການ</target>
+        <target state="translated">ຫ້ອງການ</target>
         
       <note>Class = "NSTabViewItem"; label = "ONLYOFFICE"; ObjectID = "kcg-El-49G";</note></trans-unit>
       <trans-unit id="m0C-e9-0oc.title" xml:space="preserve">
         <source>Cancel</source>
-        <target state="needs-translation">ຍົກເລີກ</target>
+        <target state="translated">ຍົກເລີກ</target>
         
       <note>Class = "NSButtonCell"; title = "Cancel"; ObjectID = "m0C-e9-0oc";</note></trans-unit>
       <trans-unit id="mK6-2p-4JG.title" xml:space="preserve">
         <source>Check Grammar With Spelling</source>
-        <target state="needs-translation">ກວດໄວຍາກອນ ແລະ ສະກົດຄຳ</target>
+        <target state="translated">ກວດໄວຍາກອນ ແລະ ສະກົດຄຳ</target>
         
       <note>Class = "NSMenuItem"; title = "Check Grammar With Spelling"; ObjectID = "mK6-2p-4JG";</note></trans-unit>
       <trans-unit id="o6e-r0-MWq.title" xml:space="preserve">
         <source>Ligatures</source>
-        <target state="needs-translation">ຜູກ</target>
+        <target state="translated">ຜູກ</target>
         
       <note>Class = "NSMenuItem"; title = "Ligatures"; ObjectID = "o6e-r0-MWq";</note></trans-unit>
       <trans-unit id="oas-Oc-fiZ.title" xml:space="preserve">
         <source>Open Recent</source>
-        <target state="needs-translation">ເປີດເມື່ອບໍ່ດົນ</target>
+        <target state="translated">ເປີດເມື່ອບໍ່ດົນ</target>
         
       <note>Class = "NSMenu"; title = "Open Recent"; ObjectID = "oas-Oc-fiZ";</note></trans-unit>
       <trans-unit id="ogc-rX-tC1.title" xml:space="preserve">
         <source>Loosen</source>
-        <target state="needs-translation">ແບບຫຼົມ</target>
+        <target state="translated">ແບບຫຼົມ</target>
         
       <note>Class = "NSMenuItem"; title = "Loosen"; ObjectID = "ogc-rX-tC1";</note></trans-unit>
       <trans-unit id="pa3-QI-u2k.title" xml:space="preserve">
         <source>Delete</source>
-        <target state="needs-translation">ລົບ</target>
+        <target state="translated">ລົບ</target>
         
       <note>Class = "NSMenuItem"; title = "Delete"; ObjectID = "pa3-QI-u2k";</note></trans-unit>
       <trans-unit id="pxx-59-PXV.title" xml:space="preserve">
         <source>Save</source>
-        <target state="needs-translation">ບັນທຶກ</target>
+        <target state="translated">ບັນທຶກ</target>
         
       <note>Class = "NSMenuItem"; title = "Save"; ObjectID = "pxx-59-PXV";</note></trans-unit>
       <trans-unit id="q09-fT-Sye.title" xml:space="preserve">
         <source>Find Next</source>
-        <target state="needs-translation">ຊອກທັດໄປ</target>
+        <target state="translated">ຊອກທັດໄປ</target>
         
       <note>Class = "NSMenuItem"; title = "Find Next"; ObjectID = "q09-fT-Sye";</note></trans-unit>
       <trans-unit id="qIS-W8-SiK.title" xml:space="preserve">
         <source>Page Setup…</source>
-        <target state="needs-translation">ຕັ້ງຄ່າໜ້າເຈ້ຍ…</target>
+        <target state="translated">ຕັ້ງຄ່າໜ້າເຈ້ຍ…</target>
         
       <note>Class = "NSMenuItem"; title = "Page Setup…"; ObjectID = "qIS-W8-SiK";</note></trans-unit>
       <trans-unit id="rbD-Rh-wIN.title" xml:space="preserve">
         <source>Check Spelling While Typing</source>
-        <target state="needs-translation">ກວດສະກົດຄຳໃນຄະນະພິມ</target>
+        <target state="translated">ກວດສະກົດຄຳໃນຄະນະພິມ</target>
         
       <note>Class = "NSMenuItem"; title = "Check Spelling While Typing"; ObjectID = "rbD-Rh-wIN";</note></trans-unit>
       <trans-unit id="rgM-f4-ycn.title" xml:space="preserve">
         <source>Smart Dashes</source>
-        <target state="needs-translation">ເສັ້ນຂີດກ້ອງ</target>
+        <target state="translated">ເສັ້ນຂີດກ້ອງ</target>
         
       <note>Class = "NSMenuItem"; title = "Smart Dashes"; ObjectID = "rgM-f4-ycn";</note></trans-unit>
       <trans-unit id="sGd-zc-V0B.title" xml:space="preserve">
         <source>Copyright info</source>
-        <target state="needs-translation">ຂໍ້ມູນລິຂະສິດ</target>
+        <target state="translated">ຂໍ້ມູນລິຂະສິດ</target>
         
       <note>Class = "NSTextFieldCell"; title = "Copyright info"; ObjectID = "sGd-zc-V0B";</note></trans-unit>
       <trans-unit id="snW-S8-Cw5.title" xml:space="preserve">
         <source>Show Toolbar</source>
-        <target state="needs-translation">ສະແດງແຖບເຄື່ອງມື</target>
+        <target state="translated">ສະແດງແຖບເຄື່ອງມື</target>
         
       <note>Class = "NSMenuItem"; title = "Show Toolbar"; ObjectID = "snW-S8-Cw5";</note></trans-unit>
       <trans-unit id="tRr-pd-1PS.title" xml:space="preserve">
         <source>Data Detectors</source>
-        <target state="needs-translation">ກວດຂໍ້ມູນ</target>
+        <target state="translated">ກວດຂໍ້ມູນ</target>
         
       <note>Class = "NSMenuItem"; title = "Data Detectors"; ObjectID = "tRr-pd-1PS";</note></trans-unit>
       <trans-unit id="tXI-mr-wws.title" xml:space="preserve">
         <source>Open Recent</source>
-        <target state="needs-translation">ເປີດເມື່ອບໍ່ດົນມານີ້</target>
+        <target state="translated">ເປີດເມື່ອບໍ່ດົນມານີ້</target>
         
       <note>Class = "NSMenuItem"; title = "Open Recent"; ObjectID = "tXI-mr-wws";</note></trans-unit>
       <trans-unit id="tlD-Oa-oAM.title" xml:space="preserve">
         <source>Kern</source>
-        <target state="needs-translation">ເຄີແນວ</target>
+        <target state="translated">ເຄີແນວ</target>
         
       <note>Class = "NSMenu"; title = "Kern"; ObjectID = "tlD-Oa-oAM";</note></trans-unit>
       <trans-unit id="uQy-DD-JDr.title" xml:space="preserve">
         <source>ONLYOFFICE</source>
-        <target state="needs-translation">ຫ້ອງການຢ່າງດຽວ</target>
+        <target state="translated">ຫ້ອງການຢ່າງດຽວ</target>
         
       <note>Class = "NSMenu"; title = "ONLYOFFICE"; ObjectID = "uQy-DD-JDr";</note></trans-unit>
       <trans-unit id="uRl-iY-unG.title" xml:space="preserve">
         <source>Cut</source>
-        <target state="needs-translation">ຕັດ</target>
+        <target state="translated">ຕັດ</target>
         
       <note>Class = "NSMenuItem"; title = "Cut"; ObjectID = "uRl-iY-unG";</note></trans-unit>
       <trans-unit id="ud7-wC-A79.title" xml:space="preserve">
         <source>Check for Updates…</source>
-        <target state="needs-translation">ກວດເພອື່ຶອັບເດດ…</target>
+        <target state="translated">ກວດເພອື່ຶອັບເດດ…</target>
         
       <note>Class = "NSMenuItem"; title = "Check for Updates…"; ObjectID = "ud7-wC-A79";</note></trans-unit>
       <trans-unit id="vKC-jM-MkH.title" xml:space="preserve">
         <source>Paste Style</source>
-        <target state="needs-translation">ວີທີວາງ</target>
+        <target state="translated">ວີທີວາງ</target>
         
       <note>Class = "NSMenuItem"; title = "Paste Style"; ObjectID = "vKC-jM-MkH";</note></trans-unit>
       <trans-unit id="vLm-3I-IUL.title" xml:space="preserve">
         <source>Show Ruler</source>
-        <target state="needs-translation">ສະແດງໄມ້ບັນທັດ</target>
+        <target state="translated">ສະແດງໄມ້ບັນທັດ</target>
         
       <note>Class = "NSMenuItem"; title = "Show Ruler"; ObjectID = "vLm-3I-IUL";</note></trans-unit>
       <trans-unit id="vNY-rz-j42.title" xml:space="preserve">
         <source>Clear Menu</source>
-        <target state="needs-translation">ລ້າງເມນູ</target>
+        <target state="translated">ລ້າງເມນູ</target>
         
       <note>Class = "NSMenuItem"; title = "Clear Menu"; ObjectID = "vNY-rz-j42";</note></trans-unit>
       <trans-unit id="vmV-6d-7jI.title" xml:space="preserve">
         <source>Make Upper Case</source>
-        <target state="needs-translation">ຕົວພິມໃຫຍ່</target>
+        <target state="translated">ຕົວພິມໃຫຍ່</target>
         
       <note>Class = "NSMenuItem"; title = "Make Upper Case"; ObjectID = "vmV-6d-7jI";</note></trans-unit>
       <trans-unit id="w0m-vy-SC9.title" xml:space="preserve">
         <source>Ligatures</source>
-        <target state="needs-translation">ຜູກ</target>
+        <target state="translated">ຜູກ</target>
         
       <note>Class = "NSMenu"; title = "Ligatures"; ObjectID = "w0m-vy-SC9";</note></trans-unit>
       <trans-unit id="wb2-vD-lq4.title" xml:space="preserve">
         <source>Align Right</source>
-        <target state="needs-translation">ຈັດລຽງດ້ານຊ້າຍ</target>
+        <target state="translated">ຈັດລຽງດ້ານຊ້າຍ</target>
         
       <note>Class = "NSMenuItem"; title = "Align Right"; ObjectID = "wb2-vD-lq4";</note></trans-unit>
       <trans-unit id="wpe-8d-5DV.title" xml:space="preserve">
         <source>Text Cell</source>
-        <target state="needs-translation">ຂໍ້ຄວາມ</target>
+        <target state="translated">ຂໍ້ຄວາມ</target>
         
       <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "wpe-8d-5DV";</note></trans-unit>
       <trans-unit id="wpr-3q-Mcd.title" xml:space="preserve">
         <source>Help</source>
-        <target state="needs-translation">ຊ່ວຍເຫຼືອ</target>
+        <target state="translated">ຊ່ວຍເຫຼືອ</target>
         
       <note>Class = "NSMenuItem"; title = "Help"; ObjectID = "wpr-3q-Mcd";</note></trans-unit>
       <trans-unit id="x3v-GG-iWU.title" xml:space="preserve">
         <source>Copy</source>
-        <target state="needs-translation">ສຳເນົາ</target>
+        <target state="translated">ສຳເນົາ</target>
         
       <note>Class = "NSMenuItem"; title = "Copy"; ObjectID = "x3v-GG-iWU";</note></trans-unit>
       <trans-unit id="xCO-ey-2lo.title" xml:space="preserve">
         <source>Product</source>
-        <target state="needs-translation">ຜະລິດຕະພັນ</target>
+        <target state="translated">ຜະລິດຕະພັນ</target>
         
       <note>Class = "NSTextFieldCell"; title = "Product"; ObjectID = "xCO-ey-2lo";</note></trans-unit>
       <trans-unit id="xQD-1f-W4t.title" xml:space="preserve">
         <source>Use All</source>
-        <target state="needs-translation">ໃຊ້ທັງໝົດ</target>
+        <target state="translated">ໃຊ້ທັງໝົດ</target>
         
       <note>Class = "NSMenuItem"; title = "Use All"; ObjectID = "xQD-1f-W4t";</note></trans-unit>
       <trans-unit id="xrE-MZ-jX0.title" xml:space="preserve">
         <source>Speech</source>
-        <target state="needs-translation">ກ່າວ</target>
+        <target state="translated">ກ່າວ</target>
         
       <note>Class = "NSMenuItem"; title = "Speech"; ObjectID = "xrE-MZ-jX0";</note></trans-unit>
       <trans-unit id="z6F-FW-3nz.title" xml:space="preserve">
         <source>Show Substitutions</source>
-        <target state="needs-translation">ສະແດງການປ່ຽນແປງ</target>
+        <target state="translated">ສະແດງການປ່ຽນແປງ</target>
         
       <note>Class = "NSMenuItem"; title = "Show Substitutions"; ObjectID = "z6F-FW-3nz";</note></trans-unit>
       <trans-unit id="zwS-9G-S0N.title" xml:space="preserve">
         <source>Portal:</source>
-        <target state="needs-translation">ປະຕູ1:</target>
+        <target state="translated">ປະຕູ1:</target>
         
       <note>Class = "NSTextFieldCell"; title = "Portal:"; ObjectID = "zwS-9G-S0N";</note></trans-unit>
     </body>
   </file>
-  <file original="ONLYOFFICE/Base.lproj/MoveApplication.strings" source-language="en" target-language="en" datatype="plaintext">
+  <file original="ONLYOFFICE/Base.lproj/MoveApplication.strings" source-language="en" target-language="lo" datatype="plaintext">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c" />
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c"/>
     </header>
     <body>
       <trans-unit id="Could not move to Applications folder" xml:space="preserve">
         <source>Could not move to Applications folder</source>
-        <target state="needs-translation">ບໍ່ສາມາດແອັບໂຟນເດີ</target>
+        <target state="translated">ບໍ່ສາມາດແອັບໂຟນເດີ</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Do Not Move" xml:space="preserve">
         <source>Do Not Move</source>
-        <target state="needs-translation">ຫ້າມຍ້າຍ</target>
+        <target state="translated">ຫ້າມຍ້າຍ</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="I can move myself to the Applications folder if you'd like." xml:space="preserve">
         <source>I can move myself to the Applications folder if you'd like.</source>
-        <target state="needs-translation">ຂ້ອຍສາມາດຍ້າຍໄປທີ່ໂຟນເດີ Applications ໄດ້ຖ້າເຈົ້າຕ້ອງການ.</target>
+        <target state="translated">ຂ້ອຍສາມາດຍ້າຍໄປທີ່ໂຟນເດີ Applications ໄດ້ຖ້າເຈົ້າຕ້ອງການ.</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Move to Applications Folder" xml:space="preserve">
         <source>Move to Applications Folder</source>
-        <target state="needs-translation">ຍ້າຍແອັບໂຟນເດີ</target>
+        <target state="translated">ຍ້າຍແອັບໂຟນເດີ</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Move to Applications folder in your Home folder?" xml:space="preserve">
         <source>Move to Applications folder in your Home folder?</source>
-        <target state="needs-translation">ຍ້າຍໄປທີ່ໂຟນເດີ Applications ໃນໂຟນເດຫຼັກ ຂອງທ່ານ?</target>
+        <target state="translated">ຍ້າຍໄປທີ່ໂຟນເດີ Applications ໃນໂຟນເດຫຼັກ ຂອງທ່ານ?</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Move to Applications folder?" xml:space="preserve">
         <source>Move to Applications folder?</source>
-        <target state="needs-translation">ຍ້າຍແອັບໂຟນເດ?</target>
+        <target state="translated">ຍ້າຍແອັບໂຟນເດ?</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Note that this will require an administrator password." xml:space="preserve">
         <source>Note that this will require an administrator password.</source>
-        <target state="needs-translation">ໃຫ້ເບິ່ງວ່າສິ່ງນີ້ຈະຕ້ອງມີລະຫັດຜ່ານຂອງຜູ້ເບິ່ງແຍງລະບົບ.</target>
+        <target state="translated">ໃຫ້ເບິ່ງວ່າສິ່ງນີ້ຈະຕ້ອງມີລະຫັດຜ່ານຂອງຜູ້ເບິ່ງແຍງລະບົບ.</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="This will keep your Downloads folder uncluttered." xml:space="preserve">
         <source>This will keep your Downloads folder uncluttered.</source>
-        <target state="needs-translation">ນີ້ຈະເຮັດໃຫ້ໂຟນເດີດາວໂຫຼດ ຂອງທ່ານບໍ່ຖືກປິດ.</target>
+        <target state="translated">ນີ້ຈະເຮັດໃຫ້ໂຟນເດີດາວໂຫຼດ ຂອງທ່ານບໍ່ຖືກປິດ.</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
     </body>
   </file>
-  <file original="ONLYOFFICE/Base.lproj/Presentation-Reporter.storyboard" source-language="en" target-language="en" datatype="plaintext">
+  <file original="ONLYOFFICE/Base.lproj/Presentation-Reporter.storyboard" source-language="en" target-language="lo" datatype="plaintext">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c" />
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c"/>
     </header>
     <body>
       <trans-unit id="Ygx-5K-Hn8.title" xml:space="preserve">
         <source>Reporter Window</source>
-        <target state="needs-translation">ໂຕລາຍງານວິນໂດ</target>
+        <target state="translated">ໂຕລາຍງານວິນໂດ</target>
         
       <note>Class = "NSWindow"; title = "Reporter Window"; ObjectID = "Ygx-5K-Hn8";</note></trans-unit>
     </body>
   </file>
-  <file original="ONLYOFFICE/Resources/ONLYOFFICE/Base.lproj/InfoPlist.strings" source-language="en" target-language="en" datatype="plaintext">
+  <file original="ONLYOFFICE/Resources/ONLYOFFICE/Base.lproj/InfoPlist.strings" source-language="en" target-language="lo" datatype="plaintext">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c" />
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c"/>
     </header>
     <body>
       <trans-unit id="CFBundleName" xml:space="preserve">
         <source>ONLYOFFICE</source>
-        <target state="needs-translation">ONLYOFFICE</target>
+        <target state="translated">ONLYOFFICE</target>
         
       <note>Bundle name</note></trans-unit>
       <trans-unit id="NSHumanReadableCopyright" xml:space="preserve">
         <source>Copyright © 2020 Ascensio System SIA. All rights reserved.</source>
-        <target state="needs-translation">ລິຂະສິດ© 2020 Ascensio System SIA. ທັງໝົດແມ່ນສະຫງວນລິຂະສິດ.</target>
+        <target state="translated">ລິຂະສິດ© 2020 Ascensio System SIA. ທັງໝົດແມ່ນສະຫງວນລິຂະສິດ.</target>
         
       <note>Copyright (human-readable)</note></trans-unit>
     </body>

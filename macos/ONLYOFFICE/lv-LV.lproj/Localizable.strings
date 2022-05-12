@@ -1,0 +1,213 @@
+/* No comment provided by engineer. */
+"%@ Help" = "%@ Palīdzība";
+
+/* No comment provided by engineer. */
+"About %@" = "Par %@";
+
+/* No comment provided by engineer. */
+"Acknowledgments" = "Atzinības";
+
+/* No comment provided by engineer. */
+"Before signing the document, it must be saved." = "Dokuments pirms parakstīšanas jāsaglabā.";
+
+/* No comment provided by engineer. */
+"Cancel" = "Atcelt";
+
+/* No comment provided by engineer. */
+"Cannot open file of Digital Signature" = "Nevar atvērt Digitālā Paraksta failu";
+
+/* No comment provided by engineer. */
+"Cannot open file of Private Key" = "Nevar atvērt Privātās Atslēgas failu";
+
+/* No comment provided by engineer. */
+"Cannot open folder of the file location." = "Nevar atvērt faila atrašanās vietas mapi.";
+
+/* No comment provided by engineer. */
+"Comma-Separated Values" = "Ar Komatiem Atdalītas Vērtības";
+
+/* No comment provided by engineer. */
+"Create portal" = "Izveidot portālu";
+
+/* No comment provided by engineer. */
+"Delete and Quit" = "Dzēst un Iziet";
+
+/* No comment provided by engineer. */
+"DjVu File" = "DjVu Fails";
+
+/* No comment provided by engineer. */
+"Do you want to save the changes made to the document \"%@\"?" = "Vai jūs vēlaties saglabāt dokumentā \"%@\" veiktās izmaiņas?";
+
+/* No comment provided by engineer. */
+"Document %ld.docx" = "Dokuments %ld.docx";
+
+/* No comment provided by engineer. */
+"Document template" = "Dokumenta veidne";
+
+/* No comment provided by engineer. */
+"Excel 97-2003 Spreadsheet" = "Excel 97-2003 Izklājlapa";
+
+/* No comment provided by engineer. */
+"Excel 2007 Spreadsheet" = "Excel 2007 Izklājlapa";
+
+/* No comment provided by engineer. */
+"File \"%@\" can not be open or not exist." = "Failu \"%@\" nevar atvērt vai tas nepastāv.";
+
+/* No comment provided by engineer. */
+"File can not be open." = "Failu nevar atvērt.";
+
+/* No comment provided by engineer. */
+"File Format:" = "Faila Formāts:";
+
+/* No comment provided by engineer. */
+"Hide %@" = "Paslēpt %@";
+
+/* No comment provided by engineer. */
+"If you don't review your documents, all your changeses will be lost." = "Ja nepārskatīsiet savus dokumentus, visas jūsu veiktās izmaiņas tiks zaudētas.";
+
+/* No comment provided by engineer. */
+"If you have already purchased %@, you should find your activation key in an email confirmation." = "Ja esat jau iegādājies %@, jums vajadzētu atrast jūsu aktivizācijas atslēgu apstiprinājuma e-pastā.";
+
+/* No comment provided by engineer. */
+"License Agreement" = "Licences Līgums";
+
+/* No comment provided by engineer. */
+"Mobipocket e-book" = "Mobipocket e-grāmata";
+
+/* No comment provided by engineer. */
+"new-document" = "Jauns Dokuments";
+
+/* No comment provided by engineer. */
+"new-presentation" = "Jauna Prezentācija";
+
+/* No comment provided by engineer. */
+"new-spreadsheet" = "Jauna Izklājlapa";
+
+/* No comment provided by engineer. */
+"No" = "Nē";
+
+/* No comment provided by engineer. */
+"OK" = "Labi";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE can not open the Digital Signature file. Try opening another file." = "ONLYOFFICE nevar atvērt Digitālā Paraksta failu. Mēģiniet atvērt citu failu.";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE can not open the Private Key. Try opening another file." = "ONLYOFFICE nevar atvērt Privāto Atslēgu. Mēģiniet atvērt citu failu.";
+
+/* No comment provided by engineer. */
+"OpenDocument Document Template" = "OpenDocument Dokumenta Veidne";
+
+/* No comment provided by engineer. */
+"OpenDocument Presentation Template" = "OpenDocument Prezentācijas Veidne";
+
+/* No comment provided by engineer. */
+"OpenDocument Spreadsheet Template" = "OpenDocument Izklājlapas Veidne";
+
+/* No comment provided by engineer. */
+"Opening" = "Notiek atvēršana";
+
+/* No comment provided by engineer. */
+"OpenOffice Document" = "OpenOffice Dokuments";
+
+/* No comment provided by engineer. */
+"OpenOffice Presentation" = "OpenOffice Prezentācija";
+
+/* No comment provided by engineer. */
+"OpenOffice Spreadsheet" = "OpenOffice Izklājlapa";
+
+/* No comment provided by engineer. */
+"PDF File" = "PDF Fails";
+
+/* No comment provided by engineer. */
+"PDF/A File" = "PDF/A Fails";
+
+/* No comment provided by engineer. */
+"Plain Text" = "Parasts Teksts";
+
+/* No comment provided by engineer. */
+"PowerPoint 97-2003 Presentation" = "PowerPoint 97-2003 Prezentācija";
+
+/* No comment provided by engineer. */
+"PowerPoint 2007 Presentation" = "PowerPoint 2007 Prezentācija";
+
+/* No comment provided by engineer. */
+"PowerPoint Slide Show" = "PowerPoint Slaidrāde";
+
+/* No comment provided by engineer. */
+"Preparing..." = "Notiek sagatavošana...";
+
+/* No comment provided by engineer. */
+"Presentation %ld.pptx" = "Prezentācija %ld.pptx";
+
+/* No comment provided by engineer. */
+"Presentation template" = "Prezentācijas veidne";
+
+/* No comment provided by engineer. */
+"Quit %@" = "Iziet %@";
+
+/* No comment provided by engineer. */
+"Review Changes..." = "Apskatīt Izmaiņas...";
+
+/* No comment provided by engineer. */
+"Rich Text Document" = "Bagātināta Teksta Dokuments";
+
+/* No comment provided by engineer. */
+"Save" = "Saglabāt";
+
+/* No comment provided by engineer. */
+"Save the document?" = "Vai saglabāt dokumentu?";
+
+/* No comment provided by engineer. */
+"Spreadsheet %ld.xlsx" = "Izklājlapa %ld.xlsx";
+
+/* No comment provided by engineer. */
+"Spreadsheet template" = "Izklājlapas veidne";
+
+/* No comment provided by engineer. */
+"Thank you for evaluating %@!" = "Paldies, ka novērtējāt %@!";
+
+/* No comment provided by engineer. */
+"The document \"%@\" must be built. Continue?" = "Dokumentam \"%@\" jābūt izveidotam. Turpināt?";
+
+/* No comment provided by engineer. */
+"To open the file location, it must be saved." = "Lai atvērtu faila atrašanās vietu, tam jābūt saglabātam.";
+
+/* No comment provided by engineer. */
+"Unconfirmed" = "Neapstiprināts";
+
+/* No comment provided by engineer. */
+"Untitled" = "Bez nosaukuma";
+
+/* No comment provided by engineer. */
+"Version %@ (%@)" = "Versija %1$@ (%2$@)";
+
+/* No comment provided by engineer. */
+"Web Page" = "Web Lapa";
+
+/* No comment provided by engineer. */
+"Word 97-2003 Document" = "Word 97-2003 Dokuments";
+
+/* No comment provided by engineer. */
+"Word 2007 Document" = "Word 2007 Dokuments";
+
+/* No comment provided by engineer. */
+"XML Paper Specification" = "XML Papīra Specifikācija";
+
+/* No comment provided by engineer. */
+"Yes" = "Jā";
+
+/* No comment provided by engineer. */
+"You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?" = "Jums ir %1$ld %2$@ dokumenti ar neapstiprinātām izmaiņām. Vai vēlaties apskatīt šīs izmaiņas pirms iziešanas?";
+
+/* No comment provided by engineer. */
+"You have successfully activated %@." = "Jūs esat veiksmīgi aktivizējis %@.";
+
+/* No comment provided by engineer. */
+"Your changes will be lost if you don’t save them." = "Jūsu veiktās izmaiņas būs zaudētas, ja tās nesaglabāsiet.";
+
+/* No comment provided by engineer. */
+"Your subscription has expired.\n\nThe program works in the non-activated mode.\n\nNow you can prolong or upgrade your subscription with a discount." = "Jūsu abonementa termiņš ir beidzies.\n\nProgramma darbojas neaktivizētā režīmā.\n\nTagad varat pagarināt vai uzlabot savu abonementu ar atlaidi.";
+
+/* No comment provided by engineer. */
+"Your subscription is about to expire\n(%d days left).\n\nWe have a special offer for you." = "Jūsu abonements tūlīt beigsies\n(palikušas %d dienas).\n\nMums jums ir īpašs piedāvājums.";
+
