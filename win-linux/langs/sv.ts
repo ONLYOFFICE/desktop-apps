@@ -267,7 +267,7 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="240"/>
         <source>OpenDocument Presentation Template (*.otp)</source>
-        <translation>OpenDocument-kalkylbladsmall (*.otp)</translation>
+        <translation>OpenDocument-presentationsmall (*.otp)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="241"/>

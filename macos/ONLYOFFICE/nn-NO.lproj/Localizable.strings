@@ -1,0 +1,213 @@
+/* No comment provided by engineer. */
+"%@ Help" = "%@ Hjelp";
+
+/* No comment provided by engineer. */
+"About %@" = "Om %@";
+
+/* No comment provided by engineer. */
+"Acknowledgments" = "Bidragsytere";
+
+/* No comment provided by engineer. */
+"Before signing the document, it must be saved." = "Før du signerer dokumentet, må det lagres.";
+
+/* No comment provided by engineer. */
+"Cancel" = "Avbryt";
+
+/* No comment provided by engineer. */
+"Cannot open file of Digital Signature" = "Kan ikke åpne filen for digital signatur";
+
+/* No comment provided by engineer. */
+"Cannot open file of Private Key" = "Kan ikke åpne filen for den private nøkkelen";
+
+/* No comment provided by engineer. */
+"Cannot open folder of the file location." = "Kan ikke åpne mappen for filplasseringen.";
+
+/* No comment provided by engineer. */
+"Comma-Separated Values" = "Verdier adskilles med komma";
+
+/* No comment provided by engineer. */
+"Create portal" = "Opprett portal";
+
+/* No comment provided by engineer. */
+"Delete and Quit" = "Slett og avslutt";
+
+/* No comment provided by engineer. */
+"DjVu File" = "DjVu-fil";
+
+/* No comment provided by engineer. */
+"Do you want to save the changes made to the document \"%@\"?" = "Vil du lagre endringene som er gjort i dokumentet \"%@\"?";
+
+/* No comment provided by engineer. */
+"Document %ld.docx" = "Dokument %ld.docx";
+
+/* No comment provided by engineer. */
+"Document template" = "Dokumentmal";
+
+/* No comment provided by engineer. */
+"Excel 97-2003 Spreadsheet" = "Excel 97-2003 regneark";
+
+/* No comment provided by engineer. */
+"Excel 2007 Spreadsheet" = "Excel 2007 regneark";
+
+/* No comment provided by engineer. */
+"File \"%@\" can not be open or not exist." = "Filen \"%@\" kan ikke åpnes eller finnes ikke.";
+
+/* No comment provided by engineer. */
+"File can not be open." = "Filen kan ikke åpnes.";
+
+/* No comment provided by engineer. */
+"File Format:" = "Filformat:";
+
+/* No comment provided by engineer. */
+"Hide %@" = "Skjul %@";
+
+/* No comment provided by engineer. */
+"If you don't review your documents, all your changeses will be lost." = "Hvis du ikke gjennomgår dokumentene dine, vil alle endringene dine gå tapt.";
+
+/* No comment provided by engineer. */
+"If you have already purchased %@, you should find your activation key in an email confirmation." = "Hvis du allerede har kjøpt %@, skal du kunne finne aktiveringsnøkkelen i en e-postbekreftelse.";
+
+/* No comment provided by engineer. */
+"License Agreement" = "Lisensavtale";
+
+/* No comment provided by engineer. */
+"Mobipocket e-book" = "Mobipocket e-bok";
+
+/* No comment provided by engineer. */
+"new-document" = "Nytt dokument";
+
+/* No comment provided by engineer. */
+"new-presentation" = "Ny presentasjon";
+
+/* No comment provided by engineer. */
+"new-spreadsheet" = "Nytt regneark";
+
+/* No comment provided by engineer. */
+"No" = "Nei";
+
+/* No comment provided by engineer. */
+"OK" = "OK";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE can not open the Digital Signature file. Try opening another file." = "ONLYOFFICE kan ikke åpne filen for digital signatur. Prøv å åpne en annen fil.";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE can not open the Private Key. Try opening another file." = "ONLYOFFICE kan ikke åpne den private nøkkelen. Prøv å åpne en annen fil.";
+
+/* No comment provided by engineer. */
+"OpenDocument Document Template" = "OpenDocument dokumentmal";
+
+/* No comment provided by engineer. */
+"OpenDocument Presentation Template" = "OpenDocument presentasjonsmal";
+
+/* No comment provided by engineer. */
+"OpenDocument Spreadsheet Template" = "OpenDocument regnearkmal";
+
+/* No comment provided by engineer. */
+"Opening" = "Åpner";
+
+/* No comment provided by engineer. */
+"OpenOffice Document" = "OpenOffice-dokument";
+
+/* No comment provided by engineer. */
+"OpenOffice Presentation" = "OpenOffice-presentasjon";
+
+/* No comment provided by engineer. */
+"OpenOffice Spreadsheet" = "OpenOffice regneark";
+
+/* No comment provided by engineer. */
+"PDF File" = "PDF-fil";
+
+/* No comment provided by engineer. */
+"PDF/A File" = "PDF/A-fil";
+
+/* No comment provided by engineer. */
+"Plain Text" = "Ren tekst";
+
+/* No comment provided by engineer. */
+"PowerPoint 97-2003 Presentation" = "PowerPoint 97-2003-presentasjon";
+
+/* No comment provided by engineer. */
+"PowerPoint 2007 Presentation" = "PowerPoint 2007-presentasjon";
+
+/* No comment provided by engineer. */
+"PowerPoint Slide Show" = "PowerPoint lysbildefremvisning";
+
+/* No comment provided by engineer. */
+"Preparing..." = "Forbereder...";
+
+/* No comment provided by engineer. */
+"Presentation %ld.pptx" = "Presentasjon %ld.pptx";
+
+/* No comment provided by engineer. */
+"Presentation template" = "Presentasjonsmal";
+
+/* No comment provided by engineer. */
+"Quit %@" = "Avslutt %@";
+
+/* No comment provided by engineer. */
+"Review Changes..." = "Se gjennom endringer...";
+
+/* No comment provided by engineer. */
+"Rich Text Document" = "Rik tekst-dokument";
+
+/* No comment provided by engineer. */
+"Save" = "Lagre";
+
+/* No comment provided by engineer. */
+"Save the document?" = "Lagre dokumentet?";
+
+/* No comment provided by engineer. */
+"Spreadsheet %ld.xlsx" = "Regneark %ld.xlsx";
+
+/* No comment provided by engineer. */
+"Spreadsheet template" = "Regnearkmal";
+
+/* No comment provided by engineer. */
+"Thank you for evaluating %@!" = "Takk for at du evaluerte %@!";
+
+/* No comment provided by engineer. */
+"The document \"%@\" must be built. Continue?" = "Dokumentet \"%@\" må bygges. Fortsett?";
+
+/* No comment provided by engineer. */
+"To open the file location, it must be saved." = "For å kunne åpne filplasseringen, må den lagres.";
+
+/* No comment provided by engineer. */
+"Unconfirmed" = "Ikke bekreftet";
+
+/* No comment provided by engineer. */
+"Untitled" = "Uten tittel";
+
+/* No comment provided by engineer. */
+"Version %@ (%@)" = "Versjon %1$@ (%2$@)";
+
+/* No comment provided by engineer. */
+"Web Page" = "Nettsted";
+
+/* No comment provided by engineer. */
+"Word 97-2003 Document" = "Word 97-2003-dokument";
+
+/* No comment provided by engineer. */
+"Word 2007 Document" = "Word 2007-dokument";
+
+/* No comment provided by engineer. */
+"XML Paper Specification" = "XML Paper Specification";
+
+/* No comment provided by engineer. */
+"Yes" = "Ja";
+
+/* No comment provided by engineer. */
+"You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?" = "Du har %1$ld %2$@ dokumenter med ubekreftede endringer. Vil du gå gjennom disse endringene før du avslutter?";
+
+/* No comment provided by engineer. */
+"You have successfully activated %@." = "Du har aktivert %@.";
+
+/* No comment provided by engineer. */
+"Your changes will be lost if you don’t save them." = "Endringene dine vil gå tapt hvis du ikke lagrer dem.";
+
+/* No comment provided by engineer. */
+"Your subscription has expired.\n\nThe program works in the non-activated mode.\n\nNow you can prolong or upgrade your subscription with a discount." = "Abonnementet har utløpt.\n\nProgrammet fungerer i ikke-aktivert modus.\n\nNå kan du forlenge eller oppgradere abonnementet ditt med rabatt.";
+
+/* No comment provided by engineer. */
+"Your subscription is about to expire\n(%d days left).\n\nWe have a special offer for you." = "Abonnementet ditt er i ferd med å utløpe\n(%d dager igjen).\n\nVi har et spesialtilbud til deg.";
+

@@ -1,0 +1,210 @@
+/* No comment provided by engineer. */
+"%@ Help" = "%@ 도움말";
+
+/* No comment provided by engineer. */
+"About %@" = "%@ 소개";
+
+/* No comment provided by engineer. */
+"Acknowledgments" = "승인";
+
+/* No comment provided by engineer. */
+"Before signing the document, it must be saved." = "문서에 서명하기 전에 먼저 저장해야 합니다.";
+
+/* No comment provided by engineer. */
+"Cancel" = "취소";
+
+/* No comment provided by engineer. */
+"Cannot open file of Digital Signature" = "디지털 서명 파일을 열 수 없습니다";
+
+/* No comment provided by engineer. */
+"Cannot open file of Private Key" = "개인 키 파일을 열 수 없습니다";
+
+/* No comment provided by engineer. */
+"Cannot open folder of the file location." = "해당 파일 위치의 폴더를 열 수 없습니다.";
+
+/* No comment provided by engineer. */
+"Comma-Separated Values" = "쉼표로 구분된 값";
+
+/* No comment provided by engineer. */
+"Create portal" = "포털 생성";
+
+/* No comment provided by engineer. */
+"Delete and Quit" = "삭제 및 종료";
+
+/* No comment provided by engineer. */
+"DjVu File" = "DjVu 파일";
+
+/* No comment provided by engineer. */
+"Do you want to save the changes made to the document \"%@\"?" = "문서 \"%@\"의 변경 사항을 저장하시겠습니까?";
+
+/* No comment provided by engineer. */
+"Document %ld.docx" = "문서 %ld.docx";
+
+/* No comment provided by engineer. */
+"Document template" = "문서 템플릿";
+
+/* No comment provided by engineer. */
+"Excel 97-2003 Spreadsheet" = "엑셀 97-2003 스프레드시트";
+
+/* No comment provided by engineer. */
+"Excel 2007 Spreadsheet" = "엑셀 2007 스프레드시트";
+
+/* No comment provided by engineer. */
+"File \"%@\" can not be open or not exist." = "\"%@\" 파일이 존재하지 않거나 열 수 없습니다.";
+
+/* No comment provided by engineer. */
+"File can not be open." = "파일을 열 수 없습니다.";
+
+/* No comment provided by engineer. */
+"File Format:" = "파일 형식:";
+
+/* No comment provided by engineer. */
+"Hide %@" = "%@ 숨기기";
+
+/* No comment provided by engineer. */
+"If you have already purchased %@, you should find your activation key in an email confirmation." = "이미 %@ 구입을 완료했으므로, 확인 이메일에서 활성화 키를 찾으실 수 있을 것입니다.";
+
+/* No comment provided by engineer. */
+"License Agreement" = "라이센스 계약";
+
+/* No comment provided by engineer. */
+"Mobipocket e-book" = "Mobipocket e-book";
+
+/* No comment provided by engineer. */
+"new-document" = "새 문서";
+
+/* No comment provided by engineer. */
+"new-presentation" = "새 프레젠테이션";
+
+/* No comment provided by engineer. */
+"new-spreadsheet" = "새 스프레드시트";
+
+/* No comment provided by engineer. */
+"No" = "아니오";
+
+/* No comment provided by engineer. */
+"OK" = "확인";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE can not open the Digital Signature file. Try opening another file." = "ONLYOFFICE에서 해당 디지털 서명 파일을 열 수 없습니다. 다른 파일을 열어보십시오.";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE can not open the Private Key. Try opening another file." = "ONLYOFFICE에서 해당 개인 키를 열 수 없습니다. 다른 파일을 열어보십시오.";
+
+/* No comment provided by engineer. */
+"OpenDocument Document Template" = "OpenDocument 문서 템플릿";
+
+/* No comment provided by engineer. */
+"OpenDocument Presentation Template" = "OpenDocument 프레젠테이션 템플릿";
+
+/* No comment provided by engineer. */
+"OpenDocument Spreadsheet Template" = "OpenDocument 스프레드시트 템플릿";
+
+/* No comment provided by engineer. */
+"Opening" = "여는 중";
+
+/* No comment provided by engineer. */
+"OpenOffice Document" = "OpenOffice 문서";
+
+/* No comment provided by engineer. */
+"OpenOffice Presentation" = "OpenOffice 프레젠테이션";
+
+/* No comment provided by engineer. */
+"OpenOffice Spreadsheet" = "OpenOffice 스프레드시트";
+
+/* No comment provided by engineer. */
+"PDF File" = "PDF 파일";
+
+/* No comment provided by engineer. */
+"PDF/A File" = "PDF/A 파일";
+
+/* No comment provided by engineer. */
+"Plain Text" = "일반 텍스트";
+
+/* No comment provided by engineer. */
+"PowerPoint 97-2003 Presentation" = "파워포인트 97-2003 프레젠테이션";
+
+/* No comment provided by engineer. */
+"PowerPoint 2007 Presentation" = "파워포인트 2007 프레젠테이션";
+
+/* No comment provided by engineer. */
+"PowerPoint Slide Show" = "파워포인트 슬라이드 쇼";
+
+/* No comment provided by engineer. */
+"Preparing..." = "준비 중...";
+
+/* No comment provided by engineer. */
+"Presentation %ld.pptx" = "프레젠테이션 %ld.pptx";
+
+/* No comment provided by engineer. */
+"Presentation template" = "프레젠테이션 템플릿";
+
+/* No comment provided by engineer. */
+"Quit %@" = "%@ 종료";
+
+/* No comment provided by engineer. */
+"Review Changes..." = "변경 사항 검토 중...";
+
+/* No comment provided by engineer. */
+"Rich Text Document" = "서식있는 텍스트 문서";
+
+/* No comment provided by engineer. */
+"Save" = "저장";
+
+/* No comment provided by engineer. */
+"Save the document?" = "문서를 저장하시겠습니까?";
+
+/* No comment provided by engineer. */
+"Spreadsheet %ld.xlsx" = "스프레드시트 %ld.xlsx";
+
+/* No comment provided by engineer. */
+"Spreadsheet template" = "스프레드시트 템플릿";
+
+/* No comment provided by engineer. */
+"Thank you for evaluating %@!" = "%@를 평가해주셔서 감사합니다!";
+
+/* No comment provided by engineer. */
+"The document \"%@\" must be built. Continue?" = "\"%@\" 문서를 생성해야 합니다. 계속하시겠습니까?";
+
+/* No comment provided by engineer. */
+"To open the file location, it must be saved." = "해당 파일 위치를 열려면, 먼저 저장해야 합니다.";
+
+/* No comment provided by engineer. */
+"Unconfirmed" = "확인 안됨";
+
+/* No comment provided by engineer. */
+"Untitled" = "제목 없음";
+
+/* No comment provided by engineer. */
+"Version %@ (%@)" = "버전 %1$@ (%2$@)";
+
+/* No comment provided by engineer. */
+"Web Page" = "웹 페이지";
+
+/* No comment provided by engineer. */
+"Word 97-2003 Document" = "워드 97-2003 문서";
+
+/* No comment provided by engineer. */
+"Word 2007 Document" = "워드 2007 문서";
+
+/* No comment provided by engineer. */
+"XML Paper Specification" = "XML 용지 사양";
+
+/* No comment provided by engineer. */
+"Yes" = "네";
+
+/* No comment provided by engineer. */
+"You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?" = "%1$ld %2$@ 문서에 확인되지 않은 변경 사항이 있습니다. 종료 전 해당 변경 사항을 검토하시겠습니까?";
+
+/* No comment provided by engineer. */
+"You have successfully activated %@." = "%@ 활성화에 성공했습니다.";
+
+/* No comment provided by engineer. */
+"Your changes will be lost if you don’t save them." = "변경 사항을 저장하지 않으면 잃게 됩니다.";
+
+/* No comment provided by engineer. */
+"Your subscription has expired.\n\nThe program works in the non-activated mode.\n\nNow you can prolong or upgrade your subscription with a discount." = "정액제가 만료되었습니다.\n\n프로그램이 비활성 모드로 작동합니다.\n\n할인가로 정액제를 업그레이드하거나 연장하세요.";
+
+/* No comment provided by engineer. */
+"Your subscription is about to expire\n(%d days left).\n\nWe have a special offer for you." = "정액제가 곧 만료됩니다\n(%d일 남았습니다).\n\n고객님을 위해 스페셜 오퍼를 준비했습니다.";
+

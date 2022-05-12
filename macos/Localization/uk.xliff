@@ -1,1359 +1,1384 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.2" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd">
   <file original="ONLYOFFICE/Base.lproj/Document-Sign.storyboard" source-language="en" target-language="uk-UA" datatype="plaintext">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c" />
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c"/>
     </header>
     <body>
       <trans-unit id="1Fy-mg-aq9.title" xml:space="preserve">
         <source>Enter the password for the digital signature.</source>
-        <target state="new">Введіть пароль до цифрового підпису.</target>
-        
-      <note>Class = "NSTextFieldCell"; title = "Enter the password for the digital signature."; ObjectID = "1Fy-mg-aq9";</note></trans-unit>
+        <target>Введіть пароль до цифрового підпису.</target>
+        <note>Class = "NSTextFieldCell"; title = "Enter the password for the digital signature."; ObjectID = "1Fy-mg-aq9";</note>
+      </trans-unit>
       <trans-unit id="1dL-nN-bJI.title" xml:space="preserve">
         <source>Enter the password for the private key.</source>
-        <target state="new">Введіть пароль до закритого ключа.</target>
-        
-      <note>Class = "NSTextFieldCell"; title = "Enter the password for the private key."; ObjectID = "1dL-nN-bJI";</note></trans-unit>
+        <target>Введіть пароль до закритого ключа.</target>
+        <note>Class = "NSTextFieldCell"; title = "Enter the password for the private key."; ObjectID = "1dL-nN-bJI";</note>
+      </trans-unit>
       <trans-unit id="2Ck-6y-ygx.title" xml:space="preserve">
         <source>Specify the digital signature file for the document.</source>
-        <target state="new">Укажіть файл цифрового підпису для документа.</target>
-        
-      <note>Class = "NSTextFieldCell"; title = "Specify the digital signature file for the document."; ObjectID = "2Ck-6y-ygx";</note></trans-unit>
+        <target>Укажіть файл цифрового підпису для документа.</target>
+        <note>Class = "NSTextFieldCell"; title = "Specify the digital signature file for the document."; ObjectID = "2Ck-6y-ygx";</note>
+      </trans-unit>
       <trans-unit id="4gA-s8-Lne.placeholderString" xml:space="preserve">
         <source>Enter Password</source>
-        <target state="new">Введіть пароль</target>
-        
-      <note>Class = "NSSecureTextFieldCell"; placeholderString = "Enter Password"; ObjectID = "4gA-s8-Lne";</note></trans-unit>
+        <target>Введіть пароль</target>
+        <note>Class = "NSSecureTextFieldCell"; placeholderString = "Enter Password"; ObjectID = "4gA-s8-Lne";</note>
+      </trans-unit>
       <trans-unit id="GOU-av-TC1.title" xml:space="preserve">
         <source>Cancel</source>
-        <target state="new">Відмінити</target>
-        
-      <note>Class = "NSButtonCell"; title = "Cancel"; ObjectID = "GOU-av-TC1";</note></trans-unit>
+        <target>Відмінити</target>
+        <note>Class = "NSButtonCell"; title = "Cancel"; ObjectID = "GOU-av-TC1";</note>
+      </trans-unit>
       <trans-unit id="P3k-kI-w22.title" xml:space="preserve">
         <source>Load a Private Key</source>
-        <target state="new">Завантажте закритий ключ</target>
-        
-      <note>Class = "NSButtonCell"; title = "Load a Private Key"; ObjectID = "P3k-kI-w22";</note></trans-unit>
+        <target>Завантажте закритий ключ</target>
+        <note>Class = "NSButtonCell"; title = "Load a Private Key"; ObjectID = "P3k-kI-w22";</note>
+      </trans-unit>
       <trans-unit id="RbM-Dq-A3K.title" xml:space="preserve">
         <source>Cancel</source>
-        <target state="new">Відмінити</target>
-        
-      <note>Class = "NSButtonCell"; title = "Cancel"; ObjectID = "RbM-Dq-A3K";</note></trans-unit>
+        <target>Відмінити</target>
+        <note>Class = "NSButtonCell"; title = "Cancel"; ObjectID = "RbM-Dq-A3K";</note>
+      </trans-unit>
       <trans-unit id="Tfc-EF-VnS.title" xml:space="preserve">
         <source>Specify a private key for the digital signature.</source>
-        <target state="new">Укажіть закритий ключ для цифрового підпису.</target>
-        
-      <note>Class = "NSTextFieldCell"; title = "Specify a private key for the digital signature."; ObjectID = "Tfc-EF-VnS";</note></trans-unit>
+        <target>Укажіть закритий ключ для цифрового підпису.</target>
+        <note>Class = "NSTextFieldCell"; title = "Specify a private key for the digital signature."; ObjectID = "Tfc-EF-VnS";</note>
+      </trans-unit>
       <trans-unit id="Zj5-0h-hpW.placeholderString" xml:space="preserve">
         <source>Enter Password</source>
-        <target state="new">Введіть пароль</target>
-        
-      <note>Class = "NSSecureTextFieldCell"; placeholderString = "Enter Password"; ObjectID = "Zj5-0h-hpW";</note></trans-unit>
+        <target>Введіть пароль</target>
+        <note>Class = "NSSecureTextFieldCell"; placeholderString = "Enter Password"; ObjectID = "Zj5-0h-hpW";</note>
+      </trans-unit>
       <trans-unit id="jpH-3g-Gt5.title" xml:space="preserve">
         <source>Cancel</source>
-        <target state="new">Відмінити</target>
-        
-      <note>Class = "NSButtonCell"; title = "Cancel"; ObjectID = "jpH-3g-Gt5";</note></trans-unit>
+        <target>Відмінити</target>
+        <note>Class = "NSButtonCell"; title = "Cancel"; ObjectID = "jpH-3g-Gt5";</note>
+      </trans-unit>
       <trans-unit id="qZ4-0O-L0G.title" xml:space="preserve">
         <source>Cancel</source>
-        <target state="new">Відмінити</target>
-        
-      <note>Class = "NSButtonCell"; title = "Cancel"; ObjectID = "qZ4-0O-L0G";</note></trans-unit>
+        <target>Відмінити</target>
+        <note>Class = "NSButtonCell"; title = "Cancel"; ObjectID = "qZ4-0O-L0G";</note>
+      </trans-unit>
       <trans-unit id="tTF-wa-eJp.title" xml:space="preserve">
         <source>Load Signature</source>
-        <target state="new">Завантажте підпис</target>
-        
-      <note>Class = "NSButtonCell"; title = "Load Signature"; ObjectID = "tTF-wa-eJp";</note></trans-unit>
+        <target>Завантажте підпис</target>
+        <note>Class = "NSButtonCell"; title = "Load Signature"; ObjectID = "tTF-wa-eJp";</note>
+      </trans-unit>
     </body>
   </file>
   <file original="ONLYOFFICE/Base.lproj/Localizable.strings" source-language="en" target-language="uk-UA" datatype="plaintext">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c" />
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c"/>
     </header>
     <body>
       <trans-unit id="%@ Help" xml:space="preserve">
         <source>%@ Help</source>
-        <target state="new">Довідка %@</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Довідка %@</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="%@ Reporter Window" xml:space="preserve">
-        <source>%@ Reporter Window</source><target state="needs-translation">Вікно доповідача %@</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <source>%@ Reporter Window</source>
+        <target state="translated">Вікно доповідача %@</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="About %@" xml:space="preserve">
         <source>About %@</source>
-        <target state="new">Про %@</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Про %@</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Acknowledgments" xml:space="preserve">
         <source>Acknowledgments</source>
-        <target state="new">Подяки</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Подяки</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Before signing the document, it must be saved." xml:space="preserve">
-        <source>Before signing the document, it must be saved.</source><target state="needs-translation">Перш ніж підписувати документ, його необхідно зберегти.</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <source>Before signing the document, it must be saved.</source>
+        <target state="translated">Перш ніж підписувати документ, його необхідно зберегти.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Cancel" xml:space="preserve">
         <source>Cancel</source>
-        <target state="new">Відмінити</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Відмінити</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Cannot open file of Digital Signature" xml:space="preserve">
-        <source>Cannot open file of Digital Signature</source><target state="needs-translation">Неможливо відкрити файл цифрового підпису</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <source>Cannot open file of Digital Signature</source>
+        <target state="translated">Неможливо відкрити файл цифрового підпису</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Cannot open file of Private Key" xml:space="preserve">
-        <source>Cannot open file of Private Key</source><target state="needs-translation">Неможливо відкрити файл закритого ключа</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <source>Cannot open file of Private Key</source>
+        <target state="translated">Неможливо відкрити файл закритого ключа</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Cannot open folder of the file location." xml:space="preserve">
-        <source>Cannot open folder of the file location.</source><target state="needs-translation">Неможливо відкрити папку, де знаходиться файл.</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <source>Cannot open folder of the file location.</source>
+        <target state="translated">Неможливо відкрити папку, де знаходиться файл.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Comma-Separated Values" xml:space="preserve">
         <source>Comma-Separated Values</source>
-        <target state="new">Значення, розділені комами</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Значення, розділені комами</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Create portal" xml:space="preserve">
-        <source>Create portal</source><target state="needs-translation">Створити портал</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <source>Create portal</source>
+        <target state="translated">Створити портал</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Delete and Quit" xml:space="preserve">
         <source>Delete and Quit</source>
-        <target state="new">Видалити та вийти</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Видалити та вийти</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="DjVu File" xml:space="preserve">
         <source>DjVu File</source>
-        <target state="new">Файл DjVu</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Файл DjVu</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Do you want to save the changes made to the document &quot;%@&quot;?" xml:space="preserve">
         <source>Do you want to save the changes made to the document "%@"?</source>
-        <target state="new">Зберегти зміни, внесені до документа "%@"?</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Зберегти зміни, внесені до документа "%@"?</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Document %ld.docx" xml:space="preserve">
         <source>Document %ld.docx</source>
-        <target state="new">Документ %ld.docx</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Документ %ld.docx</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Document template" xml:space="preserve">
-        <source>Document template</source><target state="needs-translation">Шаблон документа</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <source>Document template</source>
+        <target state="translated">Шаблон документа</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Excel 97-2003 Spreadsheet" xml:space="preserve">
         <source>Excel 97-2003 Spreadsheet</source>
-        <target state="new">Електронна таблиця Excel 97-2003</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Електронна таблиця Excel 97-2003</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Excel 2007 Spreadsheet" xml:space="preserve">
         <source>Excel 2007 Spreadsheet</source>
-        <target state="new">Електронна таблиця Excel 2007</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Електронна таблиця Excel 2007</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="File &quot;%@&quot; can not be open or not exist." xml:space="preserve">
         <source>File "%@" can not be open or not exist.</source>
-        <target state="new">Файл "%@" неможливо відкрити або він не існує.</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Файл "%@" неможливо відкрити або він не існує.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="File Format:" xml:space="preserve">
         <source>File Format:</source>
-        <target state="new">Формат файлу:</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Формат файлу:</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="File can not be open." xml:space="preserve">
         <source>File can not be open.</source>
-        <target state="new">Файл неможливо відкрити.</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Файл неможливо відкрити.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Hide %@" xml:space="preserve">
         <source>Hide %@</source>
-        <target state="new">Сховати %@</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Сховати %@</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="If you don't review your documents, all your changeses will be lost." xml:space="preserve">
-        <source>If you don't review your documents, all your changeses will be lost.</source>
-        <target state="new">Якщо ви не переглянете документи, усі зміни будуть втрачені.</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <source>If you don't review your documents, all your changes will be lost.</source>
+        <target>Якщо ви не переглянете документи, усі зміни будуть втрачені.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="If you have already purchased %@, you should find your activation key in an email confirmation." xml:space="preserve">
         <source>If you have already purchased %@, you should find your activation key in an email confirmation.</source>
-        <target state="new">Якщо ви вже придбали %@, ключ активації можна знайти в електронному листі-підтвердженні.</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Якщо ви вже придбали %@, ключ активації можна знайти в електронному листі-підтвердженні.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="License Agreement" xml:space="preserve">
         <source>License Agreement</source>
-        <target state="new">Ліцензійна угода</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Ліцензійна угода</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Mobipocket e-book" xml:space="preserve">
         <source>Mobipocket e-book</source>
-        <target state="new">Електронна книга Mobipocket</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Електронна книга Mobipocket</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="No" xml:space="preserve">
         <source>No</source>
-        <target state="new">Ні</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Ні</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="OK" xml:space="preserve">
         <source>OK</source>
-        <target state="new">OK</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>OK</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="ONLYOFFICE can not open the Digital Signature file. Try opening another file." xml:space="preserve">
-        <source>ONLYOFFICE can not open the Digital Signature file. Try opening another file.</source><target state="needs-translation">ONLYOFFICE не може відкрити файл цифрового підпису. Спробуйте відкрити інший файл.</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <source>ONLYOFFICE can not open the Digital Signature file. Try opening another file.</source>
+        <target state="translated">ONLYOFFICE не може відкрити файл цифрового підпису. Спробуйте відкрити інший файл.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="ONLYOFFICE can not open the Private Key. Try opening another file." xml:space="preserve">
-        <source>ONLYOFFICE can not open the Private Key. Try opening another file.</source><target state="needs-translation">ONLYOFFICE не може відкрити файл закритого ключа. Спробуйте відкрити інший файл.</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <source>ONLYOFFICE can not open the Private Key. Try opening another file.</source>
+        <target state="translated">ONLYOFFICE не може відкрити файл закритого ключа. Спробуйте відкрити інший файл.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="OpenDocument Document Template" xml:space="preserve">
-        <source>OpenDocument Document Template</source><target state="needs-translation">Шаблон документа OpenDocument</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <source>OpenDocument Document Template</source>
+        <target state="translated">Шаблон документа OpenDocument</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="OpenDocument Presentation Template" xml:space="preserve">
-        <source>OpenDocument Presentation Template</source><target state="needs-translation">Шаблон презентації OpenDocument</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <source>OpenDocument Presentation Template</source>
+        <target state="translated">Шаблон презентації OpenDocument</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="OpenDocument Spreadsheet Template" xml:space="preserve">
-        <source>OpenDocument Spreadsheet Template</source><target state="needs-translation">Шаблон електронної таблиці OpenDocument</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <source>OpenDocument Spreadsheet Template</source>
+        <target state="translated">Шаблон електронної таблиці OpenDocument</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="OpenOffice Document" xml:space="preserve">
         <source>OpenOffice Document</source>
-        <target state="new">Документ OpenOffice</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Документ OpenOffice</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="OpenOffice Presentation" xml:space="preserve">
         <source>OpenOffice Presentation</source>
-        <target state="new">Презентація OpenOffice</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Презентація OpenOffice</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="OpenOffice Spreadsheet" xml:space="preserve">
         <source>OpenOffice Spreadsheet</source>
-        <target state="new">Електронна таблиця OpenOffice</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Електронна таблиця OpenOffice</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Opening" xml:space="preserve">
         <source>Opening</source>
-        <target state="new">Відкриття</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Відкриття</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="PDF File" xml:space="preserve">
         <source>PDF File</source>
-        <target state="new">Файл PDF</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Файл PDF</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="PDF/A File" xml:space="preserve">
-        <source>PDF/A File</source><target state="needs-translation">Файл PDF/A</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <source>PDF/A File</source>
+        <target state="translated">PDF/файл</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Plain Text" xml:space="preserve">
         <source>Plain Text</source>
-        <target state="new">Звичайний текст</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Звичайний текст</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="PowerPoint 97-2003 Presentation" xml:space="preserve">
         <source>PowerPoint 97-2003 Presentation</source>
-        <target state="new">Презентація PowerPoint 97-2003</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Презентація PowerPoint 97-2003</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="PowerPoint 2007 Presentation" xml:space="preserve">
         <source>PowerPoint 2007 Presentation</source>
-        <target state="new">Презентація PowerPoint 2007</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Презентація PowerPoint 2007</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="PowerPoint Slide Show" xml:space="preserve">
         <source>PowerPoint Slide Show</source>
-        <target state="new">Показ слайдів PowerPoint</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Показ слайдів PowerPoint</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Preparing..." xml:space="preserve">
         <source>Preparing...</source>
-        <target state="new">Підготовка...</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Підготовка...</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Presentation %ld.pptx" xml:space="preserve">
         <source>Presentation %ld.pptx</source>
-        <target state="new">Презентація %ld.pptx</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Презентація %ld.pptx</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Presentation template" xml:space="preserve">
-        <source>Presentation template</source><target state="needs-translation">Шаблон презентації</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <source>Presentation template</source>
+        <target state="translated">Шаблон презентації</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Quit %@" xml:space="preserve">
         <source>Quit %@</source>
-        <target state="new">Вийти з %@</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Вийти з %@</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Review Changes..." xml:space="preserve">
         <source>Review Changes...</source>
-        <target state="new">Переглянути зміни...</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Переглянути зміни...</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Rich Text Document" xml:space="preserve">
         <source>Rich Text Document</source>
-        <target state="new">Документ у форматі RTF</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Документ у форматі RTF</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Save" xml:space="preserve">
-        <source>Save</source><target state="needs-translation">Зберегти</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <source>Save</source>
+        <target state="translated">Зберегти</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Save the document?" xml:space="preserve">
-        <source>Save the document?</source><target state="needs-translation">Зберегти документ?</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <source>Save the document?</source>
+        <target state="translated">Зберегти документ?</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Spreadsheet %ld.xlsx" xml:space="preserve">
         <source>Spreadsheet %ld.xlsx</source>
-        <target state="new">Електронна таблиця %ld.xlsx</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Електронна таблиця %ld.xlsx</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Spreadsheet template" xml:space="preserve">
-        <source>Spreadsheet template</source><target state="needs-translation">Шаблон електронної таблиці</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <source>Spreadsheet template</source>
+        <target state="translated">Шаблон електронної таблиці</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Thank you for evaluating %@!" xml:space="preserve">
         <source>Thank you for evaluating %@!</source>
-        <target state="new">Дякуємо за оцінку %@!</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Дякуємо за оцінку %@!</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="The document &quot;%@&quot; must be built. Continue?" xml:space="preserve">
-        <source>The document "%@" must be built. Continue?</source><target state="needs-translation">Необхідно створити документ "%@". Продовжити?</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <source>The document "%@" must be built. Continue?</source>
+        <target state="translated">Необхідно створити документ "%@". Продовжити?</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="To open the file location, it must be saved." xml:space="preserve">
-        <source>To open the file location, it must be saved.</source><target state="needs-translation">Щоб відкрити розташування файлу, його потрібно зберегти.</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <source>To open the file location, it must be saved.</source>
+        <target state="translated">Щоб відкрити розташування файлу, його потрібно зберегти.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Unconfirmed" xml:space="preserve">
         <source>Unconfirmed</source>
-        <target state="new">Не підтверджено</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Не підтверджено</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Untitled" xml:space="preserve">
         <source>Untitled</source>
-        <target state="new">Без назви</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Без назви</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Version %@ (%@)" xml:space="preserve">
-        <source>Version %1$@ (%2$@)</source><target state="needs-translation">Версія %1$@ (%2$@)</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <source>Version %1$@ (%2$@)</source>
+        <target state="translated">Версія %1$@ (%2$@)</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Web Page" xml:space="preserve">
         <source>Web Page</source>
-        <target state="new">Веб-сторінка</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Веб-сторінка</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Word 97-2003 Document" xml:space="preserve">
         <source>Word 97-2003 Document</source>
-        <target state="new">Документ Word 97-2003</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Документ Word 97-2003</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Word 2007 Document" xml:space="preserve">
         <source>Word 2007 Document</source>
-        <target state="new">Документ Word 2007</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Документ Word 2007</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="XML Paper Specification" xml:space="preserve">
         <source>XML Paper Specification</source>
-        <target state="new">Формат XPS</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Формат XPS</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Yes" xml:space="preserve">
         <source>Yes</source>
-        <target state="new">Так</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Так</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?" xml:space="preserve">
         <source>You have %1$ld %2$@ documents with unconfirmed changes. Do you want to review these changes before quitting?</source>
-        <target state="new">У вас є документи %2$@ (%1$ld) з непідтвердженими змінами. Переглянути ці зміни, перш ніж вийти?</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>У вас є документи %2$@ (%1$ld) з непідтвердженими змінами. Переглянути ці зміни, перш ніж вийти?</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="You have successfully activated %@." xml:space="preserve">
         <source>You have successfully activated %@.</source>
-        <target state="new">%@ успішно активовано.</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>%@ успішно активовано.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Your changes will be lost if you don’t save them." xml:space="preserve">
         <source>Your changes will be lost if you don’t save them.</source>
-        <target state="new">Зміни будуть втрачені, якщо ви їх не збережете.</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
-      <trans-unit id="Your subscription has expired.&#xA;&#xA;The program works in the non-activated mode.&#xA;&#xA;Now you can prolong or upgrade your subscription with a discount." xml:space="preserve">
+        <target>Зміни будуть втрачені, якщо ви їх не збережете.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Your subscription has expired.&#10;&#10;The program works in the non-activated mode.&#10;&#10;Now you can prolong or upgrade your subscription with a discount." xml:space="preserve">
         <source>Your subscription has expired.
 
 The program works in the non-activated mode.
 
 Now you can prolong or upgrade your subscription with a discount.</source>
-        <target state="new">Термін дії вашої підписки закінчився.
+        <target>Термін дії вашої підписки закінчився.
 
 Програма працює в неактивованому режимі.
 
 Зараз ви можете продовжити або оновити підписку зі знижкою.</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
-      <trans-unit id="Your subscription is about to expire&#xA;(%d days left).&#xA;&#xA;We have a special offer for you." xml:space="preserve">
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Your subscription is about to expire&#10;(%d days left).&#10;&#10;We have a special offer for you." xml:space="preserve">
         <source>Your subscription is about to expire
 (%d days left).
 
 We have a special offer for you.</source>
-        <target state="new">Термін дії вашої підписки скоро закінчиться
+        <target>Термін дії вашої підписки скоро закінчиться
 (залишилося днів: %d).
 
 У нас для вас є спеціальна пропозиція.</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="new-document" xml:space="preserve">
-        <source>New Document</source><target state="needs-translation">Новий документ</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <source>New Document</source>
+        <target state="translated">Новий документ</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="new-presentation" xml:space="preserve">
-        <source>New Presentation</source><target state="needs-translation">Нова презентація</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <source>New Presentation</source>
+        <target state="translated">Нова презентація</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="new-spreadsheet" xml:space="preserve">
-        <source>New Spreadsheet</source><target state="needs-translation">Нова електронна таблиця</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <source>New Spreadsheet</source>
+        <target state="translated">Нова електронна таблиця</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
     </body>
   </file>
   <file original="ONLYOFFICE/Base.lproj/Localizable.stringsdict" source-language="en" target-language="uk-UA" datatype="plaintext">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c" />
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c"/>
     </header>
     <body>
       <trans-unit id="/%d days are left until the license expiration.:dict/NSStringLocalizedFormatKey:dict/:string" xml:space="preserve">
         <source>%#@days@</source>
-        <target state="new">%#@days@</target>
-        
+        <target state="translated">%#@дн.@</target>
+        <note/>
       </trans-unit>
       <trans-unit id="/%d days are left until the license expiration.:dict/days:dict/few:dict/:string" xml:space="preserve">
         <source>%d days are left until the license expiration.</source>
-        <target state="new">До закінчення терміну дії ліцензії залишилося %d дн.</target>
-        
+        <target>До закінчення терміну дії ліцензії залишилося %d дн.</target>
+        <note/>
       </trans-unit>
       <trans-unit id="/%d days are left until the license expiration.:dict/days:dict/many:dict/:string" xml:space="preserve">
         <source>%d days are left until the license expiration.</source>
-        <target state="new">До закінчення терміну дії ліцензії залишилося %d дн.</target>
-        
+        <target>До закінчення терміну дії ліцензії залишилося %d дн.</target>
+        <note/>
       </trans-unit>
       <trans-unit id="/%d days are left until the license expiration.:dict/days:dict/one:dict/:string" xml:space="preserve">
         <source>%d day are left until the license expiration.</source>
-        <target state="new">До закінчення терміну дії ліцензії залишився %d день.</target>
-        
+        <target>До закінчення терміну дії ліцензії залишився %d день.</target>
+        <note/>
       </trans-unit>
       <trans-unit id="/%d days are left until the license expiration.:dict/days:dict/other:dict/:string" xml:space="preserve">
         <source>%d days are left until the license expiration.</source>
-        <target state="new">До закінчення терміну дії ліцензії залишилося %d дн.</target>
-        
+        <target>До закінчення терміну дії ліцензії залишилося %d дн.</target>
+        <note/>
       </trans-unit>
-      <trans-unit id="/You are using a trial version of the application.&#xA;The trial period will end in %d days, after that you will not be able to create and edit documents.:dict/NSStringLocalizedFormatKey:dict/:string" xml:space="preserve">
+      <trans-unit id="/You are using a trial version of the application.&#10;The trial period will end in %d days, after that you will not be able to create and edit documents.:dict/NSStringLocalizedFormatKey:dict/:string" xml:space="preserve">
         <source>%#@days@</source>
-        <target state="new">%#@days@</target>
-        
+        <target state="translated">%#@дн.@</target>
+        <note/>
       </trans-unit>
-      <trans-unit id="/You are using a trial version of the application.&#xA;The trial period will end in %d days, after that you will not be able to create and edit documents.:dict/days:dict/few:dict/:string" xml:space="preserve">
+      <trans-unit id="/You are using a trial version of the application.&#10;The trial period will end in %d days, after that you will not be able to create and edit documents.:dict/days:dict/few:dict/:string" xml:space="preserve">
         <source>You are using a trial version of the application.
 The trial period will end in %d days, after that you will not be able to create and edit documents.</source>
-        <target state="new">Ви використовуєте ознайомлювальну версію програми.
+        <target>Ви використовуєте ознайомлювальну версію програми.
 Ознайомлювальний період закінчується через %d дн., після чого ви не зможете створювати та редагувати документи.</target>
-        
+        <note/>
       </trans-unit>
-      <trans-unit id="/You are using a trial version of the application.&#xA;The trial period will end in %d days, after that you will not be able to create and edit documents.:dict/days:dict/many:dict/:string" xml:space="preserve">
+      <trans-unit id="/You are using a trial version of the application.&#10;The trial period will end in %d days, after that you will not be able to create and edit documents.:dict/days:dict/many:dict/:string" xml:space="preserve">
         <source>You are using a trial version of the application.
 The trial period will end in %d days, after that you will not be able to create and edit documents.</source>
-        <target state="new">Ви використовуєте ознайомлювальну версію програми.
+        <target>Ви використовуєте ознайомлювальну версію програми.
 Ознайомлювальний період закінчується через %d дн., після чого ви не зможете створювати та редагувати документи.</target>
-        
+        <note/>
       </trans-unit>
-      <trans-unit id="/You are using a trial version of the application.&#xA;The trial period will end in %d days, after that you will not be able to create and edit documents.:dict/days:dict/one:dict/:string" xml:space="preserve">
+      <trans-unit id="/You are using a trial version of the application.&#10;The trial period will end in %d days, after that you will not be able to create and edit documents.:dict/days:dict/one:dict/:string" xml:space="preserve">
         <source>You are using a trial version of the application.
 The trial period will end in %d day, after that you will not be able to create and edit documents.</source>
-        <target state="new">Ви використовуєте ознайомлювальну версію програми.
+        <target>Ви використовуєте ознайомлювальну версію програми.
 Ознайомлювальний період закінчується через %d день, після чого ви не зможете створювати та редагувати документи.</target>
-        
+        <note/>
       </trans-unit>
-      <trans-unit id="/You are using a trial version of the application.&#xA;The trial period will end in %d days, after that you will not be able to create and edit documents.:dict/days:dict/other:dict/:string" xml:space="preserve">
+      <trans-unit id="/You are using a trial version of the application.&#10;The trial period will end in %d days, after that you will not be able to create and edit documents.:dict/days:dict/other:dict/:string" xml:space="preserve">
         <source>You are using a trial version of the application.
 The trial period will end in %d days, after that you will not be able to create and edit documents.</source>
-        <target state="new">Ви використовуєте ознайомлювальну версію програми.
+        <target>Ви використовуєте ознайомлювальну версію програми.
 Ознайомлювальний період закінчується через %d дн., після чого ви не зможете створювати та редагувати документи.</target>
-        
+        <note/>
       </trans-unit>
       <trans-unit id="/You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?:dict/NSStringLocalizedFormatKey:dict/:string" xml:space="preserve">
         <source>%#@documents@</source>
-        <target state="new">%#@documents@</target>
-        
+        <target>%#@documents@</target>
+        <note/>
       </trans-unit>
       <trans-unit id="/You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?:dict/documents:dict/few:dict/:string" xml:space="preserve">
         <source>You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?</source>
-        <target state="new">У вас є документи %@ (%ld) з непідтвердженими змінами. Переглянути ці зміни, перш ніж вийти?</target>
-        
+        <target>У вас є документи %@ (%ld) з непідтвердженими змінами. Переглянути ці зміни, перш ніж вийти?</target>
+        <note/>
       </trans-unit>
       <trans-unit id="/You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?:dict/documents:dict/many:dict/:string" xml:space="preserve">
         <source>You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?</source>
-        <target state="new">У вас є документи %@ (%ld ) з непідтвердженими змінами. Переглянути ці зміни, перш ніж вийти?</target>
-        
+        <target>У вас є документи %@ (%ld ) з непідтвердженими змінами. Переглянути ці зміни, перш ніж вийти?</target>
+        <note/>
       </trans-unit>
       <trans-unit id="/You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?:dict/documents:dict/one:dict/:string" xml:space="preserve">
         <source>You have %ld %@ document with unconfirmed changes. Do you want to review these changes before quitting?</source>
-        <target state="new">У вас є %ld документ %@ з непідтвердженими змінами. Переглянути ці зміни, перш ніж вийти?</target>
-        
+        <target>У вас є %ld документ %@ з непідтвердженими змінами. Переглянути ці зміни, перш ніж вийти?</target>
+        <note/>
       </trans-unit>
       <trans-unit id="/You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?:dict/documents:dict/other:dict/:string" xml:space="preserve">
         <source>You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?</source>
-        <target state="new">У вас є документи %@ (%ld) з непідтвердженими змінами. Переглянути ці зміни, перш ніж вийти?</target>
-        
+        <target>У вас є документи %@ (%ld) з непідтвердженими змінами. Переглянути ці зміни, перш ніж вийти?</target>
+        <note/>
       </trans-unit>
     </body>
   </file>
   <file original="ONLYOFFICE/Base.lproj/Main.storyboard" source-language="en" target-language="uk-UA" datatype="plaintext">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c" />
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c"/>
     </header>
     <body>
       <trans-unit id="1UK-8n-QPP.title" xml:space="preserve">
         <source>Customize Toolbar…</source>
-        <target state="new">Налаштувати панель інструментів…</target>
-        
-      <note>Class = "NSMenuItem"; title = "Customize Toolbar…"; ObjectID = "1UK-8n-QPP";</note></trans-unit>
+        <target>Налаштувати панель інструментів…</target>
+        <note>Class = "NSMenuItem"; title = "Customize Toolbar…"; ObjectID = "1UK-8n-QPP";</note>
+      </trans-unit>
       <trans-unit id="1Xt-HY-uBw.title" xml:space="preserve">
         <source>ONLYOFFICE</source>
-        <target state="new">ONLYOFFICE</target>
-        
-      <note>Class = "NSMenuItem"; title = "ONLYOFFICE"; ObjectID = "1Xt-HY-uBw";</note></trans-unit>
+        <target>ONLYOFFICE</target>
+        <note>Class = "NSMenuItem"; title = "ONLYOFFICE"; ObjectID = "1Xt-HY-uBw";</note>
+      </trans-unit>
       <trans-unit id="1b7-l0-nxx.title" xml:space="preserve">
         <source>Find</source>
-        <target state="new">Пошук</target>
-        
-      <note>Class = "NSMenu"; title = "Find"; ObjectID = "1b7-l0-nxx";</note></trans-unit>
+        <target>Пошук</target>
+        <note>Class = "NSMenu"; title = "Find"; ObjectID = "1b7-l0-nxx";</note>
+      </trans-unit>
       <trans-unit id="1tx-W0-xDw.title" xml:space="preserve">
         <source>Lower</source>
-        <target state="new">Опустити</target>
-        
-      <note>Class = "NSMenuItem"; title = "Lower"; ObjectID = "1tx-W0-xDw";</note></trans-unit>
+        <target>Опустити</target>
+        <note>Class = "NSMenuItem"; title = "Lower"; ObjectID = "1tx-W0-xDw";</note>
+      </trans-unit>
       <trans-unit id="2h7-ER-AoG.title" xml:space="preserve">
         <source>Raise</source>
-        <target state="new">Підняти</target>
-        
-      <note>Class = "NSMenuItem"; title = "Raise"; ObjectID = "2h7-ER-AoG";</note></trans-unit>
+        <target>Підняти</target>
+        <note>Class = "NSMenuItem"; title = "Raise"; ObjectID = "2h7-ER-AoG";</note>
+      </trans-unit>
       <trans-unit id="2oI-Rn-ZJC.title" xml:space="preserve">
         <source>Transformations</source>
-        <target state="new">Перетворення</target>
-        
-      <note>Class = "NSMenuItem"; title = "Transformations"; ObjectID = "2oI-Rn-ZJC";</note></trans-unit>
+        <target>Перетворення</target>
+        <note>Class = "NSMenuItem"; title = "Transformations"; ObjectID = "2oI-Rn-ZJC";</note>
+      </trans-unit>
       <trans-unit id="3IN-sU-3Bg.title" xml:space="preserve">
         <source>Spelling</source>
-        <target state="new">Орфографія</target>
-        
-      <note>Class = "NSMenu"; title = "Spelling"; ObjectID = "3IN-sU-3Bg";</note></trans-unit>
+        <target>Орфографія</target>
+        <note>Class = "NSMenu"; title = "Spelling"; ObjectID = "3IN-sU-3Bg";</note>
+      </trans-unit>
       <trans-unit id="3Om-Ey-2VK.title" xml:space="preserve">
         <source>Use Default</source>
-        <target state="new">За замовчуванням</target>
-        
-      <note>Class = "NSMenuItem"; title = "Use Default"; ObjectID = "3Om-Ey-2VK";</note></trans-unit>
+        <target>За замовчуванням</target>
+        <note>Class = "NSMenuItem"; title = "Use Default"; ObjectID = "3Om-Ey-2VK";</note>
+      </trans-unit>
       <trans-unit id="3rS-ZA-NoH.title" xml:space="preserve">
         <source>Speech</source>
-        <target state="new">Мовлення</target>
-        
-      <note>Class = "NSMenu"; title = "Speech"; ObjectID = "3rS-ZA-NoH";</note></trans-unit>
+        <target>Мовлення</target>
+        <note>Class = "NSMenu"; title = "Speech"; ObjectID = "3rS-ZA-NoH";</note>
+      </trans-unit>
       <trans-unit id="4EN-yA-p0u.title" xml:space="preserve">
         <source>Find</source>
-        <target state="new">Пошук</target>
-        
-      <note>Class = "NSMenuItem"; title = "Find"; ObjectID = "4EN-yA-p0u";</note></trans-unit>
+        <target>Пошук</target>
+        <note>Class = "NSMenuItem"; title = "Find"; ObjectID = "4EN-yA-p0u";</note>
+      </trans-unit>
       <trans-unit id="4et-TX-a4m.title" xml:space="preserve">
         <source>License Agreement</source>
-        <target state="new">Ліцензійна угода</target>
-        
-      <note>Class = "NSMenuItem"; title = "License Agreement"; ObjectID = "4et-TX-a4m";</note></trans-unit>
+        <target>Ліцензійна угода</target>
+        <note>Class = "NSMenuItem"; title = "License Agreement"; ObjectID = "4et-TX-a4m";</note>
+      </trans-unit>
       <trans-unit id="4sb-4s-VLi.title" xml:space="preserve">
         <source>Quit ONLYOFFICE</source>
-        <target state="new">Вийти з ONLYOFFICE</target>
-        
-      <note>Class = "NSMenuItem"; title = "Quit ONLYOFFICE"; ObjectID = "4sb-4s-VLi";</note></trans-unit>
+        <target>Вийти з ONLYOFFICE</target>
+        <note>Class = "NSMenuItem"; title = "Quit ONLYOFFICE"; ObjectID = "4sb-4s-VLi";</note>
+      </trans-unit>
       <trans-unit id="5QF-Oa-p0T.title" xml:space="preserve">
         <source>Edit</source>
-        <target state="new">Редагувати</target>
-        
-      <note>Class = "NSMenuItem"; title = "Edit"; ObjectID = "5QF-Oa-p0T";</note></trans-unit>
+        <target>Редагувати</target>
+        <note>Class = "NSMenuItem"; title = "Edit"; ObjectID = "5QF-Oa-p0T";</note>
+      </trans-unit>
       <trans-unit id="5Vv-lz-BsD.title" xml:space="preserve">
         <source>Copy Style</source>
-        <target state="new">Копіювати стиль</target>
-        
-      <note>Class = "NSMenuItem"; title = "Copy Style"; ObjectID = "5Vv-lz-BsD";</note></trans-unit>
+        <target>Копіювати стиль</target>
+        <note>Class = "NSMenuItem"; title = "Copy Style"; ObjectID = "5Vv-lz-BsD";</note>
+      </trans-unit>
       <trans-unit id="5kV-Vb-QxS.title" xml:space="preserve">
         <source>About ONLYOFFICE</source>
-        <target state="new">Про ONLYOFFICE</target>
-        
-      <note>Class = "NSMenuItem"; title = "About ONLYOFFICE"; ObjectID = "5kV-Vb-QxS";</note></trans-unit>
+        <target>Про ONLYOFFICE</target>
+        <note>Class = "NSMenuItem"; title = "About ONLYOFFICE"; ObjectID = "5kV-Vb-QxS";</note>
+      </trans-unit>
       <trans-unit id="6dh-zS-Vam.title" xml:space="preserve">
         <source>Redo</source>
-        <target state="new">Повторити</target>
-        
-      <note>Class = "NSMenuItem"; title = "Redo"; ObjectID = "6dh-zS-Vam";</note></trans-unit>
+        <target>Повторити</target>
+        <note>Class = "NSMenuItem"; title = "Redo"; ObjectID = "6dh-zS-Vam";</note>
+      </trans-unit>
       <trans-unit id="8Ga-Cu-VGe.title" xml:space="preserve">
         <source>License agreement</source>
-        <target state="new">Ліцензійна угода</target>
-        
-      <note>Class = "NSButtonCell"; title = "License agreement"; ObjectID = "8Ga-Cu-VGe";</note></trans-unit>
+        <target>Ліцензійна угода</target>
+        <note>Class = "NSButtonCell"; title = "License agreement"; ObjectID = "8Ga-Cu-VGe";</note>
+      </trans-unit>
       <trans-unit id="8mr-sm-Yjd.title" xml:space="preserve">
         <source>Writing Direction</source>
-        <target state="new">Напрямок письма</target>
-        
-      <note>Class = "NSMenu"; title = "Writing Direction"; ObjectID = "8mr-sm-Yjd";</note></trans-unit>
+        <target>Напрямок письма</target>
+        <note>Class = "NSMenu"; title = "Writing Direction"; ObjectID = "8mr-sm-Yjd";</note>
+      </trans-unit>
       <trans-unit id="9aQ-wl-gjS.title" xml:space="preserve">
         <source>New</source>
-        <target state="new">Створити</target>
-        
-      <note>Class = "NSMenuItem"; title = "New"; ObjectID = "9aQ-wl-gjS";</note></trans-unit>
+        <target>Створити</target>
+        <note>Class = "NSMenuItem"; title = "New"; ObjectID = "9aQ-wl-gjS";</note>
+      </trans-unit>
       <trans-unit id="9i7-kj-42B.title" xml:space="preserve">
         <source>none</source>
-        <target state="new">не вибрано</target>
-        
-      <note>Class = "NSTextFieldCell"; title = "none"; ObjectID = "9i7-kj-42B";</note></trans-unit>
+        <target>не вибрано</target>
+        <note>Class = "NSTextFieldCell"; title = "none"; ObjectID = "9i7-kj-42B";</note>
+      </trans-unit>
       <trans-unit id="9ic-FL-obx.title" xml:space="preserve">
         <source>Substitutions</source>
-        <target state="new">Заміни</target>
-        
-      <note>Class = "NSMenuItem"; title = "Substitutions"; ObjectID = "9ic-FL-obx";</note></trans-unit>
+        <target>Заміни</target>
+        <note>Class = "NSMenuItem"; title = "Substitutions"; ObjectID = "9ic-FL-obx";</note>
+      </trans-unit>
       <trans-unit id="9yt-4B-nSM.title" xml:space="preserve">
         <source>Smart Copy/Paste</source>
-        <target state="new">Розумне копіювання/вставлення</target>
-        
-      <note>Class = "NSMenuItem"; title = "Smart Copy/Paste"; ObjectID = "9yt-4B-nSM";</note></trans-unit>
+        <target>Розумне копіювання/вставлення</target>
+        <note>Class = "NSMenuItem"; title = "Smart Copy/Paste"; ObjectID = "9yt-4B-nSM";</note>
+      </trans-unit>
       <trans-unit id="46P-cB-AYj.title" xml:space="preserve">
         <source>Tighten</source>
-        <target state="new">Звузити</target>
-        
-      <note>Class = "NSMenuItem"; title = "Tighten"; ObjectID = "46P-cB-AYj";</note></trans-unit>
+        <target>Звузити</target>
+        <note>Class = "NSMenuItem"; title = "Tighten"; ObjectID = "46P-cB-AYj";</note>
+      </trans-unit>
       <trans-unit id="78Y-hA-62v.title" xml:space="preserve">
         <source>Correct Spelling Automatically</source>
-        <target state="new">Автоматично виправляти орфографічні помилки</target>
-        
-      <note>Class = "NSMenuItem"; title = "Correct Spelling Automatically"; ObjectID = "78Y-hA-62v";</note></trans-unit>
+        <target>Автоматично виправляти орфографічні помилки</target>
+        <note>Class = "NSMenuItem"; title = "Correct Spelling Automatically"; ObjectID = "78Y-hA-62v";</note>
+      </trans-unit>
       <trans-unit id="AYu-sK-qS6.title" xml:space="preserve">
         <source>Main Menu</source>
-        <target state="new">Головне меню</target>
-        
-      <note>Class = "NSMenu"; title = "Main Menu"; ObjectID = "AYu-sK-qS6";</note></trans-unit>
+        <target>Головне меню</target>
+        <note>Class = "NSMenu"; title = "Main Menu"; ObjectID = "AYu-sK-qS6";</note>
+      </trans-unit>
       <trans-unit id="BOF-NM-1cW.title" xml:space="preserve">
         <source>Preferences…</source>
-        <target state="new">Параметри…</target>
-        
-      <note>Class = "NSMenuItem"; title = "Preferences…"; ObjectID = "BOF-NM-1cW";</note></trans-unit>
+        <target>Параметри…</target>
+        <note>Class = "NSMenuItem"; title = "Preferences…"; ObjectID = "BOF-NM-1cW";</note>
+      </trans-unit>
       <trans-unit id="BgM-ve-c93.title" xml:space="preserve">
         <source>	Left to Right</source>
-        <target state="new">	Зліва направо</target>
-        
-      <note>Class = "NSMenuItem"; title = "\tLeft to Right"; ObjectID = "BgM-ve-c93";</note></trans-unit>
+        <target>	Зліва направо</target>
+        <note>Class = "NSMenuItem"; title = "\tLeft to Right"; ObjectID = "BgM-ve-c93";</note>
+      </trans-unit>
       <trans-unit id="Bw7-FT-i3A.title" xml:space="preserve">
         <source>Save As…</source>
-        <target state="new">Зберегти як…</target>
-        
-      <note>Class = "NSMenuItem"; title = "Save As…"; ObjectID = "Bw7-FT-i3A";</note></trans-unit>
+        <target>Зберегти як…</target>
+        <note>Class = "NSMenuItem"; title = "Save As…"; ObjectID = "Bw7-FT-i3A";</note>
+      </trans-unit>
       <trans-unit id="CJU-dx-a9l.title" xml:space="preserve">
         <source>Acknowledgments</source>
-        <target state="new">Подяки</target>
-        
-      <note>Class = "NSMenuItem"; title = "Acknowledgments"; ObjectID = "CJU-dx-a9l";</note></trans-unit>
+        <target>Подяки</target>
+        <note>Class = "NSMenuItem"; title = "Acknowledgments"; ObjectID = "CJU-dx-a9l";</note>
+      </trans-unit>
       <trans-unit id="DOj-j9-dza.title" xml:space="preserve">
         <source>Spreadsheet</source>
-        <target state="new">Електронна таблиця</target>
-        
-      <note>Class = "NSMenuItem"; title = "Spreadsheet"; ObjectID = "DOj-j9-dza";</note></trans-unit>
+        <target>Електронна таблиця</target>
+        <note>Class = "NSMenuItem"; title = "Spreadsheet"; ObjectID = "DOj-j9-dza";</note>
+      </trans-unit>
       <trans-unit id="DVo-aG-piG.title" xml:space="preserve">
         <source>Close</source>
-        <target state="new">Закрити</target>
-        
-      <note>Class = "NSMenuItem"; title = "Close"; ObjectID = "DVo-aG-piG";</note></trans-unit>
+        <target>Закрити</target>
+        <note>Class = "NSMenuItem"; title = "Close"; ObjectID = "DVo-aG-piG";</note>
+      </trans-unit>
       <trans-unit id="Dv1-io-Yv7.title" xml:space="preserve">
         <source>Spelling and Grammar</source>
-        <target state="new">Орфографія та граматика</target>
-        
-      <note>Class = "NSMenuItem"; title = "Spelling and Grammar"; ObjectID = "Dv1-io-Yv7";</note></trans-unit>
+        <target>Орфографія та граматика</target>
+        <note>Class = "NSMenuItem"; title = "Spelling and Grammar"; ObjectID = "Dv1-io-Yv7";</note>
+      </trans-unit>
       <trans-unit id="F2S-fz-NVQ.title" xml:space="preserve">
         <source>Help</source>
-        <target state="new">Довідка</target>
-        
-      <note>Class = "NSMenu"; title = "Help"; ObjectID = "F2S-fz-NVQ";</note></trans-unit>
+        <target>Довідка</target>
+        <note>Class = "NSMenu"; title = "Help"; ObjectID = "F2S-fz-NVQ";</note>
+      </trans-unit>
       <trans-unit id="FKE-Sm-Kum.title" xml:space="preserve">
         <source>Product Help</source>
-        <target state="new">Довідка продукту</target>
-        
-      <note>Class = "NSMenuItem"; title = "Product Help"; ObjectID = "FKE-Sm-Kum";</note></trans-unit>
+        <target>Довідка продукту</target>
+        <note>Class = "NSMenuItem"; title = "Product Help"; ObjectID = "FKE-Sm-Kum";</note>
+      </trans-unit>
       <trans-unit id="Fal-I4-PZk.title" xml:space="preserve">
         <source>Text</source>
-        <target state="new">Текст</target>
-        
-      <note>Class = "NSMenuItem"; title = "Text"; ObjectID = "Fal-I4-PZk";</note></trans-unit>
+        <target>Текст</target>
+        <note>Class = "NSMenuItem"; title = "Text"; ObjectID = "Fal-I4-PZk";</note>
+      </trans-unit>
       <trans-unit id="FeM-D8-WVr.title" xml:space="preserve">
         <source>Substitutions</source>
-        <target state="new">Заміни</target>
-        
-      <note>Class = "NSMenu"; title = "Substitutions"; ObjectID = "FeM-D8-WVr";</note></trans-unit>
+        <target>Заміни</target>
+        <note>Class = "NSMenu"; title = "Substitutions"; ObjectID = "FeM-D8-WVr";</note>
+      </trans-unit>
       <trans-unit id="FoF-wl-Dxi.title" xml:space="preserve">
         <source>User Name</source>
-        <target state="new">Ім’я користувача</target>
-        
-      <note>Class = "NSTextFieldCell"; title = "User Name"; ObjectID = "FoF-wl-Dxi";</note></trans-unit>
+        <target>Ім’я користувача</target>
+        <note>Class = "NSTextFieldCell"; title = "User Name"; ObjectID = "FoF-wl-Dxi";</note>
+      </trans-unit>
       <trans-unit id="GB9-OM-e27.title" xml:space="preserve">
         <source>Bold</source>
-        <target state="new">Жирний</target>
-        
-      <note>Class = "NSMenuItem"; title = "Bold"; ObjectID = "GB9-OM-e27";</note></trans-unit>
+        <target>Жирний</target>
+        <note>Class = "NSMenuItem"; title = "Bold"; ObjectID = "GB9-OM-e27";</note>
+      </trans-unit>
       <trans-unit id="GEO-Iw-cKr.title" xml:space="preserve">
         <source>Format</source>
-        <target state="new">Формат</target>
-        
-      <note>Class = "NSMenu"; title = "Format"; ObjectID = "GEO-Iw-cKr";</note></trans-unit>
+        <target>Формат</target>
+        <note>Class = "NSMenu"; title = "Format"; ObjectID = "GEO-Iw-cKr";</note>
+      </trans-unit>
       <trans-unit id="GUa-eO-cwY.title" xml:space="preserve">
         <source>Use Default</source>
-        <target state="new">За замовчуванням</target>
-        
-      <note>Class = "NSMenuItem"; title = "Use Default"; ObjectID = "GUa-eO-cwY";</note></trans-unit>
+        <target>За замовчуванням</target>
+        <note>Class = "NSMenuItem"; title = "Use Default"; ObjectID = "GUa-eO-cwY";</note>
+      </trans-unit>
       <trans-unit id="Gi5-1S-RQB.title" xml:space="preserve">
         <source>Font</source>
-        <target state="new">Шрифт</target>
-        
-      <note>Class = "NSMenuItem"; title = "Font"; ObjectID = "Gi5-1S-RQB";</note></trans-unit>
+        <target>Шрифт</target>
+        <note>Class = "NSMenuItem"; title = "Font"; ObjectID = "Gi5-1S-RQB";</note>
+      </trans-unit>
       <trans-unit id="H1b-Si-o9J.title" xml:space="preserve">
         <source>Writing Direction</source>
-        <target state="new">Напрямок письма</target>
-        
-      <note>Class = "NSMenuItem"; title = "Writing Direction"; ObjectID = "H1b-Si-o9J";</note></trans-unit>
+        <target>Напрямок письма</target>
+        <note>Class = "NSMenuItem"; title = "Writing Direction"; ObjectID = "H1b-Si-o9J";</note>
+      </trans-unit>
       <trans-unit id="H8h-7b-M4v.title" xml:space="preserve">
         <source>View</source>
-        <target state="new">Переглянути</target>
-        
-      <note>Class = "NSMenuItem"; title = "View"; ObjectID = "H8h-7b-M4v";</note></trans-unit>
+        <target>Переглянути</target>
+        <note>Class = "NSMenuItem"; title = "View"; ObjectID = "H8h-7b-M4v";</note>
+      </trans-unit>
       <trans-unit id="HFQ-gK-NFA.title" xml:space="preserve">
         <source>Text Replacement</source>
-        <target state="new">Заміна тексту</target>
-        
-      <note>Class = "NSMenuItem"; title = "Text Replacement"; ObjectID = "HFQ-gK-NFA";</note></trans-unit>
+        <target>Заміна тексту</target>
+        <note>Class = "NSMenuItem"; title = "Text Replacement"; ObjectID = "HFQ-gK-NFA";</note>
+      </trans-unit>
       <trans-unit id="HFo-cy-zxI.title" xml:space="preserve">
         <source>Show Spelling and Grammar</source>
-        <target state="new">Показувати орфографію та граматику</target>
-        
-      <note>Class = "NSMenuItem"; title = "Show Spelling and Grammar"; ObjectID = "HFo-cy-zxI";</note></trans-unit>
+        <target>Показувати орфографію та граматику</target>
+        <note>Class = "NSMenuItem"; title = "Show Spelling and Grammar"; ObjectID = "HFo-cy-zxI";</note>
+      </trans-unit>
       <trans-unit id="HyV-fh-RgO.title" xml:space="preserve">
         <source>View</source>
-        <target state="new">Переглянути</target>
-        
-      <note>Class = "NSMenu"; title = "View"; ObjectID = "HyV-fh-RgO";</note></trans-unit>
+        <target>Переглянути</target>
+        <note>Class = "NSMenu"; title = "View"; ObjectID = "HyV-fh-RgO";</note>
+      </trans-unit>
       <trans-unit id="I0S-gh-46l.title" xml:space="preserve">
         <source>Subscript</source>
-        <target state="new">Підрядковий</target>
-        
-      <note>Class = "NSMenuItem"; title = "Subscript"; ObjectID = "I0S-gh-46l";</note></trans-unit>
+        <target>Підрядковий</target>
+        <note>Class = "NSMenuItem"; title = "Subscript"; ObjectID = "I0S-gh-46l";</note>
+      </trans-unit>
       <trans-unit id="IAo-SY-fd9.title" xml:space="preserve">
         <source>Open…</source>
-        <target state="new">Відкрити…</target>
-        
-      <note>Class = "NSMenuItem"; title = "Open…"; ObjectID = "IAo-SY-fd9";</note></trans-unit>
+        <target>Відкрити…</target>
+        <note>Class = "NSMenuItem"; title = "Open…"; ObjectID = "IAo-SY-fd9";</note>
+      </trans-unit>
       <trans-unit id="IQv-IB-iLA.title" xml:space="preserve">
         <source>ONLYOFFICE</source>
-        <target state="new">ONLYOFFICE</target>
-        
-      <note>Class = "NSWindow"; title = "ONLYOFFICE"; ObjectID = "IQv-IB-iLA";</note></trans-unit>
+        <target>ONLYOFFICE</target>
+        <note>Class = "NSWindow"; title = "ONLYOFFICE"; ObjectID = "IQv-IB-iLA";</note>
+      </trans-unit>
       <trans-unit id="J5U-5w-g23.title" xml:space="preserve">
         <source>Justify</source>
-        <target state="new">Вирівняти за шириною</target>
-        
-      <note>Class = "NSMenuItem"; title = "Justify"; ObjectID = "J5U-5w-g23";</note></trans-unit>
+        <target>Вирівняти за шириною</target>
+        <note>Class = "NSMenuItem"; title = "Justify"; ObjectID = "J5U-5w-g23";</note>
+      </trans-unit>
       <trans-unit id="J7y-lM-qPV.title" xml:space="preserve">
         <source>Use None</source>
-        <target state="new">Не використовувати</target>
-        
-      <note>Class = "NSMenuItem"; title = "Use None"; ObjectID = "J7y-lM-qPV";</note></trans-unit>
+        <target>Не використовувати</target>
+        <note>Class = "NSMenuItem"; title = "Use None"; ObjectID = "J7y-lM-qPV";</note>
+      </trans-unit>
       <trans-unit id="KaW-ft-85H.title" xml:space="preserve">
         <source>Revert to Saved</source>
-        <target state="new">Повернути до збереженого</target>
-        
-      <note>Class = "NSMenuItem"; title = "Revert to Saved"; ObjectID = "KaW-ft-85H";</note></trans-unit>
+        <target>Повернути до збереженого</target>
+        <note>Class = "NSMenuItem"; title = "Revert to Saved"; ObjectID = "KaW-ft-85H";</note>
+      </trans-unit>
       <trans-unit id="Kd2-mp-pUS.title" xml:space="preserve">
         <source>Show All</source>
-        <target state="new">Показати всі</target>
-        
-      <note>Class = "NSMenuItem"; title = "Show All"; ObjectID = "Kd2-mp-pUS";</note></trans-unit>
+        <target>Показати всі</target>
+        <note>Class = "NSMenuItem"; title = "Show All"; ObjectID = "Kd2-mp-pUS";</note>
+      </trans-unit>
       <trans-unit id="LE2-aR-0XJ.title" xml:space="preserve">
         <source>Bring All to Front</source>
-        <target state="new">Перенести все на передній план</target>
-        
-      <note>Class = "NSMenuItem"; title = "Bring All to Front"; ObjectID = "LE2-aR-0XJ";</note></trans-unit>
+        <target>Перенести все на передній план</target>
+        <note>Class = "NSMenuItem"; title = "Bring All to Front"; ObjectID = "LE2-aR-0XJ";</note>
+      </trans-unit>
       <trans-unit id="LVM-kO-fVI.title" xml:space="preserve">
         <source>Paste Ruler</source>
-        <target state="new">Вставити лінійку</target>
-        
-      <note>Class = "NSMenuItem"; title = "Paste Ruler"; ObjectID = "LVM-kO-fVI";</note></trans-unit>
+        <target>Вставити лінійку</target>
+        <note>Class = "NSMenuItem"; title = "Paste Ruler"; ObjectID = "LVM-kO-fVI";</note>
+      </trans-unit>
       <trans-unit id="Lbh-J2-qVU.title" xml:space="preserve">
         <source>	Left to Right</source>
-        <target state="new">	Зліва направо</target>
-        
-      <note>Class = "NSMenuItem"; title = "\tLeft to Right"; ObjectID = "Lbh-J2-qVU";</note></trans-unit>
+        <target>	Зліва направо</target>
+        <note>Class = "NSMenuItem"; title = "\tLeft to Right"; ObjectID = "Lbh-J2-qVU";</note>
+      </trans-unit>
       <trans-unit id="MkV-Pr-PK5.title" xml:space="preserve">
         <source>Copy Ruler</source>
-        <target state="new">Копіювати лінійку</target>
-        
-      <note>Class = "NSMenuItem"; title = "Copy Ruler"; ObjectID = "MkV-Pr-PK5";</note></trans-unit>
+        <target>Копіювати лінійку</target>
+        <note>Class = "NSMenuItem"; title = "Copy Ruler"; ObjectID = "MkV-Pr-PK5";</note>
+      </trans-unit>
       <trans-unit id="NMo-om-nkz.title" xml:space="preserve">
         <source>Services</source>
-        <target state="new">Сервіси</target>
-        
-      <note>Class = "NSMenuItem"; title = "Services"; ObjectID = "NMo-om-nkz";</note></trans-unit>
+        <target>Сервіси</target>
+        <note>Class = "NSMenuItem"; title = "Services"; ObjectID = "NMo-om-nkz";</note>
+      </trans-unit>
       <trans-unit id="Nop-cj-93Q.title" xml:space="preserve">
         <source>	Default</source>
-        <target state="new">	За замовчуванням</target>
-        
-      <note>Class = "NSMenuItem"; title = "\tDefault"; ObjectID = "Nop-cj-93Q";</note></trans-unit>
+        <target>	За замовчуванням</target>
+        <note>Class = "NSMenuItem"; title = "\tDefault"; ObjectID = "Nop-cj-93Q";</note>
+      </trans-unit>
       <trans-unit id="OY7-WF-poV.title" xml:space="preserve">
         <source>Minimize</source>
-        <target state="new">Згорнути</target>
-        
-      <note>Class = "NSMenuItem"; title = "Minimize"; ObjectID = "OY7-WF-poV";</note></trans-unit>
+        <target>Згорнути</target>
+        <note>Class = "NSMenuItem"; title = "Minimize"; ObjectID = "OY7-WF-poV";</note>
+      </trans-unit>
       <trans-unit id="OaQ-X3-Vso.title" xml:space="preserve">
         <source>Baseline</source>
-        <target state="new">Базова лінія</target>
-        
-      <note>Class = "NSMenuItem"; title = "Baseline"; ObjectID = "OaQ-X3-Vso";</note></trans-unit>
+        <target>Базова лінія</target>
+        <note>Class = "NSMenuItem"; title = "Baseline"; ObjectID = "OaQ-X3-Vso";</note>
+      </trans-unit>
       <trans-unit id="Olw-nP-bQN.title" xml:space="preserve">
         <source>Hide ONLYOFFICE</source>
-        <target state="new">Сховати ONLYOFFICE</target>
-        
-      <note>Class = "NSMenuItem"; title = "Hide ONLYOFFICE"; ObjectID = "Olw-nP-bQN";</note></trans-unit>
+        <target>Сховати ONLYOFFICE</target>
+        <note>Class = "NSMenuItem"; title = "Hide ONLYOFFICE"; ObjectID = "Olw-nP-bQN";</note>
+      </trans-unit>
       <trans-unit id="OwM-mh-QMV.title" xml:space="preserve">
         <source>Find Previous</source>
-        <target state="new">Знайти попереднє</target>
-        
-      <note>Class = "NSMenuItem"; title = "Find Previous"; ObjectID = "OwM-mh-QMV";</note></trans-unit>
+        <target>Знайти попереднє</target>
+        <note>Class = "NSMenuItem"; title = "Find Previous"; ObjectID = "OwM-mh-QMV";</note>
+      </trans-unit>
       <trans-unit id="Oyz-dy-DGm.title" xml:space="preserve">
         <source>Stop Speaking</source>
-        <target state="new">Припинити вимовляння</target>
-        
-      <note>Class = "NSMenuItem"; title = "Stop Speaking"; ObjectID = "Oyz-dy-DGm";</note></trans-unit>
+        <target>Припинити вимовляння</target>
+        <note>Class = "NSMenuItem"; title = "Stop Speaking"; ObjectID = "Oyz-dy-DGm";</note>
+      </trans-unit>
       <trans-unit id="Ptp-SP-VEL.title" xml:space="preserve">
         <source>Bigger</source>
-        <target state="new">Збільшити</target>
-        
-      <note>Class = "NSMenuItem"; title = "Bigger"; ObjectID = "Ptp-SP-VEL";</note></trans-unit>
+        <target>Збільшити</target>
+        <note>Class = "NSMenuItem"; title = "Bigger"; ObjectID = "Ptp-SP-VEL";</note>
+      </trans-unit>
       <trans-unit id="Q5e-8K-NDq.title" xml:space="preserve">
         <source>Show Fonts</source>
-        <target state="new">Відобразити шрифти</target>
-        
-      <note>Class = "NSMenuItem"; title = "Show Fonts"; ObjectID = "Q5e-8K-NDq";</note></trans-unit>
+        <target>Відобразити шрифти</target>
+        <note>Class = "NSMenuItem"; title = "Show Fonts"; ObjectID = "Q5e-8K-NDq";</note>
+      </trans-unit>
       <trans-unit id="R4o-n2-Eq4.title" xml:space="preserve">
         <source>Zoom</source>
-        <target state="new">Масштабування</target>
-        
-      <note>Class = "NSMenuItem"; title = "Zoom"; ObjectID = "R4o-n2-Eq4";</note></trans-unit>
+        <target>Масштабування</target>
+        <note>Class = "NSMenuItem"; title = "Zoom"; ObjectID = "R4o-n2-Eq4";</note>
+      </trans-unit>
       <trans-unit id="RB4-Sm-HuC.title" xml:space="preserve">
         <source>	Right to Left</source>
-        <target state="new">	Справа наліво</target>
-        
-      <note>Class = "NSMenuItem"; title = "\tRight to Left"; ObjectID = "RB4-Sm-HuC";</note></trans-unit>
+        <target>	Справа наліво</target>
+        <note>Class = "NSMenuItem"; title = "\tRight to Left"; ObjectID = "RB4-Sm-HuC";</note>
+      </trans-unit>
       <trans-unit id="Riu-oE-8dj.title" xml:space="preserve">
         <source>Close</source>
-        <target state="new">Закрити</target>
-        
-      <note>Class = "NSButtonCell"; title = "Close"; ObjectID = "Riu-oE-8dj";</note></trans-unit>
+        <target>Закрити</target>
+        <note>Class = "NSButtonCell"; title = "Close"; ObjectID = "Riu-oE-8dj";</note>
+      </trans-unit>
       <trans-unit id="Rkd-xb-FRJ.title" xml:space="preserve">
         <source>none</source>
-        <target state="new">не вибрано</target>
-        
-      <note>Class = "NSTextFieldCell"; title = "none"; ObjectID = "Rkd-xb-FRJ";</note></trans-unit>
+        <target>не вибрано</target>
+        <note>Class = "NSTextFieldCell"; title = "none"; ObjectID = "Rkd-xb-FRJ";</note>
+      </trans-unit>
       <trans-unit id="RmO-tv-UKh.title" xml:space="preserve">
         <source>Logout</source>
-        <target state="new">Вихід</target>
-        
-      <note>Class = "NSButtonCell"; title = "Logout"; ObjectID = "RmO-tv-UKh";</note></trans-unit>
+        <target>Вихід</target>
+        <note>Class = "NSButtonCell"; title = "Logout"; ObjectID = "RmO-tv-UKh";</note>
+      </trans-unit>
       <trans-unit id="Rqc-34-cIF.title" xml:space="preserve">
         <source>Superscript</source>
-        <target state="new">Надрядковий</target>
-        
-      <note>Class = "NSMenuItem"; title = "Superscript"; ObjectID = "Rqc-34-cIF";</note></trans-unit>
+        <target>Надрядковий</target>
+        <note>Class = "NSMenuItem"; title = "Superscript"; ObjectID = "Rqc-34-cIF";</note>
+      </trans-unit>
       <trans-unit id="Ruw-6m-B2m.title" xml:space="preserve">
         <source>Select All</source>
-        <target state="new">Вибрати всі</target>
-        
-      <note>Class = "NSMenuItem"; title = "Select All"; ObjectID = "Ruw-6m-B2m";</note></trans-unit>
+        <target>Вибрати всі</target>
+        <note>Class = "NSMenuItem"; title = "Select All"; ObjectID = "Ruw-6m-B2m";</note>
+      </trans-unit>
       <trans-unit id="S0p-oC-mLd.title" xml:space="preserve">
         <source>Jump to Selection</source>
-        <target state="new">Перейти до виділеного</target>
-        
-      <note>Class = "NSMenuItem"; title = "Jump to Selection"; ObjectID = "S0p-oC-mLd";</note></trans-unit>
+        <target>Перейти до виділеного</target>
+        <note>Class = "NSMenuItem"; title = "Jump to Selection"; ObjectID = "S0p-oC-mLd";</note>
+      </trans-unit>
       <trans-unit id="TEm-B8-gsH.title" xml:space="preserve">
         <source>Document</source>
-        <target state="new">Документ</target>
-        
-      <note>Class = "NSMenuItem"; title = "Document"; ObjectID = "TEm-B8-gsH";</note></trans-unit>
+        <target>Документ</target>
+        <note>Class = "NSMenuItem"; title = "Document"; ObjectID = "TEm-B8-gsH";</note>
+      </trans-unit>
       <trans-unit id="Td7-aD-5lo.title" xml:space="preserve">
         <source>Window</source>
-        <target state="new">Вікно</target>
-        
-      <note>Class = "NSMenu"; title = "Window"; ObjectID = "Td7-aD-5lo";</note></trans-unit>
+        <target>Вікно</target>
+        <note>Class = "NSMenu"; title = "Window"; ObjectID = "Td7-aD-5lo";</note>
+      </trans-unit>
       <trans-unit id="UEZ-Bs-lqG.title" xml:space="preserve">
         <source>Capitalize</source>
-        <target state="new">З великої літери</target>
-        
-      <note>Class = "NSMenuItem"; title = "Capitalize"; ObjectID = "UEZ-Bs-lqG";</note></trans-unit>
+        <target>З великої літери</target>
+        <note>Class = "NSMenuItem"; title = "Capitalize"; ObjectID = "UEZ-Bs-lqG";</note>
+      </trans-unit>
       <trans-unit id="VIY-Ag-zcb.title" xml:space="preserve">
         <source>Center</source>
-        <target state="new">Вирівняти по центру</target>
-        
-      <note>Class = "NSMenuItem"; title = "Center"; ObjectID = "VIY-Ag-zcb";</note></trans-unit>
+        <target>Вирівняти по центру</target>
+        <note>Class = "NSMenuItem"; title = "Center"; ObjectID = "VIY-Ag-zcb";</note>
+      </trans-unit>
       <trans-unit id="Vdr-fp-XzO.title" xml:space="preserve">
         <source>Hide Others</source>
-        <target state="new">Сховати інші</target>
-        
-      <note>Class = "NSMenuItem"; title = "Hide Others"; ObjectID = "Vdr-fp-XzO";</note></trans-unit>
+        <target>Сховати інші</target>
+        <note>Class = "NSMenuItem"; title = "Hide Others"; ObjectID = "Vdr-fp-XzO";</note>
+      </trans-unit>
       <trans-unit id="Vjx-xi-njq.title" xml:space="preserve">
         <source>Italic</source>
-        <target state="new">Курсив</target>
-        
-      <note>Class = "NSMenuItem"; title = "Italic"; ObjectID = "Vjx-xi-njq";</note></trans-unit>
+        <target>Курсив</target>
+        <note>Class = "NSMenuItem"; title = "Italic"; ObjectID = "Vjx-xi-njq";</note>
+      </trans-unit>
       <trans-unit id="W48-6f-4Dl.title" xml:space="preserve">
         <source>Edit</source>
-        <target state="new">Редагувати</target>
-        
-      <note>Class = "NSMenu"; title = "Edit"; ObjectID = "W48-6f-4Dl";</note></trans-unit>
+        <target>Редагувати</target>
+        <note>Class = "NSMenu"; title = "Edit"; ObjectID = "W48-6f-4Dl";</note>
+      </trans-unit>
       <trans-unit id="WRG-CD-K1S.title" xml:space="preserve">
         <source>Underline</source>
-        <target state="new">Підкреслення</target>
-        
-      <note>Class = "NSMenuItem"; title = "Underline"; ObjectID = "WRG-CD-K1S";</note></trans-unit>
+        <target>Підкреслення</target>
+        <note>Class = "NSMenuItem"; title = "Underline"; ObjectID = "WRG-CD-K1S";</note>
+      </trans-unit>
       <trans-unit id="WeT-3V-zwk.title" xml:space="preserve">
         <source>Paste and Match Style</source>
-        <target state="new">Вставити з відповідним стилем</target>
-        
-      <note>Class = "NSMenuItem"; title = "Paste and Match Style"; ObjectID = "WeT-3V-zwk";</note></trans-unit>
+        <target>Вставити з відповідним стилем</target>
+        <note>Class = "NSMenuItem"; title = "Paste and Match Style"; ObjectID = "WeT-3V-zwk";</note>
+      </trans-unit>
       <trans-unit id="Xz5-n4-O0W.title" xml:space="preserve">
         <source>Find…</source>
-        <target state="new">Пошук…</target>
-        
-      <note>Class = "NSMenuItem"; title = "Find…"; ObjectID = "Xz5-n4-O0W";</note></trans-unit>
+        <target>Пошук…</target>
+        <note>Class = "NSMenuItem"; title = "Find…"; ObjectID = "Xz5-n4-O0W";</note>
+      </trans-unit>
       <trans-unit id="YEy-JH-Tfz.title" xml:space="preserve">
         <source>Find and Replace…</source>
-        <target state="new">Пошук і заміна…</target>
-        
-      <note>Class = "NSMenuItem"; title = "Find and Replace…"; ObjectID = "YEy-JH-Tfz";</note></trans-unit>
+        <target>Пошук і заміна…</target>
+        <note>Class = "NSMenuItem"; title = "Find and Replace…"; ObjectID = "YEy-JH-Tfz";</note>
+      </trans-unit>
       <trans-unit id="YGs-j5-SAR.title" xml:space="preserve">
         <source>	Default</source>
-        <target state="new">	За замовчуванням</target>
-        
-      <note>Class = "NSMenuItem"; title = "\tDefault"; ObjectID = "YGs-j5-SAR";</note></trans-unit>
+        <target>	За замовчуванням</target>
+        <note>Class = "NSMenuItem"; title = "\tDefault"; ObjectID = "YGs-j5-SAR";</note>
+      </trans-unit>
       <trans-unit id="Ynk-f8-cLZ.title" xml:space="preserve">
         <source>Start Speaking</source>
-        <target state="new">Почати вимовляння</target>
-        
-      <note>Class = "NSMenuItem"; title = "Start Speaking"; ObjectID = "Ynk-f8-cLZ";</note></trans-unit>
+        <target>Почати вимовляння</target>
+        <note>Class = "NSMenuItem"; title = "Start Speaking"; ObjectID = "Ynk-f8-cLZ";</note>
+      </trans-unit>
       <trans-unit id="ZM1-6Q-yy1.title" xml:space="preserve">
         <source>Align Left</source>
-        <target state="new">Вирівняти за лівим краєм</target>
-        
-      <note>Class = "NSMenuItem"; title = "Align Left"; ObjectID = "ZM1-6Q-yy1";</note></trans-unit>
+        <target>Вирівняти за лівим краєм</target>
+        <note>Class = "NSMenuItem"; title = "Align Left"; ObjectID = "ZM1-6Q-yy1";</note>
+      </trans-unit>
       <trans-unit id="ZbA-hc-8PE.title" xml:space="preserve">
         <source>Version</source>
-        <target state="new">Версія</target>
-        
-      <note>Class = "NSTextFieldCell"; title = "Version"; ObjectID = "ZbA-hc-8PE";</note></trans-unit>
+        <target>Версія</target>
+        <note>Class = "NSTextFieldCell"; title = "Version"; ObjectID = "ZbA-hc-8PE";</note>
+      </trans-unit>
       <trans-unit id="Zsi-3o-ASl.title" xml:space="preserve">
         <source>Email:</source>
-        <target state="new">Ел. пошта:</target>
-        
-      <note>Class = "NSTextFieldCell"; title = "Email:"; ObjectID = "Zsi-3o-ASl";</note></trans-unit>
+        <target>Ел. пошта:</target>
+        <note>Class = "NSTextFieldCell"; title = "Email:"; ObjectID = "Zsi-3o-ASl";</note>
+      </trans-unit>
       <trans-unit id="ZvO-Gk-QUH.title" xml:space="preserve">
         <source>Paragraph</source>
-        <target state="new">Абзац</target>
-        
-      <note>Class = "NSMenuItem"; title = "Paragraph"; ObjectID = "ZvO-Gk-QUH";</note></trans-unit>
+        <target>Абзац</target>
+        <note>Class = "NSMenuItem"; title = "Paragraph"; ObjectID = "ZvO-Gk-QUH";</note>
+      </trans-unit>
       <trans-unit id="aTl-1u-JFS.title" xml:space="preserve">
         <source>Print…</source>
-        <target state="new">Друк…</target>
-        
-      <note>Class = "NSMenuItem"; title = "Print…"; ObjectID = "aTl-1u-JFS";</note></trans-unit>
+        <target>Друк…</target>
+        <note>Class = "NSMenuItem"; title = "Print…"; ObjectID = "aTl-1u-JFS";</note>
+      </trans-unit>
       <trans-unit id="aUF-d1-5bR.title" xml:space="preserve">
         <source>Window</source>
-        <target state="new">Вікно</target>
-        
-      <note>Class = "NSMenuItem"; title = "Window"; ObjectID = "aUF-d1-5bR";</note></trans-unit>
+        <target>Вікно</target>
+        <note>Class = "NSMenuItem"; title = "Window"; ObjectID = "aUF-d1-5bR";</note>
+      </trans-unit>
       <trans-unit id="aXa-aM-Jaq.title" xml:space="preserve">
         <source>Font</source>
-        <target state="new">Шрифт</target>
-        
-      <note>Class = "NSMenu"; title = "Font"; ObjectID = "aXa-aM-Jaq";</note></trans-unit>
+        <target>Шрифт</target>
+        <note>Class = "NSMenu"; title = "Font"; ObjectID = "aXa-aM-Jaq";</note>
+      </trans-unit>
       <trans-unit id="agt-UL-0e3.title" xml:space="preserve">
         <source>Use Default</source>
-        <target state="new">За замовчуванням</target>
-        
-      <note>Class = "NSMenuItem"; title = "Use Default"; ObjectID = "agt-UL-0e3";</note></trans-unit>
+        <target>За замовчуванням</target>
+        <note>Class = "NSMenuItem"; title = "Use Default"; ObjectID = "agt-UL-0e3";</note>
+      </trans-unit>
       <trans-unit id="bgn-CT-cEk.title" xml:space="preserve">
         <source>Show Colors</source>
-        <target state="new">Відобразити кольори</target>
-        
-      <note>Class = "NSMenuItem"; title = "Show Colors"; ObjectID = "bgn-CT-cEk";</note></trans-unit>
+        <target>Відобразити кольори</target>
+        <note>Class = "NSMenuItem"; title = "Show Colors"; ObjectID = "bgn-CT-cEk";</note>
+      </trans-unit>
       <trans-unit id="bib-Uj-vzu.title" xml:space="preserve">
         <source>File</source>
-        <target state="new">Файл</target>
-        
-      <note>Class = "NSMenu"; title = "File"; ObjectID = "bib-Uj-vzu";</note></trans-unit>
+        <target>Файл</target>
+        <note>Class = "NSMenu"; title = "File"; ObjectID = "bib-Uj-vzu";</note>
+      </trans-unit>
       <trans-unit id="buJ-ug-pKt.title" xml:space="preserve">
         <source>Use Selection for Find</source>
-        <target state="new">Використати виділене для пошуку</target>
-        
-      <note>Class = "NSMenuItem"; title = "Use Selection for Find"; ObjectID = "buJ-ug-pKt";</note></trans-unit>
+        <target>Використати виділене для пошуку</target>
+        <note>Class = "NSMenuItem"; title = "Use Selection for Find"; ObjectID = "buJ-ug-pKt";</note>
+      </trans-unit>
       <trans-unit id="c8a-y6-VQd.title" xml:space="preserve">
         <source>Transformations</source>
-        <target state="new">Перетворення</target>
-        
-      <note>Class = "NSMenu"; title = "Transformations"; ObjectID = "c8a-y6-VQd";</note></trans-unit>
+        <target>Перетворення</target>
+        <note>Class = "NSMenu"; title = "Transformations"; ObjectID = "c8a-y6-VQd";</note>
+      </trans-unit>
       <trans-unit id="cDB-IK-hbR.title" xml:space="preserve">
         <source>Use None</source>
-        <target state="new">Не використовувати</target>
-        
-      <note>Class = "NSMenuItem"; title = "Use None"; ObjectID = "cDB-IK-hbR";</note></trans-unit>
+        <target>Не використовувати</target>
+        <note>Class = "NSMenuItem"; title = "Use None"; ObjectID = "cDB-IK-hbR";</note>
+      </trans-unit>
       <trans-unit id="cqv-fj-IhA.title" xml:space="preserve">
         <source>Selection</source>
-        <target state="new">Вибір</target>
-        
-      <note>Class = "NSMenuItem"; title = "Selection"; ObjectID = "cqv-fj-IhA";</note></trans-unit>
+        <target>Вибір</target>
+        <note>Class = "NSMenuItem"; title = "Selection"; ObjectID = "cqv-fj-IhA";</note>
+      </trans-unit>
       <trans-unit id="cwL-P1-jid.title" xml:space="preserve">
         <source>Smart Links</source>
-        <target state="new">Розумні посилання</target>
-        
-      <note>Class = "NSMenuItem"; title = "Smart Links"; ObjectID = "cwL-P1-jid";</note></trans-unit>
+        <target>Розумні посилання</target>
+        <note>Class = "NSMenuItem"; title = "Smart Links"; ObjectID = "cwL-P1-jid";</note>
+      </trans-unit>
       <trans-unit id="d9M-CD-aMd.title" xml:space="preserve">
         <source>Make Lower Case</source>
-        <target state="new">У нижній регістр</target>
-        
-      <note>Class = "NSMenuItem"; title = "Make Lower Case"; ObjectID = "d9M-CD-aMd";</note></trans-unit>
+        <target>У нижній регістр</target>
+        <note>Class = "NSMenuItem"; title = "Make Lower Case"; ObjectID = "d9M-CD-aMd";</note>
+      </trans-unit>
       <trans-unit id="d9c-me-L2H.title" xml:space="preserve">
         <source>Text</source>
-        <target state="new">Текст</target>
-        
-      <note>Class = "NSMenu"; title = "Text"; ObjectID = "d9c-me-L2H";</note></trans-unit>
+        <target>Текст</target>
+        <note>Class = "NSMenu"; title = "Text"; ObjectID = "d9c-me-L2H";</note>
+      </trans-unit>
       <trans-unit id="dMs-cI-mzQ.title" xml:space="preserve">
         <source>File</source>
-        <target state="new">Файл</target>
-        
-      <note>Class = "NSMenuItem"; title = "File"; ObjectID = "dMs-cI-mzQ";</note></trans-unit>
+        <target>Файл</target>
+        <note>Class = "NSMenuItem"; title = "File"; ObjectID = "dMs-cI-mzQ";</note>
+      </trans-unit>
       <trans-unit id="dRJ-4n-Yzg.title" xml:space="preserve">
         <source>Undo</source>
-        <target state="new">Скасувати</target>
-        
-      <note>Class = "NSMenuItem"; title = "Undo"; ObjectID = "dRJ-4n-Yzg";</note></trans-unit>
+        <target>Скасувати</target>
+        <note>Class = "NSMenuItem"; title = "Undo"; ObjectID = "dRJ-4n-Yzg";</note>
+      </trans-unit>
       <trans-unit id="gVA-U4-sdL.title" xml:space="preserve">
         <source>Paste</source>
-        <target state="new">Вставити</target>
-        
-      <note>Class = "NSMenuItem"; title = "Paste"; ObjectID = "gVA-U4-sdL";</note></trans-unit>
+        <target>Вставити</target>
+        <note>Class = "NSMenuItem"; title = "Paste"; ObjectID = "gVA-U4-sdL";</note>
+      </trans-unit>
       <trans-unit id="gm3-6i-EnL.title" xml:space="preserve">
         <source>File Name</source>
-        <target state="new">Ім'я файлу</target>
-        
-      <note>Class = "NSTextFieldCell"; title = "File Name"; ObjectID = "gm3-6i-EnL";</note></trans-unit>
+        <target>Ім'я файлу</target>
+        <note>Class = "NSTextFieldCell"; title = "File Name"; ObjectID = "gm3-6i-EnL";</note>
+      </trans-unit>
       <trans-unit id="hD5-Cz-ItX.title" xml:space="preserve">
         <source>New</source>
-        <target state="new">Створити</target>
-        
-      <note>Class = "NSMenu"; title = "New"; ObjectID = "hD5-Cz-ItX";</note></trans-unit>
+        <target>Створити</target>
+        <note>Class = "NSMenu"; title = "New"; ObjectID = "hD5-Cz-ItX";</note>
+      </trans-unit>
       <trans-unit id="hQb-2v-fYv.title" xml:space="preserve">
         <source>Smart Quotes</source>
-        <target state="new">Розумні лапки</target>
-        
-      <note>Class = "NSMenuItem"; title = "Smart Quotes"; ObjectID = "hQb-2v-fYv";</note></trans-unit>
+        <target>Розумні лапки</target>
+        <note>Class = "NSMenuItem"; title = "Smart Quotes"; ObjectID = "hQb-2v-fYv";</note>
+      </trans-unit>
       <trans-unit id="hkB-TU-Ps1.title" xml:space="preserve">
         <source>Presentation</source>
-        <target state="new">Презентація</target>
-        
-      <note>Class = "NSMenuItem"; title = "Presentation"; ObjectID = "hkB-TU-Ps1";</note></trans-unit>
+        <target>Презентація</target>
+        <note>Class = "NSMenuItem"; title = "Presentation"; ObjectID = "hkB-TU-Ps1";</note>
+      </trans-unit>
       <trans-unit id="hz2-CU-CR7.title" xml:space="preserve">
         <source>Check Document Now</source>
-        <target state="new">Перевірити документ зараз</target>
-        
-      <note>Class = "NSMenuItem"; title = "Check Document Now"; ObjectID = "hz2-CU-CR7";</note></trans-unit>
+        <target>Перевірити документ зараз</target>
+        <note>Class = "NSMenuItem"; title = "Check Document Now"; ObjectID = "hz2-CU-CR7";</note>
+      </trans-unit>
       <trans-unit id="hz9-B4-Xy5.title" xml:space="preserve">
         <source>Services</source>
-        <target state="new">Сервіси</target>
-        
-      <note>Class = "NSMenu"; title = "Services"; ObjectID = "hz9-B4-Xy5";</note></trans-unit>
+        <target>Сервіси</target>
+        <note>Class = "NSMenu"; title = "Services"; ObjectID = "hz9-B4-Xy5";</note>
+      </trans-unit>
       <trans-unit id="i1d-Er-qST.title" xml:space="preserve">
         <source>Smaller</source>
-        <target state="new">Зменшити</target>
-        
-      <note>Class = "NSMenuItem"; title = "Smaller"; ObjectID = "i1d-Er-qST";</note></trans-unit>
+        <target>Зменшити</target>
+        <note>Class = "NSMenuItem"; title = "Smaller"; ObjectID = "i1d-Er-qST";</note>
+      </trans-unit>
       <trans-unit id="ijk-EB-dga.title" xml:space="preserve">
         <source>Baseline</source>
-        <target state="new">Базова лінія</target>
-        
-      <note>Class = "NSMenu"; title = "Baseline"; ObjectID = "ijk-EB-dga";</note></trans-unit>
+        <target>Базова лінія</target>
+        <note>Class = "NSMenu"; title = "Baseline"; ObjectID = "ijk-EB-dga";</note>
+      </trans-unit>
       <trans-unit id="jBQ-r6-VK2.title" xml:space="preserve">
         <source>Kern</source>
-        <target state="new">Кернінг</target>
-        
-      <note>Class = "NSMenuItem"; title = "Kern"; ObjectID = "jBQ-r6-VK2";</note></trans-unit>
+        <target>Кернінг</target>
+        <note>Class = "NSMenuItem"; title = "Kern"; ObjectID = "jBQ-r6-VK2";</note>
+      </trans-unit>
       <trans-unit id="jFq-tB-4Kx.title" xml:space="preserve">
         <source>	Right to Left</source>
-        <target state="new">	Справа наліво</target>
-        
-      <note>Class = "NSMenuItem"; title = "\tRight to Left"; ObjectID = "jFq-tB-4Kx";</note></trans-unit>
+        <target>	Справа наліво</target>
+        <note>Class = "NSMenuItem"; title = "\tRight to Left"; ObjectID = "jFq-tB-4Kx";</note>
+      </trans-unit>
       <trans-unit id="jxT-CU-nIS.title" xml:space="preserve">
         <source>Format</source>
-        <target state="new">Формат</target>
-        
-      <note>Class = "NSMenuItem"; title = "Format"; ObjectID = "jxT-CU-nIS";</note></trans-unit>
+        <target>Формат</target>
+        <note>Class = "NSMenuItem"; title = "Format"; ObjectID = "jxT-CU-nIS";</note>
+      </trans-unit>
       <trans-unit id="kcg-El-49G.label" xml:space="preserve">
         <source>ONLYOFFICE</source>
-        <target state="new">ONLYOFFICE</target>
-        
-      <note>Class = "NSTabViewItem"; label = "ONLYOFFICE"; ObjectID = "kcg-El-49G";</note></trans-unit>
+        <target>ONLYOFFICE</target>
+        <note>Class = "NSTabViewItem"; label = "ONLYOFFICE"; ObjectID = "kcg-El-49G";</note>
+      </trans-unit>
       <trans-unit id="m0C-e9-0oc.title" xml:space="preserve">
         <source>Cancel</source>
-        <target state="new">Відмінити</target>
-        
-      <note>Class = "NSButtonCell"; title = "Cancel"; ObjectID = "m0C-e9-0oc";</note></trans-unit>
+        <target>Відмінити</target>
+        <note>Class = "NSButtonCell"; title = "Cancel"; ObjectID = "m0C-e9-0oc";</note>
+      </trans-unit>
       <trans-unit id="mK6-2p-4JG.title" xml:space="preserve">
         <source>Check Grammar With Spelling</source>
-        <target state="new">Перевіряти граматику разом з орфографією</target>
-        
-      <note>Class = "NSMenuItem"; title = "Check Grammar With Spelling"; ObjectID = "mK6-2p-4JG";</note></trans-unit>
+        <target>Перевіряти граматику разом з орфографією</target>
+        <note>Class = "NSMenuItem"; title = "Check Grammar With Spelling"; ObjectID = "mK6-2p-4JG";</note>
+      </trans-unit>
       <trans-unit id="o6e-r0-MWq.title" xml:space="preserve">
         <source>Ligatures</source>
-        <target state="new">Лігатури</target>
-        
-      <note>Class = "NSMenuItem"; title = "Ligatures"; ObjectID = "o6e-r0-MWq";</note></trans-unit>
+        <target>Лігатури</target>
+        <note>Class = "NSMenuItem"; title = "Ligatures"; ObjectID = "o6e-r0-MWq";</note>
+      </trans-unit>
       <trans-unit id="oas-Oc-fiZ.title" xml:space="preserve">
         <source>Open Recent</source>
-        <target state="new">Відкрити останні</target>
-        
-      <note>Class = "NSMenu"; title = "Open Recent"; ObjectID = "oas-Oc-fiZ";</note></trans-unit>
+        <target>Відкрити останні</target>
+        <note>Class = "NSMenu"; title = "Open Recent"; ObjectID = "oas-Oc-fiZ";</note>
+      </trans-unit>
       <trans-unit id="ogc-rX-tC1.title" xml:space="preserve">
         <source>Loosen</source>
-        <target state="new">Розширити</target>
-        
-      <note>Class = "NSMenuItem"; title = "Loosen"; ObjectID = "ogc-rX-tC1";</note></trans-unit>
+        <target>Розширити</target>
+        <note>Class = "NSMenuItem"; title = "Loosen"; ObjectID = "ogc-rX-tC1";</note>
+      </trans-unit>
       <trans-unit id="pa3-QI-u2k.title" xml:space="preserve">
         <source>Delete</source>
-        <target state="new">Видалити</target>
-        
-      <note>Class = "NSMenuItem"; title = "Delete"; ObjectID = "pa3-QI-u2k";</note></trans-unit>
+        <target>Видалити</target>
+        <note>Class = "NSMenuItem"; title = "Delete"; ObjectID = "pa3-QI-u2k";</note>
+      </trans-unit>
       <trans-unit id="pxx-59-PXV.title" xml:space="preserve">
         <source>Save</source>
-        <target state="new">Зберегти</target>
-        
-      <note>Class = "NSMenuItem"; title = "Save"; ObjectID = "pxx-59-PXV";</note></trans-unit>
+        <target>Зберегти</target>
+        <note>Class = "NSMenuItem"; title = "Save"; ObjectID = "pxx-59-PXV";</note>
+      </trans-unit>
       <trans-unit id="q09-fT-Sye.title" xml:space="preserve">
         <source>Find Next</source>
-        <target state="new">Знайти далі</target>
-        
-      <note>Class = "NSMenuItem"; title = "Find Next"; ObjectID = "q09-fT-Sye";</note></trans-unit>
+        <target>Знайти далі</target>
+        <note>Class = "NSMenuItem"; title = "Find Next"; ObjectID = "q09-fT-Sye";</note>
+      </trans-unit>
       <trans-unit id="qIS-W8-SiK.title" xml:space="preserve">
         <source>Page Setup…</source>
-        <target state="new">Параметри сторінки…</target>
-        
-      <note>Class = "NSMenuItem"; title = "Page Setup…"; ObjectID = "qIS-W8-SiK";</note></trans-unit>
+        <target>Параметри сторінки…</target>
+        <note>Class = "NSMenuItem"; title = "Page Setup…"; ObjectID = "qIS-W8-SiK";</note>
+      </trans-unit>
       <trans-unit id="rbD-Rh-wIN.title" xml:space="preserve">
         <source>Check Spelling While Typing</source>
-        <target state="new">Перевіряти орфографію під час введення тексту</target>
-        
-      <note>Class = "NSMenuItem"; title = "Check Spelling While Typing"; ObjectID = "rbD-Rh-wIN";</note></trans-unit>
+        <target>Перевіряти орфографію під час введення тексту</target>
+        <note>Class = "NSMenuItem"; title = "Check Spelling While Typing"; ObjectID = "rbD-Rh-wIN";</note>
+      </trans-unit>
       <trans-unit id="rgM-f4-ycn.title" xml:space="preserve">
         <source>Smart Dashes</source>
-        <target state="new">Розумні тире</target>
-        
-      <note>Class = "NSMenuItem"; title = "Smart Dashes"; ObjectID = "rgM-f4-ycn";</note></trans-unit>
+        <target>Розумні тире</target>
+        <note>Class = "NSMenuItem"; title = "Smart Dashes"; ObjectID = "rgM-f4-ycn";</note>
+      </trans-unit>
       <trans-unit id="sGd-zc-V0B.title" xml:space="preserve">
         <source>Copyright info</source>
-        <target state="new">Інформація про авторські права</target>
-        
-      <note>Class = "NSTextFieldCell"; title = "Copyright info"; ObjectID = "sGd-zc-V0B";</note></trans-unit>
+        <target>Інформація про авторські права</target>
+        <note>Class = "NSTextFieldCell"; title = "Copyright info"; ObjectID = "sGd-zc-V0B";</note>
+      </trans-unit>
       <trans-unit id="snW-S8-Cw5.title" xml:space="preserve">
         <source>Show Toolbar</source>
-        <target state="new">Показати панель інструментів</target>
-        
-      <note>Class = "NSMenuItem"; title = "Show Toolbar"; ObjectID = "snW-S8-Cw5";</note></trans-unit>
+        <target>Показати панель інструментів</target>
+        <note>Class = "NSMenuItem"; title = "Show Toolbar"; ObjectID = "snW-S8-Cw5";</note>
+      </trans-unit>
       <trans-unit id="tRr-pd-1PS.title" xml:space="preserve">
         <source>Data Detectors</source>
-        <target state="new">Розпізнавання даних</target>
-        
-      <note>Class = "NSMenuItem"; title = "Data Detectors"; ObjectID = "tRr-pd-1PS";</note></trans-unit>
+        <target>Розпізнавання даних</target>
+        <note>Class = "NSMenuItem"; title = "Data Detectors"; ObjectID = "tRr-pd-1PS";</note>
+      </trans-unit>
       <trans-unit id="tXI-mr-wws.title" xml:space="preserve">
         <source>Open Recent</source>
-        <target state="new">Відкрити останні</target>
-        
-      <note>Class = "NSMenuItem"; title = "Open Recent"; ObjectID = "tXI-mr-wws";</note></trans-unit>
+        <target>Відкрити останні</target>
+        <note>Class = "NSMenuItem"; title = "Open Recent"; ObjectID = "tXI-mr-wws";</note>
+      </trans-unit>
       <trans-unit id="tlD-Oa-oAM.title" xml:space="preserve">
         <source>Kern</source>
-        <target state="new">Кернінг</target>
-        
-      <note>Class = "NSMenu"; title = "Kern"; ObjectID = "tlD-Oa-oAM";</note></trans-unit>
+        <target>Кернінг</target>
+        <note>Class = "NSMenu"; title = "Kern"; ObjectID = "tlD-Oa-oAM";</note>
+      </trans-unit>
       <trans-unit id="uQy-DD-JDr.title" xml:space="preserve">
         <source>ONLYOFFICE</source>
-        <target state="new">ONLYOFFICE</target>
-        
-      <note>Class = "NSMenu"; title = "ONLYOFFICE"; ObjectID = "uQy-DD-JDr";</note></trans-unit>
+        <target>ONLYOFFICE</target>
+        <note>Class = "NSMenu"; title = "ONLYOFFICE"; ObjectID = "uQy-DD-JDr";</note>
+      </trans-unit>
       <trans-unit id="uRl-iY-unG.title" xml:space="preserve">
         <source>Cut</source>
-        <target state="new">Вирізати</target>
-        
-      <note>Class = "NSMenuItem"; title = "Cut"; ObjectID = "uRl-iY-unG";</note></trans-unit>
+        <target>Вирізати</target>
+        <note>Class = "NSMenuItem"; title = "Cut"; ObjectID = "uRl-iY-unG";</note>
+      </trans-unit>
       <trans-unit id="ud7-wC-A79.title" xml:space="preserve">
         <source>Check for Updates…</source>
-        <target state="new">Перевірити наявність оновлень…</target>
-        
-      <note>Class = "NSMenuItem"; title = "Check for Updates…"; ObjectID = "ud7-wC-A79";</note></trans-unit>
+        <target>Перевірити наявність оновлень…</target>
+        <note>Class = "NSMenuItem"; title = "Check for Updates…"; ObjectID = "ud7-wC-A79";</note>
+      </trans-unit>
       <trans-unit id="vKC-jM-MkH.title" xml:space="preserve">
         <source>Paste Style</source>
-        <target state="new">Вставити стиль</target>
-        
-      <note>Class = "NSMenuItem"; title = "Paste Style"; ObjectID = "vKC-jM-MkH";</note></trans-unit>
+        <target>Вставити стиль</target>
+        <note>Class = "NSMenuItem"; title = "Paste Style"; ObjectID = "vKC-jM-MkH";</note>
+      </trans-unit>
       <trans-unit id="vLm-3I-IUL.title" xml:space="preserve">
         <source>Show Ruler</source>
-        <target state="new">Показати лінійку</target>
-        
-      <note>Class = "NSMenuItem"; title = "Show Ruler"; ObjectID = "vLm-3I-IUL";</note></trans-unit>
+        <target>Показати лінійку</target>
+        <note>Class = "NSMenuItem"; title = "Show Ruler"; ObjectID = "vLm-3I-IUL";</note>
+      </trans-unit>
       <trans-unit id="vNY-rz-j42.title" xml:space="preserve">
         <source>Clear Menu</source>
-        <target state="new">Очистити меню</target>
-        
-      <note>Class = "NSMenuItem"; title = "Clear Menu"; ObjectID = "vNY-rz-j42";</note></trans-unit>
+        <target>Очистити меню</target>
+        <note>Class = "NSMenuItem"; title = "Clear Menu"; ObjectID = "vNY-rz-j42";</note>
+      </trans-unit>
       <trans-unit id="vmV-6d-7jI.title" xml:space="preserve">
         <source>Make Upper Case</source>
-        <target state="new">У верхній регістр</target>
-        
-      <note>Class = "NSMenuItem"; title = "Make Upper Case"; ObjectID = "vmV-6d-7jI";</note></trans-unit>
+        <target>У верхній регістр</target>
+        <note>Class = "NSMenuItem"; title = "Make Upper Case"; ObjectID = "vmV-6d-7jI";</note>
+      </trans-unit>
       <trans-unit id="w0m-vy-SC9.title" xml:space="preserve">
         <source>Ligatures</source>
-        <target state="new">Лігатури</target>
-        
-      <note>Class = "NSMenu"; title = "Ligatures"; ObjectID = "w0m-vy-SC9";</note></trans-unit>
+        <target>Лігатури</target>
+        <note>Class = "NSMenu"; title = "Ligatures"; ObjectID = "w0m-vy-SC9";</note>
+      </trans-unit>
       <trans-unit id="wb2-vD-lq4.title" xml:space="preserve">
         <source>Align Right</source>
-        <target state="new">Вирівняти за правим краєм</target>
-        
-      <note>Class = "NSMenuItem"; title = "Align Right"; ObjectID = "wb2-vD-lq4";</note></trans-unit>
+        <target>Вирівняти за правим краєм</target>
+        <note>Class = "NSMenuItem"; title = "Align Right"; ObjectID = "wb2-vD-lq4";</note>
+      </trans-unit>
       <trans-unit id="wpe-8d-5DV.title" xml:space="preserve">
         <source>Text Cell</source>
-        <target state="new">Текстова клітинка</target>
-        
-      <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "wpe-8d-5DV";</note></trans-unit>
+        <target>Текстова клітинка</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "wpe-8d-5DV";</note>
+      </trans-unit>
       <trans-unit id="wpr-3q-Mcd.title" xml:space="preserve">
         <source>Help</source>
-        <target state="new">Довідка</target>
-        
-      <note>Class = "NSMenuItem"; title = "Help"; ObjectID = "wpr-3q-Mcd";</note></trans-unit>
+        <target>Довідка</target>
+        <note>Class = "NSMenuItem"; title = "Help"; ObjectID = "wpr-3q-Mcd";</note>
+      </trans-unit>
       <trans-unit id="x3v-GG-iWU.title" xml:space="preserve">
         <source>Copy</source>
-        <target state="new">Копіювати</target>
-        
-      <note>Class = "NSMenuItem"; title = "Copy"; ObjectID = "x3v-GG-iWU";</note></trans-unit>
+        <target>Копіювати</target>
+        <note>Class = "NSMenuItem"; title = "Copy"; ObjectID = "x3v-GG-iWU";</note>
+      </trans-unit>
       <trans-unit id="xCO-ey-2lo.title" xml:space="preserve">
         <source>Product</source>
-        <target state="new">Продукт</target>
-        
-      <note>Class = "NSTextFieldCell"; title = "Product"; ObjectID = "xCO-ey-2lo";</note></trans-unit>
+        <target>Продукт</target>
+        <note>Class = "NSTextFieldCell"; title = "Product"; ObjectID = "xCO-ey-2lo";</note>
+      </trans-unit>
       <trans-unit id="xQD-1f-W4t.title" xml:space="preserve">
         <source>Use All</source>
-        <target state="new">Використовувати всі</target>
-        
-      <note>Class = "NSMenuItem"; title = "Use All"; ObjectID = "xQD-1f-W4t";</note></trans-unit>
+        <target>Використовувати всі</target>
+        <note>Class = "NSMenuItem"; title = "Use All"; ObjectID = "xQD-1f-W4t";</note>
+      </trans-unit>
       <trans-unit id="xrE-MZ-jX0.title" xml:space="preserve">
         <source>Speech</source>
-        <target state="new">Мовлення</target>
-        
-      <note>Class = "NSMenuItem"; title = "Speech"; ObjectID = "xrE-MZ-jX0";</note></trans-unit>
+        <target>Мовлення</target>
+        <note>Class = "NSMenuItem"; title = "Speech"; ObjectID = "xrE-MZ-jX0";</note>
+      </trans-unit>
       <trans-unit id="z6F-FW-3nz.title" xml:space="preserve">
         <source>Show Substitutions</source>
-        <target state="new">Показати заміни</target>
-        
-      <note>Class = "NSMenuItem"; title = "Show Substitutions"; ObjectID = "z6F-FW-3nz";</note></trans-unit>
+        <target>Показати заміни</target>
+        <note>Class = "NSMenuItem"; title = "Show Substitutions"; ObjectID = "z6F-FW-3nz";</note>
+      </trans-unit>
       <trans-unit id="zwS-9G-S0N.title" xml:space="preserve">
         <source>Portal:</source>
-        <target state="new">Портал:</target>
-        
-      <note>Class = "NSTextFieldCell"; title = "Portal:"; ObjectID = "zwS-9G-S0N";</note></trans-unit>
+        <target>Портал:</target>
+        <note>Class = "NSTextFieldCell"; title = "Portal:"; ObjectID = "zwS-9G-S0N";</note>
+      </trans-unit>
     </body>
   </file>
   <file original="ONLYOFFICE/Base.lproj/MoveApplication.strings" source-language="en" target-language="uk-UA" datatype="plaintext">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c" />
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c"/>
     </header>
     <body>
       <trans-unit id="Could not move to Applications folder" xml:space="preserve">
         <source>Could not move to Applications folder</source>
-        <target state="new">Не вдалося перемістити до папки програм</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Не вдалося перемістити до папки програм</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Do Not Move" xml:space="preserve">
         <source>Do Not Move</source>
-        <target state="new">Не переміщувати</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Не переміщувати</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="I can move myself to the Applications folder if you'd like." xml:space="preserve">
         <source>I can move myself to the Applications folder if you'd like.</source>
-        <target state="new">Якщо хочете, я можу переміститися до папки програм.</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Якщо хочете, я можу переміститися до папки програм.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Move to Applications Folder" xml:space="preserve">
         <source>Move to Applications Folder</source>
-        <target state="new">Перемістити до папки програм</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Перемістити до папки програм</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Move to Applications folder in your Home folder?" xml:space="preserve">
         <source>Move to Applications folder in your Home folder?</source>
-        <target state="new">Перемістити до папки програм у домашній папці?</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Перемістити до папки програм у домашній папці?</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Move to Applications folder?" xml:space="preserve">
         <source>Move to Applications folder?</source>
-        <target state="new">Перемістити до папки програм?</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Перемістити до папки програм?</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Note that this will require an administrator password." xml:space="preserve">
         <source>Note that this will require an administrator password.</source>
-        <target state="new">Зауважте, що для цього знадобиться пароль адміністратора.</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Зауважте, що для цього знадобиться пароль адміністратора.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="This will keep your Downloads folder uncluttered." xml:space="preserve">
         <source>This will keep your Downloads folder uncluttered.</source>
-        <target state="new">Це дозволить не загромаджувати папку завантажень.</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Це дозволить не загромаджувати папку завантажень.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
     </body>
   </file>
   <file original="ONLYOFFICE/Base.lproj/Presentation-Reporter.storyboard" source-language="en" target-language="uk-UA" datatype="plaintext">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c" />
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c"/>
     </header>
     <body>
       <trans-unit id="Ygx-5K-Hn8.title" xml:space="preserve">
         <source>Reporter Window</source>
-        <target state="new">Вікно доповідача</target>
-        
-      <note>Class = "NSWindow"; title = "Reporter Window"; ObjectID = "Ygx-5K-Hn8";</note></trans-unit>
+        <target>Вікно доповідача</target>
+        <note>Class = "NSWindow"; title = "Reporter Window"; ObjectID = "Ygx-5K-Hn8";</note>
+      </trans-unit>
     </body>
   </file>
   <file original="ONLYOFFICE/Resources/ONLYOFFICE/Base.lproj/InfoPlist.strings" source-language="en" target-language="uk-UA" datatype="plaintext">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c" />
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c"/>
     </header>
     <body>
       <trans-unit id="CFBundleName" xml:space="preserve">
-        <source>ONLYOFFICE</source><target state="needs-translation">ONLYOFFICE</target>
-        
-      <note>Bundle name</note></trans-unit>
+        <source>ONLYOFFICE</source>
+        <target state="translated">ONLYOFFICE</target>
+        <note>Bundle name</note>
+      </trans-unit>
       <trans-unit id="NSHumanReadableCopyright" xml:space="preserve">
-        <source>Copyright © 2020 Ascensio System SIA. All rights reserved.</source><target state="needs-translation">Авторські права © 2020 Ascensio System SIA. Усі права захищені.</target>
-        
-      <note>Copyright (human-readable)</note></trans-unit>
+        <source>Copyright © 2020 Ascensio System SIA. All rights reserved.</source>
+        <target state="translated">Авторські права © 2020 Ascensio System SIA. Усі права захищені.</target>
+        <note>Copyright (human-readable)</note>
+      </trans-unit>
     </body>
   </file>
 </xliff>

@@ -79,6 +79,7 @@ else
 endif
 
 include win-linux/package/windows/Makefile.mk
+-include $(BRANDING_DIR)/win-linux/package/windows/branding.mk
 
 DEST_CONV_DIR = $(DEST_DIR)/converter
 DEST_EDITOR_DIR = $(DEST_DIR)/editors

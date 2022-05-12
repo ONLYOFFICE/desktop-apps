@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>%d days are left until the license expiration.</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@dagar@</string>
+		<key>days</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d dag är kvar tills licensen upphör.</string>
+			<key>other</key>
+			<string>%d dagar är kvar tills licensen upphör.</string>
+		</dict>
+	</dict>
+	<key>You are using a trial version of the application.
+The trial period will end in %d days, after that you will not be able to create and edit documents.</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@dagar@</string>
+		<key>days</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Du använder en utvärderingsversion av applikationen.
+Utvärderingsperioden upphör om %d dag, efter det kommer du inte ha möjlighet att skapa eller redigera dokument.</string>
+			<key>other</key>
+			<string>Du använder en utvärderingsversion av applikationen.
+Utvärderingsperioden upphör om %d dagar, efter det kommer du inte ha möjlighet att skapa eller redigera dokument.</string>
+		</dict>
+	</dict>
+	<key>You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@dokument@</string>
+		<key>documents</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>ld</string>
+			<key>one</key>
+			<string>Du har %ld %@ dokument med obekräftade ändringar. Vill du granska dessa ändringar innan du avslutar?</string>
+			<key>other</key>
+			<string>Du har %ld %@ dokument med obekräftade ändringar. Vill du granska dessa ändringar innan du avslutar?</string>
+		</dict>
+	</dict>
+</dict>
+</plist>

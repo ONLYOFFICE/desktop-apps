@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>%d days are left until the license expiration.</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@gün@</string>
+		<key>days</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Lisans süresinin dolmasına %d gün kaldı.</string>
+			<key>other</key>
+			<string> Lisans süresinin dolmasına %d gün kaldı.</string>
+		</dict>
+	</dict>
+	<key>You are using a trial version of the application.
+The trial period will end in %d days, after that you will not be able to create and edit documents.</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@gün@</string>
+		<key>days</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Uygulamanın deneme sürümünü kullanıyorsunuz.
+Deneme sürümü %d gün sonra sona erecektir. Ardından belge oluşturamayacak ve düzenleyemeyeceksiniz.</string>
+			<key>other</key>
+			<string> Uygulamanın deneme sürümünü kullanıyorsunuz.
+Deneme sürümü %d gün sonra sona erecektir. Ardından belge oluşturamayacak ve düzenleyemeyeceksiniz.</string>
+		</dict>
+	</dict>
+	<key>You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@belgeler@</string>
+		<key>documents</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>ld</string>
+			<key>one</key>
+			<string> Onaylanmamış değişiklikleri olan %1$ld %2$@  belgeniz var. Çıkış yapmadan önce değişiklikleri gözden geçirmek ister misiniz </string>
+			<key>other</key>
+			<string> Onaylanmamış değişiklikleri olan %1$ld %2$@  belgeniz var. Çıkış yapmadan önce değişiklikleri gözden geçirmek ister misiniz </string>
+		</dict>
+	</dict>
+</dict>
+</plist>

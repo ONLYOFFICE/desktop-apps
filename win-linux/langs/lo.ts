@@ -182,7 +182,7 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="222"/>
         <source>Document template (*.dotx)</source>
-        <translation>ແບບແຜນເອກະສານ (*.dotx)</translation>
+        <translation>ເປີດໄຟລ໌ XML ໃນຮູບແບບເອກະສານ Word (*.dotx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="223"/>
@@ -192,12 +192,12 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="224"/>
         <source>ODT Document (*.odt)</source>
-        <translation>ເອກະສານ ODT (*.odt)</translation>
+        <translation>ເປີດເອກະສານໄຟລ໌ Text (*.odt)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="225"/>
         <source>OpenDocument Document template (*.ott)</source>
-        <translation>ແບບເປີດເອກະສານ (*.ott)</translation>
+        <translation>ເປີດເອກະສານ ເປັນຮູບແບບເອກະສານ (*.ott)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="226"/>
@@ -207,42 +207,42 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="227"/>
         <source>TXT File (*.txt)</source>
-        <translation>ເອກະສານ TXT (*.txt)</translation>
+        <translation>ໄຟລ໌ Text ທຳມະດາ (*.txt)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="228"/>
         <source>HTML File (*.html)</source>
-        <translation>ເອກະສານ HTML (*.html)</translation>
+        <translation>ໄຟລ໌ HyperText Markup Language (*.html)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="229"/>
         <source>MHT File (*.mht)</source>
-        <translation>ເອກະສານ MHT (*.mht)</translation>
+        <translation>ໄຟລ໌ບັນທືກ Web Page (*.mht)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="230"/>
         <source>EPUB File (*.epub)</source>
-        <translation>ເອກະສານ EPUB (*.epub)</translation>
+        <translation>ໄຟລ໌ Electronic Publication (*.epub)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="231"/>
         <source>FB2 File (*.fb2)</source>
-        <translation>ເອກະສານ FB2 (*.fb2)</translation>
+        <translation>ໄຟລ໌ FictionBook 2 (*.fb2)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="232"/>
         <source>MOBI File (*.mobi)</source>
-        <translation>ເອກະສານ MOBI (*.mobi)</translation>
+        <translation>ໄຟລ໌ Mobipocket (*.mobi)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="233"/>
         <source>OFORM Document (*.oform)</source>
-        <translation type="unfinished"></translation>
+        <translation>ສາມາດຕື່ມແບບຟອມ ອອນລາຍ ໄດ້ ONLYOFFICE (*.oform)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="234"/>
         <source>DOCXF Document (*.docxf)</source>
-        <translation type="unfinished"></translation>
+        <translation>ຮູບແບບຂອງ ONLYOFFICE (*.docxf)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="236"/>
@@ -257,7 +257,7 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="238"/>
         <source>Presentation template (*.potx)</source>
-        <translation>່ແບບການນຳສະເໜີ (*.potx)</translation>
+        <translation>ເປີດໄຟລ໌ XML ໃນຮູບແບບນຳສະເໜີ PowerPoint (*.potx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="239"/>
@@ -267,7 +267,7 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="240"/>
         <source>OpenDocument Presentation Template (*.otp)</source>
-        <translation>ແບບການນຳສະເໜີ (*.otp)</translation>
+        <translation>ເປີດເອກະສານ ໃນຮູບແບບນຳສະເໜີ (*.otp)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="241"/>
@@ -282,32 +282,32 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="244"/>
         <source>Spreadsheet template (*.xltx)</source>
-        <translation>ແບບສະເປຣດຊີດ (*.xltx)</translation>
+        <translation>ເປີດໄຟລ໌ XML ໃນຮູບແບບຕາຕະລາງ Excel (*.xltx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="245"/>
         <source>XLS File (*.xls)</source>
-        <translation>ເອກະສານ XLS  (*.xls)</translation>
+        <translation type="unfinished">ເອກະສານ XLS (*.xls)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="246"/>
         <source>ODS File (*.ods)</source>
-        <translation>ເອກະສານ ODS  (*.ods)</translation>
+        <translation>ເປີດເອກະສານໃນຮູບແບບຕາຕະລາງ (*.ods)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="247"/>
         <source>OpenDocument Spreadsheet Template (*.ots)</source>
-        <translation>ເເບບເປີດຕາຕະລາງ (*.ots)</translation>
+        <translation>ເປີດເອກະສານໃນຮູບແບບຂອງຕາຕະລາງ (*.ots)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="248"/>
         <source>CSV File (*.csv)</source>
-        <translation>ເອກະສານ CSV  (*.csv)</translation>
+        <translation>ເອກະສານ CSV (*.csv)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="250"/>
         <source>PDF File (*.pdf)</source>
-        <translation>ເອກະສານ PDF (*.pdf)</translation>
+        <translation>ເອກະສານແບບພົກພາ (*.pdf)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="251"/>
@@ -317,27 +317,27 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="252"/>
         <source>DJVU File (*.djvu)</source>
-        <translation>ເອກະສານDJVU  (*.djvu)</translation>
+        <translation>ເອກະສານດິຈິຕອລ (*.djvu)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="253"/>
         <source>XPS File (*.xps)</source>
-        <translation>ເອກະສານ XPS (*.xps)</translation>
+        <translation>ເປີດເອກະສານປະເພດ XPS (*.xps)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="255"/>
         <source>Zip Archive (*.zip)</source>
-        <translation type="unfinished"></translation>
+        <translation>ປະເພດ Zip Archive (*.zip)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="256"/>
         <source>JPG Image (*.jpg, *.jpeg)</source>
-        <translation type="unfinished"></translation>
+        <translation>ປະເພດ JPG Image (*.jpg, *.jpeg)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="257"/>
         <source>PNG Image (*.png)</source>
-        <translation type="unfinished"></translation>
+        <translation>ປະເພດ PNG Image (*.png)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="308"/>
@@ -416,13 +416,13 @@
         <location filename="../src/cfiledialog.cpp" line="461"/>
         <location filename="../src/cfiledialog.cpp" line="470"/>
         <source>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp)</source>
-        <translation>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp)</translation>
+        <translation>ປະເພດ Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="478"/>
         <location filename="../src/cfiledialog.cpp" line="487"/>
         <source>Plugin file (*.plugin)</source>
-        <translation>ສຽບຟາຍ (*.plugin)</translation>
+        <translation>ປະເພດ Plugin File (*.plugin)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="527"/>
@@ -571,7 +571,7 @@
     <message>
         <location filename="../src/ceditortools.cpp" line="126"/>
         <source>All files (*.*)</source>
-        <translation type="unfinished">ຟາຍທັງ ໝົດ (*.*)</translation>
+        <translation>ຟາຍທັງ ໝົດ (*.*)</translation>
     </message>
 </context>
 </TS>

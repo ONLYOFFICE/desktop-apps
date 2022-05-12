@@ -1,0 +1,213 @@
+/* No comment provided by engineer. */
+"%@ Help" = "%@Abi";
+
+/* No comment provided by engineer. */
+"About %@" = "Umbes %@";
+
+/* No comment provided by engineer. */
+"Acknowledgments" = "Tunnustused";
+
+/* No comment provided by engineer. */
+"Before signing the document, it must be saved." = "Enne dokumendi allkirjastamist tuleb see salvestada.";
+
+/* No comment provided by engineer. */
+"Cancel" = "Tühista";
+
+/* No comment provided by engineer. */
+"Cannot open file of Digital Signature" = "Ei saa avada digitaalse allkirja faili";
+
+/* No comment provided by engineer. */
+"Cannot open file of Private Key" = "Ei saa avada privaatse võtme faili";
+
+/* No comment provided by engineer. */
+"Cannot open folder of the file location." = "Ei saa avada faili otsingu kausta.";
+
+/* No comment provided by engineer. */
+"Comma-Separated Values" = "Komaga eraldatud väärtused";
+
+/* No comment provided by engineer. */
+"Create portal" = "Loo portaal";
+
+/* No comment provided by engineer. */
+"Delete and Quit" = "Kustuta ja Loobu";
+
+/* No comment provided by engineer. */
+"DjVu File" = "DjVu Fail";
+
+/* No comment provided by engineer. */
+"Do you want to save the changes made to the document \"%@\"?" = "Kas sa soovid dokumendis tehtud muudatused salvestada“%@“?";
+
+/* No comment provided by engineer. */
+"Document %ld.docx" = "Dokument %ld.docx";
+
+/* No comment provided by engineer. */
+"Document template" = "Dokumendi šabloon";
+
+/* No comment provided by engineer. */
+"Excel 97-2003 Spreadsheet" = "Excel 97-2003 Arvutustabel";
+
+/* No comment provided by engineer. */
+"Excel 2007 Spreadsheet" = "Excel 2007 Arvutustabel";
+
+/* No comment provided by engineer. */
+"File \"%@\" can not be open or not exist." = "Faili „%@“ ei saa avada või seda ei eksisteeri.";
+
+/* No comment provided by engineer. */
+"File can not be open." = "Faili ei saa avada.";
+
+/* No comment provided by engineer. */
+"File Format:" = "Faili formaat:";
+
+/* No comment provided by engineer. */
+"Hide %@" = "Peida %@";
+
+/* No comment provided by engineer. */
+"If you don't review your documents, all your changeses will be lost." = "Kui sa ei vaata oma dokumente uuesti üle, kõik su muudatused lähevad kaotsi.";
+
+/* No comment provided by engineer. */
+"If you have already purchased %@, you should find your activation key in an email confirmation." = "Kui sa oled juba ostnud %@, leiad oma aktiveerimis võtme kinnitus meililt.";
+
+/* No comment provided by engineer. */
+"License Agreement" = "Litsentsileping";
+
+/* No comment provided by engineer. */
+"Mobipocket e-book" = "Mobipocket e-raamat";
+
+/* No comment provided by engineer. */
+"new-document" = "Uus Dokument";
+
+/* No comment provided by engineer. */
+"new-presentation" = "Uus Esitlus";
+
+/* No comment provided by engineer. */
+"new-spreadsheet" = "Uus Arvustustabel";
+
+/* No comment provided by engineer. */
+"No" = "Ei";
+
+/* No comment provided by engineer. */
+"OK" = "OK";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE can not open the Digital Signature file. Try opening another file." = "ONLYOFFICE ei saa avada digitaalse allkirja faili.Proovi avada muud faili.";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE can not open the Private Key. Try opening another file." = "ONLYOFFICE ei saa avada privaatset võtit.Proovi avada muud faili.";
+
+/* No comment provided by engineer. */
+"OpenDocument Document Template" = "OpenDocument Dokumendi šabloon";
+
+/* No comment provided by engineer. */
+"OpenDocument Presentation Template" = "OpenDocument Estitluse šabloon";
+
+/* No comment provided by engineer. */
+"OpenDocument Spreadsheet Template" = "OpenDocument Arvutustabeli šabloon";
+
+/* No comment provided by engineer. */
+"Opening" = "Avamine";
+
+/* No comment provided by engineer. */
+"OpenOffice Document" = "OpenOffice Dokument";
+
+/* No comment provided by engineer. */
+"OpenOffice Presentation" = "OpenOffice Esitlus";
+
+/* No comment provided by engineer. */
+"OpenOffice Spreadsheet" = "OpenOffice Arvutustabel";
+
+/* No comment provided by engineer. */
+"PDF File" = "PDF Fail";
+
+/* No comment provided by engineer. */
+"PDF/A File" = "PDF/A Fail";
+
+/* No comment provided by engineer. */
+"Plain Text" = "Tavaline Tekst";
+
+/* No comment provided by engineer. */
+"PowerPoint 97-2003 Presentation" = "PowerPoint 97-2003 Esitlus";
+
+/* No comment provided by engineer. */
+"PowerPoint 2007 Presentation" = "PowerPoint 2007 Esitlus";
+
+/* No comment provided by engineer. */
+"PowerPoint Slide Show" = "PowerPoint Slaidishow";
+
+/* No comment provided by engineer. */
+"Preparing..." = "Valmistumine...";
+
+/* No comment provided by engineer. */
+"Presentation %ld.pptx" = "Esitlus %ld.pptx";
+
+/* No comment provided by engineer. */
+"Presentation template" = "Esitluse šabloon";
+
+/* No comment provided by engineer. */
+"Quit %@" = "Loobu %@";
+
+/* No comment provided by engineer. */
+"Review Changes..." = "Vaata muutused üle...";
+
+/* No comment provided by engineer. */
+"Rich Text Document" = "Rikkaliku Teksti Dokument";
+
+/* No comment provided by engineer. */
+"Save" = "Salvesta";
+
+/* No comment provided by engineer. */
+"Save the document?" = "Salvesta dokument?";
+
+/* No comment provided by engineer. */
+"Spreadsheet %ld.xlsx" = "Arvutustabel %ld.xlsx";
+
+/* No comment provided by engineer. */
+"Spreadsheet template" = "Arvutustabeli šabloon";
+
+/* No comment provided by engineer. */
+"Thank you for evaluating %@!" = "Aitäh, et hindasite %@!";
+
+/* No comment provided by engineer. */
+"The document \"%@\" must be built. Continue?" = "Dokument „%@“ tuleb luua.Jätka?";
+
+/* No comment provided by engineer. */
+"To open the file location, it must be saved." = "Et avada faili asukoht, tuleb see eelnevalt salvestada.";
+
+/* No comment provided by engineer. */
+"Unconfirmed" = "Kinnitamata";
+
+/* No comment provided by engineer. */
+"Untitled" = "Pealkirjata";
+
+/* No comment provided by engineer. */
+"Version %@ (%@)" = "Versioon %1$@ (%2$@)";
+
+/* No comment provided by engineer. */
+"Web Page" = "Veebileht";
+
+/* No comment provided by engineer. */
+"Word 97-2003 Document" = "Word 97-2003 Dokument";
+
+/* No comment provided by engineer. */
+"Word 2007 Document" = "Word 2007 Dokument";
+
+/* No comment provided by engineer. */
+"XML Paper Specification" = "XML Paberi spetsifikatsioon";
+
+/* No comment provided by engineer. */
+"Yes" = "Jah";
+
+/* No comment provided by engineer. */
+"You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?" = "Sul on %1$ld %2$@ dokumendid kinnitamata muudatustega. Soovid need enne loobumist üle vaadata?";
+
+/* No comment provided by engineer. */
+"You have successfully activated %@." = "Sa oled edukalt aktiveerinud %@.";
+
+/* No comment provided by engineer. */
+"Your changes will be lost if you don’t save them." = "Sinu muudatused lähevad kaotsi, kui sa neid ei salvesta.";
+
+/* No comment provided by engineer. */
+"Your subscription has expired.\n\nThe program works in the non-activated mode.\n\nNow you can prolong or upgrade your subscription with a discount." = "Sinu tellimus on aegunud.\n\nProgramm töötab mitte aktiveeritud režiimis.\n\nNüüd saad pikendada või uuendada oma tellimust soodustusega.";
+
+/* No comment provided by engineer. */
+"Your subscription is about to expire\n(%d days left).\n\nWe have a special offer for you." = "Sinu tellimus hakkab aeguma\n(%d päeva on jäänud).\n\nMeil on sulle eriline pakkumine.";
+

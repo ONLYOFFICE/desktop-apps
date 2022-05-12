@@ -67,7 +67,7 @@
       </trans-unit>
     </body>
   </file>
-  <file original="ONLYOFFICE/Base.lproj/Localizable.strings" source-language="en" target-language="en" datatype="plaintext">
+  <file original="ONLYOFFICE/Base.lproj/Localizable.strings" source-language="en" target-language="be" datatype="plaintext">
     <header>
       <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="12.1" build-num="12A7403"/>
     </header>
@@ -473,7 +473,7 @@ We have a special offer for you.</source>
       </trans-unit>
     </body>
   </file>
-  <file original="ONLYOFFICE/Base.lproj/Localizable.stringsdict" source-language="en" target-language="en" datatype="plaintext">
+  <file original="ONLYOFFICE/Base.lproj/Localizable.stringsdict" source-language="en" target-language="be" datatype="plaintext">
     <header>
       <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="12.1" build-num="12A7403"/>
     </header>
@@ -529,7 +529,7 @@ The trial period will end in %d days, after that you will not be able to create 
       </trans-unit>
     </body>
   </file>
-  <file original="ONLYOFFICE/Base.lproj/Main.storyboard" source-language="en" target-language="en" datatype="plaintext">
+  <file original="ONLYOFFICE/Base.lproj/Main.storyboard" source-language="en" target-language="be" datatype="plaintext">
     <header>
       <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="12.1" build-num="12A7403"/>
     </header>
@@ -1296,7 +1296,7 @@ The trial period will end in %d days, after that you will not be able to create 
       </trans-unit>
     </body>
   </file>
-  <file original="ONLYOFFICE/Base.lproj/MoveApplication.strings" source-language="en" target-language="en" datatype="plaintext">
+  <file original="ONLYOFFICE/Base.lproj/MoveApplication.strings" source-language="en" target-language="be" datatype="plaintext">
     <header>
       <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="12.1" build-num="12A7403"/>
     </header>
@@ -1343,7 +1343,7 @@ The trial period will end in %d days, after that you will not be able to create 
       </trans-unit>
     </body>
   </file>
-  <file original="ONLYOFFICE/Base.lproj/Presentation-Reporter.storyboard" source-language="en" target-language="en" datatype="plaintext">
+  <file original="ONLYOFFICE/Base.lproj/Presentation-Reporter.storyboard" source-language="en" target-language="be" datatype="plaintext">
     <header>
       <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="12.1" build-num="12A7403"/>
     </header>
@@ -1355,7 +1355,7 @@ The trial period will end in %d days, after that you will not be able to create 
       </trans-unit>
     </body>
   </file>
-  <file original="ONLYOFFICE/Resources/ONLYOFFICE/Base.lproj/InfoPlist.strings" source-language="en" target-language="en" datatype="plaintext">
+  <file original="ONLYOFFICE/Resources/ONLYOFFICE/Base.lproj/InfoPlist.strings" source-language="en" target-language="be" datatype="plaintext">
     <header>
       <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="12.1" build-num="12A7403"/>
     </header>

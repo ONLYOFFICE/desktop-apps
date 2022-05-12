@@ -1,0 +1,213 @@
+/* No comment provided by engineer. */
+"%@ Help" = "%@ Yardım";
+
+/* No comment provided by engineer. */
+"About %@" = "Hakkında%@";
+
+/* No comment provided by engineer. */
+"Acknowledgments" = "Teşekkürler";
+
+/* No comment provided by engineer. */
+"Before signing the document, it must be saved." = "Belgenin imzalanmasından önce kaydedilmesi gerekir.";
+
+/* No comment provided by engineer. */
+"Cancel" = "İptal";
+
+/* No comment provided by engineer. */
+"Cannot open file of Digital Signature" = "Elektronik İmza dosyası açılamıyor";
+
+/* No comment provided by engineer. */
+"Cannot open file of Private Key" = "Özel Anahtar dosyası açılamıyor";
+
+/* No comment provided by engineer. */
+"Cannot open folder of the file location." = "Dosya konumunun klasörü açılamıyor";
+
+/* No comment provided by engineer. */
+"Comma-Separated Values" = "Virgül ile Ayrılmış Değerler";
+
+/* No comment provided by engineer. */
+"Create portal" = "Portal yarat";
+
+/* No comment provided by engineer. */
+"Delete and Quit" = "Sil ve Çıkış Yap";
+
+/* No comment provided by engineer. */
+"DjVu File" = "DjVu Dosyası";
+
+/* No comment provided by engineer. */
+"Do you want to save the changes made to the document \"%@\"?" = "Belgeye yapılan değişiklikleri kaydetmek istiyor musunuz \"%@\"?";
+
+/* No comment provided by engineer. */
+"Document %ld.docx" = "Belge %ld.docx";
+
+/* No comment provided by engineer. */
+"Document template" = "Belge şablonu";
+
+/* No comment provided by engineer. */
+"Excel 97-2003 Spreadsheet" = "Excel 97-2003 Tablosu";
+
+/* No comment provided by engineer. */
+"Excel 2007 Spreadsheet" = "Excel 2007 Tablosu";
+
+/* No comment provided by engineer. */
+"File \"%@\" can not be open or not exist." = " \"%@\" dosyası açılamıyor veya mevcut değil.";
+
+/* No comment provided by engineer. */
+"File can not be open." = "Dosya açılamıyor.";
+
+/* No comment provided by engineer. */
+"File Format:" = "Dosya Formatı:";
+
+/* No comment provided by engineer. */
+"Hide %@" = "Gizle %@";
+
+/* No comment provided by engineer. */
+"If you don't review your documents, all your changeses will be lost." = "Eğer belgelerinizi gözden geçirmezseniz, tüm değişiklikleriniz kaybolacaktır.";
+
+/* No comment provided by engineer. */
+"If you have already purchased %@, you should find your activation key in an email confirmation." = "Eğer %@ satın aldıysanız, aktivasyon anahtarını onay e-mailinde bulabilirsiniz.";
+
+/* No comment provided by engineer. */
+"License Agreement" = "Lisans Anlaşması";
+
+/* No comment provided by engineer. */
+"Mobipocket e-book" = "Mobipocket e-kitap";
+
+/* No comment provided by engineer. */
+"new-document" = "Yeni Belge";
+
+/* No comment provided by engineer. */
+"new-presentation" = "Yeni Sunum";
+
+/* No comment provided by engineer. */
+"new-spreadsheet" = "Yeni Tablo";
+
+/* No comment provided by engineer. */
+"No" = "Hayır";
+
+/* No comment provided by engineer. */
+"OK" = "Tamam";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE can not open the Digital Signature file. Try opening another file." = "ONLYOFFICE Elektronik İmza dosyasını açamıyor. Başka bir dosya açmayı deneyin.";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE can not open the Private Key. Try opening another file." = "ONLYOFFICE Özel Anahtar dosyasını açamıyor. Başka bir dosya açmayı deneyin.";
+
+/* No comment provided by engineer. */
+"OpenDocument Document Template" = "OpenDocument Belge Şablonu";
+
+/* No comment provided by engineer. */
+"OpenDocument Presentation Template" = "OpenDocument Sunum Şablonu";
+
+/* No comment provided by engineer. */
+"OpenDocument Spreadsheet Template" = "OpenDocument Tablo Şablonu";
+
+/* No comment provided by engineer. */
+"Opening" = "Açılıyor";
+
+/* No comment provided by engineer. */
+"OpenOffice Document" = "OpenOffice Belgesi";
+
+/* No comment provided by engineer. */
+"OpenOffice Presentation" = "OpenOffice Sunumu";
+
+/* No comment provided by engineer. */
+"OpenOffice Spreadsheet" = "OpenOffice Tablosu";
+
+/* No comment provided by engineer. */
+"PDF File" = "PDF Dosyası";
+
+/* No comment provided by engineer. */
+"PDF/A File" = "PDF/A Dosyası";
+
+/* No comment provided by engineer. */
+"Plain Text" = "Düz Metin";
+
+/* No comment provided by engineer. */
+"PowerPoint 97-2003 Presentation" = "PowerPoint 97-2003 Sunumu";
+
+/* No comment provided by engineer. */
+"PowerPoint 2007 Presentation" = "PowerPoint 2007 Sunumu";
+
+/* No comment provided by engineer. */
+"PowerPoint Slide Show" = "PowerPoint Slayt Gösterisi";
+
+/* No comment provided by engineer. */
+"Preparing..." = "Hazırlanıyor...";
+
+/* No comment provided by engineer. */
+"Presentation %ld.pptx" = "Sunum %ld.pptx";
+
+/* No comment provided by engineer. */
+"Presentation template" = "Sunum şablonu";
+
+/* No comment provided by engineer. */
+"Quit %@" = "Çık %@";
+
+/* No comment provided by engineer. */
+"Review Changes..." = "Değişiklikleri Gözden Geçir...";
+
+/* No comment provided by engineer. */
+"Rich Text Document" = "Zengin Metin Belgesi";
+
+/* No comment provided by engineer. */
+"Save" = "Kaydet";
+
+/* No comment provided by engineer. */
+"Save the document?" = "Belgeyi kaydet?";
+
+/* No comment provided by engineer. */
+"Spreadsheet %ld.xlsx" = "Tablo %ld.xlsx";
+
+/* No comment provided by engineer. */
+"Spreadsheet template" = "Tablo şablonu";
+
+/* No comment provided by engineer. */
+"Thank you for evaluating %@!" = "%@ değerlendirmeniz için teşekkürler!";
+
+/* No comment provided by engineer. */
+"The document \"%@\" must be built. Continue?" = "Belge \"%@\" oluşturulmalı. Devam et?";
+
+/* No comment provided by engineer. */
+"To open the file location, it must be saved." = "Dosya konumunun açılması için kaydedilmesi gerekir.";
+
+/* No comment provided by engineer. */
+"Unconfirmed" = "Onaylanmamış";
+
+/* No comment provided by engineer. */
+"Untitled" = "Başlıksız";
+
+/* No comment provided by engineer. */
+"Version %@ (%@)" = "%1$@ (%2$@) Sürümü";
+
+/* No comment provided by engineer. */
+"Web Page" = "Web Sayfası";
+
+/* No comment provided by engineer. */
+"Word 97-2003 Document" = "Word 97-2003 Belgesi";
+
+/* No comment provided by engineer. */
+"Word 2007 Document" = "Word 2007 Belgesi";
+
+/* No comment provided by engineer. */
+"XML Paper Specification" = "XML Kağıt Özelliği";
+
+/* No comment provided by engineer. */
+"Yes" = "Evet";
+
+/* No comment provided by engineer. */
+"You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?" = "Onaylanmamış değişiklikleri olan %1$ld %2$@  belgeniz var. Çıkış yapmadan önce değişiklikleri gözden geçirmek ister misiniz?";
+
+/* No comment provided by engineer. */
+"You have successfully activated %@." = " %@ başarıyla aktifleştirildi.";
+
+/* No comment provided by engineer. */
+"Your changes will be lost if you don’t save them." = "Kaydetmezseniz değişiklikleriniz kaybolacaktır.";
+
+/* No comment provided by engineer. */
+"Your subscription has expired.\n\nThe program works in the non-activated mode.\n\nNow you can prolong or upgrade your subscription with a discount." = "Aboneliğinizin süresi doldu.\n\nProgram aktif olmayan modda çalışır. \n\nArtık üyeliğinizi indirimli olarak uzatabilir veya yükseltebilirsiniz.";
+
+/* No comment provided by engineer. */
+"Your subscription is about to expire\n(%d days left).\n\nWe have a special offer for you." = "Aboneliğinizin süresi dolmak üzere\n(%d gün kaldı).\n\nSize özel bir teklifimiz var.";
+

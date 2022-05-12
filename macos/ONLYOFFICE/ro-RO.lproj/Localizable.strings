@@ -1,0 +1,213 @@
+/* No comment provided by engineer. */
+"%@ Help" = "%@ Asistenţă";
+
+/* No comment provided by engineer. */
+"About %@" = "Informații %@";
+
+/* No comment provided by engineer. */
+"Acknowledgments" = "Confirmări";
+
+/* No comment provided by engineer. */
+"Before signing the document, it must be saved." = "Salvați fișierul înainte de semnarea";
+
+/* No comment provided by engineer. */
+"Cancel" = "Revocare";
+
+/* No comment provided by engineer. */
+"Cannot open file of Digital Signature" = "Fișierul de Semnătură Digitală nu poate fi salvat.";
+
+/* No comment provided by engineer. */
+"Cannot open file of Private Key" = "Fișierul de Cheia Privată nu poate fi salvat.";
+
+/* No comment provided by engineer. */
+"Cannot open folder of the file location." = "Nu se poate deschide dosarul fișierului.";
+
+/* No comment provided by engineer. */
+"Comma-Separated Values" = "Valori separate prin virgulă";
+
+/* No comment provided by engineer. */
+"Create portal" = "Crearea unui portal";
+
+/* No comment provided by engineer. */
+"Delete and Quit" = "Șterge și Părăsește";
+
+/* No comment provided by engineer. */
+"DjVu File" = "Fișierul DjVu";
+
+/* No comment provided by engineer. */
+"Do you want to save the changes made to the document \"%@\"?" = "Doriți să salvați modificările fișierului\"%@\"?";
+
+/* No comment provided by engineer. */
+"Document %ld.docx" = "Document %ld.docx";
+
+/* No comment provided by engineer. */
+"Document template" = "Document șablon";
+
+/* No comment provided by engineer. */
+"Excel 97-2003 Spreadsheet" = "Foaie de calcul Excel 97-2003";
+
+/* No comment provided by engineer. */
+"Excel 2007 Spreadsheet" = "Foaie de calcul Excel 2007";
+
+/* No comment provided by engineer. */
+"File \"%@\" can not be open or not exist." = "Fișierul \"%@\" nu se poate deschide sau nu nu există.";
+
+/* No comment provided by engineer. */
+"File can not be open." = "Fișierul nu se poate deschide.";
+
+/* No comment provided by engineer. */
+"File Format:" = "Format de fișier:";
+
+/* No comment provided by engineer. */
+"Hide %@" = "Ascunde %@";
+
+/* No comment provided by engineer. */
+"If you don't review your documents, all your changeses will be lost." = "Vă rugăm să revizuiţi documentul, în caz contrar toate modificările vor fi pierdute.";
+
+/* No comment provided by engineer. */
+"If you have already purchased %@, you should find your activation key in an email confirmation." = "Dacă ați cumpărat %@, cheia de produs se află în mesajul de e-mail de confirmare.";
+
+/* No comment provided by engineer. */
+"License Agreement" = "Acord de licență";
+
+/* No comment provided by engineer. */
+"Mobipocket e-book" = "Mobipocket e-book";
+
+/* No comment provided by engineer. */
+"new-document" = "Document nou";
+
+/* No comment provided by engineer. */
+"new-presentation" = "Prezentare nouă";
+
+/* No comment provided by engineer. */
+"new-spreadsheet" = "Foaie de calcul nouă";
+
+/* No comment provided by engineer. */
+"No" = "Nu";
+
+/* No comment provided by engineer. */
+"OK" = "OK";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE can not open the Digital Signature file. Try opening another file." = "ONLYOFFICE nu poate deschide fişierul de Semnătură Digitală. Încercați să deschideți un alt fișier.";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE can not open the Private Key. Try opening another file." = "ONLYOFFICE nu poate deschide Cheia Privată. Încercați să deschideți un alt fișier.";
+
+/* No comment provided by engineer. */
+"OpenDocument Document Template" = "Document șablon OpenDocument";
+
+/* No comment provided by engineer. */
+"OpenDocument Presentation Template" = "Șablon de prezentare OpenDocument";
+
+/* No comment provided by engineer. */
+"OpenDocument Spreadsheet Template" = "Șablon de foaie de calcul OpenDocument";
+
+/* No comment provided by engineer. */
+"Opening" = "Deschidere";
+
+/* No comment provided by engineer. */
+"OpenOffice Document" = "Document OpenOffice";
+
+/* No comment provided by engineer. */
+"OpenOffice Presentation" = "Prezentare OpenOffice";
+
+/* No comment provided by engineer. */
+"OpenOffice Spreadsheet" = "Foaie de calcul OpenOffice";
+
+/* No comment provided by engineer. */
+"PDF File" = "Fișier PDF";
+
+/* No comment provided by engineer. */
+"PDF/A File" = "Fișier PDF/A";
+
+/* No comment provided by engineer. */
+"Plain Text" = "Text simplu";
+
+/* No comment provided by engineer. */
+"PowerPoint 97-2003 Presentation" = "Prezentare PowerPoint 97-2003";
+
+/* No comment provided by engineer. */
+"PowerPoint 2007 Presentation" = "Prezentare PowerPoint 2007";
+
+/* No comment provided by engineer. */
+"PowerPoint Slide Show" = "Expunere diapozitive PowerPoint";
+
+/* No comment provided by engineer. */
+"Preparing..." = "Pregătire...";
+
+/* No comment provided by engineer. */
+"Presentation %ld.pptx" = "Prezentarea %ld.pptx";
+
+/* No comment provided by engineer. */
+"Presentation template" = "Șablon de prezentare";
+
+/* No comment provided by engineer. */
+"Quit %@" = "Părăsește %@";
+
+/* No comment provided by engineer. */
+"Review Changes..." = "Revizuirea modificărilor...";
+
+/* No comment provided by engineer. */
+"Rich Text Document" = "Document în format text îmbogățit";
+
+/* No comment provided by engineer. */
+"Save" = "Salvare";
+
+/* No comment provided by engineer. */
+"Save the document?" = "Doriți să salvați documentul?";
+
+/* No comment provided by engineer. */
+"Spreadsheet %ld.xlsx" = "Foaie de calcul %ld.xlsx";
+
+/* No comment provided by engineer. */
+"Spreadsheet template" = "Șablon de foaie de calcul";
+
+/* No comment provided by engineer. */
+"Thank you for evaluating %@!" = "Vă mulțumim pentru evaluarea %@!";
+
+/* No comment provided by engineer. */
+"The document \"%@\" must be built. Continue?" = "Trebuie să creați documentul \"%@\". Doriți să continuați?";
+
+/* No comment provided by engineer. */
+"To open the file location, it must be saved." = "Înainte să acesați locația fișierulu, trebuie să-l salvați.";
+
+/* No comment provided by engineer. */
+"Unconfirmed" = "Neconfirmat";
+
+/* No comment provided by engineer. */
+"Untitled" = "Fără titlu";
+
+/* No comment provided by engineer. */
+"Version %@ (%@)" = "Versiunea %1$@ (%2$@)";
+
+/* No comment provided by engineer. */
+"Web Page" = "Pagină web";
+
+/* No comment provided by engineer. */
+"Word 97-2003 Document" = "Word 97-2003 Document";
+
+/* No comment provided by engineer. */
+"Word 2007 Document" = "Word 2007 Document";
+
+/* No comment provided by engineer. */
+"XML Paper Specification" = "XML Paper Specification";
+
+/* No comment provided by engineer. */
+"Yes" = "Da";
+
+/* No comment provided by engineer. */
+"You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?" = "Modificările din %1$ld %2$@ documente nu sunt confirmate. Doriți să le revizuiți înainte de a părăsi?";
+
+/* No comment provided by engineer. */
+"You have successfully activated %@." = "Activarea %@ cu succes.";
+
+/* No comment provided by engineer. */
+"Your changes will be lost if you don’t save them." = "Modificările dumneavoastră vor fi pierdute dacă nu le salvați.";
+
+/* No comment provided by engineer. */
+"Your subscription has expired.\n\nThe program works in the non-activated mode.\n\nNow you can prolong or upgrade your subscription with a discount." = "Subscriptie expirată.\n\nProgramul este în modul dezactivat.\n\nPuteți să prelungiți sau să reînnoți subscripția și bebeficiati de o reducere.";
+
+/* No comment provided by engineer. */
+"Your subscription is about to expire\n(%d days left).\n\nWe have a special offer for you." = "Subscripția va expira în curînd\n(%d zile rămase).\n\nAvem o ofertă specială și pentru dvs.";
+

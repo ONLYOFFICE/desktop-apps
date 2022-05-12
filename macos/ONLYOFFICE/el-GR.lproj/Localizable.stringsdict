@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>%d days are left until the license expiration.</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@ημέρες@</string>
+		<key>days</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d ημέρα απομένει μέχρι την ημερομηνία λήξης της άδειας.</string>
+			<key>other</key>
+			<string>%d ημέρες απομένουν μέχρι την ημερομηνία λήξης της άδειας.</string>
+		</dict>
+	</dict>
+	<key>You are using a trial version of the application.
+The trial period will end in %d days, after that you will not be able to create and edit documents.</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@ημέρες@</string>
+		<key>days</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Χρησιμοποιείτε μια δοκιμαστική έκδοση της εφαρμογής.
+Η δοκιμαστική περίοδος θα λήξει σε %d ημέρα, μετά δεν θα μπορείτε να δημιουργήσετε και να επεξεργαστείτε έγγραφα.</string>
+			<key>other</key>
+			<string>Χρησιμοποιείτε μια δοκιμαστική έκδοση της εφαρμογής.
+Η δοκιμαστική περίοδος θα λήξει σε %d ημέρες, μετά δεν θα μπορείτε να δημιουργήσετε και να επεξεργαστείτε έγγραφα.</string>
+		</dict>
+	</dict>
+	<key>You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@έγγραφα@</string>
+		<key>documents</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>ld</string>
+			<key>one</key>
+			<string>Έχετε %ld %@ έγγραφο με μη επιβεβαιωμένες αλλαγές. Θέλετε να ελέγξετε αυτές τις αλλαγές πριν από την έξοδο;</string>
+			<key>other</key>
+			<string>Έχετε %ld %@ έγγραφα με μη επιβεβαιωμένες αλλαγές. Θέλετε να ελέγξετε αυτές τις αλλαγές πριν από την έξοδο;</string>
+		</dict>
+	</dict>
+</dict>
+</plist>

@@ -1,0 +1,210 @@
+/* No comment provided by engineer. */
+"%@ Help" = "%@ Օգնություն";
+
+/* No comment provided by engineer. */
+"About %@" = "Մասին %@";
+
+/* No comment provided by engineer. */
+"Acknowledgments" = "Նշումներ";
+
+/* No comment provided by engineer. */
+"Before signing the document, it must be saved." = "Այս փաստաթուղթը ստորագրելուց առաջ այն պետք է պահպանվի։";
+
+/* No comment provided by engineer. */
+"Cancel" = "Չեղարկել";
+
+/* No comment provided by engineer. */
+"Cannot open file of Digital Signature" = "Հնարավոր չէ բացել Թվային ստորագրության ֆայլը";
+
+/* No comment provided by engineer. */
+"Cannot open file of Private Key" = "Հնարավոր չէ բացել Գաղտնի բանալու ֆայլը";
+
+/* No comment provided by engineer. */
+"Cannot open folder of the file location." = "Հնարավոր չէ բացել Գաղտնի բանալու ֆայլը:";
+
+/* No comment provided by engineer. */
+"Comma-Separated Values" = "Ստորակետով առանձնացված արժեքներ";
+
+/* No comment provided by engineer. */
+"Create portal" = "Ստեղծել պորտալ";
+
+/* No comment provided by engineer. */
+"Delete and Quit" = "Ջնջել և դուրս գալ";
+
+/* No comment provided by engineer. */
+"DjVu File" = "DjVu ֆայլ";
+
+/* No comment provided by engineer. */
+"Do you want to save the changes made to the document \"%@\"?" = "Ցանկանու՞մ եք պահպանել փաստաթղթում արած փոփոխությունները։ \"%@\"?";
+
+/* No comment provided by engineer. */
+"Document %ld.docx" = "Փաստաթուղթ %ld.docx";
+
+/* No comment provided by engineer. */
+"Document template" = "Փաստաթղթի ձևանմուշ";
+
+/* No comment provided by engineer. */
+"Excel 97-2003 Spreadsheet" = "Excel 97-2003 աղյուսակ";
+
+/* No comment provided by engineer. */
+"Excel 2007 Spreadsheet" = "Excel 2007 աղյուսակ";
+
+/* No comment provided by engineer. */
+"File \"%@\" can not be open or not exist." = "Ֆայլ \"%@\"-ը գոյություն չունի, կամ հնարավոր չէ այն բացել։";
+
+/* No comment provided by engineer. */
+"File can not be open." = "Հնարավոր չէ բացել ֆայլը։";
+
+/* No comment provided by engineer. */
+"File Format:" = "Ֆայլի ֆորմատ՝";
+
+/* No comment provided by engineer. */
+"Hide %@" = "Թաքցնել %@";
+
+/* No comment provided by engineer. */
+"If you have already purchased %@, you should find your activation key in an email confirmation." = "Եթե արդեն գնել եք %@, պետք է գտնեք ակտիվացման Ձեր բանալին հաստատող էլ․ նամակում։";
+
+/* No comment provided by engineer. */
+"License Agreement" = "Լիցենզիայի պայմանագիր";
+
+/* No comment provided by engineer. */
+"Mobipocket e-book" = "Mobipocket էլեկտրոնային գիրք";
+
+/* No comment provided by engineer. */
+"new-document" = "Նոր փաստաթուղթ";
+
+/* No comment provided by engineer. */
+"new-presentation" = "Նոր ներկայացում";
+
+/* No comment provided by engineer. */
+"new-spreadsheet" = "Նոր աղյուսակ";
+
+/* No comment provided by engineer. */
+"No" = "Ոչ";
+
+/* No comment provided by engineer. */
+"OK" = "Լավ";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE can not open the Digital Signature file. Try opening another file." = "ONLYOFFICE-ը չի կարող բացել Թվային ստորագրության ֆայլը։ Փորձեք բացել այլ ֆայլ։";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE can not open the Private Key. Try opening another file." = "ONLYOFFICE-ի չի կարող բացել Գաղտնի բանալին։ Փորձեք բացել այլ ֆայլ։";
+
+/* No comment provided by engineer. */
+"OpenDocument Document Template" = "OpenDocument փաստտաթղթի ձևանմուշ";
+
+/* No comment provided by engineer. */
+"OpenDocument Presentation Template" = "OpenDocument ներկայացման ձևանմուշ";
+
+/* No comment provided by engineer. */
+"OpenDocument Spreadsheet Template" = "OpenDocument աղյուսակի ձևանմուշ";
+
+/* No comment provided by engineer. */
+"Opening" = "Բացվում է";
+
+/* No comment provided by engineer. */
+"OpenOffice Document" = "OpenOffice փաստաթուղթ";
+
+/* No comment provided by engineer. */
+"OpenOffice Presentation" = "OpenOffice շնորհանդես";
+
+/* No comment provided by engineer. */
+"OpenOffice Spreadsheet" = "OpenOffice աղյուսակ";
+
+/* No comment provided by engineer. */
+"PDF File" = "PDF ֆայլ";
+
+/* No comment provided by engineer. */
+"PDF/A File" = "PDF/A ֆայլ";
+
+/* No comment provided by engineer. */
+"Plain Text" = "Սովորական տեքստ";
+
+/* No comment provided by engineer. */
+"PowerPoint 97-2003 Presentation" = "PowerPoint 97-2003 շնորհանդես";
+
+/* No comment provided by engineer. */
+"PowerPoint 2007 Presentation" = "PowerPoint 2007 շնորհանդես";
+
+/* No comment provided by engineer. */
+"PowerPoint Slide Show" = "PowerPoint սլայդ շոու";
+
+/* No comment provided by engineer. */
+"Preparing..." = "Պատրաստվում է...";
+
+/* No comment provided by engineer. */
+"Presentation %ld.pptx" = "Շնորհանդես %ld.pptx";
+
+/* No comment provided by engineer. */
+"Presentation template" = "Ներկայացման ձևանմուշ";
+
+/* No comment provided by engineer. */
+"Quit %@" = "Դուրս գալ %@";
+
+/* No comment provided by engineer. */
+"Review Changes..." = "Վերանայել փոփոխությունները...";
+
+/* No comment provided by engineer. */
+"Rich Text Document" = "Rich Text փաստաթուղթ";
+
+/* No comment provided by engineer. */
+"Save" = "Պահպանել";
+
+/* No comment provided by engineer. */
+"Save the document?" = "Պահպանե՞լ փաստաթուղթը։";
+
+/* No comment provided by engineer. */
+"Spreadsheet %ld.xlsx" = "Աղյուսակ %ld.xlsx";
+
+/* No comment provided by engineer. */
+"Spreadsheet template" = "Աղյուսակի ձևանմուշ";
+
+/* No comment provided by engineer. */
+"Thank you for evaluating %@!" = "Շնորհակալություն գնահատելոը համար %@!";
+
+/* No comment provided by engineer. */
+"The document \"%@\" must be built. Continue?" = "Փաստաթուղթը &quot;%@&quot; պետք է կազմվի։ Շարունակե՞լ։";
+
+/* No comment provided by engineer. */
+"To open the file location, it must be saved." = "Ֆայլի գտնվելու տեղը բացելու համար այն պետք է պահպանվի։";
+
+/* No comment provided by engineer. */
+"Unconfirmed" = "Չհաստատված";
+
+/* No comment provided by engineer. */
+"Untitled" = "Անվերնագիր";
+
+/* No comment provided by engineer. */
+"Version %@ (%@)" = "Տարբերակ %@ (%@)";
+
+/* No comment provided by engineer. */
+"Web Page" = "Վեբ էջ";
+
+/* No comment provided by engineer. */
+"Word 97-2003 Document" = "Word 97-2003 փաստաթուղթ";
+
+/* No comment provided by engineer. */
+"Word 2007 Document" = "Word 2007 փաստաթուղթ";
+
+/* No comment provided by engineer. */
+"XML Paper Specification" = "XML Paper Specification";
+
+/* No comment provided by engineer. */
+"Yes" = "Այո";
+
+/* No comment provided by engineer. */
+"You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?" = "Դուք ունեք %1$ld %2$@ փաստաթուղթ՝ չհաստատված փոփոխություններով։ Ցանկանու՞մ եք վերանայել այս փոփոխությունները դուրս գալուց առաջ։";
+
+/* No comment provided by engineer. */
+"You have successfully activated %@." = "Դուք հաջողությամբ ակտիվացրել եք %@.";
+
+/* No comment provided by engineer. */
+"Your changes will be lost if you don’t save them." = "Ձեր փոփոխությունները կկորչեն, եթե չպահպանեք դրանք։";
+
+/* No comment provided by engineer. */
+"Your subscription has expired.\n\nThe program works in the non-activated mode.\n\nNow you can prolong or upgrade your subscription with a discount." = "Ձեր բաժանորդագրության վավերականության ժամկետը սպառվել է։\n\nԾրագիրն աշխատում է չակտիվածված ռեժիմում։\n\nՀիմա Դուք կարող եք երկարացնել կամ թարմացնել Ձեր բաժանորդագրությունը զեղչով։";
+
+/* No comment provided by engineer. */
+"Your subscription is about to expire\n(%d days left).\n\nWe have a special offer for you." = "Ձեր բաժանորդագրության վավերականության ժամկետը սպառվել է;\n(մնացել է %d օր).\n\nՄենք Ձեզ համար ունենք հատուկ առաջարկ։";
+

@@ -1,0 +1,147 @@
+/* No comment provided by engineer. */
+"%@ Help" = "%@ Súgó";
+
+/* No comment provided by engineer. */
+"About %@" = "Névjegy %@";
+
+/* No comment provided by engineer. */
+"Acknowledgments" = "Köszönetnyilvánítás";
+
+/* No comment provided by engineer. */
+"Cancel" = "Mégse";
+
+/* No comment provided by engineer. */
+"Comma-Separated Values" = "Vesszővel elválasztott értékek";
+
+/* No comment provided by engineer. */
+"Delete and Quit" = "Törlés és kilépés";
+
+/* No comment provided by engineer. */
+"DjVu File" = "DjVu fájl";
+
+/* No comment provided by engineer. */
+"Do you want to save the changes made to the document \"%@\"?" = "Menti a(z) \"%@\" dokumentum módosításait?";
+
+/* No comment provided by engineer. */
+"Document %ld.docx" = "%ld.docx dokumentum";
+
+/* No comment provided by engineer. */
+"Excel 97-2003 Spreadsheet" = "Excel 97-2003 számolótábla";
+
+/* No comment provided by engineer. */
+"Excel 2007 Spreadsheet" = "Excel 2007 számolótábla";
+
+/* No comment provided by engineer. */
+"File \"%@\" can not be open or not exist." = "\"%@\" fájl nem nyitható meg vagy nem létezik.";
+
+/* No comment provided by engineer. */
+"File can not be open." = "A fájl nem nyitható meg.";
+
+/* No comment provided by engineer. */
+"File Format:" = "Fájlformátum:";
+
+/* No comment provided by engineer. */
+"Hide %@" = "%@ elrejtése";
+
+/* No comment provided by engineer. */
+"If you don't review your documents, all your changeses will be lost." = "Ha nem tekinti át a dokumentumait, el fognak veszni a módosításai.";
+
+/* No comment provided by engineer. */
+"If you have already purchased %@, you should find your activation key in an email confirmation." = "Amennyiben már megvásárolta a(z) %@-t, az aktiválási kulcsot a visszaigazoló e-mailben találja.";
+
+/* No comment provided by engineer. */
+"License Agreement" = "Licencszerződés";
+
+/* No comment provided by engineer. */
+"Mobipocket e-book" = "Mobipocket e-könyv";
+
+/* No comment provided by engineer. */
+"No" = "Nem";
+
+/* No comment provided by engineer. */
+"OK" = "OK";
+
+/* No comment provided by engineer. */
+"Opening" = "Megnyitás";
+
+/* No comment provided by engineer. */
+"OpenOffice Document" = "OpenOffice dokumentum";
+
+/* No comment provided by engineer. */
+"OpenOffice Presentation" = "OpenOffice bemutató";
+
+/* No comment provided by engineer. */
+"OpenOffice Spreadsheet" = "OpenOffice számolótábla";
+
+/* No comment provided by engineer. */
+"PDF File" = "PDF fájl";
+
+/* No comment provided by engineer. */
+"Plain Text" = "Egyszerű szöveg";
+
+/* No comment provided by engineer. */
+"PowerPoint 97-2003 Presentation" = "PowerPoint 97-2003 bemutató";
+
+/* No comment provided by engineer. */
+"PowerPoint 2007 Presentation" = "PowerPoint 2007 bemutató";
+
+/* No comment provided by engineer. */
+"PowerPoint Slide Show" = "PowerPoint diavetítés";
+
+/* No comment provided by engineer. */
+"Preparing..." = "Előkészítés...";
+
+/* No comment provided by engineer. */
+"Presentation %ld.pptx" = "%ld.pptx bemutató";
+
+/* No comment provided by engineer. */
+"Quit %@" = "A(z) %@ bezárása";
+
+/* No comment provided by engineer. */
+"Review Changes..." = "Változások áttekintése...";
+
+/* No comment provided by engineer. */
+"Rich Text Document" = "Rich Text dokumentum";
+
+/* No comment provided by engineer. */
+"Spreadsheet %ld.xlsx" = "%ld.xlsx számolótábla";
+
+/* No comment provided by engineer. */
+"Thank you for evaluating %@!" = "Köszönjük, hogy értékelte a(z) %@-t!";
+
+/* No comment provided by engineer. */
+"Unconfirmed" = "Nincs megerősítve";
+
+/* No comment provided by engineer. */
+"Untitled" = "Névtelen";
+
+/* No comment provided by engineer. */
+"Web Page" = "Weboldal";
+
+/* No comment provided by engineer. */
+"Word 97-2003 Document" = "Word 97-2003 dokumentum";
+
+/* No comment provided by engineer. */
+"Word 2007 Document" = "Word 2007 dokumentum";
+
+/* No comment provided by engineer. */
+"XML Paper Specification" = "XML Paper Specification";
+
+/* No comment provided by engineer. */
+"Yes" = "Igen";
+
+/* No comment provided by engineer. */
+"You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?" = "%1$ld %2$@ megerősítés nélküli módosításokkal rendelkező dokumentuma van. Kilpés előtt áttekinti ezeket a módosításokat?";
+
+/* No comment provided by engineer. */
+"You have successfully activated %@." = "Sikeresen aktiválta a(z) %@-t.";
+
+/* No comment provided by engineer. */
+"Your changes will be lost if you don’t save them." = "A módosításai elvesznek, ha nem menti őket.";
+
+/* No comment provided by engineer. */
+"Your subscription has expired.\n\nThe program works in the non-activated mode.\n\nNow you can prolong or upgrade your subscription with a discount." = "Lejárt az előfizetése.\n\nA program az aktiválás nélküli módban működik.\n\nMost kedvezményesen meghosszabbíthatja előfizetését, vagy csomagot válthat.";
+
+/* No comment provided by engineer. */
+"Your subscription is about to expire\n(%d days left).\n\nWe have a special offer for you." = "Az előfizetése hamarosan lejár\n(%d nap van hátra).\n\nVan egy speciális ajánlatunk az Ön számára.";
+

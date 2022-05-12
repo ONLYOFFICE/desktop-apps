@@ -7,7 +7,6 @@ Group: Applications/Office
 URL: %{_publisher_url}
 Vendor: %{_publisher_name}
 Packager: %{_publisher_name} %{_support_mail}
-BuildArch: %{_package_arch}
 AutoReq: no
 AutoProv: no
 
@@ -82,6 +81,9 @@ if [ ! -x "$XDG_ICON_RESOURCE" ]; then
 fi
 for icon in "/opt/%{_desktopeditors_prefix}/asc-de-"*.png; do
   size="${icon##*/asc-de-}"
+  if [ $1 == 2 ];then #upgrade (not install)
+    "$XDG_ICON_RESOURCE" uninstall --size "${size%.png}" "%{_package_name}"
+  fi
   "$XDG_ICON_RESOURCE" install --size "${size%.png}" "$icon" "%{_package_name}"
 done
 
@@ -125,15 +127,17 @@ if [ "$action" = "upgrade" ] ; then
 fi
 
 # Remove icons from the system icons
-XDG_ICON_RESOURCE="`which xdg-icon-resource 2> /dev/null || true`"
-if [ ! -x "$XDG_ICON_RESOURCE" ]; then
-  echo "Error: Could not find xdg-icon-resource" >&2
-  exit 1
+if [ $1 == 0 ];then #uninstall (not upgrade)
+  XDG_ICON_RESOURCE="`which xdg-icon-resource 2> /dev/null || true`"
+  if [ ! -x "$XDG_ICON_RESOURCE" ]; then
+    echo "Error: Could not find xdg-icon-resource" >&2
+    exit 1
+  fi
+  for icon in "/opt/%{_desktopeditors_prefix}/asc-de-"*.png; do
+    size="${icon##*/asc-de-}"
+    "$XDG_ICON_RESOURCE" uninstall --size "${size%.png}" "%{_package_name}"
+  done
 fi
-for icon in "/opt/%{_desktopeditors_prefix}/asc-de-"*.png; do
-  size="${icon##*/asc-de-}"
-  "$XDG_ICON_RESOURCE" uninstall --size "${size%.png}" "%{_package_name}"
-done
 
 UPDATE_MENUS="`which update-menus 2> /dev/null || true`"
 if [ -x "$UPDATE_MENUS" ]; then
@@ -146,3 +150,16 @@ fi
 %postun
 
 set -e 		# fail on any error
+
+%posttrans
+
+#for compatibility with old RPMs
+XDG_ICON_RESOURCE="`which xdg-icon-resource 2> /dev/null || true`"
+if [ ! -x "$XDG_ICON_RESOURCE" ]; then
+  echo "Error: Could not find xdg-icon-resource" >&2
+  exit 1
+fi
+for icon in "/opt/%{_desktopeditors_prefix}/asc-de-"*.png; do
+  size="${icon##*/asc-de-}"
+  "$XDG_ICON_RESOURCE" install --size "${size%.png}" "$icon" "%{_package_name}"
+done

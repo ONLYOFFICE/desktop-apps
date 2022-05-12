@@ -1,1325 +1,1350 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.2" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd">
   <file original="ONLYOFFICE/Base.lproj/Document-Sign.storyboard" source-language="en" target-language="hu-HU" datatype="plaintext">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c" />
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c"/>
     </header>
     <body>
       <trans-unit id="1Fy-mg-aq9.title" xml:space="preserve">
         <source>Enter the password for the digital signature.</source>
-        <target state="new">Írja be a digitális aláíráshoz tartozó jelszót.</target>
-        
-      <note>Class = "NSTextFieldCell"; title = "Enter the password for the digital signature."; ObjectID = "1Fy-mg-aq9";</note></trans-unit>
+        <target>Írja be a digitális aláíráshoz tartozó jelszót.</target>
+        <note>Class = "NSTextFieldCell"; title = "Enter the password for the digital signature."; ObjectID = "1Fy-mg-aq9";</note>
+      </trans-unit>
       <trans-unit id="1dL-nN-bJI.title" xml:space="preserve">
         <source>Enter the password for the private key.</source>
-        <target state="new">Írja be a titkos kulcshoz tartozó jelszót.</target>
-        
-      <note>Class = "NSTextFieldCell"; title = "Enter the password for the private key."; ObjectID = "1dL-nN-bJI";</note></trans-unit>
+        <target>Írja be a titkos kulcshoz tartozó jelszót.</target>
+        <note>Class = "NSTextFieldCell"; title = "Enter the password for the private key."; ObjectID = "1dL-nN-bJI";</note>
+      </trans-unit>
       <trans-unit id="2Ck-6y-ygx.title" xml:space="preserve">
         <source>Specify the digital signature file for the document.</source>
-        <target state="new">Jelölje ki a dokumentumhoz tartozó digitális aláírásfájlt.</target>
-        
-      <note>Class = "NSTextFieldCell"; title = "Specify the digital signature file for the document."; ObjectID = "2Ck-6y-ygx";</note></trans-unit>
+        <target>Jelölje ki a dokumentumhoz tartozó digitális aláírásfájlt.</target>
+        <note>Class = "NSTextFieldCell"; title = "Specify the digital signature file for the document."; ObjectID = "2Ck-6y-ygx";</note>
+      </trans-unit>
       <trans-unit id="4gA-s8-Lne.placeholderString" xml:space="preserve">
         <source>Enter Password</source>
-        <target state="new">Írja be a jelszót</target>
-        
-      <note>Class = "NSSecureTextFieldCell"; placeholderString = "Enter Password"; ObjectID = "4gA-s8-Lne";</note></trans-unit>
+        <target>Írja be a jelszót</target>
+        <note>Class = "NSSecureTextFieldCell"; placeholderString = "Enter Password"; ObjectID = "4gA-s8-Lne";</note>
+      </trans-unit>
       <trans-unit id="GOU-av-TC1.title" xml:space="preserve">
         <source>Cancel</source>
-        <target state="new">Mégse</target>
-        
-      <note>Class = "NSButtonCell"; title = "Cancel"; ObjectID = "GOU-av-TC1";</note></trans-unit>
+        <target>Mégse</target>
+        <note>Class = "NSButtonCell"; title = "Cancel"; ObjectID = "GOU-av-TC1";</note>
+      </trans-unit>
       <trans-unit id="P3k-kI-w22.title" xml:space="preserve">
         <source>Load a Private Key</source>
-        <target state="new">Titkos kulcs betöltése</target>
-        
-      <note>Class = "NSButtonCell"; title = "Load a Private Key"; ObjectID = "P3k-kI-w22";</note></trans-unit>
+        <target>Titkos kulcs betöltése</target>
+        <note>Class = "NSButtonCell"; title = "Load a Private Key"; ObjectID = "P3k-kI-w22";</note>
+      </trans-unit>
       <trans-unit id="RbM-Dq-A3K.title" xml:space="preserve">
         <source>Cancel</source>
-        <target state="new">Mégse</target>
-        
-      <note>Class = "NSButtonCell"; title = "Cancel"; ObjectID = "RbM-Dq-A3K";</note></trans-unit>
+        <target>Mégse</target>
+        <note>Class = "NSButtonCell"; title = "Cancel"; ObjectID = "RbM-Dq-A3K";</note>
+      </trans-unit>
       <trans-unit id="Tfc-EF-VnS.title" xml:space="preserve">
         <source>Specify a private key for the digital signature.</source>
-        <target state="new">Jelölje ki a digitális aláírásfájlhoz tartozó titkos kulcsot.</target>
-        
-      <note>Class = "NSTextFieldCell"; title = "Specify a private key for the digital signature."; ObjectID = "Tfc-EF-VnS";</note></trans-unit>
+        <target>Jelölje ki a digitális aláírásfájlhoz tartozó titkos kulcsot.</target>
+        <note>Class = "NSTextFieldCell"; title = "Specify a private key for the digital signature."; ObjectID = "Tfc-EF-VnS";</note>
+      </trans-unit>
       <trans-unit id="Zj5-0h-hpW.placeholderString" xml:space="preserve">
         <source>Enter Password</source>
-        <target state="new">Írja be a jelszót</target>
-        
-      <note>Class = "NSSecureTextFieldCell"; placeholderString = "Enter Password"; ObjectID = "Zj5-0h-hpW";</note></trans-unit>
+        <target>Írja be a jelszót</target>
+        <note>Class = "NSSecureTextFieldCell"; placeholderString = "Enter Password"; ObjectID = "Zj5-0h-hpW";</note>
+      </trans-unit>
       <trans-unit id="jpH-3g-Gt5.title" xml:space="preserve">
         <source>Cancel</source>
-        <target state="new">Mégse</target>
-        
-      <note>Class = "NSButtonCell"; title = "Cancel"; ObjectID = "jpH-3g-Gt5";</note></trans-unit>
+        <target>Mégse</target>
+        <note>Class = "NSButtonCell"; title = "Cancel"; ObjectID = "jpH-3g-Gt5";</note>
+      </trans-unit>
       <trans-unit id="qZ4-0O-L0G.title" xml:space="preserve">
         <source>Cancel</source>
-        <target state="new">Mégse</target>
-        
-      <note>Class = "NSButtonCell"; title = "Cancel"; ObjectID = "qZ4-0O-L0G";</note></trans-unit>
+        <target>Mégse</target>
+        <note>Class = "NSButtonCell"; title = "Cancel"; ObjectID = "qZ4-0O-L0G";</note>
+      </trans-unit>
       <trans-unit id="tTF-wa-eJp.title" xml:space="preserve">
         <source>Load Signature</source>
-        <target state="new">Aláírás betöltése</target>
-        
-      <note>Class = "NSButtonCell"; title = "Load Signature"; ObjectID = "tTF-wa-eJp";</note></trans-unit>
+        <target>Aláírás betöltése</target>
+        <note>Class = "NSButtonCell"; title = "Load Signature"; ObjectID = "tTF-wa-eJp";</note>
+      </trans-unit>
     </body>
   </file>
   <file original="ONLYOFFICE/Base.lproj/Localizable.strings" source-language="en" target-language="hu-HU" datatype="plaintext">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c" />
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c"/>
     </header>
     <body>
       <trans-unit id="%@ Help" xml:space="preserve">
         <source>%@ Help</source>
-        <target state="new">%@ Súgó</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>%@ Súgó</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="%@ Reporter Window" xml:space="preserve">
-        <source>%@ Reporter Window</source><target state="needs-translation">%@ Riporter Ablak</target><target state="needs-translation">%@ Riporter Ablak</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <source>%@ Reporter Window</source>
+        <target state="translated">%@ Riporter Ablak</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="About %@" xml:space="preserve">
         <source>About %@</source>
-        <target state="new">Névjegy %@</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Névjegy %@</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Acknowledgments" xml:space="preserve">
         <source>Acknowledgments</source>
-        <target state="new">Köszönetnyilvánítás</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Köszönetnyilvánítás</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Before signing the document, it must be saved." xml:space="preserve">
-        <source>Before signing the document, it must be saved.</source><target state="needs-translation">Mielőtt alá lenne írva a dokumentum, el kell menteni.</target><target state="needs-translation">Mielőtt alá lenne írva a dokumentum, el kell menteni.</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <source>Before signing the document, it must be saved.</source>
+        <target state="translated">Mielőtt alá lenne írva a dokumentum, el kell menteni.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Cancel" xml:space="preserve">
         <source>Cancel</source>
-        <target state="new">Mégse</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Mégse</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Cannot open file of Digital Signature" xml:space="preserve">
-        <source>Cannot open file of Digital Signature</source><target state="needs-translation">Nem lehet megnyitni a Digitális Aláírás fájlját.</target><target state="needs-translation">Nem lehet megnyitni a Digitális Aláírás fájlját.</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <source>Cannot open file of Digital Signature</source>
+        <target state="translated">Nem lehet megnyitni a Digitális Aláírás fájlját</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Cannot open file of Private Key" xml:space="preserve">
-        <source>Cannot open file of Private Key</source><target state="needs-translation">Nem lehet megnyitni a Privát Kulcs fájlját.</target><target state="needs-translation">Nem lehet megnyitni a Privát Kulcs fájlját.</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <source>Cannot open file of Private Key</source>
+        <target state="translated">Nem lehet megnyitni a Privát Kulcs fájlját</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Cannot open folder of the file location." xml:space="preserve">
-        <source>Cannot open folder of the file location.</source><target state="needs-translation">Nem lehet megnyitni a fálj helyének mappáját.</target><target state="needs-translation">Nem lehet megnyitni a fálj helyének mappáját.</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <source>Cannot open folder of the file location.</source>
+        <target state="translated">Nem lehet megnyitni a fálj helyének mappáját.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Comma-Separated Values" xml:space="preserve">
         <source>Comma-Separated Values</source>
-        <target state="new">Vesszővel elválasztott értékek</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Vesszővel elválasztott értékek</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Create portal" xml:space="preserve">
-        <source>Create portal</source><target state="needs-translation">Portál készítése</target><target state="needs-translation">Portál készítése</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <source>Create portal</source>
+        <target state="translated">Portál készítése</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Delete and Quit" xml:space="preserve">
         <source>Delete and Quit</source>
-        <target state="new">Törlés és kilépés</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Törlés és kilépés</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="DjVu File" xml:space="preserve">
         <source>DjVu File</source>
-        <target state="new">DjVu fájl</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>DjVu fájl</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Do you want to save the changes made to the document &quot;%@&quot;?" xml:space="preserve">
         <source>Do you want to save the changes made to the document "%@"?</source>
-        <target state="new">Menti a(z) "%@" dokumentum módosításait?</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Menti a(z) "%@" dokumentum módosításait?</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Document %ld.docx" xml:space="preserve">
         <source>Document %ld.docx</source>
-        <target state="new">%ld.docx dokumentum</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>%ld.docx dokumentum</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Document template" xml:space="preserve">
-        <source>Document template</source><target state="needs-translation">Dokumentum sablon</target><target state="needs-translation">Dokumentum sablon</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <source>Document template</source>
+        <target state="translated">Dokumentum sablon</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Excel 97-2003 Spreadsheet" xml:space="preserve">
         <source>Excel 97-2003 Spreadsheet</source>
-        <target state="new">Excel 97-2003 számolótábla</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Excel 97-2003 számolótábla</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Excel 2007 Spreadsheet" xml:space="preserve">
         <source>Excel 2007 Spreadsheet</source>
-        <target state="new">Excel 2007 számolótábla</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Excel 2007 számolótábla</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="File &quot;%@&quot; can not be open or not exist." xml:space="preserve">
         <source>File "%@" can not be open or not exist.</source>
-        <target state="new">"%@" fájl nem nyitható meg vagy nem létezik.</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>"%@" fájl nem nyitható meg vagy nem létezik.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="File Format:" xml:space="preserve">
         <source>File Format:</source>
-        <target state="new">Fájlformátum:</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Fájlformátum:</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="File can not be open." xml:space="preserve">
         <source>File can not be open.</source>
-        <target state="new">A fájl nem nyitható meg.</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>A fájl nem nyitható meg.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Hide %@" xml:space="preserve">
         <source>Hide %@</source>
-        <target state="new">%@ elrejtése</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>%@ elrejtése</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="If you don't review your documents, all your changeses will be lost." xml:space="preserve">
-        <source>If you don't review your documents, all your changeses will be lost.</source>
-        <target state="new">Ha nem tekinti át a dokumentumait, el fognak veszni a módosításai.</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <source>If you don't review your documents, all your changes will be lost.</source>
+        <target>Ha nem tekinti át a dokumentumait, el fognak veszni a módosításai.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="If you have already purchased %@, you should find your activation key in an email confirmation." xml:space="preserve">
         <source>If you have already purchased %@, you should find your activation key in an email confirmation.</source>
-        <target state="new">Amennyiben már megvásárolta a(z) %@-t, az aktiválási kulcsot a visszaigazoló e-mailben találja.</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Amennyiben már megvásárolta a(z) %@-t, az aktiválási kulcsot a visszaigazoló e-mailben találja.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="License Agreement" xml:space="preserve">
         <source>License Agreement</source>
-        <target state="new">Licencszerződés</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Licencszerződés</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Mobipocket e-book" xml:space="preserve">
         <source>Mobipocket e-book</source>
-        <target state="new">Mobipocket e-könyv</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Mobipocket e-könyv</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="No" xml:space="preserve">
         <source>No</source>
-        <target state="new">Nem</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Nem</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="OK" xml:space="preserve">
         <source>OK</source>
-        <target state="new">OK</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>OK</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="ONLYOFFICE can not open the Digital Signature file. Try opening another file." xml:space="preserve">
-        <source>ONLYOFFICE can not open the Digital Signature file. Try opening another file.</source><target state="needs-translation">Az ONLYOFFICE nem tudja megnyitni a Digitális Aláírás fájlját. Próbáljon meg megnyitni egy másik fájlt.</target><target state="needs-translation">Az ONLYOFFICE nem tudja megnyitni a Digitális Aláírás fájlját. Próbáljon meg megnyitni egy másik fájlt.</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <source>ONLYOFFICE can not open the Digital Signature file. Try opening another file.</source>
+        <target state="translated">Az ONLYOFFICE nem tudja megnyitni a Digitális Aláírás fájlját. Próbáljon meg megnyitni egy másik fájlt.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="ONLYOFFICE can not open the Private Key. Try opening another file." xml:space="preserve">
-        <source>ONLYOFFICE can not open the Private Key. Try opening another file.</source><target state="needs-translation">Az ONLYOFFICE nem tudja megnyitni a Privát Kulcsot. Próbáljon meg megnyitni egy másik fájlt.</target><target state="needs-translation">Az ONLYOFFICE nem tudja megnyitni a Privát Kulcsot. Próbáljon meg megnyitni egy másik fájlt.</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <source>ONLYOFFICE can not open the Private Key. Try opening another file.</source>
+        <target state="translated">Az ONLYOFFICE nem tudja megnyitni a Privát Kulcsot.. Próbáljon meg megnyitni egy másik fájlt.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="OpenDocument Document Template" xml:space="preserve">
-        <source>OpenDocument Document Template</source><target state="needs-translation">OpenDocument Dokumentum Sablon</target><target state="needs-translation">OpenDocument Dokumentum Sablon</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <source>OpenDocument Document Template</source>
+        <target state="translated">OpenDocument Dokumentum Sablon</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="OpenDocument Presentation Template" xml:space="preserve">
-        <source>OpenDocument Presentation Template</source><target state="needs-translation">OpenDocument Prezentáció Sablon</target><target state="needs-translation">OpenDocument Prezentáció Sablon</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <source>OpenDocument Presentation Template</source>
+        <target state="translated">OpenDocument Prezentáció Sablon</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="OpenDocument Spreadsheet Template" xml:space="preserve">
-        <source>OpenDocument Spreadsheet Template</source><target state="needs-translation">OpenDocument Táblázat Sablon</target><target state="needs-translation">OpenDocument Táblázat Sablon</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <source>OpenDocument Spreadsheet Template</source>
+        <target state="translated">OpenDocument Táblázat Sablon</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="OpenOffice Document" xml:space="preserve">
         <source>OpenOffice Document</source>
-        <target state="new">OpenOffice dokumentum</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>OpenOffice dokumentum</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="OpenOffice Presentation" xml:space="preserve">
         <source>OpenOffice Presentation</source>
-        <target state="new">OpenOffice bemutató</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>OpenOffice bemutató</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="OpenOffice Spreadsheet" xml:space="preserve">
         <source>OpenOffice Spreadsheet</source>
-        <target state="new">OpenOffice számolótábla</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>OpenOffice számolótábla</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Opening" xml:space="preserve">
         <source>Opening</source>
-        <target state="new">Megnyitás</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Megnyitás</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="PDF File" xml:space="preserve">
         <source>PDF File</source>
-        <target state="new">PDF fájl</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>PDF fájl</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="PDF/A File" xml:space="preserve">
-        <source>PDF/A File</source><target state="needs-translation">PDF/A Fájl</target><target state="needs-translation">PDF/A Fájl</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <source>PDF/A File</source>
+        <target state="translated">PDF/A Fájl</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Plain Text" xml:space="preserve">
         <source>Plain Text</source>
-        <target state="new">Egyszerű szöveg</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Egyszerű szöveg</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="PowerPoint 97-2003 Presentation" xml:space="preserve">
         <source>PowerPoint 97-2003 Presentation</source>
-        <target state="new">PowerPoint 97-2003 bemutató</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>PowerPoint 97-2003 bemutató</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="PowerPoint 2007 Presentation" xml:space="preserve">
         <source>PowerPoint 2007 Presentation</source>
-        <target state="new">PowerPoint 2007 bemutató</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>PowerPoint 2007 bemutató</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="PowerPoint Slide Show" xml:space="preserve">
         <source>PowerPoint Slide Show</source>
-        <target state="new">PowerPoint diavetítés</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>PowerPoint diavetítés</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Preparing..." xml:space="preserve">
         <source>Preparing...</source>
-        <target state="new">Előkészítés...</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Előkészítés...</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Presentation %ld.pptx" xml:space="preserve">
         <source>Presentation %ld.pptx</source>
-        <target state="new">%ld.pptx bemutató</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>%ld.pptx bemutató</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Presentation template" xml:space="preserve">
-        <source>Presentation template</source><target state="needs-translation">Prezentáció sablon</target><target state="needs-translation">Prezentáció sablon</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <source>Presentation template</source>
+        <target state="translated">Prezentáció sablon</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Quit %@" xml:space="preserve">
         <source>Quit %@</source>
-        <target state="new">A(z) %@ bezárása</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>A(z) %@ bezárása</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Review Changes..." xml:space="preserve">
         <source>Review Changes...</source>
-        <target state="new">Változások áttekintése...</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Változások áttekintése...</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Rich Text Document" xml:space="preserve">
         <source>Rich Text Document</source>
-        <target state="new">Rich Text dokumentum</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Rich Text dokumentum</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Save" xml:space="preserve">
-        <source>Save</source><target state="needs-translation">Mentés</target><target state="needs-translation">Mentés</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <source>Save</source>
+        <target state="translated">Mentés</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Save the document?" xml:space="preserve">
-        <source>Save the document?</source><target state="needs-translation">Menti a dokumentumot?</target><target state="needs-translation">Menti a dokumentumot?</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <source>Save the document?</source>
+        <target state="translated">Menti a dokumentumot ?</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Spreadsheet %ld.xlsx" xml:space="preserve">
         <source>Spreadsheet %ld.xlsx</source>
-        <target state="new">%ld.xlsx számolótábla</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>%ld.xlsx számolótábla</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Spreadsheet template" xml:space="preserve">
-        <source>Spreadsheet template</source><target state="needs-translation">Táblázat sablon</target><target state="needs-translation">Táblázat sablon</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <source>Spreadsheet template</source>
+        <target state="translated">Táblázat sablon</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Thank you for evaluating %@!" xml:space="preserve">
         <source>Thank you for evaluating %@!</source>
-        <target state="new">Köszönjük, hogy értékelte a(z) %@-t!</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Köszönjük, hogy értékelte a(z) %@-t!</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="The document &quot;%@&quot; must be built. Continue?" xml:space="preserve">
-        <source>The document "%@" must be built. Continue?</source><target state="needs-translation">A "%@" dokumentumot meg kell építeni. Folytatás?</target><target state="needs-translation">A "%@" dokumentumot meg kell építeni. Folytatás?</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <source>The document "%@" must be built. Continue?</source>
+        <target state="translated">A "%@" dokumentumot meg kell építeni. Folytatás?</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="To open the file location, it must be saved." xml:space="preserve">
-        <source>To open the file location, it must be saved.</source><target state="needs-translation">Ahhoz, hogy meg lehessen nyitni a fájl helyét, el kell menteni.</target><target state="needs-translation">Ahhoz, hogy meg lehessen nyitni a fájl helyét, el kell menteni.</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <source>To open the file location, it must be saved.</source>
+        <target state="translated">Ahhoz, hogy meg lehessen nyitni a fájl helyét, el kell menteni.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Unconfirmed" xml:space="preserve">
         <source>Unconfirmed</source>
-        <target state="new">Nincs megerősítve</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Nincs megerősítve</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Untitled" xml:space="preserve">
         <source>Untitled</source>
-        <target state="new">Névtelen</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Névtelen</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Version %@ (%@)" xml:space="preserve">
-        <source>Version %1$@ (%2$@)</source><target state="needs-translation">%1$@ (%2$@) verzió</target><target state="needs-translation">%1$@ (%2$@) verzió</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <source>Version %1$@ (%2$@)</source>
+        <target state="translated">%1$@ (%2$@) verzió</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Web Page" xml:space="preserve">
         <source>Web Page</source>
-        <target state="new">Weboldal</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Weboldal</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Word 97-2003 Document" xml:space="preserve">
         <source>Word 97-2003 Document</source>
-        <target state="new">Word 97-2003 dokumentum</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Word 97-2003 dokumentum</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Word 2007 Document" xml:space="preserve">
         <source>Word 2007 Document</source>
-        <target state="new">Word 2007 dokumentum</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Word 2007 dokumentum</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="XML Paper Specification" xml:space="preserve">
         <source>XML Paper Specification</source>
-        <target state="new">XML Paper Specification</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>XML Paper Specification</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Yes" xml:space="preserve">
         <source>Yes</source>
-        <target state="new">Igen</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Igen</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?" xml:space="preserve">
         <source>You have %1$ld %2$@ documents with unconfirmed changes. Do you want to review these changes before quitting?</source>
-        <target state="new">%1$ld %2$@ megerősítés nélküli módosításokkal rendelkező dokumentuma van. Kilpés előtt áttekinti ezeket a módosításokat?</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>%1$ld %2$@ megerősítés nélküli módosításokkal rendelkező dokumentuma van. Kilpés előtt áttekinti ezeket a módosításokat?</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="You have successfully activated %@." xml:space="preserve">
         <source>You have successfully activated %@.</source>
-        <target state="new">Sikeresen aktiválta a(z) %@-t.</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Sikeresen aktiválta a(z) %@-t.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Your changes will be lost if you don’t save them." xml:space="preserve">
         <source>Your changes will be lost if you don’t save them.</source>
-        <target state="new">A módosításai elvesznek, ha nem menti őket.</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
-      <trans-unit id="Your subscription has expired.&#xA;&#xA;The program works in the non-activated mode.&#xA;&#xA;Now you can prolong or upgrade your subscription with a discount." xml:space="preserve">
+        <target>A módosításai elvesznek, ha nem menti őket.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Your subscription has expired.&#10;&#10;The program works in the non-activated mode.&#10;&#10;Now you can prolong or upgrade your subscription with a discount." xml:space="preserve">
         <source>Your subscription has expired.
 
 The program works in the non-activated mode.
 
 Now you can prolong or upgrade your subscription with a discount.</source>
-        <target state="new">Lejárt az előfizetése.
+        <target>Lejárt az előfizetése.
 
 A program az aktiválás nélküli módban működik.
 
 Most kedvezményesen meghosszabbíthatja előfizetését, vagy csomagot válthat.</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
-      <trans-unit id="Your subscription is about to expire&#xA;(%d days left).&#xA;&#xA;We have a special offer for you." xml:space="preserve">
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Your subscription is about to expire&#10;(%d days left).&#10;&#10;We have a special offer for you." xml:space="preserve">
         <source>Your subscription is about to expire
 (%d days left).
 
 We have a special offer for you.</source>
-        <target state="new">Az előfizetése hamarosan lejár
+        <target>Az előfizetése hamarosan lejár
 (%d nap van hátra).
 
 Van egy speciális ajánlatunk az Ön számára.</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="new-document" xml:space="preserve">
-        <source>New Document</source><target state="needs-translation">Új Dokumentum</target><target state="needs-translation">Új Dokumentum</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <source>New Document</source>
+        <target state="translated">Új Dokumentum</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="new-presentation" xml:space="preserve">
-        <source>New Presentation</source><target state="needs-translation">Új Prezentáció</target><target state="needs-translation">Új Prezentáció</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <source>New Presentation</source>
+        <target state="translated">Új Prezentáció</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="new-spreadsheet" xml:space="preserve">
-        <source>New Spreadsheet</source><target state="needs-translation">Új Táblázat</target><target state="needs-translation">Új Táblázat</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <source>New Spreadsheet</source>
+        <target state="translated">Új Táblázat</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
     </body>
   </file>
   <file original="ONLYOFFICE/Base.lproj/Localizable.stringsdict" source-language="en" target-language="hu-HU" datatype="plaintext">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c" />
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c"/>
     </header>
     <body>
       <trans-unit id="/%d days are left until the license expiration.:dict/NSStringLocalizedFormatKey:dict/:string" xml:space="preserve">
         <source>%#@days@</source>
-        <target state="new">%#@nap@</target>
-        
+        <target>%#@nap@</target>
+        <note/>
       </trans-unit>
       <trans-unit id="/%d days are left until the license expiration.:dict/days:dict/one:dict/:string" xml:space="preserve">
         <source>%d day are left until the license expiration.</source>
-        <target state="new">%d nap maradt a licenc lejáratáig.</target>
-        
+        <target>%d nap maradt a licenc lejáratáig.</target>
+        <note/>
       </trans-unit>
       <trans-unit id="/%d days are left until the license expiration.:dict/days:dict/other:dict/:string" xml:space="preserve">
         <source>%d days are left until the license expiration.</source>
-        <target state="new">%d nap maradt a licenc lejáratáig.</target>
-        
+        <target>%d nap maradt a licenc lejáratáig.</target>
+        <note/>
       </trans-unit>
-      <trans-unit id="/You are using a trial version of the application.&#xA;The trial period will end in %d days, after that you will not be able to create and edit documents.:dict/NSStringLocalizedFormatKey:dict/:string" xml:space="preserve">
+      <trans-unit id="/You are using a trial version of the application.&#10;The trial period will end in %d days, after that you will not be able to create and edit documents.:dict/NSStringLocalizedFormatKey:dict/:string" xml:space="preserve">
         <source>%#@days@</source>
-        <target state="new">%#@nap@</target>
-        
+        <target>%#@nap@</target>
+        <note/>
       </trans-unit>
-      <trans-unit id="/You are using a trial version of the application.&#xA;The trial period will end in %d days, after that you will not be able to create and edit documents.:dict/days:dict/one:dict/:string" xml:space="preserve">
+      <trans-unit id="/You are using a trial version of the application.&#10;The trial period will end in %d days, after that you will not be able to create and edit documents.:dict/days:dict/one:dict/:string" xml:space="preserve">
         <source>You are using a trial version of the application.
 The trial period will end in %d day, after that you will not be able to create and edit documents.</source>
-        <target state="new">Ön az alkalmazás próbaverzióját használja.
+        <target>Ön az alkalmazás próbaverzióját használja.
 A próbaidőszak %d nap múlva véget ér, ezt követően nem fog tudni dokumentumokat létrehozni és szerkeszteni.</target>
-        
+        <note/>
       </trans-unit>
-      <trans-unit id="/You are using a trial version of the application.&#xA;The trial period will end in %d days, after that you will not be able to create and edit documents.:dict/days:dict/other:dict/:string" xml:space="preserve">
+      <trans-unit id="/You are using a trial version of the application.&#10;The trial period will end in %d days, after that you will not be able to create and edit documents.:dict/days:dict/other:dict/:string" xml:space="preserve">
         <source>You are using a trial version of the application.
 The trial period will end in %d days, after that you will not be able to create and edit documents.</source>
-        <target state="new">Ön az alkalmazás próbaverzióját használja.
+        <target>Ön az alkalmazás próbaverzióját használja.
 A próbaidőszak %d nap múlva véget ér, ezt követően nem fog tudni dokumentumokat létrehozni és szerkeszteni.</target>
-        
+        <note/>
       </trans-unit>
       <trans-unit id="/You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?:dict/NSStringLocalizedFormatKey:dict/:string" xml:space="preserve">
         <source>%#@documents@</source>
-        <target state="new">%#@dokumentumok@</target>
-        
+        <target>%#@dokumentumok@</target>
+        <note/>
       </trans-unit>
       <trans-unit id="/You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?:dict/documents:dict/one:dict/:string" xml:space="preserve">
         <source>You have %ld %@ document with unconfirmed changes. Do you want to review these changes before quitting?</source>
-        <target state="new"> %ld %@ megerősítés nélküli módosításokkal rendelkező dokumentuma van. Kilpés előtt áttekinti ezeket a módosításokat?</target>
-        
+        <target state="translated">%ld %@ megerősítés nélküli módosításokkal rendelkező dokumentuma van. Kilpés előtt áttekinti ezeket a módosításokat?</target>
+        <note/>
       </trans-unit>
       <trans-unit id="/You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?:dict/documents:dict/other:dict/:string" xml:space="preserve">
         <source>You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?</source>
-        <target state="new">%ld %@ megerősítés nélküli módosításokkal rendelkező dokumentuma van. Kilpés előtt áttekinti ezeket a módosításokat?</target>
-        
+        <target>%ld %@ megerősítés nélküli módosításokkal rendelkező dokumentuma van. Kilpés előtt áttekinti ezeket a módosításokat?</target>
+        <note/>
       </trans-unit>
     </body>
   </file>
   <file original="ONLYOFFICE/Base.lproj/Main.storyboard" source-language="en" target-language="hu-HU" datatype="plaintext">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c" />
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c"/>
     </header>
     <body>
       <trans-unit id="1UK-8n-QPP.title" xml:space="preserve">
         <source>Customize Toolbar…</source>
-        <target state="new">Eszköztár testreszabása…</target>
-        
-      <note>Class = "NSMenuItem"; title = "Customize Toolbar…"; ObjectID = "1UK-8n-QPP";</note></trans-unit>
+        <target>Eszköztár testreszabása…</target>
+        <note>Class = "NSMenuItem"; title = "Customize Toolbar…"; ObjectID = "1UK-8n-QPP";</note>
+      </trans-unit>
       <trans-unit id="1Xt-HY-uBw.title" xml:space="preserve">
         <source>ONLYOFFICE</source>
-        <target state="new">ONLYOFFICE</target>
-        
-      <note>Class = "NSMenuItem"; title = "ONLYOFFICE"; ObjectID = "1Xt-HY-uBw";</note></trans-unit>
+        <target>ONLYOFFICE</target>
+        <note>Class = "NSMenuItem"; title = "ONLYOFFICE"; ObjectID = "1Xt-HY-uBw";</note>
+      </trans-unit>
       <trans-unit id="1b7-l0-nxx.title" xml:space="preserve">
         <source>Find</source>
-        <target state="new">Keresés</target>
-        
-      <note>Class = "NSMenu"; title = "Find"; ObjectID = "1b7-l0-nxx";</note></trans-unit>
+        <target>Keresés</target>
+        <note>Class = "NSMenu"; title = "Find"; ObjectID = "1b7-l0-nxx";</note>
+      </trans-unit>
       <trans-unit id="1tx-W0-xDw.title" xml:space="preserve">
         <source>Lower</source>
-        <target state="new">Lejjebb</target>
-        
-      <note>Class = "NSMenuItem"; title = "Lower"; ObjectID = "1tx-W0-xDw";</note></trans-unit>
+        <target>Lejjebb</target>
+        <note>Class = "NSMenuItem"; title = "Lower"; ObjectID = "1tx-W0-xDw";</note>
+      </trans-unit>
       <trans-unit id="2h7-ER-AoG.title" xml:space="preserve">
         <source>Raise</source>
-        <target state="new">Feljebb</target>
-        
-      <note>Class = "NSMenuItem"; title = "Raise"; ObjectID = "2h7-ER-AoG";</note></trans-unit>
+        <target>Feljebb</target>
+        <note>Class = "NSMenuItem"; title = "Raise"; ObjectID = "2h7-ER-AoG";</note>
+      </trans-unit>
       <trans-unit id="2oI-Rn-ZJC.title" xml:space="preserve">
         <source>Transformations</source>
-        <target state="new">Átalakítások</target>
-        
-      <note>Class = "NSMenuItem"; title = "Transformations"; ObjectID = "2oI-Rn-ZJC";</note></trans-unit>
+        <target>Átalakítások</target>
+        <note>Class = "NSMenuItem"; title = "Transformations"; ObjectID = "2oI-Rn-ZJC";</note>
+      </trans-unit>
       <trans-unit id="3IN-sU-3Bg.title" xml:space="preserve">
         <source>Spelling</source>
-        <target state="new">Helyesírás</target>
-        
-      <note>Class = "NSMenu"; title = "Spelling"; ObjectID = "3IN-sU-3Bg";</note></trans-unit>
+        <target>Helyesírás</target>
+        <note>Class = "NSMenu"; title = "Spelling"; ObjectID = "3IN-sU-3Bg";</note>
+      </trans-unit>
       <trans-unit id="3Om-Ey-2VK.title" xml:space="preserve">
         <source>Use Default</source>
-        <target state="new">Alapértelmezett használata</target>
-        
-      <note>Class = "NSMenuItem"; title = "Use Default"; ObjectID = "3Om-Ey-2VK";</note></trans-unit>
+        <target>Alapértelmezett használata</target>
+        <note>Class = "NSMenuItem"; title = "Use Default"; ObjectID = "3Om-Ey-2VK";</note>
+      </trans-unit>
       <trans-unit id="3rS-ZA-NoH.title" xml:space="preserve">
         <source>Speech</source>
-        <target state="new">Beszéd</target>
-        
-      <note>Class = "NSMenu"; title = "Speech"; ObjectID = "3rS-ZA-NoH";</note></trans-unit>
+        <target>Beszéd</target>
+        <note>Class = "NSMenu"; title = "Speech"; ObjectID = "3rS-ZA-NoH";</note>
+      </trans-unit>
       <trans-unit id="4EN-yA-p0u.title" xml:space="preserve">
         <source>Find</source>
-        <target state="new">Keresés</target>
-        
-      <note>Class = "NSMenuItem"; title = "Find"; ObjectID = "4EN-yA-p0u";</note></trans-unit>
+        <target>Keresés</target>
+        <note>Class = "NSMenuItem"; title = "Find"; ObjectID = "4EN-yA-p0u";</note>
+      </trans-unit>
       <trans-unit id="4et-TX-a4m.title" xml:space="preserve">
         <source>License Agreement</source>
-        <target state="new">Licencszerződés</target>
-        
-      <note>Class = "NSMenuItem"; title = "License Agreement"; ObjectID = "4et-TX-a4m";</note></trans-unit>
+        <target>Licencszerződés</target>
+        <note>Class = "NSMenuItem"; title = "License Agreement"; ObjectID = "4et-TX-a4m";</note>
+      </trans-unit>
       <trans-unit id="4sb-4s-VLi.title" xml:space="preserve">
         <source>Quit ONLYOFFICE</source>
-        <target state="new">Kilépés az ONLYOFFICE-ból</target>
-        
-      <note>Class = "NSMenuItem"; title = "Quit ONLYOFFICE"; ObjectID = "4sb-4s-VLi";</note></trans-unit>
+        <target>Kilépés az ONLYOFFICE-ból</target>
+        <note>Class = "NSMenuItem"; title = "Quit ONLYOFFICE"; ObjectID = "4sb-4s-VLi";</note>
+      </trans-unit>
       <trans-unit id="5QF-Oa-p0T.title" xml:space="preserve">
         <source>Edit</source>
-        <target state="new">Szerkesztés</target>
-        
-      <note>Class = "NSMenuItem"; title = "Edit"; ObjectID = "5QF-Oa-p0T";</note></trans-unit>
+        <target>Szerkesztés</target>
+        <note>Class = "NSMenuItem"; title = "Edit"; ObjectID = "5QF-Oa-p0T";</note>
+      </trans-unit>
       <trans-unit id="5Vv-lz-BsD.title" xml:space="preserve">
         <source>Copy Style</source>
-        <target state="new">Stílus másolása</target>
-        
-      <note>Class = "NSMenuItem"; title = "Copy Style"; ObjectID = "5Vv-lz-BsD";</note></trans-unit>
+        <target>Stílus másolása</target>
+        <note>Class = "NSMenuItem"; title = "Copy Style"; ObjectID = "5Vv-lz-BsD";</note>
+      </trans-unit>
       <trans-unit id="5kV-Vb-QxS.title" xml:space="preserve">
         <source>About ONLYOFFICE</source>
-        <target state="new">Az ONLYOFFICE-ról</target>
-        
-      <note>Class = "NSMenuItem"; title = "About ONLYOFFICE"; ObjectID = "5kV-Vb-QxS";</note></trans-unit>
+        <target>Az ONLYOFFICE-ról</target>
+        <note>Class = "NSMenuItem"; title = "About ONLYOFFICE"; ObjectID = "5kV-Vb-QxS";</note>
+      </trans-unit>
       <trans-unit id="6dh-zS-Vam.title" xml:space="preserve">
         <source>Redo</source>
-        <target state="new">Újra</target>
-        
-      <note>Class = "NSMenuItem"; title = "Redo"; ObjectID = "6dh-zS-Vam";</note></trans-unit>
+        <target>Újra</target>
+        <note>Class = "NSMenuItem"; title = "Redo"; ObjectID = "6dh-zS-Vam";</note>
+      </trans-unit>
       <trans-unit id="8Ga-Cu-VGe.title" xml:space="preserve">
         <source>License agreement</source>
-        <target state="new">Licencszerződés</target>
-        
-      <note>Class = "NSButtonCell"; title = "License agreement"; ObjectID = "8Ga-Cu-VGe";</note></trans-unit>
+        <target>Licencszerződés</target>
+        <note>Class = "NSButtonCell"; title = "License agreement"; ObjectID = "8Ga-Cu-VGe";</note>
+      </trans-unit>
       <trans-unit id="8mr-sm-Yjd.title" xml:space="preserve">
         <source>Writing Direction</source>
-        <target state="new">Szövegirány</target>
-        
-      <note>Class = "NSMenu"; title = "Writing Direction"; ObjectID = "8mr-sm-Yjd";</note></trans-unit>
+        <target>Szövegirány</target>
+        <note>Class = "NSMenu"; title = "Writing Direction"; ObjectID = "8mr-sm-Yjd";</note>
+      </trans-unit>
       <trans-unit id="9aQ-wl-gjS.title" xml:space="preserve">
         <source>New</source>
-        <target state="new">Új</target>
-        
-      <note>Class = "NSMenuItem"; title = "New"; ObjectID = "9aQ-wl-gjS";</note></trans-unit>
+        <target>Új</target>
+        <note>Class = "NSMenuItem"; title = "New"; ObjectID = "9aQ-wl-gjS";</note>
+      </trans-unit>
       <trans-unit id="9i7-kj-42B.title" xml:space="preserve">
         <source>none</source>
-        <target state="new">egyik sem</target>
-        
-      <note>Class = "NSTextFieldCell"; title = "none"; ObjectID = "9i7-kj-42B";</note></trans-unit>
+        <target>egyik sem</target>
+        <note>Class = "NSTextFieldCell"; title = "none"; ObjectID = "9i7-kj-42B";</note>
+      </trans-unit>
       <trans-unit id="9ic-FL-obx.title" xml:space="preserve">
         <source>Substitutions</source>
-        <target state="new">Helyettesítések</target>
-        
-      <note>Class = "NSMenuItem"; title = "Substitutions"; ObjectID = "9ic-FL-obx";</note></trans-unit>
+        <target>Helyettesítések</target>
+        <note>Class = "NSMenuItem"; title = "Substitutions"; ObjectID = "9ic-FL-obx";</note>
+      </trans-unit>
       <trans-unit id="9yt-4B-nSM.title" xml:space="preserve">
         <source>Smart Copy/Paste</source>
-        <target state="new">Intelligens másolás/beillesztés</target>
-        
-      <note>Class = "NSMenuItem"; title = "Smart Copy/Paste"; ObjectID = "9yt-4B-nSM";</note></trans-unit>
+        <target>Intelligens másolás/beillesztés</target>
+        <note>Class = "NSMenuItem"; title = "Smart Copy/Paste"; ObjectID = "9yt-4B-nSM";</note>
+      </trans-unit>
       <trans-unit id="46P-cB-AYj.title" xml:space="preserve">
         <source>Tighten</source>
-        <target state="new">Tömörítés</target>
-        
-      <note>Class = "NSMenuItem"; title = "Tighten"; ObjectID = "46P-cB-AYj";</note></trans-unit>
+        <target>Tömörítés</target>
+        <note>Class = "NSMenuItem"; title = "Tighten"; ObjectID = "46P-cB-AYj";</note>
+      </trans-unit>
       <trans-unit id="78Y-hA-62v.title" xml:space="preserve">
         <source>Correct Spelling Automatically</source>
-        <target state="new">Helyesírás automatikus javítása</target>
-        
-      <note>Class = "NSMenuItem"; title = "Correct Spelling Automatically"; ObjectID = "78Y-hA-62v";</note></trans-unit>
+        <target>Helyesírás automatikus javítása</target>
+        <note>Class = "NSMenuItem"; title = "Correct Spelling Automatically"; ObjectID = "78Y-hA-62v";</note>
+      </trans-unit>
       <trans-unit id="AYu-sK-qS6.title" xml:space="preserve">
         <source>Main Menu</source>
-        <target state="new">Főmenü</target>
-        
-      <note>Class = "NSMenu"; title = "Main Menu"; ObjectID = "AYu-sK-qS6";</note></trans-unit>
+        <target>Főmenü</target>
+        <note>Class = "NSMenu"; title = "Main Menu"; ObjectID = "AYu-sK-qS6";</note>
+      </trans-unit>
       <trans-unit id="BOF-NM-1cW.title" xml:space="preserve">
         <source>Preferences…</source>
-        <target state="new">Beállítások…</target>
-        
-      <note>Class = "NSMenuItem"; title = "Preferences…"; ObjectID = "BOF-NM-1cW";</note></trans-unit>
+        <target>Beállítások…</target>
+        <note>Class = "NSMenuItem"; title = "Preferences…"; ObjectID = "BOF-NM-1cW";</note>
+      </trans-unit>
       <trans-unit id="BgM-ve-c93.title" xml:space="preserve">
         <source>	Left to Right</source>
-        <target state="new">	Balról jobbra</target>
-        
-      <note>Class = "NSMenuItem"; title = "\tLeft to Right"; ObjectID = "BgM-ve-c93";</note></trans-unit>
+        <target>	Balról jobbra</target>
+        <note>Class = "NSMenuItem"; title = "\tLeft to Right"; ObjectID = "BgM-ve-c93";</note>
+      </trans-unit>
       <trans-unit id="Bw7-FT-i3A.title" xml:space="preserve">
         <source>Save As…</source>
-        <target state="new">Mentés másként…</target>
-        
-      <note>Class = "NSMenuItem"; title = "Save As…"; ObjectID = "Bw7-FT-i3A";</note></trans-unit>
+        <target>Mentés másként…</target>
+        <note>Class = "NSMenuItem"; title = "Save As…"; ObjectID = "Bw7-FT-i3A";</note>
+      </trans-unit>
       <trans-unit id="CJU-dx-a9l.title" xml:space="preserve">
         <source>Acknowledgments</source>
-        <target state="new">Köszönetnyilvánítás</target>
-        
-      <note>Class = "NSMenuItem"; title = "Acknowledgments"; ObjectID = "CJU-dx-a9l";</note></trans-unit>
+        <target>Köszönetnyilvánítás</target>
+        <note>Class = "NSMenuItem"; title = "Acknowledgments"; ObjectID = "CJU-dx-a9l";</note>
+      </trans-unit>
       <trans-unit id="DOj-j9-dza.title" xml:space="preserve">
         <source>Spreadsheet</source>
-        <target state="new">Számolótábla</target>
-        
-      <note>Class = "NSMenuItem"; title = "Spreadsheet"; ObjectID = "DOj-j9-dza";</note></trans-unit>
+        <target>Számolótábla</target>
+        <note>Class = "NSMenuItem"; title = "Spreadsheet"; ObjectID = "DOj-j9-dza";</note>
+      </trans-unit>
       <trans-unit id="DVo-aG-piG.title" xml:space="preserve">
         <source>Close</source>
-        <target state="new">Bezárás</target>
-        
-      <note>Class = "NSMenuItem"; title = "Close"; ObjectID = "DVo-aG-piG";</note></trans-unit>
+        <target>Bezárás</target>
+        <note>Class = "NSMenuItem"; title = "Close"; ObjectID = "DVo-aG-piG";</note>
+      </trans-unit>
       <trans-unit id="Dv1-io-Yv7.title" xml:space="preserve">
         <source>Spelling and Grammar</source>
-        <target state="new">Helyesírás és nyelvhelyesség</target>
-        
-      <note>Class = "NSMenuItem"; title = "Spelling and Grammar"; ObjectID = "Dv1-io-Yv7";</note></trans-unit>
+        <target>Helyesírás és nyelvhelyesség</target>
+        <note>Class = "NSMenuItem"; title = "Spelling and Grammar"; ObjectID = "Dv1-io-Yv7";</note>
+      </trans-unit>
       <trans-unit id="F2S-fz-NVQ.title" xml:space="preserve">
         <source>Help</source>
-        <target state="new">Súgó</target>
-        
-      <note>Class = "NSMenu"; title = "Help"; ObjectID = "F2S-fz-NVQ";</note></trans-unit>
+        <target>Súgó</target>
+        <note>Class = "NSMenu"; title = "Help"; ObjectID = "F2S-fz-NVQ";</note>
+      </trans-unit>
       <trans-unit id="FKE-Sm-Kum.title" xml:space="preserve">
         <source>Product Help</source>
-        <target state="new">A termék súgója</target>
-        
-      <note>Class = "NSMenuItem"; title = "Product Help"; ObjectID = "FKE-Sm-Kum";</note></trans-unit>
+        <target>A termék súgója</target>
+        <note>Class = "NSMenuItem"; title = "Product Help"; ObjectID = "FKE-Sm-Kum";</note>
+      </trans-unit>
       <trans-unit id="Fal-I4-PZk.title" xml:space="preserve">
         <source>Text</source>
-        <target state="new">Szöveg</target>
-        
-      <note>Class = "NSMenuItem"; title = "Text"; ObjectID = "Fal-I4-PZk";</note></trans-unit>
+        <target>Szöveg</target>
+        <note>Class = "NSMenuItem"; title = "Text"; ObjectID = "Fal-I4-PZk";</note>
+      </trans-unit>
       <trans-unit id="FeM-D8-WVr.title" xml:space="preserve">
         <source>Substitutions</source>
-        <target state="new">Helyettesítések</target>
-        
-      <note>Class = "NSMenu"; title = "Substitutions"; ObjectID = "FeM-D8-WVr";</note></trans-unit>
+        <target>Helyettesítések</target>
+        <note>Class = "NSMenu"; title = "Substitutions"; ObjectID = "FeM-D8-WVr";</note>
+      </trans-unit>
       <trans-unit id="FoF-wl-Dxi.title" xml:space="preserve">
         <source>User Name</source>
-        <target state="new">Felhasználónév</target>
-        
-      <note>Class = "NSTextFieldCell"; title = "User Name"; ObjectID = "FoF-wl-Dxi";</note></trans-unit>
+        <target>Felhasználónév</target>
+        <note>Class = "NSTextFieldCell"; title = "User Name"; ObjectID = "FoF-wl-Dxi";</note>
+      </trans-unit>
       <trans-unit id="GB9-OM-e27.title" xml:space="preserve">
         <source>Bold</source>
-        <target state="new">Félkövér</target>
-        
-      <note>Class = "NSMenuItem"; title = "Bold"; ObjectID = "GB9-OM-e27";</note></trans-unit>
+        <target>Félkövér</target>
+        <note>Class = "NSMenuItem"; title = "Bold"; ObjectID = "GB9-OM-e27";</note>
+      </trans-unit>
       <trans-unit id="GEO-Iw-cKr.title" xml:space="preserve">
         <source>Format</source>
-        <target state="new">Formátum</target>
-        
-      <note>Class = "NSMenu"; title = "Format"; ObjectID = "GEO-Iw-cKr";</note></trans-unit>
+        <target>Formátum</target>
+        <note>Class = "NSMenu"; title = "Format"; ObjectID = "GEO-Iw-cKr";</note>
+      </trans-unit>
       <trans-unit id="GUa-eO-cwY.title" xml:space="preserve">
         <source>Use Default</source>
-        <target state="new">Alapértelmezett használata</target>
-        
-      <note>Class = "NSMenuItem"; title = "Use Default"; ObjectID = "GUa-eO-cwY";</note></trans-unit>
+        <target>Alapértelmezett használata</target>
+        <note>Class = "NSMenuItem"; title = "Use Default"; ObjectID = "GUa-eO-cwY";</note>
+      </trans-unit>
       <trans-unit id="Gi5-1S-RQB.title" xml:space="preserve">
         <source>Font</source>
-        <target state="new">Betűtípus</target>
-        
-      <note>Class = "NSMenuItem"; title = "Font"; ObjectID = "Gi5-1S-RQB";</note></trans-unit>
+        <target>Betűtípus</target>
+        <note>Class = "NSMenuItem"; title = "Font"; ObjectID = "Gi5-1S-RQB";</note>
+      </trans-unit>
       <trans-unit id="H1b-Si-o9J.title" xml:space="preserve">
         <source>Writing Direction</source>
-        <target state="new">Szövegirány</target>
-        
-      <note>Class = "NSMenuItem"; title = "Writing Direction"; ObjectID = "H1b-Si-o9J";</note></trans-unit>
+        <target>Szövegirány</target>
+        <note>Class = "NSMenuItem"; title = "Writing Direction"; ObjectID = "H1b-Si-o9J";</note>
+      </trans-unit>
       <trans-unit id="H8h-7b-M4v.title" xml:space="preserve">
         <source>View</source>
-        <target state="new">Nézet</target>
-        
-      <note>Class = "NSMenuItem"; title = "View"; ObjectID = "H8h-7b-M4v";</note></trans-unit>
+        <target>Nézet</target>
+        <note>Class = "NSMenuItem"; title = "View"; ObjectID = "H8h-7b-M4v";</note>
+      </trans-unit>
       <trans-unit id="HFQ-gK-NFA.title" xml:space="preserve">
         <source>Text Replacement</source>
-        <target state="new">Csereszöveg</target>
-        
-      <note>Class = "NSMenuItem"; title = "Text Replacement"; ObjectID = "HFQ-gK-NFA";</note></trans-unit>
+        <target>Csereszöveg</target>
+        <note>Class = "NSMenuItem"; title = "Text Replacement"; ObjectID = "HFQ-gK-NFA";</note>
+      </trans-unit>
       <trans-unit id="HFo-cy-zxI.title" xml:space="preserve">
         <source>Show Spelling and Grammar</source>
-        <target state="new">Helyesírás és nyelvhelyesség mutatása</target>
-        
-      <note>Class = "NSMenuItem"; title = "Show Spelling and Grammar"; ObjectID = "HFo-cy-zxI";</note></trans-unit>
+        <target>Helyesírás és nyelvhelyesség mutatása</target>
+        <note>Class = "NSMenuItem"; title = "Show Spelling and Grammar"; ObjectID = "HFo-cy-zxI";</note>
+      </trans-unit>
       <trans-unit id="HyV-fh-RgO.title" xml:space="preserve">
         <source>View</source>
-        <target state="new">Nézet</target>
-        
-      <note>Class = "NSMenu"; title = "View"; ObjectID = "HyV-fh-RgO";</note></trans-unit>
+        <target>Nézet</target>
+        <note>Class = "NSMenu"; title = "View"; ObjectID = "HyV-fh-RgO";</note>
+      </trans-unit>
       <trans-unit id="I0S-gh-46l.title" xml:space="preserve">
         <source>Subscript</source>
-        <target state="new">Alsó index</target>
-        
-      <note>Class = "NSMenuItem"; title = "Subscript"; ObjectID = "I0S-gh-46l";</note></trans-unit>
+        <target>Alsó index</target>
+        <note>Class = "NSMenuItem"; title = "Subscript"; ObjectID = "I0S-gh-46l";</note>
+      </trans-unit>
       <trans-unit id="IAo-SY-fd9.title" xml:space="preserve">
         <source>Open…</source>
-        <target state="new">Megnyitás…</target>
-        
-      <note>Class = "NSMenuItem"; title = "Open…"; ObjectID = "IAo-SY-fd9";</note></trans-unit>
+        <target>Megnyitás…</target>
+        <note>Class = "NSMenuItem"; title = "Open…"; ObjectID = "IAo-SY-fd9";</note>
+      </trans-unit>
       <trans-unit id="IQv-IB-iLA.title" xml:space="preserve">
         <source>ONLYOFFICE</source>
-        <target state="new">ONLYOFFICE</target>
-        
-      <note>Class = "NSWindow"; title = "ONLYOFFICE"; ObjectID = "IQv-IB-iLA";</note></trans-unit>
+        <target>ONLYOFFICE</target>
+        <note>Class = "NSWindow"; title = "ONLYOFFICE"; ObjectID = "IQv-IB-iLA";</note>
+      </trans-unit>
       <trans-unit id="J5U-5w-g23.title" xml:space="preserve">
         <source>Justify</source>
-        <target state="new">Sorkizárt</target>
-        
-      <note>Class = "NSMenuItem"; title = "Justify"; ObjectID = "J5U-5w-g23";</note></trans-unit>
+        <target>Sorkizárt</target>
+        <note>Class = "NSMenuItem"; title = "Justify"; ObjectID = "J5U-5w-g23";</note>
+      </trans-unit>
       <trans-unit id="J7y-lM-qPV.title" xml:space="preserve">
         <source>Use None</source>
-        <target state="new">Egyik sem</target>
-        
-      <note>Class = "NSMenuItem"; title = "Use None"; ObjectID = "J7y-lM-qPV";</note></trans-unit>
+        <target>Egyik sem</target>
+        <note>Class = "NSMenuItem"; title = "Use None"; ObjectID = "J7y-lM-qPV";</note>
+      </trans-unit>
       <trans-unit id="KaW-ft-85H.title" xml:space="preserve">
         <source>Revert to Saved</source>
-        <target state="new">Mentett visszaállítása</target>
-        
-      <note>Class = "NSMenuItem"; title = "Revert to Saved"; ObjectID = "KaW-ft-85H";</note></trans-unit>
+        <target>Mentett visszaállítása</target>
+        <note>Class = "NSMenuItem"; title = "Revert to Saved"; ObjectID = "KaW-ft-85H";</note>
+      </trans-unit>
       <trans-unit id="Kd2-mp-pUS.title" xml:space="preserve">
         <source>Show All</source>
-        <target state="new">Az összes megjelenítése</target>
-        
-      <note>Class = "NSMenuItem"; title = "Show All"; ObjectID = "Kd2-mp-pUS";</note></trans-unit>
+        <target>Az összes megjelenítése</target>
+        <note>Class = "NSMenuItem"; title = "Show All"; ObjectID = "Kd2-mp-pUS";</note>
+      </trans-unit>
       <trans-unit id="LE2-aR-0XJ.title" xml:space="preserve">
         <source>Bring All to Front</source>
-        <target state="new">Az összes előrehozása</target>
-        
-      <note>Class = "NSMenuItem"; title = "Bring All to Front"; ObjectID = "LE2-aR-0XJ";</note></trans-unit>
+        <target>Az összes előrehozása</target>
+        <note>Class = "NSMenuItem"; title = "Bring All to Front"; ObjectID = "LE2-aR-0XJ";</note>
+      </trans-unit>
       <trans-unit id="LVM-kO-fVI.title" xml:space="preserve">
         <source>Paste Ruler</source>
-        <target state="new">Vonalzó beillesztése</target>
-        
-      <note>Class = "NSMenuItem"; title = "Paste Ruler"; ObjectID = "LVM-kO-fVI";</note></trans-unit>
+        <target>Vonalzó beillesztése</target>
+        <note>Class = "NSMenuItem"; title = "Paste Ruler"; ObjectID = "LVM-kO-fVI";</note>
+      </trans-unit>
       <trans-unit id="Lbh-J2-qVU.title" xml:space="preserve">
         <source>	Left to Right</source>
-        <target state="new">	Balról jobbra</target>
-        
-      <note>Class = "NSMenuItem"; title = "\tLeft to Right"; ObjectID = "Lbh-J2-qVU";</note></trans-unit>
+        <target>	Balról jobbra</target>
+        <note>Class = "NSMenuItem"; title = "\tLeft to Right"; ObjectID = "Lbh-J2-qVU";</note>
+      </trans-unit>
       <trans-unit id="MkV-Pr-PK5.title" xml:space="preserve">
         <source>Copy Ruler</source>
-        <target state="new">Vonalzó másolása</target>
-        
-      <note>Class = "NSMenuItem"; title = "Copy Ruler"; ObjectID = "MkV-Pr-PK5";</note></trans-unit>
+        <target>Vonalzó másolása</target>
+        <note>Class = "NSMenuItem"; title = "Copy Ruler"; ObjectID = "MkV-Pr-PK5";</note>
+      </trans-unit>
       <trans-unit id="NMo-om-nkz.title" xml:space="preserve">
         <source>Services</source>
-        <target state="new">Szolgáltatások</target>
-        
-      <note>Class = "NSMenuItem"; title = "Services"; ObjectID = "NMo-om-nkz";</note></trans-unit>
+        <target>Szolgáltatások</target>
+        <note>Class = "NSMenuItem"; title = "Services"; ObjectID = "NMo-om-nkz";</note>
+      </trans-unit>
       <trans-unit id="Nop-cj-93Q.title" xml:space="preserve">
         <source>	Default</source>
-        <target state="new">	Alapértelmezett</target>
-        
-      <note>Class = "NSMenuItem"; title = "\tDefault"; ObjectID = "Nop-cj-93Q";</note></trans-unit>
+        <target>	Alapértelmezett</target>
+        <note>Class = "NSMenuItem"; title = "\tDefault"; ObjectID = "Nop-cj-93Q";</note>
+      </trans-unit>
       <trans-unit id="OY7-WF-poV.title" xml:space="preserve">
         <source>Minimize</source>
-        <target state="new">Kis méret</target>
-        
-      <note>Class = "NSMenuItem"; title = "Minimize"; ObjectID = "OY7-WF-poV";</note></trans-unit>
+        <target>Kis méret</target>
+        <note>Class = "NSMenuItem"; title = "Minimize"; ObjectID = "OY7-WF-poV";</note>
+      </trans-unit>
       <trans-unit id="OaQ-X3-Vso.title" xml:space="preserve">
         <source>Baseline</source>
-        <target state="new">Alapvonal</target>
-        
-      <note>Class = "NSMenuItem"; title = "Baseline"; ObjectID = "OaQ-X3-Vso";</note></trans-unit>
+        <target>Alapvonal</target>
+        <note>Class = "NSMenuItem"; title = "Baseline"; ObjectID = "OaQ-X3-Vso";</note>
+      </trans-unit>
       <trans-unit id="Olw-nP-bQN.title" xml:space="preserve">
         <source>Hide ONLYOFFICE</source>
-        <target state="new">ONLYOFFICE elrejtése</target>
-        
-      <note>Class = "NSMenuItem"; title = "Hide ONLYOFFICE"; ObjectID = "Olw-nP-bQN";</note></trans-unit>
+        <target>ONLYOFFICE elrejtése</target>
+        <note>Class = "NSMenuItem"; title = "Hide ONLYOFFICE"; ObjectID = "Olw-nP-bQN";</note>
+      </trans-unit>
       <trans-unit id="OwM-mh-QMV.title" xml:space="preserve">
         <source>Find Previous</source>
-        <target state="new">Előző keresése</target>
-        
-      <note>Class = "NSMenuItem"; title = "Find Previous"; ObjectID = "OwM-mh-QMV";</note></trans-unit>
+        <target>Előző keresése</target>
+        <note>Class = "NSMenuItem"; title = "Find Previous"; ObjectID = "OwM-mh-QMV";</note>
+      </trans-unit>
       <trans-unit id="Oyz-dy-DGm.title" xml:space="preserve">
         <source>Stop Speaking</source>
-        <target state="new">Beszéd leállítása</target>
-        
-      <note>Class = "NSMenuItem"; title = "Stop Speaking"; ObjectID = "Oyz-dy-DGm";</note></trans-unit>
+        <target>Beszéd leállítása</target>
+        <note>Class = "NSMenuItem"; title = "Stop Speaking"; ObjectID = "Oyz-dy-DGm";</note>
+      </trans-unit>
       <trans-unit id="Ptp-SP-VEL.title" xml:space="preserve">
         <source>Bigger</source>
-        <target state="new">Nagyobb</target>
-        
-      <note>Class = "NSMenuItem"; title = "Bigger"; ObjectID = "Ptp-SP-VEL";</note></trans-unit>
+        <target>Nagyobb</target>
+        <note>Class = "NSMenuItem"; title = "Bigger"; ObjectID = "Ptp-SP-VEL";</note>
+      </trans-unit>
       <trans-unit id="Q5e-8K-NDq.title" xml:space="preserve">
         <source>Show Fonts</source>
-        <target state="new">Betűtípusok mutatása</target>
-        
-      <note>Class = "NSMenuItem"; title = "Show Fonts"; ObjectID = "Q5e-8K-NDq";</note></trans-unit>
+        <target>Betűtípusok mutatása</target>
+        <note>Class = "NSMenuItem"; title = "Show Fonts"; ObjectID = "Q5e-8K-NDq";</note>
+      </trans-unit>
       <trans-unit id="R4o-n2-Eq4.title" xml:space="preserve">
         <source>Zoom</source>
-        <target state="new">Nagyítás</target>
-        
-      <note>Class = "NSMenuItem"; title = "Zoom"; ObjectID = "R4o-n2-Eq4";</note></trans-unit>
+        <target>Nagyítás</target>
+        <note>Class = "NSMenuItem"; title = "Zoom"; ObjectID = "R4o-n2-Eq4";</note>
+      </trans-unit>
       <trans-unit id="RB4-Sm-HuC.title" xml:space="preserve">
         <source>	Right to Left</source>
-        <target state="new">	Jobbról balra</target>
-        
-      <note>Class = "NSMenuItem"; title = "\tRight to Left"; ObjectID = "RB4-Sm-HuC";</note></trans-unit>
+        <target>	Jobbról balra</target>
+        <note>Class = "NSMenuItem"; title = "\tRight to Left"; ObjectID = "RB4-Sm-HuC";</note>
+      </trans-unit>
       <trans-unit id="Riu-oE-8dj.title" xml:space="preserve">
         <source>Close</source>
-        <target state="new">Bezárás</target>
-        
-      <note>Class = "NSButtonCell"; title = "Close"; ObjectID = "Riu-oE-8dj";</note></trans-unit>
+        <target>Bezárás</target>
+        <note>Class = "NSButtonCell"; title = "Close"; ObjectID = "Riu-oE-8dj";</note>
+      </trans-unit>
       <trans-unit id="Rkd-xb-FRJ.title" xml:space="preserve">
         <source>none</source>
-        <target state="new">egyik sem</target>
-        
-      <note>Class = "NSTextFieldCell"; title = "none"; ObjectID = "Rkd-xb-FRJ";</note></trans-unit>
+        <target>egyik sem</target>
+        <note>Class = "NSTextFieldCell"; title = "none"; ObjectID = "Rkd-xb-FRJ";</note>
+      </trans-unit>
       <trans-unit id="RmO-tv-UKh.title" xml:space="preserve">
         <source>Logout</source>
-        <target state="new">Kijelentkezés</target>
-        
-      <note>Class = "NSButtonCell"; title = "Logout"; ObjectID = "RmO-tv-UKh";</note></trans-unit>
+        <target>Kijelentkezés</target>
+        <note>Class = "NSButtonCell"; title = "Logout"; ObjectID = "RmO-tv-UKh";</note>
+      </trans-unit>
       <trans-unit id="Rqc-34-cIF.title" xml:space="preserve">
         <source>Superscript</source>
-        <target state="new">Felső index</target>
-        
-      <note>Class = "NSMenuItem"; title = "Superscript"; ObjectID = "Rqc-34-cIF";</note></trans-unit>
+        <target>Felső index</target>
+        <note>Class = "NSMenuItem"; title = "Superscript"; ObjectID = "Rqc-34-cIF";</note>
+      </trans-unit>
       <trans-unit id="Ruw-6m-B2m.title" xml:space="preserve">
         <source>Select All</source>
-        <target state="new">Az összes kijelölése</target>
-        
-      <note>Class = "NSMenuItem"; title = "Select All"; ObjectID = "Ruw-6m-B2m";</note></trans-unit>
+        <target>Az összes kijelölése</target>
+        <note>Class = "NSMenuItem"; title = "Select All"; ObjectID = "Ruw-6m-B2m";</note>
+      </trans-unit>
       <trans-unit id="S0p-oC-mLd.title" xml:space="preserve">
         <source>Jump to Selection</source>
-        <target state="new">Ugrás a kijelölésre</target>
-        
-      <note>Class = "NSMenuItem"; title = "Jump to Selection"; ObjectID = "S0p-oC-mLd";</note></trans-unit>
+        <target>Ugrás a kijelölésre</target>
+        <note>Class = "NSMenuItem"; title = "Jump to Selection"; ObjectID = "S0p-oC-mLd";</note>
+      </trans-unit>
       <trans-unit id="TEm-B8-gsH.title" xml:space="preserve">
         <source>Document</source>
-        <target state="new">Dokumentum</target>
-        
-      <note>Class = "NSMenuItem"; title = "Document"; ObjectID = "TEm-B8-gsH";</note></trans-unit>
+        <target>Dokumentum</target>
+        <note>Class = "NSMenuItem"; title = "Document"; ObjectID = "TEm-B8-gsH";</note>
+      </trans-unit>
       <trans-unit id="Td7-aD-5lo.title" xml:space="preserve">
         <source>Window</source>
-        <target state="new">Ablak</target>
-        
-      <note>Class = "NSMenu"; title = "Window"; ObjectID = "Td7-aD-5lo";</note></trans-unit>
+        <target>Ablak</target>
+        <note>Class = "NSMenu"; title = "Window"; ObjectID = "Td7-aD-5lo";</note>
+      </trans-unit>
       <trans-unit id="UEZ-Bs-lqG.title" xml:space="preserve">
         <source>Capitalize</source>
-        <target state="new">Nagy kezdőbetű</target>
-        
-      <note>Class = "NSMenuItem"; title = "Capitalize"; ObjectID = "UEZ-Bs-lqG";</note></trans-unit>
+        <target>Nagy kezdőbetű</target>
+        <note>Class = "NSMenuItem"; title = "Capitalize"; ObjectID = "UEZ-Bs-lqG";</note>
+      </trans-unit>
       <trans-unit id="VIY-Ag-zcb.title" xml:space="preserve">
         <source>Center</source>
-        <target state="new">Középre</target>
-        
-      <note>Class = "NSMenuItem"; title = "Center"; ObjectID = "VIY-Ag-zcb";</note></trans-unit>
+        <target>Középre</target>
+        <note>Class = "NSMenuItem"; title = "Center"; ObjectID = "VIY-Ag-zcb";</note>
+      </trans-unit>
       <trans-unit id="Vdr-fp-XzO.title" xml:space="preserve">
         <source>Hide Others</source>
-        <target state="new">Egyebek elrejtése</target>
-        
-      <note>Class = "NSMenuItem"; title = "Hide Others"; ObjectID = "Vdr-fp-XzO";</note></trans-unit>
+        <target>Egyebek elrejtése</target>
+        <note>Class = "NSMenuItem"; title = "Hide Others"; ObjectID = "Vdr-fp-XzO";</note>
+      </trans-unit>
       <trans-unit id="Vjx-xi-njq.title" xml:space="preserve">
         <source>Italic</source>
-        <target state="new">Dőlt</target>
-        
-      <note>Class = "NSMenuItem"; title = "Italic"; ObjectID = "Vjx-xi-njq";</note></trans-unit>
+        <target>Dőlt</target>
+        <note>Class = "NSMenuItem"; title = "Italic"; ObjectID = "Vjx-xi-njq";</note>
+      </trans-unit>
       <trans-unit id="W48-6f-4Dl.title" xml:space="preserve">
         <source>Edit</source>
-        <target state="new">Szerkesztés</target>
-        
-      <note>Class = "NSMenu"; title = "Edit"; ObjectID = "W48-6f-4Dl";</note></trans-unit>
+        <target>Szerkesztés</target>
+        <note>Class = "NSMenu"; title = "Edit"; ObjectID = "W48-6f-4Dl";</note>
+      </trans-unit>
       <trans-unit id="WRG-CD-K1S.title" xml:space="preserve">
         <source>Underline</source>
-        <target state="new">Aláhúzott</target>
-        
-      <note>Class = "NSMenuItem"; title = "Underline"; ObjectID = "WRG-CD-K1S";</note></trans-unit>
+        <target>Aláhúzott</target>
+        <note>Class = "NSMenuItem"; title = "Underline"; ObjectID = "WRG-CD-K1S";</note>
+      </trans-unit>
       <trans-unit id="WeT-3V-zwk.title" xml:space="preserve">
         <source>Paste and Match Style</source>
-        <target state="new">Beillesztés a stílusok egyeztetésével</target>
-        
-      <note>Class = "NSMenuItem"; title = "Paste and Match Style"; ObjectID = "WeT-3V-zwk";</note></trans-unit>
+        <target>Beillesztés a stílusok egyeztetésével</target>
+        <note>Class = "NSMenuItem"; title = "Paste and Match Style"; ObjectID = "WeT-3V-zwk";</note>
+      </trans-unit>
       <trans-unit id="Xz5-n4-O0W.title" xml:space="preserve">
         <source>Find…</source>
-        <target state="new">Keresés…</target>
-        
-      <note>Class = "NSMenuItem"; title = "Find…"; ObjectID = "Xz5-n4-O0W";</note></trans-unit>
+        <target>Keresés…</target>
+        <note>Class = "NSMenuItem"; title = "Find…"; ObjectID = "Xz5-n4-O0W";</note>
+      </trans-unit>
       <trans-unit id="YEy-JH-Tfz.title" xml:space="preserve">
         <source>Find and Replace…</source>
-        <target state="new">Keresés és csere…</target>
-        
-      <note>Class = "NSMenuItem"; title = "Find and Replace…"; ObjectID = "YEy-JH-Tfz";</note></trans-unit>
+        <target>Keresés és csere…</target>
+        <note>Class = "NSMenuItem"; title = "Find and Replace…"; ObjectID = "YEy-JH-Tfz";</note>
+      </trans-unit>
       <trans-unit id="YGs-j5-SAR.title" xml:space="preserve">
         <source>	Default</source>
-        <target state="new">	Alapértelmezett</target>
-        
-      <note>Class = "NSMenuItem"; title = "\tDefault"; ObjectID = "YGs-j5-SAR";</note></trans-unit>
+        <target>	Alapértelmezett</target>
+        <note>Class = "NSMenuItem"; title = "\tDefault"; ObjectID = "YGs-j5-SAR";</note>
+      </trans-unit>
       <trans-unit id="Ynk-f8-cLZ.title" xml:space="preserve">
         <source>Start Speaking</source>
-        <target state="new">Beszéd megkezdése</target>
-        
-      <note>Class = "NSMenuItem"; title = "Start Speaking"; ObjectID = "Ynk-f8-cLZ";</note></trans-unit>
+        <target>Beszéd megkezdése</target>
+        <note>Class = "NSMenuItem"; title = "Start Speaking"; ObjectID = "Ynk-f8-cLZ";</note>
+      </trans-unit>
       <trans-unit id="ZM1-6Q-yy1.title" xml:space="preserve">
         <source>Align Left</source>
-        <target state="new">Balra igazítás</target>
-        
-      <note>Class = "NSMenuItem"; title = "Align Left"; ObjectID = "ZM1-6Q-yy1";</note></trans-unit>
+        <target>Balra igazítás</target>
+        <note>Class = "NSMenuItem"; title = "Align Left"; ObjectID = "ZM1-6Q-yy1";</note>
+      </trans-unit>
       <trans-unit id="ZbA-hc-8PE.title" xml:space="preserve">
         <source>Version</source>
-        <target state="new">Verzió</target>
-        
-      <note>Class = "NSTextFieldCell"; title = "Version"; ObjectID = "ZbA-hc-8PE";</note></trans-unit>
+        <target>Verzió</target>
+        <note>Class = "NSTextFieldCell"; title = "Version"; ObjectID = "ZbA-hc-8PE";</note>
+      </trans-unit>
       <trans-unit id="Zsi-3o-ASl.title" xml:space="preserve">
         <source>Email:</source>
-        <target state="new">E-mail:</target>
-        
-      <note>Class = "NSTextFieldCell"; title = "Email:"; ObjectID = "Zsi-3o-ASl";</note></trans-unit>
+        <target>E-mail:</target>
+        <note>Class = "NSTextFieldCell"; title = "Email:"; ObjectID = "Zsi-3o-ASl";</note>
+      </trans-unit>
       <trans-unit id="ZvO-Gk-QUH.title" xml:space="preserve">
         <source>Paragraph</source>
-        <target state="new">Bekezdés</target>
-        
-      <note>Class = "NSMenuItem"; title = "Paragraph"; ObjectID = "ZvO-Gk-QUH";</note></trans-unit>
+        <target>Bekezdés</target>
+        <note>Class = "NSMenuItem"; title = "Paragraph"; ObjectID = "ZvO-Gk-QUH";</note>
+      </trans-unit>
       <trans-unit id="aTl-1u-JFS.title" xml:space="preserve">
         <source>Print…</source>
-        <target state="new">Nyomtatás…</target>
-        
-      <note>Class = "NSMenuItem"; title = "Print…"; ObjectID = "aTl-1u-JFS";</note></trans-unit>
+        <target>Nyomtatás…</target>
+        <note>Class = "NSMenuItem"; title = "Print…"; ObjectID = "aTl-1u-JFS";</note>
+      </trans-unit>
       <trans-unit id="aUF-d1-5bR.title" xml:space="preserve">
         <source>Window</source>
-        <target state="new">Ablak</target>
-        
-      <note>Class = "NSMenuItem"; title = "Window"; ObjectID = "aUF-d1-5bR";</note></trans-unit>
+        <target>Ablak</target>
+        <note>Class = "NSMenuItem"; title = "Window"; ObjectID = "aUF-d1-5bR";</note>
+      </trans-unit>
       <trans-unit id="aXa-aM-Jaq.title" xml:space="preserve">
         <source>Font</source>
-        <target state="new">Betűtípus</target>
-        
-      <note>Class = "NSMenu"; title = "Font"; ObjectID = "aXa-aM-Jaq";</note></trans-unit>
+        <target>Betűtípus</target>
+        <note>Class = "NSMenu"; title = "Font"; ObjectID = "aXa-aM-Jaq";</note>
+      </trans-unit>
       <trans-unit id="agt-UL-0e3.title" xml:space="preserve">
         <source>Use Default</source>
-        <target state="new">Alapértelmezett használata</target>
-        
-      <note>Class = "NSMenuItem"; title = "Use Default"; ObjectID = "agt-UL-0e3";</note></trans-unit>
+        <target>Alapértelmezett használata</target>
+        <note>Class = "NSMenuItem"; title = "Use Default"; ObjectID = "agt-UL-0e3";</note>
+      </trans-unit>
       <trans-unit id="bgn-CT-cEk.title" xml:space="preserve">
         <source>Show Colors</source>
-        <target state="new">Színválasztó</target>
-        
-      <note>Class = "NSMenuItem"; title = "Show Colors"; ObjectID = "bgn-CT-cEk";</note></trans-unit>
+        <target>Színválasztó</target>
+        <note>Class = "NSMenuItem"; title = "Show Colors"; ObjectID = "bgn-CT-cEk";</note>
+      </trans-unit>
       <trans-unit id="bib-Uj-vzu.title" xml:space="preserve">
         <source>File</source>
-        <target state="new">Fájl</target>
-        
-      <note>Class = "NSMenu"; title = "File"; ObjectID = "bib-Uj-vzu";</note></trans-unit>
+        <target>Fájl</target>
+        <note>Class = "NSMenu"; title = "File"; ObjectID = "bib-Uj-vzu";</note>
+      </trans-unit>
       <trans-unit id="buJ-ug-pKt.title" xml:space="preserve">
         <source>Use Selection for Find</source>
-        <target state="new">Kijelölés használata kereséshez</target>
-        
-      <note>Class = "NSMenuItem"; title = "Use Selection for Find"; ObjectID = "buJ-ug-pKt";</note></trans-unit>
+        <target>Kijelölés használata kereséshez</target>
+        <note>Class = "NSMenuItem"; title = "Use Selection for Find"; ObjectID = "buJ-ug-pKt";</note>
+      </trans-unit>
       <trans-unit id="c8a-y6-VQd.title" xml:space="preserve">
         <source>Transformations</source>
-        <target state="new">Átalakítások</target>
-        
-      <note>Class = "NSMenu"; title = "Transformations"; ObjectID = "c8a-y6-VQd";</note></trans-unit>
+        <target>Átalakítások</target>
+        <note>Class = "NSMenu"; title = "Transformations"; ObjectID = "c8a-y6-VQd";</note>
+      </trans-unit>
       <trans-unit id="cDB-IK-hbR.title" xml:space="preserve">
         <source>Use None</source>
-        <target state="new">Egyik sem</target>
-        
-      <note>Class = "NSMenuItem"; title = "Use None"; ObjectID = "cDB-IK-hbR";</note></trans-unit>
+        <target>Egyik sem</target>
+        <note>Class = "NSMenuItem"; title = "Use None"; ObjectID = "cDB-IK-hbR";</note>
+      </trans-unit>
       <trans-unit id="cqv-fj-IhA.title" xml:space="preserve">
         <source>Selection</source>
-        <target state="new">Kiválasztás</target>
-        
-      <note>Class = "NSMenuItem"; title = "Selection"; ObjectID = "cqv-fj-IhA";</note></trans-unit>
+        <target>Kiválasztás</target>
+        <note>Class = "NSMenuItem"; title = "Selection"; ObjectID = "cqv-fj-IhA";</note>
+      </trans-unit>
       <trans-unit id="cwL-P1-jid.title" xml:space="preserve">
         <source>Smart Links</source>
-        <target state="new">Intelligens linkek</target>
-        
-      <note>Class = "NSMenuItem"; title = "Smart Links"; ObjectID = "cwL-P1-jid";</note></trans-unit>
+        <target>Intelligens linkek</target>
+        <note>Class = "NSMenuItem"; title = "Smart Links"; ObjectID = "cwL-P1-jid";</note>
+      </trans-unit>
       <trans-unit id="d9M-CD-aMd.title" xml:space="preserve">
         <source>Make Lower Case</source>
-        <target state="new">Kisbetűssé alakítás</target>
-        
-      <note>Class = "NSMenuItem"; title = "Make Lower Case"; ObjectID = "d9M-CD-aMd";</note></trans-unit>
+        <target>Kisbetűssé alakítás</target>
+        <note>Class = "NSMenuItem"; title = "Make Lower Case"; ObjectID = "d9M-CD-aMd";</note>
+      </trans-unit>
       <trans-unit id="d9c-me-L2H.title" xml:space="preserve">
         <source>Text</source>
-        <target state="new">Szöveg</target>
-        
-      <note>Class = "NSMenu"; title = "Text"; ObjectID = "d9c-me-L2H";</note></trans-unit>
+        <target>Szöveg</target>
+        <note>Class = "NSMenu"; title = "Text"; ObjectID = "d9c-me-L2H";</note>
+      </trans-unit>
       <trans-unit id="dMs-cI-mzQ.title" xml:space="preserve">
         <source>File</source>
-        <target state="new">Fájl</target>
-        
-      <note>Class = "NSMenuItem"; title = "File"; ObjectID = "dMs-cI-mzQ";</note></trans-unit>
+        <target>Fájl</target>
+        <note>Class = "NSMenuItem"; title = "File"; ObjectID = "dMs-cI-mzQ";</note>
+      </trans-unit>
       <trans-unit id="dRJ-4n-Yzg.title" xml:space="preserve">
         <source>Undo</source>
-        <target state="new">Visszavonás</target>
-        
-      <note>Class = "NSMenuItem"; title = "Undo"; ObjectID = "dRJ-4n-Yzg";</note></trans-unit>
+        <target>Visszavonás</target>
+        <note>Class = "NSMenuItem"; title = "Undo"; ObjectID = "dRJ-4n-Yzg";</note>
+      </trans-unit>
       <trans-unit id="gVA-U4-sdL.title" xml:space="preserve">
         <source>Paste</source>
-        <target state="new">Beillesztés</target>
-        
-      <note>Class = "NSMenuItem"; title = "Paste"; ObjectID = "gVA-U4-sdL";</note></trans-unit>
+        <target>Beillesztés</target>
+        <note>Class = "NSMenuItem"; title = "Paste"; ObjectID = "gVA-U4-sdL";</note>
+      </trans-unit>
       <trans-unit id="gm3-6i-EnL.title" xml:space="preserve">
         <source>File Name</source>
-        <target state="new">Fájlnév</target>
-        
-      <note>Class = "NSTextFieldCell"; title = "File Name"; ObjectID = "gm3-6i-EnL";</note></trans-unit>
+        <target>Fájlnév</target>
+        <note>Class = "NSTextFieldCell"; title = "File Name"; ObjectID = "gm3-6i-EnL";</note>
+      </trans-unit>
       <trans-unit id="hD5-Cz-ItX.title" xml:space="preserve">
         <source>New</source>
-        <target state="new">Új</target>
-        
-      <note>Class = "NSMenu"; title = "New"; ObjectID = "hD5-Cz-ItX";</note></trans-unit>
+        <target>Új</target>
+        <note>Class = "NSMenu"; title = "New"; ObjectID = "hD5-Cz-ItX";</note>
+      </trans-unit>
       <trans-unit id="hQb-2v-fYv.title" xml:space="preserve">
         <source>Smart Quotes</source>
-        <target state="new">Nyomdai idézőjelek</target>
-        
-      <note>Class = "NSMenuItem"; title = "Smart Quotes"; ObjectID = "hQb-2v-fYv";</note></trans-unit>
+        <target>Nyomdai idézőjelek</target>
+        <note>Class = "NSMenuItem"; title = "Smart Quotes"; ObjectID = "hQb-2v-fYv";</note>
+      </trans-unit>
       <trans-unit id="hkB-TU-Ps1.title" xml:space="preserve">
         <source>Presentation</source>
-        <target state="new">Bemutató</target>
-        
-      <note>Class = "NSMenuItem"; title = "Presentation"; ObjectID = "hkB-TU-Ps1";</note></trans-unit>
+        <target>Bemutató</target>
+        <note>Class = "NSMenuItem"; title = "Presentation"; ObjectID = "hkB-TU-Ps1";</note>
+      </trans-unit>
       <trans-unit id="hz2-CU-CR7.title" xml:space="preserve">
         <source>Check Document Now</source>
-        <target state="new">A dokumentum azonnali ellenőrzése</target>
-        
-      <note>Class = "NSMenuItem"; title = "Check Document Now"; ObjectID = "hz2-CU-CR7";</note></trans-unit>
+        <target>A dokumentum azonnali ellenőrzése</target>
+        <note>Class = "NSMenuItem"; title = "Check Document Now"; ObjectID = "hz2-CU-CR7";</note>
+      </trans-unit>
       <trans-unit id="hz9-B4-Xy5.title" xml:space="preserve">
         <source>Services</source>
-        <target state="new">Szolgáltatások</target>
-        
-      <note>Class = "NSMenu"; title = "Services"; ObjectID = "hz9-B4-Xy5";</note></trans-unit>
+        <target>Szolgáltatások</target>
+        <note>Class = "NSMenu"; title = "Services"; ObjectID = "hz9-B4-Xy5";</note>
+      </trans-unit>
       <trans-unit id="i1d-Er-qST.title" xml:space="preserve">
         <source>Smaller</source>
-        <target state="new">Kisebb</target>
-        
-      <note>Class = "NSMenuItem"; title = "Smaller"; ObjectID = "i1d-Er-qST";</note></trans-unit>
+        <target>Kisebb</target>
+        <note>Class = "NSMenuItem"; title = "Smaller"; ObjectID = "i1d-Er-qST";</note>
+      </trans-unit>
       <trans-unit id="ijk-EB-dga.title" xml:space="preserve">
         <source>Baseline</source>
-        <target state="new">Alapvonal</target>
-        
-      <note>Class = "NSMenu"; title = "Baseline"; ObjectID = "ijk-EB-dga";</note></trans-unit>
+        <target>Alapvonal</target>
+        <note>Class = "NSMenu"; title = "Baseline"; ObjectID = "ijk-EB-dga";</note>
+      </trans-unit>
       <trans-unit id="jBQ-r6-VK2.title" xml:space="preserve">
         <source>Kern</source>
-        <target state="new">Egalizálás</target>
-        
-      <note>Class = "NSMenuItem"; title = "Kern"; ObjectID = "jBQ-r6-VK2";</note></trans-unit>
+        <target>Egalizálás</target>
+        <note>Class = "NSMenuItem"; title = "Kern"; ObjectID = "jBQ-r6-VK2";</note>
+      </trans-unit>
       <trans-unit id="jFq-tB-4Kx.title" xml:space="preserve">
         <source>	Right to Left</source>
-        <target state="new">	Jobbról balra</target>
-        
-      <note>Class = "NSMenuItem"; title = "\tRight to Left"; ObjectID = "jFq-tB-4Kx";</note></trans-unit>
+        <target>	Jobbról balra</target>
+        <note>Class = "NSMenuItem"; title = "\tRight to Left"; ObjectID = "jFq-tB-4Kx";</note>
+      </trans-unit>
       <trans-unit id="jxT-CU-nIS.title" xml:space="preserve">
         <source>Format</source>
-        <target state="new">Formátum</target>
-        
-      <note>Class = "NSMenuItem"; title = "Format"; ObjectID = "jxT-CU-nIS";</note></trans-unit>
+        <target>Formátum</target>
+        <note>Class = "NSMenuItem"; title = "Format"; ObjectID = "jxT-CU-nIS";</note>
+      </trans-unit>
       <trans-unit id="kcg-El-49G.label" xml:space="preserve">
         <source>ONLYOFFICE</source>
-        <target state="new">ONLYOFFICE</target>
-        
-      <note>Class = "NSTabViewItem"; label = "ONLYOFFICE"; ObjectID = "kcg-El-49G";</note></trans-unit>
+        <target>ONLYOFFICE</target>
+        <note>Class = "NSTabViewItem"; label = "ONLYOFFICE"; ObjectID = "kcg-El-49G";</note>
+      </trans-unit>
       <trans-unit id="m0C-e9-0oc.title" xml:space="preserve">
         <source>Cancel</source>
-        <target state="new">Mégse</target>
-        
-      <note>Class = "NSButtonCell"; title = "Cancel"; ObjectID = "m0C-e9-0oc";</note></trans-unit>
+        <target>Mégse</target>
+        <note>Class = "NSButtonCell"; title = "Cancel"; ObjectID = "m0C-e9-0oc";</note>
+      </trans-unit>
       <trans-unit id="mK6-2p-4JG.title" xml:space="preserve">
         <source>Check Grammar With Spelling</source>
-        <target state="new">Bővített helyesírás-ellenőrzés</target>
-        
-      <note>Class = "NSMenuItem"; title = "Check Grammar With Spelling"; ObjectID = "mK6-2p-4JG";</note></trans-unit>
+        <target>Bővített helyesírás-ellenőrzés</target>
+        <note>Class = "NSMenuItem"; title = "Check Grammar With Spelling"; ObjectID = "mK6-2p-4JG";</note>
+      </trans-unit>
       <trans-unit id="o6e-r0-MWq.title" xml:space="preserve">
         <source>Ligatures</source>
-        <target state="new">Ligatúrák</target>
-        
-      <note>Class = "NSMenuItem"; title = "Ligatures"; ObjectID = "o6e-r0-MWq";</note></trans-unit>
+        <target>Ligatúrák</target>
+        <note>Class = "NSMenuItem"; title = "Ligatures"; ObjectID = "o6e-r0-MWq";</note>
+      </trans-unit>
       <trans-unit id="oas-Oc-fiZ.title" xml:space="preserve">
         <source>Open Recent</source>
-        <target state="new">Legutóbbi megnyitása</target>
-        
-      <note>Class = "NSMenu"; title = "Open Recent"; ObjectID = "oas-Oc-fiZ";</note></trans-unit>
+        <target>Legutóbbi megnyitása</target>
+        <note>Class = "NSMenu"; title = "Open Recent"; ObjectID = "oas-Oc-fiZ";</note>
+      </trans-unit>
       <trans-unit id="ogc-rX-tC1.title" xml:space="preserve">
         <source>Loosen</source>
-        <target state="new">Kibontás</target>
-        
-      <note>Class = "NSMenuItem"; title = "Loosen"; ObjectID = "ogc-rX-tC1";</note></trans-unit>
+        <target>Kibontás</target>
+        <note>Class = "NSMenuItem"; title = "Loosen"; ObjectID = "ogc-rX-tC1";</note>
+      </trans-unit>
       <trans-unit id="pa3-QI-u2k.title" xml:space="preserve">
         <source>Delete</source>
-        <target state="new">Törlés</target>
-        
-      <note>Class = "NSMenuItem"; title = "Delete"; ObjectID = "pa3-QI-u2k";</note></trans-unit>
+        <target>Törlés</target>
+        <note>Class = "NSMenuItem"; title = "Delete"; ObjectID = "pa3-QI-u2k";</note>
+      </trans-unit>
       <trans-unit id="pxx-59-PXV.title" xml:space="preserve">
         <source>Save</source>
-        <target state="new">Mentés</target>
-        
-      <note>Class = "NSMenuItem"; title = "Save"; ObjectID = "pxx-59-PXV";</note></trans-unit>
+        <target>Mentés</target>
+        <note>Class = "NSMenuItem"; title = "Save"; ObjectID = "pxx-59-PXV";</note>
+      </trans-unit>
       <trans-unit id="q09-fT-Sye.title" xml:space="preserve">
         <source>Find Next</source>
-        <target state="new">Következő keresése</target>
-        
-      <note>Class = "NSMenuItem"; title = "Find Next"; ObjectID = "q09-fT-Sye";</note></trans-unit>
+        <target>Következő keresése</target>
+        <note>Class = "NSMenuItem"; title = "Find Next"; ObjectID = "q09-fT-Sye";</note>
+      </trans-unit>
       <trans-unit id="qIS-W8-SiK.title" xml:space="preserve">
         <source>Page Setup…</source>
-        <target state="new">Oldalbeállítás…</target>
-        
-      <note>Class = "NSMenuItem"; title = "Page Setup…"; ObjectID = "qIS-W8-SiK";</note></trans-unit>
+        <target>Oldalbeállítás…</target>
+        <note>Class = "NSMenuItem"; title = "Page Setup…"; ObjectID = "qIS-W8-SiK";</note>
+      </trans-unit>
       <trans-unit id="rbD-Rh-wIN.title" xml:space="preserve">
         <source>Check Spelling While Typing</source>
-        <target state="new">Helyesírás-ellenőrzés írás közben</target>
-        
-      <note>Class = "NSMenuItem"; title = "Check Spelling While Typing"; ObjectID = "rbD-Rh-wIN";</note></trans-unit>
+        <target>Helyesírás-ellenőrzés írás közben</target>
+        <note>Class = "NSMenuItem"; title = "Check Spelling While Typing"; ObjectID = "rbD-Rh-wIN";</note>
+      </trans-unit>
       <trans-unit id="rgM-f4-ycn.title" xml:space="preserve">
         <source>Smart Dashes</source>
-        <target state="new">Intelligens kötőjelek</target>
-        
-      <note>Class = "NSMenuItem"; title = "Smart Dashes"; ObjectID = "rgM-f4-ycn";</note></trans-unit>
+        <target>Intelligens kötőjelek</target>
+        <note>Class = "NSMenuItem"; title = "Smart Dashes"; ObjectID = "rgM-f4-ycn";</note>
+      </trans-unit>
       <trans-unit id="sGd-zc-V0B.title" xml:space="preserve">
         <source>Copyright info</source>
-        <target state="new">Szerzői jogi információk</target>
-        
-      <note>Class = "NSTextFieldCell"; title = "Copyright info"; ObjectID = "sGd-zc-V0B";</note></trans-unit>
+        <target>Szerzői jogi információk</target>
+        <note>Class = "NSTextFieldCell"; title = "Copyright info"; ObjectID = "sGd-zc-V0B";</note>
+      </trans-unit>
       <trans-unit id="snW-S8-Cw5.title" xml:space="preserve">
         <source>Show Toolbar</source>
-        <target state="new">Eszköztár megjelenítése</target>
-        
-      <note>Class = "NSMenuItem"; title = "Show Toolbar"; ObjectID = "snW-S8-Cw5";</note></trans-unit>
+        <target>Eszköztár megjelenítése</target>
+        <note>Class = "NSMenuItem"; title = "Show Toolbar"; ObjectID = "snW-S8-Cw5";</note>
+      </trans-unit>
       <trans-unit id="tRr-pd-1PS.title" xml:space="preserve">
         <source>Data Detectors</source>
-        <target state="new">Adatészlelők</target>
-        
-      <note>Class = "NSMenuItem"; title = "Data Detectors"; ObjectID = "tRr-pd-1PS";</note></trans-unit>
+        <target>Adatészlelők</target>
+        <note>Class = "NSMenuItem"; title = "Data Detectors"; ObjectID = "tRr-pd-1PS";</note>
+      </trans-unit>
       <trans-unit id="tXI-mr-wws.title" xml:space="preserve">
         <source>Open Recent</source>
-        <target state="new">Legutóbbi megnyitása</target>
-        
-      <note>Class = "NSMenuItem"; title = "Open Recent"; ObjectID = "tXI-mr-wws";</note></trans-unit>
+        <target>Legutóbbi megnyitása</target>
+        <note>Class = "NSMenuItem"; title = "Open Recent"; ObjectID = "tXI-mr-wws";</note>
+      </trans-unit>
       <trans-unit id="tlD-Oa-oAM.title" xml:space="preserve">
         <source>Kern</source>
-        <target state="new">Egalizálás</target>
-        
-      <note>Class = "NSMenu"; title = "Kern"; ObjectID = "tlD-Oa-oAM";</note></trans-unit>
+        <target>Egalizálás</target>
+        <note>Class = "NSMenu"; title = "Kern"; ObjectID = "tlD-Oa-oAM";</note>
+      </trans-unit>
       <trans-unit id="uQy-DD-JDr.title" xml:space="preserve">
         <source>ONLYOFFICE</source>
-        <target state="new">ONLYOFFICE</target>
-        
-      <note>Class = "NSMenu"; title = "ONLYOFFICE"; ObjectID = "uQy-DD-JDr";</note></trans-unit>
+        <target>ONLYOFFICE</target>
+        <note>Class = "NSMenu"; title = "ONLYOFFICE"; ObjectID = "uQy-DD-JDr";</note>
+      </trans-unit>
       <trans-unit id="uRl-iY-unG.title" xml:space="preserve">
         <source>Cut</source>
-        <target state="new">Kivágás</target>
-        
-      <note>Class = "NSMenuItem"; title = "Cut"; ObjectID = "uRl-iY-unG";</note></trans-unit>
+        <target>Kivágás</target>
+        <note>Class = "NSMenuItem"; title = "Cut"; ObjectID = "uRl-iY-unG";</note>
+      </trans-unit>
       <trans-unit id="ud7-wC-A79.title" xml:space="preserve">
         <source>Check for Updates…</source>
-        <target state="new">Frissítések keresése…</target>
-        
-      <note>Class = "NSMenuItem"; title = "Check for Updates…"; ObjectID = "ud7-wC-A79";</note></trans-unit>
+        <target>Frissítések keresése…</target>
+        <note>Class = "NSMenuItem"; title = "Check for Updates…"; ObjectID = "ud7-wC-A79";</note>
+      </trans-unit>
       <trans-unit id="vKC-jM-MkH.title" xml:space="preserve">
         <source>Paste Style</source>
-        <target state="new">Stílus beillesztése</target>
-        
-      <note>Class = "NSMenuItem"; title = "Paste Style"; ObjectID = "vKC-jM-MkH";</note></trans-unit>
+        <target>Stílus beillesztése</target>
+        <note>Class = "NSMenuItem"; title = "Paste Style"; ObjectID = "vKC-jM-MkH";</note>
+      </trans-unit>
       <trans-unit id="vLm-3I-IUL.title" xml:space="preserve">
         <source>Show Ruler</source>
-        <target state="new">Vonalzó mutatása</target>
-        
-      <note>Class = "NSMenuItem"; title = "Show Ruler"; ObjectID = "vLm-3I-IUL";</note></trans-unit>
+        <target>Vonalzó mutatása</target>
+        <note>Class = "NSMenuItem"; title = "Show Ruler"; ObjectID = "vLm-3I-IUL";</note>
+      </trans-unit>
       <trans-unit id="vNY-rz-j42.title" xml:space="preserve">
         <source>Clear Menu</source>
-        <target state="new">Menü ürítése</target>
-        
-      <note>Class = "NSMenuItem"; title = "Clear Menu"; ObjectID = "vNY-rz-j42";</note></trans-unit>
+        <target>Menü ürítése</target>
+        <note>Class = "NSMenuItem"; title = "Clear Menu"; ObjectID = "vNY-rz-j42";</note>
+      </trans-unit>
       <trans-unit id="vmV-6d-7jI.title" xml:space="preserve">
         <source>Make Upper Case</source>
-        <target state="new">Nagybetűssé alakítás</target>
-        
-      <note>Class = "NSMenuItem"; title = "Make Upper Case"; ObjectID = "vmV-6d-7jI";</note></trans-unit>
+        <target>Nagybetűssé alakítás</target>
+        <note>Class = "NSMenuItem"; title = "Make Upper Case"; ObjectID = "vmV-6d-7jI";</note>
+      </trans-unit>
       <trans-unit id="w0m-vy-SC9.title" xml:space="preserve">
         <source>Ligatures</source>
-        <target state="new">Ligatúrák</target>
-        
-      <note>Class = "NSMenu"; title = "Ligatures"; ObjectID = "w0m-vy-SC9";</note></trans-unit>
+        <target>Ligatúrák</target>
+        <note>Class = "NSMenu"; title = "Ligatures"; ObjectID = "w0m-vy-SC9";</note>
+      </trans-unit>
       <trans-unit id="wb2-vD-lq4.title" xml:space="preserve">
         <source>Align Right</source>
-        <target state="new">Jobbra igazítás</target>
-        
-      <note>Class = "NSMenuItem"; title = "Align Right"; ObjectID = "wb2-vD-lq4";</note></trans-unit>
+        <target>Jobbra igazítás</target>
+        <note>Class = "NSMenuItem"; title = "Align Right"; ObjectID = "wb2-vD-lq4";</note>
+      </trans-unit>
       <trans-unit id="wpe-8d-5DV.title" xml:space="preserve">
         <source>Text Cell</source>
-        <target state="new">Szövegcella</target>
-        
-      <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "wpe-8d-5DV";</note></trans-unit>
+        <target>Szövegcella</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "wpe-8d-5DV";</note>
+      </trans-unit>
       <trans-unit id="wpr-3q-Mcd.title" xml:space="preserve">
         <source>Help</source>
-        <target state="new">Súgó</target>
-        
-      <note>Class = "NSMenuItem"; title = "Help"; ObjectID = "wpr-3q-Mcd";</note></trans-unit>
+        <target>Súgó</target>
+        <note>Class = "NSMenuItem"; title = "Help"; ObjectID = "wpr-3q-Mcd";</note>
+      </trans-unit>
       <trans-unit id="x3v-GG-iWU.title" xml:space="preserve">
         <source>Copy</source>
-        <target state="new">Másolás</target>
-        
-      <note>Class = "NSMenuItem"; title = "Copy"; ObjectID = "x3v-GG-iWU";</note></trans-unit>
+        <target>Másolás</target>
+        <note>Class = "NSMenuItem"; title = "Copy"; ObjectID = "x3v-GG-iWU";</note>
+      </trans-unit>
       <trans-unit id="xCO-ey-2lo.title" xml:space="preserve">
         <source>Product</source>
-        <target state="new">Termék</target>
-        
-      <note>Class = "NSTextFieldCell"; title = "Product"; ObjectID = "xCO-ey-2lo";</note></trans-unit>
+        <target>Termék</target>
+        <note>Class = "NSTextFieldCell"; title = "Product"; ObjectID = "xCO-ey-2lo";</note>
+      </trans-unit>
       <trans-unit id="xQD-1f-W4t.title" xml:space="preserve">
         <source>Use All</source>
-        <target state="new">Az összes használata</target>
-        
-      <note>Class = "NSMenuItem"; title = "Use All"; ObjectID = "xQD-1f-W4t";</note></trans-unit>
+        <target>Az összes használata</target>
+        <note>Class = "NSMenuItem"; title = "Use All"; ObjectID = "xQD-1f-W4t";</note>
+      </trans-unit>
       <trans-unit id="xrE-MZ-jX0.title" xml:space="preserve">
         <source>Speech</source>
-        <target state="new">Beszéd</target>
-        
-      <note>Class = "NSMenuItem"; title = "Speech"; ObjectID = "xrE-MZ-jX0";</note></trans-unit>
+        <target>Beszéd</target>
+        <note>Class = "NSMenuItem"; title = "Speech"; ObjectID = "xrE-MZ-jX0";</note>
+      </trans-unit>
       <trans-unit id="z6F-FW-3nz.title" xml:space="preserve">
         <source>Show Substitutions</source>
-        <target state="new">Helyettesítések megjelenítése</target>
-        
-      <note>Class = "NSMenuItem"; title = "Show Substitutions"; ObjectID = "z6F-FW-3nz";</note></trans-unit>
+        <target>Helyettesítések megjelenítése</target>
+        <note>Class = "NSMenuItem"; title = "Show Substitutions"; ObjectID = "z6F-FW-3nz";</note>
+      </trans-unit>
       <trans-unit id="zwS-9G-S0N.title" xml:space="preserve">
         <source>Portal:</source>
-        <target state="new">Portál:</target>
-        
-      <note>Class = "NSTextFieldCell"; title = "Portal:"; ObjectID = "zwS-9G-S0N";</note></trans-unit>
+        <target>Portál:</target>
+        <note>Class = "NSTextFieldCell"; title = "Portal:"; ObjectID = "zwS-9G-S0N";</note>
+      </trans-unit>
     </body>
   </file>
   <file original="ONLYOFFICE/Base.lproj/MoveApplication.strings" source-language="en" target-language="hu-HU" datatype="plaintext">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c" />
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c"/>
     </header>
     <body>
       <trans-unit id="Could not move to Applications folder" xml:space="preserve">
         <source>Could not move to Applications folder</source>
-        <target state="new">Nem helyezhető át az Alkalmazások mappába</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Nem helyezhető át az Alkalmazások mappába</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Do Not Move" xml:space="preserve">
         <source>Do Not Move</source>
-        <target state="new">Ne helyezze át</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Ne helyezze át</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="I can move myself to the Applications folder if you'd like." xml:space="preserve">
         <source>I can move myself to the Applications folder if you'd like.</source>
-        <target state="new">Ha szeretné, áthelyezhetem magam az Alkalmazások mappába.</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Ha szeretné, áthelyezhetem magam az Alkalmazások mappába.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Move to Applications Folder" xml:space="preserve">
         <source>Move to Applications Folder</source>
-        <target state="new">Áthelyezés az Alkalmazások mappába</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Áthelyezés az Alkalmazások mappába</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Move to Applications folder in your Home folder?" xml:space="preserve">
         <source>Move to Applications folder in your Home folder?</source>
-        <target state="new">Áthelyezés az Alkalmazások mappába a Kezdőmappában?</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Áthelyezés az Alkalmazások mappába a Kezdőmappában?</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Move to Applications folder?" xml:space="preserve">
         <source>Move to Applications folder?</source>
-        <target state="new">Áthelyezés az Alkalmazások mappába?</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Áthelyezés az Alkalmazások mappába?</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Note that this will require an administrator password." xml:space="preserve">
         <source>Note that this will require an administrator password.</source>
-        <target state="new">Ehhez rendszergazdai jelszóra lesz szüksége.</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Ehhez rendszergazdai jelszóra lesz szüksége.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="This will keep your Downloads folder uncluttered." xml:space="preserve">
         <source>This will keep your Downloads folder uncluttered.</source>
-        <target state="new">Ezzel rendezettebbé teheti a Letöltések mappát.</target>
-        
-      <note>No comment provided by engineer.</note></trans-unit>
+        <target>Ezzel rendezettebbé teheti a Letöltések mappát.</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
     </body>
   </file>
   <file original="ONLYOFFICE/Base.lproj/Presentation-Reporter.storyboard" source-language="en" target-language="hu-HU" datatype="plaintext">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c" />
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c"/>
     </header>
     <body>
       <trans-unit id="Ygx-5K-Hn8.title" xml:space="preserve">
         <source>Reporter Window</source>
-        <target state="new">Jelentéskészító ablak</target>
-        
-      <note>Class = "NSWindow"; title = "Reporter Window"; ObjectID = "Ygx-5K-Hn8";</note></trans-unit>
+        <target>Jelentéskészító ablak</target>
+        <note>Class = "NSWindow"; title = "Reporter Window"; ObjectID = "Ygx-5K-Hn8";</note>
+      </trans-unit>
     </body>
   </file>
   <file original="ONLYOFFICE/Resources/ONLYOFFICE/Base.lproj/InfoPlist.strings" source-language="en" target-language="hu-HU" datatype="plaintext">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c" />
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c"/>
     </header>
     <body>
       <trans-unit id="CFBundleName" xml:space="preserve">
-        <source>ONLYOFFICE</source><target state="needs-translation">ONLYOFFICE</target><target state="needs-translation">ONLYOFFICE</target>
-        
-      <note>Bundle name</note></trans-unit>
+        <source>ONLYOFFICE</source>
+        <target state="translated">ONLYOFFICE</target>
+        <note>Bundle name</note>
+      </trans-unit>
       <trans-unit id="NSHumanReadableCopyright" xml:space="preserve">
-        <source>Copyright © 2020 Ascensio System SIA. All rights reserved.</source><target state="needs-translation">Szerzői jog © 2020 Ascensio System SIA. Minden jog fenntartva.</target><target state="needs-translation">Szerzői jog © 2020 Ascensio System SIA. Minden jog fenntartva.</target>
-        
-      <note>Copyright (human-readable)</note></trans-unit>
+        <source>Copyright © 2020 Ascensio System SIA. All rights reserved.</source>
+        <target state="translated">Szerzői jog © 2020 Ascensio System SIA. Minden jog fenntartva.</target>
+        <note>Copyright (human-readable)</note>
+      </trans-unit>
     </body>
   </file>
 </xliff>

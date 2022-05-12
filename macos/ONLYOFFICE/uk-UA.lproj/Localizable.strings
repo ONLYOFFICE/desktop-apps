@@ -1,0 +1,213 @@
+/* No comment provided by engineer. */
+"%@ Help" = "Довідка %@";
+
+/* No comment provided by engineer. */
+"About %@" = "Про %@";
+
+/* No comment provided by engineer. */
+"Acknowledgments" = "Подяки";
+
+/* No comment provided by engineer. */
+"Before signing the document, it must be saved." = "Перш ніж підписувати документ, його необхідно зберегти.";
+
+/* No comment provided by engineer. */
+"Cancel" = "Відмінити";
+
+/* No comment provided by engineer. */
+"Cannot open file of Digital Signature" = "Неможливо відкрити файл цифрового підпису";
+
+/* No comment provided by engineer. */
+"Cannot open file of Private Key" = "Неможливо відкрити файл закритого ключа";
+
+/* No comment provided by engineer. */
+"Cannot open folder of the file location." = "Неможливо відкрити папку, де знаходиться файл.";
+
+/* No comment provided by engineer. */
+"Comma-Separated Values" = "Значення, розділені комами";
+
+/* No comment provided by engineer. */
+"Create portal" = "Створити портал";
+
+/* No comment provided by engineer. */
+"Delete and Quit" = "Видалити та вийти";
+
+/* No comment provided by engineer. */
+"DjVu File" = "Файл DjVu";
+
+/* No comment provided by engineer. */
+"Do you want to save the changes made to the document \"%@\"?" = "Зберегти зміни, внесені до документа \"%@\"?";
+
+/* No comment provided by engineer. */
+"Document %ld.docx" = "Документ %ld.docx";
+
+/* No comment provided by engineer. */
+"Document template" = "Шаблон документа";
+
+/* No comment provided by engineer. */
+"Excel 97-2003 Spreadsheet" = "Електронна таблиця Excel 97-2003";
+
+/* No comment provided by engineer. */
+"Excel 2007 Spreadsheet" = "Електронна таблиця Excel 2007";
+
+/* No comment provided by engineer. */
+"File \"%@\" can not be open or not exist." = "Файл \"%@\" неможливо відкрити або він не існує.";
+
+/* No comment provided by engineer. */
+"File can not be open." = "Файл неможливо відкрити.";
+
+/* No comment provided by engineer. */
+"File Format:" = "Формат файлу:";
+
+/* No comment provided by engineer. */
+"Hide %@" = "Сховати %@";
+
+/* No comment provided by engineer. */
+"If you don't review your documents, all your changeses will be lost." = "Якщо ви не переглянете документи, усі зміни будуть втрачені.";
+
+/* No comment provided by engineer. */
+"If you have already purchased %@, you should find your activation key in an email confirmation." = "Якщо ви вже придбали %@, ключ активації можна знайти в електронному листі-підтвердженні.";
+
+/* No comment provided by engineer. */
+"License Agreement" = "Ліцензійна угода";
+
+/* No comment provided by engineer. */
+"Mobipocket e-book" = "Електронна книга Mobipocket";
+
+/* No comment provided by engineer. */
+"new-document" = "Новий документ";
+
+/* No comment provided by engineer. */
+"new-presentation" = "Нова презентація";
+
+/* No comment provided by engineer. */
+"new-spreadsheet" = "Нова електронна таблиця";
+
+/* No comment provided by engineer. */
+"No" = "Ні";
+
+/* No comment provided by engineer. */
+"OK" = "OK";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE can not open the Digital Signature file. Try opening another file." = "ONLYOFFICE не може відкрити файл цифрового підпису. Спробуйте відкрити інший файл.";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE can not open the Private Key. Try opening another file." = "ONLYOFFICE не може відкрити файл закритого ключа. Спробуйте відкрити інший файл.";
+
+/* No comment provided by engineer. */
+"OpenDocument Document Template" = "Шаблон документа OpenDocument";
+
+/* No comment provided by engineer. */
+"OpenDocument Presentation Template" = "Шаблон презентації OpenDocument";
+
+/* No comment provided by engineer. */
+"OpenDocument Spreadsheet Template" = "Шаблон електронної таблиці OpenDocument";
+
+/* No comment provided by engineer. */
+"Opening" = "Відкриття";
+
+/* No comment provided by engineer. */
+"OpenOffice Document" = "Документ OpenOffice";
+
+/* No comment provided by engineer. */
+"OpenOffice Presentation" = "Презентація OpenOffice";
+
+/* No comment provided by engineer. */
+"OpenOffice Spreadsheet" = "Електронна таблиця OpenOffice";
+
+/* No comment provided by engineer. */
+"PDF File" = "Файл PDF";
+
+/* No comment provided by engineer. */
+"PDF/A File" = "Файл PDF/A";
+
+/* No comment provided by engineer. */
+"Plain Text" = "Звичайний текст";
+
+/* No comment provided by engineer. */
+"PowerPoint 97-2003 Presentation" = "Презентація PowerPoint 97-2003";
+
+/* No comment provided by engineer. */
+"PowerPoint 2007 Presentation" = "Презентація PowerPoint 2007";
+
+/* No comment provided by engineer. */
+"PowerPoint Slide Show" = "Показ слайдів PowerPoint";
+
+/* No comment provided by engineer. */
+"Preparing..." = "Підготовка...";
+
+/* No comment provided by engineer. */
+"Presentation %ld.pptx" = "Презентація %ld.pptx";
+
+/* No comment provided by engineer. */
+"Presentation template" = "Шаблон презентації";
+
+/* No comment provided by engineer. */
+"Quit %@" = "Вийти з %@";
+
+/* No comment provided by engineer. */
+"Review Changes..." = "Переглянути зміни...";
+
+/* No comment provided by engineer. */
+"Rich Text Document" = "Документ у форматі RTF";
+
+/* No comment provided by engineer. */
+"Save" = "Зберегти";
+
+/* No comment provided by engineer. */
+"Save the document?" = "Зберегти документ?";
+
+/* No comment provided by engineer. */
+"Spreadsheet %ld.xlsx" = "Електронна таблиця %ld.xlsx";
+
+/* No comment provided by engineer. */
+"Spreadsheet template" = "Шаблон електронної таблиці";
+
+/* No comment provided by engineer. */
+"Thank you for evaluating %@!" = "Дякуємо за оцінку %@!";
+
+/* No comment provided by engineer. */
+"The document \"%@\" must be built. Continue?" = "Необхідно створити документ \"%@\". Продовжити?";
+
+/* No comment provided by engineer. */
+"To open the file location, it must be saved." = "Щоб відкрити розташування файлу, його потрібно зберегти.";
+
+/* No comment provided by engineer. */
+"Unconfirmed" = "Не підтверджено";
+
+/* No comment provided by engineer. */
+"Untitled" = "Без назви";
+
+/* No comment provided by engineer. */
+"Version %@ (%@)" = "Версія %1$@ (%2$@)";
+
+/* No comment provided by engineer. */
+"Web Page" = "Веб-сторінка";
+
+/* No comment provided by engineer. */
+"Word 97-2003 Document" = "Документ Word 97-2003";
+
+/* No comment provided by engineer. */
+"Word 2007 Document" = "Документ Word 2007";
+
+/* No comment provided by engineer. */
+"XML Paper Specification" = "Формат XPS";
+
+/* No comment provided by engineer. */
+"Yes" = "Так";
+
+/* No comment provided by engineer. */
+"You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?" = "У вас є документи %2$@ (%1$ld) з непідтвердженими змінами. Переглянути ці зміни, перш ніж вийти?";
+
+/* No comment provided by engineer. */
+"You have successfully activated %@." = "%@ успішно активовано.";
+
+/* No comment provided by engineer. */
+"Your changes will be lost if you don’t save them." = "Зміни будуть втрачені, якщо ви їх не збережете.";
+
+/* No comment provided by engineer. */
+"Your subscription has expired.\n\nThe program works in the non-activated mode.\n\nNow you can prolong or upgrade your subscription with a discount." = "Термін дії вашої підписки закінчився.\n\nПрограма працює в неактивованому режимі.\n\nЗараз ви можете продовжити або оновити підписку зі знижкою.";
+
+/* No comment provided by engineer. */
+"Your subscription is about to expire\n(%d days left).\n\nWe have a special offer for you." = "Термін дії вашої підписки скоро закінчиться\n(залишилося днів: %d).\n\nУ нас для вас є спеціальна пропозиція.";
+

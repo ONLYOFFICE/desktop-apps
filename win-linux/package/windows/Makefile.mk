@@ -1,25 +1,27 @@
 BUILD_DIR = win-linux/package/windows
 
 ISCC := iscc
+AIC := AdvancedInstaller.com
 
 DESKTOP_EDITORS_EXE += $(BUILD_DIR)/$(PACKAGE_NAME)_$(PACKAGE_VERSION)_$(WIN_ARCH)$(WIN_ARCH_SUFFIX:%=_%).exe
+DESKTOP_EDITORS_MSI += $(BUILD_DIR)/$(PACKAGE_NAME)_$(PACKAGE_VERSION)_$(WIN_ARCH)$(WIN_ARCH_SUFFIX:%=_%).msi
 DESKTOP_EDITORS_ZIP += $(BUILD_DIR)/$(PACKAGE_NAME)_$(PACKAGE_VERSION)_$(WIN_ARCH)$(WIN_ARCH_SUFFIX:%=_%).zip
 
 VCREDIST13 := $(BUILD_DIR)/data/vcredist/vcredist_2013_$(WIN_ARCH).exe
-VCREDIST15 := $(BUILD_DIR)/data/vcredist/vcredist_2015_$(WIN_ARCH).exe
+VCREDIST22 := $(BUILD_DIR)/data/vcredist/vcredist_2022_$(WIN_ARCH).exe
 
 ifeq ($(WIN_ARCH),x64)
  	VCREDIST13_URL := https://download.microsoft.com/download/2/E/6/2E61CFA4-993B-4DD4-91DA-3737CD5CD6E3/vcredist_x64.exe
-	VCREDIST15_URL := http://download.microsoft.com/download/2/c/6/2c675af0-2155-4961-b32e-289d7addfcec/vc_redist.x64.exe
+	VCREDIST22_URL := https://aka.ms/vs/17/release/vc_redist.x64.exe
 else ifeq ($(WIN_ARCH),x86)
  	VCREDIST13_URL := https://download.microsoft.com/download/2/E/6/2E61CFA4-993B-4DD4-91DA-3737CD5CD6E3/vcredist_x86.exe
-	VCREDIST15_URL := http://download.microsoft.com/download/d/e/c/dec58546-c2f5-40a7-b38e-4df8d60b9764/vc_redist.x86.exe
+	VCREDIST22_URL := https://aka.ms/vs/17/release/vc_redist.x86.exe
 endif
 
 ifneq ($(COMPANY_NAME), ONLYOFFICE)
 VCREDIST += $(VCREDIST13)
 endif
-VCREDIST += $(VCREDIST15)
+VCREDIST += $(VCREDIST22)
 
 EXE_UPDATE += $(BUILD_DIR)/update/editors_update_$(WIN_ARCH)$(WIN_ARCH_SUFFIX:%=_%).exe
 APPCAST := $(BUILD_DIR)/update/appcast.xml
@@ -29,6 +31,9 @@ CHANGES_RU := $(BUILD_DIR)/update/changes_ru.html
 CHANGES_DIR := $(BRANDING_DIR)/$(BUILD_DIR)/update/changes/$(PRODUCT_VERSION)
 
 PACKAGES += $(DESKTOP_EDITORS_EXE)
+ifndef _WIN_XP
+PACKAGES += $(DESKTOP_EDITORS_MSI)
+endif
 PACKAGES += $(DESKTOP_EDITORS_ZIP)
 WINSPARKLE += $(EXE_UPDATE)
 ifndef _WIN_XP
@@ -65,15 +70,19 @@ $(DESKTOP_EDITORS_ZIP): $(DEST_DIR)
 .PHONY : clean-package exe zip winsparkle packages
 
 clean-package:
-	rm -fv \
+	rm -rfv \
 		$(VCREDIST) \
 		$(BUILD_DIR)/*.exe \
+		$(BUILD_DIR)/*.msi \
 		$(BUILD_DIR)/*.zip \
+		$(BUILD_DIR)/DesktopEditors-cache \
 		$(BUILD_DIR)/update/*.exe \
 		$(BUILD_DIR)/update/*.xml \
 		$(BUILD_DIR)/update/*.html
 
 exe: $(DESKTOP_EDITORS_EXE)
+
+msi: $(DESKTOP_EDITORS_MSI)
 
 zip: $(DESKTOP_EDITORS_ZIP)
 
@@ -85,9 +94,9 @@ $(VCREDIST13):
 	mkdir -p $(dir $(VCREDIST13))
 	$(CURL) $(VCREDIST13) $(VCREDIST13_URL)
 
-$(VCREDIST15):
-	mkdir -p $(dir $(VCREDIST15))
-	$(CURL) $(VCREDIST15) $(VCREDIST15_URL)
+$(VCREDIST22):
+	mkdir -p $(dir $(VCREDIST22))
+	$(CURL) $(VCREDIST22) $(VCREDIST22_URL)
 
 $(DEST_DIR): install
 
@@ -96,6 +105,24 @@ $(DESKTOP_EDITORS_EXE):
 
 $(EXE_UPDATE): $(DESKTOP_EDITORS_EXE)
 	cd $(BUILD_DIR) && $(ISCC) $(ISCC_PARAMS) //DTARGET_NAME="$(notdir $<)" update_common.iss
+
+$(DESKTOP_EDITORS_MSI):
+ifeq ($(WIN_ARCH),x86)
+	cd $(BUILD_DIR); \
+	$(AIC) //edit DesktopEditors.aip //SetPackageType x86
+endif
+ifneq ($(ENABLE_SIGNING), 1)
+	cd $(BUILD_DIR); \
+	$(AIC) //edit DesktopEditors.aip //ResetSig
+endif
+	cd $(BUILD_DIR); \
+	$(AIC) //edit DesktopEditors.aip //AddOsLc -buildname DefaultBuild -arch $(WIN_ARCH); \
+	$(AIC) //edit DesktopEditors.aip //NewSync APPDIR "$(shell cygpath -w $(DEST_DIR))" -existingfiles delete; \
+	$(AIC) //edit DesktopEditors.aip //UpdateFile APPDIR\\DesktopEditors.exe "$(shell cygpath -w $(DEST_DIR))\\DesktopEditors.exe"; \
+	$(AIC) //edit DesktopEditors.aip //SetVersion $(PACKAGE_VERSION); \
+	$(AIC) //edit DesktopEditors.aip //SetOutputLocation -buildname DefaultBuild -path "$(shell cygpath -a -w $(BUILD_DIR))"; \
+	$(AIC) //edit DesktopEditors.aip //SetPackageName "$(notdir $(DESKTOP_EDITORS_MSI))" -buildname DefaultBuild; \
+	$(AIC) //rebuild DesktopEditors.aip -buildslist DefaultBuild
 
 $(BUILD_DIR)/%.zip:
 	7z a -y $@ $(DEST_DIR)/*

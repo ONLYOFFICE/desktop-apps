@@ -9,7 +9,7 @@ BEGIN {
 		AppcastUpdatesPath = AppcastBaseUrl "/updates";
 	}
 	else {
-		AppcastBaseUrl = "https://s3.eu-west-1.amazonaws.com/repo-doc-onlyoffice-com/onlyoffice/" Branch "/windows/editors/" Version "-" Build;
+		AppcastBaseUrl = "https://s3.eu-west-1.amazonaws.com/repo-doc-onlyoffice-com/onlyoffice/" Branch "/windows/" Version "-" Build "/desktop";
 		AppcastChangesPath = AppcastBaseUrl;
 		AppcastUpdatesPath = AppcastBaseUrl;
 	}

@@ -128,6 +128,7 @@ CMainPanel::CMainPanel(QWidget *parent, bool isCustomWindow, double dpi_ratio)
     m_boxTitleBtns = new CX11Caption(centralWidget);
 #else
     m_boxTitleBtns = new QWidget(centralWidget);
+    m_boxTitleBtns->winId();
 #endif
 
     QHBoxLayout * layoutBtns = new QHBoxLayout(m_boxTitleBtns);

@@ -67,6 +67,7 @@
       </trans-unit>
       <trans-unit id="uKp-p4-6uB.title" xml:space="preserve">
         <source>Window</source>
+        <target state="translated">Fenêtre</target>
         <note>Class = "NSWindow"; title = "Window"; ObjectID = "uKp-p4-6uB";</note>
       </trans-unit>
     </body>
@@ -153,10 +154,12 @@
       </trans-unit>
       <trans-unit id="Don't Save" xml:space="preserve">
         <source>Don't Save</source>
+        <target state="translated">Ne pas enregistrer</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Electronic Publication" xml:space="preserve">
         <source>Electronic Publication</source>
+        <target state="translated">Publication électronique</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Excel 97-2003 Spreadsheet" xml:space="preserve">
@@ -171,6 +174,7 @@
       </trans-unit>
       <trans-unit id="FictionBook File" xml:space="preserve">
         <source>FictionBook File</source>
+        <target state="translated">Fichier FictionBook</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="File &quot;%@&quot; can not be open or not exist." xml:space="preserve">
@@ -190,6 +194,7 @@
       </trans-unit>
       <trans-unit id="HTML File" xml:space="preserve">
         <source>HTML File</source>
+        <target state="translated">Fichier FictionBook</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Hide %@" xml:space="preserve">
@@ -214,6 +219,7 @@
       </trans-unit>
       <trans-unit id="MHT File" xml:space="preserve">
         <source>MHT File</source>
+        <target state="translated">Fichier MHT</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Mobipocket e-book" xml:space="preserve">
@@ -243,14 +249,17 @@
       </trans-unit>
       <trans-unit id="OpenDocument Document Template" xml:space="preserve">
         <source>OpenDocument Document Template</source>
+        <target state="translated">Modèle de document OpenDocument</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="OpenDocument Presentation Template" xml:space="preserve">
         <source>OpenDocument Presentation Template</source>
+        <target state="translated">Modèle de présentation OpenDocument</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="OpenDocument Spreadsheet Template" xml:space="preserve">
         <source>OpenDocument Spreadsheet Template</source>
+        <target state="translated">Modèle de classeur OpenDocument</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="OpenOffice Document" xml:space="preserve">
@@ -320,6 +329,7 @@
       </trans-unit>
       <trans-unit id="Presenter View" xml:space="preserve">
         <source>Presenter View</source>
+        <target state="translated">Mode présentateur</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Quit %@" xml:space="preserve">
@@ -349,6 +359,7 @@
       </trans-unit>
       <trans-unit id="Signature Details" xml:space="preserve">
         <source>Signature Details</source>
+        <target state="translated">Détails de la signature</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Spreadsheet %ld.xlsx" xml:space="preserve">
@@ -368,6 +379,7 @@
       </trans-unit>
       <trans-unit id="The document &quot;%@&quot; must be built. Continue?" xml:space="preserve">
         <source>The document "%@" must be built. Continue?</source>
+        <target state="translated">Le document "%@" doit être formé. Continuer?</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="To open the file location, it must be saved." xml:space="preserve">
@@ -461,14 +473,17 @@ Nous vous proposons une offre spéciale.</target>
       </trans-unit>
       <trans-unit id="new-document" xml:space="preserve">
         <source>New Document</source>
+        <target state="translated">Nouveau document</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="new-presentation" xml:space="preserve">
         <source>New Presentation</source>
+        <target state="translated">Nouvelle presentation</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="new-spreadsheet" xml:space="preserve">
         <source>New Spreadsheet</source>
+        <target state="translated">Nouveau classeur</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
     </body>

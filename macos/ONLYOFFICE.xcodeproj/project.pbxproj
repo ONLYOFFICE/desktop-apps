@@ -22,6 +22,9 @@
 
 /* Begin PBXBuildFile section */
 		5A452E4B257688C700C58E01 /* providers in Resources */ = {isa = PBXBuildFile; fileRef = 5A452E4A257688C700C58E01 /* providers */; };
+		5AA06CBD27AC3BA000D67BEE /* ASCLinguist.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AA06CBC27AC3BA000D67BEE /* ASCLinguist.m */; };
+		5AA06CC027B1267200D67BEE /* ASCLinguist.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AA06CBC27AC3BA000D67BEE /* ASCLinguist.m */; };
+		5AA06CC127B1267600D67BEE /* ASCLinguist.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AA06CBC27AC3BA000D67BEE /* ASCLinguist.m */; };
 		5AB20F60274D35F3003732A0 /* file-docxf.icns in Resources */ = {isa = PBXBuildFile; fileRef = 5AB20F5D274D35F2003732A0 /* file-docxf.icns */; };
 		5AB20F62274D360A003732A0 /* file-oform.icns in Resources */ = {isa = PBXBuildFile; fileRef = 5AB20F61274D360A003732A0 /* file-oform.icns */; };
 		5AFA1CF1277A6D2900619952 /* file-docxf.icns in Resources */ = {isa = PBXBuildFile; fileRef = 5AB20F5D274D35F2003732A0 /* file-docxf.icns */; };
@@ -406,6 +409,368 @@
 
 /* Begin PBXFileReference section */
 		5A452E4A257688C700C58E01 /* providers */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = providers; path = Vendor/ONLYOFFICE/providers; sourceTree = SOURCE_ROOT; };
+		5A7F85D027A00C18006B6E27 /* lv-LV */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "lv-LV"; path = "lv-LV.lproj/Document-Sign.strings"; sourceTree = "<group>"; };
+		5A7F85D127A00C18006B6E27 /* lv-LV */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "lv-LV"; path = "lv-LV.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		5A7F85D227A00C18006B6E27 /* lv-LV */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "lv-LV"; path = "lv-LV.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
+		5A7F85D327A00C18006B6E27 /* lv-LV */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "lv-LV"; path = "lv-LV.lproj/Main.strings"; sourceTree = "<group>"; };
+		5A7F85D427A00C18006B6E27 /* lv-LV */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "lv-LV"; path = "lv-LV.lproj/MoveApplication.strings"; sourceTree = "<group>"; };
+		5A7F85D527A00C18006B6E27 /* lv-LV */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "lv-LV"; path = "lv-LV.lproj/Presentation-Reporter.strings"; sourceTree = "<group>"; };
+		5A7F85D627A020C2006B6E27 /* bg-BG */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "bg-BG"; path = "bg-BG.lproj/Document-Sign.strings"; sourceTree = "<group>"; };
+		5A7F85D727A020C2006B6E27 /* bg-BG */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "bg-BG"; path = "bg-BG.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		5A7F85D827A020C2006B6E27 /* bg-BG */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "bg-BG"; path = "bg-BG.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
+		5A7F85D927A020C3006B6E27 /* bg-BG */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "bg-BG"; path = "bg-BG.lproj/Main.strings"; sourceTree = "<group>"; };
+		5A7F85DA27A020C3006B6E27 /* bg-BG */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "bg-BG"; path = "bg-BG.lproj/MoveApplication.strings"; sourceTree = "<group>"; };
+		5A7F85DB27A020C3006B6E27 /* bg-BG */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "bg-BG"; path = "bg-BG.lproj/Presentation-Reporter.strings"; sourceTree = "<group>"; };
+		5A7F85DD27A07E99006B6E27 /* lv-LV */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "lv-LV"; path = "lv-LV.lproj/EULA.html"; sourceTree = "<group>"; };
+		5A7F85DE27A07EAE006B6E27 /* lv-LV */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "lv-LV"; path = "lv-LV.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		5A7F85DF27A07EFA006B6E27 /* lv-LV */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "lv-LV"; path = "lv-LV.lproj/EULA.html"; sourceTree = "<group>"; };
+		5A7F85E027A07F2E006B6E27 /* lv-LV */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "lv-LV"; path = "lv-LV.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		5A7F85E127A07F4D006B6E27 /* lv-LV */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "lv-LV"; path = "lv-LV.lproj/EULA.html"; sourceTree = "<group>"; };
+		5A7F85E227A07F60006B6E27 /* lv-LV */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "lv-LV"; path = "lv-LV.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		5A7F85E327A083D1006B6E27 /* bg-BG */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "bg-BG"; path = "bg-BG.lproj/EULA.html"; sourceTree = "<group>"; };
+		5A7F85E427A083D1006B6E27 /* bg-BG */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "bg-BG"; path = "bg-BG.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		5A7F85E527A083EC006B6E27 /* bg-BG */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "bg-BG"; path = "bg-BG.lproj/EULA.html"; sourceTree = "<group>"; };
+		5A7F85E627A083ED006B6E27 /* bg-BG */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "bg-BG"; path = "bg-BG.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		5A7F85E727A08447006B6E27 /* bg-BG */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "bg-BG"; path = "bg-BG.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		5A7F85E827A08447006B6E27 /* bg-BG */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "bg-BG"; path = "bg-BG.lproj/EULA.html"; sourceTree = "<group>"; };
+		5A7F85E927A08690006B6E27 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = "cs.lproj/Document-Sign.strings"; sourceTree = "<group>"; };
+		5A7F85EA27A08690006B6E27 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/Localizable.strings; sourceTree = "<group>"; };
+		5A7F85EB27A08690006B6E27 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = cs; path = cs.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
+		5A7F85EC27A08690006B6E27 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/Main.strings; sourceTree = "<group>"; };
+		5A7F85ED27A08690006B6E27 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/MoveApplication.strings; sourceTree = "<group>"; };
+		5A7F85EE27A08690006B6E27 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = "cs.lproj/Presentation-Reporter.strings"; sourceTree = "<group>"; };
+		5A7F85EF27A086BB006B6E27 /* da-DK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-DK"; path = "da-DK.lproj/Document-Sign.strings"; sourceTree = "<group>"; };
+		5A7F85F027A086BB006B6E27 /* da-DK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-DK"; path = "da-DK.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		5A7F85F127A086BB006B6E27 /* da-DK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "da-DK"; path = "da-DK.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
+		5A7F85F227A086BB006B6E27 /* da-DK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-DK"; path = "da-DK.lproj/Main.strings"; sourceTree = "<group>"; };
+		5A7F85F327A086BB006B6E27 /* da-DK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-DK"; path = "da-DK.lproj/MoveApplication.strings"; sourceTree = "<group>"; };
+		5A7F85F427A086BB006B6E27 /* da-DK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-DK"; path = "da-DK.lproj/Presentation-Reporter.strings"; sourceTree = "<group>"; };
+		5A7F85F527A086E2006B6E27 /* el-GR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "el-GR"; path = "el-GR.lproj/Document-Sign.strings"; sourceTree = "<group>"; };
+		5A7F85F627A086E2006B6E27 /* el-GR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "el-GR"; path = "el-GR.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		5A7F85F727A086E2006B6E27 /* el-GR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "el-GR"; path = "el-GR.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
+		5A7F85F827A086E2006B6E27 /* el-GR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "el-GR"; path = "el-GR.lproj/Main.strings"; sourceTree = "<group>"; };
+		5A7F85F927A086E2006B6E27 /* el-GR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "el-GR"; path = "el-GR.lproj/MoveApplication.strings"; sourceTree = "<group>"; };
+		5A7F85FA27A086E2006B6E27 /* el-GR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "el-GR"; path = "el-GR.lproj/Presentation-Reporter.strings"; sourceTree = "<group>"; };
+		5A7F85FB27A1EA16006B6E27 /* be */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = be; path = "be.lproj/Document-Sign.strings"; sourceTree = "<group>"; };
+		5A7F85FC27A1EA16006B6E27 /* be */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = be; path = be.lproj/Localizable.strings; sourceTree = "<group>"; };
+		5A7F85FD27A1EA16006B6E27 /* be */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = be; path = be.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
+		5A7F85FE27A1EA16006B6E27 /* be */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = be; path = be.lproj/Main.strings; sourceTree = "<group>"; };
+		5A7F85FF27A1EA16006B6E27 /* be */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = be; path = be.lproj/MoveApplication.strings; sourceTree = "<group>"; };
+		5A7F860027A1EA16006B6E27 /* be */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = be; path = "be.lproj/Presentation-Reporter.strings"; sourceTree = "<group>"; };
+		5A7F860127A1EA62006B6E27 /* ca */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ca; path = "ca.lproj/Document-Sign.strings"; sourceTree = "<group>"; };
+		5A7F860227A1EA62006B6E27 /* ca */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ca; path = ca.lproj/Localizable.strings; sourceTree = "<group>"; };
+		5A7F860327A1EA62006B6E27 /* ca */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = ca; path = ca.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
+		5A7F860427A1EA62006B6E27 /* ca */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ca; path = ca.lproj/Main.strings; sourceTree = "<group>"; };
+		5A7F860527A1EA62006B6E27 /* ca */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ca; path = ca.lproj/MoveApplication.strings; sourceTree = "<group>"; };
+		5A7F860627A1EA62006B6E27 /* ca */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ca; path = "ca.lproj/Presentation-Reporter.strings"; sourceTree = "<group>"; };
+		5A7F860727A1EAFB006B6E27 /* et-EE */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "et-EE"; path = "et-EE.lproj/Document-Sign.strings"; sourceTree = "<group>"; };
+		5A7F860827A1EAFB006B6E27 /* et-EE */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "et-EE"; path = "et-EE.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		5A7F860927A1EAFB006B6E27 /* et-EE */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "et-EE"; path = "et-EE.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
+		5A7F860A27A1EAFB006B6E27 /* et-EE */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "et-EE"; path = "et-EE.lproj/Main.strings"; sourceTree = "<group>"; };
+		5A7F860B27A1EAFC006B6E27 /* et-EE */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "et-EE"; path = "et-EE.lproj/MoveApplication.strings"; sourceTree = "<group>"; };
+		5A7F860C27A1EAFC006B6E27 /* et-EE */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "et-EE"; path = "et-EE.lproj/Presentation-Reporter.strings"; sourceTree = "<group>"; };
+		5A7F860D27A1EB2E006B6E27 /* fi-FI */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fi-FI"; path = "fi-FI.lproj/Document-Sign.strings"; sourceTree = "<group>"; };
+		5A7F860E27A1EB2E006B6E27 /* fi-FI */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fi-FI"; path = "fi-FI.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		5A7F860F27A1EB2E006B6E27 /* fi-FI */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "fi-FI"; path = "fi-FI.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
+		5A7F861027A1EB2E006B6E27 /* fi-FI */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fi-FI"; path = "fi-FI.lproj/Main.strings"; sourceTree = "<group>"; };
+		5A7F861127A1EB2F006B6E27 /* fi-FI */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fi-FI"; path = "fi-FI.lproj/MoveApplication.strings"; sourceTree = "<group>"; };
+		5A7F861227A1EB2F006B6E27 /* fi-FI */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fi-FI"; path = "fi-FI.lproj/Presentation-Reporter.strings"; sourceTree = "<group>"; };
+		5A7F861F27A1EC3C006B6E27 /* hi-IN */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "hi-IN"; path = "hi-IN.lproj/Document-Sign.strings"; sourceTree = "<group>"; };
+		5A7F862027A1EC3C006B6E27 /* hi-IN */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "hi-IN"; path = "hi-IN.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		5A7F862127A1EC3C006B6E27 /* hi-IN */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "hi-IN"; path = "hi-IN.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
+		5A7F862227A1EC3C006B6E27 /* hi-IN */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "hi-IN"; path = "hi-IN.lproj/Main.strings"; sourceTree = "<group>"; };
+		5A7F862327A1EC3C006B6E27 /* hi-IN */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "hi-IN"; path = "hi-IN.lproj/MoveApplication.strings"; sourceTree = "<group>"; };
+		5A7F862427A1EC3D006B6E27 /* hi-IN */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "hi-IN"; path = "hi-IN.lproj/Presentation-Reporter.strings"; sourceTree = "<group>"; };
+		5A7F862527A1EC64006B6E27 /* hr-HR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "hr-HR"; path = "hr-HR.lproj/Document-Sign.strings"; sourceTree = "<group>"; };
+		5A7F862627A1EC64006B6E27 /* hr-HR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "hr-HR"; path = "hr-HR.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		5A7F862727A1EC64006B6E27 /* hr-HR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "hr-HR"; path = "hr-HR.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
+		5A7F862827A1EC64006B6E27 /* hr-HR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "hr-HR"; path = "hr-HR.lproj/Main.strings"; sourceTree = "<group>"; };
+		5A7F862927A1EC64006B6E27 /* hr-HR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "hr-HR"; path = "hr-HR.lproj/MoveApplication.strings"; sourceTree = "<group>"; };
+		5A7F862A27A1EC64006B6E27 /* hr-HR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "hr-HR"; path = "hr-HR.lproj/Presentation-Reporter.strings"; sourceTree = "<group>"; };
+		5A7F862B27A1EC7C006B6E27 /* hu-HU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "hu-HU"; path = "hu-HU.lproj/Document-Sign.strings"; sourceTree = "<group>"; };
+		5A7F862C27A1EC7C006B6E27 /* hu-HU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "hu-HU"; path = "hu-HU.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		5A7F862D27A1EC7C006B6E27 /* hu-HU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "hu-HU"; path = "hu-HU.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
+		5A7F862E27A1EC7C006B6E27 /* hu-HU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "hu-HU"; path = "hu-HU.lproj/Main.strings"; sourceTree = "<group>"; };
+		5A7F862F27A1EC7C006B6E27 /* hu-HU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "hu-HU"; path = "hu-HU.lproj/MoveApplication.strings"; sourceTree = "<group>"; };
+		5A7F863027A1EC7D006B6E27 /* hu-HU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "hu-HU"; path = "hu-HU.lproj/Presentation-Reporter.strings"; sourceTree = "<group>"; };
+		5A7F863127A1EC9F006B6E27 /* hy-AM */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "hy-AM"; path = "hy-AM.lproj/Document-Sign.strings"; sourceTree = "<group>"; };
+		5A7F863227A1EC9F006B6E27 /* hy-AM */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "hy-AM"; path = "hy-AM.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		5A7F863327A1EC9F006B6E27 /* hy-AM */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "hy-AM"; path = "hy-AM.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
+		5A7F863427A1EC9F006B6E27 /* hy-AM */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "hy-AM"; path = "hy-AM.lproj/Main.strings"; sourceTree = "<group>"; };
+		5A7F863527A1EC9F006B6E27 /* hy-AM */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "hy-AM"; path = "hy-AM.lproj/MoveApplication.strings"; sourceTree = "<group>"; };
+		5A7F863627A1EC9F006B6E27 /* hy-AM */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "hy-AM"; path = "hy-AM.lproj/Presentation-Reporter.strings"; sourceTree = "<group>"; };
+		5A7F863727A1ECBD006B6E27 /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = "id.lproj/Document-Sign.strings"; sourceTree = "<group>"; };
+		5A7F863827A1ECBD006B6E27 /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/Localizable.strings; sourceTree = "<group>"; };
+		5A7F863927A1ECBD006B6E27 /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = id; path = id.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
+		5A7F863A27A1ECBD006B6E27 /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/Main.strings; sourceTree = "<group>"; };
+		5A7F863B27A1ECBD006B6E27 /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/MoveApplication.strings; sourceTree = "<group>"; };
+		5A7F863C27A1ECBD006B6E27 /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = "id.lproj/Presentation-Reporter.strings"; sourceTree = "<group>"; };
+		5A7F864327A1ED0A006B6E27 /* ko-KR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ko-KR"; path = "ko-KR.lproj/Document-Sign.strings"; sourceTree = "<group>"; };
+		5A7F864427A1ED0A006B6E27 /* ko-KR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ko-KR"; path = "ko-KR.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		5A7F864527A1ED0A006B6E27 /* ko-KR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "ko-KR"; path = "ko-KR.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
+		5A7F864627A1ED0A006B6E27 /* ko-KR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ko-KR"; path = "ko-KR.lproj/Main.strings"; sourceTree = "<group>"; };
+		5A7F864727A1ED0A006B6E27 /* ko-KR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ko-KR"; path = "ko-KR.lproj/MoveApplication.strings"; sourceTree = "<group>"; };
+		5A7F864827A1ED0A006B6E27 /* ko-KR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ko-KR"; path = "ko-KR.lproj/Presentation-Reporter.strings"; sourceTree = "<group>"; };
+		5A7F864927A1ED2B006B6E27 /* lo */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = lo; path = "lo.lproj/Document-Sign.strings"; sourceTree = "<group>"; };
+		5A7F864A27A1ED2B006B6E27 /* lo */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = lo; path = lo.lproj/Localizable.strings; sourceTree = "<group>"; };
+		5A7F864B27A1ED2B006B6E27 /* lo */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = lo; path = lo.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
+		5A7F864C27A1ED2C006B6E27 /* lo */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = lo; path = lo.lproj/Main.strings; sourceTree = "<group>"; };
+		5A7F864D27A1ED2C006B6E27 /* lo */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = lo; path = lo.lproj/MoveApplication.strings; sourceTree = "<group>"; };
+		5A7F864E27A1ED2C006B6E27 /* lo */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = lo; path = "lo.lproj/Presentation-Reporter.strings"; sourceTree = "<group>"; };
+		5A7F864F27A1ED95006B6E27 /* nl-NL */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nl-NL"; path = "nl-NL.lproj/Document-Sign.strings"; sourceTree = "<group>"; };
+		5A7F865027A1ED95006B6E27 /* nl-NL */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nl-NL"; path = "nl-NL.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		5A7F865127A1ED95006B6E27 /* nl-NL */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "nl-NL"; path = "nl-NL.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
+		5A7F865227A1ED95006B6E27 /* nl-NL */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nl-NL"; path = "nl-NL.lproj/Main.strings"; sourceTree = "<group>"; };
+		5A7F865327A1ED95006B6E27 /* nl-NL */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nl-NL"; path = "nl-NL.lproj/MoveApplication.strings"; sourceTree = "<group>"; };
+		5A7F865427A1ED95006B6E27 /* nl-NL */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nl-NL"; path = "nl-NL.lproj/Presentation-Reporter.strings"; sourceTree = "<group>"; };
+		5A7F865527A1EDB7006B6E27 /* nn-NO */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nn-NO"; path = "nn-NO.lproj/Document-Sign.strings"; sourceTree = "<group>"; };
+		5A7F865627A1EDB7006B6E27 /* nn-NO */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nn-NO"; path = "nn-NO.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		5A7F865727A1EDB7006B6E27 /* nn-NO */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "nn-NO"; path = "nn-NO.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
+		5A7F865827A1EDB8006B6E27 /* nn-NO */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nn-NO"; path = "nn-NO.lproj/Main.strings"; sourceTree = "<group>"; };
+		5A7F865927A1EDB8006B6E27 /* nn-NO */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nn-NO"; path = "nn-NO.lproj/MoveApplication.strings"; sourceTree = "<group>"; };
+		5A7F865A27A1EDB8006B6E27 /* nn-NO */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nn-NO"; path = "nn-NO.lproj/Presentation-Reporter.strings"; sourceTree = "<group>"; };
+		5A7F865B27A1EDDA006B6E27 /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/Document-Sign.strings"; sourceTree = "<group>"; };
+		5A7F865C27A1EDDA006B6E27 /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		5A7F865D27A1EDDA006B6E27 /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "pt-PT"; path = "pt-PT.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
+		5A7F865E27A1EDDA006B6E27 /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/Main.strings"; sourceTree = "<group>"; };
+		5A7F865F27A1EDDB006B6E27 /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/MoveApplication.strings"; sourceTree = "<group>"; };
+		5A7F866027A1EDDB006B6E27 /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/Presentation-Reporter.strings"; sourceTree = "<group>"; };
+		5A7F866127A1EE07006B6E27 /* ro-RO */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ro-RO"; path = "ro-RO.lproj/Document-Sign.strings"; sourceTree = "<group>"; };
+		5A7F866227A1EE07006B6E27 /* ro-RO */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ro-RO"; path = "ro-RO.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		5A7F866327A1EE08006B6E27 /* ro-RO */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "ro-RO"; path = "ro-RO.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
+		5A7F866427A1EE08006B6E27 /* ro-RO */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ro-RO"; path = "ro-RO.lproj/Main.strings"; sourceTree = "<group>"; };
+		5A7F866527A1EE08006B6E27 /* ro-RO */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ro-RO"; path = "ro-RO.lproj/MoveApplication.strings"; sourceTree = "<group>"; };
+		5A7F866627A1EE08006B6E27 /* ro-RO */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ro-RO"; path = "ro-RO.lproj/Presentation-Reporter.strings"; sourceTree = "<group>"; };
+		5A7F866727A1EE23006B6E27 /* sk-SK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sk-SK"; path = "sk-SK.lproj/Document-Sign.strings"; sourceTree = "<group>"; };
+		5A7F866827A1EE23006B6E27 /* sk-SK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sk-SK"; path = "sk-SK.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		5A7F866927A1EE23006B6E27 /* sk-SK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "sk-SK"; path = "sk-SK.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
+		5A7F866A27A1EE23006B6E27 /* sk-SK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sk-SK"; path = "sk-SK.lproj/Main.strings"; sourceTree = "<group>"; };
+		5A7F866B27A1EE23006B6E27 /* sk-SK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sk-SK"; path = "sk-SK.lproj/MoveApplication.strings"; sourceTree = "<group>"; };
+		5A7F866C27A1EE23006B6E27 /* sk-SK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sk-SK"; path = "sk-SK.lproj/Presentation-Reporter.strings"; sourceTree = "<group>"; };
+		5A7F866D27A1EE3F006B6E27 /* sl-SI */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sl-SI"; path = "sl-SI.lproj/Document-Sign.strings"; sourceTree = "<group>"; };
+		5A7F866E27A1EE3F006B6E27 /* sl-SI */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sl-SI"; path = "sl-SI.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		5A7F866F27A1EE3F006B6E27 /* sl-SI */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "sl-SI"; path = "sl-SI.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
+		5A7F867027A1EE3F006B6E27 /* sl-SI */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sl-SI"; path = "sl-SI.lproj/Main.strings"; sourceTree = "<group>"; };
+		5A7F867127A1EE3F006B6E27 /* sl-SI */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sl-SI"; path = "sl-SI.lproj/MoveApplication.strings"; sourceTree = "<group>"; };
+		5A7F867227A1EE3F006B6E27 /* sl-SI */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sl-SI"; path = "sl-SI.lproj/Presentation-Reporter.strings"; sourceTree = "<group>"; };
+		5A7F867327A1EE59006B6E27 /* sv-SE */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-SE"; path = "sv-SE.lproj/Document-Sign.strings"; sourceTree = "<group>"; };
+		5A7F867427A1EE59006B6E27 /* sv-SE */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-SE"; path = "sv-SE.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		5A7F867527A1EE5A006B6E27 /* sv-SE */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "sv-SE"; path = "sv-SE.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
+		5A7F867627A1EE5A006B6E27 /* sv-SE */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-SE"; path = "sv-SE.lproj/Main.strings"; sourceTree = "<group>"; };
+		5A7F867727A1EE5A006B6E27 /* sv-SE */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-SE"; path = "sv-SE.lproj/MoveApplication.strings"; sourceTree = "<group>"; };
+		5A7F867827A1EE5A006B6E27 /* sv-SE */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-SE"; path = "sv-SE.lproj/Presentation-Reporter.strings"; sourceTree = "<group>"; };
+		5A7F867927A1EE6E006B6E27 /* tr-TR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "tr-TR"; path = "tr-TR.lproj/Document-Sign.strings"; sourceTree = "<group>"; };
+		5A7F867A27A1EE6E006B6E27 /* tr-TR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "tr-TR"; path = "tr-TR.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		5A7F867B27A1EE6E006B6E27 /* tr-TR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "tr-TR"; path = "tr-TR.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
+		5A7F867C27A1EE6E006B6E27 /* tr-TR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "tr-TR"; path = "tr-TR.lproj/Main.strings"; sourceTree = "<group>"; };
+		5A7F867D27A1EE6E006B6E27 /* tr-TR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "tr-TR"; path = "tr-TR.lproj/MoveApplication.strings"; sourceTree = "<group>"; };
+		5A7F867E27A1EE6E006B6E27 /* tr-TR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "tr-TR"; path = "tr-TR.lproj/Presentation-Reporter.strings"; sourceTree = "<group>"; };
+		5A7F867F27A1EE83006B6E27 /* uk-UA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "uk-UA"; path = "uk-UA.lproj/Document-Sign.strings"; sourceTree = "<group>"; };
+		5A7F868027A1EE83006B6E27 /* uk-UA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "uk-UA"; path = "uk-UA.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		5A7F868127A1EE83006B6E27 /* uk-UA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "uk-UA"; path = "uk-UA.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
+		5A7F868227A1EE83006B6E27 /* uk-UA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "uk-UA"; path = "uk-UA.lproj/Main.strings"; sourceTree = "<group>"; };
+		5A7F868327A1EE83006B6E27 /* uk-UA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "uk-UA"; path = "uk-UA.lproj/MoveApplication.strings"; sourceTree = "<group>"; };
+		5A7F868427A1EE83006B6E27 /* uk-UA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "uk-UA"; path = "uk-UA.lproj/Presentation-Reporter.strings"; sourceTree = "<group>"; };
+		5A7F868527A1EF43006B6E27 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Document-Sign.strings"; sourceTree = "<group>"; };
+		5A7F868627A1EF43006B6E27 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		5A7F868727A1EF43006B6E27 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
+		5A7F868827A1EF43006B6E27 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Main.strings"; sourceTree = "<group>"; };
+		5A7F868927A1EF43006B6E27 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/MoveApplication.strings"; sourceTree = "<group>"; };
+		5A7F868A27A1EF43006B6E27 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Presentation-Reporter.strings"; sourceTree = "<group>"; };
+		5A7F868B27A32DAD006B6E27 /* vi-VN */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "vi-VN"; path = "vi-VN.lproj/Document-Sign.strings"; sourceTree = "<group>"; };
+		5A7F868C27A32DAD006B6E27 /* vi-VN */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "vi-VN"; path = "vi-VN.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		5A7F868D27A32DAD006B6E27 /* vi-VN */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "vi-VN"; path = "vi-VN.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
+		5A7F868E27A32DAD006B6E27 /* vi-VN */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "vi-VN"; path = "vi-VN.lproj/Main.strings"; sourceTree = "<group>"; };
+		5A7F868F27A32DAD006B6E27 /* vi-VN */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "vi-VN"; path = "vi-VN.lproj/MoveApplication.strings"; sourceTree = "<group>"; };
+		5A7F869027A32DAD006B6E27 /* vi-VN */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "vi-VN"; path = "vi-VN.lproj/Presentation-Reporter.strings"; sourceTree = "<group>"; };
+		5A7F869127A32DAD006B6E27 /* vi-VN */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "vi-VN"; path = "vi-VN.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		5A7F869227A32DAD006B6E27 /* vi-VN */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "vi-VN"; path = "vi-VN.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		5A7F869327A32DAD006B6E27 /* vi-VN */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "vi-VN"; path = "vi-VN.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		5A7F869427A32F03006B6E27 /* ja-JP */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ja-JP"; path = "ja-JP.lproj/Document-Sign.strings"; sourceTree = "<group>"; };
+		5A7F869527A32F03006B6E27 /* ja-JP */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ja-JP"; path = "ja-JP.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		5A7F869627A32F03006B6E27 /* ja-JP */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "ja-JP"; path = "ja-JP.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
+		5A7F869727A32F03006B6E27 /* ja-JP */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ja-JP"; path = "ja-JP.lproj/Main.strings"; sourceTree = "<group>"; };
+		5A7F869827A32F03006B6E27 /* ja-JP */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ja-JP"; path = "ja-JP.lproj/MoveApplication.strings"; sourceTree = "<group>"; };
+		5A7F869927A32F03006B6E27 /* ja-JP */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ja-JP"; path = "ja-JP.lproj/Presentation-Reporter.strings"; sourceTree = "<group>"; };
+		5A7F869A27A33011006B6E27 /* ga */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ga; path = "ga.lproj/Document-Sign.strings"; sourceTree = "<group>"; };
+		5A7F869B27A33011006B6E27 /* ga */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ga; path = ga.lproj/Localizable.strings; sourceTree = "<group>"; };
+		5A7F869C27A33011006B6E27 /* ga */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = ga; path = ga.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
+		5A7F869D27A33011006B6E27 /* ga */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ga; path = ga.lproj/Main.strings; sourceTree = "<group>"; };
+		5A7F869E27A33011006B6E27 /* ga */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ga; path = ga.lproj/MoveApplication.strings; sourceTree = "<group>"; };
+		5A7F869F27A33011006B6E27 /* ga */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ga; path = "ga.lproj/Presentation-Reporter.strings"; sourceTree = "<group>"; };
+		5A7F86A027A33101006B6E27 /* gl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = gl; path = "gl.lproj/Document-Sign.strings"; sourceTree = "<group>"; };
+		5A7F86A127A33101006B6E27 /* gl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = gl; path = gl.lproj/Localizable.strings; sourceTree = "<group>"; };
+		5A7F86A227A33102006B6E27 /* gl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = gl; path = gl.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
+		5A7F86A327A33102006B6E27 /* gl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = gl; path = gl.lproj/Main.strings; sourceTree = "<group>"; };
+		5A7F86A427A33102006B6E27 /* gl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = gl; path = gl.lproj/MoveApplication.strings; sourceTree = "<group>"; };
+		5A7F86A527A33102006B6E27 /* gl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = gl; path = "gl.lproj/Presentation-Reporter.strings"; sourceTree = "<group>"; };
+		5A7F86A727A33C51006B6E27 /* hy-AM */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "hy-AM"; path = "hy-AM.lproj/EULA.html"; sourceTree = "<group>"; };
+		5A7F86A827A33C51006B6E27 /* hy-AM */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "hy-AM"; path = "hy-AM.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		5A7F86A927A33C6F006B6E27 /* hy-AM */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "hy-AM"; path = "hy-AM.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		5A7F86AA27A33C6F006B6E27 /* hy-AM */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "hy-AM"; path = "hy-AM.lproj/EULA.html"; sourceTree = "<group>"; };
+		5A7F86AC27A33CA8006B6E27 /* hy-AM */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "hy-AM"; path = "hy-AM.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		5A7F86AD27A33CA8006B6E27 /* hy-AM */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "hy-AM"; path = "hy-AM.lproj/EULA.html"; sourceTree = "<group>"; };
+		5A7F86AE27A33CBE006B6E27 /* be */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = be; path = be.lproj/EULA.html; sourceTree = "<group>"; };
+		5A7F86AF27A33CBE006B6E27 /* be */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = be; path = be.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		5A7F86B027A33CD2006B6E27 /* ca */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = ca; path = ca.lproj/EULA.html; sourceTree = "<group>"; };
+		5A7F86B127A33CD2006B6E27 /* ca */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ca; path = ca.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		5A7F86B227A33CF4006B6E27 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = cs; path = cs.lproj/EULA.html; sourceTree = "<group>"; };
+		5A7F86B327A33CF4006B6E27 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		5A7F86B427A33D08006B6E27 /* da-DK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-DK"; path = "da-DK.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		5A7F86B527A33D08006B6E27 /* da-DK */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "da-DK"; path = "da-DK.lproj/EULA.html"; sourceTree = "<group>"; };
+		5A7F86B627A33D21006B6E27 /* el-GR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "el-GR"; path = "el-GR.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		5A7F86B727A33D21006B6E27 /* el-GR */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "el-GR"; path = "el-GR.lproj/EULA.html"; sourceTree = "<group>"; };
+		5A7F86B827A33D3A006B6E27 /* et-EE */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "et-EE"; path = "et-EE.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		5A7F86B927A33D3A006B6E27 /* et-EE */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "et-EE"; path = "et-EE.lproj/EULA.html"; sourceTree = "<group>"; };
+		5A7F86BA27A33D50006B6E27 /* fi-FI */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "fi-FI"; path = "fi-FI.lproj/EULA.html"; sourceTree = "<group>"; };
+		5A7F86BB27A33D50006B6E27 /* fi-FI */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fi-FI"; path = "fi-FI.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		5A7F86BC27A33D77006B6E27 /* gl */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = gl; path = gl.lproj/EULA.html; sourceTree = "<group>"; };
+		5A7F86BD27A33D77006B6E27 /* gl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = gl; path = gl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		5A7F86BE27A33DA9006B6E27 /* hi-IN */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "hi-IN"; path = "hi-IN.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		5A7F86BF27A33DA9006B6E27 /* hi-IN */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "hi-IN"; path = "hi-IN.lproj/EULA.html"; sourceTree = "<group>"; };
+		5A7F86C027A33DC4006B6E27 /* hr-HR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "hr-HR"; path = "hr-HR.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		5A7F86C127A33DC4006B6E27 /* hr-HR */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "hr-HR"; path = "hr-HR.lproj/EULA.html"; sourceTree = "<group>"; };
+		5A7F86C227A33DD3006B6E27 /* hu-HU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "hu-HU"; path = "hu-HU.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		5A7F86C327A33DD3006B6E27 /* hu-HU */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "hu-HU"; path = "hu-HU.lproj/EULA.html"; sourceTree = "<group>"; };
+		5A7F86C427A33DF4006B6E27 /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		5A7F86C527A33DF4006B6E27 /* id */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = id; path = id.lproj/EULA.html; sourceTree = "<group>"; };
+		5A7F86C627A33E10006B6E27 /* ko-KR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ko-KR"; path = "ko-KR.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		5A7F86C727A33E10006B6E27 /* ko-KR */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "ko-KR"; path = "ko-KR.lproj/EULA.html"; sourceTree = "<group>"; };
+		5A7F86C827A33E21006B6E27 /* lo */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = lo; path = lo.lproj/EULA.html; sourceTree = "<group>"; };
+		5A7F86C927A33E21006B6E27 /* lo */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = lo; path = lo.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		5A7F86CA27A33E42006B6E27 /* nl-NL */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nl-NL"; path = "nl-NL.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		5A7F86CB27A33E42006B6E27 /* nl-NL */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "nl-NL"; path = "nl-NL.lproj/EULA.html"; sourceTree = "<group>"; };
+		5A7F86CC27A33E5B006B6E27 /* nn-NO */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "nn-NO"; path = "nn-NO.lproj/EULA.html"; sourceTree = "<group>"; };
+		5A7F86CD27A33E5B006B6E27 /* nn-NO */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nn-NO"; path = "nn-NO.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		5A7F86CE27A33E6C006B6E27 /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		5A7F86CF27A33E6C006B6E27 /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "pt-PT"; path = "pt-PT.lproj/EULA.html"; sourceTree = "<group>"; };
+		5A7F86D027A33E7B006B6E27 /* ro-RO */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "ro-RO"; path = "ro-RO.lproj/EULA.html"; sourceTree = "<group>"; };
+		5A7F86D127A33E7C006B6E27 /* ro-RO */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ro-RO"; path = "ro-RO.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		5A7F86D227A33E8F006B6E27 /* sk-SK */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "sk-SK"; path = "sk-SK.lproj/EULA.html"; sourceTree = "<group>"; };
+		5A7F86D327A33E8F006B6E27 /* sk-SK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sk-SK"; path = "sk-SK.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		5A7F86D427A33E9F006B6E27 /* sl-SI */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "sl-SI"; path = "sl-SI.lproj/EULA.html"; sourceTree = "<group>"; };
+		5A7F86D527A33E9F006B6E27 /* sl-SI */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sl-SI"; path = "sl-SI.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		5A7F86D627A33EB4006B6E27 /* sv-SE */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "sv-SE"; path = "sv-SE.lproj/EULA.html"; sourceTree = "<group>"; };
+		5A7F86D727A33EB4006B6E27 /* sv-SE */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-SE"; path = "sv-SE.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		5A7F86D827A33EC4006B6E27 /* tr-TR */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "tr-TR"; path = "tr-TR.lproj/EULA.html"; sourceTree = "<group>"; };
+		5A7F86D927A33EC4006B6E27 /* tr-TR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "tr-TR"; path = "tr-TR.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		5A7F86DA27A33ED1006B6E27 /* uk-UA */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "uk-UA"; path = "uk-UA.lproj/EULA.html"; sourceTree = "<group>"; };
+		5A7F86DB27A33ED1006B6E27 /* uk-UA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "uk-UA"; path = "uk-UA.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		5A7F86DC27A33EF1006B6E27 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		5A7F86DD27A33EF1006B6E27 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "zh-Hant"; path = "zh-Hant.lproj/EULA.html"; sourceTree = "<group>"; };
+		5A7F86DE27A33F20006B6E27 /* be */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = be; path = be.lproj/EULA.html; sourceTree = "<group>"; };
+		5A7F86DF27A33F20006B6E27 /* be */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = be; path = be.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		5A7F86E027A33F2D006B6E27 /* ca */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = ca; path = ca.lproj/EULA.html; sourceTree = "<group>"; };
+		5A7F86E127A33F2D006B6E27 /* ca */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ca; path = ca.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		5A7F86E227A33F39006B6E27 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		5A7F86E327A33F39006B6E27 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = cs; path = cs.lproj/EULA.html; sourceTree = "<group>"; };
+		5A7F86E427A33F48006B6E27 /* da-DK */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "da-DK"; path = "da-DK.lproj/EULA.html"; sourceTree = "<group>"; };
+		5A7F86E527A33F48006B6E27 /* da-DK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-DK"; path = "da-DK.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		5A7F86E627A33F5A006B6E27 /* el-GR */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "el-GR"; path = "el-GR.lproj/EULA.html"; sourceTree = "<group>"; };
+		5A7F86E727A33F5A006B6E27 /* el-GR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "el-GR"; path = "el-GR.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		5A7F86E827A33F69006B6E27 /* et-EE */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "et-EE"; path = "et-EE.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		5A7F86E927A33F69006B6E27 /* et-EE */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "et-EE"; path = "et-EE.lproj/EULA.html"; sourceTree = "<group>"; };
+		5A7F86EA27A33F78006B6E27 /* fi-FI */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "fi-FI"; path = "fi-FI.lproj/EULA.html"; sourceTree = "<group>"; };
+		5A7F86EB27A33F78006B6E27 /* fi-FI */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fi-FI"; path = "fi-FI.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		5A7F86EC27A33F8B006B6E27 /* gl */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = gl; path = gl.lproj/EULA.html; sourceTree = "<group>"; };
+		5A7F86ED27A33F8B006B6E27 /* gl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = gl; path = gl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		5A7F86EE27A33F9E006B6E27 /* hi-IN */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "hi-IN"; path = "hi-IN.lproj/EULA.html"; sourceTree = "<group>"; };
+		5A7F86EF27A33F9E006B6E27 /* hi-IN */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "hi-IN"; path = "hi-IN.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		5A7F86F027A33FB2006B6E27 /* hr-HR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "hr-HR"; path = "hr-HR.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		5A7F86F127A33FB2006B6E27 /* hr-HR */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "hr-HR"; path = "hr-HR.lproj/EULA.html"; sourceTree = "<group>"; };
+		5A7F86F227A33FE7006B6E27 /* hu-HU */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "hu-HU"; path = "hu-HU.lproj/EULA.html"; sourceTree = "<group>"; };
+		5A7F86F327A33FE7006B6E27 /* hu-HU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "hu-HU"; path = "hu-HU.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		5A7F86F427A33FF5006B6E27 /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		5A7F86F527A33FF5006B6E27 /* id */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = id; path = id.lproj/EULA.html; sourceTree = "<group>"; };
+		5A7F86F627A34001006B6E27 /* ko-KR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ko-KR"; path = "ko-KR.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		5A7F86F727A34001006B6E27 /* ko-KR */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "ko-KR"; path = "ko-KR.lproj/EULA.html"; sourceTree = "<group>"; };
+		5A7F86F827A3400B006B6E27 /* lo */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = lo; path = lo.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		5A7F86F927A3400B006B6E27 /* lo */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = lo; path = lo.lproj/EULA.html; sourceTree = "<group>"; };
+		5A7F86FA27A3402F006B6E27 /* nl-NL */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nl-NL"; path = "nl-NL.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		5A7F86FB27A3402F006B6E27 /* nl-NL */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "nl-NL"; path = "nl-NL.lproj/EULA.html"; sourceTree = "<group>"; };
+		5A7F86FC27A34044006B6E27 /* nn-NO */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "nn-NO"; path = "nn-NO.lproj/EULA.html"; sourceTree = "<group>"; };
+		5A7F86FD27A34044006B6E27 /* nn-NO */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nn-NO"; path = "nn-NO.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		5A7F86FE27A34056006B6E27 /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		5A7F86FF27A34056006B6E27 /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "pt-PT"; path = "pt-PT.lproj/EULA.html"; sourceTree = "<group>"; };
+		5A7F870027A3406B006B6E27 /* ro-RO */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ro-RO"; path = "ro-RO.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		5A7F870127A3406B006B6E27 /* ro-RO */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "ro-RO"; path = "ro-RO.lproj/EULA.html"; sourceTree = "<group>"; };
+		5A7F870227A34099006B6E27 /* sk-SK */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "sk-SK"; path = "sk-SK.lproj/EULA.html"; sourceTree = "<group>"; };
+		5A7F870327A34099006B6E27 /* sk-SK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sk-SK"; path = "sk-SK.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		5A7F870427A340A5006B6E27 /* sl-SI */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "sl-SI"; path = "sl-SI.lproj/EULA.html"; sourceTree = "<group>"; };
+		5A7F870527A340A5006B6E27 /* sl-SI */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sl-SI"; path = "sl-SI.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		5A7F870627A340B6006B6E27 /* sv-SE */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "sv-SE"; path = "sv-SE.lproj/EULA.html"; sourceTree = "<group>"; };
+		5A7F870727A340B6006B6E27 /* sv-SE */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-SE"; path = "sv-SE.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		5A7F870827A340C8006B6E27 /* tr-TR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "tr-TR"; path = "tr-TR.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		5A7F870927A340C8006B6E27 /* tr-TR */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "tr-TR"; path = "tr-TR.lproj/EULA.html"; sourceTree = "<group>"; };
+		5A7F870A27A340D5006B6E27 /* uk-UA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "uk-UA"; path = "uk-UA.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		5A7F870B27A340D5006B6E27 /* uk-UA */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "uk-UA"; path = "uk-UA.lproj/EULA.html"; sourceTree = "<group>"; };
+		5A7F870C27A340E4006B6E27 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		5A7F870D27A340E4006B6E27 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "zh-Hant"; path = "zh-Hant.lproj/EULA.html"; sourceTree = "<group>"; };
+		5A7F870E27A340FF006B6E27 /* be */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = be; path = be.lproj/EULA.html; sourceTree = "<group>"; };
+		5A7F870F27A340FF006B6E27 /* be */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = be; path = be.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		5A7F871027A34109006B6E27 /* ca */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = ca; path = ca.lproj/EULA.html; sourceTree = "<group>"; };
+		5A7F871127A34109006B6E27 /* ca */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ca; path = ca.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		5A7F871227A34119006B6E27 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = cs; path = cs.lproj/EULA.html; sourceTree = "<group>"; };
+		5A7F871327A34119006B6E27 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		5A7F871427A34179006B6E27 /* da-DK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-DK"; path = "da-DK.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		5A7F871527A34179006B6E27 /* da-DK */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "da-DK"; path = "da-DK.lproj/EULA.html"; sourceTree = "<group>"; };
+		5A7F871627A34242006B6E27 /* el-GR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "el-GR"; path = "el-GR.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		5A7F871727A34242006B6E27 /* el-GR */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "el-GR"; path = "el-GR.lproj/EULA.html"; sourceTree = "<group>"; };
+		5A7F871827A34264006B6E27 /* hr-HR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "hr-HR"; path = "hr-HR.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		5A7F871927A34274006B6E27 /* hr-HR */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "hr-HR"; path = "hr-HR.lproj/EULA.html"; sourceTree = "<group>"; };
+		5A7F871A27A3461A006B6E27 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		5A7F871B27A3462E006B6E27 /* nl-NL */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nl-NL"; path = "nl-NL.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		5A7F871C27A34633006B6E27 /* et-EE */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "et-EE"; path = "et-EE.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		5A7F871D27A3463F006B6E27 /* fi-FI */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fi-FI"; path = "fi-FI.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		5A7F871E27A34648006B6E27 /* gl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = gl; path = gl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		5A7F871F27A34652006B6E27 /* hi-IN */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "hi-IN"; path = "hi-IN.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		5A7F872027A34656006B6E27 /* hu-HU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "hu-HU"; path = "hu-HU.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		5A7F872127A3465A006B6E27 /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		5A7F872427A346AE006B6E27 /* ko-KR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ko-KR"; path = "ko-KR.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		5A7F872527A346B7006B6E27 /* lo */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = lo; path = lo.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		5A7F872627A346BB006B6E27 /* nn-NO */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nn-NO"; path = "nn-NO.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		5A7F872727A346C8006B6E27 /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		5A7F872827A346CC006B6E27 /* ro-RO */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ro-RO"; path = "ro-RO.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		5A7F872927A346D0006B6E27 /* sk-SK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sk-SK"; path = "sk-SK.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		5A7F872A27A346D2006B6E27 /* sl-SI */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sl-SI"; path = "sl-SI.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		5A7F872B27A346D5006B6E27 /* sv-SE */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-SE"; path = "sv-SE.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		5A7F872C27A346D8006B6E27 /* tr-TR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "tr-TR"; path = "tr-TR.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		5A7F872D27A346DA006B6E27 /* uk-UA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "uk-UA"; path = "uk-UA.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		5A7F872E27A346F4006B6E27 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "zh-Hant"; path = "zh-Hant.lproj/EULA.html"; sourceTree = "<group>"; };
+		5A7F872F27A346FA006B6E27 /* nl-NL */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "nl-NL"; path = "nl-NL.lproj/EULA.html"; sourceTree = "<group>"; };
+		5A7F873027A346FD006B6E27 /* et-EE */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "et-EE"; path = "et-EE.lproj/EULA.html"; sourceTree = "<group>"; };
+		5A7F873127A346FF006B6E27 /* fi-FI */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "fi-FI"; path = "fi-FI.lproj/EULA.html"; sourceTree = "<group>"; };
+		5A7F873227A34700006B6E27 /* gl */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = gl; path = gl.lproj/EULA.html; sourceTree = "<group>"; };
+		5A7F873327A34703006B6E27 /* hi-IN */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "hi-IN"; path = "hi-IN.lproj/EULA.html"; sourceTree = "<group>"; };
+		5A7F873427A34705006B6E27 /* hu-HU */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "hu-HU"; path = "hu-HU.lproj/EULA.html"; sourceTree = "<group>"; };
+		5A7F873527A3470A006B6E27 /* id */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = id; path = id.lproj/EULA.html; sourceTree = "<group>"; };
+		5A7F873627A3470D006B6E27 /* ja-JP */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "ja-JP"; path = "ja-JP.lproj/EULA.html"; sourceTree = "<group>"; };
+		5A7F873727A34718006B6E27 /* ko-KR */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "ko-KR"; path = "ko-KR.lproj/EULA.html"; sourceTree = "<group>"; };
+		5A7F873827A3471B006B6E27 /* lo */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = lo; path = lo.lproj/EULA.html; sourceTree = "<group>"; };
+		5A7F873927A34720006B6E27 /* nn-NO */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "nn-NO"; path = "nn-NO.lproj/EULA.html"; sourceTree = "<group>"; };
+		5A7F873A27A34724006B6E27 /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "pt-PT"; path = "pt-PT.lproj/EULA.html"; sourceTree = "<group>"; };
+		5A7F873B27A34726006B6E27 /* ro-RO */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "ro-RO"; path = "ro-RO.lproj/EULA.html"; sourceTree = "<group>"; };
+		5A7F873C27A3472B006B6E27 /* sk-SK */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "sk-SK"; path = "sk-SK.lproj/EULA.html"; sourceTree = "<group>"; };
+		5A7F873D27A3472D006B6E27 /* sl-SI */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "sl-SI"; path = "sl-SI.lproj/EULA.html"; sourceTree = "<group>"; };
+		5A7F873E27A34730006B6E27 /* sv-SE */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "sv-SE"; path = "sv-SE.lproj/EULA.html"; sourceTree = "<group>"; };
+		5A7F873F27A34732006B6E27 /* tr-TR */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "tr-TR"; path = "tr-TR.lproj/EULA.html"; sourceTree = "<group>"; };
+		5A7F874027A34734006B6E27 /* uk-UA */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "uk-UA"; path = "uk-UA.lproj/EULA.html"; sourceTree = "<group>"; };
+		5A7F874127A34737006B6E27 /* vi-VN */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "vi-VN"; path = "vi-VN.lproj/EULA.html"; sourceTree = "<group>"; };
+		5A7F874227A3478C006B6E27 /* ja-JP */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ja-JP"; path = "ja-JP.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		5A7F874327A348BB006B6E27 /* ja-JP */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ja-JP"; path = "ja-JP.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		5A7F874427A3495D006B6E27 /* ja-JP */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "ja-JP"; path = "ja-JP.lproj/EULA.html"; sourceTree = "<group>"; };
+		5A7F874527A3497C006B6E27 /* vi-VN */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "vi-VN"; path = "vi-VN.lproj/EULA.html"; sourceTree = "<group>"; };
+		5A7F874627A34994006B6E27 /* ja-JP */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "ja-JP"; path = "ja-JP.lproj/EULA.html"; sourceTree = "<group>"; };
+		5A7F874727A3499B006B6E27 /* vi-VN */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "vi-VN"; path = "vi-VN.lproj/EULA.html"; sourceTree = "<group>"; };
+		5A7F874827A34A06006B6E27 /* ja-JP */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ja-JP"; path = "ja-JP.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		5A7F874927A46464006B6E27 /* ga */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ga; path = ga.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		5A7F874A27A46476006B6E27 /* ga */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = ga; path = ga.lproj/EULA.html; sourceTree = "<group>"; };
+		5A7F874B27A464CA006B6E27 /* ga */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = ga; path = ga.lproj/EULA.html; sourceTree = "<group>"; };
+		5A7F874C27A464D5006B6E27 /* ga */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ga; path = ga.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		5A7F874D27A464E0006B6E27 /* ga */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ga; path = ga.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		5A7F874E27A464EA006B6E27 /* ga */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = ga; path = ga.lproj/EULA.html; sourceTree = "<group>"; };
+		5AA06CBB27AC3BA000D67BEE /* ASCLinguist.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ASCLinguist.h; sourceTree = "<group>"; };
+		5AA06CBC27AC3BA000D67BEE /* ASCLinguist.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ASCLinguist.m; sourceTree = "<group>"; };
 		5AB20F5D274D35F2003732A0 /* file-docxf.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "file-docxf.icns"; sourceTree = "<group>"; };
 		5AB20F61274D360A003732A0 /* file-oform.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "file-oform.icns"; sourceTree = "<group>"; };
 		BE6251B922BD089100656116 /* dictionaries */ = {isa = PBXFileReference; lastKnownFileType = folder; name = dictionaries; path = ../../../../dictionaries; sourceTree = "<group>"; };
@@ -1340,6 +1705,8 @@
 				FCA9A18F1BA6DC6000ABF3AB /* ASCCommonViewController.mm */,
 				FC3BFE0B1BBEBB7B0040C904 /* ASCApplicationManager.mm */,
 				FC3BFE0C1BBEBB7B0040C904 /* ASCApplicationManager.h */,
+				5AA06CBB27AC3BA000D67BEE /* ASCLinguist.h */,
+				5AA06CBC27AC3BA000D67BEE /* ASCLinguist.m */,
 				FC3B77831BB2A94300DB9705 /* ASCEventsController.h */,
 				FC3B77841BB2A94300DB9705 /* ASCEventsController.mm */,
 				FCF2897F21510C16002FD438 /* ASCExternalController.h */,
@@ -1527,6 +1894,36 @@
 				it,
 				pl,
 				"zh-Hans-CN",
+				"lv-LV",
+				"bg-BG",
+				cs,
+				"da-DK",
+				"el-GR",
+				be,
+				ca,
+				"et-EE",
+				"fi-FI",
+				"hi-IN",
+				"hr-HR",
+				"hu-HU",
+				"hy-AM",
+				id,
+				"ko-KR",
+				lo,
+				"nl-NL",
+				"nn-NO",
+				"pt-PT",
+				"ro-RO",
+				"sk-SK",
+				"sl-SI",
+				"sv-SE",
+				"tr-TR",
+				"uk-UA",
+				"zh-Hant",
+				"vi-VN",
+				"ja-JP",
+				ga,
+				gl,
 			);
 			mainGroup = FCBC425F1B9D650400405301;
 			productRefGroup = FCBC42691B9D650400405301 /* Products */;
@@ -1729,7 +2126,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#!/bin/sh\n\n#exit 0\n\nbase_path=$(pwd)\ncontents_path=${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}\nframeworks_path=\"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}\"\nconverter_path=\"${contents_path}/Resources/converter\"\ncore_path=\"${base_path}/../../build_tools/out/mac_64/onlyoffice/desktopeditors\"\napp_name=\"ONLYOFFICE\"\n\n# Signs a framework with the provided identity\ncode_sign_if_enabled() {\n  if [ -n \"${EXPANDED_CODE_SIGN_IDENTITY:-}\" -a \"${CODE_SIGNING_REQUIRED:-}\" != \"NO\" -a \"${CODE_SIGNING_ALLOWED}\" != \"NO\" ]; then\n    # Use the current code_sign_identity\n    echo \"Code Signing $1 with Identity ${EXPANDED_CODE_SIGN_IDENTITY_NAME}\"\n    local code_sign_cmd=\"/usr/bin/codesign --force --sign ${EXPANDED_CODE_SIGN_IDENTITY} ${OTHER_CODE_SIGN_FLAGS:-} --preserve-metadata=identifier,entitlements '$1'\"\n\n    echo \"$code_sign_cmd\"\n    eval \"$code_sign_cmd\"\n  fi\n}\n\n# Change path of dependency library\nchange_dependency_path() {\n  echo \"Rename path for $1 from $2 to $3\"\n  install_name_tool -change \"$2\" \"$3\" \"$1\"\n}\n\nrm -rf \"${frameworks_path}/Chromium Embedded Framework.framework\"\nrm -rf \"${frameworks_path}/editors_helper.app\"\nrm -rf \"${frameworks_path}/editors_helper (GPU).app\"\nrm -rf \"${frameworks_path}/editors_helper (Renderer).app\"\nrm -rf \"${frameworks_path}/libascdocumentscore.dylib\"\nrm -rf \"${frameworks_path}/libooxmlsignature.dylib\"\nrm -rf \"${frameworks_path}/libhunspell.dylib\"\n\nif [ ! -d \"${frameworks_path}\" ]; then\nmkdir -p \"${frameworks_path}\"\nfi\n\necho \"Copy libraries and frameworks\"\ncp -Rv \"${core_path}/editors_helper.app\" \"${frameworks_path}/\"\ncp -Rv \"${core_path}/editors_helper (GPU).app\" \"${frameworks_path}/\"\ncp -Rv \"${core_path}/editors_helper (Renderer).app\" \"${frameworks_path}/\"\ncp -Rv \"${core_path}/Chromium Embedded Framework.framework\" \"${frameworks_path}\"\ncp -Rv \"${core_path}/libascdocumentscore.dylib\" \"${frameworks_path}\"\ncp -Rv \"${core_path}/libooxmlsignature.dylib\" \"${frameworks_path}\"\ncp -Rv \"${core_path}/libhunspell.dylib\" \"${frameworks_path}\"\n\n# Fixed paths application\necho \"Fixed dependency paths of application\"\nchange_dependency_path \"${contents_path}/MacOS/${app_name}\" \"@executable_path/../Frameworks/Chromium Embedded Framework.framework/Chromium Embedded Framework\" \"@rpath/Chromium Embedded Framework.framework/Chromium Embedded Framework\"\nchange_dependency_path \"${contents_path}/MacOS/${app_name}\" libascdocumentscore.dylib @rpath/libascdocumentscore.dylib\nchange_dependency_path \"${contents_path}/MacOS/${app_name}\" libooxmlsignature.dylib @rpath/libooxmlsignature.dylib\n\n# Resign the code if required by the build settings to avoid unstable apps\necho \"Sign libraries and frameworks with ${EXPANDED_CODE_SIGN_IDENTITY_NAME}\"\n\ncode_sign_if_enabled \"${frameworks_path}/libooxmlsignature.dylib\"\ncode_sign_if_enabled \"${frameworks_path}/libascdocumentscore.dylib\"\ncode_sign_if_enabled \"${frameworks_path}/libhunspell.dylib\"\n\ncode_sign_if_enabled \"${converter_path}/libicudata.58.dylib\"\ncode_sign_if_enabled \"${converter_path}/libicuuc.58.dylib\"\ncode_sign_if_enabled \"${converter_path}/libUnicodeConverter.dylib\"\ncode_sign_if_enabled \"${converter_path}/libkernel.dylib\"\ncode_sign_if_enabled \"${converter_path}/libkernel_network.dylib\"\ncode_sign_if_enabled \"${converter_path}/libgraphics.dylib\"\ncode_sign_if_enabled \"${converter_path}/libdoctrenderer.dylib\"\ncode_sign_if_enabled \"${converter_path}/libPdfWriter.dylib\"\ncode_sign_if_enabled \"${converter_path}/libDjVuFile.dylib\"\ncode_sign_if_enabled \"${converter_path}/libPdfReader.dylib\"\ncode_sign_if_enabled \"${converter_path}/libXpsFile.dylib\"\ncode_sign_if_enabled \"${converter_path}/libHtmlFile2.dylib\"\ncode_sign_if_enabled \"${converter_path}/libHtmlRenderer.dylib\"\ncode_sign_if_enabled \"${converter_path}/libEpubFile.dylib\"\ncode_sign_if_enabled \"${converter_path}/libFb2File.dylib\"\n\ncodesign --verbose --force --options runtime --entitlements \"${CODE_SIGN_ENTITLEMENTS}\" --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${converter_path}/x2t\"\n\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Chromium Embedded Framework.framework/Libraries/libEGL.dylib\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Chromium Embedded Framework.framework/Libraries/libswiftshader_libEGL.dylib\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Chromium Embedded Framework.framework/Libraries/libGLESv2.dylib\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Chromium Embedded Framework.framework/Libraries/libswiftshader_libGLESv2.dylib\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Chromium Embedded Framework.framework/Libraries/libvk_swiftshader.dylib\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Chromium Embedded Framework.framework\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" --entitlements \"${CODE_SIGN_ENTITLEMENTS}\"  \"${frameworks_path}/editors_helper.app\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" --entitlements \"${CODE_SIGN_ENTITLEMENTS}\"  \"${frameworks_path}/editors_helper (GPU).app\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" --entitlements \"${CODE_SIGN_ENTITLEMENTS}\"  \"${frameworks_path}/editors_helper (Renderer).app\"\n\ncodesign --verbose --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Sparkle.framework/Versions/A/Resources/AutoUpdate.app\"\ncodesign --verbose --force --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Sparkle.framework/Versions/A\"\n\ncodesign --verbose=4 --force --options runtime --entitlements \"${CODE_SIGN_ENTITLEMENTS}\" --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${contents_path}/MacOS/${app_name}\"\n";
+			shellScript = "#!/bin/sh\n\n#exit 0\n\nbase_path=$(pwd)\ncontents_path=${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}\nframeworks_path=\"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}\"\nconverter_path=\"${contents_path}/Resources/converter\"\ncore_path=\"${base_path}/../../build_tools/out/mac_64/onlyoffice/desktopeditors\"\napp_name=\"ONLYOFFICE\"\n\n# Signs a framework with the provided identity\ncode_sign_if_enabled() {\n  if [ -n \"${EXPANDED_CODE_SIGN_IDENTITY:-}\" -a \"${CODE_SIGNING_REQUIRED:-}\" != \"NO\" -a \"${CODE_SIGNING_ALLOWED}\" != \"NO\" ]; then\n    # Use the current code_sign_identity\n    echo \"Code Signing $1 with Identity ${EXPANDED_CODE_SIGN_IDENTITY_NAME}\"\n    local code_sign_cmd=\"/usr/bin/codesign --force --sign ${EXPANDED_CODE_SIGN_IDENTITY} ${OTHER_CODE_SIGN_FLAGS:-} --preserve-metadata=identifier,entitlements '$1'\"\n\n    echo \"$code_sign_cmd\"\n    eval \"$code_sign_cmd\"\n  fi\n}\n\n# Change path of dependency library\nchange_dependency_path() {\n  echo \"Rename path for $1 from $2 to $3\"\n  install_name_tool -change \"$2\" \"$3\" \"$1\"\n}\n\nrm -rf \"${frameworks_path}/Chromium Embedded Framework.framework\"\nrm -rf \"${frameworks_path}/editors_helper.app\"\nrm -rf \"${frameworks_path}/editors_helper (GPU).app\"\nrm -rf \"${frameworks_path}/editors_helper (Renderer).app\"\nrm -rf \"${frameworks_path}/libascdocumentscore.dylib\"\nrm -rf \"${frameworks_path}/libooxmlsignature.dylib\"\nrm -rf \"${frameworks_path}/libhunspell.dylib\"\n\nif [ ! -d \"${frameworks_path}\" ]; then\nmkdir -p \"${frameworks_path}\"\nfi\n\necho \"Copy libraries and frameworks\"\ncp -Rv \"${core_path}/editors_helper.app\" \"${frameworks_path}/\"\ncp -Rv \"${core_path}/editors_helper (GPU).app\" \"${frameworks_path}/\"\ncp -Rv \"${core_path}/editors_helper (Renderer).app\" \"${frameworks_path}/\"\ncp -Rv \"${core_path}/Chromium Embedded Framework.framework\" \"${frameworks_path}\"\ncp -Rv \"${core_path}/libascdocumentscore.dylib\" \"${frameworks_path}\"\ncp -Rv \"${core_path}/libooxmlsignature.dylib\" \"${frameworks_path}\"\ncp -Rv \"${core_path}/libhunspell.dylib\" \"${frameworks_path}\"\n\n# Fixed paths application\necho \"Fixed dependency paths of application\"\nchange_dependency_path \"${contents_path}/MacOS/${app_name}\" \"@executable_path/../Frameworks/Chromium Embedded Framework.framework/Chromium Embedded Framework\" \"@rpath/Chromium Embedded Framework.framework/Chromium Embedded Framework\"\nchange_dependency_path \"${contents_path}/MacOS/${app_name}\" libascdocumentscore.dylib @rpath/libascdocumentscore.dylib\nchange_dependency_path \"${contents_path}/MacOS/${app_name}\" libooxmlsignature.dylib @rpath/libooxmlsignature.dylib\n\n# Resign the code if required by the build settings to avoid unstable apps\necho \"Sign libraries and frameworks with ${EXPANDED_CODE_SIGN_IDENTITY_NAME}\"\n\ncode_sign_if_enabled \"${frameworks_path}/libooxmlsignature.dylib\"\ncode_sign_if_enabled \"${frameworks_path}/libascdocumentscore.dylib\"\ncode_sign_if_enabled \"${frameworks_path}/libhunspell.dylib\"\n\ncode_sign_if_enabled \"${converter_path}/libDjVuFile.dylib\"\ncode_sign_if_enabled \"${converter_path}/libdoctrenderer.dylib\"\ncode_sign_if_enabled \"${converter_path}/libDocxRenderer.dylib\"\ncode_sign_if_enabled \"${converter_path}/libEpubFile.dylib\"\ncode_sign_if_enabled \"${converter_path}/libFb2File.dylib\"\ncode_sign_if_enabled \"${converter_path}/libgraphics.dylib\"\ncode_sign_if_enabled \"${converter_path}/libHtmlFile2.dylib\"\ncode_sign_if_enabled \"${converter_path}/libHtmlRenderer.dylib\"\ncode_sign_if_enabled \"${converter_path}/libicudata.58.dylib\"\ncode_sign_if_enabled \"${converter_path}/libicuuc.58.dylib\"\ncode_sign_if_enabled \"${converter_path}/libkernel.dylib\"\ncode_sign_if_enabled \"${converter_path}/libkernel_network.dylib\"\ncode_sign_if_enabled \"${converter_path}/libPdfReader.dylib\"\ncode_sign_if_enabled \"${converter_path}/libPdfWriter.dylib\"\ncode_sign_if_enabled \"${converter_path}/libUnicodeConverter.dylib\"\ncode_sign_if_enabled \"${converter_path}/libXpsFile.dylib\"\n\ncodesign --verbose --force --options runtime --entitlements \"${CODE_SIGN_ENTITLEMENTS}\" --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${converter_path}/x2t\"\n\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Chromium Embedded Framework.framework/Libraries/libEGL.dylib\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Chromium Embedded Framework.framework/Libraries/libswiftshader_libEGL.dylib\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Chromium Embedded Framework.framework/Libraries/libGLESv2.dylib\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Chromium Embedded Framework.framework/Libraries/libswiftshader_libGLESv2.dylib\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Chromium Embedded Framework.framework/Libraries/libvk_swiftshader.dylib\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Chromium Embedded Framework.framework\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" --entitlements \"${CODE_SIGN_ENTITLEMENTS}\"  \"${frameworks_path}/editors_helper.app\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" --entitlements \"${CODE_SIGN_ENTITLEMENTS}\"  \"${frameworks_path}/editors_helper (GPU).app\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" --entitlements \"${CODE_SIGN_ENTITLEMENTS}\"  \"${frameworks_path}/editors_helper (Renderer).app\"\n\ncodesign --verbose --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Sparkle.framework/Versions/A/Resources/AutoUpdate.app\"\ncodesign --verbose --force --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Sparkle.framework/Versions/A\"\n\ncodesign --verbose=4 --force --options runtime --entitlements \"${CODE_SIGN_ENTITLEMENTS}\" --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${contents_path}/MacOS/${app_name}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FC0BD6F7258B63F700C47F95 /* Increment Build Number */ = {
@@ -1766,7 +2163,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#!/bin/sh\n\n#exit 0\n\nbase_path=$(pwd)\ncontents_path=${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}\nframeworks_path=\"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}\"\nconverter_path=\"${contents_path}/Resources/converter\"\ncore_path=\"${base_path}/../../build_tools/out/mac_64/onlyoffice/desktopeditors\"\napp_name=\"ONLYOFFICE\"\n\n# Signs a framework with the provided identity\ncode_sign_if_enabled() {\n  if [ -n \"${EXPANDED_CODE_SIGN_IDENTITY:-}\" -a \"${CODE_SIGNING_REQUIRED:-}\" != \"NO\" -a \"${CODE_SIGNING_ALLOWED}\" != \"NO\" ]; then\n    # Use the current code_sign_identity\n    echo \"Code Signing $1 with Identity ${EXPANDED_CODE_SIGN_IDENTITY_NAME}\"\n    local code_sign_cmd=\"/usr/bin/codesign --force --sign ${EXPANDED_CODE_SIGN_IDENTITY} ${OTHER_CODE_SIGN_FLAGS:-} --preserve-metadata=identifier,entitlements '$1'\"\n\n    echo \"$code_sign_cmd\"\n    eval \"$code_sign_cmd\"\n  fi\n}\n\n# Change path of dependency library\nchange_dependency_path() {\n  echo \"Rename path for $1 from $2 to $3\"\n  install_name_tool -change \"$2\" \"$3\" \"$1\"\n}\n\nrm -rf \"${frameworks_path}/Chromium Embedded Framework.framework\"\nrm -rf \"${frameworks_path}/editors_helper.app\"\nrm -rf \"${frameworks_path}/editors_helper (GPU).app\"\nrm -rf \"${frameworks_path}/editors_helper (Renderer).app\"\nrm -rf \"${frameworks_path}/libascdocumentscore.dylib\"\nrm -rf \"${frameworks_path}/libooxmlsignature.dylib\"\nrm -rf \"${frameworks_path}/libhunspell.dylib\"\n\nif [ ! -d \"${frameworks_path}\" ]; then\nmkdir -p \"${frameworks_path}\"\nfi\n\necho \"Copy libraries and frameworks\"\ncp -Rv \"${core_path}/editors_helper.app\" \"${frameworks_path}/\"\ncp -Rv \"${core_path}/editors_helper (GPU).app\" \"${frameworks_path}/\"\ncp -Rv \"${core_path}/editors_helper (Renderer).app\" \"${frameworks_path}/\"\ncp -Rv \"${core_path}/Chromium Embedded Framework.framework\" \"${frameworks_path}\"\ncp -Rv \"${core_path}/libascdocumentscore.dylib\" \"${frameworks_path}\"\ncp -Rv \"${core_path}/libooxmlsignature.dylib\" \"${frameworks_path}\"\ncp -Rv \"${core_path}/libhunspell.dylib\" \"${frameworks_path}\"\n\n# Fixed paths application\necho \"Fixed dependency paths of application\"\nchange_dependency_path \"${contents_path}/MacOS/${app_name}\" \"@executable_path/../Frameworks/Chromium Embedded Framework.framework/Chromium Embedded Framework\" \"@rpath/Chromium Embedded Framework.framework/Chromium Embedded Framework\"\nchange_dependency_path \"${contents_path}/MacOS/${app_name}\" libascdocumentscore.dylib @rpath/libascdocumentscore.dylib\nchange_dependency_path \"${contents_path}/MacOS/${app_name}\" libooxmlsignature.dylib @rpath/libooxmlsignature.dylib\n\n# Resign the code if required by the build settings to avoid unstable apps\necho \"Sign libraries and frameworks with ${EXPANDED_CODE_SIGN_IDENTITY_NAME}\"\n\ncode_sign_if_enabled \"${frameworks_path}/libooxmlsignature.dylib\"\ncode_sign_if_enabled \"${frameworks_path}/libascdocumentscore.dylib\"\ncode_sign_if_enabled \"${frameworks_path}/libhunspell.dylib\"\n\ncode_sign_if_enabled \"${converter_path}/libicudata.58.dylib\"\ncode_sign_if_enabled \"${converter_path}/libicuuc.58.dylib\"\ncode_sign_if_enabled \"${converter_path}/libUnicodeConverter.dylib\"\ncode_sign_if_enabled \"${converter_path}/libkernel.dylib\"\ncode_sign_if_enabled \"${converter_path}/libkernel_network.dylib\"\ncode_sign_if_enabled \"${converter_path}/libgraphics.dylib\"\ncode_sign_if_enabled \"${converter_path}/libdoctrenderer.dylib\"\ncode_sign_if_enabled \"${converter_path}/libPdfWriter.dylib\"\ncode_sign_if_enabled \"${converter_path}/libDjVuFile.dylib\"\ncode_sign_if_enabled \"${converter_path}/libPdfReader.dylib\"\ncode_sign_if_enabled \"${converter_path}/libXpsFile.dylib\"\ncode_sign_if_enabled \"${converter_path}/libHtmlFile2.dylib\"\ncode_sign_if_enabled \"${converter_path}/libHtmlRenderer.dylib\"\ncode_sign_if_enabled \"${converter_path}/libEpubFile.dylib\"\ncode_sign_if_enabled \"${converter_path}/libFb2File.dylib\"\n\ncodesign --verbose --force --options runtime --entitlements \"${CODE_SIGN_ENTITLEMENTS}\" --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${converter_path}/x2t\"\n\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Chromium Embedded Framework.framework/Libraries/libEGL.dylib\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Chromium Embedded Framework.framework/Libraries/libswiftshader_libEGL.dylib\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Chromium Embedded Framework.framework/Libraries/libGLESv2.dylib\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Chromium Embedded Framework.framework/Libraries/libswiftshader_libGLESv2.dylib\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Chromium Embedded Framework.framework/Libraries/libvk_swiftshader.dylib\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Chromium Embedded Framework.framework\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" --entitlements \"${CODE_SIGN_ENTITLEMENTS}\"  \"${frameworks_path}/editors_helper.app\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" --entitlements \"${CODE_SIGN_ENTITLEMENTS}\"  \"${frameworks_path}/editors_helper (GPU).app\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" --entitlements \"${CODE_SIGN_ENTITLEMENTS}\"  \"${frameworks_path}/editors_helper (Renderer).app\"\n\ncodesign --verbose --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Sparkle.framework/Versions/A/Resources/AutoUpdate.app\"\ncodesign --verbose --force --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Sparkle.framework/Versions/A\"\n\ncodesign --verbose=4 --force --options runtime --entitlements \"${CODE_SIGN_ENTITLEMENTS}\" --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${contents_path}/MacOS/${app_name}\"\n";
+			shellScript = "#!/bin/sh\n\n#exit 0\n\nbase_path=$(pwd)\ncontents_path=${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}\nframeworks_path=\"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}\"\nconverter_path=\"${contents_path}/Resources/converter\"\ncore_path=\"${base_path}/../../build_tools/out/mac_64/onlyoffice/desktopeditors\"\napp_name=\"ONLYOFFICE\"\n\n# Signs a framework with the provided identity\ncode_sign_if_enabled() {\n  if [ -n \"${EXPANDED_CODE_SIGN_IDENTITY:-}\" -a \"${CODE_SIGNING_REQUIRED:-}\" != \"NO\" -a \"${CODE_SIGNING_ALLOWED}\" != \"NO\" ]; then\n    # Use the current code_sign_identity\n    echo \"Code Signing $1 with Identity ${EXPANDED_CODE_SIGN_IDENTITY_NAME}\"\n    local code_sign_cmd=\"/usr/bin/codesign --force --sign ${EXPANDED_CODE_SIGN_IDENTITY} ${OTHER_CODE_SIGN_FLAGS:-} --preserve-metadata=identifier,entitlements '$1'\"\n\n    echo \"$code_sign_cmd\"\n    eval \"$code_sign_cmd\"\n  fi\n}\n\n# Change path of dependency library\nchange_dependency_path() {\n  echo \"Rename path for $1 from $2 to $3\"\n  install_name_tool -change \"$2\" \"$3\" \"$1\"\n}\n\nrm -rf \"${frameworks_path}/Chromium Embedded Framework.framework\"\nrm -rf \"${frameworks_path}/editors_helper.app\"\nrm -rf \"${frameworks_path}/editors_helper (GPU).app\"\nrm -rf \"${frameworks_path}/editors_helper (Renderer).app\"\nrm -rf \"${frameworks_path}/libascdocumentscore.dylib\"\nrm -rf \"${frameworks_path}/libooxmlsignature.dylib\"\nrm -rf \"${frameworks_path}/libhunspell.dylib\"\n\nif [ ! -d \"${frameworks_path}\" ]; then\nmkdir -p \"${frameworks_path}\"\nfi\n\necho \"Copy libraries and frameworks\"\ncp -Rv \"${core_path}/editors_helper.app\" \"${frameworks_path}/\"\ncp -Rv \"${core_path}/editors_helper (GPU).app\" \"${frameworks_path}/\"\ncp -Rv \"${core_path}/editors_helper (Renderer).app\" \"${frameworks_path}/\"\ncp -Rv \"${core_path}/Chromium Embedded Framework.framework\" \"${frameworks_path}\"\ncp -Rv \"${core_path}/libascdocumentscore.dylib\" \"${frameworks_path}\"\ncp -Rv \"${core_path}/libooxmlsignature.dylib\" \"${frameworks_path}\"\ncp -Rv \"${core_path}/libhunspell.dylib\" \"${frameworks_path}\"\n\n# Fixed paths application\necho \"Fixed dependency paths of application\"\nchange_dependency_path \"${contents_path}/MacOS/${app_name}\" \"@executable_path/../Frameworks/Chromium Embedded Framework.framework/Chromium Embedded Framework\" \"@rpath/Chromium Embedded Framework.framework/Chromium Embedded Framework\"\nchange_dependency_path \"${contents_path}/MacOS/${app_name}\" libascdocumentscore.dylib @rpath/libascdocumentscore.dylib\nchange_dependency_path \"${contents_path}/MacOS/${app_name}\" libooxmlsignature.dylib @rpath/libooxmlsignature.dylib\n\n# Resign the code if required by the build settings to avoid unstable apps\necho \"Sign libraries and frameworks with ${EXPANDED_CODE_SIGN_IDENTITY_NAME}\"\n\ncode_sign_if_enabled \"${frameworks_path}/libooxmlsignature.dylib\"\ncode_sign_if_enabled \"${frameworks_path}/libascdocumentscore.dylib\"\ncode_sign_if_enabled \"${frameworks_path}/libhunspell.dylib\"\n\ncode_sign_if_enabled \"${converter_path}/libDjVuFile.dylib\"\ncode_sign_if_enabled \"${converter_path}/libdoctrenderer.dylib\"\ncode_sign_if_enabled \"${converter_path}/libDocxRenderer.dylib\"\ncode_sign_if_enabled \"${converter_path}/libEpubFile.dylib\"\ncode_sign_if_enabled \"${converter_path}/libFb2File.dylib\"\ncode_sign_if_enabled \"${converter_path}/libgraphics.dylib\"\ncode_sign_if_enabled \"${converter_path}/libHtmlFile2.dylib\"\ncode_sign_if_enabled \"${converter_path}/libHtmlRenderer.dylib\"\ncode_sign_if_enabled \"${converter_path}/libicudata.58.dylib\"\ncode_sign_if_enabled \"${converter_path}/libicuuc.58.dylib\"\ncode_sign_if_enabled \"${converter_path}/libkernel.dylib\"\ncode_sign_if_enabled \"${converter_path}/libkernel_network.dylib\"\ncode_sign_if_enabled \"${converter_path}/libPdfReader.dylib\"\ncode_sign_if_enabled \"${converter_path}/libPdfWriter.dylib\"\ncode_sign_if_enabled \"${converter_path}/libUnicodeConverter.dylib\"\ncode_sign_if_enabled \"${converter_path}/libXpsFile.dylib\"\n\ncodesign --verbose --force --options runtime --entitlements \"${CODE_SIGN_ENTITLEMENTS}\" --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${converter_path}/x2t\"\n\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Chromium Embedded Framework.framework/Libraries/libEGL.dylib\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Chromium Embedded Framework.framework/Libraries/libswiftshader_libEGL.dylib\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Chromium Embedded Framework.framework/Libraries/libGLESv2.dylib\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Chromium Embedded Framework.framework/Libraries/libswiftshader_libGLESv2.dylib\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Chromium Embedded Framework.framework/Libraries/libvk_swiftshader.dylib\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Chromium Embedded Framework.framework\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" --entitlements \"${CODE_SIGN_ENTITLEMENTS}\"  \"${frameworks_path}/editors_helper.app\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" --entitlements \"${CODE_SIGN_ENTITLEMENTS}\"  \"${frameworks_path}/editors_helper (GPU).app\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" --entitlements \"${CODE_SIGN_ENTITLEMENTS}\"  \"${frameworks_path}/editors_helper (Renderer).app\"\n\ncodesign --verbose --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Sparkle.framework/Versions/A/Resources/AutoUpdate.app\"\ncodesign --verbose --force --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Sparkle.framework/Versions/A\"\n\ncodesign --verbose=4 --force --options runtime --entitlements \"${CODE_SIGN_ENTITLEMENTS}\" --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${contents_path}/MacOS/${app_name}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FC5A2D271BABF6E1001ACEB1 /* Copy Library */ = {
@@ -1815,7 +2212,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#!/bin/sh\n\n#exit 0\n\nbase_path=$(pwd)\ncontents_path=${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}\nframeworks_path=\"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}\"\nconverter_path=\"${contents_path}/Resources/converter\"\ncore_path=\"${base_path}/../../build_tools/out/mac_arm64/onlyoffice/desktopeditors\"\napp_name=\"ONLYOFFICE\"\n\n# Signs a framework with the provided identity\ncode_sign_if_enabled() {\n  if [ -n \"${EXPANDED_CODE_SIGN_IDENTITY:-}\" -a \"${CODE_SIGNING_REQUIRED:-}\" != \"NO\" -a \"${CODE_SIGNING_ALLOWED}\" != \"NO\" ]; then\n    # Use the current code_sign_identity\n    echo \"Code Signing $1 with Identity ${EXPANDED_CODE_SIGN_IDENTITY_NAME}\"\n    local code_sign_cmd=\"/usr/bin/codesign --force --sign ${EXPANDED_CODE_SIGN_IDENTITY} ${OTHER_CODE_SIGN_FLAGS:-} --preserve-metadata=identifier,entitlements '$1'\"\n\n    echo \"$code_sign_cmd\"\n    eval \"$code_sign_cmd\"\n  fi\n}\n\n# Change path of dependency library\nchange_dependency_path() {\n  echo \"Rename path for $1 from $2 to $3\"\n  install_name_tool -change \"$2\" \"$3\" \"$1\"\n}\n\nrm -rf \"${frameworks_path}/Chromium Embedded Framework.framework\"\nrm -rf \"${frameworks_path}/editors_helper.app\"\nrm -rf \"${frameworks_path}/editors_helper (GPU).app\"\nrm -rf \"${frameworks_path}/editors_helper (Renderer).app\"\nrm -rf \"${frameworks_path}/libascdocumentscore.dylib\"\nrm -rf \"${frameworks_path}/libooxmlsignature.dylib\"\nrm -rf \"${frameworks_path}/libhunspell.dylib\"\n\nif [ ! -d \"${frameworks_path}\" ]; then\nmkdir -p \"${frameworks_path}\"\nfi\n\necho \"Copy libraries and frameworks\"\ncp -Rv \"${core_path}/editors_helper.app\" \"${frameworks_path}/\"\ncp -Rv \"${core_path}/editors_helper (GPU).app\" \"${frameworks_path}/\"\ncp -Rv \"${core_path}/editors_helper (Renderer).app\" \"${frameworks_path}/\"\ncp -Rv \"${core_path}/Chromium Embedded Framework.framework\" \"${frameworks_path}\"\ncp -Rv \"${core_path}/libascdocumentscore.dylib\" \"${frameworks_path}\"\ncp -Rv \"${core_path}/libooxmlsignature.dylib\" \"${frameworks_path}\"\ncp -Rv \"${core_path}/libhunspell.dylib\" \"${frameworks_path}\"\n\n# Fixed paths application\necho \"Fixed dependency paths of application\"\nchange_dependency_path \"${contents_path}/MacOS/${app_name}\" \"@executable_path/../Frameworks/Chromium Embedded Framework.framework/Chromium Embedded Framework\" \"@rpath/Chromium Embedded Framework.framework/Chromium Embedded Framework\"\nchange_dependency_path \"${contents_path}/MacOS/${app_name}\" libascdocumentscore.dylib @rpath/libascdocumentscore.dylib\nchange_dependency_path \"${contents_path}/MacOS/${app_name}\" libooxmlsignature.dylib @rpath/libooxmlsignature.dylib\n\n# Resign the code if required by the build settings to avoid unstable apps\necho \"Sign libraries and frameworks with ${EXPANDED_CODE_SIGN_IDENTITY_NAME}\"\n\ncode_sign_if_enabled \"${frameworks_path}/libooxmlsignature.dylib\"\ncode_sign_if_enabled \"${frameworks_path}/libascdocumentscore.dylib\"\ncode_sign_if_enabled \"${frameworks_path}/libhunspell.dylib\"\n\ncode_sign_if_enabled \"${converter_path}/libicudata.58.dylib\"\ncode_sign_if_enabled \"${converter_path}/libicuuc.58.dylib\"\ncode_sign_if_enabled \"${converter_path}/libUnicodeConverter.dylib\"\ncode_sign_if_enabled \"${converter_path}/libkernel.dylib\"\ncode_sign_if_enabled \"${converter_path}/libkernel_network.dylib\"\ncode_sign_if_enabled \"${converter_path}/libgraphics.dylib\"\ncode_sign_if_enabled \"${converter_path}/libdoctrenderer.dylib\"\ncode_sign_if_enabled \"${converter_path}/libPdfWriter.dylib\"\ncode_sign_if_enabled \"${converter_path}/libDjVuFile.dylib\"\ncode_sign_if_enabled \"${converter_path}/libPdfReader.dylib\"\ncode_sign_if_enabled \"${converter_path}/libXpsFile.dylib\"\ncode_sign_if_enabled \"${converter_path}/libHtmlFile2.dylib\"\ncode_sign_if_enabled \"${converter_path}/libHtmlRenderer.dylib\"\ncode_sign_if_enabled \"${converter_path}/libEpubFile.dylib\"\ncode_sign_if_enabled \"${converter_path}/libFb2File.dylib\"\n\ncodesign --verbose --force --options runtime --entitlements \"${CODE_SIGN_ENTITLEMENTS}\" --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${converter_path}/x2t\"\n\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Chromium Embedded Framework.framework/Libraries/libEGL.dylib\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Chromium Embedded Framework.framework/Libraries/libswiftshader_libEGL.dylib\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Chromium Embedded Framework.framework/Libraries/libGLESv2.dylib\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Chromium Embedded Framework.framework/Libraries/libswiftshader_libGLESv2.dylib\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Chromium Embedded Framework.framework/Libraries/libvk_swiftshader.dylib\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Chromium Embedded Framework.framework\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" --entitlements \"${CODE_SIGN_ENTITLEMENTS}\"  \"${frameworks_path}/editors_helper.app\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" --entitlements \"${CODE_SIGN_ENTITLEMENTS}\"  \"${frameworks_path}/editors_helper (GPU).app\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" --entitlements \"${CODE_SIGN_ENTITLEMENTS}\"  \"${frameworks_path}/editors_helper (Renderer).app\"\n\ncodesign --verbose --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Sparkle.framework/Versions/A/Resources/AutoUpdate.app\"\ncodesign --verbose --force --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Sparkle.framework/Versions/A\"\n\ncodesign --verbose=4 --force --options runtime --entitlements \"${CODE_SIGN_ENTITLEMENTS}\" --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${contents_path}/MacOS/${app_name}\"\n";
+			shellScript = "#!/bin/sh\n\n#exit 0\n\nbase_path=$(pwd)\ncontents_path=${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}\nframeworks_path=\"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}\"\nconverter_path=\"${contents_path}/Resources/converter\"\ncore_path=\"${base_path}/../../build_tools/out/mac_arm64/onlyoffice/desktopeditors\"\napp_name=\"ONLYOFFICE\"\n\n# Signs a framework with the provided identity\ncode_sign_if_enabled() {\n  if [ -n \"${EXPANDED_CODE_SIGN_IDENTITY:-}\" -a \"${CODE_SIGNING_REQUIRED:-}\" != \"NO\" -a \"${CODE_SIGNING_ALLOWED}\" != \"NO\" ]; then\n    # Use the current code_sign_identity\n    echo \"Code Signing $1 with Identity ${EXPANDED_CODE_SIGN_IDENTITY_NAME}\"\n    local code_sign_cmd=\"/usr/bin/codesign --force --sign ${EXPANDED_CODE_SIGN_IDENTITY} ${OTHER_CODE_SIGN_FLAGS:-} --preserve-metadata=identifier,entitlements '$1'\"\n\n    echo \"$code_sign_cmd\"\n    eval \"$code_sign_cmd\"\n  fi\n}\n\n# Change path of dependency library\nchange_dependency_path() {\n  echo \"Rename path for $1 from $2 to $3\"\n  install_name_tool -change \"$2\" \"$3\" \"$1\"\n}\n\nrm -rf \"${frameworks_path}/Chromium Embedded Framework.framework\"\nrm -rf \"${frameworks_path}/editors_helper.app\"\nrm -rf \"${frameworks_path}/editors_helper (GPU).app\"\nrm -rf \"${frameworks_path}/editors_helper (Renderer).app\"\nrm -rf \"${frameworks_path}/libascdocumentscore.dylib\"\nrm -rf \"${frameworks_path}/libooxmlsignature.dylib\"\nrm -rf \"${frameworks_path}/libhunspell.dylib\"\n\nif [ ! -d \"${frameworks_path}\" ]; then\nmkdir -p \"${frameworks_path}\"\nfi\n\necho \"Copy libraries and frameworks\"\ncp -Rv \"${core_path}/editors_helper.app\" \"${frameworks_path}/\"\ncp -Rv \"${core_path}/editors_helper (GPU).app\" \"${frameworks_path}/\"\ncp -Rv \"${core_path}/editors_helper (Renderer).app\" \"${frameworks_path}/\"\ncp -Rv \"${core_path}/Chromium Embedded Framework.framework\" \"${frameworks_path}\"\ncp -Rv \"${core_path}/libascdocumentscore.dylib\" \"${frameworks_path}\"\ncp -Rv \"${core_path}/libooxmlsignature.dylib\" \"${frameworks_path}\"\ncp -Rv \"${core_path}/libhunspell.dylib\" \"${frameworks_path}\"\n\n# Fixed paths application\necho \"Fixed dependency paths of application\"\nchange_dependency_path \"${contents_path}/MacOS/${app_name}\" \"@executable_path/../Frameworks/Chromium Embedded Framework.framework/Chromium Embedded Framework\" \"@rpath/Chromium Embedded Framework.framework/Chromium Embedded Framework\"\nchange_dependency_path \"${contents_path}/MacOS/${app_name}\" libascdocumentscore.dylib @rpath/libascdocumentscore.dylib\nchange_dependency_path \"${contents_path}/MacOS/${app_name}\" libooxmlsignature.dylib @rpath/libooxmlsignature.dylib\n\n# Resign the code if required by the build settings to avoid unstable apps\necho \"Sign libraries and frameworks with ${EXPANDED_CODE_SIGN_IDENTITY_NAME}\"\n\ncode_sign_if_enabled \"${frameworks_path}/libooxmlsignature.dylib\"\ncode_sign_if_enabled \"${frameworks_path}/libascdocumentscore.dylib\"\ncode_sign_if_enabled \"${frameworks_path}/libhunspell.dylib\"\n\ncode_sign_if_enabled \"${converter_path}/libDjVuFile.dylib\"\ncode_sign_if_enabled \"${converter_path}/libdoctrenderer.dylib\"\ncode_sign_if_enabled \"${converter_path}/libDocxRenderer.dylib\"\ncode_sign_if_enabled \"${converter_path}/libEpubFile.dylib\"\ncode_sign_if_enabled \"${converter_path}/libFb2File.dylib\"\ncode_sign_if_enabled \"${converter_path}/libgraphics.dylib\"\ncode_sign_if_enabled \"${converter_path}/libHtmlFile2.dylib\"\ncode_sign_if_enabled \"${converter_path}/libHtmlRenderer.dylib\"\ncode_sign_if_enabled \"${converter_path}/libicudata.58.dylib\"\ncode_sign_if_enabled \"${converter_path}/libicuuc.58.dylib\"\ncode_sign_if_enabled \"${converter_path}/libkernel.dylib\"\ncode_sign_if_enabled \"${converter_path}/libkernel_network.dylib\"\ncode_sign_if_enabled \"${converter_path}/libPdfReader.dylib\"\ncode_sign_if_enabled \"${converter_path}/libPdfWriter.dylib\"\ncode_sign_if_enabled \"${converter_path}/libUnicodeConverter.dylib\"\ncode_sign_if_enabled \"${converter_path}/libXpsFile.dylib\"\n\ncodesign --verbose --force --options runtime --entitlements \"${CODE_SIGN_ENTITLEMENTS}\" --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${converter_path}/x2t\"\n\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Chromium Embedded Framework.framework/Libraries/libEGL.dylib\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Chromium Embedded Framework.framework/Libraries/libswiftshader_libEGL.dylib\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Chromium Embedded Framework.framework/Libraries/libGLESv2.dylib\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Chromium Embedded Framework.framework/Libraries/libswiftshader_libGLESv2.dylib\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Chromium Embedded Framework.framework/Libraries/libvk_swiftshader.dylib\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Chromium Embedded Framework.framework\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" --entitlements \"${CODE_SIGN_ENTITLEMENTS}\"  \"${frameworks_path}/editors_helper.app\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" --entitlements \"${CODE_SIGN_ENTITLEMENTS}\"  \"${frameworks_path}/editors_helper (GPU).app\"\ncodesign --verbose=4 --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" --entitlements \"${CODE_SIGN_ENTITLEMENTS}\"  \"${frameworks_path}/editors_helper (Renderer).app\"\n\ncodesign --verbose --force --deep --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Sparkle.framework/Versions/A/Resources/AutoUpdate.app\"\ncodesign --verbose --force --options runtime --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${frameworks_path}/Sparkle.framework/Versions/A\"\n\ncodesign --verbose=4 --force --options runtime --entitlements \"${CODE_SIGN_ENTITLEMENTS}\" --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" \"${contents_path}/MacOS/${app_name}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FCB4C73326DD018B0012C20D /* Increment Build Number */ = {
@@ -1934,6 +2331,7 @@
 				FC0BD6B8258B63F700C47F95 /* ASCTitleBackground.m in Sources */,
 				FC0BD6B9258B63F700C47F95 /* ASCConstants.m in Sources */,
 				FC0BD6BA258B63F700C47F95 /* GTMNSString+HTML.m in Sources */,
+				5AA06CC127B1267600D67BEE /* ASCLinguist.m in Sources */,
 				FC0BD6BB258B63F700C47F95 /* ASCTabTouchBar.m in Sources */,
 				FC0BD6BC258B63F700C47F95 /* AppDelegate.mm in Sources */,
 				FC0BD6BD258B63F700C47F95 /* NSAlert+SynchronousSheet.m in Sources */,
@@ -2006,6 +2404,7 @@
 				FCB4C6F426DD018B0012C20D /* ASCTitleBackground.m in Sources */,
 				FCB4C6F526DD018B0012C20D /* ASCConstants.m in Sources */,
 				FCB4C6F626DD018B0012C20D /* GTMNSString+HTML.m in Sources */,
+				5AA06CBD27AC3BA000D67BEE /* ASCLinguist.m in Sources */,
 				FCB4C6F726DD018B0012C20D /* ASCTabTouchBar.m in Sources */,
 				FCB4C6F826DD018B0012C20D /* AppDelegate.mm in Sources */,
 				FCB4C6F926DD018B0012C20D /* NSAlert+SynchronousSheet.m in Sources */,
@@ -2078,6 +2477,7 @@
 				FCA0B3521B9F002B0073EDD4 /* ASCTitleBackground.m in Sources */,
 				FCAC6DF81C195FA6003D2457 /* ASCConstants.m in Sources */,
 				FCC77C60206CDBCE001B7837 /* GTMNSString+HTML.m in Sources */,
+				5AA06CC027B1267200D67BEE /* ASCLinguist.m in Sources */,
 				FCCC2FDB21E5E04000FB9209 /* ASCTabTouchBar.m in Sources */,
 				FCBC426F1B9D650400405301 /* AppDelegate.mm in Sources */,
 				FCC77C5D206CDBCE001B7837 /* NSAlert+SynchronousSheet.m in Sources */,
@@ -2103,6 +2503,36 @@
 				FC81D4BF2035AE3D000FAA9D /* it */,
 				FCEC1A2B219EF1E500617DF3 /* pl */,
 				FC9EA18E225B712D0093CADF /* zh-Hans-CN */,
+				5A7F85D527A00C18006B6E27 /* lv-LV */,
+				5A7F85DB27A020C3006B6E27 /* bg-BG */,
+				5A7F85EE27A08690006B6E27 /* cs */,
+				5A7F85F427A086BB006B6E27 /* da-DK */,
+				5A7F85FA27A086E2006B6E27 /* el-GR */,
+				5A7F860027A1EA16006B6E27 /* be */,
+				5A7F860627A1EA62006B6E27 /* ca */,
+				5A7F860C27A1EAFC006B6E27 /* et-EE */,
+				5A7F861227A1EB2F006B6E27 /* fi-FI */,
+				5A7F862427A1EC3D006B6E27 /* hi-IN */,
+				5A7F862A27A1EC64006B6E27 /* hr-HR */,
+				5A7F863027A1EC7D006B6E27 /* hu-HU */,
+				5A7F863627A1EC9F006B6E27 /* hy-AM */,
+				5A7F863C27A1ECBD006B6E27 /* id */,
+				5A7F864827A1ED0A006B6E27 /* ko-KR */,
+				5A7F864E27A1ED2C006B6E27 /* lo */,
+				5A7F865427A1ED95006B6E27 /* nl-NL */,
+				5A7F865A27A1EDB8006B6E27 /* nn-NO */,
+				5A7F866027A1EDDB006B6E27 /* pt-PT */,
+				5A7F866627A1EE08006B6E27 /* ro-RO */,
+				5A7F866C27A1EE23006B6E27 /* sk-SK */,
+				5A7F867227A1EE3F006B6E27 /* sl-SI */,
+				5A7F867827A1EE5A006B6E27 /* sv-SE */,
+				5A7F867E27A1EE6E006B6E27 /* tr-TR */,
+				5A7F868427A1EE83006B6E27 /* uk-UA */,
+				5A7F868A27A1EF43006B6E27 /* zh-Hant */,
+				5A7F869027A32DAD006B6E27 /* vi-VN */,
+				5A7F869927A32F03006B6E27 /* ja-JP */,
+				5A7F869F27A33011006B6E27 /* ga */,
+				5A7F86A527A33102006B6E27 /* gl */,
 			);
 			name = "Presentation-Reporter.storyboard";
 			sourceTree = "<group>";
@@ -2119,6 +2549,36 @@
 				FC81D4C72035AE3E000FAA9D /* it */,
 				FCEC1A34219EF1EC00617DF3 /* pl */,
 				FC9EA197225B712F0093CADF /* zh-Hans-CN */,
+				5A7F85D427A00C18006B6E27 /* lv-LV */,
+				5A7F85DA27A020C3006B6E27 /* bg-BG */,
+				5A7F85ED27A08690006B6E27 /* cs */,
+				5A7F85F327A086BB006B6E27 /* da-DK */,
+				5A7F85F927A086E2006B6E27 /* el-GR */,
+				5A7F85FF27A1EA16006B6E27 /* be */,
+				5A7F860527A1EA62006B6E27 /* ca */,
+				5A7F860B27A1EAFC006B6E27 /* et-EE */,
+				5A7F861127A1EB2F006B6E27 /* fi-FI */,
+				5A7F862327A1EC3C006B6E27 /* hi-IN */,
+				5A7F862927A1EC64006B6E27 /* hr-HR */,
+				5A7F862F27A1EC7C006B6E27 /* hu-HU */,
+				5A7F863527A1EC9F006B6E27 /* hy-AM */,
+				5A7F863B27A1ECBD006B6E27 /* id */,
+				5A7F864727A1ED0A006B6E27 /* ko-KR */,
+				5A7F864D27A1ED2C006B6E27 /* lo */,
+				5A7F865327A1ED95006B6E27 /* nl-NL */,
+				5A7F865927A1EDB8006B6E27 /* nn-NO */,
+				5A7F865F27A1EDDB006B6E27 /* pt-PT */,
+				5A7F866527A1EE08006B6E27 /* ro-RO */,
+				5A7F866B27A1EE23006B6E27 /* sk-SK */,
+				5A7F867127A1EE3F006B6E27 /* sl-SI */,
+				5A7F867727A1EE5A006B6E27 /* sv-SE */,
+				5A7F867D27A1EE6E006B6E27 /* tr-TR */,
+				5A7F868327A1EE83006B6E27 /* uk-UA */,
+				5A7F868927A1EF43006B6E27 /* zh-Hant */,
+				5A7F868F27A32DAD006B6E27 /* vi-VN */,
+				5A7F869827A32F03006B6E27 /* ja-JP */,
+				5A7F869E27A33011006B6E27 /* ga */,
+				5A7F86A427A33102006B6E27 /* gl */,
 			);
 			name = MoveApplication.strings;
 			sourceTree = "<group>";
@@ -2135,6 +2595,36 @@
 				FCB4C74826DD02630012C20D /* ru */,
 				FCB4C74A26DD02630012C20D /* fr */,
 				FCB4C74C26DD02630012C20D /* zh-Hans-CN */,
+				5A7F85DD27A07E99006B6E27 /* lv-LV */,
+				5A7F85E827A08447006B6E27 /* bg-BG */,
+				5A7F86A727A33C51006B6E27 /* hy-AM */,
+				5A7F870E27A340FF006B6E27 /* be */,
+				5A7F871027A34109006B6E27 /* ca */,
+				5A7F871227A34119006B6E27 /* cs */,
+				5A7F871527A34179006B6E27 /* da-DK */,
+				5A7F871727A34242006B6E27 /* el-GR */,
+				5A7F871927A34274006B6E27 /* hr-HR */,
+				5A7F872E27A346F4006B6E27 /* zh-Hant */,
+				5A7F872F27A346FA006B6E27 /* nl-NL */,
+				5A7F873027A346FD006B6E27 /* et-EE */,
+				5A7F873127A346FF006B6E27 /* fi-FI */,
+				5A7F873227A34700006B6E27 /* gl */,
+				5A7F873327A34703006B6E27 /* hi-IN */,
+				5A7F873427A34705006B6E27 /* hu-HU */,
+				5A7F873527A3470A006B6E27 /* id */,
+				5A7F873627A3470D006B6E27 /* ja-JP */,
+				5A7F873727A34718006B6E27 /* ko-KR */,
+				5A7F873827A3471B006B6E27 /* lo */,
+				5A7F873927A34720006B6E27 /* nn-NO */,
+				5A7F873A27A34724006B6E27 /* pt-PT */,
+				5A7F873B27A34726006B6E27 /* ro-RO */,
+				5A7F873C27A3472B006B6E27 /* sk-SK */,
+				5A7F873D27A3472D006B6E27 /* sl-SI */,
+				5A7F873E27A34730006B6E27 /* sv-SE */,
+				5A7F873F27A34732006B6E27 /* tr-TR */,
+				5A7F874027A34734006B6E27 /* uk-UA */,
+				5A7F874127A34737006B6E27 /* vi-VN */,
+				5A7F874A27A46476006B6E27 /* ga */,
 			);
 			name = EULA.html;
 			sourceTree = "<group>";
@@ -2151,6 +2641,36 @@
 				FCB4C74926DD02630012C20D /* ru */,
 				FCB4C74B26DD02630012C20D /* fr */,
 				FCB4C74D26DD02630012C20D /* zh-Hans-CN */,
+				5A7F85DE27A07EAE006B6E27 /* lv-LV */,
+				5A7F85E727A08447006B6E27 /* bg-BG */,
+				5A7F869327A32DAD006B6E27 /* vi-VN */,
+				5A7F86A827A33C51006B6E27 /* hy-AM */,
+				5A7F870F27A340FF006B6E27 /* be */,
+				5A7F871127A34109006B6E27 /* ca */,
+				5A7F871327A34119006B6E27 /* cs */,
+				5A7F871427A34179006B6E27 /* da-DK */,
+				5A7F871627A34242006B6E27 /* el-GR */,
+				5A7F871827A34264006B6E27 /* hr-HR */,
+				5A7F871A27A3461A006B6E27 /* zh-Hant */,
+				5A7F871B27A3462E006B6E27 /* nl-NL */,
+				5A7F871C27A34633006B6E27 /* et-EE */,
+				5A7F871D27A3463F006B6E27 /* fi-FI */,
+				5A7F871E27A34648006B6E27 /* gl */,
+				5A7F871F27A34652006B6E27 /* hi-IN */,
+				5A7F872027A34656006B6E27 /* hu-HU */,
+				5A7F872127A3465A006B6E27 /* id */,
+				5A7F872427A346AE006B6E27 /* ko-KR */,
+				5A7F872527A346B7006B6E27 /* lo */,
+				5A7F872627A346BB006B6E27 /* nn-NO */,
+				5A7F872727A346C8006B6E27 /* pt-PT */,
+				5A7F872827A346CC006B6E27 /* ro-RO */,
+				5A7F872927A346D0006B6E27 /* sk-SK */,
+				5A7F872A27A346D2006B6E27 /* sl-SI */,
+				5A7F872B27A346D5006B6E27 /* sv-SE */,
+				5A7F872C27A346D8006B6E27 /* tr-TR */,
+				5A7F872D27A346DA006B6E27 /* uk-UA */,
+				5A7F874227A3478C006B6E27 /* ja-JP */,
+				5A7F874927A46464006B6E27 /* ga */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -2167,6 +2687,36 @@
 				FCB4C75E26DD02630012C20D /* ru */,
 				FCB4C76026DD02630012C20D /* fr */,
 				FCB4C76226DD02640012C20D /* zh-Hans-CN */,
+				5A7F85DF27A07EFA006B6E27 /* lv-LV */,
+				5A7F85E527A083EC006B6E27 /* bg-BG */,
+				5A7F86AA27A33C6F006B6E27 /* hy-AM */,
+				5A7F86DE27A33F20006B6E27 /* be */,
+				5A7F86E027A33F2D006B6E27 /* ca */,
+				5A7F86E327A33F39006B6E27 /* cs */,
+				5A7F86E427A33F48006B6E27 /* da-DK */,
+				5A7F86E627A33F5A006B6E27 /* el-GR */,
+				5A7F86E927A33F69006B6E27 /* et-EE */,
+				5A7F86EA27A33F78006B6E27 /* fi-FI */,
+				5A7F86EC27A33F8B006B6E27 /* gl */,
+				5A7F86EE27A33F9E006B6E27 /* hi-IN */,
+				5A7F86F127A33FB2006B6E27 /* hr-HR */,
+				5A7F86F227A33FE7006B6E27 /* hu-HU */,
+				5A7F86F527A33FF5006B6E27 /* id */,
+				5A7F86F727A34001006B6E27 /* ko-KR */,
+				5A7F86F927A3400B006B6E27 /* lo */,
+				5A7F86FB27A3402F006B6E27 /* nl-NL */,
+				5A7F86FC27A34044006B6E27 /* nn-NO */,
+				5A7F86FF27A34056006B6E27 /* pt-PT */,
+				5A7F870127A3406B006B6E27 /* ro-RO */,
+				5A7F870227A34099006B6E27 /* sk-SK */,
+				5A7F870427A340A5006B6E27 /* sl-SI */,
+				5A7F870627A340B6006B6E27 /* sv-SE */,
+				5A7F870927A340C8006B6E27 /* tr-TR */,
+				5A7F870B27A340D5006B6E27 /* uk-UA */,
+				5A7F870D27A340E4006B6E27 /* zh-Hant */,
+				5A7F874427A3495D006B6E27 /* ja-JP */,
+				5A7F874527A3497C006B6E27 /* vi-VN */,
+				5A7F874B27A464CA006B6E27 /* ga */,
 			);
 			name = EULA.html;
 			sourceTree = "<group>";
@@ -2183,6 +2733,36 @@
 				FCB4C75F26DD02630012C20D /* ru */,
 				FCB4C76126DD02640012C20D /* fr */,
 				FCB4C76326DD02640012C20D /* zh-Hans-CN */,
+				5A7F85E027A07F2E006B6E27 /* lv-LV */,
+				5A7F85E627A083ED006B6E27 /* bg-BG */,
+				5A7F869227A32DAD006B6E27 /* vi-VN */,
+				5A7F86A927A33C6F006B6E27 /* hy-AM */,
+				5A7F86DF27A33F20006B6E27 /* be */,
+				5A7F86E127A33F2D006B6E27 /* ca */,
+				5A7F86E227A33F39006B6E27 /* cs */,
+				5A7F86E527A33F48006B6E27 /* da-DK */,
+				5A7F86E727A33F5A006B6E27 /* el-GR */,
+				5A7F86E827A33F69006B6E27 /* et-EE */,
+				5A7F86EB27A33F78006B6E27 /* fi-FI */,
+				5A7F86ED27A33F8B006B6E27 /* gl */,
+				5A7F86EF27A33F9E006B6E27 /* hi-IN */,
+				5A7F86F027A33FB2006B6E27 /* hr-HR */,
+				5A7F86F327A33FE7006B6E27 /* hu-HU */,
+				5A7F86F427A33FF5006B6E27 /* id */,
+				5A7F86F627A34001006B6E27 /* ko-KR */,
+				5A7F86F827A3400B006B6E27 /* lo */,
+				5A7F86FA27A3402F006B6E27 /* nl-NL */,
+				5A7F86FD27A34044006B6E27 /* nn-NO */,
+				5A7F86FE27A34056006B6E27 /* pt-PT */,
+				5A7F870027A3406B006B6E27 /* ro-RO */,
+				5A7F870327A34099006B6E27 /* sk-SK */,
+				5A7F870527A340A5006B6E27 /* sl-SI */,
+				5A7F870727A340B6006B6E27 /* sv-SE */,
+				5A7F870827A340C8006B6E27 /* tr-TR */,
+				5A7F870A27A340D5006B6E27 /* uk-UA */,
+				5A7F870C27A340E4006B6E27 /* zh-Hant */,
+				5A7F874327A348BB006B6E27 /* ja-JP */,
+				5A7F874C27A464D5006B6E27 /* ga */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -2199,6 +2779,36 @@
 				FCB4C77526DD02640012C20D /* ru */,
 				FCB4C77726DD02640012C20D /* fr */,
 				FCB4C77926DD02640012C20D /* zh-Hans-CN */,
+				5A7F85E127A07F4D006B6E27 /* lv-LV */,
+				5A7F85E327A083D1006B6E27 /* bg-BG */,
+				5A7F86AD27A33CA8006B6E27 /* hy-AM */,
+				5A7F86AE27A33CBE006B6E27 /* be */,
+				5A7F86B027A33CD2006B6E27 /* ca */,
+				5A7F86B227A33CF4006B6E27 /* cs */,
+				5A7F86B527A33D08006B6E27 /* da-DK */,
+				5A7F86B727A33D21006B6E27 /* el-GR */,
+				5A7F86B927A33D3A006B6E27 /* et-EE */,
+				5A7F86BA27A33D50006B6E27 /* fi-FI */,
+				5A7F86BC27A33D77006B6E27 /* gl */,
+				5A7F86BF27A33DA9006B6E27 /* hi-IN */,
+				5A7F86C127A33DC4006B6E27 /* hr-HR */,
+				5A7F86C327A33DD3006B6E27 /* hu-HU */,
+				5A7F86C527A33DF4006B6E27 /* id */,
+				5A7F86C727A33E10006B6E27 /* ko-KR */,
+				5A7F86C827A33E21006B6E27 /* lo */,
+				5A7F86CB27A33E42006B6E27 /* nl-NL */,
+				5A7F86CC27A33E5B006B6E27 /* nn-NO */,
+				5A7F86CF27A33E6C006B6E27 /* pt-PT */,
+				5A7F86D027A33E7B006B6E27 /* ro-RO */,
+				5A7F86D227A33E8F006B6E27 /* sk-SK */,
+				5A7F86D427A33E9F006B6E27 /* sl-SI */,
+				5A7F86D627A33EB4006B6E27 /* sv-SE */,
+				5A7F86D827A33EC4006B6E27 /* tr-TR */,
+				5A7F86DA27A33ED1006B6E27 /* uk-UA */,
+				5A7F86DD27A33EF1006B6E27 /* zh-Hant */,
+				5A7F874627A34994006B6E27 /* ja-JP */,
+				5A7F874727A3499B006B6E27 /* vi-VN */,
+				5A7F874E27A464EA006B6E27 /* ga */,
 			);
 			name = EULA.html;
 			sourceTree = "<group>";
@@ -2215,6 +2825,36 @@
 				FCB4C77626DD02640012C20D /* ru */,
 				FCB4C77826DD02640012C20D /* fr */,
 				FCB4C77A26DD02640012C20D /* zh-Hans-CN */,
+				5A7F85E227A07F60006B6E27 /* lv-LV */,
+				5A7F85E427A083D1006B6E27 /* bg-BG */,
+				5A7F869127A32DAD006B6E27 /* vi-VN */,
+				5A7F86AC27A33CA8006B6E27 /* hy-AM */,
+				5A7F86AF27A33CBE006B6E27 /* be */,
+				5A7F86B127A33CD2006B6E27 /* ca */,
+				5A7F86B327A33CF4006B6E27 /* cs */,
+				5A7F86B427A33D08006B6E27 /* da-DK */,
+				5A7F86B627A33D21006B6E27 /* el-GR */,
+				5A7F86B827A33D3A006B6E27 /* et-EE */,
+				5A7F86BB27A33D50006B6E27 /* fi-FI */,
+				5A7F86BD27A33D77006B6E27 /* gl */,
+				5A7F86BE27A33DA9006B6E27 /* hi-IN */,
+				5A7F86C027A33DC4006B6E27 /* hr-HR */,
+				5A7F86C227A33DD3006B6E27 /* hu-HU */,
+				5A7F86C427A33DF4006B6E27 /* id */,
+				5A7F86C627A33E10006B6E27 /* ko-KR */,
+				5A7F86C927A33E21006B6E27 /* lo */,
+				5A7F86CA27A33E42006B6E27 /* nl-NL */,
+				5A7F86CD27A33E5B006B6E27 /* nn-NO */,
+				5A7F86CE27A33E6C006B6E27 /* pt-PT */,
+				5A7F86D127A33E7C006B6E27 /* ro-RO */,
+				5A7F86D327A33E8F006B6E27 /* sk-SK */,
+				5A7F86D527A33E9F006B6E27 /* sl-SI */,
+				5A7F86D727A33EB4006B6E27 /* sv-SE */,
+				5A7F86D927A33EC4006B6E27 /* tr-TR */,
+				5A7F86DB27A33ED1006B6E27 /* uk-UA */,
+				5A7F86DC27A33EF1006B6E27 /* zh-Hant */,
+				5A7F874827A34A06006B6E27 /* ja-JP */,
+				5A7F874D27A464E0006B6E27 /* ga */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -2231,6 +2871,36 @@
 				FC81D4BE2035AE3D000FAA9D /* it */,
 				FCEC1A2A219EF1E500617DF3 /* pl */,
 				FC9EA18D225B712D0093CADF /* zh-Hans-CN */,
+				5A7F85D327A00C18006B6E27 /* lv-LV */,
+				5A7F85D927A020C3006B6E27 /* bg-BG */,
+				5A7F85EC27A08690006B6E27 /* cs */,
+				5A7F85F227A086BB006B6E27 /* da-DK */,
+				5A7F85F827A086E2006B6E27 /* el-GR */,
+				5A7F85FE27A1EA16006B6E27 /* be */,
+				5A7F860427A1EA62006B6E27 /* ca */,
+				5A7F860A27A1EAFB006B6E27 /* et-EE */,
+				5A7F861027A1EB2E006B6E27 /* fi-FI */,
+				5A7F862227A1EC3C006B6E27 /* hi-IN */,
+				5A7F862827A1EC64006B6E27 /* hr-HR */,
+				5A7F862E27A1EC7C006B6E27 /* hu-HU */,
+				5A7F863427A1EC9F006B6E27 /* hy-AM */,
+				5A7F863A27A1ECBD006B6E27 /* id */,
+				5A7F864627A1ED0A006B6E27 /* ko-KR */,
+				5A7F864C27A1ED2C006B6E27 /* lo */,
+				5A7F865227A1ED95006B6E27 /* nl-NL */,
+				5A7F865827A1EDB8006B6E27 /* nn-NO */,
+				5A7F865E27A1EDDA006B6E27 /* pt-PT */,
+				5A7F866427A1EE08006B6E27 /* ro-RO */,
+				5A7F866A27A1EE23006B6E27 /* sk-SK */,
+				5A7F867027A1EE3F006B6E27 /* sl-SI */,
+				5A7F867627A1EE5A006B6E27 /* sv-SE */,
+				5A7F867C27A1EE6E006B6E27 /* tr-TR */,
+				5A7F868227A1EE83006B6E27 /* uk-UA */,
+				5A7F868827A1EF43006B6E27 /* zh-Hant */,
+				5A7F868E27A32DAD006B6E27 /* vi-VN */,
+				5A7F869727A32F03006B6E27 /* ja-JP */,
+				5A7F869D27A33011006B6E27 /* ga */,
+				5A7F86A327A33102006B6E27 /* gl */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -2247,6 +2917,37 @@
 				FC81D4C62035AE3E000FAA9D /* it */,
 				FCEC1A33219EF1EA00617DF3 /* pl */,
 				FC9EA196225B712E0093CADF /* zh-Hans-CN */,
+				5A7F85D227A00C18006B6E27 /* lv-LV */,
+				5A7F85D827A020C2006B6E27 /* bg-BG */,
+				5A7F85EB27A08690006B6E27 /* cs */,
+				5A7F85F127A086BB006B6E27 /* da-DK */,
+				5A7F85F727A086E2006B6E27 /* el-GR */,
+				5A7F85FD27A1EA16006B6E27 /* be */,
+				5A7F860327A1EA62006B6E27 /* ca */,
+				5A7F860927A1EAFB006B6E27 /* et-EE */,
+				5A7F860F27A1EB2E006B6E27 /* fi-FI */,
+				5A7F861527A1EB54006B6E27 /* ga-IE */,
+				5A7F862127A1EC3C006B6E27 /* hi-IN */,
+				5A7F862727A1EC64006B6E27 /* hr-HR */,
+				5A7F862D27A1EC7C006B6E27 /* hu-HU */,
+				5A7F863327A1EC9F006B6E27 /* hy-AM */,
+				5A7F863927A1ECBD006B6E27 /* id */,
+				5A7F864527A1ED0A006B6E27 /* ko-KR */,
+				5A7F864B27A1ED2B006B6E27 /* lo */,
+				5A7F865127A1ED95006B6E27 /* nl-NL */,
+				5A7F865727A1EDB7006B6E27 /* nn-NO */,
+				5A7F865D27A1EDDA006B6E27 /* pt-PT */,
+				5A7F866327A1EE08006B6E27 /* ro-RO */,
+				5A7F866927A1EE23006B6E27 /* sk-SK */,
+				5A7F866F27A1EE3F006B6E27 /* sl-SI */,
+				5A7F867527A1EE5A006B6E27 /* sv-SE */,
+				5A7F867B27A1EE6E006B6E27 /* tr-TR */,
+				5A7F868127A1EE83006B6E27 /* uk-UA */,
+				5A7F868727A1EF43006B6E27 /* zh-Hant */,
+				5A7F868D27A32DAD006B6E27 /* vi-VN */,
+				5A7F869627A32F03006B6E27 /* ja-JP */,
+				5A7F869C27A33011006B6E27 /* ga */,
+				5A7F86A227A33102006B6E27 /* gl */,
 			);
 			name = Localizable.stringsdict;
 			sourceTree = "<group>";
@@ -2263,6 +2964,36 @@
 				FCDDD612208F3C2E008AF573 /* it */,
 				FCEC1A2C219EF1E600617DF3 /* pl */,
 				FC9EA18F225B712E0093CADF /* zh-Hans-CN */,
+				5A7F85D027A00C18006B6E27 /* lv-LV */,
+				5A7F85D627A020C2006B6E27 /* bg-BG */,
+				5A7F85E927A08690006B6E27 /* cs */,
+				5A7F85EF27A086BB006B6E27 /* da-DK */,
+				5A7F85F527A086E2006B6E27 /* el-GR */,
+				5A7F85FB27A1EA16006B6E27 /* be */,
+				5A7F860127A1EA62006B6E27 /* ca */,
+				5A7F860727A1EAFB006B6E27 /* et-EE */,
+				5A7F860D27A1EB2E006B6E27 /* fi-FI */,
+				5A7F861F27A1EC3C006B6E27 /* hi-IN */,
+				5A7F862527A1EC64006B6E27 /* hr-HR */,
+				5A7F862B27A1EC7C006B6E27 /* hu-HU */,
+				5A7F863127A1EC9F006B6E27 /* hy-AM */,
+				5A7F863727A1ECBD006B6E27 /* id */,
+				5A7F864327A1ED0A006B6E27 /* ko-KR */,
+				5A7F864927A1ED2B006B6E27 /* lo */,
+				5A7F864F27A1ED95006B6E27 /* nl-NL */,
+				5A7F865527A1EDB7006B6E27 /* nn-NO */,
+				5A7F865B27A1EDDA006B6E27 /* pt-PT */,
+				5A7F866127A1EE07006B6E27 /* ro-RO */,
+				5A7F866727A1EE23006B6E27 /* sk-SK */,
+				5A7F866D27A1EE3F006B6E27 /* sl-SI */,
+				5A7F867327A1EE59006B6E27 /* sv-SE */,
+				5A7F867927A1EE6E006B6E27 /* tr-TR */,
+				5A7F867F27A1EE83006B6E27 /* uk-UA */,
+				5A7F868527A1EF43006B6E27 /* zh-Hant */,
+				5A7F868B27A32DAD006B6E27 /* vi-VN */,
+				5A7F869427A32F03006B6E27 /* ja-JP */,
+				5A7F869A27A33011006B6E27 /* ga */,
+				5A7F86A027A33101006B6E27 /* gl */,
 			);
 			name = "Document-Sign.storyboard";
 			sourceTree = "<group>";
@@ -2279,6 +3010,36 @@
 				FC81D4C52035AE3E000FAA9D /* it */,
 				FCEC1A32219EF1EA00617DF3 /* pl */,
 				FC9EA195225B712E0093CADF /* zh-Hans-CN */,
+				5A7F85D127A00C18006B6E27 /* lv-LV */,
+				5A7F85D727A020C2006B6E27 /* bg-BG */,
+				5A7F85EA27A08690006B6E27 /* cs */,
+				5A7F85F027A086BB006B6E27 /* da-DK */,
+				5A7F85F627A086E2006B6E27 /* el-GR */,
+				5A7F85FC27A1EA16006B6E27 /* be */,
+				5A7F860227A1EA62006B6E27 /* ca */,
+				5A7F860827A1EAFB006B6E27 /* et-EE */,
+				5A7F860E27A1EB2E006B6E27 /* fi-FI */,
+				5A7F862027A1EC3C006B6E27 /* hi-IN */,
+				5A7F862627A1EC64006B6E27 /* hr-HR */,
+				5A7F862C27A1EC7C006B6E27 /* hu-HU */,
+				5A7F863227A1EC9F006B6E27 /* hy-AM */,
+				5A7F863827A1ECBD006B6E27 /* id */,
+				5A7F864427A1ED0A006B6E27 /* ko-KR */,
+				5A7F864A27A1ED2B006B6E27 /* lo */,
+				5A7F865027A1ED95006B6E27 /* nl-NL */,
+				5A7F865627A1EDB7006B6E27 /* nn-NO */,
+				5A7F865C27A1EDDA006B6E27 /* pt-PT */,
+				5A7F866227A1EE07006B6E27 /* ro-RO */,
+				5A7F866827A1EE23006B6E27 /* sk-SK */,
+				5A7F866E27A1EE3F006B6E27 /* sl-SI */,
+				5A7F867427A1EE59006B6E27 /* sv-SE */,
+				5A7F867A27A1EE6E006B6E27 /* tr-TR */,
+				5A7F868027A1EE83006B6E27 /* uk-UA */,
+				5A7F868627A1EF43006B6E27 /* zh-Hant */,
+				5A7F868C27A32DAD006B6E27 /* vi-VN */,
+				5A7F869527A32F03006B6E27 /* ja-JP */,
+				5A7F869B27A33011006B6E27 /* ga */,
+				5A7F86A127A33101006B6E27 /* gl */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

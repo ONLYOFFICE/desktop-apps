@@ -204,7 +204,7 @@
       </trans-unit>
       <trans-unit id="If you don't review your documents, all your changeses will be lost." xml:space="preserve">
         <source>If you don't review your documents, all your changeses will be lost.</source>
-        <target>If you don't review your documents, all your changeses will be lost.</target>
+        <target state="translated">If you don't review your documents, all your changes will be lost.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="If you have already purchased %@, you should find your activation key in an email confirmation." xml:space="preserve">

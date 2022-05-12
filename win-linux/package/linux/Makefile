@@ -42,17 +42,21 @@ ifneq ($(filter %86,$(UNAME_M)),)
 	TAR_ARCH = x86
 	ARCHITECTURE = 32
 endif
+ifneq ($(filter aarch%,$(UNAME_M)),)
+	RPM_ARCH = aarch64
+	DEB_ARCH = arm64
+	URPMI_ARCH = aarch64
+	APT_RPM_ARCH = aarch64
+	TAR_ARCH = aarch64
+	ARCHITECTURE = arm64
+endif
 
 RPM_BUILD_DIR = $(PWD)/rpm/builddir
-DEB_BUILD_DIR = $(PWD)/deb
-DEB_ASTRA_BUILD_DIR = $(PWD)/deb-astra
 APT_RPM_BUILD_DIR = $(PWD)/apt-rpm/builddir
 URPMI_BUILD_DIR = $(PWD)/urpmi/builddir
 TAR_BUILD_DIR = $(PWD)/tar
 
 RPM_PACKAGE_DIR = $(RPM_BUILD_DIR)/RPMS/$(RPM_ARCH)
-DEB_PACKAGE_DIR = $(DEB_BUILD_DIR)
-DEB_ASTRA_PACKAGE_DIR = $(DEB_ASTRA_BUILD_DIR)
 APT_RPM_PACKAGE_DIR = $(APT_RPM_BUILD_DIR)/RPMS/$(APT_RPM_ARCH)
 URPMI_PACKAGE_DIR = $(URPMI_BUILD_DIR)/RPMS/$(URPMI_ARCH)
 TAR_PACKAGE_DIR = $(TAR_BUILD_DIR)/$(TAR_ARCH)
@@ -60,8 +64,8 @@ TAR_PACKAGE_DIR = $(TAR_BUILD_DIR)/$(TAR_ARCH)
 RPM = $(RPM_PACKAGE_DIR)/$(PACKAGE_NAME)-$(PACKAGE_VERSION).$(RPM_ARCH).rpm
 APT_RPM = $(APT_RPM_PACKAGE_DIR)/$(PACKAGE_NAME)-$(PACKAGE_VERSION).$(APT_RPM_ARCH).rpm
 URPMI = $(URPMI_PACKAGE_DIR)/$(PACKAGE_NAME)-$(PACKAGE_VERSION).$(URPMI_ARCH).rpm
-DEB = $(DEB_PACKAGE_DIR)/$(PACKAGE_NAME)_$(PACKAGE_VERSION)_$(DEB_ARCH).deb
-DEB_ASTRA = $(DEB_PACKAGE_DIR)/$(PACKAGE_NAME)_$(PACKAGE_VERSION)-astra_$(DEB_ARCH).deb
+DEB = deb/$(PACKAGE_NAME)_$(PACKAGE_VERSION)_$(DEB_ARCH).deb
+DEB_ASTRA = deb-astra/$(PACKAGE_NAME)_$(PACKAGE_VERSION)-astra_$(DEB_ARCH).deb
 TAR = $(TAR_PACKAGE_DIR)/$(PACKAGE_NAME)-$(PACKAGE_VERSION)-$(TAR_ARCH).tar.gz
 
 ifeq ($(COMPANY_NAME), ONLYOFFICE)
@@ -94,28 +98,32 @@ LINUX_DEPS += $(BIN_FILES)
 LINUX_DEPS += $(DESKTOP_FILES)
 LINUX_DEPS += $(SYMLINK)
 
-DEB_DEPS += deb/debian/changelog
-DEB_DEPS += deb/debian/control
-DEB_DEPS += deb/debian/postinst
-DEB_DEPS += deb/debian/postrm
-DEB_DEPS += deb/debian/prerm
-DEB_DEPS += deb/debian/rules
-DEB_DEPS += deb/debian/$(PACKAGE_NAME).dirs
-DEB_DEPS += deb/debian/$(PACKAGE_NAME).install
-DEB_DEPS += deb/debian/$(PACKAGE_NAME).links
+DEB_DEPS += deb/build/debian/changelog
+DEB_DEPS += deb/build/debian/compat
+DEB_DEPS += deb/build/debian/control
+DEB_DEPS += deb/build/debian/postinst
+DEB_DEPS += deb/build/debian/postrm
+DEB_DEPS += deb/build/debian/prerm
+DEB_DEPS += deb/build/debian/rules
+DEB_DEPS += deb/build/debian/source/format
+DEB_DEPS += deb/build/debian/$(PACKAGE_NAME).dirs
+DEB_DEPS += deb/build/debian/$(PACKAGE_NAME).install
+DEB_DEPS += deb/build/debian/$(PACKAGE_NAME).links
 
+DEB_ASTRA_DEPS += deb-astra/build/debian/changelog
+DEB_ASTRA_DEPS += deb-astra/build/debian/compat
+DEB_ASTRA_DEPS += deb-astra/build/debian/control
+DEB_ASTRA_DEPS += deb-astra/build/debian/postinst
+DEB_ASTRA_DEPS += deb-astra/build/debian/postrm
+DEB_ASTRA_DEPS += deb-astra/build/debian/prerm
+DEB_ASTRA_DEPS += deb-astra/build/debian/rules
+DEB_ASTRA_DEPS += deb-astra/build/debian/source/format
+DEB_ASTRA_DEPS += deb-astra/build/debian/$(PACKAGE_NAME).dirs
+DEB_ASTRA_DEPS += deb-astra/build/debian/$(PACKAGE_NAME).install
+DEB_ASTRA_DEPS += deb-astra/build/debian/$(PACKAGE_NAME).links
 DEB_ASTRA_DEPS += common/usr/share/flyfm/templates/desktopeditors.docx.desktop
 DEB_ASTRA_DEPS += common/usr/share/flyfm/templates/desktopeditors.xlsx.desktop
 DEB_ASTRA_DEPS += common/usr/share/flyfm/templates/desktopeditors.pptx.desktop
-DEB_ASTRA_DEPS += deb-astra/debian/changelog
-DEB_ASTRA_DEPS += deb-astra/debian/control
-DEB_ASTRA_DEPS += deb-astra/debian/postinst
-DEB_ASTRA_DEPS += deb-astra/debian/postrm
-DEB_ASTRA_DEPS += deb-astra/debian/prerm
-DEB_ASTRA_DEPS += deb-astra/debian/rules
-DEB_ASTRA_DEPS += deb-astra/debian/$(PACKAGE_NAME).dirs
-DEB_ASTRA_DEPS += deb-astra/debian/$(PACKAGE_NAME).install
-DEB_ASTRA_DEPS += deb-astra/debian/$(PACKAGE_NAME).links
 
 INSTALLER_DEPENDENCY += desktopeditor
 
@@ -153,6 +161,9 @@ M4_PARAMS += -D M4_DEB_ARCH='$(DEB_ARCH)'
 ifdef ASTRALINUX_KEYS_DIR
 	M4_PARAMS += -D M4_ASTRALINUX_KEYS_DIR='$(abspath $(ASTRALINUX_KEYS_DIR))'
 endif
+ifdef ASTRALINUX_SIGN_IMAGE
+	M4_PARAMS += -D M4_ASTRALINUX_SIGN_IMAGE='$(ASTRALINUX_SIGN_IMAGE)'
+endif
 
 RPM_PARAMS += --define '_company_name $(COMPANY_NAME)'
 RPM_PARAMS += --define '_product_name $(PRODUCT_NAME)'
@@ -189,6 +200,10 @@ apt-rpm: $(APT_RPM)
 
 urpmi: $(URPMI)
 
+rpm_aarch64 : ARCHITECTURE = arm64
+rpm_aarch64 : RPM_ARCH = aarch64
+rpm_aarch64 : $(RPM)
+
 installer: $(INSTALLER)
 
 PACKAGES += deb rpm apt-rpm urpmi tar
@@ -203,15 +218,12 @@ clean:
 		common/etc \
 		common/opt \
 		$(LINUX_DEPS) \
-		$(DEB_DEPS) \
-		$(DEB_BUILD_DIR)/debian/.debhelper \
-		$(DEB_BUILD_DIR)/debian/files \
-		$(DEB_BUILD_DIR)/debian/$(PACKAGE_NAME)* \
-		$(DEB_PACKAGE_DIR)/*.deb \
-		$(DEB_PACKAGE_DIR)/*.ddeb \
-		$(DEB_PACKAGE_DIR)/../*.buildinfo \
-		$(DEB_PACKAGE_DIR)/../*.changes \
-		$(DEB_ASTRA_BUILD_DIR) \
+		deb/build \
+		deb/*.buildinfo \
+		deb/*.changes \
+		deb/*.ddeb \
+		deb/*.deb \
+		deb-astra \
 		$(RPM_BUILD_DIR) \
 		$(APT_RPM_BUILD_DIR) \
 		$(URPMI_BUILD_DIR) \
@@ -259,22 +271,44 @@ qt-redist:
 		# $(USR_LIB_X64)/libicuuc.so.52
 
 $(RPM): desktopeditor rpm/$(PACKAGE_NAME).spec
-	cd rpm && setarch $(RPM_ARCH) rpmbuild -bb \
+	cd rpm && rpmbuild -bb \
 		--define "_topdir $(RPM_BUILD_DIR)" \
 		--define "_package_arch $(RPM_ARCH)" \
+		--target $(RPM_ARCH) \
 		$(RPM_PARAMS) \
 		package.spec
 
+deb/build/debian/% : deb/template/%
+	mkdir -pv $(@D) && cp -fv $< $@
+
+deb/build/debian/% : deb/template/%.m4
+	mkdir -pv $(@D) && m4 $(M4_PARAMS) $< > $@
+
+deb/build/debian/$(PACKAGE_NAME).% : deb/template/package.%.m4
+	mkdir -pv $(@D) && m4 $(M4_PARAMS) $< > $@
+
+deb-astra/build/debian/% : deb/template/%
+	mkdir -pv $(@D) && cp -fv $< $@
+
+deb-astra/build/debian/% : deb/template/%.m4
+	mkdir -pv $(@D) && \
+	m4 $(M4_PARAMS) -D M4_PACKAGE_VERSION='$(PACKAGE_VERSION)-astra' $< > $@
+
+deb-astra/build/debian/$(PACKAGE_NAME).% : deb/template/package.%.m4
+	mkdir -pv $(@D) && \
+	m4 $(M4_PARAMS) -D M4_PACKAGE_VERSION='$(PACKAGE_VERSION)-astra' $< > $@
+
 $(DEB): desktopeditor $(DEB_DEPS)
-	cd deb && dpkg-buildpackage -b -uc -us --changes-option=-u.
+	cd deb/build && dpkg-buildpackage -b -uc -us
 
 $(DEB_ASTRA): desktopeditor $(DEB_ASTRA_DEPS)
-	cd deb-astra && dpkg-buildpackage -b -uc -us --changes-option=-u.
+	cd deb-astra/build && dpkg-buildpackage -b -uc -us
 
 $(APT_RPM): desktopeditor apt-rpm/$(PACKAGE_NAME).spec
 	cd apt-rpm && setarch $(APT_RPM_ARCH) rpmbuild -bb \
 		--define "_topdir $(APT_RPM_BUILD_DIR)" \
 		--define "_package_arch $(APT_RPM_ARCH)" \
+		--target $(RPM_ARCH) \
 		$(RPM_PARAMS) \
 		package.spec
 
@@ -282,6 +316,7 @@ $(URPMI): desktopeditor urpmi/$(PACKAGE_NAME).spec
 	cd urpmi && setarch $(URPMI_ARCH) rpmbuild -bb \
 		--define "_topdir $(URPMI_BUILD_DIR)" \
 		--define "_package_arch $(URPMI_ARCH)" \
+		--target $(RPM_ARCH) \
 		$(RPM_PARAMS) \
 		package.spec
 
@@ -307,25 +342,9 @@ common/usr/share/applications/$(IMAGEVIEWER_EXEC).desktop : common/usr/share/app
 common/usr/share/applications/$(VIDEOPLAYER_EXEC).desktop : common/usr/share/applications/videoplayer.desktop.m4 common/usr/share/applications/variables.m4
 common/usr/bin/desktopeditors : common/usr/bin/$(DESKTOPEDITORS_EXEC)
 common/usr/bin/$(COMPANY_NAME_LOW) : common/usr/bin/$(DESKTOPEDITORS_EXEC)
-deb/debian/$(PACKAGE_NAME).dirs : deb/debian/package.dirs.m4
-deb/debian/$(PACKAGE_NAME).install : deb/debian/package.install.m4
-deb/debian/$(PACKAGE_NAME).links : deb/debian/package.links.m4
 
-$(BIN_FILES) $(DESKTOP_FILES) deb/debian/$(PACKAGE_NAME).dirs deb/debian/$(PACKAGE_NAME).install deb/debian/$(PACKAGE_NAME).links :
+$(BIN_FILES) $(DESKTOP_FILES) :
 	m4 -I'common/usr/share/applications' $(M4_PARAMS) $< > $@
-
-deb-astra/debian/changelog : deb/debian/changelog.m4 branding
-deb-astra/debian/control : deb/debian/control.m4 branding
-deb-astra/debian/$(PACKAGE_NAME).dirs : deb/debian/package.dirs.m4 branding
-deb-astra/debian/$(PACKAGE_NAME).install : deb/debian/package.install.m4 branding
-deb-astra/debian/$(PACKAGE_NAME).links : deb/debian/package.links.m4 branding
-deb-astra/debian/postinst : deb/debian/postinst.m4 branding
-deb-astra/debian/postrm : deb/debian/postrm.m4 branding
-deb-astra/debian/prerm : deb/debian/prerm.m4 branding
-deb-astra/debian/rules.m4 : branding
-
-deb-astra/debian/changelog deb-astra/debian/control deb-astra/debian/$(PACKAGE_NAME).dirs deb-astra/debian/$(PACKAGE_NAME).install deb-astra/debian/$(PACKAGE_NAME).links deb-astra/debian/postinst deb-astra/debian/postrm deb-astra/debian/prerm :
-	m4 $(M4_PARAMS) -D M4_PACKAGE_VERSION='$(PACKAGE_VERSION)-astra' $< > $@
 
 $(SYMLINK) :
 	ln -srf $< $@

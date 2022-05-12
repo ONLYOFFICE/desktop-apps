@@ -760,7 +760,11 @@ void CTabBar::setTabTheme(int index, TabTheme theme)
 
 void CTabBar::setUIThemeType(bool islight)
 {
+    Q_D(QTabBar);
+
     m_isUIThemeDark = !islight;
+    d->leftB->style()->polish(d->leftB);
+    d->rightB->style()->polish(d->rightB);
 }
 
 void CTabBar::setActiveTabColor(const QString& color)

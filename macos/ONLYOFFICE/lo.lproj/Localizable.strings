@@ -1,0 +1,216 @@
+/* No comment provided by engineer. */
+"%@ Help" = "%@ ຊ່ວຍເຫຼືອ";
+
+/* No comment provided by engineer. */
+"About %@" = "ປະມານ %@";
+
+/* No comment provided by engineer. */
+"Acknowledgments" = "ຮັບຊາບ";
+
+/* No comment provided by engineer. */
+"Before signing the document, it must be saved." = "ກະລຸນນາບັນທືກກ່ອນລົງລາຍເຊັນເອກະສານ.";
+
+/* No comment provided by engineer. */
+"Cancel" = "ຍົກເບີກ";
+
+/* No comment provided by engineer. */
+"Cannot open file of Digital Signature" = "ບໍ່ສາມາດເປີດຟາຍລາຍເຊັນ";
+
+/* No comment provided by engineer. */
+"Cannot open file of Private Key" = "ບໍ່ສາມາດເປີດຟາຍກຸນແຈສ່ວນບຸກຄົນ";
+
+/* No comment provided by engineer. */
+"Cannot open folder of the file location." = "ບໍ່ສາມາດເປີດໂຟນເດີ້ເພື່ອເຂົ້າເຖິງຟາຍ.";
+
+/* No comment provided by engineer. */
+"Comma-Separated Values" = "ແຍກປະເພດ";
+
+/* No comment provided by engineer. */
+"Create portal" = "ສ້າງໜ້າຕ່າງ";
+
+/* No comment provided by engineer. */
+"Delete and Quit" = "ລົບແລະຍົກເລີກ";
+
+/* No comment provided by engineer. */
+"DjVu File" = "ຟາຍ DjVu";
+
+/* No comment provided by engineer. */
+"Do you want to save the changes made to the document \"%@\"?" = "ທ່ານຢາກບັນທືກເອກະສານບໍ່\"%@\"?";
+
+/* No comment provided by engineer. */
+"Document %ld.docx" = "ເອກະສານ %ld.docx";
+
+/* No comment provided by engineer. */
+"Document template" = "ແມ່ແບບເອກະສານ";
+
+/* No comment provided by engineer. */
+"Excel 97-2003 Spreadsheet" = "ຕາຕະລາງ ຟາຍ Excel 97-2003";
+
+/* No comment provided by engineer. */
+"Excel 2007 Spreadsheet" = "ຕາຕະລາງ ຟາຍ  Excel 2007";
+
+/* No comment provided by engineer. */
+"File \"%@\" can not be open or not exist." = "ຟາຍ \"%@\" ບໍ່ມີ ຫຼື ບໍ່ສາມາດເປີດ.";
+
+/* No comment provided by engineer. */
+"File can not be open." = "ຟາຍບໍ່່ສາມາດເປີດ.";
+
+/* No comment provided by engineer. */
+"File Format:" = "ຮູບແບບຟາຍ";
+
+/* No comment provided by engineer. */
+"Hide %@" = "ເຊື່ອງ %@";
+
+/* No comment provided by engineer. */
+"If you don't review your documents, all your changeses will be lost." = "ຖ້າຫາກທ່ານບໍກວດເອກະສານຄືນ, ການປ່ຽນແປງຈະບໍໄດ້ຖືກບັນທືກ.";
+
+/* No comment provided by engineer. */
+"If you have already purchased %@, you should find your activation key in an email confirmation." = "ຖ້າຫາກທ່ານໄດ້ເຮັດການຊຶ່ %@,ທ່ານຈະໄດ້ຮັບອີເມລຢັ້ງຢືນກຸນແຈລະຫັດເປີດການນໍາໃຊ້.";
+
+/* No comment provided by engineer. */
+"License Agreement" = "ສັນຍາ ໃບອະນຸຍາດ";
+
+/* No comment provided by engineer. */
+"Mobipocket e-book" = "ປຶ້ມອີເລັກໂຕຮນິກແບບພົກພາ";
+
+/* No comment provided by engineer. */
+"new-document" = "ເອກະສານໃໝ່";
+
+/* No comment provided by engineer. */
+"new-presentation" = "ພີເຊັນເທຊັນໃໝ່";
+
+/* No comment provided by engineer. */
+"new-spreadsheet" = "ຕາຕະລາງໃໝ່";
+
+/* No comment provided by engineer. */
+"No" = "ບໍ່";
+
+/* No comment provided by engineer. */
+"OK" = "ໄດ້";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE can not open the Digital Signature file. Try opening another file." = "ONLYOFFICE ບໍສາມາດເປີດຟາຍລາຍເຊັນດິຈິຕອນ. ລອງເປີດຟາຍອື່ນ.";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE can not open the Private Key. Try opening another file." = "ONLYOFFICE ບໍ່ສາມາດເປີດກຸນແຈສ່ວນບຸກຄົນ. ລອງເປີດຟາຍອື່ນ.";
+
+/* No comment provided by engineer. */
+"OpenDocument Document Template" = "ເປີດເອກະສານ ແມ່ແບບ ເອກະສານ";
+
+/* No comment provided by engineer. */
+"OpenDocument Presentation Template" = "ເປີດເອກະສານ ແມ່ແບບ ຟີເຊັນເທຊັນ";
+
+/* No comment provided by engineer. */
+"OpenDocument Spreadsheet Template" = "ເປີດເອກະສານ ແມ່ແບບ ຕາຕະລາງເອັກເຊວ";
+
+/* No comment provided by engineer. */
+"Opening" = "ກໍາລັງເປີດ";
+
+/* No comment provided by engineer. */
+"OpenOffice Document" = "OpenOffice ເອກະສານ";
+
+/* No comment provided by engineer. */
+"OpenOffice Presentation" = "OpenOffice ພີເຊັນເທຊັນ";
+
+/* No comment provided by engineer. */
+"OpenOffice Spreadsheet" = "OpenOffice ຕາຕະລາງ";
+
+/* No comment provided by engineer. */
+"PDF File" = "ຟາຍ PDF";
+
+/* No comment provided by engineer. */
+"PDF/A File" = "PDF/A ຟາຍ";
+
+/* No comment provided by engineer. */
+"Plain Text" = "ຂໍຄວາມຫວ່າງເປົ່";
+
+/* No comment provided by engineer. */
+"PowerPoint 97-2003 Presentation" = "PowerPoint 97-2003 ພີເຊັນເທຊັນ";
+
+/* No comment provided by engineer. */
+"PowerPoint 2007 Presentation" = "PowerPoint 2007 ພີເຊັນເທຊັນ";
+
+/* No comment provided by engineer. */
+"PowerPoint Slide Show" = "PowerPoint ສະໄລໂຊ";
+
+/* No comment provided by engineer. */
+"Preparing..." = "ກໍາລັງກະກຽມ...";
+
+/* No comment provided by engineer. */
+"Presentation %ld.pptx" = "ພີເຊັນເທຊັນ %ld.pptx";
+
+/* No comment provided by engineer. */
+"Presentation template" = "Presentation ແມ່ແບບ";
+
+/* No comment provided by engineer. */
+"Quit %@" = "ຍົກເລີກ %@";
+
+/* No comment provided by engineer. */
+"Review Changes..." = "ກວດເບີ່ງການປ່ຽນແປງ...";
+
+/* No comment provided by engineer. */
+"Rich Text Document" = "ເອກະສານ Rich Text";
+
+/* No comment provided by engineer. */
+"Save" = "ບັນທືກ";
+
+/* No comment provided by engineer. */
+"Save the document?" = "ບັນທືກເອກະສານ?";
+
+/* No comment provided by engineer. */
+"Spreadsheet %ld.xlsx" = "ຕາຕະລາງ %ld.xlsx";
+
+/* No comment provided by engineer. */
+"Spreadsheet template" = "Spreadsheet ແມ່ແບບ";
+
+/* No comment provided by engineer. */
+"Thank you for evaluating %@!" = "ຂອບໃຈສໍາລັບການປະເມີນ %@!";
+
+/* No comment provided by engineer. */
+"The document \"%@\" must be built. Continue?" = "ເອກະສານ \"%@\" ຈະຕ້ອງຖືກສ້າງ. ສືບຕໍ່?";
+
+/* No comment provided by engineer. */
+"To open the file location, it must be saved." = "ເພື່ອເປີດຟາຍເອກະສານ, ຈະຕ້ອງບັນທືກກ່ອນ.";
+
+/* No comment provided by engineer. */
+"Unconfirmed" = "ບໍ່ໄດ້ຮັບການຢືນຢັນ";
+
+/* No comment provided by engineer. */
+"Untitled" = "ບໍ່ມີຊື່";
+
+/* No comment provided by engineer. */
+"Version %@ (%@)" = "ເວີຊັນ %1$@ (%2$@)";
+
+/* No comment provided by engineer. */
+"Web Page" = "ໜ້າເວັບ";
+
+/* No comment provided by engineer. */
+"With access to pro features" = "ເຂົ້າເຖິງຄຸນສົມບັດໂປຮ";
+
+/* No comment provided by engineer. */
+"Word 97-2003 Document" = "Word 97-2003 ເອກະສານ";
+
+/* No comment provided by engineer. */
+"Word 2007 Document" = "Word 2007 ເອກະສານ";
+
+/* No comment provided by engineer. */
+"XML Paper Specification" = "XML ຂໍ້ກໍານົດ ເອກະສານ";
+
+/* No comment provided by engineer. */
+"Yes" = "ແມ່ນແລ້ວ";
+
+/* No comment provided by engineer. */
+"You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?" = "ເຈົ້າມີ %1$ld %2$@ ເອກະສານ ທີຍັງບໍໄດ້ຮັບການຢົ້ງຢືນການປ່ຽນແປງ . ທ່ານຢາກກວດຄືນເອກະສານ ກ່ອນປີດບໍ່?";
+
+/* No comment provided by engineer. */
+"You have successfully activated %@." = "ທ່ານເປີດໃຊ້ງານສໍາເລັດແລ້ວ %@.";
+
+/* No comment provided by engineer. */
+"Your changes will be lost if you don’t save them." = "ການປ່ຽນແປງຂອງທ່ານຈະຖືກຍົກເລີກ ຖ້າຫາກທ່ານບໍ່ບັນທືກ.";
+
+/* No comment provided by engineer. */
+"Your subscription has expired.\n\nThe program works in the non-activated mode.\n\nNow you can prolong or upgrade your subscription with a discount." = "ການສະໝັກການນໍາໃຊ້ ໝົດອາຍຸແລ້ວ.\n\nໂປແກຼມເຮັດວຽກໃນຮູບແບບທີ່ບໍ່ໄດ້ເປີດໃຊ້ງານ.\n\nຕອນນີ້ທ່ານສາມາດຍືດຍາວຫລືຍົກລະດັບການສະໝັກໃຊ້ຂອງທ່ານ ແລະມີສ່ວນຫຼຸດ.";
+
+/* No comment provided by engineer. */
+"Your subscription is about to expire\n(%d days left).\n\nWe have a special offer for you." = "ການສະໝັ້ກການນໍາໃຊ້ ຂອງທ່ານໄກ້ຈະໝົດອາຍຸແລ້ວ\n(%d ວັນທີ ຍັງເຫຼືອ).\n\nພວກເຮົາມີຂໍ້ສະເໜີພິເສດສຳລັບທ່ານ.";
+

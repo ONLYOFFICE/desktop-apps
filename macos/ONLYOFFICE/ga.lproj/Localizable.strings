@@ -1,0 +1,213 @@
+/* No comment provided by engineer. */
+"%@ Help" = "%@ Cabhrú";
+
+/* No comment provided by engineer. */
+"About %@" = "Faoi %@";
+
+/* No comment provided by engineer. */
+"Acknowledgments" = "Admhálacha";
+
+/* No comment provided by engineer. */
+"Before signing the document, it must be saved." = "Sula síneofar an doiciméad, caithfear é a shábháil.";
+
+/* No comment provided by engineer. */
+"Cancel" = "Cealaigh";
+
+/* No comment provided by engineer. */
+"Cannot open file of Digital Signature" = "Ní féidir comhad Síniú Digiteach a oscailt";
+
+/* No comment provided by engineer. */
+"Cannot open file of Private Key" = "Ní féidir comhad Eochair Phríobháideach a oscailt";
+
+/* No comment provided by engineer. */
+"Cannot open folder of the file location." = "Ní féidir fillteán de shuíomh an chomhaid a oscailt.";
+
+/* No comment provided by engineer. */
+"Comma-Separated Values" = "Luachanna Scartha le Coma";
+
+/* No comment provided by engineer. */
+"Create portal" = "Cruthaigh tairseach";
+
+/* No comment provided by engineer. */
+"Delete and Quit" = "Scrios agus Scoir";
+
+/* No comment provided by engineer. */
+"DjVu File" = "Comhad DjVu";
+
+/* No comment provided by engineer. */
+"Do you want to save the changes made to the document \"%@\"?" = "Ar mhaith leat na hathruithe a rinneadh ar an doiciméad a shábháil \"%@\"?";
+
+/* No comment provided by engineer. */
+"Document %ld.docx" = "Doiciméad %ld.docx";
+
+/* No comment provided by engineer. */
+"Document template" = "Teimpléad doiciméad";
+
+/* No comment provided by engineer. */
+"Excel 97-2003 Spreadsheet" = "Scarbhileog Excel 97-2003";
+
+/* No comment provided by engineer. */
+"Excel 2007 Spreadsheet" = "Scarbhileog Excel 2007";
+
+/* No comment provided by engineer. */
+"File \"%@\" can not be open or not exist." = "Ní féidir an comhad \"%@\" a oscailt nó gan a bheith ann.";
+
+/* No comment provided by engineer. */
+"File can not be open." = "Ní féidir an comhad a oscailt.";
+
+/* No comment provided by engineer. */
+"File Format:" = "Formáid Comhad:";
+
+/* No comment provided by engineer. */
+"Hide %@" = "Folaigh %@";
+
+/* No comment provided by engineer. */
+"If you don't review your documents, all your changeses will be lost." = "Mura ndéanann tú athbhreithniú ar do dhoiciméid, caillfear do chuid athruithe go léir.";
+
+/* No comment provided by engineer. */
+"If you have already purchased %@, you should find your activation key in an email confirmation." = "Má cheannaigh tú %@ cheana féin, ba cheart duit d’eochair ghníomhachtaithe a fháil i ndeimhniú ríomhphoist.";
+
+/* No comment provided by engineer. */
+"License Agreement" = "Comhaontú Ceadúnais";
+
+/* No comment provided by engineer. */
+"Mobipocket e-book" = "Mobipocket e-book";
+
+/* No comment provided by engineer. */
+"new-document" = "Doiciméad Nua";
+
+/* No comment provided by engineer. */
+"new-presentation" = "Cur i Láthair Nua";
+
+/* No comment provided by engineer. */
+"new-spreadsheet" = "Scarbhileog Nua";
+
+/* No comment provided by engineer. */
+"No" = "Níl";
+
+/* No comment provided by engineer. */
+"OK" = "OK";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE can not open the Digital Signature file. Try opening another file." = "Ní féidir le ONLYOFFICE an comhad Síniú Digiteach a oscailt. Bain triail as comhad eile a oscailt";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE can not open the Private Key. Try opening another file." = "Ní féidir le ONLYOFFICE an Eochair Phríobháideach a oscailt. Bain triail as comhad eile a oscailt";
+
+/* No comment provided by engineer. */
+"OpenDocument Document Template" = "Teimpléad doiciméid OpenDocument";
+
+/* No comment provided by engineer. */
+"OpenDocument Presentation Template" = "Teimpléad Láithreoireachta OpenDocument";
+
+/* No comment provided by engineer. */
+"OpenDocument Spreadsheet Template" = "Teimpléad Scarbhileog OpenDocument";
+
+/* No comment provided by engineer. */
+"Opening" = "Ag Oscailt";
+
+/* No comment provided by engineer. */
+"OpenOffice Document" = "Doiciméad OpenOffice";
+
+/* No comment provided by engineer. */
+"OpenOffice Presentation" = "Láithreoireacht OpenOffice";
+
+/* No comment provided by engineer. */
+"OpenOffice Spreadsheet" = "Scarbhileog OpenOffice";
+
+/* No comment provided by engineer. */
+"PDF File" = "Comhad PDF";
+
+/* No comment provided by engineer. */
+"PDF/A File" = "Comhad PDF/A";
+
+/* No comment provided by engineer. */
+"Plain Text" = "Téacs Plain";
+
+/* No comment provided by engineer. */
+"PowerPoint 97-2003 Presentation" = "Cur i láthair PowerPoint 97-2003";
+
+/* No comment provided by engineer. */
+"PowerPoint 2007 Presentation" = "Cur i láthair PowerPoint 2007";
+
+/* No comment provided by engineer. */
+"PowerPoint Slide Show" = "Taispeántas sleamhnán PowerPoint";
+
+/* No comment provided by engineer. */
+"Preparing..." = "Ag Ullmhú...";
+
+/* No comment provided by engineer. */
+"Presentation %ld.pptx" = "Cur i láthair %ld.pptx";
+
+/* No comment provided by engineer. */
+"Presentation template" = "Teimpléad Láithreoireachta";
+
+/* No comment provided by engineer. */
+"Quit %@" = "Scoir %@";
+
+/* No comment provided by engineer. */
+"Review Changes..." = "Athruithe Athbhreithnithe...";
+
+/* No comment provided by engineer. */
+"Rich Text Document" = "Doiciméad méith-théacs";
+
+/* No comment provided by engineer. */
+"Save" = "Sábháil";
+
+/* No comment provided by engineer. */
+"Save the document?" = "Sábháil an doiciméad ?";
+
+/* No comment provided by engineer. */
+"Spreadsheet %ld.xlsx" = "Scarbhileog %ld.xlsx";
+
+/* No comment provided by engineer. */
+"Spreadsheet template" = "Teimpléad Scarbhileog";
+
+/* No comment provided by engineer. */
+"Thank you for evaluating %@!" = "Go raibh maith agat as meastóireacht a dhéanamh %@!";
+
+/* No comment provided by engineer. */
+"The document \"%@\" must be built. Continue?" = "Caithfear an doiciméad ‘%@’ a thógáil. Leanúint ar aghaidh ?\t";
+
+/* No comment provided by engineer. */
+"To open the file location, it must be saved." = "Chun suíomh an chomhaid a oscailt, caithfear é a shábháil.";
+
+/* No comment provided by engineer. */
+"Unconfirmed" = "Neamhdhearbhaithe";
+
+/* No comment provided by engineer. */
+"Untitled" = "Gan ainm";
+
+/* No comment provided by engineer. */
+"Version %@ (%@)" = "Leagan %1$@ (%2$@)";
+
+/* No comment provided by engineer. */
+"Web Page" = "Leathanach Gréasáin";
+
+/* No comment provided by engineer. */
+"Word 97-2003 Document" = "Doiciméad Word 97-2003";
+
+/* No comment provided by engineer. */
+"Word 2007 Document" = "Doiciméad Word 2007";
+
+/* No comment provided by engineer. */
+"XML Paper Specification" = "Sonraíocht Páipéar XML";
+
+/* No comment provided by engineer. */
+"Yes" = "Tá";
+
+/* No comment provided by engineer. */
+"You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?" = "Tá cáipéisí %1$ld %2$@ agat le hathruithe neamhdhearbhaithe. Ar mhaith leat na hathruithe seo a athbhreithniú sula scoireann tú?";
+
+/* No comment provided by engineer. */
+"You have successfully activated %@." = "D'éirigh leat a ghníomhachtú %@.";
+
+/* No comment provided by engineer. */
+"Your changes will be lost if you don’t save them." = "Caillfear d’athruithe mura sábhálann tú iad.";
+
+/* No comment provided by engineer. */
+"Your subscription has expired.\n\nThe program works in the non-activated mode.\n\nNow you can prolong or upgrade your subscription with a discount." = "Tá do shíntiús imithe in éag.\n\nOibríonn an clár sa mhodh neamhghníomhachtaithe.\n\nAnois is féidir leat do shíntiús a fhadú nó a uasghrádú le lascaine.";
+
+/* No comment provided by engineer. */
+"Your subscription is about to expire\n(%d days left).\n\nWe have a special offer for you." = "Tá do shíntiús ar tí dul in éag\n(%d lá fágtha).\n\nTá tairiscint speisialta againn duit.";
+

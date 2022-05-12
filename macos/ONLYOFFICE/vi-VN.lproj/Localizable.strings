@@ -1,0 +1,237 @@
+/* No comment provided by engineer. */
+"%@ Help" = "@ Hỗ trợ";
+
+/* No comment provided by engineer. */
+"About %@" = "Về ứng dụng %@";
+
+/* No comment provided by engineer. */
+"Acknowledgments" = "Ghi nhận";
+
+/* No comment provided by engineer. */
+"Before signing the document, it must be saved." = "Trước khi ký, tài liệu phải được lưu.";
+
+/* No comment provided by engineer. */
+"Cancel" = "Hủy";
+
+/* No comment provided by engineer. */
+"Cannot open file of Digital Signature" = "Không thể mở tập tin Chữ ký điện tử";
+
+/* No comment provided by engineer. */
+"Cannot open file of Private Key" = "Không thể mở tập tin Mã khóa riêng";
+
+/* No comment provided by engineer. */
+"Cannot open folder of the file location." = "Khổng thể mở thư mục chứa tập tin.";
+
+/* No comment provided by engineer. */
+"Comma-Separated Values" = "Giá trị được tách bằng dấu phẩy";
+
+/* No comment provided by engineer. */
+"Create portal" = "Tạo cổng";
+
+/* No comment provided by engineer. */
+"Delete and Quit" = "Xóa và thoát";
+
+/* No comment provided by engineer. */
+"DjVu File" = "Tập tin DjVu";
+
+/* No comment provided by engineer. */
+"Do you want to save the changes made to the document \"%@\"?" = "Bạn có muốn lưu những thay đổi đã thực hiện đối với tài liệu \"%@\"?";
+
+/* No comment provided by engineer. */
+"Document %ld.docx" = "Văn bản %ld.docx";
+
+/* No comment provided by engineer. */
+"Document template" = "Mẫu văn bản";
+
+/* No comment provided by engineer. */
+"Don't Save" = "";
+
+/* No comment provided by engineer. */
+"Electronic Publication" = "";
+
+/* No comment provided by engineer. */
+"Excel 97-2003 Spreadsheet" = "Bảng tính Excel 97-2003";
+
+/* No comment provided by engineer. */
+"Excel 2007 Spreadsheet" = "Bảng tính Excel 2007";
+
+/* No comment provided by engineer. */
+"FictionBook File" = "";
+
+/* No comment provided by engineer. */
+"File \"%@\" can not be open or not exist." = "Không thể mở tập tin \"%@\" hoặc nó không tồn tại.";
+
+/* No comment provided by engineer. */
+"File can not be open." = "Không thể mở tập tin.";
+
+/* No comment provided by engineer. */
+"File Format:" = "Định dạng tập tin:";
+
+/* No comment provided by engineer. */
+"Hide %@" = "Ẩn %@";
+
+/* No comment provided by engineer. */
+"HTML File" = "";
+
+/* No comment provided by engineer. */
+"If you don't review your documents, all your changeses will be lost." = "Nếu bạn không xem lại tài liệu của mình, tất cả thay đổi sẽ bị mất.";
+
+/* No comment provided by engineer. */
+"If you have already purchased %@, you should find your activation key in an email confirmation." = "Nếu bạn đã mua %@, bạn sẽ tìm thấy mã khóa kích hoạt của mình trong email xác thực.";
+
+/* No comment provided by engineer. */
+"License Agreement" = "Thỏa thuận cấp phép";
+
+/* No comment provided by engineer. */
+"MHT File" = "";
+
+/* No comment provided by engineer. */
+"Mobipocket e-book" = "Sách điện tử Mobipocket";
+
+/* No comment provided by engineer. */
+"new-document" = "Tài liệu mới";
+
+/* No comment provided by engineer. */
+"new-presentation" = "Tập tin trình chiếu mới";
+
+/* No comment provided by engineer. */
+"new-spreadsheet" = "Bảng tính mới";
+
+/* No comment provided by engineer. */
+"No" = "Không";
+
+/* No comment provided by engineer. */
+"OK" = "OK";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE can not open the Digital Signature file. Try opening another file." = "ONLYOFFICE không thể mở chữ ký điện tử. Hãy thử tập tin khác.";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE can not open the Private Key. Try opening another file." = "ONLYOFFICE không thể mở mã khóa riêng. Hãy thử mở tập tin khác.";
+
+/* No comment provided by engineer. */
+"OpenDocument Document Template" = "OpenDocument Mẫu văn bản";
+
+/* No comment provided by engineer. */
+"OpenDocument Presentation Template" = "OpenDocument Mẫu trình chiếu";
+
+/* No comment provided by engineer. */
+"OpenDocument Spreadsheet Template" = "OpenDocument Mẫu bảng tính";
+
+/* No comment provided by engineer. */
+"Opening" = "Đang mở";
+
+/* No comment provided by engineer. */
+"OpenOffice Document" = "OpenOffice Văn bản";
+
+/* No comment provided by engineer. */
+"OpenOffice Presentation" = "OpenOffice Trình chiếu";
+
+/* No comment provided by engineer. */
+"OpenOffice Spreadsheet" = "OpenOffice Bảng tính";
+
+/* No comment provided by engineer. */
+"PDF File" = "Tập tinh PDF";
+
+/* No comment provided by engineer. */
+"PDF/A File" = "PDF/A File";
+
+/* No comment provided by engineer. */
+"Plain Text" = "Văn bản thuần";
+
+/* No comment provided by engineer. */
+"PowerPoint 97-2003 Presentation" = "Trình chiếu PowerPoint 97-2003";
+
+/* No comment provided by engineer. */
+"PowerPoint 2007 Presentation" = "Trình chiếu PowerPoint 2007";
+
+/* No comment provided by engineer. */
+"PowerPoint Slide Show" = "Trình chiếu PowerPoint";
+
+/* No comment provided by engineer. */
+"Preparing..." = "Đang chuẩn bị...";
+
+/* No comment provided by engineer. */
+"Presentation %ld.pptx" = "Trình chiếu %ld.pptx";
+
+/* No comment provided by engineer. */
+"Presentation template" = "Không có bình luận của kỹ sư.";
+
+/* No comment provided by engineer. */
+"Presenter View" = "";
+
+/* No comment provided by engineer. */
+"Quit %@" = "Thoát %@";
+
+/* No comment provided by engineer. */
+"Review Changes..." = "Xem thay đổi...";
+
+/* No comment provided by engineer. */
+"Rich Text Document" = "Tài liệu nhiều văn bản";
+
+/* No comment provided by engineer. */
+"Save" = "Lưu";
+
+/* No comment provided by engineer. */
+"Save the document?" = "Lưu tập tin?";
+
+/* No comment provided by engineer. */
+"Signature Details" = "";
+
+/* No comment provided by engineer. */
+"Spreadsheet %ld.xlsx" = "Bảng tính %ld.xlsx";
+
+/* No comment provided by engineer. */
+"Spreadsheet template" = "Mẫu bảng tính";
+
+/* No comment provided by engineer. */
+"Thank you for evaluating %@!" = "Cám ơn bạn đã đánh giá %@!";
+
+/* No comment provided by engineer. */
+"The document \"%@\" must be built. Continue?" = "Tập tin \"%@\" phải được xây dựng. Tiếp tục?";
+
+/* No comment provided by engineer. */
+"To open the file location, it must be saved." = "Để mở mục chứa tập tin, nó phải được lưu.";
+
+/* No comment provided by engineer. */
+"Unconfirmed" = "Chưa được xác nhận";
+
+/* No comment provided by engineer. */
+"Untitled" = "";
+
+/* No comment provided by engineer. */
+"Version %@ (%@)" = "Phiên bản %1$@ (%2$@)";
+
+/* No comment provided by engineer. */
+"Web Page" = "Trang Web";
+
+/* No comment provided by engineer. */
+"With access to pro features" = "";
+
+/* No comment provided by engineer. */
+"Word 97-2003 Document" = "Tập tin Word 97-2003";
+
+/* No comment provided by engineer. */
+"Word 2007 Document" = "Tập tin Word 2007";
+
+/* No comment provided by engineer. */
+"XML Paper Specification" = "Tiêu chuẩn giấy XML";
+
+/* No comment provided by engineer. */
+"Yes" = "Có";
+
+/* No comment provided by engineer. */
+"You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?" = "Bạn có %1$ld %2$@ tập tin chưa được xác nhận thay đổi. Bạn có muốn xem lại những thay đổi này trước khi thoát không?";
+
+/* No comment provided by engineer. */
+"You have successfully activated %@." = "Bạn đã kích hoạt thành công %@.";
+
+/* No comment provided by engineer. */
+"Your changes will be lost if you don’t save them." = "Những thay đổi của bạn sẽ mất đi nếu bạn không lưu chúng.";
+
+/* No comment provided by engineer. */
+"Your subscription has expired.\n\nThe program works in the non-activated mode.\n\nNow you can prolong or upgrade your subscription with a discount." = "Gói dịch vụ của bạn đã hết hạn.\n\nChương trình hoạt động ở chế độ không kích hoạt.\n\nGiờ đây bạn có thể kéo dài gói dịch vụ của mình hoặc nâng cấp với ưu đãi giảm phí.";
+
+/* No comment provided by engineer. */
+"Your subscription is about to expire\n(%d days left).\n\nWe have a special offer for you." = "Gói dịch vụ của bạn đã hết hạn.\n(Còn %d ngày).\n\nChúng tôi có ưu đãi đặc biệt dành cho bạn.";
+

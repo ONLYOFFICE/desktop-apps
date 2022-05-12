@@ -1,0 +1,210 @@
+/* No comment provided by engineer. */
+"%@ Help" = "%@ 說明";
+
+/* No comment provided by engineer. */
+"About %@" = "關於 %@";
+
+/* No comment provided by engineer. */
+"Acknowledgments" = "版權聲明";
+
+/* No comment provided by engineer. */
+"Before signing the document, it must be saved." = "簽署文件以前，必須先儲存文件。";
+
+/* No comment provided by engineer. */
+"Cancel" = "取消";
+
+/* No comment provided by engineer. */
+"Cannot open file of Digital Signature" = "無法開啟數位簽章的檔案";
+
+/* No comment provided by engineer. */
+"Cannot open file of Private Key" = "無法開啟私密金鑰的檔案";
+
+/* No comment provided by engineer. */
+"Cannot open folder of the file location." = "無法開啟檔案位址的資料夾。";
+
+/* No comment provided by engineer. */
+"Comma-Separated Values" = "逗點分隔值";
+
+/* No comment provided by engineer. */
+"Create portal" = "創造入口";
+
+/* No comment provided by engineer. */
+"Delete and Quit" = "刪除並結束";
+
+/* No comment provided by engineer. */
+"DjVu File" = "DjVu 檔案";
+
+/* No comment provided by engineer. */
+"Do you want to save the changes made to the document \"%@\"?" = "您要儲存文件 \"%@\" 已做的變更嗎嗎？";
+
+/* No comment provided by engineer. */
+"Document %ld.docx" = "文件 %ld.docx";
+
+/* No comment provided by engineer. */
+"Document template" = "文件範本";
+
+/* No comment provided by engineer. */
+"Excel 97-2003 Spreadsheet" = "Excel 97-2003 試算表";
+
+/* No comment provided by engineer. */
+"Excel 2007 Spreadsheet" = "Excel 2007 試算表";
+
+/* No comment provided by engineer. */
+"File \"%@\" can not be open or not exist." = "檔案 \"%@\" 無法開啟或不存在。";
+
+/* No comment provided by engineer. */
+"File can not be open." = "檔案無法開啟。";
+
+/* No comment provided by engineer. */
+"File Format:" = "檔案格式​​:";
+
+/* No comment provided by engineer. */
+"Hide %@" = "隱藏 %@";
+
+/* No comment provided by engineer. */
+"If you have already purchased %@, you should find your activation key in an email confirmation." = "如您已購買 %@，您會在電子郵件確認信中取得您的啟用金鑰。";
+
+/* No comment provided by engineer. */
+"License Agreement" = "授權合約";
+
+/* No comment provided by engineer. */
+"Mobipocket e-book" = "Mobipocket 電子書";
+
+/* No comment provided by engineer. */
+"new-document" = "新文件";
+
+/* No comment provided by engineer. */
+"new-presentation" = "新簡報";
+
+/* No comment provided by engineer. */
+"new-spreadsheet" = "新試算表";
+
+/* No comment provided by engineer. */
+"No" = "否";
+
+/* No comment provided by engineer. */
+"OK" = "好";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE can not open the Digital Signature file. Try opening another file." = "無法開啟數位簽章的檔案，嘗試開啟另一個檔案。";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE can not open the Private Key. Try opening another file." = "ONLYOFFICE無法開啟私密金鑰的檔案，嘗試開啟另一個檔案。";
+
+/* No comment provided by engineer. */
+"OpenDocument Document Template" = "OpenDocument 文件範本";
+
+/* No comment provided by engineer. */
+"OpenDocument Presentation Template" = "OpenDocument 簡報範本";
+
+/* No comment provided by engineer. */
+"OpenDocument Spreadsheet Template" = "OpenDocument試算表範本";
+
+/* No comment provided by engineer. */
+"Opening" = "正在開啟";
+
+/* No comment provided by engineer. */
+"OpenOffice Document" = "OpenOffice 文件";
+
+/* No comment provided by engineer. */
+"OpenOffice Presentation" = "OpenOffice 簡報";
+
+/* No comment provided by engineer. */
+"OpenOffice Spreadsheet" = "OpenOffice 試算表";
+
+/* No comment provided by engineer. */
+"PDF File" = "PDF 文件";
+
+/* No comment provided by engineer. */
+"PDF/A File" = "PDF/單一檔案";
+
+/* No comment provided by engineer. */
+"Plain Text" = "純文字";
+
+/* No comment provided by engineer. */
+"PowerPoint 97-2003 Presentation" = "PowerPoint 97-2003 簡報";
+
+/* No comment provided by engineer. */
+"PowerPoint 2007 Presentation" = "PowerPoint 2007 簡報";
+
+/* No comment provided by engineer. */
+"PowerPoint Slide Show" = "PowerPoint 投影片";
+
+/* No comment provided by engineer. */
+"Preparing..." = "準備中...";
+
+/* No comment provided by engineer. */
+"Presentation %ld.pptx" = "簡報 %ld.pptx";
+
+/* No comment provided by engineer. */
+"Presentation template" = "簡報範本";
+
+/* No comment provided by engineer. */
+"Quit %@" = "結束 %@";
+
+/* No comment provided by engineer. */
+"Review Changes..." = "檢閱變更...";
+
+/* No comment provided by engineer. */
+"Rich Text Document" = "RTF 文字文件";
+
+/* No comment provided by engineer. */
+"Save" = "儲存";
+
+/* No comment provided by engineer. */
+"Save the document?" = "儲存文件？";
+
+/* No comment provided by engineer. */
+"Spreadsheet %ld.xlsx" = "試算表 %ld.xlsx";
+
+/* No comment provided by engineer. */
+"Spreadsheet template" = "試算表範本";
+
+/* No comment provided by engineer. */
+"Thank you for evaluating %@!" = "謝謝您評估 %@！";
+
+/* No comment provided by engineer. */
+"The document \"%@\" must be built. Continue?" = "必須建立 \"%@\" 文件。 繼續嗎？";
+
+/* No comment provided by engineer. */
+"To open the file location, it must be saved." = "必須先完成儲存後，再開啟檔案位址。";
+
+/* No comment provided by engineer. */
+"Unconfirmed" = "未確認";
+
+/* No comment provided by engineer. */
+"Untitled" = "未命名";
+
+/* No comment provided by engineer. */
+"Version %@ (%@)" = "版本 %1$@ (%2$@)";
+
+/* No comment provided by engineer. */
+"Web Page" = "網頁";
+
+/* No comment provided by engineer. */
+"Word 97-2003 Document" = "Word 97-2003 文件";
+
+/* No comment provided by engineer. */
+"Word 2007 Document" = "Word 2007 文件";
+
+/* No comment provided by engineer. */
+"XML Paper Specification" = "XML 文件規格";
+
+/* No comment provided by engineer. */
+"Yes" = "是";
+
+/* No comment provided by engineer. */
+"You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?" = "您有 %1$ld %2$@ 份文件有未確認的變更，您要在結束前檢閱這些變更嗎？";
+
+/* No comment provided by engineer. */
+"You have successfully activated %@." = "您已成功啟用 %@。";
+
+/* No comment provided by engineer. */
+"Your changes will be lost if you don’t save them." = "如不儲存變更，您的變更將遺失。";
+
+/* No comment provided by engineer. */
+"Your subscription has expired.\n\nThe program works in the non-activated mode.\n\nNow you can prolong or upgrade your subscription with a discount." = "您的訂閱已過期。\n\n此程式目前以未啟用的模式運作。\n\n現在，您可享有延長或升級訂閱的優惠。";
+
+/* No comment provided by engineer. */
+"Your subscription is about to expire\n(%d days left).\n\nWe have a special offer for you." = "您的訂閱即將到期\n(剩下 %d 天)。\n\n我們為您提供一項特別優惠。";
+

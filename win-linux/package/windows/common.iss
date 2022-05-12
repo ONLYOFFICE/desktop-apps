@@ -35,6 +35,8 @@
   #include sBrandingFile
 #endif
 
+#define sUpgradeCode                 "607FEE744E0B34C449B45E9F419BB297"
+
 #include "utils.iss"
 #include "associate_page.iss"
 
@@ -126,7 +128,11 @@ Name: sk; MessagesFile: compiler:Languages\Slovak.isl;     LicenseFile: {#sBrand
 Name: sl; MessagesFile: compiler:Languages\Slovenian.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 Name: sv; MessagesFile: compiler:Languages\Swedish.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 Name: tr; MessagesFile: compiler:Languages\Turkish.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
+#if Int(DecodeVer(PREPROCVER,1)) < 6
 Name: vi; MessagesFile: compiler:Languages\Vietnamese.islu; LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
+#else
+Name: vi; MessagesFile: compiler:Languages\Vietnamese.isl; LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
+#endif
 Name: zh_CN; MessagesFile: compiler:Languages\ChineseTraditional.isl;  LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 ;Name: hy_AM; MessagesFile: compiler:Languages\Armenian.islu;    LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 ;Name: hr; MessagesFile: compiler:Languages\Croatian.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
@@ -147,6 +153,9 @@ lo.LanguageName=ພາສາລາວ
 ;ga_IE.LanguageName=Gaeilge
 
 [CustomMessages]
+;======================================================================================================
+en.PrevVer=The previous version of {#sAppName} detected, please click 'OK' button to uninstall it, or 'Cancel' to quit setup.
+ru.PrevVer=Обнаружена предыдущая версия {#sAppName}, нажмите кнопку 'OK' что бы удалить ей, или 'Отменить' что бы выйти из программы инсталляции.
 ;======================================================================================================
 en.Launch =Launch %1
 bg.Launch =Пускане %1
@@ -508,6 +517,79 @@ var
   isInstalled: Boolean;
 
 procedure GetSystemTimeAsFileTime(var lpFileTime: TFileTime); external 'GetSystemTimeAsFileTime@kernel32.dll';
+
+function UninstallPreviosVersion(): Boolean;
+var
+  ResultCode: Integer;
+  ConfirmUninstall: Integer;
+  ResultString: String;
+  arrayCode: array[1..32] of char;
+  ProductCode: String;
+  tmp: char;
+  i: Integer;
+  j: Integer;
+  Names: TArrayOfString;
+  DeleteString: String;
+begin
+  Result := True;
+  if RegGetValueNames(
+  HKEY_LOCAL_MACHINE, 
+  'SOFTWARE\Microsoft\Windows\CurrentVersion\Installer\UpgradeCodes\{#sUpgradeCode}',
+  Names) then begin
+    ConfirmUninstall := IDOK;
+    if not WizardSilent() then begin
+      ConfirmUninstall := MsgBox(
+                              ExpandConstant('{cm:PrevVer}'),
+                              mbConfirmation,
+                              MB_OKCANCEL);
+    end;
+    
+    for i := 1 to 32 do begin
+      arrayCode[i] := (Names[0])[i];
+    end;
+  
+    ProductCode := '{';
+    
+    for i := 8 downto 1 do begin
+      ProductCode := ProductCode + arrayCode[i];
+    end;
+    
+    ProductCode := ProductCode + '-';
+    
+    for i := 12 downto 9 do begin
+      ProductCode := ProductCode + arrayCode[i];
+    end;
+    
+    ProductCode := ProductCode + '-';
+    
+    for i := 16 downto 13 do begin
+      ProductCode := ProductCode + arrayCode[i];
+    end;
+    
+    ProductCode := ProductCode + '-';
+  
+    j := 17;
+    while j < 32 do begin     
+      tmp := arrayCode[j];
+      arrayCode[j] := arrayCode[j + 1];
+      arrayCode[j + 1] := tmp;
+      j := j + 2;
+    end;
+    
+    for i := 17 to 32 do begin
+      ProductCode := ProductCode + arrayCode[i];
+      if i = 20 then begin
+        ProductCode := ProductCode + '-';
+      end
+    end;
+    
+    ProductCode := ProductCode + '}';
+    
+    DeleteString := 'msiexec.exe /x ' + ProductCode;
+    Exec('>', DeleteString, '', SW_SHOW, ewWaitUntilTerminated, ResultCode);
+  end
+end;
+
 function SendTextMessageTimeout(hWnd: HWND; Msg: UINT; wParam: WPARAM; lParam: PAnsiChar; fuFlags: UINT; uTimeout: UINT; out lpdwResult: DWORD): LRESULT;
   external 'SendMessageTimeoutA@user32.dll stdcall';
 
@@ -520,6 +602,7 @@ var
   path: string;
 begin
   InitializeAssociatePage();
+  UninstallPreviosVersion();
 
   if RegQueryStringValue(GetHKLM(), '{#APP_REG_PATH}', 'AppPath', path) and
         FileExists(path + '\{#NAME_EXE_OUT}') then
@@ -813,9 +896,9 @@ Name: {commonappdata}\{#APP_PATH}\webdata\cloud; Flags: uninsalwaysuninstall;
 
 
 [Files]
-Source: data\vcredist\vcredist_2015_{#sWinArch}.exe; DestDir: {app}; Flags: deleteafterinstall; \
-  AfterInstall: installVCRedist(ExpandConstant('{app}\vcredist_2015_{#sWinArch}.exe'), ExpandConstant('{cm:InstallAdditionalComponents}')); \
-  Check: not checkVCRedist2015;
+Source: data\vcredist\vcredist_2022_{#sWinArch}.exe; DestDir: {app}; Flags: deleteafterinstall; \
+  AfterInstall: installVCRedist(ExpandConstant('{app}\vcredist_2022_{#sWinArch}.exe'), ExpandConstant('{cm:InstallAdditionalComponents}')); \
+  Check: not checkVCRedist2022;
 
 Source: {#sBrandingFolder}\win-linux\package\windows\data\VisualElementsManifest.xml;        DestDir: {app}; DestName: {#VISEFFECTS_MANIFEST_NAME}; MinVersion: 6.3;
 Source: {#sBrandingFolder}\win-linux\package\windows\data\visual_elements_icon_150x150.png;  DestDir: {app}\browser;   MinVersion: 6.3;
