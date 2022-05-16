@@ -1,8 +1,8 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.2" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd">
   <file original="ONLYOFFICE/Base.lproj/Document-Sign.storyboard" source-language="en" datatype="plaintext" target-language="ro-RO">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c" />
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c"/>
     </header>
     <body>
       <trans-unit id="1Fy-mg-aq9.title" xml:space="preserve">
@@ -69,7 +69,7 @@
   </file>
   <file original="ONLYOFFICE/Base.lproj/Localizable.strings" source-language="en" datatype="plaintext" target-language="ro-RO">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c" />
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c"/>
     </header>
     <body>
       <trans-unit id="%@ Help" xml:space="preserve">
@@ -119,7 +119,7 @@
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Comma-Separated Values" xml:space="preserve">
         <source>Comma-Separated Values</source>
-        <target state="translated">Valori separate prin virgulă</target>
+        <target state="translated">Valori separate prin virgulă (*.csv)</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Create portal" xml:space="preserve">
@@ -134,7 +134,7 @@
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="DjVu File" xml:space="preserve">
         <source>DjVu File</source>
-        <target state="translated">Fișierul DjVu</target>
+        <target state="translated">Document Digital (*.djvu)</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Do you want to save the changes made to the document &quot;%@&quot;?" xml:space="preserve">
@@ -149,17 +149,17 @@
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Document template" xml:space="preserve">
         <source>Document template</source>
-<target state="translated">Document șablon</target>
+<target state="translated">Șablon document Word Open XML (*.dotx)</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Excel 97-2003 Spreadsheet" xml:space="preserve">
         <source>Excel 97-2003 Spreadsheet</source>
-        <target state="translated">Foaie de calcul Excel 97-2003</target>
+        <target state="translated">Foaia de calcul Excel 97-2003 (*.xls)</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Excel 2007 Spreadsheet" xml:space="preserve">
         <source>Excel 2007 Spreadsheet</source>
-        <target state="translated">Foaie de calcul Excel 2007</target>
+        <target state="translated">Foaia de calcul Office Open XML (*.xlsx)</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="File &quot;%@&quot; can not be open or not exist." xml:space="preserve">
@@ -199,7 +199,7 @@
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Mobipocket e-book" xml:space="preserve">
         <source>Mobipocket e-book</source>
-        <target state="translated">Mobipocket e-book</target>
+        <target state="translated">Mobipocket e-book (*.mobi)</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="No" xml:space="preserve">
@@ -224,32 +224,32 @@
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="OpenDocument Document Template" xml:space="preserve">
         <source>OpenDocument Document Template</source>
-<target state="translated">Document șablon OpenDocument</target>
+<target state="translated">Șablon document OpenDocument (*.ott)</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="OpenDocument Presentation Template" xml:space="preserve">
         <source>OpenDocument Presentation Template</source>
-<target state="translated">Șablon de prezentare OpenDocument</target>
+<target state="translated">Șablon prezentare OpenDocument (*.otp)</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="OpenDocument Spreadsheet Template" xml:space="preserve">
         <source>OpenDocument Spreadsheet Template</source>
-<target state="translated">Șablon de foaie de calcul OpenDocument</target>
+<target state="translated">Șablon foaie de calcul OpenDocument (*.ots)</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="OpenOffice Document" xml:space="preserve">
         <source>OpenOffice Document</source>
-        <target state="translated">Document OpenOffice</target>
+        <target state="translated">Fișierul text OpenDocument (*.odt)</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="OpenOffice Presentation" xml:space="preserve">
         <source>OpenOffice Presentation</source>
-        <target state="translated">Prezentare OpenOffice</target>
+        <target state="translated">Prezentare OpenDocument (*.odp)</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="OpenOffice Spreadsheet" xml:space="preserve">
         <source>OpenOffice Spreadsheet</source>
-        <target state="translated">Foaie de calcul OpenOffice</target>
+        <target state="translated">Foaie de calcul OpenDocument (*.ods)</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Opening" xml:space="preserve">
@@ -259,32 +259,32 @@
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="PDF File" xml:space="preserve">
         <source>PDF File</source>
-        <target state="translated">Fișier PDF</target>
+        <target state="translated">Formatul de Document Portabil (*.pdf)</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="PDF/A File" xml:space="preserve">
         <source>PDF/A File</source>
-<target state="translated">Fișier PDF/A</target>
+<target state="translated">Formatul de Document Portabil / A (*.pdf)</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Plain Text" xml:space="preserve">
         <source>Plain Text</source>
-        <target state="translated">Text simplu</target>
+        <target state="translated">Fișier text simplu (*.txt)</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="PowerPoint 97-2003 Presentation" xml:space="preserve">
         <source>PowerPoint 97-2003 Presentation</source>
-        <target state="translated">Prezentare PowerPoint 97-2003</target>
+        <target state="translated">Prezentare PowerPoint 97-2003 (*.ppt)</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="PowerPoint 2007 Presentation" xml:space="preserve">
         <source>PowerPoint 2007 Presentation</source>
-        <target state="translated">Prezentare PowerPoint 2007</target>
+        <target state="translated">Prezentare Office Open XML (*.pptx)</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="PowerPoint Slide Show" xml:space="preserve">
         <source>PowerPoint Slide Show</source>
-        <target state="translated">Expunere diapozitive PowerPoint</target>
+        <target state="translated">Expunere diapozitive Office Open XML (*.ppsx)</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Preparing..." xml:space="preserve">
@@ -299,7 +299,7 @@
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Presentation template" xml:space="preserve">
         <source>Presentation template</source>
-<target state="translated">Șablon de prezentare</target>
+<target state="translated">Șablon de prezentare PowerPoint Open XML (*.potx)</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Quit %@" xml:space="preserve">
@@ -314,7 +314,7 @@
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Rich Text Document" xml:space="preserve">
         <source>Rich Text Document</source>
-        <target state="translated">Document în format text îmbogățit</target>
+        <target state="translated">Fișier Format text îmbogățit (*.rtf)</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Save" xml:space="preserve">
@@ -334,7 +334,7 @@
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Spreadsheet template" xml:space="preserve">
         <source>Spreadsheet template</source>
-<target state="translated">Șablon de foaie de calcul</target>
+<target state="translated">Șablon de foaie de calcul Excel Open XML (*.xltx)</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Thank you for evaluating %@!" xml:space="preserve">
@@ -374,17 +374,17 @@
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Word 97-2003 Document" xml:space="preserve">
         <source>Word 97-2003 Document</source>
-        <target state="translated">Word 97-2003 Document</target>
+        <target state="translated">Document Word 97-2003 (*.doc)</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Word 2007 Document" xml:space="preserve">
         <source>Word 2007 Document</source>
-        <target state="translated">Word 2007 Document</target>
+        <target state="translated">Document Office Open XML (*.docx)</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="XML Paper Specification" xml:space="preserve">
         <source>XML Paper Specification</source>
-        <target state="translated">XML Paper Specification</target>
+        <target state="translated">Document OpenXPS (*.xps)</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Yes" xml:space="preserve">
@@ -407,7 +407,7 @@
         <target state="translated">Modificările dumneavoastră vor fi pierdute dacă nu le salvați.</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
-      <trans-unit id="Your subscription has expired.&#xA;&#xA;The program works in the non-activated mode.&#xA;&#xA;Now you can prolong or upgrade your subscription with a discount." xml:space="preserve">
+      <trans-unit id="Your subscription has expired.&#10;&#10;The program works in the non-activated mode.&#10;&#10;Now you can prolong or upgrade your subscription with a discount." xml:space="preserve">
         <source>Your subscription has expired.
 
 The program works in the non-activated mode.
@@ -420,7 +420,7 @@ Programul este în modul dezactivat.
 Puteți să prelungiți sau să reînnoți subscripția și bebeficiati de o reducere.</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
-      <trans-unit id="Your subscription is about to expire&#xA;(%d days left).&#xA;&#xA;We have a special offer for you." xml:space="preserve">
+      <trans-unit id="Your subscription is about to expire&#10;(%d days left).&#10;&#10;We have a special offer for you." xml:space="preserve">
         <source>Your subscription is about to expire
 (%d days left).
 
@@ -450,7 +450,7 @@ Avem o ofertă specială și pentru dvs.</target>
   </file>
   <file original="ONLYOFFICE/Base.lproj/Localizable.stringsdict" source-language="en" datatype="plaintext" target-language="ro-RO">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c" />
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c"/>
     </header>
     <body>
       <trans-unit id="/%d days are left until the license expiration.:dict/NSStringLocalizedFormatKey:dict/:string" xml:space="preserve">
@@ -473,26 +473,26 @@ Avem o ofertă specială și pentru dvs.</target>
         <target state="translated">%d zile rămase până la termenul de expirare a licenţei.</target>
         
       </trans-unit>
-      <trans-unit id="/You are using a trial version of the application.&#xA;The trial period will end in %d days, after that you will not be able to create and edit documents.:dict/NSStringLocalizedFormatKey:dict/:string" xml:space="preserve">
+      <trans-unit id="/You are using a trial version of the application.&#10;The trial period will end in %d days, after that you will not be able to create and edit documents.:dict/NSStringLocalizedFormatKey:dict/:string" xml:space="preserve">
         <source>%#@days@</source>
         <target state="translated">%#@zile@</target>
         
       </trans-unit>
-      <trans-unit id="/You are using a trial version of the application.&#xA;The trial period will end in %d days, after that you will not be able to create and edit documents.:dict/days:dict/few:dict/:string" xml:space="preserve">
+      <trans-unit id="/You are using a trial version of the application.&#10;The trial period will end in %d days, after that you will not be able to create and edit documents.:dict/days:dict/few:dict/:string" xml:space="preserve">
         <source>You are using a trial version of the application.
 The trial period will end in %d days, after that you will not be able to create and edit documents.</source>
         <target state="translated">Dvs utilizați versiunea de încercare a aplicației.
 Perioada de încercare expiră după %d zile și nu veți mai putea crea și edita documente.</target>
         
       </trans-unit>
-      <trans-unit id="/You are using a trial version of the application.&#xA;The trial period will end in %d days, after that you will not be able to create and edit documents.:dict/days:dict/one:dict/:string" xml:space="preserve">
+      <trans-unit id="/You are using a trial version of the application.&#10;The trial period will end in %d days, after that you will not be able to create and edit documents.:dict/days:dict/one:dict/:string" xml:space="preserve">
         <source>You are using a trial version of the application.
 The trial period will end in %d day, after that you will not be able to create and edit documents.</source>
         <target state="translated">Dvs utilizați versiunea de încercare a aplicației.
 Perioada de încercare expiră după %d zile și nu veți mai putea crea și edita documente.</target>
         
       </trans-unit>
-      <trans-unit id="/You are using a trial version of the application.&#xA;The trial period will end in %d days, after that you will not be able to create and edit documents.:dict/days:dict/other:dict/:string" xml:space="preserve">
+      <trans-unit id="/You are using a trial version of the application.&#10;The trial period will end in %d days, after that you will not be able to create and edit documents.:dict/days:dict/other:dict/:string" xml:space="preserve">
         <source>You are using a trial version of the application.
 The trial period will end in %d days, after that you will not be able to create and edit documents.</source>
         <target state="translated">Dvs utilizați versiunea de încercare a aplicației.
@@ -523,7 +523,7 @@ Perioada de încercare expiră după %d zile și nu veți mai putea crea și edi
   </file>
   <file original="ONLYOFFICE/Base.lproj/Main.storyboard" source-language="en" datatype="plaintext" target-language="ro-RO">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c" />
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c"/>
     </header>
     <body>
       <trans-unit id="1UK-8n-QPP.title" xml:space="preserve">
@@ -1290,7 +1290,7 @@ Perioada de încercare expiră după %d zile și nu veți mai putea crea și edi
   </file>
   <file original="ONLYOFFICE/Base.lproj/MoveApplication.strings" source-language="en" datatype="plaintext" target-language="ro-RO">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c" />
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c"/>
     </header>
     <body>
       <trans-unit id="Could not move to Applications folder" xml:space="preserve">
@@ -1337,7 +1337,7 @@ Perioada de încercare expiră după %d zile și nu veți mai putea crea și edi
   </file>
   <file original="ONLYOFFICE/Base.lproj/Presentation-Reporter.storyboard" source-language="en" datatype="plaintext" target-language="ro-RO">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c" />
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c"/>
     </header>
     <body>
       <trans-unit id="Ygx-5K-Hn8.title" xml:space="preserve">
@@ -1349,7 +1349,7 @@ Perioada de încercare expiră după %d zile și nu veți mai putea crea și edi
   </file>
   <file original="ONLYOFFICE/Resources/ONLYOFFICE/Base.lproj/InfoPlist.strings" source-language="en" datatype="plaintext" target-language="ro-RO">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c" />
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c"/>
     </header>
     <body>
       <trans-unit id="CFBundleName" xml:space="preserve">

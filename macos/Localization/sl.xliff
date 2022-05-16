@@ -119,7 +119,7 @@
       </trans-unit>
       <trans-unit id="Comma-Separated Values" xml:space="preserve">
         <source>Comma-Separated Values</source>
-        <target>Z vejico ločene vrednosti</target>
+        <target state="translated">Vrednosti, ločene z vejico (*.csv)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Create portal" xml:space="preserve">
@@ -134,7 +134,7 @@
       </trans-unit>
       <trans-unit id="DjVu File" xml:space="preserve">
         <source>DjVu File</source>
-        <target>DjVu datoteka</target>
+        <target state="translated">Digitalni document (*.djvu)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Do you want to save the changes made to the document &quot;%@&quot;?" xml:space="preserve">
@@ -149,17 +149,17 @@
       </trans-unit>
       <trans-unit id="Document template" xml:space="preserve">
         <source>Document template</source>
-        <target state="translated">Predloga dokumenta</target>
+        <target state="translated">Word Open XML predloga dokumenta (*.dotx)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Excel 97-2003 Spreadsheet" xml:space="preserve">
         <source>Excel 97-2003 Spreadsheet</source>
-        <target>Excel 97-2003 preglednica</target>
+        <target state="translated">Excel 97-2003 preglednica (*.xls)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Excel 2007 Spreadsheet" xml:space="preserve">
         <source>Excel 2007 Spreadsheet</source>
-        <target>Excel 2007 preglednica</target>
+        <target state="translated">Office Open XML preglednica (*.xlsx)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="File &quot;%@&quot; can not be open or not exist." xml:space="preserve">
@@ -199,7 +199,7 @@
       </trans-unit>
       <trans-unit id="Mobipocket e-book" xml:space="preserve">
         <source>Mobipocket e-book</source>
-        <target>Mobipocket e-knjiga</target>
+        <target state="translated">Mobipocket e-knjiga (*.mobi)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="No" xml:space="preserve">
@@ -224,32 +224,32 @@
       </trans-unit>
       <trans-unit id="OpenDocument Document Template" xml:space="preserve">
         <source>OpenDocument Document Template</source>
-        <target state="translated">OpenDocument predloga datoteke</target>
+        <target state="translated">OpenDocument predloga dokumenta (*.ott)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="OpenDocument Presentation Template" xml:space="preserve">
         <source>OpenDocument Presentation Template</source>
-        <target state="translated">OpenDocument predloga prezentacije</target>
+        <target state="translated">OpenDocument predloga predstavitve (*.otp)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="OpenDocument Spreadsheet Template" xml:space="preserve">
         <source>OpenDocument Spreadsheet Template</source>
-        <target state="translated">OpenDocument predloga preglednice</target>
+        <target state="translated">OpenDocument predloga preglednice (*.ots)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="OpenOffice Document" xml:space="preserve">
         <source>OpenOffice Document</source>
-        <target>OpenOffice dokument</target>
+        <target state="translated">OpenDocument besedilna datoteka (*.odt)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="OpenOffice Presentation" xml:space="preserve">
         <source>OpenOffice Presentation</source>
-        <target>OpenOffice predstavitev</target>
+        <target state="translated">OpenDocument predstavitev (*.odp)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="OpenOffice Spreadsheet" xml:space="preserve">
         <source>OpenOffice Spreadsheet</source>
-        <target>OpenOffice preglednica</target>
+        <target state="translated">OpenDocument preglednica (*.ods)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Opening" xml:space="preserve">
@@ -259,32 +259,32 @@
       </trans-unit>
       <trans-unit id="PDF File" xml:space="preserve">
         <source>PDF File</source>
-        <target>PDF datoteka</target>
+        <target state="translated">Prenosni document (*.pdf)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="PDF/A File" xml:space="preserve">
         <source>PDF/A File</source>
-        <target state="translated">PDF/A datoteka</target>
+        <target state="translated">Prenosni document / A (*.pdf)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Plain Text" xml:space="preserve">
         <source>Plain Text</source>
-        <target>Navadno besedilo</target>
+        <target state="translated">Navadno besedilo (*.txt)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="PowerPoint 97-2003 Presentation" xml:space="preserve">
         <source>PowerPoint 97-2003 Presentation</source>
-        <target>PowerPoint 97-2003 predstavitev</target>
+        <target state="translated">PowerPoint 97-2003 predstavitev (*.ppt)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="PowerPoint 2007 Presentation" xml:space="preserve">
         <source>PowerPoint 2007 Presentation</source>
-        <target>PowerPoint 2007 predstavitev</target>
+        <target state="translated">Office Open XML predstavitev (*.pptx)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="PowerPoint Slide Show" xml:space="preserve">
         <source>PowerPoint Slide Show</source>
-        <target>PowerPoint projekcija</target>
+        <target state="translated">Office Open XML predstavitev (*.ppsx)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Preparing..." xml:space="preserve">
@@ -299,7 +299,7 @@
       </trans-unit>
       <trans-unit id="Presentation template" xml:space="preserve">
         <source>Presentation template</source>
-        <target state="translated">Predloga prezentacije</target>
+        <target state="translated">PowerPoint Open XML predloga predstavitve (*.potx)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Quit %@" xml:space="preserve">
@@ -314,7 +314,7 @@
       </trans-unit>
       <trans-unit id="Rich Text Document" xml:space="preserve">
         <source>Rich Text Document</source>
-        <target>Rich Text document</target>
+        <target state="translated">Rich Text Format datoteka (*.rtf)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Save" xml:space="preserve">
@@ -334,7 +334,7 @@
       </trans-unit>
       <trans-unit id="Spreadsheet template" xml:space="preserve">
         <source>Spreadsheet template</source>
-        <target state="translated">Predloga preglednice</target>
+        <target state="translated">Excel Open XML predloga preglednice (*.xltx)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Thank you for evaluating %@!" xml:space="preserve">
@@ -374,17 +374,17 @@
       </trans-unit>
       <trans-unit id="Word 97-2003 Document" xml:space="preserve">
         <source>Word 97-2003 Document</source>
-        <target>Word 97-2003 dokument</target>
+        <target state="translated">Word 97-2003 dokument (*.doc)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Word 2007 Document" xml:space="preserve">
         <source>Word 2007 Document</source>
-        <target>Word 2007 dokument</target>
+        <target state="translated">Office Open XML dokument (*.docx)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="XML Paper Specification" xml:space="preserve">
         <source>XML Paper Specification</source>
-        <target>XML specifikacija elektronskega papirja</target>
+        <target state="translated">OpenXPS dokument (*.xps)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Yes" xml:space="preserve">

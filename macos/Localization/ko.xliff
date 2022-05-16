@@ -119,7 +119,7 @@
       </trans-unit>
       <trans-unit id="Comma-Separated Values" xml:space="preserve">
         <source>Comma-Separated Values</source>
-        <target>쉼표로 구분된 값</target>
+        <target state="translated">쉼표로 구분된 데이터 파일 (*.csv)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Create portal" xml:space="preserve">
@@ -134,7 +134,7 @@
       </trans-unit>
       <trans-unit id="DjVu File" xml:space="preserve">
         <source>DjVu File</source>
-        <target>DjVu 파일</target>
+        <target state="translated">디지털 문서 (*.djvu)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Do you want to save the changes made to the document &quot;%@&quot;?" xml:space="preserve">
@@ -149,17 +149,17 @@
       </trans-unit>
       <trans-unit id="Document template" xml:space="preserve">
         <source>Document template</source>
-        <target state="translated">문서 템플릿</target>
+        <target state="translated">Word Open XML 문서 템플릿 (*.dotx)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Excel 97-2003 Spreadsheet" xml:space="preserve">
         <source>Excel 97-2003 Spreadsheet</source>
-        <target>엑셀 97-2003 스프레드시트</target>
+        <target state="translated">Excel 97-2003 스프레드시트 (*.xls)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Excel 2007 Spreadsheet" xml:space="preserve">
         <source>Excel 2007 Spreadsheet</source>
-        <target>엑셀 2007 스프레드시트</target>
+        <target state="translated">Office Open XML 스프레드시트  (*.xlsx)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="File &quot;%@&quot; can not be open or not exist." xml:space="preserve">
@@ -199,7 +199,7 @@
       </trans-unit>
       <trans-unit id="Mobipocket e-book" xml:space="preserve">
         <source>Mobipocket e-book</source>
-        <target>Mobipocket e-book</target>
+        <target state="translated">MOBI 파일 (*.mobi)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="No" xml:space="preserve">
@@ -224,32 +224,32 @@
       </trans-unit>
       <trans-unit id="OpenDocument Document Template" xml:space="preserve">
         <source>OpenDocument Document Template</source>
-        <target state="translated">OpenDocument 문서 템플릿</target>
+        <target state="translated">OpenDocument 문서 템플릿 (*.ott)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="OpenDocument Presentation Template" xml:space="preserve">
         <source>OpenDocument Presentation Template</source>
-        <target state="translated">OpenDocument 프레젠테이션 템플릿</target>
+        <target state="translated">OpenDocument프레젠테이션 템플릿 (*.otp)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="OpenDocument Spreadsheet Template" xml:space="preserve">
         <source>OpenDocument Spreadsheet Template</source>
-        <target state="translated">OpenDocument 스프레드시트 템플릿</target>
+        <target state="translated">OpenDocument 스프레드시트 템플릿 (*.ots)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="OpenOffice Document" xml:space="preserve">
         <source>OpenOffice Document</source>
-        <target>OpenOffice 문서</target>
+        <target state="translated">오픈도큐먼트 텍스트 문서 (*.odt)  </target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="OpenOffice Presentation" xml:space="preserve">
         <source>OpenOffice Presentation</source>
-        <target>OpenOffice 프레젠테이션</target>
+        <target state="translated">오픈도큐먼트 프레젠테이션 (*.odp)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="OpenOffice Spreadsheet" xml:space="preserve">
         <source>OpenOffice Spreadsheet</source>
-        <target>OpenOffice 스프레드시트</target>
+        <target state="translated">오픈도큐먼트 스프레드시트 (*.ods)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Opening" xml:space="preserve">
@@ -259,32 +259,32 @@
       </trans-unit>
       <trans-unit id="PDF File" xml:space="preserve">
         <source>PDF File</source>
-        <target>PDF 파일</target>
+        <target state="translated">휴대용 문서 (*.pdf)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="PDF/A File" xml:space="preserve">
         <source>PDF/A File</source>
-        <target state="translated">PDF/A 파일</target>
+        <target state="translated">휴대용 문서 / A (*.pdf)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Plain Text" xml:space="preserve">
         <source>Plain Text</source>
-        <target>일반 텍스트</target>
+        <target state="translated">일반 텍스트 (*.txt)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="PowerPoint 97-2003 Presentation" xml:space="preserve">
         <source>PowerPoint 97-2003 Presentation</source>
-        <target>파워포인트 97-2003 프레젠테이션</target>
+        <target state="translated">PowerPoint 97-2003 프레젠테이션 (*.ppt)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="PowerPoint 2007 Presentation" xml:space="preserve">
         <source>PowerPoint 2007 Presentation</source>
-        <target>파워포인트 2007 프레젠테이션</target>
+        <target state="translated">Office Open XML 프레젠테이션 (*.pptx)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="PowerPoint Slide Show" xml:space="preserve">
         <source>PowerPoint Slide Show</source>
-        <target>파워포인트 슬라이드 쇼</target>
+        <target state="translated">Office Open XML 슬라이드 쇼 (*.ppsx)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Preparing..." xml:space="preserve">
@@ -299,7 +299,7 @@
       </trans-unit>
       <trans-unit id="Presentation template" xml:space="preserve">
         <source>Presentation template</source>
-        <target state="translated">프레젠테이션 템플릿</target>
+        <target state="translated">PowerPoint Open XML 프레젠테이션 템플릿 (*.potx)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Quit %@" xml:space="preserve">
@@ -314,7 +314,7 @@
       </trans-unit>
       <trans-unit id="Rich Text Document" xml:space="preserve">
         <source>Rich Text Document</source>
-        <target>서식있는 텍스트 문서</target>
+        <target state="translated">서식이 있는 텍스트 형식 파일 (*.rtf)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Save" xml:space="preserve">
@@ -334,7 +334,7 @@
       </trans-unit>
       <trans-unit id="Spreadsheet template" xml:space="preserve">
         <source>Spreadsheet template</source>
-        <target state="translated">스프레드시트 템플릿</target>
+        <target state="translated">Excel Open XML 스프레드시트 템플릿 (*.xltx)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Thank you for evaluating %@!" xml:space="preserve">
@@ -374,17 +374,17 @@
       </trans-unit>
       <trans-unit id="Word 97-2003 Document" xml:space="preserve">
         <source>Word 97-2003 Document</source>
-        <target>워드 97-2003 문서</target>
+        <target state="translated">Word 97-2003 문서 (*.doc)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Word 2007 Document" xml:space="preserve">
         <source>Word 2007 Document</source>
-        <target>워드 2007 문서</target>
+        <target state="translated">Office Open XML 문서 (*.docx)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="XML Paper Specification" xml:space="preserve">
         <source>XML Paper Specification</source>
-        <target>XML 용지 사양</target>
+        <target state="translated">OpenXPS 문서 (*.xps)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Yes" xml:space="preserve">

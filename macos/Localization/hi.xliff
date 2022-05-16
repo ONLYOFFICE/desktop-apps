@@ -119,7 +119,7 @@
       </trans-unit>
       <trans-unit id="Comma-Separated Values" xml:space="preserve">
         <source>Comma-Separated Values</source>
-        <target>अल्पविराम से विभाजित मान</target>
+        <target state="translated">अल्पविराम से विभाजित मान (*.csv)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Create portal" xml:space="preserve">
@@ -134,7 +134,7 @@
       </trans-unit>
       <trans-unit id="DjVu File" xml:space="preserve">
         <source>DjVu File</source>
-        <target>डीजेवू फ़ाइल</target>
+        <target state="translated">डिजिटल दस्तावेज़ (*.djvu)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Do you want to save the changes made to the document &quot;%@&quot;?" xml:space="preserve">
@@ -149,17 +149,17 @@
       </trans-unit>
       <trans-unit id="Document template" xml:space="preserve">
         <source>Document template</source>
-        <target state="translated">दस्तावेज़ टेम्पलेट</target>
+        <target state="translated">दस्तावेज़ टेम्पलेट (*.dotx)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Excel 97-2003 Spreadsheet" xml:space="preserve">
         <source>Excel 97-2003 Spreadsheet</source>
-        <target>एक्सेल 97-2003 स्प्रेडशीट</target>
+        <target state="translated">एक्सेल 97-2003 स्प्रेडशीट (*.xls)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Excel 2007 Spreadsheet" xml:space="preserve">
         <source>Excel 2007 Spreadsheet</source>
-        <target>एक्सेल 2007 स्प्रेडशीट</target>
+        <target state="translated">ऑफिस ओपन एक्सएमएल स्प्रेडशीट (*.xlsx)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="File &quot;%@&quot; can not be open or not exist." xml:space="preserve">
@@ -199,7 +199,7 @@
       </trans-unit>
       <trans-unit id="Mobipocket e-book" xml:space="preserve">
         <source>Mobipocket e-book</source>
-        <target>मोबीपॉकेट ई-बुक</target>
+        <target state="translated">मोबीपॉकेट ई-बुक (*.mobi)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="No" xml:space="preserve">
@@ -224,32 +224,32 @@
       </trans-unit>
       <trans-unit id="OpenDocument Document Template" xml:space="preserve">
         <source>OpenDocument Document Template</source>
-        <target state="translated">ओपनडॉक्यूमेंट दस्तावेज़ टेम्पलेट</target>
+        <target state="translated">ओपनडॉक्यूमेंट दस्तावेज़ टेम्पलेट (*.ott)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="OpenDocument Presentation Template" xml:space="preserve">
         <source>OpenDocument Presentation Template</source>
-        <target state="translated">ओपनडॉक्यूमेंट प्रस्तुति टेम्पलेट</target>
+        <target state="translated">ओपनडॉक्यूमेंट प्रस्तुति टेम्पलेट (*.otp)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="OpenDocument Spreadsheet Template" xml:space="preserve">
         <source>OpenDocument Spreadsheet Template</source>
-        <target state="translated">ओपनडॉक्यूमेंट स्प्रेडशीट टेम्पलेट</target>
+        <target state="translated">ओपनडॉक्यूमेंट स्प्रेडशीट टेम्पलेट (*.ots)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="OpenOffice Document" xml:space="preserve">
         <source>OpenOffice Document</source>
-        <target>ओपनऑफिस दस्तावेज़</target>
+        <target state="translated">ओपनदस्तावेज़ टेक्स्ट दस्तावेज़ (*.odt)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="OpenOffice Presentation" xml:space="preserve">
         <source>OpenOffice Presentation</source>
-        <target>ओपनऑफिस प्रस्तुति</target>
+        <target state="translated">ओपनदस्तावेज़ प्रस्तुति (*.odp)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="OpenOffice Spreadsheet" xml:space="preserve">
         <source>OpenOffice Spreadsheet</source>
-        <target>ओपनऑफिस स्प्रेडशीट</target>
+        <target state="translated">ओपनदस्तावेज़ स्प्रेडशीट (*.ods)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Opening" xml:space="preserve">
@@ -259,32 +259,32 @@
       </trans-unit>
       <trans-unit id="PDF File" xml:space="preserve">
         <source>PDF File</source>
-        <target>पीडीएफ फ़ाइल</target>
+        <target state="translated">पीडीएफ फ़ाइल (*.pdf)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="PDF/A File" xml:space="preserve">
         <source>PDF/A File</source>
-        <target state="translated">पीडीएफ/ए फ़ाइल</target>
+        <target state="translated">पीडीएफ/ए फ़ाइल (*.pdf)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Plain Text" xml:space="preserve">
         <source>Plain Text</source>
-        <target>सादा टेक्स्ट</target>
+        <target state="translated">सादा टेक्स्ट (*.txt)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="PowerPoint 97-2003 Presentation" xml:space="preserve">
         <source>PowerPoint 97-2003 Presentation</source>
-        <target>पावरपॉइंट 97-2003 प्रस्तुति</target>
+        <target state="translated">पावरपॉइंट 97-2003 प्रस्तुति (*.ppt)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="PowerPoint 2007 Presentation" xml:space="preserve">
         <source>PowerPoint 2007 Presentation</source>
-        <target>पावरपॉइंट 2007 प्रस्तुति</target>
+        <target state="translated">ऑफिस ओपन एक्सएमएल प्रस्तुति (*.pptx)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="PowerPoint Slide Show" xml:space="preserve">
         <source>PowerPoint Slide Show</source>
-        <target>पावरपॉइंट स्लाइड शो</target>
+        <target state="translated">ऑफिस ओपन एक्सएमएल स्लाइड शो (*.ppsx)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Preparing..." xml:space="preserve">
@@ -299,7 +299,7 @@
       </trans-unit>
       <trans-unit id="Presentation template" xml:space="preserve">
         <source>Presentation template</source>
-        <target state="translated">प्रस्तुति टेम्पलेट</target>
+        <target state="translated">प्रस्तुति टेम्पलेट (*.potx)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Quit %@" xml:space="preserve">
@@ -314,7 +314,7 @@
       </trans-unit>
       <trans-unit id="Rich Text Document" xml:space="preserve">
         <source>Rich Text Document</source>
-        <target>रिच टेक्स्ट दस्तावेज़</target>
+        <target state="translated">रिच टेक्स्ट फॉर्मेट फ़ाइल (*.rtf)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Save" xml:space="preserve">
@@ -334,7 +334,7 @@
       </trans-unit>
       <trans-unit id="Spreadsheet template" xml:space="preserve">
         <source>Spreadsheet template</source>
-        <target state="translated">स्प्रेडशीट टेम्पलेट</target>
+        <target state="translated">स्प्रेडशीट टेम्पलेट (*.xltx)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Thank you for evaluating %@!" xml:space="preserve">
@@ -374,17 +374,17 @@
       </trans-unit>
       <trans-unit id="Word 97-2003 Document" xml:space="preserve">
         <source>Word 97-2003 Document</source>
-        <target>वर्ड 97-2003 दस्तावेज़</target>
+        <target state="translated">वर्ड 97-2003 दस्तावेज़ (*.doc)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Word 2007 Document" xml:space="preserve">
         <source>Word 2007 Document</source>
-        <target>वर्ड 2007 दस्तावेज़</target>
+        <target state="translated">ऑफिस ओपन एक्सएमएल दस्तावेज़ (*.docx)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="XML Paper Specification" xml:space="preserve">
         <source>XML Paper Specification</source>
-        <target>एक्सएमएल पेपर विनिर्देश</target>
+        <target state="translated">OpenXPS दस्तावेज़(*.xps)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Yes" xml:space="preserve">

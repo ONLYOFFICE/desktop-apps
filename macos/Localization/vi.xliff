@@ -111,7 +111,7 @@
       </trans-unit>
       <trans-unit id="Comma-Separated Values" xml:space="preserve">
         <source>Comma-Separated Values</source>
-        <target state="translated">Giá trị được tách bằng dấu phẩy</target>
+        <target state="translated">Các giá trị được ngăn cách với nhau bằng dấu phẩy (*.csv)</target>
       </trans-unit>
       <trans-unit id="Create portal" xml:space="preserve">
         <source>Create portal</source>
@@ -123,7 +123,7 @@
       </trans-unit>
       <trans-unit id="DjVu File" xml:space="preserve">
         <source>DjVu File</source>
-        <target state="translated">Tập tin DjVu</target>
+        <target state="translated">Tài liệu kỹ thuật số (*.djvu)</target>
       </trans-unit>
       <trans-unit id="Do you want to save the changes made to the document &quot;%@&quot;?" xml:space="preserve">
         <source>Do you want to save the changes made to the document "%@"?</source>
@@ -135,7 +135,7 @@
       </trans-unit>
       <trans-unit id="Document template" xml:space="preserve">
         <source>Document template</source>
-        <target state="translated">Mẫu văn bản</target>
+        <target state="translated">Word Open XML Mẫu văn bản (*.dotx)</target>
       </trans-unit>
       <trans-unit id="Don't Save" xml:space="preserve">
         <source>Don't Save</source>
@@ -143,19 +143,19 @@
       </trans-unit>
       <trans-unit id="Electronic Publication" xml:space="preserve">
         <source>Electronic Publication</source>
-        <target state="needs-translation"/>
+        <target state="translated">Tập tin EPUB (*.epub)</target>
       </trans-unit>
       <trans-unit id="Excel 97-2003 Spreadsheet" xml:space="preserve">
         <source>Excel 97-2003 Spreadsheet</source>
-        <target state="translated">Bảng tính Excel 97-2003</target>
+        <target state="translated">Bảng tính Excel 97-2003 (*.xls)</target>
       </trans-unit>
       <trans-unit id="Excel 2007 Spreadsheet" xml:space="preserve">
         <source>Excel 2007 Spreadsheet</source>
-        <target state="translated">Bảng tính Excel 2007</target>
+        <target state="translated">Bảng tính Office Open XML (*.xlsx)</target>
       </trans-unit>
       <trans-unit id="FictionBook File" xml:space="preserve">
         <source>FictionBook File</source>
-        <target state="needs-translation"/>
+        <target state="translated">Tập tin FB2 (*.fb2)</target>
       </trans-unit>
       <trans-unit id="File &quot;%@&quot; can not be open or not exist." xml:space="preserve">
         <source>File "%@" can not be open or not exist.</source>
@@ -171,7 +171,7 @@
       </trans-unit>
       <trans-unit id="HTML File" xml:space="preserve">
         <source>HTML File</source>
-        <target state="needs-translation"/>
+        <target state="translated">Tập tin HTML (*.html)</target>
       </trans-unit>
       <trans-unit id="Hide %@" xml:space="preserve">
         <source>Hide %@</source>
@@ -191,11 +191,11 @@
       </trans-unit>
       <trans-unit id="MHT File" xml:space="preserve">
         <source>MHT File</source>
-        <target state="needs-translation"/>
+        <target state="translated">Tập tin MHT (*.mht)</target>
       </trans-unit>
       <trans-unit id="Mobipocket e-book" xml:space="preserve">
         <source>Mobipocket e-book</source>
-        <target state="translated">Sách điện tử Mobipocket</target>
+        <target state="translated">Sách điện tử Mobipocket (*.mobi)</target>
       </trans-unit>
       <trans-unit id="No" xml:space="preserve">
         <source>No</source>
@@ -215,27 +215,27 @@
       </trans-unit>
       <trans-unit id="OpenDocument Document Template" xml:space="preserve">
         <source>OpenDocument Document Template</source>
-        <target state="translated">OpenDocument Mẫu văn bản</target>
+        <target state="translated">OpenDocument Mẫu văn bản (*.ott)</target>
       </trans-unit>
       <trans-unit id="OpenDocument Presentation Template" xml:space="preserve">
         <source>OpenDocument Presentation Template</source>
-        <target state="translated">OpenDocument Mẫu trình chiếu</target>
+        <target state="translated">OpenDocument Mẫu trình chiếu (*.otp)</target>
       </trans-unit>
       <trans-unit id="OpenDocument Spreadsheet Template" xml:space="preserve">
         <source>OpenDocument Spreadsheet Template</source>
-        <target state="translated">OpenDocument Mẫu bảng tính</target>
+        <target state="translated">OpenDocument Mẫu bảng tính (*.ots)</target>
       </trans-unit>
       <trans-unit id="OpenOffice Document" xml:space="preserve">
         <source>OpenOffice Document</source>
-        <target state="translated">OpenOffice Văn bản</target>
+        <target state="translated">OpenDocument File văn bản (*.odt)</target>
       </trans-unit>
       <trans-unit id="OpenOffice Presentation" xml:space="preserve">
         <source>OpenOffice Presentation</source>
-        <target state="translated">OpenOffice Trình chiếu</target>
+        <target state="translated">OpenDocument Trình chiếu (*.odp)</target>
       </trans-unit>
       <trans-unit id="OpenOffice Spreadsheet" xml:space="preserve">
         <source>OpenOffice Spreadsheet</source>
-        <target state="translated">OpenOffice Bảng tính</target>
+        <target state="translated">OpenDocument Bảng tính (*.ods)</target>
       </trans-unit>
       <trans-unit id="Opening" xml:space="preserve">
         <source>Opening</source>
@@ -243,27 +243,27 @@
       </trans-unit>
       <trans-unit id="PDF File" xml:space="preserve">
         <source>PDF File</source>
-        <target state="translated">Tập tinh PDF</target>
+        <target state="translated">Tài liệu di động (*.pdf)</target>
       </trans-unit>
       <trans-unit id="PDF/A File" xml:space="preserve">
         <source>PDF/A File</source>
-        <target state="translated">PDF/A File</target>
+        <target state="translated">Tài liệu di động / A (*.pdf)</target>
       </trans-unit>
       <trans-unit id="Plain Text" xml:space="preserve">
         <source>Plain Text</source>
-        <target state="translated">Văn bản thuần</target>
+        <target state="translated">Văn bản thuần (*.txt)</target>
       </trans-unit>
       <trans-unit id="PowerPoint 97-2003 Presentation" xml:space="preserve">
         <source>PowerPoint 97-2003 Presentation</source>
-        <target state="translated">Trình chiếu PowerPoint 97-2003</target>
+        <target state="translated">Bản trình bày PowerPoint 97-2003 (*.ppt)</target>
       </trans-unit>
       <trans-unit id="PowerPoint 2007 Presentation" xml:space="preserve">
         <source>PowerPoint 2007 Presentation</source>
-        <target state="translated">Trình chiếu PowerPoint 2007</target>
+        <target state="translated">Bản trình bày Office Open XML (*.pptx)</target>
       </trans-unit>
       <trans-unit id="PowerPoint Slide Show" xml:space="preserve">
         <source>PowerPoint Slide Show</source>
-        <target state="translated">Trình chiếu PowerPoint</target>
+        <target state="translated">Trình chiếu Office Open XML (*.ppsx)</target>
       </trans-unit>
       <trans-unit id="Preparing..." xml:space="preserve">
         <source>Preparing...</source>
@@ -275,7 +275,7 @@
       </trans-unit>
       <trans-unit id="Presentation template" xml:space="preserve">
         <source>Presentation template</source>
-        <target state="translated">Không có bình luận của kỹ sư.</target>
+        <target state="translated">PowerPoint Open XML Mẫu trình chiếu (*.potx)</target>
       </trans-unit>
       <trans-unit id="Presenter View" xml:space="preserve">
         <source>Presenter View</source>
@@ -291,7 +291,7 @@
       </trans-unit>
       <trans-unit id="Rich Text Document" xml:space="preserve">
         <source>Rich Text Document</source>
-        <target state="translated">Tài liệu nhiều văn bản</target>
+        <target state="translated">Tệp định dạng văn bản đa dạng thức (*.rtf)</target>
       </trans-unit>
       <trans-unit id="Save" xml:space="preserve">
         <source>Save</source>
@@ -311,7 +311,7 @@
       </trans-unit>
       <trans-unit id="Spreadsheet template" xml:space="preserve">
         <source>Spreadsheet template</source>
-        <target state="translated">Mẫu bảng tính</target>
+        <target state="translated">Excel Open XML Mẫu bảng tính (*.xltx)</target>
       </trans-unit>
       <trans-unit id="Thank you for evaluating %@!" xml:space="preserve">
         <source>Thank you for evaluating %@!</source>
@@ -347,15 +347,15 @@
       </trans-unit>
       <trans-unit id="Word 97-2003 Document" xml:space="preserve">
         <source>Word 97-2003 Document</source>
-        <target state="translated">Tập tin Word 97-2003</target>
+        <target state="translated">Tài liệu Word 97-2003 (*.doc)</target>
       </trans-unit>
       <trans-unit id="Word 2007 Document" xml:space="preserve">
         <source>Word 2007 Document</source>
-        <target state="translated">Tập tin Word 2007</target>
+        <target state="translated">Tài liệu Office Open XML (*.docx)</target>
       </trans-unit>
       <trans-unit id="XML Paper Specification" xml:space="preserve">
         <source>XML Paper Specification</source>
-        <target state="translated">Tiêu chuẩn giấy XML</target>
+        <target state="translated">Tài liệu OpenXPS (*.xps)</target>
       </trans-unit>
       <trans-unit id="Yes" xml:space="preserve">
         <source>Yes</source>
