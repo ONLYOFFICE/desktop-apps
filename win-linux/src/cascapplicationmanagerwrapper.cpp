@@ -765,6 +765,15 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
     std::vector<COpenOptions> list_failed;
 //    bool open_in_new_window = std::find(vargs.begin(), vargs.end(), L"--force-use-tab") == std::end(vargs);
     bool open_in_new_window = _app.m_private->preferOpenEditorWindow() || (std::find(vargs.begin(), vargs.end(), L"--force-use-window") != std::end(vargs));
+    std::vector<std::wstring> open_scheme{L"http://",L"https://"};
+    std::wstring app_scheme = _app.GetExternalSchemeName();
+    if ( !app_scheme.empty() ) {
+        if ( app_scheme.back() != L':' )
+            app_scheme += L":";
+
+        open_scheme.push_back(app_scheme);
+    }
+
     for (const auto& arg: vargs) {
         COpenOptions open_opts;
         open_opts.name = QCoreApplication::translate("CAscTabWidget", "Document");
@@ -830,7 +839,7 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
                     open_opts.name = AscAppManager::newFileName(open_opts.format);
                 }
             } else
-            if ( check_params(open_opts.wurl, {L"http://",L"https://",L"oo-office:"}) < 0 )
+            if ( check_params(open_opts.wurl, open_scheme) < 0 )
                 continue;
         }
 
@@ -965,6 +974,10 @@ void CAscApplicationManagerWrapper::initializeApp()
 {
     APP_CAST(_app);
     _app.m_private->initializeApp();
+
+    if ( AscAppManager::IsUseSystemScaling() ) {
+        AscAppManager::setUserSettings(L"force-scale", L"default");
+    }
 
 #ifdef _WIN32
 //    CSplash::showSplash();
@@ -1289,6 +1302,9 @@ namespace Drop {
             AscAppManager::sendCommandTo(tabpanel->cef(), L"window:features",
                       Utils::stringifyJson(QJsonObject{{"skiptoparea", 0},{"singlewindow",false}}).toStdWString());
             CAscApplicationManagerWrapper::mainWindow()->bringToTop();
+
+            QTimer::singleShot(100, []{
+                CAscApplicationManagerWrapper::mainWindow()->mainPanel()->focus();});
         }
     }
 

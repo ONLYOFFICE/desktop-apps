@@ -144,7 +144,11 @@ CMainWindow::CMainWindow(QRect& rect) :
     m_pWinPanel = new CWinPanel(this);
 
     m_pMainPanel = new CMainPanelImpl(m_pWinPanel, true, m_dpiRatio);
+#ifdef __OS_WIN_XP
+    m_pMainPanel->setStyleSheet(AscAppManager::getWindowStylesheets(m_dpiRatio) + "QTabBar::scroller{width:16px;}");
+#else
     m_pMainPanel->setStyleSheet(AscAppManager::getWindowStylesheets(m_dpiRatio));
+#endif
     m_pMainPanel->updateScaling(m_dpiRatio);
     m_pMainPanel->goStart();
 

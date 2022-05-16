@@ -42,6 +42,14 @@ ifneq ($(filter %86,$(UNAME_M)),)
 	TAR_ARCH = x86
 	ARCHITECTURE = 32
 endif
+ifneq ($(filter aarch%,$(UNAME_M)),)
+	RPM_ARCH = aarch64
+	DEB_ARCH = arm64
+	URPMI_ARCH = aarch64
+	APT_RPM_ARCH = aarch64
+	TAR_ARCH = aarch64
+	ARCHITECTURE = arm64
+endif
 
 RPM_BUILD_DIR = $(PWD)/rpm/builddir
 APT_RPM_BUILD_DIR = $(PWD)/apt-rpm/builddir
@@ -192,6 +200,10 @@ apt-rpm: $(APT_RPM)
 
 urpmi: $(URPMI)
 
+rpm_aarch64 : ARCHITECTURE = arm64
+rpm_aarch64 : RPM_ARCH = aarch64
+rpm_aarch64 : $(RPM)
+
 installer: $(INSTALLER)
 
 PACKAGES += deb rpm apt-rpm urpmi tar
@@ -259,9 +271,10 @@ qt-redist:
 		# $(USR_LIB_X64)/libicuuc.so.52
 
 $(RPM): desktopeditor rpm/$(PACKAGE_NAME).spec
-	cd rpm && setarch $(RPM_ARCH) rpmbuild -bb \
+	cd rpm && rpmbuild -bb \
 		--define "_topdir $(RPM_BUILD_DIR)" \
 		--define "_package_arch $(RPM_ARCH)" \
+		--target $(RPM_ARCH) \
 		$(RPM_PARAMS) \
 		package.spec
 
@@ -295,6 +308,7 @@ $(APT_RPM): desktopeditor apt-rpm/$(PACKAGE_NAME).spec
 	cd apt-rpm && setarch $(APT_RPM_ARCH) rpmbuild -bb \
 		--define "_topdir $(APT_RPM_BUILD_DIR)" \
 		--define "_package_arch $(APT_RPM_ARCH)" \
+		--target $(RPM_ARCH) \
 		$(RPM_PARAMS) \
 		package.spec
 
@@ -302,6 +316,7 @@ $(URPMI): desktopeditor urpmi/$(PACKAGE_NAME).spec
 	cd urpmi && setarch $(URPMI_ARCH) rpmbuild -bb \
 		--define "_topdir $(URPMI_BUILD_DIR)" \
 		--define "_package_arch $(URPMI_ARCH)" \
+		--target $(RPM_ARCH) \
 		$(RPM_PARAMS) \
 		package.spec
 

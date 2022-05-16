@@ -98,9 +98,9 @@ var
 begin
 
   if Is64BitInstallMode then
-    upgradecode := '{A181A302-3F6D-4BAD-97A8-A426A6499D78}' //x64
+    upgradecode := '{36F68A90-239C-34DF-B58C-64B30153CE35}' //x64
   else
-    upgradecode := '{5720EC03-F26F-40B7-980C-50B5D420B5DE}'; //x86
+    upgradecode := '{65E5BD06-6392-3027-8C26-853107D3CF1A}'; //x86
 
   Result :=  msiproductupgrade(upgradecode, '14');
 end;

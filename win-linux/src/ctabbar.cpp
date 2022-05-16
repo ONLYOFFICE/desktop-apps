@@ -832,6 +832,8 @@ void CTabBar::setTabTheme(int index, TabTheme theme)
 
 void CTabBar::setUIThemeType(bool islight)
 {
+    Q_D(QTabBar);
+
     m_isUIThemeDark = !islight;
     if (m_pLeftButton && m_pRightButton) {
         m_pLeftButton->style()->polish(m_pLeftButton);

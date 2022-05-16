@@ -199,7 +199,7 @@ LRESULT CALLBACK CSingleWindowPlatform::WndProc(HWND hWnd, UINT message, WPARAM 
     }
 
     case WM_SETFOCUS: {
-        if ( !window->m_closed ) {
+        if ( !window->m_closed && window->visible() ) {
 //        window->focusMainPanel();
             window->focus();
         }
