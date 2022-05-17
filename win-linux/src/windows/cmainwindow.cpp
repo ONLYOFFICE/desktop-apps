@@ -44,7 +44,6 @@
 #include "version.h"
 #include "components/cmessage.h"
 #include "../Common/OfficeFileFormats.h"
-#include "cmainpanelimpl.h"
 #include <QDesktopWidget>
 #include <QGridLayout>
 #include <QTimer>
