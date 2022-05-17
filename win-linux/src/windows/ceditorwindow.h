@@ -34,67 +34,64 @@
 #define CEDITORWINDOW_H
 
 #ifdef __linux__
-# include "linux/csinglewindowplatform.h"
+# include "windows/platform_linux/cwindowplatform.h"
 #else
-# include "win/csinglewindowplatform.h"
+# include "windows/platform_win/cwindowplatform.h"
 #endif
 
-#include "ctabpanel.h"
+#include "components/ctabpanel.h"
 #include <memory>
 #include <QCoreApplication>
 
 class CEditorWindowPrivate;
-class CEditorWindow : public CSingleWindowPlatform
+class CEditorWindow : public CWindowPlatform
 {
     Q_DECLARE_TR_FUNCTIONS(CEditorWindow)
 
 public:
-    CEditorWindow();
     CEditorWindow(const QRect& rect, CTabPanel* view);
     ~CEditorWindow();
 
-    void focus() override;
-    bool holdView(int id) const override;
-    bool holdView(const std::wstring& portal) const;
-    void undock(bool maximized = false);
-    int closeWindow();
-    CTabPanel * mainView() const;
+    const QObject * receiver();
     CTabPanel * releaseEditorView() const;
-    QString documentName() const;
-    bool closed() const;
     AscEditorType editorType() const;
-
-    void applyTheme(const std::wstring&);
+    QString documentName() const;
+    double scaling() const;
+    int closeWindow();
+    bool closed() const;
+    bool holdView(const std::wstring& portal) const;
     void setReporterMode(bool);
+    void undock(bool maximized = false);
+    virtual bool holdView(int id) const final;
+    virtual void applyTheme(const std::wstring&) final;
+
 private:
+    QWidget * createMainPanel(QWidget *, const QString&);
+    CTabPanel * mainView() const;
+    void recalculatePlaces();
+    void updateTitleCaption();
+    void onSizeEvent(int);
+    void onMoveEvent(const QRect&);
+    void onExitSizeMove();
+    void captureMouse();
+    virtual int calcTitleCaptionWidth() final;
+    virtual void focus() final;
+    virtual void onCloseEvent() final;
+    virtual void onMinimizeEvent() final;
+    virtual void onMaximizeEvent() final;
+    virtual bool event(QEvent *) final;
+    virtual void setScreenScalingFactor(double) final;
+
+    QMetaObject::Connection m_modalSlotConnection;
     QString m_css;
     bool m_restoreMaximized = false;
 
-private:
-    CEditorWindow(const QRect&, const QString&, QWidget *);
-    QWidget * createMainPanel(QWidget * parent);
-    QWidget * createMainPanel(QWidget * parent, const QString& title) override;
-    void recalculatePlaces();
-    const QObject * receiver() override;
-
-protected:
-    void onCloseEvent() override;
-    void onMinimizeEvent() override;
-    void onMaximizeEvent() override;
-    void onSizeEvent(int) override;
-    void onMoveEvent(const QRect&) override;
-    void onExitSizeMove() override;
-    void onDpiChanged(double,double) override;
-
-    void setScreenScalingFactor(double) override;
-    int calcTitleCaptionWidth() override;
+    friend class CEditorWindowPrivate;
+    std::unique_ptr<CEditorWindowPrivate> d_ptr;
 
 private slots:
     void onClickButtonHome();
-
-private:
-    friend class CEditorWindowPrivate;
-    std::unique_ptr<CEditorWindowPrivate> d_ptr;
+    void slot_modalDialog(bool,  WId);
 };
 
 #endif // CEDITORWINDOW_H

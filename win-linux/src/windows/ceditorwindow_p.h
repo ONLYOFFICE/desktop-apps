@@ -40,10 +40,10 @@
 #include "applicationmanager_events.h"
 #include "utils.h"
 #include "common/Types.h"
-#include "cmessage.h"
+#include "components/cmessage.h"
 #include "qascprinter.h"
 #include "ceditortools.h"
-#include "csvgpushbutton.h"
+#include "components/csvgpushbutton.h"
 #include "defines.h"
 
 #include <QPrinterInfo>
@@ -51,11 +51,6 @@
 #include <QJsonDocument>
 #include <QJsonArray>
 #include <QJsonObject>
-
-#ifdef _WIN32
-#include "win/cprintdialog.h"
-#else
-#endif
 
 
 using namespace NSEditorApi;
@@ -129,11 +124,7 @@ auto editor_color(int type) -> QColor {
     case etDocument: return AscAppManager::themes().current().color(CTheme::ColorRole::ecrTabWordActive);
     case etPresentation: return AscAppManager::themes().current().color(CTheme::ColorRole::ecrTabSlideActive);
     case etSpreadsheet: return AscAppManager::themes().current().color(CTheme::ColorRole::ecrTabCellActive);
-//#ifdef Q_OS_WIN
     default: return AscAppManager::themes().current().color(CTheme::ColorRole::ecrWindowBackground);
-//#else
-//    default: return QColor(WINDOW_BACKGROUND_COLOR);
-//#endif
     }
 }
 
@@ -229,6 +220,7 @@ public:
     }
 
     auto extendableTitleToSimple() -> void {
+        Q_ASSERT(window->m_boxTitleBtns != nullptr);
         QGridLayout * const _layout = static_cast<QGridLayout*>(window->m_pMainPanel->layout());
         if ( !_layout->findChild<QWidget*>(window->m_boxTitleBtns->objectName()) ) {
             _layout->addWidget(window->m_boxTitleBtns,0,0,Qt::AlignTop);
@@ -246,7 +238,7 @@ public:
             btn->setFillDark(!AscAppManager::themes().current().isDark());
 
 #ifdef Q_OS_WIN
-            window->setWindowBackgroundColor(AscAppManager::themes().current().color(CTheme::ColorRole::ecrWindowBackground));
+            window->setWindowColors(AscAppManager::themes().current().color(CTheme::ColorRole::ecrWindowBackground));
 #endif
         }
     }
@@ -344,6 +336,30 @@ public:
         }
     }
 
+    void setWindowColors()
+    {
+        std::wstring background, border;
+        switch (panel()->data()->contentType()) {
+        case etDocument:
+            background = AscAppManager::themes().current().value(CTheme::ColorRole::ecrTabWordActive);
+            border = background;
+            break;
+        case etPresentation:
+            background = AscAppManager::themes().current().value(CTheme::ColorRole::ecrTabSlideActive);
+            border = background;
+            break;
+        case etSpreadsheet:
+            background = AscAppManager::themes().current().value(CTheme::ColorRole::ecrTabCellActive);
+            border = background;
+            break;
+        default:
+            background = AscAppManager::themes().current().value(CTheme::ColorRole::ecrWindowBackground);
+            border = AscAppManager::themes().current().value(CTheme::ColorRole::ecrWindowBorder);
+        }
+
+        window->setWindowColors(QColor(QString::fromStdWString(background)), QColor(QString::fromStdWString(border)));
+    }
+
     void changeTheme(const std::wstring& theme)
     {
         if ( canExtendTitle() && window->isCustomWindowStyle() ) {
@@ -362,28 +378,7 @@ public:
                 btn->setIconOpacity(AscAppManager::themes().current().color(CTheme::ColorRole::ecrButtonNormalOpacity));
             }
 
-#ifdef Q_OS_WIN
-            std::wstring background, border;
-            switch (panel()->data()->contentType()) {
-            case etDocument:
-                background = AscAppManager::themes().current().value(CTheme::ColorRole::ecrTabWordActive);
-                border = background;
-                break;
-            case etPresentation:
-                background = AscAppManager::themes().current().value(CTheme::ColorRole::ecrTabSlideActive);
-                border = background;
-                break;
-            case etSpreadsheet:
-                background = AscAppManager::themes().current().value(CTheme::ColorRole::ecrTabCellActive);
-                border = background;
-                break;
-            default:
-                background = AscAppManager::themes().current().value(CTheme::ColorRole::ecrWindowBackground);
-                border = AscAppManager::themes().current().value(CTheme::ColorRole::ecrWindowBorder);
-            }
-
-            window->setWindowColors(QColor(QString::fromStdWString(background)), QColor(QString::fromStdWString(border)));
-#endif
+            setWindowColors();
         }
 
         AscAppManager::sendCommandTo(panel()->cef(), L"uitheme:changed", theme);
@@ -468,12 +463,13 @@ public:
             printer->setOutputFileName("");
             printer->setFromTo(1, pagescount);
 
-#ifdef _WIN32
-            CPrintDialogWinWrapper wrapper(printer, window->handle());
-            QPrintDialog * dialog = wrapper.q_dialog();
-#else
+/*#ifdef _WIN32
+            //CPrintDialogWinWrapper wrapper(printer, window->handle());
+            //QPrintDialog * dialog = wrapper.q_dialog();
+            QPrintDialog * dialog =  new QPrintDialog(printer, window);
+#else*/
             QPrintDialog * dialog =  new QPrintDialog(printer, window->handle());
-#endif // _WIN32
+//#endif // _WIN32
 
             dialog->setWindowTitle(CEditorWindow::tr("Print Document"));
             dialog->setEnabledOptions(QPrintDialog::PrintPageRange | QPrintDialog::PrintCurrentPage | QPrintDialog::PrintToFile);
@@ -482,11 +478,12 @@ public:
             dialog->setPrintRange(m_printData._print_range);
 
             int start = -1, finish = -1;
-#ifdef _WIN32
-            if ( wrapper.showModal() == QDialog::Accepted ) {
-#else
+/*#ifdef _WIN32
+            //if ( wrapper.showModal() == QDialog::Accepted ) {
             if ( dialog->exec() == QDialog::Accepted ) {
-#endif
+#else*/
+            if ( dialog->exec() == QDialog::Accepted ) {
+//#endif
                 m_printData._printer_info = QPrinterInfo::printerInfo(printer->printerName());
                 m_printData._print_range = dialog->printRange();
 
@@ -639,6 +636,7 @@ public:
 
     QLabel * iconUser()
     {
+        Q_ASSERT(window->m_boxTitleBtns != nullptr);
         if ( !iconuser ) {
             iconuser = new CElipsisLabel(window->m_boxTitleBtns);
             iconuser->setObjectName("iconuser");
@@ -653,6 +651,7 @@ public:
 
     QLabel * iconCrypted()
     {
+        Q_ASSERT(window->m_boxTitleBtns != nullptr);
         if ( !iconcrypted ) {
             iconcrypted = new QLabel(window->m_boxTitleBtns);
             iconcrypted->setObjectName("iconcrypted");
@@ -665,9 +664,9 @@ public:
 
     QPushButton * buttonDock()
     {
+        Q_ASSERT(window->m_boxTitleBtns != nullptr);
         if ( !btndock ) {
-            btndock = window->createToolButton(window->m_boxTitleBtns);
-            btndock->setObjectName("toolButtonDock");
+            btndock = window->createToolButton(window->m_boxTitleBtns, "toolButtonDock");
         }
 
         return btndock;
@@ -748,11 +747,12 @@ public:
     }
 
     auto customizeTitleLabel() -> void {
+        Q_ASSERT(window->m_boxTitleBtns != nullptr);
         QHBoxLayout * _layout = qobject_cast<QHBoxLayout *>(window->m_boxTitleBtns->layout());
         _layout->removeWidget(window->m_labelTitle);
 
-        boxtitlelabel = new QWidget;
-        boxtitlelabel->setLayout(new QHBoxLayout);
+        boxtitlelabel = new QWidget(window->m_boxTitleBtns);
+        boxtitlelabel->setLayout(new QHBoxLayout(boxtitlelabel));
         boxtitlelabel->layout()->setSpacing(0);
         boxtitlelabel->layout()->setMargin(0);
 
@@ -768,6 +768,7 @@ public:
     }
 
     auto ffWindowCustomize() -> void {
+        Q_ASSERT(window->m_boxTitleBtns != nullptr);
         QGridLayout * const _layout = static_cast<QGridLayout*>(window->m_pMainPanel->layout());
         if ( !_layout->findChild<QWidget*>(window->m_boxTitleBtns->objectName()) ) {
             _layout->addWidget(window->m_boxTitleBtns,0,0,Qt::AlignTop);
