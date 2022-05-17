@@ -1,4 +1,4 @@
-#include "canimatedicon.h"
+#include "components/canimatedicon.h"
 
 #include <QPainter>
 #include <QDebug>

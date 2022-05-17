@@ -41,7 +41,7 @@
 #include "OfficeFileFormats.h"
 #include "ceditortools.h"
 #include "utils.h"
-#include "cmessage.h"
+#include "components/cmessage.h"
 
 
 class CAscApplicationManagerWrapper_Private

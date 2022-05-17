@@ -33,12 +33,7 @@
 #ifndef CMESSAGE_H
 #define CMESSAGE_H
 
-#if defined(_WIN32)
-#include "win/cwinwindow.h"
-#else
 #include <QMessageBox>
-#endif
-
 #include <QLabel>
 #include <QCoreApplication>
 #include <QPushButton>
@@ -58,20 +53,11 @@ namespace CMessageOpts {
 
 class CMessagePrivateIntf;
 
-#if defined(_WIN32)
-class CMessage : public CWinWindow
-{
-public:
-    CMessage(HWND);
-    CMessage(HWND, CMessageOpts::moButtons);
-#else
 class CMessage : public QDialog
 {
 public:
     explicit CMessage(QWidget *);
              CMessage(QWidget *, CMessageOpts::moButtons);
-#endif
-
     ~CMessage() override;
 
     void setButtons(std::initializer_list<QString>);
@@ -86,24 +72,12 @@ public:
     int error(const QString& m);
     int confirm(const QString& m);
 
-#if defined(_WIN32)
-    static int info(HWND, const QString& m);
-    static int warning(HWND, const QString& m);
-    static int error(HWND, const QString& m);
-    static int confirm(HWND, const QString& m);
-#else
     static int info(QWidget *, const QString& m);
     static int warning(QWidget *, const QString& m);
     static int error(QWidget *, const QString& m);
     static int confirm(QWidget *, const QString& m);
-#endif
 
 private:
-#if defined(_WIN32)
-    using CWinWindow::modal;
-    void onWindowActivate(bool) override;
-#endif
-
     QWidget * m_boxButtons = nullptr;
     QWidget * m_centralWidget;
     QLabel * m_message,
@@ -111,11 +85,6 @@ private:
     int m_modalresult;
 
     void modal();
-#if defined(_WIN32)
-    void onScreenScaling() override;
-#else
-    void onScreenScaling();
-#endif
 
     friend class CMessagePrivateIntf;
     std::unique_ptr<CMessagePrivateIntf> m_priv;

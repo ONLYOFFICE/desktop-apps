@@ -1,4 +1,4 @@
-#include "ctabbarwrapper.h"
+#include "components/ctabbarwrapper.h"
 
 CTabBarWrapper::CTabBarWrapper(QWidget *parent):
     QFrame(parent)

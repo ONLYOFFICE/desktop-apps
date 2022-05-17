@@ -30,53 +30,64 @@
  *
 */
 
-#ifndef CCEFEVENTSGATE_H
-#define CCEFEVENTSGATE_H
+#ifndef CDOWNLOADWIDGET_H
+#define CDOWNLOADWIDGET_H
 
-#include <QObject>
-#include "components/ctabpanel.h"
+#include <QWidget>
+#include "cpushbutton.h"
+#include "cscalingwrapper.h"
 
-class CCefEventsGate : public QObject
+//class CProfileMenuFilter;
+class CProfileMenuFilter : public QObject {
+public:
+    CProfileMenuFilter(QObject *);
+
+    bool eventFilter(QObject *, QEvent *);
+    void setMenuButton(QPushButton *);
+private:
+    QPushButton * _parentButton;
+};
+
+class CDownloadWidget : public QWidget, public CScalingWrapper
 {
     Q_OBJECT
 
-public:
-    explicit CCefEventsGate(QObject *parent = nullptr);
+    class CDownloadItem;
+    typedef std::map<int, CDownloadItem *>::const_iterator MapItem;
 
-    virtual void init(CTabPanel * const);
-    CTabPanel * const panel()
-    {
-        return m_panel;
-    }
+public:
+    explicit CDownloadWidget(QWidget *parent = 0);
+    ~CDownloadWidget();
+
+    void downloadProcess(void *);
+    QPushButton * toolButton();
+//    void updateProgress();
+//    void cancelAll();
+
+    void updateScalingFactor(double) override;
 
 protected:
-    CTabPanel * m_panel = nullptr;
+    QWidget * addFile(const QString&, int);
+    void removeFile(int);
+    void removeFile(MapItem);
+    void updateLayoutGeomentry();
+    void updateProgress(MapItem, void *);
+    QString getFileName(const QString&) const;
 
-public slots:
-    virtual void onPortalLogout(std::wstring portal) = 0;
-    virtual void onEditorConfig(int id, std::wstring cfg) = 0;
-    virtual void onEditorActionRequest(int, const QString&) = 0;
-    virtual void onDocumentName(void *);
-    virtual void onDocumentChanged(int id, bool changed);
-    virtual void onDocumentSave(int id, bool cancel = false);
-    virtual void onDocumentSaveInnerRequest(int id) = 0;
-    virtual void onDocumentFragmented(int id, bool needbuild) = 0;
-    virtual void onDocumentFragmentedBuild(int id, int error);
-    virtual void onDocumentPrint(void *);
-    virtual void onDocumentPrint(int current, uint count) = 0;
-    virtual void onDocumentLoadFinished(int);
-    virtual void onDocumentReady(int);
-    virtual void onDocumentType(int id, int type);
+    void applyScaling(double);
+    void resizeEvent(QResizeEvent *);
 
-    virtual void onFileLocation(int id, QString path) = 0;
-    virtual void onLocalFileSaveAs(void *);
+private:
+    CPushButton * m_pToolButton;
+    std::map<int, CDownloadItem *> m_mapDownloads;
+    QMargins m_defMargins;
+    int m_defSpacing;
 
-    virtual void onEditorAllowedClose(int) = 0;
-    virtual void onKeyDown(void *);
-    virtual void onFullScreen(int id, bool apply) = 0;
+signals:
+    void downloadCanceled(int);
 
-    virtual void onWebTitleChanged(int, std::wstring json) = 0;
-    virtual void onWebAppsFeatures(int, std::wstring) = 0;
+private slots:
+    void slot_downloadCanceled(int);
 };
 
-#endif // CCEFEVENTSGATE_H
+#endif // CDOWNLOADWIDGET_H

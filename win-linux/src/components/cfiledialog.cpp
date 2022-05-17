@@ -30,11 +30,11 @@
  *
 */
 
-#include "cfiledialog.h"
+#include "components/cfiledialog.h"
 #include <QFileDialog>
 #include "defines.h"
 #include "utils.h"
-#include "cmessage.h"
+#include "components/cmessage.h"
 #include "cascapplicationmanagerwrapper.h"
 
 #include "../Common/OfficeFileFormats.h"
@@ -175,7 +175,7 @@ public:
                     hr = pDialog->SetOptions(dwFlags | FOS_FILEMUSTEXIST | FOS_PATHMUSTEXIST);
                 }
 
-                hr = pDialog->Show(args.parent);
+                hr = pDialog->Show((HWND)args.parent->winId());
                 if (SUCCEEDED(hr)) {
                     IShellItemArray * items = nullptr;
                     hr = pDialog->GetResults(&items);
@@ -206,15 +206,15 @@ public:
     }
 };
 
-#if defined(_WIN32)
+/*#if defined(_WIN32)
 CFileDialogWrapper::CFileDialogWrapper(HWND hParentWnd) : QWinWidget(hParentWnd)
-#else
+#else*/
 // because bug in cef - 'open/save dialog' doesn't open for second time
 #if !defined(FILEDIALOG_DONT_USE_NATIVEDIALOGS) && !defined(FILEDIALOG_DONT_USE_MODAL)
 #define FILEDIALOG_DONT_USE_MODAL
 #endif
 CFileDialogWrapper::CFileDialogWrapper(QWidget * parent) : QObject(parent)
-#endif
+//#endif
 {
     m_mapFilters[AVS_OFFICESTUDIO_FILE_UNKNOWN]         = tr("All files (*.*)");
 
@@ -299,9 +299,10 @@ bool CFileDialogWrapper::modalSaveAs(QString& fileName, int selected)
     QString _croped_name = fileName.contains(QRegExp("\\.[^\\/\\\\]+$")) ?
                                     fileName.left(fileName.lastIndexOf(".")) : fileName;
 
-    HWND _mess_parent = QWinWidget::parentWindow();
-    CInAppEventModal _event(_mess_parent);
-    CRunningEventHelper _h(&_event);
+    QWidget * _mess_parent = (QWidget *)parent();
+    /*HWND _mess_parent = QWinWidget::parentWindow();*/
+    /*CInAppEventModal _event(_mess_parent->winId());
+    CRunningEventHelper _h(&_event);*/
 #else
     QString _croped_name = fileName.left(fileName.lastIndexOf("."));
     QWidget * _mess_parent = (QWidget *)parent();
@@ -322,7 +323,7 @@ bool CFileDialogWrapper::modalSaveAs(QString& fileName, int selected)
     QWidget * _parent = NULL;
 #else
 # ifdef _WIN32
-    QWidget * _parent = this;
+    QWidget * _parent = (QWidget *)parent();
 # else
     QWidget * _parent = (QWidget *)parent();
 # endif
@@ -403,7 +404,7 @@ QStringList CFileDialogWrapper::modalOpen(const QString& path, const QString& fi
 
     QWidget * _parent =
 #ifdef _WIN32
-                        this;
+                        (QWidget *)parent();
 #else
 # ifdef FILEDIALOG_DONT_USE_MODAL
                         NULL;
@@ -425,10 +426,10 @@ QStringList CFileDialogWrapper::modalOpen(const QString& path, const QString& fi
     return multi ? QFileDialog::getOpenFileNames(_parent, tr("Open Document"), path, _filter_, &_sel_filter, _opts) :
                 QStringList(QFileDialog::getOpenFileName(_parent, tr("Open Document"), path, _filter_, &_sel_filter, _opts));
 #else
-    CInAppEventModal event_(QWinWidget::parentWindow());
-    CRunningEventHelper h_(&event_);
+    /*CInAppEventModal event_(qobject_cast<QWidget*>(parent())->winId());
+    CRunningEventHelper h_(&event_);*/
 
-    CFileDialogHelper::CFileDialogOpenArguments args{(HWND)_parent->winId(),tr("Open Document").toStdWString()};
+    CFileDialogHelper::CFileDialogOpenArguments args{_parent,tr("Open Document").toStdWString()};
     args.filter = _filter_.toStdWString();
     args.startFilter = _sel_filter.toStdWString();
     args.multiSelect = multi;
@@ -547,7 +548,7 @@ QString CFileDialogWrapper::selectFolder(const QString& folder)
 {
     QWidget * _parent =
 #ifdef _WIN32
-                        this;
+                        (QWidget *)parent();
 #else
 # ifdef FILEDIALOG_DONT_USE_MODAL
                         NULL;

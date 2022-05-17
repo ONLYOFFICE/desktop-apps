@@ -30,7 +30,7 @@
  *
 */
 
-#include "asctabwidget.h"
+#include "components/asctabwidget.h"
 #include <QRegExp>
 
 #include <QDebug>
@@ -49,7 +49,7 @@
 #include "defines.h"
 #include "utils.h"
 #include "cfilechecker.h"
-#include "canimatedicon.h"
+#include "components/canimatedicon.h"
 #include "ceditortools.h"
 
 #include "cascapplicationmanagerwrapper.h"
@@ -1139,7 +1139,6 @@ void CAscTabWidget::setFullScreen(bool apply, int id)
                 e->ignore();
                 // TODO: associate panel with reporter window and close both simultaneously
                 QTimer::singleShot(10, [=] {emit tabCloseRequested(m_dataFullScreen->tabindex());});
-//                emit closeAppRequest();
             });
         }
     }
@@ -1150,9 +1149,9 @@ QWidget * CAscTabWidget::fullScreenWidget()
     return m_dataFullScreen ? m_dataFullScreen->widget() : nullptr;
 }
 
-void CAscTabWidget::updateScaling(double f)
+void CAscTabWidget::updateScalingFactor(double f)
 {
-    CScalingWrapper::updateScaling(f);
+    CScalingWrapper::updateScalingFactor(f);
 
     double dpi_ratio = scaling();
 
@@ -1167,7 +1166,7 @@ void CAscTabWidget::updateScaling(double f)
     else
         m_widthParams.tools_width = m_widthParams.title_width = 0;
 
-    m_pBar->updateScaling(f);
+    m_pBar->updateScalingFactor(f);
 }
 
 void CAscTabWidget::setStyleSheet(const QString& stylesheet)

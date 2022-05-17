@@ -30,7 +30,7 @@
  *
 */
 
-#include "csvgpushbutton.h"
+#include "components/csvgpushbutton.h"
 
 #include <QtSvg>
 #include <QSvgRenderer>

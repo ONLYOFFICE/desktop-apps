@@ -30,7 +30,7 @@
  *
 */
 
-#include "cprintprogress.h"
+#include "components/cprintprogress.h"
 #include <QHBoxLayout>
 #include <QPushButton>
 #include <QKeyEvent>
@@ -40,9 +40,9 @@
 
 #ifdef _WIN32
 //#define WINVER 0x0500
-#include <windows.h>
+# include <windows.h>
 #else
-#include "linux/cx11decoration.h"
+# include "windows/platform_linux/cx11decoration.h"
 #endif // Q_WS_WIN32
 
 #include <QDebug>
@@ -79,15 +79,15 @@ public:
 };
 
 
-#if defined(_WIN32)
+/*#if defined(_WIN32)
 CPrintProgress::CPrintProgress(HWND hParentWnd)
     : QWinWidget(hParentWnd),
       m_Dlg(this),
-#else
+#else*/
 CPrintProgress::CPrintProgress(QWidget * parent)
     : QObject(parent),
       m_Dlg(parent),
-#endif
+//#endif
     m_fLayout(new QFormLayout),
     m_eventFilter(new CDialogEventFilter(this)), m_isRejected(false)
 {
@@ -103,11 +103,11 @@ CPrintProgress::CPrintProgress(QWidget * parent)
 //    icon->setFixedSize(35*g_dpi_ratio, 35*g_dpi_ratio);
 
     auto _dpi_ratio =
-#if defined(_WIN32)
+/*#if defined(_WIN32)
             Utils::getScreenDpiRatioByHWND(int(hParentWnd));
-#else
+#else*/
             Utils::getScreenDpiRatioByWidget(parent);
-#endif
+//#endif
 
     m_progressText = tr("Document is printing: page %1 of %2");
     m_progressLabel.setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Preferred);
@@ -132,16 +132,16 @@ CPrintProgress::CPrintProgress(QWidget * parent)
     m_Dlg.installEventFilter(m_eventFilter);
 
     connect(btn_cancel, SIGNAL(clicked()), this, SLOT(onCancelClicked()));
-#ifdef __linux
+//#ifdef __linux
     connect(this, &CPrintProgress::signal, [=](int){ if ( !m_showed ) m_showed = true;});
-#endif
+//#endif
 }
 
 CPrintProgress::~CPrintProgress()
 {
-#if defined(_WIN32)
+/*#if defined(_WIN32)
     EnableWindow(parentWindow(), TRUE);
-#endif
+#endif*/
 
     RELEASEOBJECT(m_fLayout)
     RELEASEOBJECT(m_eventFilter)
@@ -156,7 +156,7 @@ void CPrintProgress::startProgress()
 {
 //    m_Dlg.adjustSize();
 
-#ifdef _WIN32
+/*#ifdef _WIN32
     EnableWindow(parentWindow(), FALSE);
 
     RECT rc;
@@ -166,7 +166,7 @@ void CPrintProgress::startProgress()
     int y = (rc.bottom - rc.top - m_Dlg.height())/2;
 
     m_Dlg.move(x, y);
-#endif
+#endif*/
     m_Dlg.show();
 
 #ifdef __linux

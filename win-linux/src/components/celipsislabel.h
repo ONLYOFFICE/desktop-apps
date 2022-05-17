@@ -30,64 +30,29 @@
  *
 */
 
-#ifndef CDOWNLOADWIDGET_H
-#define CDOWNLOADWIDGET_H
+#ifndef CELIPSISLABEL_H
+#define CELIPSISLABEL_H
 
-#include <QWidget>
-#include "cpushbutton.h"
-#include "cscalingwrapper.h"
+#include <QLabel>
+#include <QResizeEvent>
 
-//class CProfileMenuFilter;
-class CProfileMenuFilter : public QObject {
-public:
-    CProfileMenuFilter(QObject *);
-
-    bool eventFilter(QObject *, QEvent *);
-    void setMenuButton(QPushButton *);
-private:
-    QPushButton * _parentButton;
-};
-
-class CDownloadWidget : public QWidget, public CScalingWrapper
+class CElipsisLabel : public QLabel
 {
-    Q_OBJECT
-
-    class CDownloadItem;
-    typedef std::map<int, CDownloadItem *>::const_iterator MapItem;
-
 public:
-    explicit CDownloadWidget(QWidget *parent = 0);
-    ~CDownloadWidget();
+    CElipsisLabel(const QString &text, QWidget *parent = Q_NULLPTR);
+    CElipsisLabel(QWidget *parent = Q_NULLPTR, Qt::WindowFlags f = Qt::WindowFlags());
 
-    void downloadProcess(void *);
-    QPushButton * toolButton();
-//    void updateProgress();
-//    void cancelAll();
-
-    void updateScaling(double) override;
+    auto setText(const QString&) -> void;
+    auto setEllipsisMode(Qt::TextElideMode) -> void;
+    auto updateText() -> void;
 
 protected:
-    QWidget * addFile(const QString&, int);
-    void removeFile(int);
-    void removeFile(MapItem);
-    void updateLayoutGeomentry();
-    void updateProgress(MapItem, void *);
-    QString getFileName(const QString&) const;
-
-    void applyScaling(double);
-    void resizeEvent(QResizeEvent *);
+    virtual void resizeEvent(QResizeEvent *event) final;
+    using QLabel::setText;
 
 private:
-    CPushButton * m_pToolButton;
-    std::map<int, CDownloadItem *> m_mapDownloads;
-    QMargins m_defMargins;
-    int m_defSpacing;
-
-signals:
-    void downloadCanceled(int);
-
-private slots:
-    void slot_downloadCanceled(int);
+    QString orig_text;
+    Qt::TextElideMode elide_mode = Qt::ElideRight;
 };
 
-#endif // CDOWNLOADWIDGET_H
+#endif // CELIPSISLABEL_H

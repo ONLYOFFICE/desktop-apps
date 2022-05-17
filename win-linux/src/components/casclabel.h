@@ -30,53 +30,22 @@
  *
 */
 
-#ifndef CCEFEVENTSGATE_H
-#define CCEFEVENTSGATE_H
+#ifndef CASCLABEL_H
+#define CASCLABEL_H
 
-#include <QObject>
-#include "components/ctabpanel.h"
+#include <QLabel>
 
-class CCefEventsGate : public QObject
+class CAscLabel: public QLabel
 {
-    Q_OBJECT
-
 public:
-    explicit CCefEventsGate(QObject *parent = nullptr);
+    CAscLabel(QWidget * parent = 0);
+    CAscLabel(const QString& caption, QWidget * parent = 0);
 
-    virtual void init(CTabPanel * const);
-    CTabPanel * const panel()
-    {
-        return m_panel;
-    }
+    virtual ~CAscLabel();
 
 protected:
-    CTabPanel * m_panel = nullptr;
-
-public slots:
-    virtual void onPortalLogout(std::wstring portal) = 0;
-    virtual void onEditorConfig(int id, std::wstring cfg) = 0;
-    virtual void onEditorActionRequest(int, const QString&) = 0;
-    virtual void onDocumentName(void *);
-    virtual void onDocumentChanged(int id, bool changed);
-    virtual void onDocumentSave(int id, bool cancel = false);
-    virtual void onDocumentSaveInnerRequest(int id) = 0;
-    virtual void onDocumentFragmented(int id, bool needbuild) = 0;
-    virtual void onDocumentFragmentedBuild(int id, int error);
-    virtual void onDocumentPrint(void *);
-    virtual void onDocumentPrint(int current, uint count) = 0;
-    virtual void onDocumentLoadFinished(int);
-    virtual void onDocumentReady(int);
-    virtual void onDocumentType(int id, int type);
-
-    virtual void onFileLocation(int id, QString path) = 0;
-    virtual void onLocalFileSaveAs(void *);
-
-    virtual void onEditorAllowedClose(int) = 0;
-    virtual void onKeyDown(void *);
-    virtual void onFullScreen(int id, bool apply) = 0;
-
-    virtual void onWebTitleChanged(int, std::wstring json) = 0;
-    virtual void onWebAppsFeatures(int, std::wstring) = 0;
+    void paintEvent(QPaintEvent *);
+    void resizeEvent(QResizeEvent *);
 };
 
-#endif // CCEFEVENTSGATE_H
+#endif // CASCLABEL_H

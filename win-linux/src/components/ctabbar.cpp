@@ -30,13 +30,13 @@
  *
 */
 
-#include "ctabbar.h"
+#include "components/ctabbar.h"
 //#include "ctabbar_p.h"
 #include "private/qtabbar_p.h"
 #include <QStylePainter>
 #include <QHoverEvent>
 #include <QDesktopWidget>
-#include "canimatedicon.h"
+#include "components/canimatedicon.h"
 #include "utils.h"
 
 #define TAB_BTNCLOSE(index) tabButton(index, QTabBar::RightSide)
@@ -923,9 +923,9 @@ void CTabBar::activate(bool a)
     }
 }
 
-void CTabBar::updateScaling(double f)
+void CTabBar::updateScalingFactor(double f)
 {
-    CScalingWrapper::updateScaling(f);
+    CScalingWrapper::updateScalingFactor(f);
 
     for (int i(count()); !(--i < 0); ) {
         QWidget * b = TAB_BTNCLOSE(i);

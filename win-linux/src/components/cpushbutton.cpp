@@ -30,7 +30,7 @@
  *
 */
 
-#include "cpushbutton.h"
+#include "components/cpushbutton.h"
 
 #include <QMovie>
 #include <QStyleOption>

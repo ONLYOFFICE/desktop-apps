@@ -1,5 +1,5 @@
 
-#include "ctabpanel.h"
+#include "components/ctabpanel.h"
 #include "cascapplicationmanagerwrapper.h"
 #include "defines.h"
 #include "cefview.h"

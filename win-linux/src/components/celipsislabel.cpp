@@ -30,53 +30,58 @@
  *
 */
 
-#ifndef CCEFEVENTSGATE_H
-#define CCEFEVENTSGATE_H
+#include "components/celipsislabel.h"
 
-#include <QObject>
-#include "components/ctabpanel.h"
 
-class CCefEventsGate : public QObject
+auto ellipsis_text_(const QWidget * widget, const QString& str, Qt::TextElideMode mode = Qt::ElideRight) -> QString
 {
-    Q_OBJECT
+    QMargins _margins = widget->contentsMargins();
+    int _padding = _margins.left() + _margins.right();
+    int _width = widget->maximumWidth() != QWIDGETSIZE_MAX ? widget->maximumWidth() : widget->width();
+    QFontMetrics _metrics(widget->font());
 
-public:
-    explicit CCefEventsGate(QObject *parent = nullptr);
+    return _metrics.elidedText(str, mode, _width - _padding - 1);
+}
 
-    virtual void init(CTabPanel * const);
-    CTabPanel * const panel()
-    {
-        return m_panel;
+CElipsisLabel::CElipsisLabel(QWidget *parent, Qt::WindowFlags f)
+    : QLabel(parent, f)
+{}
+
+CElipsisLabel::CElipsisLabel(const QString &text, QWidget *parent)
+    : QLabel(text, parent)
+    , orig_text(text)
+{
+//    QString elt = elipsis_text(this, text, Qt::ElideMiddle);
+//    setText(elt);
+}
+
+void CElipsisLabel::resizeEvent(QResizeEvent *event)
+{
+    QLabel::resizeEvent(event);
+
+    if ( event->size().width() != event->oldSize().width() ) {
+        QString elt = ellipsis_text_(this, orig_text, elide_mode);
+        QLabel::setText(elt);
     }
+}
 
-protected:
-    CTabPanel * m_panel = nullptr;
+auto CElipsisLabel::setText(const QString& text) -> void
+{
+    orig_text = text;
 
-public slots:
-    virtual void onPortalLogout(std::wstring portal) = 0;
-    virtual void onEditorConfig(int id, std::wstring cfg) = 0;
-    virtual void onEditorActionRequest(int, const QString&) = 0;
-    virtual void onDocumentName(void *);
-    virtual void onDocumentChanged(int id, bool changed);
-    virtual void onDocumentSave(int id, bool cancel = false);
-    virtual void onDocumentSaveInnerRequest(int id) = 0;
-    virtual void onDocumentFragmented(int id, bool needbuild) = 0;
-    virtual void onDocumentFragmentedBuild(int id, int error);
-    virtual void onDocumentPrint(void *);
-    virtual void onDocumentPrint(int current, uint count) = 0;
-    virtual void onDocumentLoadFinished(int);
-    virtual void onDocumentReady(int);
-    virtual void onDocumentType(int id, int type);
+    QString elt = ellipsis_text_(this, text, elide_mode);
+    QLabel::setText(elt);
+}
 
-    virtual void onFileLocation(int id, QString path) = 0;
-    virtual void onLocalFileSaveAs(void *);
+auto CElipsisLabel::setEllipsisMode(Qt::TextElideMode mode) -> void
+{
+    elide_mode = mode;
+}
 
-    virtual void onEditorAllowedClose(int) = 0;
-    virtual void onKeyDown(void *);
-    virtual void onFullScreen(int id, bool apply) = 0;
-
-    virtual void onWebTitleChanged(int, std::wstring json) = 0;
-    virtual void onWebAppsFeatures(int, std::wstring) = 0;
-};
-
-#endif // CCEFEVENTSGATE_H
+auto CElipsisLabel::updateText() -> void
+{
+    QString elt = ellipsis_text_(this, orig_text, elide_mode);
+    if ( elt != text() ) {
+        QLabel::setText(elt);
+    }
+}
