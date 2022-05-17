@@ -36,9 +36,10 @@
 #define WINDOW_MIN_WIDTH    500
 #define WINDOW_MIN_HEIGHT   300
 
-#define MAIN_WINDOW_MIN_WIDTH  960
-#define MAIN_WINDOW_MIN_HEIGHT 661
+#define MAIN_WINDOW_MIN_WIDTH    960
+#define MAIN_WINDOW_MIN_HEIGHT   661
 #define MAIN_WINDOW_DEFAULT_SIZE QSize(1324,800)
+#define EDITOR_WINDOW_MIN_WIDTH  920
 
 #define BUTTON_MAIN_WIDTH   112
 #define MAIN_WINDOW_BORDER_WIDTH 4
@@ -47,29 +48,60 @@
 #define TOOLBTN_WIDTH       40
 #define TITLE_HEIGHT        28
 
+#include <QMainWindow>
+#include <QPushButton>
+#include <memory>
+#include "components/celipsislabel.h"
+
 #ifdef _WIN32
 # include <windows.h>
+# include <windowsx.h>
+# include <dwmapi.h>
 #endif
 
-namespace WindowBase
+
+class CWindowBase : public QMainWindow
 {
-#ifdef _WIN32
-    enum class Style : DWORD
-    {
-//        windowed        = ( WS_OVERLAPPEDWINDOW | WS_CLIPCHILDREN ),
-        windowed        = ( WS_OVERLAPPED | WS_THICKFRAME | WS_CAPTION | WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_CLIPCHILDREN ),
-        aero_borderless = ( WS_POPUP | WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_THICKFRAME | WS_CLIPCHILDREN )
+public:
+    explicit CWindowBase(const QRect&);
+    virtual ~CWindowBase();   
+
+    QWidget * handle() const;
+    bool isCustomWindowStyle();
+    void updateScaling();
+    virtual void adjustGeometry() = 0;
+    virtual void setWindowColors(const QColor&, const QColor& border = QColor());
+    virtual void applyTheme(const std::wstring&);
+
+protected:
+    enum BtnType {
+        Btn_Minimize, Btn_Maximize, Btn_Close
     };
 
-    struct CWindowGeometry
-    {
-        CWindowGeometry() {}
+    QPushButton* createToolButton(QWidget * parent, const QString& name);
+    QWidget* createTopPanel(QWidget *parent);
+    void setIsCustomWindowStyle(bool);
+    virtual void setScreenScalingFactor(double);
+    virtual void applyWindowState(Qt::WindowState);
+    virtual void setWindowTitle(const QString&);
+    virtual void onMinimizeEvent();
+    virtual void onMaximizeEvent();
+    virtual void onCloseEvent();
+    virtual void focus();
 
-        bool required = false;
-        int width = 0;
-        int height = 0;
-    };
-#endif
-}
+    QVector<QPushButton*> m_pTopButtons;
+    CElipsisLabel *m_labelTitle = nullptr;
+    QWidget       *m_pMainPanel = nullptr,
+                  *m_boxTitleBtns = nullptr,
+                  *m_pMainView = nullptr;
+    double         m_dpiRatio;
+
+private:
+    virtual void showEvent(QShowEvent *) final;
+    class CWindowBasePrivate;
+    std::unique_ptr<CWindowBasePrivate> pimpl;
+    QRect m_window_rect;
+    bool  m_windowActivated;
+};
 
 #endif // CWINDOWBASE_H

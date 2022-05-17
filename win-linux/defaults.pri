@@ -64,6 +64,7 @@ INCLUDEPATH += \
     $$CORE_ROOT_DIR/Common
 
 HEADERS += \
+    $$PWD/src/windows/cwindowbase.h \
     $$PWD/src/components/asctabwidget.h \
     $$PWD/src/components/ctabbarwrapper.h \
     $$PWD/src/components/cdownloadwidget.h \
@@ -89,7 +90,6 @@ HEADERS += \
     $$PWD/src/cfilechecker.h \
     $$PWD/src/clogger.h \
     $$PWD/src/clangater.h \
-    $$PWD/src/cwindowbase.h \
     $$PWD/src/cscalingwrapper.h \
     $$PWD/src/ctabundockevent.h \
     $$PWD/src/ceditorwindow.h \
@@ -106,6 +106,7 @@ HEADERS += \
 #    src/components/casclabel.h
 
 SOURCES += \
+    $$PWD/src/windows/cwindowbase.cpp \
     $$PWD/src/components/asctabwidget.cpp\
     $$PWD/src/components/cdownloadwidget.cpp \
     $$PWD/src/components/cpushbutton.cpp \
