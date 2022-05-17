@@ -40,7 +40,7 @@
 #include "X11/Xlib.h"
 #include "X11/cursorfont.h"
 #include <X11/Xutil.h>
-#include "gtk_addon.h"
+//#include "gtk_addon.h"
 
 #define CUSTOM_BORDER_WIDTH 4
 #define MOTION_TIMER_MS 500
