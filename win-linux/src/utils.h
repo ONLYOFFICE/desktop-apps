@@ -87,7 +87,7 @@ public:
 };
 
 namespace WindowHelper {
-#ifdef Q_OS_LINUX
+//#ifdef Q_OS_LINUX
     class CParentDisable
     {
         QWidget* m_pChild = nullptr;
@@ -100,7 +100,8 @@ namespace WindowHelper {
     };
 
 //    auto check_button_state(Qt::MouseButton b) -> bool;
-#else
+//#else
+#ifdef Q_OS_WIN
     auto isWindowSystemDocked(HWND handle) -> bool;
     auto correctWindowMinimumSize(HWND handle) -> void;
     auto correctModalOrder(HWND windowhandle, HWND modalhandle) -> void;

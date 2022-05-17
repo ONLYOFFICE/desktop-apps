@@ -10,7 +10,7 @@ public:
     explicit CScalingWrapper(double);
     virtual ~CScalingWrapper() {}
 
-    virtual void updateScaling(double f);
+    virtual void updateScalingFactor(double f);
     double scaling() const;
 
     static void updateChildScaling(const QObject * parent, double factor);

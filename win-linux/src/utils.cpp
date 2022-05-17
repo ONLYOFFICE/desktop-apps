@@ -597,7 +597,7 @@ std::wstring Utils::appUserName()
 
 
 namespace WindowHelper {
-#ifdef Q_OS_LINUX
+//#ifdef Q_OS_LINUX
     CParentDisable::CParentDisable(QWidget* parent)
     {
         disable(parent);
@@ -640,7 +640,8 @@ namespace WindowHelper {
         }
     }
 
-#else
+//#else
+#ifdef Q_OS_WIN
     auto isWindowSystemDocked(HWND handle) -> bool {
         RECT windowrect;
         WINDOWPLACEMENT wp; wp.length = sizeof(WINDOWPLACEMENT);
@@ -739,5 +740,5 @@ namespace WindowHelper {
         _panel->setGeometry(0,0,_parent->width(),_parent->height());
 
         return _parent;
-    }
+    }   
 }
