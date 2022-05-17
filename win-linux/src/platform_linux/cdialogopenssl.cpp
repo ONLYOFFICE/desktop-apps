@@ -1,5 +1,5 @@
 #include "cdialogopenssl.h"
-#include "cmessage.h"
+#include "components/cmessage.h"
 #include "utils.h"
 
 #include <QGridLayout>
