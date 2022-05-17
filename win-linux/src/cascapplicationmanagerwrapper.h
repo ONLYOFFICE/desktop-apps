@@ -40,29 +40,26 @@
 #include <memory>
 #include "ccefeventstransformer.h"
 #include "ccefeventsgate.h"
-#include "ceditorwindow.h"
+#include "windows/ceditorwindow.h"
 #include "cwindowsqueue.h"
 #include "ceventdriver.h"
 
-#ifdef _WIN32
-#include "win/mainwindow.h"
-#include "win/csinglewindow.h"
-#else
-#include "linux/cmainwindow.h"
-#include "linux/singleapplication.h"
-#include "linux/csinglewindow.h"
+#include "windows/cmainwindow.h"
+#include "windows/cpresenterwindow.h"
+
+#ifdef __linux__
+# include "platform_linux/singleapplication.h"
 #endif
 
-#include "cappupdater.h"
 #include "cthemes.h"
 
 #define SEND_TO_ALL_START_PAGE nullptr
 
-#ifdef Q_OS_WIN
+/*#ifdef Q_OS_WIN
 typedef HWND ParentHandle;
-#else
+#else*/
 typedef QWidget* ParentHandle;
-#endif
+//#endif
 
 
 struct sWinTag {
@@ -100,7 +97,7 @@ private:
     std::map<CScalingFactor, std::vector<std::string>> m_mapStyles;
 
     std::map<int, CCefEventsGate *> m_receivers;
-    std::map<int, CSingleWindow *> m_winsReporter;
+    std::map<int, CPresenterWindow *> m_winsReporter;
 
     uint m_closeCount = 0;
     uint m_countViews = 0;
@@ -110,7 +107,7 @@ private:
     CEventDriver m_eventDriver;
     CMainWindow * m_pMainWindow = nullptr;
 
-    std::shared_ptr<CAppUpdater> m_updater;
+    //std::shared_ptr<CAppUpdater> m_updater;
     std::shared_ptr<CThemes> m_themes;
 public:
     CWindowsQueue<sWinTag>& closeQueue();
@@ -154,7 +151,7 @@ public:
     static CAscApplicationManagerWrapper & getInstance();
     static CAscApplicationManager * createInstance();
 
-    CSingleWindow * createReporterWindow(void *, int);
+    CPresenterWindow * createReporterWindow(void *, int);
 
     static void             startApp();
     static void             initializeApp();
