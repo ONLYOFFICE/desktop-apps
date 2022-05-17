@@ -64,7 +64,11 @@ INCLUDEPATH += \
     $$CORE_ROOT_DIR/Common
 
 HEADERS += \
+    $$PWD/src/windows/cmainwindow.h \
     $$PWD/src/windows/cwindowbase.h \
+    $$PWD/src/windows/ceditorwindow.h \
+    $$PWD/src/windows/ceditorwindow_p.h \
+    $$PWD/src/windows/cpresenterwindow.h \
     $$PWD/src/components/asctabwidget.h \
     $$PWD/src/components/ctabbarwrapper.h \
     $$PWD/src/components/cdownloadwidget.h \
@@ -92,9 +96,7 @@ HEADERS += \
     $$PWD/src/clangater.h \
     $$PWD/src/cscalingwrapper.h \
     $$PWD/src/ctabundockevent.h \
-    $$PWD/src/ceditorwindow.h \
     $$PWD/src/ccefeventsgate.h \
-    $$PWD/src/ceditorwindow_p.h \
     $$PWD/src/ceditortools.h \
     $$PWD/src/cwindowsqueue.h \
     $$PWD/src/ceventdriver.h \
@@ -106,7 +108,10 @@ HEADERS += \
 #    src/components/casclabel.h
 
 SOURCES += \
+    $$PWD/src/windows/cmainwindow.cpp \
     $$PWD/src/windows/cwindowbase.cpp \
+    $$PWD/src/windows/ceditorwindow.cpp \
+    $$PWD/src/windows/cpresenterwindow.cpp \
     $$PWD/src/components/asctabwidget.cpp\
     $$PWD/src/components/cdownloadwidget.cpp \
     $$PWD/src/components/cpushbutton.cpp \
@@ -124,6 +129,7 @@ SOURCES += \
     $$PWD/src/ccefeventstransformer.cpp \
     $$PWD/src/cascapplicationmanagerwrapper.cpp \
     $$PWD/src/casctabdata.cpp \
+    $$PWD/src/utils.cpp \
     $$PWD/src/cstyletweaks.cpp \
     $$PWD/src/chelp.cpp \
     $$PWD/src/cfilechecker.cpp \
@@ -131,7 +137,6 @@ SOURCES += \
     $$PWD/src/clangater.cpp \
     $$PWD/src/cscalingwrapper.cpp \
     $$PWD/src/ctabundockevent.cpp \
-    $$PWD/src/ceditorwindow.cpp \
     $$PWD/src/ccefeventsgate.cpp \
     $$PWD/src/ceditortools.cpp \
     $$PWD/src/ceventdriver.cpp \
@@ -176,18 +181,20 @@ core_linux {
     QMAKE_LFLAGS += "-Wl,-rpath,\'\$$ORIGIN/converter\'"
     QMAKE_LFLAGS += -static-libstdc++ -static-libgcc
 
-    HEADERS += $$PWD/src/linux/cmainwindow.h \
-                $$PWD/src/linux/cx11decoration.h \
-                $$PWD/src/linux/singleapplication.h
+    HEADERS +=  $$PWD/src/windows/platform_linux/cx11decoration.h \
+                #$$PWD/src/windows/platform_linux/gtk_addon.h \
+                $$PWD/src/windows/platform_linux/cwindowplatform.h \
+                $$PWD/src/platform_linux/cdialogopenssl.h \
+                $$PWD/src/platform_linux/cdialogcertificateinfo.h \
+                $$PWD/src/platform_linux/singleapplication.h
 
-    SOURCES += $$PWD/src/linux/cmainwindow.cpp \
-                $$PWD/src/linux/cx11decoration.cpp \
-                $$PWD/src/linux/singleapplication.cpp
-
-    HEADERS += $$PWD/src/linux/cdialogopenssl.h \
-                $$PWD/src/linux/cdialogcertificateinfo.h
-    SOURCES += $$PWD/src/linux/cdialogopenssl.cpp \
-                $$PWD/src/linux/cdialogcertificateinfo.cpp
+    SOURCES +=  $$PWD/src/windows/platform_linux/cx11decoration.cpp \
+                #$$PWD/src/windows/platform_linux/gtk_addon.cpp \
+                #$$PWD/src/windows/platform_linux/cx11caption.cpp \
+                $$PWD/src/windows/platform_linux/cwindowplatform.cpp \
+                $$PWD/src/platform_linux/cdialogopenssl.cpp \
+                $$PWD/src/platform_linux/cdialogcertificateinfo.cpp \
+                $$PWD/src/platform_linux/singleapplication.cpp
 
     CONFIG += link_pkgconfig
     PKGCONFIG += glib-2.0 gtk+-3.0 atk
@@ -203,6 +210,11 @@ core_windows {
     DEFINES += Q_COMPILER_INITIALIZER_LISTS
 
     RC_ICONS += ./res/icons/desktop_icons.ico
+
+    HEADERS += $$PWD/src/windows/platform_win/cwindowplatform.h \
+               $$PWD/src/windows/platform_win/caption.h
+
+    SOURCES += $$PWD/src/windows/platform_win/cwindowplatform.cpp
 
 
     LIBS += -lwininet \
@@ -231,8 +243,8 @@ core_windows {
             -lcredui \
             -lnetapi32 \
             -lcomctl32 \
-            -lrpcrt4
-#            -ldwmapi
+            -lrpcrt4 \
+            -ldwmapi
 #            -lOpenGL32
 
     build_xp {
