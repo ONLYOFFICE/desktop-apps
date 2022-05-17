@@ -14,7 +14,7 @@ HEADERS += \
     src/prop/version_p.h
 
 SOURCES += \
-    src/prop/cmainpanelimpl.cpp \
+    src/prop/cmainwindowimpl.cpp \
     src/prop/utils.cpp
 
 RC_FILE = $$PWD/version.rc
@@ -36,4 +36,4 @@ win32 {
 }
 
 HEADERS += \
-    src/prop/cmainpanelimpl.h
+    src/prop/cmainwindowimpl.h

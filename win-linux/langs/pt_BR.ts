@@ -491,7 +491,7 @@
     </message>
 </context>
 <context>
-    <name>CMainPanelImpl</name>
+    <name>CMainWindowImpl</name>
     <message>
         <location filename="../src/prop/cmainpanelimpl.cpp" line="54"/>
         <source>Licensed under</source>
