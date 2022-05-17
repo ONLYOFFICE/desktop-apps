@@ -808,6 +808,9 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
         }
 
         if (open_opts.srctype == etUndefined) {
+            if ( _app.m_private->bringEditorToFront(QString::fromStdWString(open_opts.wurl)) ) {
+                continue;
+            } else
             if ( CFileInspector::isLocalFile(QString::fromStdWString(open_opts.wurl)) ) {
                 open_opts.srctype = etLocalFile;
 #ifdef Q_OS_WIN
