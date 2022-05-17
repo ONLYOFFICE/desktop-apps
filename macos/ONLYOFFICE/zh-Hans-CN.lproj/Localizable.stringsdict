@@ -28,8 +28,8 @@ The trial period will end in %d days, after that you will not be able to create 
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>other</key>
-			<string>You are using a trial version of the application.
-The trial period will end in %d days, after that you will not be able to create and edit documents.</string>
+			<string>您目前正在使用應用程式的試用版。
+試用版將在 %d 天後到期，之後，您將無法建立和編輯文件。</string>
 		</dict>
 	</dict>
 	<key>You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?</key>

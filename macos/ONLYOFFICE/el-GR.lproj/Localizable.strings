@@ -23,7 +23,7 @@
 "Cannot open folder of the file location." = "Δεν είναι δυνατό το άνοιγμα του φακέλου της θέσης του αρχείου.";
 
 /* No comment provided by engineer. */
-"Comma-Separated Values" = "Τιμές διαχωρισμένες με κόμμα";
+"Comma-Separated Values" = "Τιμές διαχωρισμένες με κόμμα (*.csv)";
 
 /* No comment provided by engineer. */
 "Create portal" = "Δημιουργία πύλης";
@@ -32,7 +32,7 @@
 "Delete and Quit" = "Διαγραφή και έξοδος";
 
 /* No comment provided by engineer. */
-"DjVu File" = "Αρχείο DjVu";
+"DjVu File" = "Ψηφιακό έγγραφο (*.djvu)";
 
 /* No comment provided by engineer. */
 "Do you want to save the changes made to the document \"%@\"?" = "Θέλετε να αποθηκεύσετε τις αλλαγές που έγιναν στο έγγραφο \"%@\";";
@@ -41,13 +41,13 @@
 "Document %ld.docx" = "Έγγραφο %ld.docx";
 
 /* No comment provided by engineer. */
-"Document template" = "Πρότυπο εγγράφου";
+"Document template" = "Πρότυπο εγγράφου Word με ανοιχτή μορφή XML (*.dotx)";
 
 /* No comment provided by engineer. */
-"Excel 97-2003 Spreadsheet" = "Υπολογιστικό φύλλο Excel 97-2003";
+"Excel 97-2003 Spreadsheet" = "Υπολογιστικό φύλλο Excel 97-2003 (*.xls)";
 
 /* No comment provided by engineer. */
-"Excel 2007 Spreadsheet" = "Υπολογιστικό φύλλο Excel 2007";
+"Excel 2007 Spreadsheet" = "Υπολογιστικό φύλλο Office με ανοιχτή μορφή XML  (*.xlsx)";
 
 /* No comment provided by engineer. */
 "File \"%@\" can not be open or not exist." = "Το αρχείο \"%@\" δεν μπορεί να ανοιχθεί ή δεν υπάρχει.";
@@ -71,7 +71,7 @@
 "License Agreement" = "Συμφωνία άδειας χρήσης";
 
 /* No comment provided by engineer. */
-"Mobipocket e-book" = "Ηλεκτρονικό βιβλίο Mobipocket";
+"Mobipocket e-book" = "Ηλεκτρονικό βιβλίο Mobipocket (*.mobi)";
 
 /* No comment provided by engineer. */
 "new-document" = "Νέο έγγραφο";
@@ -95,43 +95,43 @@
 "ONLYOFFICE can not open the Private Key. Try opening another file." = "Το ONLYOFFICE δεν μπορεί να ανοίξει το ιδιωτικό κλειδί. Δοκιμάστε να ανοίξετε άλλο αρχείο.";
 
 /* No comment provided by engineer. */
-"OpenDocument Document Template" = "Πρότυπο εγγράφου OpenDocument";
+"OpenDocument Document Template" = "Πρότυπο εγγράφου OpenDocument (*.ott)";
 
 /* No comment provided by engineer. */
-"OpenDocument Presentation Template" = "Πρότυπο παρουσίασης OpenDocument";
+"OpenDocument Presentation Template" = "Πρότυπο παρουσίασης OpenDocument  (*.otp)";
 
 /* No comment provided by engineer. */
-"OpenDocument Spreadsheet Template" = "Πρότυπο υπολογιστικού φύλλου OpenDocument";
+"OpenDocument Spreadsheet Template" = "Πρότυπο υπολογιστικού φύλλου OpenDocument  (*.ots)";
 
 /* No comment provided by engineer. */
 "Opening" = "Άνοιγμα";
 
 /* No comment provided by engineer. */
-"OpenOffice Document" = "Έγγραφο OpenOffice";
+"OpenOffice Document" = "Αρχείο κειμένου OpenDocument (*.odt)";
 
 /* No comment provided by engineer. */
-"OpenOffice Presentation" = "Παρουσίαση OpenOffice";
+"OpenOffice Presentation" = "Παρουσίαση OpenDocument (*.odp)";
 
 /* No comment provided by engineer. */
-"OpenOffice Spreadsheet" = "Υπολογιστικό φύλλο OpenOffice";
+"OpenOffice Spreadsheet" = "Υπολογιστικό φύλλο OpenDocument (*.ods)";
 
 /* No comment provided by engineer. */
-"PDF File" = "Αρχείο PDF";
+"PDF File" = "Φορητό έγγραφο (*.pdf)";
 
 /* No comment provided by engineer. */
-"PDF/A File" = "Αρχείο PDF/A";
+"PDF/A File" = "Φορητό έγγραφο / A (*.pdf)";
 
 /* No comment provided by engineer. */
-"Plain Text" = "Απλό κείμενο";
+"Plain Text" = "Απλό κείμενο (*.txt)";
 
 /* No comment provided by engineer. */
-"PowerPoint 97-2003 Presentation" = "Παρουσίαση PowerPoint 97-2003";
+"PowerPoint 97-2003 Presentation" = "Παρουσίαση PowerPoint 97-2003 (*.ppt)";
 
 /* No comment provided by engineer. */
-"PowerPoint 2007 Presentation" = "Παρουσίαση PowerPoint 2007";
+"PowerPoint 2007 Presentation" = "Παρουσίαση Office με ανοιχτή μορφή XML (*.pptx)";
 
 /* No comment provided by engineer. */
-"PowerPoint Slide Show" = "Παρουσίαση διαφανειών PowerPoint";
+"PowerPoint Slide Show" = "Προβολή παρουσίασης Office με ανοιχτή μορφή XML (*.ppsx)";
 
 /* No comment provided by engineer. */
 "Preparing..." = "Προετοιμασία...";
@@ -140,7 +140,7 @@
 "Presentation %ld.pptx" = "Παρουσίαση %ld.pptx";
 
 /* No comment provided by engineer. */
-"Presentation template" = "Πρότυπο παρουσίασης";
+"Presentation template" = "Πρότυπο παρουσίασης PowerPoint με ανοιχτή μορφή XML (*.potx)";
 
 /* No comment provided by engineer. */
 "Quit %@" = "Έξοδος %@";
@@ -149,7 +149,7 @@
 "Review Changes..." = "Έλεγχος αλλαγών...";
 
 /* No comment provided by engineer. */
-"Rich Text Document" = "Έγγραφο εμπλουτισμένου κειμένου";
+"Rich Text Document" = "Αρχείο μορφής εμπλουτισμένου κειμένου (*.rtf)";
 
 /* No comment provided by engineer. */
 "Save" = "Αποθήκευση";
@@ -161,7 +161,7 @@
 "Spreadsheet %ld.xlsx" = "Υπολογιστικό φύλλο %ld.xlsx";
 
 /* No comment provided by engineer. */
-"Spreadsheet template" = "Πρότυπο υπολογιστικού φύλλου";
+"Spreadsheet template" = "Πρότυπο υπολογιστικού φύλλου Excel με ανοιχτή μορφή XML (*.xltx)";
 
 /* No comment provided by engineer. */
 "Thank you for evaluating %@!" = "Σας ευχαριστούμε για την αξιολόγηση %@!";
@@ -185,13 +185,13 @@
 "Web Page" = "Ιστοσελίδα";
 
 /* No comment provided by engineer. */
-"Word 97-2003 Document" = "Έγγραφο Word 97-2003";
+"Word 97-2003 Document" = "Έγγραφο Word 97-2003 (*.doc)";
 
 /* No comment provided by engineer. */
-"Word 2007 Document" = "Έγγραφο Word 2007";
+"Word 2007 Document" = "Έγγραφο Office με ανοιχτή μορφή XML (*.docx)";
 
 /* No comment provided by engineer. */
-"XML Paper Specification" = "Προδιαγραφή χαρτιού XML";
+"XML Paper Specification" = "Έγγραφο OpenXPS (*.xps)";
 
 /* No comment provided by engineer. */
 "Yes" = "Ναι";

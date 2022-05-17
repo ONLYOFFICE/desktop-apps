@@ -23,7 +23,7 @@
 "Cannot open folder of the file location." = "Kan de map van de bestandslocatie niet openen.";
 
 /* No comment provided by engineer. */
-"Comma-Separated Values" = "Komma-Gescheiden Waarden";
+"Comma-Separated Values" = "Komma-Gescheiden Waarden (*.csv)";
 
 /* No comment provided by engineer. */
 "Create portal" = "Maak een portaal";
@@ -32,7 +32,7 @@
 "Delete and Quit" = "Verwijderen en Afsluiten";
 
 /* No comment provided by engineer. */
-"DjVu File" = "DjVu Bestand";
+"DjVu File" = "Digitaal Document (*.djvu)";
 
 /* No comment provided by engineer. */
 "Do you want to save the changes made to the document \"%@\"?" = "Wilt u de veranderingen die in het document \"%@\" zijn aangebracht, opslaan?";
@@ -41,13 +41,13 @@
 "Document %ld.docx" = "Document %ld.docx";
 
 /* No comment provided by engineer. */
-"Document template" = "Document sjabloon";
+"Document template" = "Word Open XML Document Sjabloon (*.dotx)";
 
 /* No comment provided by engineer. */
-"Excel 97-2003 Spreadsheet" = "Excel 97-2003 Spreadsheet";
+"Excel 97-2003 Spreadsheet" = "Excel 97-2003 Spreadsheet (*.xls)";
 
 /* No comment provided by engineer. */
-"Excel 2007 Spreadsheet" = "Excel 2007 Spreadsheet";
+"Excel 2007 Spreadsheet" = "Office Open XML Spreadsheet (*.xlsx)";
 
 /* No comment provided by engineer. */
 "File \"%@\" can not be open or not exist." = "Bestand \"%@\" kan niet open zijn of niet bestaan.";
@@ -71,7 +71,7 @@
 "License Agreement" = "Licentieovereenkomst";
 
 /* No comment provided by engineer. */
-"Mobipocket e-book" = "Mobipocket e-book";
+"Mobipocket e-book" = "Mobipocket e-book (*.mobi)";
 
 /* No comment provided by engineer. */
 "new-document" = "Nieuw Document";
@@ -95,43 +95,43 @@
 "ONLYOFFICE can not open the Private Key. Try opening another file." = "ONLYOFFICE kan de Privésleutel niet openen. Probeer een ander bestand te openen.";
 
 /* No comment provided by engineer. */
-"OpenDocument Document Template" = "OpenDocument Document Sjabloon";
+"OpenDocument Document Template" = "OpenDocument Document Sjabloon (*.ott)";
 
 /* No comment provided by engineer. */
-"OpenDocument Presentation Template" = "OpenDocument Presentatie Sjabloon";
+"OpenDocument Presentation Template" = "OpenDocument Presentatie Sjabloon (*.otp)";
 
 /* No comment provided by engineer. */
-"OpenDocument Spreadsheet Template" = "OpenDocument Spreadsheet Sjabloon";
+"OpenDocument Spreadsheet Template" = "OpenDocument Spreadsheet Sjabloon (*.ots)";
 
 /* No comment provided by engineer. */
 "Opening" = "Openen";
 
 /* No comment provided by engineer. */
-"OpenOffice Document" = "OpenOffice Document";
+"OpenOffice Document" = "OpenDocument Tekstbestand (*.odt)";
 
 /* No comment provided by engineer. */
-"OpenOffice Presentation" = "OpenOffice Presentatie";
+"OpenOffice Presentation" = "OpenDocument Presentatie (*.odp)";
 
 /* No comment provided by engineer. */
-"OpenOffice Spreadsheet" = "OpenOffice Spreadsheet";
+"OpenOffice Spreadsheet" = "OpenDocument Spreadsheet (*.ods)";
 
 /* No comment provided by engineer. */
-"PDF File" = "PDF Bestand";
+"PDF File" = "Portable Document (*.pdf)";
 
 /* No comment provided by engineer. */
-"PDF/A File" = "PDF/A Bestand";
+"PDF/A File" = "Portable Document / A (*.pdf)";
 
 /* No comment provided by engineer. */
-"Plain Text" = "Standaard Tekst";
+"Plain Text" = "Standaard Tekstbestand (*.txt)";
 
 /* No comment provided by engineer. */
-"PowerPoint 97-2003 Presentation" = "PowerPoint 97-2003 Presentatie";
+"PowerPoint 97-2003 Presentation" = "PowerPoint 97-2003 Presentatie (*.ppt)";
 
 /* No comment provided by engineer. */
-"PowerPoint 2007 Presentation" = "PowerPoint 2007 Presentatie";
+"PowerPoint 2007 Presentation" = "Office Open XML Presentatie (*.pptx)";
 
 /* No comment provided by engineer. */
-"PowerPoint Slide Show" = "PowerPoint Diavoorstelling";
+"PowerPoint Slide Show" = "Office Open XML Diavoorstelling (*.ppsx)";
 
 /* No comment provided by engineer. */
 "Preparing..." = "Voorbereiden...";
@@ -140,7 +140,7 @@
 "Presentation %ld.pptx" = "Presentatie %ld.pptx";
 
 /* No comment provided by engineer. */
-"Presentation template" = "Presentatie sjabloon";
+"Presentation template" = "PowerPoint Open XML Presentatie Sjabloon (*.potx)";
 
 /* No comment provided by engineer. */
 "Quit %@" = "Afsluiten %@";
@@ -149,7 +149,7 @@
 "Review Changes..." = "Veranderingen Beoordelen...";
 
 /* No comment provided by engineer. */
-"Rich Text Document" = "Rich Text Document";
+"Rich Text Document" = "Rich Text Format Bestand (*.rtf)";
 
 /* No comment provided by engineer. */
 "Save" = "Opslaan";
@@ -161,7 +161,7 @@
 "Spreadsheet %ld.xlsx" = "Spreadsheet %ld.xlsx";
 
 /* No comment provided by engineer. */
-"Spreadsheet template" = "Spreadsheet sjabloon";
+"Spreadsheet template" = "Excel Open XML Spreadsheet Sjabloon (*.xltx)";
 
 /* No comment provided by engineer. */
 "Thank you for evaluating %@!" = "Bedankt voor het beoordelen van %@!";
@@ -185,13 +185,13 @@
 "Web Page" = "Webpagina";
 
 /* No comment provided by engineer. */
-"Word 97-2003 Document" = "Word 97-2003 Document";
+"Word 97-2003 Document" = "Word 97-2003 Document (*.doc)";
 
 /* No comment provided by engineer. */
-"Word 2007 Document" = "Word 2007 Document";
+"Word 2007 Document" = "Office Open XML Document (*.docx)";
 
 /* No comment provided by engineer. */
-"XML Paper Specification" = "XML  Papierspecificatie";
+"XML Paper Specification" = "OpenXPS Document (*.xps)";
 
 /* No comment provided by engineer. */
 "Yes" = "Ja";

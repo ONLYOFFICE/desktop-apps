@@ -23,7 +23,7 @@
 "Cannot open folder of the file location." = "Nie można otworzyć folderu lokalizacji pliku.";
 
 /* No comment provided by engineer. */
-"Comma-Separated Values" = "Wartości Rozdzielone Przecinkami";
+"Comma-Separated Values" = "Wartości rozdzielone przecinkiem (*.csv)";
 
 /* No comment provided by engineer. */
 "Create portal" = "Stwórz portal";
@@ -32,7 +32,7 @@
 "Delete and Quit" = "Usuń i Zamknij";
 
 /* No comment provided by engineer. */
-"DjVu File" = "Plik DjVu";
+"DjVu File" = "Dokument cyfrowy (*.djvu)";
 
 /* No comment provided by engineer. */
 "Do you want to save the changes made to the document \"%@\"?" = "Czy chcesz zapisać zmiany dokonane w dokumencie \"%@\"?";
@@ -41,13 +41,19 @@
 "Document %ld.docx" = "Dokument % ld.docx";
 
 /* No comment provided by engineer. */
-"Document template" = "Szablon dokumentu";
+"Document template" = "Szablon dokumentu Word Open XML (*.dotx)";
 
 /* No comment provided by engineer. */
-"Excel 97-2003 Spreadsheet" = "Arkusz Kalkulacyjny Excel 97-2003";
+"Electronic Publication" = "Plik EPUB (*.epub)";
 
 /* No comment provided by engineer. */
-"Excel 2007 Spreadsheet" = "Arkusz Kalkulacyjny Excel 2007";
+"Excel 97-2003 Spreadsheet" = "Arkusz kalkulacyjny Excel 97-2003 (*.xls)";
+
+/* No comment provided by engineer. */
+"Excel 2007 Spreadsheet" = "Arkusz kalkulacyjny Open Office XML (*.xlsx)";
+
+/* No comment provided by engineer. */
+"FictionBook File" = "Plik FB2 (*.fb2)";
 
 /* No comment provided by engineer. */
 "File \"%@\" can not be open or not exist." = "Plik „% @” nie może być otworzony lub nie istnieje.";
@@ -62,6 +68,9 @@
 "Hide %@" = "Ukryj %@";
 
 /* No comment provided by engineer. */
+"HTML File" = "Plik HTML  (*.html)";
+
+/* No comment provided by engineer. */
 "If you don't review your documents, all your changeses will be lost." = "Jeśli nie sprawdzisz swoich dokumentów, wszystkie zmiany zostaną utracone.";
 
 /* No comment provided by engineer. */
@@ -71,7 +80,19 @@
 "License Agreement" = "Umowa licencyjna";
 
 /* No comment provided by engineer. */
-"Mobipocket e-book" = "E-Book Mobipocket";
+"MHT File" = "Plik MHT (*.mht)";
+
+/* No comment provided by engineer. */
+"Mobipocket e-book" = "E-Book Mobipocket (*.mobi)";
+
+/* No comment provided by engineer. */
+"new-document" = "Nowy dokument";
+
+/* No comment provided by engineer. */
+"new-presentation" = "Nowa prezentacja";
+
+/* No comment provided by engineer. */
+"new-spreadsheet" = "Nowy arkusz kalkulacyjny";
 
 /* No comment provided by engineer. */
 "No" = "Nie";
@@ -86,34 +107,43 @@
 "ONLYOFFICE can not open the Private Key. Try opening another file." = "ONLYOFFICE nie może otworzyć Kucza Prywatnego. Spróbuj otworzyć inny plik.";
 
 /* No comment provided by engineer. */
+"OpenDocument Document Template" = "Szablon dokumentu OpenDocument (*.ott)";
+
+/* No comment provided by engineer. */
+"OpenDocument Presentation Template" = "Szablon prezentacji OpenDocument (*.otp)";
+
+/* No comment provided by engineer. */
+"OpenDocument Spreadsheet Template" = "Szablon arkusza kalkulacyjnego OpenDocument (*.ots)";
+
+/* No comment provided by engineer. */
 "Opening" = "Otwieranie";
 
 /* No comment provided by engineer. */
-"OpenOffice Document" = "Dokument OpenOffice";
+"OpenOffice Document" = "Plik tekstowy OpenDocument (*.odt)";
 
 /* No comment provided by engineer. */
-"OpenOffice Presentation" = "Prezentacja OpenOffice";
+"OpenOffice Presentation" = "Prezentacja OpenDocument (*.odp)";
 
 /* No comment provided by engineer. */
-"OpenOffice Spreadsheet" = "Arkusz Kalkulacyjny OpenOffice";
+"OpenOffice Spreadsheet" = "Arkusz Kalkulacyjny OpenDocument (*.ods)";
 
 /* No comment provided by engineer. */
-"PDF File" = "Plik PDF";
+"PDF File" = "Przenośny document (*.pdf)";
 
 /* No comment provided by engineer. */
-"PDF/A File" = "PDF/Plik";
+"PDF/A File" = "Przenośny document / A (*.pdf)";
 
 /* No comment provided by engineer. */
-"Plain Text" = "Zwykły Tekst";
+"Plain Text" = "Zwykły Tekst (*.txt)";
 
 /* No comment provided by engineer. */
-"PowerPoint 97-2003 Presentation" = "Prezentacja PowerPoint 97-2003";
+"PowerPoint 97-2003 Presentation" = "Prezentacja PowerPoint 97-2003 (*.ppt)";
 
 /* No comment provided by engineer. */
-"PowerPoint 2007 Presentation" = "Prezentacja PowerPoint 2007";
+"PowerPoint 2007 Presentation" = "Prezentacja Open Office XML (*.pptx)";
 
 /* No comment provided by engineer. */
-"PowerPoint Slide Show" = "Pokaz Slajdów PowerPoint";
+"PowerPoint Slide Show" = "Pokaz slajdów Open Office XML (*.ppsx)";
 
 /* No comment provided by engineer. */
 "Preparing..." = "Przygotowywanie…";
@@ -122,7 +152,10 @@
 "Presentation %ld.pptx" = "Prezentacja %ld.pptx";
 
 /* No comment provided by engineer. */
-"Presentation template" = "Szablon prezentacji";
+"Presentation template" = "Szablon prezentacji PowerPoint Open XML (*.potx)";
+
+/* No comment provided by engineer. */
+"Presenter View" = "Widok Prezentera";
 
 /* No comment provided by engineer. */
 "Quit %@" = "Zakończ %@";
@@ -131,7 +164,7 @@
 "Review Changes..." = "Sprawdź Zmiany...";
 
 /* No comment provided by engineer. */
-"Rich Text Document" = "Dokument Rich Text";
+"Rich Text Document" = "Plik w formacie Rich Text (*.rtf)";
 
 /* No comment provided by engineer. */
 "Save" = "Zapisz";
@@ -140,13 +173,19 @@
 "Save the document?" = "Czy zapisać dokument?";
 
 /* No comment provided by engineer. */
+"Signature Details" = "Szczegóły sygnatury";
+
+/* No comment provided by engineer. */
 "Spreadsheet %ld.xlsx" = "Arkusz kalkulacyjny % ld.xlsx";
 
 /* No comment provided by engineer. */
-"Spreadsheet template" = "Szablon arkusza kalkulacyjnego";
+"Spreadsheet template" = "Szablon arkusza kalkulacyjnego Excel Open XML (*.xltx)";
 
 /* No comment provided by engineer. */
 "Thank you for evaluating %@!" = "Dziękujemy za ocenę %@!";
+
+/* No comment provided by engineer. */
+"The document \"%@\" must be built. Continue?" = "Dokument \"%@\" musi zostać utworzony. Kontynuować?";
 
 /* No comment provided by engineer. */
 "To open the file location, it must be saved." = "Aby otworzyć lokalizację pliku, należy go zapisać.";
@@ -164,13 +203,13 @@
 "Web Page" = "Strona Internetowa";
 
 /* No comment provided by engineer. */
-"Word 97-2003 Document" = "Dokument Word 97-2003";
+"Word 97-2003 Document" = "Dokument Word 97-2003 (*.doc)";
 
 /* No comment provided by engineer. */
-"Word 2007 Document" = "Dokument Word 2007";
+"Word 2007 Document" = "Dokument Open Office XML (*.docx)";
 
 /* No comment provided by engineer. */
-"XML Paper Specification" = "XML Paper Specification";
+"XML Paper Specification" = "Dokument OpenXPS (*.xps)";
 
 /* No comment provided by engineer. */
 "Yes" = "Tak";

@@ -23,7 +23,7 @@
 "Cannot open folder of the file location." = "ບໍ່ສາມາດເປີດໂຟນເດີ້ເພື່ອເຂົ້າເຖິງຟາຍ.";
 
 /* No comment provided by engineer. */
-"Comma-Separated Values" = "ແຍກປະເພດ";
+"Comma-Separated Values" = "ຄ່າທີ່ຂັ້ນດ້ວຍເຄື່ອງໝາຍຈຸດ  (*.csv)";
 
 /* No comment provided by engineer. */
 "Create portal" = "ສ້າງໜ້າຕ່າງ";
@@ -32,7 +32,7 @@
 "Delete and Quit" = "ລົບແລະຍົກເລີກ";
 
 /* No comment provided by engineer. */
-"DjVu File" = "ຟາຍ DjVu";
+"DjVu File" = "ເອກະສານດິຈິຕອນ (*.djvu)";
 
 /* No comment provided by engineer. */
 "Do you want to save the changes made to the document \"%@\"?" = "ທ່ານຢາກບັນທືກເອກະສານບໍ່\"%@\"?";
@@ -41,13 +41,13 @@
 "Document %ld.docx" = "ເອກະສານ %ld.docx";
 
 /* No comment provided by engineer. */
-"Document template" = "ແມ່ແບບເອກະສານ";
+"Document template" = "ເປີດໄຟລ໌ XML ໃນຮູບແບບເອກະສານ Word (*.dotx)";
 
 /* No comment provided by engineer. */
-"Excel 97-2003 Spreadsheet" = "ຕາຕະລາງ ຟາຍ Excel 97-2003";
+"Excel 97-2003 Spreadsheet" = "ຕາຕະລາງ  Excel 97-2003 (*.xls)";
 
 /* No comment provided by engineer. */
-"Excel 2007 Spreadsheet" = "ຕາຕະລາງ ຟາຍ  Excel 2007";
+"Excel 2007 Spreadsheet" = "ເປີດຕາຕະລາງ XML (*.xlsx)";
 
 /* No comment provided by engineer. */
 "File \"%@\" can not be open or not exist." = "ຟາຍ \"%@\" ບໍ່ມີ ຫຼື ບໍ່ສາມາດເປີດ.";
@@ -71,7 +71,7 @@
 "License Agreement" = "ສັນຍາ ໃບອະນຸຍາດ";
 
 /* No comment provided by engineer. */
-"Mobipocket e-book" = "ປຶ້ມອີເລັກໂຕຮນິກແບບພົກພາ";
+"Mobipocket e-book" = "ປຶ້ມອີເລັກໂຕຮນິກແບບພົກພາ  (*.mobi)";
 
 /* No comment provided by engineer. */
 "new-document" = "ເອກະສານໃໝ່";
@@ -95,43 +95,43 @@
 "ONLYOFFICE can not open the Private Key. Try opening another file." = "ONLYOFFICE ບໍ່ສາມາດເປີດກຸນແຈສ່ວນບຸກຄົນ. ລອງເປີດຟາຍອື່ນ.";
 
 /* No comment provided by engineer. */
-"OpenDocument Document Template" = "ເປີດເອກະສານ ແມ່ແບບ ເອກະສານ";
+"OpenDocument Document Template" = "ເປີດເອກະສານ ເປັນຮູບແບບເອກະສານ (*.ott)";
 
 /* No comment provided by engineer. */
-"OpenDocument Presentation Template" = "ເປີດເອກະສານ ແມ່ແບບ ຟີເຊັນເທຊັນ";
+"OpenDocument Presentation Template" = "ເປີດເອກະສານ ໃນຮູບແບບນຳສະເໜີ (*.otp)";
 
 /* No comment provided by engineer. */
-"OpenDocument Spreadsheet Template" = "ເປີດເອກະສານ ແມ່ແບບ ຕາຕະລາງເອັກເຊວ";
+"OpenDocument Spreadsheet Template" = "ເປີດເອກະສານໃນຮູບແບບຂອງຕາຕະລາງ (*.ots)";
 
 /* No comment provided by engineer. */
 "Opening" = "ກໍາລັງເປີດ";
 
 /* No comment provided by engineer. */
-"OpenOffice Document" = "OpenOffice ເອກະສານ";
+"OpenOffice Document" = "ຄວາມເອກະສານ  (*.odt)";
 
 /* No comment provided by engineer. */
-"OpenOffice Presentation" = "OpenOffice ພີເຊັນເທຊັນ";
+"OpenOffice Presentation" = "ເປິດເອກະສານນຳສະເໜີ (*.odp)";
 
 /* No comment provided by engineer. */
-"OpenOffice Spreadsheet" = "OpenOffice ຕາຕະລາງ";
+"OpenOffice Spreadsheet" = "ເປິດຕາຕະລາງເອກະສານ (*.ods)";
 
 /* No comment provided by engineer. */
-"PDF File" = "ຟາຍ PDF";
+"PDF File" = "ເອກະສານພົກພາ  (*.pdf)";
 
 /* No comment provided by engineer. */
-"PDF/A File" = "PDF/A ຟາຍ";
+"PDF/A File" = "ເອກະສານພົກພາ /A (*.pdf)";
 
 /* No comment provided by engineer. */
-"Plain Text" = "ຂໍຄວາມຫວ່າງເປົ່";
+"Plain Text" = "ໄຟລ໌ Text ທຳມະດາ (*.txt)";
 
 /* No comment provided by engineer. */
-"PowerPoint 97-2003 Presentation" = "PowerPoint 97-2003 ພີເຊັນເທຊັນ";
+"PowerPoint 97-2003 Presentation" = "ນຳສະເໜີ PowerPoint 97-2003 (*.ppt)";
 
 /* No comment provided by engineer. */
-"PowerPoint 2007 Presentation" = "PowerPoint 2007 ພີເຊັນເທຊັນ";
+"PowerPoint 2007 Presentation" = "ການນຳສະເໜີ XML (*.pptx)";
 
 /* No comment provided by engineer. */
-"PowerPoint Slide Show" = "PowerPoint ສະໄລໂຊ";
+"PowerPoint Slide Show" = "ເປີດສະແດງສະໄລ XML (*.ppsx)";
 
 /* No comment provided by engineer. */
 "Preparing..." = "ກໍາລັງກະກຽມ...";
@@ -140,7 +140,7 @@
 "Presentation %ld.pptx" = "ພີເຊັນເທຊັນ %ld.pptx";
 
 /* No comment provided by engineer. */
-"Presentation template" = "Presentation ແມ່ແບບ";
+"Presentation template" = "ເປີດໄຟລ໌ XML ໃນຮູບແບບນຳສະເໜີ PowerPoint (*.potx)";
 
 /* No comment provided by engineer. */
 "Quit %@" = "ຍົກເລີກ %@";
@@ -149,7 +149,7 @@
 "Review Changes..." = "ກວດເບີ່ງການປ່ຽນແປງ...";
 
 /* No comment provided by engineer. */
-"Rich Text Document" = "ເອກະສານ Rich Text";
+"Rich Text Document" = "ຮູບແບບໄຟລ໌ສົມບູນ (*.rtf)";
 
 /* No comment provided by engineer. */
 "Save" = "ບັນທືກ";
@@ -161,7 +161,7 @@
 "Spreadsheet %ld.xlsx" = "ຕາຕະລາງ %ld.xlsx";
 
 /* No comment provided by engineer. */
-"Spreadsheet template" = "Spreadsheet ແມ່ແບບ";
+"Spreadsheet template" = "ເປີດໄຟລ໌ XML ໃນຮູບແບບຕາຕະລາງ Excel (*.xltx)";
 
 /* No comment provided by engineer. */
 "Thank you for evaluating %@!" = "ຂອບໃຈສໍາລັບການປະເມີນ %@!";
@@ -188,13 +188,13 @@
 "With access to pro features" = "ເຂົ້າເຖິງຄຸນສົມບັດໂປຮ";
 
 /* No comment provided by engineer. */
-"Word 97-2003 Document" = "Word 97-2003 ເອກະສານ";
+"Word 97-2003 Document" = "ເອກະສານ Word 97-2003 (*.doc)";
 
 /* No comment provided by engineer. */
-"Word 2007 Document" = "Word 2007 ເອກະສານ";
+"Word 2007 Document" = "ເປີດເອກະສານ XML (*.docx)";
 
 /* No comment provided by engineer. */
-"XML Paper Specification" = "XML ຂໍ້ກໍານົດ ເອກະສານ";
+"XML Paper Specification" = "ເອກະສານ OpenXPS (*.xps)";
 
 /* No comment provided by engineer. */
 "Yes" = "ແມ່ນແລ້ວ";

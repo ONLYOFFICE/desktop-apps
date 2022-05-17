@@ -5,7 +5,7 @@
 "1tx-W0-xDw.title" = "Turunkan";
 
 /* Class = "NSMenuItem"; title = "Customize Toolbar…"; ObjectID = "1UK-8n-QPP"; */
-"1UK-8n-QPP.title" = "Kustomisasi Bilah Alat...";
+"1UK-8n-QPP.title" = "Kustomisasi Bilah Alat…";
 
 /* Class = "NSMenuItem"; title = "ONLYOFFICE"; ObjectID = "1Xt-HY-uBw"; */
 "1Xt-HY-uBw.title" = "ONLYOFFICE";
@@ -74,7 +74,7 @@
 "agt-UL-0e3.title" = "Gunakan Default";
 
 /* Class = "NSMenuItem"; title = "Print…"; ObjectID = "aTl-1u-JFS"; */
-"aTl-1u-JFS.title" = "Cetak...";
+"aTl-1u-JFS.title" = "Cetak…";
 
 /* Class = "NSMenuItem"; title = "Window"; ObjectID = "aUF-d1-5bR"; */
 "aUF-d1-5bR.title" = "Jendela";
@@ -95,13 +95,13 @@
 "bib-Uj-vzu.title" = "File";
 
 /* Class = "NSMenuItem"; title = "Preferences…"; ObjectID = "BOF-NM-1cW"; */
-"BOF-NM-1cW.title" = "Preferensi";
+"BOF-NM-1cW.title" = "Preferensi…";
 
 /* Class = "NSMenuItem"; title = "Use Selection for Find"; ObjectID = "buJ-ug-pKt"; */
 "buJ-ug-pKt.title" = "Gunakan Pilihan untuk Temukan";
 
 /* Class = "NSMenuItem"; title = "Save As…"; ObjectID = "Bw7-FT-i3A"; */
-"Bw7-FT-i3A.title" = "Simpan Sebagai...";
+"Bw7-FT-i3A.title" = "Simpan Sebagai…";
 
 /* Class = "NSMenu"; title = "Transformations"; ObjectID = "c8a-y6-VQd"; */
 "c8a-y6-VQd.title" = "Transformasi";
@@ -209,7 +209,7 @@
 "i1d-Er-qST.title" = "Lebih Kecil";
 
 /* Class = "NSMenuItem"; title = "Open…"; ObjectID = "IAo-SY-fd9"; */
-"IAo-SY-fd9.title" = "Buka...";
+"IAo-SY-fd9.title" = "Buka…";
 
 /* Class = "NSMenu"; title = "Baseline"; ObjectID = "ijk-EB-dga"; */
 "ijk-EB-dga.title" = "Garis Dasar";
@@ -233,7 +233,7 @@
 "jxT-CU-nIS.title" = "Format";
 
 /* Class = "NSMenuItem"; title = "Revert to Saved"; ObjectID = "KaW-ft-85H"; */
-"KaW-ft-85H.title" = "Revert to Saved";
+"KaW-ft-85H.title" = "Kembalikan ke Tersimpan";
 
 /* Class = "NSTabViewItem"; label = "ONLYOFFICE"; ObjectID = "kcg-El-49G"; */
 "kcg-El-49G.label" = "ONLYOFFICE";
@@ -284,7 +284,7 @@
 "OwM-mh-QMV.title" = "Temukan Sebelumnya";
 
 /* Class = "NSMenuItem"; title = "Minimize"; ObjectID = "OY7-WF-poV"; */
-"OY7-WF-poV.title" = "Minimize";
+"OY7-WF-poV.title" = "Perkecil";
 
 /* Class = "NSMenuItem"; title = "Stop Speaking"; ObjectID = "Oyz-dy-DGm"; */
 "Oyz-dy-DGm.title" = "Berhenti Berbicara";
@@ -305,7 +305,7 @@
 "q09-fT-Sye.title" = "Temukan Selanjutnya";
 
 /* Class = "NSMenuItem"; title = "Page Setup…"; ObjectID = "qIS-W8-SiK"; */
-"qIS-W8-SiK.title" = "Pengaturan Halaman...";
+"qIS-W8-SiK.title" = "Pengaturan Halaman…";
 
 /* Class = "NSMenuItem"; title = "Zoom"; ObjectID = "R4o-n2-Eq4"; */
 "R4o-n2-Eq4.title" = "Zoom";
@@ -359,7 +359,7 @@
 "tXI-mr-wws.title" = "Buka Terbaru";
 
 /* Class = "NSMenuItem"; title = "Check for Updates…"; ObjectID = "ud7-wC-A79"; */
-"ud7-wC-A79.title" = "Periksa Pembaruan...";
+"ud7-wC-A79.title" = "Periksa Pembaruan…";
 
 /* Class = "NSMenuItem"; title = "Capitalize"; ObjectID = "UEZ-Bs-lqG"; */
 "UEZ-Bs-lqG.title" = "Kapital";
@@ -425,7 +425,7 @@
 "xrE-MZ-jX0.title" = "Ucapan";
 
 /* Class = "NSMenuItem"; title = "Find…"; ObjectID = "Xz5-n4-O0W"; */
-"Xz5-n4-O0W.title" = "Temukan...";
+"Xz5-n4-O0W.title" = "Temukan…";
 
 /* Class = "NSMenuItem"; title = "Find and Replace…"; ObjectID = "YEy-JH-Tfz"; */
 "YEy-JH-Tfz.title" = "Temukan dan Ganti…";

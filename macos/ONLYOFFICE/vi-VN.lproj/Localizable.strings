@@ -23,7 +23,7 @@
 "Cannot open folder of the file location." = "Khổng thể mở thư mục chứa tập tin.";
 
 /* No comment provided by engineer. */
-"Comma-Separated Values" = "Giá trị được tách bằng dấu phẩy";
+"Comma-Separated Values" = "Các giá trị được ngăn cách với nhau bằng dấu phẩy (*.csv)";
 
 /* No comment provided by engineer. */
 "Create portal" = "Tạo cổng";
@@ -32,7 +32,7 @@
 "Delete and Quit" = "Xóa và thoát";
 
 /* No comment provided by engineer. */
-"DjVu File" = "Tập tin DjVu";
+"DjVu File" = "Tài liệu kỹ thuật số (*.djvu)";
 
 /* No comment provided by engineer. */
 "Do you want to save the changes made to the document \"%@\"?" = "Bạn có muốn lưu những thay đổi đã thực hiện đối với tài liệu \"%@\"?";
@@ -41,22 +41,19 @@
 "Document %ld.docx" = "Văn bản %ld.docx";
 
 /* No comment provided by engineer. */
-"Document template" = "Mẫu văn bản";
+"Document template" = "Word Open XML Mẫu văn bản (*.dotx)";
 
 /* No comment provided by engineer. */
-"Don't Save" = "";
+"Electronic Publication" = "Tập tin EPUB (*.epub)";
 
 /* No comment provided by engineer. */
-"Electronic Publication" = "";
+"Excel 97-2003 Spreadsheet" = "Bảng tính Excel 97-2003 (*.xls)";
 
 /* No comment provided by engineer. */
-"Excel 97-2003 Spreadsheet" = "Bảng tính Excel 97-2003";
+"Excel 2007 Spreadsheet" = "Bảng tính Office Open XML (*.xlsx)";
 
 /* No comment provided by engineer. */
-"Excel 2007 Spreadsheet" = "Bảng tính Excel 2007";
-
-/* No comment provided by engineer. */
-"FictionBook File" = "";
+"FictionBook File" = "Tập tin FB2 (*.fb2)";
 
 /* No comment provided by engineer. */
 "File \"%@\" can not be open or not exist." = "Không thể mở tập tin \"%@\" hoặc nó không tồn tại.";
@@ -71,7 +68,7 @@
 "Hide %@" = "Ẩn %@";
 
 /* No comment provided by engineer. */
-"HTML File" = "";
+"HTML File" = "Tập tin HTML (*.html)";
 
 /* No comment provided by engineer. */
 "If you don't review your documents, all your changeses will be lost." = "Nếu bạn không xem lại tài liệu của mình, tất cả thay đổi sẽ bị mất.";
@@ -83,10 +80,10 @@
 "License Agreement" = "Thỏa thuận cấp phép";
 
 /* No comment provided by engineer. */
-"MHT File" = "";
+"MHT File" = "Tập tin MHT (*.mht)";
 
 /* No comment provided by engineer. */
-"Mobipocket e-book" = "Sách điện tử Mobipocket";
+"Mobipocket e-book" = "Sách điện tử Mobipocket (*.mobi)";
 
 /* No comment provided by engineer. */
 "new-document" = "Tài liệu mới";
@@ -110,43 +107,43 @@
 "ONLYOFFICE can not open the Private Key. Try opening another file." = "ONLYOFFICE không thể mở mã khóa riêng. Hãy thử mở tập tin khác.";
 
 /* No comment provided by engineer. */
-"OpenDocument Document Template" = "OpenDocument Mẫu văn bản";
+"OpenDocument Document Template" = "OpenDocument Mẫu văn bản (*.ott)";
 
 /* No comment provided by engineer. */
-"OpenDocument Presentation Template" = "OpenDocument Mẫu trình chiếu";
+"OpenDocument Presentation Template" = "OpenDocument Mẫu trình chiếu (*.otp)";
 
 /* No comment provided by engineer. */
-"OpenDocument Spreadsheet Template" = "OpenDocument Mẫu bảng tính";
+"OpenDocument Spreadsheet Template" = "OpenDocument Mẫu bảng tính (*.ots)";
 
 /* No comment provided by engineer. */
 "Opening" = "Đang mở";
 
 /* No comment provided by engineer. */
-"OpenOffice Document" = "OpenOffice Văn bản";
+"OpenOffice Document" = "OpenDocument File văn bản (*.odt)";
 
 /* No comment provided by engineer. */
-"OpenOffice Presentation" = "OpenOffice Trình chiếu";
+"OpenOffice Presentation" = "OpenDocument Trình chiếu (*.odp)";
 
 /* No comment provided by engineer. */
-"OpenOffice Spreadsheet" = "OpenOffice Bảng tính";
+"OpenOffice Spreadsheet" = "OpenDocument Bảng tính (*.ods)";
 
 /* No comment provided by engineer. */
-"PDF File" = "Tập tinh PDF";
+"PDF File" = "Tài liệu di động (*.pdf)";
 
 /* No comment provided by engineer. */
-"PDF/A File" = "PDF/A File";
+"PDF/A File" = "Tài liệu di động / A (*.pdf)";
 
 /* No comment provided by engineer. */
-"Plain Text" = "Văn bản thuần";
+"Plain Text" = "Văn bản thuần (*.txt)";
 
 /* No comment provided by engineer. */
-"PowerPoint 97-2003 Presentation" = "Trình chiếu PowerPoint 97-2003";
+"PowerPoint 97-2003 Presentation" = "Bản trình bày PowerPoint 97-2003 (*.ppt)";
 
 /* No comment provided by engineer. */
-"PowerPoint 2007 Presentation" = "Trình chiếu PowerPoint 2007";
+"PowerPoint 2007 Presentation" = "Bản trình bày Office Open XML (*.pptx)";
 
 /* No comment provided by engineer. */
-"PowerPoint Slide Show" = "Trình chiếu PowerPoint";
+"PowerPoint Slide Show" = "Trình chiếu Office Open XML (*.ppsx)";
 
 /* No comment provided by engineer. */
 "Preparing..." = "Đang chuẩn bị...";
@@ -155,10 +152,7 @@
 "Presentation %ld.pptx" = "Trình chiếu %ld.pptx";
 
 /* No comment provided by engineer. */
-"Presentation template" = "Không có bình luận của kỹ sư.";
-
-/* No comment provided by engineer. */
-"Presenter View" = "";
+"Presentation template" = "PowerPoint Open XML Mẫu trình chiếu (*.potx)";
 
 /* No comment provided by engineer. */
 "Quit %@" = "Thoát %@";
@@ -167,7 +161,7 @@
 "Review Changes..." = "Xem thay đổi...";
 
 /* No comment provided by engineer. */
-"Rich Text Document" = "Tài liệu nhiều văn bản";
+"Rich Text Document" = "Tệp định dạng văn bản đa dạng thức (*.rtf)";
 
 /* No comment provided by engineer. */
 "Save" = "Lưu";
@@ -176,13 +170,10 @@
 "Save the document?" = "Lưu tập tin?";
 
 /* No comment provided by engineer. */
-"Signature Details" = "";
-
-/* No comment provided by engineer. */
 "Spreadsheet %ld.xlsx" = "Bảng tính %ld.xlsx";
 
 /* No comment provided by engineer. */
-"Spreadsheet template" = "Mẫu bảng tính";
+"Spreadsheet template" = "Excel Open XML Mẫu bảng tính (*.xltx)";
 
 /* No comment provided by engineer. */
 "Thank you for evaluating %@!" = "Cám ơn bạn đã đánh giá %@!";
@@ -197,25 +188,19 @@
 "Unconfirmed" = "Chưa được xác nhận";
 
 /* No comment provided by engineer. */
-"Untitled" = "";
-
-/* No comment provided by engineer. */
 "Version %@ (%@)" = "Phiên bản %1$@ (%2$@)";
 
 /* No comment provided by engineer. */
 "Web Page" = "Trang Web";
 
 /* No comment provided by engineer. */
-"With access to pro features" = "";
+"Word 97-2003 Document" = "Tài liệu Word 97-2003 (*.doc)";
 
 /* No comment provided by engineer. */
-"Word 97-2003 Document" = "Tập tin Word 97-2003";
+"Word 2007 Document" = "Tài liệu Office Open XML (*.docx)";
 
 /* No comment provided by engineer. */
-"Word 2007 Document" = "Tập tin Word 2007";
-
-/* No comment provided by engineer. */
-"XML Paper Specification" = "Tiêu chuẩn giấy XML";
+"XML Paper Specification" = "Tài liệu OpenXPS (*.xps)";
 
 /* No comment provided by engineer. */
 "Yes" = "Có";
