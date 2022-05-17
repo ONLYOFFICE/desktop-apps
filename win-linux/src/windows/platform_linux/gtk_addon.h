@@ -30,53 +30,12 @@
  *
 */
 
-#ifndef CSINGLEWINDOWPLATFORM_H
-#define CSINGLEWINDOWPLATFORM_H
-
-#include "csinglewindowbase.h"
-#include <QMainWindow>
-#include "cx11decoration.h"
-#include <memory>
-
-class CSingleWindowPlatform : public CSingleWindowBase, public QMainWindow, public CX11Decoration
+#ifndef GTK_ADDON_H
+#define GTK_ADDON_H
+/*
+namespace gtk_addon
 {
-public:
-    explicit CSingleWindowPlatform(const QRect& r, const QString& title, QWidget * panel);
-    virtual ~CSingleWindowPlatform();
-
-    void show(bool maximized);
-    QWidget * handle() const;
-    virtual void setWindowTitle(const QString &) override;
-    virtual void bringToTop() override;
-
-private:
-    bool flag_mouse_button_left = false;
-    bool flag_mouse_motion = false;
-
-    bool event(QEvent *event);
-    using QMainWindow::setWindowTitle;
-
-    void mouseMoveEvent(QMouseEvent *);
-    void mousePressEvent(QMouseEvent *);
-    void mouseReleaseEvent(QMouseEvent *);
-    void mouseDoubleClickEvent(QMouseEvent *);
-
-    void resizeEvent(QResizeEvent *);
-
-    class impl;
-    std::unique_ptr<impl> pimpl;
-
-protected:
-    void captureMouse();
-
-    virtual void onMinimizeEvent() override;
-    virtual void onMaximizeEvent() override;
-    virtual void onSizeEvent(int type) override;
-    virtual void onScreenScalingFactor(double f);
-    virtual void onExitSizeMove() override;
-
-public slots:
-    void slot_modalDialog(bool status, WId h);
-};
-
-#endif // CSINGLEWINDOWPLATFORM_H
+    int devicePixelRatio();
+}
+*/
+#endif // GTK_ADDON_H

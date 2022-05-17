@@ -80,9 +80,8 @@ HEADERS += \
     $$PWD/src/utils.h \
     $$PWD/src/cstyletweaks.h \
     $$PWD/src/chelp.h \
-    $$PWD/src/cmainpanel.h \
-    $$PWD/src/csplash.h \
     $$PWD/src/cmessage.h \
+    #$$PWD/src/csplash.h \
     $$PWD/src/cfilechecker.h \
     $$PWD/src/clogger.h \
     $$PWD/src/clangater.h \
@@ -90,9 +89,7 @@ HEADERS += \
     $$PWD/src/canimatedicon.h \
     $$PWD/src/cscalingwrapper.h \
     $$PWD/src/ctabundockevent.h \
-    $$PWD/src/cmainwindowbase.h \
     $$PWD/src/ctabpanel.h \
-    $$PWD/src/csinglewindowbase.h \
     $$PWD/src/ceditorwindow.h \
     $$PWD/src/ccefeventsgate.h \
     $$PWD/src/ceditorwindow_p.h \
@@ -100,7 +97,6 @@ HEADERS += \
     $$PWD/src/cwindowsqueue.h \
     $$PWD/src/ceventdriver.h \
     $$PWD/src/csvgpushbutton.h \
-    $$PWD/src/cappupdater.h \
     $$PWD/src/cappeventfilter.h \
     $$PWD/src/cthemes.h
 #    src/ctabbar_p.h \
@@ -109,8 +105,8 @@ HEADERS += \
 #    src/casclabel.h
 
 SOURCES += \
-    $$PWD/src/csplash.cpp \
     $$PWD/src/ctabbarwrapper.cpp \
+    #$$PWD/src/csplash.cpp \
     $$PWD/src/main.cpp \
     $$PWD/src/asctabwidget.cpp\
     $$PWD/src/cdownloadwidget.cpp \
@@ -123,7 +119,6 @@ SOURCES += \
     $$PWD/src/casctabdata.cpp \
     $$PWD/src/cstyletweaks.cpp \
     $$PWD/src/chelp.cpp \
-    $$PWD/src/cmainpanel.cpp \
     $$PWD/src/cmessage.cpp \
     $$PWD/src/cfilechecker.cpp \
     $$PWD/src/clogger.cpp \
@@ -131,15 +126,12 @@ SOURCES += \
     $$PWD/src/canimatedicon.cpp \
     $$PWD/src/cscalingwrapper.cpp \
     $$PWD/src/ctabundockevent.cpp \
-    $$PWD/src/cmainwindowbase.cpp \
     $$PWD/src/ctabpanel.cpp \
-    $$PWD/src/csinglewindowbase.cpp \
     $$PWD/src/ceditorwindow.cpp \
     $$PWD/src/ccefeventsgate.cpp \
     $$PWD/src/ceditortools.cpp \
     $$PWD/src/ceventdriver.cpp \
     $$PWD/src/csvgpushbutton.cpp \
-    $$PWD/src/cappupdater.cpp \
     $$PWD/src/cappeventfilter.cpp \
     $$PWD/src/cthemes.cpp
 #    src/ctabstyle.cpp
@@ -183,17 +175,10 @@ core_linux {
 
     HEADERS += $$PWD/src/linux/cmainwindow.h \
                 $$PWD/src/linux/cx11decoration.h \
-                $$PWD/src/linux/gtk_addon.h \
-                $$PWD/src/linux/csinglewindow.h \
-                $$PWD/src/linux/csinglewindowplatform.h \
                 $$PWD/src/linux/singleapplication.h
 
     SOURCES += $$PWD/src/linux/cmainwindow.cpp \
                 $$PWD/src/linux/cx11decoration.cpp \
-                $$PWD/src/linux/gtk_addon.cpp \
-                $$PWD/src/linux/cx11caption.cpp \
-                $$PWD/src/linux/csinglewindow.cpp \
-                $$PWD/src/linux/csinglewindowplatform.cpp \
                 $$PWD/src/linux/singleapplication.cpp
 
     HEADERS += $$PWD/src/linux/cdialogopenssl.h \
@@ -216,23 +201,6 @@ core_windows {
 
     RC_ICONS += ./res/icons/desktop_icons.ico
 
-    HEADERS += $$PWD/src/win/mainwindow.h \
-                $$PWD/src/win/qwinwidget.h \
-                $$PWD/src/win/qwinhost.h \
-                $$PWD/src/win/cwinpanel.h \
-                $$PWD/src/win/cwinwindow.h \
-                $$PWD/src/win/csinglewindow.h \
-                $$PWD/src/win/csinglewindowplatform.h \
-                $$PWD/src/win/cprintdialog.h
-
-    SOURCES += $$PWD/src/win/mainwindow.cpp \
-                $$PWD/src/win/qwinwidget.cpp \
-                $$PWD/src/win/qwinhost.cpp \
-                $$PWD/src/win/cwinpanel.cpp \
-                $$PWD/src/win/cwinwindow.cpp \
-                $$PWD/src/win/csinglewindow.cpp \
-                $$PWD/src/win/csinglewindowplatform.cpp \
-                $$PWD/src/win/cprintdialog.cpp
 
     LIBS += -lwininet \
             -ldnsapi \

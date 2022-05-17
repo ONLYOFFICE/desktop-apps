@@ -8,7 +8,7 @@ INCLUDEPATH += $$PWD/src/prop \
                 $$PWD/src
 
 HEADERS += \
-    src/prop/csplash_p.h \
+    #src/prop/csplash_p.h \
     src/prop/defines_p.h \
     src/prop/cascapplicationmanagerwrapperintf.h \
     src/prop/version_p.h

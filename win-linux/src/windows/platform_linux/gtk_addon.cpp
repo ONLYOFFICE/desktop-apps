@@ -30,30 +30,46 @@
  *
 */
 
-#ifndef CWINWINDOW_H
-#define CWINWINDOW_H
+/*#include "./gtk_addon.h"
+#include <gtk/gtk.h>
 
-#include "windows.h"
-#include "QString"
-
-class CWinWindow
+namespace gtk_addon
 {
-public:
-    CWinWindow(HWND, const QString&);
-    virtual ~CWinWindow(){}
+    int devicePixelRatio()
+    {
+        GdkScreen* screen = gdk_screen_get_default();
 
-    virtual void modal(HWND f);
-    virtual void close();
-    void setSize(int w, int h);
-    void center();
+        if (screen)
+        {
+            double dScale = gdk_screen_get_resolution(screen);
+            if (dScale < 1)
+                return 1;
 
-    HWND handle();
-    virtual void onScreenScaling();
-    virtual void onWindowActivate(bool);
+            int wPx = gdk_screen_get_width(screen);
+            int hPx = gdk_screen_get_height(screen);
+            int wMm = gdk_screen_get_width_mm(screen);
+            int hMm = gdk_screen_get_height_mm(screen);
 
-protected:
-    HWND    m_hSelf,
-            m_hParent;
-};
+            if (wMm < 1)
+                wMm = 1;
+            if (hMm < 1)
+                hMm = 1;
 
-#endif // CWINWINDOW_H
+            int nDpiX = (int)(0.5 + wPx * 25.4 / wMm);
+            int nDpiY = (int)(0.5 + hPx * 25.4 / hMm);
+            int nDpi = (nDpiX + nDpiY) >> 1;
+
+            if (nDpi < 10)
+                return 1;
+
+            dScale /= nDpi;
+            if (dScale < 1)
+                return 1;
+            else if (dScale > 2)
+                return 2;
+            else
+                return (int)(dScale + 0.49);
+        }
+        return 1;
+    }
+}*/

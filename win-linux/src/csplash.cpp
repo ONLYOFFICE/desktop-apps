@@ -30,7 +30,7 @@
  *
 */
 
-
+/*
 #include "csplash.h"
 #include "csplash_p.h"
 #include "defines.h"
@@ -108,3 +108,4 @@ double CSplash::startupDpiRatio()
         return Utils::getScreenDpiRatioByHWND(splash.winId());
     }
 }
+*/

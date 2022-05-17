@@ -30,34 +30,31 @@
  *
 */
 
-#ifndef QMAINPANEL_H
-#define QMAINPANEL_H
+/*#include "cx11decoration.h"
 
-#include <QMouseEvent>
-#include <QResizeEvent>
-#include "qwinwidget.h"
+#include <QStyleOption>
+#include <QPainter>
+#include <QWidget>
 
-#include <QDebug>
-
-class CMainWindow;
-class CWinPanel : public QWinWidget
+CX11Caption::CX11Caption(QWidget* parent) : QWidget(parent)
 {
-    Q_OBJECT
+    setMouseTracking(true);
+}
+CX11Caption::~CX11Caption()
+{
+}
 
-public:
-    CWinPanel( HWND hWnd );
-    explicit CWinPanel( CMainWindow * );
+void CX11Caption::paintEvent(QPaintEvent *event)
+{
+    QStyleOption opt;
+    opt.init(this);
+    QPainter p(this);
+    style()->drawPrimitive(QStyle::PE_Widget, &opt, &p, this);
+}
 
-    bool nativeEvent(const QByteArray &, void *msg, long *result);
-    void mousePressEvent( QMouseEvent *event );
-    void resizeEvent(QResizeEvent* event);
-
-    CMainWindow * parent();
-
-private:
-    HWND windowHandle;
-    QWidget * m_pPanel;
-    CMainWindow * m_parent = nullptr;
-};
-
-#endif // QMAINPANEL_H
+void CX11Caption::mouseDoubleClickEvent(QMouseEvent *event)
+{
+    if (event->buttons() == Qt::LeftButton)
+        emit mouseDoubleClicked();
+}
+*/
