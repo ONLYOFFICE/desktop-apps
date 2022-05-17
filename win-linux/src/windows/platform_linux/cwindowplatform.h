@@ -30,59 +30,35 @@
  *
 */
 
-#ifndef CMAINWINDOW_H
-#define CMAINWINDOW_H
+#ifndef CWINDOWPLATFORM_H
+#define CWINDOWPLATFORM_H
 
+#include "windows/cwindowbase.h"
 #include "cx11decoration.h"
-
-#include <QMainWindow>
-#include "applicationmanager.h"
-#include "cmainpanelimpl.h"
-#include "cwindowbase.h"
-#include "cmainwindowbase.h"
+#include <memory>
 
 
-class CMainWindow : public QMainWindow, public CX11Decoration, public CMainWindowBase
+class CWindowPlatform : public CWindowBase, public CX11Decoration
 {
-    Q_OBJECT
-
 public:
-    explicit CMainWindow(QWidget *parent = 0);
-    explicit CMainWindow(const QRect&);
-    ~CMainWindow();
+    explicit CWindowPlatform(const QRect&);
+    virtual ~CWindowPlatform();
 
-    CMainPanel * mainPanel() const;
-    QRect windowRect() const;
-    bool isMaximized() const;
     void sendSertificate(int viewid);
-    QWidget * handle() const;
-    void bringToTop() const override;
-    void show(bool maximized);
-    void applyTheme(const std::wstring&) override;
-    void updateScaling() override;
+    void bringToTop();
+    void show(bool);
+    virtual void setWindowColors(const QColor&, const QColor& border = QColor()) final;
+    virtual void adjustGeometry() final;
 
 protected:
-    void closeEvent(QCloseEvent *);
-    void showEvent(QShowEvent *);
-    bool event(QEvent *event);
-    void mouseMoveEvent(QMouseEvent *);
-    void mousePressEvent(QMouseEvent *);
-    void mouseReleaseEvent(QMouseEvent *);
-    void captureMouse(int tabindex) override;
+    virtual bool event(QEvent *event) override;
+    virtual void setScreenScalingFactor(double) override;
 
-    void dragEnterEvent(QDragEnterEvent *event);
-    void dropEvent(QDropEvent *event);
-
-    void setScreenScalingFactor(double factor);
 private:
-    CMainPanelImpl *   m_pMainPanel;
-    double m_dpiRatio = 1;
-
-signals:
-public slots:
-    void slot_windowChangeState(Qt::WindowState);
-    void slot_windowClose();
-    void slot_modalDialog(bool status, WId h);
+    virtual void mouseMoveEvent(QMouseEvent *) final;
+    virtual void mousePressEvent(QMouseEvent *) final;
+    virtual void mouseReleaseEvent(QMouseEvent *) final;
+    virtual void mouseDoubleClickEvent(QMouseEvent *) final;    
 };
 
-#endif // CMAINWINDOW_H
+#endif // CWINDOWPLATFORM_H
