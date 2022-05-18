@@ -180,6 +180,8 @@ utils.defines.FileFormat = {
     FILE_DOCUMENT_ODT_FLAT: FILE_DOCUMENT + 0x000e,
     FILE_DOCUMENT_OTT:  FILE_DOCUMENT + 0x000f,
     FILE_DOCUMENT_DOC_FLAT: FILE_DOCUMENT + 0x0010,
+    FILE_DOCUMENT_OFORM: FILE_DOCUMENT + 0x0015,
+    FILE_DOCUMENT_DOCXF: FILE_DOCUMENT + 0x0016,
     
     FILE_PRESENTATION:      FILE_PRESENTATION,
     FILE_PRESENTATION_PPTX: FILE_PRESENTATION + 0x0001,
@@ -225,20 +227,28 @@ utils.parseFileFormat = function(format) {
     case utils.defines.FileFormat.FILE_DOCUMENT_ODT:        return 'odt';
     case utils.defines.FileFormat.FILE_DOCUMENT_RTF:        return 'rtf';
     case utils.defines.FileFormat.FILE_DOCUMENT_TXT:        return 'txt';
-    case utils.defines.FileFormat.FILE_DOCUMENT_HTML: 
-    case utils.defines.FileFormat.FILE_DOCUMENT_MHT:        return 'htm';
+    case utils.defines.FileFormat.FILE_DOCUMENT_HTML:       return 'htm';
+    case utils.defines.FileFormat.FILE_DOCUMENT_MHT:        return 'mht';
+    case utils.defines.FileFormat.FILE_DOCUMENT_EPUB:       return 'epub';
+    case utils.defines.FileFormat.FILE_DOCUMENT_FB2:        return 'fb2';
+    case utils.defines.FileFormat.FILE_DOCUMENT_DOTX:       return 'dotx';
+    case utils.defines.FileFormat.FILE_DOCUMENT_OTT:        return 'ott';
+    case utils.defines.FileFormat.FILE_DOCUMENT_OFORM:      return 'oform';
+    case utils.defines.FileFormat.FILE_DOCUMENT_DOCXF:      return 'docxf';
 
     case utils.defines.FileFormat.FILE_SPREADSHEET_XLS:     return 'xls';
-    case utils.defines.FileFormat.FILE_SPREADSHEET_XLTX:
+    case utils.defines.FileFormat.FILE_SPREADSHEET_XLTX:    return 'xltx';
     case utils.defines.FileFormat.FILE_SPREADSHEET_XLSX:    return 'xlsx';
     case utils.defines.FileFormat.FILE_SPREADSHEET_ODS:     return 'ods';
     case utils.defines.FileFormat.FILE_SPREADSHEET_CSV:     return 'csv';
+    case utils.defines.FileFormat.FILE_SPREADSHEET_OTS:     return 'ots';
 
     case utils.defines.FileFormat.FILE_PRESENTATION_PPT:    return 'ppt';
-    case utils.defines.FileFormat.FILE_PRESENTATION_POTX:
+    case utils.defines.FileFormat.FILE_PRESENTATION_POTX:   return 'potx';
     case utils.defines.FileFormat.FILE_PRESENTATION_PPTX:   return 'pptx';
     case utils.defines.FileFormat.FILE_PRESENTATION_ODP:    return 'odp';
-    case utils.defines.FileFormat.FILE_PRESENTATION_PPSX:   return 'pps';
+    case utils.defines.FileFormat.FILE_PRESENTATION_PPSX:   return 'ppsx';
+    case utils.defines.FileFormat.FILE_PRESENTATION_OTP:    return 'otp';
 
     case utils.defines.FileFormat.FILE_CROSSPLATFORM_PDFA:
     case utils.defines.FileFormat.FILE_CROSSPLATFORM_PDF:   return 'pdf';
