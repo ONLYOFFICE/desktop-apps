@@ -793,6 +793,7 @@ void CMainPanel::onDocumentReady(int uid)
             refreshAboutVersion();
             emit mainPageReady();
 
+            WindowHelper::initEnvInfo();
             AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, L"app:ready");
             focus(); // TODO: move to app manager
         });
