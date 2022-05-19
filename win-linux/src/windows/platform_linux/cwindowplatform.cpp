@@ -112,18 +112,18 @@ bool CWindowPlatform::event(QEvent * event)
 {
     static bool _flg_motion = false;
     static bool _flg_left_button = false;
-    if (event->type() == QEvent::WindowStateChange && this->isVisible()) {
-        QWindowStateChangeEvent * _e_statechange = static_cast< QWindowStateChangeEvent* >( event );
-        CX11Decoration::setMaximized(this->windowState() == Qt::WindowMaximized ? true : false);
-        if( _e_statechange->oldState() == Qt::WindowNoState && windowState() == Qt::WindowMaximized ) {
+    if (event->type() == QEvent::WindowStateChange) {
+        CX11Decoration::setMaximized(isMaximized() ? true : false);
+        /*if(windowState().testFlag(Qt::WindowMaximized)) {
             applyWindowState(Qt::WindowMaximized);
         } else
-        if (this->windowState() == Qt::WindowNoState) {
+        if (windowState().testFlag(Qt::WindowNoState)) {
             applyWindowState(Qt::WindowNoState);
         } else
-        if (this->windowState() == Qt::WindowMinimized) {
+        if (windowState().testFlag(Qt::WindowMinimized)) {
             applyWindowState(Qt::WindowMinimized);
-        }
+        }*/
+        applyWindowState();
         adjustGeometry();
     } else
     if ( event->type() == QEvent::MouseButtonPress ) {

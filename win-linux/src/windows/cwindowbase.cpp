@@ -217,10 +217,10 @@ void CWindowBase::setScreenScalingFactor(double factor)
     }
 }
 
-void CWindowBase::applyWindowState(Qt::WindowState s)
+void CWindowBase::applyWindowState()
 {
     if (isCustomWindowStyle() && m_pTopButtons[BtnType::Btn_Maximize]) {
-        m_pTopButtons[BtnType::Btn_Maximize]->setProperty("class", s == Qt::WindowMaximized ? "min" : "normal") ;
+        m_pTopButtons[BtnType::Btn_Maximize]->setProperty("class", isMaximized() ? "min" : "normal") ;
         m_pTopButtons[BtnType::Btn_Maximize]->style()->polish(m_pTopButtons[BtnType::Btn_Maximize]);
     }
 }

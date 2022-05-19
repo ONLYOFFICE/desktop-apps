@@ -172,8 +172,8 @@ void CPresenterWindow::setScreenScalingFactor(double factor)
 
 void CPresenterWindow::onMaximizeEvent()
 {
-    Qt::WindowState s = isMaximized() ? Qt::WindowMaximized : Qt::WindowNoState;
-    CWindowBase::applyWindowState(s);
+    //Qt::WindowState s = isMaximized() ? Qt::WindowMaximized : Qt::WindowNoState;
+    CWindowBase::applyWindowState();
     CWindowBase::onMaximizeEvent();
 }
 

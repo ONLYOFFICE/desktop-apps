@@ -82,7 +82,7 @@ protected:
     QWidget* createTopPanel(QWidget *parent);
     void setIsCustomWindowStyle(bool);
     virtual void setScreenScalingFactor(double);
-    virtual void applyWindowState(Qt::WindowState);
+    virtual void applyWindowState();
     virtual void setWindowTitle(const QString&);
     virtual void onMinimizeEvent();
     virtual void onMaximizeEvent();
