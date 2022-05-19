@@ -45,7 +45,7 @@ public:
 
 protected:
     //void timerEvent(QTimerEvent *event);
-    void paintEvent(QPaintEvent *event);
+    //void paintEvent(QPaintEvent *event);
     void closeEvent(QCloseEvent *event);
 
 private:

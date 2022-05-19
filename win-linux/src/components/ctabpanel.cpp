@@ -20,12 +20,12 @@ CTabPanel::CTabPanel(QWidget *parent)
     : QWidget(parent)
     , m_pViewer(AscAppManager::createViewer(this))
 {
-    QGridLayout * _layout = new QGridLayout(this);
-    setLayout(_layout);
+    QHBoxLayout *_layout = new QHBoxLayout(this);
     _layout->setSpacing(0);
     _layout->setContentsMargins(0,0,0,0);
     _layout->addWidget(m_pViewer);
-
+    setLayout(_layout);
+    m_pViewer->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     m_pViewer->SetBackgroundCefColor(244, 244, 244);
 }
 
@@ -143,13 +143,13 @@ bool CTabPanel::openRecentFile(int id)
 //    cef()->resizeEvent();
 }*/
 
-void CTabPanel::paintEvent(QPaintEvent *)
+/*void CTabPanel::paintEvent(QPaintEvent *)
 {
     QStyleOption opt;
     opt.init(this);
     QPainter p(this);
     style()->drawPrimitive(QStyle::PE_Widget, &opt, &p, this);
-}
+}*/
 
 /*void CTabPanel::timerEvent(QTimerEvent *)
 {

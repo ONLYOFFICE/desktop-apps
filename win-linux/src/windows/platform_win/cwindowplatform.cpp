@@ -84,7 +84,7 @@ void CWindowPlatform::adjustGeometry()
 {
     if (!isMaximized()) {
         const int border = int(MAIN_WINDOW_BORDER_WIDTH * m_dpiRatio);
-        setContentsMargins(border, border+1, border, border);
+        setContentsMargins(border, border, border, border+1);
         setResizeableAreaWidth(border);
     } else {
         setContentsMargins(8,9,8,8);
@@ -193,7 +193,7 @@ bool CWindowPlatform::nativeEvent(const QByteArray &eventType, void *message, lo
 
     case WM_NCCALCSIZE: {
         NCCALCSIZE_PARAMS& params = *reinterpret_cast<NCCALCSIZE_PARAMS*>(msg->lParam);
-        if (params.rgrc[0].top != 0) params.rgrc[0].top -= 1;
+        if (params.rgrc[0].bottom != 0) params.rgrc[0].bottom += 1;
         Qt::WindowStates _currentState = windowState();
         if ((m_previousState == Qt::WindowNoState && _currentState == Qt::WindowNoState)
                 && !m_taskBarClicked) {
