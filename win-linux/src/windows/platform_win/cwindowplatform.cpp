@@ -87,7 +87,7 @@ void CWindowPlatform::adjustGeometry()
         setContentsMargins(border, border, border, border+1);
         setResizeableAreaWidth(border);
     } else {
-        setContentsMargins(8,9,8,8);
+        setContentsMargins(8,8,8,9);
     }
 }
 
