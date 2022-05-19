@@ -170,13 +170,6 @@ void CPresenterWindow::setScreenScalingFactor(double factor)
 #endif
 }
 
-void CPresenterWindow::onMaximizeEvent()
-{
-    //Qt::WindowState s = isMaximized() ? Qt::WindowMaximized : Qt::WindowNoState;
-    CWindowBase::applyWindowState();
-    CWindowBase::onMaximizeEvent();
-}
-
 void CPresenterWindow::onCloseEvent() // Reporter mode
 {
     if (m_pMainView) {
