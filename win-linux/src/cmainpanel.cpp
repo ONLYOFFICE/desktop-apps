@@ -482,6 +482,8 @@ int CMainPanel::tabCloseRequest(int index)
             }
 
             return _result;
+        } else {
+            m_pTabs->editorCloseRequest(index);
         }
     }
 
