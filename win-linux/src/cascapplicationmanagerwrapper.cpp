@@ -1948,7 +1948,7 @@ void CAscApplicationManagerWrapper::showUpdateMessage(const bool error,
                                                       const QString &version,
                                                       const QString &changelog)
 {
-    qDebug() << changelog;
+    Q_UNUSED(changelog);
     if (!error && updateExist) {
         AscAppManager::sendCommandTo(0, "updates:checking", QString("{\"version\":\"%1\"}").arg(version));
         auto msg = [=]() {
@@ -1986,7 +1986,7 @@ void CAscApplicationManagerWrapper::showUpdateMessage(const bool error,
         AscAppManager::sendCommandTo(0, "updates:checking", "{\"version\":\"no\"}");
     } else
     if (error) {
-        qDebug() << "Error while loading check file...";
+        //qDebug() << "Error while loading check file...";
     }
 }
 

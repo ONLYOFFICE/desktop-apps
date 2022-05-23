@@ -56,7 +56,7 @@ CUpdateManager::CUpdateManager(QObject *parent):
     m_checkUrl = QString(URL_APPCAST_UPDATES).toStdWString();
 #endif
     }
-    qDebug() << "URL_APPCAST_UPDATES: " << QString::fromStdWString(m_checkUrl);
+    //qDebug() << "URL_APPCAST_UPDATES: " << QString::fromStdWString(m_checkUrl);
     // ========================================
 
     m_pDownloader = new CFileDownloader(m_checkUrl, false);
@@ -85,7 +85,7 @@ void CUpdateManager::onComplete(const int error)
 void CUpdateManager::onCompleteSlot(const int error)
 {
     if (error == 0) {
-        qDebug() << "Download complete... Mode: " << m_downloadMode;
+        //qDebug() << "Download complete... Mode: " << m_downloadMode;
         switch (m_downloadMode) {
         case Mode::CHECK_UPDATES:
             onLoadCheckFinished();
@@ -103,7 +103,7 @@ void CUpdateManager::onCompleteSlot(const int error)
         }
     }
     else {
-        qDebug() << "Download error: " << error;
+        //qDebug() << "Download error: " << error;
     }
 }
 
@@ -161,7 +161,7 @@ void CUpdateManager::downloadFile(const std::wstring &url, const QString &ext)
 
 void CUpdateManager::checkUpdates()
 {
-    qDebug() << "Check updates...";
+    //qDebug() << "Check updates...";
     m_newVersion = QString("");
 #ifdef Q_OS_WIN
     m_packageUrl = L"";
@@ -251,10 +251,10 @@ QByteArray CUpdateManager::getFileHash(const QString &fileName)
 
 void CUpdateManager::loadUpdates()
 {
-    qDebug() << "Load updates...";
+    //qDebug() << "Load updates...";
     if (!m_savedPackageFileName.isEmpty() && m_savedVersion == m_newVersion
             && m_savedHash == getFileHash(m_savedPackageFileName)) {
-        qDebug() << "Saved package is valid...";
+        //qDebug() << "Saved package is valid...";
         m_packageFileName = m_savedPackageFileName;
         emit updateLoaded();
     } else
@@ -290,7 +290,7 @@ QString CUpdateManager::getInstallPackagePath() const
 
 void CUpdateManager::getInstallParams()
 {
-    qDebug() << "Get install params...";
+    //qDebug() << "Get install params...";
     if (!m_packageFileName.isEmpty()) {
         emit updateLoaded();
     }
@@ -298,7 +298,7 @@ void CUpdateManager::getInstallParams()
 
 void CUpdateManager::onLoadUpdateFinished()
 {
-    qDebug() << "Load updates finished...";
+    //qDebug() << "Load updates finished...";
     m_packageFileName = QString::fromStdWString(m_pDownloader->GetFilePath());
     const QByteArray _newHash = getFileHash(m_packageFileName);
     GET_REGISTRY_USER(reg_user);
@@ -316,9 +316,9 @@ void CUpdateManager::handleAppClose()
 {
     if ( m_restartForUpdate ) {
         if ( QProcess::startDetached(getInstallPackagePath(), getInstallArguments())) {
-            qDebug() << "Start installation...";
+            //qDebug() << "Start installation...";
         } else {
-            qDebug() << "Install command not found!";
+            //qDebug() << "Install command not found!";
         }
     } else {
         cancelLoading();
@@ -341,13 +341,13 @@ void CUpdateManager::setNewUpdateSetting(const QString& _rate)
     QTimer::singleShot(3000, this, [=]() {
         updateNeededCheking();
     });
-    qDebug() << "Set new updates mode: " << m_currentRate;
+    //qDebug() << "Set new updates mode: " << m_currentRate;
 }
 #endif
 
 void CUpdateManager::cancelLoading()
 {
-    qDebug() << "Loading cancel...";
+    //qDebug() << "Loading cancel...";
     m_downloadMode = Mode::CHECK_UPDATES;
     //const QString path = QString::fromStdWString(m_pDownloader->GetFilePath());
     m_pDownloader->Stop();
@@ -356,7 +356,7 @@ void CUpdateManager::cancelLoading()
 
 void CUpdateManager::onLoadCheckFinished()
 {
-    qDebug() << "Check updates finished...";
+    //qDebug() << "Check updates finished...";
     const QString path = QString::fromStdWString(m_pDownloader->GetFilePath());
     QFile jsonFile(path);
     if (jsonFile.open(QIODevice::ReadOnly)) {
@@ -374,7 +374,7 @@ void CUpdateManager::onLoadCheckFinished()
         QJsonObject obj_1 = release_notes.toObject();
         GET_REGISTRY_USER(reg_user);
         const QString locale = reg_user.value("locale").toString();
-        qDebug() << "Locale: " << locale;
+        //qDebug() << "Locale: " << locale;
         const QString page = (locale == "ru-RU") ? "ru-RU" : "en-EN";
         QJsonValue changelog = obj_1.value(page);
         //const wstring changelog_url = changelog.toString().toStdWString();
@@ -393,11 +393,11 @@ void CUpdateManager::onLoadCheckFinished()
         QJsonValue arguments = obj_3.value(QString("installArguments"));
         m_packageUrl = url_win.toString().toStdWString();
         m_packageArgs = arguments.toString().toStdWString();
-        qDebug() << url_win.toString() << "\n" << arguments.toString();
+        //qDebug() << url_win.toString() << "\n" << arguments.toString();
 #endif
-        qDebug() << "Version: " << version.toString();
-        qDebug() << "Date: " << date.toString();
-        qDebug() << "Changelog: " << changelog.toString();
+        //qDebug() << "Version: " << version.toString();
+        //qDebug() << "Date: " << date.toString();
+        //qDebug() << "Changelog: " << changelog.toString();
 
         bool updateExist = false;
         int curr_ver[4] = {VER_NUM_MAJOR, VER_NUM_MINOR, VER_NUM_BUILD, VER_NUM_REVISION};
@@ -423,7 +423,7 @@ void CUpdateManager::onLoadCheckFinished()
 
 /*void CUpdateManager::loadChangelog(const wstring &changelog_url)
 {
-    qDebug() << "Load changelog... " << QString::fromStdWString(changelog_url);
+    //qDebug() << "Load changelog... " << QString::fromStdWString(changelog_url);
     if (changelog_url != L"") {
         m_downloadMode = Mode::DOWNLOAD_CHANGELOG;
         downloadFile(changelog_url, QString(".html"));
@@ -432,7 +432,7 @@ void CUpdateManager::onLoadCheckFinished()
 
 void CUpdateManager::onLoadChangelogFinished()
 {
-    qDebug() << "Load changelog finished... ";
+    //qDebug() << "Load changelog finished... ";
     const QString path = QString::fromStdWString(m_pDownloader->GetFilePath());
     QFile htmlFile(path);
     if (htmlFile.open(QIODevice::ReadOnly)) {
