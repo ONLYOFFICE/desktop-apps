@@ -48,6 +48,7 @@ Makefile.*
 *.xcscmblueprint
 .idea
 .env.secret
+.qtc_clangd
 dsa_priv.pem
 Gemfile.lock
 package-lock.json
