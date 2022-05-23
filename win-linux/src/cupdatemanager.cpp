@@ -31,8 +31,30 @@
  */
 
 #include "cupdatemanager.h"
+#include <QSettings>
+#include <QDir>
+#include <QDirIterator>
+#include <QUuid>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QRegularExpression>
+#include <QDebug>
+#include <algorithm>
+#include <iostream>
+#include <functional>
+#include <vector>
+#include "utils.h"
+#include "defines.h"
+#include "version.h"
+#ifdef Q_OS_WIN
+    #include <QProcess>
+    #include <QCryptographicHash>
+#endif
 
 #define URL_APPCAST_UPDATES  "http://nct.onlyoffice.com/sh/XHh" // Temporary URL
+
+using std::vector;
+
 
 CUpdateManager::CUpdateManager(QObject *parent):
     QObject(parent),

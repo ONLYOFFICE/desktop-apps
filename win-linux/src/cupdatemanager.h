@@ -34,31 +34,11 @@
 #define CUPDATEMANAGER_H
 
 #include <QObject>
-#include <QSettings>
-#include <QDir>
 #include <QTimer>
-#include <QDirIterator>
-#include <QUuid>
-#include <QJsonDocument>
-#include <QJsonObject>
-#include <QRegularExpression>
-#include <QDebug>
 #include <ctime>
-#include <algorithm>
-#include <iostream>
-#include <functional>
-#include <vector>
-#include "utils.h"
-#include "defines.h"
-#include "version.h"
 #include "Network/FileTransporter/include/FileTransporter.h"
-#ifdef Q_OS_WIN
-    #include <QProcess>
-    #include <QCryptographicHash>
-#endif
 
 using NSNetwork::NSFileTransport::CFileDownloader;
-using std::vector;
 using std::wstring;
 
 class CUpdateManager: public QObject
