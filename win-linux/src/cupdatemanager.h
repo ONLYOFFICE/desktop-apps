@@ -54,7 +54,6 @@ public:
     QStringList getInstallArguments() const;
     QString getInstallPackagePath() const;
     QString getVersion() const;
-    void getInstallParams();
     void scheduleRestartForUpdate();
     void handleAppClose();
     void loadUpdates();
@@ -82,7 +81,7 @@ private:
     wstring     m_packageUrl,
                 m_packageArgs;
 
-    bool        m_restartForUpdate;
+    bool        m_restartForUpdate = false;
 #else
     QTimer      *m_pTimer;
     time_t      m_lastCheck;
@@ -95,7 +94,7 @@ private:
     wstring     m_checkUrl;
     int         m_downloadMode;
     QString     m_newVersion;
-    CFileDownloader  *m_pDownloader;
+    CFileDownloader  * m_pDownloader = nullptr;
 
     enum Mode {
         CHECK_UPDATES=0, DOWNLOAD_CHANGELOG=1, DOWNLOAD_UPDATES=2
@@ -104,9 +103,8 @@ private:
 public slots:
     void checkUpdates();
 
-       signals:
-    void checkFinished(const bool error, const bool updateExist,
-                       const QString &version, const QString &changelog);
+signals:
+    void checkFinished(const bool error, const bool updateExist, const QString &version, const QString &changelog);
 #ifdef Q_OS_WIN
     void progresChanged(const int percent);
     void updateLoaded();

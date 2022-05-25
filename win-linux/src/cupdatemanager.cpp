@@ -46,57 +46,49 @@
 #include "utils.h"
 #include "defines.h"
 #include "version.h"
+#include "clangater.h"
 #ifdef Q_OS_WIN
-    #include <QProcess>
-    #include <QCryptographicHash>
+# include <QProcess>
+# include <QCryptographicHash>
 #endif
 
-#define URL_APPCAST_UPDATES  "http://nct.onlyoffice.com/sh/XHh" // Temporary URL
+#define CMD_ARGUMENT_CHECK_URL L"--updates-appcast-url"
+#ifndef URL_APPCAST_UPDATES
+# define URL_APPCAST_UPDATES L""
+#endif
 
 using std::vector;
-
 
 CUpdateManager::CUpdateManager(QObject *parent):
     QObject(parent),
     m_downloadMode(Mode::CHECK_UPDATES)
 {
     // =========== Set updates URL ============
-    bool cmd_flag = false;  // updates URL set from command line argument
-    vector<wstring> args = InputArgs::arguments();
-    foreach (const wstring &arg, args) {
-        const QStringList params = QString::fromStdWString(arg).split('=');
-        if (params.size() == 2) {
-            if (params.at(0) == QString("--updates-appcast-url")) {
-                m_checkUrl = params.at(1).toStdWString();
-                cmd_flag = true;
-                break;
-            }
-        }
-    }
-    if (!cmd_flag) {
-#if defined (URL_APPCAST_UPDATES)
-    m_checkUrl = QString(URL_APPCAST_UPDATES).toStdWString();
-#endif
-    }
-    //qDebug() << "URL_APPCAST_UPDATES: " << QString::fromStdWString(m_checkUrl);
-    // ========================================
+    if ( InputArgs::contains(CMD_ARGUMENT_CHECK_URL) ) {
+        m_checkUrl = InputArgs::argument_value(CMD_ARGUMENT_CHECK_URL);
+    } else m_checkUrl = QString(URL_APPCAST_UPDATES).toStdWString();
 
-    m_pDownloader = new CFileDownloader(m_checkUrl, false);
-    m_pDownloader->SetEvent_OnComplete(std::bind(&CUpdateManager::onComplete, this, std::placeholders::_1));
+    if ( !m_checkUrl.empty() ) {
+        m_pDownloader = new CFileDownloader(m_checkUrl, false);
+        m_pDownloader->SetEvent_OnComplete(std::bind(&CUpdateManager::onComplete, this, std::placeholders::_1));
 
 #ifdef Q_OS_WIN
-    m_pDownloader->SetEvent_OnProgress(std::bind(&CUpdateManager::onProgress, this, std::placeholders::_1));
+        m_pDownloader->SetEvent_OnProgress(std::bind(&CUpdateManager::onProgress, this, std::placeholders::_1));
 #else
-    m_pTimer = new QTimer(this);
-    m_pTimer->setSingleShot(false);
-    connect(m_pTimer, SIGNAL(timeout()), this, SLOT(checkUpdates()));
+        m_pTimer = new QTimer(this);
+        m_pTimer->setSingleShot(false);
+        connect(m_pTimer, SIGNAL(timeout()), this, SLOT(checkUpdates()));
 #endif
-    init();
+        init();
+    }
 }
 
 CUpdateManager::~CUpdateManager()
 {
-    delete m_pDownloader;
+    if ( m_pDownloader ) {
+        delete m_pDownloader;
+        m_pDownloader = nullptr;
+    }
 }
 
 void CUpdateManager::onComplete(const int error)
@@ -120,8 +112,7 @@ void CUpdateManager::onCompleteSlot(const int error)
             onLoadUpdateFinished();
             break;
 #endif
-        default:
-            break;
+        default: break;
         }
     }
     else {
@@ -131,24 +122,18 @@ void CUpdateManager::onCompleteSlot(const int error)
 
 void CUpdateManager::init()
 {
-    QStringList filter;
-    filter << QString("*.json");
-    m_newVersion = QString("");
     GET_REGISTRY_USER(reg_user);
+
 #ifdef Q_OS_WIN
+    QStringList filter{"*.json", "*.exe"};
+
     reg_user.beginGroup("Updates");
-    const bool _wasInstalledFlag = reg_user.value("Updates/was_installed", false).toBool();
-    if (_wasInstalledFlag) {
-        filter << QString("*.exe");
-    }
+
     m_savedPackageFileName = reg_user.value("Updates/file", QString()).toString();
     m_savedHash = reg_user.value("Updates/hash", QByteArray()).toByteArray();
     m_savedVersion = reg_user.value("Updates/version", QString()).toString();
+
     reg_user.endGroup();
-    m_packageUrl = L"";
-    m_packageArgs = L"";
-    m_packageFileName = QString("");
-    m_restartForUpdate = false;
 #else
     reg_user.beginGroup("Updates");
     m_lastCheck = time_t(reg_user.value("Updates/last_check", 0).toLongLong());
@@ -160,7 +145,8 @@ void CUpdateManager::init()
     QDirIterator it(QDir::tempPath(), filter, QDir::Files | QDir::NoSymLinks | QDir::NoDotAndDotDot, QDirIterator::Subdirectories);
     while (it.hasNext()) {
         const QString tmp = it.next();
-        if (tmp.indexOf("onlyoffice_") != -1 || tmp.indexOf("ONLYOFFICE_") != -1) QDir().remove(tmp);
+        if (tmp.toLower().indexOf("onlyoffice_") != -1)
+            QDir().remove(tmp);
     }
     // =================================
 
@@ -173,22 +159,23 @@ void CUpdateManager::downloadFile(const std::wstring &url, const QString &ext)
 {
     m_pDownloader->Stop();
     m_pDownloader->SetFileUrl(url, false);
+
     const QUuid uuid = QUuid::createUuid();
     const QRegularExpression _ignoreBranches = QRegularExpression("[{|}]+");
     const QString tmp_name = QString("onlyoffice_") + uuid.toString().replace(_ignoreBranches, "") + ext;
     const QString tmp_file = QDir::tempPath() + QDir::separator() + tmp_name;
+
     m_pDownloader->SetFilePath(tmp_file.toStdWString());
     m_pDownloader->Start(0);
 }
 
 void CUpdateManager::checkUpdates()
 {
-    //qDebug() << "Check updates...";
     m_newVersion = QString("");
 #ifdef Q_OS_WIN
     m_packageUrl = L"";
     m_packageArgs = L"";
-    m_packageFileName = QString("");
+    m_packageFileName = "";
 #else
     m_lastCheck = time(nullptr);
     GET_REGISTRY_USER(reg_user);
@@ -199,7 +186,7 @@ void CUpdateManager::checkUpdates()
 
     // =========== Download JSON ============
     m_downloadMode = Mode::CHECK_UPDATES;
-    downloadFile(m_checkUrl, QString(".json"));
+    downloadFile(m_checkUrl, ".json");
     // ======================================
 #ifndef Q_OS_WIN
     QTimer::singleShot(3000, this, [=]() {
@@ -208,7 +195,8 @@ void CUpdateManager::checkUpdates()
 #endif
 }
 
-void CUpdateManager::updateNeededCheking() {
+void CUpdateManager::updateNeededCheking()
+{
 #ifdef Q_OS_WIN
     checkUpdates();
 #else
@@ -273,16 +261,15 @@ QByteArray CUpdateManager::getFileHash(const QString &fileName)
 
 void CUpdateManager::loadUpdates()
 {
-    //qDebug() << "Load updates...";
     if (!m_savedPackageFileName.isEmpty() && m_savedVersion == m_newVersion
-            && m_savedHash == getFileHash(m_savedPackageFileName)) {
-        //qDebug() << "Saved package is valid...";
+            && m_savedHash == getFileHash(m_savedPackageFileName))
+    {
         m_packageFileName = m_savedPackageFileName;
         emit updateLoaded();
     } else
     if (m_packageUrl != L"") {
         m_downloadMode = Mode::DOWNLOAD_UPDATES;
-        downloadFile(m_packageUrl, QString(".exe"));
+        downloadFile(m_packageUrl, ".exe");
     }
 }
 
@@ -296,39 +283,29 @@ QString CUpdateManager::getVersion() const
 
 QStringList CUpdateManager::getInstallArguments() const
 {
+    QStringList arguments;
     if ( !m_packageArgs.empty() ) {
-        QStringList arguments;
         arguments << QString::fromStdWString(m_packageArgs).split(" ");
+    }
 
-        return arguments;
-    } else return QStringList();
+    return arguments;
 }
 
 QString CUpdateManager::getInstallPackagePath() const
 {
-    if (!m_packageFileName.isEmpty()) return m_packageFileName;
-    return QString();
-}
-
-void CUpdateManager::getInstallParams()
-{
-    //qDebug() << "Get install params...";
-    if (!m_packageFileName.isEmpty()) {
-        emit updateLoaded();
-    }
+    return m_packageFileName;
 }
 
 void CUpdateManager::onLoadUpdateFinished()
 {
-    //qDebug() << "Load updates finished...";
+    GET_REGISTRY_USER(reg_user);
+
     m_packageFileName = QString::fromStdWString(m_pDownloader->GetFilePath());
     const QByteArray _newHash = getFileHash(m_packageFileName);
-    GET_REGISTRY_USER(reg_user);
     reg_user.beginGroup("Updates");
     reg_user.setValue("Updates/file", m_packageFileName);
     reg_user.setValue("Updates/hash", _newHash);
     reg_user.setValue("Updates/version", m_newVersion);
-    reg_user.setValue("Updates/was_installed", false);
     reg_user.endGroup();
 
     emit updateLoaded();
@@ -350,10 +327,6 @@ void CUpdateManager::handleAppClose()
 void CUpdateManager::scheduleRestartForUpdate()
 {
     m_restartForUpdate = true;
-    GET_REGISTRY_USER(reg_user);
-    reg_user.beginGroup("Updates");
-    reg_user.setValue("Updates/was_installed", true);
-    reg_user.endGroup();
 }
 
 #else
@@ -369,58 +342,44 @@ void CUpdateManager::setNewUpdateSetting(const QString& _rate)
 
 void CUpdateManager::cancelLoading()
 {
-    //qDebug() << "Loading cancel...";
     m_downloadMode = Mode::CHECK_UPDATES;
-    //const QString path = QString::fromStdWString(m_pDownloader->GetFilePath());
     m_pDownloader->Stop();
     //if (QDir().exists(path)) QDir().remove(path);
 }
 
 void CUpdateManager::onLoadCheckFinished()
 {
-    //qDebug() << "Check updates finished...";
     const QString path = QString::fromStdWString(m_pDownloader->GetFilePath());
     QFile jsonFile(path);
-    if (jsonFile.open(QIODevice::ReadOnly)) {
+    if ( jsonFile.open(QIODevice::ReadOnly) ) {
         QByteArray ReplyText = jsonFile.readAll();
         jsonFile.close();
         QJsonDocument doc = QJsonDocument::fromJson(ReplyText);
         QJsonObject obj = doc.object();
 
         // parse version
-        QJsonValue version = obj.value(QString("version"));
-        QJsonValue date = obj.value(QString("date"));
+        QJsonValue version = obj.value("version");
+//        QJsonValue date = obj.value("date");
 
         // parse release notes
-        QJsonValue release_notes = obj.value(QString("releaseNotes"));
-        QJsonObject obj_1 = release_notes.toObject();
-        GET_REGISTRY_USER(reg_user);
-        const QString locale = reg_user.value("locale").toString();
-        //qDebug() << "Locale: " << locale;
-        const QString page = (locale == "ru-RU") ? "ru-RU" : "en-EN";
-        QJsonValue changelog = obj_1.value(page);
-        //const wstring changelog_url = changelog.toString().toStdWString();
+        QJsonObject release_notes = obj.value("releaseNotes").toObject();
+        const QString page = CLangater::getCurrentLangCode() == "ru-RU" ? "ru-RU" : "en-EN";
+        QJsonValue changelog = release_notes.value(page);
 
         // parse package
 #ifdef Q_OS_WIN
-        QJsonValue package = obj.value(QString("package"));
-        QJsonObject obj_2 = package.toObject();
-    #if defined (Q_OS_WIN64)
-        QJsonValue win = obj_2.value(QString("win_64"));
-    #elif defined (Q_OS_WIN32)
-        QJsonValue win = obj_2.value(QString("win_32"));
-    #endif
+        QJsonObject package = obj.value("package").toObject();
+# if defined (Q_OS_WIN64)
+        QJsonValue win = package.value("win_64");
+# elif defined (Q_OS_WIN32)
+        QJsonValue win = package.value("win_32");
+# endif
         QJsonObject obj_3 = win.toObject();
-        QJsonValue url_win = obj_3.value(QString("url"));
-        QJsonValue arguments = obj_3.value(QString("installArguments"));
+        QJsonValue url_win = obj_3.value("url");
+        QJsonValue arguments = obj_3.value("installArguments");
         m_packageUrl = url_win.toString().toStdWString();
         m_packageArgs = arguments.toString().toStdWString();
-        //qDebug() << url_win.toString() << "\n" << arguments.toString();
 #endif
-        //qDebug() << "Version: " << version.toString();
-        //qDebug() << "Date: " << date.toString();
-        //qDebug() << "Changelog: " << changelog.toString();
-
         bool updateExist = false;
         int curr_ver[4] = {VER_NUM_MAJOR, VER_NUM_MINOR, VER_NUM_BUILD, VER_NUM_REVISION};
         QStringList ver = version.toString().split('.');
@@ -435,12 +394,14 @@ void CUpdateManager::onLoadCheckFinished()
             emit checkFinished(false, true, m_newVersion, changelog.toString());
             //loadChangelog(changelog_url);
         } else {
-            emit checkFinished(false, false, QString(""), QString(""));
+            emit checkFinished(false, false, "", "");
         }
     } else {
-        emit checkFinished(true, false, QString(""), QString("Error receiving updates..."));
+        emit checkFinished(true, false, "", "Error receiving updates...");
     }
-    if (QDir().exists(path)) QDir().remove(path);
+
+    if ( QDir().exists(path) )
+        QDir().remove(path);
 }
 
 /*void CUpdateManager::loadChangelog(const wstring &changelog_url)

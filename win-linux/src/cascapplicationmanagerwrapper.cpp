@@ -293,7 +293,7 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
                 m_pUpdateManager->loadUpdates();
             } else
             if (params == "install") {
-                m_pUpdateManager->getInstallParams();
+                showStartInstallMessage();
             } else
             if (params == "abort") {
                 m_pUpdateManager->cancelLoading();
@@ -1997,7 +1997,8 @@ void CAscApplicationManagerWrapper::showStartInstallMessage()
     CMessage mbox(mainWindow()->handle(), CMessageOpts::moButtons::mbYesNo);
 //    mbox.setButtons({"Yes", "No"});
     switch (mbox.info(tr("Do you want to install a new version of the program?\n"
-                         "To continue the installation, you must to close current session."))) {
+                         "To continue the installation, you must to close current session.")))
+    {
     case MODAL_RESULT_CUSTOM + 0: {
         m_pUpdateManager->scheduleRestartForUpdate();
         closeMainWindow();
