@@ -85,7 +85,11 @@
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiDirsComponent">
     <ROW Directory="APPDIR" Directory_Parent="TARGETDIR" DefaultDir="APPDIR:." IsPseudoRoot="1"/>
+    <ROW Directory="AppDataFolder" Directory_Parent="TARGETDIR" DefaultDir="APPDAT~1|AppDataFolder" IsPseudoRoot="1"/>
     <ROW Directory="DesktopFolder" Directory_Parent="TARGETDIR" DefaultDir="DESKTO~1|DesktopFolder" IsPseudoRoot="1"/>
+    <ROW Directory="InternetExplorer_Dir" Directory_Parent="Microsoft_Dir" DefaultDir="INTERN~1|Internet Explorer"/>
+    <ROW Directory="Microsoft_Dir" Directory_Parent="AppDataFolder" DefaultDir="MICROS~1|Microsoft"/>
+    <ROW Directory="QuickLaunch_Dir" Directory_Parent="InternetExplorer_Dir" DefaultDir="QUICKL~1|Quick Launch"/>
     <ROW Directory="SHORTCUTDIR" Directory_Parent="TARGETDIR" DefaultDir="SHORTC~1|SHORTCUTDIR" IsPseudoRoot="1"/>
     <ROW Directory="TARGETDIR" DefaultDir="SourceDir"/>
   </COMPONENT>
@@ -98,6 +102,7 @@
     <ROW Component="NewValueCheckForUpdates" ComponentId="{E9660E71-E436-4C3C-8B4B-A324DB1BF250}" Directory_="APPDIR" Attributes="260" KeyPath="NewValueCheckForUpdates"/>
     <ROW Component="ONLYOFFICE" ComponentId="{4C21A9BD-4E3F-4373-B2DE-6CCFD5818EB6}" Directory_="APPDIR" Attributes="260" KeyPath="ONLYOFFICE"/>
     <ROW Component="ProductInformation" ComponentId="{8F10F3CD-12FA-4182-AAEB-6E3EBF95E345}" Directory_="APPDIR" Attributes="260" KeyPath="Version"/>
+    <ROW Component="QuickLaunch" ComponentId="{980FCC49-6ED8-41A0-9B6F-B6D8F75A4AF7}" Directory_="QuickLaunch_Dir" Attributes="0"/>
     <ROW Component="SHORTCUTDIR" ComponentId="{CB73F99E-8C5E-4F7A-9E2F-25EDC9FBDFC0}" Directory_="SHORTCUTDIR" Attributes="0"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatsComponent">
@@ -373,8 +378,8 @@
     <ROW Dialog_="ShortcutsDlg" Control="Title" Type="Text" X="15" Y="6" Width="200" Height="15" Attributes="196611" Text="Configure Shortcuts" TextStyle="[DlgTitleFont]" Order="800" TextLocId="Control.Text.ShortcutsDlg#Title" MsiKey="ShortcutsDlg#Title"/>
     <ROW Dialog_="ShortcutsDlg" Control="DesktopShortcutsCheckBox" Type="CheckBox" X="53" Y="109" Width="162" Height="11" Attributes="3" Property="AI_DESKTOP_SH" Text="Desktop" Order="900" TextLocId="Control.Text.ShortcutsDlg#DesktopShortcutsCheckBox" MsiKey="ShortcutsDlg#DesktopShortcutsCheckBox" Options="1"/>
     <ROW Dialog_="ShortcutsDlg" Control="StartmenuShortcutsCheckBox" Type="CheckBox" X="53" Y="131" Width="162" Height="11" Attributes="3" Property="AI_STARTMENU_SH" Text="Start Menu Programs folder" Order="1000" TextLocId="Control.Text.ShortcutsDlg#StartmenuShortcutsCheckBox" MsiKey="ShortcutsDlg#StartmenuShortcutsCheckBox" Options="1"/>
-    <ROW Dialog_="ShortcutsDlg" Control="QuickLaunchShorcutsCheckBox" Type="CheckBox" X="53" Y="175" Width="162" Height="11" Attributes="3" Property="AI_QUICKLAUNCH_SH" Text="Quick Launch toolbar" Order="1100" TextLocId="Control.Text.ShortcutsDlg#QuickLaunchShorcutsCheckBox" MsiKey="ShortcutsDlg#QuickLaunchShorcutsCheckBox" Options="1"/>
-    <ROW Dialog_="ShortcutsDlg" Control="StartupShorcutsCheckBox" Type="CheckBox" X="53" Y="153" Width="162" Height="11" Attributes="3" Property="AI_STARTUP_SH" Text="Startup folder" Order="1200" TextLocId="Control.Text.ShortcutsDlg#StartupShorcutsCheckBox" MsiKey="ShortcutsDlg#StartupShorcutsCheckBox" Options="1"/>
+    <ROW Dialog_="ShortcutsDlg" Control="QuickLaunchShorcutsCheckBox" Type="CheckBox" X="53" Y="154" Width="162" Height="11" Attributes="3" Property="AI_QUICKLAUNCH_SH" Text="Quick Launch toolbar" Order="1100" TextLocId="Control.Text.ShortcutsDlg#QuickLaunchShorcutsCheckBox" MsiKey="ShortcutsDlg#QuickLaunchShorcutsCheckBox" Options="1"/>
+    <ROW Dialog_="ShortcutsDlg" Control="StartupShorcutsCheckBox" Type="CheckBox" X="53" Y="177" Width="162" Height="11" Attributes="3" Property="AI_STARTUP_SH" Text="Startup folder" Order="1200" TextLocId="Control.Text.ShortcutsDlg#StartupShorcutsCheckBox" MsiKey="ShortcutsDlg#StartupShorcutsCheckBox" Options="1"/>
     <ROW Dialog_="ShortcutsDlg" Control="ShortcutsDlgText" Type="Text" X="25" Y="70" Width="314" Height="30" Attributes="196611" Text="Create shortcuts for [ProductName] in the following locations:" Order="1300" TextLocId="Control.Text.ShortcutsDlg#ShortcutsDlgText" MsiKey="ShortcutsDlg#ShortcutsDlgText"/>
     <ROW Dialog_="UserExit" Control="Bitmap" Type="Bitmap" X="0" Y="0" Width="370" Height="234" Attributes="1048577" Text="background.bmp" Order="300" MsiKey="UserExit#Bitmap"/>
     <ROW Dialog_="VerifyReadyDlg" Control="BannerBitmap" Type="Bitmap" X="0" Y="0" Width="370" Height="44" Attributes="1048577" Text="banner.png" Order="300" MsiKey="VerifyReadyDlg#BannerBitmap"/>
@@ -399,8 +404,8 @@
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiControlConditionComponent">
     <ROW Dialog_="ShortcutsDlg" Control_="StartupShorcutsCheckBox" Action="Hide" Condition="(Not Installed)"/>
-    <ROW Dialog_="ShortcutsDlg" Control_="StartmenuShortcutsCheckBox" Action="Hide" Condition="(Not Installed)"/>
-    <ROW Dialog_="ShortcutsDlg" Control_="QuickLaunchShorcutsCheckBox" Action="Hide" Condition="(Not Installed) AND (VersionNT&lt;&quot;601&quot;)"/>
+    <ROW Dialog_="ShortcutsDlg" Control_="StartmenuShortcutsCheckBox" Action="Show" Condition="(Not Installed)"/>
+    <ROW Dialog_="ShortcutsDlg" Control_="QuickLaunchShorcutsCheckBox" Action="Show" Condition="(Not Installed) AND (VersionNT&lt;&quot;601&quot;)"/>
     <ATTRIBUTE name="DeletedRows" value="ExitDialog#ViewReadmeText#Hide#((NOT AI_INSTALL) AND (NOT AI_PATCH)) OR ((CTRLS &lt;&gt; 1) AND (CTRLS &lt;&gt; 3))@ShortcutsDlg#QuickLaunchShorcutsCheckBox#Show#(Not Installed) AND (VersionNT&lt;&quot;601&quot;)@ShortcutsDlg#StartmenuShortcutsCheckBox#Show#(Not Installed)@ShortcutsDlg#StartupShorcutsCheckBox#Show#(Not Installed)"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiControlEventComponent">
@@ -590,6 +595,7 @@
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCreateFolderComponent">
     <ROW Directory_="APPDIR" Component_="APPDIR" ManualDelete="true"/>
     <ROW Directory_="SHORTCUTDIR" Component_="SHORTCUTDIR" ManualDelete="false"/>
+    <ROW Directory_="QuickLaunch_Dir" Component_="QuickLaunch" ManualDelete="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCustActComponent">
     <ROW Action="AI_BACKUP_AI_SETUPEXEPATH" Type="51" Source="AI_SETUPEXEPATH_ORIGINAL" Target="[AI_SETUPEXEPATH]"/>
@@ -681,6 +687,7 @@
     <ROW Feature_="MainFeature" Component_="NewValueCheckForUpdates"/>
     <ROW Feature_="MainFeature" Component_="AIShRegAnswer"/>
     <ROW Feature_="MainFeature" Component_="SHORTCUTDIR"/>
+    <ROW Feature_="MainFeature" Component_="QuickLaunch"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiIconsComponent">
     <ROW Name="DesktopEditors.exe" SourcePath="..\..\..\..\build_tools\out\win_64\onlyoffice\DesktopEditors\app.ico" Index="0"/>
@@ -792,8 +799,9 @@
     <ROW Registry="VersionMinor" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="VersionMinor" Value="#4" Component_="AI_CustomARPName" VirtualValue="#"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiShortsComponent">
-    <ROW Shortcut="COMMON_SHORTCUT_NAME_SHORTCUTDIR" Directory_="SHORTCUTDIR" Name="ONLYOF~1|[|COMMON_SHORTCUT_NAME]" Component_="DesktopEditors.exe" Target="[#DesktopEditors.exe]" Hotkey="0" Icon_="DesktopEditors.exe" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
+    <ROW Shortcut="COMMON_SHORTCUT_NAME_QUICK_LAUNCH" Directory_="QuickLaunch_Dir" Name="ONLYOF~1|[|COMMON_SHORTCUT_NAME]" Component_="DesktopEditors.exe" Target="[#DesktopEditors.exe]" Hotkey="0" Icon_="DesktopEditors.exe" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
     <ROW Shortcut="COMMON_SHORTCUT_NAME_DESKTOP" Directory_="DesktopFolder" Name="ONLYOF~1|[|COMMON_SHORTCUT_NAME]" Component_="DesktopEditors.exe" Target="[#DesktopEditors.exe]" Hotkey="0" Icon_="DesktopEditors.exe" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
+    <ROW Shortcut="COMMON_SHORTCUT_NAME_SHORTCUTDIR" Directory_="SHORTCUTDIR" Name="ONLYOF~1|[|COMMON_SHORTCUT_NAME]" Component_="DesktopEditors.exe" Target="[#DesktopEditors.exe]" Hotkey="0" Icon_="DesktopEditors.exe" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiThemeComponent">
     <ATTRIBUTE name="UsedTheme" value="classic"/>
