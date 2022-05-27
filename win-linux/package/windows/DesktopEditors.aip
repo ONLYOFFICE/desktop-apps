@@ -690,7 +690,6 @@
     <ROW Feature_="MainFeature" Component_="QuickLaunch"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiIconsComponent">
-    <ROW Name="DesktopEditors.exe" SourcePath="..\..\..\..\build_tools\out\win_64\onlyoffice\DesktopEditors\app.ico" Index="0"/>
     <ROW Name="desktopeditors.exe" SourcePath="..\..\res\icons\desktopeditors.ico" Index="0"/>
     <ROW Name="djvu.exe" SourcePath="..\..\extras\projicons\res\djvu.ico" Index="0"/>
     <ROW Name="doc.exe" SourcePath="..\..\extras\projicons\res\doc.ico" Index="0"/>
@@ -799,9 +798,9 @@
     <ROW Registry="VersionMinor" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="VersionMinor" Value="#4" Component_="AI_CustomARPName" VirtualValue="#"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiShortsComponent">
-    <ROW Shortcut="COMMON_SHORTCUT_NAME_QUICK_LAUNCH" Directory_="QuickLaunch_Dir" Name="ONLYOF~1|[|COMMON_SHORTCUT_NAME]" Component_="DesktopEditors.exe" Target="[#DesktopEditors.exe]" Hotkey="0" Icon_="DesktopEditors.exe" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
-    <ROW Shortcut="COMMON_SHORTCUT_NAME_DESKTOP" Directory_="DesktopFolder" Name="ONLYOF~1|[|COMMON_SHORTCUT_NAME]" Component_="DesktopEditors.exe" Target="[#DesktopEditors.exe]" Hotkey="0" Icon_="DesktopEditors.exe" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
-    <ROW Shortcut="COMMON_SHORTCUT_NAME_SHORTCUTDIR" Directory_="SHORTCUTDIR" Name="ONLYOF~1|[|COMMON_SHORTCUT_NAME]" Component_="DesktopEditors.exe" Target="[#DesktopEditors.exe]" Hotkey="0" Icon_="DesktopEditors.exe" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
+    <ROW Shortcut="COMMON_SHORTCUT_NAME_DESKTOP" Directory_="DesktopFolder" Name="ONLYOF~1|[|COMMON_SHORTCUT_NAME]" Component_="DesktopEditors.exe" Target="[#DesktopEditors.exe]" Hotkey="0" Icon_="desktopeditors.exe" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
+    <ROW Shortcut="COMMON_SHORTCUT_NAME_QUICK_LAUNCH" Directory_="QuickLaunch_Dir" Name="ONLYOF~1|[|COMMON_SHORTCUT_NAME]" Component_="DesktopEditors.exe" Target="[#DesktopEditors.exe]" Hotkey="0" Icon_="desktopeditors.exe" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
+    <ROW Shortcut="COMMON_SHORTCUT_NAME_SHORTCUTDIR" Directory_="SHORTCUTDIR" Name="ONLYOF~1|[|COMMON_SHORTCUT_NAME]" Component_="DesktopEditors.exe" Target="[#DesktopEditors.exe]" Hotkey="0" Icon_="desktopeditors.exe" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiThemeComponent">
     <ATTRIBUTE name="UsedTheme" value="classic"/>
