@@ -206,51 +206,42 @@ bool CWindowPlatform::nativeEvent(const QByteArray &eventType, void *message, lo
     case WM_NCHITTEST: {
         if (m_borderless) {
             *result = 0;
-            const LONG border_width = (LONG)m_resAreaWidth;
-            RECT winrect;
-            GetWindowRect(HWND(winId()), &winrect);
+            const LONG border = (LONG)m_resAreaWidth;
+            RECT rect;
+            GetWindowRect(msg->hwnd, &rect);
             long x = GET_X_LPARAM(msg->lParam);
             long y = GET_Y_LPARAM(msg->lParam);
             if (m_isResizeable) {
-                bool resizeWidth = minimumWidth() != maximumWidth();
-                bool resizeHeight = minimumHeight() != maximumHeight();
-
-                if (resizeWidth) {
-                    if (x >= winrect.left && x < winrect.left + border_width) {
-                        *result = HTLEFT;
-                    }
-                    if (x < winrect.right && x >= winrect.right - border_width) {
-                        *result = HTRIGHT;
-                    }
-                }
-                if (resizeHeight) {
-                    if (y < winrect.bottom && y >= winrect.bottom - border_width) {
-                        *result = HTBOTTOM;
-                    }
-                    if (y >= winrect.top && y < winrect.top + border_width) {
-                        *result = HTTOP;
-                    }
-                }
-                if (resizeWidth && resizeHeight) {
-                    if (x >= winrect.left && x < winrect.left + border_width &&
-                            y < winrect.bottom && y >= winrect.bottom - border_width) {
-                        *result = HTBOTTOMLEFT;
-                    }
-                    if (x < winrect.right && x >= winrect.right - border_width &&
-                            y < winrect.bottom && y >= winrect.bottom - border_width) {
-                        *result = HTBOTTOMRIGHT;
-                    }
-                    if (x >= winrect.left && x < winrect.left + border_width &&
-                            y >= winrect.top && y < winrect.top + border_width) {
+                if (x < rect.left + border) {
+                    if (y < rect.top + border)
                         *result = HTTOPLEFT;
-                    }
-                    if (x < winrect.right && x >= winrect.right - border_width &&
-                            y >= winrect.top && y < winrect.top + border_width) {
+                    else
+                    if (y > rect.top + border && y < rect.bottom - border)
+                        *result = HTLEFT;
+                    else
+                    if (y > rect.bottom - border)
+                        *result = HTBOTTOMLEFT;
+                } else
+                if (x > rect.left + border && x < rect.right - border) {
+                    if (y < rect.top + border)
+                        *result = HTTOP;
+                    else
+                    if (y > rect.bottom - border)
+                        *result = HTBOTTOM;
+                } else
+                if (x > rect.right - border) {
+                    if (y < rect.top + border)
                         *result = HTTOPRIGHT;
-                    }
+                    else
+                    if (y > rect.top + border && y < rect.bottom - border)
+                        *result = HTRIGHT;
+                    else
+                    if (y > rect.bottom - border)
+                        *result = HTBOTTOMRIGHT;
                 }
             }
-            if (*result != 0) return true;
+            if (*result != 0)
+                return true;
             return false;
         }
         break;
