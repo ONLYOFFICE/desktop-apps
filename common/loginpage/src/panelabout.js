@@ -64,9 +64,10 @@
         !!_opts.active && (_opts.edition = !!_opts.edition ? _opts.edition + ' ' + _opts.active : _opts.active);
         _opts.edition = !!_opts.edition ? `<div class="ver-edition">${_opts.edition}</div>` : '';
 
-        if ( !!_opts.arch ) {
-            _opts.version += ` (${_opts.arch == 'x64' ? '64' : '32'} bit)`;
-        }
+        let _ext_ver = '';
+        if ( !!_opts.arch ) _ext_ver += `${_opts.arch == 'x64' ? '64' : '32'} bit`;
+        if ( !!_opts.pkg ) _ext_ver += ` ${_opts.pkg} package`;
+        if ( !!_ext_ver ) _opts.version += ` (${_ext_ver.trim()})`;
 
         var _lang = utils.Lang;
         let _html = `<div class="flexbox">

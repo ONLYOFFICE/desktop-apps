@@ -3,9 +3,16 @@ BEGIN {
 
 	# Appcast Vars
 	AppcastProductTitle = "ONLYOFFICE Desktop Editors";
-	AppcastBaseUrl = "https://download.onlyoffice.com/install/desktop/editors/windows/onlyoffice";
-	AppcastChangesPath = AppcastBaseUrl "/changes";
-	AppcastUpdatesPath = AppcastBaseUrl "/updates";
+	if (Prod) {
+		AppcastBaseUrl = "https://download.onlyoffice.com/install/desktop/editors/windows/onlyoffice";
+		AppcastChangesPath = AppcastBaseUrl "/changes";
+		AppcastUpdatesPath = AppcastBaseUrl "/updates";
+	}
+	else {
+		AppcastBaseUrl = "https://s3.eu-west-1.amazonaws.com/repo-doc-onlyoffice-com/onlyoffice/" Branch "/windows/" Version "-" Build "/desktop";
+		AppcastChangesPath = AppcastBaseUrl;
+		AppcastUpdatesPath = AppcastBaseUrl;
+	}
 
 	# Changes Vars
 	ChangesProductTitle = "ONLYOFFICE Desktop Editors";

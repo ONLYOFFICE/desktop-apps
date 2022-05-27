@@ -122,7 +122,7 @@ LRESULT CALLBACK CSingleWindowPlatform::WndProc(HWND hWnd, UINT message, WPARAM 
 
     switch ( message ) {
     case WM_DPICHANGED:
-        if ( !WindowHelper::isLeftButtonPressed() ) {
+        if ( !WindowHelper::isLeftButtonPressed() || AscAppManager::IsUseSystemScaling() ) {
             double dpi_ratio = Utils::getScreenDpiRatioByHWND(int(hWnd));
 
             if ( dpi_ratio != window->m_dpiRatio ) {
@@ -144,15 +144,17 @@ LRESULT CALLBACK CSingleWindowPlatform::WndProc(HWND hWnd, UINT message, WPARAM 
             return 0;
         } else
         if ( GET_SC_WPARAM(wParam) == SC_SIZE ) {
-            if ( WindowHelper::isWindowSystemDocked(hWnd) )
-                window->setMinimumSize(int(EDITOR_WINDOW_MIN_WIDTH * window->m_dpiRatio), int(MAIN_WINDOW_MIN_HEIGHT * window->m_dpiRatio));
-            else window->setMinimumSize(int(MAIN_WINDOW_MIN_WIDTH * window->m_dpiRatio), int(MAIN_WINDOW_MIN_HEIGHT * window->m_dpiRatio));
+            // TODO: skip window min size for usability test
+//            if ( WindowHelper::isWindowSystemDocked(hWnd) )
+//                window->setMinimumSize(int(EDITOR_WINDOW_MIN_WIDTH * window->m_dpiRatio), int(MAIN_WINDOW_MIN_HEIGHT * window->m_dpiRatio));
+//            else window->setMinimumSize(int(MAIN_WINDOW_MIN_WIDTH * window->m_dpiRatio), int(MAIN_WINDOW_MIN_HEIGHT * window->m_dpiRatio));
 
             break;
         } else
         if (GET_SC_WPARAM(wParam) == SC_RESTORE) {
 //            if ( !WindowHelper::isLeftButtonPressed() ) {
-                WindowHelper::correctWindowMinimumSize(hWnd);
+            // TODO: skip window min size for usability test
+//                WindowHelper::correctWindowMinimumSize(hWnd);
 
             break;
         }
@@ -197,7 +199,7 @@ LRESULT CALLBACK CSingleWindowPlatform::WndProc(HWND hWnd, UINT message, WPARAM 
     }
 
     case WM_SETFOCUS: {
-        if ( !window->m_closed ) {
+        if ( !window->m_closed && window->visible() ) {
 //        window->focusMainPanel();
             window->focus();
         }
@@ -305,7 +307,7 @@ LRESULT CALLBACK CSingleWindowPlatform::WndProc(HWND hWnd, UINT message, WPARAM 
         return TRUE;}
 
     case WM_ENTERSIZEMOVE: {
-        WindowHelper::correctWindowMinimumSize(hWnd);
+//        WindowHelper::correctWindowMinimumSize(hWnd);
         WINDOWPLACEMENT wp{sizeof(WINDOWPLACEMENT)};
         if ( GetWindowPlacement(hWnd, &wp) ) {
             MONITORINFO info{sizeof(MONITORINFO)};

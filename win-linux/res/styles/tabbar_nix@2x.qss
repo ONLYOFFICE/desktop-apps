@@ -1,15 +1,27 @@
 
-QTabWidget::pane { border:none;/*border-top: 2px solid #b6b6b6; top:-2px;*/}
-QTabWidget::tab-bar {width: auto; height: 56px; left: 224px; }
+QTabWidget::pane {border: none;}
+QTabBar::tab {width: 270px; background-color: #c2c2c2; border: 0 none; border-right: 2px solid #a5a5a5; min-width: 82px; max-width: 270px;
+height: 56px; margin: 0 0 0 0;}
+QTabBar::tab:hover {background-color: #cecece;}
+QTabBar::tab-label {active: #fff; normal: #444;}
+QTabBar::tab-icon {width: 15; height: 15;}
+QTabBar[active=false]::tab:selected {background-color: #c2c2c2;}
+QTabBar[active=true]::tab:selected {background-color: #c2c2c2; border-color: #a5a5a5;}
+QTabBar[active=false]::tab:selected:hover {background-color: #cfcfcf;}
 
-QTabBar::tab { width:270px; background-color: #c2c2c2; border: 0 none; min-width: 82px; max-width: 270px;
-height: 56px; margin: 0 0 0 0; }
+#mainPanel[uitheme=theme-light] QTabBar::tab {border-right-color:#dfdfdf;}
 
-QTabBar::tab {border-right: 2px solid #a5a5a5;}
-QTabBar::tab:hover{background-color: #cecece;}
-QTabBar::tab:selected{background-color: #515252;}
-QTabBar::tab-label{active:#fff;normal:#444;}
-QTabBar::tab-icon{width:15;height:15;}
+#mainPanel[uitheme=theme-classic-light] QTabBar::tab {border-right-color:#cbcbcb;}
 
-QTabWidget[active=false] QTabBar::tab:selected {background-color:#c2c2c2; border-color:#a5a5a5;}
-QTabWidget[active=false] QTabBar::tab:selected:hover {background-color: #cfcfcf;}
+#mainPanel[uitheme=theme-dark] QTabWidget::pane {background-color: #404040;}
+#mainPanel[uitheme=theme-dark] QTabBar::tab {background-color: #404040; border-right-color: #505050;}
+#mainPanel[uitheme=theme-dark] QTabBar::tab:hover {background-color: #555;}
+#mainPanel[uitheme=theme-dark] QTabBar::tab:selected {background-color: #404040;}
+#mainPanel[uitheme=theme-dark] QTabBar[active=false]::tab:selected:hover {background-color: #555;}
+
+#scrollerFrame>QToolButton {margin: 0px; border: none; background-color: #c2c2c2;}
+#scrollerFrame>QToolButton:hover {background-color: #cecece;}
+#scrollerFrame>QToolButton:pressed {background-color: #b7b7b7;}
+#mainPanel[uitheme=theme-dark] #scrollerFrame>QToolButton {background-color: #606060;}
+#mainPanel[uitheme=theme-dark] #scrollerFrame>QToolButton:hover {background-color: #555;}
+#mainPanel[uitheme=theme-dark] #scrollerFrame>QToolButton:pressed {background-color: #b7b7b7;}

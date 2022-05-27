@@ -55,81 +55,94 @@
                         <div id='box-settings'>
                             <div class='flexbox content-box'>
                                 <h3 class='table-caption' l10n>${_lang.actSettings}</h3>
-                                <section class='settings-items'>
-                                    <div class='settings-field'>
-                                        <label class='sett__caption' l10n>${_lang.settUserName}</label>
-                                        <div class='hbox sett--label-lift-top' id='sett-box-user'>
-                                            <input type='text' class='tbox' spellcheck='false' maxlength='128'>
-                                            <a class='link link--sizem link--gray' draggable='false' href='#' l10n>${_lang.settResetUserName}</a>
+                                <div id='options-wrap'>
+                                    <section class='settings-items'>
+                                        <div class='settings-field'>
+                                            <label class='sett__caption' l10n>${_lang.settUserName}</label>
+                                            <div class='hbox sett--label-lift-top' id='sett-box-user'>
+                                                <input type='text' class='tbox' spellcheck='false' maxlength='128'>
+                                                <a class='link link--sizem link--gray' draggable='false' href='#' l10n>${_lang.settResetUserName}</a>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class='settings-field settings-field-lang'>
-                                        <label class='sett__caption' l10n>${_lang.settLanguage}</label>
-                                        <div class='sett--label-lift-top hbox'>
-                                            <section class='box-cmp-select'>
-                                                <select class='combobox' data-size="10"></select>
+                                        <div class='settings-field settings-field-lang'>
+                                            <label class='sett__caption' l10n>${_lang.settLanguage}</label>
+                                            <div class='sett--label-lift-top hbox'>
+                                                <section class='box-cmp-select'>
+                                                    <select class='combobox' data-size="10"></select>
+                                                </section>
+                                            </div>
+                                        </div>
+                                        <div class='settings-field' id='opts-ui-scaling' style='display:none'>
+                                            <label class='sett__caption' l10n>${_lang.settScaling}</label><label class='sett__caption'></label>
+                                            <div class='sett--label-lift-top hbox'>
+                                                <section class='box-cmp-select'>
+                                                    <select class='combobox'>
+                                                        <option value='0' l10n>${_lang.settOptScalingAuto}</option>
+                                                        <option value='100'>100%</option>
+                                                        <option value='125'>125%</option>
+                                                        <option value='150'>150%</option>
+                                                        <option value='175'>175%</option>
+                                                        <option value='200'>200%</option>
+                                                    </select>
+                                                </section>
+                                            </div>
+                                        </div>
+                                        <div class='settings-field' id="opts-checkupdate" style='display:none;'>
+                                            <label class='sett__caption' l10n>${_lang.settCheckUpdates}</label>
+                                            <div class='sett--label-lift-top hbox'>
+                                                <section class='box-cmp-select'>
+                                                    <select class='combobox'>
+                                                        <option value='never' l10n>${_lang.settOptCheckNever}</option>
+                                                        <option value='day' l10n>${_lang.settOptCheckDay}</option>
+                                                        <option value='week' l10n>${_lang.settOptCheckWeek}</option>
+                                                    </select>
+                                                </section>
+                                            </div>
+                                        </div>
+                                        <div class='settings-field' id="opts-ui-theme" style='display:none;'>
+                                            <label class='sett__caption' l10n>${_lang.settUITheme}</label>
+                                            <div class='sett--label-lift-top hbox'>
+                                                <section class='box-cmp-select'>
+                                                    <select class='combobox'>
+                                                        <option value='theme-light' l10n>${_lang.settOptThemeLight}</option>
+                                                        <option value='theme-classic-light' l10n>${_lang.settOptThemeClassicLight}</option>
+                                                        <option value='theme-dark' l10n>${_lang.settOptThemeDark}</option>
+                                                    </select>
+                                                </section>
+                                            </div>
+                                        </div>
+                                        <div class='settings-field' id="opts-launch-mode" style='display:none;'>
+                                            <label class='sett__caption' l10n>${_lang.settOptLaunchMode}</label>
+                                            <div class='sett--label-lift-top hbox'>
+                                                <section class='box-cmp-select'>
+                                                    <select class='combobox'>
+                                                        <option value='intab' l10n>${_lang.settOptLaunchInTab}</option>
+                                                        <option value='inwindow' l10n>${_lang.settOptLaunchInWindow}</option>
+                                                    </select>
+                                                </section>
+                                            </div>
+                                        </div>
+                                        <div class='settings-field' id="opts-spellcheck-mode" style='display:none;'>
+                                            <label class='sett__caption' l10n>${_lang.settSpellcheckDetection}</label>
+                                            <div class='sett--label-lift-top hbox'>
+                                                <section class='box-cmp-select'>
+                                                    <select class='combobox'>
+                                                        <option value='auto' l10n>${_lang.settOptScalingAuto}</option>
+                                                        <option value='off' l10n>${_lang.settOptDisabled}</option>
+                                                    </select>
+                                                </section>
+                                            </div>
+                                        </div>
+                                        <!-- temporary elements section -->
+                                        <div class='settings-field' style='display:none;'>
+                                            <section class='switch-labeled hbox' id='sett-box-preview-mode'>
+                                                <input type="checkbox" class="checkbox" id="sett-preview-mode">
+                                                <label for="sett-preview-mode" class='sett__caption' l10n>${_lang.settOpenMode}</label>
                                             </section>
                                         </div>
-                                    </div>
-                                    <div class='settings-field' id='opts-ui-scaling' style='display:none'>
-                                        <label class='sett__caption' l10n>${_lang.settScaling}</label><label class='sett__caption'></label>
-                                        <div class='sett--label-lift-top hbox'>
-                                            <section class='box-cmp-select'>
-                                                <select class='combobox'>
-                                                    <option value='0' l10n>${_lang.settOptScalingAuto}</option>
-                                                    <option value='100'>100%</option>
-                                                    <option value='125'>125%</option>
-                                                    <option value='150'>150%</option>
-                                                    <option value='175'>175%</option>
-                                                    <option value='200'>200%</option>
-                                                </select>
-                                            </section>
-                                        </div>
-                                    </div>
-                                    <div class='settings-field' id="opts-checkupdate" style='display:none;'>
-                                        <label class='sett__caption' l10n>${_lang.settCheckUpdates}</label>
-                                        <div class='sett--label-lift-top hbox'>
-                                            <section class='box-cmp-select'>
-                                                <select class='combobox'>
-                                                    <option value='never' l10n>${_lang.settOptCheckNever}</option>
-                                                    <option value='day' l10n>${_lang.settOptCheckDay}</option>
-                                                    <option value='week' l10n>${_lang.settOptCheckWeek}</option>
-                                                </select>
-                                            </section>
-                                        </div>
-                                    </div>
-                                    <div class='settings-field' id="opts-ui-theme" style='display:none;'>
-                                        <label class='sett__caption' l10n>${_lang.settUITheme}</label>
-                                        <div class='sett--label-lift-top hbox'>
-                                            <section class='box-cmp-select'>
-                                                <select class='combobox'>
-                                                    <option value='theme-light' l10n>${_lang.settOptThemeLight}</option>
-                                                    <option value='theme-classic-light' l10n>${_lang.settOptThemeClassicLight}</option>
-                                                    <option value='theme-dark' l10n>${_lang.settOptThemeDark}</option>
-                                                </select>
-                                            </section>
-                                        </div>
-                                    </div>
-                                    <div class='settings-field' id="opts-launch-mode" style='display:none;'>
-                                        <label class='sett__caption' l10n>${_lang.settOptLaunchMode}</label>
-                                        <div class='sett--label-lift-top hbox'>
-                                            <section class='box-cmp-select'>
-                                                <select class='combobox'>
-                                                    <option value='intab' l10n>${_lang.settOptLaunchInTab}</option>
-                                                    <option value='inwindow' l10n>${_lang.settOptLaunchInWindow}</option>
-                                                </select>
-                                            </section>
-                                        </div>
-                                    </div>
-                                    <!-- temporary elements section -->
-                                    <div class='settings-field' style='display:none;'>
-                                        <section class='switch-labeled hbox' id='sett-box-preview-mode'>
-                                            <input type="checkbox" class="checkbox" id="sett-preview-mode">
-                                            <label for="sett-preview-mode" class='sett__caption' l10n>${_lang.settOpenMode}</label>
-                                        </section>
-                                    </div>
-                                    <!-- end section -->
-                                </section>
+                                        <!-- end section -->
+                                    </section>
+                                </div>
                                 <div class="lst-tools">
                                     <button class="btn btn--primary" id="sett-btn-apply" l10n>${_lang.setBtnApply}</button>
                                     <!-- <strong class='sett__note' tooltip="${_lang.settAfterRestart}" tooltip-pos='top' l10n>i</strong> -->
@@ -162,6 +175,7 @@
         let $optsLang,
             $optsUIScaling,
             $optsUITheme,
+            $optsSpellcheckMode,
             $optsLaunchMode;
 
         function _set_user_name(name) {
@@ -235,6 +249,11 @@
                     $optsLaunchMode.selectpicker('refresh');
                 }
 
+                if ( $optsSpellcheckMode ) {
+                    _new_settings.spellcheckdetect = $optsSpellcheckMode.val();
+                    $optsSpellcheckMode.selectpicker('refresh');
+                }
+
                 sdk.command("settings:apply", JSON.stringify(_new_settings));
                 $btnApply.disable(true);
                 
@@ -299,12 +318,26 @@
                             $panel.find('.settings-field-lang').show();
                             let $combo = $panel.find('.settings-field-lang select');
 
+                            let def_lang;
                             for (let lang in opts.locale.langs) {
+                                /^en/.test(lang) && (def_lang = lang);
                                 $combo.append(`<option value='${lang}'>${opts.locale.langs[lang]}</option>`);
+                            }
+
+                            if ( !opts.locale.langs[opts.locale.current] ) {
+                                opts.locale.current = opts.locale.current.substring(0,2);
+                                if ( !opts.locale.langs[opts.locale.current] && !!def_lang ) {
+                                    opts.locale.current = def_lang;
+                                }
                             }
 
                             $combo.val(opts.locale.current);
                             $combo.selectpicker();
+
+                            if ( opts.locale.restart ) {
+                                $panel.find('.settings-field-lang label[l10n]').after(`<label class='sett__caption'>*</label>`);
+                                $('#caption-restart', $panel).show();
+                            }
                         }
 
                         if ( opts.uiscaling != undefined && !$optsUIScaling ) {
@@ -331,6 +364,14 @@
                         if ( opts.editorwindowmode !== undefined ) {
                             ($optsLaunchMode = ($('#opts-launch-mode', $panel).show().find('select')))
                             .val(opts.editorwindowmode ? 'inwindow' : 'intab')
+                            .selectpicker().on('change', e => {
+                                $btnApply.isdisabled() && $btnApply.disable(false);
+                            });
+                        }
+
+                        if ( opts.spellcheckdetect !== undefined ) {
+                            ($optsSpellcheckMode = ($('#opts-spellcheck-mode', $panel).show().find('select')))
+                            .val(opts.spellcheckdetect)
                             .selectpicker().on('change', e => {
                                 $btnApply.isdisabled() && $btnApply.disable(false);
                             });

@@ -8,23 +8,24 @@ DESKTOP_EDITORS_MSI += $(BUILD_DIR)/$(PACKAGE_NAME)_$(PACKAGE_VERSION)_$(WIN_ARC
 DESKTOP_EDITORS_ZIP += $(BUILD_DIR)/$(PACKAGE_NAME)_$(PACKAGE_VERSION)_$(WIN_ARCH)$(WIN_ARCH_SUFFIX:%=_%).zip
 
 VCREDIST13 := $(BUILD_DIR)/data/vcredist/vcredist_2013_$(WIN_ARCH).exe
-VCREDIST15 := $(BUILD_DIR)/data/vcredist/vcredist_2015_$(WIN_ARCH).exe
+VCREDIST22 := $(BUILD_DIR)/data/vcredist/vcredist_2022_$(WIN_ARCH).exe
 
 ifeq ($(WIN_ARCH),x64)
  	VCREDIST13_URL := https://download.microsoft.com/download/2/E/6/2E61CFA4-993B-4DD4-91DA-3737CD5CD6E3/vcredist_x64.exe
-	VCREDIST15_URL := http://download.microsoft.com/download/2/c/6/2c675af0-2155-4961-b32e-289d7addfcec/vc_redist.x64.exe
+	VCREDIST22_URL := https://aka.ms/vs/17/release/vc_redist.x64.exe
 else ifeq ($(WIN_ARCH),x86)
  	VCREDIST13_URL := https://download.microsoft.com/download/2/E/6/2E61CFA4-993B-4DD4-91DA-3737CD5CD6E3/vcredist_x86.exe
-	VCREDIST15_URL := http://download.microsoft.com/download/d/e/c/dec58546-c2f5-40a7-b38e-4df8d60b9764/vc_redist.x86.exe
+	VCREDIST22_URL := https://aka.ms/vs/17/release/vc_redist.x86.exe
 endif
 
 ifneq ($(COMPANY_NAME), ONLYOFFICE)
 VCREDIST += $(VCREDIST13)
 endif
-VCREDIST += $(VCREDIST15)
+VCREDIST += $(VCREDIST22)
 
 EXE_UPDATE += $(BUILD_DIR)/update/editors_update_$(WIN_ARCH)$(WIN_ARCH_SUFFIX:%=_%).exe
 APPCAST := $(BUILD_DIR)/update/appcast.xml
+APPCAST_PROD := $(BUILD_DIR)/update/appcast-prod.xml
 CHANGES_EN := $(BUILD_DIR)/update/changes.html
 CHANGES_RU := $(BUILD_DIR)/update/changes_ru.html
 CHANGES_DIR := $(BRANDING_DIR)/$(BUILD_DIR)/update/changes/$(PRODUCT_VERSION)
@@ -37,7 +38,7 @@ PACKAGES += $(DESKTOP_EDITORS_ZIP)
 WINSPARKLE += $(EXE_UPDATE)
 ifndef _WIN_XP
 ifeq ($(WIN_ARCH), x64)
-WINSPARKLE += $(APPCAST)
+WINSPARKLE += $(APPCAST) $(APPCAST_PROD)
 ifeq ($(COMPANY_NAME), ONLYOFFICE)
 WINSPARKLE += $(CHANGES_EN)
 endif
@@ -93,9 +94,9 @@ $(VCREDIST13):
 	mkdir -p $(dir $(VCREDIST13))
 	$(CURL) $(VCREDIST13) $(VCREDIST13_URL)
 
-$(VCREDIST15):
-	mkdir -p $(dir $(VCREDIST15))
-	$(CURL) $(VCREDIST15) $(VCREDIST15_URL)
+$(VCREDIST22):
+	mkdir -p $(dir $(VCREDIST22))
+	$(CURL) $(VCREDIST22) $(VCREDIST22_URL)
 
 $(DEST_DIR): install
 
@@ -128,8 +129,13 @@ $(BUILD_DIR)/%.zip:
 	
 AWK_PARAMS += -v Version="$(PRODUCT_VERSION)"
 AWK_PARAMS += -v Build="$(BUILD_NUMBER)"
+AWK_PARAMS += -v Branch="$(RELEASE_BRANCH)"
 AWK_PARAMS += -v Timestamp="$(shell date +%s)"
 AWK_PARAMS += -i "$(BRANDING_DIR)/win-linux/package/windows/update/branding.awk"
+
+%/appcast-prod.xml: %/appcast.xml.awk
+	LANG=en_US.UTF-8 \
+	awk $(AWK_PARAMS) -v Prod=1 -f $< > $@
 
 %/appcast.xml: %/appcast.xml.awk
 	LANG=en_US.UTF-8 \

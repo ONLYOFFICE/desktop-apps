@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>ONLYOFFICE Release Notes</title>
+    <style type="text/css">
+        /* variables */
+        :root {
+            --color-black: #141923;
+            --color-white: #fff;
+            --color-gray-100: #f7fafc;
+            --color-gray-200: #edf2f7;
+            --color-gray-300: #e2e8f0;
+            --color-gray-400: #cbd5e0;
+            --color-gray-500: #a0aec0;
+            --color-gray-600: #718096;
+            --color-gray-700: #4a5568;
+            --color-gray-800: #2d3748;
+            --color-gray-900: #1a202c;
+        }
+        body {
+            background: var(--color-white);
+            color: var(--color-gray-800);
+            font: 12px "Lucida Grande", "Lucida Sans Unicode", Verdana, Lucida, Helvetica, sans-serif;
+        }
+        h1, h2, h3 {
+            color: var(--color-gray-800);
+            font-weight: normal;
+            font-style: normal;
+        }
+        h1 {
+            font-size: 1.7em;
+        }
+        h2 {
+            font-size: 1.4em;
+            font-weight: lighter;
+        }
+        h4 {
+            font-size: 1.2em;
+            font-weight: lighter;
+        }
+        code {
+            background: var(--color-gray-200);
+            font-family: monospace;
+            padding: 1px 5px;
+        }
+        ul {
+            padding: 0 0 0 20px;
+        }
+        li {
+            margin-left: 20px;
+            margin-bottom: 0.2em;
+            padding: 0;
+        }
+        hr {
+            margin: 20px 0;
+            border: var(--color-gray-400) solid 0.5px;
+        }
+        .releasedate {
+            color: var(--color-gray-600);
+            font-weight: lighter;
+        }
+
+        /* prefers light mode */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background: var(--color-gray-900);
+                color: var(--color-gray-200);
+            }
+
+            h1, h2, h3 {
+                color: var(--color-white);
+            }
+
+            code {
+                background: var(--color-gray-800);
+                color: var(--color-gray-200);
+            }
+
+            .releasedate {
+                color: var(--color-gray-600);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="version">
+        <h1>ONLYOFFICE 7.0.1<span class="releasedate"> - [Date]</span></h1>
+        <h2>New Features</h2>
+        <h4>Spreadsheet Editor</h4>
+        <ul>
+            <li><code>French (Switzerland)</code> regional setting (Bug #53978)</li>
+        </ul>
+        <h2>Fixes</h2>
+        <h4>Document Editor</h4>
+            <li>Fix changes in text position (Bug #54485)</li>
+            <li>Fix JS error while changing font in some files (Bug #55280)</li>
+            <li>Fix the problem with calculating the position of flow objects lying in a table cell (Bug #51933)</li>
+            <li>Fix the problem with calculating the position of a drawing object in the header (Bug #55398)</li>
+            <li>Fix the problem with calculating header/footer. Forbid to change the page number of a header when calculation in progress (Bug #55403)</li>
+            <li>Fix the problem with calculating the position of a drawing lying in a table cell with vertical alignment to the bottom or center (Bug #55406)</li>
+            <li>Fix the problem with calculating page count stage (Bug #55458)</li>
+            <li>Fix the problem with text position calculation for rotated table cells (Bug #54200)</li>
+            <li>Fix <code>Shift + (</code> shortcut (Bug #55356)</li>
+        <ul>
+        </ul>
+        <h4>Spreadsheet Editor</h4>
+            <li>Fix opening protected workbook in Excel (Bug #55027)</li>
+            <li>Fix JS error while Find and Replace empty cell (Bug #54999)</li>
+            <li>Fix compatibility of some files with Excel (Bug #54956)</li>
+        <ul>
+        </ul>
+        <h4>Presentation Editor</h4>
+        <ul>
+            <li>Fix shape position in slideshow mode (Bug #55068)</li>
+        </ul>
+    </div>
+</body>
+</html>

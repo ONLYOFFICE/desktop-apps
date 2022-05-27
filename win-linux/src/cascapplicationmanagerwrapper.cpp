@@ -234,7 +234,8 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
                         m_receivers[sid]->onWebAppsFeatures(sid,L"\"uitype\":\"fillform\"");
                 }
 
-                if ( editorWindowFromViewId(event->get_SenderId()) ) {
+                auto * editor = editorWindowFromViewId(event->get_SenderId());
+                if ( editor && editor->isCustomWindowStyle() ) {
                     sendCommandTo(ptr, L"window:features", Utils::stringifyJson(QJsonObject{{"singlewindow",true}}).toStdWString());
                 }
             }
@@ -789,6 +790,15 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
     std::vector<COpenOptions> list_failed;
 //    bool open_in_new_window = std::find(vargs.begin(), vargs.end(), L"--force-use-tab") == std::end(vargs);
     bool open_in_new_window = _app.m_private->preferOpenEditorWindow() || (std::find(vargs.begin(), vargs.end(), L"--force-use-window") != std::end(vargs));
+    std::vector<std::wstring> open_scheme{L"http://",L"https://"};
+    std::wstring app_scheme = _app.GetExternalSchemeName();
+    if ( !app_scheme.empty() ) {
+        if ( app_scheme.back() != L':' )
+            app_scheme += L":";
+
+        open_scheme.push_back(app_scheme);
+    }
+
     for (const auto& arg: vargs) {
         COpenOptions open_opts;
         open_opts.name = QCoreApplication::translate("CAscTabWidget", "Document");
@@ -854,7 +864,7 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
                     open_opts.name = AscAppManager::newFileName(open_opts.format);
                 }
             } else
-            if ( check_params(open_opts.wurl, {L"http://",L"https://",L"oo-office:"}) < 0 )
+            if ( check_params(open_opts.wurl, open_scheme) < 0 )
                 continue;
         }
 
@@ -870,7 +880,8 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
                 editor_win->show(false);
 
                 _app.m_vecEditors.push_back(size_t(editor_win));
-                sendCommandTo(panel->cef(), L"window:features",
+                if ( editor_win->isCustomWindowStyle() )
+                    sendCommandTo(panel->cef(), L"window:features",
                               Utils::stringifyJson(QJsonObject{{"skiptoparea", TOOLBTN_HEIGHT},{"singlewindow",true}}).toStdWString());
             } else {
                 if ( !_app.m_pMainWindow ) {
@@ -989,6 +1000,10 @@ void CAscApplicationManagerWrapper::initializeApp()
     APP_CAST(_app);
     _app.m_private->initializeApp();
 
+    if ( AscAppManager::IsUseSystemScaling() ) {
+        AscAppManager::setUserSettings(L"force-scale", L"default");
+    }
+
 #ifdef _WIN32
 //    CSplash::showSplash();
     QApplication::processEvents();
@@ -1009,7 +1024,8 @@ void CAscApplicationManagerWrapper::initializeApp()
             }
 
 //            QTimer::singleShot(0, []{
-                mainWindow()->bringToTop();
+                if ( mainWindow() )
+                    mainWindow()->bringToTop();
 //            });
         });
     }
@@ -1318,6 +1334,9 @@ namespace Drop {
             AscAppManager::sendCommandTo(tabpanel->cef(), L"window:features",
                       Utils::stringifyJson(QJsonObject{{"skiptoparea", 0},{"singlewindow",false}}).toStdWString());
             CAscApplicationManagerWrapper::mainWindow()->bringToTop();
+
+            QTimer::singleShot(100, []{
+                CAscApplicationManagerWrapper::mainWindow()->mainPanel()->focus();});
         }
     }
 
@@ -1504,8 +1523,9 @@ bool CAscApplicationManagerWrapper::event(QEvent *event)
                         editor_win->undock(_main_window->isMaximized());
 
                         m_vecEditors.push_back( size_t(editor_win) );
-                        sendCommandTo(_editor->cef(), L"window:features",
-                                Utils::stringifyJson(QJsonObject{{"skiptoparea", TOOLBTN_HEIGHT},{"singlewindow",true}}).toStdWString());
+                        if ( editor_win->isCustomWindowStyle() )
+                            sendCommandTo(_editor->cef(), L"window:features",
+                                    Utils::stringifyJson(QJsonObject{{"skiptoparea", TOOLBTN_HEIGHT},{"singlewindow",true}}).toStdWString());
                     }
 //                });
             }
@@ -1562,6 +1582,10 @@ bool CAscApplicationManagerWrapper::applySettings(const wstring& wstrjson)
                 _editor = reinterpret_cast<CEditorWindow *>(e);
                 _editor->updateScaling();
             }
+        }
+
+        if ( objRoot.contains("spellcheckdetect") ) {
+            setUserSettings(L"spell-check-input-mode", objRoot["spellcheckdetect"].toString() == "off" ? L"0" : L"default");
         }
 
         wstring params = QString("lang=%1&username=%3&location=%2")
@@ -1927,7 +1951,8 @@ void CAscApplicationManagerWrapper::onEditorWidgetClosed()
     if ( m_closeTarget == L"main" ) {
         if ( mainWindow()->mainPanel()->tabCloseRequest() == MODAL_RESULT_CANCEL )
             AscAppManager::cancelClose();
-        else {
+        else
+        if ( mainWindow()->mainPanel()->tabWidget()->count() == 0 ) {
             m_closeTarget.clear();
             mainWindow()->hide();
         }

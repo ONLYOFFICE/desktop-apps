@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>%d days are left until the license expiration.</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@dni@</string>
+		<key>days</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>few</key>
+			<string>še %d dni do poteka licence.</string>
+			<key>one</key>
+			<string>še %d dni do poteka licence.</string>
+			<key>other</key>
+			<string>še %d dni do poteka licence.</string>
+			<key>two</key>
+			<string>še %d dni do poteka licence.</string>
+		</dict>
+	</dict>
+	<key>You are using a trial version of the application.
+The trial period will end in %d days, after that you will not be able to create and edit documents.</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@dni@</string>
+		<key>days</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>few</key>
+			<string>Uporabljate poskusno verzijo aplikacije.
+Preizkusno obdobje bo poteklo v %d dneh. Po izteku tega obdobja ne boste mogli ustvarjati in popravljati dokumentov.</string>
+			<key>one</key>
+			<string>Uporabljate poskusno verzijo aplikacije.
+Preizkusno obdobje bo poteklo v %d dneh. Po izteku tega obdobja ne boste mogli ustvarjati in popravljati dokumentov.</string>
+			<key>other</key>
+			<string>Uporabljate poskusno verzijo aplikacije.
+Preizkusno obdobje bo poteklo v %d dneh. Po izteku tega obdobja ne boste mogli ustvarjati in popravljati dokumentov.</string>
+			<key>two</key>
+			<string>Uporabljate poskusno verzijo aplikacije.
+Preizkusno obdobje bo poteklo v %d dneh. Po izteku tega obdobja ne boste mogli ustvarjati in popravljati dokumentov.</string>
+		</dict>
+	</dict>
+	<key>You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@dokumenti@</string>
+		<key>documents</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>ld</string>
+			<key>few</key>
+			<string>Imate %ld %@ dokumentov z nepotrjenimi spremembami. Želite shraniti spremembe, preden končate?</string>
+			<key>one</key>
+			<string>Imate %ld %@ dokumentov z nepotrjenimi spremembami. Želite shraniti spremembe, preden končate?</string>
+			<key>other</key>
+			<string>Imate %ld %@ dokumentov z nepotrjenimi spremembami. Želite shraniti spremembe, preden končate?</string>
+			<key>two</key>
+			<string>Imate %ld %@ dokumentov z nepotrjenimi spremembami. Želite shraniti spremembe, preden končate?</string>
+		</dict>
+	</dict>
+</dict>
+</plist>

@@ -31,8 +31,7 @@ int CMainWindowBase::attachEditor(QWidget * panel, int index)
     if ( !(_index < 0) ) {
         _pMainPanel->toggleButtonMain(false);
 
-        QTabBar * tabs = _pMainPanel->tabWidget()->tabBar();
-        tabs->setCurrentIndex(_index);
+        _pMainPanel->tabWidget()->setCurrentIndex(_index);
 
 //        if ( false ) {
 //            QApplication::sendEvent( tabs,

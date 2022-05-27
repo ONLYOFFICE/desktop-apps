@@ -90,6 +90,22 @@
 //        
 //        return event;
 //    }];
+
+    NSArray * arguments = [[NSProcessInfo processInfo] arguments];
+    for (NSString * arg in arguments) {
+        if ( [arg hasPrefix:@"--new:"] || [arg hasPrefix:@"--new="] ) {
+            NSString * param = [arg substringFromIndex:6];
+            NSLog(@"input arg new: %@", param);
+
+            if ( [@[@"word",@"cell",@"slide",@"form"] containsObject:param] ) {
+                [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameCreateTab
+                                                                    object:nil
+                                                                  userInfo:@{ @"action"  : @(ASCTabActionCreateLocalFile),
+                                                                              @"type"    : param,
+                                                                              @"active"  : @(YES) }];
+            }
+        }
+    }
 }
 
 /// If your delegate implements this method, AppKit does not call the application(_:openFile:)

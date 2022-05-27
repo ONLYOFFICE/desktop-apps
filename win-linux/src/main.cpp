@@ -62,7 +62,7 @@
 
 #include <QTextCodec>
 #include <iostream>
-
+#include <QStyleFactory>
 
 int main( int argc, char *argv[] )
 {
@@ -150,6 +150,7 @@ int main( int argc, char *argv[] )
 #endif
     app.setAttribute(Qt::AA_UseHighDpiPixmaps);
     app.setAttribute(Qt::AA_DisableHighDpiScaling);
+    app.setStyle(QStyleFactory::create("Fusion"));
 
     /* the order is important */
     CApplicationCEF* application_cef = new CApplicationCEF();

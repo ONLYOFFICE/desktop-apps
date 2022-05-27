@@ -1,80 +1,80 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.2" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd">
   <file original="ONLYOFFICE/Base.lproj/Document-Sign.storyboard" source-language="en" target-language="et-EE" datatype="plaintext">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c" />
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c"/>
     </header>
     <body>
       <trans-unit id="1Fy-mg-aq9.title" xml:space="preserve">
         <source>Enter the password for the digital signature.</source><seg-source><mrk mtype="seg" mid="1">Enter the password for the digital signature.</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="1">Sisesta salasõna digitaalse allkirja jaoks.</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="1">Sisesta salasõna digitaalse allkirja jaoks.</mrk>Sisesta salasõna digitaalse allkirja jaoks.</target>
         
       <note>Class = "NSTextFieldCell"; title = "Enter the password for the digital signature."; ObjectID = "1Fy-mg-aq9";</note></trans-unit>
       <trans-unit id="1dL-nN-bJI.title" xml:space="preserve">
         <source>Enter the password for the private key.</source><seg-source><mrk mtype="seg" mid="2">Enter the password for the private key.</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="2">Sisesta salasõna privaatse võtme jaoks.</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="2">Sisesta salasõna privaatse võtme jaoks.</mrk>Sisesta salasõna privaatse võtme jaoks.</target>
         
       <note>Class = "NSTextFieldCell"; title = "Enter the password for the private key."; ObjectID = "1dL-nN-bJI";</note></trans-unit>
       <trans-unit id="2Ck-6y-ygx.title" xml:space="preserve">
         <source>Specify the digital signature file for the document.</source><seg-source><mrk mtype="seg" mid="3">Specify the digital signature file for the document.</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="3">Täpsusta digitaalse allkirja fail dokumendi jaoks.</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="3">Täpsusta digitaalse allkirja fail dokumendi jaoks.</mrk>Täpsusta digitaalse allkirja fail dokumendi jaoks.</target>
         
       <note>Class = "NSTextFieldCell"; title = "Specify the digital signature file for the document."; ObjectID = "2Ck-6y-ygx";</note></trans-unit>
       <trans-unit id="4gA-s8-Lne.placeholderString" xml:space="preserve">
         <source>Enter Password</source><seg-source><mrk mtype="seg" mid="4">Enter Password</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="4">Sisesta salasõna</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="4">Sisesta salasõna</mrk>Sisesta salasõna</target>
         
       <note>Class = "NSSecureTextFieldCell"; placeholderString = "Enter Password"; ObjectID = "4gA-s8-Lne";</note></trans-unit>
       <trans-unit id="GOU-av-TC1.title" xml:space="preserve">
         <source>Cancel</source><seg-source><mrk mtype="seg" mid="5">Cancel</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="5">Tühista</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="5">Tühista</mrk>Tühista</target>
         
       <note>Class = "NSButtonCell"; title = "Cancel"; ObjectID = "GOU-av-TC1";</note></trans-unit>
       <trans-unit id="P3k-kI-w22.title" xml:space="preserve">
         <source>Load a Private Key</source><seg-source><mrk mtype="seg" mid="6">Load a Private Key</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="6">Laadi privaatne võti</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="6">Laadi privaatne võti</mrk>Laadi privaatne võti</target>
         
       <note>Class = "NSButtonCell"; title = "Load a Private Key"; ObjectID = "P3k-kI-w22";</note></trans-unit>
       <trans-unit id="RbM-Dq-A3K.title" xml:space="preserve">
         <source>Cancel</source><seg-source><mrk mtype="seg" mid="7">Cancel</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="7">Tühista</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="7">Tühista</mrk>Tühista</target>
         
       <note>Class = "NSButtonCell"; title = "Cancel"; ObjectID = "RbM-Dq-A3K";</note></trans-unit>
       <trans-unit id="Tfc-EF-VnS.title" xml:space="preserve">
         <source>Specify a private key for the digital signature.</source><seg-source><mrk mtype="seg" mid="8">Specify a private key for the digital signature.</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="8">Täpsusta privaatse võtme jaoks digitaalne salasõna.</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="8">Täpsusta privaatse võtme jaoks digitaalne salasõna.</mrk>Täpsusta privaatse võtme jaoks digitaalne salasõna.</target>
         
       <note>Class = "NSTextFieldCell"; title = "Specify a private key for the digital signature."; ObjectID = "Tfc-EF-VnS";</note></trans-unit>
       <trans-unit id="Zj5-0h-hpW.placeholderString" xml:space="preserve">
         <source>Enter Password</source><seg-source><mrk mtype="seg" mid="9">Enter Password</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="9">Sisesta salasõna</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="9">Sisesta salasõna</mrk>Sisesta salasõna</target>
         
       <note>Class = "NSSecureTextFieldCell"; placeholderString = "Enter Password"; ObjectID = "Zj5-0h-hpW";</note></trans-unit>
       <trans-unit id="jpH-3g-Gt5.title" xml:space="preserve">
         <source>Cancel</source><seg-source><mrk mtype="seg" mid="10">Cancel</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="10">Tühista</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="10">Tühista</mrk>Tühista</target>
         
       <note>Class = "NSButtonCell"; title = "Cancel"; ObjectID = "jpH-3g-Gt5";</note></trans-unit>
       <trans-unit id="qZ4-0O-L0G.title" xml:space="preserve">
         <source>Cancel</source><seg-source><mrk mtype="seg" mid="11">Cancel</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="11">Tühista</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="11">Tühista</mrk>Tühista</target>
         
       <note>Class = "NSButtonCell"; title = "Cancel"; ObjectID = "qZ4-0O-L0G";</note></trans-unit>
       <trans-unit id="tTF-wa-eJp.title" xml:space="preserve">
         <source>Load Signature</source><seg-source><mrk mtype="seg" mid="12">Load Signature</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="12">Laadi allkiri</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="12">Laadi allkiri</mrk>Laadi allkiri</target>
         
       <note>Class = "NSButtonCell"; title = "Load Signature"; ObjectID = "tTF-wa-eJp";</note></trans-unit>
     </body>
   </file>
   <file original="ONLYOFFICE/Base.lproj/Localizable.strings" source-language="en" target-language="et-EE" datatype="plaintext">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c" />
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c"/>
     </header>
     <body>
       <trans-unit id="%@ Help" xml:space="preserve">
         <source>%@ Help</source><seg-source><mrk mtype="seg" mid="13">%@ Help</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="13">%@Abi</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="13">%@Abi</mrk>%@Abi</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="%@ Reporter Window" xml:space="preserve">
@@ -83,12 +83,12 @@
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="About %@" xml:space="preserve">
         <source>About %@</source><seg-source><mrk mtype="seg" mid="15">About %@</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="15">Umbes %@</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="15">Umbes %@</mrk>Umbes %@</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Acknowledgments" xml:space="preserve">
         <source>Acknowledgments</source><seg-source><mrk mtype="seg" mid="16">Acknowledgments</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="16">Tunnustused</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="16">Tunnustused</mrk>Tunnustused</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Before signing the document, it must be saved." xml:space="preserve">
@@ -97,7 +97,7 @@
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Cancel" xml:space="preserve">
         <source>Cancel</source><seg-source><mrk mtype="seg" mid="18">Cancel</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="18">Tühista</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="18">Tühista</mrk>Tühista</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Cannot open file of Digital Signature" xml:space="preserve">
@@ -114,7 +114,7 @@
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Comma-Separated Values" xml:space="preserve">
         <source>Comma-Separated Values</source><seg-source><mrk mtype="seg" mid="22">Comma-Separated Values</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="22">Komaga eraldatud väärtused</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="22">Komaga eraldatud väärtused (*.csv)</mrk>Komaga eraldatud väärtused (*.csv)</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Create portal" xml:space="preserve">
@@ -123,76 +123,76 @@
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Delete and Quit" xml:space="preserve">
         <source>Delete and Quit</source><seg-source><mrk mtype="seg" mid="24">Delete and Quit</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="24">Kustuta ja Loobu</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="24">Kustuta ja Loobu</mrk>Kustuta ja Loobu</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="DjVu File" xml:space="preserve">
         <source>DjVu File</source><seg-source><mrk mtype="seg" mid="25">DjVu File</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="25">DjVu Fail</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="25">Digitaalne dokument (*.djvu)</mrk>Digitaalne dokument (*.djvu)</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Do you want to save the changes made to the document &quot;%@&quot;?" xml:space="preserve">
         <source>Do you want to save the changes made to the document "%@"?</source><seg-source><mrk mtype="seg" mid="26">Do you want to save the changes made to the document "%@"?</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="26">Kas sa soovid dokumendis tehtud muudatused salvestada“%@“?</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="26">Kas sa soovid dokumendis tehtud muudatused salvestada“%@“?</mrk>Kas sa soovid dokumendis tehtud muudatused salvestada“%@“?</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Document %ld.docx" xml:space="preserve">
         <source>Document %ld.docx</source><seg-source><mrk mtype="seg" mid="27">Document %ld.docx</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="27">Dokument %ld.docx</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="27">Dokument %ld.docx</mrk>Dokument %ld.docx</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Document template" xml:space="preserve">
-        <source>Document template</source><seg-source><mrk mtype="seg" mid="28">Document template</mrk></seg-source><target><mrk mtype="seg" mid="28">Dokumendi šabloon</mrk></target>
+        <source>Document template</source><seg-source><mrk mtype="seg" mid="28">Document template</mrk></seg-source><target state="translated"><mrk mtype="seg" mid="28">Dokumendi šabloon</mrk>Word Open XML dokument šabloon (*.dotx)</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Excel 97-2003 Spreadsheet" xml:space="preserve">
         <source>Excel 97-2003 Spreadsheet</source><seg-source><mrk mtype="seg" mid="29">Excel 97-2003 Spreadsheet</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="29">Excel 97-2003 Arvutustabel</mrk></target>
+        <target state="translated">Excel 97-2003 arvutustabel (*.xls)</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Excel 2007 Spreadsheet" xml:space="preserve">
         <source>Excel 2007 Spreadsheet</source><seg-source><mrk mtype="seg" mid="30">Excel 2007 Spreadsheet</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="30">Excel 2007 Arvutustabel</mrk></target>
+        <target state="translated">Office avatud XML arvutustabel (*.xlsx)</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="File &quot;%@&quot; can not be open or not exist." xml:space="preserve">
         <source>File "%@" can not be open or not exist.</source><seg-source><mrk mtype="seg" mid="31">File "%@" can not be open or not exist.</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="31">Faili „%@“ ei saa avada või seda ei eksisteeri.</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="31">Faili „%@“ ei saa avada või seda ei eksisteeri.</mrk>Faili „%@“ ei saa avada või seda ei eksisteeri.</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="File Format:" xml:space="preserve">
         <source>File Format:</source><seg-source><mrk mtype="seg" mid="32">File Format:</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="32">Faili formaat:</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="32">Faili formaat:</mrk>Faili formaat:</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="File can not be open." xml:space="preserve">
         <source>File can not be open.</source><seg-source><mrk mtype="seg" mid="33">File can not be open.</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="33">Faili ei saa avada.</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="33">Faili ei saa avada.</mrk>Faili ei saa avada.</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Hide %@" xml:space="preserve">
         <source>Hide %@</source><seg-source><mrk mtype="seg" mid="34">Hide %@</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="34">Peida %@</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="34">Peida %@</mrk>Peida %@</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="If you don't review your documents, all your changeses will be lost." xml:space="preserve">
         <source>If you don't review your documents, all your changeses will be lost.</source><seg-source><mrk mtype="seg" mid="35">If you don't review your documents, all your changeses will be lost.</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="35">Kui sa ei vaata oma dokumente uuesti üle, kõik su muudatused lähevad kaotsi.</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="35">Kui sa ei vaata oma dokumente uuesti üle, kõik su muudatused lähevad kaotsi.</mrk>Kui sa ei vaata oma dokumente uuesti üle, kõik su muudatused lähevad kaotsi.</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="If you have already purchased %@, you should find your activation key in an email confirmation." xml:space="preserve">
         <source>If you have already purchased %@, you should find your activation key in an email confirmation.</source><seg-source><mrk mtype="seg" mid="36">If you have already purchased %@, you should find your activation key in an email confirmation.</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="36">Kui sa oled juba ostnud %@, leiad oma aktiveerimis võtme kinnitus meililt.</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="36">Kui sa oled juba ostnud %@, leiad oma aktiveerimis võtme kinnitus meililt.</mrk>Kui sa oled juba ostnud %@, leiad oma aktiveerimis võtme kinnitus meililt.</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="License Agreement" xml:space="preserve">
         <source>License Agreement</source><seg-source><mrk mtype="seg" mid="37">License Agreement</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="37">Litsentsileping</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="37">Litsentsileping</mrk>Litsentsileping</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Mobipocket e-book" xml:space="preserve">
         <source>Mobipocket e-book</source><seg-source><mrk mtype="seg" mid="38">Mobipocket e-book</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="38">Mobipocket e-raamat</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="38">Mobipocket e-raamat</mrk>Mobipocket e-raamat (*.mobi)</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="No" xml:space="preserve">
@@ -202,7 +202,7 @@
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="OK" xml:space="preserve">
         <source>OK</source><seg-source><mrk mtype="seg" mid="40">OK</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="40">OK</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="40">OK</mrk>OK</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="ONLYOFFICE can not open the Digital Signature file. Try opening another file." xml:space="preserve">
@@ -214,97 +214,97 @@
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="OpenDocument Document Template" xml:space="preserve">
-        <source>OpenDocument Document Template</source><seg-source><mrk mtype="seg" mid="45">OpenDocument Document Template</mrk></seg-source><target><mrk mtype="seg" mid="45">OpenDocument Dokumendi šabloon</mrk></target>
+        <source>OpenDocument Document Template</source><seg-source><mrk mtype="seg" mid="45">OpenDocument Document Template</mrk></seg-source><target state="translated"><mrk mtype="seg" mid="45">OpenDocument Dokumendi šabloon</mrk>OpenDocument dokumendi šabloon (*.ott)</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="OpenDocument Presentation Template" xml:space="preserve">
-        <source>OpenDocument Presentation Template</source><seg-source><mrk mtype="seg" mid="46">OpenDocument Presentation Template</mrk></seg-source><target><mrk mtype="seg" mid="46">OpenDocument Estitluse šabloon</mrk></target>
+        <source>OpenDocument Presentation Template</source><seg-source><mrk mtype="seg" mid="46">OpenDocument Presentation Template</mrk></seg-source><target state="translated"><mrk mtype="seg" mid="46">OpenDocument Estitluse šabloon</mrk>OpenDocument esitluse šabloon(*.otp)</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="OpenDocument Spreadsheet Template" xml:space="preserve">
-        <source>OpenDocument Spreadsheet Template</source><seg-source><mrk mtype="seg" mid="47">OpenDocument Spreadsheet Template</mrk></seg-source><target><mrk mtype="seg" mid="47">OpenDocument Arvutustabeli šabloon</mrk></target>
+        <source>OpenDocument Spreadsheet Template</source><seg-source><mrk mtype="seg" mid="47">OpenDocument Spreadsheet Template</mrk></seg-source><target state="translated"><mrk mtype="seg" mid="47">OpenDocument Arvutustabeli šabloon</mrk>OpenDocument arvutustabeli šabloon (*.ots)</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="OpenOffice Document" xml:space="preserve">
         <source>OpenOffice Document</source><seg-source><mrk mtype="seg" mid="48">OpenOffice Document</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="48">OpenOffice Dokument</mrk></target>
+        <target state="translated">OpenDocument teksti fail (*.odt)</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="OpenOffice Presentation" xml:space="preserve">
         <source>OpenOffice Presentation</source><seg-source><mrk mtype="seg" mid="49">OpenOffice Presentation</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="49">OpenOffice Esitlus</mrk></target>
+        <target state="translated">OpenDocument esitlus (*.odp)</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="OpenOffice Spreadsheet" xml:space="preserve">
         <source>OpenOffice Spreadsheet</source><seg-source><mrk mtype="seg" mid="50">OpenOffice Spreadsheet</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="50">OpenOffice Arvutustabel</mrk></target>
+        <target state="translated">OpenDocument arvutustabel (*.ods)</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Opening" xml:space="preserve">
         <source>Opening</source><seg-source><mrk mtype="seg" mid="51">Opening</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="51">Avamine</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="51">Avamine</mrk>Avamine</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="PDF File" xml:space="preserve">
         <source>PDF File</source><seg-source><mrk mtype="seg" mid="52">PDF File</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="52">PDF Fail</mrk></target>
+        <target state="translated">Porditav document (*.pdf)</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="PDF/A File" xml:space="preserve">
-        <source>PDF/A File</source><seg-source><mrk mtype="seg" mid="53">PDF/A File</mrk></seg-source><target><mrk mtype="seg" mid="53">PDF/A Fail</mrk></target>
+        <source>PDF/A File</source><seg-source><mrk mtype="seg" mid="53">PDF/A File</mrk></seg-source><target state="translated"><mrk mtype="seg" mid="53">PDF/A Fail</mrk>Porditav document / A (*.pdf)</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Plain Text" xml:space="preserve">
         <source>Plain Text</source><seg-source><mrk mtype="seg" mid="54">Plain Text</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="54">Tavaline Tekst</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="54">Tavaline Tekst</mrk>Tavaline Tekst (*.txt)</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="PowerPoint 97-2003 Presentation" xml:space="preserve">
         <source>PowerPoint 97-2003 Presentation</source><seg-source><mrk mtype="seg" mid="55">PowerPoint 97-2003 Presentation</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="55">PowerPoint 97-2003 Esitlus</mrk></target>
+        <target state="translated">PowerPoint 97-2003 esitlus (*.ppt)</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="PowerPoint 2007 Presentation" xml:space="preserve">
         <source>PowerPoint 2007 Presentation</source><seg-source><mrk mtype="seg" mid="56">PowerPoint 2007 Presentation</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="56">PowerPoint 2007 Esitlus</mrk></target>
+        <target state="translated">Office avatud XML esitlus (*.pptx)</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="PowerPoint Slide Show" xml:space="preserve">
         <source>PowerPoint Slide Show</source><seg-source><mrk mtype="seg" mid="57">PowerPoint Slide Show</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="57">PowerPoint Slaidishow</mrk></target>
+        <target state="translated">Office Open XML pildiesitlus (*.ppsx)</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Preparing..." xml:space="preserve">
         <source>Preparing...</source><seg-source><mrk mtype="seg" mid="58">Preparing...</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="58">Valmistumine...</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="58">Valmistumine...</mrk>Valmistumine...</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Presentation %ld.pptx" xml:space="preserve">
         <source>Presentation %ld.pptx</source><seg-source><mrk mtype="seg" mid="59">Presentation %ld.pptx</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="59">Esitlus %ld.pptx</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="59">Esitlus %ld.pptx</mrk>Esitlus %ld.pptx</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Presentation template" xml:space="preserve">
-        <source>Presentation template</source><seg-source><mrk mtype="seg" mid="60">Presentation template</mrk></seg-source><target><mrk mtype="seg" mid="60">Esitluse šabloon</mrk></target>
+        <source>Presentation template</source><seg-source><mrk mtype="seg" mid="60">Presentation template</mrk></seg-source><target state="translated"><mrk mtype="seg" mid="60">Esitluse šabloon</mrk>PowerPoint Open XML esitluse šabloon (*.potx)</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Quit %@" xml:space="preserve">
         <source>Quit %@</source><seg-source><mrk mtype="seg" mid="61">Quit %@</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="61">Loobu %@</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="61">Loobu %@</mrk>Loobu %@</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Review Changes..." xml:space="preserve">
         <source>Review Changes...</source><seg-source><mrk mtype="seg" mid="62">Review Changes...</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="62">Vaata muutused üle...</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="62">Vaata muutused üle...</mrk>Vaata muutused üle...</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Rich Text Document" xml:space="preserve">
         <source>Rich Text Document</source><seg-source><mrk mtype="seg" mid="63">Rich Text Document</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="63">Rikkaliku Teksti Dokument</mrk></target>
+        <target state="translated">Rikkaliku Teksti Dokument (*.rtf)</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Save" xml:space="preserve">
-        <source>Save</source><seg-source><mrk mtype="seg" mid="64">Save</mrk></seg-source><target><mrk mtype="seg" mid="64">Salvesta</mrk></target>
+        <source>Save</source><seg-source><mrk mtype="seg" mid="64">Save</mrk></seg-source><target state="translated"><mrk mtype="seg" mid="64">Salvesta</mrk>Salvesta</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Save the document?" xml:space="preserve">
@@ -313,16 +313,16 @@
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Spreadsheet %ld.xlsx" xml:space="preserve">
         <source>Spreadsheet %ld.xlsx</source><seg-source><mrk mtype="seg" mid="66">Spreadsheet %ld.xlsx</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="66">Arvutustabel %ld.xlsx</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="66">Arvutustabel %ld.xlsx</mrk>Arvutustabel %ld.xlsx</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Spreadsheet template" xml:space="preserve">
-        <source>Spreadsheet template</source><seg-source><mrk mtype="seg" mid="67">Spreadsheet template</mrk></seg-source><target><mrk mtype="seg" mid="67">Arvutustabeli šabloon</mrk></target>
+        <source>Spreadsheet template</source><seg-source><mrk mtype="seg" mid="67">Spreadsheet template</mrk></seg-source><target state="translated"><mrk mtype="seg" mid="67">Arvutustabeli šabloon</mrk>Excel Open XML arvutustabeli šabloon (*.xltx)</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Thank you for evaluating %@!" xml:space="preserve">
         <source>Thank you for evaluating %@!</source><seg-source><mrk mtype="seg" mid="68">Thank you for evaluating %@!</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="68">Aitäh, et hindasite %@!</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="68">Aitäh, et hindasite %@!</mrk>Aitäh, et hindasite %@!</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="The document &quot;%@&quot; must be built. Continue?" xml:space="preserve">
@@ -335,12 +335,12 @@
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Unconfirmed" xml:space="preserve">
         <source>Unconfirmed</source><seg-source><mrk mtype="seg" mid="72">Unconfirmed</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="72">Kinnitamata</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="72">Kinnitamata</mrk>Kinnitamata</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Untitled" xml:space="preserve">
         <source>Untitled</source><seg-source><mrk mtype="seg" mid="73">Untitled</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="73">Pealkirjata</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="73">Pealkirjata</mrk>Pealkirjata</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Version %@ (%@)" xml:space="preserve">
@@ -349,45 +349,45 @@
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Web Page" xml:space="preserve">
         <source>Web Page</source><seg-source><mrk mtype="seg" mid="75">Web Page</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="75">Veebileht</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="75">Veebileht</mrk>Veebileht</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Word 97-2003 Document" xml:space="preserve">
         <source>Word 97-2003 Document</source><seg-source><mrk mtype="seg" mid="76">Word 97-2003 Document</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="76">Word 97-2003 Dokument</mrk></target>
+        <target state="translated">Word 97-2003 document (*.doc)</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Word 2007 Document" xml:space="preserve">
         <source>Word 2007 Document</source><seg-source><mrk mtype="seg" mid="77">Word 2007 Document</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="77">Word 2007 Dokument</mrk></target>
+        <target state="translated">Office avatud XML dokument (*.docx)</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="XML Paper Specification" xml:space="preserve">
         <source>XML Paper Specification</source><seg-source><mrk mtype="seg" mid="78">XML Paper Specification</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="78">XML Paberi spetsifikatsioon</mrk></target>
+        <target state="translated">OpenXPS dokument (*.xps)</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Yes" xml:space="preserve">
         <source>Yes</source><seg-source><mrk mtype="seg" mid="79">Yes</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="79">Jah</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="79">Jah</mrk>Jah</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?" xml:space="preserve">
         <source>You have %1$ld %2$@ documents with unconfirmed changes. Do you want to review these changes before quitting?</source><seg-source><mrk mtype="seg" mid="80">You have %1$ld %2$@ documents with unconfirmed changes. Do you want to review these changes before quitting?</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="80">Sul on %1$ld %2$@ dokumendid kinnitamata muudatustega. Soovid need enne loobumist üle vaadata?</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="80">Sul on %1$ld %2$@ dokumendid kinnitamata muudatustega. Soovid need enne loobumist üle vaadata?</mrk>Sul on %1$ld %2$@ dokumendid kinnitamata muudatustega. Soovid need enne loobumist üle vaadata?</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="You have successfully activated %@." xml:space="preserve">
         <source>You have successfully activated %@.</source><seg-source><mrk mtype="seg" mid="81">You have successfully activated %@.</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="81">Sa oled edukalt aktiveerinud %@.</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="81">Sa oled edukalt aktiveerinud %@.</mrk>Sa oled edukalt aktiveerinud %@.</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Your changes will be lost if you don’t save them." xml:space="preserve">
         <source>Your changes will be lost if you don’t save them.</source><seg-source><mrk mtype="seg" mid="82">Your changes will be lost if you don’t save them.</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="82">Sinu muudatused lähevad kaotsi, kui sa neid ei salvesta.</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="82">Sinu muudatused lähevad kaotsi, kui sa neid ei salvesta.</mrk>Sinu muudatused lähevad kaotsi, kui sa neid ei salvesta.</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
-      <trans-unit id="Your subscription has expired.&#xA;&#xA;The program works in the non-activated mode.&#xA;&#xA;Now you can prolong or upgrade your subscription with a discount." xml:space="preserve">
+      <trans-unit id="Your subscription has expired.&#10;&#10;The program works in the non-activated mode.&#10;&#10;Now you can prolong or upgrade your subscription with a discount." xml:space="preserve">
         <source>Your subscription has expired.
 
 The program works in the non-activated mode.
@@ -404,7 +404,7 @@ Programm töötab mitte aktiveeritud režiimis.
 Nüüd saad pikendada või uuendada oma tellimust soodustusega.</mrk></target>
         
       <note>No comment provided by engineer.</note></trans-unit>
-      <trans-unit id="Your subscription is about to expire&#xA;(%d days left).&#xA;&#xA;We have a special offer for you." xml:space="preserve">
+      <trans-unit id="Your subscription is about to expire&#10;(%d days left).&#10;&#10;We have a special offer for you." xml:space="preserve">
         <source>Your subscription is about to expire
 (%d days left).
 
@@ -434,30 +434,30 @@ Meil on sulle eriline pakkumine.</mrk></target>
   </file>
   <file original="ONLYOFFICE/Base.lproj/Localizable.stringsdict" source-language="en" target-language="et-EE" datatype="plaintext">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c" />
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c"/>
     </header>
     <body>
       <trans-unit id="/%d days are left until the license expiration.:dict/NSStringLocalizedFormatKey:dict/:string" xml:space="preserve">
         <source>%#@days@</source><seg-source><mrk mtype="seg" mid="88">%#@days@</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="88">%#@päeva@</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="88">%#@päeva@</mrk>%#@päeva@</target>
         
       </trans-unit>
       <trans-unit id="/%d days are left until the license expiration.:dict/days:dict/one:dict/:string" xml:space="preserve">
         <source>%d day are left until the license expiration.</source><seg-source><mrk mtype="seg" mid="89">%d day are left until the license expiration.</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="89">%D päev on jäänud litsentsi aegumiseni.</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="89">%D päev on jäänud litsentsi aegumiseni.</mrk>%D päev on jäänud litsentsi aegumiseni.</target>
         
       </trans-unit>
       <trans-unit id="/%d days are left until the license expiration.:dict/days:dict/other:dict/:string" xml:space="preserve">
         <source>%d days are left until the license expiration.</source><seg-source><mrk mtype="seg" mid="90">%d days are left until the license expiration.</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="90">%D päeva on jäänud litsentsi aegumiseni.</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="90">%D päeva on jäänud litsentsi aegumiseni.</mrk>%D päeva on jäänud litsentsi aegumiseni.</target>
         
       </trans-unit>
-      <trans-unit id="/You are using a trial version of the application.&#xA;The trial period will end in %d days, after that you will not be able to create and edit documents.:dict/NSStringLocalizedFormatKey:dict/:string" xml:space="preserve">
+      <trans-unit id="/You are using a trial version of the application.&#10;The trial period will end in %d days, after that you will not be able to create and edit documents.:dict/NSStringLocalizedFormatKey:dict/:string" xml:space="preserve">
         <source>%#@days@</source><seg-source><mrk mtype="seg" mid="91">%#@days@</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="91">%#@päeva@</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="91">%#@päeva@</mrk>%#@päeva@</target>
         
       </trans-unit>
-      <trans-unit id="/You are using a trial version of the application.&#xA;The trial period will end in %d days, after that you will not be able to create and edit documents.:dict/days:dict/one:dict/:string" xml:space="preserve">
+      <trans-unit id="/You are using a trial version of the application.&#10;The trial period will end in %d days, after that you will not be able to create and edit documents.:dict/days:dict/one:dict/:string" xml:space="preserve">
         <source>You are using a trial version of the application.
 The trial period will end in %d day, after that you will not be able to create and edit documents.</source><seg-source><mrk mtype="seg" mid="92">You are using a trial version of the application.
 The trial period will end in %d day, after that you will not be able to create and edit documents.</mrk></seg-source>
@@ -465,7 +465,7 @@ The trial period will end in %d day, after that you will not be able to create a
 Prooviperiood lõpeb %d päeva pärast. Peale seda ei saa sa luua ega muuta dokumente.</mrk></target>
         
       </trans-unit>
-      <trans-unit id="/You are using a trial version of the application.&#xA;The trial period will end in %d days, after that you will not be able to create and edit documents.:dict/days:dict/other:dict/:string" xml:space="preserve">
+      <trans-unit id="/You are using a trial version of the application.&#10;The trial period will end in %d days, after that you will not be able to create and edit documents.:dict/days:dict/other:dict/:string" xml:space="preserve">
         <source>You are using a trial version of the application.
 The trial period will end in %d days, after that you will not be able to create and edit documents.</source><seg-source><mrk mtype="seg" mid="93">You are using a trial version of the application.
 The trial period will end in %d days, after that you will not be able to create and edit documents.</mrk></seg-source>
@@ -475,154 +475,154 @@ Prooviperiood lõpeb %d päeva pärast. Peale seda ei saa luua ega muuta dokumen
       </trans-unit>
       <trans-unit id="/You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?:dict/NSStringLocalizedFormatKey:dict/:string" xml:space="preserve">
         <source>%#@documents@</source><seg-source><mrk mtype="seg" mid="94">%#@documents@</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="94">%#@dokumendid@</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="94">%#@dokumendid@</mrk>%#@dokumendid@</target>
         
       </trans-unit>
       <trans-unit id="/You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?:dict/documents:dict/one:dict/:string" xml:space="preserve">
         <source>You have %ld %@ document with unconfirmed changes. Do you want to review these changes before quitting?</source><seg-source><mrk mtype="seg" mid="95">You have %ld %@ document with unconfirmed changes. Do you want to review these changes before quitting?</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="95">Sul on %ld%@ dokument kinnitamata muudatustega. Soovid need muudatused üle vaadata enne loobumist?</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="95">Sul on %ld%@ dokument kinnitamata muudatustega. Soovid need muudatused üle vaadata enne loobumist?</mrk>Sul on %ld%@ dokument kinnitamata muudatustega. Soovid need muudatused üle vaadata enne loobumist?</target>
         
       </trans-unit>
       <trans-unit id="/You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?:dict/documents:dict/other:dict/:string" xml:space="preserve">
         <source>You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?</source><seg-source><mrk mtype="seg" mid="96">You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="96">Sul on %ld%@ dokumendid kinnitamata muudatustega. Soovid need muudatused üle vaadata enne loobumist?</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="96">Sul on %ld%@ dokumendid kinnitamata muudatustega. Soovid need muudatused üle vaadata enne loobumist?</mrk>Sul on %ld%@ dokumendid kinnitamata muudatustega. Soovid need muudatused üle vaadata enne loobumist?</target>
         
       </trans-unit>
     </body>
   </file>
   <file original="ONLYOFFICE/Base.lproj/Main.storyboard" source-language="en" target-language="et-EE" datatype="plaintext">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c" />
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c"/>
     </header>
     <body>
       <trans-unit id="1UK-8n-QPP.title" xml:space="preserve">
         <source>Customize Toolbar…</source><seg-source><mrk mtype="seg" mid="97">Customize Toolbar…</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="97">Kohanda Tööriistariba</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="97">Kohanda Tööriistariba</mrk>Kohanda Tööriistariba</target>
         
       <note>Class = "NSMenuItem"; title = "Customize Toolbar…"; ObjectID = "1UK-8n-QPP";</note></trans-unit>
       <trans-unit id="1Xt-HY-uBw.title" xml:space="preserve">
         <source>ONLYOFFICE</source><seg-source><mrk mtype="seg" mid="98">ONLYOFFICE</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="98">ONLYOFFICE</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="98">ONLYOFFICE</mrk>ONLYOFFICE</target>
         
       <note>Class = "NSMenuItem"; title = "ONLYOFFICE"; ObjectID = "1Xt-HY-uBw";</note></trans-unit>
       <trans-unit id="1b7-l0-nxx.title" xml:space="preserve">
         <source>Find</source><seg-source><mrk mtype="seg" mid="99">Find</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="99">Leia</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="99">Leia</mrk>Leia</target>
         
       <note>Class = "NSMenu"; title = "Find"; ObjectID = "1b7-l0-nxx";</note></trans-unit>
       <trans-unit id="1tx-W0-xDw.title" xml:space="preserve">
         <source>Lower</source><seg-source><mrk mtype="seg" mid="100">Lower</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="100">Alumine</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="100">Alumine</mrk>Alumine</target>
         
       <note>Class = "NSMenuItem"; title = "Lower"; ObjectID = "1tx-W0-xDw";</note></trans-unit>
       <trans-unit id="2h7-ER-AoG.title" xml:space="preserve">
         <source>Raise</source><seg-source><mrk mtype="seg" mid="101">Raise</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="101">Ülemine</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="101">Ülemine</mrk>Ülemine</target>
         
       <note>Class = "NSMenuItem"; title = "Raise"; ObjectID = "2h7-ER-AoG";</note></trans-unit>
       <trans-unit id="2oI-Rn-ZJC.title" xml:space="preserve">
         <source>Transformations</source><seg-source><mrk mtype="seg" mid="102">Transformations</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="102">Muudatused</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="102">Muudatused</mrk>Muudatused</target>
         
       <note>Class = "NSMenuItem"; title = "Transformations"; ObjectID = "2oI-Rn-ZJC";</note></trans-unit>
       <trans-unit id="3IN-sU-3Bg.title" xml:space="preserve">
         <source>Spelling</source><seg-source><mrk mtype="seg" mid="103">Spelling</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="103">Õigekiri</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="103">Õigekiri</mrk>Õigekiri</target>
         
       <note>Class = "NSMenu"; title = "Spelling"; ObjectID = "3IN-sU-3Bg";</note></trans-unit>
       <trans-unit id="3Om-Ey-2VK.title" xml:space="preserve">
         <source>Use Default</source><seg-source><mrk mtype="seg" mid="104">Use Default</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="104">Kasuta vaikimisi</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="104">Kasuta vaikimisi</mrk>Kasuta vaikimisi</target>
         
       <note>Class = "NSMenuItem"; title = "Use Default"; ObjectID = "3Om-Ey-2VK";</note></trans-unit>
       <trans-unit id="3rS-ZA-NoH.title" xml:space="preserve">
         <source>Speech</source><seg-source><mrk mtype="seg" mid="105">Speech</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="105">Räägi</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="105">Räägi</mrk>Kõne</target>
         
       <note>Class = "NSMenu"; title = "Speech"; ObjectID = "3rS-ZA-NoH";</note></trans-unit>
       <trans-unit id="4EN-yA-p0u.title" xml:space="preserve">
         <source>Find</source><seg-source><mrk mtype="seg" mid="106">Find</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="106">Leia</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="106">Leia</mrk>Leia</target>
         
       <note>Class = "NSMenuItem"; title = "Find"; ObjectID = "4EN-yA-p0u";</note></trans-unit>
       <trans-unit id="4et-TX-a4m.title" xml:space="preserve">
         <source>License Agreement</source><seg-source><mrk mtype="seg" mid="107">License Agreement</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="107">Litsentsileping</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="107">Litsentsileping</mrk>Litsentsileping</target>
         
       <note>Class = "NSMenuItem"; title = "License Agreement"; ObjectID = "4et-TX-a4m";</note></trans-unit>
       <trans-unit id="4sb-4s-VLi.title" xml:space="preserve">
         <source>Quit ONLYOFFICE</source><seg-source><mrk mtype="seg" mid="108">Quit ONLYOFFICE</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="108">Loobu ONLYOFFICE</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="108">Loobu ONLYOFFICE</mrk>Loobu ONLYOFFICE</target>
         
       <note>Class = "NSMenuItem"; title = "Quit ONLYOFFICE"; ObjectID = "4sb-4s-VLi";</note></trans-unit>
       <trans-unit id="5QF-Oa-p0T.title" xml:space="preserve">
         <source>Edit</source><seg-source><mrk mtype="seg" mid="109">Edit</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="109">Muuda</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="109">Muuda</mrk>Muuda</target>
         
       <note>Class = "NSMenuItem"; title = "Edit"; ObjectID = "5QF-Oa-p0T";</note></trans-unit>
       <trans-unit id="5Vv-lz-BsD.title" xml:space="preserve">
         <source>Copy Style</source><seg-source><mrk mtype="seg" mid="110">Copy Style</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="110">Kopeeri Stiil</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="110">Kopeeri Stiil</mrk>Kopeeri Stiil</target>
         
       <note>Class = "NSMenuItem"; title = "Copy Style"; ObjectID = "5Vv-lz-BsD";</note></trans-unit>
       <trans-unit id="5kV-Vb-QxS.title" xml:space="preserve">
         <source>About ONLYOFFICE</source><seg-source><mrk mtype="seg" mid="111">About ONLYOFFICE</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="111">Rohkem ONLYOFFICE’lt</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="111">Rohkem ONLYOFFICE’lt</mrk>Rohkem ONLYOFFICE’lt</target>
         
       <note>Class = "NSMenuItem"; title = "About ONLYOFFICE"; ObjectID = "5kV-Vb-QxS";</note></trans-unit>
       <trans-unit id="6dh-zS-Vam.title" xml:space="preserve">
         <source>Redo</source><seg-source><mrk mtype="seg" mid="112">Redo</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="112">Tee uuesti</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="112">Tee uuesti</mrk>Tee uuesti</target>
         
       <note>Class = "NSMenuItem"; title = "Redo"; ObjectID = "6dh-zS-Vam";</note></trans-unit>
       <trans-unit id="8Ga-Cu-VGe.title" xml:space="preserve">
         <source>License agreement</source><seg-source><mrk mtype="seg" mid="113">License agreement</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="113">Litsentsileping</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="113">Litsentsileping</mrk>Litsentsileping</target>
         
       <note>Class = "NSButtonCell"; title = "License agreement"; ObjectID = "8Ga-Cu-VGe";</note></trans-unit>
       <trans-unit id="8mr-sm-Yjd.title" xml:space="preserve">
         <source>Writing Direction</source><seg-source><mrk mtype="seg" mid="114">Writing Direction</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="114">Kirjutamise Kirjeldus</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="114">Kirjutamise Kirjeldus</mrk>Kirjutamise Kirjeldus</target>
         
       <note>Class = "NSMenu"; title = "Writing Direction"; ObjectID = "8mr-sm-Yjd";</note></trans-unit>
       <trans-unit id="9aQ-wl-gjS.title" xml:space="preserve">
         <source>New</source><seg-source><mrk mtype="seg" mid="115">New</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="115">Uus</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="115">Uus</mrk>Uus</target>
         
       <note>Class = "NSMenuItem"; title = "New"; ObjectID = "9aQ-wl-gjS";</note></trans-unit>
       <trans-unit id="9i7-kj-42B.title" xml:space="preserve">
         <source>none</source><seg-source><mrk mtype="seg" mid="116">none</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="116">Puudub</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="116">Puudub</mrk>Puudub</target>
         
       <note>Class = "NSTextFieldCell"; title = "none"; ObjectID = "9i7-kj-42B";</note></trans-unit>
       <trans-unit id="9ic-FL-obx.title" xml:space="preserve">
         <source>Substitutions</source><seg-source><mrk mtype="seg" mid="117">Substitutions</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="117">Asendus</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="117">Asendus</mrk>Asendus</target>
         
       <note>Class = "NSMenuItem"; title = "Substitutions"; ObjectID = "9ic-FL-obx";</note></trans-unit>
       <trans-unit id="9yt-4B-nSM.title" xml:space="preserve">
         <source>Smart Copy/Paste</source><seg-source><mrk mtype="seg" mid="118">Smart Copy/Paste</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="118">Tark Kopeeri/Kleebi</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="118">Tark Kopeeri/Kleebi</mrk>Tark Kopeeri/Kleebi</target>
         
       <note>Class = "NSMenuItem"; title = "Smart Copy/Paste"; ObjectID = "9yt-4B-nSM";</note></trans-unit>
       <trans-unit id="46P-cB-AYj.title" xml:space="preserve">
         <source>Tighten</source><seg-source><mrk mtype="seg" mid="119">Tighten</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="119">Tugevnda</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="119">Tugevnda</mrk>Tugevnda</target>
         
       <note>Class = "NSMenuItem"; title = "Tighten"; ObjectID = "46P-cB-AYj";</note></trans-unit>
       <trans-unit id="78Y-hA-62v.title" xml:space="preserve">
         <source>Correct Spelling Automatically</source><seg-source><mrk mtype="seg" mid="120">Correct Spelling Automatically</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="120">Paranda Õigekiri Automaatselt</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="120">Paranda Õigekiri Automaatselt</mrk>Paranda Õigekiri Automaatselt</target>
         
       <note>Class = "NSMenuItem"; title = "Correct Spelling Automatically"; ObjectID = "78Y-hA-62v";</note></trans-unit>
       <trans-unit id="AYu-sK-qS6.title" xml:space="preserve">
         <source>Main Menu</source><seg-source><mrk mtype="seg" mid="121">Main Menu</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="121">Peamenüü</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="121">Peamenüü</mrk>Peamenüü</target>
         
       <note>Class = "NSMenu"; title = "Main Menu"; ObjectID = "AYu-sK-qS6";</note></trans-unit>
       <trans-unit id="BOF-NM-1cW.title" xml:space="preserve">
         <source>Preferences…</source><seg-source><mrk mtype="seg" mid="122">Preferences…</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="122">Eelistused...</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="122">Eelistused...</mrk>Eelistused...</target>
         
       <note>Class = "NSMenuItem"; title = "Preferences…"; ObjectID = "BOF-NM-1cW";</note></trans-unit>
       <trans-unit id="BgM-ve-c93.title" xml:space="preserve">
@@ -632,142 +632,142 @@ Prooviperiood lõpeb %d päeva pärast. Peale seda ei saa luua ega muuta dokumen
       <note>Class = "NSMenuItem"; title = "\tLeft to Right"; ObjectID = "BgM-ve-c93";</note></trans-unit>
       <trans-unit id="Bw7-FT-i3A.title" xml:space="preserve">
         <source>Save As…</source><seg-source><mrk mtype="seg" mid="124">Save As…</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="124">Salvesta Kui...</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="124">Salvesta Kui...</mrk>Salvesta Kui...</target>
         
       <note>Class = "NSMenuItem"; title = "Save As…"; ObjectID = "Bw7-FT-i3A";</note></trans-unit>
       <trans-unit id="CJU-dx-a9l.title" xml:space="preserve">
         <source>Acknowledgments</source><seg-source><mrk mtype="seg" mid="125">Acknowledgments</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="125">Tunnustused</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="125">Tunnustused</mrk>Tunnustused</target>
         
       <note>Class = "NSMenuItem"; title = "Acknowledgments"; ObjectID = "CJU-dx-a9l";</note></trans-unit>
       <trans-unit id="DOj-j9-dza.title" xml:space="preserve">
         <source>Spreadsheet</source><seg-source><mrk mtype="seg" mid="126">Spreadsheet</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="126">Arvutustabel</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="126">Arvutustabel</mrk>Arvutustabel</target>
         
       <note>Class = "NSMenuItem"; title = "Spreadsheet"; ObjectID = "DOj-j9-dza";</note></trans-unit>
       <trans-unit id="DVo-aG-piG.title" xml:space="preserve">
         <source>Close</source><seg-source><mrk mtype="seg" mid="127">Close</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="127">Sulge</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="127">Sulge</mrk>Sulge</target>
         
       <note>Class = "NSMenuItem"; title = "Close"; ObjectID = "DVo-aG-piG";</note></trans-unit>
       <trans-unit id="Dv1-io-Yv7.title" xml:space="preserve">
         <source>Spelling and Grammar</source><seg-source><mrk mtype="seg" mid="128">Spelling and Grammar</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="128">Õigekiri ja Grammatika</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="128">Õigekiri ja Grammatika</mrk>Õigekiri ja Grammatika</target>
         
       <note>Class = "NSMenuItem"; title = "Spelling and Grammar"; ObjectID = "Dv1-io-Yv7";</note></trans-unit>
       <trans-unit id="F2S-fz-NVQ.title" xml:space="preserve">
         <source>Help</source><seg-source><mrk mtype="seg" mid="129">Help</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="129">Abi</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="129">Abi</mrk>Abi</target>
         
       <note>Class = "NSMenu"; title = "Help"; ObjectID = "F2S-fz-NVQ";</note></trans-unit>
       <trans-unit id="FKE-Sm-Kum.title" xml:space="preserve">
         <source>Product Help</source><seg-source><mrk mtype="seg" mid="130">Product Help</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="130">Toote Abi</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="130">Toote Abi</mrk>Toote Abi</target>
         
       <note>Class = "NSMenuItem"; title = "Product Help"; ObjectID = "FKE-Sm-Kum";</note></trans-unit>
       <trans-unit id="Fal-I4-PZk.title" xml:space="preserve">
         <source>Text</source><seg-source><mrk mtype="seg" mid="131">Text</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="131">Tekst</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="131">Tekst</mrk>Tekst</target>
         
       <note>Class = "NSMenuItem"; title = "Text"; ObjectID = "Fal-I4-PZk";</note></trans-unit>
       <trans-unit id="FeM-D8-WVr.title" xml:space="preserve">
         <source>Substitutions</source><seg-source><mrk mtype="seg" mid="132">Substitutions</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="132">Asendus</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="132">Asendus</mrk>Asendus</target>
         
       <note>Class = "NSMenu"; title = "Substitutions"; ObjectID = "FeM-D8-WVr";</note></trans-unit>
       <trans-unit id="FoF-wl-Dxi.title" xml:space="preserve">
         <source>User Name</source><seg-source><mrk mtype="seg" mid="133">User Name</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="133">Kasutajanimi</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="133">Kasutajanimi</mrk>Kasutajanimi</target>
         
       <note>Class = "NSTextFieldCell"; title = "User Name"; ObjectID = "FoF-wl-Dxi";</note></trans-unit>
       <trans-unit id="GB9-OM-e27.title" xml:space="preserve">
         <source>Bold</source><seg-source><mrk mtype="seg" mid="134">Bold</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="134">Poolpaks</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="134">Poolpaks</mrk>Poolpaks</target>
         
       <note>Class = "NSMenuItem"; title = "Bold"; ObjectID = "GB9-OM-e27";</note></trans-unit>
       <trans-unit id="GEO-Iw-cKr.title" xml:space="preserve">
         <source>Format</source><seg-source><mrk mtype="seg" mid="135">Format</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="135">Formaat</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="135">Formaat</mrk>Formaat</target>
         
       <note>Class = "NSMenu"; title = "Format"; ObjectID = "GEO-Iw-cKr";</note></trans-unit>
       <trans-unit id="GUa-eO-cwY.title" xml:space="preserve">
         <source>Use Default</source><seg-source><mrk mtype="seg" mid="136">Use Default</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="136">Kasuta vaikimisi</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="136">Kasuta vaikimisi</mrk>Kasuta vaikimisi</target>
         
       <note>Class = "NSMenuItem"; title = "Use Default"; ObjectID = "GUa-eO-cwY";</note></trans-unit>
       <trans-unit id="Gi5-1S-RQB.title" xml:space="preserve">
         <source>Font</source><seg-source><mrk mtype="seg" mid="137">Font</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="137">Font</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="137">Font</mrk>Font</target>
         
       <note>Class = "NSMenuItem"; title = "Font"; ObjectID = "Gi5-1S-RQB";</note></trans-unit>
       <trans-unit id="H1b-Si-o9J.title" xml:space="preserve">
         <source>Writing Direction</source><seg-source><mrk mtype="seg" mid="138">Writing Direction</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="138">Kirjutamise Kirjeldus</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="138">Kirjutamise Kirjeldus</mrk>Kirjutamise Kirjeldus</target>
         
       <note>Class = "NSMenuItem"; title = "Writing Direction"; ObjectID = "H1b-Si-o9J";</note></trans-unit>
       <trans-unit id="H8h-7b-M4v.title" xml:space="preserve">
         <source>View</source><seg-source><mrk mtype="seg" mid="139">View</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="139">Vaade</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="139">Vaade</mrk>Vaade</target>
         
       <note>Class = "NSMenuItem"; title = "View"; ObjectID = "H8h-7b-M4v";</note></trans-unit>
       <trans-unit id="HFQ-gK-NFA.title" xml:space="preserve">
         <source>Text Replacement</source><seg-source><mrk mtype="seg" mid="140">Text Replacement</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="140">Teksti Asendamine</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="140">Teksti Asendamine</mrk>Teksti Asendamine</target>
         
       <note>Class = "NSMenuItem"; title = "Text Replacement"; ObjectID = "HFQ-gK-NFA";</note></trans-unit>
       <trans-unit id="HFo-cy-zxI.title" xml:space="preserve">
         <source>Show Spelling and Grammar</source><seg-source><mrk mtype="seg" mid="141">Show Spelling and Grammar</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="141">Näita Õigekirja ja Grammatikat</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="141">Näita Õigekirja ja Grammatikat</mrk>Näita Õigekirja ja Grammatikat</target>
         
       <note>Class = "NSMenuItem"; title = "Show Spelling and Grammar"; ObjectID = "HFo-cy-zxI";</note></trans-unit>
       <trans-unit id="HyV-fh-RgO.title" xml:space="preserve">
         <source>View</source><seg-source><mrk mtype="seg" mid="142">View</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="142">Vaade</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="142">Vaade</mrk>Vaade</target>
         
       <note>Class = "NSMenu"; title = "View"; ObjectID = "HyV-fh-RgO";</note></trans-unit>
       <trans-unit id="I0S-gh-46l.title" xml:space="preserve">
         <source>Subscript</source><seg-source><mrk mtype="seg" mid="143">Subscript</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="143">Indeks</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="143">Indeks</mrk>Indeks</target>
         
       <note>Class = "NSMenuItem"; title = "Subscript"; ObjectID = "I0S-gh-46l";</note></trans-unit>
       <trans-unit id="IAo-SY-fd9.title" xml:space="preserve">
         <source>Open…</source><seg-source><mrk mtype="seg" mid="144">Open…</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="144">Ava...</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="144">Ava...</mrk>Ava...</target>
         
       <note>Class = "NSMenuItem"; title = "Open…"; ObjectID = "IAo-SY-fd9";</note></trans-unit>
       <trans-unit id="IQv-IB-iLA.title" xml:space="preserve">
         <source>ONLYOFFICE</source><seg-source><mrk mtype="seg" mid="145">ONLYOFFICE</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="145">ONLYOFFICE</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="145">ONLYOFFICE</mrk>ONLYOFFICE</target>
         
       <note>Class = "NSWindow"; title = "ONLYOFFICE"; ObjectID = "IQv-IB-iLA";</note></trans-unit>
       <trans-unit id="J5U-5w-g23.title" xml:space="preserve">
         <source>Justify</source><seg-source><mrk mtype="seg" mid="146">Justify</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="146">Õigusta</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="146">Õigusta</mrk>Õigusta</target>
         
       <note>Class = "NSMenuItem"; title = "Justify"; ObjectID = "J5U-5w-g23";</note></trans-unit>
       <trans-unit id="J7y-lM-qPV.title" xml:space="preserve">
         <source>Use None</source><seg-source><mrk mtype="seg" mid="147">Use None</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="147">Ära Kasuta Ühtegi</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="147">Ära Kasuta Ühtegi</mrk>Ära Kasuta Ühtegi</target>
         
       <note>Class = "NSMenuItem"; title = "Use None"; ObjectID = "J7y-lM-qPV";</note></trans-unit>
       <trans-unit id="KaW-ft-85H.title" xml:space="preserve">
         <source>Revert to Saved</source><seg-source><mrk mtype="seg" mid="148">Revert to Saved</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="148">Naase Salvestatud juurde</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="148">Naase Salvestatud juurde</mrk>Naase Salvestatud juurde</target>
         
       <note>Class = "NSMenuItem"; title = "Revert to Saved"; ObjectID = "KaW-ft-85H";</note></trans-unit>
       <trans-unit id="Kd2-mp-pUS.title" xml:space="preserve">
         <source>Show All</source><seg-source><mrk mtype="seg" mid="149">Show All</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="149">Näita Kõike</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="149">Näita Kõike</mrk>Näita Kõike</target>
         
       <note>Class = "NSMenuItem"; title = "Show All"; ObjectID = "Kd2-mp-pUS";</note></trans-unit>
       <trans-unit id="LE2-aR-0XJ.title" xml:space="preserve">
         <source>Bring All to Front</source><seg-source><mrk mtype="seg" mid="150">Bring All to Front</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="150">Too Kõik Ette</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="150">Too Kõik Ette</mrk>Too Kõik Ette</target>
         
       <note>Class = "NSMenuItem"; title = "Bring All to Front"; ObjectID = "LE2-aR-0XJ";</note></trans-unit>
       <trans-unit id="LVM-kO-fVI.title" xml:space="preserve">
         <source>Paste Ruler</source><seg-source><mrk mtype="seg" mid="151">Paste Ruler</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="151">Kleebi Joonlaud</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="151">Kleebi Joonlaud</mrk>Kleebi Joonlaud</target>
         
       <note>Class = "NSMenuItem"; title = "Paste Ruler"; ObjectID = "LVM-kO-fVI";</note></trans-unit>
       <trans-unit id="Lbh-J2-qVU.title" xml:space="preserve">
@@ -777,12 +777,12 @@ Prooviperiood lõpeb %d päeva pärast. Peale seda ei saa luua ega muuta dokumen
       <note>Class = "NSMenuItem"; title = "\tLeft to Right"; ObjectID = "Lbh-J2-qVU";</note></trans-unit>
       <trans-unit id="MkV-Pr-PK5.title" xml:space="preserve">
         <source>Copy Ruler</source><seg-source><mrk mtype="seg" mid="153">Copy Ruler</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="153">Kopeeri Joonlaud</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="153">Kopeeri Joonlaud</mrk>Kopeeri Joonlaud</target>
         
       <note>Class = "NSMenuItem"; title = "Copy Ruler"; ObjectID = "MkV-Pr-PK5";</note></trans-unit>
       <trans-unit id="NMo-om-nkz.title" xml:space="preserve">
         <source>Services</source><seg-source><mrk mtype="seg" mid="154">Services</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="154">Teenused</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="154">Teenused</mrk>Teenused</target>
         
       <note>Class = "NSMenuItem"; title = "Services"; ObjectID = "NMo-om-nkz";</note></trans-unit>
       <trans-unit id="Nop-cj-93Q.title" xml:space="preserve">
@@ -792,42 +792,42 @@ Prooviperiood lõpeb %d päeva pärast. Peale seda ei saa luua ega muuta dokumen
       <note>Class = "NSMenuItem"; title = "\tDefault"; ObjectID = "Nop-cj-93Q";</note></trans-unit>
       <trans-unit id="OY7-WF-poV.title" xml:space="preserve">
         <source>Minimize</source><seg-source><mrk mtype="seg" mid="156">Minimize</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="156">Minimeeri</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="156">Minimeeri</mrk>Minimeeri</target>
         
       <note>Class = "NSMenuItem"; title = "Minimize"; ObjectID = "OY7-WF-poV";</note></trans-unit>
       <trans-unit id="OaQ-X3-Vso.title" xml:space="preserve">
         <source>Baseline</source><seg-source><mrk mtype="seg" mid="157">Baseline</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="157">Algtase</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="157">Algtase</mrk>Algtase</target>
         
       <note>Class = "NSMenuItem"; title = "Baseline"; ObjectID = "OaQ-X3-Vso";</note></trans-unit>
       <trans-unit id="Olw-nP-bQN.title" xml:space="preserve">
         <source>Hide ONLYOFFICE</source><seg-source><mrk mtype="seg" mid="158">Hide ONLYOFFICE</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="158">Peida ONLYOFFICE</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="158">Peida ONLYOFFICE</mrk>Peida ONLYOFFICE</target>
         
       <note>Class = "NSMenuItem"; title = "Hide ONLYOFFICE"; ObjectID = "Olw-nP-bQN";</note></trans-unit>
       <trans-unit id="OwM-mh-QMV.title" xml:space="preserve">
         <source>Find Previous</source><seg-source><mrk mtype="seg" mid="159">Find Previous</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="159">Leia Eelnev</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="159">Leia Eelnev</mrk>Leia Eelnev</target>
         
       <note>Class = "NSMenuItem"; title = "Find Previous"; ObjectID = "OwM-mh-QMV";</note></trans-unit>
       <trans-unit id="Oyz-dy-DGm.title" xml:space="preserve">
         <source>Stop Speaking</source><seg-source><mrk mtype="seg" mid="160">Stop Speaking</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="160">Lõpeta Rääkimine</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="160">Lõpeta Rääkimine</mrk>Lõpeta Rääkimine</target>
         
       <note>Class = "NSMenuItem"; title = "Stop Speaking"; ObjectID = "Oyz-dy-DGm";</note></trans-unit>
       <trans-unit id="Ptp-SP-VEL.title" xml:space="preserve">
         <source>Bigger</source><seg-source><mrk mtype="seg" mid="161">Bigger</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="161">Suurem</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="161">Suurem</mrk>Suurem</target>
         
       <note>Class = "NSMenuItem"; title = "Bigger"; ObjectID = "Ptp-SP-VEL";</note></trans-unit>
       <trans-unit id="Q5e-8K-NDq.title" xml:space="preserve">
         <source>Show Fonts</source><seg-source><mrk mtype="seg" mid="162">Show Fonts</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="162">Näita Fonte</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="162">Näita Fonte</mrk>Näita Fonte</target>
         
       <note>Class = "NSMenuItem"; title = "Show Fonts"; ObjectID = "Q5e-8K-NDq";</note></trans-unit>
       <trans-unit id="R4o-n2-Eq4.title" xml:space="preserve">
         <source>Zoom</source><seg-source><mrk mtype="seg" mid="163">Zoom</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="163">Suumi</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="163">Suumi</mrk>Suumi</target>
         
       <note>Class = "NSMenuItem"; title = "Zoom"; ObjectID = "R4o-n2-Eq4";</note></trans-unit>
       <trans-unit id="RB4-Sm-HuC.title" xml:space="preserve">
@@ -837,87 +837,87 @@ Prooviperiood lõpeb %d päeva pärast. Peale seda ei saa luua ega muuta dokumen
       <note>Class = "NSMenuItem"; title = "\tRight to Left"; ObjectID = "RB4-Sm-HuC";</note></trans-unit>
       <trans-unit id="Riu-oE-8dj.title" xml:space="preserve">
         <source>Close</source><seg-source><mrk mtype="seg" mid="165">Close</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="165">Sulge</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="165">Sulge</mrk>Sulge</target>
         
       <note>Class = "NSButtonCell"; title = "Close"; ObjectID = "Riu-oE-8dj";</note></trans-unit>
       <trans-unit id="Rkd-xb-FRJ.title" xml:space="preserve">
         <source>none</source><seg-source><mrk mtype="seg" mid="166">none</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="166">Puudub</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="166">Puudub</mrk>Puudub</target>
         
       <note>Class = "NSTextFieldCell"; title = "none"; ObjectID = "Rkd-xb-FRJ";</note></trans-unit>
       <trans-unit id="RmO-tv-UKh.title" xml:space="preserve">
         <source>Logout</source><seg-source><mrk mtype="seg" mid="167">Logout</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="167">Logi välja</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="167">Logi välja</mrk>Logi välja</target>
         
       <note>Class = "NSButtonCell"; title = "Logout"; ObjectID = "RmO-tv-UKh";</note></trans-unit>
       <trans-unit id="Rqc-34-cIF.title" xml:space="preserve">
         <source>Superscript</source><seg-source><mrk mtype="seg" mid="168">Superscript</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="168">Pealiskiri</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="168">Pealiskiri</mrk>Pealiskiri</target>
         
       <note>Class = "NSMenuItem"; title = "Superscript"; ObjectID = "Rqc-34-cIF";</note></trans-unit>
       <trans-unit id="Ruw-6m-B2m.title" xml:space="preserve">
         <source>Select All</source><seg-source><mrk mtype="seg" mid="169">Select All</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="169">Vali Kõik</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="169">Vali Kõik</mrk>Vali Kõik</target>
         
       <note>Class = "NSMenuItem"; title = "Select All"; ObjectID = "Ruw-6m-B2m";</note></trans-unit>
       <trans-unit id="S0p-oC-mLd.title" xml:space="preserve">
         <source>Jump to Selection</source><seg-source><mrk mtype="seg" mid="170">Jump to Selection</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="170">Hüppa Valikutesse</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="170">Hüppa Valikutesse</mrk>Hüppa Valikutesse</target>
         
       <note>Class = "NSMenuItem"; title = "Jump to Selection"; ObjectID = "S0p-oC-mLd";</note></trans-unit>
       <trans-unit id="TEm-B8-gsH.title" xml:space="preserve">
         <source>Document</source><seg-source><mrk mtype="seg" mid="171">Document</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="171">Dokument</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="171">Dokument</mrk>Dokument</target>
         
       <note>Class = "NSMenuItem"; title = "Document"; ObjectID = "TEm-B8-gsH";</note></trans-unit>
       <trans-unit id="Td7-aD-5lo.title" xml:space="preserve">
         <source>Window</source><seg-source><mrk mtype="seg" mid="172">Window</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="172">Aken</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="172">Aken</mrk>Aken</target>
         
       <note>Class = "NSMenu"; title = "Window"; ObjectID = "Td7-aD-5lo";</note></trans-unit>
       <trans-unit id="UEZ-Bs-lqG.title" xml:space="preserve">
         <source>Capitalize</source><seg-source><mrk mtype="seg" mid="173">Capitalize</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="173">Kasuta suuri tähti</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="173">Kasuta suuri tähti</mrk>Kasuta suuri tähti</target>
         
       <note>Class = "NSMenuItem"; title = "Capitalize"; ObjectID = "UEZ-Bs-lqG";</note></trans-unit>
       <trans-unit id="VIY-Ag-zcb.title" xml:space="preserve">
         <source>Center</source><seg-source><mrk mtype="seg" mid="174">Center</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="174">Keskel</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="174">Keskel</mrk>Keskel</target>
         
       <note>Class = "NSMenuItem"; title = "Center"; ObjectID = "VIY-Ag-zcb";</note></trans-unit>
       <trans-unit id="Vdr-fp-XzO.title" xml:space="preserve">
         <source>Hide Others</source><seg-source><mrk mtype="seg" mid="175">Hide Others</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="175">Peida Teised</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="175">Peida Teised</mrk>Peida Teised</target>
         
       <note>Class = "NSMenuItem"; title = "Hide Others"; ObjectID = "Vdr-fp-XzO";</note></trans-unit>
       <trans-unit id="Vjx-xi-njq.title" xml:space="preserve">
         <source>Italic</source><seg-source><mrk mtype="seg" mid="176">Italic</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="176">Kaldkiri</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="176">Kaldkiri</mrk>Kaldkiri</target>
         
       <note>Class = "NSMenuItem"; title = "Italic"; ObjectID = "Vjx-xi-njq";</note></trans-unit>
       <trans-unit id="W48-6f-4Dl.title" xml:space="preserve">
         <source>Edit</source><seg-source><mrk mtype="seg" mid="177">Edit</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="177">Muuda</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="177">Muuda</mrk>Muuda</target>
         
       <note>Class = "NSMenu"; title = "Edit"; ObjectID = "W48-6f-4Dl";</note></trans-unit>
       <trans-unit id="WRG-CD-K1S.title" xml:space="preserve">
         <source>Underline</source><seg-source><mrk mtype="seg" mid="178">Underline</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="178">Allajoonitud</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="178">Allajoonitud</mrk>Allajoonitud</target>
         
       <note>Class = "NSMenuItem"; title = "Underline"; ObjectID = "WRG-CD-K1S";</note></trans-unit>
       <trans-unit id="WeT-3V-zwk.title" xml:space="preserve">
         <source>Paste and Match Style</source><seg-source><mrk mtype="seg" mid="179">Paste and Match Style</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="179">Kleebi ja Sobita Stiil</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="179">Kleebi ja Sobita Stiil</mrk>Kleebi ja Sobita Stiil</target>
         
       <note>Class = "NSMenuItem"; title = "Paste and Match Style"; ObjectID = "WeT-3V-zwk";</note></trans-unit>
       <trans-unit id="Xz5-n4-O0W.title" xml:space="preserve">
         <source>Find…</source><seg-source><mrk mtype="seg" mid="180">Find…</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="180">Leia...</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="180">Leia...</mrk>Leia...</target>
         
       <note>Class = "NSMenuItem"; title = "Find…"; ObjectID = "Xz5-n4-O0W";</note></trans-unit>
       <trans-unit id="YEy-JH-Tfz.title" xml:space="preserve">
         <source>Find and Replace…</source><seg-source><mrk mtype="seg" mid="181">Find and Replace…</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="181">Leia ja Asenda...</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="181">Leia ja Asenda...</mrk>Leia ja Asenda...</target>
         
       <note>Class = "NSMenuItem"; title = "Find and Replace…"; ObjectID = "YEy-JH-Tfz";</note></trans-unit>
       <trans-unit id="YGs-j5-SAR.title" xml:space="preserve">
@@ -927,152 +927,152 @@ Prooviperiood lõpeb %d päeva pärast. Peale seda ei saa luua ega muuta dokumen
       <note>Class = "NSMenuItem"; title = "\tDefault"; ObjectID = "YGs-j5-SAR";</note></trans-unit>
       <trans-unit id="Ynk-f8-cLZ.title" xml:space="preserve">
         <source>Start Speaking</source><seg-source><mrk mtype="seg" mid="183">Start Speaking</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="183">Alusta Rääkimist</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="183">Alusta Rääkimist</mrk>Alusta Rääkimist</target>
         
       <note>Class = "NSMenuItem"; title = "Start Speaking"; ObjectID = "Ynk-f8-cLZ";</note></trans-unit>
       <trans-unit id="ZM1-6Q-yy1.title" xml:space="preserve">
         <source>Align Left</source><seg-source><mrk mtype="seg" mid="184">Align Left</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="184">Joonda Vasakule</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="184">Joonda Vasakule</mrk>Joonda Vasakule</target>
         
       <note>Class = "NSMenuItem"; title = "Align Left"; ObjectID = "ZM1-6Q-yy1";</note></trans-unit>
       <trans-unit id="ZbA-hc-8PE.title" xml:space="preserve">
         <source>Version</source><seg-source><mrk mtype="seg" mid="185">Version</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="185">Versioon</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="185">Versioon</mrk>Versioon</target>
         
       <note>Class = "NSTextFieldCell"; title = "Version"; ObjectID = "ZbA-hc-8PE";</note></trans-unit>
       <trans-unit id="Zsi-3o-ASl.title" xml:space="preserve">
         <source>Email:</source><seg-source><mrk mtype="seg" mid="186">Email:</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="186">Email:</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="186">Email:</mrk>Email:</target>
         
       <note>Class = "NSTextFieldCell"; title = "Email:"; ObjectID = "Zsi-3o-ASl";</note></trans-unit>
       <trans-unit id="ZvO-Gk-QUH.title" xml:space="preserve">
         <source>Paragraph</source><seg-source><mrk mtype="seg" mid="187">Paragraph</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="187">Paragrahv</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="187">Paragrahv</mrk>Paragrahv</target>
         
       <note>Class = "NSMenuItem"; title = "Paragraph"; ObjectID = "ZvO-Gk-QUH";</note></trans-unit>
       <trans-unit id="aTl-1u-JFS.title" xml:space="preserve">
         <source>Print…</source><seg-source><mrk mtype="seg" mid="188">Print…</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="188">Prindi...</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="188">Prindi...</mrk>Prindi...</target>
         
       <note>Class = "NSMenuItem"; title = "Print…"; ObjectID = "aTl-1u-JFS";</note></trans-unit>
       <trans-unit id="aUF-d1-5bR.title" xml:space="preserve">
         <source>Window</source><seg-source><mrk mtype="seg" mid="189">Window</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="189">Aken</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="189">Aken</mrk>Aken</target>
         
       <note>Class = "NSMenuItem"; title = "Window"; ObjectID = "aUF-d1-5bR";</note></trans-unit>
       <trans-unit id="aXa-aM-Jaq.title" xml:space="preserve">
         <source>Font</source><seg-source><mrk mtype="seg" mid="190">Font</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="190">Font</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="190">Font</mrk>Font</target>
         
       <note>Class = "NSMenu"; title = "Font"; ObjectID = "aXa-aM-Jaq";</note></trans-unit>
       <trans-unit id="agt-UL-0e3.title" xml:space="preserve">
         <source>Use Default</source><seg-source><mrk mtype="seg" mid="191">Use Default</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="191">Kasuta vaikimisi</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="191">Kasuta vaikimisi</mrk>Kasuta vaikimisi</target>
         
       <note>Class = "NSMenuItem"; title = "Use Default"; ObjectID = "agt-UL-0e3";</note></trans-unit>
       <trans-unit id="bgn-CT-cEk.title" xml:space="preserve">
         <source>Show Colors</source><seg-source><mrk mtype="seg" mid="192">Show Colors</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="192">Näita Värve</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="192">Näita Värve</mrk>Näita Värve</target>
         
       <note>Class = "NSMenuItem"; title = "Show Colors"; ObjectID = "bgn-CT-cEk";</note></trans-unit>
       <trans-unit id="bib-Uj-vzu.title" xml:space="preserve">
         <source>File</source><seg-source><mrk mtype="seg" mid="193">File</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="193">Fail</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="193">Fail</mrk>Fail</target>
         
       <note>Class = "NSMenu"; title = "File"; ObjectID = "bib-Uj-vzu";</note></trans-unit>
       <trans-unit id="buJ-ug-pKt.title" xml:space="preserve">
         <source>Use Selection for Find</source><seg-source><mrk mtype="seg" mid="194">Use Selection for Find</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="194">Kasura Valikut et Leida</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="194">Kasura Valikut et Leida</mrk>Kasura Valikut et Leida</target>
         
       <note>Class = "NSMenuItem"; title = "Use Selection for Find"; ObjectID = "buJ-ug-pKt";</note></trans-unit>
       <trans-unit id="c8a-y6-VQd.title" xml:space="preserve">
         <source>Transformations</source><seg-source><mrk mtype="seg" mid="195">Transformations</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="195">Muudatused</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="195">Muudatused</mrk>Muudatused</target>
         
       <note>Class = "NSMenu"; title = "Transformations"; ObjectID = "c8a-y6-VQd";</note></trans-unit>
       <trans-unit id="cDB-IK-hbR.title" xml:space="preserve">
         <source>Use None</source><seg-source><mrk mtype="seg" mid="196">Use None</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="196">Ära Kasuta Ühtegi</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="196">Ära Kasuta Ühtegi</mrk>Ära Kasuta Ühtegi</target>
         
       <note>Class = "NSMenuItem"; title = "Use None"; ObjectID = "cDB-IK-hbR";</note></trans-unit>
       <trans-unit id="cqv-fj-IhA.title" xml:space="preserve">
         <source>Selection</source><seg-source><mrk mtype="seg" mid="197">Selection</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="197">Valikud</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="197">Valikud</mrk>Valikud</target>
         
       <note>Class = "NSMenuItem"; title = "Selection"; ObjectID = "cqv-fj-IhA";</note></trans-unit>
       <trans-unit id="cwL-P1-jid.title" xml:space="preserve">
         <source>Smart Links</source><seg-source><mrk mtype="seg" mid="198">Smart Links</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="198">Nutikad Lingid</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="198">Nutikad Lingid</mrk>Nutikad Lingid</target>
         
       <note>Class = "NSMenuItem"; title = "Smart Links"; ObjectID = "cwL-P1-jid";</note></trans-unit>
       <trans-unit id="d9M-CD-aMd.title" xml:space="preserve">
         <source>Make Lower Case</source><seg-source><mrk mtype="seg" mid="199">Make Lower Case</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="199">Tee Väikesteks Tähtedeks</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="199">Tee Väikesteks Tähtedeks</mrk>Tee Väikesteks Tähtedeks</target>
         
       <note>Class = "NSMenuItem"; title = "Make Lower Case"; ObjectID = "d9M-CD-aMd";</note></trans-unit>
       <trans-unit id="d9c-me-L2H.title" xml:space="preserve">
         <source>Text</source><seg-source><mrk mtype="seg" mid="200">Text</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="200">Tekst</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="200">Tekst</mrk>Tekst</target>
         
       <note>Class = "NSMenu"; title = "Text"; ObjectID = "d9c-me-L2H";</note></trans-unit>
       <trans-unit id="dMs-cI-mzQ.title" xml:space="preserve">
         <source>File</source><seg-source><mrk mtype="seg" mid="201">File</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="201">Fail</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="201">Fail</mrk>Fail</target>
         
       <note>Class = "NSMenuItem"; title = "File"; ObjectID = "dMs-cI-mzQ";</note></trans-unit>
       <trans-unit id="dRJ-4n-Yzg.title" xml:space="preserve">
         <source>Undo</source><seg-source><mrk mtype="seg" mid="202">Undo</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="202">Võta Tagasi</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="202">Võta Tagasi</mrk>Võta Tagasi</target>
         
       <note>Class = "NSMenuItem"; title = "Undo"; ObjectID = "dRJ-4n-Yzg";</note></trans-unit>
       <trans-unit id="gVA-U4-sdL.title" xml:space="preserve">
         <source>Paste</source><seg-source><mrk mtype="seg" mid="203">Paste</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="203">Kleebi</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="203">Kleebi</mrk>Kleebi</target>
         
       <note>Class = "NSMenuItem"; title = "Paste"; ObjectID = "gVA-U4-sdL";</note></trans-unit>
       <trans-unit id="gm3-6i-EnL.title" xml:space="preserve">
         <source>File Name</source><seg-source><mrk mtype="seg" mid="204">File Name</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="204">Faili Nimi</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="204">Faili Nimi</mrk>Faili Nimi</target>
         
       <note>Class = "NSTextFieldCell"; title = "File Name"; ObjectID = "gm3-6i-EnL";</note></trans-unit>
       <trans-unit id="hD5-Cz-ItX.title" xml:space="preserve">
         <source>New</source><seg-source><mrk mtype="seg" mid="205">New</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="205">Uus</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="205">Uus</mrk>Uus</target>
         
       <note>Class = "NSMenu"; title = "New"; ObjectID = "hD5-Cz-ItX";</note></trans-unit>
       <trans-unit id="hQb-2v-fYv.title" xml:space="preserve">
         <source>Smart Quotes</source><seg-source><mrk mtype="seg" mid="206">Smart Quotes</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="206">Nutikad Tsitaadid</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="206">Nutikad Tsitaadid</mrk>Nutikad Tsitaadid</target>
         
       <note>Class = "NSMenuItem"; title = "Smart Quotes"; ObjectID = "hQb-2v-fYv";</note></trans-unit>
       <trans-unit id="hkB-TU-Ps1.title" xml:space="preserve">
         <source>Presentation</source><seg-source><mrk mtype="seg" mid="207">Presentation</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="207">Esitlus</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="207">Esitlus</mrk>Esitlus</target>
         
       <note>Class = "NSMenuItem"; title = "Presentation"; ObjectID = "hkB-TU-Ps1";</note></trans-unit>
       <trans-unit id="hz2-CU-CR7.title" xml:space="preserve">
         <source>Check Document Now</source><seg-source><mrk mtype="seg" mid="208">Check Document Now</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="208">Vaata Dokumenti Nüüd</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="208">Vaata Dokumenti Nüüd</mrk>Vaata Dokumenti Nüüd</target>
         
       <note>Class = "NSMenuItem"; title = "Check Document Now"; ObjectID = "hz2-CU-CR7";</note></trans-unit>
       <trans-unit id="hz9-B4-Xy5.title" xml:space="preserve">
         <source>Services</source><seg-source><mrk mtype="seg" mid="209">Services</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="209">Teenused</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="209">Teenused</mrk>Teenused</target>
         
       <note>Class = "NSMenu"; title = "Services"; ObjectID = "hz9-B4-Xy5";</note></trans-unit>
       <trans-unit id="i1d-Er-qST.title" xml:space="preserve">
         <source>Smaller</source><seg-source><mrk mtype="seg" mid="210">Smaller</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="210">Väiksem</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="210">Väiksem</mrk>Väiksem</target>
         
       <note>Class = "NSMenuItem"; title = "Smaller"; ObjectID = "i1d-Er-qST";</note></trans-unit>
       <trans-unit id="ijk-EB-dga.title" xml:space="preserve">
         <source>Baseline</source><seg-source><mrk mtype="seg" mid="211">Baseline</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="211">Algtase</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="211">Algtase</mrk>Algtase</target>
         
       <note>Class = "NSMenu"; title = "Baseline"; ObjectID = "ijk-EB-dga";</note></trans-unit>
       <trans-unit id="jBQ-r6-VK2.title" xml:space="preserve">
         <source>Kern</source><seg-source><mrk mtype="seg" mid="212">Kern</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="212">Tähesobitus</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="212">Tähesobitus</mrk>Tähesobitus</target>
         
       <note>Class = "NSMenuItem"; title = "Kern"; ObjectID = "jBQ-r6-VK2";</note></trans-unit>
       <trans-unit id="jFq-tB-4Kx.title" xml:space="preserve">
@@ -1082,247 +1082,247 @@ Prooviperiood lõpeb %d päeva pärast. Peale seda ei saa luua ega muuta dokumen
       <note>Class = "NSMenuItem"; title = "\tRight to Left"; ObjectID = "jFq-tB-4Kx";</note></trans-unit>
       <trans-unit id="jxT-CU-nIS.title" xml:space="preserve">
         <source>Format</source><seg-source><mrk mtype="seg" mid="214">Format</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="214">Formaat</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="214">Formaat</mrk>Formaat</target>
         
       <note>Class = "NSMenuItem"; title = "Format"; ObjectID = "jxT-CU-nIS";</note></trans-unit>
       <trans-unit id="kcg-El-49G.label" xml:space="preserve">
         <source>ONLYOFFICE</source><seg-source><mrk mtype="seg" mid="215">ONLYOFFICE</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="215">ONLYOFFICE</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="215">ONLYOFFICE</mrk>ONLYOFFICE</target>
         
       <note>Class = "NSTabViewItem"; label = "ONLYOFFICE"; ObjectID = "kcg-El-49G";</note></trans-unit>
       <trans-unit id="m0C-e9-0oc.title" xml:space="preserve">
         <source>Cancel</source><seg-source><mrk mtype="seg" mid="216">Cancel</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="216">Tühista</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="216">Tühista</mrk>Tühista</target>
         
       <note>Class = "NSButtonCell"; title = "Cancel"; ObjectID = "m0C-e9-0oc";</note></trans-unit>
       <trans-unit id="mK6-2p-4JG.title" xml:space="preserve">
         <source>Check Grammar With Spelling</source><seg-source><mrk mtype="seg" mid="217">Check Grammar With Spelling</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="217">Kontrolli Grammatikat koos Õigekirjaga</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="217">Kontrolli Grammatikat koos Õigekirjaga</mrk>Kontrolli Grammatikat koos Õigekirjaga</target>
         
       <note>Class = "NSMenuItem"; title = "Check Grammar With Spelling"; ObjectID = "mK6-2p-4JG";</note></trans-unit>
       <trans-unit id="o6e-r0-MWq.title" xml:space="preserve">
         <source>Ligatures</source><seg-source><mrk mtype="seg" mid="218">Ligatures</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="218">Liittähed</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="218">Liittähed</mrk>Liittähed</target>
         
       <note>Class = "NSMenuItem"; title = "Ligatures"; ObjectID = "o6e-r0-MWq";</note></trans-unit>
       <trans-unit id="oas-Oc-fiZ.title" xml:space="preserve">
         <source>Open Recent</source><seg-source><mrk mtype="seg" mid="219">Open Recent</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="219">Ava Hiljutine</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="219">Ava Hiljutine</mrk>Ava Hiljutine</target>
         
       <note>Class = "NSMenu"; title = "Open Recent"; ObjectID = "oas-Oc-fiZ";</note></trans-unit>
       <trans-unit id="ogc-rX-tC1.title" xml:space="preserve">
         <source>Loosen</source><seg-source><mrk mtype="seg" mid="220">Loosen</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="220">Lõdvenda</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="220">Lõdvenda</mrk>Lõdvenda</target>
         
       <note>Class = "NSMenuItem"; title = "Loosen"; ObjectID = "ogc-rX-tC1";</note></trans-unit>
       <trans-unit id="pa3-QI-u2k.title" xml:space="preserve">
         <source>Delete</source><seg-source><mrk mtype="seg" mid="221">Delete</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="221">Kustuta</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="221">Kustuta</mrk>Kustuta</target>
         
       <note>Class = "NSMenuItem"; title = "Delete"; ObjectID = "pa3-QI-u2k";</note></trans-unit>
       <trans-unit id="pxx-59-PXV.title" xml:space="preserve">
         <source>Save</source><seg-source><mrk mtype="seg" mid="222">Save</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="222">Salvesta</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="222">Salvesta</mrk>Salvesta</target>
         
       <note>Class = "NSMenuItem"; title = "Save"; ObjectID = "pxx-59-PXV";</note></trans-unit>
       <trans-unit id="q09-fT-Sye.title" xml:space="preserve">
         <source>Find Next</source><seg-source><mrk mtype="seg" mid="223">Find Next</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="223">Leia Järgmine</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="223">Leia Järgmine</mrk>Leia Järgmine</target>
         
       <note>Class = "NSMenuItem"; title = "Find Next"; ObjectID = "q09-fT-Sye";</note></trans-unit>
       <trans-unit id="qIS-W8-SiK.title" xml:space="preserve">
         <source>Page Setup…</source><seg-source><mrk mtype="seg" mid="224">Page Setup…</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="224">Lehekülge Seaded...</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="224">Lehekülge Seaded...</mrk>Lehekülge Seaded...</target>
         
       <note>Class = "NSMenuItem"; title = "Page Setup…"; ObjectID = "qIS-W8-SiK";</note></trans-unit>
       <trans-unit id="rbD-Rh-wIN.title" xml:space="preserve">
         <source>Check Spelling While Typing</source><seg-source><mrk mtype="seg" mid="225">Check Spelling While Typing</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="225">Kontrolli Õigekirja samal ajal kirjutades</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="225">Kontrolli Õigekirja samal ajal kirjutades</mrk>Kontrolli Õigekirja samal ajal kirjutades</target>
         
       <note>Class = "NSMenuItem"; title = "Check Spelling While Typing"; ObjectID = "rbD-Rh-wIN";</note></trans-unit>
       <trans-unit id="rgM-f4-ycn.title" xml:space="preserve">
         <source>Smart Dashes</source><seg-source><mrk mtype="seg" mid="226">Smart Dashes</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="226">Nutikad Lisandid</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="226">Nutikad Lisandid</mrk>Nutikad Lisandid</target>
         
       <note>Class = "NSMenuItem"; title = "Smart Dashes"; ObjectID = "rgM-f4-ycn";</note></trans-unit>
       <trans-unit id="sGd-zc-V0B.title" xml:space="preserve">
         <source>Copyright info</source><seg-source><mrk mtype="seg" mid="227">Copyright info</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="227">Autoriõiguste teave</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="227">Autoriõiguste teave</mrk>Autoriõiguste teave</target>
         
       <note>Class = "NSTextFieldCell"; title = "Copyright info"; ObjectID = "sGd-zc-V0B";</note></trans-unit>
       <trans-unit id="snW-S8-Cw5.title" xml:space="preserve">
         <source>Show Toolbar</source><seg-source><mrk mtype="seg" mid="228">Show Toolbar</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="228">Näita Tööriistariba</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="228">Näita Tööriistariba</mrk>Näita Tööriistariba</target>
         
       <note>Class = "NSMenuItem"; title = "Show Toolbar"; ObjectID = "snW-S8-Cw5";</note></trans-unit>
       <trans-unit id="tRr-pd-1PS.title" xml:space="preserve">
         <source>Data Detectors</source><seg-source><mrk mtype="seg" mid="229">Data Detectors</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="229">Andmete Leidja</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="229">Andmete Leidja</mrk>Andmete Leidja</target>
         
       <note>Class = "NSMenuItem"; title = "Data Detectors"; ObjectID = "tRr-pd-1PS";</note></trans-unit>
       <trans-unit id="tXI-mr-wws.title" xml:space="preserve">
         <source>Open Recent</source><seg-source><mrk mtype="seg" mid="230">Open Recent</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="230">Ava Hiljutine</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="230">Ava Hiljutine</mrk>Ava Hiljutine</target>
         
       <note>Class = "NSMenuItem"; title = "Open Recent"; ObjectID = "tXI-mr-wws";</note></trans-unit>
       <trans-unit id="tlD-Oa-oAM.title" xml:space="preserve">
         <source>Kern</source><seg-source><mrk mtype="seg" mid="231">Kern</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="231">Tähesobitus</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="231">Tähesobitus</mrk>Tähesobitus</target>
         
       <note>Class = "NSMenu"; title = "Kern"; ObjectID = "tlD-Oa-oAM";</note></trans-unit>
       <trans-unit id="uQy-DD-JDr.title" xml:space="preserve">
         <source>ONLYOFFICE</source><seg-source><mrk mtype="seg" mid="232">ONLYOFFICE</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="232">ONLYOFFICE</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="232">ONLYOFFICE</mrk>ONLYOFFICE</target>
         
       <note>Class = "NSMenu"; title = "ONLYOFFICE"; ObjectID = "uQy-DD-JDr";</note></trans-unit>
       <trans-unit id="uRl-iY-unG.title" xml:space="preserve">
         <source>Cut</source><seg-source><mrk mtype="seg" mid="233">Cut</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="233">Lõika</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="233">Lõika</mrk>Lõika</target>
         
       <note>Class = "NSMenuItem"; title = "Cut"; ObjectID = "uRl-iY-unG";</note></trans-unit>
       <trans-unit id="ud7-wC-A79.title" xml:space="preserve">
         <source>Check for Updates…</source><seg-source><mrk mtype="seg" mid="234">Check for Updates…</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="234">Kontrolli Uuendusi</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="234">Kontrolli Uuendusi</mrk>Kontrolli Uuendusi</target>
         
       <note>Class = "NSMenuItem"; title = "Check for Updates…"; ObjectID = "ud7-wC-A79";</note></trans-unit>
       <trans-unit id="vKC-jM-MkH.title" xml:space="preserve">
         <source>Paste Style</source><seg-source><mrk mtype="seg" mid="235">Paste Style</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="235">Kleebi Stiil</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="235">Kleebi Stiil</mrk>Kleebi Stiil</target>
         
       <note>Class = "NSMenuItem"; title = "Paste Style"; ObjectID = "vKC-jM-MkH";</note></trans-unit>
       <trans-unit id="vLm-3I-IUL.title" xml:space="preserve">
         <source>Show Ruler</source><seg-source><mrk mtype="seg" mid="236">Show Ruler</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="236">Näita Joonlauda</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="236">Näita Joonlauda</mrk>Näita Joonlauda</target>
         
       <note>Class = "NSMenuItem"; title = "Show Ruler"; ObjectID = "vLm-3I-IUL";</note></trans-unit>
       <trans-unit id="vNY-rz-j42.title" xml:space="preserve">
         <source>Clear Menu</source><seg-source><mrk mtype="seg" mid="237">Clear Menu</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="237">Puhasta Menüü</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="237">Puhasta Menüü</mrk>Puhasta Menüü</target>
         
       <note>Class = "NSMenuItem"; title = "Clear Menu"; ObjectID = "vNY-rz-j42";</note></trans-unit>
       <trans-unit id="vmV-6d-7jI.title" xml:space="preserve">
         <source>Make Upper Case</source><seg-source><mrk mtype="seg" mid="238">Make Upper Case</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="238">Tee suurteks tähtedeks</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="238">Tee suurteks tähtedeks</mrk>Tee suurteks tähtedeks</target>
         
       <note>Class = "NSMenuItem"; title = "Make Upper Case"; ObjectID = "vmV-6d-7jI";</note></trans-unit>
       <trans-unit id="w0m-vy-SC9.title" xml:space="preserve">
         <source>Ligatures</source><seg-source><mrk mtype="seg" mid="239">Ligatures</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="239">Liittähed</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="239">Liittähed</mrk>Liittähed</target>
         
       <note>Class = "NSMenu"; title = "Ligatures"; ObjectID = "w0m-vy-SC9";</note></trans-unit>
       <trans-unit id="wb2-vD-lq4.title" xml:space="preserve">
         <source>Align Right</source><seg-source><mrk mtype="seg" mid="240">Align Right</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="240">Joonda Paremale</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="240">Joonda Paremale</mrk>Joonda Paremale</target>
         
       <note>Class = "NSMenuItem"; title = "Align Right"; ObjectID = "wb2-vD-lq4";</note></trans-unit>
       <trans-unit id="wpe-8d-5DV.title" xml:space="preserve">
         <source>Text Cell</source><seg-source><mrk mtype="seg" mid="241">Text Cell</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="241">Teksti Kast</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="241">Teksti Kast</mrk>Teksti Kast</target>
         
       <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "wpe-8d-5DV";</note></trans-unit>
       <trans-unit id="wpr-3q-Mcd.title" xml:space="preserve">
         <source>Help</source><seg-source><mrk mtype="seg" mid="242">Help</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="242">Abi</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="242">Abi</mrk>Abi</target>
         
       <note>Class = "NSMenuItem"; title = "Help"; ObjectID = "wpr-3q-Mcd";</note></trans-unit>
       <trans-unit id="x3v-GG-iWU.title" xml:space="preserve">
         <source>Copy</source><seg-source><mrk mtype="seg" mid="243">Copy</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="243">Kopeeri</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="243">Kopeeri</mrk>Kopeeri</target>
         
       <note>Class = "NSMenuItem"; title = "Copy"; ObjectID = "x3v-GG-iWU";</note></trans-unit>
       <trans-unit id="xCO-ey-2lo.title" xml:space="preserve">
         <source>Product</source><seg-source><mrk mtype="seg" mid="244">Product</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="244">Toode</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="244">Toode</mrk>Toode</target>
         
       <note>Class = "NSTextFieldCell"; title = "Product"; ObjectID = "xCO-ey-2lo";</note></trans-unit>
       <trans-unit id="xQD-1f-W4t.title" xml:space="preserve">
         <source>Use All</source><seg-source><mrk mtype="seg" mid="245">Use All</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="245">Kasuta Kõiki</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="245">Kasuta Kõiki</mrk>Kasuta Kõiki</target>
         
       <note>Class = "NSMenuItem"; title = "Use All"; ObjectID = "xQD-1f-W4t";</note></trans-unit>
       <trans-unit id="xrE-MZ-jX0.title" xml:space="preserve">
         <source>Speech</source><seg-source><mrk mtype="seg" mid="246">Speech</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="246">Kõne</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="246">Kõne</mrk>Kõne</target>
         
       <note>Class = "NSMenuItem"; title = "Speech"; ObjectID = "xrE-MZ-jX0";</note></trans-unit>
       <trans-unit id="z6F-FW-3nz.title" xml:space="preserve">
         <source>Show Substitutions</source><seg-source><mrk mtype="seg" mid="247">Show Substitutions</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="247">Näita Asendamisi</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="247">Näita Asendamisi</mrk>Näita Asendamisi</target>
         
       <note>Class = "NSMenuItem"; title = "Show Substitutions"; ObjectID = "z6F-FW-3nz";</note></trans-unit>
       <trans-unit id="zwS-9G-S0N.title" xml:space="preserve">
         <source>Portal:</source><seg-source><mrk mtype="seg" mid="248">Portal:</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="248">Portaal:</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="248">Portaal:</mrk>Portaal:</target>
         
       <note>Class = "NSTextFieldCell"; title = "Portal:"; ObjectID = "zwS-9G-S0N";</note></trans-unit>
     </body>
   </file>
   <file original="ONLYOFFICE/Base.lproj/MoveApplication.strings" source-language="en" target-language="et-EE" datatype="plaintext">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c" />
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c"/>
     </header>
     <body>
       <trans-unit id="Could not move to Applications folder" xml:space="preserve">
         <source>Could not move to Applications folder</source><seg-source><mrk mtype="seg" mid="249">Could not move to Applications folder</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="249">Ei saanud liigutada Rakenduste kausta</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="249">Ei saanud liigutada Rakenduste kausta</mrk>Ei saanud liigutada Rakenduste kausta</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Do Not Move" xml:space="preserve">
         <source>Do Not Move</source><seg-source><mrk mtype="seg" mid="250">Do Not Move</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="250">Ära Liiguta</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="250">Ära Liiguta</mrk>Ära Liiguta</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="I can move myself to the Applications folder if you'd like." xml:space="preserve">
         <source>I can move myself to the Applications folder if you'd like.</source><seg-source><mrk mtype="seg" mid="251">I can move myself to the Applications folder if you'd like.</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="251">Ma saan ennast liigutada Rakenduste kausta, kui sa soovid.</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="251">Ma saan ennast liigutada Rakenduste kausta, kui sa soovid.</mrk>Ma saan ennast liigutada Rakenduste kausta, kui sa soovid.</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Move to Applications Folder" xml:space="preserve">
         <source>Move to Applications Folder</source><seg-source><mrk mtype="seg" mid="252">Move to Applications Folder</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="252">Liiguta Rakenduste Kausta</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="252">Liiguta Rakenduste Kausta</mrk>Liiguta Rakenduste Kausta</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Move to Applications folder in your Home folder?" xml:space="preserve">
         <source>Move to Applications folder in your Home folder?</source><seg-source><mrk mtype="seg" mid="253">Move to Applications folder in your Home folder?</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="253">Liiguta Rakenduste kausta sinu Kodu kaustas?</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="253">Liiguta Rakenduste kausta sinu Kodu kaustas?</mrk>Liiguta Rakenduste kausta sinu Kodu kaustas?</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Move to Applications folder?" xml:space="preserve">
         <source>Move to Applications folder?</source><seg-source><mrk mtype="seg" mid="254">Move to Applications folder?</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="254">Liiguta Rakenduste kausta? </mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="254">Liiguta Rakenduste kausta? </mrk>Liiguta Rakenduste kausta?</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Note that this will require an administrator password." xml:space="preserve">
         <source>Note that this will require an administrator password.</source><seg-source><mrk mtype="seg" mid="255">Note that this will require an administrator password.</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="255">Pane tähele, et see vaja andministraatori salasõna.</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="255">Pane tähele, et see vaja andministraatori salasõna.</mrk>Pane tähele, et see vaja andministraatori salasõna.</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="This will keep your Downloads folder uncluttered." xml:space="preserve">
         <source>This will keep your Downloads folder uncluttered.</source><seg-source><mrk mtype="seg" mid="256">This will keep your Downloads folder uncluttered.</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="256">See hoiab sinu Allalaetud failide kausta korras.</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="256">See hoiab sinu Allalaetud failide kausta korras.</mrk>See hoiab sinu Allalaetud failide kausta korras.</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
     </body>
   </file>
   <file original="ONLYOFFICE/Base.lproj/Presentation-Reporter.storyboard" source-language="en" target-language="et-EE" datatype="plaintext">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c" />
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c"/>
     </header>
     <body>
       <trans-unit id="Ygx-5K-Hn8.title" xml:space="preserve">
         <source>Reporter Window</source><seg-source><mrk mtype="seg" mid="257">Reporter Window</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="257">Reporteri Aken</mrk></target>
+        <target state="translated"><mrk mtype="seg" mid="257">Reporteri Aken</mrk>Reporteri Aken</target>
         
       <note>Class = "NSWindow"; title = "Reporter Window"; ObjectID = "Ygx-5K-Hn8";</note></trans-unit>
     </body>
   </file>
   <file original="ONLYOFFICE/Resources/ONLYOFFICE/Base.lproj/InfoPlist.strings" source-language="en" target-language="et-EE" datatype="plaintext">
     <header>
-      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c" />
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c"/>
     </header>
     <body>
       <trans-unit id="CFBundleName" xml:space="preserve">
-        <source>ONLYOFFICE</source><seg-source><mrk mtype="seg" mid="258">ONLYOFFICE</mrk></seg-source><target><mrk mtype="seg" mid="258">ONLYOFFICE</mrk></target>
+        <source>ONLYOFFICE</source><seg-source><mrk mtype="seg" mid="258">ONLYOFFICE</mrk></seg-source><target state="translated"><mrk mtype="seg" mid="258">ONLYOFFICE</mrk>ONLYOFFICE</target>
         
       <note>Bundle name</note></trans-unit>
       <trans-unit id="NSHumanReadableCopyright" xml:space="preserve">

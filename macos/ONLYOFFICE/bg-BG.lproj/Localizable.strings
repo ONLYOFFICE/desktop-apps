@@ -1,0 +1,210 @@
+/* No comment provided by engineer. */
+"%@ Help" = "%@ Помощ%@ Помощ";
+
+/* No comment provided by engineer. */
+"About %@" = "Около %@Относно %@";
+
+/* No comment provided by engineer. */
+"Acknowledgments" = "ПотвържденияБлагодарности";
+
+/* No comment provided by engineer. */
+"Before signing the document, it must be saved." = "Преди да подпишете документа, той трябва да бъде записан.Преди подписване документът трябва да бъде запазен.";
+
+/* No comment provided by engineer. */
+"Cancel" = "ОтказОтказ";
+
+/* No comment provided by engineer. */
+"Cannot open file of Digital Signature" = "Не може да се отвори файла на цифровия подписФайлът не може да се отвори поради Дигитален Подпис";
+
+/* No comment provided by engineer. */
+"Cannot open file of Private Key" = "Не може да се отвори файла на частния ключФайлът не може да се отвори поради Личен Ключ";
+
+/* No comment provided by engineer. */
+"Cannot open folder of the file location." = "Не може да се отвори папка с местоположението на файла.Не може да се отвори папка на локацията на файла.";
+
+/* No comment provided by engineer. */
+"Comma-Separated Values" = "Стойности, разделени със запетая (*.csv)";
+
+/* No comment provided by engineer. */
+"Create portal" = "Създаване на порталСъздай портал";
+
+/* No comment provided by engineer. */
+"Delete and Quit" = "Изтриване и ИзходИзтрий и Излез";
+
+/* No comment provided by engineer. */
+"DjVu File" = "Дигитален документ (*.djvu)";
+
+/* No comment provided by engineer. */
+"Do you want to save the changes made to the document \"%@\"?" = "Искате ли да запазите промените, направени в документа \"%@\"?Искате ли да запазите промените в документ „%@“?";
+
+/* No comment provided by engineer. */
+"Document %ld.docx" = "Документ %ld.docxДокумент %ld.docx";
+
+/* No comment provided by engineer. */
+"Document template" = "Шаблон за документWord Open XML Шаблон за документ (*.dotx)";
+
+/* No comment provided by engineer. */
+"Excel 97-2003 Spreadsheet" = "Excel 97-2003 Таблица (*.xls)";
+
+/* No comment provided by engineer. */
+"Excel 2007 Spreadsheet" = "Office Open XML Таблица (*.xlsx)";
+
+/* No comment provided by engineer. */
+"File \"%@\" can not be open or not exist." = "Файлът \"%@\" не може да се отвори или не съществува.Файл \"%@\" не може да бъде отворен или не съществува.";
+
+/* No comment provided by engineer. */
+"File can not be open." = "Файлът не може да се отвори.Файлът не може да бъде отворен.";
+
+/* No comment provided by engineer. */
+"File Format:" = "Формат на файл:Формат на Файла:";
+
+/* No comment provided by engineer. */
+"Hide %@" = "Скрий %@Скрий %@";
+
+/* No comment provided by engineer. */
+"If you have already purchased %@, you should find your activation key in an email confirmation." = "Ако вече сте закупили %@, трябва да намерите ключа си за активиране в потвърждението по имейл.Ако вече сте закупили %@, трябва да откриете ключа си за активация в имейл потвърждението.";
+
+/* No comment provided by engineer. */
+"License Agreement" = "Лицензионно споразумениеЛицензионно Споразумение";
+
+/* No comment provided by engineer. */
+"Mobipocket e-book" = "Mobipocket Файл (*.mobi)";
+
+/* No comment provided by engineer. */
+"new-document" = "Нов документНов Документ";
+
+/* No comment provided by engineer. */
+"new-presentation" = "Нова презентацияНова Презентация";
+
+/* No comment provided by engineer. */
+"new-spreadsheet" = "Нова електронна таблицаНова Таблица";
+
+/* No comment provided by engineer. */
+"No" = "НеНе";
+
+/* No comment provided by engineer. */
+"OK" = "ОКОК";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE can not open the Digital Signature file. Try opening another file." = "ONLYOFFICE не може да отвори файла с цифровия подпис.ONLYOFFICE не може да отвори файла „Дигитален Подпис“. Опитайте да отворите друг файл.Опитайте да отворите друг файл.";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE can not open the Private Key. Try opening another file." = "ONLYOFFICE не може да отвори частния ключ.ONLYOFFICE не може да отвори „Личен Ключ“. Опитайте да отворите друг файл.Опитайте да отворите друг файл.";
+
+/* No comment provided by engineer. */
+"OpenDocument Document Template" = "Шаблон за документ на OpenDocumentOpenDocument Шаблон за документ (*.ott)";
+
+/* No comment provided by engineer. */
+"OpenDocument Presentation Template" = "Шаблон за презентация на OpenDocumentOpenDocument Шаблон за презентация (*.otp)";
+
+/* No comment provided by engineer. */
+"OpenDocument Spreadsheet Template" = "Шаблон за електронна таблица на OpenDocumentOpenDocument Шаблон за таблица (*.ots)";
+
+/* No comment provided by engineer. */
+"Opening" = "ОтварянеОтваряне";
+
+/* No comment provided by engineer. */
+"OpenOffice Document" = "OpenDocument Текстов файл (*.odt)";
+
+/* No comment provided by engineer. */
+"OpenOffice Presentation" = "OpenDocument Презентация (*.odp)";
+
+/* No comment provided by engineer. */
+"OpenOffice Spreadsheet" = "OpenOffice електронна таблицаOpenDocument Електронна таблица (*.ods)";
+
+/* No comment provided by engineer. */
+"PDF File" = "Дигитален документ (*.pdf)";
+
+/* No comment provided by engineer. */
+"PDF/A File" = "PDF/A файлДигитален документ / A (*.pdf)";
+
+/* No comment provided by engineer. */
+"Plain Text" = "Обикновен текстов файл (*.txt)";
+
+/* No comment provided by engineer. */
+"PowerPoint 97-2003 Presentation" = "Презентация на PowerPoint 97-2003PowerPoint 97-2003 Презентация (*.ppt)";
+
+/* No comment provided by engineer. */
+"PowerPoint 2007 Presentation" = "Office Open XML Презентация (*.pptx)";
+
+/* No comment provided by engineer. */
+"PowerPoint Slide Show" = "Слайдшоу на PowerPointOffice Open XML слайдшоу (*.ppsx)";
+
+/* No comment provided by engineer. */
+"Preparing..." = "Подготовка...Подготвяне…";
+
+/* No comment provided by engineer. */
+"Presentation %ld.pptx" = "Презентация %ld.pptxПрезентация %ld.pptx";
+
+/* No comment provided by engineer. */
+"Presentation template" = "Шаблон за презентацияPowerPoint Open XML Шаблон за презентация (*.potx)";
+
+/* No comment provided by engineer. */
+"Quit %@" = "Изход %@Излез от %@";
+
+/* No comment provided by engineer. */
+"Review Changes..." = "Преглед на промени...Преглед на Промените…";
+
+/* No comment provided by engineer. */
+"Rich Text Document" = "Rich Text документДокумент с богат текст (*.rtf)";
+
+/* No comment provided by engineer. */
+"Save" = "ЗапишиЗапази";
+
+/* No comment provided by engineer. */
+"Save the document?" = "Запазване на документа?Запазване на документа?";
+
+/* No comment provided by engineer. */
+"Spreadsheet %ld.xlsx" = "Електронна таблица %ld.xlsxТаблица %ld.xlsx";
+
+/* No comment provided by engineer. */
+"Spreadsheet template" = "Шаблон за електронна таблицаExcel Open XML Шаблон за таблица (*.xltx)";
+
+/* No comment provided by engineer. */
+"Thank you for evaluating %@!" = "Благодарим Ви за оценката %@!Благодарим Ви за оценяването на %@!";
+
+/* No comment provided by engineer. */
+"The document \"%@\" must be built. Continue?" = "Документът \"%@\" трябва да бъде създаден.Документът \"%@\" трябва да се създаде. Продължавате ли?Продължи?";
+
+/* No comment provided by engineer. */
+"To open the file location, it must be saved." = "За да отворите местоположението на файла, той трябва да бъде запазен.За да отворите локацията на файла, той трябва да бъде запазен.";
+
+/* No comment provided by engineer. */
+"Unconfirmed" = "НепотвърденНепотвърдено";
+
+/* No comment provided by engineer. */
+"Untitled" = "НеозаглавенНеозаглавено";
+
+/* No comment provided by engineer. */
+"Version %@ (%@)" = "Версия %1$@ (%2$@)Версия %1$@ (%2$@)";
+
+/* No comment provided by engineer. */
+"Web Page" = "Уеб страницаУеб Страница";
+
+/* No comment provided by engineer. */
+"Word 97-2003 Document" = "Word 97-2003 Документ (*.doc)";
+
+/* No comment provided by engineer. */
+"Word 2007 Document" = "Office Open XML Документ (*.docx)";
+
+/* No comment provided by engineer. */
+"XML Paper Specification" = "OpenXPS Документ (*.xps)";
+
+/* No comment provided by engineer. */
+"Yes" = "ДаДа";
+
+/* No comment provided by engineer. */
+"You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?" = "Имате %1$ld %2$@ документи с непотвърдени промени. Искате ли да прегледате тези промени, преди да излезете?Имате %1$ld %2$@ документа с непотвърдени промени. Искате ли да прегледате тези промени преди да излезете?";
+
+/* No comment provided by engineer. */
+"You have successfully activated %@." = "Активирахте успешно %@.Успешно активирахте %@.";
+
+/* No comment provided by engineer. */
+"Your changes will be lost if you don’t save them." = "Вашите промени ще бъдат загубени, ако не ги запазите.Промените Ви ще бъдат изгубени, ако не ги запазите.";
+
+/* No comment provided by engineer. */
+"Your subscription has expired.\n\nThe program works in the non-activated mode.\n\nNow you can prolong or upgrade your subscription with a discount." = "Абонаментът Ви е изтекъл.\n\nПрограмата работи в неактивиран режим.\n\nСега можете да удължите или надстроите Вашия абонамент с отстъпка.Абонаментът Ви е изтекъл.\n\nПрограмата работи в неактивиран режим.\n\nСега можете да удължите или да актуализирате абонамента си с отстъпка.";
+
+/* No comment provided by engineer. */
+"Your subscription is about to expire\n(%d days left).\n\nWe have a special offer for you." = "Вашият абонамент скоро изтича\n(Остават %d дни).\n\nИмаме специална оферта за Вас.Вашият абонамент изтича\n(остават %d дни).\n\nИмаме специална оферта за Вас.";
+

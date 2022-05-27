@@ -1,0 +1,210 @@
+/* No comment provided by engineer. */
+"%@ Help" = "%@ Súgó";
+
+/* No comment provided by engineer. */
+"About %@" = "Névjegy %@";
+
+/* No comment provided by engineer. */
+"Acknowledgments" = "Köszönetnyilvánítás";
+
+/* No comment provided by engineer. */
+"Before signing the document, it must be saved." = "Mielőtt alá lenne írva a dokumentum, el kell menteni.";
+
+/* No comment provided by engineer. */
+"Cancel" = "Mégse";
+
+/* No comment provided by engineer. */
+"Cannot open file of Digital Signature" = "Nem lehet megnyitni a Digitális Aláírás fájlját";
+
+/* No comment provided by engineer. */
+"Cannot open file of Private Key" = "Nem lehet megnyitni a Privát Kulcs fájlját";
+
+/* No comment provided by engineer. */
+"Cannot open folder of the file location." = "Nem lehet megnyitni a fálj helyének mappáját.";
+
+/* No comment provided by engineer. */
+"Comma-Separated Values" = "Vesszővel elválasztott értékek (*.csv)";
+
+/* No comment provided by engineer. */
+"Create portal" = "Portál készítése";
+
+/* No comment provided by engineer. */
+"Delete and Quit" = "Törlés és kilépés";
+
+/* No comment provided by engineer. */
+"DjVu File" = "Digitális dokumentum (*.djvu)";
+
+/* No comment provided by engineer. */
+"Do you want to save the changes made to the document \"%@\"?" = "Menti a(z) \"%@\" dokumentum módosításait?";
+
+/* No comment provided by engineer. */
+"Document %ld.docx" = "%ld.docx dokumentum";
+
+/* No comment provided by engineer. */
+"Document template" = "Word Open XML Dokumentumsablon (*.dotx)";
+
+/* No comment provided by engineer. */
+"Excel 97-2003 Spreadsheet" = "Excel 97-2003 számolótábla (*.xls)";
+
+/* No comment provided by engineer. */
+"Excel 2007 Spreadsheet" = "Office Open XML számolótábla (*.xlsx)";
+
+/* No comment provided by engineer. */
+"File \"%@\" can not be open or not exist." = "\"%@\" fájl nem nyitható meg vagy nem létezik.";
+
+/* No comment provided by engineer. */
+"File can not be open." = "A fájl nem nyitható meg.";
+
+/* No comment provided by engineer. */
+"File Format:" = "Fájlformátum:";
+
+/* No comment provided by engineer. */
+"Hide %@" = "%@ elrejtése";
+
+/* No comment provided by engineer. */
+"If you have already purchased %@, you should find your activation key in an email confirmation." = "Amennyiben már megvásárolta a(z) %@-t, az aktiválási kulcsot a visszaigazoló e-mailben találja.";
+
+/* No comment provided by engineer. */
+"License Agreement" = "Licencszerződés";
+
+/* No comment provided by engineer. */
+"Mobipocket e-book" = "Mobipocket e-könyv (*.mobi)";
+
+/* No comment provided by engineer. */
+"new-document" = "Új Dokumentum";
+
+/* No comment provided by engineer. */
+"new-presentation" = "Új Prezentáció";
+
+/* No comment provided by engineer. */
+"new-spreadsheet" = "Új Táblázat";
+
+/* No comment provided by engineer. */
+"No" = "Nem";
+
+/* No comment provided by engineer. */
+"OK" = "OK";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE can not open the Digital Signature file. Try opening another file." = "Az ONLYOFFICE nem tudja megnyitni a Digitális Aláírás fájlját. Próbáljon meg megnyitni egy másik fájlt.";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE can not open the Private Key. Try opening another file." = "Az ONLYOFFICE nem tudja megnyitni a Privát Kulcsot.. Próbáljon meg megnyitni egy másik fájlt.";
+
+/* No comment provided by engineer. */
+"OpenDocument Document Template" = "OpenDocument dokumentumsablon (*.ott)";
+
+/* No comment provided by engineer. */
+"OpenDocument Presentation Template" = "OpenDocument bemutatósablon (*.otp)";
+
+/* No comment provided by engineer. */
+"OpenDocument Spreadsheet Template" = "OpenDocument számolótábla-sablon (*.ots)";
+
+/* No comment provided by engineer. */
+"Opening" = "Megnyitás";
+
+/* No comment provided by engineer. */
+"OpenOffice Document" = "OpenDocument szöveges fájl (*.odt)";
+
+/* No comment provided by engineer. */
+"OpenOffice Presentation" = "OpenDocument prezentáció (*.odp)";
+
+/* No comment provided by engineer. */
+"OpenOffice Spreadsheet" = "OpenDocument számolótábla (*.ods)";
+
+/* No comment provided by engineer. */
+"PDF File" = "PDF-fájlformátum (*.pdf)";
+
+/* No comment provided by engineer. */
+"PDF/A File" = "PDF-fájlformátum / A (*.pdf)";
+
+/* No comment provided by engineer. */
+"Plain Text" = "Egyszerű szöveg (*.txt)";
+
+/* No comment provided by engineer. */
+"PowerPoint 97-2003 Presentation" = "PowerPoint 97-2003-as prezentáció (*.ppt)";
+
+/* No comment provided by engineer. */
+"PowerPoint 2007 Presentation" = "Office Open XML prezentáció (*.pptx)";
+
+/* No comment provided by engineer. */
+"PowerPoint Slide Show" = "Open XPS-dokumentumformátum (*.xps)";
+
+/* No comment provided by engineer. */
+"Preparing..." = "Előkészítés...";
+
+/* No comment provided by engineer. */
+"Presentation %ld.pptx" = "%ld.pptx bemutató";
+
+/* No comment provided by engineer. */
+"Presentation template" = "PowerPoint Open XML prezentáció sablon (*.potx)";
+
+/* No comment provided by engineer. */
+"Quit %@" = "A(z) %@ bezárása";
+
+/* No comment provided by engineer. */
+"Review Changes..." = "Változások áttekintése...";
+
+/* No comment provided by engineer. */
+"Rich Text Document" = "Rich Text formátumú fájl (*.rtf)";
+
+/* No comment provided by engineer. */
+"Save" = "Mentés";
+
+/* No comment provided by engineer. */
+"Save the document?" = "Menti a dokumentumot ?";
+
+/* No comment provided by engineer. */
+"Spreadsheet %ld.xlsx" = "%ld.xlsx számolótábla";
+
+/* No comment provided by engineer. */
+"Spreadsheet template" = "Excel Open XML számolótábla-sablon (*.xltx)";
+
+/* No comment provided by engineer. */
+"Thank you for evaluating %@!" = "Köszönjük, hogy értékelte a(z) %@-t!";
+
+/* No comment provided by engineer. */
+"The document \"%@\" must be built. Continue?" = "A \"%@\" dokumentumot meg kell építeni. Folytatás?";
+
+/* No comment provided by engineer. */
+"To open the file location, it must be saved." = "Ahhoz, hogy meg lehessen nyitni a fájl helyét, el kell menteni.";
+
+/* No comment provided by engineer. */
+"Unconfirmed" = "Nincs megerősítve";
+
+/* No comment provided by engineer. */
+"Untitled" = "Névtelen";
+
+/* No comment provided by engineer. */
+"Version %@ (%@)" = "%1$@ (%2$@) verzió";
+
+/* No comment provided by engineer. */
+"Web Page" = "Weboldal";
+
+/* No comment provided by engineer. */
+"Word 97-2003 Document" = "Word 97-2003-as dokumentum (*.doc)";
+
+/* No comment provided by engineer. */
+"Word 2007 Document" = "Office nyílt XML formátumú dokumentum (*.docx)";
+
+/* No comment provided by engineer. */
+"XML Paper Specification" = "OpenXPS dokumentum (*.xps)";
+
+/* No comment provided by engineer. */
+"Yes" = "Igen";
+
+/* No comment provided by engineer. */
+"You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?" = "%1$ld %2$@ megerősítés nélküli módosításokkal rendelkező dokumentuma van. Kilpés előtt áttekinti ezeket a módosításokat?";
+
+/* No comment provided by engineer. */
+"You have successfully activated %@." = "Sikeresen aktiválta a(z) %@-t.";
+
+/* No comment provided by engineer. */
+"Your changes will be lost if you don’t save them." = "A módosításai elvesznek, ha nem menti őket.";
+
+/* No comment provided by engineer. */
+"Your subscription has expired.\n\nThe program works in the non-activated mode.\n\nNow you can prolong or upgrade your subscription with a discount." = "Lejárt az előfizetése.\n\nA program az aktiválás nélküli módban működik.\n\nMost kedvezményesen meghosszabbíthatja előfizetését, vagy csomagot válthat.";
+
+/* No comment provided by engineer. */
+"Your subscription is about to expire\n(%d days left).\n\nWe have a special offer for you." = "Az előfizetése hamarosan lejár\n(%d nap van hátra).\n\nVan egy speciális ajánlatunk az Ön számára.";
+

@@ -238,8 +238,8 @@ namespace CEditorTools
 
 
             panel->setData(data);
-            if ( !rect.isEmpty() )
-                panel->setGeometry(rect);
+            //if ( !rect.isEmpty() )
+                //panel->setGeometry(rect);
         } else {
             delete panel, panel = nullptr;
         }
@@ -286,8 +286,7 @@ namespace CEditorTools
             pSaveData->put_Id(pData->get_Id());
             pSaveData->put_Path(L"");
 
-            int selected = info.suffix() == "docxf" ? AVS_OFFICESTUDIO_FILE_DOCUMENT_OFORM : -1;
-            if ( dlg.modalSaveAs(_full_path, selected) ) {
+            if ( dlg.modalSaveAs(_full_path) ) {
                 if ( _keep_path )
                     Utils::keepLastPath(LOCAL_PATH_SAVE, QFileInfo(_full_path).absoluteDir().absolutePath());
 

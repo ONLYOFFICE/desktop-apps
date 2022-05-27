@@ -85,6 +85,7 @@ private:
     QString m_filters;
     QMap<int, QString> m_mapFilters;
     int m_format;
+    bool m_useNativeDialogFlag;
 
 signals:
 

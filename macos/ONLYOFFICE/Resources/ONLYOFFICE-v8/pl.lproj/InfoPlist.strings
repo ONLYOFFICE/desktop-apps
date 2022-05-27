@@ -1,3 +1,6 @@
+/* Bundle name */
+"CFBundleName" = "ONLYOFFICE";
+
 /* Copyright (human-readable) */
 "NSHumanReadableCopyright" = "Copyright © 2021 Ascensio System SIA. Wszelkie prawa zastrzeżone.";
 
