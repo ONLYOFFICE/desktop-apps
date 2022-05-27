@@ -212,31 +212,31 @@ bool CWindowPlatform::nativeEvent(const QByteArray &eventType, void *message, lo
             long x = GET_X_LPARAM(msg->lParam);
             long y = GET_Y_LPARAM(msg->lParam);
             if (m_isResizeable) {
-                if (x < rect.left + border) {
-                    if (y < rect.top + border)
+                if (x <= rect.left + border) {
+                    if (y <= rect.top + border)
                         *result = HTTOPLEFT;
                     else
                     if (y > rect.top + border && y < rect.bottom - border)
                         *result = HTLEFT;
                     else
-                    if (y > rect.bottom - border)
+                    if (y >= rect.bottom - border)
                         *result = HTBOTTOMLEFT;
                 } else
                 if (x > rect.left + border && x < rect.right - border) {
-                    if (y < rect.top + border)
+                    if (y <= rect.top + border)
                         *result = HTTOP;
                     else
-                    if (y > rect.bottom - border)
+                    if (y >= rect.bottom - border)
                         *result = HTBOTTOM;
                 } else
-                if (x > rect.right - border) {
-                    if (y < rect.top + border)
+                if (x >= rect.right - border) {
+                    if (y <= rect.top + border)
                         *result = HTTOPRIGHT;
                     else
                     if (y > rect.top + border && y < rect.bottom - border)
                         *result = HTRIGHT;
                     else
-                    if (y > rect.bottom - border)
+                    if (y >= rect.bottom - border)
                         *result = HTBOTTOMRIGHT;
                 }
             }
