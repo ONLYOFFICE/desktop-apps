@@ -30,11 +30,11 @@
  *
 */
 
-#include "MainWindow.h"
+#include "mainwindow.h"
 
 #include <dwmapi.h>
 #include <windowsx.h>
-#include <windows.h>
+//#include <windows.h>
 #include <stdexcept>
 #include <functional>
 
@@ -58,10 +58,10 @@
 #include <QSettings>
 #include <QDebug>
 
-#ifdef _UPDMODULE
+/*#ifdef _UPDMODULE
   #include "3dparty/WinSparkle/include/winsparkle.h"
   #include "../version.h"
-#endif
+#endif*/
 
 using namespace std::placeholders;
 
@@ -79,11 +79,11 @@ auto refresh_window_scaling_factor(CMainWindow * window) -> void {
 CMainWindow::CMainWindow(QRect& rect) :
     hWnd(nullptr),
     hInstance(GetModuleHandle(nullptr)),
-    borderless( true ),
-    borderlessResizeable( true ),
+    m_pWinPanel(NULL),
     closed( false ),
     visible( false ),
-    m_pWinPanel(NULL)
+    borderless( true ),
+    borderlessResizeable( true )
 {
     // adjust window size
     QRect _window_rect = rect;
@@ -803,7 +803,7 @@ void CMainWindow::slot_mainPageReady()
 {
     CSplash::hideSplash();
 
-#ifdef _UPDMODULE
+/*#ifdef _UPDMODULE
     GET_REGISTRY_SYSTEM(reg_system)
 
     OSVERSIONINFO osvi;
@@ -867,10 +867,11 @@ void CMainWindow::slot_mainPageReady()
 
         AscAppManager::sendCommandTo(0, L"settings:check.updates", _wstr_rate);
     }
-#endif
+#endif*/
+
 }
 
-#if defined(_UPDMODULE)
+/*#if defined(_UPDMODULE)
 void CMainWindow::updateFound()
 {
     CLogger::log("updates found");
@@ -904,7 +905,7 @@ void CMainWindow::setAutocheckUpdatesInterval(const QString& s)
 
     }
 }
-#endif
+#endif*/
 
 void CMainWindow::doClose()
 {

@@ -1,6 +1,5 @@
 
 #include "cascapplicationmanagerwrapper.h"
-//#include "src/cascapplicationmanagerwrapper_private.h"
 #include "cascapplicationmanagerwrapperintf.h"
 
 #include <QMutexLocker>
@@ -29,19 +28,17 @@
 #include "OfficeFileFormats.h"
 
 #ifdef _WIN32
-# include <io.h>
-# include "csplash.h"
-# include <VersionHelpers.h>
-
-# ifdef _UPDMODULE
-   #include "3dparty/WinSparkle/include/winsparkle.h"
-# endif
+    #include <io.h>
+    #include "csplash.h"
+    #include <VersionHelpers.h>
+    /*#ifdef _UPDMODULE
+       #include "3dparty/WinSparkle/include/winsparkle.h"
+    #endif*/
 #else
-# include <unistd.h>
-
-# ifdef DOCUMENTSCORE_OPENSSL_SUPPORT
-#  include "linux/cdialogcertificateinfo.h"
-# endif
+    #include <unistd.h>
+    #ifdef DOCUMENTSCORE_OPENSSL_SUPPORT
+        #include "linux/cdialogcertificateinfo.h"
+    #endif
 #endif
 
 #include "../../../desktop-sdk/ChromiumBasedEditors/videoplayerlib/qascvideoview.h"
@@ -80,6 +77,17 @@ CAscApplicationManagerWrapper::CAscApplicationManagerWrapper(CAscApplicationMana
     NSBaseVideoLibrary::Init(nullptr);
 
     m_themes = std::make_shared<CThemes>();
+
+#ifdef _UPDMODULE
+    m_pUpdateManager = new CUpdateManager(this);
+    connect(m_pUpdateManager, &CUpdateManager::checkFinished, this, &CAscApplicationManagerWrapper::showUpdateMessage);
+#ifdef Q_OS_WIN
+    connect(m_pUpdateManager, &CUpdateManager::updateLoaded, this, &CAscApplicationManagerWrapper::showStartInstallMessage);
+    connect(m_pUpdateManager, &CUpdateManager::progresChanged, this, [=](const int &percent) {
+        AscAppManager::sendCommandTo(0, "updates:download", QString("{\"progress\":\"%1\"}").arg(QString::number(percent)));
+    });
+#endif
+#endif
 }
 
 CAscApplicationManagerWrapper::~CAscApplicationManagerWrapper()
@@ -275,15 +283,32 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
 //            RELEASEINTERFACE(event);
             return true;
         } else
-        if ( !(cmd.find(L"update") == std::wstring::npos) ) {
 #ifdef _UPDMODULE
-            if ( QString::fromStdWString(pData->get_Param()) == "check" ) {
-                CMainWindow::checkUpdates();
+        if ( !(cmd.find(L"update") == std::wstring::npos) ) {   // params: check, download, install, abort
+            const QString params = QString::fromStdWString(pData->get_Param());
+#ifdef Q_OS_WIN
+            if (params == "check") {
+                m_pUpdateManager->checkUpdates();
+            } else
+            if (params == "download") {
+                m_pUpdateManager->loadUpdates();
+            } else
+            if (params == "install") {
+                showStartInstallMessage();
+            } else
+            if (params == "abort") {
+                m_pUpdateManager->cancelLoading();
+                const QString new_version = m_pUpdateManager->getVersion();
+                AscAppManager::sendCommandTo(0, "updates:checking", QString("{\"version\":\"%1\"}").arg(new_version));
+            }
+#else
+            if (params == "check" || params == "download") {
+                m_pUpdateManager->checkUpdates();
             }
 #endif
-
             return true;
         } else
+#endif
         if ( cmd.compare(L"title:button") == 0 ) {
             map<int, CCefEventsGate *>::const_iterator it = m_receivers.find(event->get_SenderId());
             if ( it != m_receivers.cend() ) {
@@ -1198,6 +1223,13 @@ void CAscApplicationManagerWrapper::launchAppClose()
             }
         } else
         if ( !(m_countViews > 1) ) {
+#ifdef _UPDMODULE
+#ifdef Q_OS_WIN
+            // ========== Start update installation ============
+            m_pUpdateManager->handleAppClose();
+            // =================================================
+#endif
+#endif
             DestroyCefView(-1);
 
             if ( m_pMainWindow ) {
@@ -1563,11 +1595,6 @@ bool CAscApplicationManagerWrapper::applySettings(const wstring& wstrjson)
             params.append(L"&mode=view");
         }
 
-#ifdef _UPDMODULE
-        if ( objRoot.contains("checkupdatesrate") ) {
-            CMainWindow::setAutocheckUpdatesInterval(objRoot.value("checkupdatesrate").toString());
-        }
-#endif
 
         InputArgs::set_webapps_params(params);
         AscAppManager::getInstance().InitAdditionalEditorParams( params );
@@ -1580,6 +1607,19 @@ bool CAscApplicationManagerWrapper::applySettings(const wstring& wstrjson)
             m_private->m_openEditorWindow = objRoot["editorwindowmode"].toBool();
             _reg_user.setValue("editorWindowMode", m_private->m_openEditorWindow);
         }
+#ifdef _UPDMODULE
+#ifdef Q_OS_WIN
+        if ( objRoot.contains("autoupdatemode") ) {
+            _reg_user.setValue("autoUpdateMode", objRoot["autoupdatemode"].toString());
+        }
+#else
+        if ( objRoot.contains("checkupdatesinterval") ) {
+            const QString interval = objRoot["checkupdatesinterval"].toString();
+            _reg_user.setValue("checkUpdatesInterval", interval);
+            m_pUpdateManager->setNewUpdateSetting(interval);
+        }
+#endif
+#endif
     } else {
         /* parse settings error */
     }
@@ -1656,12 +1696,12 @@ CThemes& CAscApplicationManagerWrapper::themes()
 bool CAscApplicationManagerWrapper::canAppClose()
 {
 #ifdef Q_OS_WIN
-# ifdef _UPDMODULE
+    /*#ifdef _UPDMODULE
     if ( win_sparkle_is_processing() ) {
         CMessage mess(mainWindow()->handle(), CMessageOpts::moButtons::mbYesNo);
         return mess.confirm(tr("Update is running. Break update and close the app?")) == MODAL_RESULT_CUSTOM;
     }
-# endif
+    #endif*/
 #endif
 
     APP_CAST(_app);
@@ -1867,7 +1907,7 @@ QString CAscApplicationManagerWrapper::newFileName(int format)
     }
 }
 
-void CAscApplicationManagerWrapper::checkUpdates()
+/*void CAscApplicationManagerWrapper::checkUpdates()
 {
     APP_CAST(_app);
 
@@ -1876,7 +1916,7 @@ void CAscApplicationManagerWrapper::checkUpdates()
     }
 
     _app.m_updater->checkUpdates();
-}
+}*/
 
 wstring CAscApplicationManagerWrapper::userSettings(const wstring& name)
 {
@@ -1926,3 +1966,72 @@ void CAscApplicationManagerWrapper::addStylesheets(CScalingFactor f, const std::
     } else m_mapStyles[f].push_back(path);
 
 }
+
+#ifdef _UPDMODULE
+void CAscApplicationManagerWrapper::showUpdateMessage(const bool error,
+                                                      const bool updateExist,
+                                                      const QString &version,
+                                                      const QString &changelog)
+{
+    Q_UNUSED(changelog);
+    if (!error && updateExist) {
+        AscAppManager::sendCommandTo(0, "updates:checking", QString("{\"version\":\"%1\"}").arg(version));
+        auto msg = [=]() {
+            QTimer::singleShot(100, this, [=](){
+                CMessage mbox(mainWindow()->handle(), CMessageOpts::moButtons::mbYesNo);
+//                mbox.setButtons({"Yes", "No"});
+                switch (mbox.info(tr("Do you want to install a new version %1 of the program?").arg(version))) {
+                case MODAL_RESULT_CUSTOM + 0:
+#ifdef Q_OS_WIN
+                    m_pUpdateManager->loadUpdates();
+#else
+                    QDesktopServices::openUrl(QUrl(DOWNLOAD_PAGE, QUrl::TolerantMode));
+#endif
+                    break;
+                default:
+                    break;
+                }
+            });
+        };
+
+#ifdef Q_OS_WIN
+        GET_REGISTRY_USER(reg_user);
+        const QString mode = reg_user.value("autoUpdateMode").toString();
+        if (mode == "silent") {
+            m_pUpdateManager->loadUpdates();
+        } else
+        if (mode == "ask") {
+            msg();
+        }
+#else
+        msg();
+#endif
+    } else
+    if (!error && !updateExist) {
+        AscAppManager::sendCommandTo(0, "updates:checking", "{\"version\":\"no\"}");
+    } else
+    if (error) {
+        //qDebug() << "Error while loading check file...";
+    }
+}
+
+#ifdef Q_OS_WIN
+void CAscApplicationManagerWrapper::showStartInstallMessage()
+{
+    AscAppManager::sendCommandTo(0, "updates:download", "{\"progress\":\"done\"}");
+    CMessage mbox(mainWindow()->handle(), CMessageOpts::moButtons::mbYesNo);
+//    mbox.setButtons({"Yes", "No"});
+    switch (mbox.info(tr("Do you want to install a new version of the program?\n"
+                         "To continue the installation, you must to close current session.")))
+    {
+    case MODAL_RESULT_CUSTOM + 0: {
+        m_pUpdateManager->scheduleRestartForUpdate();
+        closeMainWindow();
+        break;
+    }
+    default:
+        break;
+    }
+}
+#endif
+#endif

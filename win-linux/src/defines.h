@@ -89,6 +89,7 @@
 #define ACTIONPANEL_ACTIVATE    ACTIONPANEL_CONNECT + 1
 
 #define URL_AGPL "https://www.gnu.org/licenses/agpl-3.0.en.html"
+#define DOWNLOAD_PAGE "https://www.onlyoffice.com/en/download-desktop.aspx"
 
 #define DOCUMENT_CHANGED_LOADING_START          -255
 #define DOCUMENT_CHANGED_LOADING_FINISH         -254

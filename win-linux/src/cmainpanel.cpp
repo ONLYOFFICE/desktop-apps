@@ -61,12 +61,11 @@
 #include "../Common/OfficeFileFormats.h"
 
 #ifdef _WIN32
-#include "win/cprintdialog.h"
-#include "shlobj.h"
-
+    #include "win/cprintdialog.h"
+    #include "shlobj.h"
 #else
-#define gTopWinId this
-#include "linux/cx11decoration.h"
+    #define gTopWinId this
+    #include "linux/cx11decoration.h"
 #endif
 
 using namespace NSEditorApi;
@@ -74,10 +73,9 @@ using namespace std::placeholders;
 
 #define QCEF_CAST(Obj) qobject_cast<QCefView *>(Obj)
 #ifdef _WIN32
-#define TOP_NATIVE_WINDOW_HANDLE HWND(parentWidget()->property("handleTopWindow").toInt())
+    #define TOP_NATIVE_WINDOW_HANDLE HWND(parentWidget()->property("handleTopWindow").toInt())
 #else
-#define TOP_NATIVE_WINDOW_HANDLE this
-//#define TOP_NATIVE_WINDOW_HANDLE qobject_cast<QWidget *>(parent())
+    #define TOP_NATIVE_WINDOW_HANDLE this
 #endif
 
 
