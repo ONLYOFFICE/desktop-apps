@@ -123,9 +123,9 @@ void CUpdateManager::onCompleteSlot(const int error)
 void CUpdateManager::init()
 {
     GET_REGISTRY_USER(reg_user);
-
+    QStringList filter{"*.json"};
 #ifdef Q_OS_WIN
-    QStringList filter{"*.json", "*.exe"};
+    filter << "*.exe";
 
     reg_user.beginGroup("Updates");
 
@@ -381,10 +381,10 @@ void CUpdateManager::onLoadCheckFinished()
         m_packageArgs = arguments.toString().toStdWString();
 #endif
         bool updateExist = false;
-        int curr_ver[4] = {VER_NUM_MAJOR, VER_NUM_MINOR, VER_NUM_BUILD, VER_NUM_REVISION};
-        QStringList ver = version.toString().split('.');
-        for (int i = 0; i < std::min(ver.size(), 4); i++) {
-            if (ver.at(i).toInt() > curr_ver[i]) {
+        const QStringList curr_ver = QString::fromLatin1(VER_FILEVERSION_STR).split('.');
+        const QStringList ver = version.toString().split('.');
+        for (int i = 0; i < std::min(ver.size(), curr_ver.size()); i++) {
+            if (ver.at(i).toInt() > curr_ver.at(i).toInt()) {
                 updateExist = true;
                 break;
             }
