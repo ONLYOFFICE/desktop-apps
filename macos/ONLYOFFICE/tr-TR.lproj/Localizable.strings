@@ -23,7 +23,7 @@
 "Cannot open folder of the file location." = "Dosya konumunun klasörü açılamıyor";
 
 /* No comment provided by engineer. */
-"Comma-Separated Values" = "Virgül ile Ayrılmış Değerler";
+"Comma-Separated Values" = "Virgülle Ayrılmış Değerler (*.csv)";
 
 /* No comment provided by engineer. */
 "Create portal" = "Portal yarat";
@@ -32,7 +32,7 @@
 "Delete and Quit" = "Sil ve Çıkış Yap";
 
 /* No comment provided by engineer. */
-"DjVu File" = "DjVu Dosyası";
+"DjVu File" = "Dijital Belge (*.djvu)";
 
 /* No comment provided by engineer. */
 "Do you want to save the changes made to the document \"%@\"?" = "Belgeye yapılan değişiklikleri kaydetmek istiyor musunuz \"%@\"?";
@@ -41,13 +41,13 @@
 "Document %ld.docx" = "Belge %ld.docx";
 
 /* No comment provided by engineer. */
-"Document template" = "Belge şablonu";
+"Document template" = "Word Open XML Belge şablonu (*.dotx)";
 
 /* No comment provided by engineer. */
-"Excel 97-2003 Spreadsheet" = "Excel 97-2003 Tablosu";
+"Excel 97-2003 Spreadsheet" = "Excel 97-2003 Elektronik Tablosu (*.xls)";
 
 /* No comment provided by engineer. */
-"Excel 2007 Spreadsheet" = "Excel 2007 Tablosu";
+"Excel 2007 Spreadsheet" = "Office Open XML Elektronik Tablosu (*.xlsx)";
 
 /* No comment provided by engineer. */
 "File \"%@\" can not be open or not exist." = " \"%@\" dosyası açılamıyor veya mevcut değil.";
@@ -71,7 +71,7 @@
 "License Agreement" = "Lisans Anlaşması";
 
 /* No comment provided by engineer. */
-"Mobipocket e-book" = "Mobipocket e-kitap";
+"Mobipocket e-book" = "Mobipocket e-kitap (*.mobi)";
 
 /* No comment provided by engineer. */
 "new-document" = "Yeni Belge";
@@ -95,43 +95,43 @@
 "ONLYOFFICE can not open the Private Key. Try opening another file." = "ONLYOFFICE Özel Anahtar dosyasını açamıyor. Başka bir dosya açmayı deneyin.";
 
 /* No comment provided by engineer. */
-"OpenDocument Document Template" = "OpenDocument Belge Şablonu";
+"OpenDocument Document Template" = "OpenDocument Belge Şablonu (*.ott)";
 
 /* No comment provided by engineer. */
-"OpenDocument Presentation Template" = "OpenDocument Sunum Şablonu";
+"OpenDocument Presentation Template" = "OpenDocument Sunum Şablonu (*.otp)";
 
 /* No comment provided by engineer. */
-"OpenDocument Spreadsheet Template" = "OpenDocument Tablo Şablonu";
+"OpenDocument Spreadsheet Template" = "OpenDocument Tablo Şablonu (*.ots)";
 
 /* No comment provided by engineer. */
 "Opening" = "Açılıyor";
 
 /* No comment provided by engineer. */
-"OpenOffice Document" = "OpenOffice Belgesi";
+"OpenOffice Document" = "OpenDocument Metin dosyası (*.odt)";
 
 /* No comment provided by engineer. */
-"OpenOffice Presentation" = "OpenOffice Sunumu";
+"OpenOffice Presentation" = "OpenDocument Sunumu (*.odp)";
 
 /* No comment provided by engineer. */
-"OpenOffice Spreadsheet" = "OpenOffice Tablosu";
+"OpenOffice Spreadsheet" = "OpenDocument Tablosu (*.ods)";
 
 /* No comment provided by engineer. */
-"PDF File" = "PDF Dosyası";
+"PDF File" = "Taşınabilir Belge (*.pdf)";
 
 /* No comment provided by engineer. */
-"PDF/A File" = "PDF/A Dosyası";
+"PDF/A File" = "Taşınabilir Belge / A (*.pdf)";
 
 /* No comment provided by engineer. */
-"Plain Text" = "Düz Metin";
+"Plain Text" = "Düz Metin (*.txt)";
 
 /* No comment provided by engineer. */
-"PowerPoint 97-2003 Presentation" = "PowerPoint 97-2003 Sunumu";
+"PowerPoint 97-2003 Presentation" = "PowerPoint 97-2003 Sunumu (*.ppt)";
 
 /* No comment provided by engineer. */
-"PowerPoint 2007 Presentation" = "PowerPoint 2007 Sunumu";
+"PowerPoint 2007 Presentation" = "Office Open XML Sunumu (*.pptx)";
 
 /* No comment provided by engineer. */
-"PowerPoint Slide Show" = "PowerPoint Slayt Gösterisi";
+"PowerPoint Slide Show" = "Office Open XML Slayt Gösterisi (*.ppsx)";
 
 /* No comment provided by engineer. */
 "Preparing..." = "Hazırlanıyor...";
@@ -140,7 +140,7 @@
 "Presentation %ld.pptx" = "Sunum %ld.pptx";
 
 /* No comment provided by engineer. */
-"Presentation template" = "Sunum şablonu";
+"Presentation template" = "PowerPoint Open XML Sunum Şablonu (*.potx)";
 
 /* No comment provided by engineer. */
 "Quit %@" = "Çık %@";
@@ -149,7 +149,7 @@
 "Review Changes..." = "Değişiklikleri Gözden Geçir...";
 
 /* No comment provided by engineer. */
-"Rich Text Document" = "Zengin Metin Belgesi";
+"Rich Text Document" = "Zengin Metin Format Dosyası (*.rtf)";
 
 /* No comment provided by engineer. */
 "Save" = "Kaydet";
@@ -161,7 +161,7 @@
 "Spreadsheet %ld.xlsx" = "Tablo %ld.xlsx";
 
 /* No comment provided by engineer. */
-"Spreadsheet template" = "Tablo şablonu";
+"Spreadsheet template" = "Excel Open XML Tablo Şablonu (*.xltx)";
 
 /* No comment provided by engineer. */
 "Thank you for evaluating %@!" = "%@ değerlendirmeniz için teşekkürler!";
@@ -185,13 +185,13 @@
 "Web Page" = "Web Sayfası";
 
 /* No comment provided by engineer. */
-"Word 97-2003 Document" = "Word 97-2003 Belgesi";
+"Word 97-2003 Document" = "Word 97-2003 Belgesi (*.doc)";
 
 /* No comment provided by engineer. */
-"Word 2007 Document" = "Word 2007 Belgesi";
+"Word 2007 Document" = "Office Open XML Belgesi (*.docx)";
 
 /* No comment provided by engineer. */
-"XML Paper Specification" = "XML Kağıt Özelliği";
+"XML Paper Specification" = "OpenXPS Belgesi (*.xps)";
 
 /* No comment provided by engineer. */
 "Yes" = "Evet";

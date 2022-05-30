@@ -23,7 +23,7 @@
 "Cannot open folder of the file location." = "ファイルの場所にあるフォルダを開けません。";
 
 /* No comment provided by engineer. */
-"Comma-Separated Values" = "コンマで区切られた値";
+"Comma-Separated Values" = "コンマで区切られた値 (*.csv)";
 
 /* No comment provided by engineer. */
 "Create portal" = "ポータルサイトの作成";
@@ -32,7 +32,7 @@
 "Delete and Quit" = "削除して終了";
 
 /* No comment provided by engineer. */
-"DjVu File" = "DjVuファイル";
+"DjVu File" = "デジタルドキュメント(*.djvu)";
 
 /* No comment provided by engineer. */
 "Do you want to save the changes made to the document \"%@\"?" = "ドキュメントに加えた変更を保存しますか\"%@\"?";
@@ -41,19 +41,19 @@
 "Document %ld.docx" = "ドキュメント %ld.docx";
 
 /* No comment provided by engineer. */
-"Document template" = "ドキュメントテンプレート";
+"Document template" = "Word オープン XMLドキュメントテンプレート (*.dotx)";
 
 /* No comment provided by engineer. */
-"Electronic Publication" = "電子出版";
+"Electronic Publication" = "電子出版ファイル (*.epub)";
 
 /* No comment provided by engineer. */
-"Excel 97-2003 Spreadsheet" = "Excel 97-2003 スプレッドシート";
+"Excel 97-2003 Spreadsheet" = "Excel 97-2003 スプレッドシート(*.xls)";
 
 /* No comment provided by engineer. */
-"Excel 2007 Spreadsheet" = "Excel 2007 スプレッドシート";
+"Excel 2007 Spreadsheet" = "Office オープン XML スプレッドシート(*.xlsx)";
 
 /* No comment provided by engineer. */
-"FictionBook File" = "フィクションブックファイル";
+"FictionBook File" = "FictionBook 2ファイル (*.fb2)";
 
 /* No comment provided by engineer. */
 "File \"%@\" can not be open or not exist." = "ファイル \"%@\" が開けないか、または存在しません。";
@@ -68,7 +68,7 @@
 "Hide %@" = "%@を非表示";
 
 /* No comment provided by engineer. */
-"HTML File" = "HTMLファイル";
+"HTML File" = "ハイパーテキスト マークアップ言語 ファイル (*.html)";
 
 /* No comment provided by engineer. */
 "If you have already purchased %@, you should find your activation key in an email confirmation." = "既に%@を購入されている方は、確認メールに活発化キーが記載されています。";
@@ -77,10 +77,10 @@
 "License Agreement" = "ライセンス契約";
 
 /* No comment provided by engineer. */
-"MHT File" = "MHTファイル";
+"MHT File" = "Web ページのアーカイブ ファイル (*.mht)";
 
 /* No comment provided by engineer. */
-"Mobipocket e-book" = "モビポケ電子書籍";
+"Mobipocket e-book" = "Mobipocketファイル (*.mobi)";
 
 /* No comment provided by engineer. */
 "new-document" = "新規ドキュメント";
@@ -104,43 +104,43 @@
 "ONLYOFFICE can not open the Private Key. Try opening another file." = "ONLYOFFICEは、非公開鍵を開けません。別のファイルを開いてみてください。";
 
 /* No comment provided by engineer. */
-"OpenDocument Document Template" = "OpenDocumentドキュメントテンプレート";
+"OpenDocument Document Template" = "OpenDocument ドキュメントテンプレート (*.ott)";
 
 /* No comment provided by engineer. */
-"OpenDocument Presentation Template" = "OpenDocumentプレゼンテーションテンプレート";
+"OpenDocument Presentation Template" = "OpenDocument プレゼンテーションテンプレート (*.otp)";
 
 /* No comment provided by engineer. */
-"OpenDocument Spreadsheet Template" = "OpenDocument スプレッドシートテンプレート";
+"OpenDocument Spreadsheet Template" = "OpenDocument スプレッドシートテンプレート (*.ots)";
 
 /* No comment provided by engineer. */
 "Opening" = "開いている";
 
 /* No comment provided by engineer. */
-"OpenOffice Document" = "OpenOfficeドキュメント";
+"OpenOffice Document" = "OpenDocument テキスト ファイル (*.odt)";
 
 /* No comment provided by engineer. */
-"OpenOffice Presentation" = "OpenOfficeプレゼンテーション";
+"OpenOffice Presentation" = "OpenDocumentプレゼンテーションく(*.odp)";
 
 /* No comment provided by engineer. */
-"OpenOffice Spreadsheet" = "OpenOfficeスプレッドシート";
+"OpenOffice Spreadsheet" = "OpenDocumentスプレッドシート(*.ods)";
 
 /* No comment provided by engineer. */
-"PDF File" = "PDFファイル";
+"PDF File" = "ポータブルドキュメント (*.pdf)";
 
 /* No comment provided by engineer. */
-"PDF/A File" = "PDF/Aファイル";
+"PDF/A File" = "ポータブルドキュメント / A (*.pdf)";
 
 /* No comment provided by engineer. */
-"Plain Text" = "標準文字";
+"Plain Text" = "プレーンテキストファイル (*.txt)";
 
 /* No comment provided by engineer. */
-"PowerPoint 97-2003 Presentation" = "PowerPoint 97-2003 プレゼンテーション";
+"PowerPoint 97-2003 Presentation" = "PowerPoint 97-2003プレゼンテーション(*.ppt)";
 
 /* No comment provided by engineer. */
-"PowerPoint 2007 Presentation" = "PowerPoint 2007 プレゼンテーション";
+"PowerPoint 2007 Presentation" = "OfficeオープンXMLプレゼンテーション(*.pptx)";
 
 /* No comment provided by engineer. */
-"PowerPoint Slide Show" = "PowerPointスライドショー";
+"PowerPoint Slide Show" = "Office オープン XMLスライドショー(*.ppsx)";
 
 /* No comment provided by engineer. */
 "Preparing..." = "準備中...";
@@ -149,7 +149,7 @@
 "Presentation %ld.pptx" = "プレゼンテーション%ld.pptx";
 
 /* No comment provided by engineer. */
-"Presentation template" = "プレゼンテーション用テンプレート";
+"Presentation template" = "PowerPoint オープン XMLプレゼンテーションテンプレート (*.potx)";
 
 /* No comment provided by engineer. */
 "Presenter View" = "発表者ビュー";
@@ -161,7 +161,7 @@
 "Review Changes..." = "レビュー変更...";
 
 /* No comment provided by engineer. */
-"Rich Text Document" = "リッチテキスト文書";
+"Rich Text Document" = "リッチ テキスト形式ファイル(*.rtf)";
 
 /* No comment provided by engineer. */
 "Save" = "保存";
@@ -173,7 +173,7 @@
 "Spreadsheet %ld.xlsx" = "スプレッドシート %ld.xlsx";
 
 /* No comment provided by engineer. */
-"Spreadsheet template" = "スプレッドシートのテンプレート";
+"Spreadsheet template" = "Excel オープン XML スプレッドシートテンプレート (*.xltx)";
 
 /* No comment provided by engineer. */
 "Thank you for evaluating %@!" = "%@評価いただきありがとうございました!";
@@ -200,13 +200,13 @@
 "With access to pro features" = "プロ機能へのアクセス";
 
 /* No comment provided by engineer. */
-"Word 97-2003 Document" = "Word 97-2003 ドキュメント";
+"Word 97-2003 Document" = "Word 97-2003ドキュメント(*.doc)";
 
 /* No comment provided by engineer. */
-"Word 2007 Document" = "Word 2007 ドキュメント";
+"Word 2007 Document" = "Office オープン XML ドキュメント(*.docx)";
 
 /* No comment provided by engineer. */
-"XML Paper Specification" = "XMLペーパー仕様";
+"XML Paper Specification" = "OpenXPSドキュメント (*.xps)";
 
 /* No comment provided by engineer. */
 "Yes" = "はい";

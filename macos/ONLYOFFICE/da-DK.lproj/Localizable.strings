@@ -23,7 +23,7 @@
 "Cannot open folder of the file location." = "Kan ikke åbne mappen på filplaceringen.";
 
 /* No comment provided by engineer. */
-"Comma-Separated Values" = "Kommasepareret fil";
+"Comma-Separated Values" = "Kommaseparerede værdier (*.csv)";
 
 /* No comment provided by engineer. */
 "Create portal" = "Opret portal";
@@ -32,7 +32,7 @@
 "Delete and Quit" = "Slet of Afslut";
 
 /* No comment provided by engineer. */
-"DjVu File" = "DjVu Fil";
+"DjVu File" = "Digitalt dokument (*.djvu)";
 
 /* No comment provided by engineer. */
 "Do you want to save the changes made to the document \"%@\"?" = "Vil du gemme ændringer der er blevet lavet i dokumentet \"%@\"?";
@@ -41,13 +41,13 @@
 "Document %ld.docx" = "Dokument %ld.docx";
 
 /* No comment provided by engineer. */
-"Document template" = "Dokumentskabelon";
+"Document template" = "Word Open XML Dokumentskabelon (*.dotx)";
 
 /* No comment provided by engineer. */
-"Excel 97-2003 Spreadsheet" = "Excel 97-2003 Regneark";
+"Excel 97-2003 Spreadsheet" = "Excel 97-2003-regneark (*.xls)";
 
 /* No comment provided by engineer. */
-"Excel 2007 Spreadsheet" = "Excel 2007 Regneark";
+"Excel 2007 Spreadsheet" = "Office Open XML-regneark (*.docx)";
 
 /* No comment provided by engineer. */
 "File \"%@\" can not be open or not exist." = "Fil \"%@\" kan ikke åbnes eller eksisterer ikke.";
@@ -68,7 +68,7 @@
 "License Agreement" = "Licensaftale";
 
 /* No comment provided by engineer. */
-"Mobipocket e-book" = "Mobipocket e-bog";
+"Mobipocket e-book" = "Mobipocket e-bog (*.mobi)";
 
 /* No comment provided by engineer. */
 "new-document" = "Nyt dokument";
@@ -92,40 +92,40 @@
 "ONLYOFFICE can not open the Private Key. Try opening another file." = "ONLYOFFICE kan ikke åbne den private nøgle. Prøv at åbne en anden fil.";
 
 /* No comment provided by engineer. */
-"OpenDocument Document Template" = "OpenDocument dokumentskabelon";
+"OpenDocument Document Template" = "OpenDocument Dokumentskabelon (*.ott)";
 
 /* No comment provided by engineer. */
-"OpenDocument Presentation Template" = "OpenDocument præsentationsskabelon";
+"OpenDocument Presentation Template" = "OpenDocument Præsentationsskabelon  (*.otp)";
 
 /* No comment provided by engineer. */
-"OpenDocument Spreadsheet Template" = "OpenDocument regnearksskabelon";
+"OpenDocument Spreadsheet Template" = "OpenDocument Regnearksskabelon (*.ots)";
 
 /* No comment provided by engineer. */
 "Opening" = "Åbner";
 
 /* No comment provided by engineer. */
-"OpenOffice Document" = "OpenOffice Dokument";
+"OpenOffice Document" = "OpenDocument Tekstfil (*.odt) ";
 
 /* No comment provided by engineer. */
-"OpenOffice Presentation" = "OpenOffice Præsentation";
+"OpenOffice Presentation" = "OpenDocument Præsentation (*.odp)";
 
 /* No comment provided by engineer. */
-"OpenOffice Spreadsheet" = "OpenOffice Regneark";
+"OpenOffice Spreadsheet" = "OpenDocument Regneark (*.ods)";
 
 /* No comment provided by engineer. */
-"PDF File" = "PDF Fil";
+"PDF File" = "Portable Document (*.pdf)";
 
 /* No comment provided by engineer. */
-"Plain Text" = "Almindelig tekst";
+"Plain Text" = "Almindelig tekst (*.txt)";
 
 /* No comment provided by engineer. */
-"PowerPoint 97-2003 Presentation" = "PowerPoint 97-2003 Præsentation";
+"PowerPoint 97-2003 Presentation" = "PowerPoint 97-2003-præsentation (*.ppt)";
 
 /* No comment provided by engineer. */
-"PowerPoint 2007 Presentation" = "PowerPoint 2007 Præsentation";
+"PowerPoint 2007 Presentation" = "Office Open XML-præsentation (*.pptx)";
 
 /* No comment provided by engineer. */
-"PowerPoint Slide Show" = "PowerPoint Slide Show";
+"PowerPoint Slide Show" = "Office Open XML-diasshow (*.ppsx)";
 
 /* No comment provided by engineer. */
 "Preparing..." = "Forbereder...";
@@ -134,7 +134,7 @@
 "Presentation %ld.pptx" = "Præsentation %ld.pptx";
 
 /* No comment provided by engineer. */
-"Presentation template" = "Præsentationsskabelon";
+"Presentation template" = "PowerPoint Open XML Præsentationsskabelon (*.potx)";
 
 /* No comment provided by engineer. */
 "Quit %@" = "Afslut %@";
@@ -143,7 +143,7 @@
 "Review Changes..." = "Gennemgå Ændringer...";
 
 /* No comment provided by engineer. */
-"Rich Text Document" = "RTF-Dokument";
+"Rich Text Document" = "Rich Text Format-fil (*.rtf)";
 
 /* No comment provided by engineer. */
 "Save" = "Gem";
@@ -155,7 +155,7 @@
 "Spreadsheet %ld.xlsx" = "Regneark %ld.xlsx";
 
 /* No comment provided by engineer. */
-"Spreadsheet template" = "Regnearksskabelon";
+"Spreadsheet template" = "Excel Open XML Regnearksskabelon (*.xltx)";
 
 /* No comment provided by engineer. */
 "Thank you for evaluating %@!" = "Tak for din evaluering %@!";
@@ -179,13 +179,13 @@
 "Web Page" = "Webside";
 
 /* No comment provided by engineer. */
-"Word 97-2003 Document" = "Word 97-2003 Dokument";
+"Word 97-2003 Document" = "Word 97-2003-dokument (*.doc)";
 
 /* No comment provided by engineer. */
-"Word 2007 Document" = "Word 2007 Dokument";
+"Word 2007 Document" = "Office Open XML-dokument (*.docx)";
 
 /* No comment provided by engineer. */
-"XML Paper Specification" = "XML Paper Specification";
+"XML Paper Specification" = "OpenXPS-dokument (*.xps)";
 
 /* No comment provided by engineer. */
 "Yes" = "Ja";

@@ -76,9 +76,6 @@
 /* Class = "NSMenuItem"; title = "Print…"; ObjectID = "aTl-1u-JFS"; */
 "aTl-1u-JFS.title" = "In…";
 
-/* Class = "NSMenuItem"; title = "Window"; ObjectID = "aUF-d1-5bR"; */
-"aUF-d1-5bR.title" = "";
-
 /* Class = "NSMenu"; title = "Font"; ObjectID = "aXa-aM-Jaq"; */
 "aXa-aM-Jaq.title" = "Kiểu chữ";
 
@@ -342,9 +339,6 @@
 
 /* Class = "NSMenuItem"; title = "Show Toolbar"; ObjectID = "snW-S8-Cw5"; */
 "snW-S8-Cw5.title" = "Hiển thị thanh công cụ";
-
-/* Class = "NSMenu"; title = "Window"; ObjectID = "Td7-aD-5lo"; */
-"Td7-aD-5lo.title" = "";
 
 /* Class = "NSMenuItem"; title = "Document"; ObjectID = "TEm-B8-gsH"; */
 "TEm-B8-gsH.title" = "Tập tin";

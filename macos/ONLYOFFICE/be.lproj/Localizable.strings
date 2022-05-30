@@ -23,7 +23,7 @@
 "Cannot open folder of the file location." = "Немагчыма адкрыць папку з месцазнаходжаннем файла.";
 
 /* No comment provided by engineer. */
-"Comma-Separated Values" = "Значэнні, падзеленыя коскамі";
+"Comma-Separated Values" = "Значэнні, падзеленыя коскамі (*.csv)";
 
 /* No comment provided by engineer. */
 "Create portal" = "Стварыць партал";
@@ -32,7 +32,7 @@
 "Delete and Quit" = "Выдаліць і выйсці";
 
 /* No comment provided by engineer. */
-"DjVu File" = "Файл DjVu";
+"DjVu File" = "Лічбавы дакумент (*.djvu)";
 
 /* No comment provided by engineer. */
 "Do you want to save the changes made to the document \"%@\"?" = "Хочаце захаваць змены, унесеныя ў дакумент \"%@\"?";
@@ -41,19 +41,19 @@
 "Document %ld.docx" = "Дакумент %ld.docx";
 
 /* No comment provided by engineer. */
-"Document template" = "Шаблон дакумента";
+"Document template" = "Шаблон дакумента Word Open XML (*.dotx)";
 
 /* No comment provided by engineer. */
-"Electronic Publication" = "Электронная публікацыя";
+"Electronic Publication" = "Электронная публікацыя (*.epub)";
 
 /* No comment provided by engineer. */
-"Excel 97-2003 Spreadsheet" = "Табліца Excel 97-2003";
+"Excel 97-2003 Spreadsheet" = "Электронная табліца Excel 97-2003 (*.xls)";
 
 /* No comment provided by engineer. */
-"Excel 2007 Spreadsheet" = "Табліца Excel 2007";
+"Excel 2007 Spreadsheet" = "Электронная табліца Office Open XML (*.xlsx)";
 
 /* No comment provided by engineer. */
-"FictionBook File" = "Файл FictionBook";
+"FictionBook File" = "Файл FictionBook (*.fb2)";
 
 /* No comment provided by engineer. */
 "File \"%@\" can not be open or not exist." = "Файл \"%@\" не можа быць адкрыты або не існуе.";
@@ -68,7 +68,7 @@
 "Hide %@" = "Схаваць %@";
 
 /* No comment provided by engineer. */
-"HTML File" = "HTML файл";
+"HTML File" = "Файл HTML (*.html)";
 
 /* No comment provided by engineer. */
 "If you have already purchased %@, you should find your activation key in an email confirmation." = "Калі вы ўжо набылі %@, вы павінны знайсці ключ актывацыі ў пацверджанні па электроннай пошце.";
@@ -77,10 +77,10 @@
 "License Agreement" = "Ліцэнзійнае пагадненне";
 
 /* No comment provided by engineer. */
-"MHT File" = "Файл MHT";
+"MHT File" = "Файл MHT (*.mht)";
 
 /* No comment provided by engineer. */
-"Mobipocket e-book" = "Электронная кніга mobipocket";
+"Mobipocket e-book" = "Электронная кніга mobipocket (*.mobi)";
 
 /* No comment provided by engineer. */
 "new-document" = "Новы дакумент";
@@ -104,43 +104,43 @@
 "ONLYOFFICE can not open the Private Key. Try opening another file." = "ONLYOFFICE не можа адкрыць закрыты ключ. Паспрабуйце адкрыць іншы файл.";
 
 /* No comment provided by engineer. */
-"OpenDocument Document Template" = "Шаблон дакумента OpenDocument";
+"OpenDocument Document Template" = "Шаблон дакумента OpenDocument (*.ott)";
 
 /* No comment provided by engineer. */
-"OpenDocument Presentation Template" = "Шаблон прэзентацыі OpenDocument";
+"OpenDocument Presentation Template" = "Шаблон прэзентацыі OpenDocument (*.otp)";
 
 /* No comment provided by engineer. */
-"OpenDocument Spreadsheet Template" = "Шаблон электроннай табліцы OpenDocument";
+"OpenDocument Spreadsheet Template" = "Шаблон электроннай табліцы OpenDocument (*.ots)";
 
 /* No comment provided by engineer. */
 "Opening" = "Адкрыццё";
 
 /* No comment provided by engineer. */
-"OpenOffice Document" = "Дакумент OpenOffice";
+"OpenOffice Document" = "Тэкставы файл OpenDocument (*.odt) ";
 
 /* No comment provided by engineer. */
-"OpenOffice Presentation" = "Прэзентацыя OpenOffice";
+"OpenOffice Presentation" = "Прэзентацыя OpenDocument (*.odp)";
 
 /* No comment provided by engineer. */
-"OpenOffice Spreadsheet" = "Табліца OpenOffice";
+"OpenOffice Spreadsheet" = "Электронная табліца OpenDocument (*.ods)";
 
 /* No comment provided by engineer. */
-"PDF File" = "PDF файл";
+"PDF File" = "Пераносны дакумент (*.pdf)";
 
 /* No comment provided by engineer. */
-"PDF/A File" = "PDF/A файл";
+"PDF/A File" = "Пераносны дакумент / A (*.pdf)";
 
 /* No comment provided by engineer. */
-"Plain Text" = "Просты тэкст";
+"Plain Text" = "Просты тэкст (*.txt)";
 
 /* No comment provided by engineer. */
-"PowerPoint 97-2003 Presentation" = "Прэзентацыя PowerPoint 97-2003";
+"PowerPoint 97-2003 Presentation" = "Прэзентацыя PowerPoint 97-2003 (*.ppt)";
 
 /* No comment provided by engineer. */
-"PowerPoint 2007 Presentation" = "Прэзентацыя Powerpoint 2007";
+"PowerPoint 2007 Presentation" = "Прэзентацыя Office Open XML (*.pptx)";
 
 /* No comment provided by engineer. */
-"PowerPoint Slide Show" = "Слайд-шоў PowerPoint";
+"PowerPoint Slide Show" = "Слайд-шоў Office Open XML (*.ppsx)";
 
 /* No comment provided by engineer. */
 "Preparing..." = "Ідзе падрыхтоўка ...";
@@ -149,7 +149,7 @@
 "Presentation %ld.pptx" = "Прэзентацыя %ld.pptx";
 
 /* No comment provided by engineer. */
-"Presentation template" = "Шаблоны прэзентацый";
+"Presentation template" = "Шаблон прэзентацыі PowerPoint Open XML (*.potx)";
 
 /* No comment provided by engineer. */
 "Presenter View" = "Прагляд спікера";
@@ -161,7 +161,7 @@
 "Review Changes..." = "Прагледзець змены ...";
 
 /* No comment provided by engineer. */
-"Rich Text Document" = "Багаты тэкставы дакумент";
+"Rich Text Document" = "Багаты тэкставы дакумент (*.rtf)";
 
 /* No comment provided by engineer. */
 "Save" = "Захаваць";
@@ -173,7 +173,7 @@
 "Spreadsheet %ld.xlsx" = "Табліца %ld.xlsx";
 
 /* No comment provided by engineer. */
-"Spreadsheet template" = "Шаблон табліцы";
+"Spreadsheet template" = "Шаблон табліцы Excel Open XML (*.xltx)";
 
 /* No comment provided by engineer. */
 "Thank you for evaluating %@!" = "Дзякуй за ацэнку %@!";
@@ -200,13 +200,13 @@
 "With access to pro features" = "З доступам да прафесійных функцый";
 
 /* No comment provided by engineer. */
-"Word 97-2003 Document" = "Дакумент Word 97-2003";
+"Word 97-2003 Document" = "Дакумент Word 97-2003 (*.doc)";
 
 /* No comment provided by engineer. */
-"Word 2007 Document" = "Дакумент Word 2007";
+"Word 2007 Document" = "Дакумент Office Open XML (*.docx)";
 
 /* No comment provided by engineer. */
-"XML Paper Specification" = "Тэхнічныя характарыстыкі паперы XML";
+"XML Paper Specification" = "Дакумент OpenXPS (*.xps)";
 
 /* No comment provided by engineer. */
 "Yes" = "Так";

@@ -111,6 +111,16 @@ void CMainWindowImpl::refreshAboutVersion()
     GET_REGISTRY_USER(reg_user);
     _json_obj["editorwindowmode"] = reg_user.value("editorWindowMode",false).toBool();
 
+    // Read update settings
+    #ifdef _UPDMODULE
+        AscAppManager::sendCommandTo(0, "updates:turn", "on");
+    #ifdef Q_OS_WIN
+        _json_obj["updates"] = QJsonObject({{"mode", reg_user.value("autoUpdateMode","silent").toString()}});
+    #else
+        _json_obj["updates"] = QJsonObject({{"interval", reg_user.value("checkUpdatesInterval","day").toString()}});
+    #endif
+    #endif
+
     AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, "settings:init", Utils::stringifyJson(_json_obj));
     if ( InputArgs::contains(L"--ascdesktop-reveal-app-config") )
             AscAppManager::sendCommandTo( nullptr, "retrive:localoptions", "" );

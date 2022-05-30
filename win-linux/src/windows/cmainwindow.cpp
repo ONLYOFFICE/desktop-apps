@@ -71,7 +71,7 @@
 
 
 #ifdef _UPDMODULE
-  #include "3dparty/WinSparkle/include/winsparkle.h"
+  //#include "3dparty/WinSparkle/include/winsparkle.h"
   #include "../version.h"
 #endif
 

@@ -36,6 +36,7 @@
 #include "qascapplicationmanager.h"
 #include <QObject>
 #include <QMutex>
+#include <QDesktopServices>
 #include <vector>
 #include <memory>
 #include "ccefeventstransformer.h"
@@ -51,6 +52,10 @@
 # include "platform_linux/singleapplication.h"
 #endif
 
+#ifdef _UPDMODULE
+    #include "cupdatemanager.h"
+#endif
+
 #include "cthemes.h"
 
 #define SEND_TO_ALL_START_PAGE nullptr
@@ -62,7 +67,8 @@ typedef QWidget* ParentHandle;
 //#endif
 
 
-struct sWinTag {
+struct sWinTag
+{
     int     type;
     size_t  handle;
 
@@ -107,7 +113,6 @@ private:
     CEventDriver m_eventDriver;
     CMainWindow * m_pMainWindow = nullptr;
 
-    //std::shared_ptr<CAppUpdater> m_updater;
     std::shared_ptr<CThemes> m_themes;
 public:
     CWindowsQueue<sWinTag>& closeQueue();
@@ -146,6 +151,14 @@ public slots:
     void onFileChecked(const QString&, int, bool);
     void onEditorWidgetClosed();
 
+private slots:
+#ifdef _UPDMODULE
+#ifdef Q_OS_WIN
+    void showStartInstallMessage();
+#endif
+    void showUpdateMessage(const bool error, const bool updateExist,
+                           const QString &version, const QString &changelog);
+#endif
 
 public:
     static CAscApplicationManagerWrapper & getInstance();
@@ -182,7 +195,6 @@ public:
     static void             destroyViewer(QCefView * v);
 
     static void             cancelClose();
-    static void checkUpdates();
 
     uint logoutCount(const std::wstring& portal) const;
     void Logout(const std::wstring& portal);
@@ -195,7 +207,9 @@ private:
     std::unique_ptr<CAscApplicationManagerWrapper_Private> m_private;
 
     CAscApplicationManagerWrapper(CAscApplicationManagerWrapper_Private *);
+#ifdef _UPDMODULE
+    CUpdateManager *m_pUpdateManager;
+#endif
 };
 
 #endif // QASCAPPLICATIONMANAGER
-

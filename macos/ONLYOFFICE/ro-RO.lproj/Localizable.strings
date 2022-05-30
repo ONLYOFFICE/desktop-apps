@@ -23,7 +23,7 @@
 "Cannot open folder of the file location." = "Nu se poate deschide dosarul fișierului.";
 
 /* No comment provided by engineer. */
-"Comma-Separated Values" = "Valori separate prin virgulă";
+"Comma-Separated Values" = "Valori separate prin virgulă (*.csv)";
 
 /* No comment provided by engineer. */
 "Create portal" = "Crearea unui portal";
@@ -32,7 +32,7 @@
 "Delete and Quit" = "Șterge și Părăsește";
 
 /* No comment provided by engineer. */
-"DjVu File" = "Fișierul DjVu";
+"DjVu File" = "Document Digital (*.djvu)";
 
 /* No comment provided by engineer. */
 "Do you want to save the changes made to the document \"%@\"?" = "Doriți să salvați modificările fișierului\"%@\"?";
@@ -41,13 +41,13 @@
 "Document %ld.docx" = "Document %ld.docx";
 
 /* No comment provided by engineer. */
-"Document template" = "Document șablon";
+"Document template" = "Șablon document Word Open XML (*.dotx)";
 
 /* No comment provided by engineer. */
-"Excel 97-2003 Spreadsheet" = "Foaie de calcul Excel 97-2003";
+"Excel 97-2003 Spreadsheet" = "Foaia de calcul Excel 97-2003 (*.xls)";
 
 /* No comment provided by engineer. */
-"Excel 2007 Spreadsheet" = "Foaie de calcul Excel 2007";
+"Excel 2007 Spreadsheet" = "Foaia de calcul Office Open XML (*.xlsx)";
 
 /* No comment provided by engineer. */
 "File \"%@\" can not be open or not exist." = "Fișierul \"%@\" nu se poate deschide sau nu nu există.";
@@ -71,7 +71,7 @@
 "License Agreement" = "Acord de licență";
 
 /* No comment provided by engineer. */
-"Mobipocket e-book" = "Mobipocket e-book";
+"Mobipocket e-book" = "Mobipocket e-book (*.mobi)";
 
 /* No comment provided by engineer. */
 "new-document" = "Document nou";
@@ -95,43 +95,43 @@
 "ONLYOFFICE can not open the Private Key. Try opening another file." = "ONLYOFFICE nu poate deschide Cheia Privată. Încercați să deschideți un alt fișier.";
 
 /* No comment provided by engineer. */
-"OpenDocument Document Template" = "Document șablon OpenDocument";
+"OpenDocument Document Template" = "Șablon document OpenDocument (*.ott)";
 
 /* No comment provided by engineer. */
-"OpenDocument Presentation Template" = "Șablon de prezentare OpenDocument";
+"OpenDocument Presentation Template" = "Șablon prezentare OpenDocument (*.otp)";
 
 /* No comment provided by engineer. */
-"OpenDocument Spreadsheet Template" = "Șablon de foaie de calcul OpenDocument";
+"OpenDocument Spreadsheet Template" = "Șablon foaie de calcul OpenDocument (*.ots)";
 
 /* No comment provided by engineer. */
 "Opening" = "Deschidere";
 
 /* No comment provided by engineer. */
-"OpenOffice Document" = "Document OpenOffice";
+"OpenOffice Document" = "Fișierul text OpenDocument (*.odt)";
 
 /* No comment provided by engineer. */
-"OpenOffice Presentation" = "Prezentare OpenOffice";
+"OpenOffice Presentation" = "Prezentare OpenDocument (*.odp)";
 
 /* No comment provided by engineer. */
-"OpenOffice Spreadsheet" = "Foaie de calcul OpenOffice";
+"OpenOffice Spreadsheet" = "Foaie de calcul OpenDocument (*.ods)";
 
 /* No comment provided by engineer. */
-"PDF File" = "Fișier PDF";
+"PDF File" = "Formatul de Document Portabil (*.pdf)";
 
 /* No comment provided by engineer. */
-"PDF/A File" = "Fișier PDF/A";
+"PDF/A File" = "Formatul de Document Portabil / A (*.pdf)";
 
 /* No comment provided by engineer. */
-"Plain Text" = "Text simplu";
+"Plain Text" = "Fișier text simplu (*.txt)";
 
 /* No comment provided by engineer. */
-"PowerPoint 97-2003 Presentation" = "Prezentare PowerPoint 97-2003";
+"PowerPoint 97-2003 Presentation" = "Prezentare PowerPoint 97-2003 (*.ppt)";
 
 /* No comment provided by engineer. */
-"PowerPoint 2007 Presentation" = "Prezentare PowerPoint 2007";
+"PowerPoint 2007 Presentation" = "Prezentare Office Open XML (*.pptx)";
 
 /* No comment provided by engineer. */
-"PowerPoint Slide Show" = "Expunere diapozitive PowerPoint";
+"PowerPoint Slide Show" = "Expunere diapozitive Office Open XML (*.ppsx)";
 
 /* No comment provided by engineer. */
 "Preparing..." = "Pregătire...";
@@ -140,7 +140,7 @@
 "Presentation %ld.pptx" = "Prezentarea %ld.pptx";
 
 /* No comment provided by engineer. */
-"Presentation template" = "Șablon de prezentare";
+"Presentation template" = "Șablon de prezentare PowerPoint Open XML (*.potx)";
 
 /* No comment provided by engineer. */
 "Quit %@" = "Părăsește %@";
@@ -149,7 +149,7 @@
 "Review Changes..." = "Revizuirea modificărilor...";
 
 /* No comment provided by engineer. */
-"Rich Text Document" = "Document în format text îmbogățit";
+"Rich Text Document" = "Fișier Format text îmbogățit (*.rtf)";
 
 /* No comment provided by engineer. */
 "Save" = "Salvare";
@@ -161,7 +161,7 @@
 "Spreadsheet %ld.xlsx" = "Foaie de calcul %ld.xlsx";
 
 /* No comment provided by engineer. */
-"Spreadsheet template" = "Șablon de foaie de calcul";
+"Spreadsheet template" = "Șablon de foaie de calcul Excel Open XML (*.xltx)";
 
 /* No comment provided by engineer. */
 "Thank you for evaluating %@!" = "Vă mulțumim pentru evaluarea %@!";
@@ -185,13 +185,13 @@
 "Web Page" = "Pagină web";
 
 /* No comment provided by engineer. */
-"Word 97-2003 Document" = "Word 97-2003 Document";
+"Word 97-2003 Document" = "Document Word 97-2003 (*.doc)";
 
 /* No comment provided by engineer. */
-"Word 2007 Document" = "Word 2007 Document";
+"Word 2007 Document" = "Document Office Open XML (*.docx)";
 
 /* No comment provided by engineer. */
-"XML Paper Specification" = "XML Paper Specification";
+"XML Paper Specification" = "Document OpenXPS (*.xps)";
 
 /* No comment provided by engineer. */
 "Yes" = "Da";

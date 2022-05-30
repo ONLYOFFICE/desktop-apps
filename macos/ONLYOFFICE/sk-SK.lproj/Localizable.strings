@@ -23,7 +23,7 @@
 "Cannot open folder of the file location." = "Nedá sa otvoriť priečinok umiestnenia súboru.";
 
 /* No comment provided by engineer. */
-"Comma-Separated Values" = "Hodnoty oddelené čiarkami";
+"Comma-Separated Values" = "Hodnoty oddelené čiarkami (*.csv)";
 
 /* No comment provided by engineer. */
 "Create portal" = "Vytvoriť portál";
@@ -32,7 +32,7 @@
 "Delete and Quit" = "Odstrániť a ukončiťt";
 
 /* No comment provided by engineer. */
-"DjVu File" = "Súbor DjVu";
+"DjVu File" = "Digitálny document (*.djvu)";
 
 /* No comment provided by engineer. */
 "Do you want to save the changes made to the document \"%@\"?" = "Chcete uložiť zmeny urobené v dokumente \"%@\"?";
@@ -41,13 +41,13 @@
 "Document %ld.docx" = "Dokument %ld.docx";
 
 /* No comment provided by engineer. */
-"Document template" = "Šablóna dokumentu";
+"Document template" = "Šablóna dokumentu Word Open XML (*.dotx)";
 
 /* No comment provided by engineer. */
-"Excel 97-2003 Spreadsheet" = "Zošit programu Excel 97-2003";
+"Excel 97-2003 Spreadsheet" = "Tabuľka Excel 97-2003 (*.xls)";
 
 /* No comment provided by engineer. */
-"Excel 2007 Spreadsheet" = "Zošit programu Excel 2007";
+"Excel 2007 Spreadsheet" = "Tabuľka Office Open XML (*.xlsx)";
 
 /* No comment provided by engineer. */
 "File \"%@\" can not be open or not exist." = "Súbor \"%@\" sa nedá otvoriť alebo neexistuje.";
@@ -71,7 +71,7 @@
 "License Agreement" = "Licenčná zmluva";
 
 /* No comment provided by engineer. */
-"Mobipocket e-book" = "E-kniha Mobipocket";
+"Mobipocket e-book" = "E-kniha Mobipocket (*.mobi)";
 
 /* No comment provided by engineer. */
 "new-document" = "Nový dokument";
@@ -95,43 +95,43 @@
 "ONLYOFFICE can not open the Private Key. Try opening another file." = "ONLYOFFICE nemôže otvoriť súkromný kľúč. Skúste otvoriť iný súbor.";
 
 /* No comment provided by engineer. */
-"OpenDocument Document Template" = "Šablóna dokumentu OpenDocument";
+"OpenDocument Document Template" = "Šablóna dokumentu OpenDocument (*.ott)";
 
 /* No comment provided by engineer. */
-"OpenDocument Presentation Template" = "Šablóna prezentácie OpenDocument";
+"OpenDocument Presentation Template" = "Šablóna prezentácie OpenDocument (*.otp)";
 
 /* No comment provided by engineer. */
-"OpenDocument Spreadsheet Template" = "Šablóna tabuľky OpenDocument";
+"OpenDocument Spreadsheet Template" = "Šablóna zošitu OpenDocument (*.ots)";
 
 /* No comment provided by engineer. */
 "Opening" = "Otvára sa";
 
 /* No comment provided by engineer. */
-"OpenOffice Document" = "Dokument OpenOffice";
+"OpenOffice Document" = "Textový súbor OpenDocument (*.odt)";
 
 /* No comment provided by engineer. */
-"OpenOffice Presentation" = "Prezentácia OpenOffice";
+"OpenOffice Presentation" = "Prezentácia OpenDocument (*.odp)";
 
 /* No comment provided by engineer. */
-"OpenOffice Spreadsheet" = "Tabuľka OpenOffice";
+"OpenOffice Spreadsheet" = "Tabuľka OpenDocument (*.ods)";
 
 /* No comment provided by engineer. */
-"PDF File" = "Súbor PDF";
+"PDF File" = "Prenosný document (*.pdf)";
 
 /* No comment provided by engineer. */
-"PDF/A File" = "Súbor PDF/A";
+"PDF/A File" = "Prenosný document / A (*.pdf)";
 
 /* No comment provided by engineer. */
-"Plain Text" = "Obyčajný text";
+"Plain Text" = "Obyčajný text (*.txt)";
 
 /* No comment provided by engineer. */
-"PowerPoint 97-2003 Presentation" = "Prezentácia PowerPoint 97-2003";
+"PowerPoint 97-2003 Presentation" = "Prezentácia PowerPoint 97-2003 (*.ppt)";
 
 /* No comment provided by engineer. */
-"PowerPoint 2007 Presentation" = "Prezentácia PowerPoint 2007";
+"PowerPoint 2007 Presentation" = "Prezentácia Office Open XML (*.pptx)";
 
 /* No comment provided by engineer. */
-"PowerPoint Slide Show" = "Prezentácia PowerPoint";
+"PowerPoint Slide Show" = "Premietanie slajdov Office Open XML (*.ppsx)";
 
 /* No comment provided by engineer. */
 "Preparing..." = "Príprava...";
@@ -140,7 +140,7 @@
 "Presentation %ld.pptx" = "Prezentácia %ld.pptx";
 
 /* No comment provided by engineer. */
-"Presentation template" = "Šablóna prezentácie";
+"Presentation template" = "Šablóna prezentácie PowerPoint Open XML (*.potx)";
 
 /* No comment provided by engineer. */
 "Quit %@" = "Ukončiť %@";
@@ -149,7 +149,7 @@
 "Review Changes..." = "Skontrolovať zmeny...";
 
 /* No comment provided by engineer. */
-"Rich Text Document" = "Dokument vo formáte RTF";
+"Rich Text Document" = "Súbor vo formáte RTF (*.rtf)";
 
 /* No comment provided by engineer. */
 "Save" = "Uložiť";
@@ -161,7 +161,7 @@
 "Spreadsheet %ld.xlsx" = "Tabuľka %ld.xlsx";
 
 /* No comment provided by engineer. */
-"Spreadsheet template" = "Šablóna tabuľky";
+"Spreadsheet template" = "Šablóna zošitu Excel Open XML (*.xltx)";
 
 /* No comment provided by engineer. */
 "Thank you for evaluating %@!" = "Ďakujeme za hodnotenie %@!";
@@ -185,13 +185,13 @@
 "Web Page" = "Web stránka";
 
 /* No comment provided by engineer. */
-"Word 97-2003 Document" = "Dokument programu Word 97-2003";
+"Word 97-2003 Document" = "Dokument Word 97-2003 (*.doc)";
 
 /* No comment provided by engineer. */
-"Word 2007 Document" = "Dokument programu Word 2007";
+"Word 2007 Document" = "Dokument Office Open XML (*.docx)";
 
 /* No comment provided by engineer. */
-"XML Paper Specification" = "Špecifikácia XML dokumentu";
+"XML Paper Specification" = "Dokument OpenXPS (*.xps)";
 
 /* No comment provided by engineer. */
 "Yes" = "Áno";

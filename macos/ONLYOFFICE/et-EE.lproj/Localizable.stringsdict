@@ -5,7 +5,7 @@
 	<key>%d days are left until the license expiration.</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
-		<string>%#@päeva@</string>
+		<string>%#@päeva@%#@päeva@</string>
 		<key>days</key>
 		<dict>
 			<key>NSStringFormatSpecTypeKey</key>
@@ -13,16 +13,16 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%D päev on jäänud litsentsi aegumiseni.</string>
+			<string>%D päev on jäänud litsentsi aegumiseni.%D päev on jäänud litsentsi aegumiseni.</string>
 			<key>other</key>
-			<string>%D päeva on jäänud litsentsi aegumiseni.</string>
+			<string>%D päeva on jäänud litsentsi aegumiseni.%D päeva on jäänud litsentsi aegumiseni.</string>
 		</dict>
 	</dict>
 	<key>You are using a trial version of the application.
 The trial period will end in %d days, after that you will not be able to create and edit documents.</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
-		<string>%#@päeva@</string>
+		<string>%#@päeva@%#@päeva@</string>
 		<key>days</key>
 		<dict>
 			<key>NSStringFormatSpecTypeKey</key>
@@ -40,7 +40,7 @@ Prooviperiood lõpeb %d päeva pärast. Peale seda ei saa luua ega muuta dokumen
 	<key>You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
-		<string>%#@dokumendid@</string>
+		<string>%#@dokumendid@%#@dokumendid@</string>
 		<key>documents</key>
 		<dict>
 			<key>NSStringFormatSpecTypeKey</key>
@@ -48,9 +48,9 @@ Prooviperiood lõpeb %d päeva pärast. Peale seda ei saa luua ega muuta dokumen
 			<key>NSStringFormatValueTypeKey</key>
 			<string>ld</string>
 			<key>one</key>
-			<string>Sul on %ld%@ dokument kinnitamata muudatustega. Soovid need muudatused üle vaadata enne loobumist?</string>
+			<string>Sul on %ld%@ dokument kinnitamata muudatustega. Soovid need muudatused üle vaadata enne loobumist?Sul on %ld%@ dokument kinnitamata muudatustega. Soovid need muudatused üle vaadata enne loobumist?</string>
 			<key>other</key>
-			<string>Sul on %ld%@ dokumendid kinnitamata muudatustega. Soovid need muudatused üle vaadata enne loobumist?</string>
+			<string>Sul on %ld%@ dokumendid kinnitamata muudatustega. Soovid need muudatused üle vaadata enne loobumist?Sul on %ld%@ dokumendid kinnitamata muudatustega. Soovid need muudatused üle vaadata enne loobumist?</string>
 		</dict>
 	</dict>
 </dict>

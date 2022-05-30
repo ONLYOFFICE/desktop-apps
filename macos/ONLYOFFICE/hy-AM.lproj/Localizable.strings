@@ -23,7 +23,7 @@
 "Cannot open folder of the file location." = "Հնարավոր չէ բացել Գաղտնի բանալու ֆայլը:";
 
 /* No comment provided by engineer. */
-"Comma-Separated Values" = "Ստորակետով առանձնացված արժեքներ";
+"Comma-Separated Values" = "Ստորակետերով առանձնացված արժեքներ (*.csv)";
 
 /* No comment provided by engineer. */
 "Create portal" = "Ստեղծել պորտալ";
@@ -32,7 +32,7 @@
 "Delete and Quit" = "Ջնջել և դուրս գալ";
 
 /* No comment provided by engineer. */
-"DjVu File" = "DjVu ֆայլ";
+"DjVu File" = "Թվային փաստաթուղթ (*.djvu)";
 
 /* No comment provided by engineer. */
 "Do you want to save the changes made to the document \"%@\"?" = "Ցանկանու՞մ եք պահպանել փաստաթղթում արած փոփոխությունները։ \"%@\"?";
@@ -41,13 +41,13 @@
 "Document %ld.docx" = "Փաստաթուղթ %ld.docx";
 
 /* No comment provided by engineer. */
-"Document template" = "Փաստաթղթի ձևանմուշ";
+"Document template" = "Word Open XML Փաստաթղթի ձևանմուշ (*.dotx)";
 
 /* No comment provided by engineer. */
-"Excel 97-2003 Spreadsheet" = "Excel 97-2003 աղյուսակ";
+"Excel 97-2003 Spreadsheet" = "Excel 97-2003 աղյուսակ (*.xls)";
 
 /* No comment provided by engineer. */
-"Excel 2007 Spreadsheet" = "Excel 2007 աղյուսակ";
+"Excel 2007 Spreadsheet" = "Office Open XML աղյուսակ (*.xlsx)";
 
 /* No comment provided by engineer. */
 "File \"%@\" can not be open or not exist." = "Ֆայլ \"%@\"-ը գոյություն չունի, կամ հնարավոր չէ այն բացել։";
@@ -68,7 +68,7 @@
 "License Agreement" = "Լիցենզիայի պայմանագիր";
 
 /* No comment provided by engineer. */
-"Mobipocket e-book" = "Mobipocket էլեկտրոնային գիրք";
+"Mobipocket e-book" = "Mobipocket էլեկտրոնային գիրք (*.mobi)";
 
 /* No comment provided by engineer. */
 "new-document" = "Նոր փաստաթուղթ";
@@ -92,43 +92,43 @@
 "ONLYOFFICE can not open the Private Key. Try opening another file." = "ONLYOFFICE-ի չի կարող բացել Գաղտնի բանալին։ Փորձեք բացել այլ ֆայլ։";
 
 /* No comment provided by engineer. */
-"OpenDocument Document Template" = "OpenDocument փաստտաթղթի ձևանմուշ";
+"OpenDocument Document Template" = "OpenDocument փաստաթղթի ձևանմուշ (*.ott)";
 
 /* No comment provided by engineer. */
-"OpenDocument Presentation Template" = "OpenDocument ներկայացման ձևանմուշ";
+"OpenDocument Presentation Template" = "OpenDocument շնորհանդեսի ձևանմուշ (*.otp)";
 
 /* No comment provided by engineer. */
-"OpenDocument Spreadsheet Template" = "OpenDocument աղյուսակի ձևանմուշ";
+"OpenDocument Spreadsheet Template" = "OpenDocument աղյուսակի ձևանմուշ (*.ots)";
 
 /* No comment provided by engineer. */
 "Opening" = "Բացվում է";
 
 /* No comment provided by engineer. */
-"OpenOffice Document" = "OpenOffice փաստաթուղթ";
+"OpenOffice Document" = "OpenDocument տեսքստային փաստաթուղթ (*.odt)";
 
 /* No comment provided by engineer. */
-"OpenOffice Presentation" = "OpenOffice շնորհանդես";
+"OpenOffice Presentation" = "OpenDocument ներկայացնում (*.odp)";
 
 /* No comment provided by engineer. */
-"OpenOffice Spreadsheet" = "OpenOffice աղյուսակ";
+"OpenOffice Spreadsheet" = "OpenDocument աղյուսակ (*.ods)";
 
 /* No comment provided by engineer. */
-"PDF File" = "PDF ֆայլ";
+"PDF File" = "Դյուրակիր փաստաթղթի ձևաչափ (*.pdf)";
 
 /* No comment provided by engineer. */
-"PDF/A File" = "PDF/A ֆայլ";
+"PDF/A File" = "Դյուրակիր փաստաթղթի ձևաչափ / A (*.pdf)";
 
 /* No comment provided by engineer. */
-"Plain Text" = "Սովորական տեքստ";
+"Plain Text" = "Սովորական տեքստ (*.txt)";
 
 /* No comment provided by engineer. */
-"PowerPoint 97-2003 Presentation" = "PowerPoint 97-2003 շնորհանդես";
+"PowerPoint 97-2003 Presentation" = "PowerPoint 97-2003 ներկայացում (*.ppt)";
 
 /* No comment provided by engineer. */
-"PowerPoint 2007 Presentation" = "PowerPoint 2007 շնորհանդես";
+"PowerPoint 2007 Presentation" = "Office Open XML ներկայացում (*.pptx)";
 
 /* No comment provided by engineer. */
-"PowerPoint Slide Show" = "PowerPoint սլայդ շոու";
+"PowerPoint Slide Show" = "Office Open XML սահիկաշար (*.ppsx)";
 
 /* No comment provided by engineer. */
 "Preparing..." = "Պատրաստվում է...";
@@ -137,7 +137,7 @@
 "Presentation %ld.pptx" = "Շնորհանդես %ld.pptx";
 
 /* No comment provided by engineer. */
-"Presentation template" = "Ներկայացման ձևանմուշ";
+"Presentation template" = "PowerPoint Open XML Ներկայացման ձևանմուշ (*.potx)";
 
 /* No comment provided by engineer. */
 "Quit %@" = "Դուրս գալ %@";
@@ -146,7 +146,7 @@
 "Review Changes..." = "Վերանայել փոփոխությունները...";
 
 /* No comment provided by engineer. */
-"Rich Text Document" = "Rich Text փաստաթուղթ";
+"Rich Text Document" = "Rich Text Format ֆայլ (*.rtf)";
 
 /* No comment provided by engineer. */
 "Save" = "Պահպանել";
@@ -158,7 +158,7 @@
 "Spreadsheet %ld.xlsx" = "Աղյուսակ %ld.xlsx";
 
 /* No comment provided by engineer. */
-"Spreadsheet template" = "Աղյուսակի ձևանմուշ";
+"Spreadsheet template" = "Excel Open XML Աղյուսակի ձևանմուշ (*.xltx)";
 
 /* No comment provided by engineer. */
 "Thank you for evaluating %@!" = "Շնորհակալություն գնահատելոը համար %@!";
@@ -182,13 +182,13 @@
 "Web Page" = "Վեբ էջ";
 
 /* No comment provided by engineer. */
-"Word 97-2003 Document" = "Word 97-2003 փաստաթուղթ";
+"Word 97-2003 Document" = "Word 97-2003 փաստաթուղթ (*.doc)";
 
 /* No comment provided by engineer. */
-"Word 2007 Document" = "Word 2007 փաստաթուղթ";
+"Word 2007 Document" = "Office Open XML փաստաթուղթ (*.docx)";
 
 /* No comment provided by engineer. */
-"XML Paper Specification" = "XML Paper Specification";
+"XML Paper Specification" = "OpenXPS փաստաթուղթ (*.xps)";
 
 /* No comment provided by engineer. */
 "Yes" = "Այո";

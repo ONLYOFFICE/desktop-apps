@@ -23,7 +23,7 @@
 "Cannot open folder of the file location." = "Ní féidir fillteán de shuíomh an chomhaid a oscailt.";
 
 /* No comment provided by engineer. */
-"Comma-Separated Values" = "Luachanna Scartha le Coma";
+"Comma-Separated Values" = "Luachanna Scartha le Coma (*.csv)";
 
 /* No comment provided by engineer. */
 "Create portal" = "Cruthaigh tairseach";
@@ -32,7 +32,7 @@
 "Delete and Quit" = "Scrios agus Scoir";
 
 /* No comment provided by engineer. */
-"DjVu File" = "Comhad DjVu";
+"DjVu File" = "Comhad DjVu (*.djvu)";
 
 /* No comment provided by engineer. */
 "Do you want to save the changes made to the document \"%@\"?" = "Ar mhaith leat na hathruithe a rinneadh ar an doiciméad a shábháil \"%@\"?";
@@ -41,13 +41,13 @@
 "Document %ld.docx" = "Doiciméad %ld.docx";
 
 /* No comment provided by engineer. */
-"Document template" = "Teimpléad doiciméad";
+"Document template" = "Teimpléad doiciméad Word Open XML (*.dotx)";
 
 /* No comment provided by engineer. */
-"Excel 97-2003 Spreadsheet" = "Scarbhileog Excel 97-2003";
+"Excel 97-2003 Spreadsheet" = "Scarbhileog Excel 97-2003 (*.xls)";
 
 /* No comment provided by engineer. */
-"Excel 2007 Spreadsheet" = "Scarbhileog Excel 2007";
+"Excel 2007 Spreadsheet" = "Scarbhileog Office Open XML (*.xlsx)";
 
 /* No comment provided by engineer. */
 "File \"%@\" can not be open or not exist." = "Ní féidir an comhad \"%@\" a oscailt nó gan a bheith ann.";
@@ -62,16 +62,13 @@
 "Hide %@" = "Folaigh %@";
 
 /* No comment provided by engineer. */
-"If you don't review your documents, all your changeses will be lost." = "Mura ndéanann tú athbhreithniú ar do dhoiciméid, caillfear do chuid athruithe go léir.";
-
-/* No comment provided by engineer. */
 "If you have already purchased %@, you should find your activation key in an email confirmation." = "Má cheannaigh tú %@ cheana féin, ba cheart duit d’eochair ghníomhachtaithe a fháil i ndeimhniú ríomhphoist.";
 
 /* No comment provided by engineer. */
 "License Agreement" = "Comhaontú Ceadúnais";
 
 /* No comment provided by engineer. */
-"Mobipocket e-book" = "Mobipocket e-book";
+"Mobipocket e-book" = "Mobipocket e-book (*.mobi)";
 
 /* No comment provided by engineer. */
 "new-document" = "Doiciméad Nua";
@@ -89,49 +86,49 @@
 "OK" = "OK";
 
 /* No comment provided by engineer. */
-"ONLYOFFICE can not open the Digital Signature file. Try opening another file." = "Ní féidir le ONLYOFFICE an comhad Síniú Digiteach a oscailt. Bain triail as comhad eile a oscailt";
+"ONLYOFFICE can not open the Digital Signature file. Try opening another file." = "Ní féidir le ONLYOFFICE an comhad Síniú Digiteach a oscailt. Bain triail as comhad eile a oscailt.";
 
 /* No comment provided by engineer. */
-"ONLYOFFICE can not open the Private Key. Try opening another file." = "Ní féidir le ONLYOFFICE an Eochair Phríobháideach a oscailt. Bain triail as comhad eile a oscailt";
+"ONLYOFFICE can not open the Private Key. Try opening another file." = "Ní féidir le ONLYOFFICE an Eochair Phríobháideach a oscailt. Bain triail as comhad eile a oscailt.";
 
 /* No comment provided by engineer. */
-"OpenDocument Document Template" = "Teimpléad doiciméid OpenDocument";
+"OpenDocument Document Template" = "Teimpléad doiciméad OpenDocument (*.ott)";
 
 /* No comment provided by engineer. */
-"OpenDocument Presentation Template" = "Teimpléad Láithreoireachta OpenDocument";
+"OpenDocument Presentation Template" = "Teimpléad cur i láthair OpenDocument (*.otp)";
 
 /* No comment provided by engineer. */
-"OpenDocument Spreadsheet Template" = "Teimpléad Scarbhileog OpenDocument";
+"OpenDocument Spreadsheet Template" = "Teimpléad scarbhileog OpenDocument *.(ots)";
 
 /* No comment provided by engineer. */
 "Opening" = "Ag Oscailt";
 
 /* No comment provided by engineer. */
-"OpenOffice Document" = "Doiciméad OpenOffice";
+"OpenOffice Document" = "Comhad Téacs OpenDocument (*.odt)";
 
 /* No comment provided by engineer. */
-"OpenOffice Presentation" = "Láithreoireacht OpenOffice";
+"OpenOffice Presentation" = "Láithreoireacht OpenDocument (*.odp)";
 
 /* No comment provided by engineer. */
-"OpenOffice Spreadsheet" = "Scarbhileog OpenOffice";
+"OpenOffice Spreadsheet" = "Scarbhileog OpenDocument (*.ods)";
 
 /* No comment provided by engineer. */
-"PDF File" = "Comhad PDF";
+"PDF File" = "Comhad PDF (*.pdf)";
 
 /* No comment provided by engineer. */
-"PDF/A File" = "Comhad PDF/A";
+"PDF/A File" = "Comhad PDF/A (*.pdf)";
 
 /* No comment provided by engineer. */
-"Plain Text" = "Téacs Plain";
+"Plain Text" = "Téacs Plain (*.txt)";
 
 /* No comment provided by engineer. */
-"PowerPoint 97-2003 Presentation" = "Cur i láthair PowerPoint 97-2003";
+"PowerPoint 97-2003 Presentation" = "Cur i láthair PowerPoint 97-2003 (*.ppt)";
 
 /* No comment provided by engineer. */
-"PowerPoint 2007 Presentation" = "Cur i láthair PowerPoint 2007";
+"PowerPoint 2007 Presentation" = "Cur i láthair PowerPoint Open XML (*.pptx)";
 
 /* No comment provided by engineer. */
-"PowerPoint Slide Show" = "Taispeántas sleamhnán PowerPoint";
+"PowerPoint Slide Show" = "Taispeántas sleamhnán Office Open XML (*.ppsx)";
 
 /* No comment provided by engineer. */
 "Preparing..." = "Ag Ullmhú...";
@@ -140,7 +137,7 @@
 "Presentation %ld.pptx" = "Cur i láthair %ld.pptx";
 
 /* No comment provided by engineer. */
-"Presentation template" = "Teimpléad Láithreoireachta";
+"Presentation template" = "Teimpléad cur i láthair PowerPoint Open XML (*.potx)";
 
 /* No comment provided by engineer. */
 "Quit %@" = "Scoir %@";
@@ -149,25 +146,25 @@
 "Review Changes..." = "Athruithe Athbhreithnithe...";
 
 /* No comment provided by engineer. */
-"Rich Text Document" = "Doiciméad méith-théacs";
+"Rich Text Document" = "Doiciméad méith-théacs (*.rtf)";
 
 /* No comment provided by engineer. */
 "Save" = "Sábháil";
 
 /* No comment provided by engineer. */
-"Save the document?" = "Sábháil an doiciméad ?";
+"Save the document?" = "Sábháil an doiciméad ?";
 
 /* No comment provided by engineer. */
 "Spreadsheet %ld.xlsx" = "Scarbhileog %ld.xlsx";
 
 /* No comment provided by engineer. */
-"Spreadsheet template" = "Teimpléad Scarbhileog";
+"Spreadsheet template" = "Teimpléad scarbhileog Excel Open XML (*.xltx)";
 
 /* No comment provided by engineer. */
 "Thank you for evaluating %@!" = "Go raibh maith agat as meastóireacht a dhéanamh %@!";
 
 /* No comment provided by engineer. */
-"The document \"%@\" must be built. Continue?" = "Caithfear an doiciméad ‘%@’ a thógáil. Leanúint ar aghaidh ?\t";
+"The document \"%@\" must be built. Continue?" = "Caithfear an doiciméad ‘%@’ a thógáil. Leanúint ar aghaidh ?";
 
 /* No comment provided by engineer. */
 "To open the file location, it must be saved." = "Chun suíomh an chomhaid a oscailt, caithfear é a shábháil.";
@@ -185,13 +182,13 @@
 "Web Page" = "Leathanach Gréasáin";
 
 /* No comment provided by engineer. */
-"Word 97-2003 Document" = "Doiciméad Word 97-2003";
+"Word 97-2003 Document" = "Doiciméad Word 97-2003 (*.doc)";
 
 /* No comment provided by engineer. */
-"Word 2007 Document" = "Doiciméad Word 2007";
+"Word 2007 Document" = "Doiciméad Office Open XML (*.docx)";
 
 /* No comment provided by engineer. */
-"XML Paper Specification" = "Sonraíocht Páipéar XML";
+"XML Paper Specification" = "OpenXPS Cáipéis (*.xps)";
 
 /* No comment provided by engineer. */
 "Yes" = "Tá";
