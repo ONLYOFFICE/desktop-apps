@@ -1232,18 +1232,7 @@ void CMainPanel::updateScaling(double dpiratio)
     //m_pButtonMain->setGeometry(0, 0, int(BUTTON_MAIN_WIDTH * dpiratio), int(TITLE_HEIGHT * dpiratio));
     m_pButtonMain->setFixedSize(int(BUTTON_MAIN_WIDTH * dpiratio), int(TITLE_HEIGHT * dpiratio));
 
-    QString _tabs_stylesheets = dpiratio > 1.75 ? ":/sep-styles/tabbar@2x" :
-                                    dpiratio > 1.5 ? ":/sep-styles/tabbar@1.75x" :
-                                    dpiratio > 1.25 ? ":/sep-styles/tabbar@1.5x" :
-                                    dpiratio > 1 ? ":/sep-styles/tabbar@1.25x" : ":/sep-styles/tabbar";
-    if ( m_isCustomWindow ) {
-        _tabs_stylesheets += ".qss";
-    } else {
-#ifdef __linux__
-        _tabs_stylesheets += ".nix.qss";
-#endif
-    }
-
+    const QString _tabs_stylesheets = ":/sep-styles/tabbar@" + QString::number(dpiratio) + "x.qss";
     QFile styleFile(_tabs_stylesheets);
     styleFile.open( QFile::ReadOnly );
     const QString _style = QString(styleFile.readAll());
