@@ -41,6 +41,8 @@
 using NSNetwork::NSFileTransport::CFileDownloader;
 using std::wstring;
 
+
+
 class CUpdateManager: public QObject
 {
     Q_OBJECT
@@ -62,8 +64,6 @@ public:
 private:
     void init();
     void updateNeededCheking();
-    //void loadChangelog(const wstring &changelog_url);
-    //void onLoadChangelogFinished();
     void onLoadCheckFinished();
     void onComplete(const int error);
     void onProgress(const int percent);

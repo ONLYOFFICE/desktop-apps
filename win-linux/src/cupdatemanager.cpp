@@ -59,6 +59,7 @@
 
 using std::vector;
 
+
 CUpdateManager::CUpdateManager(QObject *parent):
     QObject(parent),
     m_downloadMode(Mode::CHECK_UPDATES)
@@ -85,10 +86,8 @@ CUpdateManager::CUpdateManager(QObject *parent):
 
 CUpdateManager::~CUpdateManager()
 {
-    if ( m_pDownloader ) {
-        delete m_pDownloader;
-        m_pDownloader = nullptr;
-    }
+    if ( m_pDownloader )
+        delete m_pDownloader, m_pDownloader = nullptr;
 }
 
 void CUpdateManager::onComplete(const int error)
@@ -104,9 +103,6 @@ void CUpdateManager::onCompleteSlot(const int error)
         case Mode::CHECK_UPDATES:
             onLoadCheckFinished();
             break;
-        /*case Mode::DOWNLOAD_CHANGELOG:
-            onLoadChangelogFinished();
-            break;*/
 #ifdef Q_OS_WIN
         case Mode::DOWNLOAD_UPDATES:
             onLoadUpdateFinished();
@@ -184,10 +180,8 @@ void CUpdateManager::checkUpdates()
     reg_user.endGroup();
 #endif
 
-    // =========== Download JSON ============
     m_downloadMode = Mode::CHECK_UPDATES;
     downloadFile(m_checkUrl, ".json");
-    // ======================================
 #ifndef Q_OS_WIN
     QTimer::singleShot(3000, this, [=]() {
         updateNeededCheking();
@@ -240,9 +234,8 @@ void CUpdateManager::onProgress(const int percent)
 
 void CUpdateManager::onProgressSlot(const int percent)
 {
-    if (m_downloadMode == Mode::DOWNLOAD_UPDATES) {
+    if (m_downloadMode == Mode::DOWNLOAD_UPDATES)
         emit progresChanged(percent);
-    }
 }
 
 QByteArray CUpdateManager::getFileHash(const QString &fileName)
@@ -275,19 +268,14 @@ void CUpdateManager::loadUpdates()
 
 QString CUpdateManager::getVersion() const
 {
-    if (!m_newVersion.isEmpty()) {
-        return m_newVersion;
-    }
-    return QString("");
+    return m_newVersion;
 }
 
 QStringList CUpdateManager::getInstallArguments() const
 {
     QStringList arguments;
-    if ( !m_packageArgs.empty() ) {
-        arguments << QString::fromStdWString(m_packageArgs).split(" ");
-    }
-
+    if ( !m_packageData.packageArgs.empty() )
+        arguments << QString::fromStdWString(m_packageData.packageArgs).split(" ");
     return arguments;
 }
 
@@ -343,8 +331,8 @@ void CUpdateManager::setNewUpdateSetting(const QString& _rate)
 void CUpdateManager::cancelLoading()
 {
     m_downloadMode = Mode::CHECK_UPDATES;
-    m_pDownloader->Stop();
-    //if (QDir().exists(path)) QDir().remove(path);
+    if (m_pDownloader)
+        m_pDownloader->Stop();
 }
 
 void CUpdateManager::onLoadCheckFinished()
@@ -392,38 +380,10 @@ void CUpdateManager::onLoadCheckFinished()
         if (updateExist) {
             m_newVersion = version.toString();
             emit checkFinished(false, true, m_newVersion, changelog.toString());
-            //loadChangelog(changelog_url);
         } else {
             emit checkFinished(false, false, "", "");
         }
     } else {
         emit checkFinished(true, false, "", "Error receiving updates...");
     }
-
-    if ( QDir().exists(path) )
-        QDir().remove(path);
 }
-
-/*void CUpdateManager::loadChangelog(const wstring &changelog_url)
-{
-    //qDebug() << "Load changelog... " << QString::fromStdWString(changelog_url);
-    if (changelog_url != L"") {
-        m_downloadMode = Mode::DOWNLOAD_CHANGELOG;
-        downloadFile(changelog_url, QString(".html"));
-    }
-}
-
-void CUpdateManager::onLoadChangelogFinished()
-{
-    //qDebug() << "Load changelog finished... ";
-    const QString path = QString::fromStdWString(m_pDownloader->GetFilePath());
-    QFile htmlFile(path);
-    if (htmlFile.open(QIODevice::ReadOnly)) {
-        const QString html = QString(htmlFile.readAll());
-        htmlFile.close();
-        emit checkFinished(false, true, m_newVersion, html);
-    } else {
-        emit checkFinished(false, true, m_newVersion, QString("No available description..."));
-    }
-    if (QDir().exists(path)) QDir().remove(path);
-}*/
