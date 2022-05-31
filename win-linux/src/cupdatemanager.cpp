@@ -343,30 +343,28 @@ void CUpdateManager::onLoadCheckFinished()
         QByteArray ReplyText = jsonFile.readAll();
         jsonFile.close();
         QJsonDocument doc = QJsonDocument::fromJson(ReplyText);
-        QJsonObject obj = doc.object();
-
+        QJsonObject root = doc.object();
         // parse version
-        QJsonValue version = obj.value("version");
+        QJsonValue version = root.value("version");
 //        QJsonValue date = obj.value("date");
 
         // parse release notes
-        QJsonObject release_notes = obj.value("releaseNotes").toObject();
-        const QString page = CLangater::getCurrentLangCode() == "ru-RU" ? "ru-RU" : "en-EN";
-        QJsonValue changelog = release_notes.value(page);
-
+        QJsonObject release_notes = root.value("releaseNotes").toObject();
+        const QString lang = CLangater::getCurrentLangCode() == "ru-RU" ? "ru-RU" : "en-EN";
+        QJsonValue changelog = release_notes.value(lang);
         // parse package
 #ifdef Q_OS_WIN
-        QJsonObject package = obj.value("package").toObject();
+        QJsonObject package = root.value("package").toObject();
 # if defined (Q_OS_WIN64)
         QJsonValue win = package.value("win_64");
 # elif defined (Q_OS_WIN32)
         QJsonValue win = package.value("win_32");
 # endif
-        QJsonObject obj_3 = win.toObject();
-        QJsonValue url_win = obj_3.value("url");
-        QJsonValue arguments = obj_3.value("installArguments");
         m_packageUrl = url_win.toString().toStdWString();
         m_packageArgs = arguments.toString().toStdWString();
+        QJsonObject win_params = win.toObject();
+        QJsonValue url_win = win_params.value("url");
+        QJsonValue args_win = win_params.value("installArguments");
 #endif
         bool updateExist = false;
         const QStringList curr_ver = QString::fromLatin1(VER_FILEVERSION_STR).split('.');
