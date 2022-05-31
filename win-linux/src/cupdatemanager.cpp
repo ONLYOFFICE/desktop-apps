@@ -153,16 +153,17 @@ void CUpdateManager::init()
 
 void CUpdateManager::downloadFile(const std::wstring &url, const QString &ext)
 {
-    m_pDownloader->Stop();
-    m_pDownloader->SetFileUrl(url, false);
+    if (m_pDownloader) {
+        m_pDownloader->Stop();
+        m_pDownloader->SetFileUrl(url, false);
+        const QUuid uuid = QUuid::createUuid();
+        const QRegularExpression branches = QRegularExpression("[{|}]+");
+        const QString tmp_file = QDir::tempPath() + "/" + QString(FILE_PREFIX) +
+                uuid.toString().replace(branches, "") + ext;
+        m_pDownloader->SetFilePath(tmp_file.toStdWString());
+        m_pDownloader->Start(0);
+    }
 
-    const QUuid uuid = QUuid::createUuid();
-    const QRegularExpression _ignoreBranches = QRegularExpression("[{|}]+");
-    const QString tmp_name = QString("onlyoffice_") + uuid.toString().replace(_ignoreBranches, "") + ext;
-    const QString tmp_file = QDir::tempPath() + QDir::separator() + tmp_name;
-
-    m_pDownloader->SetFilePath(tmp_file.toStdWString());
-    m_pDownloader->Start(0);
 }
 
 void CUpdateManager::checkUpdates()
