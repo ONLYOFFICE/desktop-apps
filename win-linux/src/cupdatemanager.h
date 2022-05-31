@@ -63,6 +63,7 @@ public:
 
 private:
     void init();
+    void clearTempFiles(const QString &except = QString());
     void updateNeededCheking();
     void onLoadCheckFinished();
     void onComplete(const int error);
@@ -70,16 +71,23 @@ private:
     void downloadFile(const wstring &url, const QString &ext);
 #ifdef Q_OS_WIN
     void onLoadUpdateFinished();
+    void savePackageData(const QByteArray &hash = QByteArray(),
+                         const QString &version = QString(),
+                         const QString &fileName = QString());
     QByteArray getFileHash(const QString &fileName);
 
-    QByteArray  m_savedHash;
-
-    QString     m_savedVersion,
-                m_packageFileName,
-                m_savedPackageFileName;
-
-    wstring     m_packageUrl,
-                m_packageArgs;
+    struct PackageData {
+        QString     fileName = "";
+        wstring     packageUrl = L"",
+                    packageArgs = L"";
+    };
+    struct SavedPackageData {
+        QByteArray hash = QByteArray();
+        QString    version = "",
+                   fileName = "";
+    };
+    PackageData      m_packageData;
+    SavedPackageData m_savedPackageData;
 
     bool        m_restartForUpdate = false;
 #else
