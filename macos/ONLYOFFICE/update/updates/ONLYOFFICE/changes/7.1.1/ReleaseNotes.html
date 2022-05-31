@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>ONLYOFFICE Release Notes</title>
+    <style type="text/css">
+        /* variables */
+        :root {
+            --color-black: #141923;
+            --color-white: #fff;
+            --color-gray-100: #f7fafc;
+            --color-gray-200: #edf2f7;
+            --color-gray-300: #e2e8f0;
+            --color-gray-400: #cbd5e0;
+            --color-gray-500: #a0aec0;
+            --color-gray-600: #718096;
+            --color-gray-700: #4a5568;
+            --color-gray-800: #2d3748;
+            --color-gray-900: #1a202c;
+        }
+        body {
+            background: var(--color-white);
+            color: var(--color-gray-800);
+            font: 12px "Lucida Grande", "Lucida Sans Unicode", Verdana, Lucida, Helvetica, sans-serif;
+        }
+        h1, h2, h3 {
+            color: var(--color-gray-800);
+            font-weight: normal;
+            font-style: normal;
+        }
+        h1 {
+            font-size: 1.7em;
+        }
+        h2 {
+            font-size: 1.4em;
+            font-weight: lighter;
+        }
+        h4 {
+            font-size: 1.2em;
+            font-weight: lighter;
+        }
+        code {
+            background: var(--color-gray-200);
+            font-family: monospace;
+            padding: 1px 5px;
+        }
+        ul {
+            padding: 0 0 0 20px;
+        }
+        li {
+            margin-left: 20px;
+            margin-bottom: 0.2em;
+            padding: 0;
+        }
+        hr {
+            margin: 20px 0;
+            border: var(--color-gray-400) solid 0.5px;
+        }
+        .releasedate {
+            color: var(--color-gray-600);
+            font-weight: lighter;
+        }
+
+        /* prefers light mode */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background: var(--color-gray-900);
+                color: var(--color-gray-200);
+            }
+
+            h1, h2, h3 {
+                color: var(--color-white);
+            }
+
+            code {
+                background: var(--color-gray-800);
+                color: var(--color-gray-200);
+            }
+
+            .releasedate {
+                color: var(--color-gray-600);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="version">
+        <h1>ONLYOFFICE 7.1.1<span class="releasedate"> - [Date]</span></h1>
+        <h2>Fixes</h2>
+        <h4>All Editors</h4>
+        <ul>
+            <li>Fix rendering list of fonts if there is a lot of fonts (Bug #46495)</li>
+            <li>Fix rendering of some Chinese fonts (Bug #48564)</li>
+            <li>Update help entries</li>
+        </ul>
+        <h4>Document Editor</h4>
+        <ul>
+            <li>Fix lost text box in <code>Header</code> (Bug #56940)</li>
+            <li>Fix incorrect table width for some doc file (Bug #56901)</li>
+            <li>Fix convert of some docx files (Bug #57068, Bug #57177)</li>
+            <li>Fix color of SmartArt figures in <code>docx</code> -> <code>odt</code> convert (Bug #57104)</li>
+            <li>Fix page count in specific doc file (Bug #57334)</li>
+            <li>Fix insert page with merge cells and drag'n'drop (Bug #57305)</li>
+            <li>Fix zoom while touch-pad scrolling (Bug #56029)</li>
+            <li>Hide <code>"Create new"</code> for offline pdf/djvu/xps files</li>
+        </ul>
+        <h4>Spreadsheet Editor</h4>
+        <ul>
+            <li>Fix all sheets display while saving as <code>pdf</code> (Bug #49163)</li>
+            <li>Fix zoom change with touch-pad on <code>MacOS</code> (Bug #57249)</li>
+        </ul>
+        <h4>Presentation Editor</h4>
+        <ul>
+            <li>Fix re-save of some pptx files (Bug #57070)</li>
+            <li>Fix test align for some <code>odp</code> files (Bug #57214)</li>
+            <li>Fix saving SmartArt in groups (Bug #57112)</li>
+            <li>Fix crash on drawing animation labels by shape track</li>
+        </ul>
+    </div>
+</body>
+</html>
