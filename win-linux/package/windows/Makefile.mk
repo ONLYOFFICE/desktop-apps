@@ -109,7 +109,8 @@ $(EXE_UPDATE): $(DESKTOP_EDITORS_EXE)
 $(DESKTOP_EDITORS_MSI):
 ifeq ($(WIN_ARCH),x86)
 	cd $(BUILD_DIR); \
-	$(AIC) //edit DesktopEditors.aip //SetPackageType x86
+	$(AIC) //edit DesktopEditors.aip //SetPackageType x86; \
+	$(AIC) //edit DesktopEditors.aip //SetAppdir -buildname DefaultBuild -path [ProgramFilesFolder][MANUFACTURER_INSTALL_FOLDER]\\[PRODUCT_INSTALL_FOLDER]
 endif
 ifneq ($(ENABLE_SIGNING), 1)
 	cd $(BUILD_DIR); \
