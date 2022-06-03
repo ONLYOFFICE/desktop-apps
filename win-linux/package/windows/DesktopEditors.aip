@@ -101,6 +101,8 @@
     <ROW Component="AI_DisableModify" ComponentId="{4DA67DA3-424D-4EB7-8B0F-7AE95B073B87}" Directory_="APPDIR" Attributes="260" KeyPath="NoModify" Options="1"/>
     <ROW Component="APPDIR" ComponentId="{967A56B9-E2F1-42F8-869D-7791391AFB48}" Directory_="APPDIR" Attributes="0"/>
     <ROW Component="DesktopEditors.exe" ComponentId="{FA0F79B8-DC4D-49BC-808A-1821966D6C0C}" Directory_="APPDIR" Attributes="0" Condition="VersionNT64" KeyPath="DesktopEditors.exe"/>
+    <ROW Component="MicrosoftVisualC" ComponentId="{CA1FCD66-ED15-4D94-81FD-0C927B78E132}" Directory_="APPDIR" Attributes="260" KeyPath="MicrosoftVisualC" Options="2"/>
+    <ROW Component="MicrosoftVisualC_1" ComponentId="{B176A670-4763-46DF-A796-3B8AB885DA4A}" Directory_="APPDIR" Attributes="260" KeyPath="MicrosoftVisualC_1" Options="2"/>
     <ROW Component="NewValueCheckForUpdates" ComponentId="{E9660E71-E436-4C3C-8B4B-A324DB1BF250}" Directory_="APPDIR" Attributes="260" KeyPath="NewValueCheckForUpdates"/>
     <ROW Component="ONLYOFFICE" ComponentId="{4C21A9BD-4E3F-4373-B2DE-6CCFD5818EB6}" Directory_="APPDIR" Attributes="260" KeyPath="ONLYOFFICE"/>
     <ROW Component="ProductInformation" ComponentId="{8F10F3CD-12FA-4182-AAEB-6E3EBF95E345}" Directory_="APPDIR" Attributes="260" KeyPath="Version"/>
@@ -111,6 +113,8 @@
     <ROW Feature="AI64BitFiles" Title="64-bit" Description="64-bit Executables and Libraries" Display="35" Level="1" Directory_="APPDIR" Attributes="0"/>
     <ROW Feature="FileTypeAssociations" Feature_Parent="MainFeature" Title="File Type Associations" Description="Description" Display="3" Level="4" Directory_="APPDIR" Attributes="0" Options="13"/>
     <ROW Feature="MainFeature" Title="MainFeature" Description="Description" Display="1" Level="1" Directory_="APPDIR" Attributes="0"/>
+    <ROW Feature="MicrosoftVisualC" Title="Microsoft Visual C++ 2015-2022 Redistributable (x64)" Description="Microsoft Visual C++ 2015-2022 Redistributable (x64)" Display="9" Level="1" Attributes="0"/>
+    <ROW Feature="MicrosoftVisualC_1" Title="Microsoft Visual C++ 2015-2022 Redistributable (x86)" Description="Microsoft Visual C++ 2015-2022 Redistributable (x86)" Display="7" Level="1" Attributes="0"/>
     <ROW Feature="csv" Feature_Parent="FileTypeAssociations" Title=".csv" Description="Description" Display="39" Level="1" Directory_="APPDIR" Attributes="2" Options="27"/>
     <ROW Feature="djvu" Feature_Parent="FileTypeAssociations" Title=".djvu" Description="Description" Display="41" Level="1" Directory_="APPDIR" Attributes="2" Options="27"/>
     <ROW Feature="doc" Feature_Parent="FileTypeAssociations" Title=".doc" Description="Description" Display="43" Level="1" Directory_="APPDIR" Attributes="2" Options="27"/>
@@ -178,15 +182,27 @@
     <ROW Fragment="VerifyRepairDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\VerifyRepairDlg.aip"/>
     <ROW Fragment="WelcomeDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\WelcomeDlg.aip"/>
   </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiActionTextComponent">
+    <ROW Action="AI_ConfigureChainer" Description="Configuring prerequisites launcher" DescriptionLocId="ActionText.Description.AI_ConfigureChainer" Template="Configure Launcher" TemplateLocId="ActionText.Template.AI_ConfigureChainer"/>
+    <ROW Action="AI_DownloadPrereq" Description="Downloading prerequisite software" DescriptionLocId="ActionText.Description.AI_DownloadPrereq" Template="Downloading [1]{[2] completed}" TemplateLocId="ActionText.Template.AI_DownloadPrereq"/>
+    <ROW Action="AI_ExtractPrereq" Description="Extracting prerequisite software" DescriptionLocId="ActionText.Description.AI_ExtractPrereq" Template="Extracting [1]{[2] completed}" TemplateLocId="ActionText.Template.AI_ExtractPrereq"/>
+    <ROW Action="AI_InstallPostPrerequisite" Description="Installing prerequisite software" DescriptionLocId="ActionText.Description.AI_InstallPrerequisite" Template="Installing [1]{[2] completed}" TemplateLocId="ActionText.Template.AI_InstallPrerequisite"/>
+    <ROW Action="AI_InstallPrerequisite" Description="Installing prerequisite software" DescriptionLocId="ActionText.Description.AI_InstallPrerequisite" Template="Installing [1]{[2] completed}" TemplateLocId="ActionText.Template.AI_InstallPrerequisite"/>
+    <ROW Action="AI_VerifyPrereq" Description="Verifying prerequisites" DescriptionLocId="ActionText.Description.AI_VerifyPrereq" Template="[1] was not installed correctly." TemplateLocId="ActionText.Template.AI_VerifyPrereq"/>
+  </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiAppSearchComponent">
     <ROW Property="AI_SHORTCUTSREG" Signature_="AI_ShRegOptionUser"/>
     <ROW Property="AI_SHORTCUTSREG" Signature_="AI_ShRegOptionMachine"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiBinaryComponent">
     <ROW Name="ExternalUICleaner.dll" SourcePath="&lt;AI_CUSTACTS&gt;ExternalUICleaner.dll"/>
+    <ROW Name="Prereq.dll" SourcePath="&lt;AI_CUSTACTS&gt;Prereq.dll"/>
     <ROW Name="aicustact.dll" SourcePath="&lt;AI_CUSTACTS&gt;aicustact.dll"/>
+    <ROW Name="aipackagechainer.exe" SourcePath="&lt;AI_CUSTACTS&gt;aipackagechainer.exe"/>
     <ROW Name="background.bmp" SourcePath="data\background.bmp"/>
     <ROW Name="banner.png" SourcePath="data\banner.png"/>
+    <ROW Name="file_deleter.ps1" SourcePath="&lt;AI_SCRIPTS&gt;file_deleter.ps1"/>
+    <ROW Name="viewer.exe" SourcePath="&lt;AI_CUSTACTS&gt;viewer.exe"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCheckBoxComponent">
     <ROW Property="ASSOTIATION_PROP" Value="CheckBox"/>
@@ -593,6 +609,9 @@
     <ROW Dialog_="FileAssociationsDlg" Control_="FileAssociationsDlgDialogInitializer" Event="[AI_EXT_SELECTED]" Argument="1" Condition="AI_MAINT AND NOT (AI_EXT_SELECTED)" Ordering="100"/>
     <ROW Dialog_="ShortcutsDlg" Control_="Next" Event="NewDialog" Argument="FileAssociationsDlg" Condition="AI_INSTALL" Ordering="1"/>
     <ROW Dialog_="ShortcutsDlg" Control_="Back" Event="NewDialog" Argument="FolderDlg" Condition="AI_INSTALL" Ordering="1"/>
+    <ROW Dialog_="ExitDialog" Control_="Finish" Event="DoAction" Argument="AI_CleanPrereq" Condition="1" Ordering="301"/>
+    <ROW Dialog_="FatalError" Control_="Finish" Event="DoAction" Argument="AI_CleanPrereq" Condition="1" Ordering="102"/>
+    <ROW Dialog_="UserExit" Control_="Finish" Event="DoAction" Argument="AI_CleanPrereq" Condition="1" Ordering="101"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCreateFolderComponent">
     <ROW Directory_="APPDIR" Component_="APPDIR" ManualDelete="true"/>
@@ -600,17 +619,25 @@
     <ROW Directory_="QuickLaunch_Dir" Component_="QuickLaunch" ManualDelete="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCustActComponent">
+    <ROW Action="AI_AppSearchEx" Type="1" Source="Prereq.dll" Target="DoAppSearchEx"/>
     <ROW Action="AI_BACKUP_AI_SETUPEXEPATH" Type="51" Source="AI_SETUPEXEPATH_ORIGINAL" Target="[AI_SETUPEXEPATH]"/>
+    <ROW Action="AI_CleanPrereq" Type="65" Source="Prereq.dll" Target="CleanPrereq" WithoutSeq="true"/>
+    <ROW Action="AI_ConfigureChainer" Type="1" Source="Prereq.dll" Target="ConfigurePrereqLauncher"/>
     <ROW Action="AI_DATA_SETTER" Type="51" Source="AI_DEL_EMPTY_SHORTCUTDIR" Target="[SHORTCUTDIR]"/>
     <ROW Action="AI_DELETE_SHORTCUTS" Type="1" Source="aicustact.dll" Target="DeleteShortcuts"/>
     <ROW Action="AI_DEL_EMPTY_SHORTCUTDIR" Type="3073" Source="aicustact.dll" Target="DeleteEmptyDirectory" AdditionalSeq="AI_DATA_SETTER"/>
     <ROW Action="AI_DOWNGRADE" Type="19" Target="4010"/>
     <ROW Action="AI_DoRemoveExternalUIStub" Type="3585" Source="ExternalUICleaner.dll" Target="DoRemoveExternalUIStub" WithoutSeq="true"/>
+    <ROW Action="AI_DownloadPrereq" Type="1" Source="Prereq.dll" Target="DownloadPrereq"/>
     <ROW Action="AI_DpiContentScale" Type="1" Source="aicustact.dll" Target="DpiContentScale"/>
     <ROW Action="AI_EnableDebugLog" Type="321" Source="aicustact.dll" Target="EnableDebugLog"/>
+    <ROW Action="AI_ExtractPrereq" Type="65" Source="Prereq.dll" Target="ExtractPrereq"/>
     <ROW Action="AI_GetArpIconPath" Type="1" Source="aicustact.dll" Target="GetArpIconPath"/>
     <ROW Action="AI_InstallModeCheck" Type="1" Source="aicustact.dll" Target="UpdateInstallMode" WithoutSeq="true"/>
+    <ROW Action="AI_InstallPostPrerequisite" Type="1" Source="Prereq.dll" Target="InstallPostPrereq"/>
+    <ROW Action="AI_InstallPrerequisite" Type="1" Source="Prereq.dll" Target="InstallPrereq"/>
     <ROW Action="AI_LaunchApp" Type="1" Source="aicustact.dll" Target="[#DesktopEditors.exe]"/>
+    <ROW Action="AI_LaunchChainer" Type="3314" Source="AI_PREREQ_CHAINER"/>
     <ROW Action="AI_PREPARE_UPGRADE" Type="65" Source="aicustact.dll" Target="PrepareUpgrade"/>
     <ROW Action="AI_RESTORE_AI_SETUPEXEPATH" Type="51" Source="AI_SETUPEXEPATH" Target="[AI_SETUPEXEPATH_ORIGINAL]"/>
     <ROW Action="AI_RESTORE_LOCATION" Type="65" Source="aicustact.dll" Target="RestoreLocation"/>
@@ -619,6 +646,7 @@
     <ROW Action="AI_RestartElevated" Type="1" Source="aicustact.dll" Target="RestartElevated"/>
     <ROW Action="AI_SHOW_LOG" Type="65" Source="aicustact.dll" Target="LaunchLogFile" WithoutSeq="true"/>
     <ROW Action="AI_STORE_LOCATION" Type="51" Source="ARPINSTALLLOCATION" Target="[APPDIR]"/>
+    <ROW Action="AI_VerifyPrereq" Type="1" Source="Prereq.dll" Target="VerifyPrereq"/>
     <ROW Action="SET_APPDIR" Type="307" Source="APPDIR" Target="[ProgramFilesFolder][Manufacturer]\[ProductName]" MultiBuildTarget="DefaultBuild:[ProgramFiles64Folder][MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]"/>
     <ROW Action="SET_SHORTCUTDIR" Type="307" Source="SHORTCUTDIR" Target="[ProgramMenuFolder][ProductName]"/>
     <ROW Action="SET_TARGETDIR_TO_APPDIR" Type="51" Source="TARGETDIR" Target="[APPDIR]"/>
@@ -691,6 +719,8 @@
     <ROW Feature_="MainFeature" Component_="AIShRegAnswer"/>
     <ROW Feature_="MainFeature" Component_="SHORTCUTDIR"/>
     <ROW Feature_="MainFeature" Component_="QuickLaunch"/>
+    <ROW Feature_="MicrosoftVisualC" Component_="MicrosoftVisualC"/>
+    <ROW Feature_="MicrosoftVisualC_1" Component_="MicrosoftVisualC_1"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiIconsComponent">
     <ROW Name="desktopeditors.exe" SourcePath="..\..\res\icons\desktopeditors.ico" Index="0"/>
@@ -724,6 +754,10 @@
     <ROW Action="AI_DELETE_SHORTCUTS" Condition="NOT (REMOVE=&quot;ALL&quot;)" Sequence="1401"/>
     <ROW Action="AI_DEL_EMPTY_SHORTCUTDIR" Condition="NOT (REMOVE=&quot;ALL&quot;)" Sequence="6402"/>
     <ROW Action="AI_DATA_SETTER" Condition="NOT (REMOVE=&quot;ALL&quot;)" Sequence="6401"/>
+    <ROW Action="AI_ConfigureChainer" Condition="((UILevel = 2) OR (UILevel = 3)) AND (NOT UPGRADINGPRODUCTCODE)" Sequence="6598"/>
+    <ROW Action="AI_LaunchChainer" Condition="AI_PREREQ_CHAINER AND (NOT UPGRADINGPRODUCTCODE)" Sequence="6599"/>
+    <ROW Action="AI_AppSearchEx" Sequence="101"/>
+    <ROW Action="AI_VerifyPrereq" Sequence="1101"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiInstallUISequenceComponent">
     <ROW Action="AI_RESTORE_LOCATION" Condition="APPDIR=&quot;&quot;" Sequence="747"/>
@@ -731,10 +765,16 @@
     <ROW Action="AI_DpiContentScale" Sequence="53"/>
     <ROW Action="AI_EnableDebugLog" Sequence="52"/>
     <ROW Action="AI_BACKUP_AI_SETUPEXEPATH" Sequence="97"/>
-    <ROW Action="AI_RESTORE_AI_SETUPEXEPATH" Condition="AI_SETUPEXEPATH_ORIGINAL" Sequence="101"/>
+    <ROW Action="AI_RESTORE_AI_SETUPEXEPATH" Condition="AI_SETUPEXEPATH_ORIGINAL" Sequence="102"/>
     <ROW Action="UninstallOlderVersion64" Condition="( NOT Installed ) AND ( VersionNT64 )" Sequence="98"/>
     <ROW Action="AI_RestartElevated" Sequence="51" Builds="DefaultBuild"/>
     <ROW Action="UninstallOlderVersion32" Condition="( NOT Installed ) AND ( NOT VersionNT64 )" Sequence="99"/>
+    <ROW Action="AI_AppSearchEx" Sequence="101"/>
+    <ROW Action="AI_DownloadPrereq" Sequence="1297"/>
+    <ROW Action="AI_ExtractPrereq" Sequence="1298"/>
+    <ROW Action="AI_InstallPrerequisite" Sequence="1299"/>
+    <ROW Action="AI_InstallPostPrerequisite" Sequence="1301"/>
+    <ROW Action="AI_CleanPrereq" Sequence="1302"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiLaunchConditionsComponent">
     <ROW Condition="( Version9X OR VersionNT64 )" Description="[ProductName] cannot be installed on [WindowsTypeNTDisplay]." DescriptionLocId="AI.LaunchCondition.NoNT" IsPredefined="true" Builds="DefaultBuild"/>
@@ -785,6 +825,8 @@
     <ROW Registry="HelpLink" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="HelpLink" Value="[ARPHELPLINK]" Component_="AI_CustomARPName"/>
     <ROW Registry="HelpTelephone" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="HelpTelephone" Value="[ARPHELPTELEPHONE]" Component_="AI_CustomARPName"/>
     <ROW Registry="InstallLocation" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="InstallLocation" Value="[APPDIR]" Component_="AI_CustomARPName"/>
+    <ROW Registry="MicrosoftVisualC" Root="-1" Key="Software\Caphyon\Advanced Installer\Prereqs\[ProductCode]\[ProductVersion]" Name="MicrosoftVisualC" Value="1" Component_="MicrosoftVisualC"/>
+    <ROW Registry="MicrosoftVisualC_1" Root="-1" Key="Software\Caphyon\Advanced Installer\Prereqs\[ProductCode]\[ProductVersion]" Name="MicrosoftVisualC_1" Value="1" Component_="MicrosoftVisualC_1"/>
     <ROW Registry="ModifyPath" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="ModifyPath" Value="[AI_UNINSTALLER] /i [ProductCode] AI_UNINSTALLER_CTP=1" Component_="AI_CustomARPName"/>
     <ROW Registry="NewValueCheckForUpdates" Root="-1" Key="Software\ONLYOFFICE\DesktopEditors" Name="CheckForUpdates" Value="#0" Component_="NewValueCheckForUpdates" VirtualValue="#"/>
     <ROW Registry="NoModify" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="NoModify" Value="#1" Component_="AI_DisableModify" VirtualValue="#"/>
@@ -862,5 +904,15 @@
     <ROW Extension_="ots" Component_="DesktopEditors.exe" Verb="edit" Sequence="1" Command="&amp;Edit" Argument="&quot;%1&quot;"/>
     <ROW Extension_="csv" Component_="DesktopEditors.exe" Verb="open" Sequence="0" Command="&amp;Open" Argument="&quot;%1&quot;"/>
     <ROW Extension_="csv" Component_="DesktopEditors.exe" Verb="edit" Sequence="1" Command="&amp;Edit" Argument="&quot;%1&quot;"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.PreReqComponent">
+    <ROW PrereqKey="MicrosoftVisualC" DisplayName="Microsoft Visual C++ 2015-2022 Redistributable (x64)" VersionMin="14.30" SetupFileUrl="data\vcredist\vcredist_2022_x64.exe" Location="0" ExactSize="0" WinNTVersions="Windows 9x/ME/NT/2000/XP/Vista/Windows 7/Windows 8 x86/Windows 8.1 x86/Windows 10 x86" WinNT64Versions="Windows Vista RTM x64, Windows Vista SP1 x64, Windows Server 2008 RTM x64, Windows 7 RTM x64, Windows Server 2008 R2 RTM x64" Operator="1" ComLine="/q /norestart" BasicUiComLine="/q /norestart" NoUiComLine="/q /norestart" Options="px" TargetName="Microsoft Visual C++ 2015-2022 Redistributable (x64)\vcredist_2022_x64.exe" Feature="MicrosoftVisualC"/>
+    <ROW PrereqKey="MicrosoftVisualC_1" DisplayName="Microsoft Visual C++ 2015-2022 Redistributable (x86)" VersionMin="14.30" SetupFileUrl="data\vcredist\vcredist_2022_x86.exe" Location="0" ExactSize="0" WinNTVersions="Windows Vista RTM x86, Windows Vista SP1 x86, Windows Server 2008 RTM x86, Windows 7 RTM x86" WinNT64Versions="Windows XP/Vista/Windows 7/Windows 8 x64/Windows 8.1 x64/Windows 10 x64/Windows 11 x64" Operator="0" ComLine="/q /norestart" BasicUiComLine="/q /norestart" NoUiComLine="/q /norestart" Options="p" TargetName="Microsoft Visual C++ 2015-2022 Redistributable (x86)\vcredist_2022_x86.exe" Feature="MicrosoftVisualC_1"/>
+    <ATTRIBUTE name="PrereqsOrder" value="MicrosoftVisualC_1 MicrosoftVisualC"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.PreReqSearchComponent">
+    <ROW SearchKey="SystemFoldervcruntime140.dll" Prereq="MicrosoftVisualC_1" SearchType="0" SearchString="[SystemFolder]vcruntime140.dll" VerMin="14.30.30704" Order="2" Property="PreReqSearch_1"/>
+    <ROW SearchKey="Version" Prereq="MicrosoftVisualC_1" SearchType="2" SearchString="HKLM\SOFTWARE\Microsoft\DevDiv\VC\Servicing\14.0\RuntimeMinimum\Version" VerMin="14.30.30704" Order="2" Property="PreReqSearch_2"/>
+    <ROW SearchKey="Version_1" Prereq="MicrosoftVisualC" SearchType="2" SearchString="HKLM\SOFTWARE\Microsoft\DevDiv\VC\Servicing\14.0\RuntimeMinimum\Version" VerMin="14.30.30704" Order="2" Property="PreReqSearch_3"/>
   </COMPONENT>
 </DOCUMENT>
