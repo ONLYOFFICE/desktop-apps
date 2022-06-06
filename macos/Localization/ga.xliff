@@ -234,7 +234,7 @@
       </trans-unit>
       <trans-unit id="OpenDocument Spreadsheet Template" xml:space="preserve">
         <source>OpenDocument Spreadsheet Template</source>
-        <target state="translated">Teimpléad scarbhileog OpenDocument *.(ots)</target>
+        <target state="translated">Teimpléad scarbhileog OpenDocument (*.ots)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="OpenOffice Document" xml:space="preserve">
