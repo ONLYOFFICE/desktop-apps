@@ -177,22 +177,22 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="221"/>
         <source>DOCX Document (*.docx)</source>
-        <translation>Doiciméad DOCX (*.docx)</translation>
+        <translation>Doiciméad Office Open XML (*.docx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="222"/>
         <source>Document template (*.dotx)</source>
-        <translation>Teimpléad doiciméad(*.dotx)</translation>
+        <translation>Teimpléad doiciméad Word Open XML (*.dotx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="223"/>
         <source>DOC Document (*.doc)</source>
-        <translation>Doiciméad DOC Document (*.doc)</translation>
+        <translation>Doiciméad Word 97-2003 (*.doc)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="224"/>
         <source>ODT Document (*.odt)</source>
-        <translation>Doiciméad ODT Document (*.odt)</translation>
+        <translation>Comhad Téacs OpenDocument (*.odt)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="225"/>
@@ -202,12 +202,12 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="226"/>
         <source>RTF File (*.rtf)</source>
-        <translation>Comhad RTF (*.rtf)</translation>
+        <translation>Doiciméad méith-théacs (*.rtf)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="227"/>
         <source>TXT File (*.txt)</source>
-        <translation>Comhad TXT (*.txt)</translation>
+        <translation>Téacs Plain (*.txt)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="228"/>
@@ -232,7 +232,7 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="232"/>
         <source>MOBI File (*.mobi)</source>
-        <translation>Comhad MOBI (*.mobi)</translation>
+        <translation>Mobipocket e-book (*.mobi)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="233"/>
@@ -247,22 +247,22 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="236"/>
         <source>PPTX File (*.pptx)</source>
-        <translation>Comhad PPTX (*.pptx)</translation>
+        <translation>Cur i láthair PowerPoint Open XML (*.pptx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="237"/>
         <source>PPT File (*.ppt)</source>
-        <translation>Comhad PPT (*.ppt)</translation>
+        <translation>Cur i láthair PowerPoint 97-2003 (*.ppt)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="238"/>
         <source>Presentation template (*.potx)</source>
-        <translation>Teimpléad cur i láthair (*.potx)</translation>
+        <translation>Teimpléad cur i láthair PowerPoint Open XML (*.potx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="239"/>
         <source>ODP File (*.odp)</source>
-        <translation>Comhad ODP (*.odp)</translation>
+        <translation>Láithreoireacht OpenDocument (*.odp)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="240"/>
@@ -272,57 +272,57 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="241"/>
         <source>PPSX File (*.ppsx)</source>
-        <translation>Comhad PPSX (*.ppsx)</translation>
+        <translation>Taispeántas sleamhnán Office Open XML (*.ppsx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="243"/>
         <source>XLSX File (*.xlsx)</source>
-        <translation>Comhad XLSX (*.xlsx)</translation>
+        <translation>Scarbhileog Office Open XML (*.xlsx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="244"/>
         <source>Spreadsheet template (*.xltx)</source>
-        <translation>Teimpléad scarbhileog (*.xltx)</translation>
+        <translation>Teimpléad scarbhileog Excel Open XML (*.xltx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="245"/>
         <source>XLS File (*.xls)</source>
-        <translation>Comhad XLS (*.xls)</translation>
+        <translation>Scarbhileog Excel 97-2003 (*.xls)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="246"/>
         <source>ODS File (*.ods)</source>
-        <translation>Comhad ODS (*.ods)</translation>
+        <translation>Scarbhileog OpenDocument (*.ods)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="247"/>
         <source>OpenDocument Spreadsheet Template (*.ots)</source>
-        <translation>Teimpléad scarbhileog OpenDocument *.(ots)</translation>
+        <translation>Teimpléad scarbhileog OpenDocument (*.ots)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="248"/>
         <source>CSV File (*.csv)</source>
-        <translation>Comhad CSV (*.csv)</translation>
+        <translation>Luachanna Scartha le Coma (*.csv)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="250"/>
         <source>PDF File (*.pdf)</source>
-        <translation>Comhad PDF (*.pdf)</translation>
+        <translation type="unfinished">Comhad PDF (*.pdf)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="251"/>
         <source>PDFA File (*.pdf)</source>
-        <translation>Comhad PDFA (*.pdf)</translation>
+        <translation type="unfinished">Comhad PDFA (*.pdf)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="252"/>
         <source>DJVU File (*.djvu)</source>
-        <translation>Comhad DJVU (*.djvu)</translation>
+        <translation type="unfinished">Comhad DjVu (*.djvu)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="253"/>
         <source>XPS File (*.xps)</source>
-        <translation>Comhad XPS (*.xps)</translation>
+        <translation>OpenXPS Cáipéis (*.xps)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="255"/>
@@ -571,7 +571,7 @@
     <message>
         <location filename="../src/ceditortools.cpp" line="126"/>
         <source>All files (*.*)</source>
-        <translation type="unfinished">Gach comhad (*.*)</translation>
+        <translation>Gach comhad (*.*)</translation>
     </message>
 </context>
 </TS>

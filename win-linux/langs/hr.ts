@@ -177,37 +177,37 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="221"/>
         <source>DOCX Document (*.docx)</source>
-        <translation>DOCX dokument (*.docx)</translation>
+        <translation>Office Open XML Dokument (*.docx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="222"/>
         <source>Document template (*.dotx)</source>
-        <translation>Predložak dokumenta (*.dotx)</translation>
+        <translation>Word Open XML Predložak dokumenta (*.dotx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="223"/>
         <source>DOC Document (*.doc)</source>
-        <translation>DOC dokument (*.doc)</translation>
+        <translation>Word 97-2003 Dokument (*.doc)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="224"/>
         <source>ODT Document (*.odt)</source>
-        <translation>ODT dokument (*.odt)</translation>
+        <translation>OpenDocument Tekstni file (*.odt)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="225"/>
         <source>OpenDocument Document template (*.ott)</source>
-        <translation>OpenDocument predložak dokumenta (*.ott)</translation>
+        <translation>OpenDocument Predložak dokumenta (*.ott)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="226"/>
         <source>RTF File (*.rtf)</source>
-        <translation>RTF datoteka (*.rtf)</translation>
+        <translation>Format obogaćenog teksta (*.rtf)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="227"/>
         <source>TXT File (*.txt)</source>
-        <translation>TXT datoteka (*.txt)</translation>
+        <translation>Običan tekst (*.txt)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="228"/>
@@ -232,97 +232,97 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="232"/>
         <source>MOBI File (*.mobi)</source>
-        <translation>MOBI datoteka (*.mobi)</translation>
+        <translation>Mobipocket e-knjiga (*.mobi)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="233"/>
         <source>OFORM Document (*.oform)</source>
-        <translation type="unfinished"></translation>
+        <translation>ONLYOFFICE Ispunjivi online obrazac (*.oform)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="234"/>
         <source>DOCXF Document (*.docxf)</source>
-        <translation type="unfinished"></translation>
+        <translation>ONLYOFFICE Predložak obrasca (*.docxf)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="236"/>
         <source>PPTX File (*.pptx)</source>
-        <translation>PPTX datoteka (*.pptx)</translation>
+        <translation>Office Open XML Prezentacija (*.pptx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="237"/>
         <source>PPT File (*.ppt)</source>
-        <translation>PPT datoteka (*.ppt)</translation>
+        <translation>PowerPoint 97-2003 Prezentacija (*.ppt)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="238"/>
         <source>Presentation template (*.potx)</source>
-        <translation>Predložak prezentacije (*.potx)</translation>
+        <translation>PowerPoint Open XML Predložak prezentacije (*.potx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="239"/>
         <source>ODP File (*.odp)</source>
-        <translation>ODP datoteka (*.odp)</translation>
+        <translation>OpenDocument Prezentacija (*.odp)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="240"/>
         <source>OpenDocument Presentation Template (*.otp)</source>
-        <translation>OpenDocument predložak prezentacije (*.otp)</translation>
+        <translation>OpenDocument Predložak prezentacije (*.otp)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="241"/>
         <source>PPSX File (*.ppsx)</source>
-        <translation>PPSX datoteka (*.ppsx)</translation>
+        <translation>Office Open XML Projekcija (*.ppsx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="243"/>
         <source>XLSX File (*.xlsx)</source>
-        <translation>XLSX datoteka (*.xlsx)</translation>
+        <translation>Office Open XML Proračunska tablica (*.xlsx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="244"/>
         <source>Spreadsheet template (*.xltx)</source>
-        <translation>Predložak tablice (*.xltx)</translation>
+        <translation>Excel Open XML Predložak tablice (*.xltx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="245"/>
         <source>XLS File (*.xls)</source>
-        <translation>XLS datoteka (*.xls)</translation>
+        <translation>Excel 97-2003 Proračunska tablica (*.xls)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="246"/>
         <source>ODS File (*.ods)</source>
-        <translation>ODS datoteka (*.ods)</translation>
+        <translation>OpenDocument Proračunska tablica (*.ods)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="247"/>
         <source>OpenDocument Spreadsheet Template (*.ots)</source>
-        <translation>OpenDocument predložak tablice (*.ots)</translation>
+        <translation>OpenDocument Predložak tablice (*.ots)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="248"/>
         <source>CSV File (*.csv)</source>
-        <translation>CSV datoteka (*.csv)</translation>
+        <translation>Vrijednosti odvojene zarezima (*.csv)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="250"/>
         <source>PDF File (*.pdf)</source>
-        <translation>PDF datoteka (*.pdf)</translation>
+        <translation>Prijenosni format dokumenta (*.pdf)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="251"/>
         <source>PDFA File (*.pdf)</source>
-        <translation>PDFA datoteka (*.pdf)</translation>
+        <translation>Prijenosni format dokumenta / A (*.pdf)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="252"/>
         <source>DJVU File (*.djvu)</source>
-        <translation>DJVU datoteka (*.djvu)</translation>
+        <translation>Digitalni document (*.djvu)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="253"/>
         <source>XPS File (*.xps)</source>
-        <translation>XPS datoteka (*.xps)</translation>
+        <translation>OpenXPS Dokument (*.xps)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="255"/>
@@ -567,7 +567,7 @@
     <message>
         <location filename="../src/ceditortools.cpp" line="126"/>
         <source>All files (*.*)</source>
-        <translation type="unfinished">Sve datoteke (*.*)</translation>
+        <translation>Sve datoteke (*.*)</translation>
     </message>
 </context>
 </TS>

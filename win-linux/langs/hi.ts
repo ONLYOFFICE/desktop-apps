@@ -177,7 +177,7 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="221"/>
         <source>DOCX Document (*.docx)</source>
-        <translation>डॉक्स दस्तावेज़ (*.docx)</translation>
+        <translation>ऑफिस ओपन एक्सएमएल दस्तावेज़ (*.docx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="222"/>
@@ -187,12 +187,12 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="223"/>
         <source>DOC Document (*.doc)</source>
-        <translation>डॉक दस्तावेज़ (*.doc)</translation>
+        <translation>वर्ड 97-2003 दस्तावेज़ (*.doc)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="224"/>
         <source>ODT Document (*.odt)</source>
-        <translation>ओडीटी दस्तावेज़ (*.odt)</translation>
+        <translation>ओपनदस्तावेज़ टेक्स्ट दस्तावेज़ (*.odt)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="225"/>
@@ -202,12 +202,12 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="226"/>
         <source>RTF File (*.rtf)</source>
-        <translation>आरटीएफ फ़ाइल (*.rtf)</translation>
+        <translation>रिच टेक्स्ट फॉर्मेट फ़ाइल (*.rtf)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="227"/>
         <source>TXT File (*.txt)</source>
-        <translation>टीएक्सटी फ़ाइल (*.txt)</translation>
+        <translation>सादा टेक्स्ट (*.txt)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="228"/>
@@ -232,27 +232,27 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="232"/>
         <source>MOBI File (*.mobi)</source>
-        <translation>मोबी फ़ाइल (*.mobi)</translation>
+        <translation>मोबीपॉकेट ई-बुक (*.mobi)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="233"/>
         <source>OFORM Document (*.oform)</source>
-        <translation type="unfinished"></translation>
+        <translation>ओनलीऑफिस भरने योग्य ऑनलाइन फॉर्म (*.oform)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="234"/>
         <source>DOCXF Document (*.docxf)</source>
-        <translation type="unfinished"></translation>
+        <translation>ओनलीऑफिस दस्तावेज़ फॉर्म टेम्पलेट (*.docxf)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="236"/>
         <source>PPTX File (*.pptx)</source>
-        <translation>पीपीटीएक्स फ़ाइल (*.pptx)</translation>
+        <translation>ऑफिस ओपन एक्सएमएल प्रस्तुति (*.pptx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="237"/>
         <source>PPT File (*.ppt)</source>
-        <translation>पीपीटी फ़ाइल (*.ppt)</translation>
+        <translation>पावरपॉइंट 97-2003 प्रस्तुति (*.ppt)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="238"/>
@@ -262,7 +262,7 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="239"/>
         <source>ODP File (*.odp)</source>
-        <translation>ओडीपी फ़ाइल (*.odp)</translation>
+        <translation>ओपनदस्तावेज़ प्रस्तुति (*.odp)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="240"/>
@@ -272,12 +272,12 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="241"/>
         <source>PPSX File (*.ppsx)</source>
-        <translation>पीपीएसएक्स फ़ाइल (*.ppsx)</translation>
+        <translation>ऑफिस ओपन एक्सएमएल स्लाइड शो (*.ppsx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="243"/>
         <source>XLSX File (*.xlsx)</source>
-        <translation>एक्सएलएसएक्स फ़ाइल (*.xlsx)</translation>
+        <translation>ऑफिस ओपन एक्सएमएल स्प्रेडशीट (*.xlsx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="244"/>
@@ -287,12 +287,12 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="245"/>
         <source>XLS File (*.xls)</source>
-        <translation>एक्सएलएस फ़ाइल (*.xls)</translation>
+        <translation>एक्सेल 97-2003 स्प्रेडशीट (*.xls)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="246"/>
         <source>ODS File (*.ods)</source>
-        <translation>ओडीएस फ़ाइल (*.ods)</translation>
+        <translation>ओपनदस्तावेज़ स्प्रेडशीट (*.ods)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="247"/>
@@ -302,7 +302,7 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="248"/>
         <source>CSV File (*.csv)</source>
-        <translation>सीएसवी फ़ाइल (*.csv)</translation>
+        <translation>अल्पविराम से विभाजित मान (*.csv)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="250"/>
@@ -312,17 +312,17 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="251"/>
         <source>PDFA File (*.pdf)</source>
-        <translation>पीडीएफए फ़ाइल (*.pdf)</translation>
+        <translation>पीडीएफ/ए फ़ाइल (*.pdf)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="252"/>
         <source>DJVU File (*.djvu)</source>
-        <translation>डीजेवू फ़ाइल (*.djvu)</translation>
+        <translation>डिजिटल दस्तावेज़ (*.djvu)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="253"/>
         <source>XPS File (*.xps)</source>
-        <translation>एक्सपीएस फ़ाइल (*.xps)</translation>
+        <translation>OpenXPS दस्तावेज़(*.xps)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="255"/>
@@ -571,7 +571,7 @@
     <message>
         <location filename="../src/ceditortools.cpp" line="126"/>
         <source>All files (*.*)</source>
-        <translation type="unfinished">सभी फ़ाइलें (*.*)</translation>
+        <translation>सभी फ़ाइलें (*.*)</translation>
     </message>
 </context>
 </TS>

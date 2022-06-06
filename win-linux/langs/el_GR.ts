@@ -177,22 +177,22 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="221"/>
         <source>DOCX Document (*.docx)</source>
-        <translation>Έγγραφο DOCX (*.docx)</translation>
+        <translation>Έγγραφο Office με ανοιχτή μορφή XML (*.docx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="222"/>
         <source>Document template (*.dotx)</source>
-        <translation>Πρότυπο εγγράφου (*.dotx)</translation>
+        <translation>Πρότυπο εγγράφου Word με ανοιχτή μορφή XML (*.dotx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="223"/>
         <source>DOC Document (*.doc)</source>
-        <translation>Έγγραφο DOC (*.doc)</translation>
+        <translation>Έγγραφο Word 97-2003 (*.doc)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="224"/>
         <source>ODT Document (*.odt)</source>
-        <translation>Έγγραφο ODT (*.odt)</translation>
+        <translation>Αρχείο κειμένου OpenDocument (*.odt)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="225"/>
@@ -202,22 +202,22 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="226"/>
         <source>RTF File (*.rtf)</source>
-        <translation>Αρχείο RTF (*.rtf)</translation>
+        <translation>Αρχείο μορφής εμπλουτισμένου κειμένου (*.rtf)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="227"/>
         <source>TXT File (*.txt)</source>
-        <translation>Αρχείο TXT (*.txt)</translation>
+        <translation>Αρχείο απλού κειμένου (*.txt)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="228"/>
         <source>HTML File (*.html)</source>
-        <translation>Αρχείο HTML (*.html)</translation>
+        <translation>Αρχείο γλώσσας σήμανσης υπερκειμένου (*.html)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="229"/>
         <source>MHT File (*.mht)</source>
-        <translation>Αρχείο MHT (*.mht)</translation>
+        <translation>Αρχείο αρχειοθήκης ιστοσελίδας (*.mht)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="230"/>
@@ -227,42 +227,42 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="231"/>
         <source>FB2 File (*.fb2)</source>
-        <translation>Αρχείο FB2 (*.fb2)</translation>
+        <translation>Αρχείο FictionBook 2 (*.fb2)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="232"/>
         <source>MOBI File (*.mobi)</source>
-        <translation>Αρχείο MOBI (*.mobi)</translation>
+        <translation>Ηλεκτρονικό βιβλίο Mobipocket (*.mobi)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="233"/>
         <source>OFORM Document (*.oform)</source>
-        <translation type="unfinished"></translation>
+        <translation>Διαδικτυακή Φόρμα ONLYOFFICE με δυνατότητα συμπλήρωσης (*.oform)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="234"/>
         <source>DOCXF Document (*.docxf)</source>
-        <translation type="unfinished"></translation>
+        <translation>Πρότυπο φόρμας εγγράφου ONLYOFFICE (*.docxf)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="236"/>
         <source>PPTX File (*.pptx)</source>
-        <translation>Αρχείο PPTX (*.pptx)</translation>
+        <translation>Παρουσίαση Office με ανοιχτή μορφή XML (*.pptx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="237"/>
         <source>PPT File (*.ppt)</source>
-        <translation>Αρχείο PPT (*.ppt)</translation>
+        <translation>Παρουσίαση PowerPoint 97-2003 (*.ppt)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="238"/>
         <source>Presentation template (*.potx)</source>
-        <translation>Πρότυπο παρουσίασης (*.potx)</translation>
+        <translation>Πρότυπο παρουσίασης PowerPoint με ανοιχτή μορφή XML (*.potx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="239"/>
         <source>ODP File (*.odp)</source>
-        <translation>Αρχείο ODP (*.odp)</translation>
+        <translation>Παρουσίαση OpenDocument (*.odp)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="240"/>
@@ -272,27 +272,27 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="241"/>
         <source>PPSX File (*.ppsx)</source>
-        <translation>Αρχείο PPSX (*.ppsx)</translation>
+        <translation>Προβολή παρουσίασης Office με ανοιχτή μορφή XML (*.ppsx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="243"/>
         <source>XLSX File (*.xlsx)</source>
-        <translation>Αρχείο XLSX (*.xlsx)</translation>
+        <translation>Υπολογιστικό φύλλο Office με ανοιχτή μορφή XML (*.xlsx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="244"/>
         <source>Spreadsheet template (*.xltx)</source>
-        <translation>Πρότυπο υπολογιστικού φύλλου (*.xltx)</translation>
+        <translation>Πρότυπο υπολογιστικού φύλλου Excel με ανοιχτή μορφή XML (*.xltx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="245"/>
         <source>XLS File (*.xls)</source>
-        <translation>Αρχείο XLS (*.xls)</translation>
+        <translation>Υπολογιστικό φύλλο Excel 97-2003 (*.xls)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="246"/>
         <source>ODS File (*.ods)</source>
-        <translation>Αρχείο ODS (*.ods)</translation>
+        <translation>Υπολογιστικό φύλλο OpenDocument (*.ods)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="247"/>
@@ -302,42 +302,42 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="248"/>
         <source>CSV File (*.csv)</source>
-        <translation>Αρχείο CSV (*.csv)</translation>
+        <translation>Τιμές διαχωρισμένες με κόμμα (*.csv)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="250"/>
         <source>PDF File (*.pdf)</source>
-        <translation>Αρχείο PDF (*.pdf)</translation>
+        <translation>Φορητό έγγραφο (*.pdf)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="251"/>
         <source>PDFA File (*.pdf)</source>
-        <translation>Αρχείο PDFA (*.pdf)</translation>
+        <translation>Φορητό έγγραφο / A (*.pdf)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="252"/>
         <source>DJVU File (*.djvu)</source>
-        <translation>Αρχείο DJVU (*.djvu)</translation>
+        <translation>Ψηφιακό έγγραφο (*.djvu)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="253"/>
         <source>XPS File (*.xps)</source>
-        <translation>Αρχείο XPS (*.xps)</translation>
+        <translation>Έγγραφο OpenXPS (*.xps)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="255"/>
         <source>Zip Archive (*.zip)</source>
-        <translation type="unfinished"></translation>
+        <translation>Αρχείο Zip (*.zip)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="256"/>
         <source>JPG Image (*.jpg, *.jpeg)</source>
-        <translation type="unfinished"></translation>
+        <translation>Εικόνα JPG (*.jpg *.jpeg)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="257"/>
         <source>PNG Image (*.png)</source>
-        <translation type="unfinished"></translation>
+        <translation>Εικόνα PNG (*.png)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="308"/>
@@ -561,17 +561,17 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper_private.h" line="223"/>
         <source>File %1 cannot be opened or doesn&apos;t exists.</source>
-        <translation type="unfinished"></translation>
+        <translation>Το αρχείο %1 δεν μπορεί να ανοιχτεί ή δεν υπάρχει.</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="126"/>
         <source>All supported files (*.txt *.csv)</source>
-        <translation type="unfinished"></translation>
+        <translation>Όλα τα υποστηριζόμενα αρχεία (*.txt *.csv)</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="126"/>
         <source>All files (*.*)</source>
-        <translation type="unfinished">Όλα τα αρχεία (*.*)</translation>
+        <translation>Όλα τα αρχεία (*.*)</translation>
     </message>
 </context>
 </TS>
