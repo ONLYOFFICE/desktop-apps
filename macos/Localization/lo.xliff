@@ -32,7 +32,7 @@
       <note>Class = "NSButtonCell"; title = "Cancel"; ObjectID = "GOU-av-TC1";</note></trans-unit>
       <trans-unit id="P3k-kI-w22.title" xml:space="preserve">
         <source>Load a Private Key</source>
-        <target state="new">Load a Private Key</target>
+        <target state="translated">ໂຫຼດລະຫັດສ່ວນຕົວ</target>
         
       <note>Class = "NSButtonCell"; title = "Load a Private Key"; ObjectID = "P3k-kI-w22";</note></trans-unit>
       <trans-unit id="RbM-Dq-A3K.title" xml:space="preserve">
@@ -199,7 +199,7 @@
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Mobipocket e-book" xml:space="preserve">
         <source>Mobipocket e-book</source>
-        <target state="translated">ປຶ້ມອີເລັກໂຕຮນິກແບບພົກພາ  (*.mobi)</target>
+        <target state="translated">ໄຟລ໌ Mobipocket e-book (*. mobi)</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="No" xml:space="preserve">
@@ -239,7 +239,7 @@
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="OpenOffice Document" xml:space="preserve">
         <source>OpenOffice Document</source>
-        <target state="translated">ຄວາມເອກະສານ  (*.odt)</target>
+        <target state="translated">ເປີດເອກະສານໄຟລ໌ Text (*.odt)</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="OpenOffice Presentation" xml:space="preserve">
@@ -249,7 +249,7 @@
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="OpenOffice Spreadsheet" xml:space="preserve">
         <source>OpenOffice Spreadsheet</source>
-        <target state="translated">ເປິດຕາຕະລາງເອກະສານ (*.ods)</target>
+        <target state="translated">ເປີດເອກະສານໃນຮູບແບບຕາຕະລາງ (*.ods)</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Opening" xml:space="preserve">
@@ -259,17 +259,17 @@
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="PDF File" xml:space="preserve">
         <source>PDF File</source>
-        <target state="translated">ເອກະສານພົກພາ  (*.pdf)</target>
+        <target state="translated">ເອກະສານແບບພົກພາ (*.pdf)</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="PDF/A File" xml:space="preserve">
         <source>PDF/A File</source>
-        <target state="translated">ເອກະສານພົກພາ /A (*.pdf)</target>
+        <target state="translated">ເອກະສານແບບພົກພາ /A (*.pdf)</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Plain Text" xml:space="preserve">
         <source>Plain Text</source>
-        <target state="translated">ໄຟລ໌ Text ທຳມະດາ (*.txt)</target>
+        <target state="translated">ໄຟລ໌ຂໍ້ຄວາມທຳມະດາ (*.txt)</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="PowerPoint 97-2003 Presentation" xml:space="preserve">
