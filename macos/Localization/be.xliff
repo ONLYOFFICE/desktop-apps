@@ -254,7 +254,7 @@
       </trans-unit>
       <trans-unit id="OpenOffice Document" xml:space="preserve">
         <source>OpenOffice Document</source>
-        <target state="translated">Тэкставы файл OpenDocument (*.odt) </target>
+        <target state="translated">Тэкставы файл OpenDocument (*.odt)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="OpenOffice Presentation" xml:space="preserve">
