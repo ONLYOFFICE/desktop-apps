@@ -177,22 +177,22 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="221"/>
         <source>DOCX Document (*.docx)</source>
-        <translation>DOCX-dokument (*.docx)</translation>
+        <translation>Office Open XML-document (*.docx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="222"/>
         <source>Document template (*.dotx)</source>
-        <translation>Dokumentmall (*.dotx)</translation>
+        <translation>Word Open XML-dokumentmall (*.dotx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="223"/>
         <source>DOC Document (*.doc)</source>
-        <translation>DOC-dokument (*.doc)</translation>
+        <translation>Word 97-2003-dokument (*.doc)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="224"/>
         <source>ODT Document (*.odt)</source>
-        <translation>ODT-dokument (*.odt)</translation>
+        <translation>OpenDocument-textfil (*.odt)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="225"/>
@@ -202,12 +202,12 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="226"/>
         <source>RTF File (*.rtf)</source>
-        <translation>RTF-fil (*.rtf)</translation>
+        <translation>Rich Text Format-fil (*.rtf)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="227"/>
         <source>TXT File (*.txt)</source>
-        <translation>TXT-fil (*.txt)</translation>
+        <translation>Oformaterad text (*.txt)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="228"/>
@@ -232,37 +232,37 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="232"/>
         <source>MOBI File (*.mobi)</source>
-        <translation>MOBI-fil (*.mobi)</translation>
+        <translation>Mobipocket e-bokl (*.mobi)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="233"/>
         <source>OFORM Document (*.oform)</source>
-        <translation type="unfinished"></translation>
+        <translation>ONLYOFFICE ifyllbart onlineformulär (*.oform)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="234"/>
         <source>DOCXF Document (*.docxf)</source>
-        <translation type="unfinished"></translation>
+        <translation>ONLYOFFICE formulärmall (*.docxf)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="236"/>
         <source>PPTX File (*.pptx)</source>
-        <translation>PPTX-fil (*.pptx)</translation>
+        <translation>Office Open XML-presentation (*.pptx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="237"/>
         <source>PPT File (*.ppt)</source>
-        <translation>PPT-fil (*.ppt)</translation>
+        <translation>PowerPoint 97-2003-presentation (*.ppt)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="238"/>
         <source>Presentation template (*.potx)</source>
-        <translation>Presentationsmall (*.potx)</translation>
+        <translation>PowerPoint Open XML-presentationsmall (*.potx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="239"/>
         <source>ODP File (*.odp)</source>
-        <translation>ODP-fil (*.odp)</translation>
+        <translation>OpenDocument-presentation (*.odp)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="240"/>
@@ -272,27 +272,27 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="241"/>
         <source>PPSX File (*.ppsx)</source>
-        <translation>PPSX-fil (*.ppsx)</translation>
+        <translation>Office Open XML-bildspel (*.ppsx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="243"/>
         <source>XLSX File (*.xlsx)</source>
-        <translation>XLSX-fil (*.xlsx)</translation>
+        <translation>Office Open XML-kalkylblad (*.xlsx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="244"/>
         <source>Spreadsheet template (*.xltx)</source>
-        <translation>Kalkylbladsmall (*.xltx)</translation>
+        <translation>Excel Open XML-kalkylbladsmall (*.xltx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="245"/>
         <source>XLS File (*.xls)</source>
-        <translation>XLS-fil (*.xls)</translation>
+        <translation>Excel 97-2003-kalkylblad (*.xls)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="246"/>
         <source>ODS File (*.ods)</source>
-        <translation>ODS-fil (*.ods)</translation>
+        <translation>OpenDocument-kalkylblad (*.ods)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="247"/>
@@ -302,42 +302,42 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="248"/>
         <source>CSV File (*.csv)</source>
-        <translation>CSV-fil (*.csv)</translation>
+        <translation>Kommaavgränsade värden (*.csv)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="250"/>
         <source>PDF File (*.pdf)</source>
-        <translation>PDF-fil (*.pdf)</translation>
+        <translation>Portabelt dokumentformat (*.pdf)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="251"/>
         <source>PDFA File (*.pdf)</source>
-        <translation>PDFA-fil (*.pdf)</translation>
+        <translation>Portabelt dokumentformat /A-fil (*.pdf)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="252"/>
         <source>DJVU File (*.djvu)</source>
-        <translation>DJVU-fil (*.djvu)</translation>
+        <translation>Digitalt document (*.djvu)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="253"/>
         <source>XPS File (*.xps)</source>
-        <translation>XPS-fil (*.xps)</translation>
+        <translation>OpenXPS-dokument (*.xps)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="255"/>
         <source>Zip Archive (*.zip)</source>
-        <translation type="unfinished"></translation>
+        <translation>Zip-arkiv (*.zip)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="256"/>
         <source>JPG Image (*.jpg, *.jpeg)</source>
-        <translation type="unfinished"></translation>
+        <translation>JPG-bild (*.jpg *.jpeg)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="257"/>
         <source>PNG Image (*.png)</source>
-        <translation type="unfinished"></translation>
+        <translation>PNG-bild (*.png)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="308"/>
@@ -567,7 +567,7 @@
     <message>
         <location filename="../src/ceditortools.cpp" line="126"/>
         <source>All files (*.*)</source>
-        <translation type="unfinished">Alla filer (*.*)</translation>
+        <translation>Alla filer (*.*)</translation>
     </message>
 </context>
 </TS>

@@ -187,7 +187,7 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="223"/>
         <source>DOC Document (*.doc)</source>
-        <translation>Word 97–2003 -asiakirja (*.doc)</translation>
+        <translation>Word 97–2003-asiakirja (*.doc)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="224"/>
@@ -252,7 +252,7 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="237"/>
         <source>PPT File (*.ppt)</source>
-        <translation>PowerPoint 97–2003 -esitys (*.ppt)</translation>
+        <translation>PowerPoint 97–2003-esitys (*.ppt)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="238"/>
@@ -287,7 +287,7 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="245"/>
         <source>XLS File (*.xls)</source>
-        <translation>Excel 97–2003 -laskentataulukko (*.xls)</translation>
+        <translation>Excel 97–2003-laskentataulukko (*.xls)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="246"/>
@@ -312,7 +312,7 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="251"/>
         <source>PDFA File (*.pdf)</source>
-        <translation>Kannettava asiakirja / A (*.pdf)</translation>
+        <translation>Kannettava asiakirja /A (*.pdf)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="252"/>
@@ -322,7 +322,7 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="253"/>
         <source>XPS File (*.xps)</source>
-        <translation>OpenXPS-asiakirja(*.xps)</translation>
+        <translation>OpenXPS-asiakirja (*.xps)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="255"/>

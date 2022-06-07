@@ -177,22 +177,22 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="221"/>
         <source>DOCX Document (*.docx)</source>
-        <translation>Дакумент DOCX (*.docx)</translation>
+        <translation>Дакумент Office Open XML (*.docx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="222"/>
         <source>Document template (*.dotx)</source>
-        <translation>Шаблон дакумента (*.dotx)</translation>
+        <translation>Шаблон дакумента Word Open XML (*.dotx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="223"/>
         <source>DOC Document (*.doc)</source>
-        <translation>Дакумент DOC (*.doc)</translation>
+        <translation>Дакумент Word 97-2003 (*.doc)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="224"/>
         <source>ODT Document (*.odt)</source>
-        <translation>Дакумент ODT (*.odt)</translation>
+        <translation>Тэкставы файл OpenDocument (*.odt)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="225"/>
@@ -202,12 +202,12 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="226"/>
         <source>RTF File (*.rtf)</source>
-        <translation>Файл RTF (* .rtf)</translation>
+        <translation>Багаты тэкставы дакумент (*.rtf)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="227"/>
         <source>TXT File (*.txt)</source>
-        <translation>Файл TXT (*.txt)</translation>
+        <translation>Просты тэкст (*.txt)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="228"/>
@@ -222,47 +222,47 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="230"/>
         <source>EPUB File (*.epub)</source>
-        <translation>Файл EPUB (*.epub)</translation>
+        <translation>Электронная публікацыя (*.epub)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="231"/>
         <source>FB2 File (*.fb2)</source>
-        <translation>FB2 файл (*.fb2)</translation>
+        <translation>Файл FictionBook (*.fb2)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="232"/>
         <source>MOBI File (*.mobi)</source>
-        <translation>Файл MOBI (*.mobi)</translation>
+        <translation>Электронная кніга mobipocket (*.mobi)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="233"/>
         <source>OFORM Document (*.oform)</source>
-        <translation type="unfinished"></translation>
+        <translation>Запаўняльная анлайн-форма ONLYOFFICE (*.oform)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="234"/>
         <source>DOCXF Document (*.docxf)</source>
-        <translation type="unfinished"></translation>
+        <translation>Шаблон формы ONLYOFFICE (*.docxf)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="236"/>
         <source>PPTX File (*.pptx)</source>
-        <translation>Файл PPTX (*.pptx)</translation>
+        <translation>Прэзентацыя Office Open XML (*.pptx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="237"/>
         <source>PPT File (*.ppt)</source>
-        <translation>Файл PPT (*.ppt)</translation>
+        <translation>Прэзентацыя PowerPoint 97-2003 (*.ppt)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="238"/>
         <source>Presentation template (*.potx)</source>
-        <translation>Шаблон прэзентацыі (*.potx)</translation>
+        <translation>Шаблон прэзентацыі PowerPoint Open XML (*.potx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="239"/>
         <source>ODP File (*.odp)</source>
-        <translation>Файл ODP (*.odp)</translation>
+        <translation>Прэзентацыя OpenDocument (*.odp)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="240"/>
@@ -272,27 +272,27 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="241"/>
         <source>PPSX File (*.ppsx)</source>
-        <translation>Файл PPSX (*.ppsx)</translation>
+        <translation>Слайд-шоў Office Open XML (*.ppsx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="243"/>
         <source>XLSX File (*.xlsx)</source>
-        <translation>Файл XLSX (*.xlsx)</translation>
+        <translation>Электронная табліца Office Open XML (*.xlsx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="244"/>
         <source>Spreadsheet template (*.xltx)</source>
-        <translation>Шаблон табліцы (*.xltx)</translation>
+        <translation>Шаблон табліцы Excel Open XML (*.xltx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="245"/>
         <source>XLS File (*.xls)</source>
-        <translation>Файл XLS (*.xls)</translation>
+        <translation>Электронная табліца Excel 97-2003 (*.xls)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="246"/>
         <source>ODS File (*.ods)</source>
-        <translation>Файл ODS (*.ods)</translation>
+        <translation>Электронная табліца OpenDocument (*.ods)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="247"/>
@@ -302,42 +302,42 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="248"/>
         <source>CSV File (*.csv)</source>
-        <translation>Файл CSV (*.csv)</translation>
+        <translation>Значэнні, падзеленыя коскамі (*.csv)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="250"/>
         <source>PDF File (*.pdf)</source>
-        <translation>Файл PDF (*.pdf)</translation>
+        <translation>Пераносны дакумент (*.pdf)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="251"/>
         <source>PDFA File (*.pdf)</source>
-        <translation>Файл PDFA (*.pdf)</translation>
+        <translation>Пераносны дакумент /A (*.pdf)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="252"/>
         <source>DJVU File (*.djvu)</source>
-        <translation>Файл DJVU (*.djvu)</translation>
+        <translation>Лічбавы дакумент (*.djvu)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="253"/>
         <source>XPS File (*.xps)</source>
-        <translation>Файл XPS (*.xps)</translation>
+        <translation>Дакумент OpenXPS (*.xps)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="255"/>
         <source>Zip Archive (*.zip)</source>
-        <translation type="unfinished"></translation>
+        <translation>Zip-архіў (*.zip)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="256"/>
         <source>JPG Image (*.jpg, *.jpeg)</source>
-        <translation type="unfinished"></translation>
+        <translation>Выява JPG (*.jpg *.jpeg)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="257"/>
         <source>PNG Image (*.png)</source>
-        <translation type="unfinished"></translation>
+        <translation>Выява PNG (*.png)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="308"/>
@@ -567,7 +567,7 @@
     <message>
         <location filename="../src/ceditortools.cpp" line="126"/>
         <source>All files (*.*)</source>
-        <translation type="unfinished">Усе файлы (*.*)</translation>
+        <translation>Усе файлы (*.*)</translation>
     </message>
 </context>
 </TS>

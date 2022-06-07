@@ -242,7 +242,7 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="234"/>
         <source>DOCXF Document (*.docxf)</source>
-        <translation>ONLYOFFICE шаблон на формуляр (*.docxf)</translation>
+        <translation>ONLYOFFICE Шаблон на формуляр (*.docxf)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="236"/>
@@ -312,7 +312,7 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="251"/>
         <source>PDFA File (*.pdf)</source>
-        <translation>Преносим документ (*.pdf)</translation>
+        <translation>Преносим документ /A (*.pdf)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="252"/>
