@@ -1291,7 +1291,7 @@ Filename: ms-settings:defaultapps; Description: {cm:runOpenDefaultApps}; Flags:p
 
 [Registry]
 Root: HKLM; Subkey: Software\Classes\{#ASSOC_PROG_ID};                      Flags: uninsdeletekey
-Root: HKLM; Subkey: Software\Classes\{#ASSOC_PROG_ID};                      ValueType: string; ValueName:; ValueData: {#ASSOC_APP_FRIENDLY_NAME};
+Root: HKLM; Subkey: Software\Classes\{#ASSOC_PROG_ID};                      ValueType: string; ValueName:; ValueData: {#ASSOC_APP_FRIENDLY_NAME}; Flags: deletekey;
 Root: HKLM; Subkey: Software\Classes\{#ASSOC_PROG_ID}\DefaultIcon;          ValueType: string; ValueName:; ValueData: "{app}\{#iconsExe},0";
 Root: HKLM; Subkey: Software\Classes\{#ASSOC_PROG_ID}\shell\open\command;   ValueType: string; ValueName:; ValueData: """{app}\{#iconsExe}"" ""%1""";
 Root: HKLM; Subkey: Software\Classes\{#ASSOC_PROG_ID}\shell\open;           ValueType: string; ValueName: FriendlyAppName; ValueData: {#ASSOC_APP_FRIENDLY_NAME};
