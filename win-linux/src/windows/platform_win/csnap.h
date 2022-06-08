@@ -8,12 +8,12 @@
 #include <windows.h>
 
 
-class CSnap : public QObject
+class CWin11Snap : public QObject
 {
     Q_OBJECT
 public:
-    CSnap(QPushButton *btn);
-    ~CSnap();
+    CWin11Snap(QPushButton *btn);
+    ~CWin11Snap();
 
 private:
     void show();

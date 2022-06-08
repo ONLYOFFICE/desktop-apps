@@ -189,7 +189,7 @@ QWidget* CWindowBase::createTopPanel(QWidget *parent)
 #ifdef _WIN32
         auto current = QOperatingSystemVersion::current();
         if (current >= QOperatingSystemVersion(QOperatingSystemVersion::Windows, 10, 0, 22000)) {
-            CSnap *snap = new CSnap(m_pTopButtons[BtnType::Btn_Maximize]);
+            CWin11Snap *snap = new CWin11Snap(m_pTopButtons[BtnType::Btn_Maximize]);
             Q_UNUSED(snap)
         }
 #endif

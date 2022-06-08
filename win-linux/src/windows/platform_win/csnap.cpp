@@ -2,12 +2,12 @@
 #include <windowsx.h>
 #include <QEvent>
 
-#define WINDOW_CLASS_NAME L"CSnap"
+#define WINDOW_CLASS_NAME L"CWin11Snap"
 #define DELAY 500
 #define ALPHA 0x01
 
 
-CSnap::CSnap(QPushButton *btn) :
+CWin11Snap::CWin11Snap(QPushButton *btn) :
     m_pBtn(btn),
     m_pTopLevelWidget(nullptr),
     m_allowedChangeSize(false)
@@ -49,15 +49,15 @@ CSnap::CSnap(QPushButton *btn) :
     m_pTimer = new QTimer(this);
     m_pTimer->setSingleShot(true);
     m_pTimer->setInterval(DELAY);
-    connect(m_pTimer, &QTimer::timeout, this, &CSnap::show);
+    connect(m_pTimer, &QTimer::timeout, this, &CWin11Snap::show);
 }
 
-CSnap::~CSnap()
+CWin11Snap::~CWin11Snap()
 {
 
 }
 
-void CSnap::show()
+void CWin11Snap::show()
 {
     QPoint pos = m_pBtn->mapToGlobal(QPoint(0,0));
     QSize size = m_pBtn->size();
@@ -67,7 +67,7 @@ void CSnap::show()
     SetLayeredWindowAttributes(m_hWnd, 0, ALPHA, LWA_ALPHA);
 }
 
-bool CSnap::eventFilter(QObject *obj, QEvent *e)
+bool CWin11Snap::eventFilter(QObject *obj, QEvent *e)
 {
     if (obj == m_pBtn) {
         if (e->type() == QEvent::HoverEnter) {
@@ -83,9 +83,9 @@ bool CSnap::eventFilter(QObject *obj, QEvent *e)
     return QObject::eventFilter(obj, e);
 }
 
-LRESULT CSnap::WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
+LRESULT CWin11Snap::WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
-    CSnap *window = reinterpret_cast<CSnap*>(GetWindowLongPtr(hWnd, GWLP_USERDATA));
+    CWin11Snap *window = reinterpret_cast<CWin11Snap*>(GetWindowLongPtr(hWnd, GWLP_USERDATA));
     if (!window)
         return DefWindowProc(hWnd, msg, wParam, lParam);
 
