@@ -4,7 +4,8 @@
 
 #define WINDOW_CLASS_NAME L"CWin11Snap"
 #define DELAY 500
-#define ALPHA 0x01
+#define ALPHA 0x30
+#define COLOR 0x00ffffff
 
 
 CWin11Snap::CWin11Snap(QPushButton *btn) :
@@ -20,7 +21,7 @@ CWin11Snap::CWin11Snap(QPushButton *btn) :
     wcx.cbClsExtra	= 0;
     wcx.cbWndExtra	= 0;
     wcx.lpszClassName = WINDOW_CLASS_NAME;
-    wcx.hbrBackground = CreateSolidBrush(0x00ffffff);
+    wcx.hbrBackground = CreateSolidBrush(COLOR);
     wcx.hCursor = LoadCursor(m_hInstance, IDC_ARROW);
     RegisterClassEx(&wcx);
 
@@ -62,7 +63,7 @@ void CWin11Snap::show()
     QPoint pos = m_pBtn->mapToGlobal(QPoint(0,0));
     QSize size = m_pBtn->size();
     SetWindowPos(m_hWnd, NULL, pos.x(), pos.y(), size.width(), size.height(),
-                 SWP_FRAMECHANGED | SWP_NOZORDER | SWP_NOOWNERZORDER);
+                 SWP_FRAMECHANGED | SWP_NOZORDER | SWP_NOOWNERZORDER | SWP_NOSENDCHANGING);
     ShowWindow(m_hWnd, SW_SHOW);
     SetLayeredWindowAttributes(m_hWnd, 0, ALPHA, LWA_ALPHA);
 }
