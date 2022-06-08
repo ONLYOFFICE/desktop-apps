@@ -264,7 +264,7 @@
       </trans-unit>
       <trans-unit id="PDF/A File" xml:space="preserve">
         <source>PDF/A File</source>
-        <target state="translated">Prijenosni format dokumenta / A (*.pdf)</target>
+        <target state="translated">Prijenosni format dokumenta /A (*.pdf)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Plain Text" xml:space="preserve">
