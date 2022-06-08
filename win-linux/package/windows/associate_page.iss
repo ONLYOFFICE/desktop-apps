@@ -1633,6 +1633,7 @@ var
   ext, progId1, progId2: string;
   argsArray: TArrayOfString;
   cleanExts, extensionInfo: TArrayOfString;
+  prefix: string;
 begin
     isFullAssociation := CheckCommandlineParam('/FULLASSOCIATION');
     if (associatePage = nil) and isFullAssociation then begin
