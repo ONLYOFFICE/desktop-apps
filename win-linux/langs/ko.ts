@@ -308,7 +308,7 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="251"/>
         <source>PDFA File (*.pdf)</source>
-        <translation>휴대용 문서 / A(*.pdf)</translation>
+        <translation>휴대용 문서 /A(*.pdf)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="252"/>

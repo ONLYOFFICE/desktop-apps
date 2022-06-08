@@ -232,7 +232,7 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="232"/>
         <source>MOBI File (*.mobi)</source>
-        <translation>ໄຟລ໌ Mobipocket e-book (*. mobi)</translation>
+        <translation>ໄຟລ໌ Mobipocket e-book (*.mobi)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="233"/>
@@ -287,7 +287,7 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="245"/>
         <source>XLS File (*.xls)</source>
-        <translation>ຕາຕະລາງ  Excel 97-2003 (*.xls)</translation>
+        <translation>ຕາຕະລາງ Excel 97-2003 (*.xls)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="246"/>
@@ -312,7 +312,7 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="251"/>
         <source>PDFA File (*.pdf)</source>
-        <translation>ເອກະສານ(*.pdf)</translation>
+        <translation>ເອກະສານພົກພາ /A (*.pdf)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="252"/>
@@ -337,7 +337,7 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="257"/>
         <source>PNG Image (*.png)</source>
-        <translation>ຮູບພາບແບບ PNG (*. png )</translation>
+        <translation>ຮູບພາບແບບPNG (*. png )</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="308"/>
