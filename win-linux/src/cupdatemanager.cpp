@@ -355,41 +355,41 @@ void CUpdateManager::onLoadCheckFinished()
     if ( jsonFile.open(QIODevice::ReadOnly) ) {
         QByteArray ReplyText = jsonFile.readAll();
         jsonFile.close();
+
         QJsonDocument doc = QJsonDocument::fromJson(ReplyText);
         QJsonObject root = doc.object();
-        // parse version
-        QJsonValue version = root.value("version");
-//        QJsonValue date = obj.value("date");
 
-        // parse release notes
-        QJsonObject release_notes = root.value("releaseNotes").toObject();
-        const QString lang = CLangater::getCurrentLangCode() == "ru-RU" ? "ru-RU" : "en-EN";
-        QJsonValue changelog = release_notes.value(lang);
-        // parse package
-#ifdef Q_OS_WIN
-        QJsonObject package = root.value("package").toObject();
-# if defined (Q_OS_WIN64)
-        QJsonValue win = package.value("win_64");
-# elif defined (Q_OS_WIN32)
-        QJsonValue win = package.value("win_32");
-# endif
-        QJsonObject win_params = win.toObject();
-        QJsonValue url_win = win_params.value("url");
-        QJsonValue args_win = win_params.value("installArguments");
-        m_packageData.packageUrl = url_win.toString().toStdWString();
-        m_packageData.packageArgs = args_win.toString().toStdWString();
-#endif
         bool updateExist = false;
+        QString version = root.value("version").toString();
         const QStringList curr_ver = QString::fromLatin1(VER_FILEVERSION_STR).split('.');
-        const QStringList ver = version.toString().split('.');
+        const QStringList ver = version.split('.');
         for (int i = 0; i < std::min(ver.size(), curr_ver.size()); i++) {
             if (ver.at(i).toInt() > curr_ver.at(i).toInt()) {
                 updateExist = true;
                 break;
             }
         }
-        if (updateExist) {
-            m_newVersion = version.toString();
+
+        if ( updateExist ) {
+        // parse package
+#ifdef Q_OS_WIN
+            QJsonObject package = root.value("package").toObject();
+# if defined (Q_OS_WIN64)
+            QJsonValue win = package.value("win_64");
+# else
+            QJsonValue win = package.value("win_32");
+# endif
+            QJsonObject win_params = win.toObject();
+            m_packageData.packageUrl = win_params.value("url").toString().toStdWString();
+            m_packageData.packageArgs = win_params.value("installArguments").toString().toStdWString();
+#endif
+
+            // parse release notes
+            QJsonObject release_notes = root.value("releaseNotes").toObject();
+            const QString lang = CLangater::getCurrentLangCode() == "ru-RU" ? "ru-RU" : "en-EN";
+            QJsonValue changelog = release_notes.value(lang);
+
+            m_newVersion = version;
 #ifdef Q_OS_WIN
             if (m_newVersion == m_savedPackageData.version)
                 clearTempFiles(m_savedPackageData.fileName);
