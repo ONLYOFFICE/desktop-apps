@@ -1689,6 +1689,8 @@ begin
   SetArrayLength(cleanExts, 2);
   SetArrayLength(extensionInfo, 2);
 
+  prefix := '{#ASCC_REG_PREFIX}' + '.';
+
   cleanExts[0]  := 'OFORM';
   cleanExts[1]  := 'DOCXF';
 
