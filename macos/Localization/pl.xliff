@@ -154,11 +154,12 @@
       </trans-unit>
       <trans-unit id="Don't Save" xml:space="preserve">
         <source>Don't Save</source>
+        <target state="translated">Nie zapisuj</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Electronic Publication" xml:space="preserve">
         <source>Electronic Publication</source>
-        <target state="translated">Plik EPUB (*.epub)</target>
+        <target state="translated">Plik Electronic Publication (*.epub)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Excel 97-2003 Spreadsheet" xml:space="preserve">
@@ -173,7 +174,7 @@
       </trans-unit>
       <trans-unit id="FictionBook File" xml:space="preserve">
         <source>FictionBook File</source>
-        <target state="translated">Plik FB2 (*.fb2)</target>
+        <target state="translated">Plik FictionBook 2 (*.fb2)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="File &quot;%@&quot; can not be open or not exist." xml:space="preserve">
@@ -193,7 +194,7 @@
       </trans-unit>
       <trans-unit id="HTML File" xml:space="preserve">
         <source>HTML File</source>
-        <target state="translated">Plik HTML  (*.html)</target>
+        <target state="translated">Plik HyperText Markup Language (*.html)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Hide %@" xml:space="preserve">
@@ -218,7 +219,7 @@
       </trans-unit>
       <trans-unit id="MHT File" xml:space="preserve">
         <source>MHT File</source>
-        <target state="translated">Plik MHT (*.mht)</target>
+        <target state="translated">Plik Web Page Archive (*.mht)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Mobipocket e-book" xml:space="preserve">
@@ -408,6 +409,7 @@
       </trans-unit>
       <trans-unit id="With access to pro features" xml:space="preserve">
         <source>With access to pro features</source>
+        <target state="translated">Z dostępem do funkcji pro</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Word 97-2003 Document" xml:space="preserve">
