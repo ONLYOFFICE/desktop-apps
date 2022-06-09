@@ -40,7 +40,7 @@
 
 #import "ASCDocumentSignatureStepController.h"
 #include "mac_application.h"
-#include "XmlCertificate.h"
+#include "CertificateCommon.h"
 #import "NSView+Extensions.h"
 #import "NSString+Extensions.h"
 #import "NSAlert+SynchronousSheet.h"

@@ -159,7 +159,7 @@
       </trans-unit>
       <trans-unit id="Excel 2007 Spreadsheet" xml:space="preserve">
         <source>Excel 2007 Spreadsheet</source>
-        <target state="translated">Office Open XML-regneark (*.docx)</target>
+        <target state="translated">Office Open XML-regneark (*.xlsx)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="File &quot;%@&quot; can not be open or not exist." xml:space="preserve">
@@ -239,7 +239,7 @@
       </trans-unit>
       <trans-unit id="OpenOffice Document" xml:space="preserve">
         <source>OpenOffice Document</source>
-        <target state="translated">OpenDocument Tekstfil (*.odt) </target>
+        <target state="translated">OpenDocument Tekstfil (*.odt)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="OpenOffice Presentation" xml:space="preserve">
@@ -264,7 +264,7 @@
       </trans-unit>
       <trans-unit id="PDF/A File" xml:space="preserve">
         <source>PDF/A Fil</source>
-        <target state="translated">Portable Document / A (*.pdf)</target>
+        <target state="translated">Portable Document /A (*.pdf)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Plain Text" xml:space="preserve">

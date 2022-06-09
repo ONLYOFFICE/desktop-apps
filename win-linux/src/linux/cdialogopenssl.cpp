@@ -10,7 +10,7 @@
 #include <QLineEdit>
 #include <QToolButton>
 
-#include "../../../core/DesktopEditor/xmlsec/src/include/XmlCertificate.h"
+#include "../../../core/DesktopEditor/xmlsec/src/include/CertificateCommon.h"
 
 class CSslDialog_Private
 {

@@ -119,7 +119,7 @@
       </trans-unit>
       <trans-unit id="Comma-Separated Values" xml:space="preserve">
         <source>Comma-Separated Values</source>
-        <target state="translated">逗号分隔值(*.csv)</target>
+        <target state="translated">逗号分隔值（*.csv)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Create portal" xml:space="preserve">
@@ -134,7 +134,7 @@
       </trans-unit>
       <trans-unit id="DjVu File" xml:space="preserve">
         <source>DjVu File</source>
-        <target state="translated">数字文件(*.djvu)</target>
+        <target state="translated">数字文件（*.djvu)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Do you want to save the changes made to the document &quot;%@&quot;?" xml:space="preserve">
@@ -164,17 +164,17 @@
       </trans-unit>
       <trans-unit id="Excel 97-2003 Spreadsheet" xml:space="preserve">
         <source>Excel 97-2003 Spreadsheet</source>
-        <target state="translated">Excel 97-2003 电子表格(*.xls)</target>
+        <target state="translated">Excel 97-2003 电子表格（*.xls)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Excel 2007 Spreadsheet" xml:space="preserve">
         <source>Excel 2007 Spreadsheet</source>
-        <target state="translated">Office Open XML 电子表格(*.xlsx)</target>
+        <target state="translated">Office Open XML 电子表格（*.xlsx)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="FictionBook File" xml:space="preserve">
         <source>FictionBook File</source>
-        <target state="translated">小说书2文件 (*.fb2)</target>
+        <target state="translated">小说书2文件（*.fb2)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="File &quot;%@&quot; can not be open or not exist." xml:space="preserve">
@@ -194,7 +194,7 @@
       </trans-unit>
       <trans-unit id="HTML File" xml:space="preserve">
         <source>HTML File</source>
-        <target state="translated">超文本标记语言文件 (*.html)</target>
+        <target state="translated">超文本标记语言文件 （*.html)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Hide %@" xml:space="preserve">
@@ -219,12 +219,12 @@
       </trans-unit>
       <trans-unit id="MHT File" xml:space="preserve">
         <source>MHT File</source>
-        <target state="translated">网页存档文件 (*.mht)</target>
+        <target state="translated">网页存档文件 （*.mht)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Mobipocket e-book" xml:space="preserve">
         <source>Mobipocket e-book</source>
-        <target state="translated">Mobipocket文件 (*.mobi)</target>
+        <target state="translated">Mobipocket文件 （*.mobi)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="No" xml:space="preserve">
@@ -269,12 +269,12 @@
       </trans-unit>
       <trans-unit id="OpenOffice Presentation" xml:space="preserve">
         <source>OpenOffice Presentation</source>
-        <target state="translated">OpenDocument演示文稿(*.odp)</target>
+        <target state="translated">OpenDocument演示文稿（*.odp)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="OpenOffice Spreadsheet" xml:space="preserve">
         <source>OpenOffice Spreadsheet</source>
-        <target state="translated">OpenDocument电子表格(*.ods)</target>
+        <target state="translated">OpenDocument电子表格（*.ods)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Opening" xml:space="preserve">
@@ -284,32 +284,32 @@
       </trans-unit>
       <trans-unit id="PDF File" xml:space="preserve">
         <source>PDF File</source>
-        <target state="translated">便携式文件(*.pdf)</target>
+        <target state="translated">便携式文件（*.pdf)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="PDF/A File" xml:space="preserve">
         <source>PDF/A File</source>
-        <target state="translated">便携式文件/A (*.pdf)</target>
+        <target state="translated">便携式文件/A（*.pdf)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Plain Text" xml:space="preserve">
         <source>Plain Text</source>
-        <target state="translated">纯文本文件 (*.txt)</target>
+        <target state="translated">纯文本文件（*.txt)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="PowerPoint 97-2003 Presentation" xml:space="preserve">
         <source>PowerPoint 97-2003 Presentation</source>
-        <target state="translated">PowerPoint 97-2003 演示文稿(*.ppt)</target>
+        <target state="translated">PowerPoint 97-2003 演示文稿（*.ppt)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="PowerPoint 2007 Presentation" xml:space="preserve">
         <source>PowerPoint 2007 Presentation</source>
-        <target state="translated">Office Open XML 演示文稿(*.pptx)</target>
+        <target state="translated">Office Open XML 演示文稿（*.pptx)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="PowerPoint Slide Show" xml:space="preserve">
         <source>PowerPoint Slide Show</source>
-        <target state="translated">Office Open XML 幻灯片(*.ppsx)</target>
+        <target state="translated">Office Open XML 幻灯片（*.ppsx)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Preparing..." xml:space="preserve">
@@ -344,7 +344,7 @@
       </trans-unit>
       <trans-unit id="Rich Text Document" xml:space="preserve">
         <source>Rich Text Document</source>
-        <target state="translated">富文本格式(*.rtf)</target>
+        <target state="translated">富文本格式（*.rtf)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Save" xml:space="preserve">
@@ -369,7 +369,7 @@
       </trans-unit>
       <trans-unit id="Spreadsheet template" xml:space="preserve">
         <source>Spreadsheet template</source>
-        <target state="translated">Excel开放式XML电子表格模板(*.xltx)</target>
+        <target state="translated">Excel开放式XML电子表格模板（*.xltx)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Thank you for evaluating %@!" xml:space="preserve">
@@ -414,12 +414,12 @@
       </trans-unit>
       <trans-unit id="Word 97-2003 Document" xml:space="preserve">
         <source>Word 97-2003 Document</source>
-        <target state="translated">Word 97-2003 文档(*.doc)</target>
+        <target state="translated">Word 97-2003 文档（*.doc)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Word 2007 Document" xml:space="preserve">
         <source>Word 2007 Document</source>
-        <target state="translated">Office Open XML 文档(*.docx)</target>
+        <target state="translated">Office Open XML 文档（*.docx)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="XML Paper Specification" xml:space="preserve">
