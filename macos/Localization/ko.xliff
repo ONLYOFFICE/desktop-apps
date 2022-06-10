@@ -149,7 +149,7 @@
       </trans-unit>
       <trans-unit id="Document template" xml:space="preserve">
         <source>Document template</source>
-        <target state="translated">Word Open XML 문서 템플릿 (*.dotx)</target>
+        <target state="translated">Word Open XML 문서 템플릿(*.dotx)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Excel 97-2003 Spreadsheet" xml:space="preserve">
@@ -299,7 +299,7 @@
       </trans-unit>
       <trans-unit id="Presentation template" xml:space="preserve">
         <source>Presentation template</source>
-        <target state="translated">PowerPoint Open XML 프레젠테이션 템플릿 (*.potx)</target>
+        <target state="translated">PowerPoint Open XML 프레젠테이션 템플릿(*.potx)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Quit %@" xml:space="preserve">

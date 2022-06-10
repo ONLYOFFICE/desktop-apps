@@ -119,7 +119,7 @@
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Comma-Separated Values" xml:space="preserve">
         <source>Comma-Separated Values</source>
-        <target state="translated">ຄ່າທີ່ຂັ້ນດ້ວຍເຄື່ອງໝາຍຈຸດ  (*.csv)</target>
+        <target state="translated">ຄ່າທີ່ຂັ້ນດ້ວຍເຄື່ອງໝາຍຈຸດ (*.csv)</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Create portal" xml:space="preserve">
@@ -154,7 +154,7 @@
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Excel 97-2003 Spreadsheet" xml:space="preserve">
         <source>Excel 97-2003 Spreadsheet</source>
-        <target state="translated">ຕາຕະລາງ  Excel 97-2003 (*.xls)</target>
+        <target state="translated">ຕາຕະລາງ Excel 97-2003 (*.xls)</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Excel 2007 Spreadsheet" xml:space="preserve">
@@ -199,7 +199,7 @@
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Mobipocket e-book" xml:space="preserve">
         <source>Mobipocket e-book</source>
-        <target state="translated">ໄຟລ໌ Mobipocket e-book (*. mobi)</target>
+        <target state="translated">ໄຟລ໌ Mobipocket e-book (*.mobi)</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="No" xml:space="preserve">
@@ -259,7 +259,7 @@
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="PDF File" xml:space="preserve">
         <source>PDF File</source>
-        <target state="translated">ເອກະສານແບບພົກພາ (*.pdf)</target>
+        <target state="translated">ເອກະສານພົກພາ (*.pdf)</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="PDF/A File" xml:space="preserve">

@@ -177,22 +177,22 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="221"/>
         <source>DOCX Document (*.docx)</source>
-        <translation>DOCX փաստաթուղթ (*.docx)</translation>
+        <translation>Office Open XML փաստաթուղթ (*.docx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="222"/>
         <source>Document template (*.dotx)</source>
-        <translation>Փաստաթղթի ձևանմուշ (*.dotx)</translation>
+        <translation>Word Open XML Փաստաթղթի ձևանմուշ (*.dotx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="223"/>
         <source>DOC Document (*.doc)</source>
-        <translation>DOC փաստաթուղթ (*.doc)</translation>
+        <translation>Word 97-2003 փաստաթուղթ (*.doc)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="224"/>
         <source>ODT Document (*.odt)</source>
-        <translation>ODT փաստաթուղթ (*.odt)</translation>
+        <translation>OpenDocument տեսքստային փաստաթուղթ (*.odt)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="225"/>
@@ -202,12 +202,12 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="226"/>
         <source>RTF File (*.rtf)</source>
-        <translation>RTF ֆայլ (*.rtf)</translation>
+        <translation>Rich Text Format ֆայլ (*.rtf)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="227"/>
         <source>TXT File (*.txt)</source>
-        <translation>TXT ֆայլ (*.txt)</translation>
+        <translation>Սովորական տեքստ (*.txt)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="228"/>
@@ -232,37 +232,37 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="232"/>
         <source>MOBI File (*.mobi)</source>
-        <translation>MOBI ֆայլ (*.mobi)</translation>
+        <translation>Mobipocket էլեկտրոնային գիրք (*.mobi)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="233"/>
         <source>OFORM Document (*.oform)</source>
-        <translation type="unfinished"></translation>
+        <translation>ONLYOFFICE լրացվող առցանց ձև (*.oform)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="234"/>
         <source>DOCXF Document (*.docxf)</source>
-        <translation type="unfinished"></translation>
+        <translation>ONLYOFFICE փաստաթղթի ձևանմուշ (*.docxf)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="236"/>
         <source>PPTX File (*.pptx)</source>
-        <translation>PPTX ֆայլ (*.pptx)</translation>
+        <translation>Office Open XML ներկայացում (*.pptx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="237"/>
         <source>PPT File (*.ppt)</source>
-        <translation>PPT ֆայլ (*.ppt)</translation>
+        <translation>PowerPoint 97-2003 ներկայացում (*.ppt)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="238"/>
         <source>Presentation template (*.potx)</source>
-        <translation>PPTX ֆայլ (*.pptx)</translation>
+        <translation>PowerPoint Open XML Ներկայացման ձևանմուշ (*.potx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="239"/>
         <source>ODP File (*.odp)</source>
-        <translation>ODP ֆայլ (*.odp)</translation>
+        <translation>OpenDocument ներկայացնում (*.odp)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="240"/>
@@ -272,27 +272,27 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="241"/>
         <source>PPSX File (*.ppsx)</source>
-        <translation>PPSX ֆայլ (*.ppsx)</translation>
+        <translation>Office Open XML սահիկաշար (*.ppsx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="243"/>
         <source>XLSX File (*.xlsx)</source>
-        <translation>XLSX ֆայլ (*.xlsx)</translation>
+        <translation>Office Open XML աղյուսակ (*.xlsx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="244"/>
         <source>Spreadsheet template (*.xltx)</source>
-        <translation>Աղյուսայի ձևանմուշ (*.xltx)</translation>
+        <translation>Excel Open XML Աղյուսակի ձևանմուշ (*.xltx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="245"/>
         <source>XLS File (*.xls)</source>
-        <translation>XLS ֆայլ (*.xls)</translation>
+        <translation>Excel 97-2003 աղյուսակ (*.xls)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="246"/>
         <source>ODS File (*.ods)</source>
-        <translation>ODS ֆայլ (*.ods)</translation>
+        <translation>OpenDocument աղյուսակ (*.ods)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="247"/>
@@ -302,27 +302,27 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="248"/>
         <source>CSV File (*.csv)</source>
-        <translation>CSV ֆայլ (*.csv)</translation>
+        <translation>Ստորակետերով առանձնացված արժեքներ (*.csv)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="250"/>
         <source>PDF File (*.pdf)</source>
-        <translation>PDF ֆայլ (*.pdf)</translation>
+        <translation>Դյուրակիր փաստաթղթի ձևաչափ (*.pdf)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="251"/>
         <source>PDFA File (*.pdf)</source>
-        <translation>PDFA Ֆայլ (*.pdf)</translation>
+        <translation>Դյուրակիր փաստաթղթի ձևաչափ /A (*.pdf)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="252"/>
         <source>DJVU File (*.djvu)</source>
-        <translation>DJVU ֆայլ (*.djvu)</translation>
+        <translation>Թվային փաստաթուղթ (*.djvu)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="253"/>
         <source>XPS File (*.xps)</source>
-        <translation>XPS ֆայլ (*.xps)</translation>
+        <translation>OpenXPS փաստաթուղթ (*.xps)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="255"/>
@@ -571,7 +571,7 @@
     <message>
         <location filename="../src/ceditortools.cpp" line="126"/>
         <source>All files (*.*)</source>
-        <translation type="unfinished">Բոլոր ֆայլերը (*.*)</translation>
+        <translation>Բոլոր ֆայլերը (*.*)</translation>
     </message>
 </context>
 </TS>

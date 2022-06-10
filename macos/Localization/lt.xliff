@@ -204,7 +204,7 @@
       </trans-unit>
       <trans-unit id="PDF/A File">
         <source>PDF/A File</source>
-        <target state="translated">Kilnojamas Dokumentas / A (*.pdf)</target>
+        <target state="translated">Kilnojamas Dokumentas /A (*.pdf)</target>
       </trans-unit>
       <trans-unit id="Plain Text">
         <source>Plain Text</source>
