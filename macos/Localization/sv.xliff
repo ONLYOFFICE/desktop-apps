@@ -251,7 +251,7 @@
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="PDF/A File" xml:space="preserve">
-        <source>PDF/A File</source><target state="translated">Portabelt dokumentformat / A-fil (*.pdf)</target><target state="needs-translation">PDF/A-fil</target>
+        <source>PDF/A File</source><target state="translated">Portabelt dokumentformat /A-fil (*.pdf)</target><target state="needs-translation">PDF/A-fil</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Plain Text" xml:space="preserve">

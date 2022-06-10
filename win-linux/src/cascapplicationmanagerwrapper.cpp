@@ -1069,6 +1069,10 @@ void CAscApplicationManagerWrapper::initializeApp()
 #else
     QJsonObject _json_obj{{"theme", jtheme}};
 #endif
+
+    if ( InputArgs::contains(L"--help-url") )
+        _json_obj["helpUrl"] = QUrl(QString::fromStdWString(InputArgs::argument_value(L"--help-url"))).isValid();
+
     AscAppManager::getInstance().SetRendererProcessVariable(Utils::stringifyJson(_json_obj).toStdWString());
 }
 

@@ -96,8 +96,8 @@ MIMEAPPS_LIST="/usr/share/applications/mimeapps.list"
 if [ ! -f "$MIMEAPPS_LIST" ]; then
   echo "[Default Applications]" >"$MIMEAPPS_LIST"
 fi
-if [ $(cat "$MIMEAPPS_LIST" | grep x-scheme-handler/oo-office | wc -l) -eq "0" ]; then
-  echo "x-scheme-handler/oo-office=%{_desktopeditors_exec}.desktop" >>"$MIMEAPPS_LIST"
+if [ $(cat "$MIMEAPPS_LIST" | grep x-scheme-handler/%{_scheme_handler} | wc -l) -eq "0" ]; then
+  echo "x-scheme-handler/%{_scheme_handler}=%{_desktopeditors_exec}.desktop" >>"$MIMEAPPS_LIST"
 fi
 if [ $(cat "$MIMEAPPS_LIST" | grep text/docxf | wc -l) -eq "0" ]; then
   echo "text/docxf=%{_desktopeditors_exec}.desktop" >>"$MIMEAPPS_LIST"

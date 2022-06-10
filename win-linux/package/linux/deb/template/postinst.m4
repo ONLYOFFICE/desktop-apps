@@ -24,8 +24,8 @@ MIMEAPPS_LIST="/usr/share/applications/mimeapps.list"
 if [ ! -f "$MIMEAPPS_LIST" ]; then
   echo "[Default Applications]" >"$MIMEAPPS_LIST"
 fi
-if [ $(cat "$MIMEAPPS_LIST" | grep x-scheme-handler/oo-office | wc -l) -eq "0" ]; then
-  echo "x-scheme-handler/oo-office=M4_DESKTOPEDITORS_EXEC.desktop" >>"$MIMEAPPS_LIST"
+if [ $(cat "$MIMEAPPS_LIST" | grep x-scheme-handler/M4_SCHEME_HANDLER | wc -l) -eq "0" ]; then
+  echo "x-scheme-handler/M4_SCHEME_HANDLER=M4_DESKTOPEDITORS_EXEC.desktop" >>"$MIMEAPPS_LIST"
 fi
 if [ $(cat "$MIMEAPPS_LIST" | grep text/docxf | wc -l) -eq "0" ]; then
   echo "text/docxf=M4_DESKTOPEDITORS_EXEC.desktop" >>"$MIMEAPPS_LIST"

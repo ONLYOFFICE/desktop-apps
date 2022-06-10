@@ -212,7 +212,7 @@
       </trans-unit>
       <trans-unit id="PowerPoint 97-2003 Presentation">
         <source>PowerPoint 97-2003 Presentation</source>
-        <target state="translated">PowerPoint 97-2003 Prezentacija  (*.ppt)</target>
+        <target state="translated">PowerPoint 97-2003 Prezentacija (*.ppt)</target>
       </trans-unit>
       <trans-unit id="PowerPoint 2007 Presentation">
         <source>PowerPoint 2007 Presentation</source>

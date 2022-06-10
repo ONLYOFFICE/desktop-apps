@@ -154,6 +154,7 @@
       </trans-unit>
       <trans-unit id="Don't Save" xml:space="preserve">
         <source>Don't Save</source>
+        <target state="translated">Nie zapisuj</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Electronic Publication" xml:space="preserve">
@@ -408,6 +409,7 @@
       </trans-unit>
       <trans-unit id="With access to pro features" xml:space="preserve">
         <source>With access to pro features</source>
+        <target state="translated">Z dostępem do funkcji pro</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Word 97-2003 Document" xml:space="preserve">
