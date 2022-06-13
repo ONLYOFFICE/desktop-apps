@@ -11,7 +11,7 @@ CScalingWrapper::CScalingWrapper(double f)
     if ( f > 1 ) m_scaleFactor = f;
 }
 
-void CScalingWrapper::updateScaling(double f)
+void CScalingWrapper::updateScalingFactor(double f)
 {
     m_scaleFactor = f;
 }
@@ -27,7 +27,7 @@ void CScalingWrapper::updateChildScaling(const QObject * parent, double factor)
     if ( _l.size() ) {
         foreach ( QObject * o, _l ) {
             CScalingWrapper * _s = dynamic_cast<CScalingWrapper *>(o);
-            if ( _s ) _s->updateScaling(factor);
+            if ( _s ) _s->updateScalingFactor(factor);
 
             if ( o->children().size() )
                 CScalingWrapper::updateChildScaling(o, factor);

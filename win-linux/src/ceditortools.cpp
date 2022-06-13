@@ -32,14 +32,14 @@
 
 #include "ceditortools.h"
 #include "qascprinter.h"
-#include "cprintprogress.h"
+#include "components/cprintprogress.h"
 #include "cascapplicationmanagerwrapper.h"
-#include "cfiledialog.h"
+#include "components/cfiledialog.h"
 #include "defines.h"
 #include "utils.h"
 #include "cfilechecker.h"
 #include "OfficeFileFormats.h"
-#include "cmessage.h"
+#include "components/cmessage.h"
 
 #include <QDir>
 #include <QDebug>

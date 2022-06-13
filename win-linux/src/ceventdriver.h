@@ -36,13 +36,13 @@
 #include <QObject>
 #include <QWidget>
 
-#ifdef Q_OS_WIN
+/*#ifdef Q_OS_WIN
 #include <Windows.h>
 using NativeHandle = HWND;
-#else
+#else*/
 #include <QWidget>
 using NativeHandle = WId;
-#endif
+//#endif
 
 class CInAppEventBase
 {

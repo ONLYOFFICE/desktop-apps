@@ -34,7 +34,7 @@
 #define CCEFEVENTSGATE_H
 
 #include <QObject>
-#include "ctabpanel.h"
+#include "components/ctabpanel.h"
 
 class CCefEventsGate : public QObject
 {

@@ -8,13 +8,13 @@ INCLUDEPATH += $$PWD/src/prop \
                 $$PWD/src
 
 HEADERS += \
-    src/prop/csplash_p.h \
+    #src/prop/csplash_p.h \
     src/prop/defines_p.h \
     src/prop/cascapplicationmanagerwrapperintf.h \
     src/prop/version_p.h
 
 SOURCES += \
-    src/prop/cmainpanelimpl.cpp \
+    src/prop/cmainwindowimpl.cpp \
     src/prop/utils.cpp
 
 RC_FILE = $$PWD/version.rc
@@ -36,4 +36,4 @@ message($$PLATFORM_BUILD)
 #}
 
 HEADERS += \
-    src/prop/cmainpanelimpl.h
+    src/prop/cmainwindowimpl.h
