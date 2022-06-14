@@ -28,15 +28,11 @@ win32 {
     updmodule {
         DEFINES += _UPDMODULE
         DEFINES += URL_APPCAST_UPDATES=$$join(LINK,,\\\",\\\")
-        DEFINES += URL_WEBAPPS_HELP=$$join(HELPURL,,\\\",\\\")
         LIBS += -L$$PWD/3dparty/WinSparkle/$$PLATFORM_BUILD -lWinSparkle
 
         message(updates is turned on)
         message(url: $$join(LINK,,\\\",\\\"))
     }
-
-    DEFINES += URL_WEBAPPS_HELP=$$join(HELPURL,,\\\",\\\")
-    message(url: $$join(URL_WEBAPPS_HELP,,\\\",\\\"))
 }
 
 HEADERS += \
