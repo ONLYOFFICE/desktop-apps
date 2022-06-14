@@ -34,6 +34,9 @@ win32 {
         message(updates is turned on)
         message(url: $$join(LINK,,\\\",\\\"))
     }
+
+    DEFINES += URL_WEBAPPS_HELP=$$join(HELPURL,,\\\",\\\")
+    message(url: $$join(URL_WEBAPPS_HELP,,\\\",\\\"))
 }
 
 HEADERS += \
