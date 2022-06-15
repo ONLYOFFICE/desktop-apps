@@ -1,5 +1,5 @@
 ../../common/opt/desktopeditors/* /opt/M4_DESKTOPEDITORS_PREFIX
-../../common/usr/bin/M4_DESKTOPEDITORS_EXEC /usr/bin
+../../common/usr/bin/deb/M4_DESKTOPEDITORS_EXEC /usr/bin
 ../../common/usr/share/applications/M4_DESKTOPEDITORS_EXEC.desktop /usr/share/applications
 
 ifelse(M4_COMPANY_NAME, ONLYOFFICE,

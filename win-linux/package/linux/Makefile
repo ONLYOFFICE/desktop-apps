@@ -109,6 +109,9 @@ DEB_DEPS += deb/build/debian/source/format
 DEB_DEPS += deb/build/debian/$(PACKAGE_NAME).dirs
 DEB_DEPS += deb/build/debian/$(PACKAGE_NAME).install
 DEB_DEPS += deb/build/debian/$(PACKAGE_NAME).links
+DEB_DEPS += common/usr/bin/deb/$(DESKTOPEDITORS_EXEC)
+
+RPM_DEPS += common/usr/bin/rpm/$(DESKTOPEDITORS_EXEC)
 
 DEB_ASTRA_DEPS += deb-astra/build/debian/changelog
 DEB_ASTRA_DEPS += deb-astra/build/debian/compat
@@ -124,6 +127,7 @@ DEB_ASTRA_DEPS += deb-astra/build/debian/$(PACKAGE_NAME).links
 DEB_ASTRA_DEPS += common/usr/share/flyfm/templates/desktopeditors.docx.desktop
 DEB_ASTRA_DEPS += common/usr/share/flyfm/templates/desktopeditors.xlsx.desktop
 DEB_ASTRA_DEPS += common/usr/share/flyfm/templates/desktopeditors.pptx.desktop
+DEB_ASTRA_DEPS += common/usr/bin/deb/$(DESKTOPEDITORS_EXEC)
 
 INSTALLER_DEPENDENCY += desktopeditor
 
@@ -152,6 +156,7 @@ M4_PARAMS += -D M4_PACKAGE_VERSION='$(PACKAGE_VERSION)'
 M4_PARAMS += -D M4_PACKAGE_EDITION='$(PACKAGE_EDITION)'
 M4_PARAMS += -D M4_DESKTOPEDITORS_PREFIX='$(DESKTOPEDITORS_PREFIX)'
 M4_PARAMS += -D M4_DESKTOPEDITORS_EXEC='$(DESKTOPEDITORS_EXEC)'
+M4_PARAMS += -D M4_PACK_TYPE=''
 ifneq ($(COMPANY_NAME), ONLYOFFICE)
 	M4_PARAMS += -D M4_MEDIAVIEWER_PREFIX='$(MEDIAVIEWER_PREFIX)'
 	M4_PARAMS += -D M4_IMAGEVIEWER_EXEC='$(IMAGEVIEWER_EXEC)'
@@ -223,6 +228,8 @@ clean:
 	rm -rfv \
 		common/etc \
 		common/opt \
+		common/usr/bin/deb \
+		common/usr/bin/rpm \
 		$(LINUX_DEPS) \
 		deb/build \
 		deb/*.buildinfo \
@@ -276,7 +283,7 @@ qt-redist:
 		# $(USR_LIB_X64)/libicui18n.so.52 \
 		# $(USR_LIB_X64)/libicuuc.so.52
 
-$(RPM): desktopeditor rpm/$(PACKAGE_NAME).spec
+$(RPM): desktopeditor rpm/$(PACKAGE_NAME).spec $(RPM_DEPS)
 	cd rpm && rpmbuild -bb \
 		--define "_topdir $(RPM_BUILD_DIR)" \
 		--define "_package_arch $(RPM_ARCH)" \
@@ -310,7 +317,7 @@ $(DEB): desktopeditor $(DEB_DEPS)
 $(DEB_ASTRA): desktopeditor $(DEB_ASTRA_DEPS)
 	cd deb-astra/build && dpkg-buildpackage -b -uc -us
 
-$(APT_RPM): desktopeditor apt-rpm/$(PACKAGE_NAME).spec
+$(APT_RPM): desktopeditor apt-rpm/$(PACKAGE_NAME).spec  $(RPM_DEPS)
 	cd apt-rpm && setarch $(APT_RPM_ARCH) rpmbuild -bb \
 		--define "_topdir $(APT_RPM_BUILD_DIR)" \
 		--define "_package_arch $(APT_RPM_ARCH)" \
@@ -318,7 +325,7 @@ $(APT_RPM): desktopeditor apt-rpm/$(PACKAGE_NAME).spec
 		$(RPM_PARAMS) \
 		package.spec
 
-$(URPMI): desktopeditor urpmi/$(PACKAGE_NAME).spec
+$(URPMI): desktopeditor urpmi/$(PACKAGE_NAME).spec  $(RPM_DEPS)
 	cd urpmi && setarch $(URPMI_ARCH) rpmbuild -bb \
 		--define "_topdir $(URPMI_BUILD_DIR)" \
 		--define "_package_arch $(URPMI_ARCH)" \
@@ -338,6 +345,13 @@ endif
 
 $(INSTALLER): $(INSTALLER_DEPENDENCY)
 	cd qt-installer && ./make-install.sh
+
+common/usr/bin/deb/$(DESKTOPEDITORS_EXEC) : common/usr/bin/desktopeditors.m4
+	mkdir -p common/usr/bin/deb
+	m4 $(M4_PARAMS) -D M4_PACK_TYPE='deb' $< > $@
+common/usr/bin/rpm/$(DESKTOPEDITORS_EXEC) : common/usr/bin/desktopeditors.m4
+	mkdir -p common/usr/bin/rpm
+	m4 $(M4_PARAMS) -D M4_PACK_TYPE='rpm' $< > $@
 
 common/usr/bin/$(DESKTOPEDITORS_EXEC) : common/usr/bin/desktopeditors.m4
 common/usr/bin/$(IMAGEVIEWER_EXEC) : common/usr/bin/imageviewer.m4

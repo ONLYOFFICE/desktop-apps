@@ -29,7 +29,7 @@ DESKTOPEDITORS_PREFIX=%{buildroot}/opt/%{_desktopeditors_prefix}
 mkdir -p $BIN_DIR $DATA_DIR/applications $DESKTOPEDITORS_PREFIX
 
 cp -r $COMMON/opt/desktopeditors/* $DESKTOPEDITORS_PREFIX
-cp -t $BIN_DIR $COMMON/usr/bin/%{_desktopeditors_exec}
+cp -t $BIN_DIR $COMMON/usr/bin/rpm/%{_desktopeditors_exec}
 cp -t $DATA_DIR/applications $COMMON/usr/share/applications/%{_desktopeditors_exec}.desktop
 
 %if "%{_company_name}" == "ONLYOFFICE"
