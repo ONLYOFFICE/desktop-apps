@@ -411,6 +411,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5A18BAA3285B5BF6004625C7 /* CertificateCommon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CertificateCommon.h; sourceTree = "<group>"; };
 		5A452E4A257688C700C58E01 /* providers */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = providers; path = Vendor/ONLYOFFICE/providers; sourceTree = SOURCE_ROOT; };
 		5A7F85D027A00C18006B6E27 /* lv-LV */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "lv-LV"; path = "lv-LV.lproj/Document-Sign.strings"; sourceTree = "<group>"; };
 		5A7F85D127A00C18006B6E27 /* lv-LV */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "lv-LV"; path = "lv-LV.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -818,7 +819,6 @@
 		FC54A2921F94BCE00086F4FE /* ASCPresentationReporter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ASCPresentationReporter.h; sourceTree = "<group>"; };
 		FC54A2931F94BCE00086F4FE /* ASCPresentationReporter.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ASCPresentationReporter.mm; sourceTree = "<group>"; };
 		FC5919D5208DC6D00006F664 /* OOXMLVerifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OOXMLVerifier.h; sourceTree = "<group>"; };
-		FC5919D6208DC6D00006F664 /* XmlCertificate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XmlCertificate.h; sourceTree = "<group>"; };
 		FC5919D7208DC6D00006F664 /* OOXMLSigner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OOXMLSigner.h; sourceTree = "<group>"; };
 		FC592513208DE7440006F664 /* libooxmlsignature.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libooxmlsignature.dylib; path = ../../../build_tools/out/mac_64/onlyoffice/desktopeditors/libooxmlsignature.dylib; sourceTree = "<group>"; };
 		FC5A2D2F1BAC0739001ACEB1 /* libascdocumentscore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libascdocumentscore.dylib; path = ../../build_tools/out/mac_64/onlyoffice/desktopeditors/libascdocumentscore.dylib; sourceTree = SOURCE_ROOT; };
@@ -1246,8 +1246,8 @@
 		FC5919D4208DC6D00006F664 /* include */ = {
 			isa = PBXGroup;
 			children = (
+				5A18BAA3285B5BF6004625C7 /* CertificateCommon.h */,
 				FC5919D5208DC6D00006F664 /* OOXMLVerifier.h */,
-				FC5919D6208DC6D00006F664 /* XmlCertificate.h */,
 				FC5919D7208DC6D00006F664 /* OOXMLSigner.h */,
 			);
 			path = include;
