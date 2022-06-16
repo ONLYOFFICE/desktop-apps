@@ -22,6 +22,9 @@
 
 /* Begin PBXBuildFile section */
 		5A452E4B257688C700C58E01 /* providers in Resources */ = {isa = PBXBuildFile; fileRef = 5A452E4A257688C700C58E01 /* providers */; };
+		5A9F8D392848AA07007CA93F /* file-xlsm.icns in Resources */ = {isa = PBXBuildFile; fileRef = 5A9F8D382848AA06007CA93F /* file-xlsm.icns */; };
+		5A9F8D3A2848AA07007CA93F /* file-xlsm.icns in Resources */ = {isa = PBXBuildFile; fileRef = 5A9F8D382848AA06007CA93F /* file-xlsm.icns */; };
+		5A9F8D3B2848AA07007CA93F /* file-xlsm.icns in Resources */ = {isa = PBXBuildFile; fileRef = 5A9F8D382848AA06007CA93F /* file-xlsm.icns */; };
 		5AA06CBD27AC3BA000D67BEE /* ASCLinguist.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AA06CBC27AC3BA000D67BEE /* ASCLinguist.m */; };
 		5AA06CC027B1267200D67BEE /* ASCLinguist.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AA06CBC27AC3BA000D67BEE /* ASCLinguist.m */; };
 		5AA06CC127B1267600D67BEE /* ASCLinguist.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AA06CBC27AC3BA000D67BEE /* ASCLinguist.m */; };
@@ -763,6 +766,7 @@
 		5A87ABEB283286DB0084198A /* ga-IE */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ga-IE"; path = "ga-IE.lproj/MoveApplication.strings"; sourceTree = "<group>"; };
 		5A87ABEC283286DB0084198A /* ga-IE */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ga-IE"; path = "ga-IE.lproj/Presentation-Reporter.strings"; sourceTree = "<group>"; };
 		5A87ABEE2832964F0084198A /* ga-IE */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ga-IE"; path = "ga-IE.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		5A9F8D382848AA06007CA93F /* file-xlsm.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "file-xlsm.icns"; sourceTree = "<group>"; };
 		5AA06CBB27AC3BA000D67BEE /* ASCLinguist.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ASCLinguist.h; sourceTree = "<group>"; };
 		5AA06CBC27AC3BA000D67BEE /* ASCLinguist.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ASCLinguist.m; sourceTree = "<group>"; };
 		5AB20F5D274D35F2003732A0 /* file-docxf.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "file-docxf.icns"; sourceTree = "<group>"; };
@@ -1146,6 +1150,7 @@
 		FC081EBC1C325E8400F9881C /* file-formats */ = {
 			isa = PBXGroup;
 			children = (
+				5A9F8D382848AA06007CA93F /* file-xlsm.icns */,
 				5AB20F61274D360A003732A0 /* file-oform.icns */,
 				5AB20F5D274D35F2003732A0 /* file-docxf.icns */,
 				FCA3F3062570EC9500DCAB12 /* file-epub.icns */,
@@ -1940,6 +1945,7 @@
 				5AFA1CF3277A6DA600619952 /* file-oform.icns in Resources */,
 				FC0BD6C9258B63F700C47F95 /* file-otp.icns in Resources */,
 				FCB4C78026DD02960012C20D /* InfoPlist.strings in Resources */,
+				5A9F8D3B2848AA07007CA93F /* file-xlsm.icns in Resources */,
 				FCB4C77F26DD02960012C20D /* EULA.html in Resources */,
 				FC0BD6CA258B63F700C47F95 /* file-fb2.icns in Resources */,
 				FC0BD6CB258B63F700C47F95 /* file-epub.icns in Resources */,
@@ -1991,6 +1997,7 @@
 				5AFA1CF4277A6DF100619952 /* file-docxf.icns in Resources */,
 				FCB4C70526DD018B0012C20D /* file-otp.icns in Resources */,
 				FCB4C77D26DD027B0012C20D /* InfoPlist.strings in Resources */,
+				5A9F8D392848AA07007CA93F /* file-xlsm.icns in Resources */,
 				FCB4C77C26DD02750012C20D /* EULA.html in Resources */,
 				FCB4C70626DD018B0012C20D /* file-fb2.icns in Resources */,
 				FCB4C70726DD018B0012C20D /* file-epub.icns in Resources */,
@@ -2042,6 +2049,7 @@
 				5AFA1CF2277A6D4C00619952 /* file-oform.icns in Resources */,
 				5AFA1CF1277A6D2900619952 /* file-docxf.icns in Resources */,
 				FCA3F3092570EC9500DCAB12 /* file-otp.icns in Resources */,
+				5A9F8D3A2848AA07007CA93F /* file-xlsm.icns in Resources */,
 				FCB4C78326DD02A40012C20D /* InfoPlist.strings in Resources */,
 				FCB4C78226DD02A40012C20D /* EULA.html in Resources */,
 				FCA3F30C2570EC9500DCAB12 /* file-fb2.icns in Resources */,

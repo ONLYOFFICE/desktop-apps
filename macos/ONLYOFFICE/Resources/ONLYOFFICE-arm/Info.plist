@@ -479,8 +479,6 @@
 			<string>ONLYOFFICE Document Form Template</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
-			<key>LSHandlerRank</key>
-			<string>Default</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -493,8 +491,18 @@
 			<string>ONLYOFFICE Fillable Online Form</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
-			<key>LSHandlerRank</key>
-			<string>Default</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>xlsm</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>Microsoft Excel Workbook with macro enabled (.xlsm)</string>
+			<key>CFBundleTypeIconFile</key>
+			<string>file-xlsm</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
 		</dict>
 	</array>
 	<key>CFBundleExecutable</key>
