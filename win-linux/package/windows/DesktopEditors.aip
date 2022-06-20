@@ -100,7 +100,7 @@
     <ROW Component="AI_CustomARPName" ComponentId="{026D2C20-2E12-4C52-B7E0-34DBED460A0C}" Directory_="APPDIR" Attributes="260" KeyPath="DisplayName" Options="1"/>
     <ROW Component="AI_DisableModify" ComponentId="{4DA67DA3-424D-4EB7-8B0F-7AE95B073B87}" Directory_="APPDIR" Attributes="260" KeyPath="NoModify" Options="1"/>
     <ROW Component="APPDIR" ComponentId="{967A56B9-E2F1-42F8-869D-7791391AFB48}" Directory_="APPDIR" Attributes="0"/>
-    <ROW Component="DesktopEditors.exe" ComponentId="{FA0F79B8-DC4D-49BC-808A-1821966D6C0C}" Directory_="APPDIR" Attributes="0" Condition="VersionNT64" KeyPath="DesktopEditors.exe"/>
+    <ROW Component="DesktopEditors.exe" ComponentId="{FA0F79B8-DC4D-49BC-808A-1821966D6C0C}" Directory_="APPDIR" Attributes="0" KeyPath="DesktopEditors.exe"/>
     <ROW Component="MicrosoftVisualC" ComponentId="{CA1FCD66-ED15-4D94-81FD-0C927B78E132}" Directory_="APPDIR" Attributes="260" KeyPath="MicrosoftVisualC" Options="2"/>
     <ROW Component="MicrosoftVisualC_1" ComponentId="{B176A670-4763-46DF-A796-3B8AB885DA4A}" Directory_="APPDIR" Attributes="260" KeyPath="MicrosoftVisualC_1" Options="2"/>
     <ROW Component="NewValueCheckForUpdates" ComponentId="{E9660E71-E436-4C3C-8B4B-A324DB1BF250}" Directory_="APPDIR" Attributes="260" KeyPath="NewValueCheckForUpdates"/>
