@@ -6,7 +6,7 @@ License: AGPLv3
 Group: Applications/Office
 URL: %{_publisher_url}
 Vendor: %{_publisher_name}
-Packager: %{_publisher_name} %{_support_mail}
+Packager: %{_publisher_name} <%{_support_mail}>
 AutoReq: no
 AutoProv: no
 
