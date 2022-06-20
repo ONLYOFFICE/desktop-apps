@@ -122,6 +122,8 @@ ifneq ($(ENABLE_SIGNING), 1)
 	$(AIC) //edit DesktopEditors.aip //ResetSig
 endif
 	cd $(BUILD_DIR); \
+	$(AIC) //edit DesktopEditors.aip //DelPrerequisite "Microsoft Visual C++ 2013 Redistributable (x86)"; \
+	$(AIC) //edit DesktopEditors.aip //DelPrerequisite "Microsoft Visual C++ 2013 Redistributable (x64)"; \
 	$(AIC) //edit DesktopEditors.aip //AddOsLc -buildname DefaultBuild -arch $(WIN_ARCH); \
 	$(AIC) //edit DesktopEditors.aip //NewSync APPDIR "$(shell cygpath -w $(DEST_DIR))" -existingfiles delete; \
 	$(AIC) //edit DesktopEditors.aip //UpdateFile APPDIR\\DesktopEditors.exe "$(shell cygpath -w $(DEST_DIR))\\DesktopEditors.exe"; \
