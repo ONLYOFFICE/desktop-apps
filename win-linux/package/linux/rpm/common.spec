@@ -31,6 +31,7 @@ mkdir -p $BIN_DIR $DATA_DIR/applications $DESKTOPEDITORS_PREFIX
 cp -r $COMMON/opt/desktopeditors/* $DESKTOPEDITORS_PREFIX
 cp -t $BIN_DIR $COMMON/usr/bin/%{_desktopeditors_exec}
 cp -t $DATA_DIR/applications $COMMON/usr/share/applications/%{_desktopeditors_exec}.desktop
+cp -r $COMMON/usr/share/mime $DATA_DIR
 
 %if "%{_company_name}" == "ONLYOFFICE"
 ln -srf $BIN_DIR/%{_desktopeditors_exec} $BIN_DIR/desktopeditors
@@ -56,6 +57,7 @@ rm -rf "%{buildroot}"
 %files
 %attr(-, root, root) /opt/*
 %attr(-, root, root) %{_datadir}/applications/*
+%attr(-, root, root) %{_datadir}/share/mime/packages/*.xml
 %attr(755, root, root) %{_bindir}/%{_desktopeditors_exec}
 %if "%{_company_name}" == "ONLYOFFICE"
 %attr(-, root, root) %{_bindir}/desktopeditors
@@ -103,9 +105,6 @@ fi
 if [ $(cat "$MIMEAPPS_LIST" | grep text/oform | wc -l) -eq "0" ]; then
   echo "text/oform=%{_desktopeditors_exec}.desktop" >>"$MIMEAPPS_LIST"
 fi
-
-xdg-mime install --mode system /opt/%{_desktopeditors_prefix}/mimetypes/onlyoffice-docxf.xml
-xdg-mime install --mode system /opt/%{_desktopeditors_prefix}/mimetypes/onlyoffice-oform.xml
 
 # Update cache of .desktop file MIME types. Non-fatal since it's just a cache.
 #update-desktop-database > /dev/null 2>&1 || true

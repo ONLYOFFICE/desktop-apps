@@ -251,7 +251,11 @@ desktopeditor: branding $(LINUX_DEPS)
 	cp -rf ../../../common/package/license/agpl-3.0.htm common/opt/desktopeditors/LICENSE.htm
 	cp -rf ../../../common/package/license/3dparty/3DPARTYLICENSE common/opt/desktopeditors
 
-	cp -rf ../../../common/package/mimetypes common/opt/desktopeditors
+	# update-mime-database is run automatically by filetriggers
+	# when a package with such files is installed
+	# See e.g. ROSA package https://abf.io/import/shared-mime-info
+	mkdir -p common/usr/share/mime/packages
+	cp -f ../../../common/package/mimetypes/*.xml common/usr/share/mime/packages
 
 	chmod 755 common/opt/desktopeditors/DesktopEditors
 ifneq ($(COMPANY_NAME), ONLYOFFICE)
