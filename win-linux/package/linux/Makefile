@@ -181,8 +181,14 @@ ifneq ($(COMPANY_NAME), ONLYOFFICE)
 	RPM_PARAMS += --define '_imageviewer_exec $(IMAGEVIEWER_EXEC)'
 	RPM_PARAMS += --define '_videoplayer_exec $(VIDEOPLAYER_EXEC)'
 endif
-# multithreaded xz with compression level 7
+# Multithreaded xz with compression level 7
+# Newer versions of RPM may default to compression methods not supported by older ones,
+# e.g. RPM in Fedora defaults to zstd in 2022, force an older and "stronger" compression method
 RPM_PARAMS += --define '_binary_payload w7T.xzdio'
+# Force SHA1 as filedigesting algorithm
+# (it is the default in upstream RPM, just make sure we control it)
+RPM_PARAMS += --define '_binary_filedigest_algorithm 8'
+RPM_PARAMS += --define '_source_filedigest_algorithm 8'
 
 .PHONY: all clean branding packages rpm deb deb-astra apt-rpm tar desktopeditor qt-redist libstdc++-addon libc-addon
 
