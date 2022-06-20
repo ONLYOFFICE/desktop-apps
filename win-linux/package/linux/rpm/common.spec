@@ -66,8 +66,6 @@ rm -rf "%{buildroot}"
 %attr(777, root, root) %{_sysconfdir}/%{_package_name}
 %endif
 
-%pre
-
 %post
 
 set -e 		# fail on any error
