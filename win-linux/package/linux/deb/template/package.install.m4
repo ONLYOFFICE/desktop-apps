@@ -2,6 +2,7 @@
 ../../common/usr/bin/M4_DESKTOPEDITORS_EXEC /usr/bin
 ../../common/usr/share/applications/M4_DESKTOPEDITORS_EXEC.desktop /usr/share/applications
 ../../common/usr/share/mime/packages/*.xml /usr/share/mime/packages
+../../common/usr/share/icons/hicolor /usr/share/icons
 
 ifelse(M4_COMPANY_NAME, ONLYOFFICE,
 ../../common/usr/bin/desktopeditors /usr/bin,

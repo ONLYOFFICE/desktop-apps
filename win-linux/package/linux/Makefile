@@ -261,6 +261,9 @@ desktopeditor: branding $(LINUX_DEPS)
 ifneq ($(COMPANY_NAME), ONLYOFFICE)
 	chmod 755 common/opt/mediaviewer/ImageViewer
 	chmod 755 common/opt/mediaviewer/VideoPlayer
+	for i in common/usr/share/icons/hicolor/*/apps/onlyoffice-desktopeditors.png; do \
+		mv $$i $(shell echo $$i | sed -e "s,/$$i,/$(PACKAGE_NAME),"); \
+	done
 endif
 
 qt-redist:
