@@ -182,7 +182,7 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="222"/>
         <source>Document template (*.dotx)</source>
-        <translation>Word开放式XML文档模板 (*.dotx)</translation>
+        <translation>Word开放式XML文档模板(*.dotx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="223"/>
@@ -192,12 +192,12 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="224"/>
         <source>ODT Document (*.odt)</source>
-        <translation>OpenDocument文本文件 (*.odt)</translation>
+        <translation>OpenDocument文本文件(*.odt)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="225"/>
         <source>OpenDocument Document template (*.ott)</source>
-        <translation>OpenDocument文档模板 (*.ott)</translation>
+        <translation>OpenDocument文档模板(*.ott)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="226"/>
@@ -207,32 +207,32 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="227"/>
         <source>TXT File (*.txt)</source>
-        <translation>纯文本文件 (*.txt)</translation>
+        <translation>纯文本文件(*.txt)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="228"/>
         <source>HTML File (*.html)</source>
-        <translation>超文本标记语言文件 (*.html)</translation>
+        <translation>超文本标记语言文件(*.html)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="229"/>
         <source>MHT File (*.mht)</source>
-        <translation>网页存档文件 (*.mht)</translation>
+        <translation>网页存档文件(*.mht)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="230"/>
         <source>EPUB File (*.epub)</source>
-        <translation>电子出版物文件（*.epub）</translation>
+        <translation>电子出版物文件(*.epub)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="231"/>
         <source>FB2 File (*.fb2)</source>
-        <translation>小说书2文件 (*.fb2)</translation>
+        <translation>小说书2文件(*.fb2)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="232"/>
         <source>MOBI File (*.mobi)</source>
-        <translation>Mobipocket文件 (*.mobi)</translation>
+        <translation>Mobipocket文件(*.mobi)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="233"/>
@@ -242,7 +242,7 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="234"/>
         <source>DOCXF Document (*.docxf)</source>
-        <translation>ONLYOFFICE表单模板 (*.docxf)</translation>
+        <translation>ONLYOFFICE表单模板(*.docxf)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="236"/>
@@ -257,7 +257,7 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="238"/>
         <source>Presentation template (*.potx)</source>
-        <translation>PowerPoint开放式XML演示模板（*.potx）</translation>
+        <translation>PowerPoint开放式XML演示模板(*.potx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="239"/>
@@ -267,7 +267,7 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="240"/>
         <source>OpenDocument Presentation Template (*.otp)</source>
-        <translation>OpenDocument演示模板 (*.otp)</translation>
+        <translation>OpenDocument演示模板(*.otp)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="241"/>
@@ -297,7 +297,7 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="247"/>
         <source>OpenDocument Spreadsheet Template (*.ots)</source>
-        <translation>OpenDocument电子表格模板 (*.ots)</translation>
+        <translation>OpenDocument电子表格模板(*.ots)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="248"/>
@@ -317,27 +317,27 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="252"/>
         <source>DJVU File (*.djvu)</source>
-        <translation>DJVU文件 (*.djvu)</translation>
+        <translation>数字文件(*.djvu)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="253"/>
         <source>XPS File (*.xps)</source>
-        <translation>OpenXPS文件（*.xps）</translation>
+        <translation>OpenXPS文件(*.xps)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="255"/>
         <source>Zip Archive (*.zip)</source>
-        <translation>Zip档案（*.zip）</translation>
+        <translation>Zip档案(*.zip)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="256"/>
         <source>JPG Image (*.jpg, *.jpeg)</source>
-        <translation>JPG图像（*.jpg，*.jpeg）</translation>
+        <translation>JPG图像(*.jpg，*.jpeg)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="257"/>
         <source>PNG Image (*.png)</source>
-        <translation>PNG图像 (*.png)</translation>
+        <translation>PNG图像(*.png)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="308"/>

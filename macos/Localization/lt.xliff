@@ -112,7 +112,7 @@
       </trans-unit>
       <trans-unit id="Document template">
         <source>Document template</source>
-        <target state="translated">OpenDocument Dokumento šablonas (*.ott)</target>
+        <target state="translated">Word Open XML Dokumento šablonas (*.dotx)</target>
       </trans-unit>
       <trans-unit id="Excel 97-2003 Spreadsheet">
         <source>Excel 97-2003 Spreadsheet</source>
@@ -204,15 +204,15 @@
       </trans-unit>
       <trans-unit id="PDF/A File">
         <source>PDF/A File</source>
-        <target state="translated">Kilnojamas Dokumentas / A (*.pdf)</target>
+        <target state="translated">Kilnojamas Dokumentas /A (*.pdf)</target>
       </trans-unit>
       <trans-unit id="Plain Text">
         <source>Plain Text</source>
-        <target state="translated">Paprastas Tekstas (*.rtf)</target>
+        <target state="translated">Paprastas Tekstas (*.txt)</target>
       </trans-unit>
       <trans-unit id="PowerPoint 97-2003 Presentation">
         <source>PowerPoint 97-2003 Presentation</source>
-        <target state="translated">PowerPoint 97-2003 Prezentacija  (*.ppt)</target>
+        <target state="translated">PowerPoint 97-2003 Prezentacija (*.ppt)</target>
       </trans-unit>
       <trans-unit id="PowerPoint 2007 Presentation">
         <source>PowerPoint 2007 Presentation</source>

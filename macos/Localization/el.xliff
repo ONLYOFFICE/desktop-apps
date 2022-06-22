@@ -159,7 +159,7 @@
       </trans-unit>
       <trans-unit id="Excel 2007 Spreadsheet" xml:space="preserve">
         <source>Excel 2007 Spreadsheet</source>
-        <target state="translated">Υπολογιστικό φύλλο Office με ανοιχτή μορφή XML  (*.xlsx)</target>
+        <target state="translated">Υπολογιστικό φύλλο Office με ανοιχτή μορφή XML (*.xlsx)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="File &quot;%@&quot; can not be open or not exist." xml:space="preserve">
@@ -264,12 +264,12 @@
       </trans-unit>
       <trans-unit id="PDF/A File" xml:space="preserve">
         <source>PDF/A File</source>
-        <target state="translated">Φορητό έγγραφο / A (*.pdf)</target>
+        <target state="translated">Φορητό έγγραφο /A (*.pdf)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Plain Text" xml:space="preserve">
         <source>Plain Text</source>
-        <target state="translated">Απλό κείμενο (*.txt)</target>
+        <target state="translated">Αρχείο απλού κειμένου (*.txt)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="PowerPoint 97-2003 Presentation" xml:space="preserve">

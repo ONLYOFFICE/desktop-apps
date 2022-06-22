@@ -262,7 +262,7 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="239"/>
         <source>ODP File (*.odp)</source>
-        <translation>プレゼンテーションを開く(*.odp)</translation>
+        <translation>OpenDocumentプレゼンテーションく(*.odp)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="240"/>
@@ -292,7 +292,7 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="246"/>
         <source>ODS File (*.ods)</source>
-        <translation>スプレッドシートを開く(*.ods)</translation>
+        <translation>OpenDocumentスプレッドシート(*.ods)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="247"/>
@@ -312,7 +312,7 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="251"/>
         <source>PDFA File (*.pdf)</source>
-        <translation>ポータブルドキュメント / A (*.pdf)</translation>
+        <translation>ポータブルドキュメント /A (*.pdf)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="252"/>

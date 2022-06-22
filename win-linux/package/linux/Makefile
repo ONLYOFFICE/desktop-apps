@@ -156,6 +156,9 @@ ifneq ($(COMPANY_NAME), ONLYOFFICE)
 	M4_PARAMS += -D M4_MEDIAVIEWER_PREFIX='$(MEDIAVIEWER_PREFIX)'
 	M4_PARAMS += -D M4_IMAGEVIEWER_EXEC='$(IMAGEVIEWER_EXEC)'
 	M4_PARAMS += -D M4_VIDEOPLAYER_EXEC='$(VIDEOPLAYER_EXEC)'
+	M4_PARAMS += -D M4_SCHEME_HANDLER='$(COMPANY_NAME_LOW)'
+else
+	M4_PARAMS += -D M4_SCHEME_HANDLER='oo-office'
 endif
 M4_PARAMS += -D M4_DEB_ARCH='$(DEB_ARCH)'
 ifdef ASTRALINUX_KEYS_DIR
@@ -180,6 +183,9 @@ ifneq ($(COMPANY_NAME), ONLYOFFICE)
 	RPM_PARAMS += --define '_mediaviewer_prefix $(MEDIAVIEWER_PREFIX)'
 	RPM_PARAMS += --define '_imageviewer_exec $(IMAGEVIEWER_EXEC)'
 	RPM_PARAMS += --define '_videoplayer_exec $(VIDEOPLAYER_EXEC)'
+	RPM_PARAMS += --define '_scheme_handler $(COMPANY_NAME_LOW)'
+else
+	RPM_PARAMS += --define '_scheme_handler oo-office'
 endif
 RPM_PARAMS += --define '_binary_payload w7.xzdio'
 

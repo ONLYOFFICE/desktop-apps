@@ -142,7 +142,7 @@
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Document template" xml:space="preserve">
-        <source>Document template</source><target state="translated">Modelo de documento Excel Open XML (*.xltx)</target>
+        <source>Document template</source><target state="translated">Modelo de documento Word Open XML (*.dotx)</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Excel 97-2003 Spreadsheet" xml:space="preserve">
@@ -251,22 +251,22 @@
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="PDF/A File" xml:space="preserve">
-        <source>PDF/A File</source><target state="translated">Documento portátil / A (*.pdf)</target>
+        <source>PDF/A File</source><target state="translated">Documento portátil /A (*.pdf)</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Plain Text" xml:space="preserve">
         <source>Plain Text</source>
-        <target state="translated">Texto Simples (*.txt)</target>
+        <target state="translated">Documento de Texto Simples (*.txt)</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="PowerPoint 97-2003 Presentation" xml:space="preserve">
         <source>PowerPoint 97-2003 Presentation</source>
-        <target state="translated">Apresentação em PowerPoint 97-2003 (*.doc)</target>
+        <target state="translated">Apresentação em PowerPoint 97-2003 (*.ppt)</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="PowerPoint 2007 Presentation" xml:space="preserve">
         <source>PowerPoint 2007 Presentation</source>
-        <target state="translated">Apresentação em XML Open Office (*.docx)</target>
+        <target state="translated">Apresentação em XML Open Office (*.pptx)</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="PowerPoint Slide Show" xml:space="preserve">

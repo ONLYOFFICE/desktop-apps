@@ -208,7 +208,7 @@
         <file alias="qtbase_ru-RU.qm">langs/qtbase_ru.qm</file>
     </qresource>
     <qresource prefix="/sep-styles">
-        <file alias="tabbar.qss">res/styles/tabbar.qss</file>
+        <file alias="tabbar@1x.qss">res/styles/tabbar@1x.qss</file>
         <file alias="tabbar.nix.qss">res/styles/tabbar_nix.qss</file>
         <file alias="tabbar@1.25x.qss">res/styles/tabbar@1.25x.qss</file>
         <file alias="tabbar@1.5x.qss">res/styles/tabbar@1.5x.qss</file>
