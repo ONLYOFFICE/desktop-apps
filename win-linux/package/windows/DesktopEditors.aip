@@ -37,6 +37,7 @@
     <ROW Property="COMMON_SHORTCUT_NAME" Value="ONLYOFFICE Editors"/>
     <ROW Property="CSV_CHECKBOX" Value="1" Type="4"/>
     <ROW Property="CTRLS" Value="2"/>
+    <ROW Property="CUSTOM_PATH" Value="C:\[|ProgramFilesFolder][|Manufacturer]MediaViewer"/>
     <ROW Property="DJVU_CHECKBOX" Value="1" Type="4"/>
     <ROW Property="DOCX_CHECKBOX" Value="1" Type="4"/>
     <ROW Property="DOC_CHECKBOX" Value="1" Type="4"/>
@@ -95,9 +96,9 @@
   <COMPONENT cid="caphyon.advinst.msicomp.MsiDirsComponent">
     <ROW Directory="APPDIR" Directory_Parent="TARGETDIR" DefaultDir="APPDIR:." IsPseudoRoot="1"/>
     <ROW Directory="AppDataFolder" Directory_Parent="TARGETDIR" DefaultDir="APPDAT~1|AppDataFolder" IsPseudoRoot="1"/>
+    <ROW Directory="CUSTOM_PATH" Directory_Parent="TARGETDIR" DefaultDir="CUSTOM~1|CUSTOM_PATH" IsPseudoRoot="1"/>
     <ROW Directory="DesktopFolder" Directory_Parent="TARGETDIR" DefaultDir="DESKTO~1|DesktopFolder" IsPseudoRoot="1"/>
     <ROW Directory="InternetExplorer_Dir" Directory_Parent="Microsoft_Dir" DefaultDir="INTERN~1|Internet Explorer"/>
-    <ROW Directory="MediaViewer_Dir" Directory_Parent="APPDIR" DefaultDir="MEDIAV~1|MediaViewer"/>
     <ROW Directory="Microsoft_Dir" Directory_Parent="AppDataFolder" DefaultDir="MICROS~1|Microsoft"/>
     <ROW Directory="QuickLaunch_Dir" Directory_Parent="InternetExplorer_Dir" DefaultDir="QUICKL~1|Quick Launch"/>
     <ROW Directory="SHORTCUTDIR" Directory_Parent="TARGETDIR" DefaultDir="SHORTC~1|SHORTCUTDIR" IsPseudoRoot="1"/>
@@ -109,7 +110,7 @@
     <ROW Component="AI_DisableModify" ComponentId="{4DA67DA3-424D-4EB7-8B0F-7AE95B073B87}" Directory_="APPDIR" Attributes="260" KeyPath="NoModify" Options="1"/>
     <ROW Component="APPDIR" ComponentId="{967A56B9-E2F1-42F8-869D-7791391AFB48}" Directory_="APPDIR" Attributes="0"/>
     <ROW Component="DesktopEditors.exe" ComponentId="{FA0F79B8-DC4D-49BC-808A-1821966D6C0C}" Directory_="APPDIR" Attributes="0" KeyPath="DesktopEditors.exe"/>
-    <ROW Component="ImageViewer.exe" ComponentId="{6E2763A9-A9E6-4905-BCD2-410E386013B0}" Directory_="MediaViewer_Dir" Attributes="0" Condition="GALLERY_CHECKBOX = &quot;1&quot;" KeyPath="ImageViewer.exe"/>
+    <ROW Component="ImageViewer.exe" ComponentId="{E8DFAC60-5575-4D64-AD43-FF684A2FAE8F}" Directory_="CUSTOM_PATH" Attributes="0" Condition="GALLERY_CHECKBOX = &quot;1&quot;" KeyPath="ImageViewer.exe"/>
     <ROW Component="MicrosoftVisualC" ComponentId="{CA1FCD66-ED15-4D94-81FD-0C927B78E132}" Directory_="APPDIR" Attributes="260" KeyPath="MicrosoftVisualC" Options="2"/>
     <ROW Component="MicrosoftVisualC_1" ComponentId="{B176A670-4763-46DF-A796-3B8AB885DA4A}" Directory_="APPDIR" Attributes="260" KeyPath="MicrosoftVisualC_1" Options="2"/>
     <ROW Component="MicrosoftVisualC_2" ComponentId="{B74A440D-1D6B-4EB1-BB72-605A30AF2D28}" Directory_="APPDIR" Attributes="260" KeyPath="MicrosoftVisualC_2" Options="2"/>
@@ -119,7 +120,7 @@
     <ROW Component="ProductInformation" ComponentId="{8F10F3CD-12FA-4182-AAEB-6E3EBF95E345}" Directory_="APPDIR" Attributes="260" KeyPath="Version"/>
     <ROW Component="QuickLaunch" ComponentId="{980FCC49-6ED8-41A0-9B6F-B6D8F75A4AF7}" Directory_="QuickLaunch_Dir" Attributes="0"/>
     <ROW Component="SHORTCUTDIR" ComponentId="{CB73F99E-8C5E-4F7A-9E2F-25EDC9FBDFC0}" Directory_="SHORTCUTDIR" Attributes="0"/>
-    <ROW Component="VideoPlayer.exe" ComponentId="{E921865D-8910-49F6-91BE-DA0BAFE64ABD}" Directory_="MediaViewer_Dir" Attributes="0" Condition="MEDIA_CHECKBOX = &quot;1&quot;" KeyPath="VideoPlayer.exe"/>
+    <ROW Component="VideoPlayer.exe" ComponentId="{39F3F737-40E8-42F0-9342-BF8232F34B72}" Directory_="CUSTOM_PATH" Attributes="0" Condition="MEDIA_CHECKBOX = &quot;1&quot;" KeyPath="VideoPlayer.exe"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatsComponent">
     <ROW Feature="AI64BitFiles" Title="64-bit" Description="64-bit Executables and Libraries" Display="35" Level="1" Directory_="APPDIR" Attributes="0"/>
@@ -158,8 +159,8 @@
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFilesComponent">
     <ROW File="DesktopEditors.exe" Component_="DesktopEditors.exe" FileName="DESKTO~1.EXE|DesktopEditors.exe" Attributes="0" SourcePath="..\..\..\..\build_tools\out\win_64\onlyoffice\DesktopEditors\DesktopEditors.exe" SelfReg="false"/>
-    <ROW File="ImageViewer.exe" Component_="ImageViewer.exe" FileName="IMAGEV~1.EXE|ImageViewer.exe" Attributes="0" SourcePath="..\..\..\..\build_tools\out\win_64\R7-Office\MediaViewer\ImageViewer.exe" SelfReg="false"/>
     <ROW File="VideoPlayer.exe" Component_="VideoPlayer.exe" FileName="VIDEOP~1.EXE|VideoPlayer.exe" Attributes="0" SourcePath="..\..\..\..\build_tools\out\win_64\R7-Office\MediaViewer\VideoPlayer.exe" SelfReg="false"/>
+    <ROW File="ImageViewer.exe" Component_="ImageViewer.exe" FileName="IMAGEV~1.EXE|ImageViewer.exe" Attributes="0" SourcePath="..\..\..\..\build_tools\out\win_64\R7-Office\MediaViewer\ImageViewer.exe" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.BuildComponent">
     <ROW BuildKey="DefaultBuild" BuildName="DefaultBuild" BuildOrder="1" BuildType="0" PackageFolder="." PackageFileName="DesktopEditors" Languages="en;ru;cs;de;es;fr;pt;pt_BR;sl;ja" LangOpt="1" InstallationType="4" ExtUI="true" UseLargeSchema="true" MsiPackageType="x64" UACExecutionLevel="2"/>
@@ -476,7 +477,7 @@
     <ROW Dialog_="VerifyReadyDlg" Control_="Back" Event="NewDialog" Argument="PatchWelcomeDlg" Condition="AI_PATCH" Ordering="203"/>
     <ROW Dialog_="FolderDlg" Control_="Browse" Event="[_BrowseProperty]" Argument="APPDIR" Condition="1" Ordering="100" MsiKey="FolderDlg#Browse#[_BrowseProperty]#APPDIR#1"/>
     <ROW Dialog_="FolderDlg" Control_="Next" Event="SetTargetPath" Argument="APPDIR" Condition="1" Ordering="199" MsiKey="FolderDlg#Next#SetTargetPath#APPDIR#1"/>
-    <ROW Dialog_="FolderDlg" Control_="Next" Event="NewDialog" Argument="ExtendedInstallDlg" Condition="AI_INSTALL AND ( ProductName &lt;&gt; &quot;ONLYOFFICE Desktop Editors&quot; )" Ordering="201"/>
+    <ROW Dialog_="FolderDlg" Control_="Next" Event="NewDialog" Argument="ExtendedInstallDlg" Condition="AI_INSTALL AND ( ProductName &lt;&gt; &quot;ONLYOFFICE Desktop Editors&quot; )" Ordering="203"/>
     <ROW Dialog_="FolderDlg" Control_="Back" Event="NewDialog" Argument="LicenseAgreementDlg" Condition="AI_INSTALL" Ordering="1"/>
     <ROW Dialog_="VerifyReadyDlg" Control_="Install" Event="EndDialog" Argument="Return" Condition="AI_INSTALL" Ordering="199"/>
     <ROW Dialog_="VerifyReadyDlg" Control_="Back" Event="NewDialog" Argument="FileAssociationsDlg" Condition="AI_INSTALL" Ordering="204"/>
@@ -644,8 +645,9 @@
     <ROW Dialog_="ExtendedInstallDlg" Control_="Cancel" Event="SpawnDialog" Argument="CancelDlg" Condition="1" Ordering="100"/>
     <ROW Dialog_="ExtendedInstallDlg" Control_="Next" Event="NewDialog" Argument="ShortcutsDlg" Condition="AI_INSTALL" Ordering="1"/>
     <ROW Dialog_="ExtendedInstallDlg" Control_="Back" Event="NewDialog" Argument="FolderDlg" Condition="AI_INSTALL" Ordering="1"/>
-    <ROW Dialog_="FolderDlg" Control_="Next" Event="NewDialog" Argument="ShortcutsDlg" Condition="AI_INSTALL AND ( ProductName = &quot;ONLYOFFICE Desktop Editors&quot; )" Ordering="200"/>
+    <ROW Dialog_="FolderDlg" Control_="Next" Event="NewDialog" Argument="ShortcutsDlg" Condition="AI_INSTALL AND ( ProductName = &quot;ONLYOFFICE Desktop Editors&quot; )" Ordering="202"/>
     <ROW Dialog_="ShortcutsDlg" Control_="Back" Event="NewDialog" Argument="FolderDlg" Condition="AI_INSTALL AND ( ProductName = &quot;ONLYOFFICE Desktop Editors&quot; )" Ordering="1"/>
+    <ROW Dialog_="FolderDlg" Control_="Next" Event="DoAction" Argument="SetCustomPath" Condition="AI_INSTALL AND ( ProductName &lt;&gt; &quot;ONLYOFFICE Desktop Editors&quot; )" Ordering="201"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCreateFolderComponent">
     <ROW Directory_="APPDIR" Component_="APPDIR" ManualDelete="true"/>
@@ -684,6 +686,7 @@
     <ROW Action="SET_APPDIR" Type="307" Source="APPDIR" Target="[ProgramFilesFolder][Manufacturer]\[ProductName]" MultiBuildTarget="DefaultBuild:[ProgramFiles64Folder][MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]"/>
     <ROW Action="SET_SHORTCUTDIR" Type="307" Source="SHORTCUTDIR" Target="[ProgramMenuFolder][ProductName]"/>
     <ROW Action="SET_TARGETDIR_TO_APPDIR" Type="51" Source="TARGETDIR" Target="[APPDIR]"/>
+    <ROW Action="SetCustomPath" Type="38" Target="Script Text" TargetUnformatted="Dim origPath&#13;&#10;Dim customPath&#13;&#10;Dim tokens&#13;&#10;&#13;&#10;&apos; get the install path&#13;&#10;origPath = Session.Property(&quot;APPDIR&quot;)&#13;&#10;tokens = Split(origPath, &quot;\&quot;)&#13;&#10;&#13;&#10;&apos; initialize the path lenght and the custom path&#13;&#10;Dim index&#13;&#10;Dim parentLenght&#13;&#10;parentLength = UBound(tokens) - 2&#13;&#10;customPath = &quot;&quot;&#13;&#10;&#13;&#10;&apos; obtain the main install path&#13;&#10;For index = 0 To parentLength&#13;&#10;    If Not(tokens(index)) = Empty Then&#13;&#10;    customPath = customPath &amp; tokens(index) &amp; &quot;\&quot;&#13;&#10;  End If&#13;&#10;Next&#13;&#10;&#13;&#10;&apos; add the custom folder&#13;&#10;customPath = customPath &amp; &quot;MediaViewer&quot;&#13;&#10;&#13;&#10;&apos; set the property with the custom path&#13;&#10;Session.Property(&quot;CUSTOM_PATH&quot;) = customPath" WithoutSeq="true"/>
     <ROW Action="UninstallOlderVersion32" Type="38" Target="Set objShell = CreateObject(&quot;WScript.Shell&quot;)&#13;&#10;Function RegistryExist(Path)&#13;&#10;On Error Resume Next&#13;&#10;&#13;&#10;RegistryPath = objShell.RegRead(Path)&#13;&#10;Err_Number = err.number&#13;&#10;On Error GoTo 0&#13;&#10;&#13;&#10;If Err_Number &lt;&gt; 0 Then&#13;&#10;&#9;RegistryExist = False&#13;&#10;Else&#13;&#10;&#9;RegistryExist = True&#13;&#10;End If&#13;&#10;&#13;&#10;End Function&#13;&#10;&#13;&#10;Err.Clear&#13;&#10;If(RegistryExist(&quot;HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\&quot; + Session.Property(&quot;ProductName&quot;) + &quot;_is1\UninstallString&quot;) = True) Then&#13;&#10;RegistryPath = objShell.RegRead(&quot;HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\&quot; + Session.Property(&quot;ProductName&quot;) + &quot;_is1\UninstallString&quot;)&#13;&#10;Dim Button &#13;&#10;Button = MsgBox(&quot;The previous version of &quot; + Session.Property(&quot;ProductName&quot;) + &quot; detected, please click &apos;OK&apos; button to uninstall it, or &apos;Cancel&apos; to quit setup.&quot;, 1, &quot;Error&quot;)&#13;&#10;&#9;If Button = 1 Then&#13;&#10;&#9;objShell.Run RegistryPath, 0, True&#13;&#10;&#9;Else &#13;&#10;&#9;WScript.Quit 1&#13;&#10;End If&#13;&#10;End If" TargetUnformatted="Set objShell = CreateObject(&quot;WScript.Shell&quot;)&#13;&#10;Function RegistryExist(Path)&#13;&#10;On Error Resume Next&#13;&#10;&#13;&#10;RegistryPath = objShell.RegRead(Path)&#13;&#10;Err_Number = err.number&#13;&#10;On Error GoTo 0&#13;&#10;&#13;&#10;If Err_Number &lt;&gt; 0 Then&#13;&#10;&#9;RegistryExist = False&#13;&#10;Else&#13;&#10;&#9;RegistryExist = True&#13;&#10;End If&#13;&#10;&#13;&#10;End Function&#13;&#10;&#13;&#10;Err.Clear&#13;&#10;If(RegistryExist(&quot;HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\&quot; + Session.Property(&quot;ProductName&quot;) + &quot;_is1\UninstallString&quot;) = True) Then&#13;&#10;RegistryPath = objShell.RegRead(&quot;HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\&quot; + Session.Property(&quot;ProductName&quot;) + &quot;_is1\UninstallString&quot;)&#13;&#10;Dim Button &#13;&#10;Button = MsgBox(&quot;The previous version of &quot; + Session.Property(&quot;ProductName&quot;) + &quot; detected, please click &apos;OK&apos; button to uninstall it, or &apos;Cancel&apos; to quit setup.&quot;, 1, &quot;Error&quot;)&#13;&#10;&#9;If Button = 1 Then&#13;&#10;&#9;objShell.Run RegistryPath, 0, True&#13;&#10;&#9;Else &#13;&#10;&#9;WScript.Quit 1&#13;&#10;End If&#13;&#10;End If"/>
     <ROW Action="UninstallOlderVersion64" Type="4134" Target="Script Text" TargetUnformatted="Set objShell = CreateObject(&quot;WScript.Shell&quot;)&#13;&#10;Function RegistryExist(Path)&#13;&#10;On Error Resume Next&#13;&#10;&#13;&#10;RegistryPath = objShell.RegRead(Path)&#13;&#10;Err_Number = err.number&#13;&#10;On Error GoTo 0&#13;&#10;&#13;&#10;If Err_Number &lt;&gt; 0 Then&#13;&#10;&#9;RegistryExist = False&#13;&#10;Else&#13;&#10;&#9;RegistryExist = True&#13;&#10;End If&#13;&#10;&#13;&#10;End Function&#13;&#10;&#13;&#10;Err.Clear&#13;&#10;If(RegistryExist(&quot;HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\&quot; + Session.Property(&quot;ProductName&quot;) + &quot;_is1\UninstallString&quot;) = True) Then&#13;&#10;RegistryPath = objShell.RegRead(&quot;HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\&quot; + Session.Property(&quot;ProductName&quot;) + &quot;_is1\UninstallString&quot;)&#13;&#10;Dim Button &#13;&#10;Button = MsgBox(&quot;The previous version of &quot; + Session.Property(&quot;ProductName&quot;) + &quot; detected, please click &apos;OK&apos; button to uninstall it, or &apos;Cancel&apos; to quit setup.&quot;, 1, &quot;Error&quot;)&#13;&#10;&#9;If Button = 1 Then&#13;&#10;&#9;objShell.Run RegistryPath, 0, True&#13;&#10;&#9;Else &#13;&#10;&#9;WScript.Quit 1&#13;&#10;End If&#13;&#10;End If"/>
   </COMPONENT>
@@ -758,8 +761,8 @@
     <ROW Feature_="MicrosoftVisualC_1" Component_="MicrosoftVisualC_1"/>
     <ROW Feature_="MicrosoftVisualC_2" Component_="MicrosoftVisualC_2"/>
     <ROW Feature_="MicrosoftVisualC_3" Component_="MicrosoftVisualC_3"/>
-    <ROW Feature_="MainFeature" Component_="ImageViewer.exe"/>
     <ROW Feature_="MainFeature" Component_="VideoPlayer.exe"/>
+    <ROW Feature_="MainFeature" Component_="ImageViewer.exe"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiIconsComponent">
     <ROW Name="desktopeditors.exe" SourcePath="..\..\extras\projicons\res\desktopeditors.ico" Index="0"/>
