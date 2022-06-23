@@ -91,7 +91,7 @@ private:
 
     bool        m_restartForUpdate = false;
 #else
-    QTimer      *m_pTimer;
+    QTimer      *m_pTimer = nullptr;
     time_t      m_lastCheck;
     int         m_currentRate;
 
