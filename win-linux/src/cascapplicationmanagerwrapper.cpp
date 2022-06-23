@@ -1598,6 +1598,10 @@ bool CAscApplicationManagerWrapper::applySettings(const wstring& wstrjson)
                 _editor = reinterpret_cast<CEditorWindow *>(e);
                 _editor->updateScaling();
             }
+
+            for (auto const& r : m_winsReporter) {
+                r.second->updateScaling();
+            }
         }
 
         if ( objRoot.contains("spellcheckdetect") ) {
