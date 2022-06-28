@@ -12,7 +12,7 @@
     "grunt-contrib-clean": "^2.0.1",
     "grunt-contrib-concat": "^2.1.0",
     "grunt-contrib-htmlmin": "^3.1.0",
-    "grunt-inline": "0.3.7",
+    "grunt-inline": "file:plugins/grunt-inline",
     "grunt-terser": "^2.0.0",
     "terser": "^5.14.1"
   }
