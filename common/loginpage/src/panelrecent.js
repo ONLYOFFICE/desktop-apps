@@ -155,23 +155,55 @@
     utils.fn.extend(ControllerRecent.prototype, (function() {
         let collectionRecents, collectionRecovers;
         let ppmenu;
+        const ITEMS_LOAD_RANGE = 40;
 
-        var _on_recents = function(params) {
-            collectionRecents.empty();
+        const _add_recent_block = function() {
+            if ( !this.rawRecents || !Object.keys(this.rawRecents).length ) return;
 
-            var files = utils.fn.parseRecent(params);
-            for (let item of files) {
+            const _raw_block = this.rawRecents.slice(this.recentIndex, this.recentIndex + ITEMS_LOAD_RANGE);
+            const _files = utils.fn.parseRecent(_raw_block);
+
+            let _check_block = {};
+
+            for (let item of _files) {
                 var model = new FileModel(item);
                 model.set('hash', item.path.hashCode());
 
-                collectionRecents.add(model);
-
-                this.check_list[model.get('hash')] = item.path;
+                if ( !!this.rawRecents ) {
+                    collectionRecents.add(model);
+                    _check_block[model.get('hash')] = item.path;
+                } else return;
             }
 
-            if ( this.appready && Object.keys(this.check_list).length ) {
-                sdk.execCommand('files:check', JSON.stringify(this.check_list));
+            const _new_items_count = Object.keys(_check_block).length;
+            if ( _new_items_count ) {
+                if ( this.appready ) {
+                    sdk.execCommand('files:check', JSON.stringify(_check_block));
+                }
+
+                Object.assign(this.check_list, _check_block);
             }
+
+            if ( _new_items_count == ITEMS_LOAD_RANGE ) {
+                setTimeout(e => {
+                    this.recentIndex += ITEMS_LOAD_RANGE;
+                    _add_recent_block.call(this);
+                }, 10);
+            } else {
+                this.rawRecents = undefined;
+            }
+        };
+
+        var _on_recents = function(params) {
+            this.rawRecents = undefined;
+
+            setTimeout(e => {
+                this.rawRecents = params;
+                this.recentIndex = 0;
+
+                collectionRecents.empty();
+                _add_recent_block.call(this);
+            }, 10)
         };
 
         var _on_recovers = function(params) {
