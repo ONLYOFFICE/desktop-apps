@@ -220,9 +220,11 @@ core_windows {
     RC_ICONS += ./res/icons/desktop_icons.ico
 
     HEADERS += $$PWD/src/windows/platform_win/cwindowplatform.h \
+               $$PWD/src/windows/platform_win/csnap.h \
                $$PWD/src/windows/platform_win/caption.h
 
-    SOURCES += $$PWD/src/windows/platform_win/cwindowplatform.cpp
+    SOURCES += $$PWD/src/windows/platform_win/cwindowplatform.cpp \
+               $$PWD/src/windows/platform_win/csnap.cpp
 
 
     LIBS += -lwininet \
