@@ -20,6 +20,7 @@ win-linux/package/linux/common/usr/share/flyfm/templates/desktopeditors.*.deskto
 win-linux/package/linux/rpm/builddir
 win-linux/package/linux/apt-rpm/builddir
 win-linux/package/linux/urpmi/builddir
+win-linux/package/linux/suse-rpm/builddir
 win-linux/package/linux/tar
 
 common/loginpage/build/node_modules/*
