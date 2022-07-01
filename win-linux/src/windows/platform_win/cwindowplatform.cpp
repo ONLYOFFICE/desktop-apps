@@ -38,6 +38,10 @@
 #include "clogger.h"
 #include "clangater.h"
 #include <QTimer>
+#include <QDesktopWidget>
+#include <QWindow>
+#include <QScreen>
+#include <shellapi.h>
 
 
 CWindowPlatform::CWindowPlatform(const QRect &rect) :
@@ -58,6 +62,12 @@ CWindowPlatform::CWindowPlatform(const QRect &rect) :
     ::SetWindowLong(m_hWnd, GWL_STYLE, style | WS_MAXIMIZEBOX | WS_THICKFRAME | WS_CAPTION);
     const MARGINS shadow = {1, 1, 1, 1};
     DwmExtendFrameIntoClientArea(m_hWnd, &shadow);
+    connect(this->window()->windowHandle(), &QWindow::screenChanged, this, [=]() {
+        QTimer::singleShot(50, this, [=]() {
+            resize(size() + QSize(1,1));
+            resize(size() - QSize(1,1));
+        });
+    });
 }
 
 CWindowPlatform::~CWindowPlatform()
@@ -82,13 +92,28 @@ void CWindowPlatform::toggleResizeable()
 
 void CWindowPlatform::adjustGeometry()
 {
-    if (!isMaximized()) {
+    if (windowState().testFlag(Qt::WindowMinimized) || windowState().testFlag(Qt::WindowNoState)) {
         const int border = int(MAIN_WINDOW_BORDER_WIDTH * m_dpiRatio);
         setContentsMargins(border, border, border, border+1);
         setResizeableAreaWidth(border);
-    } else {
-        setContentsMargins(8,8,8,9);
+    } else
+    if (windowState().testFlag(Qt::WindowMaximized)) {
+        QTimer::singleShot(150, this, [=]() {
+            setContentsMargins(0,0,0,0);
+            auto dsk = QApplication::desktop();
+            const QSize offset = !isTaskbarAutoHideOn() ? QSize(0, 0) : QSize(0, 1);
+            resize(dsk->availableGeometry(this).size() - offset);
+            move(dsk->availableGeometry(this).topLeft());
+            setWindowState(Qt::WindowMaximized);
+        });
     }
+}
+
+bool CWindowPlatform::isTaskbarAutoHideOn()
+{
+    APPBARDATA ABData;
+    ABData.cbSize = sizeof(ABData);
+    return (SHAppBarMessage(ABM_GETSTATE, &ABData) & ABS_AUTOHIDE) == 0 ? false : true;
 }
 
 void CWindowPlatform::bringToTop()
@@ -251,6 +276,11 @@ bool CWindowPlatform::nativeEvent(const QByteArray &eventType, void *message, lo
         if (!m_closed && IsWindowEnabled(m_hWnd)) {
             focus();
         }
+        break;
+    }
+
+    case WM_WININICHANGE: {
+        adjustGeometry();
         break;
     }
 
