@@ -90,7 +90,6 @@ public:
 CMainWindow::CMainWindow(const QRect &rect) :
     CWindowPlatform(rect),
     CScalingWrapper(m_dpiRatio),
-    CMainWindowImpl(),
     m_pTabBarWrapper(nullptr),
     m_pTabs(nullptr),
     m_pButtonMain(nullptr),
@@ -705,8 +704,6 @@ void CMainWindow::onCloudDocumentOpen(std::wstring url, int id, bool select)
 
 void CMainWindow::doOpenLocalFile(COpenOptions& opts)
 {
-    CMainWindowImpl::doOpenLocalFile(opts);
-
     QFileInfo info(opts.url);
     if (!info.exists()) { return; }
     if (!info.isFile()) { return; }
@@ -898,8 +895,6 @@ void CMainWindow::onWebAppsFeatures(int id, std::wstring opts)
 
 void CMainWindow::onDocumentReady(int uid)
 {
-    CMainWindowImpl::onDocumentReady(uid);
-
     if ( uid < 0 ) {
         QTimer::singleShot(20, this, [=]{
             refreshAboutVersion();
@@ -1327,6 +1322,11 @@ void CMainWindow::setScreenScalingFactor(double factor)
         CWindowBase::applyTheme(L"");
     });
 #endif
+}
+
+QString CMainWindow::getSaveMessage() const
+{
+    return tr("%1 is modified.<br>Do you want to keep changes?");
 }
 
 bool CMainWindow::holdUid(int uid) const

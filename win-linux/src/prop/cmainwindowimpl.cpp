@@ -41,9 +41,8 @@
 #include <QJsonDocument>
 #include <QFile>
 
-#define QCEF_CAST(Obj) qobject_cast<QCefView *>(Obj)
-
-CMainWindowImpl::CMainWindowImpl()
+CMainWindowImpl::CMainWindowImpl(const QRect &rect) :
+    CMainWindow(rect)
 {
     QObject::connect(CLangater::getInstance(), &CLangater::onLangChanged, std::bind(&CMainWindowImpl::refreshAboutVersion, this));
 }
@@ -138,22 +137,18 @@ void CMainWindowImpl::onLocalOptions(const QString& json)
         file.close();
     }
 }
+
 void CMainWindowImpl::doOpenLocalFile(COpenOptions& opts)
 {
-    Q_UNUSED(opts)
+    CMainWindow::doOpenLocalFile(opts);
 }
 
 QString CMainWindowImpl::getSaveMessage() const
 {
-    return tr("%1 is modified.<br>Do you want to keep changes?");
+    return CMainWindow::getSaveMessage();
 }
 
 void CMainWindowImpl::onLocalFileSaveAs(void * d)
 {
     Q_UNUSED(d)
-}
-
-void CMainWindowImpl::onDocumentReady(int uid)
-{
-    Q_UNUSED(uid)
 }
