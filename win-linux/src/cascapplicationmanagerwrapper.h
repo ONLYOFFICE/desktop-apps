@@ -45,7 +45,7 @@
 #include "cwindowsqueue.h"
 #include "ceventdriver.h"
 
-#include "windows/cmainwindow.h"
+#include "cmainwindowimpl.h"
 #include "windows/cpresenterwindow.h"
 
 #ifdef __linux__

@@ -40,7 +40,7 @@
 # include "windows/platform_linux/cwindowplatform.h"
 #endif
 #include "cscalingwrapper.h"
-#include "cmainwindowimpl.h"
+#include "components/asctabwidget.h"
 #include "components/cdownloadwidget.h"
 #include "components/csvgpushbutton.h"
 #include <QSettings>
@@ -49,7 +49,7 @@
 
 struct printdata;
 
-class CMainWindow : public CWindowPlatform, public CScalingWrapper, public CMainWindowImpl
+class CMainWindow : public CWindowPlatform, public CScalingWrapper
 {
     Q_OBJECT
 public:
@@ -100,6 +100,10 @@ public:
     virtual void setScreenScalingFactor(double) final;
     virtual void updateScalingFactor(double) final;
 
+protected:
+    virtual QString getSaveMessage() const;
+    virtual void refreshAboutVersion() {};
+
 public slots:
     void pushButtonMainClicked();
     void onTabClicked(int);
@@ -134,7 +138,7 @@ public slots:
     void onEditorAllowedClose(int);
     void onWebTitleChanged(int, std::wstring json) {}
     void onDocumentPrint(void *);
-    void onDocumentReady(int);
+    virtual void onDocumentReady(int);
 
 private:
     QWidget * createMainPanel(QWidget *parent);

@@ -739,7 +739,7 @@ auto prepareMainWindow(const QRect& r = QRect()) -> CMainWindow * {
     _startPanel->setObjectName("startPanel");
     //_startPanel->resize(_start_rect.width(), _start_rect.height());
 
-    CMainWindow * _window = new CMainWindow(_start_rect);
+    CMainWindow * _window = static_cast<CMainWindow*>(new CMainWindowImpl(_start_rect));
     _window->attachStartPanel(_startPanel);
 
     QString data_path;
@@ -1597,6 +1597,10 @@ bool CAscApplicationManagerWrapper::applySettings(const wstring& wstrjson)
             foreach ( auto const& e, m_vecEditors ) {
                 _editor = reinterpret_cast<CEditorWindow *>(e);
                 _editor->updateScaling();
+            }
+
+            for (auto const& r : m_winsReporter) {
+                r.second->updateScaling();
             }
         }
 

@@ -53,6 +53,7 @@ public:
     virtual void adjustGeometry() final;
 
 private:
+    bool isTaskbarAutoHideOn();
     void setResizeableAreaWidth(int);
     virtual void changeEvent(QEvent*) final;
     virtual bool nativeEvent(const QByteArray&, void*, long*) final;

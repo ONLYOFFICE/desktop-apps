@@ -34,26 +34,25 @@
 #define CMAINWINDOWIMPL_H
 
 #include <QCoreApplication>
-#include "components/asctabwidget.h"
+#include "windows/cmainwindow.h"
 
 #define MAIN_ICON_SIZE QSize(85,20)
 #define MAIN_ICON_PATH QString(":/logo.svg")
 
-class CMainWindowImpl
+class CMainWindowImpl : public CMainWindow
 {
     Q_DECLARE_TR_FUNCTIONS(CMainWindowImpl)
-
 public:
-    CMainWindowImpl();
-
-    void onLocalOptions(const QString&);
-
-protected:
-    QString getSaveMessage() const;
-    void refreshAboutVersion();
+    CMainWindowImpl(const QRect &rect);
     void doOpenLocalFile(COpenOptions&);
+
+public slots:
+    void onLocalOptions(const QString&);
     void onLocalFileSaveAs(void *);
-    void onDocumentReady(int);
+
+private:
+    virtual QString getSaveMessage() const final;
+    virtual void refreshAboutVersion() final;
 };
 
 #endif // CMAINWINDOWIMPL_H
