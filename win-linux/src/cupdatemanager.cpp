@@ -202,34 +202,36 @@ void CUpdateManager::updateNeededCheking()
 #ifdef Q_OS_WIN
     checkUpdates();
 #else
-    m_pTimer->stop();
-    int interval = 0;
-    const time_t DAY_TO_SEC = 24*3600;
-    const time_t WEEK_TO_SEC = 7*24*3600;
-    const time_t curr_time = time(nullptr);
-    const time_t elapsed_time = curr_time - m_lastCheck;
-    switch (m_currentRate) {
-    case UpdateInterval::DAY:
-        if (elapsed_time > DAY_TO_SEC) {
-            checkUpdates();
-        } else {
-            interval = static_cast<int>(DAY_TO_SEC - elapsed_time);
-            m_pTimer->setInterval(interval*1000);
-            m_pTimer->start();
+    if (m_pTimer) {
+        m_pTimer->stop();
+        int interval = 0;
+        const time_t DAY_TO_SEC = 24*3600;
+        const time_t WEEK_TO_SEC = 7*24*3600;
+        const time_t curr_time = time(nullptr);
+        const time_t elapsed_time = curr_time - m_lastCheck;
+        switch (m_currentRate) {
+        case UpdateInterval::DAY:
+            if (elapsed_time > DAY_TO_SEC) {
+                checkUpdates();
+            } else {
+                interval = static_cast<int>(DAY_TO_SEC - elapsed_time);
+                m_pTimer->setInterval(interval*1000);
+                m_pTimer->start();
+            }
+            break;
+        case UpdateInterval::WEEK:
+            if (elapsed_time > WEEK_TO_SEC) {
+                checkUpdates();
+            } else {
+                interval = static_cast<int>(WEEK_TO_SEC - elapsed_time);
+                m_pTimer->setInterval(interval*1000);
+                m_pTimer->start();
+            }
+            break;
+        case UpdateInterval::NEVER:
+        default:
+            break;
         }
-        break;
-    case UpdateInterval::WEEK:
-        if (elapsed_time > WEEK_TO_SEC) {
-            checkUpdates();
-        } else {
-            interval = static_cast<int>(WEEK_TO_SEC - elapsed_time);
-            m_pTimer->setInterval(interval*1000);
-            m_pTimer->start();
-        }
-        break;
-    case UpdateInterval::NEVER:
-    default:
-        break;
     }
 #endif
 }
