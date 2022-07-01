@@ -48,6 +48,7 @@
 #import "ASCDocSignController.h"
 #import "ASCExternalController.h"
 #import "NSApplication+Extensions.h"
+#import "NSDictionary+Extensions.h"
 
 CAscApplicationManager * createASCApplicationManager() {
     return new ASCApplicationManager();
@@ -110,6 +111,15 @@ int main(int argc, const char * argv[]) {
 
     std::wstring wLocale = [[params componentsJoinedByString:@"&"] stdwstring];
     appManager->InitAdditionalEditorParams(wLocale);
+
+    NSMutableDictionary * vars = @{@"theme": uiTheme}.mutableCopy;
+#ifdef URL_WEBAPPS_HELP
+    NSString * url = URL_WEBAPPS_HELP;
+    NSLog(@"set web-apps help url %@", URL_WEBAPPS_HELP);
+    if (url && [url length])
+        [vars setValue:URL_WEBAPPS_HELP forKey:@"helpUrl"];
+#endif
+    appManager->SetRendererProcessVariable([[vars jsonString] stdwstring]);
 
     // setup doc sign
     [ASCDocSignController shared];

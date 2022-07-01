@@ -3322,6 +3322,7 @@
 					_MAC,
 					_PRODUCT_ONLYOFFICE,
 					_X86_64_ONLY,
+					"URL_WEBAPPS_HELP=\\@\\\"$(URL_WEBAPPS_HELP)\\\"",
 				);
 				INFOPLIST_FILE = "ONLYOFFICE/Resources/ONLYOFFICE-x86_64/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks @executable_path/../Resources/converter @loader_path/../Resources/converter";
@@ -3366,6 +3367,7 @@
 					_MAC,
 					_PRODUCT_ONLYOFFICE,
 					_X86_64_ONLY,
+					"URL_WEBAPPS_HELP=\\@\\\"$(URL_WEBAPPS_HELP)\\\"",
 				);
 				INFOPLIST_FILE = "ONLYOFFICE/Resources/ONLYOFFICE-x86_64/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks @executable_path/../Resources/converter @loader_path/../Resources/converter";
