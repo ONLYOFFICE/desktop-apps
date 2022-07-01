@@ -82,12 +82,17 @@ l10n.hy = {
     settOptCheckWeek: 'Ամեն շաբաթ',
     settScaling: 'Ինտերֆեյսի մասշտաբավորում',
     settOptScalingAuto: 'Ավտոմատ',
-    aboutProFeaturesAvailable: 'Պրոֆեսիոնալ գործառույթների հասանելիությամբ',
-    settUITheme: 'Ինտերֆեյսի թեմա',
-    settOptThemeLight: 'Բաց',
-    settOptThemeClassicLight: 'Դասական բաց',
-    settOptThemeDark: 'Մուգ',
-    settOptLaunchMode: 'Բացել ֆայլը',
-    settOptLaunchInTab: 'Ներդիրում',
-    settOptLaunchInWindow: 'Պատուհանում',
+    aboutProFeaturesAvailable: 'Պրոֆեսիոնալ գործառույթների հասանելիությամբ'
+    ,settUITheme: 'Ինտերֆեյսի թեմա'
+    ,settOptThemeLight: 'Բաց'
+    ,settOptThemeClassicLight: 'Դասական բաց'
+    ,settOptThemeDark: 'Մուգ'
+    ,settOptLaunchMode: 'Բացել ֆայլը'
+    ,settOptLaunchInTab: 'Ներդիրում'
+    ,settOptLaunchInWindow: 'Պատուհանում'
+    ,settSpellcheckDetection: 'Ուղղագրական լեզվի հայտնաբերում'
+    ,settOptDisabled: 'Անջատված է'
+    ,aboutChangelog: 'Փոփոխությունների օրագիր'
+    ,updateNoUpdates: 'Հավելվածը թարմացված է'
+    ,updateAvialable: '$1 տարբերակը հասանելի է։Սեղմեք՝ ներբեռնելու համար։'
 }
