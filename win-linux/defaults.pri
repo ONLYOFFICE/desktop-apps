@@ -162,9 +162,9 @@ ENV_PRODUCT_VERSION = $$(PRODUCT_VERSION)
                VER_PRODUCT_VERSION_COMMAS=$$replace(FULL_PRODUCT_VERSION, \., ",")
 }
 
-CMD_IN_HELP_URL = $$join(HELPURL,,\\\",\\\")
+CMD_IN_HELP_URL = $$join(URL_WEBAPPS_HELP,,\\\",\\\")
 !isEmpty(CMD_IN_HELP_URL) {
-    DEFINES += URL_WEBAPPS_HELP=CMD_IN_HELP_URL
+    DEFINES += URL_WEBAPPS_HELP=$$CMD_IN_HELP_URL
     message(webapps help url: $$CMD_IN_HELP_URL)
 }
 
