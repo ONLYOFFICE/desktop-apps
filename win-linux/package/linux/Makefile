@@ -192,9 +192,9 @@ else
 endif
 RPM_PARAMS += --define '_binary_payload w7.xzdio'
 
-.PHONY: all clean branding packages rpm deb deb-astra apt-rpm tar desktopeditor qt-redist libstdc++-addon libc-addon
+.PHONY: all clean branding packages rpm deb deb-astra apt-rpm suse-rpm tar desktopeditor qt-redist libstdc++-addon libc-addon
 
-all: rpm deb apt-rpm urpmi tar 
+all: rpm deb apt-rpm urpmi suse-rpm tar
 #installer
 
 rpm: $(RPM)
@@ -217,7 +217,7 @@ rpm_aarch64 : $(RPM)
 
 installer: $(INSTALLER)
 
-PACKAGES += deb rpm apt-rpm urpmi tar
+PACKAGES += deb rpm apt-rpm urpmi suse-rpm tar
 ifneq ($(COMPANY_NAME), ONLYOFFICE)
 PACKAGES += deb-astra
 endif
