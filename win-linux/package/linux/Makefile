@@ -54,19 +54,19 @@ endif
 RPM_BUILD_DIR = $(PWD)/rpm/builddir
 APT_RPM_BUILD_DIR = $(PWD)/apt-rpm/builddir
 URPMI_BUILD_DIR = $(PWD)/urpmi/builddir
-SUSE-RPM_BUILD_DIR = $(PWD)/suse-rpm/builddir
+SUSE_RPM_BUILD_DIR = $(PWD)/suse-rpm/builddir
 TAR_BUILD_DIR = $(PWD)/tar
 
 RPM_PACKAGE_DIR = $(RPM_BUILD_DIR)/RPMS/$(RPM_ARCH)
 APT_RPM_PACKAGE_DIR = $(APT_RPM_BUILD_DIR)/RPMS/$(APT_RPM_ARCH)
 URPMI_PACKAGE_DIR = $(URPMI_BUILD_DIR)/RPMS/$(URPMI_ARCH)
-SUSE-RPM_PACKAGE_DIR = $(RPM_BUILD_DIR)/RPMS/$(RPM_ARCH)
+SUSE_RPM_PACKAGE_DIR = $(RPM_BUILD_DIR)/RPMS/$(RPM_ARCH)
 TAR_PACKAGE_DIR = $(TAR_BUILD_DIR)/$(TAR_ARCH)
 
 RPM = $(RPM_PACKAGE_DIR)/$(PACKAGE_NAME)-$(PACKAGE_VERSION).$(RPM_ARCH).rpm
 APT_RPM = $(APT_RPM_PACKAGE_DIR)/$(PACKAGE_NAME)-$(PACKAGE_VERSION).$(APT_RPM_ARCH).rpm
 URPMI = $(URPMI_PACKAGE_DIR)/$(PACKAGE_NAME)-$(PACKAGE_VERSION).$(URPMI_ARCH).rpm
-SUSE-RPM = $(SUSE-RPM_PACKAGE_DIR)/$(PACKAGE_NAME)-$(PACKAGE_VERSION).$(RPM_ARCH).rpm
+SUSE_RPM = $(SUSE_RPM_PACKAGE_DIR)/$(PACKAGE_NAME)-$(PACKAGE_VERSION).$(RPM_ARCH).rpm
 DEB = deb/$(PACKAGE_NAME)_$(PACKAGE_VERSION)_$(DEB_ARCH).deb
 DEB_ASTRA = deb-astra/$(PACKAGE_NAME)_$(PACKAGE_VERSION)-astra_$(DEB_ARCH).deb
 TAR = $(TAR_PACKAGE_DIR)/$(PACKAGE_NAME)-$(PACKAGE_VERSION)-$(TAR_ARCH).tar.gz
@@ -192,9 +192,9 @@ else
 endif
 RPM_PARAMS += --define '_binary_payload w7.xzdio'
 
-.PHONY: all clean branding packages rpm deb deb-astra apt-rpm tar desktopeditor qt-redist libstdc++-addon libc-addon
+.PHONY: all clean branding packages rpm deb deb-astra apt-rpm suse-rpm tar desktopeditor qt-redist libstdc++-addon libc-addon
 
-all: rpm deb apt-rpm urpmi tar 
+all: rpm deb apt-rpm urpmi suse-rpm tar
 #installer
 
 rpm: $(RPM)
@@ -209,7 +209,7 @@ apt-rpm: $(APT_RPM)
 
 urpmi: $(URPMI)
 
-suse-rpm: $(SUSE-RPM)
+suse-rpm: $(SUSE_RPM)
 
 rpm_aarch64 : ARCHITECTURE = arm64
 rpm_aarch64 : RPM_ARCH = aarch64
@@ -217,7 +217,7 @@ rpm_aarch64 : $(RPM)
 
 installer: $(INSTALLER)
 
-PACKAGES += deb rpm apt-rpm urpmi tar
+PACKAGES += deb rpm apt-rpm urpmi suse-rpm tar
 ifneq ($(COMPANY_NAME), ONLYOFFICE)
 PACKAGES += deb-astra
 endif
@@ -238,7 +238,7 @@ clean:
 		$(RPM_BUILD_DIR) \
 		$(APT_RPM_BUILD_DIR) \
 		$(URPMI_BUILD_DIR) \
-		$(SUSE-RPM_BUILD_DIR) \
+		$(SUSE_RPM_BUILD_DIR) \
 		$(TAR_BUILD_DIR) \
 		rpm/$(PACKAGE_NAME).spec \
 		apt-rpm/$(PACKAGE_NAME).spec \
@@ -333,9 +333,9 @@ $(URPMI): desktopeditor urpmi/$(PACKAGE_NAME).spec
 		$(RPM_PARAMS) \
 		package.spec
 
-$(SUSE-RPM): desktopeditor suse-rpm/$(PACKAGE_NAME).spec
+$(SUSE_RPM): desktopeditor suse-rpm/$(PACKAGE_NAME).spec
        cd suse-rpm && rpmbuild -bb \
-               --define "_topdir $(SUSE-RPM_BUILD_DIR)" \
+               --define "_topdir $(SUSE_RPM_BUILD_DIR)" \
                --define "_package_arch $(RPM_ARCH)" \
                --target $(RPM_ARCH) \
                $(RPM_PARAMS) \
