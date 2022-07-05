@@ -334,12 +334,12 @@ $(URPMI): desktopeditor urpmi/$(PACKAGE_NAME).spec
 		package.spec
 
 $(SUSE_RPM): desktopeditor suse-rpm/$(PACKAGE_NAME).spec
-       cd suse-rpm && rpmbuild -bb \
-               --define "_topdir $(SUSE_RPM_BUILD_DIR)" \
-               --define "_package_arch $(RPM_ARCH)" \
-               --target $(RPM_ARCH) \
-               $(RPM_PARAMS) \
-               package.spec
+	cd suse-rpm && rpmbuild -bb \
+		--define "_topdir $(SUSE_RPM_BUILD_DIR)" \
+		--define "_package_arch $(RPM_ARCH)" \
+		--target $(RPM_ARCH) \
+		$(RPM_PARAMS) \
+		package.spec
 
 $(TAR): desktopeditor
 	mkdir -p $(TAR_PACKAGE_DIR)
