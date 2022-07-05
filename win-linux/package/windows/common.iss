@@ -134,7 +134,7 @@ Name: vi; MessagesFile: compiler:Languages\Vietnamese.islu; LicenseFile: {#sBran
 Name: vi; MessagesFile: compiler:Languages\Vietnamese.isl; LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 #endif
 Name: zh_CN; MessagesFile: compiler:Languages\ChineseTraditional.isl;  LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
-;Name: hy_AM; MessagesFile: compiler:Languages\Armenian.islu;    LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
+Name: hy_AM; MessagesFile: compiler:Languages\Armenian.islu;    LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 ;Name: hr; MessagesFile: compiler:Languages\Croatian.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 Name: da; MessagesFile: compiler:Languages\Danish.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 ;Name: hi; MessagesFile: compiler:Languages\Hindi.islu;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
@@ -183,7 +183,7 @@ sv.Launch =Starta %1
 tr.Launch =%1 Başlatma
 vi.Launch =Khởi động %1
 zh_CN.Launch =启动%1
-;hy_AM.Launch =Գործարկում %1
+hy_AM.Launch =Գործարկում %1
 ;hr.Launch =Pokretanje %1
 da.Launch =Start %1
 ;hi.Launch =लॉन्च %1
@@ -223,7 +223,7 @@ sv.CreateDesktopIcon =Skapa %1 &ikon på skrivbordet
 tr.CreateDesktopIcon =%1 &masaüstü simgesi oluştur
 vi.CreateDesktopIcon =Tạo %1 &biểu tượng máy tính
 zh_CN.CreateDesktopIcon =创建%1和桌面图标
-;hy_AM.CreateDesktopIcon =Ստեղծել %1 &աշխատասեղանի պատկերակ
+hy_AM.CreateDesktopIcon =Ստեղծել %1 &աշխատասեղանի պատկերակ
 ;hr.CreateDesktopIcon =Izradite %1 &ikonu radne površine
 da.CreateDesktopIcon =Opret %1 &skrivebordsikon
 ;hi.CreateDesktopIcon =बनाएँ %1 &डेस्कटॉप आइकन
@@ -263,7 +263,7 @@ sv.InstallAdditionalComponents =Installerar ytterligare systemkomponenter. Var v
 tr.InstallAdditionalComponents =Ek sistem bileşenleri kuruluyor. Lütfen bekleyin...
 vi.InstallAdditionalComponents =Đang cài đặt các  phần hệ thống bổ sung. Xin vui lòng chờ...
 zh_CN.InstallAdditionalComponents =安装其他系统组件。请稍候...
-;hy_AM.InstallAdditionalComponents =Համակարգչի լրացուցիչ բաղադրիչների տեղադրում։ Խնդրում ենք սպասել․․․
+hy_AM.InstallAdditionalComponents =Համակարգչի լրացուցիչ բաղադրիչների տեղադրում։ Խնդրում ենք սպասել․․․
 ;hr.InstallAdditionalComponents =Instaliranje dodatnih komponenata sustava. Molimo pričekajte...
 da.InstallAdditionalComponents =Installation af yderligere systemkomponenter. Vent venligst...
 ;hi.InstallAdditionalComponents =अतिरिक्त सिस्टम तत्वों को इंस्टॉल कर रहा है। कृपया प्रतीक्षा करें...
@@ -303,7 +303,7 @@ sv.AdditionalTasks =Uppgifter:
 tr.AdditionalTasks =Görevler:
 vi.AdditionalTasks =Nhiệm vụ:
 zh_CN.AdditionalTasks =任务：
-;hy_AM.AdditionalTasks =Առաջադրանքներ
+hy_AM.AdditionalTasks =Առաջադրանքներ
 ;hr.AdditionalTasks =Zadaci:
 da.AdditionalTasks =Opgaver:
 ;hi.AdditionalTasks =कार्य:
@@ -343,7 +343,7 @@ sv.Uninstall =Avinstallera
 tr.Uninstall =Kaldır
 vi.Uninstall =Gỡ cài đặt
 zh_CN.Uninstall =卸载
-;hy_AM.Uninstall =Ապատեղադրել
+hy_AM.Uninstall =Ապատեղադրել
 ;hr.Uninstall =Deinstaliraj
 da.Uninstall =Afinstaller
 ;hi.Uninstall =अनइंस्टॉल
@@ -383,7 +383,7 @@ sv.WarningWrongArchitecture =Du försöker installera %1-bit-programversionen ö
 tr.WarningWrongArchitecture =Yüklenmiş %2-bit uygulama üzerine %1-bit uygulama yüklemeye çalışıyorsunuz. Lütfen ilk olarak önceki sürümü kaldırın veya kurulum için doğru sürümü indirin.
 vi.WarningWrongArchitecture =Bạn đang cố gắng cài đặt phiên bản ứng dụng %1-bit đè lên phiên bản %2-bit đã được cài đặt. Vui lòng gỡ phiên bản trước hoặc tải phiên bản đúng để cài đặt.
 zh_CN.WarningWrongArchitecture =您正在尝试在已安装的%2-bit版本上安装%1-bit应用版本。请首先卸载之前版本，或下载正确的安装版本。
-;hy_AM.WarningWrongArchitecture =Դուք պատրաստվում եք տեղադրել հավելվածի %1-բիթանոց տարբերակը՝ տեղադրված %2-բիթանոց տարբերակի փոխարեն։ Խնդրում ենք նախ ապատեղադրել նախորդ տարբերակը կամ բեռնել ճիշտ տարբերակը՝ տեղադրման համար։
+hy_AM.WarningWrongArchitecture =Դուք պատրաստվում եք տեղադրել հավելվածի %1-բիթանոց տարբերակը՝ տեղադրված %2-բիթանոց տարբերակի փոխարեն։ Խնդրում ենք նախ ապատեղադրել նախորդ տարբերակը կամ բեռնել ճիշտ տարբերակը՝ տեղադրման համար։
 ;hr.WarningWrongArchitecture =Pokušavate instalirati %1-bitnu verziju aplikacije preko instalirane %2-bitne verzije. Molimo da najprije deinstalirate prethodnu verziju ili preuzmete ispravnu verziju za instalaciju.
 da.WarningWrongArchitecture =Du prøver at installere %1-bit applikationsversion over den installerede %2-bit version. Venligst afinstaller den tidligere version først eller download den rigtige version for at installere.
 ;hi.WarningWrongArchitecture =आप इंस्टॉल किए गए %2-बिट संस्करण के ऊपर %1-बिट ऐप्लिकेशन  संस्करण को इंस्टॉल करने का प्रयास कर रहे हैं। कृपया पहले पुराने संस्करण को अनइंस्टॉल करें या इंस्टॉल करने के लिए सही संस्करण को डाउनलोड करें।
@@ -424,7 +424,7 @@ sv.UpdateAppRunning=Installationsprogrammet har upptäckt att %1 för närvarand
 tr.UpdateAppRunning=Kurulum %1’in şu anda çalışıyor olduğunu algıladı. %n%nIt otomatik olarak kapatılacak. Devam etmek için Tamam’a veya çıkmak için İptal’e tıklayın.
 vi.UpdateAppRunning=Mục cài đặt đã phát hiện ra rằng %1 đang chạy.%n%nIt sẽ được đóng tự động. Hãy chọn OK để tiếp tục hay Hủy để thoát.
 zh_CN.UpdateAppRunning=安装程序检测到%1当前正在运行。%n%n将自动关闭。单击“确定”继续，或“取消”退出。
-;hy_AM.UpdateAppRunning=Կարգավորումը հայտնաբերել է, որ այս պահին աշխատում է %1-ը։ %n%nԱյն ավտոմատ կփակվի։ Խնդրում ենք սեղմել ԼԱՎ՝ շարունակելու համար կամ Չեղարկել՝ դուրս գալու համար։
+hy_AM.UpdateAppRunning=Կարգավորումը հայտնաբերել է, որ այս պահին աշխատում է %1-ը։ %n%nԱյն ավտոմատ կփակվի։ Խնդրում ենք սեղմել ԼԱՎ՝ շարունակելու համար կամ Չեղարկել՝ դուրս գալու համար։
 ;hr.UpdateAppRunning=Postavljanje je otkrilo da je %1 trenutno pokrenut.%n%n Zatvorit će se automatski. Kliknite U redu za nastavak ili Odustani za izlaz.
 da.UpdateAppRunning=Setup har registreret at %1 kører i øjeblikket.%n%nIDet vil blive lukket automatisk. Klik OK for at fortsætte eller Annuler for at afslutte.
 ;hi.UpdateAppRunning=सेटअप ने पता लगाया है कि %1 वर्तमान में चल रहा है।%n%nयह स्वतः ही बंद हो जाएगा। क्लिक करें ओके या जारी रखें पर, या बाहर निकलने के लिए रद्द करें पर।
@@ -464,7 +464,7 @@ sv.WarningClearAppData =Vill du rensa användarinställningar och programmets ca
 tr.WarningClearAppData =Kullanıcı ayarlarını veya uygulama önbelleğine alınmış verileri silmek istiyor musunuz?
 vi.WarningClearAppData =Bạn có muốn xóa thiết lập người dùng và dữ liệu được lưu trong bộ nhớ cache của ứng dụng không?
 zh_CN.WarningClearAppData =您是否要清除用户设置和应用缓存数据？
-;hy_AM.WarningClearAppData =Ցանկանու՞մ եք ջնջել օգտագործողի կարգավորումները և հավելվածի պահպանված տվյալները։
+hy_AM.WarningClearAppData =Ցանկանու՞մ եք ջնջել օգտագործողի կարգավորումները և հավելվածի պահպանված տվյալները։
 ;hr.WarningClearAppData =Želite li očistiti korisničke postavke i predmemorirane podatke aplikacije?
 da.WarningClearAppData =Vil du rydde brugerinstillingerne og applikationscachede data?
 ;hi.WarningClearAppData =क्या आप उपयोगकर्ता सेटिंग और ऐप्लिकेशन कैश डाटा को हटाना चाहते हैं?
