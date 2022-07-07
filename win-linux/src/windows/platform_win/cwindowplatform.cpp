@@ -140,16 +140,6 @@ void CWindowPlatform::changeEvent(QEvent *event)
 {
     CWindowBase::changeEvent(event);
     if (event->type() == QEvent::WindowStateChange) {
-        /*if (isMinimized()) {
-            applyWindowState(Qt::WindowMinimized);
-        } else {
-            if (isVisible()) {
-                if (isMaximized()) {
-                    applyWindowState(Qt::WindowMaximized);
-                } else applyWindowState(Qt::WindowNoState);
-            }
-            adjustGeometry();
-        }*/
         applyWindowState();
         adjustGeometry();
     }
