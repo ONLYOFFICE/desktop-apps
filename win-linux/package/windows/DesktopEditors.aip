@@ -49,10 +49,12 @@
     <ROW Property="FB2_CHECKBOX" Value="1" Type="4"/>
     <ROW Property="GALLERY_BUTTON_TEXT" Value="Install Gallery"/>
     <ROW Property="GALLERY_CHECKBOX" Value="1" Type="4"/>
+    <ROW Property="GALLERY_SHORTCUT_NAME" Value="Gallery"/>
     <ROW Property="HTML_CHECKBOX" Value="1" Type="4"/>
     <ROW Property="MANUFACTURER_INSTALL_FOLDER" Value="ONLYOFFICE"/>
     <ROW Property="MEDIA_BUTTON_TEXT" Value="Install Media"/>
     <ROW Property="MEDIA_CHECKBOX" Value="1" Type="4"/>
+    <ROW Property="MEDIA_SHORTCUT_NAME" Value="Media"/>
     <ROW Property="MSIFASTINSTALL" MultiBuildValue="DefaultBuild:7"/>
     <ROW Property="Manufacturer" Value="Ascensio System SIA"/>
     <ROW Property="MsiLogging" MultiBuildValue="DefaultBuild:vp"/>
@@ -769,6 +771,8 @@
     <ROW Feature_="MainFeature" Component_="ImageViewer.exe"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiIconsComponent">
+    <ROW Name="ImageViewer.exe" SourcePath="..\..\extras\projicons\res\gallery.ico" Index="0"/>
+    <ROW Name="VideoPlayer.exe" SourcePath="..\..\extras\projicons\res\media.ico" Index="0"/>
     <ROW Name="desktopeditors.exe" SourcePath="..\..\extras\projicons\res\desktopeditors.ico" Index="0"/>
     <ROW Name="djvu.exe" SourcePath="..\..\extras\projicons\res\djvu.ico" Index="0"/>
     <ROW Name="doc.exe" SourcePath="..\..\extras\projicons\res\doc.ico" Index="0"/>
@@ -896,6 +900,8 @@
     <ROW Shortcut="COMMON_SHORTCUT_NAME_DESKTOP" Directory_="DesktopFolder" Name="ONLYOF~1|[|COMMON_SHORTCUT_NAME]" Component_="DesktopEditors.exe" Target="[#DesktopEditors.exe]" Hotkey="0" Icon_="desktopeditors.exe" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
     <ROW Shortcut="COMMON_SHORTCUT_NAME_QUICK_LAUNCH" Directory_="QuickLaunch_Dir" Name="ONLYOF~1|[|COMMON_SHORTCUT_NAME]" Component_="DesktopEditors.exe" Target="[#DesktopEditors.exe]" Hotkey="0" Icon_="desktopeditors.exe" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
     <ROW Shortcut="COMMON_SHORTCUT_NAME_SHORTCUTDIR" Directory_="SHORTCUTDIR" Name="ONLYOF~1|[|COMMON_SHORTCUT_NAME]" Component_="DesktopEditors.exe" Target="[#DesktopEditors.exe]" Hotkey="0" Icon_="desktopeditors.exe" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
+    <ROW Shortcut="GALLERY_SHORTCUT_NAME" Directory_="SHORTCUTDIR" Name="[|GALLERY_SHORTCUT_NAME]" Component_="ImageViewer.exe" Target="[#ImageViewer.exe]" Hotkey="0" Icon_="ImageViewer.exe" IconIndex="0" ShowCmd="1" WkDir="CUSTOM_PATH"/>
+    <ROW Shortcut="MEDIA_SHORTCUT_NAME" Directory_="SHORTCUTDIR" Name="[|MEDIA_SHORTCUT_NAME]" Component_="VideoPlayer.exe" Target="[#VideoPlayer.exe]" Hotkey="0" Icon_="VideoPlayer.exe" IconIndex="0" ShowCmd="1" WkDir="CUSTOM_PATH"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiThemeComponent">
     <ATTRIBUTE name="UsedTheme" value="classic"/>
