@@ -68,7 +68,7 @@ void CMainPanelImpl::refreshAboutVersion()
     _json_obj["link"]       = URL_SITE;
     _json_obj["changelog"]  = "https://github.com/ONLYOFFICE/DesktopEditors/blob/master/CHANGELOG.md";
 
-    QString _package = qgetenv("ASC_PACK_TYPE");
+    QString _package = QSettings(qApp->applicationDirPath() + "/converter/package.config", QSettings::IniFormat).value("package").toString();
     if ( !_package.isEmpty() )
         _json_obj["pkg"] = _package;
 
