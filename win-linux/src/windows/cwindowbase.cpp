@@ -252,7 +252,7 @@ void CWindowBase::onMaximizeEvent()
 
 void CWindowBase::onCloseEvent()
 {
-    close();
+    deleteLater();
 }
 
 void CWindowBase::focus()
