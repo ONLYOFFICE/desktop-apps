@@ -1632,6 +1632,8 @@ var
   i: Integer;
   ext, progId1, progId2: string;
   argsArray: TArrayOfString;
+  cleanExts, extensionInfo: TArrayOfString;
+  prefix, str: string;
 begin
     isFullAssociation := CheckCommandlineParam('/FULLASSOCIATION');
     if (associatePage = nil) and isFullAssociation then begin
@@ -1681,6 +1683,46 @@ begin
 
   AddToDefaultPrograms;
   AddContextMenuNewItems;
+
+#ifndef _ONLYOFFICE
+  //TODO: for bug 55795. remove for ver 7.3
+  SetArrayLength(cleanExts, 2);
+  SetArrayLength(extensionInfo, 2);
+
+  prefix := '{#ASCC_REG_PREFIX}' + '.';
+
+  cleanExts[0]  := 'OFORM';
+  cleanExts[1]  := 'DOCXF';
+
+  extensionInfo[0] := prefix + 'Oform:' + ExpandConstant('{cm:extOFORM}') + ':' + '12';
+  extensionInfo[1] := prefix + 'Docxf:' + ExpandConstant('{cm:extDOCXF}') + ':' + '13';
+
+  for  i := 0 to GetArrayLength(cleanExts) - 1 do
+  begin     
+    Explode(argsArray, extensionInfo[i],':');
+    RegDeleteKeyIncludingSubkeys(HKEY_LOCAL_MACHINE, 'Software\Classes\' + argsArray[0]);
+
+    ext := LowerCase(cleanExts[i]);
+    RegDeleteValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.' + ext + '\OpenWithProgids', argsArray[0]);
+    RegDeleteValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.' + ext + '\OpenWithProgids', ExpandConstant('{#ASSOC_PROG_ID}'));
+
+    RegQueryStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.' + ext, '', str);
+    if CompareText(str, argsArray[0]) = 0 then
+      RegDeleteValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.' + ext, '');
+
+    RegQueryStringValue(HKEY_CURRENT_USER, 'Software\Classes\.' + ext, '', str);
+    if CompareText(str, argsArray[0]) = 0 then
+      RegDeleteValue(HKEY_CURRENT_USER, 'Software\Classes\.' + ext, '');
+
+    RegQueryStringValue(HKEY_CURRENT_USER, 'Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\.' + ext + '\UserChoice', 'Progid', str);
+    if CompareText(str, argsArray[0]) = 0 then
+      RegDeleteKeyIncludingSubkeys(HKEY_CURRENT_USER, 'Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\.' + ext + '\UserChoice');
+  
+    //RegDeleteKeyIncludingSubkeys(HKEY_LOCAL_MACHINE, ExpandConstant('Software\Classes\Applications\{#NAME_EXE_OUT})'));
+    RegDeleteKeyIncludingSubkeys(HKEY_LOCAL_MACHINE, ExpandConstant('Software\Classes\.' + ext + '\OpenWithList\{#NAME_EXE_OUT}'));
+  end;
+#endif
+
 end;
 
 {

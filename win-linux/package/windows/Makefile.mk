@@ -110,13 +110,21 @@ $(DESKTOP_EDITORS_MSI):
 ifeq ($(WIN_ARCH),x86)
 	cd $(BUILD_DIR); \
 	$(AIC) //edit DesktopEditors.aip //SetPackageType x86; \
-	$(AIC) //edit DesktopEditors.aip //SetAppdir -buildname DefaultBuild -path [ProgramFilesFolder][MANUFACTURER_INSTALL_FOLDER]\\[PRODUCT_INSTALL_FOLDER]
+	$(AIC) //edit DesktopEditors.aip //SetAppdir -buildname DefaultBuild -path [ProgramFilesFolder][MANUFACTURER_INSTALL_FOLDER]\\[PRODUCT_INSTALL_FOLDER]; \
+	$(AIC) //edit DesktopEditors.aip //DelPrerequisite "Microsoft Visual C++ 2015-2022 Redistributable (x64)"
+endif
+ifeq ($(WIN_ARCH),x64)
+	cd $(BUILD_DIR); \
+	$(AIC) //edit DesktopEditors.aip //DelPrerequisite "Microsoft Visual C++ 2015-2022 Redistributable (x86)"
 endif
 ifneq ($(ENABLE_SIGNING), 1)
 	cd $(BUILD_DIR); \
 	$(AIC) //edit DesktopEditors.aip //ResetSig
 endif
 	cd $(BUILD_DIR); \
+	$(AIC) //edit DesktopEditors.aip //DelPrerequisite "Microsoft Visual C++ 2013 Redistributable (x86)"; \
+	$(AIC) //edit DesktopEditors.aip //DelPrerequisite "Microsoft Visual C++ 2013 Redistributable (x64)"; \
+	$(AIC) //edit DesktopEditors.aip //DelFolder CUSTOM_PATH; \
 	$(AIC) //edit DesktopEditors.aip //AddOsLc -buildname DefaultBuild -arch $(WIN_ARCH); \
 	$(AIC) //edit DesktopEditors.aip //NewSync APPDIR "$(shell cygpath -w $(DEST_DIR))" -existingfiles delete; \
 	$(AIC) //edit DesktopEditors.aip //UpdateFile APPDIR\\DesktopEditors.exe "$(shell cygpath -w $(DEST_DIR))\\DesktopEditors.exe"; \
