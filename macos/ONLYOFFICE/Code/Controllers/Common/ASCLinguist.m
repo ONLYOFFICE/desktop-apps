@@ -90,7 +90,7 @@
         // @"ga-IE": @"Gaeilge",
         // @"hi-IN": @"हिन्दी",
         // @"hr-HR": @"Hrvatska",
-        @"hu-HU": @"Magyar nyelv",
+        @"hu-HU": @"Magyar",
         @"hy-AM": @"Հայաստան",
         @"id-ID": @"Indonesian",
         @"no-NO": @"Norsk",
