@@ -37,5 +37,7 @@ fi
 xdg-mime install --mode system /opt/M4_DESKTOPEDITORS_PREFIX/mimetypes/onlyoffice-docxf.xml
 xdg-mime install --mode system /opt/M4_DESKTOPEDITORS_PREFIX/mimetypes/onlyoffice-oform.xml
 
+#echo "package = deb" > /opt/M4_DESKTOPEDITORS_PREFIX/converter/package.config
+
 # Update cache of .desktop file MIME types. Non-fatal since it's just a cache.
 #update-desktop-database > /dev/null 2>&1 || true

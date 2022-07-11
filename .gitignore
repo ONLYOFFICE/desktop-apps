@@ -12,8 +12,6 @@ win-linux/package/windows/index.html
 win-linux/package/linux/common/opt
 win-linux/package/linux/common/usr/share/applications/variables.m4
 win-linux/package/linux/common/usr/share/flyfm/templates/desktopeditors.*.desktop
-win-linux/package/linux/common/DEB
-win-linux/package/linux/common/RPM
 /win-linux/package/linux/deb*/build
 /win-linux/package/linux/deb*/*.buildinfo
 /win-linux/package/linux/deb*/*.changes
