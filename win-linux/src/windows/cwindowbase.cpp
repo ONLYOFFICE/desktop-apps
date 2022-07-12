@@ -252,7 +252,7 @@ void CWindowBase::onMaximizeEvent()
 
 void CWindowBase::onCloseEvent()
 {
-    close();
+    deleteLater();
 }
 
 void CWindowBase::focus()
@@ -271,4 +271,10 @@ void CWindowBase::showEvent(QShowEvent *event)
         adjustGeometry();
         applyTheme(AscAppManager::themes().current().id());
     }
+}
+
+void CWindowBase::closeEvent(QCloseEvent *e)
+{
+    onCloseEvent();
+    e->ignore();
 }

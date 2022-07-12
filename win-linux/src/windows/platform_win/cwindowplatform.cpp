@@ -46,13 +46,11 @@
 
 CWindowPlatform::CWindowPlatform(const QRect &rect) :
     CWindowBase(rect),
-    m_previousState(Qt::WindowNoState),
     m_hWnd(nullptr),
     m_resAreaWidth(MAIN_WINDOW_BORDER_WIDTH),
     m_borderless(true),
     m_closed(false),
-    m_isResizeable(true),
-    m_taskBarClicked(false)
+    m_isResizeable(true)
 {
     setWindowFlags(windowFlags() | Qt::Window | Qt::FramelessWindowHint
                    | Qt::WindowSystemMenuHint | Qt::WindowMaximizeButtonHint
@@ -98,7 +96,7 @@ void CWindowPlatform::adjustGeometry()
         setResizeableAreaWidth(border);
     } else
     if (windowState().testFlag(Qt::WindowMaximized)) {
-        QTimer::singleShot(150, this, [=]() {
+        QTimer::singleShot(25, this, [=]() {
             setContentsMargins(0,0,0,0);
             auto dsk = QApplication::desktop();
             const QSize offset = !isTaskbarAutoHideOn() ? QSize(0, 0) : QSize(0, 1);
@@ -142,16 +140,6 @@ void CWindowPlatform::changeEvent(QEvent *event)
 {
     CWindowBase::changeEvent(event);
     if (event->type() == QEvent::WindowStateChange) {
-        /*if (isMinimized()) {
-            applyWindowState(Qt::WindowMinimized);
-        } else {
-            if (isVisible()) {
-                if (isMaximized()) {
-                    applyWindowState(Qt::WindowMaximized);
-                } else applyWindowState(Qt::WindowNoState);
-            }
-            adjustGeometry();
-        }*/
         applyWindowState();
         adjustGeometry();
     }
@@ -199,10 +187,10 @@ bool CWindowPlatform::nativeEvent(const QByteArray &eventType, void *message, lo
             return false;
         } else
         if (GET_SC_WPARAM(msg->wParam) == SC_RESTORE) {
-            m_taskBarClicked = true;
+
         } else
         if (GET_SC_WPARAM(msg->wParam) == SC_MINIMIZE) {
-            m_taskBarClicked = true;
+
         } else
         if (GET_SC_WPARAM(msg->wParam) == SC_SIZE) {
             break;
@@ -218,13 +206,9 @@ bool CWindowPlatform::nativeEvent(const QByteArray &eventType, void *message, lo
 
     case WM_NCCALCSIZE: {
         NCCALCSIZE_PARAMS& params = *reinterpret_cast<NCCALCSIZE_PARAMS*>(msg->lParam);
-        if (params.rgrc[0].bottom != 0) params.rgrc[0].bottom += 1;
-        Qt::WindowStates _currentState = windowState();
-        if ((m_previousState == Qt::WindowNoState && _currentState == Qt::WindowNoState)
-                && !m_taskBarClicked) {
-            *result = WVR_REDRAW;
-        } else m_taskBarClicked = false;
-        m_previousState = _currentState;
+        if (params.rgrc[0].bottom != 0)
+            params.rgrc[0].bottom += 1;
+        *result = WVR_REDRAW;
         return true;
     }
 

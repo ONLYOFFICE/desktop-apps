@@ -58,13 +58,11 @@ private:
     virtual void changeEvent(QEvent*) final;
     virtual bool nativeEvent(const QByteArray&, void*, long*) final;
 
-    Qt::WindowStates m_previousState;
     HWND m_hWnd;
     int  m_resAreaWidth;
     bool m_borderless,
          m_closed,
-         m_isResizeable,
-         m_taskBarClicked;
+         m_isResizeable;
 };
 
 #endif // CWINDOWPLATFORM_H
