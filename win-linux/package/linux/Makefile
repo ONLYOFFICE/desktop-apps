@@ -228,7 +228,6 @@ clean:
 	rm -rfv \
 		common/etc \
 		common/opt \
-		common/package.config \
 		$(LINUX_DEPS) \
 		deb/build \
 		deb/*.buildinfo \
