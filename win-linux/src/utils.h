@@ -39,6 +39,8 @@
 #ifdef Q_OS_WIN
 # include <Windows.h>
 #endif
+#include "components/cfullscrwidget.h"
+
 
 namespace InputArgs {
     auto init(int argc, char** const argv) -> void;
@@ -110,7 +112,7 @@ namespace WindowHelper {
 
     auto correctWindowMinimumSize(const QRect&, const QSize&) -> QSize;
     auto isLeftButtonPressed() -> bool;
-    auto constructFullscreenWidget(QWidget * panel) -> QWidget *;
+    auto constructFullscreenWidget(QWidget * panel) -> CFullScrWidget *;
 }
 
 #endif // UTILS_H

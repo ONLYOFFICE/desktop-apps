@@ -45,6 +45,7 @@
 #include "ceditortools.h"
 #include "components/csvgpushbutton.h"
 #include "defines.h"
+#include "components/cfullscrwidget.h"
 
 #include <QPrinterInfo>
 #include <QDesktopWidget>
@@ -145,7 +146,7 @@ class CEditorWindowPrivate : public CCefEventsGate
     QPushButton * btndock = nullptr;
     bool isPrinting = false,
         isFullScreen = false;
-    QWidget * fs_parent = nullptr;
+    CFullScrWidget * fs_parent = nullptr;
     QLabel * iconcrypted = nullptr;
     QWidget * boxtitlelabel = nullptr,
             * leftboxbuttons = nullptr;
@@ -586,6 +587,10 @@ public:
 
             _fs_widget->view()->setFocusToCef();
             window->hide();
+            connect(fs_parent, &CFullScrWidget::closeRequest, this, [=]() {
+                disconnect(fs_parent);
+                onFullScreen(false);
+            });
 
             cefConnection = connect(_fs_widget, &CTabPanel::closePanel, [=](QCloseEvent * e){
                 _break_demonstration();

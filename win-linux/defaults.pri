@@ -81,6 +81,7 @@ HEADERS += \
     $$PWD/src/components/ctabpanel.h \
     $$PWD/src/components/csvgpushbutton.h \
     $$PWD/src/components/celipsislabel.h \
+    $$PWD/src/components/cfullscrwidget.h \
     $$PWD/src/version.h \
     $$PWD/src/defines.h \
     $$PWD/src/ccefeventstransformer.h \
@@ -125,6 +126,7 @@ SOURCES += \
     $$PWD/src/components/ctabpanel.cpp \
     $$PWD/src/components/csvgpushbutton.cpp \
     $$PWD/src/components/celipsislabel.cpp \
+    $$PWD/src/components/cfullscrwidget.cpp \
     #$$PWD/src/csplash.cpp \
     $$PWD/src/main.cpp \
     $$PWD/src/ccefeventstransformer.cpp \
