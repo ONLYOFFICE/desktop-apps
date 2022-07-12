@@ -260,8 +260,6 @@ desktopeditor: branding $(LINUX_DEPS)
 	cp -rf ../../../common/package/mimetypes common/opt/desktopeditors
 
 	chmod 755 common/opt/desktopeditors/DesktopEditors
-
-	echo "package = deb" > common/package.config
 ifneq ($(COMPANY_NAME), ONLYOFFICE)
 	chmod 755 common/opt/mediaviewer/ImageViewer
 	chmod 755 common/opt/mediaviewer/VideoPlayer
