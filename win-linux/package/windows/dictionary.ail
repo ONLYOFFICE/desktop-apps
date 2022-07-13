@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<DICTIONARY type="multilanguage">
+  <!-- Dialog table -->
+  <ENTRY id="Dialog.ExtendedInstallDlg">
+    <STRING lang="ru" value="[ProductName] [Setup]"/>
+  </ENTRY>
+  <ENTRY id="Dialog.NewDialog">
+    <STRING lang="ru" value="[ProductName] [Setup]"/>
+  </ENTRY>
+  <ENTRY id="Dialog.FileAssociationsDlg">
+    <STRING lang="ru" value="[Setup] [ProductName]"/>
+  </ENTRY>
+  <!-- Control table -->
+  <ENTRY id="Control.Text.ExtendedInstallDlg#Back">
+    <STRING lang="ru" value="[ButtonText_Back]"/>
+  </ENTRY>
+  <ENTRY id="Control.Text.ExtendedInstallDlg#Cancel">
+    <STRING lang="ru" value="[ButtonText_Cancel]"/>
+  </ENTRY>
+  <ENTRY id="Control.Text.ExtendedInstallDlg#Description">
+    <STRING lang="ru" value="Какие дополнительные задачи необходимо выполнить?"/>
+  </ENTRY>
+  <ENTRY id="Control.Text.ExtendedInstallDlg#ExtendedDlgText">
+    <STRING lang="ru" value="Выберете дополнительные задачи, которые необходимо выполнить при установке [ProductName]:"/>
+  </ENTRY>
+  <ENTRY id="Control.Text.ExtendedInstallDlg#GalleryButtonCheckBox">
+    <STRING lang="ru" value="Install Gallery"/>
+  </ENTRY>
+  <ENTRY id="Control.Text.ExtendedInstallDlg#MediaButtonCheckBox">
+    <STRING lang="ru" value="Install Media"/>
+  </ENTRY>
+  <ENTRY id="Control.Text.ExtendedInstallDlg#Next">
+    <STRING lang="ru" value="[ButtonText_Next]"/>
+  </ENTRY>
+  <ENTRY id="Control.Text.ExtendedInstallDlg#Title">
+    <STRING lang="ru" value="Выберете дополнительные задачи"/>
+  </ENTRY>
+  <ENTRY id="Control.Text.FileAssociationsDlg#CheckBox_1">
+    <STRING lang="ru" value=".csv"/>
+  </ENTRY>
+  <ENTRY id="Control.Text.FileAssociationsDlg#CheckBox_10">
+    <STRING lang="ru" value=".ods"/>
+  </ENTRY>
+  <ENTRY id="Control.Text.FileAssociationsDlg#CheckBox_11">
+    <STRING lang="ru" value=".odt"/>
+  </ENTRY>
+  <ENTRY id="Control.Text.FileAssociationsDlg#CheckBox_12">
+    <STRING lang="ru" value=".otp"/>
+  </ENTRY>
+  <ENTRY id="Control.Text.FileAssociationsDlg#CheckBox_13">
+    <STRING lang="ru" value=".ots"/>
+  </ENTRY>
+  <ENTRY id="Control.Text.FileAssociationsDlg#CheckBox_14">
+    <STRING lang="ru" value=".ott"/>
+  </ENTRY>
+  <ENTRY id="Control.Text.FileAssociationsDlg#CheckBox_15">
+    <STRING lang="ru" value=".pdf"/>
+  </ENTRY>
+  <ENTRY id="Control.Text.FileAssociationsDlg#CheckBox_16">
+    <STRING lang="ru" value=".potx"/>
+  </ENTRY>
+  <ENTRY id="Control.Text.FileAssociationsDlg#CheckBox_17">
+    <STRING lang="ru" value=".ppt"/>
+  </ENTRY>
+  <ENTRY id="Control.Text.FileAssociationsDlg#CheckBox_18">
+    <STRING lang="ru" value=".pptx"/>
+  </ENTRY>
+  <ENTRY id="Control.Text.FileAssociationsDlg#CheckBox_19">
+    <STRING lang="ru" value=".rtf"/>
+  </ENTRY>
+  <ENTRY id="Control.Text.FileAssociationsDlg#CheckBox_2">
+    <STRING lang="ru" value=".djvu"/>
+  </ENTRY>
+  <ENTRY id="Control.Text.FileAssociationsDlg#CheckBox_20">
+    <STRING lang="ru" value=".txt"/>
+  </ENTRY>
+  <ENTRY id="Control.Text.FileAssociationsDlg#CheckBox_21">
+    <STRING lang="ru" value=".xls"/>
+  </ENTRY>
+  <ENTRY id="Control.Text.FileAssociationsDlg#CheckBox_22">
+    <STRING lang="ru" value=".xlsx"/>
+  </ENTRY>
+  <ENTRY id="Control.Text.FileAssociationsDlg#CheckBox_23">
+    <STRING lang="ru" value=".xltx"/>
+  </ENTRY>
+  <ENTRY id="Control.Text.FileAssociationsDlg#CheckBox_24">
+    <STRING lang="ru" value=".xml"/>
+  </ENTRY>
+  <ENTRY id="Control.Text.FileAssociationsDlg#CheckBox_25">
+    <STRING lang="ru" value=".xps"/>
+  </ENTRY>
+  <ENTRY id="Control.Text.FileAssociationsDlg#CheckBox_3">
+    <STRING lang="ru" value=".doc"/>
+  </ENTRY>
+  <ENTRY id="Control.Text.FileAssociationsDlg#CheckBox_4">
+    <STRING lang="ru" value=".docx"/>
+  </ENTRY>
+  <ENTRY id="Control.Text.FileAssociationsDlg#CheckBox_5">
+    <STRING lang="ru" value=".dotx"/>
+  </ENTRY>
+  <ENTRY id="Control.Text.FileAssociationsDlg#CheckBox_6">
+    <STRING lang="ru" value=".epub"/>
+  </ENTRY>
+  <ENTRY id="Control.Text.FileAssociationsDlg#CheckBox_7">
+    <STRING lang="ru" value=".fb2"/>
+  </ENTRY>
+  <ENTRY id="Control.Text.FileAssociationsDlg#CheckBox_8">
+    <STRING lang="ru" value=".html"/>
+  </ENTRY>
+  <ENTRY id="Control.Text.FileAssociationsDlg#CheckBox_9">
+    <STRING lang="ru" value=".odp"/>
+  </ENTRY>
+  <ENTRY id="Control.Text.NewDialog#Back">
+    <STRING lang="ru" value="[ButtonText_Back]"/>
+  </ENTRY>
+  <ENTRY id="Control.Text.NewDialog#Cancel">
+    <STRING lang="ru" value="[ButtonText_Cancel]"/>
+  </ENTRY>
+  <ENTRY id="Control.Text.NewDialog#CheckBox_2">
+    <STRING lang="ru" value="CheckBox"/>
+  </ENTRY>
+  <ENTRY id="Control.Text.NewDialog#Description">
+    <STRING lang="ru" value="Выберите типы файлов, которые нужно автоматически открыть с помощью [ProductName]:"/>
+  </ENTRY>
+  <ENTRY id="Control.Text.NewDialog#Next">
+    <STRING lang="ru" value="[ButtonText_Next]"/>
+  </ENTRY>
+  <ENTRY id="Control.Text.NewDialog#Text_1">
+    <STRING lang="ru" value="All types"/>
+  </ENTRY>
+  <ENTRY id="Control.Text.NewDialog#Title">
+    <STRING lang="ru" value="Сопоставление типов файлов"/>
+  </ENTRY>
+  <!-- Property table -->
+  <ENTRY id="Property.AI_PRODUCTNAME_ARP">
+    <STRING lang="ru" value="[|ProductName] [|ProductVersion] "/>
+  </ENTRY>
+  <ENTRY id="Property.ARPCOMMENTS">
+    <STRING lang="ru" value="Эта база данных установщика содержит логику и данные, необходимые для установки [|ProductName]"/>
+  </ENTRY>
+  <ENTRY id="Property.ARPCONTACT">
+    <STRING lang="ru" value="20A-6, Ernesta Birznieka-Upisha str., Riga, LV-1050"/>
+  </ENTRY>
+  <ENTRY id="Property.ARPHELPLINK">
+    <STRING lang="ru" value="http://dev.onlyoffice.org/"/>
+  </ENTRY>
+  <ENTRY id="Property.ARPHELPTELEPHONE">
+    <STRING lang="ru" value="+371 66016425"/>
+  </ENTRY>
+  <ENTRY id="Property.ARPURLINFOABOUT">
+    <STRING lang="ru" value="http://www.onlyoffice.com"/>
+  </ENTRY>
+  <ENTRY id="Property.ARPURLUPDATEINFO">
+    <STRING lang="ru" value="http://www.onlyoffice.com/download.aspx"/>
+  </ENTRY>
+  <ENTRY id="Property.ASSOTIATION_PROP">
+    <STRING lang="ru" value="CheckBox"/>
+  </ENTRY>
+  <ENTRY id="Property.COMMON_SHORTCUT_NAME">
+    <STRING lang="ru" value="ONLYOFFICE Editors"/>
+  </ENTRY>
+  <ENTRY id="Property.CSV_CHECKBOX">
+    <STRING lang="ru" value="1"/>
+  </ENTRY>
+  <ENTRY id="Property.CUSTOM_PATH">
+    <STRING lang="ru" value="C:\[|ProgramFilesFolder][|Manufacturer]MediaViewer"/>
+  </ENTRY>
+  <ENTRY id="Property.DJVU_CHECKBOX">
+    <STRING lang="ru" value="1"/>
+  </ENTRY>
+  <ENTRY id="Property.DOC_CHECKBOX">
+    <STRING lang="ru" value="1"/>
+  </ENTRY>
+  <ENTRY id="Property.DOCX_CHECKBOX">
+    <STRING lang="ru" value="1"/>
+  </ENTRY>
+  <ENTRY id="Property.DOTX_CHECKBOX">
+    <STRING lang="ru" value="1"/>
+  </ENTRY>
+  <ENTRY id="Property.EPUB_CHECKBOX">
+    <STRING lang="ru" value="1"/>
+  </ENTRY>
+  <ENTRY id="Property.FB2_CHECKBOX">
+    <STRING lang="ru" value="1"/>
+  </ENTRY>
+  <ENTRY id="Property.GALLERY_CHECKBOX">
+    <STRING lang="ru" value="1"/>
+  </ENTRY>
+  <ENTRY id="Property.GALLERY_SHORTCUT_NAME">
+    <STRING lang="ru" value="Gallery"/>
+  </ENTRY>
+  <ENTRY id="Property.HTML_CHECKBOX">
+    <STRING lang="ru" value="1"/>
+  </ENTRY>
+  <ENTRY id="Property.Manufacturer">
+    <STRING lang="ru" value="Ascensio System SIA"/>
+  </ENTRY>
+  <ENTRY id="Property.MANUFACTURER_INSTALL_FOLDER">
+    <STRING lang="ru" value="ONLYOFFICE"/>
+  </ENTRY>
+  <ENTRY id="Property.MEDIA_CHECKBOX">
+    <STRING lang="ru" value="1"/>
+  </ENTRY>
+  <ENTRY id="Property.MEDIA_SHORTCUT_NAME">
+    <STRING lang="ru" value="Media"/>
+  </ENTRY>
+  <ENTRY id="Property.ODP_CHECKBOX">
+    <STRING lang="ru" value="1"/>
+  </ENTRY>
+  <ENTRY id="Property.ODS_CHECKBOX">
+    <STRING lang="ru" value="1"/>
+  </ENTRY>
+  <ENTRY id="Property.ODT_CHECKBOX">
+    <STRING lang="ru" value="1"/>
+  </ENTRY>
+  <ENTRY id="Property.OTP_CHECKBOX">
+    <STRING lang="ru" value="1"/>
+  </ENTRY>
+  <ENTRY id="Property.OTS_CHECKBOX">
+    <STRING lang="ru" value="1"/>
+  </ENTRY>
+  <ENTRY id="Property.OTT_CHECKBOX">
+    <STRING lang="ru" value="1"/>
+  </ENTRY>
+  <ENTRY id="Property.PACKAGE_NAME">
+    <STRING lang="ru" value="PACKAGE_NAME"/>
+  </ENTRY>
+  <ENTRY id="Property.PDF_CHECKBOX">
+    <STRING lang="ru" value="1"/>
+  </ENTRY>
+  <ENTRY id="Property.POTX_CHECKBOX">
+    <STRING lang="ru" value="1"/>
+  </ENTRY>
+  <ENTRY id="Property.PPT_CHECKBOX">
+    <STRING lang="ru" value="1"/>
+  </ENTRY>
+  <ENTRY id="Property.PPTX_CHECKBOX">
+    <STRING lang="ru" value="1"/>
+  </ENTRY>
+  <ENTRY id="Property.PRODUCT_INSTALL_FOLDER">
+    <STRING lang="ru" value="DesktopEditors"/>
+  </ENTRY>
+  <ENTRY id="Property.ProductName">
+    <STRING lang="ru" value="ONLYOFFICE Desktop Editors"/>
+  </ENTRY>
+  <ENTRY id="Property.RTF_CHECKBOX">
+    <STRING lang="ru" value="1"/>
+  </ENTRY>
+  <ENTRY id="Property.SHORTCUT_FOLDER_NAME">
+    <STRING lang="ru" value="ONLYOFFICE"/>
+  </ENTRY>
+  <ENTRY id="Property.TXT_CHECKBOX">
+    <STRING lang="ru" value="1"/>
+  </ENTRY>
+  <ENTRY id="Property.UNINSTALL_PREV_ERROR_TEXT">
+    <STRING lang="ru" value="Для установки [|ProductName] необходимо удалить предыдущую версию."/>
+  </ENTRY>
+  <ENTRY id="Property.UNINSTALL_PREV_MSGBOX">
+    <STRING lang="ru" value="Обнаружена предыдущая версия [|ProductName], нажмите кнопку &apos;OK&apos; чтобы удалить её, или &apos;Отмена&apos; чтобы выйти из программы инсталляции."/>
+  </ENTRY>
+  <ENTRY id="Property.XLS_CHECKBOX">
+    <STRING lang="ru" value="1"/>
+  </ENTRY>
+  <ENTRY id="Property.XLSX_CHECKBOX">
+    <STRING lang="ru" value="1"/>
+  </ENTRY>
+  <ENTRY id="Property.XLTX_CHECKBOX">
+    <STRING lang="ru" value="1"/>
+  </ENTRY>
+  <ENTRY id="Property.XML_CHECKBOX">
+    <STRING lang="ru" value="1"/>
+  </ENTRY>
+  <ENTRY id="Property.XPS_CHECKBOX">
+    <STRING lang="ru" value="1"/>
+  </ENTRY>
+</DICTIONARY>
