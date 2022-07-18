@@ -121,6 +121,7 @@ SOURCES += \
     $$PWD/src/cascapplicationmanagerwrapper.cpp \
     $$PWD/src/ctabbar.cpp \
     $$PWD/src/casctabdata.cpp \
+    $$PWD/src/utils.cpp \
     $$PWD/src/cstyletweaks.cpp \
     $$PWD/src/chelp.cpp \
     $$PWD/src/cmainpanel.cpp \

@@ -449,6 +449,8 @@ int CMainPanel::tabCloseRequest(int index)
             }
 
             return _result;
+        } else {
+            m_pTabs->editorCloseRequest(index);
         }
     }
 
@@ -760,6 +762,9 @@ void CMainPanel::onDocumentReady(int uid)
             refreshAboutVersion();
             emit mainPageReady();
 
+#ifdef Q_OS_LINUX
+            WindowHelper::initEnvInfo();
+#endif
             AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, L"app:ready");
             focus(); // TODO: move to app manager
         });
