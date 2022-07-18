@@ -43,16 +43,11 @@
     <ROW Property="DOC_CHECKBOX" Value="1" Type="4"/>
     <ROW Property="DOTX_CHECKBOX" Value="1" Type="4"/>
     <ROW Property="EPUB_CHECKBOX" Value="1" Type="4"/>
-    <ROW Property="EXTENDED_TASK_DLG_DESCRIPTION" Value="Select additional tasks"/>
-    <ROW Property="EXTENDED_TASK_DLG_HEADER" Value="Select additional tasks"/>
-    <ROW Property="EXTENDED_TASK_TEXT" Value="Select additional tasks to be performed during installation"/>
     <ROW Property="FB2_CHECKBOX" Value="1" Type="4"/>
-    <ROW Property="GALLERY_BUTTON_TEXT" Value="Install Gallery"/>
     <ROW Property="GALLERY_CHECKBOX" Value="1" Type="4"/>
     <ROW Property="GALLERY_SHORTCUT_NAME" Value="Gallery"/>
     <ROW Property="HTML_CHECKBOX" Value="1" Type="4"/>
     <ROW Property="MANUFACTURER_INSTALL_FOLDER" Value="ONLYOFFICE"/>
-    <ROW Property="MEDIA_BUTTON_TEXT" Value="Install Media"/>
     <ROW Property="MEDIA_CHECKBOX" Value="1" Type="4"/>
     <ROW Property="MEDIA_SHORTCUT_NAME" Value="Media"/>
     <ROW Property="MSIFASTINSTALL" MultiBuildValue="DefaultBuild:7"/>
@@ -114,18 +109,22 @@
     <ROW Component="AI_CustomARPName" ComponentId="{026D2C20-2E12-4C52-B7E0-34DBED460A0C}" Directory_="APPDIR" Attributes="260" KeyPath="DisplayName" Options="1"/>
     <ROW Component="AI_DisableModify" ComponentId="{4DA67DA3-424D-4EB7-8B0F-7AE95B073B87}" Directory_="APPDIR" Attributes="260" KeyPath="NoModify" Options="1"/>
     <ROW Component="APPDIR" ComponentId="{967A56B9-E2F1-42F8-869D-7791391AFB48}" Directory_="APPDIR" Attributes="0"/>
+    <ROW Component="CheckForUpdates" ComponentId="{3DCD7E37-9F70-475E-9C31-D72353971685}" Directory_="APPDIR" Attributes="4" KeyPath="CheckForUpdates"/>
     <ROW Component="DesktopEditors.exe" ComponentId="{FA0F79B8-DC4D-49BC-808A-1821966D6C0C}" Directory_="APPDIR" Attributes="0" KeyPath="DesktopEditors.exe"/>
     <ROW Component="ImageViewer.exe" ComponentId="{E8DFAC60-5575-4D64-AD43-FF684A2FAE8F}" Directory_="CUSTOM_PATH" Attributes="0" Condition="GALLERY_CHECKBOX = &quot;1&quot;" KeyPath="ImageViewer.exe"/>
+    <ROW Component="MANUFACTURER_INSTALL_FOLDER_HK_CU" ComponentId="{BF7B083D-CB31-42CC-89EB-912C4461A8D0}" Directory_="APPDIR" Attributes="260" KeyPath="MANUFACTURER_INSTALL_FOLDER_HK_CU"/>
+    <ROW Component="MANUFACTURER_INSTALL_FOLDER_HK_LM" ComponentId="{7EC4EC35-8E21-44D0-A29E-CCD3741056D9}" Directory_="APPDIR" Attributes="4" KeyPath="MANUFACTURER_INSTALL_FOLDER_HK_LM"/>
     <ROW Component="MicrosoftVisualC" ComponentId="{CA1FCD66-ED15-4D94-81FD-0C927B78E132}" Directory_="APPDIR" Attributes="260" KeyPath="MicrosoftVisualC" Options="2"/>
     <ROW Component="MicrosoftVisualC_1" ComponentId="{B176A670-4763-46DF-A796-3B8AB885DA4A}" Directory_="APPDIR" Attributes="260" KeyPath="MicrosoftVisualC_1" Options="2"/>
     <ROW Component="MicrosoftVisualC_2" ComponentId="{B74A440D-1D6B-4EB1-BB72-605A30AF2D28}" Directory_="APPDIR" Attributes="260" KeyPath="MicrosoftVisualC_2" Options="2"/>
     <ROW Component="MicrosoftVisualC_3" ComponentId="{A9673528-11FC-4EBA-896E-6F2998F6601F}" Directory_="APPDIR" Attributes="260" KeyPath="MicrosoftVisualC_3" Options="2"/>
-    <ROW Component="NewValueCheckForUpdates" ComponentId="{E9660E71-E436-4C3C-8B4B-A324DB1BF250}" Directory_="APPDIR" Attributes="260" KeyPath="NewValueCheckForUpdates"/>
-    <ROW Component="ONLYOFFICE" ComponentId="{4C21A9BD-4E3F-4373-B2DE-6CCFD5818EB6}" Directory_="APPDIR" Attributes="260" KeyPath="ONLYOFFICE"/>
-    <ROW Component="ProductInformation" ComponentId="{8F10F3CD-12FA-4182-AAEB-6E3EBF95E345}" Directory_="APPDIR" Attributes="260" KeyPath="Version"/>
+    <ROW Component="Path" ComponentId="{F5736577-3D67-460A-B2AC-EA0010D0FDFF}" Directory_="APPDIR" Attributes="4" KeyPath="Path_1"/>
     <ROW Component="QuickLaunch" ComponentId="{980FCC49-6ED8-41A0-9B6F-B6D8F75A4AF7}" Directory_="QuickLaunch_Dir" Attributes="0"/>
     <ROW Component="SHORTCUTDIR" ComponentId="{CB73F99E-8C5E-4F7A-9E2F-25EDC9FBDFC0}" Directory_="SHORTCUTDIR" Attributes="0"/>
+    <ROW Component="Version" ComponentId="{3914F236-2B4C-4E31-95FA-F57F91FA19C9}" Directory_="APPDIR" Attributes="4" KeyPath="Version_1"/>
     <ROW Component="VideoPlayer.exe" ComponentId="{39F3F737-40E8-42F0-9342-BF8232F34B72}" Directory_="CUSTOM_PATH" Attributes="0" Condition="MEDIA_CHECKBOX = &quot;1&quot;" KeyPath="VideoPlayer.exe"/>
+    <ROW Component="locale_HK_CU" ComponentId="{FF7C0526-7824-44B9-AF7E-B51FC24167A9}" Directory_="APPDIR" Attributes="260" KeyPath="locale_HK_CU"/>
+    <ROW Component="locale_HK_LM" ComponentId="{D09979D5-ED81-4DE9-8602-7C1C8D2C6B75}" Directory_="APPDIR" Attributes="4" KeyPath="locale_HK_LM"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatsComponent">
     <ROW Feature="AI64BitFiles" Title="64-bit" Description="64-bit Executables and Libraries" Display="35" Level="1" Directory_="APPDIR" Attributes="0"/>
@@ -183,6 +182,8 @@
     <ROW Path="&lt;AI_DICTS&gt;ui_pt_BR.ail"/>
     <ROW Path="&lt;AI_DICTS&gt;ui_sl.ail"/>
     <ROW Path="&lt;AI_DICTS&gt;ui_ja.ail"/>
+    <ROW Path="dictionary.ail" Options="1"/>
+    <ATTRIBUTE name="TranslateSegments" value="0b00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000111100011110000000110000000000001"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.DigCertStoreComponent">
     <ROW TimeStampUrl="http://timestamp.digicert.com" SignerDescription="[|ProductName]" SignOptions="7" SignTool="0" UseSha256="1"/>
@@ -224,6 +225,7 @@
     <ROW Name="background.bmp" SourcePath="data\background.bmp"/>
     <ROW Name="banner.png" SourcePath="data\banner.png"/>
     <ROW Name="file_deleter.ps1" SourcePath="&lt;AI_SCRIPTS&gt;file_deleter.ps1"/>
+    <ROW Name="utils.vbs" SourcePath="utils.vbs"/>
     <ROW Name="viewer.exe" SourcePath="&lt;AI_CUSTACTS&gt;viewer.exe"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCheckBoxComponent">
@@ -328,11 +330,11 @@
     <ROW Dialog_="ExtendedInstallDlg" Control="BannerBitmap" Type="Bitmap" X="0" Y="0" Width="370" Height="44" Attributes="1048577" Text="banner.png" Order="400"/>
     <ROW Dialog_="ExtendedInstallDlg" Control="BannerLine" Type="Line" X="0" Y="44" Width="372" Height="0" Attributes="1" Order="500"/>
     <ROW Dialog_="ExtendedInstallDlg" Control="BottomLine" Type="Line" X="5" Y="234" Width="368" Height="0" Attributes="1" Order="600"/>
-    <ROW Dialog_="ExtendedInstallDlg" Control="Description" Type="Text" X="25" Y="23" Width="280" Height="15" Attributes="196611" Text="[EXTENDED_TASK_DLG_DESCRIPTION]" Order="700"/>
-    <ROW Dialog_="ExtendedInstallDlg" Control="Title" Type="Text" X="15" Y="6" Width="200" Height="15" Attributes="196611" Text="[EXTENDED_TASK_DLG_HEADER]" TextStyle="[DlgTitleFont]" Order="800"/>
-    <ROW Dialog_="ExtendedInstallDlg" Control="ExtendedDlgText" Type="Text" X="25" Y="70" Width="314" Height="30" Attributes="65539" Property="EXTENDED_TASK_TEXT" Text="[EXTENDED_TASK_TEXT] [ProductName]:" Order="900"/>
-    <ROW Dialog_="ExtendedInstallDlg" Control="MediaButtonCheckBox" Type="CheckBox" X="53" Y="109" Width="162" Height="11" Attributes="3" Property="MEDIA_CHECKBOX" Text="[MEDIA_BUTTON_TEXT]" Order="1000"/>
-    <ROW Dialog_="ExtendedInstallDlg" Control="GalleryButtonCheckBox" Type="CheckBox" X="53" Y="131" Width="162" Height="11" Attributes="3" Property="GALLERY_CHECKBOX" Text="[GALLERY_BUTTON_TEXT]" Order="1100"/>
+    <ROW Dialog_="ExtendedInstallDlg" Control="Description" Type="Text" X="25" Y="23" Width="280" Height="15" Attributes="196611" Text="Select additional tasks" Order="700"/>
+    <ROW Dialog_="ExtendedInstallDlg" Control="Title" Type="Text" X="15" Y="6" Width="200" Height="15" Attributes="196611" Text="Select additional tasks" TextStyle="[DlgTitleFont]" Order="800" TextLocId="Control.Text.ExtendedInstallDlg#Title"/>
+    <ROW Dialog_="ExtendedInstallDlg" Control="ExtendedDlgText" Type="Text" X="25" Y="70" Width="314" Height="30" Attributes="65539" Property="ASSOTIATION_PROP" Text="Select additional tasks to be performed during installation [ProductName]:" Order="900" TextLocId="Control.Text.ExtendedInstallDlg#ExtendedDlgText"/>
+    <ROW Dialog_="ExtendedInstallDlg" Control="MediaButtonCheckBox" Type="CheckBox" X="53" Y="109" Width="162" Height="11" Attributes="3" Property="MEDIA_CHECKBOX" Text="Install Media" Order="1000" TextLocId="Control.Text.ExtendedInstallDlg#MediaButtonCheckBox"/>
+    <ROW Dialog_="ExtendedInstallDlg" Control="GalleryButtonCheckBox" Type="CheckBox" X="53" Y="131" Width="162" Height="11" Attributes="3" Property="GALLERY_CHECKBOX" Text="Install Gallery" Order="1100" TextLocId="Control.Text.ExtendedInstallDlg#GalleryButtonCheckBox"/>
     <ROW Dialog_="FatalError" Control="Bitmap" Type="Bitmap" X="0" Y="0" Width="370" Height="234" Attributes="1048577" Text="background.bmp" Order="300" MsiKey="FatalError#Bitmap"/>
     <ROW Dialog_="FileAssociationsDlg" Control="FileAssociationsDlgDialogInitializer" Type="DialogInitializer" X="0" Y="0" Width="0" Height="0" Attributes="0" Order="-1" TextLocId="-" HelpLocId="-" ExtDataLocId="-"/>
     <ROW Dialog_="FileAssociationsDlg" Control="BannerBitmap" Type="Bitmap" X="0" Y="0" Width="370" Height="44" Attributes="1048577" Text="banner.png" Order="400" MsiKey="FileAssociationsDlg#BannerBitmap"/>
@@ -691,9 +693,11 @@
     <ROW Action="SET_APPDIR" Type="307" Source="APPDIR" Target="[ProgramFilesFolder][Manufacturer]\[ProductName]" MultiBuildTarget="DefaultBuild:[ProgramFiles64Folder][MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]"/>
     <ROW Action="SET_SHORTCUTDIR" Type="307" Source="SHORTCUTDIR" Target="[ProgramMenuFolder][SHORTCUT_FOLDER_NAME]"/>
     <ROW Action="SET_TARGETDIR_TO_APPDIR" Type="51" Source="TARGETDIR" Target="[APPDIR]"/>
-    <ROW Action="SetCustomPath" Type="38" Target="Script Text" TargetUnformatted="Dim origPath&#13;&#10;Dim customPath&#13;&#10;Dim tokens&#13;&#10;&#13;&#10;&apos; get the install path&#13;&#10;origPath = Session.Property(&quot;APPDIR&quot;)&#13;&#10;tokens = Split(origPath, &quot;\&quot;)&#13;&#10;&#13;&#10;&apos; initialize the path lenght and the custom path&#13;&#10;Dim index&#13;&#10;Dim parentLenght&#13;&#10;parentLength = UBound(tokens) - 2&#13;&#10;customPath = &quot;&quot;&#13;&#10;&#13;&#10;&apos; obtain the main install path&#13;&#10;For index = 0 To parentLength&#13;&#10;    If Not(tokens(index)) = Empty Then&#13;&#10;    customPath = customPath &amp; tokens(index) &amp; &quot;\&quot;&#13;&#10;  End If&#13;&#10;Next&#13;&#10;&#13;&#10;&apos; add the custom folder&#13;&#10;customPath = customPath &amp; &quot;MediaViewer&quot;&#13;&#10;&#13;&#10;&apos; set the property with the custom path&#13;&#10;Session.Property(&quot;CUSTOM_PATH&quot;) = customPath" WithoutSeq="true"/>
-    <ROW Action="UninstallOlderVersion32" Type="38" Target="Set objShell = CreateObject(&quot;WScript.Shell&quot;)&#13;&#10;Function RegistryExist(Path)&#13;&#10;On Error Resume Next&#13;&#10;&#13;&#10;RegistryPath = objShell.RegRead(Path)&#13;&#10;Err_Number = err.number&#13;&#10;On Error GoTo 0&#13;&#10;&#13;&#10;If Err_Number &lt;&gt; 0 Then&#13;&#10;&#9;RegistryExist = False&#13;&#10;Else&#13;&#10;&#9;RegistryExist = True&#13;&#10;End If&#13;&#10;&#13;&#10;End Function&#13;&#10;&#13;&#10;Err.Clear&#13;&#10;If(RegistryExist(&quot;HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\&quot; + Session.Property(&quot;ProductName&quot;) + &quot;_is1\UninstallString&quot;) = True) Then&#13;&#10;RegistryPath = objShell.RegRead(&quot;HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\&quot; + Session.Property(&quot;ProductName&quot;) + &quot;_is1\UninstallString&quot;)&#13;&#10;Dim Button &#13;&#10;Button = MsgBox(&quot;The previous version of &quot; + Session.Property(&quot;ProductName&quot;) + &quot; detected, please click &apos;OK&apos; button to uninstall it, or &apos;Cancel&apos; to quit setup.&quot;, 1, &quot;Error&quot;)&#13;&#10;&#9;If Button = 1 Then&#13;&#10;&#9;objShell.Run RegistryPath, 0, True&#13;&#10;&#9;Else &#13;&#10;&#9;WScript.Quit 1&#13;&#10;End If&#13;&#10;End If" TargetUnformatted="Set objShell = CreateObject(&quot;WScript.Shell&quot;)&#13;&#10;&#13;&#10;Function RegistryExist(Path)&#13;&#10;&#9;On Error Resume Next&#13;&#10;&#13;&#10;&#9;RegistryPath = objShell.RegRead(Path)&#13;&#10;&#9;Err_Number = err.number&#13;&#10;&#9;On Error GoTo 0&#13;&#10;&#13;&#10;&#9;If Err_Number &lt;&gt; 0 Then&#13;&#10;&#9;&#9;RegistryExist = False&#13;&#10;&#9;Else&#13;&#10;&#9;&#9;RegistryExist = True&#13;&#10;&#9;End If&#13;&#10;&#13;&#10;End Function&#13;&#10;&#13;&#10;Err.Clear&#13;&#10;&#13;&#10;Dim Button, regPath&#13;&#10;&#13;&#10;regPath = &quot;HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\&quot; + Session.Property(&quot;ProductName&quot;) + &quot;_is1\UninstallString&quot;&#13;&#10;&#13;&#10;If (RegistryExist(regPath) = True) Then&#13;&#10;&#9;RegistryPath = objShell.RegRead(regPath)&#13;&#10;&#9;Button = MsgBox(Session.Property(&quot;UNINSTALL_PREV_MSGBOX&quot;), 1, Session.Property(&quot;Setup&quot;) + &quot; &quot; + Session.Property(&quot;ProductName&quot;))&#13;&#10;&#9;If Button = 1 Then&#13;&#10;&#9;&#9;objShell.Run RegistryPath, 0, True&#13;&#10;&#9;Else &#13;&#10;&#9;&#9;Session.Property(&quot;UninstallOlderVersion&quot;) = &quot;1&quot;&#13;&#10;&#9;End If&#13;&#10;End If"/>
-    <ROW Action="UninstallOlderVersion64" Type="4134" Target="Script Text" TargetUnformatted="Set objShell = CreateObject(&quot;WScript.Shell&quot;)&#13;&#10;&#13;&#10;Function RegistryExist(Path)&#13;&#10;&#9;On Error Resume Next&#13;&#10;&#13;&#10;&#9;RegistryPath = objShell.RegRead(Path)&#13;&#10;&#9;Err_Number = err.number&#13;&#10;&#9;On Error GoTo 0&#13;&#10;&#13;&#10;&#9;If Err_Number &lt;&gt; 0 Then&#13;&#10;&#9;&#9;RegistryExist = False&#13;&#10;&#9;Else&#13;&#10;&#9;&#9;RegistryExist = True&#13;&#10;&#9;End If&#13;&#10;&#13;&#10;End Function&#13;&#10;&#13;&#10;Err.Clear&#13;&#10;&#13;&#10;Dim Button, regPath&#13;&#10;&#13;&#10;regPath = &quot;HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\&quot; + Session.Property(&quot;ProductName&quot;) + &quot;_is1\UninstallString&quot;&#13;&#10;&#13;&#10;If (RegistryExist(regPath) = True) Then&#13;&#10;&#9;RegistryPath = objShell.RegRead(regPath)&#13;&#10;&#9;Button = MsgBox(Session.Property(&quot;UNINSTALL_PREV_MSGBOX&quot;), 1, Session.Property(&quot;Setup&quot;) + &quot; &quot; + Session.Property(&quot;ProductName&quot;))&#13;&#10;&#9;If Button = 1 Then&#13;&#10;&#9;&#9;objShell.Run RegistryPath, 0, True&#13;&#10;&#9;Else &#13;&#10;&#9;&#9;Session.Property(&quot;UninstallOlderVersion&quot;) = &quot;1&quot;&#13;&#10;&#9;End If&#13;&#10;End If"/>
+    <ROW Action="SetCustomPath" Type="6" Source="utils.vbs" Target="SetCustomPath" WithoutSeq="true"/>
+    <ROW Action="SetLocaleProperty32" Type="6" Source="utils.vbs" Target="SetLocaleProperty"/>
+    <ROW Action="SetLocaleProperty64" Type="4102" Source="utils.vbs" Target="SetLocaleProperty"/>
+    <ROW Action="UninstallOlderVersion32" Type="6" Source="utils.vbs" Target="UninstallOlderVersion"/>
+    <ROW Action="UninstallOlderVersion64" Type="4102" Source="utils.vbs" Target="UninstallOlderVersion"/>
     <ROW Action="UninstallOlderVersionErrorMessage" Type="19" Target="[UNINSTALL_PREV_ERROR_TEXT]"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiDialogComponent">
@@ -729,7 +733,6 @@
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatCompsComponent">
     <ROW Feature_="MainFeature" Component_="APPDIR"/>
-    <ROW Feature_="MainFeature" Component_="ProductInformation"/>
     <ROW Feature_="csv" Component_="DesktopEditors.exe"/>
     <ROW Feature_="djvu" Component_="DesktopEditors.exe"/>
     <ROW Feature_="doc" Component_="DesktopEditors.exe"/>
@@ -758,8 +761,6 @@
     <ROW Feature_="xltx" Component_="DesktopEditors.exe"/>
     <ROW Feature_="xml" Component_="DesktopEditors.exe"/>
     <ROW Feature_="xps" Component_="DesktopEditors.exe"/>
-    <ROW Feature_="MainFeature" Component_="ONLYOFFICE"/>
-    <ROW Feature_="MainFeature" Component_="NewValueCheckForUpdates"/>
     <ROW Feature_="MainFeature" Component_="AIShRegAnswer"/>
     <ROW Feature_="MainFeature" Component_="SHORTCUTDIR"/>
     <ROW Feature_="MainFeature" Component_="QuickLaunch"/>
@@ -769,6 +770,13 @@
     <ROW Feature_="MicrosoftVisualC_3" Component_="MicrosoftVisualC_3"/>
     <ROW Feature_="MainFeature" Component_="VideoPlayer.exe"/>
     <ROW Feature_="MainFeature" Component_="ImageViewer.exe"/>
+    <ROW Feature_="MainFeature" Component_="MANUFACTURER_INSTALL_FOLDER_HK_CU"/>
+    <ROW Feature_="MainFeature" Component_="locale_HK_CU"/>
+    <ROW Feature_="MainFeature" Component_="MANUFACTURER_INSTALL_FOLDER_HK_LM"/>
+    <ROW Feature_="MainFeature" Component_="locale_HK_LM"/>
+    <ROW Feature_="MainFeature" Component_="CheckForUpdates"/>
+    <ROW Feature_="MainFeature" Component_="Path"/>
+    <ROW Feature_="MainFeature" Component_="Version"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiIconsComponent">
     <ROW Name="ImageViewer.exe" SourcePath="..\..\extras\projicons\res\gallery.ico" Index="0"/>
@@ -811,21 +819,23 @@
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiInstallUISequenceComponent">
     <ROW Action="AI_RESTORE_LOCATION" Condition="APPDIR=&quot;&quot;" Sequence="747"/>
-    <ROW Action="AI_ResolveKnownFolders" Sequence="54"/>
-    <ROW Action="AI_DpiContentScale" Sequence="53"/>
-    <ROW Action="AI_EnableDebugLog" Sequence="52"/>
-    <ROW Action="AI_BACKUP_AI_SETUPEXEPATH" Sequence="96"/>
+    <ROW Action="AI_ResolveKnownFolders" Sequence="56"/>
+    <ROW Action="AI_DpiContentScale" Sequence="55"/>
+    <ROW Action="AI_EnableDebugLog" Sequence="54"/>
+    <ROW Action="AI_BACKUP_AI_SETUPEXEPATH" Sequence="95"/>
     <ROW Action="AI_RESTORE_AI_SETUPEXEPATH" Condition="AI_SETUPEXEPATH_ORIGINAL" Sequence="102"/>
-    <ROW Action="UninstallOlderVersion64" Condition="( NOT Installed ) AND ( VersionNT64 )" Sequence="97"/>
-    <ROW Action="AI_RestartElevated" Sequence="51" Builds="DefaultBuild"/>
-    <ROW Action="UninstallOlderVersion32" Condition="( NOT Installed ) AND ( NOT VersionNT64 )" Sequence="98"/>
+    <ROW Action="AI_RestartElevated" Sequence="53" Builds="DefaultBuild"/>
     <ROW Action="AI_AppSearchEx" Sequence="101"/>
     <ROW Action="AI_DownloadPrereq" Sequence="1297"/>
     <ROW Action="AI_ExtractPrereq" Sequence="1298"/>
     <ROW Action="AI_InstallPrerequisite" Sequence="1299"/>
     <ROW Action="AI_InstallPostPrerequisite" Sequence="1301"/>
     <ROW Action="AI_CleanPrereq" Sequence="1302"/>
-    <ROW Action="UninstallOlderVersionErrorMessage" Condition="( NOT Installed ) AND ( UninstallOlderVersion = &quot;1&quot; )" Sequence="99"/>
+    <ROW Action="UninstallOlderVersionErrorMessage" Condition="( NOT Installed ) AND ( UninstallOlderVersion = &quot;1&quot; )" Sequence="96"/>
+    <ROW Action="UninstallOlderVersion32" Condition="( NOT Installed ) AND ( NOT VersionNT64 )" Sequence="51"/>
+    <ROW Action="UninstallOlderVersion64" Condition="( NOT Installed ) AND ( VersionNT64 )" Sequence="52"/>
+    <ROW Action="SetLocaleProperty32" Condition="( NOT Installed ) AND ( NOT VersionNT64 )" Sequence="97"/>
+    <ROW Action="SetLocaleProperty64" Condition="( NOT Installed ) AND ( VersionNT64 )" Sequence="98"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiLaunchConditionsComponent">
     <ROW Condition="( Version9X OR VersionNT64 )" Description="[ProductName] cannot be installed on [WindowsTypeNTDisplay]." DescriptionLocId="AI.LaunchCondition.NoNT" IsPredefined="true" Builds="DefaultBuild"/>
@@ -867,6 +877,7 @@
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiRegsComponent">
     <ROW Registry="AIShRegAnswer" Root="-1" Key="Software\Caphyon\Advanced Installer\Installs\[ProductCode]" Name="AIShRegAnswer" Value="[AI_SHORTCUTSREG]" Component_="AIShRegAnswer"/>
+    <ROW Registry="CheckForUpdates" Root="2" Key="Software\[MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]" Name="CheckForUpdates" Value="#0" Component_="CheckForUpdates" VirtualValue="#"/>
     <ROW Registry="Comments" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="Comments" Value="[ARPCOMMENTS]" Component_="AI_CustomARPName"/>
     <ROW Registry="Contact" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="Contact" Value="[ARPCONTACT]" Component_="AI_CustomARPName"/>
     <ROW Registry="DisplayIcon" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="DisplayIcon" Value="[ARP_ICON_PATH]" Component_="AI_CustomARPName"/>
@@ -876,32 +887,34 @@
     <ROW Registry="HelpLink" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="HelpLink" Value="[ARPHELPLINK]" Component_="AI_CustomARPName"/>
     <ROW Registry="HelpTelephone" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="HelpTelephone" Value="[ARPHELPTELEPHONE]" Component_="AI_CustomARPName"/>
     <ROW Registry="InstallLocation" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="InstallLocation" Value="[APPDIR]" Component_="AI_CustomARPName"/>
+    <ROW Registry="MANUFACTURER_INSTALL_FOLDER_HK_CU" Root="1" Key="Software\[MANUFACTURER_INSTALL_FOLDER]" Name="+" Component_="MANUFACTURER_INSTALL_FOLDER_HK_CU"/>
+    <ROW Registry="MANUFACTURER_INSTALL_FOLDER_HK_LM" Root="2" Key="Software\[MANUFACTURER_INSTALL_FOLDER]" Name="+" Component_="MANUFACTURER_INSTALL_FOLDER_HK_LM"/>
     <ROW Registry="MicrosoftVisualC" Root="-1" Key="Software\Caphyon\Advanced Installer\Prereqs\[ProductCode]\[ProductVersion]" Name="MicrosoftVisualC" Value="1" Component_="MicrosoftVisualC"/>
     <ROW Registry="MicrosoftVisualC_1" Root="-1" Key="Software\Caphyon\Advanced Installer\Prereqs\[ProductCode]\[ProductVersion]" Name="MicrosoftVisualC_1" Value="1" Component_="MicrosoftVisualC_1"/>
     <ROW Registry="MicrosoftVisualC_2" Root="-1" Key="Software\Caphyon\Advanced Installer\Prereqs\[ProductCode]\[ProductVersion]" Name="MicrosoftVisualC_2" Value="1" Component_="MicrosoftVisualC_2"/>
     <ROW Registry="MicrosoftVisualC_3" Root="-1" Key="Software\Caphyon\Advanced Installer\Prereqs\[ProductCode]\[ProductVersion]" Name="MicrosoftVisualC_3" Value="1" Component_="MicrosoftVisualC_3"/>
     <ROW Registry="ModifyPath" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="ModifyPath" Value="[AI_UNINSTALLER] /i [ProductCode] AI_UNINSTALLER_CTP=1" Component_="AI_CustomARPName"/>
-    <ROW Registry="NewValueCheckForUpdates" Root="-1" Key="Software\ONLYOFFICE\DesktopEditors" Name="CheckForUpdates" Value="#0" Component_="NewValueCheckForUpdates" VirtualValue="#"/>
     <ROW Registry="NoModify" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="NoModify" Value="#1" Component_="AI_DisableModify" VirtualValue="#"/>
     <ROW Registry="NoRepair" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="NoRepair" Value="#1" Component_="AI_CustomARPName" VirtualValue="#"/>
-    <ROW Registry="ONLYOFFICE" Root="-1" Key="Software\ONLYOFFICE" Name="+" Component_="ONLYOFFICE"/>
-    <ROW Registry="Path" Root="-1" Key="Software\[Manufacturer]\[ProductName]" Name="Path" Value="[APPDIR]" Component_="ProductInformation"/>
+    <ROW Registry="Path_1" Root="2" Key="Software\[MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]" Name="Path" Value="[APPDIR]" Component_="Path"/>
     <ROW Registry="Publisher" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="Publisher" Value="[Manufacturer]" Component_="AI_CustomARPName"/>
     <ROW Registry="Readme" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="Readme" Value="[ARPREADME]" Component_="AI_CustomARPName"/>
     <ROW Registry="URLInfoAbout" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="URLInfoAbout" Value="[ARPURLINFOABOUT]" Component_="AI_CustomARPName"/>
     <ROW Registry="URLUpdateInfo" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="URLUpdateInfo" Value="[ARPURLUPDATEINFO]" Component_="AI_CustomARPName"/>
     <ROW Registry="UninstallPath" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="UninstallPath" Value="[AI_UNINSTALLER] /x [ProductCode] AI_UNINSTALLER_CTP=1" Component_="AI_CustomARPName"/>
     <ROW Registry="UninstallString" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="UninstallString" Value="[AI_UNINSTALLER] /x [ProductCode] AI_UNINSTALLER_CTP=1" Component_="AI_CustomARPName"/>
-    <ROW Registry="Version" Root="-1" Key="Software\[Manufacturer]\[ProductName]" Name="Version" Value="[ProductVersion]" Component_="ProductInformation"/>
     <ROW Registry="VersionMajor" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="VersionMajor" Value="#6" Component_="AI_CustomARPName" VirtualValue="#"/>
     <ROW Registry="VersionMinor" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="VersionMinor" Value="#4" Component_="AI_CustomARPName" VirtualValue="#"/>
+    <ROW Registry="Version_1" Root="2" Key="Software\[MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]" Name="Version" Value="[ProductVersion]" Component_="Version"/>
+    <ROW Registry="locale_HK_CU" Root="1" Key="Software\[MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]" Name="locale" Value="[LOCALE]" Component_="locale_HK_CU"/>
+    <ROW Registry="locale_HK_LM" Root="2" Key="Software\[MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]" Name="locale" Value="[LOCALE]" Component_="locale_HK_LM"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiShortsComponent">
     <ROW Shortcut="COMMON_SHORTCUT_NAME_DESKTOP" Directory_="DesktopFolder" Name="ONLYOF~1|[|COMMON_SHORTCUT_NAME]" Component_="DesktopEditors.exe" Target="[#DesktopEditors.exe]" Hotkey="0" Icon_="desktopeditors.exe" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
     <ROW Shortcut="COMMON_SHORTCUT_NAME_QUICK_LAUNCH" Directory_="QuickLaunch_Dir" Name="ONLYOF~1|[|COMMON_SHORTCUT_NAME]" Component_="DesktopEditors.exe" Target="[#DesktopEditors.exe]" Hotkey="0" Icon_="desktopeditors.exe" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
     <ROW Shortcut="COMMON_SHORTCUT_NAME_SHORTCUTDIR" Directory_="SHORTCUTDIR" Name="ONLYOF~1|[|COMMON_SHORTCUT_NAME]" Component_="DesktopEditors.exe" Target="[#DesktopEditors.exe]" Hotkey="0" Icon_="desktopeditors.exe" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
-    <ROW Shortcut="GALLERY_SHORTCUT_NAME" Directory_="SHORTCUTDIR" Name="[|GALLERY_SHORTCUT_NAME]" Component_="ImageViewer.exe" Target="[#ImageViewer.exe]" Hotkey="0" Icon_="ImageViewer.exe" IconIndex="0" ShowCmd="1" WkDir="CUSTOM_PATH"/>
-    <ROW Shortcut="MEDIA_SHORTCUT_NAME" Directory_="SHORTCUTDIR" Name="[|MEDIA_SHORTCUT_NAME]" Component_="VideoPlayer.exe" Target="[#VideoPlayer.exe]" Hotkey="0" Icon_="VideoPlayer.exe" IconIndex="0" ShowCmd="1" WkDir="CUSTOM_PATH"/>
+    <ROW Shortcut="GALLERY_SHORTCUT_NAME" Directory_="SHORTCUTDIR" Name="ONLYOF~1|[|GALLERY_SHORTCUT_NAME]" Component_="ImageViewer.exe" Target="[#ImageViewer.exe]" Hotkey="0" Icon_="ImageViewer.exe" IconIndex="0" ShowCmd="1" WkDir="CUSTOM_PATH"/>
+    <ROW Shortcut="MEDIA_SHORTCUT_NAME" Directory_="SHORTCUTDIR" Name="ONLYOF~1|[|MEDIA_SHORTCUT_NAME]" Component_="VideoPlayer.exe" Target="[#VideoPlayer.exe]" Hotkey="0" Icon_="VideoPlayer.exe" IconIndex="0" ShowCmd="1" WkDir="CUSTOM_PATH"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiThemeComponent">
     <ATTRIBUTE name="UsedTheme" value="classic"/>
