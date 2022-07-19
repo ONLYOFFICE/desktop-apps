@@ -496,7 +496,7 @@ void CAscTabWidget::updateTabIcon(int index)
                 return data.isViewType(cvwtEditor) && (data.features().empty() || data.hasFeature(L"uithemes"));
             };
             const CTheme& ui_theme = AscAppManager::themes().current().isDark() && _is_editor_supports_theme(index) ?
-                                            AscAppManager::themes().current() : AscAppManager::themes().light();
+                                            AscAppManager::themes().current() : AscAppManager::themes().defaultLight();
 
             tab_type = pEditor->GetEditorType();
             switch ( tab_type ) {

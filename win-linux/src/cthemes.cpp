@@ -268,25 +268,25 @@ auto CThemes::current() -> const CTheme &
     return *(m_priv->current);
 }
 
-auto CThemes::dark() -> const CTheme&
+auto CThemes::defaultDark() -> const CTheme&
 {
     return *m_priv->getDefault(NSTheme::ThemeType::ttDark);
 }
 
-auto CThemes::light() -> const CTheme&
+auto CThemes::defaultLight() -> const CTheme&
 {
     return *m_priv->getDefault(NSTheme::ThemeType::ttLight);
 }
 
 auto CThemes::setCurrentTheme(const std::wstring& name) -> void
 {
-    if ( !isCurrent(name) && m_priv->setCurrent(QString::fromStdWString(name)) ) {
+    if ( !isThemeCurrent(name) && m_priv->setCurrent(QString::fromStdWString(name)) ) {
         GET_REGISTRY_USER(_reg_user);
         _reg_user.setValue(REGISTRY_THEME_KEY, QString::fromStdWString(name));
     }
 }
 
-auto CThemes::isCurrent(const std::wstring& name) -> bool
+auto CThemes::isThemeCurrent(const std::wstring& id) -> bool
 {
     return m_priv->current->id() == name;
 }

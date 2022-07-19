@@ -55,12 +55,12 @@ public:
     ~CThemes();
 
     auto current() -> const CTheme&;
-    auto dark() -> const CTheme&;
-    auto light() -> const CTheme&;
+    auto defaultDark() -> const CTheme&;
+    auto defaultLight() -> const CTheme&;
 
     auto setCurrentTheme(const std::wstring&) -> void;
-    auto isCurrent(const std::wstring& name) -> bool;
-    auto isThemeDark(const std::wstring& name) -> bool;
+    auto isThemeCurrent(const std::wstring& id) -> bool;
+//    auto isThemeDark(const std::wstring& id) -> bool;
 
     auto isColorDark(const std::wstring&) -> bool;
     auto isColorDark(const QString&) -> bool;

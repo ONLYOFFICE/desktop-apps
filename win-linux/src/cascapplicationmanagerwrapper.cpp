@@ -1620,7 +1620,7 @@ void CAscApplicationManagerWrapper::applyTheme(const wstring& theme, bool force)
 {
     APP_CAST(_app);
 
-    if ( !_app.m_themes->isCurrent(theme) ) {
+    if ( !_app.m_themes->isThemeCurrent(theme) ) {
         const std::wstring old_theme = _app.m_themes->current().id();
         _app.m_themes->setCurrentTheme(theme);
 
