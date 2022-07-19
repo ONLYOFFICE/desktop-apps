@@ -377,6 +377,20 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
 //                    /* open local file */
 //                }
 //            }
+        } else
+        if ( !(cmd.find(L"system:changed") == std::wstring::npos) ) {
+            QRegularExpression re(":\\s?\"(dark|light)");
+            QRegularExpressionMatch match = re.match(QString::fromStdWString(pData->get_Param()));
+            if ( match.hasMatch() ) {
+                bool is_dark = match.captured(1) == "dark";
+                m_themes->onSystemDarkColorScheme(is_dark);
+
+                if ( themes().current().isSystem() && themes().current().isDark() != is_dark )
+                    applyTheme(themes().current().id());
+            }
+
+
+            return true;
         }
 
         break; }
@@ -1639,10 +1653,10 @@ void CAscApplicationManagerWrapper::applyTheme(const wstring& theme, bool force)
         AscAppManager::getInstance().SetRendererProcessVariable(Utils::stringifyJson(_json_obj).toStdWString());
 
         // TODO: remove
-        if ( mainWindow() ) mainWindow()->applyTheme(theme);
+        if ( mainWindow() ) mainWindow()->applyTheme(_app.m_themes->current().originalId());
 
         for ( auto const& r : m_winsReporter ) {
-            r.second->applyTheme(theme);
+            r.second->applyTheme(_app.m_themes->current().originalId());
         }
 
 

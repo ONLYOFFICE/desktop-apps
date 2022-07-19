@@ -98,7 +98,7 @@ CMainPanel::CMainPanel(QWidget *parent, bool isCustomWindow, double dpi_ratio)
       , m_saveAction(0)
 {
     setObjectName("mainPanel");
-    setProperty("uitheme", QString::fromStdWString(AscAppManager::themes().current().id()));
+    setProperty("uitheme", QString::fromStdWString(AscAppManager::themes().current().originalId()));
     m_pMainGridLayout = new QGridLayout(this);
     m_pMainGridLayout->setSpacing(0);
     m_pMainGridLayout->setObjectName(QString::fromUtf8("mainGridLayout"));

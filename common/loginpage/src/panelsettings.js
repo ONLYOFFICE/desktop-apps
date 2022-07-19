@@ -36,6 +36,13 @@
 */
 
 +function(){ 'use strict'
+    const THEME_TYPE_LIGHT = 'light';
+    const THEME_TYPE_DARK = 'dark';
+    const THEME_TYPE_SYSTEM = 'system';
+
+    const THEME_ID_DEFAULT_LIGHT = 'theme-classic-light';
+    const THEME_ID_DEFAULT_DARK = 'theme-dark';
+
     var ControllerSettings = function(args={}) {
         args.caption = 'Settings';
         args.action =
@@ -104,6 +111,7 @@
                                             <div class='sett--label-lift-top hbox'>
                                                 <section class='box-cmp-select'>
                                                     <select class='combobox'>
+                                                        <option value='theme-system' l10n>${_lang.settOptThemeSystem}</option>
                                                         <option value='theme-light' l10n>${_lang.settOptThemeLight}</option>
                                                         <option value='theme-classic-light' l10n>${_lang.settOptThemeClassicLight}</option>
                                                         <option value='theme-dark' l10n>${_lang.settOptThemeDark}</option>
@@ -186,8 +194,12 @@
         };
 
         function _apply_theme(name) {
+            if ( name == 'theme-system' ) {
+                name = get_default_theme(get_system_theme_type());
+            }
+
             if ( !$("body").hasClass(name) ) {
-                const _type = name == 'theme-dark' ? 'theme-type-dark' : 'theme-type-light';
+                const _type = /theme-(?:[a-z]+-)?dark(?:-[a-z]*)?/.test(name) ? 'theme-type-dark' : 'theme-type-light';
                 const _cls = document.body.className.replace(/theme-[\w-]+/gi,'').trim();
                 document.body.className = `${_cls?_cls+' ':''}${name} ${_type}`;
 
@@ -241,7 +253,7 @@
                     _new_settings.uitheme = $optsUITheme.val();
                     $optsUITheme.selectpicker('refresh');
 
-                    _apply_theme(_new_settings.uitheme);
+                    // _apply_theme(_new_settings.uitheme);
                 }
 
                 if ( $optsLaunchMode ) {
@@ -401,6 +413,11 @@
             }
         };
 
+        const get_system_theme_type = () => window.matchMedia('(prefers-color-scheme: dark)').matches ? THEME_TYPE_DARK : THEME_TYPE_LIGHT; 
+        const get_default_theme = type => type == THEME_TYPE_DARK ? THEME_ID_DEFAULT_DARK : THEME_ID_DEFAULT_LIGHT;
+        const on_system_theme_dark = e =>
+            sdk.command("system:changed", JSON.stringify({'colorscheme': e.target.matches ? THEME_TYPE_DARK:THEME_TYPE_LIGHT}));
+
         return {
             init: function() {
                 baseController.prototype.init.apply(this, arguments);
@@ -450,6 +467,9 @@
                 });
 
                 window.sdk.on('on_native_message', _on_app_message.bind(this));
+                window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', on_system_theme_dark.bind(this));
+                // on_system_theme_dark({target: window.matchMedia('(prefers-color-scheme: dark)')});
+
                 return this;
             }
         };

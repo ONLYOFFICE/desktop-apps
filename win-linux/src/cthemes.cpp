@@ -14,6 +14,7 @@
 #define REGISTRY_THEME_KEY "UITheme"
 #define THEME_DEFAULT_DARK_ID "theme-dark"
 #define THEME_DEFAULT_LIGHT_ID "theme-classic-light"
+#define THEME_ID_SYSTEM "theme-system"
 
 namespace NSTheme {
     static const QString theme_type_dark = "dark";
@@ -59,11 +60,13 @@ public:
         type = obj.value("type").toString() == NSTheme::theme_type_dark ?
                             NSTheme::ThemeType::ttDark : NSTheme::ThemeType::ttLight;
         jsonValues = obj.value("values").toObject();
+        is_system = false;
     }
 
     std::wstring id;
     std::wstring wstype;
     NSTheme::ThemeType type;
+    bool is_system{false};
 
     QJsonObject jsonValues;
 };
@@ -84,25 +87,23 @@ public:
         };
 
         GET_REGISTRY_USER(_reg_user);
-        QString user_theme = _reg_user.value(REGISTRY_THEME_KEY).toString();
+        QString user_theme = _reg_user.value(REGISTRY_THEME_KEY, THEME_ID_SYSTEM).toString();
 #ifdef Q_OS_WIN
-//        if ( _reg_user.contains(REGISTRY_THEME_KEY) )
-//            user_theme = _reg_user.value(REGISTRY_THEME_KEY, THEME_DEFAULT_LIGHT_ID).toString();
-//        else {
-//            QSettings _reg("HKEY_CURRENT_USER\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize", QSettings::NativeFormat);
-//            user_theme = _reg.value("AppsUseLightTheme", 1).toInt() == 0 ? THEME_DEFAULT_DARK_ID : THEME_DEFAULT_LIGHT_ID;
-//        }
-        if ( user_theme.isEmpty() ) {
-            QSettings _reg("HKEY_CURRENT_USER\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize", QSettings::NativeFormat);
-            user_theme = _reg.value("AppsUseLightTheme", 1).toInt() == 0 ? THEME_DEFAULT_DARK_ID : THEME_DEFAULT_LIGHT_ID;
-        }
+        QSettings _reg("HKEY_CURRENT_USER\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize", QSettings::NativeFormat);
+        is_system_theme_dark = _reg.value("AppsUseLightTheme", 1).toInt() == 0;
+
+        if ( user_theme == THEME_ID_SYSTEM ) {
+            current = new CTheme(rc_themes.at(is_system_theme_dark ? THEME_DEFAULT_DARK_ID : THEME_DEFAULT_LIGHT_ID));
+            current->m_priv->is_system = true;
+        } else current = new CTheme(rc_themes.at(user_theme));
+
 #else
         if ( user_theme.isEmpty() ) {
             user_theme = THEME_DEFAULT_LIGHT_ID;
         }
-#endif
 
         current = new CTheme(rc_themes.at(user_theme));
+#endif
     }
 
     ~CThemesPrivate()
@@ -115,8 +116,19 @@ public:
 
     auto setCurrent(const QString& id) -> bool
     {
-          if ( rc_themes.find(id) != rc_themes.end() ) {
-            return current->load(rc_themes.at(id));
+        if ( id != THEME_ID_SYSTEM ) {
+            if ( rc_themes.find(id) != rc_themes.end() ) {
+                return current->load(rc_themes.at(id));
+            }
+        } else {
+            QString visual_theme_id = is_system_theme_dark ? THEME_DEFAULT_DARK_ID : THEME_DEFAULT_LIGHT_ID;
+            if ( current->isDark() != is_system_theme_dark ) {
+                if ( !current->load(rc_themes.at(visual_theme_id)) )
+                    return false;
+            }
+
+            current->m_priv->is_system = true;
+            return true;
         }
 
         return false;
@@ -143,6 +155,7 @@ public:
 
     CThemes & parent;
     std::map<QString, QString> rc_themes;
+    bool is_system_theme_dark = false;
 
     CTheme * current = nullptr;
     CTheme * dark = nullptr;
@@ -186,13 +199,21 @@ auto CTheme::load(const QString& path) -> bool
 
 auto CTheme::id() const -> std::wstring
 {
+    return m_priv->is_system ? WSTR(THEME_ID_SYSTEM) : m_priv->id;
+}
+
+auto CTheme::originalId() const -> std::wstring
+{
     return m_priv->id;
 }
 
 auto CTheme::stype() const -> QString
 {
-    return m_priv->type == NSTheme::ThemeType::ttDark ?
-                NSTheme::theme_type_dark : NSTheme::theme_type_light;
+    switch (m_priv->type) {
+    default:
+    case NSTheme::ThemeType::ttLight: return NSTheme::theme_type_light;
+    case NSTheme::ThemeType::ttDark: return NSTheme::theme_type_dark;
+    }
 }
 
 auto CTheme::value(ColorRole r) const -> std::wstring
@@ -248,6 +269,11 @@ auto CTheme::isDark() const -> bool
     return m_priv->type == NSTheme::ThemeType::ttDark;
 }
 
+auto CTheme::isSystem() const -> bool
+{
+    return m_priv->is_system;
+}
+
 /**/
 
 CThemes::CThemes()
@@ -288,7 +314,14 @@ auto CThemes::setCurrentTheme(const std::wstring& name) -> void
 
 auto CThemes::isThemeCurrent(const std::wstring& id) -> bool
 {
-    return m_priv->current->id() == name;
+    if ( m_priv->current->id() != id ) return false;
+    else {
+        if ( m_priv->current->isSystem() ) {
+            return m_priv->current->isDark() == m_priv->is_system_theme_dark;
+        }
+
+        return true;
+    }
 }
 
 auto CThemes::isColorDark(const std::wstring& color) -> bool
@@ -322,4 +355,11 @@ auto CThemes::parseThemeName(const std::wstring& wjson) -> std::wstring
     }
 
     return wjson;
+}
+
+auto CThemes::onSystemDarkColorScheme(bool isdark) -> void
+{
+    if ( isdark != m_priv->is_system_theme_dark ) {
+        m_priv->is_system_theme_dark = isdark;
+    }
 }
