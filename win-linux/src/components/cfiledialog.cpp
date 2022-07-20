@@ -433,7 +433,7 @@ QStringList CFileDialogWrapper::modalOpen(const QString& path, const QString& fi
     args.filter = _filter_.toStdWString();
     args.startFilter = _sel_filter.toStdWString();
     args.multiSelect = multi;
-    args.folder = path.toStdWString();
+    args.folder = QDir::toNativeSeparators(path).toStdWString();
 
     if ( win_ver_major == 0 ) {
         OSVERSIONINFO osvi;
