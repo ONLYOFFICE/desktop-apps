@@ -720,7 +720,7 @@ namespace WindowHelper {
 #endif
     }
 
-    auto constructFullscreenWidget(QWidget * panelwidget) -> QWidget *
+    auto constructFullscreenWidget(QWidget * panelwidget) -> CFullScrWidget *
     {
 #if defined(_WIN32) && (QT_VERSION < QT_VERSION_CHECK(5, 10, 0))
         QPoint pt = panelwidget->window()->mapToGlobal(panelwidget->pos());
@@ -729,7 +729,7 @@ namespace WindowHelper {
 #endif
 
         CTabPanel * _panel = qobject_cast<CTabPanel *>(panelwidget);
-        QWidget * _parent = new QWidget;
+        CFullScrWidget * _parent = new CFullScrWidget;
         _parent->setWindowIcon(Utils::appIcon());
         _parent->setWindowTitle(_panel->data()->title());
         _parent->showFullScreen();

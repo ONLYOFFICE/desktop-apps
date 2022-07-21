@@ -1128,17 +1128,24 @@ void CAscTabWidget::setFullScreen(bool apply, int id)
             fsWidget->view()->setFocusToCef();
             AscAppManager::mainWindow()->hide();
 
-            cefConnection = connect(fsWidget, &CTabPanel::closePanel, [=](QCloseEvent * e){
+            auto _break_demonstration = [=]() {
                 NSEditorApi::CAscExecCommandJS * pCommand = new NSEditorApi::CAscExecCommandJS;
                 pCommand->put_Command(L"editor:stopDemonstration");
-
                 NSEditorApi::CAscMenuEvent * pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EDITOR_EXECUTE_COMMAND);
                 pEvent->m_pData = pCommand;
                 fsWidget->cef()->Apply(pEvent);
+            };
 
+            cefConnection = connect(fsWidget, &CTabPanel::closePanel, [=](QCloseEvent * e){
+                _break_demonstration();
                 e->ignore();
                 // TODO: associate panel with reporter window and close both simultaneously
                 QTimer::singleShot(10, [=] {emit tabCloseRequested(m_dataFullScreen->tabindex());});
+            });
+
+            connect((CFullScrWidget*)m_dataFullScreen->parent, &CFullScrWidget::closeRequest, this, [=]() {
+                disconnect((CFullScrWidget*)m_dataFullScreen->parent);
+                _break_demonstration();
             });
         }
     }
