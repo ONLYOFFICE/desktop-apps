@@ -597,7 +597,7 @@ std::wstring Utils::appUserName()
 
 
 namespace WindowHelper {
-//#ifdef Q_OS_LINUX
+#ifdef Q_OS_LINUX
     CParentDisable::CParentDisable(QWidget* parent)
     {
         disable(parent);
@@ -640,8 +640,25 @@ namespace WindowHelper {
         }
     }
 
-//#else
-#ifdef Q_OS_WIN
+    // Linux Environment Info
+    QString desktop_env("OTHER");
+
+    auto initEnvInfo() -> void {
+        QProcess process;
+        process.setProcessChannelMode(QProcess::MergedChannels);
+        process.start("printenv", {"XDG_CURRENT_DESKTOP"});
+        if (process.waitForFinished(2000)) {
+            const QString out = QString(process.readAllStandardOutput());
+            if (out.indexOf("GNOME") != -1)
+                desktop_env = "GNOME";
+        } else desktop_env = "UNDEF";
+    }
+
+    auto getEnvInfo() -> QString {
+        return desktop_env;
+    }
+
+#else
     auto isWindowSystemDocked(HWND handle) -> bool {
         RECT windowrect;
         WINDOWPLACEMENT wp; wp.length = sizeof(WINDOWPLACEMENT);
