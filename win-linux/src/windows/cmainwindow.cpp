@@ -636,11 +636,14 @@ int CMainWindow::trySaveDocument(int index)
 void CMainWindow::slot_modalDialog(bool status, WId h)
 {
     Q_UNUSED(h)
+
+#ifdef Q_OS_LINUX
     //static WindowHelper::CParentDisable * const _disabler = new WindowHelper::CParentDisable;
     std::unique_ptr<WindowHelper::CParentDisable> _disabler(new WindowHelper::CParentDisable);
     if (status) {
         _disabler->disable(this);
     } else _disabler->enable();
+#endif
 }
 
 void CMainWindow::onPortalLogout(std::wstring wjson)

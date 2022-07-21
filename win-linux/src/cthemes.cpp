@@ -92,12 +92,12 @@ public:
 //            QSettings _reg("HKEY_CURRENT_USER\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize", QSettings::NativeFormat);
 //            user_theme = _reg.value("AppsUseLightTheme", 1).toInt() == 0 ? THEME_DEFAULT_DARK_ID : THEME_DEFAULT_LIGHT_ID;
 //        }
-        if ( user_theme.isEmpty() ) {
+        if ( user_theme.isEmpty() || rc_themes.find(user_theme) == rc_themes.end() ) {
             QSettings _reg("HKEY_CURRENT_USER\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize", QSettings::NativeFormat);
             user_theme = _reg.value("AppsUseLightTheme", 1).toInt() == 0 ? THEME_DEFAULT_DARK_ID : THEME_DEFAULT_LIGHT_ID;
         }
 #else
-        if ( user_theme.isEmpty() ) {
+        if ( user_theme.isEmpty() || rc_themes.find(user_theme) == rc_themes.end() ) {
             user_theme = THEME_DEFAULT_LIGHT_ID;
         }
 #endif
