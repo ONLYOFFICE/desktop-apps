@@ -51,6 +51,7 @@ public:
     virtual void adjustGeometry() final;
 
 protected:
+    virtual void onMinimizeEvent() override;
     virtual bool event(QEvent *event) override;
     virtual void setScreenScalingFactor(double) override;
 
