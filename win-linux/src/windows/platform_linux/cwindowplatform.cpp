@@ -108,6 +108,11 @@ void CWindowPlatform::adjustGeometry()
 
 /** Protected **/
 
+void CWindowPlatform::onMinimizeEvent()
+{
+    CX11Decoration::setMinimized();
+}
+
 bool CWindowPlatform::event(QEvent * event)
 {
     static bool _flg_motion = false;
