@@ -119,15 +119,6 @@ bool CWindowPlatform::event(QEvent * event)
     static bool _flg_left_button = false;
     if (event->type() == QEvent::WindowStateChange) {
         CX11Decoration::setMaximized(isMaximized() ? true : false);
-        /*if(windowState().testFlag(Qt::WindowMaximized)) {
-            applyWindowState(Qt::WindowMaximized);
-        } else
-        if (windowState().testFlag(Qt::WindowNoState)) {
-            applyWindowState(Qt::WindowNoState);
-        } else
-        if (windowState().testFlag(Qt::WindowMinimized)) {
-            applyWindowState(Qt::WindowMinimized);
-        }*/
         applyWindowState();
         adjustGeometry();
     } else
