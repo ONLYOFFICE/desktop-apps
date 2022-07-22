@@ -25,7 +25,6 @@ common/loginpage/build/node_modules/*
 common/loginpage/deploy/*
 common/loginpage/src/dlglogin.min.js
 common/converter/*
-!common/converter/package.config
 */.svn/*
 
 .DS_Store
