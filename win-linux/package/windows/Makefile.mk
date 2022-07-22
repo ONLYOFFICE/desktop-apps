@@ -101,7 +101,6 @@ $(VCREDIST22):
 $(DEST_DIR): install
 
 $(DESKTOP_EDITORS_EXE):
-	$(shell echo package=exe > $(DEST_DIR)\\converter\\package.config); \
 	cd $(BUILD_DIR) && $(ISCC) $(ISCC_PARAMS) common.iss
 
 $(EXE_UPDATE): $(DESKTOP_EDITORS_EXE)
@@ -122,7 +121,6 @@ ifneq ($(ENABLE_SIGNING), 1)
 	cd $(BUILD_DIR); \
 	$(AIC) //edit DesktopEditors.aip //ResetSig
 endif
-	$(shell echo package=msi > $(DEST_DIR)\\converter\\package.config); \
 	cd $(BUILD_DIR); \
 	$(AIC) //edit DesktopEditors.aip //DelPrerequisite "Microsoft Visual C++ 2013 Redistributable (x86)"; \
 	$(AIC) //edit DesktopEditors.aip //DelPrerequisite "Microsoft Visual C++ 2013 Redistributable (x64)"; \
