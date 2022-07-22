@@ -651,6 +651,9 @@ namespace WindowHelper {
             const QString out = QString(process.readAllStandardOutput());
             if (out.indexOf("GNOME") != -1)
                 desktop_env = "GNOME";
+            else
+            if (out.indexOf("KDE") != -1)
+                desktop_env = "KDE";
         } else desktop_env = "UNDEF";
     }
 

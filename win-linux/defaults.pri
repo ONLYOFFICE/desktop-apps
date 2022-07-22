@@ -196,7 +196,8 @@ core_linux {
                 $$PWD/src/windows/platform_linux/cwindowplatform.h \
                 $$PWD/src/platform_linux/cdialogopenssl.h \
                 $$PWD/src/platform_linux/cdialogcertificateinfo.h \
-                $$PWD/src/platform_linux/singleapplication.h
+                $$PWD/src/platform_linux/singleapplication.h \
+                $$PWD/src/platform_linux/kdefiledialog.h
 
     SOURCES +=  $$PWD/src/windows/platform_linux/cx11decoration.cpp \
                 #$$PWD/src/windows/platform_linux/gtk_addon.cpp \
@@ -204,7 +205,8 @@ core_linux {
                 $$PWD/src/windows/platform_linux/cwindowplatform.cpp \
                 $$PWD/src/platform_linux/cdialogopenssl.cpp \
                 $$PWD/src/platform_linux/cdialogcertificateinfo.cpp \
-                $$PWD/src/platform_linux/singleapplication.cpp
+                $$PWD/src/platform_linux/singleapplication.cpp \
+                $$PWD/src/platform_linux/kdefiledialog.cpp
 
     CONFIG += link_pkgconfig
     PKGCONFIG += glib-2.0 gtk+-3.0 atk
