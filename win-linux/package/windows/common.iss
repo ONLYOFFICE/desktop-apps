@@ -135,7 +135,8 @@ Name: hy_AM; MessagesFile: compiler:Languages\Armenian.islu;    LicenseFile: {#s
 Name: vi; MessagesFile: compiler:Languages\Vietnamese.isl; LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 Name: hy_AM; MessagesFile: compiler:Languages\Armenian.isl;    LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 #endif
-Name: zh_CN; MessagesFile: compiler:Languages\ChineseTraditional.isl;  LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
+Name: zh_CN; MessagesFile: compiler:Languages\ChineseSimplified.isl;  LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
+;Name: hy_AM; MessagesFile: compiler:Languages\Armenian.islu;    LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 ;Name: hr; MessagesFile: compiler:Languages\Croatian.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 Name: da; MessagesFile: compiler:Languages\Danish.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 ;Name: hi; MessagesFile: compiler:Languages\Hindi.islu;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
@@ -156,7 +157,7 @@ lo.LanguageName=ພາສາລາວ
 [CustomMessages]
 ;======================================================================================================
 en.PrevVer=The previous version of {#sAppName} detected, please click 'OK' button to uninstall it, or 'Cancel' to quit setup.
-ru.PrevVer=Обнаружена предыдущая версия {#sAppName}, нажмите кнопку 'OK' что бы удалить ей, или 'Отменить' что бы выйти из программы инсталляции.
+ru.PrevVer=Обнаружена предыдущая версия {#sAppName}, нажмите кнопку 'OK' чтобы удалить её, или 'Отмена' чтобы выйти из программы инсталляции.
 ;======================================================================================================
 en.Launch =Launch %1
 bg.Launch =Пускане %1
@@ -539,10 +540,10 @@ begin
   Names) then begin
     ConfirmUninstall := IDOK;
     if not WizardSilent() then begin
-      ConfirmUninstall := MsgBox(
-                              ExpandConstant('{cm:PrevVer}'),
-                              mbConfirmation,
-                              MB_OKCANCEL);
+      if MsgBox(ExpandConstant('{cm:PrevVer}'), mbConfirmation, MB_OKCANCEL) = IDCANCEL then begin
+        Result := False;
+        Exit;
+      end;
     end;
     
     for i := 1 to 32 do begin
@@ -603,7 +604,10 @@ var
   path: string;
 begin
   InitializeAssociatePage();
-  UninstallPreviosVersion();
+  
+  if not UninstallPreviosVersion() then begin
+    Abort;
+  end;
 
   if RegQueryStringValue(GetHKLM(), '{#APP_REG_PATH}', 'AppPath', path) and
         FileExists(path + '\{#NAME_EXE_OUT}') then

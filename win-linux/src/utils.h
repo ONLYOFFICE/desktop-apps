@@ -100,6 +100,8 @@ namespace WindowHelper {
     };
 
 //    auto check_button_state(Qt::MouseButton b) -> bool;
+    auto initEnvInfo() -> void;
+    auto getEnvInfo() -> QString;
 #else
     auto isWindowSystemDocked(HWND handle) -> bool;
     auto correctWindowMinimumSize(HWND handle) -> void;

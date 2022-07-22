@@ -640,6 +640,24 @@ namespace WindowHelper {
         }
     }
 
+    // Linux Environment Info
+    QString desktop_env("OTHER");
+
+    auto initEnvInfo() -> void {
+        QProcess process;
+        process.setProcessChannelMode(QProcess::MergedChannels);
+        process.start("printenv", {"XDG_CURRENT_DESKTOP"});
+        if (process.waitForFinished(2000)) {
+            const QString out = QString(process.readAllStandardOutput());
+            if (out.indexOf("GNOME") != -1)
+                desktop_env = "GNOME";
+        } else desktop_env = "UNDEF";
+    }
+
+    auto getEnvInfo() -> QString {
+        return desktop_env;
+    }
+
 #else
     auto isWindowSystemDocked(HWND handle) -> bool {
         RECT windowrect;

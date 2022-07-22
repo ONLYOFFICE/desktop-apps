@@ -61,7 +61,7 @@ platform :mac do
     )
 
     desc 'Prepare zip for delta update'
-    sh("ditto -c -k --rsrc --keepParent #{ENV['PWD']}/#{app} #{ENV['PWD']}/#{build}/#{scheme}-#{version_number}.zip")
+    sh("ditto -c -k --sequesterRsrc --keepParent #{ENV['PWD']}/#{app} #{ENV['PWD']}/#{build}/#{scheme}-#{version_number}.zip")
 
     desc 'Create DMG image'
     sh("npm install appdmg")
