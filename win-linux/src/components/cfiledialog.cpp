@@ -425,11 +425,11 @@ QStringList CFileDialogWrapper::modalOpen(const QString& path, const QString& fi
     if ( _filter_.isEmpty() ) {
 //        _filter_ = joinFilters();
         _filter_ = m_mapFilters[AVS_OFFICESTUDIO_FILE_UNKNOWN] + ";;" +
-                    tr("Text documents") + " (*.docx *.doc *.odt *.ott *.rtf *.docm *.dotx *.dotm *.fodt *.wps *.wpt *.xml *.pdf *.epub *.djv *.djvu *.docxf *.oform);;" +
-                    tr("Spreadsheets") + " (*.xlsx *.xls *.ods *.ots *.csv *.xltx *.xltm *.fods *.et *.ett);;" +
+                    tr("Text documents") + " (*.docx *.doc *.odt *.ott *.rtf *.docm *.dotx *.dotm *.fodt *.wps *.wpt *.xml *.pdf *.djv *.djvu *.docxf *.oform);;" +
+                    tr("Spreadsheets") + " (*.xlsx *.xls *.ods *.ots *.xltx *.xltm *.fods *.et *.ett);;" +
                     tr("Presentations") + " (*.pptx *.ppt *.odp *.otp *.ppsm *.ppsx *.potx *.potm *.fodp *.dps *.dpt);;" +
-                    tr("Web Page") + " (*.html *.htm *.mht);;" +
-                    tr("Text files") + " (*.txt)";
+                    tr("Web Page") + " (*.html *.htm *.mht *.epub);;" +
+                    tr("Text files") + " (*.txt *.csv)";
     }
 
     QString _sel_filter = selected ? *selected : m_mapFilters[AVS_OFFICESTUDIO_FILE_UNKNOWN];
