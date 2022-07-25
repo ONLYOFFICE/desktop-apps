@@ -722,6 +722,7 @@ void CMainWindow::doOpenLocalFile(COpenOptions& opts)
             CMessage::error(TOP_NATIVE_WINDOW_HANDLE, tr("File format not supported."));
         });
     }
+    bringToTop();
 }
 
 void CMainWindow::onLocalFileRecent(void * d)
