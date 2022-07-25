@@ -467,7 +467,8 @@ void CMessage::onWindowActivate(bool activate)
         if ( m_priv->focusWidget ) {
             m_centralWidget->activateWindow();
             QTimer::singleShot(0, m_centralWidget, [&]{
-                m_priv->focusWidget->setFocus(Qt::FocusReason::MouseFocusReason);
+                if (m_priv->focusWidget)
+                    m_priv->focusWidget->setFocus(Qt::FocusReason::MouseFocusReason);
             });
         }
     } else {
