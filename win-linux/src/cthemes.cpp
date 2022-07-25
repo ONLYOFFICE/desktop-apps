@@ -1,6 +1,7 @@
 
 #include "cthemes.h"
 #include "defines.h"
+#include "utils.h"
 
 #include <QSettings>
 #include <QJsonDocument>
@@ -8,6 +9,8 @@
 #include <QColor>
 #include <QFile>
 #include <QRegularExpression>
+#include <QProcess>
+#include <QPalette>
 #include <QDebug>
 
 #define QSTRING_FROM_WSTR(s) QString::fromStdWString(s)
@@ -91,19 +94,27 @@ public:
 #ifdef Q_OS_WIN
         QSettings _reg("HKEY_CURRENT_USER\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize", QSettings::NativeFormat);
         is_system_theme_dark = _reg.value("AppsUseLightTheme", 1).toInt() == 0;
-
+#else
+        if ( WindowHelper::getEnvInfo() == "KDE" ) {
+            QColor color = QPalette().base().color();
+            int r, g, b;
+            color.getRgb(&r, &g, &b);
+            int lum = int(0.299*r + 0.587*g + 0.114*b);
+            is_system_theme_dark = lum > 127;
+        } else {
+            QProcess process;
+            process.setProcessChannelMode(QProcess::MergedChannels);
+            process.start("gsettings",  {"get", "org.gnome.desktop.interface", "gtk-theme"});
+            if (process.waitForFinished(1000)) {
+                QString list = QString(process.readAllStandardOutput());
+                is_system_theme_dark = list.toLower().indexOf("dark") == -1;
+            }
+        }
+#endif
         if ( user_theme == THEME_ID_SYSTEM ) {
             current = new CTheme(rc_themes.at(is_system_theme_dark ? THEME_DEFAULT_DARK_ID : THEME_DEFAULT_LIGHT_ID));
             current->m_priv->is_system = true;
         } else current = new CTheme(rc_themes.at(user_theme));
-
-#else
-        if ( user_theme.isEmpty() ) {
-            user_theme = THEME_DEFAULT_LIGHT_ID;
-        }
-
-        current = new CTheme(rc_themes.at(user_theme));
-#endif
     }
 
     ~CThemesPrivate()
