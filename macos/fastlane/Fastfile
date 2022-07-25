@@ -51,7 +51,7 @@ platform :mac do
       output_directory: build,
       codesigning_identity: ENV["CODESIGNING_IDENTITY"],
       export_method: 'developer-id',
-      export_xcargs: 'URL_WEBAPPS_HELP="https://download.onlyoffice.com/install/desktop/editors/help/v#{version_number}-1/apps"',
+      xcargs: "URL_WEBAPPS_HELP=https://download.onlyoffice.com/install/desktop/editors/help/v#{version_number}-1/apps",
       skip_package_pkg: true
     )
 
