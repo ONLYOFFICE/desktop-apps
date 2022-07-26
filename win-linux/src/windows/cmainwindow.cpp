@@ -904,9 +904,6 @@ void CMainWindow::onDocumentReady(int uid)
     if ( uid < 0 ) {
         QTimer::singleShot(20, this, [=]{
             refreshAboutVersion();
-#ifdef Q_OS_LINUX
-            WindowHelper::initEnvInfo();
-#endif
             AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, L"app:ready");
             focus(); // TODO: move to app manager
         });

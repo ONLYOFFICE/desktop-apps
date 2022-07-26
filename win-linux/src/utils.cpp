@@ -60,6 +60,7 @@
 typedef HRESULT (__stdcall *SetCurrentProcessExplicitAppUserModelIDProc)(PCWSTR AppID);
 #else
 #include <sys/stat.h>
+#include <stdlib.h>
 #endif
 
 #include <QDebug>
@@ -644,17 +645,19 @@ namespace WindowHelper {
     QString desktop_env("OTHER");
 
     auto initEnvInfo() -> void {
-        QProcess process;
-        process.setProcessChannelMode(QProcess::MergedChannels);
-        process.start("printenv", {"XDG_CURRENT_DESKTOP"});
-        if (process.waitForFinished(2000)) {
-            const QString out = QString(process.readAllStandardOutput());
-            if (out.indexOf("GNOME") != -1)
+        const QString env = QString::fromUtf8(getenv("XDG_CURRENT_DESKTOP"));
+        if (env.indexOf("Unity") != -1) {
+            const QString session = QString::fromUtf8(getenv("DESKTOP_SESSION"));
+            if (session.indexOf("gnome-fallback") != -1)
                 desktop_env = "GNOME";
             else
-            if (out.indexOf("KDE") != -1)
-                desktop_env = "KDE";
-        } else desktop_env = "UNDEF";
+                desktop_env = "UNITY";
+        } else
+        if (env.indexOf("GNOME") != -1)
+            desktop_env = "GNOME";
+        else
+        if (env.indexOf("KDE") != -1)
+            desktop_env = "KDE";
     }
 
     auto getEnvInfo() -> QString {
