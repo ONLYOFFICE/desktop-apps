@@ -132,6 +132,7 @@ int main( int argc, char *argv[] )
     }
 #else
     InputArgs::init(argc, argv);
+    WindowHelper::initEnvInfo();
 #endif
 
     if ( InputArgs::contains(L"--version") ) {
