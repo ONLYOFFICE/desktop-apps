@@ -52,6 +52,15 @@ namespace InputArgs {
     auto change_webapps_param(const std::wstring& from, const std::wstring& to) -> const std::wstring&;
 }
 
+namespace EditorJSVariables {
+    auto init() -> void;
+    auto setVariable(const QString& name, const QString& var) -> void;
+    auto setVariable(const QString& name, const QJsonObject& obj) -> void;
+    auto applyVariable(const QString& name, const QJsonObject& obj) -> void;
+    auto toWString() -> std::wstring;
+    auto apply() -> void;
+}
+
 class Utils {
 public:
     static QStringList * getInputFiles(const QStringList& inlist);

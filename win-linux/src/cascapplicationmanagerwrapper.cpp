@@ -1066,6 +1066,8 @@ void CAscApplicationManagerWrapper::initializeApp()
     mainFont.setStyleStrategy( QFont::PreferAntialias );
     QApplication::setFont( mainFont );
 
+    EditorJSVariables::init();
+
     wstring wparams{InputArgs::webapps_params()};
     if ( !wparams.empty() ) wparams += L"&";
     wparams += QString("lang=%1&username=%3&location=%2").arg(CLangater::getCurrentLangCode(), Utils::systemLocationCode()).toStdWString();
@@ -1075,26 +1077,10 @@ void CAscApplicationManagerWrapper::initializeApp()
     InputArgs::set_webapps_params(wparams);
 
     AscAppManager::getInstance().InitAdditionalEditorParams(wparams);
-    AscAppManager::getInstance().applyTheme(themes().current().id(), true);
+//    AscAppManager::getInstance().applyTheme(themes().current().id(), true);
 
-    QJsonObject jtheme{
-        {"type", _app.m_themes->current().stype()},
-        {"id", QString::fromStdWString(_app.m_themes->current().id())}
-    };
-#ifdef __OS_WIN_XP
-    QJsonObject _json_obj{{"theme", jtheme}, {"os", "winxp"}};
-#else
-    QJsonObject _json_obj{{"theme", jtheme}};
-#endif
-
-    if ( InputArgs::contains(L"--help-url") )
-        _json_obj["helpUrl"] = QUrl(QString::fromStdWString(InputArgs::argument_value(L"--help-url"))).isValid();
-#ifdef URL_WEBAPPS_HELP
-    else if ( !QString(URL_WEBAPPS_HELP).isEmpty() )
-        _json_obj["helpUrl"] = URL_WEBAPPS_HELP;
-#endif
-
-    AscAppManager::getInstance().SetRendererProcessVariable(Utils::stringifyJson(_json_obj).toStdWString());
+    EditorJSVariables::applyVariable("theme", {{"type", _app.m_themes->current().stype()},
+                                       {"id", QString::fromStdWString(_app.m_themes->current().id())}});
 }
 
 CSingleWindow * CAscApplicationManagerWrapper::createReporterWindow(void * data, int parentid)
@@ -1644,16 +1630,8 @@ void CAscApplicationManagerWrapper::applyTheme(const wstring& theme, bool force)
         std::wstring params{InputArgs::change_webapps_param(L"&uitheme=" + old_theme, L"&uitheme=" + theme)};
         AscAppManager::getInstance().InitAdditionalEditorParams(params);
 
-        QJsonObject jtheme{
-            {"type", _app.m_themes->current().stype()},
-            {"id", QString::fromStdWString(_app.m_themes->current().id())}
-        };
-#ifdef __OS_WIN_XP
-        QJsonObject _json_obj{{"theme", jtheme}, {"os", "winxp"}};
-#else
-        QJsonObject _json_obj{{"theme", jtheme}};
-#endif
-        AscAppManager::getInstance().SetRendererProcessVariable(Utils::stringifyJson(_json_obj).toStdWString());
+        EditorJSVariables::applyVariable("theme", {{"type", _app.m_themes->current().stype()},
+                                           {"id", QString::fromStdWString(_app.m_themes->current().id())}});
 
         // TODO: remove
         if ( mainWindow() ) mainWindow()->applyTheme(_app.m_themes->current().originalId());

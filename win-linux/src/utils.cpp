@@ -135,6 +135,43 @@ namespace InputArgs {
     }
 }
 
+namespace EditorJSVariables {
+    QJsonObject vars_object;
+
+    auto init() -> void {
+#ifdef __OS_WIN_XP
+        vars_object["os"] = "winxp";
+#endif
+        if ( InputArgs::contains(L"--help-url") )
+            vars_object["helpUrl"] = QUrl(QString::fromStdWString(InputArgs::argument_value(L"--help-url"))).toString();
+#ifdef URL_WEBAPPS_HELP
+        else if ( !QString(URL_WEBAPPS_HELP).isEmpty() )
+            vars_object["helpUrl"] = URL_WEBAPPS_HELP;
+#endif
+    }
+
+    auto setVariable(const QString& name, const QString& var) -> void {
+        vars_object[name] = var;
+    }
+
+    auto setVariable(const QString& name, const QJsonObject& obj) -> void {
+        vars_object[name] = obj;
+    }
+
+    auto applyVariable(const QString& name, const QJsonObject& obj) -> void {
+        vars_object[name] = obj;
+        apply();
+    }
+
+    auto toWString() -> std::wstring {
+        return vars_object.isEmpty() ? L"" : Utils::stringifyJson(vars_object).toStdWString();
+    }
+
+    auto apply() -> void {
+        AscAppManager::getInstance().SetRendererProcessVariable(toWString());
+    }
+}
+
 QStringList * Utils::getInputFiles(const QStringList& inlist)
 {
     QStringList * _ret_files_list = nullptr;
