@@ -118,6 +118,8 @@ int main(int argc, const char * argv[]) {
     NSLog(@"set web-apps help url %@", URL_WEBAPPS_HELP);
     if (url && [url length])
         [vars setValue:URL_WEBAPPS_HELP forKey:@"helpUrl"];
+    else NSLog(@"help url is empty %@", url);
+    NSLog(@"vars with help url %@", vars);
 #endif
     appManager->SetRendererProcessVariable([[vars jsonString] stdwstring]);
 
