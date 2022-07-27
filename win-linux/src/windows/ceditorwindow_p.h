@@ -209,6 +209,7 @@ public:
             } else {
                 QJsonObject _json_obj{{"action", action}};
                 AscAppManager::sendCommandTo(panel()->cef(), L"button:click", Utils::stringifyJson(_json_obj).toStdWString());
+                window->focus();
             }
         });
 
