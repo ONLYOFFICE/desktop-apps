@@ -102,5 +102,5 @@ begin
   else
     upgradecode := '{65E5BD06-6392-3027-8C26-853107D3CF1A}'; //x86
 
-  Result :=  msiproductupgrade(upgradecode, '14.30');
+  Result :=  msiproductupgrade(upgradecode, '14.32');
 end;
