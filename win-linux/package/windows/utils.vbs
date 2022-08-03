@@ -27,7 +27,7 @@ Function UninstallOlderVersion
   If (RegistryExist(regPath) = True) Then
     RegistryPath = objShell.RegRead(regPath)
     Button = MsgBox(Session.Property("UNINSTALL_PREV_MSGBOX"), 1, Session.Property("Setup") + " " + Session.Property("ProductName"))
-    If Button = 1 Then
+    If Button = 1 Or Session.Property("UninstallOlderVersionSilent") = "1" Then
       objShell.Run RegistryPath, 0, True
     Else 
       Session.Property("UninstallOlderVersion") = "1"

@@ -661,7 +661,6 @@
     <ROW Dialog_="ExtendedInstallDlg" Control_="Back" Event="NewDialog" Argument="FolderDlg" Condition="AI_INSTALL" Ordering="1"/>
     <ROW Dialog_="FolderDlg" Control_="Next" Event="NewDialog" Argument="ShortcutsDlg" Condition="AI_INSTALL AND ( ProductName = &quot;ONLYOFFICE Desktop Editors&quot; )" Ordering="202"/>
     <ROW Dialog_="ShortcutsDlg" Control_="Back" Event="NewDialog" Argument="FolderDlg" Condition="AI_INSTALL AND ( ProductName = &quot;ONLYOFFICE Desktop Editors&quot; )" Ordering="1"/>
-    <ROW Dialog_="FolderDlg" Control_="Next" Event="DoAction" Argument="SetCustomPath" Condition="AI_INSTALL AND ( ProductName &lt;&gt; &quot;ONLYOFFICE Desktop Editors&quot; )" Ordering="201"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCreateFolderComponent">
     <ROW Directory_="APPDIR" Component_="APPDIR" ManualDelete="true"/>
@@ -705,11 +704,14 @@
     <ROW Action="SET_APPDIR" Type="307" Source="APPDIR" Target="[ProgramFilesFolder][Manufacturer]\[ProductName]" MultiBuildTarget="DefaultBuild:[ProgramFiles64Folder][MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]"/>
     <ROW Action="SET_SHORTCUTDIR" Type="307" Source="SHORTCUTDIR" Target="[ProgramMenuFolder][SHORTCUT_FOLDER_NAME]"/>
     <ROW Action="SET_TARGETDIR_TO_APPDIR" Type="51" Source="TARGETDIR" Target="[APPDIR]"/>
-    <ROW Action="SetCustomPath" Type="6" Source="utils.vbs" Target="SetCustomPath" WithoutSeq="true"/>
+    <ROW Action="SetCustomPath" Type="6" Source="utils.vbs" Target="SetCustomPath"/>
     <ROW Action="SetLocaleProperty32" Type="6" Source="utils.vbs" Target="SetLocaleProperty"/>
     <ROW Action="SetLocaleProperty64" Type="4102" Source="utils.vbs" Target="SetLocaleProperty"/>
+    <ROW Action="SetUninstallOlderVersionSilent" Type="51" Source="UninstallOlderVersionSilent" Target="1"/>
     <ROW Action="UninstallOlderVersion32" Type="6" Source="utils.vbs" Target="UninstallOlderVersion"/>
+    <ROW Action="UninstallOlderVersion32GUI" Type="6" Source="utils.vbs" Target="UninstallOlderVersion"/>
     <ROW Action="UninstallOlderVersion64" Type="4102" Source="utils.vbs" Target="UninstallOlderVersion"/>
+    <ROW Action="UninstallOlderVersion64GUI" Type="4102" Source="utils.vbs" Target="UninstallOlderVersion"/>
     <ROW Action="UninstallOlderVersionErrorMessage" Type="19" Target="[UNINSTALL_PREV_ERROR_TEXT]"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiDialogComponent">
@@ -814,12 +816,12 @@
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiInstExSeqComponent">
     <ROW Action="AI_DOWNGRADE" Condition="AI_NEWERPRODUCTFOUND AND (UILevel &lt;&gt; 5)" Sequence="210"/>
-    <ROW Action="AI_DETECT_MODERNWIN" Condition="(VersionNT &gt;= 603)" Sequence="56" MsiKey="AI_DETECT_MODERNWIN"/>
+    <ROW Action="AI_DETECT_MODERNWIN" Condition="(VersionNT &gt;= 603)" Sequence="58" MsiKey="AI_DETECT_MODERNWIN"/>
     <ROW Action="AI_RESTORE_LOCATION" Condition="APPDIR=&quot;&quot;" Sequence="747"/>
     <ROW Action="AI_STORE_LOCATION" Condition="(Not Installed) OR REINSTALL" Sequence="1502"/>
     <ROW Action="AI_PREPARE_UPGRADE" Condition="AI_UPGRADE=&quot;No&quot; AND (Not Installed)" Sequence="1397"/>
-    <ROW Action="AI_ResolveKnownFolders" Sequence="55"/>
-    <ROW Action="AI_EnableDebugLog" Sequence="54"/>
+    <ROW Action="AI_ResolveKnownFolders" Sequence="57"/>
+    <ROW Action="AI_EnableDebugLog" Sequence="56"/>
     <ROW Action="AI_GetArpIconPath" Sequence="1402"/>
     <ROW Action="AI_RemoveExternalUIStub" Condition="(REMOVE=&quot;ALL&quot;) AND ((VersionNT &gt; 500) OR((VersionNT = 500) AND (ServicePackLevel &gt;= 4)))" Sequence="1501"/>
     <ROW Action="AI_DELETE_SHORTCUTS" Condition="NOT (REMOVE=&quot;ALL&quot;)" Sequence="1401"/>
@@ -830,6 +832,12 @@
     <ROW Action="AI_AppSearchEx" Sequence="101"/>
     <ROW Action="AI_VerifyPrereq" Sequence="1101"/>
     <ROW Action="AI_TxtUpdaterInstall" Sequence="5101"/>
+    <ROW Action="SetLocaleProperty32" Condition="( NOT Installed ) AND ( NOT VersionNT64 )" Sequence="54"/>
+    <ROW Action="SetLocaleProperty64" Condition="( NOT Installed ) AND ( VersionNT64 )" Sequence="55"/>
+    <ROW Action="SetCustomPath" Condition="( NOT Installed )" Sequence="3601"/>
+    <ROW Action="UninstallOlderVersion32" Condition="( NOT Installed ) AND ( NOT VersionNT64 AND UILevel &lt;= 3 )" Sequence="52"/>
+    <ROW Action="UninstallOlderVersion64" Condition="( NOT Installed ) AND ( VersionNT64 AND UILevel &lt;= 3 )" Sequence="53"/>
+    <ROW Action="SetUninstallOlderVersionSilent" Condition="( NOT Installed ) AND ( UILevel &lt;= 3 )" Sequence="51"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiInstallUISequenceComponent">
     <ROW Action="AI_RESTORE_LOCATION" Condition="APPDIR=&quot;&quot;" Sequence="747"/>
@@ -845,11 +853,9 @@
     <ROW Action="AI_InstallPrerequisite" Sequence="1299"/>
     <ROW Action="AI_InstallPostPrerequisite" Sequence="1301"/>
     <ROW Action="AI_CleanPrereq" Sequence="1302"/>
-    <ROW Action="UninstallOlderVersionErrorMessage" Condition="( NOT Installed ) AND ( UninstallOlderVersion = &quot;1&quot; )" Sequence="96"/>
-    <ROW Action="UninstallOlderVersion32" Condition="( NOT Installed ) AND ( NOT VersionNT64 )" Sequence="51"/>
-    <ROW Action="UninstallOlderVersion64" Condition="( NOT Installed ) AND ( VersionNT64 )" Sequence="52"/>
-    <ROW Action="SetLocaleProperty32" Condition="( NOT Installed ) AND ( NOT VersionNT64 )" Sequence="97"/>
-    <ROW Action="SetLocaleProperty64" Condition="( NOT Installed ) AND ( VersionNT64 )" Sequence="98"/>
+    <ROW Action="UninstallOlderVersionErrorMessage" Condition="( NOT Installed ) AND ( UninstallOlderVersion = &quot;1&quot; AND UILevel &lt;&gt; 2 )" Sequence="96"/>
+    <ROW Action="UninstallOlderVersion32GUI" Condition="( NOT Installed ) AND ( NOT VersionNT64 )" Sequence="52"/>
+    <ROW Action="UninstallOlderVersion64GUI" Condition="( NOT Installed ) AND ( VersionNT64 )" Sequence="51"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiLaunchConditionsComponent">
     <ROW Condition="( Version9X OR VersionNT64 )" Description="[ProductName] cannot be installed on [WindowsTypeNTDisplay]." DescriptionLocId="AI.LaunchCondition.NoNT" IsPredefined="true" Builds="DefaultBuild"/>
