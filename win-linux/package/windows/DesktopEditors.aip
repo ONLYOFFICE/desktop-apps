@@ -834,10 +834,10 @@
     <ROW Action="AI_TxtUpdaterInstall" Sequence="5101"/>
     <ROW Action="SetLocaleProperty32" Condition="( NOT Installed ) AND ( NOT VersionNT64 )" Sequence="54"/>
     <ROW Action="SetLocaleProperty64" Condition="( NOT Installed ) AND ( VersionNT64 )" Sequence="55"/>
-    <ROW Action="SetCustomPath" Condition="( NOT Installed )" Sequence="3601"/>
     <ROW Action="UninstallOlderVersion32" Condition="( NOT Installed ) AND ( NOT VersionNT64 AND UILevel &lt;= 3 )" Sequence="52"/>
     <ROW Action="UninstallOlderVersion64" Condition="( NOT Installed ) AND ( VersionNT64 AND UILevel &lt;= 3 )" Sequence="53"/>
     <ROW Action="SetUninstallOlderVersionSilent" Condition="( NOT Installed ) AND ( UILevel &lt;= 3 )" Sequence="51"/>
+    <ROW Action="SetCustomPath" Condition="( NOT Installed )" Sequence="201"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiInstallUISequenceComponent">
     <ROW Action="AI_RESTORE_LOCATION" Condition="APPDIR=&quot;&quot;" Sequence="747"/>
