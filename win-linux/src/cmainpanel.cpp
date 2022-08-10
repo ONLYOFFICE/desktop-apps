@@ -1181,7 +1181,7 @@ void CMainPanel::applyTheme(const std::wstring& theme)
     for (int i(m_pTabs->count()); !(--i < 0);) {
         CAscTabData& _doc = *m_pTabs->panel(i)->data();
         if ( _doc.isViewType(cvwtEditor) && !_doc.closed() ) {
-            AscAppManager::sendCommandTo(m_pTabs->panel(i)->cef(), L"uitheme:changed", theme);
+            AscAppManager::sendCommandTo(m_pTabs->panel(i)->cef(), L"uitheme:changed", AscAppManager::themes().current().id());
         }
     }
 
