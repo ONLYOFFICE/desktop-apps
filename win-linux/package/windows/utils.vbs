@@ -112,7 +112,7 @@ Function SetCustomPath
 
   Dim index
   Dim parentLenght
-  parentLength = UBound(tokens) - 2
+  If Session.Property("UILevel") = 2 Then parentLength = UBound(tokens) - 1 Else parentLength = UBound(tokens) - 2
   customPath = ""
 
   For index = 0 To parentLength
