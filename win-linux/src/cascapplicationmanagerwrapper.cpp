@@ -218,7 +218,7 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
 #else
                 // TODO: unlock for ver 6.4 because bug 50589
                 // TODO: unlock for back compatibility with ver 6.4 on portals
-                sendCommandTo(ptr, L"uitheme:changed", themes().current().id());
+//                sendCommandTo(ptr, L"uitheme:changed", themes().current().id());
 #endif
 
                 if ( !((pData->get_Param()).find(L"fillform") == std::wstring::npos) ) {
