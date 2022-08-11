@@ -30,40 +30,20 @@
  *
 */
 
-#include <QFile>
-#include <QDir>
-#include <QTranslator>
-#include <QStandardPaths>
-#include <QLibraryInfo>
-#include <QDesktopWidget>
-#include <memory>
-
 #include "cascapplicationmanagerwrapper.h"
+#ifdef _WIN32
+# include "platform_win/singleapplication.h"
+#else
+# include "platform_linux/singleapplication.h"
+#endif
 #include "defines.h"
 #include "clangater.h"
 #include "version.h"
-
-#ifdef _WIN32
-#include "shlobj.h"
-# include "platform_win/singleapplication.h"
-#else
-# include "windows/platform_linux/cwindowplatform.h"
-# include "platform_linux/singleapplication.h"
-#endif
-
-#include <QDebug>
-#include <QFileInfo>
-#include <QSettings>
-#include <QScreen>
-#include <QApplication>
-#include <QRegularExpression>
 #include "utils.h"
 #include "chelp.h"
 #include "common/File.h"
-
-#include <QTextCodec>
-#include <iostream>
 #include <QStyleFactory>
+
 
 int main( int argc, char *argv[] )
 {
@@ -73,18 +53,16 @@ int main( int argc, char *argv[] )
     WCHAR * cm_line = GetCommandLine();
     InputArgs::init(cm_line);
 #else
-    QCoreApplication::setAttribute(Qt::AA_DisableHighDpiScaling);
     InputArgs::init(argc, argv);
     WindowHelper::initEnvInfo();
 #endif
+    QCoreApplication::setAttribute(Qt::AA_DisableHighDpiScaling);
     QCoreApplication::setApplicationName(QString::fromUtf8(WINDOW_NAME));
+
     QString user_data_path = Utils::getUserPath() + APP_DATA_PATH;
-
     auto setup_paths = [&user_data_path](CAscApplicationManager * manager) {
-
 #ifdef _WIN32
         QString common_data_path = Utils::getAppCommonPath();
-
         if ( !common_data_path.isEmpty() ) {
             manager->m_oSettings.SetUserDataPath(common_data_path.toStdWString());
 
@@ -100,7 +78,6 @@ int main( int argc, char *argv[] )
         {
             manager->m_oSettings.SetUserDataPath(user_data_path.toStdWString());
         }
-
         std::wstring app_path = NSFile::GetProcessDirectory();
         manager->m_oSettings.spell_dictionaries_path    = app_path + L"/dictionaries";
         manager->m_oSettings.file_converter_path        = app_path + L"/converter";
@@ -120,6 +97,7 @@ int main( int argc, char *argv[] )
         return 0;
     }
 
+    int exit_code = 0;
     SingleApplication app(argc, argv, APP_MUTEX_NAME ":" + QString::fromStdWString(Utils::systemUserName()));
 
     if (!app.isPrimary() && !InputArgs::contains(L"--single-window-app")) {
@@ -140,13 +118,11 @@ int main( int argc, char *argv[] )
     }
 
     app.setAttribute(Qt::AA_UseHighDpiPixmaps);
-    app.setAttribute(Qt::AA_DisableHighDpiScaling);
     app.setStyle(QStyleFactory::create("Fusion"));
 
     /* the order is important */
     CApplicationCEF::Prepare(argc, argv);
     CApplicationCEF* application_cef = new CApplicationCEF();
-
     setup_paths(&AscAppManager::getInstance());
     application_cef->Init_CEF(&AscAppManager::getInstance(), argc, argv);
     /* ********************** */
@@ -160,24 +136,18 @@ int main( int argc, char *argv[] )
      * cmd argument --keeplang:en also keep the language for next sessions
     */
     CLangater::init();
-    /* applying languages finished */
-
     AscAppManager::initializeApp();
     AscAppManager::startApp();
-
     AscAppManager::getInstance().StartSpellChecker();
     AscAppManager::getInstance().StartKeyboardChecker();
     AscAppManager::getInstance().CheckFonts();
 
     bool bIsOwnMessageLoop = false;
-    application_cef->RunMessageLoop(bIsOwnMessageLoop);
-    if (!bIsOwnMessageLoop) {
-        // Launch
-        app.exec();
-    }
+    exit_code = application_cef->RunMessageLoop(bIsOwnMessageLoop);
+    if (!bIsOwnMessageLoop)
+        exit_code = app.exec();
 
-    // release all subprocesses
     AscAppManager::getInstance().CloseApplication();
-
     delete application_cef;
+    return exit_code;
 }

@@ -28,12 +28,8 @@
 #include "OfficeFileFormats.h"
 
 #ifdef _WIN32
-    #include <io.h>
-    #include "csplash.h"
-    #include <VersionHelpers.h>
-    /*#ifdef _UPDMODULE
-       #include "3dparty/WinSparkle/include/winsparkle.h"
-    #endif*/
+# include <io.h>
+# include <VersionHelpers.h>
 # include "platform_win/singleapplication.h"
 #else
 # include <unistd.h>
@@ -1014,7 +1010,6 @@ void CAscApplicationManagerWrapper::initializeApp()
         AscAppManager::setUserSettings(L"force-scale", L"default");
     }
 
-//    CSplash::showSplash();
     if ( !InputArgs::contains(L"--single-window-app") ) {
         SingleApplication * app = static_cast<SingleApplication *>(QCoreApplication::instance());
         connect(app, &SingleApplication::receivedMessage, [](const QString &args) {
@@ -1026,10 +1021,8 @@ void CAscApplicationManagerWrapper::initializeApp()
             if ( !vec_inargs.empty() )
                 handleInputCmd(vec_inargs);
 
-//            QTimer::singleShot(0, []{
-                if ( mainWindow() )
-                    mainWindow()->bringToTop();
-//            });
+            if ( mainWindow() )
+                mainWindow()->bringToTop();
         });
     }
 
