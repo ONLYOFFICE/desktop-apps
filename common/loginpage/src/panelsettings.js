@@ -80,7 +80,7 @@
                                             </div>
                                         </div>
                                         <div class='settings-field' id='opts-ui-scaling' style='display:none'>
-                                            <label class='sett__caption' l10n>${_lang.settScaling}</label><label class='sett__caption'></label>
+                                            <label class='sett__caption' l10n>${_lang.settScaling}</label><label class='sett__caption'> *</label>
                                             <div class='sett--label-lift-top hbox'>
                                                 <section class='box-cmp-select'>
                                                     <select class='combobox'>
@@ -359,7 +359,7 @@
                                 $btnApply.isdisabled() && $btnApply.disable(false);
                             });
 
-                            // $('#caption-restart', $panel).show();
+                            $('#caption-restart', $panel).show();
                         }
 
                         if ( !!opts.uitheme ) {

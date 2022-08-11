@@ -82,7 +82,9 @@ void CMainPanelImpl::refreshAboutVersion()
         })
     );
 
-    if ( !AscAppManager::IsUseSystemScaling() ) {
+    if ( AscAppManager::IsUseSystemScaling() ) {
+        _json_obj["uiscaling"] = 0;
+    } else {
         std::wstring _force_value = AscAppManager::userSettings(L"force-scale");
         if ( _force_value == L"1" )
             _json_obj["uiscaling"] = 100;
@@ -98,7 +100,11 @@ void CMainPanelImpl::refreshAboutVersion()
         else
         if ( _force_value == L"2" )
             _json_obj["uiscaling"] = 200;
-        else _json_obj["uiscaling"] = 0;
+        else {
+//            _json_obj["uiscaling"] = 0;
+            AscAppManager::setUserSettings(L"force-scale", L"1");
+            _json_obj["uiscaling"] = 100;
+        }
     }
 
 #ifndef __OS_WIN_XP
