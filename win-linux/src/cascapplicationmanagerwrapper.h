@@ -48,10 +48,6 @@
 #include "cmainwindowimpl.h"
 #include "windows/cpresenterwindow.h"
 
-#ifdef __linux__
-# include "platform_linux/singleapplication.h"
-#endif
-
 #ifdef _UPDMODULE
     #include "cupdatemanager.h"
 #endif

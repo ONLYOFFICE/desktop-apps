@@ -34,9 +34,10 @@
     /*#ifdef _UPDMODULE
        #include "3dparty/WinSparkle/include/winsparkle.h"
     #endif*/
+# include "platform_win/singleapplication.h"
 #else
 # include <unistd.h>
-
+# include "platform_linux/singleapplication.h"
 # ifdef DOCUMENTSCORE_OPENSSL_SUPPORT
 #  include "platform_linux/cdialogcertificateinfo.h"
 # endif
@@ -1013,24 +1014,17 @@ void CAscApplicationManagerWrapper::initializeApp()
         AscAppManager::setUserSettings(L"force-scale", L"default");
     }
 
-#ifdef _WIN32
 //    CSplash::showSplash();
-    QApplication::processEvents();
-#else //defined(Q_OS_LINUX)
     if ( !InputArgs::contains(L"--single-window-app") ) {
         SingleApplication * app = static_cast<SingleApplication *>(QCoreApplication::instance());
-        connect(app, &SingleApplication::showUp, [](QString args){
+        connect(app, &SingleApplication::receivedMessage, [](const QString &args) {
             std::vector<std::wstring> vec_inargs;
-            QStringListIterator iter(args.split(";")); iter.next();
-            while ( iter.hasNext() ) {
-                QString arg = iter.next();
+            foreach (auto arg, args.split(";")) {
                 if ( !arg.isEmpty() )
                     vec_inargs.push_back(arg.toStdWString());
             }
-
-            if ( !vec_inargs.empty() ) {
+            if ( !vec_inargs.empty() )
                 handleInputCmd(vec_inargs);
-            }
 
 //            QTimer::singleShot(0, []{
                 if ( mainWindow() )
@@ -1038,7 +1032,6 @@ void CAscApplicationManagerWrapper::initializeApp()
 //            });
         });
     }
-#endif
 
     /* prevent drawing of focus rectangle on a button */
 //    QApplication::setStyle(new CStyleTweaks);

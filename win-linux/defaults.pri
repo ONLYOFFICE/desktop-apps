@@ -228,10 +228,12 @@ core_windows {
 
     HEADERS += $$PWD/src/windows/platform_win/cwindowplatform.h \
                $$PWD/src/windows/platform_win/csnap.h \
-               $$PWD/src/windows/platform_win/caption.h
+               $$PWD/src/windows/platform_win/caption.h \
+               $$PWD/src/platform_win/singleapplication.h
 
     SOURCES += $$PWD/src/windows/platform_win/cwindowplatform.cpp \
-               $$PWD/src/windows/platform_win/csnap.cpp
+               $$PWD/src/windows/platform_win/csnap.cpp \
+               $$PWD/src/platform_win/singleapplication.cpp
 
 
     LIBS += -lwininet \

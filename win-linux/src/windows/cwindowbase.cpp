@@ -44,6 +44,7 @@
 #  include "windows/platform_win/csnap.h"
 # endif
 #endif
+#include <QApplication>
 #include <QDesktopWidget>
 #include <QVariant>
 #include <QSettings>

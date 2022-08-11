@@ -51,9 +51,10 @@ public:
 
     bool isPrimary();
     bool isSecondary();
+    bool sendMessage(const QByteArray&);
 
-Q_SIGNALS:
-    void showUp(QString);
+signals:
+    void receivedMessage(QByteArray message);
 
 private Q_SLOTS:
     void slotConnectionEstablished();

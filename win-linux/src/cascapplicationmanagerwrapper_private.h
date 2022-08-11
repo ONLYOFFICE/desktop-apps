@@ -42,6 +42,7 @@
 #include "ceditortools.h"
 #include "utils.h"
 #include "components/cmessage.h"
+#include <QApplication>
 
 
 class CAscApplicationManagerWrapper_Private
