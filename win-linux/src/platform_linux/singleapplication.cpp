@@ -91,10 +91,10 @@ public:
         crashHandler();
 #endif
 
-        notifyPrimary();
+        //notifyPrimary();
     }
 
-    void notifyPrimary()
+    void notifyPrimary(const QByteArray &data, int timeout)
     {
         // Connect to the Local Server of the main process to notify it
         // that a new process had been started
@@ -102,26 +102,9 @@ public:
         socket.connectToServer( memory->key() );
 
         // Notify the parent that a new instance had been started;
-        if (socket.waitForConnected( 100 )) {
+        if (socket.waitForConnected( timeout )) {
             // Send input arguments to the parent
-            std::string _out_args;
-            QStringList _args = q_ptr->arguments();
-
-            if (_args.count() > 1) {
-                for (int i = 0; i < _args.count(); i++) {
-                    QString arg = _args[i];
-
-                    // Exclude config keys from input arguments
-                    if ( arg.startsWith("--new:") ) {
-                        _out_args.append(arg.toStdString()).append(";");
-                    } else
-                    if ( arg.mid(0,2) != "--" ) {
-                        _out_args.append(arg.toStdString() + ";");
-                    }
-                }
-            }
-
-            socket.write(_out_args.c_str());
+            socket.write(data);
             socket.waitForBytesWritten();
         }
         socket.close();
@@ -280,12 +263,12 @@ SingleApplication::SingleApplication( int &argc, char *argv[], const QString& se
 
 //    _semaphore.release();
 
-    d->notifyPrimary();
-    delete d;
+    //d->notifyPrimary();
+    //delete d;
 
-    qWarning() << "DesktopEditors had been run already";
+    //qWarning() << "DesktopEditors had been run already";
 
-    ::exit(EXIT_SUCCESS);
+    //::exit(EXIT_SUCCESS);
 }
 
 /**
@@ -307,6 +290,16 @@ bool SingleApplication::isSecondary()
 {
     Q_D(SingleApplication);
     return d->server == NULL;
+}
+
+bool SingleApplication::sendMessage(const QByteArray &data)
+{
+    Q_D(SingleApplication);
+    if (isPrimary())
+        return false;
+
+    d->notifyPrimary(data, 3000);
+    return true;
 }
 
 /**
@@ -335,5 +328,5 @@ void SingleApplication::slotConnectionEstablished()
     delete socket;
 
     // Send input arguments the window
-    Q_EMIT showUp(QString(buffer.constData()));
+    Q_EMIT receivedMessage(buffer);
 }

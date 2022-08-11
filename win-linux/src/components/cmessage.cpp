@@ -41,7 +41,7 @@
 #include <QEvent>
 #include <QKeyEvent>
 #include <QCheckBox>
-
+#include <QApplication>
 #include "defines.h"
 #include "utils.h"
 #include "cascapplicationmanagerwrapper.h"
