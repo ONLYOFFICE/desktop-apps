@@ -47,6 +47,7 @@
 #ifdef Q_OS_WIN
 # include <shobjidl.h>
 #else
+# include "platform_linux/xdgdesktopportal.h"
 # ifdef XDG_DESKTOP_PORTAL_KDE
 #  include "platform_linux/kdefiledialog.h"
 # endif
@@ -344,14 +345,12 @@ bool CFileDialogWrapper::modalSaveAs(QString& fileName, int selected)
 #endif
 
 #ifdef __linux__
-# ifdef XDG_DESKTOP_PORTAL_KDE
         if (WindowHelper::getEnvInfo() == "KDE") {
-            QStringList result = Kde::openNativeDialog(qobject_cast<QWidget*>(parent()),
-                                                       Kde::Mode::SAVE, tr("Save As"),
+            QStringList result = XdgPortal::openNativeDialog(qobject_cast<QWidget*>(parent()),
+                                                       PortalMode::SAVE, tr("Save As"),
                                                        n, "", f, &sf);
             return (result.size() > 0) ? result.at(0) : QString();
         }
-# endif
 #endif
         return QFileDialog::getSaveFileName(p, tr("Save As"), n, f, &sf, _opts);
     };
@@ -459,13 +458,11 @@ QStringList CFileDialogWrapper::modalOpen(const QString& path, const QString& fi
 
 #ifndef _WIN32
     WindowHelper::CParentDisable oDisabler(qobject_cast<QWidget*>(parent()));
-# ifdef XDG_DESKTOP_PORTAL_KDE
     if (WindowHelper::getEnvInfo() == "KDE") {
-        return Kde::openNativeDialog(qobject_cast<QWidget*>(parent()),
-                                     Kde::Mode::OPEN, tr("Open Document"), "",
+        return XdgPortal::openNativeDialog(qobject_cast<QWidget*>(parent()),
+                                     PortalMode::OPEN, tr("Open Document"), "",
                                      path, _filter_, &_sel_filter, multi);
     }
-# endif
     return multi ? QFileDialog::getOpenFileNames(_parent, tr("Open Document"), path, _filter_, &_sel_filter, _opts) :
                 QStringList(QFileDialog::getOpenFileName(_parent, tr("Open Document"), path, _filter_, &_sel_filter, _opts));
 #else

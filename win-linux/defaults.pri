@@ -196,7 +196,8 @@ core_linux {
                 $$PWD/src/windows/platform_linux/cwindowplatform.h \
                 $$PWD/src/platform_linux/cdialogopenssl.h \
                 $$PWD/src/platform_linux/cdialogcertificateinfo.h \
-                $$PWD/src/platform_linux/singleapplication.h
+                $$PWD/src/platform_linux/singleapplication.h \
+                $$PWD/src/platform_linux/xdgdesktopportal.h
 
     SOURCES +=  $$PWD/src/windows/platform_linux/cx11decoration.cpp \
                 #$$PWD/src/windows/platform_linux/gtk_addon.cpp \
@@ -204,7 +205,8 @@ core_linux {
                 $$PWD/src/windows/platform_linux/cwindowplatform.cpp \
                 $$PWD/src/platform_linux/cdialogopenssl.cpp \
                 $$PWD/src/platform_linux/cdialogcertificateinfo.cpp \
-                $$PWD/src/platform_linux/singleapplication.cpp
+                $$PWD/src/platform_linux/singleapplication.cpp \
+                $$PWD/src/platform_linux/xdgdesktopportal.cpp
 
     contains(DEFINES, XDG_DESKTOP_PORTAL_KDE) {
         HEADERS += $$PWD/src/platform_linux/kdefiledialog.h
@@ -212,7 +214,7 @@ core_linux {
     }
 
     CONFIG += link_pkgconfig
-    PKGCONFIG += glib-2.0 gtk+-3.0 atk
+    PKGCONFIG += glib-2.0 gtk+-3.0 atk dbus-1
     LIBS += -lX11
 
     LIBS += $$CORE_3DPARTY_PATH/icu/$$PLATFORM_BUILD/build/libicuuc.so.58
