@@ -1,5 +1,9 @@
 
 #include "cthemes.h"
+#ifdef Q_OS_LINUX
+# include <gio/gio.h>
+# include <glib.h>
+#endif
 #include "defines.h"
 #include "utils.h"
 
@@ -100,15 +104,19 @@ public:
             int r, g, b;
             color.getRgb(&r, &g, &b);
             int lum = int(0.299*r + 0.587*g + 0.114*b);
-            is_system_theme_dark = lum > 127;
+            is_system_theme_dark = !(lum > 127);
         } else {
-            QProcess process;
-            process.setProcessChannelMode(QProcess::MergedChannels);
-            process.start("gsettings",  {"get", "org.gnome.desktop.interface", "gtk-theme"});
-            if (process.waitForFinished(1000)) {
-                QString list = QString(process.readAllStandardOutput());
-                is_system_theme_dark = list.toLower().indexOf("dark") == -1;
+            GSettings * sett = g_settings_new("org.gnome.desktop.interface");
+            GVariant * val = g_settings_get_value(sett, "gtk-theme");
+            char * env = nullptr;
+            g_variant_get(val, "s", &env);
+            if ( env ) {
+                is_system_theme_dark = !(QString::fromUtf8(env).toLower().indexOf("dark") == -1);
+
+                free(env);
             }
+
+            g_object_unref(sett);
         }
 #endif
         if ( user_theme == THEME_ID_SYSTEM ) {
