@@ -312,27 +312,6 @@ bool CFileDialogWrapper::modalSaveAs(QString& fileName, int selected)
     QString _croped_name = fileName.left(fileName.lastIndexOf("."));
     QWidget * _mess_parent = (QWidget *)parent();
 
-    if ( WindowHelper::getEnvInfo() == "GNOME" ) {
-        auto _correctGnomeFilters = [](QString &filters) -> void {
-            QString flt("");
-            foreach (QString str, filters.split(";;")) {
-                const int pos = str.indexOf('(');
-                if (pos != -1) {
-                    const QString suffix = str.mid(pos);
-                    str.replace("(", "\uFF08").replace(")", "\uFF09");
-                    str += suffix;
-                }
-                flt += str + ";;";
-            }
-            const int pos = flt.lastIndexOf(";;");
-            if (pos != -1)
-                flt = flt.mid(0, pos);
-            filters = flt;
-        };
-
-        _correctGnomeFilters(_filters);
-        _correctGnomeFilters(_sel_filter);
-    }
 #endif
     reFilter.setPattern("\\(\\*(\\.\\w+)\\)$");
 
@@ -345,7 +324,7 @@ bool CFileDialogWrapper::modalSaveAs(QString& fileName, int selected)
 #endif
 
 #ifdef __linux__
-        if (WindowHelper::getEnvInfo() == "KDE") {
+        if (WindowHelper::getEnvInfo() == "KDE" || WindowHelper::getEnvInfo() == "GNOME") {
             QStringList result = XdgPortal::openNativeDialog(qobject_cast<QWidget*>(parent()),
                                                        PortalMode::SAVE, tr("Save As"),
                                                        n, "", f, &sf);
@@ -458,7 +437,7 @@ QStringList CFileDialogWrapper::modalOpen(const QString& path, const QString& fi
 
 #ifndef _WIN32
     WindowHelper::CParentDisable oDisabler(qobject_cast<QWidget*>(parent()));
-    if (WindowHelper::getEnvInfo() == "KDE") {
+    if (WindowHelper::getEnvInfo() == "KDE" || WindowHelper::getEnvInfo() == "GNOME") {
         return XdgPortal::openNativeDialog(qobject_cast<QWidget*>(parent()),
                                      PortalMode::OPEN, tr("Open Document"), "",
                                      path, _filter_, &_sel_filter, multi);

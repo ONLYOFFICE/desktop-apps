@@ -5,8 +5,6 @@
 #include <stddef.h>
 #include <string.h>
 #include <glib.h>
-#include <thread>
-#include <chrono>
 #include <errno.h>
 #include <assert.h>
 #include <unistd.h>
@@ -19,7 +17,7 @@
 #define __dbusOpen dbus_message_iter_open_container
 #define __dbusClose dbus_message_iter_close_container
 #define __dbusAppend dbus_message_iter_append_basic
-#define ADD_EXTENSION
+//#define ADD_EXTENSION // not reccomended
 
 
 const char URI_PREFIX[] = "file://";
@@ -445,7 +443,79 @@ uint readResponseUrisUncheckedSize(DBusMessage* msg) {
     return arr_size;
 }
 
-Result readResponseUrisSingle(DBusMessage* msg, const char*& file) {
+Result readResponseCurrentFilter(DBusMessage* msg,
+                                 FilterItem* selFilter) {
+    DBusMessageIter iter;
+    const Result res = readResponseResults(msg, iter);
+    if (res != SUCCESS)
+        return res;
+    const char* tmp_curr_filter = nullptr;
+    const char* tmp_extn = nullptr;
+    if (readDict(iter,
+                 "current_filter",
+                [&tmp_extn, &tmp_curr_filter](DBusMessageIter& curr_flt_iter) {
+                    if (dbus_message_iter_get_arg_type(&curr_flt_iter) != DBUS_TYPE_STRUCT) {
+                         // D-Bus response current_filter is not a struct
+                         return SUCCESS;
+                    }
+                    DBusMessageIter curr_flt_struct_iter;
+                    dbus_message_iter_recurse(&curr_flt_iter, &curr_flt_struct_iter);
+                    if (dbus_message_iter_get_arg_type(&curr_flt_struct_iter) == DBUS_TYPE_STRING) {
+                         // Get current filter
+                         dbus_message_iter_get_basic(&curr_flt_struct_iter, &tmp_curr_filter);
+                    }
+                    if (!dbus_message_iter_next(&curr_flt_struct_iter)) {
+                         // D-Bus response current_filter struct ended prematurely
+                         return SUCCESS;
+                    }
+                    if (dbus_message_iter_get_arg_type(&curr_flt_struct_iter) != DBUS_TYPE_ARRAY) {
+                         // D-Bus response URI is not a string
+                         return SUCCESS;
+                    }
+                    DBusMessageIter curr_flt_arr_iter;
+                    dbus_message_iter_recurse(&curr_flt_struct_iter, &curr_flt_arr_iter);
+                    if (dbus_message_iter_get_arg_type(&curr_flt_arr_iter) != DBUS_TYPE_STRUCT) {
+                         // D-Bus response current_filter is not a struct
+                         return SUCCESS;
+                    }
+                    DBusMessageIter curr_flt_extn_iter;
+                    dbus_message_iter_recurse(&curr_flt_arr_iter, &curr_flt_extn_iter);
+                    if (dbus_message_iter_get_arg_type(&curr_flt_extn_iter) != DBUS_TYPE_UINT32) {
+                         // D-Bus response URI is not a string
+                         return SUCCESS;
+                    }
+                    dbus_uint32_t type;
+                    dbus_message_iter_get_basic(&curr_flt_extn_iter, &type);
+                    if (type != 0) {
+                         // Wrong filter type
+                         return SUCCESS;
+                    }
+                    if (!dbus_message_iter_next(&curr_flt_extn_iter)) {
+                         // D-Bus response current_filter struct ended prematurely
+                         return SUCCESS;
+                    }
+                    if (dbus_message_iter_get_arg_type(&curr_flt_extn_iter) != DBUS_TYPE_STRING) {
+                         // D-Bus response URI is not a string
+                         return SUCCESS;
+                    }
+                    dbus_message_iter_get_basic(&curr_flt_extn_iter, &tmp_extn);
+                    return SUCCESS;
+                }) == ERROR)
+        return ERROR;
+
+    if (tmp_extn) {
+        Free((void*)selFilter->pattern);
+        selFilter->pattern = strdup(tmp_extn);
+    }
+    if (tmp_curr_filter) {
+        Free((void*)selFilter->name);
+        selFilter->name = strdup(tmp_curr_filter);
+    }
+    return SUCCESS;
+}
+
+Result readResponseUrisSingle(DBusMessage* msg,
+                              const char* &file) {
     DBusMessageIter uri_iter;
     const Result res = readResponseUris(msg, uri_iter);
     if (res != SUCCESS)
@@ -892,6 +962,7 @@ Result openDialog(Window parent, PortalMode mode, const char* title,
                 const Result res = readResponseUrisSingle(msg, uri);
                 if (res != SUCCESS)
                     return res;
+                readResponseCurrentFilter(msg, selFilter);
             }
             return allocAndCopyFilePath(uri, *outPaths);
         } else {
@@ -927,6 +998,7 @@ Result openDialog(Window parent, PortalMode mode, const char* title,
             const Result res = readResponseUrisSingle(msg, uri);
             if (res != SUCCESS)
                 return res;
+            readResponseCurrentFilter(msg, selFilter);
         }
         return allocAndCopyFilePath(uri, *outPaths);
 #endif
