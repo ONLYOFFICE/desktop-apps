@@ -135,6 +135,43 @@ namespace InputArgs {
     }
 }
 
+namespace EditorJSVariables {
+    QJsonObject vars_object;
+
+    auto init() -> void {
+#ifdef __OS_WIN_XP
+        vars_object["os"] = "winxp";
+#endif
+        if ( InputArgs::contains(L"--help-url") )
+            vars_object["helpUrl"] = QUrl(QString::fromStdWString(InputArgs::argument_value(L"--help-url"))).toString();
+#ifdef URL_WEBAPPS_HELP
+        else if ( !QString(URL_WEBAPPS_HELP).isEmpty() )
+            vars_object["helpUrl"] = URL_WEBAPPS_HELP;
+#endif
+    }
+
+    auto setVariable(const QString& name, const QString& var) -> void {
+        vars_object[name] = var;
+    }
+
+    auto setVariable(const QString& name, const QJsonObject& obj) -> void {
+        vars_object[name] = obj;
+    }
+
+    auto applyVariable(const QString& name, const QJsonObject& obj) -> void {
+        vars_object[name] = obj;
+        apply();
+    }
+
+    auto toWString() -> std::wstring {
+        return vars_object.isEmpty() ? L"" : Utils::stringifyJson(vars_object).toStdWString();
+    }
+
+    auto apply() -> void {
+        AscAppManager::getInstance().SetRendererProcessVariable(toWString());
+    }
+}
+
 QStringList * Utils::getInputFiles(const QStringList& inlist)
 {
     QStringList * _ret_files_list = nullptr;
@@ -638,6 +675,32 @@ namespace WindowHelper {
             m_pChild->deleteLater();
             m_pChild = nullptr;
         }
+    }
+
+    // Linux Environment Info
+    QString desktop_env;
+
+    auto initEnvInfo() -> void {
+        const QString env = QString::fromUtf8(getenv("XDG_CURRENT_DESKTOP"));
+        if (env.indexOf("Unity") != -1) {
+            const QString session = QString::fromUtf8(getenv("DESKTOP_SESSION"));
+            if (session.indexOf("gnome-fallback") != -1)
+                desktop_env = "GNOME";
+            else desktop_env = "UNITY";
+        } else
+        if (env.indexOf("GNOME") != -1)
+            desktop_env = "GNOME";
+        else
+        if (env.indexOf("KDE") != -1)
+            desktop_env = "KDE";
+        else desktop_env = "OTHER";
+    }
+
+    auto getEnvInfo() -> QString {
+        if ( desktop_env.isEmpty() )
+            initEnvInfo();
+
+        return desktop_env;
     }
 
 #else

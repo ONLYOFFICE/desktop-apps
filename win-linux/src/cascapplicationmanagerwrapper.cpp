@@ -218,7 +218,7 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
 #else
                 // TODO: unlock for ver 6.4 because bug 50589
                 // TODO: unlock for back compatibility with ver 6.4 on portals
-                sendCommandTo(ptr, L"uitheme:changed", themes().current().id());
+//                sendCommandTo(ptr, L"uitheme:changed", themes().current().id());
 #endif
 
                 if ( !((pData->get_Param()).find(L"fillform") == std::wstring::npos) ) {
@@ -822,6 +822,9 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
         }
 
         if (open_opts.srctype == etUndefined) {
+            if ( _app.m_pMainWindow && _app.m_private->bringEditorToFront(QString::fromStdWString(open_opts.wurl)) ) {
+                continue;
+            } else
             if ( CFileInspector::isLocalFile(QString::fromStdWString(open_opts.wurl)) ) {
                 open_opts.srctype = etLocalFile;
 #ifdef Q_OS_WIN
@@ -1063,6 +1066,8 @@ void CAscApplicationManagerWrapper::initializeApp()
     mainFont.setStyleStrategy( QFont::PreferAntialias );
     QApplication::setFont( mainFont );
 
+    EditorJSVariables::init();
+
     wstring wparams{InputArgs::webapps_params()};
     if ( !wparams.empty() ) wparams += L"&";
     wparams += QString("lang=%1&username=%3&location=%2").arg(CLangater::getCurrentLangCode(), Utils::systemLocationCode()).toStdWString();
@@ -1072,26 +1077,10 @@ void CAscApplicationManagerWrapper::initializeApp()
     InputArgs::set_webapps_params(wparams);
 
     AscAppManager::getInstance().InitAdditionalEditorParams(wparams);
-    AscAppManager::getInstance().applyTheme(themes().current().id(), true);
+//    AscAppManager::getInstance().applyTheme(themes().current().id(), true);
 
-    QJsonObject jtheme{
-        {"type", _app.m_themes->current().stype()},
-        {"id", QString::fromStdWString(_app.m_themes->current().id())}
-    };
-#ifdef __OS_WIN_XP
-    QJsonObject _json_obj{{"theme", jtheme}, {"os", "winxp"}};
-#else
-    QJsonObject _json_obj{{"theme", jtheme}};
-#endif
-
-    if ( InputArgs::contains(L"--help-url") )
-        _json_obj["helpUrl"] = QUrl(QString::fromStdWString(InputArgs::argument_value(L"--help-url"))).isValid();
-#ifdef URL_WEBAPPS_HELP
-    else if ( !QString(URL_WEBAPPS_HELP).isEmpty() )
-        _json_obj["helpUrl"] = URL_WEBAPPS_HELP;
-#endif
-
-    AscAppManager::getInstance().SetRendererProcessVariable(Utils::stringifyJson(_json_obj).toStdWString());
+    EditorJSVariables::applyVariable("theme", {{"type", _app.m_themes->current().stype()},
+                                       {"id", QString::fromStdWString(_app.m_themes->current().id())}});
 }
 
 CSingleWindow * CAscApplicationManagerWrapper::createReporterWindow(void * data, int parentid)
@@ -1555,13 +1544,16 @@ bool CAscApplicationManagerWrapper::applySettings(const wstring& wstrjson)
 
         if ( objRoot.contains("uiscaling") ) {
             wstring sets;
+            setUserSettings(L"system-scale", L"0");
             switch (objRoot["uiscaling"].toString().toInt()) {
             case 100: sets = L"1"; break;
             case 125: sets = L"1.25"; break;
             case 150: sets = L"1.5"; break;
             case 175: sets = L"1.75"; break;
             case 200: sets = L"2"; break;
-            default: sets = L"default";
+            default:
+                sets = L"default";
+                setUserSettings(L"system-scale", L"1");
             }
 
             setUserSettings(L"force-scale", sets);
@@ -1641,16 +1633,8 @@ void CAscApplicationManagerWrapper::applyTheme(const wstring& theme, bool force)
         std::wstring params{InputArgs::change_webapps_param(L"&uitheme=" + old_theme, L"&uitheme=" + theme)};
         AscAppManager::getInstance().InitAdditionalEditorParams(params);
 
-        QJsonObject jtheme{
-            {"type", _app.m_themes->current().stype()},
-            {"id", QString::fromStdWString(_app.m_themes->current().id())}
-        };
-#ifdef __OS_WIN_XP
-        QJsonObject _json_obj{{"theme", jtheme}, {"os", "winxp"}};
-#else
-        QJsonObject _json_obj{{"theme", jtheme}};
-#endif
-        AscAppManager::getInstance().SetRendererProcessVariable(Utils::stringifyJson(_json_obj).toStdWString());
+        EditorJSVariables::applyVariable("theme", {{"type", _app.m_themes->current().stype()},
+                                           {"id", QString::fromStdWString(_app.m_themes->current().id())}});
 
         // TODO: remove
         if ( mainWindow() ) mainWindow()->applyTheme(_app.m_themes->current().originalId());

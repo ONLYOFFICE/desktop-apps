@@ -89,7 +89,7 @@ begin
   else
     upgradecode := '{B59F5BF1-67C8-3802-8E59-2CE551A39FC5}'; //x86
 
-  Result :=  msiproductupgrade(upgradecode, '12');
+  Result :=  msiproductupgrade(upgradecode, '12.0.40649.5');
 end;
 
 function checkVCRedist2022(): Boolean;
@@ -102,5 +102,5 @@ begin
   else
     upgradecode := '{65E5BD06-6392-3027-8C26-853107D3CF1A}'; //x86
 
-  Result :=  msiproductupgrade(upgradecode, '14');
+  Result :=  msiproductupgrade(upgradecode, '14.32.31332.0');
 end;

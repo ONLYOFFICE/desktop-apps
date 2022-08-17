@@ -386,7 +386,7 @@ public:
 #endif
         }
 
-        AscAppManager::sendCommandTo(panel()->cef(), L"uitheme:changed", theme);
+        AscAppManager::sendCommandTo(panel()->cef(), L"uitheme:changed", AscAppManager::themes().current().id());
     }
 
     void onDocumentChanged(int id, bool state) override
