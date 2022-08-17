@@ -47,6 +47,7 @@
 #ifdef Q_OS_WIN
 # include <shobjidl.h>
 #else
+# include "platform_linux/xdgdesktopportal.h"
 # ifdef XDG_DESKTOP_PORTAL_KDE
 #  include "platform_linux/kdefiledialog.h"
 # endif
@@ -311,27 +312,6 @@ bool CFileDialogWrapper::modalSaveAs(QString& fileName, int selected)
     QString _croped_name = fileName.left(fileName.lastIndexOf("."));
     QWidget * _mess_parent = (QWidget *)parent();
 
-    if ( WindowHelper::getEnvInfo() == "GNOME" ) {
-        auto _correctGnomeFilters = [](QString &filters) -> void {
-            QString flt("");
-            foreach (QString str, filters.split(";;")) {
-                const int pos = str.indexOf('(');
-                if (pos != -1) {
-                    const QString suffix = str.mid(pos);
-                    str.replace("(", "\uFF08").replace(")", "\uFF09");
-                    str += suffix;
-                }
-                flt += str + ";;";
-            }
-            const int pos = flt.lastIndexOf(";;");
-            if (pos != -1)
-                flt = flt.mid(0, pos);
-            filters = flt;
-        };
-
-        _correctGnomeFilters(_filters);
-        _correctGnomeFilters(_sel_filter);
-    }
 #endif
     reFilter.setPattern("\\(\\*(\\.\\w+)\\)$");
 
@@ -344,14 +324,12 @@ bool CFileDialogWrapper::modalSaveAs(QString& fileName, int selected)
 #endif
 
 #ifdef __linux__
-# ifdef XDG_DESKTOP_PORTAL_KDE
-        if (WindowHelper::getEnvInfo() == "KDE") {
-            QStringList result = Kde::openNativeDialog(qobject_cast<QWidget*>(parent()),
-                                                       Kde::Mode::SAVE, tr("Save As"),
+        if (WindowHelper::getEnvInfo() == "KDE" || WindowHelper::getEnvInfo() == "GNOME") {
+            QStringList result = XdgPortal::openNativeDialog(qobject_cast<QWidget*>(parent()),
+                                                       PortalMode::SAVE, tr("Save As"),
                                                        n, "", f, &sf);
             return (result.size() > 0) ? result.at(0) : QString();
         }
-# endif
 #endif
         return QFileDialog::getSaveFileName(p, tr("Save As"), n, f, &sf, _opts);
     };
@@ -459,13 +437,11 @@ QStringList CFileDialogWrapper::modalOpen(const QString& path, const QString& fi
 
 #ifndef _WIN32
     WindowHelper::CParentDisable oDisabler(qobject_cast<QWidget*>(parent()));
-# ifdef XDG_DESKTOP_PORTAL_KDE
-    if (WindowHelper::getEnvInfo() == "KDE") {
-        return Kde::openNativeDialog(qobject_cast<QWidget*>(parent()),
-                                     Kde::Mode::OPEN, tr("Open Document"), "",
+    if (WindowHelper::getEnvInfo() == "KDE" || WindowHelper::getEnvInfo() == "GNOME") {
+        return XdgPortal::openNativeDialog(qobject_cast<QWidget*>(parent()),
+                                     PortalMode::OPEN, tr("Open Document"), "",
                                      path, _filter_, &_sel_filter, multi);
     }
-# endif
     return multi ? QFileDialog::getOpenFileNames(_parent, tr("Open Document"), path, _filter_, &_sel_filter, _opts) :
                 QStringList(QFileDialog::getOpenFileName(_parent, tr("Open Document"), path, _filter_, &_sel_filter, _opts));
 #else
