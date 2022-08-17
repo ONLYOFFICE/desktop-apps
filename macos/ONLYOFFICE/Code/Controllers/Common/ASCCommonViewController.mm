@@ -68,6 +68,8 @@
 #import "ASCCertificatePreviewController.h"
 #import "ASCCertificateQLPreviewController.h"
 #import "ASCLinguist.h"
+#import "ASCEditorJSVariables.h"
+
 
 #define rootTabId @"1CEF624D-9FF3-432B-9967-61361B5BFE8B"
 
@@ -1594,25 +1596,40 @@
 - (void)onUIThemeChanged:(NSNotification *)notification {
     if (notification && notification.userInfo) {
         NSDictionary * params = (NSDictionary *)notification.userInfo;
-        std::wstring theme = [params[@"uitheme"] stdwstring];
+        std::wstring wtheme = [params[@"uitheme"] stdwstring];
+        NSString * theme = params[@"uitheme"];
         CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
+
+        NSEditorApi::CAscExecCommandJS * pCommand = new NSEditorApi::CAscExecCommandJS;
+        pCommand->put_Command(L"uitheme:changed");
+        pCommand->put_Param(wtheme);
+
+        NSEditorApi::CAscMenuEvent* pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND_JS);
+        pEvent->m_pData = pCommand;
+        appManager->SetEventToAllMainWindows(pEvent);
 
         for (ASCTabView * tab in self.tabsControl.tabs) {
             if (NSCefView * cefView = [self cefViewWithTab:tab]) {
                 CCefView * cef = appManager->GetViewById((int)cefView.uuid);
                 if (cef && cef->GetType() == cvwtEditor) {
-                    NSEditorApi::CAscExecCommandJS * pCommand = new NSEditorApi::CAscExecCommandJS;
+                    pCommand = new NSEditorApi::CAscExecCommandJS;
                     pCommand->put_FrameName(L"frameEditor");
                     pCommand->put_Command(L"uitheme:changed");
-                    pCommand->put_Param(theme);
+                    pCommand->put_Param(wtheme);
 
-                    NSEditorApi::CAscMenuEvent* pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND_JS);
+                    pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND_JS);
                     pEvent->m_pData = pCommand;
 
                     [cefView apply:pEvent];
                 }
             }
         }
+
+        [[ASCEditorJSVariables instance] setVariable:@"theme" withObject:@{@"id":theme}];
+        [[ASCEditorJSVariables instance] apply];
+
+        [[ASCEditorJSVariables instance] setParameter:@"uitheme" withString:theme];
+        [[ASCEditorJSVariables instance] applyParameters];
     }
 }
 

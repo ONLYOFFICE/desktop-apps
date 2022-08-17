@@ -40,6 +40,7 @@
 
 #import "NSColor+Extensions.h"
 #import "ASCConstants.h"
+#import "NSApplication+Extensions.h"
 
 #pragma mark - ONLYOFFICE
 
@@ -67,22 +68,19 @@
 }
 
 + (NSColor *) themedDocumentEditor {
-    NSString * uiTheme = [[NSUserDefaults standardUserDefaults] valueForKey:ASCUserUITheme];
-    if ( [uiTheme isEqualToString:uiThemeDark] ) {
+    if ( [NSApplication isUIThemeDark] ) {
         return UIColorFromRGB(0x2a2a2a);
     } else return [NSColor brendDocumentEditor];
 }
 
 + (NSColor *) themedSpreadsheetEditor {
-    NSString * uiTheme = [[NSUserDefaults standardUserDefaults] valueForKey:ASCUserUITheme];
-    if ( [uiTheme isEqualToString:uiThemeDark] ) {
+    if ( [NSApplication isUIThemeDark] ) {
         return UIColorFromRGB(0x2a2a2a);
     } else return [NSColor brendSpreadsheetEditor];
 }
 
 + (NSColor *) themedPresentationEditor {
-    NSString * uiTheme = [[NSUserDefaults standardUserDefaults] valueForKey:ASCUserUITheme];
-    if ( [uiTheme isEqualToString:uiThemeDark] ) {
+    if ( [NSApplication isUIThemeDark] ) {
         return UIColorFromRGB(0x2a2a2a);
     } else return [NSColor brendPresentationEditor];
 }

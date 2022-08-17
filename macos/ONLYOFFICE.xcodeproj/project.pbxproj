@@ -22,6 +22,9 @@
 
 /* Begin PBXBuildFile section */
 		5A452E4B257688C700C58E01 /* providers in Resources */ = {isa = PBXBuildFile; fileRef = 5A452E4A257688C700C58E01 /* providers */; };
+		5A9D7AE8289336130069EE5A /* ASCEditorJSVariables.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5A9D7AE7289336130069EE5A /* ASCEditorJSVariables.mm */; };
+		5A9D7AE92893D86C0069EE5A /* ASCEditorJSVariables.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5A9D7AE7289336130069EE5A /* ASCEditorJSVariables.mm */; };
+		5A9D7AEA2893D86D0069EE5A /* ASCEditorJSVariables.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5A9D7AE7289336130069EE5A /* ASCEditorJSVariables.mm */; };
 		5A9F8D392848AA07007CA93F /* file-xlsm.icns in Resources */ = {isa = PBXBuildFile; fileRef = 5A9F8D382848AA06007CA93F /* file-xlsm.icns */; };
 		5A9F8D3A2848AA07007CA93F /* file-xlsm.icns in Resources */ = {isa = PBXBuildFile; fileRef = 5A9F8D382848AA06007CA93F /* file-xlsm.icns */; };
 		5A9F8D3B2848AA07007CA93F /* file-xlsm.icns in Resources */ = {isa = PBXBuildFile; fileRef = 5A9F8D382848AA06007CA93F /* file-xlsm.icns */; };
@@ -767,6 +770,8 @@
 		5A87ABEB283286DB0084198A /* ga-IE */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ga-IE"; path = "ga-IE.lproj/MoveApplication.strings"; sourceTree = "<group>"; };
 		5A87ABEC283286DB0084198A /* ga-IE */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ga-IE"; path = "ga-IE.lproj/Presentation-Reporter.strings"; sourceTree = "<group>"; };
 		5A87ABEE2832964F0084198A /* ga-IE */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ga-IE"; path = "ga-IE.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		5A9D7AE6289336130069EE5A /* ASCEditorJSVariables.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASCEditorJSVariables.h; sourceTree = "<group>"; };
+		5A9D7AE7289336130069EE5A /* ASCEditorJSVariables.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ASCEditorJSVariables.mm; sourceTree = "<group>"; };
 		5A9F8D382848AA06007CA93F /* file-xlsm.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "file-xlsm.icns"; sourceTree = "<group>"; };
 		5AA06CBB27AC3BA000D67BEE /* ASCLinguist.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ASCLinguist.h; sourceTree = "<group>"; };
 		5AA06CBC27AC3BA000D67BEE /* ASCLinguist.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ASCLinguist.m; sourceTree = "<group>"; };
@@ -1426,6 +1431,8 @@
 		FCA0B3561B9F00780073EDD4 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				5A9D7AE6289336130069EE5A /* ASCEditorJSVariables.h */,
+				5A9D7AE7289336130069EE5A /* ASCEditorJSVariables.mm */,
 				FCA0B3601B9F0AA10073EDD4 /* ASCConstants.h */,
 				FCAC6DF71C195FA6003D2457 /* ASCConstants.m */,
 				FCCC2FD521E5DF7700FB9209 /* ASCBlockHolder.h */,
@@ -2288,6 +2295,7 @@
 				FC0BD690258B63F700C47F95 /* PFMoveApplication.m in Sources */,
 				FC0BD691258B63F700C47F95 /* ASCBlockHolder.m in Sources */,
 				FC0BD692258B63F700C47F95 /* ASCTabView.m in Sources */,
+				5A9D7AEA2893D86D0069EE5A /* ASCEditorJSVariables.mm in Sources */,
 				FC0BD693258B63F700C47F95 /* ASCMenuButtonCell.m in Sources */,
 				FC0BD694258B63F700C47F95 /* SFBPopoverWindow.m in Sources */,
 				FC0BD695258B63F700C47F95 /* NSWindow+Extensions.m in Sources */,
@@ -2361,6 +2369,7 @@
 				FCB4C6C726DD018B0012C20D /* PFMoveApplication.m in Sources */,
 				FCB4C6C826DD018B0012C20D /* ASCBlockHolder.m in Sources */,
 				FCB4C6C926DD018B0012C20D /* ASCTabView.m in Sources */,
+				5A9D7AE8289336130069EE5A /* ASCEditorJSVariables.mm in Sources */,
 				FCB4C6CA26DD018B0012C20D /* ASCMenuButtonCell.m in Sources */,
 				FCB4C6CB26DD018B0012C20D /* SFBPopoverWindow.m in Sources */,
 				FCB4C6CC26DD018B0012C20D /* NSWindow+Extensions.m in Sources */,
@@ -2434,6 +2443,7 @@
 				FCB454FF1C326A4E00FEACF2 /* PFMoveApplication.m in Sources */,
 				FCCC2FD721E5DF7700FB9209 /* ASCBlockHolder.m in Sources */,
 				FCC77C97206CEE85001B7837 /* ASCTabView.m in Sources */,
+				5A9D7AE92893D86C0069EE5A /* ASCEditorJSVariables.mm in Sources */,
 				FCC77C79206CEE5B001B7837 /* ASCMenuButtonCell.m in Sources */,
 				FC3BFE011BBE83AB0040C904 /* SFBPopoverWindow.m in Sources */,
 				FCF2897D21510403002FD438 /* NSWindow+Extensions.m in Sources */,

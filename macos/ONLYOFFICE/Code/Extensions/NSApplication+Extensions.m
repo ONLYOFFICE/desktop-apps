@@ -40,6 +40,7 @@
 
 #import "NSApplication+Extensions.h"
 #import "ASCConstants.h"
+#import "ASCSharedSettings.h"
 
 @implementation NSApplication (Extensions)
 
@@ -56,7 +57,10 @@
 }
 
 + (BOOL)isUIThemeDark {
-    return [uiThemeDark isEqualToString:[[NSUserDefaults standardUserDefaults] valueForKey:ASCUserUITheme]];
+    NSString * theme = [[NSUserDefaults standardUserDefaults] valueForKey:ASCUserUITheme];
+    if ([uiThemeSystem isEqualToString:theme]) {
+        return [@"dark" isEqualToString:[[ASCSharedSettings sharedInstance] settingByKey:kSettingsColorScheme]];
+    } else return [uiThemeDark isEqualToString:theme];
 }
 
 @end
