@@ -1016,6 +1016,12 @@ QStringList XdgPortal::openNativeDialog(QWidget *parent,
     Window parentWid = (parent) ? (Window)parent->winId() : 0L;
     QStringList files;
 
+    const int pos = file_name.lastIndexOf('/');
+    const QString _file_name = (pos != -1) ?
+                file_name.mid(pos + 1) : file_name;
+    const QString _path = (path.isEmpty() && pos != -1) ?
+                file_name.mid(0, pos) : path;
+
     QStringList filterList = filter.split(";;");
     int filterSize = filterList.size();
     FilterItem filterItem[filterSize];
@@ -1052,8 +1058,8 @@ QStringList XdgPortal::openNativeDialog(QWidget *parent,
                         filterItem,
                         filterSize,
                         &selFilterItem,
-                        path.toLocal8Bit().data(),
-                        file_name.toLocal8Bit().data(),
+                        _path.toLocal8Bit().data(),
+                        _file_name.toLocal8Bit().data(),
                         sel_multiple);
 
     if (mode == PortalMode::OPEN && sel_multiple) {
