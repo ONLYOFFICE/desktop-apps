@@ -31,24 +31,24 @@
 */
 
 //
-//  ASCSharedSettings.h
+//  ASCEditorJSVariables.h
 //  ONLYOFFICE
 //
-//  Created by Alexander Yuzhin on 12/15/15.
-//  Copyright © 2015 Ascensio System SIA. All rights reserved.
+//  Created by Maxim.Kadushkin on 28/07/2022.
+//  Copyright © 2022 Ascensio System SIA. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
-static NSString * const kSettingsCurrentTab         = @"asc.onlyoffice.currentTab";
-static NSString * const kSettingsLastOpenDirectory  = @"asc.onlyoffice.lastOpenDirectory";
-static NSString * const kSettingsHasExtraFeatures   = @"asc.onlyoffice.hasExtraFeatures";
-static NSString * const kSettingsOpenAppLinks       = @"asc.onlyoffice.openAppLinks";
-static NSString * const kSettingsColorScheme        = @"asc.onlyoffice.colorScheme";
 
-@interface ASCSharedSettings : NSObject
-+ (instancetype)sharedInstance;
+@interface ASCEditorJSVariables : NSObject
++ (instancetype)instance;
 
-- (void)setSetting:(id)setting forKey:(id <NSCopying>)aKey;
-- (id)settingByKey:(id)key;
+- (id)init;
+- (void)apply;
+- (void)setVariable:(NSString*)name withString:(NSString *)value;
+- (void)setVariable:(NSString*)name withObject:(NSDictionary *)value;
+- (void)setParameter:(NSString*)name withString:(NSString *)value;
+- (void)applyParameters;
+
 @end

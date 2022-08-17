@@ -49,6 +49,8 @@
 #import "OfficeFileFormats.h"
 #import "ASCLinguist.h"
 #import "mac_application.h"
+#import "NSApplication+Extensions.h"
+#import "ASCEditorJSVariables.h"
 
 #pragma mark -
 #pragma mark ========================================================
@@ -602,14 +604,12 @@ public:
                             }
                         } else if (cmd.find(L"settings:apply") != std::wstring::npos) {
                             if (NSDictionary * json = [[NSString stringWithstdwstring:param] dictionary]) {
-                                NSMutableArray * params = [NSMutableArray array];
-
                                 id <ASCExternalDelegate> externalDelegate = [[ASCExternalController shared] delegate];
 
                                 if (externalDelegate && [externalDelegate respondsToSelector:@selector(onAppPreferredLanguage)]) {
-                                    [params addObject:[NSString stringWithFormat:@"lang=%@", [externalDelegate onAppPreferredLanguage]]];
+                                    [[ASCEditorJSVariables instance] setParameter:@"lang" withString:[externalDelegate onAppPreferredLanguage]];
                                 } else {
-                                    [params addObject:[NSString stringWithFormat:@"lang=%@", [[[NSLocale currentLocale] objectForKey:NSLocaleLanguageCode] lowercaseString]]];
+                                    [[ASCEditorJSVariables instance] setParameter:@"lang" withString:[[[NSLocale currentLocale] objectForKey:NSLocaleLanguageCode] lowercaseString]];
                                 }
                                 
                                 if (NSString * langId = json[@"langid"]) {
@@ -618,26 +618,27 @@ public:
 
                                 if (NSString * userName = json[@"username"]) {
                                     if ([userName isEqualToString:@""]) {
-                                        [params addObject:[NSString stringWithFormat:@"username=%@", NSFullUserName()]];
+                                        [[ASCEditorJSVariables instance] setParameter:@"username" withString:NSFullUserName()];
                                         [[NSUserDefaults standardUserDefaults] setObject:NSFullUserName() forKey:ASCUserNameApp];
                                     } else {
-                                        [params addObject:[NSString stringWithFormat:@"username=%@", userName]];
+                                        [[ASCEditorJSVariables instance] setParameter:@"username" withString:userName];
                                         [[NSUserDefaults standardUserDefaults] setObject:userName forKey:ASCUserNameApp];
                                     }
                                     [[NSUserDefaults standardUserDefaults] synchronize];
                                 } else {
-                                    [params addObject:[NSString stringWithFormat:@"username=%@", NSFullUserName()]];
+                                    [[ASCEditorJSVariables instance] setParameter:@"username" withString:NSFullUserName()];
                                 }
+
                                 if (NSString * docopenMode = json[@"docopenmode"]) {
                                     if ([docopenMode isEqualToString:@"view"]) {
-                                        [params addObject:[NSString stringWithFormat:@"mode=%@", @"view"]];
+                                        [[ASCEditorJSVariables instance] setParameter:@"mode" withString:@"view"];
                                     }
                                     [[NSUserDefaults standardUserDefaults] setObject:docopenMode forKey:@"asc_user_docOpenMode"];
                                     [[NSUserDefaults standardUserDefaults] synchronize];
                                 }
 
                                 if (NSString * uiTheme = json[@"uitheme"]) {
-                                    if ( [[NSUserDefaults standardUserDefaults] valueForKey:ASCUserUITheme] != uiTheme ) {
+                                    if ( ![uiTheme isEqualToString:[[NSUserDefaults standardUserDefaults] valueForKey:ASCUserUITheme]] ) {
                                         [[NSUserDefaults standardUserDefaults] setObject:uiTheme forKey:ASCUserUITheme];
 
                                         [[NSNotificationCenter defaultCenter] postNotificationName:ASCEventNameChangedUITheme
@@ -645,12 +646,10 @@ public:
                                                                                           userInfo: @{@"uitheme": uiTheme}];
                                     }
 
-                                    [params addObject:[NSString stringWithFormat:@"uitheme=%@", uiTheme]];
+                                    [[ASCEditorJSVariables instance] setParameter:@"uitheme" withString:uiTheme];
                                 }
 
-                                std::wstring wLocale = [[params componentsJoinedByString:@"&"] stdwstring];
-                                CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
-                                appManager->InitAdditionalEditorParams(wLocale);
+                                [[ASCEditorJSVariables instance] applyParameters];
                             }
                         } else if (cmd.find(L"encrypt:isneedbuild") != std::wstring::npos) {
                             bool isFragmented = pData->get_Param() == L"true" ? true : false;
