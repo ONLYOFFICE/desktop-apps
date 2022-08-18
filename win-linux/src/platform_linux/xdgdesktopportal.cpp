@@ -1,4 +1,4 @@
-
+#define _GNU_SOURCE 1
 #include "xdgdesktopportal.h"
 #include <stdlib.h>
 #include <stdio.h>
@@ -9,7 +9,7 @@
 #include <assert.h>
 #include <unistd.h>
 #include <dbus/dbus.h>
-#include <sys/random.h>
+#include <sys/syscall.h>
 #include <X11/Xlib.h>
 #include <X11/Xatom.h>
 #include <X11/Xutil.h>
@@ -626,7 +626,8 @@ char* generateChars(char* out) {
     size_t count = 32;
     while (count > 0) {
         unsigned char buff[32];
-        ssize_t rnd = getrandom(buff, count, 0);
+        //ssize_t rnd = getrandom(buff, count, 0);
+        ssize_t rnd = syscall(SYS_getrandom, buff, count, 0);
         if (rnd == -1) {
             if (errno == EINTR)
                 continue;
