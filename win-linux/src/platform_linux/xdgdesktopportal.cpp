@@ -1,4 +1,4 @@
-
+#define _GNU_SOURCE 1
 #include "xdgdesktopportal.h"
 #include <stdlib.h>
 #include <stdio.h>
@@ -9,10 +9,47 @@
 #include <assert.h>
 #include <unistd.h>
 #include <dbus/dbus.h>
-#include <sys/random.h>
+#include <sys/syscall.h>
+#include <linux/random.h>
 #include <X11/Xlib.h>
 #include <X11/Xatom.h>
 #include <X11/Xutil.h>
+
+#if defined(__x86_64__)
+# define GETRANDOM_NR 318
+#elif defined(__i386__)
+# define GETRANDOM_NR 355
+#elif defined(__arm__)
+# define GETRANDOM_NR 384
+#elif defined(__ppc64le__)
+# define GETRANDOM_NR 359
+#elif defined(__PPC64LE__)
+# define GETRANDOM_NR 359
+#elif defined(__ppc64__)
+# define GETRANDOM_NR 359
+#elif defined(__PPC64__)
+# define GETRANDOM_NR 359
+#elif defined(__s390x__)
+# define GETRANDOM_NR 349
+#elif defined(__s390__)
+# define GETRANDOM_NR 349
+#endif
+
+#if defined(SYS_getrandom)
+# if defined(GETRANDOM_NR)
+static_assert(GETRANDOM_NR == SYS_getrandom,
+              "GETRANDOM_NR should match the actual SYS_getrandom value");
+# endif
+#else
+# define SYS_getrandom GETRANDOM_NR
+#endif
+
+#if defined(GRND_NONBLOCK)
+static_assert(GRND_NONBLOCK == 1,
+              "If GRND_NONBLOCK is not 1 the #define below is wrong");
+#else
+# define GRND_NONBLOCK 1
+#endif
 
 #define __dbusOpen dbus_message_iter_open_container
 #define __dbusClose dbus_message_iter_close_container
@@ -47,7 +84,7 @@ typedef struct {
 Bool xerror = False;
 
 Result initDBus(void);
-Result openDialog(Window parent, PortalMode mode, const char* title,
+Result openDialog(Window parent, Xdg::Mode mode, const char* title,
                   char** outPaths,
                   const FilterItem* filterList,
                   uint filterCount,
@@ -626,7 +663,8 @@ char* generateChars(char* out) {
     size_t count = 32;
     while (count > 0) {
         unsigned char buff[32];
-        ssize_t rnd = getrandom(buff, count, 0);
+        //ssize_t rnd = getrandom(buff, count, 0);
+        ssize_t rnd = syscall(SYS_getrandom, buff, count, 0);
         if (rnd == -1) {
             if (errno == EINTR)
                 continue;
@@ -799,7 +837,7 @@ Result allocAndCopyFilePathWithExtn(const char* fileUri, const char* extn, char*
 }
 #endif
 
-Result callXdgPortal(Window parent, PortalMode mode, const char* title,
+Result callXdgPortal(Window parent, Xdg::Mode mode, const char* title,
                      DBusMessage* &outMsg,
                      const FilterItem* filterList,
                      uint filterCount,
@@ -821,7 +859,7 @@ Result callXdgPortal(Window parent, PortalMode mode, const char* title,
     DBusMessage* methd = dbus_message_new_method_call("org.freedesktop.portal.Desktop",
                                                       "/org/freedesktop/portal/desktop",
                                                       "org.freedesktop.portal.FileChooser",
-                                                      (mode == PortalMode::SAVE)
+                                                      (mode == Xdg::Mode::SAVE)
                                                         ? "SaveFile" : "OpenFile");
     UnrefLater_DBusMessage __unrefLater(methd);
     DBusMessageIter iter;
@@ -836,14 +874,14 @@ Result callXdgPortal(Window parent, PortalMode mode, const char* title,
     __dbusOpen(&iter, DBUS_TYPE_ARRAY, "{sv}", &arr_iter);
     setHandleToken(arr_iter, handle_token);
 
-    if (mode == PortalMode::SAVE) {
+    if (mode == Xdg::Mode::SAVE) {
         // Save file
         setFilters(arr_iter, filterList, filterCount, selFilter);
         setCurrentName(arr_iter, defltName);
         setCurrentFolder(arr_iter, defltPath);
         setCurrentFile(arr_iter, defltPath, defltName);
     } else
-    if (mode == PortalMode::OPEN) {
+    if (mode == Xdg::Mode::OPEN) {
         // Open file(s)
         if (multiple)
             setOpenFileEntryType(arr_iter, EntryType::Multiple);
@@ -931,7 +969,7 @@ void freePath(char* filePath) {
     Free(filePath);
 }
 
-Result openDialog(Window parent, PortalMode mode, const char* title,
+Result openDialog(Window parent, Xdg::Mode mode, const char* title,
                   char** outPaths,
                   const FilterItem* filterList,
                   uint filterCount,
@@ -953,7 +991,7 @@ Result openDialog(Window parent, PortalMode mode, const char* title,
             return res;
     }
 
-    if (mode == PortalMode::OPEN) {
+    if (mode == Xdg::Mode::OPEN) {
         if (!multiple) {
             // Open file
             UnrefLater_DBusMessage __msgUnrefLater(msg);
@@ -978,7 +1016,7 @@ Result openDialog(Window parent, PortalMode mode, const char* title,
         }
 
     } else
-    if (mode == PortalMode::SAVE) {
+    if (mode == Xdg::Mode::SAVE) {
         // Save file
         UnrefLater_DBusMessage __msgUnrefLater(msg);
 #ifdef ADD_EXTENSION
@@ -1075,14 +1113,14 @@ void Free(void* p) {
     }
 }
 
-QStringList XdgPortal::openNativeDialog(QWidget *parent,
-                                        PortalMode mode,
-                                        const QString &title,
-                                        const QString &file_name,
-                                        const QString &path,
-                                        const QString &filter,
-                                        QString *sel_filter,
-                                        bool sel_multiple)
+QStringList Xdg::openXdgPortal(QWidget *parent,
+                               Mode mode,
+                               const QString &title,
+                               const QString &file_name,
+                               const QString &path,
+                               const QString &filter,
+                               QString *sel_filter,
+                               bool sel_multiple)
 {
     initDBus();
     Window parentWid = (parent) ? (Window)parent->winId() : 0L;
@@ -1134,7 +1172,7 @@ QStringList XdgPortal::openNativeDialog(QWidget *parent,
                         _file_name.toLocal8Bit().data(),
                         sel_multiple);
 
-    if (mode == PortalMode::OPEN && sel_multiple) {
+    if (mode == Mode::OPEN && sel_multiple) {
         if (result == Result::SUCCESS) {
             uint numPaths;
             pathSetGetCount(outPaths, &numPaths);

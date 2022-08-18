@@ -86,6 +86,7 @@ private:
     QMap<int, QString> m_mapFilters;
     int m_format;
     bool m_useNativeDialogFlag;
+    bool m_useGtkFileChooserFlag;
 
 signals:
 
