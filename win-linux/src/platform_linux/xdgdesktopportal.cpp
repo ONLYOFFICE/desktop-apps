@@ -10,9 +10,46 @@
 #include <unistd.h>
 #include <dbus/dbus.h>
 #include <sys/syscall.h>
+#include <linux/random.h>
 #include <X11/Xlib.h>
 #include <X11/Xatom.h>
 #include <X11/Xutil.h>
+
+#if defined(__x86_64__)
+# define GETRANDOM_NR 318
+#elif defined(__i386__)
+# define GETRANDOM_NR 355
+#elif defined(__arm__)
+# define GETRANDOM_NR 384
+#elif defined(__ppc64le__)
+# define GETRANDOM_NR 359
+#elif defined(__PPC64LE__)
+# define GETRANDOM_NR 359
+#elif defined(__ppc64__)
+# define GETRANDOM_NR 359
+#elif defined(__PPC64__)
+# define GETRANDOM_NR 359
+#elif defined(__s390x__)
+# define GETRANDOM_NR 349
+#elif defined(__s390__)
+# define GETRANDOM_NR 349
+#endif
+
+#if defined(SYS_getrandom)
+# if defined(GETRANDOM_NR)
+static_assert(GETRANDOM_NR == SYS_getrandom,
+              "GETRANDOM_NR should match the actual SYS_getrandom value");
+# endif
+#else
+# define SYS_getrandom GETRANDOM_NR
+#endif
+
+#if defined(GRND_NONBLOCK)
+static_assert(GRND_NONBLOCK == 1,
+              "If GRND_NONBLOCK is not 1 the #define below is wrong");
+#else
+# define GRND_NONBLOCK 1
+#endif
 
 #define __dbusOpen dbus_message_iter_open_container
 #define __dbusClose dbus_message_iter_close_container
