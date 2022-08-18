@@ -53,6 +53,8 @@ int main( int argc, char *argv[] )
     WCHAR * cm_line = GetCommandLine();
     InputArgs::init(cm_line);
 #else
+    qputenv("QT_QPA_PLATFORM", "xcb");
+    qputenv("GDK_BACKEND", "x11");
     InputArgs::init(argc, argv);
     WindowHelper::initEnvInfo();
 #endif

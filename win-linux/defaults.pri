@@ -197,7 +197,8 @@ core_linux {
                 $$PWD/src/platform_linux/cdialogopenssl.h \
                 $$PWD/src/platform_linux/cdialogcertificateinfo.h \
                 $$PWD/src/platform_linux/singleapplication.h \
-                $$PWD/src/platform_linux/xdgdesktopportal.h
+                $$PWD/src/platform_linux/xdgdesktopportal.h \
+                $$PWD/src/platform_linux/gtkfilechooser.h
 
     SOURCES +=  $$PWD/src/windows/platform_linux/cx11decoration.cpp \
                 #$$PWD/src/windows/platform_linux/gtk_addon.cpp \
@@ -206,12 +207,8 @@ core_linux {
                 $$PWD/src/platform_linux/cdialogopenssl.cpp \
                 $$PWD/src/platform_linux/cdialogcertificateinfo.cpp \
                 $$PWD/src/platform_linux/singleapplication.cpp \
-                $$PWD/src/platform_linux/xdgdesktopportal.cpp
-
-    contains(DEFINES, XDG_DESKTOP_PORTAL_KDE) {
-        HEADERS += $$PWD/src/platform_linux/kdefiledialog.h
-        SOURCES += $$PWD/src/platform_linux/kdefiledialog.cpp
-    }
+                $$PWD/src/platform_linux/xdgdesktopportal.cpp \
+                $$PWD/src/platform_linux/gtkfilechooser.cpp
 
     CONFIG += link_pkgconfig
     PKGCONFIG += glib-2.0 gtk+-3.0 atk dbus-1
