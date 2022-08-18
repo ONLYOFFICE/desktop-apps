@@ -47,7 +47,7 @@ typedef struct {
 Bool xerror = False;
 
 Result initDBus(void);
-Result openDialog(Window parent, PortalMode mode, const char* title,
+Result openDialog(Window parent, Xdg::Mode mode, const char* title,
                   char** outPaths,
                   const FilterItem* filterList,
                   uint filterCount,
@@ -799,7 +799,7 @@ Result allocAndCopyFilePathWithExtn(const char* fileUri, const char* extn, char*
 }
 #endif
 
-Result callXdgPortal(Window parent, PortalMode mode, const char* title,
+Result callXdgPortal(Window parent, Xdg::Mode mode, const char* title,
                      DBusMessage* &outMsg,
                      const FilterItem* filterList,
                      uint filterCount,
@@ -821,7 +821,7 @@ Result callXdgPortal(Window parent, PortalMode mode, const char* title,
     DBusMessage* methd = dbus_message_new_method_call("org.freedesktop.portal.Desktop",
                                                       "/org/freedesktop/portal/desktop",
                                                       "org.freedesktop.portal.FileChooser",
-                                                      (mode == PortalMode::SAVE)
+                                                      (mode == Xdg::Mode::SAVE)
                                                         ? "SaveFile" : "OpenFile");
     UnrefLater_DBusMessage __unrefLater(methd);
     DBusMessageIter iter;
@@ -836,14 +836,14 @@ Result callXdgPortal(Window parent, PortalMode mode, const char* title,
     __dbusOpen(&iter, DBUS_TYPE_ARRAY, "{sv}", &arr_iter);
     setHandleToken(arr_iter, handle_token);
 
-    if (mode == PortalMode::SAVE) {
+    if (mode == Xdg::Mode::SAVE) {
         // Save file
         setFilters(arr_iter, filterList, filterCount, selFilter);
         setCurrentName(arr_iter, defltName);
         setCurrentFolder(arr_iter, defltPath);
         setCurrentFile(arr_iter, defltPath, defltName);
     } else
-    if (mode == PortalMode::OPEN) {
+    if (mode == Xdg::Mode::OPEN) {
         // Open file(s)
         if (multiple)
             setOpenFileEntryType(arr_iter, EntryType::Multiple);
@@ -931,7 +931,7 @@ void freePath(char* filePath) {
     Free(filePath);
 }
 
-Result openDialog(Window parent, PortalMode mode, const char* title,
+Result openDialog(Window parent, Xdg::Mode mode, const char* title,
                   char** outPaths,
                   const FilterItem* filterList,
                   uint filterCount,
@@ -953,7 +953,7 @@ Result openDialog(Window parent, PortalMode mode, const char* title,
             return res;
     }
 
-    if (mode == PortalMode::OPEN) {
+    if (mode == Xdg::Mode::OPEN) {
         if (!multiple) {
             // Open file
             UnrefLater_DBusMessage __msgUnrefLater(msg);
@@ -978,7 +978,7 @@ Result openDialog(Window parent, PortalMode mode, const char* title,
         }
 
     } else
-    if (mode == PortalMode::SAVE) {
+    if (mode == Xdg::Mode::SAVE) {
         // Save file
         UnrefLater_DBusMessage __msgUnrefLater(msg);
 #ifdef ADD_EXTENSION
@@ -1075,14 +1075,14 @@ void Free(void* p) {
     }
 }
 
-QStringList XdgPortal::openNativeDialog(QWidget *parent,
-                                        PortalMode mode,
-                                        const QString &title,
-                                        const QString &file_name,
-                                        const QString &path,
-                                        const QString &filter,
-                                        QString *sel_filter,
-                                        bool sel_multiple)
+QStringList Xdg::openXdgPortal(QWidget *parent,
+                               Mode mode,
+                               const QString &title,
+                               const QString &file_name,
+                               const QString &path,
+                               const QString &filter,
+                               QString *sel_filter,
+                               bool sel_multiple)
 {
     initDBus();
     Window parentWid = (parent) ? (Window)parent->winId() : 0L;
@@ -1134,7 +1134,7 @@ QStringList XdgPortal::openNativeDialog(QWidget *parent,
                         _file_name.toLocal8Bit().data(),
                         sel_multiple);
 
-    if (mode == PortalMode::OPEN && sel_multiple) {
+    if (mode == Mode::OPEN && sel_multiple) {
         if (result == Result::SUCCESS) {
             uint numPaths;
             pathSetGetCount(outPaths, &numPaths);
