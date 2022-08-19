@@ -262,7 +262,27 @@ CFileDialogWrapper::CFileDialogWrapper(QWidget * parent) : QObject(parent)
     // Set native dialog from command line arguments
     m_useNativeDialogFlag = InputArgs::contains(L"--native-file-dialog");
 #endif
-    m_useGtkFileChooserFlag = !InputArgs::contains(L"--xdg-desktop-portal");
+
+#ifdef __linux__
+    GET_REGISTRY_SYSTEM(reg_system)
+    GET_REGISTRY_USER(reg_user)
+    if (InputArgs::contains(L"--xdg-desktop-portal=default")) {
+        m_useGtkFileChooserFlag = false;
+        if (reg_user.value("--xdg-desktop-portal", false).toBool())
+            reg_user.setValue("--xdg-desktop-portal", false);
+    } else
+    if (InputArgs::contains(L"--xdg-desktop-portal")) {
+        m_useGtkFileChooserFlag = false;
+        if (!reg_user.value("--xdg-desktop-portal", false).toBool())
+            reg_user.setValue("--xdg-desktop-portal", true);
+    } else {
+        if (reg_user.value("--xdg-desktop-portal", false).toBool() ||
+                reg_system.value("--xdg-desktop-portal", false).toBool())
+        {
+            m_useGtkFileChooserFlag = false;
+        }
+    }
+#endif
 }
 
 CFileDialogWrapper::~CFileDialogWrapper()

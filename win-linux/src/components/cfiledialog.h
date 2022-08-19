@@ -86,8 +86,9 @@ private:
     QMap<int, QString> m_mapFilters;
     int m_format;
     bool m_useNativeDialogFlag;
-    bool m_useGtkFileChooserFlag;
-
+#ifdef __linux__
+    bool m_useGtkFileChooserFlag = true;
+#endif
 signals:
 
 public slots:
