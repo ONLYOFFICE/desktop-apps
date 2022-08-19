@@ -301,63 +301,6 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
                 return true;
             }
         } else
-//        if ( cmd.compare(L"open:folder") == 0 ) {
-//            QString path = CEditorTools::getlocalfile(pData->get_Param());
-
-//            if ( !path.isEmpty() ) {
-//                CEditorWindow * editor = editorWindowFromUrl(path);
-//                if ( editor ) {
-//                    editor->bringToTop();
-//                } else {
-//                    CMainWindow * _w = mainWindowFromViewId(event->get_SenderId());
-//                    if ( _w ) {
-//                        _w->mainPanel()->doOpenLocalFiles(QStringList{path});
-//                    }
-//                }
-//            }
-
-//            return true;
-//        } else
-//        if ( cmd.compare(L"open:recent") == 0 ) {
-//            QJsonObject objRoot = Utils::parseJson(pData->get_Param());
-//            if ( !objRoot.isEmpty() ) {
-//                objRoot["type"].toString();
-
-//                COpenOptions opts{objRoot["path"].toString().toStdWString(), etRecentFile, objRoot["id"].toInt()};
-//                opts.format = objRoot["type"].toInt();
-
-//                QRegularExpression re(rePortalName);
-//                QRegularExpressionMatch match = re.match(opts.url);
-
-//                if ( !match.hasMatch() ) {
-//                    QFileInfo _info(opts.url);
-//                    if ( /*!data->get_IsRecover() &&*/ !_info.exists() ) {
-//                        CMessage mess(m_pMainWindow->handle(), CMessageOpts::moButtons::mbYesDefNo);
-//                        int modal_res = mess.warning(tr("%1 doesn't exists!<br>Remove file from the list?").arg(_info.fileName()));
-
-//                        if (modal_res == MODAL_RESULT_CUSTOM) {
-//                            AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, "file:skip", QString::number(opts.id));
-//                        }
-
-//                        return true;
-//                    }
-//                }
-
-//                m_private->openDocument(opts);
-////                    mainWindow()->mainPanel()->onLocalFileRecent(opts);
-//            }
-
-//            return true;
-//        } else
-//        if ( cmd.compare(L"create:new") == 0 ) {
-//            wstring format = pData->get_Param();
-//            int _f = format == L"word" ? AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCX :
-//                        format == L"cell" ? AVS_OFFICESTUDIO_FILE_SPREADSHEET_XLSX :
-//                        format == L"slide" ? AVS_OFFICESTUDIO_FILE_PRESENTATION_PPTX : AVS_OFFICESTUDIO_FILE_UNKNOWN;
-
-//            mainWindow()->mainPanel()->createLocalFile(AscAppManager::newFileName(_f), _f);
-//            return true;
-//        } else
         if ( !(cmd.find(L"uitheme:changed") == std::wstring::npos) ) {
             applyTheme( themes().parseThemeName(pData->get_Param()) );
             return true;
@@ -365,18 +308,6 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
         if ( !(cmd.find(L"files:check") == std::wstring::npos) ) {
             CExistanceController::check(QString::fromStdWString(pData->get_Param()));
             return true;
-//        } else
-//        if ( cmd.compare(L"open:document") == 0 ) {
-//            wstring _url = pData->get_Param();
-//            if ( !_url.empty() ) {
-//                CCefView * _view = GetViewByUrl(_url);
-//                int _id = _view ? _view->GetId() : -1;
-//                if ( _url.rfind(L"http://",0) == 0 || _url.rfind(L"https://",0) == 0 ) {
-//                    mainWindow()->mainPanel()->onCloudDocumentOpen(_url, _id, true);
-//                } else {
-//                    /* open local file */
-//                }
-//            }
         } else
         if ( !(cmd.find(L"system:changed") == std::wstring::npos) ) {
             QRegularExpression re(":\\s?\"(dark|light)");

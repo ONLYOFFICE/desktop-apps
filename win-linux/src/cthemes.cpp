@@ -137,12 +137,12 @@ public:
     {
         if ( id != THEME_ID_SYSTEM ) {
             if ( rc_themes.find(id) != rc_themes.end() ) {
-                return current->load(rc_themes.at(id));
+                return current->fromFile(rc_themes.at(id));
             }
         } else {
             QString visual_theme_id = is_system_theme_dark ? THEME_DEFAULT_DARK_ID : THEME_DEFAULT_LIGHT_ID;
             if ( current->isDark() != is_system_theme_dark ) {
-                if ( !current->load(rc_themes.at(visual_theme_id)) )
+                if ( !current->fromFile(rc_themes.at(visual_theme_id)) )
                     return false;
             }
 
@@ -158,14 +158,14 @@ public:
         if ( type == NSTheme::ThemeType::ttDark ) {
             if ( !dark ) {
                 dark = new CTheme;
-                dark->load(rc_themes[THEME_DEFAULT_DARK_ID]);
+                dark->fromFile(rc_themes[THEME_DEFAULT_DARK_ID]);
             }
 
             return dark;
         } else {
             if ( !light ) {
                 light = new CTheme;
-                light->load(rc_themes[THEME_DEFAULT_LIGHT_ID]);
+                light->fromFile(rc_themes[THEME_DEFAULT_LIGHT_ID]);
             }
 
             return light;
@@ -189,7 +189,7 @@ CTheme::CTheme(const QString& path)
     : m_priv(new CTheme::CThemePrivate)
 {
     if ( !path.isEmpty() )
-        load(path);
+        fromFile(path);
 }
 
 CTheme::~CTheme()
@@ -200,7 +200,7 @@ CTheme::~CTheme()
     }
 }
 
-auto CTheme::load(const QString& path) -> bool
+auto CTheme::fromFile(const QString& path) -> bool
 {
     QFile _file(path);
     if ( _file.open(QIODevice::ReadOnly) ) {

@@ -27,7 +27,7 @@ public:
         , ecrButtonNormalOpacity
     };
 
-    auto load(const QString&) -> bool;
+    auto fromFile(const QString&) -> bool;
 
     auto id() const -> std::wstring;
     auto originalId() const -> std::wstring;
