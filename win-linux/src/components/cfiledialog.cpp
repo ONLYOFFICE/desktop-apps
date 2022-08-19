@@ -262,7 +262,27 @@ CFileDialogWrapper::CFileDialogWrapper(QWidget * parent) : QObject(parent)
     // Set native dialog from command line arguments
     m_useNativeDialogFlag = InputArgs::contains(L"--native-file-dialog");
 #endif
-    m_useGtkFileChooserFlag = !InputArgs::contains(L"--xdg-desktop-portal");
+
+#ifdef __linux__
+    GET_REGISTRY_SYSTEM(reg_system)
+    GET_REGISTRY_USER(reg_user)
+    if (InputArgs::contains(L"--xdg-desktop-portal=default")) {
+        m_useGtkFileChooserFlag = false;
+        if (reg_user.value("--xdg-desktop-portal", false).toBool())
+            reg_user.setValue("--xdg-desktop-portal", false);
+    } else
+    if (InputArgs::contains(L"--xdg-desktop-portal")) {
+        m_useGtkFileChooserFlag = false;
+        if (!reg_user.value("--xdg-desktop-portal", false).toBool())
+            reg_user.setValue("--xdg-desktop-portal", true);
+    } else {
+        if (reg_user.value("--xdg-desktop-portal", false).toBool() ||
+                reg_system.value("--xdg-desktop-portal", false).toBool())
+        {
+            m_useGtkFileChooserFlag = false;
+        }
+    }
+#endif
 }
 
 CFileDialogWrapper::~CFileDialogWrapper()
@@ -324,19 +344,17 @@ bool CFileDialogWrapper::modalSaveAs(QString& fileName, int selected)
 
 #ifdef __linux__
         if (!_opts.testFlag(QFileDialog::DontUseNativeDialog)) {
+            QStringList result;
             if (m_useGtkFileChooserFlag) {
-                QStringList result = Gtk::openGtkFileChooser(qobject_cast<QWidget*>(parent()),
+                result = Gtk::openGtkFileChooser(qobject_cast<QWidget*>(parent()),
                                                  Gtk::Mode::SAVE, tr("Save As"),
                                                  n, "", f, &sf);
-                return (result.size() > 0) ? result.at(0) : QString();
             } else {
-                if (WindowHelper::getEnvInfo() == "KDE" || WindowHelper::getEnvInfo() == "GNOME") {
-                    QStringList result = Xdg::openXdgPortal(qobject_cast<QWidget*>(parent()),
-                                                            Xdg::Mode::SAVE, tr("Save As"),
-                                                            n, "", f, &sf);
-                    return (result.size() > 0) ? result.at(0) : QString();
-                }
+                result = Xdg::openXdgPortal(qobject_cast<QWidget*>(parent()),
+                                            Xdg::Mode::SAVE, tr("Save As"),
+                                            n, "", f, &sf);
             }
+            return (result.size() > 0) ? result.at(0) : QString();
         }
 #endif
         return QFileDialog::getSaveFileName(p, tr("Save As"), n, f, &sf, _opts);
@@ -451,11 +469,9 @@ QStringList CFileDialogWrapper::modalOpen(const QString& path, const QString& fi
                                            Gtk::Mode::OPEN, tr("Open Document"), "",
                                            path, _filter_, &_sel_filter, multi);
         } else {
-            if (WindowHelper::getEnvInfo() == "KDE" || WindowHelper::getEnvInfo() == "GNOME") {
-                return Xdg::openXdgPortal(qobject_cast<QWidget*>(parent()),
-                                          Xdg::Mode::OPEN, tr("Open Document"), "",
-                                          path, _filter_, &_sel_filter, multi);
-            }
+            return Xdg::openXdgPortal(qobject_cast<QWidget*>(parent()),
+                                      Xdg::Mode::OPEN, tr("Open Document"), "",
+                                      path, _filter_, &_sel_filter, multi);
         }
     }
     return multi ? QFileDialog::getOpenFileNames(_parent, tr("Open Document"), path, _filter_, &_sel_filter, _opts) :

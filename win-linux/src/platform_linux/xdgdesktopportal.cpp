@@ -474,7 +474,17 @@ uint readResponseUrisUncheckedSize(DBusMessage* msg) {
     dbus_message_iter_next(&iter);
     uint arr_size = 0;
     readDict(iter, "uris", [&arr_size](DBusMessageIter& uris_iter) {
-        arr_size = dbus_message_iter_get_element_count(&uris_iter);
+        //arr_size = dbus_message_iter_get_element_count(&uris_iter);
+        // elements count for old D-Bus versions
+        if (dbus_message_iter_get_arg_type(&uris_iter) == DBUS_TYPE_ARRAY) {
+            DBusMessageIter arr_iter;
+            dbus_message_iter_recurse(&uris_iter, &arr_iter);
+            while (dbus_message_iter_get_arg_type(&arr_iter) == DBUS_TYPE_STRING) {
+                 ++arr_size;
+                 if (!dbus_message_iter_next(&arr_iter))
+                     break;
+            }
+        }
         return SUCCESS;
     });
     return arr_size;
