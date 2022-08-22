@@ -115,6 +115,7 @@
                                                         <option value='theme-light' l10n>${_lang.settOptThemeLight}</option>
                                                         <option value='theme-classic-light' l10n>${_lang.settOptThemeClassicLight}</option>
                                                         <option value='theme-dark' l10n>${_lang.settOptThemeDark}</option>
+                                                        <option value='theme-contrast-dark' l10n>${_lang.settOptThemeContrastDark}</option>
                                                     </select>
                                                 </section>
                                             </div>

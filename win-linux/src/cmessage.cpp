@@ -160,7 +160,7 @@ CMessage::CMessage(QWidget * p)
     layout()->setSizeConstraint(QLayout::SetFixedSize);
 #endif
     m_centralWidget->setObjectName("messageBody");
-    m_centralWidget->setProperty("uitheme", AscAppManager::themes().current().isDark() ? "theme-dark" : "theme-light");
+    m_centralWidget->setProperty("uitheme", QString::fromStdWString(AscAppManager::themes().current().originalId()));
 
     QVBoxLayout * _c_layout  = new QVBoxLayout;
     QHBoxLayout * _h_layout2 = new QHBoxLayout;

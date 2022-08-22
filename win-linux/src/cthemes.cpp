@@ -91,6 +91,7 @@ public:
             {"theme-light", ":/themes/theme-light.json"},
             {"theme-classic-light", ":/themes/theme-classic-light.json"},
             {"theme-dark", ":/themes/theme-dark.json"},
+            {"theme-contrast-dark", ":/themes/theme-contrast-dark.json"},
         };
 
         GET_REGISTRY_USER(_reg_user);
@@ -204,13 +205,20 @@ auto CTheme::fromFile(const QString& path) -> bool
 {
     QFile _file(path);
     if ( _file.open(QIODevice::ReadOnly) ) {
-        QJsonParseError jerror;
+        return fromJson(_file.readAll());
+    }
 
-        QJsonDocument jdoc = QJsonDocument::fromJson(_file.readAll(), &jerror);
-        if( jerror.error == QJsonParseError::NoError ) {
-            m_priv->fromJsonObject(jdoc.object());
-            return true;
-        }
+    return false;
+}
+
+auto CTheme::fromJson(const QString& json) -> bool
+{
+    QJsonParseError jerror;
+
+    QJsonDocument jdoc = QJsonDocument::fromJson(json.toUtf8(), &jerror);
+    if ( jerror.error == QJsonParseError::NoError ) {
+        m_priv->fromJsonObject(jdoc.object());
+        return true;
     }
 
     return false;

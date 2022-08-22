@@ -1236,14 +1236,12 @@ void CMainPanel::updateScaling(double dpiratio)
     //m_pButtonMain->setGeometry(0, 0, int(BUTTON_MAIN_WIDTH * dpiratio), int(TITLE_HEIGHT * dpiratio));
     m_pButtonMain->setFixedSize(int(BUTTON_MAIN_WIDTH * dpiratio), int(TITLE_HEIGHT * dpiratio));
 
-    const QString _tabs_stylesheets = ":/sep-styles/tabbar@" + QString::number(dpiratio) + "x.qss";
-    QFile styleFile(_tabs_stylesheets);
-    styleFile.open( QFile::ReadOnly );
-    const QString _style = QString(styleFile.readAll());
+    const std::string _tabs_stylesheets = ":/sep-styles/tabbar@" + QString::number(dpiratio).toStdString() + "x.qss";
+    std::vector<std::string> _files{_tabs_stylesheets, ":/themes/theme-contrast-dark.qss"};
+    QString _style = Utils::readStylesheets(&_files);
     m_pTabBarWrapper->applyTheme(_style);
     m_pTabs->setStyleSheet(_style);
     m_pTabs->updateScaling(dpiratio);
-    styleFile.close();
 
 //    std::map<int, std::pair<QString, QString> > icons;
 //    if ( dpiratio > 1 ) {
