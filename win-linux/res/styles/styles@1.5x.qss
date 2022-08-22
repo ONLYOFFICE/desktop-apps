@@ -113,12 +113,12 @@ QPushButton#toolButtonDownload::menu-indicator {
 /* dark theme definitions */
 /**************************/
 
-#mainPanel[uitheme=theme-dark] QPushButton#toolButtonMaximize {
+#mainPanel[uithemetype=dark] QPushButton#toolButtonMaximize {
     background-image:url(:/max_light_1.5x.png);
 }
 
-#mainPanel[uitheme=theme-dark] QPushButton#toolButtonMinimize,
-    #mainPanel[uitheme=theme-dark] QPushButton#toolButtonClose
+#mainPanel[uithemetype=dark] QPushButton#toolButtonMinimize,
+    #mainPanel[uithemetype=dark] QPushButton#toolButtonClose
 {
     background-image:url(:/minclose_light_1.5x.png);
 }

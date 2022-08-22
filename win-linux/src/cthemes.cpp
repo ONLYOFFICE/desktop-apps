@@ -204,20 +204,13 @@ auto CTheme::fromFile(const QString& path) -> bool
 {
     QFile _file(path);
     if ( _file.open(QIODevice::ReadOnly) ) {
-        return fromJson(_file.readAll());
-    }
+        QJsonParseError jerror;
 
-    return false;
-}
-
-auto CTheme::fromJson(const QString& json) -> bool
-{
-    QJsonParseError jerror;
-
-    QJsonDocument jdoc = QJsonDocument::fromJson(json.toUtf8(), &jerror);
-    if ( jerror.error == QJsonParseError::NoError ) {
-        m_priv->fromJsonObject(jdoc.object());
-        return true;
+        QJsonDocument jdoc = QJsonDocument::fromJson(_file.readAll(), &jerror);
+        if( jerror.error == QJsonParseError::NoError ) {
+            m_priv->fromJsonObject(jdoc.object());
+            return true;
+        }
     }
 
     return false;

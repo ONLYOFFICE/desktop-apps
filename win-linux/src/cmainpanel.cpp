@@ -99,6 +99,7 @@ CMainPanel::CMainPanel(QWidget *parent, bool isCustomWindow, double dpi_ratio)
 {
     setObjectName("mainPanel");
     setProperty("uitheme", QString::fromStdWString(AscAppManager::themes().current().originalId()));
+    setProperty("uithemetype", AscAppManager::themes().current().stype());
     m_pMainGridLayout = new QGridLayout(this);
     m_pMainGridLayout->setSpacing(0);
     m_pMainGridLayout->setObjectName(QString::fromUtf8("mainGridLayout"));
@@ -1177,6 +1178,7 @@ void CMainPanel::onOutsideAuth(QString json)
 void CMainPanel::applyTheme(const std::wstring& theme)
 {
     this->setProperty("uitheme", QString::fromStdWString(theme));
+    setProperty("uithemetype", AscAppManager::themes().current().stype());
 
     for (int i(m_pTabs->count()); !(--i < 0);) {
         CAscTabData& _doc = *m_pTabs->panel(i)->data();
