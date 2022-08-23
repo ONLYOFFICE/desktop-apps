@@ -52,7 +52,8 @@ set_names() {
       NEW_PPTX_NAME="Новая презентация"
       ;;
     *)
-      SOURCE_DOC_NAME="mm_new"
+      SOURCE_DOC_DIR="$SOURCE_DOC_DIR/en-US"
+      SOURCE_DOC_NAME="new"
       NEW_DOCX_NAME="New Document"
       NEW_XLSX_NAME="New Spreadsheet"
       NEW_PPTX_NAME="New Presentation"
