@@ -51,6 +51,7 @@
 #import "mac_application.h"
 #import "NSApplication+Extensions.h"
 #import "ASCEditorJSVariables.h"
+#import "ASCThemesController.h"
 
 #pragma mark -
 #pragma mark ========================================================
@@ -744,7 +745,7 @@ public:
                                         NSRange range = [match rangeAtIndex:1];
                                         NSString * new_theme_type = [json substringWithRange:range];
 
-                                        if ( [NSApplication isUIThemeDark] != [new_theme_type isEqualToString:@"dark"] ) {
+                                        if ( [ASCThemesController isCurrentThemeDark] != [new_theme_type isEqualToString:@"dark"] ) {
                                             [[ASCSharedSettings sharedInstance] setSetting:new_theme_type forKey:kSettingsColorScheme];
                                             [[NSNotificationCenter defaultCenter] postNotificationName:ASCEventNameChangedUITheme
                                                                                                 object:nil

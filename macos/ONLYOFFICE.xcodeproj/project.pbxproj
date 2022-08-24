@@ -31,6 +31,9 @@
 		5AA06CBD27AC3BA000D67BEE /* ASCLinguist.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AA06CBC27AC3BA000D67BEE /* ASCLinguist.m */; };
 		5AA06CC027B1267200D67BEE /* ASCLinguist.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AA06CBC27AC3BA000D67BEE /* ASCLinguist.m */; };
 		5AA06CC127B1267600D67BEE /* ASCLinguist.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AA06CBC27AC3BA000D67BEE /* ASCLinguist.m */; };
+		5AAE526D28B53B9A001E31F4 /* ASCThemesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AAE526C28B53B9A001E31F4 /* ASCThemesController.m */; };
+		5AAE526E28B53B9A001E31F4 /* ASCThemesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AAE526C28B53B9A001E31F4 /* ASCThemesController.m */; };
+		5AAE526F28B53B9A001E31F4 /* ASCThemesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AAE526C28B53B9A001E31F4 /* ASCThemesController.m */; };
 		5AB20F60274D35F3003732A0 /* file-docxf.icns in Resources */ = {isa = PBXBuildFile; fileRef = 5AB20F5D274D35F2003732A0 /* file-docxf.icns */; };
 		5AB20F62274D360A003732A0 /* file-oform.icns in Resources */ = {isa = PBXBuildFile; fileRef = 5AB20F61274D360A003732A0 /* file-oform.icns */; };
 		5AFA1CF1277A6D2900619952 /* file-docxf.icns in Resources */ = {isa = PBXBuildFile; fileRef = 5AB20F5D274D35F2003732A0 /* file-docxf.icns */; };
@@ -775,6 +778,8 @@
 		5A9F8D382848AA06007CA93F /* file-xlsm.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "file-xlsm.icns"; sourceTree = "<group>"; };
 		5AA06CBB27AC3BA000D67BEE /* ASCLinguist.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ASCLinguist.h; sourceTree = "<group>"; };
 		5AA06CBC27AC3BA000D67BEE /* ASCLinguist.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ASCLinguist.m; sourceTree = "<group>"; };
+		5AAE526C28B53B9A001E31F4 /* ASCThemesController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ASCThemesController.m; sourceTree = "<group>"; };
+		5AAE527028B53C1F001E31F4 /* ASCThemesController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ASCThemesController.h; sourceTree = "<group>"; };
 		5AB20F5D274D35F2003732A0 /* file-docxf.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "file-docxf.icns"; sourceTree = "<group>"; };
 		5AB20F61274D360A003732A0 /* file-oform.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "file-oform.icns"; sourceTree = "<group>"; };
 		BE6251B922BD089100656116 /* dictionaries */ = {isa = PBXFileReference; lastKnownFileType = folder; name = dictionaries; path = ../../../../dictionaries; sourceTree = "<group>"; };
@@ -1717,6 +1722,8 @@
 				FC3B77841BB2A94300DB9705 /* ASCEventsController.mm */,
 				FCF2897F21510C16002FD438 /* ASCExternalController.h */,
 				FCF2898021510C16002FD438 /* ASCExternalController.m */,
+				5AAE526C28B53B9A001E31F4 /* ASCThemesController.m */,
+				5AAE527028B53C1F001E31F4 /* ASCThemesController.h */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -2299,6 +2306,7 @@
 				FC0BD693258B63F700C47F95 /* ASCMenuButtonCell.m in Sources */,
 				FC0BD694258B63F700C47F95 /* SFBPopoverWindow.m in Sources */,
 				FC0BD695258B63F700C47F95 /* NSWindow+Extensions.m in Sources */,
+				5AAE526F28B53B9A001E31F4 /* ASCThemesController.m in Sources */,
 				FC0BD696258B63F700C47F95 /* ASCHelper.m in Sources */,
 				FC0BD697258B63F700C47F95 /* ASCUserInfoViewController.m in Sources */,
 				FC0BD698258B63F700C47F95 /* NSColor+Extensions.m in Sources */,
@@ -2373,6 +2381,7 @@
 				FCB4C6CA26DD018B0012C20D /* ASCMenuButtonCell.m in Sources */,
 				FCB4C6CB26DD018B0012C20D /* SFBPopoverWindow.m in Sources */,
 				FCB4C6CC26DD018B0012C20D /* NSWindow+Extensions.m in Sources */,
+				5AAE526D28B53B9A001E31F4 /* ASCThemesController.m in Sources */,
 				FCB4C6CD26DD018B0012C20D /* ASCHelper.m in Sources */,
 				FCB4C6CE26DD018B0012C20D /* ASCUserInfoViewController.m in Sources */,
 				FCB4C6CF26DD018B0012C20D /* NSColor+Extensions.m in Sources */,
@@ -2447,6 +2456,7 @@
 				FCC77C79206CEE5B001B7837 /* ASCMenuButtonCell.m in Sources */,
 				FC3BFE011BBE83AB0040C904 /* SFBPopoverWindow.m in Sources */,
 				FCF2897D21510403002FD438 /* NSWindow+Extensions.m in Sources */,
+				5AAE526E28B53B9A001E31F4 /* ASCThemesController.m in Sources */,
 				FCA0B3551B9F006F0073EDD4 /* ASCHelper.m in Sources */,
 				FCAF3EFD1BA31D3C00B42BAA /* ASCUserInfoViewController.m in Sources */,
 				FC73E6F3207E15BB00EFFD2F /* NSColor+Extensions.m in Sources */,

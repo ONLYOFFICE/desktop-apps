@@ -1,5 +1,5 @@
 /*
- * (c) Copyright Ascensio System SIA 2010-2019
+ * (c) Copyright Ascensio System SIA 2010-2022
  *
  * This program is a free software product. You can redistribute it and/or
  * modify it under the terms of the GNU Affero General Public License (AGPL)
@@ -28,20 +28,35 @@
  * Creative Commons Attribution-ShareAlike 4.0 International. See the License
  * terms at http://creativecommons.org/licenses/by-sa/4.0/legalcode
  *
- */
+*/
 
 //
-//  NSApplication+Extensions.h
+//  ASCThemesController.h
 //  ONLYOFFICE
 //
-//  Created by Alexander Yuzhin on 27/09/2018.
-//  Copyright © 2018 Ascensio System SIA. All rights reserved.
+//  Created by Maxim.Kadushkin on 23/08/2022.
+//  Copyright © 2022 Ascensio System SIA. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
+#ifndef ASCThemesController_h
+#define ASCThemesController_h
 
-@interface NSApplication (Extensions)
+#import <Foundation/Foundation.h>
+#import <AppKit/NSColor.h>
 
-+ (BOOL)isSystemDarkMode;
+static NSString * const btnPortalActiveBackgroundColor  = @"portal-button-background-active-color";
+static NSString * const tabWordActiveBackgroundColor    = @"tab-word-background-active-color";
+static NSString * const tabCellActiveBackgroundColor    = @"tab-cell-background-active-color";
+static NSString * const tabSlideActiveBackgroundColor   = @"tab-slide-background-active-color";
+
+@interface ASCThemesController : NSObject
+
++ (NSString*)currentThemeId;
++ (BOOL)isCurrentThemeDark;
++ (NSString*)defaultThemeId:(BOOL)isdark;
++ (NSColor*)color:(NSString*)name forTheme:(NSString*)theme;
++ (NSColor*)currentThemeColor:(NSString*)name;
 
 @end
+
+#endif /* ASCThemesController_h */

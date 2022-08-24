@@ -56,11 +56,4 @@
     return false;
 }
 
-+ (BOOL)isUIThemeDark {
-    NSString * theme = [[NSUserDefaults standardUserDefaults] valueForKey:ASCUserUITheme];
-    if ([uiThemeSystem isEqualToString:theme]) {
-        return [@"dark" isEqualToString:[[ASCSharedSettings sharedInstance] settingByKey:kSettingsColorScheme]];
-    } else return [uiThemeDark isEqualToString:theme];
-}
-
 @end

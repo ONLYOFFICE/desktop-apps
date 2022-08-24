@@ -67,24 +67,6 @@
     return UIColorFromRGB(0xaa5252);
 }
 
-+ (NSColor *) themedDocumentEditor {
-    if ( [NSApplication isUIThemeDark] ) {
-        return UIColorFromRGB(0x2a2a2a);
-    } else return [NSColor brendDocumentEditor];
-}
-
-+ (NSColor *) themedSpreadsheetEditor {
-    if ( [NSApplication isUIThemeDark] ) {
-        return UIColorFromRGB(0x2a2a2a);
-    } else return [NSColor brendSpreadsheetEditor];
-}
-
-+ (NSColor *) themedPresentationEditor {
-    if ( [NSApplication isUIThemeDark] ) {
-        return UIColorFromRGB(0x2a2a2a);
-    } else return [NSColor brendPresentationEditor];
-}
-
 @end
 
 #pragma mark - Extensions
