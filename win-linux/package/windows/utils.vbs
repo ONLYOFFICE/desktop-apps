@@ -32,7 +32,7 @@ Function UninstallOlderVersion
     If Button = 1 Then
       objShell.Run RegistryPath, 0, True
     ElseIf Session.Property("UILevel") = 2 Then
-      objShell.Run RegistryPath + " /SILENT", 0, True
+      objShell.Run RegistryPath + " /VERYSILENT", 0, True
     Else 
       Session.Property("UninstallOlderVersion") = "1"
     End If
