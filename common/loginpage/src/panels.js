@@ -126,6 +126,8 @@ function onActionClick(e) {
                 app.controller.recent.view.updatelistsize();
             }
         });
+
+        CommonEvents.fire('panel:show', [action]);
     }
 };
 
@@ -134,6 +136,8 @@ function selectAction(action) {
     $('.tool-menu a[action='+action+']').parent().addClass('selected');
     $('.action-panel').hide();
     $('.action-panel.' + action).show();
+
+    CommonEvents.fire('panel:show', [action]);
 };
 
 function hideAction(action, hide) {

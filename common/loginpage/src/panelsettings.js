@@ -151,9 +151,12 @@
                                         </div>
                                         <!-- end section -->
                                     </section>
+                                    <div class="lst-tools" id="sett-tools-dyn">
+                                        <button class="btn btn--primary sett-btn--apply" id="sett-btn-apply" l10n>${_lang.setBtnApply}</button>
+                                    </div>
                                 </div>
-                                <div class="lst-tools">
-                                    <button class="btn btn--primary" id="sett-btn-apply" l10n>${_lang.setBtnApply}</button>
+                                <div class="lst-tools" id="sett-tools-stat">
+                                    <button class="btn btn--primary sett-btn--apply" id="sett-btn-apply" l10n>${_lang.setBtnApply}</button>
                                     <!-- <strong class='sett__note' tooltip="${_lang.settAfterRestart}" tooltip-pos='top' l10n>i</strong> -->
                                 </div>
                                 <div class="spacer" />
@@ -390,6 +393,8 @@
                             });
                         }
                     }
+
+                    $('.settings-field:visible:last').css('margin-bottom','0');
                 } else
                 if (/updates/.test(cmd)) {
                     let $settnode = $('#opts-checkupdate', $panel),
@@ -419,6 +424,33 @@
         const on_system_theme_dark = e =>
             sdk.command("system:changed", JSON.stringify({'colorscheme': e.target.matches ? THEME_TYPE_DARK:THEME_TYPE_LIGHT}));
 
+        const on_window_resize = function(e) {
+            if ( !this.resize_elems  ) return;
+
+            if ( !this.resize_elems.opened  ) {
+                this.resize_elems = {
+                    statH: $('.settings .table-caption').outerHeight(true) + $('#sett-tools-dyn').outerHeight(true),
+                    boxElem: $('#box-settings'),
+                    settItems: $('section.settings-items'),
+                    btnDyn: $('#sett-tools-dyn'),
+                    btnStat: $('#sett-tools-stat'),
+                }
+            }
+
+            this.resize_elems.settItems.height() + this.resize_elems.statH > this.resize_elems.boxElem.height() ?
+                (this.resize_elems.btnDyn.hide(), this.resize_elems.btnStat.show()) : (this.resize_elems.btnDyn.show(), this.resize_elems.btnStat.hide());
+        };
+
+        const on_panel_show = function(panel) {
+            if ( panel == this.action ) {
+                !this.resize_elems && (this.resize_elems = { opened: false });
+
+                if ( !this.resize_elems.opened ) {
+                    on_window_resize.call(this);
+                }
+            }
+        }
+
         return {
             init: function() {
                 baseController.prototype.init.apply(this, arguments);
@@ -431,7 +463,7 @@
                 });
 
                 $panel = me.view.$panel;
-                $btnApply = me.view.$panel.find('#sett-btn-apply');
+                $btnApply = me.view.$panel.find('.sett-btn--apply');
                 $userName = me.view.$panel.find('#sett-box-user > input');
                 $chOpenMode = me.view.$panel.find('#sett-preview-mode');
 
@@ -470,6 +502,9 @@
                 window.sdk.on('on_native_message', _on_app_message.bind(this));
                 window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', on_system_theme_dark.bind(this));
                 // on_system_theme_dark({target: window.matchMedia('(prefers-color-scheme: dark)')});
+
+                $(window).on('resize', on_window_resize.bind(this));
+                CommonEvents.on('panel:show', on_panel_show.bind(this));
 
                 return this;
             }
