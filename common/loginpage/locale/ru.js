@@ -90,6 +90,7 @@ l10n.ru = {
     settOptLaunchMode: 'Открыть файл',
     settOptLaunchInTab: 'Во вкладке',
     settOptLaunchInWindow: 'В окне',
+    settSpellcheckDetection: 'Распознавание языка проверки правописания',
     settOptDisabled: 'Отключено',
     aboutChangelog: 'Журнал изменений',
     updateNoUpdates: 'Приложение обновлено',

@@ -90,4 +90,6 @@ l10n.ca = {
     settOptLaunchMode: 'Obre fitxer',
     settOptLaunchInTab: 'En una pestanya',
     settOptLaunchInWindow: 'En una finestra',
+    settOptThemeSystem: 'Igual que el sistema',
+    settOptThemeContrastDark: 'Contrast fosc',
 }

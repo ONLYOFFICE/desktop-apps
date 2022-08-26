@@ -90,4 +90,11 @@ l10n.it_IT = {
     settOptLaunchMode: 'Apri file',
     settOptLaunchInTab: 'Nella scheda',
     settOptLaunchInWindow: 'Nella finestra',
+    settSpellcheckDetection: 'Rilevamento lingua dell\'ortografia',
+    settOptDisabled: 'Disabilitato',
+    aboutChangelog: 'Registro delle modifiche',
+    updateNoUpdates: 'L\'app è aggiornata',
+    updateAvialable: 'È disponibile la versione $1. Fai clic per scaricarla.',
+    settOptThemeSystem: 'Uguale al sistema',
+    settOptThemeContrastDark: 'Contrasto scuro',
 }

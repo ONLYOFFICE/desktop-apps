@@ -90,4 +90,11 @@ l10n.ja = {
     settOptLaunchMode: 'ファイルを開く',
     settOptLaunchInTab: 'タブで',
     settOptLaunchInWindow: 'ウィンドウで',
+    settSpellcheckDetection: 'スペルチェック',
+    settOptDisabled: '無効',
+    aboutChangelog: '変更ログ',
+    updateNoUpdates: 'アプリのバージョンは最新です',
+    updateAvialable: 'バージョン $1 が利用可能になっています。クリックしてダウンロードしてください。',
+    settOptThemeSystem: 'システム設定と同じ',
+    settOptThemeContrastDark: 'ダークコントラスト',
 }

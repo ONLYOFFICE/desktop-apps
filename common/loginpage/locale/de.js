@@ -90,4 +90,11 @@ l10n.de = {
     settOptLaunchMode: 'Datei öffnen',
     settOptLaunchInTab: 'in einer Registerkarte',
     settOptLaunchInWindow: 'in einem Fenster',
+    settSpellcheckDetection: 'Sprachenerkennung für Rechtschreibprüfung',
+    settOptDisabled: 'Deaktiviert',
+    aboutChangelog: 'Änderungsliste',
+    updateNoUpdates: 'Die letzte App-Version installiert',
+    updateAvialable: 'Version $1 ist verfügbar. Klicken Sie hier zum Herunterladen.',
+    settOptThemeSystem: 'Wie im System',
+    settOptThemeContrastDark: 'Dunkler Kontrast',
 }

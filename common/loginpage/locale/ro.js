@@ -90,4 +90,6 @@ l10n.ro = {
     settOptLaunchMode: 'Deschidere fișie',
     settOptLaunchInTab: 'În filă',
     settOptLaunchInWindow: 'În fereastră',
+    settOptThemeSystem: 'La fel ca sistemul',
+    settOptThemeContrastDark: 'Contrast Întunecat',
 }
