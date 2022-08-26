@@ -14,6 +14,16 @@ AutoProv: no
 %{_company_name} %{_product_name} installation package
  %{_company_name} %{_product_name} is an application for editing office documents (text documents, spreadsheets and presentations) from %{_company_name} cloud portal on local computer without browser using.
 
+%package help
+Summary: Desktop editors local help files
+BuildArch: noarch
+Requires: %{_package_name}
+
+%description help
+%{_company_name} %{_product_name} local help files
+ %{_company_name} %{_product_name} is an application for editing office documents (text documents, spreadsheets and presentations) from %{_company_name} cloud portal on local computer without browser using.
+ This package contains the local help files.
+
 %prep
 rm -rf "%{buildroot}"
 
@@ -51,6 +61,9 @@ cp -t $DATA_DIR/applications \
 ln -srf $BIN_DIR/%{_desktopeditors_exec} $BIN_DIR/%{_package_name}
 %endif
 
+# help
+cp -r $COMMON/help/desktopeditors/* $DESKTOPEDITORS_PREFIX/
+
 %clean
 rm -rf "%{buildroot}"
 
@@ -66,6 +79,15 @@ rm -rf "%{buildroot}"
 %attr(-, root, root) %{_bindir}/%{_package_name}
 %attr(777, root, root) %{_sysconfdir}/%{_package_name}
 %endif
+%exclude /opt/%{_desktopeditors_prefix}/editors/web-apps/apps/documenteditor/main/resources/help
+%exclude /opt/%{_desktopeditors_prefix}/editors/web-apps/apps/presentationeditor/main/resources/help
+%exclude /opt/%{_desktopeditors_prefix}/editors/web-apps/apps/spreadsheeteditor/main/resources/help
+
+%files help
+%defattr(-, root, root, -)
+/opt/%{_desktopeditors_prefix}/editors/web-apps/apps/documenteditor/main/resources/help
+/opt/%{_desktopeditors_prefix}/editors/web-apps/apps/presentationeditor/main/resources/help
+/opt/%{_desktopeditors_prefix}/editors/web-apps/apps/spreadsheeteditor/main/resources/help
 
 %pre
 
