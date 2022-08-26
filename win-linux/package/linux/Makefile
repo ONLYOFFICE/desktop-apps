@@ -29,7 +29,7 @@ UNAME_M ?= $(shell uname -m)
 ifeq ($(UNAME_M),x86_64)
 	RPM_ARCH = x86_64
 	DEB_ARCH = amd64
-	TAR_ARCH = x64
+	TAR_ARCH = x86_64
 	URPMI_ARCH = x86_64
 	APT_RPM_ARCH = x86_64
 	ARCHITECTURE = 64
@@ -61,7 +61,7 @@ RPM_PACKAGE_DIR = $(RPM_BUILD_DIR)/RPMS/$(RPM_ARCH)
 APT_RPM_PACKAGE_DIR = $(APT_RPM_BUILD_DIR)/RPMS/$(APT_RPM_ARCH)
 URPMI_PACKAGE_DIR = $(URPMI_BUILD_DIR)/RPMS/$(URPMI_ARCH)
 SUSE_RPM_PACKAGE_DIR = $(SUSE_RPM_BUILD_DIR)/RPMS/$(RPM_ARCH)
-TAR_PACKAGE_DIR = $(TAR_BUILD_DIR)/$(TAR_ARCH)
+TAR_PACKAGE_DIR = $(TAR_BUILD_DIR)
 
 RPM = $(RPM_PACKAGE_DIR)/$(PACKAGE_NAME)-$(PACKAGE_VERSION).$(RPM_ARCH).rpm
 APT_RPM = $(APT_RPM_PACKAGE_DIR)/$(PACKAGE_NAME)-$(PACKAGE_VERSION).$(APT_RPM_ARCH).rpm
@@ -70,6 +70,7 @@ SUSE_RPM = $(SUSE_RPM_PACKAGE_DIR)/$(PACKAGE_NAME)-$(PACKAGE_VERSION).$(RPM_ARCH
 DEB = deb/$(PACKAGE_NAME)_$(PACKAGE_VERSION)_$(DEB_ARCH).deb
 DEB_ASTRA = deb-astra/$(PACKAGE_NAME)_$(PACKAGE_VERSION)-astra_$(DEB_ARCH).deb
 TAR = $(TAR_PACKAGE_DIR)/$(PACKAGE_NAME)-$(PACKAGE_VERSION)-$(TAR_ARCH).tar.gz
+HELP_TAR = $(TAR_PACKAGE_DIR)/$(PACKAGE_NAME)-help-$(PACKAGE_VERSION)-any.tar.xz
 
 ifeq ($(COMPANY_NAME), ONLYOFFICE)
 	DESKTOPEDITORS_PREFIX := $(COMPANY_NAME_LOW)/$(PRODUCT_NAME_LOW)
@@ -112,6 +113,7 @@ DEB_DEPS += deb/build/debian/source/format
 DEB_DEPS += deb/build/debian/$(PACKAGE_NAME).dirs
 DEB_DEPS += deb/build/debian/$(PACKAGE_NAME).install
 DEB_DEPS += deb/build/debian/$(PACKAGE_NAME).links
+DEB_DEPS += deb/build/debian/$(PACKAGE_NAME)-help.install
 
 DEB_ASTRA_DEPS += deb-astra/build/debian/changelog
 DEB_ASTRA_DEPS += deb-astra/build/debian/compat
@@ -133,6 +135,7 @@ INSTALLER_DEPENDENCY += desktopeditor
 USR_LIB_X64 := /usr/lib/x86_64-linux-gnu
 
 SRC += ../../../../build_tools/out/linux_$(ARCHITECTURE)/$(DESKTOPEDITORS_PREFIX)
+HELP_SRC = ../../../../build_tools/out/linux_$(ARCHITECTURE)/$(DESKTOPEDITORS_PREFIX)-help
 ifneq ($(COMPANY_NAME), ONLYOFFICE)
 	SRC += ../../../../build_tools/out/linux_$(ARCHITECTURE)/$(MEDIAVIEWER_PREFIX)
 endif
@@ -203,7 +206,7 @@ deb: $(DEB)
 
 deb-astra: $(DEB_ASTRA)
 
-tar: $(TAR)
+tar: $(TAR) $(HELP_TAR)
 
 apt-rpm: $(APT_RPM)
 
@@ -217,9 +220,9 @@ rpm_aarch64 : $(RPM)
 
 installer: $(INSTALLER)
 
-PACKAGES += deb rpm apt-rpm urpmi suse-rpm tar
+PACKAGES += $(DEB) $(RPM) $(APT_RPM) $(URPMI) $(SUSE_RPM) $(TAR) $(HELP_TAR)
 ifneq ($(COMPANY_NAME), ONLYOFFICE)
-PACKAGES += deb-astra
+PACKAGES += $(DEB_ASTRA)
 endif
 
 packages: $(PACKAGES)
@@ -228,6 +231,7 @@ clean:
 	rm -rfv \
 		common/etc \
 		common/opt \
+		common/help \
 		$(LINUX_DEPS) \
 		deb/build \
 		deb/*.buildinfo \
@@ -264,6 +268,8 @@ ifneq ($(COMPANY_NAME), ONLYOFFICE)
 	chmod 755 common/opt/mediaviewer/ImageViewer
 	chmod 755 common/opt/mediaviewer/VideoPlayer
 endif
+	mkdir -p common/help
+	cp -rf $(HELP_SRC)/. common/help/desktopeditors
 
 qt-redist:
 	cp -r -L -t common/opt/desktopeditors/ \
@@ -298,6 +304,9 @@ deb/build/debian/% : deb/template/%.m4
 	mkdir -pv $(@D) && m4 $(M4_PARAMS) $< > $@
 
 deb/build/debian/$(PACKAGE_NAME).% : deb/template/package.%.m4
+	mkdir -pv $(@D) && m4 $(M4_PARAMS) $< > $@
+
+deb/build/debian/$(PACKAGE_NAME)-help.% : deb/template/package-help.%.m4
 	mkdir -pv $(@D) && m4 $(M4_PARAMS) $< > $@
 
 deb-astra/build/debian/% : deb/template/%
@@ -342,14 +351,14 @@ $(SUSE_RPM): desktopeditor suse-rpm/$(PACKAGE_NAME).spec
 		package.spec
 
 $(TAR): desktopeditor
-	mkdir -p $(TAR_PACKAGE_DIR)
-ifeq ($(COMPANY_NAME), ONLYOFFICE)
-	mkdir -p common/opt/desktopeditors/app
-	cp $(DESKTOP_FILES) common/opt/desktopeditors/app
-	tar -czf $@ --owner=root --group=root -C common/opt desktopeditors
-else
-	tar -czf $@ --owner=root --group=root -C common/opt desktopeditors mediaviewer
-endif
+	mkdir -p $(TAR_PACKAGE_DIR) common/opt/desktopeditors/app
+	cp -ft common/opt/desktopeditors/app $(DESKTOP_FILES)
+	tar -cz --owner=root --group=root \
+		--xform=s:^common/opt:: -f"$@" common/opt
+
+$(HELP_TAR): desktopeditor
+	tar -cI"xz -9T0" --owner=root --group=root \
+		--xform=s:^common/help:: -f"$@" common/help
 
 $(INSTALLER): $(INSTALLER_DEPENDENCY)
 	cd qt-installer && ./make-install.sh

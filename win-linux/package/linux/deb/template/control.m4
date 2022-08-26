@@ -32,3 +32,12 @@ ifelse(M4_PACKAGE_EDITION, full,
 Recommends: ttf-mscorefonts-installer, fonts-takao-gothic 
 Description: M4_COMPANY_NAME M4_PRODUCT_NAME installation package
  M4_COMPANY_NAME M4_PRODUCT_NAME is an application for editing office documents (text documents, spreadsheets and presentations) from M4_COMPANY_NAME cloud portal on local computer without browser using.
+
+Package: M4_PACKAGE_NAME-help
+Architecture: all
+Pre-Depends: dpkg (>= 1.14.0)
+Depends:
+  M4_PACKAGE_NAME
+Description: M4_COMPANY_NAME M4_PRODUCT_NAME local help files
+ M4_COMPANY_NAME M4_PRODUCT_NAME is an application for editing office documents (text documents, spreadsheets and presentations) from M4_COMPANY_NAME cloud portal on local computer without browser using.
+ This package contains the local help files.
