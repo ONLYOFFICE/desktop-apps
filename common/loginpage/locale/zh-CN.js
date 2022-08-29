@@ -90,4 +90,11 @@ l10n.zh_CN = {
     settOptLaunchMode: '打开文件',
     settOptLaunchInTab: '标签页中',
     settOptLaunchInWindow: '窗口中',
+    settSpellcheckDetection: '拼写语言检测',
+    settOptDisabled: '已禁用',
+    aboutChangelog: '更新日志',
+    updateNoUpdates: '这是应用程序最新版',
+    updateAvialable: '$1的版本已可用。立即下载。',
+    settOptThemeSystem: '和系统一致',
+    settOptThemeContrastDark: '暗色对比',
 }

@@ -87,4 +87,6 @@ l10n.pt_BR = {
     settOptLaunchMode: 'Abrir arquivo',
     settOptLaunchInTab: 'Na guia',
     settOptLaunchInWindow: 'Na janela',
+    settOptThemeSystem: 'O mesmo que sistema',
+    settOptThemeContrastDark: 'Contraste escuro',
 }
