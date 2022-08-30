@@ -197,13 +197,13 @@
             $btnApply.disable(false);
         };
 
-        function _apply_theme(name) {
+        function _apply_theme(name, type) {
             if ( name == 'theme-system' ) {
                 name = get_default_theme(get_system_theme_type());
             }
 
             if ( !$("body").hasClass(name) ) {
-                const _type = /theme-(?:[a-z]+-)?dark(?:-[a-z]*)?/.test(name) ? 'theme-type-dark' : 'theme-type-light';
+                const _type = (type == 'dark' || /theme-(?:[a-z]+-)?dark(?:-[a-z]*)?/.test(name)) ? 'theme-type-dark' : 'theme-type-light';
                 const _cls = document.body.className.replace(/theme-[\w-]+/gi,'').trim();
                 document.body.className = `${_cls?_cls+' ':''}${name} ${_type}`;
 
