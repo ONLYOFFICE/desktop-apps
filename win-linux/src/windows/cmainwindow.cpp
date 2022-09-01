@@ -539,7 +539,12 @@ void CMainWindow::onEditorAllowedClose(int uid)
 
 void CMainWindow::onTabChanged(int index)
 {
-    Q_UNUSED(index)
+    const QString title = (index > -1) ? m_pTabs->panel(index)->data()->title() : "";
+    if (title != windowTitle()) {
+        QTimer::singleShot(100, this, [=]() {
+            setWindowTitle(title);
+        });
+    }
 
 #ifndef __DONT_WRITE_IN_APP_TITLE
     QLabel * title = (QLabel *)m_boxTitleBtns->layout()->itemAt(0)->widget();

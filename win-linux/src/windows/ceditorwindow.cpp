@@ -58,6 +58,7 @@ CEditorWindow::CEditorWindow(const QRect& rect, CTabPanel* panel)
     , d_ptr(new CEditorWindowPrivate(this))
 {
     setObjectName("editorWindow");
+    setWindowTitle("_");
     d_ptr.get()->init(panel);
     m_pMainPanel = createMainPanel(this, d_ptr->panel()->data()->title());
     setCentralWidget(m_pMainPanel);
@@ -80,6 +81,11 @@ CEditorWindow::CEditorWindow(const QRect& rect, CTabPanel* panel)
     if ( i.suffix() == "oform" || panel->data()->hasFeature(L"uitype\":\"fillform") ) {
         d_ptr->ffWindowCustomize();
     }
+
+    QTimer::singleShot(200, this, [=]() {
+        if (d_ptr->canExtendTitle())
+            setWindowTitle(panel->data()->title());
+    });
 }
 
 CEditorWindow::~CEditorWindow()
