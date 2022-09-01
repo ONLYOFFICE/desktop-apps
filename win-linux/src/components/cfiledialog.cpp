@@ -430,17 +430,21 @@ QString CFileDialogWrapper::getFilter(const QString& extension) const
 QStringList CFileDialogWrapper::modalOpen(const QString& path, const QString& filter, QString * selected, bool multi)
 {
     QString _filter_ = filter;
+    QString _all_sup_files;
     if ( _filter_.isEmpty() ) {
 //        _filter_ = joinFilters();
-        _filter_ = m_mapFilters[AVS_OFFICESTUDIO_FILE_UNKNOWN] + ";;" +
-                    tr("Text documents") + " (*.docx *.doc *.odt *.ott *.rtf *.docm *.dotx *.dotm *.fodt *.wps *.wpt *.xml *.pdf *.djv *.djvu *.docxf *.oform);;" +
+        _filter_ =  tr("Text documents") + " (*.docx *.doc *.odt *.ott *.rtf *.docm *.dotx *.dotm *.fodt *.wps *.wpt *.xml *.pdf *.djv *.djvu *.docxf *.oform);;" +
                     tr("Spreadsheets") + " (*.xlsx *.xls *.ods *.ots *.xltx *.xltm *.fods *.et *.ett);;" +
                     tr("Presentations") + " (*.pptx *.ppt *.odp *.otp *.ppsm *.ppsx *.potx *.potm *.fodp *.dps *.dpt);;" +
                     tr("Web Page") + " (*.html *.htm *.mht *.epub);;" +
                     tr("Text files") + " (*.txt *.csv)";
+        _all_sup_files = tr("All supported files") + " " + joinExtentions(_filter_);
+        _filter_.prepend(_all_sup_files + ";;");
+        _filter_.append(";;" + m_mapFilters[AVS_OFFICESTUDIO_FILE_UNKNOWN]);
     }
-
-    QString _sel_filter = selected ? *selected : m_mapFilters[AVS_OFFICESTUDIO_FILE_UNKNOWN];
+    const QString _default_sel_filter = _all_sup_files.isEmpty() ?
+                m_mapFilters[AVS_OFFICESTUDIO_FILE_UNKNOWN] : _all_sup_files;
+    QString _sel_filter = selected ? *selected : _default_sel_filter;
 //    QWidget * p = qobject_cast<QWidget *>(parent());
 
     QWidget * _parent =
@@ -665,5 +669,24 @@ QString CFileDialogWrapper::joinFilters() const
         _out.append(f);
     }
 
+    return _out;
+}
+
+QString CFileDialogWrapper::joinExtentions(const QString &filter) const
+{
+    QString _out;
+    foreach (QString str, filter.split(";;")) {
+        const int start = str.indexOf('(');
+        const int end = str.indexOf(')');
+        if (start != -1 && start < end)
+            _out += str.mid(start + 1, end - start - 1) + " ";
+    }
+    const int pos = _out.lastIndexOf(' ');
+    if (pos != -1)
+        _out = _out.mid(0, pos);
+    if (!_out.isEmpty()) {
+        _out.prepend('(');
+        _out.append(')');
+    }
     return _out;
 }
