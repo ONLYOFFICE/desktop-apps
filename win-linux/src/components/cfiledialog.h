@@ -81,6 +81,7 @@ private:
     QString getFilter(const QString&) const;
     int getKey(const QString &value);
     QString joinFilters() const;
+    QString joinExtentions(const QString&) const;
 
     QString m_filters;
     QMap<int, QString> m_mapFilters;
