@@ -879,7 +879,9 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
         if ( panel ) {
             if ( open_in_new_window ) {
                 CEditorWindow * editor_win = new CEditorWindow(_start_rect, panel);
-                editor_win->show(false);
+                bool isMaximized = mainWindow() ? mainWindow()->windowState().testFlag(Qt::WindowMaximized) :
+                                                  reg_user.value("maximized", false).toBool();
+                editor_win->show(isMaximized);
 
                 _app.m_vecEditors.push_back(size_t(editor_win));
                 if ( editor_win->isCustomWindowStyle() )
@@ -1021,8 +1023,8 @@ void CAscApplicationManagerWrapper::initializeApp()
             if ( !vec_inargs.empty() )
                 handleInputCmd(vec_inargs);
 
-            if ( mainWindow() )
-                mainWindow()->bringToTop();
+            //if ( mainWindow() )
+               // mainWindow()->bringToTop();
         });
     }
 

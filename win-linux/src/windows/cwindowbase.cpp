@@ -35,9 +35,8 @@
 #include "utils.h"
 #include "ccefeventsgate.h"
 #include "clangater.h"
-#ifdef __linux__
-# include "defines.h"
-#else
+#include "defines.h"
+#ifdef _WIN32
 # include "windows/platform_win/caption.h"
 # if (QT_VERSION >= QT_VERSION_CHECK(5, 9, 0))
 #  include <QOperatingSystemVersion>
@@ -200,6 +199,19 @@ QWidget* CWindowBase::createTopPanel(QWidget *parent)
 #endif
     }
     return _boxTitleBtns;
+}
+
+void CWindowBase::saveWindowState()
+{
+    if (!windowState().testFlag(Qt::WindowFullScreen)) {
+        GET_REGISTRY_USER(reg_user)
+        if (windowState().testFlag(Qt::WindowMaximized)) {
+            reg_user.setValue("maximized", true);
+        } else {
+            reg_user.remove("maximized");
+            reg_user.setValue("position", normalGeometry());
+        }
+    }
 }
 
 void CWindowBase::setIsCustomWindowStyle(bool custom)
