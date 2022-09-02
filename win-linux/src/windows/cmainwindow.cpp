@@ -261,15 +261,7 @@ void CMainWindow::focus()
 
 void CMainWindow::onCloseEvent()
 {
-    if (windowState() != Qt::WindowFullScreen && isVisible()) {
-        GET_REGISTRY_USER(reg_user)
-        if (isMaximized()) {
-            reg_user.setValue("maximized", true);
-        } else {
-            reg_user.remove("maximized");
-            reg_user.setValue("position", normalGeometry());
-        }
-    }
+    CWindowBase::saveWindowState();
     AscAppManager::closeMainWindow();
 }
 
