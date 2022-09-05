@@ -123,7 +123,7 @@ private:
         {"cs-CZ", "Čeština"},
         {"it-IT", "Italiano"},
         {"pt-BR", "Português Brasileiro"}
-//        ,{"pt-PT", "Portuguese (Portugal)"}
+        ,{"pt-PT", "Português (Portugal)"}
         ,{"pl-PL", "Polski"}
         ,{"zh-CN", "中文"}
 //        ,{"zh-HK", "Chinese (Traditional)"}
