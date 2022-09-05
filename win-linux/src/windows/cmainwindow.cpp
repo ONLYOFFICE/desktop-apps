@@ -395,7 +395,7 @@ QWidget* CMainWindow::createMainPanel(QWidget *parent)
     m_pTabs->activate(false);
     m_pTabs->applyUITheme(AscAppManager::themes().current().id());
 
-    connect(tabBar(), SIGNAL(currentChanged(int)), this, SLOT(onTabChanged(int)));
+    connect(tabWidget(), SIGNAL(currentChanged(int)), this, SLOT(onTabChanged(int)));
     connect(tabBar(), SIGNAL(tabBarClicked(int)), this, SLOT(onTabClicked(int)));
     connect(tabBar(), SIGNAL(tabCloseRequested(int)), this, SLOT(onTabCloseRequest(int)));
     connect(m_pTabs, &CAscTabWidget::editorInserted, bind(&CMainWindow::onTabsCountChanged, this, _2, _1, 1));
