@@ -74,7 +74,7 @@ l10n.hy = {
     settOpenMode: 'Փաստաթուղթը բացել նախկին ռեժիմով',
     setBtnApply: 'Կիրարկել',
     settLanguage: 'Ինտերֆեյսի լեզու',
-    settAfterRestart: 'Ընտրանքի կկիրարկվի հավելվածի վերագործարկումից հետո',
+    settAfterRestart: 'Ընտրանքը կկիրառվի հավելվածի վերագործարկումից հետո',
     settShowEncryptOpts: 'End-to-end ծածկագրման փորձարկում',
     settCheckUpdates: 'Ավտոմատ կերպով ստուգել թարմացումները',
     settOptCheckNever: 'Երբեք',
