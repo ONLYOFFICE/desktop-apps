@@ -185,16 +185,16 @@ void CEditorWindow::setReporterMode(bool apply)
 void CEditorWindow::undock(bool maximized)
 {
 #ifdef Q_OS_LINUX
-    maximized = false;
+    //maximized = false;
 #else
     if ( maximized ) {
         m_restoreMaximized = true;
-        maximized = false;
+        //maximized = false;
     }
 #endif
 
     CWindowPlatform::show(maximized);
-    if (isCustomWindowStyle())
+    if (isCustomWindowStyle() && !maximized)
         captureMouse();
 }
 
