@@ -531,7 +531,13 @@ void CMainWindow::onEditorAllowedClose(int uid)
 
 void CMainWindow::onTabChanged(int index)
 {
-    const QString title = (index > -1) ? m_pTabs->panel(index)->data()->title() : "";
+    QString title("");
+    if (index > -1) {
+        auto _panel = m_pTabs->panel(index);
+        if (_panel)
+            title = _panel->data()->title();
+    }
+
     if (title != windowTitle()) {
         QTimer::singleShot(100, this, [=]() {
             setWindowTitle(title);
