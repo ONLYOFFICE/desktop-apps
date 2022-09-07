@@ -156,6 +156,7 @@ class CEditorWindowPrivate : public CCefEventsGate
 public:
     int titleLeftOffset = 0;
     bool isReporterMode = false;
+    bool isDocumentLoaded = false;
 
 public:
     CEditorWindowPrivate(CEditorWindow * w) : window(w) {}
@@ -312,6 +313,9 @@ public:
                 panel()->data()->setFeatures(L"old version of editor");
                 extendableTitleToSimple();
             }
+            isDocumentLoaded = true;
+            if (window->isActiveWindow())
+                window->focus();
     }
 
     void onDocumentName(void * data) override
