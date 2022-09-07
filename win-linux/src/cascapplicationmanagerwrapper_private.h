@@ -315,12 +315,15 @@ public:
             }
 
             if ( preferOpenEditorWindow() ) {
-                QRect rect = windowRectFromViewId(opts.parent_id);
+                GET_REGISTRY_USER(reg_user);
+                bool isMaximized = mainWindow() ? mainWindow()->windowState().testFlag(Qt::WindowMaximized) :
+                                                  reg_user.value("maximized", false).toBool();
+                QRect rect = isMaximized ? QRect() : windowRectFromViewId(opts.parent_id);
                 if ( !rect.isEmpty() )
                     rect.adjust(50,50,50,50);
 
                 CEditorWindow * editor_win = new CEditorWindow(rect, panel);
-                editor_win->show(false);
+                editor_win->show(isMaximized);
 
                 m_appmanager.m_vecEditors.push_back(size_t(editor_win));
                 if ( editor_win->isCustomWindowStyle() )
