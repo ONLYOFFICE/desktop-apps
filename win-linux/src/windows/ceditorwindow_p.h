@@ -314,6 +314,8 @@ public:
                 extendableTitleToSimple();
             }
             isDocumentLoaded = true;
+            if (window->isActiveWindow())
+                window->focus();
     }
 
     void onDocumentName(void * data) override
