@@ -96,5 +96,5 @@ l10n.ru = {
     updateNoUpdates: 'Приложение обновлено',
     updateAvialable: 'Доступна версия $1. Нажмите, чтобы скачать.',
     settOptThemeSystem: 'Системная',
-    settOptThemeContrastDark: 'Темная контрастная',
+    settOptThemeContrastDark: 'Контрастная темная',
 }
