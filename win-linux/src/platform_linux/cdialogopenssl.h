@@ -22,7 +22,6 @@ public:
     void getResult(NSEditorApi::CAscOpenSslData&);
 private:
     bool checkCertificate();
-    bool m_CmdUseNativeDialogFlag;
 
 protected:
     CSslDialog_Private * m_private;
