@@ -962,6 +962,11 @@ void CAscApplicationManagerWrapper::initializeApp()
     GET_REGISTRY_USER(reg_user)
     reg_user.setFallbacksEnabled(false);
 
+    if ( InputArgs::contains(L"--geometry=default") ) {
+        reg_user.remove("maximized");
+        reg_user.remove("position");
+    }
+
     // read installation time and clean cash folders if expired
     if ( reg_system.contains("timestamp") ) {
         QString user_data_path = Utils::getUserPath() + APP_DATA_PATH;
