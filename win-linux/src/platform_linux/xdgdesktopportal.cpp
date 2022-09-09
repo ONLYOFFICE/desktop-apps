@@ -899,6 +899,7 @@ Result callXdgPortal(Window parent, Xdg::Mode mode, const char* title,
         setFilters(arr_iter, filterList, filterCount, selFilter);
     } else {
         // Open folder
+        setCurrentFolder(arr_iter, defltPath);
         setOpenFileEntryType(arr_iter, EntryType::Directory);
     }
     __dbusClose(&iter, &arr_iter);
@@ -1160,15 +1161,18 @@ QStringList Xdg::openXdgPortal(QWidget *parent,
     }
 
     FilterItem selFilterItem;
-    selFilterItem.name = strdup(sel_filter->toUtf8().data());
+    selFilterItem.name = NULL;
     selFilterItem.pattern = NULL;
-    auto parse = sel_filter->split('(');
-    if (parse.size() == 1) {
-        selFilterItem.pattern = strdup("");
-    } else
-    if (parse.size() == 2) {
-        const QString pattern = parse[1].replace(")", "");
-        selFilterItem.pattern = strdup(pattern.toUtf8().data());
+    if (mode != Mode::FOLDER && sel_filter) {
+        selFilterItem.name = strdup(sel_filter->toUtf8().data());
+        auto parse = sel_filter->split('(');
+        if (parse.size() == 1) {
+            selFilterItem.pattern = strdup("");
+        } else
+        if (parse.size() == 2) {
+            const QString pattern = parse[1].replace(")", "");
+            selFilterItem.pattern = strdup(pattern.toUtf8().data());
+        }
     }
 
     char* outPaths;
@@ -1208,7 +1212,8 @@ QStringList Xdg::openXdgPortal(QWidget *parent,
 
     Free((void*)selFilterItem.pattern);
     if (selFilterItem.name != NULL) {
-        *sel_filter = QString::fromUtf8(selFilterItem.name);
+        if (sel_filter)
+            *sel_filter = QString::fromUtf8(selFilterItem.name);
         Free((void*)selFilterItem.name);
     }
 
