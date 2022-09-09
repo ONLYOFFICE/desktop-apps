@@ -1089,7 +1089,7 @@ void CAscApplicationManagerWrapper::gotoMainWindow(size_t src)
         _app.m_pMainWindow->show(mainWindow()->isMaximized());
 
 //    _app.m_pMainWindow->bringToTop();
-    QTimer::singleShot(0, []{
+    QTimer::singleShot(0, &_app, [](){
         AscAppManager::mainWindow()->bringToTop();
     });
 }
