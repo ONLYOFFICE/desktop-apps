@@ -160,8 +160,8 @@
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFilesComponent">
     <ROW File="DesktopEditors.exe" Component_="DesktopEditors.exe" FileName="DESKTO~1.EXE|DesktopEditors.exe" Attributes="0" SourcePath="..\..\..\..\build_tools\out\win_64\onlyoffice\DesktopEditors\DesktopEditors.exe" SelfReg="false"/>
-    <ROW File="VideoPlayer.exe" Component_="VideoPlayer.exe" FileName="VIDEOP~1.EXE|VideoPlayer.exe" Attributes="0" SourcePath="..\..\..\..\build_tools\out\win_64\R7-Office\MediaViewer\VideoPlayer.exe" SelfReg="false"/>
-    <ROW File="ImageViewer.exe" Component_="ImageViewer.exe" FileName="IMAGEV~1.EXE|ImageViewer.exe" Attributes="0" SourcePath="..\..\..\..\build_tools\out\win_64\R7-Office\MediaViewer\ImageViewer.exe" SelfReg="false"/>
+    <ROW File="VideoPlayer.exe" Component_="VideoPlayer.exe" FileName="VIDEOP~1.EXE|VideoPlayer.exe" Attributes="0" SourcePath="..\..\..\..\build_tools\out\win_64\onlyoffice\MediaViewer\VideoPlayer.exe" SelfReg="false"/>
+    <ROW File="ImageViewer.exe" Component_="ImageViewer.exe" FileName="IMAGEV~1.EXE|ImageViewer.exe" Attributes="0" SourcePath="..\..\..\..\build_tools\out\win_64\onlyoffice\MediaViewer\ImageViewer.exe" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.BuildComponent">
     <ROW BuildKey="DefaultBuild" BuildName="DefaultBuild" BuildOrder="1" BuildType="0" PackageFolder="." PackageFileName="DesktopEditors" Languages="en;ru;cs;de;es;fr;pt;pt_BR;sl;ja" LangOpt="1" InstallationType="4" ExtUI="true" UseLargeSchema="true" MsiPackageType="x64" UACExecutionLevel="2"/>
