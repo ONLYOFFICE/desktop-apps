@@ -32,6 +32,7 @@
 
 #include "windows/cmainwindow.h"
 #include "cascapplicationmanagerwrapper.h"
+#include "ceditortools.h"
 #include "defines.h"
 #include "utils.h"
 #include "csplash.h"
@@ -50,7 +51,7 @@
 #include <QApplication>
 #include <QIcon>
 #include <QPrinterInfo>
-#include <QPrintDialog>
+#include "components/cprintdialog.h"
 #include <QDir>
 #include <QMenu>
 #include <QWidgetAction>
@@ -67,6 +68,8 @@
 
 #ifdef _WIN32
 # include "shlobj.h"
+#else
+# include <platform_linux/gtkprintdialog.h>
 #endif
 
 
@@ -1074,12 +1077,15 @@ void CMainWindow::onDocumentPrint(void * opts)
         printer->setOutputFileName("");
         printer->setFromTo(1, pagesCount);
 
-/*#ifdef _WIN32
-        //CPrintDialogWinWrapper wrapper(printer, TOP_NATIVE_WINDOW_HANDLE);
-        //QPrintDialog * dialog = wrapper.q_dialog();
-#else*/
-        QPrintDialog * dialog =  new QPrintDialog(printer, this);
-//#endif // _WIN32
+#ifdef _WIN32
+        CPrintDialog * dialog =  new CPrintDialog(printer, this);
+#else
+# ifdef FILEDIALOG_DONT_USE_NATIVEDIALOGS
+        CPrintDialog * dialog =  new CPrintDialog(printer, this);
+# else
+        GtkPrintDialog * dialog = new GtkPrintDialog(printer, this);
+# endif
+#endif // _WIN32
 
         dialog->setWindowTitle(tr("Print Document"));
         dialog->setEnabledOptions(QPrintDialog::PrintPageRange | QPrintDialog::PrintCurrentPage | QPrintDialog::PrintToFile);
@@ -1087,67 +1093,25 @@ void CMainWindow::onDocumentPrint(void * opts)
             currentPage++, dialog->setOptions(dialog->options() | QPrintDialog::PrintCurrentPage);
         dialog->setPrintRange(m_printData->_print_range);
 
-        int start = -1, finish = -1;
-/*#ifdef _WIN32
-        //int res = wrapper.showModal();
-#else*/
-        int res = dialog->exec();
-//#endif
-        if (res == QDialog::Accepted) {
+        if (dialog->exec() == QDialog::Accepted) {
             m_printData->_printer_info = QPrinterInfo::printerInfo(printer->printerName());
             m_printData->_print_range = dialog->printRange();
+            QVector<PageRanges> page_ranges;
 
             switch(dialog->printRange()) {
-            case QPrintDialog::AllPages: start = 1, finish = pagesCount; break;
+            case QPrintDialog::AllPages:
             case QPrintDialog::PageRange:
-                start = dialog->fromPage(), finish = dialog->toPage(); break;
-            case QPrintDialog::Selection: break;
-            case QPrintDialog::CurrentPage: start = currentPage, finish = currentPage; break;
+                page_ranges = dialog->getPageRanges();
+                break;
+            case QPrintDialog::Selection:
+                page_ranges.append(PageRanges(-1, -1));
+                break;
+            case QPrintDialog::CurrentPage:
+                page_ranges.append(PageRanges(currentPage, currentPage));
+                break;
             }
 
-            if (!(start < 0) || !(finish < 0)) {
-                start < 1 && (start = 1);
-                finish < 1 && (finish = 1);
-                finish < start && (finish = start);
-
-                if ( pContext->BeginPaint() ) {
-#if defined(_WIN32)
-                    //CPrintProgress progressDlg((HWND)parentWidget()->winId());
-                    CPrintProgress progressDlg(TOP_NATIVE_WINDOW_HANDLE);
-#else
-                    CPrintProgress progressDlg(qobject_cast<QWidget *>(this));
-#endif
-                    progressDlg.startProgress();
-
-                    CAscPrintPage * pData;
-                    uint count = finish - start;
-                    for (; !(start > finish); ++start) {
-                        pContext->AddRef();
-
-                        progressDlg.setProgress(count - (finish - start) + 1, count + 1);
-                        qApp->processEvents();
-
-                        pData = new NSEditorApi::CAscPrintPage();
-                        pData->put_Context(pContext);
-                        pData->put_Page(start - 1);
-
-                        pEvent = new CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_PRINT_PAGE);
-                        pEvent->m_pData = pData;
-
-                        pView->Apply(pEvent);
-//                        RELEASEOBJECT(pData)
-//                        RELEASEOBJECT(pEvent)
-
-                        if (progressDlg.isRejected())
-                            break;
-
-                        start < finish && printer->newPage();
-                    }
-                    pContext->EndPaint();
-                }
-            } else {
-                // TODO: show error message
-            }
+            CEditorTools::print({pView, pContext, &page_ranges, this});
         }
 
         pContext->Release();

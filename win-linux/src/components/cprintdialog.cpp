@@ -30,38 +30,30 @@
  *
 */
 
-#ifndef CEDITORTOOLS_H
-#define CEDITORTOOLS_H
+#include "cprintdialog.h"
 
-#include "qascprinter.h"
-#include "cascapplicationmanagerwrapper.h"
-#include "components/cprintdialog.h"
 
-namespace CEditorTools
+PageRanges::PageRanges(int _fromPage, int _toPage) :
+    fromPage(_fromPage),
+    toPage(_toPage)
+{}
+
+CPrintDialog::CPrintDialog(QPrinter *printer, QWidget *parent) :
+    QPrintDialog(printer, parent),
+    m_page_ranges(QVector<PageRanges>())
 {
-    struct sPrintConf
-    {
-        sPrintConf(CCefView * v, QAscPrinterContext * c, QVector<PageRanges> *ranges, ParentHandle p)
-            : view(v)
-            , context(c)
-            , page_ranges(ranges)
-            , parent(p)
-        {}
 
-        CCefView * view;
-        QAscPrinterContext * context;
-        QVector<PageRanges> *page_ranges;
-        ParentHandle parent;
-    };
-
-    void print(const sPrintConf&);
-    void getlocalfile(void * data);
-    QString getlocalfile(const std::wstring& path, int parentid = -1);
-    std::wstring getFolder(const std::wstring&, int parentid = -1);
-
-    auto createEditorPanel(const COpenOptions& opts, const QRect& rect = QRect()) -> CTabPanel *;
-    auto editorTypeFromFormat(int format) -> AscEditorType;
-    auto processLocalFileSaveAs(const NSEditorApi::CAscCefMenuEvent * event) -> void;
 }
 
-#endif // CEDITORTOOLS_H
+CPrintDialog::~CPrintDialog()
+{
+
+}
+
+QVector<PageRanges> CPrintDialog::getPageRanges()
+{
+    if (!m_page_ranges.isEmpty())
+        m_page_ranges.clear();
+    m_page_ranges.append(PageRanges(fromPage(), toPage()));
+    return m_page_ranges;
+}

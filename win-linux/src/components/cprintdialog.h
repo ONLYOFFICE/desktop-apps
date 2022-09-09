@@ -30,38 +30,30 @@
  *
 */
 
-#ifndef CEDITORTOOLS_H
-#define CEDITORTOOLS_H
+#ifndef CPRINTDIALOG_H
+#define CPRINTDIALOG_H
 
-#include "qascprinter.h"
-#include "cascapplicationmanagerwrapper.h"
-#include "components/cprintdialog.h"
+#include <QPrinter>
+#include <QPrintDialog>
+#include <QWidget>
 
-namespace CEditorTools
+
+struct PageRanges
 {
-    struct sPrintConf
-    {
-        sPrintConf(CCefView * v, QAscPrinterContext * c, QVector<PageRanges> *ranges, ParentHandle p)
-            : view(v)
-            , context(c)
-            , page_ranges(ranges)
-            , parent(p)
-        {}
+    PageRanges(int _fromPage = -1, int _toPage = -1);
+    int fromPage;
+    int toPage;
+};
 
-        CCefView * view;
-        QAscPrinterContext * context;
-        QVector<PageRanges> *page_ranges;
-        ParentHandle parent;
-    };
+class CPrintDialog: public QPrintDialog
+{
+public:
+    CPrintDialog(QPrinter *printer, QWidget *parent);
+    ~CPrintDialog();
+    QVector<PageRanges> getPageRanges();
 
-    void print(const sPrintConf&);
-    void getlocalfile(void * data);
-    QString getlocalfile(const std::wstring& path, int parentid = -1);
-    std::wstring getFolder(const std::wstring&, int parentid = -1);
+private:
+    QVector<PageRanges> m_page_ranges;
+};
 
-    auto createEditorPanel(const COpenOptions& opts, const QRect& rect = QRect()) -> CTabPanel *;
-    auto editorTypeFromFormat(int format) -> AscEditorType;
-    auto processLocalFileSaveAs(const NSEditorApi::CAscCefMenuEvent * event) -> void;
-}
-
-#endif // CEDITORTOOLS_H
+#endif // CPRINTDIALOG_H
