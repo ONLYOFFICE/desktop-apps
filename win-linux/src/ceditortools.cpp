@@ -50,38 +50,46 @@ namespace CEditorTools
 {
     void print(const sPrintConf& c)
     {
-        if (!(c.pagetstart < 0) || !(c.pagestop < 0)) {
-            int _start = c.pagetstart < 1 ? 1 : c.pagetstart;
-            int _stop = c.pagestop < 1 ? 1 : c.pagestop;
-            _stop < _start && (_stop = _start);
-
+        if (!c.page_ranges->isEmpty()) {
             if ( c.context->BeginPaint() ) {
                 CPrintProgress _progress(c.parent);
                 _progress.startProgress();
 
                 CAscPrintPage * pData;
-                uint _count = _stop - _start;
-                for (; !(_start > _stop); ++_start) {
-                    c.context->AddRef();
+                int curr = 1;
+                int count = 0;
+                foreach (PageRanges range, *c.page_ranges)
+                    count += range.toPage - range.fromPage + 1;
 
-                    _progress.setProgress(_count - (_stop - _start) + 1, _count + 1);
-                    qApp->processEvents();
+                foreach (PageRanges range, *c.page_ranges) {
+                    int start = range.fromPage, finish = range.toPage;
+                    start < 1 && (start = 1);
+                    finish < 1 && (finish = 1);
+                    finish < start && (finish = start);
+                    while (start <= finish) {
+                        c.context->AddRef();
 
-                    pData = new CAscPrintPage();
-                    pData->put_Context(c.context);
-                    pData->put_Page(_start - 1);
+                        _progress.setProgress(curr, count);
+                        qApp->processEvents();
 
-                    CAscMenuEvent * pEvent = new CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_PRINT_PAGE);
-                    pEvent->m_pData = pData;
+                        pData = new CAscPrintPage();
+                        pData->put_Context(c.context);
+                        pData->put_Page(start - 1);
 
-                   c.view->Apply(pEvent);
+                        CAscMenuEvent * pEvent = new CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_PRINT_PAGE);
+                        pEvent->m_pData = pData;
+
+                        c.view->Apply(pEvent);
 //                        RELEASEOBJECT(pData)
 //                        RELEASEOBJECT(pEvent)
 
-                    if ( _progress.isRejected() )
-                        break;
-
-                    _start < _stop && c.context->getPrinter()->newPage();
+                        if ( _progress.isRejected() )
+                            break;
+                        if (curr < count)
+                            c.context->getPrinter()->newPage();
+                        curr++;
+                        start++;
+                    }
                 }
                 c.context->EndPaint();
             }

@@ -82,6 +82,7 @@ HEADERS += \
     $$PWD/src/components/csvgpushbutton.h \
     $$PWD/src/components/celipsislabel.h \
     $$PWD/src/components/cfullscrwidget.h \
+    $$PWD/src/components/cprintdialog.h \
     $$PWD/src/version.h \
     $$PWD/src/defines.h \
     $$PWD/src/ccefeventstransformer.h \
@@ -127,6 +128,7 @@ SOURCES += \
     $$PWD/src/components/csvgpushbutton.cpp \
     $$PWD/src/components/celipsislabel.cpp \
     $$PWD/src/components/cfullscrwidget.cpp \
+    $$PWD/src/components/cprintdialog.cpp \
     #$$PWD/src/csplash.cpp \
     $$PWD/src/main.cpp \
     $$PWD/src/ccefeventstransformer.cpp \
@@ -198,7 +200,8 @@ core_linux {
                 $$PWD/src/platform_linux/cdialogcertificateinfo.h \
                 $$PWD/src/platform_linux/singleapplication.h \
                 $$PWD/src/platform_linux/xdgdesktopportal.h \
-                $$PWD/src/platform_linux/gtkfilechooser.h
+                $$PWD/src/platform_linux/gtkfilechooser.h \
+                $$PWD/src/platform_linux/gtkprintdialog.h
 
     SOURCES +=  $$PWD/src/windows/platform_linux/cx11decoration.cpp \
                 #$$PWD/src/windows/platform_linux/gtk_addon.cpp \
@@ -208,10 +211,11 @@ core_linux {
                 $$PWD/src/platform_linux/cdialogcertificateinfo.cpp \
                 $$PWD/src/platform_linux/singleapplication.cpp \
                 $$PWD/src/platform_linux/xdgdesktopportal.cpp \
-                $$PWD/src/platform_linux/gtkfilechooser.cpp
+                $$PWD/src/platform_linux/gtkfilechooser.cpp \
+                $$PWD/src/platform_linux/gtkprintdialog.cpp
 
     CONFIG += link_pkgconfig
-    PKGCONFIG += glib-2.0 gtk+-3.0 atk dbus-1
+    PKGCONFIG += glib-2.0 gtk+-3.0 atk dbus-1 gtk+-unix-print-3.0
     LIBS += -lX11
 
     LIBS += $$CORE_3DPARTY_PATH/icu/$$PLATFORM_BUILD/build/libicuuc.so.58
