@@ -822,8 +822,8 @@
     <ROW Action="AI_AppSearchEx" Sequence="101"/>
     <ROW Action="AI_VerifyPrereq" Sequence="1101"/>
     <ROW Action="AI_TxtUpdaterInstall" Sequence="5101"/>
-    <ROW Action="SetLocaleProperty32" Condition="( NOT Installed ) AND ( NOT VersionNT64 )" Sequence="53"/>
-    <ROW Action="SetLocaleProperty64" Condition="( NOT Installed ) AND ( VersionNT64 )" Sequence="54"/>
+    <ROW Action="SetLocaleProperty32" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) ) AND ( NOT VersionNT64 )" Sequence="53"/>
+    <ROW Action="SetLocaleProperty64" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) ) AND ( VersionNT64 )" Sequence="54"/>
     <ROW Action="SetCustomPath" Condition="( NOT Installed )" Sequence="951"/>
     <ROW Action="UninstallOlderVersion32" Condition="( NOT Installed ) AND ( NOT VersionNT64 )" Sequence="51"/>
     <ROW Action="UninstallOlderVersion64" Condition="( NOT Installed ) AND ( VersionNT64 )" Sequence="52"/>
@@ -920,10 +920,10 @@
     <ROW Registry="locale_HK_LM" Root="2" Key="Software\[MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]" Name="locale" Value="[LOCALE]" Component_="locale_HK_LM"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiShortsComponent">
-    <ROW Shortcut="COMMON_SHORTCUT_NAME_SHORTCUTDIR" Directory_="SHORTCUTDIR" Name="ONLYOF~2|[|COMMON_SHORTCUT_NAME]" Component_="InstallDesktopEditors.exeComponentShortcuts" Target="[APPDIR]\DesktopEditors.exe" Hotkey="0" Icon_="desktopeditors.exe" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
-    <ROW Shortcut="COMMON_SHORTCUT_NAME_DesktopFolder" Directory_="DesktopFolder" Name="ONLYOF~2|[|COMMON_SHORTCUT_NAME]" Component_="InstallDesktopEditors.exeComponentShortcuts" Target="[APPDIR]\DesktopEditors.exe" Hotkey="0" Icon_="desktopeditors.exe" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
-    <ROW Shortcut="GALLERY_SHORTCUT_NAME" Directory_="SHORTCUTDIR" Name="ONLYOF~1|[|GALLERY_SHORTCUT_NAME]" Component_="ImageViewer.exe" Target="[#ImageViewer.exe]" Hotkey="0" Icon_="ImageViewer.exe" IconIndex="0" ShowCmd="1" WkDir="CUSTOM_PATH"/>
-    <ROW Shortcut="MEDIA_SHORTCUT_NAME" Directory_="SHORTCUTDIR" Name="ONLYOF~1|[|MEDIA_SHORTCUT_NAME]" Component_="VideoPlayer.exe" Target="[#VideoPlayer.exe]" Hotkey="0" Icon_="VideoPlayer.exe" IconIndex="0" ShowCmd="1" WkDir="CUSTOM_PATH"/>
+    <ROW Shortcut="COMMON_SHORTCUT_NAME_DESKTOP" Directory_="DesktopFolder" Name="ONLYOF~1|[|COMMON_SHORTCUT_NAME]" Component_="DesktopEditors.exe" Target="[#DesktopEditors.exe]" Hotkey="0" Icon_="desktopeditors.exe" IconIndex="0" ShowCmd="1" WkDir="APPDIR" Advertised="true"/>
+    <ROW Shortcut="COMMON_SHORTCUT_NAME_SHORTCUTDIR" Directory_="SHORTCUTDIR" Name="ONLYOF~2|[|COMMON_SHORTCUT_NAME]" Component_="DesktopEditors.exe" Target="[#DesktopEditors.exe]" Hotkey="0" Icon_="desktopeditors.exe" IconIndex="0" ShowCmd="1" WkDir="APPDIR" Advertised="true"/>
+    <ROW Shortcut="GALLERY_SHORTCUT_NAME" Directory_="SHORTCUTDIR" Name="ONLYOF~1|[|GALLERY_SHORTCUT_NAME]" Component_="ImageViewer.exe" Target="[#ImageViewer.exe]" Hotkey="0" Icon_="ImageViewer.exe" IconIndex="0" ShowCmd="1" WkDir="CUSTOM_PATH" Advertised="true"/>
+    <ROW Shortcut="MEDIA_SHORTCUT_NAME" Directory_="SHORTCUTDIR" Name="ONLYOF~1|[|MEDIA_SHORTCUT_NAME]" Component_="VideoPlayer.exe" Target="[#VideoPlayer.exe]" Hotkey="0" Icon_="VideoPlayer.exe" IconIndex="0" ShowCmd="1" WkDir="CUSTOM_PATH" Advertised="true"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiThemeComponent">
     <ATTRIBUTE name="UsedTheme" value="classic"/>
