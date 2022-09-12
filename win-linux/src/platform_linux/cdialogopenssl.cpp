@@ -1,6 +1,8 @@
 #include "cdialogopenssl.h"
 #include "components/cmessage.h"
 #include "utils.h"
+#include "platform_linux/xdgdesktopportal.h"
+#include "platform_linux/gtkfilechooser.h"
 
 #include <QGridLayout>
 #include <QFileDialog>
@@ -169,13 +171,6 @@ CDialogOpenSsl::CDialogOpenSsl(QWidget *parent)
     this->setGeometry(nX, nY, nW, nH);
 
     // Set native dialog from command line arguments
-    m_CmdUseNativeDialogFlag = false;
-    foreach (const std::wstring &arg, InputArgs::arguments()) {
-        if (arg == L"--native-file-dialog") {
-            m_CmdUseNativeDialogFlag = true;
-            break;
-        }
-    }
 }
 
 CDialogOpenSsl::~CDialogOpenSsl()
@@ -187,14 +182,23 @@ void CDialogOpenSsl::onBtnCertificateClick()
     QString sDirectory = "~/";
 
     QString _file_name;
-#ifdef FILEDIALOG_DONT_USE_NATIVEDIALOGS
-    if (m_CmdUseNativeDialogFlag)
-        _file_name = QFileDialog::getOpenFileName(NULL, QString(), sDirectory);
-    else
-        _file_name = QFileDialog::getOpenFileName(NULL, QString(), sDirectory, QString(), Q_NULLPTR, QFileDialog::DontUseNativeDialog);
-#else
-    _file_name = QFileDialog::getOpenFileName(NULL, QString(), sDirectory);
-#endif
+    QFileDialog::Options opts;
+    if (!WindowHelper::useNativeDialog())
+        opts |= QFileDialog::DontUseNativeDialog;
+
+    if (!opts.testFlag(QFileDialog::DontUseNativeDialog)) {
+        QStringList result;
+        if (WindowHelper::useGtkDialog()) {
+            result = Gtk::openGtkFileChooser(this, Gtk::Mode::OPEN, tr("Open Document"), "",
+                                           sDirectory, "", nullptr, false);
+        } else {
+            result = Xdg::openXdgPortal(this, Xdg::Mode::OPEN, tr("Open Document"), "",
+                                      sDirectory, "", nullptr, false);
+        }
+        _file_name = (result.size() > 0) ? result.at(0) : QString();
+    } else {
+        _file_name = QFileDialog::getOpenFileName(NULL, QString(), sDirectory, QString(), Q_NULLPTR, opts);
+    }
 
     if ( !_file_name.isEmpty() ) {
         m_private->clearKey(true);
@@ -210,14 +214,23 @@ void CDialogOpenSsl::onBtnKeyClick()
     QString sDirectory = "~/";
 
     QString _file_name;
-#ifdef FILEDIALOG_DONT_USE_NATIVEDIALOGS
-    if (m_CmdUseNativeDialogFlag)
-        _file_name = QFileDialog::getOpenFileName(NULL, QString(), sDirectory);
-    else
-        _file_name = QFileDialog::getOpenFileName(NULL, QString(), sDirectory, QString(), Q_NULLPTR, QFileDialog::DontUseNativeDialog);
-#else
-    _file_name = QFileDialog::getOpenFileName(NULL, QString(), sDirectory);
-#endif
+    QFileDialog::Options opts;
+    if (!WindowHelper::useNativeDialog())
+        opts |= QFileDialog::DontUseNativeDialog;
+
+    if (!opts.testFlag(QFileDialog::DontUseNativeDialog)) {
+        QStringList result;
+        if (WindowHelper::useGtkDialog()) {
+            result = Gtk::openGtkFileChooser(this, Gtk::Mode::OPEN, tr("Open Document"), "",
+                                           sDirectory, "", nullptr, false);
+        } else {
+            result = Xdg::openXdgPortal(this, Xdg::Mode::OPEN, tr("Open Document"), "",
+                                      sDirectory, "", nullptr, false);
+        }
+        _file_name = (result.size() > 0) ? result.at(0) : QString();
+    } else {
+        _file_name = QFileDialog::getOpenFileName(NULL, QString(), sDirectory, QString(), Q_NULLPTR, opts);
+    }
 
     if ( !_file_name.isEmpty() ) {
         m_private->setPassDisabled("key");

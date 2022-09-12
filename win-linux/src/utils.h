@@ -104,6 +104,7 @@ namespace WindowHelper {
 //    auto check_button_state(Qt::MouseButton b) -> bool;
     auto initEnvInfo() -> void;
     auto getEnvInfo() -> QString;
+    auto useGtkDialog() -> bool;
 #else
     auto isWindowSystemDocked(HWND handle) -> bool;
     auto correctWindowMinimumSize(HWND handle) -> void;
@@ -114,6 +115,7 @@ namespace WindowHelper {
     auto correctWindowMinimumSize(const QRect&, const QSize&) -> QSize;
     auto isLeftButtonPressed() -> bool;
     auto constructFullscreenWidget(QWidget * panel) -> CFullScrWidget *;
+    auto useNativeDialog() -> bool;
 }
 
 #endif // UTILS_H

@@ -664,6 +664,25 @@ namespace WindowHelper {
         return desktop_env;
     }
 
+    auto useGtkDialog() -> bool {
+        GET_REGISTRY_USER(reg_user)
+        bool use_gtk_dialog = true;
+        bool saved_flag = reg_user.value("--xdg-desktop-portal", false).toBool();
+        if (InputArgs::contains(L"--xdg-desktop-portal=default")) {
+            use_gtk_dialog = false;
+            if (saved_flag)
+                reg_user.setValue("--xdg-desktop-portal", false);
+        } else
+        if (InputArgs::contains(L"--xdg-desktop-portal")) {
+            use_gtk_dialog = false;
+            if (!saved_flag)
+                reg_user.setValue("--xdg-desktop-portal", true);
+        } else {
+            if (saved_flag)
+                use_gtk_dialog = false;
+        }
+        return use_gtk_dialog;
+    }
 #else
     auto isWindowSystemDocked(HWND handle) -> bool {
         RECT windowrect;
@@ -764,4 +783,13 @@ namespace WindowHelper {
 
         return _parent;
     }   
+
+    auto useNativeDialog() -> bool
+    {
+        bool use_native_dialog = true;
+#ifdef FILEDIALOG_DONT_USE_NATIVEDIALOGS
+        use_native_dialog = InputArgs::contains(L"--native-file-dialog");
+#endif
+        return use_native_dialog;
+    }
 }
