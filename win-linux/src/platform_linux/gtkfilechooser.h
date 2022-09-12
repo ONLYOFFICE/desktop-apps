@@ -8,7 +8,7 @@
 namespace Gtk
 {
 typedef enum {
-    OPEN = 0, SAVE = 1
+    OPEN = 0, SAVE = 1, FOLDER = 2
 } Mode;
 
 QStringList openGtkFileChooser(QWidget *parent,
