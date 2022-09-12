@@ -31,18 +31,19 @@ void parseString(GSList** list,
     free(_str);
 }
 
-
-gboolean onRealize(GtkWidget *dialog, gpointer data)
+gboolean set_parent(GtkWidget *dialog, gpointer data)
 {
-    //g_print("Realize...\n");
     GdkWindow *gdk_dialog = gtk_widget_get_window(dialog);
     Window parent_xid = *(Window*)data;
     GdkDisplay *gdk_display = gdk_display_get_default();
     if (parent_xid != 0L && gdk_display && gdk_dialog) {
         GdkWindow *gdk_qtparent = gdk_x11_window_foreign_new_for_display(gdk_display, parent_xid);
-        gdk_window_set_transient_for(gdk_dialog, gdk_qtparent);
+        if (gdk_qtparent) {
+            gdk_window_set_transient_for(gdk_dialog, gdk_qtparent);
+            return TRUE;
+        }
     }
-    return TRUE;
+    return FALSE;
 }
 
 void nativeFileDialog(const Window &parent_xid,
@@ -73,8 +74,8 @@ void nativeFileDialog(const Window &parent_xid,
                                          NULL);
 
     gtk_window_set_modal(GTK_WINDOW(dialog), True);
-    g_signal_connect(G_OBJECT(dialog), "destroy", G_CALLBACK(gtk_main_quit), NULL);
-    g_signal_connect(G_OBJECT(dialog), "realize", G_CALLBACK(onRealize), (gpointer)&parent_xid);
+    //g_signal_connect(G_OBJECT(dialog), "destroy", G_CALLBACK(gtk_main_quit), NULL);
+    g_signal_connect(G_OBJECT(dialog), "realize", G_CALLBACK(set_parent), (gpointer)&parent_xid);
     GtkFileChooser *chooser = GTK_FILE_CHOOSER(dialog);
     if (mode == Gtk::Mode::OPEN || mode == Gtk::Mode::FOLDER) {
         gtk_file_chooser_set_current_folder(chooser, path);
@@ -140,17 +141,19 @@ void nativeFileDialog(const Window &parent_xid,
             **filenames = gtk_file_chooser_get_filename(chooser);
         }
     }
-
-    gtk_window_close(GTK_WINDOW(dialog));
-    gtk_main();
     if (mode != Gtk::Mode::FOLDER) {
         GtkFileFilter *s_filter = gtk_file_chooser_get_filter(chooser);
         if (*sel_filter != NULL)
             free(*sel_filter);
         *sel_filter = strdup(gtk_file_filter_get_name(s_filter));
     }
+    //gtk_window_close(GTK_WINDOW(dialog));
+    gtk_widget_destroy(dialog);
     if (list)
         g_slist_free(list);
+    //gtk_main();
+    while (gtk_events_pending())
+        gtk_main_iteration_do(FALSE);
 }
 
 QStringList Gtk::openGtkFileChooser(QWidget *parent,
