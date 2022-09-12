@@ -31,18 +31,19 @@ void parseString(GSList** list,
     free(_str);
 }
 
-
-gboolean onRealize(GtkWidget *dialog, gpointer data)
+gboolean set_parent(GtkWidget *dialog, gpointer data)
 {
-    //g_print("Realize...\n");
     GdkWindow *gdk_dialog = gtk_widget_get_window(dialog);
     Window parent_xid = *(Window*)data;
     GdkDisplay *gdk_display = gdk_display_get_default();
     if (parent_xid != 0L && gdk_display && gdk_dialog) {
         GdkWindow *gdk_qtparent = gdk_x11_window_foreign_new_for_display(gdk_display, parent_xid);
-        gdk_window_set_transient_for(gdk_dialog, gdk_qtparent);
+        if (gdk_qtparent) {
+            gdk_window_set_transient_for(gdk_dialog, gdk_qtparent);
+            return TRUE;
+        }
     }
-    return TRUE;
+    return FALSE;
 }
 
 void nativeFileDialog(const Window &parent_xid,
@@ -57,22 +58,26 @@ void nativeFileDialog(const Window &parent_xid,
                       bool sel_multiple)
 {
     gtk_init(NULL, NULL);
-    GtkWidget *dialog = NULL;                                        
+    GtkFileChooserAction actions[] = {
+        GTK_FILE_CHOOSER_ACTION_OPEN,
+        GTK_FILE_CHOOSER_ACTION_SAVE,
+        GTK_FILE_CHOOSER_ACTION_SELECT_FOLDER
+    };
+    GtkWidget *dialog = NULL;
     dialog = gtk_file_chooser_dialog_new(title,
                                          NULL,
-                                         mode == Gtk::Mode::OPEN ? GTK_FILE_CHOOSER_ACTION_OPEN :
-                                                                 GTK_FILE_CHOOSER_ACTION_SAVE,
+                                         actions[mode],
                                          "_Cancel",
                                          GTK_RESPONSE_CANCEL,
-                                         mode == Gtk::Mode::OPEN ? "_Open" : "_Save",
+                                         mode == Gtk::Mode::OPEN || mode == Gtk::Mode::FOLDER  ? "_Open" : "_Save",
                                          GTK_RESPONSE_ACCEPT,
                                          NULL);
 
     gtk_window_set_modal(GTK_WINDOW(dialog), True);
-    g_signal_connect(G_OBJECT(dialog), "destroy", G_CALLBACK(gtk_main_quit), NULL);
-    g_signal_connect(G_OBJECT(dialog), "realize", G_CALLBACK(onRealize), (gpointer)&parent_xid);
+    //g_signal_connect(G_OBJECT(dialog), "destroy", G_CALLBACK(gtk_main_quit), NULL);
+    g_signal_connect(G_OBJECT(dialog), "realize", G_CALLBACK(set_parent), (gpointer)&parent_xid);
     GtkFileChooser *chooser = GTK_FILE_CHOOSER(dialog);
-    if (mode == Gtk::Mode::OPEN) {
+    if (mode == Gtk::Mode::OPEN || mode == Gtk::Mode::FOLDER) {
         gtk_file_chooser_set_current_folder(chooser, path);
         gtk_file_chooser_set_select_multiple (chooser, sel_multiple ? TRUE : FALSE);
     } else {
@@ -84,35 +89,40 @@ void nativeFileDialog(const Window &parent_xid,
 
     // Filters
     GSList *list = NULL;
-    parseString(&list, flt, ";;");
-    for (guint i = 0; i < g_slist_length(list); i++) {
-        char *flt_name = (char*)g_slist_nth(list, i)->data;
-        if (flt_name != NULL) {
-            GtkFileFilter *filter = gtk_file_filter_new();
-            gtk_file_filter_set_name(filter, flt_name);
-            //g_print("%s\n", flt_name);
-            char *start = strchr(flt_name, '(');
-            char *end = strchr(flt_name, ')');
-            if (start != NULL && end != NULL) {
-                int start_index = (int)(start - flt_name);
-                int end_index = (int)(end - flt_name);
-                if (start_index < end_index) {
-                    char *fltrs = substr(flt_name, start_index + 1, end_index);
-                    //g_print("%s\n", fltrs);
-                    GSList *flt_list = NULL;
-                    parseString(&flt_list, fltrs, " ");
-                    free(fltrs);
-                    for (guint j = 0; j < g_slist_length(flt_list); j++) {
-                        char *nm = (char*)g_slist_nth(flt_list, j)->data;
-                        if (nm != NULL)
-                            gtk_file_filter_add_pattern(filter, nm);
+    if (mode != Gtk::Mode::FOLDER) {
+        parseString(&list, flt, ";;");
+        for (guint i = 0; i < g_slist_length(list); i++) {
+            char *flt_name = (char*)g_slist_nth(list, i)->data;
+            if (flt_name != NULL) {
+                GtkFileFilter *filter = gtk_file_filter_new();
+                gtk_file_filter_set_name(filter, flt_name);
+                //g_print("%s\n", flt_name);
+                char *start = strchr(flt_name, '(');
+                char *end = strchr(flt_name, ')');
+                if (start != NULL && end != NULL) {
+                    int start_index = (int)(start - flt_name);
+                    int end_index = (int)(end - flt_name);
+                    if (start_index < end_index) {
+                        char *fltrs = substr(flt_name, start_index + 1, end_index);
+                        //g_print("%s\n", fltrs);
+                        GSList *flt_list = NULL;
+                        parseString(&flt_list, fltrs, " ");
+                        free(fltrs);
+                        for (guint j = 0; j < g_slist_length(flt_list); j++) {
+                            char *nm = (char*)g_slist_nth(flt_list, j)->data;
+                            if (nm != NULL)
+                                gtk_file_filter_add_pattern(filter, nm);
+                        }
+                        if (flt_list)
+                            g_slist_free(flt_list);
                     }
-                    g_slist_free(flt_list);
+                }
+                gtk_file_chooser_add_filter(chooser, filter);
+                if (sel_filter && *sel_filter) {
+                    if (strcmp(flt_name, *sel_filter) == 0)
+                        gtk_file_chooser_set_filter(chooser, filter);
                 }
             }
-            gtk_file_chooser_add_filter(chooser, filter);
-            if (strcmp(flt_name, *sel_filter) == 0)
-                gtk_file_chooser_set_filter(chooser, filter);
         }
     }
 
@@ -131,14 +141,19 @@ void nativeFileDialog(const Window &parent_xid,
             **filenames = gtk_file_chooser_get_filename(chooser);
         }
     }
-    GtkFileFilter *s_filter = gtk_file_chooser_get_filter(chooser);
-    if (*sel_filter != NULL)
-        free(*sel_filter);
-    *sel_filter = strdup(gtk_file_filter_get_name(s_filter));
-
-    gtk_window_close(GTK_WINDOW(dialog));
-    g_slist_free(list);
-    gtk_main();
+    if (mode != Gtk::Mode::FOLDER) {
+        GtkFileFilter *s_filter = gtk_file_chooser_get_filter(chooser);
+        if (*sel_filter != NULL)
+            free(*sel_filter);
+        *sel_filter = strdup(gtk_file_filter_get_name(s_filter));
+    }
+    //gtk_window_close(GTK_WINDOW(dialog));
+    gtk_widget_destroy(dialog);
+    if (list)
+        g_slist_free(list);
+    //gtk_main();
+    while (gtk_events_pending())
+        gtk_main_iteration_do(FALSE);
 }
 
 QStringList Gtk::openGtkFileChooser(QWidget *parent,
@@ -158,7 +173,7 @@ QStringList Gtk::openGtkFileChooser(QWidget *parent,
 
     QStringList files;
     char **filenames = nullptr;
-    char *_sel_filter = strdup(sel_filter->toLocal8Bit().data());
+    char *_sel_filter = (sel_filter) ? strdup(sel_filter->toLocal8Bit().data()) : nullptr;
     int files_count = 0;
     Window parent_xid = (parent) ? (Window)parent->winId() : 0L;
     nativeFileDialog(parent_xid,
@@ -183,7 +198,8 @@ QStringList Gtk::openGtkFileChooser(QWidget *parent,
         free(filenames);
     }
     if (_sel_filter) {
-        *sel_filter = QString::fromUtf8(_sel_filter);
+        if (sel_filter)
+            *sel_filter = QString::fromUtf8(_sel_filter);
         free(_sel_filter);
     }
 
