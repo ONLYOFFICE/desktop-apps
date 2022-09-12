@@ -100,11 +100,11 @@ public:
 
 public:
     static auto useModalDialog() -> bool {
-        bool use_modal = true;
 #if defined(__linux__) && defined(FILEDIALOG_DONT_USE_MODAL)
-        use_modal = false;
+        return false;
+#else
+        return true;
 #endif
-        return use_modal;
     };
 
     static auto stringToFilters(const wstring& wstr) -> specvector {
