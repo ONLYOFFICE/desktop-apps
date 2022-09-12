@@ -52,9 +52,9 @@
 #endif
 #include <string>
 // because bug in cef - 'open/save dialog' doesn't open for second time
-#if !defined(FILEDIALOG_DONT_USE_NATIVEDIALOGS) && !defined(FILEDIALOG_DONT_USE_MODAL)
+/*#if !defined(FILEDIALOG_DONT_USE_NATIVEDIALOGS) && !defined(FILEDIALOG_DONT_USE_MODAL)
 # define FILEDIALOG_DONT_USE_MODAL
-#endif
+#endif*/
 
 using namespace std;
 
