@@ -331,7 +331,7 @@ public:
             if ( !canExtendTitle() /*|| !window->isCustomWindowStyle()*/ ) {
                 window->m_labelTitle->setText(APP_TITLE);
             } else {
-                //window->setWindowTitle(m_panel->data()->title());
+                window->setWindowTitle(m_panel->data()->title());
                 window->m_boxTitleBtns->repaint();
             }
         }
