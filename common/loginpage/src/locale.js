@@ -128,7 +128,7 @@ l10n.en = {
     aboutChangelog: 'Changelog',
     updateNoUpdates: 'App is up to date',
     updateAvialable: 'Version $1 is available. Click to download.',
-    settOptThemeSystem: 'System default',
+    settOptThemeSystem: 'Same as system',
     settOptThemeContrastDark: 'Contrast Dark',
 }
 
