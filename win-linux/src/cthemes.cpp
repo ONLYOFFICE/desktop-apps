@@ -120,7 +120,7 @@ public:
             g_object_unref(sett);
         }
 #endif
-        if ( user_theme == THEME_ID_SYSTEM ) {
+        if ( user_theme == THEME_ID_SYSTEM || rc_themes.find(user_theme) == rc_themes.end() ) {
             current = new CTheme(rc_themes.at(is_system_theme_dark ? THEME_DEFAULT_DARK_ID : THEME_DEFAULT_LIGHT_ID));
             current->m_priv->is_system = true;
         } else current = new CTheme(rc_themes.at(user_theme));
