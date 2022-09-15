@@ -49,6 +49,7 @@
 - (void)setVariable:(NSString*)name withString:(NSString *)value;
 - (void)setVariable:(NSString*)name withObject:(NSDictionary *)value;
 - (void)setParameter:(NSString*)name withString:(NSString *)value;
+- (void)removeParameter:(NSString*)name;
 - (void)applyParameters;
 
 @end

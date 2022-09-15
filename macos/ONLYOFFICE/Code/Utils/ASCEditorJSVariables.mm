@@ -98,6 +98,10 @@
     [_urlParams setValue:value forKey:name];
 }
 
+- (void)removeParameter:(NSString*)name {
+    [_urlParams removeObjectForKey:name];
+}
+
 - (void)applyParameters {
     NSMutableString * str = [[NSMutableString alloc] init];
 
