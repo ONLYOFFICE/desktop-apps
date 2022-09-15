@@ -1,0 +1,50 @@
+#mainPanel[uitheme=theme-contrast-dark],
+#mainPanel[uitheme=theme-contrast-dark] #tabWrapper,
+#mainPanel[uitheme=theme-contrast-dark] #CX11Caption,
+#mainPanel[uitheme=theme-contrast-dark] QTabBar 
+{
+    background-color: #2a2a2a;
+}
+
+#mainPanel[uitheme=theme-contrast-dark] QPushButton#toolButtonMain[class=active] {
+    background: #1e1e1e;
+}
+
+#mainPanel[uitheme=theme-contrast-dark] QPushButton#toolButtonMain {
+    border-right-color: #414141;
+}
+
+#mainPanel[uitheme=theme-contrast-dark] QPushButton#toolButtonMain[class=normal] {
+    background: #2a2a2a;
+}
+
+#mainPanel[uitheme=theme-contrast-dark] QPushButton#toolButtonMain[class=normal]:hover {
+    background: #424242;
+}
+
+#mainPanel[uitheme=theme-contrast-dark] QPushButton#toolButtonMinimize:hover,
+    #mainPanel[uitheme=theme-contrast-dark] QPushButton#toolButtonMaximize:hover
+{
+    background-color: #555;
+}
+
+#mainPanel[uitheme=theme-contrast-dark] QTabBar QToolButton::left-arrow,
+    #mainPanel[uitheme=theme-contrast-dark] QTabBar QToolButton::right-arrow
+{
+    background-color: #f00;
+}
+
+#mainPanel[uitheme=theme-contrast-dark] QTabBar QToolButton:pressed {
+    background-color: #f00;
+}
+
+
+#mainPanel[uitheme=theme-contrast-dark] QTabWidget::pane {background-color: #2a2a2a;}
+#mainPanel[uitheme=theme-contrast-dark] QTabBar::tab {background-color: #2a2a2a; border-right-color: #414141;}
+#mainPanel[uitheme=theme-contrast-dark] QTabBar::tab:hover {background-color: #424242;}
+#mainPanel[uitheme=theme-contrast-dark] QTabBar::tab:selected {background-color: #2a2a2a;}
+#mainPanel[uitheme=theme-contrast-dark] QTabBar[active=false]::tab:selected:hover {background-color: #424242;}
+
+#mainPanel[uitheme=theme-contrast-dark] #scrollerFrame>QToolButton {background-color: #424242;}
+#mainPanel[uitheme=theme-contrast-dark] #scrollerFrame>QToolButton:hover {background-color: #525252;}
+#mainPanel[uitheme=theme-contrast-dark] #scrollerFrame>QToolButton:pressed {background-color: #424242;}

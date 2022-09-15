@@ -51,6 +51,7 @@ platform :mac do
       output_directory: build,
       codesigning_identity: ENV["CODESIGNING_IDENTITY"],
       export_method: 'developer-id',
+      xcargs: "URL_WEBAPPS_HELP=https://download.onlyoffice.com/install/desktop/editors/help/v7.2.0-1/apps",
       skip_package_pkg: true
     )
 
@@ -61,7 +62,7 @@ platform :mac do
     )
 
     desc 'Prepare zip for delta update'
-    sh("ditto -c -k --rsrc --keepParent #{ENV['PWD']}/#{app} #{ENV['PWD']}/#{build}/#{scheme}-#{version_number}.zip")
+    sh("ditto -c -k --sequesterRsrc --keepParent #{ENV['PWD']}/#{app} #{ENV['PWD']}/#{build}/#{scheme}-#{version_number}.zip")
 
     desc 'Create DMG image'
     sh("npm install appdmg")

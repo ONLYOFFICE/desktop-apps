@@ -36,6 +36,13 @@
 */
 
 +function(){ 'use strict'
+    const THEME_TYPE_LIGHT = 'light';
+    const THEME_TYPE_DARK = 'dark';
+    const THEME_TYPE_SYSTEM = 'system';
+
+    const THEME_ID_DEFAULT_LIGHT = 'theme-classic-light';
+    const THEME_ID_DEFAULT_DARK = 'theme-dark';
+
     var ControllerSettings = function(args={}) {
         args.caption = 'Settings';
         args.action =
@@ -73,7 +80,7 @@
                                             </div>
                                         </div>
                                         <div class='settings-field' id='opts-ui-scaling' style='display:none'>
-                                            <label class='sett__caption' l10n>${_lang.settScaling}</label><label class='sett__caption'></label>
+                                            <label class='sett__caption' l10n>${_lang.settScaling}</label><label class='sett__caption'> *</label>
                                             <div class='sett--label-lift-top hbox'>
                                                 <section class='box-cmp-select'>
                                                     <select class='combobox'>
@@ -104,9 +111,11 @@
                                             <div class='sett--label-lift-top hbox'>
                                                 <section class='box-cmp-select'>
                                                     <select class='combobox'>
+                                                        <option value='theme-system' l10n>${_lang.settOptThemeSystem}</option>
                                                         <option value='theme-light' l10n>${_lang.settOptThemeLight}</option>
                                                         <option value='theme-classic-light' l10n>${_lang.settOptThemeClassicLight}</option>
                                                         <option value='theme-dark' l10n>${_lang.settOptThemeDark}</option>
+                                                        <option value='theme-contrast-dark' l10n>${_lang.settOptThemeContrastDark}</option>
                                                     </select>
                                                 </section>
                                             </div>
@@ -142,9 +151,12 @@
                                         </div>
                                         <!-- end section -->
                                     </section>
+                                    <div class="lst-tools" id="sett-tools-dyn">
+                                        <button class="btn btn--primary sett-btn--apply" id="sett-btn-apply" l10n>${_lang.setBtnApply}</button>
+                                    </div>
                                 </div>
-                                <div class="lst-tools">
-                                    <button class="btn btn--primary" id="sett-btn-apply" l10n>${_lang.setBtnApply}</button>
+                                <div class="lst-tools" id="sett-tools-stat">
+                                    <button class="btn btn--primary sett-btn--apply" id="sett-btn-apply" l10n>${_lang.setBtnApply}</button>
                                     <!-- <strong class='sett__note' tooltip="${_lang.settAfterRestart}" tooltip-pos='top' l10n>i</strong> -->
                                 </div>
                                 <div class="spacer" />
@@ -185,9 +197,13 @@
             $btnApply.disable(false);
         };
 
-        function _apply_theme(name) {
+        function _apply_theme(name, type) {
+            if ( name == 'theme-system' ) {
+                name = get_default_theme(get_system_theme_type());
+            }
+
             if ( !$("body").hasClass(name) ) {
-                const _type = name == 'theme-dark' ? 'theme-type-dark' : 'theme-type-light';
+                const _type = (type == 'dark' || /theme-(?:[a-z]+-)?dark(?:-[a-z]*)?/.test(name)) ? 'theme-type-dark' : 'theme-type-light';
                 const _cls = document.body.className.replace(/theme-[\w-]+/gi,'').trim();
                 document.body.className = `${_cls?_cls+' ':''}${name} ${_type}`;
 
@@ -241,7 +257,7 @@
                     _new_settings.uitheme = $optsUITheme.val();
                     $optsUITheme.selectpicker('refresh');
 
-                    _apply_theme(_new_settings.uitheme);
+                    // _apply_theme(_new_settings.uitheme);
                 }
 
                 if ( $optsLaunchMode ) {
@@ -347,7 +363,7 @@
                                 $btnApply.isdisabled() && $btnApply.disable(false);
                             });
 
-                            // $('#caption-restart', $panel).show();
+                            $('#caption-restart', $panel).show();
                         }
 
                         if ( !!opts.uitheme ) {
@@ -377,6 +393,8 @@
                             });
                         }
                     }
+
+                    $('.settings-field:visible:last').css('margin-bottom','0');
                 } else
                 if (/updates/.test(cmd)) {
                     let $settnode = $('#opts-checkupdate', $panel),
@@ -401,6 +419,38 @@
             }
         };
 
+        const get_system_theme_type = () => window.matchMedia('(prefers-color-scheme: dark)').matches ? THEME_TYPE_DARK : THEME_TYPE_LIGHT; 
+        const get_default_theme = type => type == THEME_TYPE_DARK ? THEME_ID_DEFAULT_DARK : THEME_ID_DEFAULT_LIGHT;
+        const on_system_theme_dark = e =>
+            sdk.command("system:changed", JSON.stringify({'colorscheme': e.target.matches ? THEME_TYPE_DARK:THEME_TYPE_LIGHT}));
+
+        const on_window_resize = function(e) {
+            if ( !this.resize_elems  ) return;
+
+            if ( !this.resize_elems.opened  ) {
+                this.resize_elems = {
+                    statH: $('.settings .table-caption').outerHeight(true) + $('#sett-tools-dyn').outerHeight(true),
+                    boxElem: $('#box-settings'),
+                    settItems: $('section.settings-items'),
+                    btnDyn: $('#sett-tools-dyn'),
+                    btnStat: $('#sett-tools-stat'),
+                }
+            }
+
+            this.resize_elems.settItems.height() + this.resize_elems.statH > this.resize_elems.boxElem.height() ?
+                (this.resize_elems.btnDyn.hide(), this.resize_elems.btnStat.show()) : (this.resize_elems.btnDyn.show(), this.resize_elems.btnStat.hide());
+        };
+
+        const on_panel_show = function(panel) {
+            if ( panel == this.action ) {
+                !this.resize_elems && (this.resize_elems = { opened: false });
+
+                if ( !this.resize_elems.opened ) {
+                    on_window_resize.call(this);
+                }
+            }
+        }
+
         return {
             init: function() {
                 baseController.prototype.init.apply(this, arguments);
@@ -413,7 +463,7 @@
                 });
 
                 $panel = me.view.$panel;
-                $btnApply = me.view.$panel.find('#sett-btn-apply');
+                $btnApply = me.view.$panel.find('.sett-btn--apply');
                 $userName = me.view.$panel.find('#sett-box-user > input');
                 $chOpenMode = me.view.$panel.find('#sett-preview-mode');
 
@@ -450,6 +500,12 @@
                 });
 
                 window.sdk.on('on_native_message', _on_app_message.bind(this));
+                window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', on_system_theme_dark.bind(this));
+                // on_system_theme_dark({target: window.matchMedia('(prefers-color-scheme: dark)')});
+
+                $(window).on('resize', on_window_resize.bind(this));
+                CommonEvents.on('panel:show', on_panel_show.bind(this));
+
                 return this;
             }
         };

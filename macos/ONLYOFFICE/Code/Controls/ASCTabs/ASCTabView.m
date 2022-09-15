@@ -43,6 +43,7 @@
 #import "ASCTabViewCell.h"
 #import "NSColor+Extensions.h"
 #import "NSApplication+Extensions.h"
+#import "ASCThemesController.h"
 
 static NSUInteger const kASTabViewCloseButtonSize = 12;
 
@@ -221,24 +222,24 @@ static NSUInteger const kASTabViewCloseButtonSize = 12;
         }
         tabViewCell.activeTextColor = [tabViewCell.activeColor isLight] ? NSColor.blackColor : NSColor.whiteColor;
     } else if (type == ASCTabViewTypeDocument) {
-        tabViewCell.activeColor = [NSColor themedDocumentEditor];
-        tabViewCell.clickColor  = [NSColor themedDocumentEditor];
+        tabViewCell.activeColor = [ASCThemesController currentThemeColor:tabWordActiveBackgroundColor];
+        tabViewCell.clickColor  = [ASCThemesController currentThemeColor:tabWordActiveBackgroundColor];
         if (@available(macOS 10.13, *)) {
             tabViewCell.activeTextColor = [NSColor colorNamed:@"tab-editorsActiveTextColor"];
         } else {
             tabViewCell.activeTextColor = UIColorFromRGB(0xffffff);
         }
     } else if (type == ASCTabViewTypeSpreadsheet) {
-        tabViewCell.activeColor = [NSColor themedSpreadsheetEditor];
-        tabViewCell.clickColor  = [NSColor themedSpreadsheetEditor];
+        tabViewCell.activeColor = [ASCThemesController currentThemeColor:tabCellActiveBackgroundColor];
+        tabViewCell.clickColor  = [ASCThemesController currentThemeColor:tabCellActiveBackgroundColor];
         if (@available(macOS 10.13, *)) {
             tabViewCell.activeTextColor = [NSColor colorNamed:@"tab-editorsActiveTextColor"];
         } else {
             tabViewCell.activeTextColor = UIColorFromRGB(0xffffff);
         }
     } else if (type == ASCTabViewTypePresentation) {
-        tabViewCell.activeColor = [NSColor themedPresentationEditor];
-        tabViewCell.clickColor  = [NSColor themedPresentationEditor];
+        tabViewCell.activeColor = [ASCThemesController currentThemeColor:tabSlideActiveBackgroundColor];
+        tabViewCell.clickColor  = [ASCThemesController currentThemeColor:tabSlideActiveBackgroundColor];
         if (@available(macOS 10.13, *)) {
             tabViewCell.activeTextColor = [NSColor colorNamed:@"tab-editorsActiveTextColor"];
         } else {

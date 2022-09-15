@@ -123,7 +123,7 @@ private:
         {"cs-CZ", "Čeština"},
         {"it-IT", "Italiano"},
         {"pt-BR", "Português Brasileiro"}
-//        ,{"pt-PT", "Portuguese (Portugal)"}
+        ,{"pt-PT", "Português (Portugal)"}
         ,{"pl-PL", "Polski"}
         ,{"zh-CN", "中文"}
 //        ,{"zh-HK", "Chinese (Traditional)"}
@@ -135,8 +135,8 @@ private:
 //        ,{"ga-IE", "Gaeilge"}
 //        ,{"hi-IN", "हिन्दी"}
 //        ,{"hr-HR", "Hrvatska"}
-        ,{"hu-HU", "Magyar nyelv"}
-//        ,{"hy-AM", "Հայաստան"}
+        ,{"hu-HU", "Magyar"}
+        ,{"hy-AM", "Հայաստան"}
         ,{"id-ID", "Indonesian"}
         ,{"no-NO", "Norsk"}
         ,{"ro-RO", "Romanian"}

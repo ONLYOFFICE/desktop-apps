@@ -115,19 +115,21 @@ l10n.en = {
     settOptCheckWeek: 'Every week',
     settScaling: 'Interface scaling',
     settOptScalingAuto: 'Auto',
-    aboutProFeaturesAvailable: 'With access to pro features'
-    ,settUITheme: 'Interface theme'
-    ,settOptThemeLight: 'Light'
-    ,settOptThemeClassicLight: 'Classic Light'
-    ,settOptThemeDark: 'Dark'
-    ,settOptLaunchMode: 'Open file'
-    ,settOptLaunchInTab: 'In its own tab'
-    ,settOptLaunchInWindow: 'In its own window'
-    ,settSpellcheckDetection: 'Spelling language detection'
-    ,settOptDisabled: 'Disabled'
-    ,aboutChangelog: 'Changelog'
-    ,updateNoUpdates: 'App is up to date'
-    ,updateAvialable: 'Version $1 is available. Click to download.'
+    aboutProFeaturesAvailable: 'With access to pro features',
+    settUITheme: 'Interface theme',
+    settOptThemeLight: 'Light',
+    settOptThemeClassicLight: 'Classic Light',
+    settOptThemeDark: 'Dark',
+    settOptLaunchMode: 'Open file',
+    settOptLaunchInTab: 'In its own tab',
+    settOptLaunchInWindow: 'In its own window',
+    settSpellcheckDetection: 'Spelling language detection',
+    settOptDisabled: 'Disabled',
+    aboutChangelog: 'Changelog',
+    updateNoUpdates: 'App is up to date',
+    updateAvialable: 'Version $1 is available. Click to download.',
+    settOptThemeSystem: 'System default',
+    settOptThemeContrastDark: 'Contrast Dark',
 }
 
 

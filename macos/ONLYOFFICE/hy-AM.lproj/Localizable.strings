@@ -116,10 +116,10 @@
 "PDF File" = "Դյուրակիր փաստաթղթի ձևաչափ (*.pdf)";
 
 /* No comment provided by engineer. */
-"PDF/A File" = "Դյուրակիր փաստաթղթի ձևաչափ / A (*.pdf)";
+"PDF/A File" = "Դյուրակիր փաստաթղթի ձևաչափ /A (*.pdf)";
 
 /* No comment provided by engineer. */
-"Plain Text" = "Սովորական տեքստ (*.txt)";
+"Plain Text" = "Պարզ տեքստային ֆայլ (*.txt)";
 
 /* No comment provided by engineer. */
 "PowerPoint 97-2003 Presentation" = "PowerPoint 97-2003 ներկայացում (*.ppt)";
@@ -146,7 +146,7 @@
 "Review Changes..." = "Վերանայել փոփոխությունները...";
 
 /* No comment provided by engineer. */
-"Rich Text Document" = "Rich Text Format ֆայլ (*.rtf)";
+"Rich Text Document" = "Հարուստ տեքստի ձևաչափի ֆայլ (*.rtf)";
 
 /* No comment provided by engineer. */
 "Save" = "Պահպանել";

@@ -230,6 +230,7 @@ void CMainWindow::applyTheme(const std::wstring& theme)
 {
     CWindowPlatform::applyTheme(theme);
     m_pMainPanel->setProperty("uitheme", QString::fromStdWString(theme));
+    m_pMainPanel->setProperty("uithemetype", AscAppManager::themes().current().stype());
     for (int i(m_pTabs->count()); !(--i < 0);) {
         CAscTabData& _doc = *m_pTabs->panel(i)->data();
         if ( _doc.isViewType(cvwtEditor) && !_doc.closed() ) {
@@ -342,6 +343,8 @@ QWidget* CMainWindow::createMainPanel(QWidget *parent)
     QWidget *mainPanel = new QWidget(parent);
     mainPanel->setObjectName("mainPanel");
     mainPanel->setProperty("uitheme", QString::fromStdWString(AscAppManager::themes().current().id()));
+    mainPanel->setProperty("uithemetype", AscAppManager::themes().current().stype());
+
     QGridLayout *_pMainGridLayout = new QGridLayout(mainPanel);
     _pMainGridLayout->setSpacing(0);
     _pMainGridLayout->setObjectName(QString::fromUtf8("mainGridLayout"));
@@ -1268,11 +1271,9 @@ void CMainWindow::updateScalingFactor(double dpiratio)
             btn->setFixedSize(small_btn_size);
     }*/
     m_pButtonMain->setFixedSize(int(BUTTON_MAIN_WIDTH * dpiratio), int(TITLE_HEIGHT * dpiratio));
-    const QString _tabs_stylesheets = ":/sep-styles/tabbar@" + QString::number(dpiratio) + "x.qss";
-    QFile styleFile(_tabs_stylesheets);
-    if (!styleFile.open(QFile::ReadOnly)) return;
-    const QString _style = QString(styleFile.readAll());
-    styleFile.close();
+    const std::string _tabs_stylesheets = ":/sep-styles/tabbar@" + QString::number(dpiratio).toStdString() + "x.qss";
+    std::vector<std::string> _files{_tabs_stylesheets, ":/themes/theme-contrast-dark.qss"};
+    QString _style = Utils::readStylesheets(&_files);
     m_pTabBarWrapper->applyTheme(_style);
     m_pTabs->setStyleSheet(_style);
     m_pTabs->updateScalingFactor(dpiratio);

@@ -86,4 +86,6 @@ l10n.es = {
     settOptLaunchMode: 'Abrir archivo',
     settOptLaunchInTab: 'En pestaña',
     settOptLaunchInWindow: 'En ventana',
+    settOptThemeSystem: 'Igual que el sistema',
+    settOptThemeContrastDark: 'Contraste oscuro',
 }

@@ -90,4 +90,6 @@ l10n.zh_HK = {
     settOptLaunchMode: '開啟檔案',
     settOptLaunchInTab: '標籤中',
     settOptLaunchInWindow: '視窗中',
+    settOptThemeSystem: '和系统一致',
+    settOptThemeContrastDark: '暗色对比',
 }

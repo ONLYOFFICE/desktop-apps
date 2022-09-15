@@ -269,7 +269,7 @@
       </trans-unit>
       <trans-unit id="Plain Text" xml:space="preserve">
         <source>Plain Text</source>
-        <target state="translated">Սովորական տեքստ (*.txt)</target>
+        <target state="translated">Պարզ տեքստային ֆայլ (*.txt)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="PowerPoint 97-2003 Presentation" xml:space="preserve">
@@ -314,7 +314,7 @@
       </trans-unit>
       <trans-unit id="Rich Text Document" xml:space="preserve">
         <source>Rich Text Document</source>
-        <target state="translated">Rich Text Format ֆայլ (*.rtf)</target>
+        <target state="translated">Հարուստ տեքստի ձևաչափի ֆայլ (*.rtf)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Save" xml:space="preserve">

@@ -27,9 +27,11 @@ public:
         , ecrButtonNormalOpacity
     };
 
-    auto load(const QString&) -> bool;
+    auto fromFile(const QString&) -> bool;
+    auto fromJson(const QString&) -> bool;
 
     auto id() const -> std::wstring;
+    auto originalId() const -> std::wstring;
     auto stype() const -> QString;
     auto color(ColorRole r) const -> QColor;
 #ifdef Q_OS_WIN
@@ -37,6 +39,7 @@ public:
 #endif
     auto value(ColorRole) const -> std::wstring;
     auto isDark() const -> bool;
+    auto isSystem() const -> bool;
 
 private:
     CTheme(const QString& id = QString());
@@ -55,16 +58,17 @@ public:
     ~CThemes();
 
     auto current() -> const CTheme&;
-    auto dark() -> const CTheme&;
-    auto light() -> const CTheme&;
+    auto defaultDark() -> const CTheme&;
+    auto defaultLight() -> const CTheme&;
 
     auto setCurrentTheme(const std::wstring&) -> void;
-    auto isCurrent(const std::wstring& name) -> bool;
-    auto isThemeDark(const std::wstring& name) -> bool;
+    auto isThemeCurrent(const std::wstring& id) -> bool;
+//    auto isThemeDark(const std::wstring& id) -> bool;
 
     auto isColorDark(const std::wstring&) -> bool;
     auto isColorDark(const QString&) -> bool;
 
+    auto onSystemDarkColorScheme(bool isdark) -> void;
     auto parseThemeName(const std::wstring&) -> std::wstring;
 private:
     class CThemesPrivate;

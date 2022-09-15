@@ -12,6 +12,7 @@ win-linux/package/windows/index.html
 win-linux/package/linux/common/opt
 win-linux/package/linux/common/usr/share/applications/variables.m4
 win-linux/package/linux/common/usr/share/flyfm/templates/desktopeditors.*.desktop
+win-linux/package/linux/common/help
 /win-linux/package/linux/deb*/build
 /win-linux/package/linux/deb*/*.buildinfo
 /win-linux/package/linux/deb*/*.changes
@@ -20,6 +21,7 @@ win-linux/package/linux/common/usr/share/flyfm/templates/desktopeditors.*.deskto
 win-linux/package/linux/rpm/builddir
 win-linux/package/linux/apt-rpm/builddir
 win-linux/package/linux/urpmi/builddir
+win-linux/package/linux/suse-rpm/builddir
 win-linux/package/linux/tar
 
 common/loginpage/build/node_modules/*

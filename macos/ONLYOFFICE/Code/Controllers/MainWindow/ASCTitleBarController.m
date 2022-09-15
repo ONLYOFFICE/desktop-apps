@@ -51,6 +51,7 @@
 #import "ASCDownloadController.h"
 #import "ASCMenuButtonCell.h"
 #import "ASCDocumentType.h"
+#import "ASCThemesController.h"
 
 static float kASCWindowDefaultTrafficButtonsLeftMargin = 0;
 static float kASCWindowMinTitleWidth = 0;
@@ -190,9 +191,8 @@ static float kASCWindowMinTitleWidth = 0;
             portalButtonCell.lineColor          = kColorRGBA(255, 255, 255, 0.0);
         }
 
-        if ( [NSApplication isUIThemeDark] ) {
-            portalButtonCell.bgActiveColor      = UIColorFromRGB(0x333333);
-
+        if ( [ASCThemesController isCurrentThemeDark] ) {
+            portalButtonCell.bgActiveColor = [ASCThemesController currentThemeColor:btnPortalActiveBackgroundColor];
             [self.portalButton setImage:[NSImage imageNamed:@"logo-tab-light"]];
         }
     }
@@ -330,20 +330,26 @@ static float kASCWindowMinTitleWidth = 0;
         NSDictionary * params = (NSDictionary *)notification.userInfo;
         NSString * theme = params[@"uitheme"];
 
+        if ( [theme isEqualToString: uiThemeSystem] ) {
+            theme = [ASCThemesController defaultThemeId:[NSApplication isSystemDarkMode]];
+        }
+
         ASCMenuButtonCell * portalButtonCell = self.portalButton.cell;
-        if ( [theme isEqualToString:uiThemeDark] ) {
-            portalButtonCell.bgActiveColor      = UIColorFromRGB(0x333333);
+        portalButtonCell.bgActiveColor = [ASCThemesController color:btnPortalActiveBackgroundColor forTheme:theme];
+        [self.portalButton setNeedsDisplay];
 
-            [self.portalButton setImage:[NSImage imageNamed:@"logo-tab-light"]];
+        if ( [self.portalButton state] != NSControlStateValueOn ) {
+            [NSApplication isSystemDarkMode] ? [self.portalButton setImage:[NSImage imageNamed:@"logo-tab-light"]] :
+                                                    [self.portalButton setImage:[NSImage imageNamed:@"logo-tab-dark"]];
         } else {
-            if ( @available(macOS 10.13, *) )
-                portalButtonCell.bgActiveColor = [NSColor colorNamed:@"tab-portal-activeColor"];
-            else portalButtonCell.bgActiveColor = kColorRGBA(255, 255, 255, 1.0);
-
-            [self.portalButton setImage:[NSImage imageNamed:@"logo-tab-dark"]];
+            [ASCThemesController isCurrentThemeDark] ? [self.portalButton setImage:[NSImage imageNamed:@"logo-tab-light"]] :
+                                                    [self.portalButton setImage:[NSImage imageNamed:@"logo-tab-dark"]];
         }
 
         for (ASCTabView * tab in self.tabsControl.tabs) {
+            if ( [tab state] == NSControlStateValueOn ) {
+                [tab setNeedsDisplay];
+            }
             [tab setType:tab.type];
             [self.tabsControl updateTab:tab];
         }
@@ -435,10 +441,7 @@ static float kASCWindowMinTitleWidth = 0;
         else [self.portalButton setImage:[NSImage imageNamed:@"logo-tab-dark"]];
     } else {
         [self.portalButton setState:NSControlStateValueOn];
-
-        if ( [NSApplication isUIThemeDark] )
-            [self.portalButton setImage:[NSImage imageNamed:@"logo-tab-light"]];
-        else [self.portalButton setImage:[NSImage imageNamed:@"logo-tab-dark"]];
+        [self.portalButton setImage:[NSImage imageNamed:[ASCThemesController isCurrentThemeDark] ? @"logo-tab-light" : @"logo-tab-dark"]];
     }
 }
 

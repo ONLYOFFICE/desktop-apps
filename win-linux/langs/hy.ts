@@ -202,32 +202,32 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="226"/>
         <source>RTF File (*.rtf)</source>
-        <translation>Rich Text Format ֆայլ (*.rtf)</translation>
+        <translation>Հարուստ տեքստի ձևաչափի ֆայլ (*.rtf)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="227"/>
         <source>TXT File (*.txt)</source>
-        <translation>Սովորական տեքստ (*.txt)</translation>
+        <translation>Պարզ տեքստային ֆայլ (*.txt)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="228"/>
         <source>HTML File (*.html)</source>
-        <translation>HTML ֆայլ (*.html)</translation>
+        <translation>Հիպերտեքստ նշման լեզվի ֆայլ (*.html)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="229"/>
         <source>MHT File (*.mht)</source>
-        <translation>MHT ֆայլ (*.mht)</translation>
+        <translation>Վեբ էջի արխիվային ֆայլ (*.mht)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="230"/>
         <source>EPUB File (*.epub)</source>
-        <translation>EPUB ֆայլ (*.epub)</translation>
+        <translation>Էլեկտրոնային հրապարակման ֆայլ (*.epub)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="231"/>
         <source>FB2 File (*.fb2)</source>
-        <translation>FB2 ֆայլ (*.fb2)</translation>
+        <translation>Գեղարվեստական ​​Գիրք 2 ֆայլ (*.fb2)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="232"/>
@@ -327,17 +327,17 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="255"/>
         <source>Zip Archive (*.zip)</source>
-        <translation type="unfinished"></translation>
+        <translation>Zip արխիվ (*.zip)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="256"/>
         <source>JPG Image (*.jpg, *.jpeg)</source>
-        <translation type="unfinished"></translation>
+        <translation>JPG պատկեր (*.jpg *.jpeg)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="257"/>
         <source>PNG Image (*.png)</source>
-        <translation type="unfinished"></translation>
+        <translation>PNG պատկեր (*.png)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="308"/>
@@ -357,7 +357,7 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="373"/>
         <source>Excel Workbook</source>
-        <translation>Excel աղյուսակ</translation>
+        <translation>Excel աշխատանքային գիրք</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="376"/>
@@ -561,12 +561,12 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper_private.h" line="223"/>
         <source>File %1 cannot be opened or doesn&apos;t exists.</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 ֆայլը չի ​​կարող բացվել կամ գոյություն չունի:</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="126"/>
         <source>All supported files (*.txt *.csv)</source>
-        <translation type="unfinished"></translation>
+        <translation>Բոլոր աջակցվող ֆայլերը(*.txt *.csv)</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="126"/>
