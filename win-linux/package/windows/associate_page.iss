@@ -1577,7 +1577,7 @@ procedure AddContextMenuNewItems;
 var
   langs: TArrayOfValues;
   args, regpath: String;
-  progpath: String;
+  progpath, oldValue: String;
   argsArray: TArrayOfString;
   version: TWindowsVersion;
 begin
@@ -1621,6 +1621,12 @@ begin
 
   GetWindowsVersionEx(version);
   if version.Major = 10 then begin
+    RegQueryStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.docx', '', oldValue);
+    RegWriteStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.docx', '{#ASCC_REG_PREFIX}', oldValue);
+    RegQueryStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.xlsx', '', oldValue);
+    RegWriteStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.xlsx', '{#ASCC_REG_PREFIX}', oldValue);
+    RegQueryStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.pptx', '', oldValue);
+    RegWriteStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.pptx', '{#ASCC_REG_PREFIX}', oldValue);
     RegWriteStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.docx', '', '{#ASCC_REG_PREFIX}.Document.12')
     RegWriteStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.xlsx', '', '{#ASCC_REG_PREFIX}.Sheet.12')
     RegWriteStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.pptx', '', '{#ASCC_REG_PREFIX}.Show.12')
@@ -1737,7 +1743,8 @@ procedure UnassociateExtensions;
 var
   i: Integer;
   argsArray: TArrayOfString;
-  ext, str: string;
+  ext, str, oldValue: string;
+  version: TWindowsVersion;
 begin
   initExtensions();
 
@@ -1773,4 +1780,17 @@ begin
   RegDeleteKeyIncludingSubkeys(HKEY_LOCAL_MACHINE, ExpandConstant('Software\Classes\.docx\{#ASCC_REG_PREFIX}.Document.12'));
   RegDeleteKeyIncludingSubkeys(HKEY_LOCAL_MACHINE, ExpandConstant('Software\Classes\.pptx\{#ASCC_REG_PREFIX}.Show.12'));
   RegDeleteKeyIncludingSubkeys(HKEY_LOCAL_MACHINE, ExpandConstant('Software\Classes\.xlsx\{#ASCC_REG_PREFIX}.Sheet.12'));
+
+  GetWindowsVersionEx(version);
+  if version.Major = 10 then begin
+    if RegQueryStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.docx', '{#ASCC_REG_PREFIX}', oldValue) then
+       RegWriteStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.docx', '', oldValue);
+    if RegQueryStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.xlsx', '{#ASCC_REG_PREFIX}', oldValue) then
+       RegWriteStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.xlsx', '', oldValue);
+    if RegQueryStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.pptx', '{#ASCC_REG_PREFIX}', oldValue) then
+       RegWriteStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.pptx', '', oldValue);
+    RegDeleteValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.docx', '{#ASCC_REG_PREFIX}');
+    RegDeleteValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.xlsx', '{#ASCC_REG_PREFIX}');
+    RegDeleteValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.pptx', '{#ASCC_REG_PREFIX}');
+  end;
 end;
