@@ -633,6 +633,8 @@ public:
                                 if (NSString * docopenMode = json[@"docopenmode"]) {
                                     if ([docopenMode isEqualToString:@"view"]) {
                                         [[ASCEditorJSVariables instance] setParameter:@"mode" withString:@"view"];
+                                    } else {
+                                        [[ASCEditorJSVariables instance] removeParameter:@"mode"];
                                     }
                                     [[NSUserDefaults standardUserDefaults] setObject:docopenMode forKey:@"asc_user_docOpenMode"];
                                     [[NSUserDefaults standardUserDefaults] synchronize];
