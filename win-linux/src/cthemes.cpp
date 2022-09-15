@@ -19,6 +19,7 @@
 
 #define QSTRING_FROM_WSTR(s) QString::fromStdWString(s)
 #define REGISTRY_THEME_KEY "UITheme"
+#define REGISTRY_THEME_KEY_7_2 "UITheme2"
 #define THEME_DEFAULT_DARK_ID "theme-dark"
 #define THEME_DEFAULT_LIGHT_ID "theme-classic-light"
 #define THEME_ID_SYSTEM "theme-system"
@@ -95,7 +96,13 @@ public:
         };
 
         GET_REGISTRY_USER(_reg_user);
+
         QString user_theme = _reg_user.value(REGISTRY_THEME_KEY, THEME_ID_SYSTEM).toString();
+
+        /* TODO: remove for ver 7.3. for compatibility with ver 7.1 only */
+        if ( _reg_user.contains(REGISTRY_THEME_KEY_7_2) )
+            user_theme = _reg_user.value(REGISTRY_THEME_KEY_7_2, THEME_ID_SYSTEM).toString();
+
 #ifdef Q_OS_WIN
         QSettings _reg("HKEY_CURRENT_USER\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize", QSettings::NativeFormat);
         is_system_theme_dark = _reg.value("AppsUseLightTheme", 1).toInt() == 0;
@@ -120,7 +127,7 @@ public:
             g_object_unref(sett);
         }
 #endif
-        if ( user_theme == THEME_ID_SYSTEM ) {
+        if ( user_theme == THEME_ID_SYSTEM || rc_themes.find(user_theme) == rc_themes.end() ) {
             current = new CTheme(rc_themes.at(is_system_theme_dark ? THEME_DEFAULT_DARK_ID : THEME_DEFAULT_LIGHT_ID));
             current->m_priv->is_system = true;
         } else current = new CTheme(rc_themes.at(user_theme));
@@ -335,7 +342,8 @@ auto CThemes::setCurrentTheme(const std::wstring& name) -> void
 {
     if ( !isThemeCurrent(name) && m_priv->setCurrent(QString::fromStdWString(name)) ) {
         GET_REGISTRY_USER(_reg_user);
-        _reg_user.setValue(REGISTRY_THEME_KEY, QString::fromStdWString(name));
+//        _reg_user.setValue(REGISTRY_THEME_KEY, QString::fromStdWString(name));
+        _reg_user.setValue(REGISTRY_THEME_KEY_7_2, QString::fromStdWString(name));
     }
 }
 
