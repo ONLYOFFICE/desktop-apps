@@ -47,3 +47,30 @@ QTabBar[active=false]::tab:selected:hover {background-color: #cecece;}
 #mainPanel[uitheme=theme-dark] #scrollerFrame>QToolButton#rightButton:pressed {
     image: url(:/tabbar/icons/scrolltab_rp_light_1.25x.png) center no-repeat;
 }
+
+/* Contrast-dark*/
+
+#mainPanel[uitheme=theme-contrast-dark] #scrollerFrame>QToolButton#leftButton {
+    image: url(:/tabbar/icons/scrolltab_ln_light_1.25x.png) center no-repeat;
+}
+#mainPanel[uitheme=theme-contrast-dark] #scrollerFrame>QToolButton#leftButton:disabled {
+    image: url(:/tabbar/icons/scrolltab_ld_light_1.25x.png) center no-repeat;
+}
+#mainPanel[uitheme=theme-contrast-dark] #scrollerFrame>QToolButton#leftButton:hover {
+    image: url(:/tabbar/icons/scrolltab_lh_light_1.25x.png) center no-repeat;
+}
+#mainPanel[uitheme=theme-contrast-dark] #scrollerFrame>QToolButton#leftButton:pressed {
+    image: url(:/tabbar/icons/scrolltab_lp_light_1.25x.png) center no-repeat;
+}
+#mainPanel[uitheme=theme-contrast-dark] #scrollerFrame>QToolButton#rightButton {
+    image: url(:/tabbar/icons/scrolltab_rn_light_1.25x.png) center no-repeat;
+}
+#mainPanel[uitheme=theme-contrast-dark] #scrollerFrame>QToolButton#rightButton:disabled {
+    image: url(:/tabbar/icons/scrolltab_rd_light_1.25x.png) center no-repeat;
+}
+#mainPanel[uitheme=theme-contrast-dark] #scrollerFrame>QToolButton#rightButton:hover {
+    image: url(:/tabbar/icons/scrolltab_rh_light_1.25x.png) center no-repeat;
+}
+#mainPanel[uitheme=theme-contrast-dark] #scrollerFrame>QToolButton#rightButton:pressed {
+    image: url(:/tabbar/icons/scrolltab_rp_light_1.25x.png) center no-repeat;
+}

@@ -45,6 +45,6 @@
 #mainPanel[uitheme=theme-contrast-dark] QTabBar::tab:selected {background-color: #2a2a2a;}
 #mainPanel[uitheme=theme-contrast-dark] QTabBar[active=false]::tab:selected:hover {background-color: #424242;}
 
-#mainPanel[uitheme=theme-contrast-dark] #scrollerFrame>QToolButton {background-color: #424242;}
+#mainPanel[uitheme=theme-contrast-dark] #scrollerFrame>QToolButton {background-color: #2a2a2a;}
 #mainPanel[uitheme=theme-contrast-dark] #scrollerFrame>QToolButton:hover {background-color: #525252;}
 #mainPanel[uitheme=theme-contrast-dark] #scrollerFrame>QToolButton:pressed {background-color: #424242;}
