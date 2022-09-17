@@ -1615,10 +1615,11 @@ void CAscApplicationManagerWrapper::applyTheme(const wstring& theme, bool force)
                                            {"id", QString::fromStdWString(_app.m_themes->current().id())}});
 
         // TODO: remove
-        if ( mainWindow() ) mainWindow()->applyTheme(_app.m_themes->current().originalId());
+        if ( mainWindow() ) mainWindow()->applyTheme(theme);
 
+        const std::wstring actual_id{_app.m_themes->themeActualId(theme)};
         for ( auto const& r : m_winsReporter ) {
-            r.second->applyTheme(_app.m_themes->current().originalId());
+            r.second->applyTheme(actual_id);
         }
 
 

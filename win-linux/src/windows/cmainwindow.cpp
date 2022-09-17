@@ -229,7 +229,7 @@ bool CMainWindow::holdView(int id) const
 void CMainWindow::applyTheme(const std::wstring& theme)
 {
     CWindowPlatform::applyTheme(theme);
-    m_pMainPanel->setProperty("uitheme", QString::fromStdWString(theme));
+    m_pMainPanel->setProperty("uitheme", QString::fromStdWString(AscAppManager::themes().themeActualId(theme)));
     m_pMainPanel->setProperty("uithemetype", AscAppManager::themes().current().stype());
     for (int i(m_pTabs->count()); !(--i < 0);) {
         CAscTabData& _doc = *m_pTabs->panel(i)->data();
@@ -244,7 +244,7 @@ void CMainWindow::applyTheme(const std::wstring& theme)
         foreach (auto btn, m_pTopButtons)
             btn->style()->polish(btn);
     }
-    m_pTabs->applyUITheme(theme);
+    m_pTabs->applyUITheme(AscAppManager::themes().themeActualId(theme));
     m_pMainPanel->style()->polish(m_pMainPanel);
     m_pMainPanel->update();
 
@@ -342,8 +342,8 @@ QWidget* CMainWindow::createMainPanel(QWidget *parent)
 {
     QWidget *mainPanel = new QWidget(parent);
     mainPanel->setObjectName("mainPanel");
-    mainPanel->setProperty("uitheme", QString::fromStdWString(AscAppManager::themes().current().id()));
-    mainPanel->setProperty("uithemetype", AscAppManager::themes().current().stype());
+//    mainPanel->setProperty("uitheme", QString::fromStdWString(AscAppManager::themes().current().originalId()));
+//    mainPanel->setProperty("uithemetype", AscAppManager::themes().current().stype());
 
     QGridLayout *_pMainGridLayout = new QGridLayout(mainPanel);
     _pMainGridLayout->setSpacing(0);
