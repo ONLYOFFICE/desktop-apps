@@ -1,5 +1,6 @@
 #include "cdialogopenssl.h"
 #include "cmessage.h"
+#include "utils.h"
 
 #include <QGridLayout>
 #include <QFileDialog>
@@ -9,7 +10,7 @@
 #include <QLineEdit>
 #include <QToolButton>
 
-#include "../../../core/DesktopEditor/xmlsec/src/include/XmlCertificate.h"
+#include "../../../../core/DesktopEditor/xmlsec/src/include/CertificateCommon.h"
 
 class CSslDialog_Private
 {
@@ -166,6 +167,15 @@ CDialogOpenSsl::CDialogOpenSsl(QWidget *parent)
     }
 
     this->setGeometry(nX, nY, nW, nH);
+
+    // Set native dialog from command line arguments
+    m_CmdUseNativeDialogFlag = false;
+    foreach (const std::wstring &arg, InputArgs::arguments()) {
+        if (arg == L"--native-file-dialog") {
+            m_CmdUseNativeDialogFlag = true;
+            break;
+        }
+    }
 }
 
 CDialogOpenSsl::~CDialogOpenSsl()
@@ -176,11 +186,15 @@ void CDialogOpenSsl::onBtnCertificateClick()
 {
     QString sDirectory = "~/";
 
-    QString _file_name = QFileDialog::getOpenFileName(NULL, QString(), sDirectory
+    QString _file_name;
 #ifdef FILEDIALOG_DONT_USE_NATIVEDIALOGS
-                                                  , QString(), Q_NULLPTR, QFileDialog::DontUseNativeDialog
+    if (m_CmdUseNativeDialogFlag)
+        _file_name = QFileDialog::getOpenFileName(NULL, QString(), sDirectory);
+    else
+        _file_name = QFileDialog::getOpenFileName(NULL, QString(), sDirectory, QString(), Q_NULLPTR, QFileDialog::DontUseNativeDialog);
+#else
+    _file_name = QFileDialog::getOpenFileName(NULL, QString(), sDirectory);
 #endif
-                                                  );
 
     if ( !_file_name.isEmpty() ) {
         m_private->clearKey(true);
@@ -195,11 +209,15 @@ void CDialogOpenSsl::onBtnKeyClick()
 {
     QString sDirectory = "~/";
 
-    QString _file_name = QFileDialog::getOpenFileName(NULL, QString(), sDirectory
+    QString _file_name;
 #ifdef FILEDIALOG_DONT_USE_NATIVEDIALOGS
-                                                  , QString(), Q_NULLPTR, QFileDialog::DontUseNativeDialog
+    if (m_CmdUseNativeDialogFlag)
+        _file_name = QFileDialog::getOpenFileName(NULL, QString(), sDirectory);
+    else
+        _file_name = QFileDialog::getOpenFileName(NULL, QString(), sDirectory, QString(), Q_NULLPTR, QFileDialog::DontUseNativeDialog);
+#else
+    _file_name = QFileDialog::getOpenFileName(NULL, QString(), sDirectory);
 #endif
-                                                  );
 
     if ( !_file_name.isEmpty() ) {
         m_private->setPassDisabled("key");

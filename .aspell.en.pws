@@ -1,4 +1,4 @@
-personal_ws-1.1 en 183 utf-8
+personal_ws-1.1 en 185 utf-8
 ACOT
 ACOTH
 ASC
@@ -28,6 +28,7 @@ CHIINV
 CHISQ
 CJK
 CNumberingLvlLegacy
+codecs
 coedit
 COMBINA
 CONCAT
@@ -41,6 +42,7 @@ CSV
 csv
 Ctrl
 ctrl
+CVE
 Decryptor
 DesktopEditors
 Deutsch
@@ -69,6 +71,7 @@ FTEST
 fullscreen
 GAMMADIST
 GAMMAINV
+greek
 gridlines
 HiDPI
 hiDPI
@@ -87,8 +90,10 @@ IMTAN
 InsertContent
 insertImage
 INV
+Italiano
 JPG
 kDrive
+libs
 Liferay
 LINEST
 linux
@@ -146,6 +151,7 @@ Schweiz
 Seafile
 SECH
 setMailMergeRecipients
+Sinhala
 SharedWorker
 Slovenská
 Slovenčina
@@ -156,10 +162,12 @@ SSO
 SUMIFS
 sv
 SVG
+Svizzera
 TDIST
 thai
 TINV
 TOC
+TODO
 tooltip
 tooltips
 trackpad
@@ -169,7 +177,9 @@ txt
 UI
 Ungroup
 url
+VLC
 VLOOKUP
+WMF
 WordArts
 workview
 XLOOKUP

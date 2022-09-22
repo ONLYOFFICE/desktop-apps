@@ -23,7 +23,7 @@
 "Cannot open folder of the file location." = "Неможливо відкрити папку, де знаходиться файл.";
 
 /* No comment provided by engineer. */
-"Comma-Separated Values" = "Значення, розділені комами";
+"Comma-Separated Values" = "Значення, розділені комами (*.csv)";
 
 /* No comment provided by engineer. */
 "Create portal" = "Створити портал";
@@ -32,7 +32,7 @@
 "Delete and Quit" = "Видалити та вийти";
 
 /* No comment provided by engineer. */
-"DjVu File" = "Файл DjVu";
+"DjVu File" = "Цифровий документ (*.djvu)";
 
 /* No comment provided by engineer. */
 "Do you want to save the changes made to the document \"%@\"?" = "Зберегти зміни, внесені до документа \"%@\"?";
@@ -41,13 +41,13 @@
 "Document %ld.docx" = "Документ %ld.docx";
 
 /* No comment provided by engineer. */
-"Document template" = "Шаблон документа";
+"Document template" = "Шаблон документа Word Open XML (*.dotx)";
 
 /* No comment provided by engineer. */
-"Excel 97-2003 Spreadsheet" = "Електронна таблиця Excel 97-2003";
+"Excel 97-2003 Spreadsheet" = "Електронна таблиця Excel 97-2003 (*.xls)";
 
 /* No comment provided by engineer. */
-"Excel 2007 Spreadsheet" = "Електронна таблиця Excel 2007";
+"Excel 2007 Spreadsheet" = "Електронна таблиця Office Open XML (*.xlsx)";
 
 /* No comment provided by engineer. */
 "File \"%@\" can not be open or not exist." = "Файл \"%@\" неможливо відкрити або він не існує.";
@@ -62,16 +62,13 @@
 "Hide %@" = "Сховати %@";
 
 /* No comment provided by engineer. */
-"If you don't review your documents, all your changeses will be lost." = "Якщо ви не переглянете документи, усі зміни будуть втрачені.";
-
-/* No comment provided by engineer. */
 "If you have already purchased %@, you should find your activation key in an email confirmation." = "Якщо ви вже придбали %@, ключ активації можна знайти в електронному листі-підтвердженні.";
 
 /* No comment provided by engineer. */
 "License Agreement" = "Ліцензійна угода";
 
 /* No comment provided by engineer. */
-"Mobipocket e-book" = "Електронна книга Mobipocket";
+"Mobipocket e-book" = "Електронна книга Mobipocket (*.mobi)";
 
 /* No comment provided by engineer. */
 "new-document" = "Новий документ";
@@ -95,43 +92,43 @@
 "ONLYOFFICE can not open the Private Key. Try opening another file." = "ONLYOFFICE не може відкрити файл закритого ключа. Спробуйте відкрити інший файл.";
 
 /* No comment provided by engineer. */
-"OpenDocument Document Template" = "Шаблон документа OpenDocument";
+"OpenDocument Document Template" = "Шаблон документа OpenDocument (*.ott)";
 
 /* No comment provided by engineer. */
-"OpenDocument Presentation Template" = "Шаблон презентації OpenDocument";
+"OpenDocument Presentation Template" = "Шаблон презентації OpenDocument (*.otp)";
 
 /* No comment provided by engineer. */
-"OpenDocument Spreadsheet Template" = "Шаблон електронної таблиці OpenDocument";
+"OpenDocument Spreadsheet Template" = "Шаблон електронної таблиці OpenDocument (*.ots)";
 
 /* No comment provided by engineer. */
 "Opening" = "Відкриття";
 
 /* No comment provided by engineer. */
-"OpenOffice Document" = "Документ OpenOffice";
+"OpenOffice Document" = "Текстовий файл OpenDocument (*.odt)";
 
 /* No comment provided by engineer. */
-"OpenOffice Presentation" = "Презентація OpenOffice";
+"OpenOffice Presentation" = "Презентація OpenDocument (*.odp)";
 
 /* No comment provided by engineer. */
-"OpenOffice Spreadsheet" = "Електронна таблиця OpenOffice";
+"OpenOffice Spreadsheet" = "Електронна таблиця OpenDocument (*.ods)";
 
 /* No comment provided by engineer. */
-"PDF File" = "Файл PDF";
+"PDF File" = "Портативний документ (*.pdf)";
 
 /* No comment provided by engineer. */
-"PDF/A File" = "Файл PDF/A";
+"PDF/A File" = " Портативний документ / A (*.pdf)";
 
 /* No comment provided by engineer. */
-"Plain Text" = "Звичайний текст";
+"Plain Text" = "Звичайний текст (*.txt)";
 
 /* No comment provided by engineer. */
-"PowerPoint 97-2003 Presentation" = "Презентація PowerPoint 97-2003";
+"PowerPoint 97-2003 Presentation" = "Презентація PowerPoint 97-2003 (*.ppt)";
 
 /* No comment provided by engineer. */
-"PowerPoint 2007 Presentation" = "Презентація PowerPoint 2007";
+"PowerPoint 2007 Presentation" = "Презентація Office Open XML (*.pptx)";
 
 /* No comment provided by engineer. */
-"PowerPoint Slide Show" = "Показ слайдів PowerPoint";
+"PowerPoint Slide Show" = "Показ слайдів Office Open XML (*.ppsx)";
 
 /* No comment provided by engineer. */
 "Preparing..." = "Підготовка...";
@@ -140,7 +137,7 @@
 "Presentation %ld.pptx" = "Презентація %ld.pptx";
 
 /* No comment provided by engineer. */
-"Presentation template" = "Шаблон презентації";
+"Presentation template" = "Шаблон презентації PowerPoint Open XML (*.potx)";
 
 /* No comment provided by engineer. */
 "Quit %@" = "Вийти з %@";
@@ -149,7 +146,7 @@
 "Review Changes..." = "Переглянути зміни...";
 
 /* No comment provided by engineer. */
-"Rich Text Document" = "Документ у форматі RTF";
+"Rich Text Document" = "Файл вдосконаленого текстового формату (*.rtf)";
 
 /* No comment provided by engineer. */
 "Save" = "Зберегти";
@@ -161,7 +158,7 @@
 "Spreadsheet %ld.xlsx" = "Електронна таблиця %ld.xlsx";
 
 /* No comment provided by engineer. */
-"Spreadsheet template" = "Шаблон електронної таблиці";
+"Spreadsheet template" = "Шаблон електронної таблиці Excel Open XML (*.xltx)";
 
 /* No comment provided by engineer. */
 "Thank you for evaluating %@!" = "Дякуємо за оцінку %@!";
@@ -185,13 +182,13 @@
 "Web Page" = "Веб-сторінка";
 
 /* No comment provided by engineer. */
-"Word 97-2003 Document" = "Документ Word 97-2003";
+"Word 97-2003 Document" = "Документ Word 97-2003 (*.doc)";
 
 /* No comment provided by engineer. */
-"Word 2007 Document" = "Документ Word 2007";
+"Word 2007 Document" = "Документ Office Open XML (*.docx)";
 
 /* No comment provided by engineer. */
-"XML Paper Specification" = "Формат XPS";
+"XML Paper Specification" = "Документ OpenXPS (*.xps)";
 
 /* No comment provided by engineer. */
 "Yes" = "Так";

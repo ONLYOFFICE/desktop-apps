@@ -47,6 +47,11 @@ BEGIN {
 	print "        .version {";
 	print "            border-bottom: 1px solid #cfcfcf;";
 	print "        }";
+	print "        code {";
+	print "            background: var(--color-gray-200);";
+	print "            font-family: monospace;";
+	print "            padding: 1px 5px;";
+	print "        }";
 	print "    </style>";
 	print "</head>";
 	print "<body>";

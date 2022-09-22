@@ -22,9 +22,18 @@
 
 /* Begin PBXBuildFile section */
 		5A452E4B257688C700C58E01 /* providers in Resources */ = {isa = PBXBuildFile; fileRef = 5A452E4A257688C700C58E01 /* providers */; };
+		5A9D7AE8289336130069EE5A /* ASCEditorJSVariables.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5A9D7AE7289336130069EE5A /* ASCEditorJSVariables.mm */; };
+		5A9D7AE92893D86C0069EE5A /* ASCEditorJSVariables.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5A9D7AE7289336130069EE5A /* ASCEditorJSVariables.mm */; };
+		5A9D7AEA2893D86D0069EE5A /* ASCEditorJSVariables.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5A9D7AE7289336130069EE5A /* ASCEditorJSVariables.mm */; };
+		5A9F8D392848AA07007CA93F /* file-xlsm.icns in Resources */ = {isa = PBXBuildFile; fileRef = 5A9F8D382848AA06007CA93F /* file-xlsm.icns */; };
+		5A9F8D3A2848AA07007CA93F /* file-xlsm.icns in Resources */ = {isa = PBXBuildFile; fileRef = 5A9F8D382848AA06007CA93F /* file-xlsm.icns */; };
+		5A9F8D3B2848AA07007CA93F /* file-xlsm.icns in Resources */ = {isa = PBXBuildFile; fileRef = 5A9F8D382848AA06007CA93F /* file-xlsm.icns */; };
 		5AA06CBD27AC3BA000D67BEE /* ASCLinguist.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AA06CBC27AC3BA000D67BEE /* ASCLinguist.m */; };
 		5AA06CC027B1267200D67BEE /* ASCLinguist.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AA06CBC27AC3BA000D67BEE /* ASCLinguist.m */; };
 		5AA06CC127B1267600D67BEE /* ASCLinguist.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AA06CBC27AC3BA000D67BEE /* ASCLinguist.m */; };
+		5AAE526D28B53B9A001E31F4 /* ASCThemesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AAE526C28B53B9A001E31F4 /* ASCThemesController.m */; };
+		5AAE526E28B53B9A001E31F4 /* ASCThemesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AAE526C28B53B9A001E31F4 /* ASCThemesController.m */; };
+		5AAE526F28B53B9A001E31F4 /* ASCThemesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AAE526C28B53B9A001E31F4 /* ASCThemesController.m */; };
 		5AB20F60274D35F3003732A0 /* file-docxf.icns in Resources */ = {isa = PBXBuildFile; fileRef = 5AB20F5D274D35F2003732A0 /* file-docxf.icns */; };
 		5AB20F62274D360A003732A0 /* file-oform.icns in Resources */ = {isa = PBXBuildFile; fileRef = 5AB20F61274D360A003732A0 /* file-oform.icns */; };
 		5AFA1CF1277A6D2900619952 /* file-docxf.icns in Resources */ = {isa = PBXBuildFile; fileRef = 5AB20F5D274D35F2003732A0 /* file-docxf.icns */; };
@@ -408,6 +417,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5A18BAA3285B5BF6004625C7 /* CertificateCommon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CertificateCommon.h; sourceTree = "<group>"; };
 		5A452E4A257688C700C58E01 /* providers */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = providers; path = Vendor/ONLYOFFICE/providers; sourceTree = SOURCE_ROOT; };
 		5A7F85D027A00C18006B6E27 /* lv-LV */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "lv-LV"; path = "lv-LV.lproj/Document-Sign.strings"; sourceTree = "<group>"; };
 		5A7F85D127A00C18006B6E27 /* lv-LV */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "lv-LV"; path = "lv-LV.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -592,12 +602,6 @@
 		5A7F869727A32F03006B6E27 /* ja-JP */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ja-JP"; path = "ja-JP.lproj/Main.strings"; sourceTree = "<group>"; };
 		5A7F869827A32F03006B6E27 /* ja-JP */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ja-JP"; path = "ja-JP.lproj/MoveApplication.strings"; sourceTree = "<group>"; };
 		5A7F869927A32F03006B6E27 /* ja-JP */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ja-JP"; path = "ja-JP.lproj/Presentation-Reporter.strings"; sourceTree = "<group>"; };
-		5A7F869A27A33011006B6E27 /* ga */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ga; path = "ga.lproj/Document-Sign.strings"; sourceTree = "<group>"; };
-		5A7F869B27A33011006B6E27 /* ga */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ga; path = ga.lproj/Localizable.strings; sourceTree = "<group>"; };
-		5A7F869C27A33011006B6E27 /* ga */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = ga; path = ga.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
-		5A7F869D27A33011006B6E27 /* ga */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ga; path = ga.lproj/Main.strings; sourceTree = "<group>"; };
-		5A7F869E27A33011006B6E27 /* ga */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ga; path = ga.lproj/MoveApplication.strings; sourceTree = "<group>"; };
-		5A7F869F27A33011006B6E27 /* ga */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ga; path = "ga.lproj/Presentation-Reporter.strings"; sourceTree = "<group>"; };
 		5A7F86A027A33101006B6E27 /* gl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = gl; path = "gl.lproj/Document-Sign.strings"; sourceTree = "<group>"; };
 		5A7F86A127A33101006B6E27 /* gl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = gl; path = gl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5A7F86A227A33102006B6E27 /* gl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = gl; path = gl.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
@@ -763,14 +767,19 @@
 		5A7F874627A34994006B6E27 /* ja-JP */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "ja-JP"; path = "ja-JP.lproj/EULA.html"; sourceTree = "<group>"; };
 		5A7F874727A3499B006B6E27 /* vi-VN */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "vi-VN"; path = "vi-VN.lproj/EULA.html"; sourceTree = "<group>"; };
 		5A7F874827A34A06006B6E27 /* ja-JP */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ja-JP"; path = "ja-JP.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
-		5A7F874927A46464006B6E27 /* ga */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ga; path = ga.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		5A7F874A27A46476006B6E27 /* ga */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = ga; path = ga.lproj/EULA.html; sourceTree = "<group>"; };
-		5A7F874B27A464CA006B6E27 /* ga */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = ga; path = ga.lproj/EULA.html; sourceTree = "<group>"; };
-		5A7F874C27A464D5006B6E27 /* ga */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ga; path = ga.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		5A7F874D27A464E0006B6E27 /* ga */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ga; path = ga.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		5A7F874E27A464EA006B6E27 /* ga */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = ga; path = ga.lproj/EULA.html; sourceTree = "<group>"; };
+		5A87ABE7283286DB0084198A /* ga-IE */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ga-IE"; path = "ga-IE.lproj/Document-Sign.strings"; sourceTree = "<group>"; };
+		5A87ABE9283286DB0084198A /* ga-IE */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "ga-IE"; path = "ga-IE.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
+		5A87ABEA283286DB0084198A /* ga-IE */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ga-IE"; path = "ga-IE.lproj/Main.strings"; sourceTree = "<group>"; };
+		5A87ABEB283286DB0084198A /* ga-IE */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ga-IE"; path = "ga-IE.lproj/MoveApplication.strings"; sourceTree = "<group>"; };
+		5A87ABEC283286DB0084198A /* ga-IE */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ga-IE"; path = "ga-IE.lproj/Presentation-Reporter.strings"; sourceTree = "<group>"; };
+		5A87ABEE2832964F0084198A /* ga-IE */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ga-IE"; path = "ga-IE.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		5A9D7AE6289336130069EE5A /* ASCEditorJSVariables.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASCEditorJSVariables.h; sourceTree = "<group>"; };
+		5A9D7AE7289336130069EE5A /* ASCEditorJSVariables.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ASCEditorJSVariables.mm; sourceTree = "<group>"; };
+		5A9F8D382848AA06007CA93F /* file-xlsm.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "file-xlsm.icns"; sourceTree = "<group>"; };
 		5AA06CBB27AC3BA000D67BEE /* ASCLinguist.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ASCLinguist.h; sourceTree = "<group>"; };
 		5AA06CBC27AC3BA000D67BEE /* ASCLinguist.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ASCLinguist.m; sourceTree = "<group>"; };
+		5AAE526C28B53B9A001E31F4 /* ASCThemesController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ASCThemesController.m; sourceTree = "<group>"; };
+		5AAE527028B53C1F001E31F4 /* ASCThemesController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ASCThemesController.h; sourceTree = "<group>"; };
 		5AB20F5D274D35F2003732A0 /* file-docxf.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "file-docxf.icns"; sourceTree = "<group>"; };
 		5AB20F61274D360A003732A0 /* file-oform.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "file-oform.icns"; sourceTree = "<group>"; };
 		BE6251B922BD089100656116 /* dictionaries */ = {isa = PBXFileReference; lastKnownFileType = folder; name = dictionaries; path = ../../../../dictionaries; sourceTree = "<group>"; };
@@ -820,7 +829,6 @@
 		FC54A2921F94BCE00086F4FE /* ASCPresentationReporter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ASCPresentationReporter.h; sourceTree = "<group>"; };
 		FC54A2931F94BCE00086F4FE /* ASCPresentationReporter.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ASCPresentationReporter.mm; sourceTree = "<group>"; };
 		FC5919D5208DC6D00006F664 /* OOXMLVerifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OOXMLVerifier.h; sourceTree = "<group>"; };
-		FC5919D6208DC6D00006F664 /* XmlCertificate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XmlCertificate.h; sourceTree = "<group>"; };
 		FC5919D7208DC6D00006F664 /* OOXMLSigner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OOXMLSigner.h; sourceTree = "<group>"; };
 		FC592513208DE7440006F664 /* libooxmlsignature.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libooxmlsignature.dylib; path = ../../../build_tools/out/mac_64/onlyoffice/desktopeditors/libooxmlsignature.dylib; sourceTree = "<group>"; };
 		FC5A2D2F1BAC0739001ACEB1 /* libascdocumentscore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libascdocumentscore.dylib; path = ../../build_tools/out/mac_64/onlyoffice/desktopeditors/libascdocumentscore.dylib; sourceTree = SOURCE_ROOT; };
@@ -1152,6 +1160,7 @@
 		FC081EBC1C325E8400F9881C /* file-formats */ = {
 			isa = PBXGroup;
 			children = (
+				5A9F8D382848AA06007CA93F /* file-xlsm.icns */,
 				5AB20F61274D360A003732A0 /* file-oform.icns */,
 				5AB20F5D274D35F2003732A0 /* file-docxf.icns */,
 				FCA3F3062570EC9500DCAB12 /* file-epub.icns */,
@@ -1247,8 +1256,8 @@
 		FC5919D4208DC6D00006F664 /* include */ = {
 			isa = PBXGroup;
 			children = (
+				5A18BAA3285B5BF6004625C7 /* CertificateCommon.h */,
 				FC5919D5208DC6D00006F664 /* OOXMLVerifier.h */,
-				FC5919D6208DC6D00006F664 /* XmlCertificate.h */,
 				FC5919D7208DC6D00006F664 /* OOXMLSigner.h */,
 			);
 			path = include;
@@ -1427,6 +1436,8 @@
 		FCA0B3561B9F00780073EDD4 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				5A9D7AE6289336130069EE5A /* ASCEditorJSVariables.h */,
+				5A9D7AE7289336130069EE5A /* ASCEditorJSVariables.mm */,
 				FCA0B3601B9F0AA10073EDD4 /* ASCConstants.h */,
 				FCAC6DF71C195FA6003D2457 /* ASCConstants.m */,
 				FCCC2FD521E5DF7700FB9209 /* ASCBlockHolder.h */,
@@ -1711,6 +1722,8 @@
 				FC3B77841BB2A94300DB9705 /* ASCEventsController.mm */,
 				FCF2897F21510C16002FD438 /* ASCExternalController.h */,
 				FCF2898021510C16002FD438 /* ASCExternalController.m */,
+				5AAE526C28B53B9A001E31F4 /* ASCThemesController.m */,
+				5AAE527028B53C1F001E31F4 /* ASCThemesController.h */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -1922,8 +1935,8 @@
 				"zh-Hant",
 				"vi-VN",
 				"ja-JP",
-				ga,
 				gl,
+				"ga-IE",
 			);
 			mainGroup = FCBC425F1B9D650400405301;
 			productRefGroup = FCBC42691B9D650400405301 /* Products */;
@@ -1946,6 +1959,7 @@
 				5AFA1CF3277A6DA600619952 /* file-oform.icns in Resources */,
 				FC0BD6C9258B63F700C47F95 /* file-otp.icns in Resources */,
 				FCB4C78026DD02960012C20D /* InfoPlist.strings in Resources */,
+				5A9F8D3B2848AA07007CA93F /* file-xlsm.icns in Resources */,
 				FCB4C77F26DD02960012C20D /* EULA.html in Resources */,
 				FC0BD6CA258B63F700C47F95 /* file-fb2.icns in Resources */,
 				FC0BD6CB258B63F700C47F95 /* file-epub.icns in Resources */,
@@ -1997,6 +2011,7 @@
 				5AFA1CF4277A6DF100619952 /* file-docxf.icns in Resources */,
 				FCB4C70526DD018B0012C20D /* file-otp.icns in Resources */,
 				FCB4C77D26DD027B0012C20D /* InfoPlist.strings in Resources */,
+				5A9F8D392848AA07007CA93F /* file-xlsm.icns in Resources */,
 				FCB4C77C26DD02750012C20D /* EULA.html in Resources */,
 				FCB4C70626DD018B0012C20D /* file-fb2.icns in Resources */,
 				FCB4C70726DD018B0012C20D /* file-epub.icns in Resources */,
@@ -2048,6 +2063,7 @@
 				5AFA1CF2277A6D4C00619952 /* file-oform.icns in Resources */,
 				5AFA1CF1277A6D2900619952 /* file-docxf.icns in Resources */,
 				FCA3F3092570EC9500DCAB12 /* file-otp.icns in Resources */,
+				5A9F8D3A2848AA07007CA93F /* file-xlsm.icns in Resources */,
 				FCB4C78326DD02A40012C20D /* InfoPlist.strings in Resources */,
 				FCB4C78226DD02A40012C20D /* EULA.html in Resources */,
 				FCA3F30C2570EC9500DCAB12 /* file-fb2.icns in Resources */,
@@ -2286,9 +2302,11 @@
 				FC0BD690258B63F700C47F95 /* PFMoveApplication.m in Sources */,
 				FC0BD691258B63F700C47F95 /* ASCBlockHolder.m in Sources */,
 				FC0BD692258B63F700C47F95 /* ASCTabView.m in Sources */,
+				5A9D7AEA2893D86D0069EE5A /* ASCEditorJSVariables.mm in Sources */,
 				FC0BD693258B63F700C47F95 /* ASCMenuButtonCell.m in Sources */,
 				FC0BD694258B63F700C47F95 /* SFBPopoverWindow.m in Sources */,
 				FC0BD695258B63F700C47F95 /* NSWindow+Extensions.m in Sources */,
+				5AAE526F28B53B9A001E31F4 /* ASCThemesController.m in Sources */,
 				FC0BD696258B63F700C47F95 /* ASCHelper.m in Sources */,
 				FC0BD697258B63F700C47F95 /* ASCUserInfoViewController.m in Sources */,
 				FC0BD698258B63F700C47F95 /* NSColor+Extensions.m in Sources */,
@@ -2359,9 +2377,11 @@
 				FCB4C6C726DD018B0012C20D /* PFMoveApplication.m in Sources */,
 				FCB4C6C826DD018B0012C20D /* ASCBlockHolder.m in Sources */,
 				FCB4C6C926DD018B0012C20D /* ASCTabView.m in Sources */,
+				5A9D7AE8289336130069EE5A /* ASCEditorJSVariables.mm in Sources */,
 				FCB4C6CA26DD018B0012C20D /* ASCMenuButtonCell.m in Sources */,
 				FCB4C6CB26DD018B0012C20D /* SFBPopoverWindow.m in Sources */,
 				FCB4C6CC26DD018B0012C20D /* NSWindow+Extensions.m in Sources */,
+				5AAE526D28B53B9A001E31F4 /* ASCThemesController.m in Sources */,
 				FCB4C6CD26DD018B0012C20D /* ASCHelper.m in Sources */,
 				FCB4C6CE26DD018B0012C20D /* ASCUserInfoViewController.m in Sources */,
 				FCB4C6CF26DD018B0012C20D /* NSColor+Extensions.m in Sources */,
@@ -2432,9 +2452,11 @@
 				FCB454FF1C326A4E00FEACF2 /* PFMoveApplication.m in Sources */,
 				FCCC2FD721E5DF7700FB9209 /* ASCBlockHolder.m in Sources */,
 				FCC77C97206CEE85001B7837 /* ASCTabView.m in Sources */,
+				5A9D7AE92893D86C0069EE5A /* ASCEditorJSVariables.mm in Sources */,
 				FCC77C79206CEE5B001B7837 /* ASCMenuButtonCell.m in Sources */,
 				FC3BFE011BBE83AB0040C904 /* SFBPopoverWindow.m in Sources */,
 				FCF2897D21510403002FD438 /* NSWindow+Extensions.m in Sources */,
+				5AAE526E28B53B9A001E31F4 /* ASCThemesController.m in Sources */,
 				FCA0B3551B9F006F0073EDD4 /* ASCHelper.m in Sources */,
 				FCAF3EFD1BA31D3C00B42BAA /* ASCUserInfoViewController.m in Sources */,
 				FC73E6F3207E15BB00EFFD2F /* NSColor+Extensions.m in Sources */,
@@ -2531,8 +2553,8 @@
 				5A7F868A27A1EF43006B6E27 /* zh-Hant */,
 				5A7F869027A32DAD006B6E27 /* vi-VN */,
 				5A7F869927A32F03006B6E27 /* ja-JP */,
-				5A7F869F27A33011006B6E27 /* ga */,
 				5A7F86A527A33102006B6E27 /* gl */,
+				5A87ABEC283286DB0084198A /* ga-IE */,
 			);
 			name = "Presentation-Reporter.storyboard";
 			sourceTree = "<group>";
@@ -2577,8 +2599,8 @@
 				5A7F868927A1EF43006B6E27 /* zh-Hant */,
 				5A7F868F27A32DAD006B6E27 /* vi-VN */,
 				5A7F869827A32F03006B6E27 /* ja-JP */,
-				5A7F869E27A33011006B6E27 /* ga */,
 				5A7F86A427A33102006B6E27 /* gl */,
+				5A87ABEB283286DB0084198A /* ga-IE */,
 			);
 			name = MoveApplication.strings;
 			sourceTree = "<group>";
@@ -2624,7 +2646,6 @@
 				5A7F873F27A34732006B6E27 /* tr-TR */,
 				5A7F874027A34734006B6E27 /* uk-UA */,
 				5A7F874127A34737006B6E27 /* vi-VN */,
-				5A7F874A27A46476006B6E27 /* ga */,
 			);
 			name = EULA.html;
 			sourceTree = "<group>";
@@ -2670,7 +2691,6 @@
 				5A7F872C27A346D8006B6E27 /* tr-TR */,
 				5A7F872D27A346DA006B6E27 /* uk-UA */,
 				5A7F874227A3478C006B6E27 /* ja-JP */,
-				5A7F874927A46464006B6E27 /* ga */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -2716,7 +2736,6 @@
 				5A7F870D27A340E4006B6E27 /* zh-Hant */,
 				5A7F874427A3495D006B6E27 /* ja-JP */,
 				5A7F874527A3497C006B6E27 /* vi-VN */,
-				5A7F874B27A464CA006B6E27 /* ga */,
 			);
 			name = EULA.html;
 			sourceTree = "<group>";
@@ -2762,7 +2781,6 @@
 				5A7F870A27A340D5006B6E27 /* uk-UA */,
 				5A7F870C27A340E4006B6E27 /* zh-Hant */,
 				5A7F874327A348BB006B6E27 /* ja-JP */,
-				5A7F874C27A464D5006B6E27 /* ga */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -2808,7 +2826,6 @@
 				5A7F86DD27A33EF1006B6E27 /* zh-Hant */,
 				5A7F874627A34994006B6E27 /* ja-JP */,
 				5A7F874727A3499B006B6E27 /* vi-VN */,
-				5A7F874E27A464EA006B6E27 /* ga */,
 			);
 			name = EULA.html;
 			sourceTree = "<group>";
@@ -2854,7 +2871,6 @@
 				5A7F86DB27A33ED1006B6E27 /* uk-UA */,
 				5A7F86DC27A33EF1006B6E27 /* zh-Hant */,
 				5A7F874827A34A06006B6E27 /* ja-JP */,
-				5A7F874D27A464E0006B6E27 /* ga */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -2899,8 +2915,8 @@
 				5A7F868827A1EF43006B6E27 /* zh-Hant */,
 				5A7F868E27A32DAD006B6E27 /* vi-VN */,
 				5A7F869727A32F03006B6E27 /* ja-JP */,
-				5A7F869D27A33011006B6E27 /* ga */,
 				5A7F86A327A33102006B6E27 /* gl */,
+				5A87ABEA283286DB0084198A /* ga-IE */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -2926,7 +2942,6 @@
 				5A7F860327A1EA62006B6E27 /* ca */,
 				5A7F860927A1EAFB006B6E27 /* et-EE */,
 				5A7F860F27A1EB2E006B6E27 /* fi-FI */,
-				5A7F861527A1EB54006B6E27 /* ga-IE */,
 				5A7F862127A1EC3C006B6E27 /* hi-IN */,
 				5A7F862727A1EC64006B6E27 /* hr-HR */,
 				5A7F862D27A1EC7C006B6E27 /* hu-HU */,
@@ -2946,8 +2961,8 @@
 				5A7F868727A1EF43006B6E27 /* zh-Hant */,
 				5A7F868D27A32DAD006B6E27 /* vi-VN */,
 				5A7F869627A32F03006B6E27 /* ja-JP */,
-				5A7F869C27A33011006B6E27 /* ga */,
 				5A7F86A227A33102006B6E27 /* gl */,
+				5A87ABE9283286DB0084198A /* ga-IE */,
 			);
 			name = Localizable.stringsdict;
 			sourceTree = "<group>";
@@ -2992,8 +3007,8 @@
 				5A7F868527A1EF43006B6E27 /* zh-Hant */,
 				5A7F868B27A32DAD006B6E27 /* vi-VN */,
 				5A7F869427A32F03006B6E27 /* ja-JP */,
-				5A7F869A27A33011006B6E27 /* ga */,
 				5A7F86A027A33101006B6E27 /* gl */,
+				5A87ABE7283286DB0084198A /* ga-IE */,
 			);
 			name = "Document-Sign.storyboard";
 			sourceTree = "<group>";
@@ -3038,8 +3053,8 @@
 				5A7F868627A1EF43006B6E27 /* zh-Hant */,
 				5A7F868C27A32DAD006B6E27 /* vi-VN */,
 				5A7F869527A32F03006B6E27 /* ja-JP */,
-				5A7F869B27A33011006B6E27 /* ga */,
 				5A7F86A127A33101006B6E27 /* gl */,
+				5A87ABEE2832964F0084198A /* ga-IE */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -3115,6 +3130,7 @@
 					_MAC,
 					_PRODUCT_ONLYOFFICE,
 					_V8_VERSION,
+					"URL_WEBAPPS_HELP=\\@\\\"$(URL_WEBAPPS_HELP)\\\"",
 				);
 				INFOPLIST_FILE = "ONLYOFFICE/Resources/ONLYOFFICE-v8/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks @executable_path/../Resources/converter @loader_path/../Resources/converter";
@@ -3159,6 +3175,7 @@
 					_MAC,
 					_PRODUCT_ONLYOFFICE,
 					_ARM_ONLY,
+					"URL_WEBAPPS_HELP=\\@\\\"$(URL_WEBAPPS_HELP)\\\"",
 				);
 				INFOPLIST_FILE = "ONLYOFFICE/Resources/ONLYOFFICE-arm/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks @executable_path/../Resources/converter @loader_path/../Resources/converter";
@@ -3203,6 +3220,7 @@
 					_MAC,
 					_PRODUCT_ONLYOFFICE,
 					_ARM_ONLY,
+					"URL_WEBAPPS_HELP=\\@\\\"$(URL_WEBAPPS_HELP)\\\"",
 				);
 				INFOPLIST_FILE = "ONLYOFFICE/Resources/ONLYOFFICE-arm/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks @executable_path/../Resources/converter @loader_path/../Resources/converter";
@@ -3327,6 +3345,7 @@
 					_MAC,
 					_PRODUCT_ONLYOFFICE,
 					_X86_64_ONLY,
+					"URL_WEBAPPS_HELP=\\@\\\"$(URL_WEBAPPS_HELP)\\\"",
 				);
 				INFOPLIST_FILE = "ONLYOFFICE/Resources/ONLYOFFICE-x86_64/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks @executable_path/../Resources/converter @loader_path/../Resources/converter";
@@ -3371,6 +3390,7 @@
 					_MAC,
 					_PRODUCT_ONLYOFFICE,
 					_X86_64_ONLY,
+					"URL_WEBAPPS_HELP=\\@\\\"$(URL_WEBAPPS_HELP)\\\"",
 				);
 				INFOPLIST_FILE = "ONLYOFFICE/Resources/ONLYOFFICE-x86_64/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks @executable_path/../Resources/converter @loader_path/../Resources/converter";

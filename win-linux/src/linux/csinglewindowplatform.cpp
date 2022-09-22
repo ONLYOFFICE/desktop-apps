@@ -74,7 +74,7 @@ CSingleWindowPlatform::CSingleWindowPlatform(const QRect& rect, const QString& t
     setWindowTitle(title);
     setWindowIcon(Utils::appIcon());
     setGeometry(rect);
-    setMinimumSize(WindowHelper::correctWindowMinimumSize(geometry(), {EDITOR_WINDOW_MIN_WIDTH * m_dpiRatio, MAIN_WINDOW_MIN_HEIGHT * m_dpiRatio}));
+//    setMinimumSize(WindowHelper::correctWindowMinimumSize(geometry(), {EDITOR_WINDOW_MIN_WIDTH * m_dpiRatio, MAIN_WINDOW_MIN_HEIGHT * m_dpiRatio}));
 
     connect(&AscAppManager::getInstance().commonEvents(), &CEventDriver::onModalDialog, this, &CSingleWindowPlatform::slot_modalDialog);
 }
@@ -217,7 +217,7 @@ void CSingleWindowPlatform::onScreenScalingFactor(double f)
     QRect _dest_rect = QRect{_src_rect.translated(dest_width_change/2,0).topLeft(), _src_rect.size() * change_factor};
 
     setGeometry(_dest_rect);
-    setMinimumSize(WindowHelper::correctWindowMinimumSize(geometry(), {EDITOR_WINDOW_MIN_WIDTH * f, MAIN_WINDOW_MIN_HEIGHT * f}));
+//    setMinimumSize(WindowHelper::correctWindowMinimumSize(geometry(), {EDITOR_WINDOW_MIN_WIDTH * f, MAIN_WINDOW_MIN_HEIGHT * f}));
 }
 
 void CSingleWindowPlatform::onExitSizeMove()

@@ -48,6 +48,9 @@
 #import "ASCDocSignController.h"
 #import "ASCExternalController.h"
 #import "NSApplication+Extensions.h"
+#import "NSDictionary+Extensions.h"
+#import "ASCEditorJSVariables.h"
+#import "ASCSharedSettings.h"
 
 CAscApplicationManager * createASCApplicationManager() {
     return new ASCApplicationManager();
@@ -84,32 +87,29 @@ int main(int argc, const char * argv[]) {
     fontsDirectories.push_back([[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"login/fonts"] stdwstring]);
     appManager->m_oSettings.additional_fonts_folder = fontsDirectories;
     
-    // setup localization
-    NSMutableArray * params = [NSMutableArray array];
-    [params addObject:[NSString stringWithFormat:@"lang=%@", [ASCLinguist appLanguageCode]]];
-
     // setup username
     NSString * fullName = [[NSUserDefaults standardUserDefaults] valueForKey:ASCUserNameApp];
-    
     if (fullName == nil) {
         fullName = NSFullUserName();
     }
     
     if (fullName) {
-        [params addObject:[NSString stringWithFormat:@"username=%@", fullName]];
+        [[ASCEditorJSVariables instance] setParameter:@"username" withString:fullName];
     }
     
     // setup ui theme
     NSString * uiTheme = [[NSUserDefaults standardUserDefaults] valueForKey:ASCUserUITheme];
     if ( !uiTheme ) {
-        uiTheme = [NSApplication isSystemDarkMode] ? uiThemeDark : uiThemeClassicLight;
+        uiTheme = uiThemeSystem;
         [[NSUserDefaults standardUserDefaults] setObject:uiTheme forKey:ASCUserUITheme];
     }
 
-    [params addObject:[NSString stringWithFormat:@"uitheme=%@", uiTheme]];
+    [[ASCEditorJSVariables instance] setParameter:@"uitheme" withString:uiTheme];
+    [[ASCSharedSettings sharedInstance] setSetting:([NSApplication isSystemDarkMode] ? @"dark" : @"light") forKey:kSettingsColorScheme];
+    [[ASCEditorJSVariables instance] applyParameters];
 
-    std::wstring wLocale = [[params componentsJoinedByString:@"&"] stdwstring];
-    appManager->InitAdditionalEditorParams(wLocale);
+    [[ASCEditorJSVariables instance] setVariable:@"theme" withObject:@{@"id":uiTheme}];
+    [[ASCEditorJSVariables instance] apply];
 
     // setup doc sign
     [ASCDocSignController shared];

@@ -26,9 +26,13 @@ Function UninstallOlderVersion
 
   If (RegistryExist(regPath) = True) Then
     RegistryPath = objShell.RegRead(regPath)
-    Button = MsgBox(Session.Property("UNINSTALL_PREV_MSGBOX"), 1, Session.Property("Setup") + " " + Session.Property("ProductName"))
+    If Session.Property("UILevel") <> 2 Then 
+      Button = MsgBox(Session.Property("UNINSTALL_PREV_MSGBOX"), 1, Session.Property("Setup") + " " + Session.Property("ProductName"))
+    End If
     If Button = 1 Then
       objShell.Run RegistryPath, 0, True
+    ElseIf Session.Property("UILevel") = 2 Then
+      objShell.Run RegistryPath + " /VERYSILENT", 0, True
     Else 
       Session.Property("UninstallOlderVersion") = "1"
     End If
@@ -108,7 +112,7 @@ Function SetCustomPath
 
   Dim index
   Dim parentLenght
-  parentLength = UBound(tokens) - 2
+  If Session.Property("UILevel") = 2 Then parentLength = UBound(tokens) - 1 Else parentLength = UBound(tokens) - 2
   customPath = ""
 
   For index = 0 To parentLength

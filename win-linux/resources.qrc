@@ -183,7 +183,7 @@
         <file alias="hr-HR.qm">langs/hr.qm</file>
         <file alias="hu-HU.qm">langs/hu.qm</file>
         <file alias="hy-AM.qm">langs/hy.qm</file>
-        <file alias="id-ID.qm">langs/in.qm</file>
+        <file alias="id-ID.qm">langs/id.qm</file>
         <file alias="it-IT.qm">langs/it_IT.qm</file>
         <file alias="ja-JP.qm">langs/ja.qm</file>
         <file alias="ko-KR.qm">langs/ko.qm</file>
@@ -208,7 +208,7 @@
         <file alias="qtbase_ru-RU.qm">langs/qtbase_ru.qm</file>
     </qresource>
     <qresource prefix="/sep-styles">
-        <file alias="tabbar.qss">res/styles/tabbar.qss</file>
+        <file alias="tabbar@1x.qss">res/styles/tabbar@1x.qss</file>
         <file alias="tabbar.nix.qss">res/styles/tabbar_nix.qss</file>
         <file alias="tabbar@1.25x.qss">res/styles/tabbar@1.25x.qss</file>
         <file alias="tabbar@1.5x.qss">res/styles/tabbar@1.5x.qss</file>
@@ -220,5 +220,7 @@
         <file alias="theme-light.json">res/styles/theme-light.json</file>
         <file alias="theme-classic-light.json">res/styles/theme-classic-light.json</file>
         <file alias="theme-dark.json">res/styles/theme-dark.json</file>
+        <file alias="theme-contrast-dark.json">res/styles/theme-contrast-dark.json</file>
+        <file alias="theme-contrast-dark.qss">res/styles/theme-contrast-dark.qss</file>
     </qresource>
 </RCC>

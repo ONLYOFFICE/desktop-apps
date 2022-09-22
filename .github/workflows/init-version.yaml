@@ -1,0 +1,38 @@
+name: Create changelog files
+
+on: workflow_dispatch
+
+jobs:
+
+  create-changelog:
+    if: >-
+      ${{ contains(github.ref, 'refs/heads/hotfix/v') ||
+          contains(github.ref, 'refs/heads/release/v') }}
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.PUSH_TOKEN }}
+
+      - name: Set version
+        run: >-
+          echo "${{ github.ref_name }}" |
+          awk '{gsub(/.+\/v/,"version=");print;}' >> $GITHUB_ENV
+
+      - name: Create template changelogs
+        run: |
+          mkdir -pv win-linux/package/windows/update/changes/$version
+          echo "TODO" >> win-linux/package/windows/update/changes/$version/en.html
+          echo "TODO" >> win-linux/package/windows/update/changes/$version/ru.html
+          cp -rfv \
+            macos/ONLYOFFICE/update/updates/ONLYOFFICE/changes/template \
+            macos/ONLYOFFICE/update/updates/ONLYOFFICE/changes/$version
+
+      - name: Commit changes
+        uses: EndBug/add-and-commit@v8
+        with:
+          author_name: github-actions[bot]
+          author_email: github-actions[bot]@users.noreply.github.com
+          message: Create template changelogs for v${{ env.version }}

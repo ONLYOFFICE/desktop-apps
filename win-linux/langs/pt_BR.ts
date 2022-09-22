@@ -202,7 +202,7 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="226"/>
         <source>RTF File (*.rtf)</source>
-        <translation>Ficheiro de Rich Text Format (*.rtf)</translation>
+        <translation>Arquivo de Rich Text Format (*.rtf)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="227"/>
@@ -287,7 +287,7 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="245"/>
         <source>XLS File (*.xls)</source>
-        <translation>Folha de cálculo do Microsoft Excel 97-2003 (*.xls)</translation>
+        <translation>Folha de cálculo do Excel 97-2003 (*.xls)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="246"/>
@@ -302,7 +302,7 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="248"/>
         <source>CSV File (*.csv)</source>
-        <translation>Ficheiro de valores separados por vírgulas (*.csv)</translation>
+        <translation>Valores separados por vírgulas (*.csv)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="250"/>
@@ -312,7 +312,7 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="251"/>
         <source>PDFA File (*.pdf)</source>
-        <translation>Documento portátil / A (*.pdf)</translation>
+        <translation>Documento portátil /A (*.pdf)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="252"/>
@@ -569,12 +569,12 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper_private.h" line="223"/>
         <source>File %1 cannot be opened or doesn&apos;t exists.</source>
-        <translation type="unfinished"></translation>
+        <translation>O arquivo %1 não pode ser aberto ou não existe.</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="126"/>
         <source>All supported files (*.txt *.csv)</source>
-        <translation type="unfinished"></translation>
+        <translation>Todos os arquivos suportados (*.txt *.csv)</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="126"/>

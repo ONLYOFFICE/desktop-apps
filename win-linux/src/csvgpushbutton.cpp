@@ -129,3 +129,10 @@ void CSVGPushButton::updateIcon()
         QPushButton::setIcon(QIcon(pixmap));
     }
 }
+
+bool CSVGPushButton::setProperty(const char *name, const QVariant &value)
+{
+    auto retval = QPushButton::setProperty(name, value);
+    style()->polish(this);
+    return retval;
+}

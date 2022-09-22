@@ -31,6 +31,9 @@
 /* Class = "NSButtonCell"; title = "Load Signature"; ObjectID = "tTF-wa-eJp"; */
 "tTF-wa-eJp.title" = "Signatur laden";
 
+/* Class = "NSWindow"; title = "Window"; ObjectID = "uKp-p4-6uB"; */
+"uKp-p4-6uB.title" = "Fenster";
+
 /* Class = "NSSecureTextFieldCell"; placeholderString = "Enter Password"; ObjectID = "Zj5-0h-hpW"; */
 "Zj5-0h-hpW.placeholderString" = "Kennwort eingeben";
 

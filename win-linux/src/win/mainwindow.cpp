@@ -92,12 +92,13 @@ CMainWindow::CMainWindow(QRect& rect) :
     if ( _window_rect.isEmpty() )
         _window_rect = QRect(QPoint(100, 100)*m_dpiRatio, MAIN_WINDOW_DEFAULT_SIZE * m_dpiRatio);
 
-    QSize _window_min_size(int(MAIN_WINDOW_MIN_WIDTH * m_dpiRatio), int(MAIN_WINDOW_MIN_HEIGHT * m_dpiRatio));
-    if ( _window_rect.width() < _window_min_size.width() )
-        _window_rect.setWidth(_window_min_size.width());
+    // TODO: skip window min size for usability test
+//    QSize _window_min_size(int(MAIN_WINDOW_MIN_WIDTH * m_dpiRatio), int(MAIN_WINDOW_MIN_HEIGHT * m_dpiRatio));
+//    if ( _window_rect.width() < _window_min_size.width() )
+//        _window_rect.setWidth(_window_min_size.width());
 
-    if ( _window_rect.height() < _window_min_size.height() )
-        _window_rect.setHeight(_window_min_size.height());
+//    if ( _window_rect.height() < _window_min_size.height() )
+//        _window_rect.setHeight(_window_min_size.height());
 
     QRect _screen_size = Utils::getScreenGeometry(_window_rect.topLeft());
     if ( _screen_size.intersects(_window_rect) ) {
@@ -271,7 +272,8 @@ LRESULT CALLBACK CMainWindow::WndProc( HWND hWnd, UINT message, WPARAM wParam, L
             return 0;
         } else
         if ( GET_SC_WPARAM(wParam) == SC_SIZE ) {
-            window->setMinimumSize(int(MAIN_WINDOW_MIN_WIDTH * window->m_dpiRatio), int(MAIN_WINDOW_MIN_HEIGHT * window->m_dpiRatio));
+            // TODO: skip window min size for usability test
+//            window->setMinimumSize(int(MAIN_WINDOW_MIN_WIDTH * window->m_dpiRatio), int(MAIN_WINDOW_MIN_HEIGHT * window->m_dpiRatio));
             break;
         } else
         if ( GET_SC_WPARAM(wParam) == SC_MOVE ) {
@@ -284,7 +286,7 @@ LRESULT CALLBACK CMainWindow::WndProc( HWND hWnd, UINT message, WPARAM wParam, L
         else
         if (GET_SC_WPARAM(wParam) == SC_RESTORE) {
 //            if ( !WindowHelper::isLeftButtonPressed() )
-                WindowHelper::correctWindowMinimumSize(window->handle());
+//                WindowHelper::correctWindowMinimumSize(window->handle());
 
             break;
         }
@@ -437,7 +439,7 @@ qDebug() << "WM_CLOSE";
     }
 
     case WM_ENTERSIZEMOVE: {
-        WindowHelper::correctWindowMinimumSize(window->handle());
+//        WindowHelper::correctWindowMinimumSize(window->handle());
 
         WINDOWPLACEMENT wp{sizeof(WINDOWPLACEMENT)};
         if ( GetWindowPlacement(hWnd, &wp) ) {
@@ -815,15 +817,21 @@ void CMainWindow::slot_mainPageReady()
     if ( osvi.dwMajorVersion > 5 && reg_system.value("CheckForUpdates", true).toBool() ) {
         win_sparkle_set_lang(CLangater::getCurrentLangCode().toLatin1());
 
+        GET_REGISTRY_USER(_user);
         const std::wstring argname{L"--updates-appcast-url"};
-        QString _appcast_url = !InputArgs::contains(argname) ? URL_APPCAST_UPDATES : QString::fromStdWString(InputArgs::argument_value(argname));
+        if ( InputArgs::contains(argname) ) {
+            std::wstring _url = InputArgs::argument_value(argname);
+            if ( _url == L"default" ) _user.remove("updatesAppcastUrl");
+            else _user.setValue("updatesAppcastUrl", QString::fromStdWString(_url));
+        }
+
+        QString _appcast_url = _user.value("updatesAppcastUrl", URL_APPCAST_UPDATES).toString();
         static bool _init = false;
         if ( !_init ) {
             _init = true;
 
             QString _prod_name = WINDOW_NAME;
 
-            GET_REGISTRY_USER(_user)
             if (!_user.contains("CheckForUpdates")) {
                 _user.setValue("CheckForUpdates", "1");
             }

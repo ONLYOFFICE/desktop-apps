@@ -177,22 +177,22 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="221"/>
         <source>DOCX Document (*.docx)</source>
-        <translation>DOCX Dokument (*.docx)</translation>
+        <translation>Dokument Office Open XML (*.docx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="222"/>
         <source>Document template (*.dotx)</source>
-        <translation>Šablóna dokumentu (*.dotx)</translation>
+        <translation>Šablóna dokumentu Word Open XML (*.dotx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="223"/>
         <source>DOC Document (*.doc)</source>
-        <translation>DOC Dokument (*.doc)</translation>
+        <translation>Dokument Word 97-2003 (*.doc)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="224"/>
         <source>ODT Document (*.odt)</source>
-        <translation>ODT Dokument (*.odt)</translation>
+        <translation>Textový súbor OpenDocument (*.odt)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="225"/>
@@ -202,67 +202,67 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="226"/>
         <source>RTF File (*.rtf)</source>
-        <translation>RTF Súbor (*.rtf)</translation>
+        <translation>Súbor vo formáte RTF (*.rtf)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="227"/>
         <source>TXT File (*.txt)</source>
-        <translation>TXT Súbor (*.txt)</translation>
+        <translation>Súbor obyčajného textu (*.txt)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="228"/>
         <source>HTML File (*.html)</source>
-        <translation>HTML Súbor (*.html)</translation>
+        <translation>Súbor hypertextového značkovacieho jazyka (*.html)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="229"/>
         <source>MHT File (*.mht)</source>
-        <translation>MHT Súbor (*.mht)</translation>
+        <translation>Archívny súbor webovej stránky (*.mht)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="230"/>
         <source>EPUB File (*.epub)</source>
-        <translation>EPUB Súbor (*.epub)</translation>
+        <translation>Elektronický publikačný súbor (*.epub)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="231"/>
         <source>FB2 File (*.fb2)</source>
-        <translation>FB2 Súbor (*.fb2)</translation>
+        <translation>Súbor FictionBook 2 (*.fb2)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="232"/>
         <source>MOBI File (*.mobi)</source>
-        <translation>MOBI Súbor (*.mobi)</translation>
+        <translation>E-kniha Mobipocket (*.mobi)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="233"/>
         <source>OFORM Document (*.oform)</source>
-        <translation type="unfinished"></translation>
+        <translation>ONLYOFFICE vyplniteľný online formulár (*.oform)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="234"/>
         <source>DOCXF Document (*.docxf)</source>
-        <translation type="unfinished"></translation>
+        <translation>Šablóna formulára ONLYOFFICE (*.docxf)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="236"/>
         <source>PPTX File (*.pptx)</source>
-        <translation>PPTX Súbor (*.pptx)</translation>
+        <translation>Prezentácia Office Open XML (*.pptx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="237"/>
         <source>PPT File (*.ppt)</source>
-        <translation>PPT Súbor (*.ppt)</translation>
+        <translation>Prezentácia PowerPoint 97-2003 (*.ppt)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="238"/>
         <source>Presentation template (*.potx)</source>
-        <translation>Šablóna prezentácie (*.potx)</translation>
+        <translation>Šablóna prezentácie PowerPoint Open XML (*.potx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="239"/>
         <source>ODP File (*.odp)</source>
-        <translation>ODP Súbor (*.odp)</translation>
+        <translation>Prezentácia OpenDocument (*.odp)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="240"/>
@@ -272,27 +272,27 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="241"/>
         <source>PPSX File (*.ppsx)</source>
-        <translation>PPSX Súbor (*.ppsx)</translation>
+        <translation>Premietanie slajdov Office Open XML (*.ppsx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="243"/>
         <source>XLSX File (*.xlsx)</source>
-        <translation>XLSX Súbor (*.xlsx)</translation>
+        <translation>Tabuľka Office Open XML (*.xlsx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="244"/>
         <source>Spreadsheet template (*.xltx)</source>
-        <translation>Šablóna zošitu (*.xltx)</translation>
+        <translation>Šablóna zošitu Excel Open XML (*.xltx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="245"/>
         <source>XLS File (*.xls)</source>
-        <translation>XLS Súbor (*.xls)</translation>
+        <translation>Tabuľka Excel 97-2003 (*.xls)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="246"/>
         <source>ODS File (*.ods)</source>
-        <translation>ODS Súbor (*.ods)</translation>
+        <translation>Tabuľka OpenDocument (*.ods)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="247"/>
@@ -302,42 +302,42 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="248"/>
         <source>CSV File (*.csv)</source>
-        <translation>CSV Súbor (*.csv)</translation>
+        <translation>Hodnoty oddelené čiarkami (*.csv)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="250"/>
         <source>PDF File (*.pdf)</source>
-        <translation>PDF Súbor (*.pdf)</translation>
+        <translation>Prenosný document (*.pdf)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="251"/>
         <source>PDFA File (*.pdf)</source>
-        <translation>PDFA Súbor (*.pdf)</translation>
+        <translation>Prenosný document /A (*.pdf)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="252"/>
         <source>DJVU File (*.djvu)</source>
-        <translation>DJVU Súbor (*.djvu)</translation>
+        <translation>Digitálny document (*.djvu)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="253"/>
         <source>XPS File (*.xps)</source>
-        <translation>XPS Súbor (*.xps)</translation>
+        <translation>Dokument OpenXPS (*.xps)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="255"/>
         <source>Zip Archive (*.zip)</source>
-        <translation type="unfinished"></translation>
+        <translation>Archív zip (*.zip)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="256"/>
         <source>JPG Image (*.jpg, *.jpeg)</source>
-        <translation type="unfinished"></translation>
+        <translation>Obrázok JPG (*.jpg *.jpeg)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="257"/>
         <source>PNG Image (*.png)</source>
-        <translation type="unfinished"></translation>
+        <translation>Obrázok PNG (*.png)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="308"/>
@@ -561,17 +561,17 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper_private.h" line="223"/>
         <source>File %1 cannot be opened or doesn&apos;t exists.</source>
-        <translation type="unfinished"></translation>
+        <translation>Súbor %1 sa nedá otvoriť alebo neexistuje.</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="126"/>
         <source>All supported files (*.txt *.csv)</source>
-        <translation type="unfinished"></translation>
+        <translation>Všetky podporované súbory (*.txt *.csv)</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="126"/>
         <source>All files (*.*)</source>
-        <translation type="unfinished">Všetky súbory (*.*)</translation>
+        <translation>Všetky súbory (*.*)</translation>
     </message>
 </context>
 </TS>

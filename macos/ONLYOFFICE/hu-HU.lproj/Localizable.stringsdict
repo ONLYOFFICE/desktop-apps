@@ -48,7 +48,7 @@ A próbaidőszak %d nap múlva véget ér, ezt követően nem fog tudni dokument
 			<key>NSStringFormatValueTypeKey</key>
 			<string>ld</string>
 			<key>one</key>
-			<string> %ld %@ megerősítés nélküli módosításokkal rendelkező dokumentuma van. Kilpés előtt áttekinti ezeket a módosításokat?</string>
+			<string>%ld %@ megerősítés nélküli módosításokkal rendelkező dokumentuma van. Kilpés előtt áttekinti ezeket a módosításokat?</string>
 			<key>other</key>
 			<string>%ld %@ megerősítés nélküli módosításokkal rendelkező dokumentuma van. Kilpés előtt áttekinti ezeket a módosításokat?</string>
 		</dict>

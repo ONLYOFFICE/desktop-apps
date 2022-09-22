@@ -10,6 +10,7 @@
 @import 'css/colors';
 @import 'css/colors_classic';
 @import 'css/colors_dark';
+@import 'css/colors_contrast_dark';
 @import 'css/variables';
 @import 'css/component';
 @import 'css/window';
@@ -320,6 +321,10 @@ li.menu-item {
     &.settings {
         overflow-x: hidden;
     }
+
+    &.about {
+        overflow-x: scroll;
+    }
 }
 
 .connect {
@@ -459,7 +464,7 @@ li.menu-item {
         .icon {
             width: 24px;
             height: 24px;
-            background-position: -88px -48px;
+            background-position: -86px -48px;
         }
 
         &:hover {
@@ -481,7 +486,7 @@ li.menu-item {
 
 .lst-tools {
     text-align: left;
-    margin-top: 30px;
+    margin-top: 35px;
 }
 
 .format-from-index(@index) {
@@ -620,12 +625,54 @@ li.menu-item {
         &.xps {
             .format-from-index(16);
         }
+        &.xml {
+            .format-from-index(17);
+        }
+        &.mht {
+            .format-from-index(18);
+        }
+        &.epub {
+            .format-from-index(19);
+        }
+        &.fb2 {
+            .format-from-index(20);
+        }
+        &.dotx {
+            .format-from-index(21);
+        }
+        &.xltx {
+            .format-from-index(22);
+        }
+        &.potx {
+            .format-from-index(23);
+        }
+        &.ott {
+            .format-from-index(24);
+        }
+        &.ots {
+            .format-from-index(25);
+        }
+        &.otp {
+            .format-from-index(26);
+        }
+/*        &.pps {
+            .format-from-index(27);
+        }
+*/        &.ppsx {
+            .format-from-index(28);
+        }
+        &.docxf {
+            .format-from-index(29);
+        }
+        &.oform {
+            .format-from-index(30);
+        }
 
         &.folder {
             height: 24px;
             width: 28px;
             margin-left: -2px;
-            background-position: -60px -48px;
+            background-position: -58px -48px;
         }
     }
 
@@ -691,7 +738,8 @@ li.menu-item {
 }
 
 #wrap,
-.tool-menu,
+#options-wrap,
+.main-column,
 .action-panel,
 .content-box,
 .dropdown-menu .inner,
@@ -739,6 +787,14 @@ li.menu-item {
     .table-box {
         overflow-y: auto;
         flex-grow: 0;
+    }
+}
+
+#box-settings {
+    #options-wrap {
+        overflow-y: auto;
+        flex-grow: 0;
+        height: 100%;
     }
 }
 
@@ -914,7 +970,11 @@ li.menu-item {
 
 .settings-field {
     text-align: left;
-    margin-bottom: 35px;
+    margin-top: 35px;
+
+    &:first-of-type {
+        margin-top: 0;
+    }
 
     .tbox {
         width: 350px;

@@ -8,22 +8,22 @@
 "Acknowledgments" = "Suostumus";
 
 /* No comment provided by engineer. */
-"Before signing the document, it must be saved." = "Ennen kuin dokumentti voidaan allekirjoittaa, se tulee tallentaa.";
+"Before signing the document, it must be saved." = "Ennen asiakirjan allekirjoittamista se on tallennettava.";
 
 /* No comment provided by engineer. */
 "Cancel" = "Peruuta";
 
 /* No comment provided by engineer. */
-"Cannot open file of Digital Signature" = "Digitaalisen allekirjoituksen tiedostoa ei voida avata";
+"Cannot open file of Digital Signature" = "Digitaalisen allekirjoituksen tiedostoa ei voi avata";
 
 /* No comment provided by engineer. */
-"Cannot open file of Private Key" = "Henkilökohtaisen avaimen tiedostoa ei voida avata";
+"Cannot open file of Private Key" = "Yksityisen avaimen tiedostoa ei voi avata";
 
 /* No comment provided by engineer. */
-"Cannot open folder of the file location." = "Kansiota, jossa tiedosto sijaitsee ei voida avata.";
+"Cannot open folder of the file location." = "Tiedoston sijainnin kansiota ei voi avata.";
 
 /* No comment provided by engineer. */
-"Comma-Separated Values" = "Pilkulla erotetut arvot";
+"Comma-Separated Values" = "Pilkulla erotetut arvot (*.csv)";
 
 /* No comment provided by engineer. */
 "Create portal" = "Luo portaali";
@@ -32,7 +32,7 @@
 "Delete and Quit" = "Poista ja Lopeta";
 
 /* No comment provided by engineer. */
-"DjVu File" = "DjVu Tiedosto";
+"DjVu File" = "Digitaalinen asiakirja (*.djvu)";
 
 /* No comment provided by engineer. */
 "Do you want to save the changes made to the document \"%@\"?" = "Haluatko tallentaa muutokset, jotka tehtiin dokumentille \"%@\"?";
@@ -41,13 +41,13 @@
 "Document %ld.docx" = "Dokumentti %ld.docx";
 
 /* No comment provided by engineer. */
-"Document template" = "Asiakirjamalli";
+"Document template" = "Word Open XML asiakirjamalli (*.dotx)";
 
 /* No comment provided by engineer. */
-"Excel 97-2003 Spreadsheet" = "Excel 97-2003 Laskentataulukko";
+"Excel 97-2003 Spreadsheet" = "Excel 97–2003 -laskentataulukko (*.xls)";
 
 /* No comment provided by engineer. */
-"Excel 2007 Spreadsheet" = "Excel 2007 Laskentataulukko";
+"Excel 2007 Spreadsheet" = "Officen avoin XML-asiakirja (*.xlsx)";
 
 /* No comment provided by engineer. */
 "File \"%@\" can not be open or not exist." = "Tiedostoa \"%@\" ei voida avata tai sitä ei ole.";
@@ -62,25 +62,22 @@
 "Hide %@" = "Piilota %@";
 
 /* No comment provided by engineer. */
-"If you don't review your documents, all your changeses will be lost." = "Jos et käy läpi dokumentteja, kaikki muutoksesi poistuvat.";
-
-/* No comment provided by engineer. */
 "If you have already purchased %@, you should find your activation key in an email confirmation." = "Jos olet jos ostanut tuotteen %@, aktivointiavaimesi on sähköposti-vahvistuksessasi.";
 
 /* No comment provided by engineer. */
 "License Agreement" = "Lisenssisopimus";
 
 /* No comment provided by engineer. */
-"Mobipocket e-book" = "Mobipocket e-book";
+"Mobipocket e-book" = "Mobipocket e-book (*.mobi)";
 
 /* No comment provided by engineer. */
 "new-document" = "Uusi asiakirja";
 
 /* No comment provided by engineer. */
-"new-presentation" = "Uusi presentaatio";
+"new-presentation" = "Uusi esitys";
 
 /* No comment provided by engineer. */
-"new-spreadsheet" = "Uusi taulukko";
+"new-spreadsheet" = "Uusi laskentataulukko";
 
 /* No comment provided by engineer. */
 "No" = "Ei";
@@ -89,49 +86,49 @@
 "OK" = "OK";
 
 /* No comment provided by engineer. */
-"ONLYOFFICE can not open the Digital Signature file. Try opening another file." = "ONLYOFFICE ei voi avata digitaalisen allekirjoituksen tiedostoa. ";
+"ONLYOFFICE can not open the Digital Signature file. Try opening another file." = "ONLYOFFICE ei voi avata digitaalisen allekirjoituksen tiedostoa. Yritä avata toinen tiedosto.";
 
 /* No comment provided by engineer. */
-"ONLYOFFICE can not open the Private Key. Try opening another file." = "ONLYOFFICE ei voi avata henkilökohtaista avainta. Yritä avata toinen tiedosto.";
+"ONLYOFFICE can not open the Private Key. Try opening another file." = "ONLYOFFICE ei voi avata yksityistä avainta. Yritä avata toinen tiedosto.";
 
 /* No comment provided by engineer. */
-"OpenDocument Document Template" = "OpenDocument asiakirjamalli";
+"OpenDocument Document Template" = "OpenDocument-asiakirjamalli (*.ott)";
 
 /* No comment provided by engineer. */
-"OpenDocument Presentation Template" = "OpenDocument presentaatiomalli";
+"OpenDocument Presentation Template" = "OpenDocument-esitysmalli (*.otp)";
 
 /* No comment provided by engineer. */
-"OpenDocument Spreadsheet Template" = "OpenDocument taulukkomalli";
+"OpenDocument Spreadsheet Template" = "OpenDocument-laskentataulukkomalli (*.ots)";
 
 /* No comment provided by engineer. */
 "Opening" = "Avataan";
 
 /* No comment provided by engineer. */
-"OpenOffice Document" = "OpenOffice Dokumentti";
+"OpenOffice Document" = " OpenDocument dokumentti (*.odt)";
 
 /* No comment provided by engineer. */
-"OpenOffice Presentation" = "OpenOffice Esitys";
+"OpenOffice Presentation" = "OpenDocument esitys (*.odp)";
 
 /* No comment provided by engineer. */
-"OpenOffice Spreadsheet" = "OpenOffice Laskentataulukko";
+"OpenOffice Spreadsheet" = "OpenDocument laskentataulukko (*.ods)";
 
 /* No comment provided by engineer. */
-"PDF File" = "PDF Tiedosto";
+"PDF File" = "Kannettava asiakirja (*.pdf)";
 
 /* No comment provided by engineer. */
-"PDF/A File" = "PDF/A Tiedosto";
+"PDF/A File" = "Kannettava asiakirja / A (*.pdf)";
 
 /* No comment provided by engineer. */
-"Plain Text" = "Pelkkä Teksti";
+"Plain Text" = "Pelkkä Teksti (*.txt)";
 
 /* No comment provided by engineer. */
-"PowerPoint 97-2003 Presentation" = "PowerPoint 97-2003 Esitys";
+"PowerPoint 97-2003 Presentation" = "PowerPoint 97–2003 -esitys (*.ppt)";
 
 /* No comment provided by engineer. */
-"PowerPoint 2007 Presentation" = "PowerPoint 2007 Esitys";
+"PowerPoint 2007 Presentation" = "Officen avoin XML-esitys (*.pptx)";
 
 /* No comment provided by engineer. */
-"PowerPoint Slide Show" = "PowerPoint Diaesitys";
+"PowerPoint Slide Show" = "Officen avoin XML-diaesitys (*.ppsx)";
 
 /* No comment provided by engineer. */
 "Preparing..." = "Valmistellaan...";
@@ -140,7 +137,7 @@
 "Presentation %ld.pptx" = "Esitys %ld.pptx";
 
 /* No comment provided by engineer. */
-"Presentation template" = "Presentaatiomalli";
+"Presentation template" = "PowerPoint Open XML esityksen malli (*.potx)";
 
 /* No comment provided by engineer. */
 "Quit %@" = "Lopeta %@";
@@ -149,28 +146,28 @@
 "Review Changes..." = "Tarkasta muutokset...";
 
 /* No comment provided by engineer. */
-"Rich Text Document" = "Rich Text Dokumentti";
+"Rich Text Document" = "RTF-muotoinen tiedosto (*.rtf)";
 
 /* No comment provided by engineer. */
 "Save" = "Tallenna";
 
 /* No comment provided by engineer. */
-"Save the document?" = "Tallenna asiakirja?";
+"Save the document?" = "Tallennetaanko asiakirja?";
 
 /* No comment provided by engineer. */
 "Spreadsheet %ld.xlsx" = "Laskentataulukko %ld.xlsx";
 
 /* No comment provided by engineer. */
-"Spreadsheet template" = "taulukkomalli";
+"Spreadsheet template" = "Excel Open XML laskentataulukkomalli (*.xltx)";
 
 /* No comment provided by engineer. */
 "Thank you for evaluating %@!" = "Kiitos arviostasi tuotteesta %@!";
 
 /* No comment provided by engineer. */
-"The document \"%@\" must be built. Continue?" = "Asiakirja \"%@\" pitää luoda. Jatka?";
+"The document \"%@\" must be built. Continue?" = "Asiakirja ”%@”on rakennettava. Jatketaanko?";
 
 /* No comment provided by engineer. */
-"To open the file location, it must be saved." = "Jotta tiedoston sijainti voidaan avata, se pitää tallentaa.";
+"To open the file location, it must be saved." = "Tiedoston sijainti on tallennettava, jotta se voidaan avata.";
 
 /* No comment provided by engineer. */
 "Unconfirmed" = "Vahvistamaton";
@@ -185,13 +182,13 @@
 "Web Page" = "Verkkosivu";
 
 /* No comment provided by engineer. */
-"Word 97-2003 Document" = "Word 97-2003 Dokumentti";
+"Word 97-2003 Document" = "Word 97–2003 -asiakirja (*.doc)";
 
 /* No comment provided by engineer. */
-"Word 2007 Document" = "Word 2007 Dokumentti";
+"Word 2007 Document" = "Officen avoin XML-asiakirja (*.docx)";
 
 /* No comment provided by engineer. */
-"XML Paper Specification" = "XML Asiakirjamuoto";
+"XML Paper Specification" = "OpenXPS-asiakirja(*.xps)";
 
 /* No comment provided by engineer. */
 "Yes" = "Kyllä";

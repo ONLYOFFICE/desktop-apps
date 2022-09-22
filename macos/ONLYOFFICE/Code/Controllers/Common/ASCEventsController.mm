@@ -49,6 +49,9 @@
 #import "OfficeFileFormats.h"
 #import "ASCLinguist.h"
 #import "mac_application.h"
+#import "NSApplication+Extensions.h"
+#import "ASCEditorJSVariables.h"
+#import "ASCThemesController.h"
 
 #pragma mark -
 #pragma mark ========================================================
@@ -319,7 +322,7 @@ public:
                                                                           userInfo:@{
                                                                                      @"path"    : [NSString stringWithstdwstring:pData->get_Path()],
                                                                                      @"fileType": @(pData->get_FileType()),
-                                                                                     @"suppertFormats" : supportFormats,
+                                                                                     @"supportedFormats" : supportFormats,
                                                                                      @"viewId"  : [NSString stringWithFormat:@"%d", pData->get_Id()]
                                                                                      }];
                         break;
@@ -602,14 +605,12 @@ public:
                             }
                         } else if (cmd.find(L"settings:apply") != std::wstring::npos) {
                             if (NSDictionary * json = [[NSString stringWithstdwstring:param] dictionary]) {
-                                NSMutableArray * params = [NSMutableArray array];
-
                                 id <ASCExternalDelegate> externalDelegate = [[ASCExternalController shared] delegate];
 
                                 if (externalDelegate && [externalDelegate respondsToSelector:@selector(onAppPreferredLanguage)]) {
-                                    [params addObject:[NSString stringWithFormat:@"lang=%@", [externalDelegate onAppPreferredLanguage]]];
+                                    [[ASCEditorJSVariables instance] setParameter:@"lang" withString:[externalDelegate onAppPreferredLanguage]];
                                 } else {
-                                    [params addObject:[NSString stringWithFormat:@"lang=%@", [[[NSLocale currentLocale] objectForKey:NSLocaleLanguageCode] lowercaseString]]];
+                                    [[ASCEditorJSVariables instance] setParameter:@"lang" withString:[[[NSLocale currentLocale] objectForKey:NSLocaleLanguageCode] lowercaseString]];
                                 }
                                 
                                 if (NSString * langId = json[@"langid"]) {
@@ -618,26 +619,29 @@ public:
 
                                 if (NSString * userName = json[@"username"]) {
                                     if ([userName isEqualToString:@""]) {
-                                        [params addObject:[NSString stringWithFormat:@"username=%@", NSFullUserName()]];
+                                        [[ASCEditorJSVariables instance] setParameter:@"username" withString:NSFullUserName()];
                                         [[NSUserDefaults standardUserDefaults] setObject:NSFullUserName() forKey:ASCUserNameApp];
                                     } else {
-                                        [params addObject:[NSString stringWithFormat:@"username=%@", userName]];
+                                        [[ASCEditorJSVariables instance] setParameter:@"username" withString:userName];
                                         [[NSUserDefaults standardUserDefaults] setObject:userName forKey:ASCUserNameApp];
                                     }
                                     [[NSUserDefaults standardUserDefaults] synchronize];
                                 } else {
-                                    [params addObject:[NSString stringWithFormat:@"username=%@", NSFullUserName()]];
+                                    [[ASCEditorJSVariables instance] setParameter:@"username" withString:NSFullUserName()];
                                 }
+
                                 if (NSString * docopenMode = json[@"docopenmode"]) {
                                     if ([docopenMode isEqualToString:@"view"]) {
-                                        [params addObject:[NSString stringWithFormat:@"mode=%@", @"view"]];
+                                        [[ASCEditorJSVariables instance] setParameter:@"mode" withString:@"view"];
+                                    } else {
+                                        [[ASCEditorJSVariables instance] removeParameter:@"mode"];
                                     }
                                     [[NSUserDefaults standardUserDefaults] setObject:docopenMode forKey:@"asc_user_docOpenMode"];
                                     [[NSUserDefaults standardUserDefaults] synchronize];
                                 }
 
                                 if (NSString * uiTheme = json[@"uitheme"]) {
-                                    if ( [[NSUserDefaults standardUserDefaults] valueForKey:ASCUserUITheme] != uiTheme ) {
+                                    if ( ![uiTheme isEqualToString:[[NSUserDefaults standardUserDefaults] valueForKey:ASCUserUITheme]] ) {
                                         [[NSUserDefaults standardUserDefaults] setObject:uiTheme forKey:ASCUserUITheme];
 
                                         [[NSNotificationCenter defaultCenter] postNotificationName:ASCEventNameChangedUITheme
@@ -645,12 +649,10 @@ public:
                                                                                           userInfo: @{@"uitheme": uiTheme}];
                                     }
 
-                                    [params addObject:[NSString stringWithFormat:@"uitheme=%@", uiTheme]];
+                                    [[ASCEditorJSVariables instance] setParameter:@"uitheme" withString:uiTheme];
                                 }
 
-                                std::wstring wLocale = [[params componentsJoinedByString:@"&"] stdwstring];
-                                CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
-                                appManager->InitAdditionalEditorParams(wLocale);
+                                [[ASCEditorJSVariables instance] applyParameters];
                             }
                         } else if (cmd.find(L"encrypt:isneedbuild") != std::wstring::npos) {
                             bool isFragmented = pData->get_Param() == L"true" ? true : false;
@@ -730,6 +732,58 @@ public:
                                 pEvent->m_pData = pCommand;
 
                                 pCefView->Apply(pEvent);
+                            }
+                        } else if (cmd.find(L"system:changed") != std::wstring::npos) {
+                            NSLog(@"nstheme: system changed %@", [NSString stringWithstdwstring:param]);
+                            if ( [uiThemeSystem isEqualToString:[[NSUserDefaults standardUserDefaults] valueForKey:ASCUserUITheme]] ) {
+                                NSError * error = NULL;
+                                NSRegularExpression * regex = [NSRegularExpression regularExpressionWithPattern: @":\\s?\\\"(light|dark)"
+                                                                                                       options: NSRegularExpressionCaseInsensitive
+                                                                                                         error: &error];
+                                if ( !error ) {
+                                    NSString * json = [NSString stringWithstdwstring:param];
+                                    NSTextCheckingResult * match = [regex firstMatchInString:json options:0 range:NSMakeRange(0, [json length])];
+                                    if (match) {
+                                        NSRange range = [match rangeAtIndex:1];
+                                        NSString * new_theme_type = [json substringWithRange:range];
+
+                                        if ( [ASCThemesController isCurrentThemeDark] != [new_theme_type isEqualToString:@"dark"] ) {
+                                            [[ASCSharedSettings sharedInstance] setSetting:new_theme_type forKey:kSettingsColorScheme];
+                                            [[NSNotificationCenter defaultCenter] postNotificationName:ASCEventNameChangedUITheme
+                                                                                                object:nil
+                                                                                              userInfo:@{@"uitheme": uiThemeSystem}];
+                                        }
+                                    }
+                                }
+                            } else {
+                                if (NSDictionary * json = [[NSString stringWithstdwstring:param] dictionary]) {
+                                    if ( NSString * colors = json[@"colorscheme"] ) {
+                                        [[ASCSharedSettings sharedInstance] setSetting:colors forKey:kSettingsColorScheme];
+                                    }
+                                }
+                            }
+                        } else if (cmd.find(L"uitheme:changed") != std::wstring::npos) {
+                            if (NSDictionary * json = [[NSString stringWithstdwstring:param] dictionary]) {
+                                if ( NSString * newTheme = json[@"name"] ) {
+                                    NSString * curTheme = [[NSUserDefaults standardUserDefaults] valueForKey:ASCUserUITheme];
+
+                                    if ( ![curTheme isEqualToString:newTheme] ) {
+                                        [[NSUserDefaults standardUserDefaults] setObject:newTheme forKey:ASCUserUITheme];
+
+                                        [[NSNotificationCenter defaultCenter] postNotificationName:ASCEventNameChangedUITheme
+                                                                                            object:nil
+                                                                                          userInfo:@{@"uitheme":newTheme}];
+                                    } else if ( [curTheme isEqualToString:uiThemeSystem] ) {
+                                        NSString * colorScheme = [[ASCSharedSettings sharedInstance] settingByKey:kSettingsColorScheme];
+                                        if ( [NSApplication isSystemDarkMode] != [colorScheme isEqualToString:@"dark"] ) {
+                                            [[ASCSharedSettings sharedInstance] setSetting:([NSApplication isSystemDarkMode] ? @"dark" : @"light")                                          forKey:kSettingsColorScheme];
+
+                                            [[NSNotificationCenter defaultCenter] postNotificationName:ASCEventNameChangedUITheme
+                                                                                                object:nil
+                                                                                              userInfo:@{@"uitheme":newTheme}];
+                                        }
+                                    }
+                                }
                             }
                         }
 

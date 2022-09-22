@@ -22,7 +22,7 @@
 The trial period will end in %d days, after that you will not be able to create and edit documents.</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
-		<string>%#@days@</string>
+		<string>%#@दिन@</string>
 		<key>days</key>
 		<dict>
 			<key>NSStringFormatSpecTypeKey</key>

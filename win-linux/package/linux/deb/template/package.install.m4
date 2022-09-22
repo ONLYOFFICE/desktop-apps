@@ -1,6 +1,7 @@
 ../../common/opt/desktopeditors/* /opt/M4_DESKTOPEDITORS_PREFIX
 ../../common/usr/bin/M4_DESKTOPEDITORS_EXEC /usr/bin
 ../../common/usr/share/applications/M4_DESKTOPEDITORS_EXEC.desktop /usr/share/applications
+../../common/package.config /opt/M4_DESKTOPEDITORS_PREFIX/converter
 
 ifelse(M4_COMPANY_NAME, ONLYOFFICE,
 ../../common/usr/bin/desktopeditors /usr/bin,

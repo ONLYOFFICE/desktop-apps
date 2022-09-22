@@ -40,6 +40,7 @@
 
 #import "NSApplication+Extensions.h"
 #import "ASCConstants.h"
+#import "ASCSharedSettings.h"
 
 @implementation NSApplication (Extensions)
 
@@ -53,10 +54,6 @@
     }
 
     return false;
-}
-
-+ (BOOL)isUIThemeDark {
-    return [uiThemeDark isEqualToString:[[NSUserDefaults standardUserDefaults] valueForKey:ASCUserUITheme]];
 }
 
 @end

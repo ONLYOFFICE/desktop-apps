@@ -177,7 +177,7 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="221"/>
         <source>DOCX Document (*.docx)</source>
-        <translation>ເອກະສານ DOCX (*.docx)</translation>
+        <translation>ເປີດເອກະສານ XML (*.docx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="222"/>
@@ -187,7 +187,7 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="223"/>
         <source>DOC Document (*.doc)</source>
-        <translation>ເອກະສານ DOC (*.doc)</translation>
+        <translation>ເອກະສານ Word 97-2003 (*.doc)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="224"/>
@@ -202,12 +202,12 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="226"/>
         <source>RTF File (*.rtf)</source>
-        <translation>ເອກະສານ RTF (*.rtf)</translation>
+        <translation>ຮູບແບບໄຟລ໌ສົມບູນ (*.rtf)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="227"/>
         <source>TXT File (*.txt)</source>
-        <translation>ໄຟລ໌ Text ທຳມະດາ (*.txt)</translation>
+        <translation>ໄຟລ໌ຂໍ້ຄວາມທຳມະດາ (*.txt)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="228"/>
@@ -217,12 +217,12 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="229"/>
         <source>MHT File (*.mht)</source>
-        <translation>ໄຟລ໌ບັນທືກ Web Page (*.mht)</translation>
+        <translation>ແຟ້ມຈັດເກັບໜ້າເວັບ (*. mht)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="230"/>
         <source>EPUB File (*.epub)</source>
-        <translation>ໄຟລ໌ Electronic Publication (*.epub)</translation>
+        <translation>ເອກະສານສິ່ງພິມເອເລັກໂທຣນິກ (*. epub)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="231"/>
@@ -232,7 +232,7 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="232"/>
         <source>MOBI File (*.mobi)</source>
-        <translation>ໄຟລ໌ Mobipocket (*.mobi)</translation>
+        <translation>ໄຟລ໌ Mobipocket e-book (*.mobi)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="233"/>
@@ -247,12 +247,12 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="236"/>
         <source>PPTX File (*.pptx)</source>
-        <translation>ເອກະສານ PPTX (*.pptx)</translation>
+        <translation>ການນຳສະເໜີ XML (*.pptx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="237"/>
         <source>PPT File (*.ppt)</source>
-        <translation>ເອກະສານ PPT  (*.ppt)</translation>
+        <translation>ນຳສະເໜີ PowerPoint 97-2003 (*.ppt)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="238"/>
@@ -262,7 +262,7 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="239"/>
         <source>ODP File (*.odp)</source>
-        <translation>ເອກະສານ ODP (*.odp)</translation>
+        <translation>ເປິດເອກະສານນຳສະເໜີ (*.odp)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="240"/>
@@ -272,12 +272,12 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="241"/>
         <source>PPSX File (*.ppsx)</source>
-        <translation>ແຟ້ມເອກະສານ PPSX (*.ppsx)</translation>
+        <translation>ເປີດສະແດງສະໄລ XML (*.ppsx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="243"/>
         <source>XLSX File (*.xlsx)</source>
-        <translation>ເອກະສານ XLSX (*.xlsx)</translation>
+        <translation>ເປີດຕາຕະລາງ XML (*.xlsx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="244"/>
@@ -287,7 +287,7 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="245"/>
         <source>XLS File (*.xls)</source>
-        <translation type="unfinished">ເອກະສານ XLS (*.xls)</translation>
+        <translation>ຕາຕະລາງ Excel 97-2003 (*.xls)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="246"/>
@@ -302,7 +302,7 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="248"/>
         <source>CSV File (*.csv)</source>
-        <translation>ເອກະສານ CSV (*.csv)</translation>
+        <translation>ຄ່າທີ່ຂັ້ນດ້ວຍເຄື່ອງໝາຍຈຸດ (*.csv)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="250"/>
@@ -312,32 +312,32 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="251"/>
         <source>PDFA File (*.pdf)</source>
-        <translation>ເອກະສານ(*.pdf)</translation>
+        <translation>ເອກະສານພົກພາ /A (*.pdf)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="252"/>
         <source>DJVU File (*.djvu)</source>
-        <translation>ເອກະສານດິຈິຕອລ (*.djvu)</translation>
+        <translation>ເອກະສານດິຈິຕອນ (*.djvu)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="253"/>
         <source>XPS File (*.xps)</source>
-        <translation>ເປີດເອກະສານປະເພດ XPS (*.xps)</translation>
+        <translation>ເອກະສານ OpenXPS (*.xps)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="255"/>
         <source>Zip Archive (*.zip)</source>
-        <translation>ປະເພດ Zip Archive (*.zip)</translation>
+        <translation>ໄຟລ໌ບີບ(*.zip)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="256"/>
         <source>JPG Image (*.jpg, *.jpeg)</source>
-        <translation>ປະເພດ JPG Image (*.jpg, *.jpeg)</translation>
+        <translation>ຮູບພາບແບບJPG (*.jpg *.jpeg)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="257"/>
         <source>PNG Image (*.png)</source>
-        <translation>ປະເພດ PNG Image (*.png)</translation>
+        <translation>ຮູບພາບແບບPNG (*. png )</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="308"/>
@@ -561,12 +561,12 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper_private.h" line="223"/>
         <source>File %1 cannot be opened or doesn&apos;t exists.</source>
-        <translation type="unfinished"></translation>
+        <translation>ໄຟລ໌ %1 ບໍ່ສາມາດເປີດໄດ້ ຫຼືບໍ່ມີຢູ່.</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="126"/>
         <source>All supported files (*.txt *.csv)</source>
-        <translation type="unfinished"></translation>
+        <translation>ໄຟລ໌ທີ່ຮອງຮັບທັງໝົດ (*.txt *.csv)</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="126"/>

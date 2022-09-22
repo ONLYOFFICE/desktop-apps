@@ -110,7 +110,9 @@ const QString g_css =
         "#mainPanel[zoom=\"2x\"][window=pretty] QPushButton#toolButtonClose {background-image:url(:/minclose_light_2x.png);}"
         "#mainPanel[zoom=\"2x\"][window=pretty] QPushButton#toolButtonMaximize{background-image:url(:/max_light_2x.png);}"
         "#mainPanel[uitheme=theme-dark] #iconuser,"
-        "#mainPanel[uitheme=theme-dark] #labelTitle{color:rgba(255,255,255,80%);}";
+        "#mainPanel[uitheme=theme-dark] #labelTitle{color:rgba(255,255,255,80%);}"
+        "#mainPanel[uitheme=theme-contrast-dark] #iconuser,"
+        "#mainPanel[uitheme=theme-contrast-dark] #labelTitle{color:#e8e8e8;}";
 
 auto prepare_editor_css(int type, const CTheme& theme) -> QString {
     std::wstring c;
@@ -386,7 +388,7 @@ public:
 #endif
         }
 
-        AscAppManager::sendCommandTo(panel()->cef(), L"uitheme:changed", theme);
+        AscAppManager::sendCommandTo(panel()->cef(), L"uitheme:changed", AscAppManager::themes().current().id());
     }
 
     void onDocumentChanged(int id, bool state) override

@@ -8,7 +8,7 @@
 "Acknowledgments" = "Priznanja";
 
 /* No comment provided by engineer. */
-"Before signing the document, it must be saved." = "Dokument se mora spremiti prije potpisivanja.";
+"Before signing the document, it must be saved." = "Prije potpisivanja dokumenta potrebno ga je spremiti.";
 
 /* No comment provided by engineer. */
 "Cancel" = "Odustani";
@@ -20,10 +20,10 @@
 "Cannot open file of Private Key" = "Nije moguće otvoriti datoteku privatnog ključa";
 
 /* No comment provided by engineer. */
-"Cannot open folder of the file location." = "Nije moguće otvoriti mapu na mjestu datoteke.";
+"Cannot open folder of the file location." = "Nije moguće otvoriti mapu s lokacijom datoteke.";
 
 /* No comment provided by engineer. */
-"Comma-Separated Values" = "Vrijednosti odvojene zarezom";
+"Comma-Separated Values" = "Vrijednosti odvojene zarezima (*.csv)";
 
 /* No comment provided by engineer. */
 "Create portal" = "Izradite portal";
@@ -32,7 +32,7 @@
 "Delete and Quit" = "Izbriši i odustani";
 
 /* No comment provided by engineer. */
-"DjVu File" = "DjVu datoteka";
+"DjVu File" = "Digitalni document (*.djvu)";
 
 /* No comment provided by engineer. */
 "Do you want to save the changes made to the document \"%@\"?" = "Želite li spremiti izmjene dokumenta \"%@\"?";
@@ -41,13 +41,13 @@
 "Document %ld.docx" = "Dokument %ld.docx";
 
 /* No comment provided by engineer. */
-"Document template" = "Predložak dokumenta";
+"Document template" = "Word Open XML Predložak dokumenta (*.dotx)";
 
 /* No comment provided by engineer. */
-"Excel 97-2003 Spreadsheet" = "Excel 97-2003 tablica";
+"Excel 97-2003 Spreadsheet" = "Excel 97-2003 Proračunska tablica  (*.xls)";
 
 /* No comment provided by engineer. */
-"Excel 2007 Spreadsheet" = "Excel 2007 tablica";
+"Excel 2007 Spreadsheet" = "Office Open XML Proračunska tablica (*.xlsx)";
 
 /* No comment provided by engineer. */
 "File \"%@\" can not be open or not exist." = "Datoteka \"%@\" se ne može otvoriti ili ne postoji.";
@@ -62,16 +62,13 @@
 "Hide %@" = "Sakrij %@";
 
 /* No comment provided by engineer. */
-"If you don't review your documents, all your changeses will be lost." = "Ako ne pregledate svoje dokumente, vaše izmjene bit će izgubljene.";
-
-/* No comment provided by engineer. */
 "If you have already purchased %@, you should find your activation key in an email confirmation." = "Ako ste već kupili %@,trebali biste pronaći svoj aktivacijski ključ u potvrdnoj poruci e-pošte.";
 
 /* No comment provided by engineer. */
 "License Agreement" = "Sporazum o licenciranju";
 
 /* No comment provided by engineer. */
-"Mobipocket e-book" = "Mobipocket e-knjiga";
+"Mobipocket e-book" = "Mobipocket e-knjiga (*.mobi)";
 
 /* No comment provided by engineer. */
 "new-document" = "Novi dokument";
@@ -95,43 +92,43 @@
 "ONLYOFFICE can not open the Private Key. Try opening another file." = "ONLYOFFICE ne može otvoriti privatni ključ. Pokušajte otvoriti drugu datoteku.";
 
 /* No comment provided by engineer. */
-"OpenDocument Document Template" = "Predložak dokumenta OpenDocument";
+"OpenDocument Document Template" = "OpenDocument Predložak dokumenta (*.ott)";
 
 /* No comment provided by engineer. */
-"OpenDocument Presentation Template" = "Predložak prezentacije OpenDocument";
+"OpenDocument Presentation Template" = "OpenDocument Predložak prezentacije (*.otp)";
 
 /* No comment provided by engineer. */
-"OpenDocument Spreadsheet Template" = "Predložak proračunske tablice OpenDocument";
+"OpenDocument Spreadsheet Template" = "OpenDocument Predložak tablice (*.ots)";
 
 /* No comment provided by engineer. */
 "Opening" = "Otvaranje";
 
 /* No comment provided by engineer. */
-"OpenOffice Document" = "OpenOffice dokument";
+"OpenOffice Document" = "OpenDocument Tekstni file (*.odt)";
 
 /* No comment provided by engineer. */
-"OpenOffice Presentation" = "OpenOffice prezentacija";
+"OpenOffice Presentation" = "OpenDocument Prezentacija (*.odp)";
 
 /* No comment provided by engineer. */
-"OpenOffice Spreadsheet" = "OpenOffice tablica";
+"OpenOffice Spreadsheet" = "OpenDocument Proračunska tablica (*.ods)";
 
 /* No comment provided by engineer. */
-"PDF File" = "PDF datoteka";
+"PDF File" = "Prijenosni format dokumenta (*.pdf)";
 
 /* No comment provided by engineer. */
-"PDF/A File" = "PDF/A datoteka";
+"PDF/A File" = "Prijenosni format dokumenta / A (*.pdf)";
 
 /* No comment provided by engineer. */
-"Plain Text" = "Običan tekst";
+"Plain Text" = "Običan tekst (*.txt)";
 
 /* No comment provided by engineer. */
-"PowerPoint 97-2003 Presentation" = "PowerPoint 97-2003 prezentacija";
+"PowerPoint 97-2003 Presentation" = "PowerPoint 97-2003 Prezentacija (*.ppt)";
 
 /* No comment provided by engineer. */
-"PowerPoint 2007 Presentation" = "PowerPoint 2007 prezentacija";
+"PowerPoint 2007 Presentation" = "Office Open XML Prezentacija (*.pptx)";
 
 /* No comment provided by engineer. */
-"PowerPoint Slide Show" = "PowerPoint prikaz slajdova";
+"PowerPoint Slide Show" = "Office Open XML Projekcija (*.ppsx)";
 
 /* No comment provided by engineer. */
 "Preparing..." = "Pripremanje...";
@@ -140,7 +137,7 @@
 "Presentation %ld.pptx" = "Prezentacija %ld.pptx";
 
 /* No comment provided by engineer. */
-"Presentation template" = "Predložak prezentacije";
+"Presentation template" = "PowerPoint Open XML Predložak prezentacije (*.potx)";
 
 /* No comment provided by engineer. */
 "Quit %@" = "Odustani %@";
@@ -149,7 +146,7 @@
 "Review Changes..." = "Pregled izmjena...";
 
 /* No comment provided by engineer. */
-"Rich Text Document" = "Rich Text dokument";
+"Rich Text Document" = "Format obogaćenog teksta (*.rtf)";
 
 /* No comment provided by engineer. */
 "Save" = "Spremi";
@@ -161,16 +158,16 @@
 "Spreadsheet %ld.xlsx" = "Tablica %ld.xlsx";
 
 /* No comment provided by engineer. */
-"Spreadsheet template" = "Predložak proračunske tablice";
+"Spreadsheet template" = "Excel Open XML Predložak tablice (*.xltx)";
 
 /* No comment provided by engineer. */
 "Thank you for evaluating %@!" = "Hvala na procjeni %@!";
 
 /* No comment provided by engineer. */
-"The document \"%@\" must be built. Continue?" = "Dokument \"% @\" mora biti izrađen. Nastaviti ?";
+"The document \"%@\" must be built. Continue?" = "Dokument \"%@\" mora biti izrađen. Želite li nastaviti?";
 
 /* No comment provided by engineer. */
-"To open the file location, it must be saved." = "Da biste otvorili mjesto datoteke, mora se spremiti.";
+"To open the file location, it must be saved." = "Da biste otvorili lokaciju datoteke, morate je spremiti.";
 
 /* No comment provided by engineer. */
 "Unconfirmed" = "Nepotvrđeno";
@@ -185,13 +182,13 @@
 "Web Page" = "Web stranica";
 
 /* No comment provided by engineer. */
-"Word 97-2003 Document" = "Word 97-2003 dokument";
+"Word 97-2003 Document" = "Word 97-2003 Dokument (*.doc)";
 
 /* No comment provided by engineer. */
-"Word 2007 Document" = "Word 2007 dokument";
+"Word 2007 Document" = "Office Open XML Dokument (*.docx)";
 
 /* No comment provided by engineer. */
-"XML Paper Specification" = "Specifikacija XML papira";
+"XML Paper Specification" = "OpenXPS Dokument (*.xps)";
 
 /* No comment provided by engineer. */
 "Yes" = "Da";

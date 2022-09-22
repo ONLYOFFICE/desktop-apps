@@ -232,7 +232,7 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="232"/>
         <source>MOBI File (*.mobi)</source>
-        <translation>Fichier Mobipocket (*.mobi)</translation>
+        <translation>Livre électronique Mobipocket (*.mobi)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="233"/>
@@ -312,7 +312,7 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="251"/>
         <source>PDFA File (*.pdf)</source>
-        <translation>Document portable / A (*.pdf)</translation>
+        <translation>Document portable /A (*.pdf)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="252"/>

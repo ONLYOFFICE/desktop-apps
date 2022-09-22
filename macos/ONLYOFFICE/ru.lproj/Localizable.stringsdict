@@ -13,20 +13,20 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>few</key>
-			<string>%d days are left until the license expiration.</string>
+			<string>Осталось %d дней до окончания срока действия лицензии.</string>
 			<key>many</key>
-			<string>%d days are left until the license expiration.</string>
+			<string>Осталось %d дней до окончания срока действия лицензии.</string>
 			<key>one</key>
-			<string>%d day are left until the license expiration.</string>
+			<string>Остался %d день до окончания срока действия лицензии.</string>
 			<key>other</key>
-			<string>%d days are left until the license expiration.</string>
+			<string>Осталось %d дней до окончания срока действия лицензии.</string>
 		</dict>
 	</dict>
 	<key>You are using a trial version of the application.
 The trial period will end in %d days, after that you will not be able to create and edit documents.</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
-		<string>%#@day@</string>
+		<string>%#@days@</string>
 		<key>days</key>
 		<dict>
 			<key>NSStringFormatSpecTypeKey</key>
@@ -34,17 +34,17 @@ The trial period will end in %d days, after that you will not be able to create 
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>few</key>
-			<string>You are using a trial version of the application.
-The trial period will end in %d days, after that you will not be able to create and edit documents.</string>
+			<string>Вы используете пробную версию приложения.
+Пробный период закончится через %d дней, после этого Вы не сможете создавать и редактировать документы.</string>
 			<key>many</key>
-			<string>You are using a trial version of the application.
-The trial period will end in %d days, after that you will not be able to create and edit documents.</string>
+			<string>Вы используете пробную версию приложения.
+Пробный период закончится через %d дней, после этого Вы не сможете создавать и редактировать документы.</string>
 			<key>one</key>
-			<string>You are using a trial version of the application.
-The trial period will end in %d day, after that you will not be able to create and edit documents.</string>
+			<string>Вы используете пробную версию приложения.
+Пробный период закончится через %d день, после этого Вы не сможете создавать и редактировать документы.</string>
 			<key>other</key>
-			<string>You are using a trial version of the application.
-The trial period will end in %d days, after that you will not be able to create and edit documents.</string>
+			<string>Вы используете пробную версию приложения.
+Пробный период закончится через %d дней, после этого Вы не сможете создавать и редактировать документы.</string>
 		</dict>
 	</dict>
 	<key>You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?</key>

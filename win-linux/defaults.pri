@@ -31,7 +31,7 @@ TRANSLATIONS = ./langs/en.ts \
                 ./langs/hr.ts \
                 ./langs/hu.ts \
                 ./langs/hy.ts \
-                ./langs/in.ts \
+                ./langs/id.ts \
                 ./langs/ja.ts \
                 ./langs/ko.ts \
                 ./langs/lo.ts \
@@ -65,6 +65,7 @@ INCLUDEPATH += \
 
 HEADERS += \
     $$PWD/src/asctabwidget.h \
+    $$PWD/src/ctabbarwrapper.h \
     $$PWD/src/version.h \
     $$PWD/src/defines.h \
     $$PWD/src/cdownloadwidget.h \
@@ -109,6 +110,7 @@ HEADERS += \
 
 SOURCES += \
     $$PWD/src/csplash.cpp \
+    $$PWD/src/ctabbarwrapper.cpp \
     $$PWD/src/main.cpp \
     $$PWD/src/asctabwidget.cpp\
     $$PWD/src/cdownloadwidget.cpp \
@@ -159,6 +161,14 @@ ENV_PRODUCT_VERSION = $$(PRODUCT_VERSION)
     FULL_PRODUCT_VERSION = $${ENV_PRODUCT_VERSION}.$$(BUILD_NUMBER)
     DEFINES += VER_PRODUCT_VERSION=$$FULL_PRODUCT_VERSION \
                VER_PRODUCT_VERSION_COMMAS=$$replace(FULL_PRODUCT_VERSION, \., ",")
+}
+
+CMD_IN_HELP_URL = $$join(URL_WEBAPPS_HELP,,\\\",\\\")
+!isEmpty(CMD_IN_HELP_URL) {
+    DEFINES += URL_WEBAPPS_HELP=$$CMD_IN_HELP_URL
+    message(webapps help url: $$CMD_IN_HELP_URL)
+} else {
+    message(no webapps help url found)
 }
 
 PLATFORM_BUILD=$$CORE_BUILDS_PLATFORM_PREFIX

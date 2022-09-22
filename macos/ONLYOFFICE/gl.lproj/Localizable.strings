@@ -23,7 +23,7 @@
 "Cannot open folder of the file location." = "Non pode abrir o cartafol da ubicación do ficheiro.";
 
 /* No comment provided by engineer. */
-"Comma-Separated Values" = "Valores separados por comas";
+"Comma-Separated Values" = "Valores separados por comas (*.csv)";
 
 /* No comment provided by engineer. */
 "Create portal" = "Crear portal";
@@ -32,7 +32,7 @@
 "Delete and Quit" = "Eliminar e saír";
 
 /* No comment provided by engineer. */
-"DjVu File" = "Ficheiro DjVu";
+"DjVu File" = "Documento dixital (*.djvu)";
 
 /* No comment provided by engineer. */
 "Do you want to save the changes made to the document \"%@\"?" = "Tes a certeza de querer gardar os cambios feitos ao documento “%@”?";
@@ -41,19 +41,19 @@
 "Document %ld.docx" = "Documento %ld.docx";
 
 /* No comment provided by engineer. */
-"Document template" = "Modelo do documento";
+"Document template" = "Modelo do documento Word Open XML (*.dotx)";
 
 /* No comment provided by engineer. */
-"Electronic Publication" = "Publicación electrónica";
+"Electronic Publication" = "Publicación electronica (*.epub)";
 
 /* No comment provided by engineer. */
-"Excel 97-2003 Spreadsheet" = "Folla de cálculo de Excel 97-2003";
+"Excel 97-2003 Spreadsheet" = "Folla de cálculo Excel 97-2003 (*.xls)";
 
 /* No comment provided by engineer. */
-"Excel 2007 Spreadsheet" = "Folla de cálculo de Excel 2007";
+"Excel 2007 Spreadsheet" = "Folla de cálcula Office Open XML (*.xlsx)";
 
 /* No comment provided by engineer. */
-"FictionBook File" = "Ficheiro de libros de ficción";
+"FictionBook File" = "Ficheiro de libros de ficción (*.fb2)";
 
 /* No comment provided by engineer. */
 "File \"%@\" can not be open or not exist." = "O ficheiro “%@” non se pode abrir ou non existe.";
@@ -68,7 +68,7 @@
 "Hide %@" = "Agochar %@";
 
 /* No comment provided by engineer. */
-"HTML File" = "Ficheiro HTML";
+"HTML File" = "Ficheiro HTML (*.html)";
 
 /* No comment provided by engineer. */
 "If you don't review your documents, all your changeses will be lost." = "Se non revisa os seus documentos, perderanse todos os seus cambios.";
@@ -80,10 +80,10 @@
 "License Agreement" = "Acordo da licenza";
 
 /* No comment provided by engineer. */
-"MHT File" = "Ficheiro MHT";
+"MHT File" = "Ficheiro MHT (*.mht)";
 
 /* No comment provided by engineer. */
-"Mobipocket e-book" = "Libro electrónico Mobipocket";
+"Mobipocket e-book" = "Libro electrónico Mobipocket (*.mobi)";
 
 /* No comment provided by engineer. */
 "new-document" = "Novo documento";
@@ -107,43 +107,43 @@
 "ONLYOFFICE can not open the Private Key. Try opening another file." = "ONLYOFFICE non pode abrir a Clave Privada. Intenta abrir outro ficheiro.";
 
 /* No comment provided by engineer. */
-"OpenDocument Document Template" = "Modelo de documento OpenDocument";
+"OpenDocument Document Template" = "Modelo do documento de OpenDocument (*.ott)";
 
 /* No comment provided by engineer. */
-"OpenDocument Presentation Template" = "Modelo de presentación OpenDocument";
+"OpenDocument Presentation Template" = "Modelo de presentación de OpenDocument (*.otp)";
 
 /* No comment provided by engineer. */
-"OpenDocument Spreadsheet Template" = "Modelo de folla de cálculo OpenDocument";
+"OpenDocument Spreadsheet Template" = "Modelo de folla de cálculo OpenDocument (*.ots)";
 
 /* No comment provided by engineer. */
 "Opening" = "Abrindo";
 
 /* No comment provided by engineer. */
-"OpenOffice Document" = "Documento OpenOffice";
+"OpenOffice Document" = "Ficheiro de texto OpenDocument (*.odt)";
 
 /* No comment provided by engineer. */
-"OpenOffice Presentation" = "Presentación OpenOffice";
+"OpenOffice Presentation" = "Presentación de OpenDocument  (*.odp)";
 
 /* No comment provided by engineer. */
-"OpenOffice Spreadsheet" = "Folla de cálculo OpenOffice";
+"OpenOffice Spreadsheet" = "Folla de cálculo de OpenDocument (*.ods)";
 
 /* No comment provided by engineer. */
-"PDF File" = "Ficheiro PDF";
+"PDF File" = "Documento portátil (*.pdf)";
 
 /* No comment provided by engineer. */
-"PDF/A File" = "Ficheiro PDF/A";
+"PDF/A File" = "Documento portátil / A  (*.pdf)";
 
 /* No comment provided by engineer. */
-"Plain Text" = "Texto plano";
+"Plain Text" = "Texto plano (*.txt)";
 
 /* No comment provided by engineer. */
-"PowerPoint 97-2003 Presentation" = "Presentación PowerPoint 97-2003";
+"PowerPoint 97-2003 Presentation" = "Presentación de Powerpoint 97-2003 (*.ppt)";
 
 /* No comment provided by engineer. */
-"PowerPoint 2007 Presentation" = "Presentación PowerPoint 2007";
+"PowerPoint 2007 Presentation" = "Presentación do Office Open XML (*.pptx)";
 
 /* No comment provided by engineer. */
-"PowerPoint Slide Show" = "Presentación de diapositivas de PowerPoint";
+"PowerPoint Slide Show" = "Presentación de diapositivas de Office Open XML (*.ppsx)";
 
 /* No comment provided by engineer. */
 "Preparing..." = "Preparando…";
@@ -152,7 +152,7 @@
 "Presentation %ld.pptx" = "Presentación %ld.pptx";
 
 /* No comment provided by engineer. */
-"Presentation template" = "Modelo da presentación";
+"Presentation template" = "Modelo de presentación PowerPoint Open XML (*.potx)";
 
 /* No comment provided by engineer. */
 "Presenter View" = "Vista do presentador";
@@ -164,7 +164,7 @@
 "Review Changes..." = "Revisar os cambios…";
 
 /* No comment provided by engineer. */
-"Rich Text Document" = "Documento de texto enriquecido";
+"Rich Text Document" = "Ficheiro con formato de texto enriquecido (*.rtf)";
 
 /* No comment provided by engineer. */
 "Save" = "Gardar";
@@ -176,7 +176,7 @@
 "Spreadsheet %ld.xlsx" = "Folla de cálculo %ld.xlsx";
 
 /* No comment provided by engineer. */
-"Spreadsheet template" = "Modelo de folla de cálculo";
+"Spreadsheet template" = "Modelo de folla de cálculo Excel Open XML (*.xltx)";
 
 /* No comment provided by engineer. */
 "Thank you for evaluating %@!" = "Grazas por avaliar %@!";
@@ -203,13 +203,13 @@
 "With access to pro features" = "Con acceso a características profesionais";
 
 /* No comment provided by engineer. */
-"Word 97-2003 Document" = "Documento Word 97-2003";
+"Word 97-2003 Document" = "Documento Word 97-2003 (*.doc)";
 
 /* No comment provided by engineer. */
-"Word 2007 Document" = "Documento Word 2007";
+"Word 2007 Document" = "Documento Office Open XML (*.docx)";
 
 /* No comment provided by engineer. */
-"XML Paper Specification" = "Especificación do papel XML";
+"XML Paper Specification" = "Documento OpenXPS (*.xps)";
 
 /* No comment provided by engineer. */
 "Yes" = "Si";

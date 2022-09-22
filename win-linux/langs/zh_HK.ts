@@ -177,42 +177,42 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="221"/>
         <source>DOCX Document (*.docx)</source>
-        <translation>DOCX 文件 (*.docx)</translation>
+        <translation>Office Open XML 文件(*.docx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="222"/>
         <source>Document template (*.dotx)</source>
-        <translation>文件範本 (*.dotx)</translation>
+        <translation>Word Open XML 文件範本(*.dotx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="223"/>
         <source>DOC Document (*.doc)</source>
-        <translation>DOC 文件 (*.doc)</translation>
+        <translation>Word 97-2003 文件(*.doc)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="224"/>
         <source>ODT Document (*.odt)</source>
-        <translation>ODT 文件 (*.odt)</translation>
+        <translation>OpenDocument文件(*.odt)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="225"/>
         <source>OpenDocument Document template (*.ott)</source>
-        <translation>OpenDocument 文件範本 (*.ott)</translation>
+        <translation>OpenDocument文件範本(*.ott)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="226"/>
         <source>RTF File (*.rtf)</source>
-        <translation>RTF 檔案 (*.rtf)</translation>
+        <translation>RTF 檔案(*.rtf)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="227"/>
         <source>TXT File (*.txt)</source>
-        <translation>TXT 檔案 (*.txt)</translation>
+        <translation>純文字(*.txt)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="228"/>
         <source>HTML File (*.html)</source>
-        <translation>HTML 檔案 (*.html)</translation>
+        <translation>HTML 檔案(*.html)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="229"/>
@@ -222,107 +222,107 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="230"/>
         <source>EPUB File (*.epub)</source>
-        <translation>EPUB 檔案 (*.epub)</translation>
+        <translation>EPUB 檔案(*.epub)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="231"/>
         <source>FB2 File (*.fb2)</source>
-        <translation>FB2 檔案 (*.fb2)</translation>
+        <translation>FB2 檔案(*.fb2)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="232"/>
         <source>MOBI File (*.mobi)</source>
-        <translation>MOBI 檔案 (*.mobi)</translation>
+        <translation>Mobipocket 電子書(*.mobi)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="233"/>
         <source>OFORM Document (*.oform)</source>
-        <translation type="unfinished"></translation>
+        <translation>ONLYOFFICE可填写的在线表格(*.oform)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="234"/>
         <source>DOCXF Document (*.docxf)</source>
-        <translation type="unfinished"></translation>
+        <translation>ONLYOFFICE 文档表单模板(*.docxf)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="236"/>
         <source>PPTX File (*.pptx)</source>
-        <translation>PPTX 檔案 (*.pptx)</translation>
+        <translation>Office Open XML 簡報(*.pptx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="237"/>
         <source>PPT File (*.ppt)</source>
-        <translation>PPT 檔案 (*.ppt)</translation>
+        <translation>PowerPoint 97-2003 簡報(*.ppt)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="238"/>
         <source>Presentation template (*.potx)</source>
-        <translation>簡報範本 (*.potx)</translation>
+        <translation>PowerPoint Open XML 簡報範本(*.potx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="239"/>
         <source>ODP File (*.odp)</source>
-        <translation>ODP 檔案 (*.odp)</translation>
+        <translation>OpenDocument簡報(*.odp)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="240"/>
         <source>OpenDocument Presentation Template (*.otp)</source>
-        <translation>OpenDocument 簡報範本 (*.otp)</translation>
+        <translation>OpenDocument簡報範本(*.otp)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="241"/>
         <source>PPSX File (*.ppsx)</source>
-        <translation>PPSX 檔案 (*.ppsx)</translation>
+        <translation>Office Open XML 投影片(*.ppsx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="243"/>
         <source>XLSX File (*.xlsx)</source>
-        <translation>XLSX 檔案 (*.xlsx)</translation>
+        <translation>Office Open XML 試算表(*.xlsx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="244"/>
         <source>Spreadsheet template (*.xltx)</source>
-        <translation>試算表範本 (*.xltx)</translation>
+        <translation>Excel Open XML 試算表範本(*.xltx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="245"/>
         <source>XLS File (*.xls)</source>
-        <translation>XLS 檔案 (*.xls)</translation>
+        <translation>Excel 97-2003 試算表(*.xls)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="246"/>
         <source>ODS File (*.ods)</source>
-        <translation>ODS 檔案 (*.ods)</translation>
+        <translation>OpenDocument 試算表(*.ods)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="247"/>
         <source>OpenDocument Spreadsheet Template (*.ots)</source>
-        <translation>OpenDocument 試算表範本 (*.ots)</translation>
+        <translation>OpenDocument試算表範本(*.ots)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="248"/>
         <source>CSV File (*.csv)</source>
-        <translation>CSV 檔案 (*.csv)</translation>
+        <translation>逗點分隔值(*.csv)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="250"/>
         <source>PDF File (*.pdf)</source>
-        <translation>PDF 檔案 (*.pdf)</translation>
+        <translation>PDF 檔案(*.pdf)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="251"/>
         <source>PDFA File (*.pdf)</source>
-        <translation>PDFA 檔案 (*.pdf)</translation>
+        <translation>PDF/單一檔案(*.pdf)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="252"/>
         <source>DJVU File (*.djvu)</source>
-        <translation>DJVU 檔案 (*.djvu)</translation>
+        <translation>DjVu 檔案(*.djvu)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="253"/>
         <source>XPS File (*.xps)</source>
-        <translation>XPS 檔案 (*.xps)</translation>
+        <translation>OpenXPS 檔案(*.xps)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="255"/>
@@ -571,7 +571,7 @@
     <message>
         <location filename="../src/ceditortools.cpp" line="126"/>
         <source>All files (*.*)</source>
-        <translation type="unfinished">所有檔案 (*.*)</translation>
+        <translation>所有檔案 (*.*)</translation>
     </message>
 </context>
 </TS>

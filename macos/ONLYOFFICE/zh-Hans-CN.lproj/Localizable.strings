@@ -23,7 +23,7 @@
 "Cannot open folder of the file location." = "无法打开文件位置的文件夹。";
 
 /* No comment provided by engineer. */
-"Comma-Separated Values" = "逗号分隔值";
+"Comma-Separated Values" = "逗号分隔值(*.csv)";
 
 /* No comment provided by engineer. */
 "Create portal" = "创建门户";
@@ -32,7 +32,7 @@
 "Delete and Quit" = "删除并退出";
 
 /* No comment provided by engineer. */
-"DjVu File" = "DjVu文件";
+"DjVu File" = "数字文件(*.djvu)";
 
 /* No comment provided by engineer. */
 "Do you want to save the changes made to the document \"%@\"?" = "您是否要保存对文档“%@”所做的更改？";
@@ -41,13 +41,22 @@
 "Document %ld.docx" = "文档%ld.docx";
 
 /* No comment provided by engineer. */
-"Document template" = "文档模板";
+"Document template" = "Word开放式XML文档模板 (*.dotx)";
 
 /* No comment provided by engineer. */
-"Excel 97-2003 Spreadsheet" = "Excel 97-2003电子表格";
+"Don't Save" = "不保存";
 
 /* No comment provided by engineer. */
-"Excel 2007 Spreadsheet" = "Excel 2007电子表格";
+"Electronic Publication" = "电子出版物文件（*.epub）";
+
+/* No comment provided by engineer. */
+"Excel 97-2003 Spreadsheet" = "Excel 97-2003 电子表格(*.xls)";
+
+/* No comment provided by engineer. */
+"Excel 2007 Spreadsheet" = "Office Open XML 电子表格(*.xlsx)";
+
+/* No comment provided by engineer. */
+"FictionBook File" = "小说书2文件 (*.fb2)";
 
 /* No comment provided by engineer. */
 "File \"%@\" can not be open or not exist." = "文件“%@”无法打开或不存在。";
@@ -62,6 +71,9 @@
 "Hide %@" = "隐藏%@";
 
 /* No comment provided by engineer. */
+"HTML File" = "超文本标记语言文件 (*.html)";
+
+/* No comment provided by engineer. */
 "If you don't review your documents, all your changeses will be lost." = "如果您不审阅文档，您所做的所有更改都将丢失。";
 
 /* No comment provided by engineer. */
@@ -71,7 +83,19 @@
 "License Agreement" = "许可协议";
 
 /* No comment provided by engineer. */
-"Mobipocket e-book" = "Mobipocket电子书";
+"MHT File" = "网页存档文件 (*.mht)";
+
+/* No comment provided by engineer. */
+"Mobipocket e-book" = "Mobipocket文件 (*.mobi)";
+
+/* No comment provided by engineer. */
+"new-document" = "新建文档";
+
+/* No comment provided by engineer. */
+"new-presentation" = "新建幻灯片";
+
+/* No comment provided by engineer. */
+"new-spreadsheet" = "新建表格";
 
 /* No comment provided by engineer. */
 "No" = "否";
@@ -86,34 +110,43 @@
 "ONLYOFFICE can not open the Private Key. Try opening another file." = "ONLYOFFICE无法打开该私钥。请尝试打开另一个文件。";
 
 /* No comment provided by engineer. */
+"OpenDocument Document Template" = "OpenDocument文档模板 (*.ott)";
+
+/* No comment provided by engineer. */
+"OpenDocument Presentation Template" = "OpenDocument演示模板 (*.otp)";
+
+/* No comment provided by engineer. */
+"OpenDocument Spreadsheet Template" = "OpenDocument电子表格模板 (*.ots)";
+
+/* No comment provided by engineer. */
 "Opening" = "正在打开";
 
 /* No comment provided by engineer. */
-"OpenOffice Document" = "OpenOffice文档";
+"OpenOffice Document" = "OpenDocument文本文件 (*.odt)";
 
 /* No comment provided by engineer. */
-"OpenOffice Presentation" = "OpenOffice演示文稿";
+"OpenOffice Presentation" = "OpenDocument演示文稿(*.odp)";
 
 /* No comment provided by engineer. */
-"OpenOffice Spreadsheet" = "OpenOffice电子表格";
+"OpenOffice Spreadsheet" = "OpenDocument电子表格(*.ods)";
 
 /* No comment provided by engineer. */
-"PDF File" = "PDF文件";
+"PDF File" = "便携式文件(*.pdf)";
 
 /* No comment provided by engineer. */
-"PDF/A File" = "PDF/A文件";
+"PDF/A File" = "便携式文件/A (*.pdf)";
 
 /* No comment provided by engineer. */
-"Plain Text" = "纯文本";
+"Plain Text" = "纯文本文件 (*.txt)";
 
 /* No comment provided by engineer. */
-"PowerPoint 97-2003 Presentation" = "PowerPoint 97-2003演示文稿";
+"PowerPoint 97-2003 Presentation" = "PowerPoint 97-2003 演示文稿(*.ppt)";
 
 /* No comment provided by engineer. */
-"PowerPoint 2007 Presentation" = "PowerPoint 2007演示文稿";
+"PowerPoint 2007 Presentation" = "Office Open XML 演示文稿(*.pptx)";
 
 /* No comment provided by engineer. */
-"PowerPoint Slide Show" = "PowerPoint幻灯片放映";
+"PowerPoint Slide Show" = "Office Open XML 幻灯片(*.ppsx)";
 
 /* No comment provided by engineer. */
 "Preparing..." = "准备中...";
@@ -122,7 +155,10 @@
 "Presentation %ld.pptx" = "演示文稿%ld.pptx";
 
 /* No comment provided by engineer. */
-"Presentation template" = "演示文稿模板";
+"Presentation template" = "PowerPoint开放式XML演示模板（*.potx）";
+
+/* No comment provided by engineer. */
+"Presenter View" = "演示者视图";
 
 /* No comment provided by engineer. */
 "Quit %@" = "退出%@";
@@ -131,7 +167,7 @@
 "Review Changes..." = "审阅更改...";
 
 /* No comment provided by engineer. */
-"Rich Text Document" = "RTF文档";
+"Rich Text Document" = "富文本格式(*.rtf)";
 
 /* No comment provided by engineer. */
 "Save" = "保存";
@@ -140,13 +176,19 @@
 "Save the document?" = "保存该文件？";
 
 /* No comment provided by engineer. */
+"Signature Details" = "签名详情";
+
+/* No comment provided by engineer. */
 "Spreadsheet %ld.xlsx" = "电子表格%ld.xlsx";
 
 /* No comment provided by engineer. */
-"Spreadsheet template" = "电子表格模板";
+"Spreadsheet template" = "Excel开放式XML电子表格模板(*.xltx)";
 
 /* No comment provided by engineer. */
 "Thank you for evaluating %@!" = "感谢您对%@的评价！";
+
+/* No comment provided by engineer. */
+"The document \"%@\" must be built. Continue?" = "必须创建“%@”。继续？";
 
 /* No comment provided by engineer. */
 "To open the file location, it must be saved." = "您必须保存后才能打开文件位置。";
@@ -164,13 +206,16 @@
 "Web Page" = "网页";
 
 /* No comment provided by engineer. */
-"Word 97-2003 Document" = "Word 97-2003文档";
+"With access to pro features" = "可使用专业功能";
 
 /* No comment provided by engineer. */
-"Word 2007 Document" = "Word 2007文档";
+"Word 97-2003 Document" = "Word 97-2003 文档(*.doc)";
 
 /* No comment provided by engineer. */
-"XML Paper Specification" = "XML纸张规范";
+"Word 2007 Document" = "Office Open XML 文档(*.docx)";
+
+/* No comment provided by engineer. */
+"XML Paper Specification" = "OpenXPS文件（*.xps）";
 
 /* No comment provided by engineer. */
 "Yes" = "是";
@@ -183,4 +228,10 @@
 
 /* No comment provided by engineer. */
 "Your changes will be lost if you don’t save them." = "如果不保存，您的更改都将丢失。";
+
+/* No comment provided by engineer. */
+"Your subscription has expired.\n\nThe program works in the non-activated mode.\n\nNow you can prolong or upgrade your subscription with a discount." = "您的訂閱已過期。\n\n此程式目前以未啟用的模式運作。\n\n現在，您可享有延長或升級訂閱的優惠。";
+
+/* No comment provided by engineer. */
+"Your subscription is about to expire\n(%d days left).\n\nWe have a special offer for you." = "您的訂閱即將到期\n(剩下 %d 天)。\n\n我們為您提供一項特別優惠。";
 

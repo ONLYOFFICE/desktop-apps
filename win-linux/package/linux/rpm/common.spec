@@ -14,6 +14,16 @@ AutoProv: no
 %{_company_name} %{_product_name} installation package
  %{_company_name} %{_product_name} is an application for editing office documents (text documents, spreadsheets and presentations) from %{_company_name} cloud portal on local computer without browser using.
 
+%package help
+Summary: Desktop editors local help files
+BuildArch: noarch
+Requires: %{_package_name}
+
+%description help
+%{_company_name} %{_product_name} local help files
+ %{_company_name} %{_product_name} is an application for editing office documents (text documents, spreadsheets and presentations) from %{_company_name} cloud portal on local computer without browser using.
+ This package contains the local help files.
+
 %prep
 rm -rf "%{buildroot}"
 
@@ -31,6 +41,7 @@ mkdir -p $BIN_DIR $DATA_DIR/applications $DESKTOPEDITORS_PREFIX
 cp -r $COMMON/opt/desktopeditors/* $DESKTOPEDITORS_PREFIX
 cp -t $BIN_DIR $COMMON/usr/bin/%{_desktopeditors_exec}
 cp -t $DATA_DIR/applications $COMMON/usr/share/applications/%{_desktopeditors_exec}.desktop
+echo "package = rpm" > $DESKTOPEDITORS_PREFIX/converter/package.config
 
 %if "%{_company_name}" == "ONLYOFFICE"
 ln -srf $BIN_DIR/%{_desktopeditors_exec} $BIN_DIR/desktopeditors
@@ -50,6 +61,9 @@ cp -t $DATA_DIR/applications \
 ln -srf $BIN_DIR/%{_desktopeditors_exec} $BIN_DIR/%{_package_name}
 %endif
 
+# help
+cp -r $COMMON/help/desktopeditors/* $DESKTOPEDITORS_PREFIX/
+
 %clean
 rm -rf "%{buildroot}"
 
@@ -65,6 +79,15 @@ rm -rf "%{buildroot}"
 %attr(-, root, root) %{_bindir}/%{_package_name}
 %attr(777, root, root) %{_sysconfdir}/%{_package_name}
 %endif
+%exclude /opt/%{_desktopeditors_prefix}/editors/web-apps/apps/documenteditor/main/resources/help
+%exclude /opt/%{_desktopeditors_prefix}/editors/web-apps/apps/presentationeditor/main/resources/help
+%exclude /opt/%{_desktopeditors_prefix}/editors/web-apps/apps/spreadsheeteditor/main/resources/help
+
+%files help
+%defattr(-, root, root, -)
+/opt/%{_desktopeditors_prefix}/editors/web-apps/apps/documenteditor/main/resources/help
+/opt/%{_desktopeditors_prefix}/editors/web-apps/apps/presentationeditor/main/resources/help
+/opt/%{_desktopeditors_prefix}/editors/web-apps/apps/spreadsheeteditor/main/resources/help
 
 %pre
 
@@ -96,8 +119,8 @@ MIMEAPPS_LIST="/usr/share/applications/mimeapps.list"
 if [ ! -f "$MIMEAPPS_LIST" ]; then
   echo "[Default Applications]" >"$MIMEAPPS_LIST"
 fi
-if [ $(cat "$MIMEAPPS_LIST" | grep x-scheme-handler/oo-office | wc -l) -eq "0" ]; then
-  echo "x-scheme-handler/oo-office=%{_desktopeditors_exec}.desktop" >>"$MIMEAPPS_LIST"
+if [ $(cat "$MIMEAPPS_LIST" | grep x-scheme-handler/%{_scheme_handler} | wc -l) -eq "0" ]; then
+  echo "x-scheme-handler/%{_scheme_handler}=%{_desktopeditors_exec}.desktop" >>"$MIMEAPPS_LIST"
 fi
 if [ $(cat "$MIMEAPPS_LIST" | grep text/docxf | wc -l) -eq "0" ]; then
   echo "text/docxf=%{_desktopeditors_exec}.desktop" >>"$MIMEAPPS_LIST"
