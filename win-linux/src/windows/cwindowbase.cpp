@@ -80,26 +80,19 @@ CWindowBase::CWindowBase(const QRect& rect)
     , m_windowActivated(false)
 {
     setWindowIcon(Utils::appIcon());
-    if ( !rect.isEmpty() )
+    if ( !rect.isEmpty() ) {
         m_dpiRatio = Utils::getScreenDpiRatio(rect.topLeft());
-    else {
+        m_window_rect = rect;
+    } else {
         QScreen * _screen = QApplication::primaryScreen();
         m_dpiRatio = Utils::getScreenDpiRatio(_screen->geometry().topLeft());
-    }
-    m_window_rect = rect;
-    if (m_window_rect.isEmpty())
         m_window_rect = QRect(QPoint(100, 100)*m_dpiRatio, MAIN_WINDOW_DEFAULT_SIZE * m_dpiRatio);
-    QRect _screen_size = Utils::getScreenGeometry(m_window_rect.topLeft());
-    if (_screen_size.intersects(m_window_rect)) {
-        if (_screen_size.width() < m_window_rect.width() || _screen_size.height() < m_window_rect.height()) {
-            m_window_rect.setLeft(_screen_size.left()),
-            m_window_rect.setTop(_screen_size.top());
-            if (_screen_size.width() < m_window_rect.width()) m_window_rect.setWidth(_screen_size.width());
-            if (_screen_size.height() < m_window_rect.height()) m_window_rect.setHeight(_screen_size.height());
-        }
-    } else {
-        m_window_rect = QRect(QPoint(100, 100)*m_dpiRatio, QSize(MAIN_WINDOW_MIN_WIDTH, MAIN_WINDOW_MIN_HEIGHT)*m_dpiRatio);
     }
+    QRect _screen_size = Utils::getScreenGeometry(m_window_rect.topLeft());
+    if (_screen_size.intersects(m_window_rect))
+        m_window_rect = _screen_size.intersected(m_window_rect);
+    else
+        m_window_rect = QRect(QPoint(100, 100)*m_dpiRatio, MAIN_WINDOW_DEFAULT_SIZE * m_dpiRatio);
 }
 
 CWindowBase::~CWindowBase()
