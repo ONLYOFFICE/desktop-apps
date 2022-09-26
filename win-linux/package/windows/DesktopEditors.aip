@@ -109,7 +109,6 @@
     <ROW Component="CheckForUpdates" ComponentId="{3DCD7E37-9F70-475E-9C31-D72353971685}" Directory_="APPDIR" Attributes="4" KeyPath="CheckForUpdates"/>
     <ROW Component="DesktopEditors.exe" ComponentId="{FA0F79B8-DC4D-49BC-808A-1821966D6C0C}" Directory_="APPDIR" Attributes="0" KeyPath="DesktopEditors.exe"/>
     <ROW Component="ImageViewer.exe" ComponentId="{E8DFAC60-5575-4D64-AD43-FF684A2FAE8F}" Directory_="CUSTOM_PATH" Attributes="0" Condition="GALLERY = &quot;1&quot;" KeyPath="ImageViewer.exe"/>
-    <ROW Component="InstallDesktopEditors.exeComponentShortcuts" ComponentId="{C8C79B75-DD46-4E97-AFF0-6EFC8AE78E07}" Directory_="APPDIR" Attributes="260" KeyPath="InstallDesktopEditors.exeComponentS"/>
     <ROW Component="MANUFACTURER_INSTALL_FOLDER_HK_CU" ComponentId="{BF7B083D-CB31-42CC-89EB-912C4461A8D0}" Directory_="APPDIR" Attributes="260" KeyPath="MANUFACTURER_INSTALL_FOLDER_HK_CU"/>
     <ROW Component="MANUFACTURER_INSTALL_FOLDER_HK_LM" ComponentId="{7EC4EC35-8E21-44D0-A29E-CCD3741056D9}" Directory_="APPDIR" Attributes="4" KeyPath="MANUFACTURER_INSTALL_FOLDER_HK_LM"/>
     <ROW Component="MicrosoftVisualC" ComponentId="{CA1FCD66-ED15-4D94-81FD-0C927B78E132}" Directory_="APPDIR" Attributes="260" KeyPath="MicrosoftVisualC" Options="2"/>
@@ -125,6 +124,7 @@
     <ROW Component="locale_HK_LM" ComponentId="{D09979D5-ED81-4DE9-8602-7C1C8D2C6B75}" Directory_="APPDIR" Attributes="4" KeyPath="locale_HK_LM"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatsComponent">
+    <ROW Feature="ExtendedFeature" Title="ExtendedFeature" Description="Description" Display="91" Level="1" Directory_="APPDIR" Attributes="0"/>
     <ROW Feature="FileTypeAssociations" Feature_Parent="MainFeature" Title="File Type Associations" Description="Description" Display="3" Level="1" Directory_="APPDIR" Attributes="0" Options="13"/>
     <ROW Feature="MainFeature" Title="MainFeature" Description="Description" Display="1" Level="1" Directory_="APPDIR" Attributes="0"/>
     <ROW Feature="MicrosoftVisualC" Title="Microsoft Visual C++ 2015-2022 Redistributable (x64)" Description="Microsoft Visual C++ 2015-2022 Redistributable (x64)" Display="11" Level="1" Attributes="0"/>
@@ -762,41 +762,16 @@
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatCompsComponent">
     <ROW Feature_="MainFeature" Component_="APPDIR"/>
-    <ROW Feature_="csv" Component_="DesktopEditors.exe"/>
-    <ROW Feature_="djvu" Component_="DesktopEditors.exe"/>
-    <ROW Feature_="doc" Component_="DesktopEditors.exe"/>
-    <ROW Feature_="docx" Component_="DesktopEditors.exe"/>
-    <ROW Feature_="dotx" Component_="DesktopEditors.exe"/>
-    <ROW Feature_="epub" Component_="DesktopEditors.exe"/>
-    <ROW Feature_="fb2" Component_="DesktopEditors.exe"/>
-    <ROW Feature_="html" Component_="DesktopEditors.exe"/>
-    <ROW Feature_="odp" Component_="DesktopEditors.exe"/>
-    <ROW Feature_="ods" Component_="DesktopEditors.exe"/>
-    <ROW Feature_="odt" Component_="DesktopEditors.exe"/>
     <ROW Feature_="MainFeature" Component_="AI_CustomARPName"/>
     <ROW Feature_="MainFeature" Component_="AI_DisableModify"/>
-    <ROW Feature_="otp" Component_="DesktopEditors.exe"/>
-    <ROW Feature_="ots" Component_="DesktopEditors.exe"/>
-    <ROW Feature_="ott" Component_="DesktopEditors.exe"/>
-    <ROW Feature_="pdf" Component_="DesktopEditors.exe"/>
-    <ROW Feature_="potx" Component_="DesktopEditors.exe"/>
-    <ROW Feature_="ppt" Component_="DesktopEditors.exe"/>
-    <ROW Feature_="pptx" Component_="DesktopEditors.exe"/>
-    <ROW Feature_="rtf" Component_="DesktopEditors.exe"/>
-    <ROW Feature_="txt" Component_="DesktopEditors.exe"/>
-    <ROW Feature_="xls" Component_="DesktopEditors.exe"/>
-    <ROW Feature_="xlsx" Component_="DesktopEditors.exe"/>
-    <ROW Feature_="xltx" Component_="DesktopEditors.exe"/>
-    <ROW Feature_="xml" Component_="DesktopEditors.exe"/>
-    <ROW Feature_="xps" Component_="DesktopEditors.exe"/>
+    <ROW Feature_="ExtendedFeature" Component_="VideoPlayer.exe"/>
+    <ROW Feature_="ExtendedFeature" Component_="ImageViewer.exe"/>
+    <ROW Feature_="ExtendedFeature" Component_="SHORTCUTDIR"/>
     <ROW Feature_="MainFeature" Component_="AIShRegAnswer"/>
-    <ROW Feature_="MainFeature" Component_="SHORTCUTDIR"/>
     <ROW Feature_="MicrosoftVisualC" Component_="MicrosoftVisualC"/>
     <ROW Feature_="MicrosoftVisualC_1" Component_="MicrosoftVisualC_1"/>
     <ROW Feature_="MicrosoftVisualC_2" Component_="MicrosoftVisualC_2"/>
     <ROW Feature_="MicrosoftVisualC_3" Component_="MicrosoftVisualC_3"/>
-    <ROW Feature_="MainFeature" Component_="VideoPlayer.exe"/>
-    <ROW Feature_="MainFeature" Component_="ImageViewer.exe"/>
     <ROW Feature_="MainFeature" Component_="MANUFACTURER_INSTALL_FOLDER_HK_CU"/>
     <ROW Feature_="MainFeature" Component_="locale_HK_CU"/>
     <ROW Feature_="MainFeature" Component_="MANUFACTURER_INSTALL_FOLDER_HK_LM"/>
@@ -805,8 +780,7 @@
     <ROW Feature_="MainFeature" Component_="Path"/>
     <ROW Feature_="MainFeature" Component_="Version"/>
     <ROW Feature_="MainFeature" Component_="converter"/>
-    <ROW Feature_="MainFeature" Component_="DesktopEditors.exe"/>
-    <ROW Feature_="MainFeature" Component_="InstallDesktopEditors.exeComponentShortcuts"/>
+    <ROW Feature_="ExtendedFeature" Component_="DesktopEditors.exe"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiIconsComponent">
     <ROW Name="ImageViewer.exe" SourcePath="..\..\extras\projicons\res\gallery.ico" Index="0"/>
@@ -920,7 +894,6 @@
     <ROW Registry="EstimatedSize" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="EstimatedSize" Value="#[AI_ARP_SIZE]" Component_="AI_CustomARPName" VirtualValue="#"/>
     <ROW Registry="HelpLink" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="HelpLink" Value="[ARPHELPLINK]" Component_="AI_CustomARPName"/>
     <ROW Registry="HelpTelephone" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="HelpTelephone" Value="[ARPHELPTELEPHONE]" Component_="AI_CustomARPName"/>
-    <ROW Registry="InstallDesktopEditors.exeComponentS" Root="1" Key="Software\[Manufacturer]\[ProductName]" Name="InstallDesktopEditors.exeComponentShortcuts" Value="0" Component_="InstallDesktopEditors.exeComponentShortcuts"/>
     <ROW Registry="InstallLocation" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="InstallLocation" Value="[APPDIR]" Component_="AI_CustomARPName"/>
     <ROW Registry="MANUFACTURER_INSTALL_FOLDER_HK_CU" Root="1" Key="Software\[MANUFACTURER_INSTALL_FOLDER]" Name="+" Component_="MANUFACTURER_INSTALL_FOLDER_HK_CU"/>
     <ROW Registry="MANUFACTURER_INSTALL_FOLDER_HK_LM" Root="2" Key="Software\[MANUFACTURER_INSTALL_FOLDER]" Name="+" Component_="MANUFACTURER_INSTALL_FOLDER_HK_LM"/>
