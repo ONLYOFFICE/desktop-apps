@@ -14,6 +14,6 @@
     "grunt-terser": "^2.0.0",
     "grunt-text-replace": "0.4.0",
     "lodash": "^4.17.20",
-    "terser": "^5.14.1"
+    "terser": "^5.14.2"
   }
 }
