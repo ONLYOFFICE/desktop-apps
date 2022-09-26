@@ -702,7 +702,7 @@ int CAscTabWidget::openLocalDocument(const COpenOptions& options, bool select, b
     }
 
     if (select && !(tabIndex < 0))
-        m_pBar->setCurrentIndex(tabIndex);
+        setCurrentIndex(tabIndex);
 
     /* TODO: rise message if index < 0 */
 
