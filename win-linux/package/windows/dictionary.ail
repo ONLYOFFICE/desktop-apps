@@ -159,37 +159,37 @@
   <ENTRY id="Property.COMMON_SHORTCUT_NAME">
     <STRING lang="ru" value="ONLYOFFICE Editors"/>
   </ENTRY>
-  <ENTRY id="Property.CSV_CHECKBOX">
+  <ENTRY id="Property.CSV_REGISTER">
     <STRING lang="ru" value="1"/>
   </ENTRY>
   <ENTRY id="Property.CUSTOM_PATH">
     <STRING lang="ru" value="C:\[|ProgramFilesFolder][|Manufacturer]MediaViewer"/>
   </ENTRY>
-  <ENTRY id="Property.DJVU_CHECKBOX">
+  <ENTRY id="Property.DJVU_REGISTER">
     <STRING lang="ru" value="1"/>
   </ENTRY>
-  <ENTRY id="Property.DOC_CHECKBOX">
+  <ENTRY id="Property.DOC_REGISTER">
     <STRING lang="ru" value="1"/>
   </ENTRY>
-  <ENTRY id="Property.DOCX_CHECKBOX">
+  <ENTRY id="Property.DOCX_REGISTER">
     <STRING lang="ru" value="1"/>
   </ENTRY>
-  <ENTRY id="Property.DOTX_CHECKBOX">
+  <ENTRY id="Property.DOTX_REGISTER">
     <STRING lang="ru" value="1"/>
   </ENTRY>
-  <ENTRY id="Property.EPUB_CHECKBOX">
+  <ENTRY id="Property.EPUB_REGISTER">
     <STRING lang="ru" value="1"/>
   </ENTRY>
-  <ENTRY id="Property.FB2_CHECKBOX">
+  <ENTRY id="Property.FB2_REGISTER">
     <STRING lang="ru" value="1"/>
   </ENTRY>
-  <ENTRY id="Property.GALLERY_CHECKBOX">
+  <ENTRY id="Property.GALLERY">
     <STRING lang="ru" value="1"/>
   </ENTRY>
   <ENTRY id="Property.GALLERY_SHORTCUT_NAME">
     <STRING lang="ru" value="Gallery"/>
   </ENTRY>
-  <ENTRY id="Property.HTML_CHECKBOX">
+  <ENTRY id="Property.HTML_REGISTER">
     <STRING lang="ru" value="1"/>
   </ENTRY>
   <ENTRY id="Property.Manufacturer">
@@ -198,43 +198,43 @@
   <ENTRY id="Property.MANUFACTURER_INSTALL_FOLDER">
     <STRING lang="ru" value="ONLYOFFICE"/>
   </ENTRY>
-  <ENTRY id="Property.MEDIA_CHECKBOX">
+  <ENTRY id="Property.PLAYER">
     <STRING lang="ru" value="1"/>
   </ENTRY>
   <ENTRY id="Property.MEDIA_SHORTCUT_NAME">
     <STRING lang="ru" value="Media"/>
   </ENTRY>
-  <ENTRY id="Property.ODP_CHECKBOX">
+  <ENTRY id="Property.ODP_REGISTER">
     <STRING lang="ru" value="1"/>
   </ENTRY>
-  <ENTRY id="Property.ODS_CHECKBOX">
+  <ENTRY id="Property.ODS_REGISTER">
     <STRING lang="ru" value="1"/>
   </ENTRY>
-  <ENTRY id="Property.ODT_CHECKBOX">
+  <ENTRY id="Property.ODT_REGISTER">
     <STRING lang="ru" value="1"/>
   </ENTRY>
-  <ENTRY id="Property.OTP_CHECKBOX">
+  <ENTRY id="Property.OTP_REGISTER">
     <STRING lang="ru" value="1"/>
   </ENTRY>
-  <ENTRY id="Property.OTS_CHECKBOX">
+  <ENTRY id="Property.OTS_REGISTER">
     <STRING lang="ru" value="1"/>
   </ENTRY>
-  <ENTRY id="Property.OTT_CHECKBOX">
+  <ENTRY id="Property.OTT_REGISTER">
     <STRING lang="ru" value="1"/>
   </ENTRY>
   <ENTRY id="Property.PACKAGE_NAME">
     <STRING lang="ru" value="PACKAGE_NAME"/>
   </ENTRY>
-  <ENTRY id="Property.PDF_CHECKBOX">
+  <ENTRY id="Property.PDF_REGISTER">
     <STRING lang="ru" value="1"/>
   </ENTRY>
-  <ENTRY id="Property.POTX_CHECKBOX">
+  <ENTRY id="Property.POTX_REGISTER">
     <STRING lang="ru" value="1"/>
   </ENTRY>
-  <ENTRY id="Property.PPT_CHECKBOX">
+  <ENTRY id="Property.PPT_REGISTER">
     <STRING lang="ru" value="1"/>
   </ENTRY>
-  <ENTRY id="Property.PPTX_CHECKBOX">
+  <ENTRY id="Property.PPTX_REGISTER">
     <STRING lang="ru" value="1"/>
   </ENTRY>
   <ENTRY id="Property.PRODUCT_INSTALL_FOLDER">
@@ -243,13 +243,13 @@
   <ENTRY id="Property.ProductName">
     <STRING lang="ru" value="ONLYOFFICE Desktop Editors"/>
   </ENTRY>
-  <ENTRY id="Property.RTF_CHECKBOX">
+  <ENTRY id="Property.RTF_REGISTER">
     <STRING lang="ru" value="1"/>
   </ENTRY>
   <ENTRY id="Property.SHORTCUT_FOLDER_NAME">
     <STRING lang="ru" value="ONLYOFFICE"/>
   </ENTRY>
-  <ENTRY id="Property.TXT_CHECKBOX">
+  <ENTRY id="Property.TXT_REGISTER">
     <STRING lang="ru" value="1"/>
   </ENTRY>
   <ENTRY id="Property.UNINSTALL_PREV_ERROR_TEXT">
@@ -258,19 +258,19 @@
   <ENTRY id="Property.UNINSTALL_PREV_MSGBOX">
     <STRING lang="ru" value="Обнаружена предыдущая версия [|ProductName], нажмите кнопку &apos;OK&apos; чтобы удалить её, или &apos;Отмена&apos; чтобы выйти из программы инсталляции."/>
   </ENTRY>
-  <ENTRY id="Property.XLS_CHECKBOX">
+  <ENTRY id="Property.XLS_REGISTER">
     <STRING lang="ru" value="1"/>
   </ENTRY>
-  <ENTRY id="Property.XLSX_CHECKBOX">
+  <ENTRY id="Property.XLSX_REGISTER">
     <STRING lang="ru" value="1"/>
   </ENTRY>
-  <ENTRY id="Property.XLTX_CHECKBOX">
+  <ENTRY id="Property.XLTX_REGISTER">
     <STRING lang="ru" value="1"/>
   </ENTRY>
-  <ENTRY id="Property.XML_CHECKBOX">
+  <ENTRY id="Property.XML_REGISTER">
     <STRING lang="ru" value="1"/>
   </ENTRY>
-  <ENTRY id="Property.XPS_CHECKBOX">
+  <ENTRY id="Property.XPS_REGISTER">
     <STRING lang="ru" value="1"/>
   </ENTRY>
 </DICTIONARY>
