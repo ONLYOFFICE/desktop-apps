@@ -88,6 +88,6 @@ l10n.tr = {
     settOptThemeClassicLight: 'Klasik Aydınlık',
     settOptThemeDark: 'Karanlık',
     settOptLaunchMode: 'Dosya aç',
-    settOptLaunchInTab: 'Sekmed',
+    settOptLaunchInTab: 'Sekmede',
     settOptLaunchInWindow: 'Pencerede',
 }

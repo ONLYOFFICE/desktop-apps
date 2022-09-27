@@ -70,7 +70,8 @@ CAscApplicationManagerWrapper::CAscApplicationManagerWrapper(CAscApplicationMana
     QObject::connect(CExistanceController::getInstance(), &CExistanceController::checked, this, &CAscApplicationManagerWrapper::onFileChecked);
     QObject::connect(&commonEvents(), &CEventDriver::onEditorClosed, this, &CAscApplicationManagerWrapper::onEditorWidgetClosed);
 
-    m_queueToClose->setcallback(std::bind(&CAscApplicationManagerWrapper::onQueueCloseWindow,this, _1));
+    std::function<void(sWinTag)> callback_ = std::bind(&CAscApplicationManagerWrapper::onQueueCloseWindow,this, _1);
+    m_queueToClose->setcallback(callback_);
 
     NSBaseVideoLibrary::Init(nullptr);
 
@@ -986,6 +987,11 @@ void CAscApplicationManagerWrapper::initializeApp()
     else
     if ( InputArgs::contains(L"--custom-title-bar") || !reg_user.contains("titlebar") )
         reg_user.setValue("titlebar", "custom");
+    else
+    if ( InputArgs::contains(L"--geometry=default") ) {
+        reg_user.remove("maximized");
+        reg_user.remove("position");
+    }
 
     // read installation time and clean cash folders if expired
     if ( reg_system.contains("timestamp") ) {
@@ -1109,7 +1115,7 @@ void CAscApplicationManagerWrapper::gotoMainWindow(size_t src)
         _app.m_pMainWindow->show(mainWindow()->isMaximized());
 
 //    _app.m_pMainWindow->bringToTop();
-    QTimer::singleShot(0, []{
+    QTimer::singleShot(0, &_app, [](){
         AscAppManager::mainWindow()->bringToTop();
     });
 }
@@ -1127,12 +1133,13 @@ void CAscApplicationManagerWrapper::closeMainWindow()
 //            case MODAL_RESULT_CUSTOM + 1:
                 if ( mainWindow()->tabWidget()->count() ) {
                     _app.m_closeTarget = L"main";
-                    QTimer::singleShot(0, []{
+                    QTimer::singleShot(0, &_app, []{
                         if ( mainWindow()->tabCloseRequest() == MODAL_RESULT_CANCEL )
                             AscAppManager::cancelClose();
                     });
                 } else {
                     mainWindow()->hide();
+                    _app.closeQueue().leave(sWinTag{1,size_t(mainWindow())});
                 }
                 return;
 //            default: return;
@@ -1826,14 +1833,17 @@ void CAscApplicationManagerWrapper::onQueueCloseWindow(const sWinTag& t)
     if ( t.type == 1 ) {
         closeMainWindow();
     } else {
-        CEditorWindow * _e = reinterpret_cast<CEditorWindow *>(t.handle);
-        int res = _e->closeWindow();
-        if ( res == MODAL_RESULT_CANCEL ) {
-            AscAppManager::getInstance().closeQueue().cancel();
-        } else {
-            _e->hide();
-            AscAppManager::getInstance().closeQueue().leave(t);
-        }
+        sWinTag wt{t};
+        QTimer::singleShot(0, this, [wt]{
+            CEditorWindow * _e = reinterpret_cast<CEditorWindow *>(wt.handle);
+            int res = _e->closeWindow();
+            if ( res == MODAL_RESULT_CANCEL ) {
+                AscAppManager::getInstance().closeQueue().cancel();
+            } else {
+                _e->hide();
+                AscAppManager::getInstance().closeQueue().leave(wt);
+            }
+        });
     }
 }
 
@@ -1900,6 +1910,8 @@ void CAscApplicationManagerWrapper::onEditorWidgetClosed()
         if ( mainWindow()->tabWidget()->count() == 0 ) {
             m_closeTarget.clear();
             mainWindow()->hide();
+
+            closeQueue().leave(sWinTag{1,size_t(mainWindow())});
         }
     }
 }
