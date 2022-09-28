@@ -4,11 +4,11 @@
   <ENTRY id="Dialog.ExtendedInstallDlg">
     <STRING lang="ru" value="[ProductName] [Setup]"/>
   </ENTRY>
-  <ENTRY id="Dialog.NewDialog">
-    <STRING lang="ru" value="[ProductName] [Setup]"/>
-  </ENTRY>
   <ENTRY id="Dialog.FileAssociationsDlg">
     <STRING lang="ru" value="[Setup] [ProductName]"/>
+  </ENTRY>
+  <ENTRY id="Dialog.NewDialog">
+    <STRING lang="ru" value="[ProductName] [Setup]"/>
   </ENTRY>
   <!-- Control table -->
   <ENTRY id="Control.Text.ExtendedInstallDlg#Back">
@@ -110,6 +110,12 @@
   <ENTRY id="Control.Text.FileAssociationsDlg#CheckBox_9">
     <STRING lang="ru" value=".odp"/>
   </ENTRY>
+  <ENTRY id="Control.Text.FileAssociationsDlg#Deselect_all_button">
+    <STRING lang="ru" value="Deselect all"/>
+  </ENTRY>
+  <ENTRY id="Control.Text.FileAssociationsDlg#Select_all_button">
+    <STRING lang="ru" value="Select all"/>
+  </ENTRY>
   <ENTRY id="Control.Text.NewDialog#Back">
     <STRING lang="ru" value="[ButtonText_Back]"/>
   </ENTRY>
@@ -198,9 +204,6 @@
   <ENTRY id="Property.MANUFACTURER_INSTALL_FOLDER">
     <STRING lang="ru" value="ONLYOFFICE"/>
   </ENTRY>
-  <ENTRY id="Property.PLAYER">
-    <STRING lang="ru" value="1"/>
-  </ENTRY>
   <ENTRY id="Property.MEDIA_SHORTCUT_NAME">
     <STRING lang="ru" value="Media"/>
   </ENTRY>
@@ -226,6 +229,9 @@
     <STRING lang="ru" value="PACKAGE_NAME"/>
   </ENTRY>
   <ENTRY id="Property.PDF_REGISTER">
+    <STRING lang="ru" value="1"/>
+  </ENTRY>
+  <ENTRY id="Property.PLAYER">
     <STRING lang="ru" value="1"/>
   </ENTRY>
   <ENTRY id="Property.POTX_REGISTER">
