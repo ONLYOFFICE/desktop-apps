@@ -1833,15 +1833,14 @@ void CAscApplicationManagerWrapper::onQueueCloseWindow(const sWinTag& t)
     if ( t.type == 1 ) {
         closeMainWindow();
     } else {
-        sWinTag wt{t};
-        QTimer::singleShot(0, this, [wt]{
-            CEditorWindow * _e = reinterpret_cast<CEditorWindow *>(wt.handle);
+        QTimer::singleShot(0, this, [&t]{
+            CEditorWindow * _e = reinterpret_cast<CEditorWindow *>(t.handle);
             int res = _e->closeWindow();
             if ( res == MODAL_RESULT_CANCEL ) {
                 AscAppManager::getInstance().closeQueue().cancel();
             } else {
                 _e->hide();
-                AscAppManager::getInstance().closeQueue().leave(wt);
+                AscAppManager::getInstance().closeQueue().leave(t);
             }
         });
     }
