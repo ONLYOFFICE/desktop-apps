@@ -54,7 +54,6 @@ public:
     CMainPanel * mainPanel() const;
     QRect windowRect() const;
     bool isMaximized() const;
-    void sendSertificate(int viewid);
     QWidget * handle() const;
     void bringToTop() const override;
     void show(bool maximized);
