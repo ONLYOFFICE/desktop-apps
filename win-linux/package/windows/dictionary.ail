@@ -171,22 +171,22 @@
   <ENTRY id="Property.CUSTOM_PATH">
     <STRING lang="ru" value="C:\[|ProgramFilesFolder][|Manufacturer]MediaViewer"/>
   </ENTRY>
-  <ENTRY id="Property.DJVU_REGISTER">
+  <ENTRY id="Property.REGISTER_DJVU">
     <STRING lang="ru" value="1"/>
   </ENTRY>
-  <ENTRY id="Property.DOC_REGISTER">
+  <ENTRY id="Property.REGISTER_DOC">
     <STRING lang="ru" value="1"/>
   </ENTRY>
-  <ENTRY id="Property.DOCX_REGISTER">
+  <ENTRY id="Property.REGISTER_DOCX">
     <STRING lang="ru" value="1"/>
   </ENTRY>
-  <ENTRY id="Property.DOTX_REGISTER">
+  <ENTRY id="Property.REGISTER_DOTX">
     <STRING lang="ru" value="1"/>
   </ENTRY>
-  <ENTRY id="Property.EPUB_REGISTER">
+  <ENTRY id="Property.REGISTER_EPUB">
     <STRING lang="ru" value="1"/>
   </ENTRY>
-  <ENTRY id="Property.FB2_REGISTER">
+  <ENTRY id="Property.REGISTER_FB2">
     <STRING lang="ru" value="1"/>
   </ENTRY>
   <ENTRY id="Property.GALLERY">
@@ -195,7 +195,7 @@
   <ENTRY id="Property.GALLERY_SHORTCUT_NAME">
     <STRING lang="ru" value="Gallery"/>
   </ENTRY>
-  <ENTRY id="Property.HTML_REGISTER">
+  <ENTRY id="Property.REGISTER_HTML">
     <STRING lang="ru" value="1"/>
   </ENTRY>
   <ENTRY id="Property.Manufacturer">
@@ -207,40 +207,40 @@
   <ENTRY id="Property.MEDIA_SHORTCUT_NAME">
     <STRING lang="ru" value="Media"/>
   </ENTRY>
-  <ENTRY id="Property.ODP_REGISTER">
+  <ENTRY id="Property.REGISTER_ODP">
     <STRING lang="ru" value="1"/>
   </ENTRY>
-  <ENTRY id="Property.ODS_REGISTER">
+  <ENTRY id="Property.REGISTER_ODS">
     <STRING lang="ru" value="1"/>
   </ENTRY>
-  <ENTRY id="Property.ODT_REGISTER">
+  <ENTRY id="Property.REGISTER_ODT">
     <STRING lang="ru" value="1"/>
   </ENTRY>
-  <ENTRY id="Property.OTP_REGISTER">
+  <ENTRY id="Property.REGISTER_OTP">
     <STRING lang="ru" value="1"/>
   </ENTRY>
-  <ENTRY id="Property.OTS_REGISTER">
+  <ENTRY id="Property.REGISTER_OTS">
     <STRING lang="ru" value="1"/>
   </ENTRY>
-  <ENTRY id="Property.OTT_REGISTER">
+  <ENTRY id="Property.REGISTER_OTT">
     <STRING lang="ru" value="1"/>
   </ENTRY>
   <ENTRY id="Property.PACKAGE_NAME">
     <STRING lang="ru" value="PACKAGE_NAME"/>
   </ENTRY>
-  <ENTRY id="Property.PDF_REGISTER">
+  <ENTRY id="Property.REGISTER_PDF">
     <STRING lang="ru" value="1"/>
   </ENTRY>
   <ENTRY id="Property.PLAYER">
     <STRING lang="ru" value="1"/>
   </ENTRY>
-  <ENTRY id="Property.POTX_REGISTER">
+  <ENTRY id="Property.REGISTER_POTX">
     <STRING lang="ru" value="1"/>
   </ENTRY>
-  <ENTRY id="Property.PPT_REGISTER">
+  <ENTRY id="Property.REGISTER_PPT">
     <STRING lang="ru" value="1"/>
   </ENTRY>
-  <ENTRY id="Property.PPTX_REGISTER">
+  <ENTRY id="Property.REGISTER_PPTX">
     <STRING lang="ru" value="1"/>
   </ENTRY>
   <ENTRY id="Property.PRODUCT_INSTALL_FOLDER">
@@ -249,13 +249,13 @@
   <ENTRY id="Property.ProductName">
     <STRING lang="ru" value="ONLYOFFICE Desktop Editors"/>
   </ENTRY>
-  <ENTRY id="Property.RTF_REGISTER">
+  <ENTRY id="Property.REGISTER_RTF">
     <STRING lang="ru" value="1"/>
   </ENTRY>
   <ENTRY id="Property.SHORTCUT_FOLDER_NAME">
     <STRING lang="ru" value="ONLYOFFICE"/>
   </ENTRY>
-  <ENTRY id="Property.TXT_REGISTER">
+  <ENTRY id="Property.REGISTER_TXT">
     <STRING lang="ru" value="1"/>
   </ENTRY>
   <ENTRY id="Property.UNINSTALL_PREV_ERROR_TEXT">
@@ -264,19 +264,19 @@
   <ENTRY id="Property.UNINSTALL_PREV_MSGBOX">
     <STRING lang="ru" value="Обнаружена предыдущая версия [|ProductName], нажмите кнопку &apos;OK&apos; чтобы удалить её, или &apos;Отмена&apos; чтобы выйти из программы инсталляции."/>
   </ENTRY>
-  <ENTRY id="Property.XLS_REGISTER">
+  <ENTRY id="Property.REGISTER_XLS">
     <STRING lang="ru" value="1"/>
   </ENTRY>
-  <ENTRY id="Property.XLSX_REGISTER">
+  <ENTRY id="Property.REGISTER_XLSX">
     <STRING lang="ru" value="1"/>
   </ENTRY>
-  <ENTRY id="Property.XLTX_REGISTER">
+  <ENTRY id="Property.REGISTERXLTX">
     <STRING lang="ru" value="1"/>
   </ENTRY>
-  <ENTRY id="Property.XML_REGISTER">
+  <ENTRY id="Property.REGISTER_XML">
     <STRING lang="ru" value="1"/>
   </ENTRY>
-  <ENTRY id="Property.XPS_REGISTER">
+  <ENTRY id="Property.REGISTER_XPS">
     <STRING lang="ru" value="1"/>
   </ENTRY>
 </DICTIONARY>
