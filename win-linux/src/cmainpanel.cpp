@@ -973,6 +973,7 @@ void CMainPanel::onDocumentPrint(void * opts)
                 finish < 1 && (finish = 1);
                 finish < start && (finish = start);
 
+                pContext->SetPageOrientation(pView->GetPrintPageOrientation(start - 1));
                 if ( pContext->BeginPaint() ) {
 #if defined(_WIN32)
                     CPrintProgress progressDlg((HWND)parentWidget()->winId());
@@ -1003,7 +1004,11 @@ void CMainPanel::onDocumentPrint(void * opts)
                         if (progressDlg.isRejected())
                             break;
 
-                        start < finish && printer->newPage();
+                        if (start < finish)
+                        {
+                            pContext->SetPageOrientation(pView->GetPrintPageOrientation(start));
+                            printer->newPage();
+                        }
                     }
                     pContext->EndPaint();
                 }
