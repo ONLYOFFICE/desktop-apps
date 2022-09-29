@@ -479,8 +479,8 @@ public:
 
             dialog->setWindowTitle(CEditorWindow::tr("Print Document"));
             dialog->setEnabledOptions(QPrintDialog::PrintPageRange | QPrintDialog::PrintToFile);
-            if (!(currentPage < 0)) {
-                currentPage++;
+            if (!(currentpage < 0)) {
+                currentpage++;
                 dialog->setEnabledOptions(dialog->enabledOptions() | QPrintDialog::PrintCurrentPage);
                 dialog->setOptions(dialog->options() | QPrintDialog::PrintCurrentPage);
             }
