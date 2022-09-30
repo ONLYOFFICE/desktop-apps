@@ -165,7 +165,7 @@
   <ENTRY id="Property.COMMON_SHORTCUT_NAME">
     <STRING lang="ru" value="ONLYOFFICE Editors"/>
   </ENTRY>
-  <ENTRY id="Property.CSV_REGISTER">
+  <ENTRY id="Property.REGISTER_CSV">
     <STRING lang="ru" value="1"/>
   </ENTRY>
   <ENTRY id="Property.CUSTOM_PATH">
