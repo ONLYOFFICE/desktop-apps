@@ -89,6 +89,12 @@
   <ENTRY id="Control.Text.FileAssociationsDlg#CheckBox_25">
     <STRING lang="ru" value=".xps"/>
   </ENTRY>
+  <ENTRY id="Control.Text.FileAssociationsDlg#CheckBox_26">
+    <STRING lang="ru" value=".docxf"/>
+  </ENTRY>
+  <ENTRY id="Control.Text.FileAssociationsDlg#CheckBox_27">
+    <STRING lang="ru" value=".oform"/>
+  </ENTRY>
   <ENTRY id="Control.Text.FileAssociationsDlg#CheckBox_3">
     <STRING lang="ru" value=".doc"/>
   </ENTRY>
@@ -180,6 +186,9 @@
   <ENTRY id="Property.REGISTER_DOCX">
     <STRING lang="ru" value="1"/>
   </ENTRY>
+  <ENTRY id="Property.REGISTER_DOCXF">
+    <STRING lang="ru" value="1"/>
+  </ENTRY>
   <ENTRY id="Property.REGISTER_DOTX">
     <STRING lang="ru" value="1"/>
   </ENTRY>
@@ -214,6 +223,9 @@
     <STRING lang="ru" value="1"/>
   </ENTRY>
   <ENTRY id="Property.REGISTER_ODT">
+    <STRING lang="ru" value="1"/>
+  </ENTRY>
+  <ENTRY id="Property.REGISTER_OFORM">
     <STRING lang="ru" value="1"/>
   </ENTRY>
   <ENTRY id="Property.REGISTER_OTP">
