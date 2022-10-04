@@ -460,6 +460,12 @@ public:
 
     void onDocumentPrint(int currentpage, uint pagescount) override
     {
+#ifdef __OS_WIN_XP
+        if (QPrinterInfo::availablePrinterNames().size() == 0) {
+            CMessage::info(window->handle(), tr("There are no printers available"));
+            return;
+        }
+#endif
         if ( isPrinting ) return;
         isPrinting = true;
 

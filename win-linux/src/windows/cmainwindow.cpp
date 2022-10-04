@@ -1055,6 +1055,13 @@ void CMainWindow::goStart()
 
 void CMainWindow::onDocumentPrint(void * opts)
 {
+#ifdef __OS_WIN_XP
+    if (QPrinterInfo::availablePrinterNames().size() == 0) {
+        CMessage::info(TOP_NATIVE_WINDOW_HANDLE, tr("There are no printers available"));
+        return;
+    }
+#endif
+
     static bool printInProcess = false;
     if (!printInProcess)
         printInProcess = true; else
