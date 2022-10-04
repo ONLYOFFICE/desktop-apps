@@ -295,6 +295,8 @@
     <ROW Feature_="FileTypeAssociations" Level="4" Condition="REGISTER_NONE = 1"/>
     <ROW Feature_="docxf" Level="1" Condition="REGISTER_DOCXF = 1"/>
     <ROW Feature_="oform" Level="1" Condition="REGISTER_OFORM = 1"/>
+    <ROW Feature_="docxf" Level="0" Condition="ProductName &lt;&gt; &quot;ONLYOFFICE Desktop Editors&quot;"/>
+    <ROW Feature_="oform" Level="0" Condition="ProductName &lt;&gt; &quot;ONLYOFFICE Desktop Editors&quot;"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiControlComponent">
     <ROW Dialog_="AdminBrowseDlg" Control="OK" Type="PushButton" X="304" Y="243" Width="56" Height="17" Attributes="3" Text="[ButtonText_OK]" Order="300" TextLocId="-" MsiKey="AdminBrowseDlg#OK"/>
@@ -385,7 +387,7 @@
     <ROW Dialog_="FileAssociationsDlg" Control="CheckBox_8" Type="CheckBox" X="116" Y="134" Width="55" Height="11" Attributes="3" Property="REGISTER_HTML" Text=".html" Order="1700"/>
     <ROW Dialog_="FileAssociationsDlg" Control="CheckBox_9" Type="CheckBox" X="116" Y="156" Width="55" Height="11" Attributes="3" Property="REGISTER_ODP" Text=".odp" Order="1800"/>
     <ROW Dialog_="FileAssociationsDlg" Control="CheckBox_10" Type="CheckBox" X="116" Y="178" Width="55" Height="11" Attributes="3" Property="REGISTER_ODS" Text=".ods" Order="1900"/>
-    <ROW Dialog_="FileAssociationsDlg" Control="CheckBox_11" Type="CheckBox" X="116" Y="201" Width="55" Height="11" Attributes="3" Property="REGISTER_ODT" Text=".odt" Order="2000"/>
+    <ROW Dialog_="FileAssociationsDlg" Control="CheckBox_11" Type="CheckBox" X="182" Y="90" Width="55" Height="11" Attributes="3" Property="REGISTER_ODT" Text=".odt" Order="2000"/>
     <ROW Dialog_="FileAssociationsDlg" Control="CheckBox_12" Type="CheckBox" X="182" Y="112" Width="55" Height="11" Attributes="3" Property="REGISTER_OTP" Text=".otp" Order="2100"/>
     <ROW Dialog_="FileAssociationsDlg" Control="CheckBox_13" Type="CheckBox" X="182" Y="134" Width="55" Height="11" Attributes="3" Property="REGISTER_OTS" Text=".ots" Order="2200"/>
     <ROW Dialog_="FileAssociationsDlg" Control="CheckBox_14" Type="CheckBox" X="182" Y="156" Width="55" Height="11" Attributes="3" Property="REGISTER_OTT" Text=".ott" Order="2300"/>
@@ -402,8 +404,8 @@
     <ROW Dialog_="FileAssociationsDlg" Control="CheckBox_25" Type="CheckBox" X="314" Y="178" Width="55" Height="11" Attributes="3" Property="REGISTER_XPS" Text=".xps" Order="3400"/>
     <ROW Dialog_="FileAssociationsDlg" Control="Select_all_button" Type="PushButton" X="215" Y="211" Width="56" Height="17" Attributes="3" Text="Select all" Order="3500" TextLocId="Control.Text.FileAssociationsDlg#Select_all_button"/>
     <ROW Dialog_="FileAssociationsDlg" Control="Deselect_all_button" Type="PushButton" X="272" Y="211" Width="56" Height="17" Attributes="3" Text="Deselect all" Order="3600" TextLocId="Control.Text.FileAssociationsDlg#Deselect_all_button"/>
-    <ROW Dialog_="FileAssociationsDlg" Control="CheckBox_26" Type="CheckBox" X="50" Y="201" Width="55" Height="11" Attributes="3" Property="REGISTER_DOCXF" Text=".docxf" Order="3700"/>
-    <ROW Dialog_="FileAssociationsDlg" Control="CheckBox_27" Type="CheckBox" X="182" Y="90" Width="55" Height="11" Attributes="3" Property="REGISTER_OFORM" Text=".oform" Order="3800"/>
+    <ROW Dialog_="FileAssociationsDlg" Control="CheckBox_26" Type="CheckBox" X="50" Y="200" Width="55" Height="11" Attributes="3" Property="REGISTER_DOCXF" Text=".docxf" Order="3700"/>
+    <ROW Dialog_="FileAssociationsDlg" Control="CheckBox_27" Type="CheckBox" X="116" Y="200" Width="55" Height="11" Attributes="3" Property="REGISTER_OFORM" Text=".oform" Order="3800"/>
     <ROW Dialog_="FilesInUse" Control="BannerBitmap" Type="Bitmap" X="0" Y="0" Width="370" Height="44" Attributes="1048577" Text="banner.png" Order="400" MsiKey="FilesInUse#BannerBitmap"/>
     <ROW Dialog_="FilesInUse" Control="Title" Type="Text" X="15" Y="6" Width="200" Height="15" Attributes="196611" Text="Files in Use" TextStyle="[DlgTitleFont]" Order="600" TextLocId="Control.Text.FilesInUse#Title" MsiKey="FilesInUse#Title"/>
     <ROW Dialog_="FilesInUse" Control="Text" Type="Text" X="20" Y="55" Width="330" Height="30" Attributes="3" Text="The following applications are using files that need to be updated by this setup. You can either close the applications and then click &quot;Retry&quot;, or click &quot;Ignore&quot; so that the installer continues the installation and replaces these files when your system restarts." Order="700" TextLocId="Control.Text.FilesInUse#Text" MsiKey="FilesInUse#Text"/>
@@ -499,6 +501,8 @@
     <ROW Dialog_="ShortcutsDlg" Control_="StartupShorcutsCheckBox" Action="Hide" Condition="(Not Installed)"/>
     <ROW Dialog_="ShortcutsDlg" Control_="StartmenuShortcutsCheckBox" Action="Show" Condition="(Not Installed)"/>
     <ROW Dialog_="ShortcutsDlg" Control_="QuickLaunchShorcutsCheckBox" Action="Hide" Condition="(Not Installed) AND (VersionNT&lt;&quot;601&quot;)"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="CheckBox_26" Action="Hide" Condition="ProductName &lt;&gt; &quot;ONLYOFFICE Desktop Editors&quot;"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="CheckBox_27" Action="Hide" Condition="ProductName &lt;&gt; &quot;ONLYOFFICE Desktop Editors&quot;"/>
     <ATTRIBUTE name="DeletedRows" value="ExitDialog#ViewReadmeText#Hide#((NOT AI_INSTALL) AND (NOT AI_PATCH)) OR ((CTRLS &lt;&gt; 1) AND (CTRLS &lt;&gt; 3))@ShortcutsDlg#QuickLaunchShorcutsCheckBox#Show#(Not Installed) AND (VersionNT&lt;&quot;601&quot;)@ShortcutsDlg#StartmenuShortcutsCheckBox#Show#(Not Installed)@ShortcutsDlg#StartupShorcutsCheckBox#Show#(Not Installed)"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiControlEventComponent">
