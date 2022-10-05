@@ -493,9 +493,12 @@ public:
 #endif // _WIN32
 
             dialog->setWindowTitle(CEditorWindow::tr("Print Document"));
-            dialog->setEnabledOptions(QPrintDialog::PrintPageRange | QPrintDialog::PrintCurrentPage | QPrintDialog::PrintToFile);
-            if (!(currentpage < 0))
-                currentpage++, dialog->setOptions(dialog->options() | QPrintDialog::PrintCurrentPage);
+            dialog->setEnabledOptions(QPrintDialog::PrintPageRange | QPrintDialog::PrintToFile);
+            if (!(currentpage < 0)) {
+                currentpage++;
+                dialog->setEnabledOptions(dialog->enabledOptions() | QPrintDialog::PrintCurrentPage);
+                dialog->setOptions(dialog->options() | QPrintDialog::PrintCurrentPage);
+            }
             dialog->setPrintRange(m_printData._print_range);
 
             if ( dialog->exec() == QDialog::Accepted ) {

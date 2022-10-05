@@ -397,10 +397,7 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
     }
     case ASC_MENU_EVENT_TYPE_PAGE_SELECT_OPENSSL_CERTIFICATE: {
 #ifdef DOCUMENTSCORE_OPENSSL_SUPPORT
-        CMainWindow * _window = mainWindowFromViewId(event->get_SenderId());
-        if ( _window ) {
-            _window->sendSertificate(event->get_SenderId());
-        }
+        m_private->selectSSLSertificate(event->get_SenderId());
 #endif
         return true; }
     case ASC_MENU_EVENT_TYPE_CEF_ONSAVE: {
@@ -1833,7 +1830,7 @@ void CAscApplicationManagerWrapper::onQueueCloseWindow(const sWinTag& t)
     if ( t.type == 1 ) {
         closeMainWindow();
     } else {
-        QTimer::singleShot(0, this, [&t]{
+        QTimer::singleShot(0, this, [t]{
             CEditorWindow * _e = reinterpret_cast<CEditorWindow *>(t.handle);
             int res = _e->closeWindow();
             if ( res == MODAL_RESULT_CANCEL ) {
