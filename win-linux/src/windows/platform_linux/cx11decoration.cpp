@@ -43,7 +43,7 @@
 //#include "gtk_addon.h"
 
 #define CUSTOM_BORDER_WIDTH 4
-#define MOTION_TIMER_MS 500
+#define MOTION_TIMER_MS 250
 
 const int k_NET_WM_MOVERESIZE_SIZE_TOPLEFT =     0;
 const int k_NET_WM_MOVERESIZE_SIZE_TOP =         1;
@@ -569,7 +569,7 @@ void CX11Decoration::raiseWindow()
 void CX11Decoration::sendButtonRelease()
 {
     Display * xdisplay_ = QX11Info::display();
-    Window x_root_window_ = DefaultRootWindow(xdisplay_);
+    Window x_root_window_ = (Window)m_window->effectiveWinId();
 
     XEvent event;
     memset(&event, 0, sizeof(XEvent));
