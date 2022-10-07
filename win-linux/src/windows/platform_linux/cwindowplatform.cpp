@@ -115,25 +115,14 @@ void CWindowPlatform::onMinimizeEvent()
 
 bool CWindowPlatform::event(QEvent * event)
 {
-    static bool _flg_motion = false;
-    static bool _flg_left_button = false;
     if (event->type() == QEvent::WindowStateChange) {
         CX11Decoration::setMaximized(isMaximized() ? true : false);
         applyWindowState();
         adjustGeometry();
     } else
-    if ( event->type() == QEvent::MouseButtonPress ) {
-        _flg_left_button = static_cast<QMouseEvent *>(event)->buttons().testFlag(Qt::LeftButton);
-    } else
-    if ( event->type() == QEvent::MouseButtonRelease ) {
-        if ( _flg_left_button && _flg_motion ) {
-            updateScaling();
-        }
-        _flg_left_button = _flg_motion = false;
-    } else
-    if ( event->type() == QEvent::Move ) {
-        if (!_flg_motion)
-            _flg_motion = true;
+    if (event->type() == QEvent::HoverLeave) {
+        if (m_boxTitleBtns)
+            m_boxTitleBtns->setCursor(QCursor(Qt::ArrowCursor));
     }
     return CWindowBase::event(event);
 }
