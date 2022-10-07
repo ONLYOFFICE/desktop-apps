@@ -213,11 +213,7 @@ bool CMainWindow::pointInTabs(const QPoint& pt)
 {
     QRect _rc_title(m_pMainPanel->geometry());
     _rc_title.setHeight(tabWidget()->tabBar()->height());
-//#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
-#ifdef Q_OS_LINUX
     _rc_title.moveTop(1);
-#endif
-//#endif
     return _rc_title.contains(m_pMainPanel->mapFromGlobal(pt));
 }
 
