@@ -120,6 +120,9 @@ bool CWindowPlatform::event(QEvent * event)
         applyWindowState();
         adjustGeometry();
     } else
+    if (event->type() == QEvent::HoverLeave) {
+        if (m_boxTitleBtns)
+            m_boxTitleBtns->setCursor(QCursor(Qt::ArrowCursor));
     }
     return CWindowBase::event(event);
 }
