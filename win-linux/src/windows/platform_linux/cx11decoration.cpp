@@ -585,6 +585,7 @@ void CX11Decoration::sendButtonRelease()
                         &event.xbutton.x_root, &event.xbutton.y_root, &event.xbutton.x, &event.xbutton.y, &event.xbutton.state);
     XSendEvent(xdisplay_, PointerWindow, True, ButtonReleaseMask, &event);
     XFlush(xdisplay_);
+    QApplication::postEvent(m_window, new QEvent(QEvent::User));
 }
 
 void CX11Decoration::setCursorPos(int x, int y)

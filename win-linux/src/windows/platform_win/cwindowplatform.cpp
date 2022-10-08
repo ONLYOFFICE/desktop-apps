@@ -285,6 +285,10 @@ bool CWindowPlatform::nativeEvent(const QByteArray &eventType, void *message, lo
         });
         break;
 
+    case WM_EXITSIZEMOVE:
+        QApplication::postEvent(this, new QEvent(QEvent::User));
+        break;
+
     default:
         break;
     }

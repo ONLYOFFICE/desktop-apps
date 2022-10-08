@@ -184,18 +184,13 @@ void CEditorWindow::setReporterMode(bool apply)
 
 void CEditorWindow::undock(bool maximized)
 {
-#ifdef Q_OS_LINUX
-    //maximized = false;
-#else
-    if ( maximized ) {
-        m_restoreMaximized = true;
-        //maximized = false;
-    }
-#endif
-
-    CWindowPlatform::show(maximized);
-    if (isCustomWindowStyle() && !maximized)
+    if (isCustomWindowStyle()) {
+        m_restoreMaximized = maximized;
+        CWindowPlatform::show(false);
         captureMouse();
+    } else {
+        CWindowPlatform::show(maximized);
+    }
 }
 
 bool CEditorWindow::holdView(int id) const
@@ -442,23 +437,13 @@ void CEditorWindow::onMaximizeEvent()
 
 bool CEditorWindow::event(QEvent * event)
 {
-    static bool _flg_motion = false;
-    static bool _flg_left_button = false;
     if (event->type() == QEvent::Resize) {
         onSizeEvent(0);
     } else
-    if (event->type() == QEvent::MouseButtonPress) {
-        _flg_left_button = static_cast<QMouseEvent *>(event)->buttons().testFlag(Qt::LeftButton);
-    } else
-    if (event->type() == QEvent::MouseButtonRelease) {
-        if ( _flg_left_button && _flg_motion ) {
-            onExitSizeMove();
-        }
-        _flg_left_button = _flg_motion = false;
+    if (event->type() == QEvent::User) {
+        onExitSizeMove();
     } else
     if (event->type() == QEvent::Move) {
-        if (!_flg_motion)
-            _flg_motion = true;
         QMoveEvent * _e = static_cast<QMoveEvent *>(event);
         onMoveEvent(QRect(_e->pos(), QSize(1,1)));
     }
