@@ -356,7 +356,6 @@ void CEditorWindow::onMoveEvent(const QRect&)
 
 void CEditorWindow::onExitSizeMove()
 {
-    updateScaling();
     if ( m_restoreMaximized ) {
         m_restoreMaximized = false;
         CWindowPlatform::show(true);
