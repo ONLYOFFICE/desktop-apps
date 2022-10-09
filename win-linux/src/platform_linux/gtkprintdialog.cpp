@@ -387,6 +387,11 @@ PrintRange GtkPrintDialog::printRange()
     return m_print_range;
 }
 
+PrintOptions GtkPrintDialog::enabledOptions()
+{
+    return m_options;
+}
+
 PrintOptions GtkPrintDialog::options()
 {
     return m_options;

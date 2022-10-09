@@ -66,6 +66,7 @@ namespace CEditorTools
                     start < 1 && (start = 1);
                     finish < 1 && (finish = 1);
                     finish < start && (finish = start);
+                    //c.context->SetPageOrientation(c.view->GetPrintPageOrientation(start - 1));
                     while (start <= finish) {
                         c.context->AddRef();
 
@@ -85,8 +86,10 @@ namespace CEditorTools
 
                         if ( _progress.isRejected() )
                             break;
-                        if (curr < count)
+                        if (curr < count) {
+                            //c.context->SetPageOrientation(c.view->GetPrintPageOrientation(start));
                             c.context->getPrinter()->newPage();
+                        }
                         curr++;
                         start++;
                     }

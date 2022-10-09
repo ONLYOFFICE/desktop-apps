@@ -52,6 +52,7 @@ void CHelp::out()
     qWarning() << "    --view=path/to/file to open document in view mode in separate window";
     qWarning() << "    --single-window-app document will be opened in independed process";
     qWarning() << "    --force-use-tab document will be opend in new tab instead of new separate window";
+    qWarning() << "    --geometry=default reset window geometry";
     qWarning() << "    --xdg-desktop-portal use portals instead of gtk file chooser (the flag is saved for subsequent sessions)";
     qWarning() << "    --xdg-desktop-portal=default use portals instead of gtk file chooser for current session";
     qWarning() << "    --native-file-dialog use non Qt dialog";

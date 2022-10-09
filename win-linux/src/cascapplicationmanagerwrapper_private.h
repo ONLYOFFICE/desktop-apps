@@ -44,6 +44,10 @@
 #include "components/cmessage.h"
 #include <QApplication>
 
+#ifdef DOCUMENTSCORE_OPENSSL_SUPPORT
+# include "platform_linux/cdialogopenssl.h"
+#endif
+
 
 class CAscApplicationManagerWrapper_Private
 {
@@ -340,6 +344,28 @@ public:
         return false;
 
     }
+
+#ifdef DOCUMENTSCORE_OPENSSL_SUPPORT
+    auto selectSSLSertificate(int viewid) -> void {
+        QWidget * parent = m_appmanager.editorWindowFromViewId(viewid);
+        if ( !parent ) {
+            parent = m_appmanager.mainWindowFromViewId(viewid);
+        }
+
+        if ( parent ) {
+            CDialogOpenSsl _dialog(parent);
+
+            NSEditorApi::CAscOpenSslData * pData = new NSEditorApi::CAscOpenSslData;
+            if ( _dialog.exec() == QDialog::Accepted ) {
+                _dialog.getResult(*pData);
+            }
+
+            NSEditorApi::CAscMenuEvent * pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_PAGE_SELECT_OPENSSL_CERTIFICATE);
+            pEvent->m_pData = pData;
+            m_appmanager.GetViewById(viewid)->Apply(pEvent);
+        }
+    }
+#endif
 
 protected:
     auto mainWindow() -> CMainWindow * {
