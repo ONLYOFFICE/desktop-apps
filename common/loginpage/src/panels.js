@@ -214,8 +214,8 @@ function openFile(from, model) {
         } else {
             const params = {
                     id: model.fileid,
-                    name: model.name,
-                    path: model.path,
+                    name: utils.fn.decodeHtml(model.name),
+                    path: utils.fn.decodeHtml(model.path),
                     type: model.type
                 };
 

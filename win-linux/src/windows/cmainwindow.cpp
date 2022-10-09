@@ -213,11 +213,7 @@ bool CMainWindow::pointInTabs(const QPoint& pt)
 {
     QRect _rc_title(m_pMainPanel->geometry());
     _rc_title.setHeight(tabWidget()->tabBar()->height());
-//#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
-#ifdef Q_OS_LINUX
     _rc_title.moveTop(1);
-#endif
-//#endif
     return _rc_title.contains(m_pMainPanel->mapFromGlobal(pt));
 }
 
@@ -1055,6 +1051,13 @@ void CMainWindow::goStart()
 
 void CMainWindow::onDocumentPrint(void * opts)
 {
+#ifdef __OS_WIN_XP
+    if (QPrinterInfo::availablePrinterNames().size() == 0) {
+        CMessage::info(TOP_NATIVE_WINDOW_HANDLE, tr("There are no printers available"));
+        return;
+    }
+#endif
+
     static bool printInProcess = false;
     if (!printInProcess)
         printInProcess = true; else
@@ -1091,9 +1094,12 @@ void CMainWindow::onDocumentPrint(void * opts)
 #endif // _WIN32
 
         dialog->setWindowTitle(tr("Print Document"));
-        dialog->setEnabledOptions(QPrintDialog::PrintPageRange | QPrintDialog::PrintCurrentPage | QPrintDialog::PrintToFile);
-        if (!(currentPage < 0))
-            currentPage++, dialog->setOptions(dialog->options() | QPrintDialog::PrintCurrentPage);
+        dialog->setEnabledOptions(QPrintDialog::PrintPageRange | QPrintDialog::PrintToFile);
+        if (!(currentPage < 0)) {
+            currentPage++;
+            dialog->setEnabledOptions(dialog->enabledOptions() | QPrintDialog::PrintCurrentPage);
+            dialog->setOptions(dialog->options() | QPrintDialog::PrintCurrentPage);
+        }
         dialog->setPrintRange(m_printData->_print_range);
 
         if (dialog->exec() == QDialog::Accepted) {

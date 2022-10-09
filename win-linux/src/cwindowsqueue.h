@@ -41,16 +41,17 @@
 
 #include <QDebug>
 
+#define THREAD_WAIT_INTERVAL 10
+
 template<typename T>
 class CWindowsQueue
 {
     std::vector<std::thread> m_threads;
     std::mutex m_mutex;
     std::vector<T> m_wintoclose;
-    std::atomic_bool m_queueLocked{false};
+    std::atomic_bool m_queueCanceled{false};
 
     std::function<void(T)> m_callback;
-
 public:
     CWindowsQueue()
     {}
@@ -64,13 +65,24 @@ public:
         }
     }
 
-    void enter(T iter)
+    void start_queue() {
+        if ( !m_wintoclose.empty() ) {
+            trigger_callback(*m_wintoclose.begin());
+        }
+    }
+
+    void enter(const T& iter)
     {
-        if ( m_queueLocked.load() ) {
-            m_threads.push_back(std::thread(&CWindowsQueue::add_thread_func, this, iter));
-        } else {
-            m_queueLocked.store(true);
-            trigger_callback(iter);
+        m_wintoclose.push_back(iter);
+        if ( !(m_wintoclose.size() > 1) ) {
+            m_queueCanceled.store(false);
+
+            std::function<void()> start_func_(std::bind(&CWindowsQueue::start_queue, this));
+
+            std::thread([start_func_]() {
+                std::this_thread::sleep_for(std::chrono::milliseconds(THREAD_WAIT_INTERVAL));
+                start_func_();
+            }).detach();
         }
     }
 
@@ -84,35 +96,23 @@ public:
         m_threads.push_back(std::thread(&CWindowsQueue::cancel_thread_func, this));
     }
 
-    void setcallback(std::function<void(T)> fn)
+    void setcallback(std::function<void(T)>& fn)
     {
         m_callback = fn;
     }
 
+
 private:
-    void add_thread_func(T iter)
-    {
-        std::lock_guard<std::mutex> lock(m_mutex);
-
-        const auto it = std::find_if(m_wintoclose.begin(), m_wintoclose.end(),
-                                     [&](const T& i){ return i == iter; });
-
-        if ( it != m_wintoclose.end() )
-            m_wintoclose.push_back(T(iter));
-    }
-
     void leave_thread_func(T iter)
     {
         std::lock_guard<std::mutex> lock{m_mutex};
 
-        const auto& it = std::find_if(m_wintoclose.begin(), m_wintoclose.end(),
-                                     [&](T i){ return i == iter; });
+        const auto& it = std::find_if(m_wintoclose.begin(), m_wintoclose.end(), [&](T i){ return i == iter; });
+
         if ( it != m_wintoclose.end() )
             m_wintoclose.erase(it);
 
-        if ( m_wintoclose.empty() )
-            m_queueLocked.store(false);
-        else {
+        if ( !m_wintoclose.empty() && !m_queueCanceled.load() ) {
             trigger_callback(*m_wintoclose.begin());
         }
     }
@@ -122,7 +122,7 @@ private:
         std::lock_guard<std::mutex> lock(m_mutex);
 
         m_wintoclose.clear();
-        m_queueLocked.store(false);
+        m_queueCanceled.store(true);
     }
 
     void trigger_callback(const T& iter)
