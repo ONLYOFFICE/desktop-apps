@@ -116,7 +116,7 @@ void CWindowPlatform::onMinimizeEvent()
 bool CWindowPlatform::event(QEvent * event)
 {
     if (event->type() == QEvent::WindowStateChange) {
-        CX11Decoration::setMaximized(isMaximized() ? true : false);
+        CX11Decoration::setMaximized(isMaximized());
         applyWindowState();
         adjustGeometry();
     } else
