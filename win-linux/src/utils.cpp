@@ -567,6 +567,47 @@ QJsonObject Utils::parseJson(const std::wstring& wjson)
     return QJsonObject();
 }
 
+#ifdef _WIN32
+Utils::WinVer Utils::getWinVersion()
+{
+    NTSTATUS(WINAPI *RtlGetVersion)(LPOSVERSIONINFOEXW);
+    *(FARPROC*)&RtlGetVersion = GetProcAddress(GetModuleHandleA("ntdll"), "RtlGetVersion");
+    if (RtlGetVersion != NULL) {
+        OSVERSIONINFOEXW osInfo;
+        osInfo.dwOSVersionInfoSize = sizeof(osInfo);
+        RtlGetVersion(&osInfo);
+
+        if (osInfo.dwMajorVersion == 5L && (osInfo.dwMinorVersion == 1L || osInfo.dwMinorVersion == 2L))
+            return WinVer::WinXP;
+        else
+        if (osInfo.dwMajorVersion == 6L && osInfo.dwMinorVersion == 0L)
+            return  WinVer::WinVista;
+        else
+        if (osInfo.dwMajorVersion == 6L && osInfo.dwMinorVersion == 1L)
+            return  WinVer::Win7;
+        else
+        if (osInfo.dwMajorVersion == 6L && osInfo.dwMinorVersion == 2L)
+            return  WinVer::Win8;
+        else
+        if (osInfo.dwMajorVersion == 6L && osInfo.dwMinorVersion == 3L)
+            return  WinVer::Win8_1;
+        else
+        if (osInfo.dwMajorVersion == 10L) {
+            if (osInfo.dwMinorVersion == 0L) {
+                if (osInfo.dwBuildNumber < 22000)
+                    return  WinVer::Win10;
+                else
+                    return  WinVer::Win11;
+            } else
+                return  WinVer::Win11;
+        } else
+        if (osInfo.dwMajorVersion > 10L)
+            return  WinVer::Win11;
+    }
+    return WinVer::Undef;
+}
+#endif
+
 QString Utils::replaceBackslash(const QString& path)
 {
     return QString(path).replace(QRegularExpression("\\\\"), "/");
