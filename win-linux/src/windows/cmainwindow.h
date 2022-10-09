@@ -47,8 +47,6 @@
 #include <math.h>
 
 
-struct printdata;
-
 class CMainWindow : public CWindowPlatform, public CScalingWrapper
 {
     Q_OBJECT
@@ -151,10 +149,11 @@ private:
     QWidget*         m_pMainWidget;
     QPushButton*     m_pButtonProfile;
     CDownloadWidget* m_pWidgetDownload;
-    printdata*       m_printData;
     QString          m_savePortal;
     bool             m_isMaximized;
     int              m_saveAction;
+    struct           printdata;
+    printdata*       m_printData;
 
 private slots:
     void slot_modalDialog(bool,  WId);
