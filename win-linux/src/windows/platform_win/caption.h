@@ -47,6 +47,20 @@ public:
     {}
 
 private:
+    bool postMsg(DWORD cmd) {
+        POINT pt;
+        ::GetCursorPos(&pt);
+        QPoint pos = mapFromGlobal(QPoint(int(pt.x), int(pt.y)));
+        QPushButton *pushButton = childAt(pos) ? qobject_cast<QPushButton*>(childAt(pos)) : nullptr;
+        if (!pushButton) {
+            HWND hWnd = ::GetAncestor((HWND)(window()->windowHandle()->winId()), GA_ROOT);
+            ::ReleaseCapture();
+            ::PostMessage(hWnd, cmd, HTCAPTION, POINTTOPOINTS(pt));
+            return true;
+        }
+        return false;
+    }
+
     bool nativeEvent(const QByteArray &eventType, void *message, long *result)
     {
     #if (QT_VERSION == QT_VERSION_CHECK(5, 11, 1))
@@ -58,29 +72,13 @@ private:
         switch (msg->message)
         {
         case WM_LBUTTONDOWN: {
-            POINT pt;
-            ::GetCursorPos(&pt);
-            QPoint pos = mapFromGlobal(QPoint(int(pt.x), int(pt.y)));
-            QPushButton *pushButton = childAt(pos) ? qobject_cast<QPushButton*>(childAt(pos)) : nullptr;
-            if (!pushButton) {
-                HWND hWnd = ::GetAncestor((HWND)(window()->windowHandle()->winId()), GA_ROOT);
-                ::ReleaseCapture();
-                ::PostMessage(hWnd, WM_NCLBUTTONDOWN, HTCAPTION, POINTTOPOINTS(pt));
+            if (postMsg(WM_NCLBUTTONDOWN))
                 return true;
-            }
             break;
         }
         case WM_LBUTTONDBLCLK: {
-            POINT pt;
-            ::GetCursorPos(&pt);
-            QPoint pos = mapFromGlobal(QPoint(int(pt.x), int(pt.y)));
-            QPushButton *pushButton = childAt(pos) ? qobject_cast<QPushButton*>(childAt(pos)) : nullptr;
-            if (!pushButton) {
-                HWND hWnd = ::GetAncestor((HWND)(window()->windowHandle()->winId()), GA_ROOT);
-                ::ReleaseCapture();
-                ::PostMessage(hWnd, WM_NCLBUTTONDBLCLK, HTCAPTION, POINTTOPOINTS(pt));
+            if (postMsg(WM_NCLBUTTONDBLCLK))
                 return true;
-            }
             break;
         }
         default:
