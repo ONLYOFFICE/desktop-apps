@@ -38,8 +38,7 @@
 #include "defines.h"
 #ifdef _WIN32
 # include "windows/platform_win/caption.h"
-# if (QT_VERSION >= QT_VERSION_CHECK(5, 9, 0))
-#  include <QOperatingSystemVersion>
+# ifndef __OS_WIN_XP
 #  include "windows/platform_win/csnap.h"
 # endif
 #endif
@@ -188,14 +187,11 @@ QWidget* CWindowBase::createTopPanel(QWidget *parent)
             m_pTopButtons.push_back(btn);
             layoutBtns->addWidget(btn);
         }
-#ifdef _WIN32
-# if (QT_VERSION >= QT_VERSION_CHECK(5, 9, 0))
-        auto current = QOperatingSystemVersion::current();
-        if (current >= QOperatingSystemVersion(QOperatingSystemVersion::Windows, 10, 0, 22000)) {
+#if defined (_WIN32) && !defined (__OS_WIN_XP)
+        if (Utils::getWinVersion() >= Utils::WinVer::Win11) {
             CWin11Snap *snap = new CWin11Snap(m_pTopButtons[BtnType::Btn_Maximize]);
             Q_UNUSED(snap)
         }
-# endif
 #endif
     }
     return _boxTitleBtns;
