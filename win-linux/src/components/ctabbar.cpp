@@ -379,6 +379,8 @@ void CTabBar::mouseReleaseEvent(QMouseEvent * e)
 {
     QTabBar::mouseReleaseEvent(e);
     releaseMouse();
+    if (e->button() == Qt::MiddleButton)
+        onCloseButton();
 }
 
 void CTabBar::wheelEvent(QWheelEvent *event)
@@ -790,7 +792,8 @@ void CTabBar::tabStartLoading(int index, const QString& theme)
 
 void CTabBar::onCloseButton()
 {
-    QWidget * b = (QWidget *)sender();
+    QWidget * b = sender() ? (QWidget *)sender() :
+                             qApp->widgetAt(QCursor::pos());
     int tabToClose = -1;
     for (int i(0); i < count(); ++i) {
         if ( TAB_BTNCLOSE(i) == b ) {
