@@ -8,7 +8,12 @@ CScalingWrapper::CScalingWrapper(QWidget * parent)
 
 CScalingWrapper::CScalingWrapper(double f)
 {
-    if ( f > 1 ) m_scaleFactor = f;
+    m_scaleFactor = ( f > 1 ) ? f : 1.0;
+}
+
+CScalingWrapper::~CScalingWrapper()
+{
+
 }
 
 void CScalingWrapper::updateScalingFactor(double f)
