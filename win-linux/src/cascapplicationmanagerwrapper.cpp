@@ -1168,14 +1168,10 @@ void CAscApplicationManagerWrapper::launchAppClose()
                 if ( AscAppManager::mainWindow()->tabCloseRequest() == MODAL_RESULT_CANCEL )
                     AscAppManager::cancelClose();
             }
-        } else
-        if ( !(m_countViews > 1) ) {
-#ifdef _UPDMODULE
-#ifdef Q_OS_WIN
-            // ========== Start update installation ============
+        } else {
+#if defined (_UPDMODULE) && defined (_WIN32)
+            // Start update installation
             m_pUpdateManager->handleAppClose();
-            // =================================================
-#endif
 #endif
             DestroyCefView(-1);
 
