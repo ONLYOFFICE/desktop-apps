@@ -53,6 +53,7 @@
 #include <QJsonDocument>
 #include <QJsonArray>
 #include <QJsonObject>
+#include <QGridLayout>
 
 #ifdef __linux__
 # include "platform_linux/gtkprintdialog.h"

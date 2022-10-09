@@ -1,4 +1,7 @@
 #include "components/ctabbarwrapper.h"
+#include <QGridLayout>
+#include <QToolButton>
+
 
 CTabBarWrapper::CTabBarWrapper(QWidget *parent):
     QFrame(parent)
@@ -43,7 +46,7 @@ CTabBarWrapper::CTabBarWrapper(QWidget *parent):
     _pPaddingWidget->setObjectName("paddingWidget");
     _pPaddingWidget->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
 
-    QHBoxLayout *_pTabLayout = new QHBoxLayout(this);
+    QHBoxLayout *_pTabLayout = new QHBoxLayout();
 #if (QT_VERSION < QT_VERSION_CHECK(5, 12, 2))
     _pTabLayout->setSpacing(0);
 #else
