@@ -234,11 +234,13 @@ core_windows {
     HEADERS += $$PWD/src/windows/platform_win/cwindowplatform.h \
                $$PWD/src/windows/platform_win/csnap.h \
                $$PWD/src/windows/platform_win/caption.h \
-               $$PWD/src/platform_win/singleapplication.h
+               $$PWD/src/platform_win/singleapplication.h \
+               $$PWD/src/platform_win/filechooser.h
 
     SOURCES += $$PWD/src/windows/platform_win/cwindowplatform.cpp \
                $$PWD/src/windows/platform_win/csnap.cpp \
-               $$PWD/src/platform_win/singleapplication.cpp
+               $$PWD/src/platform_win/singleapplication.cpp \
+               $$PWD/src/platform_win/filechooser.cpp
 
 
     LIBS += -lwininet \
