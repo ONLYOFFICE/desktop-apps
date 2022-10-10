@@ -345,7 +345,8 @@ void CX11Decoration::freeCursors()
     Display * _display = QX11Info::display();
     std::for_each(m_cursors.begin(), m_cursors.end(),
         [_display](std::pair<int, Cursor> i) {
-            XFreeCursor(_display, i.second);
+            if (_display)
+                XFreeCursor(_display, i.second);
         }
     );
 }

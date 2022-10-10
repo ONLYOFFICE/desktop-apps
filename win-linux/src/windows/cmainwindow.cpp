@@ -83,9 +83,11 @@ using namespace NSEditorApi;
 
 #define TOP_NATIVE_WINDOW_HANDLE this
 
-struct printdata {
+struct CMainWindow::printdata {
 public:
-    printdata() : _print_range(QPrintDialog::PrintRange::AllPages) {}
+    printdata() :
+        _printer_info(QPrinterInfo::defaultPrinter()),
+        _print_range(QPrintDialog::PrintRange::AllPages) {}
     QPrinterInfo _printer_info;
     QPrintDialog::PrintRange _print_range;
 };
@@ -99,10 +101,10 @@ CMainWindow::CMainWindow(const QRect &rect) :
     m_pMainWidget(nullptr),
     m_pButtonProfile(nullptr),
     m_pWidgetDownload(nullptr),
-    m_printData(new printdata),
     m_savePortal(QString()),
     m_isMaximized(false),
-    m_saveAction(0)
+    m_saveAction(0),
+    m_printData(nullptr)
 {
     setObjectName("MainWindow");
     m_pMainPanel = createMainPanel(this);
@@ -124,7 +126,8 @@ CMainWindow::CMainWindow(const QRect &rect) :
 
 CMainWindow::~CMainWindow()
 {
-    delete m_printData, m_printData = nullptr;
+    if (m_printData)
+        delete m_printData, m_printData = nullptr;
 }
 
 /** Public **/
@@ -1074,7 +1077,9 @@ void CMainWindow::onDocumentPrint(void * opts)
         currentPage = pData->get_CurrentPage();
 
     if (pView && !(pagesCount < 1)) {
-//#ifdef _WIN32
+        if (!m_printData)
+            m_printData = new printdata();
+
         NSEditorApi::CAscMenuEvent * pEvent;
         QAscPrinterContext * pContext = m_printData->_printer_info.isNull() ?
                     new QAscPrinterContext() : new QAscPrinterContext(m_printData->_printer_info);

@@ -53,6 +53,7 @@
 #include <QJsonDocument>
 #include <QJsonArray>
 #include <QJsonObject>
+#include <QGridLayout>
 
 #ifdef __linux__
 # include "platform_linux/gtkprintdialog.h"
@@ -139,14 +140,16 @@ auto editor_color(int type) -> QColor {
 class CEditorWindowPrivate : public CCefEventsGate
 {
     struct sPrintData {
-        sPrintData() : _print_range(QPrintDialog::PrintRange::AllPages)
+        sPrintData() :
+            _printer_info(QPrinterInfo::defaultPrinter()),
+            _print_range(QPrintDialog::PrintRange::AllPages)
         {}
 
         QPrinterInfo _printer_info;
         QPrintDialog::PrintRange _print_range;
     };
 
-    sPrintData m_printData;
+    sPrintData *m_printData = nullptr;
 
     CEditorWindow * window = nullptr;
     CElipsisLabel * iconuser = nullptr;
@@ -170,6 +173,8 @@ public:
     ~CEditorWindowPrivate() override {
          if ( leftboxbuttons )
              leftboxbuttons->deleteLater();
+         if (m_printData)
+             delete m_printData, m_printData = nullptr;
     }
 
     void init(CTabPanel * const p) override {
@@ -474,9 +479,11 @@ public:
         CRunningEventHelper _h(&_event);
 #endif
         if ( !(pagescount < 1) ) {
+            if (!m_printData)
+                m_printData = new sPrintData();
             CAscMenuEvent * pEvent;
-            QAscPrinterContext * pContext = m_printData._printer_info.isNull() ?
-                        new QAscPrinterContext() : new QAscPrinterContext(m_printData._printer_info);
+            QAscPrinterContext * pContext = m_printData->_printer_info.isNull() ?
+                        new QAscPrinterContext() : new QAscPrinterContext(m_printData->_printer_info);
 
             QPrinter * printer = pContext->getPrinter();
             printer->setOutputFileName("");
@@ -499,11 +506,11 @@ public:
                 dialog->setEnabledOptions(dialog->enabledOptions() | QPrintDialog::PrintCurrentPage);
                 dialog->setOptions(dialog->options() | QPrintDialog::PrintCurrentPage);
             }
-            dialog->setPrintRange(m_printData._print_range);
+            dialog->setPrintRange(m_printData->_print_range);
 
             if ( dialog->exec() == QDialog::Accepted ) {
-                m_printData._printer_info = QPrinterInfo::printerInfo(printer->printerName());
-                m_printData._print_range = dialog->printRange();
+                m_printData->_printer_info = QPrinterInfo::printerInfo(printer->printerName());
+                m_printData->_print_range = dialog->printRange();
                 QVector<PageRanges> page_ranges;
 
                 switch(dialog->printRange()) {

@@ -49,7 +49,7 @@ class CX11Decoration
 {
 public:
     CX11Decoration(QWidget *);
-    ~CX11Decoration();
+    virtual ~CX11Decoration();
 
     void setTitleWidget(QWidget *);
     void dispatchMouseDown(QMouseEvent *);
