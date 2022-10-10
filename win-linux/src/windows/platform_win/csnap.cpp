@@ -6,6 +6,9 @@
 #define DELAY 500
 #define ALPHA 0x30
 #define COLOR 0x00ffffff
+#ifndef SPI_GETWINARRANGING
+# define SPI_GETWINARRANGING 0x0082
+#endif
 
 
 CWin11Snap::CWin11Snap(QPushButton *btn) :
@@ -72,7 +75,10 @@ bool CWin11Snap::eventFilter(QObject *obj, QEvent *e)
 {
     if (obj == m_pBtn) {
         if (e->type() == QEvent::HoverEnter) {
-            m_pTimer->start();
+            BOOL arranging;
+            SystemParametersInfoA(SPI_GETWINARRANGING, 0, &arranging, 0);
+            if (arranging == TRUE)
+                m_pTimer->start();
         } else
         if (e->type() == QEvent::HoverLeave) {
             m_pTimer->stop();
