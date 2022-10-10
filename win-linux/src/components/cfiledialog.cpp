@@ -142,8 +142,7 @@ bool CFileDialogWrapper::modalSaveAs(QString& fileName, int selected)
     }
 
 #ifdef _WIN32
-    QString _croped_name = fileName.contains(QRegExp("\\.[^\\/\\\\]+$")) ?
-                                    fileName.left(fileName.lastIndexOf(".")) : fileName;
+    QString _croped_name = fileName;
 #else
     QString _croped_name = fileName.left(fileName.lastIndexOf("."));
 #endif
