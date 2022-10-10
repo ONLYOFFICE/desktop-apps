@@ -372,12 +372,14 @@ QString CFileDialogWrapper::selectFolder(const QString& folder)
 {
     QWidget * _parent = CFileDialogHelper::useModalDialog() ?
                 (QWidget *)parent() : nullptr;
-    QFileDialog::Options _opts;
-    if (!WindowHelper::useNativeDialog())
-        _opts |= QFileDialog::DontUseNativeDialog;
+    QFileDialog::Options _opts{QFileDialog::ShowDirsOnly};
 
 #ifdef __linux__
-    if (!_opts.testFlag(QFileDialog::DontUseNativeDialog)) {
+    WindowHelper::CParentDisable oDisabler(qobject_cast<QWidget*>(parent()));
+#endif
+
+    if (!WindowHelper::useNativeDialog()) {
+#ifdef __linux__
         QStringList result;
         if (WindowHelper::useGtkDialog()) {
             result = Gtk::openGtkFileChooser(_parent, Gtk::Mode::FOLDER, tr("Select Folder"),
@@ -387,10 +389,16 @@ QString CFileDialogWrapper::selectFolder(const QString& folder)
                                         "", folder, "", nullptr);
         }
         return (result.size() > 0) ? result.at(0) : QString();
-    }
+#else
+# ifndef __OS_WIN_XP
+        QStringList result;
+        result = Win::openWinFileChooser(_parent, Win::Mode::FOLDER, tr("Select Folder"),
+                                         "", folder, "", nullptr);
+        return (result.size() > 0) ? result.at(0) : QString();
+# endif
 #endif
-
-    return QFileDialog::getExistingDirectory(_parent, "", folder);
+    } else _opts |= QFileDialog::DontUseNativeDialog;
+    return QFileDialog::getExistingDirectory(_parent, tr("Select Folder"), folder, _opts);
 }
 
 void CFileDialogWrapper::setFormats(std::vector<int>& vf)
