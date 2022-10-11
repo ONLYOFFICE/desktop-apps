@@ -37,9 +37,9 @@
 #endif
 #include "filechooser.h"
 
+using std::wstring;
 #ifndef __OS_WIN_XP
 using std::vector;
-using std::wstring;
 using std::pair;
 typedef vector<IShellItem *> VectorShellItems;
 typedef vector<pair<wstring, wstring>> specvector;
