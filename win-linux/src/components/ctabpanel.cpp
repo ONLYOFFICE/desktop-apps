@@ -132,6 +132,11 @@ bool CTabPanel::openRecentFile(int id)
     return static_cast<CCefViewEditor *>(m_pViewer->GetCefView())->OpenRecentFile(id);
 }
 
+bool CTabPanel::isReady()
+{
+    return m_isReady;
+}
+
 /*void CTabPanel::resizeEvent(QResizeEvent *event)
 {
     QWidget::resizeEvent(event);
@@ -188,6 +193,11 @@ void CTabPanel::applyLoader(const QString& cmd, const QString& args)
             AscAppManager::sendCommandTo(m_pLoader, cmd, args);
         }
     }
+}
+
+void CTabPanel::setReady()
+{
+    m_isReady = true;
 }
 
 void CTabPanel::showFullScreen()

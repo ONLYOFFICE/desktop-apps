@@ -406,7 +406,7 @@ int CEditorWindow::calcTitleCaptionWidth()
 
 void CEditorWindow::focus()
 {
-    if (d_ptr->isDocumentLoaded)
+    if (d_ptr->panel()->isReady())
         mainView()->view()->setFocusToCef();
 }
 

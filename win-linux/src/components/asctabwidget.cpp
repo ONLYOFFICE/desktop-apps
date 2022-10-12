@@ -829,7 +829,7 @@ void CAscTabWidget::applyDocumentChanging(int id, int type)
         if ( type == DOCUMENT_CHANGED_LOADING_FINISH ) {
             m_pBar->setTabLoading(tabIndex, false);
             panel(tabIndex)->applyLoader("hide");
-
+            panel(tabIndex)->setReady();
             return;
         } else
         if ( type == DOCUMENT_CHANGED_PAGE_LOAD_FINISH ) {

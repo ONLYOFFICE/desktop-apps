@@ -32,9 +32,9 @@ public:
     void createLocalFile(int nFileFormat, const std::wstring& sName = L"");
     bool openRecoverFile(int id);
     bool openRecentFile(int id);
-
+    bool isReady();
     void applyLoader(const QString& cmd, const QString& args = QString());
-
+    void setReady();
     //void resize(int w, int h);
     //void resizeEvent(QResizeEvent *event);
     //void showEvent(QShowEvent *event);
@@ -56,6 +56,8 @@ private:
     QSize m_startSize, m_lastSize;
     int m_idTimerResize = 0;
     bool m_prettyTitle = false;
+    bool m_isReady = false;
+
 signals:
     void closePanel(QCloseEvent *event);
 
