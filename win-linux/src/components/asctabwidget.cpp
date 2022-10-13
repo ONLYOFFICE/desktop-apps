@@ -193,11 +193,16 @@ CAscTabWidget::CAscTabWidget(QWidget *parent, CTabBar *_pBar)
             }
         }
     });
-    QObject::connect(m_pBar, &CTabBar::tabBarClicked, this, [=](int index) {
+    auto turnOffAltHints = [=](int old_index, int index) {
         this->setCurrentIndex(index);
+        if (old_index > -1)
+            AscAppManager::sendCommandTo(panel(old_index)->cef(), L"althints:show", L"false");
+    };
+    QObject::connect(m_pBar, &CTabBar::tabBarClicked, this, [=](int index) {
+        turnOffAltHints(m_pBar->currentIndex(), index);
     });
     QObject::connect(m_pBar, &CTabBar::onCurrentChangedByWhell, this, [=](int index) {
-        this->setCurrentIndex(index);
+        turnOffAltHints(m_pBar->currentIndex(), index);
     });
     QObject::connect(m_pBar, &CTabBar::tabMoved, this, [=](int from, int to) {
         QTabWidget::tabBar()->moveTab(from, to);
