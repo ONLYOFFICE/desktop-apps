@@ -92,9 +92,21 @@ namespace InputArgs {
 
 
     auto contains(const std::wstring& param) -> bool {
+        const std::wstring::size_type l = param.length();
         auto iter = std::find_if(std::begin(in_args), std::end(in_args),
-            [&param](const std::wstring& s) {
-                return s.find(param) != std::wstring::npos;
+            [&param, l](const std::wstring& s) {
+                std::wstring::size_type n = s.find(param);
+                if (n != std::wstring::npos) {
+                    if (n + l == s.length())
+                        return true;
+                    else {
+                        wchar_t d = s.at(n+l);
+                        if (d == L':' || d == L'=')
+                            return true;
+                    }
+                }
+
+                return false;
         });
 
         return iter != end(in_args);
