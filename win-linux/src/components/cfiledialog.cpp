@@ -239,9 +239,9 @@ QStringList CFileDialogWrapper::modalOpen(const QString& path, const QString& fi
     QString _all_sup_files;
     if ( _filter_.isEmpty() ) {
 //        _filter_ = joinFilters();
-        _filter_ =  tr("Text documents") + " (*.docx *.doc *.odt *.ott *.rtf *.docm *.dotx *.dotm *.fodt *.wps *.wpt *.xml *.pdf *.djv *.djvu *.docxf *.oform);;" +
+        _filter_ =  tr("Text documents") + " (*.docx *.doc *.odt *.ott *.rtf *.docm *.dotx *.dotm *.fb2 *.fodt *.wps *.wpt *.xml *.pdf *.djv *.djvu *.docxf *.oform);;" +
                     tr("Spreadsheets") + " (*.xlsx *.xls *.ods *.ots *.xltx *.xltm *.fods *.et *.ett);;" +
-                    tr("Presentations") + " (*.pptx *.ppt *.odp *.otp *.ppsm *.ppsx *.potx *.potm *.fodp *.dps *.dpt);;" +
+                    tr("Presentations") + " (*.pptx *.ppt *.odp *.otp *.ppsm *.ppsx *.pps *.potx *.pot *.potm *.fodp *.dps *.dpt);;" +
                     tr("Web Page") + " (*.html *.htm *.mht *.epub);;" +
                     tr("Text files") + " (*.txt *.csv)";
         _all_sup_files = tr("All supported files") + " " + joinExtentions(_filter_);
@@ -324,7 +324,7 @@ QStringList CFileDialogWrapper::modalOpenPlugins(const QString& path)
 QStringList CFileDialogWrapper::modalOpenDocuments(const QString& path, bool multi)
 {
     QString filter = m_mapFilters[AVS_OFFICESTUDIO_FILE_UNKNOWN];
-    filter.prepend(tr("Text documents") + " (*.docx *.doc *.odt *.ott *.rtf *.docm *.dotx *.dotm *.fodt *.wps *.wpt *.xml);;");
+    filter.prepend(tr("Text documents") + " (*.docx *.doc *.odt *.ott *.rtf *.docm *.dotx *.dotm *.fb2 *.fodt *.wps *.wpt *.xml);;");
 
     return modalOpen(path, filter, nullptr, multi);
 }
@@ -340,7 +340,7 @@ QStringList CFileDialogWrapper::modalOpenSpreadsheets(const QString& path, bool 
 QStringList CFileDialogWrapper::modalOpenPresentations(const QString& path, bool multi)
 {
     QString filter = m_mapFilters[AVS_OFFICESTUDIO_FILE_UNKNOWN];
-    filter.prepend(tr("Presentations") + " (*.pptx *.ppt *.odp *.otp *.ppsm *.ppsx *.potx *.potm *.fodp *.dps *.dpt);;");
+    filter.prepend(tr("Presentations") + " (*.pptx *.ppt *.odp *.otp *.ppsm *.ppsx *.pps *.potx *.pot *.potm *.fodp *.dps *.dpt);;");
 
     return modalOpen(path, filter, nullptr, multi);
 }
