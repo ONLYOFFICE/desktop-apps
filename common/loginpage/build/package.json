@@ -9,11 +9,11 @@
     "grunt-contrib-concat": "^2.1.0",
     "grunt-contrib-copy": "^1.0.0",
     "grunt-contrib-htmlmin": "^3.1.0",
-    "grunt-inline": "file:plugins/grunt-inline",
     "grunt-contrib-less": "^3.0.0",
+    "grunt-inline": "file:plugins/grunt-inline",
     "grunt-terser": "^2.0.0",
     "grunt-text-replace": "0.4.0",
     "lodash": "^4.17.20",
-    "terser": "^5.14.2"
+    "terser": "^5.15.1"
   }
 }

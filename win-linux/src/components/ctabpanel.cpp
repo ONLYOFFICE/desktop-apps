@@ -27,6 +27,9 @@ CTabPanel::CTabPanel(QWidget *parent)
     setLayout(_layout);
     m_pViewer->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     m_pViewer->SetBackgroundCefColor(244, 244, 244);
+
+    setAttribute(Qt::WA_DontCreateNativeAncestors);
+    setAttribute(Qt::WA_NativeWindow);
 }
 
 CTabPanel::~CTabPanel()

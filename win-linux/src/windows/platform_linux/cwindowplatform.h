@@ -44,7 +44,6 @@ public:
     explicit CWindowPlatform(const QRect&);
     virtual ~CWindowPlatform();
 
-    void sendSertificate(int viewid);
     void bringToTop();
     void show(bool);
     virtual void setWindowColors(const QColor&, const QColor& border = QColor()) final;
