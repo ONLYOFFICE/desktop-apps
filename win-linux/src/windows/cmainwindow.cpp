@@ -1122,7 +1122,6 @@ void CMainWindow::onDocumentPrint(void * opts)
                 break;
             case QPrintDialog::CurrentPage:
                 page_ranges.append(PageRanges(currentPage, currentPage));
-                pContext->SetPageOrientation(pView->GetPrintPageOrientation(start - 1));
                 break;
             }
 

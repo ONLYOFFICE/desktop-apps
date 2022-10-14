@@ -51,7 +51,6 @@ namespace CEditorTools
     void print(const sPrintConf& c)
     {
         if (!c.page_ranges->isEmpty()) {
-            c.context->SetPageOrientation(c.view->GetPrintPageOrientation(_start - 1));
             if ( c.context->BeginPaint() ) {
                 CPrintProgress _progress(c.parent);
                 _progress.startProgress();

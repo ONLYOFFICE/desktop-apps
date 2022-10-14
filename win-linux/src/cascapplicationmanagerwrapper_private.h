@@ -48,10 +48,6 @@
 # include "platform_linux/cdialogopenssl.h"
 #endif
 
-#ifdef DOCUMENTSCORE_OPENSSL_SUPPORT
-# include "linux/cdialogopenssl.h"
-#endif
-
 
 class CAscApplicationManagerWrapper_Private
 {
