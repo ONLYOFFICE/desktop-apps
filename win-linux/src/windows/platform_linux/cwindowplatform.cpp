@@ -58,22 +58,6 @@ CWindowPlatform::~CWindowPlatform()
 
 /** Public **/
 
-void CWindowPlatform::sendSertificate(int viewid)
-{
-#ifdef DOCUMENTSCORE_OPENSSL_SUPPORT
-    CDialogOpenSsl _dialog(this);
-
-    NSEditorApi::CAscOpenSslData * pData = new NSEditorApi::CAscOpenSslData;
-    if ( _dialog.exec() == QDialog::Accepted ) {
-        _dialog.getResult(*pData);
-    }
-
-    NSEditorApi::CAscMenuEvent * pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_PAGE_SELECT_OPENSSL_CERTIFICATE);
-    pEvent->m_pData = pData;
-    AscAppManager::getInstance().GetViewById(viewid)->Apply(pEvent);
-#endif
-}
-
 void CWindowPlatform::bringToTop()
 {
     QMainWindow::raise();
