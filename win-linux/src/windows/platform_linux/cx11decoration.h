@@ -80,6 +80,7 @@ private:
     int m_nBorderSize;
     bool m_bIsMaximized;
     bool need_to_check_motion = false;
+    bool m_allowMaximized;
 
     std::map<int, ulong> m_cursors;
 

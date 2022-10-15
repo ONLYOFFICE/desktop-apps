@@ -34,7 +34,7 @@
 #include "utils.h"
 #include <QX11Info>
 #include <QApplication>
-
+#include <QDesktopWidget>
 #include <QDebug>
 
 #include "X11/Xlib.h"
@@ -304,6 +304,7 @@ CX11Decoration::CX11Decoration(QWidget * w)
     , m_decoration(true)
     , m_nBorderSize(CUSTOM_BORDER_WIDTH)
     , m_bIsMaximized(false)
+    , m_allowMaximized(true)
 {
     createCursors();
     m_nDirection = -1;
@@ -448,6 +449,14 @@ void CX11Decoration::dispatchMouseMove(QMouseEvent *e)
 
         QObject::connect(m_motionTimer, &QTimer::timeout, [=]{
             if ( WindowHelper::check_button_state(Qt::LeftButton) ) {
+                if (m_allowMaximized) {
+                    auto scr_size = QApplication::desktop()->availableGeometry(m_window).size();
+                    auto cur_pos = QCursor::pos();
+                    if (cur_pos.x() == 0 || cur_pos.x() == (scr_size.width() - 1) ||
+                            cur_pos.y() == 0 || cur_pos.y() == (scr_size.height() - 1)) {
+                        m_allowMaximized = false;
+                    }
+                }
                 if ( need_to_check_motion ) {
                     QMoveEvent _e{QCursor::pos(), m_window->pos()};
                     QApplication::sendEvent(m_window, &_e);
@@ -586,7 +595,8 @@ void CX11Decoration::sendButtonRelease()
                         &event.xbutton.x_root, &event.xbutton.y_root, &event.xbutton.x, &event.xbutton.y, &event.xbutton.state);
     XSendEvent(xdisplay_, PointerWindow, True, ButtonReleaseMask, &event);
     XFlush(xdisplay_);
-    QApplication::postEvent(m_window, new QEvent(QEvent::User));
+    if (m_allowMaximized)
+        QApplication::postEvent(m_window, new QEvent(QEvent::User));
 }
 
 void CX11Decoration::setCursorPos(int x, int y)
