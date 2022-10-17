@@ -111,7 +111,7 @@ bool CWindowPlatform::isTaskbarAutoHideOn()
 {
     APPBARDATA ABData;
     ABData.cbSize = sizeof(ABData);
-    return (SHAppBarMessage(ABM_GETSTATE, &ABData) & ABS_AUTOHIDE) == 0 ? false : true;
+    return (SHAppBarMessage(ABM_GETSTATE, &ABData) & ABS_AUTOHIDE) != 0;
 }
 
 void CWindowPlatform::bringToTop()
