@@ -1296,6 +1296,11 @@ Root: HKLM; Subkey: Software\Classes\{#ASSOC_PROG_ID}\DefaultIcon;          Valu
 Root: HKLM; Subkey: Software\Classes\{#ASSOC_PROG_ID}\shell\open\command;   ValueType: string; ValueName:; ValueData: """{app}\{#iconsExe}"" ""%1""";
 Root: HKLM; Subkey: Software\Classes\{#ASSOC_PROG_ID}\shell\open;           ValueType: string; ValueName: FriendlyAppName; ValueData: {#ASSOC_APP_FRIENDLY_NAME};
 
+[Icons]
+Name: "{commonstartmenu}\{cm:extDOCX}"; Filename: "{app}\{#iconsExe}"; Parameters: "--new:word"
+Name: "{commonstartmenu}\{cm:extXLSX}"; Filename: "{app}\{#iconsExe}"; Parameters: "--new:cell"
+Name: "{commonstartmenu}\{cm:extPPTX}"; Filename: "{app}\{#iconsExe}"; Parameters: "--new:slide"
+
 [Code]
 type
   TKeyValue = record
