@@ -43,6 +43,8 @@
 #include <QScreen>
 #include <shellapi.h>
 
+#define UM_SNAPPING 0x02
+
 
 CWindowPlatform::CWindowPlatform(const QRect &rect) :
     CWindowBase(rect),
@@ -50,7 +52,8 @@ CWindowPlatform::CWindowPlatform(const QRect &rect) :
     m_resAreaWidth(MAIN_WINDOW_BORDER_WIDTH),
     m_borderless(true),
     m_closed(false),
-    m_isResizeable(true)
+    m_isResizeable(true),
+    m_allowMaximize(true)
 {
     setWindowFlags(windowFlags() | Qt::Window | Qt::FramelessWindowHint
                    | Qt::WindowSystemMenuHint | Qt::WindowMaximizeButtonHint
@@ -160,6 +163,7 @@ bool CWindowPlatform::nativeEvent(const QByteArray &eventType, void *message, lo
     MSG* msg = reinterpret_cast<MSG*>(message);
 #endif
 
+    static uchar movParam = 0;
     switch (msg->message)
     {
     case WM_DPICHANGED: {
@@ -286,7 +290,18 @@ bool CWindowPlatform::nativeEvent(const QByteArray &eventType, void *message, lo
         break;
 
     case WM_EXITSIZEMOVE:
-        QApplication::postEvent(this, new QEvent(QEvent::User));
+        if (m_allowMaximize)
+            QApplication::postEvent(this, new QEvent(QEvent::User));
+        break;
+
+    case WM_MOVE:
+        if (movParam != 0)
+            movParam = 0;
+        break;
+
+    case WM_MOVING:
+        if (m_allowMaximize && ++movParam == UM_SNAPPING)
+            m_allowMaximize = false;
         break;
 
     default:
