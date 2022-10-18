@@ -90,4 +90,11 @@ l10n.be = {
     settOptLaunchMode: 'Адкрыць файл',
     settOptLaunchInTab: 'Ва ўкладцы',
     settOptLaunchInWindow: 'У акне',
+    settSpellcheckDetection: 'Выяўленне мовы правапісу',
+    settOptDisabled: 'Адключана',
+    aboutChangelog: 'Спіс зменаў',
+    updateNoUpdates: 'Праграма абноўленая',
+    updateAvialable: 'Даступна версія $1. Пстрыкніце, каб спампаваць.',
+    settOptThemeSystem: 'Сістэмная',
+    settOptThemeContrastDark: 'Кантрасная цёмная',
 }
