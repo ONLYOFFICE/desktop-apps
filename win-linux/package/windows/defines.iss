@@ -13,6 +13,9 @@
 #define sAppIconName                    "ONLYOFFICE Editors"
 #define sAppProtocol                    'oo-office'
 
+#define sAppHelpName                    str(sAppName + " Help")
+#define sPackageHelpName                str(sPackageName + "_Help")
+
 #define APP_PATH                        str(sIntCompanyName + "\" + sIntProductName)
 #define APP_REG_PATH                    str("Software\" + APP_PATH)
 #ifndef DEPLOY_PATH
