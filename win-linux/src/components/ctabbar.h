@@ -101,6 +101,7 @@ private:
     int  m_current = -1;
     bool m_active = false;
     bool m_isUIThemeDark = false;
+    bool m_tabWasMoved = false;
     QString m_activeColor = "none";
 
 signals:

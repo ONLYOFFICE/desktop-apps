@@ -245,6 +245,9 @@ CTabBar::CTabBar(QWidget * parent)
     }
 
     connect(this, &QTabBar::currentChanged, this, &CTabBar::onCurrentChanged);
+    connect(this, &QTabBar::tabMoved, this, [=](){
+        m_tabWasMoved = true;
+    });
 }
 
 CTabBar::~CTabBar()
@@ -381,6 +384,17 @@ void CTabBar::mouseReleaseEvent(QMouseEvent * e)
     releaseMouse();
     if (e->button() == Qt::MiddleButton)
         onCloseButton();
+    if (m_tabWasMoved) {
+        m_tabWasMoved = false;
+        int ind = currentIndex();
+        if (ind > 0) {
+            blockSignals(true);
+            setCurrentIndex(ind - 1);
+            setCurrentIndex(ind);
+            blockSignals(false);
+            changeCustomScrollerState();
+        }
+    }
 }
 
 void CTabBar::wheelEvent(QWheelEvent *event)
