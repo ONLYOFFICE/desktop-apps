@@ -7,7 +7,7 @@
     <body>
       <trans-unit id="1Fy-mg-aq9.title" xml:space="preserve">
         <source>Enter the password for the digital signature.</source><seg-source><mrk mtype="seg" mid="1">Enter the password for the digital signature.</mrk></seg-source>
-        <target state="translated"><mrk mtype="seg" mid="1">Въведи парола за дигитален подпис.</mrk></target>
+        <target state="translated">Въведи парола за дигитален подпис.</target>
         
       <note>Class = "NSTextFieldCell"; title = "Enter the password for the digital signature."; ObjectID = "1Fy-mg-aq9";</note></trans-unit>
       <trans-unit id="1dL-nN-bJI.title" xml:space="preserve">
