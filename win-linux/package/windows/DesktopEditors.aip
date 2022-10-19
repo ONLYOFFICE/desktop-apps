@@ -111,45 +111,9 @@
     <ROW Component="AI_CustomARPName" ComponentId="{026D2C20-2E12-4C52-B7E0-34DBED460A0C}" Directory_="APPDIR" Attributes="260" KeyPath="DisplayName" Options="1"/>
     <ROW Component="AI_DisableModify" ComponentId="{4DA67DA3-424D-4EB7-8B0F-7AE95B073B87}" Directory_="APPDIR" Attributes="260" KeyPath="NoModify" Options="1"/>
     <ROW Component="APPDIR" ComponentId="{967A56B9-E2F1-42F8-869D-7791391AFB48}" Directory_="APPDIR" Attributes="0"/>
-    <ROW Component="ASCC_REG_PREFIX.Csv" ComponentId="{C2AA0652-28AA-4594-9FAD-20A329D667C5}" Directory_="APPDIR" Attributes="260" KeyPath="ASCC_REG_PREFIX.Csv"/>
-    <ROW Component="ASCC_REG_PREFIX.DjVu" ComponentId="{951FFE98-B179-4BC7-8AA5-B4A34605487A}" Directory_="APPDIR" Attributes="260" KeyPath="ASCC_REG_PREFIX.DjVu"/>
-    <ROW Component="ASCC_REG_PREFIX.Document.1" ComponentId="{8CA0AE7D-385E-4CF2-9E08-623A299B3410}" Directory_="APPDIR" Attributes="260" KeyPath="ASCC_REG_PREFIX.Document.1"/>
-    <ROW Component="ASCC_REG_PREFIX.Document.12" ComponentId="{27DD8B25-E79E-4205-AC5A-37D3F60332E5}" Directory_="APPDIR" Attributes="260" KeyPath="ASCC_REG_PREFIX.Document.12"/>
-    <ROW Component="ASCC_REG_PREFIX.Document.2" ComponentId="{9705D70B-89D0-4719-A2C3-C9FD2F7E2A60}" Directory_="APPDIR" Attributes="260" KeyPath="ASCC_REG_PREFIX.Document.2"/>
-    <ROW Component="ASCC_REG_PREFIX.Pdf" ComponentId="{909B302E-E3A0-4DC1-A34F-071DEF915748}" Directory_="APPDIR" Attributes="260" KeyPath="ASCC_REG_PREFIX.Pdf"/>
-    <ROW Component="ASCC_REG_PREFIX.Rtf" ComponentId="{D764E4AA-1250-4A0F-81BB-4B4D7C0E30A5}" Directory_="APPDIR" Attributes="260" KeyPath="ASCC_REG_PREFIX.Rtf"/>
-    <ROW Component="ASCC_REG_PREFIX.Sheet.1" ComponentId="{280D97C6-EBA9-489B-9040-D7559C5E6C05}" Directory_="APPDIR" Attributes="260" KeyPath="ASCC_REG_PREFIX.Sheet.1"/>
-    <ROW Component="ASCC_REG_PREFIX.Sheet.12" ComponentId="{3D8A84DB-30FA-4AB2-8D46-3B4A2993248D}" Directory_="APPDIR" Attributes="260" KeyPath="ASCC_REG_PREFIX.Sheet.12"/>
-    <ROW Component="ASCC_REG_PREFIX.Sheet.2" ComponentId="{B9A42BBA-6F80-4FF4-AED5-ABFD7A2B0B15}" Directory_="APPDIR" Attributes="260" KeyPath="ASCC_REG_PREFIX.Sheet.2"/>
-    <ROW Component="ASCC_REG_PREFIX.Show.1" ComponentId="{0EF75B6F-0932-48C2-826D-E1582C56370B}" Directory_="APPDIR" Attributes="260" KeyPath="ASCC_REG_PREFIX.Show.1"/>
-    <ROW Component="ASCC_REG_PREFIX.Show.12" ComponentId="{6BBFA060-C8E5-408A-95A0-D6852FBC07AB}" Directory_="APPDIR" Attributes="260" KeyPath="ASCC_REG_PREFIX.Show.12"/>
-    <ROW Component="ASCC_REG_PREFIX.Show.2" ComponentId="{9CCF1047-99F1-46FC-B1D3-5C2E2B55039F}" Directory_="APPDIR" Attributes="260" KeyPath="ASCC_REG_PREFIX.Show.2"/>
-    <ROW Component="ASCC_REG_PREFIX.SlideShow.1" ComponentId="{2DC5C09F-013A-4D41-829F-719BA4EC0188}" Directory_="APPDIR" Attributes="260" KeyPath="ASCC_REG_PREFIX.SlideShow.1"/>
-    <ROW Component="ASCC_REG_PREFIX.SlideShow.12" ComponentId="{D6172F85-96F3-4407-B910-429E861BC8CE}" Directory_="APPDIR" Attributes="260" KeyPath="ASCC_REG_PREFIX.SlideShow.12"/>
-    <ROW Component="ASCC_REG_PREFIX.Xps" ComponentId="{513F0E11-D014-4075-9BCC-9C69056DE3AC}" Directory_="APPDIR" Attributes="260" KeyPath="ASCC_REG_PREFIX.Xps"/>
     <ROW Component="ASCC_REG_REGISTERED_APP_NAME" ComponentId="{C8863101-46C1-4E82-9386-1AD91948DE6A}" Directory_="APPDIR" Attributes="260" KeyPath="ASCC_REG_REGISTERED_APP_NAME"/>
-    <ROW Component="ASSOC_PROG_ID_HK_LM" ComponentId="{9D33C055-B150-47B2-AB67-51C8FECB3260}" Directory_="APPDIR" Attributes="260" KeyPath="_"/>
-    <ROW Component="ApplicationDescription" ComponentId="{8587B135-0EB7-4731-930B-5EB0C19E6600}" Directory_="APPDIR" Attributes="260" KeyPath="ApplicationDescription"/>
-    <ROW Component="ApplicationIcon" ComponentId="{0E50DD37-A8D3-40E5-AE64-C7FF5B951C84}" Directory_="APPDIR" Attributes="260" KeyPath="ApplicationIcon"/>
-    <ROW Component="ApplicationName" ComponentId="{9FE728CA-4E11-42CB-BCFA-0B0A4A57163E}" Directory_="APPDIR" Attributes="260" KeyPath="ApplicationName"/>
+    <ROW Component="ASSOC_PROG_ID" ComponentId="{9D33C055-B150-47B2-AB67-51C8FECB3260}" Directory_="APPDIR" Attributes="260" KeyPath="_"/>
     <ROW Component="CheckForUpdates" ComponentId="{3DCD7E37-9F70-475E-9C31-D72353971685}" Directory_="APPDIR" Attributes="260" KeyPath="CheckForUpdates"/>
-    <ROW Component="DefaultIcon_ASSOC_PROG_ID" ComponentId="{25217187-4C4F-4555-9579-8BC85A074DFC}" Directory_="APPDIR" Attributes="260" KeyPath="DefaultIcon"/>
-    <ROW Component="DefaultIcon_Csv" ComponentId="{7BCCCB4C-6061-4D39-9CB5-8F9D55C2C03B}" Directory_="APPDIR" Attributes="260" KeyPath="__1"/>
-    <ROW Component="DefaultIcon_DjVu" ComponentId="{F3F1A9B3-8DCC-42CB-BD86-B61A816132E5}" Directory_="APPDIR" Attributes="260" KeyPath="__4"/>
-    <ROW Component="DefaultIcon_Document.1" ComponentId="{CBD5A939-62D4-44DC-99EA-55CFD400EDF1}" Directory_="APPDIR" Attributes="260" KeyPath="__7"/>
-    <ROW Component="DefaultIcon_Document.12" ComponentId="{B2254075-3C4B-4A11-87BA-F812D94B1C91}" Directory_="APPDIR" Attributes="260" KeyPath="__10"/>
-    <ROW Component="DefaultIcon_Document.2" ComponentId="{94F04AF9-1B8C-4D21-A334-C02162F9D1B8}" Directory_="APPDIR" Attributes="260" KeyPath="__13"/>
-    <ROW Component="DefaultIcon_Pdf" ComponentId="{35A990E1-2602-4D22-943A-8044B1DF8820}" Directory_="APPDIR" Attributes="260" KeyPath="__16"/>
-    <ROW Component="DefaultIcon_Rtf" ComponentId="{0C246417-93D7-4A61-8418-9DC37CB06BAC}" Directory_="APPDIR" Attributes="260" KeyPath="__19"/>
-    <ROW Component="DefaultIcon_Sheet.1" ComponentId="{FB4569CD-7871-4509-9BE8-D7E375E1612E}" Directory_="APPDIR" Attributes="260" KeyPath="__23"/>
-    <ROW Component="DefaultIcon_Sheet.12" ComponentId="{C8AB1BDF-0B0B-4723-A0B3-ED482111BFBC}" Directory_="APPDIR" Attributes="260" KeyPath="__26"/>
-    <ROW Component="DefaultIcon_Sheet.2" ComponentId="{A73515A6-CE35-445F-BD85-C5EE6015C220}" Directory_="APPDIR" Attributes="260" KeyPath="__28"/>
-    <ROW Component="DefaultIcon_Show.1" ComponentId="{D48C444B-D765-4680-824C-2CD5B9188C12}" Directory_="APPDIR" Attributes="260" KeyPath="__31"/>
-    <ROW Component="DefaultIcon_Show.12" ComponentId="{DD94921D-22F1-476E-8EB5-A63248AB1650}" Directory_="APPDIR" Attributes="260" KeyPath="__34"/>
-    <ROW Component="DefaultIcon_Show.2" ComponentId="{3871D0E8-CE93-4F44-B79E-F0EF5B52B553}" Directory_="APPDIR" Attributes="260" KeyPath="__37"/>
-    <ROW Component="DefaultIcon_SlideShow.1" ComponentId="{4D33D66B-904C-4F2F-9FFE-5662FDDFA4A9}" Directory_="APPDIR" Attributes="260" KeyPath="__40"/>
-    <ROW Component="DefaultIcon_SlideShow.12" ComponentId="{29029358-B10F-4E8F-9368-F6BB279D950E}" Directory_="APPDIR" Attributes="260" KeyPath="__43"/>
-    <ROW Component="DefaultIcon_Xps" ComponentId="{8AB97B11-6EF9-46C2-98F3-0E00330733E9}" Directory_="APPDIR" Attributes="260" KeyPath="__46"/>
     <ROW Component="DesktopEditors.exe" ComponentId="{FA0F79B8-DC4D-49BC-808A-1821966D6C0C}" Directory_="APPDIR" Attributes="0" KeyPath="DesktopEditors.exe"/>
     <ROW Component="FileAssociation_csv" ComponentId="{2002B59E-DC3A-4307-B9BF-B4ADBC6890DC}" Directory_="APPDIR" Attributes="260" KeyPath="csv"/>
     <ROW Component="FileAssociation_djvu" ComponentId="{214A8DA3-552D-42C3-9252-C936958AED65}" Directory_="APPDIR" Attributes="260" KeyPath="djvu"/>
@@ -169,7 +133,6 @@
     <ROW Component="FileAssociation_xls" ComponentId="{63A28E1B-CCC3-4B52-B237-37BAC45ACF53}" Directory_="APPDIR" Attributes="260" KeyPath="xls"/>
     <ROW Component="FileAssociation_xlsx" ComponentId="{2669FDA4-D749-4AE4-A804-7CFEFA5E5566}" Directory_="APPDIR" Attributes="260" KeyPath="xlsx"/>
     <ROW Component="FileAssociation_xps" ComponentId="{CA70CAF5-ABAB-45FF-A440-32B3C8FDE8D0}" Directory_="APPDIR" Attributes="260" KeyPath="xps"/>
-    <ROW Component="FriendlyAppName" ComponentId="{21557204-49D6-4980-A531-5C4B25FB65AB}" Directory_="APPDIR" Attributes="260" KeyPath="FriendlyAppName"/>
     <ROW Component="ImageViewer.exe" ComponentId="{E8DFAC60-5575-4D64-AD43-FF684A2FAE8F}" Directory_="CUSTOM_PATH" Attributes="0" Condition="GALLERY = &quot;1&quot;" KeyPath="ImageViewer.exe"/>
     <ROW Component="MANUFACTURER_INSTALL_FOLDER_HK_CU" ComponentId="{BF7B083D-CB31-42CC-89EB-912C4461A8D0}" Directory_="APPDIR" Attributes="260" KeyPath="MANUFACTURER_INSTALL_FOLDER_HK_CU"/>
     <ROW Component="MANUFACTURER_INSTALL_FOLDER_HK_LM" ComponentId="{7EC4EC35-8E21-44D0-A29E-CCD3741056D9}" Directory_="APPDIR" Attributes="260" KeyPath="MANUFACTURER_INSTALL_FOLDER_HK_LM"/>
@@ -182,62 +145,13 @@
     <ROW Component="Software" ComponentId="{90AC3C8E-9762-4613-B621-A0EFD3868D77}" Directory_="APPDIR" Attributes="260" KeyPath="Software_3"/>
     <ROW Component="Version" ComponentId="{3914F236-2B4C-4E31-95FA-F57F91FA19C9}" Directory_="APPDIR" Attributes="260" KeyPath="Version_1"/>
     <ROW Component="VideoPlayer.exe" ComponentId="{39F3F737-40E8-42F0-9342-BF8232F34B72}" Directory_="CUSTOM_PATH" Attributes="0" Condition="PLAYER = &quot;1&quot;" KeyPath="VideoPlayer.exe"/>
-    <ROW Component="command_ASSOC_PROG_ID" ComponentId="{92BF3889-D6AE-4A0D-A2EF-77B595818E87}" Directory_="APPDIR" Attributes="260" KeyPath="command_HK_CR"/>
-    <ROW Component="command_Csv" ComponentId="{4DC59940-EAC0-4088-B337-F01ADB0856C0}" Directory_="APPDIR" Attributes="260" KeyPath="__3"/>
-    <ROW Component="command_DjVu" ComponentId="{5C8EE8B7-75EA-4513-8229-CAB151BBB4AE}" Directory_="APPDIR" Attributes="260" KeyPath="__5"/>
-    <ROW Component="command_Document.1" ComponentId="{7661F65E-26F0-46AA-AF45-E774BDE2A497}" Directory_="APPDIR" Attributes="260" KeyPath="__8"/>
-    <ROW Component="command_Document.12" ComponentId="{FC30CA63-366A-4F13-95DB-F73BD74C3653}" Directory_="APPDIR" Attributes="260" KeyPath="__11"/>
-    <ROW Component="command_Document.2" ComponentId="{E6EFEECB-7BFF-4D17-8963-FD1F4B7A4F9C}" Directory_="APPDIR" Attributes="260" KeyPath="__14"/>
-    <ROW Component="command_Pdf" ComponentId="{3CEEA8FD-1B76-48BD-8AEA-8CCB3EAA4A4F}" Directory_="APPDIR" Attributes="260" KeyPath="__17"/>
-    <ROW Component="command_Rtf" ComponentId="{7E38DC08-BF61-4578-8A96-AB8130A1DAA6}" Directory_="APPDIR" Attributes="260" KeyPath="__20"/>
-    <ROW Component="command_Sheet.1" ComponentId="{E8AC9F0F-572D-44E5-A087-29765116FD98}" Directory_="APPDIR" Attributes="260" KeyPath="__24"/>
-    <ROW Component="command_Sheet.12" ComponentId="{6586A251-A388-45EC-A61B-584CBE990717}" Directory_="APPDIR" Attributes="260" KeyPath="__27"/>
-    <ROW Component="command_Sheet.2" ComponentId="{22BD0C08-8874-4C53-9703-B819DC3924AE}" Directory_="APPDIR" Attributes="260" KeyPath="__29"/>
-    <ROW Component="command_Show.1" ComponentId="{C7AA3774-F5DC-4B58-BD04-6A34BDA5F1A6}" Directory_="APPDIR" Attributes="260" KeyPath="__32"/>
-    <ROW Component="command_Show.12" ComponentId="{13EC829B-9C11-4168-A65B-E7499035A06E}" Directory_="APPDIR" Attributes="260" KeyPath="__35"/>
-    <ROW Component="command_Show.2" ComponentId="{94892E5E-93B1-4722-9C1E-2CFD2261F250}" Directory_="APPDIR" Attributes="260" KeyPath="__39"/>
-    <ROW Component="command_SlideShow.1" ComponentId="{F97F5758-019A-4ACA-ABCD-749D89776CB1}" Directory_="APPDIR" Attributes="260" KeyPath="__41"/>
-    <ROW Component="command_SlideShow.12" ComponentId="{8FF52991-AD54-472D-AF54-9E1D20F38E09}" Directory_="APPDIR" Attributes="260" KeyPath="__45"/>
-    <ROW Component="command_Xps" ComponentId="{7F721D5B-818D-45FA-B9FA-16F9122D64E9}" Directory_="APPDIR" Attributes="260" KeyPath="__47"/>
     <ROW Component="converter" ComponentId="{12A5FBD9-24E5-4B61-A2A4-CFEFA169122C}" Directory_="converter_Dir" Attributes="0"/>
     <ROW Component="locale_HK_CU" ComponentId="{FF7C0526-7824-44B9-AF7E-B51FC24167A9}" Directory_="APPDIR" Attributes="260" KeyPath="locale_HK_CU"/>
     <ROW Component="locale_HK_LM" ComponentId="{D09979D5-ED81-4DE9-8602-7C1C8D2C6B75}" Directory_="APPDIR" Attributes="260" KeyPath="locale_HK_LM"/>
-    <ROW Component="open_Csv" ComponentId="{FD3073AF-D01D-483E-91E9-83A42AA7D6B1}" Directory_="APPDIR" Attributes="260" KeyPath="open_1"/>
-    <ROW Component="open_DjVu" ComponentId="{018E8BEB-4779-448E-8307-AE6FC42FBFE2}" Directory_="APPDIR" Attributes="260" KeyPath="open_9"/>
-    <ROW Component="open_Document.1" ComponentId="{4AE76814-2EF3-44A3-B56E-FE61F57F4EC2}" Directory_="APPDIR" Attributes="260" KeyPath="open_10"/>
-    <ROW Component="open_Document.12" ComponentId="{14ECA597-508A-4011-B337-751385019C82}" Directory_="APPDIR" Attributes="260" KeyPath="open_11"/>
-    <ROW Component="open_Document.2" ComponentId="{EB914EF1-4333-4371-8D1C-4630F6122A4E}" Directory_="APPDIR" Attributes="260" KeyPath="open_12"/>
-    <ROW Component="open_Pdf" ComponentId="{7F5249CD-6ADE-4E08-8838-F3EFBDCA15EE}" Directory_="APPDIR" Attributes="260" KeyPath="open_13"/>
-    <ROW Component="open_Rtf" ComponentId="{384182C3-E6F0-474C-9622-226E31180A81}" Directory_="APPDIR" Attributes="260" KeyPath="open_14"/>
-    <ROW Component="open_Sheet.1" ComponentId="{DC7EB318-D849-4F75-B62C-47604530AC05}" Directory_="APPDIR" Attributes="260" KeyPath="open_15"/>
-    <ROW Component="open_Sheet.12" ComponentId="{A7836477-49F6-48FC-8A8F-479F10B01676}" Directory_="APPDIR" Attributes="260" KeyPath="open_16"/>
-    <ROW Component="open_Sheet.2" ComponentId="{7A2410F3-6555-480D-A88E-D5D647D14747}" Directory_="APPDIR" Attributes="260" KeyPath="open_2"/>
-    <ROW Component="open_Show.1" ComponentId="{37D21660-D49B-4E5B-92A2-E82F90498A0A}" Directory_="APPDIR" Attributes="260" KeyPath="open_3"/>
-    <ROW Component="open_Show.12" ComponentId="{74C9BA3A-E625-490E-9F28-37CBEA1BE5D8}" Directory_="APPDIR" Attributes="260" KeyPath="open_4"/>
-    <ROW Component="open_Show.2" ComponentId="{4FCF8112-F5C4-44D9-A0CE-219258FA8946}" Directory_="APPDIR" Attributes="260" KeyPath="open_5"/>
-    <ROW Component="open_SlideShow.1" ComponentId="{21E7164D-7B6C-49CD-A63B-D8CE7D6EB8EC}" Directory_="APPDIR" Attributes="260" KeyPath="open_6"/>
-    <ROW Component="open_SlideShow.12" ComponentId="{3EC3C8A0-8ACA-4B2C-A6BF-3EE5CDB395B4}" Directory_="APPDIR" Attributes="260" KeyPath="open_7"/>
-    <ROW Component="open_Xps" ComponentId="{742718AB-2BED-4152-AE1B-091E562F7215}" Directory_="APPDIR" Attributes="260" KeyPath="open_8"/>
-    <ROW Component="shell_ASSOC_PROG_ID" ComponentId="{4729A2D0-87E3-49BD-9B2B-3690A78FCF6D}" Directory_="APPDIR" Attributes="260" KeyPath="shell"/>
-    <ROW Component="shell_Csv" ComponentId="{18F658EC-2D94-42A5-9AE7-769C3E526F3C}" Directory_="APPDIR" Attributes="260" KeyPath="shell_1"/>
-    <ROW Component="shell_DjVu" ComponentId="{AD2AAB0B-682B-4177-9C79-04F49BF50F19}" Directory_="APPDIR" Attributes="260" KeyPath="shell_2"/>
-    <ROW Component="shell_Document.1" ComponentId="{E2BB8D6D-C748-4463-BB33-8D3DBF031CE4}" Directory_="APPDIR" Attributes="260" KeyPath="shell_3"/>
-    <ROW Component="shell_Document.12" ComponentId="{C39175CD-174E-453C-AE1F-A37FE6AAA368}" Directory_="APPDIR" Attributes="260" KeyPath="shell_4"/>
-    <ROW Component="shell_Document.2" ComponentId="{86A020B9-9ABE-43E2-9131-20EB87330448}" Directory_="APPDIR" Attributes="260" KeyPath="shell_5"/>
-    <ROW Component="shell_Pdf" ComponentId="{69D94388-D6E5-4F98-8A8A-CC446A329B92}" Directory_="APPDIR" Attributes="260" KeyPath="shell_6"/>
-    <ROW Component="shell_Rtf" ComponentId="{F3C0F88F-6790-4691-BA2A-82DB53B81340}" Directory_="APPDIR" Attributes="260" KeyPath="shell_7"/>
-    <ROW Component="shell_Sheet.1" ComponentId="{A5ACC89C-2078-4F1C-A58A-0F084C2861CA}" Directory_="APPDIR" Attributes="260" KeyPath="shell_8"/>
-    <ROW Component="shell_Sheet.12" ComponentId="{C2C8F8A9-A721-4CD0-A62B-3837EF530645}" Directory_="APPDIR" Attributes="260" KeyPath="shell_9"/>
-    <ROW Component="shell_Sheet.2" ComponentId="{E4631BE3-BAB0-4C41-ADA4-F08D4771D7C0}" Directory_="APPDIR" Attributes="260" KeyPath="shell_10"/>
-    <ROW Component="shell_Show.1" ComponentId="{7B81F0DE-3F29-486F-90A5-5D3FDBEFE119}" Directory_="APPDIR" Attributes="260" KeyPath="shell_11"/>
-    <ROW Component="shell_Show.12" ComponentId="{20CA2717-1368-4625-9F71-C17354A0A341}" Directory_="APPDIR" Attributes="260" KeyPath="shell_12"/>
-    <ROW Component="shell_Show.2" ComponentId="{99F29A0A-1F80-4A25-AE3C-84E58F266B50}" Directory_="APPDIR" Attributes="260" KeyPath="shell_13"/>
-    <ROW Component="shell_SlideShow.1" ComponentId="{2DCC45D6-4A1E-4D17-AAF9-3575B9BE9E81}" Directory_="APPDIR" Attributes="260" KeyPath="shell_14"/>
-    <ROW Component="shell_SlideShow.12" ComponentId="{4222FDE3-F857-48AF-B261-E33FFA48A644}" Directory_="APPDIR" Attributes="260" KeyPath="shell_15"/>
-    <ROW Component="shell_Xps" ComponentId="{F274F3C7-2B98-4BAE-BFC7-48204D0DC41F}" Directory_="APPDIR" Attributes="260" KeyPath="shell_16"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatsComponent">
     <ROW Feature="ExtendedFeature" Feature_Parent="MainFeature" Title="ExtendedFeature" Description="Description" Display="5" Level="1" Directory_="APPDIR" Attributes="0"/>
+    <ROW Feature="FileProgramAssociation" Feature_Parent="MainFeature" Title="File Program Association" Description="Description" Display="57" Level="1" Directory_="APPDIR" Attributes="0"/>
     <ROW Feature="FileTypeAssociations" Feature_Parent="MainFeature" Title="File Type Associations" Description="Description" Display="3" Level="1" Directory_="APPDIR" Attributes="0" Options="13"/>
     <ROW Feature="MainFeature" Title="MainFeature" Description="Description" Display="1" Level="1" Directory_="APPDIR" Attributes="0"/>
     <ROW Feature="MicrosoftVisualC" Title="Microsoft Visual C++ 2015-2022 Redistributable (x64)" Description="Microsoft Visual C++ 2015-2022 Redistributable (x64)" Display="11" Level="1" Attributes="0"/>
@@ -407,6 +321,7 @@
     <ROW Feature_="oform" Level="1" Condition="REGISTER_OFORM = 1"/>
     <ROW Feature_="docxf" Level="0" Condition="ProductName &lt;&gt; &quot;ONLYOFFICE Desktop Editors&quot;"/>
     <ROW Feature_="oform" Level="0" Condition="ProductName &lt;&gt; &quot;ONLYOFFICE Desktop Editors&quot;"/>
+    <ROW Feature_="FileProgramAssociation" Level="4" Condition="REGISTER_PROG_NONE = 1"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiControlComponent">
     <ROW Dialog_="AdminBrowseDlg" Control="OK" Type="PushButton" X="304" Y="243" Width="56" Height="17" Attributes="3" Text="[ButtonText_OK]" Order="300" TextLocId="-" MsiKey="AdminBrowseDlg#OK"/>
@@ -961,114 +876,27 @@
     <ROW Feature_="MainFeature" Component_="Version"/>
     <ROW Feature_="MainFeature" Component_="converter"/>
     <ROW Feature_="ExtendedFeature" Component_="DesktopEditors.exe"/>
-    <ROW Feature_="MainFeature" Component_="ApplicationDescription"/>
-    <ROW Feature_="MainFeature" Component_="ApplicationIcon"/>
-    <ROW Feature_="MainFeature" Component_="ApplicationName"/>
-    <ROW Feature_="MainFeature" Component_="FileAssociation_doc"/>
-    <ROW Feature_="MainFeature" Component_="FileAssociation_csv"/>
-    <ROW Feature_="MainFeature" Component_="FileAssociation_djvu"/>
-    <ROW Feature_="MainFeature" Component_="FileAssociation_xls"/>
-    <ROW Feature_="MainFeature" Component_="FileAssociation_odp"/>
-    <ROW Feature_="MainFeature" Component_="FileAssociation_docx"/>
-    <ROW Feature_="MainFeature" Component_="FileAssociation_odt"/>
-    <ROW Feature_="MainFeature" Component_="FileAssociation_docxf"/>
-    <ROW Feature_="MainFeature" Component_="FileAssociation_ods"/>
-    <ROW Feature_="MainFeature" Component_="FileAssociation_oform"/>
-    <ROW Feature_="MainFeature" Component_="FileAssociation_pdf"/>
-    <ROW Feature_="MainFeature" Component_="FileAssociation_pps"/>
-    <ROW Feature_="MainFeature" Component_="FileAssociation_ppsx"/>
-    <ROW Feature_="MainFeature" Component_="FileAssociation_ppt"/>
-    <ROW Feature_="MainFeature" Component_="FileAssociation_pptx"/>
-    <ROW Feature_="MainFeature" Component_="FileAssociation_rtf"/>
-    <ROW Feature_="MainFeature" Component_="FileAssociation_xlsx"/>
-    <ROW Feature_="MainFeature" Component_="FileAssociation_xps"/>
-    <ROW Feature_="MainFeature" Component_="ASCC_REG_REGISTERED_APP_NAME"/>
     <ROW Feature_="MainFeature" Component_="Software"/>
-    <ROW Feature_="MainFeature" Component_="shell_ASSOC_PROG_ID"/>
-    <ROW Feature_="MainFeature" Component_="command_ASSOC_PROG_ID"/>
-    <ROW Feature_="MainFeature" Component_="DefaultIcon_ASSOC_PROG_ID"/>
-    <ROW Feature_="MainFeature" Component_="ASSOC_PROG_ID_HK_LM"/>
-    <ROW Feature_="MainFeature" Component_="FriendlyAppName"/>
-    <ROW Feature_="MainFeature" Component_="shell_Csv"/>
-    <ROW Feature_="MainFeature" Component_="DefaultIcon_Csv"/>
-    <ROW Feature_="MainFeature" Component_="command_Csv"/>
-    <ROW Feature_="MainFeature" Component_="shell_DjVu"/>
-    <ROW Feature_="MainFeature" Component_="DefaultIcon_DjVu"/>
-    <ROW Feature_="MainFeature" Component_="command_DjVu"/>
-    <ROW Feature_="MainFeature" Component_="shell_Document.1"/>
-    <ROW Feature_="MainFeature" Component_="DefaultIcon_Document.1"/>
-    <ROW Feature_="MainFeature" Component_="command_Document.1"/>
-    <ROW Feature_="MainFeature" Component_="shell_Document.12"/>
-    <ROW Feature_="MainFeature" Component_="DefaultIcon_Document.12"/>
-    <ROW Feature_="MainFeature" Component_="command_Document.12"/>
-    <ROW Feature_="MainFeature" Component_="shell_Document.2"/>
-    <ROW Feature_="MainFeature" Component_="DefaultIcon_Document.2"/>
-    <ROW Feature_="MainFeature" Component_="command_Document.2"/>
-    <ROW Feature_="MainFeature" Component_="shell_Pdf"/>
-    <ROW Feature_="MainFeature" Component_="DefaultIcon_Pdf"/>
-    <ROW Feature_="MainFeature" Component_="command_Pdf"/>
-    <ROW Feature_="MainFeature" Component_="shell_Rtf"/>
-    <ROW Feature_="MainFeature" Component_="DefaultIcon_Rtf"/>
-    <ROW Feature_="MainFeature" Component_="command_Rtf"/>
-    <ROW Feature_="MainFeature" Component_="shell_Sheet.1"/>
-    <ROW Feature_="MainFeature" Component_="DefaultIcon_Sheet.1"/>
-    <ROW Feature_="MainFeature" Component_="command_Sheet.1"/>
-    <ROW Feature_="MainFeature" Component_="shell_Sheet.12"/>
-    <ROW Feature_="MainFeature" Component_="DefaultIcon_Sheet.12"/>
-    <ROW Feature_="MainFeature" Component_="command_Sheet.12"/>
-    <ROW Feature_="MainFeature" Component_="shell_Sheet.2"/>
-    <ROW Feature_="MainFeature" Component_="DefaultIcon_Sheet.2"/>
-    <ROW Feature_="MainFeature" Component_="command_Sheet.2"/>
-    <ROW Feature_="MainFeature" Component_="shell_Show.1"/>
-    <ROW Feature_="MainFeature" Component_="DefaultIcon_Show.1"/>
-    <ROW Feature_="MainFeature" Component_="command_Show.1"/>
-    <ROW Feature_="MainFeature" Component_="shell_Show.12"/>
-    <ROW Feature_="MainFeature" Component_="DefaultIcon_Show.12"/>
-    <ROW Feature_="MainFeature" Component_="command_Show.12"/>
-    <ROW Feature_="MainFeature" Component_="shell_Show.2"/>
-    <ROW Feature_="MainFeature" Component_="DefaultIcon_Show.2"/>
-    <ROW Feature_="MainFeature" Component_="command_Show.2"/>
-    <ROW Feature_="MainFeature" Component_="shell_SlideShow.1"/>
-    <ROW Feature_="MainFeature" Component_="DefaultIcon_SlideShow.1"/>
-    <ROW Feature_="MainFeature" Component_="command_SlideShow.1"/>
-    <ROW Feature_="MainFeature" Component_="shell_SlideShow.12"/>
-    <ROW Feature_="MainFeature" Component_="DefaultIcon_SlideShow.12"/>
-    <ROW Feature_="MainFeature" Component_="command_SlideShow.12"/>
-    <ROW Feature_="MainFeature" Component_="shell_Xps"/>
-    <ROW Feature_="MainFeature" Component_="DefaultIcon_Xps"/>
-    <ROW Feature_="MainFeature" Component_="command_Xps"/>
-    <ROW Feature_="MainFeature" Component_="ASCC_REG_PREFIX.Csv"/>
-    <ROW Feature_="MainFeature" Component_="open_Csv"/>
-    <ROW Feature_="MainFeature" Component_="ASCC_REG_PREFIX.DjVu"/>
-    <ROW Feature_="MainFeature" Component_="open_DjVu"/>
-    <ROW Feature_="MainFeature" Component_="ASCC_REG_PREFIX.Document.1"/>
-    <ROW Feature_="MainFeature" Component_="open_Document.1"/>
-    <ROW Feature_="MainFeature" Component_="ASCC_REG_PREFIX.Document.12"/>
-    <ROW Feature_="MainFeature" Component_="open_Document.12"/>
-    <ROW Feature_="MainFeature" Component_="ASCC_REG_PREFIX.Document.2"/>
-    <ROW Feature_="MainFeature" Component_="open_Document.2"/>
-    <ROW Feature_="MainFeature" Component_="ASCC_REG_PREFIX.Pdf"/>
-    <ROW Feature_="MainFeature" Component_="open_Pdf"/>
-    <ROW Feature_="MainFeature" Component_="ASCC_REG_PREFIX.Rtf"/>
-    <ROW Feature_="MainFeature" Component_="open_Rtf"/>
-    <ROW Feature_="MainFeature" Component_="ASCC_REG_PREFIX.Sheet.1"/>
-    <ROW Feature_="MainFeature" Component_="open_Sheet.1"/>
-    <ROW Feature_="MainFeature" Component_="ASCC_REG_PREFIX.Sheet.12"/>
-    <ROW Feature_="MainFeature" Component_="open_Sheet.12"/>
-    <ROW Feature_="MainFeature" Component_="ASCC_REG_PREFIX.Sheet.2"/>
-    <ROW Feature_="MainFeature" Component_="open_Sheet.2"/>
-    <ROW Feature_="MainFeature" Component_="ASCC_REG_PREFIX.Show.1"/>
-    <ROW Feature_="MainFeature" Component_="open_Show.1"/>
-    <ROW Feature_="MainFeature" Component_="ASCC_REG_PREFIX.Show.12"/>
-    <ROW Feature_="MainFeature" Component_="open_Show.12"/>
-    <ROW Feature_="MainFeature" Component_="ASCC_REG_PREFIX.Show.2"/>
-    <ROW Feature_="MainFeature" Component_="open_Show.2"/>
-    <ROW Feature_="MainFeature" Component_="ASCC_REG_PREFIX.SlideShow.1"/>
-    <ROW Feature_="MainFeature" Component_="open_SlideShow.1"/>
-    <ROW Feature_="MainFeature" Component_="ASCC_REG_PREFIX.SlideShow.12"/>
-    <ROW Feature_="MainFeature" Component_="open_SlideShow.12"/>
-    <ROW Feature_="MainFeature" Component_="ASCC_REG_PREFIX.Xps"/>
-    <ROW Feature_="MainFeature" Component_="open_Xps"/>
+    <ROW Feature_="FileProgramAssociation" Component_="ASCC_REG_REGISTERED_APP_NAME"/>
+    <ROW Feature_="FileProgramAssociation" Component_="ASSOC_PROG_ID"/>
+    <ROW Feature_="FileProgramAssociation" Component_="FileAssociation_xps"/>
+    <ROW Feature_="FileProgramAssociation" Component_="FileAssociation_xlsx"/>
+    <ROW Feature_="FileProgramAssociation" Component_="FileAssociation_xls"/>
+    <ROW Feature_="FileProgramAssociation" Component_="FileAssociation_pptx"/>
+    <ROW Feature_="FileProgramAssociation" Component_="FileAssociation_rtf"/>
+    <ROW Feature_="FileProgramAssociation" Component_="FileAssociation_ppsx"/>
+    <ROW Feature_="FileProgramAssociation" Component_="FileAssociation_ppt"/>
+    <ROW Feature_="FileProgramAssociation" Component_="FileAssociation_oform"/>
+    <ROW Feature_="FileProgramAssociation" Component_="FileAssociation_pdf"/>
+    <ROW Feature_="FileProgramAssociation" Component_="FileAssociation_odt"/>
+    <ROW Feature_="FileProgramAssociation" Component_="FileAssociation_pps"/>
+    <ROW Feature_="FileProgramAssociation" Component_="FileAssociation_ods"/>
+    <ROW Feature_="FileProgramAssociation" Component_="FileAssociation_csv"/>
+    <ROW Feature_="FileProgramAssociation" Component_="FileAssociation_djvu"/>
+    <ROW Feature_="FileProgramAssociation" Component_="FileAssociation_doc"/>
+    <ROW Feature_="FileProgramAssociation" Component_="FileAssociation_docx"/>
+    <ROW Feature_="FileProgramAssociation" Component_="FileAssociation_docxf"/>
+    <ROW Feature_="FileProgramAssociation" Component_="FileAssociation_odp"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiIconsComponent">
     <ROW Name="ImageViewer.exe" SourcePath="..\..\extras\projicons\res\gallery.ico" Index="0"/>
@@ -1175,35 +1003,37 @@
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiRegsComponent">
     <ROW Registry="AIShRegAnswer" Root="-1" Key="Software\Caphyon\Advanced Installer\Installs\[ProductCode]" Name="AIShRegAnswer" Value="[AI_SHORTCUTSREG]" Component_="AIShRegAnswer"/>
-    <ROW Registry="ASCC_REG_PREFIX.Csv" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Csv" Name="+" Component_="ASCC_REG_PREFIX.Csv"/>
-    <ROW Registry="ASCC_REG_PREFIX.DjVu" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].DjVu" Name="+" Component_="ASCC_REG_PREFIX.DjVu"/>
-    <ROW Registry="ASCC_REG_PREFIX.Document.1" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Document.1" Name="+" Component_="ASCC_REG_PREFIX.Document.1"/>
-    <ROW Registry="ASCC_REG_PREFIX.Document.12" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Document.12" Name="+" Component_="ASCC_REG_PREFIX.Document.12"/>
-    <ROW Registry="ASCC_REG_PREFIX.Document.2" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Document.2" Name="+" Component_="ASCC_REG_PREFIX.Document.2"/>
-    <ROW Registry="ASCC_REG_PREFIX.Pdf" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Pdf" Name="+" Component_="ASCC_REG_PREFIX.Pdf"/>
-    <ROW Registry="ASCC_REG_PREFIX.Rtf" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Rtf" Name="+" Component_="ASCC_REG_PREFIX.Rtf"/>
-    <ROW Registry="ASCC_REG_PREFIX.Sheet.1" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Sheet.1" Name="+" Component_="ASCC_REG_PREFIX.Sheet.1"/>
-    <ROW Registry="ASCC_REG_PREFIX.Sheet.12" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Sheet.12" Name="+" Component_="ASCC_REG_PREFIX.Sheet.12"/>
-    <ROW Registry="ASCC_REG_PREFIX.Sheet.2" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Sheet.2" Name="+" Component_="ASCC_REG_PREFIX.Sheet.2"/>
-    <ROW Registry="ASCC_REG_PREFIX.Show.1" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Show.1" Name="+" Component_="ASCC_REG_PREFIX.Show.1"/>
-    <ROW Registry="ASCC_REG_PREFIX.Show.12" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Show.12" Name="+" Component_="ASCC_REG_PREFIX.Show.12"/>
-    <ROW Registry="ASCC_REG_PREFIX.Show.2" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Show.2" Name="+" Component_="ASCC_REG_PREFIX.Show.2"/>
-    <ROW Registry="ASCC_REG_PREFIX.SlideShow.1" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].SlideShow.1" Name="+" Component_="ASCC_REG_PREFIX.SlideShow.1"/>
-    <ROW Registry="ASCC_REG_PREFIX.SlideShow.12" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].SlideShow.12" Name="+" Component_="ASCC_REG_PREFIX.SlideShow.12"/>
-    <ROW Registry="ASCC_REG_PREFIX.Xps" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Xps" Name="+" Component_="ASCC_REG_PREFIX.Xps"/>
+    <ROW Registry="ASCC_REG_PREFIX.Csv" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Csv" Name="+" Component_="FileAssociation_csv"/>
+    <ROW Registry="ASCC_REG_PREFIX.DjVu" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].DjVu" Name="+" Component_="FileAssociation_djvu"/>
+    <ROW Registry="ASCC_REG_PREFIX.Document.1" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Document.1" Name="+" Component_="FileAssociation_doc"/>
+    <ROW Registry="ASCC_REG_PREFIX.Document.12" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Document.12" Name="+" Component_="FileAssociation_docx"/>
+    <ROW Registry="ASCC_REG_PREFIX.Document.2" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Document.2" Name="+" Component_="FileAssociation_odt"/>
+    <ROW Registry="ASCC_REG_PREFIX.Docxf" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Docxf" Name="+" Component_="FileAssociation_docxf"/>
+    <ROW Registry="ASCC_REG_PREFIX.Oform" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Oform" Name="+" Component_="FileAssociation_oform"/>
+    <ROW Registry="ASCC_REG_PREFIX.Pdf" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Pdf" Name="+" Component_="FileAssociation_pdf"/>
+    <ROW Registry="ASCC_REG_PREFIX.Rtf" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Rtf" Name="+" Component_="FileAssociation_rtf"/>
+    <ROW Registry="ASCC_REG_PREFIX.Sheet.1" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Sheet.1" Name="+" Component_="FileAssociation_xls"/>
+    <ROW Registry="ASCC_REG_PREFIX.Sheet.12" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Sheet.12" Name="+" Component_="FileAssociation_xlsx"/>
+    <ROW Registry="ASCC_REG_PREFIX.Sheet.2" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Sheet.2" Name="+" Component_="FileAssociation_ods"/>
+    <ROW Registry="ASCC_REG_PREFIX.Show.1" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Show.1" Name="+" Component_="FileAssociation_ppt"/>
+    <ROW Registry="ASCC_REG_PREFIX.Show.12" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Show.12" Name="+" Component_="FileAssociation_pptx"/>
+    <ROW Registry="ASCC_REG_PREFIX.Show.2" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Show.2" Name="+" Component_="FileAssociation_odp"/>
+    <ROW Registry="ASCC_REG_PREFIX.SlideShow.1" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].SlideShow.1" Name="+" Component_="FileAssociation_pps"/>
+    <ROW Registry="ASCC_REG_PREFIX.SlideShow.12" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].SlideShow.12" Name="+" Component_="FileAssociation_ppsx"/>
+    <ROW Registry="ASCC_REG_PREFIX.Xps" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Xps" Name="+" Component_="FileAssociation_xps"/>
     <ROW Registry="ASCC_REG_REGISTERED_APP_NAME" Root="2" Key="Software\RegisteredApplications" Name="[ASCC_REG_REGISTERED_APP_NAME]" Value="Software\[MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]\Capabilities" Component_="ASCC_REG_REGISTERED_APP_NAME"/>
-    <ROW Registry="ApplicationDescription" Root="2" Key="Software\[MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]\Capabilities" Name="ApplicationDescription" Value="[ARPCOMMENTS]" Component_="ApplicationDescription"/>
-    <ROW Registry="ApplicationIcon" Root="2" Key="Software\[MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]\Capabilities" Name="ApplicationIcon" Value="&quot;[APPDIR]editors.exe,0&quot;" Component_="ApplicationIcon"/>
-    <ROW Registry="ApplicationName" Root="2" Key="Software\[MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]\Capabilities" Name="ApplicationName" Value="[ProductName]" Component_="ApplicationName"/>
+    <ROW Registry="ApplicationDescription" Root="2" Key="Software\[MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]\Capabilities" Name="ApplicationDescription" Value="[ARPCOMMENTS]" Component_="ASCC_REG_REGISTERED_APP_NAME"/>
+    <ROW Registry="ApplicationIcon" Root="2" Key="Software\[MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]\Capabilities" Name="ApplicationIcon" Value="&quot;[APPDIR]editors.exe,0&quot;" Component_="ASCC_REG_REGISTERED_APP_NAME"/>
+    <ROW Registry="ApplicationName" Root="2" Key="Software\[MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]\Capabilities" Name="ApplicationName" Value="[ProductName]" Component_="ASCC_REG_REGISTERED_APP_NAME"/>
     <ROW Registry="CheckForUpdates" Root="2" Key="Software\[MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]" Name="CheckForUpdates" Value="#0" Component_="CheckForUpdates" VirtualValue="#"/>
     <ROW Registry="Comments" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="Comments" Value="[ARPCOMMENTS]" Component_="AI_CustomARPName"/>
     <ROW Registry="Contact" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="Contact" Value="[ARPCONTACT]" Component_="AI_CustomARPName"/>
-    <ROW Registry="DefaultIcon" Root="2" Key="Software\Classes\[ASSOC_PROG_ID]\DefaultIcon" Value="[APPDIR]DesktopEditors.exe,0" Component_="DefaultIcon_ASSOC_PROG_ID"/>
+    <ROW Registry="DefaultIcon" Root="2" Key="Software\Classes\[ASSOC_PROG_ID]\DefaultIcon" Value="[APPDIR]DesktopEditors.exe,0" Component_="ASSOC_PROG_ID"/>
     <ROW Registry="DisplayIcon" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="DisplayIcon" Value="[ARP_ICON_PATH]" Component_="AI_CustomARPName"/>
     <ROW Registry="DisplayName" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="DisplayName" Value="[AI_PRODUCTNAME_ARP]" Component_="AI_CustomARPName"/>
     <ROW Registry="DisplayVersion" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="DisplayVersion" Value="[ProductVersion]" Component_="AI_CustomARPName"/>
     <ROW Registry="EstimatedSize" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="EstimatedSize" Value="#[AI_ARP_SIZE]" Component_="AI_CustomARPName" VirtualValue="#"/>
-    <ROW Registry="FriendlyAppName" Root="2" Key="Software\Classes\[ASSOC_PROG_ID]\shell\open" Name="FriendlyAppName" Value="[ASSOC_APP_FRIENDLY_NAME]" Component_="FriendlyAppName"/>
+    <ROW Registry="FriendlyAppName" Root="2" Key="Software\Classes\[ASSOC_PROG_ID]\shell\open" Name="FriendlyAppName" Value="[ASSOC_APP_FRIENDLY_NAME]" Component_="ASSOC_PROG_ID"/>
     <ROW Registry="HelpLink" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="HelpLink" Value="[ARPHELPLINK]" Component_="AI_CustomARPName"/>
     <ROW Registry="HelpTelephone" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="HelpTelephone" Value="[ARPHELPTELEPHONE]" Component_="AI_CustomARPName"/>
     <ROW Registry="InstallLocation" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="InstallLocation" Value="[APPDIR]" Component_="AI_CustomARPName"/>
@@ -1227,40 +1057,44 @@
     <ROW Registry="VersionMajor" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="VersionMajor" Value="#6" Component_="AI_CustomARPName" VirtualValue="#"/>
     <ROW Registry="VersionMinor" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="VersionMinor" Value="#4" Component_="AI_CustomARPName" VirtualValue="#"/>
     <ROW Registry="Version_1" Root="2" Key="Software\[MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]" Name="Version" Value="[ProductVersion]" Component_="Version"/>
-    <ROW Registry="_" Root="2" Key="Software\Classes\[ASSOC_PROG_ID]" Value="[ASSOC_APP_FRIENDLY_NAME]" Component_="ASSOC_PROG_ID_HK_LM"/>
-    <ROW Registry="__1" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Csv\DefaultIcon" Value="[APPDIR]DesktopEditors.exe,20" Component_="DefaultIcon_Csv"/>
-    <ROW Registry="__10" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Document.12\DefaultIcon" Value="[APPDIR]DesktopEditors.exe,7" Component_="DefaultIcon_Document.12"/>
-    <ROW Registry="__11" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Document.12\shell\open\command" Value="&quot;[APPDIR]DesktopEditors.exe&quot; &quot;%1&quot;" Component_="command_Document.12"/>
-    <ROW Registry="__13" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Document.2\DefaultIcon" Value="[APPDIR]DesktopEditors.exe,14" Component_="DefaultIcon_Document.2"/>
-    <ROW Registry="__14" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Document.2\shell\open\command" Value="&quot;[APPDIR]DesktopEditors.exe&quot; &quot;%1&quot;" Component_="command_Document.2"/>
-    <ROW Registry="__16" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Pdf\DefaultIcon" Value="[APPDIR]DesktopEditors.exe,5" Component_="DefaultIcon_Pdf"/>
-    <ROW Registry="__17" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Pdf\shell\open\command" Value="&quot;[APPDIR]DesktopEditors.exe&quot; &quot;%1&quot;" Component_="command_Pdf"/>
-    <ROW Registry="__19" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Rtf\DefaultIcon" Value="[APPDIR]DesktopEditors.exe,15" Component_="DefaultIcon_Rtf"/>
-    <ROW Registry="__20" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Rtf\shell\open\command" Value="&quot;[APPDIR]DesktopEditors.exe&quot; &quot;%1&quot;" Component_="command_Rtf"/>
-    <ROW Registry="__23" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Sheet.1\DefaultIcon" Value="[APPDIR]DesktopEditors.exe,18" Component_="DefaultIcon_Sheet.1"/>
-    <ROW Registry="__24" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Sheet.1\shell\open\command" Value="&quot;[APPDIR]DesktopEditors.exe&quot; &quot;%1&quot;" Component_="command_Sheet.1"/>
-    <ROW Registry="__26" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Sheet.12\DefaultIcon" Value="[APPDIR]DesktopEditors.exe,10" Component_="DefaultIcon_Sheet.12"/>
-    <ROW Registry="__27" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Sheet.12\shell\open\command" Value="&quot;[APPDIR]DesktopEditors.exe&quot; &quot;%1&quot;" Component_="command_Sheet.12"/>
-    <ROW Registry="__28" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Sheet.2\DefaultIcon" Value="[APPDIR]DesktopEditors.exe,19" Component_="DefaultIcon_Sheet.2"/>
-    <ROW Registry="__29" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Sheet.2\shell\open\command" Value="&quot;[APPDIR]DesktopEditors.exe&quot; &quot;%1&quot;" Component_="command_Sheet.2"/>
-    <ROW Registry="__3" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Csv\shell\open\command" Value="&quot;[APPDIR]DesktopEditors.exe&quot; &quot;%1&quot;" Component_="command_Csv"/>
-    <ROW Registry="__31" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Show.1\DefaultIcon" Value="[APPDIR]DesktopEditors.exe,1" Component_="DefaultIcon_Show.1"/>
-    <ROW Registry="__32" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Show.1\shell\open\command" Value="&quot;[APPDIR]DesktopEditors.exe&quot; &quot;%1&quot;" Component_="command_Show.1"/>
-    <ROW Registry="__34" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Show.12\DefaultIcon" Value="[APPDIR]DesktopEditors.exe,9" Component_="DefaultIcon_Show.12"/>
-    <ROW Registry="__35" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Show.12\shell\open\command" Value="&quot;[APPDIR]DesktopEditors.exe&quot; &quot;%1&quot;" Component_="command_Show.12"/>
-    <ROW Registry="__37" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Show.2\DefaultIcon" Value="[APPDIR]DesktopEditors.exe,3" Component_="DefaultIcon_Show.2"/>
-    <ROW Registry="__39" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Show.2\shell\open\command" Value="&quot;[APPDIR]DesktopEditors.exe&quot; &quot;%1&quot;" Component_="command_Show.2"/>
-    <ROW Registry="__4" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].DjVu\DefaultIcon" Value="[APPDIR]DesktopEditors.exe,4" Component_="DefaultIcon_DjVu"/>
-    <ROW Registry="__40" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].SlideShow.1\DefaultIcon" Value="[APPDIR]DesktopEditors.exe,2" Component_="DefaultIcon_SlideShow.1"/>
-    <ROW Registry="__41" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].SlideShow.1\shell\open\command" Value="&quot;[APPDIR]DesktopEditors.exe&quot; &quot;%1&quot;" Component_="command_SlideShow.1"/>
-    <ROW Registry="__43" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].SlideShow.12\DefaultIcon" Value="[APPDIR]DesktopEditors.exe,8" Component_="DefaultIcon_SlideShow.12"/>
-    <ROW Registry="__45" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].SlideShow.12\shell\open\command" Value="&quot;[APPDIR]DesktopEditors.exe&quot; &quot;%1&quot;" Component_="command_SlideShow.12"/>
-    <ROW Registry="__46" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Xps\DefaultIcon" Value="[APPDIR]DesktopEditors.exe,6" Component_="DefaultIcon_Xps"/>
-    <ROW Registry="__47" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Xps\shell\open\command" Value="&quot;[APPDIR]DesktopEditors.exe&quot; &quot;%1&quot;" Component_="command_Xps"/>
-    <ROW Registry="__5" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].DjVu\shell\open\command" Value="&quot;[APPDIR]DesktopEditors.exe&quot; &quot;%1&quot;" Component_="command_DjVu"/>
-    <ROW Registry="__7" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Document.1\DefaultIcon" Value="[APPDIR]DesktopEditors.exe,11" Component_="DefaultIcon_Document.1"/>
-    <ROW Registry="__8" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Document.1\shell\open\command" Value="&quot;[APPDIR]DesktopEditors.exe&quot; &quot;%1&quot;" Component_="command_Document.1"/>
-    <ROW Registry="command_HK_CR" Root="2" Key="Software\Classes\[ASSOC_PROG_ID]\shell\open\command" Value="&quot;[APPDIR]DesktopEditors.exe&quot; &quot;%1&quot;" Component_="command_ASSOC_PROG_ID"/>
+    <ROW Registry="_" Root="2" Key="Software\Classes\[ASSOC_PROG_ID]" Value="[ASSOC_APP_FRIENDLY_NAME]" Component_="ASSOC_PROG_ID"/>
+    <ROW Registry="__1" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Csv\DefaultIcon" Value="[APPDIR]DesktopEditors.exe,20" Component_="FileAssociation_csv"/>
+    <ROW Registry="__10" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Document.12\DefaultIcon" Value="[APPDIR]DesktopEditors.exe,7" Component_="FileAssociation_docx"/>
+    <ROW Registry="__11" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Document.12\shell\open\command" Value="&quot;[APPDIR]DesktopEditors.exe&quot; &quot;%1&quot;" Component_="FileAssociation_docx"/>
+    <ROW Registry="__13" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Document.2\DefaultIcon" Value="[APPDIR]DesktopEditors.exe,14" Component_="FileAssociation_odt"/>
+    <ROW Registry="__14" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Document.2\shell\open\command" Value="&quot;[APPDIR]DesktopEditors.exe&quot; &quot;%1&quot;" Component_="FileAssociation_odt"/>
+    <ROW Registry="__15" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Oform\DefaultIcon" Value="[APPDIR]DesktopEditors.exe,12" Component_="FileAssociation_oform"/>
+    <ROW Registry="__16" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Pdf\DefaultIcon" Value="[APPDIR]DesktopEditors.exe,5" Component_="FileAssociation_pdf"/>
+    <ROW Registry="__17" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Pdf\shell\open\command" Value="&quot;[APPDIR]DesktopEditors.exe&quot; &quot;%1&quot;" Component_="FileAssociation_pdf"/>
+    <ROW Registry="__18" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Oform\shell\open\command" Value="&quot;[APPDIR]DesktopEditors.exe&quot; &quot;%1&quot;" Component_="FileAssociation_oform"/>
+    <ROW Registry="__19" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Rtf\DefaultIcon" Value="[APPDIR]DesktopEditors.exe,15" Component_="FileAssociation_rtf"/>
+    <ROW Registry="__20" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Rtf\shell\open\command" Value="&quot;[APPDIR]DesktopEditors.exe&quot; &quot;%1&quot;" Component_="FileAssociation_rtf"/>
+    <ROW Registry="__23" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Sheet.1\DefaultIcon" Value="[APPDIR]DesktopEditors.exe,18" Component_="FileAssociation_xls"/>
+    <ROW Registry="__24" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Sheet.1\shell\open\command" Value="&quot;[APPDIR]DesktopEditors.exe&quot; &quot;%1&quot;" Component_="FileAssociation_xls"/>
+    <ROW Registry="__26" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Sheet.12\DefaultIcon" Value="[APPDIR]DesktopEditors.exe,10" Component_="FileAssociation_xlsx"/>
+    <ROW Registry="__27" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Sheet.12\shell\open\command" Value="&quot;[APPDIR]DesktopEditors.exe&quot; &quot;%1&quot;" Component_="FileAssociation_xlsx"/>
+    <ROW Registry="__28" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Sheet.2\DefaultIcon" Value="[APPDIR]DesktopEditors.exe,19" Component_="FileAssociation_ods"/>
+    <ROW Registry="__29" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Sheet.2\shell\open\command" Value="&quot;[APPDIR]DesktopEditors.exe&quot; &quot;%1&quot;" Component_="FileAssociation_ods"/>
+    <ROW Registry="__3" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Csv\shell\open\command" Value="&quot;[APPDIR]DesktopEditors.exe&quot; &quot;%1&quot;" Component_="FileAssociation_csv"/>
+    <ROW Registry="__31" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Show.1\DefaultIcon" Value="[APPDIR]DesktopEditors.exe,1" Component_="FileAssociation_ppt"/>
+    <ROW Registry="__32" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Show.1\shell\open\command" Value="&quot;[APPDIR]DesktopEditors.exe&quot; &quot;%1&quot;" Component_="FileAssociation_ppt"/>
+    <ROW Registry="__33" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Docxf\shell\open\command" Value="&quot;[APPDIR]DesktopEditors.exe&quot; &quot;%1&quot;" Component_="FileAssociation_docxf"/>
+    <ROW Registry="__34" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Show.12\DefaultIcon" Value="[APPDIR]DesktopEditors.exe,9" Component_="FileAssociation_pptx"/>
+    <ROW Registry="__35" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Show.12\shell\open\command" Value="&quot;[APPDIR]DesktopEditors.exe&quot; &quot;%1&quot;" Component_="FileAssociation_pptx"/>
+    <ROW Registry="__36" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Docxf\DefaultIcon" Value="[APPDIR]DesktopEditors.exe,13" Component_="FileAssociation_docxf"/>
+    <ROW Registry="__37" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Show.2\DefaultIcon" Value="[APPDIR]DesktopEditors.exe,3" Component_="FileAssociation_odp"/>
+    <ROW Registry="__39" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Show.2\shell\open\command" Value="&quot;[APPDIR]DesktopEditors.exe&quot; &quot;%1&quot;" Component_="FileAssociation_odp"/>
+    <ROW Registry="__4" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].DjVu\DefaultIcon" Value="[APPDIR]DesktopEditors.exe,4" Component_="FileAssociation_djvu"/>
+    <ROW Registry="__40" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].SlideShow.1\DefaultIcon" Value="[APPDIR]DesktopEditors.exe,2" Component_="FileAssociation_pps"/>
+    <ROW Registry="__41" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].SlideShow.1\shell\open\command" Value="&quot;[APPDIR]DesktopEditors.exe&quot; &quot;%1&quot;" Component_="FileAssociation_pps"/>
+    <ROW Registry="__43" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].SlideShow.12\DefaultIcon" Value="[APPDIR]DesktopEditors.exe,8" Component_="FileAssociation_ppsx"/>
+    <ROW Registry="__45" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].SlideShow.12\shell\open\command" Value="&quot;[APPDIR]DesktopEditors.exe&quot; &quot;%1&quot;" Component_="FileAssociation_ppsx"/>
+    <ROW Registry="__46" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Xps\DefaultIcon" Value="[APPDIR]DesktopEditors.exe,6" Component_="FileAssociation_xps"/>
+    <ROW Registry="__47" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Xps\shell\open\command" Value="&quot;[APPDIR]DesktopEditors.exe&quot; &quot;%1&quot;" Component_="FileAssociation_xps"/>
+    <ROW Registry="__5" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].DjVu\shell\open\command" Value="&quot;[APPDIR]DesktopEditors.exe&quot; &quot;%1&quot;" Component_="FileAssociation_djvu"/>
+    <ROW Registry="__7" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Document.1\DefaultIcon" Value="[APPDIR]DesktopEditors.exe,11" Component_="FileAssociation_doc"/>
+    <ROW Registry="__8" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Document.1\shell\open\command" Value="&quot;[APPDIR]DesktopEditors.exe&quot; &quot;%1&quot;" Component_="FileAssociation_doc"/>
+    <ROW Registry="command_HK_CR" Root="2" Key="Software\Classes\[ASSOC_PROG_ID]\shell\open\command" Value="&quot;[APPDIR]DesktopEditors.exe&quot; &quot;%1&quot;" Component_="ASSOC_PROG_ID"/>
     <ROW Registry="csv" Root="2" Key="Software\[MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]\Capabilities\FileAssociations" Name=".csv" Value="[ASCC_REG_PREFIX].Csv" Component_="FileAssociation_csv"/>
     <ROW Registry="djvu" Root="2" Key="Software\[MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]\Capabilities\FileAssociations" Name=".djvu" Value="[ASCC_REG_PREFIX].DjVu" Component_="FileAssociation_djvu"/>
     <ROW Registry="doc" Root="2" Key="Software\[MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]\Capabilities\FileAssociations" Name=".doc" Value="[ASCC_REG_PREFIX].Document.1" Component_="FileAssociation_doc"/>
@@ -1272,45 +1106,49 @@
     <ROW Registry="ods" Root="2" Key="Software\[MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]\Capabilities\FileAssociations" Name=".ods" Value="[ASCC_REG_PREFIX].Sheet.2" Component_="FileAssociation_ods"/>
     <ROW Registry="odt" Root="2" Key="Software\[MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]\Capabilities\FileAssociations" Name=".odt" Value="[ASCC_REG_PREFIX].Document.2" Component_="FileAssociation_odt"/>
     <ROW Registry="oform" Root="2" Key="Software\[MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]\Capabilities\FileAssociations" Name=".oform" Value="[ASCC_REG_PREFIX].Oform" Component_="FileAssociation_oform"/>
-    <ROW Registry="open_1" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Csv\shell\open" Name="+" Component_="open_Csv"/>
-    <ROW Registry="open_10" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Document.1\shell\open" Name="+" Component_="open_Document.1"/>
-    <ROW Registry="open_11" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Document.12\shell\open" Name="+" Component_="open_Document.12"/>
-    <ROW Registry="open_12" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Document.2\shell\open" Name="+" Component_="open_Document.2"/>
-    <ROW Registry="open_13" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Pdf\shell\open" Name="+" Component_="open_Pdf"/>
-    <ROW Registry="open_14" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Rtf\shell\open" Name="+" Component_="open_Rtf"/>
-    <ROW Registry="open_15" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Sheet.1\shell\open" Name="+" Component_="open_Sheet.1"/>
-    <ROW Registry="open_16" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Sheet.12\shell\open" Name="+" Component_="open_Sheet.12"/>
-    <ROW Registry="open_2" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Sheet.2\shell\open" Name="+" Component_="open_Sheet.2"/>
-    <ROW Registry="open_3" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Show.1\shell\open" Name="+" Component_="open_Show.1"/>
-    <ROW Registry="open_4" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Show.12\shell\open" Name="+" Component_="open_Show.12"/>
-    <ROW Registry="open_5" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Show.2\shell\open" Name="+" Component_="open_Show.2"/>
-    <ROW Registry="open_6" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].SlideShow.1\shell\open" Name="+" Component_="open_SlideShow.1"/>
-    <ROW Registry="open_7" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].SlideShow.12\shell\open" Name="+" Component_="open_SlideShow.12"/>
-    <ROW Registry="open_8" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Xps\shell\open" Name="+" Component_="open_Xps"/>
-    <ROW Registry="open_9" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].DjVu\shell\open" Name="+" Component_="open_DjVu"/>
+    <ROW Registry="open_1" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Csv\shell\open" Name="+" Component_="FileAssociation_csv"/>
+    <ROW Registry="open_10" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Document.1\shell\open" Name="+" Component_="FileAssociation_doc"/>
+    <ROW Registry="open_11" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Document.12\shell\open" Name="+" Component_="FileAssociation_docx"/>
+    <ROW Registry="open_12" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Document.2\shell\open" Name="+" Component_="FileAssociation_odt"/>
+    <ROW Registry="open_13" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Pdf\shell\open" Name="+" Component_="FileAssociation_pdf"/>
+    <ROW Registry="open_14" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Rtf\shell\open" Name="+" Component_="FileAssociation_rtf"/>
+    <ROW Registry="open_15" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Sheet.1\shell\open" Name="+" Component_="FileAssociation_xls"/>
+    <ROW Registry="open_16" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Sheet.12\shell\open" Name="+" Component_="FileAssociation_xlsx"/>
+    <ROW Registry="open_19" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Oform\shell\open" Name="+" Component_="FileAssociation_oform"/>
+    <ROW Registry="open_2" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Sheet.2\shell\open" Name="+" Component_="FileAssociation_ods"/>
+    <ROW Registry="open_22" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Docxf\shell\open" Name="+" Component_="FileAssociation_docxf"/>
+    <ROW Registry="open_3" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Show.1\shell\open" Name="+" Component_="FileAssociation_ppt"/>
+    <ROW Registry="open_4" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Show.12\shell\open" Name="+" Component_="FileAssociation_pptx"/>
+    <ROW Registry="open_5" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Show.2\shell\open" Name="+" Component_="FileAssociation_odp"/>
+    <ROW Registry="open_6" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].SlideShow.1\shell\open" Name="+" Component_="FileAssociation_pps"/>
+    <ROW Registry="open_7" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].SlideShow.12\shell\open" Name="+" Component_="FileAssociation_ppsx"/>
+    <ROW Registry="open_8" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Xps\shell\open" Name="+" Component_="FileAssociation_xps"/>
+    <ROW Registry="open_9" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].DjVu\shell\open" Name="+" Component_="FileAssociation_djvu"/>
     <ROW Registry="pdf" Root="2" Key="Software\[MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]\Capabilities\FileAssociations" Name=".pdf" Value="[ASCC_REG_PREFIX].Pdf" Component_="FileAssociation_pdf"/>
     <ROW Registry="pps" Root="2" Key="Software\[MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]\Capabilities\FileAssociations" Name=".pps" Value="[ASCC_REG_PREFIX].SlideShow.1" Component_="FileAssociation_pps"/>
     <ROW Registry="ppsx" Root="2" Key="Software\[MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]\Capabilities\FileAssociations" Name=".ppsx" Value="[ASCC_REG_PREFIX].SlideShow.12" Component_="FileAssociation_ppsx"/>
     <ROW Registry="ppt" Root="2" Key="Software\[MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]\Capabilities\FileAssociations" Name=".ppt" Value="[ASCC_REG_PREFIX].Show.1" Component_="FileAssociation_ppt"/>
     <ROW Registry="pptx" Root="2" Key="Software\[MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]\Capabilities\FileAssociations" Name=".pptx" Value="[ASCC_REG_PREFIX].Show.12" Component_="FileAssociation_pptx"/>
     <ROW Registry="rtf" Root="2" Key="Software\[MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]\Capabilities\FileAssociations" Name=".rtf" Value="[ASCC_REG_PREFIX].Rtf" Component_="FileAssociation_rtf"/>
-    <ROW Registry="shell" Root="2" Key="Software\Classes\[ASSOC_PROG_ID]\shell" Name="+" Component_="shell_ASSOC_PROG_ID"/>
-    <ROW Registry="shell_1" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Csv\shell" Name="+" Component_="shell_Csv"/>
-    <ROW Registry="shell_10" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Sheet.2\shell" Name="+" Component_="shell_Sheet.2"/>
-    <ROW Registry="shell_11" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Show.1\shell" Name="+" Component_="shell_Show.1"/>
-    <ROW Registry="shell_12" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Show.12\shell" Name="+" Component_="shell_Show.12"/>
-    <ROW Registry="shell_13" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Show.2\shell" Name="+" Component_="shell_Show.2"/>
-    <ROW Registry="shell_14" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].SlideShow.1\shell" Name="+" Component_="shell_SlideShow.1"/>
-    <ROW Registry="shell_15" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].SlideShow.12\shell" Name="+" Component_="shell_SlideShow.12"/>
-    <ROW Registry="shell_16" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Xps\shell" Name="+" Component_="shell_Xps"/>
-    <ROW Registry="shell_2" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].DjVu\shell" Name="+" Component_="shell_DjVu"/>
-    <ROW Registry="shell_3" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Document.1\shell" Name="+" Component_="shell_Document.1"/>
-    <ROW Registry="shell_4" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Document.12\shell" Name="+" Component_="shell_Document.12"/>
-    <ROW Registry="shell_5" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Document.2\shell" Name="+" Component_="shell_Document.2"/>
-    <ROW Registry="shell_6" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Pdf\shell" Name="+" Component_="shell_Pdf"/>
-    <ROW Registry="shell_7" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Rtf\shell" Name="+" Component_="shell_Rtf"/>
-    <ROW Registry="shell_8" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Sheet.1\shell" Name="+" Component_="shell_Sheet.1"/>
-    <ROW Registry="shell_9" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Sheet.12\shell" Name="+" Component_="shell_Sheet.12"/>
+    <ROW Registry="shell" Root="2" Key="Software\Classes\[ASSOC_PROG_ID]\shell" Name="+" Component_="ASSOC_PROG_ID"/>
+    <ROW Registry="shell_1" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Csv\shell" Name="+" Component_="FileAssociation_csv"/>
+    <ROW Registry="shell_10" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Sheet.2\shell" Name="+" Component_="FileAssociation_ods"/>
+    <ROW Registry="shell_11" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Show.1\shell" Name="+" Component_="FileAssociation_ppt"/>
+    <ROW Registry="shell_12" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Show.12\shell" Name="+" Component_="FileAssociation_pptx"/>
+    <ROW Registry="shell_13" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Show.2\shell" Name="+" Component_="FileAssociation_odp"/>
+    <ROW Registry="shell_14" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].SlideShow.1\shell" Name="+" Component_="FileAssociation_pps"/>
+    <ROW Registry="shell_15" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].SlideShow.12\shell" Name="+" Component_="FileAssociation_ppsx"/>
+    <ROW Registry="shell_16" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Xps\shell" Name="+" Component_="FileAssociation_xps"/>
+    <ROW Registry="shell_19" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Oform\shell" Name="+" Component_="FileAssociation_oform"/>
+    <ROW Registry="shell_2" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].DjVu\shell" Name="+" Component_="FileAssociation_djvu"/>
+    <ROW Registry="shell_22" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Docxf\shell" Name="+" Component_="FileAssociation_docxf"/>
+    <ROW Registry="shell_3" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Document.1\shell" Name="+" Component_="FileAssociation_doc"/>
+    <ROW Registry="shell_4" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Document.12\shell" Name="+" Component_="FileAssociation_docx"/>
+    <ROW Registry="shell_5" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Document.2\shell" Name="+" Component_="FileAssociation_odt"/>
+    <ROW Registry="shell_6" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Pdf\shell" Name="+" Component_="FileAssociation_pdf"/>
+    <ROW Registry="shell_7" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Rtf\shell" Name="+" Component_="FileAssociation_rtf"/>
+    <ROW Registry="shell_8" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Sheet.1\shell" Name="+" Component_="FileAssociation_xls"/>
+    <ROW Registry="shell_9" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Sheet.12\shell" Name="+" Component_="FileAssociation_xlsx"/>
     <ROW Registry="xls" Root="2" Key="Software\[MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]\Capabilities\FileAssociations" Name=".xls" Value="[ASCC_REG_PREFIX].Sheet.1" Component_="FileAssociation_xls"/>
     <ROW Registry="xlsx" Root="2" Key="Software\[MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]\Capabilities\FileAssociations" Name=".xlsx" Value="[ASCC_REG_PREFIX].Sheet.12" Component_="FileAssociation_xlsx"/>
     <ROW Registry="xps" Root="2" Key="Software\[MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]\Capabilities\FileAssociations" Name=".xps" Value="[ASCC_REG_PREFIX].Xps" Component_="FileAssociation_xps"/>
