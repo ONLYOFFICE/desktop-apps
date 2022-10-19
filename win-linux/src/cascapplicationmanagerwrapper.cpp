@@ -1073,11 +1073,11 @@ CPresenterWindow * CAscApplicationManagerWrapper::createReporterWindow(void * da
 
     if ( QApplication::desktop()->screenCount() > 1 ) {
         int _scrNum = QApplication::desktop()->screenNumber(_currentRect.topLeft());
-        QRect _scrRect = QApplication::desktop()->screenGeometry(QApplication::desktop()->screenCount()-_scrNum-1);
+        QRect _scrRect = QApplication::desktop()->availableGeometry(QApplication::desktop()->screenCount()-_scrNum-1);
         int _srcDpiRatio = Utils::getScreenDpiRatio(_scrRect.topLeft());
 
+        _windowRect.setTopLeft(_scrRect.translated(100,100).topLeft()*_srcDpiRatio);
         _windowRect.setSize(QSize(1000,700)*_srcDpiRatio);
-        _windowRect.moveCenter(_scrRect.center());
     }
 
     CPresenterWindow * reporterWindow = new CPresenterWindow(_windowRect, tr("Presenter View") + " - " + _doc_name, pView);
