@@ -6,20 +6,20 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1085"/>
         <source>Presenter View</source>
-        <translation>Прагляд спікера</translation>
+        <translation>Рэжым дакладчыка</translation>
     </message>
     <message>
         <source>Do you want to close all editor windows?</source>
-        <translation type="vanished">Хочаце зачыніць усе вокны рэдактара?</translation>
+        <translation type="vanished">Хочаце закрыць усе вокны рэдактара?</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1627"/>
         <source>Update is running. Break update and close the app?</source>
-        <translation>Ідзе абнаўленне. Адмяніць абнаўленне і закрыць прыкладанне?</translation>
+        <translation>Выконваецца абнаўленне. Перарваць абнаўленне і закрыць праграму?</translation>
     </message>
     <message>
         <source>Close all editors windows?</source>
-        <translation type="vanished">Усе вокны рэдактара будуць зачыненыя. Вы хочаце працягнуць?</translation>
+        <translation type="vanished">Закрыць усе вокны рэдактара?</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1827"/>
@@ -44,7 +44,7 @@
         <location filename="../src/asctabwidget.cpp" line="729"/>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="763"/>
         <source>Document</source>
-        <translation>Адкрываецца...</translation>
+        <translation>Дакумент</translation>
     </message>
 </context>
 <context>
@@ -60,7 +60,7 @@
     <message>
         <location filename="../src/linux/cdialogcertificateinfo.cpp" line="20"/>
         <source>OK</source>
-        <translation>OK</translation>
+        <translation>Добра</translation>
     </message>
 </context>
 <context>
@@ -68,12 +68,12 @@
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="101"/>
         <source>Select certificate</source>
-        <translation>Выберыце сертыфікат</translation>
+        <translation>Абраць сертыфікат</translation>
     </message>
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="105"/>
         <source>select certificate file...</source>
-        <translation>выберыце файл сертыфіката...</translation>
+        <translation>абярыце файл сертыфіката...</translation>
     </message>
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="106"/>
@@ -83,7 +83,7 @@
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="107"/>
         <source>select key file...</source>
-        <translation>выберыце файл ключа…</translation>
+        <translation>абярыце файл ключа…</translation>
     </message>
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="108"/>
@@ -93,7 +93,7 @@
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="215"/>
         <source>Enter certificate path</source>
-        <translation>Увядзіце сцежку да сертыфіката</translation>
+        <translation>Увядзіце шлях да сертыфіката</translation>
     </message>
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="224"/>
@@ -113,7 +113,7 @@
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="240"/>
         <source>Enter valid private key</source>
-        <translation>Увядзіце сапраўдны закрыты ключ</translation>
+        <translation>Увядзіце прыдатны прыватны ключ</translation>
     </message>
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="250"/>
@@ -131,7 +131,7 @@
     <message>
         <location filename="../src/cdownloadwidget.cpp" line="148"/>
         <source>Cancel</source>
-        <translation>Адмяніць</translation>
+        <translation>Скасаваць</translation>
     </message>
 </context>
 <context>
@@ -149,7 +149,7 @@
     <message>
         <location filename="../src/ceditorwindow_p.h" line="478"/>
         <source>Print Document</source>
-        <translation>Раздрукаваць дакумент</translation>
+        <translation>Друкаваць дакумент</translation>
     </message>
     <message>
         <location filename="../src/ceditorwindow_p.h" line="631"/>
@@ -164,7 +164,7 @@
     <message>
         <location filename="../src/ceditortools.cpp" line="299"/>
         <source>Some data will lost.&lt;br&gt;Continue?</source>
-        <translation>Калі вы працягнеце захоўваць у гэтым фармаце, усе функцыі, акрамя тэксту, будуць страчаны.&lt;br&gt;Вы ўпэўнены, што хочаце працягнуць?</translation>
+        <translation>Некаторыя даныя страцяцца.&lt;br&gt;Працягнуць?</translation>
     </message>
 </context>
 <context>
@@ -177,22 +177,22 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="221"/>
         <source>DOCX Document (*.docx)</source>
-        <translation>Дакумент Office Open XML (*.docx)</translation>
+        <translation>Дакумент DOCX (*.docx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="222"/>
         <source>Document template (*.dotx)</source>
-        <translation>Шаблон дакумента Word Open XML (*.dotx)</translation>
+        <translation>Шаблон дакумента (*.dotx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="223"/>
         <source>DOC Document (*.doc)</source>
-        <translation>Дакумент Word 97-2003 (*.doc)</translation>
+        <translation>Дакумент DOC (*.doc)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="224"/>
         <source>ODT Document (*.odt)</source>
-        <translation>Тэкставы файл OpenDocument (*.odt)</translation>
+        <translation>Дакумент ODT (*.odt)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="225"/>
@@ -202,17 +202,17 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="226"/>
         <source>RTF File (*.rtf)</source>
-        <translation>Багаты тэкставы дакумент (*.rtf)</translation>
+        <translation>Дакумент RTF (*.rtf)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="227"/>
         <source>TXT File (*.txt)</source>
-        <translation>Просты тэкст (*.txt)</translation>
+        <translation>Тэкставы файл (*.txt)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="228"/>
         <source>HTML File (*.html)</source>
-        <translation>HTML файл (*.html)</translation>
+        <translation>Файл HTML (*.html)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="229"/>
@@ -222,47 +222,47 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="230"/>
         <source>EPUB File (*.epub)</source>
-        <translation>Электронная публікацыя (*.epub)</translation>
+        <translation>Файл EPUB (*.epub)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="231"/>
         <source>FB2 File (*.fb2)</source>
-        <translation>Файл FictionBook (*.fb2)</translation>
+        <translation>Файл FB2 (*.fb2)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="232"/>
         <source>MOBI File (*.mobi)</source>
-        <translation>Электронная кніга mobipocket (*.mobi)</translation>
+        <translation>Файл MOBI (*.mobi)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="233"/>
         <source>OFORM Document (*.oform)</source>
-        <translation>Запаўняльная анлайн-форма ONLYOFFICE (*.oform)</translation>
+        <translation>Дакумент OFORM (*.oform)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="234"/>
         <source>DOCXF Document (*.docxf)</source>
-        <translation>Шаблон формы ONLYOFFICE (*.docxf)</translation>
+        <translation>Дакумент DOCXF (*.docxf)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="236"/>
         <source>PPTX File (*.pptx)</source>
-        <translation>Прэзентацыя Office Open XML (*.pptx)</translation>
+        <translation>Файл PPTX (*.pptx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="237"/>
         <source>PPT File (*.ppt)</source>
-        <translation>Прэзентацыя PowerPoint 97-2003 (*.ppt)</translation>
+        <translation>Файл PPT (*.ppt)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="238"/>
         <source>Presentation template (*.potx)</source>
-        <translation>Шаблон прэзентацыі PowerPoint Open XML (*.potx)</translation>
+        <translation>Шаблон прэзентацыі (*.potx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="239"/>
         <source>ODP File (*.odp)</source>
-        <translation>Прэзентацыя OpenDocument (*.odp)</translation>
+        <translation>Файл ODP (*.odp)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="240"/>
@@ -272,57 +272,57 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="241"/>
         <source>PPSX File (*.ppsx)</source>
-        <translation>Слайд-шоў Office Open XML (*.ppsx)</translation>
+        <translation>Файл PPSX (*.ppsx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="243"/>
         <source>XLSX File (*.xlsx)</source>
-        <translation>Электронная табліца Office Open XML (*.xlsx)</translation>
+        <translation>Файл XLSX (*.xlsx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="244"/>
         <source>Spreadsheet template (*.xltx)</source>
-        <translation>Шаблон табліцы Excel Open XML (*.xltx)</translation>
+        <translation>Шаблон табліцы (*.xltx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="245"/>
         <source>XLS File (*.xls)</source>
-        <translation>Электронная табліца Excel 97-2003 (*.xls)</translation>
+        <translation>Файл XLS (*.xls)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="246"/>
         <source>ODS File (*.ods)</source>
-        <translation>Электронная табліца OpenDocument (*.ods)</translation>
+        <translation>Файл ODS (*.ods)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="247"/>
         <source>OpenDocument Spreadsheet Template (*.ots)</source>
-        <translation>Шаблон электроннай табліцы OpenDocument (*.ots)</translation>
+        <translation>Шаблон табліцы OpenDocument (*.ots)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="248"/>
         <source>CSV File (*.csv)</source>
-        <translation>Значэнні, падзеленыя коскамі (*.csv)</translation>
+        <translation>Файл CSV (*.csv)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="250"/>
         <source>PDF File (*.pdf)</source>
-        <translation>Пераносны дакумент (*.pdf)</translation>
+        <translation>Файл PDF (*.pdf)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="251"/>
         <source>PDFA File (*.pdf)</source>
-        <translation>Пераносны дакумент /A (*.pdf)</translation>
+        <translation>Файл PDFA (*.pdf)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="252"/>
         <source>DJVU File (*.djvu)</source>
-        <translation>Лічбавы дакумент (*.djvu)</translation>
+        <translation>Файл DJVU (*.djvu)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="253"/>
         <source>XPS File (*.xps)</source>
-        <translation>Дакумент OpenXPS (*.xps)</translation>
+        <translation>Файл XPS (*.xps)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="255"/>
@@ -347,7 +347,7 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="344"/>
         <source>%1 already exists.&lt;br&gt;Do you want to replace it?</source>
-        <translation>%1 існуе.&lt;br&gt;Вы хочаце яго замяніць?</translation>
+        <translation>%1 ужо існуе.&lt;br&gt;Хочаце замяніць?</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="370"/>
@@ -432,7 +432,7 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="532"/>
         <source>Audio file</source>
-        <translation>Аўдыефайл</translation>
+        <translation>Аўдыяфайл</translation>
     </message>
 </context>
 <context>
@@ -440,7 +440,7 @@
     <message>
         <location filename="../src/cmainpanel.cpp" line="1243"/>
         <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
-        <translation>%1 быў зменены.&lt;br&gt;Хочаце захаваць змены?</translation>
+        <translation>%1 быў зменены.&lt;br&gt;Захаваць змены?</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="592"/>
@@ -451,7 +451,7 @@
     <message>
         <location filename="../src/cmainpanel.cpp" line="620"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
-        <translation>%1 недаступны. Яго можна перайменаваць, перамясціць або выдаліць.&lt;br&gt;Хочаце выдаліць файл са спісу?</translation>
+        <translation>%1 не існуе.&lt;br&gt;Выдаліць файл са спіса?</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="680"/>
@@ -460,12 +460,12 @@
     </message>
     <message>
         <source>Some data will lost.&lt;br&gt;Continue?</source>
-        <translation type="vanished">Калі вы працягнеце захоўваць у гэтым фармаце, усе функцыі, акрамя тэксту, будуць страчаны.&lt;br&gt;Вы ўпэўнены, што хочаце працягнуць?</translation>
+        <translation type="vanished">Некаторыя даныя страцяцца.&lt;br&gt;Працягнуць?</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="1178"/>
         <source>Sign Up</source>
-        <translation>Стварыць партал:</translation>
+        <translation>Зарэгістравацца</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="836"/>
@@ -475,7 +475,7 @@
     <message>
         <location filename="../src/cmainpanel.cpp" line="973"/>
         <source>Print Document</source>
-        <translation>Раздрукаваць дакумент</translation>
+        <translation>Друкаваць дакумент</translation>
     </message>
 </context>
 <context>
@@ -483,7 +483,7 @@
     <message>
         <location filename="../src/prop/cmainpanelimpl.cpp" line="54"/>
         <source>Licensed under</source>
-        <translation>Пад лицэнзіяй</translation>
+        <translation>На ўмовах ліцэнзіі</translation>
     </message>
 </context>
 <context>
@@ -491,7 +491,7 @@
     <message>
         <location filename="../src/cmessage.cpp" line="189"/>
         <source>&amp;OK</source>
-        <translation>&amp;OK</translation>
+        <translation>&amp;Добра</translation>
     </message>
     <message>
         <location filename="../src/cmessage.cpp" line="297"/>
@@ -515,13 +515,13 @@
         <location filename="../src/cmessage.cpp" line="301"/>
         <location filename="../src/cmessage.cpp" line="302"/>
         <source>Cancel</source>
-        <translation>Адмяніць</translation>
+        <translation>Скасаваць</translation>
     </message>
     <message>
         <location filename="../src/cmessage.cpp" line="301"/>
         <location filename="../src/cmessage.cpp" line="302"/>
         <source>OK</source>
-        <translation>OK</translation>
+        <translation>Добра</translation>
     </message>
 </context>
 <context>
@@ -529,17 +529,17 @@
     <message>
         <location filename="../src/cprintprogress.cpp" line="112"/>
         <source>Document is printing: page %1 of %2</source>
-        <translation>Друк дакумента: старонка %1 з %2</translation>
+        <translation>Друкаванне дакумента: старонка %1 з %2</translation>
     </message>
     <message>
         <location filename="../src/cprintprogress.cpp" line="114"/>
         <source>Document is preparing</source>
-        <translation>Падрыхтоўка дакумента</translation>
+        <translation>Рыхтаванне дакумента</translation>
     </message>
     <message>
         <location filename="../src/cprintprogress.cpp" line="120"/>
         <source>&amp;Cancel</source>
-        <translation>&amp;Адмяніць</translation>
+        <translation>&amp;Скасаваць</translation>
     </message>
     <message>
         <location filename="../src/cprintprogress.cpp" line="130"/>
@@ -552,17 +552,17 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper_private.h" line="177"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
-        <translation>%1 недаступны. Яго можна перайменаваць, перамясціць або выдаліць.&lt;br&gt;Хочаце выдаліць файл са спісу?</translation>
+        <translation>%1 не існуе.&lt;br&gt;Выдаліць файл са спіса?</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper_private.h" line="223"/>
         <source>File %1 cannot be opened or doesn&apos;t exists.</source>
-        <translation type="unfinished"></translation>
+        <translation type=Файл %1 не існуе або яго немагчыма адкрыць. ></translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="126"/>
         <source>All supported files (*.txt *.csv)</source>
-        <translation type="unfinished"></translation>
+        <translation type=Усе файлы, якія падтрымліваюцца(*.txt *.csv)></translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="126"/>
