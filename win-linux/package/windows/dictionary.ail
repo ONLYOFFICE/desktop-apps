@@ -147,8 +147,20 @@
   <ENTRY id="Property.AI_PRODUCTNAME_ARP">
     <STRING lang="ru" value="[|ProductName] [|ProductVersion] "/>
   </ENTRY>
+  <ENTRY id="Property.ASCC_REG_PREFIX">
+    <STRING lang="ru" value="ASC"/>
+  </ENTRY>
+  <ENTRY id="Property.ASCC_REG_REGISTERED_APP_NAME">
+    <STRING lang="ru" value="ONLYOFFICE Editors"/>
+  </ENTRY>
+  <ENTRY id="Property.ASSOC_APP_FRIENDLY_NAME">
+    <STRING lang="ru" value="ONLYOFFICE Editors"/>
+  </ENTRY>
+  <ENTRY id="Property.ASSOC_PROG_ID">
+    <STRING lang="ru" value="[|ASCC_REG_PREFIX].Editors"/>
+  </ENTRY>
   <ENTRY id="Property.ARPCOMMENTS">
-    <STRING lang="ru" value="Эта база данных установщика содержит логику и данные, необходимые для установки [|ProductName]"/>
+    <STRING lang="ru" value="Бесплатный десктопный офисный пакет для редактирования документов и совместной работы"/>
   </ENTRY>
   <ENTRY id="Property.ARPCONTACT">
     <STRING lang="ru" value="20A-6, Ernesta Birznieka-Upisha str., Riga, LV-1050"/>
