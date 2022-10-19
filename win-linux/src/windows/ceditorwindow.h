@@ -58,6 +58,7 @@ public:
     QString documentName() const;
     double scaling() const;
     int closeWindow();
+    int getCefId();
     bool closed() const;
     bool holdView(const std::wstring& portal) const;
     void setReporterMode(bool);

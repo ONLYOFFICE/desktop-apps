@@ -631,6 +631,15 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
                      return true;
                 }
             }
+            break;
+        case 0x4f:  // Key_O
+            if (data->get_IsCtrl()) {
+                m_private->sendOpenFolderEvent(event->get_SenderId());
+                return true;
+            }
+            break;
+        default:
+            break;
         }
     }
 

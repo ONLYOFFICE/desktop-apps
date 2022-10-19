@@ -164,6 +164,11 @@ int CEditorWindow::closeWindow()
     return _reply;
 }
 
+int CEditorWindow::getCefId()
+{
+    return qobject_cast<CTabPanel *>(m_pMainView)->view()->GetCefView()->GetId();
+}
+
 bool CEditorWindow::closed() const
 {
     return d_ptr.get()->panel()->data()->closed();

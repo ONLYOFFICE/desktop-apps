@@ -55,9 +55,7 @@ public:
     CAscApplicationManagerWrapper_Private(CAscApplicationManagerWrapper * manager)
         : m_appmanager(*manager)
     {
-#ifdef Q_OS_WIN
         qApp->installEventFilter(new CAppEventFilter(this));
-#endif
 
         GET_REGISTRY_USER(reg_user);
         m_openEditorWindow = reg_user.value("editorWindowMode").toBool();
@@ -118,17 +116,38 @@ public:
         m_pStartPanel->GetCefView()->load(start_path);
     }
 
-    auto handleAppKeyPress(QKeyEvent * e) -> bool
-    {
-        if (e->key() == Qt::Key_O && (QApplication::keyboardModifiers() & Qt::ControlModifier)) {
+    auto startPanelId() -> int {
+        return mainWindow() ? mainWindow()->getCefId(true) : -1;
+    }
+
+    auto sendOpenFolderEvent(int id) -> void {
+        if (startPanelId() != id) {   // Ignore start page
             NSEditorApi::CAscCefMenuEvent * ns_event = new NSEditorApi::CAscCefMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND);
             NSEditorApi::CAscExecCommand * pData = new NSEditorApi::CAscExecCommand;
             pData->put_Command(L"open:folder");
-
             ns_event->m_pData = pData;
+            ns_event->m_nSenderId = id;
             m_appmanager.OnEvent(ns_event);
+        }
+    }
 
-            return true;
+    auto handleAppKeyPress(QKeyEvent * e) -> bool
+    {
+        if (e->key() == Qt::Key_O && (e->modifiers() & Qt::ControlModifier)) {
+            int senderId = -1;
+            auto active_wnd = qApp->activeWindow();
+            CMainWindow * wnd = dynamic_cast<CMainWindow*>(active_wnd);
+            if (wnd)
+                senderId = wnd->getCefId();
+            else {
+                CEditorWindow * editor = dynamic_cast<CEditorWindow*>(active_wnd);
+                if (editor)
+                    senderId = editor->getCefId();
+            }
+            if (senderId != -1) {
+                sendOpenFolderEvent(senderId);
+                return true;
+            }
         }
 
         return false;
