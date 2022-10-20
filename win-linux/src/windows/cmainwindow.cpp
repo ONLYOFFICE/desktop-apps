@@ -263,9 +263,30 @@ void CMainWindow::focus()
 }
 
 void CMainWindow::onCloseEvent()
-{
-    CWindowBase::saveWindowState();
-    AscAppManager::closeMainWindow();
+{      
+    bool allowClose = false;
+    if (m_pTabs->count() > 1) {
+        bool foundNotModified = false;
+        for (int i = 0; i < m_pTabs->count(); i++) {
+            if (!m_pTabs->modifiedByIndex(i)) {
+                foundNotModified = true;
+                break;
+            }
+        }
+        if (foundNotModified) {
+            CMessage msg(TOP_NATIVE_WINDOW_HANDLE, CMessageOpts::moButtons::mbYesDefNo);
+            int res = msg.warning(tr("More than one document is open. Close the app anyway?"));
+            if (res == MODAL_RESULT_CUSTOM)
+                allowClose = true;
+        } else
+            allowClose = true;
+    } else
+        allowClose = true;
+
+    if (allowClose) {
+        CWindowBase::saveWindowState();
+        AscAppManager::closeMainWindow();
+    }
 }
 
 void CMainWindow::captureMouse(int tabindex)
