@@ -209,7 +209,7 @@
       </trans-unit>
       <trans-unit id="MHT File" xml:space="preserve">
         <source>MHT File</source>
-        <target state="translated">Файл MHT (*.mht)</target>
+        <target state="translated">Файл архіва вэб-старонак (*.mht)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Mobipocket e-book" xml:space="preserve">
@@ -299,7 +299,7 @@
       </trans-unit>
       <trans-unit id="PowerPoint Slide Show" xml:space="preserve">
         <source>PowerPoint Slide Show</source>
-        <target state="translated">Слайд-шоў Office Open XML (*.ppsx)</target>
+        <target state="translated">Слайд-шоу Office Open XML (*.ppsx)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Preparing..." xml:space="preserve">
@@ -781,7 +781,7 @@ The trial period will end in %d days, after that you will not be able to create 
       </trans-unit>
       <trans-unit id="J5U-5w-g23.title" xml:space="preserve">
         <source>Justify</source>
-        <target state="translated"Выраўнаваць</target>
+        <target state="translated">Выраўнаваць</target>
         <note>Class = "NSMenuItem"; title = "Justify"; ObjectID = "J5U-5w-g23";</note>
       </trans-unit>
       <trans-unit id="J7y-lM-qPV.title" xml:space="preserve">

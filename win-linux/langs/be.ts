@@ -217,7 +217,7 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="229"/>
         <source>MHT File (*.mht)</source>
-        <translation>Файл MHT (*.mht)</translation>
+        <translation>Файл архіва вэб-старонак (*.mht)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="230"/>
@@ -272,7 +272,7 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="241"/>
         <source>PPSX File (*.ppsx)</source>
-        <translation>Слайд-шоў Office Open XML (*.ppsx)</translation>
+        <translation>Слайд-шоу Office Open XML (*.ppsx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="243"/>
@@ -282,7 +282,7 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="244"/>
         <source>Spreadsheet template (*.xltx)</source>
-        <translation>Шаблон табліцы Excel Open XML (*.xltx)</translation>
+        <translation>Шаблон электроннай табліцы Excel Open XML (*.xltx)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="245"/>
@@ -557,12 +557,12 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper_private.h" line="223"/>
         <source>File %1 cannot be opened or doesn&apos;t exists.</source>
-        <translation type=Файл %1 не існуе або яго немагчыма адкрыць. ></translation>
+        <translation>Файл %1 не існуе або яго немагчыма адкрыць. &gt;</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="126"/>
         <source>All supported files (*.txt *.csv)</source>
-        <translation type=Усе файлы, якія падтрымліваюцца(*.txt *.csv)></translation>
+        <translation>Усе файлы, якія падтрымліваюцца(*.txt *.csv)&gt;</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="126"/>
