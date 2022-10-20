@@ -30,7 +30,7 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1829"/>
         <source>Book%1.xlsx</source>
-        <translation>Kitağ%1.xlsx</translation>
+        <translation>Kitap%1.xlsx</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1830"/>

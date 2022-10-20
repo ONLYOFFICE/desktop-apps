@@ -285,6 +285,7 @@ void CAscTabWidget::closeEditor(int i, bool m, bool r)
         CAscTabData * doc = view->data();
 
         if (doc && (!m || !doc->hasChanges())) {
+            m_pBar->removeTab(i);
             doc->close();
             AscAppManager::getInstance().DestroyCefView(view->cef()->GetId());
 
@@ -579,7 +580,6 @@ void CAscTabWidget::reloadTabIcons()
 
 void CAscTabWidget::editorCloseRequest(int index)
 {
-    m_pBar->removeTab(index);
     panel(index)->data()->close();
 }
 
@@ -702,7 +702,7 @@ int CAscTabWidget::openLocalDocument(const COpenOptions& options, bool select, b
     }
 
     if (select && !(tabIndex < 0))
-        m_pBar->setCurrentIndex(tabIndex);
+        setCurrentIndex(tabIndex);
 
     /* TODO: rise message if index < 0 */
 

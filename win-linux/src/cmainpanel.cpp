@@ -942,9 +942,12 @@ void CMainPanel::onDocumentPrint(void * opts)
 #endif // _WIN32
 
         dialog->setWindowTitle(tr("Print Document"));
-        dialog->setEnabledOptions(QPrintDialog::PrintPageRange | QPrintDialog::PrintCurrentPage | QPrintDialog::PrintToFile);
-        if (!(currentPage < 0))
-            currentPage++, dialog->setOptions(dialog->options() | QPrintDialog::PrintCurrentPage);
+        dialog->setEnabledOptions(QPrintDialog::PrintPageRange | QPrintDialog::PrintToFile);
+        if (!(currentPage < 0)) {
+            currentPage++;
+            dialog->setEnabledOptions(dialog->enabledOptions() | QPrintDialog::PrintCurrentPage);
+            dialog->setOptions(dialog->options() | QPrintDialog::PrintCurrentPage);
+        }
         dialog->setPrintRange(m_printData->_print_range);
 
         int start = -1, finish = -1;
@@ -970,6 +973,7 @@ void CMainPanel::onDocumentPrint(void * opts)
                 finish < 1 && (finish = 1);
                 finish < start && (finish = start);
 
+                pContext->SetPageOrientation(pView->GetPrintPageOrientation(start - 1));
                 if ( pContext->BeginPaint() ) {
 #if defined(_WIN32)
                     CPrintProgress progressDlg((HWND)parentWidget()->winId());
@@ -1000,7 +1004,11 @@ void CMainPanel::onDocumentPrint(void * opts)
                         if (progressDlg.isRejected())
                             break;
 
-                        start < finish && printer->newPage();
+                        if (start < finish)
+                        {
+                            pContext->SetPageOrientation(pView->GetPrintPageOrientation(start));
+                            printer->newPage();
+                        }
                     }
                     pContext->EndPaint();
                 }

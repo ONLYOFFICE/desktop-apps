@@ -55,6 +55,7 @@ namespace CEditorTools
             int _stop = c.pagestop < 1 ? 1 : c.pagestop;
             _stop < _start && (_stop = _start);
 
+            c.context->SetPageOrientation(c.view->GetPrintPageOrientation(_start - 1));
             if ( c.context->BeginPaint() ) {
                 CPrintProgress _progress(c.parent);
                 _progress.startProgress();
@@ -81,7 +82,11 @@ namespace CEditorTools
                     if ( _progress.isRejected() )
                         break;
 
-                    _start < _stop && c.context->getPrinter()->newPage();
+                    if (_start < _stop)
+                    {
+                        c.context->SetPageOrientation(c.view->GetPrintPageOrientation(_start));
+                        c.context->getPrinter()->newPage();
+                    }
                 }
                 c.context->EndPaint();
             }

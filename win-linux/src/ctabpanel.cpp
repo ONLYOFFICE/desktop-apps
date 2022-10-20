@@ -27,6 +27,9 @@ CTabPanel::CTabPanel(QWidget *parent)
     _layout->addWidget(m_pViewer);
 
     m_pViewer->SetBackgroundCefColor(244, 244, 244);
+
+    setAttribute(Qt::WA_DontCreateNativeAncestors);
+    setAttribute(Qt::WA_NativeWindow);
 }
 
 CTabPanel::~CTabPanel()
