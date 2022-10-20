@@ -40,7 +40,7 @@
 #include "cfilechecker.h"
 #include "OfficeFileFormats.h"
 #include "components/cmessage.h"
-
+#include <QApplication>
 #include <QDir>
 #include <QDebug>
 
@@ -167,7 +167,7 @@ namespace CEditorTools
         ParentHandle parent;
         if ( !(parentid < 0) )
             parent = AscAppManager::windowHandleFromId(parentid);
-        else parent = AscAppManager::mainWindow()->handle();
+        else parent = qApp->activeWindow();
 
         CFileDialogWrapper dlg(parent);
 
@@ -187,7 +187,7 @@ namespace CEditorTools
         ParentHandle parent;
         if ( !(parentid < 0) )
             parent = AscAppManager::windowHandleFromId(parentid);
-        else parent = AscAppManager::mainWindow()->handle();
+        else parent = qApp->activeWindow();
 
         QString sel_path = path.empty() ? QString::fromStdWString(path) : Utils::lastPath(LOCAL_PATH_OPEN);
 

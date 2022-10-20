@@ -713,7 +713,7 @@ namespace WindowHelper {
                 win->setOpacity(1);
                 m_pChild = QWidget::createWindowContainer(win, parent);
             }
-
+            m_pChild->setAttribute(Qt::WA_ShowModal);
             m_pChild->setMouseTracking(true);
             m_pChild->setGeometry(0, 0, parent->width(), parent->height());
             m_pChild->setStyleSheet("background-color: rgba(255,0,0,0)");
