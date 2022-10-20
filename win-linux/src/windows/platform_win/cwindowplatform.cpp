@@ -285,6 +285,25 @@ bool CWindowPlatform::nativeEvent(const QByteArray &eventType, void *message, lo
         });
         break;
 
+    case WM_POWERBROADCAST: {
+        if (msg->wParam == PBT_APMRESUMEAUTOMATIC) {
+            auto pt = QApplication::desktop()->availableGeometry(this).topLeft();
+            POINT point{pt.x(), pt.y()};
+            HMONITOR monitor = MonitorFromPoint(point, MONITOR_DEFAULTTONULL);
+            if (!monitor)
+                moveToPrimaryScreen();
+            else {
+                BOOL res;
+                if (GetDevicePowerState(monitor, &res)) {
+                    if (res == FALSE)
+                        moveToPrimaryScreen();
+                } else
+                    moveToPrimaryScreen();
+            }
+        }
+        break;
+    }
+
     case WM_EXITSIZEMOVE:
         QApplication::postEvent(this, new QEvent(QEvent::User));
         break;
