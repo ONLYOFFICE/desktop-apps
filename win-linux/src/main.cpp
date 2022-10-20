@@ -91,6 +91,11 @@ int main( int argc, char *argv[] )
         manager->m_oSettings.country = Utils::systemLocationCode().toStdString();
     };
 
+    if ( InputArgs::contains(L"--geometry=default") ) {
+        GET_REGISTRY_USER(reg_user)
+        reg_user.remove("maximized");
+        reg_user.remove("position");
+    }
     if ( InputArgs::contains(L"--version") ) {
         qWarning() << VER_PRODUCTNAME_STR << "ver." << VER_FILEVERSION_STR;
         return 0;
