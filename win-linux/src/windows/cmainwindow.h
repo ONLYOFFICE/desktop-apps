@@ -90,6 +90,7 @@ public:
     void toggleButtonMain(bool, bool delay = false);
     bool holdUid(int) const;
     bool holdUrl(const QString&, AscEditorType) const;
+    int  startPanelId();
     int  tabCloseRequest(int index = -1);    
 #ifdef __linux
     void setMouseTracking(bool);

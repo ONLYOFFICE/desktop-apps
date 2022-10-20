@@ -541,6 +541,8 @@ void CMainWindow::onTabChanged(int index)
         auto _panel = m_pTabs->panel(index);
         if (_panel)
             title = _panel->data()->title();
+    } else {
+        ((QCefView *)m_pMainWidget)->setFocusToCef();
     }
 
     if (title != windowTitle()) {
@@ -1336,6 +1338,11 @@ bool CMainWindow::holdUrl(const QString& url, AscEditorType type) const
         return !(m_pTabs->tabIndexByUrl(url) < 0);
     }
     return false;
+}
+
+int CMainWindow::startPanelId()
+{
+    return ((QCefView *)m_pMainWidget)->GetCefView()->GetId();
 }
 
 CAscTabWidget * CMainWindow::tabWidget()

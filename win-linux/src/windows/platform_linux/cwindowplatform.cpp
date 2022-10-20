@@ -107,6 +107,9 @@ bool CWindowPlatform::event(QEvent * event)
     if (event->type() == QEvent::HoverLeave) {
         if (m_boxTitleBtns)
             m_boxTitleBtns->setCursor(QCursor(Qt::ArrowCursor));
+    } else
+    if (event->type() == QEvent::MouseButtonRelease) {
+        focus();
     }
     return CWindowBase::event(event);
 }
