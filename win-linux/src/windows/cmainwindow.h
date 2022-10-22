@@ -155,9 +155,6 @@ private:
     int              m_saveAction;
     struct           printdata;
     printdata*       m_printData;
-
-private slots:
-    void slot_modalDialog(bool,  WId);
 };
 
 #endif // CMAINWINDOW_H

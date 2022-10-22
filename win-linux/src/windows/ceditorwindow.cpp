@@ -68,7 +68,6 @@ CEditorWindow::CEditorWindow(const QRect& rect, CTabPanel* panel)
         m_pMainPanel->setMouseTracking(true);
         setMouseTracking(true);
     }
-    connect(&AscAppManager::getInstance().commonEvents(), &CEventDriver::onModalDialog, this, &CEditorWindow::slot_modalDialog);
 #else
     recalculatePlaces();
 #endif
@@ -475,11 +474,4 @@ void CEditorWindow::setScreenScalingFactor(double factor)
 void CEditorWindow::onClickButtonHome()
 {
     AscAppManager::gotoMainWindow(size_t(this));
-}
-
-void CEditorWindow::slot_modalDialog(bool status, WId h)
-{
-    Q_UNUSED(status)
-    Q_UNUSED(h)
-    //status ? pimpl->lockParentUI() : pimpl->unlockParentUI();
 }
