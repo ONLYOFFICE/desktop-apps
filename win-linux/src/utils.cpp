@@ -696,8 +696,7 @@ namespace WindowHelper {
 
     CParentDisable::~CParentDisable()
     {
-        if (m_pChild)
-            m_pChild->deleteLater();
+        enable();
     }
 
     void CParentDisable::disable(QWidget* parent)
@@ -727,7 +726,6 @@ namespace WindowHelper {
     {
         if ( m_pChild ) {
             m_pChild->deleteLater();
-            m_pChild = nullptr;
         }
     }
 
