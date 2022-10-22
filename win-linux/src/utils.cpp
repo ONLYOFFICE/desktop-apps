@@ -702,22 +702,14 @@ namespace WindowHelper {
     void CParentDisable::disable(QWidget* parent)
     {
         if (parent) {
-            if (QCefView::IsSupportLayers())
-            {
-                m_pChild = new QWidget(parent);
+            int a = 0;
+            while (++a < 6000/*qApp->hasPendingEvents()*/) {  // Fixed Cef rendering
+                qApp->processEvents();
             }
-            else
-            {
-                QWindow * win = new QWindow;
-                win->setOpacity(1);
-                m_pChild = QWidget::createWindowContainer(win, parent);
-            }
+            m_pChild = new QWidget(parent, Qt::FramelessWindowHint | Qt::SubWindow);
             m_pChild->setAttribute(Qt::WA_ShowModal);
-            m_pChild->setMouseTracking(true);
-            m_pChild->setGeometry(0, 0, parent->width(), parent->height());
-            m_pChild->setStyleSheet("background-color: rgba(255,0,0,0)");
-            m_pChild->setAttribute(Qt::WA_NoSystemBackground);
             m_pChild->setAttribute(Qt::WA_TranslucentBackground);
+            m_pChild->setGeometry(0, 0, parent->width(), parent->height());
             m_pChild->show();
         }
     }
