@@ -61,6 +61,7 @@ typedef HRESULT (__stdcall *SetCurrentProcessExplicitAppUserModelIDProc)(PCWSTR 
 #else
 #include <sys/stat.h>
 #include <stdlib.h>
+#include <QEventLoop>
 #endif
 
 #include <QDebug>
@@ -702,6 +703,9 @@ namespace WindowHelper {
     void CParentDisable::disable(QWidget* parent)
     {
         if (parent) {
+            QEventLoop loop;  // Fixed Cef rendering before reopening the dialog
+            QTimer::singleShot(60, &loop, SLOT(quit()));
+            loop.exec();
             m_pChild = new QWidget(parent, Qt::FramelessWindowHint | Qt::SubWindow);
             m_pChild->setAttribute(Qt::WA_ShowModal);
             m_pChild->setAttribute(Qt::WA_TranslucentBackground);
