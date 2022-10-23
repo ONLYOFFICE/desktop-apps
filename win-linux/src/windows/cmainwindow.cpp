@@ -118,7 +118,6 @@ CMainWindow::CMainWindow(const QRect &rect) :
     }
     QMetaObject::connectSlotsByName(this);
 #endif
-    QObject::connect(&AscAppManager::getInstance().commonEvents(), &CEventDriver::onModalDialog, this, &CMainWindow::slot_modalDialog);
     m_pMainPanel->setStyleSheet(AscAppManager::getWindowStylesheets(m_dpiRatio));
     updateScalingFactor(m_dpiRatio);
     goStart();
@@ -641,19 +640,6 @@ int CMainWindow::trySaveDocument(int index)
     }
 
     return modal_res;
-}
-
-void CMainWindow::slot_modalDialog(bool status, WId h)
-{
-    Q_UNUSED(h)
-
-#ifdef Q_OS_LINUX
-    //static WindowHelper::CParentDisable * const _disabler = new WindowHelper::CParentDisable;
-    std::unique_ptr<WindowHelper::CParentDisable> _disabler(new WindowHelper::CParentDisable);
-    if (status) {
-        _disabler->disable(this);
-    } else _disabler->enable();
-#endif
 }
 
 void CMainWindow::onPortalLogout(std::wstring wjson)
