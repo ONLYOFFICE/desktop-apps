@@ -170,67 +170,12 @@ public:
 public:
     CEditorWindowPrivate(CEditorWindow * w) : window(w) {}
     ~CEditorWindowPrivate() override {
-         if ( leftboxbuttons )
-             leftboxbuttons->deleteLater();
          if (m_printData)
              delete m_printData, m_printData = nullptr;
     }
 
     void init(CTabPanel * const p) override {
         CCefEventsGate::init(p);
-
-        leftboxbuttons = new QWidget;
-        leftboxbuttons->setLayout(new QHBoxLayout);
-        leftboxbuttons->layout()->setSpacing(0);
-        leftboxbuttons->layout()->setMargin(0);
-
-//        if ( false && !InputArgs::contains(L"--single-window-app") )
-        {
-            CSVGPushButton * btnHome = new CSVGPushButton;
-            btnHome->setProperty("class", "normal");
-            btnHome->setProperty("act", "tool");
-            btnHome->setFixedSize(QSize(TOOLBTN_WIDTH,TOOLBTN_HEIGHT) * window->m_dpiRatio);
-            btnHome->setIconSize(QSize(20,20) * window->m_dpiRatio);
-            btnHome->setMouseTracking(true);
-            btnHome->setIcon(":/title/icons/buttons.svg", "svg-btn-home");
-            btnHome->setToolTip(CEditorWindow::tr("Open main window"));
-            btnHome->setIconOpacity(AscAppManager::themes().current().color(CTheme::ColorRole::ecrButtonNormalOpacity));
-            m_mapTitleButtons["home"] = btnHome;
-
-            connect(btnHome, &QPushButton::clicked, std::bind(&CEditorWindow::onClickButtonHome, window));
-            leftboxbuttons->layout()->addWidget(btnHome);
-        }
-    }
-
-    QPushButton * cloneEditorHeaderButton(const QJsonObject& jsonobj)
-    {
-        QString action = jsonobj["action"].toString();
-        CSVGPushButton * btn = new CSVGPushButton;
-        btn->setProperty("class", "normal");
-        btn->setProperty("act", "tool");
-        btn->setFixedSize(QSize(TOOLBTN_WIDTH,TOOLBTN_HEIGHT) * window->m_dpiRatio);
-        btn->setDisabled(jsonobj["disabled"].toBool());
-        btn->setIconSize(QSize(20,20) * window->m_dpiRatio);
-        btn->setMouseTracking(true);
-        btn->setIconOpacity(AscAppManager::themes().current().color(CTheme::ColorRole::ecrButtonNormalOpacity));
-
-        m_mapTitleButtons[action] = btn;
-
-        connect(btn, &QPushButton::clicked, [=]{
-            if ( action == "home" ) {
-            } else {
-                QJsonObject _json_obj{{"action", action}};
-                AscAppManager::sendCommandTo(panel()->cef(), L"button:click", Utils::stringifyJson(_json_obj).toStdWString());
-                window->focus();
-            }
-        });
-
-        if ( jsonobj.contains("icon") ) {
-            btn->setIcon(":/title/icons/buttons.svg", "svg-btn-" + jsonobj["icon"].toString());
-        } else btn->setIcon(":/title/icons/buttons.svg", "svg-btn-" + action);
-
-        btn->setToolTip(jsonobj["hint"].toString());
-        return btn;
     }
 
     auto extendableTitleToSimple() -> void {
@@ -284,17 +229,6 @@ public:
                 if ( objRoot.contains("title") /*&& m_mapTitleButtons.empty()*/ ) {
                     QJsonArray _btns = objRoot["title"].toObject().value("buttons").toArray();
                     QHBoxLayout * _layout = qobject_cast<QHBoxLayout *>(window->m_boxTitleBtns->layout());
-
-                    for (const auto jv: _btns) {
-                        const QJsonObject obj = jv.toObject();
-                        if ( !m_mapTitleButtons.contains(obj["action"].toString()) )
-                            leftboxbuttons->layout()->addWidget(cloneEditorHeaderButton(jv.toObject()));
-
-                        titleLeftOffset += 40/*_btn->width()*/;
-                    }
-
-                    if ( _layout->itemAt(0)->widget() != leftboxbuttons )
-                        _layout->insertWidget(0, leftboxbuttons);
                 }
 
                 // update title caption for elipsis
@@ -306,7 +240,7 @@ public:
             diffW -= _user_width;
 
             diffW > 0 ? boxtitlelabel->setContentsMargins(0, 0, diffW, 2*window->m_dpiRatio) :
-                            boxtitlelabel->setContentsMargins(-diffW, 0, 0, 2*window->m_dpiRatio);
+                            boxtitlelabel->setContentsMargins(0, 0, 0, 2*window->m_dpiRatio);
         }
     }
 
@@ -389,12 +323,6 @@ public:
                 css.append(window->m_css);
                 window->m_pMainPanel->setStyleSheet(css);
             }
-
-            for ( auto c: leftboxbuttons->findChildren<QPushButton *>()) {
-                CSVGPushButton * btn = static_cast<CSVGPushButton *>(c);
-                btn->setIconOpacity(AscAppManager::themes().current().color(CTheme::ColorRole::ecrButtonNormalOpacity));
-            }
-
             setWindowColors();
         }
 
@@ -570,7 +498,7 @@ public:
             }
 
             diffW > 0 ? boxtitlelabel->setContentsMargins(0, 0, diffW, int(2*f)) :
-                            boxtitlelabel->setContentsMargins(-diffW, 0, 0, int(2*f));
+                            boxtitlelabel->setContentsMargins(0, 0, 0, int(2*f));
 
             for (const auto& btn: m_mapTitleButtons) {
                 btn->setFixedSize(QSize(int(TOOLBTN_WIDTH*f), int(TOOLBTN_HEIGHT*f)));
@@ -602,7 +530,7 @@ public:
             window->show(false);
 
 //            _fs_widget->view()->resize(_fs_widget->size().width(), _fs_widget->size().height()-1);
-            qobject_cast<QGridLayout *>(window->m_pMainPanel->layout())->addWidget(_fs_widget, 1, 0);
+            qobject_cast<QGridLayout *>(window->m_pMainPanel->layout())->addWidget(_fs_widget, 1, 0, 1, 2);
             window->recalculatePlaces();
             _fs_widget->showNormal();
             _fs_widget->cef()->focus();
@@ -721,12 +649,12 @@ public:
 
     void onWebTitleChanged(int, std::wstring json) override
     {
-        if ( !m_mapTitleButtons.isEmpty() ) {
-            QJsonParseError jerror;
-            QJsonDocument jdoc = QJsonDocument::fromJson(QString::fromStdWString(json).toUtf8(), &jerror);
-            if( jerror.error == QJsonParseError::NoError ) {
-                QJsonObject objRoot = jdoc.object();
+        QJsonParseError jerror;
+        QJsonDocument jdoc = QJsonDocument::fromJson(QString::fromStdWString(json).toUtf8(), &jerror);
 
+        if( jerror.error == QJsonParseError::NoError ) {
+            QJsonObject objRoot = jdoc.object();
+            if ( !m_mapTitleButtons.isEmpty() ) {
                 if (objRoot.contains("disabled")) {
                     QJsonObject _disabled = objRoot["disabled"].toObject();
 
@@ -751,6 +679,13 @@ public:
                         if ( m_mapTitleButtons.contains(b) )
                             m_mapTitleButtons[b]->setIcon(":/title/icons/buttons.svg", "svg-btn-" + _btns_changed.value(b).toString());
                     }
+                }
+            } else
+            if ( objRoot.contains("click") ) {
+                QString _btns_changed = objRoot["click"].toString();
+
+                if ( _btns_changed == "home" ) {
+                    window->onClickButtonHome();
                 }
             }
         }
@@ -784,21 +719,22 @@ public:
         Q_ASSERT(window->m_boxTitleBtns != nullptr);
         QHBoxLayout * _layout = qobject_cast<QHBoxLayout *>(window->m_boxTitleBtns->layout());
         _layout->removeWidget(window->m_labelTitle);
+        QLayoutItem *stretch = _layout->takeAt(0);
+        if (stretch)
+            delete stretch;
 
         boxtitlelabel = new QWidget(window->m_boxTitleBtns);
         boxtitlelabel->setLayout(new QHBoxLayout(boxtitlelabel));
         boxtitlelabel->layout()->setSpacing(0);
         boxtitlelabel->layout()->setMargin(0);
+        boxtitlelabel->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
 
         if ( m_panel->data()->hasFeature(L"crypted\":true") && !iconcrypted ) {
             boxtitlelabel->layout()->addWidget(iconCrypted());
         }
 
         boxtitlelabel->layout()->addWidget(window->m_labelTitle);
-        _layout->insertWidget(1, boxtitlelabel);
-
-        if ( _layout->itemAt(0)->widget() != leftboxbuttons )
-            _layout->insertWidget(0, leftboxbuttons);
+        _layout->insertWidget(0, boxtitlelabel);
     }
 
     auto ffWindowCustomize() -> void {

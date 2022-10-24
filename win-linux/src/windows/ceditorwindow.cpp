@@ -49,6 +49,7 @@
 
 #include "windows/ceditorwindow_p.h"
 
+#define TOP_PANEL_OFFSET 5*TOOLBTN_WIDTH
 #define CAPTURED_WINDOW_OFFSET_X  180
 #define CAPTURED_WINDOW_OFFSET_Y  15
 
@@ -229,9 +230,9 @@ QWidget * CEditorWindow::createMainPanel(QWidget * parent, const QString& title)
         m_labelTitle->setObjectName("labelTitle");
         m_labelTitle->setMouseTracking(true);
         m_labelTitle->setEllipsisMode(Qt::ElideMiddle);
+        m_labelTitle->setAlignment(Qt::AlignCenter);
         m_labelTitle->setMaximumWidth(100);
         static_cast<QHBoxLayout*>(m_boxTitleBtns->layout())->insertWidget(0, m_labelTitle);
-        static_cast<QHBoxLayout*>(m_boxTitleBtns->layout())->insertStretch(0);
     }
 
     if ( m_dpiRatio > 1.75 )
@@ -258,7 +259,7 @@ QWidget * CEditorWindow::createMainPanel(QWidget * parent, const QString& title)
             if (d_ptr->panel()->data()->contentType() != etUndefined)
                 mainPanel->setProperty("window", "pretty");
             _canExtendTitle = true;
-            static_cast<QHBoxLayout*>(m_boxTitleBtns->layout())->insertWidget(3, d_ptr.get()->iconUser());
+            static_cast<QHBoxLayout*>(m_boxTitleBtns->layout())->insertWidget(2, d_ptr.get()->iconUser());
         }
 
         d_ptr->customizeTitleLabel();
@@ -294,14 +295,17 @@ QWidget * CEditorWindow::createMainPanel(QWidget * parent, const QString& title)
 //    m_pMainWidget->setVisible(false);
 
     d_ptr.get()->onScreenScalingFactor(m_dpiRatio);
-    mainGridLayout->addWidget(m_pMainView, 1, 0);
+    mainGridLayout->addWidget(m_pMainView, 1, 0, 1, 2);
     mainGridLayout->setRowStretch(1,1);
 
     if (_canExtendTitle) {
 #ifdef Q_OS_WIN
         ::SetParent((HWND)m_boxTitleBtns->winId(), (HWND)m_pMainView->winId());
 #endif
-        mainGridLayout->addWidget(m_boxTitleBtns, 1, 0, Qt::AlignTop);
+        mainGridLayout->addItem(new QSpacerItem(int(TOP_PANEL_OFFSET*m_dpiRatio), 5,
+                                                QSizePolicy::Fixed, QSizePolicy::Fixed),
+                                                1, 0, Qt::AlignTop);
+        mainGridLayout->addWidget(m_boxTitleBtns, 1, 1, Qt::AlignTop);
     }
     return mainPanel;
 }
