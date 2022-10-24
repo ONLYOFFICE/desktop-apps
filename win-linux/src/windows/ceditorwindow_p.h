@@ -65,7 +65,7 @@ using namespace NSEditorApi;
 const QString g_css =
         "#mainPanel{background-color:%1;}"
         "#box-title-tools{background-color:%1;}"
-        "QPushButton[act=tool]:hover{background-color:rgba(0,0,0,20%)}"
+        "QPushButton[act=tool]:hover{background-color:rgba(0,0,0,20%);}"
         "QPushButton#toolButtonClose:hover{background-color:#d42b2b;}"
         "QPushButton#toolButtonClose:pressed{background-color:#d75050;}"
 #ifdef Q_OS_LINUX
@@ -77,7 +77,7 @@ const QString g_css =
         "#mainPanel[window=pretty] #labelTitle{font-size:12px;}"
 #endif
         "#iconuser{color:#fff;font-size:11px;}"
-        "#mainPanel[window=pretty] QPushButton[act=tool]:hover{background-color:rgba(255,255,255,20%)}"
+        "#mainPanel[window=pretty] QPushButton[act=tool]:hover{background-color:rgba(255,255,255,20%);}"
         "#mainPanel[window=pretty] QPushButton#toolButtonMinimize,"
         "#mainPanel[window=pretty] QPushButton#toolButtonClose {background-image:url(:/minclose_light.png);}"
         "#mainPanel[window=pretty] QPushButton#toolButtonClose:hover{background-color:#d42b2b;}"
