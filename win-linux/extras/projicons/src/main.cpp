@@ -33,7 +33,6 @@
 #include <QApplication>
 #include <QProcess>
 #include <QFileInfo>
-#include <QDebug>
 #include "Windows.h"
 #ifndef __OS_WIN_XP
 # include "jumplist.h"
