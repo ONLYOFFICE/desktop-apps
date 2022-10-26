@@ -30,12 +30,14 @@
  *
 */
 
-#include <QCoreApplication>
-
+#include <QApplication>
 #include <QProcess>
 #include <QFileInfo>
 #include <QDebug>
 #include "Windows.h"
+#ifndef __OS_WIN_XP
+# include "jumplist.h"
+#endif
 
 typedef HRESULT (__stdcall *SetCurrentProcessExplicitAppUserModelIDProc)(PCWSTR AppID);
 
@@ -65,10 +67,27 @@ int main(int argc, char *argv[])
 {
     SetAppUserModelId();
 
-    QCoreApplication a(argc, argv);
+    QApplication a(argc, argv);
 //    return a.exec();
 
     QStringList _cmdArgs(QCoreApplication::arguments().mid(1));
+#ifndef __OS_WIN_XP
+    if (_cmdArgs.contains("--create-jump-list")) {
+        QStringList defaultTitles = {
+            "New Document",
+            "New Spreadsheet",
+            "New Presentation",
+            "New Form"
+        };
+        CreateJumpList(_cmdArgs.size() > TASK_NUM ? _cmdArgs.mid(1) : defaultTitles);
+        return 0;
+    } else
+    if (_cmdArgs.contains("--remove-jump-list")) {
+        DeleteJumpList();
+        return 0;
+    }
+#endif
+
     QFileInfo _fi(QString::fromLocal8Bit(argv[0]));
 
     qputenv("Path", "./converter;" + qgetenv("Path"));

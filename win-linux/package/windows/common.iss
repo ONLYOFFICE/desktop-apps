@@ -684,6 +684,7 @@ procedure CurUninstallStepChanged(CurUninstallStep: TUninstallStep);
 var
   regValue, userPath: string;
   findRec: TFindRec;
+  ErrorCode: Integer;
 begin
   if CurUninstallStep = usUninstall then
   begin
@@ -731,18 +732,22 @@ begin
     UnassociateExtensions();
   end else
   if CurUninstallStep = usPostUninstall then begin
+    Exec(ExpandConstant('{app}\{#iconsExe}'), '--remove-jump-list', '', SW_SHOWNORMAL, ewWaitUntilTerminated, ErrorCode);
   end;
 end;
 
 procedure CurStepChanged(CurStep: TSetupStep);
 var
   commonCachePath, userCachePath: string;
-  paramStore: string;
+  paramStore, translateArgs: string;
   ErrorCode: Integer;
 begin
   if CurStep = ssPostInstall then begin
     DoPostInstall();
-
+    translateArgs := ExpandConstant('{cm:jumpDOCX}+{cm:jumpXLSX}+{cm:jumpPPTX}+{cm:jumpDOCXF}');
+    StringChangeEx(translateArgs, ' ', '_', True);
+    StringChangeEx(translateArgs, '+', ' ', True);
+    Exec(ExpandConstant('{app}\{#iconsExe}'), '--create-jump-list ' + translateArgs, '', SW_SHOWNORMAL, ewWaitUntilTerminated, ErrorCode);
     // migrate from the prev version when user's data saved to system common path
     commonCachePath := ExpandConstant('{commonappdata}\{#APP_PATH}\data\cache');
     userCachePath := ExpandConstant('{localappdata}\{#APP_PATH}\data\cache');
