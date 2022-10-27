@@ -165,17 +165,70 @@ class CEditorWindowPrivate : public CCefEventsGate
 
 public:
     int titleLeftOffset = 0;
-    bool isReporterMode = false;
+    bool isReporterMode = false,
+         usedOldEditorVersion = false;
 
 public:
     CEditorWindowPrivate(CEditorWindow * w) : window(w) {}
     ~CEditorWindowPrivate() override {
+        if ( leftboxbuttons )
+            leftboxbuttons->deleteLater();
          if (m_printData)
              delete m_printData, m_printData = nullptr;
     }
 
     void init(CTabPanel * const p) override {
         CCefEventsGate::init(p);
+        if (!m_panel->data()->hasFeature(L"btnhome")) {  // For old editors only
+            usedOldEditorVersion = true;
+            leftboxbuttons = new QWidget;
+            leftboxbuttons->setLayout(new QHBoxLayout);
+            leftboxbuttons->layout()->setSpacing(0);
+            leftboxbuttons->layout()->setMargin(0);
+
+            CSVGPushButton * btnHome = new CSVGPushButton;
+            btnHome->setProperty("class", "normal");
+            btnHome->setProperty("act", "tool");
+            btnHome->setFixedSize(QSize(TOOLBTN_WIDTH,TOOLBTN_HEIGHT) * window->m_dpiRatio);
+            btnHome->setIconSize(QSize(20,20) * window->m_dpiRatio);
+            btnHome->setMouseTracking(true);
+            btnHome->setIcon(":/title/icons/buttons.svg", "svg-btn-home");
+            btnHome->setToolTip(CEditorWindow::tr("Open main window"));
+            btnHome->setIconOpacity(AscAppManager::themes().current().color(CTheme::ColorRole::ecrButtonNormalOpacity));
+            m_mapTitleButtons["home"] = btnHome;
+            connect(btnHome, &QPushButton::clicked, std::bind(&CEditorWindow::onClickButtonHome, window));
+            leftboxbuttons->layout()->addWidget(btnHome);
+        }
+    }
+
+    QPushButton * cloneEditorHeaderButton(const QJsonObject& jsonobj)  // For old editors only
+    {
+        QString action = jsonobj["action"].toString();
+        CSVGPushButton * btn = new CSVGPushButton;
+        btn->setProperty("class", "normal");
+        btn->setProperty("act", "tool");
+        btn->setFixedSize(QSize(TOOLBTN_WIDTH,TOOLBTN_HEIGHT) * window->m_dpiRatio);
+        btn->setDisabled(jsonobj["disabled"].toBool());
+        btn->setIconSize(QSize(20,20) * window->m_dpiRatio);
+        btn->setMouseTracking(true);
+        btn->setIconOpacity(AscAppManager::themes().current().color(CTheme::ColorRole::ecrButtonNormalOpacity));
+
+        m_mapTitleButtons[action] = btn;
+        connect(btn, &QPushButton::clicked, [=]{
+            if ( action == "home" ) {
+            } else {
+                QJsonObject _json_obj{{"action", action}};
+                AscAppManager::sendCommandTo(panel()->cef(), L"button:click", Utils::stringifyJson(_json_obj).toStdWString());
+                window->focus();
+            }
+        });
+
+        if ( jsonobj.contains("icon") ) {
+            btn->setIcon(":/title/icons/buttons.svg", "svg-btn-" + jsonobj["icon"].toString());
+        } else btn->setIcon(":/title/icons/buttons.svg", "svg-btn-" + action);
+
+        btn->setToolTip(jsonobj["hint"].toString());
+        return btn;
     }
 
     auto extendableTitleToSimple() -> void {
@@ -229,6 +282,19 @@ public:
                 if ( objRoot.contains("title") /*&& m_mapTitleButtons.empty()*/ ) {
                     QJsonArray _btns = objRoot["title"].toObject().value("buttons").toArray();
                     QHBoxLayout * _layout = qobject_cast<QHBoxLayout *>(window->m_boxTitleBtns->layout());
+
+                    if (usedOldEditorVersion) {  // For old editors only
+                        for (const auto jv: _btns) {
+                            const QJsonObject obj = jv.toObject();
+                            if ( !m_mapTitleButtons.contains(obj["action"].toString()) )
+                                leftboxbuttons->layout()->addWidget(cloneEditorHeaderButton(jv.toObject()));
+
+                            titleLeftOffset += 40;
+                        }
+
+                        if ( _layout->itemAt(0)->widget() != leftboxbuttons )
+                            _layout->insertWidget(0, leftboxbuttons);
+                    }
                 }
 
                 // update title caption for elipsis
@@ -239,8 +305,9 @@ public:
             int diffW = (titleLeftOffset - TOOLBTN_WIDTH * _btncount) * window->m_dpiRatio; // 4 right tool buttons: close, min, max, user icon
             diffW -= _user_width;
 
+            int left = usedOldEditorVersion ? -diffW : 0;   // For old editors only
             diffW > 0 ? boxtitlelabel->setContentsMargins(0, 0, diffW, 2*window->m_dpiRatio) :
-                            boxtitlelabel->setContentsMargins(0, 0, 0, 2*window->m_dpiRatio);
+                            boxtitlelabel->setContentsMargins(left, 0, 0, 2*window->m_dpiRatio);
         }
     }
 
@@ -322,6 +389,13 @@ public:
                 QString css(AscAppManager::getWindowStylesheets(window->m_dpiRatio));
                 css.append(window->m_css);
                 window->m_pMainPanel->setStyleSheet(css);
+            }
+
+            if (usedOldEditorVersion) {   // For old editors only
+                for ( auto c: leftboxbuttons->findChildren<QPushButton *>()) {
+                    CSVGPushButton * btn = static_cast<CSVGPushButton *>(c);
+                    btn->setIconOpacity(AscAppManager::themes().current().color(CTheme::ColorRole::ecrButtonNormalOpacity));
+                }
             }
             setWindowColors();
         }
@@ -497,8 +571,9 @@ public:
                 iconcrypted->setPixmap(QIcon{":/title/icons/secure.svg"}.pixmap(QSize(20,20) * f));
             }
 
+            int left = usedOldEditorVersion ? -diffW : 0;   // For old editors only
             diffW > 0 ? boxtitlelabel->setContentsMargins(0, 0, diffW, int(2*f)) :
-                            boxtitlelabel->setContentsMargins(0, 0, 0, int(2*f));
+                            boxtitlelabel->setContentsMargins(left, 0, 0, int(2*f));
 
             for (const auto& btn: m_mapTitleButtons) {
                 btn->setFixedSize(QSize(int(TOOLBTN_WIDTH*f), int(TOOLBTN_HEIGHT*f)));
@@ -530,7 +605,11 @@ public:
             window->show(false);
 
 //            _fs_widget->view()->resize(_fs_widget->size().width(), _fs_widget->size().height()-1);
-            qobject_cast<QGridLayout *>(window->m_pMainPanel->layout())->addWidget(_fs_widget, 1, 0, 1, 2);
+            if (usedOldEditorVersion) {  // For old editors only
+                qobject_cast<QGridLayout *>(window->m_pMainPanel->layout())->addWidget(_fs_widget, 1, 0);
+            } else {
+                qobject_cast<QGridLayout *>(window->m_pMainPanel->layout())->addWidget(_fs_widget, 1, 0, 1, 2);
+            }
             window->recalculatePlaces();
             _fs_widget->showNormal();
             _fs_widget->cef()->focus();
@@ -719,10 +798,12 @@ public:
         Q_ASSERT(window->m_boxTitleBtns != nullptr);
         QHBoxLayout * _layout = qobject_cast<QHBoxLayout *>(window->m_boxTitleBtns->layout());
         _layout->removeWidget(window->m_labelTitle);
-        QLayoutItem *stretch = _layout->takeAt(0);
-        if (stretch)
-            delete stretch;
 
+        if (!usedOldEditorVersion) {
+            QLayoutItem *stretch = _layout->takeAt(0);
+            if (stretch)
+                delete stretch;
+        }
         boxtitlelabel = new QWidget(window->m_boxTitleBtns);
         boxtitlelabel->setLayout(new QHBoxLayout(boxtitlelabel));
         boxtitlelabel->layout()->setSpacing(0);
@@ -734,7 +815,14 @@ public:
         }
 
         boxtitlelabel->layout()->addWidget(window->m_labelTitle);
-        _layout->insertWidget(0, boxtitlelabel);
+
+        if (usedOldEditorVersion) {  // For old editors only
+            _layout->insertWidget(1, boxtitlelabel);
+             if ( _layout->itemAt(0)->widget() != leftboxbuttons )
+                 _layout->insertWidget(0, leftboxbuttons);
+        } else {
+            _layout->insertWidget(0, boxtitlelabel);
+        }
     }
 
     auto ffWindowCustomize() -> void {
