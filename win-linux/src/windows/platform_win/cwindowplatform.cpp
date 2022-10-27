@@ -58,8 +58,10 @@ CWindowPlatform::CWindowPlatform(const QRect &rect) :
     m_hWnd = (HWND)winId();
     DWORD style = ::GetWindowLong(m_hWnd, GWL_STYLE);
     ::SetWindowLong(m_hWnd, GWL_STYLE, style | WS_MAXIMIZEBOX | WS_THICKFRAME | WS_CAPTION);
+#ifndef __OS_WIN_XP
     const MARGINS shadow = {1, 1, 1, 1};
     DwmExtendFrameIntoClientArea(m_hWnd, &shadow);
+#endif
     connect(this->window()->windowHandle(), &QWindow::screenChanged, this, [=]() {
         QTimer::singleShot(50, this, [=]() {
             resize(size() + QSize(1,1));
