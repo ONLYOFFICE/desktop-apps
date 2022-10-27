@@ -64,6 +64,7 @@ public:
     auto setCurrentTheme(const std::wstring&) -> void;
     auto isThemeCurrent(const std::wstring& id) -> bool;
 //    auto isThemeDark(const std::wstring& id) -> bool;
+    auto themeActualId(const std::wstring& id) const -> std::wstring;
 
     auto isColorDark(const std::wstring&) -> bool;
     auto isColorDark(const QString&) -> bool;

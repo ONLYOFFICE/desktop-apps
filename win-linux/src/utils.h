@@ -39,6 +39,8 @@
 #ifdef Q_OS_WIN
 # include <Windows.h>
 #endif
+#include "components/cfullscrwidget.h"
+
 
 namespace InputArgs {
     auto init(int argc, char** const argv) -> void;
@@ -93,6 +95,13 @@ public:
     static QByteArray readStylesheets(std::vector<std::string> const *);
     static QByteArray readStylesheets(const QString&);
     static QJsonObject parseJson(const std::wstring&);
+
+#ifdef _WIN32
+    enum class WinVer : uchar {
+        Undef, WinXP, WinVista, Win7, Win8, Win8_1, Win10, Win11
+    };
+    static WinVer getWinVersion();
+#endif
 };
 
 namespace WindowHelper {
@@ -109,8 +118,9 @@ namespace WindowHelper {
     };
 
 //    auto check_button_state(Qt::MouseButton b) -> bool;
-//    auto initEnvInfo() -> void;
+    auto initEnvInfo() -> void;
     auto getEnvInfo() -> QString;
+    auto useGtkDialog() -> bool;
 #else
     auto isWindowSystemDocked(HWND handle) -> bool;
     auto correctWindowMinimumSize(HWND handle) -> void;
@@ -120,7 +130,8 @@ namespace WindowHelper {
 
     auto correctWindowMinimumSize(const QRect&, const QSize&) -> QSize;
     auto isLeftButtonPressed() -> bool;
-    auto constructFullscreenWidget(QWidget * panel) -> QWidget *;
+    auto constructFullscreenWidget(QWidget * panel) -> CFullScrWidget *;
+    auto useNativeDialog() -> bool;
 }
 
 #endif // UTILS_H

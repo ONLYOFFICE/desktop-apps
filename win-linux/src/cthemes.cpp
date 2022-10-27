@@ -359,6 +359,12 @@ auto CThemes::isThemeCurrent(const std::wstring& id) -> bool
     }
 }
 
+auto CThemes::themeActualId(const std::wstring& id) const -> std::wstring
+{
+    return WSTR(THEME_ID_SYSTEM) != id ? id :
+        m_priv->is_system_theme_dark ? WSTR(THEME_DEFAULT_DARK_ID) : WSTR(THEME_DEFAULT_LIGHT_ID);
+}
+
 auto CThemes::isColorDark(const std::wstring& color) -> bool
 {
     return isColorDark(QString::fromStdWString(color));

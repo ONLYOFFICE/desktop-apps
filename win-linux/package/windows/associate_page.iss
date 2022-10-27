@@ -1125,7 +1125,19 @@ nn_NO.extOFORM =ONLYOFFICE utfyllbart elektronisk skjema
 uk.extOFORM =Онлайн-форма для заповнення ONLYOFFICE
 be.extOFORM =Запаўняльная анлайн-форма ONLYOFFICE
 gl.extOFORM =Formulario en liña encheble ONLYOFFICE
+;======================================================================================================
+en.jumpDOCX =New Document
+ru.jumpDOCX =Новый Документ
 
+en.jumpXLSX =New Spreadsheet
+ru.jumpXLSX =Новая Таблица
+
+en.jumpPPTX =New Presentation
+ru.jumpPPTX =Новая Презентация
+
+en.jumpDOCXF =New Form
+ru.jumpDOCXF =Новая Форма
+;======================================================================================================
 en.defprogAppDescription=Free desktop office suite for document editing and collaboration
 bg.defprogAppDescription=Безплатен офис пакет за редактиране и съвместна работа по документи
 ca.defprogAppDescription=Suite d'oficina gratuïta per a l'edició de documents i col·laboració
@@ -1372,18 +1384,18 @@ begin
 
   ExtensionRegistryInfo[0]  := prefix + 'Document.1:'   + ExpandConstant('{cm:extDOC}')             + ':' + '11';
   ExtensionRegistryInfo[1]  := prefix + 'Document.12:'  + ExpandConstant('{cm:extDOCX}')            + ':' + '7';
-  ExtensionRegistryInfo[2]  := prefix + 'Sheet.1:'      + ExpandConstant('{cm:extXLS}')             + ':' + '18';
+  ExtensionRegistryInfo[2]  := prefix + 'Sheet.1:'      + ExpandConstant('{cm:extXLS}')             + ':' + '22';
   ExtensionRegistryInfo[3]  := prefix + 'Sheet.12:'     + ExpandConstant('{cm:extXLSX}')            + ':' + '10';
   ExtensionRegistryInfo[4]  := prefix + 'Show.1:'       + ExpandConstant('{cm:extPPT}')             + ':' + '1';
   ExtensionRegistryInfo[5]  := prefix + 'Show.12:'      + ExpandConstant('{cm:extPPTX}')            + ':' + '9';
   ExtensionRegistryInfo[6]  := prefix + 'SlideShow.1:'  + ExpandConstant('{cm:extPPS}')             + ':' + '2';
   ExtensionRegistryInfo[7]  := prefix + 'SlideShow.12:' + ExpandConstant('{cm:extPPSX}')            + ':' + '8';
-  ExtensionRegistryInfo[8]  := prefix + 'Document.2:'   + ExpandConstant('{cm:extODT}')             + ':' + '14';
-  ExtensionRegistryInfo[9]  := prefix + 'Sheet.2:'      + ExpandConstant('{cm:extODS}')             + ':' + '19';
+  ExtensionRegistryInfo[8]  := prefix + 'Document.2:'   + ExpandConstant('{cm:extODT}')             + ':' + '18';
+  ExtensionRegistryInfo[9]  := prefix + 'Sheet.2:'      + ExpandConstant('{cm:extODS}')             + ':' + '23';
   ExtensionRegistryInfo[10] := prefix + 'Show.2:'       + ExpandConstant('{cm:extODP}')             + ':' + '3';
-  ExtensionRegistryInfo[11] := prefix + 'Rtf:'          + ExpandConstant('{cm:extRTF}')             + ':' + '15';
+  ExtensionRegistryInfo[11] := prefix + 'Rtf:'          + ExpandConstant('{cm:extRTF}')             + ':' + '19';
   //ExtensionRegistryInfo[12] := prefix + 'Txt:'                                                      + ':' + '14';
-  ExtensionRegistryInfo[12] := prefix + 'Csv:'          + ExpandConstant('{cm:extCSV}')             + ':' + '20';
+  ExtensionRegistryInfo[12] := prefix + 'Csv:'          + ExpandConstant('{cm:extCSV}')             + ':' + '24';
   ExtensionRegistryInfo[13] := prefix + 'Pdf:'          + ExpandConstant('{cm:extPDF}')             + ':' + '5';
   ExtensionRegistryInfo[14] := prefix + 'DjVu:'         + ExpandConstant('{cm:extDJVU}')            + ':' + '4';
   ExtensionRegistryInfo[15] := prefix + 'Xps:'          + ExpandConstant('{cm:extXPS}')             + ':' + '6';
@@ -1577,7 +1589,7 @@ procedure AddContextMenuNewItems;
 var
   langs: TArrayOfValues;
   args, regpath: String;
-  progpath: String;
+  progpath, oldValue: String;
   argsArray: TArrayOfString;
   version: TWindowsVersion;
 begin
@@ -1621,6 +1633,12 @@ begin
 
   GetWindowsVersionEx(version);
   if version.Major = 10 then begin
+    RegQueryStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.docx', '', oldValue);
+    RegWriteStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.docx', '{#ASCC_REG_PREFIX}', oldValue);
+    RegQueryStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.xlsx', '', oldValue);
+    RegWriteStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.xlsx', '{#ASCC_REG_PREFIX}', oldValue);
+    RegQueryStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.pptx', '', oldValue);
+    RegWriteStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.pptx', '{#ASCC_REG_PREFIX}', oldValue);
     RegWriteStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.docx', '', '{#ASCC_REG_PREFIX}.Document.12')
     RegWriteStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.xlsx', '', '{#ASCC_REG_PREFIX}.Sheet.12')
     RegWriteStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.pptx', '', '{#ASCC_REG_PREFIX}.Show.12')
@@ -1737,7 +1755,8 @@ procedure UnassociateExtensions;
 var
   i: Integer;
   argsArray: TArrayOfString;
-  ext, str: string;
+  ext, str, oldValue: string;
+  version: TWindowsVersion;
 begin
   initExtensions();
 
@@ -1773,4 +1792,17 @@ begin
   RegDeleteKeyIncludingSubkeys(HKEY_LOCAL_MACHINE, ExpandConstant('Software\Classes\.docx\{#ASCC_REG_PREFIX}.Document.12'));
   RegDeleteKeyIncludingSubkeys(HKEY_LOCAL_MACHINE, ExpandConstant('Software\Classes\.pptx\{#ASCC_REG_PREFIX}.Show.12'));
   RegDeleteKeyIncludingSubkeys(HKEY_LOCAL_MACHINE, ExpandConstant('Software\Classes\.xlsx\{#ASCC_REG_PREFIX}.Sheet.12'));
+
+  GetWindowsVersionEx(version);
+  if version.Major = 10 then begin
+    if RegQueryStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.docx', '{#ASCC_REG_PREFIX}', oldValue) then
+       RegWriteStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.docx', '', oldValue);
+    if RegQueryStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.xlsx', '{#ASCC_REG_PREFIX}', oldValue) then
+       RegWriteStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.xlsx', '', oldValue);
+    if RegQueryStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.pptx', '{#ASCC_REG_PREFIX}', oldValue) then
+       RegWriteStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.pptx', '', oldValue);
+    RegDeleteValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.docx', '{#ASCC_REG_PREFIX}');
+    RegDeleteValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.xlsx', '{#ASCC_REG_PREFIX}');
+    RegDeleteValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.pptx', '{#ASCC_REG_PREFIX}');
+  end;
 end;

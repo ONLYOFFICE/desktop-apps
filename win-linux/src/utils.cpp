@@ -60,6 +60,7 @@
 typedef HRESULT (__stdcall *SetCurrentProcessExplicitAppUserModelIDProc)(PCWSTR AppID);
 #else
 #include <sys/stat.h>
+#include <stdlib.h>
 #endif
 
 #include <QDebug>
@@ -91,9 +92,21 @@ namespace InputArgs {
 
 
     auto contains(const std::wstring& param) -> bool {
+        const std::wstring::size_type l = param.length();
         auto iter = std::find_if(std::begin(in_args), std::end(in_args),
-            [&param](const std::wstring& s) {
-                return s.find(param) != std::wstring::npos;
+            [&param, l](const std::wstring& s) {
+                std::wstring::size_type n = s.find(param);
+                if (n != std::wstring::npos) {
+                    if (n + l == s.length())
+                        return true;
+                    else {
+                        wchar_t d = s.at(n+l);
+                        if (d == L':' || d == L'=')
+                            return true;
+                    }
+                }
+
+                return false;
         });
 
         return iter != end(in_args);
@@ -566,6 +579,47 @@ QJsonObject Utils::parseJson(const std::wstring& wjson)
     return QJsonObject();
 }
 
+#ifdef _WIN32
+Utils::WinVer Utils::getWinVersion()
+{
+    NTSTATUS(WINAPI *RtlGetVersion)(LPOSVERSIONINFOEXW);
+    *(FARPROC*)&RtlGetVersion = GetProcAddress(GetModuleHandleA("ntdll"), "RtlGetVersion");
+    if (RtlGetVersion != NULL) {
+        OSVERSIONINFOEXW osInfo;
+        osInfo.dwOSVersionInfoSize = sizeof(osInfo);
+        RtlGetVersion(&osInfo);
+
+        if (osInfo.dwMajorVersion == 5L && (osInfo.dwMinorVersion == 1L || osInfo.dwMinorVersion == 2L))
+            return WinVer::WinXP;
+        else
+        if (osInfo.dwMajorVersion == 6L && osInfo.dwMinorVersion == 0L)
+            return  WinVer::WinVista;
+        else
+        if (osInfo.dwMajorVersion == 6L && osInfo.dwMinorVersion == 1L)
+            return  WinVer::Win7;
+        else
+        if (osInfo.dwMajorVersion == 6L && osInfo.dwMinorVersion == 2L)
+            return  WinVer::Win8;
+        else
+        if (osInfo.dwMajorVersion == 6L && osInfo.dwMinorVersion == 3L)
+            return  WinVer::Win8_1;
+        else
+        if (osInfo.dwMajorVersion == 10L) {
+            if (osInfo.dwMinorVersion == 0L) {
+                if (osInfo.dwBuildNumber < 22000)
+                    return  WinVer::Win10;
+                else
+                    return  WinVer::Win11;
+            } else
+                return  WinVer::Win11;
+        } else
+        if (osInfo.dwMajorVersion > 10L)
+            return  WinVer::Win11;
+    }
+    return WinVer::Undef;
+}
+#endif
+
 QString Utils::replaceBackslash(const QString& path)
 {
     return QString(path).replace(QRegularExpression("\\\\"), "/");
@@ -659,7 +713,7 @@ namespace WindowHelper {
                 win->setOpacity(1);
                 m_pChild = QWidget::createWindowContainer(win, parent);
             }
-
+            m_pChild->setAttribute(Qt::WA_ShowModal);
             m_pChild->setMouseTracking(true);
             m_pChild->setGeometry(0, 0, parent->width(), parent->height());
             m_pChild->setStyleSheet("background-color: rgba(255,0,0,0)");
@@ -703,6 +757,25 @@ namespace WindowHelper {
         return desktop_env;
     }
 
+    auto useGtkDialog() -> bool {
+        GET_REGISTRY_USER(reg_user)
+        bool use_gtk_dialog = true;
+        bool saved_flag = reg_user.value("--xdg-desktop-portal", false).toBool();
+        if (InputArgs::contains(L"--xdg-desktop-portal=default")) {
+            use_gtk_dialog = false;
+            if (saved_flag)
+                reg_user.setValue("--xdg-desktop-portal", false);
+        } else
+        if (InputArgs::contains(L"--xdg-desktop-portal")) {
+            use_gtk_dialog = false;
+            if (!saved_flag)
+                reg_user.setValue("--xdg-desktop-portal", true);
+        } else {
+            if (saved_flag)
+                use_gtk_dialog = false;
+        }
+        return use_gtk_dialog;
+    }
 #else
     auto isWindowSystemDocked(HWND handle) -> bool {
         RECT windowrect;
@@ -782,7 +855,7 @@ namespace WindowHelper {
 #endif
     }
 
-    auto constructFullscreenWidget(QWidget * panelwidget) -> QWidget *
+    auto constructFullscreenWidget(QWidget * panelwidget) -> CFullScrWidget *
     {
 #if defined(_WIN32) && (QT_VERSION < QT_VERSION_CHECK(5, 10, 0))
         QPoint pt = panelwidget->window()->mapToGlobal(panelwidget->pos());
@@ -791,7 +864,7 @@ namespace WindowHelper {
 #endif
 
         CTabPanel * _panel = qobject_cast<CTabPanel *>(panelwidget);
-        QWidget * _parent = new QWidget;
+        CFullScrWidget * _parent = new CFullScrWidget;
         _parent->setWindowIcon(Utils::appIcon());
         _parent->setWindowTitle(_panel->data()->title());
         _parent->showFullScreen();
@@ -802,5 +875,14 @@ namespace WindowHelper {
         _panel->setGeometry(0,0,_parent->width(),_parent->height());
 
         return _parent;
+    }   
+
+    auto useNativeDialog() -> bool
+    {
+        bool use_native_dialog = true;
+#ifdef FILEDIALOG_DONT_USE_NATIVEDIALOGS
+        use_native_dialog = InputArgs::contains(L"--native-file-dialog");
+#endif
+        return use_native_dialog;
     }
 }
