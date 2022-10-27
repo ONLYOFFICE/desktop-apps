@@ -685,6 +685,7 @@ var
   regValue, userPath: string;
   findRec: TFindRec;
   ErrorCode: Integer;
+  version: TWindowsVersion;
 begin
   if CurUninstallStep = usUninstall then
   begin
@@ -732,7 +733,10 @@ begin
     UnassociateExtensions();
   end else
   if CurUninstallStep = usPostUninstall then begin
-    Exec(ExpandConstant('{app}\{#iconsExe}'), '--remove-jump-list', '', SW_SHOWNORMAL, ewWaitUntilTerminated, ErrorCode);
+    GetWindowsVersionEx(version);
+    if (version.Major > 6) or ((version.Major = 6) and (version.Minor >= 1)) then begin
+      Exec(ExpandConstant('{app}\{#iconsExe}'), '--remove-jump-list', '', SW_SHOWNORMAL, ewWaitUntilTerminated, ErrorCode);
+    end;
   end;
 end;
 
@@ -741,13 +745,17 @@ var
   commonCachePath, userCachePath: string;
   paramStore, translateArgs: string;
   ErrorCode: Integer;
+  version: TWindowsVersion;
 begin
   if CurStep = ssPostInstall then begin
     DoPostInstall();
-    translateArgs := ExpandConstant('{cm:jumpDOCX}+{cm:jumpXLSX}+{cm:jumpPPTX}+{cm:jumpDOCXF}');
-    StringChangeEx(translateArgs, ' ', '_', True);
-    StringChangeEx(translateArgs, '+', ' ', True);
-    Exec(ExpandConstant('{app}\{#iconsExe}'), '--create-jump-list ' + translateArgs, '', SW_SHOWNORMAL, ewWaitUntilTerminated, ErrorCode);
+    GetWindowsVersionEx(version);
+    if (version.Major > 6) or ((version.Major = 6) and (version.Minor >= 1)) then begin
+      translateArgs := ExpandConstant('{cm:jumpDOCX}+{cm:jumpXLSX}+{cm:jumpPPTX}+{cm:jumpDOCXF}');
+      StringChangeEx(translateArgs, ' ', '_', True);
+      StringChangeEx(translateArgs, '+', ' ', True);
+      Exec(ExpandConstant('{app}\{#iconsExe}'), '--create-jump-list ' + translateArgs, '', SW_SHOWNORMAL, ewWaitUntilTerminated, ErrorCode);
+    end;
     // migrate from the prev version when user's data saved to system common path
     commonCachePath := ExpandConstant('{commonappdata}\{#APP_PATH}\data\cache');
     userCachePath := ExpandConstant('{localappdata}\{#APP_PATH}\data\cache');
