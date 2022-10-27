@@ -313,9 +313,9 @@ QWidget * CEditorWindow::createMainPanel(QWidget * parent, const QString& title)
         if (d_ptr->usedOldEditorVersion)  // For old editors only
             mainGridLayout->addWidget(m_boxTitleBtns, 1, 0, Qt::AlignTop);
         else {
-            mainGridLayout->addItem(new QSpacerItem(int(TOP_PANEL_OFFSET*m_dpiRatio), 5,
-                                                    QSizePolicy::Fixed, QSizePolicy::Fixed),
-                                                    1, 0, Qt::AlignTop);
+            m_pSpacer = new QSpacerItem(int(TOP_PANEL_OFFSET*m_dpiRatio), 5,
+                                        QSizePolicy::Fixed, QSizePolicy::Fixed);
+            mainGridLayout->addItem(m_pSpacer, 1, 0, Qt::AlignTop);
             mainGridLayout->addWidget(m_boxTitleBtns, 1, 1, Qt::AlignTop);
         }
     }
@@ -470,6 +470,10 @@ void CEditorWindow::setScreenScalingFactor(double factor)
     CWindowPlatform::setScreenScalingFactor(factor);
     if (isCustomWindowStyle()) {
         m_boxTitleBtns->setFixedHeight(int(TOOLBTN_HEIGHT * factor));
+        if (m_pSpacer && !d_ptr->usedOldEditorVersion) {
+            m_pSpacer->changeSize(int(TOP_PANEL_OFFSET*m_dpiRatio), 5,
+                                  QSizePolicy::Fixed, QSizePolicy::Fixed);
+        }
     }
     QString zoom = QString::number(factor) + "x";
     m_pMainPanel->setProperty("zoom", zoom);
