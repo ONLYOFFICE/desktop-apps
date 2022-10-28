@@ -21,7 +21,7 @@ l10n.be = {
     menuRemoveModel: 'Выдаліць са спіса',
     menuClear: 'Ачысціць',
     menuLogout: 'Выйсці',
-    textMyComputer: 'Мой камп'ютар',
+    textMyComputer: 'Мой камп\'ютар',
     textThrough: 'праз',
     linkForgotPass: 'Забыліся пароль?',
     linkCreatePortal: 'Стварыць воблака ONLYOFFICE',
