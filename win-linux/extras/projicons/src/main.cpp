@@ -73,10 +73,10 @@ int main(int argc, char *argv[])
 #ifndef __OS_WIN_XP
     if (_cmdArgs.contains("--create-jump-list")) {
         QStringList defaultTitles = {
-            "New Document",
-            "New Spreadsheet",
-            "New Presentation",
-            "New Form"
+            "New document",
+            "New spreadsheet",
+            "New presentation",
+            "New form template"
         };
         CreateJumpList(_cmdArgs.size() > TASK_NUM ? _cmdArgs.mid(1) : defaultTitles);
         return 0;
