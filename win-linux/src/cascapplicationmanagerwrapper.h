@@ -124,6 +124,7 @@ private:
     void sendSettings(const std::wstring& opts);
     void applyTheme(const std::wstring&, bool force = false);
 
+    CMainWindow * prepareMainWindow(const QRect& r = QRect());
     CMainWindow * mainWindowFromViewId(int uid) const;
     CEditorWindow * editorWindowFromViewId(int uid) const;
     CEditorWindow * editorWindowFromUrl(const QString&) const;

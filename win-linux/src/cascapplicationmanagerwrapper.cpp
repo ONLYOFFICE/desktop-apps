@@ -675,7 +675,8 @@ CAscApplicationManager * CAscApplicationManagerWrapper::createInstance()
     return new CAscApplicationManagerWrapper;
 }
 
-auto prepareMainWindow(const QRect& r = QRect()) -> CMainWindow * {
+CMainWindow * CAscApplicationManagerWrapper::prepareMainWindow(const QRect& r)
+{
     APP_CAST(_app);
     GET_REGISTRY_USER(reg_user);
 
@@ -842,7 +843,7 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
                               Utils::stringifyJson(QJsonObject{{"skiptoparea", TOOLBTN_HEIGHT},{"singlewindow",true}}).toStdWString());
             } else {
                 if ( !_app.m_pMainWindow ) {
-                    _app.m_pMainWindow = prepareMainWindow(_start_rect);
+                    _app.m_pMainWindow = _app.prepareMainWindow(_start_rect);
                     _app.m_pMainWindow->show(reg_user.value("maximized", false).toBool());
                 }
 
@@ -857,7 +858,7 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
 
     if ( !list_failed.empty() && !open_in_new_window ) {
         if ( !_app.m_pMainWindow ) {
-            _app.m_pMainWindow = prepareMainWindow(_start_rect);
+            _app.m_pMainWindow = _app.prepareMainWindow(_start_rect);
             _app.m_pMainWindow->show(reg_user.value("maximized", false).toBool());
         }
 
@@ -942,7 +943,7 @@ void CAscApplicationManagerWrapper::startApp()
 //        _window->mainPanel()->attachStartPanel(_app.m_private->m_pStartPanel);
 //        _window->show(_is_maximized);
 
-        _app.m_pMainWindow = prepareMainWindow();
+        _app.m_pMainWindow = _app.prepareMainWindow();
         _app.m_pMainWindow->show(_is_maximized);
     }
 
@@ -1113,7 +1114,7 @@ void CAscApplicationManagerWrapper::gotoMainWindow(size_t src)
             _start_rect = _editor.geometry().translated(QPoint(50,50) * _editor.scaling());
         }
 
-        _app.m_pMainWindow = prepareMainWindow(_start_rect);
+        _app.m_pMainWindow = _app.prepareMainWindow(_start_rect);
         _app.m_pMainWindow->show(reg_user.value("maximized", false).toBool());
     }
 
