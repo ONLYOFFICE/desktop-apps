@@ -65,6 +65,9 @@ public:
     virtual bool holdView(int id) const final;
     virtual void applyTheme(const std::wstring&) final;
 
+protected:
+    void closeEvent(QCloseEvent *) override;
+
 private:
     QWidget * createMainPanel(QWidget *, const QString&);
     CTabPanel * mainView() const;
