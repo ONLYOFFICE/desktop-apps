@@ -49,7 +49,7 @@ public:
     void toggleBorderless(bool);
     void toggleResizeable();
     void bringToTop();
-    void show(bool);
+    virtual void show(bool);
     virtual void adjustGeometry() final;
 
 private:

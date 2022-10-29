@@ -58,6 +58,9 @@
 
 typedef QWidget* ParentHandle;
 
+#define CLOSE_QUEUE_WIN_TYPE_MAIN   1
+#define CLOSE_QUEUE_WIN_TYPE_EDITOR 2
+
 
 struct sWinTag
 {
@@ -69,6 +72,8 @@ struct sWinTag
         return other.handle == this->handle;
     }
 };
+
+Q_DECLARE_METATYPE(sWinTag)
 
 enum class CScalingFactor
 {
@@ -124,6 +129,7 @@ private:
     void sendSettings(const std::wstring& opts);
     void applyTheme(const std::wstring&, bool force = false);
 
+    CMainWindow * prepareMainWindow(const QRect& r = QRect());
     CMainWindow * mainWindowFromViewId(int uid) const;
     CEditorWindow * editorWindowFromViewId(int uid) const;
     CEditorWindow * editorWindowFromUrl(const QString&) const;
@@ -152,6 +158,8 @@ private slots:
                            const QString &version, const QString &changelog);
 #endif
 
+    void onMainWindowClose();
+
 public:
     static CAscApplicationManagerWrapper & getInstance();
     static CAscApplicationManager * createInstance();
@@ -162,7 +170,6 @@ public:
     static void             initializeApp();
     static void             gotoMainWindow(size_t pw = 0);
     static void             handleInputCmd(const std::vector<std::wstring>&);
-    static void             closeMainWindow();
     static void             closeEditorWindow(const size_t);
 
     static void             editorWindowMoving(const size_t, const QPoint&);

@@ -291,9 +291,3 @@ void CWindowBase::showEvent(QShowEvent *event)
         applyTheme(AscAppManager::themes().current().id());
     }
 }
-
-void CWindowBase::closeEvent(QCloseEvent *e)
-{
-    onCloseEvent();
-    e->ignore();
-}

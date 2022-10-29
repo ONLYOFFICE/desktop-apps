@@ -487,3 +487,9 @@ void CEditorWindow::slot_modalDialog(bool status, WId h)
     Q_UNUSED(h)
     //status ? pimpl->lockParentUI() : pimpl->unlockParentUI();
 }
+
+void CEditorWindow::closeEvent(QCloseEvent * e)
+{
+    AscAppManager::getInstance().closeQueue().enter(sWinTag{CLOSE_QUEUE_WIN_TYPE_EDITOR, size_t(this)});
+    e->ignore();
+}
