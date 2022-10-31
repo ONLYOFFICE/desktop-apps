@@ -684,6 +684,8 @@ procedure CurUninstallStepChanged(CurUninstallStep: TUninstallStep);
 var
   regValue, userPath: string;
   findRec: TFindRec;
+  ErrorCode: Integer;
+  version: TWindowsVersion;
 begin
   if CurUninstallStep = usUninstall then
   begin
@@ -731,18 +733,29 @@ begin
     UnassociateExtensions();
   end else
   if CurUninstallStep = usPostUninstall then begin
+    GetWindowsVersionEx(version);
+    if (version.Major > 6) or ((version.Major = 6) and (version.Minor >= 1)) then begin
+      Exec(ExpandConstant('{app}\{#iconsExe}'), '--remove-jump-list', '', SW_SHOWNORMAL, ewWaitUntilTerminated, ErrorCode);
+    end;
   end;
 end;
 
 procedure CurStepChanged(CurStep: TSetupStep);
 var
   commonCachePath, userCachePath: string;
-  paramStore: string;
+  paramStore, translateArgs: string;
   ErrorCode: Integer;
+  version: TWindowsVersion;
 begin
   if CurStep = ssPostInstall then begin
     DoPostInstall();
-
+    GetWindowsVersionEx(version);
+    if (version.Major > 6) or ((version.Major = 6) and (version.Minor >= 1)) then begin
+      translateArgs := ExpandConstant('{cm:jumpDOCX}+{cm:jumpXLSX}+{cm:jumpPPTX}+{cm:jumpDOCXF}');
+      StringChangeEx(translateArgs, ' ', '_', True);
+      StringChangeEx(translateArgs, '+', ' ', True);
+      Exec(ExpandConstant('{app}\{#iconsExe}'), '--create-jump-list ' + translateArgs, '', SW_SHOWNORMAL, ewWaitUntilTerminated, ErrorCode);
+    end;
     // migrate from the prev version when user's data saved to system common path
     commonCachePath := ExpandConstant('{commonappdata}\{#APP_PATH}\data\cache');
     userCachePath := ExpandConstant('{localappdata}\{#APP_PATH}\data\cache');
@@ -934,12 +947,12 @@ Name: desktopicon; Description: {cm:CreateDesktopIcon,{#sAppName}}; GroupDescrip
 Name: {commondesktop}\{#sAppIconName}; FileName: {app}\{#iconsExe}; WorkingDir: {app}; Tasks: desktopicon; IconFilename: {app}\app.ico; AppUserModelID: {#APP_USER_MODEL_ID};
 Name: {group}\{#sAppIconName};         Filename: {app}\{#iconsExe}; WorkingDir: {app}; IconFilename: {app}\app.ico; AppUserModelID: {#APP_USER_MODEL_ID};
 Name: {group}\{cm:Uninstall}; Filename: {uninstallexe}; WorkingDir: {app};
-Name: "{group}\{cm:extDOCX}"; IconFilename: "{app}\{#iconsExe}"; IconIndex: 14; Filename: "{app}\{#iconsExe}"; Parameters: "--new:word"
-Name: "{group}\{cm:extXLSX}"; IconFilename: "{app}\{#iconsExe}"; IconIndex: 15; Filename: "{app}\{#iconsExe}"; Parameters: "--new:cell"
-Name: "{group}\{cm:extPPTX}"; IconFilename: "{app}\{#iconsExe}"; IconIndex: 16; Filename: "{app}\{#iconsExe}"; Parameters: "--new:slide"
-#ifdef _ONLYOFFICE
-Name: "{group}\{cm:extDOCXF}"; IconFilename: "{app}\{#iconsExe}"; IconIndex: 17; Filename: "{app}\{#iconsExe}"; Parameters: "--new:form"
-#endif
+;Name: "{group}\{cm:extDOCX}"; IconFilename: "{app}\{#iconsExe}"; IconIndex: 14; Filename: "{app}\{#iconsExe}"; Parameters: "--new:word"
+;Name: "{group}\{cm:extXLSX}"; IconFilename: "{app}\{#iconsExe}"; IconIndex: 15; Filename: "{app}\{#iconsExe}"; Parameters: "--new:cell"
+;Name: "{group}\{cm:extPPTX}"; IconFilename: "{app}\{#iconsExe}"; IconIndex: 16; Filename: "{app}\{#iconsExe}"; Parameters: "--new:slide"
+;#ifdef _ONLYOFFICE
+;Name: "{group}\{cm:extDOCXF}"; IconFilename: "{app}\{#iconsExe}"; IconIndex: 17; Filename: "{app}\{#iconsExe}"; Parameters: "--new:form"
+;#endif
 
 [Run]
 ;Filename: {app}\{#NAME_EXE_OUT}; Description: {cm:Launch,{#sAppName}}; Flags: postinstall nowait skipifsilent;

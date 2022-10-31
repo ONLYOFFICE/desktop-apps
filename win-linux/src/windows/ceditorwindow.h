@@ -42,6 +42,7 @@
 #include "components/ctabpanel.h"
 #include <memory>
 #include <QCoreApplication>
+#include <QSpacerItem>
 
 class CEditorWindowPrivate;
 class CEditorWindow : public CWindowPlatform
@@ -65,6 +66,9 @@ public:
     virtual bool holdView(int id) const final;
     virtual void applyTheme(const std::wstring&) final;
 
+protected:
+    void closeEvent(QCloseEvent *) override;
+
 private:
     QWidget * createMainPanel(QWidget *, const QString&);
     CTabPanel * mainView() const;
@@ -85,6 +89,7 @@ private:
     QMetaObject::Connection m_modalSlotConnection;
     QString m_css;
     bool m_restoreMaximized = false;
+    QSpacerItem *m_pSpacer = nullptr;
 
     friend class CEditorWindowPrivate;
     std::unique_ptr<CEditorWindowPrivate> d_ptr;

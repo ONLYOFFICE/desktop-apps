@@ -49,7 +49,7 @@ public:
     void toggleBorderless(bool);
     void toggleResizeable();
     void bringToTop();
-    void show(bool);
+    virtual void show(bool);
     virtual void adjustGeometry() final;
 
 private:
@@ -62,7 +62,8 @@ private:
     int  m_resAreaWidth;
     bool m_borderless,
          m_closed,
-         m_isResizeable;
+         m_isResizeable,
+         m_allowMaximize;
 };
 
 #endif // CWINDOWPLATFORM_H

@@ -1125,7 +1125,19 @@ nn_NO.extOFORM =ONLYOFFICE utfyllbart elektronisk skjema
 uk.extOFORM =Онлайн-форма для заповнення ONLYOFFICE
 be.extOFORM =Запаўняльная анлайн-форма ONLYOFFICE
 gl.extOFORM =Formulario en liña encheble ONLYOFFICE
+;======================================================================================================
+en.jumpDOCX =New document
+ru.jumpDOCX =Новый документ
 
+en.jumpXLSX =New spreadsheet
+ru.jumpXLSX =Новая таблица
+
+en.jumpPPTX =New presentation
+ru.jumpPPTX =Новая презентация
+
+en.jumpDOCXF =New form template
+ru.jumpDOCXF =Новый шаблон формы
+;======================================================================================================
 en.defprogAppDescription=Free desktop office suite for document editing and collaboration
 bg.defprogAppDescription=Безплатен офис пакет за редактиране и съвместна работа по документи
 ca.defprogAppDescription=Suite d'oficina gratuïta per a l'edició de documents i col·laboració

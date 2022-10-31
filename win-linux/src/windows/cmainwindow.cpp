@@ -263,8 +263,46 @@ void CMainWindow::focus()
 
 void CMainWindow::onCloseEvent()
 {
+    close();
+}
+
+void CMainWindow::closeEvent(QCloseEvent * e)
+{
+    AscAppManager::getInstance().closeQueue().enter(sWinTag{CLOSE_QUEUE_WIN_TYPE_MAIN, size_t(this)});
+    e->ignore();
+}
+
+void CMainWindow::close()
+{
     CWindowBase::saveWindowState();
-    AscAppManager::closeMainWindow();
+    m_isCloseAll = true;
+
+    if ( m_pTabs->count() == 0 ) {
+        emit aboutToClose();
+    } else {
+        onFullScreen(-1, false);
+
+        for (int i(m_pTabs->count()); i-- > 0;) {
+            if ( !m_pTabs->closedByIndex(i) ) {
+                if ( !m_pTabs->isProcessed(i) ) {
+                    int _result = trySaveDocument(i);
+                    if ( _result == MODAL_RESULT_NO ) {
+                        m_pTabs->editorCloseRequest(i);
+                        onDocumentSave(m_pTabs->panel(i)->cef()->GetId());
+                    } else
+                    if ( _result == MODAL_RESULT_CANCEL ) {
+                        m_isCloseAll = false;
+                        AscAppManager::cancelClose();
+                        return;
+                    }
+                } else {
+                    m_pTabs->editorCloseRequest(i);
+                }
+            }
+
+            qApp->processEvents();
+        }
+    }
 }
 
 void CMainWindow::captureMouse(int tabindex)
@@ -521,14 +559,20 @@ void CMainWindow::onEditorAllowedClose(int uid)
 
             m_pTabs->removeTab(_index);
             //m_pTabs->adjustTabsSize();
+
+            onTabChanged(m_pTabs->currentIndex());
+            CInAppEventBase _event{CInAppEventBase::CEventType::etEditorClosed};
+            AscAppManager::getInstance().commonEvents().signal(&_event);
+
             if ( !m_pTabs->count() ) {
                 m_pTabs->setProperty("empty", true);
                 m_pTabs->style()->polish(m_pTabs);
                 toggleButtonMain(true);
+
+                if ( m_isCloseAll ) {
+                    emit aboutToClose();
+                }
             }
-            onTabChanged(m_pTabs->currentIndex());
-            CInAppEventBase _event{CInAppEventBase::CEventType::etEditorClosed};
-            AscAppManager::getInstance().commonEvents().signal(&_event);
         }
     }
 }
@@ -995,6 +1039,7 @@ void CMainWindow::onDocumentFragmented(int id, bool isfragmented)
             }
 
             if ( _answer == MODAL_RESULT_CANCEL ) {
+                m_isCloseAll = false;
                 AscAppManager::cancelClose();
             }
     }
@@ -1007,6 +1052,7 @@ void CMainWindow::onDocumentFragmentedBuild(int vid, int error)
         m_pTabs->closeEditorByIndex(index, false);
     } else {
         m_pTabs->cancelDocumentSaving(index);
+        m_isCloseAll = false;
         AscAppManager::cancelClose();
     }
 }
@@ -1339,4 +1385,16 @@ CAscTabWidget * CMainWindow::tabWidget()
 CTabBar *CMainWindow::tabBar()
 {
     return m_pTabBarWrapper->tabBar();
+}
+
+void CMainWindow::showEvent(QShowEvent * e)
+{
+    CWindowPlatform::showEvent(e);
+
+    m_isCloseAll && (m_isCloseAll = false);
+}
+
+bool CMainWindow::isAboutToClose() const
+{
+    return m_isCloseAll;
 }
