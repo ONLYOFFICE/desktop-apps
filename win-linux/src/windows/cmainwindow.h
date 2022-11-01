@@ -164,7 +164,6 @@ private:
     bool m_isCloseAll = false;
 
 private slots:
-    void slot_modalDialog(bool,  WId);
     virtual void onCloseEvent() final;
 };
 

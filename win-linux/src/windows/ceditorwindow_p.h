@@ -476,8 +476,7 @@ public:
         isPrinting = true;
 
 #ifdef Q_OS_LINUX
-        CInAppEventModal _event(window->winId());
-        CRunningEventHelper _h(&_event);
+        WindowHelper::CParentDisable oDisabler(window->handle());
 #endif
         if ( !(pagescount < 1) ) {
             if (!m_printData)

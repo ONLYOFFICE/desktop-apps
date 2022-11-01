@@ -63,13 +63,12 @@ CEditorWindow::CEditorWindow(const QRect& rect, CTabPanel* panel)
     d_ptr.get()->init(panel);
     m_pMainPanel = createMainPanel(this, d_ptr->panel()->data()->title());
     setCentralWidget(m_pMainPanel);
-#ifdef __linux__   
+#ifdef __linux__
     if (isCustomWindowStyle()) {
         CX11Decoration::setTitleWidget(m_boxTitleBtns);
         m_pMainPanel->setMouseTracking(true);
         setMouseTracking(true);
     }
-    connect(&AscAppManager::getInstance().commonEvents(), &CEventDriver::onModalDialog, this, &CEditorWindow::slot_modalDialog);
 #else
     recalculatePlaces();
 #endif
@@ -495,13 +494,6 @@ void CEditorWindow::setScreenScalingFactor(double factor)
 void CEditorWindow::onClickButtonHome()
 {
     AscAppManager::gotoMainWindow(size_t(this));
-}
-
-void CEditorWindow::slot_modalDialog(bool status, WId h)
-{
-    Q_UNUSED(status)
-    Q_UNUSED(h)
-    //status ? pimpl->lockParentUI() : pimpl->unlockParentUI();
 }
 
 void CEditorWindow::closeEvent(QCloseEvent * e)

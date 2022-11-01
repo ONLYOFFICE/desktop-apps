@@ -96,7 +96,6 @@ private:
 
 private slots:
     void onClickButtonHome();
-    void slot_modalDialog(bool,  WId);
 };
 
 #endif // CEDITORWINDOW_H
