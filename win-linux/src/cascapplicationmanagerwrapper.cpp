@@ -962,9 +962,8 @@ void CAscApplicationManagerWrapper::initializeApp()
             }
             if ( !vec_inargs.empty() )
                 handleInputCmd(vec_inargs);
-
-            //if ( mainWindow() )
-               // mainWindow()->bringToTop();
+            else
+                gotoMainWindow();
         });
     }
 
