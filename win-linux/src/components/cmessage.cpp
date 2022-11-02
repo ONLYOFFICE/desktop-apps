@@ -332,8 +332,7 @@ void CMessage::modal()
 #if defined(_WIN32)
     exec();
 #else
-    CInAppEventModal _event(parentWidget()->winId());
-    CRunningEventHelper _h(&_event);
+    WindowHelper::CParentDisable oDisabler(parentWidget());
     exec();
 #endif
 }
