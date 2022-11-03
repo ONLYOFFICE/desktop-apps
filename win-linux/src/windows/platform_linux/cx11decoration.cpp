@@ -318,6 +318,7 @@ CX11Decoration::~CX11Decoration()
 {
     freeCursors();
     if ( m_motionTimer ) {
+        m_motionTimer->stop();
         m_motionTimer->deleteLater();
         m_motionTimer = nullptr;
     }
