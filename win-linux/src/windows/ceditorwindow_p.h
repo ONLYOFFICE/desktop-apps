@@ -59,6 +59,7 @@
 # include "platform_linux/gtkprintdialog.h"
 #endif
 
+#define TOP_PANEL_OFFSET 5*TOOLBTN_WIDTH
 
 using namespace NSEditorApi;
 
@@ -318,12 +319,50 @@ public:
         }
     }
 
+    void adjustToNewEditorVersion()  // For old editors only
+    {
+        if (window->isCustomWindowStyle()) {
+            leftboxbuttons->hide();
+            auto layout = qobject_cast<QHBoxLayout*>(window->m_boxTitleBtns->layout());
+            if (canExtendTitle()) {
+                auto icon = layout->takeAt(3);
+                if (icon && icon->widget())
+                    layout->insertWidget(2, icon->widget());
+            }
+            auto stretch = layout->takeAt(1);
+            if (stretch)
+                delete stretch;
+            auto mainGridLayout = dynamic_cast<QGridLayout*>(window->m_pMainPanel->layout());
+            if (mainGridLayout) {
+                auto mainView = mainGridLayout->itemAtPosition(1, 0);
+                if (mainView)
+                    mainGridLayout->removeItem(mainView);
+                QLayoutItem *boxTitleBtns = canExtendTitle() ? mainGridLayout->itemAtPosition(1, 0) : nullptr;
+                if (boxTitleBtns)
+                    mainGridLayout->removeItem(boxTitleBtns);
+
+                if (mainView && mainView->widget())
+                    mainGridLayout->addWidget(mainView->widget(), 1, 0, 1, 2);
+                if (boxTitleBtns && boxTitleBtns->widget()) {
+                    mainGridLayout->addWidget(boxTitleBtns->widget(), 1, 1, Qt::AlignTop);
+                    window->m_pSpacer = new QSpacerItem(int(TOP_PANEL_OFFSET*window->m_dpiRatio), 5,
+                                                QSizePolicy::Fixed, QSizePolicy::Fixed);
+                    mainGridLayout->addItem(window->m_pSpacer, 1, 0, Qt::AlignTop);
+                }
+            }
+        }
+    }
+
     void onDocumentReady(int uid) override
     {
 //        if (window->holdView(uid))
             if ( panel()->data()->features().empty() ) {
                 panel()->data()->setFeatures(L"old version of editor");
                 extendableTitleToSimple();
+            }
+            if (m_panel->data()->hasFeature(L"btnhome")) {  // For old editors only
+                usedOldEditorVersion = false;
+                adjustToNewEditorVersion();
             }
             panel()->setReady();
             if (window->isActiveWindow())
@@ -732,7 +771,7 @@ public:
 
         if( jerror.error == QJsonParseError::NoError ) {
             QJsonObject objRoot = jdoc.object();
-            if ( !m_mapTitleButtons.isEmpty() ) {
+            if ( usedOldEditorVersion ) {  // For old editors only
                 if (objRoot.contains("disabled")) {
                     QJsonObject _disabled = objRoot["disabled"].toObject();
 
