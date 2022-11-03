@@ -69,6 +69,7 @@ public:
     virtual void focus() final;
     void close();
     bool isAboutToClose() const;
+    void cancelClose();
 
 signals:
     void aboutToClose();

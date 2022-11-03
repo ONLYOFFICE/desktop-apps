@@ -291,7 +291,6 @@ void CMainWindow::close()
                         onDocumentSave(m_pTabs->panel(i)->cef()->GetId());
                     } else
                     if ( _result == MODAL_RESULT_CANCEL ) {
-                        m_isCloseAll = false;
                         AscAppManager::cancelClose();
                         return;
                     }
@@ -1039,7 +1038,6 @@ void CMainWindow::onDocumentFragmented(int id, bool isfragmented)
             }
 
             if ( _answer == MODAL_RESULT_CANCEL ) {
-                m_isCloseAll = false;
                 AscAppManager::cancelClose();
             }
     }
@@ -1052,7 +1050,6 @@ void CMainWindow::onDocumentFragmentedBuild(int vid, int error)
         m_pTabs->closeEditorByIndex(index, false);
     } else {
         m_pTabs->cancelDocumentSaving(index);
-        m_isCloseAll = false;
         AscAppManager::cancelClose();
     }
 }
@@ -1390,11 +1387,15 @@ CTabBar *CMainWindow::tabBar()
 void CMainWindow::showEvent(QShowEvent * e)
 {
     CWindowPlatform::showEvent(e);
-
-    m_isCloseAll && (m_isCloseAll = false);
+    cancelClose();
 }
 
 bool CMainWindow::isAboutToClose() const
 {
     return m_isCloseAll;
+}
+
+void CMainWindow::cancelClose()
+{
+    m_isCloseAll && (m_isCloseAll = false);
 }

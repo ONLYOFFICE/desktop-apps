@@ -1755,6 +1755,8 @@ void CAscApplicationManagerWrapper::cancelClose()
 
     _app.m_closeCount = 0;
     _app.m_closeTarget.clear();
+    if ( _app.mainWindow() )
+        _app.mainWindow()->cancelClose();
 
     getInstance().closeQueue().cancel();
 }
@@ -1782,7 +1784,6 @@ void CAscApplicationManagerWrapper::onQueueCloseWindow(const sWinTag& t)
         if ( res == MODAL_RESULT_CANCEL ) {
             AscAppManager::getInstance().closeQueue().cancel();
         } else {
-            _e->hide();
             AscAppManager::getInstance().closeQueue().leave(t);
         }
     }
