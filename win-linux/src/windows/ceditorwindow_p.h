@@ -360,7 +360,7 @@ public:
                 panel()->data()->setFeatures(L"old version of editor");
                 extendableTitleToSimple();
             }
-            if (m_panel->data()->hasFeature(L"btnhome")) {  // For old editors only
+            if (m_panel->data()->hasFeature(L"btnhome") && usedOldEditorVersion) {  // For old editors only
                 usedOldEditorVersion = false;
                 adjustToNewEditorVersion();
             }
