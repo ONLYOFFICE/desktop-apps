@@ -1035,7 +1035,7 @@ void CAscApplicationManagerWrapper::initializeApp()
 //    AscAppManager::getInstance().applyTheme(themes().current().id(), true);
 
     EditorJSVariables::applyVariable("theme", {{"type", _app.m_themes->current().stype()},
-                                       {"id", QString::fromStdWString(_app.m_themes->current().id())}});
+                                       {"id", QString::fromStdWString(GET_CURRENT_ACTUAL_THEME_ID())}});
 }
 
 CPresenterWindow * CAscApplicationManagerWrapper::createReporterWindow(void * data, int parentid)
@@ -1564,17 +1564,16 @@ void CAscApplicationManagerWrapper::applyTheme(const wstring& theme, bool force)
     if ( !_app.m_themes->isThemeCurrent(theme) ) {
         const std::wstring old_theme = _app.m_themes->current().id();
         _app.m_themes->setCurrentTheme(theme);
-
-        std::wstring params{InputArgs::change_webapps_param(L"&uitheme=" + old_theme, L"&uitheme=" + theme)};
+        const std::wstring actual_id{_app.m_themes->themeActualId(theme)};
+        std::wstring params{InputArgs::change_webapps_param(L"&uitheme=" + old_theme, L"&uitheme=" + actual_id)};
         AscAppManager::getInstance().InitAdditionalEditorParams(params);
 
         EditorJSVariables::applyVariable("theme", {{"type", _app.m_themes->current().stype()},
-                                           {"id", QString::fromStdWString(_app.m_themes->current().id())}});
+                                           {"id", QString::fromStdWString(actual_id)}});
 
-        // TODO: remove
-        if ( mainWindow() ) mainWindow()->applyTheme(theme);
 
-        const std::wstring actual_id{_app.m_themes->themeActualId(theme)};
+        // TODO: remove        
+        if ( mainWindow() ) mainWindow()->applyTheme(actual_id);
         for ( auto const& r : m_winsReporter ) {
             r.second->applyTheme(actual_id);
         }
@@ -1583,10 +1582,10 @@ void CAscApplicationManagerWrapper::applyTheme(const wstring& theme, bool force)
         CEditorWindow * _editor = nullptr;
         for ( auto const& e : m_vecEditors ) {
             _editor = reinterpret_cast<CEditorWindow *>(e);
-            _editor->applyTheme(theme);
+            _editor->applyTheme(actual_id);
         }
 
-        AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, L"uitheme:changed", theme);
+        AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, L"uitheme:changed", actual_id);
     }
 }
 

@@ -389,7 +389,7 @@ public:
 
         if ( canExtendTitle() && window->isCustomWindowStyle() ) {
             window->m_pMainPanel->setProperty("window", "pretty");
-            changeTheme(AscAppManager::themes().current().id());
+            changeTheme(GET_CURRENT_ACTUAL_THEME_ID());
         }
     }
 
@@ -424,7 +424,7 @@ public:
 
             if ( window->m_pMainPanel ) {
                 window->m_pMainPanel->setProperty("uitheme", QString::fromStdWString(theme));
-
+                window->m_pMainPanel->setProperty("uithemetype", AscAppManager::themes().current().stype());
                 QString css(AscAppManager::getWindowStylesheets(window->m_dpiRatio));
                 css.append(window->m_css);
                 window->m_pMainPanel->setStyleSheet(css);
@@ -439,7 +439,7 @@ public:
             setWindowColors();
         }
 
-        AscAppManager::sendCommandTo(panel()->cef(), L"uitheme:changed", AscAppManager::themes().current().id());
+        AscAppManager::sendCommandTo(panel()->cef(), L"uitheme:changed", theme);
     }
 
     void onDocumentChanged(int id, bool state) override
