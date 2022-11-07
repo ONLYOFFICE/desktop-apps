@@ -349,6 +349,17 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
 
 
             return true;
+        } else
+        if ( !(cmd.find(L"open:template") == std::wstring::npos) ) {
+            if ( pData->get_Param() == L"external" ) {
+                QJsonObject _json_obj;
+                _json_obj["portal"] = "https://onlyoffice.com";
+                _json_obj["entrypage"] = "";
+
+                mainWindow()->onPortalOpen(QJsonDocument(_json_obj).toJson(QJsonDocument::Compact));
+            }
+
+            return true;
         }
 
         break; }
