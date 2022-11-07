@@ -149,7 +149,7 @@ public:
             }
         } else {
             QString visual_theme_id = is_system_theme_dark ? THEME_DEFAULT_DARK_ID : THEME_DEFAULT_LIGHT_ID;
-            if ( QString::fromStdWString(current->id()) != visual_theme_id ) {
+            if ( current->id() != visual_theme_id.toStdWString() ) {
                 if ( !current->fromFile(rc_themes.at(visual_theme_id)) )
                     return false;
             }

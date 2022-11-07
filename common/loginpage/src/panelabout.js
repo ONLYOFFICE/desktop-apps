@@ -66,7 +66,7 @@
 
         let _ext_ver = '';
         if ( !!_opts.arch ) _ext_ver += `${_opts.arch == 'x64' ? 'x64' : 'x86'}`;
-        if ( !!_opts.pkg ) _ext_ver += ` ${_opts.pkg} package`;
+        if ( !!_opts.pkg ) _ext_ver += ` ${_opts.pkg}`;
         if ( !!_ext_ver ) _opts.version += ` (${_ext_ver.trim()})`;
 
         var _lang = utils.Lang;
