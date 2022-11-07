@@ -1072,7 +1072,6 @@ void CMainWindow::onEditorActionRequest(int vid, const QString& args)
                     else _is_local = true;
                 }
             }
-            if (_is_local) toggleButtonMain(true);
         }
     }
 }
