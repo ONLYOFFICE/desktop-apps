@@ -288,6 +288,6 @@ void CWindowBase::showEvent(QShowEvent *event)
         m_windowActivated = true;
         setGeometry(m_window_rect);
         adjustGeometry();
-        applyTheme(GET_CURRENT_ACTUAL_THEME_ID());
+        applyTheme(GetCurrentActualThemeID());
     }
 }

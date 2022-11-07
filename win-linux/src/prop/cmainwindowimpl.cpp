@@ -100,7 +100,7 @@ void CMainWindowImpl::refreshAboutVersion()
     }
 
 #ifndef __OS_WIN_XP
-    _json_obj["uitheme"] = QString::fromStdWString(GET_CURRENT_ACTUAL_THEME_ID());
+    _json_obj["uitheme"] = QString::fromStdWString(GetCurrentActualThemeID());
 #endif
 
 #ifdef Q_OS_WIN

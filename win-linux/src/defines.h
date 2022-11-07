@@ -71,8 +71,12 @@
     QSettings variable(QSettings::NativeFormat, QSettings::UserScope, REG_GROUP_KEY, REG_APP_NAME);
 #define GET_REGISTRY_SYSTEM(variable) \
     QSettings variable(QSettings::SystemScope, REG_GROUP_KEY, REG_APP_NAME);
-#define GET_CURRENT_ACTUAL_THEME_ID() \
-    AscAppManager::themes().themeActualId(AscAppManager::themes().current().id())
+#define GetCurrentTheme() \
+    AscAppManager::themes().current()
+#define GetCurrentActualThemeID() \
+    AscAppManager::themes().themeActualId(GetCurrentTheme().id())
+#define GetColorByRole(role) \
+    GetCurrentTheme().color(CTheme::ColorRole::role)
 
 #define LOCAL_PATH_OPEN         1
 #define LOCAL_PATH_SAVE         2

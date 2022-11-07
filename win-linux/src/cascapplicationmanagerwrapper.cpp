@@ -1035,7 +1035,7 @@ void CAscApplicationManagerWrapper::initializeApp()
 //    AscAppManager::getInstance().applyTheme(themes().current().id(), true);
 
     EditorJSVariables::applyVariable("theme", {{"type", _app.m_themes->current().stype()},
-                                       {"id", QString::fromStdWString(GET_CURRENT_ACTUAL_THEME_ID())}});
+                                       {"id", QString::fromStdWString(GetCurrentActualThemeID())}});
 }
 
 CPresenterWindow * CAscApplicationManagerWrapper::createReporterWindow(void * data, int parentid)

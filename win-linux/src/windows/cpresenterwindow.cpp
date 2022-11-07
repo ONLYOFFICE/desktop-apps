@@ -99,7 +99,7 @@ QWidget * CPresenterWindow::createMainPanel(QWidget * parent, const QString& tit
 {
     QWidget * mainPanel = new QWidget(parent);
     mainPanel->setObjectName("mainPanel");
-    mainPanel->setProperty("uitheme", QString::fromStdWString(GET_CURRENT_ACTUAL_THEME_ID()));
+    mainPanel->setProperty("uitheme", QString::fromStdWString(GetCurrentActualThemeID()));
     mainPanel->setStyleSheet(AscAppManager::getWindowStylesheets(m_dpiRatio));
 
     QGridLayout * mainGridLayout = new QGridLayout(mainPanel);
