@@ -79,7 +79,7 @@
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="%@ Reporter Window" xml:space="preserve">
         <source>%@ Reporter Window</source>
-        <target>%@Reporteri Aken</target>
+        <target state="translated">%@Reporteri Aken</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="About %@" xml:space="preserve">
@@ -94,7 +94,7 @@
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Before signing the document, it must be saved." xml:space="preserve">
         <source>Before signing the document, it must be saved.</source>
-        <target>Enne dokumendi allkirjastamist tuleb see salvestada.</target>
+        <target state="translated">Enne dokumendi allkirjastamist tuleb see salvestada.</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Cancel" xml:space="preserve">
@@ -104,17 +104,17 @@
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Cannot open file of Digital Signature" xml:space="preserve">
         <source>Cannot open file of Digital Signature</source>
-        <target>Ei saa avada digitaalse allkirja faili</target>
+        <target state="translated">Ei saa avada digitaalse allkirja faili</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Cannot open file of Private Key" xml:space="preserve">
         <source>Cannot open file of Private Key</source>
-        <target>Ei saa avada privaatse võtme faili</target>
+        <target state="translated">Ei saa avada privaatse võtme faili</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Cannot open folder of the file location." xml:space="preserve">
         <source>Cannot open folder of the file location.</source>
-        <target>Ei saa avada faili otsingu kausta.</target>
+        <target state="translated">Ei saa avada faili otsingu kausta.</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Comma-Separated Values" xml:space="preserve">
@@ -124,7 +124,7 @@
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Create portal" xml:space="preserve">
         <source>Create portal</source>
-        <target>Loo portaal</target>
+        <target state="translated">Loo portaal</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Delete and Quit" xml:space="preserve">
@@ -214,12 +214,12 @@
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="ONLYOFFICE can not open the Digital Signature file. Try opening another file." xml:space="preserve">
         <source>ONLYOFFICE can not open the Digital Signature file. Try opening another file.</source>
-        <target>ONLYOFFICE ei saa avada digitaalse allkirja faili. Proovi avada muud faili.</target>
+        <target state="translated">ONLYOFFICE ei saa avada digitaalse allkirja faili. Proovi avada muud faili.</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="ONLYOFFICE can not open the Private Key. Try opening another file." xml:space="preserve">
         <source>ONLYOFFICE can not open the Private Key. Try opening another file.</source>
-        <target>ONLYOFFICE ei saa avada privaatset võtit. Proovi avada muud faili.</target>
+        <target state="translated">ONLYOFFICE ei saa avada privaatset võtit. Proovi avada muud faili.</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="OpenDocument Document Template" xml:space="preserve">
@@ -324,7 +324,7 @@
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Save the document?" xml:space="preserve">
         <source>Save the document?</source>
-        <target>Salvesta dokument?</target>
+        <target state="translated">Salvesta dokument?</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Spreadsheet %ld.xlsx" xml:space="preserve">
@@ -344,12 +344,12 @@
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="The document &quot;%@&quot; must be built. Continue?" xml:space="preserve">
         <source>The document "%@" must be built. Continue?</source>
-        <target>Dokument „%@“ tuleb luua. Jätka?</target>
+        <target state="translated">Dokument „%@“ tuleb luua. Jätka?</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="To open the file location, it must be saved." xml:space="preserve">
         <source>To open the file location, it must be saved.</source>
-        <target>Et avada faili asukoht, tuleb see eelnevalt salvestada.</target>
+        <target state="translated">Et avada faili asukoht, tuleb see eelnevalt salvestada.</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Unconfirmed" xml:space="preserve">
@@ -364,7 +364,7 @@
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Version %@ (%@)" xml:space="preserve">
         <source>Version %1$@ (%2$@)</source>
-        <target>Versioon %1$@ (%2$@)</target>
+        <target state="translated">Versioon %1$@ (%2$@)</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Web Page" xml:space="preserve">
@@ -1342,7 +1342,7 @@ Prooviperiood lõpeb %d päeva pärast. Peale seda ei saa luua ega muuta dokumen
       <note>Bundle name</note></trans-unit>
       <trans-unit id="NSHumanReadableCopyright" xml:space="preserve">
         <source>Copyright © 2020 Ascensio System SIA. All rights reserved.</source>
-        <target>Autoriõigused © 2020 Ascensio System SIA. Kõik õigused kaitstud.</target>
+        <target state="translated">Autoriõigused © 2020 Ascensio System SIA. Kõik õigused kaitstud.</target>
         
       <note>Copyright (human-readable)</note></trans-unit>
     </body>
