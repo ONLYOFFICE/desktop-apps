@@ -5,7 +5,7 @@
 	<key>%d days are left until the license expiration.</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
-		<string>%#@days@%#@дни@</string>
+		<string>%#@дни@</string>
 		<key>days</key>
 		<dict>
 			<key>NSStringFormatSpecTypeKey</key>
@@ -13,16 +13,16 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>Остава %d ден до изтичане на лиценза.Остава %d ден до изтичането на лиценза.</string>
+			<string>Остава %d ден до изтичането на лиценза.</string>
 			<key>other</key>
-			<string>Остават %d дни до изтичане на лиценза.Остават %d дни до изтичането на лиценза.</string>
+			<string>Остават %d дни до изтичането на лиценза.</string>
 		</dict>
 	</dict>
 	<key>You are using a trial version of the application.
 The trial period will end in %d days, after that you will not be able to create and edit documents.</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
-		<string>%#@days@%#@дни@</string>
+		<string>%#@дни@</string>
 		<key>days</key>
 		<dict>
 			<key>NSStringFormatSpecTypeKey</key>
@@ -30,19 +30,17 @@ The trial period will end in %d days, after that you will not be able to create 
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>Използвате пробна версия на приложението.
-Пробният период ще приключи след %d ден, след което няма да можете да създавате и редактирате документи.Използвате пробната версията на това приложение.
+			<string>Използвате пробната версията на това приложение.
 Пробният период ще изтече след %d ден, след това няма да можете да създавате и редактирате документи.</string>
 			<key>other</key>
-			<string>Използвате пробна версия на приложението.
-Пробният период ще приключи след %d дни, след което няма да можете да създавате и редактирате документи.Използвате пробната версията на това приложение.
+			<string>Използвате пробната версията на това приложение.
 Пробният период ще изтече след %d дни, след това няма да можете да създавате и редактирате документи.</string>
 		</dict>
 	</dict>
 	<key>You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
-		<string>%#@documents@%#@документи@</string>
+		<string>%#@документи@</string>
 		<key>documents</key>
 		<dict>
 			<key>NSStringFormatSpecTypeKey</key>
@@ -50,9 +48,9 @@ The trial period will end in %d days, after that you will not be able to create 
 			<key>NSStringFormatValueTypeKey</key>
 			<string>ld</string>
 			<key>one</key>
-			<string>Имате %ld %@ документ с непотвърдени промени. Искате ли да прегледате тези промени, преди да излезете?Имате %ld %@ документ с непотвърдени промени. Искате ли да прегледате тези промени преди да излезете?</string>
+			<string>Имате %ld %@ документ с непотвърдени промени. Искате ли да прегледате тези промени преди да излезете?</string>
 			<key>other</key>
-			<string>Имате %ld %@ документи с непотвърдени промени. Искате ли да прегледате тези промени, преди да излезете?Имате %ld %@ документа с непотвърдени промени. Искате ли да прегледате тези промени преди да излезете?</string>
+			<string>Имате %ld %@ документа с непотвърдени промени. Искате ли да прегледате тези промени преди да излезете?</string>
 		</dict>
 	</dict>
 </dict>

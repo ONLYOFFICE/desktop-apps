@@ -67,6 +67,12 @@ public:
     bool holdView(int id) const;
     virtual void applyTheme(const std::wstring&) final;
     virtual void focus() final;
+    void close();
+    bool isAboutToClose() const;
+    void cancelClose();
+
+signals:
+    void aboutToClose();
 
 private:
     void captureMouse(int);
@@ -75,8 +81,6 @@ private:
     virtual void dropEvent(QDropEvent *event) final;
 #endif
 
-private slots:
-    virtual void onCloseEvent() final;
 
 /** MainPanel **/
 
@@ -90,7 +94,8 @@ public:
     void toggleButtonMain(bool, bool delay = false);
     bool holdUid(int) const;
     bool holdUrl(const QString&, AscEditorType) const;
-    int  tabCloseRequest(int index = -1);    
+    int  startPanelId();
+    int  tabCloseRequest(int index = -1);
 #ifdef __linux
     void setMouseTracking(bool);
 #endif
@@ -101,6 +106,8 @@ public:
 protected:
     virtual QString getSaveMessage() const;
     virtual void refreshAboutVersion() {};
+    void closeEvent(QCloseEvent *) override;
+    void showEvent(QShowEvent *) override;
 
 public slots:
     void pushButtonMainClicked();
@@ -155,8 +162,10 @@ private:
     struct           printdata;
     printdata*       m_printData;
 
+    bool m_isCloseAll = false;
+
 private slots:
-    void slot_modalDialog(bool,  WId);
+    virtual void onCloseEvent() final;
 };
 
 #endif // CMAINWINDOW_H

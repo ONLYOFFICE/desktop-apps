@@ -40,7 +40,7 @@
 #include "cfilechecker.h"
 #include "OfficeFileFormats.h"
 #include "components/cmessage.h"
-
+#include <QApplication>
 #include <QDir>
 #include <QDebug>
 
@@ -66,7 +66,7 @@ namespace CEditorTools
                     start < 1 && (start = 1);
                     finish < 1 && (finish = 1);
                     finish < start && (finish = start);
-                    //c.context->SetPageOrientation(c.view->GetPrintPageOrientation(start - 1));
+                    c.context->SetPageOrientation(c.view->GetPrintPageOrientation(start - 1));
                     while (start <= finish) {
                         c.context->AddRef();
 
@@ -87,7 +87,7 @@ namespace CEditorTools
                         if ( _progress.isRejected() )
                             break;
                         if (curr < count) {
-                            //c.context->SetPageOrientation(c.view->GetPrintPageOrientation(start));
+                            c.context->SetPageOrientation(c.view->GetPrintPageOrientation(start));
                             c.context->getPrinter()->newPage();
                         }
                         curr++;
@@ -167,7 +167,7 @@ namespace CEditorTools
         ParentHandle parent;
         if ( !(parentid < 0) )
             parent = AscAppManager::windowHandleFromId(parentid);
-        else parent = AscAppManager::mainWindow()->handle();
+        else parent = qApp->activeWindow();
 
         CFileDialogWrapper dlg(parent);
 
@@ -187,7 +187,7 @@ namespace CEditorTools
         ParentHandle parent;
         if ( !(parentid < 0) )
             parent = AscAppManager::windowHandleFromId(parentid);
-        else parent = AscAppManager::mainWindow()->handle();
+        else parent = qApp->activeWindow();
 
         QString sel_path = path.empty() ? QString::fromStdWString(path) : Utils::lastPath(LOCAL_PATH_OPEN);
 

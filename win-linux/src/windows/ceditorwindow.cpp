@@ -62,13 +62,12 @@ CEditorWindow::CEditorWindow(const QRect& rect, CTabPanel* panel)
     d_ptr.get()->init(panel);
     m_pMainPanel = createMainPanel(this, d_ptr->panel()->data()->title());
     setCentralWidget(m_pMainPanel);
-#ifdef __linux__   
+#ifdef __linux__
     if (isCustomWindowStyle()) {
         CX11Decoration::setTitleWidget(m_boxTitleBtns);
         m_pMainPanel->setMouseTracking(true);
         setMouseTracking(true);
     }
-    connect(&AscAppManager::getInstance().commonEvents(), &CEventDriver::onModalDialog, this, &CEditorWindow::slot_modalDialog);
 #else
     recalculatePlaces();
 #endif
@@ -229,9 +228,11 @@ QWidget * CEditorWindow::createMainPanel(QWidget * parent, const QString& title)
         m_labelTitle->setObjectName("labelTitle");
         m_labelTitle->setMouseTracking(true);
         m_labelTitle->setEllipsisMode(Qt::ElideMiddle);
+        m_labelTitle->setAlignment(Qt::AlignCenter);
         m_labelTitle->setMaximumWidth(100);
         static_cast<QHBoxLayout*>(m_boxTitleBtns->layout())->insertWidget(0, m_labelTitle);
-        static_cast<QHBoxLayout*>(m_boxTitleBtns->layout())->insertStretch(0);
+        if (d_ptr->usedOldEditorVersion)  // For old editors only
+            static_cast<QHBoxLayout*>(m_boxTitleBtns->layout())->insertStretch(0);
     }
 
     if ( m_dpiRatio > 1.75 )
@@ -258,7 +259,10 @@ QWidget * CEditorWindow::createMainPanel(QWidget * parent, const QString& title)
             if (d_ptr->panel()->data()->contentType() != etUndefined)
                 mainPanel->setProperty("window", "pretty");
             _canExtendTitle = true;
-            static_cast<QHBoxLayout*>(m_boxTitleBtns->layout())->insertWidget(3, d_ptr.get()->iconUser());
+            if (d_ptr->usedOldEditorVersion)  // For old editors only
+                static_cast<QHBoxLayout*>(m_boxTitleBtns->layout())->insertWidget(3, d_ptr.get()->iconUser());
+            else
+                static_cast<QHBoxLayout*>(m_boxTitleBtns->layout())->insertWidget(2, d_ptr.get()->iconUser());
         }
 
         d_ptr->customizeTitleLabel();
@@ -294,14 +298,21 @@ QWidget * CEditorWindow::createMainPanel(QWidget * parent, const QString& title)
 //    m_pMainWidget->setVisible(false);
 
     d_ptr.get()->onScreenScalingFactor(m_dpiRatio);
-    mainGridLayout->addWidget(m_pMainView, 1, 0);
+    if (d_ptr->usedOldEditorVersion)  // For old editors only
+        mainGridLayout->addWidget(m_pMainView, 1, 0);
+    else
+        mainGridLayout->addWidget(m_pMainView, 1, 0, 1, 2);
     mainGridLayout->setRowStretch(1,1);
 
     if (_canExtendTitle) {
-#ifdef Q_OS_WIN
-        ::SetParent((HWND)m_boxTitleBtns->winId(), (HWND)m_pMainView->winId());
-#endif
-        mainGridLayout->addWidget(m_boxTitleBtns, 1, 0, Qt::AlignTop);
+        if (d_ptr->usedOldEditorVersion)  // For old editors only
+            mainGridLayout->addWidget(m_boxTitleBtns, 1, 0, Qt::AlignTop);
+        else {
+            m_pSpacer = new QSpacerItem(int(TOP_PANEL_OFFSET*m_dpiRatio), 5,
+                                        QSizePolicy::Fixed, QSizePolicy::Fixed);
+            mainGridLayout->addItem(m_pSpacer, 1, 0, Qt::AlignTop);
+            mainGridLayout->addWidget(m_boxTitleBtns, 1, 1, Qt::AlignTop);
+        }
     }
     return mainPanel;
 }
@@ -454,6 +465,10 @@ void CEditorWindow::setScreenScalingFactor(double factor)
     CWindowPlatform::setScreenScalingFactor(factor);
     if (isCustomWindowStyle()) {
         m_boxTitleBtns->setFixedHeight(int(TOOLBTN_HEIGHT * factor));
+        if (m_pSpacer && !d_ptr->usedOldEditorVersion) {
+            m_pSpacer->changeSize(int(TOP_PANEL_OFFSET*m_dpiRatio), 5,
+                                  QSizePolicy::Fixed, QSizePolicy::Fixed);
+        }
     }
     QString zoom = QString::number(factor) + "x";
     m_pMainPanel->setProperty("zoom", zoom);
@@ -477,9 +492,8 @@ void CEditorWindow::onClickButtonHome()
     AscAppManager::gotoMainWindow(size_t(this));
 }
 
-void CEditorWindow::slot_modalDialog(bool status, WId h)
+void CEditorWindow::closeEvent(QCloseEvent * e)
 {
-    Q_UNUSED(status)
-    Q_UNUSED(h)
-    //status ? pimpl->lockParentUI() : pimpl->unlockParentUI();
+    AscAppManager::getInstance().closeQueue().enter(sWinTag{CLOSE_QUEUE_WIN_TYPE_EDITOR, size_t(this)});
+    e->ignore();
 }

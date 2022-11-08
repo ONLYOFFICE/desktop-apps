@@ -43,6 +43,8 @@
 #include <QScreen>
 #include <shellapi.h>
 
+#define UM_SNAPPING 0x02
+
 
 CWindowPlatform::CWindowPlatform(const QRect &rect) :
     CWindowBase(rect),
@@ -50,7 +52,8 @@ CWindowPlatform::CWindowPlatform(const QRect &rect) :
     m_resAreaWidth(MAIN_WINDOW_BORDER_WIDTH),
     m_borderless(true),
     m_closed(false),
-    m_isResizeable(true)
+    m_isResizeable(true),
+    m_allowMaximize(true)
 {
     setWindowFlags(windowFlags() | Qt::Window | Qt::FramelessWindowHint
                    | Qt::WindowSystemMenuHint | Qt::WindowMaximizeButtonHint
@@ -58,8 +61,10 @@ CWindowPlatform::CWindowPlatform(const QRect &rect) :
     m_hWnd = (HWND)winId();
     DWORD style = ::GetWindowLong(m_hWnd, GWL_STYLE);
     ::SetWindowLong(m_hWnd, GWL_STYLE, style | WS_MAXIMIZEBOX | WS_THICKFRAME | WS_CAPTION);
+#ifndef __OS_WIN_XP
     const MARGINS shadow = {1, 1, 1, 1};
     DwmExtendFrameIntoClientArea(m_hWnd, &shadow);
+#endif
     connect(this->window()->windowHandle(), &QWindow::screenChanged, this, [=]() {
         QTimer::singleShot(50, this, [=]() {
             resize(size() + QSize(1,1));
@@ -111,7 +116,7 @@ bool CWindowPlatform::isTaskbarAutoHideOn()
 {
     APPBARDATA ABData;
     ABData.cbSize = sizeof(ABData);
-    return (SHAppBarMessage(ABM_GETSTATE, &ABData) & ABS_AUTOHIDE) == 0 ? false : true;
+    return (SHAppBarMessage(ABM_GETSTATE, &ABData) & ABS_AUTOHIDE) != 0;
 }
 
 void CWindowPlatform::bringToTop()
@@ -160,6 +165,7 @@ bool CWindowPlatform::nativeEvent(const QByteArray &eventType, void *message, lo
     MSG* msg = reinterpret_cast<MSG*>(message);
 #endif
 
+    static uchar movParam = 0;
     switch (msg->message)
     {
     case WM_DPICHANGED: {
@@ -285,8 +291,38 @@ bool CWindowPlatform::nativeEvent(const QByteArray &eventType, void *message, lo
         });
         break;
 
+    case WM_POWERBROADCAST: {
+        if (msg->wParam == PBT_APMRESUMEAUTOMATIC) {
+            auto pt = QApplication::desktop()->availableGeometry(this).topLeft();
+            POINT point{pt.x(), pt.y()};
+            HMONITOR monitor = MonitorFromPoint(point, MONITOR_DEFAULTTONULL);
+            if (!monitor)
+                moveToPrimaryScreen();
+            else {
+                BOOL res;
+                if (GetDevicePowerState(monitor, &res)) {
+                    if (res == FALSE)
+                        moveToPrimaryScreen();
+                } else
+                    moveToPrimaryScreen();
+            }
+        }
+        break;
+    }
+
     case WM_EXITSIZEMOVE:
-        QApplication::postEvent(this, new QEvent(QEvent::User));
+        if (m_allowMaximize)
+            QApplication::postEvent(this, new QEvent(QEvent::User));
+        break;
+
+    case WM_MOVE:
+        if (movParam != 0)
+            movParam = 0;
+        break;
+
+    case WM_MOVING:
+        if (m_allowMaximize && ++movParam == UM_SNAPPING)
+            m_allowMaximize = false;
         break;
 
     default:

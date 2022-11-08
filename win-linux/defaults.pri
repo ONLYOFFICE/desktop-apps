@@ -269,12 +269,13 @@ core_windows {
             -lcredui \
             -lnetapi32 \
             -lcomctl32 \
-            -lrpcrt4 \
-            -ldwmapi
+            -lrpcrt4
 #            -lOpenGL32
 
     build_xp {
         DEFINES += __OS_WIN_XP
+    } else {
+        LIBS += -ldwmapi
     }
 }
 

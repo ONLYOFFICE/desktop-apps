@@ -304,6 +304,7 @@ CX11Decoration::CX11Decoration(QWidget * w)
     , m_decoration(true)
     , m_nBorderSize(CUSTOM_BORDER_WIDTH)
     , m_bIsMaximized(false)
+    , m_startSize(QSize())
 {
     createCursors();
     m_nDirection = -1;
@@ -317,6 +318,7 @@ CX11Decoration::~CX11Decoration()
 {
     freeCursors();
     if ( m_motionTimer ) {
+        m_motionTimer->stop();
         m_motionTimer->deleteLater();
         m_motionTimer = nullptr;
     }
@@ -483,7 +485,7 @@ void CX11Decoration::dispatchMouseMove(QMouseEvent *e)
 
         XSendEvent(xdisplay_, x_root_window_, False, SubstructureRedirectMask | SubstructureNotifyMask, &event);
         XFlush(xdisplay_);
-
+        m_startSize = m_window->size();
         m_nDirection = -1;
     }
     else
@@ -586,7 +588,10 @@ void CX11Decoration::sendButtonRelease()
                         &event.xbutton.x_root, &event.xbutton.y_root, &event.xbutton.x, &event.xbutton.y, &event.xbutton.state);
     XSendEvent(xdisplay_, PointerWindow, True, ButtonReleaseMask, &event);
     XFlush(xdisplay_);
-    QApplication::postEvent(m_window, new QEvent(QEvent::User));
+    QTimer::singleShot(25, [=]() {
+        if (m_window->size() == m_startSize)
+            QApplication::postEvent(m_window, new QEvent(QEvent::User));
+    });
 }
 
 void CX11Decoration::setCursorPos(int x, int y)

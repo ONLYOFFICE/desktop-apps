@@ -81,6 +81,7 @@ protected:
     QPushButton* createToolButton(QWidget * parent, const QString& name);
     QWidget* createTopPanel(QWidget *parent);
     void saveWindowState();
+    void moveToPrimaryScreen();
     void setIsCustomWindowStyle(bool);
     virtual void setScreenScalingFactor(double);
     virtual void applyWindowState();
@@ -97,9 +98,9 @@ protected:
                   *m_pMainView = nullptr;
     double         m_dpiRatio;
 
+    virtual void showEvent(QShowEvent *);
+
 private:
-    virtual void showEvent(QShowEvent *) final;
-    virtual void closeEvent(QCloseEvent *) final;
     class CWindowBasePrivate;
     std::unique_ptr<CWindowBasePrivate> pimpl;
     QRect m_window_rect;

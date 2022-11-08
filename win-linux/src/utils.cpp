@@ -61,6 +61,7 @@ typedef HRESULT (__stdcall *SetCurrentProcessExplicitAppUserModelIDProc)(PCWSTR 
 #else
 #include <sys/stat.h>
 #include <stdlib.h>
+#include <QEventLoop>
 #endif
 
 #include <QDebug>
@@ -696,29 +697,19 @@ namespace WindowHelper {
 
     CParentDisable::~CParentDisable()
     {
-        if (m_pChild)
-            m_pChild->deleteLater();
+        enable();
     }
 
     void CParentDisable::disable(QWidget* parent)
     {
         if (parent) {
-            if (QCefView::IsSupportLayers())
-            {
-                m_pChild = new QWidget(parent);
-            }
-            else
-            {
-                QWindow * win = new QWindow;
-                win->setOpacity(1);
-                m_pChild = QWidget::createWindowContainer(win, parent);
-            }
-
-            m_pChild->setMouseTracking(true);
-            m_pChild->setGeometry(0, 0, parent->width(), parent->height());
-            m_pChild->setStyleSheet("background-color: rgba(255,0,0,0)");
-            m_pChild->setAttribute(Qt::WA_NoSystemBackground);
+            QEventLoop loop;  // Fixed Cef rendering before reopening the dialog
+            QTimer::singleShot(60, &loop, SLOT(quit()));
+            loop.exec();
+            m_pChild = new QWidget(parent, Qt::FramelessWindowHint | Qt::SubWindow);
+            m_pChild->setAttribute(Qt::WA_ShowModal);
             m_pChild->setAttribute(Qt::WA_TranslucentBackground);
+            m_pChild->setGeometry(0, 0, parent->width(), parent->height());
             m_pChild->show();
         }
     }
@@ -727,7 +718,6 @@ namespace WindowHelper {
     {
         if ( m_pChild ) {
             m_pChild->deleteLater();
-            m_pChild = nullptr;
         }
     }
 

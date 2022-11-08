@@ -63,12 +63,22 @@ using std::vector;
 
 CUpdateManager::CUpdateManager(QObject *parent):
     QObject(parent),
+    m_checkUrl(L""),
     m_downloadMode(Mode::CHECK_UPDATES)
 {
     // =========== Set updates URL ============
-    if ( InputArgs::contains(CMD_ARGUMENT_CHECK_URL) ) {
-        m_checkUrl = InputArgs::argument_value(CMD_ARGUMENT_CHECK_URL);
-    } else m_checkUrl = QString(URL_APPCAST_UPDATES).toStdWString();
+    auto setUrl = [=] {
+        if ( InputArgs::contains(CMD_ARGUMENT_CHECK_URL) ) {
+            m_checkUrl = InputArgs::argument_value(CMD_ARGUMENT_CHECK_URL);
+        } else m_checkUrl = QString(URL_APPCAST_UPDATES).toStdWString();
+    };
+#ifdef _WIN32
+    GET_REGISTRY_SYSTEM(reg_system)
+    if (Utils::getWinVersion() > Utils::WinVer::WinXP && reg_system.value("CheckForUpdates", true).toBool())
+        setUrl();
+#else
+    setUrl();
+#endif
 
     if ( !m_checkUrl.empty() ) {
         m_pDownloader = new CFileDownloader(m_checkUrl, false);

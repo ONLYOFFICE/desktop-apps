@@ -61,6 +61,7 @@ int main( int argc, char *argv[] )
 #endif
     QCoreApplication::setAttribute(Qt::AA_DisableHighDpiScaling);
     QCoreApplication::setApplicationName(QString::fromUtf8(WINDOW_NAME));
+    QApplication::setApplicationDisplayName(QString::fromUtf8(WINDOW_NAME));
 
     QString user_data_path = Utils::getUserPath() + APP_DATA_PATH;
     auto setup_paths = [&user_data_path](CAscApplicationManager * manager) {
@@ -91,6 +92,11 @@ int main( int argc, char *argv[] )
         manager->m_oSettings.country = Utils::systemLocationCode().toStdString();
     };
 
+    if ( InputArgs::contains(L"--geometry=default") ) {
+        GET_REGISTRY_USER(reg_user)
+        reg_user.remove("maximized");
+        reg_user.remove("position");
+    }
     if ( InputArgs::contains(L"--version") ) {
         qWarning() << VER_PRODUCTNAME_STR << "ver." << VER_FILEVERSION_STR;
         return 0;

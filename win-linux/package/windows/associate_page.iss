@@ -1125,6 +1125,9 @@ nn_NO.extOFORM =ONLYOFFICE utfyllbart elektronisk skjema
 uk.extOFORM =Онлайн-форма для заповнення ONLYOFFICE
 be.extOFORM =Запаўняльная анлайн-форма ONLYOFFICE
 gl.extOFORM =Formulario en liña encheble ONLYOFFICE
+;======================================================================================================
+en.jumpDOCX =New document
+ru.jumpDOCX =Новый документ
 
 en.jumpDOCX =New document
 bg.jumpDOCX =Нов документ

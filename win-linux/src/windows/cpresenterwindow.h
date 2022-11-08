@@ -50,6 +50,9 @@ public:
     virtual void applyTheme(const std::wstring&) final;
     virtual bool holdView(int id) const final;
 
+protected:
+    void closeEvent(QCloseEvent *) final;
+
 private:
     QWidget * createMainPanel(QWidget *, const QString&, QWidget * view = nullptr);
     virtual void setScreenScalingFactor(double) final;

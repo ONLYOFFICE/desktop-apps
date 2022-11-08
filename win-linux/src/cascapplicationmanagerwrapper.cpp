@@ -70,7 +70,9 @@ CAscApplicationManagerWrapper::CAscApplicationManagerWrapper(CAscApplicationMana
     QObject::connect(CExistanceController::getInstance(), &CExistanceController::checked, this, &CAscApplicationManagerWrapper::onFileChecked);
     QObject::connect(&commonEvents(), &CEventDriver::onEditorClosed, this, &CAscApplicationManagerWrapper::onEditorWidgetClosed);
 
-    std::function<void(sWinTag)> callback_ = std::bind(&CAscApplicationManagerWrapper::onQueueCloseWindow,this, _1);
+    std::function<void(sWinTag)> callback_ = [&](sWinTag t){
+        QMetaObject::invokeMethod(this, "onQueueCloseWindow", Qt::QueuedConnection, Q_ARG(sWinTag, t));
+    };
     m_queueToClose->setcallback(callback_);
 
     NSBaseVideoLibrary::Init(nullptr);
@@ -422,33 +424,14 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
             }
         }
 
-        if ( m_closeTarget.compare(L"app") == 0 ) {
-            switch ( m_countViews ) {
-//            case 1: DestroyCefView(-1); break;
-            case 0: {
-                if ( m_pMainWindow ) {
-                    m_pMainWindow->hide();
-
-                    delete m_pMainWindow, m_pMainWindow = nullptr;
-                }
-
-                break;
-            }
-            default: break;
-            }
-        } else
         if ( m_closeCount && --m_closeCount == 0 && !m_closeTarget.empty() ) {
             if ( m_closeTarget.find(L"http") != wstring::npos ) {
                 Logout(m_closeTarget);
                 m_closeTarget.clear();
             }
-        }
-        else
-        if ( m_closeTarget.find(L"main") != wstring::npos ) {
-            if ( !m_vecEditors.empty() && mainWindow()->tabWidget()->count() == 0 ) {
-                m_closeTarget.clear();
-                mainWindow()->hide();
-            }
+        } else
+        if ( m_countViews == 1 && mainWindow() && mainWindow()->isAboutToClose() ) {        // if only start page exists
+            DestroyCefView(-1);
         }
 
         break;
@@ -627,10 +610,19 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
                     return true;
                 } else
                 if ( mainWindow()->holdView(event->get_SenderId()) ) {
-                     closeMainWindow();
-                     return true;
+                    mainWindow()->close();
+                    return true;
                 }
             }
+            break;
+        case 0x4f:  // Key_O
+            if (data->get_IsCtrl()) {
+                m_private->sendOpenFolderEvent(event->get_SenderId());
+                return true;
+            }
+            break;
+        default:
+            break;
         }
     }
 
@@ -666,7 +658,8 @@ CAscApplicationManager * CAscApplicationManagerWrapper::createInstance()
     return new CAscApplicationManagerWrapper;
 }
 
-auto prepareMainWindow(const QRect& r = QRect()) -> CMainWindow * {
+CMainWindow * CAscApplicationManagerWrapper::prepareMainWindow(const QRect& r)
+{
     APP_CAST(_app);
     GET_REGISTRY_USER(reg_user);
 
@@ -703,6 +696,9 @@ auto prepareMainWindow(const QRect& r = QRect()) -> CMainWindow * {
 
     std::wstring start_path = ("file:///" + data_path + additional).toStdWString();
     _startPanel->GetCefView()->load(start_path);
+
+
+    QObject::connect(_window, &CMainWindow::aboutToClose, this, &CAscApplicationManagerWrapper::onMainWindowClose);
 
     return _window;
 }
@@ -833,7 +829,7 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
                               Utils::stringifyJson(QJsonObject{{"skiptoparea", TOOLBTN_HEIGHT},{"singlewindow",true}}).toStdWString());
             } else {
                 if ( !_app.m_pMainWindow ) {
-                    _app.m_pMainWindow = prepareMainWindow(_start_rect);
+                    _app.m_pMainWindow = _app.prepareMainWindow(_start_rect);
                     _app.m_pMainWindow->show(reg_user.value("maximized", false).toBool());
                 }
 
@@ -848,7 +844,7 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
 
     if ( !list_failed.empty() && !open_in_new_window ) {
         if ( !_app.m_pMainWindow ) {
-            _app.m_pMainWindow = prepareMainWindow(_start_rect);
+            _app.m_pMainWindow = _app.prepareMainWindow(_start_rect);
             _app.m_pMainWindow->show(reg_user.value("maximized", false).toBool());
         }
 
@@ -933,7 +929,7 @@ void CAscApplicationManagerWrapper::startApp()
 //        _window->mainPanel()->attachStartPanel(_app.m_private->m_pStartPanel);
 //        _window->show(_is_maximized);
 
-        _app.m_pMainWindow = prepareMainWindow();
+        _app.m_pMainWindow = _app.prepareMainWindow();
         _app.m_pMainWindow->show(_is_maximized);
     }
 
@@ -966,9 +962,8 @@ void CAscApplicationManagerWrapper::initializeApp()
             }
             if ( !vec_inargs.empty() )
                 handleInputCmd(vec_inargs);
-
-            //if ( mainWindow() )
-               // mainWindow()->bringToTop();
+            else
+                gotoMainWindow();
         });
     }
 
@@ -1073,11 +1068,11 @@ CPresenterWindow * CAscApplicationManagerWrapper::createReporterWindow(void * da
 
     if ( QApplication::desktop()->screenCount() > 1 ) {
         int _scrNum = QApplication::desktop()->screenNumber(_currentRect.topLeft());
-        QRect _scrRect = QApplication::desktop()->screenGeometry(QApplication::desktop()->screenCount()-_scrNum-1);
+        QRect _scrRect = QApplication::desktop()->availableGeometry(QApplication::desktop()->screenCount()-_scrNum-1);
         int _srcDpiRatio = Utils::getScreenDpiRatio(_scrRect.topLeft());
 
+        _windowRect.setTopLeft(_scrRect.translated(100,100).topLeft()*_srcDpiRatio);
         _windowRect.setSize(QSize(1000,700)*_srcDpiRatio);
-        _windowRect.moveCenter(_scrRect.center());
     }
 
     CPresenterWindow * reporterWindow = new CPresenterWindow(_windowRect, tr("Presenter View") + " - " + _doc_name, pView);
@@ -1104,7 +1099,7 @@ void CAscApplicationManagerWrapper::gotoMainWindow(size_t src)
             _start_rect = _editor.geometry().translated(QPoint(50,50) * _editor.scaling());
         }
 
-        _app.m_pMainWindow = prepareMainWindow(_start_rect);
+        _app.m_pMainWindow = _app.prepareMainWindow(_start_rect);
         _app.m_pMainWindow->show(reg_user.value("maximized", false).toBool());
     }
 
@@ -1117,44 +1112,10 @@ void CAscApplicationManagerWrapper::gotoMainWindow(size_t src)
     });
 }
 
-void CAscApplicationManagerWrapper::closeMainWindow()
-{
-    APP_CAST(_app)
-
-    if ( _app.m_pMainWindow ) {
-        if ( !_app.m_vecEditors.empty() ) {
-//            CMessage m(mainWindow()->handle(), CMessageOpts::moButtons::mbYesNo);
-//            m.setButtons({"Close all", "Current only", "Cancel"});
-//            switch (m.warning(tr("Do you want to close all editor windows?"))) {
-//            case MODAL_RESULT_CUSTOM + 0: break;
-//            case MODAL_RESULT_CUSTOM + 1:
-                if ( mainWindow()->tabWidget()->count() ) {
-                    _app.m_closeTarget = L"main";
-                    QTimer::singleShot(0, &_app, []{
-                        if ( mainWindow()->tabCloseRequest() == MODAL_RESULT_CANCEL )
-                            AscAppManager::cancelClose();
-                    });
-                } else {
-                    mainWindow()->hide();
-                    _app.closeQueue().leave(sWinTag{1,size_t(mainWindow())});
-                }
-                return;
-//            default: return;
-//            }
-        }
-
-        if ( _app.m_closeTarget.empty() ) {
-            QTimer::singleShot(0, &_app, &CAscApplicationManagerWrapper::launchAppClose);
-        }
-    }
-}
-
 void CAscApplicationManagerWrapper::launchAppClose()
 {
     if ( canAppClose() ) {
         if ( m_countViews > 1 ) {
-            m_closeTarget = L"app";
-
             /* close all editors windows */
             if ( !m_vecEditors.empty() ) {
                 vector<size_t>::const_iterator it = m_vecEditors.begin();
@@ -1174,10 +1135,6 @@ void CAscApplicationManagerWrapper::launchAppClose()
             m_pUpdateManager->handleAppClose();
 #endif
             DestroyCefView(-1);
-
-            if ( m_pMainWindow ) {
-                closeQueue().leave(sWinTag{1,size_t(m_pMainWindow)});
-            }
         }
     } else {
         cancelClose();
@@ -1640,15 +1597,6 @@ CThemes& CAscApplicationManagerWrapper::themes()
 
 bool CAscApplicationManagerWrapper::canAppClose()
 {
-#ifdef Q_OS_WIN
-    /*#ifdef _UPDMODULE
-    if ( win_sparkle_is_processing() ) {
-        CMessage mess(mainWindow()->handle(), CMessageOpts::moButtons::mbYesNo);
-        return mess.confirm(tr("Update is running. Break update and close the app?")) == MODAL_RESULT_CUSTOM;
-    }
-    #endif*/
-#endif
-
     APP_CAST(_app);
 
     if ( !_app.m_vecEditors.empty() ) {
@@ -1807,6 +1755,8 @@ void CAscApplicationManagerWrapper::cancelClose()
 
     _app.m_closeCount = 0;
     _app.m_closeTarget.clear();
+    if ( _app.mainWindow() )
+        _app.mainWindow()->cancelClose();
 
     getInstance().closeQueue().cancel();
 }
@@ -1823,19 +1773,19 @@ CEventDriver& CAscApplicationManagerWrapper::commonEvents()
 
 void CAscApplicationManagerWrapper::onQueueCloseWindow(const sWinTag& t)
 {
-    if ( t.type == 1 ) {
-        closeMainWindow();
+    if ( t.type == CLOSE_QUEUE_WIN_TYPE_MAIN ) {
+        AscAppManager::getInstance().closeQueue().leave(sWinTag{CLOSE_QUEUE_WIN_TYPE_MAIN, size_t(mainWindow())});
+
+        if ( !AscAppManager::getInstance().mainWindow()->isAboutToClose() )
+            AscAppManager::getInstance().mainWindow()->close();
     } else {
-        QTimer::singleShot(0, this, [t]{
-            CEditorWindow * _e = reinterpret_cast<CEditorWindow *>(t.handle);
-            int res = _e->closeWindow();
-            if ( res == MODAL_RESULT_CANCEL ) {
-                AscAppManager::getInstance().closeQueue().cancel();
-            } else {
-                _e->hide();
-                AscAppManager::getInstance().closeQueue().leave(t);
-            }
-        });
+        CEditorWindow * _e = reinterpret_cast<CEditorWindow *>(t.handle);
+        int res = _e->closeWindow();
+        if ( res == MODAL_RESULT_CANCEL ) {
+            AscAppManager::getInstance().closeQueue().cancel();
+        } else {
+            AscAppManager::getInstance().closeQueue().leave(t);
+        }
     }
 }
 
@@ -1892,20 +1842,19 @@ void CAscApplicationManagerWrapper::onFileChecked(const QString& name, int uid, 
 
 void CAscApplicationManagerWrapper::onEditorWidgetClosed()
 {
-    if ( m_closeTarget == L"app" ) {
-        launchAppClose();
-    } else
-    if ( m_closeTarget == L"main" ) {
-        if ( mainWindow()->tabCloseRequest() == MODAL_RESULT_CANCEL )
-            AscAppManager::cancelClose();
-        else
-        if ( mainWindow()->tabWidget()->count() == 0 ) {
-            m_closeTarget.clear();
-            mainWindow()->hide();
-
-            closeQueue().leave(sWinTag{1,size_t(mainWindow())});
-        }
+    if ( m_countViews == 0 ) {
+        DestroyCefView(-1);
     }
+}
+
+void CAscApplicationManagerWrapper::onMainWindowClose()
+{
+    if ( !m_vecEditors.empty() ) {
+        mainWindow()->hide();
+    } else {
+        launchAppClose();
+    }
+
 }
 
 void CAscApplicationManagerWrapper::addStylesheets(CScalingFactor f, const std::string& path)
@@ -1975,7 +1924,7 @@ void CAscApplicationManagerWrapper::showStartInstallMessage()
     {
     case MODAL_RESULT_CUSTOM + 0: {
         m_pUpdateManager->scheduleRestartForUpdate();
-        closeMainWindow();
+        mainWindow()->close();
         break;
     }
     default:
