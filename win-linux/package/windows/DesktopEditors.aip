@@ -150,7 +150,7 @@
     <ROW Component="locale_HK_LM" ComponentId="{D09979D5-ED81-4DE9-8602-7C1C8D2C6B75}" Directory_="APPDIR" Attributes="260" KeyPath="locale_HK_LM"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatsComponent">
-    <ROW Feature="ExtendedFeature" Feature_Parent="MainFeature" Title="ExtendedFeature" Description="Description" Display="5" Level="1" Directory_="APPDIR" Attributes="0"/>
+    <ROW Feature="ExtendedFeature" Feature_Parent="MainFeature" Title="ExtendedFeature" Description="ExtendedFeature" Display="5" Level="1" Directory_="CUSTOM_PATH" Attributes="0"/>
     <ROW Feature="FileProgramAssociation" Feature_Parent="MainFeature" Title="File Program Association" Description="Description" Display="57" Level="1" Directory_="APPDIR" Attributes="0"/>
     <ROW Feature="FileTypeAssociations" Feature_Parent="MainFeature" Title="File Type Associations" Description="Description" Display="3" Level="1" Directory_="APPDIR" Attributes="0" Options="13"/>
     <ROW Feature="MainFeature" Title="MainFeature" Description="Description" Display="1" Level="1" Directory_="APPDIR" Attributes="0"/>
@@ -322,6 +322,7 @@
     <ROW Feature_="docxf" Level="0" Condition="ProductName &lt;&gt; &quot;ONLYOFFICE Desktop Editors&quot;"/>
     <ROW Feature_="oform" Level="0" Condition="ProductName &lt;&gt; &quot;ONLYOFFICE Desktop Editors&quot;"/>
     <ROW Feature_="FileProgramAssociation" Level="4" Condition="REGISTER_PROG_NONE = 1"/>
+    <ROW Feature_="ExtendedFeature" Level="4" Condition="GALLERY &lt;&gt; &quot;1&quot; AND PLAYER &lt;&gt; &quot;1&quot;"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiControlComponent">
     <ROW Dialog_="AdminBrowseDlg" Control="OK" Type="PushButton" X="304" Y="243" Width="56" Height="17" Attributes="3" Text="[ButtonText_OK]" Order="300" TextLocId="-" MsiKey="AdminBrowseDlg#OK"/>
@@ -861,7 +862,6 @@
     <ROW Feature_="MainFeature" Component_="AI_DisableModify"/>
     <ROW Feature_="ExtendedFeature" Component_="VideoPlayer.exe"/>
     <ROW Feature_="ExtendedFeature" Component_="ImageViewer.exe"/>
-    <ROW Feature_="ExtendedFeature" Component_="SHORTCUTDIR"/>
     <ROW Feature_="MainFeature" Component_="AIShRegAnswer"/>
     <ROW Feature_="MicrosoftVisualC" Component_="MicrosoftVisualC"/>
     <ROW Feature_="MicrosoftVisualC_1" Component_="MicrosoftVisualC_1"/>
@@ -875,7 +875,6 @@
     <ROW Feature_="MainFeature" Component_="AppPath"/>
     <ROW Feature_="MainFeature" Component_="Version"/>
     <ROW Feature_="MainFeature" Component_="converter"/>
-    <ROW Feature_="ExtendedFeature" Component_="DesktopEditors.exe"/>
     <ROW Feature_="MainFeature" Component_="Software"/>
     <ROW Feature_="FileProgramAssociation" Component_="ASCC_REG_REGISTERED_APP_NAME"/>
     <ROW Feature_="FileProgramAssociation" Component_="ASSOC_PROG_ID"/>
@@ -897,6 +896,8 @@
     <ROW Feature_="FileProgramAssociation" Component_="FileAssociation_docx"/>
     <ROW Feature_="FileProgramAssociation" Component_="FileAssociation_docxf"/>
     <ROW Feature_="FileProgramAssociation" Component_="FileAssociation_odp"/>
+    <ROW Feature_="MainFeature" Component_="DesktopEditors.exe"/>
+    <ROW Feature_="MainFeature" Component_="SHORTCUTDIR"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiIconsComponent">
     <ROW Name="ImageViewer.exe" SourcePath="..\..\extras\projicons\res\gallery.ico" Index="0"/>
@@ -1154,10 +1155,10 @@
     <ROW Registry="xps" Root="2" Key="Software\[MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]\Capabilities\FileAssociations" Name=".xps" Value="[ASCC_REG_PREFIX].Xps" Component_="FileAssociation_xps"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiShortsComponent">
-    <ROW Shortcut="COMMON_SHORTCUT_NAME_DESKTOP" Directory_="DesktopFolder" Name="ONLYOF~1|[|COMMON_SHORTCUT_NAME]" Component_="DesktopEditors.exe" Target="[#DesktopEditors.exe]" Hotkey="0" Icon_="desktopeditors.exe" IconIndex="0" ShowCmd="1" WkDir="APPDIR" Advertised="true"/>
-    <ROW Shortcut="COMMON_SHORTCUT_NAME_SHORTCUTDIR" Directory_="SHORTCUTDIR" Name="ONLYOF~2|[|COMMON_SHORTCUT_NAME]" Component_="DesktopEditors.exe" Target="[#DesktopEditors.exe]" Hotkey="0" Icon_="desktopeditors.exe" IconIndex="0" ShowCmd="1" WkDir="APPDIR" Advertised="true"/>
-    <ROW Shortcut="GALLERY_SHORTCUT_NAME" Directory_="SHORTCUTDIR" Name="ONLYOF~1|[|GALLERY_SHORTCUT_NAME]" Component_="ImageViewer.exe" Target="[#ImageViewer.exe]" Hotkey="0" Icon_="ImageViewer.exe" IconIndex="0" ShowCmd="1" WkDir="CUSTOM_PATH" Advertised="true"/>
-    <ROW Shortcut="MEDIA_SHORTCUT_NAME" Directory_="SHORTCUTDIR" Name="ONLYOF~1|[|MEDIA_SHORTCUT_NAME]" Component_="VideoPlayer.exe" Target="[#VideoPlayer.exe]" Hotkey="0" Icon_="VideoPlayer.exe" IconIndex="0" ShowCmd="1" WkDir="CUSTOM_PATH" Advertised="true"/>
+    <ROW Shortcut="COMMON_SHORTCUT_NAME_DESKTOP" Directory_="DesktopFolder" Name="ONLYOF~1|[|COMMON_SHORTCUT_NAME]" Component_="DesktopEditors.exe" Target="[#DesktopEditors.exe]" Hotkey="0" Icon_="desktopeditors.exe" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
+    <ROW Shortcut="COMMON_SHORTCUT_NAME_SHORTCUTDIR" Directory_="SHORTCUTDIR" Name="ONLYOF~2|[|COMMON_SHORTCUT_NAME]" Component_="DesktopEditors.exe" Target="[#DesktopEditors.exe]" Hotkey="0" Icon_="desktopeditors.exe" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
+    <ROW Shortcut="GALLERY_SHORTCUT_NAME" Directory_="SHORTCUTDIR" Name="ONLYOF~1|[|GALLERY_SHORTCUT_NAME]" Component_="ImageViewer.exe" Target="[#ImageViewer.exe]" Hotkey="0" Icon_="ImageViewer.exe" IconIndex="0" ShowCmd="1" WkDir="CUSTOM_PATH"/>
+    <ROW Shortcut="MEDIA_SHORTCUT_NAME" Directory_="SHORTCUTDIR" Name="ONLYOF~1|[|MEDIA_SHORTCUT_NAME]" Component_="VideoPlayer.exe" Target="[#VideoPlayer.exe]" Hotkey="0" Icon_="VideoPlayer.exe" IconIndex="0" ShowCmd="1" WkDir="CUSTOM_PATH"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiThemeComponent">
     <ATTRIBUTE name="UsedTheme" value="classic"/>
