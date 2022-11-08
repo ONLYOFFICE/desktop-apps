@@ -403,7 +403,7 @@ ko.extMSSlideshow =Microsoft PowerPoint Slideshow (마이크로소포트 파워�
 lv.extMSSlideshow =Microsoft PowerPoint Slaidrāde
 nn_NO.extMSSlideshow =Microsoft PowerPoint-lysbildefremvisning
 uk.extMSSlideshow =Показ слайдів Microsoft PowerPoint
-be.extMSSlideshow =Слайд-шоў Microsoft PowerPoint
+be.extMSSlideshow =Слайд-шоу Microsoft PowerPoint
 gl.extMSSlideshow =Presentación de Microsoft PowerPoint
 
 en.extODT =OpenDocument Text File
@@ -483,7 +483,7 @@ ko.extODS =OpenDocument Spreadsheet (오픈도큐먼트 스프레드시트)
 lv.extODS =OpenDocument Izklājlapa
 nn_NO.extODS =OpenDocument-regneark
 uk.extODS =Електронна таблиця OpenDocument
-be.extODS =Табліца OpenDocument
+be.extODS =Электронная табліца OpenDocument
 gl.extODS =Folla de cálculo de OpenDocument
 
 en.extODP =OpenDocument Presentation
@@ -683,7 +683,7 @@ ko.extXLS =Excel 97-2003 스프레드시트
 lv.extXLS =Excel 97-2003 izklājlapa
 nn_NO.extXLS =Microsoft Excel 97-2003-regneark
 uk.extXLS =Електронна таблиця Excel 97-2003
-be.extXLS =Табліца Excel 97-2003
+be.extXLS =Электронная табліца Excel 97-2003
 gl.extXLS =Folla de cálculo Excel 97-2003
 
 en.extXLSX =Office Open XML Spreadsheet
@@ -843,7 +843,7 @@ ko.extPPS =PowerPoint 97-2003 슬라이드 쇼
 lv.extPPS =PowerPoint 97-2003 slaidrāde
 nn_NO.extPPS =Microsoft PowerPoint 97-2003-lysbildefremvisning
 uk.extPPS =Показ слайдів PowerPoint 97-2003
-be.extPPS =Слайд-шоў PowerPoint 97-2003
+be.extPPS =Слайд-шоу PowerPoint 97-2003
 gl.extPPS =Presentación de diapositivas de Powerpoint 97-2003
 
 en.extPPSX =Office Open XML Slide Show
@@ -883,7 +883,7 @@ ko.extPPSX =Office Open XML 슬라이드 쇼
 lv.extPPSX =Office Open XML slaidrāde
 nn_NO.extPPSX =Office Open XML-lysbildefremvisning
 uk.extPPSX =Показ слайдів Office Open XML
-be.extPPSX =Слайд-шоў Office Open XML
+be.extPPSX =Слайд-шоу Office Open XML
 gl.extPPSX =Presentación de diapositivas de Office Open XML
 
 en.extRTF =Rich Text Format File
@@ -923,7 +923,7 @@ ko.extRTF =서식이 있는 텍스트 형식 파일
 lv.extRTF =Bagātināta teksta formāta fails
 nn_NO.extRTF =Rikt tekstformat-fil
 uk.extRTF =Файл вдосконаленого текстового формату
-be.extRTF =Файл у фармаце Rich Text
+be.extRTF =Багаты тэкставы дакумент
 gl.extRTF =Ficheiro con formato de texto enriquecido
 
 en.extCSV =Comma Separated Values
