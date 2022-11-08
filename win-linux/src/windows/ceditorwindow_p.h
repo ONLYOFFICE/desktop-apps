@@ -131,9 +131,9 @@ auto prepare_editor_css(int type, const CTheme& theme) -> QString {
 
 auto editor_color(int type) -> QColor {
     switch (type) {
-    case etDocument: return AscAppManager::themes().current().color(CTheme::ColorRole::ecrTabWordActive);
-    case etPresentation: return AscAppManager::themes().current().color(CTheme::ColorRole::ecrTabSlideActive);
-    case etSpreadsheet: return AscAppManager::themes().current().color(CTheme::ColorRole::ecrTabCellActive);
+    case etDocument: return GetColorByRole(ecrTabWordActive);
+    case etPresentation: return GetColorByRole(ecrTabSlideActive);
+    case etSpreadsheet: return GetColorByRole(ecrTabCellActive);
     default: return GetColorByRole(ecrTabWordActive);
     }
 }
