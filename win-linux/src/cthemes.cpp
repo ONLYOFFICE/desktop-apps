@@ -212,7 +212,9 @@ auto CTheme::fromFile(const QString& path) -> bool
 {
     QFile _file(path);
     if ( _file.open(QIODevice::ReadOnly) ) {
-        return fromJson(_file.readAll());
+        QString data(_file.readAll());
+        _file.close();
+        return fromJson(data);
     }
 
     return false;
