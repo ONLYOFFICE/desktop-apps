@@ -120,7 +120,7 @@ const QString g_css =
 auto prepare_editor_css(int type, const CTheme& theme) -> QString {
     std::wstring c;
     switch (type) {
-    default: c = theme.value(CTheme::ColorRole::ecrWindowBackground); break;
+    default: c = theme.value(CTheme::ColorRole::ecrTabWordActive); break;
     case etDocument: c = theme.value(CTheme::ColorRole::ecrTabWordActive); break;
     case etPresentation: c = theme.value(CTheme::ColorRole::ecrTabSlideActive); break;
     case etSpreadsheet: c = theme.value(CTheme::ColorRole::ecrTabCellActive); break;
@@ -134,7 +134,7 @@ auto editor_color(int type) -> QColor {
     case etDocument: return AscAppManager::themes().current().color(CTheme::ColorRole::ecrTabWordActive);
     case etPresentation: return AscAppManager::themes().current().color(CTheme::ColorRole::ecrTabSlideActive);
     case etSpreadsheet: return AscAppManager::themes().current().color(CTheme::ColorRole::ecrTabCellActive);
-    default: return AscAppManager::themes().current().color(CTheme::ColorRole::ecrWindowBackground);
+    default: return GetColorByRole(ecrTabWordActive);
     }
 }
 
@@ -294,8 +294,9 @@ public:
             diffW -= _user_width;
 
             int left = usedOldEditorVersion ? -diffW : 0;   // For old editors only
+            int right = viewerMode() ? 40 * window->m_dpiRatio : 0;
             diffW > 0 ? boxtitlelabel->setContentsMargins(0, 0, diffW, 2*window->m_dpiRatio) :
-                            boxtitlelabel->setContentsMargins(left, 0, 0, 2*window->m_dpiRatio);
+                            boxtitlelabel->setContentsMargins(left, 0, right, 2*window->m_dpiRatio);
         }
     }
 
@@ -416,9 +417,8 @@ public:
                         btn->setIconOpacity(GetColorByRole(ecrButtonNormalOpacity));
                 }
             } else {
-                window->m_pMainPanel->setProperty("window", "simple");
-                CSVGPushButton * btn = m_mapTitleButtons["home"];
-                btn->setFillDark(!GetCurrentTheme().isDark());
+                window->m_pMainPanel->setProperty("window", "pretty");
+                m_mapTitleButtons["home"]->setIconOpacity(GetColorByRole(ecrButtonNormalOpacity));
             }
             AscEditorType editor_type = viewerMode() ? etUndefined : panel()->data()->contentType();
             window->m_css = prepare_editor_css(editor_type, GetCurrentTheme());
@@ -590,7 +590,8 @@ public:
                 iconuser->setContentsMargins(int(12*f),0,int(12*f),int(2*f));
                 iconuser->setMaximumWidth(int(200*f));
                 iconuser->adjustSize();
-                diffW -= iconuser->width();
+                if (!viewerMode())
+                    diffW -= iconuser->width();
             }
 
             if ( iconcrypted ) {
@@ -598,8 +599,9 @@ public:
             }
 
             int left = usedOldEditorVersion ? -diffW : 0;   // For old editors only
+            int right = viewerMode() ? 40 * window->m_dpiRatio : 0;
             diffW > 0 ? boxtitlelabel->setContentsMargins(0, 0, diffW, int(2*f)) :
-                            boxtitlelabel->setContentsMargins(left, 0, 0, int(2*f));
+                            boxtitlelabel->setContentsMargins(left, 0, right, int(2*f));
 
             for (const auto& btn: m_mapTitleButtons) {
                 btn->setFixedSize(QSize(int(TOOLBTN_WIDTH*f), int(TOOLBTN_HEIGHT*f)));
