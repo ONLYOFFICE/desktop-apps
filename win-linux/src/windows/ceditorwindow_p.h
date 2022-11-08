@@ -180,7 +180,7 @@ public:
 
     void init(CTabPanel * const p) override {
         CCefEventsGate::init(p);
-        if (!m_panel->data()->hasFeature(L"btnhome")) {  // For old editors only
+        if (!m_panel->data()->hasFeature(L"btnhome") || viewerMode()) {  // For old editors only
             usedOldEditorVersion = true;
             leftboxbuttons = new QWidget;
             leftboxbuttons->setLayout(new QHBoxLayout);
@@ -360,7 +360,7 @@ public:
                 panel()->data()->setFeatures(L"old version of editor");
                 extendableTitleToSimple();
             }
-            if (m_panel->data()->hasFeature(L"btnhome") && usedOldEditorVersion) {  // For old editors only
+            if (m_panel->data()->hasFeature(L"btnhome") && usedOldEditorVersion && !viewerMode()) {  // For old editors only
                 usedOldEditorVersion = false;
                 adjustToNewEditorVersion();
             }
