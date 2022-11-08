@@ -237,22 +237,9 @@ public:
         QGridLayout * const _layout = static_cast<QGridLayout*>(window->m_pMainPanel->layout());
         if ( !_layout->findChild<QWidget*>(window->m_boxTitleBtns->objectName()) ) {
             _layout->addWidget(window->m_boxTitleBtns,0,0,Qt::AlignTop);
-
-            window->m_css = {prepare_editor_css(etUndefined, AscAppManager::themes().current())};
-            QString css(AscAppManager::getWindowStylesheets(window->m_dpiRatio));
-            css.append(window->m_css);
-            window->m_pMainPanel->setProperty("window", "simple");
-            window->m_pMainPanel->setStyleSheet(css);
-
             iconUser()->hide();
             window->m_labelTitle->setText(APP_TITLE);
-
-            CSVGPushButton * btn = m_mapTitleButtons["home"];
-            btn->setFillDark(!AscAppManager::themes().current().isDark());
-
-#ifdef Q_OS_WIN
-            window->setWindowColors(AscAppManager::themes().current().color(CTheme::ColorRole::ecrWindowBackground));
-#endif
+            changeTheme(GetCurrentTheme().id());
         }
     }
 
@@ -419,27 +406,28 @@ public:
 
     void changeTheme(const std::wstring& theme)
     {
-        if ( canExtendTitle() && window->isCustomWindowStyle() ) {
-            window->m_css = prepare_editor_css(panel()->data()->contentType(), AscAppManager::themes().current());
-
-            if ( window->m_pMainPanel ) {
-                window->m_pMainPanel->setProperty("uitheme", QString::fromStdWString(theme));
-
-                QString css(AscAppManager::getWindowStylesheets(window->m_dpiRatio));
-                css.append(window->m_css);
-                window->m_pMainPanel->setStyleSheet(css);
-            }
-
-            if (usedOldEditorVersion) {   // For old editors only
-                for ( auto c: leftboxbuttons->findChildren<QPushButton *>()) {
-                    CSVGPushButton * btn = static_cast<CSVGPushButton *>(c);
-                    btn->setIconOpacity(AscAppManager::themes().current().color(CTheme::ColorRole::ecrButtonNormalOpacity));
+        if (window->isCustomWindowStyle()) {
+            Q_ASSERT(window->m_pMainPanel);
+            window->m_pMainPanel->setProperty("uitheme", QString::fromStdWString(theme));
+            window->m_pMainPanel->setProperty("uithemetype", GetCurrentTheme().stype());
+            if (!viewerMode()) {
+                if (usedOldEditorVersion) {   // For old editors only
+                    foreach (auto btn, m_mapTitleButtons)
+                        btn->setIconOpacity(GetColorByRole(ecrButtonNormalOpacity));
                 }
+            } else {
+                window->m_pMainPanel->setProperty("window", "simple");
+                CSVGPushButton * btn = m_mapTitleButtons["home"];
+                btn->setFillDark(!GetCurrentTheme().isDark());
             }
-            setWindowColors();
+            AscEditorType editor_type = viewerMode() ? etUndefined : panel()->data()->contentType();
+            window->m_css = prepare_editor_css(editor_type, GetCurrentTheme());
+            QString css(AscAppManager::getWindowStylesheets(window->m_dpiRatio));
+            css.append(window->m_css);
+            window->m_pMainPanel->setStyleSheet(css);
         }
-
-        AscAppManager::sendCommandTo(panel()->cef(), L"uitheme:changed", AscAppManager::themes().current().id());
+        setWindowColors();
+        AscAppManager::sendCommandTo(panel()->cef(), L"uitheme:changed", theme);
     }
 
     void onDocumentChanged(int id, bool state) override
