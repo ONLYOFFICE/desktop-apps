@@ -406,3 +406,8 @@ auto CThemes::onSystemDarkColorScheme(bool isdark) -> void
         m_priv->is_system_theme_dark = isdark;
     }
 }
+
+auto CThemes::isSystemSchemeDark() -> const bool
+{
+    return m_priv->is_system_theme_dark;
+}

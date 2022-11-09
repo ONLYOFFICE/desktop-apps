@@ -343,6 +343,10 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
                 bool is_dark = match.captured(1) == "dark";
                 m_themes->onSystemDarkColorScheme(is_dark);
 
+                for (auto i: GetViewsId()) {
+                    sendCommandTo(GetViewById(i), cmd, pData->get_Param());
+                }
+
                 if ( themes().current().isSystem() && themes().current().isDark() != is_dark )
                     applyTheme(themes().current().id());
             }
@@ -1034,8 +1038,11 @@ void CAscApplicationManagerWrapper::initializeApp()
     AscAppManager::getInstance().InitAdditionalEditorParams(wparams);
 //    AscAppManager::getInstance().applyTheme(themes().current().id(), true);
 
-    EditorJSVariables::applyVariable("theme", {{"type", _app.m_themes->current().stype()},
-                                       {"id", QString::fromStdWString(_app.m_themes->current().id())}});
+    EditorJSVariables::applyVariable("theme", {
+                                        {"type", _app.m_themes->current().stype()},
+                                        {"id", QString::fromStdWString(_app.m_themes->current().id())},
+                                        {"system", _app.m_themes->isSystemSchemeDark() ? "dark" : "light"}
+                                     });
 }
 
 CPresenterWindow * CAscApplicationManagerWrapper::createReporterWindow(void * data, int parentid)
@@ -1568,8 +1575,11 @@ void CAscApplicationManagerWrapper::applyTheme(const wstring& theme, bool force)
         std::wstring params{InputArgs::change_webapps_param(L"&uitheme=" + old_theme, L"&uitheme=" + theme)};
         AscAppManager::getInstance().InitAdditionalEditorParams(params);
 
-        EditorJSVariables::applyVariable("theme", {{"type", _app.m_themes->current().stype()},
-                                           {"id", QString::fromStdWString(_app.m_themes->current().id())}});
+        EditorJSVariables::applyVariable("theme", {
+                                            {"type", _app.m_themes->current().stype()},
+                                            {"id", QString::fromStdWString(_app.m_themes->current().id())},
+                                            {"system", _app.m_themes->isSystemSchemeDark() ? "dark" : "light"}
+                                         });
 
         // TODO: remove
         if ( mainWindow() ) mainWindow()->applyTheme(theme);
