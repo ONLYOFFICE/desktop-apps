@@ -293,18 +293,42 @@ bool CWindowPlatform::nativeEvent(const QByteArray &eventType, void *message, lo
 
     case WM_POWERBROADCAST: {
         if (msg->wParam == PBT_APMRESUMEAUTOMATIC) {
-            auto pt = QApplication::desktop()->availableGeometry(this).topLeft();
-            POINT point{pt.x(), pt.y()};
-            HMONITOR monitor = MonitorFromPoint(point, MONITOR_DEFAULTTONULL);
-            if (!monitor)
+            HMONITOR monitor = MonitorFromWindow(m_hWnd, MONITOR_DEFAULTTONULL);
+            if (!monitor) {
                 moveToPrimaryScreen();
-            else {
-                BOOL res;
-                if (GetDevicePowerState(monitor, &res)) {
-                    if (res == FALSE)
-                        moveToPrimaryScreen();
-                } else
+            } else {
+                MONITORINFOEX monInfo;
+                ZeroMemory(&monInfo, sizeof(monInfo));
+                monInfo.cbSize = sizeof(MONITORINFOEX);
+                if (GetMonitorInfo(monitor, &monInfo)) {
+                    DISPLAY_DEVICE  dispDevice;
+                    ZeroMemory(&dispDevice, sizeof(dispDevice));
+                    dispDevice.cb = sizeof(dispDevice);
+                    if (EnumDisplayDevices(monInfo.szDevice, 0, &dispDevice, EDD_GET_DEVICE_INTERFACE_NAME)) {
+                        HANDLE hDevice;
+                        hDevice = CreateFile(dispDevice.DeviceID,
+                                             GENERIC_READ,
+                                             FILE_SHARE_READ,
+                                             NULL,
+                                             OPEN_EXISTING,
+                                             FILE_ATTRIBUTE_READONLY,
+                                             NULL);
+                        if (hDevice != INVALID_HANDLE_VALUE) {
+                            BOOL res;
+                            if (GetDevicePowerState(hDevice, &res)) {
+                                if (res == FALSE)
+                                    moveToPrimaryScreen();
+                            } else {
+                                moveToPrimaryScreen();
+                            }
+                            CloseHandle(hDevice);
+                        } else {
+                            moveToPrimaryScreen();
+                        }
+                    }
+                } else {
                     moveToPrimaryScreen();
+                }
             }
         }
         break;
