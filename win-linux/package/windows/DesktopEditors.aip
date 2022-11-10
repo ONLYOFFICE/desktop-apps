@@ -18,6 +18,8 @@
     <ROW Property="ARPSYSTEMCOMPONENT" Value="1"/>
     <ROW Property="ARPURLINFOABOUT" Value="http://www.onlyoffice.com"/>
     <ROW Property="ARPURLUPDATEINFO" Value="http://www.onlyoffice.com/download.aspx"/>
+    <ROW Property="ASCC_REG_PREFIX" Value="ASC"/>
+    <ROW Property="ASSOC_PROG_ID" Value="[|ASCC_REG_PREFIX].Editors"/>
     <ROW Property="ASSOTIATION_PROP" Value="CheckBox"/>
     <ROW Property="AiFeatIcodjvu" Value="djvu.exe" Type="8"/>
     <ROW Property="AiFeatIcodoc" Value="doc.exe" Type="8"/>

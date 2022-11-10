@@ -147,6 +147,12 @@
   <ENTRY id="Property.AI_PRODUCTNAME_ARP">
     <STRING lang="ru" value="[|ProductName] [|ProductVersion] "/>
   </ENTRY>
+  <ENTRY id="Property.ASCC_REG_PREFIX">
+    <STRING lang="ru" value="ASC"/>
+  </ENTRY>
+  <ENTRY id="Property.ASSOC_PROG_ID">
+    <STRING lang="ru" value="[|ASCC_REG_PREFIX].Editors"/>
+  </ENTRY>
   <ENTRY id="Property.ARPCOMMENTS">
     <STRING lang="ru" value="Эта база данных установщика содержит логику и данные, необходимые для установки [|ProductName]"/>
   </ENTRY>
