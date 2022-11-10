@@ -343,9 +343,11 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
                 bool is_dark = match.captured(1) == "dark";
                 m_themes->onSystemDarkColorScheme(is_dark);
 
+#ifndef Q_OS_WIN
                 for (auto i: GetViewsId()) {
                     sendCommandTo(GetViewById(i), cmd, pData->get_Param());
                 }
+#endif
 
                 if ( themes().current().isSystem() && themes().current().isDark() != is_dark )
                     applyTheme(themes().current().id());
@@ -1040,8 +1042,10 @@ void CAscApplicationManagerWrapper::initializeApp()
 
     EditorJSVariables::applyVariable("theme", {
                                         {"type", _app.m_themes->current().stype()},
-                                        {"id", QString::fromStdWString(_app.m_themes->current().id())},
-                                        {"system", _app.m_themes->isSystemSchemeDark() ? "dark" : "light"}
+                                        {"id", QString::fromStdWString(_app.m_themes->current().id())}
+#ifdef Q_OS_WIN
+                                        ,{"system", _app.m_themes->isSystemSchemeDark() ? "dark" : "light"}
+#endif
                                      });
 }
 
@@ -1577,8 +1581,10 @@ void CAscApplicationManagerWrapper::applyTheme(const wstring& theme, bool force)
 
         EditorJSVariables::applyVariable("theme", {
                                             {"type", _app.m_themes->current().stype()},
-                                            {"id", QString::fromStdWString(_app.m_themes->current().id())},
-                                            {"system", _app.m_themes->isSystemSchemeDark() ? "dark" : "light"}
+                                            {"id", QString::fromStdWString(_app.m_themes->current().id())}
+#ifndef Q_OS_WIN
+                                            ,{"system", _app.m_themes->isSystemSchemeDark() ? "dark" : "light"}
+#endif
                                          });
 
         // TODO: remove
