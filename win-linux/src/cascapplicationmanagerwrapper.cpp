@@ -343,6 +343,12 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
                 bool is_dark = match.captured(1) == "dark";
                 m_themes->onSystemDarkColorScheme(is_dark);
 
+#ifndef Q_OS_WIN
+                for (auto i: GetViewsId()) {
+                    sendCommandTo(GetViewById(i), cmd, pData->get_Param());
+                }
+#endif
+
                 if ( themes().current().isSystem() && themes().current().isDark() != is_dark )
                     applyTheme(themes().current().id());
             }
@@ -1034,8 +1040,13 @@ void CAscApplicationManagerWrapper::initializeApp()
     AscAppManager::getInstance().InitAdditionalEditorParams(wparams);
 //    AscAppManager::getInstance().applyTheme(themes().current().id(), true);
 
-    EditorJSVariables::applyVariable("theme", {{"type", _app.m_themes->current().stype()},
-                                       {"id", QString::fromStdWString(_app.m_themes->current().id())}});
+    EditorJSVariables::applyVariable("theme", {
+                                        {"type", _app.m_themes->current().stype()},
+                                        {"id", QString::fromStdWString(_app.m_themes->current().id())}
+#ifdef Q_OS_WIN
+                                        ,{"system", _app.m_themes->isSystemSchemeDark() ? "dark" : "light"}
+#endif
+                                     });
 }
 
 CPresenterWindow * CAscApplicationManagerWrapper::createReporterWindow(void * data, int parentid)
@@ -1568,8 +1579,13 @@ void CAscApplicationManagerWrapper::applyTheme(const wstring& theme, bool force)
         std::wstring params{InputArgs::change_webapps_param(L"&uitheme=" + old_theme, L"&uitheme=" + theme)};
         AscAppManager::getInstance().InitAdditionalEditorParams(params);
 
-        EditorJSVariables::applyVariable("theme", {{"type", _app.m_themes->current().stype()},
-                                           {"id", QString::fromStdWString(_app.m_themes->current().id())}});
+        EditorJSVariables::applyVariable("theme", {
+                                            {"type", _app.m_themes->current().stype()},
+                                            {"id", QString::fromStdWString(_app.m_themes->current().id())}
+#ifndef Q_OS_WIN
+                                            ,{"system", _app.m_themes->isSystemSchemeDark() ? "dark" : "light"}
+#endif
+                                         });
 
         // TODO: remove
         if ( mainWindow() ) mainWindow()->applyTheme(theme);
@@ -1755,6 +1771,8 @@ void CAscApplicationManagerWrapper::cancelClose()
 
     _app.m_closeCount = 0;
     _app.m_closeTarget.clear();
+    if ( _app.mainWindow() )
+        _app.mainWindow()->cancelClose();
 
     getInstance().closeQueue().cancel();
 }
@@ -1782,7 +1800,6 @@ void CAscApplicationManagerWrapper::onQueueCloseWindow(const sWinTag& t)
         if ( res == MODAL_RESULT_CANCEL ) {
             AscAppManager::getInstance().closeQueue().cancel();
         } else {
-            _e->hide();
             AscAppManager::getInstance().closeQueue().leave(t);
         }
     }

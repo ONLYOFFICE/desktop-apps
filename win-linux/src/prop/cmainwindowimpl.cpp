@@ -112,10 +112,14 @@ void CMainWindowImpl::refreshAboutVersion()
 
     // Read update settings
     #ifdef _UPDMODULE
-        AscAppManager::sendCommandTo(0, "updates:turn", "on");
     #ifdef Q_OS_WIN
+        GET_REGISTRY_SYSTEM(reg_system)
+        if (Utils::getWinVersion() > Utils::WinVer::WinXP && reg_system.value("CheckForUpdates", true).toBool()) {
+            AscAppManager::sendCommandTo(0, "updates:turn", "on");
+        }
         _json_obj["updates"] = QJsonObject({{"mode", reg_user.value("autoUpdateMode","silent").toString()}});
     #else
+        AscAppManager::sendCommandTo(0, "updates:turn", "on");
         _json_obj["updates"] = QJsonObject({{"interval", reg_user.value("checkUpdatesInterval","day").toString()}});
     #endif
     #endif

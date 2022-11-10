@@ -49,7 +49,6 @@
 
 #include "windows/ceditorwindow_p.h"
 
-#define TOP_PANEL_OFFSET 5*TOOLBTN_WIDTH
 #define CAPTURED_WINDOW_OFFSET_X  180
 #define CAPTURED_WINDOW_OFFSET_Y  15
 
@@ -306,9 +305,6 @@ QWidget * CEditorWindow::createMainPanel(QWidget * parent, const QString& title)
     mainGridLayout->setRowStretch(1,1);
 
     if (_canExtendTitle) {
-#ifdef Q_OS_WIN
-        ::SetParent((HWND)m_boxTitleBtns->winId(), (HWND)m_pMainView->winId());
-#endif
         if (d_ptr->usedOldEditorVersion)  // For old editors only
             mainGridLayout->addWidget(m_boxTitleBtns, 1, 0, Qt::AlignTop);
         else {

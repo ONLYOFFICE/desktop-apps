@@ -74,7 +74,8 @@ CPresenterWindow::~CPresenterWindow()
 void CPresenterWindow::applyTheme(const std::wstring& theme)
 {
     CWindowPlatform::applyTheme(theme);
-    m_pMainPanel->setProperty("uitheme", QString::fromStdWString(theme));
+    m_pMainPanel->setProperty("uitheme", QString::fromStdWString(AscAppManager::themes().themeActualId(theme)));
+    m_pMainPanel->setProperty("uithemetype", AscAppManager::themes().current().stype());
     if (m_boxTitleBtns) {
         m_labelTitle->style()->polish(m_labelTitle);
         if (m_pTopButtons[BtnType::Btn_Minimize]) {
@@ -90,6 +91,12 @@ void CPresenterWindow::applyTheme(const std::wstring& theme)
 bool CPresenterWindow::holdView(int id) const
 {
     return ((QCefView *)m_pMainView)->GetCefView()->GetId() == id;
+}
+
+void CPresenterWindow::closeEvent(QCloseEvent *e)
+{
+    onCloseEvent();
+    e->ignore();
 }
 
 /** Private **/

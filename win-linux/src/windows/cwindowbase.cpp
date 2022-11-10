@@ -205,15 +205,12 @@ void CWindowBase::saveWindowState()
 
 void CWindowBase::moveToPrimaryScreen()
 {
-    QTimer::singleShot(200, this, [=]{
-        QMainWindow::showNormal();
-        QRect rect = QApplication::primaryScreen()->availableGeometry();
-        m_dpiRatio = Utils::getScreenDpiRatio(rect.topLeft());
-        m_window_rect = QRect(rect.translated(100, 100).topLeft() * m_dpiRatio,
-                              MAIN_WINDOW_DEFAULT_SIZE * m_dpiRatio);
-        setGeometry(m_window_rect);
-        adjustGeometry();
-    });
+    QMainWindow::showNormal();
+    QRect rect = QApplication::primaryScreen()->availableGeometry();
+    double dpiRatio = Utils::getScreenDpiRatio(rect.topLeft());
+    m_window_rect = QRect(rect.translated(100, 100).topLeft() * dpiRatio,
+                          MAIN_WINDOW_DEFAULT_SIZE * dpiRatio);
+    setGeometry(m_window_rect);
 }
 
 void CWindowBase::setIsCustomWindowStyle(bool custom)
