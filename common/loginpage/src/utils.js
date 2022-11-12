@@ -333,7 +333,7 @@ utils.fn.getToolMenuItemOrder = function(item) {
     let _action = $item.find('[action]').attr('action'),
         _is_top_group = !$item.hasClass('bottom');
 
-    let _items_top_order = ['recent', 'open', 'connect', 'activation', 'external-'],
+    let _items_top_order = ['templates', 'recent', 'open', 'connect', 'activation', 'external-'],
         _items_bottom_order = ['about', 'settings'],
         _items_order = _is_top_group ? _items_top_order : _items_bottom_order;
 
