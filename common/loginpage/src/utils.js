@@ -353,6 +353,7 @@ utils.fn.getToolMenuItemOrder = function(item) {
 
                 if ( $itemBefore.length ) return {item: $itemBefore, after: _is_top_group};
             }
+            return _is_top_group ? {item: $menu.find('.tool-quick-menu').get(0), after: true} : {item: undefined, after: true};
         } else
         if ( _index == 0 ) {
             return _is_top_group ? {item: $menu.find('.tool-quick-menu').get(0), after: true} : {item: undefined, after: true};
