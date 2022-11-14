@@ -653,7 +653,7 @@ int CMainWindow::tabCloseRequest(int index)
         }
     }
 
-    return MODAL_RESULT_CUSTOM;
+    return MODAL_RESULT_YES;
 }
 
 int CMainWindow::trySaveDocument(int index)
@@ -669,10 +669,9 @@ int CMainWindow::trySaveDocument(int index)
                                           getSaveMessage().arg(m_pTabs->titleByIndex(index)),
                                           MsgType::MSG_WARN, MsgBtns::mbYesDefNoCancel);
         switch (modal_res) {
-        case MODAL_RESULT_CANCEL: break;
-        case MODAL_RESULT_CUSTOM + 1: modal_res = MODAL_RESULT_NO; break;
-        case MODAL_RESULT_CUSTOM + 2: modal_res = MODAL_RESULT_CANCEL; break;
-        case MODAL_RESULT_CUSTOM + 0:
+        case MODAL_RESULT_NO: break;
+        case MODAL_RESULT_CANCEL: modal_res = MODAL_RESULT_CANCEL; break;
+        case MODAL_RESULT_YES:
         default:{
             m_pTabs->editorCloseRequest(index);
             m_pTabs->panel(index)->cef()->Apply(new CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_SAVE));
@@ -785,7 +784,7 @@ void CMainWindow::onLocalFileRecent(const COpenOptions& opts)
             int modal_res = CMessage::showMessage(TOP_NATIVE_WINDOW_HANDLE,
                                                   tr("%1 doesn't exists!<br>Remove file from the list?").arg(_info.fileName()),
                                                   MsgType::MSG_WARN, MsgBtns::mbYesDefNo);
-            if (modal_res == MODAL_RESULT_CUSTOM) {
+            if (modal_res == MODAL_RESULT_YES) {
                 AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, "file:skip", QString::number(opts.id));
             }
 
@@ -986,7 +985,7 @@ void CMainWindow::onDocumentSaveInnerRequest(int id)
                                           tr("Document must be saved to continue.<br>Save the document?"),
                                           MsgType::MSG_CONFIRM, MsgBtns::mbYesDefNo);
     CAscEditorSaveQuestion * pData = new CAscEditorSaveQuestion;
-    pData->put_Value((modal_res == MODAL_RESULT_CUSTOM + 0) ? true : false);
+    pData->put_Value(modal_res == MODAL_RESULT_YES);
 
     CAscMenuEvent * pEvent = new CAscMenuEvent(ASC_MENU_EVENT_TYPE_DOCUMENTEDITORS_SAVE_YES_NO);
     pEvent->m_pData = pData;

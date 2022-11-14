@@ -204,7 +204,7 @@ QtMsg::QtMsg(QWidget * p)
 
     QObject::connect(btn_ok, &QPushButton::clicked, this,
         [=] {
-            m_modalresult = MODAL_RESULT_YES;
+            m_modalresult = MODAL_RESULT_OK;
             close();
         }
     );
@@ -251,8 +251,8 @@ void QtMsg::setButtons(std::initializer_list<QString> btns)
     }
     m_priv->clearButtons();
 
-    auto _fn_click = [=](int num) {
-        m_modalresult = MODAL_RESULT_CUSTOM + num;
+    auto _fn_click = [=](MsgRes msgRes) {
+        m_modalresult = msgRes;
         close();
     };
 
@@ -268,10 +268,19 @@ void QtMsg::setButtons(std::initializer_list<QString> btns)
             _btn->setDefault(true);
         }
 
+        QMap<MsgRes, QString> btnNames = {
+            {MODAL_RESULT_CANCEL, tr("Cancel")},
+            {MODAL_RESULT_YES,    tr("Yes")},
+            {MODAL_RESULT_NO,     tr("No")},
+            {MODAL_RESULT_OK,     tr("OK")}
+        };
+
         m_boxButtons->layout()->addWidget(_btn);
-        QObject::connect(_btn, &QPushButton::clicked, std::bind(_fn_click, _btn_num++));
+        MsgRes msgRes = btnNames.key(reFocus.cap(1), MODAL_RESULT_CANCEL);
+        QObject::connect(_btn, &QPushButton::clicked, std::bind(_fn_click, msgRes));
 
         m_priv->addButton(_btn);
+        _btn_num++;
     }
 
     if (_btn_num > 2)

@@ -121,15 +121,9 @@ int WinMsg::showMessage(QWidget *parent,
 
     int result = MODAL_RESULT_CANCEL;
     switch (msgboxID) {
-    case IDYES: result = MODAL_RESULT_CUSTOM + 0; break;
-    case IDNO:  result = MODAL_RESULT_CUSTOM + 1; break;
-    case IDOK:
-        if (msgBtns == MsgBtns::mbOk)
-            result = MODAL_RESULT_YES;
-        else
-        if (msgBtns == MsgBtns::mbOkCancel)
-            result = MODAL_RESULT_CUSTOM + 0;
-        break;
+    case IDYES: result = MODAL_RESULT_YES; break;
+    case IDNO:  result = MODAL_RESULT_NO; break;
+    case IDOK:  result = MODAL_RESULT_OK; break;
     case IDCANCEL:
     default:
         break;

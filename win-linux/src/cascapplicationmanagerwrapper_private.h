@@ -184,7 +184,7 @@ public:
                             int res = CMessage::showMessage(m_appmanager.mainWindow()->handle(),
                                                             QObject::tr("%1 doesn't exists!<br>Remove file from the list?").arg(_info.fileName()),
                                                             MsgType::MSG_WARN, MsgBtns::mbYesDefNo);
-                            if ( res == MODAL_RESULT_CUSTOM ) {
+                            if ( res == MODAL_RESULT_YES ) {
                                 AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, "file:skip", QString::number(opts.id));
                             }
 

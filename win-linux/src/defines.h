@@ -132,9 +132,10 @@ enum class MsgType {
     MSG_ERROR
 };
 enum MsgRes {
-    MODAL_RESULT_CANCEL = -1,
-    MODAL_RESULT_NO = 0,
-    MODAL_RESULT_YES = 1,
+    MODAL_RESULT_CANCEL = 0,
+    MODAL_RESULT_YES,
+    MODAL_RESULT_NO,
+    MODAL_RESULT_OK,
     MODAL_RESULT_CUSTOM = 100
 };
 

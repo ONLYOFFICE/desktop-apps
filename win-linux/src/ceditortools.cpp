@@ -308,7 +308,7 @@ namespace CEditorTools
                     int res = CMessage::showMessage(_parent,
                                                     QCoreApplication::translate("CEditorWindow", "Some data will lost.<br>Continue?"),
                                                     MsgType::MSG_WARN, MsgBtns::mbOkDefCancel);
-                    _allowed = (MODAL_RESULT_CUSTOM == res);
+                    _allowed = (MODAL_RESULT_OK == res);
                     break; }
                 default: break;
                 }

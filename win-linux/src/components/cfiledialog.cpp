@@ -197,10 +197,10 @@ bool CFileDialogWrapper::modalSaveAs(QString& fileName, int selected)
                 int _answ = CMessage::showMessage(_mess_parent,
                                                   tr("%1 already exists.<br>Do you want to replace it?").arg(info.fileName()),
                                                   MsgType::MSG_WARN, MsgBtns::mbYesNo);
-                if ( MODAL_RESULT_CUSTOM + 1 == _answ ) {
+                if ( MODAL_RESULT_NO == _answ ) {
                     continue;
                 } else
-                if ( MODAL_RESULT_CUSTOM + 0 != _answ ) {
+                if ( MODAL_RESULT_YES != _answ ) {
                     fileName.clear();
                 }
             }

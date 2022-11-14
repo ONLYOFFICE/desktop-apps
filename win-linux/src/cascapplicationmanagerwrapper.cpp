@@ -1896,7 +1896,7 @@ void CAscApplicationManagerWrapper::showUpdateMessage(const bool error,
                                                 tr("Do you want to install a new version %1 of the program?").arg(version),
                                                 MsgType::MSG_INFO, MsgBtns::mbYesNo);
                 switch (res) {
-                case MODAL_RESULT_CUSTOM + 0:
+                case MODAL_RESULT_YES:
 #ifdef Q_OS_WIN
                     m_pUpdateManager->loadUpdates();
 #else
@@ -1940,7 +1940,7 @@ void CAscApplicationManagerWrapper::showStartInstallMessage()
                                     MsgType::MSG_INFO, MsgBtns::mbYesNo);
     switch (res)
     {
-    case MODAL_RESULT_CUSTOM + 0: {
+    case MODAL_RESULT_YES: {
         m_pUpdateManager->scheduleRestartForUpdate();
         mainWindow()->close();
         break;
