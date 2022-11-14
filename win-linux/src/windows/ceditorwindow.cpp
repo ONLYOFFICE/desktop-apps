@@ -133,10 +133,10 @@ int CEditorWindow::closeWindow()
 
         bringToTop();
 
-        CMessage mess(handle(), CMessageOpts::moButtons::mbYesDefNoCancel);
+        _reply = CMessage::showMessage(handle(),
+                                       tr("%1 has been changed. Save changes?").arg(panel->data()->title(true)),
+                                       MsgType::MSG_WARN, MsgBtns::mbYesDefNoCancel);
 //            modal_res = mess.warning(getSaveMessage().arg(m_pTabs->titleByIndex(index)));
-        _reply = mess.warning(tr("%1 has been changed. Save changes?").arg(panel->data()->title(true)));
-
         switch (_reply) {
         case MODAL_RESULT_CUSTOM + 1:
             _reply = MODAL_RESULT_YES;

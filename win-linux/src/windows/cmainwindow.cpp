@@ -665,9 +665,9 @@ int CMainWindow::trySaveDocument(int index)
         toggleButtonMain(false);
         m_pTabs->setCurrentIndex(index);
 
-        CMessage mess(TOP_NATIVE_WINDOW_HANDLE, CMessageOpts::moButtons::mbYesDefNoCancel);
-        modal_res = mess.warning(getSaveMessage().arg(m_pTabs->titleByIndex(index)));
-
+        modal_res = CMessage::showMessage(TOP_NATIVE_WINDOW_HANDLE,
+                                          getSaveMessage().arg(m_pTabs->titleByIndex(index)),
+                                          MsgType::MSG_WARN, MsgBtns::mbYesDefNoCancel);
         switch (modal_res) {
         case MODAL_RESULT_CANCEL: break;
         case MODAL_RESULT_CUSTOM + 1: modal_res = MODAL_RESULT_NO; break;
@@ -782,10 +782,9 @@ void CMainWindow::onLocalFileRecent(const COpenOptions& opts)
     if ( !match.hasMatch() ) {
         QFileInfo _info(opts.url);
         if ( opts.srctype != etRecoveryFile && !_info.exists() ) {
-            CMessage mess(TOP_NATIVE_WINDOW_HANDLE, CMessageOpts::moButtons::mbYesDefNo);
-            int modal_res = mess.warning(
-                        tr("%1 doesn't exists!<br>Remove file from the list?").arg(_info.fileName()));
-
+            int modal_res = CMessage::showMessage(TOP_NATIVE_WINDOW_HANDLE,
+                                                  tr("%1 doesn't exists!<br>Remove file from the list?").arg(_info.fileName()),
+                                                  MsgType::MSG_WARN, MsgBtns::mbYesDefNo);
             if (modal_res == MODAL_RESULT_CUSTOM) {
                 AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, "file:skip", QString::number(opts.id));
             }
@@ -983,9 +982,9 @@ void CMainWindow::onDocumentSave(int id, bool cancel)
 
 void CMainWindow::onDocumentSaveInnerRequest(int id)
 {
-    CMessage mess(TOP_NATIVE_WINDOW_HANDLE, CMessageOpts::moButtons::mbYesDefNo);
-    int modal_res = mess.confirm(tr("Document must be saved to continue.<br>Save the document?"));
-
+    int modal_res = CMessage::showMessage(TOP_NATIVE_WINDOW_HANDLE,
+                                          tr("Document must be saved to continue.<br>Save the document?"),
+                                          MsgType::MSG_CONFIRM, MsgBtns::mbYesDefNo);
     CAscEditorSaveQuestion * pData = new CAscEditorSaveQuestion;
     pData->put_Value((modal_res == MODAL_RESULT_CUSTOM + 0) ? true : false);
 

@@ -194,8 +194,9 @@ bool CFileDialogWrapper::modalSaveAs(QString& fileName, int selected)
             QFileInfo info(fileName);
             if ( info.exists() ) {
                 QWidget * _mess_parent = (QWidget *)parent();
-                CMessage mess(_mess_parent, CMessageOpts::moButtons::mbYesNo);
-                int _answ = mess.warning(tr("%1 already exists.<br>Do you want to replace it?").arg(info.fileName()));
+                int _answ = CMessage::showMessage(_mess_parent,
+                                                  tr("%1 already exists.<br>Do you want to replace it?").arg(info.fileName()),
+                                                  MsgType::MSG_WARN, MsgBtns::mbYesNo);
                 if ( MODAL_RESULT_CUSTOM + 1 == _answ ) {
                     continue;
                 } else

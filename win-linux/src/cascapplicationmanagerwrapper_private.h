@@ -181,10 +181,10 @@ public:
                     if ( !match.hasMatch() ) {
                         QFileInfo _info(opts.url);
                         if ( /*!data->get_IsRecover() &&*/ !_info.exists() ) {
-                            CMessage mess(m_appmanager.mainWindow()->handle(), CMessageOpts::moButtons::mbYesDefNo);
-                            int modal_res = mess.warning(QObject::tr("%1 doesn't exists!<br>Remove file from the list?").arg(_info.fileName()));
-
-                            if ( modal_res == MODAL_RESULT_CUSTOM ) {
+                            int res = CMessage::showMessage(m_appmanager.mainWindow()->handle(),
+                                                            QObject::tr("%1 doesn't exists!<br>Remove file from the list?").arg(_info.fileName()),
+                                                            MsgType::MSG_WARN, MsgBtns::mbYesDefNo);
+                            if ( res == MODAL_RESULT_CUSTOM ) {
                                 AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, "file:skip", QString::number(opts.id));
                             }
 
@@ -227,8 +227,8 @@ public:
 
                         if ( !openDocument(opts) ) {
                             QFileInfo _info(QString::fromStdWString(file_path));
-                            CMessage mess(m_appmanager.mainWindow()->handle());
-                            mess.error(QObject::tr("File %1 cannot be opened or doesn't exists.").arg(_info.fileName()));
+                            CMessage::error(m_appmanager.mainWindow()->handle(),
+                                            QObject::tr("File %1 cannot be opened or doesn't exists.").arg(_info.fileName()));
                         }
                     }
                 }
