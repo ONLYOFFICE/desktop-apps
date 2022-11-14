@@ -30,9 +30,12 @@
  *
  */
 
-#include <Windows.h>
 #include <QTextDocumentFragment>
 #include "message.h"
+#include <Windows.h>
+#ifndef __OS_WIN_XP
+# include <commctrl.h>
+#endif
 
 
 int WinMsg::showMessage(QWidget *parent,
@@ -44,6 +47,53 @@ int WinMsg::showMessage(QWidget *parent,
     std::wstring lpText = QTextDocumentFragment::fromHtml(msg).toPlainText().toStdWString();
     HWND parent_hwnd = (parent) ? (HWND)parent->winId() : nullptr;
 
+    int msgboxID = 0;
+#ifndef __OS_WIN_XP
+    PCWSTR pIcon = NULL;
+    switch (msgType) {
+    case MsgType::MSG_INFO:    pIcon = TD_INFORMATION_ICON; break;
+    case MsgType::MSG_WARN:    pIcon = TD_WARNING_ICON; break;
+    case MsgType::MSG_CONFIRM: pIcon = TD_SHIELD_ICON; break;
+    case MsgType::MSG_ERROR:   pIcon = TD_ERROR_ICON; break;
+    default:                   pIcon = TD_INFORMATION_ICON; break;
+    }
+
+    TASKDIALOG_COMMON_BUTTON_FLAGS dwFlags{0};
+    switch (msgBtns) {
+    case MsgBtns::mbYesNo:          dwFlags |= TDCBF_YES_BUTTON | TDCBF_NO_BUTTON; break;
+    case MsgBtns::mbYesDefNo:       dwFlags |= TDCBF_YES_BUTTON | TDCBF_NO_BUTTON; break;
+    case MsgBtns::mbYesNoCancel:    dwFlags |= TDCBF_YES_BUTTON | TDCBF_NO_BUTTON | TDCBF_CANCEL_BUTTON; break;
+    case MsgBtns::mbYesDefNoCancel: dwFlags |= TDCBF_YES_BUTTON | TDCBF_NO_BUTTON | TDCBF_CANCEL_BUTTON; break;
+    case MsgBtns::mbOkCancel:       dwFlags |= TDCBF_OK_BUTTON | TDCBF_CANCEL_BUTTON; break;
+    case MsgBtns::mbOkDefCancel:    dwFlags |= TDCBF_OK_BUTTON | TDCBF_CANCEL_BUTTON; break;
+    default:                        dwFlags |= TDCBF_OK_BUTTON; break;
+    }
+
+    int nDefltBtn{0};
+    switch (msgBtns) {
+    case MsgBtns::mbYesNo:          nDefltBtn = IDNO; break;
+    case MsgBtns::mbYesDefNo:       nDefltBtn = IDYES; break;
+    case MsgBtns::mbYesNoCancel:    nDefltBtn = IDCANCEL; break;
+    case MsgBtns::mbYesDefNoCancel: nDefltBtn = IDYES; break;
+    case MsgBtns::mbOkCancel:       nDefltBtn = IDCANCEL; break;
+    case MsgBtns::mbOkDefCancel:    nDefltBtn = IDOK; break;
+    default:                        nDefltBtn = IDOK; break;
+    }
+
+    TASKDIALOGCONFIG config = {0};
+    ZeroMemory(&config, sizeof(config));
+    config.cbSize             = sizeof(config);
+    config.hwndParent         = parent_hwnd;
+    config.hInstance          = NULL;
+    config.dwCommonButtons    = dwFlags;
+    config.nDefaultButton     = nDefltBtn;
+    config.pszMainIcon        = pIcon;
+    config.pszWindowTitle     = lpCaption.c_str();
+    config.pszMainInstruction = lpText.c_str();
+    config.pszContent         = NULL;
+
+    TaskDialogIndirect(&config, &msgboxID, NULL, NULL);
+#else
     DWORD uType{0};
     switch (msgType) {
     case MsgType::MSG_INFO:    uType |= MB_ICONINFORMATION; break;
@@ -63,10 +113,11 @@ int WinMsg::showMessage(QWidget *parent,
     default:                        uType |= MB_OK | MB_DEFBUTTON1; break;
     }
 
-    int msgboxID = MessageBoxW(parent_hwnd,
-                               lpText.c_str(),
-                               lpCaption.c_str(),
-                               uType);
+    msgboxID = MessageBoxW(parent_hwnd,
+                           lpText.c_str(),
+                           lpCaption.c_str(),
+                           uType);
+#endif
 
     int result = MODAL_RESULT_CANCEL;
     switch (msgboxID) {
