@@ -235,12 +235,14 @@ core_windows {
                $$PWD/src/windows/platform_win/csnap.h \
                $$PWD/src/windows/platform_win/caption.h \
                $$PWD/src/platform_win/singleapplication.h \
-               $$PWD/src/platform_win/filechooser.h
+               $$PWD/src/platform_win/filechooser.h \
+               $$PWD/src/platform_win/message.h
 
     SOURCES += $$PWD/src/windows/platform_win/cwindowplatform.cpp \
                $$PWD/src/windows/platform_win/csnap.cpp \
                $$PWD/src/platform_win/singleapplication.cpp \
-               $$PWD/src/platform_win/filechooser.cpp
+               $$PWD/src/platform_win/filechooser.cpp \
+               $$PWD/src/platform_win/message.cpp
 
 
     LIBS += -lwininet \
