@@ -31,6 +31,7 @@
 */
 
 #include "components/cmessage.h"
+#include <QDialog>
 #include <QPushButton>
 #include <QFormLayout>
 #include <QLabel>
@@ -44,6 +45,8 @@
 #include "defines.h"
 #include "utils.h"
 #include "cascapplicationmanagerwrapper.h"
+#include <initializer_list>
+#include <memory.h>
 
 #ifdef __linux__
 #endif
@@ -77,9 +80,39 @@
 //        CMessage * m_mess;
 //    };
 
-class CMessagePrivateIntf {
+class QtMsg : public QDialog
+{
 public:
-    explicit CMessagePrivateIntf(CMessage * parent)
+    explicit QtMsg(QWidget *);
+    ~QtMsg();
+
+    void setButtons(std::initializer_list<QString>);
+    void setButtons(MsgBtns);
+    void setIcon(MsgType);
+    void setText(const QString&);
+    //void applyForAll(const QString&, bool);
+    //bool isForAll();
+    static int showMessage(QWidget *parent,
+                           const QString &msg,
+                           MsgType msgType,
+                           MsgBtns msgBtns = MsgBtns::mbOk);
+private:
+    void modal();
+
+    QWidget *m_boxButtons = nullptr,
+            *m_centralWidget = nullptr;
+    QLabel  *m_message = nullptr,
+            *m_typeIcon = nullptr;
+
+    static int m_modalresult;
+
+    class QtMsgPrivateIntf;
+    std::unique_ptr<QtMsgPrivateIntf> m_priv;
+};
+
+class QtMsg::QtMsgPrivateIntf {
+public:
+    explicit QtMsgPrivateIntf(QtMsg * parent)
         : m_mess(parent)
         , dpiRatio(Utils::getScreenDpiRatioByWidget(parent))
     {}
@@ -104,7 +137,7 @@ public:
         buttons.clear();
     }
 
-    CMessage * m_mess = nullptr;
+    QtMsg * m_mess = nullptr;
     std::vector<QPushButton *> buttons;
     QPushButton * defaultButton = nullptr;
     QWidget * focusWidget = nullptr;
@@ -113,19 +146,14 @@ public:
     bool isWindowActive = false;
 };
 
-CMessage::CMessage(QWidget * p, CMessageOpts::moButtons b)
-    : CMessage(p)
-{
-    setButtons(b);
-}
+int QtMsg::m_modalresult(MODAL_RESULT_CANCEL);
 
-CMessage::CMessage(QWidget * p)
+QtMsg::QtMsg(QWidget * p)
     : QDialog(p)
     , m_boxButtons(new QWidget)
     , m_message(new QLabel)
     , m_typeIcon(new QLabel)
-    , m_modalresult(MODAL_RESULT_CANCEL)
-    , m_priv(new CMessagePrivateIntf(this))
+    , m_priv(new QtMsgPrivateIntf(this))
 {
     setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
     setWindowTitle(APP_TITLE);
@@ -203,12 +231,12 @@ CMessage::CMessage(QWidget * p)
     });
 }
 
-CMessage::~CMessage()
+QtMsg::~QtMsg()
 {
     QObject::disconnect(m_priv->focusConnection);
 }
 
-void CMessage::setButtons(std::initializer_list<QString> btns)
+void QtMsg::setButtons(std::initializer_list<QString> btns)
 {
     QLayoutItem * item;
     QWidget * widget;
@@ -248,84 +276,34 @@ void CMessage::setButtons(std::initializer_list<QString> btns)
         m_centralWidget->setMinimumWidth(int(400*m_priv->dpiRatio));
 }
 
-void CMessage::setButtons(CMessageOpts::moButtons btns)
+void QtMsg::setButtons(MsgBtns btns)
 {
     switch (btns) {
-    case CMessageOpts::moButtons::mbYesDefNo:       setButtons({DEFAULT_BUTTON(tr("Yes")), tr("No")}); break;
-    case CMessageOpts::moButtons::mbYesNo:          setButtons({tr("Yes"), DEFAULT_BUTTON(tr("No"))}); break;
-    case CMessageOpts::moButtons::mbYesNoCancel:    setButtons({tr("Yes"), tr("No"), DEFAULT_BUTTON(tr("Cancel"))}); break;
-    case CMessageOpts::moButtons::mbYesDefNoCancel: setButtons({DEFAULT_BUTTON(tr("Yes")), tr("No"), tr("Cancel")}); break;
-    case CMessageOpts::moButtons::mbOkCancel:       setButtons({tr("OK"), DEFAULT_BUTTON(tr("Cancel"))}); break;
-    case CMessageOpts::moButtons::mbOkDefCancel:    setButtons({DEFAULT_BUTTON(tr("OK")), tr("Cancel")}); break;
+    case MsgBtns::mbYesNo:          setButtons({tr("Yes"), DEFAULT_BUTTON(tr("No"))}); break;
+    case MsgBtns::mbYesDefNo:       setButtons({DEFAULT_BUTTON(tr("Yes")), tr("No")}); break;
+    case MsgBtns::mbYesNoCancel:    setButtons({tr("Yes"), tr("No"), DEFAULT_BUTTON(tr("Cancel"))}); break;
+    case MsgBtns::mbYesDefNoCancel: setButtons({DEFAULT_BUTTON(tr("Yes")), tr("No"), tr("Cancel")}); break;
+    case MsgBtns::mbOkCancel:       setButtons({tr("OK"), DEFAULT_BUTTON(tr("Cancel"))}); break;
+    case MsgBtns::mbOkDefCancel:    setButtons({DEFAULT_BUTTON(tr("OK")), tr("Cancel")}); break;
     default: break;
     }
 }
 
-int CMessage::info(const QString& mess)
+int QtMsg::showMessage(QWidget *parent,
+                          const QString &msg,
+                          MsgType msgType,
+                          MsgBtns msgBtns)
 {
-    m_message->setText(mess);
-    m_typeIcon->setProperty("type","msg-info");
-
-    modal();
-
+    QtMsg dlg(parent);
+    dlg.setText(msg);
+    dlg.setIcon(msgType);
+    if (msgBtns != MsgBtns::mbOk)
+        dlg.setButtons(msgBtns);
+    dlg.modal();
     return m_modalresult;
 }
 
-int CMessage::warning(const QString& mess)
-{
-    m_message->setText(mess);
-    m_typeIcon->setProperty("type","msg-warn");
-
-    modal();
-
-    return m_modalresult;
-}
-
-int CMessage::error(const QString& mess)
-{
-    m_message->setText(mess);
-    m_typeIcon->setProperty("type","msg-error");
-
-    modal();
-
-    return m_modalresult;
-}
-
-int CMessage::confirm(const QString& mess)
-{
-    m_message->setText(mess);
-    m_typeIcon->setProperty("type","msg-confirm");
-
-    modal();
-
-    return m_modalresult;
-}
-
-int CMessage::confirm(QWidget * p, const QString& m)
-{
-    CMessage mess(p);
-    return mess.confirm(m);
-}
-
-int CMessage::info(QWidget * p, const QString& m)
-{
-    CMessage mess(p);
-    return mess.info(m);
-}
-
-int CMessage::warning(QWidget * p, const QString& m)
-{
-    CMessage mess(p);
-    return mess.warning(m);
-}
-
-int CMessage::error(QWidget * p, const QString& m)
-{
-    CMessage mess(p);
-    return mess.error(m);
-}
-
-void CMessage::modal()
+void QtMsg::modal()
 {
 #if defined(_WIN32)
     exec();
@@ -335,19 +313,18 @@ void CMessage::modal()
 #endif
 }
 
-void CMessage::setIcon(int it)
+void QtMsg::setIcon(MsgType msgType)
 {
-    switch (it) {
-    case MESSAGE_TYPE_WARN:     m_typeIcon->setProperty("type","msg-warn"); break;
-    case MESSAGE_TYPE_INFO:     m_typeIcon->setProperty("type","msg-info"); break;
-    case MESSAGE_TYPE_CONFIRM:  m_typeIcon->setProperty("type","msg-conf"); break;
-    case MESSAGE_TYPE_ERROR:    m_typeIcon->setProperty("type","msg-error"); break;
-    default:
-        break;
+    switch (msgType) {
+    case MsgType::MSG_WARN:    m_typeIcon->setProperty("type", "msg-warn"); break;
+    case MsgType::MSG_INFO:    m_typeIcon->setProperty("type", "msg-info"); break;
+    case MsgType::MSG_CONFIRM: m_typeIcon->setProperty("type", "msg-conf"); break;
+    case MsgType::MSG_ERROR:   m_typeIcon->setProperty("type", "msg-error"); break;
+    default: break;
     }
 }
 
-void CMessage::setText( const QString& t)
+void QtMsg::setText( const QString& t)
 {
     m_message->setText(t);
 }
