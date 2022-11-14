@@ -79,16 +79,6 @@
 #define LOCAL_PATH_OPEN         1
 #define LOCAL_PATH_SAVE         2
 
-#define MODAL_RESULT_YES        1
-#define MODAL_RESULT_NO         0
-#define MODAL_RESULT_CANCEL     -1
-#define MODAL_RESULT_CUSTOM     100
-
-#define MESSAGE_TYPE_INFO       1
-#define MESSAGE_TYPE_WARN       2
-#define MESSAGE_TYPE_CONFIRM    3
-#define MESSAGE_TYPE_ERROR      4
-
 #define ACTIONPANEL_CONNECT     255
 #define ACTIONPANEL_ACTIVATE    ACTIONPANEL_CONNECT + 1
 
@@ -125,6 +115,28 @@ typedef unsigned char BYTE;
 # define VK_F4 0x73
 # define VK_TAB 0x09
 #endif
+
+enum class MsgBtns {
+    mbOk = 0,
+    mbYesNo,
+    mbYesDefNo,
+    mbYesNoCancel,
+    mbYesDefNoCancel,
+    mbOkCancel,
+    mbOkDefCancel
+};
+enum class MsgType {
+    MSG_INFO = 0,
+    MSG_WARN,
+    MSG_CONFIRM,
+    MSG_ERROR
+};
+enum MsgRes {
+    MODAL_RESULT_CANCEL = -1,
+    MODAL_RESULT_NO = 0,
+    MODAL_RESULT_YES = 1,
+    MODAL_RESULT_CUSTOM = 100
+};
 
 #include "defines_p.h"
 

@@ -40,16 +40,6 @@
 #include <initializer_list>
 #include <memory>
 
-namespace CMessageOpts {
-    enum class moButtons {
-        mbYesDefNo,
-        mbYesNo,
-        mbYesNoCancel,
-        mbYesDefNoCancel,
-        mbOkCancel,
-        mbOkDefCancel
-    };
-}
 
 class CMessagePrivateIntf;
 
