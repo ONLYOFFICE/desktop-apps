@@ -35,19 +35,17 @@
 #include <QFormLayout>
 #include <QLabel>
 #include <QVariant>
-#include <QDebug>
 #include <QTimer>
 #include <functional>
 #include <QEvent>
-#include <QKeyEvent>
-#include <QCheckBox>
+//#include <QKeyEvent>
+//#include <QCheckBox>
 #include <QApplication>
 #include "defines.h"
 #include "utils.h"
 #include "cascapplicationmanagerwrapper.h"
 
 #ifdef __linux__
-# include "windows/platform_linux/cx11decoration.h"
 #endif
 
 #define MSG_ICON_WIDTH  35
@@ -55,29 +53,29 @@
 
 #define DEFAULT_BUTTON(label) label + ":default"
 
-class CMessageEventsFilter : public QObject {
-public:
-    CMessageEventsFilter(CMessage * p, QObject * o)
-        : QObject(o), m_mess(p)
-    {}
-
-protected:
-    bool eventFilter(QObject * obj, QEvent * event)
-    {
-        if (event->type()==QEvent::KeyPress) {
-            QKeyEvent * key = static_cast<QKeyEvent*>(event);
-            if ( key->key()==Qt::Key_Escape ) {
-                m_mess->close();
-                return true;
-            }
-        }
-
-        return QObject::eventFilter(obj, event);
-    }
-
-private:
-    CMessage * m_mess;
-};
+//    class CMessageEventsFilter : public QObject {
+//    public:
+//        CMessageEventsFilter(CMessage * p, QObject * o)
+//            : QObject(o), m_mess(p)
+//        {}
+//
+//    protected:
+//        bool eventFilter(QObject * obj, QEvent * event)
+//        {
+//            if (event->type()==QEvent::KeyPress) {
+//                QKeyEvent * key = static_cast<QKeyEvent*>(event);
+//                if ( key->key()==Qt::Key_Escape ) {
+//                    m_mess->close();
+//                    return true;
+//                }
+//            }
+//
+//            return QObject::eventFilter(obj, event);
+//        }
+//
+//    private:
+//        CMessage * m_mess;
+//    };
 
 class CMessagePrivateIntf {
 public:
@@ -138,7 +136,7 @@ CMessage::CMessage(QWidget * p)
     layout()->addWidget(m_centralWidget);
     layout()->setSizeConstraint(QLayout::SetFixedSize);
     m_centralWidget->setObjectName("messageBody");
-    m_centralWidget->setProperty("uitheme", QString::fromStdWString(AscAppManager::themes().current().originalId()));
+    m_centralWidget->setProperty("uitheme", QString::fromStdWString(GetCurrentTheme().originalId()));
 
     QVBoxLayout * _c_layout  = new QVBoxLayout;
     QHBoxLayout * _h_layout2 = new QHBoxLayout;
@@ -183,7 +181,6 @@ CMessage::CMessage(QWidget * p)
 
     m_centralWidget->setLayout(_c_layout);
     m_centralWidget->setMinimumWidth(int(350*m_priv->dpiRatio));
-//    m_centralWidget->setWindowTitle(APP_TITLE);
     m_centralWidget->move(0, 0);
 
     QString _styles(Utils::readStylesheets(":/styles/message.qss"));
@@ -193,7 +190,8 @@ CMessage::CMessage(QWidget * p)
     QString zoom = QString::number(m_priv->dpiRatio) + "x";
     m_centralWidget->setProperty("scaling", zoom);
 
-    m_priv->focusConnection = QObject::connect(qApp, &QApplication::focusChanged, [&] (QWidget * from, QWidget *to){
+    m_priv->focusConnection = QObject::connect(qApp, &QApplication::focusChanged, this,
+                                               [&] (QWidget * from, QWidget *to){
         if ( m_priv->isWindowActive ) {
             if ( !to ) {
                 m_priv->focusWidget ?
@@ -354,18 +352,18 @@ void CMessage::setText( const QString& t)
     m_message->setText(t);
 }
 
-void CMessage::applyForAll(const QString& str, bool checked)
-{
-    QBoxLayout * layout = qobject_cast<QBoxLayout *>(m_centralWidget->layout());
-    QCheckBox * chbox = new QCheckBox(str);
-    chbox->setObjectName("check-apply-for-all");
-    chbox->setStyleSheet(QString("margin-left: %1px").arg(15 + int(m_typeIcon->width() * m_priv->dpiRatio) + int(15 * m_priv->dpiRatio)));
-    chbox->setChecked(checked);
-    layout->insertWidget(1, chbox, 0);
-}
+//    void CMessage::applyForAll(const QString& str, bool checked)
+//    {
+//        QBoxLayout * layout = qobject_cast<QBoxLayout *>(m_centralWidget->layout());
+//        QCheckBox * chbox = new QCheckBox(str);
+//        chbox->setObjectName("check-apply-for-all");
+//        chbox->setStyleSheet(QString("margin-left: %1px").arg(15 + int(m_typeIcon->width() * m_priv->dpiRatio) + int(15 * m_priv->dpiRatio)));
+//        chbox->setChecked(checked);
+//        layout->insertWidget(1, chbox, 0);
+//    }
 
-bool CMessage::isForAll()
-{
-    QCheckBox * chbox = m_centralWidget->findChild<QCheckBox *>("check-apply-for-all");
-    return chbox && chbox->checkState() == Qt::Checked;
-}
+//    bool CMessage::isForAll()
+//    {
+//        QCheckBox * chbox = m_centralWidget->findChild<QCheckBox *>("check-apply-for-all");
+//        return chbox && chbox->checkState() == Qt::Checked;
+//    }
