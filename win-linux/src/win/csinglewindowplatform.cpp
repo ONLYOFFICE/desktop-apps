@@ -451,9 +451,19 @@ bool CSingleWindowPlatform::visible()
 
 void CSingleWindowPlatform::bringToTop()
 {
-    SetForegroundWindow(m_hWnd);
-    SetFocus(m_hWnd);
-    SetActiveWindow(m_hWnd);
+    if (IsIconic(m_hWnd)) {
+        ShowWindow(m_hWnd, SW_SHOWNORMAL);
+    }
+    HWND hWndFrg = ::GetForegroundWindow();
+    DWORD appID = ::GetCurrentThreadId();
+    DWORD frgID = ::GetWindowThreadProcessId(hWndFrg, NULL);
+    ::AttachThreadInput(frgID, appID, TRUE);
+    ::SetWindowPos(m_hWnd, HWND_TOPMOST, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOMOVE);
+    ::SetWindowPos(m_hWnd, HWND_NOTOPMOST, 0, 0, 0, 0, SWP_SHOWWINDOW | SWP_NOSIZE | SWP_NOMOVE);
+    ::SetForegroundWindow(m_hWnd);
+    ::SetFocus(m_hWnd);
+    ::SetActiveWindow(m_hWnd);
+    ::AttachThreadInput(frgID, appID, FALSE);
 }
 
 void CSingleWindowPlatform::applyWindowState(Qt::WindowState s)
