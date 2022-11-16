@@ -799,6 +799,7 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
             if ( open_in_new_window ) {
                 CEditorWindow * editor_win = new CEditorWindow(_start_rect, panel);
                 editor_win->show(false);
+                editor_win->bringToTop();
 
                 _app.m_vecEditors.push_back(size_t(editor_win));
                 if ( editor_win->isCustomWindowStyle() )
@@ -811,10 +812,15 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
                 }
 
                 _app.mainWindow()->attachEditor(panel);
-//                if (_app.mainWindow()->isMinimized()) {
-//                    _app.mainWindow()->windowState() == (Qt::WindowMinimized | Qt::WindowMaximized) ?
-//                                _app.mainWindow()->showMaximized() : _app.mainWindow()->showNormal();
-//                }
+#ifdef __linux__
+                if (_app.mainWindow()->isMinimized()) {
+                    _app.mainWindow()->windowState() == (Qt::WindowMinimized | Qt::WindowMaximized) ?
+                                _app.mainWindow()->showMaximized() : _app.mainWindow()->showNormal();
+                }
+#endif
+                QTimer::singleShot(100, &_app, [&]{
+                    _app.mainWindow()->bringToTop();
+                });
             }
         }
     }
