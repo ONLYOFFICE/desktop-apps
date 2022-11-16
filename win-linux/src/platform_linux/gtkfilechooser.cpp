@@ -31,7 +31,7 @@ void parseString(GSList** list,
     free(_str);
 }
 
-gboolean set_parent(GtkWidget *dialog, gpointer data)
+static gboolean set_parent(GtkWidget *dialog, gpointer data)
 {
     GdkWindow *gdk_dialog = gtk_widget_get_window(dialog);
     Window parent_xid = *(Window*)data;

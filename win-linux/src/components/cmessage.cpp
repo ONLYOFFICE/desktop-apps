@@ -49,6 +49,7 @@
 #include <memory.h>
 
 #ifdef __linux__
+# include "platform_linux/gtkmessage.h"
 #else
 # include "platform_win/message.h"
 #endif
@@ -351,7 +352,8 @@ int CMessage::showMessage(QWidget *parent,
 #ifdef _WIN32
         return WinMsg::showMessage(parent, msg, msgType, msgBtns);
 #else
-        return QtMsg::showMessage(parent, msg, msgType, msgBtns);
+        WindowHelper::CParentDisable oDisabler(parent);
+        return GtkMsg::showMessage(parent, msg, msgType, msgBtns);
 #endif
     }
     return QtMsg::showMessage(parent, msg, msgType, msgBtns);
