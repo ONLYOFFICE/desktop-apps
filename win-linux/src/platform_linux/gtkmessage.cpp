@@ -69,6 +69,9 @@ int GtkMsg::showMessage(QWidget *parent,
                         MsgBtns msgBtns)
 {           
     QString plainText = QTextDocumentFragment::fromHtml(msg).toPlainText();
+    const int delim = plainText.indexOf('\n');
+    const QString primaryText = (delim != -1) ? plainText.mid(0, delim) : plainText;
+    const QString secondaryText = (delim != -1) ? plainText.mid(delim + 1) : "";
     Window parent_xid = (parent) ? (Window)parent->winId() : 0L;
 
     const char* img_name = NULL;
@@ -94,11 +97,12 @@ int GtkMsg::showMessage(QWidget *parent,
                                     GTK_MESSAGE_OTHER, // Message type doesn't show icon
                                     GTK_BUTTONS_NONE,
                                     "%s",
-                                    plainText.toLocal8Bit().data());
+                                    primaryText.toLocal8Bit().data());
 
     g_signal_connect(G_OBJECT(dialog), "realize", G_CALLBACK(set_parent), (gpointer)&parent_xid);
-    gtk_window_set_title(GTK_WINDOW(dialog), APP_TITLE);
-    //gtk_message_dialog_format_secondary_text(GTK_MESSAGE_DIALOG(dialog), "advanced text");
+    //gtk_window_set_title(GTK_WINDOW(dialog), APP_TITLE);
+    if (!secondaryText.isEmpty())
+        gtk_message_dialog_format_secondary_text(GTK_MESSAGE_DIALOG(dialog), "%s", secondaryText.toLocal8Bit().data());
     gtk_message_dialog_set_image(GTK_MESSAGE_DIALOG(dialog), image);
     gtk_widget_show_all(image);
     //GtkWidget *cont_area = gtk_dialog_get_content_area(GTK_DIALOG (dialog));
