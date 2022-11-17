@@ -42,6 +42,7 @@
 #define TEXT_YES    toCharPtr(BTN_TEXT_YES)
 #define TEXT_NO     toCharPtr(BTN_TEXT_NO)
 #define TEXT_OK     toCharPtr(BTN_TEXT_OK)
+#define TEXT_SKIP   toCharPtr(BTN_TEXT_SKIP)
 #define AddButton(name, response) \
     gtk_dialog_add_button(GTK_DIALOG(dialog), name, response)
 #define GrabFocus(response) \
@@ -128,6 +129,11 @@ int GtkMsg::showMessage(QWidget *parent,
         AddButton(TEXT_OK, GTK_RESPONSE_OK);
         AddButton(TEXT_CANCEL, GTK_RESPONSE_CANCEL);
         break;
+    case MsgBtns::mbYesDefSkipNo:
+        AddButton(TEXT_YES, GTK_RESPONSE_YES);
+        AddButton(TEXT_SKIP, GTK_RESPONSE_REJECT);
+        AddButton(TEXT_NO, GTK_RESPONSE_NO);
+        break;
     default:
         AddButton(TEXT_OK, GTK_RESPONSE_OK);
         break;
@@ -140,6 +146,7 @@ int GtkMsg::showMessage(QWidget *parent,
     case MsgBtns::mbYesDefNoCancel: GrabFocus(GTK_RESPONSE_YES); break;
     case MsgBtns::mbOkCancel: GrabFocus(GTK_RESPONSE_CANCEL); break;
     case MsgBtns::mbOkDefCancel: GrabFocus(GTK_RESPONSE_OK); break;
+    case MsgBtns::mbYesDefSkipNo: GrabFocus(GTK_RESPONSE_YES); break;
     default: GrabFocus(GTK_RESPONSE_OK); break;
     }
 
@@ -149,6 +156,7 @@ int GtkMsg::showMessage(QWidget *parent,
     case GTK_RESPONSE_YES: result = MODAL_RESULT_YES; break;
     case GTK_RESPONSE_NO:  result = MODAL_RESULT_NO; break;
     case GTK_RESPONSE_OK:  result = MODAL_RESULT_OK; break;
+    case GTK_RESPONSE_REJECT:  result = MODAL_RESULT_SKIP; break;
     case GTK_RESPONSE_DELETE_EVENT:
     case GTK_RESPONSE_CANCEL:
     default:

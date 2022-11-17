@@ -273,7 +273,8 @@ void QtMsg::setButtons(std::initializer_list<QString> btns)
             {MODAL_RESULT_CANCEL, BTN_TEXT_CANCEL},
             {MODAL_RESULT_YES,    BTN_TEXT_YES},
             {MODAL_RESULT_NO,     BTN_TEXT_NO},
-            {MODAL_RESULT_OK,     BTN_TEXT_OK}
+            {MODAL_RESULT_OK,     BTN_TEXT_OK},
+            {MODAL_RESULT_SKIP,   BTN_TEXT_SKIP},
         };
 
         m_boxButtons->layout()->addWidget(_btn);
@@ -297,6 +298,7 @@ void QtMsg::setButtons(MsgBtns btns)
     case MsgBtns::mbYesDefNoCancel: setButtons({DEFAULT_BUTTON(BTN_TEXT_YES), BTN_TEXT_NO, BTN_TEXT_CANCEL}); break;
     case MsgBtns::mbOkCancel:       setButtons({BTN_TEXT_OK, DEFAULT_BUTTON(BTN_TEXT_CANCEL)}); break;
     case MsgBtns::mbOkDefCancel:    setButtons({DEFAULT_BUTTON(BTN_TEXT_OK), BTN_TEXT_CANCEL}); break;
+    case MsgBtns::mbYesDefSkipNo:   setButtons({DEFAULT_BUTTON(BTN_TEXT_YES), BTN_TEXT_SKIP, BTN_TEXT_NO}); break;
     default: break;
     }
 }
