@@ -92,6 +92,13 @@ int WinMsg::showMessage(QWidget *parent,
         pButtons[0] = {IDOK, TEXT_OK};
         pButtons[1] = {IDCANCEL, TEXT_CANCEL};
         break;
+    case MsgBtns::mbYesDefSkipNo:
+        cButtons = 3;
+        pButtons = new TASKDIALOG_BUTTON[cButtons];
+        pButtons[0] = {IDYES, TEXT_YES};
+        pButtons[1] = {IDRETRY, TEXT_SKIP};
+        pButtons[2] = {IDNO, TEXT_NO};
+        break;
     default:
         cButtons = 1;
         pButtons = new TASKDIALOG_BUTTON[cButtons];
@@ -107,6 +114,7 @@ int WinMsg::showMessage(QWidget *parent,
     case MsgBtns::mbYesDefNoCancel: nDefltBtn = IDYES; break;
     case MsgBtns::mbOkCancel:       nDefltBtn = IDCANCEL; break;
     case MsgBtns::mbOkDefCancel:    nDefltBtn = IDOK; break;
+    case MsgBtns::mbYesDefSkipNo:   nDefltBtn = IDYES; break;
     default:                        nDefltBtn = IDOK; break;
     }
 
@@ -159,6 +167,7 @@ int WinMsg::showMessage(QWidget *parent,
     case IDYES: result = MODAL_RESULT_YES; break;
     case IDNO:  result = MODAL_RESULT_NO; break;
     case IDOK:  result = MODAL_RESULT_OK; break;
+    case IDRETRY:  result = MODAL_RESULT_SKIP; break;
     case IDCANCEL:
     default:
         break;
