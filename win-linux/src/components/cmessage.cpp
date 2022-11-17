@@ -270,10 +270,10 @@ void QtMsg::setButtons(std::initializer_list<QString> btns)
         }
 
         QMap<MsgRes, QString> btnNames = {
-            {MODAL_RESULT_CANCEL, tr("Cancel")},
-            {MODAL_RESULT_YES,    tr("Yes")},
-            {MODAL_RESULT_NO,     tr("No")},
-            {MODAL_RESULT_OK,     tr("OK")}
+            {MODAL_RESULT_CANCEL, BTN_TEXT_CANCEL},
+            {MODAL_RESULT_YES,    BTN_TEXT_YES},
+            {MODAL_RESULT_NO,     BTN_TEXT_NO},
+            {MODAL_RESULT_OK,     BTN_TEXT_OK}
         };
 
         m_boxButtons->layout()->addWidget(_btn);
@@ -291,12 +291,12 @@ void QtMsg::setButtons(std::initializer_list<QString> btns)
 void QtMsg::setButtons(MsgBtns btns)
 {
     switch (btns) {
-    case MsgBtns::mbYesNo:          setButtons({tr("Yes"), DEFAULT_BUTTON(tr("No"))}); break;
-    case MsgBtns::mbYesDefNo:       setButtons({DEFAULT_BUTTON(tr("Yes")), tr("No")}); break;
-    case MsgBtns::mbYesNoCancel:    setButtons({tr("Yes"), tr("No"), DEFAULT_BUTTON(tr("Cancel"))}); break;
-    case MsgBtns::mbYesDefNoCancel: setButtons({DEFAULT_BUTTON(tr("Yes")), tr("No"), tr("Cancel")}); break;
-    case MsgBtns::mbOkCancel:       setButtons({tr("OK"), DEFAULT_BUTTON(tr("Cancel"))}); break;
-    case MsgBtns::mbOkDefCancel:    setButtons({DEFAULT_BUTTON(tr("OK")), tr("Cancel")}); break;
+    case MsgBtns::mbYesNo:          setButtons({BTN_TEXT_YES, DEFAULT_BUTTON(BTN_TEXT_NO)}); break;
+    case MsgBtns::mbYesDefNo:       setButtons({DEFAULT_BUTTON(BTN_TEXT_YES), BTN_TEXT_NO}); break;
+    case MsgBtns::mbYesNoCancel:    setButtons({BTN_TEXT_YES, BTN_TEXT_NO, DEFAULT_BUTTON(BTN_TEXT_CANCEL)}); break;
+    case MsgBtns::mbYesDefNoCancel: setButtons({DEFAULT_BUTTON(BTN_TEXT_YES), BTN_TEXT_NO, BTN_TEXT_CANCEL}); break;
+    case MsgBtns::mbOkCancel:       setButtons({BTN_TEXT_OK, DEFAULT_BUTTON(BTN_TEXT_CANCEL)}); break;
+    case MsgBtns::mbOkDefCancel:    setButtons({DEFAULT_BUTTON(BTN_TEXT_OK), BTN_TEXT_CANCEL}); break;
     default: break;
     }
 }

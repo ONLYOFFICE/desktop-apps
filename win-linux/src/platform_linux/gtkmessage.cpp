@@ -36,11 +36,12 @@
 #include "gtkmessage.h"
 #include <gdk/gdkx.h>
 
-#define translated(qstr) QObject::tr(qstr).toLocal8Bit().data()
-#define BTN_TEXT_CANCEL translated("Cancel")
-#define BTN_TEXT_YES    translated("Yes")
-#define BTN_TEXT_NO     translated("No")
-#define BTN_TEXT_OK     translated("OK")
+
+#define toCharPtr(qstr) qstr.toLocal8Bit().data()
+#define TEXT_CANCEL toCharPtr(BTN_TEXT_CANCEL)
+#define TEXT_YES    toCharPtr(BTN_TEXT_YES)
+#define TEXT_NO     toCharPtr(BTN_TEXT_NO)
+#define TEXT_OK     toCharPtr(BTN_TEXT_OK)
 #define AddButton(name, response) \
     gtk_dialog_add_button(GTK_DIALOG(dialog), name, response)
 #define GrabFocus(response) \
@@ -109,22 +110,22 @@ int GtkMsg::showMessage(QWidget *parent,
     switch (msgBtns) {
     case MsgBtns::mbYesNo:
     case MsgBtns::mbYesDefNo:
-        AddButton(BTN_TEXT_YES, GTK_RESPONSE_YES);
-        AddButton(BTN_TEXT_NO, GTK_RESPONSE_NO);
+        AddButton(TEXT_YES, GTK_RESPONSE_YES);
+        AddButton(TEXT_NO, GTK_RESPONSE_NO);
         break;
     case MsgBtns::mbYesNoCancel:
     case MsgBtns::mbYesDefNoCancel:
-        AddButton(BTN_TEXT_YES, GTK_RESPONSE_YES);
-        AddButton(BTN_TEXT_NO, GTK_RESPONSE_NO);
-        AddButton(BTN_TEXT_CANCEL, GTK_RESPONSE_CANCEL);
+        AddButton(TEXT_YES, GTK_RESPONSE_YES);
+        AddButton(TEXT_NO, GTK_RESPONSE_NO);
+        AddButton(TEXT_CANCEL, GTK_RESPONSE_CANCEL);
         break;
     case MsgBtns::mbOkCancel:
     case MsgBtns::mbOkDefCancel:
-        AddButton(BTN_TEXT_OK, GTK_RESPONSE_OK);
-        AddButton(BTN_TEXT_CANCEL, GTK_RESPONSE_CANCEL);
+        AddButton(TEXT_OK, GTK_RESPONSE_OK);
+        AddButton(TEXT_CANCEL, GTK_RESPONSE_CANCEL);
         break;
     default:
-        AddButton(BTN_TEXT_OK, GTK_RESPONSE_OK);
+        AddButton(TEXT_OK, GTK_RESPONSE_OK);
         break;
     }
 

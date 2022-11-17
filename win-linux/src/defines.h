@@ -116,6 +116,11 @@ typedef unsigned char BYTE;
 # define VK_TAB 0x09
 #endif
 
+#define BTN_TEXT_CANCEL QObject::tr("Cancel")
+#define BTN_TEXT_YES    QObject::tr("Yes")
+#define BTN_TEXT_NO     QObject::tr("No")
+#define BTN_TEXT_OK     QObject::tr("OK")
+
 enum class MsgBtns {
     mbOk = 0,
     mbYesNo,
