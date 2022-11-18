@@ -53,8 +53,6 @@ public:
     void setNewUpdateSetting(const QString& _rate);
     void cancelLoading();
 #ifdef Q_OS_WIN
-    QStringList getInstallArguments() const;
-    QString getInstallPackagePath() const;
     QString getVersion() const;
     void scheduleRestartForUpdate();
     void handleAppClose();

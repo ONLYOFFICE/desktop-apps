@@ -310,19 +310,6 @@ QString CUpdateManager::getVersion() const
     return m_newVersion;
 }
 
-QStringList CUpdateManager::getInstallArguments() const
-{
-    QStringList arguments;
-    if ( !m_packageData.packageArgs.empty() )
-        arguments << QString::fromStdWString(m_packageData.packageArgs).split(" ");
-    return arguments;
-}
-
-QString CUpdateManager::getInstallPackagePath() const
-{
-    return m_packageData.fileName;
-}
-
 void CUpdateManager::onLoadUpdateFinished()
 {
     m_packageData.fileName = QString::fromStdWString(m_pDownloader->GetFilePath());
@@ -333,14 +320,14 @@ void CUpdateManager::onLoadUpdateFinished()
 void CUpdateManager::handleAppClose()
 {
     if ( m_restartForUpdate ) {
-        if ( QProcess::startDetached(getInstallPackagePath(), getInstallArguments())) {
-            //qDebug() << "Start installation...";
-        } else {
-            //qDebug() << "Install command not found!";
+        QStringList args;
+        if ( !m_packageData.packageArgs.empty() )
+            args << QString::fromStdWString(m_packageData.packageArgs).split(" ");
+        if (!QProcess::startDetached(m_packageData.fileName, args)) {
+            //qDebug() << "Install command not found!" << m_packageData.fileName << args;
         }
-    } else {
+    } else
         cancelLoading();
-    }
 }
 
 void CUpdateManager::scheduleRestartForUpdate()
