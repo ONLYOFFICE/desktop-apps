@@ -91,6 +91,10 @@ CUpdateManager::CUpdateManager(QObject *parent):
         m_pTimer->setSingleShot(false);
         connect(m_pTimer, SIGNAL(timeout()), this, SLOT(checkUpdates()));
 #endif
+        m_pCheckOnStartupTimer = new QTimer(this);
+        m_pCheckOnStartupTimer->setSingleShot(true);
+        m_pCheckOnStartupTimer->setInterval(6000);
+        connect(m_pCheckOnStartupTimer, &QTimer::timeout, this, &CUpdateManager::updateNeededCheking);
         init();
     }
 }
@@ -143,10 +147,7 @@ void CUpdateManager::init()
     const QString interval = reg_user.value("checkUpdatesInterval","day").toString();
     m_currentRate = (interval == "disabled") ? UpdateInterval::NEVER : (interval == "day") ?  UpdateInterval::DAY : UpdateInterval::WEEK;
 #endif
-
-    QTimer::singleShot(6000, this, [=]() {
-        updateNeededCheking();
-    });
+    m_pCheckOnStartupTimer->start();
 }
 
 void CUpdateManager::downloadFile(const std::wstring &url, const QString &ext)
@@ -185,6 +186,11 @@ void CUpdateManager::clearTempFiles(const QString &except)
 
 void CUpdateManager::checkUpdates()
 {
+    if (m_pCheckOnStartupTimer && m_pCheckOnStartupTimer->isActive()) {
+        m_pCheckOnStartupTimer->stop();
+        m_pCheckOnStartupTimer->deleteLater();
+        m_pCheckOnStartupTimer = nullptr;
+    }
     m_newVersion = "";
 #ifdef Q_OS_WIN
     m_packageData.packageUrl = L"";

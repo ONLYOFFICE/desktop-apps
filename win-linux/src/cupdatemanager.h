@@ -99,6 +99,7 @@ private:
         NEVER=0, DAY=1, WEEK=2
     };
 #endif
+    QTimer      *m_pCheckOnStartupTimer = nullptr;
     wstring     m_checkUrl;
     int         m_downloadMode;
     QString     m_newVersion;
