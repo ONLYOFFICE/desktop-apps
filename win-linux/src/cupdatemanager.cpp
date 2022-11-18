@@ -360,6 +360,14 @@ void CUpdateManager::cancelLoading()
         m_pDownloader->Stop();
 }
 
+void CUpdateManager::skipVersion()
+{
+    GET_REGISTRY_USER(reg_user);
+    reg_user.beginGroup("Updates");
+    reg_user.setValue("Updates/ignored_ver", m_newVersion);
+    reg_user.endGroup();
+}
+
 void CUpdateManager::onLoadCheckFinished()
 {
     const QString path = QString::fromStdWString(m_pDownloader->GetFilePath());
@@ -373,11 +381,17 @@ void CUpdateManager::onLoadCheckFinished()
 
         bool updateExist = false;
         QString version = root.value("version").toString();
+
+        GET_REGISTRY_USER(reg_user);
+        reg_user.beginGroup("Updates");
+        const QString ignored_ver = reg_user.value("Updates/ignored_ver").toString();
+        reg_user.endGroup();
+
         const QStringList curr_ver = QString::fromLatin1(VER_FILEVERSION_STR).split('.');
         const QStringList ver = version.split('.');
         for (int i = 0; i < std::min(ver.size(), curr_ver.size()); i++) {
             if (ver.at(i).toInt() > curr_ver.at(i).toInt()) {
-                updateExist = true;
+                updateExist = (version != ignored_ver);
                 break;
             }
         }

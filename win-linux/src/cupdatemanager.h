@@ -52,6 +52,7 @@ public:
 
     void setNewUpdateSetting(const QString& _rate);
     void cancelLoading();
+    void skipVersion();
 #ifdef Q_OS_WIN
     QStringList getInstallArguments() const;
     QString getInstallPackagePath() const;
