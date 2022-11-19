@@ -1895,10 +1895,11 @@ void CAscApplicationManagerWrapper::showUpdateMessage(const bool error,
         AscAppManager::sendCommandTo(0, "updates:checking", QString("{\"version\":\"%1\"}").arg(version));
         auto msg = [=]() {
             QTimer::singleShot(100, this, [=](){
-                CMessage mbox(mainWindow()->handle(), CMessageOpts::moButtons::mbYesNo);
-//                mbox.setButtons({"Yes", "No"});
-                switch (mbox.info(tr("Do you want to install a new version %1 of the program?").arg(version))) {
-                case MODAL_RESULT_CUSTOM + 0:
+                int res = CMessage::showMessage(mainWindow()->handle(),
+                                                tr("Do you want to install a new version %1 of the program?").arg(version),
+                                                MsgType::MSG_INFO, MsgBtns::mbYesNo);
+                switch (res) {
+                case MODAL_RESULT_YES:
 #ifdef Q_OS_WIN
                     m_pUpdateManager->loadUpdates();
 #else
@@ -1936,12 +1937,13 @@ void CAscApplicationManagerWrapper::showUpdateMessage(const bool error,
 void CAscApplicationManagerWrapper::showStartInstallMessage()
 {
     AscAppManager::sendCommandTo(0, "updates:download", "{\"progress\":\"done\"}");
-    CMessage mbox(mainWindow()->handle(), CMessageOpts::moButtons::mbYesNo);
-//    mbox.setButtons({"Yes", "No"});
-    switch (mbox.info(tr("Do you want to install a new version of the program?\n"
-                         "To continue the installation, you must to close current session.")))
+    int res = CMessage::showMessage(mainWindow()->handle(),
+                                    tr("Do you want to install a new version of the program?\n"
+                                       "To continue the installation, you must to close current session."),
+                                    MsgType::MSG_INFO, MsgBtns::mbYesNo);
+    switch (res)
     {
-    case MODAL_RESULT_CUSTOM + 0: {
+    case MODAL_RESULT_YES: {
         m_pUpdateManager->scheduleRestartForUpdate();
         mainWindow()->close();
         break;
