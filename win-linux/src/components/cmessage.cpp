@@ -49,6 +49,9 @@
 #include <memory.h>
 
 #ifdef __linux__
+# include "platform_linux/gtkmessage.h"
+#else
+# include "platform_win/message.h"
 #endif
 
 #define MSG_ICON_WIDTH  35
@@ -363,4 +366,44 @@ void QtMsg::setIcon(MsgType msgType)
 void QtMsg::setText( const QString& t)
 {
     m_message->setText(t);
+}
+
+// -------------------- CMessage ------------------
+
+int CMessage::showMessage(QWidget *parent,
+                          const QString &msg,
+                          MsgType msgType,
+                          MsgBtns msgBtns,
+                          bool   *checkBoxState,
+                          const QString &chekBoxText)
+{
+    if (WindowHelper::useNativeDialog()) {
+#ifdef _WIN32
+        return WinMsg::showMessage(parent, msg, msgType, msgBtns, checkBoxState, chekBoxText);
+#else
+        WindowHelper::CParentDisable oDisabler(parent);
+        return GtkMsg::showMessage(parent, msg, msgType, msgBtns, checkBoxState, chekBoxText);
+#endif
+    }
+    return QtMsg::showMessage(parent, msg, msgType, msgBtns, checkBoxState, chekBoxText);
+}
+
+void CMessage::confirm(QWidget *parent, const QString &msg)
+{
+    showMessage(parent, msg, MsgType::MSG_CONFIRM);
+}
+
+void CMessage::info(QWidget *parent, const QString &msg)
+{
+    showMessage(parent, msg, MsgType::MSG_INFO);
+}
+
+void CMessage::warning(QWidget *parent, const QString &msg)
+{
+    showMessage(parent, msg, MsgType::MSG_WARN);
+}
+
+void CMessage::error(QWidget *parent, const QString &msg)
+{
+    showMessage(parent, msg, MsgType::MSG_ERROR);
 }
