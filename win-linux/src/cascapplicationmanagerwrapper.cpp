@@ -1605,6 +1605,11 @@ CThemes& CAscApplicationManagerWrapper::themes()
     return *(AscAppManager::getInstance().m_themes);
 }
 
+CPrintData& CAscApplicationManagerWrapper::printData()
+{
+    return *(AscAppManager::getInstance().m_private->m_printData);
+}
+
 bool CAscApplicationManagerWrapper::canAppClose()
 {
 #ifdef Q_OS_WIN

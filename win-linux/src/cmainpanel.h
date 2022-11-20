@@ -169,7 +169,6 @@ private:
 
     CDownloadWidget *   m_pWidgetDownload = Q_NULLPTR;
 
-    printdata *    m_printData;
     Qt::WindowState m_mainWindowState;
 
     QStringList * m_inFiles;

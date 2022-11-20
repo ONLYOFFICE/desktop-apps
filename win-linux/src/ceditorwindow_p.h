@@ -141,16 +141,6 @@ auto editor_color(int type) -> QColor {
 
 class CEditorWindowPrivate : public CCefEventsGate
 {
-    struct sPrintData {
-        sPrintData() : _print_range(QPrintDialog::PrintRange::AllPages)
-        {}
-
-        QPrinterInfo _printer_info;
-        QPrintDialog::PrintRange _print_range;
-    };
-
-    sPrintData m_printData;
-
     CEditorWindow * window = nullptr;
     CElipsisLabel * iconuser = nullptr;
     QPushButton * btndock = nullptr;
@@ -452,6 +442,16 @@ public:
         } else AscAppManager::cancelClose();
     }
 
+    void onDocumentPrint(void * data)  override
+    {
+        CAscPrintEnd * pData = reinterpret_cast<CAscPrintEnd *>(data);
+        AscAppManager::printData().init(pData);
+
+        onDocumentPrint(pData->get_CurrentPage(), pData->get_PagesCount());
+
+        RELEASEINTERFACE(pData);
+    }
+
     void onDocumentPrint(int currentpage, uint pagescount) override
     {
         if ( isPrinting ) return;
@@ -463,12 +463,13 @@ public:
 #endif
         if ( !(pagescount < 1) ) {
             CAscMenuEvent * pEvent;
-            QAscPrinterContext * pContext = m_printData._printer_info.isNull() ?
-                        new QAscPrinterContext() : new QAscPrinterContext(m_printData._printer_info);
+            QAscPrinterContext * pContext = new QAscPrinterContext(AscAppManager::printData().printerInfo());
 
             QPrinter * printer = pContext->getPrinter();
             printer->setOutputFileName("");
             printer->setFromTo(1, pagescount);
+            printer->setPageOrientation(AscAppManager::printData().pageOrientation());
+            printer->setPageSize(AscAppManager::printData().pageSize());
 
 #ifdef _WIN32
             CPrintDialogWinWrapper wrapper(printer, window->handle());
@@ -484,16 +485,27 @@ public:
                 dialog->setEnabledOptions(dialog->enabledOptions() | QPrintDialog::PrintCurrentPage);
                 dialog->setOptions(dialog->options() | QPrintDialog::PrintCurrentPage);
             }
-            dialog->setPrintRange(m_printData._print_range);
+
+            dialog->setPrintRange(AscAppManager::printData().printRange());
+            if ( dialog->printRange() == QPrintDialog::PageRange )
+                dialog->setFromTo(AscAppManager::printData().pageFrom(), AscAppManager::printData().pageTo());
 
             int start = -1, finish = -1;
+            int modal_res = QDialog::Accepted;
+
+            if ( AscAppManager::printData().isQuickPrint() ) {
+                dialog->accept();
+            } else {
+
 #ifdef _WIN32
-            if ( wrapper.showModal() == QDialog::Accepted ) {
+                modal_res = wrapper.showModal();
 #else
-            if ( dialog->exec() == QDialog::Accepted ) {
+                modal_res = dialog->exec();
 #endif
-                m_printData._printer_info = QPrinterInfo::printerInfo(printer->printerName());
-                m_printData._print_range = dialog->printRange();
+            }
+
+            if ( modal_res == QDialog::Accepted ) {
+                AscAppManager::printData().setPrinterInfo(QPrinterInfo::printerInfo(printer->printerName()));
 
                 switch(dialog->printRange()) {
                 case QPrintDialog::AllPages: start = 1, finish = pagescount; break;

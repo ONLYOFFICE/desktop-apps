@@ -43,6 +43,7 @@
 #include "ceditorwindow.h"
 #include "cwindowsqueue.h"
 #include "ceventdriver.h"
+#include "cprintdata.h"
 
 #ifdef _WIN32
 #include "win/mainwindow.h"
@@ -112,6 +113,7 @@ private:
 
     std::shared_ptr<CAppUpdater> m_updater;
     std::shared_ptr<CThemes> m_themes;
+
 public:
     CWindowsQueue<sWinTag>& closeQueue();
     CEventDriver& commonEvents();
@@ -178,6 +180,7 @@ public:
     static QCefView *       createViewer(QWidget * parent);
     static QString          newFileName(int format);
     static CThemes &        themes();
+    static CPrintData&      printData();
 
     static ParentHandle     windowHandleFromId(int id);
 
