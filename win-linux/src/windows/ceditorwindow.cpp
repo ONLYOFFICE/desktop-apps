@@ -133,19 +133,18 @@ int CEditorWindow::closeWindow()
 
         bringToTop();
 
-        CMessage mess(handle(), CMessageOpts::moButtons::mbYesDefNoCancel);
+        _reply = CMessage::showMessage(handle(),
+                                       tr("%1 has been changed. Save changes?").arg(panel->data()->title(true)),
+                                       MsgType::MSG_WARN, MsgBtns::mbYesDefNoCancel);
 //            modal_res = mess.warning(getSaveMessage().arg(m_pTabs->titleByIndex(index)));
-        _reply = mess.warning(tr("%1 has been changed. Save changes?").arg(panel->data()->title(true)));
-
         switch (_reply) {
-        case MODAL_RESULT_CUSTOM + 1:
+        case MODAL_RESULT_NO:
             _reply = MODAL_RESULT_YES;
             break;
         case MODAL_RESULT_CANCEL:
-        case MODAL_RESULT_CUSTOM + 2:
             return MODAL_RESULT_CANCEL;
 
-        case MODAL_RESULT_CUSTOM + 0:
+        case MODAL_RESULT_YES:
         default:
             panel->data()->close();
             panel->cef()->Apply(new CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_SAVE));

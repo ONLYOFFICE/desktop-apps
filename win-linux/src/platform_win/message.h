@@ -28,29 +28,24 @@
  * Creative Commons Attribution-ShareAlike 4.0 International. See the License
  * terms at http://creativecommons.org/licenses/by-sa/4.0/legalcode
  *
-*/
+ */
 
-#ifndef CMESSAGE_H
-#define CMESSAGE_H
+#ifndef MESSAGE_H
+#define MESSAGE_H
 
 #include <QWidget>
 #include <QString>
 #include "defines.h"
 
 
-namespace CMessage
+namespace WinMsg
 {
 int showMessage(QWidget *parent,
-                const QString &msg,
-                MsgType msgType,
-                MsgBtns msgBtns = MsgBtns::mbOk,
-                bool   *checkBoxState = nullptr,
-                const QString &chekBoxText = QString());
-
-void confirm(QWidget *parent, const QString &msg);
-void info(QWidget *parent, const QString &msg);
-void warning(QWidget *parent, const QString &msg);
-void error(QWidget *parent, const QString &msg);
+               const QString &msg,
+               MsgType msgType,
+               MsgBtns msgBtns = MsgBtns::mbOk,
+               bool   *checkBoxState = nullptr,
+               const QString &chekBoxText = QString());
 }
 
-#endif // CMESSAGE_H
+#endif // MESSAGE_H

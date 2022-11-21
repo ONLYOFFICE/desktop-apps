@@ -203,7 +203,8 @@ core_linux {
                 $$PWD/src/platform_linux/singleapplication.h \
                 $$PWD/src/platform_linux/xdgdesktopportal.h \
                 $$PWD/src/platform_linux/gtkfilechooser.h \
-                $$PWD/src/platform_linux/gtkprintdialog.h
+                $$PWD/src/platform_linux/gtkprintdialog.h \
+                $$PWD/src/platform_linux/gtkmessage.h
 
     SOURCES +=  $$PWD/src/windows/platform_linux/cx11decoration.cpp \
                 #$$PWD/src/windows/platform_linux/gtk_addon.cpp \
@@ -214,7 +215,8 @@ core_linux {
                 $$PWD/src/platform_linux/singleapplication.cpp \
                 $$PWD/src/platform_linux/xdgdesktopportal.cpp \
                 $$PWD/src/platform_linux/gtkfilechooser.cpp \
-                $$PWD/src/platform_linux/gtkprintdialog.cpp
+                $$PWD/src/platform_linux/gtkprintdialog.cpp \
+                $$PWD/src/platform_linux/gtkmessage.cpp
 
     CONFIG += link_pkgconfig
     PKGCONFIG += glib-2.0 gtk+-3.0 atk dbus-1 gtk+-unix-print-3.0
@@ -235,12 +237,14 @@ core_windows {
                $$PWD/src/windows/platform_win/csnap.h \
                $$PWD/src/windows/platform_win/caption.h \
                $$PWD/src/platform_win/singleapplication.h \
-               $$PWD/src/platform_win/filechooser.h
+               $$PWD/src/platform_win/filechooser.h \
+               $$PWD/src/platform_win/message.h
 
     SOURCES += $$PWD/src/windows/platform_win/cwindowplatform.cpp \
                $$PWD/src/windows/platform_win/csnap.cpp \
                $$PWD/src/platform_win/singleapplication.cpp \
-               $$PWD/src/platform_win/filechooser.cpp
+               $$PWD/src/platform_win/filechooser.cpp \
+               $$PWD/src/platform_win/message.cpp
 
 
     LIBS += -lwininet \
