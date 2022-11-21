@@ -33,6 +33,7 @@
 #include "cprintdata.h"
 #include "utils.h"
 #include <QJsonObject>
+#include <QRegularExpression>
 
 class CPrintData::CPrintDataPrivate
 {
