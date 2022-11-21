@@ -47,8 +47,6 @@
 #include <math.h>
 
 
-struct printdata;
-
 class CMainPanel : public QWidget, public CScalingWrapper
 {
     Q_OBJECT
