@@ -268,7 +268,32 @@ void CMainWindow::onCloseEvent()
 
 void CMainWindow::closeEvent(QCloseEvent * e)
 {
-    AscAppManager::getInstance().closeQueue().enter(sWinTag{CLOSE_QUEUE_WIN_TYPE_MAIN, size_t(this)});
+    bool allowClose = false;
+    m_closeAllWithoutSaving = false;
+    if (m_pTabs->count() > 1) {
+        bool foundNotModified = false;
+        for (int i = 0; i < m_pTabs->count(); i++) {
+            if (!m_pTabs->modifiedByIndex(i)) {
+                foundNotModified = true;
+                break;
+            }
+        }
+        if (foundNotModified) {
+            int res = CMessage::showMessage(TOP_NATIVE_WINDOW_HANDLE,
+                                            tr("More than one document is open.<br>Close the app anyway?"),
+                                            MsgType::MSG_WARN,
+                                            MsgBtns::mbYesDefNo,
+                                            &m_closeAllWithoutSaving,
+                                            tr("Close all without saving."));
+            if (res == MODAL_RESULT_YES)
+                allowClose = true;
+        } else
+            allowClose = true;
+    } else
+        allowClose = true;
+
+    if (allowClose)
+        AscAppManager::getInstance().closeQueue().enter(sWinTag{CLOSE_QUEUE_WIN_TYPE_MAIN, size_t(this)});
     e->ignore();
 }
 
@@ -285,14 +310,19 @@ void CMainWindow::close()
         for (int i(m_pTabs->count()); i-- > 0;) {
             if ( !m_pTabs->closedByIndex(i) ) {
                 if ( !m_pTabs->isProcessed(i) ) {
-                    int _result = trySaveDocument(i);
-                    if ( _result == MODAL_RESULT_NO ) {
+                    if (!m_closeAllWithoutSaving) {
+                        int _result = trySaveDocument(i);
+                        if ( _result == MODAL_RESULT_NO) {
+                            m_pTabs->editorCloseRequest(i);
+                            onDocumentSave(m_pTabs->panel(i)->cef()->GetId());
+                        } else
+                        if ( _result == MODAL_RESULT_CANCEL ) {
+                            AscAppManager::cancelClose();
+                            return;
+                        }
+                    } else {
                         m_pTabs->editorCloseRequest(i);
                         onDocumentSave(m_pTabs->panel(i)->cef()->GetId());
-                    } else
-                    if ( _result == MODAL_RESULT_CANCEL ) {
-                        AscAppManager::cancelClose();
-                        return;
                     }
                 } else {
                     m_pTabs->editorCloseRequest(i);

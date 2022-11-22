@@ -163,6 +163,7 @@ private:
     printdata*       m_printData;
 
     bool m_isCloseAll = false;
+    bool m_closeAllWithoutSaving = false;
 
 private slots:
     virtual void onCloseEvent() final;
