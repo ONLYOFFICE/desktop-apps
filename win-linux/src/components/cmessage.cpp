@@ -259,6 +259,7 @@ void CMessage::setButtons(CMessageOpts::moButtons btns)
     case CMessageOpts::moButtons::mbYesDefNoCancel: setButtons({DEFAULT_BUTTON(tr("Yes")), tr("No"), tr("Cancel")}); break;
     case CMessageOpts::moButtons::mbOkCancel:       setButtons({tr("OK"), DEFAULT_BUTTON(tr("Cancel"))}); break;
     case CMessageOpts::moButtons::mbOkDefCancel:    setButtons({DEFAULT_BUTTON(tr("OK")), tr("Cancel")}); break;
+    case CMessageOpts::moButtons::mbYesDefSkipNo:   setButtons({DEFAULT_BUTTON(tr("Yes")), tr("Skip"), tr("No")}); break;
     default: break;
     }
 }

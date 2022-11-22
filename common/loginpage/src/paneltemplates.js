@@ -1,5 +1,5 @@
 /*
- * (c) Copyright Ascensio System SIA 2010-2019
+ * (c) Copyright Ascensio System SIA 2010-2022
  *
  * This program is a free software product. You can redistribute it and/or
  * modify it under the terms of the GNU Affero General Public License (AGPL)
@@ -30,34 +30,48 @@
  *
 */
 
-#ifndef CPRESENTERWINDOW_H
-#define CPRESENTERWINDOW_H
++function(){ 'use strict'
+    const ControllerTemplates = function(args={}) {
+        args.caption = 'Templates';
+        args.action =
+        this.action = 'templates';
+        this.view = new ViewTemplates(args);
+    };
 
-#ifdef _WIN32
-# include "windows/platform_win/cwindowplatform.h"
-#else
-# include "windows/platform_linux/cwindowplatform.h"
-#endif
-#include "qcefview.h"
+    ControllerTemplates.prototype = Object.create(baseController.prototype);
+    ControllerTemplates.prototype.constructor = ControllerTemplates;
 
+    window.ControllerTemplates = ControllerTemplates;
 
-class CPresenterWindow : public CWindowPlatform
-{
-public:
-    explicit CPresenterWindow(const QRect&, const QString&, QCefView*);
-    virtual ~CPresenterWindow();
+    var ViewTemplates = function(args) {
+        var _lang = utils.Lang;
 
-    virtual void applyTheme(const std::wstring&) final;
-    virtual bool holdView(int id) const final;
+        args.tplPage = `<div class="action-panel ${args.action}"></div>`;
+        args.menu = '.main-column.tool-menu';
+        args.field = '.main-column.col-center';
+        args.itemindex = 0;
+        args.itemtext = 'Templates';
 
-protected:
-    void closeEvent(QCloseEvent *) final;
+        baseView.prototype.constructor.call(this, args);
+    };
 
-private:
-    QWidget * createMainPanel(QWidget *, const QString&, QWidget * view = nullptr);
-    virtual void setScreenScalingFactor(double) final;
-    virtual void onCloseEvent() final;
-    virtual void focus() final;
-};
+    ViewTemplates.prototype = Object.create(baseView.prototype);
+    ViewTemplates.prototype.constructor = ViewTemplates;
 
-#endif // CPRESENTERWINDOW_H
+    utils.fn.extend(ControllerTemplates.prototype, (function() {
+        return {
+            init: function() {
+                baseController.prototype.init.apply(this, arguments);
+                this.view.render();
+
+                this.view.$menuitem.find('> a').click(e => {
+                    window.sdk.command("open:template", 'external');
+                    e.preventDefault();
+                    e.stopPropagation();
+                });
+
+                return this;
+            }
+        };
+    })());
+}();

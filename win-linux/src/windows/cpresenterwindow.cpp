@@ -93,6 +93,12 @@ bool CPresenterWindow::holdView(int id) const
     return ((QCefView *)m_pMainView)->GetCefView()->GetId() == id;
 }
 
+void CPresenterWindow::closeEvent(QCloseEvent *e)
+{
+    onCloseEvent();
+    e->ignore();
+}
+
 /** Private **/
 
 QWidget * CPresenterWindow::createMainPanel(QWidget * parent, const QString& title, QWidget * view)

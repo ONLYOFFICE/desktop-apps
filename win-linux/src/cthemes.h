@@ -70,6 +70,7 @@ public:
     auto isColorDark(const QString&) -> bool;
 
     auto onSystemDarkColorScheme(bool isdark) -> void;
+    auto isSystemSchemeDark() -> const bool;
     auto parseThemeName(const std::wstring&) -> std::wstring;
 private:
     class CThemesPrivate;

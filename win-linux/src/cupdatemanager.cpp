@@ -63,12 +63,22 @@ using std::vector;
 
 CUpdateManager::CUpdateManager(QObject *parent):
     QObject(parent),
+    m_checkUrl(L""),
     m_downloadMode(Mode::CHECK_UPDATES)
 {
     // =========== Set updates URL ============
-    if ( InputArgs::contains(CMD_ARGUMENT_CHECK_URL) ) {
-        m_checkUrl = InputArgs::argument_value(CMD_ARGUMENT_CHECK_URL);
-    } else m_checkUrl = QString(URL_APPCAST_UPDATES).toStdWString();
+    auto setUrl = [=] {
+        if ( InputArgs::contains(CMD_ARGUMENT_CHECK_URL) ) {
+            m_checkUrl = InputArgs::argument_value(CMD_ARGUMENT_CHECK_URL);
+        } else m_checkUrl = QString(URL_APPCAST_UPDATES).toStdWString();
+    };
+#ifdef _WIN32
+    GET_REGISTRY_SYSTEM(reg_system)
+    if (Utils::getWinVersion() > Utils::WinVer::WinXP && reg_system.value("CheckForUpdates", true).toBool())
+        setUrl();
+#else
+    setUrl();
+#endif
 
     if ( !m_checkUrl.empty() ) {
         m_pDownloader = new CFileDownloader(m_checkUrl, false);
@@ -81,6 +91,10 @@ CUpdateManager::CUpdateManager(QObject *parent):
         m_pTimer->setSingleShot(false);
         connect(m_pTimer, SIGNAL(timeout()), this, SLOT(checkUpdates()));
 #endif
+        m_pCheckOnStartupTimer = new QTimer(this);
+        m_pCheckOnStartupTimer->setSingleShot(true);
+        m_pCheckOnStartupTimer->setInterval(6000);
+        connect(m_pCheckOnStartupTimer, &QTimer::timeout, this, &CUpdateManager::updateNeededCheking);
         init();
     }
 }
@@ -133,10 +147,7 @@ void CUpdateManager::init()
     const QString interval = reg_user.value("checkUpdatesInterval","day").toString();
     m_currentRate = (interval == "disabled") ? UpdateInterval::NEVER : (interval == "day") ?  UpdateInterval::DAY : UpdateInterval::WEEK;
 #endif
-
-    QTimer::singleShot(6000, this, [=]() {
-        updateNeededCheking();
-    });
+    m_pCheckOnStartupTimer->start();
 }
 
 void CUpdateManager::downloadFile(const std::wstring &url, const QString &ext)
@@ -175,6 +186,11 @@ void CUpdateManager::clearTempFiles(const QString &except)
 
 void CUpdateManager::checkUpdates()
 {
+    if (m_pCheckOnStartupTimer && m_pCheckOnStartupTimer->isActive()) {
+        m_pCheckOnStartupTimer->stop();
+        m_pCheckOnStartupTimer->deleteLater();
+        m_pCheckOnStartupTimer = nullptr;
+    }
     m_newVersion = "";
 #ifdef Q_OS_WIN
     m_packageData.packageUrl = L"";
@@ -294,19 +310,6 @@ QString CUpdateManager::getVersion() const
     return m_newVersion;
 }
 
-QStringList CUpdateManager::getInstallArguments() const
-{
-    QStringList arguments;
-    if ( !m_packageData.packageArgs.empty() )
-        arguments << QString::fromStdWString(m_packageData.packageArgs).split(" ");
-    return arguments;
-}
-
-QString CUpdateManager::getInstallPackagePath() const
-{
-    return m_packageData.fileName;
-}
-
 void CUpdateManager::onLoadUpdateFinished()
 {
     m_packageData.fileName = QString::fromStdWString(m_pDownloader->GetFilePath());
@@ -317,14 +320,14 @@ void CUpdateManager::onLoadUpdateFinished()
 void CUpdateManager::handleAppClose()
 {
     if ( m_restartForUpdate ) {
-        if ( QProcess::startDetached(getInstallPackagePath(), getInstallArguments())) {
-            //qDebug() << "Start installation...";
-        } else {
-            //qDebug() << "Install command not found!";
+        QStringList args;
+        if ( !m_packageData.packageArgs.empty() )
+            args << QString::fromStdWString(m_packageData.packageArgs).split(" ");
+        if (!QProcess::startDetached(m_packageData.fileName, args)) {
+            //qDebug() << "Install command not found!" << m_packageData.fileName << args;
         }
-    } else {
+    } else
         cancelLoading();
-    }
 }
 
 void CUpdateManager::scheduleRestartForUpdate()
@@ -350,6 +353,14 @@ void CUpdateManager::cancelLoading()
         m_pDownloader->Stop();
 }
 
+void CUpdateManager::skipVersion()
+{
+    GET_REGISTRY_USER(reg_user);
+    reg_user.beginGroup("Updates");
+    reg_user.setValue("Updates/ignored_ver", m_newVersion);
+    reg_user.endGroup();
+}
+
 void CUpdateManager::onLoadCheckFinished()
 {
     const QString path = QString::fromStdWString(m_pDownloader->GetFilePath());
@@ -363,11 +374,17 @@ void CUpdateManager::onLoadCheckFinished()
 
         bool updateExist = false;
         QString version = root.value("version").toString();
+
+        GET_REGISTRY_USER(reg_user);
+        reg_user.beginGroup("Updates");
+        const QString ignored_ver = reg_user.value("Updates/ignored_ver").toString();
+        reg_user.endGroup();
+
         const QStringList curr_ver = QString::fromLatin1(VER_FILEVERSION_STR).split('.');
         const QStringList ver = version.split('.');
         for (int i = 0; i < std::min(ver.size(), curr_ver.size()); i++) {
             if (ver.at(i).toInt() > curr_ver.at(i).toInt()) {
-                updateExist = true;
+                updateExist = (version != ignored_ver);
                 break;
             }
         }

@@ -296,7 +296,12 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
                 m_pUpdateManager->loadUpdates();
             } else
             if (params == "install") {
-                showStartInstallMessage();
+                GET_REGISTRY_USER(reg_user);
+                reg_user.beginGroup("Updates");
+                const QString ignored_ver = reg_user.value("Updates/ignored_ver").toString();
+                reg_user.endGroup();
+                if (ignored_ver != m_pUpdateManager->getVersion())
+                    showStartInstallMessage();
             } else
             if (params == "abort") {
                 m_pUpdateManager->cancelLoading();
@@ -343,10 +348,27 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
                 bool is_dark = match.captured(1) == "dark";
                 m_themes->onSystemDarkColorScheme(is_dark);
 
+#ifndef Q_OS_WIN
+                for (auto i: GetViewsId()) {
+                    sendCommandTo(GetViewById(i), cmd, pData->get_Param());
+                }
+#endif
+
                 if ( themes().current().isSystem() && themes().current().isDark() != is_dark )
                     applyTheme(themes().current().id());
             }
 
+
+            return true;
+        } else
+        if ( !(cmd.find(L"open:template") == std::wstring::npos) ) {
+            if ( pData->get_Param() == L"external" ) {
+                QJsonObject _json_obj;
+                _json_obj["portal"] = "https://oforms.teamlab.info";
+                _json_obj["entrypage"] = "";
+
+                mainWindow()->onPortalOpen(QJsonDocument(_json_obj).toJson(QJsonDocument::Compact));
+            }
 
             return true;
         }
@@ -1034,8 +1056,13 @@ void CAscApplicationManagerWrapper::initializeApp()
     AscAppManager::getInstance().InitAdditionalEditorParams(wparams);
 //    AscAppManager::getInstance().applyTheme(themes().current().id(), true);
 
-    EditorJSVariables::applyVariable("theme", {{"type", _app.m_themes->current().stype()},
-                                       {"id", QString::fromStdWString(_app.m_themes->current().id())}});
+    EditorJSVariables::applyVariable("theme", {
+                                        {"type", _app.m_themes->current().stype()},
+                                        {"id", QString::fromStdWString(_app.m_themes->current().id())}
+#ifdef Q_OS_WIN
+                                        ,{"system", _app.m_themes->isSystemSchemeDark() ? "dark" : "light"}
+#endif
+                                     });
 }
 
 CPresenterWindow * CAscApplicationManagerWrapper::createReporterWindow(void * data, int parentid)
@@ -1568,8 +1595,13 @@ void CAscApplicationManagerWrapper::applyTheme(const wstring& theme, bool force)
         std::wstring params{InputArgs::change_webapps_param(L"&uitheme=" + old_theme, L"&uitheme=" + theme)};
         AscAppManager::getInstance().InitAdditionalEditorParams(params);
 
-        EditorJSVariables::applyVariable("theme", {{"type", _app.m_themes->current().stype()},
-                                           {"id", QString::fromStdWString(_app.m_themes->current().id())}});
+        EditorJSVariables::applyVariable("theme", {
+                                            {"type", _app.m_themes->current().stype()},
+                                            {"id", QString::fromStdWString(_app.m_themes->current().id())}
+#ifndef Q_OS_WIN
+                                            ,{"system", _app.m_themes->isSystemSchemeDark() ? "dark" : "light"}
+#endif
+                                         });
 
         // TODO: remove
         if ( mainWindow() ) mainWindow()->applyTheme(theme);
@@ -1876,8 +1908,7 @@ void CAscApplicationManagerWrapper::showUpdateMessage(const bool error,
         AscAppManager::sendCommandTo(0, "updates:checking", QString("{\"version\":\"%1\"}").arg(version));
         auto msg = [=]() {
             QTimer::singleShot(100, this, [=](){
-                CMessage mbox(mainWindow()->handle(), CMessageOpts::moButtons::mbYesNo);
-//                mbox.setButtons({"Yes", "No"});
+                CMessage mbox(mainWindow()->handle(), CMessageOpts::moButtons::mbYesDefSkipNo);
                 switch (mbox.info(tr("Do you want to install a new version %1 of the program?").arg(version))) {
                 case MODAL_RESULT_CUSTOM + 0:
 #ifdef Q_OS_WIN
@@ -1886,6 +1917,11 @@ void CAscApplicationManagerWrapper::showUpdateMessage(const bool error,
                     QDesktopServices::openUrl(QUrl(DOWNLOAD_PAGE, QUrl::TolerantMode));
 #endif
                     break;
+                case MODAL_RESULT_CUSTOM + 1: {
+                    m_pUpdateManager->skipVersion();
+                    AscAppManager::sendCommandTo(0, "updates:checking", "{\"version\":\"no\"}");
+                    break;
+                }
                 default:
                     break;
                 }
@@ -1917,14 +1953,18 @@ void CAscApplicationManagerWrapper::showUpdateMessage(const bool error,
 void CAscApplicationManagerWrapper::showStartInstallMessage()
 {
     AscAppManager::sendCommandTo(0, "updates:download", "{\"progress\":\"done\"}");
-    CMessage mbox(mainWindow()->handle(), CMessageOpts::moButtons::mbYesNo);
-//    mbox.setButtons({"Yes", "No"});
+    CMessage mbox(mainWindow()->handle(), CMessageOpts::moButtons::mbYesDefSkipNo);
     switch (mbox.info(tr("Do you want to install a new version of the program?\n"
                          "To continue the installation, you must to close current session.")))
     {
     case MODAL_RESULT_CUSTOM + 0: {
         m_pUpdateManager->scheduleRestartForUpdate();
         mainWindow()->close();
+        break;
+    }
+    case MODAL_RESULT_CUSTOM + 1: {
+        m_pUpdateManager->skipVersion();
+        AscAppManager::sendCommandTo(0, "updates:checking", "{\"version\":\"no\"}");
         break;
     }
     default:
