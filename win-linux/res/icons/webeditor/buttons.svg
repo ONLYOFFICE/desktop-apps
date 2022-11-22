@@ -3,6 +3,9 @@
         <rect x="4" y="8" width="1" height="1"/>
         <path fill-rule="evenodd" clip-rule="evenodd" d="M14 4H6V6H14V4ZM5 4V6H3C2.44772 6 2 6.44772 2 7V12V13H3H5V15C5 15.5523 5.44772 16 6 16H14C14.5523 16 15 15.5523 15 15V13H17H18V12V7C18 6.44772 17.5523 6 17 6H15V4C15 3.44772 14.5523 3 14 3H6C5.44772 3 5 3.44772 5 4ZM15 12H17V7H14H6H3V12H5V11C5 10.4477 5.44772 10 6 10H14C14.5523 10 15 10.4477 15 11V12ZM6 11H14V15H6V11Z"/>
     </svg>
+    <svg id="svg-btn-quickprint" width="20" height="20">
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M6 4h8v2H6V4zM5 6V4a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v2h2a1 1 0 0 1 1 1v3.671A4.5 4.5 0 0 1 11.671 17H6a1 1 0 0 1-1-1v-2H3a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h2zm12 1v2.758A4.479 4.479 0 0 0 14.5 9a4.481 4.481 0 0 0-2.829 1H6a1 1 0 0 0-1 1v2H3V7h14zM6 11h4.758A4.478 4.478 0 0 0 10 13.5c0 .925.28 1.785.758 2.5H6v-5zM4 8h1v1H4V8zm10.5 9a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7zm2.048-5.497.794.882-3.046 4.089-.335-.372-.003.004-2.008-2.23.743-.669 1.523 1.297 2.332-3z" />
+    </svg>
     <svg id="svg-btn-save" width="20px" height="20px" fill="#fff">
         <path fill-rule="evenodd" clip-rule="evenodd" d="M15 15H4V4H6V7H12V4H12.5858L15 6.41421V15ZM11 4H10V6H11V4ZM4 3H13L16 6V15C16 15.5523 15.5523 16 15 16H4C3.44772 16 3 15.5523 3 15V4C3 3.44772 3.44772 3 4 3Z"/>
         <rect x="6" y="10" width="7" height="1"/>
