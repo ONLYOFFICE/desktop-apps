@@ -66,7 +66,7 @@ void CAscTabData::setTitle(const QString& t)
 
 QString CAscTabData::title(bool orig) const
 {
-    return !orig && _has_changes ? _title + "*": _title;
+    return !orig && _has_changes ? "*" + _title : _title;
 }
 
 void CAscTabData::setChanged(bool s)
