@@ -201,6 +201,9 @@ public:
         btn->setIconSize(QSize(20,20) * window->m_dpiRatio);
         btn->setMouseTracking(true);
         btn->setIconOpacity(AscAppManager::themes().current().color(CTheme::ColorRole::ecrButtonNormalOpacity));
+        if ( jsonobj.contains("visible") && !jsonobj["visible"].toBool() ) {
+            btn->hide();
+        }
 
         m_mapTitleButtons[action] = btn;
 
@@ -734,6 +737,12 @@ public:
                     for (const auto& b: _btns_changed.keys()) {
                         if ( m_mapTitleButtons.contains(b) )
                             m_mapTitleButtons[b]->setIcon(":/title/icons/buttons.svg", "svg-btn-" + _btns_changed.value(b).toString());
+                    }
+                } else
+                if ( objRoot.contains("visible") ) {
+                    QJsonObject _btns_changed = objRoot["visible"].toObject();
+                    if ( _btns_changed.contains("quickprint") ) {
+                        m_mapTitleButtons["quickprint"]->setVisible(_btns_changed["quickprint"].toBool());
                     }
                 }
             }
