@@ -56,6 +56,6 @@ void CHelp::out()
     qWarning() << "    --xdg-desktop-portal use portals instead of gtk file chooser (the flag is saved for subsequent sessions)";
     qWarning() << "    --xdg-desktop-portal=default use portals instead of gtk file chooser for current session";
     qWarning() << "    --native-file-dialog use non Qt dialog";
-    qWarning() << "    --geometry=default reset window geometry";
+    qWarning() << "    --updates-appcast-url=\"<URL>\" set URL for updates";
     qWarning() << "    --updates-reset reset all update options";
 }
