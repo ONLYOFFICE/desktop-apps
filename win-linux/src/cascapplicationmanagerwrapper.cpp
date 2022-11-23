@@ -296,7 +296,12 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
                 m_pUpdateManager->loadUpdates();
             } else
             if (params == "install") {
-                showStartInstallMessage();
+                GET_REGISTRY_USER(reg_user);
+                reg_user.beginGroup("Updates");
+                const QString ignored_ver = reg_user.value("Updates/ignored_ver").toString();
+                reg_user.endGroup();
+                if (ignored_ver != m_pUpdateManager->getVersion())
+                    showStartInstallMessage();
             } else
             if (params == "abort") {
                 m_pUpdateManager->cancelLoading();
@@ -1897,7 +1902,7 @@ void CAscApplicationManagerWrapper::showUpdateMessage(const bool error,
             QTimer::singleShot(100, this, [=](){
                 int res = CMessage::showMessage(mainWindow()->handle(),
                                                 tr("Do you want to install a new version %1 of the program?").arg(version),
-                                                MsgType::MSG_INFO, MsgBtns::mbYesNo);
+                                                MsgType::MSG_INFO, MsgBtns::mbYesDefSkipNo);
                 switch (res) {
                 case MODAL_RESULT_YES:
 #ifdef Q_OS_WIN
@@ -1906,6 +1911,11 @@ void CAscApplicationManagerWrapper::showUpdateMessage(const bool error,
                     QDesktopServices::openUrl(QUrl(DOWNLOAD_PAGE, QUrl::TolerantMode));
 #endif
                     break;
+                case MODAL_RESULT_SKIP: {
+                    m_pUpdateManager->skipVersion();
+                    AscAppManager::sendCommandTo(0, "updates:checking", "{\"version\":\"no\"}");
+                    break;
+                }
                 default:
                     break;
                 }
@@ -1940,12 +1950,17 @@ void CAscApplicationManagerWrapper::showStartInstallMessage()
     int res = CMessage::showMessage(mainWindow()->handle(),
                                     tr("Do you want to install a new version of the program?\n"
                                        "To continue the installation, you must to close current session."),
-                                    MsgType::MSG_INFO, MsgBtns::mbYesNo);
+                                    MsgType::MSG_INFO, MsgBtns::mbYesDefSkipNo);
     switch (res)
     {
     case MODAL_RESULT_YES: {
         m_pUpdateManager->scheduleRestartForUpdate();
         mainWindow()->close();
+        break;
+    }
+    case MODAL_RESULT_SKIP: {
+        m_pUpdateManager->skipVersion();
+        AscAppManager::sendCommandTo(0, "updates:checking", "{\"version\":\"no\"}");
         break;
     }
     default:

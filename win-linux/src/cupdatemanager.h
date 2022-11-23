@@ -52,9 +52,8 @@ public:
 
     void setNewUpdateSetting(const QString& _rate);
     void cancelLoading();
+    void skipVersion();
 #ifdef Q_OS_WIN
-    QStringList getInstallArguments() const;
-    QString getInstallPackagePath() const;
     QString getVersion() const;
     void scheduleRestartForUpdate();
     void handleAppClose();
@@ -99,6 +98,7 @@ private:
         NEVER=0, DAY=1, WEEK=2
     };
 #endif
+    QTimer      *m_pCheckOnStartupTimer = nullptr;
     wstring     m_checkUrl;
     int         m_downloadMode;
     QString     m_newVersion;
