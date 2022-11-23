@@ -31,12 +31,10 @@
 */
 
 #include "chelp.h"
-#include <iostream>
+#include <stdio.h>
 #ifdef _WIN32
 # include <Windows.h>
 #endif
-
-#define print(a) std::cout << a << std::endl
 
 
 CHelp::CHelp()
@@ -72,5 +70,10 @@ void CHelp::out()
     if (AttachConsole(ATTACH_PARENT_PROCESS))
         freopen_s(&pFile, "CONOUT$", "w", stdout);
 #endif
-    print(help);
+    fprintf(stdout, help);
+    fflush(stdout);
+#ifdef _WIN32
+    if (pFile)
+        fclose(pFile);
+#endif
 }
