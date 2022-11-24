@@ -31,7 +31,11 @@
 */
 
 #include "chelp.h"
-#include <QDebug>
+#include <stdio.h>
+#ifdef _WIN32
+# include <Windows.h>
+#endif
+
 
 CHelp::CHelp()
 {
@@ -40,21 +44,36 @@ CHelp::CHelp()
 
 void CHelp::out()
 {
-    qWarning() << "Desktop editors for cloud portal.";
-    qWarning() << "";
-    qWarning() << "keys:";
-    qWarning() << "    --custom-title-bar turns off system title bar";
-    qWarning() << "    --system-title-bar turns on system title bar";
-    qWarning() << "    --keeplang=en keeps the language";
-    qWarning() << "    --lang=en applies the language for the current session";
-    qWarning() << "    --new=[doc|cell|slide] creates new document/spreadsheet/presentation";
-    qWarning() << "    --review=path/to/file to open document in review mode in separate window";
-    qWarning() << "    --view=path/to/file to open document in view mode in separate window";
-    qWarning() << "    --single-window-app document will be opened in independed process";
-    qWarning() << "    --force-use-tab document will be opend in new tab instead of new separate window";
-    qWarning() << "    --geometry=default reset window geometry";
-    qWarning() << "    --xdg-desktop-portal use portals instead of gtk file chooser (the flag is saved for subsequent sessions)";
-    qWarning() << "    --xdg-desktop-portal=default use portals instead of gtk file chooser for current session";
-    qWarning() << "    --native-file-dialog use non Qt dialog";
-    qWarning() << "    --geometry=default reset window geometry";
+    const char help[] =
+        "\n\n"
+        "Desktop editors for cloud portal.\n"
+        "\n"
+        "keys:\n"
+        "    --custom-title-bar turns off system title bar\n"
+        "    --system-title-bar turns on system title bar\n"
+        "    --keeplang=en keeps the language\n"
+        "    --lang=en applies the language for the current session\n"
+        "    --new=[doc|cell|slide] creates new document/spreadsheet/presentation\n"
+        "    --review=path/to/file to open document in review mode in separate window\n"
+        "    --view=path/to/file to open document in view mode in separate window\n"
+        "    --single-window-app document will be opened in independed process\n"
+        "    --force-use-tab document will be opend in new tab instead of new separate window\n"
+        "    --geometry=default reset window geometry\n"
+        "    --xdg-desktop-portal use portals instead of gtk file chooser (the flag is saved for subsequent sessions)\n"
+        "    --xdg-desktop-portal=default use portals instead of gtk file chooser for current session\n"
+        "    --native-file-dialog use non Qt dialog\n"
+        "    --updates-appcast-url=\"<URL>\" set URL for updates\n"
+        "    --updates-reset reset all update options\n";
+
+#ifdef _WIN32
+    FILE *pFile = NULL;
+    if (AttachConsole(ATTACH_PARENT_PROCESS))
+        freopen_s(&pFile, "CONOUT$", "w", stdout);
+#endif
+    fprintf(stdout, help);
+    fflush(stdout);
+#ifdef _WIN32
+    if (pFile)
+        fclose(pFile);
+#endif
 }
