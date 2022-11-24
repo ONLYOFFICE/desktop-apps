@@ -933,6 +933,7 @@ void CAscApplicationManagerWrapper::initializeApp()
 
     if ( AscAppManager::IsUseSystemScaling() ) {
         AscAppManager::setUserSettings(L"force-scale", L"default");
+        AscAppManager::setUserSettings(L"system-scale", L"1");
     }
 
 #ifdef _WIN32
@@ -1490,7 +1491,6 @@ bool CAscApplicationManagerWrapper::applySettings(const wstring& wstrjson)
 
         if ( objRoot.contains("uiscaling") ) {
             wstring sets;
-            setUserSettings(L"system-scale", L"0");
             switch (objRoot["uiscaling"].toString().toInt()) {
             case 100: sets = L"1"; break;
             case 125: sets = L"1.25"; break;
@@ -1499,9 +1499,9 @@ bool CAscApplicationManagerWrapper::applySettings(const wstring& wstrjson)
             case 200: sets = L"2"; break;
             default:
                 sets = L"default";
-                setUserSettings(L"system-scale", L"1");
             }
 
+            setUserSettings(L"system-scale", sets != L"default" ? L"0" : L"1");
             setUserSettings(L"force-scale", sets);
             m_pMainWindow->updateScaling();
 
