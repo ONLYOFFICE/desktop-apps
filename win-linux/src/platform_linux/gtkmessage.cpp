@@ -90,6 +90,8 @@ int GtkMsg::showMessage(QWidget *parent,
                                     primaryText.toLocal8Bit().data());
 
     g_signal_connect(G_OBJECT(dialog), "realize", G_CALLBACK(set_parent), (gpointer)&parent_xid);
+    g_signal_connect(G_OBJECT(dialog), "map_event", G_CALLBACK(set_focus), NULL);
+    g_signal_connect(G_OBJECT(dialog), "focus_out_event", G_CALLBACK(set_focus), NULL);
     //gtk_window_set_title(GTK_WINDOW(dialog), APP_TITLE);
     if (!secondaryText.isEmpty())
         gtk_message_dialog_format_secondary_text(GTK_MESSAGE_DIALOG(dialog), "%s", secondaryText.toLocal8Bit().data());
