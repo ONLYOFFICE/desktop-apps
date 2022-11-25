@@ -288,7 +288,7 @@
   <ENTRY id="Property.REGISTER_XLSX">
     <STRING lang="ru" value="1"/>
   </ENTRY>
-  <ENTRY id="Property.REGISTERXLTX">
+  <ENTRY id="Property.REGISTER_XLTX">
     <STRING lang="ru" value="1"/>
   </ENTRY>
   <ENTRY id="Property.REGISTER_XML">
