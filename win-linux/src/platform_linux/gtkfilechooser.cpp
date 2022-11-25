@@ -6,7 +6,7 @@
 #include <gdk/gdkx.h>
 
 
-char* substr(const char *src, int m, int n)
+static char* substr(const char *src, int m, int n)
 {
     int len = n - m;
     char *dest = (char*)malloc(sizeof(char) * (len + 1));
@@ -18,7 +18,7 @@ char* substr(const char *src, int m, int n)
     return dest - len;
 }
 
-void parseString(GSList** list,
+static void parseString(GSList** list,
                       const char* str,
                       const char* delim)
 {
@@ -46,7 +46,7 @@ static gboolean set_parent(GtkWidget *dialog, gpointer data)
     return FALSE;
 }
 
-void nativeFileDialog(const Window &parent_xid,
+static void nativeFileDialog(const Window &parent_xid,
                       Gtk::Mode mode,
                       char*** filenames,
                       int* files_count,
