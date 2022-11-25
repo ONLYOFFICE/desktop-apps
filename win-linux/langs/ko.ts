@@ -326,14 +326,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Zip Archive (*.zip)</source>
-        <translation type="vanished">Zip 아카이브(*.zip)</translation>
-    </message>
-    <message>
-        <source>JPG Image (*.jpg, *.jpeg)</source>
-        <translation type="vanished">JPG 이미지(*.jpg *.jpeg)</translation>
-    </message>
-    <message>
         <location filename="../src/cfiledialog.cpp" line="256"/>
         <source>PNG Image (*.png)</source>
         <translation>PNG 이미지(*.png)</translation>

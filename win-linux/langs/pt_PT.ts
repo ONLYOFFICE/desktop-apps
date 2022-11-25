@@ -330,14 +330,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Zip Archive (*.zip)</source>
-        <translation type="vanished">Arquivo de Zip (*.zip)</translation>
-    </message>
-    <message>
-        <source>JPG Image (*.jpg, *.jpeg)</source>
-        <translation type="vanished">Imagem JPG (*.jpg *.jpeg)</translation>
-    </message>
-    <message>
         <location filename="../src/cfiledialog.cpp" line="256"/>
         <source>PNG Image (*.png)</source>
         <translation>Imagem PNG (*.png)</translation>
