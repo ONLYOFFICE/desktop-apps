@@ -596,10 +596,27 @@ void CFileDialogWrapper::setFormats(std::vector<int>& vf)
 
 int CFileDialogWrapper::getKey(const QString &value)
 {
+#ifdef Q_OS_LINUX
+    QString _sv{value};
+    if ( WindowHelper::getEnvInfo() == "GNOME" ) {
+        QRegularExpression _re_strbegin("^([\\w\\s\\d]+)", QRegularExpression::CaseInsensitiveOption);
+        QRegularExpressionMatch _re_match = _re_strbegin.match(value);
+
+        if ( _re_match.hasMatch() ) {
+            _sv = _re_match.captured(1);
+        }
+    }
+
+    foreach (QString v, m_mapFilters) {
+        if (v.startsWith(_sv))
+           return m_mapFilters.key(v);
+    }
+#elif
     foreach (QString v, m_mapFilters) {
         if (v == value)
            return m_mapFilters.key(value);
     }
+#endif
     return -1;
 }
 
