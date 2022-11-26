@@ -36,6 +36,12 @@
 		5AAE526F28B53B9A001E31F4 /* ASCThemesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AAE526C28B53B9A001E31F4 /* ASCThemesController.m */; };
 		5AB20F60274D35F3003732A0 /* file-docxf.icns in Resources */ = {isa = PBXBuildFile; fileRef = 5AB20F5D274D35F2003732A0 /* file-docxf.icns */; };
 		5AB20F62274D360A003732A0 /* file-oform.icns in Resources */ = {isa = PBXBuildFile; fileRef = 5AB20F61274D360A003732A0 /* file-oform.icns */; };
+		5AD24E2A2902AE3C00748926 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AD24E292902AE3C00748926 /* Sparkle.framework */; };
+		5AD24E2B2902AE3C00748926 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AD24E292902AE3C00748926 /* Sparkle.framework */; };
+		5AD24E2C2902AE3C00748926 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AD24E292902AE3C00748926 /* Sparkle.framework */; };
+		5AD24E2D2914641300748926 /* Sparkle.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 5AD24E292902AE3C00748926 /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		5AD24E2E291464E100748926 /* Sparkle.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 5AD24E292902AE3C00748926 /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		5AD24E2F2914651000748926 /* Sparkle.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 5AD24E292902AE3C00748926 /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5AFA1CF1277A6D2900619952 /* file-docxf.icns in Resources */ = {isa = PBXBuildFile; fileRef = 5AB20F5D274D35F2003732A0 /* file-docxf.icns */; };
 		5AFA1CF2277A6D4C00619952 /* file-oform.icns in Resources */ = {isa = PBXBuildFile; fileRef = 5AB20F61274D360A003732A0 /* file-oform.icns */; };
 		5AFA1CF3277A6DA600619952 /* file-oform.icns in Resources */ = {isa = PBXBuildFile; fileRef = 5AB20F61274D360A003732A0 /* file-oform.icns */; };
@@ -107,7 +113,6 @@
 		FC0BD6C4258B63F700C47F95 /* libooxmlsignature.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FC592513208DE7440006F664 /* libooxmlsignature.dylib */; };
 		FC0BD6C5258B63F700C47F95 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC981B3B1C744D39006F669C /* WebKit.framework */; };
 		FC0BD6C6258B63F700C47F95 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC6718301BD918CA0028600F /* Security.framework */; };
-		FC0BD6C7258B63F700C47F95 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC8EFE001C2A867B00BB2A43 /* Sparkle.framework */; };
 		FC0BD6C9258B63F700C47F95 /* file-otp.icns in Resources */ = {isa = PBXBuildFile; fileRef = FCA3F2FF2570EC9500DCAB12 /* file-otp.icns */; };
 		FC0BD6CA258B63F700C47F95 /* file-fb2.icns in Resources */ = {isa = PBXBuildFile; fileRef = FCA3F3022570EC9500DCAB12 /* file-fb2.icns */; };
 		FC0BD6CB258B63F700C47F95 /* file-epub.icns in Resources */ = {isa = PBXBuildFile; fileRef = FCA3F3062570EC9500DCAB12 /* file-epub.icns */; };
@@ -148,7 +153,6 @@
 		FC0BD6F0258B63F700C47F95 /* file-txt.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF0A1E94E16A00718A12 /* file-txt.icns */; };
 		FC0BD6F1258B63F700C47F95 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCBC42771B9D650500405301 /* Main.storyboard */; };
 		FC0BD6F2258B63F700C47F95 /* file-xml.icns in Resources */ = {isa = PBXBuildFile; fileRef = FCA3F3032570EC9500DCAB12 /* file-xml.icns */; };
-		FC0BD6F5258B63F700C47F95 /* Sparkle.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = FC8EFE001C2A867B00BB2A43 /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FC1127591BBAAC8000AA3648 /* ASCPopoverLightView.m in Sources */ = {isa = PBXBuildFile; fileRef = FC1127581BBAAC8000AA3648 /* ASCPopoverLightView.m */; };
 		FC13B5292080BBF500524968 /* NSImage+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = FC13B5282080BBF500524968 /* NSImage+Extensions.m */; };
 		FC148B1F215CEF900054FF91 /* NSApplication+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = FC148B1E215CEF900054FF91 /* NSApplication+Extensions.m */; };
@@ -182,8 +186,6 @@
 		FC8AA3152084C52500549F2D /* ASCDocumentSignatureController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC8AA3142084C52500549F2D /* ASCDocumentSignatureController.m */; };
 		FC8AA31A2084C54D00549F2D /* ASCDocumentSignatureStepController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC8AA3192084C54D00549F2D /* ASCDocumentSignatureStepController.mm */; };
 		FC8DDD3D1C31381B00A2AB22 /* ASCReplacePresentationAnimator.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC8DDD3C1C31381B00A2AB22 /* ASCReplacePresentationAnimator.mm */; };
-		FC8EFE011C2A867B00BB2A43 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC8EFE001C2A867B00BB2A43 /* Sparkle.framework */; };
-		FC8EFE031C2A86DD00BB2A43 /* Sparkle.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = FC8EFE001C2A867B00BB2A43 /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FC981B3C1C744D39006F669C /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC981B3B1C744D39006F669C /* WebKit.framework */; };
 		FC98AF0E1E94E16A00718A12 /* file-csv.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AEFC1E94E16A00718A12 /* file-csv.icns */; };
 		FC98AF111E94E16A00718A12 /* file-djvu.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AEFD1E94E16A00718A12 /* file-djvu.icns */; };
@@ -293,7 +295,6 @@
 		FCB4C6FD26DD018B0012C20D /* ASCReplacePresentationAnimator.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC8DDD3C1C31381B00A2AB22 /* ASCReplacePresentationAnimator.mm */; };
 		FCB4C70126DD018B0012C20D /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC981B3B1C744D39006F669C /* WebKit.framework */; };
 		FCB4C70226DD018B0012C20D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC6718301BD918CA0028600F /* Security.framework */; };
-		FCB4C70326DD018B0012C20D /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC8EFE001C2A867B00BB2A43 /* Sparkle.framework */; };
 		FCB4C70526DD018B0012C20D /* file-otp.icns in Resources */ = {isa = PBXBuildFile; fileRef = FCA3F2FF2570EC9500DCAB12 /* file-otp.icns */; };
 		FCB4C70626DD018B0012C20D /* file-fb2.icns in Resources */ = {isa = PBXBuildFile; fileRef = FCA3F3022570EC9500DCAB12 /* file-fb2.icns */; };
 		FCB4C70726DD018B0012C20D /* file-epub.icns in Resources */ = {isa = PBXBuildFile; fileRef = FCA3F3062570EC9500DCAB12 /* file-epub.icns */; };
@@ -334,7 +335,6 @@
 		FCB4C72C26DD018B0012C20D /* file-txt.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF0A1E94E16A00718A12 /* file-txt.icns */; };
 		FCB4C72D26DD018B0012C20D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCBC42771B9D650500405301 /* Main.storyboard */; };
 		FCB4C72E26DD018B0012C20D /* file-xml.icns in Resources */ = {isa = PBXBuildFile; fileRef = FCA3F3032570EC9500DCAB12 /* file-xml.icns */; };
-		FCB4C73126DD018B0012C20D /* Sparkle.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = FC8EFE001C2A867B00BB2A43 /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FCB4C77C26DD02750012C20D /* EULA.html in Resources */ = {isa = PBXBuildFile; fileRef = FCB4C76626DD02640012C20D /* EULA.html */; };
 		FCB4C77D26DD027B0012C20D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FCB4C76826DD02640012C20D /* InfoPlist.strings */; };
 		FCB4C77F26DD02960012C20D /* EULA.html in Resources */ = {isa = PBXBuildFile; fileRef = FCB4C75026DD02630012C20D /* EULA.html */; };
@@ -387,7 +387,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				FC0BD6F5258B63F700C47F95 /* Sparkle.framework in Copy Frameworks */,
+				5AD24E2F2914651000748926 /* Sparkle.framework in Copy Frameworks */,
 			);
 			name = "Copy Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -398,7 +398,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				FC8EFE031C2A86DD00BB2A43 /* Sparkle.framework in Copy Frameworks */,
+				5AD24E2D2914641300748926 /* Sparkle.framework in Copy Frameworks */,
 			);
 			name = "Copy Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -409,7 +409,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				FCB4C73126DD018B0012C20D /* Sparkle.framework in Copy Frameworks */,
+				5AD24E2E291464E100748926 /* Sparkle.framework in Copy Frameworks */,
 			);
 			name = "Copy Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -782,6 +782,7 @@
 		5AAE527028B53C1F001E31F4 /* ASCThemesController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ASCThemesController.h; sourceTree = "<group>"; };
 		5AB20F5D274D35F2003732A0 /* file-docxf.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "file-docxf.icns"; sourceTree = "<group>"; };
 		5AB20F61274D360A003732A0 /* file-oform.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "file-oform.icns"; sourceTree = "<group>"; };
+		5AD24E292902AE3C00748926 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = Vendor/Sparkle/Sparkle.framework; sourceTree = SOURCE_ROOT; };
 		BE6251B922BD089100656116 /* dictionaries */ = {isa = PBXFileReference; lastKnownFileType = folder; name = dictionaries; path = ../../../../dictionaries; sourceTree = "<group>"; };
 		BE95F0A623E9FF590045E0CB /* mac_cefview.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mac_cefview.h; sourceTree = "<group>"; };
 		FC033D251BB13B9900F6C55F /* mac_application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mac_application.h; sourceTree = "<group>"; };
@@ -892,7 +893,6 @@
 		FC8B986F201612A00073D57C /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/MoveApplication.strings"; sourceTree = "<group>"; };
 		FC8DDD3B1C31381B00A2AB22 /* ASCReplacePresentationAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASCReplacePresentationAnimator.h; sourceTree = "<group>"; };
 		FC8DDD3C1C31381B00A2AB22 /* ASCReplacePresentationAnimator.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ASCReplacePresentationAnimator.mm; sourceTree = "<group>"; };
-		FC8EFE001C2A867B00BB2A43 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = Vendor/Sparkle/Sparkle.framework; sourceTree = SOURCE_ROOT; };
 		FC981B3B1C744D39006F669C /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		FC98AEFC1E94E16A00718A12 /* file-csv.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "file-csv.icns"; sourceTree = "<group>"; };
 		FC98AEFD1E94E16A00718A12 /* file-djvu.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "file-djvu.icns"; sourceTree = "<group>"; };
@@ -1115,9 +1115,9 @@
 			files = (
 				FC0BD6C3258B63F700C47F95 /* libascdocumentscore.dylib in Frameworks */,
 				FC0BD6C4258B63F700C47F95 /* libooxmlsignature.dylib in Frameworks */,
+				5AD24E2C2902AE3C00748926 /* Sparkle.framework in Frameworks */,
 				FC0BD6C5258B63F700C47F95 /* WebKit.framework in Frameworks */,
 				FC0BD6C6258B63F700C47F95 /* Security.framework in Frameworks */,
-				FC0BD6C7258B63F700C47F95 /* Sparkle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1127,9 +1127,9 @@
 			files = (
 				FCB4C70126DD018B0012C20D /* WebKit.framework in Frameworks */,
 				FCB4C78D26DE3CBB0012C20D /* libascdocumentscore.dylib in Frameworks */,
+				5AD24E2A2902AE3C00748926 /* Sparkle.framework in Frameworks */,
 				FCB4C78B26DE3CBB0012C20D /* libooxmlsignature.dylib in Frameworks */,
 				FCB4C70226DD018B0012C20D /* Security.framework in Frameworks */,
-				FCB4C70326DD018B0012C20D /* Sparkle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1139,9 +1139,9 @@
 			files = (
 				FCF2762122C10DA400984E83 /* libascdocumentscore.dylib in Frameworks */,
 				FCF2762022C10D9400984E83 /* libooxmlsignature.dylib in Frameworks */,
+				5AD24E2B2902AE3C00748926 /* Sparkle.framework in Frameworks */,
 				FC981B3C1C744D39006F669C /* WebKit.framework in Frameworks */,
 				FC6718311BD918CA0028600F /* Security.framework in Frameworks */,
-				FC8EFE011C2A867B00BB2A43 /* Sparkle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1388,8 +1388,8 @@
 		FC6718321BD918D90028600F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5AD24E292902AE3C00748926 /* Sparkle.framework */,
 				FC981B3B1C744D39006F669C /* WebKit.framework */,
-				FC8EFE001C2A867B00BB2A43 /* Sparkle.framework */,
 				FC6718301BD918CA0028600F /* Security.framework */,
 			);
 			name = Frameworks;
