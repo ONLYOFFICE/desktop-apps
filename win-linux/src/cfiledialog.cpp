@@ -611,7 +611,7 @@ int CFileDialogWrapper::getKey(const QString &value)
         if (v.startsWith(_sv))
            return m_mapFilters.key(v);
     }
-#elif
+#else
     foreach (QString v, m_mapFilters) {
         if (v == value)
            return m_mapFilters.key(value);
