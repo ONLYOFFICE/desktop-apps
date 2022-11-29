@@ -599,7 +599,7 @@ int CFileDialogWrapper::getKey(const QString &value)
 #ifdef Q_OS_LINUX
     QString _sv{value};
     if ( WindowHelper::getEnvInfo() == "GNOME" ) {
-        QRegularExpression _re_strbegin("^([\\w\\s\\d]+)", QRegularExpression::CaseInsensitiveOption);
+        QRegularExpression _re_strbegin("^(.+)\\s\\（", QRegularExpression::CaseInsensitiveOption);
         QRegularExpressionMatch _re_match = _re_strbegin.match(value);
 
         if ( _re_match.hasMatch() ) {
