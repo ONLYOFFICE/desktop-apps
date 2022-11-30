@@ -1,12 +1,12 @@
 
 #include <stdio.h>
 #include <glib.h>
-#include <gtk/gtk.h>
+#include "gtkutils.h"
 #include "gtkfilechooser.h"
 #include <gdk/gdkx.h>
 
 
-char* substr(const char *src, int m, int n)
+static char* substr(const char *src, int m, int n)
 {
     int len = n - m;
     char *dest = (char*)malloc(sizeof(char) * (len + 1));
@@ -18,7 +18,7 @@ char* substr(const char *src, int m, int n)
     return dest - len;
 }
 
-void parseString(GSList** list,
+static void parseString(GSList** list,
                       const char* str,
                       const char* delim)
 {
@@ -31,22 +31,7 @@ void parseString(GSList** list,
     free(_str);
 }
 
-static gboolean set_parent(GtkWidget *dialog, gpointer data)
-{
-    GdkWindow *gdk_dialog = gtk_widget_get_window(dialog);
-    Window parent_xid = *(Window*)data;
-    GdkDisplay *gdk_display = gdk_display_get_default();
-    if (parent_xid != 0L && gdk_display && gdk_dialog) {
-        GdkWindow *gdk_qtparent = gdk_x11_window_foreign_new_for_display(gdk_display, parent_xid);
-        if (gdk_qtparent) {
-            gdk_window_set_transient_for(gdk_dialog, gdk_qtparent);
-            return TRUE;
-        }
-    }
-    return FALSE;
-}
-
-void nativeFileDialog(const Window &parent_xid,
+static void nativeFileDialog(const Window &parent_xid,
                       Gtk::Mode mode,
                       char*** filenames,
                       int* files_count,
@@ -76,6 +61,8 @@ void nativeFileDialog(const Window &parent_xid,
     gtk_window_set_modal(GTK_WINDOW(dialog), True);
     //g_signal_connect(G_OBJECT(dialog), "destroy", G_CALLBACK(gtk_main_quit), NULL);
     g_signal_connect(G_OBJECT(dialog), "realize", G_CALLBACK(set_parent), (gpointer)&parent_xid);
+    g_signal_connect(G_OBJECT(dialog), "map_event", G_CALLBACK(set_focus), NULL);
+    g_signal_connect(G_OBJECT(dialog), "focus_out_event", G_CALLBACK(set_focus), NULL);
     GtkFileChooser *chooser = GTK_FILE_CHOOSER(dialog);
     if (mode == Gtk::Mode::OPEN || mode == Gtk::Mode::FOLDER) {
         gtk_file_chooser_set_current_folder(chooser, path);
