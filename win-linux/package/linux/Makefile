@@ -79,7 +79,7 @@ else ifeq ($(DISTRIB_CODENAME),xenial)
   DEB_RELEASE      := stretch
   TAR_RELEASE      := gcc5
 endif
-DEB_ASTRA_RELEASE  := smolensk-signed
+DEB_ASTRA_RELEASE  := astra-signed
 
 RPM = $(RPM_PACKAGE_DIR)/$(PACKAGE_NAME)-$(PACKAGE_VERSION)$(RPM_RELEASE:%=.%).$(RPM_ARCH).rpm
 APT_RPM = $(APT_RPM_PACKAGE_DIR)/$(PACKAGE_NAME)-$(PACKAGE_VERSION)$(APT_RPM_RELEASE:%=.%).$(APT_RPM_ARCH).rpm
