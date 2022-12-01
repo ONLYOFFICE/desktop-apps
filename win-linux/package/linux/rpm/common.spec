@@ -132,6 +132,10 @@ fi
 xdg-mime install --mode system /opt/%{_desktopeditors_prefix}/mimetypes/onlyoffice-docxf.xml
 xdg-mime install --mode system /opt/%{_desktopeditors_prefix}/mimetypes/onlyoffice-oform.xml
 
+if [ "${NEW_DOCUMENT_TEMPLATES-false}" = "true" ] ; then
+  sed -i -e 's/$1/--new-document-templates/' %{_bindir}/%{_desktopeditors_exec}
+fi
+
 # Update cache of .desktop file MIME types. Non-fatal since it's just a cache.
 #update-desktop-database > /dev/null 2>&1 || true
 
