@@ -42,6 +42,7 @@
 #include "ceditortools.h"
 #include "utils.h"
 #include "components/cmessage.h"
+#include "cprintdata.h"
 #include <QApplication>
 
 #ifdef DOCUMENTSCORE_OPENSSL_SUPPORT
@@ -59,6 +60,7 @@ public:
 
         GET_REGISTRY_USER(reg_user);
         m_openEditorWindow = reg_user.value("editorWindowMode").toBool();
+        m_printData = std::make_shared<CPrintData>();
     }
 
     virtual ~CAscApplicationManagerWrapper_Private() {}
@@ -376,9 +378,10 @@ protected:
     }
 
 public:
-    CAscApplicationManagerWrapper& m_appmanager;
+    CAscApplicationManagerWrapper& m_appmanager;    
     QPointer<QCefView> m_pStartPanel;
     bool m_openEditorWindow = false;
+    std::shared_ptr<CPrintData> m_printData;
 };
 
 //CAscApplicationManagerWrapper::CAscApplicationManagerWrapper()

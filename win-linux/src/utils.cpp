@@ -47,6 +47,7 @@
 #include <QProcess>
 #include <QScreen>
 #include <QStorageInfo>
+#include <QPrinterInfo>
 #include <regex>
 
 #include "cascapplicationmanagerwrapper.h"
@@ -162,6 +163,7 @@ namespace EditorJSVariables {
         else if ( !QString(URL_WEBAPPS_HELP).isEmpty() )
             vars_object["helpUrl"] = URL_WEBAPPS_HELP;
 #endif
+        vars_object["defaultPrinterName"] = QPrinterInfo::defaultPrinterName();
     }
 
     auto setVariable(const QString& name, const QString& var) -> void {

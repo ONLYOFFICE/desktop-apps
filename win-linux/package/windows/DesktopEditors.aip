@@ -19,7 +19,7 @@
     <ROW Property="ARPURLINFOABOUT" Value="http://www.onlyoffice.com"/>
     <ROW Property="ARPURLUPDATEINFO" Value="http://www.onlyoffice.com/download.aspx"/>
     <ROW Property="ASCC_REG_PREFIX" Value="ASC"/>
-    <ROW Property="ASCC_REG_REGISTERED_APP_NAME" Value="ONLYOFFICE Editors"/>
+    <ROW Property="ASSOC_PROG_ID" Value="[|ASCC_REG_PREFIX].Editors"/>
     <ROW Property="ASSOC_APP_FRIENDLY_NAME" Value="ONLYOFFICE Editors"/>
     <ROW Property="ASSOC_PROG_ID" Value="[|ASCC_REG_PREFIX].Editors"/>
     <ROW Property="AiFeatIcodjvu" Value="djvu.exe" Type="8"/>
@@ -111,6 +111,7 @@
     <ROW Component="AI_CustomARPName" ComponentId="{026D2C20-2E12-4C52-B7E0-34DBED460A0C}" Directory_="APPDIR" Attributes="260" KeyPath="DisplayName" Options="1"/>
     <ROW Component="AI_DisableModify" ComponentId="{4DA67DA3-424D-4EB7-8B0F-7AE95B073B87}" Directory_="APPDIR" Attributes="260" KeyPath="NoModify" Options="1"/>
     <ROW Component="APPDIR" ComponentId="{967A56B9-E2F1-42F8-869D-7791391AFB48}" Directory_="APPDIR" Attributes="0"/>
+    <ROW Component="CheckForUpdates" ComponentId="{3DCD7E37-9F70-475E-9C31-D72353971685}" Directory_="APPDIR" Attributes="260" KeyPath="CheckForUpdates"/>
     <ROW Component="ASCC_REG_REGISTERED_APP_NAME" ComponentId="{C8863101-46C1-4E82-9386-1AD91948DE6A}" Directory_="APPDIR" Attributes="260" KeyPath="ASCC_REG_REGISTERED_APP_NAME"/>
     <ROW Component="ASSOC_PROG_ID" ComponentId="{9D33C055-B150-47B2-AB67-51C8FECB3260}" Directory_="APPDIR" Attributes="260" KeyPath="_"/>
     <ROW Component="AppPath" ComponentId="{F5736577-3D67-460A-B2AC-EA0010D0FDFF}" Directory_="APPDIR" Attributes="260" KeyPath="Path_1"/>
@@ -141,6 +142,7 @@
     <ROW Component="MicrosoftVisualC_1" ComponentId="{B176A670-4763-46DF-A796-3B8AB885DA4A}" Directory_="APPDIR" Attributes="260" KeyPath="MicrosoftVisualC_1" Options="2"/>
     <ROW Component="MicrosoftVisualC_2" ComponentId="{B74A440D-1D6B-4EB1-BB72-605A30AF2D28}" Directory_="APPDIR" Attributes="260" KeyPath="MicrosoftVisualC_2" Options="2"/>
     <ROW Component="MicrosoftVisualC_3" ComponentId="{A9673528-11FC-4EBA-896E-6F2998F6601F}" Directory_="APPDIR" Attributes="260" KeyPath="MicrosoftVisualC_3" Options="2"/>
+    <ROW Component="Path" ComponentId="{F5736577-3D67-460A-B2AC-EA0010D0FDFF}" Directory_="APPDIR" Attributes="260" KeyPath="Path_1"/>
     <ROW Component="SHORTCUTDIR" ComponentId="{CB73F99E-8C5E-4F7A-9E2F-25EDC9FBDFC0}" Directory_="SHORTCUTDIR" Attributes="0"/>
     <ROW Component="Software" ComponentId="{90AC3C8E-9762-4613-B621-A0EFD3868D77}" Directory_="APPDIR" Attributes="260" KeyPath="Software_3"/>
     <ROW Component="Version" ComponentId="{3914F236-2B4C-4E31-95FA-F57F91FA19C9}" Directory_="APPDIR" Attributes="260" KeyPath="Version_1"/>
@@ -828,33 +830,33 @@
     <ROW Dialog="ExtendedInstallDlg" HCentering="50" VCentering="50" Width="370" Height="270" Attributes="3" Title="[ProductName] [Setup]" Control_Default="Next" Control_Cancel="Cancel"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiExtComponent">
-    <ROW Extension="doc" Component_="DesktopEditors.exe" ProgId_="[|Manufacturer].[|ProductName].doc" Feature_="doc" Options="51"/>
-    <ROW Extension="docx" Component_="DesktopEditors.exe" ProgId_="[|Manufacturer].[|ProductName].docx" Feature_="docx" Options="51"/>
-    <ROW Extension="dotx" Component_="DesktopEditors.exe" ProgId_="[|Manufacturer].[|ProductName].dotx" Feature_="dotx" Options="51"/>
-    <ROW Extension="fb2" Component_="DesktopEditors.exe" ProgId_="[|Manufacturer].[|ProductName].fb2" Feature_="fb2" Options="51"/>
-    <ROW Extension="odt" Component_="DesktopEditors.exe" ProgId_="[|Manufacturer].[|ProductName].odt" Feature_="odt" Options="51"/>
-    <ROW Extension="ott" Component_="DesktopEditors.exe" ProgId_="[|Manufacturer].[|ProductName].ott" Feature_="ott" Options="51"/>
-    <ROW Extension="rtf" Component_="DesktopEditors.exe" ProgId_="[|Manufacturer].[|ProductName].rtf" Feature_="rtf" Options="51"/>
-    <ROW Extension="txt" Component_="DesktopEditors.exe" ProgId_="[|Manufacturer].[|ProductName].txt" Feature_="txt" Options="51"/>
-    <ROW Extension="pdf" Component_="DesktopEditors.exe" ProgId_="[|Manufacturer].[|ProductName].pdf" Feature_="pdf" Options="51"/>
-    <ROW Extension="html" Component_="DesktopEditors.exe" ProgId_="[|Manufacturer].[|ProductName].html" Feature_="html" Options="51"/>
-    <ROW Extension="epub" Component_="DesktopEditors.exe" ProgId_="[|Manufacturer].[|ProductName].epub" Feature_="epub" Options="51"/>
-    <ROW Extension="xps" Component_="DesktopEditors.exe" ProgId_="[|Manufacturer].[|ProductName].xps" Feature_="xps" Options="51"/>
-    <ROW Extension="djvu" Component_="DesktopEditors.exe" ProgId_="[|Manufacturer].[|ProductName].djvu" Feature_="djvu" Options="51"/>
-    <ROW Extension="xml" Component_="DesktopEditors.exe" ProgId_="[|Manufacturer].[|ProductName].xml" Feature_="xml" Options="51"/>
-    <ROW Extension="ppt" Component_="DesktopEditors.exe" ProgId_="[|Manufacturer].[|ProductName].ppt" Feature_="ppt" Options="51"/>
-    <ROW Extension="pptx" Component_="DesktopEditors.exe" ProgId_="[|Manufacturer].[|ProductName].pptx" Feature_="pptx" Options="51"/>
-    <ROW Extension="potx" Component_="DesktopEditors.exe" ProgId_="[|Manufacturer].[|ProductName].potx" Feature_="potx" Options="51"/>
-    <ROW Extension="odp" Component_="DesktopEditors.exe" ProgId_="[|Manufacturer].[|ProductName].odp" Feature_="odp" Options="51"/>
-    <ROW Extension="otp" Component_="DesktopEditors.exe" ProgId_="[|Manufacturer].[|ProductName].otp" Feature_="otp" Options="51"/>
-    <ROW Extension="xls" Component_="DesktopEditors.exe" ProgId_="[|Manufacturer].[|ProductName].xls" Feature_="xls" Options="51"/>
-    <ROW Extension="xlsx" Component_="DesktopEditors.exe" ProgId_="[|Manufacturer].[|ProductName].xlsx" Feature_="xlsx" Options="51"/>
-    <ROW Extension="xltx" Component_="DesktopEditors.exe" ProgId_="[|Manufacturer].[|ProductName].xltx" Feature_="xltx" Options="51"/>
-    <ROW Extension="ods" Component_="DesktopEditors.exe" ProgId_="[|Manufacturer].[|ProductName].ods" Feature_="ods" Options="51"/>
-    <ROW Extension="ots" Component_="DesktopEditors.exe" ProgId_="[|Manufacturer].[|ProductName].ots" Feature_="ots" Options="51"/>
-    <ROW Extension="csv" Component_="DesktopEditors.exe" ProgId_="[|Manufacturer].[|ProductName].csv" Feature_="csv" Options="51"/>
-    <ROW Extension="docxf" Component_="DesktopEditors.exe" ProgId_="[|Manufacturer].[|ProductName].docxf" Feature_="docxf" Options="51"/>
-    <ROW Extension="oform" Component_="DesktopEditors.exe" ProgId_="[|Manufacturer].[|ProductName].oform" Feature_="oform" Options="51"/>
+    <ROW Extension="doc" Component_="DesktopEditors.exe" ProgId_="[|ASSOC_PROG_ID].doc" Feature_="doc" Options="51"/>
+    <ROW Extension="docx" Component_="DesktopEditors.exe" ProgId_="[|ASSOC_PROG_ID].docx" Feature_="docx" Options="51"/>
+    <ROW Extension="dotx" Component_="DesktopEditors.exe" ProgId_="[|ASSOC_PROG_ID].dotx" Feature_="dotx" Options="51"/>
+    <ROW Extension="fb2" Component_="DesktopEditors.exe" ProgId_="[|ASSOC_PROG_ID].fb2" Feature_="fb2" Options="51"/>
+    <ROW Extension="odt" Component_="DesktopEditors.exe" ProgId_="[|ASSOC_PROG_ID].odt" Feature_="odt" Options="51"/>
+    <ROW Extension="ott" Component_="DesktopEditors.exe" ProgId_="[|ASSOC_PROG_ID].ott" Feature_="ott" Options="51"/>
+    <ROW Extension="rtf" Component_="DesktopEditors.exe" ProgId_="[|ASSOC_PROG_ID].rtf" Feature_="rtf" Options="51"/>
+    <ROW Extension="txt" Component_="DesktopEditors.exe" ProgId_="[|ASSOC_PROG_ID].txt" Feature_="txt" Options="51"/>
+    <ROW Extension="pdf" Component_="DesktopEditors.exe" ProgId_="[|ASSOC_PROG_ID].pdf" Feature_="pdf" Options="51"/>
+    <ROW Extension="html" Component_="DesktopEditors.exe" ProgId_="[|ASSOC_PROG_ID].html" Feature_="html" Options="51"/>
+    <ROW Extension="epub" Component_="DesktopEditors.exe" ProgId_="[|ASSOC_PROG_ID].epub" Feature_="epub" Options="51"/>
+    <ROW Extension="xps" Component_="DesktopEditors.exe" ProgId_="[|ASSOC_PROG_ID].xps" Feature_="xps" Options="51"/>
+    <ROW Extension="djvu" Component_="DesktopEditors.exe" ProgId_="[|ASSOC_PROG_ID].djvu" Feature_="djvu" Options="51"/>
+    <ROW Extension="xml" Component_="DesktopEditors.exe" ProgId_="[|ASSOC_PROG_ID].xml" Feature_="xml" Options="51"/>
+    <ROW Extension="ppt" Component_="DesktopEditors.exe" ProgId_="[|ASSOC_PROG_ID].ppt" Feature_="ppt" Options="51"/>
+    <ROW Extension="pptx" Component_="DesktopEditors.exe" ProgId_="[|ASSOC_PROG_ID].pptx" Feature_="pptx" Options="51"/>
+    <ROW Extension="potx" Component_="DesktopEditors.exe" ProgId_="[|ASSOC_PROG_ID].potx" Feature_="potx" Options="51"/>
+    <ROW Extension="odp" Component_="DesktopEditors.exe" ProgId_="[|ASSOC_PROG_ID].odp" Feature_="odp" Options="51"/>
+    <ROW Extension="otp" Component_="DesktopEditors.exe" ProgId_="[|ASSOC_PROG_ID].otp" Feature_="otp" Options="51"/>
+    <ROW Extension="xls" Component_="DesktopEditors.exe" ProgId_="[|ASSOC_PROG_ID].xls" Feature_="xls" Options="51"/>
+    <ROW Extension="xlsx" Component_="DesktopEditors.exe" ProgId_="[|ASSOC_PROG_ID].xlsx" Feature_="xlsx" Options="51"/>
+    <ROW Extension="xltx" Component_="DesktopEditors.exe" ProgId_="[|ASSOC_PROG_ID].xltx" Feature_="xltx" Options="51"/>
+    <ROW Extension="ods" Component_="DesktopEditors.exe" ProgId_="[|ASSOC_PROG_ID].ods" Feature_="ods" Options="51"/>
+    <ROW Extension="ots" Component_="DesktopEditors.exe" ProgId_="[|ASSOC_PROG_ID].ots" Feature_="ots" Options="51"/>
+    <ROW Extension="csv" Component_="DesktopEditors.exe" ProgId_="[|ASSOC_PROG_ID].csv" Feature_="csv" Options="51"/>
+    <ROW Extension="docxf" Component_="DesktopEditors.exe" ProgId_="[|ASSOC_PROG_ID].docxf" Feature_="docxf" Options="51"/>
+    <ROW Extension="oform" Component_="DesktopEditors.exe" ProgId_="[|ASSOC_PROG_ID].oform" Feature_="oform" Options="51"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatCompsComponent">
     <ROW Feature_="MainFeature" Component_="APPDIR"/>
@@ -970,33 +972,33 @@
     <ROW Condition="VersionNT" Description="[ProductName] cannot be installed on [WindowsType9XDisplay]." DescriptionLocId="AI.LaunchCondition.No9X" IsPredefined="true" Builds="DefaultBuild;MsiBuild"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiProgIdComponent">
-    <ROW ProgId="[|Manufacturer].[|ProductName].csv" Icon_="ext.exe"/>
-    <ROW ProgId="[|Manufacturer].[|ProductName].djvu" Icon_="djvu.exe"/>
-    <ROW ProgId="[|Manufacturer].[|ProductName].doc" Icon_="doc.exe"/>
-    <ROW ProgId="[|Manufacturer].[|ProductName].docx" Icon_="docx.exe"/>
-    <ROW ProgId="[|Manufacturer].[|ProductName].docxf"/>
-    <ROW ProgId="[|Manufacturer].[|ProductName].dotx"/>
-    <ROW ProgId="[|Manufacturer].[|ProductName].epub"/>
-    <ROW ProgId="[|Manufacturer].[|ProductName].fb2"/>
-    <ROW ProgId="[|Manufacturer].[|ProductName].html" Icon_="html.exe"/>
-    <ROW ProgId="[|Manufacturer].[|ProductName].odp" Icon_="odp.exe"/>
-    <ROW ProgId="[|Manufacturer].[|ProductName].ods" Icon_="ods.exe"/>
-    <ROW ProgId="[|Manufacturer].[|ProductName].odt" Icon_="odt.exe"/>
-    <ROW ProgId="[|Manufacturer].[|ProductName].oform"/>
-    <ROW ProgId="[|Manufacturer].[|ProductName].otp"/>
-    <ROW ProgId="[|Manufacturer].[|ProductName].ots"/>
-    <ROW ProgId="[|Manufacturer].[|ProductName].ott"/>
-    <ROW ProgId="[|Manufacturer].[|ProductName].pdf" Icon_="pdf.exe"/>
-    <ROW ProgId="[|Manufacturer].[|ProductName].potx"/>
-    <ROW ProgId="[|Manufacturer].[|ProductName].ppt" Icon_="ppt.exe"/>
-    <ROW ProgId="[|Manufacturer].[|ProductName].pptx" Icon_="pptx.exe"/>
-    <ROW ProgId="[|Manufacturer].[|ProductName].rtf" Icon_="rtf.exe"/>
-    <ROW ProgId="[|Manufacturer].[|ProductName].txt" Icon_="txt.exe"/>
-    <ROW ProgId="[|Manufacturer].[|ProductName].xls" Icon_="xls.exe"/>
-    <ROW ProgId="[|Manufacturer].[|ProductName].xlsx" Icon_="xlsx.exe"/>
-    <ROW ProgId="[|Manufacturer].[|ProductName].xltx"/>
-    <ROW ProgId="[|Manufacturer].[|ProductName].xml"/>
-    <ROW ProgId="[|Manufacturer].[|ProductName].xps" Icon_="xps.exe"/>
+    <ROW ProgId="[|ASSOC_PROG_ID].csv" Icon_="ext.exe"/>
+    <ROW ProgId="[|ASSOC_PROG_ID].djvu" Icon_="djvu.exe"/>
+    <ROW ProgId="[|ASSOC_PROG_ID].doc" Icon_="doc.exe"/>
+    <ROW ProgId="[|ASSOC_PROG_ID].docx" Icon_="docx.exe"/>
+    <ROW ProgId="[|ASSOC_PROG_ID].docxf"/>
+    <ROW ProgId="[|ASSOC_PROG_ID].dotx"/>
+    <ROW ProgId="[|ASSOC_PROG_ID].epub"/>
+    <ROW ProgId="[|ASSOC_PROG_ID].fb2"/>
+    <ROW ProgId="[|ASSOC_PROG_ID].html" Icon_="html.exe"/>
+    <ROW ProgId="[|ASSOC_PROG_ID].odp" Icon_="odp.exe"/>
+    <ROW ProgId="[|ASSOC_PROG_ID].ods" Icon_="ods.exe"/>
+    <ROW ProgId="[|ASSOC_PROG_ID].odt" Icon_="odt.exe"/>
+    <ROW ProgId="[|ASSOC_PROG_ID].oform"/>
+    <ROW ProgId="[|ASSOC_PROG_ID].otp"/>
+    <ROW ProgId="[|ASSOC_PROG_ID].ots"/>
+    <ROW ProgId="[|ASSOC_PROG_ID].ott"/>
+    <ROW ProgId="[|ASSOC_PROG_ID].pdf" Icon_="pdf.exe"/>
+    <ROW ProgId="[|ASSOC_PROG_ID].potx"/>
+    <ROW ProgId="[|ASSOC_PROG_ID].ppt" Icon_="ppt.exe"/>
+    <ROW ProgId="[|ASSOC_PROG_ID].pptx" Icon_="pptx.exe"/>
+    <ROW ProgId="[|ASSOC_PROG_ID].rtf" Icon_="rtf.exe"/>
+    <ROW ProgId="[|ASSOC_PROG_ID].txt" Icon_="txt.exe"/>
+    <ROW ProgId="[|ASSOC_PROG_ID].xls" Icon_="xls.exe"/>
+    <ROW ProgId="[|ASSOC_PROG_ID].xlsx" Icon_="xlsx.exe"/>
+    <ROW ProgId="[|ASSOC_PROG_ID].xltx"/>
+    <ROW ProgId="[|ASSOC_PROG_ID].xml"/>
+    <ROW ProgId="[|ASSOC_PROG_ID].xps" Icon_="xps.exe"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiRegLocatorComponent">
     <ROW Signature_="AI_ShRegOptionMachine" Root="2" Key="Software\Caphyon\Advanced Installer\Installs\[ProductCode]" Name="AIShRegAnswer" Type="2"/>

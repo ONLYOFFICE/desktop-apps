@@ -4,7 +4,7 @@
 <context>
     <name>CAscApplicationManagerWrapper</name>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1085"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1068"/>
         <source>Presenter View</source>
         <translation>발표자 보기</translation>
     </message>
@@ -13,23 +13,23 @@
         <translation type="vanished">모든 편집기 창을 닫으시겠습니까?</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1627"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1619"/>
         <source>Update is running. Break update and close the app?</source>
         <translation>업데이트 중입니다. 업데이트를 취소하고 애플케이이션을 닫으시겠습니까?</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1827"/>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1828"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1821"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1822"/>
         <source>Document%1.docx</source>
         <translation>Document%1.docx</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1829"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1823"/>
         <source>Book%1.xlsx</source>
         <translation>Book%1.xlsx</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1830"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1824"/>
         <source>Presentation%1.pptx</source>
         <translation>Presentation%1.pptx</translation>
     </message>
@@ -37,8 +37,8 @@
 <context>
     <name>CAscTabWidget</name>
     <message>
-        <location filename="../src/asctabwidget.cpp" line="729"/>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="763"/>
+        <location filename="../src/asctabwidget.cpp" line="670"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="722"/>
         <source>Document</source>
         <translation>여는 중...</translation>
     </message>
@@ -62,62 +62,62 @@
 <context>
     <name>CDialogOpenSsl</name>
     <message>
-        <location filename="../src/linux/cdialogopenssl.cpp" line="101"/>
+        <location filename="../src/linux/cdialogopenssl.cpp" line="102"/>
         <source>Select certificate</source>
         <translation>인증서 선택</translation>
     </message>
     <message>
-        <location filename="../src/linux/cdialogopenssl.cpp" line="105"/>
+        <location filename="../src/linux/cdialogopenssl.cpp" line="106"/>
         <source>select certificate file...</source>
         <translation>인증서 파일 선택...</translation>
     </message>
     <message>
-        <location filename="../src/linux/cdialogopenssl.cpp" line="106"/>
+        <location filename="../src/linux/cdialogopenssl.cpp" line="107"/>
         <source>Certifacate password:</source>
         <translation>인증서 비밀번호:</translation>
     </message>
     <message>
-        <location filename="../src/linux/cdialogopenssl.cpp" line="107"/>
+        <location filename="../src/linux/cdialogopenssl.cpp" line="108"/>
         <source>select key file...</source>
         <translation>키 파일 선택…</translation>
     </message>
     <message>
-        <location filename="../src/linux/cdialogopenssl.cpp" line="108"/>
+        <location filename="../src/linux/cdialogopenssl.cpp" line="109"/>
         <source>Key password:</source>
         <translation>키 비밀번호:</translation>
     </message>
     <message>
-        <location filename="../src/linux/cdialogopenssl.cpp" line="215"/>
+        <location filename="../src/linux/cdialogopenssl.cpp" line="233"/>
         <source>Enter certificate path</source>
         <translation>인증서 경로를 입력해주세요</translation>
     </message>
     <message>
-        <location filename="../src/linux/cdialogopenssl.cpp" line="224"/>
+        <location filename="../src/linux/cdialogopenssl.cpp" line="242"/>
         <source>Certificate is not supported</source>
         <translation>지원되지 않는 인증서입니다</translation>
     </message>
     <message>
-        <location filename="../src/linux/cdialogopenssl.cpp" line="230"/>
+        <location filename="../src/linux/cdialogopenssl.cpp" line="248"/>
         <source>Enter certificate password</source>
         <translation>인증서 비밀번호를 입력해주세요</translation>
     </message>
     <message>
-        <location filename="../src/linux/cdialogopenssl.cpp" line="231"/>
+        <location filename="../src/linux/cdialogopenssl.cpp" line="249"/>
         <source>Wrong certificate password.&lt;br&gt;Please enter again</source>
         <translation>잘못된 인증서 비밀번호입니다.&lt;br&gt;다시 한 번 입력해주세요</translation>
     </message>
     <message>
-        <location filename="../src/linux/cdialogopenssl.cpp" line="240"/>
+        <location filename="../src/linux/cdialogopenssl.cpp" line="258"/>
         <source>Enter valid private key</source>
         <translation>유효한 개인 키를 입력해주세요</translation>
     </message>
     <message>
-        <location filename="../src/linux/cdialogopenssl.cpp" line="250"/>
+        <location filename="../src/linux/cdialogopenssl.cpp" line="268"/>
         <source>Key is not supported</source>
         <translation>지원되지 않는 키입니다</translation>
     </message>
     <message>
-        <location filename="../src/linux/cdialogopenssl.cpp" line="255"/>
+        <location filename="../src/linux/cdialogopenssl.cpp" line="273"/>
         <source>Enter key password</source>
         <translation>키 비밀번호를 입력해주세요</translation>
     </message>
@@ -138,27 +138,27 @@
         <translation>%1이 수정되었습니다.&lt;br&gt;변경 사항을 저장하시겠습니까?</translation>
     </message>
     <message>
-        <location filename="../src/ceditortools.cpp" line="299"/>
+        <location filename="../src/ceditortools.cpp" line="303"/>
         <source>Some data will lost.&lt;br&gt;Continue?</source>
         <translation>계속 이 형식으로 저장할 경우 텍스트를 제외한 모든 기능을 잃게 됩니다.&lt;br&gt;정말로 계속하시겠습니까?</translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow_p.h" line="192"/>
+        <location filename="../src/ceditorwindow_p.h" line="184"/>
         <source>Open main window</source>
         <translation>메인 창 열기</translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow_p.h" line="421"/>
+        <location filename="../src/ceditorwindow_p.h" line="416"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
         <translation>계속하려면 문서를 저장해야 합니다.&lt;br&gt;문서를 저장하시겠습니까?</translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow_p.h" line="478"/>
+        <location filename="../src/ceditorwindow_p.h" line="484"/>
         <source>Print Document</source>
         <translation>문서 인쇄</translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow_p.h" line="631"/>
+        <location filename="../src/ceditorwindow_p.h" line="651"/>
         <source>Document must be saved firstly.</source>
         <translation>문서를 먼저 저장해야 합니다.</translation>
     </message>
@@ -322,111 +322,106 @@
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="255"/>
-        <source>Zip Archive (*.zip)</source>
-        <translation>Zip 아카이브(*.zip)</translation>
+        <source>JPG Image (*.jpg *.jpeg)</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="256"/>
-        <source>JPG Image (*.jpg, *.jpeg)</source>
-        <translation>JPG 이미지(*.jpg *.jpeg)</translation>
-    </message>
-    <message>
-        <location filename="../src/cfiledialog.cpp" line="257"/>
         <source>PNG Image (*.png)</source>
         <translation>PNG 이미지(*.png)</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="308"/>
+        <location filename="../src/cfiledialog.cpp" line="340"/>
         <source>Save As</source>
         <translation>저장 형식</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="344"/>
+        <location filename="../src/cfiledialog.cpp" line="371"/>
         <source>%1 already exists.&lt;br&gt;Do you want to replace it?</source>
         <translation>%1이 이미 존재합니다.&lt;br&gt;변경하시겠습니까?</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="370"/>
+        <location filename="../src/cfiledialog.cpp" line="397"/>
         <source>Word Document</source>
         <translation>워드 문서</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="373"/>
+        <location filename="../src/cfiledialog.cpp" line="400"/>
         <source>Excel Workbook</source>
         <translation>엑셀 스프레드시트</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="376"/>
+        <location filename="../src/cfiledialog.cpp" line="403"/>
         <source>PowerPoint Presentation</source>
         <translation>파워포인트 프레젠테이션</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="379"/>
+        <location filename="../src/cfiledialog.cpp" line="406"/>
         <source>%1 File (*.%2)</source>
         <translation>%1 파일 (*.%2)</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="389"/>
-        <location filename="../src/cfiledialog.cpp" line="496"/>
+        <location filename="../src/cfiledialog.cpp" line="416"/>
+        <location filename="../src/cfiledialog.cpp" line="524"/>
         <source>Text documents</source>
         <translation>텍스트 문서</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="390"/>
-        <location filename="../src/cfiledialog.cpp" line="504"/>
+        <location filename="../src/cfiledialog.cpp" line="417"/>
+        <location filename="../src/cfiledialog.cpp" line="532"/>
         <source>Spreadsheets</source>
         <translation>스프레드시트</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="391"/>
-        <location filename="../src/cfiledialog.cpp" line="512"/>
+        <location filename="../src/cfiledialog.cpp" line="418"/>
+        <location filename="../src/cfiledialog.cpp" line="540"/>
         <source>Presentations</source>
         <translation>프레젠테이션</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="392"/>
+        <location filename="../src/cfiledialog.cpp" line="419"/>
         <source>Web Page</source>
         <translation>웹 페이지</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="393"/>
+        <location filename="../src/cfiledialog.cpp" line="420"/>
         <source>Text files</source>
         <translation>텍스트 파일</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="419"/>
-        <location filename="../src/cfiledialog.cpp" line="420"/>
-        <location filename="../src/cfiledialog.cpp" line="425"/>
-        <location filename="../src/cfiledialog.cpp" line="445"/>
-        <location filename="../src/cfiledialog.cpp" line="446"/>
+        <location filename="../src/cfiledialog.cpp" line="447"/>
+        <location filename="../src/cfiledialog.cpp" line="448"/>
+        <location filename="../src/cfiledialog.cpp" line="453"/>
+        <location filename="../src/cfiledialog.cpp" line="473"/>
+        <location filename="../src/cfiledialog.cpp" line="474"/>
         <source>Open Document</source>
         <translation>문서 열기</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="459"/>
-        <location filename="../src/cfiledialog.cpp" line="468"/>
+        <location filename="../src/cfiledialog.cpp" line="487"/>
+        <location filename="../src/cfiledialog.cpp" line="496"/>
         <source>All Images</source>
         <translation>모든 이미지</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="461"/>
-        <location filename="../src/cfiledialog.cpp" line="470"/>
+        <location filename="../src/cfiledialog.cpp" line="489"/>
+        <location filename="../src/cfiledialog.cpp" line="498"/>
         <source>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp)</source>
         <translation>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp)</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="478"/>
-        <location filename="../src/cfiledialog.cpp" line="487"/>
+        <location filename="../src/cfiledialog.cpp" line="506"/>
+        <location filename="../src/cfiledialog.cpp" line="515"/>
         <source>Plugin file (*.plugin)</source>
         <translation>플러그인 파일 (*.plugin)</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="527"/>
+        <location filename="../src/cfiledialog.cpp" line="555"/>
         <source>Video file</source>
         <translation>비디오 파일</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="532"/>
+        <location filename="../src/cfiledialog.cpp" line="560"/>
         <source>Audio file</source>
         <translation>오디오 파일</translation>
     </message>
@@ -434,38 +429,38 @@
 <context>
     <name>CMainPanel</name>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="592"/>
-        <location filename="../src/cmainpanel.cpp" line="636"/>
+        <location filename="../src/cmainpanel.cpp" line="555"/>
+        <location filename="../src/cmainpanel.cpp" line="599"/>
         <source>File format not supported.</source>
         <translation>지원되지 않는 파일 형식입니다.</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="620"/>
+        <location filename="../src/cmainpanel.cpp" line="583"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
         <translation>%1이 이용 불가합니다. 이름이 변경되었거나, 이동되었거나, 삭제된 것 같습니다.&lt;br&gt;목록에서 파일을 제거하시겠습니까?</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="680"/>
+        <location filename="../src/cmainpanel.cpp" line="643"/>
         <source>Document must be saved firstly.</source>
         <translation>문서를 먼저 저장해야 합니다.</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="836"/>
+        <location filename="../src/cmainpanel.cpp" line="799"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
         <translation>계속하려면 문서를 저장해야 합니다.&lt;br&gt;문서를 저장하시겠습니까?</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="973"/>
+        <location filename="../src/cmainpanel.cpp" line="940"/>
         <source>Print Document</source>
         <translation>문서 인쇄</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1178"/>
+        <location filename="../src/cmainpanel.cpp" line="1162"/>
         <source>Sign Up</source>
         <translation>포털 생성</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1243"/>
+        <location filename="../src/cmainpanel.cpp" line="1230"/>
         <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
         <translation>%1이 수정되었습니다.&lt;br&gt;변경 사항을 저장하시겠습니까?</translation>
     </message>
@@ -542,22 +537,22 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper_private.h" line="177"/>
+        <location filename="../src/cascapplicationmanagerwrapper_private.h" line="183"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
         <translation>%1이 이용 불가합니다. 이름이 변경되었거나, 이동되었거나, 삭제된 것 같습니다.&lt;br&gt;목록에서 파일을 제거하시겠습니까?</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper_private.h" line="223"/>
+        <location filename="../src/cascapplicationmanagerwrapper_private.h" line="229"/>
         <source>File %1 cannot be opened or doesn&apos;t exists.</source>
         <translation>%1 파일이 열리지 않거나 존재하지 않습니다.</translation>
     </message>
     <message>
-        <location filename="../src/ceditortools.cpp" line="126"/>
+        <location filename="../src/ceditortools.cpp" line="131"/>
         <source>All supported files (*.txt *.csv)</source>
         <translation>모든 지원 파일(*.txt *.csv)</translation>
     </message>
     <message>
-        <location filename="../src/ceditortools.cpp" line="126"/>
+        <location filename="../src/ceditortools.cpp" line="131"/>
         <source>All files (*.*)</source>
         <translation>모든 파일 (*.*)</translation>
     </message>

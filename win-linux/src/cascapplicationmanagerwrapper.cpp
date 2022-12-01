@@ -841,7 +841,7 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
             if ( open_in_new_window ) {
                 CEditorWindow * editor_win = new CEditorWindow(_start_rect, panel);
                 bool isMaximized = mainWindow() ? mainWindow()->windowState().testFlag(Qt::WindowMaximized) :
-                                                  reg_user.value("maximized", false).toBool();
+                                                      reg_user.value("maximized", false).toBool();
                 editor_win->show(isMaximized);
                 editor_win->bringToTop();
 
@@ -856,10 +856,15 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
                 }
 
                 _app.mainWindow()->attachEditor(panel);
+#ifdef __linux__
                 if (_app.mainWindow()->isMinimized()) {
                     _app.mainWindow()->windowState() == (Qt::WindowMinimized | Qt::WindowMaximized) ?
                                 _app.mainWindow()->showMaximized() : _app.mainWindow()->showNormal();
                 }
+#endif
+                QTimer::singleShot(100, &_app, [&]{
+                    _app.mainWindow()->bringToTop();
+                });
             }
         }
     }
@@ -972,6 +977,7 @@ void CAscApplicationManagerWrapper::initializeApp()
 
     if ( AscAppManager::IsUseSystemScaling() ) {
         AscAppManager::setUserSettings(L"force-scale", L"default");
+        AscAppManager::setUserSettings(L"system-scale", L"1");
     }
 
     if ( !InputArgs::contains(L"--single-window-app") ) {
@@ -1494,7 +1500,6 @@ bool CAscApplicationManagerWrapper::applySettings(const wstring& wstrjson)
 
         if ( objRoot.contains("uiscaling") ) {
             wstring sets;
-            setUserSettings(L"system-scale", L"0");
             switch (objRoot["uiscaling"].toString().toInt()) {
             case 100: sets = L"1"; break;
             case 125: sets = L"1.25"; break;
@@ -1503,9 +1508,9 @@ bool CAscApplicationManagerWrapper::applySettings(const wstring& wstrjson)
             case 200: sets = L"2"; break;
             default:
                 sets = L"default";
-                setUserSettings(L"system-scale", L"1");
             }
 
+            setUserSettings(L"system-scale", sets != L"default" ? L"0" : L"1");
             setUserSettings(L"force-scale", sets);
             m_pMainWindow->updateScaling();
 
@@ -1625,6 +1630,11 @@ void CAscApplicationManagerWrapper::applyTheme(const wstring& theme, bool force)
 CThemes& CAscApplicationManagerWrapper::themes()
 {
     return *(AscAppManager::getInstance().m_themes);
+}
+
+CPrintData& CAscApplicationManagerWrapper::printData()
+{
+    return *(AscAppManager::getInstance().m_private->m_printData);
 }
 
 bool CAscApplicationManagerWrapper::canAppClose()
