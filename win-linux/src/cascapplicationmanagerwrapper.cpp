@@ -363,11 +363,21 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
         } else
         if ( !(cmd.find(L"open:template") == std::wstring::npos) ) {
             if ( pData->get_Param() == L"external" ) {
-                QJsonObject _json_obj;
-                _json_obj["portal"] = "https://oforms.teamlab.info";
-                _json_obj["entrypage"] = "";
+                static QByteArray _json_to_open;
+                if ( _json_to_open.isEmpty() ) {
+                    QString _templates_url{QString::fromStdWString(InputArgs::argument_value(L"--templates-url"))};
+                    if ( _templates_url.isEmpty() )
+                        _templates_url = "https://oforms.teamlab.info/?name=desktop";
 
-                mainWindow()->onPortalOpen(QJsonDocument(_json_obj).toJson(QJsonDocument::Compact));
+                    QJsonObject _json_obj{
+                        {"portal", _templates_url},
+                        {"entrypage", ""}
+                    };
+
+                    _json_to_open = QJsonDocument(_json_obj).toJson(QJsonDocument::Compact);
+                }
+
+                mainWindow()->onPortalOpen(_json_to_open);
             }
 
             return true;
