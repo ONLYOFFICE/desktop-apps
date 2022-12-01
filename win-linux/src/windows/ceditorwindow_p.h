@@ -140,16 +140,6 @@ auto editor_color(int type) -> QColor {
 
 class CEditorWindowPrivate : public CCefEventsGate
 {
-        sPrintData() :
-            _printer_info(QPrinterInfo::defaultPrinter()),
-            _print_range(QPrintDialog::PrintRange::AllPages)
-        {}
-
-        QPrinterInfo _printer_info;
-        QPrintDialog::PrintRange _print_range;
-    };
-
-    sPrintData *m_printData = nullptr;
     CEditorWindow * window = nullptr;
     CElipsisLabel * iconuser = nullptr;
     QPushButton * btndock = nullptr;
@@ -172,8 +162,6 @@ public:
     ~CEditorWindowPrivate() override {
         if ( leftboxbuttons )
             leftboxbuttons->deleteLater();
-         if (m_printData)
-             delete m_printData, m_printData = nullptr;
     }
 
     void init(CTabPanel * const p) override {
@@ -517,8 +505,6 @@ public:
         WindowHelper::CParentDisable oDisabler(window->handle());
 #endif
         if ( !(pagescount < 1) ) {
-            if (!m_printData)
-                m_printData = new sPrintData();
             CAscMenuEvent * pEvent;
             QAscPrinterContext * pContext = new QAscPrinterContext(AscAppManager::printData().printerInfo());
 
@@ -551,17 +537,13 @@ public:
                 dialog->setFromTo(AscAppManager::printData().pageFrom(), AscAppManager::printData().pageTo());
 
             int modal_res = QDialog::Accepted;
-
             if ( AscAppManager::printData().isQuickPrint() ) {
                 dialog->accept();
-            } else {
-
-                modal_res = dialog->exec();
-                m_printData->_printer_info = QPrinterInfo::printerInfo(printer->printerName());
-            }
+            } else modal_res = dialog->exec();
 
             if ( modal_res == QDialog::Accepted ) {
                 AscAppManager::printData().setPrinterInfo(QPrinterInfo::printerInfo(printer->printerName()));
+                QVector<PageRanges> page_ranges;
 
                 switch(dialog->printRange()) {
                 case QPrintDialog::AllPages:

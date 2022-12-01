@@ -78,6 +78,8 @@
   #include "../version.h"
 #endif
 
+#define TOP_NATIVE_WINDOW_HANDLE this
+
 using namespace std::placeholders;
 using namespace NSEditorApi;
 
@@ -1098,9 +1100,6 @@ void CMainWindow::onDocumentPrint(void * opts)
     AscAppManager::printData().init(pData);
 
     if (pView && !(pagesCount < 1)) {
-        if (!m_printData)
-            m_printData = new printdata();
-
         NSEditorApi::CAscMenuEvent * pEvent;
         QAscPrinterContext * pContext = new QAscPrinterContext(AscAppManager::printData().printerInfo());
 
@@ -1132,22 +1131,15 @@ void CMainWindow::onDocumentPrint(void * opts)
         if ( dialog->printRange() == QPrintDialog::PageRange )
             dialog->setFromTo(AscAppManager::printData().pageFrom(), AscAppManager::printData().pageTo());
 
-        if (dialog->exec() == QDialog::Accepted) {
         int modal_res = QDialog::Accepted;
-
         if ( AscAppManager::printData().isQuickPrint() ) {
             dialog->accept();
-        } else {
-#ifdef _WIN32
-            modal_res = wrapper.showModal();
-#else
-            modal_res = dialog->exec();
-#endif
-        }
+        } else modal_res = dialog->exec();
 
         if ( modal_res == QDialog::Accepted ) {
             AscAppManager::printData().setPrinterInfo(QPrinterInfo::printerInfo(printer->printerName()));
 //            m_printData->_print_range = dialog->printRange();
+            QVector<PageRanges> page_ranges;
 
             switch(dialog->printRange()) {
             case QPrintDialog::AllPages:
