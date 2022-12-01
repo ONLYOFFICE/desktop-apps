@@ -51,6 +51,7 @@
 #include <QJsonDocument>
 #include <QJsonArray>
 #include <QJsonObject>
+#include <QStandardPaths>
 
 #ifdef _WIN32
 #include "win/cprintdialog.h"
@@ -473,6 +474,12 @@ public:
             printer->setFromTo(1, pagescount);
             printer->setPageOrientation(AscAppManager::printData().pageOrientation());
             printer->setPageSize(AscAppManager::printData().pageSize());
+
+#ifdef Q_OS_LINUX
+            if ( printer->outputFormat() == QPrinter::PdfFormat ) {
+                printer->setOutputFileName(QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation) + "/print.pdf");
+            }
+#endif
 
 #ifdef _WIN32
             CPrintDialogWinWrapper wrapper(printer, window->handle());
