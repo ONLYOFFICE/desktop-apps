@@ -927,15 +927,17 @@ void CMainPanel::onDocumentPrint(void * opts)
         printer->setOutputFileName("");
         printer->setFromTo(1, pagesCount);
 
+        if ( !AscAppManager::printData().isQuickPrint() ) {
+            printer->setPageOrientation(AscAppManager::printData().pageOrientation());
+            printer->setPageSize(AscAppManager::printData().pageSize());
+        }
+
 #ifdef Q_OS_LINUX
         if ( printer->outputFormat() == QPrinter::PdfFormat ) {
             printer->setOutputFileName(QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation) + "/print.pdf");
         }
 #endif
-
-        printer->setPageOrientation(AscAppManager::printData().pageOrientation());
-        printer->setPageSize(AscAppManager::printData().pageSize());
-
+        
 #ifdef _WIN32
         CPrintDialogWinWrapper wrapper(printer, TOP_NATIVE_WINDOW_HANDLE);
         QPrintDialog * dialog = wrapper.q_dialog();

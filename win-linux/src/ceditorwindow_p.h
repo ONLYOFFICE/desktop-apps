@@ -472,8 +472,11 @@ public:
             QPrinter * printer = pContext->getPrinter();
             printer->setOutputFileName("");
             printer->setFromTo(1, pagescount);
-            printer->setPageOrientation(AscAppManager::printData().pageOrientation());
-            printer->setPageSize(AscAppManager::printData().pageSize());
+
+            if ( !AscAppManager::printData().isQuickPrint() ) {
+                printer->setPageOrientation(AscAppManager::printData().pageOrientation());
+                printer->setPageSize(AscAppManager::printData().pageSize());
+            }
 
 #ifdef Q_OS_LINUX
             if ( printer->outputFormat() == QPrinter::PdfFormat ) {
