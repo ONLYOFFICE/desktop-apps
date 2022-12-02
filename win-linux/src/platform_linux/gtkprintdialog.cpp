@@ -411,3 +411,13 @@ int GtkPrintDialog::toPage()
 {
     return m_printer->toPage();
 }
+
+void GtkPrintDialog::setFromTo(int from, int to)
+{
+    return m_printer->setFromTo(from, to);
+}
+
+void GtkPrintDialog::accept()
+{
+
+}

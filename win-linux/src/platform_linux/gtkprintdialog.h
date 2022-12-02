@@ -22,12 +22,14 @@ public:
     void setOptions(PrintOptions opts);
     void setPrintRange(PrintRange print_range);
     QDialog::DialogCode exec();
+    void accept();
     PrintRange printRange();
     PrintOptions enabledOptions();
     PrintOptions options();
     QVector<PageRanges> getPageRanges();
     int fromPage();
     int toPage();
+    void setFromTo(int from, int to);
 
 private:
     QPrinter *m_printer;
