@@ -932,12 +932,6 @@ void CMainPanel::onDocumentPrint(void * opts)
             printer->setPageSize(AscAppManager::printData().pageSize());
         }
 
-#ifdef Q_OS_LINUX
-        if ( printer->outputFormat() == QPrinter::PdfFormat ) {
-            printer->setOutputFileName(QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation) + "/print.pdf");
-        }
-#endif
-        
 #ifdef _WIN32
         CPrintDialogWinWrapper wrapper(printer, TOP_NATIVE_WINDOW_HANDLE);
         QPrintDialog * dialog = wrapper.q_dialog();
@@ -972,6 +966,12 @@ void CMainPanel::onDocumentPrint(void * opts)
         if ( modal_res == QDialog::Accepted ) {
             AscAppManager::printData().setPrinterInfo(QPrinterInfo::printerInfo(printer->printerName()));
 //            m_printData->_print_range = dialog->printRange();
+
+#ifdef Q_OS_LINUX
+            if ( AscAppManager::printData().isQuickPrint() && printer->outputFormat() == QPrinter::PdfFormat ) {
+                printer->setOutputFileName(QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation) + "/print.pdf");
+            }
+#endif
 
             switch(dialog->printRange()) {
             case QPrintDialog::AllPages: start = 1, finish = pagesCount; break;
