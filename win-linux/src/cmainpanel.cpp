@@ -968,9 +968,8 @@ void CMainPanel::onDocumentPrint(void * opts)
 //            m_printData->_print_range = dialog->printRange();
 
 #ifdef Q_OS_LINUX
-            if ( AscAppManager::printData().isQuickPrint() && printer->outputFormat() == QPrinter::PdfFormat ) {
-                printer->setOutputFileName(QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation) + "/print.pdf");
-            }
+            if ( AscAppManager::printData().isQuickPrint() && printer->outputFormat() == QPrinter::PdfFormat )
+                printer->setOutputFileName(Utils::uniqFileName(QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation) + "/print.pdf"));
 #endif
 
             switch(dialog->printRange()) {

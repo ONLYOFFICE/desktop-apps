@@ -395,6 +395,26 @@ bool Utils::isFileLocal(const QString& path)
 # endif
 }
 
+QString Utils::uniqFileName(const QString& path)
+{
+    QFileInfo _info(path);
+
+    if ( _info.exists() ) {
+        QString _name = _info.baseName(),
+                _suffix = _info.suffix();
+        QDir _dir = _info.dir();
+
+        int _index{0};
+        while ( true ) {
+            _info = QFileInfo(_dir, _name + QString::number(++_index) + "." + _suffix);
+
+            if ( !_info.exists() ) return _info.absoluteFilePath();
+        }
+    }
+
+    return path;
+}
+
 QString Utils::getPortalName(const QString& url)
 {
     if ( !url.isEmpty() ) {
