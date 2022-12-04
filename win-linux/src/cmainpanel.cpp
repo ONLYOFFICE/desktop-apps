@@ -959,6 +959,7 @@ void CMainPanel::onDocumentPrint(void * opts)
 #ifdef _WIN32
             modal_res = wrapper.showModal();
 #else
+            qApp->processEvents();
             modal_res = dialog->exec();
 #endif
         }
