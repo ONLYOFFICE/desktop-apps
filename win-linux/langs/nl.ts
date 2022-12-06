@@ -147,22 +147,22 @@
         <translation>Als u doorgaat met het opslaan in dit formaat zullen alle functies, behalve de tekst, verloren gaan.&lt;br&gt;Weet u zeker dat u wilt doorgaan?</translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow_p.h" line="184"/>
+        <location filename="../src/ceditorwindow_p.h" line="185"/>
         <source>Open main window</source>
         <translation>Hoofdvenster openen</translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow_p.h" line="416"/>
+        <location filename="../src/ceditorwindow_p.h" line="417"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
         <translation>The Document moet worden opgeslagen om verder te kunnen gaan.&lt;br&gt;Document opslaan?</translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow_p.h" line="484"/>
+        <location filename="../src/ceditorwindow_p.h" line="488"/>
         <source>Print Document</source>
         <translation>Print document</translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow_p.h" line="651"/>
+        <location filename="../src/ceditorwindow_p.h" line="660"/>
         <source>Document must be saved firstly.</source>
         <translation>Het document moet eerst worden opgeslagen.</translation>
     </message>
@@ -454,7 +454,7 @@
         <translation>Document moet worden opgeslagen om verder te kunnen gaan.&lt;br&gt;Document opslaan?</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="940"/>
+        <location filename="../src/cmainpanel.cpp" line="942"/>
         <source>Print Document</source>
         <translation>Print document</translation>
     </message>
@@ -463,12 +463,12 @@
         <translation type="vanished">Als u doorgaat met het opslaan in dit formaat zullen alle functies, behalve de tekst, verloren gaan.&lt;br&gt;Weet u zeker dat u wilt doorgaan?</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1162"/>
+        <location filename="../src/cmainpanel.cpp" line="1170"/>
         <source>Sign Up</source>
         <translation>Portaal aanmaken</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1230"/>
+        <location filename="../src/cmainpanel.cpp" line="1238"/>
         <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
         <translation>%1 is aangepast.&lt;br&gt;Wilt u de veranderingen opslaan?</translation>
     </message>
@@ -563,6 +563,11 @@
         <location filename="../src/ceditortools.cpp" line="131"/>
         <source>All files (*.*)</source>
         <translation>Alle bestanden (*.*)</translation>
+    </message>
+    <message>
+        <location filename="../src/casctabdata.cpp" line="179"/>
+        <source>Read only</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

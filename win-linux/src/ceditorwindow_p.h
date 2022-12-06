@@ -713,6 +713,10 @@ public:
         if ( panel()->data()->hasFeature(L"crypted\":true") && boxtitlelabel && !iconcrypted ) {
             qobject_cast<QBoxLayout *>(boxtitlelabel->layout())->insertWidget(0, iconCrypted());
         }
+
+        if ( panel()->data()->hasFeature(L"readonly\":") && boxtitlelabel ) {
+            window->setWindowTitle(m_panel->data()->title());
+        }
     }
 
     void onWebTitleChanged(int, std::wstring json) override

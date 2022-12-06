@@ -871,6 +871,11 @@ void CAscTabWidget::setEditorOptions(int id, const wstring& option)
                 doc->setEventLoadSupported(true);
         }
 
+        if (option.find(L"readonly\":") != wstring::npos) {
+            m_pBar->setTabText(tabIndex, doc->title());
+            m_pBar->setTabToolTip(tabIndex, doc->title());
+        }
+
 //        if (std::regex_search(option, std::wregex(L"titlebuttons\":\\s?true"))) {
 //            panel(tabIndex)->setWindowed(true);
 //        }

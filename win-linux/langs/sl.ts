@@ -147,22 +147,22 @@
         <translation>Če želite nadaljevati s shranjevanjem v tem formatu, bodo izgubljene vse lastnosti, razen teksta.&lt;br&gt;Ste prepričani, da želite nadaljevati?</translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow_p.h" line="184"/>
+        <location filename="../src/ceditorwindow_p.h" line="185"/>
         <source>Open main window</source>
         <translation>Odpri glavno okno</translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow_p.h" line="416"/>
+        <location filename="../src/ceditorwindow_p.h" line="417"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
         <translation>Dokument mora biti shranjen pred nadaljevanjem.&lt;br&gt;Želiš shraniti dokument?</translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow_p.h" line="484"/>
+        <location filename="../src/ceditorwindow_p.h" line="488"/>
         <source>Print Document</source>
         <translation>Natisni dokument</translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow_p.h" line="651"/>
+        <location filename="../src/ceditorwindow_p.h" line="660"/>
         <source>Document must be saved firstly.</source>
         <translation>Dokument mora biti najprej shranjen.</translation>
     </message>
@@ -458,7 +458,7 @@
         <translation>Dokument mora biti pred nadaljevanjem shranjen.&lt;br&gt;Želite shraniti dokument?</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="940"/>
+        <location filename="../src/cmainpanel.cpp" line="942"/>
         <source>Print Document</source>
         <translation>Natisni dokument</translation>
     </message>
@@ -467,12 +467,12 @@
         <translation type="vanished">Če želite nadaljevati s shranjevanjem v tem formatu, bodo izgubljene vse lastnosti, razen teksta.&lt;br&gt;Ste prepričani, da želite nadaljevati?</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1162"/>
+        <location filename="../src/cmainpanel.cpp" line="1170"/>
         <source>Sign Up</source>
         <translation>Ustvari portal</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1230"/>
+        <location filename="../src/cmainpanel.cpp" line="1238"/>
         <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
         <translation>%1 je bil spremenjen.&lt;br&gt;Želite shraniti spremembe?</translation>
     </message>
@@ -567,6 +567,11 @@
         <location filename="../src/ceditortools.cpp" line="131"/>
         <source>All files (*.*)</source>
         <translation>Vse datoteke (*.*)</translation>
+    </message>
+    <message>
+        <location filename="../src/casctabdata.cpp" line="179"/>
+        <source>Read only</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

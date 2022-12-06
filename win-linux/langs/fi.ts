@@ -147,22 +147,22 @@
         <translation>Jos jatkat tallennusta tässä muodossa, kaikki muut ominaisuudet paitsi teksti menetetään. &lt;br&gt;Oletko varma, että haluat jatkaa?</translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow_p.h" line="184"/>
+        <location filename="../src/ceditorwindow_p.h" line="185"/>
         <source>Open main window</source>
         <translation>Avaa pääikkuna</translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow_p.h" line="416"/>
+        <location filename="../src/ceditorwindow_p.h" line="417"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
         <translation>Dokumentti on tallennettava ennen jatkamista.&lt;br&gt;Tallennetaanko dokumentti?</translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow_p.h" line="484"/>
+        <location filename="../src/ceditorwindow_p.h" line="488"/>
         <source>Print Document</source>
         <translation>Tulosta dokumentti</translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow_p.h" line="651"/>
+        <location filename="../src/ceditorwindow_p.h" line="660"/>
         <source>Document must be saved firstly.</source>
         <translation>Dokumentti tulee tallentaa ensin.</translation>
     </message>
@@ -458,7 +458,7 @@
         <translation>Dokumentti tulee tallentaa ennen jatkamista. &lt;br&gt;Tallennetaanko dokumentti?</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="940"/>
+        <location filename="../src/cmainpanel.cpp" line="942"/>
         <source>Print Document</source>
         <translation>Tulosta dokumentti</translation>
     </message>
@@ -467,12 +467,12 @@
         <translation type="vanished">Jos jatkat tallennusta tässä muodossa, kaikki muut ominaisuudet paitsi teksti menetetään.&lt;br&gt; Oletko varma, että haluat jatkaa?</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1162"/>
+        <location filename="../src/cmainpanel.cpp" line="1170"/>
         <source>Sign Up</source>
         <translation>Luo portaali</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1230"/>
+        <location filename="../src/cmainpanel.cpp" line="1238"/>
         <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
         <translation>%1 on muokattu.&lt;br&gt;Haluatko tallentaa muutokset?</translation>
     </message>
@@ -567,6 +567,11 @@
         <location filename="../src/ceditortools.cpp" line="131"/>
         <source>All files (*.*)</source>
         <translation>Kaikki tiedostot (*.*)</translation>
+    </message>
+    <message>
+        <location filename="../src/casctabdata.cpp" line="179"/>
+        <source>Read only</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

@@ -147,22 +147,22 @@
         <translation>Եթե շարունակեք պահպանել այս ֆորմատով, բոլոր գործառույթները, բացի տեքստից, կկորչեն։&lt;br&gt;Վստա՞հ եք, որ ցանկանում եք շարունակել։</translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow_p.h" line="184"/>
+        <location filename="../src/ceditorwindow_p.h" line="185"/>
         <source>Open main window</source>
         <translation>Բացել հիմնական պատուհանը</translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow_p.h" line="416"/>
+        <location filename="../src/ceditorwindow_p.h" line="417"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
         <translation>Շարունակելու համար պետք է պահպանել փաստաթուղթը։&lt;br&gt;Պահպանե՞լ փաստաթուղթը։</translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow_p.h" line="484"/>
+        <location filename="../src/ceditorwindow_p.h" line="488"/>
         <source>Print Document</source>
         <translation>Տպել փաստաթուղթը։</translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow_p.h" line="651"/>
+        <location filename="../src/ceditorwindow_p.h" line="660"/>
         <source>Document must be saved firstly.</source>
         <translation>Առաջին հերթին պետք է պահպանել փաստաթուղթը։</translation>
     </message>
@@ -458,7 +458,7 @@
         <translation>Շարունակելու համար փաստաթուղթը պետք է պահպանվի։&lt;br&gt;Պահպանե՞լ փաստաթուղթը։</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="940"/>
+        <location filename="../src/cmainpanel.cpp" line="942"/>
         <source>Print Document</source>
         <translation>Տպել փաստաթուղթը</translation>
     </message>
@@ -467,12 +467,12 @@
         <translation type="vanished">Եթե շարունակեք պահպանել այս ֆորմատով, բոլոր ֆունկցիաները, բացի տեքստից, կկորչեն։&lt;br&gt;Վստա՞հ եք, որ ցանկանում եք շարունակել։</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1162"/>
+        <location filename="../src/cmainpanel.cpp" line="1170"/>
         <source>Sign Up</source>
         <translation>Ստեղծել պորտալ</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1230"/>
+        <location filename="../src/cmainpanel.cpp" line="1238"/>
         <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
         <translation>%1 փոփոխվել է&lt;br&gt;Ցանկանու՞մ եք պահպանել փոփոխությունները։</translation>
     </message>
@@ -567,6 +567,11 @@
         <location filename="../src/ceditortools.cpp" line="131"/>
         <source>All files (*.*)</source>
         <translation>Բոլոր ֆայլերը (*.*)</translation>
+    </message>
+    <message>
+        <location filename="../src/casctabdata.cpp" line="179"/>
+        <source>Read only</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>
