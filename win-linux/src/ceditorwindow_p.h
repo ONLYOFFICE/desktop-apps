@@ -52,6 +52,7 @@
 #include <QJsonArray>
 #include <QJsonObject>
 #include <QStandardPaths>
+#include <QPrintEngine>
 
 #ifdef _WIN32
 #include "win/cprintdialog.h"
@@ -472,6 +473,7 @@ public:
             QPrinter * printer = pContext->getPrinter();
             printer->setOutputFileName("");
             printer->setFromTo(1, pagescount);
+            printer->printEngine()->setProperty(QPrintEngine::PPK_DocumentName, m_panel->data()->title(true));
 
             if ( !AscAppManager::printData().isQuickPrint() ) {
                 printer->setPageOrientation(AscAppManager::printData().pageOrientation());

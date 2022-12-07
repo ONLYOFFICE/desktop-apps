@@ -47,6 +47,7 @@
 #include <QStorageInfo>
 #include <regex>
 #include <functional>
+#include <QPrintEngine>
 
 #include "defines.h"
 #include "cprintprogress.h"
@@ -924,6 +925,8 @@ void CMainPanel::onDocumentPrint(void * opts)
         QPrinter * printer = pContext->getPrinter();
         printer->setOutputFileName("");
         printer->setFromTo(1, pagesCount);
+        printer->printEngine()->setProperty(QPrintEngine::PPK_DocumentName,
+                    m_pTabs->titleByIndex(m_pTabs->tabIndexByView(AscAppManager::printData().viewId()), true));
 
         if ( !AscAppManager::printData().isQuickPrint() ) {
             printer->setPageOrientation(AscAppManager::printData().pageOrientation());
