@@ -298,8 +298,15 @@ void Utils::openUrl(const QString& url)
         system(QString("LD_LIBRARY_PATH='' xdg-email %1")                   // xdg-email filepath email
                             .arg(QString( _url.toEncoded() )).toUtf8());
     } else {
-        system(QString("LD_LIBRARY_PATH='' xdg-open %1")                    // xdg-open workingpath path
-                            .arg(QString( _url.toEncoded() )).toUtf8());
+		if (url.startsWith("xdg:")) {
+			// url is already encoded for xdg
+			std::wstring sUrlW = url.toStdWString().substr(4);
+			std::string sCommand = "LD_LIBRARY_PATH='' xdg-open " + U_TO_UTF8(sUrlW);
+			system(sCommand.c_str());
+		} else {
+			system(QString("LD_LIBRARY_PATH='' xdg-open %1")                    // xdg-open workingpath path
+								.arg(QString( _url.toEncoded() )).toUtf8());
+		}
     }
 #else
     QDesktopServices::openUrl(QUrl(url));
