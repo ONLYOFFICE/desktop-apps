@@ -610,6 +610,21 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
         }
     }
 
+    case ASC_MENU_EVENT_TYPE_CEF_ONBEFORE_PRINT_END: {
+        if ( mainWindow()->holdView(event->get_SenderId()) ) {
+            CAscPrintEnd * pData = (CAscPrintEnd *)event->m_pData;
+
+            AscAppManager::printData().init(event->get_SenderId(), pData);
+            QTimer::singleShot(0, this, []{
+                QMetaObject::invokeMethod(mainWindow()->mainPanel(), "onDocumentPrint", Qt::QueuedConnection, Q_ARG(void*, nullptr));
+            });
+
+            return true;
+        }
+
+        return false;
+    }
+
     default: break;
     }
 

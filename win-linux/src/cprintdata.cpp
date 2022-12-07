@@ -49,6 +49,7 @@ public:
     int paper_width = 0,
         paper_height = 0;
     QString size_preset;
+    int sender_id = -1;
 
     auto parseJsonOptions(const std::wstring& json) -> bool {
         QJsonObject jsonOptions = Utils::parseJson(json);
@@ -124,6 +125,12 @@ auto CPrintData::init(NSEditorApi::CAscPrintEnd * data) -> void
     m_priv->init(data);
 }
 
+auto CPrintData::init(int senderid, NSEditorApi::CAscPrintEnd * data) -> void
+{
+    m_priv->init(data);
+    m_priv->sender_id = senderid;
+}
+
 auto CPrintData::printerInfo() const -> QPrinterInfo
 {
     return m_priv->printer_info;
@@ -197,4 +204,18 @@ auto CPrintData::printRange() const -> QPrintDialog::PrintRange
 auto CPrintData::isQuickPrint() const -> bool
 {
     return m_priv->is_quick;
+}
+
+auto CPrintData::pagesCount() const -> int
+{
+    return m_priv->pages_count;
+}
+
+auto CPrintData::pageCurent() const -> int
+{
+    return m_priv->current_page;
+}
+auto CPrintData::docId() const -> int
+{
+    return m_priv->sender_id;
 }
