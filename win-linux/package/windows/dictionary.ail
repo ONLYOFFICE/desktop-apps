@@ -150,8 +150,8 @@
   <ENTRY id="Property.ASCC_REG_PREFIX">
     <STRING lang="ru" value="ASC"/>
   </ENTRY>
-  <ENTRY id="Property.ASSOC_PROG_ID">
-    <STRING lang="ru" value="[|ASCC_REG_PREFIX].Editors"/>
+  <ENTRY id="Property.ASCC_REG_REGISTERED_APP_NAME">
+    <STRING lang="ru" value="ONLYOFFICE Editors"/>
   </ENTRY>
   <ENTRY id="Property.ASSOC_APP_FRIENDLY_NAME">
     <STRING lang="ru" value="ONLYOFFICE Editors"/>
@@ -294,7 +294,7 @@
   <ENTRY id="Property.REGISTER_XLSX">
     <STRING lang="ru" value="1"/>
   </ENTRY>
-  <ENTRY id="Property.REGISTER_XLTX">
+  <ENTRY id="Property.REGISTERXLTX">
     <STRING lang="ru" value="1"/>
   </ENTRY>
   <ENTRY id="Property.REGISTER_XML">
