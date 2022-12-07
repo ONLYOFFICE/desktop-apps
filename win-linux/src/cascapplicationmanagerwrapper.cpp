@@ -591,6 +591,25 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
         AscAppManager::getInstance().Apply(event);
         return true; }
 
+    case ASC_MENU_EVENT_TYPE_CEF_ONBEFORE_PRINT_END: {
+        if ( mainWindow()->holdView(event->get_SenderId()) ) {
+            CAscPrintEnd * pData = (CAscPrintEnd *)event->m_pData;
+
+            AscAppManager::printData().init(event->get_SenderId(), pData);
+#ifdef Q_OS_LINUX
+            QTimer::singleShot(100, this, []{
+                QMetaObject::invokeMethod(mainWindow()->mainPanel(), "onDocumentPrint", Qt::QueuedConnection, Q_ARG(void*, nullptr));
+            });
+#else
+            QMetaObject::invokeMethod(mainWindow()->mainPanel(), "onDocumentPrint", Qt::QueuedConnection, Q_ARG(void*, nullptr));
+#endif
+
+            return true;
+        }
+
+        return false;
+    }
+
     case ASC_MENU_EVENT_TYPE_CEF_ONKEYBOARDDOWN: {
         CAscKeyboardDown * data = static_cast<CAscKeyboardDown *>(event->m_pData);
 
@@ -608,21 +627,6 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
                 }
             }
         }
-    }
-
-    case ASC_MENU_EVENT_TYPE_CEF_ONBEFORE_PRINT_END: {
-        if ( mainWindow()->holdView(event->get_SenderId()) ) {
-            CAscPrintEnd * pData = (CAscPrintEnd *)event->m_pData;
-
-            AscAppManager::printData().init(event->get_SenderId(), pData);
-            QTimer::singleShot(0, this, []{
-                QMetaObject::invokeMethod(mainWindow()->mainPanel(), "onDocumentPrint", Qt::QueuedConnection, Q_ARG(void*, nullptr));
-            });
-
-            return true;
-        }
-
-        return false;
     }
 
     default: break;
