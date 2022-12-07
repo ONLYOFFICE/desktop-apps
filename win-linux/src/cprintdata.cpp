@@ -215,7 +215,7 @@ auto CPrintData::pageCurent() const -> int
 {
     return m_priv->current_page;
 }
-auto CPrintData::docId() const -> int
+auto CPrintData::viewId() const -> int
 {
     return m_priv->sender_id;
 }

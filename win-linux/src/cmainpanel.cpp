@@ -910,14 +910,11 @@ void CMainPanel::onDocumentPrint(void * opts)
     WindowHelper::CParentDisable disabler(qobject_cast<QWidget*>(parent()));
 #endif
 
-//    CAscPrintEnd * pData = (CAscPrintEnd *)opts;
-//    CCefView * pView = AscAppManager::getInstance().GetViewById(pData->get_Id());
-    CCefView * pView = AscAppManager::getInstance().GetViewById(AscAppManager::printData().docId());
+    CCefView * pView = AscAppManager::getInstance().GetViewById(AscAppManager::printData().viewId());
 
     int pagesCount = AscAppManager::printData().pagesCount(),
         currentPage = AscAppManager::printData().pageCurent();
 
-//    AscAppManager::printData().init(pData);
 
     if (pView && !(pagesCount < 1)) {
 //#ifdef _WIN32

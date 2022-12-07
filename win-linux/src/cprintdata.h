@@ -54,7 +54,7 @@ public:
     auto pageTo() const -> int;
     auto printRange() const -> QPrintDialog::PrintRange;
     auto isQuickPrint() const -> bool;
-    auto docId() const -> int;
+    auto viewId() const -> int;
 
 private:
     class CPrintDataPrivate;
