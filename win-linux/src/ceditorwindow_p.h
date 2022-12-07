@@ -449,12 +449,7 @@ public:
 
     void onDocumentPrint(void * data)  override
     {
-        CAscPrintEnd * pData = reinterpret_cast<CAscPrintEnd *>(data);
-        AscAppManager::printData().init(pData);
-
-        onDocumentPrint(pData->get_CurrentPage(), pData->get_PagesCount());
-
-        RELEASEINTERFACE(pData);
+        onDocumentPrint(AscAppManager::printData().pageCurent(), AscAppManager::printData().pagesCount());
     }
 
     void onDocumentPrint(int currentpage, uint pagescount) override
