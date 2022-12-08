@@ -44,6 +44,9 @@
 #define TEXT_NO     toWCharPtr(BTN_TEXT_NO)
 #define TEXT_OK     toWCharPtr(BTN_TEXT_OK)
 #define TEXT_SKIP   toWCharPtr(BTN_TEXT_SKIP)
+#define TEXT_BUY    toWCharPtr(BTN_TEXT_BUY)
+#define TEXT_ACTIVATE   toWCharPtr(BTN_TEXT_ACTIVATE)
+#define TEXT_CONTINUE   toWCharPtr(BTN_TEXT_CONTINUE)
 
 
 int WinMsg::showMessage(QWidget *parent,
@@ -101,6 +104,22 @@ int WinMsg::showMessage(QWidget *parent,
         pButtons[1] = {IDRETRY, TEXT_SKIP};
         pButtons[2] = {IDNO, TEXT_NO};
         break;
+    case MsgBtns::mbBuy:
+        cButtons = 1;
+        pButtons = new TASKDIALOG_BUTTON[cButtons];
+        pButtons[0] = {IDYES, TEXT_BUY};
+        break;
+    case MsgBtns::mbActivateDefContinue:
+        cButtons = 2;
+        pButtons = new TASKDIALOG_BUTTON[cButtons];
+        pButtons[0] = {IDYES, TEXT_ACTIVATE};
+        pButtons[1] = {IDNO, TEXT_CONTINUE};
+        break;
+    case MsgBtns::mbContinue:
+        cButtons = 1;
+        pButtons = new TASKDIALOG_BUTTON[cButtons];
+        pButtons[0] = {IDOK, TEXT_CONTINUE};
+        break;
     default:
         cButtons = 1;
         pButtons = new TASKDIALOG_BUTTON[cButtons];
@@ -117,6 +136,9 @@ int WinMsg::showMessage(QWidget *parent,
     case MsgBtns::mbOkCancel:       nDefltBtn = IDCANCEL; break;
     case MsgBtns::mbOkDefCancel:    nDefltBtn = IDOK; break;
     case MsgBtns::mbYesDefSkipNo:   nDefltBtn = IDYES; break;
+    case MsgBtns::mbBuy:            nDefltBtn = IDYES; break;
+    case MsgBtns::mbActivateDefContinue:   nDefltBtn = IDYES; break;
+    case MsgBtns::mbContinue:       nDefltBtn = IDOK; break;
     default:                        nDefltBtn = IDOK; break;
     }
 
@@ -173,9 +195,13 @@ int WinMsg::showMessage(QWidget *parent,
 
     int result = MODAL_RESULT_CANCEL;
     switch (msgboxID) {
-    case IDYES: result = MODAL_RESULT_YES; break;
-    case IDNO:  result = MODAL_RESULT_NO; break;
-    case IDOK:  result = MODAL_RESULT_OK; break;
+    case IDYES: result = (msgBtns == MsgBtns::mbBuy) ? MODAL_RESULT_BUY :
+                         (msgBtns == MsgBtns::mbActivateDefContinue) ? MODAL_RESULT_ACTIVATE :
+                                                                       MODAL_RESULT_YES; break;
+    case IDNO:  result = (msgBtns == MsgBtns::mbActivateDefContinue) ? MODAL_RESULT_CONTINUE :
+                                                                       MODAL_RESULT_NO; break;
+    case IDOK:  result = (msgBtns == MsgBtns::mbContinue) ? MODAL_RESULT_CONTINUE :
+                                                            MODAL_RESULT_OK; break;
     case IDRETRY:  result = MODAL_RESULT_SKIP; break;
     case IDCANCEL:
     default:
