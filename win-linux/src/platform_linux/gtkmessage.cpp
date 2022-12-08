@@ -45,6 +45,9 @@
 #define TEXT_NO     toCharPtr(BTN_TEXT_NO)
 #define TEXT_OK     toCharPtr(BTN_TEXT_OK)
 #define TEXT_SKIP   toCharPtr(BTN_TEXT_SKIP)
+#define TEXT_BUY    toCharPtr(BTN_TEXT_BUY)
+#define TEXT_ACTIVATE   toCharPtr(BTN_TEXT_ACTIVATE)
+#define TEXT_CONTINUE   toCharPtr(BTN_TEXT_CONTINUE)
 #define AddButton(name, response) \
     gtk_dialog_add_button(GTK_DIALOG(dialog), name, response)
 #define GrabFocus(response) \
@@ -130,6 +133,16 @@ int GtkMsg::showMessage(QWidget *parent,
         AddButton(TEXT_SKIP, GTK_RESPONSE_REJECT);
         AddButton(TEXT_NO, GTK_RESPONSE_NO);
         break;
+    case MsgBtns::mbBuy:
+        AddButton(TEXT_BUY, GTK_RESPONSE_YES);
+        break;
+    case MsgBtns::mbActivateDefContinue:
+        AddButton(TEXT_ACTIVATE, GTK_RESPONSE_YES);
+        AddButton(TEXT_CONTINUE, GTK_RESPONSE_NO);
+        break;
+    case MsgBtns::mbContinue:
+        AddButton(TEXT_CONTINUE, GTK_RESPONSE_OK);
+        break;
     default:
         AddButton(TEXT_OK, GTK_RESPONSE_OK);
         break;
@@ -143,15 +156,22 @@ int GtkMsg::showMessage(QWidget *parent,
     case MsgBtns::mbOkCancel: GrabFocus(GTK_RESPONSE_CANCEL); break;
     case MsgBtns::mbOkDefCancel: GrabFocus(GTK_RESPONSE_OK); break;
     case MsgBtns::mbYesDefSkipNo: GrabFocus(GTK_RESPONSE_YES); break;
+    case MsgBtns::mbBuy: GrabFocus(GTK_RESPONSE_YES); break;
+    case MsgBtns::mbActivateDefContinue: GrabFocus(GTK_RESPONSE_YES); break;
+    case MsgBtns::mbContinue: GrabFocus(GTK_RESPONSE_OK); break;
     default: GrabFocus(GTK_RESPONSE_OK); break;
     }
 
     int msgboxID = gtk_dialog_run (GTK_DIALOG (dialog));
     int result = MODAL_RESULT_CANCEL;
     switch (msgboxID) {
-    case GTK_RESPONSE_YES: result = MODAL_RESULT_YES; break;
-    case GTK_RESPONSE_NO:  result = MODAL_RESULT_NO; break;
-    case GTK_RESPONSE_OK:  result = MODAL_RESULT_OK; break;
+    case GTK_RESPONSE_YES: result = (msgBtns == MsgBtns::mbBuy) ? MODAL_RESULT_BUY :
+                                    (msgBtns == MsgBtns::mbActivateDefContinue) ? MODAL_RESULT_ACTIVATE :
+                                                                                  MODAL_RESULT_YES; break;
+    case GTK_RESPONSE_NO:  result = (msgBtns == MsgBtns::mbActivateDefContinue) ? MODAL_RESULT_CONTINUE :
+                                                                                  MODAL_RESULT_NO; break;
+    case GTK_RESPONSE_OK:  result = (msgBtns == MsgBtns::mbContinue) ? MODAL_RESULT_CONTINUE :
+                                                                       MODAL_RESULT_OK; break;
     case GTK_RESPONSE_REJECT:  result = MODAL_RESULT_SKIP; break;
     case GTK_RESPONSE_DELETE_EVENT:
     case GTK_RESPONSE_CANCEL:
