@@ -385,7 +385,9 @@ int CMessage::showMessage(QWidget *parent,
 {
     if (WindowHelper::useNativeDialog()) {
 #ifdef _WIN32
+# ifndef __OS_WIN_XP
         return WinMsg::showMessage(parent, msg, msgType, msgBtns, checkBoxState, chekBoxText);
+# endif
 #else
         WindowHelper::CParentDisable oDisabler(parent);
         return GtkMsg::showMessage(parent, msg, msgType, msgBtns, checkBoxState, chekBoxText);
