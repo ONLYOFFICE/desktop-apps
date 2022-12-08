@@ -713,6 +713,7 @@ public:
 
         if ( panel()->data()->hasFeature(L"readonly\":") && boxtitlelabel ) {
             window->setWindowTitle(m_panel->data()->title());
+            window->m_boxTitleBtns->repaint();
         }
     }
 
