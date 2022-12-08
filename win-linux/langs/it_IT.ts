@@ -137,22 +137,22 @@
 <context>
     <name>CEditorWindow</name>
     <message>
-        <location filename="../src/ceditorwindow_p.h" line="184"/>
+        <location filename="../src/ceditorwindow_p.h" line="185"/>
         <source>Open main window</source>
         <translation>Aprire la finestra principale</translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow_p.h" line="416"/>
+        <location filename="../src/ceditorwindow_p.h" line="417"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
         <translation>Il documento deve essere salvato per continuare.&lt;br&gt;Salvare il documento?</translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow_p.h" line="484"/>
+        <location filename="../src/ceditorwindow_p.h" line="488"/>
         <source>Print Document</source>
         <translation>Stampa documento</translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow_p.h" line="651"/>
+        <location filename="../src/ceditorwindow_p.h" line="660"/>
         <source>Document must be saved firstly.</source>
         <translation>Il documento deve essere prima salvato.</translation>
     </message>
@@ -433,7 +433,7 @@
 <context>
     <name>CMainPanel</name>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1230"/>
+        <location filename="../src/cmainpanel.cpp" line="1238"/>
         <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
         <translation>%1 è stato modificato.&lt;br&gt;Desideri salvare le modifiche?</translation>
     </message>
@@ -462,7 +462,7 @@
         <translation type="vanished">Se continua a salvare in questo formato tutte le caratteristiche tranne il testo saranno perse.&lt;br&gt;Sei sicuro di voler continuare?</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1162"/>
+        <location filename="../src/cmainpanel.cpp" line="1170"/>
         <source>Sign Up</source>
         <translation>Crea cloud office</translation>
     </message>
@@ -472,7 +472,7 @@
         <translation>Il documento deve essere salvato per continuare.&lt;br&gt;Salvare il documento?</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="940"/>
+        <location filename="../src/cmainpanel.cpp" line="942"/>
         <source>Print Document</source>
         <translation>Stampa Documento</translation>
     </message>
@@ -567,6 +567,11 @@
         <location filename="../src/ceditortools.cpp" line="131"/>
         <source>All files (*.*)</source>
         <translation>Tutti i file (*.*)</translation>
+    </message>
+    <message>
+        <location filename="../src/casctabdata.cpp" line="179"/>
+        <source>Read only</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

@@ -147,22 +147,22 @@
         <translation>Ja jūs turpināsiet saglabāt šajā formātā, visas iezīmes zudīs, izņemot tekstu.&lt;br&gt;Vai esat pārliecināts, ka vēlaties turpināt?</translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow_p.h" line="184"/>
+        <location filename="../src/ceditorwindow_p.h" line="185"/>
         <source>Open main window</source>
         <translation>Atvērt galveno logu</translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow_p.h" line="416"/>
+        <location filename="../src/ceditorwindow_p.h" line="417"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
         <translation> Dokuments jāsaglabā, lai turpinātu.&lt;br&gt;Saglabāt dokumentu?</translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow_p.h" line="484"/>
+        <location filename="../src/ceditorwindow_p.h" line="488"/>
         <source>Print Document</source>
         <translation>Izprintēt dokumentu</translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow_p.h" line="651"/>
+        <location filename="../src/ceditorwindow_p.h" line="660"/>
         <source>Document must be saved firstly.</source>
         <translation>Dokuments vispirms jāsaglabā.</translation>
     </message>
@@ -458,7 +458,7 @@
         <translation>Dokuments jāsaglabā, lai turpinātu.&lt;br&gt;Saglabāt dokumentu?</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="940"/>
+        <location filename="../src/cmainpanel.cpp" line="942"/>
         <source>Print Document</source>
         <translation>Izprintēt dokumentu</translation>
     </message>
@@ -467,12 +467,12 @@
         <translation type="vanished">Ja turpināsiet saglabāt šajā formātā, visas iezīmēs zudīs, izņemot tekstu.&lt;br&gt;Vai esat pārliecināts, ka vēlaties turpināt?</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1162"/>
+        <location filename="../src/cmainpanel.cpp" line="1170"/>
         <source>Sign Up</source>
         <translation>Izveidot portālu</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1230"/>
+        <location filename="../src/cmainpanel.cpp" line="1238"/>
         <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
         <translation>%1 tika izmainīts.&lt;br&gt;Vai jūs vēlaties saglabāt izmaiņas?</translation>
     </message>
@@ -567,6 +567,11 @@
         <location filename="../src/ceditortools.cpp" line="131"/>
         <source>All files (*.*)</source>
         <translation>Visi faili (*.*)</translation>
+    </message>
+    <message>
+        <location filename="../src/casctabdata.cpp" line="179"/>
+        <source>Read only</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

@@ -137,22 +137,22 @@
 <context>
     <name>CEditorWindow</name>
     <message>
-        <location filename="../src/ceditorwindow_p.h" line="184"/>
+        <location filename="../src/ceditorwindow_p.h" line="185"/>
         <source>Open main window</source>
         <translation>Отвори главен прозорец</translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow_p.h" line="416"/>
+        <location filename="../src/ceditorwindow_p.h" line="417"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
         <translation>Документът трябва да бъде запазен, за да продължите.&lt;br&gt;Запазвате ли документа?</translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow_p.h" line="484"/>
+        <location filename="../src/ceditorwindow_p.h" line="488"/>
         <source>Print Document</source>
         <translation>Принтирай документ</translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow_p.h" line="651"/>
+        <location filename="../src/ceditorwindow_p.h" line="660"/>
         <source>Document must be saved firstly.</source>
         <translation>Документът първо трябва да бъде запазен.</translation>
     </message>
@@ -433,7 +433,7 @@
 <context>
     <name>CMainPanel</name>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1230"/>
+        <location filename="../src/cmainpanel.cpp" line="1238"/>
         <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
         <translation>%1 бе модифициран.&lt;br&gt;Искате ли да запазите промените?</translation>
     </message>
@@ -458,7 +458,7 @@
         <translation type="vanished">Ако продължите да запазите в този формат, всички характеристики, освен текста, ще бъдат загубени.&lt;br&gt;Сигурни ли сте, че искате да продължите?</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1162"/>
+        <location filename="../src/cmainpanel.cpp" line="1170"/>
         <source>Sign Up</source>
         <translation>Създай портал</translation>
     </message>
@@ -468,7 +468,7 @@
         <translation>Документът трябва да бъде запазен, за да продължите.&lt;br&gt;Запазвате ли документа?</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="940"/>
+        <location filename="../src/cmainpanel.cpp" line="942"/>
         <source>Print Document</source>
         <translation>Принтирай документ</translation>
     </message>
@@ -563,6 +563,11 @@
         <location filename="../src/ceditortools.cpp" line="131"/>
         <source>All files (*.*)</source>
         <translation>Всички файлове (*.*)</translation>
+    </message>
+    <message>
+        <location filename="../src/casctabdata.cpp" line="179"/>
+        <source>Read only</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

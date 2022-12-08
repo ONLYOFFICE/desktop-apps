@@ -36,6 +36,7 @@
 //#include "regex"
 
 #include <QProcess>
+#include <QTimer>
 #include <QDebug>
 using namespace NSEditorApi;
 
@@ -125,10 +126,13 @@ void CCefEventsTransformer::OnEvent(QObject * target, NSEditorApi::CAscCefMenuEv
     case ASC_MENU_EVENT_TYPE_CEF_ONBEFORE_PRINT_PROGRESS: break;
 
     case ASC_MENU_EVENT_TYPE_CEF_ONBEFORE_PRINT_END: {
-        NSEditorApi::CAscPrintEnd * pData = (NSEditorApi::CAscPrintEnd *)event->m_pData;
-
-        ADDREFINTERFACE(pData)
-        QMetaObject::invokeMethod(target, "onDocumentPrint", Qt::QueuedConnection, Q_ARG(void*, pData));
+#ifdef Q_OS_LINUX
+        QTimer::singleShot(0, pObjTarget, [target]{
+            QMetaObject::invokeMethod(target, "onDocumentPrint", Qt::QueuedConnection, Q_ARG(void*, nullptr));
+        });
+#else
+        QMetaObject::invokeMethod(target, "onDocumentPrint", Qt::QueuedConnection, Q_ARG(void*, nullptr));
+#endif
         break;}
 
     case ASC_MENU_EVENT_TYPE_CEF_ONOPENLINK: break;

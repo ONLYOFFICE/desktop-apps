@@ -630,6 +630,11 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
         AscAppManager::getInstance().Apply(event);
         return true; }
 
+    case ASC_MENU_EVENT_TYPE_CEF_ONBEFORE_PRINT_END: {
+        AscAppManager::printData().init(event->get_SenderId(), (CAscPrintEnd *)event->m_pData);
+        return false;
+    }
+
     case ASC_MENU_EVENT_TYPE_CEF_ONKEYBOARDDOWN: {
         CAscKeyboardDown * data = static_cast<CAscKeyboardDown *>(event->m_pData);
 

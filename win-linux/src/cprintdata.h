@@ -43,14 +43,18 @@ public:
     explicit CPrintData();
 
     auto init(NSEditorApi::CAscPrintEnd *) -> void;
+    auto init(int, NSEditorApi::CAscPrintEnd *) -> void;
     auto printerInfo() const -> QPrinterInfo;
     auto setPrinterInfo(const QPrinterInfo&) -> void;
     auto pageSize() const -> QPageSize;
     auto pageOrientation() const -> QPageLayout::Orientation;
+    auto pagesCount() const -> int;
+    auto pageCurent() const -> int;
     auto pageFrom() const -> int;
     auto pageTo() const -> int;
     auto printRange() const -> QPrintDialog::PrintRange;
     auto isQuickPrint() const -> bool;
+    auto viewId() const -> int;
 
 private:
     class CPrintDataPrivate;

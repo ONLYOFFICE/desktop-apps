@@ -137,22 +137,22 @@
 <context>
     <name>CEditorWindow</name>
     <message>
-        <location filename="../src/ceditorwindow_p.h" line="184"/>
+        <location filename="../src/ceditorwindow_p.h" line="185"/>
         <source>Open main window</source>
         <translation>Ouvrir la fenêtre principale</translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow_p.h" line="416"/>
+        <location filename="../src/ceditorwindow_p.h" line="417"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
         <translation>Le document doit être enregistré pour continuer.&lt;br&gt;Enregistrer le document ?</translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow_p.h" line="484"/>
+        <location filename="../src/ceditorwindow_p.h" line="488"/>
         <source>Print Document</source>
         <translation>Imprimer document</translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow_p.h" line="651"/>
+        <location filename="../src/ceditorwindow_p.h" line="660"/>
         <source>Document must be saved firstly.</source>
         <translation>Le document doit d’abord être enregistré.</translation>
     </message>
@@ -437,7 +437,7 @@
         <translation type="vanished">DÉPART</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1230"/>
+        <location filename="../src/cmainpanel.cpp" line="1238"/>
         <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
         <translation>%1 a été modifié.&lt;br&gt;Voulez-vous enregistrer les changements ?</translation>
     </message>
@@ -462,7 +462,7 @@
         <translation type="vanished">Si vous continuez à enregistrer dans ce format toutes les fonctions sauf le texte seront perdues.&lt;br&gt;Êtes-vous sûr de vouloir continuer ?</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1162"/>
+        <location filename="../src/cmainpanel.cpp" line="1170"/>
         <source>Sign Up</source>
         <translation>Créer bureau de cloud</translation>
     </message>
@@ -472,7 +472,7 @@
         <translation>Le document doit être enregistré pour continuer.&lt;br&gt;Enregistrer le document ?</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="940"/>
+        <location filename="../src/cmainpanel.cpp" line="942"/>
         <source>Print Document</source>
         <translation>Imprimer document</translation>
     </message>
@@ -567,6 +567,11 @@
         <location filename="../src/ceditortools.cpp" line="131"/>
         <source>All files (*.*)</source>
         <translation>Tous les fichiers (*.*)</translation>
+    </message>
+    <message>
+        <location filename="../src/casctabdata.cpp" line="179"/>
+        <source>Read only</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

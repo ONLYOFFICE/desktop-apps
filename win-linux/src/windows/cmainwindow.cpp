@@ -65,6 +65,7 @@
 #include <stdexcept>
 #include <functional>
 #include <regex>
+#include <QPrintEngine>
 
 #ifdef _WIN32
 # include "shlobj.h"
@@ -1091,13 +1092,11 @@ void CMainWindow::onDocumentPrint(void * opts)
     WindowHelper::CParentDisable disabler(qobject_cast<QWidget*>(this));
 #endif
 
-    CAscPrintEnd * pData = (CAscPrintEnd *)opts;
-    CCefView * pView = AscAppManager::getInstance().GetViewById(pData->get_Id());
+    CCefView * pView = AscAppManager::getInstance().GetViewById(AscAppManager::printData().viewId());
 
-    int pagesCount = pData->get_PagesCount(),
-        currentPage = pData->get_CurrentPage();
+    int pagesCount = AscAppManager::printData().pagesCount(),
+        currentPage = AscAppManager::printData().pageCurent();
 
-    AscAppManager::printData().init(pData);
 
     if (pView && !(pagesCount < 1)) {
         NSEditorApi::CAscMenuEvent * pEvent;
@@ -1106,9 +1105,13 @@ void CMainWindow::onDocumentPrint(void * opts)
         QPrinter * printer = pContext->getPrinter();
         printer->setOutputFileName("");
         printer->setFromTo(1, pagesCount);
+        printer->printEngine()->setProperty(QPrintEngine::PPK_DocumentName,
+                    m_pTabs->titleByIndex(m_pTabs->tabIndexByView(AscAppManager::printData().viewId()), true));
 
-        printer->setPageOrientation(AscAppManager::printData().pageOrientation());
-        printer->setPageSize(AscAppManager::printData().pageSize());
+        if ( !AscAppManager::printData().isQuickPrint() ) {
+            printer->setPageOrientation(AscAppManager::printData().pageOrientation());
+            printer->setPageSize(AscAppManager::printData().pageSize());
+        }
 
 #ifdef _WIN32
         CPrintDialog * dialog =  new CPrintDialog(printer, this);
@@ -1135,11 +1138,17 @@ void CMainWindow::onDocumentPrint(void * opts)
         if ( AscAppManager::printData().isQuickPrint() ) {
             dialog->accept();
         } else modal_res = dialog->exec();
+            qApp->processEvents();
 
         if ( modal_res == QDialog::Accepted ) {
             AscAppManager::printData().setPrinterInfo(QPrinterInfo::printerInfo(printer->printerName()));
 //            m_printData->_print_range = dialog->printRange();
             QVector<PageRanges> page_ranges;
+
+#ifdef Q_OS_LINUX
+            if ( AscAppManager::printData().isQuickPrint() && printer->outputFormat() == QPrinter::PdfFormat )
+                printer->setOutputFileName(Utils::uniqFileName(QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation) + "/print.pdf"));
+#endif
 
             switch(dialog->printRange()) {
             case QPrintDialog::AllPages:
@@ -1169,7 +1178,7 @@ void CMainWindow::onDocumentPrint(void * opts)
     }
 
     printInProcess = false;
-    RELEASEINTERFACE(pData)
+//    RELEASEINTERFACE(pData)
 }
 
 void CMainWindow::onFullScreen(int id, bool apply)

@@ -147,22 +147,22 @@
         <translation>Hvis du fortsætter med at gemme i dette format vil alle funktioner undtagen teksten blive væk.&lt;br&gt;Er du sikker på du vil fortsætte?</translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow_p.h" line="184"/>
+        <location filename="../src/ceditorwindow_p.h" line="185"/>
         <source>Open main window</source>
         <translation>Åbn hovedvindue</translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow_p.h" line="416"/>
+        <location filename="../src/ceditorwindow_p.h" line="417"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
         <translation>Dokumentet skal gemmes for at fortsætte.&lt;br&gt;Gem dokumentet?</translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow_p.h" line="484"/>
+        <location filename="../src/ceditorwindow_p.h" line="488"/>
         <source>Print Document</source>
         <translation>Udskriv dokument</translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow_p.h" line="651"/>
+        <location filename="../src/ceditorwindow_p.h" line="660"/>
         <source>Document must be saved firstly.</source>
         <translation>Dokumentet skal gemmes først.</translation>
     </message>
@@ -454,7 +454,7 @@
         <translation>Dokument skal gemmes for at fortsætte.&lt;br&gt;Gem dokumentet?</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="940"/>
+        <location filename="../src/cmainpanel.cpp" line="942"/>
         <source>Print Document</source>
         <translation>Udskriv dokument</translation>
     </message>
@@ -463,12 +463,12 @@
         <translation type="vanished">Hvis du fortsætter med at gemme i dette format vil alle funktioner undtagen teksten blive væk.&lt;br&gt;Er du sikker på du vil fortsætte?</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1162"/>
+        <location filename="../src/cmainpanel.cpp" line="1170"/>
         <source>Sign Up</source>
         <translation>Opret portal</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1230"/>
+        <location filename="../src/cmainpanel.cpp" line="1238"/>
         <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
         <translation>%1 er blevet ændret.&lt;br&gt;Vil du gemme ændringerne?</translation>
     </message>
@@ -563,6 +563,11 @@
         <location filename="../src/ceditortools.cpp" line="131"/>
         <source>All files (*.*)</source>
         <translation>Alle filer (*.*)</translation>
+    </message>
+    <message>
+        <location filename="../src/casctabdata.cpp" line="179"/>
+        <source>Read only</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

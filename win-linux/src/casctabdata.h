@@ -72,6 +72,7 @@ public:
 private:
     QString _title;
     bool    _is_changed = false,
+            _is_readonly = false,
             _has_changes = false;
     bool    _is_closed = false;
     bool    _is_local;
@@ -79,6 +80,7 @@ private:
     std::wstring _url;
     bool    _event_load_supported = false;
     std::wstring _features;
+    QString _str_readonly;
 
     AscEditorType _typeContent;
 };

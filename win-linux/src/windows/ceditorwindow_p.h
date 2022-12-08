@@ -54,6 +54,8 @@
 #include <QJsonArray>
 #include <QJsonObject>
 #include <QGridLayout>
+#include <QStandardPaths>
+#include <QPrintEngine>
 
 #ifdef __linux__
 # include "platform_linux/gtkprintdialog.h"
@@ -482,12 +484,7 @@ public:
 
     void onDocumentPrint(void * data)  override
     {
-        CAscPrintEnd * pData = reinterpret_cast<CAscPrintEnd *>(data);
-        AscAppManager::printData().init(pData);
-
-        onDocumentPrint(pData->get_CurrentPage(), pData->get_PagesCount());
-
-        RELEASEINTERFACE(pData);
+        onDocumentPrint(AscAppManager::printData().pageCurent(), AscAppManager::printData().pagesCount());
     }
 
     void onDocumentPrint(int currentpage, uint pagescount) override
@@ -511,8 +508,12 @@ public:
             QPrinter * printer = pContext->getPrinter();
             printer->setOutputFileName("");
             printer->setFromTo(1, pagescount);
-            printer->setPageOrientation(AscAppManager::printData().pageOrientation());
-            printer->setPageSize(AscAppManager::printData().pageSize());
+            printer->printEngine()->setProperty(QPrintEngine::PPK_DocumentName, m_panel->data()->title(true));
+
+            if ( !AscAppManager::printData().isQuickPrint() ) {
+                printer->setPageOrientation(AscAppManager::printData().pageOrientation());
+                printer->setPageSize(AscAppManager::printData().pageSize());
+            }
 
 #ifdef _WIN32
             CPrintDialog * dialog =  new CPrintDialog(printer, window->handle());
@@ -544,6 +545,11 @@ public:
             if ( modal_res == QDialog::Accepted ) {
                 AscAppManager::printData().setPrinterInfo(QPrinterInfo::printerInfo(printer->printerName()));
                 QVector<PageRanges> page_ranges;
+
+#ifdef Q_OS_LINUX
+                if ( AscAppManager::printData().isQuickPrint() && printer->outputFormat() == QPrinter::PdfFormat )
+                    printer->setOutputFileName(Utils::uniqFileName(QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation) + "/print.pdf"));
+#endif
 
                 switch(dialog->printRange()) {
                 case QPrintDialog::AllPages:
@@ -756,6 +762,11 @@ public:
 
         if ( panel()->data()->hasFeature(L"crypted\":true") && boxtitlelabel && !iconcrypted ) {
             qobject_cast<QBoxLayout *>(boxtitlelabel->layout())->insertWidget(0, iconCrypted());
+        }
+
+        if ( panel()->data()->hasFeature(L"readonly\":") && boxtitlelabel ) {
+            window->setWindowTitle(m_panel->data()->title());
+            window->m_boxTitleBtns->repaint();
         }
     }
 
