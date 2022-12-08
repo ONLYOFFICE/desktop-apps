@@ -89,10 +89,6 @@ public:
     explicit QtMsg(QWidget *);
     ~QtMsg();
 
-    void setButtons(std::initializer_list<QString>);
-    void setButtons(MsgBtns);
-    void setIcon(MsgType);
-    void setText(const QString&);
     static int showMessage(QWidget *parent,
                            const QString &msg,
                            MsgType msgType,
@@ -101,6 +97,10 @@ public:
                            const QString &chekBoxText = QString());
 private:
     void modal();
+    void setButtons(std::initializer_list<QString>);
+    void setButtons(MsgBtns);
+    void setIcon(MsgType);
+    void setText(const QString&);
     void setCheckBox(const QString &chekBoxText, bool checkBoxState);
     bool getCheckStatus();
 
