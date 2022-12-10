@@ -73,21 +73,21 @@ rm -rf "%{buildroot}"
 %attr(755, root, root) %{_bindir}/%{_desktopeditors_exec}
 %if "%{_company_name}" == "ONLYOFFICE"
 %attr(-, root, root) %{_bindir}/desktopeditors
+%exclude /opt/%{_desktopeditors_prefix}/editors/web-apps/apps/documenteditor/main/resources/help
+%exclude /opt/%{_desktopeditors_prefix}/editors/web-apps/apps/presentationeditor/main/resources/help
+%exclude /opt/%{_desktopeditors_prefix}/editors/web-apps/apps/spreadsheeteditor/main/resources/help
 %else
 %attr(755, root, root) %{_bindir}/%{_imageviewer_exec}
 %attr(755, root, root) %{_bindir}/%{_videoplayer_exec}
 %attr(-, root, root) %{_bindir}/%{_package_name}
 %attr(777, root, root) %{_sysconfdir}/%{_package_name}
 %endif
-# %exclude /opt/%{_desktopeditors_prefix}/editors/web-apps/apps/documenteditor/main/resources/help
-# %exclude /opt/%{_desktopeditors_prefix}/editors/web-apps/apps/presentationeditor/main/resources/help
-# %exclude /opt/%{_desktopeditors_prefix}/editors/web-apps/apps/spreadsheeteditor/main/resources/help
 
-# %files help
-# %defattr(-, root, root, -)
-# /opt/%{_desktopeditors_prefix}/editors/web-apps/apps/documenteditor/main/resources/help
-# /opt/%{_desktopeditors_prefix}/editors/web-apps/apps/presentationeditor/main/resources/help
-# /opt/%{_desktopeditors_prefix}/editors/web-apps/apps/spreadsheeteditor/main/resources/help
+%files help
+%defattr(-, root, root, -)
+/opt/%{_desktopeditors_prefix}/editors/web-apps/apps/documenteditor/main/resources/help
+/opt/%{_desktopeditors_prefix}/editors/web-apps/apps/presentationeditor/main/resources/help
+/opt/%{_desktopeditors_prefix}/editors/web-apps/apps/spreadsheeteditor/main/resources/help
 
 %pre
 
