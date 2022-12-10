@@ -751,7 +751,11 @@ begin
     DoPostInstall();
     GetWindowsVersionEx(version);
     if (version.Major > 6) or ((version.Major = 6) and (version.Minor >= 1)) then begin
+#ifdef _ONLYOFFICE
       translateArgs := ExpandConstant('{cm:jumpDOCX}+{cm:jumpXLSX}+{cm:jumpPPTX}+{cm:jumpDOCXF}');
+#else
+      translateArgs := ExpandConstant('{cm:jumpDOCX}+{cm:jumpXLSX}+{cm:jumpPPTX}');
+#endif
       StringChangeEx(translateArgs, ' ', '_', True);
       StringChangeEx(translateArgs, '+', ' ', True);
       Exec(ExpandConstant('{app}\{#iconsExe}'), '--create-jump-list ' + translateArgs, '', SW_SHOWNORMAL, ewWaitUntilTerminated, ErrorCode);
