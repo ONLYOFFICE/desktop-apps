@@ -78,7 +78,7 @@ int main(int argc, char *argv[])
             "New presentation",
             "New form template"
         };
-        CreateJumpList(_cmdArgs.size() > TASK_NUM ? _cmdArgs.mid(1) : defaultTitles);
+        CreateJumpList(_cmdArgs.size() > MIN_TASK_NUM ? _cmdArgs.mid(1) : defaultTitles);
         return 0;
     } else
     if (_cmdArgs.contains("--remove-jump-list")) {
