@@ -121,6 +121,9 @@ typedef unsigned char BYTE;
 #define BTN_TEXT_NO     QObject::tr("No")
 #define BTN_TEXT_OK     QObject::tr("OK")
 #define BTN_TEXT_SKIP   QObject::tr("Skip")
+#define BTN_TEXT_BUY    QObject::tr("Buy Now")
+#define BTN_TEXT_ACTIVATE   QObject::tr("Activate")
+#define BTN_TEXT_CONTINUE   QObject::tr("Continue")
 
 enum class MsgBtns {
     mbOk = 0,
@@ -130,7 +133,10 @@ enum class MsgBtns {
     mbYesDefNoCancel,
     mbOkCancel,
     mbOkDefCancel,
-    mbYesDefSkipNo
+    mbYesDefSkipNo,
+    mbBuy,
+    mbActivateDefContinue,
+    mbContinue
 };
 enum class MsgType {
     MSG_INFO = 0,
@@ -143,7 +149,10 @@ enum MsgRes {
     MODAL_RESULT_YES,
     MODAL_RESULT_NO,
     MODAL_RESULT_OK,
-    MODAL_RESULT_SKIP
+    MODAL_RESULT_SKIP,
+    MODAL_RESULT_BUY,
+    MODAL_RESULT_ACTIVATE,
+    MODAL_RESULT_CONTINUE
 };
 
 #include "defines_p.h"
