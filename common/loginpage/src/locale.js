@@ -130,6 +130,9 @@ l10n.en = {
     updateAvialable: 'Version $1 is available. Click to download.',
     settOptThemeSystem: 'Same as system',
     settOptThemeContrastDark: 'Contrast Dark',
+    settAUpdateMode: 'Autoupdate mode',
+    settOptAUpdateSilent: 'Silent mode',
+    settOptAUpdateAsk: 'Ask to download',
 }
 
 
