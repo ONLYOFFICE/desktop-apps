@@ -60,8 +60,11 @@ CWindowPlatform::~CWindowPlatform()
 
 void CWindowPlatform::bringToTop()
 {
-    QMainWindow::raise();
-    QMainWindow::activateWindow();
+    if (isMinimized()) {
+        windowState() == (Qt::WindowMinimized | Qt::WindowMaximized) ?
+                    showMaximized() : showNormal();
+    }
+    CX11Decoration::raiseWindow();
 }
 
 void CWindowPlatform::show(bool maximized)
