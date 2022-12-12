@@ -566,7 +566,23 @@ int CX11Decoration::customWindowBorderWith()
 
 void CX11Decoration::raiseWindow()
 {
-    XRaiseWindow(QX11Info::display(), m_window->winId());
+    Display *disp = QX11Info::display();
+    Atom atom_active_wnd = XInternAtom(disp, "_NET_ACTIVE_WINDOW", False);
+    if (atom_active_wnd == None)
+        return;
+    Window wnd = (Window)m_window->winId();
+    Window root = DefaultRootWindow(disp);
+    XEvent event;
+    memset(&event, 0, sizeof(XEvent));
+    event.xclient.type = ClientMessage;
+    event.xclient.serial = 0;
+    event.xclient.send_event = True;
+    event.xclient.message_type = atom_active_wnd;
+    event.xclient.window = wnd;
+    event.xclient.format = 32;
+    XSendEvent(disp, root, False, SubstructureRedirectMask | SubstructureNotifyMask, &event);
+    XMapRaised(disp, wnd);
+    XFlush(disp);
 }
 
 void CX11Decoration::sendButtonRelease()

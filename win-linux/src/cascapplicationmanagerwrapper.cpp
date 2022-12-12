@@ -871,12 +871,6 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
                 }
 
                 _app.mainWindow()->attachEditor(panel);
-#ifdef __linux__
-                if (_app.mainWindow()->isMinimized()) {
-                    _app.mainWindow()->windowState() == (Qt::WindowMinimized | Qt::WindowMaximized) ?
-                                _app.mainWindow()->showMaximized() : _app.mainWindow()->showNormal();
-                }
-#endif
                 QTimer::singleShot(100, &_app, [&]{
                     _app.mainWindow()->bringToTop();
                 });
