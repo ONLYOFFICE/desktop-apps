@@ -1917,10 +1917,7 @@ void CAscApplicationManagerWrapper::addStylesheets(CScalingFactor f, const std::
 }
 
 #ifdef _UPDMODULE
-void CAscApplicationManagerWrapper::showUpdateMessage(const bool error,
-                                                      const bool updateExist,
-                                                      const QString &version,
-                                                      const QString &changelog)
+void CAscApplicationManagerWrapper::showUpdateMessage(bool error, bool updateExist, const QString &version, const QString &changelog)
 {
     Q_UNUSED(changelog);
     if (!error && updateExist) {

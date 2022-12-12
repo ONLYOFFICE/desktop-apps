@@ -156,8 +156,7 @@ private slots:
 #ifdef Q_OS_WIN
     void showStartInstallMessage();
 #endif
-    void showUpdateMessage(const bool error, const bool updateExist,
-                           const QString &version, const QString &changelog);
+    void showUpdateMessage(bool error, bool updateExist, const QString &version, const QString &changelog);
 #endif
 
     void onMainWindowClose();
