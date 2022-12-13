@@ -6,11 +6,7 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1068"/>
         <source>Presenter View</source>
-        <translation>Tampilan Presenter</translation>
-    </message>
-    <message>
-        <source>Do you want to close all editor windows?</source>
-        <translation type="vanished">Apakah Anda mau menutup semua window editor?</translation>
+        <translation>Tampilan Penyaji</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1619"/>
@@ -78,7 +74,7 @@
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="107"/>
         <source>Certifacate password:</source>
-        <translation>Sertifikat kata sandi:</translation>
+        <translation>Kata sandi sertifikat:</translation>
     </message>
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="108"/>
@@ -88,12 +84,12 @@
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="109"/>
         <source>Key password:</source>
-        <translation>Kunci kata sandi:</translation>
+        <translation>Kata sandi kunci:</translation>
     </message>
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="233"/>
         <source>Enter certificate path</source>
-        <translation>Masukkan jalur sertifikat</translation>
+        <translation>Masukkan path sertifikat</translation>
     </message>
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="242"/>
@@ -103,12 +99,12 @@
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="248"/>
         <source>Enter certificate password</source>
-        <translation>Masukkan sertifikat kata sandi</translation>
+        <translation>Masukkan kata sandi sertifikat</translation>
     </message>
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="249"/>
         <source>Wrong certificate password.&lt;br&gt;Please enter again</source>
-        <translation>Sertifikat kata sandi salah.&lt;br&gt;Silakan masukkan sekali lagi</translation>
+        <translation>Kata sandi sertifikat salah.&lt;br&gt;Silakan masukkan lagi</translation>
     </message>
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="258"/>
@@ -123,7 +119,7 @@
     <message>
         <location filename="../src/linux/cdialogopenssl.cpp" line="273"/>
         <source>Enter key password</source>
-        <translation>Masukkan kunci kata sandi</translation>
+        <translation>Masukkan kata sandi kunci</translation>
     </message>
 </context>
 <context>
@@ -137,19 +133,9 @@
 <context>
     <name>CEditorWindow</name>
     <message>
-        <location filename="../src/ceditorwindow.cpp" line="159"/>
-        <source>%1 has been changed. Save changes?</source>
-        <translation>%1 telah berubah.&lt;br&gt;Simpan perubahan?</translation>
-    </message>
-    <message>
-        <location filename="../src/ceditortools.cpp" line="303"/>
-        <source>Some data will lost.&lt;br&gt;Continue?</source>
-        <translation>Jika Anda masih menyimpan dalam format ini semua fitur kecuali teks akan hilang.&lt;br&gt;Yakin ingin melanjutkan?</translation>
-    </message>
-    <message>
         <location filename="../src/ceditorwindow_p.h" line="185"/>
         <source>Open main window</source>
-        <translation>Buka window utama</translation>
+        <translation>Buka jendela utama</translation>
     </message>
     <message>
         <location filename="../src/ceditorwindow_p.h" line="417"/>
@@ -159,12 +145,22 @@
     <message>
         <location filename="../src/ceditorwindow_p.h" line="488"/>
         <source>Print Document</source>
-        <translation>Cetak dokumen</translation>
+        <translation>Cetak Dokumen</translation>
     </message>
     <message>
         <location filename="../src/ceditorwindow_p.h" line="660"/>
         <source>Document must be saved firstly.</source>
         <translation>Dokumen harus disimpan terlebih dahulu.</translation>
+    </message>
+    <message>
+        <location filename="../src/ceditorwindow.cpp" line="159"/>
+        <source>%1 has been changed. Save changes?</source>
+        <translation>%1 telah berubah. Simpan perubahan?</translation>
+    </message>
+    <message>
+        <location filename="../src/ceditortools.cpp" line="303"/>
+        <source>Some data will lost.&lt;br&gt;Continue?</source>
+        <translation>Jika Anda masih menyimpan dalam format ini semua fitur kecuali teks akan hilang.&lt;br&gt;Yakin ingin melanjutkan?</translation>
     </message>
 </context>
 <context>
@@ -212,22 +208,22 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="228"/>
         <source>HTML File (*.html)</source>
-        <translation>File HTML (*.html)</translation>
+        <translation>File HyperText Markup Language (*.html)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="229"/>
         <source>MHT File (*.mht)</source>
-        <translation>File MHT (*.mht)</translation>
+        <translation>File Arsip Halaman Web (*.mht)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="230"/>
         <source>EPUB File (*.epub)</source>
-        <translation>File EPUB (*.epub)</translation>
+        <translation>File Electronic Publication (*.epub)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="231"/>
         <source>FB2 File (*.fb2)</source>
-        <translation>File FB2 (*.fb2)</translation>
+        <translation>File FictionBook 2 (*.fb2)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="232"/>
@@ -237,12 +233,12 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="233"/>
         <source>OFORM Document (*.oform)</source>
-        <translation type="unfinished"></translation>
+        <translation>Formulir ONLYOFFICE Fillable Online (*.oform)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="234"/>
         <source>DOCXF Document (*.docxf)</source>
-        <translation type="unfinished"></translation>
+        <translation>Templat ONLYOFFICE Form (*.docxf)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="236"/>
@@ -297,7 +293,7 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="247"/>
         <source>OpenDocument Spreadsheet Template (*.ots)</source>
-        <translation>Templat Lembar Bentang OpenDocument (*.ots)</translation>
+        <translation>Templat Spreadsheet OpenDocument (*.ots)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="248"/>
@@ -307,17 +303,17 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="250"/>
         <source>PDF File (*.pdf)</source>
-        <translation>File PDF (*.pdf)</translation>
+        <translation>Portable Document (*.pdf)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="251"/>
         <source>PDFA File (*.pdf)</source>
-        <translation>File PDFA (*.pdf)</translation>
+        <translation>Portable Document /A (*.pdf)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="252"/>
         <source>DJVU File (*.djvu)</source>
-        <translation>File DjVu (*.djvu)</translation>
+        <translation>Dokumen Digital (*.djvu)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="253"/>
@@ -326,12 +322,8 @@
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="255"/>
-        <source>JPG Image (*.jpg *.jpeg)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>JPG Image (*.jpg, *.jpeg)</source>
-        <translation type="vanished">Gambar JPG (*.jpg *.jpeg)</translation>
+        <translation>Gambar JPG (*.jpg *.jpeg)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="256"/>
@@ -356,7 +348,7 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="400"/>
         <source>Excel Workbook</source>
-        <translation>Lembar Bentang Excel</translation>
+        <translation>Spreadsheet Excel</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="403"/>
@@ -378,7 +370,7 @@
         <location filename="../src/cfiledialog.cpp" line="417"/>
         <location filename="../src/cfiledialog.cpp" line="532"/>
         <source>Spreadsheets</source>
-        <translation>Lembar bentang</translation>
+        <translation>Spreadsheet</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="418"/>
@@ -437,8 +429,9 @@
 <context>
     <name>CMainPanel</name>
     <message>
-        <source>FILE</source>
-        <translation type="vanished">MULAI</translation>
+        <location filename="../src/cmainpanel.cpp" line="1238"/>
+        <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
+        <translation>%1 telah berubah.&lt;br&gt;Simpan perubahan?</translation>
     </message>
     <message>
         <location filename="../src/cmainpanel.cpp" line="555"/>
@@ -457,16 +450,6 @@
         <translation>Dokumen harus disimpan terlebih dahulu.</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="799"/>
-        <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
-        <translation>Dokumen harus disimpan untuk melanjutkan.&lt;br&gt;Simpan dokumen?</translation>
-    </message>
-    <message>
-        <location filename="../src/cmainpanel.cpp" line="942"/>
-        <source>Print Document</source>
-        <translation>Cetak dokumen</translation>
-    </message>
-    <message>
         <source>Some data will lost.&lt;br&gt;Continue?</source>
         <translation type="vanished">Jika Anda masih menyimpan dalam format ini semua fitur kecuali teks akan hilang.&lt;br&gt;Yakin ingin melanjutkan?</translation>
     </message>
@@ -476,13 +459,18 @@
         <translation>Buat portal</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1238"/>
-        <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
-        <translation>%1 telah berubah.&lt;br&gt;Simpan perubahan?</translation>
+        <location filename="../src/cmainpanel.cpp" line="799"/>
+        <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
+        <translation>Dokumen harus disimpan untuk melanjutkan.&lt;br&gt;Simpan dokumen?</translation>
+    </message>
+    <message>
+        <location filename="../src/cmainpanel.cpp" line="942"/>
+        <source>Print Document</source>
+        <translation>Cetak dokumen</translation>
     </message>
 </context>
 <context>
-    <name>CMainWindowImpl</name>
+    <name>CMainPanelImpl</name>
     <message>
         <location filename="../src/prop/cmainpanelimpl.cpp" line="54"/>
         <source>Licensed under</source>
@@ -555,17 +543,17 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper_private.h" line="183"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
-        <translation>%1 tidak tersedia. Mungkin telah berganti nama, berpindah atau hilang.&lt;br&gt;Hapus file dari daftar?</translation>
+        <translation>%1 tidak tersedia.Mungkin telah berganti nama, berpindah atau hilang.&lt;br&gt;Hapus file dari daftar?</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper_private.h" line="229"/>
         <source>File %1 cannot be opened or doesn&apos;t exists.</source>
-        <translation type="unfinished"></translation>
+        <translation>File %1 tidak dapat dibuka atau tidak ada.</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="131"/>
         <source>All supported files (*.txt *.csv)</source>
-        <translation type="unfinished"></translation>
+        <translation>Semua file yang didukung (*.txt *.csv)</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="131"/>
@@ -575,7 +563,7 @@
     <message>
         <location filename="../src/casctabdata.cpp" line="179"/>
         <source>Read only</source>
-        <translation type="unfinished"></translation>
+        <translation>Hanya baca</translation>
     </message>
 </context>
 </TS>
