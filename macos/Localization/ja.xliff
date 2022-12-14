@@ -65,7 +65,12 @@
         <target state="translated">サインを読み込む</target>
         <note>Class = "NSButtonCell"; title = "Load Signature"; ObjectID = "tTF-wa-eJp";</note>
       </trans-unit>
-    </body>
+      <trans-unit id="uKp-p4-6uB.title" xml:space="preserve">
+        <source>Window</source>
+        <target state="translated">ウィンドウ</target>
+        <note>Class = "NSWindow"; title = "Window"; ObjectID = "uKp-p4-6uB";</note>
+      </trans-unit>
+  </body>
   </file>
   <file original="ONLYOFFICE/Base.lproj/Localizable.strings" source-language="en" target-language="ja-JP" datatype="plaintext">
     <header>
@@ -147,7 +152,12 @@
         <target state="translated">Word オープン XMLドキュメントテンプレート (*.dotx)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
-      <trans-unit id="Electronic Publication" xml:space="preserve">
+      <trans-unit id="Don't Save" xml:space="preserve">
+        <source>Don't Save</source>
+        <target state="translated">保存しない</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+  <trans-unit id="Electronic Publication" xml:space="preserve">
         <source>Electronic Publication</source>
         <target state="translated">電子出版ファイル (*.epub)</target>
         <note>No comment provided by engineer.</note>
@@ -347,7 +357,12 @@
         <target state="translated">ドキュメントの保存？</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
-      <trans-unit id="Spreadsheet %ld.xlsx" xml:space="preserve">
+      <trans-unit id="Signature Details" xml:space="preserve">
+        <source>Signature Details</source>
+        <target state="translated">サインの詳細</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+  <trans-unit id="Spreadsheet %ld.xlsx" xml:space="preserve">
         <source>Spreadsheet %ld.xlsx</source>
         <target state="translated">スプレッドシート %ld.xlsx</target>
         <note>No comment provided by engineer.</note>
@@ -1366,8 +1381,42 @@ The trial period will end in %d days, after that you will not be able to create 
         <note>Bundle name</note>
       </trans-unit>
       <trans-unit id="NSHumanReadableCopyright" xml:space="preserve">
-        <source>Copyright © 2020 Ascensio System SIA. All rights reserved.</source>
-        <target state="translated"> 著作権 © 2020 Ascensio System SIA. 無断転載を禁じます。</target>
+        <source>Copyright © 2022 Ascensio System SIA. All rights reserved.</source>
+        <target state="translated">著作権 © 2022 Ascensio System SIA. 無断転載を禁じます。</target>
+        <note>Copyright (human-readable)</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="ONLYOFFICE/Resources/ONLYOFFICE-v8/Base.lproj/InfoPlist.strings" source-language="en" target-language="en" datatype="plaintext">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="13.1" build-num="13A1030d"/>
+    </header>
+    <body>
+      <trans-unit id="CFBundleName" xml:space="preserve">
+        <source>ONLYOFFICE</source>
+        <target state="translated">ONLYOFFICE</target>
+        <note>Bundle name</note>
+      </trans-unit>
+      <trans-unit id="NSHumanReadableCopyright" xml:space="preserve">
+        <source>Copyright © 2022 Ascensio System SIA. All rights reserved.</source>
+        <target state="translated">著作権 © 2022 Ascensio System SIA. 無断転載を禁じます。</target>
+        <note>Copyright (human-readable)</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="ONLYOFFICE/Resources/ONLYOFFICE-x86_64/Base.lproj/InfoPlist.strings" source-language="en" target-language="en" datatype="plaintext">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="13.1" build-num="13A1030d"/>
+    </header>
+    <body>
+      <trans-unit id="CFBundleName" xml:space="preserve">
+        <source>ONLYOFFICE</source>
+        <target state="translated">ONLYOFFICE</target>
+        <note>Bundle name</note>
+      </trans-unit>
+      <trans-unit id="NSHumanReadableCopyright" xml:space="preserve">
+        <source>Copyright © 2022 Ascensio System SIA. All rights reserved.</source>
+        <target state="translated">著作権 © 2022 Ascensio System SIA. 無断転載を禁じます。</target>
         <note>Copyright (human-readable)</note>
       </trans-unit>
     </body>
