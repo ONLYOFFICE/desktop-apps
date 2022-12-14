@@ -61,6 +61,8 @@ static void nativeFileDialog(const Window &parent_xid,
     gtk_window_set_modal(GTK_WINDOW(dialog), True);
     //g_signal_connect(G_OBJECT(dialog), "destroy", G_CALLBACK(gtk_main_quit), NULL);
     g_signal_connect(G_OBJECT(dialog), "realize", G_CALLBACK(set_parent), (gpointer)&parent_xid);
+    g_signal_connect(G_OBJECT(dialog), "map_event", G_CALLBACK(set_focus), NULL);
+    g_signal_connect(G_OBJECT(dialog), "focus_out_event", G_CALLBACK(set_focus), NULL);
     GtkFileChooser *chooser = GTK_FILE_CHOOSER(dialog);
     if (mode == Gtk::Mode::OPEN || mode == Gtk::Mode::FOLDER) {
         gtk_file_chooser_set_current_folder(chooser, path);
