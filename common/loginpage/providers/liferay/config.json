@@ -16,5 +16,5 @@
             "buttonLogo": "./assets/buttonlogo_dark.svg"
         }
     },
-    "startPage": "/group/guest/~/control_panel/manage?p_p_id=com_liferay_document_library_web_portlet_DLAdminPortlet"
+    "startPage": "/o/onlyoffice/desktop/login"
 }
