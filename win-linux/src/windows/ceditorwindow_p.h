@@ -61,7 +61,7 @@
 # include "platform_linux/gtkprintdialog.h"
 #endif
 
-#define TOP_PANEL_OFFSET 5*TOOLBTN_WIDTH
+#define TOP_PANEL_OFFSET 6*TOOLBTN_WIDTH
 
 using namespace NSEditorApi;
 
