@@ -59,8 +59,12 @@ CWindowPlatform::CWindowPlatform(const QRect &rect) :
                    | Qt::WindowSystemMenuHint | Qt::WindowMaximizeButtonHint
                    | Qt::MSWindowsFixedSizeDialogHint);
     m_hWnd = (HWND)winId();
-    DWORD style = ::GetWindowLong(m_hWnd, GWL_STYLE);
-    ::SetWindowLong(m_hWnd, GWL_STYLE, style | WS_MAXIMIZEBOX | WS_THICKFRAME | WS_CAPTION);
+    LONG style = ::GetWindowLong(m_hWnd, GWL_STYLE);
+    style &= ~(WS_CAPTION | WS_SYSMENU | WS_THICKFRAME);
+    style |= (WS_CLIPCHILDREN | WS_MAXIMIZEBOX | WS_MINIMIZEBOX);
+    style |= (Utils::getWinVersion() > Utils::WinVer::Win7) ?
+                WS_OVERLAPPEDWINDOW : WS_POPUP;
+    ::SetWindowLong(m_hWnd, GWL_STYLE, style);
 #ifndef __OS_WIN_XP
     const MARGINS shadow = {1, 1, 1, 1};
     DwmExtendFrameIntoClientArea(m_hWnd, &shadow);
@@ -348,6 +352,12 @@ bool CWindowPlatform::nativeEvent(const QByteArray &eventType, void *message, lo
         if (m_allowMaximize && ++movParam == UM_SNAPPING)
             m_allowMaximize = false;
         break;
+
+    case WM_PAINT:
+        return false;
+
+    case WM_ERASEBKGND:
+        return true;
 
     default:
         break;
