@@ -205,7 +205,8 @@ core_linux {
                 $$PWD/src/platform_linux/singleapplication.h \
                 $$PWD/src/platform_linux/xdgdesktopportal.h \
                 $$PWD/src/platform_linux/gtkfilechooser.h \
-                $$PWD/src/platform_linux/gtkprintdialog.h
+                $$PWD/src/platform_linux/gtkprintdialog.h \
+                $$PWD/src/platform_linux/gtkutils.h
 
     SOURCES +=  $$PWD/src/windows/platform_linux/cx11decoration.cpp \
                 #$$PWD/src/windows/platform_linux/gtk_addon.cpp \
@@ -216,11 +217,12 @@ core_linux {
                 $$PWD/src/platform_linux/singleapplication.cpp \
                 $$PWD/src/platform_linux/xdgdesktopportal.cpp \
                 $$PWD/src/platform_linux/gtkfilechooser.cpp \
-                $$PWD/src/platform_linux/gtkprintdialog.cpp
+                $$PWD/src/platform_linux/gtkprintdialog.cpp \
+                $$PWD/src/platform_linux/gtkutils.cpp
 
     CONFIG += link_pkgconfig
-    PKGCONFIG += glib-2.0 gtk+-3.0 atk dbus-1 gtk+-unix-print-3.0
-    LIBS += -lX11
+    PKGCONFIG += glib-2.0 gtk+-3.0 atk dbus-1 gtk+-unix-print-3.0 xcb
+    LIBS += -lX11 -lX11-xcb
 
     LIBS += $$CORE_3DPARTY_PATH/icu/$$PLATFORM_BUILD/build/libicuuc.so.58
     LIBS += $$CORE_3DPARTY_PATH/icu/$$PLATFORM_BUILD/build/libicudata.so.58

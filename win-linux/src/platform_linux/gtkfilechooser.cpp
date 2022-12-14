@@ -1,7 +1,7 @@
 
 #include <stdio.h>
 #include <glib.h>
-#include <gtk/gtk.h>
+#include "gtkutils.h"
 #include "gtkfilechooser.h"
 #include <gdk/gdkx.h>
 
@@ -29,21 +29,6 @@ static void parseString(GSList** list,
         token = strtok(NULL, delim);
     }
     free(_str);
-}
-
-gboolean set_parent(GtkWidget *dialog, gpointer data)
-{
-    GdkWindow *gdk_dialog = gtk_widget_get_window(dialog);
-    Window parent_xid = *(Window*)data;
-    GdkDisplay *gdk_display = gdk_display_get_default();
-    if (parent_xid != 0L && gdk_display && gdk_dialog) {
-        GdkWindow *gdk_qtparent = gdk_x11_window_foreign_new_for_display(gdk_display, parent_xid);
-        if (gdk_qtparent) {
-            gdk_window_set_transient_for(gdk_dialog, gdk_qtparent);
-            return TRUE;
-        }
-    }
-    return FALSE;
 }
 
 static void nativeFileDialog(const Window &parent_xid,
