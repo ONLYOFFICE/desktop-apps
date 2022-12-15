@@ -1923,6 +1923,7 @@ void CAscApplicationManagerWrapper::showUpdateMessage(bool error, bool updateExi
     if (!error && updateExist) {
         AscAppManager::sendCommandTo(0, "updates:checking", QString("{\"version\":\"%1\"}").arg(version));
         auto msg = [=]() {
+            gotoMainWindow();
             QTimer::singleShot(100, this, [=](){
                 CMessage mbox(mainWindow()->handle(), CMessageOpts::moButtons::mbYesDefSkipNo);
                 switch (mbox.info(tr("Do you want to install a new version %1 of the program?").arg(version))) {
@@ -1968,6 +1969,7 @@ void CAscApplicationManagerWrapper::showUpdateMessage(bool error, bool updateExi
 #ifdef Q_OS_WIN
 void CAscApplicationManagerWrapper::showStartInstallMessage()
 {
+    gotoMainWindow();
     AscAppManager::sendCommandTo(0, "updates:download", "{\"progress\":\"done\"}");
     CMessage mbox(mainWindow()->handle(), CMessageOpts::moButtons::mbYesDefSkipNo);
     switch (mbox.info(tr("Do you want to install a new version of the program?\n"
