@@ -92,6 +92,18 @@ int main( int argc, char *argv[] )
         manager->m_oSettings.country = Utils::systemLocationCode().toStdString();
     };
 
+    if ( InputArgs::contains(L"--updates-reset") ) {
+        GET_REGISTRY_USER(reg_user)
+        reg_user.beginGroup("Updates");
+        reg_user.remove("Updates/ignored_ver");
+        reg_user.remove("Updates/file");
+        reg_user.remove("Updates/hash");
+        reg_user.remove("Updates/version");
+        reg_user.remove("Updates/last_check");
+        reg_user.endGroup();
+        reg_user.remove("autoUpdateMode");
+        reg_user.remove("checkUpdatesInterval");
+    }
     if ( InputArgs::contains(L"--geometry=default") ) {
         GET_REGISTRY_USER(reg_user)
         reg_user.remove("maximized");

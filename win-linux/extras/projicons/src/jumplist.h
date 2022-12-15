@@ -5,11 +5,8 @@
 #define WIN32_LEAN_AND_MEAN
 #define STRICT_TYPED_ITEMIDS
 #define ICON_OFFSET 14
-#ifdef _ONLYOFFICE
-# define TASK_NUM 4
-#else
-# define TASK_NUM 3
-#endif
+#define MIN_TASK_NUM 3
+#define MAX_TASK_NUM 4
 
 #include <QtGlobal>
 #include <QStringList>
@@ -89,7 +86,7 @@ HRESULT _AddTasksToList(ICustomDestinationList *pcdl, QStringList list)
         };
 
         IShellLink * psl;
-        for (int i = 0; i < TASK_NUM && i < list.size(); i++) {
+        for (int i = 0; i < MAX_TASK_NUM && i < list.size(); i++) {
             hr = _CreateShellLink(args[i], list[i].replace('_', ' ').toStdWString().c_str(), &psl, i);
             if (SUCCEEDED(hr))
             {

@@ -38,6 +38,7 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QRegularExpression>
+#include <QtConcurrent/QtConcurrent>
 #include <QDebug>
 #include <algorithm>
 #include <iostream>
@@ -169,14 +170,16 @@ void CUpdateManager::clearTempFiles(const QString &except)
     static bool lock = false;
     if (!lock) { // for one-time cleaning
         lock = true;
-        QStringList filter{"*.json", "*.exe"};
-        QDirIterator it(QDir::tempPath(), filter, QDir::Files | QDir::NoSymLinks |
-                        QDir::NoDotAndDotDot, QDirIterator::Subdirectories);
-        while (it.hasNext()) {
-            const QString tmp = it.next();
-            if (tmp.toLower().indexOf(FILE_PREFIX) != -1 && tmp != except)
-                QDir().remove(tmp);
-        }
+        QtConcurrent::run([=]() {
+            QStringList filter{"*.json", "*.exe"};
+            QDirIterator it(QDir::tempPath(), filter, QDir::Files | QDir::NoSymLinks |
+                            QDir::NoDotAndDotDot, QDirIterator::Subdirectories);
+            while (it.hasNext()) {
+                const QString tmp = it.next();
+                if (tmp.toLower().indexOf(FILE_PREFIX) != -1 && tmp != except)
+                    QDir().remove(tmp);
+            }
+        });
     }
 #ifdef _WIN32
     if (except.isEmpty())

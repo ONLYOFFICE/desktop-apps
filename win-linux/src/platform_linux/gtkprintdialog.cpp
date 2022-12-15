@@ -1,6 +1,6 @@
 #include <stdint.h>
 #include <glib.h>
-#include <gtk/gtk.h>
+#include "gtkutils.h"
 #include "gtkprintdialog.h"
 #include <gdk/gdkx.h>
 #include <gtk/gtkunixprint.h>
@@ -11,21 +11,6 @@
 typedef QPrinter::Unit QUnit;
 typedef uint16_t WORD;
 
-
-static gboolean set_parent(GtkWidget *dialog, gpointer data)
-{
-    GdkWindow *gdk_dialog = gtk_widget_get_window(dialog);
-    Window parent_xid = *(Window*)data;
-    GdkDisplay *gdk_display = gdk_display_get_default();
-    if (parent_xid != 0L && gdk_display && gdk_dialog) {
-        GdkWindow *gdk_qtparent = gdk_x11_window_foreign_new_for_display(gdk_display, parent_xid);
-        if (gdk_qtparent) {
-            gdk_window_set_transient_for(gdk_dialog, gdk_qtparent);
-            return TRUE;
-        }
-    }
-    return FALSE;
-}
 
 GtkPrintDialog::GtkPrintDialog(QPrinter *printer, QWidget *parent) :
     m_printer(printer),
@@ -241,6 +226,8 @@ QDialog::DialogCode GtkPrintDialog::exec()
     gtk_window_set_type_hint(GTK_WINDOW(dialog), GDK_WINDOW_TYPE_HINT_DIALOG);
     //g_signal_connect(G_OBJECT(dialog), "destroy", G_CALLBACK(gtk_main_quit), NULL);
     g_signal_connect(G_OBJECT(dialog), "realize", G_CALLBACK(set_parent), (gpointer)&parent_xid);
+    g_signal_connect(G_OBJECT(dialog), "map_event", G_CALLBACK(set_focus), NULL);
+    g_signal_connect(G_OBJECT(dialog), "focus_out_event", G_CALLBACK(set_focus), NULL);
 
     gtk_print_unix_dialog_set_manual_capabilities(GTK_PRINT_UNIX_DIALOG(dialog), capabilityes);
     gtk_print_unix_dialog_set_embed_page_setup(GTK_PRINT_UNIX_DIALOG(dialog), TRUE);

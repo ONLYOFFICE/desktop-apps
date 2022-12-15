@@ -61,7 +61,7 @@
 # include "platform_linux/gtkprintdialog.h"
 #endif
 
-#define TOP_PANEL_OFFSET 5*TOOLBTN_WIDTH
+#define TOP_PANEL_OFFSET 6*TOOLBTN_WIDTH
 
 using namespace NSEditorApi;
 
@@ -411,7 +411,7 @@ public:
                 window->m_pMainPanel->setProperty("window", "pretty");
                 m_mapTitleButtons["home"]->setIconOpacity(GetColorByRole(ecrButtonNormalOpacity));
             }
-            AscEditorType editor_type = viewerMode() ? etUndefined : panel()->data()->contentType();
+            AscEditorType editor_type = panel()->data()->contentType();
             window->m_css = prepare_editor_css(editor_type, GetCurrentTheme());
             QString css(AscAppManager::getWindowStylesheets(window->m_dpiRatio));
             css.append(window->m_css);
