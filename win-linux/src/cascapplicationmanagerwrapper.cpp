@@ -663,6 +663,33 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
         }
     }
 
+    case ASC_MENU_EVENT_TYPE_CEF_ONFULLSCREENENTER:
+    case ASC_MENU_EVENT_TYPE_CEF_ONFULLSCREENLEAVE: {
+        static int fs_view_id = -1;
+
+        if ( event->m_nType == ASC_MENU_EVENT_TYPE_CEF_ONFULLSCREENENTER ) {
+            if (  fs_view_id < 0 ) {
+                fs_view_id = event->m_nSenderId;
+            } else {
+                int view_id = event->m_nSenderId;
+                QTimer::singleShot(0, [view_id]{
+                    NSEditorApi::CAscExecCommandJS * pCommand = new NSEditorApi::CAscExecCommandJS;
+                    pCommand->put_Command(L"editor:stopDemonstration");
+                    NSEditorApi::CAscMenuEvent * pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EDITOR_EXECUTE_COMMAND);
+                    pEvent->m_pData = pCommand;
+                    AscAppManager::getInstance().GetViewById(view_id)->Apply(pEvent);
+                });
+
+                return true;
+            }
+        } else {
+            if ( event->m_nSenderId == fs_view_id )
+                fs_view_id = -1;
+        }
+
+        break;
+    }
+
     default: break;
     }
 

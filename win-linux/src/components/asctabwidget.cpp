@@ -1131,6 +1131,11 @@ void CAscTabWidget::setFullScreen(bool apply, int id)
         int tabIndex = tabIndexByView(id);
         if ( tabIndex < 0 )
             tabIndex = currentIndex();
+        else
+        if ( tabIndex != currentIndex() ) {
+            setCurrentIndex(tabIndex);
+        }
+
         fsWidget = panel(tabIndex);
 
         if ( fsWidget ) {
