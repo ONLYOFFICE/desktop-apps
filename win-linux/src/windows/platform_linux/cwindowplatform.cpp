@@ -49,6 +49,7 @@ CWindowPlatform::CWindowPlatform(const QRect &rect) :
     if (isCustomWindowStyle())
         CX11Decoration::turnOff();
     setIsCustomWindowStyle(!CX11Decoration::isDecorated());
+    setFocusPolicy(Qt::StrongFocus);
 }
 
 CWindowPlatform::~CWindowPlatform()
@@ -113,6 +114,15 @@ bool CWindowPlatform::event(QEvent * event)
     } else
     if (event->type() == QEvent::MouseButtonRelease) {
         focus();
+    } else
+    if (event->type() == QEvent::Show) {    
+        setFocus();
+    } else
+    if (event->type() == QEvent::FocusIn) {
+        QTimer::singleShot(100, this, [=]() {
+            if (isActiveWindow())
+                focus();
+        });
     }
     return CWindowBase::event(event);
 }

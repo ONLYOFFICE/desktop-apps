@@ -275,7 +275,9 @@ bool CWindowPlatform::nativeEvent(const QByteArray &eventType, void *message, lo
 
     case WM_SETFOCUS: {
         if (!m_closed && IsWindowEnabled(m_hWnd)) {
-            focus();
+            QTimer::singleShot(100, this, [=]() {
+                focus();
+            });
         }
         break;
     }
