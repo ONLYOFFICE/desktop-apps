@@ -631,5 +631,4 @@ void CX11Decoration::setMinimized()
     Display * xdisplay_ = QX11Info::display();
     XSendEvent(xdisplay_, RootWindow(xdisplay_, DefaultScreen(xdisplay_)), False,
                     SubstructureRedirectMask|SubstructureNotifyMask, (XEvent *)&ev);
-    sendButtonRelease();
 }

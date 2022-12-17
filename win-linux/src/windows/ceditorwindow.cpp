@@ -371,6 +371,8 @@ void CEditorWindow::onExitSizeMove()
         m_restoreMaximized = false;
         CWindowPlatform::show(true);
     }
+    if (!isActiveWindow())
+        activateWindow();
 }
 
 void CEditorWindow::captureMouse()
