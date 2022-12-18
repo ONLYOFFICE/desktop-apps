@@ -835,25 +835,28 @@
 - (void)onCEFFullscreen:(NSNotification *)notification {
     if (notification && notification.userInfo) {
         NSDictionary * params = (NSDictionary *)notification.userInfo;
-        
+
         BOOL isFullscreen = [params[@"fullscreen"] boolValue];
-        NSTabViewItem * item = [self.tabView selectedTabViewItem];
-        
+        int viewId = [params[@"viewId"] intValue];
+        ASCTabView * tab = [self tabViewWithId:viewId];
+
+        NSTabViewItem * item = [self.tabView tabViewItemAtIndex:[self.tabView indexOfTabViewItemWithIdentifier:tab.uuid]];
+
         if (isFullscreen) {
             [item.view enterFullScreenMode:[[NSWindow titleWindowOrMain] screen] withOptions:@{NSFullScreenModeAllScreens: @(NO)}];
 
-            ASCTabView * tab = [self.tabsControl selectedTab];
-            
             if (tab) {
-                NSCefView * cefView = [self cefViewWithTab:tab];
-                [cefView focus];
+                [[self cefViewWithTab:tab] focus];
             }
         } else if ([item.view isInFullScreenMode]) {
             [item.view exitFullScreenModeWithOptions:nil];
-            
-            ASCTabView * tab = [self.tabsControl selectedTab];
-            
+
             if (tab) {
+                ASCTabView * currTab = [self.tabsControl selectedTab];
+                if ( currTab.uuid != tab.uuid ) {
+                    [self.tabsControl selectTab:tab];
+                }
+
                 NSCefView * cefView = [self cefViewWithTab:tab];
                 
                 if (cefView) {
