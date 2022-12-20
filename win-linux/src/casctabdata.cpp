@@ -66,7 +66,19 @@ void CAscTabData::setTitle(const QString& t)
 
 QString CAscTabData::title(bool orig) const
 {
-    return !orig && _has_changes ? _title + "*": _title;
+    if ( orig )
+        return _title;
+    else {
+        QString out{_title};
+        if ( _has_changes )
+            out.append("*");
+
+        if ( _is_readonly ) {
+            out.append(_str_readonly);
+        }
+
+        return out;
+    }
 }
 
 void CAscTabData::setChanged(bool s)
@@ -157,6 +169,13 @@ void CAscTabData::setEventLoadSupported(bool value)
 void CAscTabData::setFeatures(const wstring& fs)
 {
     _features = fs;
+
+    if ( hasFeature(L"readonly\":true") ) {
+        _is_readonly = true;
+
+        if ( _str_readonly.isEmpty() )
+            _str_readonly = " (" + QObject::tr("Read only") + ")";
+    }
 }
 
 wstring CAscTabData::features() const

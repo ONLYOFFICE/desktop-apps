@@ -4,7 +4,7 @@
 <context>
     <name>CAscApplicationManagerWrapper</name>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1085"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1068"/>
         <source>Presenter View</source>
         <translation>Peržiūros rėžimas</translation>
     </message>
@@ -13,7 +13,7 @@
         <translation type="vanished">Ar norite uždaryti visus redagavimo langus?</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1627"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1619"/>
         <source>Update is running. Break update and close the app?</source>
         <translation>Vyksta atnaujinimas. Atšaukti atnaujinimą ir uždaryti programą?</translation>
     </message>
@@ -22,18 +22,18 @@
         <translation type="vanished">Visi redagavimo langai bus uždaryti. Ar norite tęsti?</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1827"/>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1828"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1821"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1822"/>
         <source>Document%1.docx</source>
         <translation>Documentas%1.docx</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1829"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1823"/>
         <source>Book%1.xlsx</source>
         <translation>Knyga%1.xlsx</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1830"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1824"/>
         <source>Presentation%1.pptx</source>
         <translation>Prezentacija%1.pptx</translation>
     </message>
@@ -41,8 +41,8 @@
 <context>
     <name>CAscTabWidget</name>
     <message>
-        <location filename="../src/asctabwidget.cpp" line="729"/>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="763"/>
+        <location filename="../src/asctabwidget.cpp" line="670"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="722"/>
         <source>Document</source>
         <translation>Atidaroma...</translation>
     </message>
@@ -66,62 +66,62 @@
 <context>
     <name>CDialogOpenSsl</name>
     <message>
-        <location filename="../src/linux/cdialogopenssl.cpp" line="101"/>
+        <location filename="../src/linux/cdialogopenssl.cpp" line="102"/>
         <source>Select certificate</source>
         <translation>Pasirinkti pažymėjimą</translation>
     </message>
     <message>
-        <location filename="../src/linux/cdialogopenssl.cpp" line="105"/>
+        <location filename="../src/linux/cdialogopenssl.cpp" line="106"/>
         <source>select certificate file...</source>
         <translation>pasirinkti pažymėjimo failą...</translation>
     </message>
     <message>
-        <location filename="../src/linux/cdialogopenssl.cpp" line="106"/>
+        <location filename="../src/linux/cdialogopenssl.cpp" line="107"/>
         <source>Certifacate password:</source>
         <translation>Pažymėjimo slaptažodis:</translation>
     </message>
     <message>
-        <location filename="../src/linux/cdialogopenssl.cpp" line="107"/>
+        <location filename="../src/linux/cdialogopenssl.cpp" line="108"/>
         <source>select key file...</source>
         <translation>pasirinkti pagrindinį failą...</translation>
     </message>
     <message>
-        <location filename="../src/linux/cdialogopenssl.cpp" line="108"/>
+        <location filename="../src/linux/cdialogopenssl.cpp" line="109"/>
         <source>Key password:</source>
         <translation>Pagrindinis slaptažodis:</translation>
     </message>
     <message>
-        <location filename="../src/linux/cdialogopenssl.cpp" line="215"/>
+        <location filename="../src/linux/cdialogopenssl.cpp" line="233"/>
         <source>Enter certificate path</source>
         <translation>Įvesti pažymėjimo kelią</translation>
     </message>
     <message>
-        <location filename="../src/linux/cdialogopenssl.cpp" line="224"/>
+        <location filename="../src/linux/cdialogopenssl.cpp" line="242"/>
         <source>Certificate is not supported</source>
         <translation>Pažymėjimas nepalaikomas</translation>
     </message>
     <message>
-        <location filename="../src/linux/cdialogopenssl.cpp" line="230"/>
+        <location filename="../src/linux/cdialogopenssl.cpp" line="248"/>
         <source>Enter certificate password</source>
         <translation>Įvesti pažymėjimo slaptažodį</translation>
     </message>
     <message>
-        <location filename="../src/linux/cdialogopenssl.cpp" line="231"/>
+        <location filename="../src/linux/cdialogopenssl.cpp" line="249"/>
         <source>Wrong certificate password.&lt;br&gt;Please enter again</source>
         <translation>Neteisingas pažymėjimo slaptažodis.&lt;br&gt;Bandykite dar kartą</translation>
     </message>
     <message>
-        <location filename="../src/linux/cdialogopenssl.cpp" line="240"/>
+        <location filename="../src/linux/cdialogopenssl.cpp" line="258"/>
         <source>Enter valid private key</source>
         <translation>Įveskite galiojantį privatų raktą</translation>
     </message>
     <message>
-        <location filename="../src/linux/cdialogopenssl.cpp" line="250"/>
+        <location filename="../src/linux/cdialogopenssl.cpp" line="268"/>
         <source>Key is not supported</source>
         <translation>Raktas nepalaikomas</translation>
     </message>
     <message>
-        <location filename="../src/linux/cdialogopenssl.cpp" line="255"/>
+        <location filename="../src/linux/cdialogopenssl.cpp" line="273"/>
         <source>Enter key password</source>
         <translation>Įveskite pagrindinį slaptažodį</translation>
     </message>
@@ -142,27 +142,27 @@
         <translation>%1 buvo pakeistas.&lt;br&gt;Ar norite išsaugoti pakeitimus?</translation>
     </message>
     <message>
-        <location filename="../src/ceditortools.cpp" line="299"/>
+        <location filename="../src/ceditortools.cpp" line="303"/>
         <source>Some data will lost.&lt;br&gt;Continue?</source>
         <translation>Jei ir toliau saugosite šiuo formatu, visos funkcijos, išskyrus tekstą, bus prarastos.&lt;br&gt;Ar norite tęsti?</translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow_p.h" line="192"/>
+        <location filename="../src/ceditorwindow_p.h" line="185"/>
         <source>Open main window</source>
         <translation>Atidaryti pagrindinį langą </translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow_p.h" line="421"/>
+        <location filename="../src/ceditorwindow_p.h" line="417"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
         <translation>Norint tęsti, dokumentas privalo būti išsaugotas.&lt;br&gt;Išsaugoti dokumentą?</translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow_p.h" line="478"/>
+        <location filename="../src/ceditorwindow_p.h" line="488"/>
         <source>Print Document</source>
         <translation>Spausdinti dokumentą</translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow_p.h" line="631"/>
+        <location filename="../src/ceditorwindow_p.h" line="660"/>
         <source>Document must be saved firstly.</source>
         <translation>Dokumentas pirma turi būti išsaugotas.</translation>
     </message>
@@ -326,111 +326,106 @@
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="255"/>
-        <source>Zip Archive (*.zip)</source>
-        <translation>Zip archyvą (*.zip)</translation>
+        <source>JPG Image (*.jpg *.jpeg)</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="256"/>
-        <source>JPG Image (*.jpg, *.jpeg)</source>
-        <translation>JPG Nuotrauka (*.jpg, *.jpeg)</translation>
-    </message>
-    <message>
-        <location filename="../src/cfiledialog.cpp" line="257"/>
         <source>PNG Image (*.png)</source>
         <translation>PNG Nuotrauka (*.png)</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="308"/>
+        <location filename="../src/cfiledialog.cpp" line="340"/>
         <source>Save As</source>
         <translation>Išsaugoti Kaip</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="344"/>
+        <location filename="../src/cfiledialog.cpp" line="371"/>
         <source>%1 already exists.&lt;br&gt;Do you want to replace it?</source>
         <translation>%1 jau egzistuoja.&lt;br&gt;Ar norite jį pakeisti?</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="370"/>
+        <location filename="../src/cfiledialog.cpp" line="397"/>
         <source>Word Document</source>
         <translation>Word Dokumentas</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="373"/>
+        <location filename="../src/cfiledialog.cpp" line="400"/>
         <source>Excel Workbook</source>
         <translation>Excel Skaičiuoklė</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="376"/>
+        <location filename="../src/cfiledialog.cpp" line="403"/>
         <source>PowerPoint Presentation</source>
         <translation>PowerPoint Prezentacija</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="379"/>
+        <location filename="../src/cfiledialog.cpp" line="406"/>
         <source>%1 File (*.%2)</source>
         <translation>%1 Failas (*.%2)</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="389"/>
-        <location filename="../src/cfiledialog.cpp" line="496"/>
+        <location filename="../src/cfiledialog.cpp" line="416"/>
+        <location filename="../src/cfiledialog.cpp" line="524"/>
         <source>Text documents</source>
         <translation>Tekstiniai Dokumentai</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="390"/>
-        <location filename="../src/cfiledialog.cpp" line="504"/>
+        <location filename="../src/cfiledialog.cpp" line="417"/>
+        <location filename="../src/cfiledialog.cpp" line="532"/>
         <source>Spreadsheets</source>
         <translation>Skaičiuoklės</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="391"/>
-        <location filename="../src/cfiledialog.cpp" line="512"/>
+        <location filename="../src/cfiledialog.cpp" line="418"/>
+        <location filename="../src/cfiledialog.cpp" line="540"/>
         <source>Presentations</source>
         <translation>Prezentacijos</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="392"/>
+        <location filename="../src/cfiledialog.cpp" line="419"/>
         <source>Web Page</source>
         <translation>Tinklo puslapis</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="393"/>
+        <location filename="../src/cfiledialog.cpp" line="420"/>
         <source>Text files</source>
         <translation>Tekstiniai Failai</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="419"/>
-        <location filename="../src/cfiledialog.cpp" line="420"/>
-        <location filename="../src/cfiledialog.cpp" line="425"/>
-        <location filename="../src/cfiledialog.cpp" line="445"/>
-        <location filename="../src/cfiledialog.cpp" line="446"/>
+        <location filename="../src/cfiledialog.cpp" line="447"/>
+        <location filename="../src/cfiledialog.cpp" line="448"/>
+        <location filename="../src/cfiledialog.cpp" line="453"/>
+        <location filename="../src/cfiledialog.cpp" line="473"/>
+        <location filename="../src/cfiledialog.cpp" line="474"/>
         <source>Open Document</source>
         <translation>Atidaryti dokumentą</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="459"/>
-        <location filename="../src/cfiledialog.cpp" line="468"/>
+        <location filename="../src/cfiledialog.cpp" line="487"/>
+        <location filename="../src/cfiledialog.cpp" line="496"/>
         <source>All Images</source>
         <translation>Visos nuotraukos</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="461"/>
-        <location filename="../src/cfiledialog.cpp" line="470"/>
+        <location filename="../src/cfiledialog.cpp" line="489"/>
+        <location filename="../src/cfiledialog.cpp" line="498"/>
         <source>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp)</source>
         <translation>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp)</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="478"/>
-        <location filename="../src/cfiledialog.cpp" line="487"/>
+        <location filename="../src/cfiledialog.cpp" line="506"/>
+        <location filename="../src/cfiledialog.cpp" line="515"/>
         <source>Plugin file (*.plugin)</source>
         <translation>Plugin Failas (*.plugin)</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="527"/>
+        <location filename="../src/cfiledialog.cpp" line="555"/>
         <source>Video file</source>
         <translation>Video Failas</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="532"/>
+        <location filename="../src/cfiledialog.cpp" line="560"/>
         <source>Audio file</source>
         <translation>Audio Failas</translation>
     </message>
@@ -442,28 +437,28 @@
         <translation type="vanished">PRADĖTI</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="592"/>
-        <location filename="../src/cmainpanel.cpp" line="636"/>
+        <location filename="../src/cmainpanel.cpp" line="555"/>
+        <location filename="../src/cmainpanel.cpp" line="599"/>
         <source>File format not supported.</source>
         <translation>Failo formatas nepalaikomas.</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="620"/>
+        <location filename="../src/cmainpanel.cpp" line="583"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
         <translation>%1 negalimas. Jis galėjo būti pervardytas, perkeltas arba ištrintas.&lt;br&gt;Ar norite panaikinti failą iš sąrašo?</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="680"/>
+        <location filename="../src/cmainpanel.cpp" line="643"/>
         <source>Document must be saved firstly.</source>
         <translation>Dokumentas pirma turi būti išsaugotas.</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="836"/>
+        <location filename="../src/cmainpanel.cpp" line="799"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
         <translation>Norint tęsti, dokumentas privalo būti išsaugotas.&lt;br&gt;Išsaugoti dokumentą?</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="973"/>
+        <location filename="../src/cmainpanel.cpp" line="942"/>
         <source>Print Document</source>
         <translation>Spausdinti dokumentą</translation>
     </message>
@@ -472,12 +467,12 @@
         <translation type="vanished">Jei ir toliau saugosite šiuo formatu, visos funkcijos, išskyrus tekstą, bus prarastos.&lt;br&gt;Ar norite tęsti?</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1178"/>
+        <location filename="../src/cmainpanel.cpp" line="1170"/>
         <source>Sign Up</source>
         <translation>Sukurti portalą</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1243"/>
+        <location filename="../src/cmainpanel.cpp" line="1238"/>
         <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
         <translation>%1 buvo pakeistas.&lt;br&gt;Ar norite išsaugoti pakeitimus?</translation>
     </message>
@@ -554,24 +549,29 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper_private.h" line="177"/>
+        <location filename="../src/cascapplicationmanagerwrapper_private.h" line="183"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
         <translation>%1 negalimas. Jis galėjo būti pervardytas, perkeltas arba ištrintas.&lt;br&gt;Ar norite panaikinti failą iš sąrašo?</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper_private.h" line="223"/>
+        <location filename="../src/cascapplicationmanagerwrapper_private.h" line="229"/>
         <source>File %1 cannot be opened or doesn&apos;t exists.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ceditortools.cpp" line="126"/>
+        <location filename="../src/ceditortools.cpp" line="131"/>
         <source>All supported files (*.txt *.csv)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ceditortools.cpp" line="126"/>
+        <location filename="../src/ceditortools.cpp" line="131"/>
         <source>All files (*.*)</source>
         <translation>Visi failai (*.*)</translation>
+    </message>
+    <message>
+        <location filename="../src/casctabdata.cpp" line="179"/>
+        <source>Read only</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

@@ -1,5 +1,5 @@
 /*
- * (c) Copyright Ascensio System SIA 2010-2019
+ * (c) Copyright Ascensio System SIA 2010-2022
  *
  * This program is a free software product. You can redistribute it and/or
  * modify it under the terms of the GNU Affero General Public License (AGPL)
@@ -30,59 +30,35 @@
  *
 */
 
-#ifndef CASCTABDATA_H
-#define CASCTABDATA_H
+#ifndef CPRINTDATA_H
+#define CPRINTDATA_H
 
+#include "applicationmanager_events.h"
+#include <QPrinterInfo>
+#include <QPrintDialog>
 
-#include <QString>
-#include "qcefview.h"
-
-typedef CefViewWrapperType CefType;
-
-struct CAscTabData
+class CPrintData
 {
 public:
-    CAscTabData(const QString &, CefType wt = cvwtEditor);
-    CAscTabData(const QString &, AscEditorType ct);
-    ~CAscTabData() {}
+    explicit CPrintData();
 
-    void    setTitle(const QString&);
-    void    setChanged(bool);
-    void    setIsLocal(bool);
-    void    setUrl(const std::wstring&);
-    void    setUrl(const QString&);
-    void    close();
-    void    reuse();
-    QString title(bool orig = false) const;
-    bool    modified() const;
-    bool    hasChanges() const;
-    bool    closed() const;
-    bool    isLocal() const;
-    CefType viewType() const;
-    std::wstring url() const;
-    bool    isViewType(CefType) const;
-    bool    eventLoadSupported() const;
-    void    setEventLoadSupported(bool);
-    void    setFeatures(const std::wstring&);
-    std::wstring features() const;
-    bool    hasFeature(const std::wstring&) const;
+    auto init(NSEditorApi::CAscPrintEnd *) -> void;
+    auto init(int, NSEditorApi::CAscPrintEnd *) -> void;
+    auto printerInfo() const -> QPrinterInfo;
+    auto setPrinterInfo(const QPrinterInfo&) -> void;
+    auto pageSize() const -> QPageSize;
+    auto pageOrientation() const -> QPageLayout::Orientation;
+    auto pagesCount() const -> int;
+    auto pageCurent() const -> int;
+    auto pageFrom() const -> int;
+    auto pageTo() const -> int;
+    auto printRange() const -> QPrintDialog::PrintRange;
+    auto isQuickPrint() const -> bool;
+    auto viewId() const -> int;
 
-    AscEditorType   contentType() const;
-    void            setContentType(AscEditorType);
 private:
-    QString _title;
-    bool    _is_changed = false,
-            _is_readonly = false,
-            _has_changes = false;
-    bool    _is_closed = false;
-    bool    _is_local;
-    CefType _vtype;
-    std::wstring _url;
-    bool    _event_load_supported = false;
-    std::wstring _features;
-    QString _str_readonly;
-
-    AscEditorType _typeContent;
+    class CPrintDataPrivate;
+    CPrintDataPrivate * m_priv;
 };
 
-#endif // CASCTABDATA_H
+#endif // CPRINTDATA_H

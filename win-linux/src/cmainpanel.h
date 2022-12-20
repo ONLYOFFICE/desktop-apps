@@ -47,8 +47,6 @@
 #include <math.h>
 
 
-struct printdata;
-
 class CMainPanel : public QWidget, public CScalingWrapper
 {
     Q_OBJECT
@@ -169,7 +167,6 @@ private:
 
     CDownloadWidget *   m_pWidgetDownload = Q_NULLPTR;
 
-    printdata *    m_printData;
     Qt::WindowState m_mainWindowState;
 
     QStringList * m_inFiles;

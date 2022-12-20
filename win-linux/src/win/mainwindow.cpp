@@ -1009,15 +1009,16 @@ void CMainWindow::bringToTop() const
     if (IsIconic(hWnd)) {
         ShowWindow(hWnd, SW_SHOWNORMAL);
     }
-
-//    uint foreThread = GetWindowThreadProcessId(GetForegroundWindow(), nullptr);
-//    if ( foreThread != GetCurrentThreadId() ) {
-//        SetForegroundWindowInternal(handle());
-//    } else {
-        SetForegroundWindow(handle());
-        SetFocus(handle());
-        SetActiveWindow(handle());
-//    }
+    HWND hWndFrg = ::GetForegroundWindow();
+    DWORD appID = ::GetCurrentThreadId();
+    DWORD frgID = ::GetWindowThreadProcessId(hWndFrg, NULL);
+    ::AttachThreadInput(frgID, appID, TRUE);
+    ::SetWindowPos(hWnd, HWND_TOPMOST, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOMOVE);
+    ::SetWindowPos(hWnd, HWND_NOTOPMOST, 0, 0, 0, 0, SWP_SHOWWINDOW | SWP_NOSIZE | SWP_NOMOVE);
+    ::SetForegroundWindow(hWnd);
+    ::SetFocus(hWnd);
+    ::SetActiveWindow(hWnd);
+    ::AttachThreadInput(frgID, appID, FALSE);
 }
 
 void CMainWindow::applyTheme(const std::wstring& theme)

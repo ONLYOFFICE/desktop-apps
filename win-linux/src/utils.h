@@ -81,6 +81,7 @@ public:
     static QScreen * screenAt(const QPoint&);
     static QString replaceBackslash(const QString&);
     static bool isFileLocal(const QString&);
+    static QString uniqFileName(const QString& path);
     static bool setAppUserModelId(const QString&);
 
     static bool makepath(const QString&);

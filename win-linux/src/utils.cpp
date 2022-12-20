@@ -47,6 +47,7 @@
 #include <QProcess>
 #include <QScreen>
 #include <QStorageInfo>
+#include <QPrinterInfo>
 #include <regex>
 
 #include "cascapplicationmanagerwrapper.h"
@@ -148,6 +149,7 @@ namespace EditorJSVariables {
         else if ( !QString(URL_WEBAPPS_HELP).isEmpty() )
             vars_object["helpUrl"] = URL_WEBAPPS_HELP;
 #endif
+        vars_object["defaultPrinterName"] = QPrinterInfo::defaultPrinterName();
     }
 
     auto setVariable(const QString& name, const QString& var) -> void {
@@ -296,8 +298,15 @@ void Utils::openUrl(const QString& url)
         system(QString("LD_LIBRARY_PATH='' xdg-email %1")                   // xdg-email filepath email
                             .arg(QString( _url.toEncoded() )).toUtf8());
     } else {
-        system(QString("LD_LIBRARY_PATH='' xdg-open %1")                    // xdg-open workingpath path
-                            .arg(QString( _url.toEncoded() )).toUtf8());
+		if (url.startsWith("xdg:")) {
+			// url is already encoded for xdg
+			std::wstring sUrlW = url.toStdWString().substr(4);
+			std::string sCommand = "LD_LIBRARY_PATH='' xdg-open " + U_TO_UTF8(sUrlW);
+			system(sCommand.c_str());
+		} else {
+			system(QString("LD_LIBRARY_PATH='' xdg-open %1")                    // xdg-open workingpath path
+								.arg(QString( _url.toEncoded() )).toUtf8());
+		}
     }
 #else
     QDesktopServices::openUrl(QUrl(url));
@@ -391,6 +400,26 @@ bool Utils::isFileLocal(const QString& path)
 # else
     return storage.device().startsWith("/dev/");
 # endif
+}
+
+QString Utils::uniqFileName(const QString& path)
+{
+    QFileInfo _info(path);
+
+    if ( _info.exists() ) {
+        QString _name = _info.baseName(),
+                _suffix = _info.suffix();
+        QDir _dir = _info.dir();
+
+        int _index{0};
+        while ( true ) {
+            _info = QFileInfo(_dir, _name + QString::number(++_index) + "." + _suffix);
+
+            if ( !_info.exists() ) return _info.absoluteFilePath();
+        }
+    }
+
+    return path;
 }
 
 QString Utils::getPortalName(const QString& url)

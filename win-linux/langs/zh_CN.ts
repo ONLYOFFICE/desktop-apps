@@ -4,7 +4,7 @@
 <context>
     <name>CAscApplicationManagerWrapper</name>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1085"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1068"/>
         <source>Presenter View</source>
         <translation>演示者视图</translation>
     </message>
@@ -13,7 +13,7 @@
         <translation type="vanished">是否关闭所有编辑器窗口</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1627"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1619"/>
         <source>Update is running. Break update and close the app?</source>
         <translation>更新正在进行中。 取消更新并关闭应用程序？</translation>
     </message>
@@ -22,18 +22,18 @@
         <translation type="vanished">所有编辑器窗口都将关闭。 你想继续吗？</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1827"/>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1828"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1821"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1822"/>
         <source>Document%1.docx</source>
         <translation>文档%1.docx</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1829"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1823"/>
         <source>Book%1.xlsx</source>
         <translation>工作簿%1.xlsx</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1830"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1824"/>
         <source>Presentation%1.pptx</source>
         <translation>演示文稿%1.pptx</translation>
     </message>
@@ -41,8 +41,8 @@
 <context>
     <name>CAscTabWidget</name>
     <message>
-        <location filename="../src/asctabwidget.cpp" line="729"/>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="763"/>
+        <location filename="../src/asctabwidget.cpp" line="670"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="722"/>
         <source>Document</source>
         <translation>打开中...</translation>
     </message>
@@ -66,62 +66,62 @@
 <context>
     <name>CDialogOpenSsl</name>
     <message>
-        <location filename="../src/linux/cdialogopenssl.cpp" line="101"/>
+        <location filename="../src/linux/cdialogopenssl.cpp" line="102"/>
         <source>Select certificate</source>
         <translation>选择证书</translation>
     </message>
     <message>
-        <location filename="../src/linux/cdialogopenssl.cpp" line="105"/>
+        <location filename="../src/linux/cdialogopenssl.cpp" line="106"/>
         <source>select certificate file...</source>
         <translation>选择证书文件…</translation>
     </message>
     <message>
-        <location filename="../src/linux/cdialogopenssl.cpp" line="106"/>
+        <location filename="../src/linux/cdialogopenssl.cpp" line="107"/>
         <source>Certifacate password:</source>
         <translation>证书密码：</translation>
     </message>
     <message>
-        <location filename="../src/linux/cdialogopenssl.cpp" line="107"/>
+        <location filename="../src/linux/cdialogopenssl.cpp" line="108"/>
         <source>select key file...</source>
         <translation>选择证书文件…</translation>
     </message>
     <message>
-        <location filename="../src/linux/cdialogopenssl.cpp" line="108"/>
+        <location filename="../src/linux/cdialogopenssl.cpp" line="109"/>
         <source>Key password:</source>
         <translation>密钥密码：</translation>
     </message>
     <message>
-        <location filename="../src/linux/cdialogopenssl.cpp" line="215"/>
+        <location filename="../src/linux/cdialogopenssl.cpp" line="233"/>
         <source>Enter certificate path</source>
         <translation>输入证书路径</translation>
     </message>
     <message>
-        <location filename="../src/linux/cdialogopenssl.cpp" line="224"/>
+        <location filename="../src/linux/cdialogopenssl.cpp" line="242"/>
         <source>Certificate is not supported</source>
         <translation>不支持该证书</translation>
     </message>
     <message>
-        <location filename="../src/linux/cdialogopenssl.cpp" line="230"/>
+        <location filename="../src/linux/cdialogopenssl.cpp" line="248"/>
         <source>Enter certificate password</source>
         <translation>输入证书密码</translation>
     </message>
     <message>
-        <location filename="../src/linux/cdialogopenssl.cpp" line="231"/>
+        <location filename="../src/linux/cdialogopenssl.cpp" line="249"/>
         <source>Wrong certificate password.&lt;br&gt;Please enter again</source>
         <translation>证书密码错误。&lt;br&gt;请重新输入</translation>
     </message>
     <message>
-        <location filename="../src/linux/cdialogopenssl.cpp" line="240"/>
+        <location filename="../src/linux/cdialogopenssl.cpp" line="258"/>
         <source>Enter valid private key</source>
         <translation>输入有效私钥</translation>
     </message>
     <message>
-        <location filename="../src/linux/cdialogopenssl.cpp" line="250"/>
+        <location filename="../src/linux/cdialogopenssl.cpp" line="268"/>
         <source>Key is not supported</source>
         <translation>不支持该密钥</translation>
     </message>
     <message>
-        <location filename="../src/linux/cdialogopenssl.cpp" line="255"/>
+        <location filename="../src/linux/cdialogopenssl.cpp" line="273"/>
         <source>Enter key password</source>
         <translation>输入密钥密码</translation>
     </message>
@@ -137,22 +137,22 @@
 <context>
     <name>CEditorWindow</name>
     <message>
-        <location filename="../src/ceditorwindow_p.h" line="192"/>
+        <location filename="../src/ceditorwindow_p.h" line="185"/>
         <source>Open main window</source>
         <translation>打开主要窗口</translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow_p.h" line="421"/>
+        <location filename="../src/ceditorwindow_p.h" line="417"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
         <translation>文档必须先保存才能继续。&lt;br&gt;是否保存文档？</translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow_p.h" line="478"/>
+        <location filename="../src/ceditorwindow_p.h" line="488"/>
         <source>Print Document</source>
         <translation>打印文件</translation>
     </message>
     <message>
-        <location filename="../src/ceditorwindow_p.h" line="631"/>
+        <location filename="../src/ceditorwindow_p.h" line="660"/>
         <source>Document must be saved firstly.</source>
         <translation>必须先保存文档。</translation>
     </message>
@@ -162,7 +162,7 @@
         <translation>%1已被修改。&lt;br&gt;您要保存更改吗？</translation>
     </message>
     <message>
-        <location filename="../src/ceditortools.cpp" line="299"/>
+        <location filename="../src/ceditortools.cpp" line="303"/>
         <source>Some data will lost.&lt;br&gt;Continue?</source>
         <translation>如果您继续以此格式保存，除文本之外的所有功能将丢失。&lt;br&gt;您确定要继续吗？</translation>
     </message>
@@ -326,111 +326,106 @@
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="255"/>
-        <source>Zip Archive (*.zip)</source>
-        <translation>Zip档案(*.zip)</translation>
+        <source>JPG Image (*.jpg *.jpeg)</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="256"/>
-        <source>JPG Image (*.jpg, *.jpeg)</source>
-        <translation>JPG图像(*.jpg，*.jpeg)</translation>
-    </message>
-    <message>
-        <location filename="../src/cfiledialog.cpp" line="257"/>
         <source>PNG Image (*.png)</source>
         <translation>PNG图像(*.png)</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="308"/>
+        <location filename="../src/cfiledialog.cpp" line="340"/>
         <source>Save As</source>
         <translation>另存为</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="344"/>
+        <location filename="../src/cfiledialog.cpp" line="371"/>
         <source>%1 already exists.&lt;br&gt;Do you want to replace it?</source>
         <translation>%1%1已存在。&lt;br&gt;您要替换它吗？</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="370"/>
+        <location filename="../src/cfiledialog.cpp" line="397"/>
         <source>Word Document</source>
         <translation>Word文档</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="373"/>
+        <location filename="../src/cfiledialog.cpp" line="400"/>
         <source>Excel Workbook</source>
         <translation>Excel 电子表格</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="376"/>
+        <location filename="../src/cfiledialog.cpp" line="403"/>
         <source>PowerPoint Presentation</source>
         <translation>PowerPoint演示文稿</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="379"/>
+        <location filename="../src/cfiledialog.cpp" line="406"/>
         <source>%1 File (*.%2)</source>
         <translation>%1 文件 (*.%2)</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="389"/>
-        <location filename="../src/cfiledialog.cpp" line="496"/>
+        <location filename="../src/cfiledialog.cpp" line="416"/>
+        <location filename="../src/cfiledialog.cpp" line="524"/>
         <source>Text documents</source>
         <translation>文本文档</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="390"/>
-        <location filename="../src/cfiledialog.cpp" line="504"/>
+        <location filename="../src/cfiledialog.cpp" line="417"/>
+        <location filename="../src/cfiledialog.cpp" line="532"/>
         <source>Spreadsheets</source>
         <translation>电子表格</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="391"/>
-        <location filename="../src/cfiledialog.cpp" line="512"/>
+        <location filename="../src/cfiledialog.cpp" line="418"/>
+        <location filename="../src/cfiledialog.cpp" line="540"/>
         <source>Presentations</source>
         <translation>演示文稿</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="392"/>
+        <location filename="../src/cfiledialog.cpp" line="419"/>
         <source>Web Page</source>
         <translation>网页</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="393"/>
+        <location filename="../src/cfiledialog.cpp" line="420"/>
         <source>Text files</source>
         <translation>文本文件</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="419"/>
-        <location filename="../src/cfiledialog.cpp" line="420"/>
-        <location filename="../src/cfiledialog.cpp" line="425"/>
-        <location filename="../src/cfiledialog.cpp" line="445"/>
-        <location filename="../src/cfiledialog.cpp" line="446"/>
+        <location filename="../src/cfiledialog.cpp" line="447"/>
+        <location filename="../src/cfiledialog.cpp" line="448"/>
+        <location filename="../src/cfiledialog.cpp" line="453"/>
+        <location filename="../src/cfiledialog.cpp" line="473"/>
+        <location filename="../src/cfiledialog.cpp" line="474"/>
         <source>Open Document</source>
         <translation>打开文档</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="459"/>
-        <location filename="../src/cfiledialog.cpp" line="468"/>
+        <location filename="../src/cfiledialog.cpp" line="487"/>
+        <location filename="../src/cfiledialog.cpp" line="496"/>
         <source>All Images</source>
         <translation>打开文档</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="461"/>
-        <location filename="../src/cfiledialog.cpp" line="470"/>
+        <location filename="../src/cfiledialog.cpp" line="489"/>
+        <location filename="../src/cfiledialog.cpp" line="498"/>
         <source>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp)</source>
         <translation>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp)</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="478"/>
-        <location filename="../src/cfiledialog.cpp" line="487"/>
+        <location filename="../src/cfiledialog.cpp" line="506"/>
+        <location filename="../src/cfiledialog.cpp" line="515"/>
         <source>Plugin file (*.plugin)</source>
         <translation>插件文件（*.plugin)</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="527"/>
+        <location filename="../src/cfiledialog.cpp" line="555"/>
         <source>Video file</source>
         <translation>視訊檔案</translation>
     </message>
     <message>
-        <location filename="../src/cfiledialog.cpp" line="532"/>
+        <location filename="../src/cfiledialog.cpp" line="560"/>
         <source>Audio file</source>
         <translation>音訊檔案</translation>
     </message>
@@ -438,7 +433,7 @@
 <context>
     <name>CMainPanel</name>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1243"/>
+        <location filename="../src/cmainpanel.cpp" line="1238"/>
         <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
         <translation>%1已被修改。&lt;br&gt;您要保存更改吗？</translation>
     </message>
@@ -447,18 +442,18 @@
         <translation type="vanished">开始</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="592"/>
-        <location filename="../src/cmainpanel.cpp" line="636"/>
+        <location filename="../src/cmainpanel.cpp" line="555"/>
+        <location filename="../src/cmainpanel.cpp" line="599"/>
         <source>File format not supported.</source>
         <translation>不支持该文件格式</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="620"/>
+        <location filename="../src/cmainpanel.cpp" line="583"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
         <translation>%1不可用。它可能被重命名、移动或删除。&lt;br&gt;您要从列表中删除该文件吗？</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="680"/>
+        <location filename="../src/cmainpanel.cpp" line="643"/>
         <source>Document must be saved firstly.</source>
         <translation>必须先保存文档。</translation>
     </message>
@@ -467,17 +462,17 @@
         <translation type="vanished">如果您继续以此格式保存，除文本之外的所有功能将丢失。&lt;br&gt;您确定要继续吗？</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="1178"/>
+        <location filename="../src/cmainpanel.cpp" line="1170"/>
         <source>Sign Up</source>
         <translation>创建门户</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="836"/>
+        <location filename="../src/cmainpanel.cpp" line="799"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
         <translation>文档必须先保存才能继续。&lt;br&gt;是否保存文档？</translation>
     </message>
     <message>
-        <location filename="../src/cmainpanel.cpp" line="973"/>
+        <location filename="../src/cmainpanel.cpp" line="942"/>
         <source>Print Document</source>
         <translation>打印文件</translation>
     </message>
@@ -554,24 +549,29 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper_private.h" line="177"/>
+        <location filename="../src/cascapplicationmanagerwrapper_private.h" line="183"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
         <translation>%1不可用。它可能被重命名、移动或删除。&lt;br&gt;您要从列表中删除该文件吗？</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper_private.h" line="223"/>
+        <location filename="../src/cascapplicationmanagerwrapper_private.h" line="229"/>
         <source>File %1 cannot be opened or doesn&apos;t exists.</source>
         <translation>文件%1无法打开或不存在。</translation>
     </message>
     <message>
-        <location filename="../src/ceditortools.cpp" line="126"/>
+        <location filename="../src/ceditortools.cpp" line="131"/>
         <source>All supported files (*.txt *.csv)</source>
         <translation>所有支持的文件（*.txt *.csv）</translation>
     </message>
     <message>
-        <location filename="../src/ceditortools.cpp" line="126"/>
+        <location filename="../src/ceditortools.cpp" line="131"/>
         <source>All files (*.*)</source>
         <translation>所有文件 (*.*)</translation>
+    </message>
+    <message>
+        <location filename="../src/casctabdata.cpp" line="179"/>
+        <source>Read only</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

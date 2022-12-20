@@ -65,6 +65,7 @@ INCLUDEPATH += \
 
 HEADERS += \
     $$PWD/src/asctabwidget.h \
+    $$PWD/src/cprintdata.h \
     $$PWD/src/ctabbarwrapper.h \
     $$PWD/src/version.h \
     $$PWD/src/defines.h \
@@ -109,6 +110,7 @@ HEADERS += \
 #    src/casclabel.h
 
 SOURCES += \
+    $$PWD/src/cprintdata.cpp \
     $$PWD/src/csplash.cpp \
     $$PWD/src/ctabbarwrapper.cpp \
     $$PWD/src/main.cpp \

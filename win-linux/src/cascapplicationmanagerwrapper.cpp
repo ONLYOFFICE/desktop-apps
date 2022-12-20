@@ -591,6 +591,11 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
         AscAppManager::getInstance().Apply(event);
         return true; }
 
+    case ASC_MENU_EVENT_TYPE_CEF_ONBEFORE_PRINT_END: {
+        AscAppManager::printData().init(event->get_SenderId(), (CAscPrintEnd *)event->m_pData);
+        return false;
+    }
+
     case ASC_MENU_EVENT_TYPE_CEF_ONKEYBOARDDOWN: {
         CAscKeyboardDown * data = static_cast<CAscKeyboardDown *>(event->m_pData);
 
@@ -799,6 +804,7 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
             if ( open_in_new_window ) {
                 CEditorWindow * editor_win = new CEditorWindow(_start_rect, panel);
                 editor_win->show(false);
+                editor_win->bringToTop();
 
                 _app.m_vecEditors.push_back(size_t(editor_win));
                 if ( editor_win->isCustomWindowStyle() )
@@ -811,6 +817,15 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
                 }
 
                 _app.mainWindow()->attachEditor(panel);
+#ifdef __linux__
+                if (_app.mainWindow()->isMinimized()) {
+                    _app.mainWindow()->windowState() == (Qt::WindowMinimized | Qt::WindowMaximized) ?
+                                _app.mainWindow()->showMaximized() : _app.mainWindow()->showNormal();
+                }
+#endif
+                QTimer::singleShot(100, &_app, [&]{
+                    _app.mainWindow()->bringToTop();
+                });
             }
         }
     }
@@ -923,6 +938,7 @@ void CAscApplicationManagerWrapper::initializeApp()
 
     if ( AscAppManager::IsUseSystemScaling() ) {
         AscAppManager::setUserSettings(L"force-scale", L"default");
+        AscAppManager::setUserSettings(L"system-scale", L"1");
     }
 
 #ifdef _WIN32
@@ -1480,7 +1496,6 @@ bool CAscApplicationManagerWrapper::applySettings(const wstring& wstrjson)
 
         if ( objRoot.contains("uiscaling") ) {
             wstring sets;
-            setUserSettings(L"system-scale", L"0");
             switch (objRoot["uiscaling"].toString().toInt()) {
             case 100: sets = L"1"; break;
             case 125: sets = L"1.25"; break;
@@ -1489,9 +1504,9 @@ bool CAscApplicationManagerWrapper::applySettings(const wstring& wstrjson)
             case 200: sets = L"2"; break;
             default:
                 sets = L"default";
-                setUserSettings(L"system-scale", L"1");
             }
 
+            setUserSettings(L"system-scale", sets != L"default" ? L"0" : L"1");
             setUserSettings(L"force-scale", sets);
             m_pMainWindow->updateScaling();
 
@@ -1593,6 +1608,11 @@ void CAscApplicationManagerWrapper::applyTheme(const wstring& theme, bool force)
 CThemes& CAscApplicationManagerWrapper::themes()
 {
     return *(AscAppManager::getInstance().m_themes);
+}
+
+CPrintData& CAscApplicationManagerWrapper::printData()
+{
+    return *(AscAppManager::getInstance().m_private->m_printData);
 }
 
 bool CAscApplicationManagerWrapper::canAppClose()
