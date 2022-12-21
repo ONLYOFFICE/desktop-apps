@@ -10,287 +10,250 @@
 		</data>
 		<key>Resources/Assets.car</key>
 		<data>
-		CqKRIzdSJsTqOaqq3Utza9cAcgQ=
+		6OenTWKvZvlwW1LizGexSkzPUT8=
+		</data>
+		<key>Resources/Base.lproj/InfoPlist.strings</key>
+		<data>
+		EXb50Tn5fxQUkxlhY3MtBSPwqvM=
+		</data>
+		<key>Resources/Base.lproj/MainMenu.nib</key>
+		<data>
+		hNxQzoPXVOUXiuWeHzRU85QMR9Q=
 		</data>
 		<key>Resources/SUUpdateSettingsWindowController.nib</key>
 		<data>
 		AsgFbsA33n5f51idWjGdo4FpKAc=
 		</data>
-		<key>Resources/ar.lproj/InfoPlist.strings</key>
+		<key>Resources/ar.lproj/MainMenu.strings</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			EXb50Tn5fxQUkxlhY3MtBSPwqvM=
+			dYu/+UbWh6smabl4RmEo2CFM3MQ=
 			</data>
 			<key>optional</key>
 			<true/>
 		</dict>
-		<key>Resources/ca.lproj/InfoPlist.strings</key>
+		<key>Resources/ca.lproj/MainMenu.strings</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			EXb50Tn5fxQUkxlhY3MtBSPwqvM=
+			dYu/+UbWh6smabl4RmEo2CFM3MQ=
 			</data>
 			<key>optional</key>
 			<true/>
 		</dict>
-		<key>Resources/cs.lproj/InfoPlist.strings</key>
+		<key>Resources/cs.lproj/MainMenu.strings</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			EXb50Tn5fxQUkxlhY3MtBSPwqvM=
+			dYu/+UbWh6smabl4RmEo2CFM3MQ=
 			</data>
 			<key>optional</key>
 			<true/>
 		</dict>
-		<key>Resources/cy.lproj/InfoPlist.strings</key>
+		<key>Resources/da.lproj/MainMenu.strings</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			EXb50Tn5fxQUkxlhY3MtBSPwqvM=
+			dYu/+UbWh6smabl4RmEo2CFM3MQ=
 			</data>
 			<key>optional</key>
 			<true/>
 		</dict>
-		<key>Resources/da.lproj/InfoPlist.strings</key>
+		<key>Resources/de.lproj/MainMenu.strings</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			EXb50Tn5fxQUkxlhY3MtBSPwqvM=
+			dYu/+UbWh6smabl4RmEo2CFM3MQ=
 			</data>
 			<key>optional</key>
 			<true/>
 		</dict>
-		<key>Resources/de.lproj/InfoPlist.strings</key>
+		<key>Resources/el.lproj/MainMenu.strings</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			EXb50Tn5fxQUkxlhY3MtBSPwqvM=
+			dYu/+UbWh6smabl4RmEo2CFM3MQ=
 			</data>
 			<key>optional</key>
 			<true/>
 		</dict>
-		<key>Resources/el.lproj/InfoPlist.strings</key>
+		<key>Resources/en.lproj/MainMenu.strings</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			EXb50Tn5fxQUkxlhY3MtBSPwqvM=
+			dYu/+UbWh6smabl4RmEo2CFM3MQ=
 			</data>
 			<key>optional</key>
 			<true/>
 		</dict>
-		<key>Resources/en.lproj/InfoPlist.strings</key>
+		<key>Resources/es.lproj/MainMenu.strings</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			EXb50Tn5fxQUkxlhY3MtBSPwqvM=
+			dYu/+UbWh6smabl4RmEo2CFM3MQ=
 			</data>
 			<key>optional</key>
 			<true/>
 		</dict>
-		<key>Resources/en.lproj/MainMenu.nib</key>
+		<key>Resources/fi.lproj/MainMenu.strings</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			MFOca3mjNRm0TEBQD5MktMkVuck=
+			dYu/+UbWh6smabl4RmEo2CFM3MQ=
 			</data>
 			<key>optional</key>
 			<true/>
 		</dict>
-		<key>Resources/es.lproj/InfoPlist.strings</key>
+		<key>Resources/fr.lproj/MainMenu.strings</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			EXb50Tn5fxQUkxlhY3MtBSPwqvM=
+			dYu/+UbWh6smabl4RmEo2CFM3MQ=
 			</data>
 			<key>optional</key>
 			<true/>
 		</dict>
-		<key>Resources/fi.lproj/InfoPlist.strings</key>
+		<key>Resources/he.lproj/MainMenu.strings</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			EXb50Tn5fxQUkxlhY3MtBSPwqvM=
+			dYu/+UbWh6smabl4RmEo2CFM3MQ=
 			</data>
 			<key>optional</key>
 			<true/>
 		</dict>
-		<key>Resources/fr-CA.lproj/InfoPlist.strings</key>
+		<key>Resources/hr.lproj/MainMenu.strings</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			EXb50Tn5fxQUkxlhY3MtBSPwqvM=
+			dYu/+UbWh6smabl4RmEo2CFM3MQ=
 			</data>
 			<key>optional</key>
 			<true/>
 		</dict>
-		<key>Resources/fr.lproj/InfoPlist.strings</key>
+		<key>Resources/hu.lproj/MainMenu.strings</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			EXb50Tn5fxQUkxlhY3MtBSPwqvM=
+			dYu/+UbWh6smabl4RmEo2CFM3MQ=
 			</data>
 			<key>optional</key>
 			<true/>
 		</dict>
-		<key>Resources/he.lproj/InfoPlist.strings</key>
+		<key>Resources/is.lproj/MainMenu.strings</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			EXb50Tn5fxQUkxlhY3MtBSPwqvM=
+			dYu/+UbWh6smabl4RmEo2CFM3MQ=
 			</data>
 			<key>optional</key>
 			<true/>
 		</dict>
-		<key>Resources/hr.lproj/InfoPlist.strings</key>
+		<key>Resources/it.lproj/MainMenu.strings</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			EXb50Tn5fxQUkxlhY3MtBSPwqvM=
+			dYu/+UbWh6smabl4RmEo2CFM3MQ=
 			</data>
 			<key>optional</key>
 			<true/>
 		</dict>
-		<key>Resources/hu.lproj/InfoPlist.strings</key>
+		<key>Resources/ja.lproj/MainMenu.strings</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			EXb50Tn5fxQUkxlhY3MtBSPwqvM=
+			dYu/+UbWh6smabl4RmEo2CFM3MQ=
 			</data>
 			<key>optional</key>
 			<true/>
 		</dict>
-		<key>Resources/id.lproj/InfoPlist.strings</key>
+		<key>Resources/ko.lproj/MainMenu.strings</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			EXb50Tn5fxQUkxlhY3MtBSPwqvM=
+			dYu/+UbWh6smabl4RmEo2CFM3MQ=
 			</data>
 			<key>optional</key>
 			<true/>
 		</dict>
-		<key>Resources/is.lproj/InfoPlist.strings</key>
+		<key>Resources/nb.lproj/MainMenu.strings</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			EXb50Tn5fxQUkxlhY3MtBSPwqvM=
+			dYu/+UbWh6smabl4RmEo2CFM3MQ=
 			</data>
 			<key>optional</key>
 			<true/>
 		</dict>
-		<key>Resources/it.lproj/InfoPlist.strings</key>
+		<key>Resources/nl.lproj/MainMenu.strings</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			EXb50Tn5fxQUkxlhY3MtBSPwqvM=
+			dYu/+UbWh6smabl4RmEo2CFM3MQ=
 			</data>
 			<key>optional</key>
 			<true/>
 		</dict>
-		<key>Resources/ja.lproj/InfoPlist.strings</key>
+		<key>Resources/pl.lproj/MainMenu.strings</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			EXb50Tn5fxQUkxlhY3MtBSPwqvM=
+			dYu/+UbWh6smabl4RmEo2CFM3MQ=
 			</data>
 			<key>optional</key>
 			<true/>
 		</dict>
-		<key>Resources/ko.lproj/InfoPlist.strings</key>
+		<key>Resources/pt_BR.lproj/MainMenu.strings</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			EXb50Tn5fxQUkxlhY3MtBSPwqvM=
+			dYu/+UbWh6smabl4RmEo2CFM3MQ=
 			</data>
 			<key>optional</key>
 			<true/>
 		</dict>
-		<key>Resources/nb.lproj/InfoPlist.strings</key>
+		<key>Resources/pt_PT.lproj/MainMenu.strings</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			EXb50Tn5fxQUkxlhY3MtBSPwqvM=
+			dYu/+UbWh6smabl4RmEo2CFM3MQ=
 			</data>
 			<key>optional</key>
 			<true/>
 		</dict>
-		<key>Resources/nl.lproj/InfoPlist.strings</key>
+		<key>Resources/ro.lproj/MainMenu.strings</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			EXb50Tn5fxQUkxlhY3MtBSPwqvM=
+			dYu/+UbWh6smabl4RmEo2CFM3MQ=
 			</data>
 			<key>optional</key>
 			<true/>
 		</dict>
-		<key>Resources/pl.lproj/InfoPlist.strings</key>
+		<key>Resources/ru.lproj/MainMenu.strings</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			EXb50Tn5fxQUkxlhY3MtBSPwqvM=
+			dYu/+UbWh6smabl4RmEo2CFM3MQ=
 			</data>
 			<key>optional</key>
 			<true/>
 		</dict>
-		<key>Resources/pt-BR.lproj/InfoPlist.strings</key>
+		<key>Resources/sk.lproj/MainMenu.strings</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			EXb50Tn5fxQUkxlhY3MtBSPwqvM=
+			dYu/+UbWh6smabl4RmEo2CFM3MQ=
 			</data>
 			<key>optional</key>
 			<true/>
 		</dict>
-		<key>Resources/pt-PT.lproj/InfoPlist.strings</key>
+		<key>Resources/sl.lproj/MainMenu.strings</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			EXb50Tn5fxQUkxlhY3MtBSPwqvM=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>Resources/pt.lproj/InfoPlist.strings</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			EXb50Tn5fxQUkxlhY3MtBSPwqvM=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>Resources/ro.lproj/InfoPlist.strings</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			EXb50Tn5fxQUkxlhY3MtBSPwqvM=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>Resources/ru.lproj/InfoPlist.strings</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			EXb50Tn5fxQUkxlhY3MtBSPwqvM=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>Resources/sk.lproj/InfoPlist.strings</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			EXb50Tn5fxQUkxlhY3MtBSPwqvM=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>Resources/sl.lproj/InfoPlist.strings</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			EXb50Tn5fxQUkxlhY3MtBSPwqvM=
+			dYu/+UbWh6smabl4RmEo2CFM3MQ=
 			</data>
 			<key>optional</key>
 			<true/>
@@ -299,56 +262,56 @@
 		<data>
 		nl4jSsZp7Tgu38npAXSHzoIFQc8=
 		</data>
-		<key>Resources/sv.lproj/InfoPlist.strings</key>
+		<key>Resources/sv.lproj/MainMenu.strings</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			EXb50Tn5fxQUkxlhY3MtBSPwqvM=
+			dYu/+UbWh6smabl4RmEo2CFM3MQ=
 			</data>
 			<key>optional</key>
 			<true/>
 		</dict>
-		<key>Resources/th.lproj/InfoPlist.strings</key>
+		<key>Resources/th.lproj/MainMenu.strings</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			EXb50Tn5fxQUkxlhY3MtBSPwqvM=
+			dYu/+UbWh6smabl4RmEo2CFM3MQ=
 			</data>
 			<key>optional</key>
 			<true/>
 		</dict>
-		<key>Resources/tr.lproj/InfoPlist.strings</key>
+		<key>Resources/tr.lproj/MainMenu.strings</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			EXb50Tn5fxQUkxlhY3MtBSPwqvM=
+			dYu/+UbWh6smabl4RmEo2CFM3MQ=
 			</data>
 			<key>optional</key>
 			<true/>
 		</dict>
-		<key>Resources/uk.lproj/InfoPlist.strings</key>
+		<key>Resources/uk.lproj/MainMenu.strings</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			EXb50Tn5fxQUkxlhY3MtBSPwqvM=
+			dYu/+UbWh6smabl4RmEo2CFM3MQ=
 			</data>
 			<key>optional</key>
 			<true/>
 		</dict>
-		<key>Resources/zh-Hans.lproj/InfoPlist.strings</key>
+		<key>Resources/zh_CN.lproj/MainMenu.strings</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			EXb50Tn5fxQUkxlhY3MtBSPwqvM=
+			dYu/+UbWh6smabl4RmEo2CFM3MQ=
 			</data>
 			<key>optional</key>
 			<true/>
 		</dict>
-		<key>Resources/zh-Hant.lproj/InfoPlist.strings</key>
+		<key>Resources/zh_TW.lproj/MainMenu.strings</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			EXb50Tn5fxQUkxlhY3MtBSPwqvM=
+			dYu/+UbWh6smabl4RmEo2CFM3MQ=
 			</data>
 			<key>optional</key>
 			<true/>
@@ -360,10 +323,10 @@
 		<dict>
 			<key>cdhash</key>
 			<data>
-			pvnL86lTt4ubdNn5KMoA79N9DII=
+			Y3Ipr0Cn/eJ8psUSmSmTAUyhJ9I=
 			</data>
 			<key>requirement</key>
-			<string>cdhash H"dbc99dfb29b01d1cfcae7d3db853b269e8e1df12" or cdhash H"a6f9cbf3a953b78b9b74d9f928ca00efd37d0c82" or cdhash H"eb212b0642030345f57d7d6f6b6c1ea095cfb6c4" or cdhash H"9c25b6327cb130977f43cbeb8f1dc88226efe4f5"</string>
+			<string>cdhash H"b94c47fe09ad1e2d932f7effdb3e649ec020f4e8" or cdhash H"637229af40a7fde27ca6c512992993014ca127d2" or cdhash H"be93f4552ebd11f587ab87bca17e04d660cc7e0e" or cdhash H"b446ce0f2e4fa8eb29461b306d8f22a720ccadf8"</string>
 		</dict>
 		<key>Resources/AppIcon.icns</key>
 		<dict>
@@ -380,11 +343,33 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			CqKRIzdSJsTqOaqq3Utza9cAcgQ=
+			6OenTWKvZvlwW1LizGexSkzPUT8=
 			</data>
 			<key>hash2</key>
 			<data>
-			g37uu5QJDD4PPlCEOo36l8dLPCFQJ2nS/llrmInNYGY=
+			F+LvGWFeab7TijebOirFZmr7vdepdXMxajcfHsR7h2o=
+			</data>
+		</dict>
+		<key>Resources/Base.lproj/InfoPlist.strings</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			EXb50Tn5fxQUkxlhY3MtBSPwqvM=
+			</data>
+			<key>hash2</key>
+			<data>
+			AniIlnyXWWnfWFDpYVp9p3hkK39jHX5OMrpmn+eoZR4=
+			</data>
+		</dict>
+		<key>Resources/Base.lproj/MainMenu.nib</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			hNxQzoPXVOUXiuWeHzRU85QMR9Q=
+			</data>
+			<key>hash2</key>
+			<data>
+			gNFTc8o0YGijns8NkmUaC9NRfQYh03dTLuag4dQJB+I=
 			</data>
 		</dict>
 		<key>Resources/SUUpdateSettingsWindowController.nib</key>
@@ -398,405 +383,340 @@
 			q0YlT8rSpgw8FfZhikrVncoCyMSMhxR253yXo0+VnC0=
 			</data>
 		</dict>
-		<key>Resources/ar.lproj/InfoPlist.strings</key>
+		<key>Resources/ar.lproj/MainMenu.strings</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			EXb50Tn5fxQUkxlhY3MtBSPwqvM=
+			dYu/+UbWh6smabl4RmEo2CFM3MQ=
 			</data>
 			<key>hash2</key>
 			<data>
-			AniIlnyXWWnfWFDpYVp9p3hkK39jHX5OMrpmn+eoZR4=
+			cJUVRswEvrCHRy6IeoFTVbbHAtuImMzREcu7QfyCXo8=
 			</data>
 			<key>optional</key>
 			<true/>
 		</dict>
-		<key>Resources/ca.lproj/InfoPlist.strings</key>
+		<key>Resources/ca.lproj/MainMenu.strings</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			EXb50Tn5fxQUkxlhY3MtBSPwqvM=
+			dYu/+UbWh6smabl4RmEo2CFM3MQ=
 			</data>
 			<key>hash2</key>
 			<data>
-			AniIlnyXWWnfWFDpYVp9p3hkK39jHX5OMrpmn+eoZR4=
+			cJUVRswEvrCHRy6IeoFTVbbHAtuImMzREcu7QfyCXo8=
 			</data>
 			<key>optional</key>
 			<true/>
 		</dict>
-		<key>Resources/cs.lproj/InfoPlist.strings</key>
+		<key>Resources/cs.lproj/MainMenu.strings</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			EXb50Tn5fxQUkxlhY3MtBSPwqvM=
+			dYu/+UbWh6smabl4RmEo2CFM3MQ=
 			</data>
 			<key>hash2</key>
 			<data>
-			AniIlnyXWWnfWFDpYVp9p3hkK39jHX5OMrpmn+eoZR4=
+			cJUVRswEvrCHRy6IeoFTVbbHAtuImMzREcu7QfyCXo8=
 			</data>
 			<key>optional</key>
 			<true/>
 		</dict>
-		<key>Resources/cy.lproj/InfoPlist.strings</key>
+		<key>Resources/da.lproj/MainMenu.strings</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			EXb50Tn5fxQUkxlhY3MtBSPwqvM=
+			dYu/+UbWh6smabl4RmEo2CFM3MQ=
 			</data>
 			<key>hash2</key>
 			<data>
-			AniIlnyXWWnfWFDpYVp9p3hkK39jHX5OMrpmn+eoZR4=
+			cJUVRswEvrCHRy6IeoFTVbbHAtuImMzREcu7QfyCXo8=
 			</data>
 			<key>optional</key>
 			<true/>
 		</dict>
-		<key>Resources/da.lproj/InfoPlist.strings</key>
+		<key>Resources/de.lproj/MainMenu.strings</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			EXb50Tn5fxQUkxlhY3MtBSPwqvM=
+			dYu/+UbWh6smabl4RmEo2CFM3MQ=
 			</data>
 			<key>hash2</key>
 			<data>
-			AniIlnyXWWnfWFDpYVp9p3hkK39jHX5OMrpmn+eoZR4=
+			cJUVRswEvrCHRy6IeoFTVbbHAtuImMzREcu7QfyCXo8=
 			</data>
 			<key>optional</key>
 			<true/>
 		</dict>
-		<key>Resources/de.lproj/InfoPlist.strings</key>
+		<key>Resources/el.lproj/MainMenu.strings</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			EXb50Tn5fxQUkxlhY3MtBSPwqvM=
+			dYu/+UbWh6smabl4RmEo2CFM3MQ=
 			</data>
 			<key>hash2</key>
 			<data>
-			AniIlnyXWWnfWFDpYVp9p3hkK39jHX5OMrpmn+eoZR4=
+			cJUVRswEvrCHRy6IeoFTVbbHAtuImMzREcu7QfyCXo8=
 			</data>
 			<key>optional</key>
 			<true/>
 		</dict>
-		<key>Resources/el.lproj/InfoPlist.strings</key>
+		<key>Resources/en.lproj/MainMenu.strings</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			EXb50Tn5fxQUkxlhY3MtBSPwqvM=
+			dYu/+UbWh6smabl4RmEo2CFM3MQ=
 			</data>
 			<key>hash2</key>
 			<data>
-			AniIlnyXWWnfWFDpYVp9p3hkK39jHX5OMrpmn+eoZR4=
+			cJUVRswEvrCHRy6IeoFTVbbHAtuImMzREcu7QfyCXo8=
 			</data>
 			<key>optional</key>
 			<true/>
 		</dict>
-		<key>Resources/en.lproj/InfoPlist.strings</key>
+		<key>Resources/es.lproj/MainMenu.strings</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			EXb50Tn5fxQUkxlhY3MtBSPwqvM=
+			dYu/+UbWh6smabl4RmEo2CFM3MQ=
 			</data>
 			<key>hash2</key>
 			<data>
-			AniIlnyXWWnfWFDpYVp9p3hkK39jHX5OMrpmn+eoZR4=
+			cJUVRswEvrCHRy6IeoFTVbbHAtuImMzREcu7QfyCXo8=
 			</data>
 			<key>optional</key>
 			<true/>
 		</dict>
-		<key>Resources/en.lproj/MainMenu.nib</key>
+		<key>Resources/fi.lproj/MainMenu.strings</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			MFOca3mjNRm0TEBQD5MktMkVuck=
+			dYu/+UbWh6smabl4RmEo2CFM3MQ=
 			</data>
 			<key>hash2</key>
 			<data>
-			5M1Q9kfALnumtlbUv9oqUieZA8+7bN2EP7XbalKxaaU=
+			cJUVRswEvrCHRy6IeoFTVbbHAtuImMzREcu7QfyCXo8=
 			</data>
 			<key>optional</key>
 			<true/>
 		</dict>
-		<key>Resources/es.lproj/InfoPlist.strings</key>
+		<key>Resources/fr.lproj/MainMenu.strings</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			EXb50Tn5fxQUkxlhY3MtBSPwqvM=
+			dYu/+UbWh6smabl4RmEo2CFM3MQ=
 			</data>
 			<key>hash2</key>
 			<data>
-			AniIlnyXWWnfWFDpYVp9p3hkK39jHX5OMrpmn+eoZR4=
+			cJUVRswEvrCHRy6IeoFTVbbHAtuImMzREcu7QfyCXo8=
 			</data>
 			<key>optional</key>
 			<true/>
 		</dict>
-		<key>Resources/fi.lproj/InfoPlist.strings</key>
+		<key>Resources/he.lproj/MainMenu.strings</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			EXb50Tn5fxQUkxlhY3MtBSPwqvM=
+			dYu/+UbWh6smabl4RmEo2CFM3MQ=
 			</data>
 			<key>hash2</key>
 			<data>
-			AniIlnyXWWnfWFDpYVp9p3hkK39jHX5OMrpmn+eoZR4=
+			cJUVRswEvrCHRy6IeoFTVbbHAtuImMzREcu7QfyCXo8=
 			</data>
 			<key>optional</key>
 			<true/>
 		</dict>
-		<key>Resources/fr-CA.lproj/InfoPlist.strings</key>
+		<key>Resources/hr.lproj/MainMenu.strings</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			EXb50Tn5fxQUkxlhY3MtBSPwqvM=
+			dYu/+UbWh6smabl4RmEo2CFM3MQ=
 			</data>
 			<key>hash2</key>
 			<data>
-			AniIlnyXWWnfWFDpYVp9p3hkK39jHX5OMrpmn+eoZR4=
+			cJUVRswEvrCHRy6IeoFTVbbHAtuImMzREcu7QfyCXo8=
 			</data>
 			<key>optional</key>
 			<true/>
 		</dict>
-		<key>Resources/fr.lproj/InfoPlist.strings</key>
+		<key>Resources/hu.lproj/MainMenu.strings</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			EXb50Tn5fxQUkxlhY3MtBSPwqvM=
+			dYu/+UbWh6smabl4RmEo2CFM3MQ=
 			</data>
 			<key>hash2</key>
 			<data>
-			AniIlnyXWWnfWFDpYVp9p3hkK39jHX5OMrpmn+eoZR4=
+			cJUVRswEvrCHRy6IeoFTVbbHAtuImMzREcu7QfyCXo8=
 			</data>
 			<key>optional</key>
 			<true/>
 		</dict>
-		<key>Resources/he.lproj/InfoPlist.strings</key>
+		<key>Resources/is.lproj/MainMenu.strings</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			EXb50Tn5fxQUkxlhY3MtBSPwqvM=
+			dYu/+UbWh6smabl4RmEo2CFM3MQ=
 			</data>
 			<key>hash2</key>
 			<data>
-			AniIlnyXWWnfWFDpYVp9p3hkK39jHX5OMrpmn+eoZR4=
+			cJUVRswEvrCHRy6IeoFTVbbHAtuImMzREcu7QfyCXo8=
 			</data>
 			<key>optional</key>
 			<true/>
 		</dict>
-		<key>Resources/hr.lproj/InfoPlist.strings</key>
+		<key>Resources/it.lproj/MainMenu.strings</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			EXb50Tn5fxQUkxlhY3MtBSPwqvM=
+			dYu/+UbWh6smabl4RmEo2CFM3MQ=
 			</data>
 			<key>hash2</key>
 			<data>
-			AniIlnyXWWnfWFDpYVp9p3hkK39jHX5OMrpmn+eoZR4=
+			cJUVRswEvrCHRy6IeoFTVbbHAtuImMzREcu7QfyCXo8=
 			</data>
 			<key>optional</key>
 			<true/>
 		</dict>
-		<key>Resources/hu.lproj/InfoPlist.strings</key>
+		<key>Resources/ja.lproj/MainMenu.strings</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			EXb50Tn5fxQUkxlhY3MtBSPwqvM=
+			dYu/+UbWh6smabl4RmEo2CFM3MQ=
 			</data>
 			<key>hash2</key>
 			<data>
-			AniIlnyXWWnfWFDpYVp9p3hkK39jHX5OMrpmn+eoZR4=
+			cJUVRswEvrCHRy6IeoFTVbbHAtuImMzREcu7QfyCXo8=
 			</data>
 			<key>optional</key>
 			<true/>
 		</dict>
-		<key>Resources/id.lproj/InfoPlist.strings</key>
+		<key>Resources/ko.lproj/MainMenu.strings</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			EXb50Tn5fxQUkxlhY3MtBSPwqvM=
+			dYu/+UbWh6smabl4RmEo2CFM3MQ=
 			</data>
 			<key>hash2</key>
 			<data>
-			AniIlnyXWWnfWFDpYVp9p3hkK39jHX5OMrpmn+eoZR4=
+			cJUVRswEvrCHRy6IeoFTVbbHAtuImMzREcu7QfyCXo8=
 			</data>
 			<key>optional</key>
 			<true/>
 		</dict>
-		<key>Resources/is.lproj/InfoPlist.strings</key>
+		<key>Resources/nb.lproj/MainMenu.strings</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			EXb50Tn5fxQUkxlhY3MtBSPwqvM=
+			dYu/+UbWh6smabl4RmEo2CFM3MQ=
 			</data>
 			<key>hash2</key>
 			<data>
-			AniIlnyXWWnfWFDpYVp9p3hkK39jHX5OMrpmn+eoZR4=
+			cJUVRswEvrCHRy6IeoFTVbbHAtuImMzREcu7QfyCXo8=
 			</data>
 			<key>optional</key>
 			<true/>
 		</dict>
-		<key>Resources/it.lproj/InfoPlist.strings</key>
+		<key>Resources/nl.lproj/MainMenu.strings</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			EXb50Tn5fxQUkxlhY3MtBSPwqvM=
+			dYu/+UbWh6smabl4RmEo2CFM3MQ=
 			</data>
 			<key>hash2</key>
 			<data>
-			AniIlnyXWWnfWFDpYVp9p3hkK39jHX5OMrpmn+eoZR4=
+			cJUVRswEvrCHRy6IeoFTVbbHAtuImMzREcu7QfyCXo8=
 			</data>
 			<key>optional</key>
 			<true/>
 		</dict>
-		<key>Resources/ja.lproj/InfoPlist.strings</key>
+		<key>Resources/pl.lproj/MainMenu.strings</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			EXb50Tn5fxQUkxlhY3MtBSPwqvM=
+			dYu/+UbWh6smabl4RmEo2CFM3MQ=
 			</data>
 			<key>hash2</key>
 			<data>
-			AniIlnyXWWnfWFDpYVp9p3hkK39jHX5OMrpmn+eoZR4=
+			cJUVRswEvrCHRy6IeoFTVbbHAtuImMzREcu7QfyCXo8=
 			</data>
 			<key>optional</key>
 			<true/>
 		</dict>
-		<key>Resources/ko.lproj/InfoPlist.strings</key>
+		<key>Resources/pt_BR.lproj/MainMenu.strings</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			EXb50Tn5fxQUkxlhY3MtBSPwqvM=
+			dYu/+UbWh6smabl4RmEo2CFM3MQ=
 			</data>
 			<key>hash2</key>
 			<data>
-			AniIlnyXWWnfWFDpYVp9p3hkK39jHX5OMrpmn+eoZR4=
+			cJUVRswEvrCHRy6IeoFTVbbHAtuImMzREcu7QfyCXo8=
 			</data>
 			<key>optional</key>
 			<true/>
 		</dict>
-		<key>Resources/nb.lproj/InfoPlist.strings</key>
+		<key>Resources/pt_PT.lproj/MainMenu.strings</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			EXb50Tn5fxQUkxlhY3MtBSPwqvM=
+			dYu/+UbWh6smabl4RmEo2CFM3MQ=
 			</data>
 			<key>hash2</key>
 			<data>
-			AniIlnyXWWnfWFDpYVp9p3hkK39jHX5OMrpmn+eoZR4=
+			cJUVRswEvrCHRy6IeoFTVbbHAtuImMzREcu7QfyCXo8=
 			</data>
 			<key>optional</key>
 			<true/>
 		</dict>
-		<key>Resources/nl.lproj/InfoPlist.strings</key>
+		<key>Resources/ro.lproj/MainMenu.strings</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			EXb50Tn5fxQUkxlhY3MtBSPwqvM=
+			dYu/+UbWh6smabl4RmEo2CFM3MQ=
 			</data>
 			<key>hash2</key>
 			<data>
-			AniIlnyXWWnfWFDpYVp9p3hkK39jHX5OMrpmn+eoZR4=
+			cJUVRswEvrCHRy6IeoFTVbbHAtuImMzREcu7QfyCXo8=
 			</data>
 			<key>optional</key>
 			<true/>
 		</dict>
-		<key>Resources/pl.lproj/InfoPlist.strings</key>
+		<key>Resources/ru.lproj/MainMenu.strings</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			EXb50Tn5fxQUkxlhY3MtBSPwqvM=
+			dYu/+UbWh6smabl4RmEo2CFM3MQ=
 			</data>
 			<key>hash2</key>
 			<data>
-			AniIlnyXWWnfWFDpYVp9p3hkK39jHX5OMrpmn+eoZR4=
+			cJUVRswEvrCHRy6IeoFTVbbHAtuImMzREcu7QfyCXo8=
 			</data>
 			<key>optional</key>
 			<true/>
 		</dict>
-		<key>Resources/pt-BR.lproj/InfoPlist.strings</key>
+		<key>Resources/sk.lproj/MainMenu.strings</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			EXb50Tn5fxQUkxlhY3MtBSPwqvM=
+			dYu/+UbWh6smabl4RmEo2CFM3MQ=
 			</data>
 			<key>hash2</key>
 			<data>
-			AniIlnyXWWnfWFDpYVp9p3hkK39jHX5OMrpmn+eoZR4=
+			cJUVRswEvrCHRy6IeoFTVbbHAtuImMzREcu7QfyCXo8=
 			</data>
 			<key>optional</key>
 			<true/>
 		</dict>
-		<key>Resources/pt-PT.lproj/InfoPlist.strings</key>
+		<key>Resources/sl.lproj/MainMenu.strings</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			EXb50Tn5fxQUkxlhY3MtBSPwqvM=
+			dYu/+UbWh6smabl4RmEo2CFM3MQ=
 			</data>
 			<key>hash2</key>
 			<data>
-			AniIlnyXWWnfWFDpYVp9p3hkK39jHX5OMrpmn+eoZR4=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>Resources/pt.lproj/InfoPlist.strings</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			EXb50Tn5fxQUkxlhY3MtBSPwqvM=
-			</data>
-			<key>hash2</key>
-			<data>
-			AniIlnyXWWnfWFDpYVp9p3hkK39jHX5OMrpmn+eoZR4=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>Resources/ro.lproj/InfoPlist.strings</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			EXb50Tn5fxQUkxlhY3MtBSPwqvM=
-			</data>
-			<key>hash2</key>
-			<data>
-			AniIlnyXWWnfWFDpYVp9p3hkK39jHX5OMrpmn+eoZR4=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>Resources/ru.lproj/InfoPlist.strings</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			EXb50Tn5fxQUkxlhY3MtBSPwqvM=
-			</data>
-			<key>hash2</key>
-			<data>
-			AniIlnyXWWnfWFDpYVp9p3hkK39jHX5OMrpmn+eoZR4=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>Resources/sk.lproj/InfoPlist.strings</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			EXb50Tn5fxQUkxlhY3MtBSPwqvM=
-			</data>
-			<key>hash2</key>
-			<data>
-			AniIlnyXWWnfWFDpYVp9p3hkK39jHX5OMrpmn+eoZR4=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>Resources/sl.lproj/InfoPlist.strings</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			EXb50Tn5fxQUkxlhY3MtBSPwqvM=
-			</data>
-			<key>hash2</key>
-			<data>
-			AniIlnyXWWnfWFDpYVp9p3hkK39jHX5OMrpmn+eoZR4=
+			cJUVRswEvrCHRy6IeoFTVbbHAtuImMzREcu7QfyCXo8=
 			</data>
 			<key>optional</key>
 			<true/>
@@ -812,80 +732,80 @@
 			86UR4Kz0JzxOhClVZCf8AYbXUxJPMULCWc1ZC9qv1jM=
 			</data>
 		</dict>
-		<key>Resources/sv.lproj/InfoPlist.strings</key>
+		<key>Resources/sv.lproj/MainMenu.strings</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			EXb50Tn5fxQUkxlhY3MtBSPwqvM=
+			dYu/+UbWh6smabl4RmEo2CFM3MQ=
 			</data>
 			<key>hash2</key>
 			<data>
-			AniIlnyXWWnfWFDpYVp9p3hkK39jHX5OMrpmn+eoZR4=
+			cJUVRswEvrCHRy6IeoFTVbbHAtuImMzREcu7QfyCXo8=
 			</data>
 			<key>optional</key>
 			<true/>
 		</dict>
-		<key>Resources/th.lproj/InfoPlist.strings</key>
+		<key>Resources/th.lproj/MainMenu.strings</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			EXb50Tn5fxQUkxlhY3MtBSPwqvM=
+			dYu/+UbWh6smabl4RmEo2CFM3MQ=
 			</data>
 			<key>hash2</key>
 			<data>
-			AniIlnyXWWnfWFDpYVp9p3hkK39jHX5OMrpmn+eoZR4=
+			cJUVRswEvrCHRy6IeoFTVbbHAtuImMzREcu7QfyCXo8=
 			</data>
 			<key>optional</key>
 			<true/>
 		</dict>
-		<key>Resources/tr.lproj/InfoPlist.strings</key>
+		<key>Resources/tr.lproj/MainMenu.strings</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			EXb50Tn5fxQUkxlhY3MtBSPwqvM=
+			dYu/+UbWh6smabl4RmEo2CFM3MQ=
 			</data>
 			<key>hash2</key>
 			<data>
-			AniIlnyXWWnfWFDpYVp9p3hkK39jHX5OMrpmn+eoZR4=
+			cJUVRswEvrCHRy6IeoFTVbbHAtuImMzREcu7QfyCXo8=
 			</data>
 			<key>optional</key>
 			<true/>
 		</dict>
-		<key>Resources/uk.lproj/InfoPlist.strings</key>
+		<key>Resources/uk.lproj/MainMenu.strings</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			EXb50Tn5fxQUkxlhY3MtBSPwqvM=
+			dYu/+UbWh6smabl4RmEo2CFM3MQ=
 			</data>
 			<key>hash2</key>
 			<data>
-			AniIlnyXWWnfWFDpYVp9p3hkK39jHX5OMrpmn+eoZR4=
+			cJUVRswEvrCHRy6IeoFTVbbHAtuImMzREcu7QfyCXo8=
 			</data>
 			<key>optional</key>
 			<true/>
 		</dict>
-		<key>Resources/zh-Hans.lproj/InfoPlist.strings</key>
+		<key>Resources/zh_CN.lproj/MainMenu.strings</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			EXb50Tn5fxQUkxlhY3MtBSPwqvM=
+			dYu/+UbWh6smabl4RmEo2CFM3MQ=
 			</data>
 			<key>hash2</key>
 			<data>
-			AniIlnyXWWnfWFDpYVp9p3hkK39jHX5OMrpmn+eoZR4=
+			cJUVRswEvrCHRy6IeoFTVbbHAtuImMzREcu7QfyCXo8=
 			</data>
 			<key>optional</key>
 			<true/>
 		</dict>
-		<key>Resources/zh-Hant.lproj/InfoPlist.strings</key>
+		<key>Resources/zh_TW.lproj/MainMenu.strings</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			EXb50Tn5fxQUkxlhY3MtBSPwqvM=
+			dYu/+UbWh6smabl4RmEo2CFM3MQ=
 			</data>
 			<key>hash2</key>
 			<data>
-			AniIlnyXWWnfWFDpYVp9p3hkK39jHX5OMrpmn+eoZR4=
+			cJUVRswEvrCHRy6IeoFTVbbHAtuImMzREcu7QfyCXo8=
 			</data>
 			<key>optional</key>
 			<true/>
