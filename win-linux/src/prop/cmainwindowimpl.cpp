@@ -119,8 +119,8 @@ void CMainWindowImpl::refreshAboutVersion()
             _json_obj["updates"] = QJsonObject({{"mode", reg_user.value("autoUpdateMode","silent").toString()}});
         }
     #else
-        AscAppManager::sendCommandTo(0, "updates:turn", "on");
-        _json_obj["updates"] = QJsonObject({{"interval", reg_user.value("checkUpdatesInterval","day").toString()}});
+        //AscAppManager::sendCommandTo(0, "updates:turn", "on");
+        //_json_obj["updates"] = QJsonObject({{"interval", reg_user.value("checkUpdatesInterval","day").toString()}});
     #endif
     #endif
 

@@ -78,7 +78,7 @@ CUpdateManager::CUpdateManager(QObject *parent):
     if (Utils::getWinVersion() > Utils::WinVer::WinXP && reg_system.value("CheckForUpdates", true).toBool())
         setUrl();
 #else
-    setUrl();
+    //setUrl();
 #endif
 
     if ( !m_checkUrl.empty() ) {
