@@ -1973,13 +1973,13 @@ void CAscApplicationManagerWrapper::showUpdateMessage(bool error, bool updateExi
         };
 
 #ifdef Q_OS_WIN
-        GET_REGISTRY_USER(reg_user);
-        const QString mode = reg_user.value("autoUpdateMode").toString();
-        if (mode == "silent") {
+        switch (m_pUpdateManager->getUpdateMode()) {
+        case UpdateMode::SILENT:
             m_pUpdateManager->loadUpdates();
-        } else
-        if (mode == "ask") {
+            break;
+        case UpdateMode::ASK:
             msg();
+            break;
         }
 #else
         msg();
