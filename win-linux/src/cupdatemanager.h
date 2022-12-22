@@ -42,6 +42,11 @@ using NSNetwork::NSFileTransport::CFileDownloader;
 using std::wstring;
 
 
+#ifdef _WIN32
+enum UpdateMode {
+    DISABLE=0, SILENT=1, ASK=2
+};
+#endif
 
 class CUpdateManager: public QObject
 {
@@ -53,6 +58,7 @@ public:
     void setNewUpdateSetting(const QString& _rate);
     void cancelLoading();
     void skipVersion();
+    int  getUpdateMode();
 #ifdef Q_OS_WIN
     QString getVersion() const;
     void scheduleRestartForUpdate();
