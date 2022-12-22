@@ -53,6 +53,7 @@
 # include <QCryptographicHash>
 #endif
 
+#define CHECK_ON_STARTUP_MS 9000
 #define FILE_PREFIX QString("onlyoffice_")
 #define CMD_ARGUMENT_CHECK_URL L"--updates-appcast-url"
 #ifndef URL_APPCAST_UPDATES
@@ -92,10 +93,6 @@ CUpdateManager::CUpdateManager(QObject *parent):
         m_pTimer->setSingleShot(false);
         connect(m_pTimer, SIGNAL(timeout()), this, SLOT(checkUpdates()));
 #endif
-        m_pCheckOnStartupTimer = new QTimer(this);
-        m_pCheckOnStartupTimer->setSingleShot(true);
-        m_pCheckOnStartupTimer->setInterval(6000);
-        connect(m_pCheckOnStartupTimer, &QTimer::timeout, this, &CUpdateManager::updateNeededCheking);
         init();
     }
 }
@@ -134,21 +131,28 @@ void CUpdateManager::onCompleteSlot(const int error)
 
 void CUpdateManager::init()
 {
+    bool checkOnStartup = true;
     GET_REGISTRY_USER(reg_user);
-#ifdef Q_OS_WIN
     reg_user.beginGroup("Updates");
+#ifdef _WIN32
     m_savedPackageData.fileName = reg_user.value("Updates/file", QString()).toString();
     m_savedPackageData.hash = reg_user.value("Updates/hash", QByteArray()).toByteArray();
     m_savedPackageData.version = reg_user.value("Updates/version", QString()).toString();
     reg_user.endGroup();
+    checkOnStartup = (getUpdateMode() != UpdateMode::DISABLE);
 #else
-    reg_user.beginGroup("Updates");
     m_lastCheck = time_t(reg_user.value("Updates/last_check", 0).toLongLong());
     reg_user.endGroup();
-    const QString interval = reg_user.value("checkUpdatesInterval","day").toString();
-    m_currentRate = (interval == "disabled") ? UpdateInterval::NEVER : (interval == "day") ?  UpdateInterval::DAY : UpdateInterval::WEEK;
+    m_currentRate = getUpdateMode();
+    checkOnStartup = (m_currentRate != UpdateInterval::NEVER);
 #endif
-    m_pCheckOnStartupTimer->start();
+    if (checkOnStartup) {
+        m_pCheckOnStartupTimer = new QTimer(this);
+        m_pCheckOnStartupTimer->setSingleShot(true);
+        m_pCheckOnStartupTimer->setInterval(CHECK_ON_STARTUP_MS);
+        connect(m_pCheckOnStartupTimer, &QTimer::timeout, this, &CUpdateManager::updateNeededCheking);
+        m_pCheckOnStartupTimer->start();
+    }
 }
 
 void CUpdateManager::downloadFile(const std::wstring &url, const QString &ext)
@@ -362,6 +366,22 @@ void CUpdateManager::skipVersion()
     reg_user.beginGroup("Updates");
     reg_user.setValue("Updates/ignored_ver", m_newVersion);
     reg_user.endGroup();
+}
+
+int CUpdateManager::getUpdateMode()
+{
+    GET_REGISTRY_USER(reg_user);
+#ifdef _WIN32
+    const QString mode = reg_user.value("autoUpdateMode", "silent").toString();
+    return (mode == "silent") ?
+                UpdateMode::SILENT : (mode == "ask") ?
+                    UpdateMode::ASK : UpdateMode::DISABLE;
+#else
+    const QString interval = reg_user.value("checkUpdatesInterval", "day").toString();
+    return (interval == "never") ?
+                UpdateInterval::NEVER : (interval == "day") ?
+                    UpdateInterval::DAY : UpdateInterval::WEEK;
+#endif
 }
 
 void CUpdateManager::onLoadCheckFinished()
