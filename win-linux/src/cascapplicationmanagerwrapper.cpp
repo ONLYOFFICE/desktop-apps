@@ -1587,13 +1587,11 @@ bool CAscApplicationManagerWrapper::applySettings(const wstring& wstrjson)
 #ifdef _UPDMODULE
 #ifdef Q_OS_WIN
         if ( objRoot.contains("autoupdatemode") ) {
-            _reg_user.setValue("autoUpdateMode", objRoot["autoupdatemode"].toString());
+            m_pUpdateManager->setNewUpdateSetting(objRoot["autoupdatemode"].toString());
         }
 #else
         if ( objRoot.contains("checkupdatesinterval") ) {
-            const QString interval = objRoot["checkupdatesinterval"].toString();
-            _reg_user.setValue("checkUpdatesInterval", interval);
-            m_pUpdateManager->setNewUpdateSetting(interval);
+            m_pUpdateManager->setNewUpdateSetting(objRoot["checkupdatesinterval"].toString());
         }
 #endif
 #endif
