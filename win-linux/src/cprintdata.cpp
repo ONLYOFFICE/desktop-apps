@@ -38,7 +38,7 @@
 class CPrintData::CPrintDataPrivate
 {
 public:
-    QPrinterInfo printer_info{QPrinterInfo::defaultPrinter()};
+    QPrinterInfo printer_info;
     QPrintDialog::PrintRange print_range{QPrintDialog::PrintRange::AllPages};
     QPageLayout::Orientation page_orientation{QPageLayout::Portrait};
     bool is_quick = false;
@@ -133,6 +133,9 @@ auto CPrintData::init(int senderid, NSEditorApi::CAscPrintEnd * data) -> void
 
 auto CPrintData::printerInfo() const -> QPrinterInfo
 {
+    if ( m_priv->printer_info.printerName().isEmpty() )
+        return QPrinterInfo::defaultPrinter();
+
     return m_priv->printer_info;
 }
 

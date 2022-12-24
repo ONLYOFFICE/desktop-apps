@@ -1141,7 +1141,9 @@ void CMainWindow::onDocumentPrint(void * opts)
             qApp->processEvents();
 
         if ( modal_res == QDialog::Accepted ) {
-            AscAppManager::printData().setPrinterInfo(QPrinterInfo::printerInfo(printer->printerName()));
+            if ( !AscAppManager::printData().isQuickPrint() )
+                AscAppManager::printData().setPrinterInfo(QPrinterInfo::printerInfo(printer->printerName()));
+
 //            m_printData->_print_range = dialog->printRange();
             QVector<PageRanges> page_ranges;
 
