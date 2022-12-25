@@ -381,6 +381,7 @@ $(TAR): desktopeditor
 		--xform=s:^common/opt:: -f"$@" common/opt
 
 $(HELP_TAR): desktopeditor
+	mkdir -p $(TAR_PACKAGE_DIR)
 	tar -cI"xz -9T0" --owner=root --group=root \
 		--xform=s:^common/help:: -f"$@" common/help
 
