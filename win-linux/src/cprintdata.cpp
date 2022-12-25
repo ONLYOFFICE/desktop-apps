@@ -144,6 +144,11 @@ auto CPrintData::setPrinterInfo(const QPrinterInfo& info) -> void
     m_priv->printer_info = info;
 }
 
+auto CPrintData::setPrinterInfo(const QPrinter& printer) -> void
+{
+    setPrinterInfo(QPrinterInfo::printerInfo(printer.printerName()));
+}
+
 auto CPrintData::pageSize() const -> QPageSize
 {
     if ( !m_priv->size_preset.isEmpty() ) {

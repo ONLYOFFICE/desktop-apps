@@ -544,7 +544,7 @@ public:
 
             if ( modal_res == QDialog::Accepted ) {
                 if ( !AscAppManager::printData().isQuickPrint() )
-                    AscAppManager::printData().setPrinterInfo(QPrinterInfo::printerInfo(printer->printerName()));
+                    AscAppManager::printData().setPrinterInfo(*printer);
 
                 QVector<PageRanges> page_ranges;
 

@@ -46,6 +46,7 @@ public:
     auto init(int, NSEditorApi::CAscPrintEnd *) -> void;
     auto printerInfo() const -> QPrinterInfo;
     auto setPrinterInfo(const QPrinterInfo&) -> void;
+    auto setPrinterInfo(const QPrinter&) -> void;
     auto pageSize() const -> QPageSize;
     auto pageOrientation() const -> QPageLayout::Orientation;
     auto pagesCount() const -> int;
