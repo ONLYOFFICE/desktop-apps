@@ -32,8 +32,10 @@
 
 #include "cprintdata.h"
 #include "utils.h"
+#include "defines.h"
 #include <QJsonObject>
 #include <QRegularExpression>
+#include <QSettings>
 
 class CPrintData::CPrintDataPrivate
 {
@@ -133,14 +135,27 @@ auto CPrintData::init(int senderid, NSEditorApi::CAscPrintEnd * data) -> void
 
 auto CPrintData::printerInfo() const -> QPrinterInfo
 {
-    if ( m_priv->printer_info.printerName().isEmpty() )
+    if ( m_priv->printer_info.printerName().isEmpty() ) {
+        GET_REGISTRY_USER(reg_user);
+
+        QString last_printer_name = reg_user.value("lastPrinterName").toString();
+        if ( !last_printer_name.isEmpty() ) {
+            QPrinterInfo info{QPrinterInfo::printerInfo(last_printer_name)};
+            if ( !info.isNull() )
+                return info;
+        }
+
         return QPrinterInfo::defaultPrinter();
+    }
 
     return m_priv->printer_info;
 }
 
 auto CPrintData::setPrinterInfo(const QPrinterInfo& info) -> void
 {
+    GET_REGISTRY_USER(reg_user);
+    reg_user.setValue("lastPrinterName", info.printerName());
+
     m_priv->printer_info = info;
 }
 
