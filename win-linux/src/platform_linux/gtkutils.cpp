@@ -71,13 +71,14 @@ gboolean focus_out(gpointer data)
 
 void set_parent(GtkWidget *dialog, gpointer data)
 {
-    GdkWindow *gdk_dialog = gtk_widget_get_window(dialog);
-    Window parent_xid = *(Window*)data;
-    GdkDisplay *gdk_display = gdk_display_get_default();
-    if (parent_xid != 0L && gdk_display && gdk_dialog) {
-        GdkWindow *gdk_qtparent = gdk_x11_window_foreign_new_for_display(gdk_display, parent_xid);
-        if (gdk_qtparent) {
-            gdk_window_set_transient_for(gdk_dialog, gdk_qtparent);
+    if (dialog && data) {
+        GdkDisplay *gdk_display = gdk_display_get_default();
+        Window parent_xid = *(Window*)data;
+        if (gdk_display && parent_xid != None) {
+            GdkWindow *gdk_dialog = gtk_widget_get_window(dialog);
+            GdkWindow *gdk_qtparent = gdk_x11_window_foreign_new_for_display(gdk_display, parent_xid);
+            if (gdk_dialog && gdk_qtparent )
+                gdk_window_set_transient_for(gdk_dialog, gdk_qtparent);
         }
     }
 }

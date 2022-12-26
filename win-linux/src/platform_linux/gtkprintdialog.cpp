@@ -222,7 +222,6 @@ QDialog::DialogCode GtkPrintDialog::exec()
     // Init dialog
     GtkWidget *dialog;
     dialog = gtk_print_unix_dialog_new(m_title.toUtf8().data(), NULL);   
-    gtk_window_set_modal(GTK_WINDOW(dialog), TRUE);
     gtk_window_set_type_hint(GTK_WINDOW(dialog), GDK_WINDOW_TYPE_HINT_DIALOG);
     //g_signal_connect(G_OBJECT(dialog), "destroy", G_CALLBACK(gtk_main_quit), NULL);
     g_signal_connect(G_OBJECT(dialog), "realize", G_CALLBACK(set_parent), (gpointer)&parent_xid);
