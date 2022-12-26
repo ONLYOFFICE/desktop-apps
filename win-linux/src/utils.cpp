@@ -740,6 +740,7 @@ namespace WindowHelper {
             m_pChild->setAttribute(Qt::WA_TranslucentBackground);
             m_pChild->setGeometry(0, 0, parent->width(), parent->height());
             m_pChild->show();
+            QObject::connect(m_pChild, SIGNAL(destroyed()), parent, SLOT(setFocus()));
         }
     }
 
