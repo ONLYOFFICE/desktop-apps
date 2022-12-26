@@ -735,8 +735,7 @@ namespace WindowHelper {
             QEventLoop loop;  // Fixed Cef rendering before reopening the dialog
             QTimer::singleShot(60, &loop, SLOT(quit()));
             loop.exec();
-            m_pChild = new QWidget(parent, Qt::FramelessWindowHint | Qt::SubWindow);
-            m_pChild->setAttribute(Qt::WA_ShowModal);
+            m_pChild = new QWidget(parent, Qt::FramelessWindowHint | Qt::SubWindow  | Qt::BypassWindowManagerHint);
             m_pChild->setAttribute(Qt::WA_TranslucentBackground);
             m_pChild->setGeometry(0, 0, parent->width(), parent->height());
             m_pChild->show();
