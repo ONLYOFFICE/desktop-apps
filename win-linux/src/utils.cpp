@@ -732,6 +732,7 @@ namespace WindowHelper {
     void CParentDisable::disable(QWidget* parent)
     {
         if (parent) {
+            parent->setProperty("blocked", true);
             QEventLoop loop;  // Fixed Cef rendering before reopening the dialog
             QTimer::singleShot(60, &loop, SLOT(quit()));
             loop.exec();
@@ -745,6 +746,8 @@ namespace WindowHelper {
     void CParentDisable::enable()
     {
         if ( m_pChild ) {
+            if (m_pChild->parent())
+                m_pChild->parent()->setProperty("blocked", false);
             m_pChild->deleteLater();
         }
     }
