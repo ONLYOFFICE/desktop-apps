@@ -23,7 +23,7 @@ DEFINES += __DONT_WRITE_IN_APP_TITLE
 
 message($$PLATFORM_BUILD)
 
-#win32 {
+win32 {
     CONFIG += updmodule
     updmodule {
         DEFINES += _UPDMODULE
@@ -33,7 +33,7 @@ message($$PLATFORM_BUILD)
         message(updates is turned on)
         message(url: $$join(LINK,,\\\",\\\"))
     }
-#}
+}
 
 HEADERS += \
     src/prop/cmainwindowimpl.h

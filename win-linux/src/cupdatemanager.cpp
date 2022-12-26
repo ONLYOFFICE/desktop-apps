@@ -57,11 +57,21 @@
 #define FILE_PREFIX QString("onlyoffice_")
 #define CMD_ARGUMENT_CHECK_URL L"--updates-appcast-url"
 #ifndef URL_APPCAST_UPDATES
-# define URL_APPCAST_UPDATES L""
+# define URL_APPCAST_UPDATES ""
 #endif
 
 using std::vector;
 
+
+auto destroyStartupTimer(QTimer* &timer)->void
+{
+    if (timer) {
+        if (timer->isActive())
+            timer->stop();
+        timer->deleteLater();
+        timer = nullptr;
+    }
+}
 
 CUpdateManager::CUpdateManager(QObject *parent):
     QObject(parent),
@@ -193,11 +203,7 @@ void CUpdateManager::clearTempFiles(const QString &except)
 
 void CUpdateManager::checkUpdates()
 {
-    if (m_pCheckOnStartupTimer && m_pCheckOnStartupTimer->isActive()) {
-        m_pCheckOnStartupTimer->stop();
-        m_pCheckOnStartupTimer->deleteLater();
-        m_pCheckOnStartupTimer = nullptr;
-    }
+    destroyStartupTimer(m_pCheckOnStartupTimer);
     m_newVersion = "";
 #ifdef Q_OS_WIN
     m_packageData.packageUrl = L"";
@@ -341,17 +347,28 @@ void CUpdateManager::scheduleRestartForUpdate()
 {
     m_restartForUpdate = true;
 }
+#endif
 
-#else
 void CUpdateManager::setNewUpdateSetting(const QString& _rate)
 {
-    m_currentRate = (_rate == "never") ? UpdateInterval::NEVER : (_rate == "day") ?  UpdateInterval::DAY : UpdateInterval::WEEK;
-    QTimer::singleShot(3000, this, [=]() {
-        updateNeededCheking();
-    });
-    //qDebug() << "Set new updates mode: " << m_currentRate;
-}
+    GET_REGISTRY_USER(reg_user);
+#ifdef _WIN32
+    reg_user.setValue("autoUpdateMode", _rate);
+    int mode = (_rate == "silent") ?
+                    UpdateMode::SILENT : (_rate == "ask") ?
+                        UpdateMode::ASK : UpdateMode::DISABLE;
+    if (mode == UpdateMode::DISABLE)
+        destroyStartupTimer(m_pCheckOnStartupTimer);
+#else
+    reg_user.setValue("checkUpdatesInterval", _rate);
+    m_currentRate = (_rate == "never") ?
+                UpdateInterval::NEVER : (_rate == "day") ?
+                    UpdateInterval::DAY : UpdateInterval::WEEK;
+    if (m_currentRate == UpdateInterval::NEVER)
+        destroyStartupTimer(m_pCheckOnStartupTimer);
+    QTimer::singleShot(3000, this, &CUpdateManager::updateNeededCheking);
 #endif
+}
 
 void CUpdateManager::cancelLoading()
 {
