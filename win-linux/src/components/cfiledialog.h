@@ -35,6 +35,7 @@
 
 #include <QObject>
 #include <QMap>
+#include <ctime>
 
 
 class CFileDialogWrapper : public QObject
@@ -65,6 +66,7 @@ public:
 
     void    setFormats(std::vector<int>&);
     int     getFormat();
+    static bool canCreateInstance();
 
 private:
     QString getFilter(const QString&) const;
@@ -75,6 +77,7 @@ private:
     QString m_filters;
     QMap<int, QString> m_mapFilters;
     int m_format;
+    static time_t m_last_time;
 };
 
 #endif // CFILEDIALOG_H

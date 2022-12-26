@@ -64,9 +64,11 @@ namespace CFileDialogHelper {
     }
 };
 
+time_t CFileDialogWrapper::m_last_time = 0LL;
 
 CFileDialogWrapper::CFileDialogWrapper(QWidget * parent) : QObject(parent)
 {
+    m_last_time = time(NULL);
     m_mapFilters[AVS_OFFICESTUDIO_FILE_UNKNOWN]         = tr("All files (*.*)");
 
     m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCX]   = tr("DOCX Document (*.docx)");
@@ -443,6 +445,11 @@ int CFileDialogWrapper::getKey(const QString &value)
 int CFileDialogWrapper::getFormat()
 {
     return m_format;
+}
+
+bool CFileDialogWrapper::canCreateInstance()
+{
+    return (time(NULL) - m_last_time) > 1;
 }
 
 QString CFileDialogWrapper::joinFilters() const

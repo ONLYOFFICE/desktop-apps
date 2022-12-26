@@ -164,6 +164,8 @@ namespace CEditorTools
 
     QString getlocalfile(const std::wstring& path, int parentid)
     {
+        if (!CFileDialogWrapper::canCreateInstance())
+            return QString();
         ParentHandle parent;
         if ( !(parentid < 0) )
             parent = AscAppManager::windowHandleFromId(parentid);
