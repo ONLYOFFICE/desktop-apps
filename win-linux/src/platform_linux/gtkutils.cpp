@@ -31,12 +31,14 @@
  */
 
 #include "gtkutils.h"
+#include <QWidget>
+#include <QApplication>
 #include <gdk/gdkx.h>
 #include <xcb/xcb.h>
 #include <X11/Xlib-xcb.h>
 
 
-void set_focus(GtkWidget *dialog)
+gboolean set_focus(GtkWidget *dialog)
 {
     Display *disp = NULL;
     disp = XOpenDisplay(NULL);
@@ -51,17 +53,32 @@ void set_focus(GtkWidget *dialog)
         }
         XCloseDisplay(disp);
     }
+    return FALSE;
+}
+
+gboolean focus_out(gpointer data)
+{
+    if (data) {
+        DialogTag *tag = (DialogTag*)data;
+        GtkWidget *dialog = tag->dialog;
+        WId parent_xid = (WId)tag->parent_xid;
+        auto *focused_wgt = QApplication::activeWindow();
+        if (dialog && focused_wgt && focused_wgt->winId() == parent_xid)
+            set_focus(dialog);
+    }
+    return FALSE;
 }
 
 void set_parent(GtkWidget *dialog, gpointer data)
 {
-    GdkWindow *gdk_dialog = gtk_widget_get_window(dialog);
-    Window parent_xid = *(Window*)data;
-    GdkDisplay *gdk_display = gdk_display_get_default();
-    if (parent_xid != 0L && gdk_display && gdk_dialog) {
-        GdkWindow *gdk_qtparent = gdk_x11_window_foreign_new_for_display(gdk_display, parent_xid);
-        if (gdk_qtparent) {
-            gdk_window_set_transient_for(gdk_dialog, gdk_qtparent);
+    if (dialog && data) {
+        GdkDisplay *gdk_display = gdk_display_get_default();
+        Window parent_xid = *(Window*)data;
+        if (gdk_display && parent_xid != None) {
+            GdkWindow *gdk_dialog = gtk_widget_get_window(dialog);
+            GdkWindow *gdk_qtparent = gdk_x11_window_foreign_new_for_display(gdk_display, parent_xid);
+            if (gdk_dialog && gdk_qtparent )
+                gdk_window_set_transient_for(gdk_dialog, gdk_qtparent);
         }
     }
 }
