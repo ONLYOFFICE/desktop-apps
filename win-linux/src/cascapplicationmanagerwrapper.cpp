@@ -363,11 +363,21 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
         } else
         if ( !(cmd.find(L"open:template") == std::wstring::npos) ) {
             if ( pData->get_Param() == L"external" ) {
-                QJsonObject _json_obj;
-                _json_obj["portal"] = "https://oforms.teamlab.info";
-                _json_obj["entrypage"] = "";
+                static QByteArray _json_to_open;
+                if ( _json_to_open.isEmpty() ) {
+                    QString _templates_url{QString::fromStdWString(InputArgs::argument_value(L"--templates-url"))};
+                    if ( _templates_url.isEmpty() )
+                        _templates_url = "https://oforms.teamlab.info/?desktop=true";
 
-                mainWindow()->onPortalOpen(QJsonDocument(_json_obj).toJson(QJsonDocument::Compact));
+                    QJsonObject _json_obj{
+                        {"portal", _templates_url},
+                        {"entrypage", ""}
+                    };
+
+                    _json_to_open = QJsonDocument(_json_obj).toJson(QJsonDocument::Compact);
+                }
+
+                mainWindow()->onPortalOpen(_json_to_open);
             }
 
             return true;
@@ -620,6 +630,11 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
         AscAppManager::getInstance().Apply(event);
         return true; }
 
+    case ASC_MENU_EVENT_TYPE_CEF_ONBEFORE_PRINT_END: {
+        AscAppManager::printData().init(event->get_SenderId(), (CAscPrintEnd *)event->m_pData);
+        return false;
+    }
+
     case ASC_MENU_EVENT_TYPE_CEF_ONKEYBOARDDOWN: {
         CAscKeyboardDown * data = static_cast<CAscKeyboardDown *>(event->m_pData);
 
@@ -646,6 +661,33 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
         default:
             break;
         }
+    }
+
+    case ASC_MENU_EVENT_TYPE_CEF_ONFULLSCREENENTER:
+    case ASC_MENU_EVENT_TYPE_CEF_ONFULLSCREENLEAVE: {
+        static int fs_view_id = -1;
+
+        if ( event->m_nType == ASC_MENU_EVENT_TYPE_CEF_ONFULLSCREENENTER ) {
+            if (  fs_view_id < 0 ) {
+                fs_view_id = event->m_nSenderId;
+            } else {
+                int view_id = event->m_nSenderId;
+                QTimer::singleShot(0, [view_id]{
+                    NSEditorApi::CAscExecCommandJS * pCommand = new NSEditorApi::CAscExecCommandJS;
+                    pCommand->put_Command(L"editor:stopDemonstration");
+                    NSEditorApi::CAscMenuEvent * pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EDITOR_EXECUTE_COMMAND);
+                    pEvent->m_pData = pCommand;
+                    AscAppManager::getInstance().GetViewById(view_id)->Apply(pEvent);
+                });
+
+                return true;
+            }
+        } else {
+            if ( event->m_nSenderId == fs_view_id )
+                fs_view_id = -1;
+        }
+
+        break;
     }
 
     default: break;
@@ -841,7 +883,7 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
             if ( open_in_new_window ) {
                 CEditorWindow * editor_win = new CEditorWindow(_start_rect, panel);
                 bool isMaximized = mainWindow() ? mainWindow()->windowState().testFlag(Qt::WindowMaximized) :
-                                                  reg_user.value("maximized", false).toBool();
+                                                      reg_user.value("maximized", false).toBool();
                 editor_win->show(isMaximized);
                 editor_win->bringToTop();
 
@@ -971,6 +1013,7 @@ void CAscApplicationManagerWrapper::initializeApp()
 
     if ( AscAppManager::IsUseSystemScaling() ) {
         AscAppManager::setUserSettings(L"force-scale", L"default");
+        AscAppManager::setUserSettings(L"system-scale", L"1");
     }
 
     if ( !InputArgs::contains(L"--single-window-app") ) {
@@ -1493,7 +1536,6 @@ bool CAscApplicationManagerWrapper::applySettings(const wstring& wstrjson)
 
         if ( objRoot.contains("uiscaling") ) {
             wstring sets;
-            setUserSettings(L"system-scale", L"0");
             switch (objRoot["uiscaling"].toString().toInt()) {
             case 100: sets = L"1"; break;
             case 125: sets = L"1.25"; break;
@@ -1502,9 +1544,9 @@ bool CAscApplicationManagerWrapper::applySettings(const wstring& wstrjson)
             case 200: sets = L"2"; break;
             default:
                 sets = L"default";
-                setUserSettings(L"system-scale", L"1");
             }
 
+            setUserSettings(L"system-scale", sets != L"default" ? L"0" : L"1");
             setUserSettings(L"force-scale", sets);
             m_pMainWindow->updateScaling();
 
@@ -1545,13 +1587,11 @@ bool CAscApplicationManagerWrapper::applySettings(const wstring& wstrjson)
 #ifdef _UPDMODULE
 #ifdef Q_OS_WIN
         if ( objRoot.contains("autoupdatemode") ) {
-            _reg_user.setValue("autoUpdateMode", objRoot["autoupdatemode"].toString());
+            m_pUpdateManager->setNewUpdateSetting(objRoot["autoupdatemode"].toString());
         }
 #else
         if ( objRoot.contains("checkupdatesinterval") ) {
-            const QString interval = objRoot["checkupdatesinterval"].toString();
-            _reg_user.setValue("checkUpdatesInterval", interval);
-            m_pUpdateManager->setNewUpdateSetting(interval);
+            m_pUpdateManager->setNewUpdateSetting(objRoot["checkupdatesinterval"].toString());
         }
 #endif
 #endif
@@ -1624,6 +1664,11 @@ void CAscApplicationManagerWrapper::applyTheme(const wstring& theme, bool force)
 CThemes& CAscApplicationManagerWrapper::themes()
 {
     return *(AscAppManager::getInstance().m_themes);
+}
+
+CPrintData& CAscApplicationManagerWrapper::printData()
+{
+    return *(AscAppManager::getInstance().m_private->m_printData);
 }
 
 bool CAscApplicationManagerWrapper::canAppClose()
@@ -1897,10 +1942,7 @@ void CAscApplicationManagerWrapper::addStylesheets(CScalingFactor f, const std::
 }
 
 #ifdef _UPDMODULE
-void CAscApplicationManagerWrapper::showUpdateMessage(const bool error,
-                                                      const bool updateExist,
-                                                      const QString &version,
-                                                      const QString &changelog)
+void CAscApplicationManagerWrapper::showUpdateMessage(bool error, bool updateExist, const QString &version, const QString &changelog)
 {
     Q_UNUSED(changelog);
     if (!error && updateExist) {
@@ -1931,13 +1973,13 @@ void CAscApplicationManagerWrapper::showUpdateMessage(const bool error,
         };
 
 #ifdef Q_OS_WIN
-        GET_REGISTRY_USER(reg_user);
-        const QString mode = reg_user.value("autoUpdateMode").toString();
-        if (mode == "silent") {
+        switch (m_pUpdateManager->getUpdateMode()) {
+        case UpdateMode::SILENT:
             m_pUpdateManager->loadUpdates();
-        } else
-        if (mode == "ask") {
+            break;
+        case UpdateMode::ASK:
             msg();
+            break;
         }
 #else
         msg();

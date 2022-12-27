@@ -65,6 +65,7 @@
 #include <stdexcept>
 #include <functional>
 #include <regex>
+#include <QPrintEngine>
 
 #ifdef _WIN32
 # include "shlobj.h"
@@ -78,19 +79,10 @@
   #include "../version.h"
 #endif
 
-using namespace std::placeholders;
-using namespace NSEditorApi;
-
 #define TOP_NATIVE_WINDOW_HANDLE this
 
-struct CMainWindow::printdata {
-public:
-    printdata() :
-        _printer_info(QPrinterInfo::defaultPrinter()),
-        _print_range(QPrintDialog::PrintRange::AllPages) {}
-    QPrinterInfo _printer_info;
-    QPrintDialog::PrintRange _print_range;
-};
+using namespace std::placeholders;
+using namespace NSEditorApi;
 
 CMainWindow::CMainWindow(const QRect &rect) :
     CWindowPlatform(rect),
@@ -1098,23 +1090,26 @@ void CMainWindow::onDocumentPrint(void * opts)
     WindowHelper::CParentDisable disabler(qobject_cast<QWidget*>(this));
 #endif
 
-    CAscPrintEnd * pData = (CAscPrintEnd *)opts;
-    CCefView * pView = AscAppManager::getInstance().GetViewById(pData->get_Id());
+    CCefView * pView = AscAppManager::getInstance().GetViewById(AscAppManager::printData().viewId());
 
-    int pagesCount = pData->get_PagesCount(),
-        currentPage = pData->get_CurrentPage();
+    int pagesCount = AscAppManager::printData().pagesCount(),
+        currentPage = AscAppManager::printData().pageCurent();
+
 
     if (pView && !(pagesCount < 1)) {
-        if (!m_printData)
-            m_printData = new printdata();
-
         NSEditorApi::CAscMenuEvent * pEvent;
-        QAscPrinterContext * pContext = m_printData->_printer_info.isNull() ?
-                    new QAscPrinterContext() : new QAscPrinterContext(m_printData->_printer_info);
+        QAscPrinterContext * pContext = new QAscPrinterContext(AscAppManager::printData().printerInfo());
 
         QPrinter * printer = pContext->getPrinter();
         printer->setOutputFileName("");
         printer->setFromTo(1, pagesCount);
+        printer->printEngine()->setProperty(QPrintEngine::PPK_DocumentName,
+                    m_pTabs->titleByIndex(m_pTabs->tabIndexByView(AscAppManager::printData().viewId()), true));
+
+        if ( !AscAppManager::printData().isQuickPrint() ) {
+            printer->setPageOrientation(AscAppManager::printData().pageOrientation());
+            printer->setPageSize(AscAppManager::printData().pageSize());
+        }
 
 #ifdef _WIN32
         CPrintDialog * dialog =  new CPrintDialog(printer, this);
@@ -1133,12 +1128,27 @@ void CMainWindow::onDocumentPrint(void * opts)
             dialog->setEnabledOptions(dialog->enabledOptions() | QPrintDialog::PrintCurrentPage);
             dialog->setOptions(dialog->options() | QPrintDialog::PrintCurrentPage);
         }
-        dialog->setPrintRange(m_printData->_print_range);
+        dialog->setPrintRange(AscAppManager::printData().printRange());
+        if ( dialog->printRange() == QPrintDialog::PageRange )
+            dialog->setFromTo(AscAppManager::printData().pageFrom(), AscAppManager::printData().pageTo());
 
-        if (dialog->exec() == QDialog::Accepted) {
-            m_printData->_printer_info = QPrinterInfo::printerInfo(printer->printerName());
-            m_printData->_print_range = dialog->printRange();
+        int modal_res = QDialog::Accepted;
+        if ( AscAppManager::printData().isQuickPrint() ) {
+            dialog->accept();
+        } else modal_res = dialog->exec();
+            qApp->processEvents();
+
+        if ( modal_res == QDialog::Accepted ) {
+            if ( !AscAppManager::printData().isQuickPrint() )
+                AscAppManager::printData().setPrinterInfo(*printer);
+
+//            m_printData->_print_range = dialog->printRange();
             QVector<PageRanges> page_ranges;
+
+#ifdef Q_OS_LINUX
+            if ( AscAppManager::printData().isQuickPrint() && printer->outputFormat() == QPrinter::PdfFormat )
+                printer->setOutputFileName(Utils::uniqFileName(QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation) + "/print.pdf"));
+#endif
 
             switch(dialog->printRange()) {
             case QPrintDialog::AllPages:
@@ -1168,7 +1178,7 @@ void CMainWindow::onDocumentPrint(void * opts)
     }
 
     printInProcess = false;
-    RELEASEINTERFACE(pData)
+//    RELEASEINTERFACE(pData)
 }
 
 void CMainWindow::onFullScreen(int id, bool apply)

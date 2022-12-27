@@ -65,7 +65,12 @@
         <target>Muat Tanda Tangan</target>
         <note>Class = "NSButtonCell"; title = "Load Signature"; ObjectID = "tTF-wa-eJp";</note>
       </trans-unit>
-    </body>
+      <trans-unit id="uKp-p4-6uB.title" xml:space="preserve">
+        <source>Window</source>
+        <target state="translated">Jendela</target>
+        <note>Class = "NSWindow"; title = "Window"; ObjectID = "uKp-p4-6uB";</note>
+      </trans-unit>
+  </body>
   </file>
   <file original="ONLYOFFICE/Base.lproj/Localizable.strings" source-language="en" target-language="id" datatype="plaintext">
     <header>
@@ -134,7 +139,7 @@
       </trans-unit>
       <trans-unit id="DjVu File" xml:space="preserve">
         <source>DjVu File</source>
-        <target state="translated">File DjVu (*.djvu)</target>
+        <target state="translated">Dokumen Digital (*.djvu)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Do you want to save the changes made to the document &quot;%@&quot;?" xml:space="preserve">
@@ -152,7 +157,17 @@
         <target state="translated">Dokumen templat Word Open XML (*.dotx)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
-      <trans-unit id="Excel 97-2003 Spreadsheet" xml:space="preserve">
+      <trans-unit id="Don't Save" xml:space="preserve">
+        <source>Don't Save</source>
+        <target state="translated">Jangan Simpan</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Electronic Publication" xml:space="preserve">
+        <source>Electronic Publication</source>
+        <target state="translated">File Electronic Publication (*.epub)</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+  <trans-unit id="Excel 97-2003 Spreadsheet" xml:space="preserve">
         <source>Excel 97-2003 Spreadsheet</source>
         <target state="translated">Lembar bentang Excel 97-2003 (*.xls)</target>
         <note>No comment provided by engineer.</note>
@@ -162,7 +177,12 @@
         <target state="translated">Lembar bentang Office Open XML (*.xlsx)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
-      <trans-unit id="File &quot;%@&quot; can not be open or not exist." xml:space="preserve">
+      <trans-unit id="FictionBook File" xml:space="preserve">
+        <source>FictionBook File</source>
+        <target state="translated">File FictionBook 2 (*.fb2)</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+  <trans-unit id="File &quot;%@&quot; can not be open or not exist." xml:space="preserve">
         <source>File "%@" can not be open or not exist.</source>
         <target>File "%@" tidak dapat dibuka atau tidak ada.</target>
         <note>No comment provided by engineer.</note>
@@ -177,7 +197,12 @@
         <target>File tidak dapat dibuka.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
-      <trans-unit id="Hide %@" xml:space="preserve">
+      <trans-unit id="HTML File" xml:space="preserve">
+        <source>HTML File</source>
+        <target state="translated">File HyperText Markup Language (*.html)</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+  <trans-unit id="Hide %@" xml:space="preserve">
         <source>Hide %@</source>
         <target>Sembunyikan %@</target>
         <note>No comment provided by engineer.</note>
@@ -259,12 +284,12 @@
       </trans-unit>
       <trans-unit id="PDF File" xml:space="preserve">
         <source>PDF File</source>
-        <target state="translated">File PDF (*.pdf)</target>
+        <target state="translated">Portable Document (*.pdf)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="PDF/A File" xml:space="preserve">
         <source>PDF/A File</source>
-        <target state="translated">File PDF/A (*.pdf)</target>
+        <target state="translated">Portable Document /A (*.pdf)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Plain Text" xml:space="preserve">
@@ -1324,8 +1349,42 @@ Masa uji coba akan berakhir dalam %d hari, setelah itu Anda tidak akan dapat mem
         <note>Bundle name</note>
       </trans-unit>
       <trans-unit id="NSHumanReadableCopyright" xml:space="preserve">
-        <source>Copyright © 2020 Ascensio System SIA. All rights reserved.</source>
-        <target state="translated">Hak cipta © 2020 Ascensio System SIA. Hak cipta dilindungi undang-undang.</target>
+        <source>Copyright © 2022 Ascensio System SIA. All rights reserved.</source>
+        <target state="translated">Hak cipta © 2022 Ascensio System SIA. Hak cipta dilindungi undang-undang.</target>
+        <note>Copyright (human-readable)</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="ONLYOFFICE/Resources/ONLYOFFICE-v8/Base.lproj/InfoPlist.strings" source-language="en" target-language="en" datatype="plaintext">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="13.1" build-num="13A1030d"/>
+    </header>
+    <body>
+      <trans-unit id="CFBundleName" xml:space="preserve">
+        <source>ONLYOFFICE</source>
+        <target>ONLYOFFICE</target>
+        <note>Bundle name</note>
+      </trans-unit>
+      <trans-unit id="NSHumanReadableCopyright" xml:space="preserve">
+        <source>Copyright © 2022 Ascensio System SIA. All rights reserved.</source>
+        <target state="translated">Hak cipta © 2022 Ascensio System SIA. Hak cipta dilindungi undang-undang.</target>
+        <note>Copyright (human-readable)</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="ONLYOFFICE/Resources/ONLYOFFICE-x86_64/Base.lproj/InfoPlist.strings" source-language="en" target-language="en" datatype="plaintext">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="13.1" build-num="13A1030d"/>
+    </header>
+    <body>
+      <trans-unit id="CFBundleName" xml:space="preserve">
+        <source>ONLYOFFICE</source>
+        <target>ONLYOFFICE</target>
+        <note>Bundle name</note>
+      </trans-unit>
+      <trans-unit id="NSHumanReadableCopyright" xml:space="preserve">
+        <source>Copyright © 2022 Ascensio System SIA. All rights reserved.</source>
+        <target state="translated">Hak cipta © 2022 Ascensio System SIA. Hak cipta dilindungi undang-undang.</target>
         <note>Copyright (human-readable)</note>
       </trans-unit>
     </body>

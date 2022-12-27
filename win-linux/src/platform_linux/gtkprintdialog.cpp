@@ -222,12 +222,15 @@ QDialog::DialogCode GtkPrintDialog::exec()
     // Init dialog
     GtkWidget *dialog;
     dialog = gtk_print_unix_dialog_new(m_title.toUtf8().data(), NULL);   
-    gtk_window_set_modal(GTK_WINDOW(dialog), TRUE);
     gtk_window_set_type_hint(GTK_WINDOW(dialog), GDK_WINDOW_TYPE_HINT_DIALOG);
     //g_signal_connect(G_OBJECT(dialog), "destroy", G_CALLBACK(gtk_main_quit), NULL);
     g_signal_connect(G_OBJECT(dialog), "realize", G_CALLBACK(set_parent), (gpointer)&parent_xid);
     g_signal_connect(G_OBJECT(dialog), "map_event", G_CALLBACK(set_focus), NULL);
-    g_signal_connect(G_OBJECT(dialog), "focus_out_event", G_CALLBACK(set_focus), NULL);
+    DialogTag tag;  // unable to send parent_xid via g_signal_connect and "focus_out_event"
+    memset(&tag, 0, sizeof(tag));
+    tag.dialog = dialog;
+    tag.parent_xid = (ulong)parent_xid;
+    g_signal_connect_swapped(G_OBJECT(dialog), "focus_out_event", G_CALLBACK(focus_out), (gpointer)&tag);
 
     gtk_print_unix_dialog_set_manual_capabilities(GTK_PRINT_UNIX_DIALOG(dialog), capabilityes);
     gtk_print_unix_dialog_set_embed_page_setup(GTK_PRINT_UNIX_DIALOG(dialog), TRUE);
@@ -397,4 +400,14 @@ int GtkPrintDialog::fromPage()
 int GtkPrintDialog::toPage()
 {
     return m_printer->toPage();
+}
+
+void GtkPrintDialog::setFromTo(int from, int to)
+{
+    return m_printer->setFromTo(from, to);
+}
+
+void GtkPrintDialog::accept()
+{
+
 }

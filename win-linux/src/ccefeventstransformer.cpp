@@ -36,6 +36,7 @@
 //#include "regex"
 
 #include <QProcess>
+#include <QTimer>
 #include <QDebug>
 using namespace NSEditorApi;
 
@@ -125,10 +126,13 @@ void CCefEventsTransformer::OnEvent(QObject * target, NSEditorApi::CAscCefMenuEv
     case ASC_MENU_EVENT_TYPE_CEF_ONBEFORE_PRINT_PROGRESS: break;
 
     case ASC_MENU_EVENT_TYPE_CEF_ONBEFORE_PRINT_END: {
-        NSEditorApi::CAscPrintEnd * pData = (NSEditorApi::CAscPrintEnd *)event->m_pData;
-
-        ADDREFINTERFACE(pData)
-        QMetaObject::invokeMethod(target, "onDocumentPrint", Qt::QueuedConnection, Q_ARG(void *, pData));
+#ifdef Q_OS_LINUX
+        QTimer::singleShot(0, pObjTarget, [target]{
+            QMetaObject::invokeMethod(target, "onDocumentPrint", Qt::QueuedConnection, Q_ARG(void*, nullptr));
+        });
+#else
+        QMetaObject::invokeMethod(target, "onDocumentPrint", Qt::QueuedConnection, Q_ARG(void*, nullptr));
+#endif
         break;}
 
     case ASC_MENU_EVENT_TYPE_CEF_ONOPENLINK: break;
@@ -137,7 +141,7 @@ void CCefEventsTransformer::OnEvent(QObject * target, NSEditorApi::CAscCefMenuEv
         NSEditorApi::CAscKeyboardDown * pData = (NSEditorApi::CAscKeyboardDown *)event->m_pData;
 
         ADDREFINTERFACE(pData)
-        QMetaObject::invokeMethod(target, "onKeyDown", Qt::QueuedConnection, Q_ARG(void *, pData));
+        QMetaObject::invokeMethod(target, "onKeyDown", Qt::QueuedConnection, Q_ARG(void*, pData));
         break; }
 
     case ASC_MENU_EVENT_TYPE_CEF_ONFULLSCREENENTER:
@@ -150,7 +154,7 @@ void CCefEventsTransformer::OnEvent(QObject * target, NSEditorApi::CAscCefMenuEv
         CAscLocalOpenFiles * pData = (CAscLocalOpenFiles *)event->m_pData;
         ADDREFINTERFACE(pData);
 
-        QMetaObject::invokeMethod(target, "onLocalFilesOpen", Qt::QueuedConnection, Q_ARG(void *, pData));
+        QMetaObject::invokeMethod(target, "onLocalFilesOpen", Qt::QueuedConnection, Q_ARG(void*, pData));
         break; }
 
     case ASC_MENU_EVENT_TYPE_CEF_LOCALFILE_RECOVEROPEN:
@@ -158,7 +162,7 @@ void CCefEventsTransformer::OnEvent(QObject * target, NSEditorApi::CAscCefMenuEv
         CAscLocalOpenFileRecent_Recover * pData = (CAscLocalOpenFileRecent_Recover *)event->m_pData;
 
         ADDREFINTERFACE(pData);
-        QMetaObject::invokeMethod(target, "onLocalFileRecent", Qt::QueuedConnection, Q_ARG(void *, pData));
+        QMetaObject::invokeMethod(target, "onLocalFileRecent", Qt::QueuedConnection, Q_ARG(void*, pData));
         break;}
 
     case ASC_MENU_EVENT_TYPE_CEF_LOCALFILE_SAVE: {

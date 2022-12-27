@@ -82,9 +82,9 @@ void CMainPanelImpl::refreshAboutVersion()
         })
     );
 
-    if ( AscAppManager::IsUseSystemScaling() ) {
-        _json_obj["uiscaling"] = 0;
-    } else {
+//    if ( AscAppManager::IsUseSystemScaling() ) {
+//        _json_obj["uiscaling"] = 0;
+//    } else {
         std::wstring _force_value = AscAppManager::userSettings(L"force-scale");
         if ( _force_value == L"1" )
             _json_obj["uiscaling"] = 100;
@@ -101,11 +101,11 @@ void CMainPanelImpl::refreshAboutVersion()
         if ( _force_value == L"2" )
             _json_obj["uiscaling"] = 200;
         else {
-//            _json_obj["uiscaling"] = 0;
-            AscAppManager::setUserSettings(L"force-scale", L"1");
-            _json_obj["uiscaling"] = 100;
+            _json_obj["uiscaling"] = 0;
+//            AscAppManager::setUserSettings(L"force-scale", L"1");
+//            _json_obj["uiscaling"] = 100;
         }
-    }
+//    }
 
 #ifndef __OS_WIN_XP
     _json_obj["uitheme"] = QString::fromStdWString(AscAppManager::themes().current().id());
@@ -117,6 +117,11 @@ void CMainPanelImpl::refreshAboutVersion()
 
     GET_REGISTRY_USER(reg_user);
     _json_obj["editorwindowmode"] = reg_user.value("editorWindowMode",false).toBool();
+#ifdef Q_OS_WIN
+    _json_obj["updates"] = QJsonObject({{"mode", reg_user.value("autoUpdateMode","silent").toString()}});
+#else
+    _json_obj["updates"] = QJsonObject({{"interval", reg_user.value("checkUpdatesInterval","silent").toString()}});
+#endif
 
     AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, "settings:init", Utils::stringifyJson(_json_obj));
     if ( InputArgs::contains(L"--ascdesktop-reveal-app-config") )

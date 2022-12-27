@@ -96,6 +96,7 @@ HEADERS += \
     $$PWD/src/cfilechecker.h \
     $$PWD/src/clogger.h \
     $$PWD/src/clangater.h \
+    $$PWD/src/cprintdata.h \
     $$PWD/src/cscalingwrapper.h \
     $$PWD/src/ctabundockevent.h \
     $$PWD/src/ccefeventsgate.h \
@@ -140,6 +141,7 @@ SOURCES += \
     $$PWD/src/cfilechecker.cpp \
     $$PWD/src/clogger.cpp \
     $$PWD/src/clangater.cpp \
+    $$PWD/src/cprintdata.cpp \
     $$PWD/src/cscalingwrapper.cpp \
     $$PWD/src/ctabundockevent.cpp \
     $$PWD/src/ccefeventsgate.cpp \

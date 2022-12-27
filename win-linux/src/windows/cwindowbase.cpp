@@ -125,8 +125,11 @@ void CWindowBase::setWindowColors(const QColor& background, const QColor& border
     Q_UNUSED(border)
     QPalette pal = palette();
     pal.setColor(QPalette::Window, background);
-    /*setStyleSheet(QString("QMainWindow{border:1px solid %1; border-top:2px solid %1;}").
-                  arg(border.name()));*/
+    setStyleSheet(QString("QMainWindow{border:1px solid %1;"
+#ifdef _WIN32
+                          "border-bottom:2px solid %1;"
+#endif
+                          "}").arg(border.name()));
     setAutoFillBackground(true);
     setPalette(pal);
 }

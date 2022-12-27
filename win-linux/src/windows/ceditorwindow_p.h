@@ -54,6 +54,8 @@
 #include <QJsonArray>
 #include <QJsonObject>
 #include <QGridLayout>
+#include <QStandardPaths>
+#include <QPrintEngine>
 
 #ifdef __linux__
 # include "platform_linux/gtkprintdialog.h"
@@ -140,18 +142,6 @@ auto editor_color(int type) -> QColor {
 
 class CEditorWindowPrivate : public CCefEventsGate
 {
-    struct sPrintData {
-        sPrintData() :
-            _printer_info(QPrinterInfo::defaultPrinter()),
-            _print_range(QPrintDialog::PrintRange::AllPages)
-        {}
-
-        QPrinterInfo _printer_info;
-        QPrintDialog::PrintRange _print_range;
-    };
-
-    sPrintData *m_printData = nullptr;
-
     CEditorWindow * window = nullptr;
     CElipsisLabel * iconuser = nullptr;
     QPushButton * btndock = nullptr;
@@ -174,8 +164,6 @@ public:
     ~CEditorWindowPrivate() override {
         if ( leftboxbuttons )
             leftboxbuttons->deleteLater();
-         if (m_printData)
-             delete m_printData, m_printData = nullptr;
     }
 
     void init(CTabPanel * const p) override {
@@ -213,6 +201,9 @@ public:
         btn->setIconSize(QSize(20,20) * window->m_dpiRatio);
         btn->setMouseTracking(true);
         btn->setIconOpacity(AscAppManager::themes().current().color(CTheme::ColorRole::ecrButtonNormalOpacity));
+        if ( jsonobj.contains("visible") && !jsonobj["visible"].toBool() ) {
+            btn->hide();
+        }
 
         m_mapTitleButtons[action] = btn;
         connect(btn, &QPushButton::clicked, [=]{
@@ -491,6 +482,11 @@ public:
         } else AscAppManager::cancelClose();
     }
 
+    void onDocumentPrint(void * data)  override
+    {
+        onDocumentPrint(AscAppManager::printData().pageCurent(), AscAppManager::printData().pagesCount());
+    }
+
     void onDocumentPrint(int currentpage, uint pagescount) override
     {
 #ifdef __OS_WIN_XP
@@ -506,15 +502,18 @@ public:
         WindowHelper::CParentDisable oDisabler(window->handle());
 #endif
         if ( !(pagescount < 1) ) {
-            if (!m_printData)
-                m_printData = new sPrintData();
             CAscMenuEvent * pEvent;
-            QAscPrinterContext * pContext = m_printData->_printer_info.isNull() ?
-                        new QAscPrinterContext() : new QAscPrinterContext(m_printData->_printer_info);
+            QAscPrinterContext * pContext = new QAscPrinterContext(AscAppManager::printData().printerInfo());
 
             QPrinter * printer = pContext->getPrinter();
             printer->setOutputFileName("");
             printer->setFromTo(1, pagescount);
+            printer->printEngine()->setProperty(QPrintEngine::PPK_DocumentName, m_panel->data()->title(true));
+
+            if ( !AscAppManager::printData().isQuickPrint() ) {
+                printer->setPageOrientation(AscAppManager::printData().pageOrientation());
+                printer->setPageSize(AscAppManager::printData().pageSize());
+            }
 
 #ifdef _WIN32
             CPrintDialog * dialog =  new CPrintDialog(printer, window->handle());
@@ -533,12 +532,26 @@ public:
                 dialog->setEnabledOptions(dialog->enabledOptions() | QPrintDialog::PrintCurrentPage);
                 dialog->setOptions(dialog->options() | QPrintDialog::PrintCurrentPage);
             }
-            dialog->setPrintRange(m_printData->_print_range);
 
-            if ( dialog->exec() == QDialog::Accepted ) {
-                m_printData->_printer_info = QPrinterInfo::printerInfo(printer->printerName());
-                m_printData->_print_range = dialog->printRange();
+            dialog->setPrintRange(AscAppManager::printData().printRange());
+            if ( dialog->printRange() == QPrintDialog::PageRange )
+                dialog->setFromTo(AscAppManager::printData().pageFrom(), AscAppManager::printData().pageTo());
+
+            int modal_res = QDialog::Accepted;
+            if ( AscAppManager::printData().isQuickPrint() ) {
+                dialog->accept();
+            } else modal_res = dialog->exec();
+
+            if ( modal_res == QDialog::Accepted ) {
+                if ( !AscAppManager::printData().isQuickPrint() )
+                    AscAppManager::printData().setPrinterInfo(*printer);
+
                 QVector<PageRanges> page_ranges;
+
+#ifdef Q_OS_LINUX
+                if ( AscAppManager::printData().isQuickPrint() && printer->outputFormat() == QPrinter::PdfFormat )
+                    printer->setOutputFileName(Utils::uniqFileName(QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation) + "/print.pdf"));
+#endif
 
                 switch(dialog->printRange()) {
                 case QPrintDialog::AllPages:
@@ -752,6 +765,11 @@ public:
         if ( panel()->data()->hasFeature(L"crypted\":true") && boxtitlelabel && !iconcrypted ) {
             qobject_cast<QBoxLayout *>(boxtitlelabel->layout())->insertWidget(0, iconCrypted());
         }
+
+        if ( panel()->data()->hasFeature(L"readonly\":") && boxtitlelabel ) {
+            window->setWindowTitle(m_panel->data()->title());
+            window->m_boxTitleBtns->repaint();
+        }
     }
 
     void onWebTitleChanged(int, std::wstring json) override
@@ -785,6 +803,12 @@ public:
                     for (const auto& b: _btns_changed.keys()) {
                         if ( m_mapTitleButtons.contains(b) )
                             m_mapTitleButtons[b]->setIcon(":/title/icons/buttons.svg", "svg-btn-" + _btns_changed.value(b).toString());
+                    }
+                } else
+                if ( objRoot.contains("visible") ) {
+                    QJsonObject _btns_changed = objRoot["visible"].toObject();
+                    if ( _btns_changed.contains("quickprint") ) {
+                        m_mapTitleButtons["quickprint"]->setVisible(_btns_changed["quickprint"].toBool());
                     }
                 }
             } else

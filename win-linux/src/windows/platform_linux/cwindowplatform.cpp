@@ -127,7 +127,8 @@ void CWindowPlatform::setScreenScalingFactor(double factor)
 
 void CWindowPlatform::mouseMoveEvent(QMouseEvent *e)
 {
-    CX11Decoration::dispatchMouseMove(e);
+    if (!property("blocked").toBool())
+        CX11Decoration::dispatchMouseMove(e);
 }
 
 void CWindowPlatform::mousePressEvent(QMouseEvent *e)

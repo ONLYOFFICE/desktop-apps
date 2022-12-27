@@ -106,6 +106,18 @@
                                                 </section>
                                             </div>
                                         </div>
+                                    <div class='settings-field' id="opts-autoupdate-mode" style='display:none;'>
+                                        <label class='sett__caption' l10n>${_lang.settAUpdateMode}</label>
+                                        <div class='sett--label-lift-top hbox'>
+                                            <section class='box-cmp-select'>
+                                                <select class='combobox'>
+                                                    <option value='disabled' l10n>${_lang.settOptDisabled}</option>
+                                                    <option value='silent' l10n>${_lang.settOptAUpdateSilent}</option>
+                                                    <option value='ask' l10n>${_lang.settOptAUpdateAsk}</option>
+                                                </select>
+                                            </section>
+                                        </div>
+                                    </div>
                                         <div class='settings-field' id="opts-ui-theme" style='display:none;'>
                                             <label class='sett__caption' l10n>${_lang.settUITheme}</label>
                                             <div class='sett--label-lift-top hbox'>
@@ -188,7 +200,8 @@
             $optsUIScaling,
             $optsUITheme,
             $optsSpellcheckMode,
-            $optsLaunchMode;
+            $optsLaunchMode,
+            $optsAutoupdateMode;
 
         function _set_user_name(name) {
             let me = this;
@@ -245,6 +258,7 @@
                     let $combo = $('select', $optsupdatesrate);
 
                     _new_settings.checkupdatesrate = $combo.val();
+                    _new_settings.checkupdatesinterval = $combo.val();
                     $combo.selectpicker('refresh');
                 }
 
@@ -263,6 +277,11 @@
                 if ( $optsLaunchMode ) {
                     _new_settings.editorwindowmode = $optsLaunchMode.val() == 'inwindow';
                     $optsLaunchMode.selectpicker('refresh');
+                }
+
+                if ( $optsAutoupdateMode ) {
+                    _new_settings.autoupdatemode = $optsAutoupdateMode.val();
+                    $optsAutoupdateMode.selectpicker('refresh');
                 }
 
                 if ( $optsSpellcheckMode ) {
@@ -392,11 +411,35 @@
                                 $btnApply.isdisabled() && $btnApply.disable(false);
                             });
                         }
+
+                        if ( !!opts.updates ) {
+                            if ( opts.updates.mode !== undefined ) {
+                                ($optsAutoupdateMode = ($('#opts-autoupdate-mode', $panel).show().find('select')))
+                                    .val(opts.updates.mode)
+                                    .selectpicker().on('change', e => {
+                                        $btnApply.isdisabled() && $btnApply.disable(false);
+                                    });
+                            }
+
+                            if ( opts.updates.interval !== undefined ) {
+                                let $settnode = $('#opts-checkupdate', $panel);
+
+                                if ( !$settnode.is(':visible') ) {
+                                    $settnode.show();
+                                    $('select', $settnode)
+                                        .val(opts.updates.interval)
+                                        .selectpicker().on('change', e => {
+                                            $btnApply.isdisabled() && $btnApply.disable(false);
+                                        });
+                                }
+                            }
+                        }
                     }
 
                     $('.settings-field:visible:last').css('margin-bottom','0');
                 } else
                 if (/updates/.test(cmd)) {
+                    // TODO: will be deprecated soon
                     let $settnode = $('#opts-checkupdate', $panel),
                         $combo = $('select', $settnode);
 
