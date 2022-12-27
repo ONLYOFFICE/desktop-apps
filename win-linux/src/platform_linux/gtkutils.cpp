@@ -31,12 +31,14 @@
  */
 
 #include "gtkutils.h"
+#include <QWidget>
+#include <QApplication>
 #include <gdk/gdkx.h>
 #include <xcb/xcb.h>
 #include <X11/Xlib-xcb.h>
 
 
-void set_focus(GtkWidget *dialog)
+gboolean set_focus(GtkWidget *dialog)
 {
     Display *disp = NULL;
     disp = XOpenDisplay(NULL);
@@ -51,6 +53,20 @@ void set_focus(GtkWidget *dialog)
         }
         XCloseDisplay(disp);
     }
+    return FALSE;
+}
+
+gboolean focus_out(gpointer data)
+{
+    if (data) {
+        DialogTag *tag = (DialogTag*)data;
+        GtkWidget *dialog = tag->dialog;
+        WId parent_xid = (WId)tag->parent_xid;
+        auto *focused_wgt = QApplication::activeWindow();
+        if (dialog && focused_wgt && focused_wgt->winId() == parent_xid)
+            set_focus(dialog);
+    }
+    return FALSE;
 }
 
 void set_parent(GtkWidget *dialog, gpointer data)

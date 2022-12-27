@@ -36,7 +36,13 @@
 #include <gtk/gtk.h>
 
 
-void set_focus(GtkWidget *dialog);
+typedef struct DialogTag {
+    GtkWidget* dialog;
+    ulong parent_xid;
+} DialogTag;
+
+gboolean set_focus(GtkWidget *dialog);
+gboolean focus_out(gpointer data);
 void set_parent(GtkWidget *dialog, gpointer data);
 
 #endif // GTKUTILS_H
