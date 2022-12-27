@@ -209,8 +209,13 @@ window.sdk.on('on_native_message', function(cmd, param) {
     console.log(cmd, param);
 });
 
+let last_open_file = performance.now();
 function openFile(from, model) {
     if (window.sdk) {
+        if ( performance.now() - last_open_file < 1000 ) return;
+
+        last_open_file = performance.now()
+
         if (from == OPEN_FILE_FOLDER) {
             window.sdk.command("open:folder", model);
         } else {
