@@ -94,7 +94,11 @@ int GtkMsg::showMessage(QWidget *parent,
 
     g_signal_connect(G_OBJECT(dialog), "realize", G_CALLBACK(set_parent), (gpointer)&parent_xid);
     g_signal_connect(G_OBJECT(dialog), "map_event", G_CALLBACK(set_focus), NULL);
-    g_signal_connect(G_OBJECT(dialog), "focus_out_event", G_CALLBACK(set_focus), NULL);
+    DialogTag tag;  // unable to send parent_xid via g_signal_connect and "focus_out_event"
+    memset(&tag, 0, sizeof(tag));
+    tag.dialog = dialog;
+    tag.parent_xid = (ulong)parent_xid;
+    g_signal_connect_swapped(G_OBJECT(dialog), "focus_out_event", G_CALLBACK(focus_out), (gpointer)&tag);
     //gtk_window_set_title(GTK_WINDOW(dialog), APP_TITLE);
     if (!secondaryText.isEmpty())
         gtk_message_dialog_format_secondary_text(GTK_MESSAGE_DIALOG(dialog), "%s", secondaryText.toLocal8Bit().data());
