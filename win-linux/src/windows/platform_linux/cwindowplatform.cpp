@@ -35,6 +35,7 @@
 #include "defines.h"
 #include "utils.h"
 #include <QTimer>
+#include <QApplication>
 
 
 #ifdef DOCUMENTSCORE_OPENSSL_SUPPORT
@@ -49,6 +50,7 @@ CWindowPlatform::CWindowPlatform(const QRect &rect) :
     if (isCustomWindowStyle())
         CX11Decoration::turnOff();
     setIsCustomWindowStyle(!CX11Decoration::isDecorated());
+    setFocusPolicy(Qt::StrongFocus);
 }
 
 CWindowPlatform::~CWindowPlatform()
@@ -112,7 +114,18 @@ bool CWindowPlatform::event(QEvent * event)
             m_boxTitleBtns->setCursor(QCursor(Qt::ArrowCursor));
     } else
     if (event->type() == QEvent::MouseButtonRelease) {
-        focus();
+        QApplication::postEvent(this, new QEvent(QEvent::FocusIn));
+    } else
+    if (event->type() == QEvent::Show) {    
+        setFocus();
+    } else
+    if (event->type() == QEvent::FocusIn) {
+        if (!property("blocked").toBool()) {
+            QTimer::singleShot(100, this, [=]() {
+                if (isActiveWindow())
+                    focus();
+            });
+        }
     }
     return CWindowBase::event(event);
 }
