@@ -1342,11 +1342,6 @@ void CMainWindow::setScreenScalingFactor(double factor)
     }
     updateScalingFactor(factor);
     CScalingWrapper::updateChildScaling(m_pMainPanel, factor);
-#ifdef _WIN32
-    QTimer::singleShot(50, this, [=]() { // Fix bug with window colors on scaling
-        CWindowBase::applyTheme(L"");
-    });
-#endif
 }
 
 QString CMainWindow::getSaveMessage() const
