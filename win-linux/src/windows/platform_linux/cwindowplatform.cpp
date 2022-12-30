@@ -35,7 +35,7 @@
 #include "defines.h"
 #include "utils.h"
 #include <QTimer>
-
+#include <xcb/xcb.h>
 
 #ifdef DOCUMENTSCORE_OPENSSL_SUPPORT
 # include "platform_linux/cdialogopenssl.h"
@@ -49,6 +49,7 @@ CWindowPlatform::CWindowPlatform(const QRect &rect) :
     if (isCustomWindowStyle())
         CX11Decoration::turnOff();
     setIsCustomWindowStyle(!CX11Decoration::isDecorated());
+    setFocusPolicy(Qt::StrongFocus);
 }
 
 CWindowPlatform::~CWindowPlatform()
@@ -110,11 +111,24 @@ bool CWindowPlatform::event(QEvent * event)
     if (event->type() == QEvent::HoverLeave) {
         if (m_boxTitleBtns)
             m_boxTitleBtns->setCursor(QCursor(Qt::ArrowCursor));
-    } else
-    if (event->type() == QEvent::MouseButtonRelease) {
-        focus();
     }
     return CWindowBase::event(event);
+}
+
+bool CWindowPlatform::nativeEvent(const QByteArray &ev_type, void *msg, long *res)
+{
+    if (ev_type == "xcb_generic_event_t") {
+        xcb_generic_event_t *ev = static_cast<xcb_generic_event_t*>(msg);
+        switch (ev->response_type & ~0x80) {
+        case XCB_FOCUS_IN:
+            if (isNativeFocus())
+                focus();
+            break;
+        default:
+            break;
+        }
+    }
+    return CWindowBase::nativeEvent(ev_type, msg, res);
 }
 
 void CWindowPlatform::setScreenScalingFactor(double factor)

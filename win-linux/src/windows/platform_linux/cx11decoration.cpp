@@ -40,6 +40,8 @@
 #include "X11/Xlib.h"
 #include "X11/cursorfont.h"
 #include <X11/Xutil.h>
+#include <xcb/xcb.h>
+#include <X11/Xlib-xcb.h>
 //#include "gtk_addon.h"
 
 #define CUSTOM_BORDER_WIDTH 4
@@ -457,6 +459,10 @@ void CX11Decoration::dispatchMouseMove(QMouseEvent *e)
             } else {
                 m_motionTimer->stop();
                 sendButtonRelease();
+                QTimer::singleShot(25, [=]() {
+                    if (m_window->size() == m_startSize)
+                        QApplication::postEvent(m_window, new QEvent(QEvent::User));
+                });
             }
         });
     }
@@ -559,6 +565,27 @@ void CX11Decoration::onDpiChanged(double f)
     m_nBorderSize = CUSTOM_BORDER_WIDTH * dpi_ratio;
 }
 
+bool CX11Decoration::isNativeFocus()
+{
+    Display *disp = XOpenDisplay(NULL);
+    xcb_window_t win = 0;
+    if (disp) {
+        xcb_connection_t *conn = XGetXCBConnection(disp);
+        if (conn) {
+            xcb_get_input_focus_cookie_t cookie;
+            xcb_get_input_focus_reply_t *reply;
+            cookie = xcb_get_input_focus(conn);
+            reply = xcb_get_input_focus_reply(conn, cookie, NULL);
+            if (reply) {
+                win = reply->focus;
+                free(reply);
+            }
+        }
+        XCloseDisplay(disp);
+    }
+    return m_window->winId() == (WId)win;
+}
+
 int CX11Decoration::customWindowBorderWith()
 {
     return CUSTOM_BORDER_WIDTH;
@@ -604,10 +631,6 @@ void CX11Decoration::sendButtonRelease()
                         &event.xbutton.x_root, &event.xbutton.y_root, &event.xbutton.x, &event.xbutton.y, &event.xbutton.state);
     XSendEvent(xdisplay_, PointerWindow, True, ButtonReleaseMask, &event);
     XFlush(xdisplay_);
-    QTimer::singleShot(25, [=]() {
-        if (m_window->size() == m_startSize)
-            QApplication::postEvent(m_window, new QEvent(QEvent::User));
-    });
 }
 
 void CX11Decoration::setCursorPos(int x, int y)
