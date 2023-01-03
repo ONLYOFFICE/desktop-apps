@@ -12,8 +12,6 @@
 #include <sys/syscall.h>
 #include <linux/random.h>
 #include <X11/Xlib.h>
-#include <X11/Xatom.h>
-#include <X11/Xutil.h>
 
 #if defined(__x86_64__)
 # define GETRANDOM_NR 318
@@ -81,7 +79,6 @@ typedef struct {
     const char* pattern;
 } FilterItem;
 
-Bool xerror = False;
 
 Result initDBus(void);
 Result openDialog(Window parent, Xdg::Mode mode, const char* title,
