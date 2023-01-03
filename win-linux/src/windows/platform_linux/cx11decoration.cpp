@@ -40,8 +40,7 @@
 #include "X11/Xlib.h"
 #include "X11/cursorfont.h"
 #include <X11/Xutil.h>
-#include <xcb/xcb.h>
-#include <X11/Xlib-xcb.h>
+#include "platform_linux/xcbutils.h"
 //#include "gtk_addon.h"
 
 #define CUSTOM_BORDER_WIDTH 4
@@ -567,23 +566,7 @@ void CX11Decoration::onDpiChanged(double f)
 
 bool CX11Decoration::isNativeFocus()
 {
-    Display *disp = XOpenDisplay(NULL);
-    xcb_window_t win = 0;
-    if (disp) {
-        xcb_connection_t *conn = XGetXCBConnection(disp);
-        if (conn) {
-            xcb_get_input_focus_cookie_t cookie;
-            xcb_get_input_focus_reply_t *reply;
-            cookie = xcb_get_input_focus(conn);
-            reply = xcb_get_input_focus_reply(conn, cookie, NULL);
-            if (reply) {
-                win = reply->focus;
-                free(reply);
-            }
-        }
-        XCloseDisplay(disp);
-    }
-    return m_window->winId() == (WId)win;
+    return XcbUtils::isNativeFocus(m_window->winId());
 }
 
 int CX11Decoration::customWindowBorderWith()
