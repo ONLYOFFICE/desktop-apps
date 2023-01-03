@@ -231,15 +231,20 @@ void setFilter(DBusMessageIter &msg_iter, const FilterItem &filterItem) {
     __dbusOpen(&msg_iter, DBUS_TYPE_STRUCT, nullptr, &struct_iter);
     // add filter name
     __dbusAppend(&struct_iter, DBUS_TYPE_STRING, &filterItem.name);
+
     // add filter extentions
     __dbusOpen(&struct_iter, DBUS_TYPE_ARRAY, "(us)", &array_iter);
-    __dbusOpen(&array_iter, DBUS_TYPE_STRUCT, nullptr, &array_struct_iter);
-    {
-        const unsigned nil = 0;
-        __dbusAppend(&array_struct_iter, DBUS_TYPE_UINT32, &nil);
+    const QString patterns = QString::fromUtf8(filterItem.pattern);
+    foreach (auto &pattern, patterns.split(' ')) {
+        __dbusOpen(&array_iter, DBUS_TYPE_STRUCT, nullptr, &array_struct_iter);
+        {
+            const unsigned nil = 0;
+            __dbusAppend(&array_struct_iter, DBUS_TYPE_UINT32, &nil);
+        }
+        char *ptrn = pattern.toUtf8().data();
+        __dbusAppend(&array_struct_iter, DBUS_TYPE_STRING, &ptrn);
+        __dbusClose(&array_iter, &array_struct_iter);
     }
-    __dbusAppend(&array_struct_iter, DBUS_TYPE_STRING, &filterItem.pattern);
-    __dbusClose(&array_iter, &array_struct_iter);
     __dbusClose(&struct_iter, &array_iter);
     __dbusClose(&msg_iter, &struct_iter);
 }
