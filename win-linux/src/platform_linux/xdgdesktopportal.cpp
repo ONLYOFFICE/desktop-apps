@@ -1132,7 +1132,7 @@ QStringList Xdg::openXdgPortal(QWidget *parent,
                                const QString &title,
                                const QString &file_name,
                                const QString &path,
-                               const QString &filter,
+                               QString filter,
                                QString *sel_filter,
                                bool sel_multiple)
 {
@@ -1146,6 +1146,7 @@ QStringList Xdg::openXdgPortal(QWidget *parent,
     const QString _path = (path.isEmpty() && pos != -1) ?
                 file_name.mid(0, pos) : path;
 
+    filter.replace("/", " \u2044 ");
     QStringList filterList = filter.split(";;");
     int filterSize = filterList.size();
     FilterItem filterItem[filterSize];

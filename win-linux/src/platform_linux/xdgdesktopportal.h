@@ -18,7 +18,7 @@ QStringList openXdgPortal(QWidget *parent,
                           const QString &title,
                           const QString &file_name,
                           const QString &path,
-                          const QString &filter,
+                          QString filter,
                           QString *sel_filter,
                           bool sel_multiple = false);
 }
