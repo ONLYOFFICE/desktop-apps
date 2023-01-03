@@ -140,6 +140,7 @@ bool CFileDialogWrapper::modalSaveAs(QString& fileName, int selected)
             _sel_filter = getFilter(_ext);
         _filters.append(";;" + _sel_filter);
     }
+    _filters.replace("/", " \u2044 "); // character replacement for xdg-desktop-portal-kde
 
 #ifdef _WIN32
     QString _croped_name = fileName;
