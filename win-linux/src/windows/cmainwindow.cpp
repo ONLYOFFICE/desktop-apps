@@ -1198,6 +1198,8 @@ void CMainWindow::onFullScreen(int id, bool apply)
     if (isHidden()) {
         m_pTabs->setFullScreen(apply);
         toggleButtonMain(false);
+        QCoreApplication::processEvents();
+        focus();
     }
 }
 
