@@ -840,33 +840,35 @@
         int viewId = [params[@"viewId"] intValue];
         ASCTabView * tab = [self tabViewWithId:viewId];
 
-        NSTabViewItem * item = [self.tabView tabViewItemAtIndex:[self.tabView indexOfTabViewItemWithIdentifier:tab.uuid]];
+        if ( tab ) {
+            NSTabViewItem * item = [self.tabView tabViewItemAtIndex:[self.tabView indexOfTabViewItemWithIdentifier:tab.uuid]];
 
-        if (isFullscreen) {
-            [item.view enterFullScreenMode:[[NSWindow titleWindowOrMain] screen] withOptions:@{NSFullScreenModeAllScreens: @(NO)}];
+            if (isFullscreen) {
+                [item.view enterFullScreenMode:[[NSWindow titleWindowOrMain] screen] withOptions:@{NSFullScreenModeAllScreens: @(NO)}];
 
-            if (tab) {
-                [[self cefViewWithTab:tab] focus];
-            }
-        } else if ([item.view isInFullScreenMode]) {
-            [item.view exitFullScreenModeWithOptions:nil];
-
-            if (tab) {
-                ASCTabView * currTab = [self.tabsControl selectedTab];
-                if ( currTab.uuid != tab.uuid ) {
-                    [self.tabsControl selectTab:tab];
+                if (tab) {
+                    [[self cefViewWithTab:tab] focus];
                 }
-
-                NSCefView * cefView = [self cefViewWithTab:tab];
+            } else if ([item.view isInFullScreenMode]) {
+                [item.view exitFullScreenModeWithOptions:nil];
                 
-                if (cefView) {
-                    NSEditorApi::CAscExecCommandJS * pCommand = new NSEditorApi::CAscExecCommandJS;
-                    pCommand->put_Command(L"editor:stopDemonstration");
+                if (tab) {
+                    ASCTabView * currTab = [self.tabsControl selectedTab];
+                    if ( currTab.uuid != tab.uuid ) {
+                        [self.tabsControl selectTab:tab];
+                    }
                     
-                    NSEditorApi::CAscMenuEvent* pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EDITOR_EXECUTE_COMMAND);
-                    pEvent->m_pData = pCommand;
+                    NSCefView * cefView = [self cefViewWithTab:tab];
                     
-                    [cefView apply:pEvent];
+                    if (cefView) {
+                        NSEditorApi::CAscExecCommandJS * pCommand = new NSEditorApi::CAscExecCommandJS;
+                        pCommand->put_Command(L"editor:stopDemonstration");
+
+                        NSEditorApi::CAscMenuEvent* pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EDITOR_EXECUTE_COMMAND);
+                        pEvent->m_pData = pCommand;
+
+                        [cefView apply:pEvent];
+                    }
                 }
             }
         }
