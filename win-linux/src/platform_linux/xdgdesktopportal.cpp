@@ -1,5 +1,6 @@
 #define _GNU_SOURCE 1
 #include "xdgdesktopportal.h"
+#include "platform_linux/xcbutils.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <stddef.h>
@@ -1173,6 +1174,9 @@ QStringList Xdg::openXdgPortal(QWidget *parent,
     }
 
     char* outPaths;
+    XcbUtils::findWindowAsync("xdg-desktop-portal",
+                              3000,
+                              XcbUtils::setNativeFocusTo);
     Result result;
     result = openDialog(parentWid, mode, title.toUtf8().data(),
                         &outPaths,
