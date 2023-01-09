@@ -123,15 +123,12 @@ void CWindowBase::updateScaling()
 void CWindowBase::setWindowColors(const QColor& background, const QColor& border)
 {
     Q_UNUSED(border)
-    QPalette pal = palette();
-    pal.setColor(QPalette::Window, background);
     setStyleSheet(QString("QMainWindow{border:1px solid %1;"
 #ifdef _WIN32
                           "border-bottom:2px solid %1;"
 #endif
-                          "}").arg(border.name()));
-    setAutoFillBackground(true);
-    setPalette(pal);
+                          "background-color: %2;"
+                          "}").arg(border.name(), background.name()));
 }
 
 void CWindowBase::applyTheme(const std::wstring& theme)
