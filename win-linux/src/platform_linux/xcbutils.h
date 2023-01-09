@@ -30,43 +30,19 @@
  *
  */
 
-#include "gtkutils.h"
-#include <gdk/gdkx.h>
-#include "platform_linux/xcbutils.h"
+#ifndef XCBUTILS_H
+#define XCBUTILS_H
+
+#include <xcb/xcb.h>
 
 
-gboolean set_focus(GtkWidget *dialog)
+namespace XcbUtils
 {
-    GdkWindow *gdk_dialog = gtk_widget_get_window(dialog);
-    if (gdk_dialog) {
-        xcb_window_t wnd = (xcb_window_t)gdk_x11_window_get_xid(gdk_dialog);
-        XcbUtils::setNativeFocusTo(wnd);
-    }
-    return FALSE;
+void setNativeFocusTo(xcb_window_t window);
+bool isNativeFocus(xcb_window_t window);
+void findWindowAsync(const char *window_name,
+                     uint timeout_ms,
+                     void(*callback)(xcb_window_t));
 }
 
-gboolean focus_out(gpointer data)
-{
-    if (data) {
-        DialogTag *tag = (DialogTag*)data;
-        GtkWidget *dialog = tag->dialog;
-        xcb_window_t parent_xid = (xcb_window_t)tag->parent_xid;
-        if (dialog && XcbUtils::isNativeFocus(parent_xid))
-            set_focus(dialog);
-    }
-    return FALSE;
-}
-
-void set_parent(GtkWidget *dialog, gpointer data)
-{
-    if (dialog && data) {
-        GdkDisplay *gdk_display = gdk_display_get_default();
-        Window parent_xid = *(Window*)data;
-        if (gdk_display && parent_xid != None) {
-            GdkWindow *gdk_dialog = gtk_widget_get_window(dialog);
-            GdkWindow *gdk_qtparent = gdk_x11_window_foreign_new_for_display(gdk_display, parent_xid);
-            if (gdk_dialog && gdk_qtparent )
-                gdk_window_set_transient_for(gdk_dialog, gdk_qtparent);
-        }
-    }
-}
+#endif // XCBUTILS_H

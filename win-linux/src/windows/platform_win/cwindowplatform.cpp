@@ -70,10 +70,7 @@ CWindowPlatform::CWindowPlatform(const QRect &rect) :
     DwmExtendFrameIntoClientArea(m_hWnd, &shadow);
 #endif
     connect(this->window()->windowHandle(), &QWindow::screenChanged, this, [=]() {
-        QTimer::singleShot(50, this, [=]() {
-            resize(size() + QSize(1,1));
-            resize(size() - QSize(1,1));
-        });
+        SetWindowPos(m_hWnd, 0, 0, 0, 0, 0, SWP_FRAMECHANGED | SWP_NOMOVE | SWP_NOSIZE);
     });
 }
 
