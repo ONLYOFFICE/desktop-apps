@@ -259,10 +259,11 @@ QWidget * CEditorWindow::createMainPanel(QWidget * parent, const QString& title)
             if (d_ptr->panel()->data()->contentType() != etUndefined)
                 mainPanel->setProperty("window", "pretty");
             _canExtendTitle = true;
-            if (d_ptr->usedOldEditorVersion)  // For old editors only
-                static_cast<QHBoxLayout*>(m_boxTitleBtns->layout())->insertWidget(3, d_ptr.get()->iconUser());
-            else
-                static_cast<QHBoxLayout*>(m_boxTitleBtns->layout())->insertWidget(2, d_ptr.get()->iconUser());
+            int pos = (d_ptr->usedOldEditorVersion) ? 3 : 2;  // For old editors only
+            auto *pIconSpacer = new QSpacerItem(9, 5, QSizePolicy::Fixed, QSizePolicy::Fixed);
+            auto *pTopLayout = static_cast<QHBoxLayout*>(m_boxTitleBtns->layout());
+            pTopLayout->insertWidget(pos, d_ptr->iconUser());
+            pTopLayout->insertSpacerItem(pos + 1, pIconSpacer);
         }
 
         d_ptr->customizeTitleLabel();
