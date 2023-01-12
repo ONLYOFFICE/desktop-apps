@@ -1,13 +1,91 @@
-# 1.24.0-alpha
+# 1.27.1
 
+ * Use px instead of pt when specifying font size to fix default font size in WebView from #1962 (regressed in 1.25.0 with WKWebView adoption) (Daniel Jalkut)
+ * Fix to prevent Sparkle manipulating the host app's high level WebView defaults from #1961 (affecting only macOS versions before 10.11 in 1.x branch) (Daniel Jalkut)
+ * Add safer handling of applying binary delta files from #1990 (Zorg)
+ * Don't use current date unless necessary when scheduling next update from #1991 (Zorg)
+ * Whitelist about:srcdoc as a safe web URL from #1938, #2007 (Louis Pontoise, Zorg)
+ * Backport not hiding update window on deactivation from #2008 (Zorg)
+
+# 1.27.0
+
+ * Deprecate not using EdDSA and skip DSA verification when possible in #1892 (Zorg)
+ * Pass http headers and user agent when downloading release notes from #1873 (Zorg)
+ * Fix project warnings from #1893 (Zorg)
+ * Update sample appcast from #1895 (Zorg)
+ * Fix appcast pubDate tag generation in different locales from #1898 (Sungbin Jo)
+ * Create valid xar archives for generating binary delta files from #1906 (Zorg)
+ * Fix a few issues with German localization from #1931 (J-rg)
+ * Fix issues with Russian localizations from #1947 (Konstantin Zamyakin)
+ * Fix issues with Czech localizations from #1943 (Vojtěch Koňařík)
+ * Add an automated workflow that builds and publishes official Sparkle releases (Tony Arnold, Zorg)
+
+# 1.26.0
+
+ * Flat package support from #1745 (Zorg)
+ * Correct generate_appcast -s command line argument usage help (Lance Lovette)
+ * Fix -f command line argument handling (Lance Lovette)
+ * Fix progress for guided pkg install (Zorg)
+ * Fix XQuartz update failing because NSLog caused issues (Zorg)
+ * Update localization (Vojtěch Koňařík)
+ * Various fixes to SPM logic (Jonas Zaugg)
+
+# 1.25.0
+
+ * Raise minimum system version to 10.9 (Kornel)
+ * Allow an appcast to prevent the new version from being installed automatically (#1688) (pierswalter)
+ * UI fixes
+   * Show check for updates button only when automatic updates are enabled (Lorena Rangel)
+   * Don't initialize the webview if we don't show release notes (Tobias Fonfara)
+   * Keep skip button available if there is a minimum autoupdate version (Zorg)
+   * Fix automatic updates checkbox state when not showing release notes (Zorg)
+   * Fix edge cases with hiding alert buttons and using "Install Later" (Zorg)
+   * Re-add setting WebUIDelegate fix for legacy web view (Zorg)
+   * Adopt WKWebView for 1.x (Zorg)
+   * Add auto layout constraints to SUAutomaticUpdateAlert window (Zorg)
+   * Made buttons wide enough to display the full text. Made window wide enough to display the widened buttons (el, fi, ru, uk) (Piers Uso Walter)
+   * Remove max size from update alert. (George Nachman)
+ * Integrate generate_keys export/import options changes from #1730 (Zorg)
+ * Add `—release-notes-url-prefix` support to localized release notes (Adam Tharani)
+ * Translations
+   * Enable base internalization for alert xibs (Zorg)
+   * Capitalizes french translation of "Vous utilisez actuellement..." ("You are currently running...") (Micah Moore)
+   * Fix and cleanup Hebrew, Catalan, Finnish localizations (Zorg)
+   * Remove non-english localizations from TestApplication (Zorg)
+ * Fix catch-22 Swift Package Manager binary target (Jonas Zaugg)
+ * Add explicit dependencies to fix Xcode linking errors (Kornel)
+ * Add phased rollouts feature to automatic update driver too (Zorg)
+ * Remove hiding skip button and retitling later button (Zorg)
+ * Deprecate installUpdatesIfAvailable (Zorg)
+ * Apply custom headers to app download (Geraint White)
+
+ # 1.24.0
+
+ * Prioritize UserDefaults when fetching value for EnableAutomaticChecks (Nicolas Bosi)
+ * Improve best appcast item selection handling (Ian Bytchek)
+ * Create lockfile for improved compatibility with 3rd party updaters (CoreCode)
+ * Enable SPM support via binary target (Jonas Zaugg)
+ * `generate_appcast` improvements:
+     * follow symbolic links (Denis Dzyubenko)
+     * update the release notes element’s URL when required (Brad Andalman)
+     * Added output filename option to generate_appcast (Brad Andalman)
+     * Added —release-notes-url-prefix to generate_appcast (Brad Andalman)
+     * Command line option to provide a download url prefix is now parsed and set on each archive item (Dominik H)
+     * Added help command line option (Dominik H)
+ * Locale updates:
+     * Update zh_CN localization (柳东原 · Dongyuan Liu)
+     * Update Sparkle.strings (Vojtěch Koňařík)
+     * Update Croatian (#1603) (milotype)
+     * Update SUUpdateAlert.xib (DanielFirlej)
+ * fix: read SUAutomaticallyUpdate from Info.plist (Trevor DeVore)
+ * Fix casting Boolean to BOOL on Apple Silicon (Kevin Wojniak)
+ * Use build matrix to test on multiple Xcode versions (Rajiv Shah)
+ * Set UpdateAlert and AutomaticUpdateAlert window's fullscreen collectionBehavior to NSWindowCollectionBehaviorFullScreenAuxiliary to allow them to present on top of the Main App's window if it's fullscreen. (Micah Moore)
  * Fixed error about "about:blank" release notes (Louis Pontoise)
+ * Support App Store URL scheme in release note webview (Bi11)
  * Use the SHA-256 hash of the archive as the cache path (Nate Weaver)
  * Don't return an optional from the FileHandle method (Nate Weaver)
  * Added URL+Hashing (Nate Weaver)
- * Update SUUpdateAlert.xib (DanielFirlej)
- * Added help command line option (Dominik H)
- * Added function that parses all command line options (Dominik H)
- * Command line option to provide a download url prefix is now parsed and set on each archive item (Dominik H)
 
 # 1.23.0
 
