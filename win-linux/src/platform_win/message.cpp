@@ -142,11 +142,16 @@ int WinMsg::showMessage(QWidget *parent,
     default:                        nDefltBtn = IDOK; break;
     }
 
+    BOOL chkState = (checkBoxState) ? (BOOL)*checkBoxState : FALSE;
+
     TASKDIALOGCONFIG config = {0};
     ZeroMemory(&config, sizeof(config));
     config.cbSize             = sizeof(config);
+    config.dwFlags            = TDF_POSITION_RELATIVE_TO_WINDOW |
+                                TDF_ALLOW_DIALOG_CANCELLATION |
+                                TDF_SIZE_TO_CONTENT;
     config.hwndParent         = parent_hwnd;
-    config.hInstance          = NULL;
+    config.hInstance          = GetModuleHandle(NULL);
     config.pButtons           = pButtons;
     config.cButtons           = cButtons;
     config.nDefaultButton     = nDefltBtn;
@@ -155,11 +160,11 @@ int WinMsg::showMessage(QWidget *parent,
     config.pszMainInstruction = lpText.c_str();
     config.pszContent         = NULL;
 
-    BOOL chkState;
-    if (checkBoxState != nullptr) {
+    if (chkState == TRUE)
+        config.dwFlags |= TDF_VERIFICATION_FLAG_CHECKED;
+    if (checkBoxState)
         config.pszVerificationText = lpCheckBoxText.c_str();
-        chkState = (BOOL)*checkBoxState;
-    }
+
     TaskDialogIndirect(&config, &msgboxID, NULL, (checkBoxState != nullptr) ? &chkState : NULL);
     if (checkBoxState != nullptr)
         *checkBoxState = (chkState == TRUE);
