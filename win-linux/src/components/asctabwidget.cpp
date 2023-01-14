@@ -1124,7 +1124,6 @@ void CAscTabWidget::setFullScreen(bool apply, int id)
 
             RELEASEOBJECT(m_dataFullScreen->parent)
             RELEASEOBJECT(m_dataFullScreen)
-            fsWidget->cef()->focus();
 //            updateGeometry();
         }
     } else {

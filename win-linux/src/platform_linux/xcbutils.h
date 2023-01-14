@@ -28,38 +28,21 @@
  * Creative Commons Attribution-ShareAlike 4.0 International. See the License
  * terms at http://creativecommons.org/licenses/by-sa/4.0/legalcode
  *
-*/
+ */
 
-#ifndef CWINDOWPLATFORM_H
-#define CWINDOWPLATFORM_H
+#ifndef XCBUTILS_H
+#define XCBUTILS_H
 
-#include "windows/cwindowbase.h"
-#include "cx11decoration.h"
-#include <memory>
+#include <xcb/xcb.h>
 
 
-class CWindowPlatform : public CWindowBase, public CX11Decoration
+namespace XcbUtils
 {
-public:
-    explicit CWindowPlatform(const QRect&);
-    virtual ~CWindowPlatform();
+void setNativeFocusTo(xcb_window_t window);
+bool isNativeFocus(xcb_window_t window);
+void findWindowAsync(const char *window_name,
+                     uint timeout_ms,
+                     void(*callback)(xcb_window_t));
+}
 
-    void bringToTop();
-    void show(bool);
-    virtual void setWindowColors(const QColor&, const QColor& border = QColor()) final;
-    virtual void adjustGeometry() final;
-
-protected:
-    virtual void onMinimizeEvent() override;
-    virtual bool event(QEvent *event) override;
-    virtual bool nativeEvent(const QByteArray&, void*, long*) final;
-    virtual void setScreenScalingFactor(double) override;
-
-private:
-    virtual void mouseMoveEvent(QMouseEvent *) final;
-    virtual void mousePressEvent(QMouseEvent *) final;
-    virtual void mouseReleaseEvent(QMouseEvent *) final;
-    virtual void mouseDoubleClickEvent(QMouseEvent *) final;    
-};
-
-#endif // CWINDOWPLATFORM_H
+#endif // XCBUTILS_H

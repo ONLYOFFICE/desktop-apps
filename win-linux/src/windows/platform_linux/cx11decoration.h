@@ -70,6 +70,7 @@ public:
 protected:
     double dpi_ratio = 1;
     void onDpiChanged(double);
+    bool isNativeFocus();
 
 private:
     QWidget * m_window;
