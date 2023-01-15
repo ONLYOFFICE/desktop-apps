@@ -227,10 +227,10 @@ function openFile(from, model) {
                 };
 
             if ( from == OPEN_FILE_RECOVERY ) {
-                // window.sdk.LocalFileOpenRecover(parseInt(params.id));
+                window.sdk.LocalFileOpenRecover(parseInt(params.id));       // for bug 60509. change on "open:recovery" event for ver 7.4
                 window.sdk.command("open:recovery", JSON.stringify(params));
             } else {
-                // window.sdk.LocalFileOpenRecent(parseInt(params.id));
+                window.sdk.LocalFileOpenRecent(parseInt(params.id));        // for bug 60509. change on "open:recent" event for ver 7.4
                 window.sdk.command("open:recent", JSON.stringify(params));
             }
         }

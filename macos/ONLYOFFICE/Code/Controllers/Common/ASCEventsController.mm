@@ -729,6 +729,8 @@ public:
                                                                                              }];
                                 }
                             }
+                        } else if (cmd.find(L"open:recent") != std::wstring::npos) {
+                            NSLog(@"open:recent");
                         } else if (cmd.find(L"webapps:features") != std::wstring::npos) {
                             CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
                             CCefView * pCefView = appManager->GetViewById(senderId);
