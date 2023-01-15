@@ -661,6 +661,8 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
         default:
             break;
         }
+
+        break;
     }
 
     case ASC_MENU_EVENT_TYPE_CEF_ONFULLSCREENENTER:
