@@ -143,7 +143,7 @@ auto editor_color(int type) -> QColor {
 class CEditorWindowPrivate : public CCefEventsGate
 {
     CEditorWindow * window = nullptr;
-    CElipsisLabel * iconuser = nullptr;
+    QLabel * iconuser = nullptr;
     QPushButton * btndock = nullptr;
     bool isPrinting = false,
         isFullScreen = false;
@@ -234,6 +234,20 @@ public:
         }
     }
 
+    auto getInitials(const QString &name) -> QString {
+        auto fio = name.split(' ');
+        QString initials = (!fio[0].isEmpty()) ?
+                    fio[0].mid(0, 1).toUpper() : "";
+        for (int i = fio.size() - 1; i > 0; i--) {
+            if (!fio[i].isEmpty() && fio[i].at(0) != '('
+                    && fio[i].at(0) != ')') {
+                initials += fio[i].mid(0, 1).toUpper();
+                break;
+            }
+        }
+        return initials;
+    }
+
     void onEditorConfig(int, std::wstring cfg) override
     {
 //        if ( id == window->holdView(id) )
@@ -252,9 +266,8 @@ public:
                 if ( objRoot.contains("user") ) {
                     QString _user_name = objRoot["user"].toObject().value("name").toString();
                     iconUser()->setToolTip(_user_name);
-                    iconuser->setText(_user_name);
-
-                    iconuser->adjustSize();
+                    adjustIconUser();
+                    iconuser->setText(getInitials(_user_name));
                     _user_width = iconuser->width();
                 }
 
@@ -599,10 +612,7 @@ public:
             int diffW = int((titleLeftOffset - (TOOLBTN_WIDTH * _btncount)) * f); // 4 tool buttons: min+max+close+usericon
 
             if ( iconuser ) {
-                iconuser->setMaximumWidth(int(200 * f));
-                iconuser->setContentsMargins(int(12*f),0,int(12*f),int(2*f));
-                iconuser->setMaximumWidth(int(200*f));
-                iconuser->adjustSize();
+                adjustIconUser();
                 if (!viewerMode())
                     diffW -= iconuser->width();
             }
@@ -720,15 +730,23 @@ public:
     {
         Q_ASSERT(window->m_boxTitleBtns != nullptr);
         if ( !iconuser ) {
-            iconuser = new CElipsisLabel(window->m_boxTitleBtns);
+            iconuser = new QLabel(window->m_boxTitleBtns);
             iconuser->setObjectName("iconuser");
-            iconuser->setContentsMargins(0,0,0,int(2 * window->m_dpiRatio));
-            iconuser->setMaximumWidth(int(200 * window->m_dpiRatio));
-//            iconuser->setPixmap(window->m_dpiRatio > 1 ? QPixmap(":/user_2x.png") : QPixmap(":/user.png"));
-//            iconuser->setFixedSize(QSize(TOOLBTN_WIDTH*window->m_dpiRatio,16*window->m_dpiRatio));
+            iconuser->setContentsMargins(0,0,0,0);
+            iconuser->setAlignment(Qt::AlignCenter);
         }
 
         return iconuser;
+    }
+
+    void adjustIconUser()
+    {
+        iconuser->setFixedHeight(0.85 * TOOLBTN_HEIGHT * window->m_dpiRatio);
+        iconuser->setFixedWidth(iconuser->height());
+        auto iconTextColor = editor_color(panel()->data()->contentType()).name();
+        iconuser->setStyleSheet(QString("QLabel#iconuser "
+            "{background: #d9ffffff; border-radius: %1px; color: %2;}")
+                .arg(QString::number(iconuser->height()/2), iconTextColor));
     }
 
     QLabel * iconCrypted()

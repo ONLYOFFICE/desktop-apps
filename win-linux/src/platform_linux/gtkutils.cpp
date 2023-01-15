@@ -31,27 +31,16 @@
  */
 
 #include "gtkutils.h"
-#include <QWidget>
-#include <QApplication>
 #include <gdk/gdkx.h>
-#include <xcb/xcb.h>
-#include <X11/Xlib-xcb.h>
+#include "platform_linux/xcbutils.h"
 
 
 gboolean set_focus(GtkWidget *dialog)
 {
-    Display *disp = NULL;
-    disp = XOpenDisplay(NULL);
-    if (disp) {
-        xcb_connection_t *conn = NULL;
-        conn = XGetXCBConnection(disp);
-        GdkWindow *gdk_dialog = gtk_widget_get_window(dialog);
-        if (conn && gdk_dialog) {
-            xcb_window_t wnd = (xcb_window_t)gdk_x11_window_get_xid(gdk_dialog);
-            if (wnd != 0L)
-                xcb_set_input_focus(conn, XCB_INPUT_FOCUS_PARENT, wnd, XCB_CURRENT_TIME);
-        }
-        XCloseDisplay(disp);
+    GdkWindow *gdk_dialog = gtk_widget_get_window(dialog);
+    if (gdk_dialog) {
+        xcb_window_t wnd = (xcb_window_t)gdk_x11_window_get_xid(gdk_dialog);
+        XcbUtils::setNativeFocusTo(wnd);
     }
     return FALSE;
 }
@@ -61,9 +50,8 @@ gboolean focus_out(gpointer data)
     if (data) {
         DialogTag *tag = (DialogTag*)data;
         GtkWidget *dialog = tag->dialog;
-        WId parent_xid = (WId)tag->parent_xid;
-        auto *focused_wgt = QApplication::activeWindow();
-        if (dialog && focused_wgt && focused_wgt->winId() == parent_xid)
+        xcb_window_t parent_xid = (xcb_window_t)tag->parent_xid;
+        if (dialog && XcbUtils::isNativeFocus(parent_xid))
             set_focus(dialog);
     }
     return FALSE;

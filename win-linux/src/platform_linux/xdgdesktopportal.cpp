@@ -1,5 +1,6 @@
 #define _GNU_SOURCE 1
 #include "xdgdesktopportal.h"
+#include "platform_linux/xcbutils.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <stddef.h>
@@ -12,8 +13,6 @@
 #include <sys/syscall.h>
 #include <linux/random.h>
 #include <X11/Xlib.h>
-#include <X11/Xatom.h>
-#include <X11/Xutil.h>
 
 #if defined(__x86_64__)
 # define GETRANDOM_NR 318
@@ -81,7 +80,6 @@ typedef struct {
     const char* pattern;
 } FilterItem;
 
-Bool xerror = False;
 
 Result initDBus(void);
 Result openDialog(Window parent, Xdg::Mode mode, const char* title,
@@ -233,15 +231,20 @@ void setFilter(DBusMessageIter &msg_iter, const FilterItem &filterItem) {
     __dbusOpen(&msg_iter, DBUS_TYPE_STRUCT, nullptr, &struct_iter);
     // add filter name
     __dbusAppend(&struct_iter, DBUS_TYPE_STRING, &filterItem.name);
+
     // add filter extentions
     __dbusOpen(&struct_iter, DBUS_TYPE_ARRAY, "(us)", &array_iter);
-    __dbusOpen(&array_iter, DBUS_TYPE_STRUCT, nullptr, &array_struct_iter);
-    {
-        const unsigned nil = 0;
-        __dbusAppend(&array_struct_iter, DBUS_TYPE_UINT32, &nil);
+    const QString patterns = QString::fromUtf8(filterItem.pattern);
+    foreach (auto &pattern, patterns.split(' ')) {
+        __dbusOpen(&array_iter, DBUS_TYPE_STRUCT, nullptr, &array_struct_iter);
+        {
+            const unsigned nil = 0;
+            __dbusAppend(&array_struct_iter, DBUS_TYPE_UINT32, &nil);
+        }
+        char *ptrn = pattern.toUtf8().data();
+        __dbusAppend(&array_struct_iter, DBUS_TYPE_STRING, &ptrn);
+        __dbusClose(&array_iter, &array_struct_iter);
     }
-    __dbusAppend(&array_struct_iter, DBUS_TYPE_STRING, &filterItem.pattern);
-    __dbusClose(&array_iter, &array_struct_iter);
     __dbusClose(&struct_iter, &array_iter);
     __dbusClose(&msg_iter, &struct_iter);
 }
@@ -1129,7 +1132,7 @@ QStringList Xdg::openXdgPortal(QWidget *parent,
                                const QString &title,
                                const QString &file_name,
                                const QString &path,
-                               const QString &filter,
+                               QString filter,
                                QString *sel_filter,
                                bool sel_multiple)
 {
@@ -1143,6 +1146,7 @@ QStringList Xdg::openXdgPortal(QWidget *parent,
     const QString _path = (path.isEmpty() && pos != -1) ?
                 file_name.mid(0, pos) : path;
 
+    filter.replace("/", " \u2044 ");
     QStringList filterList = filter.split(";;");
     int filterSize = filterList.size();
     FilterItem filterItem[filterSize];
@@ -1176,6 +1180,9 @@ QStringList Xdg::openXdgPortal(QWidget *parent,
     }
 
     char* outPaths;
+    XcbUtils::findWindowAsync("xdg-desktop-portal",
+                              3000,
+                              XcbUtils::setNativeFocusTo);
     Result result;
     result = openDialog(parentWid, mode, title.toUtf8().data(),
                         &outPaths,
