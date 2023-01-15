@@ -669,6 +669,12 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
     case ASC_MENU_EVENT_TYPE_CEF_ONFULLSCREENLEAVE: {
         static int fs_view_id = -1;
 
+        if ( !m_winsReporter.empty() &&
+                m_winsReporter.find(event->m_nSenderId) != m_winsReporter.end() )
+        {
+            break;
+        }
+
         if ( event->m_nType == ASC_MENU_EVENT_TYPE_CEF_ONFULLSCREENENTER ) {
             if (  fs_view_id < 0 ) {
                 fs_view_id = event->m_nSenderId;
