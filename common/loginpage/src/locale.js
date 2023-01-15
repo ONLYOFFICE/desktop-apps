@@ -133,6 +133,9 @@ l10n.en = {
     settAUpdateMode: 'Autoupdate mode',
     settOptAUpdateSilent: 'Silent mode',
     settOptAUpdateAsk: 'Ask to download',
+    settOptDescDisabled: "Auto checking updates will be disabled",
+    settOptDescAUpdateSilent: "Download updates and ask before istall",
+    settOptDescAUpdateAsk: "You will be notified about all updates steps",
 }
 
 

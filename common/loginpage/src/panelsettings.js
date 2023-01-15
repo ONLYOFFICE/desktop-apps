@@ -111,9 +111,9 @@
                                         <div class='sett--label-lift-top hbox'>
                                             <section class='box-cmp-select'>
                                                 <select class='combobox'>
-                                                    <option value='disabled' l10n>${_lang.settOptDisabled}</option>
-                                                    <option value='silent' l10n>${_lang.settOptAUpdateSilent}</option>
-                                                    <option value='ask' l10n>${_lang.settOptAUpdateAsk}</option>
+                                                    <option data-subtext="${_lang.settOptDescAUpdateSilent}" value='silent' l10n>${_lang.settOptAUpdateSilent}</option>
+                                                    <option data-subtext="${_lang.settOptDescAUpdateAsk}" value='ask' l10n>${_lang.settOptAUpdateAsk}</option>
+                                                    <option data-subtext="${_lang.settOptDescDisabled}" value='disabled' l10n>${_lang.settOptDisabled}</option>
                                                 </select>
                                             </section>
                                         </div>
@@ -494,6 +494,12 @@
             }
         }
 
+        function _on_lang_changed(ol,nl) {
+            $('option[value=silent]', this.view.$panel).attr('data-subtext', utils.Lang.settOptDescAUpdateSilent);
+            $('option[value=ask]', this.view.$panel).attr('data-subtext', utils.Lang.settOptDescAUpdateAsk);
+            $('option[value=disabled]', this.view.$panel).attr('data-subtext', utils.Lang.settOptDescDisabled);
+        };
+
         return {
             init: function() {
                 baseController.prototype.init.apply(this, arguments);
@@ -548,6 +554,7 @@
 
                 $(window).on('resize', on_window_resize.bind(this));
                 CommonEvents.on('panel:show', on_panel_show.bind(this));
+                CommonEvents.on('lang:changed', _on_lang_changed.bind(this));
 
                 return this;
             }

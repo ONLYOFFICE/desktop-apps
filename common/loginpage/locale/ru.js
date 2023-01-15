@@ -100,4 +100,7 @@ l10n.ru = {
     settAUpdateMode: 'Автообновление',
     settOptAUpdateSilent: 'Тихий режим',
     settOptAUpdateAsk: 'Спрашивать перед загрузкой',
+    settOptDescDisabled: "Автоматическая проверка обновлений выключена",
+    settOptDescAUpdateSilent: "Запрос подтверждения только перед установкой обновления",
+    settOptDescAUpdateAsk: "Будет запрос подтверждения перед каждым шагом обновления",
 }
