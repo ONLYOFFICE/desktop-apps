@@ -83,6 +83,7 @@ HEADERS += \
     $$PWD/src/components/celipsislabel.h \
     $$PWD/src/components/cfullscrwidget.h \
     $$PWD/src/components/cprintdialog.h \
+    $$PWD/src/components/ctooltip.h \
     $$PWD/src/version.h \
     $$PWD/src/defines.h \
     $$PWD/src/ccefeventstransformer.h \
@@ -130,6 +131,7 @@ SOURCES += \
     $$PWD/src/components/celipsislabel.cpp \
     $$PWD/src/components/cfullscrwidget.cpp \
     $$PWD/src/components/cprintdialog.cpp \
+    $$PWD/src/components/ctooltip.cpp \
     #$$PWD/src/csplash.cpp \
     $$PWD/src/main.cpp \
     $$PWD/src/ccefeventstransformer.cpp \

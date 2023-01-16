@@ -182,7 +182,8 @@ public:
             btnHome->setIconSize(QSize(20,20) * window->m_dpiRatio);
             btnHome->setMouseTracking(true);
             btnHome->setIcon(":/title/icons/buttons.svg", "svg-btn-home");
-            btnHome->setToolTip(CEditorWindow::tr("Open main window"));
+            //btnHome->setToolTip(CEditorWindow::tr("Open main window"));
+            btnHome->setProperty("ToolTip", CEditorWindow::tr("Open main window"));
             btnHome->setIconOpacity(AscAppManager::themes().current().color(CTheme::ColorRole::ecrButtonNormalOpacity));
             m_mapTitleButtons["home"] = btnHome;
             connect(btnHome, &QPushButton::clicked, std::bind(&CEditorWindow::onClickButtonHome, window));
@@ -219,7 +220,8 @@ public:
             btn->setIcon(":/title/icons/buttons.svg", "svg-btn-" + jsonobj["icon"].toString());
         } else btn->setIcon(":/title/icons/buttons.svg", "svg-btn-" + action);
 
-        btn->setToolTip(jsonobj["hint"].toString());
+        //btn->setToolTip(jsonobj["hint"].toString());
+        btn->setProperty("ToolTip", jsonobj["hint"].toString());
         return btn;
     }
 
@@ -265,7 +267,8 @@ public:
             if ( canExtendTitle() ) {
                 if ( objRoot.contains("user") ) {
                     QString _user_name = objRoot["user"].toObject().value("name").toString();
-                    iconUser()->setToolTip(_user_name);
+                    //iconUser()->setToolTip(_user_name);
+                    iconUser()->setProperty("ToolTip", _user_name);
                     adjustIconUser();
                     iconuser->setText(getInitials(_user_name));
                     _user_width = iconuser->width();

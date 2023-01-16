@@ -83,6 +83,7 @@ protected:
     void saveWindowState();
     void moveToPrimaryScreen();
     void setIsCustomWindowStyle(bool);
+    virtual bool event(QEvent*);
     virtual void setScreenScalingFactor(double);
     virtual void applyWindowState();
     virtual void setWindowTitle(const QString&);
