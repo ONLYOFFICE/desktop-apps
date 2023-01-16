@@ -413,7 +413,7 @@ public:
     {
         if (window->isCustomWindowStyle()) {
             Q_ASSERT(window->m_pMainPanel);
-            window->m_pMainPanel->setProperty("uitheme", QString::fromStdWString(theme));
+            window->m_pMainPanel->setProperty("uitheme", QString::fromStdWString(GetActualTheme(theme)));
             window->m_pMainPanel->setProperty("uithemetype", GetCurrentTheme().stype());
             if (!viewerMode()) {
                 if (usedOldEditorVersion) {   // For old editors only
