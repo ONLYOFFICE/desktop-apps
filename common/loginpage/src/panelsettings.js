@@ -106,18 +106,18 @@
                                                 </section>
                                             </div>
                                         </div>
-                                    <div class='settings-field' id="opts-autoupdate-mode" style='display:none;'>
-                                        <label class='sett__caption' l10n>${_lang.settAUpdateMode}</label>
-                                        <div class='sett--label-lift-top hbox'>
-                                            <section class='box-cmp-select'>
-                                                <select class='combobox'>
-                                                    <option value='disabled' l10n>${_lang.settOptDisabled}</option>
-                                                    <option value='silent' l10n>${_lang.settOptAUpdateSilent}</option>
-                                                    <option value='ask' l10n>${_lang.settOptAUpdateAsk}</option>
-                                                </select>
-                                            </section>
+                                        <div class='settings-field' id="opts-autoupdate-mode" style='display:none;'>
+                                            <label class='sett__caption' l10n>${_lang.settAUpdateMode}</label>
+                                            <div class='sett--label-lift-top hbox'>
+                                                <section class='box-cmp-select'>
+                                                    <select class='combobox'>
+                                                        <option value='silent' l10n>${_lang.settOptAUpdateSilent}</option>
+                                                        <option value='ask' l10n>${_lang.settOptAUpdateAsk}</option>
+                                                        <option value='disabled' l10n>${_lang.settOptDisabled}</option>
+                                                    </select>
+                                                </section>
+                                            </div>
                                         </div>
-                                    </div>
                                         <div class='settings-field' id="opts-ui-theme" style='display:none;'>
                                             <label class='sett__caption' l10n>${_lang.settUITheme}</label>
                                             <div class='sett--label-lift-top hbox'>
