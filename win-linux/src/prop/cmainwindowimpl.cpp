@@ -116,7 +116,7 @@ void CMainWindowImpl::refreshAboutVersion()
         GET_REGISTRY_SYSTEM(reg_system)
         if (Utils::getWinVersion() > Utils::WinVer::WinXP && reg_system.value("CheckForUpdates", true).toBool()) {
             AscAppManager::sendCommandTo(0, "updates:turn", "on");
-            _json_obj["updates"] = QJsonObject({{"mode", reg_user.value("autoUpdateMode","silent").toString()}});
+            _json_obj["updates"] = QJsonObject({{"mode", reg_user.value("autoUpdateMode","ask").toString()}});
         }
     #else
         //AscAppManager::sendCommandTo(0, "updates:turn", "on");
