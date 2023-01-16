@@ -242,7 +242,7 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="234"/>
         <source>DOCXF Document (*.docxf)</source>
-        <translation type="unfinished">Modèle de formulaire ONLYOFFICE (*.docxf)</translation>
+        <translation>Modèle de formulaire ONLYOFFICE (*.docxf)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="236"/>
@@ -327,7 +327,7 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="255"/>
         <source>JPG Image (*.jpg *.jpeg)</source>
-        <translation type="unfinished"></translation>
+        <translation>Image JPG (*.jpg *.jpeg)</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="256"/>
@@ -342,7 +342,7 @@
     <message>
         <location filename="../src/cfiledialog.cpp" line="371"/>
         <source>%1 already exists.&lt;br&gt;Do you want to replace it?</source>
-        <translation>%1 existe déjà.&lt;br&gt;Voulez-vous le replacer ?</translation>
+        <translation>%1 existe déjà.&lt;br&gt;Voulez-vous le remplacer ?</translation>
     </message>
     <message>
         <location filename="../src/cfiledialog.cpp" line="397"/>
@@ -571,7 +571,7 @@
     <message>
         <location filename="../src/casctabdata.cpp" line="179"/>
         <source>Read only</source>
-        <translation type="unfinished"></translation>
+        <translation>Lecture seule</translation>
     </message>
 </context>
 </TS>
