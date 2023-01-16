@@ -16,6 +16,7 @@
 
 #include "cstyletweaks.h"
 #include "defines.h"
+#include "version.h"
 #include "components/cfiledialog.h"
 #include "utils.h"
 #include "common/Types.h"
@@ -31,6 +32,9 @@
 # include <io.h>
 # include <VersionHelpers.h>
 # include "platform_win/singleapplication.h"
+# if defined(_UPDMODULE) && !defined(__OS_WIN_XP)
+#  include "platform_win/updatedialog.h"
+# endif
 #else
 # include <unistd.h>
 # include "platform_linux/singleapplication.h"
@@ -1958,14 +1962,31 @@ void CAscApplicationManagerWrapper::showUpdateMessage(bool error, bool updateExi
         auto msg = [=]() {
             gotoMainWindow();
             QTimer::singleShot(100, this, [=](){
+# ifdef _WIN32
+                int result = WinDlg::showDialog(mainWindow()->handle(),
+                                    tr("A new version of ONLYOFFICE Desktop Editors is available!"),
+                                    tr("ONLYOFFICE Desktop Editors %1 is now available (you have %2). "
+                                       "Would you like to download it now?").arg(m_pUpdateManager->getVersion(),
+                                                                                QString::fromLatin1(VER_FILEVERSION_STR)),
+                                    WinDlg::DlgBtns::mbSkipRemindDownload);
+
+                switch (result) {
+                case WinDlg::DLG_RESULT_DOWNLOAD:
+                    m_pUpdateManager->loadUpdates();
+                    break;
+                case WinDlg::DLG_RESULT_SKIP: {
+                    m_pUpdateManager->skipVersion();
+                    AscAppManager::sendCommandTo(0, "updates:checking", "{\"version\":\"no\"}");
+                    break;
+                }
+                default:
+                    break;
+                }
+# else
                 CMessage mbox(mainWindow()->handle(), CMessageOpts::moButtons::mbYesDefSkipNo);
                 switch (mbox.info(tr("Do you want to install a new version %1 of the program?").arg(version))) {
                 case MODAL_RESULT_CUSTOM + 0:
-#ifdef Q_OS_WIN
-                    m_pUpdateManager->loadUpdates();
-#else
                     QDesktopServices::openUrl(QUrl(DOWNLOAD_PAGE, QUrl::TolerantMode));
-#endif
                     break;
                 case MODAL_RESULT_CUSTOM + 1: {
                     m_pUpdateManager->skipVersion();
@@ -1975,6 +1996,7 @@ void CAscApplicationManagerWrapper::showUpdateMessage(bool error, bool updateExi
                 default:
                     break;
                 }
+# endif
             });
         };
 
@@ -2004,16 +2026,19 @@ void CAscApplicationManagerWrapper::showStartInstallMessage()
 {
     gotoMainWindow();
     AscAppManager::sendCommandTo(0, "updates:download", "{\"progress\":\"done\"}");
-    CMessage mbox(mainWindow()->handle(), CMessageOpts::moButtons::mbYesDefSkipNo);
-    switch (mbox.info(tr("Do you want to install a new version of the program?\n"
-                         "To continue the installation, you must to close current session.")))
-    {
-    case MODAL_RESULT_CUSTOM + 0: {
+    int result = WinDlg::showDialog(mainWindow()->handle(),
+                                    tr("A new version of ONLYOFFICE Desktop Editors is available!"),
+                                    tr("ONLYOFFICE Desktop Editors %1 is now downloaded (you have %2). "
+                                       "Would you like to install it now?").arg(m_pUpdateManager->getVersion(),
+                                                                                QString::fromLatin1(VER_FILEVERSION_STR)),
+                                    WinDlg::DlgBtns::mbSkipRemindSaveandinstall);
+    switch (result) {
+    case WinDlg::DLG_RESULT_INSTALL: {
         m_pUpdateManager->scheduleRestartForUpdate();
         mainWindow()->close();
         break;
     }
-    case MODAL_RESULT_CUSTOM + 1: {
+    case WinDlg::DLG_RESULT_SKIP: {
         m_pUpdateManager->skipVersion();
         AscAppManager::sendCommandTo(0, "updates:checking", "{\"version\":\"no\"}");
         break;
