@@ -125,6 +125,7 @@ l10n.en = {
     settOptLaunchInWindow: 'In its own window',
     settSpellcheckDetection: 'Spelling language detection',
     settOptDisabled: 'Disabled',
+    settOptEnabled: 'Enabled',
     aboutChangelog: 'Changelog',
     updateNoUpdates: 'App is up to date',
     updateAvialable: 'Version $1 is available. Click to download.',
@@ -133,6 +134,7 @@ l10n.en = {
     settAUpdateMode: 'Autoupdate mode',
     settOptAUpdateSilent: 'Silent mode',
     settOptAUpdateAsk: 'Ask to download',
+    settAUpdate: 'Autoupdate',
 }
 
 
