@@ -389,7 +389,7 @@ int CUpdateManager::getUpdateMode()
 {
     GET_REGISTRY_USER(reg_user);
 #ifdef _WIN32
-    const QString mode = reg_user.value("autoUpdateMode", "silent").toString();
+    const QString mode = reg_user.value("autoUpdateMode", "ask").toString();
     return (mode == "silent") ?
                 UpdateMode::SILENT : (mode == "ask") ?
                     UpdateMode::ASK : UpdateMode::DISABLE;
