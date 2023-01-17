@@ -66,7 +66,7 @@ CToolTip::CToolTip(QWidget * parent, const QString &text,
     shadow->setColor(QColor(0, 0, 0, 80));
     shadow->setOffset(0.0);
     m_label->setGraphicsEffect(shadow);
-    move(pos);
+    move(pos + QPoint(16,16));
     show();
     QTimer *tmr = new QTimer(this);
     tmr->setSingleShot(false);
