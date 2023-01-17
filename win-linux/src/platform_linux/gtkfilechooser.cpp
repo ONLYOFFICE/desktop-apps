@@ -72,7 +72,7 @@ static void nativeFileDialog(const Window &parent_xid,
         gtk_file_chooser_set_current_folder(chooser, path);
         gtk_file_chooser_set_select_multiple (chooser, sel_multiple ? TRUE : FALSE);
     } else {
-        gtk_file_chooser_set_do_overwrite_confirmation(chooser, TRUE);
+        gtk_file_chooser_set_do_overwrite_confirmation(chooser, FALSE);
         gtk_file_chooser_set_current_folder(chooser, path);
         gtk_file_chooser_set_current_name(chooser, file);
         //gtk_file_chooser_set_filename(chooser, file);
