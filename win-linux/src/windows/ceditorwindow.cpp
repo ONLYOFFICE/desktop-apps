@@ -229,7 +229,7 @@ QWidget * CEditorWindow::createMainPanel(QWidget * parent, const QString& title)
         m_labelTitle->setMouseTracking(true);
         m_labelTitle->setEllipsisMode(Qt::ElideMiddle);
         m_labelTitle->setAlignment(Qt::AlignCenter);
-        m_labelTitle->setMaximumWidth(100);
+        m_labelTitle->setMinimumWidth(100);
         static_cast<QHBoxLayout*>(m_boxTitleBtns->layout())->insertWidget(0, m_labelTitle);
         if (d_ptr->usedOldEditorVersion)  // For old editors only
             static_cast<QHBoxLayout*>(m_boxTitleBtns->layout())->insertStretch(0);

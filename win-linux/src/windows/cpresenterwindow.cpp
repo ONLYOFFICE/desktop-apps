@@ -118,10 +118,15 @@ QWidget * CPresenterWindow::createMainPanel(QWidget * parent, const QString& tit
 
     m_labelTitle = new CElipsisLabel(title, m_boxTitleBtns);
     m_labelTitle->setObjectName("labelAppTitle");
+    m_labelTitle->setMinimumWidth(100);
+    m_labelTitle->setEllipsisMode(Qt::ElideMiddle);
     m_labelTitle->setAlignment(Qt::AlignHCenter|Qt::AlignVCenter);
     m_labelTitle->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
-    static_cast<QHBoxLayout*>(m_boxTitleBtns->layout())->insertWidget(0, m_labelTitle);
-    static_cast<QHBoxLayout*>(m_boxTitleBtns->layout())->insertStretch(0);
+    QHBoxLayout *topLayout = static_cast<QHBoxLayout*>(m_boxTitleBtns->layout());
+    topLayout->insertWidget(0, m_labelTitle);
+    QLayoutItem *stretch = topLayout->takeAt(1);
+    if (stretch)
+        delete stretch;
 
     if (isCustomWindowStyle()) {
 #ifdef __linux__
@@ -170,11 +175,6 @@ void CPresenterWindow::setScreenScalingFactor(double factor)
     if (!css.isEmpty()) {                
         m_pMainPanel->setStyleSheet(css);
     }
-#ifdef _WIN32
-    QTimer::singleShot(50, this, [=]() { // Fix bug with window colors on scaling
-        CWindowBase::applyTheme(L"");
-    });
-#endif
 }
 
 void CPresenterWindow::onCloseEvent() // Reporter mode
