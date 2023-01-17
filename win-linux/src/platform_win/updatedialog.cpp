@@ -146,7 +146,7 @@ int WinDlg::showDialog(QWidget *parent,
                                 TDF_ALLOW_DIALOG_CANCELLATION;
     config.hwndParent         = parent_hwnd;
     config.hInstance          = GetModuleHandle(NULL);
-    config.pfCallback         = Pftaskdialogcallback;
+    config.pfCallback         = (PFTASKDIALOGCALLBACK)Pftaskdialogcallback;
     config.pButtons           = pButtons;
     config.cButtons           = cButtons;
     config.nDefaultButton     = nDefltBtn;
