@@ -320,3 +320,18 @@ QPrintDialog QTabBar::tab {
 QPrintDialog QTabBar::tab:selected {
     padding: 0 13px;
 }
+
+#CToolTip>QLabel {
+    min-height: 32px;
+    margin: 0px;
+    padding-left: 12px; padding-right: 12px;
+    font-size: 14px;
+    border: 1px solid #c0c0c0;
+    border-radius: 5px;
+}
+#mainPanel[uitheme=theme-dark] #CToolTip>QLabel {
+    border: 1px solid #666666;
+}
+#mainPanel[uitheme=theme-contrast-dark] #CToolTip>QLabel {
+    border: 1px solid #696969;
+}

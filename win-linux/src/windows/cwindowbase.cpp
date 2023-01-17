@@ -32,6 +32,7 @@
 
 #include "windows/cwindowbase.h"
 #include "cascapplicationmanagerwrapper.h"
+#include "components/ctooltip.h"
 #include "utils.h"
 #include "ccefeventsgate.h"
 #include "clangater.h"
@@ -216,6 +217,28 @@ void CWindowBase::moveToPrimaryScreen()
 void CWindowBase::setIsCustomWindowStyle(bool custom)
 {
     pimpl->is_custom_window_ = custom;
+}
+
+bool CWindowBase::event(QEvent *event)
+{
+    if (event->type() == QEvent::ToolTip) {
+       QHelpEvent *hlp = static_cast<QHelpEvent*>(event);
+       QWidget *wgt = qApp->widgetAt(hlp->globalPos());
+       if (wgt && !findChild<CToolTip*>()) {
+           QString text("");
+           CTabBar *bar = dynamic_cast<CTabBar*>(wgt);
+           if (bar) {
+               int index = bar->tabAt(bar->mapFromGlobal(hlp->globalPos()));
+               text = bar->tabProperty(index, "ToolTip").toString();
+           } else
+               text = wgt->property("ToolTip").toString();
+           if (m_pMainPanel && !text.isEmpty()) {
+               CToolTip *tool = new CToolTip(m_pMainPanel, text, hlp->globalPos());
+               connect(wgt, &QWidget::destroyed, tool, &CToolTip::deleteLater);
+           }
+       }
+    }
+    return QMainWindow::event(event);
 }
 
 void CWindowBase::setScreenScalingFactor(double factor)

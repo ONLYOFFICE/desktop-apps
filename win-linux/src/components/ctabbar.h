@@ -54,7 +54,8 @@ public:
     void setTabTextColor(QPalette::ColorGroup, const QColor&);
     void setUseTabCustomPalette(bool);
     QPalette& customColors();
-
+    QVariant tabProperty(int index, const char *name);
+    void setTabProperty(int index, const char *name, const QVariant &value);
     void setTabIcon(int index, const QIcon &icon);
     void setTabLoading(int, bool);
     void setActiveTabColor(const QString&);

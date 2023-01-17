@@ -73,6 +73,8 @@
     QSettings variable(QSettings::SystemScope, REG_GROUP_KEY, REG_APP_NAME);
 #define GetCurrentTheme() \
     AscAppManager::themes().current()
+#define GetActualTheme(theme) \
+    AscAppManager::themes().themeActualId(theme)
 #define GetColorByRole(role) \
     GetCurrentTheme().color(CTheme::ColorRole::role)
 

@@ -269,7 +269,8 @@ int CAscTabWidget::addEditor(const COpenOptions& opts)
         pView->setData(data);
         tab_index = addTab(panelwidget, data->title());
         m_pBar->addTab(data->title());
-        m_pBar->setTabToolTip(tab_index, data->title());
+        //m_pBar->setTabToolTip(tab_index, data->title());
+        m_pBar->setTabProperty(tab_index, "ToolTip", data->title());
         m_pBar->tabStartLoading(tab_index);
         //m_pBar->setCurrentIndex(tab_index);
 
@@ -393,7 +394,8 @@ int CAscTabWidget::addPortal(const QString& url, const QString& name, const QStr
 
     tab_index = insertTab(tab_index, panelwidget, portal);
     m_pBar->insertTab(tab_index, portal);
-    m_pBar->setTabToolTip(tab_index, _url);
+    //m_pBar->setTabToolTip(tab_index, _url);
+    m_pBar->setTabProperty(tab_index, "ToolTip", _url);
     m_pBar->setTabTheme(tab_index, CTabBar::LightTab);
     m_pBar->tabStartLoading(tab_index);
     //m_pBar->setCurrentIndex(tab_index);
@@ -434,7 +436,8 @@ int CAscTabWidget::addOAuthPortal(const QString& portal, const QString& type, co
 
     tab_index = insertTab(tab_index, panelwidget, _portal);
     m_pBar->insertTab(tab_index, _portal);
-    m_pBar->setTabToolTip(tab_index, portal);
+    //m_pBar->setTabToolTip(tab_index, portal);
+    m_pBar->setTabProperty(tab_index, "ToolTip", portal);
     m_pBar->setTabTheme(tab_index, CTabBar::LightTab);
     m_pBar->tabStartLoading(tab_index);
     //m_pBar->setCurrentIndex(tab_index);
@@ -455,7 +458,8 @@ int CAscTabWidget::insertPanel(QWidget * panel, int index)
 
         tabindex = insertTab(index, panelwidget, tabdata->title());
         m_pBar->insertTab(index, tabdata->title());
-        m_pBar->setTabToolTip(tabindex, tabdata->title());
+        //m_pBar->setTabToolTip(tabindex, tabdata->title());
+        m_pBar->setTabProperty(tabindex, "ToolTip", tabdata->title());
         //m_pBar->setCurrentIndex(tabindex);
     }
 
@@ -788,7 +792,8 @@ void CAscTabWidget::applyDocumentChanging(int viewId, const QString& name, const
         }
 
         m_pBar->setTabText(tabIndex, doc->title());
-        m_pBar->setTabToolTip(tabIndex, path.isEmpty() ? doc->title() : path);
+        //m_pBar->setTabToolTip(tabIndex, path.isEmpty() ? doc->title() : path);
+        m_pBar->setTabProperty(tabIndex, "ToolTip", path.isEmpty() ? doc->title() : path);
     }
 }
 
@@ -807,7 +812,8 @@ void CAscTabWidget::applyDocumentChanging(int viewId, bool state)
         if (doc->hasChanges() != state && (!doc->closed() || state)) {
             doc->setChanged(state);
             m_pBar->setTabText(tabIndex, doc->title());
-            m_pBar->setTabToolTip(tabIndex, doc->title());
+            //m_pBar->setTabToolTip(tabIndex, doc->title());
+            m_pBar->setTabProperty(tabIndex, "ToolTip", doc->title());
         }
     }
 }
@@ -878,7 +884,8 @@ void CAscTabWidget::setEditorOptions(int id, const wstring& option)
 
         if (option.find(L"readonly\":") != wstring::npos) {
             m_pBar->setTabText(tabIndex, doc->title());
-            m_pBar->setTabToolTip(tabIndex, doc->title());
+            //m_pBar->setTabToolTip(tabIndex, doc->title());
+            m_pBar->setTabProperty(tabIndex, "ToolTip", doc->title());
         }
 
 //        if (std::regex_search(option, std::wregex(L"titlebuttons\":\\s?true"))) {

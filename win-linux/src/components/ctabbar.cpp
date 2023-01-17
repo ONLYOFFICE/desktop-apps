@@ -666,6 +666,25 @@ QPalette& CTabBar::customColors()
     return m_palette;
 }
 
+QVariant CTabBar::tabProperty(int index, const char *name)
+{
+    auto *wgt = tabButton(index, QTabBar::RightSide);
+    if (!wgt)
+        wgt = tabButton(index, QTabBar::LeftSide);
+    if (wgt)
+        return wgt->property(name);
+    return QVariant();
+}
+
+void CTabBar::setTabProperty(int index, const char *name, const QVariant &value)
+{
+    auto *wgt = tabButton(index, QTabBar::RightSide);
+    if (!wgt)
+        wgt = tabButton(index, QTabBar::LeftSide);
+    if (wgt)
+        wgt->setProperty(name, value);
+}
+
 void CTabBar::setUseTabCustomPalette(bool use)
 {
     m_usePalette = use;
