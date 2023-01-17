@@ -105,8 +105,7 @@ HEADERS += \
     $$PWD/src/cwindowsqueue.h \
     $$PWD/src/ceventdriver.h \
     $$PWD/src/cappeventfilter.h \
-    $$PWD/src/cthemes.h \
-    $$PWD/src/cupdatemanager.h
+    $$PWD/src/cthemes.h
 #    src/ctabbar_p.h \
 #    src/ctabstyle.h \
 #    src/ctabstyle_p.h
@@ -150,10 +149,14 @@ SOURCES += \
     $$PWD/src/ceditortools.cpp \
     $$PWD/src/ceventdriver.cpp \
     $$PWD/src/cappeventfilter.cpp \
-    $$PWD/src/cthemes.cpp \
-    $$PWD/src/cupdatemanager.cpp
+    $$PWD/src/cthemes.cpp
 #    src/ctabstyle.cpp
 #    src/components/casclabel.cpp
+
+updmodule:!build_xp {
+    HEADERS += $$PWD/src/cupdatemanager.h
+    SOURCES += $$PWD/src/cupdatemanager.cpp
+}
 
 RESOURCES += $$PWD/resources.qrc
 DEFINES += COPYRIGHT_YEAR=$${CURRENT_YEAR}
@@ -251,7 +254,7 @@ core_windows {
                $$PWD/src/platform_win/singleapplication.cpp \
                $$PWD/src/platform_win/filechooser.cpp
 
-    updmodule {
+    updmodule:!build_xp {
         HEADERS += $$PWD/src/platform_win/updatedialog.h
         SOURCES += $$PWD/src/platform_win/updatedialog.cpp
     }

@@ -32,7 +32,7 @@
 # include <io.h>
 # include <VersionHelpers.h>
 # include "platform_win/singleapplication.h"
-# if defined(_UPDMODULE) && !defined(__OS_WIN_XP)
+# ifdef _UPDMODULE
 #  include "platform_win/updatedialog.h"
 # endif
 #else
