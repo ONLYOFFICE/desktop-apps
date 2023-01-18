@@ -1964,9 +1964,10 @@ void CAscApplicationManagerWrapper::showUpdateMessage(bool error, bool updateExi
             QTimer::singleShot(100, this, [=](){
 # ifdef _WIN32
                 int result = WinDlg::showDialog(mainWindow()->handle(),
-                                    tr("A new version of ONLYOFFICE Desktop Editors is available!"),
-                                    tr("ONLYOFFICE Desktop Editors %1 is now available (you have %2). "
-                                       "Would you like to download it now?").arg(m_pUpdateManager->getVersion(),
+                                    tr("A new version of %1 is available!").arg(QString::fromLatin1(WINDOW_NAME)),
+                                    tr("%1 %2 is now available (you have %3). "
+                                       "Would you like to download it now?").arg(QString::fromLatin1(WINDOW_NAME),
+                                                                                m_pUpdateManager->getVersion(),
                                                                                 QString::fromLatin1(VER_FILEVERSION_STR)),
                                     WinDlg::DlgBtns::mbSkipRemindDownload);
 
@@ -2027,9 +2028,10 @@ void CAscApplicationManagerWrapper::showStartInstallMessage()
     gotoMainWindow();
     AscAppManager::sendCommandTo(0, "updates:download", "{\"progress\":\"done\"}");
     int result = WinDlg::showDialog(mainWindow()->handle(),
-                                    tr("A new version of ONLYOFFICE Desktop Editors is available!"),
-                                    tr("ONLYOFFICE Desktop Editors %1 is now downloaded (you have %2). "
-                                       "Would you like to install it now?").arg(m_pUpdateManager->getVersion(),
+                                    tr("A new version of %1 is available!").arg(QString::fromLatin1(WINDOW_NAME)),
+                                    tr("%1 %2 is now downloaded (you have %3). "
+                                       "Would you like to install it now?").arg(QString::fromLatin1(WINDOW_NAME),
+                                                                                m_pUpdateManager->getVersion(),
                                                                                 QString::fromLatin1(VER_FILEVERSION_STR)),
                                     WinDlg::DlgBtns::mbSkipRemindSaveandinstall);
     switch (result) {
