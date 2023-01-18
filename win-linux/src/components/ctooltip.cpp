@@ -59,6 +59,7 @@ CToolTip::CToolTip(QWidget * parent, const QString &text,
     m_label = new QLabel(this);
     layout()->addWidget(m_label);
     m_label->setText(text);
+    parent->installEventFilter(this);
     QGraphicsOpacityEffect *grEffect = new QGraphicsOpacityEffect(this);
     setGraphicsEffect(grEffect);
     QGraphicsDropShadowEffect *shadow = new QGraphicsDropShadowEffect(m_label);
@@ -83,6 +84,20 @@ CToolTip::CToolTip(QWidget * parent, const QString &text,
 CToolTip::~CToolTip()
 {
 
+}
+
+bool CToolTip::eventFilter(QObject *obj, QEvent *event)
+{
+    switch (event->type()) {
+    case QEvent::Hide:
+    case QEvent::WindowDeactivate:
+    case QEvent::MouseButtonPress:
+        deleteLater();
+        break;
+    default:
+        break;
+    }
+    return QWidget::eventFilter(obj, event);
 }
 
 void CToolTip::showEvent(QShowEvent *event)
