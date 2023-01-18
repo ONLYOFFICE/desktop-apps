@@ -119,7 +119,7 @@
                                             </div>
                                         </div>
                                         <div class='settings-field' id="opts-autoupdate" style='display:none;'>
-                                            <label class='sett__caption' l10n>${_lang.settAUpdate}</label>
+                                            <label class='sett__caption' l10n>${_lang.settCheckUpdates}</label>
                                             <div class='sett--label-lift-top hbox'>
                                                 <section class='box-cmp-select'>
                                                     <select class='combobox'>
