@@ -134,9 +134,10 @@ static void nativeFileDialog(const Window &parent_xid,
     }
     if (mode != Gtk::Mode::FOLDER) {
         GtkFileFilter *s_filter = gtk_file_chooser_get_filter(chooser);
-        if (*sel_filter != NULL)
+        if (sel_filter && *sel_filter)
             free(*sel_filter);
-        *sel_filter = strdup(gtk_file_filter_get_name(s_filter));
+        if (s_filter && sel_filter)
+            *sel_filter = strdup(gtk_file_filter_get_name(s_filter));
     }
     //gtk_window_close(GTK_WINDOW(dialog));
     gtk_widget_destroy(dialog);
