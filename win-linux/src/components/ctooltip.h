@@ -35,6 +35,7 @@
 
 #include <QLabel>
 #include <QPoint>
+#include <QEvent>
 
 
 class CToolTip: public QWidget
@@ -50,6 +51,7 @@ private:
     enum class EffectType {
         Arise, Fade
     };
+    virtual bool eventFilter(QObject*, QEvent*) final;
     virtual void showEvent(QShowEvent*) final;
     void showEffect(const EffectType efType);
     QLabel *m_label;
