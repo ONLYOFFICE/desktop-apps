@@ -106,7 +106,12 @@ public:
     auto init(NSEditorApi::CAscPrintEnd * data) -> void
     {
         is_quick = false;
-        paper_width = paper_height = 0;
+
+        QPageSize def_size{QPageSize::A4};
+        QSizeF paper_size = def_size.size(QPageSize::Millimeter);
+        paper_width = paper_size.width();
+        paper_height = paper_size.height();
+        size_preset = def_size.name();
 
         pages_count = data->get_PagesCount();
         current_page = data->get_CurrentPage();
