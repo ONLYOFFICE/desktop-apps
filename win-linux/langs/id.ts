@@ -34,23 +34,23 @@
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1967"/>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2030"/>
-        <source>A new version of ONLYOFFICE Desktop Editors is available!</source>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2031"/>
+        <source>A new version of %1 is available!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1968"/>
-        <source>ONLYOFFICE Desktop Editors %1 is now available (you have %2). Would you like to download it now?</source>
+        <source>%1 %2 is now available (you have %3). Would you like to download it now?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1987"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2032"/>
+        <source>%1 %2 is now downloaded (you have %3). Would you like to install it now?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1988"/>
         <source>Do you want to install a new version %1 of the program?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2031"/>
-        <source>ONLYOFFICE Desktop Editors %1 is now downloaded (you have %2). Would you like to install it now?</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -58,7 +58,7 @@
     <name>CAscTabWidget</name>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="818"/>
-        <location filename="../src/components/asctabwidget.cpp" line="675"/>
+        <location filename="../src/components/asctabwidget.cpp" line="679"/>
         <source>Document</source>
         <translation>Membuka...</translation>
     </message>
@@ -161,22 +161,22 @@
 <context>
     <name>CEditorWindow</name>
     <message>
-        <location filename="../src/windows/ceditorwindow_p.h" line="185"/>
+        <location filename="../src/windows/ceditorwindow_p.h" line="186"/>
         <source>Open main window</source>
         <translation>Buka jendela utama</translation>
     </message>
     <message>
-        <location filename="../src/windows/ceditorwindow_p.h" line="466"/>
+        <location filename="../src/windows/ceditorwindow_p.h" line="469"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
         <translation>Dokumen harus disimpan untuk melanjutkan.&lt;br&gt;Simpan dokumen?</translation>
     </message>
     <message>
-        <location filename="../src/windows/ceditorwindow_p.h" line="541"/>
+        <location filename="../src/windows/ceditorwindow_p.h" line="544"/>
         <source>Print Document</source>
         <translation>Cetak Dokumen</translation>
     </message>
     <message>
-        <location filename="../src/windows/ceditorwindow_p.h" line="720"/>
+        <location filename="../src/windows/ceditorwindow_p.h" line="723"/>
         <source>Document must be saved firstly.</source>
         <translation>Dokumen harus disimpan terlebih dahulu.</translation>
     </message>
@@ -194,7 +194,7 @@
 <context>
     <name>CEditorWindowPrivate</name>
     <message>
-        <location filename="../src/windows/ceditorwindow_p.h" line="507"/>
+        <location filename="../src/windows/ceditorwindow_p.h" line="510"/>
         <source>There are no printers available</source>
         <translation type="unfinished"></translation>
     </message>
@@ -647,12 +647,12 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper_private.h" line="187"/>
+        <location filename="../src/cascapplicationmanagerwrapper_private.h" line="188"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
         <translation>%1 tidak tersedia.Mungkin telah berganti nama, berpindah atau hilang.&lt;br&gt;Hapus file dari daftar?</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper_private.h" line="233"/>
+        <location filename="../src/cascapplicationmanagerwrapper_private.h" line="234"/>
         <source>File %1 cannot be opened or doesn&apos;t exists.</source>
         <translation>File %1 tidak dapat dibuka atau tidak ada.</translation>
     </message>
