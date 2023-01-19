@@ -40,22 +40,22 @@
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1967"/>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2031"/>
         <source>A new version of %1 is available!</source>
-        <translation type="unfinished"></translation>
+        <translation>Este disponibilă o nouă versiune a aplicației %1!</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1968"/>
         <source>%1 %2 is now available (you have %3). Would you like to download it now?</source>
-        <translation type="unfinished"></translation>
+        <translation>Aplicația %1 este disponibilă în versiunea %2 (versiunea dvs %3). Doriți să încărcați acum?</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2032"/>
         <source>%1 %2 is now downloaded (you have %3). Would you like to install it now?</source>
-        <translation type="unfinished"></translation>
+        <translation>Aplicația %1 %2 a fost încărcată (versiunea dvs %3). Doriți să instalați acum?</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1988"/>
         <source>Do you want to install a new version %1 of the program?</source>
-        <translation type="unfinished"></translation>
+        <translation>Doriți să instalați versiunea mai nouă %1 a aplicației?</translation>
     </message>
 </context>
 <context>
@@ -116,7 +116,7 @@
         <location filename="../src/platform_linux/cdialogopenssl.cpp" line="224"/>
         <location filename="../src/platform_linux/cdialogopenssl.cpp" line="227"/>
         <source>Open Document</source>
-        <translation type="unfinished">Deschideți document</translation>
+        <translation>Deschideți document</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/cdialogopenssl.cpp" line="246"/>
@@ -200,7 +200,7 @@
     <message>
         <location filename="../src/windows/ceditorwindow_p.h" line="510"/>
         <source>There are no printers available</source>
-        <translation type="unfinished"></translation>
+        <translation>Nu a fost găsită nicio imprimantă</translation>
     </message>
 </context>
 <context>
@@ -363,7 +363,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="106"/>
         <source>JPG Image (*.jpg *.jpeg)</source>
-        <translation type="unfinished"></translation>
+        <translation>Imagine JPG (*.jpg, *jpeg)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="107"/>
@@ -434,7 +434,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="247"/>
         <source>All supported files</source>
-        <translation type="unfinished"></translation>
+        <translation>Toate fișierele acceptate</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="265"/>
@@ -479,7 +479,7 @@
         <location filename="../src/components/cfiledialog.cpp" line="395"/>
         <location filename="../src/components/cfiledialog.cpp" line="401"/>
         <source>Select Folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Selectare folder</translation>
     </message>
 </context>
 <context>
@@ -523,42 +523,42 @@
         <location filename="../src/windows/cmainwindow.cpp" line="753"/>
         <location filename="../src/windows/cmainwindow.cpp" line="795"/>
         <source>File format not supported.</source>
-        <translation type="unfinished">Formatul fișierului nu este compatibil.</translation>
+        <translation>Formatul fișierului nu este compatibil.</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="779"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
-        <translation type="unfinished">%1 nu este disponibil. Îl puteți redenumi, deplasa sau șterge.&lt;br&gt;Doriți sã-l eliminați din lista?</translation>
+        <translation>%1 nu este disponibil. Îl puteți redenumi, deplasa sau șterge.&lt;br&gt;Doriți sã-l eliminați din lista?</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="839"/>
         <source>Document must be saved firstly.</source>
-        <translation type="unfinished">Mai întâi, salvați documentul.</translation>
+        <translation>Mai întâi, salvați documentul.</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="979"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="1081"/>
         <source>There are no printers available</source>
-        <translation type="unfinished"></translation>
+        <translation>Nu a fost găsită nicio imprimantă</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="1126"/>
         <source>Print Document</source>
-        <translation type="unfinished">Imprimare document</translation>
+        <translation>Imprimare document</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="1288"/>
         <source>Sign Up</source>
-        <translation type="unfinished">Crearea unui portal</translation>
+        <translation>Crearea unui portal</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="1351"/>
         <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
-        <translation type="unfinished">%1 a fost modificat.&lt;br&gt;Doriți sã salvați modificãrile?</translation>
+        <translation>%1 a fost modificat.&lt;br&gt;Doriți sã salvați modificãrile?</translation>
     </message>
 </context>
 <context>
@@ -611,7 +611,7 @@
     <message>
         <location filename="../src/components/cmessage.cpp" line="262"/>
         <source>Skip</source>
-        <translation type="unfinished"></translation>
+        <translation>Ignorare</translation>
     </message>
 </context>
 <context>
@@ -662,52 +662,52 @@
     <message>
         <location filename="../src/casctabdata.cpp" line="177"/>
         <source>Read only</source>
-        <translation type="unfinished"></translation>
+        <translation>Doar în citire</translation>
     </message>
     <message>
         <location filename="../src/platform_win/updatedialog.cpp" line="43"/>
         <source>Skip this version</source>
-        <translation type="unfinished"></translation>
+        <translation>Se ignoră acestă versiune</translation>
     </message>
     <message>
         <location filename="../src/platform_win/updatedialog.cpp" line="44"/>
         <source>Remind me later</source>
-        <translation type="unfinished"></translation>
+        <translation>Amintește-mi mai târziu</translation>
     </message>
     <message>
         <location filename="../src/platform_win/updatedialog.cpp" line="45"/>
         <source>Install update</source>
-        <translation type="unfinished"></translation>
+        <translation>Instalare actualizare</translation>
     </message>
     <message>
         <location filename="../src/platform_win/updatedialog.cpp" line="46"/>
         <source>Install on Next Start</source>
-        <translation type="unfinished"></translation>
+        <translation>Instalare la următoarea pornire</translation>
     </message>
     <message>
         <location filename="../src/platform_win/updatedialog.cpp" line="47"/>
         <source>Save and Restart Now</source>
-        <translation type="unfinished"></translation>
+        <translation>Salvare și repornire acum</translation>
     </message>
     <message>
         <location filename="../src/platform_win/updatedialog.cpp" line="48"/>
         <source>Save and Install Now</source>
-        <translation type="unfinished"></translation>
+        <translation>Salvare și instalare acum</translation>
     </message>
     <message>
         <location filename="../src/platform_win/updatedialog.cpp" line="49"/>
         <source>Download update</source>
-        <translation type="unfinished"></translation>
+        <translation>Descărcare actualizare</translation>
     </message>
     <message>
         <location filename="../src/platform_win/updatedialog.cpp" line="90"/>
         <source>Software Update</source>
-        <translation type="unfinished"></translation>
+        <translation>Actualizare software</translation>
     </message>
     <message>
         <location filename="../src/platform_win/updatedialog.cpp" line="93"/>
         <source>Release notes</source>
-        <translation type="unfinished"></translation>
+        <translation>Note de lansare</translation>
     </message>
 </context>
 </TS>

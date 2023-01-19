@@ -40,22 +40,22 @@
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1967"/>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2031"/>
         <source>A new version of %1 is available!</source>
-        <translation type="unfinished"></translation>
+        <translation>La nouvelle version de %1 est disponible !</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1968"/>
         <source>%1 %2 is now available (you have %3). Would you like to download it now?</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 %2 est disponible (vous avez %3). Voulez-vous le télécharger maintenant ?</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2032"/>
         <source>%1 %2 is now downloaded (you have %3). Would you like to install it now?</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 %2 est téléchargé (vous avez %3). Voulez-vous l&apos;installer maintenant ?</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1988"/>
         <source>Do you want to install a new version %1 of the program?</source>
-        <translation type="unfinished"></translation>
+        <translation>Voulez-vous installer une nouvelle version %1 de l&apos;application ?</translation>
     </message>
 </context>
 <context>
@@ -116,7 +116,7 @@
         <location filename="../src/platform_linux/cdialogopenssl.cpp" line="224"/>
         <location filename="../src/platform_linux/cdialogopenssl.cpp" line="227"/>
         <source>Open Document</source>
-        <translation type="unfinished">Ouvrir le document</translation>
+        <translation>Ouvrir le document</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/cdialogopenssl.cpp" line="246"/>
@@ -200,7 +200,7 @@
     <message>
         <location filename="../src/windows/ceditorwindow_p.h" line="510"/>
         <source>There are no printers available</source>
-        <translation type="unfinished"></translation>
+        <translation>Il n&apos;y a pas d&apos;imprimantes disponibles</translation>
     </message>
 </context>
 <context>
@@ -434,7 +434,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="247"/>
         <source>All supported files</source>
-        <translation type="unfinished"></translation>
+        <translation>Tous les fichiers pris en charge</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="265"/>
@@ -479,7 +479,7 @@
         <location filename="../src/components/cfiledialog.cpp" line="395"/>
         <location filename="../src/components/cfiledialog.cpp" line="401"/>
         <source>Select Folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Sélectionner dossier</translation>
     </message>
 </context>
 <context>
@@ -527,42 +527,42 @@
         <location filename="../src/windows/cmainwindow.cpp" line="753"/>
         <location filename="../src/windows/cmainwindow.cpp" line="795"/>
         <source>File format not supported.</source>
-        <translation type="unfinished">Format de fichier non pris en charge.</translation>
+        <translation>Format de fichier non pris en charge.</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="779"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
-        <translation type="unfinished">%1 n’est pas disponible. Il peut être renomé, supprimé ou déplacé.&lt;br&gt;Voulez-vous supprimer le fichier de la liste ?</translation>
+        <translation>%1 n’est pas disponible. Il peut être renomé, supprimé ou déplacé.&lt;br&gt;Voulez-vous supprimer le fichier de la liste ?</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="839"/>
         <source>Document must be saved firstly.</source>
-        <translation type="unfinished">Le document doit d’abord être enregistré.</translation>
+        <translation>Le document doit d’abord être enregistré.</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="979"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
-        <translation type="unfinished">Le document doit être enregistré pour continuer.&lt;br&gt;Enregistrer le document ?</translation>
+        <translation>Le document doit être enregistré pour continuer.&lt;br&gt;Enregistrer le document ?</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="1081"/>
         <source>There are no printers available</source>
-        <translation type="unfinished"></translation>
+        <translation>Il n&apos;y a pas d&apos;imprimantes disponibles</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="1126"/>
         <source>Print Document</source>
-        <translation type="unfinished">Imprimer document</translation>
+        <translation>Imprimer document</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="1288"/>
         <source>Sign Up</source>
-        <translation type="unfinished">Créer bureau de cloud</translation>
+        <translation>Créer bureau de cloud</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="1351"/>
         <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
-        <translation type="unfinished">%1 a été modifié.&lt;br&gt;Voulez-vous enregistrer les changements ?</translation>
+        <translation>%1 a été modifié.&lt;br&gt;Voulez-vous enregistrer les changements ?</translation>
     </message>
 </context>
 <context>
@@ -615,7 +615,7 @@
     <message>
         <location filename="../src/components/cmessage.cpp" line="262"/>
         <source>Skip</source>
-        <translation type="unfinished"></translation>
+        <translation>Ignorer</translation>
     </message>
 </context>
 <context>
@@ -671,47 +671,47 @@
     <message>
         <location filename="../src/platform_win/updatedialog.cpp" line="43"/>
         <source>Skip this version</source>
-        <translation type="unfinished"></translation>
+        <translation>Ignorer cette version</translation>
     </message>
     <message>
         <location filename="../src/platform_win/updatedialog.cpp" line="44"/>
         <source>Remind me later</source>
-        <translation type="unfinished"></translation>
+        <translation>Me rappeler plus tard</translation>
     </message>
     <message>
         <location filename="../src/platform_win/updatedialog.cpp" line="45"/>
         <source>Install update</source>
-        <translation type="unfinished"></translation>
+        <translation>Installer la mise à jour</translation>
     </message>
     <message>
         <location filename="../src/platform_win/updatedialog.cpp" line="46"/>
         <source>Install on Next Start</source>
-        <translation type="unfinished"></translation>
+        <translation>Installer au prochain démarrage</translation>
     </message>
     <message>
         <location filename="../src/platform_win/updatedialog.cpp" line="47"/>
         <source>Save and Restart Now</source>
-        <translation type="unfinished"></translation>
+        <translation>Enregistrer et redémarrer maintenant</translation>
     </message>
     <message>
         <location filename="../src/platform_win/updatedialog.cpp" line="48"/>
         <source>Save and Install Now</source>
-        <translation type="unfinished"></translation>
+        <translation>Enregistrer et installer maintenant</translation>
     </message>
     <message>
         <location filename="../src/platform_win/updatedialog.cpp" line="49"/>
         <source>Download update</source>
-        <translation type="unfinished"></translation>
+        <translation>Télécharger la mise à jour</translation>
     </message>
     <message>
         <location filename="../src/platform_win/updatedialog.cpp" line="90"/>
         <source>Software Update</source>
-        <translation type="unfinished"></translation>
+        <translation>Mise à jour de l&apos;application</translation>
     </message>
     <message>
         <location filename="../src/platform_win/updatedialog.cpp" line="93"/>
         <source>Release notes</source>
-        <translation type="unfinished"></translation>
+        <translation>Notes de mise à jour</translation>
     </message>
 </context>
 </TS>

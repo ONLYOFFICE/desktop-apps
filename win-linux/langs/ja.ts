@@ -40,22 +40,22 @@
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1967"/>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2031"/>
         <source>A new version of %1 is available!</source>
-        <translation type="unfinished"></translation>
+        <translation>%1の新バージョンがリリースされました!</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1968"/>
         <source>%1 %2 is now available (you have %3). Would you like to download it now?</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 %2 が利用可能になりました（あなたは %3 を持っています）。今すぐダウンロードしますか？</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2032"/>
         <source>%1 %2 is now downloaded (you have %3). Would you like to install it now?</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 %2 がダウンロードされました（あなたは %3 を持っています）。今すぐインストールしますか？</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1988"/>
         <source>Do you want to install a new version %1 of the program?</source>
-        <translation type="unfinished"></translation>
+        <translation>プログラムの新しいバージョン %1 をインストールしますか？</translation>
     </message>
 </context>
 <context>
@@ -116,7 +116,7 @@
         <location filename="../src/platform_linux/cdialogopenssl.cpp" line="224"/>
         <location filename="../src/platform_linux/cdialogopenssl.cpp" line="227"/>
         <source>Open Document</source>
-        <translation type="unfinished">ドキュメントを開く</translation>
+        <translation>ドキュメントを開く</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/cdialogopenssl.cpp" line="246"/>
@@ -200,7 +200,7 @@
     <message>
         <location filename="../src/windows/ceditorwindow_p.h" line="510"/>
         <source>There are no printers available</source>
-        <translation type="unfinished"></translation>
+        <translation>利用可能なプリンターはありません</translation>
     </message>
 </context>
 <context>
@@ -363,7 +363,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="106"/>
         <source>JPG Image (*.jpg *.jpeg)</source>
-        <translation type="unfinished"></translation>
+        <translation>JPG 画像 (*.jpg, *jpeg)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="107"/>
@@ -434,7 +434,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="247"/>
         <source>All supported files</source>
-        <translation type="unfinished"></translation>
+        <translation>サポートされているすべてのファイル</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="265"/>
@@ -479,7 +479,7 @@
         <location filename="../src/components/cfiledialog.cpp" line="395"/>
         <location filename="../src/components/cfiledialog.cpp" line="401"/>
         <source>Select Folder</source>
-        <translation type="unfinished"></translation>
+        <translation>フォルダーを選択する</translation>
     </message>
 </context>
 <context>
@@ -527,42 +527,42 @@
         <location filename="../src/windows/cmainwindow.cpp" line="753"/>
         <location filename="../src/windows/cmainwindow.cpp" line="795"/>
         <source>File format not supported.</source>
-        <translation type="unfinished">ファイルフォーマットがサポートされていません。</translation>
+        <translation>ファイルフォーマットがサポートされていません。</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="779"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
-        <translation type="unfinished">%1 は利用できません。名前を変更したか、移動または削除された可能性があります。&lt;br&gt;リストからファイルを削除しますか?</translation>
+        <translation>%1 は利用できません。名前を変更したか、移動または削除された可能性があります。&lt;br&gt;リストからファイルを削除しますか?</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="839"/>
         <source>Document must be saved firstly.</source>
-        <translation type="unfinished">ドキュメントを最初に保存する必要があります。</translation>
+        <translation>ドキュメントを最初に保存する必要があります。</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="979"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
-        <translation type="unfinished">続けるには、ドキュメントを保存する必要があります。&lt;br&gt;ドキュメントを保存しますか?</translation>
+        <translation>続けるには、ドキュメントを保存する必要があります。&lt;br&gt;ドキュメントを保存しますか?</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="1081"/>
         <source>There are no printers available</source>
-        <translation type="unfinished"></translation>
+        <translation>利用可能なプリンターはありません</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="1126"/>
         <source>Print Document</source>
-        <translation type="unfinished">ドキュメントを印刷</translation>
+        <translation>ドキュメントを印刷</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="1288"/>
         <source>Sign Up</source>
-        <translation type="unfinished">ポータルを作成</translation>
+        <translation>ポータルを作成</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="1351"/>
         <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
-        <translation type="unfinished">%1 を変更しました。&lt;br&gt;変更を保存しますか?</translation>
+        <translation>%1 を変更しました。&lt;br&gt;変更を保存しますか?</translation>
     </message>
 </context>
 <context>
@@ -615,7 +615,7 @@
     <message>
         <location filename="../src/components/cmessage.cpp" line="262"/>
         <source>Skip</source>
-        <translation type="unfinished"></translation>
+        <translation>スキップ</translation>
     </message>
 </context>
 <context>
@@ -651,7 +651,7 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper_private.h" line="234"/>
         <source>File %1 cannot be opened or doesn&apos;t exists.</source>
-        <translation>ファイル %1 を開くことができないか、存在しません</translation>
+        <translation>ファイル %1 を開くことができないか、存在しません。</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="137"/>
@@ -666,52 +666,52 @@
     <message>
         <location filename="../src/casctabdata.cpp" line="177"/>
         <source>Read only</source>
-        <translation type="unfinished"></translation>
+        <translation>閲覧のみ</translation>
     </message>
     <message>
         <location filename="../src/platform_win/updatedialog.cpp" line="43"/>
         <source>Skip this version</source>
-        <translation type="unfinished"></translation>
+        <translation>このバージョンをスキップする</translation>
     </message>
     <message>
         <location filename="../src/platform_win/updatedialog.cpp" line="44"/>
         <source>Remind me later</source>
-        <translation type="unfinished"></translation>
+        <translation>後で通知する</translation>
     </message>
     <message>
         <location filename="../src/platform_win/updatedialog.cpp" line="45"/>
         <source>Install update</source>
-        <translation type="unfinished"></translation>
+        <translation>アップデートをインストールする</translation>
     </message>
     <message>
         <location filename="../src/platform_win/updatedialog.cpp" line="46"/>
         <source>Install on Next Start</source>
-        <translation type="unfinished"></translation>
+        <translation>次回の起動時にインストールする</translation>
     </message>
     <message>
         <location filename="../src/platform_win/updatedialog.cpp" line="47"/>
         <source>Save and Restart Now</source>
-        <translation type="unfinished"></translation>
+        <translation>今すぐ保存して再起動する</translation>
     </message>
     <message>
         <location filename="../src/platform_win/updatedialog.cpp" line="48"/>
         <source>Save and Install Now</source>
-        <translation type="unfinished"></translation>
+        <translation>保存して今すぐインストールする</translation>
     </message>
     <message>
         <location filename="../src/platform_win/updatedialog.cpp" line="49"/>
         <source>Download update</source>
-        <translation type="unfinished"></translation>
+        <translation>アップデートをダウンロードする</translation>
     </message>
     <message>
         <location filename="../src/platform_win/updatedialog.cpp" line="90"/>
         <source>Software Update</source>
-        <translation type="unfinished"></translation>
+        <translation>ソフトウェアの更新</translation>
     </message>
     <message>
         <location filename="../src/platform_win/updatedialog.cpp" line="93"/>
         <source>Release notes</source>
-        <translation type="unfinished"></translation>
+        <translation>リリースノート</translation>
     </message>
 </context>
 </TS>

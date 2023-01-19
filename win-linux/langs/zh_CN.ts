@@ -40,22 +40,22 @@
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1967"/>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2031"/>
         <source>A new version of %1 is available!</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 的新版本现已发布！</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1968"/>
         <source>%1 %2 is now available (you have %3). Would you like to download it now?</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 %2 现已可用（您使用的是 %3）。您是否要立即下载新版本？</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2032"/>
         <source>%1 %2 is now downloaded (you have %3). Would you like to install it now?</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 %2 已经下载完成（您使用的是 %3）。您是否要立即安装新版本？</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1988"/>
         <source>Do you want to install a new version %1 of the program?</source>
-        <translation type="unfinished"></translation>
+        <translation>您是否要安装新版本 %1 的应用程序？</translation>
     </message>
 </context>
 <context>
@@ -116,7 +116,7 @@
         <location filename="../src/platform_linux/cdialogopenssl.cpp" line="224"/>
         <location filename="../src/platform_linux/cdialogopenssl.cpp" line="227"/>
         <source>Open Document</source>
-        <translation type="unfinished">打开文档</translation>
+        <translation>打开文档</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/cdialogopenssl.cpp" line="246"/>
@@ -200,7 +200,7 @@
     <message>
         <location filename="../src/windows/ceditorwindow_p.h" line="510"/>
         <source>There are no printers available</source>
-        <translation type="unfinished"></translation>
+        <translation>无可用的打印机</translation>
     </message>
 </context>
 <context>
@@ -363,7 +363,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="106"/>
         <source>JPG Image (*.jpg *.jpeg)</source>
-        <translation type="unfinished"></translation>
+        <translation>JPG图像(*.jpg, *jpeg)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="107"/>
@@ -434,7 +434,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="247"/>
         <source>All supported files</source>
-        <translation type="unfinished"></translation>
+        <translation>所有支持的文件</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="265"/>
@@ -479,7 +479,7 @@
         <location filename="../src/components/cfiledialog.cpp" line="395"/>
         <location filename="../src/components/cfiledialog.cpp" line="401"/>
         <source>Select Folder</source>
-        <translation type="unfinished"></translation>
+        <translation>选择文件夹</translation>
     </message>
 </context>
 <context>
@@ -527,42 +527,42 @@
         <location filename="../src/windows/cmainwindow.cpp" line="753"/>
         <location filename="../src/windows/cmainwindow.cpp" line="795"/>
         <source>File format not supported.</source>
-        <translation type="unfinished">不支持该文件格式</translation>
+        <translation>不支持该文件格式。</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="779"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
-        <translation type="unfinished">%1不可用。它可能被重命名、移动或删除。&lt;br&gt;您要从列表中删除该文件吗？</translation>
+        <translation>%1不可用。它可能被重命名、移动或删除。&lt;br&gt;您要从列表中删除该文件吗？</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="839"/>
         <source>Document must be saved firstly.</source>
-        <translation type="unfinished">必须先保存文档。</translation>
+        <translation>必须先保存文档。</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="979"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
-        <translation type="unfinished">文档必须先保存才能继续。&lt;br&gt;是否保存文档？</translation>
+        <translation>文档必须先保存才能继续。&lt;br&gt;是否保存文档？</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="1081"/>
         <source>There are no printers available</source>
-        <translation type="unfinished"></translation>
+        <translation>无可用的打印机</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="1126"/>
         <source>Print Document</source>
-        <translation type="unfinished">打印文件</translation>
+        <translation>打印文件</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="1288"/>
         <source>Sign Up</source>
-        <translation type="unfinished">创建门户</translation>
+        <translation>创建门户</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="1351"/>
         <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
-        <translation type="unfinished">%1已被修改。&lt;br&gt;您要保存更改吗？</translation>
+        <translation>%1已被修改。&lt;br&gt;您要保存更改吗？</translation>
     </message>
 </context>
 <context>
@@ -615,7 +615,7 @@
     <message>
         <location filename="../src/components/cmessage.cpp" line="262"/>
         <source>Skip</source>
-        <translation type="unfinished"></translation>
+        <translation>跳过</translation>
     </message>
 </context>
 <context>
@@ -666,52 +666,52 @@
     <message>
         <location filename="../src/casctabdata.cpp" line="177"/>
         <source>Read only</source>
-        <translation type="unfinished"></translation>
+        <translation>只读</translation>
     </message>
     <message>
         <location filename="../src/platform_win/updatedialog.cpp" line="43"/>
         <source>Skip this version</source>
-        <translation type="unfinished"></translation>
+        <translation>跳过此版本</translation>
     </message>
     <message>
         <location filename="../src/platform_win/updatedialog.cpp" line="44"/>
         <source>Remind me later</source>
-        <translation type="unfinished"></translation>
+        <translation>稍后提醒我</translation>
     </message>
     <message>
         <location filename="../src/platform_win/updatedialog.cpp" line="45"/>
         <source>Install update</source>
-        <translation type="unfinished"></translation>
+        <translation>安装更新</translation>
     </message>
     <message>
         <location filename="../src/platform_win/updatedialog.cpp" line="46"/>
         <source>Install on Next Start</source>
-        <translation type="unfinished"></translation>
+        <translation>在下次启动时安装</translation>
     </message>
     <message>
         <location filename="../src/platform_win/updatedialog.cpp" line="47"/>
         <source>Save and Restart Now</source>
-        <translation type="unfinished"></translation>
+        <translation>保存并重新启动</translation>
     </message>
     <message>
         <location filename="../src/platform_win/updatedialog.cpp" line="48"/>
         <source>Save and Install Now</source>
-        <translation type="unfinished"></translation>
+        <translation>保存并立即安装</translation>
     </message>
     <message>
         <location filename="../src/platform_win/updatedialog.cpp" line="49"/>
         <source>Download update</source>
-        <translation type="unfinished"></translation>
+        <translation>下载更新</translation>
     </message>
     <message>
         <location filename="../src/platform_win/updatedialog.cpp" line="90"/>
         <source>Software Update</source>
-        <translation type="unfinished"></translation>
+        <translation>软件更新</translation>
     </message>
     <message>
         <location filename="../src/platform_win/updatedialog.cpp" line="93"/>
         <source>Release notes</source>
-        <translation type="unfinished"></translation>
+        <translation>产品发布新闻</translation>
     </message>
 </context>
 </TS>
