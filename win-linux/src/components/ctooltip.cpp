@@ -65,7 +65,7 @@ CToolTip::CToolTip(QWidget * parent, const QString &text,
     QGraphicsDropShadowEffect *shadow = new QGraphicsDropShadowEffect(m_label);
     shadow->setBlurRadius(16.0);
     shadow->setColor(QColor(0, 0, 0, 80));
-    shadow->setOffset(0.0);
+    shadow->setOffset(1.0);
     m_label->setGraphicsEffect(shadow);
     move(pos + QPoint(6,6));
     show();
