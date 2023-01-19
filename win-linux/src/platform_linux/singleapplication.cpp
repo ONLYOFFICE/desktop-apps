@@ -21,7 +21,7 @@
 // THE SOFTWARE.
 
 #include <cstdlib>
-
+#include "utils.h"
 #include <QtCore/QMutex>
 #include <QtCore/QSemaphore>
 #include <QtCore/QSharedMemory>
@@ -216,7 +216,7 @@ SingleApplication::SingleApplication( int &argc, char *argv[], const QString& se
 
 //    QString serverName = app_t::organizationName() + app_t::applicationName();
 //    serverName.replace( QRegExp("[^\\w\\-. ]"), "" );
-    QString serverName = servername;
+    QString serverName = servername + ":" + QString::fromStdWString(Utils::systemUserName());
 
 //    QSystemSemaphore _semaphore("asc:desktop:editors", 1);
 //    _semaphore.acquire();
