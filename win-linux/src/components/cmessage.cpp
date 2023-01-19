@@ -130,7 +130,7 @@ CMessage::CMessage(QWidget * p)
     , m_priv(new CMessagePrivateIntf(this))
 {
     setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
-    setWindowTitle(APP_TITLE);
+    //setWindowTitle(APP_TITLE);
     setLayout(new QVBoxLayout);
     layout()->setContentsMargins(0, 0, 0, 0);
 
