@@ -23,7 +23,7 @@ GtkPrintDialog::GtkPrintDialog(QPrinter *printer, QWidget *parent) :
     m_print_range = (PrintRange)printer->printRange();
     if (m_printer->collateCopies())
         m_options |= PrintOption::PrintCollateCopies;
-
+    m_page_ranges.append(PageRanges(m_printer->fromPage(), m_printer->toPage()));
 }
 
 GtkPrintDialog::~GtkPrintDialog()
@@ -404,7 +404,10 @@ int GtkPrintDialog::toPage()
 
 void GtkPrintDialog::setFromTo(int from, int to)
 {
-    return m_printer->setFromTo(from, to);
+    m_printer->setFromTo(from, to);
+    if (!m_page_ranges.isEmpty())
+        m_page_ranges.clear();
+    m_page_ranges.append(PageRanges(m_printer->fromPage(), m_printer->toPage()));
 }
 
 void GtkPrintDialog::accept()
