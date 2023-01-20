@@ -319,7 +319,7 @@ QDialog::DialogCode GtkPrintDialog::exec()
             m_printer->setNumCopies(n_copies);
 
             const char* output_uri = gtk_print_settings_get(settings, GTK_PRINT_SETTINGS_OUTPUT_URI);
-            auto path = QString::fromUtf8(output_uri).replace("file://", "");
+            auto path = QUrl::fromPercentEncoding(QByteArray(output_uri)).replace("file://", "");
             m_printer->setOutputFileName(path);
 
             //gtk_print_settings_get_quality(settings);
