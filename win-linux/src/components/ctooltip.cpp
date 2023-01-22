@@ -37,10 +37,22 @@
 #include <QTimer>
 #include <QCursor>
 #include <QLineF>
+#ifdef __linux__
+# include <QX11Info>
+#endif
 
 #define FADE_TIMEOUT_MS 5000
 #define ANIMATION_DURATION_MS 150
 
+
+static bool isCompositingEnabled()
+{
+#ifdef __linux__
+    return QX11Info::isCompositingManagerRunning();
+#else
+    return true;
+#endif
+}
 
 CToolTip::CToolTip(QWidget * parent, const QString &text,
                    const QPoint &pos) :
@@ -48,25 +60,31 @@ CToolTip::CToolTip(QWidget * parent, const QString &text,
             Qt::BypassWindowManagerHint),
     m_activated(false)
 {
-    setAttribute(Qt::WA_TranslucentBackground);
+    int margins = 0;
+    if (isCompositingEnabled()) {
+        setAttribute(Qt::WA_TranslucentBackground);
+        margins = 10;
+    }
 //    setAttribute(Qt::WA_ShowWithoutActivating);
     setWindowModality(Qt::NonModal);
     setFocusPolicy(Qt::NoFocus);
     setObjectName("CToolTip");
     QVBoxLayout *lut = new QVBoxLayout(this);
     setLayout(lut);
-    layout()->setContentsMargins(10,10,10,10);
+    layout()->setContentsMargins(margins, margins, margins, margins);
     m_label = new QLabel(this);
     layout()->addWidget(m_label);
     m_label->setText(text);
     parent->installEventFilter(this);
     QGraphicsOpacityEffect *grEffect = new QGraphicsOpacityEffect(this);
     setGraphicsEffect(grEffect);
-    QGraphicsDropShadowEffect *shadow = new QGraphicsDropShadowEffect(m_label);
-    shadow->setBlurRadius(16.0);
-    shadow->setColor(QColor(0, 0, 0, 80));
-    shadow->setOffset(1.0);
-    m_label->setGraphicsEffect(shadow);
+    if (isCompositingEnabled()) {
+        QGraphicsDropShadowEffect *shadow = new QGraphicsDropShadowEffect(m_label);
+        shadow->setBlurRadius(16.0);
+        shadow->setColor(QColor(0, 0, 0, 80));
+        shadow->setOffset(1.0);
+        m_label->setGraphicsEffect(shadow);
+    }
     move(pos + QPoint(6,6));
     show();
     QTimer *tmr = new QTimer(this);
