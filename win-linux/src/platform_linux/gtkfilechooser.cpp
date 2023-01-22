@@ -52,9 +52,10 @@ static void nativeFileDialog(const Window &parent_xid,
     dialog = gtk_file_chooser_dialog_new(title,
                                          NULL,
                                          actions[mode],
-                                         "_Cancel",
+                                         g_dgettext("gtk30", "_Cancel"),
                                          GTK_RESPONSE_CANCEL,
-                                         mode == Gtk::Mode::OPEN || mode == Gtk::Mode::FOLDER  ? "_Open" : "_Save",
+                                         mode == Gtk::Mode::OPEN || mode == Gtk::Mode::FOLDER  ?
+                                             g_dgettext("gtk30", "_Open") : g_dgettext("gtk30", "_Save"),
                                          GTK_RESPONSE_ACCEPT,
                                          NULL);
 
