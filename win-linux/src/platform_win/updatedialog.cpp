@@ -154,7 +154,7 @@ int WinDlg::showDialog(QWidget *parent,
     config.pszWindowTitle     = lpCaption.c_str();
     config.pszMainInstruction = lpText.c_str();
     config.pszContent         = lpContent.c_str();
-    config.cxWidth            = 240;
+//    config.cxWidth            = 240;
 
     TaskDialogIndirect(&config, &msgboxID, NULL, NULL);
     for (int i = 0; i < (int)cButtons; i++)
