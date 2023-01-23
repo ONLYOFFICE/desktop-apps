@@ -699,7 +699,7 @@
     <message>
         <location filename="../src/platform_win/updatedialog.cpp" line="93"/>
         <source>Release notes</source>
-        <translation></translation>
+        <translation>Install</translation>
     </message>
 </context>
 </TS>

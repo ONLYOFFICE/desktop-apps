@@ -696,7 +696,7 @@
     <message>
         <location filename="../src/platform_win/updatedialog.cpp" line="48"/>
         <source>Save and Install Now</source>
-        <translation>保存して今すぐインストールする</translation>
+        <translation>インストール</translation>
     </message>
     <message>
         <location filename="../src/platform_win/updatedialog.cpp" line="49"/>

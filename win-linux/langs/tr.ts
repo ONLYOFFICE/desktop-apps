@@ -696,7 +696,7 @@
     <message>
         <location filename="../src/platform_win/updatedialog.cpp" line="48"/>
         <source>Save and Install Now</source>
-        <translation type="unfinished"></translation>
+        <translation>Kurulum</translation>
     </message>
     <message>
         <location filename="../src/platform_win/updatedialog.cpp" line="49"/>
