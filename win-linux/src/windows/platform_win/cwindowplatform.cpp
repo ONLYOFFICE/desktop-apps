@@ -102,7 +102,7 @@ void CWindowPlatform::adjustGeometry()
         setResizeableAreaWidth(border);
     } else
     if (windowState().testFlag(Qt::WindowMaximized)) {
-        QTimer::singleShot(25, this, [=]() {
+        QTimer::singleShot(0, this, [=]() {
             setContentsMargins(0,0,0,0);
             auto dsk = QApplication::desktop();
             const QSize offset(0, !isTaskbarAutoHideOn() ? -1 : 1);
