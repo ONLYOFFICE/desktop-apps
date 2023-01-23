@@ -145,6 +145,9 @@
                         this.view.renderpanel(this.view.paneltemplate(args));
                         const $label = this.view.$panel.find('.ver-checkupdate');
                         $label.on('click', (e) => {
+                            if ( performance.now() - last_click_time < 1000 ) return;
+                            last_click_time = performance.now();
+
                             window.sdk.execCommand('update', $label.data('state'));
                         });
                         $label[this.updates===true?'show':'hide']();
