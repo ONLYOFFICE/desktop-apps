@@ -520,11 +520,11 @@ public:
         if ( !(pagescount < 1) ) {
             CAscMenuEvent * pEvent;
             QAscPrinterContext * pContext = new QAscPrinterContext(AscAppManager::printData().printerInfo());
+            QString documentName = m_panel->data()->title(true);
 
             QPrinter * printer = pContext->getPrinter();
-            printer->setOutputFileName("");
             printer->setFromTo(1, pagescount);
-            printer->printEngine()->setProperty(QPrintEngine::PPK_DocumentName, m_panel->data()->title(true));
+            printer->printEngine()->setProperty(QPrintEngine::PPK_DocumentName, documentName);
 
             if ( !AscAppManager::printData().isQuickPrint() ) {
                 printer->setPageOrientation(AscAppManager::printData().pageOrientation());
@@ -532,8 +532,18 @@ public:
             }
 
 #ifdef _WIN32
+            printer->setOutputFileName("");
             CPrintDialog * dialog =  new CPrintDialog(printer, window->handle());
 #else
+            QFileInfo info(documentName);
+            QString pdfName = Utils::lastPath(LOCAL_PATH_SAVE) + "/" + info.baseName() + ".pdf";
+            QString outputName = AscAppManager::printData().isQuickPrint() ? Utils::uniqFileName(pdfName) : pdfName;
+            if ( AscAppManager::printData().printerInfo().printerName().isEmpty() ) {
+                printer->setOutputFileName(outputName);
+            } else {
+                printer->printEngine()->setProperty(QPrintEngine::PPK_OutputFileName, outputName);
+            }
+
 # ifdef FILEDIALOG_DONT_USE_NATIVEDIALOGS
             CPrintDialog * dialog =  new CPrintDialog(printer, window->handle());
 # else
@@ -565,8 +575,10 @@ public:
                 QVector<PageRanges> page_ranges;
 
 #ifdef Q_OS_LINUX
-                if ( AscAppManager::printData().isQuickPrint() && printer->outputFormat() == QPrinter::PdfFormat )
-                    printer->setOutputFileName(Utils::uniqFileName(QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation) + "/print.pdf"));
+                if ( !AscAppManager::printData().isQuickPrint() && printer->outputFormat() == QPrinter::PdfFormat ) {
+                    info.setFile(printer->outputFileName());
+                    Utils::keepLastPath(LOCAL_PATH_SAVE, info.absolutePath());
+                }
 #endif
 
                 switch(dialog->printRange()) {

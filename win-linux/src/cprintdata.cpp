@@ -148,7 +148,7 @@ auto CPrintData::printerInfo() const -> QPrinterInfo
             QPrinterInfo info{QPrinterInfo::printerInfo(last_printer_name)};
             if ( !info.isNull() )
                 return info;
-        }
+        } else return QPrinterInfo();
 
         return QPrinterInfo::defaultPrinter();
     }

@@ -1118,7 +1118,12 @@ void CMainWindow::onDocumentPrint(void * opts)
 #else
         QFileInfo info(documentName);
         QString pdfName = Utils::lastPath(LOCAL_PATH_SAVE) + "/" + info.baseName() + ".pdf";
-        printer->setOutputFileName(AscAppManager::printData().isQuickPrint() ? Utils::uniqFileName(pdfName) : pdfName);
+        QString outputName = AscAppManager::printData().isQuickPrint() ? Utils::uniqFileName(pdfName) : pdfName;
+        if ( AscAppManager::printData().printerInfo().printerName().isEmpty() ) {
+            printer->setOutputFileName(outputName);
+        } else {
+            printer->printEngine()->setProperty(QPrintEngine::PPK_OutputFileName, outputName);
+        }
 
 # ifdef FILEDIALOG_DONT_USE_NATIVEDIALOGS
         CPrintDialog * dialog =  new CPrintDialog(printer, this);
