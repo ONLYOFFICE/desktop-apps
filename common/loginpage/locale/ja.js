@@ -92,9 +92,13 @@ l10n.ja = {
     settOptLaunchInWindow: 'ウィンドウで',
     settSpellcheckDetection: 'スペルチェック',
     settOptDisabled: '無効',
+    settOptEnabled: '有効',
     aboutChangelog: '変更ログ',
     updateNoUpdates: 'アプリのバージョンは最新です',
     updateAvialable: 'バージョン $1 が利用可能になっています。クリックしてダウンロードしてください。',
     settOptThemeSystem: 'システム設定と同じ',
     settOptThemeContrastDark: 'ダークコントラスト',
+    settAUpdateMode: '自動更新モード',
+    settOptAUpdateSilent: 'サイレントモード',
+    settOptAUpdateAsk: 'ダウンロードを依頼する',
 }
