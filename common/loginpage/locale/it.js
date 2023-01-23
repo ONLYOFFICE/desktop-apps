@@ -92,9 +92,13 @@ l10n.it_IT = {
     settOptLaunchInWindow: 'Nella finestra',
     settSpellcheckDetection: 'Rilevamento lingua dell\'ortografia',
     settOptDisabled: 'Disabilitato',
+    settOptEnabled: 'Abilitato',
     aboutChangelog: 'Registro delle modifiche',
     updateNoUpdates: 'L\'app è aggiornata',
     updateAvialable: 'È disponibile la versione $1. Fai clic per scaricarla.',
     settOptThemeSystem: 'Uguale al sistema',
     settOptThemeContrastDark: 'Contrasto scuro',
+    settAUpdateMode: 'Modalità aggiornamento automatico',
+    settOptAUpdateSilent: 'Modalità silenziosa',
+    settOptAUpdateAsk: 'Richiedere di scaricare',
 }

@@ -92,6 +92,7 @@ l10n.ru = {
     settOptLaunchInWindow: 'В окне',
     settSpellcheckDetection: 'Распознавание языка проверки правописания',
     settOptDisabled: 'Отключено',
+    settOptEnabled: 'Включено',
     aboutChangelog: 'Журнал изменений',
     updateNoUpdates: 'Приложение обновлено',
     updateAvialable: 'Доступна версия $1. Нажмите, чтобы скачать.',
