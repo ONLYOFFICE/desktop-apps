@@ -32,9 +32,10 @@
 
 #include <windowsx.h>
 #include "singleapplication.h"
+#include "defines.h"
 #include <QThread>
 
-#define RECEIVER_WINDOW L"DocEditorsWindowClass"
+#define RECEIVER_WINDOW WINDOW_CLASS_NAME
 #define RETRIES_COUNT 10
 #define RETRIES_DELAY_MS 500
 
@@ -94,16 +95,16 @@ bool SingleApplication::sendMessage(const QByteArray &message)
 
 void SingleApplication::startPrimary()
 {
-    m_hInstance = GetModuleHandle(nullptr);
+    HINSTANCE hInstance = GetModuleHandle(nullptr);
     WNDCLASSEX wcx{sizeof(WNDCLASSEX)};
     wcx.style = CS_HREDRAW | CS_VREDRAW;
-    wcx.hInstance = m_hInstance;
+    wcx.hInstance = hInstance;
     wcx.lpfnWndProc = WndProc;
     wcx.cbClsExtra	= 0;
     wcx.cbWndExtra	= 0;
     wcx.lpszClassName = RECEIVER_WINDOW;
     wcx.hbrBackground = CreateSolidBrush(0x00ffffff);
-    wcx.hCursor = LoadCursor(m_hInstance, IDC_ARROW);
+    wcx.hCursor = LoadCursor(hInstance, IDC_ARROW);
     RegisterClassEx(&wcx);
 
     m_hWnd = CreateWindowEx(
@@ -114,7 +115,7 @@ void SingleApplication::startPrimary()
                 0, 0, 0, 0,
                 nullptr,
                 nullptr,
-                m_hInstance,
+                hInstance,
                 nullptr);
     SetWindowLongPtr(m_hWnd, GWLP_USERDATA, reinterpret_cast<LONG_PTR>(this));
     ShowWindow(m_hWnd, SW_HIDE);
