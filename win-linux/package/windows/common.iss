@@ -779,7 +779,8 @@ begin
     end;
   end else
   if CurStep = ssDone then begin
-    if not (gHWND = 0) then begin
+    // if not (gHWND = 0) then begin
+    if CheckCommandlineParam('/update') then begin
       ShellExec('', ExpandConstant('{app}\{#iconsExe}'), '', '', SW_SHOW, ewNoWait, ErrorCode);
     end
   end else
