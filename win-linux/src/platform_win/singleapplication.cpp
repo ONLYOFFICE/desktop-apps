@@ -32,9 +32,10 @@
 
 #include <windowsx.h>
 #include "singleapplication.h"
+#include "defines.h"
 #include <QThread>
 
-#define RECEIVER_WINDOW L"DocEditorsWindowClass"
+#define RECEIVER_WINDOW WINDOW_CLASS_NAME
 #define RETRIES_COUNT 10
 #define RETRIES_DELAY_MS 500
 
