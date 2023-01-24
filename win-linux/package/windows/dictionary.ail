@@ -36,85 +36,301 @@
     <STRING lang="ru" value="Выберете дополнительные задачи"/>
   </ENTRY>
   <ENTRY id="Control.Text.FileAssociationsDlg#CheckBox_1">
+    <STRING lang="cs" value=".csv"/>
+    <STRING lang="de" value=".csv"/>
+    <STRING lang="es" value=".csv"/>
+    <STRING lang="fr" value=".csv"/>
+    <STRING lang="ja" value=".csv"/>
+    <STRING lang="pt" value=".csv"/>
+    <STRING lang="pt_BR" value=".csv"/>
     <STRING lang="ru" value=".csv"/>
+    <STRING lang="sl" value=".csv"/>
   </ENTRY>
   <ENTRY id="Control.Text.FileAssociationsDlg#CheckBox_10">
+    <STRING lang="cs" value=".ods"/>
+    <STRING lang="de" value=".ods"/>
+    <STRING lang="es" value=".ods"/>
+    <STRING lang="fr" value=".ods"/>
+    <STRING lang="ja" value=".ods"/>
+    <STRING lang="pt" value=".ods"/>
+    <STRING lang="pt_BR" value=".ods"/>
     <STRING lang="ru" value=".ods"/>
+    <STRING lang="sl" value=".ods"/>
   </ENTRY>
   <ENTRY id="Control.Text.FileAssociationsDlg#CheckBox_11">
+    <STRING lang="cs" value=".odt"/>
+    <STRING lang="de" value=".odt"/>
+    <STRING lang="es" value=".odt"/>
+    <STRING lang="fr" value=".odt"/>
+    <STRING lang="ja" value=".odt"/>
+    <STRING lang="pt" value=".odt"/>
+    <STRING lang="pt_BR" value=".odt"/>
     <STRING lang="ru" value=".odt"/>
+    <STRING lang="sl" value=".odt"/>
   </ENTRY>
   <ENTRY id="Control.Text.FileAssociationsDlg#CheckBox_12">
+    <STRING lang="cs" value=".otp"/>
+    <STRING lang="de" value=".otp"/>
+    <STRING lang="es" value=".otp"/>
+    <STRING lang="fr" value=".otp"/>
+    <STRING lang="ja" value=".otp"/>
+    <STRING lang="pt" value=".otp"/>
+    <STRING lang="pt_BR" value=".otp"/>
     <STRING lang="ru" value=".otp"/>
+    <STRING lang="sl" value=".otp"/>
   </ENTRY>
   <ENTRY id="Control.Text.FileAssociationsDlg#CheckBox_13">
+    <STRING lang="cs" value=".ots"/>
+    <STRING lang="de" value=".ots"/>
+    <STRING lang="es" value=".ots"/>
+    <STRING lang="fr" value=".ots"/>
+    <STRING lang="ja" value=".ots"/>
+    <STRING lang="pt" value=".ots"/>
+    <STRING lang="pt_BR" value=".ots"/>
     <STRING lang="ru" value=".ots"/>
+    <STRING lang="sl" value=".ots"/>
   </ENTRY>
   <ENTRY id="Control.Text.FileAssociationsDlg#CheckBox_14">
+    <STRING lang="cs" value=".ott"/>
+    <STRING lang="de" value=".ott"/>
+    <STRING lang="es" value=".ott"/>
+    <STRING lang="fr" value=".ott"/>
+    <STRING lang="ja" value=".ott"/>
+    <STRING lang="pt" value=".ott"/>
+    <STRING lang="pt_BR" value=".ott"/>
     <STRING lang="ru" value=".ott"/>
+    <STRING lang="sl" value=".ott"/>
   </ENTRY>
   <ENTRY id="Control.Text.FileAssociationsDlg#CheckBox_15">
+    <STRING lang="cs" value=".pdf"/>
+    <STRING lang="de" value=".pdf"/>
+    <STRING lang="es" value=".pdf"/>
+    <STRING lang="fr" value=".pdf"/>
+    <STRING lang="ja" value=".pdf"/>
+    <STRING lang="pt" value=".pdf"/>
+    <STRING lang="pt_BR" value=".pdf"/>
     <STRING lang="ru" value=".pdf"/>
+    <STRING lang="sl" value=".pdf"/>
   </ENTRY>
   <ENTRY id="Control.Text.FileAssociationsDlg#CheckBox_16">
+    <STRING lang="cs" value=".potx"/>
+    <STRING lang="de" value=".potx"/>
+    <STRING lang="es" value=".potx"/>
+    <STRING lang="fr" value=".potx"/>
+    <STRING lang="ja" value=".potx"/>
+    <STRING lang="pt" value=".potx"/>
+    <STRING lang="pt_BR" value=".potx"/>
     <STRING lang="ru" value=".potx"/>
+    <STRING lang="sl" value=".potx"/>
   </ENTRY>
   <ENTRY id="Control.Text.FileAssociationsDlg#CheckBox_17">
+    <STRING lang="cs" value=".ppt"/>
+    <STRING lang="de" value=".ppt"/>
+    <STRING lang="es" value=".ppt"/>
+    <STRING lang="fr" value=".ppt"/>
+    <STRING lang="ja" value=".ppt"/>
+    <STRING lang="pt" value=".ppt"/>
+    <STRING lang="pt_BR" value=".ppt"/>
     <STRING lang="ru" value=".ppt"/>
+    <STRING lang="sl" value=".ppt"/>
   </ENTRY>
   <ENTRY id="Control.Text.FileAssociationsDlg#CheckBox_18">
+    <STRING lang="cs" value=".pptx"/>
+    <STRING lang="de" value=".pptx"/>
+    <STRING lang="es" value=".pptx"/>
+    <STRING lang="fr" value=".pptx"/>
+    <STRING lang="ja" value=".pptx"/>
+    <STRING lang="pt" value=".pptx"/>
+    <STRING lang="pt_BR" value=".pptx"/>
     <STRING lang="ru" value=".pptx"/>
+    <STRING lang="sl" value=".pptx"/>
   </ENTRY>
   <ENTRY id="Control.Text.FileAssociationsDlg#CheckBox_19">
+    <STRING lang="cs" value=".rtf"/>
+    <STRING lang="de" value=".rtf"/>
+    <STRING lang="es" value=".rtf"/>
+    <STRING lang="fr" value=".rtf"/>
+    <STRING lang="ja" value=".rtf"/>
+    <STRING lang="pt" value=".rtf"/>
+    <STRING lang="pt_BR" value=".rtf"/>
     <STRING lang="ru" value=".rtf"/>
+    <STRING lang="sl" value=".rtf"/>
   </ENTRY>
   <ENTRY id="Control.Text.FileAssociationsDlg#CheckBox_2">
+    <STRING lang="cs" value=".djvu"/>
+    <STRING lang="de" value=".djvu"/>
+    <STRING lang="es" value=".djvu"/>
+    <STRING lang="fr" value=".djvu"/>
+    <STRING lang="ja" value=".djvu"/>
+    <STRING lang="pt" value=".djvu"/>
+    <STRING lang="pt_BR" value=".djvu"/>
     <STRING lang="ru" value=".djvu"/>
+    <STRING lang="sl" value=".djvu"/>
   </ENTRY>
   <ENTRY id="Control.Text.FileAssociationsDlg#CheckBox_20">
+    <STRING lang="cs" value=".txt"/>
+    <STRING lang="de" value=".txt"/>
+    <STRING lang="es" value=".txt"/>
+    <STRING lang="fr" value=".txt"/>
+    <STRING lang="ja" value=".txt"/>
+    <STRING lang="pt" value=".txt"/>
+    <STRING lang="pt_BR" value=".txt"/>
     <STRING lang="ru" value=".txt"/>
+    <STRING lang="sl" value=".txt"/>
   </ENTRY>
   <ENTRY id="Control.Text.FileAssociationsDlg#CheckBox_21">
+    <STRING lang="cs" value=".xls"/>
+    <STRING lang="de" value=".xls"/>
+    <STRING lang="es" value=".xls"/>
+    <STRING lang="fr" value=".xls"/>
+    <STRING lang="ja" value=".xls"/>
+    <STRING lang="pt" value=".xls"/>
+    <STRING lang="pt_BR" value=".xls"/>
     <STRING lang="ru" value=".xls"/>
+    <STRING lang="sl" value=".xls"/>
   </ENTRY>
   <ENTRY id="Control.Text.FileAssociationsDlg#CheckBox_22">
+    <STRING lang="cs" value=".xlsx"/>
+    <STRING lang="de" value=".xlsx"/>
+    <STRING lang="es" value=".xlsx"/>
+    <STRING lang="fr" value=".xlsx"/>
+    <STRING lang="ja" value=".xlsx"/>
+    <STRING lang="pt" value=".xlsx"/>
+    <STRING lang="pt_BR" value=".xlsx"/>
     <STRING lang="ru" value=".xlsx"/>
+    <STRING lang="sl" value=".xlsx"/>
   </ENTRY>
   <ENTRY id="Control.Text.FileAssociationsDlg#CheckBox_23">
+    <STRING lang="cs" value=".xltx"/>
+    <STRING lang="de" value=".xltx"/>
+    <STRING lang="es" value=".xltx"/>
+    <STRING lang="fr" value=".xltx"/>
+    <STRING lang="ja" value=".xltx"/>
+    <STRING lang="pt" value=".xltx"/>
+    <STRING lang="pt_BR" value=".xltx"/>
     <STRING lang="ru" value=".xltx"/>
+    <STRING lang="sl" value=".xltx"/>
   </ENTRY>
   <ENTRY id="Control.Text.FileAssociationsDlg#CheckBox_24">
+    <STRING lang="cs" value=".xml"/>
+    <STRING lang="de" value=".xml"/>
+    <STRING lang="es" value=".xml"/>
+    <STRING lang="fr" value=".xml"/>
+    <STRING lang="ja" value=".xml"/>
+    <STRING lang="pt" value=".xml"/>
+    <STRING lang="pt_BR" value=".xml"/>
     <STRING lang="ru" value=".xml"/>
+    <STRING lang="sl" value=".xml"/>
   </ENTRY>
   <ENTRY id="Control.Text.FileAssociationsDlg#CheckBox_25">
+    <STRING lang="cs" value=".xps"/>
+    <STRING lang="de" value=".xps"/>
+    <STRING lang="es" value=".xps"/>
+    <STRING lang="fr" value=".xps"/>
+    <STRING lang="ja" value=".xps"/>
+    <STRING lang="pt" value=".xps"/>
+    <STRING lang="pt_BR" value=".xps"/>
     <STRING lang="ru" value=".xps"/>
+    <STRING lang="sl" value=".xps"/>
   </ENTRY>
   <ENTRY id="Control.Text.FileAssociationsDlg#CheckBox_26">
+    <STRING lang="cs" value=".docxf"/>
+    <STRING lang="de" value=".docxf"/>
+    <STRING lang="es" value=".docxf"/>
+    <STRING lang="fr" value=".docxf"/>
+    <STRING lang="ja" value=".docxf"/>
+    <STRING lang="pt" value=".docxf"/>
+    <STRING lang="pt_BR" value=".docxf"/>
     <STRING lang="ru" value=".docxf"/>
+    <STRING lang="sl" value=".docxf"/>
   </ENTRY>
   <ENTRY id="Control.Text.FileAssociationsDlg#CheckBox_27">
+    <STRING lang="cs" value=".oform"/>
+    <STRING lang="de" value=".oform"/>
+    <STRING lang="es" value=".oform"/>
+    <STRING lang="fr" value=".oform"/>
+    <STRING lang="ja" value=".oform"/>
+    <STRING lang="pt" value=".oform"/>
+    <STRING lang="pt_BR" value=".oform"/>
     <STRING lang="ru" value=".oform"/>
+    <STRING lang="sl" value=".oform"/>
   </ENTRY>
   <ENTRY id="Control.Text.FileAssociationsDlg#CheckBox_3">
+    <STRING lang="cs" value=".doc"/>
+    <STRING lang="de" value=".doc"/>
+    <STRING lang="es" value=".doc"/>
+    <STRING lang="fr" value=".doc"/>
+    <STRING lang="ja" value=".doc"/>
+    <STRING lang="pt" value=".doc"/>
+    <STRING lang="pt_BR" value=".doc"/>
     <STRING lang="ru" value=".doc"/>
+    <STRING lang="sl" value=".doc"/>
   </ENTRY>
   <ENTRY id="Control.Text.FileAssociationsDlg#CheckBox_4">
+    <STRING lang="cs" value=".docx"/>
+    <STRING lang="de" value=".docx"/>
+    <STRING lang="es" value=".docx"/>
+    <STRING lang="fr" value=".docx"/>
+    <STRING lang="ja" value=".docx"/>
+    <STRING lang="pt" value=".docx"/>
+    <STRING lang="pt_BR" value=".docx"/>
     <STRING lang="ru" value=".docx"/>
+    <STRING lang="sl" value=".docx"/>
   </ENTRY>
   <ENTRY id="Control.Text.FileAssociationsDlg#CheckBox_5">
+    <STRING lang="cs" value=".dotx"/>
+    <STRING lang="de" value=".dotx"/>
+    <STRING lang="es" value=".dotx"/>
+    <STRING lang="fr" value=".dotx"/>
+    <STRING lang="ja" value=".dotx"/>
+    <STRING lang="pt" value=".dotx"/>
+    <STRING lang="pt_BR" value=".dotx"/>
     <STRING lang="ru" value=".dotx"/>
+    <STRING lang="sl" value=".dotx"/>
   </ENTRY>
   <ENTRY id="Control.Text.FileAssociationsDlg#CheckBox_6">
+    <STRING lang="cs" value=".epub"/>
+    <STRING lang="de" value=".epub"/>
+    <STRING lang="es" value=".epub"/>
+    <STRING lang="fr" value=".epub"/>
+    <STRING lang="ja" value=".epub"/>
+    <STRING lang="pt" value=".epub"/>
+    <STRING lang="pt_BR" value=".epub"/>
     <STRING lang="ru" value=".epub"/>
+    <STRING lang="sl" value=".epub"/>
   </ENTRY>
   <ENTRY id="Control.Text.FileAssociationsDlg#CheckBox_7">
+    <STRING lang="cs" value=".fb2"/>
+    <STRING lang="de" value=".fb2"/>
+    <STRING lang="es" value=".fb2"/>
+    <STRING lang="fr" value=".fb2"/>
+    <STRING lang="ja" value=".fb2"/>
+    <STRING lang="pt" value=".fb2"/>
+    <STRING lang="pt_BR" value=".fb2"/>
     <STRING lang="ru" value=".fb2"/>
+    <STRING lang="sl" value=".fb2"/>
   </ENTRY>
   <ENTRY id="Control.Text.FileAssociationsDlg#CheckBox_8">
+    <STRING lang="cs" value=".html"/>
+    <STRING lang="de" value=".html"/>
+    <STRING lang="es" value=".html"/>
+    <STRING lang="fr" value=".html"/>
+    <STRING lang="ja" value=".html"/>
+    <STRING lang="pt" value=".html"/>
+    <STRING lang="pt_BR" value=".html"/>
     <STRING lang="ru" value=".html"/>
+    <STRING lang="sl" value=".html"/>
   </ENTRY>
   <ENTRY id="Control.Text.FileAssociationsDlg#CheckBox_9">
+    <STRING lang="cs" value=".odp"/>
+    <STRING lang="de" value=".odp"/>
+    <STRING lang="es" value=".odp"/>
+    <STRING lang="fr" value=".odp"/>
+    <STRING lang="ja" value=".odp"/>
+    <STRING lang="pt" value=".odp"/>
+    <STRING lang="pt_BR" value=".odp"/>
     <STRING lang="ru" value=".odp"/>
+    <STRING lang="sl" value=".odp"/>
   </ENTRY>
   <ENTRY id="Control.Text.FileAssociationsDlg#Deselect_all_button">
     <STRING lang="ru" value="Deselect all"/>
@@ -145,162 +361,578 @@
   </ENTRY>
   <!-- Property table -->
   <ENTRY id="Property.AI_PRODUCTNAME_ARP">
+    <STRING lang="cs" value="[|ProductName] [|ProductVersion] "/>
+    <STRING lang="de" value="[|ProductName] [|ProductVersion] "/>
+    <STRING lang="es" value="[|ProductName] [|ProductVersion] "/>
+    <STRING lang="fr" value="[|ProductName] [|ProductVersion] "/>
+    <STRING lang="ja" value="[|ProductName] [|ProductVersion] "/>
+    <STRING lang="pt" value="[|ProductName] [|ProductVersion] "/>
+    <STRING lang="pt_BR" value="[|ProductName] [|ProductVersion] "/>
     <STRING lang="ru" value="[|ProductName] [|ProductVersion] "/>
-  </ENTRY>
-  <ENTRY id="Property.ASCC_REG_PREFIX">
-    <STRING lang="ru" value="ASC"/>
-  </ENTRY>
-  <ENTRY id="Property.ASCC_REG_REGISTERED_APP_NAME">
-    <STRING lang="ru" value="ONLYOFFICE Editors"/>
-  </ENTRY>
-  <ENTRY id="Property.ASSOC_APP_FRIENDLY_NAME">
-    <STRING lang="ru" value="ONLYOFFICE Editors"/>
-  </ENTRY>
-  <ENTRY id="Property.ASSOC_PROG_ID">
-    <STRING lang="ru" value="[|ASCC_REG_PREFIX].Editors"/>
+    <STRING lang="sl" value="[|ProductName] [|ProductVersion] "/>
   </ENTRY>
   <ENTRY id="Property.ARPCOMMENTS">
+    <STRING lang="cs" value="Free desktop office suite for document editing and collaboration"/>
+    <STRING lang="de" value="Free desktop office suite for document editing and collaboration"/>
+    <STRING lang="es" value="Free desktop office suite for document editing and collaboration"/>
+    <STRING lang="fr" value="Free desktop office suite for document editing and collaboration"/>
+    <STRING lang="ja" value="Free desktop office suite for document editing and collaboration"/>
+    <STRING lang="pt" value="Free desktop office suite for document editing and collaboration"/>
+    <STRING lang="pt_BR" value="Free desktop office suite for document editing and collaboration"/>
     <STRING lang="ru" value="Бесплатный десктопный офисный пакет для редактирования документов и совместной работы"/>
+    <STRING lang="sl" value="Free desktop office suite for document editing and collaboration"/>
   </ENTRY>
   <ENTRY id="Property.ARPCONTACT">
+    <STRING lang="cs" value="20A-6, Ernesta Birznieka-Upisha str., Riga, LV-1050"/>
+    <STRING lang="de" value="20A-6, Ernesta Birznieka-Upisha str., Riga, LV-1050"/>
+    <STRING lang="es" value="20A-6, Ernesta Birznieka-Upisha str., Riga, LV-1050"/>
+    <STRING lang="fr" value="20A-6, Ernesta Birznieka-Upisha str., Riga, LV-1050"/>
+    <STRING lang="ja" value="20A-6, Ernesta Birznieka-Upisha str., Riga, LV-1050"/>
+    <STRING lang="pt" value="20A-6, Ernesta Birznieka-Upisha str., Riga, LV-1050"/>
+    <STRING lang="pt_BR" value="20A-6, Ernesta Birznieka-Upisha str., Riga, LV-1050"/>
     <STRING lang="ru" value="20A-6, Ernesta Birznieka-Upisha str., Riga, LV-1050"/>
+    <STRING lang="sl" value="20A-6, Ernesta Birznieka-Upisha str., Riga, LV-1050"/>
   </ENTRY>
   <ENTRY id="Property.ARPHELPLINK">
+    <STRING lang="cs" value="http://dev.onlyoffice.org/"/>
+    <STRING lang="de" value="http://dev.onlyoffice.org/"/>
+    <STRING lang="es" value="http://dev.onlyoffice.org/"/>
+    <STRING lang="fr" value="http://dev.onlyoffice.org/"/>
+    <STRING lang="ja" value="http://dev.onlyoffice.org/"/>
+    <STRING lang="pt" value="http://dev.onlyoffice.org/"/>
+    <STRING lang="pt_BR" value="http://dev.onlyoffice.org/"/>
     <STRING lang="ru" value="http://dev.onlyoffice.org/"/>
+    <STRING lang="sl" value="http://dev.onlyoffice.org/"/>
   </ENTRY>
   <ENTRY id="Property.ARPHELPTELEPHONE">
+    <STRING lang="cs" value="+371 66016425"/>
+    <STRING lang="de" value="+371 66016425"/>
+    <STRING lang="es" value="+371 66016425"/>
+    <STRING lang="fr" value="+371 66016425"/>
+    <STRING lang="ja" value="+371 66016425"/>
+    <STRING lang="pt" value="+371 66016425"/>
+    <STRING lang="pt_BR" value="+371 66016425"/>
     <STRING lang="ru" value="+371 66016425"/>
+    <STRING lang="sl" value="+371 66016425"/>
   </ENTRY>
   <ENTRY id="Property.ARPURLINFOABOUT">
+    <STRING lang="cs" value="http://www.onlyoffice.com"/>
+    <STRING lang="de" value="http://www.onlyoffice.com"/>
+    <STRING lang="es" value="http://www.onlyoffice.com"/>
+    <STRING lang="fr" value="http://www.onlyoffice.com"/>
+    <STRING lang="ja" value="http://www.onlyoffice.com"/>
+    <STRING lang="pt" value="http://www.onlyoffice.com"/>
+    <STRING lang="pt_BR" value="http://www.onlyoffice.com"/>
     <STRING lang="ru" value="http://www.onlyoffice.com"/>
+    <STRING lang="sl" value="http://www.onlyoffice.com"/>
   </ENTRY>
   <ENTRY id="Property.ARPURLUPDATEINFO">
+    <STRING lang="cs" value="http://www.onlyoffice.com/download.aspx"/>
+    <STRING lang="de" value="http://www.onlyoffice.com/download.aspx"/>
+    <STRING lang="es" value="http://www.onlyoffice.com/download.aspx"/>
+    <STRING lang="fr" value="http://www.onlyoffice.com/download.aspx"/>
+    <STRING lang="ja" value="http://www.onlyoffice.com/download.aspx"/>
+    <STRING lang="pt" value="http://www.onlyoffice.com/download.aspx"/>
+    <STRING lang="pt_BR" value="http://www.onlyoffice.com/download.aspx"/>
     <STRING lang="ru" value="http://www.onlyoffice.com/download.aspx"/>
+    <STRING lang="sl" value="http://www.onlyoffice.com/download.aspx"/>
+  </ENTRY>
+  <ENTRY id="Property.ASCC_REG_PREFIX">
+    <STRING lang="cs" value="ASC"/>
+    <STRING lang="de" value="ASC"/>
+    <STRING lang="es" value="ASC"/>
+    <STRING lang="fr" value="ASC"/>
+    <STRING lang="ja" value="ASC"/>
+    <STRING lang="pt" value="ASC"/>
+    <STRING lang="pt_BR" value="ASC"/>
+    <STRING lang="ru" value="ASC"/>
+    <STRING lang="sl" value="ASC"/>
+  </ENTRY>
+  <ENTRY id="Property.ASCC_REG_REGISTERED_APP_NAME">
+    <STRING lang="cs" value="ONLYOFFICE Editors"/>
+    <STRING lang="de" value="ONLYOFFICE Editors"/>
+    <STRING lang="es" value="ONLYOFFICE Editors"/>
+    <STRING lang="fr" value="ONLYOFFICE Editors"/>
+    <STRING lang="ja" value="ONLYOFFICE Editors"/>
+    <STRING lang="pt" value="ONLYOFFICE Editors"/>
+    <STRING lang="pt_BR" value="ONLYOFFICE Editors"/>
+    <STRING lang="ru" value="ONLYOFFICE Editors"/>
+    <STRING lang="sl" value="ONLYOFFICE Editors"/>
+  </ENTRY>
+  <ENTRY id="Property.ASSOC_APP_FRIENDLY_NAME">
+    <STRING lang="cs" value="ONLYOFFICE Editors"/>
+    <STRING lang="de" value="ONLYOFFICE Editors"/>
+    <STRING lang="es" value="ONLYOFFICE Editors"/>
+    <STRING lang="fr" value="ONLYOFFICE Editors"/>
+    <STRING lang="ja" value="ONLYOFFICE Editors"/>
+    <STRING lang="pt" value="ONLYOFFICE Editors"/>
+    <STRING lang="pt_BR" value="ONLYOFFICE Editors"/>
+    <STRING lang="ru" value="ONLYOFFICE Editors"/>
+    <STRING lang="sl" value="ONLYOFFICE Editors"/>
+  </ENTRY>
+  <ENTRY id="Property.ASSOC_PROG_ID">
+    <STRING lang="cs" value="[|ASCC_REG_PREFIX].Editors"/>
+    <STRING lang="de" value="[|ASCC_REG_PREFIX].Editors"/>
+    <STRING lang="es" value="[|ASCC_REG_PREFIX].Editors"/>
+    <STRING lang="fr" value="[|ASCC_REG_PREFIX].Editors"/>
+    <STRING lang="ja" value="[|ASCC_REG_PREFIX].Editors"/>
+    <STRING lang="pt" value="[|ASCC_REG_PREFIX].Editors"/>
+    <STRING lang="pt_BR" value="[|ASCC_REG_PREFIX].Editors"/>
+    <STRING lang="ru" value="[|ASCC_REG_PREFIX].Editors"/>
+    <STRING lang="sl" value="[|ASCC_REG_PREFIX].Editors"/>
   </ENTRY>
   <ENTRY id="Property.ASSOTIATION_PROP">
     <STRING lang="ru" value="CheckBox"/>
   </ENTRY>
   <ENTRY id="Property.COMMON_SHORTCUT_NAME">
+    <STRING lang="cs" value="ONLYOFFICE Editors"/>
+    <STRING lang="de" value="ONLYOFFICE Editors"/>
+    <STRING lang="es" value="ONLYOFFICE Editors"/>
+    <STRING lang="fr" value="ONLYOFFICE Editors"/>
+    <STRING lang="ja" value="ONLYOFFICE Editors"/>
+    <STRING lang="pt" value="ONLYOFFICE Editors"/>
+    <STRING lang="pt_BR" value="ONLYOFFICE Editors"/>
     <STRING lang="ru" value="ONLYOFFICE Editors"/>
-  </ENTRY>
-  <ENTRY id="Property.REGISTER_CSV">
-    <STRING lang="ru" value="1"/>
+    <STRING lang="sl" value="ONLYOFFICE Editors"/>
   </ENTRY>
   <ENTRY id="Property.CUSTOM_PATH">
+    <STRING lang="cs" value="C:\[|ProgramFilesFolder][|Manufacturer]MediaViewer"/>
+    <STRING lang="de" value="C:\[|ProgramFilesFolder][|Manufacturer]MediaViewer"/>
+    <STRING lang="es" value="C:\[|ProgramFilesFolder][|Manufacturer]MediaViewer"/>
+    <STRING lang="fr" value="C:\[|ProgramFilesFolder][|Manufacturer]MediaViewer"/>
+    <STRING lang="ja" value="C:\[|ProgramFilesFolder][|Manufacturer]MediaViewer"/>
+    <STRING lang="pt" value="C:\[|ProgramFilesFolder][|Manufacturer]MediaViewer"/>
+    <STRING lang="pt_BR" value="C:\[|ProgramFilesFolder][|Manufacturer]MediaViewer"/>
     <STRING lang="ru" value="C:\[|ProgramFilesFolder][|Manufacturer]MediaViewer"/>
-  </ENTRY>
-  <ENTRY id="Property.REGISTER_DJVU">
-    <STRING lang="ru" value="1"/>
-  </ENTRY>
-  <ENTRY id="Property.REGISTER_DOC">
-    <STRING lang="ru" value="1"/>
-  </ENTRY>
-  <ENTRY id="Property.REGISTER_DOCX">
-    <STRING lang="ru" value="1"/>
-  </ENTRY>
-  <ENTRY id="Property.REGISTER_DOCXF">
-    <STRING lang="ru" value="1"/>
-  </ENTRY>
-  <ENTRY id="Property.REGISTER_DOTX">
-    <STRING lang="ru" value="1"/>
-  </ENTRY>
-  <ENTRY id="Property.REGISTER_EPUB">
-    <STRING lang="ru" value="1"/>
-  </ENTRY>
-  <ENTRY id="Property.REGISTER_FB2">
-    <STRING lang="ru" value="1"/>
+    <STRING lang="sl" value="C:\[|ProgramFilesFolder][|Manufacturer]MediaViewer"/>
   </ENTRY>
   <ENTRY id="Property.GALLERY">
+    <STRING lang="cs" value="1"/>
+    <STRING lang="de" value="1"/>
+    <STRING lang="es" value="1"/>
+    <STRING lang="fr" value="1"/>
+    <STRING lang="ja" value="1"/>
+    <STRING lang="pt" value="1"/>
+    <STRING lang="pt_BR" value="1"/>
     <STRING lang="ru" value="1"/>
+    <STRING lang="sl" value="1"/>
   </ENTRY>
   <ENTRY id="Property.GALLERY_SHORTCUT_NAME">
+    <STRING lang="cs" value="Gallery"/>
+    <STRING lang="de" value="Gallery"/>
+    <STRING lang="es" value="Gallery"/>
+    <STRING lang="fr" value="Gallery"/>
+    <STRING lang="ja" value="Gallery"/>
+    <STRING lang="pt" value="Gallery"/>
+    <STRING lang="pt_BR" value="Gallery"/>
     <STRING lang="ru" value="Gallery"/>
-  </ENTRY>
-  <ENTRY id="Property.REGISTER_HTML">
-    <STRING lang="ru" value="1"/>
+    <STRING lang="sl" value="Gallery"/>
   </ENTRY>
   <ENTRY id="Property.Manufacturer">
+    <STRING lang="cs" value="Ascensio System SIA"/>
+    <STRING lang="de" value="Ascensio System SIA"/>
+    <STRING lang="es" value="Ascensio System SIA"/>
+    <STRING lang="fr" value="Ascensio System SIA"/>
+    <STRING lang="ja" value="Ascensio System SIA"/>
+    <STRING lang="pt" value="Ascensio System SIA"/>
+    <STRING lang="pt_BR" value="Ascensio System SIA"/>
     <STRING lang="ru" value="Ascensio System SIA"/>
+    <STRING lang="sl" value="Ascensio System SIA"/>
   </ENTRY>
   <ENTRY id="Property.MANUFACTURER_INSTALL_FOLDER">
+    <STRING lang="cs" value="ONLYOFFICE"/>
+    <STRING lang="de" value="ONLYOFFICE"/>
+    <STRING lang="es" value="ONLYOFFICE"/>
+    <STRING lang="fr" value="ONLYOFFICE"/>
+    <STRING lang="ja" value="ONLYOFFICE"/>
+    <STRING lang="pt" value="ONLYOFFICE"/>
+    <STRING lang="pt_BR" value="ONLYOFFICE"/>
     <STRING lang="ru" value="ONLYOFFICE"/>
+    <STRING lang="sl" value="ONLYOFFICE"/>
   </ENTRY>
   <ENTRY id="Property.MEDIA_SHORTCUT_NAME">
+    <STRING lang="cs" value="Media"/>
+    <STRING lang="de" value="Media"/>
+    <STRING lang="es" value="Media"/>
+    <STRING lang="fr" value="Media"/>
+    <STRING lang="ja" value="Media"/>
+    <STRING lang="pt" value="Media"/>
+    <STRING lang="pt_BR" value="Media"/>
     <STRING lang="ru" value="Media"/>
-  </ENTRY>
-  <ENTRY id="Property.REGISTER_ODP">
-    <STRING lang="ru" value="1"/>
-  </ENTRY>
-  <ENTRY id="Property.REGISTER_ODS">
-    <STRING lang="ru" value="1"/>
-  </ENTRY>
-  <ENTRY id="Property.REGISTER_ODT">
-    <STRING lang="ru" value="1"/>
-  </ENTRY>
-  <ENTRY id="Property.REGISTER_OFORM">
-    <STRING lang="ru" value="1"/>
-  </ENTRY>
-  <ENTRY id="Property.REGISTER_OTP">
-    <STRING lang="ru" value="1"/>
-  </ENTRY>
-  <ENTRY id="Property.REGISTER_OTS">
-    <STRING lang="ru" value="1"/>
-  </ENTRY>
-  <ENTRY id="Property.REGISTER_OTT">
-    <STRING lang="ru" value="1"/>
+    <STRING lang="sl" value="Media"/>
   </ENTRY>
   <ENTRY id="Property.PACKAGE_NAME">
+    <STRING lang="cs" value="PACKAGE_NAME"/>
+    <STRING lang="de" value="PACKAGE_NAME"/>
+    <STRING lang="es" value="PACKAGE_NAME"/>
+    <STRING lang="fr" value="PACKAGE_NAME"/>
+    <STRING lang="ja" value="PACKAGE_NAME"/>
+    <STRING lang="pt" value="PACKAGE_NAME"/>
+    <STRING lang="pt_BR" value="PACKAGE_NAME"/>
     <STRING lang="ru" value="PACKAGE_NAME"/>
-  </ENTRY>
-  <ENTRY id="Property.REGISTER_PDF">
-    <STRING lang="ru" value="1"/>
+    <STRING lang="sl" value="PACKAGE_NAME"/>
   </ENTRY>
   <ENTRY id="Property.PLAYER">
+    <STRING lang="cs" value="1"/>
+    <STRING lang="de" value="1"/>
+    <STRING lang="es" value="1"/>
+    <STRING lang="fr" value="1"/>
+    <STRING lang="ja" value="1"/>
+    <STRING lang="pt" value="1"/>
+    <STRING lang="pt_BR" value="1"/>
     <STRING lang="ru" value="1"/>
-  </ENTRY>
-  <ENTRY id="Property.REGISTER_POTX">
-    <STRING lang="ru" value="1"/>
-  </ENTRY>
-  <ENTRY id="Property.REGISTER_PPT">
-    <STRING lang="ru" value="1"/>
-  </ENTRY>
-  <ENTRY id="Property.REGISTER_PPTX">
-    <STRING lang="ru" value="1"/>
+    <STRING lang="sl" value="1"/>
   </ENTRY>
   <ENTRY id="Property.PRODUCT_INSTALL_FOLDER">
+    <STRING lang="cs" value="DesktopEditors"/>
+    <STRING lang="de" value="DesktopEditors"/>
+    <STRING lang="es" value="DesktopEditors"/>
+    <STRING lang="fr" value="DesktopEditors"/>
+    <STRING lang="ja" value="DesktopEditors"/>
+    <STRING lang="pt" value="DesktopEditors"/>
+    <STRING lang="pt_BR" value="DesktopEditors"/>
     <STRING lang="ru" value="DesktopEditors"/>
+    <STRING lang="sl" value="DesktopEditors"/>
   </ENTRY>
   <ENTRY id="Property.ProductName">
+    <STRING lang="cs" value="ONLYOFFICE Desktop Editors"/>
+    <STRING lang="de" value="ONLYOFFICE Desktop Editors"/>
+    <STRING lang="es" value="ONLYOFFICE Desktop Editors"/>
+    <STRING lang="fr" value="ONLYOFFICE Desktop Editors"/>
+    <STRING lang="ja" value="ONLYOFFICE Desktop Editors"/>
+    <STRING lang="pt" value="ONLYOFFICE Desktop Editors"/>
+    <STRING lang="pt_BR" value="ONLYOFFICE Desktop Editors"/>
     <STRING lang="ru" value="ONLYOFFICE Desktop Editors"/>
+    <STRING lang="sl" value="ONLYOFFICE Desktop Editors"/>
+  </ENTRY>
+  <ENTRY id="Property.REGISTER_CSV">
+    <STRING lang="cs" value="1"/>
+    <STRING lang="de" value="1"/>
+    <STRING lang="es" value="1"/>
+    <STRING lang="fr" value="1"/>
+    <STRING lang="ja" value="1"/>
+    <STRING lang="pt" value="1"/>
+    <STRING lang="pt_BR" value="1"/>
+    <STRING lang="ru" value="1"/>
+    <STRING lang="sl" value="1"/>
+  </ENTRY>
+  <ENTRY id="Property.REGISTER_DJVU">
+    <STRING lang="cs" value="1"/>
+    <STRING lang="de" value="1"/>
+    <STRING lang="es" value="1"/>
+    <STRING lang="fr" value="1"/>
+    <STRING lang="ja" value="1"/>
+    <STRING lang="pt" value="1"/>
+    <STRING lang="pt_BR" value="1"/>
+    <STRING lang="ru" value="1"/>
+    <STRING lang="sl" value="1"/>
+  </ENTRY>
+  <ENTRY id="Property.REGISTER_DOC">
+    <STRING lang="cs" value="1"/>
+    <STRING lang="de" value="1"/>
+    <STRING lang="es" value="1"/>
+    <STRING lang="fr" value="1"/>
+    <STRING lang="ja" value="1"/>
+    <STRING lang="pt" value="1"/>
+    <STRING lang="pt_BR" value="1"/>
+    <STRING lang="ru" value="1"/>
+    <STRING lang="sl" value="1"/>
+  </ENTRY>
+  <ENTRY id="Property.REGISTER_DOCX">
+    <STRING lang="cs" value="1"/>
+    <STRING lang="de" value="1"/>
+    <STRING lang="es" value="1"/>
+    <STRING lang="fr" value="1"/>
+    <STRING lang="ja" value="1"/>
+    <STRING lang="pt" value="1"/>
+    <STRING lang="pt_BR" value="1"/>
+    <STRING lang="ru" value="1"/>
+    <STRING lang="sl" value="1"/>
+  </ENTRY>
+  <ENTRY id="Property.REGISTER_DOCXF">
+    <STRING lang="cs" value="1"/>
+    <STRING lang="de" value="1"/>
+    <STRING lang="es" value="1"/>
+    <STRING lang="fr" value="1"/>
+    <STRING lang="ja" value="1"/>
+    <STRING lang="pt" value="1"/>
+    <STRING lang="pt_BR" value="1"/>
+    <STRING lang="ru" value="1"/>
+    <STRING lang="sl" value="1"/>
+  </ENTRY>
+  <ENTRY id="Property.REGISTER_DOTX">
+    <STRING lang="cs" value="1"/>
+    <STRING lang="de" value="1"/>
+    <STRING lang="es" value="1"/>
+    <STRING lang="fr" value="1"/>
+    <STRING lang="ja" value="1"/>
+    <STRING lang="pt" value="1"/>
+    <STRING lang="pt_BR" value="1"/>
+    <STRING lang="ru" value="1"/>
+    <STRING lang="sl" value="1"/>
+  </ENTRY>
+  <ENTRY id="Property.REGISTER_EPUB">
+    <STRING lang="cs" value="1"/>
+    <STRING lang="de" value="1"/>
+    <STRING lang="es" value="1"/>
+    <STRING lang="fr" value="1"/>
+    <STRING lang="ja" value="1"/>
+    <STRING lang="pt" value="1"/>
+    <STRING lang="pt_BR" value="1"/>
+    <STRING lang="ru" value="1"/>
+    <STRING lang="sl" value="1"/>
+  </ENTRY>
+  <ENTRY id="Property.REGISTER_FB2">
+    <STRING lang="cs" value="1"/>
+    <STRING lang="de" value="1"/>
+    <STRING lang="es" value="1"/>
+    <STRING lang="fr" value="1"/>
+    <STRING lang="ja" value="1"/>
+    <STRING lang="pt" value="1"/>
+    <STRING lang="pt_BR" value="1"/>
+    <STRING lang="ru" value="1"/>
+    <STRING lang="sl" value="1"/>
+  </ENTRY>
+  <ENTRY id="Property.REGISTER_HTML">
+    <STRING lang="cs" value="1"/>
+    <STRING lang="de" value="1"/>
+    <STRING lang="es" value="1"/>
+    <STRING lang="fr" value="1"/>
+    <STRING lang="ja" value="1"/>
+    <STRING lang="pt" value="1"/>
+    <STRING lang="pt_BR" value="1"/>
+    <STRING lang="ru" value="1"/>
+    <STRING lang="sl" value="1"/>
+  </ENTRY>
+  <ENTRY id="Property.REGISTER_ODP">
+    <STRING lang="cs" value="1"/>
+    <STRING lang="de" value="1"/>
+    <STRING lang="es" value="1"/>
+    <STRING lang="fr" value="1"/>
+    <STRING lang="ja" value="1"/>
+    <STRING lang="pt" value="1"/>
+    <STRING lang="pt_BR" value="1"/>
+    <STRING lang="ru" value="1"/>
+    <STRING lang="sl" value="1"/>
+  </ENTRY>
+  <ENTRY id="Property.REGISTER_ODS">
+    <STRING lang="cs" value="1"/>
+    <STRING lang="de" value="1"/>
+    <STRING lang="es" value="1"/>
+    <STRING lang="fr" value="1"/>
+    <STRING lang="ja" value="1"/>
+    <STRING lang="pt" value="1"/>
+    <STRING lang="pt_BR" value="1"/>
+    <STRING lang="ru" value="1"/>
+    <STRING lang="sl" value="1"/>
+  </ENTRY>
+  <ENTRY id="Property.REGISTER_ODT">
+    <STRING lang="cs" value="1"/>
+    <STRING lang="de" value="1"/>
+    <STRING lang="es" value="1"/>
+    <STRING lang="fr" value="1"/>
+    <STRING lang="ja" value="1"/>
+    <STRING lang="pt" value="1"/>
+    <STRING lang="pt_BR" value="1"/>
+    <STRING lang="ru" value="1"/>
+    <STRING lang="sl" value="1"/>
+  </ENTRY>
+  <ENTRY id="Property.REGISTER_OFORM">
+    <STRING lang="cs" value="1"/>
+    <STRING lang="de" value="1"/>
+    <STRING lang="es" value="1"/>
+    <STRING lang="fr" value="1"/>
+    <STRING lang="ja" value="1"/>
+    <STRING lang="pt" value="1"/>
+    <STRING lang="pt_BR" value="1"/>
+    <STRING lang="ru" value="1"/>
+    <STRING lang="sl" value="1"/>
+  </ENTRY>
+  <ENTRY id="Property.REGISTER_OTP">
+    <STRING lang="cs" value="1"/>
+    <STRING lang="de" value="1"/>
+    <STRING lang="es" value="1"/>
+    <STRING lang="fr" value="1"/>
+    <STRING lang="ja" value="1"/>
+    <STRING lang="pt" value="1"/>
+    <STRING lang="pt_BR" value="1"/>
+    <STRING lang="ru" value="1"/>
+    <STRING lang="sl" value="1"/>
+  </ENTRY>
+  <ENTRY id="Property.REGISTER_OTS">
+    <STRING lang="cs" value="1"/>
+    <STRING lang="de" value="1"/>
+    <STRING lang="es" value="1"/>
+    <STRING lang="fr" value="1"/>
+    <STRING lang="ja" value="1"/>
+    <STRING lang="pt" value="1"/>
+    <STRING lang="pt_BR" value="1"/>
+    <STRING lang="ru" value="1"/>
+    <STRING lang="sl" value="1"/>
+  </ENTRY>
+  <ENTRY id="Property.REGISTER_OTT">
+    <STRING lang="cs" value="1"/>
+    <STRING lang="de" value="1"/>
+    <STRING lang="es" value="1"/>
+    <STRING lang="fr" value="1"/>
+    <STRING lang="ja" value="1"/>
+    <STRING lang="pt" value="1"/>
+    <STRING lang="pt_BR" value="1"/>
+    <STRING lang="ru" value="1"/>
+    <STRING lang="sl" value="1"/>
+  </ENTRY>
+  <ENTRY id="Property.REGISTER_PDF">
+    <STRING lang="cs" value="1"/>
+    <STRING lang="de" value="1"/>
+    <STRING lang="es" value="1"/>
+    <STRING lang="fr" value="1"/>
+    <STRING lang="ja" value="1"/>
+    <STRING lang="pt" value="1"/>
+    <STRING lang="pt_BR" value="1"/>
+    <STRING lang="ru" value="1"/>
+    <STRING lang="sl" value="1"/>
+  </ENTRY>
+  <ENTRY id="Property.REGISTER_POTX">
+    <STRING lang="cs" value="1"/>
+    <STRING lang="de" value="1"/>
+    <STRING lang="es" value="1"/>
+    <STRING lang="fr" value="1"/>
+    <STRING lang="ja" value="1"/>
+    <STRING lang="pt" value="1"/>
+    <STRING lang="pt_BR" value="1"/>
+    <STRING lang="ru" value="1"/>
+    <STRING lang="sl" value="1"/>
+  </ENTRY>
+  <ENTRY id="Property.REGISTER_PPT">
+    <STRING lang="cs" value="1"/>
+    <STRING lang="de" value="1"/>
+    <STRING lang="es" value="1"/>
+    <STRING lang="fr" value="1"/>
+    <STRING lang="ja" value="1"/>
+    <STRING lang="pt" value="1"/>
+    <STRING lang="pt_BR" value="1"/>
+    <STRING lang="ru" value="1"/>
+    <STRING lang="sl" value="1"/>
+  </ENTRY>
+  <ENTRY id="Property.REGISTER_PPTX">
+    <STRING lang="cs" value="1"/>
+    <STRING lang="de" value="1"/>
+    <STRING lang="es" value="1"/>
+    <STRING lang="fr" value="1"/>
+    <STRING lang="ja" value="1"/>
+    <STRING lang="pt" value="1"/>
+    <STRING lang="pt_BR" value="1"/>
+    <STRING lang="ru" value="1"/>
+    <STRING lang="sl" value="1"/>
   </ENTRY>
   <ENTRY id="Property.REGISTER_RTF">
+    <STRING lang="cs" value="1"/>
+    <STRING lang="de" value="1"/>
+    <STRING lang="es" value="1"/>
+    <STRING lang="fr" value="1"/>
+    <STRING lang="ja" value="1"/>
+    <STRING lang="pt" value="1"/>
+    <STRING lang="pt_BR" value="1"/>
     <STRING lang="ru" value="1"/>
-  </ENTRY>
-  <ENTRY id="Property.SHORTCUT_FOLDER_NAME">
-    <STRING lang="ru" value="ONLYOFFICE"/>
+    <STRING lang="sl" value="1"/>
   </ENTRY>
   <ENTRY id="Property.REGISTER_TXT">
+    <STRING lang="cs" value="1"/>
+    <STRING lang="de" value="1"/>
+    <STRING lang="es" value="1"/>
+    <STRING lang="fr" value="1"/>
+    <STRING lang="ja" value="1"/>
+    <STRING lang="pt" value="1"/>
+    <STRING lang="pt_BR" value="1"/>
     <STRING lang="ru" value="1"/>
-  </ENTRY>
-  <ENTRY id="Property.UNINSTALL_PREV_ERROR_TEXT">
-    <STRING lang="ru" value="Для установки [|ProductName] необходимо удалить предыдущую версию."/>
-  </ENTRY>
-  <ENTRY id="Property.UNINSTALL_PREV_MSGBOX">
-    <STRING lang="ru" value="Обнаружена предыдущая версия [|ProductName], нажмите кнопку &apos;OK&apos; чтобы удалить её, или &apos;Отмена&apos; чтобы выйти из программы инсталляции."/>
+    <STRING lang="sl" value="1"/>
   </ENTRY>
   <ENTRY id="Property.REGISTER_XLS">
+    <STRING lang="cs" value="1"/>
+    <STRING lang="de" value="1"/>
+    <STRING lang="es" value="1"/>
+    <STRING lang="fr" value="1"/>
+    <STRING lang="ja" value="1"/>
+    <STRING lang="pt" value="1"/>
+    <STRING lang="pt_BR" value="1"/>
     <STRING lang="ru" value="1"/>
+    <STRING lang="sl" value="1"/>
   </ENTRY>
   <ENTRY id="Property.REGISTER_XLSX">
+    <STRING lang="cs" value="1"/>
+    <STRING lang="de" value="1"/>
+    <STRING lang="es" value="1"/>
+    <STRING lang="fr" value="1"/>
+    <STRING lang="ja" value="1"/>
+    <STRING lang="pt" value="1"/>
+    <STRING lang="pt_BR" value="1"/>
     <STRING lang="ru" value="1"/>
+    <STRING lang="sl" value="1"/>
   </ENTRY>
   <ENTRY id="Property.REGISTER_XLTX">
+    <STRING lang="cs" value="1"/>
+    <STRING lang="de" value="1"/>
+    <STRING lang="es" value="1"/>
+    <STRING lang="fr" value="1"/>
+    <STRING lang="ja" value="1"/>
+    <STRING lang="pt" value="1"/>
+    <STRING lang="pt_BR" value="1"/>
     <STRING lang="ru" value="1"/>
+    <STRING lang="sl" value="1"/>
   </ENTRY>
   <ENTRY id="Property.REGISTER_XML">
+    <STRING lang="cs" value="1"/>
+    <STRING lang="de" value="1"/>
+    <STRING lang="es" value="1"/>
+    <STRING lang="fr" value="1"/>
+    <STRING lang="ja" value="1"/>
+    <STRING lang="pt" value="1"/>
+    <STRING lang="pt_BR" value="1"/>
     <STRING lang="ru" value="1"/>
+    <STRING lang="sl" value="1"/>
   </ENTRY>
   <ENTRY id="Property.REGISTER_XPS">
+    <STRING lang="cs" value="1"/>
+    <STRING lang="de" value="1"/>
+    <STRING lang="es" value="1"/>
+    <STRING lang="fr" value="1"/>
+    <STRING lang="ja" value="1"/>
+    <STRING lang="pt" value="1"/>
+    <STRING lang="pt_BR" value="1"/>
     <STRING lang="ru" value="1"/>
+    <STRING lang="sl" value="1"/>
+  </ENTRY>
+  <ENTRY id="Property.SHORTCUT_FOLDER_NAME">
+    <STRING lang="cs" value="ONLYOFFICE"/>
+    <STRING lang="de" value="ONLYOFFICE"/>
+    <STRING lang="es" value="ONLYOFFICE"/>
+    <STRING lang="fr" value="ONLYOFFICE"/>
+    <STRING lang="ja" value="ONLYOFFICE"/>
+    <STRING lang="pt" value="ONLYOFFICE"/>
+    <STRING lang="pt_BR" value="ONLYOFFICE"/>
+    <STRING lang="ru" value="ONLYOFFICE"/>
+    <STRING lang="sl" value="ONLYOFFICE"/>
+  </ENTRY>
+  <ENTRY id="Property.UNINSTALL_PREV_ERROR_TEXT">
+    <STRING lang="cs" value="To install [|ProductName], the previous version must be uninstalled."/>
+    <STRING lang="de" value="To install [|ProductName], the previous version must be uninstalled."/>
+    <STRING lang="es" value="To install [|ProductName], the previous version must be uninstalled."/>
+    <STRING lang="fr" value="To install [|ProductName], the previous version must be uninstalled."/>
+    <STRING lang="ja" value="To install [|ProductName], the previous version must be uninstalled."/>
+    <STRING lang="pt" value="To install [|ProductName], the previous version must be uninstalled."/>
+    <STRING lang="pt_BR" value="To install [|ProductName], the previous version must be uninstalled."/>
+    <STRING lang="ru" value="Для установки [|ProductName] необходимо удалить предыдущую версию."/>
+    <STRING lang="sl" value="To install [|ProductName], the previous version must be uninstalled."/>
+  </ENTRY>
+  <ENTRY id="Property.UNINSTALL_PREV_MSGBOX">
+    <STRING lang="cs" value="The previous version of [|ProductName] detected, please click &apos;OK&apos; button to uninstall it, or &apos;Cancel&apos; to quit setup."/>
+    <STRING lang="de" value="The previous version of [|ProductName] detected, please click &apos;OK&apos; button to uninstall it, or &apos;Cancel&apos; to quit setup."/>
+    <STRING lang="es" value="The previous version of [|ProductName] detected, please click &apos;OK&apos; button to uninstall it, or &apos;Cancel&apos; to quit setup."/>
+    <STRING lang="fr" value="The previous version of [|ProductName] detected, please click &apos;OK&apos; button to uninstall it, or &apos;Cancel&apos; to quit setup."/>
+    <STRING lang="ja" value="The previous version of [|ProductName] detected, please click &apos;OK&apos; button to uninstall it, or &apos;Cancel&apos; to quit setup."/>
+    <STRING lang="pt" value="The previous version of [|ProductName] detected, please click &apos;OK&apos; button to uninstall it, or &apos;Cancel&apos; to quit setup."/>
+    <STRING lang="pt_BR" value="The previous version of [|ProductName] detected, please click &apos;OK&apos; button to uninstall it, or &apos;Cancel&apos; to quit setup."/>
+    <STRING lang="ru" value="Обнаружена предыдущая версия [|ProductName], нажмите кнопку &apos;OK&apos; чтобы удалить её, или &apos;Отмена&apos; чтобы выйти из программы инсталляции."/>
+    <STRING lang="sl" value="The previous version of [|ProductName] detected, please click &apos;OK&apos; button to uninstall it, or &apos;Cancel&apos; to quit setup."/>
   </ENTRY>
 </DICTIONARY>
