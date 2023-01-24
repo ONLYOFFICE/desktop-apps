@@ -583,6 +583,8 @@ public:
 
                 switch(dialog->printRange()) {
                 case QPrintDialog::AllPages:
+                    page_ranges.append(PageRanges(1, pagescount));
+                    break;
                 case QPrintDialog::PageRange:
                     page_ranges = dialog->getPageRanges();
                     break;
