@@ -134,6 +134,9 @@ l10n.en = {
     settAUpdateMode: 'Autoupdate mode',
     settOptAUpdateSilent: 'Silent mode',
     settOptAUpdateAsk: 'Ask to download',
+    updateDownloadFinished: 'Downloading finished. Click to install',
+    updateDownloadCanceled: 'Downloading canceled',
+    updateDownloadProgress: 'Downloading $1%. Click to stop',
 }
 
 
