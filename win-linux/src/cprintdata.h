@@ -50,7 +50,7 @@ public:
     auto pageSize() const -> QPageSize;
     auto pageOrientation() const -> QPageLayout::Orientation;
     auto pagesCount() const -> int;
-    auto pageCurent() const -> int;
+    auto pageCurrent() const -> int;
     auto pageFrom() const -> int;
     auto pageTo() const -> int;
     auto printRange() const -> QPrintDialog::PrintRange;

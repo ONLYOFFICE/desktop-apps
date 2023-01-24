@@ -239,7 +239,7 @@ auto CPrintData::pagesCount() const -> int
     return m_priv->pages_count;
 }
 
-auto CPrintData::pageCurent() const -> int
+auto CPrintData::pageCurrent() const -> int
 {
     return m_priv->current_page;
 }

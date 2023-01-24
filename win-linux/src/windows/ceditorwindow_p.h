@@ -500,7 +500,7 @@ public:
 
     void onDocumentPrint(void * data)  override
     {
-        onDocumentPrint(AscAppManager::printData().pageCurent(), AscAppManager::printData().pagesCount());
+        onDocumentPrint(AscAppManager::printData().pageCurrent(), AscAppManager::printData().pagesCount());
     }
 
     void onDocumentPrint(int currentpage, uint pagescount) override

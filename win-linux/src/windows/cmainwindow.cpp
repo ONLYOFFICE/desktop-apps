@@ -1095,7 +1095,7 @@ void CMainWindow::onDocumentPrint(void * opts)
     CCefView * pView = AscAppManager::getInstance().GetViewById(AscAppManager::printData().viewId());
 
     int pagesCount = AscAppManager::printData().pagesCount(),
-        currentPage = AscAppManager::printData().pageCurent();
+        currentPage = AscAppManager::printData().pageCurrent();
 
 
     if (pView && !(pagesCount < 1)) {
