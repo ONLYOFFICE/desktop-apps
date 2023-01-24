@@ -101,4 +101,7 @@ l10n.zh_CN = {
     settAUpdateMode: '自动更新模式',
     settOptAUpdateSilent: '无声模式',
     settOptAUpdateAsk: '下载前先询问',
+    updateDownloadFinished: '下载完成。点击安装',
+    updateDownloadCanceled: '下载已取消',
+    updateDownloadProgress: '正在下载 $1%。点击停止',
 }

@@ -101,4 +101,7 @@ l10n.es = {
     settAUpdateMode: 'Modo de actualización automática',
     settOptAUpdateSilent: 'Modo silencioso',
     settOptAUpdateAsk: 'Solicitar descarga',
+    updateDownloadFinished: 'Descarga finalizada. Haga clic para instalar',
+    updateDownloadCanceled: 'Descarga cancelada',
+    updateDownloadProgress: 'Descargando $1%. Haga clic para detener',
 }

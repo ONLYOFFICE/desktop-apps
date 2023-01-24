@@ -101,4 +101,7 @@ l10n.ru = {
     settAUpdateMode: 'Автообновление',
     settOptAUpdateSilent: 'Тихий режим',
     settOptAUpdateAsk: 'Спрашивать перед загрузкой',
+    updateDownloadFinished: 'Загрузка завершена. Нажмите, чтобы установить',
+    updateDownloadCanceled: 'Загрузка отменена',
+    updateDownloadProgress: 'Загрузка $1%. Нажмите, чтобы остановить',
 }
