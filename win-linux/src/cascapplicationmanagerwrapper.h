@@ -195,6 +195,7 @@ public:
     static void             destroyViewer(int id);
     static void             destroyViewer(QCefView * v);
 
+    static void             closeAppWindows();      // TODO: combine with launchAppClose
     static void             cancelClose();
 
     uint logoutCount(const std::wstring& portal) const;

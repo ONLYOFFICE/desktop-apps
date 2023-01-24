@@ -1193,6 +1193,24 @@ void CAscApplicationManagerWrapper::gotoMainWindow(size_t src)
     });
 }
 
+void CAscApplicationManagerWrapper::closeAppWindows()
+{
+    APP_CAST(_app)
+
+    vector<size_t>::const_iterator it = _app.m_vecEditors.begin();
+    if ( it != _app.m_vecEditors.end() ) {
+        CEditorWindow * _editor = reinterpret_cast<CEditorWindow *>(*it);
+
+        if ( _editor ) {
+            _app.closeQueue().enter(sWinTag{CLOSE_QUEUE_WIN_TYPE_EDITOR, size_t(_editor)});
+        }
+    }
+
+    if ( _app.m_pMainWindow && _app.m_pMainWindow->isVisible() ) {
+        _app.closeQueue().enter(sWinTag{CLOSE_QUEUE_WIN_TYPE_MAIN, size_t(_app.m_pMainWindow)});
+    }
+}
+
 void CAscApplicationManagerWrapper::launchAppClose()
 {
     if ( canAppClose() ) {
