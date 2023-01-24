@@ -101,4 +101,7 @@ l10n.pt_BR = {
     settAUpdateMode: 'Modo de atualização automática',
     settOptAUpdateSilent: 'Modo silencioso',
     settOptAUpdateAsk: 'Pedir para baixar',
+    updateDownloadFinished: 'Download finalizado. Clique para instalar',
+    updateDownloadCanceled: 'Download cancelado',
+    updateDownloadProgress: 'Baixando $1%. Clique para parar',
 }

@@ -101,4 +101,7 @@ l10n.de = {
     settAUpdateMode: 'utomatische Aktualisierung',
     settOptAUpdateSilent: 'Lautlos',
     settOptAUpdateAsk: 'Anfrage zum Herunterladen',
+    updateDownloadFinished: 'Herunterladen abgeschlossen. Für Installation hier klicken',
+    updateDownloadCanceled: 'Herunterladen abgebrochen',
+    updateDownloadProgress: '$1% wird heruntergeladen. Zum Abbrechen hier klicken',
 }

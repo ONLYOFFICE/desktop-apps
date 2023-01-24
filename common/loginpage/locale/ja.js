@@ -101,4 +101,7 @@ l10n.ja = {
     settAUpdateMode: '自動更新モード',
     settOptAUpdateSilent: 'サイレントモード',
     settOptAUpdateAsk: 'ダウンロードを依頼する',
+    updateDownloadFinished: 'ダウンロードが完了しました。クリックしてインストールしてください',
+    updateDownloadCanceled: 'ダウンロードがキャンセルされました',
+    updateDownloadProgress: 'ダウンロードは$1%です。停止するにはクリックしてください',
 }

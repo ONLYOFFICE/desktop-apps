@@ -101,4 +101,7 @@ l10n.it_IT = {
     settAUpdateMode: 'Modalità aggiornamento automatico',
     settOptAUpdateSilent: 'Modalità silenziosa',
     settOptAUpdateAsk: 'Richiedere di scaricare',
+    updateDownloadFinished: 'Download completato. Clicca per installare',
+    updateDownloadCanceled: 'Download annullato',
+    updateDownloadProgress: 'Scaricamento $ 1%. Clicca per interrompere',
 }

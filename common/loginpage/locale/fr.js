@@ -101,4 +101,7 @@ l10n.fr = {
     settAUpdateMode: 'Mode de mise à jour automatique',
     settOptAUpdateSilent: 'Mode silencieux',
     settOptAUpdateAsk: 'Demander à télécharger',
+    updateDownloadFinished: 'Téléchargement terminé. Cliquez pour installer',
+    updateDownloadCanceled: 'Téléchargement annulé',
+    updateDownloadProgress: 'Téléchargement de $1%. Cliquez pour arrêter',
 }
