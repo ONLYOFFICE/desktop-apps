@@ -123,7 +123,10 @@ CAscApplicationManagerWrapper::~CAscApplicationManagerWrapper()
         m_pMainWindow->deleteLater();
 #endif
     }
-
+#if defined (_UPDMODULE) && defined (_WIN32)
+    // Start update installation
+    m_pUpdateManager->handleAppClose();
+#endif
 //    m_vecEditors.clear();
 }
 
@@ -1198,8 +1201,9 @@ void CAscApplicationManagerWrapper::closeAppWindows()
     APP_CAST(_app)
 
     vector<size_t>::const_iterator it = _app.m_vecEditors.begin();
-    if ( it != _app.m_vecEditors.end() ) {
+    while ( it != _app.m_vecEditors.end() ) {
         _app.closeQueue().enter(sWinTag{CLOSE_QUEUE_WIN_TYPE_EDITOR, size_t(*it)});
+        it++;
     }
 
     if ( _app.m_pMainWindow && _app.m_pMainWindow->isVisible() ) {
@@ -1225,10 +1229,6 @@ void CAscApplicationManagerWrapper::launchAppClose()
                     AscAppManager::cancelClose();
             }
         } else {
-#if defined (_UPDMODULE) && defined (_WIN32)
-            // Start update installation
-            m_pUpdateManager->handleAppClose();
-#endif
             DestroyCefView(-1);
         }
     } else {
@@ -2051,7 +2051,7 @@ void CAscApplicationManagerWrapper::showStartInstallMessage()
     switch (result) {
     case WinDlg::DLG_RESULT_INSTALL: {
         m_pUpdateManager->scheduleRestartForUpdate();
-        mainWindow()->close();
+        closeAppWindows();
         break;
     }
     case WinDlg::DLG_RESULT_SKIP: {
