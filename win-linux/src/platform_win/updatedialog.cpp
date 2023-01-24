@@ -33,12 +33,12 @@
 #include <QTextDocumentFragment>
 #include "updatedialog.h"
 #include "platform_win/resource.h"
+#include "defines.h"
 #include <string.h>
 #include <Windows.h>
 #include <CommCtrl.h>
 #include <QTimer>
 
-#define RELEASE_NOTES "https://github.com/ONLYOFFICE/DesktopEditors/blob/master/CHANGELOG.md"
 #define toWCharPtr(qstr) _wcsdup(qstr.toStdWString().c_str())
 #define TEXT_SKIP        toWCharPtr(QObject::tr("Skip this version"))
 #define TEXT_REMIND      toWCharPtr(QObject::tr("Remind me later"))
@@ -90,7 +90,7 @@ int WinDlg::showDialog(QWidget *parent,
     std::wstring lpCaption = QString("  %1").arg(QObject::tr("Software Update")).toStdWString();
     std::wstring lpText = QTextDocumentFragment::fromHtml(msg).toPlainText().toStdWString();
     std::wstring lpContent = QString("%1\n\n<A HREF=\"%2\">%3</A>")
-            .arg(content, RELEASE_NOTES, QObject::tr("Release notes")).toStdWString();
+            .arg(content, QString(RELEASE_NOTES), QObject::tr("Release notes")).toStdWString();
     HWND parent_hwnd = (parent) ? (HWND)parent->winId() : NULL;
 
     int msgboxID = 0;

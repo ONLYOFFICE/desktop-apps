@@ -54,7 +54,6 @@
 #endif
 
 #define CHECK_ON_STARTUP_MS 9000
-#define FILE_PREFIX QString("onlyoffice_")
 #define CMD_ARGUMENT_CHECK_URL L"--updates-appcast-url"
 #ifndef URL_APPCAST_UPDATES
 # define URL_APPCAST_UPDATES ""
