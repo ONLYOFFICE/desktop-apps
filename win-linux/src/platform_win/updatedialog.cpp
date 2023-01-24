@@ -89,8 +89,9 @@ int WinDlg::showDialog(QWidget *parent,
 {
     std::wstring lpCaption = QString("  %1").arg(QObject::tr("Software Update")).toStdWString();
     std::wstring lpText = QTextDocumentFragment::fromHtml(msg).toPlainText().toStdWString();
-    std::wstring lpContent = QString("%1\n\n<A HREF=\"%2\">%3</A>")
-            .arg(content, QString(RELEASE_NOTES), QObject::tr("Release notes")).toStdWString();
+    QString linkText = !QString(RELEASE_NOTES).isEmpty() ?
+                QString("\n<A HREF=\"%1\">%2</A>").arg(QString(RELEASE_NOTES), QObject::tr("Release notes")) : "";
+    std::wstring lpContent = QString("%1\n%2").arg(content, linkText).toStdWString();
     HWND parent_hwnd = (parent) ? (HWND)parent->winId() : NULL;
 
     int msgboxID = 0;
