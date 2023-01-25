@@ -575,9 +575,17 @@ public:
                 QVector<PageRanges> page_ranges;
 
 #ifdef Q_OS_LINUX
-                if ( !AscAppManager::printData().isQuickPrint() && printer->outputFormat() == QPrinter::PdfFormat ) {
-                    info.setFile(printer->outputFileName());
-                    Utils::keepLastPath(LOCAL_PATH_SAVE, info.absolutePath());
+                if ( printer->outputFormat() == QPrinter::PdfFormat ) {
+                    if ( !AscAppManager::printData().isQuickPrint() ) {
+                        info.setFile(printer->outputFileName());
+                        Utils::keepLastPath(LOCAL_PATH_SAVE, info.absolutePath());
+                    }
+                } else {
+                    if ( AscAppManager::printData().isQuickPrint() && !printer->outputFileName().isEmpty() ) {
+                        info.setFile(printer->outputFileName());
+                        if ( info.suffix() == "pdf" )
+                            printer->setOutputFileName("");
+                    }
                 }
 #endif
 
