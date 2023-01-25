@@ -30,6 +30,16 @@
  *
  */
 
+#if defined _M_IX86
+# pragma comment(linker, "/manifestdependency:\"type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' processorArchitecture='x86' publicKeyToken='6595b64144ccf1df' language='*'\"")
+#elif defined _M_IA64
+# pragma comment(linker, "/manifestdependency:\"type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' processorArchitecture='ia64' publicKeyToken='6595b64144ccf1df' language='*'\"")
+#elif defined _M_X64
+# pragma comment(linker, "/manifestdependency:\"type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' processorArchitecture='amd64' publicKeyToken='6595b64144ccf1df' language='*'\"")
+#else
+# pragma comment(linker, "/manifestdependency:\"type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' processorArchitecture='*' publicKeyToken='6595b64144ccf1df' language='*'\"")
+#endif
+
 #include <QTextDocumentFragment>
 #include "updatedialog.h"
 #include "platform_win/resource.h"
@@ -38,6 +48,7 @@
 #include <Windows.h>
 #include <CommCtrl.h>
 #include <QTimer>
+#include "clogger.h"
 
 #define toWCharPtr(qstr) _wcsdup(qstr.toStdWString().c_str())
 #define TEXT_SKIP        toWCharPtr(QObject::tr("Skip this version"))
@@ -157,6 +168,7 @@ int WinDlg::showDialog(QWidget *parent,
     config.pszContent         = lpContent.c_str();
 //    config.cxWidth            = 240;
 
+    CLogger::log(QString("%1 %2").arg(Q_FUNC_INFO, QString::number(__LINE__)));
     TaskDialogIndirect(&config, &msgboxID, NULL, NULL);
     for (int i = 0; i < (int)cButtons; i++)
         free((void*)pButtons[i].pszButtonText);
