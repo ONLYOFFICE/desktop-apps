@@ -31,7 +31,7 @@
  */
 
 //#if defined _M_IX86
-# pragma comment(linker, "/manifestdependency:\"type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' processorArchitecture='*' publicKeyToken='6595b64144ccf1df' language='*'\"")
+# pragma comment(linker, "\"/manifestdependency:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' processorArchitecture='*' publicKeyToken='6595b64144ccf1df' language='*'\"")
 //#elif defined _M_IA64
 //# pragma comment(linker, "/manifestdependency:\"type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' processorArchitecture='ia64' publicKeyToken='6595b64144ccf1df' language='*'\"")
 //#elif defined _M_X64
@@ -46,7 +46,7 @@
 #include "defines.h"
 #include <string.h>
 #include <Windows.h>
-#include <CommCtrl.h>
+#include <commctrl.h>
 #include <QTimer>
 #include "clogger.h"
 
