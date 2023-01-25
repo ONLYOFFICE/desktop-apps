@@ -46,7 +46,7 @@
 #include "defines.h"
 #include <string.h>
 #include <Windows.h>
-#include <CommCtrl.h>
+#include <commctrl.h>
 #include <QTimer>
 #include "clogger.h"
 
