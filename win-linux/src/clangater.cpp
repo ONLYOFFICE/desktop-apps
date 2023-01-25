@@ -126,7 +126,7 @@ private:
         ,{"pt-PT", "Português (Portugal)"}
         ,{"pl-PL", "Polski"}
         ,{"zh-CN", "中文"}
-//        ,{"zh-HK", "Chinese (Traditional)"}
+        ,{"zh-HK", "Chinese (Traditional)"}
         ,{"ca-ES", "Catalan"}
         ,{"da-DK", "Dansk"}
         ,{"el-GR", "Ελληνικά"}
