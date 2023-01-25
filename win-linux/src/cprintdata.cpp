@@ -106,7 +106,12 @@ public:
     auto init(NSEditorApi::CAscPrintEnd * data) -> void
     {
         is_quick = false;
-        paper_width = paper_height = 0;
+
+        QPageSize def_size{QPageSize::A4};
+        QSizeF paper_size = def_size.size(QPageSize::Millimeter);
+        paper_width = paper_size.width();
+        paper_height = paper_size.height();
+        size_preset = def_size.name();
 
         pages_count = data->get_PagesCount();
         current_page = data->get_CurrentPage();
@@ -143,7 +148,7 @@ auto CPrintData::printerInfo() const -> QPrinterInfo
             QPrinterInfo info{QPrinterInfo::printerInfo(last_printer_name)};
             if ( !info.isNull() )
                 return info;
-        }
+        } else return QPrinterInfo();
 
         return QPrinterInfo::defaultPrinter();
     }
@@ -234,7 +239,7 @@ auto CPrintData::pagesCount() const -> int
     return m_priv->pages_count;
 }
 
-auto CPrintData::pageCurent() const -> int
+auto CPrintData::pageCurrent() const -> int
 {
     return m_priv->current_page;
 }

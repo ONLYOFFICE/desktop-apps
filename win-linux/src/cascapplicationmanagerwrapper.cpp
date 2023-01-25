@@ -16,6 +16,7 @@
 
 #include "cstyletweaks.h"
 #include "defines.h"
+#include "version.h"
 #include "components/cfiledialog.h"
 #include "utils.h"
 #include "common/Types.h"
@@ -31,6 +32,9 @@
 # include <io.h>
 # include <VersionHelpers.h>
 # include "platform_win/singleapplication.h"
+# ifdef _UPDMODULE
+#  include "platform_win/updatedialog.h"
+# endif
 #else
 # include <unistd.h>
 # include "platform_linux/singleapplication.h"
@@ -119,7 +123,10 @@ CAscApplicationManagerWrapper::~CAscApplicationManagerWrapper()
         m_pMainWindow->deleteLater();
 #endif
     }
-
+#if defined (_UPDMODULE) && defined (_WIN32)
+    // Start update installation
+    m_pUpdateManager->handleAppClose();
+#endif
 //    m_vecEditors.clear();
 }
 
@@ -661,11 +668,19 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
         default:
             break;
         }
+
+        break;
     }
 
     case ASC_MENU_EVENT_TYPE_CEF_ONFULLSCREENENTER:
     case ASC_MENU_EVENT_TYPE_CEF_ONFULLSCREENLEAVE: {
         static int fs_view_id = -1;
+
+        if ( !m_winsReporter.empty() &&
+                m_winsReporter.find(event->m_nSenderId) != m_winsReporter.end() )
+        {
+            break;
+        }
 
         if ( event->m_nType == ASC_MENU_EVENT_TYPE_CEF_ONFULLSCREENENTER ) {
             if (  fs_view_id < 0 ) {
@@ -1181,6 +1196,21 @@ void CAscApplicationManagerWrapper::gotoMainWindow(size_t src)
     });
 }
 
+void CAscApplicationManagerWrapper::closeAppWindows()
+{
+    APP_CAST(_app)
+
+    vector<size_t>::const_iterator it = _app.m_vecEditors.begin();
+    while ( it != _app.m_vecEditors.end() ) {
+        _app.closeQueue().enter(sWinTag{CLOSE_QUEUE_WIN_TYPE_EDITOR, size_t(*it)});
+        it++;
+    }
+
+    if ( _app.m_pMainWindow && _app.m_pMainWindow->isVisible() ) {
+        _app.closeQueue().enter(sWinTag{CLOSE_QUEUE_WIN_TYPE_MAIN, size_t(_app.m_pMainWindow)});
+    }
+}
+
 void CAscApplicationManagerWrapper::launchAppClose()
 {
     if ( canAppClose() ) {
@@ -1199,10 +1229,6 @@ void CAscApplicationManagerWrapper::launchAppClose()
                     AscAppManager::cancelClose();
             }
         } else {
-#if defined (_UPDMODULE) && defined (_WIN32)
-            // Start update installation
-            m_pUpdateManager->handleAppClose();
-#endif
             DestroyCefView(-1);
         }
     } else {
@@ -1950,16 +1976,34 @@ void CAscApplicationManagerWrapper::showUpdateMessage(bool error, bool updateExi
         auto msg = [=]() {
             gotoMainWindow();
             QTimer::singleShot(100, this, [=](){
-                int res = CMessage::showMessage(mainWindow()->handle(),
-                                                tr("Do you want to install a new version %1 of the program?").arg(version),
-                                                MsgType::MSG_INFO, MsgBtns::mbYesDefSkipNo);
-                switch (res) {
-                case MODAL_RESULT_YES:
-#ifdef Q_OS_WIN
+# ifdef _WIN32
+                int result = WinDlg::showDialog(mainWindow()->handle(),
+                                    tr("A new version of %1 is available!").arg(QString(WINDOW_NAME)),
+                                    tr("%1 %2 is now available (you have %3). "
+                                       "Would you like to download it now?").arg(QString(WINDOW_NAME),
+                                                                                m_pUpdateManager->getVersion(),
+                                                                                QString(VER_FILEVERSION_STR)),
+                                    WinDlg::DlgBtns::mbSkipRemindDownload);
+
+                switch (result) {
+                case WinDlg::DLG_RESULT_DOWNLOAD:
                     m_pUpdateManager->loadUpdates();
-#else
+                    break;
+                case WinDlg::DLG_RESULT_SKIP: {
+                    m_pUpdateManager->skipVersion();
+                    AscAppManager::sendCommandTo(0, "updates:checking", "{\"version\":\"no\"}");
+                    break;
+                }
+                default:
+                    break;
+                }
+# else
+                    int res = CMessage::showMessage(mainWindow()->handle(),
+                                                    tr("Do you want to install a new version %1 of the program?").arg(version),
+                                                    MsgType::MSG_INFO, MsgBtns::mbYesDefSkipNo);
+                    switch (res) {
+                    case MODAL_RESULT_YES:
                     QDesktopServices::openUrl(QUrl(DOWNLOAD_PAGE, QUrl::TolerantMode));
-#endif
                     break;
                 case MODAL_RESULT_SKIP: {
                     m_pUpdateManager->skipVersion();
@@ -1969,6 +2013,7 @@ void CAscApplicationManagerWrapper::showUpdateMessage(bool error, bool updateExi
                 default:
                     break;
                 }
+# endif
             });
         };
 
@@ -1998,18 +2043,20 @@ void CAscApplicationManagerWrapper::showStartInstallMessage()
 {
     gotoMainWindow();
     AscAppManager::sendCommandTo(0, "updates:download", "{\"progress\":\"done\"}");
-    int res = CMessage::showMessage(mainWindow()->handle(),
-                                    tr("Do you want to install a new version of the program?\n"
-                                       "To continue the installation, you must to close current session."),
-                                    MsgType::MSG_INFO, MsgBtns::mbYesDefSkipNo);
-    switch (res)
-    {
-    case MODAL_RESULT_YES: {
+    int result = WinDlg::showDialog(mainWindow()->handle(),
+                                    tr("A new version of %1 is available!").arg(QString(WINDOW_NAME)),
+                                    tr("%1 %2 is now downloaded (you have %3). "
+                                       "Would you like to install it now?").arg(QString(WINDOW_NAME),
+                                                                                m_pUpdateManager->getVersion(),
+                                                                                QString(VER_FILEVERSION_STR)),
+                                    WinDlg::DlgBtns::mbSkipRemindSaveandinstall);
+    switch (result) {
+    case WinDlg::DLG_RESULT_INSTALL: {
         m_pUpdateManager->scheduleRestartForUpdate();
-        mainWindow()->close();
+        closeAppWindows();
         break;
     }
-    case MODAL_RESULT_SKIP: {
+    case WinDlg::DLG_RESULT_SKIP: {
         m_pUpdateManager->skipVersion();
         AscAppManager::sendCommandTo(0, "updates:checking", "{\"version\":\"no\"}");
         break;

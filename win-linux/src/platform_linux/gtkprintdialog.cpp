@@ -23,7 +23,7 @@ GtkPrintDialog::GtkPrintDialog(QPrinter *printer, QWidget *parent) :
     m_print_range = (PrintRange)printer->printRange();
     if (m_printer->collateCopies())
         m_options |= PrintOption::PrintCollateCopies;
-
+    m_page_ranges.append(PageRanges(m_printer->fromPage(), m_printer->toPage()));
 }
 
 GtkPrintDialog::~GtkPrintDialog()
@@ -319,7 +319,7 @@ QDialog::DialogCode GtkPrintDialog::exec()
             m_printer->setNumCopies(n_copies);
 
             const char* output_uri = gtk_print_settings_get(settings, GTK_PRINT_SETTINGS_OUTPUT_URI);
-            auto path = QString::fromUtf8(output_uri).replace("file://", "");
+            auto path = QUrl::fromPercentEncoding(QByteArray(output_uri)).replace("file://", "");
             m_printer->setOutputFileName(path);
 
             //gtk_print_settings_get_quality(settings);
@@ -404,7 +404,10 @@ int GtkPrintDialog::toPage()
 
 void GtkPrintDialog::setFromTo(int from, int to)
 {
-    return m_printer->setFromTo(from, to);
+    m_printer->setFromTo(from, to);
+    if (!m_page_ranges.isEmpty())
+        m_page_ranges.clear();
+    m_page_ranges.append(PageRanges(m_printer->fromPage(), m_printer->toPage()));
 }
 
 void GtkPrintDialog::accept()

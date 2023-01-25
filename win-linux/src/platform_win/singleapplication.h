@@ -57,7 +57,6 @@ private:
 
     HANDLE      m_hMutex = nullptr;
     HWND        m_hWnd = nullptr;
-    HINSTANCE   m_hInstance = nullptr;
     bool        m_isPrimary;
 };
 

@@ -1,5 +1,5 @@
 /*
- * (c) Copyright Ascensio System SIA 2010-2022
+ * (c) Copyright Ascensio System SIA 2010-2019
  *
  * This program is a free software product. You can redistribute it and/or
  * modify it under the terms of the GNU Affero General Public License (AGPL)
@@ -30,36 +30,32 @@
  *
 */
 
-#ifndef CPRINTDATA_H
-#define CPRINTDATA_H
+#ifndef CTOOLTIP_H
+#define CTOOLTIP_H
 
-#include "applicationmanager_events.h"
-#include <QPrinterInfo>
-#include <QPrintDialog>
+#include <QLabel>
+#include <QPoint>
+#include <QEvent>
 
-class CPrintData
+
+class CToolTip: public QWidget
 {
+    Q_OBJECT
 public:
-    explicit CPrintData();
-
-    auto init(NSEditorApi::CAscPrintEnd *) -> void;
-    auto init(int, NSEditorApi::CAscPrintEnd *) -> void;
-    auto printerInfo() const -> QPrinterInfo;
-    auto setPrinterInfo(const QPrinterInfo&) -> void;
-    auto setPrinterInfo(const QPrinter&) -> void;
-    auto pageSize() const -> QPageSize;
-    auto pageOrientation() const -> QPageLayout::Orientation;
-    auto pagesCount() const -> int;
-    auto pageCurrent() const -> int;
-    auto pageFrom() const -> int;
-    auto pageTo() const -> int;
-    auto printRange() const -> QPrintDialog::PrintRange;
-    auto isQuickPrint() const -> bool;
-    auto viewId() const -> int;
+    CToolTip(QWidget * parent = nullptr,
+             const QString &text = QString(),
+             const QPoint &pos = QPoint());
+    ~CToolTip();
 
 private:
-    class CPrintDataPrivate;
-    CPrintDataPrivate * m_priv;
+    enum class EffectType {
+        Arise, Fade
+    };
+    virtual bool eventFilter(QObject*, QEvent*) final;
+    virtual void showEvent(QShowEvent*) final;
+    void showEffect(const EffectType efType);
+    QLabel *m_label;
+    bool m_activated;
 };
 
-#endif // CPRINTDATA_H
+#endif // CTOOLTIP_H

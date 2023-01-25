@@ -1,5 +1,5 @@
 /*
- * (c) Copyright Ascensio System SIA 2010-2022
+ * (c) Copyright Ascensio System SIA 2010-2019
  *
  * This program is a free software product. You can redistribute it and/or
  * modify it under the terms of the GNU Affero General Public License (AGPL)
@@ -28,38 +28,37 @@
  * Creative Commons Attribution-ShareAlike 4.0 International. See the License
  * terms at http://creativecommons.org/licenses/by-sa/4.0/legalcode
  *
-*/
+ */
 
-#ifndef CPRINTDATA_H
-#define CPRINTDATA_H
+#ifndef UPDATEDIALOG_H
+#define UPDATEDIALOG_H
 
-#include "applicationmanager_events.h"
-#include <QPrinterInfo>
-#include <QPrintDialog>
+#include <QWidget>
+#include <QString>
 
-class CPrintData
+
+namespace WinDlg
 {
-public:
-    explicit CPrintData();
-
-    auto init(NSEditorApi::CAscPrintEnd *) -> void;
-    auto init(int, NSEditorApi::CAscPrintEnd *) -> void;
-    auto printerInfo() const -> QPrinterInfo;
-    auto setPrinterInfo(const QPrinterInfo&) -> void;
-    auto setPrinterInfo(const QPrinter&) -> void;
-    auto pageSize() const -> QPageSize;
-    auto pageOrientation() const -> QPageLayout::Orientation;
-    auto pagesCount() const -> int;
-    auto pageCurrent() const -> int;
-    auto pageFrom() const -> int;
-    auto pageTo() const -> int;
-    auto printRange() const -> QPrintDialog::PrintRange;
-    auto isQuickPrint() const -> bool;
-    auto viewId() const -> int;
-
-private:
-    class CPrintDataPrivate;
-    CPrintDataPrivate * m_priv;
+enum class DlgBtns {
+    mbSkipRemindInstall = 0,
+    mbSkipRemindSaveandinstall,
+    mbSkipRemindDownload,
+    mbInslaterRestart
 };
 
-#endif // CPRINTDATA_H
+enum DlgRes {
+    DLG_RESULT_SKIP = 0,
+    DLG_RESULT_REMIND,
+    DLG_RESULT_DOWNLOAD,
+    DLG_RESULT_INSTALL,
+    DLG_RESULT_INSLATER,
+    DLG_RESULT_RESTART
+};
+
+int showDialog(QWidget *parent,
+               const QString &msg,
+               const QString &content,
+               DlgBtns dlgBtns = DlgBtns::mbSkipRemindInstall);
+}
+
+#endif // UPDATEDIALOG_H

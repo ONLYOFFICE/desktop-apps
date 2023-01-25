@@ -80,7 +80,7 @@
 #endif
 
 #define TOP_NATIVE_WINDOW_HANDLE this
-
+//#define FILEDIALOG_DONT_USE_NATIVEDIALOGS
 using namespace std::placeholders;
 using namespace NSEditorApi;
 
@@ -1093,18 +1093,17 @@ void CMainWindow::onDocumentPrint(void * opts)
     CCefView * pView = AscAppManager::getInstance().GetViewById(AscAppManager::printData().viewId());
 
     int pagesCount = AscAppManager::printData().pagesCount(),
-        currentPage = AscAppManager::printData().pageCurent();
+        currentPage = AscAppManager::printData().pageCurrent();
 
 
     if (pView && !(pagesCount < 1)) {
         NSEditorApi::CAscMenuEvent * pEvent;
         QAscPrinterContext * pContext = new QAscPrinterContext(AscAppManager::printData().printerInfo());
+        QString documentName = m_pTabs->titleByIndex(m_pTabs->tabIndexByView(AscAppManager::printData().viewId()), true);
 
         QPrinter * printer = pContext->getPrinter();
-        printer->setOutputFileName("");
         printer->setFromTo(1, pagesCount);
-        printer->printEngine()->setProperty(QPrintEngine::PPK_DocumentName,
-                    m_pTabs->titleByIndex(m_pTabs->tabIndexByView(AscAppManager::printData().viewId()), true));
+        printer->printEngine()->setProperty(QPrintEngine::PPK_DocumentName, documentName);
 
         if ( !AscAppManager::printData().isQuickPrint() ) {
             printer->setPageOrientation(AscAppManager::printData().pageOrientation());
@@ -1112,8 +1111,18 @@ void CMainWindow::onDocumentPrint(void * opts)
         }
 
 #ifdef _WIN32
+        printer->setOutputFileName("");
         CPrintDialog * dialog =  new CPrintDialog(printer, this);
 #else
+        QFileInfo info(documentName);
+        QString pdfName = Utils::lastPath(LOCAL_PATH_SAVE) + "/" + info.baseName() + ".pdf";
+        QString outputName = AscAppManager::printData().isQuickPrint() ? Utils::uniqFileName(pdfName) : pdfName;
+        if ( AscAppManager::printData().printerInfo().printerName().isEmpty() ) {
+            printer->setOutputFileName(outputName);
+        } else {
+            printer->printEngine()->setProperty(QPrintEngine::PPK_OutputFileName, outputName);
+        }
+
 # ifdef FILEDIALOG_DONT_USE_NATIVEDIALOGS
         CPrintDialog * dialog =  new CPrintDialog(printer, this);
 # else
@@ -1136,7 +1145,7 @@ void CMainWindow::onDocumentPrint(void * opts)
         if ( AscAppManager::printData().isQuickPrint() ) {
             dialog->accept();
         } else modal_res = dialog->exec();
-            qApp->processEvents();
+        qApp->processEvents();
 
         if ( modal_res == QDialog::Accepted ) {
             if ( !AscAppManager::printData().isQuickPrint() )
@@ -1146,12 +1155,24 @@ void CMainWindow::onDocumentPrint(void * opts)
             QVector<PageRanges> page_ranges;
 
 #ifdef Q_OS_LINUX
-            if ( AscAppManager::printData().isQuickPrint() && printer->outputFormat() == QPrinter::PdfFormat )
-                printer->setOutputFileName(Utils::uniqFileName(QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation) + "/print.pdf"));
+            if ( printer->outputFormat() == QPrinter::PdfFormat ) {
+                if ( !AscAppManager::printData().isQuickPrint() ) {
+                    info.setFile(printer->outputFileName());
+                    Utils::keepLastPath(LOCAL_PATH_SAVE, info.absolutePath());
+                }
+            } else {
+                if ( AscAppManager::printData().isQuickPrint() && !printer->outputFileName().isEmpty() ) {
+                    info.setFile(printer->outputFileName());
+                    if ( info.suffix() == "pdf" )
+                        printer->setOutputFileName("");
+                }
+            }
 #endif
 
             switch(dialog->printRange()) {
             case QPrintDialog::AllPages:
+                page_ranges.append(PageRanges(1, pagesCount));
+                break;
             case QPrintDialog::PageRange:
                 page_ranges = dialog->getPageRanges();
                 break;

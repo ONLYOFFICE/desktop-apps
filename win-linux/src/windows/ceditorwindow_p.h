@@ -182,7 +182,8 @@ public:
             btnHome->setIconSize(QSize(20,20) * window->m_dpiRatio);
             btnHome->setMouseTracking(true);
             btnHome->setIcon(":/title/icons/buttons.svg", "svg-btn-home");
-            btnHome->setToolTip(CEditorWindow::tr("Open main window"));
+            //btnHome->setToolTip(CEditorWindow::tr("Open main window"));
+            btnHome->setProperty("ToolTip", CEditorWindow::tr("Open main window"));
             btnHome->setIconOpacity(AscAppManager::themes().current().color(CTheme::ColorRole::ecrButtonNormalOpacity));
             m_mapTitleButtons["home"] = btnHome;
             connect(btnHome, &QPushButton::clicked, std::bind(&CEditorWindow::onClickButtonHome, window));
@@ -219,7 +220,8 @@ public:
             btn->setIcon(":/title/icons/buttons.svg", "svg-btn-" + jsonobj["icon"].toString());
         } else btn->setIcon(":/title/icons/buttons.svg", "svg-btn-" + action);
 
-        btn->setToolTip(jsonobj["hint"].toString());
+        //btn->setToolTip(jsonobj["hint"].toString());
+        btn->setProperty("ToolTip", jsonobj["hint"].toString());
         return btn;
     }
 
@@ -265,7 +267,8 @@ public:
             if ( canExtendTitle() ) {
                 if ( objRoot.contains("user") ) {
                     QString _user_name = objRoot["user"].toObject().value("name").toString();
-                    iconUser()->setToolTip(_user_name);
+                    //iconUser()->setToolTip(_user_name);
+                    iconUser()->setProperty("ToolTip", _user_name);
                     adjustIconUser();
                     iconuser->setText(getInitials(_user_name));
                     _user_width = iconuser->width();
@@ -413,7 +416,7 @@ public:
     {
         if (window->isCustomWindowStyle()) {
             Q_ASSERT(window->m_pMainPanel);
-            window->m_pMainPanel->setProperty("uitheme", QString::fromStdWString(theme));
+            window->m_pMainPanel->setProperty("uitheme", QString::fromStdWString(GetActualTheme(theme)));
             window->m_pMainPanel->setProperty("uithemetype", GetCurrentTheme().stype());
             if (!viewerMode()) {
                 if (usedOldEditorVersion) {   // For old editors only
@@ -497,7 +500,7 @@ public:
 
     void onDocumentPrint(void * data)  override
     {
-        onDocumentPrint(AscAppManager::printData().pageCurent(), AscAppManager::printData().pagesCount());
+        onDocumentPrint(AscAppManager::printData().pageCurrent(), AscAppManager::printData().pagesCount());
     }
 
     void onDocumentPrint(int currentpage, uint pagescount) override
@@ -517,11 +520,11 @@ public:
         if ( !(pagescount < 1) ) {
             CAscMenuEvent * pEvent;
             QAscPrinterContext * pContext = new QAscPrinterContext(AscAppManager::printData().printerInfo());
+            QString documentName = m_panel->data()->title(true);
 
             QPrinter * printer = pContext->getPrinter();
-            printer->setOutputFileName("");
             printer->setFromTo(1, pagescount);
-            printer->printEngine()->setProperty(QPrintEngine::PPK_DocumentName, m_panel->data()->title(true));
+            printer->printEngine()->setProperty(QPrintEngine::PPK_DocumentName, documentName);
 
             if ( !AscAppManager::printData().isQuickPrint() ) {
                 printer->setPageOrientation(AscAppManager::printData().pageOrientation());
@@ -529,8 +532,18 @@ public:
             }
 
 #ifdef _WIN32
+            printer->setOutputFileName("");
             CPrintDialog * dialog =  new CPrintDialog(printer, window->handle());
 #else
+            QFileInfo info(documentName);
+            QString pdfName = Utils::lastPath(LOCAL_PATH_SAVE) + "/" + info.baseName() + ".pdf";
+            QString outputName = AscAppManager::printData().isQuickPrint() ? Utils::uniqFileName(pdfName) : pdfName;
+            if ( AscAppManager::printData().printerInfo().printerName().isEmpty() ) {
+                printer->setOutputFileName(outputName);
+            } else {
+                printer->printEngine()->setProperty(QPrintEngine::PPK_OutputFileName, outputName);
+            }
+
 # ifdef FILEDIALOG_DONT_USE_NATIVEDIALOGS
             CPrintDialog * dialog =  new CPrintDialog(printer, window->handle());
 # else
@@ -562,12 +575,24 @@ public:
                 QVector<PageRanges> page_ranges;
 
 #ifdef Q_OS_LINUX
-                if ( AscAppManager::printData().isQuickPrint() && printer->outputFormat() == QPrinter::PdfFormat )
-                    printer->setOutputFileName(Utils::uniqFileName(QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation) + "/print.pdf"));
+                if ( printer->outputFormat() == QPrinter::PdfFormat ) {
+                    if ( !AscAppManager::printData().isQuickPrint() ) {
+                        info.setFile(printer->outputFileName());
+                        Utils::keepLastPath(LOCAL_PATH_SAVE, info.absolutePath());
+                    }
+                } else {
+                    if ( AscAppManager::printData().isQuickPrint() && !printer->outputFileName().isEmpty() ) {
+                        info.setFile(printer->outputFileName());
+                        if ( info.suffix() == "pdf" )
+                            printer->setOutputFileName("");
+                    }
+                }
 #endif
 
                 switch(dialog->printRange()) {
                 case QPrintDialog::AllPages:
+                    page_ranges.append(PageRanges(1, pagescount));
+                    break;
                 case QPrintDialog::PageRange:
                     page_ranges = dialog->getPageRanges();
                     break;

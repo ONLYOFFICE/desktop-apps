@@ -37,6 +37,7 @@
 #include <QWindow>
 #include <Windows.h>
 #include <QPushButton>
+#include <QCoreApplication>
 
 
 class Caption: public QWidget
@@ -56,6 +57,7 @@ private:
             HWND hWnd = ::GetAncestor((HWND)(window()->windowHandle()->winId()), GA_ROOT);
             ::ReleaseCapture();
             ::PostMessage(hWnd, cmd, HTCAPTION, POINTTOPOINTS(pt));
+            QCoreApplication::postEvent(parent(), new QEvent(QEvent::MouseButtonPress));
             return true;
         }
         return false;

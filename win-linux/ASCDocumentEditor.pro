@@ -24,8 +24,7 @@ DEFINES += __DONT_WRITE_IN_APP_TITLE
 message($$PLATFORM_BUILD)
 
 win32 {
-    CONFIG += updmodule
-    updmodule {
+    updmodule:!build_xp {
         DEFINES += _UPDMODULE
         DEFINES += URL_APPCAST_UPDATES=$$join(LINK,,\\\",\\\")
         #LIBS += -L$$PWD/3dparty/WinSparkle/$$PLATFORM_BUILD -lWinSparkle

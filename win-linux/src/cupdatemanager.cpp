@@ -54,7 +54,6 @@
 #endif
 
 #define CHECK_ON_STARTUP_MS 9000
-#define FILE_PREFIX QString("onlyoffice_")
 #define CMD_ARGUMENT_CHECK_URL L"--updates-appcast-url"
 #ifndef URL_APPCAST_UPDATES
 # define URL_APPCAST_UPDATES ""
@@ -389,7 +388,7 @@ int CUpdateManager::getUpdateMode()
 {
     GET_REGISTRY_USER(reg_user);
 #ifdef _WIN32
-    const QString mode = reg_user.value("autoUpdateMode", "silent").toString();
+    const QString mode = reg_user.value("autoUpdateMode", "ask").toString();
     return (mode == "silent") ?
                 UpdateMode::SILENT : (mode == "ask") ?
                     UpdateMode::ASK : UpdateMode::DISABLE;

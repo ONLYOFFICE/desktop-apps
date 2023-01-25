@@ -53,7 +53,7 @@ int main( int argc, char *argv[] )
     WCHAR * cm_line = GetCommandLine();
     InputArgs::init(cm_line);
 #else
-    qputenv("LC_ALL", "en_US.UTF8");
+    //qputenv("LC_ALL", "en_US.UTF8");
     qputenv("QT_QPA_PLATFORM", "xcb");
     qputenv("GDK_BACKEND", "x11");
     InputArgs::init(argc, argv);
@@ -126,7 +126,7 @@ int main( int argc, char *argv[] )
         reg_user.remove("position");
     }
 
-    SingleApplication app(argc, argv, APP_MUTEX_NAME ":" + QString::fromStdWString(Utils::systemUserName()));
+    SingleApplication app(argc, argv, QString(APP_MUTEX_NAME));
 
     if (!app.isPrimary() && !InputArgs::contains(L"--single-window-app")) {
         QString _out_args;
