@@ -83,6 +83,7 @@ HEADERS += \
     $$PWD/src/components/celipsislabel.h \
     $$PWD/src/components/cfullscrwidget.h \
     $$PWD/src/components/cprintdialog.h \
+    $$PWD/src/components/ctooltip.h \
     $$PWD/src/version.h \
     $$PWD/src/defines.h \
     $$PWD/src/ccefeventstransformer.h \
@@ -104,8 +105,7 @@ HEADERS += \
     $$PWD/src/cwindowsqueue.h \
     $$PWD/src/ceventdriver.h \
     $$PWD/src/cappeventfilter.h \
-    $$PWD/src/cthemes.h \
-    $$PWD/src/cupdatemanager.h
+    $$PWD/src/cthemes.h
 #    src/ctabbar_p.h \
 #    src/ctabstyle.h \
 #    src/ctabstyle_p.h
@@ -130,6 +130,7 @@ SOURCES += \
     $$PWD/src/components/celipsislabel.cpp \
     $$PWD/src/components/cfullscrwidget.cpp \
     $$PWD/src/components/cprintdialog.cpp \
+    $$PWD/src/components/ctooltip.cpp \
     #$$PWD/src/csplash.cpp \
     $$PWD/src/main.cpp \
     $$PWD/src/ccefeventstransformer.cpp \
@@ -148,10 +149,14 @@ SOURCES += \
     $$PWD/src/ceditortools.cpp \
     $$PWD/src/ceventdriver.cpp \
     $$PWD/src/cappeventfilter.cpp \
-    $$PWD/src/cthemes.cpp \
-    $$PWD/src/cupdatemanager.cpp
+    $$PWD/src/cthemes.cpp
 #    src/ctabstyle.cpp
 #    src/components/casclabel.cpp
+
+updmodule:!build_xp {
+    HEADERS += $$PWD/src/cupdatemanager.h
+    SOURCES += $$PWD/src/cupdatemanager.cpp
+}
 
 RESOURCES += $$PWD/resources.qrc
 DEFINES += COPYRIGHT_YEAR=$${CURRENT_YEAR}
@@ -244,7 +249,8 @@ core_windows {
                $$PWD/src/windows/platform_win/caption.h \
                $$PWD/src/platform_win/singleapplication.h \
                $$PWD/src/platform_win/filechooser.h \
-               $$PWD/src/platform_win/message.h
+               $$PWD/src/platform_win/message.h \
+               $$PWD/src/platform_win/resource.h
 
     SOURCES += $$PWD/src/windows/platform_win/cwindowplatform.cpp \
                $$PWD/src/windows/platform_win/csnap.cpp \
@@ -252,6 +258,10 @@ core_windows {
                $$PWD/src/platform_win/filechooser.cpp \
                $$PWD/src/platform_win/message.cpp
 
+    updmodule:!build_xp {
+        HEADERS += $$PWD/src/platform_win/updatedialog.h
+        SOURCES += $$PWD/src/platform_win/updatedialog.cpp
+    }
 
     LIBS += -lwininet \
             -ldnsapi \

@@ -52,9 +52,10 @@ static void nativeFileDialog(const Window &parent_xid,
     dialog = gtk_file_chooser_dialog_new(title,
                                          NULL,
                                          actions[mode],
-                                         "_Cancel",
+                                         g_dgettext("gtk30", "_Cancel"),
                                          GTK_RESPONSE_CANCEL,
-                                         mode == Gtk::Mode::OPEN || mode == Gtk::Mode::FOLDER  ? "_Open" : "_Save",
+                                         mode == Gtk::Mode::OPEN || mode == Gtk::Mode::FOLDER  ?
+                                             g_dgettext("gtk30", "_Open") : g_dgettext("gtk30", "_Save"),
                                          GTK_RESPONSE_ACCEPT,
                                          NULL);
 
@@ -72,7 +73,7 @@ static void nativeFileDialog(const Window &parent_xid,
         gtk_file_chooser_set_current_folder(chooser, path);
         gtk_file_chooser_set_select_multiple (chooser, sel_multiple ? TRUE : FALSE);
     } else {
-        gtk_file_chooser_set_do_overwrite_confirmation(chooser, TRUE);
+        gtk_file_chooser_set_do_overwrite_confirmation(chooser, FALSE);
         gtk_file_chooser_set_current_folder(chooser, path);
         gtk_file_chooser_set_current_name(chooser, file);
         //gtk_file_chooser_set_filename(chooser, file);
@@ -134,9 +135,10 @@ static void nativeFileDialog(const Window &parent_xid,
     }
     if (mode != Gtk::Mode::FOLDER) {
         GtkFileFilter *s_filter = gtk_file_chooser_get_filter(chooser);
-        if (*sel_filter != NULL)
+        if (sel_filter && *sel_filter)
             free(*sel_filter);
-        *sel_filter = strdup(gtk_file_filter_get_name(s_filter));
+        if (s_filter && sel_filter)
+            *sel_filter = strdup(gtk_file_filter_get_name(s_filter));
     }
     //gtk_window_close(GTK_WINDOW(dialog));
     gtk_widget_destroy(dialog);

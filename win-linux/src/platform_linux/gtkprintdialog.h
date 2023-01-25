@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QString>
 #include <QPrinter>
+#include <QUrl>
 #include "components/cprintdialog.h"
 
 typedef QAbstractPrintDialog::PrintDialogOption PrintOption;
