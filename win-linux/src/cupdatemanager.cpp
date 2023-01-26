@@ -52,7 +52,6 @@
 # include <QProcess>
 # include <QCryptographicHash>
 #endif
-#include "clogger.h"
 
 #define CHECK_ON_STARTUP_MS 9000
 #define CMD_ARGUMENT_CHECK_URL L"--updates-appcast-url"
@@ -120,7 +119,6 @@ void CUpdateManager::onComplete(const int error)
 
 void CUpdateManager::onCompleteSlot(const int error)
 {
-    CLogger::log(QString("%1 %2 %3").arg(Q_FUNC_INFO, QString::number(__LINE__), QString::number(error)));
     if (error == 0) {
         //qDebug() << "Download complete... Mode: " << m_downloadMode;
         switch (m_downloadMode) {
@@ -142,7 +140,6 @@ void CUpdateManager::onCompleteSlot(const int error)
 
 void CUpdateManager::init()
 {
-    CLogger::log(QString("%1 %2").arg(Q_FUNC_INFO, QString::number(__LINE__)));
     bool checkOnStartup = true;
     GET_REGISTRY_USER(reg_user);
     reg_user.beginGroup("Updates");
@@ -440,7 +437,6 @@ void CUpdateManager::onLoadCheckFinished()
 # else
             QJsonValue win = package.value("win_32");
 # endif
-            CLogger::log(QString("%1 %2").arg(Q_FUNC_INFO, QString::number(__LINE__)));
             QJsonObject win_params = win.toObject();
             m_packageData.packageUrl = win_params.value("url").toString().toStdWString();
             m_packageData.packageArgs = win_params.value("installArguments").toString().toStdWString();
