@@ -34,6 +34,7 @@
 #include "cascapplicationmanagerwrapper.h"
 #include "defines.h"
 #include "utils.h"
+#include <QScreen>
 #include <QTimer>
 #include <xcb/xcb.h>
 
@@ -46,10 +47,23 @@ CWindowPlatform::CWindowPlatform(const QRect &rect) :
     CWindowBase(rect),
     CX11Decoration(this)
 {
+    setAttribute(Qt::WA_NativeWindow);
     if (isCustomWindowStyle())
         CX11Decoration::turnOff();
     setIsCustomWindowStyle(!CX11Decoration::isDecorated());
     setFocusPolicy(Qt::StrongFocus);
+    QWindow *hnd = window()->windowHandle();
+    connect(hnd, &QWindow::screenChanged, this, [=](QScreen *scr) {
+        double dpi_ratio = Utils::getScreenDpiRatio(scr->geometry().topLeft());
+        if (dpi_ratio != m_dpiRatio) {
+            hnd->blockSignals(true);
+            setScreenScalingFactor(dpi_ratio);
+            adjustGeometry();
+            QTimer::singleShot(100, this, [=] {
+                hnd->blockSignals(false);
+            });
+        }
+    });
 }
 
 CWindowPlatform::~CWindowPlatform()
