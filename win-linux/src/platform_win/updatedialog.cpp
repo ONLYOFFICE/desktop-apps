@@ -140,8 +140,6 @@ int WinDlg::showDialog(QWidget *parent,
     }
 
     TASKDIALOGCONFIG config = {sizeof(TASKDIALOGCONFIG)};
-    ZeroMemory(&config, sizeof(config));
-    config.cbSize             = sizeof(config);
     config.dwFlags            = TDF_ENABLE_HYPERLINKS |
                                 TDF_POSITION_RELATIVE_TO_WINDOW |
                                 TDF_ALLOW_DIALOG_CANCELLATION;
