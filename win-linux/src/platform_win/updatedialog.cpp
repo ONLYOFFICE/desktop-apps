@@ -62,7 +62,7 @@ static void BringToTop(HWND hwnd)
     ::AttachThreadInput(frgID, appID, FALSE);
 }
 
-static HRESULT Pftaskdialogcallback(HWND hwnd, UINT msg, WPARAM wParam,
+HRESULT CALLBACK Pftaskdialogcallback(HWND hwnd, UINT msg, WPARAM wParam,
                                     LPARAM lParam, LONG_PTR lpRefData)
 {
     switch (msg) {
