@@ -147,11 +147,11 @@ int WinDlg::showDialog(QWidget *parent,
                                 TDF_ALLOW_DIALOG_CANCELLATION;
     config.hwndParent         = parent_hwnd;
     config.hInstance          = GetModuleHandle(NULL);
-//    config.pfCallback         = (PFTASKDIALOGCALLBACK)Pftaskdialogcallback;
+    config.pfCallback         = (PFTASKDIALOGCALLBACK)Pftaskdialogcallback;
     config.pButtons           = pButtons;
     config.cButtons           = cButtons;
     config.nDefaultButton     = nDefltBtn;
-//    config.pszMainIcon        = pIcon;
+    config.pszMainIcon        = pIcon;
     config.pszWindowTitle     = lpCaption.c_str();
     config.pszMainInstruction = lpText.c_str();
     config.pszContent         = lpContent.c_str();
