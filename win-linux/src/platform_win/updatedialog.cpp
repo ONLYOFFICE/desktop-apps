@@ -62,8 +62,7 @@ static void BringToTop(HWND hwnd)
     ::AttachThreadInput(frgID, appID, FALSE);
 }
 
-HRESULT CALLBACK Pftaskdialogcallback(HWND hwnd, UINT msg, WPARAM wParam,
-                                    LPARAM lParam, LONG_PTR lpRefData)
+HRESULT CALLBACK Pftaskdialogcallback(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam, LONG_PTR lpRefData)
 {
     switch (msg) {
     case TDN_HYPERLINK_CLICKED:
@@ -90,7 +89,7 @@ int WinDlg::showDialog(QWidget *parent,
     std::wstring lpCaption = QString("  %1").arg(QObject::tr("Software Update")).toStdWString();
     std::wstring lpText = QTextDocumentFragment::fromHtml(msg).toPlainText().toStdWString();
     QString linkText = !QString(RELEASE_NOTES).isEmpty() ?
-                QString("\n<A HREF=\"%1\">%2</A>").arg(QString(RELEASE_NOTES), QObject::tr("Release notes")) : "";
+                QString("\n<a href=\"%1\">%2</a>").arg(QString(RELEASE_NOTES), QObject::tr("Release notes")) : "";
     std::wstring lpContent = QString("%1\n%2").arg(content, linkText).toStdWString();
     HWND parent_hwnd = (parent) ? (HWND)parent->winId() : NULL;
 
