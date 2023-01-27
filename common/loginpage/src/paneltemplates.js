@@ -43,10 +43,24 @@
 
     window.ControllerTemplates = ControllerTemplates;
 
+    function createIframe(config) {
+        var iframe = document.createElement("iframe");
+
+        iframe.src = "https://oforms.teamlab.info/?desktop=true";
+        iframe.width = "100%";
+        iframe.height = "100%";
+        iframe.align = "top";
+        iframe.frameBorder = 0;
+        // iframe.name = "frameEditor";
+        iframe.allowFullscreen = true;
+
+        return iframe;
+    }
+
     var ViewTemplates = function(args) {
         var _lang = utils.Lang;
 
-        args.tplPage = `<div class="action-panel ${args.action}"></div>`;
+        args.tplPage = `<div class="action-panel ${args.action}"><div id="frame"></div></div>`;
         args.menu = '.main-column.tool-menu';
         args.field = '.main-column.col-center';
         args.itemindex = 0;
@@ -64,11 +78,17 @@
                 baseController.prototype.init.apply(this, arguments);
                 this.view.render();
 
-                this.view.$menuitem.find('> a').click(e => {
-                    window.sdk.command("open:template", 'external');
-                    e.preventDefault();
-                    e.stopPropagation();
-                });
+                if ( !!localStorage.templatespanel ) {
+                    const iframe = createIframe({});
+                    var target = document.getElementById("frame");
+                    target.parentNode && target.parentNode.replaceChild(iframe, target);
+                } else {
+                    this.view.$menuitem.find('> a').click(e => {
+                        window.sdk.command("open:template", 'external');
+                        e.preventDefault();
+                        e.stopPropagation();
+                    });
+                }
 
                 return this;
             }
