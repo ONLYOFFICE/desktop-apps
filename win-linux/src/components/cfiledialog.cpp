@@ -131,7 +131,7 @@ bool CFileDialogWrapper::modalSaveAs(QString& fileName, int selected)
             if ( _sel_filter.isEmpty() )
                 _sel_filter = reFilter.cap(1);
         } else {
-            fileName = info.absolutePath() + QDir::separator() + info.fileName();
+            fileName = info.absoluteFilePath();
         }
     } else {
         _filters = m_mapFilters[AVS_OFFICESTUDIO_FILE_UNKNOWN];
