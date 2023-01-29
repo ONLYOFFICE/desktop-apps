@@ -97,12 +97,20 @@ void CWindowPlatform::toggleResizeable()
 void CWindowPlatform::adjustGeometry()
 {
     if (windowState().testFlag(Qt::WindowMinimized) || windowState().testFlag(Qt::WindowNoState)) {
+#ifndef __OS_WIN_XP
+        const MARGINS shadow = {1, 1, 1, 1};
+        DwmExtendFrameIntoClientArea(m_hWnd, &shadow);
+#endif
         const int border = int(MAIN_WINDOW_BORDER_WIDTH * m_dpiRatio);
         setContentsMargins(border, border, border, border+1);
         setResizeableAreaWidth(border);
     } else
     if (windowState().testFlag(Qt::WindowMaximized)) {
         QTimer::singleShot(0, this, [=]() {
+#ifndef __OS_WIN_XP
+            const MARGINS shadow = {0, 0, 0, 0};
+            DwmExtendFrameIntoClientArea(m_hWnd, &shadow);
+#endif
             setContentsMargins(0,0,0,0);
             auto dsk = QApplication::desktop();
             const QSize offset(0, !isTaskbarAutoHideOn() ? -1 : 1);
