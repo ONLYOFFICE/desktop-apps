@@ -149,6 +149,7 @@ Name: nn_NO; MessagesFile: compiler:Languages\Norwegian.isl;     LicenseFile: {#
 Name: uk; MessagesFile: compiler:Languages\Ukrainian.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 Name: be; MessagesFile: compiler:Languages\Belarusian.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 Name: gl; MessagesFile: compiler:Languages\Galician.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
+;Name: si; MessagesFile: compiler:Languages\Sinhala.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 
 [LangOptions]
 lo.LanguageName=ພາສາລາວ
@@ -198,6 +199,7 @@ nn_NO.Launch =Kjør %1
 uk.Launch =Запустити %1
 be.Launch =Запусціць %1
 gl.Launch =Iniciar %1
+;si.Launch =%1 දියත් කරන්න
 ;======================================================================================================
 en.CreateDesktopIcon =Create %1 &desktop icon
 bg.CreateDesktopIcon =Създаване на %1 &икона на работния плот
@@ -238,6 +240,7 @@ nn_NO.CreateDesktopIcon =Opprett %1 &skrivebordsikon
 uk.CreateDesktopIcon =Створити &іконку %1 на робочому столі
 be.CreateDesktopIcon =Стварыце значок %1 на &працоўным стале
 gl.CreateDesktopIcon =Crear unha icona de escritorio& %1
+;si.CreateDesktopIcon =%1 වැඩතල නිරූපකය සාදන්න
 ;======================================================================================================
 en.InstallAdditionalComponents =Installing additional system components. Please wait...
 ca.InstallAdditionalComponents =Instal·lació de components de sistema addicionals. Si us plau, espereu...
@@ -278,6 +281,7 @@ nn_NO.InstallAdditionalComponents =Installerer flere systemkomponenter. Vennligs
 uk.InstallAdditionalComponents =Інсталюються додаткові компоненти системи. Зачекайте...
 be.InstallAdditionalComponents =Устаноўка дадатковых кампанентаў сістэмы. Калі ласка пачакай...
 gl.InstallAdditionalComponents =Estase a instalar compoñentes adicionais do sistema. Agarda...
+;si.InstallAdditionalComponents =අතිරේක පද්ධති සංරචක ස්ථාපනය වෙමින්. රැඳී සිටින්න...
 ;======================================================================================================
 en.AdditionalTasks =Tasks:
 bg.AdditionalTasks =Задачи:
@@ -318,6 +322,7 @@ nn_NO.AdditionalTasks =Oppgaver:
 uk.AdditionalTasks =Завдання:
 be.AdditionalTasks =Задачы:
 gl.AdditionalTasks =Tarefas:
+;si.AdditionalTasks =කාර්යයන්:
 ;======================================================================================================
 en.Uninstall =Uninstall
 bg.AdditionalTasks =Деинсталиране
@@ -358,6 +363,7 @@ nn_NO.Uninstall =Avinstaller
 uk.Uninstall =Видалити
 be.Uninstall =Выдаліць
 gl.Uninstall =Desinstalar
+;si.Uninstall =අස්ථාපනය
 ;======================================================================================================
 en.WarningWrongArchitecture =You are trying to install the %1-bit application version over the %2-bit version installed. Please uninstall the previous version first or download the correct version for installation.
 bg.WarningWrongArchitecture =Опитвате се да инсталирате %1-битовата версия на приложението над инсталираната %2-битова версия. Моля, деинсталирайте първо предишната версия или изтеглете правилната версия за инсталиране.
@@ -398,6 +404,7 @@ nn_NO.WarningWrongArchitecture =Du forsøker å installere %1-bits-versjonen av 
 uk.WarningWrongArchitecture =Ви намагаєтесь інсталювати %1-розрядну версію програми поверх інстальованої %2-розрядної версії. Спочатку видаліть попередню версію або завантажте належну версію для інсталяції.
 be.WarningWrongArchitecture =Вы спрабуеце ўсталяваць %1-бітную версію прыкладання паверх усталяванай %2-бітнай версіі. Спачатку выдаліце папярэднюю версію або загрузіце правільную версію для ўстаноўкі.
 gl.WarningWrongArchitecture =Está a intentar instalar a versión do aplicativo %1 bits sobre a versión instalada de %2 bits. Desinstale primeiro a versión anterior ou descargue a versión correcta para a instalación.
+;si.WarningWrongArchitecture =ඔබ ස්ථාපිත බිටු-%2 අනුවාදයට උඩින්ග යෙදුමේ බිටු-%1 අනුවාදය ස්ථාපනයට තැත් කරයි. කරුණාකර පෙර අනුවාදය අස්ථාපනය කරන්න හෝ ස්ථාපනය සඳහා නිවැරදි අනුවාදය බාගන්න.
 ;======================================================================================================
 
 en.UpdateAppRunning=Setup has detected that %1 is currently running.%n%nIt'll be closed automatically. Click OK to continue, or Cancel to exit.
@@ -439,6 +446,7 @@ nn_NO.UpdateAppRunning=Installasjonen har oppdaget at %1 kjører for øyeblikket
 uk.UpdateAppRunning=Програма інсталяції виявила, що запущено %1.%n%nЦя програма буде закрита автоматично. Натисніть "ОК", щоб продовжити, або "Скасувати", щоб вийти.
 be.UpdateAppRunning=Налада выявіла, што %1 зараз працуе.%n%nЯно будзе аўтаматычна зачынена. Націсніце OK, каб працягнуць, або Адмяніць, каб выйсці.
 gl.UpdateAppRunning=A instalación detectou que %1 está en execución.%En% Pecharase automaticamente. Preme en Aceptar para continuar ou en Cancelar para saír.
+;si.UpdateAppRunning=%1 දැනට ධාවනය වන බව පිහිටුමට අනාවරණය වී ඇත.%n%nඑය ස්වයංක්‍රීයව වසා දමනු ඇත. ඉදිරියට යාමට හරි ද, හෝ පිටවීමට අවලංගු ද ඔබන්න.
 ;======================================================================================================
 en.WarningClearAppData =Do you want to clear the user settings and application cached data?
 bg.WarningClearAppData =Искате ли да изчистите потребителските настройки и кешираните данни на приложението?
@@ -479,6 +487,7 @@ nn_NO.WarningClearAppData =Vil du slette brukerinnstillinger og bufrede data for
 uk.WarningClearAppData =Очистити налаштування користувача та кешовані дані програми?
 be.WarningClearAppData =Хочаце ачысціць налады карыстальніка і кэшаваныя даныя прыкладання?
 gl.WarningClearAppData =Quere borrar a configuración do usuario e os datos da caché do aplicativo?
+;si.WarningClearAppData =ඔබට පරිශ්‍රීලක සැකසුම් හා නිහිතගත යෙදුමේ දත්ත හිස් කිරීමට අවශ්‍යද?
 ;======================================================================================================
 
 
@@ -501,6 +510,7 @@ gl.WarningClearAppData =Quere borrar a configuración do usuario e os datos da c
 ;uk.AssociateDescription =Асоціювати типи файлів офісних документів з %1
 ;be.AssociateDescription =Звязаць тыпы файлаў дакументаў офіса з %1
 ;gl.AssociateDescription =Asociar tipos de ficheiros de documentos de oficina con %1
+;si.AssociateDescription =%1 සමඟ කාර්යාල ලේඛන ගොනු වර්ග සම්බන්ධ කරන්න
 
 [Code]
 const
