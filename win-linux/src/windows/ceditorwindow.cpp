@@ -49,7 +49,7 @@
 
 #include "windows/ceditorwindow_p.h"
 
-#define CAPTURED_WINDOW_OFFSET_X  180
+#define CAPTURED_WINDOW_OFFSET_X  6*TOOLBTN_WIDTH + 10
 #define CAPTURED_WINDOW_OFFSET_Y  15
 
 
