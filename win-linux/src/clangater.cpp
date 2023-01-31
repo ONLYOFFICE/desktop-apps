@@ -206,7 +206,7 @@ void CLangater::init()
 #else
     // read setup language and set application locale
     _lang.isEmpty() &&
-        !((_lang = reg_system.value("locale").value<QString>()).size()) && (_lang = "en").size();
+        !((_lang = reg_system.value("locale").value<QString>()).size()) && (_lang = APP_DEFAULT_LOCALE).size();
 #endif
 
     getInstance()->m_intf->addSearchPath({"./langs", ":/i18n/langs", ":/i18n"});

@@ -44,7 +44,7 @@
 "Document template" = "Word オープン XMLドキュメントテンプレート (*.dotx)";
 
 /* No comment provided by engineer. */
-"Electronic Publication" = "電子出版ファイル (*.epub)";
+"Don't Save" = "保存しない";
 
 /* No comment provided by engineer. */
 "Excel 97-2003 Spreadsheet" = "Excel 97-2003 スプレッドシート(*.xls)";
@@ -68,16 +68,10 @@
 "Hide %@" = "%@を非表示";
 
 /* No comment provided by engineer. */
-"HTML File" = "ハイパーテキスト マークアップ言語 ファイル (*.html)";
-
-/* No comment provided by engineer. */
 "If you have already purchased %@, you should find your activation key in an email confirmation." = "既に%@を購入されている方は、確認メールに活発化キーが記載されています。";
 
 /* No comment provided by engineer. */
 "License Agreement" = "ライセンス契約";
-
-/* No comment provided by engineer. */
-"MHT File" = "Web ページのアーカイブ ファイル (*.mht)";
 
 /* No comment provided by engineer. */
 "Mobipocket e-book" = "Mobipocketファイル (*.mobi)";
@@ -128,7 +122,7 @@
 "PDF File" = "ポータブルドキュメント (*.pdf)";
 
 /* No comment provided by engineer. */
-"PDF/A File" = "ポータブルドキュメント / A (*.pdf)";
+"PDF/A File" = "ポータブルドキュメント /A (*.pdf)";
 
 /* No comment provided by engineer. */
 "Plain Text" = "プレーンテキストファイル (*.txt)";
@@ -168,6 +162,9 @@
 
 /* No comment provided by engineer. */
 "Save the document?" = "ドキュメントの保存？";
+
+/* No comment provided by engineer. */
+"Signature Details" = "サインの詳細";
 
 /* No comment provided by engineer. */
 "Spreadsheet %ld.xlsx" = "スプレッドシート %ld.xlsx";

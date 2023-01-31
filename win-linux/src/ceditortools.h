@@ -35,23 +35,22 @@
 
 #include "qascprinter.h"
 #include "cascapplicationmanagerwrapper.h"
+#include "components/cprintdialog.h"
 
 namespace CEditorTools
 {
     struct sPrintConf
     {
-        sPrintConf(CCefView * v, QAscPrinterContext * c, int s, int b, ParentHandle p)
+        sPrintConf(CCefView * v, QAscPrinterContext * c, QVector<PageRanges> *ranges, ParentHandle p)
             : view(v)
             , context(c)
-            , pagetstart(s)
-            , pagestop(b)
+            , page_ranges(ranges)
             , parent(p)
         {}
 
         CCefView * view;
         QAscPrinterContext * context;
-        int pagetstart,
-            pagestop;
+        QVector<PageRanges> *page_ranges;
         ParentHandle parent;
     };
 

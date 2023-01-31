@@ -835,35 +835,40 @@
 - (void)onCEFFullscreen:(NSNotification *)notification {
     if (notification && notification.userInfo) {
         NSDictionary * params = (NSDictionary *)notification.userInfo;
-        
-        BOOL isFullscreen = [params[@"fullscreen"] boolValue];
-        NSTabViewItem * item = [self.tabView selectedTabViewItem];
-        
-        if (isFullscreen) {
-            [item.view enterFullScreenMode:[[NSWindow titleWindowOrMain] screen] withOptions:@{NSFullScreenModeAllScreens: @(NO)}];
 
-            ASCTabView * tab = [self.tabsControl selectedTab];
-            
-            if (tab) {
-                NSCefView * cefView = [self cefViewWithTab:tab];
-                [cefView focus];
-            }
-        } else if ([item.view isInFullScreenMode]) {
-            [item.view exitFullScreenModeWithOptions:nil];
-            
-            ASCTabView * tab = [self.tabsControl selectedTab];
-            
-            if (tab) {
-                NSCefView * cefView = [self cefViewWithTab:tab];
+        BOOL isFullscreen = [params[@"fullscreen"] boolValue];
+        int viewId = [params[@"viewId"] intValue];
+        ASCTabView * tab = [self tabViewWithId:viewId];
+
+        if ( tab ) {
+            NSTabViewItem * item = [self.tabView tabViewItemAtIndex:[self.tabView indexOfTabViewItemWithIdentifier:tab.uuid]];
+
+            if (isFullscreen) {
+                [item.view enterFullScreenMode:[[NSWindow titleWindowOrMain] screen] withOptions:@{NSFullScreenModeAllScreens: @(NO)}];
+
+                if (tab) {
+                    [[self cefViewWithTab:tab] focus];
+                }
+            } else if ([item.view isInFullScreenMode]) {
+                [item.view exitFullScreenModeWithOptions:nil];
                 
-                if (cefView) {
-                    NSEditorApi::CAscExecCommandJS * pCommand = new NSEditorApi::CAscExecCommandJS;
-                    pCommand->put_Command(L"editor:stopDemonstration");
+                if (tab) {
+                    ASCTabView * currTab = [self.tabsControl selectedTab];
+                    if ( currTab.uuid != tab.uuid ) {
+                        [self.tabsControl selectTab:tab];
+                    }
                     
-                    NSEditorApi::CAscMenuEvent* pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EDITOR_EXECUTE_COMMAND);
-                    pEvent->m_pData = pCommand;
+                    NSCefView * cefView = [self cefViewWithTab:tab];
                     
-                    [cefView apply:pEvent];
+                    if (cefView) {
+                        NSEditorApi::CAscExecCommandJS * pCommand = new NSEditorApi::CAscExecCommandJS;
+                        pCommand->put_Command(L"editor:stopDemonstration");
+
+                        NSEditorApi::CAscMenuEvent* pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EDITOR_EXECUTE_COMMAND);
+                        pEvent->m_pData = pCommand;
+
+                        [cefView apply:pEvent];
+                    }
                 }
             }
         }

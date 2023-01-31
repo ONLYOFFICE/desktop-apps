@@ -41,11 +41,12 @@
 #include "OfficeFileFormats.h"
 #include "ceditortools.h"
 #include "utils.h"
-#include "cmessage.h"
+#include "components/cmessage.h"
 #include "cprintdata.h"
+#include <QApplication>
 
 #ifdef DOCUMENTSCORE_OPENSSL_SUPPORT
-# include "linux/cdialogopenssl.h"
+# include "platform_linux/cdialogopenssl.h"
 #endif
 
 
@@ -55,9 +56,7 @@ public:
     CAscApplicationManagerWrapper_Private(CAscApplicationManagerWrapper * manager)
         : m_appmanager(*manager)
     {
-#ifdef Q_OS_WIN
         qApp->installEventFilter(new CAppEventFilter(this));
-#endif
 
         GET_REGISTRY_USER(reg_user);
         m_openEditorWindow = reg_user.value("editorWindowMode").toBool();
@@ -119,16 +118,21 @@ public:
         m_pStartPanel->GetCefView()->load(start_path);
     }
 
-    auto handleAppKeyPress(QKeyEvent * e) -> bool
-    {
-        if (e->key() == Qt::Key_O && (QApplication::keyboardModifiers() & Qt::ControlModifier)) {
+    auto sendOpenFolderEvent(int id) -> void {
+        if (!mainWindow() || mainWindow()->startPanelId() != id) {   // Ignore start page
             NSEditorApi::CAscCefMenuEvent * ns_event = new NSEditorApi::CAscCefMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND);
             NSEditorApi::CAscExecCommand * pData = new NSEditorApi::CAscExecCommand;
             pData->put_Command(L"open:folder");
-
             ns_event->m_pData = pData;
+            ns_event->m_nSenderId = id;
             m_appmanager.OnEvent(ns_event);
+        }
+    }
 
+    auto handleAppKeyPress(QKeyEvent * e) -> bool
+    {
+        if (e->key() == Qt::Key_O && (e->modifiers() & Qt::ControlModifier)) {
+            //sendOpenFolderEvent(-1);
             return true;
         }
 
@@ -150,6 +154,7 @@ public:
             COpenOptions opts{data.get_Url()};
             opts.id = data.get_IdEqual();
             opts.parent_id = event.m_nSenderId;
+            opts.name = QString::fromStdWString(data.get_Name());
 
             if ( CCefView * _v = m_appmanager.GetViewById(opts.id) ) {
                 bringEditorToFront(_v->GetId());
@@ -268,7 +273,7 @@ public:
         if ( _view ) {
             int _view_id = _view->GetId();
 
-            if ( mainWindow()->mainPanel()->holdUid(_view_id) ) {
+            if ( mainWindow()->holdUid(_view_id) ) {
                 mainWindow()->bringToTop();
                 mainWindow()->selectView(_view_id);
                 return true;
@@ -277,7 +282,7 @@ public:
         } else {
             QString _n_url = Utils::replaceBackslash(url);
 
-            if ( mainWindow()->mainPanel()->holdUrl(_n_url, etLocalFile) ) {
+            if ( mainWindow()->holdUrl(_n_url, etLocalFile) ) {
                 mainWindow()->bringToTop();
                 mainWindow()->selectView(_n_url);
                 return true;
@@ -320,12 +325,15 @@ public:
             }
 
             if ( preferOpenEditorWindow() ) {
-                QRect rect = windowRectFromViewId(opts.parent_id);
+                GET_REGISTRY_USER(reg_user);
+                bool isMaximized = mainWindow() ? mainWindow()->windowState().testFlag(Qt::WindowMaximized) :
+                                                  reg_user.value("maximized", false).toBool();
+                QRect rect = isMaximized ? QRect() : windowRectFromViewId(opts.parent_id);
                 if ( !rect.isEmpty() )
                     rect.adjust(50,50,50,50);
 
                 CEditorWindow * editor_win = new CEditorWindow(rect, panel);
-                editor_win->show(false);
+                editor_win->show(isMaximized);
 
                 m_appmanager.m_vecEditors.push_back(size_t(editor_win));
                 if ( editor_win->isCustomWindowStyle() )

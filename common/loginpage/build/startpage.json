@@ -65,6 +65,7 @@
                     ,"../src/model.js"
                     ,"../src/menu.js"
                     ,"../src/base.js"
+                    ,"../src/paneltemplates.js"
                     ,"../src/panelrecent.js"
                     ,"../src/panelfolders.js"
                     ,"../src/panelconnect.js"

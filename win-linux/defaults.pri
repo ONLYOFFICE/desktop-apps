@@ -64,89 +64,99 @@ INCLUDEPATH += \
     $$CORE_ROOT_DIR/Common
 
 HEADERS += \
-    $$PWD/src/asctabwidget.h \
-    $$PWD/src/cprintdata.h \
-    $$PWD/src/ctabbarwrapper.h \
+    $$PWD/src/windows/cmainwindow.h \
+    $$PWD/src/windows/cwindowbase.h \
+    $$PWD/src/windows/ceditorwindow.h \
+    $$PWD/src/windows/ceditorwindow_p.h \
+    $$PWD/src/windows/cpresenterwindow.h \
+    $$PWD/src/components/asctabwidget.h \
+    $$PWD/src/components/ctabbarwrapper.h \
+    $$PWD/src/components/cdownloadwidget.h \
+    $$PWD/src/components/cpushbutton.h \
+    $$PWD/src/components/cfiledialog.h \
+    $$PWD/src/components/cprintprogress.h \
+    $$PWD/src/components/ctabbar.h \
+    $$PWD/src/components/cmessage.h \
+    $$PWD/src/components/canimatedicon.h \
+    $$PWD/src/components/ctabpanel.h \
+    $$PWD/src/components/csvgpushbutton.h \
+    $$PWD/src/components/celipsislabel.h \
+    $$PWD/src/components/cfullscrwidget.h \
+    $$PWD/src/components/cprintdialog.h \
+    $$PWD/src/components/ctooltip.h \
     $$PWD/src/version.h \
     $$PWD/src/defines.h \
-    $$PWD/src/cdownloadwidget.h \
-    $$PWD/src/cpushbutton.h \
-    $$PWD/src/cfiledialog.h \
-    $$PWD/src/cprintprogress.h \
     $$PWD/src/ccefeventstransformer.h \
     $$PWD/src/cascapplicationmanagerwrapper.h \
     $$PWD/src/cascapplicationmanagerwrapper_private.h \
-    $$PWD/src/ctabbar.h \
     $$PWD/src/casctabdata.h \
     $$PWD/src/utils.h \
     $$PWD/src/cstyletweaks.h \
     $$PWD/src/chelp.h \
-    $$PWD/src/cmainpanel.h \
-    $$PWD/src/csplash.h \
-    $$PWD/src/cmessage.h \
+    #$$PWD/src/csplash.h \
     $$PWD/src/cfilechecker.h \
     $$PWD/src/clogger.h \
     $$PWD/src/clangater.h \
-    $$PWD/src/cwindowbase.h \
-    $$PWD/src/canimatedicon.h \
+    $$PWD/src/cprintdata.h \
     $$PWD/src/cscalingwrapper.h \
     $$PWD/src/ctabundockevent.h \
-    $$PWD/src/cmainwindowbase.h \
-    $$PWD/src/ctabpanel.h \
-    $$PWD/src/csinglewindowbase.h \
-    $$PWD/src/ceditorwindow.h \
     $$PWD/src/ccefeventsgate.h \
-    $$PWD/src/ceditorwindow_p.h \
     $$PWD/src/ceditortools.h \
     $$PWD/src/cwindowsqueue.h \
     $$PWD/src/ceventdriver.h \
-    $$PWD/src/csvgpushbutton.h \
-    $$PWD/src/cappupdater.h \
     $$PWD/src/cappeventfilter.h \
     $$PWD/src/cthemes.h
 #    src/ctabbar_p.h \
 #    src/ctabstyle.h \
 #    src/ctabstyle_p.h
-#    src/casclabel.h
+#    src/components/casclabel.h
 
 SOURCES += \
-    $$PWD/src/cprintdata.cpp \
-    $$PWD/src/csplash.cpp \
-    $$PWD/src/ctabbarwrapper.cpp \
+    $$PWD/src/windows/cmainwindow.cpp \
+    $$PWD/src/windows/cwindowbase.cpp \
+    $$PWD/src/windows/ceditorwindow.cpp \
+    $$PWD/src/windows/cpresenterwindow.cpp \
+    $$PWD/src/components/asctabwidget.cpp\
+    $$PWD/src/components/cdownloadwidget.cpp \
+    $$PWD/src/components/cpushbutton.cpp \
+    $$PWD/src/components/cfiledialog.cpp \
+    $$PWD/src/components/cprintprogress.cpp \
+    $$PWD/src/components/ctabbarwrapper.cpp \
+    $$PWD/src/components/ctabbar.cpp \
+    $$PWD/src/components/cmessage.cpp \
+    $$PWD/src/components/canimatedicon.cpp \
+    $$PWD/src/components/ctabpanel.cpp \
+    $$PWD/src/components/csvgpushbutton.cpp \
+    $$PWD/src/components/celipsislabel.cpp \
+    $$PWD/src/components/cfullscrwidget.cpp \
+    $$PWD/src/components/cprintdialog.cpp \
+    $$PWD/src/components/ctooltip.cpp \
+    #$$PWD/src/csplash.cpp \
     $$PWD/src/main.cpp \
-    $$PWD/src/asctabwidget.cpp\
-    $$PWD/src/cdownloadwidget.cpp \
-    $$PWD/src/cpushbutton.cpp \
-    $$PWD/src/cfiledialog.cpp \
-    $$PWD/src/cprintprogress.cpp \
     $$PWD/src/ccefeventstransformer.cpp \
     $$PWD/src/cascapplicationmanagerwrapper.cpp \
-    $$PWD/src/ctabbar.cpp \
     $$PWD/src/casctabdata.cpp \
     $$PWD/src/utils.cpp \
     $$PWD/src/cstyletweaks.cpp \
     $$PWD/src/chelp.cpp \
-    $$PWD/src/cmainpanel.cpp \
-    $$PWD/src/cmessage.cpp \
     $$PWD/src/cfilechecker.cpp \
     $$PWD/src/clogger.cpp \
     $$PWD/src/clangater.cpp \
-    $$PWD/src/canimatedicon.cpp \
+    $$PWD/src/cprintdata.cpp \
     $$PWD/src/cscalingwrapper.cpp \
     $$PWD/src/ctabundockevent.cpp \
-    $$PWD/src/cmainwindowbase.cpp \
-    $$PWD/src/ctabpanel.cpp \
-    $$PWD/src/csinglewindowbase.cpp \
-    $$PWD/src/ceditorwindow.cpp \
     $$PWD/src/ccefeventsgate.cpp \
     $$PWD/src/ceditortools.cpp \
     $$PWD/src/ceventdriver.cpp \
-    $$PWD/src/csvgpushbutton.cpp \
-    $$PWD/src/cappupdater.cpp \
     $$PWD/src/cappeventfilter.cpp \
     $$PWD/src/cthemes.cpp
 #    src/ctabstyle.cpp
-#    src/casclabel.cpp
+#    src/components/casclabel.cpp
+
+updmodule:!build_xp {
+    HEADERS += $$PWD/src/cupdatemanager.h
+    SOURCES += $$PWD/src/cupdatemanager.cpp
+}
 
 RESOURCES += $$PWD/resources.qrc
 DEFINES += COPYRIGHT_YEAR=$${CURRENT_YEAR}
@@ -183,7 +193,7 @@ core_windows {
 }
 core_linux:LIBS += -L$$CORE_3DPARTY_PATH/cef/$$PLATFORM_BUILD/build -lcef
 
-ADD_DEPENDENCY(PdfReader, PdfWriter, DjVuFile, XpsFile, HtmlRenderer, UnicodeConverter, hunspell, ooxmlsignature, kernel, kernel_network, graphics, videoplayer, ascdocumentscore, qtascdocumentscore)
+ADD_DEPENDENCY(PdfFile, DjVuFile, XpsFile, HtmlRenderer, UnicodeConverter, hunspell, ooxmlsignature, kernel, kernel_network, graphics, videoplayer, ascdocumentscore, qtascdocumentscore)
 
 core_linux {
     QT += network x11extras
@@ -192,29 +202,34 @@ core_linux {
     QMAKE_LFLAGS += "-Wl,-rpath,\'\$$ORIGIN/converter\'"
     QMAKE_LFLAGS += -static-libstdc++ -static-libgcc
 
-    HEADERS += $$PWD/src/linux/cmainwindow.h \
-                $$PWD/src/linux/cx11decoration.h \
-                $$PWD/src/linux/gtk_addon.h \
-                $$PWD/src/linux/csinglewindow.h \
-                $$PWD/src/linux/csinglewindowplatform.h \
-                $$PWD/src/linux/singleapplication.h
+    HEADERS +=  $$PWD/src/windows/platform_linux/cx11decoration.h \
+                #$$PWD/src/windows/platform_linux/gtk_addon.h \
+                $$PWD/src/windows/platform_linux/cwindowplatform.h \
+                $$PWD/src/platform_linux/cdialogopenssl.h \
+                $$PWD/src/platform_linux/cdialogcertificateinfo.h \
+                $$PWD/src/platform_linux/singleapplication.h \
+                $$PWD/src/platform_linux/xdgdesktopportal.h \
+                $$PWD/src/platform_linux/gtkfilechooser.h \
+                $$PWD/src/platform_linux/gtkprintdialog.h \
+                $$PWD/src/platform_linux/gtkutils.h \
+                $$PWD/src/platform_linux/xcbutils.h
 
-    SOURCES += $$PWD/src/linux/cmainwindow.cpp \
-                $$PWD/src/linux/cx11decoration.cpp \
-                $$PWD/src/linux/gtk_addon.cpp \
-                $$PWD/src/linux/cx11caption.cpp \
-                $$PWD/src/linux/csinglewindow.cpp \
-                $$PWD/src/linux/csinglewindowplatform.cpp \
-                $$PWD/src/linux/singleapplication.cpp
-
-    HEADERS += $$PWD/src/linux/cdialogopenssl.h \
-                $$PWD/src/linux/cdialogcertificateinfo.h
-    SOURCES += $$PWD/src/linux/cdialogopenssl.cpp \
-                $$PWD/src/linux/cdialogcertificateinfo.cpp
+    SOURCES +=  $$PWD/src/windows/platform_linux/cx11decoration.cpp \
+                #$$PWD/src/windows/platform_linux/gtk_addon.cpp \
+                #$$PWD/src/windows/platform_linux/cx11caption.cpp \
+                $$PWD/src/windows/platform_linux/cwindowplatform.cpp \
+                $$PWD/src/platform_linux/cdialogopenssl.cpp \
+                $$PWD/src/platform_linux/cdialogcertificateinfo.cpp \
+                $$PWD/src/platform_linux/singleapplication.cpp \
+                $$PWD/src/platform_linux/xdgdesktopportal.cpp \
+                $$PWD/src/platform_linux/gtkfilechooser.cpp \
+                $$PWD/src/platform_linux/gtkprintdialog.cpp \
+                $$PWD/src/platform_linux/gtkutils.cpp \
+                $$PWD/src/platform_linux/xcbutils.cpp
 
     CONFIG += link_pkgconfig
-    PKGCONFIG += glib-2.0 gtk+-3.0 atk
-    LIBS += -lX11
+    PKGCONFIG += glib-2.0 gtk+-3.0 atk dbus-1 gtk+-unix-print-3.0 xcb
+    LIBS += -lX11 -lX11-xcb
 
     LIBS += $$CORE_3DPARTY_PATH/icu/$$PLATFORM_BUILD/build/libicuuc.so.58
     LIBS += $$CORE_3DPARTY_PATH/icu/$$PLATFORM_BUILD/build/libicudata.so.58
@@ -227,23 +242,22 @@ core_windows {
 
     RC_ICONS += ./res/icons/desktop_icons.ico
 
-    HEADERS += $$PWD/src/win/mainwindow.h \
-                $$PWD/src/win/qwinwidget.h \
-                $$PWD/src/win/qwinhost.h \
-                $$PWD/src/win/cwinpanel.h \
-                $$PWD/src/win/cwinwindow.h \
-                $$PWD/src/win/csinglewindow.h \
-                $$PWD/src/win/csinglewindowplatform.h \
-                $$PWD/src/win/cprintdialog.h
+    HEADERS += $$PWD/src/windows/platform_win/cwindowplatform.h \
+               $$PWD/src/windows/platform_win/csnap.h \
+               $$PWD/src/windows/platform_win/caption.h \
+               $$PWD/src/platform_win/singleapplication.h \
+               $$PWD/src/platform_win/filechooser.h \
+               $$PWD/src/platform_win/resource.h
 
-    SOURCES += $$PWD/src/win/mainwindow.cpp \
-                $$PWD/src/win/qwinwidget.cpp \
-                $$PWD/src/win/qwinhost.cpp \
-                $$PWD/src/win/cwinpanel.cpp \
-                $$PWD/src/win/cwinwindow.cpp \
-                $$PWD/src/win/csinglewindow.cpp \
-                $$PWD/src/win/csinglewindowplatform.cpp \
-                $$PWD/src/win/cprintdialog.cpp
+    SOURCES += $$PWD/src/windows/platform_win/cwindowplatform.cpp \
+               $$PWD/src/windows/platform_win/csnap.cpp \
+               $$PWD/src/platform_win/singleapplication.cpp \
+               $$PWD/src/platform_win/filechooser.cpp
+
+    updmodule:!build_xp {
+        HEADERS += $$PWD/src/platform_win/updatedialog.h
+        SOURCES += $$PWD/src/platform_win/updatedialog.cpp
+    }
 
     LIBS += -lwininet \
             -ldnsapi \
@@ -272,11 +286,12 @@ core_windows {
             -lnetapi32 \
             -lcomctl32 \
             -lrpcrt4
-#            -ldwmapi
 #            -lOpenGL32
 
     build_xp {
         DEFINES += __OS_WIN_XP
+    } else {
+        LIBS += -ldwmapi
     }
 }
 

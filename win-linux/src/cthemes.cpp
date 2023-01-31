@@ -149,7 +149,7 @@ public:
             }
         } else {
             QString visual_theme_id = is_system_theme_dark ? THEME_DEFAULT_DARK_ID : THEME_DEFAULT_LIGHT_ID;
-            if ( current->isDark() != is_system_theme_dark ) {
+            if ( current->id() != visual_theme_id.toStdWString() ) {
                 if ( !current->fromFile(rc_themes.at(visual_theme_id)) )
                     return false;
             }
@@ -212,7 +212,9 @@ auto CTheme::fromFile(const QString& path) -> bool
 {
     QFile _file(path);
     if ( _file.open(QIODevice::ReadOnly) ) {
-        return fromJson(_file.readAll());
+        QString data(_file.readAll());
+        _file.close();
+        return fromJson(data);
     }
 
     return false;
@@ -359,6 +361,12 @@ auto CThemes::isThemeCurrent(const std::wstring& id) -> bool
     }
 }
 
+auto CThemes::themeActualId(const std::wstring& id) const -> std::wstring
+{
+    return WSTR(THEME_ID_SYSTEM) != id ? id :
+        m_priv->is_system_theme_dark ? WSTR(THEME_DEFAULT_DARK_ID) : WSTR(THEME_DEFAULT_LIGHT_ID);
+}
+
 auto CThemes::isColorDark(const std::wstring& color) -> bool
 {
     return isColorDark(QString::fromStdWString(color));
@@ -397,4 +405,9 @@ auto CThemes::onSystemDarkColorScheme(bool isdark) -> void
     if ( isdark != m_priv->is_system_theme_dark ) {
         m_priv->is_system_theme_dark = isdark;
     }
+}
+
+auto CThemes::isSystemSchemeDark() -> const bool
+{
+    return m_priv->is_system_theme_dark;
 }

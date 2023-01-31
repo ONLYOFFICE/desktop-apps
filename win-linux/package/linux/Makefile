@@ -63,14 +63,32 @@ URPMI_PACKAGE_DIR = $(URPMI_BUILD_DIR)/RPMS/$(URPMI_ARCH)
 SUSE_RPM_PACKAGE_DIR = $(SUSE_RPM_BUILD_DIR)/RPMS/$(RPM_ARCH)
 TAR_PACKAGE_DIR = $(TAR_BUILD_DIR)
 
-RPM = $(RPM_PACKAGE_DIR)/$(PACKAGE_NAME)-$(PACKAGE_VERSION).$(RPM_ARCH).rpm
-APT_RPM = $(APT_RPM_PACKAGE_DIR)/$(PACKAGE_NAME)-$(PACKAGE_VERSION).$(APT_RPM_ARCH).rpm
-URPMI = $(URPMI_PACKAGE_DIR)/$(PACKAGE_NAME)-$(PACKAGE_VERSION).$(URPMI_ARCH).rpm
-SUSE_RPM = $(SUSE_RPM_PACKAGE_DIR)/$(PACKAGE_NAME)-$(PACKAGE_VERSION).$(RPM_ARCH).rpm
-DEB = deb/$(PACKAGE_NAME)_$(PACKAGE_VERSION)_$(DEB_ARCH).deb
-DEB_ASTRA = deb-astra/$(PACKAGE_NAME)_$(PACKAGE_VERSION)-astra_$(DEB_ARCH).deb
-TAR = $(TAR_PACKAGE_DIR)/$(PACKAGE_NAME)-$(PACKAGE_VERSION)-$(TAR_ARCH).tar.gz
-HELP_TAR = $(TAR_PACKAGE_DIR)/$(PACKAGE_NAME)-help-$(PACKAGE_VERSION)-any.tar.xz
+DISTRIB_CODENAME=$(shell lsb_release -cs || echo "n/a")
+ifeq ($(DISTRIB_CODENAME),trusty)
+  RPM_RELEASE      := el7
+  APT_RPM_RELEASE  := p7
+  URPMI_RELEASE    := r6
+  SUSE_RPM_RELEASE := suse12
+  DEB_RELEASE      := jessie
+  TAR_RELEASE      := gcc4
+else ifeq ($(DISTRIB_CODENAME),xenial)
+  RPM_RELEASE      := el8
+  APT_RPM_RELEASE  := p8
+  URPMI_RELEASE    := r9
+  SUSE_RPM_RELEASE := suse15
+  DEB_RELEASE      := stretch
+  TAR_RELEASE      := gcc5
+endif
+DEB_ASTRA_RELEASE  := astra-signed
+
+RPM = $(RPM_PACKAGE_DIR)/$(PACKAGE_NAME)-$(PACKAGE_VERSION)$(RPM_RELEASE:%=.%).$(RPM_ARCH).rpm
+APT_RPM = $(APT_RPM_PACKAGE_DIR)/$(PACKAGE_NAME)-$(PACKAGE_VERSION)$(APT_RPM_RELEASE:%=.%).$(APT_RPM_ARCH).rpm
+URPMI = $(URPMI_PACKAGE_DIR)/$(PACKAGE_NAME)-$(PACKAGE_VERSION)$(URPMI_RELEASE:%=.%).$(URPMI_ARCH).rpm
+SUSE_RPM = $(SUSE_RPM_PACKAGE_DIR)/$(PACKAGE_NAME)-$(PACKAGE_VERSION)$(SUSE_RPM_RELEASE:%=.%).$(RPM_ARCH).rpm
+DEB = deb/$(PACKAGE_NAME)_$(PACKAGE_VERSION)$(DEB_RELEASE:%=~%)_$(DEB_ARCH).deb
+DEB_ASTRA = deb-astra/$(PACKAGE_NAME)_$(PACKAGE_VERSION)$(DEB_ASTRA_RELEASE:%=~%)_$(DEB_ARCH).deb
+TAR = $(TAR_PACKAGE_DIR)/$(PACKAGE_NAME)-$(PACKAGE_VERSION)$(TAR_RELEASE:%=_%)-$(TAR_ARCH).tar.gz
+HELP_TAR = $(TAR_PACKAGE_DIR)/$(PACKAGE_NAME)-help-$(PACKAGE_VERSION)$(TAR_RELEASE:%=_%)-any.tar.xz
 
 ifeq ($(COMPANY_NAME), ONLYOFFICE)
 	DESKTOPEDITORS_PREFIX := $(COMPANY_NAME_LOW)/$(PRODUCT_NAME_LOW)
@@ -154,7 +172,6 @@ M4_PARAMS += -D M4_PUBLISHER_URL='$(PUBLISHER_URL)'
 M4_PARAMS += -D M4_SUPPORT_MAIL='$(SUPPORT_MAIL)'
 M4_PARAMS += -D M4_SUPPORT_URL='$(SUPPORT_URL)'
 M4_PARAMS += -D M4_PACKAGE_NAME='$(PACKAGE_NAME)'
-M4_PARAMS += -D M4_PACKAGE_VERSION='$(PACKAGE_VERSION)'
 M4_PARAMS += -D M4_PACKAGE_EDITION='$(PACKAGE_EDITION)'
 M4_PARAMS += -D M4_DESKTOPEDITORS_PREFIX='$(DESKTOPEDITORS_PREFIX)'
 M4_PARAMS += -D M4_DESKTOPEDITORS_EXEC='$(DESKTOPEDITORS_EXEC)'
@@ -167,12 +184,12 @@ else
 	M4_PARAMS += -D M4_SCHEME_HANDLER='oo-office'
 endif
 M4_PARAMS += -D M4_DEB_ARCH='$(DEB_ARCH)'
-ifdef ASTRALINUX_KEYS_DIR
-	M4_PARAMS += -D M4_ASTRALINUX_KEYS_DIR='$(abspath $(ASTRALINUX_KEYS_DIR))'
-endif
-ifdef ASTRALINUX_SIGN_IMAGE
-	M4_PARAMS += -D M4_ASTRALINUX_SIGN_IMAGE='$(ASTRALINUX_SIGN_IMAGE)'
-endif
+M4_DEB_PARAMS = $(M4_PARAMS)
+M4_DEB_PARAMS += -D M4_PACKAGE_VERSION='$(PACKAGE_VERSION)$(DEB_RELEASE:%=~%)'
+M4_DEB_ASTRA_PARAMS = $(M4_PARAMS)
+M4_DEB_ASTRA_PARAMS += -D M4_ASTRALINUX_KEYS_DIR='$(abspath $(ASTRALINUX_KEYS_DIR))'
+M4_DEB_ASTRA_PARAMS += -D M4_ASTRALINUX_SIGN_IMAGE='$(ASTRALINUX_SIGN_IMAGE)'
+M4_DEB_ASTRA_PARAMS += -D M4_PACKAGE_VERSION='$(PACKAGE_VERSION)$(DEB_ASTRA_RELEASE:%=~%)'
 
 RPM_PARAMS += --define '_company_name $(COMPANY_NAME)'
 RPM_PARAMS += --define '_product_name $(PRODUCT_NAME)'
@@ -182,7 +199,6 @@ RPM_PARAMS += --define '_support_mail $(SUPPORT_MAIL)'
 RPM_PARAMS += --define '_package_name $(PACKAGE_NAME)'
 RPM_PARAMS += --define '_package_edition $(PACKAGE_EDITION)'
 RPM_PARAMS += --define '_product_version $(PRODUCT_VERSION)'
-RPM_PARAMS += --define '_build_number $(BUILD_NUMBER)'
 RPM_PARAMS += --define '_desktopeditors_prefix $(DESKTOPEDITORS_PREFIX)'
 RPM_PARAMS += --define '_desktopeditors_exec $(DESKTOPEDITORS_EXEC)'
 ifneq ($(COMPANY_NAME), ONLYOFFICE)
@@ -292,6 +308,7 @@ qt-redist:
 $(RPM): desktopeditor rpm/$(PACKAGE_NAME).spec
 	cd rpm && rpmbuild -bb \
 		--define "_topdir $(RPM_BUILD_DIR)" \
+		--define "_build_number $(BUILD_NUMBER)$(RPM_RELEASE:%=.%)" \
 		--define "_package_arch $(RPM_ARCH)" \
 		--target $(RPM_ARCH) \
 		$(RPM_PARAMS) \
@@ -301,24 +318,24 @@ deb/build/debian/% : deb/template/%
 	mkdir -pv $(@D) && cp -fv $< $@
 
 deb/build/debian/% : deb/template/%.m4
-	mkdir -pv $(@D) && m4 $(M4_PARAMS) $< > $@
+	mkdir -pv $(@D) && m4 $(M4_DEB_PARAMS) $< > $@
 
 deb/build/debian/$(PACKAGE_NAME).% : deb/template/package.%.m4
-	mkdir -pv $(@D) && m4 $(M4_PARAMS) $< > $@
+	mkdir -pv $(@D) && m4 $(M4_DEB_PARAMS) $< > $@
 
 deb/build/debian/$(PACKAGE_NAME)-help.% : deb/template/package-help.%.m4
-	mkdir -pv $(@D) && m4 $(M4_PARAMS) $< > $@
+	mkdir -pv $(@D) && m4 $(M4_DEB_PARAMS) $< > $@
 
 deb-astra/build/debian/% : deb/template/%
 	mkdir -pv $(@D) && cp -fv $< $@
 
 deb-astra/build/debian/% : deb/template/%.m4
 	mkdir -pv $(@D) && \
-	m4 $(M4_PARAMS) -D M4_PACKAGE_VERSION='$(PACKAGE_VERSION)-astra' $< > $@
+	m4 $(M4_DEB_ASTRA_PARAMS) $< > $@
 
 deb-astra/build/debian/$(PACKAGE_NAME).% : deb/template/package.%.m4
 	mkdir -pv $(@D) && \
-	m4 $(M4_PARAMS) -D M4_PACKAGE_VERSION='$(PACKAGE_VERSION)-astra' $< > $@
+	m4 $(M4_DEB_ASTRA_PARAMS) $< > $@
 
 $(DEB): desktopeditor $(DEB_DEPS)
 	cd deb/build && dpkg-buildpackage -b -uc -us
@@ -329,6 +346,7 @@ $(DEB_ASTRA): desktopeditor $(DEB_ASTRA_DEPS)
 $(APT_RPM): desktopeditor apt-rpm/$(PACKAGE_NAME).spec
 	cd apt-rpm && setarch $(APT_RPM_ARCH) rpmbuild -bb \
 		--define "_topdir $(APT_RPM_BUILD_DIR)" \
+		--define "_build_number $(BUILD_NUMBER)$(APT_RPM_RELEASE:%=.%)" \
 		--define "_package_arch $(APT_RPM_ARCH)" \
 		--target $(RPM_ARCH) \
 		$(RPM_PARAMS) \
@@ -337,6 +355,7 @@ $(APT_RPM): desktopeditor apt-rpm/$(PACKAGE_NAME).spec
 $(URPMI): desktopeditor urpmi/$(PACKAGE_NAME).spec
 	cd urpmi && setarch $(URPMI_ARCH) rpmbuild -bb \
 		--define "_topdir $(URPMI_BUILD_DIR)" \
+		--define "_build_number $(BUILD_NUMBER)$(URPMI_RELEASE:%=.%)" \
 		--define "_package_arch $(URPMI_ARCH)" \
 		--target $(RPM_ARCH) \
 		$(RPM_PARAMS) \
@@ -345,6 +364,7 @@ $(URPMI): desktopeditor urpmi/$(PACKAGE_NAME).spec
 $(SUSE_RPM): desktopeditor suse-rpm/$(PACKAGE_NAME).spec
 	cd suse-rpm && rpmbuild -bb \
 		--define "_topdir $(SUSE_RPM_BUILD_DIR)" \
+		--define "_build_number $(BUILD_NUMBER)$(SUSE_RPM_RELEASE:%=.%)" \
 		--define "_package_arch $(RPM_ARCH)" \
 		--target $(RPM_ARCH) \
 		$(RPM_PARAMS) \
@@ -357,6 +377,7 @@ $(TAR): desktopeditor
 		--xform=s:^common/opt:: -f"$@" common/opt
 
 $(HELP_TAR): desktopeditor
+	mkdir -p $(TAR_PACKAGE_DIR)
 	tar -cI"xz -9T0" --owner=root --group=root \
 		--xform=s:^common/help:: -f"$@" common/help
 

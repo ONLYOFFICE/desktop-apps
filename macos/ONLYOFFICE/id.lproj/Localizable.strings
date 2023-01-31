@@ -32,7 +32,7 @@
 "Delete and Quit" = "Hapus dan Keluar";
 
 /* No comment provided by engineer. */
-"DjVu File" = "File DjVu (*.djvu)";
+"DjVu File" = "Dokumen Digital (*.djvu)";
 
 /* No comment provided by engineer. */
 "Do you want to save the changes made to the document \"%@\"?" = "Simpan perubahan pada dokumen \"%@\"?";
@@ -44,10 +44,16 @@
 "Document template" = "Dokumen templat Word Open XML (*.dotx)";
 
 /* No comment provided by engineer. */
+"Don't Save" = "Jangan Simpan";
+
+/* No comment provided by engineer. */
 "Excel 97-2003 Spreadsheet" = "Lembar bentang Excel 97-2003 (*.xls)";
 
 /* No comment provided by engineer. */
 "Excel 2007 Spreadsheet" = "Lembar bentang Office Open XML (*.xlsx)";
+
+/* No comment provided by engineer. */
+"FictionBook File" = "File FictionBook 2 (*.fb2)";
 
 /* No comment provided by engineer. */
 "File \"%@\" can not be open or not exist." = "File \"%@\" tidak dapat dibuka atau tidak ada.";
@@ -113,10 +119,10 @@
 "OpenOffice Spreadsheet" = "Lembar Bentang OpenDocument (*.ods)";
 
 /* No comment provided by engineer. */
-"PDF File" = "File PDF (*.pdf)";
+"PDF File" = "Portable Document (*.pdf)";
 
 /* No comment provided by engineer. */
-"PDF/A File" = "File PDF/A (*.pdf)";
+"PDF/A File" = "Portable Document /A (*.pdf)";
 
 /* No comment provided by engineer. */
 "Plain Text" = "Teks Biasa (*.txt)";

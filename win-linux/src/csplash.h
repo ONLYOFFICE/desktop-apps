@@ -32,7 +32,7 @@
 
 #ifndef CSPLASH_H
 #define CSPLASH_H
-
+/*
 #include <QSplashScreen>
 
 class CSplash : public QSplashScreen
@@ -44,6 +44,6 @@ public:
     static void showSplash();
     static void hideSplash();
     static double startupDpiRatio();
-};
+};*/
 
 #endif // CSPLASH_H

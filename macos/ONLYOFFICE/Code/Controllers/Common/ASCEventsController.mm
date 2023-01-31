@@ -230,21 +230,34 @@ public:
                         CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
                         CCefView * pCefView = appManager->GetViewById(pRawEvent->get_SenderId());
 
-                        if (pCefView == NULL) {
-                            break;
-                        }
+                        if ( pCefView && pCefView->GetType() == cvwtEditor && !((CCefViewEditor*)pCefView)->IsPresentationReporter() ) {
+                            static int view_id = -1;
+                            if ( pRawEvent->m_nType == ASC_MENU_EVENT_TYPE_CEF_ONFULLSCREENENTER ) {
+                                if ( view_id < 0 ) {
+                                    view_id = pRawEvent->get_SenderId();
 
-                        if (pCefView && (pCefView->GetType() == cvwtEditor)) {
-                            if (((CCefViewEditor*)pCefView)->IsPresentationReporter()) {
-                                break;
+                                    [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameFullscreen
+                                                                                        object:nil
+                                                                                      userInfo:@{@"viewId"       : @(pRawEvent->get_SenderId()),
+                                                                                                 @"fullscreen"   : @(true)}];
+                                } else {
+                                    NSEditorApi::CAscExecCommandJS * pCommand = new NSEditorApi::CAscExecCommandJS;
+                                    pCommand->put_Command(L"editor:stopDemonstration");
+                                    NSEditorApi::CAscMenuEvent* pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EDITOR_EXECUTE_COMMAND);
+                                    pEvent->m_pData = pCommand;
+                                    pCefView->Apply(pEvent);
+                                }
+                            } else {
+                                if ( view_id == pRawEvent->get_SenderId() )
+                                    view_id = -1;
+
+                                [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameFullscreen
+                                                                                    object:nil
+                                                                                  userInfo:@{@"viewId"       : @(pRawEvent->get_SenderId()),
+                                                                                             @"fullscreen"   : @(false)}];
                             }
                         }
 
-                        [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameFullscreen
-                                                                            object:nil
-                                                                          userInfo:@{
-                                                                                     @"fullscreen" : @(pEvent->m_nType == ASC_MENU_EVENT_TYPE_CEF_ONFULLSCREENENTER)
-                                                                                     }];
                         break;
                     }
                         
@@ -716,6 +729,8 @@ public:
                                                                                              }];
                                 }
                             }
+                        } else if (cmd.find(L"open:recent") != std::wstring::npos) {
+                            NSLog(@"open:recent");
                         } else if (cmd.find(L"webapps:features") != std::wstring::npos) {
                             CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
                             CCefView * pCefView = appManager->GetViewById(senderId);

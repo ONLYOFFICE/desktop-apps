@@ -64,11 +64,13 @@ public:
     auto setCurrentTheme(const std::wstring&) -> void;
     auto isThemeCurrent(const std::wstring& id) -> bool;
 //    auto isThemeDark(const std::wstring& id) -> bool;
+    auto themeActualId(const std::wstring& id) const -> std::wstring;
 
     auto isColorDark(const std::wstring&) -> bool;
     auto isColorDark(const QString&) -> bool;
 
     auto onSystemDarkColorScheme(bool isdark) -> void;
+    auto isSystemSchemeDark() -> const bool;
     auto parseThemeName(const std::wstring&) -> std::wstring;
 private:
     class CThemesPrivate;

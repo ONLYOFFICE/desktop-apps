@@ -1,5 +1,5 @@
 
-QT      += core
+QT      += core widgets
 QT      -= gui
 
 TARGET  = projicons
@@ -41,6 +41,11 @@ core_debug:DESTDIR = $$DESTDIR/build/debug
 DESTDIR = $$DESTDIR/$$CORE_BUILDS_PLATFORM_PREFIX
 build_xp {
     DESTDIR = $$DESTDIR/xp
+    DEFINES += __OS_WIN_XP
+} else {
+    HEADERS += $$PWD/src/jumplist.h
+    LIBS += -lshlwapi \
+            -lole32
 }
 
 OBJECTS_DIR = $$DESTDIR/obj

@@ -62,6 +62,7 @@
 #define APP_DEFAULT_SYSTEM_LOCALE 1
 #define APP_USER_MODEL_ID "ASC.Documents.5"
 #define APP_SIMPLE_WINDOW_TITLE "ONLYOFFICE Editor"
+#define FILE_PREFIX "onlyoffice_"
 
 #define URL_SITE                "http://www.onlyoffice.com"
 //#define URL_APPCAST_UPDATES     ""
@@ -71,6 +72,12 @@
     QSettings variable(QSettings::NativeFormat, QSettings::UserScope, REG_GROUP_KEY, REG_APP_NAME);
 #define GET_REGISTRY_SYSTEM(variable) \
     QSettings variable(QSettings::SystemScope, REG_GROUP_KEY, REG_APP_NAME);
+#define GetCurrentTheme() \
+    AscAppManager::themes().current()
+#define GetActualTheme(theme) \
+    AscAppManager::themes().themeActualId(theme)
+#define GetColorByRole(role) \
+    GetCurrentTheme().color(CTheme::ColorRole::role)
 
 #define LOCAL_PATH_OPEN         1
 #define LOCAL_PATH_SAVE         2
@@ -89,6 +96,8 @@
 #define ACTIONPANEL_ACTIVATE    ACTIONPANEL_CONNECT + 1
 
 #define URL_AGPL "https://www.gnu.org/licenses/agpl-3.0.en.html"
+#define DOWNLOAD_PAGE "https://www.onlyoffice.com/en/download-desktop.aspx"
+#define RELEASE_NOTES "https://github.com/ONLYOFFICE/DesktopEditors/blob/master/CHANGELOG.md"
 
 #define DOCUMENT_CHANGED_LOADING_START          -255
 #define DOCUMENT_CHANGED_LOADING_FINISH         -254

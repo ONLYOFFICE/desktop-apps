@@ -403,7 +403,7 @@ ko.extMSSlideshow =Microsoft PowerPoint Slideshow (마이크로소포트 파워�
 lv.extMSSlideshow =Microsoft PowerPoint Slaidrāde
 nn_NO.extMSSlideshow =Microsoft PowerPoint-lysbildefremvisning
 uk.extMSSlideshow =Показ слайдів Microsoft PowerPoint
-be.extMSSlideshow =Слайд-шоў Microsoft PowerPoint
+be.extMSSlideshow =Слайд-шоу Microsoft PowerPoint
 gl.extMSSlideshow =Presentación de Microsoft PowerPoint
 
 en.extODT =OpenDocument Text File
@@ -483,7 +483,7 @@ ko.extODS =OpenDocument Spreadsheet (오픈도큐먼트 스프레드시트)
 lv.extODS =OpenDocument Izklājlapa
 nn_NO.extODS =OpenDocument-regneark
 uk.extODS =Електронна таблиця OpenDocument
-be.extODS =Табліца OpenDocument
+be.extODS =Электронная табліца OpenDocument
 gl.extODS =Folla de cálculo de OpenDocument
 
 en.extODP =OpenDocument Presentation
@@ -683,7 +683,7 @@ ko.extXLS =Excel 97-2003 스프레드시트
 lv.extXLS =Excel 97-2003 izklājlapa
 nn_NO.extXLS =Microsoft Excel 97-2003-regneark
 uk.extXLS =Електронна таблиця Excel 97-2003
-be.extXLS =Табліца Excel 97-2003
+be.extXLS =Электронная табліца Excel 97-2003
 gl.extXLS =Folla de cálculo Excel 97-2003
 
 en.extXLSX =Office Open XML Spreadsheet
@@ -843,7 +843,7 @@ ko.extPPS =PowerPoint 97-2003 슬라이드 쇼
 lv.extPPS =PowerPoint 97-2003 slaidrāde
 nn_NO.extPPS =Microsoft PowerPoint 97-2003-lysbildefremvisning
 uk.extPPS =Показ слайдів PowerPoint 97-2003
-be.extPPS =Слайд-шоў PowerPoint 97-2003
+be.extPPS =Слайд-шоу PowerPoint 97-2003
 gl.extPPS =Presentación de diapositivas de Powerpoint 97-2003
 
 en.extPPSX =Office Open XML Slide Show
@@ -883,7 +883,7 @@ ko.extPPSX =Office Open XML 슬라이드 쇼
 lv.extPPSX =Office Open XML slaidrāde
 nn_NO.extPPSX =Office Open XML-lysbildefremvisning
 uk.extPPSX =Показ слайдів Office Open XML
-be.extPPSX =Слайд-шоў Office Open XML
+be.extPPSX =Слайд-шоу Office Open XML
 gl.extPPSX =Presentación de diapositivas de Office Open XML
 
 en.extRTF =Rich Text Format File
@@ -923,7 +923,7 @@ ko.extRTF =서식이 있는 텍스트 형식 파일
 lv.extRTF =Bagātināta teksta formāta fails
 nn_NO.extRTF =Rikt tekstformat-fil
 uk.extRTF =Файл вдосконаленого текстового формату
-be.extRTF =Файл у фармаце Rich Text
+be.extRTF =Багаты тэкставы дакумент
 gl.extRTF =Ficheiro con formato de texto enriquecido
 
 en.extCSV =Comma Separated Values
@@ -1089,7 +1089,7 @@ gl.extXPS =Documento OpenXPS
 en.extOFORM =ONLYOFFICE Fillable Online Form
 bg.extOFORM =ONLYOFFICE Онлайн формуляр за попълване
 ca.extOFORM =Formulari d'emplenament en línia d’ONLYOFFICE
-cs.extOFORM =Vyplnitelný online formulář ONLYOFFICE 
+cs.extOFORM =Vyplnitelný online formulář ONLYOFFICE
 el.extOFORM =Διαδικτυακή Φόρμα ONLYOFFICE με δυνατότητα συμπλήρωσης
 ;et.extOFORM =ONLYOFFICE täidetav veebivorm
 fi.extOFORM =ONLYOFFICE täytettävä online-lomake
@@ -1125,6 +1125,167 @@ nn_NO.extOFORM =ONLYOFFICE utfyllbart elektronisk skjema
 uk.extOFORM =Онлайн-форма для заповнення ONLYOFFICE
 be.extOFORM =Запаўняльная анлайн-форма ONLYOFFICE
 gl.extOFORM =Formulario en liña encheble ONLYOFFICE
+;======================================================================================================
+
+en.jumpDOCX =New document
+bg.jumpDOCX =Нов документ
+ca.jumpDOCX =Nou document
+cs.jumpDOCX =Nový dokument
+el.jumpDOCX =Νέο έγγραφο
+;et.jumpDOCX =Uus dokument
+fi.jumpDOCX =Uusi asiakirja
+;lt.jumpDOCX =Naujas dokumentas
+lo.jumpDOCX =ເອກະສານໃໝ່
+nl.jumpDOCX =Nieuw Document
+ru.jumpDOCX =Новый документ
+de.jumpDOCX =Neues Dokument
+fr.jumpDOCX =Nouveau document
+es.jumpDOCX =Nuevo Documento
+id.jumpDOCX =Dokumen baru
+it_IT.jumpDOCX =Nuovo documento
+pt_BR.jumpDOCX =Novo Documento
+;pt_PT.jumpDOCX =Novo documento
+pl.jumpDOCX =Nowy dokument
+ro.jumpDOCX =Document nou
+sk.jumpDOCX =Nový dokument
+sl.jumpDOCX =Nov dokument
+sv.jumpDOCX =Nytt dokument
+tr.jumpDOCX =Yeni Belge
+vi.jumpDOCX =Tài liệu mới
+zh_CN.jumpDOCX =新建文档
+hy_AM.jumpDOCX =Նոր փաստաթուղթ
+;hr.jumpDOCX =Novi dokument
+da.jumpDOCX =Nyt dokument
+;hi.jumpDOCX =नया दस्तावेज़
+hu.jumpDOCX =Új dokumentum
+;ga_IE.jumpDOCX =Doiciméad nua
+ja.jumpDOCX =新しいドキュメント
+ko.jumpDOCX =신규 문서
+lv.jumpDOCX =Jauns dokuments
+nn_NO.jumpDOCX =Nytt dokument
+uk.jumpDOCX =Новий документ
+be.jumpDOCX =Новы дакумент
+gl.jumpDOCX =Novo documento
+
+en.jumpXLSX =New spreadsheet
+bg.jumpXLSX =Нова електронна таблица
+ca.jumpXLSX =Nou full de càlcul
+cs.jumpXLSX =Nový sešit
+el.jumpXLSX =Νέο λογιστικό φύλλο
+;et.jumpXLSX =Uus tabel
+fi.jumpXLSX =Uusi laskentataulukko
+;lt.jumpXLSX =Naujas skaičiuoklės dokumentas
+lo.jumpXLSX =ຕາຕະລາງໃໝ່
+nl.jumpXLSX =Nieuw werkblad
+ru.jumpXLSX =Новая таблица
+de.jumpXLSX =Neue Tabelle
+fr.jumpXLSX =Nouvelle feuille de calcul
+es.jumpXLSX =Nueva Hoja de Cálculo
+id.jumpXLSX =Lembar kerja baru
+it_IT.jumpXLSX =Nuovo foglio elettronico
+pt_BR.jumpXLSX =Nova planilha
+;pt_PT.jumpXLSX =Nova folha de cálculo
+pl.jumpXLSX =Nowy arkusz kalkulacyjny
+ro.jumpXLSX =Foaie de calcul nouă
+sk.jumpXLSX =Nová tabuľka
+sl.jumpXLSX =Nova razpredelnica
+sv.jumpXLSX =Nytt kalkylblad
+tr.jumpXLSX =Yeni Hesap Tablosu
+vi.jumpXLSX =Bảng tính mới
+zh_CN.jumpXLSX =新建表格
+hy_AM.jumpXLSX =Նոր աղյուսակաթերթ
+;hr.jumpXLSX =Nova proračunska tablica
+da.jumpXLSX =Nyt regneark
+;hi.jumpXLSX =नए स्प्रेडशीट
+hu.jumpXLSX =Új táblázat
+;ga_IE.jumpXLSX =Scarbhileog Nua
+ja.jumpXLSX =新しいスプレッドシート
+ko.jumpXLSX =새로운 스프레드 시트
+lv.jumpXLSX =Jauna tabula
+nn_NO.jumpXLSX =Nytt regneark
+uk.jumpXLSX =Нова таблиця
+be.jumpXLSX =Новая электронная табліца
+gl.jumpXLSX =Nova folla de cálculo
+
+en.jumpPPTX =New presentation
+bg.jumpPPTX =Нова презентация
+ca.jumpPPTX =Nova presentació
+cs.jumpPPTX =Nová prezentace
+el.jumpPPTX =Νέα παρουσίαση
+;et.jumpPPTX =Uus esitlus
+fi.jumpPPTX =Uusi esitys
+;lt.jumpPPTX =Nauja pateiktis
+lo.jumpPPTX =ບົດນຳສະເໜີໃໝ່
+nl.jumpPPTX =Nieuwe presentatie
+ru.jumpPPTX =Новая презентация
+de.jumpPPTX =Neue Präsentation
+fr.jumpPPTX =Nouvelle présentation
+es.jumpPPTX =Nueva Presentación
+id.jumpPPTX =Presentasi Baru
+it_IT.jumpPPTX =Nuova presentazione
+pt_BR.jumpPPTX =Nova apresentação
+;pt_PT.jumpPPTX =Nova Apresentação
+pl.jumpPPTX =Nowa prezentacja
+ro.jumpPPTX =Prezentare nouă
+sk.jumpPPTX =Nová prezentácia
+sl.jumpPPTX =Nova predstavitev
+sv.jumpPPTX =Ny presentation
+tr.jumpPPTX =Yeni Sunum
+vi.jumpPPTX =Bản trình chiếu mới
+zh_CN.jumpPPTX =新建幻灯片
+hy_AM.jumpPPTX =Նոր ներկայացում
+;hr.jumpPPTX =Nova prezentacija
+da.jumpPPTX =Ny præsentation
+;hi.jumpPPTX =नई प्रस्तुति
+hu.jumpPPTX =Új bemutató
+;ga_IE.jumpPPTX =Cur i Láthair Nua
+ja.jumpPPTX =新しいプレゼンテーション
+ko.jumpPPTX =새 프리젠 테이션
+lv.jumpPPTX =Jauna prezentācija
+nn_NO.jumpPPTX =Ny presentasjon
+uk.jumpPPTX =Нова презентація
+be.jumpPPTX =Новая прэзентацыя
+gl.jumpPPTX =Nova presentación
+
+en.jumpDOCXF =New form template
+bg.jumpDOCXF =Нов шаблон на формуляр
+ca.jumpDOCXF =Nova plantilla de formulari
+cs.jumpDOCXF =Nová šablona formuláře
+el.jumpDOCXF =Νέο πρότυπο Φόρμας
+;et.jumpDOCXF =Uus vormi mall
+fi.jumpDOCXF =Uusi lomakemalli
+;lt.jumpDOCXF =Naujo formos šablonas
+lo.jumpDOCXF =ແບບຟອມໃຫມ່
+nl.jumpDOCXF =Nieuw Formulier sjabloon
+ru.jumpDOCXF =Новый шаблон формы
+de.jumpDOCXF =Neue Formularvorlage
+fr.jumpDOCXF =Nouveau modèle de formulaire
+es.jumpDOCXF =Nueva plantilla de formulario
+id.jumpDOCXF =Templat formulir baru
+it_IT.jumpDOCXF =Nuovo modello di modulo
+pt_BR.jumpDOCXF =Novo Formulário Mestre
+;pt_PT.jumpDOCXF =Novo Modelo para Formulários
+pl.jumpDOCXF =Nowy szablon formularza
+ro.jumpDOCXF =Șablon formă nou
+sk.jumpDOCXF =Nová šablóna formulára
+sl.jumpDOCXF =Nova predloga za obrazec
+sv.jumpDOCXF =Ny formulärmall
+tr.jumpDOCXF =Yeni Form şablonu
+vi.jumpDOCXF =Mẫu biểu mẫu mới
+zh_CN.jumpDOCXF =新表单模板
+hy_AM.jumpDOCXF =Նոր ձևի նմուշ
+;hr.jumpDOCXF = Novi predložak obrasca
+da.jumpDOCXF =Ny formularskabelon
+;hi.jumpDOCXF =नया फॉर्म टेम्पलेट 
+hu.jumpDOCXF =Új formátum-sablon
+;ga_IE.jumpDOCXF =Teimpléad foirm nua
+ja.jumpDOCXF =新しいフォームテンプレート
+ko.jumpDOCXF =새 양식 템플릿
+lv.jumpDOCXF =Jauna veidlapas veidne
+nn_NO.jumpDOCXF =Ny skjemamal
+uk.jumpDOCXF =Новий шаблон форми
+be.jumpDOCXF =Новы шаблон формы
+gl.jumpDOCXF =Novo Modelo de Formulario
 
 en.defprogAppDescription=Free desktop office suite for document editing and collaboration
 bg.defprogAppDescription=Безплатен офис пакет за редактиране и съвместна работа по документи
@@ -1372,18 +1533,18 @@ begin
 
   ExtensionRegistryInfo[0]  := prefix + 'Document.1:'   + ExpandConstant('{cm:extDOC}')             + ':' + '11';
   ExtensionRegistryInfo[1]  := prefix + 'Document.12:'  + ExpandConstant('{cm:extDOCX}')            + ':' + '7';
-  ExtensionRegistryInfo[2]  := prefix + 'Sheet.1:'      + ExpandConstant('{cm:extXLS}')             + ':' + '18';
+  ExtensionRegistryInfo[2]  := prefix + 'Sheet.1:'      + ExpandConstant('{cm:extXLS}')             + ':' + '22';
   ExtensionRegistryInfo[3]  := prefix + 'Sheet.12:'     + ExpandConstant('{cm:extXLSX}')            + ':' + '10';
   ExtensionRegistryInfo[4]  := prefix + 'Show.1:'       + ExpandConstant('{cm:extPPT}')             + ':' + '1';
   ExtensionRegistryInfo[5]  := prefix + 'Show.12:'      + ExpandConstant('{cm:extPPTX}')            + ':' + '9';
   ExtensionRegistryInfo[6]  := prefix + 'SlideShow.1:'  + ExpandConstant('{cm:extPPS}')             + ':' + '2';
   ExtensionRegistryInfo[7]  := prefix + 'SlideShow.12:' + ExpandConstant('{cm:extPPSX}')            + ':' + '8';
-  ExtensionRegistryInfo[8]  := prefix + 'Document.2:'   + ExpandConstant('{cm:extODT}')             + ':' + '14';
-  ExtensionRegistryInfo[9]  := prefix + 'Sheet.2:'      + ExpandConstant('{cm:extODS}')             + ':' + '19';
+  ExtensionRegistryInfo[8]  := prefix + 'Document.2:'   + ExpandConstant('{cm:extODT}')             + ':' + '18';
+  ExtensionRegistryInfo[9]  := prefix + 'Sheet.2:'      + ExpandConstant('{cm:extODS}')             + ':' + '23';
   ExtensionRegistryInfo[10] := prefix + 'Show.2:'       + ExpandConstant('{cm:extODP}')             + ':' + '3';
-  ExtensionRegistryInfo[11] := prefix + 'Rtf:'          + ExpandConstant('{cm:extRTF}')             + ':' + '15';
+  ExtensionRegistryInfo[11] := prefix + 'Rtf:'          + ExpandConstant('{cm:extRTF}')             + ':' + '19';
   //ExtensionRegistryInfo[12] := prefix + 'Txt:'                                                      + ':' + '14';
-  ExtensionRegistryInfo[12] := prefix + 'Csv:'          + ExpandConstant('{cm:extCSV}')             + ':' + '20';
+  ExtensionRegistryInfo[12] := prefix + 'Csv:'          + ExpandConstant('{cm:extCSV}')             + ':' + '24';
   ExtensionRegistryInfo[13] := prefix + 'Pdf:'          + ExpandConstant('{cm:extPDF}')             + ':' + '5';
   ExtensionRegistryInfo[14] := prefix + 'DjVu:'         + ExpandConstant('{cm:extDJVU}')            + ':' + '4';
   ExtensionRegistryInfo[15] := prefix + 'Xps:'          + ExpandConstant('{cm:extXPS}')             + ':' + '6';
@@ -1577,7 +1738,7 @@ procedure AddContextMenuNewItems;
 var
   langs: TArrayOfValues;
   args, regpath: String;
-  progpath: String;
+  progpath, oldValue: String;
   argsArray: TArrayOfString;
   version: TWindowsVersion;
 begin
@@ -1621,6 +1782,12 @@ begin
 
   GetWindowsVersionEx(version);
   if version.Major = 10 then begin
+    RegQueryStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.docx', '', oldValue);
+    RegWriteStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.docx', '{#ASCC_REG_PREFIX}', oldValue);
+    RegQueryStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.xlsx', '', oldValue);
+    RegWriteStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.xlsx', '{#ASCC_REG_PREFIX}', oldValue);
+    RegQueryStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.pptx', '', oldValue);
+    RegWriteStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.pptx', '{#ASCC_REG_PREFIX}', oldValue);
     RegWriteStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.docx', '', '{#ASCC_REG_PREFIX}.Document.12')
     RegWriteStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.xlsx', '', '{#ASCC_REG_PREFIX}.Sheet.12')
     RegWriteStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.pptx', '', '{#ASCC_REG_PREFIX}.Show.12')
@@ -1737,7 +1904,8 @@ procedure UnassociateExtensions;
 var
   i: Integer;
   argsArray: TArrayOfString;
-  ext, str: string;
+  ext, str, oldValue: string;
+  version: TWindowsVersion;
 begin
   initExtensions();
 
@@ -1773,4 +1941,17 @@ begin
   RegDeleteKeyIncludingSubkeys(HKEY_LOCAL_MACHINE, ExpandConstant('Software\Classes\.docx\{#ASCC_REG_PREFIX}.Document.12'));
   RegDeleteKeyIncludingSubkeys(HKEY_LOCAL_MACHINE, ExpandConstant('Software\Classes\.pptx\{#ASCC_REG_PREFIX}.Show.12'));
   RegDeleteKeyIncludingSubkeys(HKEY_LOCAL_MACHINE, ExpandConstant('Software\Classes\.xlsx\{#ASCC_REG_PREFIX}.Sheet.12'));
+
+  GetWindowsVersionEx(version);
+  if version.Major = 10 then begin
+    if RegQueryStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.docx', '{#ASCC_REG_PREFIX}', oldValue) then
+       RegWriteStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.docx', '', oldValue);
+    if RegQueryStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.xlsx', '{#ASCC_REG_PREFIX}', oldValue) then
+       RegWriteStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.xlsx', '', oldValue);
+    if RegQueryStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.pptx', '{#ASCC_REG_PREFIX}', oldValue) then
+       RegWriteStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.pptx', '', oldValue);
+    RegDeleteValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.docx', '{#ASCC_REG_PREFIX}');
+    RegDeleteValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.xlsx', '{#ASCC_REG_PREFIX}');
+    RegDeleteValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.pptx', '{#ASCC_REG_PREFIX}');
+  end;
 end;

@@ -36,37 +36,35 @@
 #include "qascapplicationmanager.h"
 #include <QObject>
 #include <QMutex>
+#include <QDesktopServices>
 #include <vector>
 #include <memory>
 #include "ccefeventstransformer.h"
 #include "ccefeventsgate.h"
-#include "ceditorwindow.h"
+#include "windows/ceditorwindow.h"
 #include "cwindowsqueue.h"
 #include "ceventdriver.h"
 #include "cprintdata.h"
 
-#ifdef _WIN32
-#include "win/mainwindow.h"
-#include "win/csinglewindow.h"
-#else
-#include "linux/cmainwindow.h"
-#include "linux/singleapplication.h"
-#include "linux/csinglewindow.h"
+#include "cmainwindowimpl.h"
+#include "windows/cpresenterwindow.h"
+
+#ifdef _UPDMODULE
+    #include "cupdatemanager.h"
 #endif
 
-#include "cappupdater.h"
 #include "cthemes.h"
 
 #define SEND_TO_ALL_START_PAGE nullptr
 
-#ifdef Q_OS_WIN
-typedef HWND ParentHandle;
-#else
 typedef QWidget* ParentHandle;
-#endif
+
+#define CLOSE_QUEUE_WIN_TYPE_MAIN   1
+#define CLOSE_QUEUE_WIN_TYPE_EDITOR 2
 
 
-struct sWinTag {
+struct sWinTag
+{
     int     type;
     size_t  handle;
 
@@ -75,6 +73,8 @@ struct sWinTag {
         return other.handle == this->handle;
     }
 };
+
+Q_DECLARE_METATYPE(sWinTag)
 
 enum class CScalingFactor
 {
@@ -101,7 +101,7 @@ private:
     std::map<CScalingFactor, std::vector<std::string>> m_mapStyles;
 
     std::map<int, CCefEventsGate *> m_receivers;
-    std::map<int, CSingleWindow *> m_winsReporter;
+    std::map<int, CPresenterWindow *> m_winsReporter;
 
     uint m_closeCount = 0;
     uint m_countViews = 0;
@@ -111,7 +111,6 @@ private:
     CEventDriver m_eventDriver;
     CMainWindow * m_pMainWindow = nullptr;
 
-    std::shared_ptr<CAppUpdater> m_updater;
     std::shared_ptr<CThemes> m_themes;
 
 public:
@@ -132,6 +131,7 @@ private:
     void sendSettings(const std::wstring& opts);
     void applyTheme(const std::wstring&, bool force = false);
 
+    CMainWindow * prepareMainWindow(const QRect& r = QRect());
     CMainWindow * mainWindowFromViewId(int uid) const;
     CEditorWindow * editorWindowFromViewId(int uid) const;
     CEditorWindow * editorWindowFromUrl(const QString&) const;
@@ -151,18 +151,26 @@ public slots:
     void onFileChecked(const QString&, int, bool);
     void onEditorWidgetClosed();
 
+private slots:
+#ifdef _UPDMODULE
+#ifdef Q_OS_WIN
+    void showStartInstallMessage();
+#endif
+    void showUpdateMessage(bool error, bool updateExist, const QString &version, const QString &changelog);
+#endif
+
+    void onMainWindowClose();
 
 public:
     static CAscApplicationManagerWrapper & getInstance();
     static CAscApplicationManager * createInstance();
 
-    CSingleWindow * createReporterWindow(void *, int);
+    CPresenterWindow * createReporterWindow(void *, int);
 
     static void             startApp();
     static void             initializeApp();
     static void             gotoMainWindow(size_t pw = 0);
     static void             handleInputCmd(const std::vector<std::wstring>&);
-    static void             closeMainWindow();
     static void             closeEditorWindow(const size_t);
 
     static void             editorWindowMoving(const size_t, const QPoint&);
@@ -187,8 +195,8 @@ public:
     static void             destroyViewer(int id);
     static void             destroyViewer(QCefView * v);
 
+    static void             closeAppWindows();      // TODO: combine with launchAppClose
     static void             cancelClose();
-    static void checkUpdates();
 
     uint logoutCount(const std::wstring& portal) const;
     void Logout(const std::wstring& portal);
@@ -201,7 +209,9 @@ private:
     std::unique_ptr<CAscApplicationManagerWrapper_Private> m_private;
 
     CAscApplicationManagerWrapper(CAscApplicationManagerWrapper_Private *);
+#ifdef _UPDMODULE
+    CUpdateManager *m_pUpdateManager;
+#endif
 };
 
 #endif // QASCAPPLICATIONMANAGER
-

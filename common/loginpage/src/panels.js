@@ -39,6 +39,8 @@ $(document).ready(function() {
     !window.app && (window.app = {controller:{}});
     !window.app.controller && (window.app.controller = {});
 
+    if ( !!localStorage.templates )
+    window.app.controller.templates = (new ControllerTemplates).init();
     window.app.controller.recent = (new ControllerRecent).init();
     window.app.controller.folders = (new ControllerFolders).init();
     window.app.controller.about = (new ControllerAbout).init();
@@ -207,23 +209,27 @@ window.sdk.on('on_native_message', function(cmd, param) {
     console.log(cmd, param);
 });
 
+window.last_click_time = performance.now();
 function openFile(from, model) {
     if (window.sdk) {
+        if ( performance.now() - last_click_time < 1000 ) return;
+        last_click_time = performance.now();
+
         if (from == OPEN_FILE_FOLDER) {
             window.sdk.command("open:folder", model);
         } else {
             const params = {
                     id: model.fileid,
-                    name: model.name,
-                    path: model.path,
+                    name: utils.fn.decodeHtml(model.name),
+                    path: utils.fn.decodeHtml(model.path),
                     type: model.type
                 };
 
             if ( from == OPEN_FILE_RECOVERY ) {
-                window.sdk.LocalFileOpenRecover(parseInt(params.id));
+                window.sdk.LocalFileOpenRecover(parseInt(params.id));       // for bug 60509. change on "open:recovery" event for ver 7.4
                 window.sdk.command("open:recovery", JSON.stringify(params));
             } else {
-                window.sdk.LocalFileOpenRecent(parseInt(params.id));
+                window.sdk.LocalFileOpenRecent(parseInt(params.id));        // for bug 60509. change on "open:recent" event for ver 7.4
                 window.sdk.command("open:recent", JSON.stringify(params));
             }
         }
