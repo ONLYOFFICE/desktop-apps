@@ -62,6 +62,19 @@
 using std::vector;
 
 
+auto currentArch()->QString
+{
+#ifdef Q_OS_WIN
+# ifdef Q_OS_WIN64
+    return "_x64";
+# else
+    return "_x86";
+# endif
+#else
+    return "_x64";
+#endif
+}
+
 auto destroyStartupTimer(QTimer* &timer)->void
 {
     if (timer) {
@@ -172,7 +185,7 @@ void CUpdateManager::downloadFile(const std::wstring &url, const QString &ext)
         const QUuid uuid = QUuid::createUuid();
         const QRegularExpression branches = QRegularExpression("[{|}]+");
         const QString tmp_file = QDir::tempPath() + "/" + QString(FILE_PREFIX) +
-                uuid.toString().replace(branches, "") + ext;
+                uuid.toString().replace(branches, "") + currentArch() + ext;
         m_pDownloader->SetFilePath(tmp_file.toStdWString());
         m_pDownloader->Start(0);
     }
@@ -305,7 +318,9 @@ QByteArray CUpdateManager::getFileHash(const QString &fileName)
 
 void CUpdateManager::loadUpdates()
 {
-    if (!m_savedPackageData.fileName.isEmpty() && m_savedPackageData.version == m_newVersion
+    if (!m_savedPackageData.fileName.isEmpty()
+            && m_savedPackageData.fileName.indexOf(currentArch()) != -1
+            && m_savedPackageData.version == m_newVersion
             && m_savedPackageData.hash == getFileHash(m_savedPackageData.fileName))
     {
         m_packageData.fileName = m_savedPackageData.fileName;
@@ -432,7 +447,7 @@ void CUpdateManager::onLoadCheckFinished()
         // parse package
 #ifdef Q_OS_WIN
             QJsonObject package = root.value("package").toObject();
-# ifdef _M_X64
+# ifdef Q_OS_WIN64
             QJsonValue win = package.value("win_64");
 # else
             QJsonValue win = package.value("win_32");
@@ -449,7 +464,8 @@ void CUpdateManager::onLoadCheckFinished()
 
             m_newVersion = version;
 #ifdef Q_OS_WIN
-            if (m_newVersion == m_savedPackageData.version)
+            if (m_newVersion == m_savedPackageData.version
+                    && m_savedPackageData.fileName.indexOf(currentArch()) != -1)
                 clearTempFiles(m_savedPackageData.fileName);
             else
 #endif
