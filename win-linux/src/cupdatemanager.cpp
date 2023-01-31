@@ -432,7 +432,7 @@ void CUpdateManager::onLoadCheckFinished()
         // parse package
 #ifdef Q_OS_WIN
             QJsonObject package = root.value("package").toObject();
-# if defined (Q_OS_WIN64)
+# ifdef _M_X64
             QJsonValue win = package.value("win_64");
 # else
             QJsonValue win = package.value("win_32");
