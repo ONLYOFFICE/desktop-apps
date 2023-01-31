@@ -45,6 +45,7 @@ uk.AssociateDescription =Асоціювати типи файлів офісни
 be.AssociateDescription =Звязаць тыпы файлаў дакументаў офіса з {#ASSC_APP_NAME}
 gl.AssociateDescription =Asociar tipos de ficheiros de documentos de oficina con {#ASSC_APP_NAME}
 ;si.AssociateDescription ={#ASSC_APP_NAME} සමඟ කාර්යාල ලේඛන ගොනු වර්ග සම්බන්ධ කරන්න
+;zh_HK.AssociateDescription =與文書處理檔案類型聯結{#ASSC_APP_NAME}
 
 en.AssociateCaption =File Associations
 bg.AssociateCaption =Свързвания на файлове
@@ -86,6 +87,7 @@ uk.AssociateCaption =Асоціації файлів
 be.AssociateCaption =Асацыяцыя файлаў
 gl.AssociateCaption =Asociacións do ficheiro
 ;si.AssociateCaption =ගොනු නිශ්‍රය
+;zh_HK.AssociateCaption =檔案聯結
 
 en.AssociateDont =Do not associate
 ca.AssociateDont =No associar
@@ -127,6 +129,7 @@ uk.AssociateDont =Не асоціювати
 be.AssociateDont =Не звязваць
 gl.AssociateDont =Non asociar
 ;si.AssociateDont =නිශ්‍ර කොකරන්න
+;zh_HK.AssociateDont =不要聯結
 
 en.AssociateAll =Associate all
 bg.AssociateAll =Свържи всички
@@ -168,6 +171,7 @@ uk.AssociateAll =Асоціювати всі
 be.AssociateAll =Звязаць усе
 gl.AssociateAll =Asociar todo
 ;si.AssociateAll =සියල්ල නිහ්ශ්‍රය
+;zh_HK.AssociateAll =全部聯結
 
 en.AssociateSel =Associate selected
 bg.AssociateSel =Свържи избраните
@@ -209,6 +213,7 @@ uk.AssociateSel =Асоціювати вибрані
 be.AssociateSel =Звязаць выбраныя
 gl.AssociateSel =Asociación seleccionada
 ;si.AssociateSel =තේරූ දෑ නිහ්ශ්‍රය
+;zh_HK.AssociateSel =聯結已選定
 
 en.AssociateAudio =File types
 bg.AssociateAudio =Типове файлове
@@ -250,6 +255,7 @@ uk.AssociateAudio =Типи файлів
 be.AssociateAudio =Тыпы файлаў
 gl.AssociateAudio =Tipos de ficheiros
 ;si.AssociateAudio =ගොනු වර්ග
+;zh_HK.AssociateAudio =檔案類型
 
 en.extMSWord =Microsoft Word Document
 bg.extMSWord =Microsoft Word документ
@@ -291,6 +297,7 @@ uk.extMSWord =Документ Microsoft Word
 be.extMSWord =Дакумент Microsoft Word
 gl.extMSWord =Documentos de Microsoft Word
 ;si.extMSWord =මයික්‍රොසොෆ්ට් වර්ඩ් ලේඛනය
+;zh_HK.extMSWord =Microsoft Word 文件
 
 en.extMSExcel =Microsoft Excel Workbook
 bg.extMSExcel =Microsoft Excel работна книга
@@ -332,6 +339,7 @@ uk.extMSExcel =Книга Microsoft Excel
 be.extMSExcel =Рабочы сшытак Microsoft Excel
 gl.extMSExcel =Caderno de traballo do Microsoft Excel
 ;si.extMSExcel =මයික්‍රොසොෆ්ට් එක්සෙල් ලේඛනය
+;zh_HK.extMSExcel =Microsoft Excel 活頁簿
 
 en.extMSPresentation =Microsoft PowerPoint Presentation
 bg.extMSPresentation =Microsoft PowerPoint презентация
@@ -373,6 +381,7 @@ uk.extMSPresentation =Презентація Microsoft PowerPoint
 be.extMSPresentation =Прэзентацыя Microsoft PowerPoint
 gl.extMSPresentation =Presentación de PowerPoint de Microsoft
 ;si.extMSPresentation =මයික්‍රොසොෆ්ට් පවර්පොයින්ට් සමර්පණය
+;zh_HK.extMSPresentation =Microsoft PowerPoint 簡報
 
 en.extMSSlideshow =Microsoft PowerPoint Slideshow
 bg.extMSSlideshow =Microsoft PowerPoint слайдшоу
@@ -414,6 +423,7 @@ uk.extMSSlideshow =Показ слайдів Microsoft PowerPoint
 be.extMSSlideshow =Слайд-шоу Microsoft PowerPoint
 gl.extMSSlideshow =Presentación de Microsoft PowerPoint
 ;si.extMSSlideshow =මයික්‍රොසොෆ්ට් පවර්පොයින්ට් සල්යිඩ්ෂෝ
+;zh_HK.extMSSlideshow =Microsoft PowerPoint 投影片
 
 en.extODT =OpenDocument Text File
 bg.extODT =OpenDocument текстов файл
@@ -455,6 +465,7 @@ uk.extODT =Текстовий файл OpenDocument
 be.extODT =Тэкставы файл OpenDocument
 gl.extODT =Ficheiro de texto OpenDocument
 ;si.extODT =ඕපන්ඩොකියුමන්ට් පෙළ ලේඛනය
+;zh_HK.extODT =OpenDocument Text 文件
 
 en.extODS =OpenDocument Spreadsheet
 bg.extODS =OpenDocument електронна таблица
@@ -496,6 +507,7 @@ uk.extODS =Електронна таблиця OpenDocument
 be.extODS =Электронная табліца OpenDocument
 gl.extODS =Folla de cálculo de OpenDocument
 ;si.extODS =ඕපන්ඩොකියුමන්ට් පැතුරුම්පත
+;zh_HK.extODS =OpenDocument 試算表
 
 en.extODP =OpenDocument Presentation
 bg.extODP =OpenDocument презентация
@@ -537,6 +549,7 @@ uk.extODP =Презентація OpenDocument
 be.extODP =Прэзентацыя OpenDocument
 gl.extODP =Presentación de OpenDocument
 ;si.extODP =ඕපන්ඩොකියුමන්ට් සමර්පණය
+;zh_HK.extODP =OpenDocument 簡報
 
 en.extDOC =Word 97-2003 Document
 bg.extDOC =Word 97-2003 документ
@@ -578,6 +591,7 @@ uk.extDOC =Документ Word 97-2003
 be.extDOC =Дакумент Word 97-2003
 gl.extDOC =Documento Word 97-2003
 ;si.extDOC =වර්ඩ් 97-2003 ලේඛනය
+;zh_HK.extDOC =Word 97-2003 文件
 
 en.extDOCX =Office Open XML Document
 bg.extDOCX =Office Open XML документ
@@ -619,6 +633,7 @@ uk.extDOCX =Документ Office Open XML
 be.extDOCX =Дакумент Office Open XML
 gl.extDOCX =Documento Office Open XML
 ;si.extDOCX =ඔෆිස් විවෘත XML ලේඛනය
+;zh_HK.extDOCX =Office Open XML 文件
 
 en.extDOCXF =ONLYOFFICE Form Template
 bg.extDOCXF =ONLYOFFICE Шаблон на формуляр
@@ -660,6 +675,7 @@ uk.extDOCXF =Шаблон форми ONLYOFFICE
 be.extDOCXF =Шаблон формы ONLYOFFICE
 gl.extDOCXF =ONLYOFFICE Modelo de formulario
 ;si.extDOCXF =ඔන්ලිඔෆිස් ආකෘතිපත්‍ර අච්චුව
+;zh_HK.extDOCXF =ONLYOFFICE 文档表单模板
 
 en.extXLS =Excel 97-2003 Spreadsheet
 bg.extXLS =Excel 97-2003 таблица
@@ -701,6 +717,7 @@ uk.extXLS =Електронна таблиця Excel 97-2003
 be.extXLS =Электронная табліца Excel 97-2003
 gl.extXLS =Folla de cálculo Excel 97-2003
 ;si.extXLS =එක්සෙල් 97-2003 පැතුරුම්පත
+;zh_HK.extXLS =Excel 97-2003 試算表
 
 en.extXLSX =Office Open XML Spreadsheet
 bg.extXLSX =Office Open XML таблица
@@ -742,6 +759,7 @@ uk.extXLSX =Електронна таблиця Office Open XML
 be.extXLSX =Электронная табліца Office Open XML
 gl.extXLSX =Folla de cálcula Office Open XML
 ;si.extXLSX =ඔෆිස් විවෘත XML පැතුරුම්පත
+;zh_HK.extXLSX =Office Open XML 試算表
 
 en.extPPT =PowerPoint 97-2003 Presentation
 bg.extPPT =PowerPoint 97-2003 Презентация
@@ -783,6 +801,7 @@ uk.extPPT =Презентація PowerPoint 97-2003
 be.extPPT =Прэзентацыя PowerPoint 97-2003
 gl.extPPT =Presentación de Powerpoint 97-2003
 ;si.extPPT =පවර්පොයින්ට් 97-2003 සමර්පණය
+;zh_HK.extPPT =PowerPoint 97-2003 簡報
 
 en.extPPTX =Office Open XML Presentation
 bg.extPPTX =Office Open XML Презентация
@@ -824,6 +843,7 @@ uk.extPPTX =Презентація Office Open XML
 be.extPPTX =Прэзентацыя Office Open XML
 gl.extPPTX =Presentación do Office Open XML
 ;si.extPPTX =ඔෆිස් විවෘත XML සමර්පණය
+;zh_HK.extPPTX =Office Open XML 簡報
 
 en.extPPS =PowerPoint 97-2003 Slide Show
 bg.extPPS =PowerPoint 97-2003 Слайдшоу
@@ -865,6 +885,7 @@ uk.extPPS =Показ слайдів PowerPoint 97-2003
 be.extPPS =Слайд-шоу PowerPoint 97-2003
 gl.extPPS =Presentación de diapositivas de Powerpoint 97-2003
 ;si.extPPS =පවර්පොයින්ට් 97-2003 චිත්‍රකාච දැක්ම
+;zh_HK.extPPS =PowerPoint 97-2003投影片
 
 en.extPPSX =Office Open XML Slide Show
 bg.extPPSX =Office Open XML Слайдшоу
@@ -906,6 +927,7 @@ uk.extPPSX =Показ слайдів Office Open XML
 be.extPPSX =Слайд-шоу Office Open XML
 gl.extPPSX =Presentación de diapositivas de Office Open XML
 ;si.extPPSX =ඔෆිස් විවෘත XML චිත්‍රකාච දැක්ම
+;zh_HK.extPPSX =Office Open XML 投影片
 
 en.extRTF =Rich Text Format File
 bg.extRTF =Файл с богат текстов формат
@@ -947,6 +969,7 @@ uk.extRTF =Файл вдосконаленого текстового форма
 be.extRTF =Багаты тэкставы дакумент
 gl.extRTF =Ficheiro con formato de texto enriquecido
 ;si.extRTF =පොහොසත් පෙළ ආකෘති ගොනුව
+;zh_HK.extRTF =Rich Text Format 文件
 
 en.extCSV =Comma Separated Values
 bg.extCSV =Стойности, разделени със запетая
@@ -988,6 +1011,7 @@ uk.extCSV =Значення, розділені комами
 be.extCSV =Значэнні, падзеленыя коскамі
 gl.extCSV =Valores separados por comas
 ;si.extCSV =අල්පවිරාම මගින් වෙන්කළ අගයන්
+;zh_HK.extCSV =逗點分隔值
 
 en.extPDF =Portable Document
 bg.extPDF =Преносим документ
@@ -1029,6 +1053,7 @@ uk.extPDF =Портативний документ
 be.extPDF =Пераносны дакумент
 gl.extPDF =Documento portátil
 ;si.extPDF =සුවහ ලේඛනය
+;zh_HK.extPDF =PDF 檔案
 
 en.extDJVU =Digital Document
 bg.extDJVU =Дигитален документ
@@ -1070,6 +1095,7 @@ uk.extDJVU =Цифровий документ
 be.extDJVU =Лічбавы дакумент
 gl.extDJVU =Documento dixital
 ;si.extDJVU =සංඛ්‍යාංක ලේඛනය
+;zh_HK.extDJVU =DjVu 檔案
 
 en.extXPS =OpenXPS Document
 bg.extXPS =OpenXPS Документ
@@ -1111,6 +1137,7 @@ uk.extXPS =Документ OpenXPS
 be.extXPS =Дакумент OpenXPS
 gl.extXPS =Documento OpenXPS
 ;si.extXPS =ඕපන්XPS ලේඛනය
+;zh_HK.extXPS =OpenXPS 檔案
 
 en.extOFORM =ONLYOFFICE Fillable Online Form
 bg.extOFORM =ONLYOFFICE Онлайн формуляр за попълване
@@ -1152,6 +1179,7 @@ uk.extOFORM =Онлайн-форма для заповнення ONLYOFFICE
 be.extOFORM =Запаўняльная анлайн-форма ONLYOFFICE
 gl.extOFORM =Formulario en liña encheble ONLYOFFICE
 ;si.extOFORM =ඔන්ලිඔෆිස් පුරවන මාර්ගගත ආකෘතිපත්‍ර
+;zh_HK.extOFORM =ONLYOFFICE可填写的在线表格
 ;======================================================================================================
 
 en.jumpDOCX =New document
@@ -1194,6 +1222,7 @@ uk.jumpDOCX =Новий документ
 be.jumpDOCX =Новы дакумент
 gl.jumpDOCX =Novo documento
 ;si.jumpDOCX =නව ලේඛනය
+;zh_HK.jumpDOCX =新文件
 
 en.jumpXLSX =New spreadsheet
 bg.jumpXLSX =Нова електронна таблица
@@ -1235,6 +1264,7 @@ uk.jumpXLSX =Нова таблиця
 be.jumpXLSX =Новая электронная табліца
 gl.jumpXLSX =Nova folla de cálculo
 ;si.jumpXLSX =නව පැතුරුම්පත
+;zh_HK.jumpXLSX =新試算表
 
 en.jumpPPTX =New presentation
 bg.jumpPPTX =Нова презентация
@@ -1276,6 +1306,7 @@ uk.jumpPPTX =Нова презентація
 be.jumpPPTX =Новая прэзентацыя
 gl.jumpPPTX =Nova presentación
 ;si.jumpPPTX =නව සමර්පණය
+;zh_HK.jumpPPTX =新簡報
 
 en.jumpDOCXF =New form template
 bg.jumpDOCXF =Нов шаблон на формуляр
@@ -1317,6 +1348,7 @@ uk.jumpDOCXF =Новий шаблон форми
 be.jumpDOCXF =Новы шаблон формы
 gl.jumpDOCXF =Novo Modelo de Formulario
 ;si.jumpDOCXF =නව ආකෘතිපත්‍ර අච්චුව
+;zh_HK.jumpDOCXF =New form template
 
 en.defprogAppDescription=Free desktop office suite for document editing and collaboration
 bg.defprogAppDescription=Безплатен офис пакет за редактиране и съвместна работа по документи
@@ -1358,6 +1390,7 @@ uk.defprogAppDescription=Безкоштовний пакет настільни�
 be.defprogAppDescription=Бясплатны настольны офісны пакет для рэдагавання дакументаў і сумеснай працы
 gl.defprogAppDescription=Suite ofimática de escritorio gratuíta para a edición e colaboración de documentos
 ;si.defprogAppDescription=ලේඛන සංස්කරණය සහ සහයෝගිත්‍වය සඳහා නොමිලේ වැඩතල කාර්යාල කට්ටලය
+;zh_HK.defprogAppDescription=使用於檔案編輯和協作的免費桌面辦公套件
 
 en.warnWin10FileAssociationDesc=To associate the files with the application, open the following window after the installation is complete:
 bg.warnWin10FileAssociationDesc=За да свържете файловете с приложението, отворете следния прозорец, след като инсталацията приключи:
@@ -1399,6 +1432,7 @@ uk.warnWin10FileAssociationDesc=Щоб асоціювати файли з про
 be.warnWin10FileAssociationDesc=Каб звязаць файлы з прыкладаннем, пасля завяршэння ўстаноўкі адкрыйце наступнае акно:
 gl.warnWin10FileAssociationDesc=Para asociar os ficheiros co aplicativo, abra a seguinte xanela despois de completar a instalación:
 ;si.warnWin10FileAssociationDesc=යෙදුම සමඟ ගොනු නිහ්ශ්‍රයට, ස්ථාපනය අවසන් වූ පසු පහත කවුළුව විවෘත කරන්න:
+;zh_HK.warnWin10FileAssociationDesc=當安裝完成後，開啟以下的視窗將檔案與應用程式聯結：
 
 en.warnWin10FileAssociationPath=Settings > Apps > Default apps
 bg.warnWin10FileAssociationPath=Настройки> Приложения> Приложение по подразбиране
@@ -1440,6 +1474,7 @@ uk.warnWin10FileAssociationPath=Налаштування > Програми > П
 be.warnWin10FileAssociationPath=Налады> Прыкладанні> Прыкладанні па змаўчанні
 gl.warnWin10FileAssociationPath=Configuración> Aplicativos> Aplicativos por defecto
 ;si.warnWin10FileAssociationPath=සැකසුම් > යෙදුම් > පෙරනිමි යෙදුම්
+;zh_HK.warnWin10FileAssociationPath=設定 > 應用程式 > 預設應用程式
 
 en.runOpenDefaultApps=Open Default apps
 bg.runOpenDefaultApps=Отвори приложения по подразбиране
@@ -1481,6 +1516,7 @@ uk.runOpenDefaultApps=Відкрити програми за замовчува�
 be.runOpenDefaultApps=Адкрыць прыкладанні па змаўчанні
 gl.runOpenDefaultApps=Abrir aplicativos por defecto
 ;si.runOpenDefaultApps=පෙරනිමි යෙදුම් අරින්න
+;zh_HK.runOpenDefaultApps=開啟預設應用程式
 
 [Run]
 Filename: ms-settings:defaultapps; Description: {cm:runOpenDefaultApps}; Flags:postinstall shellexec nowait unchecked; MinVersion: 10.0.10240;
