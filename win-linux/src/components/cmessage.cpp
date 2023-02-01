@@ -150,7 +150,8 @@ CMessage::CMessage(QWidget * p)
     _c_layout->setContentsMargins(_body_margin,_body_margin,_body_margin,_body_margin);
 
     m_typeIcon->setProperty("class", "msg-icon");
-    m_typeIcon->setFixedSize(int(MSG_ICON_WIDTH*m_priv->dpiRatio), int(MSG_ICON_HEIGHT*m_priv->dpiRatio));
+    m_typeIcon->setFixedSize(int(round(MSG_ICON_WIDTH*m_priv->dpiRatio - 0.25)),
+                             int(round(MSG_ICON_HEIGHT*m_priv->dpiRatio - 0.25)));
     _h_layout2->addWidget(m_typeIcon, 0, Qt::AlignTop);
 
 //    m_message->setWordWrap(true);

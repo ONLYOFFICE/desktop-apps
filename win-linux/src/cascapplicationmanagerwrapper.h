@@ -143,6 +143,7 @@ public:
 
 signals:
     void coreEvent(void *);
+    void aboutToQuit();
 
 public slots:
     void onCoreEvent(void *);
