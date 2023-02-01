@@ -109,7 +109,7 @@
         @"uk-UA": @"Украї́нська мо́ва",
         @"lo-LA": @"ພາສາລາວ",
         @"gl-ES": @"Galego",
-        @"si-LK": @"Sinhala (Sri Lanka)"
+        @"si-LK": @"සිංහල"
     };
 }
 
