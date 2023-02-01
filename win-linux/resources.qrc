@@ -237,6 +237,7 @@
         <file alias="pt-PT.qm">langs/pt_PT.qm</file>
         <file alias="ro-RO.qm">langs/ro.qm</file>
         <file alias="ru-RU.qm">langs/ru.qm</file>
+        <file alias="si-LK.qm">langs/si.qm</file>
         <file alias="sk-SK.qm">langs/sk.qm</file>
         <file alias="sl-SL.qm">langs/sl.qm</file>
         <file alias="sv-SE.qm">langs/sv.qm</file>

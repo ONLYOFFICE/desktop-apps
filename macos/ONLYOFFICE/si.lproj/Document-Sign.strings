@@ -1,0 +1,39 @@
+/* Class = "NSTextFieldCell"; title = "Enter the password for the private key."; ObjectID = "1dL-nN-bJI"; */
+"1dL-nN-bJI.title" = "පෞද්. යතුර සඳහා මුරපදය ඇතුල් කරන්න.";
+
+/* Class = "NSTextFieldCell"; title = "Enter the password for the digital signature."; ObjectID = "1Fy-mg-aq9"; */
+"1Fy-mg-aq9.title" = "සංඛ්‍යාංක අත්සන සඳහා මුරපදය ඇතුල් කරන්න.";
+
+/* Class = "NSTextFieldCell"; title = "Specify the digital signature file for the document."; ObjectID = "2Ck-6y-ygx"; */
+"2Ck-6y-ygx.title" = "ලේඛනය සඳහා සංඛාංක අත්සනක ගොනුවක් දක්වන්න.";
+
+/* Class = "NSSecureTextFieldCell"; placeholderString = "Enter Password"; ObjectID = "4gA-s8-Lne"; */
+"4gA-s8-Lne.placeholderString" = "මුරපදය යොදන්න";
+
+/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "GOU-av-TC1"; */
+"GOU-av-TC1.title" = "අවලංගු";
+
+/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "jpH-3g-Gt5"; */
+"jpH-3g-Gt5.title" = "අවලංගු";
+
+/* Class = "NSButtonCell"; title = "Load a Private Key"; ObjectID = "P3k-kI-w22"; */
+"P3k-kI-w22.title" = "පෞද්. යතුරක් පූරණය";
+
+/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "qZ4-0O-L0G"; */
+"qZ4-0O-L0G.title" = "අවලංගු";
+
+/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "RbM-Dq-A3K"; */
+"RbM-Dq-A3K.title" = "අවලංගු";
+
+/* Class = "NSTextFieldCell"; title = "Specify a private key for the digital signature."; ObjectID = "Tfc-EF-VnS"; */
+"Tfc-EF-VnS.title" = "සංඛ්‍යාංක අත්සන සඳහා පෞද්. යතුර දක්වන්න.";
+
+/* Class = "NSButtonCell"; title = "Load Signature"; ObjectID = "tTF-wa-eJp"; */
+"tTF-wa-eJp.title" = "අත්සන පූරණය";
+
+/* Class = "NSWindow"; title = "Window"; ObjectID = "uKp-p4-6uB"; */
+"uKp-p4-6uB.title" = "කවුළුව";
+
+/* Class = "NSSecureTextFieldCell"; placeholderString = "Enter Password"; ObjectID = "Zj5-0h-hpW"; */
+"Zj5-0h-hpW.placeholderString" = "මුරපදය යොදන්න";
+
