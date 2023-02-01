@@ -31,6 +31,7 @@
  */
 
 #include "cupdatemanager.h"
+#include <QApplication>
 #include <QSettings>
 #include <QDir>
 #include <QDirIterator>
@@ -48,6 +49,7 @@
 #include "defines.h"
 #include "version.h"
 #include "clangater.h"
+#include "components/cmessage.h"
 #ifdef Q_OS_WIN
 # include <QProcess>
 # include <QCryptographicHash>
@@ -134,7 +136,9 @@ void CUpdateManager::onCompleteSlot(const int error)
         }
     }
     else {
-        //qDebug() << "Download error: " << error;
+        auto wgts = QApplication::topLevelWidgets();
+        if (!wgts.isEmpty() && !wgts[0]->isMinimized())
+            CMessage::warning(wgts[0], tr("Server connection error!"));
     }
 }
 
