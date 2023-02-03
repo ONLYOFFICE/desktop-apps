@@ -374,11 +374,12 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
                 if ( _json_to_open.isEmpty() ) {
                     QString _templates_url{QString::fromStdWString(InputArgs::argument_value(L"--templates-url"))};
                     if ( _templates_url.isEmpty() )
-                        _templates_url = "https://oforms.teamlab.info/?desktop=true";
+                        _templates_url = "https://oforms.onlyoffice.com/?desktop=true";
 
                     QJsonObject _json_obj{
                         {"portal", _templates_url},
-                        {"entrypage", ""}
+                        {"entrypage", ""},
+                        {"title", "Templates"}
                     };
 
                     _json_to_open = QJsonDocument(_json_obj).toJson(QJsonDocument::Compact);
@@ -470,6 +471,7 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
             }
         } else
         if ( m_countViews == 1 && mainWindow() && mainWindow()->isAboutToClose() ) {        // if only start page exists
+            emit aboutToQuit();
             DestroyCefView(-1);
         }
 
@@ -1116,7 +1118,7 @@ void CAscApplicationManagerWrapper::initializeApp()
     EditorJSVariables::applyVariable("theme", {
                                         {"type", _app.m_themes->current().stype()},
                                         {"id", QString::fromStdWString(_app.m_themes->current().id())}
-#ifdef Q_OS_WIN
+#ifndef Q_OS_LINUX
                                         ,{"system", _app.m_themes->isSystemSchemeDark() ? "dark" : "light"}
 #endif
                                      });
@@ -1229,6 +1231,7 @@ void CAscApplicationManagerWrapper::launchAppClose()
                     AscAppManager::cancelClose();
             }
         } else {
+            emit aboutToQuit();
             DestroyCefView(-1);
         }
     } else {
@@ -1974,10 +1977,12 @@ void CAscApplicationManagerWrapper::showUpdateMessage(bool error, bool updateExi
     if (!error && updateExist) {
         AscAppManager::sendCommandTo(0, "updates:checking", QString("{\"version\":\"%1\"}").arg(version));
         auto msg = [=]() {
-            gotoMainWindow();
+            QWidget *parent = WindowHelper::waitForWindow("MainWindow");
+            if (!parent)
+                return;
             QTimer::singleShot(100, this, [=](){
 # ifdef _WIN32
-                int result = WinDlg::showDialog(mainWindow()->handle(),
+                int result = WinDlg::showDialog(parent,
                                     tr("A new version of %1 is available!").arg(QString(WINDOW_NAME)),
                                     tr("%1 %2 is now available (you have %3). "
                                        "Would you like to download it now?").arg(QString(WINDOW_NAME),
@@ -1998,11 +2003,9 @@ void CAscApplicationManagerWrapper::showUpdateMessage(bool error, bool updateExi
                     break;
                 }
 # else
-                    int res = CMessage::showMessage(mainWindow()->handle(),
-                                                    tr("Do you want to install a new version %1 of the program?").arg(version),
-                                                    MsgType::MSG_INFO, MsgBtns::mbYesDefSkipNo);
-                    switch (res) {
-                    case MODAL_RESULT_YES:
+                CMessage mbox(mainWindow()->handle(), CMessageOpts::moButtons::mbYesDefSkipNo);
+                switch (mbox.info(tr("Do you want to install a new version %1 of the program?").arg(version))) {
+                case MODAL_RESULT_CUSTOM + 0:
                     QDesktopServices::openUrl(QUrl(DOWNLOAD_PAGE, QUrl::TolerantMode));
                     break;
                 case MODAL_RESULT_SKIP: {
@@ -2041,9 +2044,11 @@ void CAscApplicationManagerWrapper::showUpdateMessage(bool error, bool updateExi
 #ifdef Q_OS_WIN
 void CAscApplicationManagerWrapper::showStartInstallMessage()
 {
-    gotoMainWindow();
     AscAppManager::sendCommandTo(0, "updates:download", "{\"progress\":\"done\"}");
-    int result = WinDlg::showDialog(mainWindow()->handle(),
+    QWidget *parent = WindowHelper::waitForWindow("MainWindow");
+    if (!parent)
+        return;
+    int result = WinDlg::showDialog(parent,
                                     tr("A new version of %1 is available!").arg(QString(WINDOW_NAME)),
                                     tr("%1 %2 is now downloaded (you have %3). "
                                        "Would you like to install it now?").arg(QString(WINDOW_NAME),

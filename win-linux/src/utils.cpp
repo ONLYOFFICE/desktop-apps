@@ -49,7 +49,7 @@
 #include <QStorageInfo>
 #include <QPrinterInfo>
 #include <regex>
-
+#include <QEventLoop>
 #include "cascapplicationmanagerwrapper.h"
 #include "qdpichecker.h"
 #include "common/File.h"
@@ -62,7 +62,6 @@ typedef HRESULT (__stdcall *SetCurrentProcessExplicitAppUserModelIDProc)(PCWSTR 
 #else
 #include <sys/stat.h>
 #include <stdlib.h>
-#include <QEventLoop>
 #endif
 
 #include <QDebug>
@@ -855,6 +854,32 @@ namespace WindowHelper {
         if ( _adjustWindowRectEx ) {
             _adjustWindowRectEx(rect, (GetWindowStyle(handle) & ~WS_DLGFRAME), FALSE, 0, 96*dpiratio);
         } else AdjustWindowRectEx(rect, (GetWindowStyle(handle) & ~WS_DLGFRAME), FALSE, 0);
+    }
+
+    auto waitForWindow(const QString &win_name) -> QWidget*
+    {
+        QWidget *wgt = QApplication::activeWindow();
+        if (wgt && wgt->objectName() == win_name && !wgt->isMinimized())
+            return wgt;
+
+        wgt = nullptr;
+        QEventLoop loop;
+        QTimer tmr;
+        QObject::connect(&tmr, &QTimer::timeout, [&] {
+            QWidget *top_wnd = QApplication::activeWindow();
+            if (top_wnd && top_wnd->objectName() == win_name && !top_wnd->isMinimized()) {
+                wgt = top_wnd;
+                tmr.stop();
+                loop.quit();
+            }
+        });
+        QObject::connect(&CAscApplicationManagerWrapper::getInstance(),
+                         &CAscApplicationManagerWrapper::aboutToQuit, &loop, &QEventLoop::quit);
+        tmr.setSingleShot(false);
+        tmr.setInterval(500);
+        tmr.start();
+        loop.exec();
+        return wgt;
     }
 #endif
 

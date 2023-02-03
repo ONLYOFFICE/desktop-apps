@@ -36,7 +36,11 @@
 #include "defines.h"
 #include <string.h>
 #include <Windows.h>
+<<<<<<< HEAD
 #include <commctrl.h>
+=======
+#include <CommCtrl.h>
+>>>>>>> hotfix/v7.3.1
 #include <QTimer>
 
 #define toWCharPtr(qstr) _wcsdup(qstr.toStdWString().c_str())
@@ -62,8 +66,12 @@ static void BringToTop(HWND hwnd)
     ::AttachThreadInput(frgID, appID, FALSE);
 }
 
+<<<<<<< HEAD
 HRESULT CALLBACK Pftaskdialogcallback(HWND hwnd, UINT msg, WPARAM wParam,
                                     LPARAM lParam, LONG_PTR lpRefData)
+=======
+HRESULT CALLBACK Pftaskdialogcallback(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam, LONG_PTR lpRefData)
+>>>>>>> hotfix/v7.3.1
 {
     switch (msg) {
     case TDN_HYPERLINK_CLICKED:
@@ -90,7 +98,11 @@ int WinDlg::showDialog(QWidget *parent,
     std::wstring lpCaption = QString("  %1").arg(QObject::tr("Software Update")).toStdWString();
     std::wstring lpText = QTextDocumentFragment::fromHtml(msg).toPlainText().toStdWString();
     QString linkText = !QString(RELEASE_NOTES).isEmpty() ?
+<<<<<<< HEAD
                 QString("\n<A HREF=\"%1\">%2</A>").arg(QString(RELEASE_NOTES), QObject::tr("Release notes")) : "";
+=======
+                QString("\n<a href=\"%1\">%2</a>").arg(QString(RELEASE_NOTES), QObject::tr("Release notes")) : "";
+>>>>>>> hotfix/v7.3.1
     std::wstring lpContent = QString("%1\n%2").arg(content, linkText).toStdWString();
     HWND parent_hwnd = (parent) ? (HWND)parent->winId() : NULL;
 
@@ -139,9 +151,13 @@ int WinDlg::showDialog(QWidget *parent,
     default: break;
     }
 
+<<<<<<< HEAD
     TASKDIALOGCONFIG config = {0};
     ZeroMemory(&config, sizeof(config));
     config.cbSize             = sizeof(config);
+=======
+    TASKDIALOGCONFIG config = {sizeof(TASKDIALOGCONFIG)};
+>>>>>>> hotfix/v7.3.1
     config.dwFlags            = TDF_ENABLE_HYPERLINKS |
                                 TDF_POSITION_RELATIVE_TO_WINDOW |
                                 TDF_ALLOW_DIALOG_CANCELLATION;

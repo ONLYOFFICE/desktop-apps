@@ -1276,6 +1276,11 @@ void CMainWindow::onPortalOpen(QString json)
                 toggleButtonMain(false, true);
                 m_pTabs->setCurrentIndex(res);
             }
+
+            QString _title = objRoot["title"].toString();
+            if ( !_title.isEmpty() ) {
+                m_pTabs->applyDocumentChanging(m_pTabs->viewByIndex(res), _title, "");
+            }
         }
     }
 }

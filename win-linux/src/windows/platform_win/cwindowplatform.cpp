@@ -123,7 +123,7 @@ bool CWindowPlatform::isTaskbarAutoHideOn()
 void CWindowPlatform::bringToTop()
 {
     if (IsIconic(m_hWnd)) {
-        ShowWindow(m_hWnd, SW_SHOWNORMAL);
+        ShowWindow(m_hWnd, SW_RESTORE);
     }
     HWND hWndFrg = ::GetForegroundWindow();
     DWORD appID = ::GetCurrentThreadId();

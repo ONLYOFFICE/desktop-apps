@@ -3,7 +3,11 @@
 <plist version="1.0">
 <dict>
 	<key>BuildMachineOSBuild</key>
+<<<<<<< HEAD:macos/Vendor/Sparkle/Sparkle Test App.app/Contents/Frameworks/Sparkle.framework/Versions/B/Resources/Info.plist
 	<string>20G314</string>
+=======
+	<string>20G224</string>
+>>>>>>> hotfix/v7.3.1:macos/Vendor/Sparkle/Sparkle Test App.app/Contents/Frameworks/Sparkle.framework/Versions/A/Resources/Info.plist
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
@@ -17,7 +21,11 @@
 	<key>CFBundlePackageType</key>
 	<string>FMWK</string>
 	<key>CFBundleShortVersionString</key>
+<<<<<<< HEAD:macos/Vendor/Sparkle/Sparkle Test App.app/Contents/Frameworks/Sparkle.framework/Versions/B/Resources/Info.plist
 	<string>2.0.0</string>
+=======
+	<string>1.27.1</string>
+>>>>>>> hotfix/v7.3.1:macos/Vendor/Sparkle/Sparkle Test App.app/Contents/Frameworks/Sparkle.framework/Versions/A/Resources/Info.plist
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleSupportedPlatforms</key>
@@ -25,7 +33,11 @@
 		<string>MacOSX</string>
 	</array>
 	<key>CFBundleVersion</key>
+<<<<<<< HEAD:macos/Vendor/Sparkle/Sparkle Test App.app/Contents/Frameworks/Sparkle.framework/Versions/B/Resources/Info.plist
 	<string>2008</string>
+=======
+	<string>1.106</string>
+>>>>>>> hotfix/v7.3.1:macos/Vendor/Sparkle/Sparkle Test App.app/Contents/Frameworks/Sparkle.framework/Versions/A/Resources/Info.plist
 	<key>DTCompiler</key>
 	<string>com.apple.compilers.llvm.clang.1_0</string>
 	<key>DTPlatformBuild</key>
@@ -43,6 +55,10 @@
 	<key>DTXcodeBuild</key>
 	<string>13A1030d</string>
 	<key>LSMinimumSystemVersion</key>
+<<<<<<< HEAD:macos/Vendor/Sparkle/Sparkle Test App.app/Contents/Frameworks/Sparkle.framework/Versions/B/Resources/Info.plist
 	<string>10.11</string>
+=======
+	<string>10.9</string>
+>>>>>>> hotfix/v7.3.1:macos/Vendor/Sparkle/Sparkle Test App.app/Contents/Frameworks/Sparkle.framework/Versions/A/Resources/Info.plist
 </dict>
 </plist>

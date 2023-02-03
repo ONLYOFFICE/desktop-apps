@@ -117,7 +117,17 @@
                                                 </select>
                                             </section>
                                         </div>
-                                    </div>
+                                        <div class='settings-field' id="opts-autoupdate" style='display:none;'>
+                                            <label class='sett__caption' l10n>${_lang.settCheckUpdates}</label>
+                                            <div class='sett--label-lift-top hbox'>
+                                                <section class='box-cmp-select'>
+                                                    <select class='combobox'>
+                                                        <option value='ask' l10n>${_lang.settOptEnabled}</option>
+                                                        <option value='disabled' l10n>${_lang.settOptDisabled}</option>
+                                                    </select>
+                                                </section>
+                                            </div>
+                                        </div>
                                         <div class='settings-field' id="opts-ui-theme" style='display:none;'>
                                             <label class='sett__caption' l10n>${_lang.settUITheme}</label>
                                             <div class='sett--label-lift-top hbox'>
@@ -414,7 +424,11 @@
 
                         if ( !!opts.updates ) {
                             if ( opts.updates.mode !== undefined ) {
-                                ($optsAutoupdateMode = ($('#opts-autoupdate-mode', $panel).show().find('select')))
+                                if ( !['ask', 'disabled'].includes(opts.updates.mode) )
+                                    opts.updates.mode = 'ask';                          // for 7.3. to workaround 'silent' mode
+
+                                // ($optsAutoupdateMode = ($('#opts-autoupdate-mode', $panel).show().find('select')))
+                                ($optsAutoupdateMode = ($('#opts-autoupdate', $panel).show().find('select')))
                                     .val(opts.updates.mode)
                                     .selectpicker().on('change', e => {
                                         $btnApply.isdisabled() && $btnApply.disable(false);
@@ -462,7 +476,12 @@
             }
         };
 
-        const get_system_theme_type = () => window.matchMedia('(prefers-color-scheme: dark)').matches ? THEME_TYPE_DARK : THEME_TYPE_LIGHT; 
+        const get_system_theme_type = () => {
+            const nativevars = window.RendererProcessVariable;
+            return nativevars.theme && !!nativevars.theme.system ? nativevars.theme.system :
+                            window.matchMedia('(prefers-color-scheme: dark)').matches ? THEME_TYPE_DARK : THEME_TYPE_LIGHT;
+            //window.matchMedia('(prefers-color-scheme: dark)').matches ? THEME_TYPE_DARK : THEME_TYPE_LIGHT;
+        }
         const get_default_theme = type => type == THEME_TYPE_DARK ? THEME_ID_DEFAULT_DARK : THEME_ID_DEFAULT_LIGHT;
         const on_system_theme_dark = e =>
             sdk.command("system:changed", JSON.stringify({'colorscheme': e.target.matches ? THEME_TYPE_DARK:THEME_TYPE_LIGHT}));

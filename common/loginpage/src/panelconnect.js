@@ -576,14 +576,14 @@
                     }
                 } else
                 if (params.includes('\"uitheme\"\:')) {
-                    let opts = JSON.parse(params);
+                    // let opts = JSON.parse(params);
 
-                    if ( !!opts.uitheme ) {
-                        opts.uitheme == 'canuse' && (opts.uitheme = 'theme-light');
+                    // if ( !!opts.uitheme ) {
+                    //     opts.uitheme == 'canuse' && (opts.uitheme = 'theme-light');
 
-                        // if ( localStorage.getItem('ui-theme') != opts.uitheme )
-                            _on_theme_changed(opts.uitheme);
-                    }
+                    //     // if ( localStorage.getItem('ui-theme') != opts.uitheme )
+                    //         _on_theme_changed(opts.uitheme);
+                    // }
                 }
             }
         };
@@ -647,7 +647,7 @@
                     _scrollCarousel(e.target.getAttribute('value'));
                 });
 
-            _on_theme_changed(localStorage.getItem('ui-theme'));
+            _on_theme_changed(localStorage.getItem('ui-theme-id'));
         };
 
         function _on_lang_changed(ol,nl) {
@@ -710,6 +710,7 @@
 
                 window.CommonEvents.on('portal:create', _on_create_portal);
                 window.CommonEvents.on('lang:changed', _on_lang_changed);
+                window.CommonEvents.on('theme:changed', _on_theme_changed);
 
                 return this;
             },

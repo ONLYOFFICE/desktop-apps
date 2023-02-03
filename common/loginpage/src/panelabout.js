@@ -145,6 +145,9 @@
                         this.view.renderpanel(this.view.paneltemplate(args));
                         const $label = this.view.$panel.find('.ver-checkupdate');
                         $label.on('click', (e) => {
+                            if ( performance.now() - last_click_time < 1000 ) return;
+                            last_click_time = performance.now();
+
                             window.sdk.execCommand('update', $label.data('state'));
                         });
                         $label[this.updates===true?'show':'hide']();
@@ -178,13 +181,13 @@
                         const $label = this.view.$panel.find('.ver-checkupdate');
 
                         if ( opts.progress == 'done' ) {
-                            $label.text(`Downloading finished. Click to restart`);
+                            $label.text(utils.Lang.updateDownloadFinished);
                             $label.data('state', 'install');
                         } else
                         if ( opts.progress == 'aborted' ) {
-                            $label.text(`Downloading canceled`);
+                            $label.text(utils.Lang.updateDownloadCanceled);
                         } else {
-                            $label.text(`Downloading ${opts.progress}%. Click to abort`);
+                            $label.text(utils.Lang.updateDownloadProgress.replace('$1', opts.progress));
                             $label.data('state', 'abort');
                         }
                     }

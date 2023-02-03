@@ -209,12 +209,11 @@ window.sdk.on('on_native_message', function(cmd, param) {
     console.log(cmd, param);
 });
 
-let last_open_file = performance.now();
+window.last_click_time = performance.now();
 function openFile(from, model) {
     if (window.sdk) {
-        if ( performance.now() - last_open_file < 1000 ) return;
-
-        last_open_file = performance.now()
+        if ( performance.now() - last_click_time < 1000 ) return;
+        last_click_time = performance.now();
 
         if (from == OPEN_FILE_FOLDER) {
             window.sdk.command("open:folder", model);
@@ -227,10 +226,10 @@ function openFile(from, model) {
                 };
 
             if ( from == OPEN_FILE_RECOVERY ) {
-                // window.sdk.LocalFileOpenRecover(parseInt(params.id));
+                window.sdk.LocalFileOpenRecover(parseInt(params.id));       // for bug 60509. change on "open:recovery" event for ver 7.4
                 window.sdk.command("open:recovery", JSON.stringify(params));
             } else {
-                // window.sdk.LocalFileOpenRecent(parseInt(params.id));
+                window.sdk.LocalFileOpenRecent(parseInt(params.id));        // for bug 60509. change on "open:recent" event for ver 7.4
                 window.sdk.command("open:recent", JSON.stringify(params));
             }
         }

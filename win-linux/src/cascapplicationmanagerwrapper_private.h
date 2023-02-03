@@ -154,6 +154,7 @@ public:
             COpenOptions opts{data.get_Url()};
             opts.id = data.get_IdEqual();
             opts.parent_id = event.m_nSenderId;
+            opts.name = QString::fromStdWString(data.get_Name());
 
             if ( CCefView * _v = m_appmanager.GetViewById(opts.id) ) {
                 bringEditorToFront(_v->GetId());
