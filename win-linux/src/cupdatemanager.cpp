@@ -134,11 +134,13 @@ void CUpdateManager::onCompleteSlot(const int error)
 #endif
         default: break;
         }
-    }
-    else {
-        auto wgts = QApplication::topLevelWidgets();
-        if (!wgts.isEmpty() && !wgts[0]->isMinimized())
-            CMessage::warning(wgts[0], tr("Server connection error!"));
+    } else
+    if (error == 1) {
+        auto wgt = QApplication::activeWindow();
+        if (wgt && wgt->objectName() == "MainWindow" && !wgt->isMinimized())
+            CMessage::warning(wgt, tr("Server connection error!"));
+    } else {
+        // Pause or Stop
     }
 }
 
