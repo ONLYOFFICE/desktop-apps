@@ -3,11 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>BuildMachineOSBuild</key>
-<<<<<<< HEAD
 	<string>20G314</string>
-=======
-	<string>20G224</string>
->>>>>>> hotfix/v7.3.1
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
 	<key>CFBundleExecutable</key>
@@ -51,11 +47,7 @@
 	<key>DTXcodeBuild</key>
 	<string>13A1030d</string>
 	<key>LSMinimumSystemVersion</key>
-<<<<<<< HEAD
 	<string>10.11</string>
-=======
-	<string>10.9</string>
->>>>>>> hotfix/v7.3.1
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>

@@ -3,11 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>BuildMachineOSBuild</key>
-<<<<<<< HEAD:macos/Vendor/Sparkle/Sparkle Test App.app/Contents/Frameworks/Sparkle.framework/Versions/B/Updater.app/Contents/Info.plist
 	<string>20G314</string>
-=======
-	<string>20G224</string>
->>>>>>> hotfix/v7.3.1:macos/Vendor/Sparkle/Sparkle Test App.app/Contents/Frameworks/Sparkle.framework/Versions/A/Resources/Autoupdate.app/Contents/Info.plist
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
@@ -21,11 +17,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-<<<<<<< HEAD:macos/Vendor/Sparkle/Sparkle Test App.app/Contents/Frameworks/Sparkle.framework/Versions/B/Updater.app/Contents/Info.plist
 	<string>2.0.0</string>
-=======
-	<string>1.27.1</string>
->>>>>>> hotfix/v7.3.1:macos/Vendor/Sparkle/Sparkle Test App.app/Contents/Frameworks/Sparkle.framework/Versions/A/Resources/Autoupdate.app/Contents/Info.plist
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleSupportedPlatforms</key>
@@ -33,11 +25,7 @@
 		<string>MacOSX</string>
 	</array>
 	<key>CFBundleVersion</key>
-<<<<<<< HEAD:macos/Vendor/Sparkle/Sparkle Test App.app/Contents/Frameworks/Sparkle.framework/Versions/B/Updater.app/Contents/Info.plist
 	<string>2008</string>
-=======
-	<string>1.106</string>
->>>>>>> hotfix/v7.3.1:macos/Vendor/Sparkle/Sparkle Test App.app/Contents/Frameworks/Sparkle.framework/Versions/A/Resources/Autoupdate.app/Contents/Info.plist
 	<key>DTCompiler</key>
 	<string>com.apple.compilers.llvm.clang.1_0</string>
 	<key>DTPlatformBuild</key>
@@ -56,15 +44,8 @@
 	<string>13A1030d</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.utilities</string>
-<<<<<<< HEAD:macos/Vendor/Sparkle/Sparkle Test App.app/Contents/Frameworks/Sparkle.framework/Versions/B/Updater.app/Contents/Info.plist
 	<key>LSMinimumSystemVersion</key>
 	<string>10.11</string>
-=======
-	<key>LSBackgroundOnly</key>
-	<string>1</string>
-	<key>LSMinimumSystemVersion</key>
-	<string>10.9</string>
->>>>>>> hotfix/v7.3.1:macos/Vendor/Sparkle/Sparkle Test App.app/Contents/Frameworks/Sparkle.framework/Versions/A/Resources/Autoupdate.app/Contents/Info.plist
 	<key>LSUIElement</key>
 	<string>1</string>
 	<key>NSPrincipalClass</key>

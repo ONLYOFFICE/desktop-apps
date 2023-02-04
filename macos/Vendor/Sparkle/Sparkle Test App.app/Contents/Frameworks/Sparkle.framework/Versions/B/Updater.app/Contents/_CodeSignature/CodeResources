@@ -8,7 +8,6 @@
 		<data>
 		S4owayudAPuQWGl1UDlYESEJG4A=
 		</data>
-<<<<<<< HEAD:macos/Vendor/Sparkle/Sparkle Test App.app/Contents/Frameworks/Sparkle.framework/Versions/B/Updater.app/Contents/_CodeSignature/CodeResources
 		<key>Resources/SUStatus.nib/keyedobjects-101300.nib</key>
 		<data>
 		OtbFuoQj/TzopWhVXk1hUIS2YFE=
@@ -16,19 +15,6 @@
 		<key>Resources/SUStatus.nib/keyedobjects.nib</key>
 		<data>
 		rfBJq2R1UWIjy/2RGqIE2U4xpi4=
-=======
-		<key>Resources/Base.lproj/Sparkle.strings</key>
-		<data>
-		cHZov5FaqzfNhnBo0XdRuTMT4SY=
-		</data>
-		<key>Resources/SUStatus.nib/keyedobjects-101300.nib</key>
-		<data>
-		CIAIcdXrd5aOBmKYYDM7NGmuxGA=
-		</data>
-		<key>Resources/SUStatus.nib/keyedobjects.nib</key>
-		<data>
-		AWzvc/Oom69t77SqVhJIUEVnNYw=
->>>>>>> hotfix/v7.3.1:macos/Vendor/Sparkle/Sparkle.framework/Versions/A/Resources/Autoupdate.app/Contents/_CodeSignature/CodeResources
 		</data>
 		<key>Resources/ca.lproj/Sparkle.strings</key>
 		<dict>
@@ -43,11 +29,7 @@
 		<dict>
 			<key>hash</key>
 			<data>
-<<<<<<< HEAD:macos/Vendor/Sparkle/Sparkle Test App.app/Contents/Frameworks/Sparkle.framework/Versions/B/Updater.app/Contents/_CodeSignature/CodeResources
 			s/BqxfkW6ntejzvVKDGFQGNbyiE=
-=======
-			Gyp0nPqNvS5KdfMw+6ieF0yUTnI=
->>>>>>> hotfix/v7.3.1:macos/Vendor/Sparkle/Sparkle.framework/Versions/A/Resources/Autoupdate.app/Contents/_CodeSignature/CodeResources
 			</data>
 			<key>optional</key>
 			<true/>
@@ -65,11 +47,7 @@
 		<dict>
 			<key>hash</key>
 			<data>
-<<<<<<< HEAD:macos/Vendor/Sparkle/Sparkle Test App.app/Contents/Frameworks/Sparkle.framework/Versions/B/Updater.app/Contents/_CodeSignature/CodeResources
 			k3tjECB5S48rX7WfCvnTXIkcB0E=
-=======
-			fXH7MjrA6hDT/k/8B6Vwgntt2lw=
->>>>>>> hotfix/v7.3.1:macos/Vendor/Sparkle/Sparkle.framework/Versions/A/Resources/Autoupdate.app/Contents/_CodeSignature/CodeResources
 			</data>
 			<key>optional</key>
 			<true/>
@@ -114,11 +92,7 @@
 		<dict>
 			<key>hash</key>
 			<data>
-<<<<<<< HEAD:macos/Vendor/Sparkle/Sparkle Test App.app/Contents/Frameworks/Sparkle.framework/Versions/B/Updater.app/Contents/_CodeSignature/CodeResources
 			2eoIyFzzAjSdyXDhmvKhtem2aVQ=
-=======
-			xFBTJYPjf7rlbYdkRKNTsPYz5JA=
->>>>>>> hotfix/v7.3.1:macos/Vendor/Sparkle/Sparkle.framework/Versions/A/Resources/Autoupdate.app/Contents/_CodeSignature/CodeResources
 			</data>
 			<key>optional</key>
 			<true/>
@@ -315,20 +289,7 @@
 	</dict>
 	<key>files2</key>
 	<dict>
-<<<<<<< HEAD:macos/Vendor/Sparkle/Sparkle Test App.app/Contents/Frameworks/Sparkle.framework/Versions/B/Updater.app/Contents/_CodeSignature/CodeResources
 		<key>Resources/Base.lproj/Sparkle.strings</key>
-=======
-		<key>MacOS/fileop</key>
-		<dict>
-			<key>cdhash</key>
-			<data>
-			lxj3mKIQ39AVZEK38pWMaPSGxUs=
-			</data>
-			<key>requirement</key>
-			<string>cdhash H"e3eb91f77d0b03312e38c12fa726c22d3d36648e" or cdhash H"9718f798a210dfd0156442b7f2958c68f486c54b" or cdhash H"3041d686c9337dbc22180e5a50a1619b4300b495" or cdhash H"73d14270b04c7bd6598431fd41162ed85684fb94"</string>
-		</dict>
-		<key>Resources/AppIcon.icns</key>
->>>>>>> hotfix/v7.3.1:macos/Vendor/Sparkle/Sparkle.framework/Versions/A/Resources/Autoupdate.app/Contents/_CodeSignature/CodeResources
 		<dict>
 			<key>hash</key>
 			<data>
@@ -339,7 +300,6 @@
 			DtMzHIaZXc+b8QeWxE6ny827TaDz6qtYADJ5E0RXPh0=
 			</data>
 		</dict>
-<<<<<<< HEAD:macos/Vendor/Sparkle/Sparkle Test App.app/Contents/Frameworks/Sparkle.framework/Versions/B/Updater.app/Contents/_CodeSignature/CodeResources
 		<key>Resources/SUStatus.nib/keyedobjects-101300.nib</key>
 		<dict>
 			<key>hash</key>
@@ -349,39 +309,6 @@
 			<key>hash2</key>
 			<data>
 			ZPknwIs+Htkj2J2TUj5QrwOP88tPD6h2y4RzHawexN0=
-=======
-		<key>Resources/Base.lproj/Sparkle.strings</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			cHZov5FaqzfNhnBo0XdRuTMT4SY=
-			</data>
-			<key>hash2</key>
-			<data>
-			39CdfZZ1CQQz1Gd1+Ukxo2JHl0XESoc/cqWKF091WUk=
-			</data>
-		</dict>
-		<key>Resources/SUStatus.nib/keyedobjects-101300.nib</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			CIAIcdXrd5aOBmKYYDM7NGmuxGA=
-			</data>
-			<key>hash2</key>
-			<data>
-			zQHRg9w5HHkCzf82YkWsfd9mPEYj66NGhFY/cgUMYfQ=
-			</data>
-		</dict>
-		<key>Resources/SUStatus.nib/keyedobjects.nib</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			AWzvc/Oom69t77SqVhJIUEVnNYw=
-			</data>
-			<key>hash2</key>
-			<data>
-			zGUKYo5Dal8e+pKH1KVfXrogifmh9AWqDdAL/neSQgE=
->>>>>>> hotfix/v7.3.1:macos/Vendor/Sparkle/Sparkle.framework/Versions/A/Resources/Autoupdate.app/Contents/_CodeSignature/CodeResources
 			</data>
 		</dict>
 		<key>Resources/SUStatus.nib/keyedobjects.nib</key>
@@ -412,19 +339,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-<<<<<<< HEAD:macos/Vendor/Sparkle/Sparkle Test App.app/Contents/Frameworks/Sparkle.framework/Versions/B/Updater.app/Contents/_CodeSignature/CodeResources
 			s/BqxfkW6ntejzvVKDGFQGNbyiE=
 			</data>
 			<key>hash2</key>
 			<data>
 			0TqHpdP45A2ZEX4dbmhxiwdAGWST22JPeSpoD8uKI6g=
-=======
-			Gyp0nPqNvS5KdfMw+6ieF0yUTnI=
-			</data>
-			<key>hash2</key>
-			<data>
-			8q22yKUhfKJVOOXteUQZAVVkhfzPQKzoSJdnVNkDPo8=
->>>>>>> hotfix/v7.3.1:macos/Vendor/Sparkle/Sparkle.framework/Versions/A/Resources/Autoupdate.app/Contents/_CodeSignature/CodeResources
 			</data>
 			<key>optional</key>
 			<true/>
@@ -446,19 +365,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-<<<<<<< HEAD:macos/Vendor/Sparkle/Sparkle Test App.app/Contents/Frameworks/Sparkle.framework/Versions/B/Updater.app/Contents/_CodeSignature/CodeResources
 			k3tjECB5S48rX7WfCvnTXIkcB0E=
 			</data>
 			<key>hash2</key>
 			<data>
 			9zno2tv+fUnUtxKLppI3VwTLjTKxymPq/VKODtJpFSQ=
-=======
-			fXH7MjrA6hDT/k/8B6Vwgntt2lw=
-			</data>
-			<key>hash2</key>
-			<data>
-			bA5bxESyZuC/dG2VKfN+eQ7CVb2qAWrwfu94IpJ4Xi0=
->>>>>>> hotfix/v7.3.1:macos/Vendor/Sparkle/Sparkle.framework/Versions/A/Resources/Autoupdate.app/Contents/_CodeSignature/CodeResources
 			</data>
 			<key>optional</key>
 			<true/>
@@ -519,19 +430,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-<<<<<<< HEAD:macos/Vendor/Sparkle/Sparkle Test App.app/Contents/Frameworks/Sparkle.framework/Versions/B/Updater.app/Contents/_CodeSignature/CodeResources
 			2eoIyFzzAjSdyXDhmvKhtem2aVQ=
 			</data>
 			<key>hash2</key>
 			<data>
 			sg8RCTcbS8KN4P8IJCsQ4cTpc3dCUp6AVFkQHgqPvjk=
-=======
-			xFBTJYPjf7rlbYdkRKNTsPYz5JA=
-			</data>
-			<key>hash2</key>
-			<data>
-			8PKuKp2lymWYfR+BqJ15UWlxOQKUl3fEveeseHBfaTw=
->>>>>>> hotfix/v7.3.1:macos/Vendor/Sparkle/Sparkle.framework/Versions/A/Resources/Autoupdate.app/Contents/_CodeSignature/CodeResources
 			</data>
 			<key>optional</key>
 			<true/>
