@@ -432,7 +432,9 @@ void CUpdateManager::onLoadCheckFinished()
             if (ver.at(i).toInt() > curr_ver.at(i).toInt()) {
                 updateExist = (version != ignored_ver);
                 break;
-            }
+            } else
+            if (ver.at(i).toInt() < curr_ver.at(i).toInt())
+                break;
         }
 
         if ( updateExist ) {
