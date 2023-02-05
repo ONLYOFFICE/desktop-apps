@@ -62,8 +62,7 @@ CWindowPlatform::CWindowPlatform(const QRect &rect) :
     LONG style = ::GetWindowLong(m_hWnd, GWL_STYLE);
     style &= ~(WS_CAPTION | WS_SYSMENU | WS_THICKFRAME);
     style |= (WS_CLIPCHILDREN | WS_MAXIMIZEBOX | WS_MINIMIZEBOX);
-    style |= (Utils::getWinVersion() > Utils::WinVer::Win7) ?
-                WS_OVERLAPPEDWINDOW : WS_POPUP;
+    style |= (Utils::getWinVersion() > Utils::WinVer::Win7) ? WS_OVERLAPPEDWINDOW : WS_POPUP;
     ::SetWindowLong(m_hWnd, GWL_STYLE, style);
 #ifndef __OS_WIN_XP
     const MARGINS shadow = {1, 1, 1, 1};
@@ -101,16 +100,14 @@ void CWindowPlatform::adjustGeometry()
         setContentsMargins(border, border, border, border+1);
         setResizeableAreaWidth(border);
         LONG style = ::GetWindowLong(m_hWnd, GWL_STYLE);
-        style |= (Utils::getWinVersion() > Utils::WinVer::Win7) ?
-                    WS_OVERLAPPEDWINDOW : WS_POPUP;
+        style |= (Utils::getWinVersion() > Utils::WinVer::Win7) ? WS_OVERLAPPEDWINDOW : WS_POPUP;
         ::SetWindowLong(m_hWnd, GWL_STYLE, style);
     } else
     if (windowState().testFlag(Qt::WindowMaximized)) {
         QTimer::singleShot(25, this, [=]() {
             setContentsMargins(0,0,0,0);
             LONG style = ::GetWindowLong(m_hWnd, GWL_STYLE);
-            style &= (Utils::getWinVersion() > Utils::WinVer::Win7) ?
-                        ~WS_OVERLAPPEDWINDOW : ~WS_POPUP;
+            style &= (Utils::getWinVersion() > Utils::WinVer::Win7) ? ~WS_OVERLAPPEDWINDOW : ~WS_POPUP;
             style |= (WS_CLIPCHILDREN | WS_MAXIMIZEBOX | WS_MINIMIZEBOX);
             ::SetWindowLong(m_hWnd, GWL_STYLE, style);
             auto rc = QApplication::desktop()->availableGeometry(this);
