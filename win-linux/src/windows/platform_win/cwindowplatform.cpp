@@ -104,7 +104,7 @@ void CWindowPlatform::adjustGeometry()
         ::SetWindowLong(m_hWnd, GWL_STYLE, style);
     } else
     if (windowState().testFlag(Qt::WindowMaximized)) {
-        QTimer::singleShot(25, this, [=]() {
+//        QTimer::singleShot(25, this, [=]() {
             setContentsMargins(0,0,0,0);
             LONG style = ::GetWindowLong(m_hWnd, GWL_STYLE);
             style &= (Utils::getWinVersion() > Utils::WinVer::Win7) ? ~WS_OVERLAPPEDWINDOW : ~WS_POPUP;
@@ -114,7 +114,7 @@ void CWindowPlatform::adjustGeometry()
             const QSize offset(0, !isTaskbarAutoHideOn() ? 0 : 2);
             SetWindowPos(m_hWnd, NULL, rc.x(), rc.y(), rc.width(), rc.height() - offset.height(),
                          SWP_NOZORDER | SWP_NOOWNERZORDER | SWP_NOSENDCHANGING);
-        });
+//        });
     }
 }
 
