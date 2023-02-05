@@ -46,7 +46,7 @@
     function createIframe(config) {
         var iframe = document.createElement("iframe");
 
-        iframe.src = "https://oforms.teamlab.info/?desktop=true";
+        iframe.src = "https://oforms.onlyoffice.com/?desktop=true";
         iframe.width = "100%";
         iframe.height = "100%";
         iframe.align = "top";
