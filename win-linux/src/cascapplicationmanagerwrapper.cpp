@@ -1980,7 +1980,7 @@ void CAscApplicationManagerWrapper::showUpdateMessage(bool error, bool updateExi
             QWidget *parent = WindowHelper::waitForWindow();
             if (!parent)
                 return;
-            QTimer::singleShot(100, this, [=](){
+            //QTimer::singleShot(100, this, [=](){
 # ifdef _WIN32
                 int result = WinDlg::showDialog(parent,
                                     tr("A new version of %1 is available!").arg(QString(WINDOW_NAME)),
@@ -2017,7 +2017,7 @@ void CAscApplicationManagerWrapper::showUpdateMessage(bool error, bool updateExi
                     break;
                 }
 # endif
-            });
+            //});
         };
 
 #ifdef Q_OS_WIN
