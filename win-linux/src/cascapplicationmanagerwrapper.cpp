@@ -1977,7 +1977,7 @@ void CAscApplicationManagerWrapper::showUpdateMessage(bool error, bool updateExi
     if (!error && updateExist) {
         AscAppManager::sendCommandTo(0, "updates:checking", QString("{\"version\":\"%1\"}").arg(version));
         auto msg = [=]() {
-            QWidget *parent = WindowHelper::waitForWindow("MainWindow");
+            QWidget *parent = WindowHelper::waitForWindow();
             if (!parent)
                 return;
             QTimer::singleShot(100, this, [=](){
@@ -2045,7 +2045,7 @@ void CAscApplicationManagerWrapper::showUpdateMessage(bool error, bool updateExi
 void CAscApplicationManagerWrapper::showStartInstallMessage()
 {
     AscAppManager::sendCommandTo(0, "updates:download", "{\"progress\":\"done\"}");
-    QWidget *parent = WindowHelper::waitForWindow("MainWindow");
+    QWidget *parent = WindowHelper::waitForWindow();
     if (!parent)
         return;
     int result = WinDlg::showDialog(parent,

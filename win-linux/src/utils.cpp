@@ -856,10 +856,12 @@ namespace WindowHelper {
         } else AdjustWindowRectEx(rect, (GetWindowStyle(handle) & ~WS_DLGFRAME), FALSE, 0);
     }
 
-    auto waitForWindow(const QString &win_name) -> QWidget*
+    auto waitForWindow() -> QWidget*
     {
+        QStringList wnd_list{"MainWindow", "editorWindow"};
         QWidget *wgt = QApplication::activeWindow();
-        if (wgt && wgt->objectName() == win_name && !wgt->isMinimized())
+        if (wgt && wnd_list.contains(wgt->objectName()) && !wgt->isMinimized()
+                && GetForegroundWindow() == (HWND)wgt->winId())
             return wgt;
 
         wgt = nullptr;
@@ -867,18 +869,21 @@ namespace WindowHelper {
         QTimer tmr;
         QObject::connect(&tmr, &QTimer::timeout, [&] {
             QWidget *top_wnd = QApplication::activeWindow();
-            if (top_wnd && top_wnd->objectName() == win_name && !top_wnd->isMinimized()) {
+            if (top_wnd && wnd_list.contains(top_wnd->objectName()) && !top_wnd->isMinimized()
+                    && GetForegroundWindow() == (HWND)top_wnd->winId()) {
                 wgt = top_wnd;
                 tmr.stop();
                 loop.quit();
             }
         });
-        QObject::connect(&CAscApplicationManagerWrapper::getInstance(),
-                         &CAscApplicationManagerWrapper::aboutToQuit, &loop, &QEventLoop::quit);
+        QMetaObject::Connection conn;
+        conn = QObject::connect(&AscAppManager::getInstance(),
+                                &AscAppManager::aboutToQuit, &loop, &QEventLoop::quit);
         tmr.setSingleShot(false);
         tmr.setInterval(500);
         tmr.start();
         loop.exec();
+        QObject::disconnect(conn);
         return wgt;
     }
 #endif
