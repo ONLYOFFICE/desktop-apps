@@ -64,7 +64,7 @@
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="818"/>
         <location filename="../src/components/asctabwidget.cpp" line="679"/>
         <source>Document</source>
-        <translation>Abriendo...</translation>
+        <translation>Documento</translation>
     </message>
 </context>
 <context>
@@ -80,7 +80,7 @@
     <message>
         <location filename="../src/platform_linux/cdialogcertificateinfo.cpp" line="20"/>
         <source>OK</source>
-        <translation>OK</translation>
+        <translation>Aceptar</translation>
     </message>
 </context>
 <context>
@@ -136,7 +136,7 @@
     <message>
         <location filename="../src/platform_linux/cdialogopenssl.cpp" line="262"/>
         <source>Wrong certificate password.&lt;br&gt;Please enter again</source>
-        <translation>Contraseña de certificado incorrecta.&lt;br&gt;Por favor, introduzca de nuevo</translation>
+        <translation>Contraseña de certificado incorrecta.&lt;br&gt;Por favor, introdúzcala de nuevo</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/cdialogopenssl.cpp" line="271"/>
@@ -182,7 +182,7 @@
     <message>
         <location filename="../src/windows/ceditorwindow_p.h" line="723"/>
         <source>Document must be saved firstly.</source>
-        <translation>Primero se debe grabar el documento.</translation>
+        <translation>Primero debe guardar el documento.</translation>
     </message>
     <message>
         <location filename="../src/windows/ceditorwindow.cpp" line="138"/>
@@ -192,7 +192,7 @@
     <message>
         <location filename="../src/ceditortools.cpp" line="309"/>
         <source>Some data will lost.&lt;br&gt;Continue?</source>
-        <translation>Si sigue guardando en este formato todas las características a excepción del texto se perderán.&lt;br&gt;¿Está seguro de que quiere continuar?</translation>
+        <translation>Si sigue guardando en este formato, todas las características, a excepción del texto, se perderán.&lt;br&gt;¿Está seguro de que quiere continuar?</translation>
     </message>
 </context>
 <context>
@@ -527,7 +527,7 @@
         <location filename="../src/windows/cmainwindow.cpp" line="753"/>
         <location filename="../src/windows/cmainwindow.cpp" line="795"/>
         <source>File format not supported.</source>
-        <translation>Formato de archivo no es compatible.</translation>
+        <translation>El formato del archivo no es compatible.</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="779"/>
@@ -537,7 +537,7 @@
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="839"/>
         <source>Document must be saved firstly.</source>
-        <translation>Primero se debe grabar el documento.</translation>
+        <translation>Primero debe guardar el documento.</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="979"/>
@@ -557,7 +557,7 @@
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="1288"/>
         <source>Sign Up</source>
-        <translation>Crear oficina en la nube</translation>
+        <translation>Crear cuenta</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="1351"/>
@@ -570,7 +570,7 @@
     <message>
         <location filename="../src/prop/cmainwindowimpl.cpp" line="52"/>
         <source>Licensed under</source>
-        <translation>Bajo licencia de</translation>
+        <translation>Bajo la licencia</translation>
     </message>
 </context>
 <context>
@@ -578,7 +578,7 @@
     <message>
         <location filename="../src/components/cmessage.cpp" line="167"/>
         <source>&amp;OK</source>
-        <translation>&amp;OK</translation>
+        <translation>&amp;Aceptar</translation>
     </message>
     <message>
         <location filename="../src/components/cmessage.cpp" line="256"/>
@@ -610,7 +610,7 @@
         <location filename="../src/components/cmessage.cpp" line="260"/>
         <location filename="../src/components/cmessage.cpp" line="261"/>
         <source>OK</source>
-        <translation>OK</translation>
+        <translation>Aceptar</translation>
     </message>
     <message>
         <location filename="../src/components/cmessage.cpp" line="262"/>
@@ -623,7 +623,7 @@
     <message>
         <location filename="../src/components/cprintprogress.cpp" line="112"/>
         <source>Document is printing: page %1 of %2</source>
-        <translation>Impresión de documentos: la página %1 de %2</translation>
+        <translation>Imprimiendo documento: página %1 de %2</translation>
     </message>
     <message>
         <location filename="../src/components/cprintprogress.cpp" line="114"/>
@@ -686,7 +686,7 @@
     <message>
         <location filename="../src/platform_win/updatedialog.cpp" line="46"/>
         <source>Install on Next Start</source>
-        <translation>Instalar en inicio siguiente</translation>
+        <translation>Instalar la próxima vez que inicie el programa</translation>
     </message>
     <message>
         <location filename="../src/platform_win/updatedialog.cpp" line="47"/>
