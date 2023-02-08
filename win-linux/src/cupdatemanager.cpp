@@ -50,9 +50,11 @@
 #include "version.h"
 #include "clangater.h"
 #include "components/cmessage.h"
+#include "cascapplicationmanagerwrapper.h"
 #ifdef Q_OS_WIN
 # include <QProcess>
 # include <QCryptographicHash>
+# include "platform_win/updatedialog.h"
 #endif
 
 #define CHECK_ON_STARTUP_MS 9000
@@ -368,12 +370,22 @@ void CUpdateManager::loadUpdates()
             && m_savedPackageData.hash == getFileHash(m_savedPackageData.fileName))
     {
         m_packageData.fileName = m_savedPackageData.fileName;
-        emit updateLoaded();
+        m_dialogSchedule->addToSchedule("showStartInstallMessage");
     } else
     if (m_packageData.packageUrl != L"") {
         m_downloadMode = Mode::DOWNLOAD_UPDATES;
         downloadFile(m_packageData.packageUrl, ".exe");
     }
+}
+
+void CUpdateManager::installUpdates()
+{
+    GET_REGISTRY_USER(reg_user);
+    reg_user.beginGroup("Updates");
+    const QString ignored_ver = reg_user.value("Updates/ignored_ver").toString();
+    reg_user.endGroup();
+    if (ignored_ver != getVersion())
+        m_dialogSchedule->addToSchedule("showStartInstallMessage");
 }
 
 QString CUpdateManager::getVersion() const
@@ -385,7 +397,7 @@ void CUpdateManager::onLoadUpdateFinished()
 {
     m_packageData.fileName = QString::fromStdWString(m_pDownloader->GetFilePath());
     savePackageData(getFileHash(m_packageData.fileName), m_newVersion, m_packageData.fileName);
-    emit updateLoaded();
+    m_dialogSchedule->addToSchedule("showStartInstallMessage");
 }
 
 void CUpdateManager::handleAppClose()
@@ -517,12 +529,105 @@ void CUpdateManager::onLoadCheckFinished()
             else
 #endif
                 clearTempFiles();
-            emit checkFinished(false, true, m_newVersion, changelog.toString());
+            onCheckFinished(false, true, m_newVersion, changelog.toString());
         } else {
             clearTempFiles();
-            emit checkFinished(false, false, "", "");
+            onCheckFinished(false, false, "", "");
         }
     } else {
-        emit checkFinished(true, false, "", "Error receiving updates...");
+        onCheckFinished(true, false, "", "Error receiving updates...");
     }
 }
+
+void CUpdateManager::onCheckFinished(bool error, bool updateExist, const QString &version, const QString &changelog)
+{
+    Q_UNUSED(changelog);
+    if (!error && updateExist) {
+        AscAppManager::sendCommandTo(0, "updates:checking", QString("{\"version\":\"%1\"}").arg(version));
+#ifdef Q_OS_WIN
+        switch (getUpdateMode()) {
+        case UpdateMode::SILENT:
+            loadUpdates();
+            break;
+        case UpdateMode::ASK:
+            m_dialogSchedule->addToSchedule("showUpdateMessage");
+            break;
+        }
+#else
+        m_dialogSchedule->addToSchedule("showUpdateMessage");
+#endif
+    } else
+    if (!error && !updateExist) {
+        AscAppManager::sendCommandTo(0, "updates:checking", "{\"version\":\"no\"}");
+    } else
+    if (error) {
+        //qDebug() << "Error while loading check file...";
+    }
+}
+
+void CUpdateManager::showUpdateMessage(QWidget *parent) {
+# ifdef _WIN32
+    int result = WinDlg::showDialog(parent,
+                        tr("A new version of %1 is available!").arg(QString(WINDOW_NAME)),
+                        tr("%1 %2 is now available (you have %3). "
+                           "Would you like to download it now?").arg(QString(WINDOW_NAME),
+                                                                    getVersion(),
+                                                                    QString(VER_FILEVERSION_STR)),
+                        WinDlg::DlgBtns::mbSkipRemindDownload);
+
+    switch (result) {
+    case WinDlg::DLG_RESULT_DOWNLOAD:
+        loadUpdates();
+        break;
+    case WinDlg::DLG_RESULT_SKIP: {
+        skipVersion();
+        AscAppManager::sendCommandTo(0, "updates:checking", "{\"version\":\"no\"}");
+        break;
+    }
+    default:
+        break;
+    }
+# else
+    CMessage mbox(mainWindow()->handle(), CMessageOpts::moButtons::mbYesDefSkipNo);
+    switch (mbox.info(tr("Do you want to install a new version %1 of the program?").arg(version))) {
+    case MODAL_RESULT_CUSTOM + 0:
+        QDesktopServices::openUrl(QUrl(DOWNLOAD_PAGE, QUrl::TolerantMode));
+        break;
+    case MODAL_RESULT_CUSTOM + 1: {
+        skipVersion();
+        AscAppManager::sendCommandTo(0, "updates:checking", "{\"version\":\"no\"}");
+        break;
+    }
+    default:
+        break;
+    }
+# endif
+}
+
+#ifdef Q_OS_WIN
+void CUpdateManager::showStartInstallMessage(QWidget *parent)
+{
+    AscAppManager::sendCommandTo(0, "updates:download", "{\"progress\":\"done\"}");
+    int result = WinDlg::showDialog(parent,
+                                    tr("A new version of %1 is available!").arg(QString(WINDOW_NAME)),
+                                    tr("%1 %2 is now downloaded (you have %3). "
+                                       "Would you like to install it now?").arg(QString(WINDOW_NAME),
+                                                                                getVersion(),
+                                                                                QString(VER_FILEVERSION_STR)),
+                                    WinDlg::DlgBtns::mbSkipRemindSaveandinstall);
+    switch (result) {
+    case WinDlg::DLG_RESULT_INSTALL: {
+        scheduleRestartForUpdate();
+        AscAppManager::closeAppWindows();
+        break;
+    }
+    case WinDlg::DLG_RESULT_SKIP: {
+        skipVersion();
+        AscAppManager::sendCommandTo(0, "updates:checking", "{\"version\":\"no\"}");
+        break;
+    }
+    default:
+        break;
+    }
+}
+#endif

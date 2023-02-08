@@ -64,6 +64,7 @@ public:
     void scheduleRestartForUpdate();
     void handleAppClose();
     void loadUpdates();
+    void installUpdates();
 #endif
 
 private:
@@ -74,6 +75,7 @@ private:
     void onComplete(const int error);
     void onProgress(const int percent);
     void downloadFile(const wstring &url, const QString &ext);
+    void onCheckFinished(bool error, bool updateExist, const QString &version, const QString &changelog);
 #ifdef Q_OS_WIN
     void onLoadUpdateFinished();
     void savePackageData(const QByteArray &hash = QByteArray(),
@@ -120,15 +122,15 @@ public slots:
     void checkUpdates();
 
 signals:
-    void checkFinished(const bool error, const bool updateExist, const QString &version, const QString &changelog);
 #ifdef Q_OS_WIN
     void progresChanged(const int percent);
-    void updateLoaded();
 #endif
 
 private slots:
+    void showUpdateMessage(QWidget *parent);
     void onCompleteSlot(const int error);
 #ifdef Q_OS_WIN
+    void showStartInstallMessage(QWidget *parent);
     void onProgressSlot(const int percent);
 #endif
 };
