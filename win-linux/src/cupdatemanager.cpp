@@ -148,10 +148,14 @@ CUpdateManager::CUpdateManager(QObject *parent):
 
     if ( !m_checkUrl.empty() ) {
         m_pDownloader = new CFileDownloader(m_checkUrl, false);
-        m_pDownloader->SetEvent_OnComplete(std::bind(&CUpdateManager::onComplete, this, std::placeholders::_1));
+        m_pDownloader->SetEvent_OnComplete([=](int error) {
+            QMetaObject::invokeMethod(this, "onCompleteSlot", Qt::QueuedConnection, Q_ARG(int, error));
+        });
 
 #ifdef Q_OS_WIN
-        m_pDownloader->SetEvent_OnProgress(std::bind(&CUpdateManager::onProgress, this, std::placeholders::_1));
+        m_pDownloader->SetEvent_OnProgress([=](int percent) {
+            QMetaObject::invokeMethod(this, "onProgressSlot", Qt::QueuedConnection, Q_ARG(int, percent));
+        });
 #else
         m_pTimer = new QTimer(this);
         m_pTimer->setSingleShot(false);
@@ -167,11 +171,6 @@ CUpdateManager::~CUpdateManager()
         delete m_pDownloader, m_pDownloader = nullptr;
     if (m_dialogSchedule)
         delete m_dialogSchedule, m_dialogSchedule = nullptr;
-}
-
-void CUpdateManager::onComplete(const int error)
-{
-    QMetaObject::invokeMethod(this, "onCompleteSlot", Qt::QueuedConnection, Q_ARG(int, error));
 }
 
 void CUpdateManager::onCompleteSlot(const int error)
@@ -324,11 +323,6 @@ void CUpdateManager::updateNeededCheking()
 }
 
 #ifdef Q_OS_WIN
-void CUpdateManager::onProgress(const int percent)
-{
-    QMetaObject::invokeMethod(this, "onProgressSlot", Qt::QueuedConnection, Q_ARG(int, percent));
-}
-
 void CUpdateManager::onProgressSlot(const int percent)
 {
     if (m_downloadMode == Mode::DOWNLOAD_UPDATES)

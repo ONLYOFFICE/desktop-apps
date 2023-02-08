@@ -72,8 +72,6 @@ private:
     void clearTempFiles(const QString &except = QString());
     void updateNeededCheking();
     void onLoadCheckFinished();
-    void onComplete(const int error);
-    void onProgress(const int percent);
     void downloadFile(const wstring &url, const QString &ext);
     void onCheckFinished(bool error, bool updateExist, const QString &version, const QString &changelog);
 #ifdef Q_OS_WIN
