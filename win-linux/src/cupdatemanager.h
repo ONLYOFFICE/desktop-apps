@@ -109,6 +109,8 @@ private:
     int         m_downloadMode;
     QString     m_newVersion;
     CFileDownloader  * m_pDownloader = nullptr;
+    class DialogSchedule;
+    DialogSchedule *m_dialogSchedule;
 
     enum Mode {
         CHECK_UPDATES=0, DOWNLOAD_CHANGELOG=1, DOWNLOAD_UPDATES=2

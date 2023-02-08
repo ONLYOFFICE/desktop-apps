@@ -77,6 +77,43 @@ auto currentArch()->QString
 #endif
 }
 
+class CUpdateManager::DialogSchedule : public QObject
+{
+public:
+    DialogSchedule(QObject *owner);
+    void addToSchedule(const QString &method);
+
+private:
+    QTimer *m_timer = nullptr;
+    QVector<QString> m_shedule_vec;
+};
+
+CUpdateManager::DialogSchedule::DialogSchedule(QObject *owner) :
+    QObject(owner)
+{
+    m_timer = new QTimer(this);
+    m_timer->setInterval(500);
+    m_timer->setSingleShot(false);
+    connect(m_timer, &QTimer::timeout, this, [=] {
+        QWidget *wnd = WindowHelper::currentTopWindow();
+        if (wnd && !m_shedule_vec.isEmpty()) {
+            QMetaObject::invokeMethod(owner,
+                                      m_shedule_vec.first().toLocal8Bit().data(),
+                                      Qt::QueuedConnection, Q_ARG(QWidget*, wnd));
+            m_shedule_vec.removeFirst();
+            if (m_shedule_vec.isEmpty())
+                m_timer->stop();
+        }
+    });
+}
+
+void CUpdateManager::DialogSchedule::addToSchedule(const QString &method)
+{
+    m_shedule_vec.push_back(method);
+    if (!m_timer->isActive())
+        m_timer->start();
+}
+
 auto destroyStartupTimer(QTimer* &timer)->void
 {
     if (timer) {
@@ -90,7 +127,8 @@ auto destroyStartupTimer(QTimer* &timer)->void
 CUpdateManager::CUpdateManager(QObject *parent):
     QObject(parent),
     m_checkUrl(L""),
-    m_downloadMode(Mode::CHECK_UPDATES)
+    m_downloadMode(Mode::CHECK_UPDATES),
+    m_dialogSchedule(new DialogSchedule(this))
 {
     // =========== Set updates URL ============
     auto setUrl = [=] {
@@ -125,6 +163,8 @@ CUpdateManager::~CUpdateManager()
 {
     if ( m_pDownloader )
         delete m_pDownloader, m_pDownloader = nullptr;
+    if (m_dialogSchedule)
+        delete m_dialogSchedule, m_dialogSchedule = nullptr;
 }
 
 void CUpdateManager::onComplete(const int error)

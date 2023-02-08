@@ -72,6 +72,14 @@ CWindowPlatform::CWindowPlatform(const QRect &rect) :
     connect(this->window()->windowHandle(), &QWindow::screenChanged, this, [=]() {
         SetWindowPos(m_hWnd, 0, 0, 0, 0, 0, SWP_FRAMECHANGED | SWP_NOMOVE | SWP_NOSIZE);
     });
+
+    setProperty("stabilized", true);
+    m_propertyTimer = new QTimer(this);
+    m_propertyTimer->setSingleShot(true);
+    m_propertyTimer->setInterval(100);
+    connect(m_propertyTimer, &QTimer::timeout, this, [=]() {
+        setProperty("stabilized", true);
+    });
 }
 
 CWindowPlatform::~CWindowPlatform()
@@ -274,6 +282,10 @@ bool CWindowPlatform::nativeEvent(const QByteArray &eventType, void *message, lo
         if (!m_closed && IsWindowEnabled(m_hWnd)) {
             focus();
         }
+        m_propertyTimer->stop();
+        if (property("stabilized").toBool())
+            setProperty("stabilized", false);
+        m_propertyTimer->start();
         break;
     }
 
