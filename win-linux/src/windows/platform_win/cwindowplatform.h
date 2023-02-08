@@ -58,6 +58,7 @@ private:
     virtual void changeEvent(QEvent*) final;
     virtual bool nativeEvent(const QByteArray&, void*, long*) final;
 
+    QTimer *m_propertyTimer;
     HWND m_hWnd;
     int  m_resAreaWidth;
     bool m_borderless,
