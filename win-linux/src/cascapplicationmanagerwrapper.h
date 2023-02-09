@@ -155,9 +155,10 @@ public slots:
 private slots:
 #ifdef _UPDMODULE
 #ifdef Q_OS_WIN
-    void showStartInstallMessage();
+    void showStartInstallMessage(QWidget *parent);
 #endif
-    void showUpdateMessage(bool error, bool updateExist, const QString &version, const QString &changelog);
+    void showUpdateMessage(QWidget *parent);
+    void onCheckFinished(bool error, bool updateExist, const QString &version, const QString &changelog);
 #endif
 
     void onMainWindowClose();
@@ -210,6 +211,9 @@ private:
     std::unique_ptr<CAscApplicationManagerWrapper_Private> m_private;
 
     CAscApplicationManagerWrapper(CAscApplicationManagerWrapper_Private *);
+
+    class DialogSchedule;
+    std::unique_ptr<DialogSchedule> m_dialogSchedule;
 #ifdef _UPDMODULE
     CUpdateManager *m_pUpdateManager;
 #endif

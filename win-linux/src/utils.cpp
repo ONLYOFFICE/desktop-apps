@@ -855,32 +855,6 @@ namespace WindowHelper {
             _adjustWindowRectEx(rect, (GetWindowStyle(handle) & ~WS_DLGFRAME), FALSE, 0, 96*dpiratio);
         } else AdjustWindowRectEx(rect, (GetWindowStyle(handle) & ~WS_DLGFRAME), FALSE, 0);
     }
-
-    auto waitForWindow(const QString &win_name) -> QWidget*
-    {
-        QWidget *wgt = QApplication::activeWindow();
-        if (wgt && wgt->objectName() == win_name && !wgt->isMinimized())
-            return wgt;
-
-        wgt = nullptr;
-        QEventLoop loop;
-        QTimer tmr;
-        QObject::connect(&tmr, &QTimer::timeout, [&] {
-            QWidget *top_wnd = QApplication::activeWindow();
-            if (top_wnd && top_wnd->objectName() == win_name && !top_wnd->isMinimized()) {
-                wgt = top_wnd;
-                tmr.stop();
-                loop.quit();
-            }
-        });
-        QObject::connect(&CAscApplicationManagerWrapper::getInstance(),
-                         &CAscApplicationManagerWrapper::aboutToQuit, &loop, &QEventLoop::quit);
-        tmr.setSingleShot(false);
-        tmr.setInterval(500);
-        tmr.start();
-        loop.exec();
-        return wgt;
-    }
 #endif
 
     auto correctWindowMinimumSize(const QRect& windowrect, const QSize& minsize) -> QSize
@@ -930,5 +904,18 @@ namespace WindowHelper {
         use_native_dialog = InputArgs::contains(L"--native-file-dialog");
 #endif
         return use_native_dialog;
+    }
+
+    auto currentTopWindow() -> QWidget*
+    {
+        QStringList wnd_list{"MainWindow", "editorWindow"};
+        QWidget *wgt = QApplication::activeWindow();
+        if (wgt && wnd_list.contains(wgt->objectName()) && !wgt->isMinimized()
+#ifdef _WIN32
+                && GetForegroundWindow() == (HWND)wgt->winId()
+#endif
+                && wgt->property("stabilized").toBool())
+            return wgt;
+        return nullptr;
     }
 }
