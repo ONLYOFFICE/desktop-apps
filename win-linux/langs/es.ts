@@ -63,8 +63,8 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="818"/>
         <location filename="../src/components/asctabwidget.cpp" line="679"/>
-        <source>Document</source>
-        <translation>Documento</translation>
+        <source>Opening...</source>
+        <translation>Abriendo...</translation>
     </message>
 </context>
 <context>
@@ -556,8 +556,8 @@
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="1288"/>
-        <source>Sign Up</source>
-        <translation>Crear cuenta</translation>
+        <source>Create portal</source>
+        <translation>Crear cuenta en la nube</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="1351"/>
