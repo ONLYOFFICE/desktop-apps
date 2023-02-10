@@ -63,7 +63,7 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="818"/>
         <location filename="../src/components/asctabwidget.cpp" line="679"/>
-        <source>Opening...</source>
+        <source>Document</source>
         <translation>Abriendo...</translation>
     </message>
 </context>
@@ -510,7 +510,7 @@
     </message>
     <message>
         <source>Sign Up</source>
-        <translation type="vanished">Crear oficina en la nube</translation>
+        <translation type="vanished">Crear cuenta en la nube</translation>
     </message>
     <message>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
@@ -556,7 +556,7 @@
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="1288"/>
-        <source>Create portal</source>
+        <source>Sign Up</source>
         <translation>Crear cuenta en la nube</translation>
     </message>
     <message>
