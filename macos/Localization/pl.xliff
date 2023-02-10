@@ -144,7 +144,7 @@
       </trans-unit>
       <trans-unit id="Document %ld.docx" xml:space="preserve">
         <source>Document %ld.docx</source>
-        <target>Dokument % ld.docx</target>
+        <target>Dokument %ld.docx</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Document template" xml:space="preserve">

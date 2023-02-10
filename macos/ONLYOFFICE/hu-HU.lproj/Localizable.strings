@@ -38,7 +38,7 @@
 "Do you want to save the changes made to the document \"%@\"?" = "Menti a(z) \"%@\" dokumentum módosításait?";
 
 /* No comment provided by engineer. */
-"Document %ld.docx" = "%ld.docx dokumentum";
+"Document %ld.docx" = "Dokumentum %ld.docx";
 
 /* No comment provided by engineer. */
 "Document template" = "Word Open XML Dokumentumsablon (*.dotx)";
@@ -116,7 +116,7 @@
 "PDF File" = "PDF-fájlformátum (*.pdf)";
 
 /* No comment provided by engineer. */
-"PDF/A File" = "PDF-fájlformátum / A (*.pdf)";
+"PDF/A File" = "PDF-fájlformátum /A (*.pdf)";
 
 /* No comment provided by engineer. */
 "Plain Text" = "Egyszerű szöveg (*.txt)";
@@ -128,7 +128,7 @@
 "PowerPoint 2007 Presentation" = "Office Open XML prezentáció (*.pptx)";
 
 /* No comment provided by engineer. */
-"PowerPoint Slide Show" = "Open XPS-dokumentumformátum (*.xps)";
+"PowerPoint Slide Show" = "Office Open XML diavetítés (*.ppsx)";
 
 /* No comment provided by engineer. */
 "Preparing..." = "Előkészítés...";
@@ -188,7 +188,7 @@
 "Word 2007 Document" = "Office nyílt XML formátumú dokumentum (*.docx)";
 
 /* No comment provided by engineer. */
-"XML Paper Specification" = "OpenXPS dokumentum (*.xps)";
+"XML Paper Specification" = "Open XPS-dokumentumformátum (*.xps)";
 
 /* No comment provided by engineer. */
 "Yes" = "Igen";
