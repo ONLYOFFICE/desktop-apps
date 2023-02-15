@@ -187,6 +187,17 @@
                     $label.text(utils.Lang.updateDownloadProgress.replace('$1', opts.progress));
                     $label.data('state', 'abort');
                 }
+            } else
+            if (/updates:link/.test(cmd)) {
+                const $label = this.view.$panel.find('.ver-checkupdate');
+                let opts = {};
+                if ( param == 'lock' || param == 'unlock' )
+                    opts.disabled = param == 'lock';
+                else opts = JSON.parse(param);
+
+                if ( opts.disabled != undefined ) {
+                    $label.attr('disabled', opts.disabled ? 'disabled' : false);
+                }
             }
         };
 
