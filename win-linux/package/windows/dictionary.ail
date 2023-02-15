@@ -21,7 +21,7 @@
     <STRING lang="ru" value="Какие дополнительные задачи необходимо выполнить?"/>
   </ENTRY>
   <ENTRY id="Control.Text.ExtendedInstallDlg#ExtendedDlgText">
-    <STRING lang="ru" value="Выберете дополнительные задачи, которые необходимо выполнить при установке [ProductName]:"/>
+    <STRING lang="ru" value="Выберите дополнительные задачи, которые необходимо выполнить при установке [ProductName]:"/>
   </ENTRY>
   <ENTRY id="Control.Text.ExtendedInstallDlg#GalleryButtonCheckBox">
     <STRING lang="ru" value="Install Gallery"/>
@@ -33,7 +33,7 @@
     <STRING lang="ru" value="[ButtonText_Next]"/>
   </ENTRY>
   <ENTRY id="Control.Text.ExtendedInstallDlg#Title">
-    <STRING lang="ru" value="Выберете дополнительные задачи"/>
+    <STRING lang="ru" value="Выберите дополнительные задачи"/>
   </ENTRY>
   <ENTRY id="Control.Text.FileAssociationsDlg#Deselect_all_button">
     <STRING lang="ru" value="Deselect all"/>
