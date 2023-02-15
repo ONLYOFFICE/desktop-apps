@@ -105,6 +105,8 @@
     window.ControllerAbout = ControllerAbout;
 
     utils.fn.extend(ControllerAbout.prototype, (function() {
+        let features = undefined;
+
         let _on_features_avalable = function (params) {
             if ( !!this.view ) {
                 let _label = $('#id-features-available', this.view.$panel);
@@ -118,85 +120,86 @@
             sdk.execCommand('extra:features', JSON.stringify({available:params}));
         };
 
+        const _on_native_message = function(cmd, param) {
+            if (/app\:version/.test(cmd)) {
+                let args = {action: this.action};
+                try {
+                    args.opts = JSON.parse( $('<div>').html(param).text() );
+                } catch (e) {
+                    delete args.opts;
+                }
+
+                if (args.opts) {
+                    !args.opts.site && (args.opts.site = utils.skipUrlProtocol(args.opts.link));
+                }
+
+                if (!this.view) {
+                    this.view = new ViewAbout(args);
+                    this.view.render();
+                    this.view.$menuitem.removeClass('extra');
+                }
+
+                this.view.renderpanel(this.view.paneltemplate(args));
+                const $label = this.view.$panel.find('.ver-checkupdate');
+                $label.on('click', (e) => {
+                    if ( performance.now() - last_click_time < 1000 ) return;
+                    last_click_time = performance.now();
+
+                    window.sdk.execCommand('update', $label.data('state'));
+                });
+                $label[this.updates===true?'show':'hide']();
+                if ( args.opts ) {
+                    this.view.$panel.find('.ver-changelog')[!!args.opts.changelog?'show':'hide']();
+                }
+
+                if ( !!features && features.length )
+                    _on_features_avalable.call(this, features);
+            } else
+            if (/^updates:turn/.test(cmd)) {
+                this.updates = param == 'on';
+
+                if ( this.view ) {
+                    this.view.$panel.find('.ver-checkupdate')[this.updates?'show':'hide']();
+                }
+            } else
+            if (/^updates:checking/.test(cmd)) {
+                const $label = this.view.$panel.find('.ver-checkupdate');
+                const opts = JSON.parse(param);
+                if ( opts.version == 'no' ) {
+                    $label.text(utils.Lang.updateNoUpdates);
+                } else {
+                    $label.text(utils.Lang.updateAvialable.replace('$1', opts.version));
+                    $label.data('state', 'download');
+                }
+                $label.show();
+            } else
+            if (/updates:download/.test(cmd)) {
+                const opts = JSON.parse(param);
+                const $label = this.view.$panel.find('.ver-checkupdate');
+
+                if ( opts.progress == 'done' ) {
+                    $label.text(utils.Lang.updateDownloadFinished);
+                    $label.data('state', 'install');
+                } else
+                if ( opts.progress == 'aborted' ) {
+                    $label.text(utils.Lang.updateDownloadCanceled);
+                } else {
+                    $label.text(utils.Lang.updateDownloadProgress.replace('$1', opts.progress));
+                    $label.data('state', 'abort');
+                }
+            }
+        };
+
         return {
             init: function() {
                 baseController.prototype.init.apply(this, arguments);
 
-                let args = {action: this.action};
+                window.sdk.on('on_native_message', _on_native_message.bind(this));
 
-                window.sdk.on('on_native_message', (cmd, param) => {
-                    if (/app\:version/.test(cmd)) {
-                        try {
-                            args.opts = JSON.parse( $('<div>').html(param).text() );
-                        } catch (e) {
-                            delete args.opts;
-                        }
-
-                        if (args.opts) {
-                            !args.opts.site && (args.opts.site = utils.skipUrlProtocol(args.opts.link));
-                        }
-
-                        if (!this.view) {
-                            this.view = new ViewAbout(args);
-                            this.view.render();
-                            this.view.$menuitem.removeClass('extra');
-                        } 
-
-                        this.view.renderpanel(this.view.paneltemplate(args));
-                        const $label = this.view.$panel.find('.ver-checkupdate');
-                        $label.on('click', (e) => {
-                            if ( performance.now() - last_click_time < 1000 ) return;
-                            last_click_time = performance.now();
-
-                            window.sdk.execCommand('update', $label.data('state'));
-                        });
-                        $label[this.updates===true?'show':'hide']();
-                        if ( args.opts ) {
-                            this.view.$panel.find('.ver-changelog')[!!args.opts.changelog?'show':'hide']();
-                        }
-
-                        if ( !!_features && _features.length )
-                            _on_features_avalable.call(this, _features);
-                    } else
-                    if (/^updates:turn/.test(cmd)) {
-                        this.updates = param == 'on';
-
-                        if ( this.view ) {
-                            this.view.$panel.find('.ver-checkupdate')[this.updates?'show':'hide']();
-                        }
-                    } else
-                    if (/^updates:checking/.test(cmd)) {
-                        const $label = this.view.$panel.find('.ver-checkupdate');
-                        const opts = JSON.parse(param);
-                        if ( opts.version == 'no' ) {
-                            $label.text(utils.Lang.updateNoUpdates);
-                        } else {
-                            $label.text(utils.Lang.updateAvialable.replace('$1', opts.version));
-                            $label.data('state', 'download');
-                        }
-                        $label.show();
-                    } else
-                    if (/updates:download/.test(cmd)) {
-                        const opts = JSON.parse(param);
-                        const $label = this.view.$panel.find('.ver-checkupdate');
-
-                        if ( opts.progress == 'done' ) {
-                            $label.text(utils.Lang.updateDownloadFinished);
-                            $label.data('state', 'install');
-                        } else
-                        if ( opts.progress == 'aborted' ) {
-                            $label.text(utils.Lang.updateDownloadCanceled);
-                        } else {
-                            $label.text(utils.Lang.updateDownloadProgress.replace('$1', opts.progress));
-                            $label.data('state', 'abort');
-                        }
-                    }
-                });
-
-                let _features;
                 if ( utils.brandCheck('onfeaturesavailable') ) {
-                    _features = sdk.GetLocalFeatures();
-                    if ( !!_features && _features.length ) _on_features_avalable.call(this, _features);
+                    features = sdk.GetLocalFeatures();
+                    if ( !!features && features.length )
+                        _on_features_avalable.call(this, features);
 
                     sdk.on('onfeaturesavailable', _on_features_avalable.bind(this));
                 } else sdk.GetLocalFeatures = e => false;
