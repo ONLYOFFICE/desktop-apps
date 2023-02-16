@@ -5,10 +5,24 @@
     <STRING lang="ru" value="[ProductName] [Setup]"/>
   </ENTRY>
   <ENTRY id="Dialog.FileAssociationsDlg">
+    <STRING lang="cs" value="[Setup] [ProductName]"/>
+    <STRING lang="de" value="[ProductName] [Setup]"/>
+    <STRING lang="es" value="[Setup] de [ProductName]"/>
+    <STRING lang="fr" value="[Setup] [ProductName]"/>
+    <STRING lang="ja" value="[ProductName] [Setup]"/>
+    <STRING lang="pt" value="[Setup] do [ProductName]"/>
+    <STRING lang="pt_BR" value="[Setup] do [ProductName]"/>
     <STRING lang="ru" value="[Setup] [ProductName]"/>
+    <STRING lang="sl" value="[Setup] [ProductName]"/>
   </ENTRY>
   <ENTRY id="Dialog.NewDialog">
     <STRING lang="ru" value="[ProductName] [Setup]"/>
+  </ENTRY>
+  <ENTRY id="Dialog.ShortcutsDlg">
+    <STRING lang="cs" value="[Setup] [ProductName]"/>
+    <STRING lang="pt" value="[Setup] do [ProductName]"/>
+    <STRING lang="pt_BR" value="[Setup] do [ProductName]"/>
+    <STRING lang="sl" value="[Setup] [ProductName]"/>
   </ENTRY>
   <!-- Control table -->
   <ENTRY id="Control.Text.ExtendedInstallDlg#Back">
