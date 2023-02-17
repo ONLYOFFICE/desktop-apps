@@ -364,7 +364,7 @@
       </trans-unit>
       <trans-unit id="Spreadsheet %ld.xlsx" xml:space="preserve">
         <source>Spreadsheet %ld.xlsx</source>
-        <target>Arkusz kalkulacyjny % ld.xlsx</target>
+        <target state="translated">Arkusz kalkulacyjny %ld.xlsx</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Spreadsheet template" xml:space="preserve">

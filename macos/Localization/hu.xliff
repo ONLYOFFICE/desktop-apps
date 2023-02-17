@@ -294,7 +294,7 @@
       </trans-unit>
       <trans-unit id="Presentation %ld.pptx" xml:space="preserve">
         <source>Presentation %ld.pptx</source>
-        <target>%ld.pptx bemutató</target>
+        <target state="translated">Bemutató %ld.pptx</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Presentation template" xml:space="preserve">
@@ -329,7 +329,7 @@
       </trans-unit>
       <trans-unit id="Spreadsheet %ld.xlsx" xml:space="preserve">
         <source>Spreadsheet %ld.xlsx</source>
-        <target>%ld.xlsx számolótábla</target>
+        <target state="translated">Számolótábla %ld.xlsx</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Spreadsheet template" xml:space="preserve">
