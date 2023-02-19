@@ -106,16 +106,17 @@
                                                 </section>
                                             </div>
                                         </div>
-                                    <div class='settings-field' id="opts-autoupdate-mode" style='display:none;'>
-                                        <label class='sett__caption' l10n>${_lang.settAUpdateMode}</label>
-                                        <div class='sett--label-lift-top hbox'>
-                                            <section class='box-cmp-select'>
-                                                <select class='combobox'>
-                                                    <option data-subtext="${_lang.settOptDescAUpdateSilent}" value='silent' l10n>${_lang.settOptAUpdateSilent}</option>
-                                                    <option data-subtext="${_lang.settOptDescAUpdateAsk}" value='ask' l10n>${_lang.settOptAUpdateAsk}</option>
-                                                    <option data-subtext="${_lang.settOptDescDisabled}" value='disabled' l10n>${_lang.settOptDisabled}</option>
-                                                </select>
-                                            </section>
+                                        <div class='settings-field' id="opts-autoupdate-mode" style='display:none;'>
+                                            <label class='sett__caption' l10n>${_lang.settAUpdateMode}</label>
+                                            <div class='sett--label-lift-top hbox'>
+                                                <section class='box-cmp-select'>
+                                                    <select class='combobox'>
+                                                        <option data-subtext="${_lang.settOptDescAUpdateSilent}" value='silent' l10n>${_lang.settOptAUpdateSilent}</option>
+                                                        <option data-subtext="${_lang.settOptDescAUpdateAsk}" value='ask' l10n>${_lang.settOptAUpdateAsk}</option>
+                                                        <option data-subtext="${_lang.settOptDescDisabled}" value='disabled' l10n>${_lang.settOptDisabled}</option>
+                                                    </select>
+                                                </section>
+                                            </div>
                                         </div>
                                         <div class='settings-field' id="opts-autoupdate" style='display:none;'>
                                             <label class='sett__caption' l10n>${_lang.settCheckUpdates}</label>
