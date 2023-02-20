@@ -1336,6 +1336,22 @@ void CMainWindow::onOutsideAuth(QString json)
     }
 }
 
+void CMainWindow::onReporterMode(int id, bool status)
+{
+    if ( m_pTabs->fullScreenWidget() ) {
+        CTabPanel * _widget = qobject_cast<CTabPanel *>(m_pTabs->fullScreenWidget());
+        if (_widget && _widget->cef()->GetId() == id) {
+            _widget->setReporterMode(status);
+            return;
+        }
+    }
+
+    int _i{m_pTabs->tabIndexByView(id)};
+    if ( !(_i < 0) ) {
+        m_pTabs->panel(_i)->setReporterMode(status);
+    }
+}
+
 void CMainWindow::updateScalingFactor(double dpiratio)
 {
     CScalingWrapper::updateScalingFactor(dpiratio);

@@ -172,14 +172,6 @@ bool CEditorWindow::holdView(const std::wstring& portal) const
     return qobject_cast<CTabPanel *>(m_pMainView)->data()->url().find(portal) != std::wstring::npos;
 }
 
-void CEditorWindow::setReporterMode(bool apply)
-{
-    if ( apply ) {
-    }
-
-    d_ptr->isReporterMode = apply;
-}
-
 void CEditorWindow::undock(bool maximized)
 {
     if (isCustomWindowStyle()) {
@@ -435,14 +427,14 @@ void CEditorWindow::onCloseEvent()
 
 void CEditorWindow::onMinimizeEvent()
 {
-    if ( !d_ptr->isReporterMode ) {
+    if ( !qobject_cast<CTabPanel *>(m_pMainView)->reporterMode() ) {
         CWindowPlatform::onMinimizeEvent();
     }
 }
 
 void CEditorWindow::onMaximizeEvent()
 {
-    if ( !d_ptr->isReporterMode ) {
+    if ( !qobject_cast<CTabPanel *>(m_pMainView)->reporterMode() ) {
         CWindowPlatform::onMaximizeEvent();
     }
 }

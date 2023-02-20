@@ -11,6 +11,7 @@
 #include <QJsonObject>
 #include <QJsonArray>
 #include <QProcess>
+#include <QScreen>
 #include <algorithm>
 #include <functional>
 
@@ -397,7 +398,7 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
 #endif
 
 //        RELEASEINTERFACE(event);
-        return true; }
+        break; }
 
     case ASC_MENU_EVENT_TYPE_REPORTER_END: {
         // close editor window
@@ -408,7 +409,7 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
         }
 
 //        RELEASEINTERFACE(event);
-        return true; }
+        break; }
 
     case ASC_MENU_EVENT_TYPE_REPORTER_MESSAGE_TO:
     case ASC_MENU_EVENT_TYPE_REPORTER_MESSAGE_FROM: return true;
@@ -447,6 +448,11 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
 
             if (switer != m_winsReporter.end() ) {
                 CPresenterWindow * reporterWindow = switer->second;
+
+                GET_REGISTRY_USER(reg_user)
+                reg_user.setValue("repPosition", reporterWindow->normalGeometry());
+
+                reporterWindow->geometry();
                 delete reporterWindow, reporterWindow = nullptr;
                 m_winsReporter.erase(switer);
 
@@ -1126,32 +1132,41 @@ CPresenterWindow * CAscApplicationManagerWrapper::createReporterWindow(void * da
     pView->CreateReporter(this, pCreateData);
 
     QString _doc_name;
-    QRect _windowRect{100,100,1000,700}, _currentRect;
-    CMainWindow * _main_window = mainWindowFromViewId(parentid);
-    if ( _main_window ) {
-        _doc_name = _main_window->documentName(parentid);
-        _currentRect = _main_window->windowRect();
+    QRect _currentRect;
+    if ( m_pMainWindow && m_pMainWindow->holdView(parentid) ) {
+        _doc_name = m_pMainWindow->documentName(parentid);
+        _currentRect = m_pMainWindow->windowRect();
     } else {
         CEditorWindow * _window = editorWindowFromViewId(parentid);
 
         if ( _window ) {
             _doc_name = _window->documentName();
             _currentRect = _window->geometry();
-
-            _window->setReporterMode(true);
         }
     }
 
-    if ( QApplication::desktop()->screenCount() > 1 ) {
-        int _scrNum = QApplication::desktop()->screenNumber(_currentRect.topLeft());
-        QRect _scrRect = QApplication::desktop()->availableGeometry(QApplication::desktop()->screenCount()-_scrNum-1);
-        int _srcDpiRatio = Utils::getScreenDpiRatio(_scrRect.topLeft());
+#if QT_VERSION < QT_VERSION_CHECK(5, 11, 0)
+    int _scrNum = QApplication::desktop()->screenNumber(_currentRect.topLeft());
+    QRect _scr_rect = QApplication::desktop()->availableGeometry(_scrNum);
+#else
+    QRect _scr_rect = QApplication::screenAt(_currentRect.topLeft())->availableGeometry();
+#endif
+    int _scr_dpi_ratio = Utils::getScreenDpiRatio(_scr_rect.topLeft());
 
-        _windowRect.setTopLeft(_scrRect.translated(100,100).topLeft()*_srcDpiRatio);
-        _windowRect.setSize(QSize(1000,700)*_srcDpiRatio);
-    }
+    GET_REGISTRY_USER(reg_user)
 
-    CPresenterWindow * reporterWindow = new CPresenterWindow(_windowRect, tr("Presenter View") + " - " + _doc_name, pView);
+    QRect _default_rect{QPoint(0,0), QSize(1000,700) * _scr_dpi_ratio};
+    QRect _saved_rect = reg_user.value("repPosition", _default_rect).toRect();
+    if ( _scr_rect.width() < _saved_rect.width() )
+        _saved_rect.setWidth(_scr_rect.width() - 100 * _scr_dpi_ratio);
+
+    if ( _scr_rect.height() < _saved_rect.height() )
+        _saved_rect.setHeight(_scr_rect.height() - 100 * _scr_dpi_ratio);
+
+    QRect _window_rect{QPoint(0,0), _saved_rect.size()};
+    _window_rect.moveCenter(_scr_rect.center());
+
+    CPresenterWindow * reporterWindow = new CPresenterWindow(_window_rect, tr("Presenter View") + " - " + _doc_name, pView);
     m_winsReporter[pView->GetCefView()->GetId()] = reporterWindow;
 
 //    QTimer::singleShot(5000, [=]{

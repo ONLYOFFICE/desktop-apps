@@ -156,8 +156,7 @@ class CEditorWindowPrivate : public CCefEventsGate
 
 public:
     int titleLeftOffset = 0;
-    bool isReporterMode = false,
-         usedOldEditorVersion = false;
+    bool usedOldEditorVersion = false;
 
 public:
     CEditorWindowPrivate(CEditorWindow * w) : window(w) {}
@@ -660,7 +659,6 @@ public:
 
     void onFullScreen(bool apply)
     {
-        if ( !apply ) isReporterMode = false;
         if ( apply == isFullScreen ) return;
         isFullScreen = apply;
 
