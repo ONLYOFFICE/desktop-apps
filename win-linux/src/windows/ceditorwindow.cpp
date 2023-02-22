@@ -339,11 +339,11 @@ void CEditorWindow::recalculatePlaces()
 void CEditorWindow::updateTitleCaption()
 {
     if (m_labelTitle) {
-        int _width = calcTitleCaptionWidth();
-        if (_width >= 0) {
-            m_labelTitle->setMaximumWidth(_width);
+//        int _width = calcTitleCaptionWidth();
+//        if (_width >= 0) {
+//            m_labelTitle->setMaximumWidth(_width);
             m_labelTitle->updateText();
-        }
+//        }
     }
 }
 
