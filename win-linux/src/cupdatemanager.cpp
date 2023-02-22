@@ -188,11 +188,13 @@ void CUpdateManager::onCompleteSlot(const int error)
 #endif
         default: break;
         }
-    }
-    else {
-        auto wgts = QApplication::topLevelWidgets();
-        if (!wgts.isEmpty() && !wgts[0]->isMinimized())
-            CMessage::warning(wgts[0], tr("Server connection error!"));
+    } else
+    if (error == 1) {
+        auto wgt = QApplication::activeWindow();
+        if (wgt && wgt->objectName() == "MainWindow" && !wgt->isMinimized())
+            CMessage::warning(wgt, tr("Server connection error!"));
+    } else {
+        // Pause or Stop
     }
 }
 
@@ -493,7 +495,9 @@ void CUpdateManager::onLoadCheckFinished()
             if (ver.at(i).toInt() > curr_ver.at(i).toInt()) {
                 updateExist = (version != ignored_ver);
                 break;
-            }
+            } else
+            if (ver.at(i).toInt() < curr_ver.at(i).toInt())
+                break;
         }
 
         if ( updateExist ) {
