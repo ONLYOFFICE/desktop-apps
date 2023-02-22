@@ -1214,9 +1214,8 @@ QStringList Xdg::openXdgPortal(QWidget *parent,
     }
 
     if (result == Result::ERROR) {
-        CMessage::error(parent, QObject::tr("An error occurred while opening the portal!<br>"
-                                            "Maybe the 'xdg-desktop-portal' package is not installed."));
-        printf("Error while open dialog: %s\n", getErrorText());
+        CMessage::error(parent, QObject::tr("An error occurred while opening the portal:<br>%1")
+                        .arg(QString::fromUtf8(getErrorText())));
     }
 
     quitDBus();
