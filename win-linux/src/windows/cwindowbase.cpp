@@ -195,11 +195,11 @@ void CWindowBase::saveWindowState()
 {
     if (!windowState().testFlag(Qt::WindowFullScreen)) {
         GET_REGISTRY_USER(reg_user)
+        reg_user.setValue("position", normalGeometry());
         if (windowState().testFlag(Qt::WindowMaximized)) {
             reg_user.setValue("maximized", true);
         } else {
             reg_user.remove("maximized");
-            reg_user.setValue("position", normalGeometry());
         }
     }
 }
