@@ -109,6 +109,7 @@ static NSString * const CEFOpenFileFilterPresentation       = @"slide";
 static NSString * const CEFOpenFileFilterVideo              = @"video";
 static NSString * const CEFOpenFileFilterAudio              = @"audio";
 static NSString * const CEFOpenFileFilterCsvTxt             = @"csv/txt";
+static NSString * const CEFOpenFileFilterXML                = @"(*xml)";
 
 // CEF event names
 static NSString * const CEFEventNameCreateTab               = @"CEF_createTab";
@@ -161,6 +162,7 @@ static NSString * const CEFEventNameCertificatePreview      = @"CEF_certificateP
 + (NSArray *)presentations;
 + (NSArray *)plugins;
 + (NSArray *)csvtxt;
++ (NSArray *)xmldata;
 
 + (NSString *)appInfo:(NSString *)key;
 + (NSDictionary *)ascFormatsInfo;

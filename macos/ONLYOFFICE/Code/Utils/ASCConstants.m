@@ -88,6 +88,10 @@
     return @[@"csv", @"txt"];
 }
 
++ (NSArray *)xmldata {
+    return @[@"xml"];
+}
+
 + (NSString *)appInfo:(NSString *)key {
     id <ASCExternalDelegate> externalDelegate = [[ASCExternalController shared] delegate];
 
