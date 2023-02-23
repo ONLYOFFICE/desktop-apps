@@ -138,6 +138,12 @@ namespace CEditorTools
 
                 _list = dialog.modalOpen(Utils::lastPath(LOCAL_PATH_OPEN), _txt_filter, &_sel_filter, pData->get_IsMultiselect());
             } else
+            if ( _filter == "(*xml)" ) {
+                QString _sel_filter;
+                const QString _txt_filter = QObject::tr("XML File (*.xml)") + ";;" + QObject::tr("All files (*.*)");
+
+                _list = dialog.modalOpen(Utils::lastPath(LOCAL_PATH_OPEN), _txt_filter, &_sel_filter, pData->get_IsMultiselect());
+            } else
             if ( _filter == "any" || _filter == "*.*" ) {
                 _list = dialog.modalOpenAny(Utils::lastPath(LOCAL_PATH_OPEN), pData->get_IsMultiselect());
             } else {
