@@ -134,7 +134,7 @@
 "Preparing..." = "Előkészítés...";
 
 /* No comment provided by engineer. */
-"Presentation %ld.pptx" = "%ld.pptx bemutató";
+"Presentation %ld.pptx" = "Bemutató %ld.pptx";
 
 /* No comment provided by engineer. */
 "Presentation template" = "PowerPoint Open XML prezentáció sablon (*.potx)";
@@ -155,7 +155,7 @@
 "Save the document?" = "Menti a dokumentumot ?";
 
 /* No comment provided by engineer. */
-"Spreadsheet %ld.xlsx" = "%ld.xlsx számolótábla";
+"Spreadsheet %ld.xlsx" = "Számolótábla %ld.xlsx";
 
 /* No comment provided by engineer. */
 "Spreadsheet template" = "Excel Open XML számolótábla-sablon (*.xltx)";

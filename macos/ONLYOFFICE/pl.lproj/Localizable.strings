@@ -170,7 +170,7 @@
 "Signature Details" = "Szczegóły sygnatury";
 
 /* No comment provided by engineer. */
-"Spreadsheet %ld.xlsx" = "Arkusz kalkulacyjny % ld.xlsx";
+"Spreadsheet %ld.xlsx" = "Arkusz kalkulacyjny %ld.xlsx";
 
 /* No comment provided by engineer. */
 "Spreadsheet template" = "Szablon arkusza kalkulacyjnego Excel Open XML (*.xltx)";

@@ -44,7 +44,7 @@
 "Document template" = "Word Open XML-dokumentmal (*.dotx)";
 
 /* No comment provided by engineer. */
-"Excel 97-2003 Spreadsheet" = "Microsoft Excel 97-2003-regneark (*.xls)";
+"Excel 97-2003 Spreadsheet" = "Excel 97-2003-regneark (*.xls)";
 
 /* No comment provided by engineer. */
 "Excel 2007 Spreadsheet" = "Office Open XML-regneark (*.xlsx)";
@@ -116,7 +116,7 @@
 "PDF File" = "Portable Document (*.pdf)";
 
 /* No comment provided by engineer. */
-"PDF/A File" = "Portable Document / A (*.pdf)";
+"PDF/A File" = "Portable Document /A (*.pdf)";
 
 /* No comment provided by engineer. */
 "Plain Text" = "Ren tekst (*.txt)";
