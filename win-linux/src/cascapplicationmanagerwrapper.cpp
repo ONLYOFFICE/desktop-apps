@@ -316,8 +316,8 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
         } else
 #ifdef Q_OS_WIN
         if ( cmd.find(L"app:onready") != std::wstring::npos ) {
-            if ( !IsWindowsVistaOrGreater() )
-                sendCommandTo(SEND_TO_ALL_START_PAGE, "panel:hide", "connect");
+//            if ( !IsWindowsVistaOrGreater() )
+//                sendCommandTo(SEND_TO_ALL_START_PAGE, "panel:hide", "connect");
         } else
 #endif
         if ( cmd.compare(0, 8, L"settings") == 0 ) {
