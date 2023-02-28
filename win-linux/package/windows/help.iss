@@ -97,7 +97,7 @@ Name: ko;    MessagesFile: compiler:Languages\Korean.isl;
 Name: lo;    MessagesFile: compiler:Default.isl;
 Name: lv;    MessagesFile: compiler:Languages\Latvian.isl;
 Name: nl;    MessagesFile: compiler:Languages\Dutch.isl;
-Name: nn_NO; MessagesFile: compiler:Languages\Norwegian.isl;
+Name: no;    MessagesFile: compiler:Languages\Norwegian.isl;
 Name: pl;    MessagesFile: compiler:Languages\Polish.isl;
 Name: pt_BR; MessagesFile: compiler:Languages\BrazilianPortuguese.isl;
 Name: pt_PT; MessagesFile: compiler:Languages\Portuguese.isl;
