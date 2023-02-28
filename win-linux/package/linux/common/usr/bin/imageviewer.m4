@@ -2,7 +2,7 @@
 
 DIR=/opt/M4_MEDIAVIEWER_PREFIX
 if [ ! -z "$LD_LIBRARY_PATH" ]; then
-  export LDLPATH=:$LD_LIBRARY_PATH
+  LDLPATH=:$LD_LIBRARY_PATH
 fi
 export LD_LIBRARY_PATH=$DIR$LDLPATH
 exec $DIR/ImageViewer "$@"
