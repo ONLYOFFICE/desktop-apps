@@ -483,45 +483,6 @@
     </message>
 </context>
 <context>
-    <name>CMainPanel</name>
-    <message>
-        <source>FILE</source>
-        <translation type="vanished">COMENÇAMENT</translation>
-    </message>
-    <message>
-        <source>File format not supported.</source>
-        <translation type="vanished">El format de fitxer no és compatible.</translation>
-    </message>
-    <message>
-        <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
-        <translation type="vanished">%1 No està disponible. Es pot canviar el nom, moure-lo o suprimir-lo.&lt;br&gt;Voleu eliminar el fitxer de la llista?</translation>
-    </message>
-    <message>
-        <source>Document must be saved firstly.</source>
-        <translation type="vanished">El document s&apos;ha de desar abans.</translation>
-    </message>
-    <message>
-        <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
-        <translation type="vanished">El document s&apos;ha de guardar per continuar.&lt;br&gt;Guardar el document?</translation>
-    </message>
-    <message>
-        <source>Print Document</source>
-        <translation type="vanished">Imprimir el document</translation>
-    </message>
-    <message>
-        <source>Some data will lost.&lt;br&gt;Continue?</source>
-        <translation type="vanished">Si continueu guardant en aquest format, es perdran totes les funcions, excepte el text.&lt;br&gt;Estàs segur que vols continuar?</translation>
-    </message>
-    <message>
-        <source>Sign Up</source>
-        <translation type="vanished">Crear portal</translation>
-    </message>
-    <message>
-        <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
-        <translation type="vanished">%1 ha estat modificat.&lt;br&gt;Voleu desar els canvis?</translation>
-    </message>
-</context>
-<context>
     <name>CMainWindow</name>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="753"/>

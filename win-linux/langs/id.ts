@@ -483,48 +483,6 @@
     </message>
 </context>
 <context>
-    <name>CMainPanel</name>
-    <message>
-        <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
-        <translation type="vanished">%1 telah berubah.&lt;br&gt;Simpan perubahan?</translation>
-    </message>
-    <message>
-        <source>File format not supported.</source>
-        <translation type="vanished">Format file tidak didukung.</translation>
-    </message>
-    <message>
-        <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
-        <translation type="vanished">%1 tidak tersedia. Mungkin telah berganti nama, berpindah atau hilang.&lt;br&gt;Hapus file dari daftar?</translation>
-    </message>
-    <message>
-        <source>Document must be saved firstly.</source>
-        <translation type="vanished">Dokumen harus disimpan terlebih dahulu.</translation>
-    </message>
-    <message>
-        <source>Some data will lost.&lt;br&gt;Continue?</source>
-        <translation type="vanished">Jika Anda masih menyimpan dalam format ini semua fitur kecuali teks akan hilang.&lt;br&gt;Yakin ingin melanjutkan?</translation>
-    </message>
-    <message>
-        <source>Sign Up</source>
-        <translation type="vanished">Buat portal</translation>
-    </message>
-    <message>
-        <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
-        <translation type="vanished">Dokumen harus disimpan untuk melanjutkan.&lt;br&gt;Simpan dokumen?</translation>
-    </message>
-    <message>
-        <source>Print Document</source>
-        <translation type="vanished">Cetak dokumen</translation>
-    </message>
-</context>
-<context>
-    <name>CMainPanelImpl</name>
-    <message>
-        <source>Licensed under</source>
-        <translation type="vanished">Lisensi di bawah</translation>
-    </message>
-</context>
-<context>
     <name>CMainWindow</name>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="753"/>

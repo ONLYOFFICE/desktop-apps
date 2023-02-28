@@ -483,45 +483,6 @@
     </message>
 </context>
 <context>
-    <name>CMainPanel</name>
-    <message>
-        <source>FILE</source>
-        <translation type="vanished">INICIAR</translation>
-    </message>
-    <message>
-        <source>File format not supported.</source>
-        <translation type="vanished">O Formato do Ficheiro não é suportado.</translation>
-    </message>
-    <message>
-        <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
-        <translation type="vanished">%1 não está disponível. Ele pode ter sido renomeado, movido de lugar ou apagado.&lt;br&gt;Deseja remover o ficheiro da lista?</translation>
-    </message>
-    <message>
-        <source>Document must be saved firstly.</source>
-        <translation type="vanished">Tem de guardar o documento primeiro.</translation>
-    </message>
-    <message>
-        <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
-        <translation type="vanished">Se continuar a guardar neste formato todas as funcionalidades serão perdidas exceto o texto.&lt;br&gt;Tem a certeza que quer continuar?</translation>
-    </message>
-    <message>
-        <source>Print Document</source>
-        <translation type="vanished">Imprimir documento</translation>
-    </message>
-    <message>
-        <source>Some data will lost.&lt;br&gt;Continue?</source>
-        <translation type="vanished">Se continuar a guardar neste formato todas as funcionalidades serão perdidas exceto o texto.&lt;br&gt;Tem a certeza que quer continuar?</translation>
-    </message>
-    <message>
-        <source>Sign Up</source>
-        <translation type="vanished">Criar Portal</translation>
-    </message>
-    <message>
-        <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
-        <translation type="vanished">%1 foi modificado.&lt;br&gt;Quer guardar as alterações?</translation>
-    </message>
-</context>
-<context>
     <name>CMainWindow</name>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="753"/>

@@ -483,41 +483,6 @@
     </message>
 </context>
 <context>
-    <name>CMainPanel</name>
-    <message>
-        <source>File format not supported.</source>
-        <translation type="vanished">Format datoteke nije podržan.</translation>
-    </message>
-    <message>
-        <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
-        <translation type="vanished">%1 nije dostupna. Možda je preimenovana, premještena ili izbrisana.&lt;br&gt;Želite li ukloniti datoteku s popisa?</translation>
-    </message>
-    <message>
-        <source>Document must be saved firstly.</source>
-        <translation type="vanished">Dokument se najprije mora spremiti.</translation>
-    </message>
-    <message>
-        <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
-        <translation type="vanished">Da biste mogli nastaviti dokument se mora spremiti.&lt;br&gt;Želite li spremiti dokument?</translation>
-    </message>
-    <message>
-        <source>Print Document</source>
-        <translation type="vanished">Ispis dokumenta</translation>
-    </message>
-    <message>
-        <source>Some data will lost.&lt;br&gt;Continue?</source>
-        <translation type="vanished">Ako nastavite spremanje u ovom formatu, izgubiti će se sve značajke osim teksta.&lt;br&gt;Jeste li sigurni da želite nastaviti?</translation>
-    </message>
-    <message>
-        <source>Sign Up</source>
-        <translation type="vanished">Stvorite portal</translation>
-    </message>
-    <message>
-        <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
-        <translation type="vanished">%1 je izmijenjen.&lt;br&gt;Želite li spremiti promjene?</translation>
-    </message>
-</context>
-<context>
     <name>CMainWindow</name>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="753"/>

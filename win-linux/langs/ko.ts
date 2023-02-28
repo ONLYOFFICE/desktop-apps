@@ -479,37 +479,6 @@
     </message>
 </context>
 <context>
-    <name>CMainPanel</name>
-    <message>
-        <source>File format not supported.</source>
-        <translation type="vanished">지원되지 않는 파일 형식입니다.</translation>
-    </message>
-    <message>
-        <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
-        <translation type="vanished">%1이 이용 불가합니다. 이름이 변경되었거나, 이동되었거나, 삭제된 것 같습니다.&lt;br&gt;목록에서 파일을 제거하시겠습니까?</translation>
-    </message>
-    <message>
-        <source>Document must be saved firstly.</source>
-        <translation type="vanished">문서를 먼저 저장해야 합니다.</translation>
-    </message>
-    <message>
-        <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
-        <translation type="vanished">계속하려면 문서를 저장해야 합니다.&lt;br&gt;문서를 저장하시겠습니까?</translation>
-    </message>
-    <message>
-        <source>Print Document</source>
-        <translation type="vanished">문서 인쇄</translation>
-    </message>
-    <message>
-        <source>Sign Up</source>
-        <translation type="vanished">포털 생성</translation>
-    </message>
-    <message>
-        <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
-        <translation type="vanished">%1이 수정되었습니다.&lt;br&gt;변경 사항을 저장하시겠습니까?</translation>
-    </message>
-</context>
-<context>
     <name>CMainWindow</name>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="753"/>

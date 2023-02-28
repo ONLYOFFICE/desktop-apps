@@ -483,45 +483,6 @@
     </message>
 </context>
 <context>
-    <name>CMainPanel</name>
-    <message>
-        <source>FILE</source>
-        <translation type="vanished">ALOITA</translation>
-    </message>
-    <message>
-        <source>File format not supported.</source>
-        <translation type="vanished">Tiedoston tyyppi ei ole tuettu.</translation>
-    </message>
-    <message>
-        <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
-        <translation type="vanished">%1 ei ole saatavilla. Se voi olla nimetty uudelleen, siirretty tai poistettu.&lt;br&gt;Haluatko poistaa tiedoston listalta?</translation>
-    </message>
-    <message>
-        <source>Document must be saved firstly.</source>
-        <translation type="vanished">Dokumentti pitää tallentaa ensin.</translation>
-    </message>
-    <message>
-        <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
-        <translation type="vanished">Dokumentti tulee tallentaa ennen jatkamista. &lt;br&gt;Tallennetaanko dokumentti?</translation>
-    </message>
-    <message>
-        <source>Print Document</source>
-        <translation type="vanished">Tulosta dokumentti</translation>
-    </message>
-    <message>
-        <source>Some data will lost.&lt;br&gt;Continue?</source>
-        <translation type="vanished">Jos jatkat tallennusta tässä muodossa, kaikki muut ominaisuudet paitsi teksti menetetään.&lt;br&gt; Oletko varma, että haluat jatkaa?</translation>
-    </message>
-    <message>
-        <source>Sign Up</source>
-        <translation type="vanished">Luo portaali</translation>
-    </message>
-    <message>
-        <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
-        <translation type="vanished">%1 on muokattu.&lt;br&gt;Haluatko tallentaa muutokset?</translation>
-    </message>
-</context>
-<context>
     <name>CMainWindow</name>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="753"/>

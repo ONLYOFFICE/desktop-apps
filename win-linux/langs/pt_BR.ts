@@ -483,53 +483,6 @@
     </message>
 </context>
 <context>
-    <name>CMainPanel</name>
-    <message>
-        <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
-        <translation type="vanished">%1 foi modificado.&lt;br&gt;Deseja salvar as alterações?</translation>
-    </message>
-    <message>
-        <source>FILE</source>
-        <translation type="vanished">INICIAR</translation>
-    </message>
-    <message>
-        <source>File format not supported.</source>
-        <translation type="vanished">Formato de arquivo não suportado.</translation>
-    </message>
-    <message>
-        <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
-        <translation type="vanished">%1 não está disponível. Ele foi movido ou excluído.&lt;br&gt;Deseja remover o arquivo da lista?</translation>
-    </message>
-    <message>
-        <source>Document must be saved firstly.</source>
-        <translation type="vanished">O documento deve ser salvo primeiro.</translation>
-    </message>
-    <message>
-        <source>%1 must be built. Continue?</source>
-        <translation type="vanished">%1 deve ser incorporado. Continuar?</translation>
-    </message>
-    <message>
-        <source>OK</source>
-        <translation type="vanished">OK</translation>
-    </message>
-    <message>
-        <source>Some data will lost.&lt;br&gt;Continue?</source>
-        <translation type="vanished">Se continuar salvando nesse formato, a formatação será perdida.&lt;br&gt;Quer continuar?</translation>
-    </message>
-    <message>
-        <source>Sign Up</source>
-        <translation type="vanished">Criar escritório na nuvem</translation>
-    </message>
-    <message>
-        <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
-        <translation type="vanished">O documento deve estar salvo para continuar.&lt;br&gt;Salvar o documento?</translation>
-    </message>
-    <message>
-        <source>Print Document</source>
-        <translation type="vanished">Imprimir documento</translation>
-    </message>
-</context>
-<context>
     <name>CMainWindow</name>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="753"/>

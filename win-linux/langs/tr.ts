@@ -483,45 +483,6 @@
     </message>
 </context>
 <context>
-    <name>CMainPanel</name>
-    <message>
-        <source>FILE</source>
-        <translation type="vanished">BAŞLA</translation>
-    </message>
-    <message>
-        <source>File format not supported.</source>
-        <translation type="vanished">Dosya format desteklenmiyor.</translation>
-    </message>
-    <message>
-        <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
-        <translation type="vanished">%1 mevcut değil. Yeniden isimlendirilmiş, taşınmış veya silimiş olabilir.&lt;br&gt;Dosyayı listeden kaldırmak istediğinize emin misiniz?</translation>
-    </message>
-    <message>
-        <source>Document must be saved firstly.</source>
-        <translation type="vanished">Belge önce kaydedilmeli.</translation>
-    </message>
-    <message>
-        <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
-        <translation type="vanished">Devam etmek için belge kaydedilmelidir.&lt;br&gt;Belgeyi kaydet?</translation>
-    </message>
-    <message>
-        <source>Print Document</source>
-        <translation type="vanished">Belgeyi yazdır</translation>
-    </message>
-    <message>
-        <source>Some data will lost.&lt;br&gt;Continue?</source>
-        <translation type="vanished">Bu formatta kaydetmeye devam ederseniz, metin haricindeki tüm özellikler kaybedilecektir.&lt;br&gt;Devam etmek istediğinize emin misiniz?</translation>
-    </message>
-    <message>
-        <source>Sign Up</source>
-        <translation type="vanished">Portal oluştur</translation>
-    </message>
-    <message>
-        <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
-        <translation type="vanished">%1 değiştirildi.&lt;br&gt;Değişiklikleri kaydetmek istiyor musunuz?</translation>
-    </message>
-</context>
-<context>
     <name>CMainWindow</name>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="753"/>

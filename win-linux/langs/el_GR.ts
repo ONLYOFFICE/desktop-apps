@@ -483,45 +483,6 @@
     </message>
 </context>
 <context>
-    <name>CMainPanel</name>
-    <message>
-        <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
-        <translation type="vanished">Το %1 έχει τροποποιηθεί.&lt;br&gt;Θέλετε να αποθηκεύσετε τις αλλαγές;</translation>
-    </message>
-    <message>
-        <source>FILE</source>
-        <translation type="vanished">ΕΚΚΙΝΗΣΗ</translation>
-    </message>
-    <message>
-        <source>File format not supported.</source>
-        <translation type="vanished">Η μορφή αρχείου δεν υποστηρίζεται.</translation>
-    </message>
-    <message>
-        <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
-        <translation type="vanished">Το %1 δεν είναι διαθέσιμο. Μπορεί να έχει μετονομαστεί, μετακινηθεί ή διαγραφεί.&lt;br&gt;Θέλετε να αφαιρέσετε το αρχείο από τη λίστα;</translation>
-    </message>
-    <message>
-        <source>Document must be saved firstly.</source>
-        <translation type="vanished">Το έγγραφο πρέπει να αποθηκευτεί πρώτα.</translation>
-    </message>
-    <message>
-        <source>Some data will lost.&lt;br&gt;Continue?</source>
-        <translation type="vanished">Εάν συνεχίσετε να αποθηκεύετε σε αυτήν τη μορφή, όλες οι λειτουργίες, εκτός από το κείμενο, θα χαθούν.&lt;br&gt;Θέλετε να συνεχίσετε;</translation>
-    </message>
-    <message>
-        <source>Sign Up</source>
-        <translation type="vanished">Δημιουργία πύλης</translation>
-    </message>
-    <message>
-        <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
-        <translation type="vanished">Το έγγραφο πρέπει να αποθηκευτεί για να συνεχίσετε.&lt;br&gt;Αποθήκευση εγγράφου;</translation>
-    </message>
-    <message>
-        <source>Print Document</source>
-        <translation type="vanished">Εκτύπωση εγγράφου</translation>
-    </message>
-</context>
-<context>
     <name>CMainWindow</name>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="753"/>

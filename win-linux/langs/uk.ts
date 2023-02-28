@@ -483,45 +483,6 @@
     </message>
 </context>
 <context>
-    <name>CMainPanel</name>
-    <message>
-        <source>FILE</source>
-        <translation type="vanished">ПОЧАТИ</translation>
-    </message>
-    <message>
-        <source>File format not supported.</source>
-        <translation type="vanished">Формат файлу не підтримується.</translation>
-    </message>
-    <message>
-        <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
-        <translation type="vanished">Файл %1 недоступний. Він може бути перейменований, переміщений або видалений.&lt;br&gt;Видалити цей файл зі списку?</translation>
-    </message>
-    <message>
-        <source>Document must be saved firstly.</source>
-        <translation type="vanished">Спочатку потрібно зберегти документ.</translation>
-    </message>
-    <message>
-        <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
-        <translation type="vanished">Щоб продовжити, потрібно зберегти документ.&lt;br&gt;Зберегти документ?</translation>
-    </message>
-    <message>
-        <source>Print Document</source>
-        <translation type="vanished">Друк документа</translation>
-    </message>
-    <message>
-        <source>Some data will lost.&lt;br&gt;Continue?</source>
-        <translation type="vanished">Якщо продовжити зберігання в цьому форматі, усі функції, крім тексту, буде втрачено.&lt;br&gt;Продовжити?</translation>
-    </message>
-    <message>
-        <source>Sign Up</source>
-        <translation type="vanished">Створити портал</translation>
-    </message>
-    <message>
-        <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
-        <translation type="vanished">%1 змінено.&lt;br&gt;Зберегти зміни?</translation>
-    </message>
-</context>
-<context>
     <name>CMainWindow</name>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="753"/>

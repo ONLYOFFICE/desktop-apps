@@ -483,45 +483,6 @@
     </message>
 </context>
 <context>
-    <name>CMainPanel</name>
-    <message>
-        <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
-        <translation type="vanished">%1已被修改。&lt;br&gt;您要保存更改吗？</translation>
-    </message>
-    <message>
-        <source>FILE</source>
-        <translation type="vanished">开始</translation>
-    </message>
-    <message>
-        <source>File format not supported.</source>
-        <translation type="vanished">不支持该文件格式</translation>
-    </message>
-    <message>
-        <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
-        <translation type="vanished">%1不可用。它可能被重命名、移动或删除。&lt;br&gt;您要从列表中删除该文件吗？</translation>
-    </message>
-    <message>
-        <source>Document must be saved firstly.</source>
-        <translation type="vanished">必须先保存文档。</translation>
-    </message>
-    <message>
-        <source>Some data will lost.&lt;br&gt;Continue?</source>
-        <translation type="vanished">如果您继续以此格式保存，除文本之外的所有功能将丢失。&lt;br&gt;您确定要继续吗？</translation>
-    </message>
-    <message>
-        <source>Sign Up</source>
-        <translation type="vanished">创建门户</translation>
-    </message>
-    <message>
-        <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
-        <translation type="vanished">文档必须先保存才能继续。&lt;br&gt;是否保存文档？</translation>
-    </message>
-    <message>
-        <source>Print Document</source>
-        <translation type="vanished">打印文件</translation>
-    </message>
-</context>
-<context>
     <name>CMainWindow</name>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="753"/>

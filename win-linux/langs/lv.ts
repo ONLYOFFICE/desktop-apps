@@ -483,45 +483,6 @@
     </message>
 </context>
 <context>
-    <name>CMainPanel</name>
-    <message>
-        <source>FILE</source>
-        <translation type="vanished">SĀKT</translation>
-    </message>
-    <message>
-        <source>File format not supported.</source>
-        <translation type="vanished">Faila formāts netiek atbalstīts.</translation>
-    </message>
-    <message>
-        <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
-        <translation type="vanished">%1 nav pieejams. Tas varētu būt pārdēvēts, pārvietots vai izdzēsts.&lt;br&gt;Vai jūs vēlaties izņemt failu no saraksta?</translation>
-    </message>
-    <message>
-        <source>Document must be saved firstly.</source>
-        <translation type="vanished">Vispirms dokuments jāsaglabā.</translation>
-    </message>
-    <message>
-        <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
-        <translation type="vanished">Dokuments jāsaglabā, lai turpinātu.&lt;br&gt;Saglabāt dokumentu?</translation>
-    </message>
-    <message>
-        <source>Print Document</source>
-        <translation type="vanished">Izprintēt dokumentu</translation>
-    </message>
-    <message>
-        <source>Some data will lost.&lt;br&gt;Continue?</source>
-        <translation type="vanished">Ja turpināsiet saglabāt šajā formātā, visas iezīmēs zudīs, izņemot tekstu.&lt;br&gt;Vai esat pārliecināts, ka vēlaties turpināt?</translation>
-    </message>
-    <message>
-        <source>Sign Up</source>
-        <translation type="vanished">Izveidot portālu</translation>
-    </message>
-    <message>
-        <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
-        <translation type="vanished">%1 tika izmainīts.&lt;br&gt;Vai jūs vēlaties saglabāt izmaiņas?</translation>
-    </message>
-</context>
-<context>
     <name>CMainWindow</name>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="753"/>

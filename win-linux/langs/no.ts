@@ -483,45 +483,6 @@
     </message>
 </context>
 <context>
-    <name>CMainPanel</name>
-    <message>
-        <source>FILE</source>
-        <translation type="vanished">START</translation>
-    </message>
-    <message>
-        <source>File format not supported.</source>
-        <translation type="vanished">Filformatet støttes ikke.</translation>
-    </message>
-    <message>
-        <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
-        <translation type="vanished">%1 er ikke tilgjengelig. Den kan gis nytt navn, flyttes eller slettes.&lt;br&gt;Vil du fjerne filen fra listen?</translation>
-    </message>
-    <message>
-        <source>Document must be saved firstly.</source>
-        <translation type="vanished">Dokumentet må lagres først.</translation>
-    </message>
-    <message>
-        <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
-        <translation type="vanished">Dokumentet må lagres for å kunne fortsette.&lt;br&gt;Lagre dokumentet?</translation>
-    </message>
-    <message>
-        <source>Print Document</source>
-        <translation type="vanished">Skriv ut dokumentet</translation>
-    </message>
-    <message>
-        <source>Some data will lost.&lt;br&gt;Continue?</source>
-        <translation type="vanished">Hvis du fortsetter å lagre i dette formatet, vil alle funksjoner bortsett fra teksten gå tapt.&lt;br&gt;Er du sikker på at du vil fortsette?</translation>
-    </message>
-    <message>
-        <source>Sign Up</source>
-        <translation type="vanished">Opprett portal</translation>
-    </message>
-    <message>
-        <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
-        <translation type="vanished">%1 har blit endret.&lt;br&gt;Vil du lagre endringene?</translation>
-    </message>
-</context>
-<context>
     <name>CMainWindow</name>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="753"/>

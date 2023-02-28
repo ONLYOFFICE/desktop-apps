@@ -483,41 +483,6 @@
     </message>
 </context>
 <context>
-    <name>CMainPanel</name>
-    <message>
-        <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
-        <translation type="vanished">%1 wurde geändert.&lt;br&gt;Möchten Sie diese Änderungen speichern?</translation>
-    </message>
-    <message>
-        <source>File format not supported.</source>
-        <translation type="vanished">Dateiformat wird nicht unterstützt.</translation>
-    </message>
-    <message>
-        <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
-        <translation type="vanished">%1 ist nicht verfügbar. Es wurde vermutlich umbenannt, gelöscht oder verschoben.&lt;br&gt;Wollen Sie die Datei aus der Liste entfernen?</translation>
-    </message>
-    <message>
-        <source>Document must be saved firstly.</source>
-        <translation type="vanished">Das Dokument muss zuerst gespeichert werden.</translation>
-    </message>
-    <message>
-        <source>Some data will lost.&lt;br&gt;Continue?</source>
-        <translation type="vanished">Wenn Sie mit dem Speichern in diesem Format fortsetzen, werden alle Objekte außer Text verloren gehen.&lt;br&gt;Möchten Sie wirklich fortsetzen?</translation>
-    </message>
-    <message>
-        <source>Sign Up</source>
-        <translation type="vanished">Cloud-Büro erstellen</translation>
-    </message>
-    <message>
-        <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
-        <translation type="vanished">Das Dokument muss gespeichert werden, um fortzusetzen.&lt;br&gt;Möchten Sie das Dokument speichern?</translation>
-    </message>
-    <message>
-        <source>Print Document</source>
-        <translation type="vanished">Dokument drucken</translation>
-    </message>
-</context>
-<context>
     <name>CMainWindow</name>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="753"/>

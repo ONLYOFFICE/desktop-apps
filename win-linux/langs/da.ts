@@ -483,41 +483,6 @@
     </message>
 </context>
 <context>
-    <name>CMainPanel</name>
-    <message>
-        <source>File format not supported.</source>
-        <translation type="vanished">Filformat er ikke understøttet.</translation>
-    </message>
-    <message>
-        <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
-        <translation type="vanished">%1 er ikke tilgængeligt. Det er måske omdøbt, flyttet eller slettet.&lt;br&gt;Vil du fjerne filen fra listen?</translation>
-    </message>
-    <message>
-        <source>Document must be saved firstly.</source>
-        <translation type="vanished">Dokumentet skal gemmes først.</translation>
-    </message>
-    <message>
-        <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
-        <translation type="vanished">Dokument skal gemmes for at fortsætte.&lt;br&gt;Gem dokumentet?</translation>
-    </message>
-    <message>
-        <source>Print Document</source>
-        <translation type="vanished">Udskriv dokument</translation>
-    </message>
-    <message>
-        <source>Some data will lost.&lt;br&gt;Continue?</source>
-        <translation type="vanished">Hvis du fortsætter med at gemme i dette format vil alle funktioner undtagen teksten blive væk.&lt;br&gt;Er du sikker på du vil fortsætte?</translation>
-    </message>
-    <message>
-        <source>Sign Up</source>
-        <translation type="vanished">Opret portal</translation>
-    </message>
-    <message>
-        <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
-        <translation type="vanished">%1 er blevet ændret.&lt;br&gt;Vil du gemme ændringerne?</translation>
-    </message>
-</context>
-<context>
     <name>CMainWindow</name>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="753"/>

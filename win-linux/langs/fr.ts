@@ -483,45 +483,6 @@
     </message>
 </context>
 <context>
-    <name>CMainPanel</name>
-    <message>
-        <source>FILE</source>
-        <translation type="vanished">DÉPART</translation>
-    </message>
-    <message>
-        <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
-        <translation type="vanished">%1 a été modifié.&lt;br&gt;Voulez-vous enregistrer les changements ?</translation>
-    </message>
-    <message>
-        <source>File format not supported.</source>
-        <translation type="vanished">Format de fichier non pris en charge.</translation>
-    </message>
-    <message>
-        <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
-        <translation type="vanished">%1 n’est pas disponible. Il peut être renomé, supprimé ou déplacé.&lt;br&gt;Voulez-vous supprimer le fichier de la liste ?</translation>
-    </message>
-    <message>
-        <source>Document must be saved firstly.</source>
-        <translation type="vanished">Le document doit d’abord être enregistré.</translation>
-    </message>
-    <message>
-        <source>Some data will lost.&lt;br&gt;Continue?</source>
-        <translation type="vanished">Si vous continuez à enregistrer dans ce format toutes les fonctions sauf le texte seront perdues.&lt;br&gt;Êtes-vous sûr de vouloir continuer ?</translation>
-    </message>
-    <message>
-        <source>Sign Up</source>
-        <translation type="vanished">Créer bureau de cloud</translation>
-    </message>
-    <message>
-        <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
-        <translation type="vanished">Le document doit être enregistré pour continuer.&lt;br&gt;Enregistrer le document ?</translation>
-    </message>
-    <message>
-        <source>Print Document</source>
-        <translation type="vanished">Imprimer document</translation>
-    </message>
-</context>
-<context>
     <name>CMainWindow</name>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="753"/>

@@ -479,37 +479,6 @@
     </message>
 </context>
 <context>
-    <name>CMainPanel</name>
-    <message>
-        <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
-        <translation type="vanished">%1 has been modified.&lt;br&gt;Do you want to save the changes?</translation>
-    </message>
-    <message>
-        <source>File format not supported.</source>
-        <translation type="vanished">File format is not supported</translation>
-    </message>
-    <message>
-        <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
-        <translation type="vanished">%1 is not available. It might be renamed, moved or deleted.&lt;br&gt;Do you want to remove the file from the list?</translation>
-    </message>
-    <message>
-        <source>Document must be saved firstly.</source>
-        <translation type="vanished">The document must be saved first.</translation>
-    </message>
-    <message>
-        <source>Some data will lost.&lt;br&gt;Continue?</source>
-        <translation type="vanished">If you continue saving in this format all features except the text will be lost.&lt;br&gt;Are you sure you want to continue?</translation>
-    </message>
-    <message>
-        <source>Sign Up</source>
-        <translation type="vanished">Create portal</translation>
-    </message>
-    <message>
-        <source>Print Document</source>
-        <translation type="vanished">Print document</translation>
-    </message>
-</context>
-<context>
     <name>CMainWindow</name>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="753"/>

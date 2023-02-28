@@ -483,45 +483,6 @@
     </message>
 </context>
 <context>
-    <name>CMainPanel</name>
-    <message>
-        <source>FILE</source>
-        <translation type="vanished">ROZPOCZNIJ</translation>
-    </message>
-    <message>
-        <source>File format not supported.</source>
-        <translation type="vanished">Nieobsługiwany format pliku.</translation>
-    </message>
-    <message>
-        <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
-        <translation type="vanished">%1 jest niedostępny. Został przeniesiony, usunięty lub zmieniono jego nazwę.&lt;br&gt;Czy chcesz usunąć plik z listy?</translation>
-    </message>
-    <message>
-        <source>Document must be saved firstly.</source>
-        <translation type="vanished">Dokument musi być najpierw zapisany.</translation>
-    </message>
-    <message>
-        <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
-        <translation type="vanished">Dokument musi być zapisany, aby kontynuować.&lt;br&gt;Zapisać dokument?</translation>
-    </message>
-    <message>
-        <source>Print Document</source>
-        <translation type="vanished">Drukuj dokument</translation>
-    </message>
-    <message>
-        <source>Some data will lost.&lt;br&gt;Continue?</source>
-        <translation type="vanished">Jeśli będziesz kontynuować zapisywanie w tym formacie, wszystkie funkcje z wyjątkiem tekstu zostaną utracone.&lt;br&gt;Czy na pewno chcesz kontynuować?</translation>
-    </message>
-    <message>
-        <source>Sign Up</source>
-        <translation type="vanished">Utwórz pakiet w chmurze</translation>
-    </message>
-    <message>
-        <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
-        <translation type="vanished">%1 został zmieniony.&lt;br&gt;Czy chcesz zapisać zmiany?</translation>
-    </message>
-</context>
-<context>
     <name>CMainWindow</name>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="753"/>

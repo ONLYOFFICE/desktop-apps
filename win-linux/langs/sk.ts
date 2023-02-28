@@ -483,45 +483,6 @@
     </message>
 </context>
 <context>
-    <name>CMainPanel</name>
-    <message>
-        <source>FILE</source>
-        <translation type="vanished">ŠTART</translation>
-    </message>
-    <message>
-        <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
-        <translation type="vanished">%1 bol upravený.&lt;br&gt;Chcete zmeny zachovať?</translation>
-    </message>
-    <message>
-        <source>File format not supported.</source>
-        <translation type="vanished">Formát súboru nie je podporovaný.</translation>
-    </message>
-    <message>
-        <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
-        <translation type="vanished">%1 neexistuje.&lt;br&gt;Odstrániť súbor zo zoznamu?</translation>
-    </message>
-    <message>
-        <source>Document must be saved firstly.</source>
-        <translation type="vanished">Dokument musí byť uložený ako prvý.</translation>
-    </message>
-    <message>
-        <source>Some data will lost.&lt;br&gt;Continue?</source>
-        <translation type="vanished">Ak budete pokračovať v ukladaní v tomto formáte, všetky funkcie okrem textu sa stratia.&lt;br&gt;Ste si istý, že chcete pokračovať?</translation>
-    </message>
-    <message>
-        <source>Sign Up</source>
-        <translation type="vanished">Vytvoriť kancelárie cloud</translation>
-    </message>
-    <message>
-        <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
-        <translation type="vanished">Dokument musí byť uložený, aby ste mohli pokračovať.&lt;br&gt;Uložiť dokument?</translation>
-    </message>
-    <message>
-        <source>Print Document</source>
-        <translation type="vanished">Vytlačiť dokument</translation>
-    </message>
-</context>
-<context>
     <name>CMainWindow</name>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="753"/>

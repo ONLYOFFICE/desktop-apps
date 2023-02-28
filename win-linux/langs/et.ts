@@ -483,41 +483,6 @@
     </message>
 </context>
 <context>
-    <name>CMainPanel</name>
-    <message>
-        <source>File format not supported.</source>
-        <translation type="vanished">Faili formaati ei toetata.</translation>
-    </message>
-    <message>
-        <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
-        <translation type="vanished">%1 ei ole saadaval. Ta võib olla uue nimega, muudetud või kustutatud.&lt;br&gt; Kas sa soovid faili listist eemaldada?</translation>
-    </message>
-    <message>
-        <source>Document must be saved firstly.</source>
-        <translation type="vanished">Dokument tuleb enne salvestada.</translation>
-    </message>
-    <message>
-        <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
-        <translation type="vanished">Dokument tuleb salvestada, et jätkata.&lt;br&gt; Salvesta dokument?</translation>
-    </message>
-    <message>
-        <source>Print Document</source>
-        <translation type="vanished">Prindi dokument</translation>
-    </message>
-    <message>
-        <source>Some data will lost.&lt;br&gt;Continue?</source>
-        <translation type="vanished">Kui sa jätkad selles formaadis salvestamist, siis kõik peale teksti kaob ära.&lt;br&gt;Oled kindel, et tahad jätkata?</translation>
-    </message>
-    <message>
-        <source>Sign Up</source>
-        <translation type="vanished">Loo portaal</translation>
-    </message>
-    <message>
-        <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
-        <translation type="vanished">%1 on muudetud.&lt;br&gt;Kas sa tahad muutused salvestada?</translation>
-    </message>
-</context>
-<context>
     <name>CMainWindow</name>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="753"/>

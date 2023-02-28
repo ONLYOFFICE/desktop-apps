@@ -483,45 +483,6 @@
     </message>
 </context>
 <context>
-    <name>CMainPanel</name>
-    <message>
-        <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
-        <translation type="vanished">%1 è stato modificato.&lt;br&gt;Desideri salvare le modifiche?</translation>
-    </message>
-    <message>
-        <source>FILE</source>
-        <translation type="vanished">INIZIA</translation>
-    </message>
-    <message>
-        <source>File format not supported.</source>
-        <translation type="vanished">Tipo di file non supportato.</translation>
-    </message>
-    <message>
-        <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
-        <translation type="vanished">%1 non è disponibile. Il file è stato rinominato, spostato o rimosso.&lt;br&gt;Vuoi Rimuoverlo da questa lista?</translation>
-    </message>
-    <message>
-        <source>Document must be saved firstly.</source>
-        <translation type="vanished">Il documento deve essere prima salvato.</translation>
-    </message>
-    <message>
-        <source>Some data will lost.&lt;br&gt;Continue?</source>
-        <translation type="vanished">Se continua a salvare in questo formato tutte le caratteristiche tranne il testo saranno perse.&lt;br&gt;Sei sicuro di voler continuare?</translation>
-    </message>
-    <message>
-        <source>Sign Up</source>
-        <translation type="vanished">Crea cloud office</translation>
-    </message>
-    <message>
-        <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
-        <translation type="vanished">Il documento deve essere salvato per continuare.&lt;br&gt;Salvare il documento?</translation>
-    </message>
-    <message>
-        <source>Print Document</source>
-        <translation type="vanished">Stampa Documento</translation>
-    </message>
-</context>
-<context>
     <name>CMainWindow</name>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="753"/>

@@ -483,45 +483,6 @@
     </message>
 </context>
 <context>
-    <name>CMainPanel</name>
-    <message>
-        <source>FILE</source>
-        <translation type="vanished">ZAČNI</translation>
-    </message>
-    <message>
-        <source>File format not supported.</source>
-        <translation type="vanished">Format datoteke ni podprt.</translation>
-    </message>
-    <message>
-        <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
-        <translation type="vanished">%1 ni na voljo. Lahko je bil preimenovan, premaknjen ali izbrisan.&lt;br&gt;Ali želite, da ga izbrišemo iz seznama?</translation>
-    </message>
-    <message>
-        <source>Document must be saved firstly.</source>
-        <translation type="vanished">Dokument mora biti najprej shranjen.</translation>
-    </message>
-    <message>
-        <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
-        <translation type="vanished">Dokument mora biti pred nadaljevanjem shranjen.&lt;br&gt;Želite shraniti dokument?</translation>
-    </message>
-    <message>
-        <source>Print Document</source>
-        <translation type="vanished">Natisni dokument</translation>
-    </message>
-    <message>
-        <source>Some data will lost.&lt;br&gt;Continue?</source>
-        <translation type="vanished">Če želite nadaljevati s shranjevanjem v tem formatu, bodo izgubljene vse lastnosti, razen teksta.&lt;br&gt;Ste prepričani, da želite nadaljevati?</translation>
-    </message>
-    <message>
-        <source>Sign Up</source>
-        <translation type="vanished">Ustvari portal</translation>
-    </message>
-    <message>
-        <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
-        <translation type="vanished">%1 je bil spremenjen.&lt;br&gt;Želite shraniti spremembe?</translation>
-    </message>
-</context>
-<context>
     <name>CMainWindow</name>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="753"/>

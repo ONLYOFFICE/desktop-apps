@@ -483,45 +483,6 @@
     </message>
 </context>
 <context>
-    <name>CMainPanel</name>
-    <message>
-        <source>FILE</source>
-        <translation type="vanished">INICIO</translation>
-    </message>
-    <message>
-        <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
-        <translation type="vanished">%1 ha sido modificado.&lt;br&gt;¿Quiere guardar los cambios?</translation>
-    </message>
-    <message>
-        <source>File format not supported.</source>
-        <translation type="vanished">Formato de archivo no es compatible.</translation>
-    </message>
-    <message>
-        <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
-        <translation type="vanished">%1 no está disponible. Es posible que haya sido renombrado, transferido o eliminado.&lt;br&gt;¿Desea eliminar el archivo de la lista?</translation>
-    </message>
-    <message>
-        <source>Document must be saved firstly.</source>
-        <translation type="vanished">Primero se debe grabar el documento.</translation>
-    </message>
-    <message>
-        <source>Some data will lost.&lt;br&gt;Continue?</source>
-        <translation type="vanished">Si sigue guardando en este formato todas las características a excepción del texto se perderán.&lt;br&gt;¿Está seguro de que quiere continuar?</translation>
-    </message>
-    <message>
-        <source>Sign Up</source>
-        <translation type="vanished">Crear oficina en la nube</translation>
-    </message>
-    <message>
-        <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
-        <translation type="vanished">El documento debe guardarse para continuar.&lt;br&gt;¿Guardar el documento?</translation>
-    </message>
-    <message>
-        <source>Print Document</source>
-        <translation type="vanished">Imprimir documento</translation>
-    </message>
-</context>
-<context>
     <name>CMainWindow</name>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="753"/>

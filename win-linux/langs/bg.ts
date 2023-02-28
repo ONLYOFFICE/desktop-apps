@@ -483,41 +483,6 @@
     </message>
 </context>
 <context>
-    <name>CMainPanel</name>
-    <message>
-        <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
-        <translation type="vanished">%1 бе модифициран.&lt;br&gt;Искате ли да запазите промените?</translation>
-    </message>
-    <message>
-        <source>File format not supported.</source>
-        <translation type="vanished">Форматът на файла не се поддържа.</translation>
-    </message>
-    <message>
-        <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
-        <translation type="vanished">%1 не е наличен. Може да е преименуван, преместен или изтрит.&lt;br&gt;Искате ли да премахнете файла от списъка?</translation>
-    </message>
-    <message>
-        <source>Document must be saved firstly.</source>
-        <translation type="vanished">Документът първо трябва да бъде запазен.</translation>
-    </message>
-    <message>
-        <source>Some data will lost.&lt;br&gt;Continue?</source>
-        <translation type="vanished">Ако продължите да запазите в този формат, всички характеристики, освен текста, ще бъдат загубени.&lt;br&gt;Сигурни ли сте, че искате да продължите?</translation>
-    </message>
-    <message>
-        <source>Sign Up</source>
-        <translation type="vanished">Създай портал</translation>
-    </message>
-    <message>
-        <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
-        <translation type="vanished">Документът трябва да бъде запазен, за да продължите.&lt;br&gt;Запазвате ли документа?</translation>
-    </message>
-    <message>
-        <source>Print Document</source>
-        <translation type="vanished">Принтирай документ</translation>
-    </message>
-</context>
-<context>
     <name>CMainWindow</name>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="753"/>

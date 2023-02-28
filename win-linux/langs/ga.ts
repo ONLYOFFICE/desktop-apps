@@ -487,45 +487,6 @@
     </message>
 </context>
 <context>
-    <name>CMainPanel</name>
-    <message>
-        <source>FILE</source>
-        <translation type="vanished">TOSAIGH</translation>
-    </message>
-    <message>
-        <source>File format not supported.</source>
-        <translation type="vanished">Ní thacaítear le formáid comhaid.</translation>
-    </message>
-    <message>
-        <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
-        <translation type="vanished">Níl %1 ar fáil.D’fhéadfaí é a athainmniú, a bhogadh nó a scriosadh.&lt;br&gt;Ar mhaith leat an comhad a bhaint den liosta?</translation>
-    </message>
-    <message>
-        <source>Document must be saved firstly.</source>
-        <translation type="vanished">Caithfear an doiciméad a shábháil ar dtús.</translation>
-    </message>
-    <message>
-        <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
-        <translation type="vanished">Caithfear doiciméad a shábháil chun leanúint ar aghaidh.&lt;br&gt;Sábháil an doiciméad?</translation>
-    </message>
-    <message>
-        <source>Print Document</source>
-        <translation type="vanished">Doiciméad a phriontáil</translation>
-    </message>
-    <message>
-        <source>Some data will lost.&lt;br&gt;Continue?</source>
-        <translation type="vanished">Má leanann tú ar aghaidh ag sábháil san fhormáid seo caillfear gach gné seachas an téacs.&lt;br&gt;An bhfuil tú cinnte gur mhaith leat leanúint ar aghaidh?</translation>
-    </message>
-    <message>
-        <source>Sign Up</source>
-        <translation type="vanished">Cruthaigh tairseach</translation>
-    </message>
-    <message>
-        <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
-        <translation type="vanished">Mionathraíodh %1.&lt;br&gt;Ar mhaith leat na hathruithe a shábháil?</translation>
-    </message>
-</context>
-<context>
     <name>CMainWindow</name>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="753"/>

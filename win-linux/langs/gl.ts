@@ -483,41 +483,6 @@
     </message>
 </context>
 <context>
-    <name>CMainPanel</name>
-    <message>
-        <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
-        <translation type="vanished">Modificouse %1&lt;br&gt;Queres gardar os cambios?</translation>
-    </message>
-    <message>
-        <source>File format not supported.</source>
-        <translation type="vanished">O formato ficheiro non está soportado.</translation>
-    </message>
-    <message>
-        <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
-        <translation type="vanished">%1 non está dispoñible. Puido ser renomeado, movio ou eliminado.&lt;br&gt;Quere eliminar o ficheiro da lista?</translation>
-    </message>
-    <message>
-        <source>Document must be saved firstly.</source>
-        <translation type="vanished">O documento débese gardar primeiro.</translation>
-    </message>
-    <message>
-        <source>Some data will lost.&lt;br&gt;Continue?</source>
-        <translation type="vanished">Se continúas gardando neste formato todas as características excepto o texto, perderanse.&lt;br&gt;Ten a certeza de querer continuar?</translation>
-    </message>
-    <message>
-        <source>Sign Up</source>
-        <translation type="vanished">Crear portal</translation>
-    </message>
-    <message>
-        <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
-        <translation type="vanished">O documento débese gardar para continuar.&lt;br&gt;Gardar o documento?</translation>
-    </message>
-    <message>
-        <source>Print Document</source>
-        <translation type="vanished">Imprimir documento</translation>
-    </message>
-</context>
-<context>
     <name>CMainWindow</name>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="753"/>

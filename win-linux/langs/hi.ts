@@ -483,45 +483,6 @@
     </message>
 </context>
 <context>
-    <name>CMainPanel</name>
-    <message>
-        <source>FILE</source>
-        <translation type="vanished">आरंभ</translation>
-    </message>
-    <message>
-        <source>File format not supported.</source>
-        <translation type="vanished">फ़ाइल प्रारूप समर्थित नहीं है।</translation>
-    </message>
-    <message>
-        <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
-        <translation type="vanished">%1 यह उपलब्ध नहीं है। शायद इसका नाम बदला गया है, इसे कहीं और डाला गया है या इसे डिलीट कर दिया गया है।&lt;br&gt;क्या आप सूची से यह फ़ाइल को हटाना चाहते हैं?</translation>
-    </message>
-    <message>
-        <source>Document must be saved firstly.</source>
-        <translation type="vanished">दस्तावेज़ को पहले सहेजना आवश्यक है।</translation>
-    </message>
-    <message>
-        <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
-        <translation type="vanished">जारी रखने के लिए दस्तावेज़ को सहेजना आवश्यक है।&lt;br&gt;दस्तावेज़ को सहेजें?</translation>
-    </message>
-    <message>
-        <source>Print Document</source>
-        <translation type="vanished">दस्तावेज़ को प्रिंट करें</translation>
-    </message>
-    <message>
-        <source>Some data will lost.&lt;br&gt;Continue?</source>
-        <translation type="vanished">यदि आप इसी प्रारूप में सहेजना जारी रखेंगे तो टेक्स्ट के आलावा सभी विशेषताएँ लुप्त हो जाएँगी।&lt;br&gt;क्या आप सुनिश्चित तौर पर जारी रखना चाहते हैं?</translation>
-    </message>
-    <message>
-        <source>Sign Up</source>
-        <translation type="vanished">पोर्टल बनाएँ</translation>
-    </message>
-    <message>
-        <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
-        <translation type="vanished">%1 को संशोधित कर लिया गया है। &lt;br&gt;क्या आप बदलावों को सहेजना चाहते हैं?</translation>
-    </message>
-</context>
-<context>
     <name>CMainWindow</name>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="753"/>

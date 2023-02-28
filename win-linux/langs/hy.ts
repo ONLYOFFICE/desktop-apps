@@ -483,45 +483,6 @@
     </message>
 </context>
 <context>
-    <name>CMainPanel</name>
-    <message>
-        <source>FILE</source>
-        <translation type="vanished">ՍԿՍԵԼ</translation>
-    </message>
-    <message>
-        <source>File format not supported.</source>
-        <translation type="vanished">Ֆայլի ֆորմատը հասանելի չէ։</translation>
-    </message>
-    <message>
-        <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
-        <translation type="vanished">%1 հասանելի չէ։ Հնարավոր է, որ այն անվանափոխվել է, տեղափոխվել կամ ջնջվել։&lt;br&gt;Ցանկանու՞մ եք ֆայլը հեռացնել ցանկից։</translation>
-    </message>
-    <message>
-        <source>Document must be saved firstly.</source>
-        <translation type="vanished"> Առաջին հերթին պետք է պահպանել փաստաթուղթը։</translation>
-    </message>
-    <message>
-        <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
-        <translation type="vanished">Շարունակելու համար փաստաթուղթը պետք է պահպանվի։&lt;br&gt;Պահպանե՞լ փաստաթուղթը։</translation>
-    </message>
-    <message>
-        <source>Print Document</source>
-        <translation type="vanished">Տպել փաստաթուղթը</translation>
-    </message>
-    <message>
-        <source>Some data will lost.&lt;br&gt;Continue?</source>
-        <translation type="vanished">Եթե շարունակեք պահպանել այս ֆորմատով, բոլոր ֆունկցիաները, բացի տեքստից, կկորչեն։&lt;br&gt;Վստա՞հ եք, որ ցանկանում եք շարունակել։</translation>
-    </message>
-    <message>
-        <source>Sign Up</source>
-        <translation type="vanished">Ստեղծել պորտալ</translation>
-    </message>
-    <message>
-        <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
-        <translation type="vanished">%1 փոփոխվել է&lt;br&gt;Ցանկանու՞մ եք պահպանել փոփոխությունները։</translation>
-    </message>
-</context>
-<context>
     <name>CMainWindow</name>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="753"/>

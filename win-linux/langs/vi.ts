@@ -483,45 +483,6 @@
     </message>
 </context>
 <context>
-    <name>CMainPanel</name>
-    <message>
-        <source>FILE</source>
-        <translation type="vanished">BẮT ĐẦU</translation>
-    </message>
-    <message>
-        <source>File format not supported.</source>
-        <translation type="vanished">Định dạng tập tin không được hỗ trợ.</translation>
-    </message>
-    <message>
-        <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
-        <translation type="vanished">Không có %1. Có thể nó đã được đổi tên, chuyển đi hay xóa.&lt;br&gt;Bạn có muốn xóa tập tin này khỏi danh sách không?</translation>
-    </message>
-    <message>
-        <source>Document must be saved firstly.</source>
-        <translation type="vanished">Phải lưu tập tin trước.</translation>
-    </message>
-    <message>
-        <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
-        <translation type="vanished">Phải lưu tài liệu để tiếp tục.&lt;br&gt;Lưu tài liệu?</translation>
-    </message>
-    <message>
-        <source>Print Document</source>
-        <translation type="vanished">In tài liệu</translation>
-    </message>
-    <message>
-        <source>Some data will lost.&lt;br&gt;Continue?</source>
-        <translation type="vanished">Nếu bạn tiếp tục lưu theo định dạng này, tất cả các tính năng ngoại trừ văn bản sẽ bị mất đi.&lt;br&gt;Bạn có chắc muốn tiếp tục không?</translation>
-    </message>
-    <message>
-        <source>Sign Up</source>
-        <translation type="vanished">Tạo cổng</translation>
-    </message>
-    <message>
-        <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
-        <translation type="vanished">%1 đã được chỉnh sửa.&lt;br&gt;Bạn có muốn lưu thay đổi không??</translation>
-    </message>
-</context>
-<context>
     <name>CMainWindow</name>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="753"/>

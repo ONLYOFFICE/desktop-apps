@@ -483,41 +483,6 @@
     </message>
 </context>
 <context>
-    <name>CMainPanel</name>
-    <message>
-        <source>File format not supported.</source>
-        <translation type="vanished">Filformatet stöds inte.</translation>
-    </message>
-    <message>
-        <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
-        <translation type="vanished">%1 är inte tillgänlig. Det är möjligt att filen har bytt namn, flyttats eller tagits bort.&lt;br&gt;Vill du ta bort filen från listan?</translation>
-    </message>
-    <message>
-        <source>Document must be saved firstly.</source>
-        <translation type="vanished">Dokumentet måste sparas först.</translation>
-    </message>
-    <message>
-        <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
-        <translation type="vanished">Dokumentet måste sparas för att fortsätta.&lt;br&gt;Spara dokumentet?</translation>
-    </message>
-    <message>
-        <source>Print Document</source>
-        <translation type="vanished">Skriv ut dokument</translation>
-    </message>
-    <message>
-        <source>Some data will lost.&lt;br&gt;Continue?</source>
-        <translation type="vanished">Om du fortsätter med att spara i detta format så kommer alla funktioner utom texten att gå förlorade.&lt;br&gt;Är du säker på att du vill fortsätta?</translation>
-    </message>
-    <message>
-        <source>Sign Up</source>
-        <translation type="vanished">Skapa portal</translation>
-    </message>
-    <message>
-        <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
-        <translation type="vanished">%1 har ändrats.&lt;br&gt;Vill du spara ändringarna?</translation>
-    </message>
-</context>
-<context>
     <name>CMainWindow</name>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="753"/>

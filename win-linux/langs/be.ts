@@ -483,41 +483,6 @@
     </message>
 </context>
 <context>
-    <name>CMainPanel</name>
-    <message>
-        <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
-        <translation type="vanished">%1 быў зменены.&lt;br&gt;Захаваць змены?</translation>
-    </message>
-    <message>
-        <source>File format not supported.</source>
-        <translation type="vanished">Фармат файла не падтрымліваецца</translation>
-    </message>
-    <message>
-        <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
-        <translation type="vanished">%%1 недаступны. Яго можна перайменаваць, перамясціць або выдаліць.&lt;br&gt;Хочаце выдаліць файл са спісу?</translation>
-    </message>
-    <message>
-        <source>Document must be saved firstly.</source>
-        <translation type="vanished">Спачатку трэба захаваць дакумент.</translation>
-    </message>
-    <message>
-        <source>Some data will lost.&lt;br&gt;Continue?</source>
-        <translation type="vanished">Калі вы працягнеце захоўваць у гэтым фармаце, усе функцыі, акрамя тэксту, будуць страчаны.&lt;br&gt;Вы ўпэўнены, што хочаце працягнуць?</translation>
-    </message>
-    <message>
-        <source>Sign Up</source>
-        <translation type="vanished">Зарэгістравацца</translation>
-    </message>
-    <message>
-        <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
-        <translation type="vanished">Каб працягнуць, дакумент трэба захаваць.&lt;br&gt;Захаваць дакумент?</translation>
-    </message>
-    <message>
-        <source>Print Document</source>
-        <translation type="vanished">Друкаваць дакумент</translation>
-    </message>
-</context>
-<context>
     <name>CMainWindow</name>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="753"/>
@@ -567,51 +532,6 @@
         <location filename="../src/prop/cmainwindowimpl.cpp" line="52"/>
         <source>Licensed under</source>
         <translation>На ўмовах ліцэнзіі</translation>
-    </message>
-</context>
-<context>
-    <name>CMessage</name>
-    <message>
-        <location filename="../src/components/cmessage.cpp" line="167"/>
-        <source>&amp;OK</source>
-        <translation>&amp;Добра</translation>
-    </message>
-    <message>
-        <location filename="../src/components/cmessage.cpp" line="256"/>
-        <location filename="../src/components/cmessage.cpp" line="257"/>
-        <location filename="../src/components/cmessage.cpp" line="258"/>
-        <location filename="../src/components/cmessage.cpp" line="259"/>
-        <location filename="../src/components/cmessage.cpp" line="262"/>
-        <source>Yes</source>
-        <translation>Так</translation>
-    </message>
-    <message>
-        <location filename="../src/components/cmessage.cpp" line="256"/>
-        <location filename="../src/components/cmessage.cpp" line="257"/>
-        <location filename="../src/components/cmessage.cpp" line="258"/>
-        <location filename="../src/components/cmessage.cpp" line="259"/>
-        <location filename="../src/components/cmessage.cpp" line="262"/>
-        <source>No</source>
-        <translation>Не</translation>
-    </message>
-    <message>
-        <location filename="../src/components/cmessage.cpp" line="258"/>
-        <location filename="../src/components/cmessage.cpp" line="259"/>
-        <location filename="../src/components/cmessage.cpp" line="260"/>
-        <location filename="../src/components/cmessage.cpp" line="261"/>
-        <source>Cancel</source>
-        <translation>Скасаваць</translation>
-    </message>
-    <message>
-        <location filename="../src/components/cmessage.cpp" line="260"/>
-        <location filename="../src/components/cmessage.cpp" line="261"/>
-        <source>OK</source>
-        <translation>Добра</translation>
-    </message>
-    <message>
-        <location filename="../src/components/cmessage.cpp" line="262"/>
-        <source>Skip</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

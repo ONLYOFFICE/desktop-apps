@@ -483,45 +483,6 @@
     </message>
 </context>
 <context>
-    <name>CMainPanel</name>
-    <message>
-        <source>FILE</source>
-        <translation type="vanished">PRADĖTI</translation>
-    </message>
-    <message>
-        <source>File format not supported.</source>
-        <translation type="vanished">Failo formatas nepalaikomas.</translation>
-    </message>
-    <message>
-        <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
-        <translation type="vanished">%1 negalimas. Jis galėjo būti pervardytas, perkeltas arba ištrintas.&lt;br&gt;Ar norite panaikinti failą iš sąrašo?</translation>
-    </message>
-    <message>
-        <source>Document must be saved firstly.</source>
-        <translation type="vanished">Dokumentas pirma turi būti išsaugotas.</translation>
-    </message>
-    <message>
-        <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
-        <translation type="vanished">Norint tęsti, dokumentas privalo būti išsaugotas.&lt;br&gt;Išsaugoti dokumentą?</translation>
-    </message>
-    <message>
-        <source>Print Document</source>
-        <translation type="vanished">Spausdinti dokumentą</translation>
-    </message>
-    <message>
-        <source>Some data will lost.&lt;br&gt;Continue?</source>
-        <translation type="vanished">Jei ir toliau saugosite šiuo formatu, visos funkcijos, išskyrus tekstą, bus prarastos.&lt;br&gt;Ar norite tęsti?</translation>
-    </message>
-    <message>
-        <source>Sign Up</source>
-        <translation type="vanished">Sukurti portalą</translation>
-    </message>
-    <message>
-        <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
-        <translation type="vanished">%1 buvo pakeistas.&lt;br&gt;Ar norite išsaugoti pakeitimus?</translation>
-    </message>
-</context>
-<context>
     <name>CMainWindow</name>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="753"/>
