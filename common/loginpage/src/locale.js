@@ -138,7 +138,7 @@ l10n.en = {
     updateDownloadCanceled: 'Downloading canceled',
     updateDownloadProgress: 'Downloading $1%. Click to stop',
     settOptDescDisabled: "Auto checking updates will be disabled",
-    settOptDescAUpdateSilent: "Download updates and ask before istall",
+    settOptDescAUpdateSilent: "Download updates and ask before install",
     settOptDescAUpdateAsk: "You will be notified about all updates steps",
 }
 
