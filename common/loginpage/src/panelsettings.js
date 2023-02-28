@@ -403,9 +403,8 @@
                             .selectpicker().on('change', e => {
                                 $btnApply.isdisabled() && $btnApply.disable(false);
                             });
-
-                            _apply_theme(opts.uitheme);
                         }
+                        _apply_theme(!!opts.uitheme ? opts.uitheme : 'theme-classic-light');
 
                         if ( opts.editorwindowmode !== undefined ) {
                             ($optsLaunchMode = ($('#opts-launch-mode', $panel).show().find('select')))
