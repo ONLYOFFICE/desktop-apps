@@ -187,6 +187,20 @@ namespace EditorJSVariables {
     }
 }
 
+namespace AppOptions {
+    auto packageType() -> AppPackageType {
+        QString _package = QSettings("./converter/package.config", QSettings::IniFormat).value("package").toString();
+
+        if ( _package == "exe" ) return AppPackageType::ISS; else
+        if ( _package == "msi" ) return AppPackageType::MSI; else
+        if ( _package == "snap" ) return AppPackageType::Snap; else
+        if ( _package == "flatpack" ) return AppPackageType::Flatpack; else
+        if( _package.isEmpty() ) return AppPackageType::Portable;
+
+        return AppPackageType::Unknown;
+    }
+}
+
 QStringList * Utils::getInputFiles(const QStringList& inlist)
 {
     QStringList * _ret_files_list = nullptr;
