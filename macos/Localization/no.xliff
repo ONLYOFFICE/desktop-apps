@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.2" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd">
-  <file original="ONLYOFFICE/Base.lproj/Document-Sign.storyboard" source-language="en" target-language="nn-NO" datatype="plaintext">
+ <file original="ONLYOFFICE/Base.lproj/Document-Sign.storyboard" source-language="en" target-language="no" datatype="plaintext">
     <header>
       <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c"/>
     </header>
@@ -67,7 +67,7 @@
       </trans-unit>
     </body>
   </file>
-  <file original="ONLYOFFICE/Base.lproj/Localizable.strings" source-language="en" target-language="nn-NO" datatype="plaintext">
+  <file original="ONLYOFFICE/Base.lproj/Localizable.strings" source-language="en" target-language="no" datatype="plaintext">
     <header>
       <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c"/>
     </header>
@@ -448,7 +448,7 @@ Vi har et spesialtilbud til deg.</target>
       </trans-unit>
     </body>
   </file>
-  <file original="ONLYOFFICE/Base.lproj/Localizable.stringsdict" source-language="en" target-language="nn-NO" datatype="plaintext">
+  <file original="ONLYOFFICE/Base.lproj/Localizable.stringsdict" source-language="en" target-language="no" datatype="plaintext">
     <header>
       <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c"/>
     </header>
@@ -504,7 +504,7 @@ Prøveperioden avsluttes om %d dager, etter det vil du ikke kunne opprette og re
       </trans-unit>
     </body>
   </file>
-  <file original="ONLYOFFICE/Base.lproj/Main.storyboard" source-language="en" target-language="nn-NO" datatype="plaintext">
+  <file original="ONLYOFFICE/Base.lproj/Main.storyboard" source-language="en" target-language="no" datatype="plaintext">
     <header>
       <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c"/>
     </header>
@@ -1271,7 +1271,7 @@ Prøveperioden avsluttes om %d dager, etter det vil du ikke kunne opprette og re
       </trans-unit>
     </body>
   </file>
-  <file original="ONLYOFFICE/Base.lproj/MoveApplication.strings" source-language="en" target-language="nn-NO" datatype="plaintext">
+  <file original="ONLYOFFICE/Base.lproj/MoveApplication.strings" source-language="en" target-language="no" datatype="plaintext">
     <header>
       <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c"/>
     </header>
@@ -1318,7 +1318,7 @@ Prøveperioden avsluttes om %d dager, etter det vil du ikke kunne opprette og re
       </trans-unit>
     </body>
   </file>
-  <file original="ONLYOFFICE/Base.lproj/Presentation-Reporter.storyboard" source-language="en" target-language="nn-NO" datatype="plaintext">
+  <file original="ONLYOFFICE/Base.lproj/Presentation-Reporter.storyboard" source-language="en" target-language="no" datatype="plaintext">
     <header>
       <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c"/>
     </header>
@@ -1330,7 +1330,7 @@ Prøveperioden avsluttes om %d dager, etter det vil du ikke kunne opprette og re
       </trans-unit>
     </body>
   </file>
-  <file original="ONLYOFFICE/Resources/ONLYOFFICE/Base.lproj/InfoPlist.strings" source-language="en" target-language="nn-NO" datatype="plaintext">
+  <file original="ONLYOFFICE/Resources/ONLYOFFICE/Base.lproj/InfoPlist.strings" source-language="en" target-language="no" datatype="plaintext">
     <header>
       <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.5" build-num="11E608c"/>
     </header>

@@ -12,10 +12,18 @@
 			<string>NSStringPluralRuleType</string>
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
+			<key>few</key>
+			<string>%d days are left until the license expiration.</string>
+			<key>many</key>
+			<string>%d days are left until the license expiration.</string>
 			<key>one</key>
 			<string>%d dager igjen til lisensen utløper.</string>
 			<key>other</key>
 			<string>%d dager igjen til lisensen utløper.</string>
+			<key>two</key>
+			<string>%d days are left until the license expiration.</string>
+			<key>zero</key>
+			<string>%d days are left until the license expiration.</string>
 		</dict>
 	</dict>
 	<key>You are using a trial version of the application.
@@ -29,12 +37,24 @@ The trial period will end in %d days, after that you will not be able to create 
 			<string>NSStringPluralRuleType</string>
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
+			<key>few</key>
+			<string>You are using a trial version of the application.
+The trial period will end in %d days, after that you will not be able to create and edit documents.</string>
+			<key>many</key>
+			<string>You are using a trial version of the application.
+The trial period will end in %d days, after that you will not be able to create and edit documents.</string>
 			<key>one</key>
 			<string>Du bruker en prøveversjon av programmet.
 Prøveperioden avsluttes om %d dag, etter det vil du ikke kunne opprette og redigere dokumenter.</string>
 			<key>other</key>
 			<string>Du bruker en prøveversjon av programmet.
 Prøveperioden avsluttes om %d dager, etter det vil du ikke kunne opprette og redigere dokumenter.</string>
+			<key>two</key>
+			<string>You are using a trial version of the application.
+The trial period will end in %d days, after that you will not be able to create and edit documents.</string>
+			<key>zero</key>
+			<string>You are using a trial version of the application.
+The trial period will end in %d days, after that you will not be able to create and edit documents.</string>
 		</dict>
 	</dict>
 	<key>You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?</key>
@@ -47,10 +67,18 @@ Prøveperioden avsluttes om %d dager, etter det vil du ikke kunne opprette og re
 			<string>NSStringPluralRuleType</string>
 			<key>NSStringFormatValueTypeKey</key>
 			<string>ld</string>
+			<key>few</key>
+			<string>You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?</string>
+			<key>many</key>
+			<string>You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?</string>
 			<key>one</key>
 			<string>Du har %ld %@ dokument med ubekreftede endringer. Vil du gå gjennom disse endringene før du avslutter?</string>
 			<key>other</key>
 			<string>Du har %ld %@ dokumenter med ubekreftede endringer. Vil du gå gjennom disse endringene før du avslutter?</string>
+			<key>two</key>
+			<string>You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?</string>
+			<key>zero</key>
+			<string>You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?</string>
 		</dict>
 	</dict>
 </dict>
