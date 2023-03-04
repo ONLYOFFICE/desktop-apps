@@ -284,7 +284,8 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
 
                 auto * editor = editorWindowFromViewId(event->get_SenderId());
                 if ( editor && editor->isCustomWindowStyle() ) {
-                    sendCommandTo(ptr, L"window:features", Utils::stringifyJson(QJsonObject{{"singlewindow",true}}).toStdWString());
+                    QJsonObject json{{"skiptoparea", TOOLBTN_HEIGHT},{"singlewindow",true}};
+                    sendCommandTo(ptr, L"window:features", Utils::stringifyJson(json).toStdWString());
                 }
             }
             return true;
