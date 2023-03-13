@@ -70,15 +70,15 @@
 + (NSArray *)documents {
     return @[@"docx", @"doc", @"odt", @"ott", @"rtf", @"docm", @"dotx", @"dotm", @"docxf", @"fodt", @"wps", @"wpt",
              @"xml", @"pdf", @"epub", @"djv", @"djvu", @"txt", @"html", @"htm", @"mht", @"mhtml", @"xps", @"doctx",
-             @"fb2", @"oform"];
+             @"fb2", @"oform", @"sxw", @"stw"];
 }
 
 + (NSArray *)spreadsheets {
-    return @[@"xls", @"xlsx", @"csv", @"ods", @"xltx", @"ots", @"xltm", @"fods", @"et", @"ett"];
+    return @[@"xls", @"xlsx", @"csv", @"ods", @"xltx", @"ots", @"xltm", @"fods", @"et", @"ett", @"sxc"];
 }
 
 + (NSArray *)presentations {
-    return @[@"ppt", @"pptx", @"ppsx", @"odp", @"potx", @"otp", @"pps", @"ppsm", @"potm", @"fodp", @"dps", @"dpt"];
+    return @[@"ppt", @"pptx", @"ppsx", @"odp", @"potx", @"otp", @"pps", @"ppsm", @"potm", @"fodp", @"dps", @"dpt", @"sxi"];
 }
 
 + (NSArray *)plugins {

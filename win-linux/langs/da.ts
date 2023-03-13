@@ -40,22 +40,22 @@
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1967"/>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2031"/>
         <source>A new version of %1 is available!</source>
-        <translation type="unfinished"></translation>
+        <translation>En ny version af %1 er tilgængelig!</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1968"/>
         <source>%1 %2 is now available (you have %3). Would you like to download it now?</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 %2 er nu tilgængelig (du har %3). Ønsker du at downloade den nu?</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2032"/>
         <source>%1 %2 is now downloaded (you have %3). Would you like to install it now?</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 %2 er nu downloadet (du har %3). Ønsker du at installere den nu?</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1988"/>
         <source>Do you want to install a new version %1 of the program?</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -116,7 +116,7 @@
         <location filename="../src/platform_linux/cdialogopenssl.cpp" line="224"/>
         <location filename="../src/platform_linux/cdialogopenssl.cpp" line="227"/>
         <source>Open Document</source>
-        <translation type="unfinished">Åben Dokument</translation>
+        <translation>Åben Dokument</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/cdialogopenssl.cpp" line="246"/>
@@ -200,7 +200,7 @@
     <message>
         <location filename="../src/windows/ceditorwindow_p.h" line="510"/>
         <source>There are no printers available</source>
-        <translation type="unfinished"></translation>
+        <translation>Der er ingen printere tilgængelige</translation>
     </message>
 </context>
 <context>
@@ -248,22 +248,22 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="79"/>
         <source>HTML File (*.html)</source>
-        <translation>HTML Fil (*.html)</translation>
+        <translation>HyperText Markup Language File (*.html)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="80"/>
         <source>MHT File (*.mht)</source>
-        <translation>MHT Fil (*.mht)</translation>
+        <translation>Web Page Archive File (*.mht)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="81"/>
         <source>EPUB File (*.epub)</source>
-        <translation>EPUB Fil (*.epub)</translation>
+        <translation>Electronic Publication File (*.epub)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="82"/>
         <source>FB2 File (*.fb2)</source>
-        <translation>FB2 Fil (*.fb2)</translation>
+        <translation>FictionBook 2 File (*.fb2)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="83"/>
@@ -363,7 +363,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="106"/>
         <source>JPG Image (*.jpg *.jpeg)</source>
-        <translation type="unfinished"></translation>
+        <translation>JPG-billede (*.jpg *.jpeg)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="107"/>
@@ -434,7 +434,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="247"/>
         <source>All supported files</source>
-        <translation type="unfinished"></translation>
+        <translation>Alle understøttede filer</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="265"/>
@@ -479,7 +479,7 @@
         <location filename="../src/components/cfiledialog.cpp" line="395"/>
         <location filename="../src/components/cfiledialog.cpp" line="401"/>
         <source>Select Folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Vælg mappe</translation>
     </message>
 </context>
 <context>
@@ -488,42 +488,42 @@
         <location filename="../src/windows/cmainwindow.cpp" line="753"/>
         <location filename="../src/windows/cmainwindow.cpp" line="795"/>
         <source>File format not supported.</source>
-        <translation type="unfinished">Filformat er ikke understøttet.</translation>
+        <translation>Filformat er ikke understøttet.</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="779"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
-        <translation type="unfinished">%1 er ikke tilgængeligt. Det er måske omdøbt, flyttet eller slettet.&lt;br&gt;Vil du fjerne filen fra listen?</translation>
+        <translation>%1 er ikke tilgængeligt. Det er måske omdøbt, flyttet eller slettet.&lt;br&gt;Vil du fjerne filen fra listen?</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="839"/>
         <source>Document must be saved firstly.</source>
-        <translation type="unfinished">Dokumentet skal gemmes først.</translation>
+        <translation>Dokumentet skal gemmes først.</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="979"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
-        <translation type="unfinished"></translation>
+        <translation>Dokument skal gemmes for at fortsætte. &lt;br&gt;Gem dokumentet?</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="1081"/>
         <source>There are no printers available</source>
-        <translation type="unfinished"></translation>
+        <translation>Der er ingen printere tilgængelige</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="1126"/>
         <source>Print Document</source>
-        <translation type="unfinished">Udskriv dokument</translation>
+        <translation>Udskriv dokument</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="1288"/>
         <source>Sign Up</source>
-        <translation type="unfinished">Opret portal</translation>
+        <translation>Opret portal</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="1351"/>
         <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
-        <translation type="unfinished">%1 er blevet ændret.&lt;br&gt;Vil du gemme ændringerne?</translation>
+        <translation>%1 er blevet ændret.&lt;br&gt;Vil du gemme ændringerne?</translation>
     </message>
 </context>
 <context>
@@ -576,7 +576,7 @@
     <message>
         <location filename="../src/components/cmessage.cpp" line="262"/>
         <source>Skip</source>
-        <translation type="unfinished"></translation>
+        <translation>Spring over</translation>
     </message>
 </context>
 <context>
@@ -612,12 +612,12 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper_private.h" line="234"/>
         <source>File %1 cannot be opened or doesn&apos;t exists.</source>
-        <translation type="unfinished"></translation>
+        <translation>Fil %1 kan ikke åbnes eller eksisterer ikke.</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="137"/>
         <source>All supported files (*.txt *.csv)</source>
-        <translation type="unfinished"></translation>
+        <translation>Alle understøttede filer (*.txt *.csv)</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="137"/>
@@ -627,52 +627,52 @@
     <message>
         <location filename="../src/casctabdata.cpp" line="177"/>
         <source>Read only</source>
-        <translation type="unfinished"></translation>
+        <translation>Kun læsning</translation>
     </message>
     <message>
         <location filename="../src/platform_win/updatedialog.cpp" line="43"/>
         <source>Skip this version</source>
-        <translation type="unfinished"></translation>
+        <translation>Spring denne version over</translation>
     </message>
     <message>
         <location filename="../src/platform_win/updatedialog.cpp" line="44"/>
         <source>Remind me later</source>
-        <translation type="unfinished"></translation>
+        <translation>Påmind mig senere</translation>
     </message>
     <message>
         <location filename="../src/platform_win/updatedialog.cpp" line="45"/>
         <source>Install update</source>
-        <translation type="unfinished"></translation>
+        <translation>Installer opdatering</translation>
     </message>
     <message>
         <location filename="../src/platform_win/updatedialog.cpp" line="46"/>
         <source>Install on Next Start</source>
-        <translation type="unfinished"></translation>
+        <translation>Installer ved næste opstart</translation>
     </message>
     <message>
         <location filename="../src/platform_win/updatedialog.cpp" line="47"/>
         <source>Save and Restart Now</source>
-        <translation type="unfinished"></translation>
+        <translation>Gem og genstart nu</translation>
     </message>
     <message>
         <location filename="../src/platform_win/updatedialog.cpp" line="48"/>
         <source>Save and Install Now</source>
-        <translation type="unfinished"></translation>
+        <translation>Gem og installer nu</translation>
     </message>
     <message>
         <location filename="../src/platform_win/updatedialog.cpp" line="49"/>
         <source>Download update</source>
-        <translation type="unfinished"></translation>
+        <translation>Download opdatering</translation>
     </message>
     <message>
         <location filename="../src/platform_win/updatedialog.cpp" line="90"/>
         <source>Software Update</source>
-        <translation type="unfinished"></translation>
+        <translation>Softwareopdatering</translation>
     </message>
     <message>
         <location filename="../src/platform_win/updatedialog.cpp" line="93"/>
         <source>Release notes</source>
-        <translation type="unfinished"></translation>
+        <translation>Udgivelsesnoter</translation>
     </message>
 </context>
 </TS>

@@ -15,6 +15,7 @@ nl.UninstallPageLabel=Druk op Verwijderen om verder te gaan met het verwijderen.
 hy_AM.UninstallPageLabel=Ապատեղադրեք՝ ապատեղադրումը շարունակելու համար:
 ;si.UninstallPageLabel=අස්ථාපනය සඳහා ඉදිරියට යාමට අස්ථාපනය ඔබන්න.
 ;zh_HK.UninstallPageLabel=按解除安裝以進行解除安裝。
+da.UninstallPageLabel=Tryk Afinstaller for at fortsætte med afinstallationen.
 
 
 en.UninstallOptionClearData=Clear all user settings and application cached data
@@ -32,6 +33,7 @@ nl.UninstallOptionClearData=Alle gebruikersinstellingen en cachegegevens van toe
 hy_AM.UninstallOptionClearData=Մաքրել օգտատիրոջ բոլոր կարգավորումները և հավելվածի քեշավորված տվյալները
 ;si.UninstallOptionClearData=සියළුම පරිශ්‍රීලක සැකසුම් හා නිහිතගත යෙදුමේ දත්ත මකන්න
 ;zh_HK.UninstallOptionClearData=清除所有使用者戶設定和應用程序暫存資料
+da.UninstallOptionClearData=Slet alle brugerdata og applikationens cachede data
 
 
 
