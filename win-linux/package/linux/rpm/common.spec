@@ -73,6 +73,7 @@ rm -rf "%{buildroot}"
 %attr(755, root, root) %{_bindir}/%{_desktopeditors_exec}
 %if "%{_company_name}" == "ONLYOFFICE"
 %attr(-, root, root) %{_bindir}/desktopeditors
+%exclude /opt/%{_desktopeditors_prefix}/editors/web-apps/apps/common/main/resources/help
 %exclude /opt/%{_desktopeditors_prefix}/editors/web-apps/apps/documenteditor/main/resources/help
 %exclude /opt/%{_desktopeditors_prefix}/editors/web-apps/apps/presentationeditor/main/resources/help
 %exclude /opt/%{_desktopeditors_prefix}/editors/web-apps/apps/spreadsheeteditor/main/resources/help
@@ -85,6 +86,7 @@ rm -rf "%{buildroot}"
 
 %files help
 %defattr(-, root, root, -)
+/opt/%{_desktopeditors_prefix}/editors/web-apps/apps/common/main/resources/help
 /opt/%{_desktopeditors_prefix}/editors/web-apps/apps/documenteditor/main/resources/help
 /opt/%{_desktopeditors_prefix}/editors/web-apps/apps/presentationeditor/main/resources/help
 /opt/%{_desktopeditors_prefix}/editors/web-apps/apps/spreadsheeteditor/main/resources/help
