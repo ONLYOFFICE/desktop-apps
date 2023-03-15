@@ -31,6 +31,7 @@
  */
 
 #include "cupdatemanager.h"
+#include <QApplication>
 #include <QSettings>
 #include <QDir>
 #include <QDirIterator>
@@ -48,6 +49,7 @@
 #include "defines.h"
 #include "version.h"
 #include "clangater.h"
+#include "components/cmessage.h"
 #ifdef Q_OS_WIN
 # include <QProcess>
 # include <QCryptographicHash>
@@ -132,9 +134,13 @@ void CUpdateManager::onCompleteSlot(const int error)
 #endif
         default: break;
         }
-    }
-    else {
-        //qDebug() << "Download error: " << error;
+    } else
+    if (error == 1) {
+        auto wgt = QApplication::activeWindow();
+        if (wgt && wgt->objectName() == "MainWindow" && !wgt->isMinimized())
+            CMessage::warning(wgt, tr("Server connection error!"));
+    } else {
+        // Pause or Stop
     }
 }
 
@@ -332,7 +338,10 @@ void CUpdateManager::onLoadUpdateFinished()
 void CUpdateManager::handleAppClose()
 {
     if ( m_restartForUpdate ) {
-        QStringList args;
+        GET_REGISTRY_SYSTEM(reg_system)
+        QString prev_inst_lang = reg_system.value("locale", "en").toString();
+
+        QStringList args{"/LANG=" + prev_inst_lang};
         if ( !m_packageData.packageArgs.empty() )
             args << QString::fromStdWString(m_packageData.packageArgs).split(" ");
         if (!QProcess::startDetached(m_packageData.fileName, args)) {
@@ -425,7 +434,9 @@ void CUpdateManager::onLoadCheckFinished()
             if (ver.at(i).toInt() > curr_ver.at(i).toInt()) {
                 updateExist = (version != ignored_ver);
                 break;
-            }
+            } else
+            if (ver.at(i).toInt() < curr_ver.at(i).toInt())
+                break;
         }
 
         if ( updateExist ) {

@@ -403,9 +403,8 @@
                             .selectpicker().on('change', e => {
                                 $btnApply.isdisabled() && $btnApply.disable(false);
                             });
-
-                            _apply_theme(opts.uitheme);
                         }
+                        _apply_theme(!!opts.uitheme ? opts.uitheme : 'theme-classic-light');
 
                         if ( opts.editorwindowmode !== undefined ) {
                             ($optsLaunchMode = ($('#opts-launch-mode', $panel).show().find('select')))
@@ -477,7 +476,12 @@
             }
         };
 
-        const get_system_theme_type = () => window.matchMedia('(prefers-color-scheme: dark)').matches ? THEME_TYPE_DARK : THEME_TYPE_LIGHT; 
+        const get_system_theme_type = () => {
+            const nativevars = window.RendererProcessVariable;
+            return nativevars.theme && !!nativevars.theme.system ? nativevars.theme.system :
+                            window.matchMedia('(prefers-color-scheme: dark)').matches ? THEME_TYPE_DARK : THEME_TYPE_LIGHT;
+            //window.matchMedia('(prefers-color-scheme: dark)').matches ? THEME_TYPE_DARK : THEME_TYPE_LIGHT;
+        }
         const get_default_theme = type => type == THEME_TYPE_DARK ? THEME_ID_DEFAULT_DARK : THEME_ID_DEFAULT_LIGHT;
         const on_system_theme_dark = e =>
             sdk.command("system:changed", JSON.stringify({'colorscheme': e.target.matches ? THEME_TYPE_DARK:THEME_TYPE_LIGHT}));

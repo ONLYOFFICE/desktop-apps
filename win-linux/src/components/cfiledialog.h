@@ -62,7 +62,7 @@ public:
     QStringList modalOpenMedia(const QString& type, const QString& path, bool multi = false);
 
     QString selectFolder(const QString& folder);
-
+    void    setTitle(const QString&);
     void    setFormats(std::vector<int>&);
     int     getFormat();
 
@@ -71,7 +71,7 @@ private:
     int getKey(const QString &value);
     QString joinFilters() const;
     QString joinExtentions(const QString&) const;
-
+    QString m_title;
     QString m_filters;
     QMap<int, QString> m_mapFilters;
     int m_format;

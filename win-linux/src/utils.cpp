@@ -49,7 +49,7 @@
 #include <QStorageInfo>
 #include <QPrinterInfo>
 #include <regex>
-
+#include <QEventLoop>
 #include "cascapplicationmanagerwrapper.h"
 #include "qdpichecker.h"
 #include "common/File.h"
@@ -62,7 +62,6 @@ typedef HRESULT (__stdcall *SetCurrentProcessExplicitAppUserModelIDProc)(PCWSTR 
 #else
 #include <sys/stat.h>
 #include <stdlib.h>
-#include <QEventLoop>
 #endif
 
 #include <QDebug>
@@ -905,5 +904,18 @@ namespace WindowHelper {
         use_native_dialog = InputArgs::contains(L"--native-file-dialog");
 #endif
         return use_native_dialog;
+    }
+
+    auto currentTopWindow() -> QWidget*
+    {
+        QStringList wnd_list{"MainWindow", "editorWindow"};
+        QWidget *wgt = QApplication::activeWindow();
+        if (wgt && wnd_list.contains(wgt->objectName()) && !wgt->isMinimized()
+#ifdef _WIN32
+                && GetForegroundWindow() == (HWND)wgt->winId()
+#endif
+                && wgt->property("stabilized").toBool())
+            return wgt;
+        return nullptr;
     }
 }

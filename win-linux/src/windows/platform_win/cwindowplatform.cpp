@@ -57,13 +57,12 @@ CWindowPlatform::CWindowPlatform(const QRect &rect) :
 {
     setWindowFlags(windowFlags() | Qt::Window | Qt::FramelessWindowHint
                    | Qt::WindowSystemMenuHint | Qt::WindowMaximizeButtonHint
-                   | Qt::MSWindowsFixedSizeDialogHint);
+                   |Qt::WindowMinimizeButtonHint | Qt::MSWindowsFixedSizeDialogHint);
     m_hWnd = (HWND)winId();
     LONG style = ::GetWindowLong(m_hWnd, GWL_STYLE);
     style &= ~(WS_CAPTION | WS_SYSMENU | WS_THICKFRAME);
     style |= (WS_CLIPCHILDREN | WS_MAXIMIZEBOX | WS_MINIMIZEBOX);
-    style |= (Utils::getWinVersion() > Utils::WinVer::Win7) ?
-                WS_OVERLAPPEDWINDOW : WS_POPUP;
+    style |= (Utils::getWinVersion() > Utils::WinVer::Win7) ? WS_OVERLAPPEDWINDOW : WS_POPUP;
     ::SetWindowLong(m_hWnd, GWL_STYLE, style);
 #ifndef __OS_WIN_XP
     const MARGINS shadow = {1, 1, 1, 1};
@@ -71,6 +70,14 @@ CWindowPlatform::CWindowPlatform(const QRect &rect) :
 #endif
     connect(this->window()->windowHandle(), &QWindow::screenChanged, this, [=]() {
         SetWindowPos(m_hWnd, 0, 0, 0, 0, 0, SWP_FRAMECHANGED | SWP_NOMOVE | SWP_NOSIZE);
+    });
+
+    setProperty("stabilized", true);
+    m_propertyTimer = new QTimer(this);
+    m_propertyTimer->setSingleShot(true);
+    m_propertyTimer->setInterval(100);
+    connect(m_propertyTimer, &QTimer::timeout, this, [=]() {
+        setProperty("stabilized", true);
     });
 }
 
@@ -100,16 +107,22 @@ void CWindowPlatform::adjustGeometry()
         const int border = int(MAIN_WINDOW_BORDER_WIDTH * m_dpiRatio);
         setContentsMargins(border, border, border, border+1);
         setResizeableAreaWidth(border);
+        LONG style = ::GetWindowLong(m_hWnd, GWL_STYLE);
+        style |= (Utils::getWinVersion() > Utils::WinVer::Win7) ? WS_OVERLAPPEDWINDOW : WS_POPUP;
+        ::SetWindowLong(m_hWnd, GWL_STYLE, style);
     } else
     if (windowState().testFlag(Qt::WindowMaximized)) {
-        QTimer::singleShot(0, this, [=]() {
+//        QTimer::singleShot(25, this, [=]() {
             setContentsMargins(0,0,0,0);
-            auto dsk = QApplication::desktop();
-            const QSize offset(0, !isTaskbarAutoHideOn() ? -1 : 1);
-            resize(dsk->availableGeometry(this).size() - offset);
-            move(dsk->availableGeometry(this).topLeft());
-            setWindowState(Qt::WindowMaximized);
-        });
+            LONG style = ::GetWindowLong(m_hWnd, GWL_STYLE);
+            style &= (Utils::getWinVersion() > Utils::WinVer::Win7) ? ~WS_OVERLAPPEDWINDOW : ~WS_POPUP;
+            style |= (WS_CLIPCHILDREN | WS_MAXIMIZEBOX | WS_MINIMIZEBOX);
+            ::SetWindowLong(m_hWnd, GWL_STYLE, style);
+            auto rc = QApplication::desktop()->availableGeometry(this);
+            const QSize offset(0, !isTaskbarAutoHideOn() ? 0 : 2);
+            SetWindowPos(m_hWnd, NULL, rc.x(), rc.y(), rc.width(), rc.height() - offset.height(),
+                         SWP_NOZORDER | SWP_NOOWNERZORDER | SWP_NOSENDCHANGING);
+//        });
     }
 }
 
@@ -123,7 +136,7 @@ bool CWindowPlatform::isTaskbarAutoHideOn()
 void CWindowPlatform::bringToTop()
 {
     if (IsIconic(m_hWnd)) {
-        ShowWindow(m_hWnd, SW_SHOWNORMAL);
+        ShowWindow(m_hWnd, SW_RESTORE);
     }
     HWND hWndFrg = ::GetForegroundWindow();
     DWORD appID = ::GetCurrentThreadId();
@@ -274,6 +287,10 @@ bool CWindowPlatform::nativeEvent(const QByteArray &eventType, void *message, lo
         if (!m_closed && IsWindowEnabled(m_hWnd)) {
             focus();
         }
+        m_propertyTimer->stop();
+        if (property("stabilized").toBool())
+            setProperty("stabilized", false);
+        m_propertyTimer->start();
         break;
     }
 

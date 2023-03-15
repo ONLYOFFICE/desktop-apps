@@ -1110,6 +1110,7 @@ void CMainWindow::onDocumentPrint(void * opts)
         if ( !AscAppManager::printData().isQuickPrint() ) {
             printer->setPageOrientation(AscAppManager::printData().pageOrientation());
             printer->setPageSize(AscAppManager::printData().pageSize());
+            printer->setFullPage(true);
         }
 
 #ifdef _WIN32
@@ -1277,6 +1278,11 @@ void CMainWindow::onPortalOpen(QString json)
             if (!(res < 0)) {
                 toggleButtonMain(false, true);
                 m_pTabs->setCurrentIndex(res);
+            }
+
+            QString _title = objRoot["title"].toString();
+            if ( !_title.isEmpty() ) {
+                m_pTabs->applyDocumentChanging(m_pTabs->viewByIndex(res), _title, "");
             }
         }
     }
