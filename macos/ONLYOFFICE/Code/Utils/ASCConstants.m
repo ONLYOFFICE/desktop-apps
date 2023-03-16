@@ -80,6 +80,10 @@
     return @[@"ppt", @"pptx", @"ppsx", @"odp", @"potx", @"otp", @"pps", @"ppsm", @"potm", @"fodp", @"dps", @"dpt"];
 }
 
++ (NSArray *)cancryptformats {
+    return @[@"docx", @"pptx", @"xlsx", @"docxf", @"oform"];
+}
+
 + (NSArray *)plugins {
     return @[@"plugin"];
 }
