@@ -345,6 +345,19 @@ QStringList CFileDialogWrapper::modalOpenPresentations(const QString& path, bool
     return modalOpen(path, filter, nullptr, multi);
 }
 
+QStringList CFileDialogWrapper::modalOpenForEncrypt(const QString& path, bool multi)
+{
+    QString _filter = tr("Text documents") + " (*.docx *.docxf *.docm *.dotm *.dotx *.oform);;" +
+                        tr("Spreadsheets") + " (*.xlsx *.xlsm *.xltm *.xltx);;" +
+                        tr("Presentations") + " (*.potm *.potx *.ppsm *.pptm *.ppsx *.pptx)";
+
+    const QString _all_supported = tr("All supported files") + " " + joinExtentions(_filter);
+    _filter.prepend(_all_supported + ";;");
+    _filter.append(";;" + m_mapFilters[AVS_OFFICESTUDIO_FILE_UNKNOWN]);
+
+    return modalOpen(path, _filter, nullptr, multi);
+}
+
 QStringList CFileDialogWrapper::modalOpenAny(const QString& path, bool multi)
 {
     QString _filter = m_mapFilters[AVS_OFFICESTUDIO_FILE_UNKNOWN];

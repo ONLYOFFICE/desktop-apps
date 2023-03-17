@@ -60,6 +60,7 @@ public:
     QStringList modalOpenSpreadsheets(const QString&, bool multi = false);
     QStringList modalOpenPresentations(const QString&, bool multi = false);
     QStringList modalOpenMedia(const QString& type, const QString& path, bool multi = false);
+    QStringList modalOpenForEncrypt(const QString& path, bool multi = false);
 
     QString selectFolder(const QString& folder);
 

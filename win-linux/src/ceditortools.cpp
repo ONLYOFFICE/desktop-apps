@@ -134,15 +134,12 @@ namespace CEditorTools
             } else
             if ( _filter == "csv/txt" ) {
                 QString _sel_filter;
-                const QString _txt_filter = QObject::tr("All supported files (*.txt *.csv)") + ";;" + QObject::tr("All files (*.*)");
+                const QString _txt_filter = QObject::tr("All supported files") + "(*.txt *.csv);;" + QObject::tr("All files (*.*)");
 
                 _list = dialog.modalOpen(Utils::lastPath(LOCAL_PATH_OPEN), _txt_filter, &_sel_filter, pData->get_IsMultiselect());
             } else
             if ( _filter == "cryptofiles" ) {
-                QString _sel_filter;
-                const QString _txt_filter = QObject::tr("All supported files (*.docx *.pptx *.xlsx *.docxf *.oform)") + ";;" + QObject::tr("All files (*.*)");
-
-                _list = dialog.modalOpen(Utils::lastPath(LOCAL_PATH_OPEN), _txt_filter, &_sel_filter, pData->get_IsMultiselect());
+                _list = dialog.modalOpenForEncrypt(Utils::lastPath(LOCAL_PATH_OPEN), pData->get_IsMultiselect());
             } else
             if ( _filter == "any" || _filter == "*.*" ) {
                 _list = dialog.modalOpenAny(Utils::lastPath(LOCAL_PATH_OPEN), pData->get_IsMultiselect());
