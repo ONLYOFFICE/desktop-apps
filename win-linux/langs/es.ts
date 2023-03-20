@@ -4,7 +4,7 @@
 <context>
     <name>CAscApplicationManagerWrapper</name>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1159"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1203"/>
         <source>Presenter View</source>
         <translation>Vista del presentador</translation>
     </message>
@@ -21,39 +21,39 @@
         <translation type="vanished">Todas las ventanas del editor estarán cerradas. ¿Quiere continuar?</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1887"/>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1888"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1943"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1944"/>
         <source>Document%1.docx</source>
         <translation>Documento%1.docx</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1889"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1945"/>
         <source>Book%1.xlsx</source>
         <translation>Libro%1.xlsx</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1890"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1946"/>
         <source>Presentation%1.pptx</source>
         <translation>Presentación%1.pptx</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1967"/>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2031"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2042"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2083"/>
         <source>A new version of %1 is available!</source>
         <translation>¡Una nueva versión de %1 está disponible!</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1968"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2043"/>
         <source>%1 %2 is now available (you have %3). Would you like to download it now?</source>
         <translation>%1 %2 ya está disponible (usted tiene %3). ¿Desea descargarlo ahora?</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2032"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2084"/>
         <source>%1 %2 is now downloaded (you have %3). Would you like to install it now?</source>
         <translation>%1 %2 ya está descargado (usted tiene %3). ¿Desea instalarlo ahora?</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1988"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2063"/>
         <source>Do you want to install a new version %1 of the program?</source>
         <translation>¿Desea instalar la nueva versión %1 del programa?</translation>
     </message>
@@ -61,7 +61,7 @@
 <context>
     <name>CAscTabWidget</name>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="818"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="862"/>
         <location filename="../src/components/asctabwidget.cpp" line="679"/>
         <source>Document</source>
         <translation>Abriendo...</translation>
@@ -80,7 +80,7 @@
     <message>
         <location filename="../src/platform_linux/cdialogcertificateinfo.cpp" line="20"/>
         <source>OK</source>
-        <translation>OK</translation>
+        <translation>Aceptar</translation>
     </message>
 </context>
 <context>
@@ -136,7 +136,7 @@
     <message>
         <location filename="../src/platform_linux/cdialogopenssl.cpp" line="262"/>
         <source>Wrong certificate password.&lt;br&gt;Please enter again</source>
-        <translation>Contraseña de certificado incorrecta.&lt;br&gt;Por favor, introduzca de nuevo</translation>
+        <translation>Contraseña de certificado incorrecta.&lt;br&gt;Por favor, introdúzcala de nuevo</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/cdialogopenssl.cpp" line="271"/>
@@ -175,14 +175,14 @@
         <translation>El documento debe guardarse para continuar.&lt;br&gt;¿Guardar el documento?</translation>
     </message>
     <message>
-        <location filename="../src/windows/ceditorwindow_p.h" line="544"/>
+        <location filename="../src/windows/ceditorwindow_p.h" line="554"/>
         <source>Print Document</source>
         <translation>Imprimir documento</translation>
     </message>
     <message>
-        <location filename="../src/windows/ceditorwindow_p.h" line="723"/>
+        <location filename="../src/windows/ceditorwindow_p.h" line="745"/>
         <source>Document must be saved firstly.</source>
-        <translation>Primero se debe grabar el documento.</translation>
+        <translation>Primero debe guardar el documento.</translation>
     </message>
     <message>
         <location filename="../src/windows/ceditorwindow.cpp" line="138"/>
@@ -192,7 +192,7 @@
     <message>
         <location filename="../src/ceditortools.cpp" line="309"/>
         <source>Some data will lost.&lt;br&gt;Continue?</source>
-        <translation>Si sigue guardando en este formato todas las características a excepción del texto se perderán.&lt;br&gt;¿Está seguro de que quiere continuar?</translation>
+        <translation>Si sigue guardando en este formato, todas las características, a excepción del texto, se perderán.&lt;br&gt;¿Está seguro de que quiere continuar?</translation>
     </message>
 </context>
 <context>
@@ -371,115 +371,144 @@
         <translation>Imagen PNG (*.png)</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="158"/>
-        <location filename="../src/components/cfiledialog.cpp" line="161"/>
-        <location filename="../src/components/cfiledialog.cpp" line="168"/>
-        <location filename="../src/components/cfiledialog.cpp" line="174"/>
+        <location filename="../src/components/cfiledialog.cpp" line="153"/>
         <source>Save As</source>
         <translation>Guardar como</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="198"/>
+        <location filename="../src/components/cfiledialog.cpp" line="199"/>
         <source>%1 already exists.&lt;br&gt;Do you want to replace it?</source>
         <translation>%1 ya existe.&lt;br&gt;¿Desea reemplazarlo?</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="223"/>
+        <location filename="../src/components/cfiledialog.cpp" line="224"/>
         <source>Word Document</source>
         <translation>Documento de Word</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="226"/>
+        <location filename="../src/components/cfiledialog.cpp" line="227"/>
         <source>Excel Workbook</source>
         <translation>Hoja de cálculo de Excel</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="229"/>
+        <location filename="../src/components/cfiledialog.cpp" line="230"/>
         <source>PowerPoint Presentation</source>
         <translation>Presentación de PowerPoint</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="232"/>
+        <location filename="../src/components/cfiledialog.cpp" line="233"/>
         <source>%1 File (*.%2)</source>
         <translation>%1 Archivo (*.%2)</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="242"/>
-        <location filename="../src/components/cfiledialog.cpp" line="327"/>
+        <location filename="../src/components/cfiledialog.cpp" line="243"/>
+        <location filename="../src/components/cfiledialog.cpp" line="329"/>
         <source>Text documents</source>
         <translation>Documentos de texto</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="243"/>
-        <location filename="../src/components/cfiledialog.cpp" line="335"/>
+        <location filename="../src/components/cfiledialog.cpp" line="244"/>
+        <location filename="../src/components/cfiledialog.cpp" line="337"/>
         <source>Spreadsheets</source>
         <translation>Hojas de cálculo</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="244"/>
-        <location filename="../src/components/cfiledialog.cpp" line="343"/>
+        <location filename="../src/components/cfiledialog.cpp" line="245"/>
+        <location filename="../src/components/cfiledialog.cpp" line="345"/>
         <source>Presentations</source>
         <translation>Presentaciones</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="245"/>
+        <location filename="../src/components/cfiledialog.cpp" line="246"/>
         <source>Web Page</source>
         <translation>Página web</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="246"/>
+        <location filename="../src/components/cfiledialog.cpp" line="247"/>
         <source>Text files</source>
         <translation>Archivos de texto</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="247"/>
+        <location filename="../src/components/cfiledialog.cpp" line="248"/>
         <source>All supported files</source>
         <translation>Todos los archivos compatibles</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="265"/>
-        <location filename="../src/components/cfiledialog.cpp" line="268"/>
-        <location filename="../src/components/cfiledialog.cpp" line="273"/>
-        <location filename="../src/components/cfiledialog.cpp" line="278"/>
-        <location filename="../src/components/cfiledialog.cpp" line="279"/>
+        <location filename="../src/components/cfiledialog.cpp" line="262"/>
         <source>Open Document</source>
         <translation>Abrir documento</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="290"/>
-        <location filename="../src/components/cfiledialog.cpp" line="299"/>
+        <location filename="../src/components/cfiledialog.cpp" line="292"/>
+        <location filename="../src/components/cfiledialog.cpp" line="301"/>
         <source>All Images</source>
         <translation>Todas las imágenes</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="292"/>
-        <location filename="../src/components/cfiledialog.cpp" line="301"/>
+        <location filename="../src/components/cfiledialog.cpp" line="294"/>
+        <location filename="../src/components/cfiledialog.cpp" line="303"/>
         <source>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp)</source>
         <translation>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp)</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="309"/>
-        <location filename="../src/components/cfiledialog.cpp" line="318"/>
+        <location filename="../src/components/cfiledialog.cpp" line="311"/>
+        <location filename="../src/components/cfiledialog.cpp" line="320"/>
         <source>Plugin file (*.plugin)</source>
         <translation>Archivo de plugin (*.plugin)</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="358"/>
+        <location filename="../src/components/cfiledialog.cpp" line="360"/>
         <source>Video file</source>
         <translation>Archivo de vídeo</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="363"/>
+        <location filename="../src/components/cfiledialog.cpp" line="365"/>
         <source>Audio file</source>
         <translation>Archivo de audio</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="385"/>
-        <location filename="../src/components/cfiledialog.cpp" line="388"/>
-        <location filename="../src/components/cfiledialog.cpp" line="395"/>
-        <location filename="../src/components/cfiledialog.cpp" line="401"/>
+        <location filename="../src/components/cfiledialog.cpp" line="382"/>
         <source>Select Folder</source>
         <translation>Seleccionar carpeta</translation>
+    </message>
+</context>
+<context>
+    <name>CMainPanel</name>
+    <message>
+        <source>FILE</source>
+        <translation type="vanished">INICIO</translation>
+    </message>
+    <message>
+        <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
+        <translation type="vanished">%1 ha sido modificado.&lt;br&gt;¿Quiere guardar los cambios?</translation>
+    </message>
+    <message>
+        <source>File format not supported.</source>
+        <translation type="vanished">Formato de archivo no es compatible.</translation>
+    </message>
+    <message>
+        <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
+        <translation type="vanished">%1 no está disponible. Es posible que haya sido renombrado, transferido o eliminado.&lt;br&gt;¿Desea eliminar el archivo de la lista?</translation>
+    </message>
+    <message>
+        <source>Document must be saved firstly.</source>
+        <translation type="vanished">Primero se debe grabar el documento.</translation>
+    </message>
+    <message>
+        <source>Some data will lost.&lt;br&gt;Continue?</source>
+        <translation type="vanished">Si sigue guardando en este formato todas las características a excepción del texto se perderán.&lt;br&gt;¿Está seguro de que quiere continuar?</translation>
+    </message>
+    <message>
+        <source>Sign Up</source>
+        <translation type="vanished">Crear cuenta en la nube</translation>
+    </message>
+    <message>
+        <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
+        <translation type="vanished">El documento debe guardarse para continuar.&lt;br&gt;¿Guardar el documento?</translation>
+    </message>
+    <message>
+        <source>Print Document</source>
+        <translation type="vanished">Imprimir documento</translation>
     </message>
 </context>
 <context>
@@ -488,7 +517,7 @@
         <location filename="../src/windows/cmainwindow.cpp" line="753"/>
         <location filename="../src/windows/cmainwindow.cpp" line="795"/>
         <source>File format not supported.</source>
-        <translation>Formato de archivo no es compatible.</translation>
+        <translation>El formato del archivo no es compatible.</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="779"/>
@@ -498,7 +527,7 @@
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="839"/>
         <source>Document must be saved firstly.</source>
-        <translation>Primero se debe grabar el documento.</translation>
+        <translation>Primero debe guardar el documento.</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="979"/>
@@ -511,17 +540,17 @@
         <translation>No hay impresoras disponibles</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="1126"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="1136"/>
         <source>Print Document</source>
         <translation>Imprimir documento</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="1288"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="1315"/>
         <source>Sign Up</source>
-        <translation>Crear oficina en la nube</translation>
+        <translation>Crear cuenta en la nube</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="1351"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="1378"/>
         <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
         <translation>%1 ha sido modificado.&lt;br&gt;¿Quiere guardar los cambios?</translation>
     </message>
@@ -531,50 +560,50 @@
     <message>
         <location filename="../src/prop/cmainwindowimpl.cpp" line="52"/>
         <source>Licensed under</source>
-        <translation>Bajo licencia de</translation>
+        <translation>Bajo la licencia</translation>
     </message>
 </context>
 <context>
     <name>CMessage</name>
     <message>
-        <location filename="../src/components/cmessage.cpp" line="167"/>
+        <location filename="../src/components/cmessage.cpp" line="168"/>
         <source>&amp;OK</source>
-        <translation>&amp;OK</translation>
+        <translation>&amp;Aceptar</translation>
     </message>
     <message>
-        <location filename="../src/components/cmessage.cpp" line="256"/>
         <location filename="../src/components/cmessage.cpp" line="257"/>
         <location filename="../src/components/cmessage.cpp" line="258"/>
         <location filename="../src/components/cmessage.cpp" line="259"/>
-        <location filename="../src/components/cmessage.cpp" line="262"/>
+        <location filename="../src/components/cmessage.cpp" line="260"/>
+        <location filename="../src/components/cmessage.cpp" line="263"/>
         <source>Yes</source>
         <translation>Sí</translation>
     </message>
     <message>
-        <location filename="../src/components/cmessage.cpp" line="256"/>
         <location filename="../src/components/cmessage.cpp" line="257"/>
         <location filename="../src/components/cmessage.cpp" line="258"/>
         <location filename="../src/components/cmessage.cpp" line="259"/>
-        <location filename="../src/components/cmessage.cpp" line="262"/>
+        <location filename="../src/components/cmessage.cpp" line="260"/>
+        <location filename="../src/components/cmessage.cpp" line="263"/>
         <source>No</source>
         <translation>No</translation>
     </message>
     <message>
-        <location filename="../src/components/cmessage.cpp" line="258"/>
         <location filename="../src/components/cmessage.cpp" line="259"/>
         <location filename="../src/components/cmessage.cpp" line="260"/>
         <location filename="../src/components/cmessage.cpp" line="261"/>
+        <location filename="../src/components/cmessage.cpp" line="262"/>
         <source>Cancel</source>
         <translation>Cancelar</translation>
     </message>
     <message>
-        <location filename="../src/components/cmessage.cpp" line="260"/>
         <location filename="../src/components/cmessage.cpp" line="261"/>
+        <location filename="../src/components/cmessage.cpp" line="262"/>
         <source>OK</source>
-        <translation>OK</translation>
+        <translation>Aceptar</translation>
     </message>
     <message>
-        <location filename="../src/components/cmessage.cpp" line="262"/>
+        <location filename="../src/components/cmessage.cpp" line="263"/>
         <source>Skip</source>
         <translation>Omitir</translation>
     </message>
@@ -584,7 +613,7 @@
     <message>
         <location filename="../src/components/cprintprogress.cpp" line="112"/>
         <source>Document is printing: page %1 of %2</source>
-        <translation>Impresión de documentos: la página %1 de %2</translation>
+        <translation>Imprimiendo documento: página %1 de %2</translation>
     </message>
     <message>
         <location filename="../src/components/cprintprogress.cpp" line="114"/>
@@ -600,6 +629,14 @@
         <location filename="../src/components/cprintprogress.cpp" line="130"/>
         <source>Printing...</source>
         <translation>Imprimiendo...</translation>
+    </message>
+</context>
+<context>
+    <name>CUpdateManager</name>
+    <message>
+        <location filename="../src/cupdatemanager.cpp" line="141"/>
+        <source>Server connection error!</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -647,7 +684,7 @@
     <message>
         <location filename="../src/platform_win/updatedialog.cpp" line="46"/>
         <source>Install on Next Start</source>
-        <translation>Instalar en inicio siguiente</translation>
+        <translation>Instalar la próxima vez que inicie el programa</translation>
     </message>
     <message>
         <location filename="../src/platform_win/updatedialog.cpp" line="47"/>
@@ -665,12 +702,12 @@
         <translation>Descargar actualización</translation>
     </message>
     <message>
-        <location filename="../src/platform_win/updatedialog.cpp" line="90"/>
+        <location filename="../src/platform_win/updatedialog.cpp" line="89"/>
         <source>Software Update</source>
         <translation>Actualización de software</translation>
     </message>
     <message>
-        <location filename="../src/platform_win/updatedialog.cpp" line="93"/>
+        <location filename="../src/platform_win/updatedialog.cpp" line="92"/>
         <source>Release notes</source>
         <translation>Notas de la versión</translation>
     </message>

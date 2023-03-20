@@ -136,7 +136,7 @@ private:
 //        ,{"hi-IN", "हिन्दी"}
 //        ,{"hr-HR", "Hrvatska"}
         ,{"hu-HU", "Magyar"}
-        ,{"hy-AM", "Հայաստան"}
+        ,{"hy-AM", "Հայերեն"}
         ,{"id-ID", "Indonesian"}
         ,{"no-NO", "Norsk"}
         ,{"ro-RO", "Romanian"}

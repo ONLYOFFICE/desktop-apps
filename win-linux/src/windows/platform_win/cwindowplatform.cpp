@@ -112,7 +112,7 @@ void CWindowPlatform::adjustGeometry()
         ::SetWindowLong(m_hWnd, GWL_STYLE, style);
     } else
     if (windowState().testFlag(Qt::WindowMaximized)) {
-        QTimer::singleShot(0, this, [=]() {
+//        QTimer::singleShot(25, this, [=]() {
             setContentsMargins(0,0,0,0);
             LONG style = ::GetWindowLong(m_hWnd, GWL_STYLE);
             style &= (Utils::getWinVersion() > Utils::WinVer::Win7) ? ~WS_OVERLAPPEDWINDOW : ~WS_POPUP;

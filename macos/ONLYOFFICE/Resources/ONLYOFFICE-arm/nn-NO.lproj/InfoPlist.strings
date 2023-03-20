@@ -1,7 +1,6 @@
-/* 
-  InfoPlist.strings
-  ONLYOFFICE
+/* Bundle name */
+"CFBundleName" = "ONLYOFFICE";
 
-  Created by Alexander Yuzhin on 12/29/15.
-  Copyright © 2015 Ascensio System SIA. All rights reserved.
-*/
+/* Copyright (human-readable) */
+"NSHumanReadableCopyright" = "Copyright © 2023 Ascensio System SIA. All rights reserved.";
+

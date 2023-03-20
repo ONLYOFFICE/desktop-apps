@@ -36,6 +36,7 @@
 #include <QJsonObject>
 #include <QRegularExpression>
 #include <QSettings>
+#include <cmath>
 
 class CPrintData::CPrintDataPrivate
 {
@@ -92,8 +93,8 @@ public:
             if ( native.contains("paperSize") ) {
                 QJsonObject size = native["paperSize"].toObject();
 
-                paper_width = size["w"].toInt(0);
-                paper_height = size["h"].toInt(0);
+                paper_width = std::ceil(size["w"].toDouble(0));
+                paper_height = std::ceil(size["h"].toDouble(0));
                 size_preset = size["preset"].toString();
             }
 
@@ -204,7 +205,9 @@ auto CPrintData::pageSize() const -> QPageSize
             return QPageSize(QPageSize::Legal);
         if ( m_priv->size_preset == "Envelope Choukei 3" )
             return QPageSize(QPageSize::EnvelopeChou3);
-    }
+    } else
+    if ( !m_priv->paper_width || !m_priv->paper_height )
+        return QPageSize(QPageSize::A4);
 
     return QPageSize(QSize(m_priv->paper_width, m_priv->paper_height), QPageSize::Millimeter);
 }

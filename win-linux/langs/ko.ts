@@ -4,7 +4,7 @@
 <context>
     <name>CAscApplicationManagerWrapper</name>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1159"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1203"/>
         <source>Presenter View</source>
         <translation>발표자 보기</translation>
     </message>
@@ -17,39 +17,39 @@
         <translation type="vanished">업데이트 중입니다. 업데이트를 취소하고 애플케이이션을 닫으시겠습니까?</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1887"/>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1888"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1943"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1944"/>
         <source>Document%1.docx</source>
         <translation>Document%1.docx</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1889"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1945"/>
         <source>Book%1.xlsx</source>
         <translation>Book%1.xlsx</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1890"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1946"/>
         <source>Presentation%1.pptx</source>
         <translation>Presentation%1.pptx</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1967"/>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2031"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2042"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2083"/>
         <source>A new version of %1 is available!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1968"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2043"/>
         <source>%1 %2 is now available (you have %3). Would you like to download it now?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2032"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2084"/>
         <source>%1 %2 is now downloaded (you have %3). Would you like to install it now?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1988"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2063"/>
         <source>Do you want to install a new version %1 of the program?</source>
         <translation type="unfinished"></translation>
     </message>
@@ -57,7 +57,7 @@
 <context>
     <name>CAscTabWidget</name>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="818"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="862"/>
         <location filename="../src/components/asctabwidget.cpp" line="679"/>
         <source>Document</source>
         <translation>여는 중...</translation>
@@ -181,12 +181,12 @@
         <translation>계속하려면 문서를 저장해야 합니다.&lt;br&gt;문서를 저장하시겠습니까?</translation>
     </message>
     <message>
-        <location filename="../src/windows/ceditorwindow_p.h" line="544"/>
+        <location filename="../src/windows/ceditorwindow_p.h" line="554"/>
         <source>Print Document</source>
         <translation>문서 인쇄</translation>
     </message>
     <message>
-        <location filename="../src/windows/ceditorwindow_p.h" line="723"/>
+        <location filename="../src/windows/ceditorwindow_p.h" line="745"/>
         <source>Document must be saved firstly.</source>
         <translation>문서를 먼저 저장해야 합니다.</translation>
     </message>
@@ -367,113 +367,103 @@
         <translation>PNG 이미지(*.png)</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="158"/>
-        <location filename="../src/components/cfiledialog.cpp" line="161"/>
-        <location filename="../src/components/cfiledialog.cpp" line="168"/>
-        <location filename="../src/components/cfiledialog.cpp" line="174"/>
+        <location filename="../src/components/cfiledialog.cpp" line="153"/>
         <source>Save As</source>
         <translation>저장 형식</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="198"/>
+        <location filename="../src/components/cfiledialog.cpp" line="199"/>
         <source>%1 already exists.&lt;br&gt;Do you want to replace it?</source>
         <translation>%1이 이미 존재합니다.&lt;br&gt;변경하시겠습니까?</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="223"/>
+        <location filename="../src/components/cfiledialog.cpp" line="224"/>
         <source>Word Document</source>
         <translation>워드 문서</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="226"/>
+        <location filename="../src/components/cfiledialog.cpp" line="227"/>
         <source>Excel Workbook</source>
         <translation>엑셀 스프레드시트</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="229"/>
+        <location filename="../src/components/cfiledialog.cpp" line="230"/>
         <source>PowerPoint Presentation</source>
         <translation>파워포인트 프레젠테이션</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="232"/>
+        <location filename="../src/components/cfiledialog.cpp" line="233"/>
         <source>%1 File (*.%2)</source>
         <translation>%1 파일 (*.%2)</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="242"/>
-        <location filename="../src/components/cfiledialog.cpp" line="327"/>
+        <location filename="../src/components/cfiledialog.cpp" line="243"/>
+        <location filename="../src/components/cfiledialog.cpp" line="329"/>
         <source>Text documents</source>
         <translation>텍스트 문서</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="243"/>
-        <location filename="../src/components/cfiledialog.cpp" line="335"/>
+        <location filename="../src/components/cfiledialog.cpp" line="244"/>
+        <location filename="../src/components/cfiledialog.cpp" line="337"/>
         <source>Spreadsheets</source>
         <translation>스프레드시트</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="244"/>
-        <location filename="../src/components/cfiledialog.cpp" line="343"/>
+        <location filename="../src/components/cfiledialog.cpp" line="245"/>
+        <location filename="../src/components/cfiledialog.cpp" line="345"/>
         <source>Presentations</source>
         <translation>프레젠테이션</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="245"/>
+        <location filename="../src/components/cfiledialog.cpp" line="246"/>
         <source>Web Page</source>
         <translation>웹 페이지</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="246"/>
+        <location filename="../src/components/cfiledialog.cpp" line="247"/>
         <source>Text files</source>
         <translation>텍스트 파일</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="247"/>
+        <location filename="../src/components/cfiledialog.cpp" line="248"/>
         <source>All supported files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="265"/>
-        <location filename="../src/components/cfiledialog.cpp" line="268"/>
-        <location filename="../src/components/cfiledialog.cpp" line="273"/>
-        <location filename="../src/components/cfiledialog.cpp" line="278"/>
-        <location filename="../src/components/cfiledialog.cpp" line="279"/>
+        <location filename="../src/components/cfiledialog.cpp" line="262"/>
         <source>Open Document</source>
         <translation>문서 열기</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="290"/>
-        <location filename="../src/components/cfiledialog.cpp" line="299"/>
+        <location filename="../src/components/cfiledialog.cpp" line="292"/>
+        <location filename="../src/components/cfiledialog.cpp" line="301"/>
         <source>All Images</source>
         <translation>모든 이미지</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="292"/>
-        <location filename="../src/components/cfiledialog.cpp" line="301"/>
+        <location filename="../src/components/cfiledialog.cpp" line="294"/>
+        <location filename="../src/components/cfiledialog.cpp" line="303"/>
         <source>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp)</source>
         <translation>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp)</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="309"/>
-        <location filename="../src/components/cfiledialog.cpp" line="318"/>
+        <location filename="../src/components/cfiledialog.cpp" line="311"/>
+        <location filename="../src/components/cfiledialog.cpp" line="320"/>
         <source>Plugin file (*.plugin)</source>
         <translation>플러그인 파일 (*.plugin)</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="358"/>
+        <location filename="../src/components/cfiledialog.cpp" line="360"/>
         <source>Video file</source>
         <translation>비디오 파일</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="363"/>
+        <location filename="../src/components/cfiledialog.cpp" line="365"/>
         <source>Audio file</source>
         <translation>오디오 파일</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="385"/>
-        <location filename="../src/components/cfiledialog.cpp" line="388"/>
-        <location filename="../src/components/cfiledialog.cpp" line="395"/>
-        <location filename="../src/components/cfiledialog.cpp" line="401"/>
+        <location filename="../src/components/cfiledialog.cpp" line="382"/>
         <source>Select Folder</source>
         <translation type="unfinished"></translation>
     </message>
@@ -507,17 +497,17 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="1126"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="1136"/>
         <source>Print Document</source>
         <translation type="unfinished">문서 인쇄</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="1288"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="1315"/>
         <source>Sign Up</source>
         <translation type="unfinished">포털 생성</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="1351"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="1378"/>
         <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
         <translation type="unfinished">%1이 수정되었습니다.&lt;br&gt;변경 사항을 저장하시겠습니까?</translation>
     </message>
@@ -533,44 +523,44 @@
 <context>
     <name>CMessage</name>
     <message>
-        <location filename="../src/components/cmessage.cpp" line="167"/>
+        <location filename="../src/components/cmessage.cpp" line="168"/>
         <source>&amp;OK</source>
         <translation>&amp;확인</translation>
     </message>
     <message>
-        <location filename="../src/components/cmessage.cpp" line="256"/>
         <location filename="../src/components/cmessage.cpp" line="257"/>
         <location filename="../src/components/cmessage.cpp" line="258"/>
         <location filename="../src/components/cmessage.cpp" line="259"/>
-        <location filename="../src/components/cmessage.cpp" line="262"/>
+        <location filename="../src/components/cmessage.cpp" line="260"/>
+        <location filename="../src/components/cmessage.cpp" line="263"/>
         <source>Yes</source>
         <translation>네</translation>
     </message>
     <message>
-        <location filename="../src/components/cmessage.cpp" line="256"/>
         <location filename="../src/components/cmessage.cpp" line="257"/>
         <location filename="../src/components/cmessage.cpp" line="258"/>
         <location filename="../src/components/cmessage.cpp" line="259"/>
-        <location filename="../src/components/cmessage.cpp" line="262"/>
+        <location filename="../src/components/cmessage.cpp" line="260"/>
+        <location filename="../src/components/cmessage.cpp" line="263"/>
         <source>No</source>
         <translation>아니오</translation>
     </message>
     <message>
-        <location filename="../src/components/cmessage.cpp" line="258"/>
         <location filename="../src/components/cmessage.cpp" line="259"/>
         <location filename="../src/components/cmessage.cpp" line="260"/>
         <location filename="../src/components/cmessage.cpp" line="261"/>
+        <location filename="../src/components/cmessage.cpp" line="262"/>
         <source>Cancel</source>
         <translation>취소</translation>
     </message>
     <message>
-        <location filename="../src/components/cmessage.cpp" line="260"/>
         <location filename="../src/components/cmessage.cpp" line="261"/>
+        <location filename="../src/components/cmessage.cpp" line="262"/>
         <source>OK</source>
         <translation>확인</translation>
     </message>
     <message>
-        <location filename="../src/components/cmessage.cpp" line="262"/>
+        <location filename="../src/components/cmessage.cpp" line="263"/>
         <source>Skip</source>
         <translation type="unfinished"></translation>
     </message>
@@ -596,6 +586,14 @@
         <location filename="../src/components/cprintprogress.cpp" line="130"/>
         <source>Printing...</source>
         <translation>인쇄 중...</translation>
+    </message>
+</context>
+<context>
+    <name>CUpdateManager</name>
+    <message>
+        <location filename="../src/cupdatemanager.cpp" line="141"/>
+        <source>Server connection error!</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -661,12 +659,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/platform_win/updatedialog.cpp" line="90"/>
+        <location filename="../src/platform_win/updatedialog.cpp" line="89"/>
         <source>Software Update</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/platform_win/updatedialog.cpp" line="93"/>
+        <location filename="../src/platform_win/updatedialog.cpp" line="92"/>
         <source>Release notes</source>
         <translation type="unfinished"></translation>
     </message>

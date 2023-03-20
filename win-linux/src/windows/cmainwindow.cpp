@@ -1108,6 +1108,7 @@ void CMainWindow::onDocumentPrint(void * opts)
         if ( !AscAppManager::printData().isQuickPrint() ) {
             printer->setPageOrientation(AscAppManager::printData().pageOrientation());
             printer->setPageSize(AscAppManager::printData().pageSize());
+            printer->setFullPage(true);
         }
 
 #ifdef _WIN32

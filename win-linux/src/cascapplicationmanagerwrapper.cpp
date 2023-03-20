@@ -53,6 +53,42 @@ using namespace NSEditorApi;
 using namespace std;
 using namespace std::placeholders;
 
+class CAscApplicationManagerWrapper::DialogSchedule : public QObject
+{
+public:
+    DialogSchedule()
+    {
+        m_timer = new QTimer(this);
+        m_timer->setInterval(500);
+        m_timer->setSingleShot(false);
+        connect(m_timer, &QTimer::timeout, this, [=] {
+            QWidget *wnd = WindowHelper::currentTopWindow();
+            if (wnd && !m_shedule_vec.isEmpty()) {
+                QMetaObject::invokeMethod(&AscAppManager::getInstance(),
+                                          m_shedule_vec.first().toLocal8Bit().data(),
+                                          Qt::QueuedConnection, Q_ARG(QWidget*, wnd));
+                m_shedule_vec.removeFirst();
+                if (m_shedule_vec.isEmpty())
+                    m_timer->stop();
+            }
+        });
+    }
+
+    ~DialogSchedule()
+    {}
+
+    void addToSchedule(const QString &method)
+    {
+        m_shedule_vec.push_back(method);
+        if (!m_timer->isActive())
+            m_timer->start();
+    }
+
+private:
+    QTimer *m_timer = nullptr;
+    QVector<QString> m_shedule_vec;
+};
+
 CAscApplicationManagerWrapper::CAscApplicationManagerWrapper(CAscApplicationManagerWrapper const&)
 {
 
@@ -64,6 +100,7 @@ CAscApplicationManagerWrapper::CAscApplicationManagerWrapper(CAscApplicationMana
     , CCefEventsTransformer(nullptr)
     , m_queueToClose(new CWindowsQueue<sWinTag>)
     , m_private(ptrprivate)
+    , m_dialogSchedule(new DialogSchedule)
 {
     m_private->init();
     CAscApplicationManager::SetEventListener(this);
@@ -241,7 +278,8 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
 
                 auto * editor = editorWindowFromViewId(event->get_SenderId());
                 if ( editor && editor->isCustomWindowStyle() ) {
-                    sendCommandTo(ptr, L"window:features", Utils::stringifyJson(QJsonObject{{"singlewindow",true}}).toStdWString());
+                    QJsonObject json{{"skiptoparea", TOOLBTN_HEIGHT},{"singlewindow",true}};
+                    sendCommandTo(ptr, L"window:features", Utils::stringifyJson(json).toStdWString());
                 }
             }
             return true;
@@ -273,7 +311,7 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
         } else
 #ifdef Q_OS_WIN
         if ( cmd.find(L"app:onready") != std::wstring::npos ) {
-            if ( !IsWindowsVistaOrGreater() )
+            if ( !IsWindowsVistaOrGreater() && !InputArgs::contains(L"--xp-unlock-portals"))    // TODO: remove --xp-unlock-portals in ver 7.4, for tests only
                 sendCommandTo(SEND_TO_ALL_START_PAGE, "panel:hide", "connect");
         } else
 #endif
@@ -1974,3 +2012,18 @@ void CAscApplicationManagerWrapper::addStylesheets(CScalingFactor f, const std::
     } else m_mapStyles[f].push_back(path);
 
 }
+    switch (result) {
+    case WinDlg::DLG_RESULT_DOWNLOAD:
+        m_pUpdateManager->loadUpdates();
+        break;
+    case WinDlg::DLG_RESULT_SKIP: {
+        m_pUpdateManager->skipVersion();
+        AscAppManager::sendCommandTo(0, "updates:checking", "{\"version\":\"no\"}");
+        break;
+    }
+    default:
+        break;
+    }
+# else
+    CMessage mbox(mainWindow()->handle(), CMessageOpts::moButtons::mbYesDefSkipNo);
+    switch (mbox.info(tr("Do you want to install a new version %1 of the program?").arg(version))) {

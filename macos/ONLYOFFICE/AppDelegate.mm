@@ -363,7 +363,7 @@
 
 - (IBAction)onMenuAbout:(NSMenuItem *)sender {
 //    [NSApp orderFrontStandardAboutPanel:sender];
-    NSWindow * mainWindow = [NSApp mainWindow];
+    NSWindow * mainWindow = [self getMainWindow];
     
     if (mainWindow) {
         ASCCommonViewController * controller = (ASCCommonViewController *)mainWindow.contentViewController;
@@ -385,6 +385,23 @@
 
 - (IBAction)onMenuQuit:(NSMenuItem *)sender {
     [NSApp terminate:sender];
+}
+
+- (NSWindow *)getMainWindow {
+    static NSWindow * ptrmainwindow = nullptr;
+
+    if ( !ptrmainwindow ) {
+        ptrmainwindow = [[NSApp windows] objectAtIndex:0];
+
+//        NSArray * winarr = [NSApp windows];
+//        for (NSWindow * child in [NSApp windows]) {
+//            if ([child.title isEqualToString: @"ONLYOFFICE"]) {
+//                ptrmainwindow = child;
+//            }
+//        }
+    }
+
+    return ptrmainwindow;
 }
 
 @end

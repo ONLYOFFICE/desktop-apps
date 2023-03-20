@@ -144,7 +144,7 @@
       </trans-unit>
       <trans-unit id="Document %ld.docx" xml:space="preserve">
         <source>Document %ld.docx</source>
-        <target>%ld.docx dokumentum</target>
+        <target state="translated">Dokumentum %ld.docx</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Document template" xml:space="preserve">
@@ -294,7 +294,7 @@
       </trans-unit>
       <trans-unit id="Presentation %ld.pptx" xml:space="preserve">
         <source>Presentation %ld.pptx</source>
-        <target>%ld.pptx bemutató</target>
+        <target state="translated">Bemutató %ld.pptx</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Presentation template" xml:space="preserve">
@@ -329,7 +329,7 @@
       </trans-unit>
       <trans-unit id="Spreadsheet %ld.xlsx" xml:space="preserve">
         <source>Spreadsheet %ld.xlsx</source>
-        <target>%ld.xlsx számolótábla</target>
+        <target state="translated">Számolótábla %ld.xlsx</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Spreadsheet template" xml:space="preserve">
@@ -1341,8 +1341,8 @@ A próbaidőszak %d nap múlva véget ér, ezt követően nem fog tudni dokument
         <note>Bundle name</note>
       </trans-unit>
       <trans-unit id="NSHumanReadableCopyright" xml:space="preserve">
-        <source>Copyright © 2020 Ascensio System SIA. All rights reserved.</source>
-        <target state="translated">Szerzői jog © 2020 Ascensio System SIA. Minden jog fenntartva.</target>
+        <source>Copyright © 2023 Ascensio System SIA. All rights reserved.</source>
+        <target state="translated">Szerzői jog © 2023 Ascensio System SIA. Minden jog fenntartva.</target>
         <note>Copyright (human-readable)</note>
       </trans-unit>
     </body>
