@@ -122,7 +122,7 @@ void CWindowPlatform::adjustGeometry()
             const QSize offset(0, !isTaskbarAutoHideOn() ? 0 : 2);
             SetWindowPos(m_hWnd, NULL, rc.x(), rc.y(), rc.width(), rc.height() - offset.height(),
                          SWP_NOZORDER | SWP_NOOWNERZORDER | SWP_NOSENDCHANGING);
-        });
+//        });
     }
 }
 

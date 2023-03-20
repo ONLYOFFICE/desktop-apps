@@ -2012,18 +2012,3 @@ void CAscApplicationManagerWrapper::addStylesheets(CScalingFactor f, const std::
     } else m_mapStyles[f].push_back(path);
 
 }
-    switch (result) {
-    case WinDlg::DLG_RESULT_DOWNLOAD:
-        m_pUpdateManager->loadUpdates();
-        break;
-    case WinDlg::DLG_RESULT_SKIP: {
-        m_pUpdateManager->skipVersion();
-        AscAppManager::sendCommandTo(0, "updates:checking", "{\"version\":\"no\"}");
-        break;
-    }
-    default:
-        break;
-    }
-# else
-    CMessage mbox(mainWindow()->handle(), CMessageOpts::moButtons::mbYesDefSkipNo);
-    switch (mbox.info(tr("Do you want to install a new version %1 of the program?").arg(version))) {
