@@ -208,6 +208,15 @@ namespace CEditorTools
             _file_format = CCefViewEditor::GetFileFormat(opts.wurl);
             if ( _file_format == 0 )
                 return nullptr;
+        } else
+        if (opts.srctype == etRecentFile) {
+            if (CFileInspector::isLocalFile(QString::fromStdWString(opts.wurl))) {
+                QFileInfo info(opts.url);
+                if (!info.isReadable()) {
+                    CMessage::error(AscAppManager::getInstance().mainWindow(), QObject::tr("Access to file '%1' is denied!").arg(opts.url));
+                    return nullptr;
+                }
+            }
         }
 
         CTabPanel * panel = CTabPanel::createEditorPanel();
@@ -258,7 +267,10 @@ namespace CEditorTools
             //if ( !rect.isEmpty() )
                 //panel->setGeometry(rect);
         } else {
-            delete panel, panel = nullptr;
+            AscAppManager::getInstance().DestroyCefView(panel->cef()->GetId());
+            panel->hide();
+            panel->deleteLater();
+            panel = nullptr;
         }
 
         return panel;

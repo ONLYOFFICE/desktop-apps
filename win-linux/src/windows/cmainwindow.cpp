@@ -742,6 +742,12 @@ void CMainWindow::doOpenLocalFile(COpenOptions& opts)
     QFileInfo info(opts.url);
     if (!info.exists()) { return; }
     if (!info.isFile()) { return; }
+    if (!info.isReadable()) {
+        QTimer::singleShot(0, this, [=] {
+            CMessage::error(TOP_NATIVE_WINDOW_HANDLE, QObject::tr("Access to file '%1' is denied!").arg(opts.url));
+        });
+        return;
+    }
 
     int result = m_pTabs->openLocalDocument(opts, true);
     if ( !(result < 0) ) {
