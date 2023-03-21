@@ -543,7 +543,9 @@ void CUpdateManager::onCheckFinished(bool error, bool updateExist, const QString
 
     if ( !error ) {
         if ( updateExist ) {
-            AscAppManager::sendCommandTo(0, "updates:checking", QString("{\"version\":\"%1\"}").arg(version));
+            QString args = QString("{\"version\":\"%1\"}").arg(version);
+            AscAppManager::sendCommandTo(0, "updates:checking", args);
+            AscAppManager::sendCommandToAllEditors(L"updates:checking", args.toStdWString());
 #ifdef Q_OS_WIN
             switch (getUpdateMode()) {
             case UpdateMode::SILENT:

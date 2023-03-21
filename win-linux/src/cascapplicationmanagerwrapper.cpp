@@ -1501,6 +1501,20 @@ void CAscApplicationManagerWrapper::sendCommandTo(CCefView * target, const wstri
     } else AscAppManager::getInstance().SetEventToAllMainWindows(pEvent);
 }
 
+void CAscApplicationManagerWrapper::sendCommandToAllEditors(const std::wstring& cmd, const std::wstring& args)
+{
+    APP_CAST(_app);
+
+    CCefView * target;
+    for ( auto i : _app.GetViewsId() ) {
+        target = _app.GetViewById(i);
+
+        if ( target->GetType() == cvwtEditor ) {
+            sendCommandTo(target, cmd, args);
+        }
+    }
+}
+
 void CAscApplicationManagerWrapper::sendEvent(int type, void * data)
 {
     CAscMenuEvent * pEvent = new CAscMenuEvent(type);

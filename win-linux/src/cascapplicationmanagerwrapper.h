@@ -172,6 +172,7 @@ public:
     static const CEditorWindow *  editorWindowFromHandle(size_t);
     static void             sendCommandTo(QCefView * target, const QString& cmd, const QString& args = "");
     static void             sendCommandTo(CCefView * target, const std::wstring& cmd, const std::wstring& args = L"");
+    static void             sendCommandToAllEditors(const std::wstring& cmd, const std::wstring& args = L"");
     static std::wstring     userSettings(const std::wstring& name);
     static void             setUserSettings(const std::wstring& name, const std::wstring& value);
 
