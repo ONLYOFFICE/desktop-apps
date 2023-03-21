@@ -540,25 +540,26 @@ void CUpdateManager::onLoadCheckFinished()
 void CUpdateManager::onCheckFinished(bool error, bool updateExist, const QString &version, const QString &changelog)
 {
     Q_UNUSED(changelog);
-    if (!error && updateExist) {
-        AscAppManager::sendCommandTo(0, "updates:checking", QString("{\"version\":\"%1\"}").arg(version));
+
+    if ( !error ) {
+        if ( updateExist ) {
+            AscAppManager::sendCommandTo(0, "updates:checking", QString("{\"version\":\"%1\"}").arg(version));
 #ifdef Q_OS_WIN
-        switch (getUpdateMode()) {
-        case UpdateMode::SILENT:
-            loadUpdates();
-            break;
-        case UpdateMode::ASK:
-            m_dialogSchedule->addToSchedule("showUpdateMessage");
-            break;
-        }
+            switch (getUpdateMode()) {
+            case UpdateMode::SILENT:
+                loadUpdates();
+                break;
+            case UpdateMode::ASK:
+                m_dialogSchedule->addToSchedule("showUpdateMessage");
+                break;
+            }
 #else
-        m_dialogSchedule->addToSchedule("showUpdateMessage");
+            m_dialogSchedule->addToSchedule("showUpdateMessage");
 #endif
-    } else
-    if (!error && !updateExist) {
-        AscAppManager::sendCommandTo(0, "updates:checking", "{\"version\":\"no\"}");
-    } else
-    if (error) {
+        } else {
+            AscAppManager::sendCommandTo(0, "updates:checking", "{\"version\":\"no\"}");
+        }
+    } else {
         //qDebug() << "Error while loading check file...";
     }
 }
