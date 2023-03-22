@@ -369,6 +369,11 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
                 return true;
             }
         } else
+        if ( !(cmd.find(L"go:update") == std::wstring::npos) ) {
+            sendCommandTo(SEND_TO_ALL_START_PAGE, "panel:select", "about");
+            m_pMainWindow->goStart();
+            return true;
+        } else
         if ( !(cmd.find(L"uitheme:changed") == std::wstring::npos) ) {
             applyTheme( themes().parseThemeName(pData->get_Param()) );
             return true;
@@ -1149,6 +1154,7 @@ void CAscApplicationManagerWrapper::initializeApp()
     AscAppManager::getInstance().InitAdditionalEditorParams(wparams);
 //    AscAppManager::getInstance().applyTheme(themes().current().id(), true);
 
+    EditorJSVariables::setVariable("update", "7.4.0");
     EditorJSVariables::applyVariable("theme", {
                                         {"type", _app.m_themes->current().stype()},
                                         {"id", QString::fromStdWString(_app.m_themes->current().id())}
