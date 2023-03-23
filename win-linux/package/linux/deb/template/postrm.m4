@@ -16,11 +16,8 @@ case "$1" in
 
 	ifelse(M4_COMPANY_NAME, ONLYOFFICE,,
 	purge|remove|failed-upgrade|abort-install|abort-upgrade|disappear`)'
-		if [[ -f /etc/lsb-release ]]; then
-			. /etc/lsb-release
-			if [[ "$DISTRIB_ID" == "AstraLinux" ]]; then
-				sed -i '\`,'/opt/M4_DESKTOPEDITORS_PREFIX/DesktopEditors`,'d' /etc/X11/trusted
-			fi
+		if [[ -f /etc/astra_version && -f /etc/X11/trusted ]]; then
+			sed -i '\|/opt/M4_DESKTOPEDITORS_PREFIX/DesktopEditors|d' /etc/X11/trusted
 		fi
 	;;)
 
