@@ -1,0 +1,5 @@
+Выполните сборку библиотеки DLL сообщений из /src/event_message.mc, выполнив следующие действия:
+
+"C:/Program Files (x86)/Windows Kits/10/bin/10.0.19041.0/x64/mc.exe" -U src/event_message.mc
+"C:/Program Files (x86)/Windows Kits/10/bin/10.0.19041.0/x64/rc.exe" -r event_message.rc
+"C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/VC/Tools/MSVC/14.29.30133/bin/Hostx64/x64/link.exe" -dll -noentry -out:build/event_message.dll event_message.res

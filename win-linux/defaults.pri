@@ -254,8 +254,12 @@ core_windows {
                $$PWD/src/platform_win/message.cpp
 
     updmodule:!build_xp {
-        HEADERS += $$PWD/src/platform_win/updatedialog.h
-        SOURCES += $$PWD/src/platform_win/updatedialog.cpp
+        INCLUDEPATH += $$PWD/extras/update-daemon/src/classes
+        HEADERS += $$PWD/src/platform_win/updatedialog.h \
+                   $$PWD/extras/update-daemon/src/classes/csocket.h
+
+        SOURCES += $$PWD/src/platform_win/updatedialog.cpp \
+                   $$PWD/extras/update-daemon/src/classes/csocket.cpp
     }
 
     LIBS += -lwininet \
