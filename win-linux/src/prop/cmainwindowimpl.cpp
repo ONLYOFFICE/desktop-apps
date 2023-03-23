@@ -111,18 +111,20 @@ void CMainWindowImpl::refreshAboutVersion()
     _json_obj["editorwindowmode"] = reg_user.value("editorWindowMode",false).toBool();
 
     // Read update settings
-    #ifdef _UPDMODULE
-    #ifdef Q_OS_WIN
-        GET_REGISTRY_SYSTEM(reg_system)
-        if (Utils::getWinVersion() > Utils::WinVer::WinXP && reg_system.value("CheckForUpdates", true).toBool()) {
-            AscAppManager::sendCommandTo(0, "updates:turn", "on");
-            _json_obj["updates"] = QJsonObject({{"mode", reg_user.value("autoUpdateMode","ask").toString()}});
-        }
-    #else
-        //AscAppManager::sendCommandTo(0, "updates:turn", "on");
-        //_json_obj["updates"] = QJsonObject({{"interval", reg_user.value("checkUpdatesInterval","day").toString()}});
-    #endif
-    #endif
+#ifdef _UPDMODULE
+# ifdef _WIN32
+    if (AppOptions::packageType() == AppOptions::AppPackageType::Portable
+            || AppOptions::packageType() == AppOptions::AppPackageType::ISS) {
+        AscAppManager::sendCommandTo(0, "updates:turn", "on");
+        _json_obj["updates"] = QJsonObject({{"mode", reg_user.value("autoUpdateMode","ask").toString()}});
+    }
+# else
+    if (AppOptions::packageType() == AppOptions::AppPackageType::Portable) {
+        AscAppManager::sendCommandTo(0, "updates:turn", "on");
+        _json_obj["updates"] = QJsonObject({{"mode", reg_user.value("autoUpdateMode","ask").toString()}});
+    }
+# endif
+#endif
 
     AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, "settings:init", Utils::stringifyJson(_json_obj));
     if ( InputArgs::contains(L"--ascdesktop-reveal-app-config") )
