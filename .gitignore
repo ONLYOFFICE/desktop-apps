@@ -3,6 +3,8 @@ win-linux/build
 win-linux/3dparty/WinSparkle/win_32
 win-linux/3dparty/WinSparkle/win_64
 win-linux/extras/projicons/build
+win-linux/extras/update-daemon/build
+win-linux/extras/update-daemon/event_message/build
 win-linux/ASCDocumentEditor.build/*
 
 
