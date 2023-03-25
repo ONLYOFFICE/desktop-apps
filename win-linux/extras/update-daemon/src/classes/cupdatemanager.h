@@ -33,78 +33,49 @@
 #ifndef CUPDATEMANAGER_H
 #define CUPDATEMANAGER_H
 
-#include <QObject>
-#include <QTimer>
-#include <ctime>
-#include "csocket.h"
+#include "classes/cdownloader.h"
+#include "classes/cunzip.h"
+#include "classes/csocket.h"
+#include <future>
+
+typedef std::function<void(void)> FnVoidVoid;
 
 using std::wstring;
+using std::future;
 
 
-enum UpdateMode {
-    DISABLE=0, SILENT=1, ASK=2
-};
-
-class CUpdateManager: public QObject
+class CUpdateManager
 {
-    Q_OBJECT
 public:
-    explicit CUpdateManager(QObject *parent = nullptr);
+    explicit CUpdateManager();
     ~CUpdateManager();
 
-    void setNewUpdateSetting(const QString& _rate);
-    void cancelLoading();
-    void skipVersion();
-    int  getUpdateMode();
-    QString getVersion() const;
-    void scheduleRestartForUpdate();
-    void handleAppClose();
-    void loadUpdates();
-    void installUpdates();
-
-public slots:
-    void checkUpdates();
-
-signals:
-    void progresChanged(const int percent);
+    /* callback */
+    void aboutToQuit(FnVoidVoid callback);
 
 private:
     void init();
-    void clearTempFiles(const QString &except = QString());
-    void updateNeededCheking();
-    void onCheckFinished(bool error, bool updateExist, const QString &version, const QString &changelog);
-    void unzipIfNeeded();
-    void savePackageData(const QString &version = QString(), const QString &fileName = QString());
+    void onCompleteUnzip(const int error);
+    void onCompleteSlot(const int error, const wstring &filePath);
+    void onProgressSlot(const int percent);
+    void unzipIfNeeded(const wstring &filePath, const wstring &newVersion);
+    void clearTempFiles(const wstring &prefix, const wstring &except = wstring());    
+    void startReplacingFiles();
     bool sendMessage(int cmd, const wstring &param1 = L"null", const wstring &param2 = L"null",
                         const wstring &param3 = L"null");
 
-    struct PackageData;
-    struct SavedPackageData;
-    PackageData      *m_packageData;
-    SavedPackageData *m_savedPackageData;
+    FnVoidVoid   m_quit_callback = nullptr;
+    wstring      m_newVersion;
+    bool         m_lock = false;
+    int          m_downloadMode;
+    future<void> m_future_clear;
+    CSocket     *m_socket = nullptr;
+    CDownloader *m_pDownloader = nullptr;
+    CUnzip      *m_pUnzip = nullptr;
 
-    bool        m_restartForUpdate = false,
-                m_lock = false;
-
-//    QTimer      *m_pTimer = nullptr;
-//    time_t      m_lastCheck;
-
-    QTimer      *m_pCheckOnStartupTimer = nullptr;
-    wstring     m_checkUrl;
-
-    class DialogSchedule;
-    DialogSchedule *m_dialogSchedule = nullptr;
-
-    CSocket *m_socket = nullptr;
-
-private slots:
-    void onLoadCheckFinished(const QString &filePath);
-    void showUpdateMessage(QWidget *parent);
-    void onLoadUpdateFinished(const QString &filePath);
-    void showStartInstallMessage(QWidget *parent);
-    void onProgressSlot(const int percent);
-    void onError(const QString &error);
-    void criticalMsg(QWidget *parent, const QString &msg);
+    enum Mode {
+        CHECK_UPDATES=0, DOWNLOAD_CHANGELOG=1, DOWNLOAD_UPDATES=2
+    };
 };
 
 #endif // CUPDATEMANAGER_H

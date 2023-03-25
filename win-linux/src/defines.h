@@ -120,6 +120,10 @@ typedef unsigned char BYTE;
 # define VK_TAB 0x09
 #endif
 
+#define APP_PORT   12010
+#define SVC_PORT   12011
+#define INSTANCE_SVC_PORT 12012
+
 #define BTN_TEXT_CANCEL QObject::tr("Cancel")
 #define BTN_TEXT_YES    QObject::tr("Yes")
 #define BTN_TEXT_NO     QObject::tr("No")
