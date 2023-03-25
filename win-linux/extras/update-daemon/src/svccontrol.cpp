@@ -31,9 +31,10 @@
  */
 
 #include "svccontrol.h"
-#include "event_message/event_message.h"
 #include "utils.h"
 #include <aclapi.h>
+
+#define SVC_ERROR ((DWORD)0xC0020001L)
 
 BOOL GetServiceHandle(SC_HANDLE &schSCManager, SC_HANDLE &schService, DWORD dwDesiredAccess)
 {
