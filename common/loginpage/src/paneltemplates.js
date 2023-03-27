@@ -78,17 +78,17 @@
                 baseController.prototype.init.apply(this, arguments);
                 this.view.render();
 
-                if ( !!localStorage.templatespanel ) {
+                // if ( !!localStorage.templatespanel ) {
                     const iframe = createIframe({});
                     var target = document.getElementById("frame");
                     target.parentNode && target.parentNode.replaceChild(iframe, target);
-                } else {
-                    this.view.$menuitem.find('> a').click(e => {
-                        window.sdk.command("open:template", 'external');
-                        e.preventDefault();
-                        e.stopPropagation();
-                    });
-                }
+                // } else {
+                //     this.view.$menuitem.find('> a').click(e => {
+                //         window.sdk.command("open:template", 'external');
+                //         e.preventDefault();
+                //         e.stopPropagation();
+                //     });
+                // }
 
                 return this;
             }
