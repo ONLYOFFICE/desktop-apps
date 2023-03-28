@@ -48,7 +48,7 @@
 #ifdef _WIN32
 # include <Windows.h>
 # include "platform_win/updatedialog.h"
-# define DAEMON_NAME L"/update-daemon.exe"
+# define DAEMON_NAME L"/updatesvc.exe"
 #endif
 
 //#define CHECK_DIRECTORY
