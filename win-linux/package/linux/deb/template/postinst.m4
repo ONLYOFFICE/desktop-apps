@@ -37,7 +37,7 @@ fi
 ifelse(M4_COMPANY_NAME, ONLYOFFICE,
 xdg-mime install --mode system /opt/M4_DESKTOPEDITORS_PREFIX/mimetypes/onlyoffice-docxf.xml
 xdg-mime install --mode system /opt/M4_DESKTOPEDITORS_PREFIX/mimetypes/onlyoffice-oform.xml,
-if [[ -f /etc/astra_version && -f /etc/X11/trusted ]]; then
+if [ -f /etc/astra_version ] && [ -f /etc/X11/trusted ]; then
   sed -i '\|/opt/M4_DESKTOPEDITORS_PREFIX/DesktopEditors|d' /etc/X11/trusted
   echo '/opt/M4_DESKTOPEDITORS_PREFIX/DesktopEditors(KBD_R)' >> /etc/X11/trusted
 fi)
