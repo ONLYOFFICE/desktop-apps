@@ -2,10 +2,7 @@
     "provider": "nextcloud",
     "name": "Nextcloud",
     "check": {
-        "url": "status.php",
-        "headers": {
-            "OCS-APIREQUEST":"true"
-        }
+        "url": "status.php"
     },
     "editorPage" : "/apps/onlyoffice/",
     "cryptoSupport" : "true",
