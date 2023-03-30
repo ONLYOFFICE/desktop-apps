@@ -7,19 +7,22 @@ case "$1" in
 	purge)
 		ifelse(M4_COMPANY_NAME, ONLYOFFICE,
 		rm -fr /home/*/.local/share/M4_DESKTOPEDITORS_PREFIX,
-		rm -fr /home/*/.local/share/M4_PACKAGE_NAME)
-	;;
-
-	remove|upgrade|failed-upgrade|abort-install|abort-upgrade|disappear)
-  	:
-	;;
-
-	ifelse(M4_COMPANY_NAME, ONLYOFFICE,,
-	purge|remove|failed-upgrade|abort-install|abort-upgrade|disappear`)'
+		rm -fr /home/*/.local/share/M4_PACKAGE_NAME
 		if [ -f /etc/astra_version ] && [ -f /etc/X11/trusted ]; then
 			sed -i '\|/opt/M4_DESKTOPEDITORS_PREFIX/DesktopEditors|d' /etc/X11/trusted
-		fi
-	;;)
+		fi)
+	;;
+
+	remove)
+		ifelse(M4_COMPANY_NAME, ONLYOFFICE,:,
+		if [ -f /etc/astra_version ] && [ -f /etc/X11/trusted ]; then
+			sed -i '\|/opt/M4_DESKTOPEDITORS_PREFIX/DesktopEditors|d' /etc/X11/trusted
+		fi)
+	;;
+
+	upgrade|failed-upgrade|disappear|abort-install|abort-upgrade)
+		:
+	;;
 
 	*)
 		echo "postrm called with unknown argument \`$1'" >&2
