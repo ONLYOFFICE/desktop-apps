@@ -222,8 +222,11 @@ void CUpdateManager::onCompleteSlot(const int error, const wstring &filePath)
     } else
     if (error == -1) {
         sendMessage(MSG_OtherError, L"Update download failed: out of memory!");
-    } else {
+    } else
+    if (error == -2) {
         sendMessage(MSG_OtherError, L"Update download failed: server connection error!");
+    } else {
+        sendMessage(MSG_OtherError, L"Update download failed: network error!");
     }
 }
 
