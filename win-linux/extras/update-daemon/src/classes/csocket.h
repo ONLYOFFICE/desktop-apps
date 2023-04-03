@@ -35,6 +35,8 @@
 
 #include <functional>
 
+using std::size_t;
+
 typedef std::function<void(void*, size_t)> FnVoidData;
 typedef std::function<void(const char*)> FnVoidCharPtr;
 
