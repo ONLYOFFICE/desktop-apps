@@ -49,7 +49,7 @@
 #define APP_LAUNCH_NAME  L"/DesktopEditors.exe"
 #define APP_LAUNCH_NAME2 L"/editors.exe"
 #define APP_HELPER       L"/editors_helper.exe"
-#define DAEMON_NAME      L"/update-daemon.exe"
+#define DAEMON_NAME      L"/updatesvc.exe"
 #define SUCCES_UNPACKED  L"/.success_unpacked"
 
 using std::vector;
@@ -375,7 +375,7 @@ void CUpdateManager::startReplacingFiles()
     if (NS_File::fileExists(tmpPath + L"/unins000.exe"))
         NS_File::replaceFile(tmpPath + L"/unins000.exe", appPath + L"/unins000.exe");
 
-    // To support a version without update-daemon.exe inside the working folder
+    // To support a version without updatesvc.exe inside the working folder
     if (!NS_File::fileExists(appPath + DAEMON_NAME) && NS_File::fileExists(tmpPath + DAEMON_NAME))
         NS_File::replaceFile(tmpPath + DAEMON_NAME, appPath + DAEMON_NAME);
 
