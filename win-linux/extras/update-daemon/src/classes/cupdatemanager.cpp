@@ -346,23 +346,23 @@ void CUpdateManager::startReplacingFiles()
     }
 
     // Replace app path to Backup
-    if (!NS_File::replaceFile(appPath, tmpPath)) {
+    if (!NS_File::replaceFolder(appPath, tmpPath, true)) {
         NS_Logger::WriteLog(L"Update cancelled. Can't replace files to backup: " + NS_Utils::GetLastErrorAsString(), true);
         if (NS_File::dirExists(tmpPath) && !NS_File::dirIsEmpty(tmpPath)
-                && !NS_File::replaceFolderContents(tmpPath, appPath))
+                && !NS_File::replaceFolder(tmpPath, appPath))
             NS_Logger::WriteLog(L"Can't restore files from backup!", true);
         return;
     }
 
     // Move update path to app path
-    if (!NS_File::replaceFile(updPath, appPath)) {
+    if (!NS_File::replaceFolder(updPath, appPath, true)) {
         NS_Logger::WriteLog(L"Update cancelled. Can't move updates to App path: " + NS_Utils::GetLastErrorAsString(), true);
 
         if (NS_File::dirExists(appPath) && !NS_File::removeDirRecursively(appPath)) {
             NS_Logger::WriteLog(L"An error occurred while remove App path: " + NS_Utils::GetLastErrorAsString(), true);
             return;
         }
-        if (!NS_File::replaceFile(tmpPath, appPath))
+        if (!NS_File::replaceFolder(tmpPath, appPath, true))
             NS_Logger::WriteLog(L"An error occurred while restore files from backup: " + NS_Utils::GetLastErrorAsString(), true);
 
         NS_File::removeDirRecursively(updPath);
