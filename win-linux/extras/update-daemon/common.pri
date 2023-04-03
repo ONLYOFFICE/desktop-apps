@@ -90,6 +90,22 @@ core_windows {
             -luserenv
 }
 
+core_linux {
+    HEADERS += $$PWD/src/platform_linux/utils.h \
+               $$PWD/src/classes/platform_linux/capplication.h \
+               $$PWD/src/classes/platform_linux/cunzip.h \
+               $$PWD/src/classes/platform_linux/cdownloader.h
+
+    SOURCES += $$PWD/src/platform_linux/main.cpp \
+               $$PWD/src/platform_linux/utils.cpp \
+               $$PWD/src/classes/platform_linux/capplication.cpp \
+               $$PWD/src/classes/platform_linux/cunzip.cpp \
+               $$PWD/src/classes/platform_linux/cdownloader.cpp
+
+    CONFIG += link_pkgconfig
+    PKGCONFIG += gtk+-3.0
+    LIBS += -lSDL2 -lcurl -lssl -lcrypto -luuid -larchive -lpthread
+}
 
 OBJECTS_DIR = $$DESTDIR/obj
 MOC_DIR = $$DESTDIR/moc
