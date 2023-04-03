@@ -369,14 +369,15 @@ void CUpdateManager::startReplacingFiles()
         return;
     }
 
-#if 0
+    // To support a version with unins000 files inside the working folder
     if (NS_File::fileExists(tmpPath + L"/unins000.dat"))
         NS_File::replaceFile(tmpPath + L"/unins000.dat", appPath + L"/unins000.dat");
     if (NS_File::fileExists(tmpPath + L"/unins000.exe"))
         NS_File::replaceFile(tmpPath + L"/unins000.exe", appPath + L"/unins000.exe");
-    if (NS_File::fileExists(tmpPath + DAEMON_NAME))
+
+    // To support a version without update-daemon.exe inside the working folder
+    if (!NS_File::fileExists(appPath + DAEMON_NAME) && NS_File::fileExists(tmpPath + DAEMON_NAME))
         NS_File::replaceFile(tmpPath + DAEMON_NAME, appPath + DAEMON_NAME);
-#endif
 
     // Update version in registry
     {
