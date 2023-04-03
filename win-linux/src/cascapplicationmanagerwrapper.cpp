@@ -120,11 +120,9 @@ CAscApplicationManagerWrapper::CAscApplicationManagerWrapper(CAscApplicationMana
 
 #ifdef _UPDMODULE
     m_pUpdateManager = new CUpdateManager(this);
-#ifdef Q_OS_WIN
     connect(m_pUpdateManager, &CUpdateManager::progresChanged, this, [=](const int &percent) {
         AscAppManager::sendCommandTo(0, "updates:download", QString("{\"progress\":\"%1\"}").arg(QString::number(percent)));
     });
-#endif
 #endif
 }
 
@@ -156,7 +154,7 @@ CAscApplicationManagerWrapper::~CAscApplicationManagerWrapper()
         m_pMainWindow->deleteLater();
 #endif
     }
-#if defined (_UPDMODULE) && defined (_WIN32)
+#if defined (_UPDMODULE)
     // Start update installation
     m_pUpdateManager->handleAppClose();
 #endif
@@ -330,7 +328,7 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
         if ( !(cmd.find(L"update") == std::wstring::npos) ) {   // params: check, download, install, abort
             const QString params = QString::fromStdWString(pData->get_Param());
             if (params == "check") {
-                m_pUpdateManager->checkUpdates();
+                m_pUpdateManager->checkUpdates(true);
             } else
             if (params == "download") {
                 m_pUpdateManager->loadUpdates();

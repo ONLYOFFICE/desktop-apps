@@ -155,8 +155,12 @@ SOURCES += \
 #    src/components/casclabel.cpp
 
 updmodule:!build_xp {
-    HEADERS += $$PWD/src/cupdatemanager.h
-    SOURCES += $$PWD/src/cupdatemanager.cpp
+    INCLUDEPATH += $$PWD/extras/update-daemon/src/classes
+    HEADERS += $$PWD/src/cupdatemanager.h \
+               $$PWD/extras/update-daemon/src/classes/csocket.h
+
+    SOURCES += $$PWD/src/cupdatemanager.cpp \
+               $$PWD/extras/update-daemon/src/classes/csocket.cpp
 }
 
 RESOURCES += $$PWD/resources.qrc
@@ -224,6 +228,14 @@ core_linux {
                 $$PWD/src/platform_linux/gtkutils.cpp \
                 $$PWD/src/platform_linux/xcbutils.cpp
 
+    updmodule {
+        HEADERS += $$PWD/src/platform_linux/updatedialog.h \
+                   $$PWD/gtk_resources.h
+
+        SOURCES += $$PWD/src/platform_linux/updatedialog.cpp \
+                   $$PWD/gtk_resources.c
+    }
+
     CONFIG += link_pkgconfig
     PKGCONFIG += glib-2.0 gtk+-3.0 atk dbus-1 gtk+-unix-print-3.0 xcb
     LIBS += -lX11 -lX11-xcb
@@ -254,12 +266,8 @@ core_windows {
                $$PWD/src/platform_win/message.cpp
 
     updmodule:!build_xp {
-        INCLUDEPATH += $$PWD/extras/update-daemon/src/classes
-        HEADERS += $$PWD/src/platform_win/updatedialog.h \
-                   $$PWD/extras/update-daemon/src/classes/csocket.h
-
-        SOURCES += $$PWD/src/platform_win/updatedialog.cpp \
-                   $$PWD/extras/update-daemon/src/classes/csocket.cpp
+        HEADERS += $$PWD/src/platform_win/updatedialog.h
+        SOURCES += $$PWD/src/platform_win/updatedialog.cpp
     }
 
     LIBS += -lwininet \
