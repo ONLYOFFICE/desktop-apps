@@ -263,10 +263,7 @@ void CUpdateManager::init()
                 break;
 
             case MSG_ShowStartInstallMessage: {
-                QMetaObject::invokeMethod(m_dialogSchedule,
-                                          "addToSchedule",
-                                          Qt::QueuedConnection,
-                                          Q_ARG(QString, QString("showStartInstallMessage")));
+                QMetaObject::invokeMethod(m_dialogSchedule, "addToSchedule", Qt::QueuedConnection, Q_ARG(QString, QString("showStartInstallMessage")));
                 break;
             }
 
