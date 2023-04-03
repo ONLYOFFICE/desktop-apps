@@ -31,7 +31,7 @@
  */
 
 #include "svccontrol.h"
-#include "utils.h"
+#include "platform_win/utils.h"
 #include <aclapi.h>
 
 #define SVC_ERROR ((DWORD)0xC0020001L)
