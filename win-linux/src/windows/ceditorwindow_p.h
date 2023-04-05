@@ -433,7 +433,8 @@ public:
                 }
             } else {
                 window->m_pMainPanel->setProperty("window", "pretty");
-                m_mapTitleButtons["home"]->setIconOpacity(GetColorByRole(ecrButtonNormalOpacity));
+                if ( m_mapTitleButtons.contains("home") )
+                    m_mapTitleButtons["home"]->setIconOpacity(GetColorByRole(ecrButtonNormalOpacity));
             }
             AscEditorType editor_type = panel()->data()->contentType();
             window->m_css = prepare_editor_css(editor_type, GetCurrentTheme());
