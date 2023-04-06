@@ -39,7 +39,7 @@ $(document).ready(function() {
     !window.app && (window.app = {controller:{}});
     !window.app.controller && (window.app.controller = {});
 
-    if ( !!window.ControllerTemplates )
+    if ( !window.utils.isWinXp && !!window.ControllerTemplates )
         window.app.controller.templates = (new ControllerTemplates).init();
     window.app.controller.recent = (new ControllerRecent).init();
     window.app.controller.folders = (new ControllerFolders).init();
