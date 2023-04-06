@@ -63,7 +63,7 @@ public:
     void installUpdates();
 
 public slots:
-    void checkUpdates();
+    void checkUpdates(bool manualCheck = false);
 
 signals:
     void progresChanged(const int percent);
@@ -84,6 +84,7 @@ private:
     SavedPackageData *m_savedPackageData;
 
     bool        m_restartForUpdate = false,
+                m_manualCheck = false,
                 m_lock = false;
 
 //    QTimer      *m_pTimer = nullptr;

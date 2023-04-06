@@ -74,7 +74,7 @@
 #define VER_INTERNALNAME_STR        "AppIcons\0"
 #define VER_LEGALTRADEMARKS1_STR    "All rights reserved\0"
 #define VER_LEGALTRADEMARKS2_STR    VER_LEGALTRADEMARKS1_STR
-#define VER_ORIGINALFILENAME_STR    "update-daemon.exe\0"
+#define VER_ORIGINALFILENAME_STR    "updatesvc.exe\0"
 
 #ifdef APP_USE_PRIVATE_ASSETS
 # include "version_p.h"

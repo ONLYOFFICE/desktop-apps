@@ -1,5 +1,5 @@
 
-TARGET  = update-daemon
+TARGET  = updatesvc
 CONFIG  += c++11 console
 CONFIG  -= app_bundle
 CONFIG  -= qt
