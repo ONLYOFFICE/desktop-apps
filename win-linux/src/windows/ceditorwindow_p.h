@@ -145,7 +145,6 @@ class CEditorWindowPrivate : public CCefEventsGate
 {
     CEditorWindow * window = nullptr;
     QLabel * iconuser = nullptr;
-    QPushButton * btndock = nullptr;
     bool isPrinting = false,
         isFullScreen = false;
     CFullScrWidget * fs_parent = nullptr;
@@ -239,8 +238,7 @@ public:
 
     auto getInitials(const QString &name) -> QString {
         auto fio = name.split(' ');
-        QString initials = (!fio[0].isEmpty()) ?
-                    fio[0].mid(0, 1).toUpper() : "";
+        QString initials = !fio[0].isEmpty() ? fio[0].mid(0, 1).toUpper() : "";
         for (int i = fio.size() - 1; i > 0; i--) {
             if (!fio[i].isEmpty() && fio[i].at(0) != '('
                     && fio[i].at(0) != ')') {
@@ -784,16 +782,6 @@ public:
         }
 
         return iconcrypted;
-    }
-
-    QPushButton * buttonDock()
-    {
-        Q_ASSERT(window->m_boxTitleBtns != nullptr);
-        if ( !btndock ) {
-            btndock = window->createToolButton(window->m_boxTitleBtns, "toolButtonDock");
-        }
-
-        return btndock;
     }
 
     void onWebAppsFeatures(int, std::wstring f) override
