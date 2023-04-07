@@ -58,29 +58,29 @@
     <ROW Property="ProductVersion" Value="0.0.0.0"/>
     <ROW Property="REGISTER_CSV" Value="0" Type="4"/>
     <ROW Property="REGISTER_DJVU" Value="0" Type="4"/>
-    <ROW Property="REGISTER_DOC" Value="0" Type="4"/>
-    <ROW Property="REGISTER_DOCX" Value="0" Type="4"/>
-    <ROW Property="REGISTER_DOCXF" Value="0" Type="4"/>
-    <ROW Property="REGISTER_DOTX" Value="0" Type="4"/>
+    <ROW Property="REGISTER_DOC" Value="1" Type="4"/>
+    <ROW Property="REGISTER_DOCX" Value="1" Type="4"/>
+    <ROW Property="REGISTER_DOCXF" Value="1" Type="4"/>
+    <ROW Property="REGISTER_DOTX" Value="1" Type="4"/>
     <ROW Property="REGISTER_EPUB" Value="0" Type="4"/>
     <ROW Property="REGISTER_FB2" Value="0" Type="4"/>
     <ROW Property="REGISTER_HTML" Value="0" Type="4"/>
-    <ROW Property="REGISTER_ODP" Value="0" Type="4"/>
-    <ROW Property="REGISTER_ODS" Value="0" Type="4"/>
-    <ROW Property="REGISTER_ODT" Value="0" Type="4"/>
-    <ROW Property="REGISTER_OFORM" Value="0" Type="4"/>
-    <ROW Property="REGISTER_OTP" Value="0" Type="4"/>
-    <ROW Property="REGISTER_OTS" Value="0" Type="4"/>
-    <ROW Property="REGISTER_OTT" Value="0" Type="4"/>
+    <ROW Property="REGISTER_ODP" Value="1" Type="4"/>
+    <ROW Property="REGISTER_ODS" Value="1" Type="4"/>
+    <ROW Property="REGISTER_ODT" Value="1" Type="4"/>
+    <ROW Property="REGISTER_OFORM" Value="1" Type="4"/>
+    <ROW Property="REGISTER_OTP" Value="1" Type="4"/>
+    <ROW Property="REGISTER_OTS" Value="1" Type="4"/>
+    <ROW Property="REGISTER_OTT" Value="1" Type="4"/>
     <ROW Property="REGISTER_PDF" Value="0" Type="4"/>
-    <ROW Property="REGISTER_POTX" Value="0" Type="4"/>
-    <ROW Property="REGISTER_PPT" Value="0" Type="4"/>
-    <ROW Property="REGISTER_PPTX" Value="0" Type="4"/>
+    <ROW Property="REGISTER_POTX" Value="1" Type="4"/>
+    <ROW Property="REGISTER_PPT" Value="1" Type="4"/>
+    <ROW Property="REGISTER_PPTX" Value="1" Type="4"/>
     <ROW Property="REGISTER_RTF" Value="0" Type="4"/>
     <ROW Property="REGISTER_TXT" Value="0" Type="4"/>
-    <ROW Property="REGISTER_XLS" Value="0" Type="4"/>
-    <ROW Property="REGISTER_XLSX" Value="0" Type="4"/>
-    <ROW Property="REGISTER_XLTX" Value="0" Type="4"/>
+    <ROW Property="REGISTER_XLS" Value="1" Type="4"/>
+    <ROW Property="REGISTER_XLSX" Value="1" Type="4"/>
+    <ROW Property="REGISTER_XLTX" Value="1" Type="4"/>
     <ROW Property="REGISTER_XML" Value="0" Type="4"/>
     <ROW Property="REGISTER_XPS" Value="0" Type="4"/>
     <ROW Property="RUNAPPLICATION" Value="1" Type="4"/>
