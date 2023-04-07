@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<DOCUMENT Type="Advanced Installer" CreateVersion="18.6.1" version="20.3.1" Modules="enterprise" RootPath="." Language="en" Id="{B5BC1FE9-EBA1-4B6E-93EB-6D2DCEF2ED7F}">
+<DOCUMENT Type="Advanced Installer" CreateVersion="18.6.1" version="20.5" Modules="enterprise" RootPath="." Language="en" Id="{B5BC1FE9-EBA1-4B6E-93EB-6D2DCEF2ED7F}">
   <COMPONENT cid="caphyon.advinst.msicomp.ProjectOptionsComponent">
     <ROW Name="HiddenItems" Value="ActSyncAppComponent;CPLAppletComponent;AutorunComponent;GameUxComponent;SilverlightSlnComponent;SharePointSlnComponent;AppXAppDetailsComponent;FixupComponent;AppXCapabilitiesComponent;AppXDependenciesComponent;AppXProductDetailsComponent;AppXVisualAssetsComponent;AppXAppDeclarationsComponent;AppXUriRulesComponent;MsiXDiffComponent;MsixManifestEditorComponent"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiPropsComponent">
     <ROW Property="AI_BITMAP_DISPLAY_MODE" Value="0"/>
-    <ROW Property="AI_CURRENT_YEAR" Value="2023" ValueLocId="-"/>
     <ROW Property="AI_EXTERNALUIUNINSTALLERNAME" MultiBuildValue="DefaultBuild:aiui"/>
-    <ROW Property="AI_PACKAGING_TOOL" Value="Advanced Installer 20.3.1 build dae8a046" ValueLocId="-"/>
     <ROW Property="AI_PRODUCTNAME_ARP" Value="[|ProductName] [|ProductVersion] "/>
     <ROW Property="AI_SHORTCUTSREG" Value="0|0|0|0|"/>
     <ROW Property="AI_UNINSTALLER" Value="msiexec.exe"/>
@@ -433,10 +431,10 @@
     <ROW Dialog_="FileAssociationsDlg" Control="CheckBox_xls" Type="CheckBox" X="314" Y="134" Width="55" Height="11" Attributes="3" Property="REGISTER_XLS" Text=".xls" Order="3200" TextLocId="-"/>
     <ROW Dialog_="FileAssociationsDlg" Control="CheckBox_xlsx" Type="CheckBox" X="314" Y="156" Width="55" Height="11" Attributes="3" Property="REGISTER_XLSX" Text=".xlsx" Order="3300" TextLocId="-"/>
     <ROW Dialog_="FileAssociationsDlg" Control="CheckBox_xltx" Type="CheckBox" X="314" Y="178" Width="55" Height="11" Attributes="3" Property="REGISTER_XLTX" Text=".xltx" Order="3400" TextLocId="-"/>
-    <ROW Dialog_="FileAssociationsDlg" Control="CheckBox_xml" Type="CheckBox" X="50" Y="200" Width="55" Height="11" Attributes="3" Property="REGISTER_XML" Text=".xml" Order="3700" TextLocId="-"/>
-    <ROW Dialog_="FileAssociationsDlg" Control="CheckBox_xps" Type="CheckBox" X="116" Y="200" Width="55" Height="11" Attributes="3" Property="REGISTER_XPS" Text=".xps" Order="3800" TextLocId="-"/>
     <ROW Dialog_="FileAssociationsDlg" Control="Select_all_button" Type="PushButton" X="215" Y="211" Width="56" Height="17" Attributes="3" Text="Select all" Order="3500" TextLocId="Control.Text.FileAssociationsDlg#Select_all_button"/>
     <ROW Dialog_="FileAssociationsDlg" Control="Deselect_all_button" Type="PushButton" X="272" Y="211" Width="56" Height="17" Attributes="3" Text="Deselect all" Order="3600" TextLocId="Control.Text.FileAssociationsDlg#Deselect_all_button"/>
+    <ROW Dialog_="FileAssociationsDlg" Control="CheckBox_xml" Type="CheckBox" X="50" Y="200" Width="55" Height="11" Attributes="3" Property="REGISTER_XML" Text=".xml" Order="3700" TextLocId="-"/>
+    <ROW Dialog_="FileAssociationsDlg" Control="CheckBox_xps" Type="CheckBox" X="116" Y="200" Width="55" Height="11" Attributes="3" Property="REGISTER_XPS" Text=".xps" Order="3800" TextLocId="-"/>
     <ROW Dialog_="FilesInUse" Control="BannerBitmap" Type="Bitmap" X="0" Y="0" Width="370" Height="44" Attributes="1048577" Text="banner.png" Order="400" MsiKey="FilesInUse#BannerBitmap"/>
     <ROW Dialog_="FilesInUse" Control="Title" Type="Text" X="15" Y="6" Width="200" Height="15" Attributes="196611" Text="Files in Use" TextStyle="[DlgTitleFont]" Order="600" TextLocId="Control.Text.FilesInUse#Title" MsiKey="FilesInUse#Title"/>
     <ROW Dialog_="FilesInUse" Control="Text" Type="Text" X="20" Y="55" Width="330" Height="30" Attributes="3" Text="The following applications are using files that need to be updated by this setup. You can either close the applications and then click &quot;Retry&quot;, or click &quot;Ignore&quot; so that the installer continues the installation and replaces these files when your system restarts." Order="700" TextLocId="Control.Text.FilesInUse#Text" MsiKey="FilesInUse#Text"/>
@@ -928,12 +926,12 @@
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiInstExSeqComponent">
     <ROW Action="AI_DOWNGRADE" Condition="AI_NEWERPRODUCTFOUND AND (UILevel &lt;&gt; 5)" Sequence="210"/>
-    <ROW Action="AI_DETECT_MODERNWIN" Condition="(VersionNT &gt;= 603)" Sequence="57" MsiKey="AI_DETECT_MODERNWIN"/>
+    <ROW Action="AI_DETECT_MODERNWIN" Condition="(VersionNT &gt;= 603)" Sequence="58" MsiKey="AI_DETECT_MODERNWIN"/>
     <ROW Action="AI_RESTORE_LOCATION" Condition="APPDIR=&quot;&quot;" Sequence="747"/>
     <ROW Action="AI_STORE_LOCATION" Condition="(Not Installed) OR REINSTALL" Sequence="1502"/>
     <ROW Action="AI_PREPARE_UPGRADE" Condition="AI_UPGRADE=&quot;No&quot; AND (Not Installed)" Sequence="1397"/>
-    <ROW Action="AI_ResolveKnownFolders" Sequence="56"/>
-    <ROW Action="AI_EnableDebugLog" Sequence="55"/>
+    <ROW Action="AI_ResolveKnownFolders" Sequence="57"/>
+    <ROW Action="AI_EnableDebugLog" Sequence="56"/>
     <ROW Action="AI_GetArpIconPath" Sequence="1402"/>
     <ROW Action="AI_RemoveExternalUIStub" Condition="(REMOVE=&quot;ALL&quot;) AND ((VersionNT &gt; 500) OR((VersionNT = 500) AND (ServicePackLevel &gt;= 4)))" Sequence="1501"/>
     <ROW Action="AI_DELETE_SHORTCUTS" Condition="NOT (REMOVE=&quot;ALL&quot;)" Sequence="1401"/>
@@ -945,7 +943,7 @@
     <ROW Action="AI_VerifyPrereq" Sequence="1101"/>
     <ROW Action="AI_TxtUpdaterInstall" Sequence="5101"/>
     <ROW Action="SetLocaleProperty32" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) ) AND ( NOT VersionNT64 )" Sequence="53"/>
-    <ROW Action="SetLocaleProperty64" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) ) AND ( VersionNT64 )" Sequence="54"/>
+    <ROW Action="SetLocaleProperty64" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) ) AND ( VersionNT64 )" Sequence="55"/>
     <ROW Action="SetCustomPath" Condition="( NOT Installed )" Sequence="951"/>
     <ROW Action="UninstallOlderVersion32" Condition="( NOT Installed ) AND ( NOT VersionNT64 )" Sequence="51"/>
     <ROW Action="UninstallOlderVersion64" Condition="( NOT Installed ) AND ( VersionNT64 )" Sequence="52"/>
