@@ -11,8 +11,8 @@
   #define sWinArchFull              sWinArch
   #define sPlatformFull             sPlatform
 #else
-  #define sWinArchFull              sWinArch + "_xp"
-  #define sPlatformFull             sPlatform + "_xp"
+  #define sWinArchFull              sWinArch + "-xp"
+  #define sPlatformFull             sPlatform + "-xp"
 #endif
 
 #ifndef sBrandingFolder
@@ -27,7 +27,7 @@
 #define sAppVerShort                Copy(sAppVersion, 0, 3)
 
 #ifndef sOutputFileName
-  #define sOutputFileName           str(sPackageName + "_" + sAppVersion + "_" + sWinArchFull)
+  #define sOutputFileName           sPackageName + "-" + sAppVersion + "-" + sWinArchFull
 #endif
 
 #define sBrandingFile               sBrandingFolder + "\win-linux\package\windows\branding.iss"

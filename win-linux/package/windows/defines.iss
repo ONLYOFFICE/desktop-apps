@@ -5,7 +5,7 @@
 #define sProductName                    "Desktop Editors"
 #define sIntProductName                 "DesktopEditors"
 #define sAppName                        str(sCompanyName + " " + sProductName)
-#define sPackageName                    str(sIntCompanyName + "_" + sIntProductName)
+#define sPackageName                    str(sIntCompanyName + "-" + sIntProductName)
 #define sAppPublisher                   "Ascensio System SIA"
 #define sAppPublisherURL                "https://www.onlyoffice.com/"
 #define sAppSupportURL                  "https://www.onlyoffice.com/support.aspx"
@@ -14,7 +14,7 @@
 #define sAppProtocol                    'oo-office'
 
 #define sAppHelpName                    str(sAppName + " Help")
-#define sPackageHelpName                str(sPackageName + "_Help")
+#define sPackageHelpName                str(sPackageName + "-Help")
 
 #define APP_PATH                        str(sIntCompanyName + "\" + sIntProductName)
 #define APP_REG_PATH                    str("Software\" + APP_PATH)
