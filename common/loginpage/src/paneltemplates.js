@@ -60,7 +60,8 @@
     var ViewTemplates = function(args) {
         var _lang = utils.Lang;
 
-        args.tplPage = `<div class="action-panel ${args.action}"><div id="frame"></div></div>`;
+        const msg = 'Something went wrong :(<br>Check internet connection.';
+        args.tplPage = `<div class="action-panel ${args.action}"><div id="frame"><h3>${msg}</h3></div></div>`;
         args.menu = '.main-column.tool-menu';
         args.field = '.main-column.col-center';
         args.itemindex = 0;
@@ -78,10 +79,25 @@
                 baseController.prototype.init.apply(this, arguments);
                 this.view.render();
 
-                // if ( !!localStorage.templatespanel ) {
+                const _create_and_inject_iframe = () => {
                     const iframe = createIframe({});
-                    var target = document.getElementById("frame");
+                    const target = document.getElementById("frame");
                     target.parentNode && target.parentNode.replaceChild(iframe, target);
+
+                    return iframe;
+                }
+
+                // if ( !!localStorage.templatespanel ) {
+                    let iframe;
+                    if ( navigator.onLine ) {
+                        iframe = _create_and_inject_iframe();
+                    } else {
+                        CommonEvents.on('panel:show', panel => {
+                            if ( !iframe && panel == this.action && navigator.onLine) {
+                                iframe = _create_and_inject_iframe();
+                            }
+                        });
+                    }
                 // } else {
                 //     this.view.$menuitem.find('> a').click(e => {
                 //         window.sdk.command("open:template", 'external');
