@@ -57,9 +57,6 @@ namespace NS_File
 bool GetFilesList(const wstring &path, list<wstring> *lst, wstring &error);
 bool readFile(const wstring &filePath, list<wstring> &linesList);
 bool writeToFile(const wstring &filePath, list<wstring> &linesList);
-bool replaceListOfFiles(const list<wstring> &filesList, const wstring &from,
-                            const wstring &to, const wstring &tmp = L"");
-bool replaceFolderContents(const wstring &from, const wstring &to, const wstring &tmp = L"");
 bool runProcess(const wstring &fileName, const wstring &args);
 bool isProcessRunning(const wstring &fileName);
 bool fileExists(const wstring &filePath);
@@ -67,6 +64,7 @@ bool dirExists(const wstring &dirName);
 bool dirIsEmpty(const wstring &dirName);
 bool makePath(const wstring &path);
 bool replaceFile(const wstring &oldFilePath, const wstring &newFilePath);
+bool replaceFolder(const wstring &from, const wstring &to, bool remove_existing = false);
 bool removeFile(const wstring &filePath);
 bool removeDirRecursively(const wstring &dir);
 wstring fromNativeSeparators(const wstring &path);

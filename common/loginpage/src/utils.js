@@ -385,3 +385,4 @@ function getUrlParams() {
 
 utils.inParams = getUrlParams();
 utils.brandCheck = opts => true;
+utils.isWinXp = utils.inParams.osver == 'winxp' || /windows nt 5/i.test(navigator.appVersion);

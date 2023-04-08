@@ -48,7 +48,7 @@
 #ifdef _WIN32
 # include <Windows.h>
 # include "platform_win/updatedialog.h"
-# define DAEMON_NAME L"/update-daemon.exe"
+# define DAEMON_NAME L"/updatesvc.exe"
 #endif
 
 //#define CHECK_DIRECTORY
@@ -263,10 +263,7 @@ void CUpdateManager::init()
                 break;
 
             case MSG_ShowStartInstallMessage: {
-                QMetaObject::invokeMethod(m_dialogSchedule,
-                                          "addToSchedule",
-                                          Qt::QueuedConnection,
-                                          Q_ARG(QString, QString("showStartInstallMessage")));
+                QMetaObject::invokeMethod(m_dialogSchedule, "addToSchedule", Qt::QueuedConnection, Q_ARG(QString, QString("showStartInstallMessage")));
                 break;
             }
 
@@ -287,6 +284,11 @@ void CUpdateManager::init()
 
 void CUpdateManager::criticalMsg(QWidget *parent, const QString &msg)
 {
+    if (!m_manualCheck) {
+        m_lock = false;
+        return;
+    }
+    m_manualCheck = false;
     HWND parent_hwnd = (parent) ? (HWND)parent->winId() : NULL;
     wstring lpText = msg.toStdWString();
     MessageBoxW(parent_hwnd, lpText.c_str(), TEXT(APP_TITLE), MB_ICONERROR | MB_SERVICE_NOTIFICATION_NT3X | MB_SETFOREGROUND);
@@ -304,12 +306,12 @@ void CUpdateManager::clearTempFiles(const QString &except)
         savePackageData();
 }
 
-void CUpdateManager::checkUpdates()
+void CUpdateManager::checkUpdates(bool manualCheck)
 {
     if (m_lock)
         return;
     m_lock = true;
-
+    m_manualCheck = manualCheck;
     destroyStartupTimer(m_pCheckOnStartupTimer);
     m_packageData->clear();
 

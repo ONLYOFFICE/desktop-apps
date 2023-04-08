@@ -49,7 +49,7 @@
 #define APP_LAUNCH_NAME  L"/DesktopEditors.exe"
 #define APP_LAUNCH_NAME2 L"/editors.exe"
 #define APP_HELPER       L"/editors_helper.exe"
-#define DAEMON_NAME      L"/update-daemon.exe"
+#define DAEMON_NAME      L"/updatesvc.exe"
 #define SUCCES_UNPACKED  L"/.success_unpacked"
 
 using std::vector;
@@ -222,8 +222,11 @@ void CUpdateManager::onCompleteSlot(const int error, const wstring &filePath)
     } else
     if (error == -1) {
         sendMessage(MSG_OtherError, L"Update download failed: out of memory!");
-    } else {
+    } else
+    if (error == -2) {
         sendMessage(MSG_OtherError, L"Update download failed: server connection error!");
+    } else {
+        sendMessage(MSG_OtherError, L"Update download failed: network error!");
     }
 }
 
@@ -343,37 +346,38 @@ void CUpdateManager::startReplacingFiles()
     }
 
     // Replace app path to Backup
-    if (!NS_File::replaceFile(appPath, tmpPath)) {
+    if (!NS_File::replaceFolder(appPath, tmpPath, true)) {
         NS_Logger::WriteLog(L"Update cancelled. Can't replace files to backup: " + NS_Utils::GetLastErrorAsString(), true);
         if (NS_File::dirExists(tmpPath) && !NS_File::dirIsEmpty(tmpPath)
-                && !NS_File::replaceFolderContents(tmpPath, appPath))
+                && !NS_File::replaceFolder(tmpPath, appPath))
             NS_Logger::WriteLog(L"Can't restore files from backup!", true);
         return;
     }
 
     // Move update path to app path
-    if (!NS_File::replaceFile(updPath, appPath)) {
+    if (!NS_File::replaceFolder(updPath, appPath, true)) {
         NS_Logger::WriteLog(L"Update cancelled. Can't move updates to App path: " + NS_Utils::GetLastErrorAsString(), true);
 
         if (NS_File::dirExists(appPath) && !NS_File::removeDirRecursively(appPath)) {
             NS_Logger::WriteLog(L"An error occurred while remove App path: " + NS_Utils::GetLastErrorAsString(), true);
             return;
         }
-        if (!NS_File::replaceFile(tmpPath, appPath))
+        if (!NS_File::replaceFolder(tmpPath, appPath, true))
             NS_Logger::WriteLog(L"An error occurred while restore files from backup: " + NS_Utils::GetLastErrorAsString(), true);
 
         NS_File::removeDirRecursively(updPath);
         return;
     }
 
-#if 0
+    // To support a version with unins000 files inside the working folder
     if (NS_File::fileExists(tmpPath + L"/unins000.dat"))
         NS_File::replaceFile(tmpPath + L"/unins000.dat", appPath + L"/unins000.dat");
     if (NS_File::fileExists(tmpPath + L"/unins000.exe"))
         NS_File::replaceFile(tmpPath + L"/unins000.exe", appPath + L"/unins000.exe");
-    if (NS_File::fileExists(tmpPath + DAEMON_NAME))
+
+    // To support a version without updatesvc.exe inside the working folder
+    if (!NS_File::fileExists(appPath + DAEMON_NAME) && NS_File::fileExists(tmpPath + DAEMON_NAME))
         NS_File::replaceFile(tmpPath + DAEMON_NAME, appPath + DAEMON_NAME);
-#endif
 
     // Update version in registry
     {

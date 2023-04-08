@@ -140,7 +140,7 @@ void CDownloader::start()
         int error = (hr == S_OK) ? 0 :
                     (hr == E_ABORT) ? 1 :
                     (hr == E_OUTOFMEMORY) ? -1 :
-                    (hr == INET_E_DOWNLOAD_FAILURE) ? -2 : -3;
+                    (HRESULT_CODE(hr) == ERROR_INVALID_HANDLE) ? -2 : -3;
 
         if (m_complete_callback)
             m_complete_callback(error);

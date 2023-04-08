@@ -125,34 +125,6 @@ namespace NS_File
         return true;
     }
 
-    bool moveSingleFile(const wstring &source, const wstring &dest, const wstring &temp, bool useTmp)
-    {
-        if (fileExists(dest)) {
-            if (useTmp) {
-                // Create a backup
-                if (!dirExists(parentPath(temp)) && !makePath(parentPath(temp))) {
-                    NS_Logger::WriteLog(L"Can't create path: " + parentPath(temp));
-                    return false;
-                }
-                if (!replaceFile(dest, temp)) {
-                    NS_Logger::WriteLog(L"Can't move file from " + dest + L" to " + temp + L". " + NS_Utils::GetLastErrorAsString());
-                    return false;
-                }
-            }
-        } else {
-            if (!dirExists(parentPath(dest)) && !makePath(parentPath(dest))) {
-                NS_Logger::WriteLog(L"Can't create path: " + parentPath(dest));
-                return false;
-            }
-        }
-
-        if (!replaceFile(source, dest)) {
-            NS_Logger::WriteLog(L"Can't move file from " + source + L" to " + dest + L". " + NS_Utils::GetLastErrorAsString());
-            return false;
-        }
-        return true;
-    }
-
     bool readFile(const wstring &filePath, list<wstring> &linesList)
     {
         std::wifstream file(filePath.c_str(), std::ios_base::in);
@@ -179,45 +151,6 @@ namespace NS_File
             file << line << std::endl;
 
         file.close();
-        return true;
-    }
-
-    bool replaceListOfFiles(const list<wstring> &filesList, const wstring &from,
-                                const wstring &to, const wstring &tmp)
-    {
-        bool useTmp = !tmp.empty() && from != tmp && to != tmp;
-        for (const wstring &relFilePath: filesList) {
-            if (!relFilePath.empty()) {
-                if (!moveSingleFile(from + relFilePath,
-                                    to + relFilePath,
-                                    tmp + relFilePath,
-                                    useTmp)) {
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
-
-    bool replaceFolderContents(const wstring &from, const wstring &to, const wstring &tmp)
-    {
-        list<wstring> filesList;
-        wstring error;
-        if (!GetFilesList(from, &filesList, error))
-            return false;
-
-        const size_t sourceLength = from.length();
-        bool useTmp = !tmp.empty() && from != tmp && to != tmp;
-        for (const wstring &sourcePath : filesList) {
-            if (!sourcePath.empty()) {
-                if (!moveSingleFile(sourcePath,
-                                    to + sourcePath.substr(sourceLength),
-                                    tmp + sourcePath.substr(sourceLength),
-                                    useTmp)) {
-                    return false;
-                }
-            }
-        }
         return true;
     }
 
@@ -331,6 +264,58 @@ namespace NS_File
                            MOVEFILE_REPLACE_EXISTING | MOVEFILE_WRITE_THROUGH) != 0 ? true : false;
     }
 
+    bool replaceFolder(const wstring &from, const wstring &to, bool remove_existing)
+    {
+        if (!dirExists(from) || !dirExists(parentPath(to))) {
+            NS_Logger::WriteLog(DEFAULT_ERROR_MESSAGE);
+            return false;
+        }
+
+        if (remove_existing && dirExists(to) && !removeDirRecursively(to)) {
+            NS_Logger::WriteLog(L"Can't remove dir: " + to);
+            return false;
+        }
+
+        WCHAR src_vol[MAX_PATH+1] = {0};
+        WCHAR dst_vol[MAX_PATH+1] = {0};
+        BOOL src_res = GetVolumePathName(from.c_str(), src_vol, sizeof(src_vol)/sizeof(WCHAR));
+        BOOL dst_res = GetVolumePathName(parentPath(to).c_str(), dst_vol, sizeof(dst_vol)/sizeof(WCHAR));
+
+        bool can_use_rename = (src_res != 0 && dst_res != 0 && wcscmp(src_vol, dst_vol) == 0);
+        if (!dirExists(to) && can_use_rename) {
+            if (MoveFileEx(from.c_str(), to.c_str(), MOVEFILE_REPLACE_EXISTING |
+                              MOVEFILE_WRITE_THROUGH | MOVEFILE_COPY_ALLOWED) == 0) {
+                NS_Logger::WriteLog(L"Can't move dir from " + from + L" to " + to + L". " + NS_Utils::GetLastErrorAsString());
+                return false;
+            }
+        } else {
+            list<wstring> filesList;
+            wstring error;
+            if (!NS_File::GetFilesList(from, &filesList, error)) {
+                NS_Logger::WriteLog(L"Can't get files list: " + error);
+                return false;
+            }
+
+            const size_t sourceLength = from.length();
+            for (const wstring &sourcePath : filesList) {
+                if (!sourcePath.empty()) {
+                    wstring dest = to + sourcePath.substr(sourceLength);
+                    if (!NS_File::dirExists(NS_File::parentPath(dest)) && !NS_File::makePath(NS_File::parentPath(dest))) {
+                        NS_Logger::WriteLog(L"Can't create path: " + NS_File::parentPath(dest));
+                        return false;
+                    }
+                    if (MoveFileEx(sourcePath.c_str(), dest.c_str(), MOVEFILE_REPLACE_EXISTING |
+                                      MOVEFILE_WRITE_THROUGH | MOVEFILE_COPY_ALLOWED) == 0) {
+                        NS_Logger::WriteLog(L"Can't move file from " + sourcePath + L" to " + dest + L". " + NS_Utils::GetLastErrorAsString());
+                        return false;
+                    }
+                }
+            }
+        }
+        removeDirRecursively(from);
+        return true;
+    }
+
     bool removeFile(const wstring &filePath)
     {
         return DeleteFile(filePath.c_str()) != 0 ? true : false;
@@ -338,7 +323,7 @@ namespace NS_File
 
     bool removeDirRecursively(const wstring &dir)
     {
-        WCHAR pFrom[_MAX_PATH + 1];
+        WCHAR pFrom[_MAX_PATH + 1] = {0};
         swprintf_s(pFrom, sizeof(pFrom)/sizeof(WCHAR), L"%s%c", dir.c_str(), '\0');
         SHFILEOPSTRUCT fop = {
             NULL,
@@ -350,11 +335,7 @@ namespace NS_File
             0,
             NULL
         };
-        if (SHFileOperation(&fop) != 0)
-            return false;
-        if (!dirExists(dir))
-            return true;
-        return (RemoveDirectory(pFrom) != 0) ? true : false;
+        return (SHFileOperation(&fop) == 0);
     }
 
     wstring fromNativeSeparators(const wstring &path)

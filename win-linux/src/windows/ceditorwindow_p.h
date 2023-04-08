@@ -145,7 +145,6 @@ class CEditorWindowPrivate : public CCefEventsGate
 {
     CEditorWindow * window = nullptr;
     QLabel * iconuser = nullptr;
-    QPushButton * btndock = nullptr;
     bool isPrinting = false,
         isFullScreen = false;
     CFullScrWidget * fs_parent = nullptr;
@@ -239,8 +238,7 @@ public:
 
     auto getInitials(const QString &name) -> QString {
         auto fio = name.split(' ');
-        QString initials = (!fio[0].isEmpty()) ?
-                    fio[0].mid(0, 1).toUpper() : "";
+        QString initials = !fio[0].isEmpty() ? fio[0].mid(0, 1).toUpper() : "";
         for (int i = fio.size() - 1; i > 0; i--) {
             if (!fio[i].isEmpty() && fio[i].at(0) != '('
                     && fio[i].at(0) != ')') {
@@ -433,7 +431,8 @@ public:
                 }
             } else {
                 window->m_pMainPanel->setProperty("window", "pretty");
-                m_mapTitleButtons["home"]->setIconOpacity(GetColorByRole(ecrButtonNormalOpacity));
+                if ( m_mapTitleButtons.contains("home") )
+                    m_mapTitleButtons["home"]->setIconOpacity(GetColorByRole(ecrButtonNormalOpacity));
             }
             AscEditorType editor_type = panel()->data()->contentType();
             window->m_css = prepare_editor_css(editor_type, GetCurrentTheme());
@@ -533,6 +532,10 @@ public:
             QPrinter * printer = pContext->getPrinter();
             printer->setFromTo(1, pagescount);
             printer->printEngine()->setProperty(QPrintEngine::PPK_DocumentName, documentName);
+            printer->setDuplex(AscAppManager::printData().duplexMode());
+            if ( printer->supportsMultipleCopies() ) {
+                printer->setCopyCount(AscAppManager::printData().copiesCount());
+            }
 
             if ( !AscAppManager::printData().isQuickPrint() ) {
                 printer->setPageOrientation(AscAppManager::printData().pageOrientation());
@@ -783,16 +786,6 @@ public:
         }
 
         return iconcrypted;
-    }
-
-    QPushButton * buttonDock()
-    {
-        Q_ASSERT(window->m_boxTitleBtns != nullptr);
-        if ( !btndock ) {
-            btndock = window->createToolButton(window->m_boxTitleBtns, "toolButtonDock");
-        }
-
-        return btndock;
     }
 
     void onWebAppsFeatures(int, std::wstring f) override
