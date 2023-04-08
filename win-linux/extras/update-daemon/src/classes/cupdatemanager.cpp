@@ -46,6 +46,7 @@
 
 #define UPDATE_PATH      TEXT("/" REG_APP_NAME "Updates")
 #define BACKUP_PATH      TEXT("/" REG_APP_NAME "Backup")
+#define SVC_TEMP_PATH    L"/TempSvc"
 #define APP_LAUNCH_NAME  L"/DesktopEditors.exe"
 #define APP_LAUNCH_NAME2 L"/editors.exe"
 #define APP_HELPER       L"/editors_helper.exe"
@@ -294,6 +295,7 @@ void CUpdateManager::startReplacingFiles()
     wstring appPath = NS_File::appPath();
     wstring updPath = NS_File::tempPath() + UPDATE_PATH;
     wstring tmpPath = NS_File::tempPath() + BACKUP_PATH;
+    wstring svcTemp = NS_File::parentPath(appPath) + SVC_TEMP_PATH;
     if (!NS_File::dirExists(updPath)) {
         NS_Logger::WriteLog(L"Update cancelled. Can't find folder: " + updPath, true);
         return;
@@ -314,6 +316,16 @@ void CUpdateManager::startReplacingFiles()
     // Check backup folder
     if (NS_File::dirExists(tmpPath) && !NS_File::removeDirRecursively(tmpPath)) {
         NS_Logger::WriteLog(L"Update cancelled. Can't delete folder: " + tmpPath, true);
+        return;
+    }
+
+    // Check TempSvc folder
+    if (NS_File::dirExists(svcTemp) && !NS_File::dirIsEmpty(svcTemp) && !NS_File::removeDirRecursively(svcTemp)) {
+        NS_Logger::WriteLog(L"Update cancelled. Can't delete folder: " + svcTemp, true);
+        return;
+    }
+    if (!NS_File::dirExists(svcTemp) && !NS_File::makePath(svcTemp)) {
+        NS_Logger::WriteLog(L"Update cancelled. Can't create folder: " + svcTemp, true);
         return;
     }
 
@@ -345,11 +357,19 @@ void CUpdateManager::startReplacingFiles()
         }
     }
 
+    // Move updatesvc.exe to TempSvc path
+    if (NS_File::fileExists(appPath + DAEMON_NAME) && !NS_File::replaceFile(appPath + DAEMON_NAME, svcTemp + DAEMON_NAME)) {
+        NS_Logger::WriteLog(L"Update cancelled. Can't replace file: " + appPath + DAEMON_NAME, true);
+        return;
+    }
+
     // Replace app path to Backup
     if (!NS_File::replaceFolder(appPath, tmpPath, true)) {
         NS_Logger::WriteLog(L"Update cancelled. Can't replace files to backup: " + NS_Utils::GetLastErrorAsString(), true);
         if (NS_File::dirExists(tmpPath) && !NS_File::dirIsEmpty(tmpPath) && !NS_File::replaceFolder(tmpPath, appPath))
             NS_Logger::WriteLog(L"Can't restore files from backup!", true);
+        if (NS_File::fileExists(svcTemp + DAEMON_NAME) && !NS_File::replaceFile(svcTemp + DAEMON_NAME, appPath + DAEMON_NAME))
+            NS_Logger::WriteLog(L"Can't restore file: " + svcTemp + DAEMON_NAME, true);
         return;
     }
 
@@ -364,6 +384,8 @@ void CUpdateManager::startReplacingFiles()
         if (!NS_File::replaceFolder(tmpPath, appPath, true))
             NS_Logger::WriteLog(L"An error occurred while restore files from backup: " + NS_Utils::GetLastErrorAsString(), true);
 
+        if (NS_File::fileExists(svcTemp + DAEMON_NAME) && !NS_File::replaceFile(svcTemp + DAEMON_NAME, appPath + DAEMON_NAME))
+            NS_Logger::WriteLog(L"An error occurred while restore file: " + svcTemp + DAEMON_NAME, true);
         NS_File::removeDirRecursively(updPath);
         return;
     }
@@ -375,8 +397,8 @@ void CUpdateManager::startReplacingFiles()
         NS_File::replaceFile(tmpPath + L"/unins000.exe", appPath + L"/unins000.exe");
 
     // To support a version without updatesvc.exe inside the working folder
-    if (!NS_File::fileExists(appPath + DAEMON_NAME) && NS_File::fileExists(tmpPath + DAEMON_NAME))
-        NS_File::replaceFile(tmpPath + DAEMON_NAME, appPath + DAEMON_NAME);
+    if (!NS_File::fileExists(appPath + DAEMON_NAME) && NS_File::fileExists(svcTemp + DAEMON_NAME))
+        NS_File::replaceFile(svcTemp + DAEMON_NAME, appPath + DAEMON_NAME);
 
     // Update version in registry
     {
