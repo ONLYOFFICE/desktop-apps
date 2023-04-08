@@ -1110,6 +1110,10 @@ void CMainWindow::onDocumentPrint(void * opts)
         QPrinter * printer = pContext->getPrinter();
         printer->setFromTo(1, pagesCount);
         printer->printEngine()->setProperty(QPrintEngine::PPK_DocumentName, documentName);
+        printer->setDuplex(AscAppManager::printData().duplexMode());
+        if ( printer->supportsMultipleCopies() ) {
+            printer->setCopyCount(AscAppManager::printData().copiesCount());
+        }
 
         if ( !AscAppManager::printData().isQuickPrint() ) {
             printer->setPageOrientation(AscAppManager::printData().pageOrientation());
