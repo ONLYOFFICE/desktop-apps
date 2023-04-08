@@ -580,6 +580,7 @@ void CUpdateManager::onCheckFinished(bool error, bool updateExist, const QString
                 loadUpdates();
                 break;
             case UpdateMode::ASK:
+            case UpdateMode::DISABLE:
                 m_dialogSchedule->addToSchedule("showUpdateMessage");
                 break;
             }
