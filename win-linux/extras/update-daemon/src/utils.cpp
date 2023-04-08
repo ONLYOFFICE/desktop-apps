@@ -91,21 +91,22 @@ namespace NS_File
 {
     bool GetFilesList(const wstring &path, list<wstring> *lst, wstring &error)
     {
-        WCHAR szDir[MAX_PATH];
-        wstring searchPath = path + L"/*";
-        wcscpy_s(szDir, MAX_PATH, searchPath.c_str());
+        wstring searchPath = toNativeSeparators(path) + L"\\*";
+        if (searchPath.size() > MAX_PATH - 1) {
+            error = wstring(L"Path name is too long: ") + searchPath;
+            return false;
+        }
 
         WIN32_FIND_DATA ffd;
-        HANDLE hFind = FindFirstFile(szDir, &ffd);
+        HANDLE hFind = FindFirstFile(searchPath.c_str(), &ffd);
         if (hFind == INVALID_HANDLE_VALUE) {
-            error = wstring(L"FindFirstFile invalid handle value: ") + szDir;
+            error = wstring(L"FindFirstFile invalid handle value: ") + searchPath;
             return false;
         }
 
         do {
             if (ffd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) {
-                if (!wcscmp(ffd.cFileName, L".")
-                        || !wcscmp(ffd.cFileName, L".."))
+                if (!wcscmp(ffd.cFileName, L".") || !wcscmp(ffd.cFileName, L".."))
                     continue;
                 if (!GetFilesList(path + L"/" + wstring(ffd.cFileName), lst, error)) {
                     FindClose(hFind);
@@ -118,7 +119,7 @@ namespace NS_File
 
         if (GetLastError() != ERROR_NO_MORE_FILES) {
             FindClose(hFind);
-            error = wstring(L"Error while FindFile: ") + szDir;
+            error = wstring(L"Error while find files: ") + searchPath;
             return false;
         }
         FindClose(hFind);

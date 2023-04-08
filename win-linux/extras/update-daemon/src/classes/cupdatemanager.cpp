@@ -275,7 +275,7 @@ void CUpdateManager::clearTempFiles(const wstring &prefix, const wstring &except
         list<wstring> filesList;
         wstring _error;
         if (!NS_File::GetFilesList(NS_File::tempPath(), &filesList, _error)) {
-            NS_Logger::WriteLog(DEFAULT_ERROR_MESSAGE);
+            NS_Logger::WriteLog(DEFAULT_ERROR_MESSAGE + L" " + _error);
             return;
         }
         for (auto &filePath : filesList) {
@@ -348,8 +348,7 @@ void CUpdateManager::startReplacingFiles()
     // Replace app path to Backup
     if (!NS_File::replaceFolder(appPath, tmpPath, true)) {
         NS_Logger::WriteLog(L"Update cancelled. Can't replace files to backup: " + NS_Utils::GetLastErrorAsString(), true);
-        if (NS_File::dirExists(tmpPath) && !NS_File::dirIsEmpty(tmpPath)
-                && !NS_File::replaceFolder(tmpPath, appPath))
+        if (NS_File::dirExists(tmpPath) && !NS_File::dirIsEmpty(tmpPath) && !NS_File::replaceFolder(tmpPath, appPath))
             NS_Logger::WriteLog(L"Can't restore files from backup!", true);
         return;
     }
