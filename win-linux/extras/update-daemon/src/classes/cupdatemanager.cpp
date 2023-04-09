@@ -50,6 +50,7 @@
 #define APP_LAUNCH_NAME2 L"/editors.exe"
 #define APP_HELPER       L"/editors_helper.exe"
 #define DAEMON_NAME      L"/updatesvc.exe"
+#define DAEMON_NAME_OLD  L"/~updatesvc.exe"
 #define SUCCES_UNPACKED  L"/.success_unpacked"
 
 using std::vector;
@@ -181,7 +182,7 @@ void CUpdateManager::onCompleteUnzip(const int error)
 {
     if (error == UNZIP_OK) {
         // Сreate a file about successful unpacking for use in subsequent launches
-        const wstring updPath = NS_File::tempPath() + UPDATE_PATH;
+        const wstring updPath = NS_File::parentPath(NS_File::appPath()) + UPDATE_PATH;
         list<wstring> successList{m_newVersion};
         if (!NS_File::writeToFile(updPath + SUCCES_UNPACKED, successList)) {
             m_lock = false;
@@ -243,7 +244,7 @@ void CUpdateManager::unzipIfNeeded(const wstring &filePath, const wstring &newVe
     m_lock = true;
 
     m_newVersion = newVersion;
-    const wstring updPath = NS_File::tempPath() + UPDATE_PATH;
+    const wstring updPath = NS_File::parentPath(NS_File::appPath()) + UPDATE_PATH;
     auto unzip = [=]()->void {
         if (!NS_File::dirExists(updPath) && !NS_File::makePath(updPath)) {
             NS_Logger::WriteLog(L"An error occurred while creating dir: " + updPath);
@@ -292,8 +293,8 @@ void CUpdateManager::clearTempFiles(const wstring &prefix, const wstring &except
 void CUpdateManager::startReplacingFiles()
 {
     wstring appPath = NS_File::appPath();
-    wstring updPath = NS_File::tempPath() + UPDATE_PATH;
-    wstring tmpPath = NS_File::tempPath() + BACKUP_PATH;
+    wstring updPath = NS_File::parentPath(appPath) + UPDATE_PATH;
+    wstring tmpPath = NS_File::parentPath(appPath) + BACKUP_PATH;
     if (!NS_File::dirExists(updPath)) {
         NS_Logger::WriteLog(L"Update cancelled. Can't find folder: " + updPath, true);
         return;
@@ -377,6 +378,8 @@ void CUpdateManager::startReplacingFiles()
     // To support a version without updatesvc.exe inside the working folder
     if (!NS_File::fileExists(appPath + DAEMON_NAME))
         NS_File::replaceFile(tmpPath + DAEMON_NAME, appPath + DAEMON_NAME);
+    else
+        NS_File::replaceFile(tmpPath + DAEMON_NAME, appPath + DAEMON_NAME_OLD);
 
     // Update version in registry
     {
