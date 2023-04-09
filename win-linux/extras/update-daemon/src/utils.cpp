@@ -263,8 +263,8 @@ namespace NS_File
 
     bool replaceFile(const wstring &oldFilePath, const wstring &newFilePath)
     {
-        return MoveFileExW(oldFilePath.c_str(), newFilePath.c_str(),
-                           MOVEFILE_REPLACE_EXISTING | MOVEFILE_WRITE_THROUGH) != 0 ? true : false;
+        return MoveFileExW(oldFilePath.c_str(), newFilePath.c_str(), MOVEFILE_REPLACE_EXISTING |
+                              MOVEFILE_WRITE_THROUGH | MOVEFILE_COPY_ALLOWED) != 0 ? true : false;
     }
 
     bool replaceFolder(const wstring &from, const wstring &to, bool remove_existing)
