@@ -89,7 +89,7 @@ namespace NS_Utils
 
 namespace NS_File
 {
-    bool GetFilesList(const wstring &path, list<wstring> *lst, wstring &error)
+    bool GetFilesList(const wstring &path, list<wstring> *lst, wstring &error, bool ignore_locked)
     {
         wstring searchPath = toNativeSeparators(path) + L"\\*";
         if (searchPath.size() > MAX_PATH - 1) {
@@ -100,6 +100,8 @@ namespace NS_File
         WIN32_FIND_DATA ffd;
         HANDLE hFind = FindFirstFile(searchPath.c_str(), &ffd);
         if (hFind == INVALID_HANDLE_VALUE) {
+            if (ignore_locked && dirExists(path))
+                return true;
             error = wstring(L"FindFirstFile invalid handle value: ") + searchPath;
             return false;
         }
@@ -108,7 +110,7 @@ namespace NS_File
             if (ffd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) {
                 if (!wcscmp(ffd.cFileName, L".") || !wcscmp(ffd.cFileName, L".."))
                     continue;
-                if (!GetFilesList(path + L"/" + wstring(ffd.cFileName), lst, error)) {
+                if (!GetFilesList(path + L"/" + wstring(ffd.cFileName), lst, error, ignore_locked)) {
                     FindClose(hFind);
                     return false;
                 }

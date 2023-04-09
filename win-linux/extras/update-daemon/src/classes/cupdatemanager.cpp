@@ -274,7 +274,7 @@ void CUpdateManager::clearTempFiles(const wstring &prefix, const wstring &except
     m_future_clear = std::async(std::launch::async, [=]() {
         list<wstring> filesList;
         wstring _error;
-        if (!NS_File::GetFilesList(NS_File::tempPath(), &filesList, _error)) {
+        if (!NS_File::GetFilesList(NS_File::tempPath(), &filesList, _error, true)) {
             NS_Logger::WriteLog(DEFAULT_ERROR_MESSAGE + L" " + _error);
             return;
         }
