@@ -359,11 +359,28 @@ namespace NS_File
 
     wstring tempPath()
     {
-        WCHAR buff[MAX_PATH];
-        DWORD res = ::GetTempPathW(MAX_PATH, buff);
-        if (res != 0) {
-            return fromNativeSeparators(parentPath(wstring(buff)));
+        DWORD sesId = WTSGetActiveConsoleSessionId();
+        if (sesId == 0xFFFFFFFF)
+            return L"";
+
+        HANDLE hUserToken = NULL;
+        if (!WTSQueryUserToken(sesId, &hUserToken))
+            return L"";
+
+        HANDLE hTokenDup = NULL;
+        if (!DuplicateTokenEx(hUserToken, MAXIMUM_ALLOWED, NULL, SecurityImpersonation, TokenPrimary, &hTokenDup)) {
+            CloseHandle(hUserToken);
+            return L"";
         }
+
+        WCHAR buff[MAX_PATH] = {0};
+        if (ExpandEnvironmentStringsForUser(hTokenDup, L"%TEMP%", buff, MAX_PATH)) {
+            CloseHandle(hTokenDup);
+            CloseHandle(hUserToken);
+            return fromNativeSeparators(buff);
+        }
+        CloseHandle(hTokenDup);
+        CloseHandle(hUserToken);
         return L"";
     }
 
