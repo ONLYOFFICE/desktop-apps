@@ -46,7 +46,6 @@
     function createIframe(config) {
         var iframe = document.createElement("iframe");
 
-        iframe.src = "https://oforms.onlyoffice.com/?desktop=true";
         iframe.width = "100%";
         iframe.height = "100%";
         iframe.align = "top";
@@ -60,7 +59,7 @@
     var ViewTemplates = function(args) {
         var _lang = utils.Lang;
 
-        const msg = 'Something went wrong :(<br>Check internet connection.';
+        const msg = 'Oops! Something went wrong :(<br>Check internet connection';
         args.tplPage = `<div class="action-panel ${args.action}"><div id="frame"><h3>${msg}</h3></div></div>`;
         args.menu = '.main-column.tool-menu';
         args.field = '.main-column.col-center';
@@ -79,25 +78,50 @@
                 baseController.prototype.init.apply(this, arguments);
                 this.view.render();
 
+                const _url_templates = "https://oforms.onlyoffice.com/?desktop=true";
+
                 const _create_and_inject_iframe = () => {
                     const iframe = createIframe({});
+                    iframe.src = _url_templates;
+
                     const target = document.getElementById("frame");
                     target.parentNode && target.parentNode.replaceChild(iframe, target);
-
                     return iframe;
                 }
 
-                // if ( !!localStorage.templatespanel ) {
-                    let iframe;
-                    if ( navigator.onLine ) {
-                        iframe = _create_and_inject_iframe();
-                    } else {
-                        CommonEvents.on('panel:show', panel => {
-                            if ( !iframe && panel == this.action && navigator.onLine) {
+                let iframe;
+                const _check_url_avail = async () => {
+                    if ( !iframe ) {
+                        try {
+                            const r = await fetch(_url_templates);
+                            if ( r.status == 200 ) {
                                 iframe = _create_and_inject_iframe();
                             }
-                        });
+                        } catch (e) {
+                            // console.error('error on check templates url');
+                        }
                     }
+                }
+
+                _check_url_avail();
+
+                CommonEvents.on('panel:show', panel => {
+                    if ( !iframe && panel == this.action ) {
+                        _check_url_avail();
+                    }
+                });
+
+                // if ( !!localStorage.templatespanel ) {
+                    // let iframe;
+                    // if ( navigator.onLine ) {
+                    //     iframe = _create_and_inject_iframe();
+                    // } else {
+                    //     CommonEvents.on('panel:show', panel => {
+                    //         if ( !iframe && panel == this.action && navigator.onLine) {
+                    //             iframe = _create_and_inject_iframe();
+                    //         }
+                    //     });
+                    // }
                 // } else {
                 //     this.view.$menuitem.find('> a').click(e => {
                 //         window.sdk.command("open:template", 'external');
