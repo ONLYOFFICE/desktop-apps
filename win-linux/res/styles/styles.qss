@@ -52,7 +52,7 @@
     image: url(:/tabbar/icons/scrolltab_lh.svg) center no-repeat;
 }
 #scrollerFrame>QToolButton#leftButton:pressed {
-    image: url(:/tabbar/icons/scrolltab_lp.png) center no-repeat;
+    image: url(:/tabbar/icons/scrolltab_lp.svg) center no-repeat;
 }
 
 #scrollerFrame>QToolButton#rightButton {
@@ -65,7 +65,7 @@
     image: url(:/tabbar/icons/scrolltab_rh.svg) center no-repeat;
 }
 #scrollerFrame>QToolButton#rightButton:pressed {
-    image: url(:/tabbar/icons/scrolltab_rp.png) center no-repeat;
+    image: url(:/tabbar/icons/scrolltab_rp.svg) center no-repeat;
 }
 
 /* Dark */

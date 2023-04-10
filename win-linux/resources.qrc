@@ -194,9 +194,11 @@
         <file alias="scrolltab_ln.svg">res/icons/tabbar/scroll_left_normal.svg</file>
         <file alias="scrolltab_ld.svg">res/icons/tabbar/scroll_left_disabled.svg</file>
         <file alias="scrolltab_lh.svg">res/icons/tabbar/scroll_left_hover.svg</file>
+        <file alias="scrolltab_lp.svg">res/icons/tabbar/scroll_left_pressed.svg</file>
         <file alias="scrolltab_rn.svg">res/icons/tabbar/scroll_right_normal.svg</file>
         <file alias="scrolltab_rd.svg">res/icons/tabbar/scroll_right_disabled.svg</file>
         <file alias="scrolltab_rh.svg">res/icons/tabbar/scroll_right_hover.svg</file>
+        <file alias="scrolltab_rp.svg">res/icons/tabbar/scroll_right_pressed.svg</file>
     </qresource>
     <qresource prefix="/title/icons">
         <file alias="buttons.svg">res/icons/webeditor/buttons.svg</file>
