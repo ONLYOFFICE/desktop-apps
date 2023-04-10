@@ -183,13 +183,27 @@
         <file alias="close_active_1.5x.png">res/icons/tabbar/tab_close_light@1.5x.png</file>
         <file alias="close_active_1.25x.png">res/icons/tabbar/tab_close_light@1.25x.png</file>
         <file alias="close_active_2x.png">res/icons/tabbar/tab_close_light@2x.png</file>
+        <file alias="scrolltab_ln_light.svg">res/icons/tabbar/scroll_left_normal_light.svg</file>
+        <file alias="scrolltab_ld_light.svg">res/icons/tabbar/scroll_left_disabled_light.svg</file>
+        <file alias="scrolltab_lh_light.svg">res/icons/tabbar/scroll_left_hover_light.svg</file>
+        <file alias="scrolltab_lp_light.svg">res/icons/tabbar/scroll_left_pressed_light.svg</file>
+        <file alias="scrolltab_rn_light.svg">res/icons/tabbar/scroll_right_normal_light.svg</file>
+        <file alias="scrolltab_rd_light.svg">res/icons/tabbar/scroll_right_disabled_light.svg</file>
+        <file alias="scrolltab_rh_light.svg">res/icons/tabbar/scroll_right_hover_light.svg</file>
+        <file alias="scrolltab_rp_light.svg">res/icons/tabbar/scroll_right_pressed_light.svg</file>
+        <file alias="scrolltab_ln.svg">res/icons/tabbar/scroll_left_normal.svg</file>
+        <file alias="scrolltab_ld.svg">res/icons/tabbar/scroll_left_disabled.svg</file>
+        <file alias="scrolltab_lh.svg">res/icons/tabbar/scroll_left_hover.svg</file>
+        <file alias="scrolltab_rn.svg">res/icons/tabbar/scroll_right_normal.svg</file>
+        <file alias="scrolltab_rd.svg">res/icons/tabbar/scroll_right_disabled.svg</file>
+        <file alias="scrolltab_rh.svg">res/icons/tabbar/scroll_right_hover.svg</file>
     </qresource>
     <qresource prefix="/title/icons">
         <file alias="buttons.svg">res/icons/webeditor/buttons.svg</file>
         <file alias="secure.svg">res/icons/webeditor/secureicon.svg</file>
     </qresource>
     <qresource prefix="/styles">
-        <file>res/styles/styles.qss</file>
+        <file alias="styles.qss">res/styles/styles.qss</file>
         <file alias="message.qss">res/styles/message.qss</file>
     </qresource>
     <qresource prefix="/styles@1.5x">
@@ -256,6 +270,7 @@
         <file alias="tabbar@1.75x.qss">res/styles/tabbar@1.75x.qss</file>
         <file alias="tabbar@2x.qss">res/styles/tabbar@2x.qss</file>
         <file alias="tabbar@2x.nix.qss">res/styles/tabbar_nix@2x.qss</file>
+        <file alias="tabbar@2.5x.qss">res/styles/tabbar@2.5x.qss</file>
     </qresource>
     <qresource prefix="/themes">
         <file alias="theme-light.json">res/styles/theme-light.json</file>

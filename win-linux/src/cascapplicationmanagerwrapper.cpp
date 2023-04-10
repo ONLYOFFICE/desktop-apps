@@ -1112,7 +1112,7 @@ void CAscApplicationManagerWrapper::initializeApp()
         }
     }
 
-    _app.addStylesheets(CScalingFactor::SCALING_FACTOR_1, ":styles/res/styles/styles.qss");
+    _app.addStylesheets(CScalingFactor::SCALING_FACTOR_1, ":styles/styles.qss");
     _app.addStylesheets(CScalingFactor::SCALING_FACTOR_1_25, ":styles@1.25x/styles.qss");
     _app.addStylesheets(CScalingFactor::SCALING_FACTOR_1_5, ":styles@1.5x/styles.qss");
     _app.addStylesheets(CScalingFactor::SCALING_FACTOR_1_75, ":styles@1.75x/styles.qss");
@@ -1121,7 +1121,7 @@ void CAscApplicationManagerWrapper::initializeApp()
     _app.m_private->applyStylesheets();
 
     // TODO: merge stylesheets and apply for the whole app
-    qApp->setStyleSheet( Utils::readStylesheets(":styles/res/styles/styles.qss") );
+    qApp->setStyleSheet( Utils::readStylesheets(":styles/styles.qss") );
 
     // Font
     QFont mainFont = QApplication::font();

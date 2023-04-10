@@ -17,44 +17,16 @@
     max-width: 48px;
 }
 
-#scrollerFrame>QToolButton {
-    margin: 0px;
-    border: none; background-color: #f1f1f1;
-}
-#scrollerFrame>QToolButton:hover {background-color: #cecece;}
-#scrollerFrame>QToolButton:pressed {background-color: #b7b7b7;}
-
-#scrollerFrame>QToolButton#leftButton {
-    image: url(:/tabbar/icons/scrolltab_ln_1.25x.png) center no-repeat;
-}
-
-#scrollerFrame>QToolButton#leftButton:disabled {
-    image: url(:/tabbar/icons/scrolltab_ld_1.25x.png) center no-repeat;
-}
-
-#scrollerFrame>QToolButton#leftButton:hover {
-    image: url(:/tabbar/icons/scrolltab_lh_1.25x.png) center no-repeat;
-}
 
 #scrollerFrame>QToolButton#leftButton:pressed {
     image: url(:/tabbar/icons/scrolltab_lp_1.25x.png) center no-repeat;
 }
 
-#scrollerFrame>QToolButton#rightButton {
-    image: url(:/tabbar/icons/scrolltab_rn_1.25x.png) center no-repeat;
-}
-
-#scrollerFrame>QToolButton#rightButton:disabled {
-    image: url(:/tabbar/icons/scrolltab_rd_1.25x.png) center no-repeat;
-}
-
-#scrollerFrame>QToolButton#rightButton:hover {
-    image: url(:/tabbar/icons/scrolltab_rh_1.25x.png) center no-repeat;
-}
 
 #scrollerFrame>QToolButton#rightButton:pressed {
     image: url(:/tabbar/icons/scrolltab_rp_1.25x.png) center no-repeat;
 }
+
 QPushButton#toolButtonDownload {
     padding: 7px;
 }

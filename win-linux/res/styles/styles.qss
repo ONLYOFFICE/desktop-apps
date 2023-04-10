@@ -38,36 +38,87 @@
 #scrollerFrame>QToolButton:pressed {background-color: #b7b7b7;}
 
 #scrollerFrame>QToolButton#leftButton {
-    image: url(:/tabbar/icons/scrolltab_ln.png) center no-repeat;
+    image: url(:/tabbar/icons/scrolltab_ln.svg) center no-repeat;
 }
-
 #scrollerFrame>QToolButton#leftButton:disabled {
-    image: url(:/tabbar/icons/scrolltab_ld.png) center no-repeat;
+    image: url(:/tabbar/icons/scrolltab_ld.svg) center no-repeat;
 }
-
 #scrollerFrame>QToolButton#leftButton:hover {
-    image: url(:/tabbar/icons/scrolltab_lh.png) center no-repeat;
+    image: url(:/tabbar/icons/scrolltab_lh.svg) center no-repeat;
 }
-
 #scrollerFrame>QToolButton#leftButton:pressed {
     image: url(:/tabbar/icons/scrolltab_lp.png) center no-repeat;
 }
 
 #scrollerFrame>QToolButton#rightButton {
-    image: url(:/tabbar/icons/scrolltab_rn.png) center no-repeat;
+    image: url(:/tabbar/icons/scrolltab_rn.svg) center no-repeat;
 }
-
 #scrollerFrame>QToolButton#rightButton:disabled {
-    image: url(:/tabbar/icons/scrolltab_rd.png) center no-repeat;
+    image: url(:/tabbar/icons/scrolltab_rd.svg) center no-repeat;
 }
-
 #scrollerFrame>QToolButton#rightButton:hover {
-    image: url(:/tabbar/icons/scrolltab_rh.png) center no-repeat;
+    image: url(:/tabbar/icons/scrolltab_rh.svg) center no-repeat;
 }
-
 #scrollerFrame>QToolButton#rightButton:pressed {
     image: url(:/tabbar/icons/scrolltab_rp.png) center no-repeat;
 }
+
+/* Dark */
+#mainPanel[uitheme=theme-dark] #scrollerFrame>QToolButton#leftButton {
+    image: url(:/tabbar/icons/scrolltab_ln_light.svg) center no-repeat;
+}
+#mainPanel[uitheme=theme-dark] #scrollerFrame>QToolButton#leftButton:disabled {
+    image: url(:/tabbar/icons/scrolltab_ld_light.svg) center no-repeat;
+}
+#mainPanel[uitheme=theme-dark] #scrollerFrame>QToolButton#leftButton:hover {
+    image: url(:/tabbar/icons/scrolltab_lh_light.svg) center no-repeat;
+}
+#mainPanel[uitheme=theme-dark] #scrollerFrame>QToolButton#leftButton:pressed {
+    image: url(:/tabbar/icons/scrolltab_lp_light.svg) center no-repeat;
+}
+
+
+#mainPanel[uitheme=theme-dark] #scrollerFrame>QToolButton#rightButton {
+    image: url(:/tabbar/icons/scrolltab_rn_light.svg) center no-repeat;
+}
+#mainPanel[uitheme=theme-dark] #scrollerFrame>QToolButton#rightButton:disabled {
+    image: url(:/tabbar/icons/scrolltab_rd_light.svg) center no-repeat;
+}
+#mainPanel[uitheme=theme-dark] #scrollerFrame>QToolButton#rightButton:hover {
+    image: url(:/tabbar/icons/scrolltab_rh_light.svg) center no-repeat;
+}
+#mainPanel[uitheme=theme-dark] #scrollerFrame>QToolButton#rightButton:pressed {
+    image: url(:/tabbar/icons/scrolltab_rp_light.svg) center no-repeat;
+}
+
+/* Contrast-dark*/
+#mainPanel[uitheme=theme-contrast-dark] #scrollerFrame>QToolButton#leftButton {
+    image: url(:/tabbar/icons/scrolltab_ln_light.svg) center no-repeat;
+}
+#mainPanel[uitheme=theme-contrast-dark] #scrollerFrame>QToolButton#leftButton:disabled {
+    image: url(:/tabbar/icons/scrolltab_ld_light.svg) center no-repeat;
+}
+#mainPanel[uitheme=theme-contrast-dark] #scrollerFrame>QToolButton#leftButton:hover {
+    image: url(:/tabbar/icons/scrolltab_lh_light.svg) center no-repeat;
+}
+#mainPanel[uitheme=theme-contrast-dark] #scrollerFrame>QToolButton#leftButton:pressed {
+    image: url(:/tabbar/icons/scrolltab_lp_light.svg) center no-repeat;
+}
+
+
+#mainPanel[uitheme=theme-contrast-dark] #scrollerFrame>QToolButton#rightButton {
+    image: url(:/tabbar/icons/scrolltab_rn_light.svg) center no-repeat;
+}
+#mainPanel[uitheme=theme-contrast-dark] #scrollerFrame>QToolButton#rightButton:disabled {
+    image: url(:/tabbar/icons/scrolltab_rd_light.svg) center no-repeat;
+}
+#mainPanel[uitheme=theme-contrast-dark] #scrollerFrame>QToolButton#rightButton:hover {
+    image: url(:/tabbar/icons/scrolltab_rh_light.png) center no-repeat;
+}
+#mainPanel[uitheme=theme-contrast-dark] #scrollerFrame>QToolButton#rightButton:pressed {
+    image: url(:/tabbar/icons/scrolltab_rp_light.svg) center no-repeat;
+}
+
 
 QPushButton#toolButtonMaximize, QPushButton#toolButtonMain,
     QPushButton#toolButtonMinimize, QPushButton#toolButtonClose,
