@@ -50,6 +50,7 @@
 #define APP_LAUNCH_NAME2 L"/editors.exe"
 #define APP_HELPER       L"/editors_helper.exe"
 #define DAEMON_NAME      L"/updatesvc.exe"
+#define DAEMON_NAME_OLD  L"/~updatesvc.exe"
 #define SUCCES_UNPACKED  L"/.success_unpacked"
 
 using std::vector;
@@ -181,7 +182,7 @@ void CUpdateManager::onCompleteUnzip(const int error)
 {
     if (error == UNZIP_OK) {
         // Сreate a file about successful unpacking for use in subsequent launches
-        const wstring updPath = NS_File::tempPath() + UPDATE_PATH;
+        const wstring updPath = NS_File::parentPath(NS_File::appPath()) + UPDATE_PATH;
         list<wstring> successList{m_newVersion};
         if (!NS_File::writeToFile(updPath + SUCCES_UNPACKED, successList)) {
             m_lock = false;
@@ -243,7 +244,7 @@ void CUpdateManager::unzipIfNeeded(const wstring &filePath, const wstring &newVe
     m_lock = true;
 
     m_newVersion = newVersion;
-    const wstring updPath = NS_File::tempPath() + UPDATE_PATH;
+    const wstring updPath = NS_File::parentPath(NS_File::appPath()) + UPDATE_PATH;
     auto unzip = [=]()->void {
         if (!NS_File::dirExists(updPath) && !NS_File::makePath(updPath)) {
             NS_Logger::WriteLog(L"An error occurred while creating dir: " + updPath);
@@ -274,8 +275,8 @@ void CUpdateManager::clearTempFiles(const wstring &prefix, const wstring &except
     m_future_clear = std::async(std::launch::async, [=]() {
         list<wstring> filesList;
         wstring _error;
-        if (!NS_File::GetFilesList(NS_File::tempPath(), &filesList, _error)) {
-            NS_Logger::WriteLog(DEFAULT_ERROR_MESSAGE);
+        if (!NS_File::GetFilesList(NS_File::tempPath(), &filesList, _error, true)) {
+            NS_Logger::WriteLog(DEFAULT_ERROR_MESSAGE + L" " + _error);
             return;
         }
         for (auto &filePath : filesList) {
@@ -292,8 +293,8 @@ void CUpdateManager::clearTempFiles(const wstring &prefix, const wstring &except
 void CUpdateManager::startReplacingFiles()
 {
     wstring appPath = NS_File::appPath();
-    wstring updPath = NS_File::tempPath() + UPDATE_PATH;
-    wstring tmpPath = NS_File::tempPath() + BACKUP_PATH;
+    wstring updPath = NS_File::parentPath(appPath) + UPDATE_PATH;
+    wstring tmpPath = NS_File::parentPath(appPath) + BACKUP_PATH;
     if (!NS_File::dirExists(updPath)) {
         NS_Logger::WriteLog(L"Update cancelled. Can't find folder: " + updPath, true);
         return;
@@ -348,8 +349,7 @@ void CUpdateManager::startReplacingFiles()
     // Replace app path to Backup
     if (!NS_File::replaceFolder(appPath, tmpPath, true)) {
         NS_Logger::WriteLog(L"Update cancelled. Can't replace files to backup: " + NS_Utils::GetLastErrorAsString(), true);
-        if (NS_File::dirExists(tmpPath) && !NS_File::dirIsEmpty(tmpPath)
-                && !NS_File::replaceFolder(tmpPath, appPath))
+        if (NS_File::dirExists(tmpPath) && !NS_File::dirIsEmpty(tmpPath) && !NS_File::replaceFolder(tmpPath, appPath))
             NS_Logger::WriteLog(L"Can't restore files from backup!", true);
         return;
     }
@@ -376,8 +376,10 @@ void CUpdateManager::startReplacingFiles()
         NS_File::replaceFile(tmpPath + L"/unins000.exe", appPath + L"/unins000.exe");
 
     // To support a version without updatesvc.exe inside the working folder
-    if (!NS_File::fileExists(appPath + DAEMON_NAME) && NS_File::fileExists(tmpPath + DAEMON_NAME))
+    if (!NS_File::fileExists(appPath + DAEMON_NAME))
         NS_File::replaceFile(tmpPath + DAEMON_NAME, appPath + DAEMON_NAME);
+    else
+        NS_File::replaceFile(tmpPath + DAEMON_NAME, appPath + DAEMON_NAME_OLD);
 
     // Update version in registry
     {

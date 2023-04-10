@@ -89,25 +89,28 @@ namespace NS_Utils
 
 namespace NS_File
 {
-    bool GetFilesList(const wstring &path, list<wstring> *lst, wstring &error)
+    bool GetFilesList(const wstring &path, list<wstring> *lst, wstring &error, bool ignore_locked)
     {
-        WCHAR szDir[MAX_PATH];
-        wstring searchPath = path + L"/*";
-        wcscpy_s(szDir, MAX_PATH, searchPath.c_str());
+        wstring searchPath = toNativeSeparators(path) + L"\\*";
+        if (searchPath.size() > MAX_PATH - 1) {
+            error = wstring(L"Path name is too long: ") + searchPath;
+            return false;
+        }
 
         WIN32_FIND_DATA ffd;
-        HANDLE hFind = FindFirstFile(szDir, &ffd);
+        HANDLE hFind = FindFirstFile(searchPath.c_str(), &ffd);
         if (hFind == INVALID_HANDLE_VALUE) {
-            error = wstring(L"FindFirstFile invalid handle value: ") + szDir;
+            if (ignore_locked && dirExists(path))
+                return true;
+            error = wstring(L"FindFirstFile invalid handle value: ") + searchPath;
             return false;
         }
 
         do {
             if (ffd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) {
-                if (!wcscmp(ffd.cFileName, L".")
-                        || !wcscmp(ffd.cFileName, L".."))
+                if (!wcscmp(ffd.cFileName, L".") || !wcscmp(ffd.cFileName, L".."))
                     continue;
-                if (!GetFilesList(path + L"/" + wstring(ffd.cFileName), lst, error)) {
+                if (!GetFilesList(path + L"/" + wstring(ffd.cFileName), lst, error, ignore_locked)) {
                     FindClose(hFind);
                     return false;
                 }
@@ -118,7 +121,7 @@ namespace NS_File
 
         if (GetLastError() != ERROR_NO_MORE_FILES) {
             FindClose(hFind);
-            error = wstring(L"Error while FindFile: ") + szDir;
+            error = wstring(L"Error while find files: ") + searchPath;
             return false;
         }
         FindClose(hFind);
@@ -260,8 +263,8 @@ namespace NS_File
 
     bool replaceFile(const wstring &oldFilePath, const wstring &newFilePath)
     {
-        return MoveFileExW(oldFilePath.c_str(), newFilePath.c_str(),
-                           MOVEFILE_REPLACE_EXISTING | MOVEFILE_WRITE_THROUGH) != 0 ? true : false;
+        return MoveFileExW(oldFilePath.c_str(), newFilePath.c_str(), MOVEFILE_REPLACE_EXISTING |
+                              MOVEFILE_WRITE_THROUGH | MOVEFILE_COPY_ALLOWED) != 0 ? true : false;
     }
 
     bool replaceFolder(const wstring &from, const wstring &to, bool remove_existing)
@@ -356,11 +359,28 @@ namespace NS_File
 
     wstring tempPath()
     {
-        WCHAR buff[MAX_PATH];
-        DWORD res = ::GetTempPathW(MAX_PATH, buff);
-        if (res != 0) {
-            return fromNativeSeparators(parentPath(wstring(buff)));
+        DWORD sesId = WTSGetActiveConsoleSessionId();
+        if (sesId == 0xFFFFFFFF)
+            return L"";
+
+        HANDLE hUserToken = NULL;
+        if (!WTSQueryUserToken(sesId, &hUserToken))
+            return L"";
+
+        HANDLE hTokenDup = NULL;
+        if (!DuplicateTokenEx(hUserToken, MAXIMUM_ALLOWED, NULL, SecurityImpersonation, TokenPrimary, &hTokenDup)) {
+            CloseHandle(hUserToken);
+            return L"";
         }
+
+        WCHAR buff[MAX_PATH] = {0};
+        if (ExpandEnvironmentStringsForUser(hTokenDup, L"%TEMP%", buff, MAX_PATH)) {
+            CloseHandle(hTokenDup);
+            CloseHandle(hUserToken);
+            return fromNativeSeparators(buff);
+        }
+        CloseHandle(hTokenDup);
+        CloseHandle(hUserToken);
         return L"";
     }
 
