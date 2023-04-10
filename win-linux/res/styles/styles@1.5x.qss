@@ -17,6 +17,9 @@
     max-width: 48px;
 }
 
+#scrollerFrame>QToolButton {
+    max-height: 42px;
+}
 
 #scrollerFrame>QToolButton#leftButton:pressed {
     image: url(:/tabbar/icons/scrolltab_lp_1.5x.png) center no-repeat;
@@ -101,13 +104,8 @@ QTabBar {
     font-size: 15px;
 }
 
-QTabBar::tab {
-    padding-left: 11px;
-}
-
-QTabBar::tab {
-    padding: 0;
-}
+QTabBar::tab {width: 203px; background-color: #f1f1f1; border: 0 none; border-right: 2px solid #a5a5a5; min-width: 62px; max-width: 203px;
+height: 42px; margin: 0 0 0 0;}
 
 QTabBar::close-button {
 }
@@ -122,11 +120,6 @@ QTabBar QToolButton,
     QTabBar QToolButton:disabled {
     margin-right:-2px;
     border-width:2px;
-}
-
-QTabBar[scroll=var2]::scroller,
-QTabBar::scroller {
-    width: 0px;
 }
 
 QTabBar QToolButton[class=tab-close]{
