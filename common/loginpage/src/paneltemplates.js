@@ -93,12 +93,12 @@
                 const _check_url_avail = async () => {
                     if ( !iframe ) {
                         try {
-                            const r = await fetch(_url_templates, {mode: 'no-cors'});
+                            const r = await fetch(_url_templates, {mode1: 'cors'});
                             if ( r.status == 200 ) {
                                 iframe = _create_and_inject_iframe();
                             }
                         } catch (e) {
-                            // console.error('error on check templates url');
+                            console.error('error on check templates url');
                         }
                     }
                 }
