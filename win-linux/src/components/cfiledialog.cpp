@@ -142,7 +142,9 @@ bool CFileDialogWrapper::modalSaveAs(QString& fileName, int selected)
     }
 
 #ifdef _WIN32
-    QString _croped_name = fileName;
+    // TODO: win 10 home doesn't crop file name by self. refactor for ver 7.5 with linux ver
+//    QString _croped_name = fileName;
+    QString _croped_name = fileName.left(fileName.lastIndexOf("."));
 #else
     QString _croped_name = fileName.left(fileName.lastIndexOf("."));
 #endif
