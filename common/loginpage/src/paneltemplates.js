@@ -93,7 +93,7 @@
                 const _check_url_avail = async () => {
                     if ( !iframe ) {
                         try {
-                            const r = await fetch(_url_templates);
+                            const r = await fetch(_url_templates, {mode: 'no-cors'});
                             if ( r.status == 200 ) {
                                 iframe = _create_and_inject_iframe();
                             }
