@@ -21,14 +21,6 @@
     max-height: 35px;
 }
 
-#scrollerFrame>QToolButton#leftButton:pressed {
-    image: url(:/tabbar/icons/scrolltab_lp_1.25x.png) center no-repeat;
-}
-
-
-#scrollerFrame>QToolButton#rightButton:pressed {
-    image: url(:/tabbar/icons/scrolltab_rp_1.25x.png) center no-repeat;
-}
 
 QPushButton#toolButtonDownload {
     padding: 7px;
@@ -38,15 +30,6 @@ QPushButton#toolButtonMaximize,QPushButton#toolButtonMinimize,
     QPushButton#toolButtonClose {
         padding: 6px 15px 9px;
 }
-
-QPushButton#toolButtonMaximize {
-    background-image:url(:/maximize_1.25x.png);
-}
-
-QPushButton#toolButtonMinimize, QPushButton#toolButtonClose {
-    background-image:url(:/minimize-close_1.25x.png);
-}
-
 QPushButton#toolButtonMain {
     border-right-width: 1px;
 }
@@ -85,18 +68,6 @@ QPushButton#toolButtonDownload::menu-indicator {
 
 /**************************/
 /* dark theme definitions */
-/**************************/
-
-#mainPanel[uithemetype=dark] QPushButton#toolButtonMaximize {
-    background-image:url(:/max_light_1.25x.png);
-}
-
-#mainPanel[uithemetype=dark] QPushButton#toolButtonMinimize,
-    #mainPanel[uithemetype=dark] QPushButton#toolButtonClose
-{
-    background-image:url(:/minclose_light_1.25x.png);
-}
-
 /**************************/
 
 QTabBar {

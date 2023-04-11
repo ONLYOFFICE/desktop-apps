@@ -29,7 +29,6 @@
     max-width: 32px;
     border: none; background: transparent;
 }
-
 #scrollerFrame>QToolButton {
     max-height: 28px;
     margin: 0px;
@@ -68,62 +67,41 @@
     image: url(:/tabbar/icons/scrolltab_rp.svg) center no-repeat;
 }
 
-/* Dark */
-#mainPanel[uitheme=theme-dark] #scrollerFrame>QToolButton#leftButton {
-    image: url(:/tabbar/icons/scrolltab_ln_light.svg) center no-repeat;
-}
-#mainPanel[uitheme=theme-dark] #scrollerFrame>QToolButton#leftButton:disabled {
-    image: url(:/tabbar/icons/scrolltab_ld_light.svg) center no-repeat;
-}
-#mainPanel[uitheme=theme-dark] #scrollerFrame>QToolButton#leftButton:hover {
-    image: url(:/tabbar/icons/scrolltab_lh_light.svg) center no-repeat;
-}
-#mainPanel[uitheme=theme-dark] #scrollerFrame>QToolButton#leftButton:pressed {
-    image: url(:/tabbar/icons/scrolltab_lp_light.svg) center no-repeat;
-}
-
-
-#mainPanel[uitheme=theme-dark] #scrollerFrame>QToolButton#rightButton {
-    image: url(:/tabbar/icons/scrolltab_rn_light.svg) center no-repeat;
-}
-#mainPanel[uitheme=theme-dark] #scrollerFrame>QToolButton#rightButton:disabled {
-    image: url(:/tabbar/icons/scrolltab_rd_light.svg) center no-repeat;
-}
-#mainPanel[uitheme=theme-dark] #scrollerFrame>QToolButton#rightButton:hover {
-    image: url(:/tabbar/icons/scrolltab_rh_light.svg) center no-repeat;
-}
-#mainPanel[uitheme=theme-dark] #scrollerFrame>QToolButton#rightButton:pressed {
-    image: url(:/tabbar/icons/scrolltab_rp_light.svg) center no-repeat;
-}
-
-/* Contrast-dark*/
+/* Dark, Contrast-Dark */
+#mainPanel[uitheme=theme-dark] #scrollerFrame>QToolButton#leftButton,
 #mainPanel[uitheme=theme-contrast-dark] #scrollerFrame>QToolButton#leftButton {
     image: url(:/tabbar/icons/scrolltab_ln_light.svg) center no-repeat;
 }
+#mainPanel[uitheme=theme-dark] #scrollerFrame>QToolButton#leftButton:disabled,
 #mainPanel[uitheme=theme-contrast-dark] #scrollerFrame>QToolButton#leftButton:disabled {
     image: url(:/tabbar/icons/scrolltab_ld_light.svg) center no-repeat;
 }
+#mainPanel[uitheme=theme-dark] #scrollerFrame>QToolButton#leftButton:hover,
 #mainPanel[uitheme=theme-contrast-dark] #scrollerFrame>QToolButton#leftButton:hover {
     image: url(:/tabbar/icons/scrolltab_lh_light.svg) center no-repeat;
 }
+#mainPanel[uitheme=theme-dark] #scrollerFrame>QToolButton#leftButton:pressed,
 #mainPanel[uitheme=theme-contrast-dark] #scrollerFrame>QToolButton#leftButton:pressed {
     image: url(:/tabbar/icons/scrolltab_lp_light.svg) center no-repeat;
 }
 
 
+#mainPanel[uitheme=theme-dark] #scrollerFrame>QToolButton#rightButton,
 #mainPanel[uitheme=theme-contrast-dark] #scrollerFrame>QToolButton#rightButton {
     image: url(:/tabbar/icons/scrolltab_rn_light.svg) center no-repeat;
 }
+#mainPanel[uitheme=theme-dark] #scrollerFrame>QToolButton#rightButton:disabled,
 #mainPanel[uitheme=theme-contrast-dark] #scrollerFrame>QToolButton#rightButton:disabled {
     image: url(:/tabbar/icons/scrolltab_rd_light.svg) center no-repeat;
 }
+#mainPanel[uitheme=theme-dark] #scrollerFrame>QToolButton#rightButton:hover,
 #mainPanel[uitheme=theme-contrast-dark] #scrollerFrame>QToolButton#rightButton:hover {
-    image: url(:/tabbar/icons/scrolltab_rh_light.png) center no-repeat;
+    image: url(:/tabbar/icons/scrolltab_rh_light.svg) center no-repeat;
 }
+#mainPanel[uitheme=theme-dark] #scrollerFrame>QToolButton#rightButton:pressed,
 #mainPanel[uitheme=theme-contrast-dark] #scrollerFrame>QToolButton#rightButton:pressed {
     image: url(:/tabbar/icons/scrolltab_rp_light.svg) center no-repeat;
 }
-
 
 QPushButton#toolButtonMaximize, QPushButton#toolButtonMain,
     QPushButton#toolButtonMinimize, QPushButton#toolButtonClose,
@@ -171,48 +149,28 @@ QPushButton#toolButtonClose:pressed {
 }
 
 QPushButton#toolButtonMaximize {
-    background-image:url(:/res/icons/maximize.png);
+    image: url(:/restore.svg) center no-repeat;
 }
 
 QPushButton#toolButtonMaximize[class=normal] {
     background-position: left top;
 }
 
-QPushButton#toolButtonMaximize[class=normal]:hover,
-    QPushButton#pushButtonMaximize[class=normal]:pressed {
-        background-position: right top;
-}
-
-
 QPushButton#toolButtonMaximize[class=min] {
-    background-position: left bottom;
+    image: url(:/maximize.svg) center no-repeat;
 }
 
-QPushButton#toolButtonMaximize[class=min]:hover,
-    QPushButton#toolButtonMaximize[class=min]:pressed {
-        background-position: right bottom;
+QPushButton#toolButtonMinimize {
+    image: url(:/minimize.svg) center no-repeat;
 }
 
-QPushButton#toolButtonMinimize, QPushButton#toolButtonClose {
-    background-image:url(:/res/icons/minimize-close.png);
-}
-
-QPushButton#toolButtonMinimize[class=normal] {
-    background-position: left top;
-}
-
-QPushButton#toolButtonMinimize[class=normal]:hover,
-    QPushButton#toolButtonMinimize[class=normal]:pressed {
-        background-position: right top;
-}
-
-QPushButton#toolButtonClose[class=normal] {
-    background-position: left bottom;
+QPushButton#toolButtonClose {
+    image: url(:/close.svg) center no-repeat;
 }
 
 QPushButton#toolButtonClose[class=normal]:hover,
     QPushButton#toolButtonClose[class=normal]:pressed {
-        background-position: right bottom;
+        image: url(:/close_light.svg) center no-repeat;
 }
 
 QPushButton#toolButtonMain {
@@ -327,13 +285,19 @@ QPushButton#toolButtonDownload::menu-indicator {
 }
 
 #mainPanel[uithemetype=dark] QPushButton#toolButtonMaximize {
-    background-image:url(:/max_light.png);
+    image: url(:/restore_light.svg) center no-repeat;
 }
 
-#mainPanel[uithemetype=dark] QPushButton#toolButtonMinimize,
-    #mainPanel[uithemetype=dark] QPushButton#toolButtonClose
-{
-    background-image:url(:/minclose_light.png);
+#mainPanel[uithemetype=dark] QPushButton#toolButtonMaximize[class=min] {
+    image: url(:/maximize_light.svg) center no-repeat;
+}
+
+#mainPanel[uithemetype=dark] QPushButton#toolButtonMinimize {
+    image: url(:/minimize_light.svg) center no-repeat;
+}
+
+#mainPanel[uithemetype=dark] QPushButton#toolButtonClose {
+    image: url(:/close_light.svg) center no-repeat;
 }
 
 #mainPanel[uitheme=theme-dark] QPushButton#toolButtonMinimize:hover,
