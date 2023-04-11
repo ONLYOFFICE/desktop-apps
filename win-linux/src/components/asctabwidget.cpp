@@ -147,7 +147,7 @@ CAscTabWidget::CAscTabWidget(QWidget *parent, CTabBar *_pBar)
     , m_widthParams({{100, 135, 9}, 68, 3, 0, WINDOW_TITLE_MIN_WIDTH, 140, 0})
     , m_defWidthParams(m_widthParams)
     , m_isCustomStyle(true)
-    , m_tabIconSize(11, 11)
+    , m_tabIconSize(15, 15)
     , m_pBar(_pBar)
 {
     QTabWidget::tabBar()->hide();
@@ -568,17 +568,17 @@ void CAscTabWidget::reloadTabIcons()
     m_mapTabIcons.clear();
     m_mapTabIcons.insert({
         {etUndefined, std::make_pair(QString(":/tabbar/icons/newdoc%1.png").arg(ratio_suffix), QString(":/tabbar/icons/newdoc%1.png").arg(ratio_suffix))},
-        {etDocument, std::make_pair(QString(":/tabbar/icons/de%1.png").arg(ratio_suffix), QString(":/tabbar/icons/de%1.png").arg(ratio_suffix))},
-        {etPresentation, std::make_pair(QString(":/tabbar/icons/pe%1.png").arg(ratio_suffix), QString(":/tabbar/icons/pe%1.png").arg(ratio_suffix))},
-        {etDocumentMasterForm, std::make_pair(QString(":/tabbar/icons/docxf%1.png").arg(ratio_suffix), QString(":/tabbar/icons/docxf%1.png").arg(ratio_suffix))},
-        {etSpreadsheet, std::make_pair(QString(":/tabbar/icons/se%1.png").arg(ratio_suffix), QString(":/tabbar/icons/se%1.png").arg(ratio_suffix))}
+        {etDocument, std::make_pair(":/tabbar/icons/de.svg", ":/tabbar/icons/de.svg")},
+        {etPresentation, std::make_pair(":/tabbar/icons/pe.svg", ":/tabbar/icons/pe.svg")},
+        {etDocumentMasterForm, std::make_pair(":/tabbar/icons/docxf.svg", ":/tabbar/icons/docxf.svg")},
+        {etSpreadsheet, std::make_pair(":/tabbar/icons/se.svg", ":/tabbar/icons/se.svg")}
     });
 
     AscAppManager::themes().current().isDark() ?
-        m_mapTabIcons.insert({{etPortal, std::make_pair(QString(":/tabbar/icons/portal_light%1.png").arg(ratio_suffix), QString(":/tabbar/icons/portal%1.png").arg(ratio_suffix))},
-                        {etNewPortal, std::make_pair(QString(":/tabbar/icons/portal_light%1.png").arg(ratio_suffix), QString(":/tabbar/icons/portal%1.png").arg(ratio_suffix))}}) :
-        m_mapTabIcons.insert({{etPortal, std::make_pair(QString(":/tabbar/icons/portal%1.png").arg(ratio_suffix), QString(":/tabbar/icons/portal%1.png").arg(ratio_suffix))},
-                         {etNewPortal, std::make_pair(QString(":/tabbar/icons/portal%1.png").arg(ratio_suffix), QString(":/tabbar/icons/portal%1.png").arg(ratio_suffix))}});
+        m_mapTabIcons.insert({{etPortal, std::make_pair(":/tabbar/icons/portal_light.svg", ":/tabbar/icons/portal.svg")},
+                        {etNewPortal, std::make_pair(":/tabbar/icons/portal_light.svg", ":/tabbar/icons/portal.svg")}}) :
+        m_mapTabIcons.insert({{etPortal, std::make_pair(":/tabbar/icons/portal.svg", ":/tabbar/icons/portal.svg")},
+                         {etNewPortal, std::make_pair(":/tabbar/icons/portal.svg", ":/tabbar/icons/portal.svg")}});
 
 }
 
