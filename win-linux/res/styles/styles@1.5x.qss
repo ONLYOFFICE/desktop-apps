@@ -93,15 +93,10 @@ QTabBar QToolButton,
     border-width:2px;
 }
 
-QTabBar QToolButton[class=tab-close]{
-    background-image:url(:/tabbar/icons/close_normal_1.5x.png);
-}
-QTabBar QToolButton[class=tab-close][state=active]{
-    background-image:url(:/tabbar/icons/close_active_1.5x.png);
-}
-QTabBar QToolButton[class=tab-close]:hover{
-    border-right:2px solid #fff; /* ??? pixmap offsets on hover for 2px ??? */
-}
+/* ??? pixmap offsets on hover for 2px ??? */
+/*QTabBar QToolButton[class=tab-close]:hover{
+    border-right:2px solid #fff;
+}*/
 
 /* download widget */
 QMenu[hdpi]#menuButtonDownload {

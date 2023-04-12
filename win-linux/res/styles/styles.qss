@@ -484,16 +484,22 @@ QLabel[class=tab-icon] {
 }
 
 QTabBar QToolButton[class=tab-close]{
-    background-image:url(:/tabbar/icons/close_normal.png);
+    image: url(:/tabbar/icons/close_normal.svg);
 }
 QTabBar QToolButton[class=tab-close][state=active]{
-    background-image:url(:/tabbar/icons/close_active.png);
+    image:url(:/tabbar/icons/close_active_normal.svg);
 }
 QTabBar QToolButton[class=tab-close]:hover{
-    background-position:right top;
+    image: url(:/tabbar/icons/close_hover.svg);
+}
+QTabBar QToolButton[class=tab-close][state=active]:hover{
+    image: url(:/tabbar/icons/close_active_hover.svg);
 }
 QTabBar QToolButton[class=tab-close]:pressed{
-    background-position:left bottom;
+    image: url(:/tabbar/icons/close_pressed.svg);
+}
+QTabBar QToolButton[class=tab-close][state=active]:pressed{
+    image: url(:/tabbar/icons/close_active_pressed.svg);
 }
 QTabBar QToolButton[class=tab-close]{
     background-color:rgba(255,255,255,0);

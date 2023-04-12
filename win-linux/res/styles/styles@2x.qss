@@ -149,15 +149,10 @@ QLabel[class=tab-icon] {
     padding:0 0 4px 12px;
 }
 
-QTabBar QToolButton[class=tab-close]{
-    background-image:url(:/tabbar/icons/close_normal_2x.png);
-}
-QTabBar QToolButton[class=tab-close][state=active]{
-    background-image:url(:/tabbar/icons/close_active_2x.png);
-}
-QTabBar QToolButton[class=tab-close]:hover{
+/* ??? pixmap offsets on hover for 2px ??? */
+/*QTabBar QToolButton[class=tab-close]:hover{
     border-right:2px solid #fff;
-}
+}*/
 
 QPrintDialog QLabel {
     font-size: 22px;

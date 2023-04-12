@@ -559,15 +559,9 @@ void CAscTabWidget::setTabIcons(CTabIconSet& icons)
 
 void CAscTabWidget::reloadTabIcons()
 {
-    double dpi_ratio = scaling();
-    QString ratio_suffix = dpi_ratio > 1.75 ? "@2x" :
-                                dpi_ratio > 1.5 ? "@1.75x" :
-                                dpi_ratio > 1.25 ? "@1.5x" :
-                                dpi_ratio > 1 ? "@1.25x" : "";
-
     m_mapTabIcons.clear();
     m_mapTabIcons.insert({
-        {etUndefined, std::make_pair(QString(":/tabbar/icons/newdoc%1.png").arg(ratio_suffix), QString(":/tabbar/icons/newdoc%1.png").arg(ratio_suffix))},
+        {etUndefined, std::make_pair(":/tabbar/icons/newdoc.svg", ":/tabbar/icons/newdoc.svg")},
         {etDocument, std::make_pair(":/tabbar/icons/de.svg", ":/tabbar/icons/de.svg")},
         {etPresentation, std::make_pair(":/tabbar/icons/pe.svg", ":/tabbar/icons/pe.svg")},
         {etDocumentMasterForm, std::make_pair(":/tabbar/icons/docxf.svg", ":/tabbar/icons/docxf.svg")},
