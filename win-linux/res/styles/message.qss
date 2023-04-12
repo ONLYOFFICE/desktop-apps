@@ -1,30 +1,17 @@
-QLabel[class=msg-icon] {
-    background-image: url(":/res/icons/message_icons.png");
-}
+
 QLabel[class=msg-icon][type=msg-warn] {
-    background-position: bottom right;
+    image: url(":/message_warn.svg");
 }
 QLabel[class=msg-icon][type=msg-error] {
-    background-position: top left;
+    image: url(":/message_error.svg");
 }
 QLabel[class=msg-icon][type=msg-info] {
-    background-position: bottom left;
+    image: url(":/message_info.svg");
 }
 QLabel[class=msg-icon][type=msg-confirm] {
-    background-position: top right;
+    image: url(":/message_confirm.svg");
 }
-#messageBody[scaling="1.25x"] QLabel[class=msg-icon] {
-    background-image: url(":/message_icons_1.25x.png");
-}
-#messageBody[scaling="1.5x"] QLabel[class=msg-icon] {
-    background-image: url(":/message_icons_1.5x.png");
-}
-#messageBody[scaling="1.75x"] QLabel[class=msg-icon] {
-    background-image: url(":/message_icons_1.75x.png");
-}
-#messageBody[scaling="2x"] QLabel[class=msg-icon] {
-    background-image: url(":/message_icons_2x.png");
-}
+
 #messageBody QLabel[class=msg-report] {
     font-size: 11px;
 }

@@ -88,17 +88,8 @@ QTabBar::tab {width: 270px; background-color: #f1f1f1; border: 0 none; border-ri
 height: 56px; margin: 0 0 0 0;}
 
 QTabBar::close-button {
-    image: url(:/res/icons/tab_close_normal_2x.png);
     margin-top: -2px;
     icon-size: 32px;
-}
-
-QTabBar::close-button:hover {
-    image:url(:/res/icons/tab_close_hover_2x.png);
-}
-
-QTabBar::close-button:pressed {
-    image:url(:/res/icons/tab_close_active_2x.png);
 }
 
 QTabBar QToolButton,

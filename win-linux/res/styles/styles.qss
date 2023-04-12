@@ -455,17 +455,17 @@ QTabBar::tab:only-one { }
 QTabBar::tab:last { }
 
 QTabBar::close-button {
-    image: url(:/res/icons/tab_close_normal.png);
+    image: url(:/res/icons/tab_close_normal.svg);
     margin-top: -1px;
     icon-size:16px;
 }
 
 QTabBar::close-button:hover {
-    image:url(:/res/icons/tab_close_hover.png);
+    image: url(:/res/icons/tab_close_hover.svg);
 }
 
 QTabBar::close-button:pressed {
-    image:url(:/res/icons/tab_close_active.png);
+    image: url(:/res/icons/tab_close_active.svg);
 }
 
 QTabBar QToolButton,

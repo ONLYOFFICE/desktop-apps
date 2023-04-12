@@ -1,16 +1,12 @@
 <RCC>
     <qresource prefix="/">
-        <file>res/icons/tab_close_normal.png</file>
-        <file>res/icons/tab_close_normal_2x.png</file>
-        <file>res/icons/tab_close_active.png</file>
-        <file>res/icons/tab_close_active_2x.png</file>
-        <file>res/icons/tab_close_hover.png</file>
-        <file>res/icons/tab_close_hover_2x.png</file>
-        <file>res/icons/message_icons.png</file>
-        <file alias="message_icons_1.25x.png">res/icons/message_icons@1.25x.png</file>
-        <file alias="message_icons_1.5x.png">res/icons/message_icons@1.5x.png</file>
-        <file alias="message_icons_1.75x.png">res/icons/message_icons@1.75x.png</file>
-        <file alias="message_icons_2x.png">res/icons/message_icons@2x.png</file>
+        <file>res/icons/tab_close_normal.svg</file>
+        <file>res/icons/tab_close_active.svg</file>
+        <file>res/icons/tab_close_hover.svg</file>
+        <file alias="message_error.svg">res/icons/message_error.svg</file>
+        <file alias="message_info.svg">res/icons/message_info.svg</file>
+        <file alias="message_confirm.svg">res/icons/message_confirm.svg</file>
+        <file alias="message_warn.svg">res/icons/message_warn.svg</file>
         <file>res/icons/downloading.gif</file>
         <file>res/icons/downloading_2x.gif</file>
         <file alias="close.svg">res/icons/close.svg</file>
