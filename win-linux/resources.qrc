@@ -82,6 +82,7 @@
     </qresource>
     <qresource prefix="/styles">
         <file alias="styles.qss">res/styles/styles.qss</file>
+        <file alias="editor.qss">res/styles/editor.qss</file>
         <file alias="message.qss">res/styles/message.qss</file>
     </qresource>
     <qresource prefix="/styles@1.5x">

@@ -1,0 +1,100 @@
+#mainPanel {background-color: %1;}
+#box-title-tools {background-color: %1;}
+#box-title-tools QLabel {font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;}
+#labelTitle {color: #444; font-weight: bold;}
+#iconuser {color: %1; background: #d9ffffff; font-size: 12px;}
+QPushButton[act=tool]:hover {background-color: rgba(0,0,0,20%);}
+QPushButton#toolButtonClose:hover {background-color: #d42b2b;}
+QPushButton#toolButtonClose:pressed {background-color: #d75050;}
+
+/* pretty */
+#mainPanel[window=pretty] QPushButton[act=tool]:hover
+{
+    background-color: rgba(255,255,255,20%);
+}
+#mainPanel[window=pretty] QPushButton#toolButtonMinimize
+{
+    image: url(:/minimize_light.svg);
+}
+#mainPanel[window=pretty] QPushButton#toolButtonClose
+{
+    image: url(:/close_light.svg);
+}
+#mainPanel[window=pretty] QPushButton#toolButtonClose:hover
+{
+    background-color: #d42b2b;
+}
+#mainPanel[window=pretty] QPushButton#toolButtonMaximize
+{
+    image: url(:/restore_light.svg);
+}
+#mainPanel[window=pretty] QPushButton#toolButtonMaximize[class=min] {
+    image: url(:/maximize_light.svg);
+}
+#mainPanel[window=pretty] #labelTitle
+{
+    color: #fff;
+    font-size: 12px;
+}
+
+/* 1.25x */
+#mainPanel[zoom="1.25x"] #toolButtonMinimize,
+#mainPanel[zoom="1.25x"] #toolButtonClose,
+#mainPanel[zoom="1.25x"] #toolButtonMaximize
+{
+    padding: 6px 15px 9px;
+}
+#mainPanel[zoom="1.25x"] #iconuser,
+#mainPanel[zoom="1.25x"] #labelTitle
+{
+    font-size: 15px;
+}
+
+/* 1.5x */
+#mainPanel[zoom="1.5x"] #toolButtonMinimize,
+#mainPanel[zoom="1.5x"] #toolButtonClose,
+#mainPanel[zoom="1.5x"] #toolButtonMaximize
+{
+    padding: 8px 18px 11px;
+}
+#mainPanel[zoom="1.5x"] #iconuser,
+#mainPanel[zoom="1.5x"] #labelTitle
+{
+    font-size: 18px;
+}
+
+/* 1.75x */
+#mainPanel[zoom="1.75x"] #toolButtonMinimize,
+#mainPanel[zoom="1.75x"] #toolButtonClose,
+#mainPanel[zoom="1.75x"] #toolButtonMaximize
+{
+    padding: 9px 21px 12px;
+}
+#mainPanel[zoom="1.75x"] #iconuser,
+#mainPanel[zoom="1.75x"] #labelTitle
+{
+    font-size: 21px;
+}
+
+/* 2x */
+#mainPanel[zoom="2x"] #toolButtonMinimize,
+#mainPanel[zoom="2x"] #toolButtonClose,
+#mainPanel[zoom="2x"] #toolButtonMaximize
+{
+    padding: 10px 24px 14px;
+}
+#mainPanel[zoom="2x"] #iconuser,
+#mainPanel[zoom="2x"] #labelTitle
+{
+    font-size: 24px;
+}
+
+/* dark style */
+#mainPanel[uitheme=theme-dark] #labelTitle
+{
+    color: rgba(255,255,255,80%);
+}
+#mainPanel[uitheme=theme-contrast-dark] #labelTitle
+{
+    color: #e8e8e8;
+}
