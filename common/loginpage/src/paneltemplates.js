@@ -81,8 +81,10 @@
                 const _url_templates = "https://oforms.onlyoffice.com/?desktop=true";
 
                 const _create_and_inject_iframe = () => {
+                    const theme = window.app.controller.settings.currentTheme();
+
                     const iframe = createIframe({});
-                    iframe.src = `${_url_templates}&lang=${utils.Lang.id}`;
+                    iframe.src = `${_url_templates}&lang=${utils.Lang.id}&themetype=${theme.type}`;
 
                     const target = document.getElementById("frame");
                     target.parentNode && target.parentNode.replaceChild(iframe, target);
@@ -114,6 +116,12 @@
                 CommonEvents.on('lang:changed', (old, newlang) => {
                     if ( !!iframe ) {
                         iframe.contentWindow.postMessage(JSON.stringify({lang: newlang}));
+                    }
+                });
+
+                CommonEvents.on('theme:changed', (theme, type) => {
+                    if ( !!iframe ) {
+                        iframe.contentWindow.postMessage(JSON.stringify({theme: {name: theme, type: type}}));
                     }
                 });
 

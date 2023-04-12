@@ -43,6 +43,29 @@
     const THEME_ID_DEFAULT_LIGHT = 'theme-classic-light';
     const THEME_ID_DEFAULT_DARK = 'theme-dark';
 
+    const themes_map = {
+        'theme-system': {
+            text: 'Same as system',
+            type: THEME_TYPE_SYSTEM,
+        },
+        'theme-light': {
+            text: 'Light',
+            type: 'light',
+        },
+        'theme-classic-light': {
+            text: 'Classic Light',
+            type: 'light',
+        },
+        'theme-dark': {
+            text: 'Dark',
+            type: 'dark',
+        },
+        'theme-contrast-dark': {
+            text: 'Dark Contrast',
+            type: 'dark',
+        },
+    }
+
     var ControllerSettings = function(args={}) {
         args.caption = 'Settings';
         args.action =
@@ -232,7 +255,7 @@
                 document.body.className = `${_cls?_cls+' ':''}${name} ${_type}`;
 
                 localStorage.setItem('ui-theme-id', name);
-                CommonEvents.fire('theme:changed', [name]);
+                CommonEvents.fire('theme:changed', [name, themes_map[name].type]);
             }
         };
 
@@ -576,7 +599,11 @@
                 CommonEvents.on('lang:changed', _on_lang_changed.bind(this));
 
                 return this;
-            }
+            },
+            currentTheme: function() {
+                const name = localStorage.getItem('ui-theme-id');
+                return {name: name, type: themes_map[name] ? themes_map[name].type : THEME_TYPE_LIGHT};
+            },
         };
     })());
 }();
