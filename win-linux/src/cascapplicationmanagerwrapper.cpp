@@ -1117,6 +1117,12 @@ void CAscApplicationManagerWrapper::initializeApp()
     _app.addStylesheets(CScalingFactor::SCALING_FACTOR_1_5, ":styles@1.5x/styles.qss");
     _app.addStylesheets(CScalingFactor::SCALING_FACTOR_1_75, ":styles@1.75x/styles.qss");
     _app.addStylesheets(CScalingFactor::SCALING_FACTOR_2, ":styles@2x/styles.qss");
+    _app.addStylesheets(CScalingFactor::SCALING_FACTOR_2_5, ":styles@2.5x/styles.qss");
+    _app.addStylesheets(CScalingFactor::SCALING_FACTOR_3, ":styles@3x/styles.qss");
+    _app.addStylesheets(CScalingFactor::SCALING_FACTOR_3_5, ":styles@3.5x/styles.qss");
+    _app.addStylesheets(CScalingFactor::SCALING_FACTOR_4, ":styles@4x/styles.qss");
+    _app.addStylesheets(CScalingFactor::SCALING_FACTOR_4_5, ":styles@4.5x/styles.qss");
+    _app.addStylesheets(CScalingFactor::SCALING_FACTOR_5, ":styles@5x/styles.qss");
 
     _app.m_private->applyStylesheets();
 
@@ -1519,6 +1525,24 @@ void CAscApplicationManagerWrapper::sendEvent(int type, void * data)
 
 QString CAscApplicationManagerWrapper::getWindowStylesheets(double dpifactor)
 {
+    if ( dpifactor > 4.5 )
+        return getWindowStylesheets(CScalingFactor::SCALING_FACTOR_5);
+    else
+    if ( dpifactor > 4.0 )
+        return getWindowStylesheets(CScalingFactor::SCALING_FACTOR_4_5);
+    else
+    if ( dpifactor > 3.5 )
+        return getWindowStylesheets(CScalingFactor::SCALING_FACTOR_4);
+    else
+    if ( dpifactor > 3.0 )
+        return getWindowStylesheets(CScalingFactor::SCALING_FACTOR_3_5);
+    else
+    if ( dpifactor > 2.5 )
+        return getWindowStylesheets(CScalingFactor::SCALING_FACTOR_3);
+    else
+    if ( dpifactor > 2.0 )
+        return getWindowStylesheets(CScalingFactor::SCALING_FACTOR_2_5);
+    else
     if ( dpifactor > 1.75 )
         return getWindowStylesheets(CScalingFactor::SCALING_FACTOR_2);
     else

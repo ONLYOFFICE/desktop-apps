@@ -146,6 +146,5 @@
         <file alias="theme-classic-light.json">res/styles/theme-classic-light.json</file>
         <file alias="theme-dark.json">res/styles/theme-dark.json</file>
         <file alias="theme-contrast-dark.json">res/styles/theme-contrast-dark.json</file>
-        <file alias="theme-contrast-dark.qss">res/styles/theme-contrast-dark.qss</file>
     </qresource>
 </RCC>

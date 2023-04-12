@@ -1371,11 +1371,11 @@ void CMainWindow::updateScalingFactor(double dpiratio)
             btn->setFixedSize(small_btn_size);
     }*/
     m_pButtonMain->setFixedSize(int(BUTTON_MAIN_WIDTH * dpiratio), int(TITLE_HEIGHT * dpiratio));
-    const std::string _tabs_stylesheets = ":/sep-styles/tabbar@" + QString::number(dpiratio).toStdString() + "x.qss";
-    std::vector<std::string> _files{_tabs_stylesheets, ":/themes/theme-contrast-dark.qss"};
-    QString _style = Utils::readStylesheets(&_files);
-    m_pTabBarWrapper->applyTheme(_style);
-    m_pTabs->setStyleSheet(_style);
+//    const std::string _tabs_stylesheets = ":/sep-styles/tabbar@" + QString::number(dpiratio).toStdString() + "x.qss";
+//    std::vector<std::string> _files{_tabs_stylesheets, ":/themes/theme-contrast-dark.qss"};
+//    QString _style = Utils::readStylesheets(&_files);
+//    m_pTabBarWrapper->applyTheme(_style);
+//    m_pTabs->setStyleSheet(_style);
     m_pTabs->updateScalingFactor(dpiratio);
     m_pTabs->reloadTabIcons();
     m_pButtonMain->setIcon(MAIN_ICON_PATH, AscAppManager::themes().current().isDark() ? "logo-light" : "logo-dark");
