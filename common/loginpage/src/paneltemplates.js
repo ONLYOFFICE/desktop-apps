@@ -111,6 +111,12 @@
                     }
                 });
 
+                CommonEvents.on('lang:changed', (old, newlang) => {
+                    if ( !!iframe ) {
+                        iframe.contentWindow.postMessage(JSON.stringify({lang: newlang}));
+                    }
+                });
+
                 // if ( !!localStorage.templatespanel ) {
                     // let iframe;
                     // if ( navigator.onLine ) {
