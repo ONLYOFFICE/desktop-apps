@@ -94,7 +94,7 @@
                     if ( !iframe ) {
                         try {
                             const r = await fetch(_url_templates, {mode: 'no-cors'});
-                            if ( /*r.status == 200*/ r.type == 'opaque' ) {
+                            if ( r.status == 200 || r.type == 'opaque' ) {
                                 iframe = _create_and_inject_iframe();
                             }
                         } catch (e) {
