@@ -48,17 +48,8 @@ QPushButton#toolButtonMain[class=normal],
 QPushButton::menu-indicator {
     width: 13px;
     height: 13px;
-    border-image: url(:/menu-indicator_1.25x.png) 0 0 0 0 repeat repeat;
     left: -2px;
     top: -2px;
-}
-
-QPushButton::menu-indicator:disabled {
-    border-image: url(:/menu-indicator_1.25x.png) 0 0 0 13 repeat repeat;
-}
-
-QPushButton::menu-indicator:hover {
-    border-image: url(:/menu-indicator_1.25x.png) 0 13 0 0 repeat repeat;
 }
 
 QPushButton#toolButtonDownload::menu-indicator {

@@ -219,17 +219,17 @@ QPushButton::menu-indicator {
     /*border: 1px solid white;*/
     width: 10px;
     height: 10px;
-    border-image: url(:/res/icons/menu-indicator.png) 0 0 0 0 repeat repeat;
+    image: url(:/menu_indicator_normal_light.svg);
     left: -2px;
     top: -2px;
 }
 
 QPushButton::menu-indicator:disabled {
-    border-image: url(:/res/icons/menu-indicator.png) 0 0 0 10 repeat repeat;
+    image: url(:/menu_indicator_pressed_light.svg);
 }
 
 QPushButton::menu-indicator:hover {
-    border-image: url(:/res/icons/menu-indicator.png) 0 10 0 0 repeat repeat;
+    image: url(:/menu_indicator_hover_light.svg);
 }
 
 /*QPushButton[theme=dark]::menu-indicator {*/

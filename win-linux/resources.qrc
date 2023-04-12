@@ -17,12 +17,13 @@
         <file alias="maximize_light.svg">res/icons/maximize_light.svg</file>
         <file alias="restore.svg">res/icons/restore.svg</file>
         <file alias="restore_light.svg">res/icons/restore_light.svg</file>
-        <file>res/icons/menu-indicator.png</file>
-        <file>res/icons/menu-indicator-dark.png</file>
-        <file alias="menu-indicator_1.25x.png">res/icons/menu-indicator@1.5x.png</file>
-        <file alias="menu-indicator_1.5x.png">res/icons/menu-indicator@1.5x.png</file>
-        <file alias="menu-indicator_1.75x.png">res/icons/menu-indicator@1.5x.png</file>
-        <file alias="menu-indicator_2x.png">res/icons/menu-indicator@2x.png</file>
+        <file alias="menu_indicator_normal.svg">res/icons/menu_indicator_normal.svg</file>
+        <file alias="menu_indicator_hover.svg">res/icons/menu_indicator_hover.svg</file>
+        <file alias="menu_indicator_pressed.svg">res/icons/menu_indicator_pressed.svg</file>
+        <file alias="menu_indicator_normal_light.svg">res/icons/menu_indicator_normal_light.svg</file>
+        <file alias="menu_indicator_hover_light.svg">res/icons/menu_indicator_hover_light.svg</file>
+        <file alias="menu_indicator_pressed_light.svg">res/icons/menu_indicator_pressed_light.svg</file>
+        <file alias="menu_indicator_undef.svg">res/icons/menu_indicator_undef.svg</file>
         <file>res/icons/radiobox.png</file>
         <file alias="radiobox_1.25x.png">res/icons/radiobox@1.25x.png</file>
         <file alias="radiobox_1.5x.png">res/icons/radiobox@1.5x.png</file>
