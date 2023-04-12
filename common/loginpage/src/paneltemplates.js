@@ -82,7 +82,7 @@
 
                 const _create_and_inject_iframe = () => {
                     const iframe = createIframe({});
-                    iframe.src = _url_templates;
+                    iframe.src = `${_url_templates}&lang=${utils.Lang.id}`;
 
                     const target = document.getElementById("frame");
                     target.parentNode && target.parentNode.replaceChild(iframe, target);
