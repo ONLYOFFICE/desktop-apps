@@ -92,16 +92,17 @@
                 }
 
                 let iframe;
-                const _check_url_avail = async () => {
+                const _check_url_avail = () => {
                     if ( !iframe ) {
-                        try {
-                            const r = await fetch(_url_templates, {mode: 'no-cors'});
-                            if ( r.status == 200 || r.type == 'opaque' ) {
-                                iframe = _create_and_inject_iframe();
-                            }
-                        } catch (e) {
-                            console.error('error on check templates url');
-                        }
+                        fetch(_url_templates, {mode: 'no-cors'}).
+                            then(r => {
+                                if ( r.status == 200 || r.type == 'opaque' ) {
+                                    iframe = _create_and_inject_iframe();
+                                }
+                            }).
+                            catch(e => {
+                                console.error('error on check templates url', e);
+                            });
                     }
                 }
 
