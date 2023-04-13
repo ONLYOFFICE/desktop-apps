@@ -7,21 +7,6 @@
     font-size: 22px;
 }
 
-#paddingWidget {
-    min-width: 31px;
-    max-width: 31px;
-}
-
-#scrollerFrame {
-    min-width: 64px;
-    max-width: 64px;
-}
-
-#scrollerFrame>QToolButton {
-    max-height: 56px;
-}
-
-
 QPushButton#toolButtonDownload {
     padding: 12px;
 }
@@ -67,29 +52,6 @@ QPushButton#toolButtonDownload::menu-indicator {
     left: -8px;
 }
 
-/**************************/
-/* dark theme definitions */
-/**************************/
-
-QTabBar {
-    font-size: 20px;
-}
-
-QTabBar::tab {width: 270px; background-color: #f1f1f1; border: 0 none; border-right: 2px solid #a5a5a5; min-width: 82px; max-width: 270px;
-height: 56px; margin: 0 0 0 0;}
-
-QTabBar::close-button {
-    margin-top: -2px;
-    icon-size: 32px;
-}
-
-QTabBar QToolButton,
-    QTabBar QToolButton:disabled {
-    margin-right:-2px;
-    border-width:2px;
-}
-
-
 /* download widget */
 QMenu[hdpi]#menuButtonDownload {
     border-width: 2px;
@@ -123,14 +85,6 @@ QPushButton {
     font-size: 22px;
 }
 
-QLabel[class=tab-icon] {
-    padding:0 0 4px 12px;
-}
-
-/* ??? pixmap offsets on hover for 2px ??? */
-/*QTabBar QToolButton[class=tab-close]:hover{
-    border-right:2px solid #fff;
-}*/
 
 #CToolTip>QLabel {
     min-height: 52px;
