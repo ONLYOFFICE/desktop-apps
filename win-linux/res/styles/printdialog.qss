@@ -1,0 +1,759 @@
+ 
+/* 1x */
+QDialog QPushButton {
+    min-width: 40px;
+}
+
+QPrintDialog, QPrintPropertiesDialog {
+    /*background-color:#fff;*/
+    font-family: 'Helvetica Neue',Arial;
+    /*color: #444;*/
+}
+
+QPrintDialog QWidget {
+    /*selection-background-color: rgba(0,0,0,0.4);*/
+}
+
+QPrintDialog QLabel {
+    /*color:#444;*/
+    font-size: 11px;
+    font-weight: bold;
+}
+
+QPrintDialog QToolButton{
+    /*background-color: red;*/
+    border: 1px solid #cbcbcb;
+    border-radius:2px;
+    height: 22px;
+}
+
+QPrintDialog QLineEdit{
+    font-weight: normal;
+    font-size: 11px;
+    /*color: #444;*/
+    border: 1px solid #cbcbcb;
+    height: 22px;
+    border-radius:2px;
+}
+
+QPrintDialog QGroupBox {
+    border: 1px solid #cbcbcb;
+    margin-top: 4ex;
+    border-radius:2px;
+    font-size: 11px;
+    padding:8px;
+}
+
+QPrintDialog QGroupBox::title {
+    subcontrol-origin: margin;
+}
+
+QPrintDialog QComboBox{
+    border: 1px solid #cbcbcb;
+    font-family: 'Helvetica Neue',Arial;
+    font-size: 11px;
+    height: 22px;
+    border-radius:2px;
+    /*background-color: #fff;*/
+
+    /*selection-background-color: red;*/
+    show-decoration-selected: 1;
+}
+
+QPrintDialog QComboBox::down-arrow{
+    /* border-image: url(:/res/icons/arrow_down.png) 0 0 0 0 repeat repeat; */
+    /* width: 5px; */
+    /* height: 3px; */
+}
+
+QPrintDialog QComboBox::drop-down{
+    border:0 none;
+}
+
+QPrintDialog QComboBox:!editable:on {
+    /*background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #D3D3D3, stop:0.4 #D8D8D8, stop:0.5 #DDDDDD, stop:1.0 #E1E1E1);*/
+    /*background:#cbced1;*/
+}
+
+QPrintDialog QComboBox QAbstractItemView {
+    border: 1px solid #cbcbcb;
+    border-radius:2px;
+    /*background-color: #fff;*/
+    /*selection-background-color: rgba(255, 255, 255, 0.5);*/
+}
+
+QPrintDialog QRadioButton::indicator{
+    width:13px;
+    height:13px;
+}
+
+QPrintDialog QRadioButton, QPrintDialog QCheckBox {
+    font-size: 11px;
+    /*color: 444;*/
+}
+
+QPrintDialog QRadioButton::indicator::unchecked{
+    border-image: url(:/res/icons/radiobox.png) 0 0 0 0 repeat repeat;
+}
+
+QPrintDialog QRadioButton::indicator::checked{
+    border-image: url(:/res/icons/radiobox.png) 13 0 0 0 repeat repeat;
+}
+
+QPrintDialog QCheckBox::indicator{
+    width:14px;
+    height:14px;
+}
+
+QPrintDialog QCheckBox::indicator::checked{
+    border-image: url(:/res/icons/checkbox.png) 14 0 0 0 repeat repeat;
+}
+
+QPrintDialog QCheckBox::indicator::unchecked{
+    border-image: url(:/res/icons/checkbox.png) 0 0 0 0 repeat repeat;
+}
+
+QSpinBox, QDoubleSpinBox, QTimeEdit {
+    border: 1px solid #cbcbcb;
+    border-radius:2px;
+    height:22px;
+    font-size: 11px;
+    /*background-color:#fff;*/
+}
+
+QPrintDialog *::up-arrow, QPrintDialog *::down-arrow {
+    width: 5px;
+    height: 3px;
+}
+
+QPrintDialog *::up-arrow {
+    border-image: url(:/res/icons/arrow_down.png) 3 0 0 0 repeat repeat;
+    margin-bottom:1px;
+}
+
+QPrintDialog *::up-arrow:disabled, QPrintDialog *::up-arrow:off {
+    border-image: url(:/res/icons/arrow_down.png) 3 0 0 5 repeat repeat;
+}
+
+/*QSpinBox::down-arrow, QDoubleSpinBox::down-arrow, QTimeEdit::down-arrow {*/
+QPrintDialog *::down-arrow {
+    border-image: url(:/res/icons/arrow_down.png) 0 0 0 0 repeat repeat;
+    margin-top:1px;
+}
+
+QPrintDialog *::down-arrow:disabled, QPrintDialog ::down-arrow:off {
+    border-image: url(:/res/icons/arrow_down.png) 0 0 0 5 repeat repeat;
+}
+
+QPrintDialog *::up-button, QPrintDialog  *::down-button {
+    border: 0 none;
+}
+
+QPrintDialog QTabWidget::pane{
+    /*background-color: white;*/
+    /*border: 1px solid #cbcbcb;*/
+    /*position:absolute;*/
+    /*top: -1px;*/
+}
+QPrintDialog QTabBar::tab {
+    /*background-color:#fff;*/
+    border: 1px solid #cbcbcb;
+    padding: 0 10px;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    margin-right:-1px;
+    font-size: 11px;
+}
+
+QPrintDialog QTabBar::tab:first {
+}
+
+QPrintDialog QTabBar::tab:last {
+    margin-right:0;
+}
+
+QPrintDialog QTabBar::tab:selected {
+    padding: 0 10px;
+}
+
+QPrintDialog QTabBar::tab:selected {
+    background-color:rgba(255,255,255,0.3);
+    /*border-bottom-color: transparent;*/
+}
+
+QPrintDialog QTabBar::tab:!selected {
+    /*margin-top: 2px;*/
+    /*color:#444;*/
+}
+
+
+#mainPanel[uitheme=theme-dark] QPrintDialog,
+    #mainPanel[uitheme=theme-dark] QPrintPropertiesDialog
+{
+    background-color: #404040;
+}
+
+#mainPanel[uitheme=theme-dark] QPrintDialog QLabel {
+    color: #d9d9d9;
+}
+
+#mainPanel[uitheme=theme-dark] QPrintDialog QPushButton,
+    #mainPanel[uitheme=theme-dark] QPrintDialog QToolButton
+{
+    background-color: #555;
+    color: #d9d9d9;
+    border: 1px solid rgba(255,255,255,.8);
+}
+
+#mainPanel[uitheme=theme-dark] QPrintDialog QPushButton:focus {
+    border: 2px solid rgba(255,255,255,.9);
+}
+
+#mainPanel[uitheme=theme-dark] QPrintDialog QLineEdit {
+    background-color: #404040;
+    color: #d9d9d9;
+}
+
+#mainPanel[uitheme=theme-dark] QPrintDialog QGroupBox {
+    background-color: #404040;
+}
+
+#mainPanel[uitheme=theme-dark] QPrintDialog QGroupBox::title {
+    color: #d9d9d9;
+}
+
+#mainPanel[uitheme=theme-dark] QPrintDialog QComboBox{
+    background-color: #404040;
+    selection-background-color: #606060;
+    color: #d9d9d9;
+}
+
+#mainPanel[uitheme=theme-dark] QPrintDialog QComboBox QAbstractItemView {
+    background-color: #404040;
+}
+
+
+#mainPanel[uitheme=theme-dark] QPrintDialog QRadioButton,
+    #mainPanel[uitheme=theme-dark] QPrintDialog QCheckBox
+{
+    color: #d9d9d9;
+}
+
+#mainPanel[uitheme=theme-dark] QPrintDialog QTabWidget::pane {
+    background-color: #404040;
+    border: 1px solid rgba(255,255,255,.8);
+    position:absolute;
+    top:-1px;
+}
+
+#mainPanel[uitheme=theme-dark] QPrintDialog QWidget {
+    background-color: #404040;
+}
+
+#mainPanel[uitheme=theme-dark] QPrintDialog QTabBar::tab {
+    color: #d9d9d9;
+}
+
+#mainPanel[uitheme=theme-dark] QSpinBox,
+    #mainPanel[uitheme=theme-dark] QDoubleSpinBox,
+    #mainPanel[uitheme=theme-dark] QTimeEdit
+{
+    background-color: #404040;
+    color: #d9d9d9;
+}
+
+#mainPanel[uitheme=theme-dark] QPrintDialog *::up-arrow {
+    border-image: url(:/arrow_down_dark.png) 3 0 0 0 repeat repeat;
+}
+
+#mainPanel[uitheme=theme-dark] QPrintDialog *::up-arrow:disabled,
+    #mainPanel[uitheme=theme-dark] QPrintDialog *::up-arrow:off
+{
+    border-image: url(:/arrow_down_dark.png) 3 0 0 5 repeat repeat;
+}
+
+#mainPanel[uitheme=theme-dark] QPrintDialog *::down-arrow {
+    border-image: url(:/arrow_down_dark.png) 0 0 0 0 repeat repeat;
+}
+
+#mainPanel[uitheme=theme-dark] QPrintDialog *::down-arrow:disabled,
+    #mainPanel[uitheme=theme-dark] QPrintDialog ::down-arrow:off
+{
+    border-image: url(:/arrow_down_dark.png) 0 0 0 5 repeat repeat;
+}
+
+/* 1.25x */
+QDialog QPushButton {
+    min-width: 100px;
+}
+
+QPrintDialog QLabel {
+    font-size: 14px;
+}
+
+QPrintDialog QToolButton{
+    border-width: 1px;
+    border-radius: 2px;
+    height: 33px;
+}
+
+QPrintDialog QLineEdit{
+    font-size: 14px;
+    border-width: 1px;
+    height: 28px;
+    border-radius: 2px;
+}
+
+QPrintDialog QGroupBox {
+    border-width: 1px;
+    margin-top: 5ex;
+    border-radius: 2px;
+    font-size: 14px;
+    padding: 10px;
+}
+
+QPrintDialog QComboBox{
+    border-width: 1px;
+    font-size: 14px;
+    height: 28px;
+    border-radius:2px;
+}
+
+QPrintDialog QComboBox QAbstractItemView {
+    border-width: 1px;
+    border-radius: 2px;
+}
+
+QPrintDialog QRadioButton::indicator{
+    width: 16px;
+    height: 16px;
+}
+
+QPrintDialog QRadioButton, QPrintDialog QCheckBox {
+    font-size: 14px;
+}
+
+QPrintDialog QRadioButton::indicator::unchecked{
+    border-image: url(:/radiobox_1.25x.png) 0 0 0 0 repeat repeat;
+}
+
+QPrintDialog QRadioButton::indicator::checked{
+    border-image: url(:/radiobox_1.25x.png) 20 0 0 0 repeat repeat;
+}
+
+QPrintDialog QCheckBox::indicator{
+    width: 18px;
+    height: 18px;
+}
+
+QPrintDialog QCheckBox::indicator::checked{
+    border-image: url(:/checkbox_1.25x.png) 21 0 0 0 repeat repeat;
+}
+
+QPrintDialog QCheckBox::indicator::unchecked{
+    border-image: url(:/checkbox_1.25x.png) 0 0 0 0 repeat repeat;
+}
+
+QSpinBox, QDoubleSpinBox, QTimeEdit {
+    border-width: 1px;
+    border-radius: 2px;
+    height: 28px;
+    font-size: 14px;
+}
+
+QPrintDialog *::up-arrow, QPrintDialog *::down-arrow {
+    width: 6px;
+    height: 4px;
+}
+
+QPrintDialog *::up-arrow {
+    border-image: url(:/arrow_down_1.25x.png) 5 0 0 0 repeat repeat;
+    margin-bottom:1px;
+}
+
+QPrintDialog *::up-arrow:disabled, QPrintDialog *::up-arrow:off {
+    border-image: url(:/arrow_down_1.25x.png) 5 0 0 8 repeat repeat;
+}
+
+QPrintDialog *::down-arrow {
+    border-image: url(:/arrow_down_1.25x.png) 0 0 0 0 repeat repeat;
+    margin-top:1px;
+}
+
+QPrintDialog *::down-arrow:disabled, QPrintDialog ::down-arrow:off {
+    border-image: url(:/arrow_down_1.25x.png) 0 0 0 8 repeat repeat;
+}
+
+QPrintDialog QTabWidget::pane{
+    border-width: 1px;
+    top: -1px;
+}
+QPrintDialog QTabBar::tab {
+    border-width: 1px;
+    padding: 0 13px;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    margin-right:-1px;
+    font-size: 14px;
+}
+
+QPrintDialog QTabBar::tab:selected {
+    padding: 0 13px;
+}
+
+/* 1.5x */
+QDialog QPushButton {
+    min-width: 120px;
+}
+
+QPrintDialog QLabel {
+    font-size: 17px;
+}
+
+QPrintDialog QToolButton{
+    border-width: 1px;
+    border-radius: 3px;
+    height: 33px;
+}
+
+QPrintDialog QLineEdit{
+    font-size: 17px;
+    border-width: 2px;
+    height: 33px;
+    border-radius: 3px;
+}
+
+QPrintDialog QGroupBox {
+    border-width: 2px;
+    margin-top: 6ex;
+    border-radius: 3px;
+    font-size: 17px;
+    padding: 12px;
+}
+
+QPrintDialog QComboBox{
+    border-width: 2px;
+    font-size: 17px;
+    height: 33px;
+    border-radius:3px;
+}
+
+QPrintDialog QComboBox QAbstractItemView {
+    border-width: 2px;
+    border-radius: 3px;
+}
+
+QPrintDialog QRadioButton::indicator{
+    width: 20px;
+    height: 20px;
+}
+
+QPrintDialog QRadioButton, QPrintDialog QCheckBox {
+    font-size: 17px;
+}
+
+QPrintDialog QRadioButton::indicator::unchecked{
+    border-image: url(:/radiobox_1.5x.png) 0 0 0 0 repeat repeat;
+}
+
+QPrintDialog QRadioButton::indicator::checked{
+    border-image: url(:/radiobox_1.5x.png) 20 0 0 0 repeat repeat;
+}
+
+QPrintDialog QCheckBox::indicator{
+    width: 21px;
+    height: 21px;
+}
+
+QPrintDialog QCheckBox::indicator::checked{
+    border-image: url(:/checkbox_1.5x.png) 21 0 0 0 repeat repeat;
+}
+
+QPrintDialog QCheckBox::indicator::unchecked{
+    border-image: url(:/checkbox_1.5x.png) 0 0 0 0 repeat repeat;
+}
+
+QSpinBox, QDoubleSpinBox, QTimeEdit {
+    border-width: 2px;
+    border-radius: 3px;
+    height: 33px;
+    font-size: 17px;
+}
+
+QPrintDialog *::up-arrow, QPrintDialog *::down-arrow {
+    width: 8px;
+    height: 5px;
+}
+
+QPrintDialog *::up-arrow {
+    border-image: url(:/arrow_down_1.5x.png) 5 0 0 0 repeat repeat;
+    margin-bottom:1px;
+}
+
+QPrintDialog *::up-arrow:disabled, QPrintDialog *::up-arrow:off {
+    border-image: url(:/arrow_down_1.5x.png) 5 0 0 8 repeat repeat;
+}
+
+QPrintDialog *::down-arrow {
+    border-image: url(:/arrow_down_1.5x.png) 0 0 0 0 repeat repeat;
+    margin-top:1px;
+}
+
+QPrintDialog *::down-arrow:disabled, QPrintDialog ::down-arrow:off {
+    border-image: url(:/arrow_down_1.5x.png) 0 0 0 8 repeat repeat;
+}
+
+QPrintDialog QTabWidget::pane{
+    border-width: 2px;
+    top: -2px;
+}
+QPrintDialog QTabBar::tab {
+    border-width: 2px;
+    padding: 0 15px;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    margin-right:-2px;
+    font-size: 17px;
+}
+
+QPrintDialog QTabBar::tab:selected {
+    padding: 0 15px;
+}
+
+/* 1.75x */
+QDialog QPushButton {
+    min-width: 140px;
+}
+
+QPrintDialog QLabel {
+    font-size: 20px;
+}
+
+QPrintDialog QToolButton{
+    border-width: 1px;
+    border-radius: 3px;
+    height: 39px;
+}
+
+QPrintDialog QLineEdit{
+    font-size: 20px;
+    border-width: 2px;
+    height: 39px;
+    border-radius: 3px;
+}
+
+QPrintDialog QGroupBox {
+    border-width: 2px;
+    margin-top: 7ex;
+    border-radius: 3px;
+    font-size: 20px;
+    padding: 14px;
+}
+
+QPrintDialog QComboBox{
+    border-width: 2px;
+    font-size: 20px;
+    height: 39px;
+    border-radius: 4px;
+}
+
+QPrintDialog QComboBox QAbstractItemView {
+    border-width: 2px;
+    border-radius: 3px;
+}
+
+QPrintDialog QRadioButton::indicator{
+    width: 23px;
+    height: 23px;
+}
+
+QPrintDialog QRadioButton, QPrintDialog QCheckBox {
+    font-size: 20px;
+}
+
+QPrintDialog QRadioButton::indicator::unchecked{
+    border-image: url(:/radiobox_1.75x.png) 0 0 0 0 repeat repeat;
+}
+
+QPrintDialog QRadioButton::indicator::checked{
+    border-image: url(:/radiobox_1.75x.png) 20 0 0 0 repeat repeat;
+}
+
+QPrintDialog QCheckBox::indicator{
+    width: 25px;
+    height: 25px;
+}
+
+QPrintDialog QCheckBox::indicator::checked{
+    border-image: url(:/checkbox_1.75x.png) 21 0 0 0 repeat repeat;
+}
+
+QPrintDialog QCheckBox::indicator::unchecked{
+    border-image: url(:/checkbox_1.5x.png) 0 0 0 0 repeat repeat;
+}
+
+QSpinBox, QDoubleSpinBox, QTimeEdit {
+    border-width: 2px;
+    border-radius: 3px;
+    height: 39px;
+    font-size: 20px;
+}
+
+QPrintDialog *::up-arrow, QPrintDialog *::down-arrow {
+    width: 9px;
+    height: 6px;
+}
+
+QPrintDialog *::up-arrow {
+    border-image: url(:/arrow_down_1.75x.png) 5 0 0 0 repeat repeat;
+    margin-bottom:1px;
+}
+
+QPrintDialog *::up-arrow:disabled, QPrintDialog *::up-arrow:off {
+    border-image: url(:/arrow_down_1.75x.png) 5 0 0 8 repeat repeat;
+}
+
+QPrintDialog *::down-arrow {
+    border-image: url(:/arrow_down_1.75x.png) 0 0 0 0 repeat repeat;
+    margin-top:1px;
+}
+
+QPrintDialog *::down-arrow:disabled, QPrintDialog ::down-arrow:off {
+    border-image: url(:/arrow_down_1.75x.png) 0 0 0 8 repeat repeat;
+}
+
+QPrintDialog QTabWidget::pane{
+    border-width: 2px;
+    top: -2px;
+}
+QPrintDialog QTabBar::tab {
+    border-width: 2px;
+    padding: 0 18px;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    margin-right:-2px;
+    font-size: 20px;
+}
+
+QPrintDialog QTabBar::tab:selected {
+    padding: 0 18px;
+}
+
+/* 2x */
+QDialog QPushButton {
+    min-width: 80px;
+}
+
+QPrintDialog QLabel {
+    font-size: 22px;
+}
+
+QPrintDialog QToolButton{
+    border-width: 1px;
+    border-radius:4px;
+    height: 44px;
+}
+
+QPrintDialog QLineEdit{
+    font-size: 22px;
+    border-width: 2px;
+    height: 44px;
+    border-radius:4px;
+}
+
+QPrintDialog QGroupBox {
+    border-width: 2px;
+    margin-top: 8ex;
+    border-radius:4px;
+    font-size: 22px;
+    padding:16px;
+}
+
+QPrintDialog QComboBox{
+    border-width: 2px;
+    font-size: 22px;
+    height: 44px;
+    border-radius:4px;
+}
+
+QPrintDialog QComboBox QAbstractItemView {
+    border-width: 2px;
+    border-radius:4px;
+}
+
+QPrintDialog QRadioButton::indicator{
+    width:26px;
+    height:26px;
+}
+
+QPrintDialog QRadioButton, QPrintDialog QCheckBox {
+    font-size: 22px;
+}
+
+QPrintDialog QRadioButton::indicator::unchecked{
+    border-image: url(:/radiobox_2x.png) 0 0 0 0 repeat repeat;
+}
+
+QPrintDialog QRadioButton::indicator::checked{
+    border-image: url(:/radiobox_2x.png) 26 0 0 0 repeat repeat;
+}
+
+QPrintDialog QCheckBox::indicator{
+    width:28px;
+    height:28px;
+}
+
+QPrintDialog QCheckBox::indicator::checked{
+    border-image: url(:/checkbox_2x.png) 28 0 0 0 repeat repeat;
+}
+
+QPrintDialog QCheckBox::indicator::unchecked{
+    border-image: url(:/checkbox_2x.png) 0 0 0 0 repeat repeat;
+}
+
+QSpinBox, QDoubleSpinBox, QTimeEdit {
+    border-width: 2px;
+    border-radius:4px;
+    height:44px;
+    font-size:22px;
+}
+
+QPrintDialog *::up-arrow, QPrintDialog *::down-arrow {
+    width: 10px;
+    height: 6px;
+}
+
+QPrintDialog *::up-arrow {
+    border-image: url(:/arrow_down_2x.png) 6 0 0 0 repeat repeat;
+    margin-bottom:1px;
+}
+
+QPrintDialog *::up-arrow:disabled, QPrintDialog *::up-arrow:off {
+    border-image: url(:/arrow_down_2x.png) 6 0 0 10 repeat repeat;
+}
+
+QPrintDialog *::down-arrow {
+    border-image: url(:/arrow_down_2x.png) 0 0 0 0 repeat repeat;
+    margin-top:1px;
+}
+
+QPrintDialog *::down-arrow:disabled, QPrintDialog ::down-arrow:off {
+    border-image: url(:/arrow_down_2x.png) 0 0 0 10 repeat repeat;
+}
+
+QPrintDialog QTabWidget::pane{
+    border-width: 2px;
+    top: -2px;
+}
+QPrintDialog QTabBar::tab {
+    border-width: 2px;
+    padding: 0 20px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    margin-right:-2px;
+    font-size: 22px;
+}
+
+QPrintDialog QTabBar::tab:selected {
+    padding: 0 20px;
+}
