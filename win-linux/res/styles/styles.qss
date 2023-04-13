@@ -275,6 +275,7 @@ QPushButton#toolButtonDownload::menu-indicator {
 
 
 /* download widget */
+
 QMenu#menuButtonDownload {
     /*padding: 0;*/
     border: 1px solid #d1d1d1;

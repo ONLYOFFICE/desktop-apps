@@ -147,7 +147,7 @@ CAscTabWidget::CAscTabWidget(QWidget *parent, CTabBar *_pBar)
     , m_widthParams({{100, 135, 9}, 68, 3, 0, WINDOW_TITLE_MIN_WIDTH, 140, 0})
     , m_defWidthParams(m_widthParams)
     , m_isCustomStyle(true)
-    , m_tabIconSize(15, 15)
+    , m_tabIconSize(16, 16)
     , m_pBar(_pBar)
 {
     QTabWidget::tabBar()->hide();
