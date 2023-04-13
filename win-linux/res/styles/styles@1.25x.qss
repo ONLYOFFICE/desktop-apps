@@ -7,9 +7,12 @@
     font-size: 14px;
 }
 
-
-QPushButton#toolButtonDownload {
-    padding: 7px;
+QPushButton {
+    border: 1px solid #cbcbcb;
+    padding:0 25px;
+    height: 28px;
+    border-radius: 2px;
+    font-size: 14px;
 }
 
 QPushButton#toolButtonMaximize,QPushButton#toolButtonMinimize,
@@ -38,12 +41,17 @@ QPushButton::menu-indicator {
     top: -2px;
 }
 
+QPushButton#toolButtonDownload {
+    padding: 7px;
+}
+
 QPushButton#toolButtonDownload::menu-indicator {
     top: -13px;
     left: -5px;
 }
 
 /* download widget */
+
 QMenu[hdpi]#menuButtonDownload {
     border-width: 1px;
 }
@@ -68,15 +76,7 @@ CDownloadWidget[hdpi] QLabel#labelName {
     font-size: 20px;
 }
 
-QPushButton {
-    border: 1px solid #cbcbcb;
-    padding:0 25px;
-    height: 28px;
-    border-radius: 2px;
-    font-size: 14px;
-}
-
-
+/* ToolTip*/
 
 #CToolTip>QLabel {
     min-height: 32px;

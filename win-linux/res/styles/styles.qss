@@ -17,32 +17,12 @@
     font-size: 11px;
 }
 
-}
-
-}
-
-}
-
-}
-
-QPushButton#toolButtonMaximize, QPushButton#toolButtonMain,
-    QPushButton#toolButtonMinimize, QPushButton#toolButtonClose,
-    QPushButton#toolButtonDownload {
-        border: none;
-        margin: 0;
-        padding: 0;
-        border-radius:0;
-}
-
-QPushButton#toolButtonDownload {
-    background-origin: content;
-    padding: 6px;
-}
-
-QPushButton#toolButtonMaximize,QPushButton#toolButtonMinimize,
-    QPushButton#toolButtonClose {
-        background-origin: content;
-        padding: 5px 12px 7px;
+QPushButton {
+    /*background-color:#d9d9d9;*/
+    padding:0 20px;
+    font-weight: normal;
+    height: 22px;
+    font-size: 12px;
 }
 
 QPushButton[act=tool] {
@@ -62,6 +42,21 @@ QPushButton[act=tool]:pressed {
     background-color:#b7b7b7;
 }
 
+QPushButton#toolButtonMaximize, QPushButton#toolButtonMain,
+    QPushButton#toolButtonMinimize, QPushButton#toolButtonClose,
+    QPushButton#toolButtonDownload {
+        border: none;
+        margin: 0;
+        padding: 0;
+        border-radius:0;
+}
+
+QPushButton#toolButtonMaximize,QPushButton#toolButtonMinimize,
+    QPushButton#toolButtonClose {
+        background-origin: content;
+        padding: 5px 12px 7px;
+}
+
 QPushButton#toolButtonClose:hover {
     background-color:#d42b2b;
 }
@@ -72,10 +67,6 @@ QPushButton#toolButtonClose:pressed {
 
 QPushButton#toolButtonMaximize {
     image: url(:/restore.svg) center no-repeat;
-}
-
-QPushButton#toolButtonMaximize[class=normal] {
-    background-position: left top;
 }
 
 QPushButton#toolButtonMaximize[class=min] {
@@ -167,7 +158,8 @@ QPushButton::menu-indicator:hover {
 /*}*/
 
 QPushButton#toolButtonDownload {
-    /*background-repeat: no-repeat;*/
+    background-origin: content;
+    padding: 6px;
 }
 
 QPushButton#toolButtonDownload::menu-indicator {
@@ -281,8 +273,6 @@ QPushButton#toolButtonDownload::menu-indicator {
     border-right-color:#dfdfdf;
 }
 
-/*MyLabel { qproperty-pixmap: url(pixmap.png); }*/
-/*MyGroupBox { qproperty-titleColor: rgb(100, 200, 100); }*/
 
 /* download widget */
 QMenu#menuButtonDownload {
@@ -347,13 +337,7 @@ CDownloadWidget[hdpi] QLabel#labelName {
     font-size: 32px;
 }
 
-QPushButton {
-    /*background-color:#d9d9d9;*/
-    padding:0 20px;
-    font-weight: normal;
-    height: 22px;
-    font-size: 12px;
-}
+/* ToolTip*/
 
 #CToolTip>QLabel {
     min-height: 26px;
