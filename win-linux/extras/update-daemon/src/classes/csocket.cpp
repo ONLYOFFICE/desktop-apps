@@ -33,24 +33,64 @@
 #include "csocket.h"
 #include <future>
 
-#define _WINSOCK_DEPRECATED_NO_WARNINGS
-#ifndef UNICODE
-# define UNICODE 1
+#ifdef _WIN32
+# define _WINSOCK_DEPRECATED_NO_WARNINGS
+# ifndef UNICODE
+#  define UNICODE 1
+# endif
+# ifndef WIN32_LEAN_AND_MEAN
+#  define WIN32_LEAN_AND_MEAN
+# endif
+# include <Windows.h>
+# include <winsock2.h>
+# include <sys/types.h>
+# include <io.h>
+# define sleep(ms) Sleep(ms)
+# define close_socket(a) closesocket(a)
+#else
+# include <unistd.h>
+# include <sys/socket.h>
+# include <sys/un.h>
+# include <netinet/in.h>
+# include <arpa/inet.h>
+# define SD_BOTH SHUT_RDWR
+# define sleep(ms) usleep(ms*1000)
+# define close_socket(a) close(a)
+  typedef int SOCKET;
 #endif
-#ifndef WIN32_LEAN_AND_MEAN
-# define WIN32_LEAN_AND_MEAN
-#endif
-#include <Windows.h>
-#include <winsock2.h>
-#include <sys/types.h>
-#include <io.h>
-#define AF_TYPE AF_INET
+
 #define INADDR "127.0.0.1"
 #define RETRIES_DELAY_MS 4000
 #define BUFFSIZE 1024
 
 typedef struct sockaddr_in SockAddr;
 
+static bool initSocket(u_short port, SOCKET &tmpd, SockAddr &addr, int &ret, std::string &error)
+{
+#ifdef _WIN32
+    WSADATA wsaData = {0};
+    int iResult = 0;
+    iResult = WSAStartup(MAKEWORD(2, 2), &wsaData);
+    if (iResult != 0) {
+        error = "Init socket: WSAStartup failed!";
+        return false;
+    }
+    tmpd = INVALID_SOCKET;
+    if ((tmpd = socket(AF_INET, SOCK_DGRAM, 0)) == INVALID_SOCKET) {
+#else
+    tmpd = -1;
+    if ((tmpd = socket(AF_INET, SOCK_DGRAM, 0)) < 0) {
+#endif
+        error = "Init socket: socket not valid!";
+        return false;
+    }
+    memset(&addr, 0, sizeof(SockAddr));
+    addr.sin_family = AF_INET;
+    addr.sin_addr.s_addr = inet_addr(INADDR);
+    addr.sin_port = htons(port);
+    ret = ::bind(tmpd, (struct sockaddr*)&addr, sizeof(addr));
+    return true;
+}
 
 class CSocket::CSocketPrv
 {
@@ -86,65 +126,41 @@ CSocket::CSocketPrv::~CSocketPrv()
 
 bool CSocket::CSocketPrv::createSocket(u_short port)
 {
-    WSADATA wsaData = {0};
-    int iResult = 0;
-    iResult = WSAStartup(MAKEWORD(2, 2), &wsaData);
-    if (iResult != 0) {
-        postError("Create socket: WSAStartup failed!");
-        return false;
-    }
-    SOCKET tmpd = INVALID_SOCKET;
-    if ((tmpd = socket(AF_TYPE, SOCK_DGRAM, 0)) == INVALID_SOCKET) {
-        postError("Create socket: socket not valid!");
-        return false;
-    }
-
-    int len = 0;
+    int ret;
+    SOCKET tmpd;
     SockAddr addr;
-    memset(&addr, 0, sizeof(SockAddr));
-    addr.sin_family = AF_TYPE;
-    addr.sin_addr.s_addr = inet_addr(INADDR);
-    addr.sin_port = htons(port);
-    len = sizeof(addr);
+    std::string error;
+    if (!initSocket(port, tmpd, addr, ret, error)) {
+        postError(error.c_str());
+        return false;
+    }
 
-    // bind the name to the descriptor
-    int ret = ::bind(tmpd, (struct sockaddr*)&addr, len);
     if (ret == 0) {
         receiver_fd = tmpd;
         return true;
     }
-    closesocket(tmpd);
+    close_socket(tmpd);
     postError("Could not create socket!");
     return false;
 }
 
 bool CSocket::CSocketPrv::connectToSocket(u_short port)
 {
-    WSADATA wsaData = {0};
-    int iResult = 0;
-    iResult = WSAStartup(MAKEWORD(2, 2), &wsaData);
-    if (iResult != 0) {
-        postError("Connect to socket: WSAStartup failed!");
-        return false;
-    }
-    SOCKET tmpd = INVALID_SOCKET;
-    if ((tmpd = socket(AF_TYPE, SOCK_DGRAM, 0)) == INVALID_SOCKET) {
-        postError("Connect to socket: socket not valid!");
-        return false;
-    }
-
-    int len = 0;
+    int ret;
+    SOCKET tmpd;
     SockAddr addr;
-    memset(&addr, 0, sizeof(SockAddr));
-    addr.sin_family = AF_TYPE;
-    addr.sin_addr.s_addr = inet_addr(INADDR);
-    addr.sin_port = htons(port);
-    len = sizeof(addr);
+    std::string error;
+    if (!initSocket(port, tmpd, addr, ret, error)) {
+        postError(error.c_str());
+        return false;
+    }
 
-    // bind the name to the descriptor
-    int ret = ::bind(tmpd, (struct sockaddr*)&addr, len);
     if (ret != 0) {
+#ifdef _WIN32
         if (WSAGetLastError() == WSAEADDRINUSE) {
+#else
+        if (errno == EADDRINUSE) {
+#endif
             ret = ::connect(tmpd, (struct sockaddr*)&addr, sizeof(SockAddr));
             if (ret == 0) {
                 sender_fd = tmpd;
@@ -152,7 +168,7 @@ bool CSocket::CSocketPrv::connectToSocket(u_short port)
             }
         }
     }
-    closesocket(tmpd);
+    close_socket(tmpd);
     postError("Could not connect to socket!");
     return false;
 }
@@ -182,7 +198,7 @@ void CSocket::CSocketPrv::closeSocket(SOCKET &socket)
 {
     if (socket >= 0) {
         shutdown(socket, SD_BOTH);
-        closesocket(socket);
+        close_socket(socket);
         socket = -1;
     }
 }
@@ -197,11 +213,13 @@ CSocket::CSocket(int sender_port, int receiver_port) :
     pimpl(new CSocketPrv)
 {
     pimpl->m_sender_port = sender_port;
+    if (receiver_port <= 0)
+        return;
     pimpl->m_socket_created = pimpl->createSocket(receiver_port);
     pimpl->m_future = std::async(std::launch::async, [=]() {
         while (pimpl->m_run && !pimpl->m_socket_created) {
             pimpl->postError("Unable to create socket, retrying after 4 seconds.");
-            Sleep(RETRIES_DELAY_MS);
+            sleep(RETRIES_DELAY_MS);
             pimpl->m_socket_created = pimpl->createSocket(receiver_port);
         }
         if (pimpl->m_socket_created)
@@ -216,8 +234,11 @@ CSocket::~CSocket()
     pimpl->closeSocket(pimpl->receiver_fd);
     if (pimpl->m_future.valid())
         pimpl->m_future.wait();
-    WSACleanup();
+
     delete pimpl;
+#ifdef _WIN32
+    WSACleanup();
+#endif
 }
 
 bool CSocket::isPrimaryInstance()
@@ -235,7 +256,11 @@ bool CSocket::sendMessage(void *data, size_t size)
 
     char client_arg[BUFFSIZE] = {0};
     memcpy(client_arg, data, size);
+#ifdef _WIN32
     int ret_data = send(pimpl->sender_fd, client_arg, BUFFSIZE, 0); // Send the string
+#else
+    int ret_data =(int)send(pimpl->sender_fd, client_arg, BUFFSIZE, MSG_CONFIRM);
+#endif
     if (ret_data != BUFFSIZE) {
         if (ret_data < 0) {
             pimpl->postError("Send message error: could not send device address to daemon!");
