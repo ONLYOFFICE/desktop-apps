@@ -241,7 +241,12 @@ QStringList CFileDialogWrapper::modalOpen(const QString& path, const QString& fi
     QString _all_sup_files;
     if ( _filter_.isEmpty() ) {
 //        _filter_ = joinFilters();
-        _filter_ =  tr("Text documents") + " (*.docx *.doc *.odt *.ott *.rtf *.docm *.dotx *.dotm *.fb2 *.fodt *.wps *.wpt *.xml *.pdf *.djv *.djvu *.docxf *.oform *.sxw *.stw);;" +
+        _filter_ =  tr("Text documents") +
+#ifndef __LOCK_OFORM_FORMATS
+                        " (*.docx *.doc *.odt *.ott *.rtf *.docm *.dotx *.dotm *.fb2 *.fodt *.wps *.wpt *.xml *.pdf *.djv *.djvu *.docxf *.oform *.sxw *.stw);;" +
+#else
+                        " (*.docx *.doc *.odt *.ott *.rtf *.docm *.dotx *.dotm *.fb2 *.fodt *.wps *.wpt *.xml *.pdf *.djv *.djvu *.sxw *.stw);;" +
+#endif
                     tr("Spreadsheets") + " (*.xlsx *.xls *.ods *.ots *.xltx *.xltm *.fods *.et *.ett *.sxc);;" +
                     tr("Presentations") + " (*.pptx *.ppt *.odp *.otp *.ppsm *.ppsx *.pps *.potx *.pot *.potm *.fodp *.dps *.dpt *.sxi));;" +
                     tr("Web Page") + " (*.html *.htm *.mht *.mhtml *.epub);;" +

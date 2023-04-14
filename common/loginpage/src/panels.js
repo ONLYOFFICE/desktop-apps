@@ -39,8 +39,8 @@ $(document).ready(function() {
     !window.app && (window.app = {controller:{}});
     !window.app.controller && (window.app.controller = {});
 
-    if ( !!localStorage.templates )
-    window.app.controller.templates = (new ControllerTemplates).init();
+    if ( !window.utils.isWinXp && !!window.ControllerTemplates )
+        window.app.controller.templates = (new ControllerTemplates).init();
     window.app.controller.recent = (new ControllerRecent).init();
     window.app.controller.folders = (new ControllerFolders).init();
     window.app.controller.about = (new ControllerAbout).init();
@@ -67,11 +67,6 @@ $(document).ready(function() {
     $('#placeholder').on('click', '.newportal', function(){
         CommonEvents.fire("portal:create");
     });
-
-    if (!window.LoginDlg) {
-        $('.tools-connect').hide();
-        hideAction('connect');
-    }
 
     if (!window.config.portals.checklist) {
         $('.tools-connect').hide();

@@ -46,12 +46,12 @@
 #include <QCryptographicHash>
 #ifdef _WIN32
 # include "platform_win/updatedialog.h"
-# define DAEMON_NAME L"/update-daemon.exe"
+# define DAEMON_NAME L"/updatesvc.exe"
 #else
 # include <QProcess>
 # include "components/cmessage.h"
 # include "platform_linux/updatedialog.h"
-# define DAEMON_NAME "/update-daemon"
+# define DAEMON_NAME "/updatesvc"
 #endif
 
 #define WStrToTStr(str) QStrToTStr(QString::fromStdWString(str))

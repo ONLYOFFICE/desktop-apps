@@ -235,7 +235,12 @@ window.DialogConnect = function(params) {
             if ( !_url.startsWith('http') )
                 resolve({status:'skipped', response: {statusText: _url}});
             else {
-                $.ajax({
+
+                let fetchFuntion = $.ajax;
+                if (window.AscSimpleRequest && window.AscSimpleRequest.createRequest)
+                    fetchFuntion = window.AscSimpleRequest.createRequest;
+                
+                fetchFuntion({
                     url: _url,
                     crossOrigin: true,
                     crossDomain: true,

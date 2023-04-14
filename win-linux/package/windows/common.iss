@@ -11,8 +11,8 @@
   #define sWinArchFull              sWinArch
   #define sPlatformFull             sPlatform
 #else
-  #define sWinArchFull              sWinArch + "_xp"
-  #define sPlatformFull             sPlatform + "_xp"
+  #define sWinArchFull              sWinArch + "-xp"
+  #define sPlatformFull             sPlatform + "-xp"
 #endif
 
 #ifndef sBrandingFolder
@@ -27,7 +27,7 @@
 #define sAppVerShort                Copy(sAppVersion, 0, 3)
 
 #ifndef sOutputFileName
-  #define sOutputFileName           str(sPackageName + "_" + sAppVersion + "_" + sWinArchFull)
+  #define sOutputFileName           sPackageName + "-" + sAppVersion + "-" + sWinArchFull
 #endif
 
 #define sBrandingFile               sBrandingFolder + "\win-linux\package\windows\branding.iss"
@@ -758,7 +758,7 @@ begin
     GetWindowsVersionEx(version);
     if (version.Major > 6) or ((version.Major = 6) and (version.Minor >= 1)) then begin
       Exec(ExpandConstant('{app}\{#iconsExe}'), '--remove-jump-list', '', SW_SHOWNORMAL, ewWaitUntilTerminated, ErrorCode);
-      Exec(ExpandConstant('{app}\update-daemon.exe'), '--delete', '', SW_HIDE, ewWaitUntilTerminated, ErrorCode);
+      Exec(ExpandConstant('{app}\updatesvc.exe'), '--delete', '', SW_HIDE, ewWaitUntilTerminated, ErrorCode);
     end;
   end;
 end;
@@ -782,7 +782,7 @@ begin
       StringChangeEx(translateArgs, ' ', '_', True);
       StringChangeEx(translateArgs, '+', ' ', True);
       Exec(ExpandConstant('{app}\{#iconsExe}'), '--create-jump-list ' + translateArgs, '', SW_SHOWNORMAL, ewWaitUntilTerminated, ErrorCode);
-      Exec(ExpandConstant('{app}\update-daemon.exe'), '--install "Service for update documents editor."', '', SW_HIDE, ewWaitUntilTerminated, ErrorCode);
+      Exec(ExpandConstant('{app}\updatesvc.exe'), '--install "Service for update documents editor."', '', SW_HIDE, ewWaitUntilTerminated, ErrorCode);
     end;
     // migrate from the prev version when user's data saved to system common path
     commonCachePath := ExpandConstant('{commonappdata}\{#APP_PATH}\data\cache');

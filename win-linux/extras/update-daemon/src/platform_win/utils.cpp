@@ -267,11 +267,15 @@ namespace NS_File
 
     bool replaceFolder(const wstring &from, const wstring &to, bool remove_existing)
     {
-        if (!dirExists(from) || !dirExists(parentPath(to)))
+        if (!dirExists(from) || !dirExists(parentPath(to))) {
+            NS_Logger::WriteLog(DEFAULT_ERROR_MESSAGE);
             return false;
+        }
 
-        if (remove_existing && dirExists(to) && !removeDirRecursively(to))
+        if (remove_existing && dirExists(to) && !removeDirRecursively(to)) {
+            NS_Logger::WriteLog(L"Can't remove dir: " + to);
             return false;
+        }
 
         WCHAR src_vol[MAX_PATH+1] = {0};
         WCHAR dst_vol[MAX_PATH+1] = {0};
@@ -281,13 +285,17 @@ namespace NS_File
         bool can_use_rename = (src_res != 0 && dst_res != 0 && wcscmp(src_vol, dst_vol) == 0);
         if (!dirExists(to) && can_use_rename) {
             if (MoveFileEx(from.c_str(), to.c_str(), MOVEFILE_REPLACE_EXISTING |
-                              MOVEFILE_WRITE_THROUGH | MOVEFILE_COPY_ALLOWED) == 0)
+                              MOVEFILE_WRITE_THROUGH | MOVEFILE_COPY_ALLOWED) == 0) {
+                NS_Logger::WriteLog(L"Can't move dir from " + from + L" to " + to + L". " + NS_Utils::GetLastErrorAsString());
                 return false;
+            }
         } else {
             list<wstring> filesList;
             wstring error;
-            if (!NS_File::GetFilesList(from, &filesList, error))
+            if (!NS_File::GetFilesList(from, &filesList, error)) {
+                NS_Logger::WriteLog(L"Can't get files list: " + error);
                 return false;
+            }
 
             const size_t sourceLength = from.length();
             for (const wstring &sourcePath : filesList) {
