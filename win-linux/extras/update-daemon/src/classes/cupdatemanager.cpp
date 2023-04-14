@@ -45,7 +45,7 @@
 # define APP_LAUNCH_NAME  L"/DesktopEditors.exe"
 # define APP_LAUNCH_NAME2 L"/editors.exe"
 # define APP_HELPER       L"/editors_helper.exe"
-# define DAEMON_NAME      L"/update-daemon.exe"
+# define DAEMON_NAME      L"/updatesvc.exe"
 # define ARCHIVE_EXT      TEXT(".zip")
 # define ARCHIVE_PATTERN  TEXT("*.zip")
 # define sleep(a) Sleep(a)
@@ -56,7 +56,7 @@
 # include <uuid/uuid.h>
 # define APP_LAUNCH_NAME  "/DesktopEditors"
 # define APP_HELPER       "/editors_helper"
-# define DAEMON_NAME      "/update-daemon"
+# define DAEMON_NAME      "/updatesvc"
 # define SUBFOLDER        "/desktopeditors"
 # define ARCHIVE_EXT      TEXT(".tar.gz")
 # define ARCHIVE_PATTERN  TEXT("*.tar.gz")
