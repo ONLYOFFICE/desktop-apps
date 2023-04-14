@@ -85,11 +85,6 @@
                                                 <section class='box-cmp-select'>
                                                     <select class='combobox'>
                                                         <option value='0' l10n>${_lang.settOptScalingAuto}</option>
-                                                        <option value='100'>100%</option>
-                                                        <option value='125'>125%</option>
-                                                        <option value='150'>150%</option>
-                                                        <option value='175'>175%</option>
-                                                        <option value='200'>200%</option>
                                                     </select>
                                                 </section>
                                             </div>
@@ -524,6 +519,11 @@
                 baseController.prototype.init.apply(this, arguments);
 
                 this.view.render();
+
+                const _scaling = [100, 125, 150, 175, 200, 250, 300, 350, 400, 450, 500];
+                let _scaling_items = '';
+                _scaling.forEach(val => _scaling_items += `<option value="${val}">${val}%</option>`);
+                $('#opts-ui-scaling .combobox', this.view.$panel).append($(_scaling_items));
 
                 let me = this;
                 me.view.$panel.find('#sett-box-user > a.link').on('click', e => {

@@ -7,7 +7,11 @@ function checkScaling() {
                                 screen and (min-resolution: 1.5dppx) and (max-resolution: 1.74dppx)`,
         'pixel-ratio__1_75': `screen and (-webkit-min-device-pixel-ratio: 1.75) and (-webkit-max-device-pixel-ratio: 1.99),
                                 screen and (min-resolution: 1.75dppx) and (max-resolution: 1.99dppx)`,
-        'pixel-ratio__2': `screen and (-webkit-min-device-pixel-ratio: 2), screen and (min-resolution: 2dppx), screen and (min-resolution: 192dpi)`
+        'pixel-ratio__2': `screen and (-webkit-min-device-pixel-ratio: 2) and (-webkit-max-device-pixel-ratio: 2.49),
+                                screen and (min-resolution: 2dppx) and (max-resolution: 2.49dppx),
+                                screen and (min-resolution: 192dpi) and (max-resolution: 239dpi)`,
+        'pixel-ratio__2_5': `screen and (-webkit-min-device-pixel-ratio: 2.5), screen and (min-resolution: 2.5dppx),
+                                screen and (min-resolution: 240dpi)`,
     };
 
     for (var c in matches) {
