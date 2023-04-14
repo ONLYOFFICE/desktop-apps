@@ -31,7 +31,7 @@
  */
 
 #include "cunzip.h"
-#include "utils.h"
+#include "platform_win/utils.h"
 #include <atlbase.h>
 #include <Shldisp.h>
 
