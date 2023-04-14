@@ -98,6 +98,24 @@
     <qresource prefix="/styles@2x">
         <file alias="styles.qss">res/styles/styles@2x.qss</file>
     </qresource>
+    <qresource prefix="/styles@2.5x">
+        <file alias="styles.qss">res/styles/styles@2.5x.qss</file>
+    </qresource>
+    <qresource prefix="/styles@3x">
+        <file alias="styles.qss">res/styles/styles@3x.qss</file>
+    </qresource>
+    <qresource prefix="/styles@3.5x">
+        <file alias="styles.qss">res/styles/styles@3.5x.qss</file>
+    </qresource>
+    <qresource prefix="/styles@4x">
+        <file alias="styles.qss">res/styles/styles@4x.qss</file>
+    </qresource>
+    <qresource prefix="/styles@4.5x">
+        <file alias="styles.qss">res/styles/styles@4.5x.qss</file>
+    </qresource>
+    <qresource prefix="/styles@5x">
+        <file alias="styles.qss">res/styles/styles@5x.qss</file>
+    </qresource>
     <qresource prefix="/i18n">
         <file alias="be-BY.qm">langs/be.qm</file>
         <file alias="bg-BG.qm">langs/bg.qm</file>
