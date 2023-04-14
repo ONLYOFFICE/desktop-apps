@@ -50,6 +50,13 @@ CWindowPlatform::CWindowPlatform(const QRect &rect) :
         CX11Decoration::turnOff();
     setIsCustomWindowStyle(!CX11Decoration::isDecorated());
     setFocusPolicy(Qt::StrongFocus);
+    setProperty("stabilized", true);
+    m_propertyTimer = new QTimer(this);
+    m_propertyTimer->setSingleShot(true);
+    m_propertyTimer->setInterval(100);
+    connect(m_propertyTimer, &QTimer::timeout, this, [=]() {
+        setProperty("stabilized", true);
+    });
 }
 
 CWindowPlatform::~CWindowPlatform()
@@ -121,8 +128,13 @@ bool CWindowPlatform::nativeEvent(const QByteArray &ev_type, void *msg, long *re
         xcb_generic_event_t *ev = static_cast<xcb_generic_event_t*>(msg);
         switch (ev->response_type & ~0x80) {
         case XCB_FOCUS_IN:
-            if (isNativeFocus())
+            if (isNativeFocus()) {
                 focus();
+                m_propertyTimer->stop();
+                if (property("stabilized").toBool())
+                    setProperty("stabilized", false);
+                m_propertyTimer->start();
+            }
             break;
         default:
             break;
