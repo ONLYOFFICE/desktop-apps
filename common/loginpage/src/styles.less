@@ -982,11 +982,6 @@ li.menu-item {
     &__slidebox {
         position: relative;
         height: 300px;
-
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
     }
 
     &__slide {
@@ -994,17 +989,19 @@ li.menu-item {
         z-index: 1;
         transition: z-index 0ms .25s;
         padding: 20px 40px;
+        left: 50%;
+        top: -7%;
 
         &.active {
             z-index: 3;
 
             opacity: 1;
-            transform: translateX(0%) scale(1);
+            transform: translateX(-50%) scale(1);
         }
 
         &.pro-active {
             opacity: .3;
-            transform: translateX(@preslide-shift) scale(@preslide-zoom);
+            transform: translateX(-50% + @preslide-shift) scale(@preslide-zoom);
         }
 
         &.pro-active, &.pre-active {
@@ -1023,7 +1020,7 @@ li.menu-item {
 
         &.pre-active {
                 opacity: .3;
-                transform: translateX(-@preslide-shift) scale(@preslide-zoom);
+                transform: translateX(-50% - @preslide-shift) scale(@preslide-zoom);
         }
 
         &.migrate:not(.pro-active):not(.pre-active) {
