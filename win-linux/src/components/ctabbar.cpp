@@ -796,7 +796,13 @@ void CTabBar::setTabIcon(int index, const QIcon &icon)
         if (dpi_ratio < 1.5) top_offset = 2; else
         if (dpi_ratio < 1.75) top_offset = 2; else
         if (dpi_ratio < 2) top_offset = 3; else
-            top_offset = 4;
+        if (dpi_ratio < 2.5) top_offset = 4; else
+        if (dpi_ratio < 3) top_offset = 5; else
+        if (dpi_ratio < 3.5) top_offset = 5; else
+        if (dpi_ratio < 4) top_offset = 6; else
+        if (dpi_ratio < 4.5) top_offset = 8; else
+        if (dpi_ratio < 5) top_offset = 9; else
+            top_offset = 9;
 
         i->setGeometry(QRect(QPoint(_tabRect.left() + 4, _top - top_offset),_iconSize));
         i->setFixedSize(_iconSize.width() + int(8 * dpi_ratio), iconSize().height() + int(4 * dpi_ratio));

@@ -215,7 +215,7 @@ QTabBar QToolButton[class=tab-close][state=active]:pressed{
 #mainPanel[zoom="2.5x"] QTabBar::close-button {margin-top: -3px; icon-size: 40px;}
 #mainPanel[zoom="2.5x"] QTabBar QToolButton,
 #mainPanel[zoom="2.5x"] QTabBar QToolButton:disabled {/*margin-right: -2px;*/ border-width: 2px;}
-#mainPanel[zoom="2.5x"] #paddingWidget {min-width: 39px; max-width: 39px;}
+#mainPanel[zoom="2.5x"] #paddingWidget {min-width: 49px; max-width: 49px;}
 #mainPanel[zoom="2.5x"] #scrollerFrame {min-width: 80px; max-width: 80px;}
 #mainPanel[zoom="2.5x"] #scrollerFrame>QToolButton {max-height: 70px;}
 
@@ -226,7 +226,7 @@ QTabBar QToolButton[class=tab-close][state=active]:pressed{
 #mainPanel[zoom="3x"] QTabBar::close-button {margin-top: -3px; icon-size: 48px;}
 #mainPanel[zoom="3x"] QTabBar QToolButton,
 #mainPanel[zoom="3x"] QTabBar QToolButton:disabled {/*margin-right: -2px;*/ border-width: 2px;}
-#mainPanel[zoom="3x"] #paddingWidget {min-width: 47px; max-width: 47px;}
+#mainPanel[zoom="3x"] #paddingWidget {min-width: 65px; max-width: 65px;}
 #mainPanel[zoom="3x"] #scrollerFrame {min-width: 96px; max-width: 96px;}
 #mainPanel[zoom="3x"] #scrollerFrame>QToolButton {max-height: 84px;}
 
@@ -237,7 +237,7 @@ QTabBar QToolButton[class=tab-close][state=active]:pressed{
 #mainPanel[zoom="3.5x"] QTabBar::close-button {margin-top: -4px; icon-size: 56px;}
 #mainPanel[zoom="3.5x"] QTabBar QToolButton,
 #mainPanel[zoom="3.5x"] QTabBar QToolButton:disabled {/*margin-right: -2px;*/ border-width: 2px;}
-#mainPanel[zoom="3.5x"] #paddingWidget {min-width: 54px; max-width: 54px;}
+#mainPanel[zoom="3.5x"] #paddingWidget {min-width: 82px; max-width: 82px;}
 #mainPanel[zoom="3.5x"] #scrollerFrame {min-width: 112px; max-width: 112px;}
 #mainPanel[zoom="3.5x"] #scrollerFrame>QToolButton {max-height: 98px;}
 
@@ -248,7 +248,7 @@ QTabBar QToolButton[class=tab-close][state=active]:pressed{
 #mainPanel[zoom="4x"] QTabBar::close-button {margin-top: -4px; icon-size: 64px;}
 #mainPanel[zoom="4x"] QTabBar QToolButton,
 #mainPanel[zoom="4x"] QTabBar QToolButton:disabled {/*margin-right: -2px;*/ border-width: 2px;}
-#mainPanel[zoom="4x"] #paddingWidget {min-width: 62px; max-width: 62px;}
+#mainPanel[zoom="4x"] #paddingWidget {min-width: 98px; max-width: 98px;}
 #mainPanel[zoom="4x"] #scrollerFrame {min-width: 128px; max-width: 128px;}
 #mainPanel[zoom="4x"] #scrollerFrame>QToolButton {max-height: 112px;}
 
@@ -259,7 +259,7 @@ QTabBar QToolButton[class=tab-close][state=active]:pressed{
 #mainPanel[zoom="4.5x"] QTabBar::close-button {margin-top: -5px; icon-size: 72px;}
 #mainPanel[zoom="4.5x"] QTabBar QToolButton,
 #mainPanel[zoom="4.5x"] QTabBar QToolButton:disabled {/*margin-right: -2px;*/ border-width: 2px;}
-#mainPanel[zoom="4.5x"] #paddingWidget {min-width: 70px; max-width: 70px;}
+#mainPanel[zoom="4.5x"] #paddingWidget {min-width: 112px; max-width: 112px;}
 #mainPanel[zoom="4.5x"] #scrollerFrame {min-width: 144px; max-width: 144px;}
 #mainPanel[zoom="4.5x"] #scrollerFrame>QToolButton {max-height: 126px;}
 
@@ -270,6 +270,6 @@ QTabBar QToolButton[class=tab-close][state=active]:pressed{
 #mainPanel[zoom="5x"] QTabBar::close-button {margin-top: -5px; icon-size: 80px;}
 #mainPanel[zoom="5x"] QTabBar QToolButton,
 #mainPanel[zoom="5x"] QTabBar QToolButton:disabled {/*margin-right: -2px;*/ border-width: 2px;}
-#mainPanel[zoom="5x"] #paddingWidget {min-width: 78px; max-width: 78px;}
+#mainPanel[zoom="5x"] #paddingWidget {min-width: 130px; max-width: 130px;}
 #mainPanel[zoom="5x"] #scrollerFrame {min-width: 160px; max-width: 160px;}
 #mainPanel[zoom="5x"] #scrollerFrame>QToolButton {max-height: 140px;}
