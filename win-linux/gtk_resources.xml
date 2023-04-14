@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gresources>
+  <gresource prefix="/">
+    <file>res/icons/app-icon_64.png</file>
+    <file>res/icons/app-icon_96.png</file>
+    <file>res/icons/app-icon_128.png</file>
+    <file>res/icons/app-icon_256.png</file>
+  </gresource>
+</gresources>
