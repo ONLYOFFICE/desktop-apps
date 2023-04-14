@@ -33,14 +33,27 @@
 #ifndef CUPDATEMANAGER_H
 #define CUPDATEMANAGER_H
 
-#include "classes/cdownloader.h"
-#include "classes/cunzip.h"
 #include "classes/csocket.h"
 #include <future>
+#ifdef _WIN32
+# include "classes/platform_win/cdownloader.h"
+# include "classes/platform_win/cunzip.h"
+# include <Windows.h>
+# define tstring std::wstring
+# define tchar wchar_t
+# define tstringstream std::wstringstream
+# define to_tstring to_wstring
+#else
+# include "classes/platform_linux/cdownloader.h"
+# include "classes/platform_linux/cunzip.h"
+# define TEXT(str) str
+# define tstring std::string
+# define tchar char
+# define tstringstream std::stringstream
+# define to_tstring to_string
+#endif
 
 typedef std::function<void(void)> FnVoidVoid;
-
-using std::wstring;
 using std::future;
 
 
@@ -56,16 +69,16 @@ public:
 private:
     void init();
     void onCompleteUnzip(const int error);
-    void onCompleteSlot(const int error, const wstring &filePath);
+    void onCompleteSlot(const int error, const tstring &filePath);
     void onProgressSlot(const int percent);
-    void unzipIfNeeded(const wstring &filePath, const wstring &newVersion);
-    void clearTempFiles(const wstring &prefix, const wstring &except = wstring());    
+    void unzipIfNeeded(const tstring &filePath, const tstring &newVersion);
+    void clearTempFiles(const tstring &prefix, const tstring &except = tstring());
     void startReplacingFiles();
-    bool sendMessage(int cmd, const wstring &param1 = L"null", const wstring &param2 = L"null",
-                        const wstring &param3 = L"null");
+    bool sendMessage(int cmd, const tstring &param1 = TEXT("null"), const tstring &param2 = TEXT("null"),
+                        const tstring &param3 = TEXT("null"));
 
     FnVoidVoid   m_quit_callback = nullptr;
-    wstring      m_newVersion;
+    tstring      m_newVersion;
     bool         m_lock = false;
     int          m_downloadMode;
     future<void> m_future_clear;

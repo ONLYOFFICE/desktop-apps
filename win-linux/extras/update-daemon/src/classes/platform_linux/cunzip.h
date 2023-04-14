@@ -30,46 +30,38 @@
  *
  */
 
-#ifndef CSOCKET_H
-#define CSOCKET_H
+#ifndef CUNZIP_H
+#define CUNZIP_H
 
+#include <future>
 #include <functional>
+#include <string>
 
-using std::size_t;
+#define UNZIP_OK 0
+#define UNZIP_ERROR 1
+#define UNZIP_ABORT 2
 
-typedef std::function<void(void*, size_t)> FnVoidData;
-typedef std::function<void(const char*)> FnVoidCharPtr;
+typedef std::function<void(int)> FnVoidInt;
+
+using std::string;
 
 
-enum MsgCommands {
-    MSG_CheckUpdates = 0,
-    MSG_LoadUpdates,
-    MSG_LoadCheckFinished,
-    MSG_LoadUpdateFinished,
-    MSG_UnzipIfNeeded,
-    MSG_ShowStartInstallMessage,
-    MSG_StartReplacingFiles,
-    MSG_ClearTempFiles,
-    MSG_Progress,
-    MSG_StopDownload,
-    MSG_OtherError
-};
-
-class CSocket
+class CUnzip
 {
 public:
-    CSocket(int sender_port, int receiver_port);
-    ~CSocket();
+    CUnzip();
+    ~CUnzip();
+
+    void extractArchive(const string &zipFilePath, const string &folderPath);
+    void stop();
 
     /* callback */
-    bool isPrimaryInstance();
-    bool sendMessage(void *data, size_t size);
-    void onMessageReceived(FnVoidData callback);
-    void onError(FnVoidCharPtr callback);
+    void onComplete(FnVoidInt callback);
 
 private:
-    class CSocketPrv;
-    CSocketPrv *pimpl = nullptr;
+    FnVoidInt m_complete_callback = nullptr;
+    std::atomic_bool m_run;
+    std::future<void> m_future;
 };
 
-#endif // CSOCKET_H
+#endif // CUNZIP_H

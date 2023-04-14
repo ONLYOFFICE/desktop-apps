@@ -30,46 +30,44 @@
  *
  */
 
-#ifndef CSOCKET_H
-#define CSOCKET_H
-
-#include <functional>
-
-using std::size_t;
-
-typedef std::function<void(void*, size_t)> FnVoidData;
-typedef std::function<void(const char*)> FnVoidCharPtr;
+#include "capplication.h"
+#include "platform_linux/utils.h"
+#include <iostream>
+#include <SDL2/SDL.h>
 
 
-enum MsgCommands {
-    MSG_CheckUpdates = 0,
-    MSG_LoadUpdates,
-    MSG_LoadCheckFinished,
-    MSG_LoadUpdateFinished,
-    MSG_UnzipIfNeeded,
-    MSG_ShowStartInstallMessage,
-    MSG_StartReplacingFiles,
-    MSG_ClearTempFiles,
-    MSG_Progress,
-    MSG_StopDownload,
-    MSG_OtherError
-};
-
-class CSocket
+CApplication::CApplication()
 {
-public:
-    CSocket(int sender_port, int receiver_port);
-    ~CSocket();
+    if (SDL_Init(SDL_INIT_VIDEO) != 0)
+        NS_Logger::WriteLog(string("SDL_Init error: ") + SDL_GetError(), true);
+}
 
-    /* callback */
-    bool isPrimaryInstance();
-    bool sendMessage(void *data, size_t size);
-    void onMessageReceived(FnVoidData callback);
-    void onError(FnVoidCharPtr callback);
+CApplication::~CApplication()
+{
+    SDL_Quit();
+}
 
-private:
-    class CSocketPrv;
-    CSocketPrv *pimpl = nullptr;
-};
+int CApplication::exec()
+{
+    int exit_code = 1;
+    SDL_Event event;
+    while (m_run && SDL_WaitEvent(&event)) {
+        switch (event.type) {
+            case SDL_QUIT:
+                exit_code = event.user.code;
+                break;
+            default:
+                break;
+        }
+    }
+    return exit_code;
+}
 
-#endif // CSOCKET_H
+void CApplication::exit(int code)
+{
+    m_run = false;
+    SDL_Event event;
+    event.type = SDL_QUIT;
+    event.user.code = code;
+    SDL_PushEvent(&event);
+}

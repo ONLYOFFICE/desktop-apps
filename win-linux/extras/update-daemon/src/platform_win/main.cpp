@@ -31,8 +31,8 @@
 */
 
 #include "utils.h"
-#include "svccontrol.h"
-#include "classes/capplication.h"
+#include "platform_win/svccontrol.h"
+#include "classes/platform_win/capplication.h"
 #include "classes/cupdatemanager.h"
 #include "../../src/defines.h"
 

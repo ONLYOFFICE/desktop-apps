@@ -30,46 +30,35 @@
  *
  */
 
-#ifndef CSOCKET_H
-#define CSOCKET_H
+#ifndef UPDATEDIALOG_H
+#define UPDATEDIALOG_H
 
-#include <functional>
-
-using std::size_t;
-
-typedef std::function<void(void*, size_t)> FnVoidData;
-typedef std::function<void(const char*)> FnVoidCharPtr;
+#include <QWidget>
+#include <QString>
 
 
-enum MsgCommands {
-    MSG_CheckUpdates = 0,
-    MSG_LoadUpdates,
-    MSG_LoadCheckFinished,
-    MSG_LoadUpdateFinished,
-    MSG_UnzipIfNeeded,
-    MSG_ShowStartInstallMessage,
-    MSG_StartReplacingFiles,
-    MSG_ClearTempFiles,
-    MSG_Progress,
-    MSG_StopDownload,
-    MSG_OtherError
-};
-
-class CSocket
+namespace WinDlg
 {
-public:
-    CSocket(int sender_port, int receiver_port);
-    ~CSocket();
-
-    /* callback */
-    bool isPrimaryInstance();
-    bool sendMessage(void *data, size_t size);
-    void onMessageReceived(FnVoidData callback);
-    void onError(FnVoidCharPtr callback);
-
-private:
-    class CSocketPrv;
-    CSocketPrv *pimpl = nullptr;
+enum class DlgBtns {
+    mbSkipRemindInstall = 0,
+    mbSkipRemindSaveandinstall,
+    mbSkipRemindDownload,
+    mbInslaterRestart
 };
 
-#endif // CSOCKET_H
+enum DlgRes {
+    DLG_RESULT_SKIP = 0,
+    DLG_RESULT_REMIND,
+    DLG_RESULT_DOWNLOAD,
+    DLG_RESULT_INSTALL,
+    DLG_RESULT_INSLATER,
+    DLG_RESULT_RESTART
+};
+
+int showDialog(QWidget *parent,
+               const QString &msg,
+               const QString &content,
+               DlgBtns dlgBtns = DlgBtns::mbSkipRemindInstall);
+}
+
+#endif // UPDATEDIALOG_H

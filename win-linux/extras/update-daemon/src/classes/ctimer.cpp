@@ -32,6 +32,7 @@
 
 #include "ctimer.h"
 #include <chrono>
+#include <thread>
 
 
 CTimer::CTimer()

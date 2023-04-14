@@ -28,48 +28,34 @@
  * Creative Commons Attribution-ShareAlike 4.0 International. See the License
  * terms at http://creativecommons.org/licenses/by-sa/4.0/legalcode
  *
- */
+*/
 
-#ifndef CSOCKET_H
-#define CSOCKET_H
-
-#include <functional>
-
-using std::size_t;
-
-typedef std::function<void(void*, size_t)> FnVoidData;
-typedef std::function<void(const char*)> FnVoidCharPtr;
+#include "platform_linux/utils.h"
+#include "classes/platform_linux/capplication.h"
+#include "classes/cupdatemanager.h"
+#include "../../src/defines.h"
+#include <cstring>
 
 
-enum MsgCommands {
-    MSG_CheckUpdates = 0,
-    MSG_LoadUpdates,
-    MSG_LoadCheckFinished,
-    MSG_LoadUpdateFinished,
-    MSG_UnzipIfNeeded,
-    MSG_ShowStartInstallMessage,
-    MSG_StartReplacingFiles,
-    MSG_ClearTempFiles,
-    MSG_Progress,
-    MSG_StopDownload,
-    MSG_OtherError
-};
-
-class CSocket
+int main(int argc, char *argv[])
 {
-public:
-    CSocket(int sender_port, int receiver_port);
-    ~CSocket();
+    NS_File::setAppPath(argv[0]);
 
-    /* callback */
-    bool isPrimaryInstance();
-    bool sendMessage(void *data, size_t size);
-    void onMessageReceived(FnVoidData callback);
-    void onError(FnVoidCharPtr callback);
+    if (argc > 1) {
+        if (strcmp(argv[1], "--run-as-app") == 0) {
+            CSocket socket(0, INSTANCE_SVC_PORT);
+            if (!socket.isPrimaryInstance())
+                return 0;
 
-private:
-    class CSocketPrv;
-    CSocketPrv *pimpl = nullptr;
-};
+            CApplication app;
+            CUpdateManager upd;
+            socket.onMessageReceived([&app](void *buff, size_t) {
+                if (strcmp((const char*)buff, "stop") == 0)
+                    app.exit(0);
+            });
+            return app.exec();
+        }
+    }
 
-#endif // CSOCKET_H
+    return 0;
+}

@@ -30,46 +30,37 @@
  *
  */
 
-#ifndef CSOCKET_H
-#define CSOCKET_H
+#ifndef CDOWNLOADER_H
+#define CDOWNLOADER_H
 
+#include <string>
 #include <functional>
 
-using std::size_t;
+typedef std::function<void(int)> FnVoidInt;
 
-typedef std::function<void(void*, size_t)> FnVoidData;
-typedef std::function<void(const char*)> FnVoidCharPtr;
+using std::string;
 
 
-enum MsgCommands {
-    MSG_CheckUpdates = 0,
-    MSG_LoadUpdates,
-    MSG_LoadCheckFinished,
-    MSG_LoadUpdateFinished,
-    MSG_UnzipIfNeeded,
-    MSG_ShowStartInstallMessage,
-    MSG_StartReplacingFiles,
-    MSG_ClearTempFiles,
-    MSG_Progress,
-    MSG_StopDownload,
-    MSG_OtherError
-};
+class CDownloaderPrivate;
 
-class CSocket
+class CDownloader
 {
 public:
-    CSocket(int sender_port, int receiver_port);
-    ~CSocket();
+    CDownloader();
+    ~CDownloader();
+
+    void downloadFile(const string &url, const string &filePath);
+    void start();
+    void pause();
+    void stop();
+    string GetFilePath();
 
     /* callback */
-    bool isPrimaryInstance();
-    bool sendMessage(void *data, size_t size);
-    void onMessageReceived(FnVoidData callback);
-    void onError(FnVoidCharPtr callback);
+    void onComplete(FnVoidInt callback);
+    void onProgress(FnVoidInt callback);
 
 private:
-    class CSocketPrv;
-    CSocketPrv *pimpl = nullptr;
+    CDownloaderPrivate *pimpl = nullptr;
 };
 
-#endif // CSOCKET_H
+#endif // CDOWNLOADER_H

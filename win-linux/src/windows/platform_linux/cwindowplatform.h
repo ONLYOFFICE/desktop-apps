@@ -59,7 +59,8 @@ private:
     virtual void mouseMoveEvent(QMouseEvent *) final;
     virtual void mousePressEvent(QMouseEvent *) final;
     virtual void mouseReleaseEvent(QMouseEvent *) final;
-    virtual void mouseDoubleClickEvent(QMouseEvent *) final;    
+    virtual void mouseDoubleClickEvent(QMouseEvent *) final;
+    QTimer *m_propertyTimer;
 };
 
 #endif // CWINDOWPLATFORM_H

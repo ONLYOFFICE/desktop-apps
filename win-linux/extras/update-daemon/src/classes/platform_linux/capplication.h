@@ -30,46 +30,23 @@
  *
  */
 
-#ifndef CSOCKET_H
-#define CSOCKET_H
+#ifndef CAPPLICATION_H
+#define CAPPLICATION_H
 
-#include <functional>
-
-using std::size_t;
-
-typedef std::function<void(void*, size_t)> FnVoidData;
-typedef std::function<void(const char*)> FnVoidCharPtr;
+#include <atomic>
 
 
-enum MsgCommands {
-    MSG_CheckUpdates = 0,
-    MSG_LoadUpdates,
-    MSG_LoadCheckFinished,
-    MSG_LoadUpdateFinished,
-    MSG_UnzipIfNeeded,
-    MSG_ShowStartInstallMessage,
-    MSG_StartReplacingFiles,
-    MSG_ClearTempFiles,
-    MSG_Progress,
-    MSG_StopDownload,
-    MSG_OtherError
-};
-
-class CSocket
+class CApplication
 {
 public:
-    CSocket(int sender_port, int receiver_port);
-    ~CSocket();
+    CApplication();
+    ~CApplication();
 
-    /* callback */
-    bool isPrimaryInstance();
-    bool sendMessage(void *data, size_t size);
-    void onMessageReceived(FnVoidData callback);
-    void onError(FnVoidCharPtr callback);
+    int exec();
+    void exit(int);
 
 private:
-    class CSocketPrv;
-    CSocketPrv *pimpl = nullptr;
+    std::atomic_bool m_run{true};
 };
 
-#endif // CSOCKET_H
+#endif // CAPPLICATION_H

@@ -28,48 +28,56 @@
  * Creative Commons Attribution-ShareAlike 4.0 International. See the License
  * terms at http://creativecommons.org/licenses/by-sa/4.0/legalcode
  *
- */
+*/
 
-#ifndef CSOCKET_H
-#define CSOCKET_H
+#ifndef UTILS_H
+#define UTILS_H
 
-#include <functional>
+#include <string>
+#include <list>
 
-using std::size_t;
+using std::string;
+using std::to_string;
+using std::list;
 
-typedef std::function<void(void*, size_t)> FnVoidData;
-typedef std::function<void(const char*)> FnVoidCharPtr;
+#define DEFAULT_ERROR_MESSAGE "An error occurred: " + \
+    string(__FUNCTION__) + " Line: " + to_string(__LINE__)
+#define ADVANCED_ERROR_MESSAGE DEFAULT_ERROR_MESSAGE + \
+    " " + NS_Utils::GetLastErrorAsString()
 
-
-enum MsgCommands {
-    MSG_CheckUpdates = 0,
-    MSG_LoadUpdates,
-    MSG_LoadCheckFinished,
-    MSG_LoadUpdateFinished,
-    MSG_UnzipIfNeeded,
-    MSG_ShowStartInstallMessage,
-    MSG_StartReplacingFiles,
-    MSG_ClearTempFiles,
-    MSG_Progress,
-    MSG_StopDownload,
-    MSG_OtherError
-};
-
-class CSocket
+namespace NS_Utils
 {
-public:
-    CSocket(int sender_port, int receiver_port);
-    ~CSocket();
+string GetLastErrorAsString();
+int ShowMessage(string str, bool showError = false);
+}
 
-    /* callback */
-    bool isPrimaryInstance();
-    bool sendMessage(void *data, size_t size);
-    void onMessageReceived(FnVoidData callback);
-    void onError(FnVoidCharPtr callback);
+namespace NS_File
+{
+void setAppPath(const string &path);
+bool GetFilesList(const string &path, list<string> *lst, string &error, bool ignore_locked = true);
+bool readFile(const string &filePath, list<string> &linesList);
+bool writeToFile(const string &filePath, list<string> &linesList);
+bool runProcess(const string &fileName, const string &args);
+bool isProcessRunning(const string &fileName);
+bool fileExists(const string &filePath);
+bool dirExists(const string &dirName);
+bool dirIsEmpty(const string &dirName);
+bool makePath(const string &path);
+bool replaceFile(const string &oldFilePath, const string &newFilePath);
+bool replaceFolder(const string &from, const string &to, bool remove_existing = false);
+bool removeFile(const string &filePath);
+bool removeDirRecursively(const string &dir);
+string parentPath(const string &path);
+string tempPath();
+string appPath();
+string getFileHash(const string &fileName);
+//bool verifyEmbeddedSignature(const string &fileName);
+}
 
-private:
-    class CSocketPrv;
-    CSocketPrv *pimpl = nullptr;
-};
+namespace NS_Logger
+{
+void AllowWriteLog();
+void WriteLog(const string &log, bool showMessage = false);
+}
 
-#endif // CSOCKET_H
+#endif // UTILS_H

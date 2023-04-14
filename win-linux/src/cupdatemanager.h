@@ -38,8 +38,25 @@
 #include <ctime>
 #include "csocket.h"
 
-using std::wstring;
+#ifdef _WIN32
+# include <Windows.h>
+# define tstring std::wstring
+# define tchar wchar_t
+# define tstringstream std::wstringstream
+# define to_tstring to_wstring
+# define QStrToTStr(a) a.toStdWString()
+# define TStrToQStr(a) QString::fromStdWString(a)
+#else
+# define TEXT(str) str
+# define tstring std::string
+# define tchar char
+# define tstringstream std::stringstream
+# define to_tstring to_string
+# define QStrToTStr(a) a.toStdString()
+# define TStrToQStr(a) QString::fromStdString(a)
+#endif
 
+using std::wstring;
 
 enum UpdateMode {
     DISABLE=0, SILENT=1, ASK=2
@@ -75,8 +92,8 @@ private:
     void onCheckFinished(bool error, bool updateExist, const QString &version, const QString &changelog);
     void unzipIfNeeded();
     void savePackageData(const QString &version = QString(), const QString &fileName = QString());
-    bool sendMessage(int cmd, const wstring &param1 = L"null", const wstring &param2 = L"null",
-                        const wstring &param3 = L"null");
+    bool sendMessage(int cmd, const tstring &param1 = TEXT("null"), const tstring &param2 = TEXT("null"),
+                        const tstring &param3 = TEXT("null"));
 
     struct PackageData;
     struct SavedPackageData;
