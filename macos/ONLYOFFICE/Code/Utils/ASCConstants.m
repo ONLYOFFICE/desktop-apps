@@ -81,6 +81,10 @@
     return @[@"ppt", @"pptx", @"ppsx", @"odp", @"potx", @"otp", @"pps", @"ppsm", @"potm", @"fodp", @"dps", @"dpt", @"sxi"];
 }
 
++ (NSArray *)cancryptformats {
+    return @[@".docm", @".docx", @".docxf", @".dotm", @".dotx", @".oform", @".potm", @".potx", @".ppsm", @".pptm", @".ppsx", @".pptx", @".xlsm", @".xlsx", @".xltm", @".xltx"];
+}
+
 + (NSArray *)plugins {
     return @[@"plugin"];
 }
