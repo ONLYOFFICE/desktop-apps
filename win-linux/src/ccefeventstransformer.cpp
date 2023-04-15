@@ -150,6 +150,12 @@ void CCefEventsTransformer::OnEvent(QObject * target, NSEditorApi::CAscCefMenuEv
                         Q_ARG(int, event->get_SenderId()), Q_ARG(bool, event->m_nType == ASC_MENU_EVENT_TYPE_CEF_ONFULLSCREENENTER));
         break;
 
+    case ASC_MENU_EVENT_TYPE_REPORTER_CREATE:
+    case ASC_MENU_EVENT_TYPE_REPORTER_END: {
+        QMetaObject::invokeMethod(target, "onReporterMode", Qt::QueuedConnection,
+                        Q_ARG(int, event->get_SenderId()), Q_ARG(bool, event->m_nType == ASC_MENU_EVENT_TYPE_REPORTER_CREATE));
+        break;}
+
     case ASC_MENU_EVENT_TYPE_CEF_LOCALFILES_OPEN: {
         CAscLocalOpenFiles * pData = (CAscLocalOpenFiles *)event->m_pData;
         ADDREFINTERFACE(pData);

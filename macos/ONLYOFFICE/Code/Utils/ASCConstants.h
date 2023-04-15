@@ -110,6 +110,7 @@ static NSString * const CEFOpenFileFilterVideo              = @"video";
 static NSString * const CEFOpenFileFilterAudio              = @"audio";
 static NSString * const CEFOpenFileFilterCsvTxt             = @"csv/txt";
 static NSString * const CEFOpenFileFilterCrypto             = @"cryptofiles";
+static NSString * const CEFOpenFileFilterXML                = @"(*xml)";
 
 // CEF event names
 static NSString * const CEFEventNameCreateTab               = @"CEF_createTab";
@@ -163,6 +164,7 @@ static NSString * const CEFEventNameCertificatePreview      = @"CEF_certificateP
 + (NSArray *)plugins;
 + (NSArray *)csvtxt;
 + (NSArray *)cancryptformats;
++ (NSArray *)xmldata;
 
 + (NSString *)appInfo:(NSString *)key;
 + (NSDictionary *)ascFormatsInfo;

@@ -11,8 +11,8 @@
   #define sWinArchFull              sWinArch
   #define sPlatformFull             sPlatform
 #else
-  #define sWinArchFull              sWinArch + "_xp"
-  #define sPlatformFull             sPlatform + "_xp"
+  #define sWinArchFull              sWinArch + "-xp"
+  #define sPlatformFull             sPlatform + "-xp"
 #endif
 
 #ifndef sBrandingFolder
@@ -27,7 +27,7 @@
 #define sAppVerShort                Copy(sAppVersion, 0, 3)
 
 #ifndef sOutputFileName
-  #define sOutputFileName           str(sPackageName + "_" + sAppVersion + "_" + sWinArchFull)
+  #define sOutputFileName           sPackageName + "-" + sAppVersion + "-" + sWinArchFull
 #endif
 
 #define sBrandingFile               sBrandingFolder + "\win-linux\package\windows\branding.iss"
@@ -80,6 +80,8 @@ SetupMutex                =ASC
 #if str(_ARCH) == "64"
 ArchitecturesAllowed              = x64
 ArchitecturesInstallIn64BitMode   = x64
+#else
+ArchitecturesAllowed              = x86
 #endif
 
 #ifndef _WIN_XP
@@ -145,10 +147,12 @@ Name: hu; MessagesFile: compiler:Languages\Hungarian.isl;     LicenseFile: {#sBr
 Name: ja; MessagesFile: compiler:Languages\Japanese.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 Name: ko; MessagesFile: compiler:Languages\Korean.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 Name: lv; MessagesFile: compiler:Languages\Latvian.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
-Name: nn_NO; MessagesFile: compiler:Languages\Norwegian.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
+Name: no; MessagesFile: compiler:Languages\Norwegian.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 Name: uk; MessagesFile: compiler:Languages\Ukrainian.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 Name: be; MessagesFile: compiler:Languages\Belarusian.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 Name: gl; MessagesFile: compiler:Languages\Galician.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
+;Name: si; MessagesFile: compiler:Languages\Sinhala.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
+;Name: zh_HK; MessagesFile: compiler:Languages\ChineseTraditional.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 
 [LangOptions]
 lo.LanguageName=ພາສາລາວ
@@ -194,10 +198,12 @@ hu.Launch =%1 elindítása
 ja.Launch ==%1 を起動
 ko.Launch ==%1 시작
 lv.Launch =Sākt %1
-nn_NO.Launch =Kjør %1
+no.Launch =Kjør %1
 uk.Launch =Запустити %1
 be.Launch =Запусціць %1
 gl.Launch =Iniciar %1
+;si.Launch =%1 දියත් කරන්න
+;zh_HK.Launch =啓動 %1
 ;======================================================================================================
 en.CreateDesktopIcon =Create %1 &desktop icon
 bg.CreateDesktopIcon =Създаване на %1 &икона на работния плот
@@ -234,10 +240,12 @@ hu.CreateDesktopIcon ==%1 &ikon létrehozása az asztalon
 ja.CreateDesktopIcon ==%1 &デスクトップアイコンを作成
 ko.CreateDesktopIcon ==%1 &데스크탑 아이콘 생성
 lv.CreateDesktopIcon =Izveidot %1 &darbvirsmas ikonu
-nn_NO.CreateDesktopIcon =Opprett %1 &skrivebordsikon
+no.CreateDesktopIcon =Opprett %1 &skrivebordsikon
 uk.CreateDesktopIcon =Створити &іконку %1 на робочому столі
 be.CreateDesktopIcon =Стварыце значок %1 на &працоўным стале
 gl.CreateDesktopIcon =Crear unha icona de escritorio& %1
+;si.CreateDesktopIcon =%1 වැඩතල නිරූපකය සාදන්න
+;zh_HK.CreateDesktopIcon =建立 %1 和桌面圖示
 ;======================================================================================================
 en.InstallAdditionalComponents =Installing additional system components. Please wait...
 ca.InstallAdditionalComponents =Instal·lació de components de sistema addicionals. Si us plau, espereu...
@@ -274,10 +282,12 @@ hu.InstallAdditionalComponents =További rendszerelemek telepítése zajlik. Ké
 ja.InstallAdditionalComponents =追加のシステムコンポーネントをインストールしています。お待ちください...
 ko.InstallAdditionalComponents =추가 시스템 구성 요소를 설치하는 중입니다. 잠시만 기다려주세요...
 lv.InstallAdditionalComponents =Instalē papildu sistēmas komponentus. Lūdzu, uzgaidiet...
-nn_NO.InstallAdditionalComponents =Installerer flere systemkomponenter. Vennligst vent...
+no.InstallAdditionalComponents =Installerer flere systemkomponenter. Vennligst vent...
 uk.InstallAdditionalComponents =Інсталюються додаткові компоненти системи. Зачекайте...
 be.InstallAdditionalComponents =Устаноўка дадатковых кампанентаў сістэмы. Калі ласка пачакай...
 gl.InstallAdditionalComponents =Estase a instalar compoñentes adicionais do sistema. Agarda...
+;si.InstallAdditionalComponents =අතිරේක පද්ධති සංරචක ස්ථාපනය වෙමින්. රැඳී සිටින්න...
+;zh_HK.InstallAdditionalComponents =正在安裝附加系統元件，請稍候...
 ;======================================================================================================
 en.AdditionalTasks =Tasks:
 bg.AdditionalTasks =Задачи:
@@ -314,10 +324,12 @@ hu.AdditionalTasks =Feladatok:
 ja.AdditionalTasks =タスク:
 ko.AdditionalTasks =작업:
 lv.AdditionalTasks =Uzdevumi:
-nn_NO.AdditionalTasks =Oppgaver:
+no.AdditionalTasks =Oppgaver:
 uk.AdditionalTasks =Завдання:
 be.AdditionalTasks =Задачы:
 gl.AdditionalTasks =Tarefas:
+;si.AdditionalTasks =කාර්යයන්:
+;zh_HK.AdditionalTasks =工作：
 ;======================================================================================================
 en.Uninstall =Uninstall
 bg.AdditionalTasks =Деинсталиране
@@ -354,10 +366,12 @@ hu.Uninstall =Eltávolítás
 ja.Uninstall =アンインストール
 ko.Uninstall =삭제
 lv.Uninstall =Atinstalēt
-nn_NO.Uninstall =Avinstaller
+no.Uninstall =Avinstaller
 uk.Uninstall =Видалити
 be.Uninstall =Выдаліць
 gl.Uninstall =Desinstalar
+;si.Uninstall =අස්ථාපනය
+;zh_HK.Uninstall =解除安裝
 ;======================================================================================================
 en.WarningWrongArchitecture =You are trying to install the %1-bit application version over the %2-bit version installed. Please uninstall the previous version first or download the correct version for installation.
 bg.WarningWrongArchitecture =Опитвате се да инсталирате %1-битовата версия на приложението над инсталираната %2-битова версия. Моля, деинсталирайте първо предишната версия или изтеглете правилната версия за инсталиране.
@@ -394,10 +408,12 @@ hu.WarningWrongArchitecture =Ön a(z) %1-bites alkalmazást próbálja telepíte
 ja.WarningWrongArchitecture =すでにインストールされている %2-ビットのバージョンに %1-ビットのアプリのバージョンをインストールしようとしています。初めに前のバージョンをアンインストールするか、正しいバージョンをダウンロードしてください。
 ko.WarningWrongArchitecture =설치되어있는 %2-비트 애플리케이션 버전 위로 %1-비트 버전을 설치하려 합니다. 먼저 이전 버전을 삭제하시거나 설치하고자 하는 정확한 버전을 다운로드해주세요.
 lv.WarningWrongArchitecture =Jūs mēģināt instalēt %1-bitu programmas versiju pāri jau instalētajai %2-bitu versijai. Lūdzu, vispirms atinstalējiet iepriekšējo versiju vai lejuplādējiet pareizo versiju instalēšanai.
-nn_NO.WarningWrongArchitecture =Du forsøker å installere %1-bits-versjonen av programmet over %2-bits-versjonen som er installert. Avinstaller forrige versjon først, eller last ned riktig versjon for installering.
+no.WarningWrongArchitecture =Du forsøker å installere %1-bits-versjonen av programmet over %2-bits-versjonen som er installert. Avinstaller forrige versjon først, eller last ned riktig versjon for installering.
 uk.WarningWrongArchitecture =Ви намагаєтесь інсталювати %1-розрядну версію програми поверх інстальованої %2-розрядної версії. Спочатку видаліть попередню версію або завантажте належну версію для інсталяції.
 be.WarningWrongArchitecture =Вы спрабуеце ўсталяваць %1-бітную версію прыкладання паверх усталяванай %2-бітнай версіі. Спачатку выдаліце папярэднюю версію або загрузіце правільную версію для ўстаноўкі.
 gl.WarningWrongArchitecture =Está a intentar instalar a versión do aplicativo %1 bits sobre a versión instalada de %2 bits. Desinstale primeiro a versión anterior ou descargue a versión correcta para a instalación.
+;si.WarningWrongArchitecture =ඔබ ස්ථාපිත බිටු-%2 අනුවාදයට උඩින්ග යෙදුමේ බිටු-%1 අනුවාදය ස්ථාපනයට තැත් කරයි. කරුණාකර පෙර අනුවාදය අස්ථාපනය කරන්න හෝ ස්ථාපනය සඳහා නිවැරදි අනුවාදය බාගන්න.
+;zh_HK.WarningWrongArchitecture =您正在嘗試安裝 %1-bit 應用程式版本超過 %2-bit 目前已安裝的版本。 請先解除安裝先前的版本或下載正確的版本再進行安裝。
 ;======================================================================================================
 
 en.UpdateAppRunning=Setup has detected that %1 is currently running.%n%nIt'll be closed automatically. Click OK to continue, or Cancel to exit.
@@ -435,10 +451,12 @@ hu.UpdateAppRunning=A telepítő észlelte, hogy %1 jelenleg fut.%n%nAutomatikus
 ja.UpdateAppRunning=設定では現時点で %1 の実行を検知しています。%n%nIt'll は自動的に閉じます。OK をクリックして続けるか、キャンセルして終了します。
 ko.UpdateAppRunning==%1 앱이 현재 실행되고 있음을 감지했습니다.%n%n자동으로 종료될 예정입니다. 계속 진행하시려면 확인을, 종료하시려면 취소를 클릭하세요.
 lv.UpdateAppRunning=Uzstādīšanas programma ir uztvērusi, ka šobrīd darbojas %1. %n%nTā tiks automātiski aizvērta. Klikšķiniet uz Labi, lai turpinātu, vai Atcelt, lai izietu.
-nn_NO.UpdateAppRunning=Installasjonen har oppdaget at %1 kjører for øyeblikket.%n%nDen vil lukkes automatisk. Klikk OK for å fortsette, eller Avbryt for å avslutte.
+no.UpdateAppRunning=Installasjonen har oppdaget at %1 kjører for øyeblikket.%n%nDen vil lukkes automatisk. Klikk OK for å fortsette, eller Avbryt for å avslutte.
 uk.UpdateAppRunning=Програма інсталяції виявила, що запущено %1.%n%nЦя програма буде закрита автоматично. Натисніть "ОК", щоб продовжити, або "Скасувати", щоб вийти.
 be.UpdateAppRunning=Налада выявіла, што %1 зараз працуе.%n%nЯно будзе аўтаматычна зачынена. Націсніце OK, каб працягнуць, або Адмяніць, каб выйсці.
 gl.UpdateAppRunning=A instalación detectou que %1 está en execución.%En% Pecharase automaticamente. Preme en Aceptar para continuar ou en Cancelar para saír.
+;si.UpdateAppRunning=%1 දැනට ධාවනය වන බව පිහිටුමට අනාවරණය වී ඇත.%n%nඑය ස්වයංක්‍රීයව වසා දමනු ඇත. ඉදිරියට යාමට හරි ද, හෝ පිටවීමට අවලංගු ද ඔබන්න.
+;zh_HK.UpdateAppRunning=安裝程式偵測到 %1 正在執行中。%n%n將會自動關閉。 點擊 確認 繼續，或 取消 離開。
 ;======================================================================================================
 en.WarningClearAppData =Do you want to clear the user settings and application cached data?
 bg.WarningClearAppData =Искате ли да изчистите потребителските настройки и кешираните данни на приложението?
@@ -475,10 +493,12 @@ hu.WarningClearAppData =Törölni szeretné a felhasználói beállításokat é
 ja.WarningClearAppData =ユーザー設定とアプリによってキャッシュされたデータを消去しますか?
 ko.WarningClearAppData =사용자 설정 및 애플리케이션 캐시 데이터를 지우시겠습니까?
 lv.WarningClearAppData =Vai vēlaties notīrīt lietotāja iestatījumus un programmas kešatmiņas datus?
-nn_NO.WarningClearAppData =Vil du slette brukerinnstillinger og bufrede data for programmet?
+no.WarningClearAppData =Vil du slette brukerinnstillinger og bufrede data for programmet?
 uk.WarningClearAppData =Очистити налаштування користувача та кешовані дані програми?
 be.WarningClearAppData =Хочаце ачысціць налады карыстальніка і кэшаваныя даныя прыкладання?
 gl.WarningClearAppData =Quere borrar a configuración do usuario e os datos da caché do aplicativo?
+;si.WarningClearAppData =ඔබට පරිශ්‍රීලක සැකසුම් හා නිහිතගත යෙදුමේ දත්ත හිස් කිරීමට අවශ්‍යද?
+;zh_HK.WarningClearAppData =您想要清除使用者設定和應用程式內的快取資料嗎?
 ;======================================================================================================
 
 
@@ -497,10 +517,12 @@ gl.WarningClearAppData =Quere borrar a configuración do usuario e os datos da c
 ;ja.AssociateDescription =1% とオフィスドキュメントのファイルタイプを関連付ける
 ;ko.AssociateDescription =오피스 문서 파일 유형을 1%과 연결합니다
 ;lv.AssociateDescription =Saistīt biroja dokumentu tipus ar %1
-;nn_NO.AssociateDescription =Tilknytt filtyper for Office-dokumenter til %1
+;no.AssociateDescription =Tilknytt filtyper for Office-dokumenter til %1
 ;uk.AssociateDescription =Асоціювати типи файлів офісних документів з %1
 ;be.AssociateDescription =Звязаць тыпы файлаў дакументаў офіса з %1
 ;gl.AssociateDescription =Asociar tipos de ficheiros de documentos de oficina con %1
+;si.AssociateDescription =%1 සමඟ කාර්යාල ලේඛන ගොනු වර්ග සම්බන්ධ කරන්න
+;zh_HK.AssociateDescription =與文書處理檔案類型聯結 %1
 
 [Code]
 const
@@ -736,6 +758,7 @@ begin
     GetWindowsVersionEx(version);
     if (version.Major > 6) or ((version.Major = 6) and (version.Minor >= 1)) then begin
       Exec(ExpandConstant('{app}\{#iconsExe}'), '--remove-jump-list', '', SW_SHOWNORMAL, ewWaitUntilTerminated, ErrorCode);
+      Exec(ExpandConstant('{app}\updatesvc.exe'), '--delete', '', SW_HIDE, ewWaitUntilTerminated, ErrorCode);
     end;
   end;
 end;
@@ -759,6 +782,7 @@ begin
       StringChangeEx(translateArgs, ' ', '_', True);
       StringChangeEx(translateArgs, '+', ' ', True);
       Exec(ExpandConstant('{app}\{#iconsExe}'), '--create-jump-list ' + translateArgs, '', SW_SHOWNORMAL, ewWaitUntilTerminated, ErrorCode);
+      Exec(ExpandConstant('{app}\updatesvc.exe'), '--install "Service for update document editors."', '', SW_HIDE, ewWaitUntilTerminated, ErrorCode);
     end;
     // migrate from the prev version when user's data saved to system common path
     commonCachePath := ExpandConstant('{commonappdata}\{#APP_PATH}\data\cache');
@@ -781,7 +805,7 @@ begin
   if CurStep = ssDone then begin
     // if not (gHWND = 0) then begin
     if CheckCommandlineParam('/update') then begin
-      ShellExec('', ExpandConstant('{app}\{#iconsExe}'), '', '', SW_SHOW, ewNoWait, ErrorCode);
+      ShellExecAsOriginalUser('', ExpandConstant('{app}\{#iconsExe}'), '', '', SW_SHOW, ewNoWait, ErrorCode);
     end
   end else
     WizardForm.CancelButton.Enabled := isInstalled;
@@ -960,7 +984,7 @@ Name: {group}\{cm:Uninstall}; Filename: {uninstallexe}; WorkingDir: {app};
 
 [Run]
 ;Filename: {app}\{#NAME_EXE_OUT}; Description: {cm:Launch,{#sAppName}}; Flags: postinstall nowait skipifsilent;
-Filename: {app}\{#iconsExe}; Description: {cm:Launch,{#sAppName}}; Flags: postinstall nowait skipifsilent;
+Filename: {app}\{#iconsExe}; Description: {cm:Launch,{#sAppName}}; Flags: postinstall nowait skipifsilent runasoriginaluser;
 ;Filename: http://www.onlyoffice.com/remove-portal-feedback-form.aspx; Description: Visit website; Flags: postinstall shellexec nowait 
 
 

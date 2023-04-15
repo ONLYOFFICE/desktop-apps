@@ -36,6 +36,7 @@
 #include <QJsonObject>
 #include <QRegularExpression>
 #include <QSettings>
+#include <cmath>
 
 class CPrintData::CPrintDataPrivate
 {
@@ -43,6 +44,7 @@ public:
     QPrinterInfo printer_info;
     QPrintDialog::PrintRange print_range{QPrintDialog::PrintRange::AllPages};
     QPageLayout::Orientation page_orientation{QPageLayout::Portrait};
+    QPrinter::DuplexMode duplex_mode{QPrinter::DuplexMode::DuplexNone};
     bool is_quick = false;
     int page_from = 0,
         page_to = 0;
@@ -52,6 +54,7 @@ public:
         paper_height = 0;
     QString size_preset;
     int sender_id = -1;
+    int copies_count = 1;
 
     auto parseJsonOptions(const std::wstring& json) -> bool {
         QJsonObject jsonOptions = Utils::parseJson(json);
@@ -92,9 +95,26 @@ public:
             if ( native.contains("paperSize") ) {
                 QJsonObject size = native["paperSize"].toObject();
 
-                paper_width = size["w"].toInt(0);
-                paper_height = size["h"].toInt(0);
+                paper_width = std::ceil(size["w"].toDouble(0));
+                paper_height = std::ceil(size["h"].toDouble(0));
                 size_preset = size["preset"].toString();
+            }
+
+            if ( native.contains("copies") ) {
+                copies_count = native["copies"].toInt(1);
+            }
+
+            if ( native.contains("sides") ) {
+                QString side = native["sides"].toString();
+                if ( side == "both-long" ) {
+                    duplex_mode = QPrinter::DuplexMode::DuplexLongSide;
+                } else
+                if ( side == "both-short" ) {
+                    duplex_mode = QPrinter::DuplexMode::DuplexShortSide;
+                } else {
+//                    "one";
+                    duplex_mode = QPrinter::DuplexMode::DuplexNone;
+                }
             }
 
             return true;
@@ -204,7 +224,9 @@ auto CPrintData::pageSize() const -> QPageSize
             return QPageSize(QPageSize::Legal);
         if ( m_priv->size_preset == "Envelope Choukei 3" )
             return QPageSize(QPageSize::EnvelopeChou3);
-    }
+    } else
+    if ( !m_priv->paper_width || !m_priv->paper_height )
+        return QPageSize(QPageSize::A4);
 
     return QPageSize(QSize(m_priv->paper_width, m_priv->paper_height), QPageSize::Millimeter);
 }
@@ -246,4 +268,14 @@ auto CPrintData::pageCurrent() const -> int
 auto CPrintData::viewId() const -> int
 {
     return m_priv->sender_id;
+}
+
+auto CPrintData::copiesCount() const -> int
+{
+    return m_priv->copies_count;
+}
+
+auto CPrintData::duplexMode() const -> QPrinter::DuplexMode
+{
+    return m_priv->duplex_mode;
 }

@@ -36,17 +36,14 @@
 #include <QObject>
 #include <QTimer>
 #include <ctime>
-#include "Network/FileTransporter/include/FileTransporter.h"
+#include "csocket.h"
 
-using NSNetwork::NSFileTransport::CFileDownloader;
 using std::wstring;
 
 
-#ifdef _WIN32
 enum UpdateMode {
     DISABLE=0, SILENT=1, ASK=2
 };
-#endif
 
 class CUpdateManager: public QObject
 {
@@ -59,77 +56,56 @@ public:
     void cancelLoading();
     void skipVersion();
     int  getUpdateMode();
-#ifdef Q_OS_WIN
     QString getVersion() const;
     void scheduleRestartForUpdate();
     void handleAppClose();
     void loadUpdates();
-#endif
+    void installUpdates();
+
+public slots:
+    void checkUpdates(bool manualCheck = false);
+
+signals:
+    void progresChanged(const int percent);
 
 private:
     void init();
     void clearTempFiles(const QString &except = QString());
     void updateNeededCheking();
-    void onLoadCheckFinished();
-    void onComplete(const int error);
-    void onProgress(const int percent);
-    void downloadFile(const wstring &url, const QString &ext);
-#ifdef Q_OS_WIN
-    void onLoadUpdateFinished();
-    void savePackageData(const QByteArray &hash = QByteArray(),
-                         const QString &version = QString(),
-                         const QString &fileName = QString());
-    QByteArray getFileHash(const QString &fileName);
+    void onCheckFinished(bool error, bool updateExist, const QString &version, const QString &changelog);
+    void unzipIfNeeded();
+    void savePackageData(const QString &version = QString(), const QString &fileName = QString());
+    bool sendMessage(int cmd, const wstring &param1 = L"null", const wstring &param2 = L"null",
+                        const wstring &param3 = L"null");
 
-    struct PackageData {
-        QString     fileName = "";
-        wstring     packageUrl = L"",
-                    packageArgs = L"";
-    };
-    struct SavedPackageData {
-        QByteArray hash = QByteArray();
-        QString    version = "",
-                   fileName = "";
-    };
-    PackageData      m_packageData;
-    SavedPackageData m_savedPackageData;
+    struct PackageData;
+    struct SavedPackageData;
+    PackageData      *m_packageData;
+    SavedPackageData *m_savedPackageData;
 
-    bool        m_restartForUpdate = false;
-#else
-    QTimer      *m_pTimer = nullptr;
-    time_t      m_lastCheck;
-    int         m_currentRate;
+    bool        m_restartForUpdate = false,
+                m_manualCheck = false,
+                m_lock = false;
 
-    enum UpdateInterval {
-        NEVER=0, DAY=1, WEEK=2
-    };
-#endif
+//    QTimer      *m_pTimer = nullptr;
+//    time_t      m_lastCheck;
+
     QTimer      *m_pCheckOnStartupTimer = nullptr;
     wstring     m_checkUrl;
-    int         m_downloadMode;
-    QString     m_newVersion;
-    CFileDownloader  * m_pDownloader = nullptr;
 
-    enum Mode {
-        CHECK_UPDATES=0, DOWNLOAD_CHANGELOG=1, DOWNLOAD_UPDATES=2
-    };
+    class DialogSchedule;
+    DialogSchedule *m_dialogSchedule = nullptr;
 
-public slots:
-    void checkUpdates();
-
-signals:
-    void checkFinished(const bool error, const bool updateExist, const QString &version, const QString &changelog);
-#ifdef Q_OS_WIN
-    void progresChanged(const int percent);
-    void updateLoaded();
-#endif
+    CSocket *m_socket = nullptr;
 
 private slots:
-    void onCompleteSlot(const int error);
-#ifdef Q_OS_WIN
+    void onLoadCheckFinished(const QString &filePath);
+    void showUpdateMessage(QWidget *parent);
+    void onLoadUpdateFinished(const QString &filePath);
+    void showStartInstallMessage(QWidget *parent);
     void onProgressSlot(const int percent);
-#endif
+    void onError(const QString &error);
+    void criticalMsg(QWidget *parent, const QString &msg);
 };
-
 
 #endif // CUPDATEMANAGER_H

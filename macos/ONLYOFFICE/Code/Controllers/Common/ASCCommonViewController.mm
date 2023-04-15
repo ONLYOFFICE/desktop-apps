@@ -1083,6 +1083,8 @@
             allowedFileTypes = [ASCConstants csvtxt];
         } else if ([fileTypes isEqualToString:CEFOpenFileFilterCrypto]) {
             allowedFileTypes = [ASCConstants cancryptformats];
+        } else if ([fileTypes isEqualToString:CEFOpenFileFilterXML]) {
+            allowedFileTypes = [ASCConstants xmldata];
         } else {
             // filters come in view "*.docx *.pptx *.xlsx"
             NSString * filters = [fileTypes stringByReplacingOccurrencesOfString:@"*." withString:@""];

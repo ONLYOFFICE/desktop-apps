@@ -43,10 +43,24 @@
 
     window.ControllerTemplates = ControllerTemplates;
 
+    function createIframe(config) {
+        var iframe = document.createElement("iframe");
+
+        iframe.width = "100%";
+        iframe.height = "100%";
+        iframe.align = "top";
+        iframe.frameBorder = 0;
+        // iframe.name = "frameEditor";
+        iframe.allowFullscreen = true;
+
+        return iframe;
+    }
+
     var ViewTemplates = function(args) {
         var _lang = utils.Lang;
 
-        args.tplPage = `<div class="action-panel ${args.action}"></div>`;
+        const msg = 'Oops! Something went wrong :(<br>Check internet connection';
+        args.tplPage = `<div class="action-panel ${args.action}"><div id="frame"><h3>${msg}</h3></div></div>`;
         args.menu = '.main-column.tool-menu';
         args.field = '.main-column.col-center';
         args.itemindex = 0;
@@ -64,11 +78,72 @@
                 baseController.prototype.init.apply(this, arguments);
                 this.view.render();
 
-                this.view.$menuitem.find('> a').click(e => {
-                    window.sdk.command("open:template", 'external');
-                    e.preventDefault();
-                    e.stopPropagation();
+                const _url_templates = "https://oforms.onlyoffice.com/?desktop=true";
+
+                const _create_and_inject_iframe = () => {
+                    const theme = window.app.controller.settings.currentTheme();
+
+                    const iframe = createIframe({});
+                    iframe.src = `${_url_templates}&lang=${utils.Lang.id}&themetype=${theme.type}`;
+
+                    const target = document.getElementById("frame");
+                    target.parentNode && target.parentNode.replaceChild(iframe, target);
+                    return iframe;
+                }
+
+                let iframe;
+                const _check_url_avail = () => {
+                    if ( !iframe ) {
+                        fetch(_url_templates, {mode: 'no-cors'}).
+                            then(r => {
+                                if ( r.status == 200 || r.type == 'opaque' ) {
+                                    iframe = _create_and_inject_iframe();
+                                }
+                            }).
+                            catch(e => {
+                                console.error('error on check templates url', e);
+                            });
+                    }
+                }
+
+                _check_url_avail();
+
+                CommonEvents.on('panel:show', panel => {
+                    if ( !iframe && panel == this.action ) {
+                        _check_url_avail();
+                    }
                 });
+
+                CommonEvents.on('lang:changed', (old, newlang) => {
+                    if ( !!iframe ) {
+                        iframe.contentWindow.postMessage(JSON.stringify({lang: newlang}));
+                    }
+                });
+
+                CommonEvents.on('theme:changed', (theme, type) => {
+                    if ( !!iframe ) {
+                        iframe.contentWindow.postMessage(JSON.stringify({theme: {name: theme, type: type}}));
+                    }
+                });
+
+                // if ( !!localStorage.templatespanel ) {
+                    // let iframe;
+                    // if ( navigator.onLine ) {
+                    //     iframe = _create_and_inject_iframe();
+                    // } else {
+                    //     CommonEvents.on('panel:show', panel => {
+                    //         if ( !iframe && panel == this.action && navigator.onLine) {
+                    //             iframe = _create_and_inject_iframe();
+                    //         }
+                    //     });
+                    // }
+                // } else {
+                //     this.view.$menuitem.find('> a').click(e => {
+                //         window.sdk.command("open:template", 'external');
+                //         e.preventDefault();
+                //         e.stopPropagation();
+                //     });
+                // }
 
                 return this;
             }

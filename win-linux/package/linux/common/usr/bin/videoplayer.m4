@@ -1,5 +1,8 @@
 #!/bin/sh
 
 DIR=/opt/M4_MEDIAVIEWER_PREFIX
-export LD_LIBRARY_PATH=$DIR:$LD_LIBRARY_PATH
+if [ ! -z "$LD_LIBRARY_PATH" ]; then
+  LDLPATH=:$LD_LIBRARY_PATH
+fi
+export LD_LIBRARY_PATH=$DIR$LDLPATH
 exec $DIR/VideoPlayer "$@"

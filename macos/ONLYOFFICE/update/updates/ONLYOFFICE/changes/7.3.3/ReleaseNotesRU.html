@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>История изменений ONLYOFFICE</title>
+    <style type="text/css">
+        /* variables */
+        :root {
+            --color-black: #141923;
+            --color-white: #fff;
+            --color-gray-100: #f7fafc;
+            --color-gray-200: #edf2f7;
+            --color-gray-300: #e2e8f0;
+            --color-gray-400: #cbd5e0;
+            --color-gray-500: #a0aec0;
+            --color-gray-600: #718096;
+            --color-gray-700: #4a5568;
+            --color-gray-800: #2d3748;
+            --color-gray-900: #1a202c;
+        }
+        body {
+            background: var(--color-white);
+            color: var(--color-gray-800);
+            font: 12px "Lucida Grande", "Lucida Sans Unicode", Verdana, Lucida, Helvetica, sans-serif;
+        }
+        h1, h2, h3 {
+            color: var(--color-gray-800);
+            font-weight: normal;
+            font-style: normal;
+        }
+        h1 {
+            font-size: 1.7em;
+        }
+        h2 {
+            font-size: 1.4em;
+            font-weight: lighter;
+        }
+        h4 {
+            font-size: 1.2em;
+            font-weight: lighter;
+        }
+        code {
+            background: var(--color-gray-200);
+            font-family: monospace;
+            padding: 1px 5px;
+        }
+        ul {
+            padding: 0 0 0 20px;
+        }
+        li {
+            margin-left: 20px;
+            margin-bottom: 0.2em;
+            padding: 0;
+        }
+        hr {
+            margin: 20px 0;
+            border: var(--color-gray-400) solid 0.5px;
+        }
+        .releasedate {
+            color: var(--color-gray-600);
+            font-weight: lighter;
+        }
+
+        /* prefers light mode */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background: var(--color-gray-900);
+                color: var(--color-gray-200);
+            }
+
+            h1, h2, h3 {
+                color: var(--color-white);
+            }
+
+            code {
+                background: var(--color-gray-800);
+                color: var(--color-gray-200);
+            }
+
+            .releasedate {
+                color: var(--color-gray-600);
+            }
+        }
+     </style>
+</head>
+<body>
+    <div class="version">
+        <h1>ONLYOFFICE 7.3.3<span class="releasedate"> - [Дата]</span></h1>
+        <h2>Исправления</h2>
+        <h4>Все редакторы</h4>
+        <ul>
+            <li>Исправлено отображение окна редактора, свернутого в режиме <code>Maximize</code> (Bug 58402)</li>
+            <li>Исправлено перемещение файла, вынесенного в отдельное окно (для Linux) (Bug 45037)</li>
+            <li>Исправлено отображение окна приложения при подключении второго монитора (Bug 60899)</li>
+            <li>Исправлен год в разделе <code>«О программе»</code> (для MacOS) (Bug 61421)</li>
+            <li>Исправлена уязвимость приложения, позволяющая осуществить загрузку библиотеки из домашнего каталога (для Linux) (Bug 60244)</li>
+            <li>Исправлено имя нового файла при создании на польском языке интерфейса (Bug 60764)</li>
+            <li>Исправлено отображение содержимого в <code>Справке</code> (Bug 61144)</li>
+            <li>Исправлено имя зашифрованного файла при сохранении, если оно задано кириллицей, (Bug 61243)</li>
+            <li>Исправлено отображение кнопки <code>«Ещё»</code> при масштабе приложения более 100% (Bug 61219)</li>
+            <li>Исправлено падение редактора при открытии документа в отдельном окне (Bug 61262)</li>
+            <li>Исправлено отображение кнопки <code>«Печать в PDF»</code> в окне предварительного просмотра печати для немецкого языка интерфейса (Bug 61510)</li>
+        </ul>
+        <h4>Редактор таблиц</h4>
+        <ul>
+            <li>Исправлено зависание редактора при печати <code>XLSX</code> файла (Bug 61019)</li>
+            <li>Исправлено отображение окна <code>"Изменение правила форматирования"</code> при масштабе интерфейса 125% и 175% (Bug 60952)</li>
+            <li>Исправлена печать таблицы, если указаны настройки размера страницы (Bug 61214)</li>
+            <li>Исправлено изменение формата даты при сохранении книги в <code>PDF</code> (Bug 56499)</li>
+            <li>Исправлено сохранение данных в <code>PDF</code> формат XLSX файла (Bug 60334)</li>
+        </ul>
+        <h4>Редактор презентаций</h4>
+        <ul>
+            <li>Исправлено падение при загрузке презентации в приватную комнату (Bug 51001)</li>
+            <li>Исправлено отображение тем презентации приватной комнаты c шаблонами Classic, Green leaf, Lines, Safari (Bug 61430)</li>
+        </ul>
+        <h4>Формы</h4>
+        <ul>
+            <li>Исправлено падение при открытии <code>OFORM</code> файлов (Bug 61142)</li>
+        </ul>
+        <h4>PDF</h4>
+        <ul>
+            <li>Исправлена бесконечная загрузка <code>PDF</code> файла (Bug 60923)</li>
+            <li>Исправлена печать пустого листа в <code>PDF</code> файлах (Bug 61192)</li>
+        </ul>
+    </div>
+</body>
+</html>

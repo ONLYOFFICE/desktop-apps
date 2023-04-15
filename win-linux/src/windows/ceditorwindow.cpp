@@ -49,7 +49,7 @@
 
 #include "windows/ceditorwindow_p.h"
 
-#define CAPTURED_WINDOW_OFFSET_X  180
+#define CAPTURED_WINDOW_OFFSET_X  6*TOOLBTN_WIDTH + 10
 #define CAPTURED_WINDOW_OFFSET_Y  15
 
 
@@ -133,19 +133,18 @@ int CEditorWindow::closeWindow()
 
         bringToTop();
 
-        CMessage mess(handle(), CMessageOpts::moButtons::mbYesDefNoCancel);
+        _reply = CMessage::showMessage(handle(),
+                                       tr("%1 has been changed. Save changes?").arg(panel->data()->title(true)),
+                                       MsgType::MSG_WARN, MsgBtns::mbYesDefNoCancel);
 //            modal_res = mess.warning(getSaveMessage().arg(m_pTabs->titleByIndex(index)));
-        _reply = mess.warning(tr("%1 has been changed. Save changes?").arg(panel->data()->title(true)));
-
         switch (_reply) {
-        case MODAL_RESULT_CUSTOM + 1:
+        case MODAL_RESULT_NO:
             _reply = MODAL_RESULT_YES;
             break;
         case MODAL_RESULT_CANCEL:
-        case MODAL_RESULT_CUSTOM + 2:
             return MODAL_RESULT_CANCEL;
 
-        case MODAL_RESULT_CUSTOM + 0:
+        case MODAL_RESULT_YES:
         default:
             panel->data()->close();
             panel->cef()->Apply(new CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_SAVE));
@@ -171,14 +170,6 @@ bool CEditorWindow::closed() const
 bool CEditorWindow::holdView(const std::wstring& portal) const
 {
     return qobject_cast<CTabPanel *>(m_pMainView)->data()->url().find(portal) != std::wstring::npos;
-}
-
-void CEditorWindow::setReporterMode(bool apply)
-{
-    if ( apply ) {
-    }
-
-    d_ptr->isReporterMode = apply;
 }
 
 void CEditorWindow::undock(bool maximized)
@@ -260,7 +251,7 @@ QWidget * CEditorWindow::createMainPanel(QWidget * parent, const QString& title)
                 mainPanel->setProperty("window", "pretty");
             _canExtendTitle = true;
             int pos = (d_ptr->usedOldEditorVersion) ? 3 : 2;  // For old editors only
-            auto *pIconSpacer = new QSpacerItem(9, 5, QSizePolicy::Fixed, QSizePolicy::Fixed);
+            auto *pIconSpacer = new QSpacerItem(ICON_SPACER_WIDTH, 5, QSizePolicy::Fixed, QSizePolicy::Fixed);
             auto *pTopLayout = static_cast<QHBoxLayout*>(m_boxTitleBtns->layout());
             pTopLayout->insertWidget(pos, d_ptr->iconUser());
             pTopLayout->insertSpacerItem(pos + 1, pIconSpacer);
@@ -339,11 +330,11 @@ void CEditorWindow::recalculatePlaces()
 void CEditorWindow::updateTitleCaption()
 {
     if (m_labelTitle) {
-        int _width = calcTitleCaptionWidth();
-        if (_width >= 0) {
-            m_labelTitle->setMaximumWidth(_width);
+//        int _width = calcTitleCaptionWidth();
+//        if (_width >= 0) {
+//            m_labelTitle->setMaximumWidth(_width);
             m_labelTitle->updateText();
-        }
+//        }
     }
 }
 
@@ -436,14 +427,14 @@ void CEditorWindow::onCloseEvent()
 
 void CEditorWindow::onMinimizeEvent()
 {
-    if ( !d_ptr->isReporterMode ) {
+    if ( !qobject_cast<CTabPanel *>(m_pMainView)->reporterMode() ) {
         CWindowPlatform::onMinimizeEvent();
     }
 }
 
 void CEditorWindow::onMaximizeEvent()
 {
-    if ( !d_ptr->isReporterMode ) {
+    if ( !qobject_cast<CTabPanel *>(m_pMainView)->reporterMode() ) {
         CWindowPlatform::onMaximizeEvent();
     }
 }

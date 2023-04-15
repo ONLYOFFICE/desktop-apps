@@ -143,6 +143,7 @@ public:
 
 signals:
     void coreEvent(void *);
+    void aboutToQuit();
 
 public slots:
     void onCoreEvent(void *);
@@ -152,13 +153,6 @@ public slots:
     void onEditorWidgetClosed();
 
 private slots:
-#ifdef _UPDMODULE
-#ifdef Q_OS_WIN
-    void showStartInstallMessage();
-#endif
-    void showUpdateMessage(bool error, bool updateExist, const QString &version, const QString &changelog);
-#endif
-
     void onMainWindowClose();
 
 public:
@@ -178,6 +172,7 @@ public:
     static const CEditorWindow *  editorWindowFromHandle(size_t);
     static void             sendCommandTo(QCefView * target, const QString& cmd, const QString& args = "");
     static void             sendCommandTo(CCefView * target, const std::wstring& cmd, const std::wstring& args = L"");
+    static void             sendCommandToAllEditors(const std::wstring& cmd, const std::wstring& args = L"");
     static std::wstring     userSettings(const std::wstring& name);
     static void             setUserSettings(const std::wstring& name, const std::wstring& value);
 
@@ -209,6 +204,9 @@ private:
     std::unique_ptr<CAscApplicationManagerWrapper_Private> m_private;
 
     CAscApplicationManagerWrapper(CAscApplicationManagerWrapper_Private *);
+
+    class DialogSchedule;
+    std::unique_ptr<DialogSchedule> m_dialogSchedule;
 #ifdef _UPDMODULE
     CUpdateManager *m_pUpdateManager;
 #endif

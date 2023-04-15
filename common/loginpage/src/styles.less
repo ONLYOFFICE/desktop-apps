@@ -6,7 +6,7 @@
 
 @import '../vendor/bootstrap/variables';
 @import '../vendor/bootstrap/dropdowns';
-@import (inline) '../vendor/bootstrap-select/dist/css/bootstrap-select.min.css';
+@import (inline) '../vendor/bootstrap-select/css/bootstrap-select.min.css';
 @import 'css/colors';
 @import 'css/colors_classic';
 @import 'css/colors_dark';
@@ -101,6 +101,11 @@ h4 {
     text-align: center;
 }
 
+.after-left {
+    /*margin-left: @col-width;*/
+    flex-grow: 1;
+}
+
 #area-login {
     /*background: green;*/
     padding: 53px 40px 40px 65px;
@@ -139,25 +144,6 @@ h4 {
     &.link--sizem {
         font-size: 14px;
     }
-}
-
-#field-pass-restore {
-    margin-top: 16px;
-}
-
-.copyReserved {
-    position: absolute;
-    bottom: 61px;
-    white-space: nowrap;
-}
-
-.before-right {
-    margin-right: @col-width;
-}
-
-.after-left {
-    /*margin-left: @col-width;*/
-    flex-grow: 1;
 }
 
 .tool-quick-menu {
@@ -324,6 +310,10 @@ li.menu-item {
 
     &.about {
         overflow-x: scroll;
+    }
+
+    &.templates {
+        padding: 20px 0;
     }
 }
 
@@ -992,11 +982,6 @@ li.menu-item {
     &__slidebox {
         position: relative;
         height: 300px;
-
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
     }
 
     &__slide {
@@ -1004,17 +989,19 @@ li.menu-item {
         z-index: 1;
         transition: z-index 0ms .25s;
         padding: 20px 40px;
+        left: 50%;
+        top: -7%;
 
         &.active {
             z-index: 3;
 
             opacity: 1;
-            transform: translateX(0%) scale(1);
+            transform: translateX(-50%) scale(1);
         }
 
         &.pro-active {
             opacity: .3;
-            transform: translateX(@preslide-shift) scale(@preslide-zoom);
+            transform: translateX(-50% + @preslide-shift) scale(@preslide-zoom);
         }
 
         &.pro-active, &.pre-active {
@@ -1033,7 +1020,7 @@ li.menu-item {
 
         &.pre-active {
                 opacity: .3;
-                transform: translateX(-@preslide-shift) scale(@preslide-zoom);
+                transform: translateX(-50% - @preslide-shift) scale(@preslide-zoom);
         }
 
         &.migrate:not(.pro-active):not(.pre-active) {
@@ -1182,5 +1169,14 @@ li.menu-item {
 
     > .content-box {
         overflow-y: auto;
+    }
+}
+
+.templates {
+    #frame {
+        display: flex;
+        height: 100%;
+        align-items: center;
+        justify-content: center;
     }
 }

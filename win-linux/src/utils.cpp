@@ -49,7 +49,7 @@
 #include <QStorageInfo>
 #include <QPrinterInfo>
 #include <regex>
-
+#include <QEventLoop>
 #include "cascapplicationmanagerwrapper.h"
 #include "qdpichecker.h"
 #include "common/File.h"
@@ -62,7 +62,6 @@ typedef HRESULT (__stdcall *SetCurrentProcessExplicitAppUserModelIDProc)(PCWSTR 
 #else
 #include <sys/stat.h>
 #include <stdlib.h>
-#include <QEventLoop>
 #endif
 
 #include <QDebug>
@@ -185,6 +184,20 @@ namespace EditorJSVariables {
 
     auto apply() -> void {
         AscAppManager::getInstance().SetRendererProcessVariable(toWString());
+    }
+}
+
+namespace AppOptions {
+    auto packageType() -> AppPackageType {
+        QString _package = QSettings("./converter/package.config", QSettings::IniFormat).value("package").toString();
+
+        if ( _package == "exe" ) return AppPackageType::ISS; else
+        if ( _package == "msi" ) return AppPackageType::MSI; else
+        if ( _package == "snap" ) return AppPackageType::Snap; else
+        if ( _package == "flatpack" ) return AppPackageType::Flatpack; else
+        if( _package.isEmpty() ) return AppPackageType::Portable;
+
+        return AppPackageType::Unknown;
     }
 }
 
@@ -889,7 +902,32 @@ namespace WindowHelper {
         _parent->setWindowIcon(Utils::appIcon());
         _parent->setWindowTitle(_panel->data()->title());
         _parent->showFullScreen();
-        _parent->setGeometry(QApplication::desktop()->screenGeometry(pt));
+
+        QRect _scr_geometry;
+#if QT_VERSION < QT_VERSION_CHECK(5, 11, 0)
+        int _scr_count = QApplication::desktop()->screenCount();
+        if ( _scr_count > 1 ) {
+            int _scrNum = QApplication::desktop()->screenNumber(pt);
+            if ( _panel->reporterMode() ) {
+                _scr_geometry = QApplication::desktop()->availableGeometry(_scr_count - _scrNum - 1);
+            } else _scr_geometry = QApplication::desktop()->availableGeometry(_scrNum);
+        } else {
+            _scr_geometry = QApplication::desktop()->screenGeometry(QApplication::desktop()->primaryScreen());
+        }
+#else
+        int _scr_count = QApplication::screens().count();
+        if ( _scr_count > 1 ) {
+            QScreen * _screen = QApplication::screenAt(pt);
+            if ( _panel->reporterMode() ) {
+                int _scrNum = QApplication::screens().indexOf(_screen);
+                _scr_geometry = QApplication::screens().at(_scr_count - _scrNum - 1)->availableGeometry();
+            } else _scr_geometry = _screen->availableGeometry();
+        } else {
+            _scr_geometry = QApplication::primaryScreen()->availableGeometry();
+        }
+#endif
+
+        _parent->setGeometry(_scr_geometry);
 
         _panel->setParent(_parent);
         _panel->show();
@@ -905,5 +943,18 @@ namespace WindowHelper {
         use_native_dialog = InputArgs::contains(L"--native-file-dialog");
 #endif
         return use_native_dialog;
+    }
+
+    auto currentTopWindow() -> QWidget*
+    {
+        QStringList wnd_list{"MainWindow", "editorWindow"};
+        QWidget *wgt = QApplication::activeWindow();
+        if (wgt && wnd_list.contains(wgt->objectName()) && !wgt->isMinimized()
+#ifdef _WIN32
+                && GetForegroundWindow() == (HWND)wgt->winId()
+#endif
+                && wgt->property("stabilized").toBool())
+            return wgt;
+        return nullptr;
     }
 }

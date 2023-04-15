@@ -63,6 +63,19 @@ namespace EditorJSVariables {
     auto apply() -> void;
 }
 
+namespace AppOptions {
+    enum class AppPackageType {
+        Unknown,
+        ISS,
+        MSI,
+        Snap,
+        Flatpack,
+        Portable
+    };
+
+    auto packageType() -> AppPackageType;
+}
+
 class Utils {
 public:
     static QStringList * getInputFiles(const QStringList& inlist);
@@ -133,6 +146,7 @@ namespace WindowHelper {
     auto isLeftButtonPressed() -> bool;
     auto constructFullscreenWidget(QWidget * panel) -> CFullScrWidget *;
     auto useNativeDialog() -> bool;
+    auto currentTopWindow() -> QWidget*;
 }
 
 #endif // UTILS_H

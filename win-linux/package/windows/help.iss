@@ -11,8 +11,8 @@
   #define sWinArchFull sWinArch
   #define sPlatformFull sPlatform
 #else
-  #define sWinArchFull sWinArch + "_xp"
-  #define sPlatformFull sPlatform + "_xp"
+  #define sWinArchFull sWinArch + "-xp"
+  #define sPlatformFull sPlatform + "-xp"
 #endif
 
 #ifndef sBrandingFolder
@@ -27,7 +27,7 @@
 #define sAppVerShort Copy(sAppVersion, 0, 3)
 
 #ifndef sOutputFileName
-  #define sOutputFileName str(sPackageHelpName + "_" + sAppVersion + "_" + sWinArchFull)
+  #define sOutputFileName sPackageHelpName + "-" + sAppVersion + "-" + sWinArchFull
 #endif
 
 [Setup]
@@ -97,7 +97,7 @@ Name: ko;    MessagesFile: compiler:Languages\Korean.isl;
 Name: lo;    MessagesFile: compiler:Default.isl;
 Name: lv;    MessagesFile: compiler:Languages\Latvian.isl;
 Name: nl;    MessagesFile: compiler:Languages\Dutch.isl;
-Name: nn_NO; MessagesFile: compiler:Languages\Norwegian.isl;
+Name: no;    MessagesFile: compiler:Languages\Norwegian.isl;
 Name: pl;    MessagesFile: compiler:Languages\Polish.isl;
 Name: pt_BR; MessagesFile: compiler:Languages\BrazilianPortuguese.isl;
 Name: pt_PT; MessagesFile: compiler:Languages\Portuguese.isl;

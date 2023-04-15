@@ -214,3 +214,13 @@ void CTabPanel::showNormal()
 {
     QWidget::showNormal();
 }
+
+bool CTabPanel::reporterMode() const
+{
+    return m_isReporterOn;
+}
+
+void CTabPanel::setReporterMode(bool status)
+{
+    m_isReporterOn = status;
+}

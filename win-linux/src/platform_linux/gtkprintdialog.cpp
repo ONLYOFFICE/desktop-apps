@@ -8,9 +8,50 @@
 #define PDF_PRINTER_NAME "Print to File"
 #define LPR_PRINTER_NAME "Print to LPR"
 
+typedef QPagedPaintDevice::PageSize PageSize;
 typedef QPrinter::Unit QUnit;
 typedef uint16_t WORD;
 
+
+auto gtkPaperNameFromPageSize(PageSize page_size)->QString
+{
+    switch (page_size) {
+    case PageSize::A0:
+        return "iso_a0";
+    case PageSize::A1:
+        return "iso_a1";
+    case PageSize::A2:
+        return "iso_a2";
+    case PageSize::A3:
+        return "iso_a3";
+    case PageSize::A4:
+        return "iso_a4";
+    case PageSize::A5:
+        return "iso_a5";
+    case PageSize::A6:
+        return "iso_a6";
+    case PageSize::B5:
+        return "ppd_EnvB5"; // "iso_b5" - not working
+    case PageSize::Tabloid:
+        return "na_ledger";
+    case PageSize::EnvelopeDL:
+        return "iso_dl";
+    case PageSize::Comm10E:
+        return "na_number-10";
+    case PageSize::SuperB:
+        return "na_super-b";
+//    case PageSize::TabloidExtra:
+//        return "na_ledger";
+    case PageSize::Letter:
+        return "na_letter";
+    case PageSize::Legal:
+        return "na_legal";
+    case PageSize::EnvelopeChou3:
+        return "jpn_chou3";
+    default:
+        return QPageSize::name((QPageSize::PageSizeId)page_size);
+    }
+}
 
 GtkPrintDialog::GtkPrintDialog(QPrinter *printer, QWidget *parent) :
     m_printer(printer),
@@ -191,15 +232,14 @@ QDialog::DialogCode GtkPrintDialog::exec()
         gtk_page_setup_set_right_margin(page_setup, right_in, unit);
         gtk_page_setup_set_bottom_margin(page_setup, bottom_in, unit);
 
-        const int width_in = (qt_orient == QPrinter::Portrait) ?
-                    m_printer->widthMM() : m_printer->heightMM();
-        const int height_in = (qt_orient == QPrinter::Portrait) ?
-                    m_printer->heightMM() : m_printer->widthMM();
+        QPageSize ps = m_printer->pageLayout().pageSize();
+        QSize page_size = ps.size(QPageSize::Millimeter).toSize();
+        const QString paper_name = gtkPaperNameFromPageSize(m_printer->pageSize());
         GtkPaperSize *psize = gtk_paper_size_new_custom(
-                    m_printer->paperName().toUtf8().data(),
-                    m_printer->paperName().toUtf8().data(),
-                    width_in,
-                    height_in,
+                    paper_name.toUtf8().data(),
+                    ps.name().toUtf8().data(),
+                    page_size.width(),
+                    page_size.height(),
                     unit);
         gtk_page_setup_set_paper_size(page_setup, psize);
         gtk_paper_size_free(psize);
@@ -340,10 +380,11 @@ QDialog::DialogCode GtkPrintDialog::exec()
             m_printer->setPageMargins(left, top, right, bottom, qt_unit);
 
             GtkPaperSize *paper_size = gtk_page_setup_get_paper_size(page_setup);
-            const char* paper_name = gtk_paper_size_get_display_name(paper_size);
+            //const char* paper_name = gtk_paper_size_get_display_name(paper_size);
             gdouble width = gtk_paper_size_get_width(paper_size, unit);
             gdouble height = gtk_paper_size_get_height(paper_size, unit);
-            m_printer->setPaperName(QString::fromUtf8(paper_name));
+            QPageSize ps(QSizeF(width, height), QPageSize::Millimeter);
+            m_printer->setPaperName(ps.name());
             m_printer->setPaperSize(QSizeF(width, height), qt_unit);
 
             GtkPageOrientation orient = gtk_page_setup_get_orientation(page_setup);

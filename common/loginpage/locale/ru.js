@@ -104,4 +104,7 @@ l10n.ru = {
     updateDownloadFinished: 'Загрузка завершена. Нажмите, чтобы установить',
     updateDownloadCanceled: 'Загрузка отменена',
     updateDownloadProgress: 'Загрузка $1%. Нажмите, чтобы остановить',
+    settOptDescDisabled: "Автоматическая проверка обновлений выключена",
+    settOptDescAUpdateSilent: "Запрос подтверждения только перед установкой обновления",
+    settOptDescAUpdateAsk: "Будет запрос подтверждения перед каждым шагом обновления",
 }

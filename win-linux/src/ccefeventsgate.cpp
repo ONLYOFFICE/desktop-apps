@@ -91,3 +91,8 @@ void CCefEventsGate::onDocumentReady(int)
 void CCefEventsGate::onLocalFileSaveAs(void *)
 {
 }
+
+void CCefEventsGate::onReporterMode(int, bool m)
+{
+    panel()->setReporterMode(m);
+}

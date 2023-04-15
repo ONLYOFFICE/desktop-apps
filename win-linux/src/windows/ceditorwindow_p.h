@@ -62,6 +62,7 @@
 #endif
 
 #define TOP_PANEL_OFFSET 6*TOOLBTN_WIDTH
+#define ICON_SPACER_WIDTH 9
 
 using namespace NSEditorApi;
 
@@ -144,7 +145,6 @@ class CEditorWindowPrivate : public CCefEventsGate
 {
     CEditorWindow * window = nullptr;
     QLabel * iconuser = nullptr;
-    QPushButton * btndock = nullptr;
     bool isPrinting = false,
         isFullScreen = false;
     CFullScrWidget * fs_parent = nullptr;
@@ -156,8 +156,7 @@ class CEditorWindowPrivate : public CCefEventsGate
 
 public:
     int titleLeftOffset = 0;
-    bool isReporterMode = false,
-         usedOldEditorVersion = false;
+    bool usedOldEditorVersion = false;
 
 public:
     CEditorWindowPrivate(CEditorWindow * w) : window(w) {}
@@ -230,7 +229,8 @@ public:
         QGridLayout * const _layout = static_cast<QGridLayout*>(window->m_pMainPanel->layout());
         if ( !_layout->findChild<QWidget*>(window->m_boxTitleBtns->objectName()) ) {
             _layout->addWidget(window->m_boxTitleBtns,0,0,Qt::AlignTop);
-            iconUser()->hide();
+            if (iconuser)
+                iconuser->hide();
             window->m_labelTitle->setText(APP_TITLE);
             changeTheme(GetCurrentTheme().id());
         }
@@ -238,8 +238,7 @@ public:
 
     auto getInitials(const QString &name) -> QString {
         auto fio = name.split(' ');
-        QString initials = (!fio[0].isEmpty()) ?
-                    fio[0].mid(0, 1).toUpper() : "";
+        QString initials = !fio[0].isEmpty() ? fio[0].mid(0, 1).toUpper() : "";
         for (int i = fio.size() - 1; i > 0; i--) {
             if (!fio[i].isEmpty() && fio[i].at(0) != '('
                     && fio[i].at(0) != ')') {
@@ -248,6 +247,25 @@ public:
             }
         }
         return initials;
+    }
+
+    auto centerTitle(double dpiRatio)->void
+    {
+        int left_btns = viewerMode() ? 1 : 6;
+        int right_btns = 3;
+        int spacing = window->m_boxTitleBtns->layout()->spacing();
+        int left_offset = left_btns*TOOLBTN_WIDTH + 3*spacing; // added extra spacing
+        int right_offset = right_btns*(TOOLBTN_WIDTH + spacing);
+        int diffW = (left_offset - right_offset)*dpiRatio;
+        if (iconuser) {
+            diffW -= ICON_SPACER_WIDTH + spacing*dpiRatio;
+            if (!viewerMode()) {
+                diffW -= iconuser->width() + spacing*dpiRatio;
+            }
+        }
+        QMargins mrg(0, 0, 0, 2*dpiRatio);
+        diffW > 0 ? mrg.setRight(diffW) : mrg.setLeft(-diffW);
+        boxtitlelabel->setContentsMargins(mrg);
     }
 
     void onEditorConfig(int, std::wstring cfg) override
@@ -263,7 +281,6 @@ public:
             if ( viewerMode() )
                 extendableTitleToSimple();
 
-            int _user_width = 0;
             if ( canExtendTitle() ) {
                 if ( objRoot.contains("user") ) {
                     QString _user_name = objRoot["user"].toObject().value("name").toString();
@@ -271,7 +288,6 @@ public:
                     iconUser()->setProperty("ToolTip", _user_name);
                     adjustIconUser();
                     iconuser->setText(getInitials(_user_name));
-                    _user_width = iconuser->width();
                 }
 
                 if ( objRoot.contains("title") /*&& m_mapTitleButtons.empty()*/ ) {
@@ -283,8 +299,6 @@ public:
                             const QJsonObject obj = jv.toObject();
                             if ( !m_mapTitleButtons.contains(obj["action"].toString()) )
                                 leftboxbuttons->layout()->addWidget(cloneEditorHeaderButton(jv.toObject()));
-
-                            titleLeftOffset += 40;
                         }
 
                         if ( _layout->itemAt(0)->widget() != leftboxbuttons )
@@ -295,15 +309,7 @@ public:
                 // update title caption for elipsis
                 window->updateTitleCaption();
             }
-
-            int _btncount = /*iconuser ? 4 :*/ 3;
-            int diffW = (titleLeftOffset - TOOLBTN_WIDTH * _btncount) * window->m_dpiRatio; // 4 right tool buttons: close, min, max, user icon
-            diffW -= _user_width;
-
-            int left = usedOldEditorVersion ? -diffW : 0;   // For old editors only
-            int right = viewerMode() ? 40 * window->m_dpiRatio : 0;
-            diffW > 0 ? boxtitlelabel->setContentsMargins(0, 0, diffW, 2*window->m_dpiRatio) :
-                            boxtitlelabel->setContentsMargins(left, 0, right, 2*window->m_dpiRatio);
+            centerTitle(window->m_dpiRatio);
         }
     }
 
@@ -425,7 +431,8 @@ public:
                 }
             } else {
                 window->m_pMainPanel->setProperty("window", "pretty");
-                m_mapTitleButtons["home"]->setIconOpacity(GetColorByRole(ecrButtonNormalOpacity));
+                if ( m_mapTitleButtons.contains("home") )
+                    m_mapTitleButtons["home"]->setIconOpacity(GetColorByRole(ecrButtonNormalOpacity));
             }
             AscEditorType editor_type = panel()->data()->contentType();
             window->m_css = prepare_editor_css(editor_type, GetCurrentTheme());
@@ -465,11 +472,11 @@ public:
 
     void onDocumentSaveInnerRequest(int) override
     {
-        CMessage mess(window->handle(), CMessageOpts::moButtons::mbYesDefNo);
-        int reply = mess.confirm(CEditorWindow::tr("Document must be saved to continue.<br>Save the document?"));
-
+        int reply = CMessage::showMessage(window->handle(),
+                                          CEditorWindow::tr("Document must be saved to continue.<br>Save the document?"),
+                                          MsgType::MSG_CONFIRM, MsgBtns::mbYesDefNo);
         CAscEditorSaveQuestion * pData = new CAscEditorSaveQuestion;
-        pData->put_Value((reply == MODAL_RESULT_CUSTOM + 0) ? true : false);
+        pData->put_Value((reply == MODAL_RESULT_YES) ? true : false);
 
         CAscMenuEvent * pEvent = new CAscMenuEvent(ASC_MENU_EVENT_TYPE_DOCUMENTEDITORS_SAVE_YES_NO);
         pEvent->m_pData = pData;
@@ -525,6 +532,10 @@ public:
             QPrinter * printer = pContext->getPrinter();
             printer->setFromTo(1, pagescount);
             printer->printEngine()->setProperty(QPrintEngine::PPK_DocumentName, documentName);
+            printer->setDuplex(AscAppManager::printData().duplexMode());
+            if ( printer->supportsMultipleCopies() ) {
+                printer->setCopyCount(AscAppManager::printData().copiesCount());
+            }
 
             if ( !AscAppManager::printData().isQuickPrint() ) {
                 printer->setPageOrientation(AscAppManager::printData().pageOrientation());
@@ -633,34 +644,24 @@ public:
     void onScreenScalingFactor(double f)
     {
         if ( window->isCustomWindowStyle() ) {
-            int _btncount = /*iconuser ? 4 :*/ 3;
-            int diffW = int((titleLeftOffset - (TOOLBTN_WIDTH * _btncount)) * f); // 4 tool buttons: min+max+close+usericon
-
             if ( iconuser ) {
                 adjustIconUser();
-                if (!viewerMode())
-                    diffW -= iconuser->width();
             }
 
             if ( iconcrypted ) {
                 iconcrypted->setPixmap(QIcon{":/title/icons/secure.svg"}.pixmap(QSize(20,20) * f));
             }
 
-            int left = usedOldEditorVersion ? -diffW : 0;   // For old editors only
-            int right = viewerMode() ? 40 * window->m_dpiRatio : 0;
-            diffW > 0 ? boxtitlelabel->setContentsMargins(0, 0, diffW, int(2*f)) :
-                            boxtitlelabel->setContentsMargins(left, 0, right, int(2*f));
-
             for (const auto& btn: m_mapTitleButtons) {
                 btn->setFixedSize(QSize(int(TOOLBTN_WIDTH*f), int(TOOLBTN_HEIGHT*f)));
                 btn->setIconSize(QSize(20,20) * f);
             }
+            centerTitle(f);
         }
     }
 
     void onFullScreen(bool apply)
     {
-        if ( !apply ) isReporterMode = false;
         if ( apply == isFullScreen ) return;
         isFullScreen = apply;
 
@@ -785,16 +786,6 @@ public:
         }
 
         return iconcrypted;
-    }
-
-    QPushButton * buttonDock()
-    {
-        Q_ASSERT(window->m_boxTitleBtns != nullptr);
-        if ( !btndock ) {
-            btndock = window->createToolButton(window->m_boxTitleBtns, "toolButtonDock");
-        }
-
-        return btndock;
     }
 
     void onWebAppsFeatures(int, std::wstring f) override

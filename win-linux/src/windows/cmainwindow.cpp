@@ -645,7 +645,7 @@ int CMainWindow::tabCloseRequest(int index)
         }
     }
 
-    return MODAL_RESULT_CUSTOM;
+    return MODAL_RESULT_YES;
 }
 
 int CMainWindow::trySaveDocument(int index)
@@ -657,14 +657,13 @@ int CMainWindow::trySaveDocument(int index)
         toggleButtonMain(false);
         m_pTabs->setCurrentIndex(index);
 
-        CMessage mess(TOP_NATIVE_WINDOW_HANDLE, CMessageOpts::moButtons::mbYesDefNoCancel);
-        modal_res = mess.warning(getSaveMessage().arg(m_pTabs->titleByIndex(index)));
-
+        modal_res = CMessage::showMessage(TOP_NATIVE_WINDOW_HANDLE,
+                                          getSaveMessage().arg(m_pTabs->titleByIndex(index)),
+                                          MsgType::MSG_WARN, MsgBtns::mbYesDefNoCancel);
         switch (modal_res) {
-        case MODAL_RESULT_CANCEL: break;
-        case MODAL_RESULT_CUSTOM + 1: modal_res = MODAL_RESULT_NO; break;
-        case MODAL_RESULT_CUSTOM + 2: modal_res = MODAL_RESULT_CANCEL; break;
-        case MODAL_RESULT_CUSTOM + 0:
+        case MODAL_RESULT_NO: break;
+        case MODAL_RESULT_CANCEL: modal_res = MODAL_RESULT_CANCEL; break;
+        case MODAL_RESULT_YES:
         default:{
             m_pTabs->editorCloseRequest(index);
             m_pTabs->panel(index)->cef()->Apply(new CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_SAVE));
@@ -743,6 +742,12 @@ void CMainWindow::doOpenLocalFile(COpenOptions& opts)
     QFileInfo info(opts.url);
     if (!info.exists()) { return; }
     if (!info.isFile()) { return; }
+    if (!info.isReadable()) {
+        QTimer::singleShot(0, this, [=] {
+            CMessage::error(TOP_NATIVE_WINDOW_HANDLE, QObject::tr("Access to file '%1' is denied!").arg(opts.url));
+        });
+        return;
+    }
 
     int result = m_pTabs->openLocalDocument(opts, true);
     if ( !(result < 0) ) {
@@ -774,11 +779,10 @@ void CMainWindow::onLocalFileRecent(const COpenOptions& opts)
     if ( !match.hasMatch() ) {
         QFileInfo _info(opts.url);
         if ( opts.srctype != etRecoveryFile && !_info.exists() ) {
-            CMessage mess(TOP_NATIVE_WINDOW_HANDLE, CMessageOpts::moButtons::mbYesDefNo);
-            int modal_res = mess.warning(
-                        tr("%1 doesn't exists!<br>Remove file from the list?").arg(_info.fileName()));
-
-            if (modal_res == MODAL_RESULT_CUSTOM) {
+            int modal_res = CMessage::showMessage(TOP_NATIVE_WINDOW_HANDLE,
+                                                  tr("%1 doesn't exists!<br>Remove file from the list?").arg(_info.fileName()),
+                                                  MsgType::MSG_WARN, MsgBtns::mbYesDefNo);
+            if (modal_res == MODAL_RESULT_YES) {
                 AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, "file:skip", QString::number(opts.id));
             }
 
@@ -975,11 +979,11 @@ void CMainWindow::onDocumentSave(int id, bool cancel)
 
 void CMainWindow::onDocumentSaveInnerRequest(int id)
 {
-    CMessage mess(TOP_NATIVE_WINDOW_HANDLE, CMessageOpts::moButtons::mbYesDefNo);
-    int modal_res = mess.confirm(tr("Document must be saved to continue.<br>Save the document?"));
-
+    int modal_res = CMessage::showMessage(TOP_NATIVE_WINDOW_HANDLE,
+                                          tr("Document must be saved to continue.<br>Save the document?"),
+                                          MsgType::MSG_CONFIRM, MsgBtns::mbYesDefNo);
     CAscEditorSaveQuestion * pData = new CAscEditorSaveQuestion;
-    pData->put_Value((modal_res == MODAL_RESULT_CUSTOM + 0) ? true : false);
+    pData->put_Value(modal_res == MODAL_RESULT_YES);
 
     CAscMenuEvent * pEvent = new CAscMenuEvent(ASC_MENU_EVENT_TYPE_DOCUMENTEDITORS_SAVE_YES_NO);
     pEvent->m_pData = pData;
@@ -1106,10 +1110,15 @@ void CMainWindow::onDocumentPrint(void * opts)
         QPrinter * printer = pContext->getPrinter();
         printer->setFromTo(1, pagesCount);
         printer->printEngine()->setProperty(QPrintEngine::PPK_DocumentName, documentName);
+        printer->setDuplex(AscAppManager::printData().duplexMode());
+        if ( printer->supportsMultipleCopies() ) {
+            printer->setCopyCount(AscAppManager::printData().copiesCount());
+        }
 
         if ( !AscAppManager::printData().isQuickPrint() ) {
             printer->setPageOrientation(AscAppManager::printData().pageOrientation());
             printer->setPageSize(AscAppManager::printData().pageSize());
+            printer->setFullPage(true);
         }
 
 #ifdef _WIN32
@@ -1278,6 +1287,11 @@ void CMainWindow::onPortalOpen(QString json)
                 toggleButtonMain(false, true);
                 m_pTabs->setCurrentIndex(res);
             }
+
+            QString _title = objRoot["title"].toString();
+            if ( !_title.isEmpty() ) {
+                m_pTabs->applyDocumentChanging(m_pTabs->viewByIndex(res), _title, "");
+            }
         }
     }
 }
@@ -1330,6 +1344,22 @@ void CMainWindow::onOutsideAuth(QString json)
             m_pTabs->setCurrentIndex(_tab_index);
             toggleButtonMain(false, true);
         }
+    }
+}
+
+void CMainWindow::onReporterMode(int id, bool status)
+{
+    if ( m_pTabs->fullScreenWidget() ) {
+        CTabPanel * _widget = qobject_cast<CTabPanel *>(m_pTabs->fullScreenWidget());
+        if (_widget && _widget->cef()->GetId() == id) {
+            _widget->setReporterMode(status);
+            return;
+        }
+    }
+
+    int _i{m_pTabs->tabIndexByView(id)};
+    if ( !(_i < 0) ) {
+        m_pTabs->panel(_i)->setReporterMode(status);
     }
 }
 

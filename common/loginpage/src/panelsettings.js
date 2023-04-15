@@ -43,6 +43,29 @@
     const THEME_ID_DEFAULT_LIGHT = 'theme-classic-light';
     const THEME_ID_DEFAULT_DARK = 'theme-dark';
 
+    const themes_map = {
+        'theme-system': {
+            text: 'Same as system',
+            type: THEME_TYPE_SYSTEM,
+        },
+        'theme-light': {
+            text: 'Light',
+            type: 'light',
+        },
+        'theme-classic-light': {
+            text: 'Classic Light',
+            type: 'light',
+        },
+        'theme-dark': {
+            text: 'Dark',
+            type: 'dark',
+        },
+        'theme-contrast-dark': {
+            text: 'Dark Contrast',
+            type: 'dark',
+        },
+    }
+
     var ControllerSettings = function(args={}) {
         args.caption = 'Settings';
         args.action =
@@ -111,9 +134,9 @@
                                             <div class='sett--label-lift-top hbox'>
                                                 <section class='box-cmp-select'>
                                                     <select class='combobox'>
-                                                        <option value='silent' l10n>${_lang.settOptAUpdateSilent}</option>
-                                                        <option value='ask' l10n>${_lang.settOptAUpdateAsk}</option>
-                                                        <option value='disabled' l10n>${_lang.settOptDisabled}</option>
+                                                        <option data-subtext="${_lang.settOptDescAUpdateSilent}" value='silent' l10n>${_lang.settOptAUpdateSilent}</option>
+                                                        <option data-subtext="${_lang.settOptDescAUpdateAsk}" value='ask' l10n>${_lang.settOptAUpdateAsk}</option>
+                                                        <option data-subtext="${_lang.settOptDescDisabled}" value='disabled' l10n>${_lang.settOptDisabled}</option>
                                                     </select>
                                                 </section>
                                             </div>
@@ -232,7 +255,7 @@
                 document.body.className = `${_cls?_cls+' ':''}${name} ${_type}`;
 
                 localStorage.setItem('ui-theme-id', name);
-                CommonEvents.fire('theme:changed', [name]);
+                CommonEvents.fire('theme:changed', [name, themes_map[name].type]);
             }
         };
 
@@ -403,9 +426,8 @@
                             .selectpicker().on('change', e => {
                                 $btnApply.isdisabled() && $btnApply.disable(false);
                             });
-
-                            _apply_theme(opts.uitheme);
                         }
+                        _apply_theme(!!opts.uitheme ? opts.uitheme : 'theme-classic-light');
 
                         if ( opts.editorwindowmode !== undefined ) {
                             ($optsLaunchMode = ($('#opts-launch-mode', $panel).show().find('select')))
@@ -477,7 +499,12 @@
             }
         };
 
-        const get_system_theme_type = () => window.matchMedia('(prefers-color-scheme: dark)').matches ? THEME_TYPE_DARK : THEME_TYPE_LIGHT; 
+        const get_system_theme_type = () => {
+            const nativevars = window.RendererProcessVariable;
+            return nativevars.theme && !!nativevars.theme.system ? nativevars.theme.system :
+                            window.matchMedia('(prefers-color-scheme: dark)').matches ? THEME_TYPE_DARK : THEME_TYPE_LIGHT;
+            //window.matchMedia('(prefers-color-scheme: dark)').matches ? THEME_TYPE_DARK : THEME_TYPE_LIGHT;
+        }
         const get_default_theme = type => type == THEME_TYPE_DARK ? THEME_ID_DEFAULT_DARK : THEME_ID_DEFAULT_LIGHT;
         const on_system_theme_dark = e =>
             sdk.command("system:changed", JSON.stringify({'colorscheme': e.target.matches ? THEME_TYPE_DARK:THEME_TYPE_LIGHT}));
@@ -508,6 +535,12 @@
                 }
             }
         }
+
+        function _on_lang_changed(ol,nl) {
+            $('option[value=silent]', this.view.$panel).attr('data-subtext', utils.Lang.settOptDescAUpdateSilent);
+            $('option[value=ask]', this.view.$panel).attr('data-subtext', utils.Lang.settOptDescAUpdateAsk);
+            $('option[value=disabled]', this.view.$panel).attr('data-subtext', utils.Lang.settOptDescDisabled);
+        };
 
         return {
             init: function() {
@@ -563,9 +596,14 @@
 
                 $(window).on('resize', on_window_resize.bind(this));
                 CommonEvents.on('panel:show', on_panel_show.bind(this));
+                CommonEvents.on('lang:changed', _on_lang_changed.bind(this));
 
                 return this;
-            }
+            },
+            currentTheme: function() {
+                const name = localStorage.getItem('ui-theme-id');
+                return {name: name, type: themes_map[name] ? themes_map[name].type : THEME_TYPE_LIGHT};
+            },
         };
     })());
 }();

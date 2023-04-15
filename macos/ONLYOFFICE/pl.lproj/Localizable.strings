@@ -38,13 +38,13 @@
 "Do you want to save the changes made to the document \"%@\"?" = "Czy chcesz zapisać zmiany dokonane w dokumencie \"%@\"?";
 
 /* No comment provided by engineer. */
-"Document %ld.docx" = "Dokument % ld.docx";
+"Document %ld.docx" = "Dokument %ld.docx";
 
 /* No comment provided by engineer. */
 "Document template" = "Szablon dokumentu Word Open XML (*.dotx)";
 
 /* No comment provided by engineer. */
-"Electronic Publication" = "Plik EPUB (*.epub)";
+"Don't Save" = "Nie zapisuj";
 
 /* No comment provided by engineer. */
 "Excel 97-2003 Spreadsheet" = "Arkusz kalkulacyjny Excel 97-2003 (*.xls)";
@@ -53,7 +53,7 @@
 "Excel 2007 Spreadsheet" = "Arkusz kalkulacyjny Open Office XML (*.xlsx)";
 
 /* No comment provided by engineer. */
-"FictionBook File" = "Plik FB2 (*.fb2)";
+"FictionBook File" = "Plik FictionBook 2 (*.fb2)";
 
 /* No comment provided by engineer. */
 "File \"%@\" can not be open or not exist." = "Plik „% @” nie może być otworzony lub nie istnieje.";
@@ -68,9 +68,6 @@
 "Hide %@" = "Ukryj %@";
 
 /* No comment provided by engineer. */
-"HTML File" = "Plik HTML  (*.html)";
-
-/* No comment provided by engineer. */
 "If you don't review your documents, all your changeses will be lost." = "Jeśli nie sprawdzisz swoich dokumentów, wszystkie zmiany zostaną utracone.";
 
 /* No comment provided by engineer. */
@@ -78,9 +75,6 @@
 
 /* No comment provided by engineer. */
 "License Agreement" = "Umowa licencyjna";
-
-/* No comment provided by engineer. */
-"MHT File" = "Plik MHT (*.mht)";
 
 /* No comment provided by engineer. */
 "Mobipocket e-book" = "E-Book Mobipocket (*.mobi)";
@@ -131,7 +125,7 @@
 "PDF File" = "Przenośny document (*.pdf)";
 
 /* No comment provided by engineer. */
-"PDF/A File" = "Przenośny document / A (*.pdf)";
+"PDF/A File" = "Przenośny document /A (*.pdf)";
 
 /* No comment provided by engineer. */
 "Plain Text" = "Zwykły Tekst (*.txt)";
@@ -176,7 +170,7 @@
 "Signature Details" = "Szczegóły sygnatury";
 
 /* No comment provided by engineer. */
-"Spreadsheet %ld.xlsx" = "Arkusz kalkulacyjny % ld.xlsx";
+"Spreadsheet %ld.xlsx" = "Arkusz kalkulacyjny %ld.xlsx";
 
 /* No comment provided by engineer. */
 "Spreadsheet template" = "Szablon arkusza kalkulacyjnego Excel Open XML (*.xltx)";
@@ -201,6 +195,9 @@
 
 /* No comment provided by engineer. */
 "Web Page" = "Strona Internetowa";
+
+/* No comment provided by engineer. */
+"With access to pro features" = "Z dostępem do funkcji pro";
 
 /* No comment provided by engineer. */
 "Word 97-2003 Document" = "Dokument Word 97-2003 (*.doc)";

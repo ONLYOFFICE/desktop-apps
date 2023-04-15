@@ -31,23 +31,27 @@
 */
 
 #include "components/cmessage.h"
+#include <QDialog>
 #include <QPushButton>
 #include <QFormLayout>
 #include <QLabel>
 #include <QVariant>
-#include <QDebug>
 #include <QTimer>
 #include <functional>
 #include <QEvent>
-#include <QKeyEvent>
+//#include <QKeyEvent>
 #include <QCheckBox>
 #include <QApplication>
 #include "defines.h"
 #include "utils.h"
 #include "cascapplicationmanagerwrapper.h"
+#include <initializer_list>
+#include <memory.h>
 
 #ifdef __linux__
-# include "windows/platform_linux/cx11decoration.h"
+# include "platform_linux/gtkmessage.h"
+#else
+# include "platform_win/message.h"
 #endif
 
 #define MSG_ICON_WIDTH  35
@@ -55,33 +59,65 @@
 
 #define DEFAULT_BUTTON(label) label + ":default"
 
-class CMessageEventsFilter : public QObject {
+//    class CMessageEventsFilter : public QObject {
+//    public:
+//        CMessageEventsFilter(CMessage * p, QObject * o)
+//            : QObject(o), m_mess(p)
+//        {}
+//
+//    protected:
+//        bool eventFilter(QObject * obj, QEvent * event)
+//        {
+//            if (event->type()==QEvent::KeyPress) {
+//                QKeyEvent * key = static_cast<QKeyEvent*>(event);
+//                if ( key->key()==Qt::Key_Escape ) {
+//                    m_mess->close();
+//                    return true;
+//                }
+//            }
+//
+//            return QObject::eventFilter(obj, event);
+//        }
+//
+//    private:
+//        CMessage * m_mess;
+//    };
+
+class QtMsg : public QDialog
+{
 public:
-    CMessageEventsFilter(CMessage * p, QObject * o)
-        : QObject(o), m_mess(p)
-    {}
+    explicit QtMsg(QWidget *);
+    ~QtMsg();
 
-protected:
-    bool eventFilter(QObject * obj, QEvent * event)
-    {
-        if (event->type()==QEvent::KeyPress) {
-            QKeyEvent * key = static_cast<QKeyEvent*>(event);
-            if ( key->key()==Qt::Key_Escape ) {
-                m_mess->close();
-                return true;
-            }
-        }
-
-        return QObject::eventFilter(obj, event);
-    }
-
+    static int showMessage(QWidget *parent,
+                           const QString &msg,
+                           MsgType msgType,
+                           MsgBtns msgBtns = MsgBtns::mbOk,
+                           bool   *checkBoxState = nullptr,
+                           const QString &chekBoxText = QString());
 private:
-    CMessage * m_mess;
+    void modal();
+    void setButtons(std::initializer_list<QString>);
+    void setButtons(MsgBtns);
+    void setIcon(MsgType);
+    void setText(const QString&);
+    void setCheckBox(const QString &chekBoxText, bool checkBoxState);
+    bool getCheckStatus();
+
+    QWidget *m_boxButtons = nullptr,
+            *m_centralWidget = nullptr;
+    QLabel  *m_message = nullptr,
+            *m_typeIcon = nullptr;
+
+    static int m_modalresult;
+
+    class QtMsgPrivateIntf;
+    std::unique_ptr<QtMsgPrivateIntf> m_priv;
 };
 
-class CMessagePrivateIntf {
+class QtMsg::QtMsgPrivateIntf {
 public:
-    explicit CMessagePrivateIntf(CMessage * parent)
+    explicit QtMsgPrivateIntf(QtMsg * parent)
         : m_mess(parent)
         , dpiRatio(Utils::getScreenDpiRatioByWidget(parent))
     {}
@@ -106,7 +142,7 @@ public:
         buttons.clear();
     }
 
-    CMessage * m_mess = nullptr;
+    QtMsg * m_mess = nullptr;
     std::vector<QPushButton *> buttons;
     QPushButton * defaultButton = nullptr;
     QWidget * focusWidget = nullptr;
@@ -115,19 +151,14 @@ public:
     bool isWindowActive = false;
 };
 
-CMessage::CMessage(QWidget * p, CMessageOpts::moButtons b)
-    : CMessage(p)
-{
-    setButtons(b);
-}
+int QtMsg::m_modalresult(MODAL_RESULT_CANCEL);
 
-CMessage::CMessage(QWidget * p)
+QtMsg::QtMsg(QWidget * p)
     : QDialog(p)
     , m_boxButtons(new QWidget)
     , m_message(new QLabel)
     , m_typeIcon(new QLabel)
-    , m_modalresult(MODAL_RESULT_CANCEL)
-    , m_priv(new CMessagePrivateIntf(this))
+    , m_priv(new QtMsgPrivateIntf(this))
 {
     setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
     //setWindowTitle(APP_TITLE);
@@ -138,7 +169,7 @@ CMessage::CMessage(QWidget * p)
     layout()->addWidget(m_centralWidget);
     layout()->setSizeConstraint(QLayout::SetFixedSize);
     m_centralWidget->setObjectName("messageBody");
-    m_centralWidget->setProperty("uitheme", QString::fromStdWString(AscAppManager::themes().current().originalId()));
+    m_centralWidget->setProperty("uitheme", QString::fromStdWString(GetCurrentTheme().originalId()));
 
     QVBoxLayout * _c_layout  = new QVBoxLayout;
     QHBoxLayout * _h_layout2 = new QHBoxLayout;
@@ -150,7 +181,8 @@ CMessage::CMessage(QWidget * p)
     _c_layout->setContentsMargins(_body_margin,_body_margin,_body_margin,_body_margin);
 
     m_typeIcon->setProperty("class", "msg-icon");
-    m_typeIcon->setFixedSize(int(MSG_ICON_WIDTH*m_priv->dpiRatio), int(MSG_ICON_HEIGHT*m_priv->dpiRatio));
+    m_typeIcon->setFixedSize(int(round(MSG_ICON_WIDTH*m_priv->dpiRatio - 0.25)),
+                             int(round(MSG_ICON_HEIGHT*m_priv->dpiRatio - 0.25)));
     _h_layout2->addWidget(m_typeIcon, 0, Qt::AlignTop);
 
 //    m_message->setWordWrap(true);
@@ -176,14 +208,13 @@ CMessage::CMessage(QWidget * p)
 
     QObject::connect(btn_ok, &QPushButton::clicked, this,
         [=] {
-            m_modalresult = MODAL_RESULT_YES;
+            m_modalresult = MODAL_RESULT_OK;
             close();
         }
     );
 
     m_centralWidget->setLayout(_c_layout);
     m_centralWidget->setMinimumWidth(int(350*m_priv->dpiRatio));
-//    m_centralWidget->setWindowTitle(APP_TITLE);
     m_centralWidget->move(0, 0);
 
     QString _styles(Utils::readStylesheets(":/styles/message.qss"));
@@ -193,7 +224,9 @@ CMessage::CMessage(QWidget * p)
     QString zoom = QString::number(m_priv->dpiRatio) + "x";
     m_centralWidget->setProperty("scaling", zoom);
 
-    m_priv->focusConnection = QObject::connect(qApp, &QApplication::focusChanged, [&] (QWidget * from, QWidget *to){
+    m_priv->focusConnection = QObject::connect(qApp, &QApplication::focusChanged, this,
+                                               [&] (QWidget * from, QWidget *to){
+        Q_UNUSED(from)
         if ( m_priv->isWindowActive ) {
             if ( !to ) {
                 m_priv->focusWidget ?
@@ -205,12 +238,12 @@ CMessage::CMessage(QWidget * p)
     });
 }
 
-CMessage::~CMessage()
+QtMsg::~QtMsg()
 {
     QObject::disconnect(m_priv->focusConnection);
 }
 
-void CMessage::setButtons(std::initializer_list<QString> btns)
+void QtMsg::setButtons(std::initializer_list<QString> btns)
 {
     QLayoutItem * item;
     QWidget * widget;
@@ -223,8 +256,8 @@ void CMessage::setButtons(std::initializer_list<QString> btns)
     }
     m_priv->clearButtons();
 
-    auto _fn_click = [=](int num) {
-        m_modalresult = MODAL_RESULT_CUSTOM + num;
+    auto _fn_click = [=](MsgRes msgRes) {
+        m_modalresult = msgRes;
         close();
     };
 
@@ -240,95 +273,83 @@ void CMessage::setButtons(std::initializer_list<QString> btns)
             _btn->setDefault(true);
         }
 
+        QMap<MsgRes, QString> btnNames = {
+            {MODAL_RESULT_CANCEL, BTN_TEXT_CANCEL},
+            {MODAL_RESULT_YES,    BTN_TEXT_YES},
+            {MODAL_RESULT_NO,     BTN_TEXT_NO},
+            {MODAL_RESULT_OK,     BTN_TEXT_OK},
+            {MODAL_RESULT_SKIP,   BTN_TEXT_SKIP},
+            {MODAL_RESULT_BUY,    BTN_TEXT_BUY},
+            {MODAL_RESULT_ACTIVATE,    BTN_TEXT_ACTIVATE},
+            {MODAL_RESULT_CONTINUE,    BTN_TEXT_CONTINUE}
+        };
+
         m_boxButtons->layout()->addWidget(_btn);
-        QObject::connect(_btn, &QPushButton::clicked, std::bind(_fn_click, _btn_num++));
+        MsgRes msgRes = btnNames.key(reFocus.cap(1), MODAL_RESULT_CANCEL);
+        QObject::connect(_btn, &QPushButton::clicked, std::bind(_fn_click, msgRes));
 
         m_priv->addButton(_btn);
+        _btn_num++;
     }
 
     if (_btn_num > 2)
         m_centralWidget->setMinimumWidth(int(400*m_priv->dpiRatio));
 }
 
-void CMessage::setButtons(CMessageOpts::moButtons btns)
+void QtMsg::setButtons(MsgBtns btns)
 {
     switch (btns) {
-    case CMessageOpts::moButtons::mbYesDefNo:       setButtons({DEFAULT_BUTTON(tr("Yes")), tr("No")}); break;
-    case CMessageOpts::moButtons::mbYesNo:          setButtons({tr("Yes"), DEFAULT_BUTTON(tr("No"))}); break;
-    case CMessageOpts::moButtons::mbYesNoCancel:    setButtons({tr("Yes"), tr("No"), DEFAULT_BUTTON(tr("Cancel"))}); break;
-    case CMessageOpts::moButtons::mbYesDefNoCancel: setButtons({DEFAULT_BUTTON(tr("Yes")), tr("No"), tr("Cancel")}); break;
-    case CMessageOpts::moButtons::mbOkCancel:       setButtons({tr("OK"), DEFAULT_BUTTON(tr("Cancel"))}); break;
-    case CMessageOpts::moButtons::mbOkDefCancel:    setButtons({DEFAULT_BUTTON(tr("OK")), tr("Cancel")}); break;
-    case CMessageOpts::moButtons::mbYesDefSkipNo:   setButtons({DEFAULT_BUTTON(tr("Yes")), tr("Skip"), tr("No")}); break;
+    case MsgBtns::mbYesNo:          setButtons({BTN_TEXT_YES, DEFAULT_BUTTON(BTN_TEXT_NO)}); break;
+    case MsgBtns::mbYesDefNo:       setButtons({DEFAULT_BUTTON(BTN_TEXT_YES), BTN_TEXT_NO}); break;
+    case MsgBtns::mbYesNoCancel:    setButtons({BTN_TEXT_YES, BTN_TEXT_NO, DEFAULT_BUTTON(BTN_TEXT_CANCEL)}); break;
+    case MsgBtns::mbYesDefNoCancel: setButtons({DEFAULT_BUTTON(BTN_TEXT_YES), BTN_TEXT_NO, BTN_TEXT_CANCEL}); break;
+    case MsgBtns::mbOkCancel:       setButtons({BTN_TEXT_OK, DEFAULT_BUTTON(BTN_TEXT_CANCEL)}); break;
+    case MsgBtns::mbOkDefCancel:    setButtons({DEFAULT_BUTTON(BTN_TEXT_OK), BTN_TEXT_CANCEL}); break;
+    case MsgBtns::mbYesDefSkipNo:   setButtons({DEFAULT_BUTTON(BTN_TEXT_YES), BTN_TEXT_SKIP, BTN_TEXT_NO}); break;
+    case MsgBtns::mbBuy:            setButtons({DEFAULT_BUTTON(BTN_TEXT_BUY)}); break;
+    case MsgBtns::mbActivateDefContinue:   setButtons({DEFAULT_BUTTON(BTN_TEXT_ACTIVATE), BTN_TEXT_CONTINUE}); break;
+    case MsgBtns::mbContinue:       setButtons({DEFAULT_BUTTON(BTN_TEXT_CONTINUE)}); break;
     default: break;
     }
 }
 
-int CMessage::info(const QString& mess)
+void QtMsg::setCheckBox(const QString &chekBoxText, bool checkBoxState)
 {
-    m_message->setText(mess);
-    m_typeIcon->setProperty("type","msg-info");
+    QBoxLayout * layout = qobject_cast<QBoxLayout *>(m_centralWidget->layout());
+    QCheckBox * chbox = new QCheckBox(chekBoxText);
+    chbox->setObjectName("check-apply-for-all");
+    chbox->setStyleSheet(QString("margin-left: %1px").arg(15 + int(m_typeIcon->width() * m_priv->dpiRatio) + int(15 * m_priv->dpiRatio)));
+    chbox->setChecked(checkBoxState);
+    layout->insertWidget(1, chbox, 0);
+}
 
-    modal();
+bool QtMsg::getCheckStatus()
+{
+    QCheckBox * chbox = m_centralWidget->findChild<QCheckBox *>("check-apply-for-all");
+    return chbox && chbox->checkState() == Qt::Checked;
+}
 
+int QtMsg::showMessage(QWidget *parent,
+                          const QString &msg,
+                          MsgType msgType,
+                          MsgBtns msgBtns,
+                          bool   *checkBoxState,
+                          const QString &chekBoxText)
+{
+    QtMsg dlg(parent);
+    dlg.setText(msg);
+    dlg.setIcon(msgType);
+    if (msgBtns != MsgBtns::mbOk)
+        dlg.setButtons(msgBtns);
+    if (checkBoxState != nullptr)
+        dlg.setCheckBox(chekBoxText, *checkBoxState);
+    dlg.modal();
+    if (checkBoxState != nullptr)
+        *checkBoxState = dlg.getCheckStatus();
     return m_modalresult;
 }
 
-int CMessage::warning(const QString& mess)
-{
-    m_message->setText(mess);
-    m_typeIcon->setProperty("type","msg-warn");
-
-    modal();
-
-    return m_modalresult;
-}
-
-int CMessage::error(const QString& mess)
-{
-    m_message->setText(mess);
-    m_typeIcon->setProperty("type","msg-error");
-
-    modal();
-
-    return m_modalresult;
-}
-
-int CMessage::confirm(const QString& mess)
-{
-    m_message->setText(mess);
-    m_typeIcon->setProperty("type","msg-confirm");
-
-    modal();
-
-    return m_modalresult;
-}
-
-int CMessage::confirm(QWidget * p, const QString& m)
-{
-    CMessage mess(p);
-    return mess.confirm(m);
-}
-
-int CMessage::info(QWidget * p, const QString& m)
-{
-    CMessage mess(p);
-    return mess.info(m);
-}
-
-int CMessage::warning(QWidget * p, const QString& m)
-{
-    CMessage mess(p);
-    return mess.warning(m);
-}
-
-int CMessage::error(QWidget * p, const QString& m)
-{
-    CMessage mess(p);
-    return mess.error(m);
-}
-
-void CMessage::modal()
+void QtMsg::modal()
 {
 #if defined(_WIN32)
     exec();
@@ -338,35 +359,60 @@ void CMessage::modal()
 #endif
 }
 
-void CMessage::setIcon(int it)
+void QtMsg::setIcon(MsgType msgType)
 {
-    switch (it) {
-    case MESSAGE_TYPE_WARN:     m_typeIcon->setProperty("type","msg-warn"); break;
-    case MESSAGE_TYPE_INFO:     m_typeIcon->setProperty("type","msg-info"); break;
-    case MESSAGE_TYPE_CONFIRM:  m_typeIcon->setProperty("type","msg-conf"); break;
-    case MESSAGE_TYPE_ERROR:    m_typeIcon->setProperty("type","msg-error"); break;
-    default:
-        break;
+    switch (msgType) {
+    case MsgType::MSG_WARN:    m_typeIcon->setProperty("type", "msg-warn"); break;
+    case MsgType::MSG_INFO:    m_typeIcon->setProperty("type", "msg-info"); break;
+    case MsgType::MSG_CONFIRM: m_typeIcon->setProperty("type", "msg-conf"); break;
+    case MsgType::MSG_ERROR:   m_typeIcon->setProperty("type", "msg-error"); break;
+    default: break;
     }
 }
 
-void CMessage::setText( const QString& t)
+void QtMsg::setText( const QString& t)
 {
     m_message->setText(t);
 }
 
-void CMessage::applyForAll(const QString& str, bool checked)
+// -------------------- CMessage ------------------
+
+int CMessage::showMessage(QWidget *parent,
+                          const QString &msg,
+                          MsgType msgType,
+                          MsgBtns msgBtns,
+                          bool   *checkBoxState,
+                          const QString &chekBoxText)
 {
-    QBoxLayout * layout = qobject_cast<QBoxLayout *>(m_centralWidget->layout());
-    QCheckBox * chbox = new QCheckBox(str);
-    chbox->setObjectName("check-apply-for-all");
-    chbox->setStyleSheet(QString("margin-left: %1px").arg(15 + int(m_typeIcon->width() * m_priv->dpiRatio) + int(15 * m_priv->dpiRatio)));
-    chbox->setChecked(checked);
-    layout->insertWidget(1, chbox, 0);
+    if (WindowHelper::useNativeDialog()) {
+#ifdef _WIN32
+# ifndef __OS_WIN_XP
+        return WinMsg::showMessage(parent, msg, msgType, msgBtns, checkBoxState, chekBoxText);
+# endif
+#else
+        WindowHelper::CParentDisable oDisabler(parent);
+        return GtkMsg::showMessage(parent, msg, msgType, msgBtns, checkBoxState, chekBoxText);
+#endif
+    }
+    return QtMsg::showMessage(parent, msg, msgType, msgBtns, checkBoxState, chekBoxText);
 }
 
-bool CMessage::isForAll()
+void CMessage::confirm(QWidget *parent, const QString &msg)
 {
-    QCheckBox * chbox = m_centralWidget->findChild<QCheckBox *>("check-apply-for-all");
-    return chbox && chbox->checkState() == Qt::Checked;
+    showMessage(parent, msg, MsgType::MSG_CONFIRM);
+}
+
+void CMessage::info(QWidget *parent, const QString &msg)
+{
+    showMessage(parent, msg, MsgType::MSG_INFO);
+}
+
+void CMessage::warning(QWidget *parent, const QString &msg)
+{
+    showMessage(parent, msg, MsgType::MSG_WARN);
+}
+
+void CMessage::error(QWidget *parent, const QString &msg)
+{
+    showMessage(parent, msg, MsgType::MSG_ERROR);
 }

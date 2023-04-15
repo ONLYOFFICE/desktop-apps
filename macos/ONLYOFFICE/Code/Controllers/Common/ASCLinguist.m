@@ -77,11 +77,11 @@
         @"it": @"Italiano",
         @"pt-BR": @"Português Brasileiro",
         @"pt-PT": @"Português (Portugal)",
-        @"zh-CN": @"中文",
+        @"zh-CN": @"简体中文",
+        @"zh-HK": @"繁體中文",
         @"sk-SK": @"Slovenčina",
         @"cs-CZ": @"Čeština",
         @"pl-PL": @"Polski",
-        // @"zh-HK": @"Chinese (Traditional)",
         @"ca-ES": @"Catalan",
         @"da-DK": @"Dansk",
         @"el-GR": @"Ελληνικά",
@@ -91,7 +91,7 @@
         // @"hi-IN": @"हिन्दी",
         // @"hr-HR": @"Hrvatska",
         @"hu-HU": @"Magyar",
-        @"hy-AM": @"Հայաստան",
+        @"hy-AM": @"Հայերեն",
         @"id-ID": @"Indonesian",
         @"no-NO": @"Norsk",
         @"ro-RO": @"Romanian",
@@ -108,7 +108,8 @@
         @"be-BY": @"Беларуская мова",
         @"uk-UA": @"Украї́нська мо́ва",
         @"lo-LA": @"ພາສາລາວ",
-        @"gl-ES": @"Galego"
+        @"gl-ES": @"Galego",
+        @"si-LK": @"සිංහල"
     };
 }
 
