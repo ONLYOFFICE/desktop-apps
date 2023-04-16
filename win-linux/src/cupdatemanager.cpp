@@ -53,9 +53,12 @@
 
 //#define CHECK_DIRECTORY
 #define CHECK_ON_STARTUP_MS 9000
-#define CMD_ARGUMENT_CHECK_URL L"--updates-appcast-url"
+#define CMD_ARGUMENT_UPDATES_CHANNEL L"--updates-appcast-channel"
 #ifndef URL_APPCAST_UPDATES
 # define URL_APPCAST_UPDATES ""
+#endif
+#ifndef URL_APPCAST_DEV_CHANNEL
+# define URL_APPCAST_DEV_CHANNEL ""
 #endif
 
 using std::vector;
@@ -191,9 +194,15 @@ CUpdateManager::CUpdateManager(QObject *parent):
 {
     // =========== Set updates URL ============
     auto setUrl = [=] {
-        if ( InputArgs::contains(CMD_ARGUMENT_CHECK_URL) ) {
-            m_checkUrl = InputArgs::argument_value(CMD_ARGUMENT_CHECK_URL);
-        } else m_checkUrl = TEXT(URL_APPCAST_UPDATES);
+        if ( InputArgs::contains(CMD_ARGUMENT_UPDATES_CHANNEL) ) {
+            std::wstring ch_updates = InputArgs::argument_value(CMD_ARGUMENT_UPDATES_CHANNEL);
+            if ( ch_updates == L"dev" ) {
+                m_checkUrl = TEXT(URL_APPCAST_DEV_CHANNEL);
+            }
+        }
+
+        if ( m_checkUrl.empty() )
+            m_checkUrl = TEXT(URL_APPCAST_UPDATES);
     };
 #ifdef _WIN32
     if (AppOptions::packageType() == AppOptions::AppPackageType::Portable

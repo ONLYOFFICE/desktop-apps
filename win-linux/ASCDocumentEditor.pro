@@ -31,6 +31,13 @@ win32 {
 
         message(updates is turned on)
         message(url: $$join(LINK,,\\\",\\\"))
+
+        ENV_URL_APPCAST_DEV = $$(DESKTOP_URL_UPDATES_DEV_CHANNEL)
+        !isEmpty(ENV_URL_APPCAST_DEV) {
+            DEFINES += URL_APPCAST_DEV_CHANNEL=$${ENV_URL_APPCAST_DEV}
+        }
+
+        message(app DEFINES: $$DEFINES)
     }
 }
 
