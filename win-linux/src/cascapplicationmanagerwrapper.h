@@ -205,8 +205,6 @@ private:
 
     CAscApplicationManagerWrapper(CAscApplicationManagerWrapper_Private *);
 
-    class DialogSchedule;
-    std::unique_ptr<DialogSchedule> m_dialogSchedule;
 #ifdef _UPDMODULE
     CUpdateManager *m_pUpdateManager;
 #endif

@@ -53,41 +53,6 @@ using namespace NSEditorApi;
 using namespace std;
 using namespace std::placeholders;
 
-class CAscApplicationManagerWrapper::DialogSchedule : public QObject
-{
-public:
-    DialogSchedule()
-    {
-        m_timer = new QTimer(this);
-        m_timer->setInterval(500);
-        m_timer->setSingleShot(false);
-        connect(m_timer, &QTimer::timeout, this, [=] {
-            QWidget *wnd = WindowHelper::currentTopWindow();
-            if (wnd && !m_shedule_vec.isEmpty()) {
-                QMetaObject::invokeMethod(&AscAppManager::getInstance(),
-                                          m_shedule_vec.first().toLocal8Bit().data(),
-                                          Qt::QueuedConnection, Q_ARG(QWidget*, wnd));
-                m_shedule_vec.removeFirst();
-                if (m_shedule_vec.isEmpty())
-                    m_timer->stop();
-            }
-        });
-    }
-
-    ~DialogSchedule()
-    {}
-
-    void addToSchedule(const QString &method)
-    {
-        m_shedule_vec.push_back(method);
-        if (!m_timer->isActive())
-            m_timer->start();
-    }
-
-private:
-    QTimer *m_timer = nullptr;
-    QVector<QString> m_shedule_vec;
-};
 
 CAscApplicationManagerWrapper::CAscApplicationManagerWrapper(CAscApplicationManagerWrapper const&)
 {
@@ -100,7 +65,6 @@ CAscApplicationManagerWrapper::CAscApplicationManagerWrapper(CAscApplicationMana
     , CCefEventsTransformer(nullptr)
     , m_queueToClose(new CWindowsQueue<sWinTag>)
     , m_private(ptrprivate)
-    , m_dialogSchedule(new DialogSchedule)
 {
     m_private->init();
     CAscApplicationManager::SetEventListener(this);
