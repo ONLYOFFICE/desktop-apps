@@ -114,15 +114,12 @@ void CMainWindowImpl::refreshAboutVersion()
 #ifdef _UPDMODULE
 # ifdef _WIN32
     GET_REGISTRY_SYSTEM(reg_system)
-    bool allow_updates = reg_system.value("CheckForUpdates", true).toBool();
-    if (AppOptions::packageType() == AppOptions::AppPackageType::Portable
-            || (AppOptions::packageType() == AppOptions::AppPackageType::ISS && allow_updates)
-            || (AppOptions::packageType() == AppOptions::AppPackageType::MSI && allow_updates)) {
+    if (reg_system.value("CheckForUpdates", true).toBool() && (IsPackage(Portable) || IsPackage(ISS) || IsPackage(MSI))) {
         AscAppManager::sendCommandTo(0, "updates:turn", "on");
         _json_obj["updates"] = QJsonObject({{"mode", reg_user.value("autoUpdateMode","ask").toString()}});
     }
 # else
-    if (AppOptions::packageType() == AppOptions::AppPackageType::Portable) {
+    if (IsPackage(Portable)) {
         AscAppManager::sendCommandTo(0, "updates:turn", "on");
         _json_obj["updates"] = QJsonObject({{"mode", reg_user.value("autoUpdateMode","ask").toString()}});
     }
