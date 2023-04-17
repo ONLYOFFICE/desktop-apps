@@ -196,8 +196,11 @@ CUpdateManager::CUpdateManager(QObject *parent):
         } else m_checkUrl = TEXT(URL_APPCAST_UPDATES);
     };
 #ifdef _WIN32
+    GET_REGISTRY_SYSTEM(reg_system)
+    bool allow_updates = reg_system.value("CheckForUpdates", true).toBool();
     if (AppOptions::packageType() == AppOptions::AppPackageType::Portable
-            || AppOptions::packageType() == AppOptions::AppPackageType::ISS)
+            || (AppOptions::packageType() == AppOptions::AppPackageType::ISS && allow_updates)
+            || (AppOptions::packageType() == AppOptions::AppPackageType::MSI && allow_updates))
         setUrl();
 #else
     if (AppOptions::packageType() == AppOptions::AppPackageType::Portable)
