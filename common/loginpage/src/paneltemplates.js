@@ -60,7 +60,9 @@
         var _lang = utils.Lang;
 
         const msg = 'Oops! Something went wrong :(<br>Check internet connection';
-        args.tplPage = `<div class="action-panel ${args.action}"><div id="frame"><h3>${msg}</h3></div></div>`;
+        this.emptyPanelContent = `<div id="frame"><h3>${msg}</h3>`;
+
+        args.tplPage = `<div class="action-panel ${args.action}">${this.emptyPanelContent}</div></div>`;
         args.menu = '.main-column.tool-menu';
         args.field = '.main-column.col-center';
         args.itemindex = 0;
@@ -73,36 +75,41 @@
     ViewTemplates.prototype.constructor = ViewTemplates;
 
     utils.fn.extend(ControllerTemplates.prototype, (function() {
+        let iframe;
+        const _url_templates = "https://oforms.onlyoffice.com/{0}?desktop=true";
+
+        const _create_and_inject_iframe = () => {
+            const theme = window.app.controller.settings.currentTheme();
+
+            const iframe = createIframe({});
+            iframe.src = `${_url_templates.replace('{0}',utils.Lang.id.substring(0,2))}&themetype=${theme.type}`;
+
+            const target = document.getElementById("frame");
+            target.parentNode && target.parentNode.replaceChild(iframe, target);
+            return iframe;
+        }
+
+        const _remove_frame = content => {
+            if ( !!iframe ) {
+                iframe.parentElement.innerHTML = content;
+                iframe = null;
+            }
+        }
+
         return {
             init: function() {
                 baseController.prototype.init.apply(this, arguments);
                 this.view.render();
 
-                const _url_templates = "https://oforms.onlyoffice.com/?desktop=true";
-
-                const _create_and_inject_iframe = () => {
-                    const theme = window.app.controller.settings.currentTheme();
-
-                    const iframe = createIframe({});
-                    iframe.src = `${_url_templates}&lang=${utils.Lang.id}&themetype=${theme.type}`;
-
-                    const target = document.getElementById("frame");
-                    target.parentNode && target.parentNode.replaceChild(iframe, target);
-                    return iframe;
-                }
-
-                let iframe;
                 const _check_url_avail = () => {
                     if ( !iframe ) {
-                        fetch(_url_templates, {mode: 'no-cors'}).
+                        fetch(_url_templates.replace('{0}', 'en'), {mode: 'no-cors'}).
                             then(r => {
                                 if ( r.status == 200 || r.type == 'opaque' ) {
                                     iframe = _create_and_inject_iframe();
                                 }
                             }).
-                            catch(e => {
-                                console.error('error on check templates url', e);
-                            });
+                            catch(e => console.error('error on check templates url', e));
                     }
                 }
 
@@ -116,13 +123,17 @@
 
                 CommonEvents.on('lang:changed', (old, newlang) => {
                     if ( !!iframe ) {
-                        iframe.contentWindow.postMessage(JSON.stringify({lang: newlang}));
+                        // iframe.contentWindow.postMessage(JSON.stringify({lang: newlang}));
+                        _remove_frame(this.view.emptyPanelContent);
+                        _check_url_avail();
                     }
                 });
 
                 CommonEvents.on('theme:changed', (theme, type) => {
                     if ( !!iframe ) {
-                        iframe.contentWindow.postMessage(JSON.stringify({theme: {name: theme, type: type}}));
+                        // iframe.contentWindow.postMessage(JSON.stringify({theme: {name: theme, type: type}}));
+                        _remove_frame(this.view.emptyPanelContent);
+                        _check_url_avail();
                     }
                 });
 

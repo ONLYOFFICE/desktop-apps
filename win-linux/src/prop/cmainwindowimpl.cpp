@@ -36,6 +36,7 @@
 #include "utils.h"
 #include "version.h"
 #include "clangater.h"
+
 #ifdef _UPDMODULE
 # include "cupdatemanager.h"
 #endif
