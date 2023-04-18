@@ -62,6 +62,8 @@ public:
     void loadUpdates();
     void installUpdates();
 
+    static bool updatesAllowed();
+
 public slots:
     void checkUpdates(bool manualCheck = false);
 

@@ -195,14 +195,16 @@ CUpdateManager::CUpdateManager(QObject *parent):
             m_checkUrl = InputArgs::argument_value(CMD_ARGUMENT_CHECK_URL);
         } else m_checkUrl = TEXT(URL_APPCAST_UPDATES);
     };
+
+    if ( updatesAllowed() ) {
 #ifdef _WIN32
-    GET_REGISTRY_SYSTEM(reg_system)
-    if (reg_system.value("CheckForUpdates", true).toBool() && (IsPackage(Portable) || IsPackage(ISS) || IsPackage(MSI)))
-        setUrl();
+        if (IsPackage(Portable) || IsPackage(ISS) || IsPackage(MSI))
+            setUrl();
 #else
-    if (IsPackage(Portable))
-        setUrl();
+        if (IsPackage(Portable))
+            setUrl();
 #endif
+    }
 
     if ( !m_checkUrl.empty()) {
         CLogger::log("Updates is on, URL: " + QString::fromStdWString(m_checkUrl));
@@ -420,6 +422,12 @@ void CUpdateManager::installUpdates()
 QString CUpdateManager::getVersion() const
 {
     return m_packageData->version;
+}
+
+bool CUpdateManager::updatesAllowed()
+{
+    GET_REGISTRY_SYSTEM(reg_system)
+    return reg_system.value("CheckForUpdates", true).toBool();
 }
 
 void CUpdateManager::onLoadUpdateFinished(const QString &filePath)
