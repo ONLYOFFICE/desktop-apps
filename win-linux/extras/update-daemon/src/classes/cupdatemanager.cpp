@@ -381,6 +381,10 @@ void CUpdateManager::startReplacingFiles()
     else
         NS_File::replaceFile(tmpPath + DAEMON_NAME, appPath + DAEMON_NAME_OLD);
 
+    // Package type sync
+    if (NS_File::fileExists(tmpPath + TEXT("/converter/package.config")))
+        NS_File::replaceFile(tmpPath + TEXT("/converter/package.config"), appPath + TEXT("/converter/package.config"));
+
     // Update version in registry
     {
         wstring ver;
