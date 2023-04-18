@@ -36,7 +36,10 @@
 #include "utils.h"
 #include "version.h"
 #include "clangater.h"
-#include "cupdatemanager.h"
+
+#ifdef _UPDMODULE
+# include "cupdatemanager.h"
+#endif
 
 #include <QJsonObject>
 #include <QJsonDocument>
