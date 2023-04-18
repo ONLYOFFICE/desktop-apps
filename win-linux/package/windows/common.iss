@@ -711,6 +711,12 @@ var
 begin
   if CurUninstallStep = usUninstall then
   begin
+    GetWindowsVersionEx(version);
+    if (version.Major > 6) or ((version.Major = 6) and (version.Minor >= 1)) then begin
+      Exec(ExpandConstant('{app}\{#iconsExe}'), '--remove-jump-list', '', SW_SHOWNORMAL, ewWaitUntilTerminated, ErrorCode);
+      Exec(ExpandConstant('{app}\updatesvc.exe'), '--delete', '', SW_HIDE, ewWaitUntilTerminated, ErrorCode);
+    end;
+    
     RegQueryStringValue(GetHKLM(), ExpandConstant('{#APP_REG_PATH}'), 'uninstall', regValue);
 
     if (regValue <> 'full') and
@@ -755,11 +761,7 @@ begin
     UnassociateExtensions();
   end else
   if CurUninstallStep = usPostUninstall then begin
-    GetWindowsVersionEx(version);
-    if (version.Major > 6) or ((version.Major = 6) and (version.Minor >= 1)) then begin
-      Exec(ExpandConstant('{app}\{#iconsExe}'), '--remove-jump-list', '', SW_SHOWNORMAL, ewWaitUntilTerminated, ErrorCode);
-      Exec(ExpandConstant('{app}\updatesvc.exe'), '--delete', '', SW_HIDE, ewWaitUntilTerminated, ErrorCode);
-    end;
+    
   end;
 end;
 
