@@ -782,7 +782,10 @@ begin
       StringChangeEx(translateArgs, ' ', '_', True);
       StringChangeEx(translateArgs, '+', ' ', True);
       Exec(ExpandConstant('{app}\{#iconsExe}'), '--create-jump-list ' + translateArgs, '', SW_SHOWNORMAL, ewWaitUntilTerminated, ErrorCode);
-      Exec(ExpandConstant('{app}\updatesvc.exe'), '--install "Service for update document editors."', '', SW_HIDE, ewWaitUntilTerminated, ErrorCode);
+      if CheckCommandlineParam('/noupdates') then begin
+        RegWriteDWordValue(HKEY_LOCAL_MACHINE, ExpandConstant('{#APP_REG_PATH}'), 'CheckForUpdates', 0);
+      end else
+        Exec(ExpandConstant('{app}\updatesvc.exe'), '--install "Service for update document editors."', '', SW_HIDE, ewWaitUntilTerminated, ErrorCode);
     end;
     // migrate from the prev version when user's data saved to system common path
     commonCachePath := ExpandConstant('{commonappdata}\{#APP_PATH}\data\cache');

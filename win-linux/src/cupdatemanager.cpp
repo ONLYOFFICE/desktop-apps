@@ -204,21 +204,23 @@ CUpdateManager::CUpdateManager(QObject *parent):
         if ( m_checkUrl.empty() )
             m_checkUrl = TEXT(URL_APPCAST_UPDATES);
     };
+
+    if ( updatesAllowed() ) {
 #ifdef _WIN32
-    if (AppOptions::packageType() == AppOptions::AppPackageType::Portable
-            || AppOptions::packageType() == AppOptions::AppPackageType::ISS)
-        setUrl();
+        if (IsPackage(Portable) || IsPackage(ISS) || IsPackage(MSI))
+            setUrl();
 #else
-    if (AppOptions::packageType() == AppOptions::AppPackageType::Portable)
-        setUrl();
+        if (IsPackage(Portable))
+            setUrl();
 #endif
+    }
 
     if ( !m_checkUrl.empty()) {
         CLogger::log("Updates is on, URL: " + QString::fromStdWString(m_checkUrl));
 //        m_pTimer = new QTimer(this);
 //        m_pTimer->setSingleShot(false);
 //        connect(m_pTimer, SIGNAL(timeout()), this, SLOT(checkUpdates()));
-        if (AppOptions::packageType() == AppOptions::AppPackageType::Portable)
+        if (IsPackage(Portable))
             runProcess(qApp->applicationDirPath().toStdWString() + DAEMON_NAME, L"--run-as-app");
         init();
     } else
@@ -231,7 +233,7 @@ CUpdateManager::~CUpdateManager()
     delete m_savedPackageData, m_savedPackageData = nullptr;
     delete m_dialogSchedule, m_dialogSchedule = nullptr;
     delete m_socket, m_socket = nullptr;
-    if (AppOptions::packageType() == AppOptions::AppPackageType::Portable) {
+    if (IsPackage(Portable)) {
         CSocket sock(INSTANCE_SVC_PORT, 0);
         const char msg[] = "stop";
         sock.sendMessage((void*)msg, sizeof(msg));
@@ -429,6 +431,12 @@ void CUpdateManager::installUpdates()
 QString CUpdateManager::getVersion() const
 {
     return m_packageData->version;
+}
+
+bool CUpdateManager::updatesAllowed()
+{
+    GET_REGISTRY_SYSTEM(reg_system)
+    return reg_system.value("CheckForUpdates", true).toBool();
 }
 
 void CUpdateManager::onLoadUpdateFinished(const QString &filePath)

@@ -36,6 +36,7 @@
 #include "utils.h"
 #include "version.h"
 #include "clangater.h"
+#include "cupdatemanager.h"
 
 #include <QJsonObject>
 #include <QJsonDocument>
@@ -112,18 +113,21 @@ void CMainWindowImpl::refreshAboutVersion()
 
     // Read update settings
 #ifdef _UPDMODULE
+    if ( CUpdateManager::updatesAllowed() ) {
+
 # ifdef _WIN32
-    if (AppOptions::packageType() == AppOptions::AppPackageType::Portable
-            || AppOptions::packageType() == AppOptions::AppPackageType::ISS) {
-        AscAppManager::sendCommandTo(0, "updates:turn", "on");
-        _json_obj["updates"] = QJsonObject({{"mode", reg_user.value("autoUpdateMode","ask").toString()}});
-    }
+        if ( IsPackage(Portable) || IsPackage(ISS) || IsPackage(MSI) ) {
+            AscAppManager::sendCommandTo(0, "updates:turn", "on");
+            _json_obj["updates"] = QJsonObject({{"mode", reg_user.value("autoUpdateMode","ask").toString()}});
+        }
 # else
-    if (AppOptions::packageType() == AppOptions::AppPackageType::Portable) {
-        AscAppManager::sendCommandTo(0, "updates:turn", "on");
-        _json_obj["updates"] = QJsonObject({{"mode", reg_user.value("autoUpdateMode","ask").toString()}});
-    }
+        if (IsPackage(Portable)) {
+            AscAppManager::sendCommandTo(0, "updates:turn", "on");
+            _json_obj["updates"] = QJsonObject({{"mode", reg_user.value("autoUpdateMode","ask").toString()}});
+        }
 # endif
+
+    }
 #endif
 
     AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, "settings:init", Utils::stringifyJson(_json_obj));
