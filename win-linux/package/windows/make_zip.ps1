@@ -1,5 +1,5 @@
 param (
-    [string]$DesktopPath = "build\desktop",
+    [string]$DesktopPath = ".\build\desktop",
     [Parameter(Mandatory)][string]$OutFile,
     [switch]$Sign = $false,
     [string]$CertName = "Ascensio System SIA",
