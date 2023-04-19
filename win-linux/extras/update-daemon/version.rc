@@ -4,6 +4,7 @@ CREATEPROCESS_MANIFEST_RESOURCE_ID RT_MANIFEST "./res/manifest/update-daemon.man
 
 #include <windows.h>
 #define RC_COMPILE_FLAG
+# pragma code_page(65001)
 # include "src/version.h"
 #undef RC_COMPILE_FLAG
 
