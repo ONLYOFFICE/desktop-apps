@@ -38,6 +38,7 @@
 #include <vector>
 #include "utils.h"
 #include "../../src/defines.h"
+#include "../../src/prop/defines_p.h"
 #include <Windows.h>
 #include <WinInet.h>
 #include <shlwapi.h>

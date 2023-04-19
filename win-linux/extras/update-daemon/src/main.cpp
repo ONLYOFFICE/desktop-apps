@@ -35,6 +35,7 @@
 #include "classes/capplication.h"
 #include "classes/cupdatemanager.h"
 #include "../../src/defines.h"
+#include "../../src/prop/defines_p.h"
 
 SERVICE_STATUS          gSvcStatus;
 SERVICE_STATUS_HANDLE   gSvcStatusHandle;
