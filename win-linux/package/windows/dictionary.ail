@@ -322,6 +322,12 @@
     <STRING lang="ru" value="ONLYOFFICE Desktop Editors"/>
     <STRING lang="sl" value="ONLYOFFICE Desktop Editors"/>
   </ENTRY>
+  <ENTRY id="Property.Service_For_Update">
+    <STRING lang="ru" value="Сервис для обновления"/>
+  </ENTRY>
+  <ENTRY id="Property.ServiceName_DeUpdateSvc">
+    <STRING lang="ru" value="DeUpdateSvc"/>
+  </ENTRY>
   <ENTRY id="Property.SHORTCUT_FOLDER_NAME">
     <STRING lang="cs" value="ONLYOFFICE"/>
     <STRING lang="de" value="ONLYOFFICE"/>
@@ -354,5 +360,8 @@
     <STRING lang="pt_BR" value="The previous version of [|ProductName] detected, please click &apos;OK&apos; button to uninstall it, or &apos;Cancel&apos; to quit setup."/>
     <STRING lang="ru" value="Обнаружена предыдущая версия [|ProductName], нажмите кнопку &apos;OK&apos; чтобы удалить её, или &apos;Отмена&apos; чтобы выйти из программы инсталляции."/>
     <STRING lang="sl" value="The previous version of [|ProductName] detected, please click &apos;OK&apos; button to uninstall it, or &apos;Cancel&apos; to quit setup."/>
+  </ENTRY>
+  <ENTRY id="Property.Update_Service">
+    <STRING lang="ru" value="сервис обновления"/>
   </ENTRY>
 </DICTIONARY>

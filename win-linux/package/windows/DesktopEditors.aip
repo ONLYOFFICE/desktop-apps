@@ -86,8 +86,11 @@
     <ROW Property="RUNAPPLICATION" Value="1" Type="4"/>
     <ROW Property="SHORTCUT_FOLDER_NAME" Value="ONLYOFFICE"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND;UPGRADE_1"/>
+    <ROW Property="ServiceName_DeUpdateSvc" Value="DeUpdateSvc"/>
+    <ROW Property="Service_For_Update" Value="Service for update"/>
     <ROW Property="UNINSTALL_PREV_ERROR_TEXT" Value="To install [|ProductName], the previous version must be uninstalled."/>
     <ROW Property="UNINSTALL_PREV_MSGBOX" Value="The previous version of [|ProductName] detected, please click &apos;OK&apos; button to uninstall it, or &apos;Cancel&apos; to quit setup."/>
+    <ROW Property="Update_Service" Value="update service"/>
     <ROW Property="UpgradeCode" Value="{47EEF706-B0E4-4C43-944B-E5F914B92B79}"/>
     <ROW Property="WindowsType9X" MultiBuildValue="DefaultBuild:Windows 9x/ME#MsiBuild:Windows 9x/ME" ValueLocId="-"/>
     <ROW Property="WindowsType9XDisplay" MultiBuildValue="DefaultBuild:Windows 9x/ME#MsiBuild:Windows 9x/ME" ValueLocId="-"/>
@@ -1224,10 +1227,10 @@
     <ROW Registry="xps" Root="2" Key="Software\[MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]\Capabilities\FileAssociations" Name=".xps" Value="[ASCC_REG_PREFIX].Xps" Component_="FileAssociation_xps"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiServCtrlComponent">
-    <ROW ServiceControl="updatesvc.exe" Name="ONLYOFFICE Update Service" Event="161" Wait="1" Component_="updatesvc.exe"/>
+    <ROW ServiceControl="updatesvc.exe" Name="[ServiceName_DeUpdateSvc]" Event="160" Wait="1" Component_="updatesvc.exe"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiServInstComponent">
-    <ROW ServiceInstall="updatesvc.exe" Name="ONLYOFFICE Update Service" DisplayName="ONLYOFFICE Update Service" ServiceType="16" StartType="2" ErrorControl="1" Component_="updatesvc.exe" Description="Service for update document editors."/>
+    <ROW ServiceInstall="updatesvc.exe" Name="[ServiceName_DeUpdateSvc]" DisplayName="[ProductName] [Update_Service]" ServiceType="16" StartType="2" ErrorControl="1" Component_="updatesvc.exe" Description="[Service_For_Update] [ProductName]."/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiShortsComponent">
     <ROW Shortcut="COMMON_SHORTCUT_NAME_DESKTOP" Directory_="DesktopFolder" Name="ONLYOF~1|[|COMMON_SHORTCUT_NAME]" Component_="DesktopEditors.exe" Target="[#DesktopEditors.exe]" Hotkey="0" Icon_="desktopeditors.exe" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
