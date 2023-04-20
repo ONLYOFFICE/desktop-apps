@@ -166,6 +166,19 @@ namespace NS_File
 
         HANDLE hUserToken = NULL;
         if (!WTSQueryUserToken(dwSessionId, &hUserToken)) {
+            STARTUPINFO si;
+            ZeroMemory(&si, sizeof(STARTUPINFO));
+            si.cb = sizeof(STARTUPINFO);
+            PROCESS_INFORMATION pi;
+            ZeroMemory(&pi, sizeof(pi));
+            if (CreateProcess(fileName.c_str(), const_cast<LPWSTR>(args.c_str()),
+                                 NULL, NULL, FALSE, CREATE_UNICODE_ENVIRONMENT,
+                                 NULL, NULL, &si, &pi))
+            {
+                CloseHandle(pi.hThread);
+                CloseHandle(pi.hProcess);
+                return true;
+            }
             return false;
         }
 
