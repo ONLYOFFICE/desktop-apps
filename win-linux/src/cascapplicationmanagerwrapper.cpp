@@ -1637,19 +1637,10 @@ bool CAscApplicationManagerWrapper::applySettings(const wstring& wstrjson)
         }
 
         if ( objRoot.contains("uiscaling") ) {
-            wstring sets;
-            switch (objRoot["uiscaling"].toString().toInt()) {
-            case 100: sets = L"1"; break;
-            case 125: sets = L"1.25"; break;
-            case 150: sets = L"1.5"; break;
-            case 175: sets = L"1.75"; break;
-            case 200: sets = L"2"; break;
-            default:
-                sets = L"default";
-            }
+            const wstring sets = Scaling::scalingToFactor(objRoot["uiscaling"].toString());
 
-            setUserSettings(L"system-scale", sets != L"default" ? L"0" : L"1");
-            setUserSettings(L"force-scale", sets);
+            setUserSettings(L"system-scale", sets != L"0" ? L"0" : L"1");
+            setUserSettings(L"force-scale", sets == L"0" ? L"default" : sets);
             m_pMainWindow->updateScaling();
 
             CEditorWindow * _editor = nullptr;

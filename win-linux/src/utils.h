@@ -76,6 +76,11 @@ namespace AppOptions {
     auto packageType() -> AppPackageType;
 }
 
+namespace Scaling {
+    auto scalingToFactor(const QString&) -> std::wstring;
+    auto factorToScaling(const std::wstring&) -> QString;
+}
+
 class Utils {
 public:
     static QStringList * getInputFiles(const QStringList& inlist);

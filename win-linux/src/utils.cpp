@@ -195,9 +195,45 @@ namespace AppOptions {
         if ( _package == "msi" ) return AppPackageType::MSI; else
         if ( _package == "snap" ) return AppPackageType::Snap; else
         if ( _package == "flatpack" ) return AppPackageType::Flatpack; else
-        if( _package.isEmpty() ) return AppPackageType::Portable;
+        /*if( _package.isEmpty() )*/ return AppPackageType::Portable;
 
         return AppPackageType::Unknown;
+    }
+}
+
+namespace Scaling {
+    auto scalingToFactor(const QString& scaling) -> std::wstring
+    {
+        switch ( scaling.toInt() ) {
+        case 100: return L"1";
+        case 125: return L"1.25";
+        case 150: return L"1.5";
+        case 175: return L"1.75";
+        case 200: return L"2";
+        case 250: return L"2.5";
+        case 300: return L"3";
+        case 350: return L"3.5";
+        case 400: return L"4";
+        case 450: return L"4.5";
+        case 500: return L"5";
+        default: return L"0";
+        }
+    }
+
+    auto factorToScaling(const std::wstring& value) -> QString
+    {
+        if ( value == L"1" ) return "100"; else
+        if ( value == L"1.25" ) return "125"; else
+        if ( value == L"1.5" ) return "150"; else
+        if ( value == L"1.75" ) return "175"; else
+        if ( value == L"2" ) return "200"; else
+        if ( value == L"2.5" ) return "250"; else
+        if ( value == L"3" ) return "300"; else
+        if ( value == L"3.5" ) return "350"; else
+        if ( value == L"4" ) return "400"; else
+        if ( value == L"4.5" ) return "450"; else
+        if ( value == L"5" ) return "500";
+        else return "0";
     }
 }
 
@@ -469,7 +505,13 @@ QString Utils::stringifyJson(const QJsonObject& obj)
 
 inline double choose_scaling(double s)
 {
-    if ( s > 1.75 ) return 2;
+    if ( s > 4.5 ) return 5;
+    else if ( s > 4 ) return 4.5;
+    else if ( s > 3.5 ) return 4;
+    else if ( s > 3 ) return 3.5;
+    else if ( s > 2.5 ) return 3;
+    else if ( s > 2 ) return 2.5;
+    else if ( s > 1.75 ) return 2;
     else if ( s > 1.5 ) return 1.75;
     else if ( s > 1.25 ) return 1.5;
     else if ( s > 1 ) return 1.25;
