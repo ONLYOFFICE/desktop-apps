@@ -83,7 +83,7 @@
                                             <label class='sett__caption' l10n>${_lang.settScaling}</label><label class='sett__caption'> *</label>
                                             <div class='sett--label-lift-top hbox'>
                                                 <section class='box-cmp-select'>
-                                                    <select class='combobox'>
+                                                    <select class='combobox' data-size="5">
                                                         <option value='0' l10n>${_lang.settOptScalingAuto}</option>
                                                     </select>
                                                 </section>
