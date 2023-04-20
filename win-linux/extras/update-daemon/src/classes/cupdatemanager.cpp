@@ -348,7 +348,15 @@ void CUpdateManager::startReplacingFiles()
     }
 
     // Replace app path to Backup
+#ifdef _WIN32
+    if (!NS_File::dirExists(tmpPath) && !NS_File::makePath(tmpPath)) {
+        NS_Logger::WriteLog(L"Update cancelled. Can't create folder: " + tmpPath, true);
+        return;
+    }
+    if (!NS_File::replaceFolder(appPath, tmpPath, false)) {
+#else
     if (!NS_File::replaceFolder(appPath, tmpPath, true)) {
+#endif
         NS_Logger::WriteLog(L"Update cancelled. Can't replace files to backup: " + NS_Utils::GetLastErrorAsString(), true);
         if (NS_File::dirExists(tmpPath) && !NS_File::dirIsEmpty(tmpPath) && !NS_File::replaceFolder(tmpPath, appPath))
             NS_Logger::WriteLog(L"Can't restore files from backup!", true);
