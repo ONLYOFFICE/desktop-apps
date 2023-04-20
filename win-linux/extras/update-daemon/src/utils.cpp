@@ -166,6 +166,19 @@ namespace NS_File
 
         HANDLE hUserToken = NULL;
         if (!WTSQueryUserToken(dwSessionId, &hUserToken)) {
+            STARTUPINFO si;
+            ZeroMemory(&si, sizeof(STARTUPINFO));
+            si.cb = sizeof(STARTUPINFO);
+            PROCESS_INFORMATION pi;
+            ZeroMemory(&pi, sizeof(pi));
+            if (CreateProcess(fileName.c_str(), const_cast<LPWSTR>(args.c_str()),
+                                 NULL, NULL, FALSE, CREATE_UNICODE_ENVIRONMENT,
+                                 NULL, NULL, &si, &pi))
+            {
+                CloseHandle(pi.hThread);
+                CloseHandle(pi.hProcess);
+                return true;
+            }
             return false;
         }
 
@@ -364,8 +377,13 @@ namespace NS_File
             return L"";
 
         HANDLE hUserToken = NULL;
-        if (!WTSQueryUserToken(sesId, &hUserToken))
+        if (!WTSQueryUserToken(sesId, &hUserToken)) {
+            WCHAR buff[MAX_PATH] = {0};
+            DWORD res = ::GetTempPath(MAX_PATH, buff);
+            if (res != 0)
+                return fromNativeSeparators(parentPath(buff));
             return L"";
+        }
 
         HANDLE hTokenDup = NULL;
         if (!DuplicateTokenEx(hUserToken, MAXIMUM_ALLOWED, NULL, SecurityImpersonation, TokenPrimary, &hTokenDup)) {

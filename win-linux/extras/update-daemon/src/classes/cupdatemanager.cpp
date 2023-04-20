@@ -38,6 +38,7 @@
 #include <vector>
 #include "utils.h"
 #include "../../src/defines.h"
+#include "../../src/prop/defines_p.h"
 #include <Windows.h>
 #include <WinInet.h>
 #include <shlwapi.h>
@@ -310,6 +311,10 @@ void CUpdateManager::startReplacingFiles()
         NS_Logger::WriteLog(L"Update cancelled. The file signature is missing: " + updPath + APP_LAUNCH_NAME2, true);
         return;
     }
+    if (!NS_File::verifyEmbeddedSignature(updPath + DAEMON_NAME)) {
+        NS_Logger::WriteLog(L"Update cancelled. The file signature is missing: " + updPath + DAEMON_NAME, true);
+        return;
+    }
 #endif
 
     // Check backup folder
@@ -347,7 +352,15 @@ void CUpdateManager::startReplacingFiles()
     }
 
     // Replace app path to Backup
+#ifdef _WIN32
+    if (!NS_File::dirExists(tmpPath) && !NS_File::makePath(tmpPath)) {
+        NS_Logger::WriteLog(L"Update cancelled. Can't create folder: " + tmpPath, true);
+        return;
+    }
+    if (!NS_File::replaceFolder(appPath, tmpPath, false)) {
+#else
     if (!NS_File::replaceFolder(appPath, tmpPath, true)) {
+#endif
         NS_Logger::WriteLog(L"Update cancelled. Can't replace files to backup: " + NS_Utils::GetLastErrorAsString(), true);
         if (NS_File::dirExists(tmpPath) && !NS_File::dirIsEmpty(tmpPath) && !NS_File::replaceFolder(tmpPath, appPath))
             NS_Logger::WriteLog(L"Can't restore files from backup!", true);
@@ -370,6 +383,8 @@ void CUpdateManager::startReplacingFiles()
     }
 
     // To support a version with unins000 files inside the working folder
+    if (NS_File::fileExists(tmpPath + L"/unins000.msg"))
+        NS_File::replaceFile(tmpPath + L"/unins000.msg", appPath + L"/unins000.msg");
     if (NS_File::fileExists(tmpPath + L"/unins000.dat"))
         NS_File::replaceFile(tmpPath + L"/unins000.dat", appPath + L"/unins000.dat");
     if (NS_File::fileExists(tmpPath + L"/unins000.exe"))
