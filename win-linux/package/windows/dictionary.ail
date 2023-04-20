@@ -224,10 +224,10 @@
     <STRING lang="sl" value="C:\[|ProgramFilesFolder][|Manufacturer]MediaViewer"/>
   </ENTRY>
   <ENTRY id="Property.DeUpdateSvc_DescriptionName">
-    <STRING lang="ru" value="Сервис для обновление [|ProductName]"/>
+    <STRING lang="ru" value="Сервис для обновления [|ProductName]"/>
   </ENTRY>
   <ENTRY id="Property.DeUpdateSvc_DispalyName">
-    <STRING lang="ru" value="[|ProductName] сервис обновления"/>
+    <STRING lang="ru" value="Сервис обновления [|ProductName]"/>
   </ENTRY>
   <ENTRY id="Property.DeUpdateSvc_ServiceName">
     <STRING lang="ru" value="DeUpdateSvc"/>
