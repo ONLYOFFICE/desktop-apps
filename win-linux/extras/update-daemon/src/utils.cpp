@@ -364,8 +364,13 @@ namespace NS_File
             return L"";
 
         HANDLE hUserToken = NULL;
-        if (!WTSQueryUserToken(sesId, &hUserToken))
+        if (!WTSQueryUserToken(sesId, &hUserToken)) {
+            WCHAR buff[MAX_PATH] = {0};
+            DWORD res = ::GetTempPath(MAX_PATH, buff);
+            if (res != 0)
+                return fromNativeSeparators(parentPath(buff));
             return L"";
+        }
 
         HANDLE hTokenDup = NULL;
         if (!DuplicateTokenEx(hUserToken, MAXIMUM_ALLOWED, NULL, SecurityImpersonation, TokenPrimary, &hTokenDup)) {
