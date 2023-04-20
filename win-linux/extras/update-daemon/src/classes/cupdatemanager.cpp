@@ -311,6 +311,10 @@ void CUpdateManager::startReplacingFiles()
         NS_Logger::WriteLog(L"Update cancelled. The file signature is missing: " + updPath + APP_LAUNCH_NAME2, true);
         return;
     }
+    if (!NS_File::verifyEmbeddedSignature(updPath + DAEMON_NAME)) {
+        NS_Logger::WriteLog(L"Update cancelled. The file signature is missing: " + updPath + DAEMON_NAME, true);
+        return;
+    }
 #endif
 
     // Check backup folder
