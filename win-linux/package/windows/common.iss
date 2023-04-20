@@ -524,7 +524,7 @@ gl.WarningClearAppData =Quere borrar a configuración do usuario e os datos da c
 ;si.AssociateDescription =%1 සමඟ කාර්යාල ලේඛන ගොනු වර්ග සම්බන්ධ කරන්න
 ;zh_HK.AssociateDescription =與文書處理檔案類型聯結 %1
 ;======================================================================================================
-en.UpdateService =Service for update
+en.UpdateService =Service for update {#sAppName}
 
 [Code]
 const
@@ -789,7 +789,7 @@ begin
       if CheckCommandlineParam('/noupdates') then begin
         RegWriteDWordValue(HKEY_LOCAL_MACHINE, ExpandConstant('{#APP_REG_PATH}'), 'CheckForUpdates', 0);
       end else
-        Exec(ExpandConstant('{app}\updatesvc.exe'), '--install "' + ExpandConstant('{cm:UpdateService}') + ' {#sAppName}."', '', SW_HIDE, ewWaitUntilTerminated, ErrorCode);
+        Exec(ExpandConstant('{app}\updatesvc.exe'), '--install "' + ExpandConstant('{cm:UpdateService}') + '."', '', SW_HIDE, ewWaitUntilTerminated, ErrorCode);
     end;
     // migrate from the prev version when user's data saved to system common path
     commonCachePath := ExpandConstant('{commonappdata}\{#APP_PATH}\data\cache');
