@@ -383,6 +383,8 @@ void CUpdateManager::startReplacingFiles()
     }
 
     // To support a version with unins000 files inside the working folder
+    if (NS_File::fileExists(tmpPath + L"/unins000.msg"))
+        NS_File::replaceFile(tmpPath + L"/unins000.msg", appPath + L"/unins000.msg");
     if (NS_File::fileExists(tmpPath + L"/unins000.dat"))
         NS_File::replaceFile(tmpPath + L"/unins000.dat", appPath + L"/unins000.dat");
     if (NS_File::fileExists(tmpPath + L"/unins000.exe"))
