@@ -154,11 +154,6 @@ SOURCES += \
 #    src/ctabstyle.cpp
 #    src/components/casclabel.cpp
 
-updmodule:!build_xp {
-    HEADERS += $$PWD/src/cupdatemanager.h
-    SOURCES += $$PWD/src/cupdatemanager.cpp
-}
-
 RESOURCES += $$PWD/resources.qrc
 DEFINES += COPYRIGHT_YEAR=$${CURRENT_YEAR}
 
@@ -260,6 +255,9 @@ core_windows {
                $$PWD/src/platform_win/message.cpp
 
     updmodule:!build_xp {
+        HEADERS += $$PWD/src/cupdatemanager.h
+        SOURCES += $$PWD/src/cupdatemanager.cpp
+
         INCLUDEPATH += $$PWD/extras/update-daemon/src/classes
         HEADERS += $$PWD/src/platform_win/updatedialog.h \
                    $$PWD/extras/update-daemon/src/classes/csocket.h
