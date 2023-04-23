@@ -75,7 +75,7 @@ LIBS += -luser32 \
         -loleaut32 \
         -lcomsuppw \
         -ladvapi32 \
-        -lurlmon \
+        -lwinhttp \
         -lwininet \
         -lws2_32 \
         -lrpcrt4 \
