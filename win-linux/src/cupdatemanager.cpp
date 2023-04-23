@@ -528,6 +528,7 @@ void CUpdateManager::onLoadCheckFinished(const QString &filePath)
 
         bool updateExist = false;
         QString version = root.value("version").toString();
+        QString minVersion = root.value("minVersion").toString();
 
         GET_REGISTRY_USER(reg_user);
         reg_user.beginGroup("Updates");
