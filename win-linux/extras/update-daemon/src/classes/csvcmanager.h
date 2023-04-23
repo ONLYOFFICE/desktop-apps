@@ -30,8 +30,8 @@
  *
  */
 
-#ifndef CUPDATEMANAGER_H
-#define CUPDATEMANAGER_H
+#ifndef CSVCMANAGER_H
+#define CSVCMANAGER_H
 
 #include "classes/cdownloader.h"
 #include "classes/cunzip.h"
@@ -44,11 +44,11 @@ using std::wstring;
 using std::future;
 
 
-class CUpdateManager
+class CSvcManager
 {
 public:
-    explicit CUpdateManager();
-    ~CUpdateManager();
+    explicit CSvcManager();
+    ~CSvcManager();
 
     /* callback */
     void aboutToQuit(FnVoidVoid callback);
@@ -78,4 +78,4 @@ private:
     };
 };
 
-#endif // CUPDATEMANAGER_H
+#endif // CSVCMANAGER_H

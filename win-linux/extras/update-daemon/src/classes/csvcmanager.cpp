@@ -30,7 +30,7 @@
  *
  */
 
-#include "cupdatemanager.h"
+#include "csvcmanager.h"
 #include <algorithm>
 #include <functional>
 #include <locale>
@@ -89,7 +89,7 @@ auto isSuccessUnpacked(const wstring &successFilePath, const wstring &version)->
     return false;
 }
 
-CUpdateManager::CUpdateManager():
+CSvcManager::CSvcManager():
     m_downloadMode(Mode::CHECK_UPDATES),
     m_socket(new CSocket(APP_PORT, SVC_PORT)),
     m_pDownloader(new CDownloader),
@@ -98,7 +98,7 @@ CUpdateManager::CUpdateManager():
     init();
 }
 
-CUpdateManager::~CUpdateManager()
+CSvcManager::~CSvcManager()
 {
     if (m_future_clear.valid())
         m_future_clear.wait();
@@ -109,12 +109,12 @@ CUpdateManager::~CUpdateManager()
         m_quit_callback();
 }
 
-void CUpdateManager::aboutToQuit(FnVoidVoid callback)
+void CSvcManager::aboutToQuit(FnVoidVoid callback)
 {
     m_quit_callback = callback;
 }
 
-void CUpdateManager::init()
+void CSvcManager::init()
 {
     m_pDownloader->onComplete([=](int error) {
         onCompleteSlot(error, m_pDownloader->GetFilePath());
@@ -179,7 +179,7 @@ void CUpdateManager::init()
     });
 }
 
-void CUpdateManager::onCompleteUnzip(const int error)
+void CSvcManager::onCompleteUnzip(const int error)
 {
     if (error == UNZIP_OK) {
         // Сreate a file about successful unpacking for use in subsequent launches
@@ -205,7 +205,7 @@ void CUpdateManager::onCompleteUnzip(const int error)
     m_lock = false;
 }
 
-void CUpdateManager::onCompleteSlot(const int error, const wstring &filePath)
+void CSvcManager::onCompleteSlot(const int error, const wstring &filePath)
 {
     if (error == 0) {
         switch (m_downloadMode) {
@@ -232,13 +232,13 @@ void CUpdateManager::onCompleteSlot(const int error, const wstring &filePath)
     }
 }
 
-void CUpdateManager::onProgressSlot(const int percent)
+void CSvcManager::onProgressSlot(const int percent)
 {
     if (m_downloadMode == Mode::DOWNLOAD_UPDATES)
         sendMessage(MSG_Progress, to_wstring(percent));
 }
 
-void CUpdateManager::unzipIfNeeded(const wstring &filePath, const wstring &newVersion)
+void CSvcManager::unzipIfNeeded(const wstring &filePath, const wstring &newVersion)
 {
     if (m_lock)
         return;
@@ -271,7 +271,7 @@ void CUpdateManager::unzipIfNeeded(const wstring &filePath, const wstring &newVe
     }
 }
 
-void CUpdateManager::clearTempFiles(const wstring &prefix, const wstring &except)
+void CSvcManager::clearTempFiles(const wstring &prefix, const wstring &except)
 {
     m_future_clear = std::async(std::launch::async, [=]() {
         list<wstring> filesList;
@@ -291,7 +291,7 @@ void CUpdateManager::clearTempFiles(const wstring &prefix, const wstring &except
     });
 }
 
-void CUpdateManager::startReplacingFiles()
+void CSvcManager::startReplacingFiles()
 {
     wstring appPath = NS_File::appPath();
     wstring updPath = NS_File::parentPath(appPath) + UPDATE_PATH;
@@ -435,7 +435,7 @@ void CUpdateManager::startReplacingFiles()
         NS_Logger::WriteLog(L"An error occurred while restarting the program!", true);
 }
 
-bool CUpdateManager::sendMessage(int cmd, const wstring &param1, const wstring &param2, const wstring &param3)
+bool CSvcManager::sendMessage(int cmd, const wstring &param1, const wstring &param2, const wstring &param3)
 {
     wstring str = to_wstring(cmd) + L"|" + param1 + L"|" + param2 + L"|" + param3;
     size_t sz = str.size() * sizeof(str.front());
