@@ -66,7 +66,7 @@
         args.menu = '.main-column.tool-menu';
         args.field = '.main-column.col-center';
         args.itemindex = 0;
-        args.itemtext = 'Templates';
+        args.itemtext = _lang.actTemplates;
 
         baseView.prototype.constructor.call(this, args);
     };
