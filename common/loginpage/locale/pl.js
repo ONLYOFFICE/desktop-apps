@@ -56,6 +56,7 @@ l10n.pl = {
     actActivate: 'Aktywuj',
     actAbout: 'O programie',
     actSettings: 'Ustawienia',
+    actTemplates: 'Szablony',
     licKeyHolder: 'wprowadź kod aktywacyjny',
     btnActivate: 'Aktywuj',
     licGetLicense: 'Uzyskaj licencję już teraz',

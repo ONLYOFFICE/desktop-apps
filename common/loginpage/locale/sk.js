@@ -56,6 +56,7 @@ l10n.sk = {
     actActivate: 'Aktivovať',
     actAbout: 'Informácie',
     actSettings: 'Nastavenia',
+    actTemplates: 'Šablóny',
     licKeyHolder: 'zadajte aktivačný kľúč',
     btnActivate: 'Aktivovať',
     licGetLicense: 'Získať licenciu',

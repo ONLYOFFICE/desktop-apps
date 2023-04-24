@@ -56,6 +56,7 @@ l10n.de = {
     actActivate: 'Aktivieren',
     actAbout: 'Über',
     actSettings: 'Einstellungen',
+    actTemplates: 'Vorlagen',
     licKeyHolder: 'Geben Sie den Aktivierungsschlüssel ein',
     btnActivate: 'Aktivieren',
     licGetLicense: 'Erwerben Sie jetzt eine Lizenz',

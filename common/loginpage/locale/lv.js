@@ -56,6 +56,7 @@ l10n.lv = {
     actActivate: 'Aktivizēt',
     actAbout: 'Par',
     actSettings: 'Iestatījumi',
+    actTemplates: 'Veidnes',
     licKeyHolder: 'ievadīt aktivizācijas atslēgu',
     btnActivate: 'Aktivizēt',
     licGetLicense: 'Iegūt licenci tagad',

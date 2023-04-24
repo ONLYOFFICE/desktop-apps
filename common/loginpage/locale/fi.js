@@ -56,6 +56,7 @@ l10n.fi = {
     actActivate: 'Aktivoi',
     actAbout: 'Tietoja',
     actSettings: 'Asetukset',
+    actTemplates: 'Mallit',
     licKeyHolder: 'Syötä aktivointiavain',
     btnActivate: 'Aktivoi',
     licGetLicense: 'Hanki lisenssi nyt',
