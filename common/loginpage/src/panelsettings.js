@@ -421,6 +421,9 @@
                                             {'theme-dark': utils.Lang.settOptThemeDark},
                                             {'theme-contrast-dark': utils.Lang.settOptThemeContrastDark}];
 
+                            if ( !opts.systemtheme || opts.systemtheme !== 'disabled' )
+                                _themes.unshift({'theme-system': utils.Lang.settOptThemeSystem});
+
                             const _combo = $('#opts-ui-theme select', $panel);
                             _themes.forEach(item => {
                                 const entries = Object.entries(item)[0];
