@@ -144,8 +144,11 @@ void CSvcManager::init()
             }
             case MSG_LoadUpdates: {
                 m_downloadMode = Mode::DOWNLOAD_UPDATES;
-                if (m_pDownloader)
-                    m_pDownloader->downloadFile(params[1], generateTmpFileName(L".zip"));
+                if (m_pDownloader) {
+                    wstring ext = (params[2] == TEXT("archive")) ? TEXT(".zip") :
+                                  (params[2] == TEXT("msi")) ? TEXT(".msi") : TEXT(".exe");
+                    m_pDownloader->downloadFile(params[1], generateTmpFileName(ext));
+                }
                 NS_Logger::WriteLog(L"Received MSG_LoadUpdates, URL: " + params[1]);
                 break;
             }
@@ -281,7 +284,8 @@ void CSvcManager::clearTempFiles(const wstring &prefix, const wstring &except)
             return;
         }
         for (auto &filePath : filesList) {
-            if (PathMatchSpec(filePath.c_str(), L"*.json") || PathMatchSpec(filePath.c_str(), L"*.zip")) {
+            if (PathMatchSpec(filePath.c_str(), L"*.json") || PathMatchSpec(filePath.c_str(), L"*.zip")
+                    || PathMatchSpec(filePath.c_str(), L"*.msi") || PathMatchSpec(filePath.c_str(), L"*.exe")) {
                 wstring lcFilePath(filePath);
                 std::transform(lcFilePath.begin(), lcFilePath.end(), lcFilePath.begin(), ::tolower);
                 if (lcFilePath.find(prefix) != wstring::npos && filePath != except)
