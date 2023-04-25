@@ -1146,6 +1146,8 @@ void CAscApplicationManagerWrapper::initializeApp()
                                         {"id", QString::fromStdWString(_app.m_themes->current().id())}
 #ifndef Q_OS_LINUX
                                         ,{"system", _app.m_themes->isSystemSchemeDark() ? "dark" : "light"}
+#else
+                                        ,{"system", "disabled"}
 #endif
                                      });
 
