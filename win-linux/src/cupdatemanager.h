@@ -75,6 +75,9 @@ private:
     void onCheckFinished(bool error, bool updateExist, const QString &version, const QString &changelog);
     void unzipIfNeeded();
     void savePackageData(const QString &version = QString(), const QString &fileName = QString());
+    QString ignoredVersion();
+    bool isSavedPackageValid();
+    bool isVersionBHigherThanA(const QString &a, const QString &b);
     bool sendMessage(int cmd, const wstring &param1 = L"null", const wstring &param2 = L"null",
                         const wstring &param3 = L"null");
 

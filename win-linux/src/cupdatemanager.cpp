@@ -378,6 +378,36 @@ void CUpdateManager::savePackageData(const QString &version, const QString &file
     reg_user.endGroup();
 }
 
+QString CUpdateManager::ignoredVersion()
+{
+    GET_REGISTRY_USER(reg_user);
+    reg_user.beginGroup("Updates");
+    const QString ignored_ver = reg_user.value("Updates/ignored_ver").toString();
+    reg_user.endGroup();
+    return ignored_ver;
+}
+
+bool CUpdateManager::isSavedPackageValid()
+{
+    return (m_savedPackageData->fileName.indexOf(currentArch()) != -1
+                && m_savedPackageData->version == m_packageData->version
+                && getFileHash(m_savedPackageData->fileName) == m_packageData->hash);
+}
+
+bool CUpdateManager::isVersionBHigherThanA(const QString &a, const QString &b)
+{
+    const QStringList old_ver = a.split('.');
+    const QStringList new_ver = b.split('.');
+    for (int i = 0; i < std::min(new_ver.size(), old_ver.size()); i++) {
+        if (new_ver.at(i).toInt() > old_ver.at(i).toInt()) {
+            return true;
+        } else
+        if (new_ver.at(i).toInt() < old_ver.at(i).toInt())
+            break;
+    }
+    return false;
+}
+
 bool CUpdateManager::sendMessage(int cmd, const wstring &param1, const wstring &param2, const wstring &param3)
 {
     wstring str = std::to_wstring(cmd) + L"|" + param1 + L"|" + param2 + L"|" + param3;
@@ -390,10 +420,7 @@ void CUpdateManager::loadUpdates()
 //    if (m_lock)
 //        return;
 
-    if (m_savedPackageData->fileName.indexOf(currentArch()) != -1
-            && m_savedPackageData->version == m_packageData->version
-            && getFileHash(m_savedPackageData->fileName) == m_packageData->hash)
-    {
+    if (isSavedPackageValid()) {
         m_packageData->fileName = m_savedPackageData->fileName;
         AscAppManager::sendCommandTo(0, "updates:download", QString("{\"progress\":\"100\"}"));
         unzipIfNeeded();
@@ -410,11 +437,7 @@ void CUpdateManager::installUpdates()
 {
     if (m_lock)
         return;
-    GET_REGISTRY_USER(reg_user);
-    reg_user.beginGroup("Updates");
-    const QString ignored_ver = reg_user.value("Updates/ignored_ver").toString();
-    reg_user.endGroup();
-    if (ignored_ver != getVersion())
+    if (ignoredVersion() != getVersion())
         m_dialogSchedule->addToSchedule("showStartInstallMessage");
 }
 
@@ -553,12 +576,7 @@ void CUpdateManager::onLoadCheckFinished(const QString &filePath)
             const QString lang = CLangater::getCurrentLangCode() == "ru-RU" ? "ru-RU" : "en-EN";
             QJsonValue changelog = release_notes.value(lang);
 
-            if (m_savedPackageData->version == version
-                    && m_savedPackageData->fileName.indexOf(currentArch()) != -1
-                    && getFileHash(m_savedPackageData->fileName) == m_packageData->hash)
-                clearTempFiles(m_savedPackageData->fileName);
-            else
-                clearTempFiles();
+            clearTempFiles(isSavedPackageValid() ? m_savedPackageData->fileName : "");
             onCheckFinished(false, true, m_packageData->version, changelog.toString());
         } else {
             clearTempFiles();
