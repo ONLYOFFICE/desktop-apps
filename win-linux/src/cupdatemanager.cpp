@@ -193,7 +193,7 @@ CUpdateManager::CUpdateManager(QObject *parent):
     m_socket(new CSocket(SVC_PORT, APP_PORT))
 {
     // =========== Set updates URL ============
-    auto setUrl = [=] {
+    if ( Utils::updatesAllowed() ) {
         if ( InputArgs::contains(CMD_ARGUMENT_UPDATES_CHANNEL) ) {
             std::wstring ch_updates = InputArgs::argument_value(CMD_ARGUMENT_UPDATES_CHANNEL);
             if ( ch_updates == L"dev" ) {
@@ -203,16 +203,6 @@ CUpdateManager::CUpdateManager(QObject *parent):
 
         if ( m_checkUrl.empty() )
             m_checkUrl = TEXT(URL_APPCAST_UPDATES);
-    };
-
-    if ( updatesAllowed() ) {
-#ifdef _WIN32
-        if (IsPackage(Portable) || IsPackage(ISS) || IsPackage(MSI))
-            setUrl();
-#else
-        if (IsPackage(Portable))
-            setUrl();
-#endif
     }
 
     if ( !m_checkUrl.empty()) {
@@ -433,12 +423,6 @@ QString CUpdateManager::getVersion() const
     return m_packageData->version;
 }
 
-bool CUpdateManager::updatesAllowed()
-{
-    GET_REGISTRY_SYSTEM(reg_system)
-    return reg_system.value("CheckForUpdates", true).toBool();
-}
-
 void CUpdateManager::onLoadUpdateFinished(const QString &filePath)
 {
     if (getFileHash(filePath) != m_packageData->hash) {
@@ -528,6 +512,7 @@ void CUpdateManager::onLoadCheckFinished(const QString &filePath)
 
         bool updateExist = false;
         QString version = root.value("version").toString();
+        QString minVersion = root.value("minVersion").toString();
 
         GET_REGISTRY_USER(reg_user);
         reg_user.beginGroup("Updates");

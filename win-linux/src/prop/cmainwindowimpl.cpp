@@ -37,10 +37,6 @@
 #include "version.h"
 #include "clangater.h"
 
-#ifdef _UPDMODULE
-# include "cupdatemanager.h"
-#endif
-
 #include <QJsonObject>
 #include <QJsonDocument>
 #include <QFile>
@@ -116,20 +112,9 @@ void CMainWindowImpl::refreshAboutVersion()
 
     // Read update settings
 #ifdef _UPDMODULE
-    if ( CUpdateManager::updatesAllowed() ) {
-
-# ifdef _WIN32
-        if ( IsPackage(Portable) || IsPackage(ISS) || IsPackage(MSI) ) {
-            AscAppManager::sendCommandTo(0, "updates:turn", "on");
-            _json_obj["updates"] = QJsonObject({{"mode", reg_user.value("autoUpdateMode","ask").toString()}});
-        }
-# else
-        if (IsPackage(Portable)) {
-            AscAppManager::sendCommandTo(0, "updates:turn", "on");
-            _json_obj["updates"] = QJsonObject({{"mode", reg_user.value("autoUpdateMode","ask").toString()}});
-        }
-# endif
-
+    if ( Utils::updatesAllowed() ) {
+        AscAppManager::sendCommandTo(0, "updates:turn", "on");
+        _json_obj["updates"] = QJsonObject({{"mode", reg_user.value("autoUpdateMode","ask").toString()}});
     }
 #endif
 

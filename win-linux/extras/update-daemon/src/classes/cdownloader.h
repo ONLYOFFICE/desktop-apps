@@ -49,7 +49,6 @@ public:
 
     void downloadFile(const wstring &url, const wstring &filePath);
     void start();
-    void pause();
     void stop();
     wstring GetFilePath();
 
@@ -64,10 +63,7 @@ private:
               m_filePath;
     std::future<void> m_future;
     std::atomic_bool m_run,
-                     m_was_stopped,
                      m_lock;
-    class DownloadProgress;
-    friend DownloadProgress;
 };
 
 #endif // CDOWNLOADER_H
