@@ -156,13 +156,7 @@
                                             <label class='sett__caption' l10n>${_lang.settUITheme}</label>
                                             <div class='sett--label-lift-top hbox'>
                                                 <section class='box-cmp-select'>
-                                                    <select class='combobox'>
-                                                        <option value='theme-system' l10n>${_lang.settOptThemeSystem}</option>
-                                                        <option value='theme-light' l10n>${_lang.settOptThemeLight}</option>
-                                                        <option value='theme-classic-light' l10n>${_lang.settOptThemeClassicLight}</option>
-                                                        <option value='theme-dark' l10n>${_lang.settOptThemeDark}</option>
-                                                        <option value='theme-contrast-dark' l10n>${_lang.settOptThemeContrastDark}</option>
-                                                    </select>
+                                                    <select class='combobox' data-size='5'></select>
                                                 </section>
                                             </div>
                                         </div>
@@ -421,11 +415,24 @@
 
                         if ( !!opts.uitheme ) {
                             opts.uitheme == 'canuse' && (opts.uitheme = 'theme-light');
-                            ($optsUITheme = ($('#opts-ui-theme', $panel).show().find('select')))
+
+                            const _themes = [{'theme-light': utils.Lang.settOptThemeLight},
+                                            {'theme-classic-light': utils.Lang.settOptThemeClassicLight},
+                                            {'theme-dark': utils.Lang.settOptThemeDark},
+                                            {'theme-contrast-dark': utils.Lang.settOptThemeContrastDark}];
+
+                            const _combo = $('#opts-ui-theme select', $panel);
+                            _themes.forEach(item => {
+                                const entries = Object.entries(item)[0];
+                                _combo.append(`<option value=${entries[0]} l10n>${entries[1]}</option>`);
+                            });
+
+
+                            ($optsUITheme = _combo)
                             .val(opts.uitheme)
                             .selectpicker().on('change', e => {
-                                $btnApply.isdisabled() && $btnApply.disable(false);
-                            });
+                                $btnApply.isdisabled() && $btnApply.disable(false);})
+                            .parents('.settings-field').show();
                         }
                         _apply_theme(!!opts.uitheme ? opts.uitheme : 'theme-classic-light');
 
