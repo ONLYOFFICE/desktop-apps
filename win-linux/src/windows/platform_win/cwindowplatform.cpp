@@ -186,7 +186,7 @@ bool CWindowPlatform::nativeEvent(const QByteArray &eventType, void *message, lo
         if (!WindowHelper::isLeftButtonPressed() || AscAppManager::IsUseSystemScaling()) {
             updateScaling();
         }
-        qDebug() << "WM_DPICHANGED: " << LOWORD(msg->wParam);
+//        qDebug() << "WM_DPICHANGED: " << LOWORD(msg->wParam);
         break;
     }
 
