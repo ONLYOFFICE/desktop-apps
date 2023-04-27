@@ -109,7 +109,7 @@ void CWindowPlatform::adjustGeometry()
         setResizeableAreaWidth(border);
     } else
     if (windowState().testFlag(Qt::WindowMaximized)) {
-//        QTimer::singleShot(25, this, [=]() {
+        QTimer::singleShot(25, this, [=]() {
             auto rc = QApplication::desktop()->availableGeometry(this);
             const QSize offset(0, !isTaskbarAutoHideOn() ? 0 : 2);
             SetWindowPos(m_hWnd, NULL, rc.x(), rc.y(), rc.width(), rc.height() - offset.height(),
@@ -117,7 +117,7 @@ void CWindowPlatform::adjustGeometry()
 
             const int border = (!isTaskbarAutoHideOn() && Utils::getWinVersion() > Utils::WinVer::Win7) ? 10 : 0;
             setContentsMargins(border, border, border, border);
-//        });
+        });
     }
 }
 
