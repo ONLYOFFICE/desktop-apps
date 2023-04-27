@@ -65,7 +65,7 @@ CWindowPlatform::CWindowPlatform(const QRect &rect) :
     style |= (Utils::getWinVersion() > Utils::WinVer::Win7) ? WS_OVERLAPPEDWINDOW : WS_POPUP;
     ::SetWindowLong(m_hWnd, GWL_STYLE, style);
 #ifndef __OS_WIN_XP
-    const MARGINS shadow = {1, 1, 1, 1};
+    const MARGINS shadow = {-1, -1, -1, -1};
     DwmExtendFrameIntoClientArea(m_hWnd, &shadow);
 #endif
     connect(this->window()->windowHandle(), &QWindow::screenChanged, this, [=]() {
@@ -107,21 +107,16 @@ void CWindowPlatform::adjustGeometry()
         const int border = int(MAIN_WINDOW_BORDER_WIDTH * m_dpiRatio);
         setContentsMargins(border, border, border, border+1);
         setResizeableAreaWidth(border);
-        LONG style = ::GetWindowLong(m_hWnd, GWL_STYLE);
-        style |= (Utils::getWinVersion() > Utils::WinVer::Win7) ? WS_OVERLAPPEDWINDOW : WS_POPUP;
-        ::SetWindowLong(m_hWnd, GWL_STYLE, style);
     } else
     if (windowState().testFlag(Qt::WindowMaximized)) {
 //        QTimer::singleShot(25, this, [=]() {
-            setContentsMargins(0,0,0,0);
-            LONG style = ::GetWindowLong(m_hWnd, GWL_STYLE);
-            style &= (Utils::getWinVersion() > Utils::WinVer::Win7) ? ~WS_OVERLAPPEDWINDOW : ~WS_POPUP;
-            style |= (WS_CLIPCHILDREN | WS_MAXIMIZEBOX | WS_MINIMIZEBOX);
-            ::SetWindowLong(m_hWnd, GWL_STYLE, style);
             auto rc = QApplication::desktop()->availableGeometry(this);
             const QSize offset(0, !isTaskbarAutoHideOn() ? 0 : 2);
             SetWindowPos(m_hWnd, NULL, rc.x(), rc.y(), rc.width(), rc.height() - offset.height(),
                          SWP_NOZORDER | SWP_NOOWNERZORDER | SWP_NOSENDCHANGING);
+
+            const int border = (!isTaskbarAutoHideOn() && Utils::getWinVersion() > Utils::WinVer::Win7) ? 10 : 0;
+            setContentsMargins(border, border, border, border);
 //        });
     }
 }
