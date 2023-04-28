@@ -204,7 +204,11 @@ deb: $(DEB)
 
 deb-astra: $(DEB_ASTRA)
 
+ifeq ($(COMPANY_NAME), ONLYOFFICE)
 tar: $(TAR) $(HELP_TAR)
+else
+tar: $(TAR)
+endif
 
 apt-rpm: $(APT_RPM)
 
@@ -261,13 +265,16 @@ desktopeditor: branding $(LINUX_DEPS)
 
 	cp -rf ../../../common/package/mimetypes common/opt/desktopeditors
 
+ifeq ($(COMPANY_NAME), ONLYOFFICE)
+	mkdir -p common/help
+	cp -rf $(HELP_SRC)/. common/help/desktopeditors
+endif
+
 	chmod 755 common/opt/desktopeditors/DesktopEditors
 ifneq ($(COMPANY_NAME), ONLYOFFICE)
 	chmod 755 common/opt/mediaviewer/ImageViewer
 	chmod 755 common/opt/mediaviewer/VideoPlayer
 endif
-	mkdir -p common/help
-	cp -rf $(HELP_SRC)/. common/help/desktopeditors
 
 qt-redist:
 	cp -r -L -t common/opt/desktopeditors/ \

@@ -14,6 +14,7 @@ AutoProv: no
 %{_company_name} %{_product_name} installation package
  %{_company_name} %{_product_name} is an application for editing office documents (text documents, spreadsheets and presentations) from %{_company_name} cloud portal on local computer without browser using.
 
+%if "%{_company_name}" == "ONLYOFFICE"
 %package help
 Summary: Desktop editors local help files
 BuildArch: noarch
@@ -23,6 +24,7 @@ Requires: %{_package_name}
 %{_company_name} %{_product_name} local help files
  %{_company_name} %{_product_name} is an application for editing office documents (text documents, spreadsheets and presentations) from %{_company_name} cloud portal on local computer without browser using.
  This package contains the local help files.
+%endif
 
 %prep
 rm -rf "%{buildroot}"
@@ -84,12 +86,14 @@ rm -rf "%{buildroot}"
 %attr(777, root, root) %{_sysconfdir}/%{_package_name}
 %endif
 
+%if "%{_company_name}" == "ONLYOFFICE"
 %files help
 %defattr(-, root, root, -)
 /opt/%{_desktopeditors_prefix}/editors/web-apps/apps/common/main/resources/help
 /opt/%{_desktopeditors_prefix}/editors/web-apps/apps/documenteditor/main/resources/help
 /opt/%{_desktopeditors_prefix}/editors/web-apps/apps/presentationeditor/main/resources/help
 /opt/%{_desktopeditors_prefix}/editors/web-apps/apps/spreadsheeteditor/main/resources/help
+%endif
 
 %pre
 
