@@ -34,8 +34,13 @@ if [ $(cat "$MIMEAPPS_LIST" | grep text/oform | wc -l) -eq "0" ]; then
   echo "text/oform=M4_DESKTOPEDITORS_EXEC.desktop" >>"$MIMEAPPS_LIST"
 fi
 
+ifelse(M4_COMPANY_NAME, ONLYOFFICE,
 xdg-mime install --mode system /opt/M4_DESKTOPEDITORS_PREFIX/mimetypes/onlyoffice-docxf.xml
-xdg-mime install --mode system /opt/M4_DESKTOPEDITORS_PREFIX/mimetypes/onlyoffice-oform.xml
+xdg-mime install --mode system /opt/M4_DESKTOPEDITORS_PREFIX/mimetypes/onlyoffice-oform.xml,
+if [ -f /etc/astra_version ] && [ -f /etc/X11/trusted ]; then
+  sed -i '\|/opt/M4_DESKTOPEDITORS_PREFIX/DesktopEditors|d' /etc/X11/trusted
+  echo '/opt/M4_DESKTOPEDITORS_PREFIX/DesktopEditors(KBD_R)' >> /etc/X11/trusted
+fi)
 
 # Update cache of .desktop file MIME types. Non-fatal since it's just a cache.
 #update-desktop-database > /dev/null 2>&1 || true

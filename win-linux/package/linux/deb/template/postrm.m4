@@ -7,11 +7,21 @@ case "$1" in
 	purge)
 		ifelse(M4_COMPANY_NAME, ONLYOFFICE,
 		rm -fr /home/*/.local/share/M4_DESKTOPEDITORS_PREFIX,
-		rm -fr /home/*/.local/share/M4_PACKAGE_NAME)
+		rm -fr /home/*/.local/share/M4_PACKAGE_NAME
+		if [ -f /etc/astra_version ] && [ -f /etc/X11/trusted ]; then
+			sed -i '\|/opt/M4_DESKTOPEDITORS_PREFIX/DesktopEditors|d' /etc/X11/trusted
+		fi)
 	;;
 
-	remove|upgrade|failed-upgrade|abort-install|abort-upgrade|disappear)
-  	:
+	remove)
+		ifelse(M4_COMPANY_NAME, ONLYOFFICE,:,
+		if [ -f /etc/astra_version ] && [ -f /etc/X11/trusted ]; then
+			sed -i '\|/opt/M4_DESKTOPEDITORS_PREFIX/DesktopEditors|d' /etc/X11/trusted
+		fi)
+	;;
+
+	upgrade|failed-upgrade|disappear|abort-install|abort-upgrade)
+		:
 	;;
 
 	*)
