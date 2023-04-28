@@ -968,6 +968,7 @@ Source: {#DEPLOY_PATH}\hunspell.dll;                    DestDir: {app}; Flags: s
 Source: {#DEPLOY_PATH}\ooxmlsignature.dll;              DestDir: {app}; Flags: signonce;
 Source: {#DEPLOY_PATH}\converter\*.dll;                 DestDir: {app}\converter; Flags: signonce;
 Source: {#DEPLOY_PATH}\converter\*.exe;                 DestDir: {app}\converter; Flags: signonce;
+Source: ..\..\..\common\converter\package.config;       DestDir: {app}\converter;
 
 [InstallDelete]
 Type: filesandordirs; Name: {app}\editors\sdkjs-plugins
