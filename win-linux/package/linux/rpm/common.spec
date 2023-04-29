@@ -46,6 +46,9 @@ cp -t $DATA_DIR/applications $COMMON/usr/share/applications/%{_desktopeditors_ex
 echo "package = rpm" > $DESKTOPEDITORS_PREFIX/converter/package.config
 
 %if "%{_company_name}" == "ONLYOFFICE"
+# help
+cp -r $COMMON/help/desktopeditors/* $DESKTOPEDITORS_PREFIX/
+
 ln -srf $BIN_DIR/%{_desktopeditors_exec} $BIN_DIR/desktopeditors
 %else
 ETC_DIR=%{buildroot}%{_sysconfdir}
@@ -62,9 +65,6 @@ cp -t $DATA_DIR/applications \
   $COMMON/usr/share/applications/%{_videoplayer_exec}.desktop
 ln -srf $BIN_DIR/%{_desktopeditors_exec} $BIN_DIR/%{_package_name}
 %endif
-
-# help
-cp -r $COMMON/help/desktopeditors/* $DESKTOPEDITORS_PREFIX/
 
 %clean
 rm -rf "%{buildroot}"
