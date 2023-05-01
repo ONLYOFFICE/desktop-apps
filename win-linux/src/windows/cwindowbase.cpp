@@ -244,7 +244,7 @@ bool CWindowBase::event(QEvent *event)
 void CWindowBase::setScreenScalingFactor(double factor)
 {
     setMinimumSize(0,0);
-    if (!isMaximized()) {
+    if (!isMaximized() && !QGuiApplication::queryKeyboardModifiers().testFlag(Qt::MetaModifier)) {
         double change_factor = factor / m_dpiRatio;
         QRect _src_rect = geometry();
         double dest_width_change = _src_rect.width() * (1 - change_factor);
