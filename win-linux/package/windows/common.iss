@@ -821,7 +821,15 @@ end;
 function PrepareToInstall(var NeedsRestart: Boolean): String;
 var
   path: string;
+  ErrorCode: integer;
+  version: TWindowsVersion;
 begin
+  GetWindowsVersionEx(version);
+  if (version.Major > 6) or ((version.Major = 6) and (version.Minor >= 1)) then begin
+    if FileExists(ExpandConstant('{app}\updatesvc.exe')) then
+      Exec(ExpandConstant('{app}\updatesvc.exe'), '--delete', '', SW_HIDE, ewWaitUntilTerminated, ErrorCode);
+  end;
+
   path := ExpandConstant('{app}\editors\web-apps');
   if DirExists(path) then DelTree(path, true, true, true);
 
