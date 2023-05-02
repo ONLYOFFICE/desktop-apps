@@ -56,6 +56,7 @@ l10n.ru = {
     actActivate: 'Активировать',
     actAbout: 'О программе',
     actSettings: 'Настройки',
+    actTemplates: 'Шаблоны',
     licKeyHolder: 'введите ключ активации',
     btnActivate: 'Активировать',
     licGetLicense: 'Получить ключ активации',

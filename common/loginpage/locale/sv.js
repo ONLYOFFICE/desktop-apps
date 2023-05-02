@@ -56,6 +56,7 @@ l10n.sv = {
     actActivate: 'Aktivera',
     actAbout: 'Om',
     actSettings: 'Inställningar',
+    actTemplates: 'Mallar',
     licKeyHolder: 'mata in aktiveringsnyckel',
     btnActivate: 'Aktivera',
     licGetLicense: 'Få licens nu',

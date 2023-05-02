@@ -56,6 +56,7 @@ l10n.es = {
     actActivate: 'Activar',
     actAbout: 'Acerca de',
     actSettings: 'Ajustes',
+    actTemplates: 'Plantillas',
     licKeyHolder: 'Introducir la clave de activación',
     btnActivate: 'Activar',
     licGetLicense: 'Adquirir licencia ahora',

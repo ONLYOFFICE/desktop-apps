@@ -56,6 +56,7 @@ l10n.hu = {
     actActivate: 'Aktiválás',
     actAbout: 'Névjegy',
     actSettings: 'Beállítások',
+    actTemplates: 'Sablonok',
     licKeyHolder: 'aktiválási kód megadása',
     btnActivate: 'Aktiválás',
     licGetLicense: 'Hozzáférés a licenchez',

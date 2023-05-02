@@ -56,6 +56,7 @@ l10n.zh_CN = {
     actActivate: '激活',
     actAbout: '关于',
     actSettings: '设置',
+    actTemplates: '模板',
     licKeyHolder: '输入激活密钥',
     btnActivate: '激活',
     licGetLicense: '立即获取使用许可',

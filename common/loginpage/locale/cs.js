@@ -56,6 +56,7 @@ l10n.cs = {
     actActivate: 'Aktivovat',
     actAbout: 'O ONLYOFFICE',
     actSettings: 'Nastavení',
+    actTemplates: 'Šablony',
     licKeyHolder: 'vstupní aktivační klíč',
     btnActivate: 'Aktivovat',
     licGetLicense: 'Získat licenci',

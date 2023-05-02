@@ -56,6 +56,7 @@ l10n.ja = {
     actActivate: 'アクティベート',
     actAbout: '沿革',
     actSettings: '設定',
+    actTemplates: 'テンプレート',
     licKeyHolder: 'アクティベーションキーを入力',
     btnActivate: 'アクティベート',
     licGetLicense: '今すぐライセンス取得',
