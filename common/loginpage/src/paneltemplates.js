@@ -46,7 +46,6 @@
     function createIframe(config) {
         var iframe = document.createElement("iframe");
 
-        iframe.src = "https://oforms.onlyoffice.com/?desktop=true";
         iframe.width = "100%";
         iframe.height = "100%";
         iframe.align = "top";
@@ -60,11 +59,14 @@
     var ViewTemplates = function(args) {
         var _lang = utils.Lang;
 
-        args.tplPage = `<div class="action-panel ${args.action}"><div id="frame"></div></div>`;
+        const msg = 'Oops! Something went wrong :(<br>Check internet connection';
+        this.emptyPanelContent = `<div id="frame"><h3>${msg}</h3>`;
+
+        args.tplPage = `<div class="action-panel ${args.action}">${this.emptyPanelContent}</div></div>`;
         args.menu = '.main-column.tool-menu';
         args.field = '.main-column.col-center';
         args.itemindex = 0;
-        args.itemtext = 'Templates';
+        args.itemtext = _lang.actTemplates;
 
         baseView.prototype.constructor.call(this, args);
     };
@@ -73,15 +75,79 @@
     ViewTemplates.prototype.constructor = ViewTemplates;
 
     utils.fn.extend(ControllerTemplates.prototype, (function() {
+        let iframe;
+        const _url_templates = "https://oforms.onlyoffice.com/{0}?desktop=true";
+
+        const _create_and_inject_iframe = () => {
+            const theme = window.app.controller.settings.currentTheme();
+
+            const iframe = createIframe({});
+            iframe.src = `${_url_templates.replace('{0}',utils.Lang.id.substring(0,2))}&themetype=${theme.type}`;
+
+            const target = document.getElementById("frame");
+            target.parentNode && target.parentNode.replaceChild(iframe, target);
+            return iframe;
+        }
+
+        const _remove_frame = content => {
+            if ( !!iframe ) {
+                iframe.parentElement.innerHTML = content;
+                iframe = null;
+            }
+        }
+
         return {
             init: function() {
                 baseController.prototype.init.apply(this, arguments);
                 this.view.render();
 
+                const _check_url_avail = () => {
+                    if ( !iframe ) {
+                        fetch(_url_templates.replace('{0}', 'en'), {mode: 'no-cors'}).
+                            then(r => {
+                                if ( r.status == 200 || r.type == 'opaque' ) {
+                                    iframe = _create_and_inject_iframe();
+                                }
+                            }).
+                            catch(e => console.error('error on check templates url', e));
+                    }
+                }
+
+                _check_url_avail();
+
+                CommonEvents.on('panel:show', panel => {
+                    if ( !iframe && panel == this.action ) {
+                        _check_url_avail();
+                    }
+                });
+
+                CommonEvents.on('lang:changed', (old, newlang) => {
+                    if ( !!iframe ) {
+                        // iframe.contentWindow.postMessage(JSON.stringify({lang: newlang}));
+                        _remove_frame(this.view.emptyPanelContent);
+                        _check_url_avail();
+                    }
+                });
+
+                CommonEvents.on('theme:changed', (theme, type) => {
+                    if ( !!iframe ) {
+                        // iframe.contentWindow.postMessage(JSON.stringify({theme: {name: theme, type: type}}));
+                        _remove_frame(this.view.emptyPanelContent);
+                        _check_url_avail();
+                    }
+                });
+
                 // if ( !!localStorage.templatespanel ) {
-                    const iframe = createIframe({});
-                    var target = document.getElementById("frame");
-                    target.parentNode && target.parentNode.replaceChild(iframe, target);
+                    // let iframe;
+                    // if ( navigator.onLine ) {
+                    //     iframe = _create_and_inject_iframe();
+                    // } else {
+                    //     CommonEvents.on('panel:show', panel => {
+                    //         if ( !iframe && panel == this.action && navigator.onLine) {
+                    //             iframe = _create_and_inject_iframe();
+                    //         }
+                    //     });
+                    // }
                 // } else {
                 //     this.view.$menuitem.find('> a').click(e => {
                 //         window.sdk.command("open:template", 'external');

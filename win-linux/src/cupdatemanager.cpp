@@ -56,9 +56,12 @@
 
 #define WStrToTStr(str) QStrToTStr(QString::fromStdWString(str))
 #define CHECK_ON_STARTUP_MS 9000
-#define CMD_ARGUMENT_CHECK_URL L"--updates-appcast-url"
+#define CMD_ARGUMENT_UPDATES_CHANNEL L"--updates-appcast-channel"
 #ifndef URL_APPCAST_UPDATES
 # define URL_APPCAST_UPDATES ""
+#endif
+#ifndef URL_APPCAST_DEV_CHANNEL
+# define URL_APPCAST_DEV_CHANNEL ""
 #endif
 
 using std::vector;
@@ -175,19 +178,24 @@ auto runProcess(const tstring &fileName, const tstring &args, bool runAsAdmin = 
 
 struct CUpdateManager::PackageData {
     QString fileName,
+            fileType,
             hash,
             version;
-    wstring packageUrl;
+    wstring packageUrl,
+            packageArgs;
     void clear() {
         fileName.clear();
+        fileType.clear();
         hash.clear();
         version.clear();
         packageUrl.clear();
+        packageArgs.clear();
     }
 };
 
 struct CUpdateManager::SavedPackageData {
     QString fileName,
+            fileType,
             version;
 };
 
@@ -200,26 +208,24 @@ CUpdateManager::CUpdateManager(QObject *parent):
     m_socket(new CSocket(SVC_PORT, APP_PORT))
 {
     // =========== Set updates URL ============
-    auto setUrl = [=] {
-        if ( InputArgs::contains(CMD_ARGUMENT_CHECK_URL) ) {
-            m_checkUrl = InputArgs::argument_value(CMD_ARGUMENT_CHECK_URL);
-        } else m_checkUrl = QString(URL_APPCAST_UPDATES).toStdWString();
-    };
-#ifdef _WIN32
-    if (AppOptions::packageType() == AppOptions::AppPackageType::Portable
-            || AppOptions::packageType() == AppOptions::AppPackageType::ISS)
-        setUrl();
-#else
-    if (AppOptions::packageType() == AppOptions::AppPackageType::Portable)
-        setUrl();
-#endif
+    if ( Utils::updatesAllowed() ) {
+        if ( InputArgs::contains(CMD_ARGUMENT_UPDATES_CHANNEL) ) {
+            std::wstring ch_updates = InputArgs::argument_value(CMD_ARGUMENT_UPDATES_CHANNEL);
+            if ( ch_updates == L"dev" ) {
+                m_checkUrl = TEXT(URL_APPCAST_DEV_CHANNEL);
+            }
+        }
+
+        if ( m_checkUrl.empty() )
+            m_checkUrl = TEXT(URL_APPCAST_UPDATES);
+    }
 
     if ( !m_checkUrl.empty()) {
         CLogger::log("Updates is on, URL: " + QString::fromStdWString(m_checkUrl));
 //        m_pTimer = new QTimer(this);
 //        m_pTimer->setSingleShot(false);
 //        connect(m_pTimer, SIGNAL(timeout()), this, SLOT(checkUpdates()));
-        if (AppOptions::packageType() == AppOptions::AppPackageType::Portable)
+        if (IsPackage(Portable))
             runProcess(QStrToTStr(qApp->applicationDirPath()) + DAEMON_NAME, TEXT("--run-as-app"));
         init();
     } else
@@ -232,7 +238,7 @@ CUpdateManager::~CUpdateManager()
     delete m_savedPackageData, m_savedPackageData = nullptr;
     delete m_dialogSchedule, m_dialogSchedule = nullptr;
     delete m_socket, m_socket = nullptr;
-    if (AppOptions::packageType() == AppOptions::AppPackageType::Portable) {
+    if (IsPackage(Portable)) {
         CSocket sock(INSTANCE_SVC_PORT, 0);
         const char msg[] = "stop";
         sock.sendMessage((void*)msg, sizeof(msg));
@@ -244,6 +250,7 @@ void CUpdateManager::init()
     GET_REGISTRY_USER(reg_user);
     reg_user.beginGroup("Updates");
     m_savedPackageData->fileName = reg_user.value("Updates/file", QString()).toString();
+    m_savedPackageData->fileType = reg_user.value("Updates/type", QString()).toString();
     m_savedPackageData->version = reg_user.value("Updates/version", QString()).toString();
 //    m_lastCheck = time_t(reg_user.value("Updates/last_check", 0).toLongLong());
     reg_user.endGroup();
@@ -380,18 +387,51 @@ void CUpdateManager::onError(const QString &error)
     m_dialogSchedule->addToSchedule("criticalMsg", error);
 }
 
-void CUpdateManager::savePackageData(const QString &version, const QString &fileName)
+void CUpdateManager::savePackageData(const QString &version, const QString &fileName, const QString &fileType)
 {
     m_savedPackageData->fileName = fileName;
+    m_savedPackageData->fileType = fileType;
     m_savedPackageData->version = version;
     GET_REGISTRY_USER(reg_user);
     reg_user.beginGroup("Updates");
     reg_user.setValue("Updates/file", fileName);
+    reg_user.setValue("Updates/type", fileType);
     reg_user.setValue("Updates/version", version);
     reg_user.endGroup();
 }
 
-bool CUpdateManager::sendMessage(int cmd, const tstring &param1, const tstring &param2, const tstring &param3)
+QString CUpdateManager::ignoredVersion()
+{
+    GET_REGISTRY_USER(reg_user);
+    reg_user.beginGroup("Updates");
+    const QString ignored_ver = reg_user.value("Updates/ignored_ver").toString();
+    reg_user.endGroup();
+    return ignored_ver;
+}
+
+bool CUpdateManager::isSavedPackageValid()
+{
+    return (m_savedPackageData->fileName.indexOf(currentArch()) != -1
+                && m_savedPackageData->fileType == m_packageData->fileType
+                && m_savedPackageData->version == m_packageData->version
+                && getFileHash(m_savedPackageData->fileName) == m_packageData->hash);
+}
+
+bool CUpdateManager::isVersionBHigherThanA(const QString &a, const QString &b)
+{
+    const QStringList old_ver = a.split('.');
+    const QStringList new_ver = b.split('.');
+    for (int i = 0; i < std::min(new_ver.size(), old_ver.size()); i++) {
+        if (new_ver.at(i).toInt() > old_ver.at(i).toInt()) {
+            return true;
+        } else
+        if (new_ver.at(i).toInt() < old_ver.at(i).toInt())
+            break;
+    }
+    return false;
+}
+
+bool CUpdateManager::sendMessage(int cmd, const wstring &param1, const wstring &param2, const wstring &param3)
 {
     tstring str = std::to_tstring(cmd) + TEXT("|") + param1 + TEXT("|") + param2 + TEXT("|") + param3;
     size_t sz = str.size() * sizeof(str.front());
@@ -403,17 +443,17 @@ void CUpdateManager::loadUpdates()
 //    if (m_lock)
 //        return;
 
-    if (m_savedPackageData->fileName.indexOf(currentArch()) != -1
-            && m_savedPackageData->version == m_packageData->version
-            && getFileHash(m_savedPackageData->fileName) == m_packageData->hash)
-    {
+    if (isSavedPackageValid()) {
         m_packageData->fileName = m_savedPackageData->fileName;
         AscAppManager::sendCommandTo(0, "updates:download", QString("{\"progress\":\"100\"}"));
-        unzipIfNeeded();
+        if (m_packageData->fileType == "archive")
+            unzipIfNeeded();
+        else
+            m_dialogSchedule->addToSchedule("showStartInstallMessage");
 
     } else
     if (!m_packageData->packageUrl.empty()) {
-        if (!sendMessage(MSG_LoadUpdates, WStrToTStr(m_packageData->packageUrl))) {
+        if (!sendMessage(MSG_LoadUpdates, m_packageData->packageUrl, m_packageData->fileType.toStdWString())) {
             m_dialogSchedule->addToSchedule("criticalMsg", QObject::tr("An error occurred while loading updates: Update Service not found!"));
         }
     }
@@ -423,11 +463,7 @@ void CUpdateManager::installUpdates()
 {
     if (m_lock)
         return;
-    GET_REGISTRY_USER(reg_user);
-    reg_user.beginGroup("Updates");
-    const QString ignored_ver = reg_user.value("Updates/ignored_ver").toString();
-    reg_user.endGroup();
-    if (ignored_ver != getVersion())
+    if (ignoredVersion() != getVersion())
         m_dialogSchedule->addToSchedule("showStartInstallMessage");
 }
 
@@ -444,8 +480,11 @@ void CUpdateManager::onLoadUpdateFinished(const QString &filePath)
         return;
     }
     m_packageData->fileName = filePath;
-    savePackageData(m_packageData->version, filePath);
-    unzipIfNeeded();
+    savePackageData(m_packageData->version, filePath, m_packageData->fileType);
+    if (m_packageData->fileType == "archive")
+        unzipIfNeeded();
+    else
+        m_dialogSchedule->addToSchedule("showStartInstallMessage");
 }
 
 void CUpdateManager::unzipIfNeeded()
@@ -462,8 +501,16 @@ void CUpdateManager::unzipIfNeeded()
 void CUpdateManager::handleAppClose()
 {
     if ( m_restartForUpdate ) {
-        if (!sendMessage(MSG_StartReplacingFiles)) {
-            criticalMsg(nullptr, QObject::tr("An error occurred while start replacing files: Update Service not found!"));
+        if (m_packageData->fileType != "archive") {
+            GET_REGISTRY_SYSTEM(reg_system)
+            QString prev_inst_lang = " /LANG=" + reg_system.value("locale", "en").toString();
+            if (!runProcess(m_packageData->fileName.toStdWString(), m_packageData->packageArgs + prev_inst_lang.toStdWString())) {
+                criticalMsg(nullptr, QObject::tr("An error occurred while start install updates!"));
+            }
+        } else {
+            if (!sendMessage(MSG_StartReplacingFiles)) {
+                criticalMsg(nullptr, QObject::tr("An error occurred while start replacing files: Update Service not found!"));
+            }
         }
     } else
         sendMessage(MSG_StopDownload);
@@ -523,28 +570,11 @@ void CUpdateManager::onLoadCheckFinished(const QString &filePath)
         QJsonDocument doc = QJsonDocument::fromJson(ReplyText);
         QJsonObject root = doc.object();
 
-        bool updateExist = false;
         QString version = root.value("version").toString();
+        QString curr_version = QString::fromLatin1(VER_FILEVERSION_STR);
 
-        GET_REGISTRY_USER(reg_user);
-        reg_user.beginGroup("Updates");
-        const QString ignored_ver = reg_user.value("Updates/ignored_ver").toString();
-        reg_user.endGroup();
-
-        const QStringList curr_ver = QString::fromLatin1(VER_FILEVERSION_STR).split('.');
-        const QStringList ver = version.split('.');
-        for (int i = 0; i < std::min(ver.size(), curr_ver.size()); i++) {
-            if (ver.at(i).toInt() > curr_ver.at(i).toInt()) {
-                updateExist = (version != ignored_ver);
-                break;
-            } else
-            if (ver.at(i).toInt() < curr_ver.at(i).toInt())
-                break;
-        }
-
-        if ( updateExist ) {
+        if (isVersionBHigherThanA(curr_version, version) && (version != ignoredVersion())) {
             m_packageData->version = version;
-
             // parse package
             QJsonObject package = root.value("package").toObject();
 #ifdef _WIN32
@@ -553,24 +583,34 @@ void CUpdateManager::onLoadCheckFinished(const QString &filePath)
 # else
             QJsonObject win = package.value("win_32").toObject();
 # endif
+            QJsonObject package_type = win.value("archive").toObject();
+            m_packageData->fileType = "archive";
+            if (!IsPackage(Portable)) {
+                const QString install_key = IsPackage(MSI) ? "msi" : "iss";
+                if (win.contains(install_key)) {
+                    QJsonObject install_type = win.value(install_key).toObject();
+                    if (install_type.contains("maxVersion")) {
+                        QString maxVersion = install_type.value("maxVersion").toString();
+                        if (!isVersionBHigherThanA(maxVersion, curr_version)) {
+                            package_type = install_type;
+                            m_packageData->fileType = install_key;
+                            m_packageData->packageArgs = package_type.value("arguments").toString().toStdWString();
+                        }
+                    }
+                }
+            }
 #else
             QJsonObject win = package.value("linux_64").toObject();
 #endif
-            QJsonObject archive = win.value("archive").toObject();
-            m_packageData->packageUrl = archive.value("url").toString().toStdWString();
-            m_packageData->hash = archive.value("md5").toString().toLower();
+            m_packageData->packageUrl = package_type.value("url").toString().toStdWString();
+            m_packageData->hash = package_type.value("md5").toString().toLower();
 
             // parse release notes
             QJsonObject release_notes = root.value("releaseNotes").toObject();
             const QString lang = CLangater::getCurrentLangCode() == "ru-RU" ? "ru-RU" : "en-EN";
             QJsonValue changelog = release_notes.value(lang);
 
-            if (m_savedPackageData->version == version
-                    && m_savedPackageData->fileName.indexOf(currentArch()) != -1
-                    && getFileHash(m_savedPackageData->fileName) == m_packageData->hash)
-                clearTempFiles(m_savedPackageData->fileName);
-            else
-                clearTempFiles();
+            clearTempFiles(isSavedPackageValid() ? m_savedPackageData->fileName : "");
             onCheckFinished(false, true, m_packageData->version, changelog.toString());
         } else {
             clearTempFiles();
@@ -594,6 +634,7 @@ void CUpdateManager::onCheckFinished(bool error, bool updateExist, const QString
                 loadUpdates();
                 break;
             case UpdateMode::ASK:
+            case UpdateMode::DISABLE:
                 m_dialogSchedule->addToSchedule("showUpdateMessage");
                 break;
             }

@@ -1108,8 +1108,13 @@ void CAscApplicationManagerWrapper::initializeApp()
                                         {"id", QString::fromStdWString(_app.m_themes->current().id())}
 #ifndef Q_OS_LINUX
                                         ,{"system", _app.m_themes->isSystemSchemeDark() ? "dark" : "light"}
+#else
+                                        ,{"system", "disabled"}
 #endif
                                      });
+
+    AscAppManager::getInstance().m_oSettings.macroses_support = reg_system.value("macrosDisabled", true).toBool();
+    AscAppManager::getInstance().m_oSettings.plugins_support = reg_system.value("pluginsDisabled", true).toBool();
 }
 
 CPresenterWindow * CAscApplicationManagerWrapper::createReporterWindow(void * data, int parentid)

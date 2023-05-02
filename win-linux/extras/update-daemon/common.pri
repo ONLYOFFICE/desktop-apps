@@ -17,10 +17,18 @@ INCLUDEPATH += $$PWD/../../src/prop
 
 HEADERS += $$PWD/src/version.h \
            $$PWD/src/classes/csocket.h \
-           $$PWD/src/classes/cupdatemanager.h
+           $$PWD/src/classes/cunzip.h \
+           $$PWD/src/classes/csvcmanager.h \
+           $$PWD/src/classes/cdownloader.h
 
-SOURCES += $$PWD/src/classes/csocket.cpp \
-           $$PWD/src/classes/cupdatemanager.cpp
+SOURCES += $$PWD/src/main.cpp \
+           $$PWD/src/utils.cpp \
+           $$PWD/src/svccontrol.cpp \
+           $$PWD/src/classes/capplication.cpp \
+           $$PWD/src/classes/csocket.cpp \
+           $$PWD/src/classes/cunzip.cpp \
+           $$PWD/src/classes/csvcmanager.cpp \
+           $$PWD/src/classes/cdownloader.cpp
 
 ENV_PRODUCT_VERSION = $$(PRODUCT_VERSION)
 !isEmpty(ENV_PRODUCT_VERSION) {
@@ -90,11 +98,22 @@ core_windows {
             -luserenv
 }
 
-core_linux {
-    HEADERS += $$PWD/src/platform_linux/utils.h \
-               $$PWD/src/classes/platform_linux/capplication.h \
-               $$PWD/src/classes/platform_linux/cunzip.h \
-               $$PWD/src/classes/platform_linux/cdownloader.h
+LIBS += -luser32 \
+        -lkernel32 \
+        -lshell32 \
+        -lshlwapi \
+        -lole32 \
+        -loleaut32 \
+        -lcomsuppw \
+        -ladvapi32 \
+        -lwinhttp \
+        -lwininet \
+        -lws2_32 \
+        -lrpcrt4 \
+        -lwtsapi32 \
+        -lcrypt32 \
+        -lwintrust \
+        -luserenv
 
     SOURCES += $$PWD/src/platform_linux/main.cpp \
                $$PWD/src/platform_linux/utils.cpp \

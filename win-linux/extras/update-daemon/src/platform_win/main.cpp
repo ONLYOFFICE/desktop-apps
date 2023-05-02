@@ -33,8 +33,9 @@
 #include "utils.h"
 #include "platform_win/svccontrol.h"
 #include "classes/platform_win/capplication.h"
-#include "classes/cupdatemanager.h"
+#include "classes/csvcmanager.h"
 #include "../../src/defines.h"
+#include "../../src/prop/defines_p.h"
 
 SERVICE_STATUS          gSvcStatus;
 SERVICE_STATUS_HANDLE   gSvcStatusHandle;
@@ -93,7 +94,7 @@ int __cdecl _tmain (int argc, TCHAR *argv[])
                 return 0;
 
             CApplication app;
-            CUpdateManager upd;
+            CSvcManager upd;
             socket.onMessageReceived([&app](void *buff, size_t bufsize) {
                 if (strcmp((const char*)buff, "stop") == 0)
                     app.exit(0);
@@ -154,7 +155,7 @@ VOID WINAPI SvcMain(DWORD argc, LPTSTR *argv)
     // Report running status when initialization is complete.
     ReportSvcStatus(SERVICE_RUNNING, NO_ERROR, 0);
 
-    CUpdateManager upd;
+    CSvcManager upd;
     upd.aboutToQuit([]() {
         ReportSvcStatus(SERVICE_STOPPED, NO_ERROR, 0);
     });

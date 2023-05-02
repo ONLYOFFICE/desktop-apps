@@ -56,6 +56,7 @@ l10n.lt = {
     actActivate: 'Aktyvuoti',
     actAbout: 'Apie',
     actSettings: 'Nustatymai',
+    actTemplates: 'Šablonai',
     licKeyHolder: 'Įvesties aktyvavimo raktas',
     btnActivate: 'Aktyvuoti',
     licGetLicense: 'Gauti licenziją dabar',

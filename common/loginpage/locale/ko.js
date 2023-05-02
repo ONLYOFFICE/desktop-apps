@@ -56,6 +56,7 @@ l10n.ko = {
     actActivate: '활성화',
     actAbout: '소개',
     actSettings: '설정',
+    actTemplates: '양식들',
     licKeyHolder: '활성화 키 입력',
     btnActivate: '활성화',
     licGetLicense: '지금 라이센스를 구입하세요',

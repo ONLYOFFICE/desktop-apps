@@ -142,7 +142,9 @@ bool CFileDialogWrapper::modalSaveAs(QString& fileName, int selected)
     }
 
 #ifdef _WIN32
-    QString _croped_name = fileName;
+    // TODO: win 10 home doesn't crop file name by self. refactor for ver 7.5 with linux ver
+//    QString _croped_name = fileName;
+    QString _croped_name = WindowHelper::useNativeDialog() ? fileName.left(fileName.lastIndexOf('.')) : fileName;
 #else
     QString _croped_name = fileName.left(fileName.lastIndexOf("."));
 #endif
@@ -248,7 +250,7 @@ QStringList CFileDialogWrapper::modalOpen(const QString& path, const QString& fi
                         " (*.docx *.doc *.odt *.ott *.rtf *.docm *.dotx *.dotm *.fb2 *.fodt *.wps *.wpt *.xml *.pdf *.djv *.djvu *.sxw *.stw);;" +
 #endif
                     tr("Spreadsheets") + " (*.xlsx *.xls *.ods *.ots *.xltx *.xltm *.fods *.et *.ett *.sxc);;" +
-                    tr("Presentations") + " (*.pptx *.ppt *.odp *.otp *.ppsm *.ppsx *.pps *.potx *.pot *.potm *.fodp *.dps *.dpt *.sxi));;" +
+                    tr("Presentations") + " (*.pptx *.ppt *.odp *.otp *.ppsm *.ppsx *.pps *.potx *.pot *.potm *.fodp *.dps *.dpt *.sxi);;" +
                     tr("Web Page") + " (*.html *.htm *.mht *.mhtml *.epub);;" +
                     tr("Text files") + " (*.txt *.csv)";
         _all_sup_files = tr("All supported files") + " " + joinExtentions(_filter_);
@@ -351,6 +353,19 @@ QStringList CFileDialogWrapper::modalOpenPresentations(const QString& path, bool
     filter.prepend(tr("Presentations") + " (*.pptx *.ppt *.odp *.otp *.ppsm *.ppsx *.pps *.potx *.pot *.potm *.fodp *.dps *.dpt);;");
 
     return modalOpen(path, filter, nullptr, multi);
+}
+
+QStringList CFileDialogWrapper::modalOpenForEncrypt(const QString& path, bool multi)
+{
+    QString _filter = tr("Text documents") + " (*.docx *.docxf *.docm *.dotm *.dotx *.oform);;" +
+                        tr("Spreadsheets") + " (*.xlsx *.xlsm *.xltm *.xltx);;" +
+                        tr("Presentations") + " (*.potm *.potx *.ppsm *.pptm *.ppsx *.pptx)";
+
+    const QString _all_supported = tr("All supported files") + " " + joinExtentions(_filter);
+    _filter.prepend(_all_supported + ";;");
+    _filter.append(";;" + m_mapFilters[AVS_OFFICESTUDIO_FILE_UNKNOWN]);
+
+    return modalOpen(path, _filter, nullptr, multi);
 }
 
 QStringList CFileDialogWrapper::modalOpenAny(const QString& path, bool multi)

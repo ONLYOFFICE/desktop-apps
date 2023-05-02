@@ -56,6 +56,7 @@ l10n.zh_HK = {
     actActivate: '啟用',
     actAbout: '關於',
     actSettings: '設定',
+    actTemplates: '樣板',
     licKeyHolder: '輸入啟用金鑰',
     btnActivate: '啟用',
     licGetLicense: '立即取得授權',

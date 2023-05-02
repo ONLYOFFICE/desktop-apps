@@ -622,6 +622,19 @@ QJsonObject Utils::parseJson(const std::wstring& wjson)
     return QJsonObject();
 }
 
+bool Utils::updatesAllowed()
+{
+    GET_REGISTRY_SYSTEM(reg_system)
+    if (reg_system.value("CheckForUpdates", true).toBool()) {
+#ifdef _WIN32
+        return (IsPackage(Portable) || IsPackage(ISS) || IsPackage(MSI));
+#else
+        return IsPackage(Portable);
+#endif
+    }
+    return false;
+}
+
 #ifdef _WIN32
 Utils::WinVer Utils::getWinVersion()
 {

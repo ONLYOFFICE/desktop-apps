@@ -101,6 +101,9 @@ void CMainWindowImpl::refreshAboutVersion()
 
 #ifndef __OS_WIN_XP
     _json_obj["uitheme"] = QString::fromStdWString(AscAppManager::themes().current().id());
+# ifdef Q_OS_LINUX
+    _json_obj["systemtheme"] = "disabled";
+# endif
 #endif
 
 #ifdef Q_OS_WIN
@@ -112,18 +115,10 @@ void CMainWindowImpl::refreshAboutVersion()
 
     // Read update settings
 #ifdef _UPDMODULE
-# ifdef _WIN32
-    if (AppOptions::packageType() == AppOptions::AppPackageType::Portable
-            || AppOptions::packageType() == AppOptions::AppPackageType::ISS) {
+    if ( Utils::updatesAllowed() ) {
         AscAppManager::sendCommandTo(0, "updates:turn", "on");
         _json_obj["updates"] = QJsonObject({{"mode", reg_user.value("autoUpdateMode","ask").toString()}});
     }
-# else
-    if (AppOptions::packageType() == AppOptions::AppPackageType::Portable) {
-        AscAppManager::sendCommandTo(0, "updates:turn", "on");
-        _json_obj["updates"] = QJsonObject({{"mode", reg_user.value("autoUpdateMode","ask").toString()}});
-    }
-# endif
 #endif
 
     AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, "settings:init", Utils::stringifyJson(_json_obj));

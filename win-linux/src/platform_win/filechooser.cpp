@@ -244,7 +244,7 @@ QStringList Win::openWinFileChooser(QWidget *parent,
                 file.mid(pos + 1) : file;
     const QString _path = (path.isEmpty() && pos != -1) ?
                 file.mid(0, pos) : path;
-    _file = _file.left(_file.lastIndexOf("."));
+//    _file = _file.left(_file.lastIndexOf("."));
 
     QStringList filenames;
     HWND parent_hwnd = (parent) ? (HWND)parent->winId() : nullptr;

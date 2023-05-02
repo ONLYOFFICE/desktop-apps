@@ -91,7 +91,10 @@ private:
     void updateNeededCheking();
     void onCheckFinished(bool error, bool updateExist, const QString &version, const QString &changelog);
     void unzipIfNeeded();
-    void savePackageData(const QString &version = QString(), const QString &fileName = QString());
+    void savePackageData(const QString &version = QString(), const QString &fileName = QString(), const QString &fileType = QString());
+    QString ignoredVersion();
+    bool isSavedPackageValid();
+    bool isVersionBHigherThanA(const QString &a, const QString &b);
     bool sendMessage(int cmd, const tstring &param1 = TEXT("null"), const tstring &param2 = TEXT("null"),
                         const tstring &param3 = TEXT("null"));
 

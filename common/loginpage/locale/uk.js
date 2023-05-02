@@ -56,6 +56,7 @@ l10n.uk = {
     actActivate: 'Активувати',
     actAbout: 'Інформація',
     actSettings: 'Параметри',
+    actTemplates: 'Шаблони',
     licKeyHolder: 'введіть ключ активації',
     btnActivate: 'Активувати',
     licGetLicense: 'Отримати ліцензію',

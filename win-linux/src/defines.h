@@ -78,6 +78,7 @@
     AscAppManager::themes().themeActualId(theme)
 #define GetColorByRole(role) \
     GetCurrentTheme().color(CTheme::ColorRole::role)
+#define IsPackage(type) (AppOptions::packageType() == AppOptions::AppPackageType::type)
 
 #define LOCAL_PATH_OPEN         1
 #define LOCAL_PATH_SAVE         2

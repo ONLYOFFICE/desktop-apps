@@ -54,7 +54,7 @@ int ShowMessage(wstring str, bool showError = false);
 
 namespace NS_File
 {
-bool GetFilesList(const wstring &path, list<wstring> *lst, wstring &error);
+bool GetFilesList(const wstring &path, list<wstring> *lst, wstring &error, bool ignore_locked = false);
 bool readFile(const wstring &filePath, list<wstring> &linesList);
 bool writeToFile(const wstring &filePath, list<wstring> &linesList);
 bool runProcess(const wstring &fileName, const wstring &args);

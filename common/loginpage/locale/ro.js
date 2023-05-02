@@ -56,6 +56,7 @@ l10n.ro = {
     actActivate: 'Activare',
     actAbout: 'Informaţii',
     actSettings: 'Opţiuni',
+    actTemplates: 'Template-uri',
     licKeyHolder: 'introcuceți o cheie de acticvare',
     btnActivate: 'Activare',
     licGetLicense: 'Obțineți acum o licența',

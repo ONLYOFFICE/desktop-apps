@@ -523,6 +523,8 @@ gl.WarningClearAppData =Quere borrar a configuración do usuario e os datos da c
 ;gl.AssociateDescription =Asociar tipos de ficheiros de documentos de oficina con %1
 ;si.AssociateDescription =%1 සමඟ කාර්යාල ලේඛන ගොනු වර්ග සම්බන්ධ කරන්න
 ;zh_HK.AssociateDescription =與文書處理檔案類型聯結 %1
+;======================================================================================================
+en.UpdateService =Service for update {#sAppName}
 
 [Code]
 const
@@ -711,6 +713,12 @@ var
 begin
   if CurUninstallStep = usUninstall then
   begin
+    GetWindowsVersionEx(version);
+    if (version.Major > 6) or ((version.Major = 6) and (version.Minor >= 1)) then begin
+      Exec(ExpandConstant('{app}\{#iconsExe}'), '--remove-jump-list', '', SW_SHOWNORMAL, ewWaitUntilTerminated, ErrorCode);
+      Exec(ExpandConstant('{app}\updatesvc.exe'), '--delete', '', SW_HIDE, ewWaitUntilTerminated, ErrorCode);
+    end;
+    
     RegQueryStringValue(GetHKLM(), ExpandConstant('{#APP_REG_PATH}'), 'uninstall', regValue);
 
     if (regValue <> 'full') and
@@ -755,11 +763,7 @@ begin
     UnassociateExtensions();
   end else
   if CurUninstallStep = usPostUninstall then begin
-    GetWindowsVersionEx(version);
-    if (version.Major > 6) or ((version.Major = 6) and (version.Minor >= 1)) then begin
-      Exec(ExpandConstant('{app}\{#iconsExe}'), '--remove-jump-list', '', SW_SHOWNORMAL, ewWaitUntilTerminated, ErrorCode);
-      Exec(ExpandConstant('{app}\updatesvc.exe'), '--delete', '', SW_HIDE, ewWaitUntilTerminated, ErrorCode);
-    end;
+    
   end;
 end;
 
@@ -782,7 +786,10 @@ begin
       StringChangeEx(translateArgs, ' ', '_', True);
       StringChangeEx(translateArgs, '+', ' ', True);
       Exec(ExpandConstant('{app}\{#iconsExe}'), '--create-jump-list ' + translateArgs, '', SW_SHOWNORMAL, ewWaitUntilTerminated, ErrorCode);
-      Exec(ExpandConstant('{app}\updatesvc.exe'), '--install "Service for update documents editor."', '', SW_HIDE, ewWaitUntilTerminated, ErrorCode);
+      if CheckCommandlineParam('/noupdates') then begin
+        RegWriteDWordValue(HKEY_LOCAL_MACHINE, ExpandConstant('{#APP_REG_PATH}'), 'CheckForUpdates', 0);
+      end else
+        Exec(ExpandConstant('{app}\updatesvc.exe'), '--install "' + ExpandConstant('{cm:UpdateService}') + '."', '', SW_HIDE, ewWaitUntilTerminated, ErrorCode);
     end;
     // migrate from the prev version when user's data saved to system common path
     commonCachePath := ExpandConstant('{commonappdata}\{#APP_PATH}\data\cache');
@@ -814,7 +821,15 @@ end;
 function PrepareToInstall(var NeedsRestart: Boolean): String;
 var
   path: string;
+  ErrorCode: integer;
+  version: TWindowsVersion;
 begin
+  GetWindowsVersionEx(version);
+  if (version.Major > 6) or ((version.Major = 6) and (version.Minor >= 1)) then begin
+    if FileExists(ExpandConstant('{app}\updatesvc.exe')) then
+      Exec(ExpandConstant('{app}\updatesvc.exe'), '--delete', '', SW_HIDE, ewWaitUntilTerminated, ErrorCode);
+  end;
+
   path := ExpandConstant('{app}\editors\web-apps');
   if DirExists(path) then DelTree(path, true, true, true);
 
@@ -961,6 +976,7 @@ Source: {#DEPLOY_PATH}\hunspell.dll;                    DestDir: {app}; Flags: s
 Source: {#DEPLOY_PATH}\ooxmlsignature.dll;              DestDir: {app}; Flags: signonce;
 Source: {#DEPLOY_PATH}\converter\*.dll;                 DestDir: {app}\converter; Flags: signonce;
 Source: {#DEPLOY_PATH}\converter\*.exe;                 DestDir: {app}\converter; Flags: signonce;
+Source: ..\..\..\common\converter\package.config;       DestDir: {app}\converter;
 
 [InstallDelete]
 Type: filesandordirs; Name: {app}\editors\sdkjs-plugins

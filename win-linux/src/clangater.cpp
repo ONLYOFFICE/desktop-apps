@@ -114,7 +114,7 @@ private:
     std::list<QString> m_dirs;
 
     QMap<QString, QString> m_langs{
-        {"en-EN", "English"},
+        {"en-US", "English"},
         {"ru-RU", "Русский"},
         {"de-DE", "Deutsch"},
         {"fr-FR", "Français"},
@@ -138,9 +138,9 @@ private:
         ,{"hu-HU", "Magyar"}
         ,{"hy-AM", "Հայերեն"}
         ,{"id-ID", "Indonesian"}
-        ,{"no-NO", "Norsk"}
+        ,{"no", "Norsk"}
         ,{"ro-RO", "Romanian"}
-        ,{"sl-SL", "Slovene"}
+        ,{"sl-SI", "Slovene"}
         ,{"sv-SE", "Svenska"}
         ,{"tr-TR", "Türkçe"}
         ,{"ja-JP", "日本語"}

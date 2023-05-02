@@ -30,8 +30,8 @@
  *
  */
 
-#ifndef CUPDATEMANAGER_H
-#define CUPDATEMANAGER_H
+#ifndef CSVCMANAGER_H
+#define CSVCMANAGER_H
 
 #include "classes/csocket.h"
 #include <future>
@@ -57,11 +57,11 @@ typedef std::function<void(void)> FnVoidVoid;
 using std::future;
 
 
-class CUpdateManager
+class CSvcManager
 {
 public:
-    explicit CUpdateManager();
-    ~CUpdateManager();
+    explicit CSvcManager();
+    ~CSvcManager();
 
     /* callback */
     void aboutToQuit(FnVoidVoid callback);
@@ -91,4 +91,4 @@ private:
     };
 };
 
-#endif // CUPDATEMANAGER_H
+#endif // CSVCMANAGER_H

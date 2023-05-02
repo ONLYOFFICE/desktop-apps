@@ -1081,6 +1081,8 @@
             allowedFileTypes = [ASCConstants presentations];
         } else if ([fileTypes isEqualToString:CEFOpenFileFilterCsvTxt]) {
             allowedFileTypes = [ASCConstants csvtxt];
+        } else if ([fileTypes isEqualToString:CEFOpenFileFilterCrypto]) {
+            allowedFileTypes = [ASCConstants cancryptformats];
         } else if ([fileTypes isEqualToString:CEFOpenFileFilterXML]) {
             allowedFileTypes = [ASCConstants xmldata];
         } else {

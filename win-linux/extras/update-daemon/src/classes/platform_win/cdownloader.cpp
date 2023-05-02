@@ -32,74 +32,135 @@
 
 #include "cdownloader.h"
 #include <Windows.h>
-#include <wininet.h>
+#include <Winhttp.h>
+
+#define DNL_OK         0
+#define DNL_ABORT      1
+#define DNL_URL_ERR    2
+#define DNL_CONN_ERR   3
+#define DNL_OUT_MEM    4
+#define DNL_CREAT_ERR  5
+#define DNL_OTHER_ERR  6
 
 
-class CDownloader::DownloadProgress : public IBindStatusCallback
+int downloadToFile(const wstring &url, const wstring &filePath, std::atomic_bool &run, FnVoidInt &progress_callback)
 {
-public:
-    DownloadProgress(CDownloader *owner) :
-        m_owner(owner)
-    {
+    URL_COMPONENTS urlComp;
+    ZeroMemory(&urlComp, sizeof(urlComp));
+    urlComp.dwStructSize = sizeof(urlComp);
+    urlComp.dwHostNameLength = 1;
+    urlComp.dwUrlPathLength = 1;
+    if (!WinHttpCrackUrl(url.c_str(), (DWORD)url.length(), 0, &urlComp))
+        return DNL_URL_ERR;
 
-    }
-    HRESULT __stdcall QueryInterface(const IID &, void **) {
-        return E_NOINTERFACE;
-    }
-    ULONG STDMETHODCALLTYPE AddRef(void) {
-        return 1;
-    }
-    ULONG STDMETHODCALLTYPE Release(void) {
-        return 1;
-    }
-    HRESULT STDMETHODCALLTYPE OnStartBinding(DWORD dwReserved, IBinding *pib) {
-        return E_NOTIMPL;
-    }
-    virtual HRESULT STDMETHODCALLTYPE GetPriority(LONG *pnPriority) {
-        return E_NOTIMPL;
-    }
-    virtual HRESULT STDMETHODCALLTYPE OnLowResource(DWORD reserved) {
-        return S_OK;
-    }
-    virtual HRESULT STDMETHODCALLTYPE OnStopBinding(HRESULT hresult, LPCWSTR szError) {
-        return E_NOTIMPL;
-    }
-    virtual HRESULT STDMETHODCALLTYPE GetBindInfo(DWORD *grfBINDF, BINDINFO *pbindinfo) {
-        return E_NOTIMPL;
-    }
-    virtual HRESULT STDMETHODCALLTYPE OnDataAvailable(DWORD grfBSCF, DWORD dwSize, FORMATETC *pformatetc, STGMEDIUM *pstgmed) {
-        return E_NOTIMPL;
-    }
-    virtual HRESULT STDMETHODCALLTYPE OnObjectAvailable(REFIID riid, IUnknown *punk) {
-        return E_NOTIMPL;
+    wstring url_host(urlComp.lpszHostName, urlComp.dwHostNameLength);
+    wstring url_path(urlComp.lpszUrlPath, urlComp.dwUrlPathLength);
+
+    int prev_percent = -1;
+    DWORD dwProgress = 0;
+    DWORD dwProgressMax = 0;
+    DWORD dwSize = sizeof(DWORD);
+    HANDLE hFile = INVALID_HANDLE_VALUE;
+
+    HINTERNET hSession = WinHttpOpen(L"WinHTTP Example/1.0", WINHTTP_ACCESS_TYPE_DEFAULT_PROXY, WINHTTP_NO_PROXY_NAME, WINHTTP_NO_PROXY_BYPASS, 0);
+    if (!hSession)
+        return DNL_OTHER_ERR;
+    //WinHttpSetStatusCallback(hSession, WinHttpCallback, WINHTTP_CALLBACK_FLAG_ALL_NOTIFICATIONS, 0);
+    DWORD dwEnabledProtocols = WINHTTP_FLAG_SECURE_PROTOCOL_TLS1 | WINHTTP_FLAG_SECURE_PROTOCOL_TLS1_1 | WINHTTP_FLAG_SECURE_PROTOCOL_TLS1_2;
+    WinHttpSetOption(hSession, WINHTTP_OPTION_SECURE_PROTOCOLS, &dwEnabledProtocols, sizeof(DWORD));
+
+    HINTERNET hConnect = WinHttpConnect(hSession, url_host.c_str(), INTERNET_DEFAULT_HTTPS_PORT, 0);
+    if (!hConnect) {
+        WinHttpCloseHandle(hSession);
+        return DNL_CONN_ERR;
     }
 
-    virtual HRESULT __stdcall OnProgress(ULONG ulProgress, ULONG ulProgressMax, ULONG ulStatusCode, LPCWSTR szStatusText)
-    {
-        if (ulProgressMax != 0 && m_owner->m_progress_callback) {
-            int percent = static_cast<int>((100.0 * ulProgress) / ulProgressMax);
+    HINTERNET hRequest = WinHttpOpenRequest(hConnect, L"GET", url_path.c_str(), NULL, WINHTTP_NO_REFERER, WINHTTP_DEFAULT_ACCEPT_TYPES, WINHTTP_FLAG_SECURE);
+    if (!hRequest) {
+        WinHttpCloseHandle(hConnect);
+        WinHttpCloseHandle(hSession);
+        return DNL_CONN_ERR;
+    }
+
+    int result = DNL_OK;
+    if (!WinHttpSendRequest(hRequest, WINHTTP_NO_ADDITIONAL_HEADERS, 0, WINHTTP_NO_REQUEST_DATA, 0, 0, 0)) {
+        result = DNL_OTHER_ERR;
+        goto cleanup;
+    }
+
+    if (!WinHttpReceiveResponse(hRequest, NULL)) {
+        result = DNL_CONN_ERR;
+        goto cleanup;
+    }
+
+    if (!WinHttpQueryHeaders(hRequest, WINHTTP_QUERY_CONTENT_LENGTH | WINHTTP_QUERY_FLAG_NUMBER, NULL, &dwProgressMax, &dwSize, WINHTTP_NO_HEADER_INDEX)) {
+        result = DNL_CONN_ERR;
+        goto cleanup;
+    }
+
+    hFile = CreateFile(filePath.c_str(), GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+    if (hFile == INVALID_HANDLE_VALUE) {
+        result = DNL_CREAT_ERR;
+        goto cleanup;
+    }
+
+    do {
+        if (!run) {
+            result = DNL_ABORT;
+            break;
+        }
+
+        dwSize = 0;
+        if (!WinHttpQueryDataAvailable(hRequest, &dwSize)) {
+            result = DNL_CONN_ERR;
+            break;
+        }
+
+        LPSTR lpBuffer = new char[dwSize];
+        if (!lpBuffer) {
+            result = DNL_OUT_MEM;
+            break;
+        }
+
+        DWORD dwDownloaded = 0;
+        if (!WinHttpReadData(hRequest, (LPVOID)lpBuffer, dwSize, &dwDownloaded)) {
+            result = DNL_CONN_ERR;
+            delete[] lpBuffer;
+            break;
+        }
+
+        DWORD dwBytesWritten = 0;
+        BOOL write_res = WriteFile(hFile, lpBuffer, dwDownloaded, &dwBytesWritten, NULL);
+        delete[] lpBuffer;
+        if (!write_res || dwBytesWritten != dwDownloaded) {
+            result = DNL_OUT_MEM;
+            break;
+        }
+
+        if (dwProgressMax != 0 && progress_callback) {
+            dwProgress += dwDownloaded;
+            int percent = static_cast<int>((100.0 * dwProgress) / dwProgressMax);
             if (percent != prev_percent) {
-                m_owner->m_progress_callback(percent);
+                progress_callback(percent);
                 prev_percent = percent;
             }
         }
 
-        if (!m_owner->m_run)
-            return E_ABORT;
-        return S_OK;
-    }
-    int prev_percent = -1;
+    } while (dwSize > 0);
 
-private:
-    CDownloader *m_owner = nullptr;
-};
-
+cleanup :
+    if (hFile != INVALID_HANDLE_VALUE)
+        CloseHandle(hFile);
+    WinHttpCloseHandle(hRequest);
+    WinHttpCloseHandle(hConnect);
+    WinHttpCloseHandle(hSession);
+    return result;
+}
 
 CDownloader::CDownloader()
 {
     m_run = true;
     m_lock = false;
-    m_was_stopped = false;
 }
 
 CDownloader::~CDownloader()
@@ -129,18 +190,11 @@ void CDownloader::start()
     m_run = true;
     m_lock = true;
     m_future = std::async(std::launch::async, [=]() {
-        if (m_was_stopped) {
-            DeleteUrlCacheEntry(m_url.c_str());
-            m_was_stopped = false;
-        }
-        DownloadProgress progress(this);
-        progress.prev_percent = -1;
-        HRESULT hr = URLDownloadToFile(NULL, m_url.c_str(), m_filePath.c_str(), 0,
-                                       static_cast<IBindStatusCallback*>(&progress));
-        int error = (hr == S_OK) ? 0 :
-                    (hr == E_ABORT) ? 1 :
-                    (hr == E_OUTOFMEMORY) ? -1 :
-                    (HRESULT_CODE(hr) == ERROR_INVALID_HANDLE) ? -2 : -3;
+        int hr = downloadToFile(m_url, m_filePath, m_run, m_progress_callback);
+        int error = (hr == DNL_OK) ? 0 :
+                    (hr == DNL_ABORT) ? 1 :
+                    (hr == DNL_OUT_MEM) ? -1 :
+                    (hr == DNL_CONN_ERR) ? -2 : -3;
 
         if (m_complete_callback)
             m_complete_callback(error);
@@ -148,15 +202,9 @@ void CDownloader::start()
     });
 }
 
-void CDownloader::pause()
-{
-    m_run = false;
-}
-
 void CDownloader::stop()
 {
     m_run = false;
-    m_was_stopped = true;
 }
 
 wstring CDownloader::GetFilePath()
