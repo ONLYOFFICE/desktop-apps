@@ -56,6 +56,7 @@ l10n.sl = {
     actActivate: 'Aktiviraj',
     actAbout: 'Vizitka',
     actSettings: 'Nastavitve',
+    actTemplates: 'Predloge',
     licKeyHolder: 'vhodni aktivacijski ključ',
     btnActivate: 'Aktiviraj',
     licGetLicense: 'Pridobi licenco zdaj',

@@ -56,6 +56,7 @@ l10n.nl = {
     actActivate: 'Activeren',
     actAbout: 'Over',
     actSettings: 'Instellingen',
+    actTemplates: 'Sjablonen',
     licKeyHolder: 'invoer activeringssleutel',
     btnActivate: 'Activeren',
     licGetLicense: 'Haal nu een licentie',

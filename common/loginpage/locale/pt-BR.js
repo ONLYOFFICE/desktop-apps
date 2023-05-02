@@ -56,6 +56,7 @@ l10n.pt_BR = {
     actActivate: 'Ativar',
     actAbout: 'Sobre',
     actSettings: 'Definições',
+    actTemplates: 'Modelos',
     licKeyHolder: 'Inserir chave de ativação',
     btnActivate: 'Ativar',
     licGetLicense: 'Obter licença',

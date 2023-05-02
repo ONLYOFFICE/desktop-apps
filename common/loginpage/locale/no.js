@@ -56,6 +56,7 @@ l10n.no = {
     actActivate: 'Aktiver',
     actAbout: 'Om',
     actSettings: 'Innstillinger',
+    actTemplates: 'Maler',
     licKeyHolder: 'angi aktiveringsnøkkel',
     btnActivate: 'Aktiver',
     licGetLicense: 'Hent lisens nå',

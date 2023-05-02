@@ -56,6 +56,7 @@ l10n.bg = {
     actActivate: 'Активиране',
     actAbout: 'За',
     actSettings: 'Настройки',
+    actTemplates: 'Шаблони',
     licKeyHolder: 'въведи ключ за активиране',
     btnActivate: 'Активиране',
     licGetLicense: 'Вземи лиценз сега',

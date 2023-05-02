@@ -56,6 +56,7 @@ l10n.el = {
     actActivate: 'Ενεργοποίηση',
     actAbout: 'Σχετικά',
     actSettings: 'Ρυθμίσεις',
+    actTemplates: 'Πρότυπα',
     licKeyHolder: 'εισαγωγή κλειδιού ενεργοποίησης',
     btnActivate: 'Ενεργοποίηση',
     licGetLicense: 'Απόκτηση άδειας χρήσης τώρα',

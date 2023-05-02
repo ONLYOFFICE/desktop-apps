@@ -56,6 +56,7 @@ l10n.it_IT = {
     actActivate: 'Attiva',
     actAbout: 'Informazioni su',
     actSettings: 'Impostazioni',
+    actTemplates: 'Modelli',
     licKeyHolder: 'digitare activation key',
     btnActivate: 'Attiva',
     licGetLicense: 'Ottieni la licenza ora',
