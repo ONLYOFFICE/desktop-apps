@@ -66,6 +66,50 @@
         },
     }
 
+    const t = window.RendererProcessVariable.theme;
+    const uitheme = { id: t.id, type: t.type }
+
+    uitheme.set_id = function (id) {
+        if ( id == 'theme-system' )
+            this.adapt_to_system_theme();
+        else this.id = id;
+    }
+
+    uitheme.is_theme_system = function () {
+        return this.id == 'theme-system'
+    }
+
+    uitheme.is_system_theme_avalaible = function () {
+        return t.system !== 'disabled'
+    }
+
+    uitheme.adapt_to_system_theme = function () {
+        this.id = 'theme-system';
+        this.type = this.is_system_theme_dark() ? 'dark' : 'light';
+    }
+
+    uitheme.relevant_theme_id = function () {
+        if ( this.is_theme_system() )
+            return this.is_system_theme_dark() ? 'theme-dark' : 'theme-classic-light';
+        return this.id;
+    }
+
+    uitheme.is_system_theme_dark = function () {
+        return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    }
+
+    uitheme.get_default_theme_for_type = type => type == THEME_TYPE_DARK ? THEME_ID_DEFAULT_DARK : THEME_ID_DEFAULT_LIGHT;
+
+    uitheme.get_system_theme_type = () => {
+        const nativevars = window.RendererProcessVariable;
+        if ( nativevars.theme && !!nativevars.theme.system ) {
+            return nativevars.theme.system !== 'disabled' ? nativevars.theme.system : THEME_TYPE_LIGHT;
+        } else {
+            return window.matchMedia('(prefers-color-scheme: dark)').matches ? THEME_TYPE_DARK : THEME_TYPE_LIGHT;
+        }
+    }
+
+
     var ControllerSettings = function(args={}) {
         args.caption = 'Settings';
         args.action =
@@ -238,18 +282,16 @@
             $btnApply.disable(false);
         };
 
-        function _apply_theme(name, type) {
-            if ( name == 'theme-system' ) {
-                name = get_default_theme(get_system_theme_type());
-            }
+        function _apply_theme(id, type) {
+            uitheme.set_id(id);
 
-            if ( !$("body").hasClass(name) ) {
-                const _type = (type == 'dark' || /theme-(?:[a-z]+-)?dark(?:-[a-z]*)?/.test(name)) ? 'theme-type-dark' : 'theme-type-light';
+            const theme_id = uitheme.relevant_theme_id();
+            if ( !$("body").hasClass(theme_id) ) {
+                const _type = (type == 'dark' || /theme-(?:[a-z]+-)?dark(?:-[a-z]*)?/.test(theme_id)) ? 'theme-type-dark' : 'theme-type-light';
                 const _cls = document.body.className.replace(/theme-[\w-]+/gi,'').trim();
-                document.body.className = `${_cls?_cls+' ':''}${name} ${_type}`;
+                document.body.className = `${_cls?_cls+' ':''}${theme_id} ${_type}`;
 
-                localStorage.setItem('ui-theme-id', name);
-                CommonEvents.fire('theme:changed', [name, themes_map[name].type]);
+                CommonEvents.fire('theme:changed', [theme_id, themes_map[theme_id].type]);
             }
         };
 
@@ -421,7 +463,7 @@
                                             {'theme-dark': utils.Lang.settOptThemeDark},
                                             {'theme-contrast-dark': utils.Lang.settOptThemeContrastDark}];
 
-                            if ( !opts.systemtheme || opts.systemtheme !== 'disabled' )
+                            if ( uitheme.is_system_theme_avalaible() )
                                 _themes.unshift({'theme-system': utils.Lang.settOptThemeSystem});
 
                             const _combo = $('#opts-ui-theme select', $panel);
@@ -509,13 +551,6 @@
             }
         };
 
-        const get_system_theme_type = () => {
-            const nativevars = window.RendererProcessVariable;
-            return nativevars.theme && !!nativevars.theme.system ? nativevars.theme.system :
-                            window.matchMedia('(prefers-color-scheme: dark)').matches ? THEME_TYPE_DARK : THEME_TYPE_LIGHT;
-            //window.matchMedia('(prefers-color-scheme: dark)').matches ? THEME_TYPE_DARK : THEME_TYPE_LIGHT;
-        }
-        const get_default_theme = type => type == THEME_TYPE_DARK ? THEME_ID_DEFAULT_DARK : THEME_ID_DEFAULT_LIGHT;
         const on_system_theme_dark = e =>
             sdk.command("system:changed", JSON.stringify({'colorscheme': e.target.matches ? THEME_TYPE_DARK:THEME_TYPE_LIGHT}));
 
@@ -611,7 +646,7 @@
                 return this;
             },
             currentTheme: function() {
-                const name = localStorage.getItem('ui-theme-id');
+                const name = uitheme.id;
                 return {name: name, type: themes_map[name] ? themes_map[name].type : THEME_TYPE_LIGHT};
             },
         };
