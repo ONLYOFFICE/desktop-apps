@@ -172,11 +172,11 @@ void CSvcManager::init()
             case MSG_LoadUpdates: {
                 m_downloadMode = Mode::DOWNLOAD_UPDATES;
                 if (m_pDownloader) {
-                    wstring ext = (params[2] == TEXT("iss")) ? TEXT(".exe") :
+                    tstring ext = (params[2] == TEXT("iss")) ? TEXT(".exe") :
                                   (params[2] == TEXT("msi")) ? TEXT(".msi") : ARCHIVE_EXT;
                     m_pDownloader->downloadFile(params[1], generateTmpFileName(ext));
                 }
-                NS_Logger::WriteLog(L"Received MSG_LoadUpdates, URL: " + params[1]);
+                NS_Logger::WriteLog(TEXT("Received MSG_LoadUpdates, URL: ") + params[1]);
                 break;
             }
             case MSG_StopDownload: {
@@ -241,7 +241,7 @@ void CSvcManager::onCompleteUnzip(const int error)
     m_lock = false;
 }
 
-void CSvcManager::onCompleteSlot(const int error, const wstring &filePath)
+void CSvcManager::onCompleteSlot(const int error, const tstring &filePath)
 {
     if (error == 0) {
         switch (m_downloadMode) {

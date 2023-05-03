@@ -32,7 +32,7 @@
 
 #include "platform_linux/utils.h"
 #include "classes/platform_linux/capplication.h"
-#include "classes/cupdatemanager.h"
+#include "classes/csvcmanager.h"
 #include "../../src/defines.h"
 #include <cstring>
 
@@ -48,7 +48,7 @@ int main(int argc, char *argv[])
                 return 0;
 
             CApplication app;
-            CUpdateManager upd;
+            CSvcManager upd;
             socket.onMessageReceived([&app](void *buff, size_t) {
                 if (strcmp((const char*)buff, "stop") == 0)
                     app.exit(0);
