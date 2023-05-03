@@ -117,7 +117,6 @@ public slots:
     void onEditorActionRequest(int, const QString&);
     void onTabsCountChanged(int, int, int);
     void onWebAppsFeatures(int id, std::wstring);
-    void onCloudDocumentOpen(std::wstring, int, bool);
     void onDocumentType(int id, int type);
     void onDocumentName(void *);
     void onEditorConfig(int, std::wstring cfg);

@@ -716,27 +716,6 @@ void CMainWindow::onPortalLogout(std::wstring wjson)
     }
 }
 
-void CMainWindow::onCloudDocumentOpen(std::wstring url, int id, bool select)
-{
-    COpenOptions opts = {url};
-    opts.id = id;
-
-    int _index = m_pTabs->openCloudDocument(opts, select, true);
-    if ( !(_index < 0) ) {
-        if ( select )
-            toggleButtonMain(false, true);
-
-        CAscTabData& _panel = *(m_pTabs->panel(_index)->data());
-        QRegularExpression re("ascdesktop:\\/\\/compare");
-        QRegularExpressionMatch match = re.match(QString::fromStdWString(_panel.url()));
-
-        if (match.hasMatch()) {
-             _panel.setIsLocal(true);
-             _panel.setUrl("");
-        }
-    }
-}
-
 void CMainWindow::doOpenLocalFile(COpenOptions& opts)
 {
     QFileInfo info(opts.url);

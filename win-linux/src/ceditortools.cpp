@@ -266,13 +266,6 @@ namespace CEditorTools
             if ( opts.srctype == etNewFile )
                 data->setContentType(editorTypeFromFormat(opts.format));
 
-            if ( !data->isLocal() ) {
-                QRegularExpression re("ascdesktop:\\/\\/compare");
-                QRegularExpressionMatch match = re.match(QString::fromStdWString(data->url()));
-                if ( match.hasMatch() ) {
-                     data->setIsLocal(true);
-                }
-            }
 
 
             panel->setData(data);
