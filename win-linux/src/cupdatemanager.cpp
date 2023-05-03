@@ -212,12 +212,12 @@ CUpdateManager::CUpdateManager(QObject *parent):
         if ( InputArgs::contains(CMD_ARGUMENT_UPDATES_CHANNEL) ) {
             std::wstring ch_updates = InputArgs::argument_value(CMD_ARGUMENT_UPDATES_CHANNEL);
             if ( ch_updates == L"dev" ) {
-                m_checkUrl = TEXT(URL_APPCAST_DEV_CHANNEL);
+                m_checkUrl = QString(URL_APPCAST_DEV_CHANNEL).toStdWString();
             }
         }
 
         if ( m_checkUrl.empty() )
-            m_checkUrl = TEXT(URL_APPCAST_UPDATES);
+            m_checkUrl = QString(URL_APPCAST_UPDATES).toStdWString();
     }
 
     if ( !m_checkUrl.empty()) {
@@ -431,7 +431,7 @@ bool CUpdateManager::isVersionBHigherThanA(const QString &a, const QString &b)
     return false;
 }
 
-bool CUpdateManager::sendMessage(int cmd, const wstring &param1, const wstring &param2, const wstring &param3)
+bool CUpdateManager::sendMessage(int cmd, const tstring &param1, const tstring &param2, const tstring &param3)
 {
     tstring str = std::to_tstring(cmd) + TEXT("|") + param1 + TEXT("|") + param2 + TEXT("|") + param3;
     size_t sz = str.size() * sizeof(str.front());
@@ -453,7 +453,7 @@ void CUpdateManager::loadUpdates()
 
     } else
     if (!m_packageData->packageUrl.empty()) {
-        if (!sendMessage(MSG_LoadUpdates, m_packageData->packageUrl, m_packageData->fileType.toStdWString())) {
+        if (!sendMessage(MSG_LoadUpdates, WStrToTStr(m_packageData->packageUrl), QStrToTStr(m_packageData->fileType))) {
             m_dialogSchedule->addToSchedule("criticalMsg", QObject::tr("An error occurred while loading updates: Update Service not found!"));
         }
     }
@@ -601,6 +601,7 @@ void CUpdateManager::onLoadCheckFinished(const QString &filePath)
             }
 #else
             QJsonObject win = package.value("linux_64").toObject();
+            QJsonObject package_type = win.value("archive").toObject();
 #endif
             m_packageData->packageUrl = package_type.value("url").toString().toStdWString();
             m_packageData->hash = package_type.value("md5").toString().toLower();

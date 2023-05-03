@@ -38,20 +38,36 @@
 #include <sstream>
 #include "../../src/defines.h"
 #include "../../src/prop/defines_p.h"
-#include <Windows.h>
-#include <WinInet.h>
-#include <shlwapi.h>
-#include <tchar.h>
-#include <sstream>
+#ifdef _WIN32
+# include "platform_win/utils.h"
+# include <codecvt>
+# include <WinInet.h>
+# include <shlwapi.h>
+# define APP_LAUNCH_NAME  L"/DesktopEditors.exe"
+# define APP_LAUNCH_NAME2 L"/editors.exe"
+# define APP_HELPER       L"/editors_helper.exe"
+# define DAEMON_NAME      L"/updatesvc.exe"
+# define DAEMON_NAME_OLD  L"/~updatesvc.exe"
+# define ARCHIVE_EXT      TEXT(".zip")
+# define ARCHIVE_PATTERN  TEXT("*.zip")
+# define sleep(a) Sleep(a)
+#else
+# include "platform_linux/utils.h"
+# include <unistd.h>
+# include <fnmatch.h>
+# include <uuid/uuid.h>
+# define APP_LAUNCH_NAME  "/DesktopEditors"
+# define APP_HELPER       "/editors_helper"
+# define DAEMON_NAME      "/updatesvc"
+# define SUBFOLDER        "/desktopeditors"
+# define ARCHIVE_EXT      TEXT(".tar.gz")
+# define ARCHIVE_PATTERN  TEXT("*.tar.gz")
+# define sleep(a) usleep(a*1000)
+#endif
 
 #define UPDATE_PATH      TEXT("/" REG_APP_NAME "Updates")
 #define BACKUP_PATH      TEXT("/" REG_APP_NAME "Backup")
-#define APP_LAUNCH_NAME  L"/DesktopEditors.exe"
-#define APP_LAUNCH_NAME2 L"/editors.exe"
-#define APP_HELPER       L"/editors_helper.exe"
-#define DAEMON_NAME      L"/updatesvc.exe"
-#define DAEMON_NAME_OLD  L"/~updatesvc.exe"
-#define SUCCES_UNPACKED  L"/.success_unpacked"
+#define SUCCES_UNPACKED  TEXT("/.success_unpacked")
 
 using std::vector;
 
@@ -156,8 +172,8 @@ void CSvcManager::init()
             case MSG_LoadUpdates: {
                 m_downloadMode = Mode::DOWNLOAD_UPDATES;
                 if (m_pDownloader) {
-                    wstring ext = (params[2] == TEXT("archive")) ? TEXT(".zip") :
-                                  (params[2] == TEXT("msi")) ? TEXT(".msi") : TEXT(".exe");
+                    wstring ext = (params[2] == TEXT("iss")) ? TEXT(".exe") :
+                                  (params[2] == TEXT("msi")) ? TEXT(".msi") : ARCHIVE_EXT;
                     m_pDownloader->downloadFile(params[1], generateTmpFileName(ext));
                 }
                 NS_Logger::WriteLog(L"Received MSG_LoadUpdates, URL: " + params[1]);
@@ -203,8 +219,8 @@ void CSvcManager::onCompleteUnzip(const int error)
 {
     if (error == UNZIP_OK) {
         // Сreate a file about successful unpacking for use in subsequent launches
-        const wstring updPath = NS_File::parentPath(NS_File::appPath()) + UPDATE_PATH;
-        list<wstring> successList{m_newVersion};
+        const tstring updPath = NS_File::parentPath(NS_File::appPath()) + UPDATE_PATH;
+        list<tstring> successList{m_newVersion};
         if (!NS_File::writeToFile(updPath + SUCCES_UNPACKED, successList)) {
             m_lock = false;
             return;
@@ -258,14 +274,14 @@ void CSvcManager::onProgressSlot(const int percent)
         sendMessage(MSG_Progress, to_tstring(percent));
 }
 
-void CSvcManager::unzipIfNeeded(const wstring &filePath, const wstring &newVersion)
+void CSvcManager::unzipIfNeeded(const tstring &filePath, const tstring &newVersion)
 {
     if (m_lock)
         return;
     m_lock = true;
 
     m_newVersion = newVersion;
-    const wstring updPath = NS_File::parentPath(NS_File::appPath()) + UPDATE_PATH;
+    const tstring updPath = NS_File::parentPath(NS_File::appPath()) + UPDATE_PATH;
     auto unzip = [=]()->void {
         if (!NS_File::dirExists(updPath) && !NS_File::makePath(updPath)) {
             NS_Logger::WriteLog(TEXT("An error occurred while creating dir: ") + updPath);
@@ -291,19 +307,23 @@ void CSvcManager::unzipIfNeeded(const wstring &filePath, const wstring &newVersi
     }
 }
 
-void CSvcManager::clearTempFiles(const wstring &prefix, const wstring &except)
+void CSvcManager::clearTempFiles(const tstring &prefix, const tstring &except)
 {
     m_future_clear = std::async(std::launch::async, [=]() {
         tstring _error;
         list<tstring> filesList;
         if (!NS_File::GetFilesList(NS_File::tempPath(), &filesList, _error, true)) {
-            NS_Logger::WriteLog(DEFAULT_ERROR_MESSAGE + L" " + _error);
+            NS_Logger::WriteLog(DEFAULT_ERROR_MESSAGE + TEXT(" ") + _error);
             return;
         }
         for (auto &filePath : filesList) {
-            if (PathMatchSpec(filePath.c_str(), L"*.json") || PathMatchSpec(filePath.c_str(), L"*.zip")
-                    || PathMatchSpec(filePath.c_str(), L"*.msi") || PathMatchSpec(filePath.c_str(), L"*.exe")) {
-                wstring lcFilePath(filePath);
+#ifdef _WIN32
+            if (PathMatchSpec(filePath.c_str(), L"*.json") || PathMatchSpec(filePath.c_str(), ARCHIVE_PATTERN)
+                || PathMatchSpec(filePath.c_str(), L"*.msi") || PathMatchSpec(filePath.c_str(), L"*.exe")) {
+#else
+            if (fnmatch("*.json", filePath.c_str(), 0) == 0 || fnmatch(ARCHIVE_PATTERN, filePath.c_str(), 0) == 0) {
+#endif
+                tstring lcFilePath(filePath);
                 std::transform(lcFilePath.begin(), lcFilePath.end(), lcFilePath.begin(), ::tolower);
                 if (lcFilePath.find(prefix) != tstring::npos && filePath != except)
                     NS_File::removeFile(filePath);
@@ -314,9 +334,9 @@ void CSvcManager::clearTempFiles(const wstring &prefix, const wstring &except)
 
 void CSvcManager::startReplacingFiles()
 {
-    wstring appPath = NS_File::appPath();
-    wstring updPath = NS_File::parentPath(appPath) + UPDATE_PATH;
-    wstring tmpPath = NS_File::parentPath(appPath) + BACKUP_PATH;
+    tstring appPath = NS_File::appPath();
+    tstring updPath = NS_File::parentPath(appPath) + UPDATE_PATH;
+    tstring tmpPath = NS_File::parentPath(appPath) + BACKUP_PATH;
     if (!NS_File::dirExists(updPath)) {
         NS_Logger::WriteLog(TEXT("Update cancelled. Can't find folder: ") + updPath, true);
         return;
@@ -337,6 +357,7 @@ void CSvcManager::startReplacingFiles()
         NS_Logger::WriteLog(L"Update cancelled. The file signature is missing: " + updPath + DAEMON_NAME, true);
         return;
     }
+# endif
 #endif
 
     // Check backup folder
@@ -387,7 +408,7 @@ void CSvcManager::startReplacingFiles()
 #else
     if (!NS_File::replaceFolder(appPath, tmpPath, true)) {
 #endif
-        NS_Logger::WriteLog(L"Update cancelled. Can't replace files to backup: " + NS_Utils::GetLastErrorAsString(), true);
+        NS_Logger::WriteLog(TEXT("Update cancelled. Can't replace files to backup: ") + NS_Utils::GetLastErrorAsString(), true);
         if (NS_File::dirExists(tmpPath) && !NS_File::dirIsEmpty(tmpPath) && !NS_File::replaceFolder(tmpPath, appPath))
             NS_Logger::WriteLog(TEXT("Can't restore files from backup!"), true);
         return;
@@ -467,7 +488,7 @@ void CSvcManager::startReplacingFiles()
         NS_Logger::WriteLog(TEXT("An error occurred while restarting the program!"), true);
 }
 
-bool CSvcManager::sendMessage(int cmd, const wstring &param1, const wstring &param2, const wstring &param3)
+bool CSvcManager::sendMessage(int cmd, const tstring &param1, const tstring &param2, const tstring &param3)
 {
     tstring str = to_tstring(cmd) + TEXT("|") + param1 + TEXT("|") + param2 + TEXT("|") + param3;
     size_t sz = str.size() * sizeof(str.front());
