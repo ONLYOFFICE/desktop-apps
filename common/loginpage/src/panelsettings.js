@@ -416,13 +416,16 @@
                         if ( !!opts.uitheme ) {
                             opts.uitheme == 'canuse' && (opts.uitheme = 'theme-light');
 
-                            const _themes = [{'theme-light': utils.Lang.settOptThemeLight},
+                            const _themes = [{'theme-system': utils.Lang.settOptThemeSystem},
+                                            {'theme-light': utils.Lang.settOptThemeLight},
                                             {'theme-classic-light': utils.Lang.settOptThemeClassicLight},
                                             {'theme-dark': utils.Lang.settOptThemeDark},
                                             {'theme-contrast-dark': utils.Lang.settOptThemeContrastDark}];
 
-                            if ( !opts.systemtheme || opts.systemtheme !== 'disabled' )
-                                _themes.unshift({'theme-system': utils.Lang.settOptThemeSystem});
+
+                            const nativevars = window.RendererProcessVariable;
+                            if ( nativevars.theme && nativevars.theme.system == 'disabled' )
+                                _themes.shift();
 
                             const _combo = $('#opts-ui-theme select', $panel);
                             _themes.forEach(item => {
