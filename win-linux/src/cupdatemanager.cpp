@@ -501,6 +501,7 @@ void CUpdateManager::unzipIfNeeded()
 void CUpdateManager::handleAppClose()
 {
     if ( m_restartForUpdate ) {
+#ifdef _WIN32
         if (m_packageData->fileType != "archive") {
             GET_REGISTRY_SYSTEM(reg_system)
             QString prev_inst_lang = " /LANG=" + reg_system.value("locale", "en").toString();
@@ -508,10 +509,13 @@ void CUpdateManager::handleAppClose()
                 criticalMsg(nullptr, QObject::tr("An error occurred while start install updates!"));
             }
         } else {
+#endif
             if (!sendMessage(MSG_StartReplacingFiles)) {
                 criticalMsg(nullptr, QObject::tr("An error occurred while start replacing files: Update Service not found!"));
             }
+#ifdef _WIN32
         }
+#endif
     } else
         sendMessage(MSG_StopDownload);
 }
@@ -602,6 +606,7 @@ void CUpdateManager::onLoadCheckFinished(const QString &filePath)
 #else
             QJsonObject win = package.value("linux_64").toObject();
             QJsonObject package_type = win.value("archive").toObject();
+            m_packageData->fileType = "archive";
 #endif
             m_packageData->packageUrl = package_type.value("url").toString().toStdWString();
             m_packageData->hash = package_type.value("md5").toString().toLower();
