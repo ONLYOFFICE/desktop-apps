@@ -151,7 +151,7 @@
                      @"description" : NSLocalizedString(@"Document template", nil),
                      @"extension"   : @"dotx"
                      },
-             
+
              @(AVS_OFFICESTUDIO_FILE_PRESENTATION_PPTX): @{
                      @"description" : NSLocalizedString(@"PowerPoint 2007 Presentation", nil),
                      @"extension"   : @"pptx"
@@ -161,7 +161,7 @@
                      @"extension"   : @"ppt"
                      },
              @(AVS_OFFICESTUDIO_FILE_PRESENTATION_PPTM): @{
-                     @"description" : NSLocalizedString(@"Macro-enabled Presentation File", nil),
+                     @"description" : NSLocalizedString(@"Macro-enabled Presentation", nil),
                      @"extension"   : @"pptm"
                      },
              @(AVS_OFFICESTUDIO_FILE_PRESENTATION_ODP): @{
@@ -176,7 +176,7 @@
                      @"description" : NSLocalizedString(@"Presentation template", nil),
                      @"extension"   : @"potx"
                      },
-             
+
              @(AVS_OFFICESTUDIO_FILE_SPREADSHEET_XLSX): @{
                      @"description" : NSLocalizedString(@"Excel 2007 Spreadsheet", nil),
                      @"extension"   : @"xlsx"
