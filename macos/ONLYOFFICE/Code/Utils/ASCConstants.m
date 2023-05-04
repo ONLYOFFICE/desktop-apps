@@ -160,6 +160,10 @@
                      @"description" : NSLocalizedString(@"PowerPoint 97-2003 Presentation", nil),
                      @"extension"   : @"ppt"
                      },
+             @(AVS_OFFICESTUDIO_FILE_PRESENTATION_PPTM): @{
+                     @"description" : NSLocalizedString(@"Macro-enabled Presentation File", nil),
+                     @"extension"   : @"pptm"
+                     },
              @(AVS_OFFICESTUDIO_FILE_PRESENTATION_ODP): @{
                      @"description" : NSLocalizedString(@"OpenOffice Presentation", nil),
                      @"extension"   : @"odp"
@@ -193,7 +197,11 @@
                      @"description" : NSLocalizedString(@"Spreadsheet template", nil),
                      @"extension"   : @"xltx"
                      },
-             
+             @(AVS_OFFICESTUDIO_FILE_SPREADSHEET_XLTM): @{
+                     @"description" : NSLocalizedString(@"Macro-enabled spreadsheet template", nil),
+                     @"extension"   : @"xltm"
+                     },
+
              @(AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_PDF): @{
                      @"description" : NSLocalizedString(@"PDF File", nil),
                      @"extension"   : @"pdf"
