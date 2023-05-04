@@ -119,6 +119,8 @@ void CDownloader::start()
                 curl_easy_cleanup(curl);
             }
             fclose(fp);
+            if (res == CURLE_ABORTED_BY_CALLBACK)
+                remove(pimpl->m_filePath.c_str());
         } else
             res = CURLE_WRITE_ERROR;
 
