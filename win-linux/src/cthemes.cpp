@@ -126,6 +126,10 @@ public:
 
             g_object_unref(sett);
         }
+
+        TODO: "system" theme blocked because bug 59804
+        if ( user_theme == THEME_ID_SYSTEM )
+            user_theme = THEME_DEFAULT_LIGHT_ID;
 #endif
         if ( user_theme == THEME_ID_SYSTEM || rc_themes.find(user_theme) == rc_themes.end() ) {
             current = new CTheme(rc_themes.at(is_system_theme_dark ? THEME_DEFAULT_DARK_ID : THEME_DEFAULT_LIGHT_ID));
