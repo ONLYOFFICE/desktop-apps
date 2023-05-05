@@ -308,7 +308,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="93"/>
         <source>Macro-enabled Presentation File (*.pptm)</source>
-        <translation type="unfinished"></translation>
+        <translation>Presentación compatible con macros (*.pptm)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="95"/>
@@ -323,7 +323,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="97"/>
         <source>Macro-enabled spreadsheet template (*.xltm)</source>
-        <translation type="unfinished"></translation>
+        <translation>Plantilla de hoja de cálculo compatible con macros (*.xltm)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="98"/>

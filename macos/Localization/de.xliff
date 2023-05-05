@@ -172,7 +172,12 @@
         <target state="translated">Office Open XML-Tabellenkalkulation (*.xlsx)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
-      <trans-unit id="FictionBook File" xml:space="preserve">
+		<trans-unit id="Macro-enabled spreadsheet template" xml:space="preserve">
+        <source>Macro-enabled spreadsheet template</source>
+        <target state="translated">Vorlage der Tabellenkalkulation mit aktivierten Makros (*.xltm)</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+		<trans-unit id="FictionBook File" xml:space="preserve">
         <source>FictionBook File</source>
         <target state="translated">FictionBook-Datei (*.fb2)</target>
         <note>No comment provided by engineer.</note>
@@ -307,7 +312,12 @@
         <target state="translated">Office Open XML-Präsentation (*.pptx)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
-      <trans-unit id="PowerPoint Slide Show" xml:space="preserve">
+		<trans-unit id="Macro-enabled Presentation" xml:space="preserve">
+        <source>Macro-enabled Presentation</source>
+        <target state="translated">Präsentation mit aktivierten Makros (*.pptm)</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+		<trans-unit id="PowerPoint Slide Show" xml:space="preserve">
         <source>PowerPoint Slide Show</source>
         <target state="translated">Office Open XML-Slideshow (*.ppsx)</target>
         <note>No comment provided by engineer.</note>
