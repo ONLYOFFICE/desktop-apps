@@ -437,6 +437,7 @@
         <translation>Fișiere text</translation>
     </message>
     <message>
+        <location filename="../src/ceditortools.cpp" line="137"/>
         <location filename="../src/components/cfiledialog.cpp" line="258"/>
         <location filename="../src/components/cfiledialog.cpp" line="366"/>
         <source>All supported files</source>
@@ -630,9 +631,8 @@
         <translation>Toate fișierele (*.*)</translation>
     </message>
     <message>
-        <location filename="../src/ceditortools.cpp" line="137"/>
         <source>All supported files</source>
-        <translation type="unfinished">Toate fișierele acceptate</translation>
+        <translation type="obsolete">Toate fișierele acceptate</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="146"/>

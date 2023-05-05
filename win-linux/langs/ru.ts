@@ -437,6 +437,7 @@
         <translation>Текстовые файлы</translation>
     </message>
     <message>
+        <location filename="../src/ceditortools.cpp" line="137"/>
         <location filename="../src/components/cfiledialog.cpp" line="258"/>
         <location filename="../src/components/cfiledialog.cpp" line="366"/>
         <source>All supported files</source>
@@ -624,19 +625,10 @@
         <translation>Файл %1 не может быть открыт или не существует.</translation>
     </message>
     <message>
-        <source>All supported files (*.txt *.csv)</source>
-        <translation type="vanished">Все поддерживаемые файлы (*.txt *.csv)</translation>
-    </message>
-    <message>
         <location filename="../src/ceditortools.cpp" line="137"/>
         <location filename="../src/ceditortools.cpp" line="146"/>
         <source>All files (*.*)</source>
         <translation>Все файлы (*.*)</translation>
-    </message>
-    <message>
-        <location filename="../src/ceditortools.cpp" line="137"/>
-        <source>All supported files</source>
-        <translation type="unfinished">Все поддерживаемые файлы</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="146"/>

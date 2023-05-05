@@ -433,6 +433,7 @@
         <translation>පෙළ ගොනු</translation>
     </message>
     <message>
+        <location filename="../src/ceditortools.cpp" line="137"/>
         <location filename="../src/components/cfiledialog.cpp" line="258"/>
         <location filename="../src/components/cfiledialog.cpp" line="366"/>
         <source>All supported files</source>
@@ -626,9 +627,8 @@
         <translation>සියළු ගොනු (*.*)</translation>
     </message>
     <message>
-        <location filename="../src/ceditortools.cpp" line="137"/>
         <source>All supported files</source>
-        <translation type="unfinished">සහාය දක්වන සියළු ගොනු</translation>
+        <translation type="obsolete">සහාය දක්වන සියළු ගොනු</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="146"/>

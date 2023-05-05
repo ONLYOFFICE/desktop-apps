@@ -437,6 +437,7 @@
         <translation>Fichiers texte</translation>
     </message>
     <message>
+        <location filename="../src/ceditortools.cpp" line="137"/>
         <location filename="../src/components/cfiledialog.cpp" line="258"/>
         <location filename="../src/components/cfiledialog.cpp" line="366"/>
         <source>All supported files</source>
@@ -630,9 +631,8 @@
         <translation>Tous les fichiers (*.*)</translation>
     </message>
     <message>
-        <location filename="../src/ceditortools.cpp" line="137"/>
         <source>All supported files</source>
-        <translation type="unfinished">Tous les fichiers pris en charge</translation>
+        <translation type="obsolete">Tous les fichiers pris en charge</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="146"/>

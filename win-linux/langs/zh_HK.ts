@@ -437,6 +437,7 @@
         <translation>文字檔</translation>
     </message>
     <message>
+        <location filename="../src/ceditortools.cpp" line="137"/>
         <location filename="../src/components/cfiledialog.cpp" line="258"/>
         <location filename="../src/components/cfiledialog.cpp" line="366"/>
         <source>All supported files</source>
@@ -630,9 +631,8 @@
         <translation>所有檔案 (*.*)</translation>
     </message>
     <message>
-        <location filename="../src/ceditortools.cpp" line="137"/>
         <source>All supported files</source>
-        <translation type="unfinished">所有支援的檔案</translation>
+        <translation type="obsolete">所有支援的檔案</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="146"/>
