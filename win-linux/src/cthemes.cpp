@@ -127,7 +127,7 @@ public:
             g_object_unref(sett);
         }
 
-        TODO: "system" theme blocked because bug 59804
+        // TODO: "system" theme blocked because bug 59804
         if ( user_theme == THEME_ID_SYSTEM )
             user_theme = THEME_DEFAULT_LIGHT_ID;
 #endif
