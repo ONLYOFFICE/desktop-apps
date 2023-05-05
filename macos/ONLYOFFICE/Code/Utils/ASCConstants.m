@@ -74,7 +74,7 @@
 }
 
 + (NSArray *)spreadsheets {
-    return @[@"xls", @"xlsx", @"csv", @"ods", @"xltx", @"ots", @"xltm", @"fods", @"et", @"ett", @"sxc"];
+    return @[@"xls", @"xlsx", @"csv", @"ods", @"xltx", @"ots", @"xltm", @"xml", @"fods", @"et", @"ett", @"sxc"];
 }
 
 + (NSArray *)presentations {
