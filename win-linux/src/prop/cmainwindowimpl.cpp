@@ -101,9 +101,6 @@ void CMainWindowImpl::refreshAboutVersion()
 
 #ifndef __OS_WIN_XP
     _json_obj["uitheme"] = QString::fromStdWString(AscAppManager::themes().current().id());
-# ifdef Q_OS_LINUX
-    _json_obj["systemtheme"] = "disabled";
-# endif
 #endif
 
 #ifdef Q_OS_WIN
