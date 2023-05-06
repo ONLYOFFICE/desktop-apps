@@ -89,6 +89,7 @@ public:
         : parent(*p)
     {
         rc_themes = {
+            {"theme-system", ""},
             {"theme-light", ":/themes/theme-light.json"},
             {"theme-classic-light", ":/themes/theme-classic-light.json"},
             {"theme-dark", ":/themes/theme-dark.json"},
@@ -344,7 +345,9 @@ auto CThemes::setCurrentTheme(const std::wstring& name) -> void
 {
     if ( !isThemeCurrent(name) && m_priv->setCurrent(QString::fromStdWString(name)) ) {
         GET_REGISTRY_USER(_reg_user);
-//        _reg_user.setValue(REGISTRY_THEME_KEY, QString::fromStdWString(name));
+        // for tests in ver 7.5 if there are no bugs with using REGISTRY_THEME_KEY key
+        // if succeffuly, clear REGISTRY_THEME_KEY_7_2
+        _reg_user.setValue(REGISTRY_THEME_KEY, QString::fromStdWString(name));
         _reg_user.setValue(REGISTRY_THEME_KEY_7_2, QString::fromStdWString(name));
     }
 }
