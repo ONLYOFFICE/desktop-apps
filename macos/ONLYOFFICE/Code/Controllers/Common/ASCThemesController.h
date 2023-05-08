@@ -51,11 +51,14 @@ static NSString * const tabSlideActiveBackgroundColor   = @"tab-slide-background
 
 @interface ASCThemesController : NSObject
 
++ (instancetype)sharedInstance;
+
 + (NSString*)currentThemeId;
 + (BOOL)isCurrentThemeDark;
 + (NSString*)defaultThemeId:(BOOL)isdark;
 + (NSColor*)color:(NSString*)name forTheme:(NSString*)theme;
 + (NSColor*)currentThemeColor:(NSString*)name;
++ (BOOL)isSystemDarkMode;
 
 @end
 
