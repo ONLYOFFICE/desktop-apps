@@ -509,11 +509,25 @@
                 }
 
                 _apply_theme(param);
+            } else
+            if (/renderervars:changed/.test(cmd)) {
+                let opts;
+                try { opts = JSON.parse( $('<div>').html(param).text() ); }
+                catch (e) { /*delete opts;*/ }
+
+                if ( opts.theme && opts.theme.system ) {
+                    window.RendererProcessVariable.theme.system = opts.theme.system;
+
+                    const theme_id = $optsUITheme.val();
+                    if ( theme_id == 'theme-system' )
+                        _apply_theme(theme_id);
+                }
             }
         };
 
         const get_system_theme_type = () => {
             const nativevars = window.RendererProcessVariable;
+            console.log('renderer vars', nativevars.theme);
             return nativevars.theme && !!nativevars.theme.system ? nativevars.theme.system :
                             window.matchMedia('(prefers-color-scheme: dark)').matches ? THEME_TYPE_DARK : THEME_TYPE_LIGHT;
             //window.matchMedia('(prefers-color-scheme: dark)').matches ? THEME_TYPE_DARK : THEME_TYPE_LIGHT;
