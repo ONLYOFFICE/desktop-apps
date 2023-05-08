@@ -527,7 +527,6 @@
 
         const get_system_theme_type = () => {
             const nativevars = window.RendererProcessVariable;
-            console.log('renderer vars', nativevars.theme);
             return nativevars.theme && !!nativevars.theme.system ? nativevars.theme.system :
                             window.matchMedia('(prefers-color-scheme: dark)').matches ? THEME_TYPE_DARK : THEME_TYPE_LIGHT;
             //window.matchMedia('(prefers-color-scheme: dark)').matches ? THEME_TYPE_DARK : THEME_TYPE_LIGHT;
