@@ -244,7 +244,7 @@ auto CTheme::originalId() const -> std::wstring
     return m_priv->id;
 }
 
-auto CTheme::stype() const -> QString
+auto CTheme::typeSting() const -> QString
 {
     switch (m_priv->type) {
     default:

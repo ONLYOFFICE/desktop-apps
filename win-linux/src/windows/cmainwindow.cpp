@@ -220,7 +220,7 @@ void CMainWindow::applyTheme(const std::wstring& theme)
 {
     CWindowPlatform::applyTheme(theme);
     m_pMainPanel->setProperty("uitheme", QString::fromStdWString(AscAppManager::themes().themeActualId(theme)));
-    m_pMainPanel->setProperty("uithemetype", AscAppManager::themes().current().stype());
+    m_pMainPanel->setProperty("uithemetype", AscAppManager::themes().current().typeSting());
     for (int i(m_pTabs->count()); !(--i < 0);) {
         CAscTabData& _doc = *m_pTabs->panel(i)->data();
         if ( _doc.isViewType(cvwtEditor) && !_doc.closed() ) {

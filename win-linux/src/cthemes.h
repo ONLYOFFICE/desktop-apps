@@ -32,7 +32,7 @@ public:
 
     auto id() const -> std::wstring;
     auto originalId() const -> std::wstring;
-    auto stype() const -> QString;
+    auto typeSting() const -> QString;
     auto color(ColorRole r) const -> QColor;
 #ifdef Q_OS_WIN
     auto colorRef(ColorRole r) const -> COLORREF;
