@@ -58,8 +58,9 @@ public:
     ~CThemes();
 
     auto current() -> const CTheme&;
-    auto defaultDark() -> const CTheme&;
-    auto defaultLight() -> const CTheme&;
+    auto defaultDarkTheme() -> const CTheme&;
+    auto defaultLightTheme() -> const CTheme&;
+
 
     auto setCurrentTheme(const std::wstring&) -> void;
     auto isThemeCurrent(const std::wstring& id) -> bool;

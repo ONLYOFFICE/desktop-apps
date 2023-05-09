@@ -331,12 +331,12 @@ auto CThemes::current() -> const CTheme &
     return *(m_priv->current);
 }
 
-auto CThemes::defaultDark() -> const CTheme&
+auto CThemes::defaultDarkTheme() -> const CTheme&
 {
     return *m_priv->getDefault(NSTheme::ThemeType::ttDark);
 }
 
-auto CThemes::defaultLight() -> const CTheme&
+auto CThemes::defaultLightTheme() -> const CTheme&
 {
     return *m_priv->getDefault(NSTheme::ThemeType::ttLight);
 }
