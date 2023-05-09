@@ -29,8 +29,8 @@ namespace NSTheme {
     static const QString theme_type_light = "light";
 
     enum class ThemeType {
-        ttDark,
-        ttLight
+        Dark,
+        Light
     };
 
     static const std::map<CTheme::ColorRole, QString> map_names = {
@@ -54,6 +54,9 @@ namespace NSTheme {
             {CTheme::ColorRole::ButtonNormalOpacity, "button_normal_opacity"},
             {CTheme::ColorRole::LogoColor, "logo"}
         };
+
+    CTheme * theme_default_dark = nullptr;
+    CTheme * theme_default_light = nullptr;
 }
 
 /*
@@ -66,7 +69,7 @@ public:
     auto fromJsonObject(const QJsonObject& obj) -> void {
         id = obj.value("id").toString().toStdWString();
         type = obj.value("type").toString() == NSTheme::theme_type_dark ?
-                            NSTheme::ThemeType::ttDark : NSTheme::ThemeType::ttLight;
+                            NSTheme::ThemeType::Dark : NSTheme::ThemeType::Light;
         jsonValues = obj.value("values").toObject();
         is_system = false;
     }
@@ -88,8 +91,8 @@ public:
     CThemesPrivate(CThemes * p)
         : parent(*p)
     {
-        rc_themes = {
-            {"theme-system", ""},
+        map_themes = {
+            {THEME_ID_SYSTEM, ""},
             {"theme-light", ":/themes/theme-light.json"},
             {"theme-classic-light", ":/themes/theme-classic-light.json"},
             {"theme-dark", ":/themes/theme-dark.json"},
@@ -128,10 +131,10 @@ public:
             g_object_unref(sett);
         }
 #endif
-        if ( user_theme == THEME_ID_SYSTEM || rc_themes.find(user_theme) == rc_themes.end() ) {
-            current = new CTheme(rc_themes.at(is_system_theme_dark ? THEME_DEFAULT_DARK_ID : THEME_DEFAULT_LIGHT_ID));
+        if ( user_theme == THEME_ID_SYSTEM || map_themes.find(user_theme) == map_themes.end() ) {
+            current = new CTheme(map_themes.at(is_system_theme_dark ? THEME_DEFAULT_DARK_ID : THEME_DEFAULT_LIGHT_ID));
             current->m_priv->is_system = true;
-        } else current = new CTheme(rc_themes.at(user_theme));
+        } else current = new CTheme(map_themes.at(user_theme));
     }
 
     ~CThemesPrivate()
@@ -145,13 +148,13 @@ public:
     auto setCurrent(const QString& id) -> bool
     {
         if ( id != THEME_ID_SYSTEM ) {
-            if ( rc_themes.find(id) != rc_themes.end() ) {
-                return current->fromFile(rc_themes.at(id));
+            if ( map_themes.find(id) != map_themes.end() ) {
+                return current->fromFile(map_themes.at(id));
             }
         } else {
             QString visual_theme_id = is_system_theme_dark ? THEME_DEFAULT_DARK_ID : THEME_DEFAULT_LIGHT_ID;
             if ( current->id() != visual_theme_id.toStdWString() ) {
-                if ( !current->fromFile(rc_themes.at(visual_theme_id)) )
+                if ( !current->fromFile(map_themes.at(visual_theme_id)) )
                     return false;
             }
 
@@ -164,30 +167,30 @@ public:
 
     auto getDefault(NSTheme::ThemeType type) -> const CTheme *
     {
-        if ( type == NSTheme::ThemeType::ttDark ) {
-            if ( !dark ) {
-                dark = new CTheme;
-                dark->fromFile(rc_themes[THEME_DEFAULT_DARK_ID]);
+        if ( type == NSTheme::ThemeType::Dark ) {
+            if ( !default_dark ) {
+                default_dark = new CTheme;
+                default_dark->fromFile(map_themes[THEME_DEFAULT_DARK_ID]);
             }
 
-            return dark;
+            return default_dark;
         } else {
-            if ( !light ) {
-                light = new CTheme;
-                light->fromFile(rc_themes[THEME_DEFAULT_LIGHT_ID]);
+            if ( !default_light ) {
+                default_light = new CTheme;
+                default_light->fromFile(map_themes[THEME_DEFAULT_LIGHT_ID]);
             }
 
-            return light;
+            return default_light;
         }
     }
 
     CThemes & parent;
-    std::map<QString, QString> rc_themes;
+    std::map<QString, QString> map_themes;
     bool is_system_theme_dark = false;
 
     CTheme * current = nullptr;
-    CTheme * dark = nullptr;
-    CTheme * light = nullptr;
+    CTheme * default_light = nullptr,
+            * default_dark = nullptr;
 };
 
 /*
@@ -248,8 +251,8 @@ auto CTheme::typeSting() const -> QString
 {
     switch (m_priv->type) {
     default:
-    case NSTheme::ThemeType::ttLight: return NSTheme::theme_type_light;
-    case NSTheme::ThemeType::ttDark: return NSTheme::theme_type_dark;
+    case NSTheme::ThemeType::Light: return NSTheme::theme_type_light;
+    case NSTheme::ThemeType::Dark: return NSTheme::theme_type_dark;
     }
 }
 
@@ -303,7 +306,7 @@ auto CTheme::colorRef(ColorRole role) const -> COLORREF
 
 auto CTheme::isDark() const -> bool
 {
-    return m_priv->type == NSTheme::ThemeType::ttDark;
+    return m_priv->type == NSTheme::ThemeType::Dark;
 }
 
 auto CTheme::isSystem() const -> bool
@@ -333,12 +336,12 @@ auto CThemes::current() -> const CTheme &
 
 auto CThemes::defaultDarkTheme() -> const CTheme&
 {
-    return *m_priv->getDefault(NSTheme::ThemeType::ttDark);
+    return *m_priv->getDefault(NSTheme::ThemeType::Dark);
 }
 
 auto CThemes::defaultLightTheme() -> const CTheme&
 {
-    return *m_priv->getDefault(NSTheme::ThemeType::ttLight);
+    return *m_priv->getDefault(NSTheme::ThemeType::Light);
 }
 
 auto CThemes::setCurrentTheme(const std::wstring& name) -> void
