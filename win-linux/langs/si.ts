@@ -4,7 +4,7 @@
 <context>
     <name>CAscApplicationManagerWrapper</name>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1159"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1204"/>
         <source>Presenter View</source>
         <translation>ඉදිරිපත්කරුගේ දැක්ම</translation>
     </message>
@@ -17,47 +17,42 @@
         <translation type="vanished">All the editor windows will be closed. Do you want to continue?</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1887"/>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1888"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1958"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1959"/>
         <source>Document%1.docx</source>
         <translation>ලේඛනය%1.docx</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1889"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1960"/>
         <source>Book%1.xlsx</source>
         <translation>පොත%1.xlsx</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1890"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1961"/>
         <source>Presentation%1.pptx</source>
         <translation>සමර්පණය%1.pptx</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1967"/>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2031"/>
         <source>A new version of %1 is available!</source>
-        <translation>%1 හි නව අනුවාදයක් තිබේ!</translation>
+        <translation type="vanished">%1 හි නව අනුවාදයක් තිබේ!</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1968"/>
         <source>%1 %2 is now available (you have %3). Would you like to download it now?</source>
-        <translation>%1 %2 දැන් තිබේ (%3 ඔබ සතුයි). දැන් එය බාගැනීමට කැමතිද?</translation>
+        <translation type="vanished">%1 %2 දැන් තිබේ (%3 ඔබ සතුයි). දැන් එය බාගැනීමට කැමතිද?</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2032"/>
         <source>%1 %2 is now downloaded (you have %3). Would you like to install it now?</source>
-        <translation>%1 %2 දැන් බාගත වී ඇත (%3 ඔබ සතුයි). දැන් එය ස්ථාපනය කිරීමට කැමතිද?</translation>
+        <translation type="vanished">%1 %2 දැන් බාගත වී ඇත (%3 ඔබ සතුයි). දැන් එය ස්ථාපනය කිරීමට කැමතිද?</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1988"/>
         <source>Do you want to install a new version %1 of the program?</source>
-        <translation>ඔබට %1 වැඩසටහනේ නව අනුවාදයක් ස්ථාපනයට වුවමනාද?</translation>
+        <translation type="vanished">ඔබට %1 වැඩසටහනේ නව අනුවාදයක් ස්ථාපනයට වුවමනාද?</translation>
     </message>
 </context>
 <context>
     <name>CAscTabWidget</name>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="818"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="849"/>
         <location filename="../src/components/asctabwidget.cpp" line="679"/>
         <source>Document</source>
         <translation>විවෘත වෙමින්...</translation>
@@ -161,32 +156,32 @@
 <context>
     <name>CEditorWindow</name>
     <message>
-        <location filename="../src/windows/ceditorwindow_p.h" line="186"/>
+        <location filename="../src/windows/ceditorwindow_p.h" line="185"/>
         <source>Open main window</source>
         <translation>ප්‍රධාන කවුළුව අරින්න</translation>
     </message>
     <message>
-        <location filename="../src/windows/ceditorwindow_p.h" line="469"/>
+        <location filename="../src/windows/ceditorwindow_p.h" line="476"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
         <translation>ඉදිරියට යාමට ලේඛනය සුරැකිය යුතුය. &lt;br&gt;ලේඛනය සුරකින්නද?</translation>
     </message>
     <message>
-        <location filename="../src/windows/ceditorwindow_p.h" line="544"/>
+        <location filename="../src/windows/ceditorwindow_p.h" line="565"/>
         <source>Print Document</source>
         <translation>ලේඛනය මුද්‍රණය</translation>
     </message>
     <message>
-        <location filename="../src/windows/ceditorwindow_p.h" line="723"/>
+        <location filename="../src/windows/ceditorwindow_p.h" line="746"/>
         <source>Document must be saved firstly.</source>
         <translation>පළමුව ලේඛනය සුරැකිය යුතුය.</translation>
     </message>
     <message>
-        <location filename="../src/windows/ceditorwindow.cpp" line="138"/>
+        <location filename="../src/windows/ceditorwindow.cpp" line="137"/>
         <source>%1 has been changed. Save changes?</source>
         <translation>%1 දැනටමත් පවතී.&lt;br&gt;ඔබට වෙනස්කම් සුරැකීමට වුවමනාද?</translation>
     </message>
     <message>
-        <location filename="../src/ceditortools.cpp" line="309"/>
+        <location filename="../src/ceditortools.cpp" line="339"/>
         <source>Some data will lost.&lt;br&gt;Continue?</source>
         <translation>ඔබ මෙම ආකෘතියෙන් දිගටම සුරැකුවහොත් පෙළ හැර අනෙකුත් සියළුම විශේෂාංග නැති වී යනු ඇත. &lt;br&gt;ඔබට ඉදිරියට යාමට වුවමනාද?</translation>
     </message>
@@ -194,7 +189,7 @@
 <context>
     <name>CEditorWindowPrivate</name>
     <message>
-        <location filename="../src/windows/ceditorwindow_p.h" line="510"/>
+        <location filename="../src/windows/ceditorwindow_p.h" line="517"/>
         <source>There are no printers available</source>
         <translation>කිසිදු මුද්‍රකයක් නැත</translation>
     </message>
@@ -307,173 +302,178 @@
         <translation>ඔෆිස් ඕපන් XML ස්ලයිඩ් ෂෝ (*.ppsx)</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="94"/>
+        <location filename="../src/components/cfiledialog.cpp" line="93"/>
+        <source>Macro-enabled Presentation File (*.pptm)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/components/cfiledialog.cpp" line="95"/>
         <source>XLSX File (*.xlsx)</source>
         <translation>ඔෆිස් ඕපන් XML පැතුරුම්පත (*.xlsx)</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="95"/>
+        <location filename="../src/components/cfiledialog.cpp" line="96"/>
         <source>Spreadsheet template (*.xltx)</source>
         <translation>එක්සෙල් විවෘත XML පැතුරුම්පත් අච්චුව (*.xltx)</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="96"/>
+        <location filename="../src/components/cfiledialog.cpp" line="97"/>
+        <source>Macro-enabled spreadsheet template (*.xltm)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/components/cfiledialog.cpp" line="98"/>
         <source>XLS File (*.xls)</source>
         <translation>එක්සෙල් 97-2003 පැතුරුම්පත (*.xls)</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="97"/>
+        <location filename="../src/components/cfiledialog.cpp" line="99"/>
         <source>ODS File (*.ods)</source>
         <translation>ඕපන්ඩොකියුමන්ට් පැතුරුම්පත (*.ods)</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="98"/>
+        <location filename="../src/components/cfiledialog.cpp" line="100"/>
         <source>OpenDocument Spreadsheet Template (*.ots)</source>
         <translation>ඕපන්ඩොකියුමන්ට් පැතුරුම්පත් අච්චුව (*.ots)</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="99"/>
+        <location filename="../src/components/cfiledialog.cpp" line="101"/>
         <source>CSV File (*.csv)</source>
         <translation>අල්පවිරාම මගින් වෙන් කළ අගයන් (*.csv)</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="101"/>
+        <location filename="../src/components/cfiledialog.cpp" line="103"/>
         <source>PDF File (*.pdf)</source>
         <translation>සුවහ ලේඛනය (*.pdf)</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="102"/>
+        <location filename="../src/components/cfiledialog.cpp" line="104"/>
         <source>PDFA File (*.pdf)</source>
         <translation>සුවහ ලේඛනය /ඒ (*.pdf)</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="103"/>
+        <location filename="../src/components/cfiledialog.cpp" line="105"/>
         <source>DJVU File (*.djvu)</source>
         <translation>සංඛ්‍යාංක ලේඛනය (*.djvu)</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="104"/>
+        <location filename="../src/components/cfiledialog.cpp" line="106"/>
         <source>XPS File (*.xps)</source>
         <translation>OpenXPS ලේඛනය (*.xps)</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="106"/>
+        <location filename="../src/components/cfiledialog.cpp" line="108"/>
         <source>JPG Image (*.jpg *.jpeg)</source>
         <translation>JPG අනුරුව (*.jpg *.jpeg)</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="107"/>
+        <location filename="../src/components/cfiledialog.cpp" line="109"/>
         <source>PNG Image (*.png)</source>
         <translation>PNG අනුරුව (*.png)</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="158"/>
-        <location filename="../src/components/cfiledialog.cpp" line="161"/>
-        <location filename="../src/components/cfiledialog.cpp" line="168"/>
-        <location filename="../src/components/cfiledialog.cpp" line="174"/>
+        <location filename="../src/components/cfiledialog.cpp" line="157"/>
         <source>Save As</source>
         <translation>ලෙස සුරකින්න</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="198"/>
+        <location filename="../src/components/cfiledialog.cpp" line="203"/>
         <source>%1 already exists.&lt;br&gt;Do you want to replace it?</source>
         <translation>%1 දැනටමත් පවතී. &lt;br&gt;ඔබට එය ප්‍රතිස්ථාපනයට වුවමනා ද?</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="223"/>
+        <location filename="../src/components/cfiledialog.cpp" line="229"/>
         <source>Word Document</source>
         <translation>වදන් ලේඛනය</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="226"/>
+        <location filename="../src/components/cfiledialog.cpp" line="232"/>
         <source>Excel Workbook</source>
         <translation>එක්සෙල්  පැතුරුම්පත</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="229"/>
+        <location filename="../src/components/cfiledialog.cpp" line="235"/>
         <source>PowerPoint Presentation</source>
         <translation>පවර්පොයින්ට්  සමර්පණය</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="232"/>
+        <location filename="../src/components/cfiledialog.cpp" line="238"/>
         <source>%1 File (*.%2)</source>
         <translation>%1 ගොනුව (*.%2)</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="242"/>
-        <location filename="../src/components/cfiledialog.cpp" line="327"/>
+        <location filename="../src/components/cfiledialog.cpp" line="248"/>
+        <location filename="../src/components/cfiledialog.cpp" line="339"/>
+        <location filename="../src/components/cfiledialog.cpp" line="362"/>
         <source>Text documents</source>
         <translation>පෙළ ලේඛනය</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="243"/>
-        <location filename="../src/components/cfiledialog.cpp" line="335"/>
+        <location filename="../src/components/cfiledialog.cpp" line="254"/>
+        <location filename="../src/components/cfiledialog.cpp" line="347"/>
+        <location filename="../src/components/cfiledialog.cpp" line="363"/>
         <source>Spreadsheets</source>
         <translation>පැතුරුම්පත්</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="244"/>
-        <location filename="../src/components/cfiledialog.cpp" line="343"/>
+        <location filename="../src/components/cfiledialog.cpp" line="255"/>
+        <location filename="../src/components/cfiledialog.cpp" line="355"/>
+        <location filename="../src/components/cfiledialog.cpp" line="364"/>
         <source>Presentations</source>
         <translation>සමර්පණ</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="245"/>
+        <location filename="../src/components/cfiledialog.cpp" line="256"/>
         <source>Web Page</source>
         <translation>වියමන පිටුව</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="246"/>
+        <location filename="../src/components/cfiledialog.cpp" line="257"/>
         <source>Text files</source>
         <translation>පෙළ ගොනු</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="247"/>
+        <location filename="../src/ceditortools.cpp" line="137"/>
+        <location filename="../src/components/cfiledialog.cpp" line="258"/>
+        <location filename="../src/components/cfiledialog.cpp" line="366"/>
         <source>All supported files</source>
         <translation>සහාය දක්වන සියළු ගොනු</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="265"/>
-        <location filename="../src/components/cfiledialog.cpp" line="268"/>
-        <location filename="../src/components/cfiledialog.cpp" line="273"/>
-        <location filename="../src/components/cfiledialog.cpp" line="278"/>
-        <location filename="../src/components/cfiledialog.cpp" line="279"/>
+        <location filename="../src/components/cfiledialog.cpp" line="272"/>
         <source>Open Document</source>
         <translation>ලේඛනය අරින්න</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="290"/>
-        <location filename="../src/components/cfiledialog.cpp" line="299"/>
+        <location filename="../src/components/cfiledialog.cpp" line="302"/>
+        <location filename="../src/components/cfiledialog.cpp" line="311"/>
         <source>All Images</source>
         <translation>සියළු රූප</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="292"/>
-        <location filename="../src/components/cfiledialog.cpp" line="301"/>
+        <location filename="../src/components/cfiledialog.cpp" line="304"/>
+        <location filename="../src/components/cfiledialog.cpp" line="313"/>
         <source>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp)</source>
         <translation>Jpeg (*.jpeg *.jpg);;Png (*.png);;චලරූ (*.gif);;Bmp (*.bmp)</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="309"/>
-        <location filename="../src/components/cfiledialog.cpp" line="318"/>
+        <location filename="../src/components/cfiledialog.cpp" line="321"/>
+        <location filename="../src/components/cfiledialog.cpp" line="330"/>
         <source>Plugin file (*.plugin)</source>
         <translation>පේනු ගොනුව (*.plugin)</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="358"/>
+        <location filename="../src/components/cfiledialog.cpp" line="383"/>
         <source>Video file</source>
         <translation>දෘශ්‍යක ගොනුව</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="363"/>
+        <location filename="../src/components/cfiledialog.cpp" line="388"/>
         <source>Audio file</source>
         <translation>ශ්‍රව්‍ය ගොනුව</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="385"/>
-        <location filename="../src/components/cfiledialog.cpp" line="388"/>
-        <location filename="../src/components/cfiledialog.cpp" line="395"/>
-        <location filename="../src/components/cfiledialog.cpp" line="401"/>
+        <location filename="../src/components/cfiledialog.cpp" line="405"/>
         <source>Select Folder</source>
         <translation>බහාලුමක් තෝරන්න</translation>
     </message>
@@ -481,43 +481,43 @@
 <context>
     <name>CMainWindow</name>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="753"/>
-        <location filename="../src/windows/cmainwindow.cpp" line="795"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="758"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="799"/>
         <source>File format not supported.</source>
         <translation>ගොනුවේ ආකෘතියට සහාය නොදක්වයි.</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="779"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="783"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
         <translation>%1 නොතිබේ. එය යළි නම් කර, ගෙන ගොස් හෝ මකා දමා විය හැකිය. &lt;br&gt;ඔබට ලැයිස්තුවෙන් ගොනුව ඉවත් කිරීමට අවශ්‍යද?</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="839"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="843"/>
         <source>Document must be saved firstly.</source>
         <translation>පළමුව ලේඛනය සුරැකිය යුතුය.</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="979"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="983"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
         <translation>ඉදිරියට යාමට ලේඛනය සුරැකිය යුතුය. &lt;br&gt;ලේඛනය සුරකින්නද?</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="1081"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="1085"/>
         <source>There are no printers available</source>
         <translation>කිසිදු මුද්‍රකයක් නැත</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="1126"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="1144"/>
         <source>Print Document</source>
         <translation>ලේඛනය මුද්‍රණය</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="1288"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="1323"/>
         <source>Sign Up</source>
         <translation>ද්වාරය සාදන්න</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="1351"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="1402"/>
         <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
         <translation>%1 සංශෝධිතයි. &lt;br&gt;ඔබට වෙනස්කම් සුරැකීමට වුවමනාද?</translation>
     </message>
@@ -533,46 +533,28 @@
 <context>
     <name>CMessage</name>
     <message>
-        <location filename="../src/components/cmessage.cpp" line="167"/>
         <source>&amp;OK</source>
-        <translation>&amp;හරි</translation>
+        <translation type="vanished">&amp;හරි</translation>
     </message>
     <message>
-        <location filename="../src/components/cmessage.cpp" line="256"/>
-        <location filename="../src/components/cmessage.cpp" line="257"/>
-        <location filename="../src/components/cmessage.cpp" line="258"/>
-        <location filename="../src/components/cmessage.cpp" line="259"/>
-        <location filename="../src/components/cmessage.cpp" line="262"/>
         <source>Yes</source>
-        <translation>ඔව්</translation>
+        <translation type="vanished">ඔව්</translation>
     </message>
     <message>
-        <location filename="../src/components/cmessage.cpp" line="256"/>
-        <location filename="../src/components/cmessage.cpp" line="257"/>
-        <location filename="../src/components/cmessage.cpp" line="258"/>
-        <location filename="../src/components/cmessage.cpp" line="259"/>
-        <location filename="../src/components/cmessage.cpp" line="262"/>
         <source>No</source>
-        <translation>නැහැ</translation>
+        <translation type="vanished">නැහැ</translation>
     </message>
     <message>
-        <location filename="../src/components/cmessage.cpp" line="258"/>
-        <location filename="../src/components/cmessage.cpp" line="259"/>
-        <location filename="../src/components/cmessage.cpp" line="260"/>
-        <location filename="../src/components/cmessage.cpp" line="261"/>
         <source>Cancel</source>
-        <translation>අවලංගු</translation>
+        <translation type="vanished">අවලංගු</translation>
     </message>
     <message>
-        <location filename="../src/components/cmessage.cpp" line="260"/>
-        <location filename="../src/components/cmessage.cpp" line="261"/>
         <source>OK</source>
-        <translation>හරි</translation>
+        <translation type="vanished">හරි</translation>
     </message>
     <message>
-        <location filename="../src/components/cmessage.cpp" line="262"/>
         <source>Skip</source>
-        <translation>මඟහරින්න</translation>
+        <translation type="vanished">මඟහරින්න</translation>
     </message>
 </context>
 <context>
@@ -599,6 +581,30 @@
     </message>
 </context>
 <context>
+    <name>CUpdateManager</name>
+    <message>
+        <location filename="../src/cupdatemanager.cpp" line="327"/>
+        <source>This folder configuration does not allow for updates! The folder name should be: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/cupdatemanager.cpp" line="638"/>
+        <location filename="../src/cupdatemanager.cpp" line="663"/>
+        <source>A new version of %1 is available!</source>
+        <translation type="unfinished">%1 හි නව අනුවාදයක් තිබේ!</translation>
+    </message>
+    <message>
+        <location filename="../src/cupdatemanager.cpp" line="639"/>
+        <source>%1 %2 is now available (you have %3). Would you like to download it now?</source>
+        <translation type="unfinished">%1 %2 දැන් තිබේ (%3 ඔබ සතුයි). දැන් එය බාගැනීමට කැමතිද?</translation>
+    </message>
+    <message>
+        <location filename="../src/cupdatemanager.cpp" line="664"/>
+        <source>%1 %2 is now downloaded (you have %3). Would you like to install it now?</source>
+        <translation type="unfinished">%1 %2 දැන් බාගත වී ඇත (%3 ඔබ සතුයි). දැන් එය ස්ථාපනය කිරීමට කැමතිද?</translation>
+    </message>
+</context>
+<context>
     <name>QObject</name>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper_private.h" line="188"/>
@@ -611,14 +617,29 @@
         <translation>%1 ගොනුව ඇරීමට නොහැකිය හෝ නොපවතී.</translation>
     </message>
     <message>
-        <location filename="../src/ceditortools.cpp" line="137"/>
         <source>All supported files (*.txt *.csv)</source>
-        <translation>සහාය දක්වන සියළු ගොනු (*.txt *.csv)</translation>
+        <translation type="vanished">සහාය දක්වන සියළු ගොනු (*.txt *.csv)</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="137"/>
+        <location filename="../src/ceditortools.cpp" line="146"/>
         <source>All files (*.*)</source>
         <translation>සියළු ගොනු (*.*)</translation>
+    </message>
+    <message>
+        <source>All supported files</source>
+        <translation type="obsolete">සහාය දක්වන සියළු ගොනු</translation>
+    </message>
+    <message>
+        <location filename="../src/ceditortools.cpp" line="146"/>
+        <source>XML File (*.xml)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ceditortools.cpp" line="228"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="747"/>
+        <source>Access to file &apos;%1&apos; is denied!</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/casctabdata.cpp" line="177"/>
@@ -661,14 +682,92 @@
         <translation>යාවත්කාලය බාගන්න</translation>
     </message>
     <message>
-        <location filename="../src/platform_win/updatedialog.cpp" line="90"/>
+        <location filename="../src/platform_win/updatedialog.cpp" line="89"/>
         <source>Software Update</source>
         <translation>මෘදුකාංග යාවත්කාලය</translation>
     </message>
     <message>
-        <location filename="../src/platform_win/updatedialog.cpp" line="93"/>
+        <location filename="../src/platform_win/updatedialog.cpp" line="92"/>
         <source>Release notes</source>
         <translation>නිකුතු සටහන</translation>
+    </message>
+    <message>
+        <location filename="../src/cupdatemanager.cpp" line="340"/>
+        <source>An error occurred while check updates: Update Service not found!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/cupdatemanager.cpp" line="443"/>
+        <source>An error occurred while loading updates: Update Service not found!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/cupdatemanager.cpp" line="483"/>
+        <source>An error occurred while unzip updates: Update Service not found!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/cupdatemanager.cpp" line="494"/>
+        <source>An error occurred while start install updates!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/cupdatemanager.cpp" line="498"/>
+        <source>An error occurred while start replacing files: Update Service not found!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/defines.h" line="128"/>
+        <source>Cancel</source>
+        <translation type="unfinished">අවලංගු</translation>
+    </message>
+    <message>
+        <location filename="../src/defines.h" line="129"/>
+        <source>Yes</source>
+        <translation type="unfinished">ඔව්</translation>
+    </message>
+    <message>
+        <location filename="../src/defines.h" line="130"/>
+        <source>No</source>
+        <translation type="unfinished">නැහැ</translation>
+    </message>
+    <message>
+        <location filename="../src/defines.h" line="131"/>
+        <source>OK</source>
+        <translation type="unfinished">හරි</translation>
+    </message>
+    <message>
+        <location filename="../src/defines.h" line="132"/>
+        <source>Skip</source>
+        <translation type="unfinished">මඟහරින්න</translation>
+    </message>
+    <message>
+        <location filename="../src/defines.h" line="133"/>
+        <source>Buy Now</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/defines.h" line="134"/>
+        <source>Activate</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/defines.h" line="135"/>
+        <source>Continue</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/platform_linux/xdgdesktopportal.cpp" line="1217"/>
+        <source>An error occurred while opening the portal:&lt;br&gt;%1</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>QtMsg</name>
+    <message>
+        <location filename="../src/components/cmessage.cpp" line="199"/>
+        <source>&amp;OK</source>
+        <translation type="unfinished">&amp;හරි</translation>
     </message>
 </context>
 </TS>

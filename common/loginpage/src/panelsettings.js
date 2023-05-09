@@ -458,13 +458,18 @@
                         if ( !!opts.uitheme ) {
                             opts.uitheme == 'canuse' && (opts.uitheme = 'theme-light');
 
-                            const _themes = [{'theme-light': utils.Lang.settOptThemeLight},
+                            const _themes = [{'theme-system': utils.Lang.settOptThemeSystem},
+                                            {'theme-light': utils.Lang.settOptThemeLight},
                                             {'theme-classic-light': utils.Lang.settOptThemeClassicLight},
                                             {'theme-dark': utils.Lang.settOptThemeDark},
                                             {'theme-contrast-dark': utils.Lang.settOptThemeContrastDark}];
 
                             if ( uitheme.is_system_theme_avalaible() )
                                 _themes.unshift({'theme-system': utils.Lang.settOptThemeSystem});
+
+                            const nativevars = window.RendererProcessVariable;
+                            if ( nativevars.theme && nativevars.theme.system == 'disabled' )
+                                _themes.shift();
 
                             const _combo = $('#opts-ui-theme select', $panel);
                             _themes.forEach(item => {
@@ -548,6 +553,19 @@
                 }
 
                 _apply_theme(param);
+            } else
+            if (/renderervars:changed/.test(cmd)) {
+                let opts;
+                try { opts = JSON.parse( $('<div>').html(param).text() ); }
+                catch (e) { /*delete opts;*/ }
+
+                if ( opts.theme && opts.theme.system ) {
+                    window.RendererProcessVariable.theme.system = opts.theme.system;
+
+                    const theme_id = $optsUITheme.val();
+                    if ( theme_id == 'theme-system' )
+                        _apply_theme(theme_id);
+                }
             }
         };
 

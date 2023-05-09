@@ -164,6 +164,11 @@ static float kASCWindowMinTitleWidth = 0;
                                                  name:ASCEventNameChangedUITheme
                                                object:nil];
 
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(onChangedSystemTheme:)
+                                                 name:ASCEventNameChangedSystemTheme
+                                               object:nil];
+
     [[[ASCDownloadController sharedInstance] multicastDelegate] addDelegate:self];
     [self.tabsControl.multicastDelegate addDelegate:self];
     
@@ -352,6 +357,29 @@ static float kASCWindowMinTitleWidth = 0;
             }
             [tab setType:tab.type];
             [self.tabsControl updateTab:tab];
+        }
+    }
+}
+
+- (void)onChangedSystemTheme:(NSNotification *)notification {
+    if ( [[ASCThemesController currentThemeId] isEqualToString: uiThemeSystem] ) {
+        if (notification && notification.userInfo) {
+            NSString * theme = [ASCThemesController defaultThemeId:[ASCThemesController isSystemDarkMode]];
+
+            ASCMenuButtonCell * portalButtonCell = self.portalButton.cell;
+            portalButtonCell.bgActiveColor = [ASCThemesController color:btnPortalActiveBackgroundColor forTheme:theme];
+            [self.portalButton setNeedsDisplay];
+
+            [ASCThemesController isSystemDarkMode] ? [self.portalButton setImage:[NSImage imageNamed:@"logo-tab-light"]] :
+                                                        [self.portalButton setImage:[NSImage imageNamed:@"logo-tab-dark"]];
+
+            for (ASCTabView * tab in self.tabsControl.tabs) {
+                if ( [tab state] == NSControlStateValueOn ) {
+                    [tab setNeedsDisplay];
+                }
+                [tab setType:tab.type];
+                [self.tabsControl updateTab:tab];
+            }
         }
     }
 }

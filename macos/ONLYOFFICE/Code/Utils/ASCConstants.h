@@ -99,6 +99,7 @@ static NSString * const ASCEventNameMainWindowSetFrame      = @"UI_mainWindowSet
 static NSString * const ASCEventNameMainWindowLoaded        = @"UI_mainWindowLoaded";
 static NSString * const ASCEventNameOpenAppLinks            = @"UI_openAppLinks";
 static NSString * const ASCEventNameChangedUITheme          = @"UI_changedUITheme";
+static NSString * const ASCEventNameChangedSystemTheme      = @"UI_changedSystemTheme";
 
 // CEF types
 static NSString * const CEFOpenFileFilterImage              = @"images";

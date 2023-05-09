@@ -172,6 +172,11 @@
         <target state="translated">Office Open XML Spreadsheet (*.xlsx)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="Macro-enabled spreadsheet template" xml:space="preserve">
+        <source>Macro-enabled spreadsheet template</source>
+        <target state="translated">Macro-enabled Spreadsheet template (*.xltm)</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="FictionBook File" xml:space="preserve">
         <source>FictionBook File</source>
         <target state="translated">FictionBook 2 File (*.fb2)</target>
@@ -305,6 +310,11 @@
       <trans-unit id="PowerPoint 2007 Presentation" xml:space="preserve">
         <source>PowerPoint 2007 Presentation</source>
         <target state="translated">Office Open XML Presentation (*.pptx)</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Macro-enabled Presentation" xml:space="preserve">
+        <source>Macro-enabled Presentation</source>
+        <target state="translated">Macro-enabled Presentation (*.pptm)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="PowerPoint Slide Show" xml:space="preserve">
