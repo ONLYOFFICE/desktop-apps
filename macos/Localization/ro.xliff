@@ -162,7 +162,12 @@
         <target state="translated">Foaia de calcul Office Open XML (*.xlsx)</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
-      <trans-unit id="File &quot;%@&quot; can not be open or not exist." xml:space="preserve">
+		<trans-unit id="Macro-enabled spreadsheet template" xml:space="preserve">
+        <source>Macro-enabled spreadsheet template</source>
+        <target state="translated">Şablon foaie de calcul cu macrocomenzi activate (*.xltm)</target>
+      
+	  <note>No comment provided by engineer.</note></trans-unit>
+		<trans-unit id="File &quot;%@&quot; can not be open or not exist." xml:space="preserve">
         <source>File "%@" can not be open or not exist.</source>
         <target state="translated">Fișierul "%@" nu se poate deschide sau nu nu există.</target>
         
@@ -281,8 +286,13 @@
         <source>PowerPoint 2007 Presentation</source>
         <target state="translated">Prezentare Office Open XML (*.pptx)</target>
         
-      <note>No comment provided by engineer.</note></trans-unit>
-      <trans-unit id="PowerPoint Slide Show" xml:space="preserve">
+     <note>No comment provided by engineer.</note></trans-unit>
+	 <trans-unit id="Macro-enabled Presentation" xml:space="preserve">
+       <source>Macro-enabled Presentation</source>
+       <target state="translated">Prezentare cu macrocomenzi activate (*.pptm)</target>
+     
+	 <note>No comment provided by engineer.</note></trans-unit> 
+	 <trans-unit id="PowerPoint Slide Show" xml:space="preserve">
         <source>PowerPoint Slide Show</source>
         <target state="translated">Expunere diapozitive Office Open XML (*.ppsx)</target>
         

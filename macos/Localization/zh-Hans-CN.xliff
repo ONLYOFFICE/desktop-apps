@@ -172,7 +172,12 @@
         <target state="translated">Office Open XML 电子表格（*.xlsx)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
-      <trans-unit id="FictionBook File" xml:space="preserve">
+		<trans-unit id="Macro-enabled spreadsheet template" xml:space="preserve">
+        <source>Macro-enabled spreadsheet template</source>
+        <target state="translated">支持宏的电子表格模板（*.xltm）</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+		<trans-unit id="FictionBook File" xml:space="preserve">
         <source>FictionBook File</source>
         <target state="translated">小说书2文件（*.fb2)</target>
         <note>No comment provided by engineer.</note>
@@ -307,7 +312,12 @@
         <target state="translated">Office Open XML 演示文稿（*.pptx)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
-      <trans-unit id="PowerPoint Slide Show" xml:space="preserve">
+		<trans-unit id="Macro-enabled Presentation" xml:space="preserve">
+        <source>Macro-enabled Presentation</source>
+        <target state="translated">支持宏的演示文稿（*.pptm）</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+		<trans-unit id="PowerPoint Slide Show" xml:space="preserve">
         <source>PowerPoint Slide Show</source>
         <target state="translated">Office Open XML 幻灯片（*.ppsx)</target>
         <note>No comment provided by engineer.</note>

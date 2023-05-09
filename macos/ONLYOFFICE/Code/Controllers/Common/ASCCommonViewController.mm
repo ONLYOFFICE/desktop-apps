@@ -68,6 +68,7 @@
 #import "ASCCertificatePreviewController.h"
 #import "ASCCertificateQLPreviewController.h"
 #import "ASCLinguist.h"
+#import "ASCThemesController.h"
 #import "ASCEditorJSVariables.h"
 
 
@@ -139,6 +140,7 @@
     addObserverFor(CEFEventNameDocumentFragmented, @selector(onCEFDocumentFragmented:));
     addObserverFor(CEFEventNameCertificatePreview, @selector(onCEFCertificatePreview:));
     addObserverFor(ASCEventNameChangedUITheme, @selector(onUIThemeChanged:));
+    addObserverFor(ASCEventNameChangedSystemTheme, @selector(onSystemThemeChanged:));
 
     if (_externalDelegate && [_externalDelegate respondsToSelector:@selector(onCommonViewDidLoad:)]) {
         [_externalDelegate onCommonViewDidLoad:self];
@@ -160,6 +162,7 @@
         
         // Create CEF event listener
         [ASCEventsController sharedInstance];
+        [ASCThemesController sharedInstance];
         
         [self setupTabControl];
         [self createStartPage];
@@ -1599,6 +1602,46 @@
             ASCCertificatePreviewController * previewController = [[ASCCertificatePreviewController alloc] init:self];
             [previewController presentTextInfo:text];
         }
+    }
+}
+
+- (void)onSystemThemeChanged:(NSNotification *)notification {
+    if (notification && notification.userInfo) {
+        NSDictionary * info = (NSDictionary *)notification.userInfo;
+        NSString * mode = info[@"mode"];
+        CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
+
+        NSMutableDictionary * json = [[NSMutableDictionary alloc] initWithDictionary: @{@"theme": @{@"system": mode}}];
+        std::wstring params = [[json jsonString] stdwstring];
+
+        NSEditorApi::CAscExecCommandJS * pCommand = new NSEditorApi::CAscExecCommandJS;
+        pCommand->put_Command(L"renderervars:changed");
+        pCommand->put_Param(params);
+
+        NSEditorApi::CAscMenuEvent* pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND_JS);
+        pEvent->m_pData = pCommand;
+        appManager->SetEventToAllMainWindows(pEvent);
+
+        for (ASCTabView * tab in self.tabsControl.tabs) {
+            if (NSCefView * cefView = [self cefViewWithTab:tab]) {
+                CCefView * cef = appManager->GetViewById((int)cefView.uuid);
+                if (cef && cef->GetType() == cvwtEditor) {
+                    pCommand = new NSEditorApi::CAscExecCommandJS;
+                    pCommand->put_FrameName(L"frameEditor");
+                    pCommand->put_Command(L"renderervars:changed");
+                    pCommand->put_Param(params);
+
+                    pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND_JS);
+                    pEvent->m_pData = pCommand;
+
+                    [cefView apply:pEvent];
+                }
+            }
+        }
+        [[ASCEditorJSVariables instance] setVariable:@"theme" withObject:@{@"id": [ASCThemesController currentThemeId],
+                                                                           @"type": [ASCThemesController isCurrentThemeDark] ? @"dark" : @"light",
+                                                                           @"system": mode}];
+        [[ASCEditorJSVariables instance] apply];
     }
 }
 

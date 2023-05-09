@@ -74,7 +74,7 @@
 }
 
 + (NSArray *)spreadsheets {
-    return @[@"xls", @"xlsx", @"csv", @"ods", @"xltx", @"ots", @"xltm", @"fods", @"et", @"ett", @"sxc"];
+    return @[@"xls", @"xlsx", @"csv", @"ods", @"xltx", @"ots", @"xltm", @"xml", @"fods", @"et", @"ett", @"sxc"];
 }
 
 + (NSArray *)presentations {
@@ -151,7 +151,7 @@
                      @"description" : NSLocalizedString(@"Document template", nil),
                      @"extension"   : @"dotx"
                      },
-             
+
              @(AVS_OFFICESTUDIO_FILE_PRESENTATION_PPTX): @{
                      @"description" : NSLocalizedString(@"PowerPoint 2007 Presentation", nil),
                      @"extension"   : @"pptx"
@@ -159,6 +159,10 @@
              @(AVS_OFFICESTUDIO_FILE_PRESENTATION_PPT): @{
                      @"description" : NSLocalizedString(@"PowerPoint 97-2003 Presentation", nil),
                      @"extension"   : @"ppt"
+                     },
+             @(AVS_OFFICESTUDIO_FILE_PRESENTATION_PPTM): @{
+                     @"description" : NSLocalizedString(@"Macro-enabled Presentation", nil),
+                     @"extension"   : @"pptm"
                      },
              @(AVS_OFFICESTUDIO_FILE_PRESENTATION_ODP): @{
                      @"description" : NSLocalizedString(@"OpenOffice Presentation", nil),
@@ -172,7 +176,7 @@
                      @"description" : NSLocalizedString(@"Presentation template", nil),
                      @"extension"   : @"potx"
                      },
-             
+
              @(AVS_OFFICESTUDIO_FILE_SPREADSHEET_XLSX): @{
                      @"description" : NSLocalizedString(@"Excel 2007 Spreadsheet", nil),
                      @"extension"   : @"xlsx"
@@ -193,7 +197,11 @@
                      @"description" : NSLocalizedString(@"Spreadsheet template", nil),
                      @"extension"   : @"xltx"
                      },
-             
+             @(AVS_OFFICESTUDIO_FILE_SPREADSHEET_XLTM): @{
+                     @"description" : NSLocalizedString(@"Macro-enabled spreadsheet template", nil),
+                     @"extension"   : @"xltm"
+                     },
+
              @(AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_PDF): @{
                      @"description" : NSLocalizedString(@"PDF File", nil),
                      @"extension"   : @"pdf"

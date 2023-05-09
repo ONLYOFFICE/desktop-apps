@@ -149,8 +149,11 @@ int downloadToFile(const wstring &url, const wstring &filePath, std::atomic_bool
     } while (dwSize > 0);
 
 cleanup :
-    if (hFile != INVALID_HANDLE_VALUE)
+    if (hFile != INVALID_HANDLE_VALUE) {
         CloseHandle(hFile);
+        if (result == DNL_ABORT)
+            DeleteFile(filePath.c_str());
+    }
     WinHttpCloseHandle(hRequest);
     WinHttpCloseHandle(hConnect);
     WinHttpCloseHandle(hSession);

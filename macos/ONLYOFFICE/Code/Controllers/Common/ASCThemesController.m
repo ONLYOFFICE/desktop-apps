@@ -47,6 +47,31 @@
 
 @implementation ASCThemesController
 
++ (instancetype)sharedInstance {
+    static id sharedInstance = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedInstance = [[self alloc] init];
+    });
+
+    return sharedInstance;
+}
+
+- (id)init {
+    self = [super init];
+
+    [NSDistributedNotificationCenter.defaultCenter addObserver:self selector:@selector(onSystemThemeChanged:) name:@"AppleInterfaceThemeChangedNotification" object: nil];
+
+    return self;
+}
+
+- (void)onSystemThemeChanged:(NSNotification *)notification {
+    NSLog (@"system theme changed %@", notification);
+
+    [[ASCSharedSettings sharedInstance] setSetting:([ASCThemesController isSystemDarkMode] ? @"dark" : @"light") forKey:kSettingsColorScheme];
+    [[NSNotificationCenter defaultCenter] postNotificationName:ASCEventNameChangedSystemTheme object:nil userInfo:@{@"mode": ([NSApplication isSystemDarkMode] ? @"dark" : @"light")}];
+}
+
 + (NSString*)currentThemeId {
     return [[NSUserDefaults standardUserDefaults] valueForKey:ASCUserUITheme];
 }
@@ -93,6 +118,18 @@
     }
 
     return NULL;
+}
+
++ (BOOL)isSystemDarkMode {
+    if (@available(macOS 10.14, *)) {
+        NSString * appleInterfaceStyle = [[NSUserDefaults standardUserDefaults] stringForKey:@"AppleInterfaceStyle"];
+
+        if (appleInterfaceStyle && [appleInterfaceStyle length] > 0) {
+            return [[appleInterfaceStyle lowercaseString] containsString:@"dark"];
+        }
+    }
+
+    return false;
 }
 
 @end

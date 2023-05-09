@@ -172,7 +172,12 @@
         <target state="translated">Электронная таблица Office Open XML (*.xlsx)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
-      <trans-unit id="FictionBook File" xml:space="preserve">
+      <trans-unit id="Macro-enabled spreadsheet template" xml:space="preserve">
+        <source>Macro-enabled spreadsheet template</source>
+        <target state="translated">Шаблон электронной таблицы с поддержкой макросов (*.xltm)</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit> 
+	 <trans-unit id="FictionBook File" xml:space="preserve">
         <source>FictionBook File</source>
         <target state="translated">Файл FictionBook 2 (*.fb2)</target>
         <note>No comment provided by engineer.</note>
@@ -307,7 +312,12 @@
         <target state="translated">Презентация Office Open XML (*.pptx)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
-      <trans-unit id="PowerPoint Slide Show" xml:space="preserve">
+      <trans-unit id="Macro-enabled Presentation" xml:space="preserve">
+        <source>Macro-enabled Presentation</source>
+        <target state="translated">Презентация с поддержкой макросов (*.pptm)</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+	<trans-unit id="PowerPoint Slide Show" xml:space="preserve">
         <source>PowerPoint Slide Show</source>
         <target state="translated">Слайдшоу Office Open XML (*.ppsx)</target>
         <note>No comment provided by engineer.</note>

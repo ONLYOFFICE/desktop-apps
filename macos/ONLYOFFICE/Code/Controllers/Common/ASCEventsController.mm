@@ -750,7 +750,7 @@ public:
                             }
                         } else if (cmd.find(L"system:changed") != std::wstring::npos) {
                             NSLog(@"nstheme: system changed %@", [NSString stringWithstdwstring:param]);
-                            if ( [uiThemeSystem isEqualToString:[[NSUserDefaults standardUserDefaults] valueForKey:ASCUserUITheme]] ) {
+                            if ( [[ASCThemesController currentThemeId] isEqualToString:uiThemeSystem] ) {
                                 NSError * error = NULL;
                                 NSRegularExpression * regex = [NSRegularExpression regularExpressionWithPattern: @":\\s?\\\"(light|dark)"
                                                                                                        options: NSRegularExpressionCaseInsensitive
