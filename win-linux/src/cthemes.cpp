@@ -6,6 +6,7 @@
 #endif
 #include "defines.h"
 #include "utils.h"
+#include "cascapplicationmanagerwrapper.h"
 
 #include <QSettings>
 #include <QJsonDocument>
@@ -184,6 +185,20 @@ public:
         }
     }
 
+    auto isSystemThemeChanged() -> bool
+    {
+#ifdef Q_OS_WIN
+        QSettings _reg("HKEY_CURRENT_USER\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize", QSettings::NativeFormat);
+        bool is_dark = _reg.value("AppsUseLightTheme", 1).toInt() == 0;
+        if ( is_system_theme_dark != is_dark ) {
+            is_system_theme_dark = is_dark;
+            return true;
+        }
+#else
+#endif
+        return false;
+    }
+
     CThemes & parent;
     std::map<QString, QString> map_themes;
     bool is_system_theme_dark = false;
@@ -316,6 +331,17 @@ auto CTheme::isSystem() const -> bool
 
 /**/
 
+CThemes::SystemColorSchemeEvent::SystemColorSchemeEvent()
+    : QEvent(CThemes::SystemColorSchemeEvent::type())
+{}
+
+QEvent::Type CThemes::SystemColorSchemeEvent::type()
+{
+    return static_cast<QEvent::Type>(QEvent::User + 2);
+}
+
+/**/
+
 CThemes::CThemes()
     : m_priv(new CThemes::CThemesPrivate(this))
 {
@@ -367,6 +393,7 @@ auto CThemes::isThemeCurrent(const std::wstring& id) -> bool
     }
 }
 
+// TODO: refactoring
 auto CThemes::themeActualId(const std::wstring& id) const -> std::wstring
 {
     return WSTR(THEME_ID_SYSTEM) != id ? id :
@@ -416,4 +443,15 @@ auto CThemes::onSystemDarkColorScheme(bool isdark) -> void
 auto CThemes::isSystemSchemeDark() -> const bool
 {
     return m_priv->is_system_theme_dark;
+}
+
+auto CThemes::checkSystemColorScheme() -> void
+{
+    if ( m_priv->isSystemThemeChanged() ) {
+        if ( current().isSystem() ) {
+            CThemes::SystemColorSchemeEvent event;
+            QObject * obj = qobject_cast<QObject *>(static_cast<CAscApplicationManagerWrapper *>(&AscAppManager::getInstance()));
+            QApplication::sendEvent(obj, &event);
+        }
+    }
 }

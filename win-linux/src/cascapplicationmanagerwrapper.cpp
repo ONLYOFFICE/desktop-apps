@@ -1532,6 +1532,9 @@ bool CAscApplicationManagerWrapper::event(QEvent *event)
         }
 
         return true;
+    } else
+    if ( event->type() == CThemes::SystemColorSchemeEvent::type() ) {
+        applyTheme(themes().current().id());
     }
 
     return QObject::event(event);

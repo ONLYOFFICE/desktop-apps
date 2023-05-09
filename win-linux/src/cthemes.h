@@ -2,6 +2,7 @@
 #define CTHEMES_H
 
 #include <QColor>
+#include <QEvent>
 
 #ifdef Q_OS_WIN
 # include <windows.h>
@@ -70,9 +71,18 @@ public:
     auto isColorDark(const std::wstring&) -> bool;
     auto isColorDark(const QString&) -> bool;
 
+    auto checkSystemColorScheme() -> void;
     auto onSystemDarkColorScheme(bool isdark) -> void;
     auto isSystemSchemeDark() -> const bool;
     auto parseThemeName(const std::wstring&) -> std::wstring;
+
+    class SystemColorSchemeEvent: public QEvent {
+    public:
+        SystemColorSchemeEvent();
+
+        static QEvent::Type type();
+    };
+
 private:
     class CThemesPrivate;
     CThemesPrivate * m_priv = nullptr;

@@ -289,7 +289,15 @@ bool CWindowPlatform::nativeEvent(const QByteArray &eventType, void *message, lo
         break;
     }
 
-    case WM_WININICHANGE: {
+    case WM_SETTINGCHANGE: {
+        if ( msg->wParam == 0 ) {
+            if ( std::wcscmp(LPCTSTR(msg->lParam), L"ImmersiveColorSet") == 0 ) {
+//            if ( lstrcmp(LPCTSTR(msg->lParam), L"ImmersiveColorSet") == 0 ) {
+                AscAppManager::themes().checkSystemColorScheme();
+            }
+
+        }
+
         adjustGeometry();
         break;
     }
