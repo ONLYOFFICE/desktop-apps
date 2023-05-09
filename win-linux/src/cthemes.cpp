@@ -34,25 +34,25 @@ namespace NSTheme {
     };
 
     static const std::map<CTheme::ColorRole, QString> map_names = {
-            {CTheme::ColorRole::ecrTabWordActive, "brand_word"},
-            {CTheme::ColorRole::ecrTabSlideActive, "brand_slide"},
-            {CTheme::ColorRole::ecrTabCellActive, "brand_cell"},
+            {CTheme::ColorRole::TabWordActive, "brand_word"},
+            {CTheme::ColorRole::TabSlideActive, "brand_slide"},
+            {CTheme::ColorRole::TabCellActive, "brand_cell"},
 
-            {CTheme::ColorRole::ecrWindowBackground, "window_background"},
-            {CTheme::ColorRole::ecrWindowBorder, "window_border"},
+            {CTheme::ColorRole::WindowBackground, "window_background"},
+            {CTheme::ColorRole::WindowBorder, "window_border"},
 
-            {CTheme::ColorRole::ecrTextNormal, "text_normal"},
-            {CTheme::ColorRole::ecrTextPressed, "text_normal_pressed"},
+            {CTheme::ColorRole::TextNormal, "text_normal"},
+            {CTheme::ColorRole::TextPressed, "text_normal_pressed"},
 
     //      {  "tab_active_background": "#fff",
-            {CTheme::ColorRole::ecrTabSimpleActiveBackground, "tab_simple_active_background"},
-            {CTheme::ColorRole::ecrTabSimpleActiveText, "tab_simple_active_text"},
-            {CTheme::ColorRole::ecrTabDefaultActiveBackground, "tab_default_active_background"},
-            {CTheme::ColorRole::ecrTabDefaultActiveText, "tab_default_active_text"},
+            {CTheme::ColorRole::TabSimpleActiveBackground, "tab_simple_active_background"},
+            {CTheme::ColorRole::TabSimpleActiveText, "tab_simple_active_text"},
+            {CTheme::ColorRole::TabDefaultActiveBackground, "tab_default_active_background"},
+            {CTheme::ColorRole::TabDefaultActiveText, "tab_default_active_text"},
     //      {  "tab_divider": "#a5a5a5",
 
-            {CTheme::ColorRole::ecrButtonNormalOpacity, "button_normal_opacity"},
-            {CTheme::ColorRole::ecrLogoColor, "logo"}
+            {CTheme::ColorRole::ButtonNormalOpacity, "button_normal_opacity"},
+            {CTheme::ColorRole::LogoColor, "logo"}
         };
 }
 

@@ -12,19 +12,19 @@ class CThemes;
 class CTheme {
 public:
     enum class ColorRole {
-        ecrWindowBackground
-        , ecrWindowBorder
-        , ecrTextNormal
-        , ecrTextPressed
-        , ecrLogoColor
-        , ecrTabWordActive
-        , ecrTabCellActive
-        , ecrTabSlideActive
-        , ecrTabSimpleActiveBackground
-        , ecrTabSimpleActiveText
-        , ecrTabDefaultActiveBackground
-        , ecrTabDefaultActiveText
-        , ecrButtonNormalOpacity
+        WindowBackground
+        , WindowBorder
+        , TextNormal
+        , TextPressed
+        , LogoColor
+        , TabWordActive
+        , TabCellActive
+        , TabSlideActive
+        , TabSimpleActiveBackground
+        , TabSimpleActiveText
+        , TabDefaultActiveBackground
+        , TabDefaultActiveText
+        , ButtonNormalOpacity
     };
 
     auto fromFile(const QString&) -> bool;

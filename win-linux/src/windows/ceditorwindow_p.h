@@ -123,10 +123,10 @@ const QString g_css =
 auto prepare_editor_css(int type, const CTheme& theme) -> QString {
     std::wstring c;
     switch (type) {
-    default: c = theme.value(CTheme::ColorRole::ecrTabWordActive); break;
-    case etDocument: c = theme.value(CTheme::ColorRole::ecrTabWordActive); break;
-    case etPresentation: c = theme.value(CTheme::ColorRole::ecrTabSlideActive); break;
-    case etSpreadsheet: c = theme.value(CTheme::ColorRole::ecrTabCellActive); break;
+    default: c = theme.colorHexValue(CTheme::ColorRole::TabWordActive); break;
+    case etDocument: c = theme.colorHexValue(CTheme::ColorRole::TabWordActive); break;
+    case etPresentation: c = theme.colorHexValue(CTheme::ColorRole::TabSlideActive); break;
+    case etSpreadsheet: c = theme.colorHexValue(CTheme::ColorRole::TabCellActive); break;
     }
 
     return g_css.arg(QString::fromStdWString(c));
@@ -134,10 +134,10 @@ auto prepare_editor_css(int type, const CTheme& theme) -> QString {
 
 auto editor_color(int type) -> QColor {
     switch (type) {
-    case etDocument: return GetColorByRole(ecrTabWordActive);
-    case etPresentation: return GetColorByRole(ecrTabSlideActive);
-    case etSpreadsheet: return GetColorByRole(ecrTabCellActive);
-    default: return GetColorByRole(ecrTabWordActive);
+    case etDocument: return GetColorByRole(TabWordActive);
+    case etPresentation: return GetColorByRole(TabSlideActive);
+    case etSpreadsheet: return GetColorByRole(TabCellActive);
+    default: return GetColorByRole(TabWordActive);
     }
 }
 
@@ -183,7 +183,7 @@ public:
             btnHome->setIcon(":/title/icons/buttons.svg", "svg-btn-home");
             //btnHome->setToolTip(CEditorWindow::tr("Open main window"));
             btnHome->setProperty("ToolTip", CEditorWindow::tr("Open main window"));
-            btnHome->setIconOpacity(AscAppManager::themes().current().color(CTheme::ColorRole::ecrButtonNormalOpacity));
+            btnHome->setIconOpacity(AscAppManager::themes().current().color(CTheme::ColorRole::ButtonNormalOpacity));
             m_mapTitleButtons["home"] = btnHome;
             connect(btnHome, &QPushButton::clicked, std::bind(&CEditorWindow::onClickButtonHome, window));
             leftboxbuttons->layout()->addWidget(btnHome);
@@ -200,7 +200,7 @@ public:
         btn->setDisabled(jsonobj["disabled"].toBool());
         btn->setIconSize(QSize(20,20) * window->m_dpiRatio);
         btn->setMouseTracking(true);
-        btn->setIconOpacity(AscAppManager::themes().current().color(CTheme::ColorRole::ecrButtonNormalOpacity));
+        btn->setIconOpacity(AscAppManager::themes().current().color(CTheme::ColorRole::ButtonNormalOpacity));
         if ( jsonobj.contains("visible") && !jsonobj["visible"].toBool() ) {
             btn->hide();
         }
@@ -399,20 +399,20 @@ public:
         std::wstring background, border;
         switch (panel()->data()->contentType()) {
         case etDocument:
-            background = AscAppManager::themes().current().value(CTheme::ColorRole::ecrTabWordActive);
+            background = AscAppManager::themes().current().colorHexValue(CTheme::ColorRole::TabWordActive);
             border = background;
             break;
         case etPresentation:
-            background = AscAppManager::themes().current().value(CTheme::ColorRole::ecrTabSlideActive);
+            background = AscAppManager::themes().current().colorHexValue(CTheme::ColorRole::TabSlideActive);
             border = background;
             break;
         case etSpreadsheet:
-            background = AscAppManager::themes().current().value(CTheme::ColorRole::ecrTabCellActive);
+            background = AscAppManager::themes().current().colorHexValue(CTheme::ColorRole::TabCellActive);
             border = background;
             break;
         default:
-            background = AscAppManager::themes().current().value(CTheme::ColorRole::ecrWindowBackground);
-            border = AscAppManager::themes().current().value(CTheme::ColorRole::ecrWindowBorder);
+            background = AscAppManager::themes().current().colorHexValue(CTheme::ColorRole::WindowBackground);
+            border = AscAppManager::themes().current().colorHexValue(CTheme::ColorRole::WindowBorder);
         }
 
         window->setWindowColors(QColor(QString::fromStdWString(background)), QColor(QString::fromStdWString(border)));
@@ -423,16 +423,16 @@ public:
         if (window->isCustomWindowStyle()) {
             Q_ASSERT(window->m_pMainPanel);
             window->m_pMainPanel->setProperty("uitheme", QString::fromStdWString(GetActualTheme(theme)));
-            window->m_pMainPanel->setProperty("uithemetype", GetCurrentTheme().stype());
+            window->m_pMainPanel->setProperty("uithemetype", GetCurrentTheme().typeSting());
             if (!viewerMode()) {
                 if (usedOldEditorVersion) {   // For old editors only
                     foreach (auto btn, m_mapTitleButtons)
-                        btn->setIconOpacity(GetColorByRole(ecrButtonNormalOpacity));
+                        btn->setIconOpacity(GetColorByRole(ButtonNormalOpacity));
                 }
             } else {
                 window->m_pMainPanel->setProperty("window", "pretty");
                 if ( m_mapTitleButtons.contains("home") )
-                    m_mapTitleButtons["home"]->setIconOpacity(GetColorByRole(ecrButtonNormalOpacity));
+                    m_mapTitleButtons["home"]->setIconOpacity(GetColorByRole(ButtonNormalOpacity));
             }
             AscEditorType editor_type = panel()->data()->contentType();
             window->m_css = prepare_editor_css(editor_type, GetCurrentTheme());

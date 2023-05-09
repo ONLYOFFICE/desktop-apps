@@ -135,8 +135,8 @@ void CWindowBase::setWindowColors(const QColor& background, const QColor& border
 void CWindowBase::applyTheme(const std::wstring& theme)
 {
     Q_UNUSED(theme)
-    QColor background = AscAppManager::themes().current().color(CTheme::ColorRole::ecrWindowBackground);
-    QColor border = AscAppManager::themes().current().color(CTheme::ColorRole::ecrWindowBorder);
+    QColor background = AscAppManager::themes().current().color(CTheme::ColorRole::WindowBackground);
+    QColor border = AscAppManager::themes().current().color(CTheme::ColorRole::WindowBorder);
     setWindowColors(background, border);
 }
 
