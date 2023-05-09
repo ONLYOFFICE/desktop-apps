@@ -1088,7 +1088,7 @@ void CAscApplicationManagerWrapper::initializeApp()
 //    AscAppManager::getInstance().applyTheme(themes().current().id(), true);
 
     EditorJSVariables::applyVariable("theme", {
-                                        {"type", _app.m_themes->current().stype()},
+                                        {"type", _app.m_themes->current().typeSting()},
                                         {"id", QString::fromStdWString(_app.m_themes->current().id())}
 #ifndef Q_OS_LINUX
                                         ,{"system", _app.m_themes->isSystemSchemeDark() ? "dark" : "light"}
@@ -1664,7 +1664,7 @@ void CAscApplicationManagerWrapper::applyTheme(const wstring& theme, bool force)
         AscAppManager::getInstance().InitAdditionalEditorParams(params);
 
         EditorJSVariables::applyVariable("theme", {
-                                            {"type", _app.m_themes->current().stype()},
+                                            {"type", _app.m_themes->current().typeSting()},
                                             {"id", QString::fromStdWString(_app.m_themes->current().id())}
 #ifndef Q_OS_WIN
 //                                            ,{"system", _app.m_themes->isSystemSchemeDark() ? "dark" : "light"}

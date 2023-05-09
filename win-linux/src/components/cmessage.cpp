@@ -169,7 +169,7 @@ QtMsg::QtMsg(QWidget * p)
     layout()->addWidget(m_centralWidget);
     layout()->setSizeConstraint(QLayout::SetFixedSize);
     m_centralWidget->setObjectName("messageBody");
-    m_centralWidget->setProperty("uitheme", QString::fromStdWString(GetCurrentTheme().originalId()));
+    m_centralWidget->setProperty("uitheme", QString::fromStdWString(GetCurrentTheme().relevantId()));
 
     QVBoxLayout * _c_layout  = new QVBoxLayout;
     QHBoxLayout * _h_layout2 = new QHBoxLayout;

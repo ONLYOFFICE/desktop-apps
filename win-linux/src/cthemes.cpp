@@ -239,7 +239,7 @@ auto CTheme::id() const -> std::wstring
     return m_priv->is_system ? WSTR(THEME_ID_SYSTEM) : m_priv->id;
 }
 
-auto CTheme::originalId() const -> std::wstring
+auto CTheme::relevantId() const -> std::wstring
 {
     return m_priv->id;
 }
@@ -253,7 +253,7 @@ auto CTheme::typeSting() const -> QString
     }
 }
 
-auto CTheme::value(ColorRole r) const -> std::wstring
+auto CTheme::colorHexValue(ColorRole r) const -> std::wstring
 {
     if ( NSTheme::map_names.find(r) != NSTheme::map_names.end() ) {
         if ( m_priv->jsonValues.contains(NSTheme::map_names.at(r)) )
@@ -265,7 +265,7 @@ auto CTheme::value(ColorRole r) const -> std::wstring
 
 auto CTheme::color(ColorRole role) const -> QColor
 {
-    QString v = QSTRING_FROM_WSTR(value(role));
+    QString v = QSTRING_FROM_WSTR(colorHexValue(role));
     if ( !v.isEmpty() ) {
         if ( v.startsWith("rgba") ) {
             QRegularExpression re("\\((\\d{1,3}),(\\d{1,3}),(\\d{1,3}),(\\d{1,3})");

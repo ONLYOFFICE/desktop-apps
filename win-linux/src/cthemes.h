@@ -31,13 +31,13 @@ public:
     auto fromJson(const QString&) -> bool;
 
     auto id() const -> std::wstring;
-    auto originalId() const -> std::wstring;
+    auto relevantId() const -> std::wstring;
     auto typeSting() const -> QString;
     auto color(ColorRole r) const -> QColor;
 #ifdef Q_OS_WIN
     auto colorRef(ColorRole r) const -> COLORREF;
 #endif
-    auto value(ColorRole) const -> std::wstring;
+    auto colorHexValue(ColorRole) const -> std::wstring;
     auto isDark() const -> bool;
     auto isSystem() const -> bool;
 
