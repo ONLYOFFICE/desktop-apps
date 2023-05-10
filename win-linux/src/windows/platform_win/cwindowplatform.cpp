@@ -297,8 +297,16 @@ bool CWindowPlatform::nativeEvent(const QByteArray &eventType, void *message, lo
         break;
     }
 
-    case WM_WININICHANGE: {
-        adjustGeometry();
+    case WM_SETTINGCHANGE: {
+        if (msg->wParam == SPI_SETWORKAREA) {
+            static RECT oldWorkArea = {0,0,0,0};
+            RECT workArea; // Taskbar show/hide detection
+            SystemParametersInfoW(SPI_GETWORKAREA, 0, &workArea, 0);
+            if (!EqualRect(&oldWorkArea, &workArea)) {
+                oldWorkArea = workArea;
+                adjustGeometry();
+            }
+        }
         break;
     }
 
