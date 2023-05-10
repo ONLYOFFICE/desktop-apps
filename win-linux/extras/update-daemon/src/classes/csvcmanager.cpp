@@ -180,6 +180,11 @@ void CSvcManager::init()
         std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
         NS_Logger::WriteLog(converter.from_bytes(error));
     });
+
+#ifdef _WIN32
+    if (NS_File::fileExists(NS_File::appPath() + DAEMON_NAME_OLD))
+        NS_File::removeFile(NS_File::appPath() + DAEMON_NAME_OLD);
+#endif
 }
 
 void CSvcManager::onCompleteUnzip(const int error)
