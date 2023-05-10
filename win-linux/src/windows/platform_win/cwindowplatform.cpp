@@ -115,7 +115,7 @@ void CWindowPlatform::adjustGeometry()
             SetWindowPos(m_hWnd, NULL, rc.x(), rc.y(), rc.width(), rc.height() - offset.height(),
                          SWP_NOZORDER | SWP_NOOWNERZORDER | SWP_NOSENDCHANGING);
 
-            double dpi = qApp->screenAt(rect().topLeft())->logicalDotsPerInch()/96;
+            double dpi = qApp->screenAt(geometry().center())->logicalDotsPerInch()/96;
             const int brd = (dpi <= 1.0) ? 8 :
                             (dpi == 1.25) ? 9 :
                             (dpi == 1.5) ? 11 :
