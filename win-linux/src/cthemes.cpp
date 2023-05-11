@@ -189,15 +189,11 @@ public:
         }
     }
 
-    auto isSystemThemeChanged() -> bool
+    auto inspectSystemDarkTheme() -> bool
     {
 #ifdef Q_OS_WIN
         QSettings _reg("HKEY_CURRENT_USER\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize", QSettings::NativeFormat);
-        bool is_dark = _reg.value("AppsUseLightTheme", 1).toInt() == 0;
-        if ( is_system_theme_dark != is_dark ) {
-            is_system_theme_dark = is_dark;
-            return true;
-        }
+        return _reg.value("AppsUseLightTheme", 1).toInt() == 0;
 #else
 #endif
         return false;
@@ -335,13 +331,19 @@ auto CTheme::isSystem() const -> bool
 
 /**/
 
-CThemes::SystemColorSchemeEvent::SystemColorSchemeEvent()
+CThemes::SystemColorSchemeEvent::SystemColorSchemeEvent(const QString& scheme)
     : QEvent(CThemes::SystemColorSchemeEvent::type())
+    , scheme_(scheme)
 {}
 
 QEvent::Type CThemes::SystemColorSchemeEvent::type()
 {
     return static_cast<QEvent::Type>(QEvent::User + 2);
+}
+
+QString CThemes::SystemColorSchemeEvent::scheme() const
+{
+    return scheme_;
 }
 
 /**/
@@ -451,11 +453,13 @@ auto CThemes::isSystemSchemeDark() -> const bool
 
 auto CThemes::checkSystemColorScheme() -> void
 {
-    if ( m_priv->isSystemThemeChanged() ) {
+    if ( m_priv->inspectSystemDarkTheme() != m_priv->is_system_theme_dark ) {
+        m_priv->is_system_theme_dark = !m_priv->is_system_theme_dark;
+
         if ( current().isSystem() ) {
-            CThemes::SystemColorSchemeEvent event;
-            QObject * obj = qobject_cast<QObject *>(static_cast<CAscApplicationManagerWrapper *>(&AscAppManager::getInstance()));
-            QApplication::sendEvent(obj, &event);
+            CThemes::SystemColorSchemeEvent event{m_priv->is_system_theme_dark ? NSTheme::theme_type_dark : NSTheme::theme_type_light};
+            QObject * receiver = qobject_cast<QObject *>(static_cast<CAscApplicationManagerWrapper *>(&AscAppManager::getInstance()));
+            QApplication::sendEvent(receiver, &event);
         }
     }
 }

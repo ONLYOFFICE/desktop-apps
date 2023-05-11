@@ -331,26 +331,6 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
             CExistanceController::check(QString::fromStdWString(pData->get_Param()));
             return true;
         } else
-        if ( !(cmd.find(L"system:changed") == std::wstring::npos) ) {
-            QRegularExpression re(":\\s?\"(dark|light)");
-            QRegularExpressionMatch match = re.match(QString::fromStdWString(pData->get_Param()));
-            if ( match.hasMatch() ) {
-                bool is_dark = match.captured(1) == "dark";
-                m_themes->onSystemDarkColorScheme(is_dark);
-
-#ifndef Q_OS_WIN
-                for (auto i: GetViewsId()) {
-                    sendCommandTo(GetViewById(i), cmd, pData->get_Param());
-                }
-#endif
-
-                if ( themes().current().isSystem() && themes().current().isDark() != is_dark )
-                    applyTheme(themes().current().id());
-            }
-
-
-            return true;
-        } else
         if ( !(cmd.find(L"open:template") == std::wstring::npos) ) {
             if ( pData->get_Param() == L"external" ) {
                 static QByteArray _json_to_open;
@@ -1534,7 +1514,17 @@ bool CAscApplicationManagerWrapper::event(QEvent *event)
         return true;
     } else
     if ( event->type() == CThemes::SystemColorSchemeEvent::type() ) {
-        applyTheme(themes().current().id());
+        CThemes::SystemColorSchemeEvent * e = static_cast<CThemes::SystemColorSchemeEvent *>(event);
+
+        AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, L"renderervars:changed",
+                                     Utils::stringifyJson(QJsonObject{{"theme", QJsonObject{{"system", e->scheme()}}}}).toStdWString());
+
+        for (auto i: GetViewsId()) {
+            sendCommandTo(GetViewById(i), L"renderervars:changed",
+                          Utils::stringifyJson(QJsonObject{{"theme", QJsonObject{{"system", e->scheme()}}}}).toStdWString());
+        }
+
+        applyTheme(m_themes->current().id());
     }
 
     return QObject::event(event);

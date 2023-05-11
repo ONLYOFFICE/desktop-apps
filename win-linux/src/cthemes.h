@@ -77,13 +77,17 @@ public:
     auto parseThemeName(const std::wstring&) -> std::wstring;
 
     class SystemColorSchemeEvent: public QEvent {
+        QString scheme_;
     public:
-        SystemColorSchemeEvent();
+        SystemColorSchemeEvent(const QString&);
 
         static QEvent::Type type();
+        QString scheme() const;
     };
 
 private:
+    auto readIsSystemThemeDark() -> bool;
+
     class CThemesPrivate;
     CThemesPrivate * m_priv = nullptr;
 };

@@ -95,7 +95,7 @@
     }
 
     uitheme.is_system_theme_dark = function () {
-        return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        return this.get_system_theme_type() == THEME_TYPE_DARK
     }
 
     uitheme.get_default_theme_for_type = type => type == THEME_TYPE_DARK ? THEME_ID_DEFAULT_DARK : THEME_ID_DEFAULT_LIGHT;
@@ -464,8 +464,8 @@
                                             {'theme-dark': utils.Lang.settOptThemeDark},
                                             {'theme-contrast-dark': utils.Lang.settOptThemeContrastDark}];
 
-                            if ( uitheme.is_system_theme_avalaible() )
-                                _themes.unshift({'theme-system': utils.Lang.settOptThemeSystem});
+                            if ( !uitheme.is_system_theme_avalaible() )
+                                _themes.splice(0, 1);
 
                             const nativevars = window.RendererProcessVariable;
                             if ( nativevars.theme && nativevars.theme.system == 'disabled' )
@@ -569,9 +569,6 @@
             }
         };
 
-        const on_system_theme_dark = e =>
-            sdk.command("system:changed", JSON.stringify({'colorscheme': e.target.matches ? THEME_TYPE_DARK:THEME_TYPE_LIGHT}));
-
         const on_window_resize = function(e) {
             if ( !this.resize_elems  ) return;
 
@@ -654,8 +651,6 @@
                 });
 
                 window.sdk.on('on_native_message', _on_app_message.bind(this));
-                window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', on_system_theme_dark.bind(this));
-                // on_system_theme_dark({target: window.matchMedia('(prefers-color-scheme: dark)')});
 
                 $(window).on('resize', on_window_resize.bind(this));
                 CommonEvents.on('panel:show', on_panel_show.bind(this));
