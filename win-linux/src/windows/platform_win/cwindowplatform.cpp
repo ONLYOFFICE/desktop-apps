@@ -115,6 +115,9 @@ void CWindowPlatform::adjustGeometry()
             SetWindowPos(m_hWnd, NULL, rc.x(), rc.y(), rc.width(), rc.height() - offset.height(),
                          SWP_NOZORDER | SWP_NOOWNERZORDER | SWP_NOSENDCHANGING);
 
+#ifdef __OS_WIN_XP
+            setContentsMargins(0, 0, 0, 0);
+#else
             double dpi = qApp->screenAt(geometry().center())->logicalDotsPerInch()/96;
             const int brd = (dpi <= 1.0) ? 8 :
                             (dpi == 1.25) ? 9 :
@@ -125,6 +128,7 @@ void CWindowPlatform::adjustGeometry()
                             (dpi == 2.5) ? 16 : 6 * dpi;
             const int border = (!isTaskbarAutoHideOn() && Utils::getWinVersion() > Utils::WinVer::Win7) ? brd: 0;
             setContentsMargins(border, border, border, border);
+#endif
         });
     }
 }
