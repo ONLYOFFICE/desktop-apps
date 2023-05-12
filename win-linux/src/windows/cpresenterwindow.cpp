@@ -73,9 +73,9 @@ CPresenterWindow::~CPresenterWindow()
 
 void CPresenterWindow::updateTheme()
 {
-    m_pMainPanel->setProperty("uitheme", QString::fromStdWString(AscAppManager::themes().relevantThemeId(theme)));
     CWindowPlatform::updateTheme();
 
+    m_pMainPanel->setProperty("uitheme", QString::fromStdWString(AscAppManager::themes().current().relevantId()));
     m_pMainPanel->setProperty("uithemetype", AscAppManager::themes().current().typeSting());
     if (m_boxTitleBtns) {
         m_labelTitle->style()->polish(m_labelTitle);

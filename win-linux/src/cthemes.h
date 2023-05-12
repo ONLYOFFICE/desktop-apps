@@ -66,7 +66,6 @@ public:
     auto setCurrentTheme(const std::wstring&) -> void;
     auto isThemeCurrent(const std::wstring& id) -> bool;
 //    auto isThemeDark(const std::wstring& id) -> bool;
-    auto relevantThemeId(const std::wstring& id) const -> std::wstring;
 
     auto documentContentMode() -> QString;
     auto setDocumentContentMode(const QString&) -> void;

@@ -420,9 +420,10 @@ public:
 
     void updateTheme()
     {
+        std::wstring theme_id {AscAppManager::themes().current().relevantId()};
         if (window->isCustomWindowStyle()) {
             Q_ASSERT(window->m_pMainPanel);
-            window->m_pMainPanel->setProperty("uitheme", QString::fromStdWString(AscAppManager::themes().relevantThemeId(theme)));
+            window->m_pMainPanel->setProperty("uitheme", QString::fromStdWString(theme_id));
             window->m_pMainPanel->setProperty("uithemetype", GetCurrentTheme().typeSting());
             if (!viewerMode()) {
                 if (usedOldEditorVersion) {   // For old editors only
@@ -441,7 +442,7 @@ public:
             window->m_pMainPanel->setStyleSheet(css);
         }
         setWindowColors();
-        AscAppManager::sendCommandTo(panel()->cef(), L"uitheme:changed", theme);
+        AscAppManager::sendCommandTo(panel()->cef(), L"uitheme:changed", theme_id);
     }
 
     void onDocumentChanged(int id, bool state) override

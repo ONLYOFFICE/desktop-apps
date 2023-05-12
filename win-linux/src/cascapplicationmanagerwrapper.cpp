@@ -1665,11 +1665,10 @@ void CAscApplicationManagerWrapper::applyTheme(const wstring& theme, bool force)
     APP_CAST(_app);
 
     if ( !_app.m_themes->isThemeCurrent(theme) ) {
-        const std::wstring old_theme = _app.m_themes->current().id();
-        _app.m_themes->setCurrentTheme(theme);
-
-        std::wstring params{InputArgs::change_webapps_param(L"&uitheme=" + old_theme, L"&uitheme=" + theme)};
+        std::wstring params{InputArgs::change_webapps_param(L"&uitheme=" + _app.m_themes->current().id(), L"&uitheme=" + theme)};
         AscAppManager::getInstance().InitAdditionalEditorParams(params);
+
+        _app.m_themes->setCurrentTheme(theme);
 
         EditorJSVariables::applyVariable("theme", {
                                             {"type", _app.m_themes->current().typeSting()},
@@ -1684,7 +1683,7 @@ void CAscApplicationManagerWrapper::applyTheme(const wstring& theme, bool force)
         // TODO: remove
         if ( mainWindow() ) mainWindow()->updateTheme();
 
-        const std::wstring theme_id{_app.m_themes->relevantThemeId(theme)};
+        const std::wstring theme_id{_app.m_themes->current().relevantId()};
         for ( auto const& r : m_winsReporter ) {
             r.second->updateTheme();
         }

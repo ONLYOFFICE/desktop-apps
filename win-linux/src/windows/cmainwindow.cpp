@@ -219,12 +219,14 @@ bool CMainWindow::holdView(int id) const
 void CMainWindow::updateTheme()
 {
     CWindowPlatform::updateTheme();
-    m_pMainPanel->setProperty("uitheme", QString::fromStdWString(AscAppManager::themes().relevantThemeId(theme)));
+
+    std::wstring theme_id = AscAppManager::themes().current().relevantId();
+    m_pMainPanel->setProperty("uitheme", QString::fromStdWString(theme_id));
     m_pMainPanel->setProperty("uithemetype", AscAppManager::themes().current().typeSting());
     for (int i(m_pTabs->count()); !(--i < 0);) {
         CAscTabData& _doc = *m_pTabs->panel(i)->data();
         if ( _doc.isViewType(cvwtEditor) && !_doc.closed() ) {
-            AscAppManager::sendCommandTo(m_pTabs->panel(i)->cef(), L"uitheme:changed", theme);
+            AscAppManager::sendCommandTo(m_pTabs->panel(i)->cef(), L"uitheme:changed", theme_id);
         }
     }
     m_boxTitleBtns->style()->polish(m_boxTitleBtns);
@@ -234,7 +236,7 @@ void CMainWindow::updateTheme()
         foreach (auto btn, m_pTopButtons)
             btn->style()->polish(btn);
     }
-    m_pTabs->applyUITheme(AscAppManager::themes().relevantThemeId(theme));
+    m_pTabs->applyUITheme(theme_id);
     m_pMainPanel->style()->polish(m_pMainPanel);
     m_pMainPanel->update();
 
