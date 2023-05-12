@@ -1668,9 +1668,9 @@ void CAscApplicationManagerWrapper::applyTheme(const wstring& theme, bool force)
         // TODO: remove
         if ( mainWindow() ) mainWindow()->applyTheme(theme);
 
-        const std::wstring actual_id{_app.m_themes->themeActualId(theme)};
+        const std::wstring theme_id{_app.m_themes->relevantThemeId(theme)};
         for ( auto const& r : m_winsReporter ) {
-            r.second->applyTheme(actual_id);
+            r.second->applyTheme(theme_id);
         }
 
 

@@ -422,7 +422,7 @@ public:
     {
         if (window->isCustomWindowStyle()) {
             Q_ASSERT(window->m_pMainPanel);
-            window->m_pMainPanel->setProperty("uitheme", QString::fromStdWString(GetActualTheme(theme)));
+            window->m_pMainPanel->setProperty("uitheme", QString::fromStdWString(AscAppManager::themes().relevantThemeId(theme)));
             window->m_pMainPanel->setProperty("uithemetype", GetCurrentTheme().typeSting());
             if (!viewerMode()) {
                 if (usedOldEditorVersion) {   // For old editors only

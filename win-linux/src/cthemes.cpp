@@ -400,7 +400,7 @@ auto CThemes::isThemeCurrent(const std::wstring& id) -> bool
 }
 
 // TODO: refactoring
-auto CThemes::themeActualId(const std::wstring& id) const -> std::wstring
+auto CThemes::relevantThemeId(const std::wstring& id) const -> std::wstring
 {
     return WSTR(THEME_ID_SYSTEM) != id ? id :
         m_priv->is_system_theme_dark ? WSTR(THEME_DEFAULT_DARK_ID) : WSTR(THEME_DEFAULT_LIGHT_ID);

@@ -219,7 +219,7 @@ bool CMainWindow::holdView(int id) const
 void CMainWindow::applyTheme(const std::wstring& theme)
 {
     CWindowPlatform::applyTheme(theme);
-    m_pMainPanel->setProperty("uitheme", QString::fromStdWString(AscAppManager::themes().themeActualId(theme)));
+    m_pMainPanel->setProperty("uitheme", QString::fromStdWString(AscAppManager::themes().relevantThemeId(theme)));
     m_pMainPanel->setProperty("uithemetype", AscAppManager::themes().current().typeSting());
     for (int i(m_pTabs->count()); !(--i < 0);) {
         CAscTabData& _doc = *m_pTabs->panel(i)->data();
@@ -234,7 +234,7 @@ void CMainWindow::applyTheme(const std::wstring& theme)
         foreach (auto btn, m_pTopButtons)
             btn->style()->polish(btn);
     }
-    m_pTabs->applyUITheme(AscAppManager::themes().themeActualId(theme));
+    m_pTabs->applyUITheme(AscAppManager::themes().relevantThemeId(theme));
     m_pMainPanel->style()->polish(m_pMainPanel);
     m_pMainPanel->update();
 
