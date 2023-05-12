@@ -63,7 +63,7 @@ public:
     bool holdView(const std::wstring& portal) const;
     void undock(bool maximized = false);
     virtual bool holdView(int id) const final;
-    virtual void applyTheme(const std::wstring&) final;
+    virtual void updateTheme() final;
 
 protected:
     void closeEvent(QCloseEvent *) override;

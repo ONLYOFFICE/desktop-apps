@@ -216,9 +216,9 @@ bool CMainWindow::holdView(int id) const
     return holdUid(id);
 }
 
-void CMainWindow::applyTheme(const std::wstring& theme)
+void CMainWindow::updateTheme()
 {
-    CWindowPlatform::applyTheme(theme);
+    CWindowPlatform::updateTheme();
     m_pMainPanel->setProperty("uitheme", QString::fromStdWString(AscAppManager::themes().relevantThemeId(theme)));
     m_pMainPanel->setProperty("uithemetype", AscAppManager::themes().current().typeSting());
     for (int i(m_pTabs->count()); !(--i < 0);) {

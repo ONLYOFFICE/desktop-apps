@@ -65,7 +65,7 @@ public:
     int editorsCount(const std::wstring& portal);
     bool pointInTabs(const QPoint& pt);
     bool holdView(int id) const;
-    virtual void applyTheme(const std::wstring&) final;
+    virtual void updateTheme() final;
     virtual void focus() final;
     void close();
     bool isAboutToClose() const;

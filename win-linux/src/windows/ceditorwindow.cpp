@@ -188,9 +188,9 @@ bool CEditorWindow::holdView(int id) const
     return qobject_cast<CTabPanel *>(m_pMainView)->view()->GetCefView()->GetId() == id;
 }
 
-void CEditorWindow::applyTheme(const std::wstring& theme)
+void CEditorWindow::updateTheme()
 {
-    d_ptr->changeTheme(theme);
+    d_ptr->updateTheme();
 }
 
 /** Private **/

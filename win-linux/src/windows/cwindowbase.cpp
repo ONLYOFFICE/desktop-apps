@@ -132,9 +132,8 @@ void CWindowBase::setWindowColors(const QColor& background, const QColor& border
                           "}").arg(border.name(), background.name()));
 }
 
-void CWindowBase::applyTheme(const std::wstring& theme)
+void CWindowBase::updateTheme()
 {
-    Q_UNUSED(theme)
     QColor background = AscAppManager::themes().current().color(CTheme::ColorRole::WindowBackground);
     QColor border = AscAppManager::themes().current().color(CTheme::ColorRole::WindowBorder);
     setWindowColors(background, border);
@@ -308,6 +307,6 @@ void CWindowBase::showEvent(QShowEvent *event)
         m_windowActivated = true;
         setGeometry(m_window_rect);
         adjustGeometry();
-        applyTheme(AscAppManager::themes().current().id());
+        updateTheme();
     }
 }

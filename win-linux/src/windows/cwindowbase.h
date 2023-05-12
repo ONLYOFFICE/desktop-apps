@@ -71,7 +71,7 @@ public:
     void updateScaling();
     virtual void adjustGeometry() = 0;
     virtual void setWindowColors(const QColor&, const QColor& border = QColor());
-    virtual void applyTheme(const std::wstring&);
+    virtual void updateTheme();
 
 protected:
     enum BtnType {

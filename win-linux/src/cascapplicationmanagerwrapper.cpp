@@ -1682,18 +1682,18 @@ void CAscApplicationManagerWrapper::applyTheme(const wstring& theme, bool force)
                                          });
 
         // TODO: remove
-        if ( mainWindow() ) mainWindow()->applyTheme(theme);
+        if ( mainWindow() ) mainWindow()->updateTheme();
 
         const std::wstring theme_id{_app.m_themes->relevantThemeId(theme)};
         for ( auto const& r : m_winsReporter ) {
-            r.second->applyTheme(theme_id);
+            r.second->updateTheme();
         }
 
 
         CEditorWindow * _editor = nullptr;
         for ( auto const& e : m_vecEditors ) {
             _editor = reinterpret_cast<CEditorWindow *>(e);
-            _editor->applyTheme(theme);
+            _editor->updateTheme();
         }
 
         AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, L"uitheme:changed", theme);

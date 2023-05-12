@@ -232,7 +232,7 @@ public:
             if (iconuser)
                 iconuser->hide();
             window->m_labelTitle->setText(APP_TITLE);
-            changeTheme(GetCurrentTheme().id());
+            updateTheme();
         }
     }
 
@@ -390,7 +390,7 @@ public:
 
         if ( canExtendTitle() && window->isCustomWindowStyle() ) {
             window->m_pMainPanel->setProperty("window", "pretty");
-            changeTheme(AscAppManager::themes().current().id());
+            updateTheme();
         }
     }
 
@@ -418,7 +418,7 @@ public:
         window->setWindowColors(QColor(QString::fromStdWString(background)), QColor(QString::fromStdWString(border)));
     }
 
-    void changeTheme(const std::wstring& theme)
+    void updateTheme()
     {
         if (window->isCustomWindowStyle()) {
             Q_ASSERT(window->m_pMainPanel);
