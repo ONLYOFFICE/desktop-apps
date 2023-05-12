@@ -327,6 +327,20 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
             applyTheme( themes().parseThemeName(pData->get_Param()) );
             return true;
         } else
+        if ( !(cmd.find(L"contentmode:change") == std::wstring::npos) ) {
+            QString mode = QString::fromStdWString(pData->get_Param());
+            themes().setDocumentContentMode(mode);
+
+            QJsonObject theme_vars = EditorJSVariables::variable("theme");
+            theme_vars["content"] = mode;
+            EditorJSVariables::applyVariable("theme", theme_vars);
+
+            SKIP_EVENTS_QUEUE([] {
+                sendCommandToAllEditors(L"renderervars:changed",
+                        Utils::stringifyJson(QJsonObject{{"theme", QJsonObject{{"content", themes().documentContentMode()}}}}).toStdWString());
+            });
+            return true;
+        } else
         if ( !(cmd.find(L"files:check") == std::wstring::npos) ) {
             CExistanceController::check(QString::fromStdWString(pData->get_Param()));
             return true;
@@ -1069,7 +1083,8 @@ void CAscApplicationManagerWrapper::initializeApp()
 
     EditorJSVariables::applyVariable("theme", {
                                         {"type", _app.m_themes->current().typeSting()},
-                                        {"id", QString::fromStdWString(_app.m_themes->current().id())}
+                                        {"id", QString::fromStdWString(_app.m_themes->current().id())},
+                                        {"content", _app.m_themes->documentContentMode()}
 #ifndef Q_OS_LINUX
                                         ,{"system", _app.m_themes->isSystemSchemeDark() ? "dark" : "light"}
 #else
@@ -1658,7 +1673,8 @@ void CAscApplicationManagerWrapper::applyTheme(const wstring& theme, bool force)
 
         EditorJSVariables::applyVariable("theme", {
                                             {"type", _app.m_themes->current().typeSting()},
-                                            {"id", QString::fromStdWString(_app.m_themes->current().id())}
+                                            {"id", QString::fromStdWString(_app.m_themes->current().id())},
+                                            {"content", _app.m_themes->documentContentMode()}
 #ifndef Q_OS_WIN
 //                                            ,{"system", _app.m_themes->isSystemSchemeDark() ? "dark" : "light"}
                                             ,{"system", "disabled"}

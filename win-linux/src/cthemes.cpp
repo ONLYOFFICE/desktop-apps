@@ -140,10 +140,16 @@ public:
             current = new CTheme(map_themes.at(is_system_theme_dark ? THEME_DEFAULT_DARK_ID : THEME_DEFAULT_LIGHT_ID));
             current->m_priv->is_system = true;
         } else current = new CTheme(map_themes.at(user_theme));
+
+        doc_content_mode = _reg_user.value("DocContentMode", "light").toString();
     }
 
     ~CThemesPrivate()
     {
+        GET_REGISTRY_USER(_reg_user);
+        if ( _reg_user.value("DocContentMode", "light").toString() != doc_content_mode )
+            _reg_user.setValue("DocContentMode", doc_content_mode);
+
         if ( current ) {
             delete current;
             current = nullptr;
@@ -206,6 +212,7 @@ public:
     CTheme * current = nullptr;
     CTheme * default_light = nullptr,
             * default_dark = nullptr;
+    QString doc_content_mode;
 };
 
 /*
@@ -404,6 +411,16 @@ auto CThemes::relevantThemeId(const std::wstring& id) const -> std::wstring
 {
     return WSTR(THEME_ID_SYSTEM) != id ? id :
         m_priv->is_system_theme_dark ? WSTR(THEME_DEFAULT_DARK_ID) : WSTR(THEME_DEFAULT_LIGHT_ID);
+}
+
+auto CThemes::documentContentMode() -> QString
+{
+    return m_priv->doc_content_mode;
+}
+
+auto CThemes::setDocumentContentMode(const QString& mode) -> void
+{
+    m_priv->doc_content_mode = mode;
 }
 
 auto CThemes::isColorDark(const std::wstring& color) -> bool

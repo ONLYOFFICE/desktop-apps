@@ -59,6 +59,7 @@ namespace EditorJSVariables {
     auto setVariable(const QString& name, const QString& var) -> void;
     auto setVariable(const QString& name, const QJsonObject& obj) -> void;
     auto applyVariable(const QString& name, const QJsonObject& obj) -> void;
+    auto variable(const QString& name) -> const QJsonObject;
     auto toWString() -> std::wstring;
     auto apply() -> void;
 }

@@ -178,6 +178,13 @@ namespace EditorJSVariables {
         apply();
     }
 
+    auto variable(const QString& name) -> const QJsonObject {
+        if ( vars_object.contains(name) )
+            return  vars_object[name].toObject();
+
+        return QJsonObject();
+    }
+
     auto toWString() -> std::wstring {
         return vars_object.isEmpty() ? L"" : Utils::stringifyJson(vars_object).toStdWString();
     }
