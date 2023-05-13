@@ -4,7 +4,7 @@
   "homepage": "http://www.onlyoffice.com",
   "private": true,
   "dependencies": {
-    "grunt": "^1.5.3",
+    "grunt": "^1.6.1",
     "grunt-contrib-clean": "^2.0.1",
     "grunt-contrib-concat": "^2.1.0",
     "grunt-contrib-copy": "^1.0.0",
@@ -14,6 +14,6 @@
     "grunt-terser": "^2.0.0",
     "grunt-text-replace": "0.4.0",
     "lodash": "^4.17.20",
-    "terser": "^5.15.1"
+    "terser": "^5.17.3"
   }
 }
