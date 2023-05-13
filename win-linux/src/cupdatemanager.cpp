@@ -96,8 +96,10 @@ CUpdateManager::DialogSchedule::DialogSchedule(QObject *owner) :
             else
                 QMetaObject::invokeMethod(owner, method.data(), Qt::QueuedConnection, Q_ARG(QWidget*, wnd), Q_ARG(QString, text));
             m_shedule_vec.removeFirst();
-            if (m_shedule_vec.isEmpty())
+            if (m_shedule_vec.isEmpty()) {
                 m_timer->stop();
+                AscAppManager::sendCommandTo(0, "updates:link", "unlock");
+            }
         }
     });
 }
@@ -105,8 +107,10 @@ CUpdateManager::DialogSchedule::DialogSchedule(QObject *owner) :
 void CUpdateManager::DialogSchedule::addToSchedule(const QString &method, const QString &text)
 {
     m_shedule_vec.push_back({method, text});
-    if (!m_timer->isActive())
+    if (!m_timer->isActive()) {
         m_timer->start();
+        AscAppManager::sendCommandTo(0, "updates:link", "lock");
+    }
 }
 
 auto currentArch()->QString
