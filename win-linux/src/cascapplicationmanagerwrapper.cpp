@@ -1058,16 +1058,22 @@ void CAscApplicationManagerWrapper::initializeApp()
         }
     }
 
-    _app.addStylesheets(CScalingFactor::SCALING_FACTOR_1, ":styles/res/styles/styles.qss");
+    _app.addStylesheets(CScalingFactor::SCALING_FACTOR_1, ":styles/styles.qss");
     _app.addStylesheets(CScalingFactor::SCALING_FACTOR_1_25, ":styles@1.25x/styles.qss");
     _app.addStylesheets(CScalingFactor::SCALING_FACTOR_1_5, ":styles@1.5x/styles.qss");
     _app.addStylesheets(CScalingFactor::SCALING_FACTOR_1_75, ":styles@1.75x/styles.qss");
     _app.addStylesheets(CScalingFactor::SCALING_FACTOR_2, ":styles@2x/styles.qss");
+    _app.addStylesheets(CScalingFactor::SCALING_FACTOR_2_5, ":styles@2.5x/styles.qss");
+    _app.addStylesheets(CScalingFactor::SCALING_FACTOR_3, ":styles@3x/styles.qss");
+    _app.addStylesheets(CScalingFactor::SCALING_FACTOR_3_5, ":styles@3.5x/styles.qss");
+    _app.addStylesheets(CScalingFactor::SCALING_FACTOR_4, ":styles@4x/styles.qss");
+    _app.addStylesheets(CScalingFactor::SCALING_FACTOR_4_5, ":styles@4.5x/styles.qss");
+    _app.addStylesheets(CScalingFactor::SCALING_FACTOR_5, ":styles@5x/styles.qss");
 
     _app.m_private->applyStylesheets();
 
     // TODO: merge stylesheets and apply for the whole app
-    qApp->setStyleSheet( Utils::readStylesheets(":styles/res/styles/styles.qss") );
+    qApp->setStyleSheet( Utils::readStylesheets(":styles/styles.qss") );
 
     // Font
     QFont mainFont = QApplication::font();
@@ -1470,6 +1476,24 @@ void CAscApplicationManagerWrapper::sendEvent(int type, void * data)
 
 QString CAscApplicationManagerWrapper::getWindowStylesheets(double dpifactor)
 {
+    if ( dpifactor > 4.5 )
+        return getWindowStylesheets(CScalingFactor::SCALING_FACTOR_5);
+    else
+    if ( dpifactor > 4.0 )
+        return getWindowStylesheets(CScalingFactor::SCALING_FACTOR_4_5);
+    else
+    if ( dpifactor > 3.5 )
+        return getWindowStylesheets(CScalingFactor::SCALING_FACTOR_4);
+    else
+    if ( dpifactor > 3.0 )
+        return getWindowStylesheets(CScalingFactor::SCALING_FACTOR_3_5);
+    else
+    if ( dpifactor > 2.5 )
+        return getWindowStylesheets(CScalingFactor::SCALING_FACTOR_3);
+    else
+    if ( dpifactor > 2.0 )
+        return getWindowStylesheets(CScalingFactor::SCALING_FACTOR_2_5);
+    else
     if ( dpifactor > 1.75 )
         return getWindowStylesheets(CScalingFactor::SCALING_FACTOR_2);
     else
@@ -1564,19 +1588,10 @@ bool CAscApplicationManagerWrapper::applySettings(const wstring& wstrjson)
         }
 
         if ( objRoot.contains("uiscaling") ) {
-            wstring sets;
-            switch (objRoot["uiscaling"].toString().toInt()) {
-            case 100: sets = L"1"; break;
-            case 125: sets = L"1.25"; break;
-            case 150: sets = L"1.5"; break;
-            case 175: sets = L"1.75"; break;
-            case 200: sets = L"2"; break;
-            default:
-                sets = L"default";
-            }
+            const wstring sets = Scaling::scalingToFactor(objRoot["uiscaling"].toString());
 
-            setUserSettings(L"system-scale", sets != L"default" ? L"0" : L"1");
-            setUserSettings(L"force-scale", sets);
+            setUserSettings(L"system-scale", sets != L"0" ? L"0" : L"1");
+            setUserSettings(L"force-scale", sets == L"0" ? L"default" : sets);
             m_pMainWindow->updateScaling();
 
             CEditorWindow * _editor = nullptr;
