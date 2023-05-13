@@ -52,7 +52,7 @@
 #define APP_HELPER       L"/editors_helper.exe"
 #define DAEMON_NAME      L"/updatesvc.exe"
 #define DAEMON_NAME_OLD  L"/~updatesvc.exe"
-#define SUCCES_UNPACKED  L"/.success_unpacked"
+#define SUCCES_UNPACKED  L"/success_unpacked.txt"
 
 using std::vector;
 
