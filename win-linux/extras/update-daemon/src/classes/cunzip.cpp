@@ -135,6 +135,7 @@ int unzipArchive(const wstring &zipFilePath, const wstring &folderPath, std::ato
 
     CComPtr<Folder> pSrcFolder;
     if (!StringToFolder(pShell, pSrcFolder, file)) {
+        pShell.Release();
         CoUninitialize();
         return UNZIP_ERROR;
     }
@@ -143,6 +144,8 @@ int unzipArchive(const wstring &zipFilePath, const wstring &folderPath, std::ato
     vOptions.vt = VT_I4;
     vOptions.lVal = 1024 | 512 | 16 | 4;
     int res = extractRecursively(pShell, pSrcFolder, path, vOptions, run);
+    pSrcFolder.Release();
+    pShell.Release();
     CoUninitialize();
     return res;
 }
