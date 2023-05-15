@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>ONLYOFFICE Release Notes</title>
+    <style type="text/css">
+        /* variables */
+        :root {
+            --color-black: #141923;
+            --color-white: #fff;
+            --color-gray-100: #f7fafc;
+            --color-gray-200: #edf2f7;
+            --color-gray-300: #e2e8f0;
+            --color-gray-400: #cbd5e0;
+            --color-gray-500: #a0aec0;
+            --color-gray-600: #718096;
+            --color-gray-700: #4a5568;
+            --color-gray-800: #2d3748;
+            --color-gray-900: #1a202c;
+        }
+        body {
+            background: var(--color-white);
+            color: var(--color-gray-800);
+            font: 12px "Lucida Grande", "Lucida Sans Unicode", Verdana, Lucida, Helvetica, sans-serif;
+        }
+        h1, h2, h3 {
+            color: var(--color-gray-800);
+            font-weight: normal;
+            font-style: normal;
+        }
+        h1 {
+            font-size: 1.7em;
+        }
+        h2 {
+            font-size: 1.4em;
+            font-weight: lighter;
+        }
+        h4 {
+            font-size: 1.2em;
+            font-weight: lighter;
+        }
+        code {
+            background: var(--color-gray-200);
+            font-family: monospace;
+            padding: 1px 5px;
+        }
+        ul {
+            padding: 0 0 0 20px;
+        }
+        li {
+            margin-left: 20px;
+            margin-bottom: 0.2em;
+            padding: 0;
+        }
+        hr {
+            margin: 20px 0;
+            border: var(--color-gray-400) solid 0.5px;
+        }
+        .releasedate {
+            color: var(--color-gray-600);
+            font-weight: lighter;
+        }
+
+        /* prefers light mode */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background: var(--color-gray-900);
+                color: var(--color-gray-200);
+            }
+
+            h1, h2, h3 {
+                color: var(--color-white);
+            }
+
+            code {
+                background: var(--color-gray-800);
+                color: var(--color-gray-200);
+            }
+
+            .releasedate {
+                color: var(--color-gray-600);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="version">
+        <h1>ONLYOFFICE 7.3.3<span class="releasedate"> - [Date]</span></h1>
+        <h2>Fixes</h2>
+        <h4>All Editors</h4>
+        <ul>
+            <li>Fix display of the editor window minimized in the <code>Maximize</code> mode (Bug 58402)</li>
+            <li>Fix moving the file placed in a separate window (for Linux) (Bug 45037)</li>
+            <li>Fix display of the application window when connecting the second monitor (Bug 60899)</li>
+            <li>Fix the year in the <code>About</code> section (for MacOS) (Bug 61421)</li>
+            <li>Fix the application vulnerability which allows to load a library from the home directory (for Linux) (Bug 60244)</li>
+            <li>Fix a new file name when creating in <code>Polish</code> interface language (Bug 60764)</li>
+            <li>Fix display of the <code>Help</code> contents (Bug 61144)</li>
+            <li>Fix an encrypted file name when saving, if it is specified in Cyrillic (Bug 61243)</li>
+            <li>Fix display of the <code>More</code> button when the application scaling is more than 100% (Bug 61219)</li>
+            <li>Fix crash of the editor when opening a document in a separate window (Bug 61262)</li>
+            <li>Fix display of the <code>Print to PDF</code> button in the Print preview window for German interface language (Bug 61510)</li>
+        </ul>
+        <h4>Spreadsheet Editor</h4>
+        <ul>
+            <li>Fix hangup of the editor when printing the <code>XLSX</code> file (Bug 61019)</li>
+            <li>Fix display of the Edit formatting rule window when the interface scaling is 125% and 175% (Bug 60952)</li>
+            <li>Fix printing a spreadsheet if the page size settings are specified (Bug 61214)</li>
+            <li>Fix changing the date format when saving the workbook to PDF (Bug 56499)</li>
+            <li>Fix saving data to the <code>PDF</code> format from the <code>XLSX</code> file (Bug 60334)</li>
+        </ul>
+        <h4>Presentation Editor</h4>
+        <ul>
+            <li>Fix crash when uploading a presentation to the Private Room (Bug 51001)</li>
+            <li>Fix display of the presentation themes in the Private Room with the Classic, Green leaf, Lines, Safari templates (Bug 61430)</li>
+        </ul>
+        <h4>PDF Viewer</h4>
+        <ul>
+            <li>Fix endless loading of the PDF file (Bug 60923)</li>
+            <li>Fix printing an empty sheet in the <code>PDF</code> files (Bug 61192)</li>
+        </ul>
+        <h4>Forms</h4>
+        <ul>
+            <li>Fix crash when opening the <code>OFORM</code> files (Bug 61142)</li>
+        </ul>
+    </div>
+</body>
+</html>
