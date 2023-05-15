@@ -144,7 +144,7 @@
       </trans-unit>
       <trans-unit id="Document %ld.docx" xml:space="preserve">
         <source>Document %ld.docx</source>
-        <target>दस्तावेज़ %आईडी.डॉक्स</target>
+        <target state="translated">दस्तावेज़ %आईडी.docx</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Document template" xml:space="preserve">

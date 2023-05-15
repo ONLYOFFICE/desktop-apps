@@ -56,6 +56,7 @@ l10n.lo = {
     actActivate: 'ເປີດໃຊ້ງານe',
     actAbout: 'ກ່ຽວກັບ',
     actSettings: 'ຕັ້ງຄ່າ',
+    actTemplates: 'ແມ່ແບບ',
     licKeyHolder: 'ປຸ່ມປ້ອນຂໍ້ມູນ',
     btnActivate: 'ປີດໃຊ້ງານ',
     licGetLicense: 'ຂໍໃບອະນຸຍາດ',
