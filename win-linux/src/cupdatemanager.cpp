@@ -243,10 +243,10 @@ void CUpdateManager::init()
 {
     GET_REGISTRY_USER(reg_user);
     reg_user.beginGroup("Updates");
-    m_savedPackageData->fileName = reg_user.value("Updates/file", QString()).toString();
-    m_savedPackageData->fileType = reg_user.value("Updates/type", QString()).toString();
-    m_savedPackageData->version = reg_user.value("Updates/version", QString()).toString();
-//    m_lastCheck = time_t(reg_user.value("Updates/last_check", 0).toLongLong());
+    m_savedPackageData->fileName = reg_user.value("file", QString()).toString();
+    m_savedPackageData->fileType = reg_user.value("type", QString()).toString();
+    m_savedPackageData->version = reg_user.value("version", QString()).toString();
+//    m_lastCheck = time_t(reg_user.value("last_check", 0).toLongLong());
     reg_user.endGroup();
     if (getUpdateMode() != UpdateMode::DISABLE) {
         m_pCheckOnStartupTimer = new QTimer(this);
@@ -337,7 +337,7 @@ void CUpdateManager::checkUpdates(bool manualCheck)
 //    m_lastCheck = time(nullptr);
 //    GET_REGISTRY_USER(reg_user);
 //    reg_user.beginGroup("Updates");
-//    reg_user.setValue("Updates/last_check", static_cast<qlonglong>(m_lastCheck));
+//    reg_user.setValue("last_check", static_cast<qlonglong>(m_lastCheck));
 //    reg_user.endGroup();
 
     if (!sendMessage(MSG_CheckUpdates, m_checkUrl)) {
@@ -384,9 +384,9 @@ void CUpdateManager::savePackageData(const QString &version, const QString &file
     m_savedPackageData->version = version;
     GET_REGISTRY_USER(reg_user);
     reg_user.beginGroup("Updates");
-    reg_user.setValue("Updates/file", fileName);
-    reg_user.setValue("Updates/type", fileType);
-    reg_user.setValue("Updates/version", version);
+    reg_user.setValue("file", fileName);
+    reg_user.setValue("type", fileType);
+    reg_user.setValue("version", version);
     reg_user.endGroup();
 }
 
@@ -394,7 +394,7 @@ QString CUpdateManager::ignoredVersion()
 {
     GET_REGISTRY_USER(reg_user);
     reg_user.beginGroup("Updates");
-    const QString ignored_ver = reg_user.value("Updates/ignored_ver").toString();
+    const QString ignored_ver = reg_user.value("ignored_ver").toString();
     reg_user.endGroup();
     return ignored_ver;
 }
@@ -535,7 +535,7 @@ void CUpdateManager::skipVersion()
 {
     GET_REGISTRY_USER(reg_user);
     reg_user.beginGroup("Updates");
-    reg_user.setValue("Updates/ignored_ver", m_packageData->version);
+    reg_user.setValue("ignored_ver", m_packageData->version);
     reg_user.endGroup();
 }
 
