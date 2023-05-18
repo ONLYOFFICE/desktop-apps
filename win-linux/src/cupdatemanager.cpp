@@ -299,7 +299,6 @@ void CUpdateManager::criticalMsg(QWidget *parent, const QString &msg)
         m_lock = false;
         return;
     }
-    m_manualCheck = false;
     HWND parent_hwnd = (parent) ? (HWND)parent->winId() : NULL;
     wstring lpText = msg.toStdWString();
     MessageBoxW(parent_hwnd, lpText.c_str(), TEXT(APP_TITLE), MB_ICONERROR | MB_SERVICE_NOTIFICATION_NT3X | MB_SETFOREGROUND);
@@ -552,6 +551,7 @@ void CUpdateManager::onLoadCheckFinished(const QString &filePath)
 {
 //    if (m_lock)
 //        return;
+    m_manualCheck = true;
     QFile jsonFile(filePath);
     if ( jsonFile.open(QIODevice::ReadOnly) ) {
         QByteArray ReplyText = jsonFile.readAll();
