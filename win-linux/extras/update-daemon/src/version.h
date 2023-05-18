@@ -77,7 +77,7 @@
 #define VER_ORIGINALFILENAME_STR    "updatesvc.exe\0"
 
 #ifdef APP_USE_PRIVATE_ASSETS
-# include "version_p.h"
+# include "src/version_p.h"
 #endif
 
 #endif
