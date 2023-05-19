@@ -35,6 +35,8 @@
 # include "platform_win/singleapplication.h"
 #else
 # include "platform_linux/singleapplication.h"
+# include "components/cmessage.h"
+# include <unistd.h>
 #endif
 #include "defines.h"
 #include "clangater.h"
@@ -58,6 +60,10 @@ int main( int argc, char *argv[] )
     qputenv("GDK_BACKEND", "x11");
     InputArgs::init(argc, argv);
     WindowHelper::initEnvInfo();
+    if (geteuid() == 0) {
+        CMessage::warning(nullptr, QObject::tr("App can't working correctly under admin rights."));
+        return 0;
+    }
 #endif
     QCoreApplication::setAttribute(Qt::AA_DisableHighDpiScaling);
     QCoreApplication::setApplicationName(QString::fromUtf8(WINDOW_NAME));
