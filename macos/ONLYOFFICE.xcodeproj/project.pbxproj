@@ -419,6 +419,7 @@
 /* Begin PBXFileReference section */
 		5A18BAA3285B5BF6004625C7 /* CertificateCommon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CertificateCommon.h; sourceTree = "<group>"; };
 		5A452E4A257688C700C58E01 /* providers */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = providers; path = Vendor/ONLYOFFICE/providers; sourceTree = SOURCE_ROOT; };
+		5A513A992A1827F2001A5FBD /* ascprinter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ascprinter.h; sourceTree = "<group>"; };
 		5A7F85D027A00C18006B6E27 /* lv-LV */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "lv-LV"; path = "lv-LV.lproj/Document-Sign.strings"; sourceTree = "<group>"; };
 		5A7F85D127A00C18006B6E27 /* lv-LV */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "lv-LV"; path = "lv-LV.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		5A7F85D227A00C18006B6E27 /* lv-LV */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "lv-LV"; path = "lv-LV.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
@@ -1440,6 +1441,7 @@
 		FCA0B3561B9F00780073EDD4 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				5A513A992A1827F2001A5FBD /* ascprinter.h */,
 				5A9D7AE6289336130069EE5A /* ASCEditorJSVariables.h */,
 				5A9D7AE7289336130069EE5A /* ASCEditorJSVariables.mm */,
 				FCA0B3601B9F0AA10073EDD4 /* ASCConstants.h */,

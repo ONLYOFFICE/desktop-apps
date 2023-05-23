@@ -41,7 +41,7 @@
 #import "ASCCommonViewController.h"
 #import "applicationmanager.h"
 #import "mac_application.h"
-#import "nsascprinter.h"
+#import "ascprinter.h"
 #import "ASCTabsControl.h"
 #import "ASCTabView.h"
 #import "ASCTitleWindowController.h"
@@ -75,7 +75,7 @@
 #define rootTabId @"1CEF624D-9FF3-432B-9967-61361B5BFE8B"
 
 @interface ASCCommonViewController() <ASCTabsControlDelegate, ASCTitleBarControllerDelegate, ASCUserInfoViewControllerDelegate> {
-    NSAscPrinterContext * m_pContext;
+    ASCPrinterContext * m_pContext;
     NSUInteger documentNameCounter;
     NSUInteger spreadsheetNameCounter;
     NSUInteger presentationNameCounter;
@@ -462,6 +462,9 @@
         [alert setInformativeText:NSLocalizedString(@"If you don't review your documents, all your changeses will be lost.", nil)];
         [alert setAlertStyle:NSAlertStyleInformational];
         
+        NSString * s = [NSString stringWithFormat:NSLocalizedString(@"%d days are left until the license expiration.", nil), 2];
+        [alert setMessageText:s];
+
         NSInteger result = [alert runModal];
         
         if (result == NSAlertFirstButtonReturn) {
@@ -884,6 +887,7 @@
         
         NSValue * eventData = params[@"data"];
         
+        NSLog(@"ui oncefkeydown");
         if (eventData) {
 //            NSEditorApi::CAscKeyboardDown * pData = (NSEditorApi::CAscKeyboardDown *)[eventData pointerValue];
 //
@@ -968,14 +972,20 @@
 
 - (void)onCEFOnBeforePrintEnd:(NSNotification *)notification {
     if (notification && notification.userInfo) {
-        NSNumber * viewId       = notification.userInfo[@"viewId"];
-        NSNumber * pagesCount   = notification.userInfo[@"countPages"];
+//        NSNumber * viewId       = notification.userInfo[@"viewId"];
+//        NSNumber * pagesCount   = notification.userInfo[@"countPages"];
+//        NSNumber * pagesCount   = notification.userInfo[@"currentPage"];
+        NSString * options      = notification.userInfo[@"options"];
         
+        NSDictionary * nameLocales = [options dictionary];
+        NSLog(@"options: %@", nameLocales);
+
         CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
         
         if (appManager) {
-            m_pContext = new NSAscPrinterContext(appManager);
-            m_pContext->BeginPaint([viewId intValue], [pagesCount intValue], self, @selector(printOperationDidRun:success:contextInfo:));
+            m_pContext = new ASCPrinterContext(appManager);
+//            m_pContext->BeginPaint([viewId intValue], [pagesCount intValue], self, @selector(printOperationDidRun:success:contextInfo:));
+            m_pContext->BeginPaint(notification.userInfo, self, @selector(printOperationDidRun:success:contextInfo:));
         }
     }
 }
