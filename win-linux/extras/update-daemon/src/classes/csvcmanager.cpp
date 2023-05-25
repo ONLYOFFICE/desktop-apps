@@ -172,8 +172,8 @@ void CSvcManager::init()
             case MSG_LoadUpdates: {
                 m_downloadMode = Mode::DOWNLOAD_UPDATES;
                 if (m_pDownloader) {
-                    wstring ext = (params[2] == TEXT("iss")) ? TEXT(".exe") :
-                                  (params[2] == TEXT("msi")) ? TEXT(".msi") : TEXT(".zip");
+                    tstring ext = (params[2] == TEXT("iss")) ? TEXT(".exe") :
+                                  (params[2] == TEXT("msi")) ? TEXT(".msi") : ARCHIVE_EXT;
                     m_pDownloader->downloadFile(params[1], generateTmpFileName(ext));
                 }
                 NS_Logger::WriteLog(TEXT("Received MSG_LoadUpdates, URL: ") + params[1]);
