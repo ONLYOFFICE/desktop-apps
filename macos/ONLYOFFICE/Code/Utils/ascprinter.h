@@ -123,7 +123,6 @@ public:
     m_pView->Apply(pEvent);
 }
 
-/*
 - (BOOL)knowsPageRange:(NSRangePointer)range
 {
     NSPrintInfo* pInfo = [[NSPrintOperation currentOperation] printInfo];
@@ -166,7 +165,6 @@ public:
 
     return YES;
 }
- */
 
 - (void) fillInfo
 {
@@ -220,7 +218,6 @@ public:
     m_pPrinterInfo->m_nMarginBottom = (int)(dKoefY * _rectMargins.origin.y);
 }
 
-/*
 - (NSRect)rectForPage:(NSInteger)page
 {
     [self fillInfo];
@@ -236,7 +233,6 @@ public:
     [self setFrame: R];
     return R;
 }
- */
 
 @end
 
