@@ -105,7 +105,7 @@ auto restartService()->void
         L"@echo off",
         wstring(L"NET STOP ") + L"\"" + TEXT(VER_PRODUCTNAME_STR) + L"\"",
         wstring(L"NET START ") + L"\"" +  TEXT(VER_PRODUCTNAME_STR) + L"\"",
-        L"del \"~updatesvc.exe\"",
+        L"del /F /Q \"%~dp0/~updatesvc.exe\"",
         L"exit"
     };
 
