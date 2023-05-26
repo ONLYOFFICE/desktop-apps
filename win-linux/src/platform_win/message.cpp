@@ -34,6 +34,7 @@
 #include "message.h"
 #include <string.h>
 #include <Windows.h>
+#include <QTimer>
 #ifndef __OS_WIN_XP
 # include <commctrl.h>
 #endif
@@ -48,6 +49,35 @@
 #define TEXT_ACTIVATE   toWCharPtr(BTN_TEXT_ACTIVATE)
 #define TEXT_CONTINUE   toWCharPtr(BTN_TEXT_CONTINUE)
 
+
+static void BringToTop(HWND hwnd)
+{
+    DWORD appID = ::GetCurrentThreadId();
+    DWORD frgID = ::GetWindowThreadProcessId(::GetForegroundWindow(), NULL);
+    ::AttachThreadInput(frgID, appID, TRUE);
+    ::SetWindowPos(hwnd, HWND_TOPMOST, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOMOVE);
+    ::SetWindowPos(hwnd, HWND_NOTOPMOST, 0, 0, 0, 0, SWP_SHOWWINDOW | SWP_NOSIZE | SWP_NOMOVE);
+    ::SetForegroundWindow(hwnd);
+    ::SetFocus(hwnd);
+    ::SetActiveWindow(hwnd);
+    ::AttachThreadInput(frgID, appID, FALSE);
+}
+
+static HRESULT CALLBACK Pftaskdialogcallback(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam, LONG_PTR lpRefData)
+{
+    switch (msg) {
+    case TDN_DIALOG_CONSTRUCTED: {
+        QTimer::singleShot(0, [=]() {
+            if (hwnd)
+                BringToTop(hwnd);
+        });
+        break;
+    }
+    default:
+        break;
+    }
+    return S_OK;
+}
 
 int WinMsg::showMessage(QWidget *parent,
                         const QString &msg,
@@ -152,6 +182,7 @@ int WinMsg::showMessage(QWidget *parent,
                                 TDF_SIZE_TO_CONTENT;
     config.hwndParent         = parent_hwnd;
     config.hInstance          = GetModuleHandle(NULL);
+    config.pfCallback         = (PFTASKDIALOGCALLBACK)Pftaskdialogcallback;
     config.pButtons           = pButtons;
     config.cButtons           = cButtons;
     config.nDefaultButton     = nDefltBtn;

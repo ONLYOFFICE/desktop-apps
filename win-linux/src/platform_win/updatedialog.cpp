@@ -62,7 +62,7 @@ static void BringToTop(HWND hwnd)
     ::AttachThreadInput(frgID, appID, FALSE);
 }
 
-HRESULT CALLBACK Pftaskdialogcallback(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam, LONG_PTR lpRefData)
+static HRESULT CALLBACK Pftaskdialogcallback(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam, LONG_PTR lpRefData)
 {
     switch (msg) {
     case TDN_HYPERLINK_CLICKED:
