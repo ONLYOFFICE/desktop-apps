@@ -144,7 +144,7 @@
       </trans-unit>
       <trans-unit id="Document %ld.docx" xml:space="preserve">
         <source>Document %ld.docx</source>
-        <target>दस्तावेज़ %आईडी.डॉक्स</target>
+        <target state="translated">दस्तावेज़ %आईडी.docx</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Document template" xml:space="preserve">
@@ -294,7 +294,7 @@
       </trans-unit>
       <trans-unit id="Presentation %ld.pptx" xml:space="preserve">
         <source>Presentation %ld.pptx</source>
-        <target>प्रस्तुति %आईडी.पीपीटीएक्स</target>
+        <target state="translated">प्रस्तुति %आईडी.pptx</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Presentation template" xml:space="preserve">
@@ -329,7 +329,7 @@
       </trans-unit>
       <trans-unit id="Spreadsheet %ld.xlsx" xml:space="preserve">
         <source>Spreadsheet %ld.xlsx</source>
-        <target>स्प्रेडशीट %आईडी.एक्सएलएसएक्स</target>
+        <target state="translated">स्प्रेडशीट %आईडी.xlsx</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Spreadsheet template" xml:space="preserve">
