@@ -147,6 +147,7 @@ namespace WindowHelper {
     auto isLeftButtonPressed() -> bool;
     auto constructFullscreenWidget(QWidget * panel) -> CFullScrWidget *;
     auto useNativeDialog() -> bool;
+    auto activeWindow() -> QWidget*;
     auto currentTopWindow() -> QWidget*;
 }
 
