@@ -1382,7 +1382,7 @@ namespace Drop {
     size_t drop_handle;
     auto validate_drop(size_t handle, const QPoint& pt) -> void {
         CMainWindow * main_window = CAscApplicationManagerWrapper::mainWindow();
-        if ( main_window && main_window->isVisible() ) {
+        if ( main_window && main_window->isVisible() && !main_window->isMinimized() ) {
             drop_handle = handle;
 
             static QPoint last_cursor_pos;
