@@ -141,6 +141,7 @@ namespace WindowHelper {
     auto correctWindowMinimumSize(HWND handle) -> void;
     auto correctModalOrder(HWND windowhandle, HWND modalhandle) -> void;
     auto adjustWindowRect(HWND, double, LPRECT) -> void;
+    auto bringToTop(HWND) -> void;
 #endif
 
     auto correctWindowMinimumSize(const QRect&, const QSize&) -> QSize;
