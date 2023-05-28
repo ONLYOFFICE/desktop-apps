@@ -331,8 +331,11 @@ void Utils::openUrl(const QString& url)
 			std::string sCommand = "LD_LIBRARY_PATH='' xdg-open " + U_TO_UTF8(sUrlW);
 			system(sCommand.c_str());
 		} else {
-			system(QString("LD_LIBRARY_PATH='' xdg-open %1")                    // xdg-open workingpath path
-								.arg(QString( _url.toEncoded() )).toUtf8());
+			// xdg-open workingpath path
+			system(QString("LD_LIBRARY_PATH='' xdg-open \"%1\"")
+			       .arg(QString( _url.toEncoded() )).toUtf8());
+
+
 		}
     }
 #else
