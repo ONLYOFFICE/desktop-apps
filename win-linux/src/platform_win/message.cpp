@@ -32,8 +32,10 @@
 
 #include <QTextDocumentFragment>
 #include "message.h"
+#include "utils.h"
 #include <string.h>
 #include <Windows.h>
+#include <QTimer>
 #ifndef __OS_WIN_XP
 # include <commctrl.h>
 #endif
@@ -48,6 +50,22 @@
 #define TEXT_ACTIVATE   toWCharPtr(BTN_TEXT_ACTIVATE)
 #define TEXT_CONTINUE   toWCharPtr(BTN_TEXT_CONTINUE)
 
+
+static HRESULT CALLBACK Pftaskdialogcallback(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam, LONG_PTR lpRefData)
+{
+    switch (msg) {
+    case TDN_DIALOG_CONSTRUCTED: {
+        QTimer::singleShot(0, [=]() {
+            if (hwnd)
+                WindowHelper::bringToTop(hwnd);
+        });
+        break;
+    }
+    default:
+        break;
+    }
+    return S_OK;
+}
 
 int WinMsg::showMessage(QWidget *parent,
                         const QString &msg,
@@ -152,6 +170,7 @@ int WinMsg::showMessage(QWidget *parent,
                                 TDF_SIZE_TO_CONTENT;
     config.hwndParent         = parent_hwnd;
     config.hInstance          = GetModuleHandle(NULL);
+    config.pfCallback         = (PFTASKDIALOGCALLBACK)Pftaskdialogcallback;
     config.pButtons           = pButtons;
     config.cButtons           = cButtons;
     config.nDefaultButton     = nDefltBtn;

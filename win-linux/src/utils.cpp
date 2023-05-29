@@ -885,6 +885,19 @@ namespace WindowHelper {
             _adjustWindowRectEx(rect, (GetWindowStyle(handle) & ~WS_DLGFRAME), FALSE, 0, 96*dpiratio);
         } else AdjustWindowRectEx(rect, (GetWindowStyle(handle) & ~WS_DLGFRAME), FALSE, 0);
     }
+
+    auto bringToTop(HWND hwnd) -> void
+    {
+        DWORD appID = ::GetCurrentThreadId();
+        DWORD frgID = ::GetWindowThreadProcessId(::GetForegroundWindow(), NULL);
+        ::AttachThreadInput(frgID, appID, TRUE);
+        ::SetWindowPos(hwnd, HWND_TOPMOST, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOMOVE);
+        ::SetWindowPos(hwnd, HWND_NOTOPMOST, 0, 0, 0, 0, SWP_SHOWWINDOW | SWP_NOSIZE | SWP_NOMOVE);
+        ::SetForegroundWindow(hwnd);
+        ::SetFocus(hwnd);
+        ::SetActiveWindow(hwnd);
+        ::AttachThreadInput(frgID, appID, FALSE);
+    }
 #endif
 
     auto correctWindowMinimumSize(const QRect& windowrect, const QSize& minsize) -> QSize
@@ -961,14 +974,22 @@ namespace WindowHelper {
         return use_native_dialog;
     }
 
+    auto activeWindow() -> QWidget*
+    {
+#ifdef _WIN32
+        HWND hwnd_top = GetForegroundWindow();
+        QWidget *wgt = QWidget::find((WId)hwnd_top);
+        return (wgt && wgt->isWindow()) ? wgt : nullptr;
+#else
+        return QApplication::activeWindow();
+#endif
+    }
+
     auto currentTopWindow() -> QWidget*
     {
         QStringList wnd_list{"MainWindow", "editorWindow"};
-        QWidget *wgt = QApplication::activeWindow();
+        QWidget *wgt = activeWindow();
         if (wgt && wnd_list.contains(wgt->objectName()) && !wgt->isMinimized()
-#ifdef _WIN32
-                && GetForegroundWindow() == (HWND)wgt->winId()
-#endif
                 && wgt->property("stabilized").toBool())
             return wgt;
         return nullptr;
