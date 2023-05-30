@@ -51,6 +51,7 @@
 #define TEXT_CONTINUE   toWCharPtr(BTN_TEXT_CONTINUE)
 
 
+#ifndef __OS_WIN_XP
 static HRESULT CALLBACK Pftaskdialogcallback(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam, LONG_PTR lpRefData)
 {
     switch (msg) {
@@ -66,6 +67,7 @@ static HRESULT CALLBACK Pftaskdialogcallback(HWND hwnd, UINT msg, WPARAM wParam,
     }
     return S_OK;
 }
+#endif
 
 int WinMsg::showMessage(QWidget *parent,
                         const QString &msg,
