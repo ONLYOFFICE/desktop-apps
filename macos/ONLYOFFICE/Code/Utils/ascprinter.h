@@ -309,11 +309,11 @@ public:
             PMSetPageRange(printSettings, 1, m_oInfo.m_nPagesCount);
             PMSetCopies(printSettings , [pNOptions[@"copies"] intValue], kPMUnlocked);
 
-            PMPageFormat pageFormat =  (PMPageFormat)pPrintInfo.PMPageFormat;
-            if ( [pNOptions[@"paperOrientation"] isEqualTo:@"landscape"] )
-                PMSetOrientation(pageFormat, kPMLandscape, kPMUnlocked);
-            else PMSetOrientation(pageFormat, kPMPortrait, kPMUnlocked);
-            [pPrintInfo updateFromPMPageFormat];
+//            PMPageFormat pageFormat =  (PMPageFormat)pPrintInfo.PMPageFormat;
+//            if ( [pNOptions[@"paperOrientation"] isEqualTo:@"landscape"] )
+//                PMSetOrientation(pageFormat, kPMLandscape, kPMUnlocked);
+//            else PMSetOrientation(pageFormat, kPMPortrait, kPMUnlocked);
+//            [pPrintInfo updateFromPMPageFormat];
 
             PMSetFirstPage(printSettings, pageCurrent, kPMUnlocked ) ;
 
