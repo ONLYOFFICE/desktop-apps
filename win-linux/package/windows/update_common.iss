@@ -26,8 +26,7 @@
 #endif
 #define sAppVerShort                    Copy(sAppVersion, 0, 3)
 
-;#define TARGET_NAME                     str(sPackageName + "_" + sAppVersion + "_" + sWinArchFull + ".exe")
-#define TARGET_NAME                     "ONLYOFFICE-DesktopEditors_7.4.0.128_x64.exe"
+#define TARGET_NAME                     str(sPackageName + "-" + sAppVersion + "-" + sWinArchFull + ".exe")
 
 #ifndef sOutputFileName
   #define sOutputFileName               str("editors_update_" + sWinArchFull)
