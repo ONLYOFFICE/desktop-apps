@@ -317,7 +317,7 @@ public:
 
             PMSetFirstPage(printSettings, pageCurrent, kPMUnlocked ) ;
 
-            NSString * duplex = pNOptions[@"paperOrientation"];
+            NSString * duplex = pNOptions[@"sides"];
             if ( [duplex isEqualToString:@"both-long"] )
                 PMSetDuplex(printSettings, kPMDuplexNoTumble);
             else
