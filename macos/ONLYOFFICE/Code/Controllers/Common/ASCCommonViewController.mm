@@ -850,9 +850,18 @@
             NSTabViewItem * item = [self.tabView tabViewItemAtIndex:[self.tabView indexOfTabViewItemWithIdentifier:tab.uuid]];
 
             if (isFullscreen) {
-                [item.view enterFullScreenMode:[[NSWindow titleWindowOrMain] screen] withOptions:@{NSFullScreenModeAllScreens: @(NO)}];
+                NSScreen * ppeScreen = [[NSWindow titleWindowOrMain] screen];
+                NSArray<NSScreen *> * screens = [NSScreen screens];
 
-                if (tab) {
+                for ( NSScreen * screen in screens ) {
+                    if ( screen != [NSScreen mainScreen] ) {
+                        ppeScreen = screen;
+                        break;
+                    }
+                }
+
+                [item.view enterFullScreenMode:ppeScreen withOptions:@{NSFullScreenModeAllScreens: @(NO)}];
+                if ( tab ) {
                     [[self cefViewWithTab:tab] focus];
                 }
             } else if ([item.view isInFullScreenMode]) {

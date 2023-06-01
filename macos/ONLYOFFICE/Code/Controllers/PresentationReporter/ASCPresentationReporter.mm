@@ -104,11 +104,10 @@
             
             [_controller.contentViewController.view addSubview:cefView];
             [cefView autoPinEdgesToSuperviewEdges];
-            
 
             NSArray<NSScreen *> * screens = [NSScreen screens];
 
-            if ([screens count] > 1) {
+            if (0 /*[screens count] > 1*/) {
                 for (NSScreen * screen in screens) {
                     if (screen != [NSScreen mainScreen]) {
                         NSRect screenRect = [screen frame];
