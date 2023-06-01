@@ -938,8 +938,8 @@ namespace WindowHelper {
         if ( _scr_count > 1 ) {
             int _scrNum = QApplication::desktop()->screenNumber(pt);
             if ( _panel->reporterMode() ) {
-                _scr_geometry = QApplication::desktop()->availableGeometry(_scr_count - _scrNum - 1);
-            } else _scr_geometry = QApplication::desktop()->availableGeometry(_scrNum);
+                _scr_geometry = QApplication::desktop()->screenGeometry(_scr_count - _scrNum - 1);
+            } else _scr_geometry = QApplication::desktop()->screenGeometry(_scrNum);
         } else {
             _scr_geometry = QApplication::desktop()->screenGeometry(QApplication::desktop()->primaryScreen());
         }
@@ -949,10 +949,10 @@ namespace WindowHelper {
             QScreen * _screen = QApplication::screenAt(pt);
             if ( _panel->reporterMode() ) {
                 int _scrNum = QApplication::screens().indexOf(_screen);
-                _scr_geometry = QApplication::screens().at(_scr_count - _scrNum - 1)->availableGeometry();
-            } else _scr_geometry = _screen->availableGeometry();
+                _scr_geometry = QApplication::screens().at(_scr_count - _scrNum - 1)->geometry();
+            } else _scr_geometry = _screen->geometry();
         } else {
-            _scr_geometry = QApplication::primaryScreen()->availableGeometry();
+            _scr_geometry = QApplication::primaryScreen()->geometry();
         }
 #endif
 
