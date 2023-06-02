@@ -849,22 +849,27 @@
         if ( tab ) {
             NSTabViewItem * item = [self.tabView tabViewItemAtIndex:[self.tabView indexOfTabViewItemWithIdentifier:tab.uuid]];
 
+            NSWindow * win_main = [NSWindow titleWindowOrMain];
             if (isFullscreen) {
-                NSScreen * ppeScreen = [[NSWindow titleWindowOrMain] screen];
+                NSScreen * ppeScreen = [win_main screen];
                 NSArray<NSScreen *> * screens = [NSScreen screens];
-
-                for ( NSScreen * screen in screens ) {
-                    if ( screen != [NSScreen mainScreen] ) {
-                        ppeScreen = screen;
-                        break;
+                if ( [screens count] > 1 )
+                    for ( NSScreen * screen in screens ) {
+                        if ( screen != [NSScreen mainScreen] ) {
+                            ppeScreen = screen;
+                            break;
+                        }
                     }
-                }
 
                 [item.view enterFullScreenMode:ppeScreen withOptions:@{NSFullScreenModeAllScreens: @(NO)}];
                 if ( tab ) {
                     [[self cefViewWithTab:tab] focus];
                 }
+
+                if ( [screens count] > 1 )
+                    [win_main setIsVisible:false];
             } else if ([item.view isInFullScreenMode]) {
+                [win_main setIsVisible:true];
                 [item.view exitFullScreenModeWithOptions:nil];
                 
                 if (tab) {
