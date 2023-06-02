@@ -26,6 +26,10 @@
 #endif
 #define sAppVerShort                Copy(sAppVersion, 0, 3)
 
+#ifdef sPackageEdition
+  #define sPackageName sPackageName + "-" + sPackageEdition
+#endif
+
 #ifndef sOutputFileName
   #define sOutputFileName           sPackageName + "-" + sAppVersion + "-" + sWinArchFull
 #endif
@@ -967,7 +971,11 @@ Source: {#sBrandingFolder}\win-linux\package\windows\data\VisualElementsManifest
 Source: {#sBrandingFolder}\win-linux\package\windows\data\visual_elements_icon_150x150.png;  DestDir: {app}\browser;   MinVersion: 6.3;
 Source: {#sBrandingFolder}\win-linux\package\windows\data\visual_elements_icon_71x71.png;    DestDir: {app}\browser;   MinVersion: 6.3;
 
+#if defined(_WIN_XP) + defined(EMBED_HELP)
 Source: {#DEPLOY_PATH}\*;                               DestDir: {app}; Flags: recursesubdirs;
+#else
+Source: {#DEPLOY_PATH}\*;                               DestDir: {app}; Excludes: "editors\web-apps\apps\*\main\resources\help"; Flags: recursesubdirs;
+#endif
 Source: {#DEPLOY_PATH}\*.exe;                           DestDir: {app}; Flags: signonce;
 Source: {#DEPLOY_PATH}\ascdocumentscore.dll;            DestDir: {app}; Flags: signonce;
 Source: {#DEPLOY_PATH}\hunspell.dll;                    DestDir: {app}; Flags: signonce;
