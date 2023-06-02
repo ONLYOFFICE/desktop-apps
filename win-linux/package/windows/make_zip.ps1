@@ -1,7 +1,8 @@
 param (
-    [string]$DesktopPath = ".\build\desktop",
+    [string]$DesktopPath = "build\DesktopEditors",
     [Parameter(Mandatory)][string]$OutFile,
-    [switch]$Sign = $false,
+    [switch]$ExcludeHelp,
+    [switch]$Sign,
     [string]$CertName = "Ascensio System SIA",
     [string]$TimestampServer = "http://timestamp.digicert.com"
 )
@@ -33,6 +34,11 @@ if ( $Sign ) {
 }
 
 # Create archive
-Write-Host "7z a -y $OutFile $DesktopPath\*" -ForegroundColor Yellow
-& 7z a -y $OutFile $DesktopPath\*
+if ( !$ExcludeHelp ) {
+    Write-Host "7z a -y $OutFile .\$DesktopPath\*" -ForegroundColor Yellow
+    & 7z a -y $OutFile .\$DesktopPath\*
+} else {
+    Write-Host "7z a -y $OutFile .\$DesktopPath\* -xr!editors\web-apps\apps\*\main\resources\help" -ForegroundColor Yellow
+    & 7z a -y $OutFile .\$DesktopPath\* -xr!editors\web-apps\apps\*\main\resources\help
+}
 if ( $LastExitCode -ne 0 ) { throw }
