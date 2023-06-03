@@ -901,7 +901,7 @@
         
         NSValue * eventData = params[@"data"];
         
-        NSLog(@"ui oncefkeydown");
+        //NSLog(@"ui oncefkeydown");
         if (eventData) {
 //            NSEditorApi::CAscKeyboardDown * pData = (NSEditorApi::CAscKeyboardDown *)[eventData pointerValue];
 //
