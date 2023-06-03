@@ -196,7 +196,7 @@ QtMsg::QtMsg(QWidget * p)
     _h_layout2->addLayout(_f_layout, 1);
     _h_layout2->setContentsMargins(0,0,0,0);
 
-    QPushButton * btn_ok = new QPushButton(tr("&OK"));
+    QPushButton * btn_ok = new QPushButton("&" + QObject::tr("OK"));
     btn_ok->setAutoDefault(true);
     m_boxButtons->setLayout(new QHBoxLayout);
     m_boxButtons->layout()->addWidget(btn_ok);
