@@ -35,6 +35,8 @@
 #include <atlbase.h>
 #include <Shldisp.h>
 
+//#define ALLOW_CANCEL
+
 
 bool StringToFolder(CComPtr<IShellDispatch> &pISD, CComPtr<Folder> &folder, const wstring &path)
 {
@@ -44,6 +46,7 @@ bool StringToFolder(CComPtr<IShellDispatch> &pISD, CComPtr<Folder> &folder, cons
     return FAILED(hr) ? false : true;
 }
 
+#ifdef ALLOW_CANCEL
 int extractRecursively(CComPtr<IShellDispatch> &pISD, const CComPtr<Folder> &pSrcFolder,
                          const wstring &destFolder, CComVariant &vOptions, std::atomic_bool &run)
 {
@@ -113,6 +116,35 @@ int extractRecursively(CComPtr<IShellDispatch> &pISD, const CComPtr<Folder> &pSr
     }
     return UNZIP_OK;
 }
+#else
+int extractStandard(CComPtr<IShellDispatch> &pISD, const CComPtr<Folder> &pSrcFolder,
+                       const wstring &destFolder, CComVariant &vOptions)
+{
+    CComPtr<FolderItems> pItems;
+    HRESULT hr = pSrcFolder->Items(&pItems);
+    if (FAILED(hr))
+        return UNZIP_ERROR;
+
+    long itemCount = 0;
+    hr = pItems->get_Count(&itemCount);
+    if (FAILED(hr) || itemCount < 1)
+        return UNZIP_ERROR;
+
+    CComPtr<IDispatch> pDispatch;
+    hr = pItems->QueryInterface(IID_IDispatch, (void**)&pDispatch);
+    if (FAILED(hr))
+        return UNZIP_ERROR;
+
+    CComPtr<Folder> pDestFolder;
+    if (!StringToFolder(pISD, pDestFolder, destFolder))
+        return UNZIP_ERROR;
+
+    CComVariant vSrcPath(pDispatch);
+    vSrcPath.ChangeType(VT_DISPATCH);
+    hr = pDestFolder->CopyHere(vSrcPath, vOptions);
+    return FAILED(hr) ? UNZIP_ERROR : UNZIP_OK;
+}
+#endif
 
 int unzipArchive(const wstring &zipFilePath, const wstring &folderPath, std::atomic_bool &run)
 {
@@ -143,7 +175,13 @@ int unzipArchive(const wstring &zipFilePath, const wstring &folderPath, std::ato
     CComVariant vOptions(0);
     vOptions.vt = VT_I4;
     vOptions.lVal = 1024 | 512 | 16 | 4;
+
+#ifdef ALLOW_CANCEL
     int res = extractRecursively(pShell, pSrcFolder, path, vOptions, run);
+#else
+    int res = extractStandard(pShell, pSrcFolder, path, vOptions);
+#endif
+
     pSrcFolder.Release();
     pShell.Release();
     CoUninitialize();
