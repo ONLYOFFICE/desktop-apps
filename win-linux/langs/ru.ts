@@ -761,13 +761,10 @@
         <source>An error occurred while opening the portal:&lt;br&gt;%1</source>
         <translation type="unfinished"></translation>
     </message>
-</context>
-<context>
-    <name>QtMsg</name>
     <message>
-        <location filename="../src/components/cmessage.cpp" line="199"/>
-        <source>&amp;OK</source>
-        <translation type="unfinished">&amp;OK</translation>
+        <location filename="../src/main.cpp" line="64"/>
+        <source>App can&apos;t working correctly under admin rights.</source>
+        <translation type="unfinished">Приложение работает не корректно при запуске с правами администратора.</translation>
     </message>
 </context>
 </TS>
