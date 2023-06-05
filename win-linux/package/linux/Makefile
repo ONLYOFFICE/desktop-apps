@@ -135,7 +135,6 @@ INSTALLER_DEPENDENCY += desktopeditor
 USR_LIB_X64 := /usr/lib/x86_64-linux-gnu
 
 SRC += ../../../../build_tools/out/linux_$(ARCHITECTURE)/$(DESKTOPEDITORS_PREFIX)
-HELP_SRC = ../../../../build_tools/out/linux_$(ARCHITECTURE)/$(DESKTOPEDITORS_PREFIX)-help
 ifneq ($(COMPANY_NAME), ONLYOFFICE)
 	SRC += ../../../../build_tools/out/linux_$(ARCHITECTURE)/$(MEDIAVIEWER_PREFIX)
 endif
@@ -266,8 +265,11 @@ desktopeditor: branding $(LINUX_DEPS)
 	cp -rf ../../../common/package/mimetypes common/opt/desktopeditors
 
 ifeq ($(COMPANY_NAME), ONLYOFFICE)
-	mkdir -p common/help
-	cp -rf $(HELP_SRC)/. common/help/desktopeditors
+	for path in common documenteditor presentationeditor spreadsheeteditor; do \
+		mkdir -p common/help/desktopeditors/editors/web-apps/apps/$$path/main/resources; \
+		mv -ft common/help/desktopeditors/editors/web-apps/apps/$$path/main/resources \
+			common/opt/desktopeditors/editors/web-apps/apps/$$path/main/resources/help; \
+	done
 endif
 
 	chmod 755 common/opt/desktopeditors/DesktopEditors
