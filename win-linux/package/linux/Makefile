@@ -69,7 +69,7 @@ URPMI = $(URPMI_PACKAGE_DIR)/$(PACKAGE_NAME)-$(PACKAGE_VERSION)$(URPMI_RELEASE_S
 SUSE_RPM = $(SUSE_RPM_PACKAGE_DIR)/$(PACKAGE_NAME)-$(PACKAGE_VERSION)$(SUSE_RPM_RELEASE_SUFFIX).$(RPM_ARCH).rpm
 DEB = deb/$(PACKAGE_NAME)_$(PACKAGE_VERSION)$(DEB_RELEASE_SUFFIX)_$(DEB_ARCH).deb
 DEB_ASTRA = deb-astra/$(PACKAGE_NAME)_$(PACKAGE_VERSION)$(DEB_ASTRA_RELEASE_SUFFIX)_$(DEB_ARCH).deb
-TAR = $(TAR_PACKAGE_DIR)/$(PACKAGE_NAME)-$(PACKAGE_VERSION)$(TAR_RELEASE_SUFFIX)-$(TAR_ARCH).tar.gz
+TAR = $(TAR_PACKAGE_DIR)/$(PACKAGE_NAME)-$(PACKAGE_VERSION)$(TAR_RELEASE_SUFFIX)-$(TAR_ARCH).tar.xz
 HELP_TAR = $(TAR_PACKAGE_DIR)/$(PACKAGE_NAME)-help-$(PACKAGE_VERSION)$(TAR_RELEASE_SUFFIX)-any.tar.xz
 
 ifeq ($(COMPANY_NAME), ONLYOFFICE)
@@ -135,7 +135,6 @@ INSTALLER_DEPENDENCY += desktopeditor
 USR_LIB_X64 := /usr/lib/x86_64-linux-gnu
 
 SRC += ../../../../build_tools/out/linux_$(ARCHITECTURE)/$(DESKTOPEDITORS_PREFIX)
-HELP_SRC = ../../../../build_tools/out/linux_$(ARCHITECTURE)/$(DESKTOPEDITORS_PREFIX)-help
 ifneq ($(COMPANY_NAME), ONLYOFFICE)
 	SRC += ../../../../build_tools/out/linux_$(ARCHITECTURE)/$(MEDIAVIEWER_PREFIX)
 endif
@@ -250,8 +249,7 @@ clean:
 		apt-rpm/$(PACKAGE_NAME).spec \
 		urpmi/$(PACKAGE_NAME).spec \
 		suse-rpm/$(PACKAGE_NAME).spec \
-		$(INSTALLER)\
-		*.tar.gz
+		$(INSTALLER)
 
 branding: $(BRANDING_DIR)
 	cp -rf $(BRANDING_DIR)/* $(PWD)/
@@ -266,8 +264,11 @@ desktopeditor: branding $(LINUX_DEPS)
 	cp -rf ../../../common/package/mimetypes common/opt/desktopeditors
 
 ifeq ($(COMPANY_NAME), ONLYOFFICE)
-	mkdir -p common/help
-	cp -rf $(HELP_SRC)/. common/help/desktopeditors
+	for path in common documenteditor presentationeditor spreadsheeteditor; do \
+		mkdir -p common/help/desktopeditors/editors/web-apps/apps/$$path/main/resources; \
+		mv -ft common/help/desktopeditors/editors/web-apps/apps/$$path/main/resources \
+			common/opt/desktopeditors/editors/web-apps/apps/$$path/main/resources/help; \
+	done
 endif
 
 	chmod 755 common/opt/desktopeditors/DesktopEditors
@@ -362,13 +363,11 @@ $(SUSE_RPM): desktopeditor suse-rpm/$(PACKAGE_NAME).spec
 $(TAR): desktopeditor
 	mkdir -p $(TAR_PACKAGE_DIR) common/opt/desktopeditors/app
 	cp -ft common/opt/desktopeditors/app $(DESKTOP_FILES)
-	tar -cz --owner=root --group=root \
-		--xform=s:^common/opt:: -f"$@" common/opt
+	tar -cI"xz -9T0" --owner=root --group=root -f"$@" -C common/opt desktopeditors
 
 $(HELP_TAR): desktopeditor
 	mkdir -p $(TAR_PACKAGE_DIR)
-	tar -cI"xz -9T0" --owner=root --group=root \
-		--xform=s:^common/help:: -f"$@" common/help
+	tar -cI"xz -9T0" --owner=root --group=root -f"$@" -C common/help desktopeditors
 
 $(INSTALLER): $(INSTALLER_DEPENDENCY)
 	cd qt-installer && ./make-install.sh

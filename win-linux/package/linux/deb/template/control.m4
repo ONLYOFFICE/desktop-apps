@@ -30,6 +30,8 @@ ifelse(M4_PACKAGE_EDITION, full,
   fonts-crosextra-carlito,
   xdg-utils')
 Recommends: ttf-mscorefonts-installer, fonts-takao-gothic 
+ifelse(M4_COMPANY_NAME, ONLYOFFICE,Suggest: M4_PACKAGE_NAME-help
+,)dnl
 Description: M4_COMPANY_NAME M4_PRODUCT_NAME installation package
  M4_COMPANY_NAME M4_PRODUCT_NAME is an application for editing office documents (text documents, spreadsheets and presentations) from M4_COMPANY_NAME cloud portal on local computer without browser using.
 
