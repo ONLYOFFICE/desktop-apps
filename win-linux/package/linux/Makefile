@@ -69,7 +69,7 @@ URPMI = $(URPMI_PACKAGE_DIR)/$(PACKAGE_NAME)-$(PACKAGE_VERSION)$(URPMI_RELEASE_S
 SUSE_RPM = $(SUSE_RPM_PACKAGE_DIR)/$(PACKAGE_NAME)-$(PACKAGE_VERSION)$(SUSE_RPM_RELEASE_SUFFIX).$(RPM_ARCH).rpm
 DEB = deb/$(PACKAGE_NAME)_$(PACKAGE_VERSION)$(DEB_RELEASE_SUFFIX)_$(DEB_ARCH).deb
 DEB_ASTRA = deb-astra/$(PACKAGE_NAME)_$(PACKAGE_VERSION)$(DEB_ASTRA_RELEASE_SUFFIX)_$(DEB_ARCH).deb
-TAR = $(TAR_PACKAGE_DIR)/$(PACKAGE_NAME)-$(PACKAGE_VERSION)$(TAR_RELEASE_SUFFIX)-$(TAR_ARCH).tar.gz
+TAR = $(TAR_PACKAGE_DIR)/$(PACKAGE_NAME)-$(PACKAGE_VERSION)$(TAR_RELEASE_SUFFIX)-$(TAR_ARCH).tar.xz
 HELP_TAR = $(TAR_PACKAGE_DIR)/$(PACKAGE_NAME)-help-$(PACKAGE_VERSION)$(TAR_RELEASE_SUFFIX)-any.tar.xz
 
 ifeq ($(COMPANY_NAME), ONLYOFFICE)
@@ -249,8 +249,7 @@ clean:
 		apt-rpm/$(PACKAGE_NAME).spec \
 		urpmi/$(PACKAGE_NAME).spec \
 		suse-rpm/$(PACKAGE_NAME).spec \
-		$(INSTALLER)\
-		*.tar.gz
+		$(INSTALLER)
 
 branding: $(BRANDING_DIR)
 	cp -rf $(BRANDING_DIR)/* $(PWD)/
@@ -364,13 +363,11 @@ $(SUSE_RPM): desktopeditor suse-rpm/$(PACKAGE_NAME).spec
 $(TAR): desktopeditor
 	mkdir -p $(TAR_PACKAGE_DIR) common/opt/desktopeditors/app
 	cp -ft common/opt/desktopeditors/app $(DESKTOP_FILES)
-	tar -cz --owner=root --group=root \
-		--xform=s:^common/opt:: -f"$@" common/opt
+	tar -cI"xz -9T0" --owner=root --group=root -f"$@" -C common/opt desktopeditors
 
 $(HELP_TAR): desktopeditor
 	mkdir -p $(TAR_PACKAGE_DIR)
-	tar -cI"xz -9T0" --owner=root --group=root \
-		--xform=s:^common/help:: -f"$@" common/help
+	tar -cI"xz -9T0" --owner=root --group=root -f"$@" -C common/help desktopeditors
 
 $(INSTALLER): $(INSTALLER_DEPENDENCY)
 	cd qt-installer && ./make-install.sh
