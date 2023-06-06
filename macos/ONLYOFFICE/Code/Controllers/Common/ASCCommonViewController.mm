@@ -463,9 +463,6 @@
         [alert setInformativeText:NSLocalizedString(@"If you don't review your documents, all your changeses will be lost.", nil)];
         [alert setAlertStyle:NSAlertStyleInformational];
         
-        NSString * s = [NSString stringWithFormat:NSLocalizedString(@"%d days are left until the license expiration.", nil), 2];
-        [alert setMessageText:s];
-
         NSInteger result = [alert runModal];
         
         if (result == NSAlertFirstButtonReturn) {
