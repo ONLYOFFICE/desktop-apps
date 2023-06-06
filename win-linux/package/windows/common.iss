@@ -75,7 +75,6 @@ AlwaysShowDirOnReadyPage  = yes
 UninstallDisplayIcon      = {app}\app.ico
 UninstallDisplayName      = {#sAppName} {#sAppVerShort} ({#sWinArch})
 OutputDir                 =.\
-Compression               =lzma
 PrivilegesRequired        =admin
 AppMutex                  ={code:getAppMutex}
 ChangesEnvironment        =yes
@@ -101,6 +100,10 @@ SignTool                  =byparam $p
 SetupIconFile                     = {#sBrandingFolder}\win-linux\extras\projicons\res\desktopeditors.ico
 WizardImageFile                   = {#sBrandingFolder}\win-linux\package\windows\data\dialogpicture*.bmp
 WizardSmallImageFile              = {#sBrandingFolder}\win-linux\package\windows\data\dialogicon*.bmp
+
+SolidCompression=yes
+Compression=lzma2/ultra64
+LZMAUseSeparateProcess=yes
 
 [Languages]
 #ifdef _ONLYOFFICE
