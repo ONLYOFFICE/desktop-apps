@@ -180,4 +180,9 @@
     return true;
 }
 
+- (BOOL)isVisible
+{
+    return _isDisplay;
+}
+
 @end

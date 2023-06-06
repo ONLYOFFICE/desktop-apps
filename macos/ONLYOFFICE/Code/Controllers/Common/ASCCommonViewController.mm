@@ -70,6 +70,7 @@
 #import "ASCLinguist.h"
 #import "ASCThemesController.h"
 #import "ASCEditorJSVariables.h"
+#import "ASCPresentationReporter.h"
 
 
 #define rootTabId @"1CEF624D-9FF3-432B-9967-61361B5BFE8B"
@@ -462,9 +463,6 @@
         [alert setInformativeText:NSLocalizedString(@"If you don't review your documents, all your changeses will be lost.", nil)];
         [alert setAlertStyle:NSAlertStyleInformational];
         
-        NSString * s = [NSString stringWithFormat:NSLocalizedString(@"%d days are left until the license expiration.", nil), 2];
-        [alert setMessageText:s];
-
         NSInteger result = [alert runModal];
         
         if (result == NSAlertFirstButtonReturn) {
@@ -853,7 +851,7 @@
             if (isFullscreen) {
                 NSScreen * ppeScreen = [win_main screen];
                 NSArray<NSScreen *> * screens = [NSScreen screens];
-                if ( [screens count] > 1 )
+                if ( [[ASCPresentationReporter sharedInstance] isVisible] && [screens count] > 1 )
                     for ( NSScreen * screen in screens ) {
                         if ( screen != [NSScreen mainScreen] ) {
                             ppeScreen = screen;

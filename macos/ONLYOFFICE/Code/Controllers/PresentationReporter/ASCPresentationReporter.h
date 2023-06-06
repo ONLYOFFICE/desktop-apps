@@ -45,4 +45,5 @@
 - (void)create:(void *)data from:(int)senderId;
 - (void)destroy;
 - (void)apply:(void *)event;
+- (BOOL)isVisible;
 @end
