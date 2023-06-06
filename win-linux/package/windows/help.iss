@@ -54,8 +54,10 @@ VersionInfoVersion={#VERSION}
 OutputDir=.\
 OutputBaseFileName={#sOutputFileName}
 
-ArchitecturesAllowed=x86 x64
+#if str(ARCH) == "x64"
+ArchitecturesAllowed=x64
 ; ArchitecturesInstallIn64BitMode=x64
+#endif
 
 #ifdef ENABLE_SIGNING
 SignTool=byparam $p
