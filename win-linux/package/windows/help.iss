@@ -56,7 +56,7 @@ OutputBaseFileName={#sOutputFileName}
 
 #if str(ARCH) == "x64"
 ArchitecturesAllowed=x64
-; ArchitecturesInstallIn64BitMode=x64
+ArchitecturesInstallIn64BitMode=x64
 #endif
 
 #ifdef ENABLE_SIGNING
@@ -128,10 +128,10 @@ var
 
 function GetHKLM: Integer;
 begin
-  if IsWin64 then
+  if Is64BitInstallMode then
     Result := HKLM64
   else
-    Result := HKLM32;
+    Result := HKLM;
 end;
 
 function GetInstallPath(Param: string): string;
