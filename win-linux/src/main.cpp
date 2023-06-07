@@ -61,7 +61,7 @@ int main( int argc, char *argv[] )
     InputArgs::init(argc, argv);
     WindowHelper::initEnvInfo();
     if (geteuid() == 0) {
-        CMessage::warning(nullptr, QObject::tr("App can't working correctly under admin rights."));
+        CMessage::warning(nullptr, WARNING_LAUNCH_WITH_ADMIN_RIGHTS);
         return 0;
     }
 #endif
