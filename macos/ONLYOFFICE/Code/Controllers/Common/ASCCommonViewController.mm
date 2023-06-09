@@ -1112,7 +1112,9 @@
             allowedFileTypes = [ASCConstants xmldata];
         } else {
             // filters come in view "*.docx *.pptx *.xlsx"
-            NSString * filters = [fileTypes stringByReplacingOccurrencesOfString:@"*." withString:@""];
+            NSError *error = nil;
+            NSRegularExpression * regex = [NSRegularExpression regularExpressionWithPattern:@"[\\(\\)\\*\\.]" options:NSRegularExpressionCaseInsensitive error:&error];
+            NSString * filters = [regex stringByReplacingMatchesInString:fileTypes options:0 range:NSMakeRange(0, [fileTypes length]) withTemplate:@""];
             allowedFileTypes = [filters componentsSeparatedByString:@" "];
         }
 
