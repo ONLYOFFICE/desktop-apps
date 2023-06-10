@@ -1249,6 +1249,28 @@ void CMainWindow::onKeyDown(void * eventData)
             }
         }
         break;
+    case VK_F1:
+        if ( _is_ctrl && _is_shift ) {
+            GET_REGISTRY_USER(reg_user)
+
+            CFileDialogWrapper _dlg(this);
+            QString _dir = _dlg.selectFolder(reg_user.contains("helpUrl") ?
+                        reg_user.value("helpUrl").toString() : Utils::lastPath(LOCAL_PATH_OPEN));
+
+            if ( !_dir.isEmpty() ) {
+                QString _path = _dir + "/apps/documenteditor/main/resources/help/en/Contents.json";
+                if( QFileInfo::exists(_path) ) {
+                    reg_user.setValue("helpUrl", _dir + "/apps");
+                    EditorJSVariables::setVariable("helpUrl", _dir + "/apps");
+                    EditorJSVariables::apply();
+
+                    CMessage::error(TOP_NATIVE_WINDOW_HANDLE, "Successfully");
+                } else {
+                    CMessage::error(TOP_NATIVE_WINDOW_HANDLE, "Failed");
+                }
+            }
+        }
+        break;
     }
 }
 

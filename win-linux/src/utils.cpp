@@ -158,10 +158,16 @@ namespace EditorJSVariables {
 #endif
         if ( InputArgs::contains(L"--help-url") )
             vars_object["helpUrl"] = QUrl(QString::fromStdWString(InputArgs::argument_value(L"--help-url"))).toString();
+        else {
+            GET_REGISTRY_USER(_reg_user)
+
+            if ( _reg_user.contains("helpUrl") )
+                vars_object["helpUrl"] = _reg_user.value("helpUrl").toString();
 #ifdef URL_WEBAPPS_HELP
-        else if ( !QString(URL_WEBAPPS_HELP).isEmpty() )
-            vars_object["helpUrl"] = URL_WEBAPPS_HELP;
+            else if ( !QString(URL_WEBAPPS_HELP).isEmpty() )
+                vars_object["helpUrl"] = URL_WEBAPPS_HELP;
 #endif
+        }
         vars_object["defaultPrinterName"] = QPrinterInfo::defaultPrinterName();
     }
 
