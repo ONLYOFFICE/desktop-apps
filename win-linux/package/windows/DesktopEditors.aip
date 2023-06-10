@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<DOCUMENT Type="Advanced Installer" CreateVersion="18.6.1" version="20.5" Modules="enterprise" RootPath="." Language="en" Id="{B5BC1FE9-EBA1-4B6E-93EB-6D2DCEF2ED7F}">
+<DOCUMENT Type="Advanced Installer" CreateVersion="18.6.1" version="20.7.1" Modules="enterprise" RootPath="." Language="en" Id="{B5BC1FE9-EBA1-4B6E-93EB-6D2DCEF2ED7F}">
   <COMPONENT cid="caphyon.advinst.msicomp.ProjectOptionsComponent">
     <ROW Name="HiddenItems" Value="ActSyncAppComponent;CPLAppletComponent;AutorunComponent;GameUxComponent;SilverlightSlnComponent;SharePointSlnComponent;AppXAppDetailsComponent;FixupComponent;AppXCapabilitiesComponent;AppXDependenciesComponent;AppXProductDetailsComponent;AppXVisualAssetsComponent;AppXAppDeclarationsComponent;AppXUriRulesComponent;MsiXDiffComponent;MsixManifestEditorComponent"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiPropsComponent">
+    <ROW Property="AI_APP_FILE" Value="[#DesktopEditors.exe]"/>
     <ROW Property="AI_BITMAP_DISPLAY_MODE" Value="0"/>
     <ROW Property="AI_EXTERNALUIUNINSTALLERNAME" MultiBuildValue="DefaultBuild:aiui"/>
     <ROW Property="AI_PRODUCTNAME_ARP" Value="[|ProductName] [|ProductVersion] "/>
@@ -58,7 +59,7 @@
     <ROW Property="ProductCode" Value="1029:{14361018-38E1-4A92-A787-78C1A1464AFD} 1031:{14361018-38E1-4A92-A787-78C1A1464AFD} 1033:{14361018-38E1-4A92-A787-78C1A1464AFD} 1036:{14361018-38E1-4A92-A787-78C1A1464AFD} 1041:{14361018-38E1-4A92-A787-78C1A1464AFD} 1046:{14361018-38E1-4A92-A787-78C1A1464AFD} 1049:{14361018-38E1-4A92-A787-78C1A1464AFD} 1060:{14361018-38E1-4A92-A787-78C1A1464AFD} 2070:{14361018-38E1-4A92-A787-78C1A1464AFD} 3082:{14361018-38E1-4A92-A787-78C1A1464AFD} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="ONLYOFFICE Desktop Editors"/>
-    <ROW Property="ProductVersion" Value="0.0.0.0"/>
+    <ROW Property="ProductVersion" Value="0.0.0.0" Options="32"/>
     <ROW Property="REGISTER_CSV" Value="0" Type="4"/>
     <ROW Property="REGISTER_DJVU" Value="0" Type="4"/>
     <ROW Property="REGISTER_DOC" Value="1" Type="4"/>
@@ -219,7 +220,7 @@
     <ATTRIBUTE name="TranslateSegments" value="0b00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000111100011110000000110000000000001"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.DigCertStoreComponent">
-    <ROW TimeStampUrl="http://timestamp.digicert.com" SignerDescription="[|ProductName]" SignOptions="7" SignTool="0" UseSha256="1"/>
+    <ROW TimeStampUrl="http://timestamp.digicert.com" SignerDescription="[|ProductName]" SignOptions="7" SignTool="0" UseSha256="1" Store="Machine\MY"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.FragmentComponent">
     <ROW Fragment="CommonUI.aip" Path="&lt;AI_FRAGS&gt;CommonUI.aip"/>
@@ -394,6 +395,7 @@
     <ROW Dialog_="ExitDialog" Control="LaunchProdCheckBox" Type="CheckBox" X="125" Y="146" Width="10" Height="10" Attributes="3" Property="RUNAPPLICATION" Order="800" MsiKey="ExitDialog#LaunchProdCheckBox" Options="1"/>
     <ROW Dialog_="ExitDialog" Control="Description" Type="Text" X="135" Y="86" Width="220" Height="20" Attributes="196611" Text="Click the &quot;Finish&quot; button to exit the [Wizard]." Order="900" TextLocId="Control.Text.ExitDialog#Description" MsiKey="ExitDialog#Description"/>
     <ROW Dialog_="ExitDialog" Control="BottomLine" Type="Line" X="0" Y="234" Width="372" Height="0" Attributes="1" Order="1000" MsiKey="ExitDialog#BottomLine"/>
+    <ROW Dialog_="ExitDialog" Control="Hyperlink" Type="Hyperlink" X="135" Y="140" Width="220" Height="20" Attributes="65539" Property="AiReadmeLink" Text="&lt;a href=&quot;[AiReadmeLink]&quot;&gt;View readme&lt;/a&gt;" Order="1100" TextLocId="Control.Text.ExitDialog#ViewReadmeHyperlink" MsiKey="ExitDialog#Hyperlink"/>
     <ROW Dialog_="ExtendedInstallDlg" Control="Next" Type="PushButton" X="236" Y="243" Width="56" Height="17" Attributes="3" Text="[ButtonText_Next]" Order="100" Options="1"/>
     <ROW Dialog_="ExtendedInstallDlg" Control="Cancel" Type="PushButton" X="304" Y="243" Width="56" Height="17" Attributes="3" Text="[ButtonText_Cancel]" Order="200" Options="1"/>
     <ROW Dialog_="ExtendedInstallDlg" Control="Back" Type="PushButton" X="180" Y="243" Width="56" Height="17" Attributes="3" Text="[ButtonText_Back]" Order="300" Options="1"/>
@@ -497,8 +499,7 @@
     <ROW Dialog_="ShortcutsDlg" Control="Title" Type="Text" X="15" Y="6" Width="200" Height="15" Attributes="196611" Text="Configure Shortcuts" TextStyle="[DlgTitleFont]" Order="800" TextLocId="Control.Text.ShortcutsDlg#Title" MsiKey="ShortcutsDlg#Title"/>
     <ROW Dialog_="ShortcutsDlg" Control="DesktopShortcutsCheckBox" Type="CheckBox" X="53" Y="109" Width="162" Height="11" Attributes="3" Property="AI_DESKTOP_SH" Text="Desktop" Order="900" TextLocId="Control.Text.ShortcutsDlg#DesktopShortcutsCheckBox" MsiKey="ShortcutsDlg#DesktopShortcutsCheckBox" Options="1"/>
     <ROW Dialog_="ShortcutsDlg" Control="StartmenuShortcutsCheckBox" Type="CheckBox" X="53" Y="131" Width="162" Height="11" Attributes="3" Property="AI_STARTMENU_SH" Text="Start Menu Programs folder" Order="1000" TextLocId="Control.Text.ShortcutsDlg#StartmenuShortcutsCheckBox" MsiKey="ShortcutsDlg#StartmenuShortcutsCheckBox" Options="1"/>
-    <ROW Dialog_="ShortcutsDlg" Control="QuickLaunchShorcutsCheckBox" Type="CheckBox" X="53" Y="154" Width="162" Height="11" Attributes="3" Property="AI_QUICKLAUNCH_SH" Text="Quick Launch toolbar" Order="1100" TextLocId="Control.Text.ShortcutsDlg#QuickLaunchShorcutsCheckBox" MsiKey="ShortcutsDlg#QuickLaunchShorcutsCheckBox" Options="1"/>
-    <ROW Dialog_="ShortcutsDlg" Control="StartupShorcutsCheckBox" Type="CheckBox" X="53" Y="177" Width="162" Height="11" Attributes="3" Property="AI_STARTUP_SH" Text="Startup folder" Order="1200" TextLocId="Control.Text.ShortcutsDlg#StartupShorcutsCheckBox" MsiKey="ShortcutsDlg#StartupShorcutsCheckBox" Options="1"/>
+    <ROW Dialog_="ShortcutsDlg" Control="StartupShorcutsCheckBox" Type="CheckBox" X="53" Y="177" Width="162" Height="11" Attributes="3" Property="AI_STARTUP_SH" Text="Startup folder" Order="1100" TextLocId="Control.Text.ShortcutsDlg#StartupShorcutsCheckBox" MsiKey="ShortcutsDlg#StartupShorcutsCheckBox" Options="1"/>
     <ROW Dialog_="ShortcutsDlg" Control="ShortcutsDlgText" Type="Text" X="25" Y="70" Width="314" Height="30" Attributes="196611" Text="Create shortcuts for [ProductName] in the following locations:" Order="1300" TextLocId="Control.Text.ShortcutsDlg#ShortcutsDlgText" MsiKey="ShortcutsDlg#ShortcutsDlgText"/>
     <ROW Dialog_="UserExit" Control="Bitmap" Type="Bitmap" X="0" Y="0" Width="370" Height="234" Attributes="1048577" Text="background.bmp" Order="300" MsiKey="UserExit#Bitmap"/>
     <ROW Dialog_="VerifyReadyDlg" Control="BannerBitmap" Type="Bitmap" X="0" Y="0" Width="370" Height="44" Attributes="1048577" Text="banner.png" Order="300" MsiKey="VerifyReadyDlg#BannerBitmap"/>
@@ -524,12 +525,11 @@
   <COMPONENT cid="caphyon.advinst.msicomp.MsiControlConditionComponent">
     <ROW Dialog_="ShortcutsDlg" Control_="StartupShorcutsCheckBox" Action="Hide" Condition="(Not Installed)"/>
     <ROW Dialog_="ShortcutsDlg" Control_="StartmenuShortcutsCheckBox" Action="Show" Condition="(Not Installed)"/>
-    <ROW Dialog_="ShortcutsDlg" Control_="QuickLaunchShorcutsCheckBox" Action="Hide" Condition="(Not Installed) AND (VersionNT&lt;&quot;601&quot;)"/>
     <ROW Dialog_="FileAssociationsDlg" Control_="CheckBox_docxf" Action="Hide" Condition="ProductName &lt;&gt; &quot;ONLYOFFICE Desktop Editors&quot;"/>
     <ROW Dialog_="FileAssociationsDlg" Control_="CheckBox_oform" Action="Hide" Condition="ProductName &lt;&gt; &quot;ONLYOFFICE Desktop Editors&quot;"/>
     <ROW Dialog_="FileAssociationsDlg" Control_="Select_all_button" Action="Hide" Condition="1"/>
     <ROW Dialog_="FileAssociationsDlg" Control_="Deselect_all_button" Action="Hide" Condition="1"/>
-    <ATTRIBUTE name="DeletedRows" value="ExitDialog#ViewReadmeText#Hide#((NOT AI_INSTALL) AND (NOT AI_PATCH)) OR ((CTRLS &lt;&gt; 1) AND (CTRLS &lt;&gt; 3))@ShortcutsDlg#QuickLaunchShorcutsCheckBox#Show#(Not Installed) AND (VersionNT&lt;&quot;601&quot;)@ShortcutsDlg#StartmenuShortcutsCheckBox#Show#(Not Installed)@ShortcutsDlg#StartupShorcutsCheckBox#Show#(Not Installed)"/>
+    <ATTRIBUTE name="DeletedRows" value="ExitDialog#ViewReadmeText#Hide#((NOT AI_INSTALL) AND (NOT AI_PATCH)) OR ((CTRLS &lt;&gt; 1) AND (CTRLS &lt;&gt; 3))@ShortcutsDlg#StartmenuShortcutsCheckBox#Show#(Not Installed)@ShortcutsDlg#StartupShorcutsCheckBox#Show#(Not Installed)"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiControlEventComponent">
     <ROW Dialog_="WelcomeDlg" Control_="Next" Event="NewDialog" Argument="LicenseAgreementDlg" Condition="AI_INSTALL" Ordering="7"/>
@@ -807,7 +807,7 @@
     <ROW Action="AI_InstallModeCheck" Type="1" Source="aicustact.dll" Target="UpdateInstallMode" WithoutSeq="true"/>
     <ROW Action="AI_InstallPostPrerequisite" Type="1" Source="Prereq.dll" Target="InstallPostPrereq"/>
     <ROW Action="AI_InstallPrerequisite" Type="1" Source="Prereq.dll" Target="InstallPrereq"/>
-    <ROW Action="AI_LaunchApp" Type="1" Source="aicustact.dll" Target="[#DesktopEditors.exe]"/>
+    <ROW Action="AI_LaunchApp" Type="1" Source="aicustact.dll" Target="LaunchApp"/>
     <ROW Action="AI_LaunchChainer" Type="3314" Source="AI_PREREQ_CHAINER"/>
     <ROW Action="AI_PREPARE_UPGRADE" Type="65" Source="aicustact.dll" Target="PrepareUpgrade"/>
     <ROW Action="AI_PRESERVE_INSTALL_TYPE" Type="65" Source="aicustact.dll" Target="PreserveInstallType"/>
