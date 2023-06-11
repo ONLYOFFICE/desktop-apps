@@ -70,7 +70,7 @@
 #import "ASCLinguist.h"
 #import "ASCThemesController.h"
 #import "ASCEditorJSVariables.h"
-
+#import <Carbon/Carbon.h>
 
 #define rootTabId @"1CEF624D-9FF3-432B-9967-61361B5BFE8B"
 
@@ -885,15 +885,38 @@
         NSValue * eventData = params[@"data"];
         
         if (eventData) {
-//            NSEditorApi::CAscKeyboardDown * pData = (NSEditorApi::CAscKeyboardDown *)[eventData pointerValue];
-//
-//            int     keyCode     = pData->get_KeyCode();
-//            bool    isCtrl      = pData->get_IsCtrl();
-//            BOOL    isCommand   = pData->get_IsCommandMac();
-//
-//            if(isCtrl && keyCode == kVK_ANSI_W) {
-//                [self tabs:self.tabsControl willRemovedTab:[self.tabsControl selectedTab]];
-//            }
+            NSEditorApi::CAscKeyboardDown * pData = (NSEditorApi::CAscKeyboardDown *)[eventData pointerValue];
+
+            if ( pData->get_KeyCode() == 112 /*kVK_F1*/ && pData->get_IsShift() && pData->get_IsCtrl() ) {
+                NSOpenPanel * openPanel = [NSOpenPanel openPanel];
+
+                openPanel.canChooseDirectories = YES;
+                openPanel.allowsMultipleSelection = NO;
+                openPanel.canChooseFiles = NO;
+                openPanel.allowedFileTypes = [ASCConstants images];
+//                openPanel.directoryURL = [NSURL fileURLWithPath:directory];
+
+                [openPanel beginSheetModalForWindow:[NSApp mainWindow] completionHandler:^(NSInteger result){
+                    [openPanel orderOut:self];
+
+                    if (result == NSFileHandlingPanelOKButton) {
+                        NSString * pathToHelp = [[[openPanel directoryURL] path] stringByAppendingString: @"/apps"];
+                        NSString * pathContents = [pathToHelp stringByAppendingString:@"/documenteditor/main/resources/help/en/Contents.json"];
+
+                        NSAlert * alert = [[NSAlert alloc] init];
+                        if ( [[NSFileManager defaultManager] fileExistsAtPath:pathContents] ) {
+                            [[NSUserDefaults standardUserDefaults] setValue:pathToHelp forKey:@"helpUrl"];
+                            [[ASCEditorJSVariables instance] setVariable:@"helpUrl" withString:pathToHelp];
+                            [[ASCEditorJSVariables instance] apply];
+
+                            [alert setMessageText:@"Successfully"];
+                        } else {
+                            [alert setMessageText:@"Failed"];
+                        }
+                        [alert runModal];
+                    }
+                }];
+            }
         }
     }
 }

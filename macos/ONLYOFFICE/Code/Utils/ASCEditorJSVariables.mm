@@ -69,12 +69,18 @@
         _jsVariables = [NSMutableDictionary dictionary];
         _urlParams = [NSMutableDictionary dictionary];
 
+        NSString * url = [[NSUserDefaults standardUserDefaults] valueForKey:@"helpUrl"];
 #ifdef URL_WEBAPPS_HELP
-        NSString * url = URL_WEBAPPS_HELP;
-        NSLog(@"set web-apps help url %@", URL_WEBAPPS_HELP);
-        if (url && [url length])
-            [_jsVariables setValue:URL_WEBAPPS_HELP forKey:@"helpUrl"];
+        if ( url == nil || url.length == 0 ) {
+            url = URL_WEBAPPS_HELP;
+        }
 #endif
+
+        if (url && [url length]) {
+            [_jsVariables setValue:url forKey:@"helpUrl"];
+            NSLog(@"set web-apps help url %@", url);
+        }
+
         [self setParameter:@"lang" withString:[ASCLinguist appLanguageCode]];
     }
 
