@@ -1,7 +1,7 @@
 
 QTabWidget::pane {background-color: #f1f1f1; border: none; padding: 0px;}
 QLabel[class=tab-icon] {padding:0 0 2px 4px;}
-QTabBar {font-size: 11px; background-color: #f1f1f1;}
+QTabBar {font-size: 11px; font-family: "Arial", "Helvetica", "Helvetica Neue", sans-serif; background-color: #f1f1f1;}
 QTabBar::tear {width: 0px;}
 QTabBar::scroller {width: 0px;}
 QTabBar::tab {min-width: 41px; max-width: 135px; width: 135px; height: 28px; background-color: #f1f1f1; border: 0 none;

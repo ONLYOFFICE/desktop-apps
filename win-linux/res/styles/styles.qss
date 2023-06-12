@@ -346,7 +346,7 @@ CDownloadWidget[hdpi] QLabel#labelName {
     padding-left: 10px; padding-right: 10px;
     padding-top: 0px; padding-bottom: 0px;
     color: #373737;
-    font-family: "Libra Sans";
+    font-family: "Arial", "Helvetica", "Helvetica Neue", sans-serif;
     font-size: 11px;
     font-weight: normal;
     qproperty-alignment: AlignCenter;
