@@ -117,6 +117,7 @@ typedef unsigned char BYTE;
 #define WSTR(str)               TO_WSTR(str)
 
 #ifdef __linux
+# define VK_F1 0x70
 # define VK_F4 0x73
 # define VK_TAB 0x09
 #endif
