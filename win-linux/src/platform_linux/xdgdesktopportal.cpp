@@ -1,5 +1,6 @@
 #define _GNU_SOURCE 1
 #include "xdgdesktopportal.h"
+#include "components/cmessage.h"
 #include "platform_linux/xcbutils.h"
 #include <stdlib.h>
 #include <stdio.h>
@@ -1212,8 +1213,10 @@ QStringList Xdg::openXdgPortal(QWidget *parent,
         }
     }
 
-    if (result == Result::ERROR)
-        printf("Error while open dialog: %s\n", getErrorText());
+    if (result == Result::ERROR) {
+        CMessage::error(parent, QObject::tr("An error occurred while opening the portal:<br>%1")
+                        .arg(QString::fromUtf8(getErrorText())));
+    }
 
     quitDBus();
 

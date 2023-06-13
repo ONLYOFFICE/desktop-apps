@@ -2,14 +2,13 @@
 @title-height: 40px;
 
 dialog {
-    top: 50%;
     visibility: hidden;
     overflow: hidden;
-    transform: scale(0.8) translateY(-50%);
+    transform: scale(0.8);
     transition: all 200ms;
     &.scaled {
         visibility: visible;
-        transform: scale(1) translateY(-50%);
+        transform: scale(1);
     }
 
     padding: 0;

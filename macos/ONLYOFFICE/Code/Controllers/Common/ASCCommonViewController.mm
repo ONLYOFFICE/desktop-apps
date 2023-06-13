@@ -41,7 +41,7 @@
 #import "ASCCommonViewController.h"
 #import "applicationmanager.h"
 #import "mac_application.h"
-#import "nsascprinter.h"
+#import "ascprinter.h"
 #import "ASCTabsControl.h"
 #import "ASCTabView.h"
 #import "ASCTitleWindowController.h"
@@ -68,13 +68,15 @@
 #import "ASCCertificatePreviewController.h"
 #import "ASCCertificateQLPreviewController.h"
 #import "ASCLinguist.h"
+#import "ASCThemesController.h"
 #import "ASCEditorJSVariables.h"
+#import "ASCPresentationReporter.h"
 
 
 #define rootTabId @"1CEF624D-9FF3-432B-9967-61361B5BFE8B"
 
 @interface ASCCommonViewController() <ASCTabsControlDelegate, ASCTitleBarControllerDelegate, ASCUserInfoViewControllerDelegate> {
-    NSAscPrinterContext * m_pContext;
+    ASCPrinterContext * m_pContext;
     NSUInteger documentNameCounter;
     NSUInteger spreadsheetNameCounter;
     NSUInteger presentationNameCounter;
@@ -139,6 +141,7 @@
     addObserverFor(CEFEventNameDocumentFragmented, @selector(onCEFDocumentFragmented:));
     addObserverFor(CEFEventNameCertificatePreview, @selector(onCEFCertificatePreview:));
     addObserverFor(ASCEventNameChangedUITheme, @selector(onUIThemeChanged:));
+    addObserverFor(ASCEventNameChangedSystemTheme, @selector(onSystemThemeChanged:));
 
     if (_externalDelegate && [_externalDelegate respondsToSelector:@selector(onCommonViewDidLoad:)]) {
         [_externalDelegate onCommonViewDidLoad:self];
@@ -160,6 +163,7 @@
         
         // Create CEF event listener
         [ASCEventsController sharedInstance];
+        [ASCThemesController sharedInstance];
         
         [self setupTabControl];
         [self createStartPage];
@@ -843,13 +847,27 @@
         if ( tab ) {
             NSTabViewItem * item = [self.tabView tabViewItemAtIndex:[self.tabView indexOfTabViewItemWithIdentifier:tab.uuid]];
 
+            NSWindow * win_main = [NSWindow titleWindowOrMain];
             if (isFullscreen) {
-                [item.view enterFullScreenMode:[[NSWindow titleWindowOrMain] screen] withOptions:@{NSFullScreenModeAllScreens: @(NO)}];
+                NSScreen * ppeScreen = [win_main screen];
+                NSArray<NSScreen *> * screens = [NSScreen screens];
+                if ( [[ASCPresentationReporter sharedInstance] isVisible] && [screens count] > 1 )
+                    for ( NSScreen * screen in screens ) {
+                        if ( screen != [NSScreen mainScreen] ) {
+                            ppeScreen = screen;
+                            break;
+                        }
+                    }
 
-                if (tab) {
+                [item.view enterFullScreenMode:ppeScreen withOptions:@{NSFullScreenModeAllScreens: @(NO)}];
+                if ( tab ) {
                     [[self cefViewWithTab:tab] focus];
                 }
+
+                if ( [screens count] > 1 )
+                    [win_main setIsVisible:false];
             } else if ([item.view isInFullScreenMode]) {
+                [win_main setIsVisible:true];
                 [item.view exitFullScreenModeWithOptions:nil];
                 
                 if (tab) {
@@ -881,6 +899,7 @@
         
         NSValue * eventData = params[@"data"];
         
+        //NSLog(@"ui oncefkeydown");
         if (eventData) {
 //            NSEditorApi::CAscKeyboardDown * pData = (NSEditorApi::CAscKeyboardDown *)[eventData pointerValue];
 //
@@ -965,14 +984,20 @@
 
 - (void)onCEFOnBeforePrintEnd:(NSNotification *)notification {
     if (notification && notification.userInfo) {
-        NSNumber * viewId       = notification.userInfo[@"viewId"];
-        NSNumber * pagesCount   = notification.userInfo[@"countPages"];
+//        NSNumber * viewId       = notification.userInfo[@"viewId"];
+//        NSNumber * pagesCount   = notification.userInfo[@"countPages"];
+//        NSNumber * pagesCount   = notification.userInfo[@"currentPage"];
+        NSString * options      = notification.userInfo[@"options"];
         
+        NSDictionary * nameLocales = [options dictionary];
+        NSLog(@"options: %@", nameLocales);
+
         CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
         
         if (appManager) {
-            m_pContext = new NSAscPrinterContext(appManager);
-            m_pContext->BeginPaint([viewId intValue], [pagesCount intValue], self, @selector(printOperationDidRun:success:contextInfo:));
+            m_pContext = new ASCPrinterContext(appManager);
+//            m_pContext->BeginPaint([viewId intValue], [pagesCount intValue], self, @selector(printOperationDidRun:success:contextInfo:));
+            m_pContext->BeginPaint(notification.userInfo, self, @selector(printOperationDidRun:success:contextInfo:));
         }
     }
 }
@@ -1081,11 +1106,15 @@
             allowedFileTypes = [ASCConstants presentations];
         } else if ([fileTypes isEqualToString:CEFOpenFileFilterCsvTxt]) {
             allowedFileTypes = [ASCConstants csvtxt];
+        } else if ([fileTypes isEqualToString:CEFOpenFileFilterCrypto]) {
+            allowedFileTypes = [ASCConstants cancryptformats];
         } else if ([fileTypes isEqualToString:CEFOpenFileFilterXML]) {
             allowedFileTypes = [ASCConstants xmldata];
         } else {
             // filters come in view "*.docx *.pptx *.xlsx"
-            NSString * filters = [fileTypes stringByReplacingOccurrencesOfString:@"*." withString:@""];
+            NSError *error = nil;
+            NSRegularExpression * regex = [NSRegularExpression regularExpressionWithPattern:@"[\\(\\)\\*\\.]" options:NSRegularExpressionCaseInsensitive error:&error];
+            NSString * filters = [regex stringByReplacingMatchesInString:fileTypes options:0 range:NSMakeRange(0, [fileTypes length]) withTemplate:@""];
             allowedFileTypes = [filters componentsSeparatedByString:@" "];
         }
 
@@ -1597,6 +1626,46 @@
             ASCCertificatePreviewController * previewController = [[ASCCertificatePreviewController alloc] init:self];
             [previewController presentTextInfo:text];
         }
+    }
+}
+
+- (void)onSystemThemeChanged:(NSNotification *)notification {
+    if (notification && notification.userInfo) {
+        NSDictionary * info = (NSDictionary *)notification.userInfo;
+        NSString * mode = info[@"mode"];
+        CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
+
+        NSMutableDictionary * json = [[NSMutableDictionary alloc] initWithDictionary: @{@"theme": @{@"system": mode}}];
+        std::wstring params = [[json jsonString] stdwstring];
+
+        NSEditorApi::CAscExecCommandJS * pCommand = new NSEditorApi::CAscExecCommandJS;
+        pCommand->put_Command(L"renderervars:changed");
+        pCommand->put_Param(params);
+
+        NSEditorApi::CAscMenuEvent* pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND_JS);
+        pEvent->m_pData = pCommand;
+        appManager->SetEventToAllMainWindows(pEvent);
+
+        for (ASCTabView * tab in self.tabsControl.tabs) {
+            if (NSCefView * cefView = [self cefViewWithTab:tab]) {
+                CCefView * cef = appManager->GetViewById((int)cefView.uuid);
+                if (cef && cef->GetType() == cvwtEditor) {
+                    pCommand = new NSEditorApi::CAscExecCommandJS;
+                    pCommand->put_FrameName(L"frameEditor");
+                    pCommand->put_Command(L"renderervars:changed");
+                    pCommand->put_Param(params);
+
+                    pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND_JS);
+                    pEvent->m_pData = pCommand;
+
+                    [cefView apply:pEvent];
+                }
+            }
+        }
+        [[ASCEditorJSVariables instance] setVariable:@"theme" withObject:@{@"id": [ASCThemesController currentThemeId],
+                                                                           @"type": [ASCThemesController isCurrentThemeDark] ? @"dark" : @"light",
+                                                                           @"system": mode}];
+        [[ASCEditorJSVariables instance] apply];
     }
 }
 

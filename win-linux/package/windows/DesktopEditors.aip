@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<DOCUMENT Type="Advanced Installer" CreateVersion="18.6.1" version="18.9" Modules="enterprise" RootPath="." Language="en" Id="{B5BC1FE9-EBA1-4B6E-93EB-6D2DCEF2ED7F}">
+<DOCUMENT Type="Advanced Installer" CreateVersion="18.6.1" version="20.7.1" Modules="enterprise" RootPath="." Language="en" Id="{B5BC1FE9-EBA1-4B6E-93EB-6D2DCEF2ED7F}">
+  <COMPONENT cid="caphyon.advinst.msicomp.ProjectOptionsComponent">
+    <ROW Name="HiddenItems" Value="ActSyncAppComponent;CPLAppletComponent;AutorunComponent;GameUxComponent;SilverlightSlnComponent;SharePointSlnComponent;AppXAppDetailsComponent;FixupComponent;AppXCapabilitiesComponent;AppXDependenciesComponent;AppXProductDetailsComponent;AppXVisualAssetsComponent;AppXAppDeclarationsComponent;AppXUriRulesComponent;MsiXDiffComponent;MsixManifestEditorComponent"/>
+  </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiPropsComponent">
+    <ROW Property="AI_APP_FILE" Value="[#DesktopEditors.exe]"/>
     <ROW Property="AI_BITMAP_DISPLAY_MODE" Value="0"/>
-    <ROW Property="AI_CURRENT_YEAR" Value="2022" ValueLocId="-"/>
     <ROW Property="AI_EXTERNALUIUNINSTALLERNAME" MultiBuildValue="DefaultBuild:aiui"/>
     <ROW Property="AI_PRODUCTNAME_ARP" Value="[|ProductName] [|ProductVersion] "/>
     <ROW Property="AI_SHORTCUTSREG" Value="0|0|0|0|"/>
@@ -40,6 +43,9 @@
     <ROW Property="COMMON_SHORTCUT_NAME" Value="ONLYOFFICE Editors"/>
     <ROW Property="CTRLS" Value="2"/>
     <ROW Property="CUSTOM_PATH" Value="C:\[|ProgramFilesFolder][|Manufacturer]MediaViewer"/>
+    <ROW Property="DeUpdateSvc_DescriptionName" Value="Service for update [|ProductName]"/>
+    <ROW Property="DeUpdateSvc_DispalyName" Value="[|ProductName] update service"/>
+    <ROW Property="DeUpdateSvc_ServiceName" Value="DeUpdateSvc"/>
     <ROW Property="GALLERY" Value="1" Type="4"/>
     <ROW Property="GALLERY_SHORTCUT_NAME" Value="Gallery"/>
     <ROW Property="MANUFACTURER_INSTALL_FOLDER" Value="ONLYOFFICE"/>
@@ -53,16 +59,16 @@
     <ROW Property="ProductCode" Value="1029:{14361018-38E1-4A92-A787-78C1A1464AFD} 1031:{14361018-38E1-4A92-A787-78C1A1464AFD} 1033:{14361018-38E1-4A92-A787-78C1A1464AFD} 1036:{14361018-38E1-4A92-A787-78C1A1464AFD} 1041:{14361018-38E1-4A92-A787-78C1A1464AFD} 1046:{14361018-38E1-4A92-A787-78C1A1464AFD} 1049:{14361018-38E1-4A92-A787-78C1A1464AFD} 1060:{14361018-38E1-4A92-A787-78C1A1464AFD} 2070:{14361018-38E1-4A92-A787-78C1A1464AFD} 3082:{14361018-38E1-4A92-A787-78C1A1464AFD} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="ONLYOFFICE Desktop Editors"/>
-    <ROW Property="ProductVersion" Value="6.4.0" Type="32"/>
-    <ROW Property="REGISTER_CSV" Value="1" Type="4"/>
-    <ROW Property="REGISTER_DJVU" Value="1" Type="4"/>
+    <ROW Property="ProductVersion" Value="0.0.0.0" Options="32"/>
+    <ROW Property="REGISTER_CSV" Value="0" Type="4"/>
+    <ROW Property="REGISTER_DJVU" Value="0" Type="4"/>
     <ROW Property="REGISTER_DOC" Value="1" Type="4"/>
     <ROW Property="REGISTER_DOCX" Value="1" Type="4"/>
     <ROW Property="REGISTER_DOCXF" Value="1" Type="4"/>
     <ROW Property="REGISTER_DOTX" Value="1" Type="4"/>
-    <ROW Property="REGISTER_EPUB" Value="1" Type="4"/>
-    <ROW Property="REGISTER_FB2" Value="1" Type="4"/>
-    <ROW Property="REGISTER_HTML" Value="1" Type="4"/>
+    <ROW Property="REGISTER_EPUB" Value="0" Type="4"/>
+    <ROW Property="REGISTER_FB2" Value="0" Type="4"/>
+    <ROW Property="REGISTER_HTML" Value="0" Type="4"/>
     <ROW Property="REGISTER_ODP" Value="1" Type="4"/>
     <ROW Property="REGISTER_ODS" Value="1" Type="4"/>
     <ROW Property="REGISTER_ODT" Value="1" Type="4"/>
@@ -70,17 +76,17 @@
     <ROW Property="REGISTER_OTP" Value="1" Type="4"/>
     <ROW Property="REGISTER_OTS" Value="1" Type="4"/>
     <ROW Property="REGISTER_OTT" Value="1" Type="4"/>
-    <ROW Property="REGISTER_PDF" Value="1" Type="4"/>
+    <ROW Property="REGISTER_PDF" Value="0" Type="4"/>
     <ROW Property="REGISTER_POTX" Value="1" Type="4"/>
     <ROW Property="REGISTER_PPT" Value="1" Type="4"/>
     <ROW Property="REGISTER_PPTX" Value="1" Type="4"/>
-    <ROW Property="REGISTER_RTF" Value="1" Type="4"/>
-    <ROW Property="REGISTER_TXT" Value="1" Type="4"/>
+    <ROW Property="REGISTER_RTF" Value="0" Type="4"/>
+    <ROW Property="REGISTER_TXT" Value="0" Type="4"/>
     <ROW Property="REGISTER_XLS" Value="1" Type="4"/>
     <ROW Property="REGISTER_XLSX" Value="1" Type="4"/>
     <ROW Property="REGISTER_XLTX" Value="1" Type="4"/>
-    <ROW Property="REGISTER_XML" Value="1" Type="4"/>
-    <ROW Property="REGISTER_XPS" Value="1" Type="4"/>
+    <ROW Property="REGISTER_XML" Value="0" Type="4"/>
+    <ROW Property="REGISTER_XPS" Value="0" Type="4"/>
     <ROW Property="RUNAPPLICATION" Value="1" Type="4"/>
     <ROW Property="SHORTCUT_FOLDER_NAME" Value="ONLYOFFICE"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND;UPGRADE_1"/>
@@ -148,6 +154,7 @@
     <ROW Component="converter" ComponentId="{12A5FBD9-24E5-4B61-A2A4-CFEFA169122C}" Directory_="converter_Dir" Attributes="0"/>
     <ROW Component="locale_HK_CU" ComponentId="{FF7C0526-7824-44B9-AF7E-B51FC24167A9}" Directory_="APPDIR" Attributes="260" KeyPath="locale_HK_CU"/>
     <ROW Component="locale_HK_LM" ComponentId="{D09979D5-ED81-4DE9-8602-7C1C8D2C6B75}" Directory_="APPDIR" Attributes="260" KeyPath="locale_HK_LM"/>
+    <ROW Component="updatesvc.exe" ComponentId="{954103D0-8D21-42C9-A924-247FCB9653F9}" Directory_="APPDIR" Attributes="256" KeyPath="updatesvc.exe"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatsComponent">
     <ROW Feature="ExtendedFeature" Feature_Parent="MainFeature" Title="ExtendedFeature" Description="ExtendedFeature" Display="5" Level="1" Directory_="CUSTOM_PATH" Attributes="0"/>
@@ -191,6 +198,7 @@
     <ROW File="DesktopEditors.exe" Component_="DesktopEditors.exe" FileName="DESKTO~1.EXE|DesktopEditors.exe" Attributes="0" SourcePath="..\..\..\..\build_tools\out\win_64\onlyoffice\DesktopEditors\DesktopEditors.exe" SelfReg="false"/>
     <ROW File="VideoPlayer.exe" Component_="VideoPlayer.exe" FileName="VIDEOP~1.EXE|VideoPlayer.exe" Attributes="0" SourcePath="..\..\..\..\build_tools\out\win_64\onlyoffice\MediaViewer\VideoPlayer.exe" SelfReg="false"/>
     <ROW File="ImageViewer.exe" Component_="ImageViewer.exe" FileName="IMAGEV~1.EXE|ImageViewer.exe" Attributes="0" SourcePath="..\..\..\..\build_tools\out\win_64\onlyoffice\MediaViewer\ImageViewer.exe" SelfReg="false"/>
+    <ROW File="updatesvc.exe" Component_="updatesvc.exe" FileName="UPDATE~1.EXE|updatesvc.exe" Attributes="0" SourcePath="..\..\..\..\build_tools\out\win_64\onlyoffice\DesktopEditors\updatesvc.exe" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.BuildComponent">
     <ROW BuildKey="DefaultBuild" BuildName="DefaultBuild" BuildOrder="1" BuildType="0" PackageFolder="." PackageFileName="DesktopEditors" Languages="en;ru;cs;de;es;fr;pt;pt_BR;sl;ja" LangOpt="1" InstallationType="4" ExtUI="true" UseLargeSchema="true" MsiPackageType="x64" UACExecutionLevel="2"/>
@@ -212,7 +220,7 @@
     <ATTRIBUTE name="TranslateSegments" value="0b00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000111100011110000000110000000000001"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.DigCertStoreComponent">
-    <ROW TimeStampUrl="http://timestamp.digicert.com" SignerDescription="[|ProductName]" SignOptions="7" SignTool="0" UseSha256="1"/>
+    <ROW TimeStampUrl="http://timestamp.digicert.com" SignerDescription="[|ProductName]" SignOptions="7" SignTool="0" UseSha256="1" Store="Machine\MY"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.FragmentComponent">
     <ROW Fragment="CommonUI.aip" Path="&lt;AI_FRAGS&gt;CommonUI.aip"/>
@@ -225,6 +233,7 @@
     <ROW Fragment="Sequences.aip" Path="&lt;AI_FRAGS&gt;Sequences.aip"/>
     <ROW Fragment="ShortcutsDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\ShortcutsDlg.aip"/>
     <ROW Fragment="StaticUIStrings.aip" Path="&lt;AI_FRAGS&gt;StaticUIStrings.aip"/>
+    <ROW Fragment="Themes.aip" Path="&lt;AI_FRAGS&gt;Themes.aip"/>
     <ROW Fragment="UI.aip" Path="&lt;AI_THEMES&gt;classic\fragments\UI.aip"/>
     <ROW Fragment="Validation.aip" Path="&lt;AI_FRAGS&gt;Validation.aip"/>
     <ROW Fragment="VerifyRemoveDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\VerifyRemoveDlg.aip"/>
@@ -252,12 +261,12 @@
     <ROW Name="Prereq.dll" SourcePath="&lt;AI_CUSTACTS&gt;Prereq.dll"/>
     <ROW Name="TxtUpdater.dll" SourcePath="&lt;AI_CUSTACTS&gt;TxtUpdater.dll"/>
     <ROW Name="aicustact.dll" SourcePath="&lt;AI_CUSTACTS&gt;aicustact.dll"/>
-    <ROW Name="aipackagechainer.exe" SourcePath="&lt;AI_CUSTACTS&gt;aipackagechainer.exe"/>
+    <ROW Name="aipackagechainer.exe" SourcePath="&lt;AI_CUSTACTS&gt;aipackagechainer.exe" DigSign="true"/>
     <ROW Name="background.bmp" SourcePath="data\background.bmp"/>
     <ROW Name="banner.png" SourcePath="data\banner.png"/>
     <ROW Name="file_deleter.ps1" SourcePath="&lt;AI_SCRIPTS&gt;file_deleter.ps1"/>
     <ROW Name="utils.vbs" SourcePath="utils.vbs"/>
-    <ROW Name="viewer.exe" SourcePath="&lt;AI_CUSTACTS&gt;viewer.exe"/>
+    <ROW Name="viewer.exe" SourcePath="&lt;AI_CUSTACTS&gt;viewer.exe" DigSign="true"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCheckBoxComponent">
     <ROW Property="REGISTER_CSV" Value="1"/>
@@ -386,6 +395,7 @@
     <ROW Dialog_="ExitDialog" Control="LaunchProdCheckBox" Type="CheckBox" X="125" Y="146" Width="10" Height="10" Attributes="3" Property="RUNAPPLICATION" Order="800" MsiKey="ExitDialog#LaunchProdCheckBox" Options="1"/>
     <ROW Dialog_="ExitDialog" Control="Description" Type="Text" X="135" Y="86" Width="220" Height="20" Attributes="196611" Text="Click the &quot;Finish&quot; button to exit the [Wizard]." Order="900" TextLocId="Control.Text.ExitDialog#Description" MsiKey="ExitDialog#Description"/>
     <ROW Dialog_="ExitDialog" Control="BottomLine" Type="Line" X="0" Y="234" Width="372" Height="0" Attributes="1" Order="1000" MsiKey="ExitDialog#BottomLine"/>
+    <ROW Dialog_="ExitDialog" Control="Hyperlink" Type="Hyperlink" X="135" Y="140" Width="220" Height="20" Attributes="65539" Property="AiReadmeLink" Text="&lt;a href=&quot;[AiReadmeLink]&quot;&gt;View readme&lt;/a&gt;" Order="1100" TextLocId="Control.Text.ExitDialog#ViewReadmeHyperlink" MsiKey="ExitDialog#Hyperlink"/>
     <ROW Dialog_="ExtendedInstallDlg" Control="Next" Type="PushButton" X="236" Y="243" Width="56" Height="17" Attributes="3" Text="[ButtonText_Next]" Order="100" Options="1"/>
     <ROW Dialog_="ExtendedInstallDlg" Control="Cancel" Type="PushButton" X="304" Y="243" Width="56" Height="17" Attributes="3" Text="[ButtonText_Cancel]" Order="200" Options="1"/>
     <ROW Dialog_="ExtendedInstallDlg" Control="Back" Type="PushButton" X="180" Y="243" Width="56" Height="17" Attributes="3" Text="[ButtonText_Back]" Order="300" Options="1"/>
@@ -403,35 +413,35 @@
     <ROW Dialog_="FileAssociationsDlg" Control="Description" Type="Text" X="21" Y="20" Width="307" Height="30" Attributes="196611" Text="Select the extensions you want associated with [ProductName]" Order="700" TextLocId="Control.Text.FileAssociationsDlg#Description" MsiKey="FileAssociationsDlg#Description"/>
     <ROW Dialog_="FileAssociationsDlg" Control="Text" Type="Text" X="24" Y="53" Width="320" Height="26" Attributes="3" Text="Please select the file types you want to automatically open with [ProductName]:" Order="800" TextLocId="Control.Text.FileAssociationsDlg#Text" MsiKey="FileAssociationsDlg#Text"/>
     <ROW Dialog_="FileAssociationsDlg" Control="Title" Type="Text" X="15" Y="6" Width="200" Height="15" Attributes="196611" Text="Select File Associations" TextStyle="[DlgTitleFont]" Order="900" TextLocId="Control.Text.FileAssociationsDlg#Title" MsiKey="FileAssociationsDlg#Title"/>
-    <ROW Dialog_="FileAssociationsDlg" Control="CheckBox_1" Type="CheckBox" X="50" Y="90" Width="55" Height="11" Attributes="3" Property="REGISTER_CSV" Text=".csv" Order="1000"/>
-    <ROW Dialog_="FileAssociationsDlg" Control="CheckBox_2" Type="CheckBox" X="50" Y="112" Width="55" Height="11" Attributes="3" Property="REGISTER_DJVU" Text=".djvu" Order="1100"/>
-    <ROW Dialog_="FileAssociationsDlg" Control="CheckBox_3" Type="CheckBox" X="50" Y="134" Width="55" Height="11" Attributes="3" Property="REGISTER_DOC" Text=".doc" Order="1200"/>
-    <ROW Dialog_="FileAssociationsDlg" Control="CheckBox_4" Type="CheckBox" X="50" Y="156" Width="55" Height="11" Attributes="3" Property="REGISTER_DOCX" Text=".docx" Order="1300"/>
-    <ROW Dialog_="FileAssociationsDlg" Control="CheckBox_5" Type="CheckBox" X="50" Y="178" Width="55" Height="11" Attributes="3" Property="REGISTER_DOTX" Text=".dotx" Order="1400"/>
-    <ROW Dialog_="FileAssociationsDlg" Control="CheckBox_6" Type="CheckBox" X="116" Y="90" Width="55" Height="11" Attributes="3" Property="REGISTER_EPUB" Text=".epub" Order="1500"/>
-    <ROW Dialog_="FileAssociationsDlg" Control="CheckBox_7" Type="CheckBox" X="116" Y="112" Width="55" Height="11" Attributes="3" Property="REGISTER_FB2" Text=".fb2" Order="1600"/>
-    <ROW Dialog_="FileAssociationsDlg" Control="CheckBox_8" Type="CheckBox" X="116" Y="134" Width="55" Height="11" Attributes="3" Property="REGISTER_HTML" Text=".html" Order="1700"/>
-    <ROW Dialog_="FileAssociationsDlg" Control="CheckBox_9" Type="CheckBox" X="116" Y="156" Width="55" Height="11" Attributes="3" Property="REGISTER_ODP" Text=".odp" Order="1800"/>
-    <ROW Dialog_="FileAssociationsDlg" Control="CheckBox_10" Type="CheckBox" X="116" Y="178" Width="55" Height="11" Attributes="3" Property="REGISTER_ODS" Text=".ods" Order="1900"/>
-    <ROW Dialog_="FileAssociationsDlg" Control="CheckBox_11" Type="CheckBox" X="182" Y="90" Width="55" Height="11" Attributes="3" Property="REGISTER_ODT" Text=".odt" Order="2000"/>
-    <ROW Dialog_="FileAssociationsDlg" Control="CheckBox_12" Type="CheckBox" X="182" Y="112" Width="55" Height="11" Attributes="3" Property="REGISTER_OTP" Text=".otp" Order="2100"/>
-    <ROW Dialog_="FileAssociationsDlg" Control="CheckBox_13" Type="CheckBox" X="182" Y="134" Width="55" Height="11" Attributes="3" Property="REGISTER_OTS" Text=".ots" Order="2200"/>
-    <ROW Dialog_="FileAssociationsDlg" Control="CheckBox_14" Type="CheckBox" X="182" Y="156" Width="55" Height="11" Attributes="3" Property="REGISTER_OTT" Text=".ott" Order="2300"/>
-    <ROW Dialog_="FileAssociationsDlg" Control="CheckBox_15" Type="CheckBox" X="182" Y="178" Width="55" Height="11" Attributes="3" Property="REGISTER_PDF" Text=".pdf" Order="2400"/>
-    <ROW Dialog_="FileAssociationsDlg" Control="CheckBox_16" Type="CheckBox" X="248" Y="90" Width="55" Height="11" Attributes="3" Property="REGISTER_POTX" Text=".potx" Order="2500"/>
-    <ROW Dialog_="FileAssociationsDlg" Control="CheckBox_17" Type="CheckBox" X="248" Y="112" Width="55" Height="11" Attributes="3" Property="REGISTER_PPT" Text=".ppt" Order="2600"/>
-    <ROW Dialog_="FileAssociationsDlg" Control="CheckBox_18" Type="CheckBox" X="248" Y="134" Width="55" Height="11" Attributes="3" Property="REGISTER_PPTX" Text=".pptx" Order="2700"/>
-    <ROW Dialog_="FileAssociationsDlg" Control="CheckBox_19" Type="CheckBox" X="248" Y="156" Width="55" Height="11" Attributes="3" Property="REGISTER_RTF" Text=".rtf" Order="2800"/>
-    <ROW Dialog_="FileAssociationsDlg" Control="CheckBox_20" Type="CheckBox" X="248" Y="178" Width="55" Height="11" Attributes="3" Property="REGISTER_TXT" Text=".txt" Order="2900"/>
-    <ROW Dialog_="FileAssociationsDlg" Control="CheckBox_21" Type="CheckBox" X="314" Y="90" Width="55" Height="11" Attributes="3" Property="REGISTER_XLS" Text=".xls" Order="3000"/>
-    <ROW Dialog_="FileAssociationsDlg" Control="CheckBox_22" Type="CheckBox" X="314" Y="112" Width="55" Height="11" Attributes="3" Property="REGISTER_XLSX" Text=".xlsx" Order="3100"/>
-    <ROW Dialog_="FileAssociationsDlg" Control="CheckBox_23" Type="CheckBox" X="314" Y="134" Width="55" Height="11" Attributes="3" Property="REGISTER_XLTX" Text=".xltx" Order="3200"/>
-    <ROW Dialog_="FileAssociationsDlg" Control="CheckBox_24" Type="CheckBox" X="314" Y="156" Width="55" Height="11" Attributes="3" Property="REGISTER_XML" Text=".xml" Order="3300"/>
-    <ROW Dialog_="FileAssociationsDlg" Control="CheckBox_25" Type="CheckBox" X="314" Y="178" Width="55" Height="11" Attributes="3" Property="REGISTER_XPS" Text=".xps" Order="3400"/>
+    <ROW Dialog_="FileAssociationsDlg" Control="CheckBox_csv" Type="CheckBox" X="50" Y="90" Width="55" Height="11" Attributes="3" Property="REGISTER_CSV" Text=".csv" Order="1000" TextLocId="-"/>
+    <ROW Dialog_="FileAssociationsDlg" Control="CheckBox_djvu" Type="CheckBox" X="50" Y="112" Width="55" Height="11" Attributes="3" Property="REGISTER_DJVU" Text=".djvu" Order="1100" TextLocId="-"/>
+    <ROW Dialog_="FileAssociationsDlg" Control="CheckBox_doc" Type="CheckBox" X="50" Y="134" Width="55" Height="11" Attributes="3" Property="REGISTER_DOC" Text=".doc" Order="1200" TextLocId="-"/>
+    <ROW Dialog_="FileAssociationsDlg" Control="CheckBox_docx" Type="CheckBox" X="50" Y="156" Width="55" Height="11" Attributes="3" Property="REGISTER_DOCX" Text=".docx" Order="1300" TextLocId="-"/>
+    <ROW Dialog_="FileAssociationsDlg" Control="CheckBox_docxf" Type="CheckBox" X="50" Y="178" Width="55" Height="11" Attributes="3" Property="REGISTER_DOCXF" Text=".docxf" Order="1400" TextLocId="-"/>
+    <ROW Dialog_="FileAssociationsDlg" Control="CheckBox_dotx" Type="CheckBox" X="116" Y="90" Width="55" Height="11" Attributes="3" Property="REGISTER_DOTX" Text=".dotx" Order="1500" TextLocId="-"/>
+    <ROW Dialog_="FileAssociationsDlg" Control="CheckBox_epub" Type="CheckBox" X="116" Y="112" Width="55" Height="11" Attributes="3" Property="REGISTER_EPUB" Text=".epub" Order="1600" TextLocId="-"/>
+    <ROW Dialog_="FileAssociationsDlg" Control="CheckBox_fb2" Type="CheckBox" X="116" Y="134" Width="55" Height="11" Attributes="3" Property="REGISTER_FB2" Text=".fb2" Order="1700" TextLocId="-"/>
+    <ROW Dialog_="FileAssociationsDlg" Control="CheckBox_html" Type="CheckBox" X="116" Y="156" Width="55" Height="11" Attributes="3" Property="REGISTER_HTML" Text=".html" Order="1800" TextLocId="-"/>
+    <ROW Dialog_="FileAssociationsDlg" Control="CheckBox_odp" Type="CheckBox" X="116" Y="178" Width="55" Height="11" Attributes="3" Property="REGISTER_ODP" Text=".odp" Order="1900" TextLocId="-"/>
+    <ROW Dialog_="FileAssociationsDlg" Control="CheckBox_ods" Type="CheckBox" X="182" Y="90" Width="55" Height="11" Attributes="3" Property="REGISTER_ODS" Text=".ods" Order="2000" TextLocId="-"/>
+    <ROW Dialog_="FileAssociationsDlg" Control="CheckBox_odt" Type="CheckBox" X="182" Y="112" Width="55" Height="11" Attributes="3" Property="REGISTER_ODT" Text=".odt" Order="2100" TextLocId="-"/>
+    <ROW Dialog_="FileAssociationsDlg" Control="CheckBox_oform" Type="CheckBox" X="182" Y="134" Width="55" Height="11" Attributes="3" Property="REGISTER_OFORM" Text=".oform" Order="2200" TextLocId="-"/>
+    <ROW Dialog_="FileAssociationsDlg" Control="CheckBox_otp" Type="CheckBox" X="182" Y="156" Width="55" Height="11" Attributes="3" Property="REGISTER_OTP" Text=".otp" Order="2300" TextLocId="-"/>
+    <ROW Dialog_="FileAssociationsDlg" Control="CheckBox_ots" Type="CheckBox" X="182" Y="178" Width="55" Height="11" Attributes="3" Property="REGISTER_OTS" Text=".ots" Order="2400" TextLocId="-"/>
+    <ROW Dialog_="FileAssociationsDlg" Control="CheckBox_ott" Type="CheckBox" X="248" Y="90" Width="55" Height="11" Attributes="3" Property="REGISTER_OTT" Text=".ott" Order="2500" TextLocId="-"/>
+    <ROW Dialog_="FileAssociationsDlg" Control="CheckBox_pdf" Type="CheckBox" X="248" Y="112" Width="55" Height="11" Attributes="3" Property="REGISTER_PDF" Text=".pdf" Order="2600" TextLocId="-"/>
+    <ROW Dialog_="FileAssociationsDlg" Control="CheckBox_potx" Type="CheckBox" X="248" Y="134" Width="55" Height="11" Attributes="3" Property="REGISTER_POTX" Text=".potx" Order="2700" TextLocId="-"/>
+    <ROW Dialog_="FileAssociationsDlg" Control="CheckBox_ppt" Type="CheckBox" X="248" Y="156" Width="55" Height="11" Attributes="3" Property="REGISTER_PPT" Text=".ppt" Order="2800" TextLocId="-"/>
+    <ROW Dialog_="FileAssociationsDlg" Control="CheckBox_pptx" Type="CheckBox" X="248" Y="178" Width="55" Height="11" Attributes="3" Property="REGISTER_PPTX" Text=".pptx" Order="2900" TextLocId="-"/>
+    <ROW Dialog_="FileAssociationsDlg" Control="CheckBox_rtf" Type="CheckBox" X="314" Y="90" Width="55" Height="11" Attributes="3" Property="REGISTER_RTF" Text=".rtf" Order="3000" TextLocId="-"/>
+    <ROW Dialog_="FileAssociationsDlg" Control="CheckBox_txt" Type="CheckBox" X="314" Y="112" Width="55" Height="11" Attributes="3" Property="REGISTER_TXT" Text=".txt" Order="3100" TextLocId="-"/>
+    <ROW Dialog_="FileAssociationsDlg" Control="CheckBox_xls" Type="CheckBox" X="314" Y="134" Width="55" Height="11" Attributes="3" Property="REGISTER_XLS" Text=".xls" Order="3200" TextLocId="-"/>
+    <ROW Dialog_="FileAssociationsDlg" Control="CheckBox_xlsx" Type="CheckBox" X="314" Y="156" Width="55" Height="11" Attributes="3" Property="REGISTER_XLSX" Text=".xlsx" Order="3300" TextLocId="-"/>
+    <ROW Dialog_="FileAssociationsDlg" Control="CheckBox_xltx" Type="CheckBox" X="314" Y="178" Width="55" Height="11" Attributes="3" Property="REGISTER_XLTX" Text=".xltx" Order="3400" TextLocId="-"/>
     <ROW Dialog_="FileAssociationsDlg" Control="Select_all_button" Type="PushButton" X="215" Y="211" Width="56" Height="17" Attributes="3" Text="Select all" Order="3500" TextLocId="Control.Text.FileAssociationsDlg#Select_all_button"/>
     <ROW Dialog_="FileAssociationsDlg" Control="Deselect_all_button" Type="PushButton" X="272" Y="211" Width="56" Height="17" Attributes="3" Text="Deselect all" Order="3600" TextLocId="Control.Text.FileAssociationsDlg#Deselect_all_button"/>
-    <ROW Dialog_="FileAssociationsDlg" Control="CheckBox_26" Type="CheckBox" X="50" Y="200" Width="55" Height="11" Attributes="3" Property="REGISTER_DOCXF" Text=".docxf" Order="3700"/>
-    <ROW Dialog_="FileAssociationsDlg" Control="CheckBox_27" Type="CheckBox" X="116" Y="200" Width="55" Height="11" Attributes="3" Property="REGISTER_OFORM" Text=".oform" Order="3800"/>
+    <ROW Dialog_="FileAssociationsDlg" Control="CheckBox_xml" Type="CheckBox" X="50" Y="200" Width="55" Height="11" Attributes="3" Property="REGISTER_XML" Text=".xml" Order="3700" TextLocId="-"/>
+    <ROW Dialog_="FileAssociationsDlg" Control="CheckBox_xps" Type="CheckBox" X="116" Y="200" Width="55" Height="11" Attributes="3" Property="REGISTER_XPS" Text=".xps" Order="3800" TextLocId="-"/>
     <ROW Dialog_="FilesInUse" Control="BannerBitmap" Type="Bitmap" X="0" Y="0" Width="370" Height="44" Attributes="1048577" Text="banner.png" Order="400" MsiKey="FilesInUse#BannerBitmap"/>
     <ROW Dialog_="FilesInUse" Control="Title" Type="Text" X="15" Y="6" Width="200" Height="15" Attributes="196611" Text="Files in Use" TextStyle="[DlgTitleFont]" Order="600" TextLocId="Control.Text.FilesInUse#Title" MsiKey="FilesInUse#Title"/>
     <ROW Dialog_="FilesInUse" Control="Text" Type="Text" X="20" Y="55" Width="330" Height="30" Attributes="3" Text="The following applications are using files that need to be updated by this setup. You can either close the applications and then click &quot;Retry&quot;, or click &quot;Ignore&quot; so that the installer continues the installation and replaces these files when your system restarts." Order="700" TextLocId="Control.Text.FilesInUse#Text" MsiKey="FilesInUse#Text"/>
@@ -489,8 +499,7 @@
     <ROW Dialog_="ShortcutsDlg" Control="Title" Type="Text" X="15" Y="6" Width="200" Height="15" Attributes="196611" Text="Configure Shortcuts" TextStyle="[DlgTitleFont]" Order="800" TextLocId="Control.Text.ShortcutsDlg#Title" MsiKey="ShortcutsDlg#Title"/>
     <ROW Dialog_="ShortcutsDlg" Control="DesktopShortcutsCheckBox" Type="CheckBox" X="53" Y="109" Width="162" Height="11" Attributes="3" Property="AI_DESKTOP_SH" Text="Desktop" Order="900" TextLocId="Control.Text.ShortcutsDlg#DesktopShortcutsCheckBox" MsiKey="ShortcutsDlg#DesktopShortcutsCheckBox" Options="1"/>
     <ROW Dialog_="ShortcutsDlg" Control="StartmenuShortcutsCheckBox" Type="CheckBox" X="53" Y="131" Width="162" Height="11" Attributes="3" Property="AI_STARTMENU_SH" Text="Start Menu Programs folder" Order="1000" TextLocId="Control.Text.ShortcutsDlg#StartmenuShortcutsCheckBox" MsiKey="ShortcutsDlg#StartmenuShortcutsCheckBox" Options="1"/>
-    <ROW Dialog_="ShortcutsDlg" Control="QuickLaunchShorcutsCheckBox" Type="CheckBox" X="53" Y="154" Width="162" Height="11" Attributes="3" Property="AI_QUICKLAUNCH_SH" Text="Quick Launch toolbar" Order="1100" TextLocId="Control.Text.ShortcutsDlg#QuickLaunchShorcutsCheckBox" MsiKey="ShortcutsDlg#QuickLaunchShorcutsCheckBox" Options="1"/>
-    <ROW Dialog_="ShortcutsDlg" Control="StartupShorcutsCheckBox" Type="CheckBox" X="53" Y="177" Width="162" Height="11" Attributes="3" Property="AI_STARTUP_SH" Text="Startup folder" Order="1200" TextLocId="Control.Text.ShortcutsDlg#StartupShorcutsCheckBox" MsiKey="ShortcutsDlg#StartupShorcutsCheckBox" Options="1"/>
+    <ROW Dialog_="ShortcutsDlg" Control="StartupShorcutsCheckBox" Type="CheckBox" X="53" Y="177" Width="162" Height="11" Attributes="3" Property="AI_STARTUP_SH" Text="Startup folder" Order="1100" TextLocId="Control.Text.ShortcutsDlg#StartupShorcutsCheckBox" MsiKey="ShortcutsDlg#StartupShorcutsCheckBox" Options="1"/>
     <ROW Dialog_="ShortcutsDlg" Control="ShortcutsDlgText" Type="Text" X="25" Y="70" Width="314" Height="30" Attributes="196611" Text="Create shortcuts for [ProductName] in the following locations:" Order="1300" TextLocId="Control.Text.ShortcutsDlg#ShortcutsDlgText" MsiKey="ShortcutsDlg#ShortcutsDlgText"/>
     <ROW Dialog_="UserExit" Control="Bitmap" Type="Bitmap" X="0" Y="0" Width="370" Height="234" Attributes="1048577" Text="background.bmp" Order="300" MsiKey="UserExit#Bitmap"/>
     <ROW Dialog_="VerifyReadyDlg" Control="BannerBitmap" Type="Bitmap" X="0" Y="0" Width="370" Height="44" Attributes="1048577" Text="banner.png" Order="300" MsiKey="VerifyReadyDlg#BannerBitmap"/>
@@ -516,12 +525,11 @@
   <COMPONENT cid="caphyon.advinst.msicomp.MsiControlConditionComponent">
     <ROW Dialog_="ShortcutsDlg" Control_="StartupShorcutsCheckBox" Action="Hide" Condition="(Not Installed)"/>
     <ROW Dialog_="ShortcutsDlg" Control_="StartmenuShortcutsCheckBox" Action="Show" Condition="(Not Installed)"/>
-    <ROW Dialog_="ShortcutsDlg" Control_="QuickLaunchShorcutsCheckBox" Action="Hide" Condition="(Not Installed) AND (VersionNT&lt;&quot;601&quot;)"/>
-    <ROW Dialog_="FileAssociationsDlg" Control_="CheckBox_26" Action="Hide" Condition="ProductName &lt;&gt; &quot;ONLYOFFICE Desktop Editors&quot;"/>
-    <ROW Dialog_="FileAssociationsDlg" Control_="CheckBox_27" Action="Hide" Condition="ProductName &lt;&gt; &quot;ONLYOFFICE Desktop Editors&quot;"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="CheckBox_docxf" Action="Hide" Condition="ProductName &lt;&gt; &quot;ONLYOFFICE Desktop Editors&quot;"/>
+    <ROW Dialog_="FileAssociationsDlg" Control_="CheckBox_oform" Action="Hide" Condition="ProductName &lt;&gt; &quot;ONLYOFFICE Desktop Editors&quot;"/>
     <ROW Dialog_="FileAssociationsDlg" Control_="Select_all_button" Action="Hide" Condition="1"/>
     <ROW Dialog_="FileAssociationsDlg" Control_="Deselect_all_button" Action="Hide" Condition="1"/>
-    <ATTRIBUTE name="DeletedRows" value="ExitDialog#ViewReadmeText#Hide#((NOT AI_INSTALL) AND (NOT AI_PATCH)) OR ((CTRLS &lt;&gt; 1) AND (CTRLS &lt;&gt; 3))@ShortcutsDlg#QuickLaunchShorcutsCheckBox#Show#(Not Installed) AND (VersionNT&lt;&quot;601&quot;)@ShortcutsDlg#StartmenuShortcutsCheckBox#Show#(Not Installed)@ShortcutsDlg#StartupShorcutsCheckBox#Show#(Not Installed)"/>
+    <ATTRIBUTE name="DeletedRows" value="ExitDialog#ViewReadmeText#Hide#((NOT AI_INSTALL) AND (NOT AI_PATCH)) OR ((CTRLS &lt;&gt; 1) AND (CTRLS &lt;&gt; 3))@ShortcutsDlg#StartmenuShortcutsCheckBox#Show#(Not Installed)@ShortcutsDlg#StartupShorcutsCheckBox#Show#(Not Installed)"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiControlEventComponent">
     <ROW Dialog_="WelcomeDlg" Control_="Next" Event="NewDialog" Argument="LicenseAgreementDlg" Condition="AI_INSTALL" Ordering="7"/>
@@ -799,9 +807,10 @@
     <ROW Action="AI_InstallModeCheck" Type="1" Source="aicustact.dll" Target="UpdateInstallMode" WithoutSeq="true"/>
     <ROW Action="AI_InstallPostPrerequisite" Type="1" Source="Prereq.dll" Target="InstallPostPrereq"/>
     <ROW Action="AI_InstallPrerequisite" Type="1" Source="Prereq.dll" Target="InstallPrereq"/>
-    <ROW Action="AI_LaunchApp" Type="1" Source="aicustact.dll" Target="[#DesktopEditors.exe]"/>
+    <ROW Action="AI_LaunchApp" Type="1" Source="aicustact.dll" Target="LaunchApp"/>
     <ROW Action="AI_LaunchChainer" Type="3314" Source="AI_PREREQ_CHAINER"/>
     <ROW Action="AI_PREPARE_UPGRADE" Type="65" Source="aicustact.dll" Target="PrepareUpgrade"/>
+    <ROW Action="AI_PRESERVE_INSTALL_TYPE" Type="65" Source="aicustact.dll" Target="PreserveInstallType"/>
     <ROW Action="AI_RESTORE_AI_SETUPEXEPATH" Type="51" Source="AI_SETUPEXEPATH" Target="[AI_SETUPEXEPATH_ORIGINAL]"/>
     <ROW Action="AI_RESTORE_LOCATION" Type="65" Source="aicustact.dll" Target="RestoreLocation"/>
     <ROW Action="AI_RemoveExternalUIStub" Type="1" Source="ExternalUICleaner.dll" Target="RemoveExternalUIStub"/>
@@ -898,6 +907,7 @@
     <ROW Feature_="FileProgramAssociation" Component_="FileAssociation_odp"/>
     <ROW Feature_="MainFeature" Component_="DesktopEditors.exe"/>
     <ROW Feature_="MainFeature" Component_="SHORTCUTDIR"/>
+    <ROW Feature_="MainFeature" Component_="updatesvc.exe"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiIconsComponent">
     <ROW Name="ImageViewer.exe" SourcePath="..\..\extras\projicons\res\gallery.ico" Index="0"/>
@@ -922,12 +932,12 @@
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiInstExSeqComponent">
     <ROW Action="AI_DOWNGRADE" Condition="AI_NEWERPRODUCTFOUND AND (UILevel &lt;&gt; 5)" Sequence="210"/>
-    <ROW Action="AI_DETECT_MODERNWIN" Condition="(VersionNT &gt;= 603)" Sequence="57" MsiKey="AI_DETECT_MODERNWIN"/>
+    <ROW Action="AI_DETECT_MODERNWIN" Condition="(VersionNT &gt;= 603)" Sequence="58" MsiKey="AI_DETECT_MODERNWIN"/>
     <ROW Action="AI_RESTORE_LOCATION" Condition="APPDIR=&quot;&quot;" Sequence="747"/>
     <ROW Action="AI_STORE_LOCATION" Condition="(Not Installed) OR REINSTALL" Sequence="1502"/>
     <ROW Action="AI_PREPARE_UPGRADE" Condition="AI_UPGRADE=&quot;No&quot; AND (Not Installed)" Sequence="1397"/>
-    <ROW Action="AI_ResolveKnownFolders" Sequence="56"/>
-    <ROW Action="AI_EnableDebugLog" Sequence="55"/>
+    <ROW Action="AI_ResolveKnownFolders" Sequence="57"/>
+    <ROW Action="AI_EnableDebugLog" Sequence="56"/>
     <ROW Action="AI_GetArpIconPath" Sequence="1402"/>
     <ROW Action="AI_RemoveExternalUIStub" Condition="(REMOVE=&quot;ALL&quot;) AND ((VersionNT &gt; 500) OR((VersionNT = 500) AND (ServicePackLevel &gt;= 4)))" Sequence="1501"/>
     <ROW Action="AI_DELETE_SHORTCUTS" Condition="NOT (REMOVE=&quot;ALL&quot;)" Sequence="1401"/>
@@ -939,7 +949,7 @@
     <ROW Action="AI_VerifyPrereq" Sequence="1101"/>
     <ROW Action="AI_TxtUpdaterInstall" Sequence="5101"/>
     <ROW Action="SetLocaleProperty32" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) ) AND ( NOT VersionNT64 )" Sequence="53"/>
-    <ROW Action="SetLocaleProperty64" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) ) AND ( VersionNT64 )" Sequence="54"/>
+    <ROW Action="SetLocaleProperty64" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) ) AND ( VersionNT64 )" Sequence="55"/>
     <ROW Action="SetCustomPath" Condition="( NOT Installed )" Sequence="951"/>
     <ROW Action="UninstallOlderVersion32" Condition="( NOT Installed ) AND ( NOT VersionNT64 )" Sequence="51"/>
     <ROW Action="UninstallOlderVersion64" Condition="( NOT Installed ) AND ( VersionNT64 )" Sequence="52"/>
@@ -961,6 +971,7 @@
     <ROW Action="UninstallOlderVersion64" Condition="( NOT Installed ) AND ( VersionNT64 )" Sequence="202"/>
     <ROW Action="UninstallOlderVersion32" Condition="( NOT Installed ) AND ( NOT VersionNT64 )" Sequence="201"/>
     <ROW Action="UninstallOlderVersionErrorMessage" Condition="( NOT Installed ) AND ( UninstallOlderVersion = &quot;1&quot; )" Sequence="203"/>
+    <ROW Action="AI_PRESERVE_INSTALL_TYPE" Sequence="199"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiLaunchConditionsComponent">
     <ROW Condition="( Version9X OR VersionNT64 )" Description="[ProductName] cannot be installed on [WindowsTypeNTDisplay]." DescriptionLocId="AI.LaunchCondition.NoNT" IsPredefined="true" Builds="DefaultBuild"/>
@@ -1023,23 +1034,51 @@
     <ROW Registry="ASCC_REG_PREFIX.SlideShow.12" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].SlideShow.12" Name="+" Component_="FileAssociation_ppsx"/>
     <ROW Registry="ASCC_REG_PREFIX.Xps" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Xps" Name="+" Component_="FileAssociation_xps"/>
     <ROW Registry="ASCC_REG_REGISTERED_APP_NAME" Root="2" Key="Software\RegisteredApplications" Name="[ASCC_REG_REGISTERED_APP_NAME]" Value="Software\[MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]\Capabilities" Component_="ASCC_REG_REGISTERED_APP_NAME"/>
+    <ROW Registry="ASSOC_PROG_ID" Root="2" Key="Software\Classes\[ASSOC_PROG_ID]" Name="\"/>
+    <ROW Registry="AdvancedInstaller" Root="-1" Key="Software\Caphyon\Advanced Installer" Name="\"/>
     <ROW Registry="ApplicationDescription" Root="2" Key="Software\[MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]\Capabilities" Name="ApplicationDescription" Value="[ARPCOMMENTS]" Component_="ASCC_REG_REGISTERED_APP_NAME"/>
     <ROW Registry="ApplicationIcon" Root="2" Key="Software\[MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]\Capabilities" Name="ApplicationIcon" Value="&quot;[APPDIR]editors.exe,0&quot;" Component_="ASCC_REG_REGISTERED_APP_NAME"/>
     <ROW Registry="ApplicationName" Root="2" Key="Software\[MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]\Capabilities" Name="ApplicationName" Value="[ProductName]" Component_="ASCC_REG_REGISTERED_APP_NAME"/>
+    <ROW Registry="Capabilities" Root="2" Key="Software\[MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]\Capabilities" Name="\"/>
+    <ROW Registry="Caphyon" Root="-1" Key="Software\Caphyon" Name="\"/>
     <ROW Registry="CheckForUpdates" Root="2" Key="Software\[MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]" Name="CheckForUpdates" Value="#0" Component_="CheckForUpdates" VirtualValue="#"/>
+    <ROW Registry="Classes" Root="2" Key="Software\Classes" Name="\"/>
     <ROW Registry="Comments" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="Comments" Value="[ARPCOMMENTS]" Component_="AI_CustomARPName"/>
     <ROW Registry="Contact" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="Contact" Value="[ARPCONTACT]" Component_="AI_CustomARPName"/>
+    <ROW Registry="CurrentVersion" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion" Name="\"/>
     <ROW Registry="DefaultIcon" Root="2" Key="Software\Classes\[ASSOC_PROG_ID]\DefaultIcon" Value="[APPDIR]DesktopEditors.exe,0" Component_="ASSOC_PROG_ID"/>
+    <ROW Registry="DefaultIcon_1" Root="2" Key="Software\Classes\[ASSOC_PROG_ID]\DefaultIcon" Name="\"/>
+    <ROW Registry="DefaultIcon_10" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Sheet.2\DefaultIcon" Name="\"/>
+    <ROW Registry="DefaultIcon_11" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Show.1\DefaultIcon" Name="\"/>
+    <ROW Registry="DefaultIcon_12" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Show.12\DefaultIcon" Name="\"/>
+    <ROW Registry="DefaultIcon_13" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Docxf\DefaultIcon" Name="\"/>
+    <ROW Registry="DefaultIcon_14" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Show.2\DefaultIcon" Name="\"/>
+    <ROW Registry="DefaultIcon_15" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].DjVu\DefaultIcon" Name="\"/>
+    <ROW Registry="DefaultIcon_16" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].SlideShow.1\DefaultIcon" Name="\"/>
+    <ROW Registry="DefaultIcon_17" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].SlideShow.12\DefaultIcon" Name="\"/>
+    <ROW Registry="DefaultIcon_18" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Xps\DefaultIcon" Name="\"/>
+    <ROW Registry="DefaultIcon_19" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Document.1\DefaultIcon" Name="\"/>
+    <ROW Registry="DefaultIcon_2" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Csv\DefaultIcon" Name="\"/>
+    <ROW Registry="DefaultIcon_3" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Document.12\DefaultIcon" Name="\"/>
+    <ROW Registry="DefaultIcon_4" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Document.2\DefaultIcon" Name="\"/>
+    <ROW Registry="DefaultIcon_5" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Oform\DefaultIcon" Name="\"/>
+    <ROW Registry="DefaultIcon_6" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Pdf\DefaultIcon" Name="\"/>
+    <ROW Registry="DefaultIcon_7" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Rtf\DefaultIcon" Name="\"/>
+    <ROW Registry="DefaultIcon_8" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Sheet.1\DefaultIcon" Name="\"/>
+    <ROW Registry="DefaultIcon_9" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Sheet.12\DefaultIcon" Name="\"/>
     <ROW Registry="DisplayIcon" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="DisplayIcon" Value="[ARP_ICON_PATH]" Component_="AI_CustomARPName"/>
     <ROW Registry="DisplayName" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="DisplayName" Value="[AI_PRODUCTNAME_ARP]" Component_="AI_CustomARPName"/>
     <ROW Registry="DisplayVersion" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="DisplayVersion" Value="[ProductVersion]" Component_="AI_CustomARPName"/>
     <ROW Registry="EstimatedSize" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="EstimatedSize" Value="#[AI_ARP_SIZE]" Component_="AI_CustomARPName" VirtualValue="#"/>
+    <ROW Registry="FileAssociations" Root="2" Key="Software\[MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]\Capabilities\FileAssociations" Name="\"/>
     <ROW Registry="FriendlyAppName" Root="2" Key="Software\Classes\[ASSOC_PROG_ID]\shell\open" Name="FriendlyAppName" Value="[ASSOC_APP_FRIENDLY_NAME]" Component_="ASSOC_PROG_ID"/>
     <ROW Registry="HelpLink" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="HelpLink" Value="[ARPHELPLINK]" Component_="AI_CustomARPName"/>
     <ROW Registry="HelpTelephone" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="HelpTelephone" Value="[ARPHELPTELEPHONE]" Component_="AI_CustomARPName"/>
     <ROW Registry="InstallLocation" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="InstallLocation" Value="[APPDIR]" Component_="AI_CustomARPName"/>
+    <ROW Registry="Installs" Root="-1" Key="Software\Caphyon\Advanced Installer\Installs" Name="\"/>
     <ROW Registry="MANUFACTURER_INSTALL_FOLDER_HK_CU" Root="1" Key="Software\[MANUFACTURER_INSTALL_FOLDER]" Name="+" Component_="MANUFACTURER_INSTALL_FOLDER_HK_CU"/>
     <ROW Registry="MANUFACTURER_INSTALL_FOLDER_HK_LM" Root="2" Key="Software\[MANUFACTURER_INSTALL_FOLDER]" Name="+" Component_="MANUFACTURER_INSTALL_FOLDER_HK_LM"/>
+    <ROW Registry="Microsoft" Root="-1" Key="Software\Microsoft" Name="\"/>
     <ROW Registry="MicrosoftVisualC" Root="-1" Key="Software\Caphyon\Advanced Installer\Prereqs\[ProductCode]\[ProductVersion]" Name="MicrosoftVisualC" Value="1" Component_="MicrosoftVisualC"/>
     <ROW Registry="MicrosoftVisualC_1" Root="-1" Key="Software\Caphyon\Advanced Installer\Prereqs\[ProductCode]\[ProductVersion]" Name="MicrosoftVisualC_1" Value="1" Component_="MicrosoftVisualC_1"/>
     <ROW Registry="MicrosoftVisualC_2" Root="-1" Key="Software\Caphyon\Advanced Installer\Prereqs\[ProductCode]\[ProductVersion]" Name="MicrosoftVisualC_2" Value="1" Component_="MicrosoftVisualC_2"/>
@@ -1047,17 +1086,30 @@
     <ROW Registry="ModifyPath" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="ModifyPath" Value="[AI_UNINSTALLER] /i [ProductCode] AI_UNINSTALLER_CTP=1" Component_="AI_CustomARPName"/>
     <ROW Registry="NoModify" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="NoModify" Value="#1" Component_="AI_DisableModify" VirtualValue="#"/>
     <ROW Registry="NoRepair" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="NoRepair" Value="#1" Component_="AI_CustomARPName" VirtualValue="#"/>
+    <ROW Registry="PRODUCT_INSTALL_FOLDER" Root="2" Key="Software\[MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]" Name="\"/>
+    <ROW Registry="PRODUCT_INSTALL_FOLDER_1" Root="1" Key="Software\[MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]" Name="\"/>
     <ROW Registry="Path_1" Root="2" Key="Software\[MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]" Name="AppPath" Value="[APPDIR]" Component_="AppPath"/>
+    <ROW Registry="Prereqs" Root="-1" Key="Software\Caphyon\Advanced Installer\Prereqs" Name="\"/>
+    <ROW Registry="ProductCode" Root="-1" Key="Software\Caphyon\Advanced Installer\Installs\[ProductCode]" Name="\"/>
+    <ROW Registry="ProductCode_1" Root="-1" Key="Software\Caphyon\Advanced Installer\Prereqs\[ProductCode]" Name="\"/>
+    <ROW Registry="ProductNameProductVersion" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="\"/>
+    <ROW Registry="ProductVersion" Root="-1" Key="Software\Caphyon\Advanced Installer\Prereqs\[ProductCode]\[ProductVersion]" Name="\"/>
     <ROW Registry="Publisher" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="Publisher" Value="[Manufacturer]" Component_="AI_CustomARPName"/>
     <ROW Registry="Readme" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="Readme" Value="[ARPREADME]" Component_="AI_CustomARPName"/>
+    <ROW Registry="RegisteredApplications" Root="2" Key="Software\RegisteredApplications" Name="\"/>
+    <ROW Registry="Software" Root="-1" Key="Software" Name="\"/>
+    <ROW Registry="Software_1" Root="2" Key="Software" Name="\"/>
+    <ROW Registry="Software_2" Root="1" Key="Software" Name="\"/>
     <ROW Registry="Software_3" Root="0" Key="Software" Name="+" Component_="Software"/>
     <ROW Registry="URLInfoAbout" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="URLInfoAbout" Value="[ARPURLINFOABOUT]" Component_="AI_CustomARPName"/>
     <ROW Registry="URLUpdateInfo" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="URLUpdateInfo" Value="[ARPURLUPDATEINFO]" Component_="AI_CustomARPName"/>
+    <ROW Registry="Uninstall" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall" Name="\"/>
     <ROW Registry="UninstallPath" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="UninstallPath" Value="[AI_UNINSTALLER] /x [ProductCode] AI_UNINSTALLER_CTP=1" Component_="AI_CustomARPName"/>
     <ROW Registry="UninstallString" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="UninstallString" Value="[AI_UNINSTALLER] /x [ProductCode] AI_UNINSTALLER_CTP=1" Component_="AI_CustomARPName"/>
     <ROW Registry="VersionMajor" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="VersionMajor" Value="#6" Component_="AI_CustomARPName" VirtualValue="#"/>
     <ROW Registry="VersionMinor" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="VersionMinor" Value="#4" Component_="AI_CustomARPName" VirtualValue="#"/>
     <ROW Registry="Version_1" Root="2" Key="Software\[MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]" Name="Version" Value="[ProductVersion]" Component_="Version"/>
+    <ROW Registry="Windows" Root="-1" Key="Software\Microsoft\Windows" Name="\"/>
     <ROW Registry="_" Root="2" Key="Software\Classes\[ASSOC_PROG_ID]" Value="[ASSOC_APP_FRIENDLY_NAME]" Component_="ASSOC_PROG_ID"/>
     <ROW Registry="__1" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Csv\DefaultIcon" Value="[APPDIR]DesktopEditors.exe,20" Component_="FileAssociation_csv"/>
     <ROW Registry="__10" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Document.12\DefaultIcon" Value="[APPDIR]DesktopEditors.exe,7" Component_="FileAssociation_docx"/>
@@ -1095,6 +1147,25 @@
     <ROW Registry="__5" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].DjVu\shell\open\command" Value="&quot;[APPDIR]DesktopEditors.exe&quot; &quot;%1&quot;" Component_="FileAssociation_djvu"/>
     <ROW Registry="__7" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Document.1\DefaultIcon" Value="[APPDIR]DesktopEditors.exe,11" Component_="FileAssociation_doc"/>
     <ROW Registry="__8" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Document.1\shell\open\command" Value="&quot;[APPDIR]DesktopEditors.exe&quot; &quot;%1&quot;" Component_="FileAssociation_doc"/>
+    <ROW Registry="command" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Document.12\shell\open\command" Name="\"/>
+    <ROW Registry="command_1" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Document.2\shell\open\command" Name="\"/>
+    <ROW Registry="command_10" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Docxf\shell\open\command" Name="\"/>
+    <ROW Registry="command_11" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Show.12\shell\open\command" Name="\"/>
+    <ROW Registry="command_12" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Show.2\shell\open\command" Name="\"/>
+    <ROW Registry="command_13" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].SlideShow.1\shell\open\command" Name="\"/>
+    <ROW Registry="command_14" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].SlideShow.12\shell\open\command" Name="\"/>
+    <ROW Registry="command_15" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Xps\shell\open\command" Name="\"/>
+    <ROW Registry="command_16" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].DjVu\shell\open\command" Name="\"/>
+    <ROW Registry="command_17" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Document.1\shell\open\command" Name="\"/>
+    <ROW Registry="command_18" Root="2" Key="Software\Classes\[ASSOC_PROG_ID]\shell\open\command" Name="\"/>
+    <ROW Registry="command_2" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Pdf\shell\open\command" Name="\"/>
+    <ROW Registry="command_3" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Oform\shell\open\command" Name="\"/>
+    <ROW Registry="command_4" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Rtf\shell\open\command" Name="\"/>
+    <ROW Registry="command_5" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Sheet.1\shell\open\command" Name="\"/>
+    <ROW Registry="command_6" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Sheet.12\shell\open\command" Name="\"/>
+    <ROW Registry="command_7" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Sheet.2\shell\open\command" Name="\"/>
+    <ROW Registry="command_8" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Csv\shell\open\command" Name="\"/>
+    <ROW Registry="command_9" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Show.1\shell\open\command" Name="\"/>
     <ROW Registry="command_HK_CR" Root="2" Key="Software\Classes\[ASSOC_PROG_ID]\shell\open\command" Value="&quot;[APPDIR]DesktopEditors.exe&quot; &quot;%1&quot;" Component_="ASSOC_PROG_ID"/>
     <ROW Registry="csv" Root="2" Key="Software\[MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]\Capabilities\FileAssociations" Name=".csv" Value="[ASCC_REG_PREFIX].Csv" Component_="FileAssociation_csv"/>
     <ROW Registry="djvu" Root="2" Key="Software\[MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]\Capabilities\FileAssociations" Name=".djvu" Value="[ASCC_REG_PREFIX].DjVu" Component_="FileAssociation_djvu"/>
@@ -1107,6 +1178,7 @@
     <ROW Registry="ods" Root="2" Key="Software\[MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]\Capabilities\FileAssociations" Name=".ods" Value="[ASCC_REG_PREFIX].Sheet.2" Component_="FileAssociation_ods"/>
     <ROW Registry="odt" Root="2" Key="Software\[MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]\Capabilities\FileAssociations" Name=".odt" Value="[ASCC_REG_PREFIX].Document.2" Component_="FileAssociation_odt"/>
     <ROW Registry="oform" Root="2" Key="Software\[MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]\Capabilities\FileAssociations" Name=".oform" Value="[ASCC_REG_PREFIX].Oform" Component_="FileAssociation_oform"/>
+    <ROW Registry="open" Root="2" Key="Software\Classes\[ASSOC_PROG_ID]\shell\open" Name="\"/>
     <ROW Registry="open_1" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Csv\shell\open" Name="+" Component_="FileAssociation_csv"/>
     <ROW Registry="open_10" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Document.1\shell\open" Name="+" Component_="FileAssociation_doc"/>
     <ROW Registry="open_11" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Document.12\shell\open" Name="+" Component_="FileAssociation_docx"/>
@@ -1153,6 +1225,12 @@
     <ROW Registry="xls" Root="2" Key="Software\[MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]\Capabilities\FileAssociations" Name=".xls" Value="[ASCC_REG_PREFIX].Sheet.1" Component_="FileAssociation_xls"/>
     <ROW Registry="xlsx" Root="2" Key="Software\[MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]\Capabilities\FileAssociations" Name=".xlsx" Value="[ASCC_REG_PREFIX].Sheet.12" Component_="FileAssociation_xlsx"/>
     <ROW Registry="xps" Root="2" Key="Software\[MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]\Capabilities\FileAssociations" Name=".xps" Value="[ASCC_REG_PREFIX].Xps" Component_="FileAssociation_xps"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiServCtrlComponent">
+    <ROW ServiceControl="updatesvc.exe" Name="[DeUpdateSvc_ServiceName]" Event="160" Wait="1" Component_="updatesvc.exe"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiServInstComponent">
+    <ROW ServiceInstall="updatesvc.exe" Name="[DeUpdateSvc_ServiceName]" DisplayName="[DeUpdateSvc_DispalyName]" ServiceType="16" StartType="2" ErrorControl="1" Component_="updatesvc.exe" Description="[DeUpdateSvc_DescriptionName]"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiShortsComponent">
     <ROW Shortcut="COMMON_SHORTCUT_NAME_DESKTOP" Directory_="DesktopFolder" Name="ONLYOF~1|[|COMMON_SHORTCUT_NAME]" Component_="DesktopEditors.exe" Target="[#DesktopEditors.exe]" Hotkey="0" Icon_="desktopeditors.exe" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>

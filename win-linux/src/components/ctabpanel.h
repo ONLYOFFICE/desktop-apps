@@ -43,6 +43,9 @@ public:
     void setPrettyTitle(bool v) { m_prettyTitle = v; }
     void setBackground(const QColor&);
 
+    bool reporterMode() const;
+    void setReporterMode(bool);
+
 protected:
     //void timerEvent(QTimerEvent *event);
     //void paintEvent(QPaintEvent *event);
@@ -57,6 +60,7 @@ private:
     int m_idTimerResize = 0;
     bool m_prettyTitle = false;
     bool m_isReady = false;
+    bool m_isReporterOn = false;
 
 signals:
     void closePanel(QCloseEvent *event);

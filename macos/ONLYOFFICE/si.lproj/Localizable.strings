@@ -1,0 +1,228 @@
+/* No comment provided by engineer. */
+"%@ Help" = "%@ උදව්";
+
+/* No comment provided by engineer. */
+"About %@" = "%@ ගැන";
+
+/* No comment provided by engineer. */
+"Acknowledgments" = "පිළිදැනුම";
+
+/* No comment provided by engineer. */
+"Before signing the document, it must be saved." = "ලේඛනය අත්සන් කිරීමට පෙර, එය සුරැකිය යුතුය.";
+
+/* No comment provided by engineer. */
+"Cancel" = "අවලංගු";
+
+/* No comment provided by engineer. */
+"Cannot open file of Digital Signature" = "සංඛ්‍යාංක අත්සන ගොනුව ඇරීමට නොහැකිය";
+
+/* No comment provided by engineer. */
+"Cannot open file of Private Key" = "පෞද්. යතුරේ ගොනුව ඇරීමට නොහැකිය";
+
+/* No comment provided by engineer. */
+"Cannot open folder of the file location." = "ගොනුවේ ස්ථානයේ බහාලුම ඇරීමට නොහැකිය.";
+
+/* No comment provided by engineer. */
+"Comma-Separated Values" = "අල්පවිරාම මගින් වෙන් කළ අගයන් (*.csv)";
+
+/* No comment provided by engineer. */
+"Create portal" = "ද්වාරය සාදන්න";
+
+/* No comment provided by engineer. */
+"Delete and Quit" = "මකා ඉවත් වන්න";
+
+/* No comment provided by engineer. */
+"DjVu File" = "සංඛ්‍යාංක ලේඛනය (*.djvu)";
+
+/* No comment provided by engineer. */
+"Do you want to save the changes made to the document \"%@\"?" = "\"%@\" ලේඛනයට සිදු කරන ලද වෙනස්කම් සුරැකීමට අවශ්‍යද?";
+
+/* No comment provided by engineer. */
+"Document %ld.docx" = "ලේඛනය %ld.docx";
+
+/* No comment provided by engineer. */
+"Document template" = "වර්ඩ් විවෘත XML ලේඛන අච්චුව (*.dotx)";
+
+/* No comment provided by engineer. */
+"Don't Save" = "සුරකින්න එපා";
+
+/* No comment provided by engineer. */
+"Excel 97-2003 Spreadsheet" = "එක්සෙල් 97-2003 පැතුරුම්පත (*.xls)";
+
+/* No comment provided by engineer. */
+"Excel 2007 Spreadsheet" = "ඔෆිස් ඕපන් XML පැතුරුම්පත (*.xlsx)";
+
+/* No comment provided by engineer. */
+"FictionBook File" = "ෆික්ෂන්බුක් 2 ගොනුව (*.fb2)";
+
+/* No comment provided by engineer. */
+"File \"%@\" can not be open or not exist." = "\"%@\" ගොනුව ඇරීමට නොහැකිය හෝ නොපවතී.";
+
+/* No comment provided by engineer. */
+"File can not be open." = "ගොනුව ඇරීමට නොහැකියි.";
+
+/* No comment provided by engineer. */
+"File Format:" = "ගොනුවේ ආකෘතිය:";
+
+/* No comment provided by engineer. */
+"Hide %@" = "%@ සඟවන්න";
+
+/* No comment provided by engineer. */
+"If you don't review your documents, all your changeses will be lost." = "ඔබ ලේඛන සමාලෝචනය නොකරන්නේ නම්, ඔබගේ සියළුම වෙනස්කම් අහිමි වනු ඇත.";
+
+/* No comment provided by engineer. */
+"If you have already purchased %@, you should find your activation key in an email confirmation." = "ඔබ දැනටමත් %@ මිල දී ගෙන තිබේ නම්, තහවුරු කිරීමේ වි-තැපෑලක ඔබගේ සක්‍රියන යතුර හමු වනු ඇත.";
+
+/* No comment provided by engineer. */
+"License Agreement" = "ගිවිසුම් බලපත්‍රය";
+
+/* No comment provided by engineer. */
+"Mobipocket e-book" = "මොබිපොකට් ගොනුව (*.mobi)";
+
+/* No comment provided by engineer. */
+"new-document" = "නව ලේඛනයක්";
+
+/* No comment provided by engineer. */
+"new-presentation" = "නව සමර්පණයක්";
+
+/* No comment provided by engineer. */
+"new-spreadsheet" = "නව පැතුරුම්පතක්";
+
+/* No comment provided by engineer. */
+"No" = "නැහැ";
+
+/* No comment provided by engineer. */
+"OK" = "හරි";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE can not open the Digital Signature file. Try opening another file." = "ඔන්ලිඔෆිස් සඳහා සංඛ්‍යාංක අත්සන ගොනුව ඇරීමට නොහැකිය. වෙනත් ගොනුවක් ඇරීමට උත්සාහ කරන්න.";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE can not open the Private Key. Try opening another file." = "ඔන්ලිඔෆිස් සඳහා පෞද්. යතුර ඇරීමට නොහැකිය. වෙනත් ගොනුවක් ඇරීමට උත්සාහ කරන්න.";
+
+/* No comment provided by engineer. */
+"OpenDocument Document Template" = "ඕපන්ඩොකියුමන්ට් ලේඛන අච්චුව (*.ott)";
+
+/* No comment provided by engineer. */
+"OpenDocument Presentation Template" = "ඕපන්ඩොකියුමන්ට් සමර්පණ අච්චුව (*.otp)";
+
+/* No comment provided by engineer. */
+"OpenDocument Spreadsheet Template" = "ඕපන්ඩොකියුමන්ට් පැතුරුම්පත් අච්චුව (*.ots)";
+
+/* No comment provided by engineer. */
+"Opening" = "විවෘත වෙමින්";
+
+/* No comment provided by engineer. */
+"OpenOffice Document" = "ඕපන්ඩොකියුමන්ට් පෙළ ගොනුව (*.odt)";
+
+/* No comment provided by engineer. */
+"OpenOffice Presentation" = "ඕපන්ඩොකියුමන්ට් සමර්පණය (*.odp)";
+
+/* No comment provided by engineer. */
+"OpenOffice Spreadsheet" = "ඕපන්ඩොකියුමන්ට් පැතුරුම්පත (*.ods)";
+
+/* No comment provided by engineer. */
+"PDF File" = "සුවහ ලේඛනය (*.pdf)";
+
+/* No comment provided by engineer. */
+"PDF/A File" = "සුවහ ලේඛනය /ඒ (*.pdf)";
+
+/* No comment provided by engineer. */
+"Plain Text" = "සරල පෙළ ගොනුව (*.txt)";
+
+/* No comment provided by engineer. */
+"PowerPoint 97-2003 Presentation" = "පවර්පොයින්ට් 97-2003 සමර්පණය (*.ppt)";
+
+/* No comment provided by engineer. */
+"PowerPoint 2007 Presentation" = "ඔෆිස් ඕපන් XML සමර්පණය (*.pptx)";
+
+/* No comment provided by engineer. */
+"PowerPoint Slide Show" = "ඔෆිස් ඕපන් XML ස්ලයිඩ් ෂෝ (*.ppsx)";
+
+/* No comment provided by engineer. */
+"Preparing..." = "සූදානම් වෙමින්...";
+
+/* No comment provided by engineer. */
+"Presentation %ld.pptx" = "සමර්පණය %ld.pptx";
+
+/* No comment provided by engineer. */
+"Presentation template" = "උදාහරණ සමර්පණය";
+
+/* No comment provided by engineer. */
+"Presenter View" = "ඉදිරිපත්කරුගේ දැක්ම";
+
+/* No comment provided by engineer. */
+"Quit %@" = "ඉවත් වන්න";
+
+/* No comment provided by engineer. */
+"Review Changes..." = "වෙනස්කම සමාලෝචනය...";
+
+/* No comment provided by engineer. */
+"Rich Text Document" = "පොහොසත් පෙළ ආකෘතිය ගොනුව (*.rtf)";
+
+/* No comment provided by engineer. */
+"Save" = "සුරකින්න";
+
+/* No comment provided by engineer. */
+"Save the document?" = "ලේඛනය සුරකින්නද?";
+
+/* No comment provided by engineer. */
+"Signature Details" = "අත්සනහි විස්තර";
+
+/* No comment provided by engineer. */
+"Spreadsheet %ld.xlsx" = "පැතුරුම්පත %ld.xlsx";
+
+/* No comment provided by engineer. */
+"Spreadsheet template" = "පැතුරුම්පත් අච්චුව";
+
+/* No comment provided by engineer. */
+"Thank you for evaluating %@!" = "ඇගැයීමට ස්තූතියි %@!";
+
+/* No comment provided by engineer. */
+"The document \"%@\" must be built. Continue?" = "\"%@\" ලේඛනය තැනිය යුතුය. ඉදිරියට?";
+
+/* No comment provided by engineer. */
+"To open the file location, it must be saved." = "ගොනුවේ ස්ථානය විවෘත කිරීමට, එය සුරැකිය යුතුය.";
+
+/* No comment provided by engineer. */
+"Unconfirmed" = "තහවුරු නොකළ";
+
+/* No comment provided by engineer. */
+"Untitled" = "සිරැසියක් නැත";
+
+/* No comment provided by engineer. */
+"Version %@ (%@)" = "අනුවාදය %1$@ (%2$@)";
+
+/* No comment provided by engineer. */
+"Web Page" = "වියමන පිටුව";
+
+/* No comment provided by engineer. */
+"With access to pro features" = "ආධික්‍ය විශේෂාංග සඳහා ප්‍රවේශය සමඟ";
+
+/* No comment provided by engineer. */
+"Word 97-2003 Document" = "වර්ඩ් 97-2003 ලේඛනය (*.doc)";
+
+/* No comment provided by engineer. */
+"Word 2007 Document" = "ඔෆිස් ඕපන් XML ලේඛනය (*.docx)";
+
+/* No comment provided by engineer. */
+"XML Paper Specification" = "OpenXPS ලේඛනය (*.xps)";
+
+/* No comment provided by engineer. */
+"Yes" = "ඔව්";
+
+/* No comment provided by engineer. */
+"You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?" = "ඔබ සතුව තහවුරු නොකළ වෙනස්කම් සහිත %1$ld ලේඛන %2$@ ක් ඇත. ඉවත් වීමට පෙර මෙම වෙනස්කම් සමාලෝචනය කිරීමට අවශ්‍යද?";
+
+/* No comment provided by engineer. */
+"You have successfully activated %@." = "ඔබ සාර්ථකව %@ සක්‍රිය කර ඇත.";
+
+/* No comment provided by engineer. */
+"Your changes will be lost if you don’t save them." = "ඔබ ඒවා සුරැකුවේ නැතිනම් ඔබගේ වෙනස්කම් අහිමි වනු ඇත.";
+
+/* No comment provided by engineer. */
+"Your subscription has expired.\n\nThe program works in the non-activated mode.\n\nNow you can prolong or upgrade your subscription with a discount." = "ඔබගේ දායකත්‍වය කල් ඉකුත් වී ඇත.\n\nමෙම වැඩසටහන සක්‍රිය-නොවූ ප්‍රකාරයෙන් වැඩ කරයි.\n\nදැන් ඔබට වට්ටමක් සහිතව ඔබගේ දායකත්වය දීර්ඝ හෝ උත්ශ්‍රේණි කිරීමට හැකිය.";
+
+/* No comment provided by engineer. */
+"Your subscription is about to expire\n(%d days left).\n\nWe have a special offer for you." = "ඔබගේ දායකත්‍වය කල් ඉකුත් වීමට ආසන්නයි\n(දවස් %d ක් ඉතිරිව ඇත).\n\nඔබ වෙනුවෙන් විශේෂ දීමනාවක් ඇත.";
+

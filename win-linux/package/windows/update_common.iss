@@ -26,7 +26,9 @@
 #endif
 #define sAppVerShort                    Copy(sAppVersion, 0, 3)
 
-#define TARGET_NAME                     str(sPackageName + "_" + sAppVersion + "_" + sWinArchFull + ".exe")
+#ifndef TARGET_NAME
+# define TARGET_NAME                    str(sPackageName + "-" + sAppVersion + "-" + sWinArchFull + ".exe")
+#endif
 
 #ifndef sOutputFileName
   #define sOutputFileName               str("editors_update_" + sWinArchFull)

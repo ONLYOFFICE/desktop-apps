@@ -56,6 +56,8 @@ public:
     auto printRange() const -> QPrintDialog::PrintRange;
     auto isQuickPrint() const -> bool;
     auto viewId() const -> int;
+    auto copiesCount() const -> int;
+    auto duplexMode() const -> QPrinter::DuplexMode;
 
 private:
     class CPrintDataPrivate;

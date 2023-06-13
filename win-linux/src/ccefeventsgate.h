@@ -77,6 +77,7 @@ public slots:
 
     virtual void onWebTitleChanged(int, std::wstring json) = 0;
     virtual void onWebAppsFeatures(int, std::wstring) = 0;
+    virtual void onReporterMode(int, bool);
 };
 
 #endif // CCEFEVENTSGATE_H

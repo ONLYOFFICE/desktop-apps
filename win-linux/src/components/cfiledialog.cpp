@@ -90,9 +90,11 @@ CFileDialogWrapper::CFileDialogWrapper(QWidget * parent) : QObject(parent)
     m_mapFilters[AVS_OFFICESTUDIO_FILE_PRESENTATION_ODP]    = tr("ODP File (*.odp)");
     m_mapFilters[AVS_OFFICESTUDIO_FILE_PRESENTATION_OTP]    = tr("OpenDocument Presentation Template (*.otp)");
     m_mapFilters[AVS_OFFICESTUDIO_FILE_PRESENTATION_PPSX]   = tr("PPSX File (*.ppsx)");
+    m_mapFilters[AVS_OFFICESTUDIO_FILE_PRESENTATION_PPTM]   = tr("Macro-enabled Presentation File (*.pptm)");
 
     m_mapFilters[AVS_OFFICESTUDIO_FILE_SPREADSHEET_XLSX]    = tr("XLSX File (*.xlsx)");
     m_mapFilters[AVS_OFFICESTUDIO_FILE_SPREADSHEET_XLTX]    = tr("Spreadsheet template (*.xltx)");
+    m_mapFilters[AVS_OFFICESTUDIO_FILE_SPREADSHEET_XLTM]    = tr("Macro-enabled spreadsheet template (*.xltm)");
     m_mapFilters[AVS_OFFICESTUDIO_FILE_SPREADSHEET_XLS]     = tr("XLS File (*.xls)");
     m_mapFilters[AVS_OFFICESTUDIO_FILE_SPREADSHEET_ODS]     = tr("ODS File (*.ods)");
     m_mapFilters[AVS_OFFICESTUDIO_FILE_SPREADSHEET_OTS]     = tr("OpenDocument Spreadsheet Template (*.ots)");
@@ -142,7 +144,9 @@ bool CFileDialogWrapper::modalSaveAs(QString& fileName, int selected)
     }
 
 #ifdef _WIN32
-    QString _croped_name = fileName;
+    // TODO: win 10 home doesn't crop file name by self. refactor for ver 7.5 with linux ver
+//    QString _croped_name = fileName;
+    QString _croped_name = WindowHelper::useNativeDialog() ? fileName.left(fileName.lastIndexOf('.')) : fileName;
 #else
     QString _croped_name = fileName.left(fileName.lastIndexOf("."));
 #endif
@@ -195,12 +199,13 @@ bool CFileDialogWrapper::modalSaveAs(QString& fileName, int selected)
             QFileInfo info(fileName);
             if ( info.exists() ) {
                 QWidget * _mess_parent = (QWidget *)parent();
-                CMessage mess(_mess_parent, CMessageOpts::moButtons::mbYesNo);
-                int _answ = mess.warning(tr("%1 already exists.<br>Do you want to replace it?").arg(info.fileName()));
-                if ( MODAL_RESULT_CUSTOM + 1 == _answ ) {
+                int _answ = CMessage::showMessage(_mess_parent,
+                                                  tr("%1 already exists.<br>Do you want to replace it?").arg(info.fileName()),
+                                                  MsgType::MSG_WARN, MsgBtns::mbYesNo);
+                if ( MODAL_RESULT_NO == _answ ) {
                     continue;
                 } else
-                if ( MODAL_RESULT_CUSTOM + 0 != _answ ) {
+                if ( MODAL_RESULT_YES != _answ ) {
                     fileName.clear();
                 }
             }
@@ -240,10 +245,15 @@ QStringList CFileDialogWrapper::modalOpen(const QString& path, const QString& fi
     QString _all_sup_files;
     if ( _filter_.isEmpty() ) {
 //        _filter_ = joinFilters();
-        _filter_ =  tr("Text documents") + " (*.docx *.doc *.odt *.ott *.rtf *.docm *.dotx *.dotm *.fb2 *.fodt *.wps *.wpt *.xml *.pdf *.djv *.djvu *.docxf *.oform);;" +
-                    tr("Spreadsheets") + " (*.xlsx *.xls *.ods *.ots *.xltx *.xltm *.fods *.et *.ett);;" +
-                    tr("Presentations") + " (*.pptx *.ppt *.odp *.otp *.ppsm *.ppsx *.pps *.potx *.pot *.potm *.fodp *.dps *.dpt);;" +
-                    tr("Web Page") + " (*.html *.htm *.mht *.epub);;" +
+        _filter_ =  tr("Text documents") +
+#ifndef __LOCK_OFORM_FORMATS
+                        " (*.docx *.doc *.odt *.ott *.rtf *.docm *.dotx *.dotm *.fb2 *.fodt *.wps *.wpt *.xml *.pdf *.djv *.djvu *.docxf *.oform *.sxw *.stw);;" +
+#else
+                        " (*.docx *.doc *.odt *.ott *.rtf *.docm *.dotx *.dotm *.fb2 *.fodt *.wps *.wpt *.xml *.pdf *.djv *.djvu *.sxw *.stw);;" +
+#endif
+                    tr("Spreadsheets") + " (*.xlsx *.xls *.ods *.ots *.xltx *.xltm  *.xml *.fods *.et *.ett *.sxc);;" +
+                    tr("Presentations") + " (*.pptx *.ppt *.odp *.otp *.ppsm *.ppsx *.pps *.potx *.pot *.potm *.fodp *.dps *.dpt *.sxi);;" +
+                    tr("Web Page") + " (*.html *.htm *.mht *.mhtml *.epub);;" +
                     tr("Text files") + " (*.txt *.csv)";
         _all_sup_files = tr("All supported files") + " " + joinExtentions(_filter_);
         _filter_.prepend(_all_sup_files + ";;");
@@ -345,6 +355,19 @@ QStringList CFileDialogWrapper::modalOpenPresentations(const QString& path, bool
     filter.prepend(tr("Presentations") + " (*.pptx *.ppt *.odp *.otp *.ppsm *.ppsx *.pps *.potx *.pot *.potm *.fodp *.dps *.dpt);;");
 
     return modalOpen(path, filter, nullptr, multi);
+}
+
+QStringList CFileDialogWrapper::modalOpenForEncrypt(const QString& path, bool multi)
+{
+    QString _filter = tr("Text documents") + " (*.docx *.docxf *.docm *.dotm *.dotx *.oform);;" +
+                        tr("Spreadsheets") + " (*.xlsx *.xlsm *.xltm *.xltx);;" +
+                        tr("Presentations") + " (*.potm *.potx *.ppsm *.pptm *.ppsx *.pptx)";
+
+    const QString _all_supported = tr("All supported files") + " " + joinExtentions(_filter);
+    _filter.prepend(_all_supported + ";;");
+    _filter.append(";;" + m_mapFilters[AVS_OFFICESTUDIO_FILE_UNKNOWN]);
+
+    return modalOpen(path, _filter, nullptr, multi);
 }
 
 QStringList CFileDialogWrapper::modalOpenAny(const QString& path, bool multi)

@@ -33,64 +33,24 @@
 #ifndef CMESSAGE_H
 #define CMESSAGE_H
 
-#include <QMessageBox>
-#include <QLabel>
-#include <QCoreApplication>
-#include <QPushButton>
-#include <initializer_list>
-#include <memory>
+#include <QWidget>
+#include <QString>
+#include "defines.h"
 
-namespace CMessageOpts {
-    enum class moButtons {
-        mbYesDefNo,
-        mbYesNo,
-        mbYesNoCancel,
-        mbYesDefNoCancel,
-        mbOkCancel,
-        mbOkDefCancel,
-        mbYesDefSkipNo
-    };
-}
 
-class CMessagePrivateIntf;
-
-class CMessage : public QDialog
+namespace CMessage
 {
-public:
-    explicit CMessage(QWidget *);
-             CMessage(QWidget *, CMessageOpts::moButtons);
-    ~CMessage() override;
+int showMessage(QWidget *parent,
+                const QString &msg,
+                MsgType msgType,
+                MsgBtns msgBtns = MsgBtns::mbOk,
+                bool   *checkBoxState = nullptr,
+                const QString &chekBoxText = QString());
 
-    void setButtons(std::initializer_list<QString>);
-    void setButtons(CMessageOpts::moButtons);
-    void setIcon(int);
-    void setText(const QString&);
-    void applyForAll(const QString&, bool);
-    bool isForAll();
-
-    int info(const QString& m);
-    int warning(const QString& m);
-    int error(const QString& m);
-    int confirm(const QString& m);
-
-    static int info(QWidget *, const QString& m);
-    static int warning(QWidget *, const QString& m);
-    static int error(QWidget *, const QString& m);
-    static int confirm(QWidget *, const QString& m);
-
-private:
-    QWidget * m_boxButtons = nullptr;
-    QWidget * m_centralWidget;
-    QLabel * m_message,
-           * m_typeIcon;
-    int m_modalresult;
-
-    void modal();
-
-    friend class CMessagePrivateIntf;
-    std::unique_ptr<CMessagePrivateIntf> m_priv;
-
-    Q_DECLARE_TR_FUNCTIONS(CMessage)
-};
+void confirm(QWidget *parent, const QString &msg);
+void info(QWidget *parent, const QString &msg);
+void warning(QWidget *parent, const QString &msg);
+void error(QWidget *parent, const QString &msg);
+}
 
 #endif // CMESSAGE_H

@@ -143,6 +143,7 @@ public slots:
     void onEditorAllowedClose(int);
     void onWebTitleChanged(int, std::wstring json) {}
     void onDocumentPrint(void *);
+    void onReporterMode(int, bool);
     virtual void onDocumentReady(int);
 
 private:

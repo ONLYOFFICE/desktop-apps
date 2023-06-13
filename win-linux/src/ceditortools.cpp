@@ -134,15 +134,33 @@ namespace CEditorTools
             } else
             if ( _filter == "csv/txt" ) {
                 QString _sel_filter;
-                const QString _txt_filter = QObject::tr("All supported files (*.txt *.csv)") + ";;" + QObject::tr("All files (*.*)");
+                const QString _txt_filter = CFileDialogWrapper::tr("All supported files") + " (*.txt *.csv);;" + QObject::tr("All files (*.*)");
+
+                _list = dialog.modalOpen(Utils::lastPath(LOCAL_PATH_OPEN), _txt_filter, &_sel_filter, pData->get_IsMultiselect());
+            } else
+            if ( _filter == "cryptofiles" ) {
+                _list = dialog.modalOpenForEncrypt(Utils::lastPath(LOCAL_PATH_OPEN), pData->get_IsMultiselect());
+            } else
+            if ( _filter == "(*xml)" ) {
+                QString _sel_filter;
+                const QString _txt_filter = QObject::tr("XML File (*.xml)") + ";;" + QObject::tr("All files (*.*)");
 
                 _list = dialog.modalOpen(Utils::lastPath(LOCAL_PATH_OPEN), _txt_filter, &_sel_filter, pData->get_IsMultiselect());
             } else
             if ( _filter == "any" || _filter == "*.*" ) {
                 _list = dialog.modalOpenAny(Utils::lastPath(LOCAL_PATH_OPEN), pData->get_IsMultiselect());
             } else {
-                QString _sel_filter;
-                _list = dialog.modalOpen(Utils::lastPath(LOCAL_PATH_OPEN), _filter, &_sel_filter, pData->get_IsMultiselect());
+                QString _sel_filter, _file_filter{_filter};
+                if ( !_filter.isEmpty() ) {
+                    QRegularExpression re("^\\*\\.[\\w]");
+                    QRegularExpressionMatch match = re.match(_filter);
+                    if ( match.hasMatch() ) {
+                         _file_filter = "(" + _filter + ")";
+                    }
+                }
+
+
+                _list = dialog.modalOpen(Utils::lastPath(LOCAL_PATH_OPEN), _file_filter, &_sel_filter, pData->get_IsMultiselect());
             }
 
 
@@ -202,6 +220,15 @@ namespace CEditorTools
             _file_format = CCefViewEditor::GetFileFormat(opts.wurl);
             if ( _file_format == 0 )
                 return nullptr;
+        } else
+        if (opts.srctype == etRecentFile) {
+            if (CFileInspector::isLocalFile(QString::fromStdWString(opts.wurl))) {
+                QFileInfo info(opts.url);
+                if (!info.isReadable()) {
+                    CMessage::error(AscAppManager::getInstance().mainWindow(), QObject::tr("Access to file '%1' is denied!").arg(opts.url));
+                    return nullptr;
+                }
+            }
         }
 
         CTabPanel * panel = CTabPanel::createEditorPanel();
@@ -252,7 +279,10 @@ namespace CEditorTools
             //if ( !rect.isEmpty() )
                 //panel->setGeometry(rect);
         } else {
-            delete panel, panel = nullptr;
+            AscAppManager::getInstance().DestroyCefView(panel->cef()->GetId());
+            panel->hide();
+            panel->deleteLater();
+            panel = nullptr;
         }
 
         return panel;
@@ -305,8 +335,10 @@ namespace CEditorTools
                 switch ( dlg.getFormat() ) {
                 case AVS_OFFICESTUDIO_FILE_DOCUMENT_TXT:
                 case AVS_OFFICESTUDIO_FILE_SPREADSHEET_CSV: {
-                    CMessage mess(_parent, CMessageOpts::moButtons::mbOkDefCancel);
-                    _allowed =  MODAL_RESULT_CUSTOM == mess.warning(QCoreApplication::translate("CEditorWindow", "Some data will lost.<br>Continue?"));
+                    int res = CMessage::showMessage(_parent,
+                                                    QCoreApplication::translate("CEditorWindow", "Some data will lost.<br>Continue?"),
+                                                    MsgType::MSG_WARN, MsgBtns::mbOkDefCancel);
+                    _allowed = (MODAL_RESULT_OK == res);
                     break; }
                 default: break;
                 }

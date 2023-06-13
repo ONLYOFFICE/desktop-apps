@@ -212,7 +212,7 @@
         <file alias="da-DK.qm">langs/de.qm</file>
         <file alias="de-DE.qm">langs/de.qm</file>
         <file alias="el-GR.qm">langs/el_GR.qm</file>
-        <file alias="en-EN.qm">langs/en.qm</file>
+        <file alias="en-US.qm">langs/en.qm</file>
         <file alias="es-ES.qm">langs/es.qm</file>
         <file alias="et-EE.qm">langs/et.qm</file>
         <file alias="fi-FI.qm">langs/fi.qm</file>
@@ -231,14 +231,15 @@
         <file alias="lt-LT.qm">langs/lt.qm</file>
         <file alias="lv-LV.qm">langs/lv.qm</file>
         <file alias="nl-NL.qm">langs/nl.qm</file>
-        <file alias="no-NO.qm">langs/no.qm</file>
+        <file alias="no.qm">langs/no.qm</file>
         <file alias="pl-PL.qm">langs/pl.qm</file>
         <file alias="pt-BR.qm">langs/pt_BR.qm</file>
         <file alias="pt-PT.qm">langs/pt_PT.qm</file>
         <file alias="ro-RO.qm">langs/ro.qm</file>
         <file alias="ru-RU.qm">langs/ru.qm</file>
+        <file alias="si-LK.qm">langs/si.qm</file>
         <file alias="sk-SK.qm">langs/sk.qm</file>
-        <file alias="sl-SL.qm">langs/sl.qm</file>
+        <file alias="sl-SI.qm">langs/sl.qm</file>
         <file alias="sv-SE.qm">langs/sv.qm</file>
         <file alias="tr-TR.qm">langs/tr.qm</file>
         <file alias="uk-UA.qm">langs/uk.qm</file>

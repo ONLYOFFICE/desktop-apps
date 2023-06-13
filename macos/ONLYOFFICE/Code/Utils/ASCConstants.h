@@ -99,6 +99,7 @@ static NSString * const ASCEventNameMainWindowSetFrame      = @"UI_mainWindowSet
 static NSString * const ASCEventNameMainWindowLoaded        = @"UI_mainWindowLoaded";
 static NSString * const ASCEventNameOpenAppLinks            = @"UI_openAppLinks";
 static NSString * const ASCEventNameChangedUITheme          = @"UI_changedUITheme";
+static NSString * const ASCEventNameChangedSystemTheme      = @"UI_changedSystemTheme";
 
 // CEF types
 static NSString * const CEFOpenFileFilterImage              = @"images";
@@ -109,6 +110,7 @@ static NSString * const CEFOpenFileFilterPresentation       = @"slide";
 static NSString * const CEFOpenFileFilterVideo              = @"video";
 static NSString * const CEFOpenFileFilterAudio              = @"audio";
 static NSString * const CEFOpenFileFilterCsvTxt             = @"csv/txt";
+static NSString * const CEFOpenFileFilterCrypto             = @"cryptofiles";
 static NSString * const CEFOpenFileFilterXML                = @"(*xml)";
 
 // CEF event names
@@ -162,6 +164,7 @@ static NSString * const CEFEventNameCertificatePreview      = @"CEF_certificateP
 + (NSArray *)presentations;
 + (NSArray *)plugins;
 + (NSArray *)csvtxt;
++ (NSArray *)cancryptformats;
 + (NSArray *)xmldata;
 
 + (NSString *)appInfo:(NSString *)key;

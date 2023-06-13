@@ -63,6 +63,19 @@ namespace EditorJSVariables {
     auto apply() -> void;
 }
 
+namespace AppOptions {
+    enum class AppPackageType {
+        Unknown,
+        ISS,
+        MSI,
+        Snap,
+        Flatpack,
+        Portable
+    };
+
+    auto packageType() -> AppPackageType;
+}
+
 class Utils {
 public:
     static QStringList * getInputFiles(const QStringList& inlist);
@@ -96,6 +109,7 @@ public:
     static QByteArray readStylesheets(std::vector<std::string> const *);
     static QByteArray readStylesheets(const QString&);
     static QJsonObject parseJson(const std::wstring&);
+    static bool updatesAllowed();
 
 #ifdef _WIN32
     enum class WinVer : uchar {
@@ -127,12 +141,14 @@ namespace WindowHelper {
     auto correctWindowMinimumSize(HWND handle) -> void;
     auto correctModalOrder(HWND windowhandle, HWND modalhandle) -> void;
     auto adjustWindowRect(HWND, double, LPRECT) -> void;
+    auto bringToTop(HWND) -> void;
 #endif
 
     auto correctWindowMinimumSize(const QRect&, const QSize&) -> QSize;
     auto isLeftButtonPressed() -> bool;
     auto constructFullscreenWidget(QWidget * panel) -> CFullScrWidget *;
     auto useNativeDialog() -> bool;
+    auto activeWindow() -> QWidget*;
     auto currentTopWindow() -> QWidget*;
 }
 

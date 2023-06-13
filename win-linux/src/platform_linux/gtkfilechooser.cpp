@@ -6,6 +6,40 @@
 #include <gdk/gdkx.h>
 
 
+static void find_children(GList **list, GtkWidget *wgt, const gchar *name)
+{
+    GList *children = gtk_container_get_children(GTK_CONTAINER(wgt));
+    if (!children)
+        return;
+    for (guint i = 0; i < g_list_length(children); i++) {
+        GtkWidget *child = GTK_WIDGET(g_list_nth(children, i)->data);
+        if (strcmp(name, gtk_widget_get_name(child)) == 0)
+            *list = g_list_append(*list, (gpointer)child);
+        find_children(list, child, name);
+    }
+}
+
+static void set_ellipsize(GtkWidget *dialog)
+{
+    GList *list = NULL;
+    find_children(&list, dialog, "GtkComboBoxText");
+    for (guint i = 0; i < g_list_length(list); i++) {
+        GtkComboBoxText *combo = GTK_COMBO_BOX_TEXT(g_list_nth(list, i)->data);
+        GtkCellRenderer *cell = gtk_cell_renderer_text_new();
+        g_object_set(cell,
+                     "width", 450,
+                     //"popup-fixed-width", FALSE,
+                     "ellipsize", PANGO_ELLIPSIZE_END,
+                     NULL);
+
+        gtk_cell_layout_clear(GTK_CELL_LAYOUT(combo));
+        gtk_cell_layout_pack_start(GTK_CELL_LAYOUT(combo), cell, TRUE);
+        gtk_cell_layout_set_attributes(GTK_CELL_LAYOUT(combo), cell, "text", 0, NULL);
+        //g_signal_connect(G_OBJECT(combo), "notify::popup-shown", G_CALLBACK(on_popup), NULL);
+    }
+    g_list_free(list);
+}
+
 static char* substr(const char *src, int m, int n)
 {
     int len = n - m;
@@ -118,6 +152,7 @@ static void nativeFileDialog(const Window &parent_xid,
         }
     }
 
+    set_ellipsize(dialog);
     gint res = gtk_dialog_run(GTK_DIALOG(dialog));
     if (res == GTK_RESPONSE_ACCEPT) {
         if (sel_multiple) {

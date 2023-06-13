@@ -69,15 +69,20 @@
 
 + (NSArray *)documents {
     return @[@"docx", @"doc", @"odt", @"ott", @"rtf", @"docm", @"dotx", @"dotm", @"docxf", @"fodt", @"wps", @"wpt",
-             @"xml", @"pdf", @"epub", @"djv", @"djvu", @"txt", @"html", @"htm", @"mht", @"xps", @"doctx", @"fb2", @"oform"];
+             @"xml", @"pdf", @"epub", @"djv", @"djvu", @"txt", @"html", @"htm", @"mht", @"mhtml", @"xps", @"doctx",
+             @"fb2", @"oform", @"sxw", @"stw"];
 }
 
 + (NSArray *)spreadsheets {
-    return @[@"xls", @"xlsx", @"csv", @"ods", @"xltx", @"ots", @"xltm", @"fods", @"et", @"ett"];
+    return @[@"xls", @"xlsx", @"csv", @"ods", @"xltx", @"ots", @"xltm", @"xml", @"fods", @"et", @"ett", @"sxc"];
 }
 
 + (NSArray *)presentations {
-    return @[@"ppt", @"pptx", @"ppsx", @"odp", @"potx", @"otp", @"pps", @"ppsm", @"potm", @"fodp", @"dps", @"dpt"];
+    return @[@"ppt", @"pptx", @"ppsx", @"odp", @"potx", @"otp", @"pps", @"ppsm", @"potm", @"fodp", @"dps", @"dpt", @"sxi"];
+}
+
++ (NSArray *)cancryptformats {
+    return @[@".docm", @".docx", @".docxf", @".dotm", @".dotx", @".oform", @".potm", @".potx", @".ppsm", @".pptm", @".ppsx", @".pptx", @".xlsm", @".xlsx", @".xltm", @".xltx"];
 }
 
 + (NSArray *)plugins {
@@ -146,7 +151,7 @@
                      @"description" : NSLocalizedString(@"Document template", nil),
                      @"extension"   : @"dotx"
                      },
-             
+
              @(AVS_OFFICESTUDIO_FILE_PRESENTATION_PPTX): @{
                      @"description" : NSLocalizedString(@"PowerPoint 2007 Presentation", nil),
                      @"extension"   : @"pptx"
@@ -154,6 +159,10 @@
              @(AVS_OFFICESTUDIO_FILE_PRESENTATION_PPT): @{
                      @"description" : NSLocalizedString(@"PowerPoint 97-2003 Presentation", nil),
                      @"extension"   : @"ppt"
+                     },
+             @(AVS_OFFICESTUDIO_FILE_PRESENTATION_PPTM): @{
+                     @"description" : NSLocalizedString(@"Macro-enabled Presentation", nil),
+                     @"extension"   : @"pptm"
                      },
              @(AVS_OFFICESTUDIO_FILE_PRESENTATION_ODP): @{
                      @"description" : NSLocalizedString(@"OpenOffice Presentation", nil),
@@ -167,7 +176,7 @@
                      @"description" : NSLocalizedString(@"Presentation template", nil),
                      @"extension"   : @"potx"
                      },
-             
+
              @(AVS_OFFICESTUDIO_FILE_SPREADSHEET_XLSX): @{
                      @"description" : NSLocalizedString(@"Excel 2007 Spreadsheet", nil),
                      @"extension"   : @"xlsx"
@@ -188,7 +197,11 @@
                      @"description" : NSLocalizedString(@"Spreadsheet template", nil),
                      @"extension"   : @"xltx"
                      },
-             
+             @(AVS_OFFICESTUDIO_FILE_SPREADSHEET_XLTM): @{
+                     @"description" : NSLocalizedString(@"Macro-enabled spreadsheet template", nil),
+                     @"extension"   : @"xltm"
+                     },
+
              @(AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_PDF): @{
                      @"description" : NSLocalizedString(@"PDF File", nil),
                      @"extension"   : @"pdf"

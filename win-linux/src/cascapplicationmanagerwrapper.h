@@ -153,14 +153,6 @@ public slots:
     void onEditorWidgetClosed();
 
 private slots:
-#ifdef _UPDMODULE
-#ifdef Q_OS_WIN
-    void showStartInstallMessage(QWidget *parent);
-#endif
-    void showUpdateMessage(QWidget *parent);
-    void onCheckFinished(bool error, bool updateExist, const QString &version, const QString &changelog);
-#endif
-
     void onMainWindowClose();
 
 public:
@@ -180,6 +172,7 @@ public:
     static const CEditorWindow *  editorWindowFromHandle(size_t);
     static void             sendCommandTo(QCefView * target, const QString& cmd, const QString& args = "");
     static void             sendCommandTo(CCefView * target, const std::wstring& cmd, const std::wstring& args = L"");
+    static void             sendCommandToAllEditors(const std::wstring& cmd, const std::wstring& args = L"");
     static std::wstring     userSettings(const std::wstring& name);
     static void             setUserSettings(const std::wstring& name, const std::wstring& value);
 

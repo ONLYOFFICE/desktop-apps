@@ -1,0 +1,39 @@
+name: Initialize changelog files
+
+on: workflow_dispatch
+
+jobs:
+  changelogs:
+    if: >-
+      ${{ contains(github.ref, 'refs/heads/hotfix/v') ||
+          contains(github.ref, 'refs/heads/release/v') }}
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.PUSH_TOKEN }}
+
+      - name: Set version
+        run: |
+          REF="${{ github.ref }}"
+          echo "VERSION=${REF#*/v}" >> $GITHUB_ENV
+
+      - name: Create changelogs
+        run: |
+          CHANGES_WIN=win-linux/package/windows/update/changes
+          CHANGES_MAC=macos/ONLYOFFICE/update/updates/ONLYOFFICE/changes
+
+          rm -rfv $CHANGES_WIN/$VERSION $CHANGES_MAC/$VERSION
+          cp -fRTv $CHANGES_WIN/0.0.0 $CHANGES_WIN/$VERSION
+          cp -fRTv $CHANGES_MAC/0.0.0 $CHANGES_MAC/$VERSION
+          find $CHANGES_WIN/$VERSION $CHANGES_MAC/$VERSION -name "*.html" -print \
+            -exec sed -e 's/0.0.0/'${VERSION}'/g' -e 's/000/'${VERSION//./}'/g' -i {} \;
+
+      - name: Commit changes
+        uses: EndBug/add-and-commit@v9
+        with:
+          author_name: github-actions[bot]
+          author_email: github-actions[bot]@users.noreply.github.com
+          message: Initialize changelogs for v${{ env.VERSION }}

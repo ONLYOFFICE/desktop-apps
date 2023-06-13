@@ -11,6 +11,7 @@
 #include <QJsonObject>
 #include <QJsonArray>
 #include <QProcess>
+#include <QScreen>
 #include <algorithm>
 #include <functional>
 
@@ -32,9 +33,6 @@
 # include <io.h>
 # include <VersionHelpers.h>
 # include "platform_win/singleapplication.h"
-# ifdef _UPDMODULE
-#  include "platform_win/updatedialog.h"
-# endif
 #else
 # include <unistd.h>
 # include "platform_linux/singleapplication.h"
@@ -122,11 +120,7 @@ CAscApplicationManagerWrapper::CAscApplicationManagerWrapper(CAscApplicationMana
 
 #ifdef _UPDMODULE
     m_pUpdateManager = new CUpdateManager(this);
-    connect(m_pUpdateManager, &CUpdateManager::checkFinished, this, &CAscApplicationManagerWrapper::onCheckFinished);
 #ifdef Q_OS_WIN
-    connect(m_pUpdateManager, &CUpdateManager::updateLoaded, this, [=]() {
-        m_dialogSchedule->addToSchedule("showStartInstallMessage");
-    });
     connect(m_pUpdateManager, &CUpdateManager::progresChanged, this, [=](const int &percent) {
         AscAppManager::sendCommandTo(0, "updates:download", QString("{\"progress\":\"%1\"}").arg(QString::number(percent)));
     });
@@ -335,31 +329,18 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
 #ifdef _UPDMODULE
         if ( !(cmd.find(L"update") == std::wstring::npos) ) {   // params: check, download, install, abort
             const QString params = QString::fromStdWString(pData->get_Param());
-#ifdef Q_OS_WIN
             if (params == "check") {
-                m_pUpdateManager->checkUpdates();
+                m_pUpdateManager->checkUpdates(true);
             } else
             if (params == "download") {
                 m_pUpdateManager->loadUpdates();
             } else
             if (params == "install") {
-                GET_REGISTRY_USER(reg_user);
-                reg_user.beginGroup("Updates");
-                const QString ignored_ver = reg_user.value("Updates/ignored_ver").toString();
-                reg_user.endGroup();
-                if (ignored_ver != m_pUpdateManager->getVersion())
-                    m_dialogSchedule->addToSchedule("showStartInstallMessage");
+                m_pUpdateManager->installUpdates();
             } else
             if (params == "abort") {
                 m_pUpdateManager->cancelLoading();
-                const QString new_version = m_pUpdateManager->getVersion();
-                AscAppManager::sendCommandTo(0, "updates:checking", QString("{\"version\":\"%1\"}").arg(new_version));
             }
-#else
-            if (params == "check" || params == "download") {
-                m_pUpdateManager->checkUpdates();
-            }
-#endif
             return true;
         } else
 #endif
@@ -447,7 +428,7 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
 #endif
 
 //        RELEASEINTERFACE(event);
-        return true; }
+        break; }
 
     case ASC_MENU_EVENT_TYPE_REPORTER_END: {
         // close editor window
@@ -458,7 +439,7 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
         }
 
 //        RELEASEINTERFACE(event);
-        return true; }
+        break; }
 
     case ASC_MENU_EVENT_TYPE_REPORTER_MESSAGE_TO:
     case ASC_MENU_EVENT_TYPE_REPORTER_MESSAGE_FROM: return true;
@@ -497,6 +478,11 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
 
             if (switer != m_winsReporter.end() ) {
                 CPresenterWindow * reporterWindow = switer->second;
+
+                GET_REGISTRY_USER(reg_user)
+                reg_user.setValue("repPosition", reporterWindow->normalGeometry());
+
+                reporterWindow->geometry();
                 delete reporterWindow, reporterWindow = nullptr;
                 m_winsReporter.erase(switer);
 
@@ -1160,8 +1146,13 @@ void CAscApplicationManagerWrapper::initializeApp()
                                         {"id", QString::fromStdWString(_app.m_themes->current().id())}
 #ifndef Q_OS_LINUX
                                         ,{"system", _app.m_themes->isSystemSchemeDark() ? "dark" : "light"}
+#else
+                                        ,{"system", "disabled"}
 #endif
                                      });
+
+    AscAppManager::getInstance().m_oSettings.macroses_support = reg_system.value("macrosDisabled", true).toBool();
+    AscAppManager::getInstance().m_oSettings.plugins_support = reg_system.value("pluginsDisabled", true).toBool();
 }
 
 CPresenterWindow * CAscApplicationManagerWrapper::createReporterWindow(void * data, int parentid)
@@ -1176,32 +1167,41 @@ CPresenterWindow * CAscApplicationManagerWrapper::createReporterWindow(void * da
     pView->CreateReporter(this, pCreateData);
 
     QString _doc_name;
-    QRect _windowRect{100,100,1000,700}, _currentRect;
-    CMainWindow * _main_window = mainWindowFromViewId(parentid);
-    if ( _main_window ) {
-        _doc_name = _main_window->documentName(parentid);
-        _currentRect = _main_window->windowRect();
+    QRect _currentRect;
+    if ( m_pMainWindow && m_pMainWindow->holdView(parentid) ) {
+        _doc_name = m_pMainWindow->documentName(parentid);
+        _currentRect = m_pMainWindow->windowRect();
     } else {
         CEditorWindow * _window = editorWindowFromViewId(parentid);
 
         if ( _window ) {
             _doc_name = _window->documentName();
             _currentRect = _window->geometry();
-
-            _window->setReporterMode(true);
         }
     }
 
-    if ( QApplication::desktop()->screenCount() > 1 ) {
-        int _scrNum = QApplication::desktop()->screenNumber(_currentRect.topLeft());
-        QRect _scrRect = QApplication::desktop()->availableGeometry(QApplication::desktop()->screenCount()-_scrNum-1);
-        int _srcDpiRatio = Utils::getScreenDpiRatio(_scrRect.topLeft());
+#if QT_VERSION < QT_VERSION_CHECK(5, 11, 0)
+    int _scrNum = QApplication::desktop()->screenNumber(_currentRect.topLeft());
+    QRect _scr_rect = QApplication::desktop()->availableGeometry(_scrNum);
+#else
+    QRect _scr_rect = QApplication::screenAt(_currentRect.topLeft())->availableGeometry();
+#endif
+    int _scr_dpi_ratio = Utils::getScreenDpiRatio(_scr_rect.topLeft());
 
-        _windowRect.setTopLeft(_scrRect.translated(100,100).topLeft()*_srcDpiRatio);
-        _windowRect.setSize(QSize(1000,700)*_srcDpiRatio);
-    }
+    GET_REGISTRY_USER(reg_user)
 
-    CPresenterWindow * reporterWindow = new CPresenterWindow(_windowRect, tr("Presenter View") + " - " + _doc_name, pView);
+    QRect _default_rect{QPoint(0,0), QSize(1000,700) * _scr_dpi_ratio};
+    QRect _saved_rect = reg_user.value("repPosition", _default_rect).toRect();
+    if ( _scr_rect.width() < _saved_rect.width() )
+        _saved_rect.setWidth(_scr_rect.width() - 100 * _scr_dpi_ratio);
+
+    if ( _scr_rect.height() < _saved_rect.height() )
+        _saved_rect.setHeight(_scr_rect.height() - 100 * _scr_dpi_ratio);
+
+    QRect _window_rect{QPoint(0,0), _saved_rect.size()};
+    _window_rect.moveCenter(_scr_rect.center());
+
+    CPresenterWindow * reporterWindow = new CPresenterWindow(_window_rect, tr("Presenter View") + " - " + _doc_name, pView);
     m_winsReporter[pView->GetCefView()->GetId()] = reporterWindow;
 
 //    QTimer::singleShot(5000, [=]{
@@ -1382,7 +1382,7 @@ namespace Drop {
     size_t drop_handle;
     auto validate_drop(size_t handle, const QPoint& pt) -> void {
         CMainWindow * main_window = CAscApplicationManagerWrapper::mainWindow();
-        if ( main_window && main_window->isVisible() ) {
+        if ( main_window && main_window->isVisible() && !main_window->isMinimized() ) {
             drop_handle = handle;
 
             static QPoint last_cursor_pos;
@@ -1496,6 +1496,20 @@ void CAscApplicationManagerWrapper::sendCommandTo(CCefView * target, const wstri
 
         target->Apply(pEvent);
     } else AscAppManager::getInstance().SetEventToAllMainWindows(pEvent);
+}
+
+void CAscApplicationManagerWrapper::sendCommandToAllEditors(const std::wstring& cmd, const std::wstring& args)
+{
+    APP_CAST(_app);
+
+    CCefView * target;
+    for ( auto i : _app.GetViewsId() ) {
+        target = _app.GetViewById(i);
+
+        if ( target->GetType() == cvwtEditor ) {
+            sendCommandTo(target, cmd, args);
+        }
+    }
 }
 
 void CAscApplicationManagerWrapper::sendEvent(int type, void * data)
@@ -1706,8 +1720,10 @@ void CAscApplicationManagerWrapper::applyTheme(const wstring& theme, bool force)
         EditorJSVariables::applyVariable("theme", {
                                             {"type", _app.m_themes->current().stype()},
                                             {"id", QString::fromStdWString(_app.m_themes->current().id())}
-#ifndef Q_OS_WIN
+#ifndef Q_OS_LINUX
                                             ,{"system", _app.m_themes->isSystemSchemeDark() ? "dark" : "light"}
+#else
+                                            ,{"system", "disabled"}
 #endif
                                          });
 
@@ -2009,98 +2025,3 @@ void CAscApplicationManagerWrapper::addStylesheets(CScalingFactor f, const std::
     } else m_mapStyles[f].push_back(path);
 
 }
-
-#ifdef _UPDMODULE
-void CAscApplicationManagerWrapper::onCheckFinished(bool error, bool updateExist, const QString &version, const QString &changelog)
-{
-    Q_UNUSED(changelog);
-    if (!error && updateExist) {
-        AscAppManager::sendCommandTo(0, "updates:checking", QString("{\"version\":\"%1\"}").arg(version));
-#ifdef Q_OS_WIN
-        switch (m_pUpdateManager->getUpdateMode()) {
-        case UpdateMode::SILENT:
-            m_pUpdateManager->loadUpdates();
-            break;
-        case UpdateMode::ASK:
-            m_dialogSchedule->addToSchedule("showUpdateMessage");
-            break;
-        }
-#else
-        m_dialogSchedule->addToSchedule("showUpdateMessage");
-#endif
-    } else
-    if (!error && !updateExist) {
-        AscAppManager::sendCommandTo(0, "updates:checking", "{\"version\":\"no\"}");
-    } else
-    if (error) {
-        //qDebug() << "Error while loading check file...";
-    }
-}
-
-void CAscApplicationManagerWrapper::showUpdateMessage(QWidget *parent) {
-# ifdef _WIN32
-    int result = WinDlg::showDialog(parent,
-                        tr("A new version of %1 is available!").arg(QString(WINDOW_NAME)),
-                        tr("%1 %2 is now available (you have %3). "
-                           "Would you like to download it now?").arg(QString(WINDOW_NAME),
-                                                                    m_pUpdateManager->getVersion(),
-                                                                    QString(VER_FILEVERSION_STR)),
-                        WinDlg::DlgBtns::mbSkipRemindDownload);
-
-    switch (result) {
-    case WinDlg::DLG_RESULT_DOWNLOAD:
-        m_pUpdateManager->loadUpdates();
-        break;
-    case WinDlg::DLG_RESULT_SKIP: {
-        m_pUpdateManager->skipVersion();
-        AscAppManager::sendCommandTo(0, "updates:checking", "{\"version\":\"no\"}");
-        break;
-    }
-    default:
-        break;
-    }
-# else
-    CMessage mbox(mainWindow()->handle(), CMessageOpts::moButtons::mbYesDefSkipNo);
-    switch (mbox.info(tr("Do you want to install a new version %1 of the program?").arg(version))) {
-    case MODAL_RESULT_CUSTOM + 0:
-        QDesktopServices::openUrl(QUrl(DOWNLOAD_PAGE, QUrl::TolerantMode));
-        break;
-    case MODAL_RESULT_CUSTOM + 1: {
-        m_pUpdateManager->skipVersion();
-        AscAppManager::sendCommandTo(0, "updates:checking", "{\"version\":\"no\"}");
-        break;
-    }
-    default:
-        break;
-    }
-# endif
-}
-
-#ifdef Q_OS_WIN
-void CAscApplicationManagerWrapper::showStartInstallMessage(QWidget *parent)
-{
-    AscAppManager::sendCommandTo(0, "updates:download", "{\"progress\":\"done\"}");
-    int result = WinDlg::showDialog(parent,
-                                    tr("A new version of %1 is available!").arg(QString(WINDOW_NAME)),
-                                    tr("%1 %2 is now downloaded (you have %3). "
-                                       "Would you like to install it now?").arg(QString(WINDOW_NAME),
-                                                                                m_pUpdateManager->getVersion(),
-                                                                                QString(VER_FILEVERSION_STR)),
-                                    WinDlg::DlgBtns::mbSkipRemindSaveandinstall);
-    switch (result) {
-    case WinDlg::DLG_RESULT_INSTALL: {
-        m_pUpdateManager->scheduleRestartForUpdate();
-        closeAppWindows();
-        break;
-    }
-    case WinDlg::DLG_RESULT_SKIP: {
-        m_pUpdateManager->skipVersion();
-        AscAppManager::sendCommandTo(0, "updates:checking", "{\"version\":\"no\"}");
-        break;
-    }
-    default:
-        break;
-    }
-}
-#endif
-#endif

@@ -56,6 +56,7 @@ l10n.hi = {
     actActivate: 'सक्रिय करें',
     actAbout: 'इसके बारे में',
     actSettings: 'सेटिंग',
+    actTemplates: 'टेम्पलेट्स',
     licKeyHolder: 'सक्रियण कुंजी डालें',
     btnActivate: 'सक्रिय करें',
     licGetLicense: 'अभी लाइसेंस प्राप्त करें',

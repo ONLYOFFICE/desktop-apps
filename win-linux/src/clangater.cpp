@@ -114,7 +114,7 @@ private:
     std::list<QString> m_dirs;
 
     QMap<QString, QString> m_langs{
-        {"en-EN", "English"},
+        {"en-US", "English"},
         {"ru-RU", "Русский"},
         {"de-DE", "Deutsch"},
         {"fr-FR", "Français"},
@@ -125,8 +125,8 @@ private:
         {"pt-BR", "Português Brasileiro"}
         ,{"pt-PT", "Português (Portugal)"}
         ,{"pl-PL", "Polski"}
-        ,{"zh-CN", "中文"}
-//        ,{"zh-HK", "Chinese (Traditional)"}
+        ,{"zh-CN", "简体中文"}
+        ,{"zh-HK", "繁體中文"}
         ,{"ca-ES", "Catalan"}
         ,{"da-DK", "Dansk"}
         ,{"el-GR", "Ελληνικά"}
@@ -138,9 +138,9 @@ private:
         ,{"hu-HU", "Magyar"}
         ,{"hy-AM", "Հայերեն"}
         ,{"id-ID", "Indonesian"}
-        ,{"no-NO", "Norsk"}
+        ,{"no", "Norsk"}
         ,{"ro-RO", "Romanian"}
-        ,{"sl-SL", "Slovene"}
+        ,{"sl-SI", "Slovene"}
         ,{"sv-SE", "Svenska"}
         ,{"tr-TR", "Türkçe"}
         ,{"ja-JP", "日本語"}
@@ -154,6 +154,7 @@ private:
         ,{"uk-UA", "Украї́нська мо́ва"}
         ,{"lo-LA", "ພາສາລາວ"}
         ,{"gl-ES", "Galego"}
+        ,{"si-LK", "සිංහල"}
     };
 };
 
@@ -270,7 +271,7 @@ void CLangater::refreshLangs(const QMap<QString,QString>& map)
 
 QString CLangater::getCurrentLangCode()
 {
-    return getInstance()->m_lang;
+    return getInstance()->m_lang.isEmpty() ? "en" : getInstance()->m_lang;
 }
 
 QString CLangater::getLangName(const QString& code)

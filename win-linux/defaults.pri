@@ -47,7 +47,8 @@ TRANSLATIONS = ./langs/en.ts \
                 ./langs/uk.ts \
                 ./langs/vi.ts \
                 ./langs/be.ts \
-                ./langs/zh_HK.ts
+                ./langs/zh_HK.ts \
+                ./langs/si.ts
 
 
 CORE_ROOT_DIR = $$PWD/../../core
@@ -153,11 +154,6 @@ SOURCES += \
 #    src/ctabstyle.cpp
 #    src/components/casclabel.cpp
 
-updmodule:!build_xp {
-    HEADERS += $$PWD/src/cupdatemanager.h
-    SOURCES += $$PWD/src/cupdatemanager.cpp
-}
-
 RESOURCES += $$PWD/resources.qrc
 DEFINES += COPYRIGHT_YEAR=$${CURRENT_YEAR}
 
@@ -185,13 +181,7 @@ CMD_IN_HELP_URL = $$join(URL_WEBAPPS_HELP,,\\\",\\\")
 
 PLATFORM_BUILD=$$CORE_BUILDS_PLATFORM_PREFIX
 
-# cef
-core_windows {
-    PLATFORM_BUILD_FULL = $$PLATFORM_BUILD
-    build_xp:PLATFORM_BUILD_FULL=$$join(PLATFORM_BUILD_FULL, PLATFORM_BUILD_FULL, "", "_xp")
-    LIBS += -L$$CORE_3DPARTY_PATH/cef/$$PLATFORM_BUILD_FULL/build -llibcef
-}
-core_linux:LIBS += -L$$CORE_3DPARTY_PATH/cef/$$PLATFORM_BUILD/build -lcef
+core_linux:LIBS += -Wl,-unresolved-symbols=ignore-in-shared-libs
 
 ADD_DEPENDENCY(PdfFile, DjVuFile, XpsFile, HtmlRenderer, UnicodeConverter, hunspell, ooxmlsignature, kernel, kernel_network, graphics, videoplayer, ascdocumentscore, qtascdocumentscore)
 
@@ -211,6 +201,7 @@ core_linux {
                 $$PWD/src/platform_linux/xdgdesktopportal.h \
                 $$PWD/src/platform_linux/gtkfilechooser.h \
                 $$PWD/src/platform_linux/gtkprintdialog.h \
+                $$PWD/src/platform_linux/gtkmessage.h \
                 $$PWD/src/platform_linux/gtkutils.h \
                 $$PWD/src/platform_linux/xcbutils.h
 
@@ -224,12 +215,19 @@ core_linux {
                 $$PWD/src/platform_linux/xdgdesktopportal.cpp \
                 $$PWD/src/platform_linux/gtkfilechooser.cpp \
                 $$PWD/src/platform_linux/gtkprintdialog.cpp \
+                $$PWD/src/platform_linux/gtkmessage.cpp \
                 $$PWD/src/platform_linux/gtkutils.cpp \
                 $$PWD/src/platform_linux/xcbutils.cpp
 
     CONFIG += link_pkgconfig
-    PKGCONFIG += glib-2.0 gtk+-3.0 atk dbus-1 gtk+-unix-print-3.0 xcb
+    PKGCONFIG += glib-2.0 gtk+-3.0 atk gtk+-unix-print-3.0 xcb
     LIBS += -lX11 -lX11-xcb
+
+    cef_version_107 {
+        LIBS += $$PWD/../../build_tools/tools/linux/sysroot/ubuntu14/libdbus-1.so.3
+    } else {
+        PKGCONFIG += dbus-1
+    }
 
     LIBS += $$CORE_3DPARTY_PATH/icu/$$PLATFORM_BUILD/build/libicuuc.so.58
     LIBS += $$CORE_3DPARTY_PATH/icu/$$PLATFORM_BUILD/build/libicudata.so.58
@@ -247,16 +245,25 @@ core_windows {
                $$PWD/src/windows/platform_win/caption.h \
                $$PWD/src/platform_win/singleapplication.h \
                $$PWD/src/platform_win/filechooser.h \
+               $$PWD/src/platform_win/message.h \
                $$PWD/src/platform_win/resource.h
 
     SOURCES += $$PWD/src/windows/platform_win/cwindowplatform.cpp \
                $$PWD/src/windows/platform_win/csnap.cpp \
                $$PWD/src/platform_win/singleapplication.cpp \
-               $$PWD/src/platform_win/filechooser.cpp
+               $$PWD/src/platform_win/filechooser.cpp \
+               $$PWD/src/platform_win/message.cpp
 
     updmodule:!build_xp {
-        HEADERS += $$PWD/src/platform_win/updatedialog.h
-        SOURCES += $$PWD/src/platform_win/updatedialog.cpp
+        HEADERS += $$PWD/src/cupdatemanager.h
+        SOURCES += $$PWD/src/cupdatemanager.cpp
+
+        INCLUDEPATH += $$PWD/extras/update-daemon/src/classes
+        HEADERS += $$PWD/src/platform_win/updatedialog.h \
+                   $$PWD/extras/update-daemon/src/classes/csocket.h
+
+        SOURCES += $$PWD/src/platform_win/updatedialog.cpp \
+                   $$PWD/extras/update-daemon/src/classes/csocket.cpp
     }
 
     LIBS += -lwininet \

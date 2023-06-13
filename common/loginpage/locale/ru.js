@@ -56,6 +56,7 @@ l10n.ru = {
     actActivate: 'Активировать',
     actAbout: 'О программе',
     actSettings: 'Настройки',
+    actTemplates: 'Шаблоны',
     licKeyHolder: 'введите ключ активации',
     btnActivate: 'Активировать',
     licGetLicense: 'Получить ключ активации',
@@ -104,4 +105,7 @@ l10n.ru = {
     updateDownloadFinished: 'Загрузка завершена. Нажмите, чтобы установить',
     updateDownloadCanceled: 'Загрузка отменена',
     updateDownloadProgress: 'Загрузка $1%. Нажмите, чтобы остановить',
+    settOptDescDisabled: "Автоматическая проверка обновлений выключена",
+    settOptDescAUpdateSilent: "Запрос подтверждения только перед установкой обновления",
+    settOptDescAUpdateAsk: "Будет запрос подтверждения перед каждым шагом обновления",
 }

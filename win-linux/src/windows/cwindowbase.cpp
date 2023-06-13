@@ -166,7 +166,7 @@ QWidget* CWindowBase::createTopPanel(QWidget *parent)
     _boxTitleBtns->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
 
     QHBoxLayout *layoutBtns = new QHBoxLayout(_boxTitleBtns);
-    layoutBtns->setContentsMargins(0, 0, int(1*m_dpiRatio), 0);
+    layoutBtns->setContentsMargins(0, 0, 0, 0);
     layoutBtns->setSpacing(int(1*m_dpiRatio));
     layoutBtns->addStretch();
     _boxTitleBtns->setLayout(layoutBtns);
@@ -195,11 +195,11 @@ void CWindowBase::saveWindowState()
 {
     if (!windowState().testFlag(Qt::WindowFullScreen)) {
         GET_REGISTRY_USER(reg_user)
+        reg_user.setValue("position", normalGeometry());
         if (windowState().testFlag(Qt::WindowMaximized)) {
             reg_user.setValue("maximized", true);
         } else {
             reg_user.remove("maximized");
-            reg_user.setValue("position", normalGeometry());
         }
     }
 }
@@ -244,7 +244,7 @@ bool CWindowBase::event(QEvent *event)
 void CWindowBase::setScreenScalingFactor(double factor)
 {
     setMinimumSize(0,0);
-    if (!isMaximized()) {
+    if (!isMaximized() && !QGuiApplication::queryKeyboardModifiers().testFlag(Qt::MetaModifier)) {
         double change_factor = factor / m_dpiRatio;
         QRect _src_rect = geometry();
         double dest_width_change = _src_rect.width() * (1 - change_factor);

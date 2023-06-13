@@ -71,7 +71,7 @@ QString CAscTabData::title(bool orig) const
     else {
         QString out{_title};
         if ( _has_changes )
-            out.append("*");
+            out.prepend("*");
 
         if ( _is_readonly ) {
             out.append(_str_readonly);

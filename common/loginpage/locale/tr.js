@@ -56,6 +56,7 @@ l10n.tr = {
     actActivate: 'Aktive et',
     actAbout: 'Hakkında',
     actSettings: 'Ayarlar',
+    actTemplates: 'Şablonlar',
     licKeyHolder: 'girdi etkinleştirme kodu',
     btnActivate: 'Aktive et',
     licGetLicense: 'Hemen lisans al',
