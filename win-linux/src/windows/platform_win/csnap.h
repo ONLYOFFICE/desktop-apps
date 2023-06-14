@@ -5,6 +5,7 @@
 #include <QPushButton>
 #include <QObject>
 #include <QTimer>
+#include <QMap>
 #include <windows.h>
 
 
@@ -19,6 +20,9 @@ private:
     void show();
     virtual bool eventFilter(QObject*, QEvent*) final;
     static LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
+    static void CALLBACK snapPopupEventProc(HWINEVENTHOOK hook, DWORD event, HWND hwnd, LONG, LONG, DWORD, DWORD);
+    static QMap<HWINEVENTHOOK, HWND> m_hookMap;
+    HWINEVENTHOOK m_snapPopupEventHook;
     QPushButton *m_pBtn;
     QWidget   *m_pTopLevelWidget;
     QTimer    *m_pTimer;
