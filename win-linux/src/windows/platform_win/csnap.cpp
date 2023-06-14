@@ -110,9 +110,12 @@ LRESULT CWin11Snap::WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
         }
         break;
 
+    case WM_SETFOCUS:
+        window->m_allowedChangeSize = false;
+        break;
+
     case WM_NCMOUSELEAVE: {
         SetLayeredWindowAttributes(hWnd, 0, 0x00, LWA_ALPHA);
-        window->m_allowedChangeSize = true;
         break;
     }
 
@@ -132,6 +135,8 @@ LRESULT CWin11Snap::WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
     }
 
     case WM_NCHITTEST: {
+        if (!window->m_allowedChangeSize)
+            window->m_allowedChangeSize = true;
         return HTMAXBUTTON;
     }
 
