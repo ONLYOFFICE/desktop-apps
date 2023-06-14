@@ -12,11 +12,12 @@
 
 
 CWin11Snap::CWin11Snap(QPushButton *btn) :
+    QObject(btn),
     m_pBtn(btn),
     m_pTopLevelWidget(nullptr),
     m_allowedChangeSize(false)
 {
-    m_hInstance = GetModuleHandle(nullptr);
+    HINSTANCE m_hInstance = GetModuleHandle(nullptr);
     WNDCLASSEX wcx{sizeof(WNDCLASSEX)};
     wcx.style = CS_HREDRAW | CS_VREDRAW;
     wcx.hInstance = m_hInstance;
@@ -33,7 +34,7 @@ CWin11Snap::CWin11Snap(QPushButton *btn) :
     m_hWnd = CreateWindowEx(
                 WS_EX_TOOLWINDOW | WS_EX_LAYERED,
                 WINDOW_CLASS_NAME,
-                L"",
+                L"CWin11SnapWindow",
                 WS_MAXIMIZEBOX | WS_THICKFRAME,
                 pos.x(), pos.y(), size.width(), size.height(),
                 nullptr,
@@ -46,10 +47,6 @@ CWin11Snap::CWin11Snap(QPushButton *btn) :
     m_pTopLevelWidget = m_pBtn->nativeParentWidget();
     m_pBtn->installEventFilter(this);
     m_pBtn->setAttribute(Qt::WA_Hover);
-    connect(m_pBtn, &QPushButton::destroyed, this, [=](){
-        DestroyWindow(m_hWnd);
-        this->deleteLater();
-    });
     m_pTimer = new QTimer(this);
     m_pTimer->setSingleShot(true);
     m_pTimer->setInterval(DELAY);
@@ -58,7 +55,7 @@ CWin11Snap::CWin11Snap(QPushButton *btn) :
 
 CWin11Snap::~CWin11Snap()
 {
-
+    DestroyWindow(m_hWnd);
 }
 
 void CWin11Snap::show()
@@ -109,8 +106,8 @@ LRESULT CWin11Snap::WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
                                                        int(rect.bottom - rect.top));
             }
             ShowWindow(hWnd, SW_HIDE);
+            window->m_allowedChangeSize = false;
         }
-        window->m_allowedChangeSize = false;
         break;
 
     case WM_NCMOUSELEAVE: {
@@ -120,7 +117,7 @@ LRESULT CWin11Snap::WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
     }
 
     case WM_NCLBUTTONDOWN: {
-        emit window->m_pBtn->click();
+        window->m_pBtn->click();
         SetLayeredWindowAttributes(hWnd, 0, 0x00, LWA_ALPHA);
         ShowWindow(hWnd, SW_HIDE);
         return TRUE;

@@ -23,7 +23,6 @@ private:
     QWidget   *m_pTopLevelWidget;
     QTimer    *m_pTimer;
     HWND      m_hWnd;
-    HINSTANCE m_hInstance;
     bool      m_allowedChangeSize;
 };
 
