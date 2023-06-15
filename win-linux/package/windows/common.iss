@@ -26,6 +26,10 @@
 #endif
 #define sAppVerShort                Copy(sAppVersion, 0, 3)
 
+#ifdef sPackageEdition
+  #define sPackageName sPackageName + "-" + sPackageEdition
+#endif
+
 #ifndef sOutputFileName
   #define sOutputFileName           sPackageName + "-" + sAppVersion + "-" + sWinArchFull
 #endif
@@ -71,7 +75,6 @@ AlwaysShowDirOnReadyPage  = yes
 UninstallDisplayIcon      = {app}\app.ico
 UninstallDisplayName      = {#sAppName} {#sAppVerShort} ({#sWinArch})
 OutputDir                 =.\
-Compression               =lzma
 PrivilegesRequired        =admin
 AppMutex                  ={code:getAppMutex}
 ChangesEnvironment        =yes
@@ -80,8 +83,6 @@ SetupMutex                =ASC
 #if str(_ARCH) == "64"
 ArchitecturesAllowed              = x64
 ArchitecturesInstallIn64BitMode   = x64
-#else
-ArchitecturesAllowed              = x86
 #endif
 
 #ifndef _WIN_XP
@@ -99,6 +100,10 @@ SignTool                  =byparam $p
 SetupIconFile                     = {#sBrandingFolder}\win-linux\extras\projicons\res\desktopeditors.ico
 WizardImageFile                   = {#sBrandingFolder}\win-linux\package\windows\data\dialogpicture*.bmp
 WizardSmallImageFile              = {#sBrandingFolder}\win-linux\package\windows\data\dialogicon*.bmp
+
+SolidCompression=yes
+Compression=lzma2/ultra64
+LZMAUseSeparateProcess=yes
 
 [Languages]
 #ifdef _ONLYOFFICE
@@ -969,7 +974,11 @@ Source: {#sBrandingFolder}\win-linux\package\windows\data\VisualElementsManifest
 Source: {#sBrandingFolder}\win-linux\package\windows\data\visual_elements_icon_150x150.png;  DestDir: {app}\browser;   MinVersion: 6.3;
 Source: {#sBrandingFolder}\win-linux\package\windows\data\visual_elements_icon_71x71.png;    DestDir: {app}\browser;   MinVersion: 6.3;
 
+#if defined(_WIN_XP) + defined(EMBED_HELP)
 Source: {#DEPLOY_PATH}\*;                               DestDir: {app}; Flags: recursesubdirs;
+#else
+Source: {#DEPLOY_PATH}\*;                               DestDir: {app}; Excludes: "editors\web-apps\apps\*\main\resources\help"; Flags: recursesubdirs;
+#endif
 Source: {#DEPLOY_PATH}\*.exe;                           DestDir: {app}; Flags: signonce;
 Source: {#DEPLOY_PATH}\ascdocumentscore.dll;            DestDir: {app}; Flags: signonce;
 Source: {#DEPLOY_PATH}\hunspell.dll;                    DestDir: {app}; Flags: signonce;

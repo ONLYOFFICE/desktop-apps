@@ -583,23 +583,23 @@
 <context>
     <name>CUpdateManager</name>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="327"/>
+        <location filename="../src/cupdatemanager.cpp" line="330"/>
         <source>This folder configuration does not allow for updates! The folder name should be: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="638"/>
-        <location filename="../src/cupdatemanager.cpp" line="663"/>
+        <location filename="../src/cupdatemanager.cpp" line="642"/>
+        <location filename="../src/cupdatemanager.cpp" line="667"/>
         <source>A new version of %1 is available!</source>
         <translation type="unfinished">%1 හි නව අනුවාදයක් තිබේ!</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="639"/>
+        <location filename="../src/cupdatemanager.cpp" line="643"/>
         <source>%1 %2 is now available (you have %3). Would you like to download it now?</source>
         <translation type="unfinished">%1 %2 දැන් තිබේ (%3 ඔබ සතුයි). දැන් එය බාගැනීමට කැමතිද?</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="664"/>
+        <location filename="../src/cupdatemanager.cpp" line="668"/>
         <source>%1 %2 is now downloaded (you have %3). Would you like to install it now?</source>
         <translation type="unfinished">%1 %2 දැන් බාගත වී ඇත (%3 ඔබ සතුයි). දැන් එය ස්ථාපනය කිරීමට කැමතිද?</translation>
     </message>
@@ -647,72 +647,72 @@
         <translation>කියවීමට පමණි</translation>
     </message>
     <message>
-        <location filename="../src/platform_win/updatedialog.cpp" line="43"/>
+        <location filename="../src/platform_win/updatedialog.cpp" line="44"/>
         <source>Skip this version</source>
         <translation>මෙම අනුවාදය මඟහරින්න</translation>
     </message>
     <message>
-        <location filename="../src/platform_win/updatedialog.cpp" line="44"/>
+        <location filename="../src/platform_win/updatedialog.cpp" line="45"/>
         <source>Remind me later</source>
         <translation>පසුව මතක් කරන්න</translation>
     </message>
     <message>
-        <location filename="../src/platform_win/updatedialog.cpp" line="45"/>
+        <location filename="../src/platform_win/updatedialog.cpp" line="46"/>
         <source>Install update</source>
         <translation>යාවත්කාලය ස්ථාපනය</translation>
     </message>
     <message>
-        <location filename="../src/platform_win/updatedialog.cpp" line="46"/>
+        <location filename="../src/platform_win/updatedialog.cpp" line="47"/>
         <source>Install on Next Start</source>
         <translation>ඊළඟ ආරම්භයේදී ස්ථාපනය</translation>
     </message>
     <message>
-        <location filename="../src/platform_win/updatedialog.cpp" line="47"/>
+        <location filename="../src/platform_win/updatedialog.cpp" line="48"/>
         <source>Save and Restart Now</source>
         <translation>සුරකින්න හා යළි අරඹන්න</translation>
     </message>
     <message>
-        <location filename="../src/platform_win/updatedialog.cpp" line="48"/>
+        <location filename="../src/platform_win/updatedialog.cpp" line="49"/>
         <source>Save and Install Now</source>
         <translation>ස්ථාපනය</translation>
     </message>
     <message>
-        <location filename="../src/platform_win/updatedialog.cpp" line="49"/>
+        <location filename="../src/platform_win/updatedialog.cpp" line="50"/>
         <source>Download update</source>
         <translation>යාවත්කාලය බාගන්න</translation>
     </message>
     <message>
-        <location filename="../src/platform_win/updatedialog.cpp" line="89"/>
+        <location filename="../src/platform_win/updatedialog.cpp" line="77"/>
         <source>Software Update</source>
         <translation>මෘදුකාංග යාවත්කාලය</translation>
     </message>
     <message>
-        <location filename="../src/platform_win/updatedialog.cpp" line="92"/>
+        <location filename="../src/platform_win/updatedialog.cpp" line="80"/>
         <source>Release notes</source>
         <translation>නිකුතු සටහන</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="340"/>
+        <location filename="../src/cupdatemanager.cpp" line="343"/>
         <source>An error occurred while check updates: Update Service not found!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="443"/>
+        <location filename="../src/cupdatemanager.cpp" line="446"/>
         <source>An error occurred while loading updates: Update Service not found!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="483"/>
+        <location filename="../src/cupdatemanager.cpp" line="486"/>
         <source>An error occurred while unzip updates: Update Service not found!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="494"/>
+        <location filename="../src/cupdatemanager.cpp" line="497"/>
         <source>An error occurred while start install updates!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="498"/>
+        <location filename="../src/cupdatemanager.cpp" line="501"/>
         <source>An error occurred while start replacing files: Update Service not found!</source>
         <translation type="unfinished"></translation>
     </message>
@@ -732,6 +732,7 @@
         <translation type="unfinished">නැහැ</translation>
     </message>
     <message>
+        <location filename="../src/components/cmessage.cpp" line="199"/>
         <location filename="../src/defines.h" line="131"/>
         <source>OK</source>
         <translation type="unfinished">හරි</translation>
@@ -761,13 +762,21 @@
         <source>An error occurred while opening the portal:&lt;br&gt;%1</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../src/main.cpp" line="64"/>
+        <source>App can&apos;t working correctly under admin rights.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;OK</source>
+        <translation type="obsolete">&amp;හරි</translation>
+    </message>
 </context>
 <context>
     <name>QtMsg</name>
     <message>
-        <location filename="../src/components/cmessage.cpp" line="199"/>
         <source>&amp;OK</source>
-        <translation type="unfinished">&amp;හරි</translation>
+        <translation type="obsolete">&amp;හරි</translation>
     </message>
 </context>
 </TS>

@@ -198,7 +198,9 @@ public:
                                                                             object:nil
                                                                           userInfo:@{
                                                                                      @"viewId"      : @(pData->get_Id()),
-                                                                                     @"countPages"  : @(pData->get_PagesCount())
+                                                                                     @"countPages"  : @(pData->get_PagesCount()),
+                                                                                     @"currentPage" : @(pData->get_CurrentPage()),
+                                                                                     @"options"     : [NSString stringWithstdwstring: pData->get_Options()]
                                                                                      }];
                         break;
                     }

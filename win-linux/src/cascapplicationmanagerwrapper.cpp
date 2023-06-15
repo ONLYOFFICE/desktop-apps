@@ -1337,7 +1337,7 @@ namespace Drop {
     size_t drop_handle;
     auto validate_drop(size_t handle, const QPoint& pt) -> void {
         CMainWindow * main_window = CAscApplicationManagerWrapper::mainWindow();
-        if ( main_window && main_window->isVisible() ) {
+        if ( main_window && main_window->isVisible() && !main_window->isMinimized() ) {
             drop_handle = handle;
 
             static QPoint last_cursor_pos;
@@ -1684,8 +1684,10 @@ void CAscApplicationManagerWrapper::applyTheme(const wstring& theme, bool force)
         EditorJSVariables::applyVariable("theme", {
                                             {"type", _app.m_themes->current().stype()},
                                             {"id", QString::fromStdWString(_app.m_themes->current().id())}
-#ifndef Q_OS_WIN
+#ifndef Q_OS_LINUX
 //                                            ,{"system", _app.m_themes->isSystemSchemeDark() ? "dark" : "light"}
+                                            ,{"system", "disabled"}
+#else
                                             ,{"system", "disabled"}
 #endif
                                          });

@@ -271,7 +271,7 @@ void CLangater::refreshLangs(const QMap<QString,QString>& map)
 
 QString CLangater::getCurrentLangCode()
 {
-    return getInstance()->m_lang;
+    return getInstance()->m_lang.isEmpty() ? "en" : getInstance()->m_lang;
 }
 
 QString CLangater::getLangName(const QString& code)

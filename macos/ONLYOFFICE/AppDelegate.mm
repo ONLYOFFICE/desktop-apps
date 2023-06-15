@@ -322,14 +322,16 @@
     NSCefView * cefView = [controller cefViewWithTab:tab];
     
     if (cefView) {
-        NSEditorApi::CAscEditorExecuteCommand * pData = new NSEditorApi::CAscEditorExecuteCommand();
-        pData->put_Command(L"saveAs");
-        
-        NSEditorApi::CAscMenuEvent * pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EDITOR_EXECUTE_COMMAND);
+        NSEditorApi::CAscExecCommandJS * pData = new NSEditorApi::CAscExecCommandJS;
+        pData->put_Command(L"file:saveas");
+        pData->put_FrameName(L"frameEditor");
+
+        NSEditorApi::CAscMenuEvent * pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND_JS);
         pEvent->m_pData = pData;
         
         [cefView apply:pEvent];
     }
+
 }
 
 - (IBAction)onMenuPrint:(NSMenuItem *)sender {
@@ -339,12 +341,13 @@
     NSCefView * cefView = [controller cefViewWithTab:tab];
     
     if (cefView) {
-        NSEditorApi::CAscEditorExecuteCommand * pData = new NSEditorApi::CAscEditorExecuteCommand();
-        pData->put_Command(L"print");
-        
-        NSEditorApi::CAscMenuEvent * pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EDITOR_EXECUTE_COMMAND);
-        pEvent->m_pData = pData;
-        
+        NSEditorApi::CAscExecCommandJS * pCommand = new NSEditorApi::CAscExecCommandJS;
+        pCommand->put_FrameName(L"frameEditor");
+        pCommand->put_Command(L"file:print");
+
+        NSEditorApi::CAscMenuEvent * pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND_JS);
+        pEvent->m_pData = pCommand;
+
         [cefView apply:pEvent];
     }
 }

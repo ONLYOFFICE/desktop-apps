@@ -115,8 +115,20 @@ void CWindowPlatform::adjustGeometry()
             SetWindowPos(m_hWnd, NULL, rc.x(), rc.y(), rc.width(), rc.height() - offset.height(),
                          SWP_NOZORDER | SWP_NOOWNERZORDER | SWP_NOSENDCHANGING);
 
-            const int border = (!isTaskbarAutoHideOn() && Utils::getWinVersion() > Utils::WinVer::Win7) ? 10 : 0;
+#ifdef __OS_WIN_XP
+            setContentsMargins(0, 0, 0, 0);
+#else
+            double dpi = qApp->screenAt(geometry().center())->logicalDotsPerInch()/96;
+            const int brd = (dpi <= 1.0) ? 8 :
+                            (dpi == 1.25) ? 9 :
+                            (dpi == 1.5) ? 11 :
+                            (dpi == 1.75) ? 12 :
+                            (dpi == 2.0) ? 13 :
+                            (dpi == 2.25) ? 14 :
+                            (dpi == 2.5) ? 16 : 6 * dpi;
+            const int border = (!isTaskbarAutoHideOn() && Utils::getWinVersion() > Utils::WinVer::Win7) ? brd: 0;
             setContentsMargins(border, border, border, border);
+#endif
         });
     }
 }
@@ -133,16 +145,7 @@ void CWindowPlatform::bringToTop()
     if (IsIconic(m_hWnd)) {
         ShowWindow(m_hWnd, SW_RESTORE);
     }
-    HWND hWndFrg = ::GetForegroundWindow();
-    DWORD appID = ::GetCurrentThreadId();
-    DWORD frgID = ::GetWindowThreadProcessId(hWndFrg, NULL);
-    ::AttachThreadInput(frgID, appID, TRUE);
-    ::SetWindowPos(m_hWnd, HWND_TOPMOST, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOMOVE);
-    ::SetWindowPos(m_hWnd, HWND_NOTOPMOST, 0, 0, 0, 0, SWP_SHOWWINDOW | SWP_NOSIZE | SWP_NOMOVE);
-    ::SetForegroundWindow(m_hWnd);
-    ::SetFocus(m_hWnd);
-    ::SetActiveWindow(m_hWnd);
-    ::AttachThreadInput(frgID, appID, FALSE);
+    WindowHelper::bringToTop(m_hWnd);
 }
 
 void CWindowPlatform::show(bool maximized)
@@ -289,8 +292,16 @@ bool CWindowPlatform::nativeEvent(const QByteArray &eventType, void *message, lo
         break;
     }
 
-    case WM_WININICHANGE: {
-        adjustGeometry();
+    case WM_SETTINGCHANGE: {
+        if (msg->wParam == SPI_SETWORKAREA) {
+            static RECT oldWorkArea = {0,0,0,0};
+            RECT workArea; // Taskbar show/hide detection
+            SystemParametersInfoW(SPI_GETWORKAREA, 0, &workArea, 0);
+            if (!EqualRect(&oldWorkArea, &workArea)) {
+                oldWorkArea = workArea;
+                adjustGeometry();
+            }
+        }
         break;
     }
 

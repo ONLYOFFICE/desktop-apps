@@ -76,13 +76,18 @@
 
     utils.fn.extend(ControllerTemplates.prototype, (function() {
         let iframe;
-        const _url_templates = "https://oforms.onlyoffice.com/{0}?desktop=true";
+
+        // TODO: for tests only. uncomment static url before release
+        let test_url = localStorage.templatesdomain ? localStorage.templatesdomain : 'https://oforms.onlyoffice.com';
+        const _url_templates = `${test_url}/{0}?desktop=true`;
+        // const _url_templates = "https://oforms.onlyoffice.com/{0}?desktop=true";
 
         const _create_and_inject_iframe = () => {
-            const theme = window.app.controller.settings.currentTheme();
+            const re = /(theme-(?!type)[\w-]+)/.exec(document.body.className);
+            const theme_id = re ? re[1] : 'theme-light';
 
             const iframe = createIframe({});
-            iframe.src = `${_url_templates.replace('{0}',utils.Lang.id.substring(0,2))}&themetype=${theme.type}`;
+            iframe.src = `${_url_templates.replace('{0}',utils.Lang.id.substring(0,2))}&theme=${theme_id}`;
 
             const target = document.getElementById("frame");
             target.parentNode && target.parentNode.replaceChild(iframe, target);

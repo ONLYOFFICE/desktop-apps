@@ -587,23 +587,23 @@
 <context>
     <name>CUpdateManager</name>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="327"/>
+        <location filename="../src/cupdatemanager.cpp" line="330"/>
         <source>This folder configuration does not allow for updates! The folder name should be: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="638"/>
-        <location filename="../src/cupdatemanager.cpp" line="663"/>
+        <location filename="../src/cupdatemanager.cpp" line="642"/>
+        <location filename="../src/cupdatemanager.cpp" line="667"/>
         <source>A new version of %1 is available!</source>
         <translation type="unfinished">%1 的新版本现已发布！</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="639"/>
+        <location filename="../src/cupdatemanager.cpp" line="643"/>
         <source>%1 %2 is now available (you have %3). Would you like to download it now?</source>
         <translation type="unfinished">%1 %2 现已可用（您使用的是 %3）。您是否要立即下载新版本？</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="664"/>
+        <location filename="../src/cupdatemanager.cpp" line="668"/>
         <source>%1 %2 is now downloaded (you have %3). Would you like to install it now?</source>
         <translation type="unfinished">%1 %2 已经下载完成（您使用的是 %3）。您是否要立即安装新版本？</translation>
     </message>
@@ -651,72 +651,72 @@
         <translation>只读</translation>
     </message>
     <message>
-        <location filename="../src/platform_win/updatedialog.cpp" line="43"/>
+        <location filename="../src/platform_win/updatedialog.cpp" line="44"/>
         <source>Skip this version</source>
         <translation>跳过此版本</translation>
     </message>
     <message>
-        <location filename="../src/platform_win/updatedialog.cpp" line="44"/>
+        <location filename="../src/platform_win/updatedialog.cpp" line="45"/>
         <source>Remind me later</source>
         <translation>稍后提醒我</translation>
     </message>
     <message>
-        <location filename="../src/platform_win/updatedialog.cpp" line="45"/>
+        <location filename="../src/platform_win/updatedialog.cpp" line="46"/>
         <source>Install update</source>
         <translation>安装更新</translation>
     </message>
     <message>
-        <location filename="../src/platform_win/updatedialog.cpp" line="46"/>
+        <location filename="../src/platform_win/updatedialog.cpp" line="47"/>
         <source>Install on Next Start</source>
         <translation>在下次启动时安装</translation>
     </message>
     <message>
-        <location filename="../src/platform_win/updatedialog.cpp" line="47"/>
+        <location filename="../src/platform_win/updatedialog.cpp" line="48"/>
         <source>Save and Restart Now</source>
         <translation>保存并重新启动</translation>
     </message>
     <message>
-        <location filename="../src/platform_win/updatedialog.cpp" line="48"/>
+        <location filename="../src/platform_win/updatedialog.cpp" line="49"/>
         <source>Save and Install Now</source>
         <translation>安装</translation>
     </message>
     <message>
-        <location filename="../src/platform_win/updatedialog.cpp" line="49"/>
+        <location filename="../src/platform_win/updatedialog.cpp" line="50"/>
         <source>Download update</source>
         <translation>下载更新</translation>
     </message>
     <message>
-        <location filename="../src/platform_win/updatedialog.cpp" line="89"/>
+        <location filename="../src/platform_win/updatedialog.cpp" line="77"/>
         <source>Software Update</source>
         <translation>软件更新</translation>
     </message>
     <message>
-        <location filename="../src/platform_win/updatedialog.cpp" line="92"/>
+        <location filename="../src/platform_win/updatedialog.cpp" line="80"/>
         <source>Release notes</source>
         <translation>产品发布新闻</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="340"/>
+        <location filename="../src/cupdatemanager.cpp" line="343"/>
         <source>An error occurred while check updates: Update Service not found!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="443"/>
+        <location filename="../src/cupdatemanager.cpp" line="446"/>
         <source>An error occurred while loading updates: Update Service not found!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="483"/>
+        <location filename="../src/cupdatemanager.cpp" line="486"/>
         <source>An error occurred while unzip updates: Update Service not found!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="494"/>
+        <location filename="../src/cupdatemanager.cpp" line="497"/>
         <source>An error occurred while start install updates!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="498"/>
+        <location filename="../src/cupdatemanager.cpp" line="501"/>
         <source>An error occurred while start replacing files: Update Service not found!</source>
         <translation type="unfinished"></translation>
     </message>
@@ -736,6 +736,7 @@
         <translation type="unfinished">否</translation>
     </message>
     <message>
+        <location filename="../src/components/cmessage.cpp" line="199"/>
         <location filename="../src/defines.h" line="131"/>
         <source>OK</source>
         <translation type="unfinished">确定</translation>
@@ -765,13 +766,21 @@
         <source>An error occurred while opening the portal:&lt;br&gt;%1</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../src/main.cpp" line="64"/>
+        <source>App can&apos;t working correctly under admin rights.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;OK</source>
+        <translation type="obsolete">&amp;确定</translation>
+    </message>
 </context>
 <context>
     <name>QtMsg</name>
     <message>
-        <location filename="../src/components/cmessage.cpp" line="199"/>
         <source>&amp;OK</source>
-        <translation type="unfinished">&amp;确定</translation>
+        <translation type="obsolete">&amp;确定</translation>
     </message>
 </context>
 </TS>

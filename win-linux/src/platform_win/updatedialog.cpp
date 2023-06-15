@@ -34,6 +34,7 @@
 #include "updatedialog.h"
 #include "platform_win/resource.h"
 #include "defines.h"
+#include "utils.h"
 #include <string.h>
 #include <Windows.h>
 #include <CommCtrl.h>
@@ -49,20 +50,7 @@
 #define TEXT_DOWNLOAD    toWCharPtr(QObject::tr("Download update"))
 
 
-static void BringToTop(HWND hwnd)
-{
-    DWORD appID = ::GetCurrentThreadId();
-    DWORD frgID = ::GetWindowThreadProcessId(::GetForegroundWindow(), NULL);
-    ::AttachThreadInput(frgID, appID, TRUE);
-    ::SetWindowPos(hwnd, HWND_TOPMOST, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOMOVE);
-    ::SetWindowPos(hwnd, HWND_NOTOPMOST, 0, 0, 0, 0, SWP_SHOWWINDOW | SWP_NOSIZE | SWP_NOMOVE);
-    ::SetForegroundWindow(hwnd);
-    ::SetFocus(hwnd);
-    ::SetActiveWindow(hwnd);
-    ::AttachThreadInput(frgID, appID, FALSE);
-}
-
-HRESULT CALLBACK Pftaskdialogcallback(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam, LONG_PTR lpRefData)
+static HRESULT CALLBACK Pftaskdialogcallback(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam, LONG_PTR lpRefData)
 {
     switch (msg) {
     case TDN_HYPERLINK_CLICKED:
@@ -71,7 +59,7 @@ HRESULT CALLBACK Pftaskdialogcallback(HWND hwnd, UINT msg, WPARAM wParam, LPARAM
     case TDN_DIALOG_CONSTRUCTED: {
         QTimer::singleShot(0, [=]() {
             if (hwnd)
-                BringToTop(hwnd);
+                WindowHelper::bringToTop(hwnd);
         });
         break;
     }

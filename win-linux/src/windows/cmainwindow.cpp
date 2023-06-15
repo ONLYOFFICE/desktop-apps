@@ -208,7 +208,7 @@ bool CMainWindow::pointInTabs(const QPoint& pt)
     QRect _rc_title(m_pMainPanel->geometry());
     _rc_title.setHeight(tabWidget()->tabBar()->height());
     _rc_title.adjust(m_pButtonMain->width(), 1, -3*int(TOOLBTN_WIDTH*m_dpiRatio), 0);
-    return _rc_title.contains(m_pMainPanel->mapFromGlobal(pt));
+    return _rc_title.contains(mapFromGlobal(pt));
 }
 
 bool CMainWindow::holdView(int id) const

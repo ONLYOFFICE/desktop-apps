@@ -316,7 +316,7 @@ public:
         CTabPanel * panel = CEditorTools::createEditorPanel(opts);
         if ( panel ) {
             CAscTabData * panel_data = panel->data();
-            QRegularExpression re("^ascdesktop:\\/\\/(?:compare|merge)");
+            QRegularExpression re("^ascdesktop:\\/\\/(?:compare|merge|template)");
 
             if ( re.match(QString::fromStdWString(panel_data->url())).hasMatch() ) {
                  panel_data->setIsLocal(true);

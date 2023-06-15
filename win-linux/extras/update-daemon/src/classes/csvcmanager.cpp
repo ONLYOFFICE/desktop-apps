@@ -36,6 +36,7 @@
 #include <locale>
 #include <vector>
 #include <sstream>
+#include "version.h"
 #include "../../src/defines.h"
 #include "../../src/prop/defines_p.h"
 #ifdef _WIN32
@@ -67,7 +68,13 @@
 
 #define UPDATE_PATH      TEXT("/" REG_APP_NAME "Updates")
 #define BACKUP_PATH      TEXT("/" REG_APP_NAME "Backup")
-#define SUCCES_UNPACKED  TEXT("/.success_unpacked")
+#define APP_LAUNCH_NAME  L"/DesktopEditors.exe"
+#define APP_LAUNCH_NAME2 L"/editors.exe"
+#define APP_HELPER       L"/editors_helper.exe"
+#define DAEMON_NAME      L"/updatesvc.exe"
+#define DAEMON_NAME_OLD  L"/~updatesvc.exe"
+#define RESTART_BATCH    L"/svcrestart.bat"
+#define SUCCES_UNPACKED  L"/success_unpacked.txt"
 
 using std::vector;
 
@@ -115,6 +122,45 @@ auto isSuccessUnpacked(const tstring &successFilePath, const tstring &version)->
     }
     return false;
 }
+
+#ifdef _WIN32
+auto restartService()->void
+{
+    const wstring fileName = NS_File::appPath() + RESTART_BATCH;
+    if (NS_File::fileExists(fileName) && !NS_File::removeFile(fileName)) {
+        NS_Logger::WriteLog(L"An error occurred while deleting: " + fileName, true);
+        return;
+    }
+
+    std::list<wstring> batch = {
+        L"@chcp 65001>nul",
+        L"@echo off",
+        wstring(L"NET STOP ") + L"\"" + TEXT(VER_PRODUCTNAME_STR) + L"\"",
+        wstring(L"NET START ") + L"\"" +  TEXT(VER_PRODUCTNAME_STR) + L"\"",
+        L"del /F /Q \"%~dp0~updatesvc.exe\"",
+        L"exit"
+    };
+
+    if (!NS_File::writeToFile(fileName, batch)) {
+        NS_Logger::WriteLog(L"An error occurred while creating: " + fileName, true);
+        return;
+    }
+
+    STARTUPINFO si;
+    PROCESS_INFORMATION pi;
+    ZeroMemory(&si, sizeof(si));
+    ZeroMemory(&pi, sizeof(pi));
+    si.cb = sizeof(si);
+    if (!CreateProcess(NULL, const_cast<LPWSTR>(fileName.c_str()), NULL, NULL, FALSE,
+                          CREATE_NO_WINDOW | CREATE_UNICODE_ENVIRONMENT, NULL, NULL, &si, &pi))
+    {
+        NS_Logger::WriteLog(L"An error occurred while restarting the service!", true);
+        return;
+    }
+    CloseHandle(pi.hProcess);
+    CloseHandle(pi.hThread);
+}
+#endif
 
 CSvcManager::CSvcManager():
     m_downloadMode(Mode::CHECK_UPDATES),
@@ -310,8 +356,12 @@ void CSvcManager::unzipIfNeeded(const tstring &filePath, const tstring &newVersi
 void CSvcManager::clearTempFiles(const tstring &prefix, const tstring &except)
 {
     m_future_clear = std::async(std::launch::async, [=]() {
-        tstring _error;
-        list<tstring> filesList;
+#ifdef _WIN32
+        if (NS_File::fileExists(NS_File::appPath() + RESTART_BATCH))
+            NS_File::removeFile(NS_File::appPath() + RESTART_BATCH);
+#endif
+        list<wstring> filesList;
+        wstring _error;
         if (!NS_File::GetFilesList(NS_File::tempPath(), &filesList, _error, true)) {
             NS_Logger::WriteLog(DEFAULT_ERROR_MESSAGE + TEXT(" ") + _error);
             return;
@@ -486,6 +536,11 @@ void CSvcManager::startReplacingFiles()
     // Restart program
     if (!NS_File::runProcess(appPath + APP_LAUNCH_NAME, TEXT("")))
         NS_Logger::WriteLog(TEXT("An error occurred while restarting the program!"), true);
+
+    // Restart service
+#ifdef _WIN32
+    restartService();
+#endif
 }
 
 bool CSvcManager::sendMessage(int cmd, const tstring &param1, const tstring &param2, const tstring &param3)

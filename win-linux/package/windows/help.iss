@@ -1,18 +1,11 @@
 ﻿; -- Installer Help --
 
-#if str(_ARCH) == "64"
+#if str(ARCH) == "x64"
   #define sWinArch "x64"
-  #define sPlatform "win_64"
-#elif str(_ARCH) == "32"
+  #define sPlatformFull "win_64"
+#elif str(ARCH) == "x86"
   #define sWinArch "x86"
-  #define sPlatform "win_32"
-#endif
-#ifndef _WIN_XP
-  #define sWinArchFull sWinArch
-  #define sPlatformFull sPlatform
-#else
-  #define sWinArchFull sWinArch + "-xp"
-  #define sPlatformFull sPlatform + "-xp"
+  #define sPlatformFull "win_32"
 #endif
 
 #ifndef sBrandingFolder
@@ -21,19 +14,19 @@
 
 #include sBrandingFolder + "\win-linux\package\windows\defines.iss"
 
-#ifndef sAppVersion
-  #define sAppVersion "0.0.0.0"
+#ifndef VERSION
+  #define VERSION "0.0.0.0"
 #endif
-#define sAppVerShort Copy(sAppVersion, 0, 3)
+#define VERSION_SHORT Copy(VERSION,1,RPos('.',VERSION)-1)
 
 #ifndef sOutputFileName
-  #define sOutputFileName sPackageHelpName + "-" + sAppVersion + "-" + sWinArchFull
+  #define sOutputFileName sPackageName + "-Help-" + VERSION + "-" + ARCH
 #endif
 
 [Setup]
-AppName={#sAppHelpName}
-AppVersion={#sAppVersion}
-AppVerName={#sAppHelpName} {#sAppVerShort}
+AppName={#sAppName} Help
+AppVersion={#VERSION}
+AppVerName={#sAppName} Help {#VERSION_SHORT}
 AppCopyright={#sAppCopyright}
 ; AppMutex=
 AppPublisher={#sAppPublisher}
@@ -53,17 +46,17 @@ SetupIconFile={#sBrandingFolder}\win-linux\extras\projicons\res\desktopeditors.i
 WizardImageFile={#sBrandingFolder}\win-linux\package\windows\data\dialogpicture*.bmp
 WizardSmallImageFile={#sBrandingFolder}\win-linux\package\windows\data\dialogicon*.bmp
 
-UninstallDisplayName={#sAppHelpName} {#sAppVerShort} ({#sWinArch})
+UninstallDisplayName={#sAppName} Help {#VERSION_SHORT} ({#ARCH})
 UninstallDisplayIcon={app}\app.ico
 
-VersionInfoVersion={#sAppVersion}
+VersionInfoVersion={#VERSION}
 
 OutputDir=.\
 OutputBaseFileName={#sOutputFileName}
 
-#if str(_ARCH) == "64"
-ArchitecturesInstallIn64BitMode=x64
+#if str(ARCH) == "x64"
 ArchitecturesAllowed=x64
+ArchitecturesInstallIn64BitMode=x64
 #endif
 
 #ifdef ENABLE_SIGNING
@@ -116,7 +109,18 @@ Name: en;    MessagesFile: compiler:Default.isl;
 #endif
 
 [Files]
-Source: "{#DEPLOY_PATH}\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs
+Source: "{#DEPLOY_PATH}\editors\web-apps\apps\common\main\resources\help\*"; \
+  DestDir: "{app}\editors\web-apps\apps\common\main\resources\help"; \
+  Flags: ignoreversion recursesubdirs
+Source: "{#DEPLOY_PATH}\editors\web-apps\apps\documenteditor\main\resources\help\*"; \
+  DestDir: "{app}\editors\web-apps\apps\documenteditor\main\resources\help"; \
+  Flags: ignoreversion recursesubdirs
+Source: "{#DEPLOY_PATH}\editors\web-apps\apps\presentationeditor\main\resources\help\*"; \
+  DestDir: "{app}\editors\web-apps\apps\presentationeditor\main\resources\help"; \
+  Flags: ignoreversion recursesubdirs
+Source: "{#DEPLOY_PATH}\editors\web-apps\apps\spreadsheeteditor\main\resources\help\*"; \
+  DestDir: "{app}\editors\web-apps\apps\spreadsheeteditor\main\resources\help";  \
+  Flags: ignoreversion recursesubdirs
 
 [Code]
 var
@@ -124,10 +128,10 @@ var
 
 function GetHKLM: Integer;
 begin
-  if IsWin64 then
+  if Is64BitInstallMode then
     Result := HKLM64
   else
-    Result := HKLM32;
+    Result := HKLM;
 end;
 
 function GetInstallPath(Param: string): string;

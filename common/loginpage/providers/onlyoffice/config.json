@@ -2,7 +2,7 @@
     "provider": "onlyoffice",
     "name" : "ONLYOFFICE",
     "check" : {
-        "url":"/api/2.0/capabilities.json"
+        "url":"/api/2.0/capabilities"
     },
     "editorPage" : "regex:(\/products\/files\/doceditor.aspx)|(\/doceditor)",
     "startPage": "/Products/Files/",

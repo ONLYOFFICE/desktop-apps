@@ -567,23 +567,23 @@
 <context>
     <name>CUpdateManager</name>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="327"/>
+        <location filename="../src/cupdatemanager.cpp" line="330"/>
         <source>This folder configuration does not allow for updates! The folder name should be: </source>
         <translation>ການຕັ້ງຄ່າໂຟນເດີນີ້ບໍ່ອະນຸຍາດໃຫ້ອັບເດດ! ຊື່ໂຟນເດີຄວນຈະເປັນ: </translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="638"/>
-        <location filename="../src/cupdatemanager.cpp" line="663"/>
+        <location filename="../src/cupdatemanager.cpp" line="642"/>
+        <location filename="../src/cupdatemanager.cpp" line="667"/>
         <source>A new version of %1 is available!</source>
         <translation>ເວີຊັນໃໝ່ຂອງ %1 ມີໃຫ້ແລ້ວ!</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="639"/>
+        <location filename="../src/cupdatemanager.cpp" line="643"/>
         <source>%1 %2 is now available (you have %3). Would you like to download it now?</source>
         <translation>%1 %2 ມີໃຫ້ແລ້ວ (ທ່ານມີ %3). ທ່ານຕ້ອງການດາວໂຫຼດມັນດຽວນີ້ບໍ?</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="664"/>
+        <location filename="../src/cupdatemanager.cpp" line="668"/>
         <source>%1 %2 is now downloaded (you have %3). Would you like to install it now?</source>
         <translation>%1 %2 ຖືກດາວໂຫຼດແລ້ວ (ທ່ານມີ %3). ທ່ານຕ້ອງການຕິດຕັ້ງມັນດຽວນີ້ບໍ?</translation>
     </message>
@@ -627,72 +627,72 @@
         <translation>ອ່ານ​ຢ່າງ​ດຽວ</translation>
     </message>
     <message>
-        <location filename="../src/platform_win/updatedialog.cpp" line="43"/>
+        <location filename="../src/platform_win/updatedialog.cpp" line="44"/>
         <source>Skip this version</source>
         <translation>ຂ້າມເວີຊັ້ນນີ້</translation>
     </message>
     <message>
-        <location filename="../src/platform_win/updatedialog.cpp" line="44"/>
+        <location filename="../src/platform_win/updatedialog.cpp" line="45"/>
         <source>Remind me later</source>
         <translation>ເຕືອນຂ້ອຍໃນພາຍຫຼັງ</translation>
     </message>
     <message>
-        <location filename="../src/platform_win/updatedialog.cpp" line="45"/>
+        <location filename="../src/platform_win/updatedialog.cpp" line="46"/>
         <source>Install update</source>
         <translation>ຕິດຕັ້ງອັບເດດ</translation>
     </message>
     <message>
-        <location filename="../src/platform_win/updatedialog.cpp" line="46"/>
+        <location filename="../src/platform_win/updatedialog.cpp" line="47"/>
         <source>Install on Next Start</source>
         <translation>ຕິດຕັ້ງໃນການເປີດຄັ້ງຕໍ່ໄປ</translation>
     </message>
     <message>
-        <location filename="../src/platform_win/updatedialog.cpp" line="47"/>
+        <location filename="../src/platform_win/updatedialog.cpp" line="48"/>
         <source>Save and Restart Now</source>
         <translation>ບັນທຶກ ແລະຣີສະຕາດດຽວນີ້</translation>
     </message>
     <message>
-        <location filename="../src/platform_win/updatedialog.cpp" line="48"/>
+        <location filename="../src/platform_win/updatedialog.cpp" line="49"/>
         <source>Save and Install Now</source>
         <translation>ບັນທຶກແລະຕິດຕັ້ງດຽວນີ້</translation>
     </message>
     <message>
-        <location filename="../src/platform_win/updatedialog.cpp" line="49"/>
+        <location filename="../src/platform_win/updatedialog.cpp" line="50"/>
         <source>Download update</source>
         <translation>ດາວໂຫລດອັບເດດ</translation>
     </message>
     <message>
-        <location filename="../src/platform_win/updatedialog.cpp" line="89"/>
+        <location filename="../src/platform_win/updatedialog.cpp" line="77"/>
         <source>Software Update</source>
         <translation>ອັບເດດຊອບແວ</translation>
     </message>
     <message>
-        <location filename="../src/platform_win/updatedialog.cpp" line="92"/>
+        <location filename="../src/platform_win/updatedialog.cpp" line="80"/>
         <source>Release notes</source>
         <translation>ບັນທຶກການປັບປຸງ</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="340"/>
+        <location filename="../src/cupdatemanager.cpp" line="343"/>
         <source>An error occurred while check updates: Update Service not found!</source>
         <translation>ມີຂໍ້ຜິດພາດເກີດຂຶ້ນໃນຂະນະທີ່ກວດສອບການອັບເດດ: ບໍ່ພົບບໍລິການອັບເດດ!</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="443"/>
+        <location filename="../src/cupdatemanager.cpp" line="446"/>
         <source>An error occurred while loading updates: Update Service not found!</source>
         <translation>ເກີດຄວາມຜິດພາດໃນລະຫວ່າງການໂຫຼດອັບເດດ: ບໍ່ພົບບໍລິການອັບເດດ!</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="483"/>
+        <location filename="../src/cupdatemanager.cpp" line="486"/>
         <source>An error occurred while unzip updates: Update Service not found!</source>
         <translation>ມີຂໍ້ຜິດພາດເກີດຂຶ້ນໃນຂະນະທີ່ unzip ອັບເດດ: ບໍ່ພົບບໍລິການອັບເດດ!</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="494"/>
+        <location filename="../src/cupdatemanager.cpp" line="497"/>
         <source>An error occurred while start install updates!</source>
         <translation>ເກີດຄວາມຜິດພາດຂຶ້ນໃນຂະນະທີ່ ເລີ່ມຕິດຕັ້ງ ອັບເດດ!</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="498"/>
+        <location filename="../src/cupdatemanager.cpp" line="501"/>
         <source>An error occurred while start replacing files: Update Service not found!</source>
         <translation>ເກີດຄວາມຜິດພາດຂຶ້ນໃນຂະນະທີ່ເລີ່ມປ່ຽນໄຟລ໌: ບໍ່ພົບບໍລິການອັບເດດ!</translation>
     </message>
@@ -712,6 +712,7 @@
         <translation>ບໍ່</translation>
     </message>
     <message>
+        <location filename="../src/components/cmessage.cpp" line="199"/>
         <location filename="../src/defines.h" line="131"/>
         <source>OK</source>
         <translation>ບໍ່</translation>
@@ -741,13 +742,21 @@
         <source>An error occurred while opening the portal:&lt;br&gt;%1</source>
         <translation>ເກີດຄວາມຜິດພາດຂຶ້ນໃນຂະນະທີ່ເປີດປະຕູ:&lt; br &gt;%1</translation>
     </message>
+    <message>
+        <location filename="../src/main.cpp" line="64"/>
+        <source>App can&apos;t working correctly under admin rights.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;OK</source>
+        <translation type="obsolete">&amp;ຕົກລົງ</translation>
+    </message>
 </context>
 <context>
     <name>QtMsg</name>
     <message>
-        <location filename="../src/components/cmessage.cpp" line="199"/>
         <source>&amp;OK</source>
-        <translation>&amp;ຕົກລົງ</translation>
+        <translation type="obsolete">&amp;ຕົກລົງ</translation>
     </message>
 </context>
 </TS>

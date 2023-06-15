@@ -134,6 +134,7 @@ typedef unsigned char BYTE;
 #define BTN_TEXT_BUY    QObject::tr("Buy Now")
 #define BTN_TEXT_ACTIVATE   QObject::tr("Activate")
 #define BTN_TEXT_CONTINUE   QObject::tr("Continue")
+#define WARNING_LAUNCH_WITH_ADMIN_RIGHTS "App can't working correctly under admin rights."
 
 enum class MsgBtns {
     mbOk = 0,

@@ -1,6 +1,6 @@
 
 TARGET  = updatesvc
-CONFIG  += c++11 console
+CONFIG  += c++11 console utf8_source
 CONFIG  -= app_bundle
 CONFIG  -= qt
 CONFIG  -= debug_and_release debug_and_release_target
