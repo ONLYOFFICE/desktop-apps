@@ -459,9 +459,6 @@
                                             {'theme-dark': utils.Lang.settOptThemeDark},
                                             {'theme-contrast-dark': utils.Lang.settOptThemeContrastDark}];
 
-                            if ( uitheme.is_system_theme_avalaible() )
-                                _themes.unshift({'theme-system': utils.Lang.settOptThemeSystem});
-
                             const nativevars = window.RendererProcessVariable;
                             if ( nativevars.theme && nativevars.theme.system == 'disabled' )
                                 _themes.shift();
