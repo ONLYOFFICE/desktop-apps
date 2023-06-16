@@ -49,6 +49,7 @@
 # define APP_HELPER       L"/editors_helper.exe"
 # define DAEMON_NAME      L"/updatesvc.exe"
 # define DAEMON_NAME_OLD  L"/~updatesvc.exe"
+# define RESTART_BATCH    L"/svcrestart.bat"
 # define ARCHIVE_EXT      TEXT(".zip")
 # define ARCHIVE_PATTERN  TEXT("*.zip")
 # define sleep(a) Sleep(a)
@@ -68,13 +69,7 @@
 
 #define UPDATE_PATH      TEXT("/" REG_APP_NAME "Updates")
 #define BACKUP_PATH      TEXT("/" REG_APP_NAME "Backup")
-#define APP_LAUNCH_NAME  L"/DesktopEditors.exe"
-#define APP_LAUNCH_NAME2 L"/editors.exe"
-#define APP_HELPER       L"/editors_helper.exe"
-#define DAEMON_NAME      L"/updatesvc.exe"
-#define DAEMON_NAME_OLD  L"/~updatesvc.exe"
-#define RESTART_BATCH    L"/svcrestart.bat"
-#define SUCCES_UNPACKED  L"/success_unpacked.txt"
+#define SUCCES_UNPACKED  TEXT("/success_unpacked.txt")
 
 using std::vector;
 
@@ -360,8 +355,8 @@ void CSvcManager::clearTempFiles(const tstring &prefix, const tstring &except)
         if (NS_File::fileExists(NS_File::appPath() + RESTART_BATCH))
             NS_File::removeFile(NS_File::appPath() + RESTART_BATCH);
 #endif
-        list<wstring> filesList;
-        wstring _error;
+        tstring _error;
+        list<tstring> filesList;
         if (!NS_File::GetFilesList(NS_File::tempPath(), &filesList, _error, true)) {
             NS_Logger::WriteLog(DEFAULT_ERROR_MESSAGE + TEXT(" ") + _error);
             return;
