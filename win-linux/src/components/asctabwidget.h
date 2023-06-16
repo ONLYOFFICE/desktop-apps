@@ -34,10 +34,9 @@
 #define ASCTABWIDGET
 
 #include <QResizeEvent>
-#include <QtWidgets/QTabBar>
 #include <QtWidgets/QPushButton>
-#include "ctabbarwrapper.h"
 #include <QStackedWidget>
+#include "ctabbar.h"
 #include "qcefview.h"
 #include "cscalingwrapper.h"
 #include "ctabpanel.h"
@@ -152,7 +151,6 @@ public:
     int  count(const std::wstring& portal, bool exclude = false);
     bool hasForPortal(const QString&);
 
-    void updateScalingFactor(double) override;
 protected:
     int insertWidget(int index, QWidget* widget);
     void closeEditor(int, bool, bool);

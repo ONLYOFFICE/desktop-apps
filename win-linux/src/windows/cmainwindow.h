@@ -147,10 +147,8 @@ public slots:
 
 private:
     QWidget * createMainPanel(QWidget *parent);
-    inline CTabBar *tabBar();
     int  trySaveDocument(int);
 
-    CTabBarWrapper*  m_pTabBarWrapper;
     CAscTabWidget *  m_pTabs;
     CSVGPushButton*  m_pButtonMain;
     QWidget*         m_pMainWidget;
