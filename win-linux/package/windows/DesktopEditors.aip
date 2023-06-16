@@ -7,7 +7,7 @@
     <ROW Property="AI_APP_FILE" Value="[#DesktopEditors.exe]"/>
     <ROW Property="AI_BITMAP_DISPLAY_MODE" Value="0"/>
     <ROW Property="AI_EXTERNALUIUNINSTALLERNAME" MultiBuildValue="DefaultBuild:aiui"/>
-    <ROW Property="AI_PRODUCTNAME_ARP" Value="[|ProductName] [|ProductVersion] "/>
+    <ROW Property="AI_PRODUCTNAME_ARP" Value="[|ProductName] [|ProductVersion]" ValueLocId="-"/>
     <ROW Property="AI_SHORTCUTSREG" Value="0|0|0|0|"/>
     <ROW Property="AI_UNINSTALLER" Value="msiexec.exe"/>
     <ROW Property="ALLUSERS" Value="1"/>
@@ -46,47 +46,46 @@
     <ROW Property="DeUpdateSvc_DescriptionName" Value="Service for update [|ProductName]"/>
     <ROW Property="DeUpdateSvc_DispalyName" Value="[|ProductName] update service"/>
     <ROW Property="DeUpdateSvc_ServiceName" Value="DeUpdateSvc"/>
-    <ROW Property="GALLERY" Value="1" Type="4"/>
+    <ROW Property="GALLERY" Value="1" Type="4" ValueLocId="-"/>
     <ROW Property="GALLERY_SHORTCUT_NAME" Value="Gallery"/>
     <ROW Property="MANUFACTURER_INSTALL_FOLDER" Value="ONLYOFFICE"/>
     <ROW Property="MEDIA_SHORTCUT_NAME" Value="Media"/>
     <ROW Property="MSIFASTINSTALL" MultiBuildValue="DefaultBuild:7"/>
     <ROW Property="Manufacturer" Value="Ascensio System SIA"/>
     <ROW Property="MsiLogging" MultiBuildValue="DefaultBuild:vp"/>
-    <ROW Property="PACKAGE_NAME" Value="PACKAGE_NAME"/>
-    <ROW Property="PLAYER" Value="1" Type="4"/>
+    <ROW Property="PLAYER" Value="1" Type="4" ValueLocId="-"/>
     <ROW Property="PRODUCT_INSTALL_FOLDER" Value="DesktopEditors"/>
     <ROW Property="ProductCode" Value="1029:{14361018-38E1-4A92-A787-78C1A1464AFD} 1031:{14361018-38E1-4A92-A787-78C1A1464AFD} 1033:{14361018-38E1-4A92-A787-78C1A1464AFD} 1036:{14361018-38E1-4A92-A787-78C1A1464AFD} 1041:{14361018-38E1-4A92-A787-78C1A1464AFD} 1046:{14361018-38E1-4A92-A787-78C1A1464AFD} 1049:{14361018-38E1-4A92-A787-78C1A1464AFD} 1060:{14361018-38E1-4A92-A787-78C1A1464AFD} 2070:{14361018-38E1-4A92-A787-78C1A1464AFD} 3082:{14361018-38E1-4A92-A787-78C1A1464AFD} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="ONLYOFFICE Desktop Editors"/>
     <ROW Property="ProductVersion" Value="0.0.0.0" Options="32"/>
-    <ROW Property="REGISTER_CSV" Value="0" Type="4"/>
-    <ROW Property="REGISTER_DJVU" Value="0" Type="4"/>
-    <ROW Property="REGISTER_DOC" Value="1" Type="4"/>
-    <ROW Property="REGISTER_DOCX" Value="1" Type="4"/>
-    <ROW Property="REGISTER_DOCXF" Value="1" Type="4"/>
-    <ROW Property="REGISTER_DOTX" Value="1" Type="4"/>
-    <ROW Property="REGISTER_EPUB" Value="0" Type="4"/>
-    <ROW Property="REGISTER_FB2" Value="0" Type="4"/>
-    <ROW Property="REGISTER_HTML" Value="0" Type="4"/>
-    <ROW Property="REGISTER_ODP" Value="1" Type="4"/>
-    <ROW Property="REGISTER_ODS" Value="1" Type="4"/>
-    <ROW Property="REGISTER_ODT" Value="1" Type="4"/>
-    <ROW Property="REGISTER_OFORM" Value="1" Type="4"/>
-    <ROW Property="REGISTER_OTP" Value="1" Type="4"/>
-    <ROW Property="REGISTER_OTS" Value="1" Type="4"/>
-    <ROW Property="REGISTER_OTT" Value="1" Type="4"/>
-    <ROW Property="REGISTER_PDF" Value="0" Type="4"/>
-    <ROW Property="REGISTER_POTX" Value="1" Type="4"/>
-    <ROW Property="REGISTER_PPT" Value="1" Type="4"/>
-    <ROW Property="REGISTER_PPTX" Value="1" Type="4"/>
-    <ROW Property="REGISTER_RTF" Value="0" Type="4"/>
-    <ROW Property="REGISTER_TXT" Value="0" Type="4"/>
-    <ROW Property="REGISTER_XLS" Value="1" Type="4"/>
-    <ROW Property="REGISTER_XLSX" Value="1" Type="4"/>
-    <ROW Property="REGISTER_XLTX" Value="1" Type="4"/>
-    <ROW Property="REGISTER_XML" Value="0" Type="4"/>
-    <ROW Property="REGISTER_XPS" Value="0" Type="4"/>
+    <ROW Property="REGISTER_CSV" Value="0" Type="4" ValueLocId="-"/>
+    <ROW Property="REGISTER_DJVU" Value="0" Type="4" ValueLocId="-"/>
+    <ROW Property="REGISTER_DOC" Value="1" Type="4" ValueLocId="-"/>
+    <ROW Property="REGISTER_DOCX" Value="1" Type="4" ValueLocId="-"/>
+    <ROW Property="REGISTER_DOCXF" Value="1" Type="4" ValueLocId="-"/>
+    <ROW Property="REGISTER_DOTX" Value="1" Type="4" ValueLocId="-"/>
+    <ROW Property="REGISTER_EPUB" Value="0" Type="4" ValueLocId="-"/>
+    <ROW Property="REGISTER_FB2" Value="0" Type="4" ValueLocId="-"/>
+    <ROW Property="REGISTER_HTML" Value="0" Type="4" ValueLocId="-"/>
+    <ROW Property="REGISTER_ODP" Value="1" Type="4" ValueLocId="-"/>
+    <ROW Property="REGISTER_ODS" Value="1" Type="4" ValueLocId="-"/>
+    <ROW Property="REGISTER_ODT" Value="1" Type="4" ValueLocId="-"/>
+    <ROW Property="REGISTER_OFORM" Value="1" Type="4" ValueLocId="-"/>
+    <ROW Property="REGISTER_OTP" Value="1" Type="4" ValueLocId="-"/>
+    <ROW Property="REGISTER_OTS" Value="1" Type="4" ValueLocId="-"/>
+    <ROW Property="REGISTER_OTT" Value="1" Type="4" ValueLocId="-"/>
+    <ROW Property="REGISTER_PDF" Value="0" Type="4" ValueLocId="-"/>
+    <ROW Property="REGISTER_POTX" Value="1" Type="4" ValueLocId="-"/>
+    <ROW Property="REGISTER_PPT" Value="1" Type="4" ValueLocId="-"/>
+    <ROW Property="REGISTER_PPTX" Value="1" Type="4" ValueLocId="-"/>
+    <ROW Property="REGISTER_RTF" Value="0" Type="4" ValueLocId="-"/>
+    <ROW Property="REGISTER_TXT" Value="0" Type="4" ValueLocId="-"/>
+    <ROW Property="REGISTER_XLS" Value="1" Type="4" ValueLocId="-"/>
+    <ROW Property="REGISTER_XLSX" Value="1" Type="4" ValueLocId="-"/>
+    <ROW Property="REGISTER_XLTX" Value="1" Type="4" ValueLocId="-"/>
+    <ROW Property="REGISTER_XML" Value="0" Type="4" ValueLocId="-"/>
+    <ROW Property="REGISTER_XPS" Value="0" Type="4" ValueLocId="-"/>
     <ROW Property="RUNAPPLICATION" Value="1" Type="4"/>
     <ROW Property="SHORTCUT_FOLDER_NAME" Value="ONLYOFFICE"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND;UPGRADE_1"/>
