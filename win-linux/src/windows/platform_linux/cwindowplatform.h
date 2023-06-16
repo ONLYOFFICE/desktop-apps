@@ -36,6 +36,11 @@
 #include "windows/cwindowbase.h"
 #include "cx11decoration.h"
 #include <memory>
+#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
+ typedef long long_ptr;
+#else
+ typedef qintptr long_ptr;
+#endif
 
 
 class CWindowPlatform : public CWindowBase, public CX11Decoration
@@ -52,7 +57,7 @@ public:
 protected:
     virtual void onMinimizeEvent() override;
     virtual bool event(QEvent *event) override;
-    virtual bool nativeEvent(const QByteArray&, void*, qintptr*) final;
+    virtual bool nativeEvent(const QByteArray&, void*, long_ptr*) final;
     virtual void setScreenScalingFactor(double) override;
 
 private:

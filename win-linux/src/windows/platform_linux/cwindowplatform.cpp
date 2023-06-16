@@ -122,7 +122,7 @@ bool CWindowPlatform::event(QEvent * event)
     return CWindowBase::event(event);
 }
 
-bool CWindowPlatform::nativeEvent(const QByteArray &ev_type, void *msg, qintptr *res)
+bool CWindowPlatform::nativeEvent(const QByteArray &ev_type, void *msg, long_ptr *res)
 {
     if (ev_type == "xcb_generic_event_t") {
         xcb_generic_event_t *ev = static_cast<xcb_generic_event_t*>(msg);

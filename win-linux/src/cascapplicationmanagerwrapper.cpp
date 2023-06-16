@@ -13,7 +13,9 @@
 #include <QScreen>
 #include <algorithm>
 #include <functional>
-
+#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
+# include <QDesktopWidget>
+#endif
 #include "cstyletweaks.h"
 #include "defines.h"
 #include "version.h"
