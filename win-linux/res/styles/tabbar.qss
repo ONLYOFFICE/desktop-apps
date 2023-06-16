@@ -1,5 +1,4 @@
 
-QTabWidget::pane {background-color: #f1f1f1; border: none; padding: 0px;}
 QLabel[class=tab-icon] {padding:0 0 2px 4px;}
 QTabBar {font-size: 11px; font-family: "Arial", "Helvetica", "Helvetica Neue", sans-serif; background-color: #f1f1f1;}
 QTabBar::tear {width: 0px;}
@@ -105,7 +104,6 @@ QTabBar QToolButton[class=tab-close][state=active]:pressed{
 #mainPanel[uitheme=theme-dark] QTabBar QToolButton::left-arrow,
 #mainPanel[uitheme=theme-dark] QTabBar QToolButton::right-arrow {background-color: #606060;}
 #mainPanel[uitheme=theme-dark] QTabBar QToolButton:pressed {background-color: #606060;}
-#mainPanel[uitheme=theme-dark] QTabWidget::pane {background-color: #404040;}
 #mainPanel[uitheme=theme-dark] QTabBar::tab {background-color: #404040; border-right-color: #505050;}
 #mainPanel[uitheme=theme-dark] QTabBar::tab:hover {background-color: #555;}
 #mainPanel[uitheme=theme-dark] QTabBar::tab:selected {background-color: #404040;}
@@ -120,7 +118,6 @@ QTabBar QToolButton[class=tab-close][state=active]:pressed{
 #mainPanel[uitheme=theme-contrast-dark] QTabBar QToolButton::left-arrow,
 #mainPanel[uitheme=theme-contrast-dark] QTabBar QToolButton::right-arrow {background-color: #f00;}
 #mainPanel[uitheme=theme-contrast-dark] QTabBar QToolButton:pressed {background-color: #f00;}
-#mainPanel[uitheme=theme-contrast-dark] QTabWidget::pane {background-color: #2a2a2a;}
 #mainPanel[uitheme=theme-contrast-dark] QTabBar::tab {background-color: #2a2a2a; border-right-color: #414141;}
 #mainPanel[uitheme=theme-contrast-dark] QTabBar::tab:hover {background-color: #424242;}
 #mainPanel[uitheme=theme-contrast-dark] QTabBar::tab:selected {background-color: #2a2a2a;}
