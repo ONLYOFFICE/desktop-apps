@@ -34,15 +34,12 @@
 #define ASCTABWIDGET
 
 #include <QResizeEvent>
-//#include <QtWidgets/QTabWidget>
 #include <QtWidgets/QTabBar>
 #include <QtWidgets/QPushButton>
 #include "ctabbarwrapper.h"
 #include "qcefview.h"
 #include "cscalingwrapper.h"
 #include "ctabpanel.h"
-
-#include <QDebug>
 
 #define etLocalFile     AscEditorType(254)
 #define etRecoveryFile  AscEditorType(253)
