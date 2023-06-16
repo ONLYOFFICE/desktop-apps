@@ -44,9 +44,13 @@ void CAnimatedIcon::startSvg(const QString& source, const QString& eid)
 
     if ( m_svg->load(source) ) {
 //        setFixedSize( m_svg->defaultSize() );
-
-        if ( !m_static && pixmap() ) {
-            m_static = new QPixmap(*pixmap());
+#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
+        QPixmap pix(*pixmap());
+#else
+        QPixmap pix(pixmap());
+#endif
+        if ( !m_static && !pix.isNull() ) {
+            m_static = new QPixmap(pix);
         }
 
         if ( m_svg->animated() ) {

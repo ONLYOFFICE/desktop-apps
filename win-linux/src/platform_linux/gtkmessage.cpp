@@ -30,8 +30,8 @@
  *
  */
 
-#include <QTextDocumentFragment>
 #include "gtkutils.h"
+#include <QTextDocumentFragment>
 #include <gtk/gtkmessagedialog.h>
 #include <gtk/gtkcheckbutton.h>
 #include <gtk/gtktogglebutton.h>

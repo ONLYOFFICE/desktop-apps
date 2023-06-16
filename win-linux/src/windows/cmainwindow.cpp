@@ -45,7 +45,6 @@
 #include "version.h"
 #include "components/cmessage.h"
 #include "../Common/OfficeFileFormats.h"
-#include <QDesktopWidget>
 #include <QGridLayout>
 #include <QTimer>
 #include <QApplication>
@@ -410,7 +409,7 @@ QWidget* CMainWindow::createMainPanel(QWidget *parent)
         QLinearGradient gradient(mainPanel->rect().topLeft(), QPoint(mainPanel->rect().left(), 29));
         gradient.setColorAt(0, QColor(0xeee));
         gradient.setColorAt(1, QColor(0xe4e4e4));
-        palette.setBrush(QPalette::Background, QBrush(gradient));
+        palette.setBrush(QPalette::Window, QBrush(gradient));
         label->setFixedHeight(0);
     }
 //    m_pTabs->setAutoFillBackground(true);
@@ -1027,7 +1026,7 @@ void CMainWindow::onEditorActionRequest(int vid, const QString& args)
 {
     int index = m_pTabs->tabIndexByView(vid);
     if (!(index < 0)) {
-        if (args.contains(QRegExp("action\\\":\\\"file:close"))) {
+        if (args.contains(QRegularExpression("action\\\":\\\"file:close"))) {
             bool _is_local = m_pTabs->isLocalByIndex(index);
             onTabCloseRequest(index);
             if (!_is_local) {

@@ -36,7 +36,7 @@
 #include "utils.h"
 #include "components/cmessage.h"
 #include "cascapplicationmanagerwrapper.h"
-
+#include <QRegExp>
 #include "../Common/OfficeFileFormats.h"
 
 #include <QList>
@@ -225,13 +225,13 @@ bool CFileDialogWrapper::modalSaveAs(QString& fileName, int selected)
 QString CFileDialogWrapper::getFilter(const QString& extension) const
 {
     QString out = extension.toLower();
-    if (extension.contains(QRegExp("^docx?$"))) {
+    if (extension.contains(QRegularExpression("^docx?$"))) {
         return tr("Word Document") + " (*." + out +")";
     } else
-    if (extension.contains(QRegExp("^xlsx?$"))) {
+    if (extension.contains(QRegularExpression("^xlsx?$"))) {
         return tr("Excel Workbook") + " (*." + out + ")";
     } else
-    if (extension.contains(QRegExp("^pptx?$"))) {
+    if (extension.contains(QRegularExpression("^pptx?$"))) {
         return tr("PowerPoint Presentation") + " (*." + out + ")";
     } else {
         out.replace(0, 1, extension.left(1).toUpper());

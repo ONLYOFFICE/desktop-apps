@@ -52,7 +52,7 @@ public:
 protected:
     virtual void onMinimizeEvent() override;
     virtual bool event(QEvent *event) override;
-    virtual bool nativeEvent(const QByteArray&, void*, long*) final;
+    virtual bool nativeEvent(const QByteArray&, void*, qintptr*) final;
     virtual void setScreenScalingFactor(double) override;
 
 private:

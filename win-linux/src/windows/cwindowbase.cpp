@@ -44,7 +44,6 @@
 # endif
 #endif
 #include <QApplication>
-#include <QDesktopWidget>
 #include <QVariant>
 #include <QSettings>
 #include <QHBoxLayout>

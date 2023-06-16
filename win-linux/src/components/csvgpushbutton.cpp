@@ -35,6 +35,7 @@
 #include <QtSvg>
 #include <QSvgRenderer>
 #include <QPainter>
+#include <QStyle>
 #include <QDebug>
 
 CSVGPushButton::CSVGPushButton(QWidget * parent)

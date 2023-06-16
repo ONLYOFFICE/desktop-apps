@@ -41,6 +41,7 @@
 #include <QActionEvent>
 #include <QApplication>
 #include <QWidgetAction>
+#include <QRegExp>
 #include "qcefview.h"
 #include "common/Types.h"
 #include "windows/cwindowbase.h"
@@ -342,7 +343,7 @@ void CDownloadWidget::applyScaling(double factor)
 
     m_pToolButton->menu()->style()->unpolish(m_pToolButton->menu());
     m_pToolButton->menu()->style()->polish(m_pToolButton->menu());
-    QPixmap::grabWidget(m_pToolButton->menu());
+    m_pToolButton->menu()->grab();
 }
 
 void CDownloadWidget::updateScalingFactor(double f)

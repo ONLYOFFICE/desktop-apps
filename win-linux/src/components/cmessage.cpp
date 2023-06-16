@@ -39,7 +39,7 @@
 #include <QTimer>
 #include <functional>
 #include <QEvent>
-//#include <QKeyEvent>
+#include <QRegExp>
 #include <QCheckBox>
 #include <QApplication>
 #include "defines.h"

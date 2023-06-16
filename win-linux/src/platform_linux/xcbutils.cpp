@@ -32,7 +32,11 @@
 
 #include "xcbutils.h"
 #include <QtConcurrent/QtConcurrent>
-#include <QX11Info>
+#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
+# include <QX11Info>
+#else
+# include <QtGui/private/qtx11extras_p.h>
+#endif
 #include <thread>
 #include <stdlib.h>
 #include <X11/Xlib.h>

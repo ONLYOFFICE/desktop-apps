@@ -49,7 +49,6 @@
 #include "components/cprintdialog.h"
 
 #include <QPrinterInfo>
-#include <QDesktopWidget>
 #include <QJsonDocument>
 #include <QJsonArray>
 #include <QJsonObject>
@@ -119,7 +118,7 @@ public:
             leftboxbuttons = new QWidget;
             leftboxbuttons->setLayout(new QHBoxLayout);
             leftboxbuttons->layout()->setSpacing(0);
-            leftboxbuttons->layout()->setMargin(0);
+            leftboxbuttons->layout()->setContentsMargins(0,0,0,0);
 
             CSVGPushButton * btnHome = new CSVGPushButton;
             btnHome->setProperty("class", "normal");
@@ -262,7 +261,7 @@ public:
 
     void onEditorActionRequest(int, const QString& json) override
     {
-        if ( json.contains(QRegExp("action\\\":\\\"file:close")) ) {
+        if ( json.contains(QRegularExpression("action\\\":\\\"file:close")) ) {
             window->closeWindow();
         }
     }
@@ -838,7 +837,7 @@ public:
         boxtitlelabel = new QWidget(window->m_boxTitleBtns);
         boxtitlelabel->setLayout(new QHBoxLayout(boxtitlelabel));
         boxtitlelabel->layout()->setSpacing(0);
-        boxtitlelabel->layout()->setMargin(0);
+        boxtitlelabel->layout()->setContentsMargins(0,0,0,0);
         boxtitlelabel->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
 
         if ( m_panel->data()->hasFeature(L"crypted\":true") && !iconcrypted ) {

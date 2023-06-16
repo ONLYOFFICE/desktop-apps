@@ -2,6 +2,9 @@
 QT  += core gui widgets gui-private widgets-private core-private printsupport
 QT  += multimedia multimediawidgets
 QT  += svg
+greaterThan(QT_MAJOR_VERSION, 5) {
+    QT += core5compat
+}
 
 TEMPLATE = app
 CONFIG += app_bundle
@@ -193,7 +196,10 @@ core_linux:LIBS += -Wl,-unresolved-symbols=ignore-in-shared-libs
 ADD_DEPENDENCY(PdfFile, DjVuFile, XpsFile, HtmlRenderer, UnicodeConverter, hunspell, ooxmlsignature, kernel, kernel_network, graphics, videoplayer, ascdocumentscore, qtascdocumentscore)
 
 core_linux {
-    QT += network x11extras
+    QT += network
+    !greaterThan(QT_MAJOR_VERSION, 5) {
+        QT += x11extras
+    }
 
     QMAKE_LFLAGS += "-Wl,-rpath,\'\$$ORIGIN\'"
     QMAKE_LFLAGS += "-Wl,-rpath,\'\$$ORIGIN/converter\'"

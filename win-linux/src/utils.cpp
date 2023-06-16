@@ -39,7 +39,6 @@
 #include <QIcon>
 #include <QSysInfo>
 #include <QApplication>
-#include <QDesktopWidget>
 #include <QDesktopServices>
 #include <QUrl>
 #include <QJsonDocument>
@@ -315,17 +314,17 @@ QRect Utils::getScreenGeometry(const QPoint& leftTop)
     };
 
     int closestScreen = 0;
-    int shortestDistance = pointToRect(leftTop, QApplication::desktop()->screenGeometry(0));
-
-    for (int i = 0; ++i < QApplication::desktop()->screenCount(); ) {
-        int thisDistance = pointToRect(leftTop, QApplication::desktop()->screenGeometry(i));
+    int shortestDistance = pointToRect(leftTop, QApplication::primaryScreen()->geometry());
+    auto screens = QApplication::screens();
+    for (int i = 0; ++i < screens.count(); ) {
+        int thisDistance = pointToRect(leftTop, screens[i]->geometry());
         if (thisDistance < shortestDistance) {
             shortestDistance = thisDistance;
             closestScreen = i;
         }
     }
 
-    return QApplication::desktop()->screenGeometry(closestScreen);
+    return screens[closestScreen]->geometry();
 #else
     POINT lt{leftTop.x(), leftTop.y()};
     MONITORINFO mi{sizeof(MONITORINFO)};

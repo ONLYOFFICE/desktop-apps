@@ -1,9 +1,9 @@
 
-#include "cthemes.h"
-#ifdef Q_OS_LINUX
+#ifdef __linux__
 # include <gio/gio.h>
 # include <glib.h>
 #endif
+#include "cthemes.h"
 #include "defines.h"
 #include "utils.h"
 

@@ -204,7 +204,7 @@ QWidget * CEditorWindow::createMainPanel(QWidget * parent, const QString& title)
     QGridLayout * mainGridLayout = new QGridLayout(mainPanel);
     mainGridLayout->setSpacing(0);
 //#ifdef Q_OS_WIN
-    mainGridLayout->setMargin(0);
+    mainGridLayout->setContentsMargins(0,0,0,0);
 /*#else
     int b = !isCustom ? 0 : CX11Decoration::customWindowBorderWith() * m_dpiRatio;
     mainGridLayout->setContentsMargins(QMargins(b,b,b,b));
@@ -384,10 +384,10 @@ void CEditorWindow::captureMouse()
     Q_ASSERT(m_boxTitleBtns != nullptr);
     QPoint pt_in_title = (m_boxTitleBtns->geometry().topLeft() +
                           QPoint(dpiCorr(CAPTURED_WINDOW_OFFSET_X), dpiCorr(CAPTURED_WINDOW_OFFSET_Y)));
-    _event = {QEvent::MouseButtonPress, pt_in_title, Qt::LeftButton, Qt::LeftButton, Qt::NoModifier};
-    CX11Decoration::dispatchMouseDown(&_event);
-    _event = {QEvent::MouseMove, QCursor::pos(), Qt::LeftButton, Qt::LeftButton, Qt::NoModifier};
-    CX11Decoration::dispatchMouseMove(&_event);
+    QMouseEvent ev_press(QEvent::MouseButtonPress, pt_in_title, Qt::LeftButton, Qt::LeftButton, Qt::NoModifier);
+    CX11Decoration::dispatchMouseDown(&ev_press);
+    QMouseEvent ev_move(QEvent::MouseMove, QCursor::pos(), Qt::LeftButton, Qt::LeftButton, Qt::NoModifier);
+    CX11Decoration::dispatchMouseMove(&ev_move);
 #endif
 }
 

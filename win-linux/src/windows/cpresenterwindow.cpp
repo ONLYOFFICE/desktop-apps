@@ -38,7 +38,6 @@
 #include "csplash.h"
 #include "clogger.h"
 #include "clangater.h"
-#include <QDesktopWidget>
 #include <QGridLayout>
 #include <QTimer>
 #include <stdexcept>
@@ -110,7 +109,7 @@ QWidget * CPresenterWindow::createMainPanel(QWidget * parent, const QString& tit
 
     QGridLayout * mainGridLayout = new QGridLayout(mainPanel);
     mainGridLayout->setSpacing(0);
-    mainGridLayout->setMargin(0);
+    mainGridLayout->setContentsMargins(0,0,0,0);
     mainPanel->setLayout(mainGridLayout);
 
     m_boxTitleBtns = createTopPanel(mainPanel);
