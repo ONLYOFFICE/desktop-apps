@@ -685,7 +685,7 @@ void CMainWindow::onPortalLogout(std::wstring wjson)
 
         if( jerror.error == QJsonParseError::NoError ) {
             QJsonObject objRoot = jdoc.object();
-            QString _portal = objRoot["portal"].toString(),
+            QString _portal = objRoot["domain"].toString(),
                     _action;
 
             if ( objRoot.contains("onsuccess") )
