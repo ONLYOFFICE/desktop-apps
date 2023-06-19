@@ -131,10 +131,10 @@ bool CWindowPlatform::nativeEvent(const QByteArray &ev_type, void *msg, long *re
     return CWindowBase::nativeEvent(ev_type, msg, res);
 }
 
-void CWindowPlatform::setScreenScalingFactor(double factor)
+void CWindowPlatform::setScreenScalingFactor(double factor, bool resize)
 {
     CX11Decoration::onDpiChanged(factor);
-    CWindowBase::setScreenScalingFactor(factor);
+    CWindowBase::setScreenScalingFactor(factor, resize);
 }
 
 /** Private **/
