@@ -100,7 +100,7 @@ public:
     void setMouseTracking(bool);
 #endif
     void doOpenLocalFile(COpenOptions&);
-    virtual void setScreenScalingFactor(double) final;
+    virtual void setScreenScalingFactor(double, bool resize = true) final;
     virtual void updateScalingFactor(double) final;
 
 protected:
