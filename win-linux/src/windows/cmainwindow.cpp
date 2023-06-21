@@ -87,15 +87,7 @@ using namespace NSEditorApi;
 CMainWindow::CMainWindow(const QRect &rect) :
     CWindowPlatform(rect),
     CScalingWrapper(m_dpiRatio),
-    m_pTabs(nullptr),
-    m_pButtonMain(nullptr),
-    m_pMainWidget(nullptr),
-    m_pButtonProfile(nullptr),
-    m_pWidgetDownload(nullptr),
-    m_savePortal(QString()),
-    m_isMaximized(false),
-    m_saveAction(0),
-    m_printData(nullptr)
+    m_savePortal(QString())
 {
     setObjectName("MainWindow");
     m_pMainPanel = createMainPanel(this);
@@ -116,8 +108,7 @@ CMainWindow::CMainWindow(const QRect &rect) :
 
 CMainWindow::~CMainWindow()
 {
-    if (m_printData)
-        delete m_printData, m_printData = nullptr;
+
 }
 
 /** Public **/
@@ -430,7 +421,7 @@ QWidget* CMainWindow::createMainPanel(QWidget *parent)
     m_pTabs->activate(false);
     m_pTabs->applyUITheme(AscAppManager::themes().current().id());
 
-    connect(tabWidget(), SIGNAL(currentChanged(int)), this, SLOT(onTabChanged(int)));
+    connect(m_pTabs, SIGNAL(currentChanged(int)), this, SLOT(onTabChanged(int)));
     connect(pTabBar, SIGNAL(tabBarClicked(int)), this, SLOT(onTabClicked(int)));
     connect(pTabBar, SIGNAL(tabCloseRequested(int)), this, SLOT(onTabCloseRequest(int)));
     connect(m_pTabs, &CAscTabWidget::editorInserted, bind(&CMainWindow::onTabsCountChanged, this, _2, _1, 1));
@@ -1143,7 +1134,6 @@ void CMainWindow::onDocumentPrint(void * opts)
             if ( !AscAppManager::printData().isQuickPrint() )
                 AscAppManager::printData().setPrinterInfo(*printer);
 
-//            m_printData->_print_range = dialog->printRange();
             QVector<PageRanges> page_ranges;
 
 #ifdef Q_OS_LINUX

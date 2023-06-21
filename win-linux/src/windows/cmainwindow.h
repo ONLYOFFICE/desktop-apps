@@ -149,16 +149,14 @@ private:
     QWidget * createMainPanel(QWidget *parent);
     int  trySaveDocument(int);
 
-    CAscTabWidget *  m_pTabs;
-    CSVGPushButton*  m_pButtonMain;
-    QWidget*         m_pMainWidget;
-    QPushButton*     m_pButtonProfile;
-    CDownloadWidget* m_pWidgetDownload;
+    CAscTabWidget *  m_pTabs = nullptr;
+    CSVGPushButton*  m_pButtonMain = nullptr;
+    QWidget*         m_pMainWidget = nullptr;
+    QPushButton*     m_pButtonProfile = nullptr;
+    CDownloadWidget* m_pWidgetDownload = nullptr;
     QString          m_savePortal;
-    bool             m_isMaximized;
-    int              m_saveAction;
-    struct           printdata;
-    printdata*       m_printData;
+    bool             m_isMaximized = false;
+    int              m_saveAction = 0;
 
     bool m_isCloseAll = false;
 
