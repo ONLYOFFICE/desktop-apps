@@ -134,7 +134,7 @@ auto panelfromwidget(QWidget * panelwidget) -> CTabPanel * {
 }
 
 CAscTabWidget::CAscTabWidget(QWidget *parent, CTabBar *_pBar)
-    : QTabWidget(parent)
+    : QStackedWidget(parent)
     , CScalingWrapper(parent)
     , m_dataFullScreen(0)
     , m_widthParams({{100, 135, 9}, 68, 3, 0, WINDOW_TITLE_MIN_WIDTH, 140, 0})
@@ -143,7 +143,6 @@ CAscTabWidget::CAscTabWidget(QWidget *parent, CTabBar *_pBar)
     , m_tabIconSize(16, 16)
     , m_pBar(_pBar)
 {
-    QTabWidget::tabBar()->hide();
     m_pBar->setObjectName("asc_editors_tabbar");
     m_pBar->setTabTextColor(QPalette::Active, QColor(51, 51, 51));
     m_pBar->setTabTextColor(QPalette::Inactive, QColor(51, 51, 51));
@@ -152,7 +151,7 @@ CAscTabWidget::CAscTabWidget(QWidget *parent, CTabBar *_pBar)
     m_pBar->setExpanding(false);
     m_pBar->setTabsClosable(true);
 
-    setIconSize(m_tabIconSize);
+    m_pBar->setIconSize(m_tabIconSize);
     setProperty("active", false);
     setProperty("empty", true);
     m_pBar->setProperty("active", false);
@@ -163,6 +162,9 @@ CAscTabWidget::CAscTabWidget(QWidget *parent, CTabBar *_pBar)
         updateIcons();
         setFocusedView();
         _dropedindex = -1;
+    });
+    QObject::connect(this, &CAscTabWidget::widgetRemoved, this, [=](int index) {
+        emit editorRemoved(index, count());
     });
     QObject::connect(m_pBar, &CTabBar::tabUndock, this, [=](int index, bool * accept) {
         if (index == _dropedindex) return;
@@ -197,7 +199,11 @@ CAscTabWidget::CAscTabWidget(QWidget *parent, CTabBar *_pBar)
         turnOffAltHints(m_pBar->currentIndex(), index);
     });
     QObject::connect(m_pBar, &CTabBar::tabMoved, this, [=](int from, int to) {
-        QTabWidget::tabBar()->moveTab(from, to);
+        if (from < 0 || from >= count() || to < 0 || to >= count() || from == to)
+            return;
+        auto wgt = widget(from);
+        removeWidget(wgt);
+        insertWidget(to, wgt);
     });
 }
 
@@ -259,7 +265,7 @@ int CAscTabWidget::addEditor(const COpenOptions& opts)
         data->setChanged(opts.srctype == etRecoveryFile);
 
         pView->setData(data);
-        tab_index = addTab(panelwidget, data->title());
+        tab_index = addWidget(panelwidget);
         m_pBar->addTab(data->title());
         //m_pBar->setTabToolTip(tab_index, data->title());
         m_pBar->setTabProperty(tab_index, "ToolTip", data->title());
@@ -307,7 +313,7 @@ void CAscTabWidget::closeEditorByIndex(int index, bool checkmodified)
 int CAscTabWidget::count(int type) const
 {
     if ( type < 0 )
-        return QTabWidget::count();
+        return QStackedWidget::count();
     else {
         int _out(0);
         for (int i(count()); i-- > 0; ) {
@@ -321,7 +327,7 @@ int CAscTabWidget::count(int type) const
 int CAscTabWidget::count(const wstring& portal, bool exclude)
 {
     if ( portal.empty() )
-        return QTabWidget::count();
+        return QStackedWidget::count();
     else {
         int _out(0);
         for (int i(count()); i-- > 0; ) {
@@ -384,7 +390,7 @@ int CAscTabWidget::addPortal(const QString& url, const QString& name, const QStr
 
     int tab_index = -1;
 
-    tab_index = insertTab(tab_index, panelwidget, portal);
+    tab_index = insertWidget(tab_index, panelwidget);
     m_pBar->insertTab(tab_index, portal);
     //m_pBar->setTabToolTip(tab_index, _url);
     m_pBar->setTabProperty(tab_index, "ToolTip", _url);
@@ -424,7 +430,7 @@ int CAscTabWidget::addOAuthPortal(const QString& portal, const QString& type, co
 
     int tab_index = -1;
 
-    tab_index = insertTab(tab_index, panelwidget, _portal);
+    tab_index = insertWidget(tab_index, panelwidget);
     m_pBar->insertTab(tab_index, _portal);
     //m_pBar->setTabToolTip(tab_index, portal);
     m_pBar->setTabProperty(tab_index, "ToolTip", portal);
@@ -445,7 +451,7 @@ int CAscTabWidget::insertPanel(QWidget * panel, int index)
 
         QWidget * panelwidget = createTabPanel(this, _panel);
 
-        tabindex = insertTab(index, panelwidget, tabdata->title());
+        tabindex = insertWidget(index, panelwidget);
         m_pBar->insertTab(index, tabdata->title());
         //m_pBar->setTabToolTip(tabindex, tabdata->title());
         m_pBar->setTabProperty(tabindex, "ToolTip", tabdata->title());
@@ -454,14 +460,11 @@ int CAscTabWidget::insertPanel(QWidget * panel, int index)
     return tabindex;
 }
 
-void CAscTabWidget::tabInserted(int index)
+int CAscTabWidget::insertWidget(int index, QWidget* widget)
 {
-    emit editorInserted(index, count());
-}
-
-void CAscTabWidget::tabRemoved(int index)
-{
-    emit editorRemoved(index, count());
+    int actual_index = QStackedWidget::insertWidget(index, widget);
+    emit editorInserted(actual_index, count());
+    return actual_index;
 }
 
 void CAscTabWidget::setCustomWindowParams(bool iscustom)
@@ -1137,7 +1140,7 @@ void CAscTabWidget::setFullScreen(bool apply, int id)
                 _break_demonstration();
                 e->ignore();
                 // TODO: associate panel with reporter window and close both simultaneously
-                QTimer::singleShot(10, [=] {emit tabCloseRequested(m_dataFullScreen->tabindex());});
+                QTimer::singleShot(10, [=] {emit m_pBar->tabCloseRequested(m_dataFullScreen->tabindex());});
             });
 
             connect((CFullScrWidget*)m_dataFullScreen->parent, &CFullScrWidget::closeRequest, this, [=]() {
@@ -1159,7 +1162,6 @@ void CAscTabWidget::updateScalingFactor(double f)
 
     double dpi_ratio = scaling();
 
-    setIconSize(m_tabIconSize * dpi_ratio);
     m_pBar->setIconSize(m_tabIconSize * dpi_ratio);
     updateIcons();
 
@@ -1175,7 +1177,7 @@ void CAscTabWidget::updateScalingFactor(double f)
 
 void CAscTabWidget::setStyleSheet(const QString& stylesheet)
 {
-    QTabWidget::setStyleSheet(stylesheet);
+    QStackedWidget::setStyleSheet(stylesheet);
 
     auto _string_to_color = [](const QString& str) -> QColor {
         int r = -1, g = -1, b = -1;
