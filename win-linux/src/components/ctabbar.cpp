@@ -31,7 +31,6 @@
 */
 
 #include "components/ctabbar.h"
-//#include "ctabbar_p.h"
 #include "private/qtabbar_p.h"
 #include <QStylePainter>
 #include <QHoverEvent>

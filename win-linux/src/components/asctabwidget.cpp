@@ -32,9 +32,6 @@
 
 #include "components/asctabwidget.h"
 #include <QRegExp>
-
-#include <QDebug>
-
 #include <QHBoxLayout>
 #include <QLabel>
 #include <QStylePainter>
@@ -42,7 +39,6 @@
 #include <QFileInfo>
 #include <QTimer>
 #include <regex>
-
 #include "ctabstyle.h"
 #include "casctabdata.h"
 #include "common/Types.h"
@@ -51,7 +47,6 @@
 #include "cfilechecker.h"
 #include "components/canimatedicon.h"
 #include "ceditortools.h"
-
 #include "cascapplicationmanagerwrapper.h"
 #include "ctabundockevent.h"
 #include "OfficeFileFormats.h"
@@ -59,8 +54,6 @@
 #include "private/qtabbar_p.h"
 
 using namespace std;
-
-
 
 /*
  *
@@ -178,8 +171,7 @@ CAscTabWidget::CAscTabWidget(QWidget *parent, CTabBar *_pBar)
 
         if ( _panel->data()->viewType() == cvwtEditor ) {
             CTabUndockEvent event(index);
-            QObject * obj = qobject_cast<QObject *>(
-                        static_cast<CAscApplicationManagerWrapper *>(&AscAppManager::getInstance()));
+            QObject * obj = qobject_cast<QObject*>(&AscAppManager::getInstance());
             if ( QApplication::sendEvent(obj, &event) && event.isAccepted() ) {
                 _dropedindex = index;
                 *accept = true;
@@ -398,8 +390,6 @@ int CAscTabWidget::addPortal(const QString& url, const QString& name, const QStr
     m_pBar->setTabProperty(tab_index, "ToolTip", _url);
     m_pBar->setTabTheme(tab_index, CTabBar::LightTab);
     m_pBar->tabStartLoading(tab_index);
-    //m_pBar->setCurrentIndex(tab_index);
-
 //    updateTabIcon(tabIndexByView(id));
 
     return tab_index;
@@ -440,7 +430,6 @@ int CAscTabWidget::addOAuthPortal(const QString& portal, const QString& type, co
     m_pBar->setTabProperty(tab_index, "ToolTip", portal);
     m_pBar->setTabTheme(tab_index, CTabBar::LightTab);
     m_pBar->tabStartLoading(tab_index);
-    //m_pBar->setCurrentIndex(tab_index);
 
     return tab_index;
 }
@@ -460,7 +449,6 @@ int CAscTabWidget::insertPanel(QWidget * panel, int index)
         m_pBar->insertTab(index, tabdata->title());
         //m_pBar->setTabToolTip(tabindex, tabdata->title());
         m_pBar->setTabProperty(tabindex, "ToolTip", tabdata->title());
-        //m_pBar->setCurrentIndex(tabindex);
     }
 
     return tabindex;
@@ -514,7 +502,7 @@ void CAscTabWidget::updateTabIcon(int index)
             default: tab_type = panel(index)->data()->contentType(); break;
             }
 
-            if ( !isActiveWidget() || !(index == currentIndex()) ) {
+            if ( !is_active ) {
                 tab_theme = AscAppManager::themes().current().isDark() ? CTabBar::DarkTab : CTabBar::LightTab;
             } else {
                 switch ( tab_type ) {
@@ -534,15 +522,11 @@ void CAscTabWidget::updateTabIcon(int index)
                     break;
                 }
             }
-
             QString icon_name = is_active ? m_mapTabIcons.at(tab_type).second : m_mapTabIcons.at(tab_type).first;
             m_pBar->setTabIcon(index, QIcon(icon_name));
-//            ((CTabBar *)tabBar())->changeTabTheme(index, _theme);
             m_pBar->setTabTheme(index, tab_theme);
-
             if ( index == currentIndex() ) {
                 m_pBar->setActiveTabColor(active_tab_color);
-//                ((CTabBar *)tabBar())->setUseTabCustomPalette( !(tab_type == etPortal || tab_type == etUndefined) );
 
                 m_pBar->setTabTextColor(QPalette::Active,  AscAppManager::themes().isColorDark(active_tab_color) ?
                                            ui_theme.color(CTheme::ColorRole::ecrTextPressed) : ui_theme.color(CTheme::ColorRole::ecrTabSimpleActiveText));
@@ -579,7 +563,6 @@ void CAscTabWidget::reloadTabIcons()
 /*
  *      Slots
 */
-
 
 void CAscTabWidget::editorCloseRequest(int index)
 {
@@ -924,13 +907,10 @@ void CAscTabWidget::activate(bool a)
         this->setProperty("active", a);
         m_pBar->setProperty("active", a);
     }
-
     updateTabIcon(currentIndex());
-
     m_pBar->activate(a);
     m_pBar->customColors().setCurrentColorGroup(a ? QPalette::Normal : QPalette::Disabled );
     m_pBar->update();
-    //m_pBar->repaint();
 }
 
 bool CAscTabWidget::isActiveWidget()
@@ -1240,7 +1220,6 @@ void CAscTabWidget::applyUITheme(const std::wstring& theme)
 {
     reloadTabIcons();
     updateIcons();
-//    _tabbar.setTabTextColor(QPalette::Active, AscAppManager::themes().color(theme, CThemes::ColorRole::ecrTextPressed));
     m_pBar->setTabTextColor(QPalette::Inactive, AscAppManager::themes().current().color(CTheme::ColorRole::ecrTextNormal));
     m_pBar->setUIThemeType(!AscAppManager::themes().current().isDark());
     m_pBar->style()->polish(m_pBar);

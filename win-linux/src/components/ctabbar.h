@@ -41,12 +41,10 @@
 #include "cscalingwrapper.h"
 
 #include <math.h>
-//class CTabBarPrivate;
 
 class CTabBar : public QTabBar, public CScalingWrapper
 {
     Q_OBJECT
-
 public:
     explicit CTabBar(QWidget * parent = nullptr);
     virtual ~CTabBar();
