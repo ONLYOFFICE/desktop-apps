@@ -31,1040 +31,1073 @@
 */
 
 #include "components/ctabbar.h"
-#include "private/qtabbar_p.h"
-#include <QStylePainter>
-#include <QHoverEvent>
-#include <QDesktopWidget>
 #include "components/canimatedicon.h"
-#include "utils.h"
+#include <QApplication>
+#include <QHBoxLayout>
+#include <QLabel>
+#include <QToolButton>
+#include <QPropertyAnimation>
+#include <QParallelAnimationGroup>
+#include <QResizeEvent>
+#include <QStylePainter>
+#include <QStyle>
+#include <QTimer>
 
-#define TAB_BTNCLOSE(index) tabButton(index, QTabBar::RightSide)
-#define TAB_ICON(index) tabButton(index, QTabBar::LeftSide)
+#define ANIMATION_DEFAULT_MS  0
+#define ANIMATION_SCROLL_MS   60
+#define ANIMATION_MOVE_TAB_MS 500
+#define TABSPACING 0
+#define DEFAULT_ICON_SIZE QSize(16,16)
+#define _tabRect(i) tabList[i]->geometry()
+#define tabIndex(i) tabList[i]->index
 
-inline static bool verticalTabs(QTabBar::Shape shape)
+
+class Tab : public QFrame
 {
-    return shape == QTabBar::RoundedWest || shape == QTabBar::RoundedEast
-           || shape == QTabBar::TriangularWest || shape == QTabBar::TriangularEast;
+    Q_OBJECT
+public:
+    Tab(QWidget *parent = nullptr);
+    ~Tab();
+
+    void setText(const QString &text, Qt::TextElideMode mode = Qt::ElideRight);
+    void elideText(Qt::TextElideMode mode = Qt::ElideRight);
+    void setIcon(const QIcon &icon);
+    void polish();
+
+    QIcon  *tab_icon = nullptr;
+    CAnimatedIcon *icon_label = nullptr;
+    QLabel *text_label = nullptr;
+    QToolButton *close_btn = nullptr;
+    QString text;
+    QString tabcolor;
+    int tab_width = -1;
+    int index = -1;
+
+signals:
+    void onTabWidthChanged(int width);
+
+protected:
+    virtual void resizeEvent(QResizeEvent*) final;
+    virtual void paintEvent(QPaintEvent*) override;
+    virtual bool eventFilter(QObject*, QEvent*) override;
+
+private:
+    CTabBar *tabBar = nullptr;
+};
+
+Tab::Tab(QWidget *parent) :
+    QFrame(parent),
+    tabcolor("none")
+{
+    setAttribute(Qt::WA_Hover);
+    installEventFilter(this);
+    setMinimumWidth(20);
+    tabBar = dynamic_cast<CTabBar*>(parent->parent());
+
+    QHBoxLayout *lut = new QHBoxLayout(this);
+    lut->setContentsMargins(6, 6, 6, 6);
+    lut->setSpacing(6);
+    setLayout(lut);
+
+    icon_label = new CAnimatedIcon(this);
+    icon_label->setObjectName("tabIcon");
+    icon_label->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+    icon_label->setMaximumSize(DEFAULT_ICON_SIZE);
+    lut->addWidget(icon_label);
+
+    text_label = new QLabel(this);
+    text_label->setObjectName("tabText");
+    text_label->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
+    lut->addWidget(text_label);
+
+    close_btn = new QToolButton(this);
+    close_btn->setObjectName("tabButton");
+    close_btn->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+    close_btn->setMaximumSize(DEFAULT_ICON_SIZE);
+    lut->addWidget(close_btn);
+    show();
 }
 
-QMovableTabWidget::QMovableTabWidget(QWidget *parent)
-    : QWidget(parent)
+Tab::~Tab()
 {
+    if (tab_icon)
+        delete tab_icon, tab_icon = nullptr;
 }
 
-void QMovableTabWidget::paintEvent(QPaintEvent *e)
+void Tab::setText(const QString &text, Qt::TextElideMode mode)
 {
-    Q_UNUSED(e);
-    QPainter p(this);
-    p.drawPixmap(0, 0, m_pixmap);
+    this->text = text;
+    elideText(mode);
 }
 
-/*
- *  TabBarPrivate class description
- *
-*/
-void QTabBarPrivate::layoutTab(int index)
+void Tab::elideText(Qt::TextElideMode mode)
 {
-    Q_Q(QTabBar);
-    Q_ASSERT(index >= 0);
-
-    Tab &tab = tabList[index];
-    bool vertical = verticalTabs(shape);
-    if (!(tab.leftWidget || tab.rightWidget))
-        return;
-
-    QStyleOptionTabV3 opt;
-    q->initStyleOption(&opt, index);
-    if (tab.leftWidget) {
-        QRect rect = q->style()->subElementRect(QStyle::SE_TabBarTabLeftButton, &opt, q);
-        QPoint p = rect.topLeft();
-        if ((index == pressedIndex) || paintWithOffsets) {
-            if (vertical)
-                p.setY(p.y() + tabList[index].dragOffset); else
-                p.setX(p.x() + tabList[index].dragOffset);
-        }
-        tab.leftWidget->move(p);
-    }
-    if (tab.rightWidget) {
-        QRect rect = q->style()->subElementRect(QStyle::SE_TabBarTabRightButton, &opt, q);
-        QPoint p = rect.topLeft();
-        if ((index == pressedIndex) || paintWithOffsets) {
-            if (vertical)
-                p.setY(p.y() + tab.dragOffset);
-            else
-                p.setX(p.x() + tab.dragOffset);
-        }
-
-        tab.rightWidget->move(p);
-    }
+    const QMargins mrg = text_label->contentsMargins();
+    const int padding = mrg.left() + mrg.right();
+    const int width = text_label->maximumWidth() != QWIDGETSIZE_MAX ? text_label->maximumWidth() : text_label->width();
+    QFontMetrics mtr(text_label->font());
+    text_label->setText(mtr.elidedText(text, mode, width - padding - 1));
 }
 
-void QTabBarPrivate::layoutWidgets(int start)
+void Tab::setIcon(const QIcon &icon)
 {
-    Q_Q(QTabBar);
-
-    for (int i = start; i < q->count(); ++i) {
-        layoutTab(i);
-    }
+    if (tab_icon)
+        delete tab_icon, tab_icon = nullptr;
+    tab_icon = new QIcon(icon);
+    icon_label->setPixmap(tab_icon->pixmap(icon_label->size()));
 }
 
-void QTabBarPrivate::slide(int from, int to)
+void Tab::polish()
 {
-    Q_Q(QTabBar);
-
-    if (from == to || !validIndex(from) || !validIndex(to))
-        return;
-
-    bool vertical = verticalTabs(shape);
-    int preLocation = vertical ? q->tabRect(from).y() : q->tabRect(from).x();
-    q->setUpdatesEnabled(false);
-    q->moveTab(from, to);
-    q->setUpdatesEnabled(true);
-    int postLocation = vertical ? q->tabRect(to).y() : q->tabRect(to).x();
-    int length = postLocation - preLocation;
-    tabList[to].dragOffset -= length;
-    tabList[to].startAnimation(this, ANIMATION_DURATION);
+    style()->polish(this);
+    icon_label->style()->polish(icon_label);
+    text_label->style()->polish(text_label);
+    close_btn->style()->polish(close_btn);
 }
 
-void QTabBarPrivate::moveTabFinished(int index)
+void Tab::resizeEvent(QResizeEvent *event)
 {
-    Q_Q(QTabBar);
-
-    bool cleanup = (pressedIndex == index) || (pressedIndex == -1) || !validIndex(index);
-    bool allAnimationsFinished = true;
-#ifndef QT_NO_ANIMATION
-    for(int i = 0; allAnimationsFinished && i < tabList.count(); ++i) {
-        const Tab &t = tabList.at(i);
-        if (t.animation && t.animation->state() == QAbstractAnimation::Running)
-            allAnimationsFinished = false;
-    }
-#endif //QT_NO_ANIMATION
-    if (allAnimationsFinished && cleanup) {
-        if(movingTab)
-            movingTab->setVisible(false); // We might not get a mouse release
-        for (int i = 0; i < tabList.count(); ++i) {
-            tabList[i].dragOffset = 0;
-        }
-        if (pressedIndex != -1 && movable) {
-            pressedIndex = -1;
-            dragInProgress = false;
-            dragStartPosition = QPoint();
-        }
-        layoutWidgets();
+    QFrame::resizeEvent(event);
+    int new_width = event->size().width();
+    if (tab_width < 0) {
+        tab_width = new_width;
     } else {
-        if (!validIndex(index))
-            return;
-        tabList[index].dragOffset = 0;
+        if (tab_width != new_width) {
+            tab_width = new_width;
+            QTimer::singleShot(0, this, [=]() {
+                emit onTabWidthChanged(tab_width);
+            });
+        }
     }
-
-    q->update();
 }
 
-void QTabBarPrivate::setupMovableTab()
+void Tab::paintEvent(QPaintEvent *ev)
 {
-    Q_Q(QTabBar);
-
-    if (!movingTab)
-        movingTab = new QMovableTabWidget((QWidget *)q);
-
-    int taboverlap = q->style()->pixelMetric(QStyle::PM_TabBarTabOverlap, 0 ,q);
-    QRect grabRect = q->tabRect(pressedIndex);
-    grabRect.adjust(-taboverlap, 0, taboverlap, 0);
-
-    QPixmap grabImage(grabRect.size());
-    grabImage.fill(Qt::transparent);
-    QStylePainter p(&grabImage, q);
-    p.initFrom(q);
-
-    QStyleOptionTabV3 tab;
-    q->initStyleOption(&tab, pressedIndex);
-    tab.rect.moveTopLeft(QPoint(taboverlap, 0));
-
-    QString text = tab.text;
-    tab.text = "";
-    p.drawControl(QStyle::CE_TabBarTab, tab);
-    ((CTabBar*)q)->fillTabColor(&p, tab, pressedIndex, ((CTabBar*)q)->m_activeColor);
-    ((CTabBar*)q)->drawTabCaption(&p, text, tab);
-    p.end();
-
-    QPalette pal;
-    pal.setBrush(QPalette::All, QPalette::Window, grabImage);
-    movingTab->setPalette(pal);
-    movingTab->setGeometry(grabRect);
-    movingTab->setAutoFillBackground(true);
-    movingTab->raise();
-
-    // Re-arrange widget order to avoid overlaps
-    if (tabList[pressedIndex].leftWidget)
-        tabList[pressedIndex].leftWidget->raise();
-    if (tabList[pressedIndex].rightWidget)
-        tabList[pressedIndex].rightWidget->raise();
-    if (leftB) leftB->raise();
-    if (rightB) rightB->raise();
-
-    movingTab->setVisible(true);
+    QFrame::paintEvent(ev);
+    if (!tabcolor.isEmpty() && tabcolor != "none" && property("selected").toBool()) {
+        if (tabBar && tabBar->property("active").toBool() && !tabBar->ignoreActiveTabColor()) {
+            QStylePainter p(this);
+            p.fillRect(rect(), QBrush(QColor(tabcolor)));
+        }
+    }
 }
 
-void QTabBarPrivate::moveTab(int index, int offset)
+bool Tab::eventFilter(QObject *obj, QEvent *ev)
 {
-    if (!validIndex(index))
+    switch (ev->type()) {
+    case QEvent::HoverEnter:
+        setProperty("hovered", true);
+        polish();
+        break;
+    case QEvent::HoverLeave:
+        setProperty("hovered", false);
+        polish();
+        break;
+    default:
+        break;
+    }
+    return QFrame::eventFilter(obj, ev);
+}
+
+
+class CTabBar::CTabBarPrivate
+{
+public:
+    CTabBarPrivate(CTabBar* owner);
+    ~CTabBarPrivate();
+
+    enum Direction {
+        Left, Right
+    };
+
+    int getIntersectedOffset(int index);
+    int getIntersectedIndex(int direction, int &offsetX);
+    int getLayoutsIntersectedIndex(Tab *tab, int &offsetX);
+    int cellWidth();
+    int nextTabPosByPrev(int index);
+//    int prevTabPosByNext(int index);
+    void slide(int from, int to, int offset, int animation_ms);
+    void scrollToDirection(int direction);
+    void scrollTo(int index);
+    void onCurrentChanged(int index);
+    void onTabWidthChanged(int width);
+    void changeScrollerState();
+    void reorderIndexes();
+    void recalcWidth();
+    bool indexIsValid(int index);
+
+    CTabBar*     owner = nullptr;
+    QFrame*      tabArea = nullptr;
+    QFrame*      scrollFrame = nullptr;
+    QToolButton* leftButton = nullptr;
+    QToolButton* rightButton = nullptr;
+    QVector<Tab*>  tabList;
+    QVector<QRect> tabLayouts;
+    Qt::TextElideMode elideMode;
+    Tab* movedTab = nullptr;
+    bool lock = false;
+    bool isUIThemeDark = false;
+    bool ignore_tabcolor = false;
+    int animationInProgress = 0;
+    int movedTabPosX = 0;
+    int movedTabPressPosX = 0;
+    int movedTabIndex = -1;
+    int tab_width = -1;
+    int currentIndex = -1;
+    QSize iconSize;
+};
+
+CTabBar::CTabBarPrivate::CTabBarPrivate(CTabBar* owner) :
+    owner(owner),
+    elideMode(Qt::ElideRight),
+    iconSize(DEFAULT_ICON_SIZE)
+{
+
+}
+
+CTabBar::CTabBarPrivate::~CTabBarPrivate()
+{}
+
+int CTabBar::CTabBarPrivate::getIntersectedOffset(int index)
+{
+    if (indexIsValid(index)) {
+        QRect tabRect = _tabRect(index);
+        if (!tabArea->rect().contains(tabRect) && tabArea->rect().intersects(tabRect)) {
+            QRect interRect = tabArea->rect().intersected(tabRect);
+            int sign = (interRect.x() == 0) ? -1 : 1;
+            return sign * (cellWidth() - interRect.width());
+        }
+    }
+    return 0;
+}
+
+int CTabBar::CTabBarPrivate::getIntersectedIndex(int direction, int &offsetX)
+{
+    offsetX = 0;
+    for (int i = 0; i < tabList.size(); i++) {
+        QRect tabRect = _tabRect(i);
+        if (!tabArea->rect().contains(tabRect) && tabArea->rect().intersects(tabRect)) {
+            QRect interRect = tabArea->rect().intersected(tabRect);
+            if ((direction == Direction::Left && interRect.x() != 0)
+                    || (direction == Direction::Right && interRect.x() == 0)) {
+                offsetX = cellWidth() - interRect.width();
+                return i;
+            }
+        }
+    }
+    return -1;
+}
+
+int CTabBar::CTabBarPrivate::getLayoutsIntersectedIndex(Tab *tab, int &offsetX)
+{
+    offsetX = 0;
+    QRect tabRect = tab->geometry();
+    for (int i = 0; i < tabLayouts.size(); i++) {
+        if (i != tab->index && tabRect.intersects(tabLayouts[i])) {
+            QRect interRect = tabRect.intersected(tabLayouts[i]);
+            int sign = (tabRect.x() < tabLayouts[i].x()) ? -1 : 1;
+            offsetX = sign * interRect.width();
+            return i;
+        }
+    }
+    return -1;
+}
+
+int CTabBar::CTabBarPrivate::cellWidth()
+{
+    Q_ASSERT(!tabList.isEmpty());
+    return tabList[0]->width() + TABSPACING;
+}
+
+//int CTabBar::CTabBarPrivate::prevTabPosByNext(int index)
+//{
+//    Q_ASSERT(index > -1 && index < tabList.size());
+//    return tabRect(index).left() - cellWidth() - 1;
+//}
+
+int CTabBar::CTabBarPrivate::nextTabPosByPrev(int index)
+{
+    Q_ASSERT(index > -1 && index < tabList.size());
+    return _tabRect(index).right() + TABSPACING + 1;
+}
+
+void CTabBar::CTabBarPrivate::slide(int from, int to, int offset, int animation_ms)
+{
+    animationInProgress++;
+    QParallelAnimationGroup *group = new QParallelAnimationGroup;
+    for (int i = from; i <= to; i++) {
+        QPropertyAnimation* animation = new QPropertyAnimation(tabList[i], "pos");
+        animation->setDuration(animation_ms);
+        animation->setStartValue(tabList[i]->pos());
+        animation->setEndValue(tabList[i]->pos() + QPoint(offset, 0));
+        animation->setEasingCurve(QEasingCurve::InOutQuad);
+        group->addAnimation(animation);
+    }
+    QObject::connect(group, &QParallelAnimationGroup::finished, qApp, [=]() {
+        changeScrollerState();
+    });
+    QObject::connect(group, &QParallelAnimationGroup::stateChanged, qApp,
+                     [=](QAbstractAnimation::State newState, QAbstractAnimation::State) {
+        if (newState == QAbstractAnimation::Stopped)
+            animationInProgress--;
+    });
+    group->start(QParallelAnimationGroup::DeleteWhenStopped);
+}
+
+void CTabBar::CTabBarPrivate::scrollToDirection(int direction)
+{
+    while (animationInProgress)
+        qApp->processEvents();
+
+    if (tabList.isEmpty())
         return;
 
-    tabList[index].dragOffset = offset;
-    layoutTab(index); // Make buttons follow tab
-    q_func()->update();
-}
-
-
-void QTabBarPrivate::Tab::TabBarAnimation::updateCurrentValue(const QVariant &current)
-{
-    priv->moveTab(priv->tabList.indexOf(*tab), current.toInt());
-}
-
-void QTabBarPrivate::Tab::TabBarAnimation::updateState(QAbstractAnimation::State, QAbstractAnimation::State newState)
-{
-    if (newState == Stopped) priv->moveTabFinished(priv->tabList.indexOf(*tab));
-}
-
-/*
- *    CTabBar descrition
-*/
-CTabBar::CTabBar(QWidget * parent)
-    : QTabBar(parent)
-    , CScalingWrapper(parent)
-    , m_scrollPos(0)
-{
-    hide();
-    setDrawBase(false);
-
-    if (Utils::getScreenDpiRatio(
-                QApplication::desktop()->screen(QApplication::desktop()->primaryScreen())->geometry().topLeft()) > 1)
-    {
-        setProperty("scroll", "var2");
+    const int supIndex = (direction == Direction::Left) ? tabList.size() - 1 : 0;
+    if (!tabArea->rect().contains(_tabRect(supIndex))) {
+        int offsetX;
+        int ind = getIntersectedIndex(direction, offsetX);
+        int offset = (ind != -1) ? offsetX : cellWidth();
+        if (direction == Direction::Left)
+            offset *= -1;
+        slide(0, tabList.size() - 1, offset, ANIMATION_SCROLL_MS);
     }
+}
 
-    connect(this, &QTabBar::currentChanged, this, &CTabBar::onCurrentChanged);
-    connect(this, &QTabBar::tabMoved, this, [=](){
-        m_tabWasMoved = true;
+void CTabBar::CTabBarPrivate::scrollTo(int index)
+{
+    while (animationInProgress)
+        qApp->processEvents();
+
+    if (!indexIsValid(index))
+        return;
+
+    if (!tabArea->rect().contains(_tabRect(index))) {
+        int x = _tabRect(index).x();
+        int offsetX = (x > 0) ? x - tabArea->width() + cellWidth() : x;
+        slide(0, tabList.size() - 1, -1 * offsetX, ANIMATION_DEFAULT_MS);
+    } else {
+        changeScrollerState();
+    }
+}
+
+void CTabBar::CTabBarPrivate::onCurrentChanged(int index)
+{
+    while (animationInProgress)
+        qApp->processEvents();
+    recalcWidth();
+    scrollTo(index);
+    currentIndex = index;
+    for (int i = 0; i < tabList.size(); i++) {
+        tabList[i]->setProperty("selected", i == index);
+        tabList[i]->polish();
+    }
+    emit owner->currentChanged(index);
+}
+
+void CTabBar::CTabBarPrivate::onTabWidthChanged(int width)
+{
+    Q_UNUSED(width)
+    while (animationInProgress)
+        qApp->processEvents();
+
+    if (!tabList.isEmpty())
+        iconSize = tabList[0]->icon_label->size();
+
+    for (int i = 0; i < tabList.size(); i++) {
+        int posX = i * cellWidth();
+        tabList[i]->move(posX, 0);
+
+        if (QIcon *icon = tabList[i]->tab_icon)
+            tabList[i]->icon_label->setPixmap(icon->pixmap(iconSize));
+
+        tabList[i]->elideText(elideMode);
+    }
+    recalcWidth();
+    scrollTo(currentIndex);
+}
+
+void CTabBar::CTabBarPrivate::changeScrollerState()
+{
+    bool allowScroll = false;
+    for (int i = 0; i < tabList.size(); i++) {
+        if (_tabRect(i).x() + 1 < 0) {
+            allowScroll = true;
+            break;
+        }
+    }
+    leftButton->setEnabled(allowScroll);
+
+    allowScroll = false;
+    for (int i = 0; i < tabList.size(); i++) {
+        if (_tabRect(i).right() + TABSPACING > tabArea->rect().right()) {
+            allowScroll = true;
+            break;
+        }
+    }
+    rightButton->setEnabled(allowScroll);
+}
+
+void CTabBar::CTabBarPrivate::reorderIndexes()
+{
+    QVector<Tab*> dupTabList = tabList;
+    for (int i = 0; i < tabList.size(); i++) {
+        if (tabIndex(i) != i) {
+            for (int j = 0; j < tabList.size(); j++) {
+                if (j != i && dupTabList[j]->index == i) {
+                    tabList[i] = dupTabList[j];
+                    break;
+                }
+            }
+        }
+    }
+}
+
+void CTabBar::CTabBarPrivate::recalcWidth()
+{
+    int minWidth = (tabList.isEmpty()) ? 0 : cellWidth();
+    tabArea->setMinimumWidth(minWidth);
+    tabArea->setMaximumWidth(minWidth * tabList.size());
+    owner->setMaximumWidth(tabArea->maximumWidth() + scrollFrame->maximumWidth());
+    qApp->processEvents();
+}
+
+bool CTabBar::CTabBarPrivate::indexIsValid(int index)
+{
+    return index > -1 && index < tabList.size();
+}
+
+
+CTabBar::CTabBar(QWidget *parent) :
+    QFrame(parent),
+    d(new CTabBarPrivate(this))
+{
+    installEventFilter(this);
+    QHBoxLayout *main_layout = new QHBoxLayout(this);
+    main_layout->setAlignment(Qt::AlignLeft);
+    main_layout->setContentsMargins(0,0,0,0);
+    main_layout->setSpacing(0);
+    d->tabArea = new QFrame(this);
+    d->tabArea->setObjectName("tabArea");
+    d->tabArea->installEventFilter(this);
+    d->tabArea->setMaximumWidth(0);
+    d->tabArea->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
+    main_layout->addWidget(d->tabArea);
+    setMinimumWidth(0);
+    setMaximumWidth(0);
+
+    d->scrollFrame = new QFrame(this);
+    d->scrollFrame->setObjectName("tabScroll");
+    QHBoxLayout *scrollLayout = new QHBoxLayout(d->scrollFrame);
+    scrollLayout->setSpacing(0);
+    scrollLayout->setContentsMargins(0,0,0,0);
+    d->scrollFrame->setLayout(scrollLayout);
+
+    d->leftButton = new QToolButton(d->scrollFrame);
+    d->rightButton = new QToolButton(d->scrollFrame);
+    d->leftButton->setObjectName("leftButton");
+    d->rightButton->setObjectName("rightButton");
+
+    scrollLayout->addWidget(d->leftButton);
+    scrollLayout->addWidget(d->rightButton);
+    d->leftButton->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
+    d->rightButton->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
+
+    main_layout->addWidget(d->scrollFrame);
+    connect(d->leftButton, &QToolButton::clicked, this, [=]() {
+        d->scrollToDirection(d->Direction::Right);
     });
+    connect(d->rightButton, &QToolButton::clicked, this, [=]() {
+        d->scrollToDirection(d->Direction::Left);
+    });
+
+    show();
+    d->leftButton->hide();
+    d->rightButton->hide();
+    d->leftButton->setEnabled(false);
+    d->rightButton->setEnabled(false);
 }
 
 CTabBar::~CTabBar()
 {
-
+    delete d, d = nullptr;
 }
 
-void CTabBar::initCustomScroll(QFrame      *_pScrollerFrame,
-                               QToolButton *_pLeftButton,
-                               QToolButton *_pRightButton)
+int CTabBar::addTab(const QString &text)
 {
-    // Bypassing the bug with tab scroller
-    m_pScrollerFrame = _pScrollerFrame;
-    m_pLeftButton = _pLeftButton;
-    m_pRightButton = _pRightButton;
-    m_pScrollerFrame->show();
-    m_pScrollerFrame->raise();
-    m_pLeftButton->show();
-    m_pLeftButton->raise();
-    m_pRightButton->show();
-    m_pRightButton->raise();
-    m_pScrollerFrame->setVisible(false);
-    connect(m_pLeftButton, &QToolButton::clicked, this, [=](){
-        Q_D(QTabBar);
-        d->leftB->click();
-        m_scrollPos = d->scrollOffset;
-        changeCustomScrollerState();
+    while (d->animationInProgress)
+        qApp->processEvents();
+
+    const int lastIndex = d->tabList.size() - 1;
+    const int posX = (lastIndex == -1) ? 0 : d->nextTabPosByPrev(lastIndex);
+    Tab *tab = new Tab(d->tabArea);
+    tab->move(posX, 0);
+    tab->setFixedHeight(d->tabArea->height());
+    tab->setText(text, d->elideMode);
+    if (tab->icon_label->minimumSize().isNull()) {
+        tab->icon_label->setBaseSize(d->iconSize);
+        tab->icon_label->setFixedSize(d->iconSize);
+    }
+    tab->index = lastIndex + 1;
+    d->tabList.append(tab);
+    connect(tab->close_btn, &QToolButton::clicked, this, [=]() {
+        emit tabCloseRequested(tab->index);
     });
-    connect(m_pRightButton, &QToolButton::clicked, this, [=](){
-        Q_D(QTabBar);
-        d->rightB->click();
-        m_scrollPos = d->scrollOffset;
-        changeCustomScrollerState();
-    }); // End bypassing the bug
+    connect(tab, &Tab::onTabWidthChanged, this, [=](int width) {
+        if (d->tab_width != width) {
+            d->tab_width = width;
+            d->onTabWidthChanged(width);
+        }
+    });
+    tabInserted(lastIndex + 1);
+    d->onCurrentChanged(lastIndex + 1);
+    return d->currentIndex;
 }
 
-void CTabBar::mouseMoveEvent(QMouseEvent * event)
+int CTabBar::addTab(const QIcon &icon, const QString &text)
 {
-    Q_D(QTabBar);
-    this->setCursor(QCursor(Qt::ArrowCursor));
-    if (verticalTabs(d->shape)) {
-        QTabBar::mouseMoveEvent(event);
+    const int index = addTab(text);
+    setTabIcon(index, icon);
+    return index;
+}
+
+int CTabBar::count() const
+{
+    return d->tabList.size();
+}
+
+int CTabBar::currentIndex() const
+{
+    return d->currentIndex;
+}
+
+Qt::TextElideMode CTabBar::elideMode() const
+{
+    return d->elideMode;
+}
+
+QSize CTabBar::iconSize() const
+{
+    return d->iconSize;
+}
+
+int CTabBar::insertTab(int index, const QString &text)
+{
+    while (d->animationInProgress)
+        qApp->processEvents();
+
+    if (!d->indexIsValid(index))
+        return addTab(text);
+
+    while (d->animationInProgress)
+        qApp->processEvents();
+
+    int posX = d->_tabRect(index).left();
+    d->slide(index, d->tabList.size() - 1, d->cellWidth(), ANIMATION_DEFAULT_MS);
+    while (d->animationInProgress)
+        qApp->processEvents();
+
+    Tab *tab = new Tab(d->tabArea);
+    tab->move(posX, 0);
+    tab->setFixedHeight(d->tabArea->height());
+    tab->setText(text, d->elideMode);
+    if (tab->icon_label->minimumSize().isNull()) {
+        tab->icon_label->setBaseSize(d->iconSize);
+        tab->icon_label->setFixedSize(d->iconSize);
+    }
+    d->tabList.insert(index, tab);
+    for (int i = index; i < d->tabList.size(); i++)
+        d->tabIndex(i) = i;
+
+    connect(tab->close_btn, &QToolButton::clicked, this, [=]() {
+        emit tabCloseRequested(tab->index);
+    });
+    connect(tab, &Tab::onTabWidthChanged, this, [=](int width) {
+        if (d->tab_width != width) {
+            d->tab_width = width;
+            d->onTabWidthChanged(width);
+        }
+    });
+    tabInserted(index);
+    d->onCurrentChanged(index);
+    return d->currentIndex;
+}
+
+int CTabBar::insertTab(int index, const QIcon &icon, const QString &text)
+{
+    const int actual_index = insertTab(index, text);
+    setTabIcon(actual_index, icon);
+    return actual_index;
+}
+
+void CTabBar::moveTab(int from, int to)
+{
+    while (d->animationInProgress)
+        qApp->processEvents();
+
+    if (from == to || !d->indexIsValid(from) || !d->indexIsValid(to))
         return;
-    }
 
-    if (d->movable) {
-        // Be safe!
-        if (d->pressedIndex != -1 && event->buttons() == Qt::NoButton)
-            d->moveTabFinished(d->pressedIndex);
+    int posX = d->_tabRect(from).x();
+    d->tabList[from]->move(d->_tabRect(to).x(), 0);
+    d->tabList[to]->move(posX, 0);
+    int from_index = d->tabIndex(from);
+    d->tabIndex(from) = d->tabIndex(to);
+    d->tabIndex(to) = from_index;
+    Tab *from_tab = d->tabList[from];
+    d->tabList[from] = d->tabList[to];
+    d->tabList[to] = from_tab;
+    d->scrollTo(to);
+    emit tabMoved(from, to);
+}
 
-        // Start drag
-        if (!d->dragInProgress && d->pressedIndex != -1) {
-            if ((event->pos() - d->dragStartPosition).manhattanLength() > QApplication::startDragDistance()) {
-                d->dragInProgress = true;
-                d->setupMovableTab();
-            }
-        }
+void CTabBar::removeTab(int index)
+{
+    while (d->animationInProgress)
+        qApp->processEvents();
 
-        int offset = (event->pos() - d->dragStartPosition).manhattanLength();
-        if (event->buttons() == Qt::LeftButton
-                && offset > QApplication::startDragDistance() && d->validIndex(d->pressedIndex)) {
-            if ( abs(event->pos().y() - d->dragStartPosition.y()) > 30 ) {
-                bool isaccepted = false;
-                emit tabUndock(d->pressedIndex, &isaccepted);
-
-                if (isaccepted)
-                    interruptTabMoving(d->pressedIndex);
-                return;
-            }
-
-            int dragDistance = (event->pos().x() - d->dragStartPosition.x());
-
-            if ((d->pressedIndex == 0 && dragDistance < 0) ||
-                    (d->pressedIndex + 1 == count() && dragDistance > 0))
-            {
-                dragDistance = 0;
-            }
-
-            d->tabList[d->pressedIndex].dragOffset = dragDistance;
-
-            QRect startingRect = tabRect(d->pressedIndex);
-            startingRect.moveLeft(startingRect.x() + dragDistance);
-
-            int overIndex;
-            if (dragDistance < 0)
-                overIndex = tabAt(startingRect.topLeft()); else
-                overIndex = tabAt(startingRect.topRight());
-
-            if (overIndex != d->pressedIndex && overIndex != -1) {
-                int offset = 1;
-                if (isRightToLeft()) offset *= -1;
-                if (dragDistance < 0) {
-                    dragDistance *= -1;
-                    offset *= -1;
-                }
-                for (int i = d->pressedIndex;
-                     offset > 0 ? i < overIndex : i > overIndex;
-                     i += offset) {
-                    QRect overIndexRect = tabRect(overIndex);
-                    int needsToBeOver = overIndexRect.width() / 2;
-                    if (dragDistance > needsToBeOver)
-                        d->slide(i + offset, d->pressedIndex);
-                }
-            }
-
-            // Buttons needs to follow the dragged tab
-            d->layoutTab(d->pressedIndex);
-
-            update();
-        }
-    }
-
-    if (event->buttons() != Qt::LeftButton) {
-        event->ignore();
+    if (!d->indexIsValid(index))
         return;
-    }
 
-    QStyleOptionTabBarBaseV2 optTabBase;
-    optTabBase.init(this);
-    optTabBase.documentMode = d->documentMode;
-}
-
-void CTabBar::mousePressEvent(QMouseEvent * e)
-{
-    QCoreApplication::postEvent(parent(), new QEvent(QEvent::MouseButtonPress));
-    if ( e->button() == Qt::LeftButton ) {
-        QTabBar::mousePressEvent(e);
-//        if ( count() == 1 ) e->ignore();
-    } else e->ignore();
-}
-
-void CTabBar::mouseReleaseEvent(QMouseEvent * e)
-{
-    QTabBar::mouseReleaseEvent(e);
-    releaseMouse();
-    if (e->button() == Qt::MiddleButton)
-        onCloseButton();
-    if (m_tabWasMoved) {
-        m_tabWasMoved = false;
-        int ind = currentIndex();
-        if (ind > 0) {
-            blockSignals(true);
-            setCurrentIndex(ind - 1);
-            setCurrentIndex(ind);
-            blockSignals(false);
-            changeCustomScrollerState();
+    d->tabList[index]->hide();
+    if (d->_tabRect(0).x() <= d->tabArea->x() - d->cellWidth()) {
+        const int prevIndex = index - 1;
+        if (prevIndex > -1) {
+            d->slide(0, prevIndex, d->cellWidth(), ANIMATION_DEFAULT_MS);
+            while (d->animationInProgress)
+                qApp->processEvents();
         }
-    }
-}
-
-void CTabBar::wheelEvent(QWheelEvent *event)
-{
-    QTabBar::wheelEvent(event);
-    emit onCurrentChangedByWhell(currentIndex());
-}
-
-void CTabBar::drawTabCaption(QPainter * p, const QString& s, const QStyleOptionTab& t)
-{
-    if ( m_usePalette ) {
-        if ( m_palette.currentColorGroup() != QPalette::Disabled &&
-                t.state & QStyle::State_Selected /*|| t.state & QStyle::State_MouseOver*/ )
-            p->setPen( QPen(m_palette.color(QPalette::Active, QPalette::ButtonText)));
-        else p->setPen( QPen(m_palette.color(QPalette::Inactive, QPalette::ButtonText)));
     } else {
-        p->setPen(QPen(t.palette.foreground().color()));
-    }
-
-    QPoint _lt = QPoint(15, 0) * scaling();
-    QPoint _rb = QPoint(-22, -2) * scaling();
-
-    QRect trect(t.rect.topLeft() + QPoint(t.iconSize.width(), 0) + _lt,
-                    t.rect.bottomRight() + _rb);
-
-//    QFont f = font();
-//    f.setPointSize(8);
-
-//    p->setFont(f);
-
-    QString es = fontMetrics().elidedText(s, Qt::ElideRight, trect.width(), Qt::TextShowMnemonic);
-    p->drawText(trect, Qt::AlignVCenter, es);
-}
-
-void CTabBar::paintEvent(QPaintEvent * event)
-{
-    Q_D(QTabBar);
-
-#ifdef _QTVER_DOWNGRADE
-    if (verticalTabs(d->shape)) {
-        QTabBar::paintEvent(event);
-        return;
-    }
-
-    QStyleOptionTabBarBaseV2 optTabBase;
-    QTabBarPrivate::initStyleBaseOption(&optTabBase, this, size());
-
-    QStylePainter p(this);
-    int selected = -1;
-    int cut = -1;
-    bool rtl = optTabBase.direction == Qt::RightToLeft;
-    QStyleOptionTab cutTab;
-    selected = d->currentIndex;
-    if (d->dragInProgress)
-        selected = d->pressedIndex;
-
-    for (int i = 0; i < d->tabList.count(); ++i)
-         optTabBase.tabBarRect |= tabRect(i);
-
-    optTabBase.selectedTabRect = tabRect(selected);
-
-    if (d->drawBase)
-        p.drawPrimitive(QStyle::PE_FrameTabBarBase, optTabBase);
-
-    for (int i = 0; i < d->tabList.count(); ++i) {
-        QStyleOptionTabV3 tab;
-        initStyleOption(&tab, i);
-
-        if (d->paintWithOffsets && d->tabList[i].dragOffset != 0) {
-            tab.rect.moveLeft(tab.rect.x() + d->tabList[i].dragOffset);
-        }
-        if (!(tab.state & QStyle::State_Enabled)) {
-            tab.palette.setCurrentColorGroup(QPalette::Disabled);
-        }
-        // If this tab is partially obscured, make a note of it so that we can pass the information
-        // along when we draw the tear.
-        if ((!rtl && tab.rect.left() < 0) || (rtl && tab.rect.right() > width())) {
-            cut = i;
-            cutTab = tab;
-        }
-        // Don't bother drawing a tab if the entire tab is outside of the visible tab bar.
-        if (tab.rect.right() < 0 || tab.rect.left() > width())
-            continue;
-
-        optTabBase.tabBarRect |= tab.rect;
-        if (i == selected)
-            continue;
-
-        QString text(tab.text);
-        tab.text.clear();
-        p.drawControl(QStyle::CE_TabBarTab, tab);
-        drawTabCaption(&p, text, tab);
-    }
-
-    // Draw the selected tab last to get it "on top"
-    if (selected >= 0) {
-        QStyleOptionTabV3 tab;
-        initStyleOption(&tab, selected);
-
-        if (d->paintWithOffsets && d->tabList[selected].dragOffset != 0) {
-            tab.rect.moveLeft(tab.rect.x() + d->tabList[selected].dragOffset);
-        }
-        if (!d->dragInProgress) {
-            QString text(tab.text);
-            tab.text.clear();
-            p.drawControl(QStyle::CE_TabBarTab, tab);
-
-            if ( m_activeColor != "none" )
-                fillTabColor(&p, tab, selected, m_activeColor);
-            drawTabCaption(&p, text, tab);
-        } else {
-            int taboverlap = style()->pixelMetric(QStyle::PM_TabBarTabOverlap, 0, this);
-            d->movingTab->setGeometry(tab.rect.adjusted(-taboverlap, 0, taboverlap, 0));
+        const int nextIndex = index + 1;
+        if (nextIndex < d->tabList.size()) {
+            d->slide(nextIndex, d->tabList.size() - 1, -1 * d->cellWidth(), ANIMATION_DEFAULT_MS);
+            while (d->animationInProgress)
+                qApp->processEvents();
         }
     }
 
-    // Only draw the tear indicator if necessary. Most of the time we don't need too.
-    if (d->leftB->isVisible() && cut >= 0) {
-        cutTab.rect = rect();
-        cutTab.rect = style()->subElementRect(QStyle::SE_TabBarTearIndicator, &cutTab, this);
-        p.drawPrimitive(QStyle::PE_IndicatorTabTear, cutTab);
-    }
-#else
-    QStyleOptionTabBarBase optTabBase;
-    QTabBarPrivate::initStyleBaseOption(&optTabBase, this, size());
+    delete d->tabList[index];
+    d->tabList.remove(index);
+    for (int i = index; i < d->tabList.size(); i++)
+        d->tabIndex(i) = i;
 
-    QStylePainter p(this);
-    int selected = -1;
-    int cutLeft = -1;
-    int cutRight = -1;
-    bool vertical = verticalTabs(d->shape);
-    QStyleOptionTab cutTabLeft;
-    QStyleOptionTab cutTabRight;
-    selected = d->currentIndex;
-    if (d->dragInProgress)
-        selected = d->pressedIndex;
-    QRect scrollRect = d->normalizedScrollRect();
-
-    for (int i = 0; i < d->tabList.count(); ++i)
-         optTabBase.tabBarRect |= tabRect(i);
-
-    optTabBase.selectedTabRect = tabRect(selected);
-
-    if (d->drawBase)
-        p.drawPrimitive(QStyle::PE_FrameTabBarBase, optTabBase);
-
-    for (int i = 0; i < d->tabList.count(); ++i) {
-        QStyleOptionTab tab;
-        initStyleOption(&tab, i);
-        if (d->paintWithOffsets && d->tabList[i].dragOffset != 0) {
-            if (vertical) {
-                tab.rect.moveTop(tab.rect.y() + d->tabList[i].dragOffset);
+    if (d->currentIndex > 0) {
+        if (index > 0) {
+            if (d->currentIndex > index) {
+                d->onCurrentChanged(d->currentIndex - 1);
+            } else
+            if (d->currentIndex < index) {
+                d->recalcWidth();
             } else {
-                tab.rect.moveLeft(tab.rect.x() + d->tabList[i].dragOffset);
+                const int initialMaxIndex = d->tabList.size(); // max index before deletion
+                if (index < initialMaxIndex) {
+                    d->onCurrentChanged(index);
+                } else {
+                    d->onCurrentChanged(initialMaxIndex - 1);
+                }
+            }
+        } else {
+            d->onCurrentChanged(d->currentIndex - 1);
+        }
+    } else {
+        if (index > 0) {
+            d->recalcWidth();
+        } else {
+            const int initialMaxIndex = d->tabList.size(); // max index before deletion
+            if (index < initialMaxIndex) {
+                d->onCurrentChanged(index);
+            } else {
+                d->onCurrentChanged(-1);
             }
         }
-        if (!(tab.state & QStyle::State_Enabled)) {
-            tab.palette.setCurrentColorGroup(QPalette::Disabled);
-        }
-
-        // If this tab is partially obscured, make a note of it so that we can pass the information
-        // along when we draw the tear.
-        QRect tabRect = d->tabList[i].rect;
-        int tabStart = vertical ? tabRect.top() : tabRect.left();
-        int tabEnd = vertical ? tabRect.bottom() : tabRect.right();
-        if (tabStart < scrollRect.left() + d->scrollOffset) {
-            cutLeft = i;
-            cutTabLeft = tab;
-        } else if (tabEnd > scrollRect.right() + d->scrollOffset) {
-            cutRight = i;
-            cutTabRight = tab;
-        }
-
-        // Don't bother drawing a tab if the entire tab is outside of the visible tab bar.
-        if ((!vertical && (tab.rect.right() < 0 || tab.rect.left() > width()))
-            || (vertical && (tab.rect.bottom() < 0 || tab.rect.top() > height())))
-            continue;
-
-        optTabBase.tabBarRect |= tab.rect;
-        if (i == selected)
-            continue;
-
-        QString text(tab.text);
-        tab.text.clear();
-        p.drawControl(QStyle::CE_TabBarTab, tab);
-        drawTabCaption(&p, text, tab);
-    }
-
-    // Draw the selected tab last to get it "on top"
-    if (selected >= 0) {
-        QStyleOptionTab tab;
-        initStyleOption(&tab, selected);
-        if (d->paintWithOffsets && d->tabList[selected].dragOffset != 0) {
-            if (vertical)
-                tab.rect.moveTop(tab.rect.y() + d->tabList[selected].dragOffset);
-            else
-                tab.rect.moveLeft(tab.rect.x() + d->tabList[selected].dragOffset);
-        }
-        if (!d->dragInProgress) {
-            QString text(tab.text);
-            tab.text.clear();
-            p.drawControl(QStyle::CE_TabBarTab, tab);
-
-            if ( m_activeColor != "none" )
-                fillTabColor(&p, tab, selected, m_activeColor);
-            drawTabCaption(&p, text, tab);
-        } else {
-            int taboverlap = style()->pixelMetric(QStyle::PM_TabBarTabOverlap, 0, this);
-            if (verticalTabs(d->shape))
-                d->movingTab->setGeometry(tab.rect.adjusted(0, -taboverlap, 0, taboverlap));
-            else
-                d->movingTab->setGeometry(tab.rect.adjusted(-taboverlap, 0, taboverlap, 0));
-        }
-    }
-
-    // Only draw the tear indicator if necessary. Most of the time we don't need too.
-    if (d->leftB->isVisible() && cutLeft >= 0) {
-        cutTabLeft.rect = rect();
-        cutTabLeft.rect = style()->subElementRect(QStyle::SE_TabBarTearIndicatorLeft, &cutTabLeft, this);
-        p.drawPrimitive(QStyle::PE_IndicatorTabTearLeft, cutTabLeft);
-    }
-
-    if (d->rightB->isVisible() && cutRight >= 0) {
-        cutTabRight.rect = rect();
-        cutTabRight.rect = style()->subElementRect(QStyle::SE_TabBarTearIndicatorRight, &cutTabRight, this);
-        p.drawPrimitive(QStyle::PE_IndicatorTabTearRight, cutTabRight);
-    }
-#endif
-
-}
-
-void CTabBar::resizeEvent(QResizeEvent *event)
-{
-    QTabBar::resizeEvent(event);
-    Q_D(QTabBar);
-    m_scrollPos = d->scrollOffset;
-    changeCustomScrollerState();
-}
-
-void CTabBar::fillTabColor(QPainter * p, const QStyleOptionTab& tab, uint index, const QColor& color)
-{
-    int border_width = scaling() > 1 ? 2 : 1;
-
-    QRect tabRect(tab.rect);
-    tabRect.adjust(-border_width, 0, 0, 0);
-    p->fillRect( tabRect, QBrush(QColor(color)) );
-
-    if ( !tabData(index).isNull() && tabData(index).toInt() == TabTheme::LightTab ) {
-        if ( !m_isUIThemeDark ) {
-            QPen _pen = p->pen();
-            _pen.setColor(QColor("#a5a5a5"));
-            _pen.setWidth(border_width);
-
-            p->setPen(_pen);
-            p->drawLine(tabRect.bottomLeft(), tabRect.topLeft());
-            p->drawLine(tabRect.bottomRight(), tabRect.topRight());
-        }
     }
 }
 
-void CTabBar::setTabTextColor(QPalette::ColorGroup group, const QColor& color)
+void CTabBar::setElideMode(Qt::TextElideMode mode)
 {
-    m_usePalette = true;
-    m_palette.setColor(group, QPalette::ButtonText, color);
+    d->elideMode = mode;
 }
 
-QPalette& CTabBar::customColors()
+void CTabBar::setIconSize(const QSize &size)
 {
-    return m_palette;
-}
-
-QVariant CTabBar::tabProperty(int index, const char *name)
-{
-    auto *wgt = tabButton(index, QTabBar::RightSide);
-    if (!wgt)
-        wgt = tabButton(index, QTabBar::LeftSide);
-    if (wgt)
-        return wgt->property(name);
-    return QVariant();
-}
-
-void CTabBar::setTabProperty(int index, const char *name, const QVariant &value)
-{
-    auto *wgt = tabButton(index, QTabBar::RightSide);
-    if (!wgt)
-        wgt = tabButton(index, QTabBar::LeftSide);
-    if (wgt)
-        wgt->setProperty(name, value);
-}
-
-void CTabBar::setUseTabCustomPalette(bool use)
-{
-    m_usePalette = use;
-}
-
-void CTabBar::tabInserted(int index)
-{
-    QToolButton * close = new QToolButton(this);
-    close->setProperty("class", "tab-close");
-    close->setFocusPolicy(Qt::NoFocus);
-    close->setFixedSize( QSize(16, 16) * scaling() );
-    if ( index == currentIndex() )
-        close->setProperty("state", "active"); else
-        close->hide();
-
-    connect(close, &QToolButton::clicked, this, &CTabBar::onCloseButton);
-    setTabButton(index, QTabBar::RightSide, close);
-
-    CAnimatedIcon * icon = new CAnimatedIcon(this);
-    icon->setFixedSize(iconSize());
-    setTabButton(index, QTabBar::LeftSide, icon);
-
-    QTabBar::tabInserted(index);
-}
-
-void CTabBar::onCurrentChanged(int index)
-{
-    Q_D(QTabBar);
-    m_scrollPos = d->scrollOffset;
-    if (this->count() == 0) {
-        this->hide();
-    } else if (this->isHidden()) {
-        this->show();
+    d->iconSize = size;
+    for (int i = 0; i < d->tabList.size(); i++) {
+        if (d->tabList[i]->icon_label->baseSize().isNull())
+            break;
+        d->tabList[i]->icon_label->setBaseSize(size);
+        d->tabList[i]->icon_label->setFixedSize(size);
+        if (QIcon *icon = d->tabList[i]->tab_icon)
+            d->tabList[i]->icon_label->setPixmap(icon->pixmap(d->iconSize));
     }
-
-    QWidget * b = TAB_BTNCLOSE(m_current);
-//    if ( tabData(m_current).isNull() )
-    {
-        if ( b ) {
-            b->hide();
-//            b->setProperty("state", "normal");
-//            b->style()->polish(b);
-        }
-    }
-
-//    if ( tabData(index).isNull() )
-    {
-        b = TAB_BTNCLOSE(index);
-        if ( b ) {
-            b->show();
-//            b->setProperty("state", "active");
-//            b->style()->polish(b);
-        }
-    }
-
-    m_current = index;
-    changeCustomScrollerState();
 }
 
-void CTabBar::changeCustomScrollerState()
+void CTabBar::setTabIconLabel(int index, QWidget *widget)
 {
-    // Bypassing the bug with tab scroller
-    Q_D(QTabBar);
-    if (m_pScrollerFrame && m_pLeftButton && m_pRightButton) {
-        if (d->leftB->isVisible()) {
-            m_pScrollerFrame->setVisible(true);
-        } else {
-            m_pScrollerFrame->setVisible(false);
-        }
-        if (d->leftB->isEnabled()) {
-            m_pLeftButton->setEnabled(true);
-        } else {
-            m_pLeftButton->setEnabled(false);
-        }
-        if (d->rightB->isEnabled()) {
-            m_pRightButton->setEnabled(true);
-        } else {
-            m_pRightButton->setEnabled(false);
-        }
+    if (!d->indexIsValid(index))
+        return;
+    if (CAnimatedIcon *icon_label = dynamic_cast<CAnimatedIcon*>(widget)) {
+        Tab *tab = d->tabList[index];
+        if (tab->icon_label)
+            delete tab->icon_label;
+        tab->icon_label = icon_label;
+        icon_label->setParent(tab);
+        icon_label->setObjectName("tabIcon");
+        icon_label->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+        icon_label->setMaximumSize(DEFAULT_ICON_SIZE);
+        if (QHBoxLayout *lut = dynamic_cast<QHBoxLayout*>(tab->layout()))
+            lut->insertWidget(0, icon_label);
+        icon_label->style()->polish(icon_label);
     }
-    // End bypassing the bug
 }
 
-void CTabBar::tabRemoved(int index)
+void CTabBar::setTabButton(int index, QWidget *widget)
 {
-    QWidget * i = TAB_ICON(index);
-    if ( i ) {
-//        qDebug() << "tab removed: " << index;
-    } else {
-//        qDebug() << "tab already removed: " << index;
+    if (!d->indexIsValid(index))
+        return;
+    if (QToolButton *close_btn = dynamic_cast<QToolButton*>(widget)) {
+        Tab *tab = d->tabList[index];
+        if (tab->close_btn)
+            delete tab->close_btn;
+        tab->close_btn = close_btn;
+        close_btn->setParent(tab);
+        close_btn->setObjectName("tabButton");
+        close_btn->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+        close_btn->setMaximumSize(DEFAULT_ICON_SIZE);
+        connect(close_btn, &QToolButton::clicked, this, [=]() {
+            emit tabCloseRequested(tab->index);
+        });
+        if (QHBoxLayout *lut = dynamic_cast<QHBoxLayout*>(tab->layout()))
+            lut->insertWidget(2, close_btn);
+        close_btn->style()->polish(close_btn);
     }
-
-    QTabBar::tabRemoved(index);
 }
+
+//void CTabBar::setTabData(int index, const QVariant &data)
+//{
+//    if (d->indexIsValid(index))
+//        d->tabList[index]->setProperty("TabData", data);
+//}
 
 void CTabBar::setTabIcon(int index, const QIcon &icon)
 {
-    QWidget * i = TAB_ICON(index);
-    if ( i ) {
-        QSize _iconSize = iconSize();
-        QRect _tabRect = tabRect(index);
-        int _top = (_tabRect.height() - _iconSize.height()) / 2;
-        double dpi_ratio = scaling();
+    if (d->indexIsValid(index))
+        d->tabList[index]->setIcon(icon);
+}
 
-        ((CAnimatedIcon *)i)->setPixmap(icon.pixmap(_iconSize));
-        int top_offset{1};
-        if (dpi_ratio < 1.25) top_offset = 1; else
-        if (dpi_ratio < 1.5) top_offset = 2; else
-        if (dpi_ratio < 1.75) top_offset = 2; else
-        if (dpi_ratio < 2) top_offset = 3; else
-        if (dpi_ratio < 2.5) top_offset = 4; else
-        if (dpi_ratio < 3) top_offset = 5; else
-        if (dpi_ratio < 3.5) top_offset = 5; else
-        if (dpi_ratio < 4) top_offset = 6; else
-        if (dpi_ratio < 4.5) top_offset = 8; else
-        if (dpi_ratio < 5) top_offset = 9; else
-            top_offset = 9;
+void CTabBar::setTabText(int index, const QString &text)
+{
+    if (d->indexIsValid(index))
+        d->tabList[index]->setText(text);
+}
 
-        i->setGeometry(QRect(QPoint(_tabRect.left() + 4, _top - top_offset),_iconSize));
-        i->setFixedSize(_iconSize.width() + int(8 * dpi_ratio), iconSize().height() + int(4 * dpi_ratio));
+void CTabBar::setTabToolTip(int index, const QString &text)
+{
+    if (d->indexIsValid(index)) {
+        d->tabList[index]->setProperty("ToolTip", text);
+        d->tabList[index]->icon_label->setProperty("ToolTip", text);
+        d->tabList[index]->text_label->setProperty("ToolTip", text);
+        d->tabList[index]->close_btn->setProperty("ToolTip", text);
+    }
+}
 
-        update(_tabRect);
+void CTabBar::setCurrentIndex(int index)
+{
+    while (d->animationInProgress)
+        qApp->processEvents();
+    if (!d->indexIsValid(index) || index == d->currentIndex)
+        return;
+    d->onCurrentChanged(index);
+}
+
+void CTabBar::setActiveTabColor(int index, const QString& color)
+{
+    if (!d->indexIsValid(index) || color == "none")
+        return;
+    if (d->tabList[index]->tabcolor != color) {
+        d->tabList[index]->tabcolor = color;
+        d->tabList[index]->polish();
+    }
+}
+
+void CTabBar::setUseTabCustomPalette(int index, bool use)
+{
+    if (d->indexIsValid(index)) {
+        if (d->tabList[index]->property("custom").toBool() != use) {
+            d->tabList[index]->setProperty("custom", use);
+            polish();
+        }
     }
 }
 
 void CTabBar::setTabLoading(int index, bool start)
 {
-    if ( start ) {
-//        tabStartLoading(index, index == currentIndex() && m_active ?  "light" : "dark");
-    } else {
-        CAnimatedIcon * icon = (CAnimatedIcon *)TAB_ICON(index);
-        if ( icon ) icon->stop();
+    if (!start) {
+        if (CAnimatedIcon * icon = (CAnimatedIcon*)tabIconLabel(index))
+            icon->stop();
     }
+}
+
+void CTabBar::setTabIconTheme(int index, TabTheme theme)
+{
+    if (CAnimatedIcon * icon = (CAnimatedIcon*)tabIconLabel(index))
+        icon->setSvgElement(theme == TabTheme::LightTab ? "dark" : "light");
 }
 
 void CTabBar::tabStartLoading(int index, const QString& theme)
 {
-    CAnimatedIcon * icon = (CAnimatedIcon *)TAB_ICON(index);
-    if ( icon ) {
-        if ( !icon->isStarted() )
-            icon->startSvg(":/tabbar/icons/loader.svg", theme);
-    }
+    CAnimatedIcon * icon = (CAnimatedIcon*)tabIconLabel(index);
+    if (icon && !icon->isStarted() )
+        icon->startSvg(":/tabbar/icons/loader.svg", theme);
 }
 
-void CTabBar::onCloseButton()
+void CTabBar::setIgnoreActiveTabColor(bool ignore)
 {
-    QWidget * b = sender() ? (QWidget *)sender() :
-                             qApp->widgetAt(QCursor::pos());
-    int tabToClose = -1;
-    for (int i(0); i < count(); ++i) {
-        if ( TAB_BTNCLOSE(i) == b ) {
-            tabToClose = i;
-            break;
-        }
-    }
-
-    if ( !(tabToClose < -1) )
-        emit tabCloseRequested(tabToClose);
+    d->ignore_tabcolor = ignore;
 }
 
-void CTabBar::setTabTheme(int index, TabTheme theme)
+bool CTabBar::ignoreActiveTabColor()
 {
-    setTabData(index, theme);
+    return d->ignore_tabcolor;
+}
 
-    CAnimatedIcon * i = (CAnimatedIcon *)TAB_ICON(index);
-    QWidget * b = TAB_BTNCLOSE(index);
-    if ( theme == TabTheme::LightTab ) {
-        if ( i ) {
-            i->setSvgElement("dark");
-        }
+void CTabBar::polish()
+{
+    for (int i = 0; i < d->tabList.size(); i++)
+        d->tabList[i]->polish();
+    d->tabArea->style()->polish(d->tabArea);
+    d->scrollFrame->style()->polish(d->scrollFrame);
+    d->leftButton->style()->polish(d->leftButton);
+    d->rightButton->style()->polish(d->rightButton);
+}
 
-        if ( b && !(b->property("state") == "normal") ) {
-            b->setProperty("state", "normal");
-            b->style()->polish(b);
-        }
-    } else {
-        if ( i ) {
-            i->setSvgElement("light");
-        }
-
-        if ( b && !(b->property("state") == "active") ) {
-            b->setProperty("state", "active");
-            b->style()->polish(b);
+int CTabBar::tabIndexAt(const QPoint &pos) const
+{
+    QPoint rel_pos = d->tabArea->mapFromParent(pos);
+    if (d->tabArea->rect().contains(rel_pos)) {
+        for (int i = 0; i < d->tabList.size(); i++) {
+            if (d->_tabRect(i).contains(rel_pos))
+                return i;
         }
     }
+    return -1;
 }
 
-void CTabBar::setUIThemeType(bool islight)
+QWidget *CTabBar::tabIconLabel(int index) const
 {
-    Q_D(QTabBar);
+    return d->indexIsValid(index) ? d->tabList[index]->icon_label : nullptr;
+}
 
-    m_isUIThemeDark = !islight;
-    if (m_pLeftButton && m_pRightButton) {
-        m_pLeftButton->style()->polish(m_pLeftButton);
-        m_pRightButton->style()->polish(m_pRightButton);
+QWidget *CTabBar::tabButton(int index) const
+{
+    return d->indexIsValid(index) ? d->tabList[index]->close_btn : nullptr;
+}
+
+//QVariant CTabBar::tabData(int index) const
+//{
+//    return d->indexIsValid(index) ? d->tabList[index]->property("TabData") : QVariant();
+//}
+
+QIcon CTabBar::tabIcon(int index) const
+{
+    if (d->indexIsValid(index) && d->tabList[index]->tab_icon)
+        return *d->tabList[index]->tab_icon;
+    return QIcon();
+}
+
+QRect CTabBar::tabRect(int index) const
+{
+    return d->indexIsValid(index) ? d->_tabRect(index) : QRect();
+}
+
+QString CTabBar::tabText(int index) const
+{
+    return (d->indexIsValid(index)) ? d->tabList[index]->text : QString();
+}
+
+QVariant CTabBar::tabProperty(int index, const char *name)
+{
+    return d->indexIsValid(index) ? d->tabList[index]->property(name) : QVariant();
+}
+
+void CTabBar::tabInserted(int index)
+{
+    Q_UNUSED(index)
+}
+
+void CTabBar::resizeEvent(QResizeEvent *event)
+{
+    QFrame::resizeEvent(event);
+    for (int i = 0; i < d->tabList.size(); i++)
+        d->tabList[i]->setFixedHeight(d->tabArea->height());
+
+    int tabsWidth = d->tabList.isEmpty() ? 0 : count() * d->cellWidth();
+    bool visible = (tabsWidth > d->tabArea->width());
+    d->leftButton->setVisible(visible);
+    d->rightButton->setVisible(visible);
+
+    const int lastIndex = d->tabList.size() - 1;
+    const int offsetX = (lastIndex == -1) ? 0 : d->tabArea->rect().right() - d->_tabRect(lastIndex).right();
+    if (offsetX > TABSPACING) {
+        for (int i = 0; i < d->tabList.size(); i++)
+            d->tabList[i]->move(d->_tabRect(i).x() + offsetX - TABSPACING, 0);
     }
-    QTimer::singleShot(20, this, [=]() {
-        Q_D(QTabBar);
-        if (d->scrollOffset != m_scrollPos) {
-            const int tabWidth = this->tabSizeHint(0).width();
-            if (m_scrollPos % tabWidth == 0) {
-                for (int i = 0; i < count(); i++) {
-                    if (!d->rightB->isEnabled()) break;
-                    d->rightB->click();
-                }
-                for (int i = 0; i < count(); i++) {
-                    if (d->scrollOffset == m_scrollPos) break;
-                    d->leftB->click();
-                }
-
-            } else {
-                for (int i = 0; i < count(); i++) {
-                    if (!d->leftB->isEnabled()) break;
-                    d->leftB->click();
-                }
-                for (int i = 0; i < count(); i++) {
-                    if (d->scrollOffset == m_scrollPos) break;
-                    d->rightB->click();
-                }
-            }
-        }
-    });
+    d->changeScrollerState();
 }
 
-void CTabBar::setActiveTabColor(const QString& color)
+void CTabBar::wheelEvent(QWheelEvent *event)
 {
-    m_activeColor = color;
-}
-
-void CTabBar::changeTabTheme(int index, TabTheme theme)
-{
-    if ( tabData(index).isNull() ) {
-        CAnimatedIcon * i = (CAnimatedIcon *)TAB_ICON(index);
-        QWidget * b = TAB_BTNCLOSE(index);
-        if ( theme == TabTheme::LightTab ) {
-            if ( i && i->isStarted() ) {
-                i->setSvgElement("dark");
-            }
-
-            if ( b && !(b->property("state") == "normal") ) {
-                b->setProperty("state", "normal");
-                b->style()->polish(b);
-            }
-        } else {
-            if ( i && i->isStarted() ) {
-                i->setSvgElement("light");
-            }
-
-            if ( b && !(b->property("state") == "active") ) {
-                b->setProperty("state", "active");
-                b->style()->polish(b);
-            }
+    QFrame::wheelEvent(event);
+    if (!d->animationInProgress && d->tabArea->underMouse()) {
+        if (d->currentIndex > 0 && event->angleDelta().y() > 0) {
+            emit onCurrentChangedByWhell(d->currentIndex - 1);
+            d->onCurrentChanged(d->currentIndex - 1);
+        } else
+        if (d->currentIndex < count() - 1 && event->angleDelta().y() < 0) {
+            emit onCurrentChangedByWhell(d->currentIndex + 1);
+            d->onCurrentChanged(d->currentIndex + 1);
         }
     }
 }
 
-void CTabBar::activate(bool a)
+bool CTabBar::eventFilter(QObject *watched, QEvent *event)
 {
-    if ( m_active != a ) {
-        m_active = a;
-
-//        if ( tabData(m_current).isNull() )
-        {
-            QWidget * b = TAB_BTNCLOSE(m_current);
-            if ( b ) {
-                if ( a ){
-                    b->show();
-//                    b->setProperty("state", "active");
-                } else {
-                    b->hide();
-//                    b->setProperty("state", "normal");
-                    m_overIndex = -1;
-                }
-
-                b->style()->polish(b);
-            }
-        }
-    }
-}
-
-void CTabBar::updateScalingFactor(double f)
-{
-    CScalingWrapper::updateScalingFactor(f);
-
-    for (int i(count()); !(--i < 0); ) {
-        QWidget * b = TAB_BTNCLOSE(i);
-
-        if ( b ) {
-            b->setFixedSize( QSize(16, 16) * f );
-        }
-    }
-
-    repaint();
-}
-
-bool CTabBar::event(QEvent * e)
-{
-    if ( e->type() == QEvent::HoverMove ) {
-        Q_D(QTabBar);
-
-        if ( !d->dragInProgress ) {
-            QHoverEvent * _hover = static_cast<QHoverEvent *>(e);
-
-            int _index = tabAt(_hover->pos());
-            if ( m_overIndex != _index ) {
-                int _hide(m_overIndex);
-                m_overIndex = _index;
-
-                QWidget * b;
-                if ( !(_hide < 0) && (!m_active || _hide != currentIndex()) ) {
-                    b = TAB_BTNCLOSE(_hide);
-                    if ( b ) b->hide();
-                }
-
-                if ( !(_index < 0) ) {
-                    b = TAB_BTNCLOSE(_index);
-                    if ( b ) {
-                        b->show();
+    if (watched == d->tabArea) {
+        switch (event->type()) {
+        case QEvent::MouseMove: {
+            QMouseEvent* me = dynamic_cast<QMouseEvent*>(event);
+            if (me->buttons().testFlag(Qt::LeftButton)) {
+                if (d->movedTab && !d->lock) {
+                    d->movedTab->move(me->x() - d->movedTabPressPosX, 0);
+                    int offsetX;
+                    const int interIndex = d->getLayoutsIntersectedIndex(d->movedTab, offsetX);
+                    if (/*interIndex != -1 &&*/ d->movedTab->index != interIndex && offsetX != 0) {
+                        const int sign = (offsetX >= 0) ? 1 : -1;
+                        if (sign * offsetX > d->movedTab->width()/2) {
+                            if (d->indexIsValid(interIndex + sign)) {
+                                int delta = d->tabLayouts[interIndex + sign].x() - d->_tabRect(interIndex).x();
+                                d->slide(interIndex, interIndex, delta, ANIMATION_MOVE_TAB_MS);
+                            }
+                            d->tabIndex(interIndex) += sign;
+                            d->movedTab->index = d->tabIndex(interIndex) - sign;
+                            d->currentIndex = d->movedTab->index;
+                            emit tabMoved(d->currentIndex, d->tabIndex(interIndex));
+                            emit currentChanged(d->currentIndex);
+                            d->reorderIndexes();
+                        }
+                    }
+                    if (!d->tabArea->rect().contains(me->pos()) && d->tabArea->rect().right() >= me->x()) {
+                        if (d->currentIndex != d->movedTabIndex)
+                            d->reorderIndexes();
+                        bool accepted = false;
+                        emit tabUndock(d->currentIndex, accepted);
+                        if (accepted) {
+                            d->movedTab->hide();
+                            d->movedTab = nullptr;
+                            d->movedTabIndex = -1;
+                            QTimer::singleShot(0, this, [=]() {
+                                removeTab(d->currentIndex);
+                                while (d->animationInProgress)
+                                    qApp->processEvents();
+                                d->changeScrollerState();
+                            });
+                        }
                     }
                 }
             }
+            break;
+        }
+        case QEvent::MouseButtonPress: {
+            QMouseEvent* me = dynamic_cast<QMouseEvent*>(event);
+            if (me->button() == Qt::LeftButton) {
+                if (!d->animationInProgress) {
+                    for (int i = 0; i < d->tabList.size(); i++) {
+                        if (d->_tabRect(i).contains(me->pos())) {
+                            d->lock = true;
+                            d->movedTab = d->tabList[i];
+                            d->movedTabIndex = i;
+                            const int offset = d->getIntersectedOffset(i);
+                            d->movedTabPosX = d->movedTab->x() - offset;
+                            d->movedTabPressPosX = me->x() - d->movedTabPosX;
+                            QPoint oldCurPos = QCursor::pos();
+                            d->tabLayouts.clear();
+                            for (int j = 0; j < d->tabList.size(); j++) {
+                                d->tabLayouts.append(d->_tabRect(j).translated(-1 * offset, 0).adjusted(0,0,TABSPACING,0));
+                                if (j != i)
+                                    d->tabList[j]->stackUnder(d->movedTab);
+                            }
+                            emit tabBarClicked(i);
+                            if (i != d->currentIndex)
+                                d->onCurrentChanged(i);
+                            else
+                                d->scrollTo(i);
+                            while (d->animationInProgress)
+                                qApp->processEvents();
+                            QCursor::setPos(oldCurPos);
+                            d->lock = false;
+                            return true;
+                        }
+                    }
+                }
+            }
+            break;
+        }
+        case QEvent::MouseButtonRelease: {
+            QMouseEvent* mouse_event = dynamic_cast<QMouseEvent*>(event);
+            if (mouse_event->button() == Qt::LeftButton) {
+                while (d->animationInProgress)
+                    qApp->processEvents();
+                if (d->movedTab) {
+                    if (d->currentIndex != d->movedTabIndex) {
+                        d->reorderIndexes();
+                        int posX = d->tabLayouts[d->currentIndex].x();
+                        d->movedTab->move(posX, 0);
+                    } else {
+                        d->movedTab->move(d->movedTabPosX, 0);
+                    }
+                    d->movedTab = nullptr;
+                    d->movedTabIndex = -1;
+                    d->changeScrollerState();
+                    return true;
+                }
+            } else
+            if (mouse_event->button() == Qt::MiddleButton) {
+                for (int i = 0; i < d->tabList.size(); i++) {
+                    if (d->tabList[i]->close_btn->underMouse()) {
+                        emit tabCloseRequested(i);
+                        return true;
+                    }
+                }
+            }
+            break;
+        }
+        case QEvent::MouseButtonDblClick: {
+            QMouseEvent* mouse_event = dynamic_cast<QMouseEvent*>(event);
+            if (mouse_event->button() == Qt::LeftButton) {
+                for (int i = 0; i < d->tabList.size(); i++) {
+                    if (d->tabList[i]->underMouse()) {
+                        emit tabBarDoubleClicked(i);
+                        return true;
+                    }
+                }
+            }
+            break;
+        }
+        default:
+            break;
         }
     } else
-    if ( e->type() == QEvent::Leave ) {
-        if ( !(m_overIndex < 0) && (m_overIndex != currentIndex() || !m_active) ) {
-            QWidget * b = TAB_BTNCLOSE(m_overIndex);
-            if ( b ) {
-                b->hide();
-            }
-
-            m_overIndex = -1;
+    if (watched == this) {
+        switch (event->type()) {
+        case QEvent::Enter:
+            setCursor(QCursor(Qt::ArrowCursor));
+            break;
+        case QEvent::Leave:
+            QApplication::postEvent(d->tabArea, new QMouseEvent(QEvent::MouseButtonRelease, QCursor::pos(), Qt::LeftButton, Qt::LeftButton, Qt::NoModifier));
+            break;
+        default:
+            break;
         }
     }
-
-//    qDebug() << "event: " << e;
-    return QTabBar::event(e);
+    return QFrame::eventFilter(watched, event);
 }
 
-int CTabBar::draggedTabIndex()
-{
-    Q_D(QTabBar);
-
-    return d->pressedIndex;
-}
-
-QSize CTabBar::tabSizeHint(int index) const
-{
-    return QTabBar::tabSizeHint(index);
-}
-
-void CTabBar::interruptTabMoving(int index)
-{
-    Q_D(QTabBar);
-
-#ifndef QT_NO_ANIMATION
-    for (const auto& t : d->tabList) {
-        if (t.animation &&
-                t.animation->state() == QAbstractAnimation::Running )
-            t.animation->stop();
-    }
-#endif //QT_NO_ANIMATION
-    bool cleanup = (d->pressedIndex == index) || (d->pressedIndex == -1) || !d->validIndex(index);
-    if (cleanup) {
-        if(d->movingTab)
-            d->movingTab->setVisible(false); // We might not get a mouse release
-
-        for (auto& t : d->tabList)
-            t.dragOffset = 0;
-
-        if (d->pressedIndex != -1 && d->movable) {
-            d->pressedIndex = -1;
-            d->dragInProgress = false;
-            d->dragStartPosition = QPoint();
-        }
-        d->layoutWidgets();
-    } else {
-        if (!d->validIndex(index))
-            return;
-        d->tabList[index].dragOffset = 0;
-    }
-
-    update();
-}
+#include "ctabbar.moc"

@@ -87,7 +87,6 @@ using namespace NSEditorApi;
 CMainWindow::CMainWindow(const QRect &rect) :
     CWindowPlatform(rect),
     CScalingWrapper(m_dpiRatio),
-    m_pTabBarWrapper(nullptr),
     m_pTabs(nullptr),
     m_pButtonMain(nullptr),
     m_pMainWidget(nullptr),
@@ -185,7 +184,7 @@ int CMainWindow::attachEditor(QWidget * panel, const QPoint& pt)
         _pt_local -= windowRect().topLeft();
 # endif
 #endif
-    int _index = tabWidget()->tabBar()->tabAt(_pt_local);
+    int _index = tabWidget()->tabBar()->tabIndexAt(_pt_local);
     if ( !(_index < 0) ) {
         QRect _rc_tab = tabWidget()->tabBar()->tabRect(_index);
         if ( _pt_local.x() > _rc_tab.left() + (_rc_tab.width() / 2) ) ++_index;
@@ -228,7 +227,7 @@ void CMainWindow::applyTheme(const std::wstring& theme)
         }
     }
     m_boxTitleBtns->style()->polish(m_boxTitleBtns);
-    m_pTabBarWrapper->style()->polish(m_pTabBarWrapper);
+    m_pTabs->tabBar()->style()->polish(m_pTabs->tabBar());
     m_pButtonMain->style()->polish(m_pButtonMain);
     if (m_pTopButtons[BtnType::Btn_Minimize]) {
         foreach (auto btn, m_pTopButtons)
@@ -379,14 +378,17 @@ QWidget* CMainWindow::createMainPanel(QWidget *parent)
     mainPanel->setLayout(_pMainGridLayout);
 
     // Set custom TabBar
-    m_pTabBarWrapper = new CTabBarWrapper(mainPanel);
-    m_pTabBarWrapper->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
-    _pMainGridLayout->addWidget(m_pTabBarWrapper, 0, 1, 1, 1);
+    CTabBar *pTabBar = new CTabBar(mainPanel);
+    _pMainGridLayout->addWidget(pTabBar, 0, 1, 1, 1);
+    QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
+    sizePolicy.setHorizontalStretch(1);
+    pTabBar->setSizePolicy(sizePolicy);
 
 //    QSize wide_btn_size(29*g_dpi_ratio, TOOLBTN_HEIGHT*g_dpi_ratio);
     m_boxTitleBtns = createTopPanel(mainPanel);
     m_boxTitleBtns->setObjectName("CX11Caption");
     _pMainGridLayout->addWidget(m_boxTitleBtns, 0, 2, 1, 1);
+    m_boxTitleBtns->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
 
 #ifdef __DONT_WRITE_IN_APP_TITLE
     QLabel * label = new QLabel(m_boxTitleBtns);
@@ -421,16 +423,16 @@ QWidget* CMainWindow::createMainPanel(QWidget *parent)
     }
 //    m_pTabs->setAutoFillBackground(true);
     // Set TabWidget
-    m_pTabs = new CAscTabWidget(mainPanel, tabBar());
+    m_pTabs = new CAscTabWidget(mainPanel, pTabBar);
     m_pTabs->setObjectName(QString::fromUtf8("ascTabWidget"));
-    _pMainGridLayout->addWidget(m_pTabs, 1, 0, 1, 4);
+    _pMainGridLayout->addWidget(m_pTabs, 1, 0, 1, 3);
     m_pTabs->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     m_pTabs->activate(false);
     m_pTabs->applyUITheme(AscAppManager::themes().current().id());
 
     connect(tabWidget(), SIGNAL(currentChanged(int)), this, SLOT(onTabChanged(int)));
-    connect(tabBar(), SIGNAL(tabBarClicked(int)), this, SLOT(onTabClicked(int)));
-    connect(tabBar(), SIGNAL(tabCloseRequested(int)), this, SLOT(onTabCloseRequest(int)));
+    connect(pTabBar, SIGNAL(tabBarClicked(int)), this, SLOT(onTabClicked(int)));
+    connect(pTabBar, SIGNAL(tabCloseRequested(int)), this, SLOT(onTabCloseRequest(int)));
     connect(m_pTabs, &CAscTabWidget::editorInserted, bind(&CMainWindow::onTabsCountChanged, this, _2, _1, 1));
     connect(m_pTabs, &CAscTabWidget::editorRemoved, bind(&CMainWindow::onTabsCountChanged, this, _2, _1, -1));
     m_pTabs->setPalette(palette);
@@ -448,7 +450,7 @@ void CMainWindow::attachStartPanel(QCefView * const view)
     QGridLayout *_pMainGridLayout = dynamic_cast<QGridLayout*>(m_pMainPanel->layout());
     Q_ASSERT(_pMainGridLayout != nullptr);
     if (_pMainGridLayout)
-        _pMainGridLayout->addWidget(m_pMainWidget, 1, 0, 1, 4);
+        _pMainGridLayout->addWidget(m_pMainWidget, 1, 0, 1, 3);
     m_pMainWidget->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     if (!m_pTabs->isActiveWidget())
         m_pMainWidget->show();
@@ -1379,9 +1381,9 @@ void CMainWindow::updateScalingFactor(double dpiratio)
     m_pMainPanel->setProperty("zoom", QString::number(dpiratio) + "x");
     std::vector<std::string> _files{":/styles/tabbar.qss"};
     QString _style = Utils::readStylesheets(&_files);
-    m_pTabBarWrapper->applyTheme(_style);
+    m_pTabs->tabBar()->setStyleSheet(_style);
     m_pTabs->setStyleSheet(_style);
-    m_pTabs->updateScalingFactor(dpiratio);
+//    m_pTabs->updateScalingFactor(dpiratio);
     m_pTabs->reloadTabIcons();
     m_pButtonMain->setIcon(MAIN_ICON_PATH, AscAppManager::themes().current().isDark() ? "logo-light" : "logo-dark");
     m_pButtonMain->setIconSize(MAIN_ICON_SIZE * dpiratio);
@@ -1435,11 +1437,6 @@ int CMainWindow::startPanelId()
 CAscTabWidget * CMainWindow::tabWidget()
 {
     return m_pTabs;
-}
-
-CTabBar *CMainWindow::tabBar()
-{
-    return m_pTabBarWrapper->tabBar();
 }
 
 void CMainWindow::showEvent(QShowEvent * e)

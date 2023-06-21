@@ -226,11 +226,7 @@ bool CWindowBase::event(QEvent *event)
        QWidget *wgt = qApp->widgetAt(hlp->globalPos());
        if (wgt && !findChild<CToolTip*>()) {
            QString text("");
-           CTabBar *bar = dynamic_cast<CTabBar*>(wgt);
-           if (bar) {
-               int index = bar->tabAt(bar->mapFromGlobal(hlp->globalPos()));
-               text = bar->tabProperty(index, "ToolTip").toString();
-           } else
+           if (wgt->property("ToolTip").isValid())
                text = wgt->property("ToolTip").toString();
            if (m_pMainPanel && !text.isEmpty()) {
                CToolTip *tool = new CToolTip(m_pMainPanel, text, hlp->globalPos());

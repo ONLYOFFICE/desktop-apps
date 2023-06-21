@@ -71,7 +71,6 @@ HEADERS += \
     $$PWD/src/windows/ceditorwindow_p.h \
     $$PWD/src/windows/cpresenterwindow.h \
     $$PWD/src/components/asctabwidget.h \
-    $$PWD/src/components/ctabbarwrapper.h \
     $$PWD/src/components/cdownloadwidget.h \
     $$PWD/src/components/cpushbutton.h \
     $$PWD/src/components/cfiledialog.h \
@@ -122,7 +121,6 @@ SOURCES += \
     $$PWD/src/components/cpushbutton.cpp \
     $$PWD/src/components/cfiledialog.cpp \
     $$PWD/src/components/cprintprogress.cpp \
-    $$PWD/src/components/ctabbarwrapper.cpp \
     $$PWD/src/components/ctabbar.cpp \
     $$PWD/src/components/cmessage.cpp \
     $$PWD/src/components/canimatedicon.cpp \
