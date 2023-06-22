@@ -35,22 +35,7 @@ QPushButton#toolButtonMain[class=normal],
     border-bottom-width: 2px;
 }
 
-QPushButton::menu-indicator {
-    width: 15px;
-    height: 15px;
-    left: -3px;
-    top: -2px;
-}
-
-QPushButton#toolButtonDownload {
-    padding: 9px;
-}
-
-QPushButton#toolButtonDownload::menu-indicator {
-    top: -15px;
-    left: -6px;
-}
-
+QPushButton#toolButtonDownload {max-width: 60px; width: 60px; max-height: 42px; height: 42px;}
 
 /* ToolTip*/
 

@@ -96,15 +96,13 @@ CDownloadWidget::CDownloadWidget(QWidget *parent)
     });
 
     m_pToolButton->setObjectName("toolButtonDownload");
-    m_pToolButton->setVisible(false, false);
-
-    QPair<QString,QString> _icon_download{":/res/icons/downloading.gif", ":/res/icons/downloading_2x.gif"};
-    m_pToolButton->setAnimatedIcon( _icon_download );
     m_pToolButton->setProperty("act", "tool");
     m_pToolButton->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+    m_pToolButton->setVisible(false);
     connect(m_pToolButton, &QPushButton::clicked, this, [=]() {
         show();
     });
+    m_pToolButton->setAnimatedIcon(":/downloading.svg");
     QSpacerItem *spacer = new QSpacerItem(5, 5, QSizePolicy::Fixed, QSizePolicy::Expanding);
     lut->addSpacerItem(spacer);    
 }

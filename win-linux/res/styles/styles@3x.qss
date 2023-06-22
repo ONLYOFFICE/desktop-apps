@@ -36,30 +36,7 @@ QPushButton#toolButtonMain[class=normal],
     border-bottom-width: 3px;
 }
 
-QPushButton::menu-indicator {
-    width: 30px;
-    height: 30px;
-    left: -6px;
-    top: -3px;
-}
-
-/*QPushButton[theme=dark]::menu-indicator:disabled {*/
-    /*border-image: url(:/res/icons/menu-indicator-dark.png) 0 0 0 20 repeat repeat;*/
-/*}*/
-
-/*QPushButton[theme=dark]::menu-indicator:hover {*/
-    /*border-image: url(:/res/icons/menu-indicator-dark.png) 0 20 0 0 repeat repeat;*/
-/*}*/
-
-QPushButton#toolButtonDownload {
-    padding: 18px;
-}
-
-QPushButton#toolButtonDownload::menu-indicator {
-    top: -30px;
-    left: -12px;
-}
-
+QPushButton#toolButtonDownload {max-width: 120px; width: 120px; max-height: 84px; height: 84px;}
 
 /* ToolTip*/
 

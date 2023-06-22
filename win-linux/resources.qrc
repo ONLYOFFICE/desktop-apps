@@ -7,8 +7,7 @@
         <file alias="message_info.svg">res/icons/message_info.svg</file>
         <file alias="message_confirm.svg">res/icons/message_confirm.svg</file>
         <file alias="message_warn.svg">res/icons/message_warn.svg</file>
-        <file>res/icons/downloading.gif</file>
-        <file>res/icons/downloading_2x.gif</file>
+        <file alias="downloading.svg">res/icons/downloading.svg</file>
         <file alias="close.svg">res/icons/close.svg</file>
         <file alias="close_light.svg">res/icons/close_light.svg</file>
         <file alias="minimize.svg">res/icons/minimize.svg</file>
