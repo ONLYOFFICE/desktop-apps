@@ -36,55 +36,7 @@ QPushButton#toolButtonMain[class=normal],
     border-bottom-width: 5px;
 }
 
-QPushButton::menu-indicator {
-    width: 50px;
-    height: 50px;
-    left: -10px;
-    top: -5px;
-}
-
-/*QPushButton[theme=dark]::menu-indicator:disabled {*/
-    /*border-image: url(:/res/icons/menu-indicator-dark.png) 0 0 0 20 repeat repeat;*/
-/*}*/
-
-/*QPushButton[theme=dark]::menu-indicator:hover {*/
-    /*border-image: url(:/res/icons/menu-indicator-dark.png) 0 20 0 0 repeat repeat;*/
-/*}*/
-
-QPushButton#toolButtonDownload {
-    padding: 30px;
-}
-
-QPushButton#toolButtonDownload::menu-indicator {
-    top: -50px;
-    left: -20px;
-}
-
-/* download widget */
-
-QMenu[hdpi]#menuButtonDownload {
-    border-width: 5px;
-}
-
-CDownloadWidget[hdpi] QProgressBar {
-    border-radius: 10px;
-    max-height: 25px;
-    margin-right: 50px;
-    margin-top: 5px;
-    min-width: 1000px;
-}
-
-CDownloadWidget[hdpi] QProgressBar::chunk {
-    border-radius: 10px;
-}
-
-CDownloadWidget[hdpi] QPushButton#buttonCancel {
-    font-size: 60px;
-}
-
-CDownloadWidget[hdpi] QLabel#labelName {
-    font-size: 80px;
-}
+QPushButton#toolButtonDownload {max-width: 200px; width: 200px; max-height: 140px; height: 140px;}
 
 /* ToolTip*/
 
