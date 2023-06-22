@@ -33,89 +33,75 @@
 #ifndef CTABBAR_H
 #define CTABBAR_H
 
-#include <QTabBar>
-#include <QToolButton>
 #include <QFrame>
-#include <QTimer>
-#include <QWheelEvent>
-#include "cscalingwrapper.h"
 
-#include <math.h>
-//class CTabBarPrivate;
 
-class CTabBar : public QTabBar, public CScalingWrapper
+class CTabBar : public QFrame
 {
     Q_OBJECT
-
 public:
-    explicit CTabBar(QWidget * parent = nullptr);
-    virtual ~CTabBar();
-
-    void setTabTextColor(QPalette::ColorGroup, const QColor&);
-    void setUseTabCustomPalette(bool);
-    QPalette& customColors();
-    QVariant tabProperty(int index, const char *name);
-    void setTabProperty(int index, const char *name, const QVariant &value);
-    void setTabIcon(int index, const QIcon &icon);
-    void setTabLoading(int, bool);
-    void setActiveTabColor(const QString&);
-    void tabStartLoading(int, const QString& theme = QString());
-    void activate(bool);
-
-    void updateScalingFactor(double) override;
-    int draggedTabIndex();
+    CTabBar(QWidget *parent = nullptr);
+    ~CTabBar();
 
     enum TabTheme {
         LightTab,
         DarkTab
     };
-    void changeTabTheme(int, TabTheme);
-    void setTabTheme(int, TabTheme);
-    void setUIThemeType(bool islight);
-    void initCustomScroll(QFrame *, QToolButton *, QToolButton *);
 
-protected:
-    bool event(QEvent * e) override;
-    void mousePressEvent (QMouseEvent *) override;
-    void mouseMoveEvent(QMouseEvent *) override;
-    void mouseReleaseEvent (QMouseEvent *) override;
-    void wheelEvent(QWheelEvent *event) override;
-    void paintEvent(QPaintEvent *) override;
-    void resizeEvent(QResizeEvent *) override;
-    void tabInserted(int) override;
-    void tabRemoved(int index) override;
-    void drawTabCaption(QPainter *, const QString&, const QStyleOptionTab&);
-    void fillTabColor(QPainter *, const QStyleOptionTab&, uint, const QColor&);
-
-    QSize tabSizeHint(int index) const override;
-
-    void interruptTabMoving(int index);
-
-private slots:
-    void onCloseButton();
-    void onCurrentChanged(int);
-
-private:
-    QPalette m_palette;
-    bool m_usePalette = false;
-    int  m_overIndex = -1;
-    int  m_current = -1;
-    bool m_active = false;
-    bool m_isUIThemeDark = false;
-    bool m_tabWasMoved = false;
-    QString m_activeColor = "none";
+    int addTab(const QString &text);
+    int addTab(const QIcon &icon, const QString &text);
+    int count() const;
+    int currentIndex() const;
+    Qt::TextElideMode elideMode() const;
+    QSize iconSize() const;
+    int insertTab(int index, const QString &text);
+    int insertTab(int index, const QIcon &icon, const QString &text);
+    void moveTab(int from, int to);
+    void removeTab(int index);
+    void setElideMode(Qt::TextElideMode mode);
+    void setIconSize(const QSize &size);
+    void setTabIconLabel(int index, QWidget *widget);
+    void setTabButton(int index, QWidget *widget);
+//    void setTabData(int index, const QVariant &data);
+    void setTabIcon(int index, const QIcon &icon);
+    void setTabText(int index, const QString &text);
+    void setTabToolTip(int index, const QString &text);
+    void setCurrentIndex(int index);
+    void setActiveTabColor(int index, const QString&);
+    void setUseTabCustomPalette(int, bool);
+    void setTabLoading(int, bool);
+    void setTabIconTheme(int, TabTheme);
+    void tabStartLoading(int, const QString& theme = QString());
+    void setIgnoreActiveTabColor(bool ignore);
+    bool ignoreActiveTabColor();
+    void polish();
+    int tabIndexAt(const QPoint &pos) const;
+    QWidget* tabIconLabel(int index) const;
+    QWidget* tabButton(int index) const;
+//    QVariant tabData(int index) const;
+    QIcon tabIcon(int index) const;
+    QRect tabRect(int index) const;
+    QString tabText(int index) const;
+    QVariant tabProperty(int index, const char *name);
+    virtual void tabInserted(int index);
 
 signals:
-    void tabUndock(int, bool *);
+    void currentChanged(int index);
     void onCurrentChangedByWhell(int index);
+    void tabBarClicked(int index);
+    void tabBarDoubleClicked(int index);
+    void tabCloseRequested(int index);
+    void tabMoved(int from, int to);
+    void tabUndock(int index, bool &accepted);
+
+protected:
+    virtual void resizeEvent(QResizeEvent *event) override;
+    virtual void wheelEvent(QWheelEvent *event) override;
+    virtual bool eventFilter(QObject*, QEvent*) override;
 
 private:
-    Q_DECLARE_PRIVATE(QTabBar)
-    int m_scrollPos;
-    QFrame *m_pScrollerFrame;
-    QToolButton *m_pLeftButton,
-                *m_pRightButton;
-    void changeCustomScrollerState();
+    class CTabBarPrivate;
+    CTabBarPrivate* d = nullptr;
 };
 
 #endif // CTABBAR_H

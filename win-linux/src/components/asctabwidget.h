@@ -34,15 +34,12 @@
 #define ASCTABWIDGET
 
 #include <QResizeEvent>
-//#include <QtWidgets/QTabWidget>
-#include <QtWidgets/QTabBar>
 #include <QtWidgets/QPushButton>
-#include "ctabbarwrapper.h"
+#include <QStackedWidget>
+#include "ctabbar.h"
 #include "qcefview.h"
 #include "cscalingwrapper.h"
 #include "ctabpanel.h"
-
-#include <QDebug>
 
 #define etLocalFile     AscEditorType(254)
 #define etRecoveryFile  AscEditorType(253)
@@ -76,7 +73,7 @@ struct COpenOptions {
     eOpenMode mode = eOpenMode::edit;
 };
 
-class CAscTabWidget : public QTabWidget, public CScalingWrapper
+class CAscTabWidget : public QStackedWidget, public CScalingWrapper
 {
     Q_OBJECT
 
@@ -118,8 +115,6 @@ class CAscTabWidget : public QTabWidget, public CScalingWrapper
 
     typedef std::map< int, std::pair<QString, QString> > CTabIconSet;
 
-    using QTabWidget::tabBar;
-
 private:
     std::map<int, QCefView*> m_mapDownloads;
     CFullScreenData * m_dataFullScreen;
@@ -151,15 +146,13 @@ public:
     void setStyleSheet(const QString&);
     void applyUITheme(const std::wstring&);
 
-    using QTabWidget::count;
+    using QStackedWidget::count;
     int  count(int type) const;
     int  count(const std::wstring& portal, bool exclude = false);
     bool hasForPortal(const QString&);
 
-    void updateScalingFactor(double) override;
 protected:
-    void tabInserted(int index) override;
-    void tabRemoved(int index) override;
+    int insertWidget(int index, QWidget* widget);
     void closeEditor(int, bool, bool);
 
 public:

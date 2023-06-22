@@ -32,35 +32,24 @@
 
 #include "components/asctabwidget.h"
 #include <QRegExp>
-
-#include <QDebug>
-
 #include <QHBoxLayout>
 #include <QLabel>
-#include <QStylePainter>
-#include <QDesktopWidget>
 #include <QFileInfo>
+#include <QApplication>
 #include <QTimer>
 #include <regex>
-
-#include "ctabstyle.h"
 #include "casctabdata.h"
 #include "common/Types.h"
 #include "defines.h"
 #include "utils.h"
 #include "cfilechecker.h"
-#include "components/canimatedicon.h"
 #include "ceditortools.h"
-
 #include "cascapplicationmanagerwrapper.h"
 #include "ctabundockevent.h"
 #include "OfficeFileFormats.h"
 
-#include "private/qtabbar_p.h"
 
 using namespace std;
-
-
 
 /*
  *
@@ -141,7 +130,7 @@ auto panelfromwidget(QWidget * panelwidget) -> CTabPanel * {
 }
 
 CAscTabWidget::CAscTabWidget(QWidget *parent, CTabBar *_pBar)
-    : QTabWidget(parent)
+    : QStackedWidget(parent)
     , CScalingWrapper(parent)
     , m_dataFullScreen(0)
     , m_widthParams({{100, 135, 9}, 68, 3, 0, WINDOW_TITLE_MIN_WIDTH, 140, 0})
@@ -150,43 +139,36 @@ CAscTabWidget::CAscTabWidget(QWidget *parent, CTabBar *_pBar)
     , m_tabIconSize(16, 16)
     , m_pBar(_pBar)
 {
-    QTabWidget::tabBar()->hide();
     m_pBar->setObjectName("asc_editors_tabbar");
-    m_pBar->setTabTextColor(QPalette::Active, QColor(51, 51, 51));
-    m_pBar->setTabTextColor(QPalette::Inactive, QColor(51, 51, 51));
-
-    m_pBar->setMovable(true);
-    m_pBar->setExpanding(false);
-    m_pBar->setTabsClosable(true);
-
-    setIconSize(m_tabIconSize);
     setProperty("active", false);
     setProperty("empty", true);
     m_pBar->setProperty("active", false);
 
     static int _dropedindex = -1;
     QObject::connect(this, &CAscTabWidget::currentChanged, this, [=](int index) {
-        if (index > -1) m_pBar->setCurrentIndex(index);
-        updateIcons();
+        QTimer::singleShot(0, this, [=]() {
+            updateIcons();
+        });
         setFocusedView();
         _dropedindex = -1;
     });
-    QObject::connect(m_pBar, &CTabBar::tabUndock, this, [=](int index, bool * accept) {
+    QObject::connect(this, &CAscTabWidget::widgetRemoved, this, [=](int index) {
+        emit editorRemoved(index, count());
+    });
+    QObject::connect(m_pBar, &CTabBar::tabUndock, this, [=](int index, bool &accept) {
         if (index == _dropedindex) return;
 
         const CTabPanel * _panel = panel(index);
 
         if ( _panel->data()->viewType() == cvwtEditor ) {
             CTabUndockEvent event(index);
-            QObject * obj = qobject_cast<QObject *>(
-                        static_cast<CAscApplicationManagerWrapper *>(&AscAppManager::getInstance()));
+            QObject * obj = qobject_cast<QObject*>(&AscAppManager::getInstance());
             if ( QApplication::sendEvent(obj, &event) && event.isAccepted() ) {
                 _dropedindex = index;
-                *accept = true;
+                accept = true;
 
-                QTimer::singleShot(10, this, [=]() {
+                QTimer::singleShot(0, this, [=]() {
                     if (widget(index)) {
-                        m_pBar->removeTab(index);
                         widget(index)->deleteLater();
                     }
                 });
@@ -205,7 +187,11 @@ CAscTabWidget::CAscTabWidget(QWidget *parent, CTabBar *_pBar)
         turnOffAltHints(m_pBar->currentIndex(), index);
     });
     QObject::connect(m_pBar, &CTabBar::tabMoved, this, [=](int from, int to) {
-        QTabWidget::tabBar()->moveTab(from, to);
+        if (from < 0 || from >= count() || to < 0 || to >= count() || from == to)
+            return;
+        auto wgt = widget(from);
+        removeWidget(wgt);
+        insertWidget(to, wgt);
     });
 }
 
@@ -267,10 +253,9 @@ int CAscTabWidget::addEditor(const COpenOptions& opts)
         data->setChanged(opts.srctype == etRecoveryFile);
 
         pView->setData(data);
-        tab_index = addTab(panelwidget, data->title());
+        tab_index = addWidget(panelwidget);
         m_pBar->addTab(data->title());
-        //m_pBar->setTabToolTip(tab_index, data->title());
-        m_pBar->setTabProperty(tab_index, "ToolTip", data->title());
+        m_pBar->setTabToolTip(tab_index, data->title());
         m_pBar->tabStartLoading(tab_index);
         //m_pBar->setCurrentIndex(tab_index);
 
@@ -315,7 +300,7 @@ void CAscTabWidget::closeEditorByIndex(int index, bool checkmodified)
 int CAscTabWidget::count(int type) const
 {
     if ( type < 0 )
-        return QTabWidget::count();
+        return QStackedWidget::count();
     else {
         int _out(0);
         for (int i(count()); i-- > 0; ) {
@@ -329,7 +314,7 @@ int CAscTabWidget::count(int type) const
 int CAscTabWidget::count(const wstring& portal, bool exclude)
 {
     if ( portal.empty() )
-        return QTabWidget::count();
+        return QStackedWidget::count();
     else {
         int _out(0);
         for (int i(count()); i-- > 0; ) {
@@ -392,14 +377,11 @@ int CAscTabWidget::addPortal(const QString& url, const QString& name, const QStr
 
     int tab_index = -1;
 
-    tab_index = insertTab(tab_index, panelwidget, portal);
+    tab_index = insertWidget(tab_index, panelwidget);
     m_pBar->insertTab(tab_index, portal);
-    //m_pBar->setTabToolTip(tab_index, _url);
-    m_pBar->setTabProperty(tab_index, "ToolTip", _url);
-    m_pBar->setTabTheme(tab_index, CTabBar::LightTab);
+    m_pBar->setTabToolTip(tab_index, _url);
+    m_pBar->setTabIconTheme(tab_index, CTabBar::LightTab);
     m_pBar->tabStartLoading(tab_index);
-    //m_pBar->setCurrentIndex(tab_index);
-
 //    updateTabIcon(tabIndexByView(id));
 
     return tab_index;
@@ -434,13 +416,11 @@ int CAscTabWidget::addOAuthPortal(const QString& portal, const QString& type, co
 
     int tab_index = -1;
 
-    tab_index = insertTab(tab_index, panelwidget, _portal);
+    tab_index = insertWidget(tab_index, panelwidget);
     m_pBar->insertTab(tab_index, _portal);
-    //m_pBar->setTabToolTip(tab_index, portal);
-    m_pBar->setTabProperty(tab_index, "ToolTip", portal);
-    m_pBar->setTabTheme(tab_index, CTabBar::LightTab);
+    m_pBar->setTabToolTip(tab_index, portal);
+    m_pBar->setTabIconTheme(tab_index, CTabBar::LightTab);
     m_pBar->tabStartLoading(tab_index);
-    //m_pBar->setCurrentIndex(tab_index);
 
     return tab_index;
 }
@@ -456,24 +436,19 @@ int CAscTabWidget::insertPanel(QWidget * panel, int index)
 
         QWidget * panelwidget = createTabPanel(this, _panel);
 
-        tabindex = insertTab(index, panelwidget, tabdata->title());
-        m_pBar->insertTab(index, tabdata->title());
-        //m_pBar->setTabToolTip(tabindex, tabdata->title());
-        m_pBar->setTabProperty(tabindex, "ToolTip", tabdata->title());
-        //m_pBar->setCurrentIndex(tabindex);
+        tabindex = insertWidget(index, panelwidget);
+        m_pBar->insertTab(tabindex, tabdata->title());
+        m_pBar->setTabToolTip(tabindex, tabdata->title());
     }
 
     return tabindex;
 }
 
-void CAscTabWidget::tabInserted(int index)
+int CAscTabWidget::insertWidget(int index, QWidget* widget)
 {
-    emit editorInserted(index, count());
-}
-
-void CAscTabWidget::tabRemoved(int index)
-{
-    emit editorRemoved(index, count());
+    int actual_index = QStackedWidget::insertWidget(index, widget);
+    emit editorInserted(actual_index, count());
+    return actual_index;
 }
 
 void CAscTabWidget::setCustomWindowParams(bool iscustom)
@@ -492,7 +467,7 @@ void CAscTabWidget::updateIcons()
 
 void CAscTabWidget::updateTabIcon(int index)
 {
-    if ( !(index < 0) ) {
+    if ( !(index < 0) && panel(index)) {
         CCefViewEditor * pEditor = (CCefViewEditor *)panel(index)->cef();
 
         if (pEditor) {
@@ -514,7 +489,7 @@ void CAscTabWidget::updateTabIcon(int index)
             default: tab_type = panel(index)->data()->contentType(); break;
             }
 
-            if ( !isActiveWidget() || !(index == currentIndex()) ) {
+            if ( !is_active ) {
                 tab_theme = AscAppManager::themes().current().isDark() ? CTabBar::DarkTab : CTabBar::LightTab;
             } else {
                 switch ( tab_type ) {
@@ -534,19 +509,16 @@ void CAscTabWidget::updateTabIcon(int index)
                     break;
                 }
             }
-
             QString icon_name = is_active ? m_mapTabIcons.at(tab_type).second : m_mapTabIcons.at(tab_type).first;
             m_pBar->setTabIcon(index, QIcon(icon_name));
-//            ((CTabBar *)tabBar())->changeTabTheme(index, _theme);
-            m_pBar->setTabTheme(index, tab_theme);
-
+//            m_pBar->setTabIconTheme(index, tab_theme);
             if ( index == currentIndex() ) {
-                m_pBar->setActiveTabColor(active_tab_color);
-//                ((CTabBar *)tabBar())->setUseTabCustomPalette( !(tab_type == etPortal || tab_type == etUndefined) );
-
-                m_pBar->setTabTextColor(QPalette::Active,  AscAppManager::themes().isColorDark(active_tab_color) ?
-                                           ui_theme.color(CTheme::ColorRole::ecrTextPressed) : ui_theme.color(CTheme::ColorRole::ecrTabSimpleActiveText));
-
+                if (tab_type == etPortal || tab_type == etNewPortal || tab_type == etUndefined)
+                    m_pBar->setUseTabCustomPalette(index, true);
+                else {
+                    m_pBar->setUseTabCustomPalette(index, false);
+                    m_pBar->setActiveTabColor(index, active_tab_color);
+                }
             }
         }
     }
@@ -579,7 +551,6 @@ void CAscTabWidget::reloadTabIcons()
 /*
  *      Slots
 */
-
 
 void CAscTabWidget::editorCloseRequest(int index)
 {
@@ -786,8 +757,7 @@ void CAscTabWidget::applyDocumentChanging(int viewId, const QString& name, const
         }
 
         m_pBar->setTabText(tabIndex, doc->title());
-        //m_pBar->setTabToolTip(tabIndex, path.isEmpty() ? doc->title() : path);
-        m_pBar->setTabProperty(tabIndex, "ToolTip", path.isEmpty() ? doc->title() : path);
+        m_pBar->setTabToolTip(tabIndex, path.isEmpty() ? doc->title() : path);
     }
 }
 
@@ -806,8 +776,7 @@ void CAscTabWidget::applyDocumentChanging(int viewId, bool state)
         if (doc->hasChanges() != state && (!doc->closed() || state)) {
             doc->setChanged(state);
             m_pBar->setTabText(tabIndex, doc->title());
-            //m_pBar->setTabToolTip(tabIndex, doc->title());
-            m_pBar->setTabProperty(tabIndex, "ToolTip", doc->title());
+            m_pBar->setTabToolTip(tabIndex, doc->title());
         }
     }
 }
@@ -878,8 +847,7 @@ void CAscTabWidget::setEditorOptions(int id, const wstring& option)
 
         if (option.find(L"readonly\":") != wstring::npos) {
             m_pBar->setTabText(tabIndex, doc->title());
-            //m_pBar->setTabToolTip(tabIndex, doc->title());
-            m_pBar->setTabProperty(tabIndex, "ToolTip", doc->title());
+            m_pBar->setTabToolTip(tabIndex, doc->title());
         }
 
 //        if (std::regex_search(option, std::wregex(L"titlebuttons\":\\s?true"))) {
@@ -924,13 +892,8 @@ void CAscTabWidget::activate(bool a)
         this->setProperty("active", a);
         m_pBar->setProperty("active", a);
     }
-
-    updateTabIcon(currentIndex());
-
-    m_pBar->activate(a);
-    m_pBar->customColors().setCurrentColorGroup(a ? QPalette::Normal : QPalette::Disabled );
-    m_pBar->update();
-    //m_pBar->repaint();
+    updateIcons();
+    m_pBar->polish();
 }
 
 bool CAscTabWidget::isActiveWidget()
@@ -1157,7 +1120,7 @@ void CAscTabWidget::setFullScreen(bool apply, int id)
                 _break_demonstration();
                 e->ignore();
                 // TODO: associate panel with reporter window and close both simultaneously
-                QTimer::singleShot(10, [=] {emit tabCloseRequested(m_dataFullScreen->tabindex());});
+                QTimer::singleShot(10, [=] {emit m_pBar->tabCloseRequested(m_dataFullScreen->tabindex());});
             });
 
             connect((CFullScrWidget*)m_dataFullScreen->parent, &CFullScrWidget::closeRequest, this, [=]() {
@@ -1173,29 +1136,9 @@ QWidget * CAscTabWidget::fullScreenWidget()
     return m_dataFullScreen ? m_dataFullScreen->widget() : nullptr;
 }
 
-void CAscTabWidget::updateScalingFactor(double f)
-{
-    CScalingWrapper::updateScalingFactor(f);
-
-    double dpi_ratio = scaling();
-
-    setIconSize(m_tabIconSize * dpi_ratio);
-    m_pBar->setIconSize(m_tabIconSize * dpi_ratio);
-    updateIcons();
-
-    (m_widthParams = size_params(m_defWidthParams)).apply_scale(dpi_ratio);
-    if ( m_isCustomStyle )
-        m_widthParams.tools_width = int(50 * dpi_ratio),
-        m_widthParams.title_width = int(WINDOW_TITLE_MIN_WIDTH * dpi_ratio);
-    else
-        m_widthParams.tools_width = m_widthParams.title_width = 0;
-
-    m_pBar->updateScalingFactor(f);
-}
-
 void CAscTabWidget::setStyleSheet(const QString& stylesheet)
 {
-    QTabWidget::setStyleSheet(stylesheet);
+    QStackedWidget::setStyleSheet(stylesheet);
 
     auto _string_to_color = [](const QString& str) -> QColor {
         int r = -1, g = -1, b = -1;
@@ -1240,10 +1183,8 @@ void CAscTabWidget::applyUITheme(const std::wstring& theme)
 {
     reloadTabIcons();
     updateIcons();
-//    _tabbar.setTabTextColor(QPalette::Active, AscAppManager::themes().color(theme, CThemes::ColorRole::ecrTextPressed));
-    m_pBar->setTabTextColor(QPalette::Inactive, AscAppManager::themes().current().color(CTheme::ColorRole::ecrTextNormal));
-    m_pBar->setUIThemeType(!AscAppManager::themes().current().isDark());
-    m_pBar->style()->polish(m_pBar);
+    m_pBar->setIgnoreActiveTabColor(AscAppManager::themes().current().isDark());
+    m_pBar->polish();
     style()->polish(this);
 
     QColor back_color = AscAppManager::themes().current().color(CTheme::ColorRole::ecrWindowBackground);
