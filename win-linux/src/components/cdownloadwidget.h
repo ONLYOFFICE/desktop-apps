@@ -37,12 +37,10 @@
 #include <QScrollArea>
 #include "cpushbutton.h"
 
-//class CProfileMenuFilter;
 
 class CDownloadWidget : public QDialog
 {
     Q_OBJECT
-
     class CDownloadItem;
     typedef std::map<int, CDownloadItem *>::const_iterator MapItem;
 
@@ -52,7 +50,6 @@ public:
 
     void downloadProcess(void *);
     QPushButton * toolButton();
-//    void updateProgress();
 //    void cancelAll();
     void updateScalingFactor(double);
     void applyTheme(const QString&);

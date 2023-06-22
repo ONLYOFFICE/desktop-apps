@@ -40,7 +40,6 @@
 #include <QScrollBar>
 #include "common/Types.h"
 
-
 #define DOWNLOAD_WIDGET_MIN_SIZE QSize(450, 250)
 #define MARGINS 6
 #define SPACING 6
@@ -48,20 +47,22 @@
 using namespace NSEditorApi;
 
 
-class CDownloadWidget::CDownloadItem {
+class CDownloadWidget::CDownloadItem
+{
 public:
     CDownloadItem(QWidget * w)
         : _p_progress(w), _is_temp(true)
     {}
 
     QWidget * progress() const { return _p_progress; }
-
     bool is_temporary() const { return _is_temp; }
     void set_is_temporary(bool v) { _is_temp = v; }
+
 private:
     QWidget * _p_progress;
     bool _is_temp;
 };
+
 
 CDownloadWidget::CDownloadWidget(QWidget *parent)
     : QDialog(parent)
@@ -132,7 +133,7 @@ QWidget * CDownloadWidget::addFile(const QString& fn, int id)
     QPushButton * cancel = new QPushButton(tr("Cancel"));
     cancel->setObjectName("buttonCancel");
     cancel->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
-    connect(cancel, &QPushButton::clicked, [=](){
+    connect(cancel, &QPushButton::clicked, qApp, [=](){
         emit downloadCanceled(id);
     });
 
@@ -168,8 +169,6 @@ void CDownloadWidget::downloadProcess(void * info)
         slot_downloadCanceled(id);
     } else {
         if (iter == m_mapDownloads.end()) {
-//            ADDREFINTERFACE(pData);
-
             QString path = QString::fromStdWString(pData->get_FilePath()),
                     file_name = "Unconfirmed";
 
@@ -190,7 +189,6 @@ void CDownloadWidget::downloadProcess(void * info)
                 }
             }
         }
-
         updateProgress(iter, pData);
     }
 }
@@ -210,11 +208,7 @@ void CDownloadWidget::removeFile(MapItem iter)
     if (iter != m_mapDownloads.end()) {
         CDownloadItem * di = static_cast<CDownloadItem *>((*iter).second);
 
-//        CAscDownloadFileInfo * pData = reinterpret_cast<CAscDownloadFileInfo *>(di->info());
-//        RELEASEINTERFACE(pData)
-
         QWidget * pItemWidget = di->progress();
-
         layout()->removeWidget(pItemWidget);
 
         RELEASEOBJECT(pItemWidget)
@@ -237,7 +231,6 @@ void CDownloadWidget::updateProgress(MapItem iter, void * data)
 
     d_item = static_cast<CDownloadItem *>((*iter).second);
     if (d_item) {
-//        pData = reinterpret_cast<CAscDownloadFileInfo *>(d_item->info());
         pData = reinterpret_cast<CAscDownloadFileInfo *>(data);
         progress = qobject_cast<QProgressBar *>(d_item->progress()->layout()->itemAt(1)->widget());
 
@@ -309,12 +302,6 @@ void CDownloadWidget::updateScalingFactor(double factor)
     polish();
 }
 
-//void CDownloadWidget::updateProgress()
-//{
-//    for (auto e : m_mapDownloads) {
-//        updateProgress(e);
-//    }
-//}
 void CDownloadWidget::applyTheme(const QString &theme)
 {
     setProperty("uitheme", theme);
@@ -327,4 +314,3 @@ void CDownloadWidget::applyTheme(const QString &theme)
 //        removeFile(e.first);
 //    }
 //}
-
