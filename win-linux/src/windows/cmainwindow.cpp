@@ -230,6 +230,10 @@ void CMainWindow::applyTheme(const std::wstring& theme)
 
     m_pButtonMain->setIcon(MAIN_ICON_PATH, AscAppManager::themes().current().isDark() ? "logo-light" : "logo-dark");
     m_pButtonMain->setIconSize(MAIN_ICON_SIZE * m_dpiRatio);
+    if (m_pWidgetDownload && m_pWidgetDownload->toolButton()) {
+        m_pWidgetDownload->applyTheme(QString::fromStdWString(AscAppManager::themes().themeActualId(theme)));
+        m_pWidgetDownload->toolButton()->style()->polish(m_pWidgetDownload->toolButton());
+    }
 }
 
 /** Private **/
@@ -965,17 +969,24 @@ void CMainWindow::onDocumentSaveInnerRequest(int id)
 
 void CMainWindow::onDocumentDownload(void * info)
 {
-    if ( !m_pWidgetDownload ) {
-        m_pWidgetDownload = new CDownloadWidget(this);
-
-        QHBoxLayout * layoutBtns = qobject_cast<QHBoxLayout *>(m_boxTitleBtns->layout());
-        layoutBtns->insertWidget(1, m_pWidgetDownload->toolButton());
+    CAscDownloadFileInfo *pData = reinterpret_cast<CAscDownloadFileInfo*>(info);
+    if (!pData->get_IsCanceled()) {
+        if ( !m_pWidgetDownload ) {
+            m_pWidgetDownload = new CDownloadWidget(this);
+            connect(m_pWidgetDownload, &QWidget::destroyed, this, [=]() {
+                m_pWidgetDownload = nullptr;
+            });
+            QHBoxLayout * layoutBtns = qobject_cast<QHBoxLayout *>(m_boxTitleBtns->layout());
+            layoutBtns->insertWidget(1, m_pWidgetDownload->toolButton());
+            m_pWidgetDownload->show();
+            std::vector<std::string> files{":/styles/download.qss"};
+            m_pWidgetDownload->setStyleSheet(Utils::readStylesheets(&files));
+            m_pWidgetDownload->applyTheme(m_pMainPanel->property("uitheme").toString());
+            m_pWidgetDownload->updateScalingFactor(m_dpiRatio);
+            m_pWidgetDownload->move(geometry().bottomRight() - m_pWidgetDownload->rect().bottomRight());
+        }
+        m_pWidgetDownload->downloadProcess(info);
     }
-
-    m_pWidgetDownload->downloadProcess(info);
-
-//    CAscDownloadFileInfo * pData = reinterpret_cast<CAscDownloadFileInfo *>(info);
-//    RELEASEINTERFACE(pData);
 }
 
 void CMainWindow::onDocumentFragmented(int id, bool isfragmented)
@@ -1377,6 +1388,10 @@ void CMainWindow::updateScalingFactor(double dpiratio)
     m_pTabs->reloadTabIcons();
     m_pButtonMain->setIcon(MAIN_ICON_PATH, AscAppManager::themes().current().isDark() ? "logo-light" : "logo-dark");
     m_pButtonMain->setIconSize(MAIN_ICON_SIZE * dpiratio);
+    if (m_pWidgetDownload && m_pWidgetDownload->toolButton()) {
+        m_pWidgetDownload->updateScalingFactor(dpiratio);
+        m_pWidgetDownload->toolButton()->style()->polish(m_pWidgetDownload->toolButton());
+    }
 }
 
 void CMainWindow::setScreenScalingFactor(double factor)

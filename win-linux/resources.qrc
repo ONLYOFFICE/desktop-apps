@@ -85,6 +85,7 @@
         <file alias="editor.qss">res/styles/editor.qss</file>
         <file alias="message.qss">res/styles/message.qss</file>
         <file alias="tabbar.qss">res/styles/tabbar.qss</file>
+        <file alias="download.qss">res/styles/download.qss</file>
     </qresource>
     <qresource prefix="/styles@1.5x">
         <file alias="styles.qss">res/styles/styles@1.5x.qss</file>

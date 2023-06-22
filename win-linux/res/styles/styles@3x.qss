@@ -60,31 +60,6 @@ QPushButton#toolButtonDownload::menu-indicator {
     left: -12px;
 }
 
-/* download widget */
-
-QMenu[hdpi]#menuButtonDownload {
-    border-width: 3px;
-}
-
-CDownloadWidget[hdpi] QProgressBar {
-    border-radius: 6px;
-    max-height: 15px;
-    margin-right: 30px;
-    margin-top: 3px;
-    min-width: 600px;
-}
-
-CDownloadWidget[hdpi] QProgressBar::chunk {
-    border-radius: 6px;
-}
-
-CDownloadWidget[hdpi] QPushButton#buttonCancel {
-    font-size: 36px;
-}
-
-CDownloadWidget[hdpi] QLabel#labelName {
-    font-size: 48px;
-}
 
 /* ToolTip*/
 
