@@ -167,10 +167,10 @@ void CWindowPlatform::mouseReleaseEvent(QMouseEvent *e)
     CX11Decoration::dispatchMouseUp(e);
 }
 
-void CWindowPlatform::mouseDoubleClickEvent(QMouseEvent *)
+void CWindowPlatform::mouseDoubleClickEvent(QMouseEvent *me)
 {
     if (m_boxTitleBtns) {
-        if (m_boxTitleBtns->underMouse())
+        if (m_boxTitleBtns->geometry().contains(me->pos()))
             onMaximizeEvent();
     }
 }
