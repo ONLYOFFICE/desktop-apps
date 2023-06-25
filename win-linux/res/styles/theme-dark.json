@@ -2,27 +2,27 @@
     "id": "theme-dark",
     "type": "dark",
     "values": {
-        "brand_word": "#2a2a2a",
-        "brand_slide": "#2a2a2a",
-        "brand_cell": "#2a2a2a",
+        "brand-word": "#2a2a2a",
+        "brand-slide": "#2a2a2a",
+        "brand-cell": "#2a2a2a",
 
-        "window_background": "#404040",
-        "window_border": "#2a2a2a",
+        "window-background": "#404040",
+        "window-border": "#2a2a2a",
 
-        "text_normal": "#d9d9d9",
-        "text_normal_pressed": "#d9d9d9",
+        "text-normal": "#d9d9d9",
+        "text-normal-pressed": "#d9d9d9",
 
-        "tool_button_hover_background": "#555",
-        "tool_button_pressed_background": "#606060",
+        "tool-button-hover-background": "#555",
+        "tool-button-pressed-background": "#606060",
 
-        "tab_active_background": "#333",
-        "tab_simple_active_background": "#fff",
-        "tab_simple_active_text": "#444",
-        "tab_default_active_background": "#333",
-        "tab_default_active_text": "#fff",
-        "tab_divider": "#505050",
+        "tab-active-background": "#333",
+        "tab-simple-active-background": "#fff",
+        "tab-simple-active-text": "#444",
+        "tab-default-active-background": "#333",
+        "tab-default-active-text": "#fff",
+        "tab-divider": "#505050",
 
-        "button_normal_opacity": "rgba(255,255,255,200)",
-        "logo_type": "light"
+        "button-normal-opacity": "rgba(255,255,255,200)",
+        "logo-type": "light"
     }
 }
