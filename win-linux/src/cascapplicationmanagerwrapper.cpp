@@ -1035,11 +1035,6 @@ void CAscApplicationManagerWrapper::initializeApp()
     else
     if ( InputArgs::contains(L"--custom-title-bar") || !reg_user.contains("titlebar") )
         reg_user.setValue("titlebar", "custom");
-    else
-    if ( InputArgs::contains(L"--geometry=default") ) {
-        reg_user.remove("maximized");
-        reg_user.remove("position");
-    }
 
     // read installation time and clean cash folders if expired
     if ( reg_system.contains("timestamp") ) {
