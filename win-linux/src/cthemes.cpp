@@ -12,10 +12,13 @@
 #include <QJsonObject>
 #include <QColor>
 #include <QFile>
+#include <QDir>
 #include <QRegularExpression>
 #include <QProcess>
 #include <QPalette>
 #include <QDebug>
+#include <QApplication>
+#include <QJsonArray>
 
 #define QSTRING_FROM_WSTR(s) QString::fromStdWString(s)
 #define REGISTRY_THEME_KEY "UITheme"
@@ -54,6 +57,26 @@ namespace NSTheme {
             {CTheme::ColorRole::ecrButtonNormalOpacity, "button-normal-opacity"},
             {CTheme::ColorRole::ecrLogoColor, "logo"}
         };
+
+    static const std::map<QString, QString> map_alias_names = {
+            {"brand-word", "toolbar-header-document"},
+            {"brand-slide", "toolbar-header-presentation"},
+            {"brand-cell", "toolbar-header-spreadsheet"},
+
+            {"window-background", "background-toolbar"},
+//            {CTheme::ColorRole::ecrWindowBorder, "window-border"},
+
+//            {CTheme::ColorRole::ecrTextNormal, "text-normal"},
+//            {CTheme::ColorRole::ecrTextPressed, "text-normal-pressed"},
+
+//            {CTheme::ColorRole::ecrTabSimpleActiveBackground, "tab-simple-active-background"},
+//            {CTheme::ColorRole::ecrTabSimpleActiveText, "tab-simple-active-text"},
+//            {CTheme::ColorRole::ecrTabDefaultActiveBackground, "tab-default-active-background"},
+//            {CTheme::ColorRole::ecrTabDefaultActiveText, "tab-default-active-text"},
+
+//            {CTheme::ColorRole::ecrButtonNormalOpacity, "button-normal-opacity"},
+//            {CTheme::ColorRole::ecrLogoColor, "logo"}
+        };
 }
 
 /*
@@ -67,8 +90,35 @@ public:
         id = obj.value("id").toString().toStdWString();
         type = obj.value("type").toString() == NSTheme::theme_type_dark ?
                             NSTheme::ThemeType::ttDark : NSTheme::ThemeType::ttLight;
-        jsonValues = obj.value("values").toObject();
+        if ( obj.contains("colors") ) {
+            QJsonObject colorValues = obj.value("colors").toObject();
+
+            const CTheme * default_theme = type == NSTheme::ThemeType::ttDark ? defdark : deflight;
+            jsonValues = QJsonObject(default_theme->m_priv->jsonValues);
+
+            for ( const auto &color_name : NSTheme::map_names ) {
+                if ( colorValues.contains(color_name.second) ) {
+                    jsonValues[color_name.second] = colorValues.value(color_name.second);
+                } else {
+                    const auto it = NSTheme::map_alias_names.find(color_name.second);
+                    if ( it != NSTheme::map_alias_names.end() &&
+                            colorValues.contains(it->second) )
+                    {
+                        jsonValues[color_name.second] = colorValues.value(it->second);
+                    }
+                }
+            }
+
+        } else {
+            jsonValues = obj.value("values").toObject();
+        }
+
         is_system = false;
+    }
+
+    auto setDefaultThemes(const CTheme * const l, const CTheme * const d) -> void {
+        defdark = d;
+        deflight = l;
     }
 
     std::wstring id;
@@ -77,6 +127,8 @@ public:
     bool is_system{false};
 
     QJsonObject jsonValues;
+    const CTheme * defdark = nullptr,
+            * deflight = nullptr;
 };
 
 /*
@@ -135,6 +187,8 @@ public:
             current = new CTheme(rc_themes.at(is_system_theme_dark ? THEME_DEFAULT_DARK_ID : THEME_DEFAULT_LIGHT_ID));
             current->m_priv->is_system = true;
         } else current = new CTheme(rc_themes.at(user_theme));
+
+        current->m_priv->setDefaultThemes(getDefault(NSTheme::ThemeType::ttDark), getDefault(NSTheme::ThemeType::ttLight));
     }
 
     ~CThemesPrivate()
@@ -150,6 +204,9 @@ public:
         if ( id != THEME_ID_SYSTEM ) {
             if ( rc_themes.find(id) != rc_themes.end() ) {
                 return current->fromFile(rc_themes.at(id));
+            } else
+            if ( local_themes.find(id) != local_themes.end() ) {
+                return current->fromJson(local_themes.at(id));
             }
         } else {
             QString visual_theme_id = is_system_theme_dark ? THEME_DEFAULT_DARK_ID : THEME_DEFAULT_LIGHT_ID;
@@ -165,7 +222,7 @@ public:
         return false;
     }
 
-    auto getDefault(NSTheme::ThemeType type) -> const CTheme *
+    auto getDefault(NSTheme::ThemeType type) -> const CTheme * const
     {
         if ( type == NSTheme::ThemeType::ttDark ) {
             if ( !dark ) {
@@ -184,8 +241,52 @@ public:
         }
     }
 
+    auto searchLocalThemes() -> void {
+        QDir directory(qApp->applicationDirPath() + "/uicolorthemes");
+        QStringList themes = directory.entryList(QStringList() << "*.json", QDir::Files);
+
+        QFile file;
+        QJsonParseError je;
+        QJsonArray json_themes_array;
+        foreach(QString filename, themes) {
+            file.setFileName(directory.absoluteFilePath(filename));
+            if ( file.open(QIODevice::ReadOnly) ) {
+                QByteArray data{file.readAll()};
+                file.close();
+
+                QJsonDocument doc = QJsonDocument::fromJson(data, &je);
+                if ( je.error == QJsonParseError::NoError ) {
+                    QJsonObject objRoot = doc.object();
+
+                    if ( validateTheme(objRoot) ) {
+                        json_themes_array.append(objRoot);
+
+                        local_themes[objRoot.value("id").toString()] = data;
+                        parseLocalTheme(doc.object());
+                    }
+                }
+            }
+        }
+
+        if ( json_themes_array.size() ) {
+            EditorJSVariables::setVariable("localthemes", json_themes_array);
+        }
+    }
+
+    auto parseLocalTheme(const QJsonObject& obj) -> void {
+
+    }
+
+    auto validateTheme(const QJsonObject& root) -> bool {
+        if ( root.contains("id") ) {
+            return true;
+        }
+        return false;
+    }
+
     CThemes & parent;
     std::map<QString, QString> rc_themes;
+    std::map<QString, QByteArray> local_themes;
     bool is_system_theme_dark = false;
 
     CTheme * current = nullptr;
@@ -319,6 +420,7 @@ auto CTheme::isSystem() const -> bool
 CThemes::CThemes()
     : m_priv(new CThemes::CThemesPrivate(this))
 {
+    m_priv->searchLocalThemes();
 }
 
 CThemes::~CThemes()
