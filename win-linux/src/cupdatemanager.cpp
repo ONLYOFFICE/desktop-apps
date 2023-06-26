@@ -335,6 +335,7 @@ void CUpdateManager::checkUpdates(bool manualCheck)
     if (m_lock)
         return;
     m_lock = true;
+    AscAppManager::sendCommandTo(0, "updates:link", "lock");
     m_manualCheck = manualCheck;
     destroyStartupTimer(m_pCheckOnStartupTimer);
     m_packageData->clear();
@@ -496,6 +497,7 @@ void CUpdateManager::unzipIfNeeded()
         return;
     m_lock = true;
 
+    AscAppManager::sendCommandTo(0, "updates:link", "lock");
     if (!sendMessage(MSG_UnzipIfNeeded, QStrToTStr(m_packageData->fileName), QStrToTStr(m_packageData->version))) {
         m_dialogSchedule->addToSchedule("criticalMsg", QObject::tr("An error occurred while unzip updates: Update Service not found!"));
     }
@@ -672,6 +674,7 @@ void CUpdateManager::showUpdateMessage(QWidget *parent) {
         break;
     case WinDlg::DLG_RESULT_SKIP: {
         skipVersion();
+        AscAppManager::sendCommandTo(0, "updates:link", "lock");
         AscAppManager::sendCommandTo(0, "updates:checking", "{\"version\":\"no\"}");
         break;
     }
@@ -699,6 +702,7 @@ void CUpdateManager::showStartInstallMessage(QWidget *parent)
     }
     case WinDlg::DLG_RESULT_SKIP: {
         skipVersion();
+        AscAppManager::sendCommandTo(0, "updates:link", "lock");
         AscAppManager::sendCommandTo(0, "updates:checking", "{\"version\":\"no\"}");
         break;
     }
