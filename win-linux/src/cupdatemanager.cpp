@@ -644,9 +644,6 @@ void CUpdateManager::onCheckFinished(bool error, bool updateExist, const QString
 {
     if ( !error) {
         if ( updateExist ) {
-            QString args = QString("{\"version\":\"%1\"}").arg(version);
-            AscAppManager::sendCommandTo(0, "updates:checking", args);
-            AscAppManager::sendCommandToAllEditors(L"updates:checking", args.toStdWString());
             switch (getUpdateMode()) {
             case UpdateMode::SILENT:
                 m_lock = false;
@@ -654,7 +651,15 @@ void CUpdateManager::onCheckFinished(bool error, bool updateExist, const QString
                 break;
             case UpdateMode::ASK:
             case UpdateMode::DISABLE:
-                m_dialogSchedule->addToSchedule("showUpdateMessage");
+                if (isSavedPackageValid()) {
+                    m_lock = false;
+                    loadUpdates();
+                } else {
+                    QString args = QString("{\"version\":\"%1\"}").arg(version);
+                    AscAppManager::sendCommandTo(0, "updates:checking", args);
+                    AscAppManager::sendCommandToAllEditors(L"updates:checking", args.toStdWString());
+                    m_dialogSchedule->addToSchedule("showUpdateMessage");
+                }
                 break;
             }
         } else {
