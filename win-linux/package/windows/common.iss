@@ -531,6 +531,7 @@ gl.WarningClearAppData =Quere borrar a configuración do usuario e os datos da c
 ;======================================================================================================
 en.UpdateService =Service for update {#sAppName}
 cs.UpdateService =Služba aktualizace {#sAppName}
+fi.UpdateService =Palvelu päivitystä varten {#sAppName}
 el.UpdateService =Υπηρεσία για ενημέρωση {#sAppName}
 ru.UpdateService =Сервис обновлений {#sAppName}
 fr.UpdateService =Service de mise à jour {#sAppName}
