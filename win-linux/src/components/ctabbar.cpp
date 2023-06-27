@@ -947,6 +947,7 @@ void CTabBar::wheelEvent(QWheelEvent *event)
 {
     QFrame::wheelEvent(event);
     if (!d->animationInProgress && d->tabArea->underMouse()) {
+#ifdef DONT_USE_SIMPLE_WHEEL_SCROLL
         if (d->currentIndex > 0 && event->angleDelta().y() > 0) {
             emit onCurrentChangedByWhell(d->currentIndex - 1);
             d->onCurrentChanged(d->currentIndex - 1);
@@ -955,6 +956,10 @@ void CTabBar::wheelEvent(QWheelEvent *event)
             emit onCurrentChangedByWhell(d->currentIndex + 1);
             d->onCurrentChanged(d->currentIndex + 1);
         }
+#else
+        if (event->angleDelta().y() != 0)
+            d->scrollToDirection(event->angleDelta().y() > 0 ? d->Direction::Right : d->Direction::Left);
+#endif
     }
 }
 
