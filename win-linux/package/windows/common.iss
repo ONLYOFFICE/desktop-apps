@@ -530,6 +530,21 @@ gl.WarningClearAppData =Quere borrar a configuración do usuario e os datos da c
 ;zh_HK.AssociateDescription =與文書處理檔案類型聯結 %1
 ;======================================================================================================
 en.UpdateService =Service for update {#sAppName}
+cs.UpdateService =Služba aktualizace {#sAppName}
+el.UpdateService =Υπηρεσία για ενημέρωση {#sAppName}
+ru.UpdateService =Сервис обновлений {#sAppName}
+fr.UpdateService =Service de mise à jour {#sAppName}
+it_IT.UpdateService =Servizio per l'aggiornamento {#sAppName}
+pt_BR.UpdateService =Serviço para atualização {#sAppName}
+;pt_PT.UpdateService =Serviço para atualizar {#sAppName}
+ro.UpdateService =Serviciu de actualizare {#sAppName}
+sk.UpdateService =Služba aktualizácie {#sAppName}
+sl.UpdateService =Storitev za posodobitev {#sAppName}
+tr.UpdateService ={#sAppName} için hizmet güncellemesi
+vi.UpdateService =Dịch vụ cập nhật {#sAppName}
+ja.UpdateService =アップデートサービス{#sAppName}
+ko.UpdateService ={#sAppName} 업데이트 서비스
+uk.UpdateService =Сервіс для оновлення {#sAppName}
 
 [Code]
 const
