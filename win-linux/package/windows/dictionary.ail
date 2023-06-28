@@ -77,17 +77,6 @@
     <STRING lang="ru" value="Сопоставление типов файлов"/>
   </ENTRY>
   <!-- Property table -->
-  <ENTRY id="Property.AI_PRODUCTNAME_ARP">
-    <STRING lang="cs" value="[|ProductName] [|ProductVersion] "/>
-    <STRING lang="de" value="[|ProductName] [|ProductVersion] "/>
-    <STRING lang="es" value="[|ProductName] [|ProductVersion] "/>
-    <STRING lang="fr" value="[|ProductName] [|ProductVersion] "/>
-    <STRING lang="ja" value="[|ProductName] [|ProductVersion] "/>
-    <STRING lang="pt" value="[|ProductName] [|ProductVersion] "/>
-    <STRING lang="pt_BR" value="[|ProductName] [|ProductVersion] "/>
-    <STRING lang="ru" value="[|ProductName] [|ProductVersion] "/>
-    <STRING lang="sl" value="[|ProductName] [|ProductVersion] "/>
-  </ENTRY>
   <ENTRY id="Property.ARPCOMMENTS">
     <STRING lang="cs" value="Free desktop office suite for document editing and collaboration"/>
     <STRING lang="de" value="Free desktop office suite for document editing and collaboration"/>
@@ -198,9 +187,6 @@
     <STRING lang="ru" value="[|ASCC_REG_PREFIX].Editors"/>
     <STRING lang="sl" value="[|ASCC_REG_PREFIX].Editors"/>
   </ENTRY>
-  <ENTRY id="Property.ASSOTIATION_PROP">
-    <STRING lang="ru" value="CheckBox"/>
-  </ENTRY>
   <ENTRY id="Property.COMMON_SHORTCUT_NAME">
     <STRING lang="cs" value="ONLYOFFICE Editors"/>
     <STRING lang="de" value="ONLYOFFICE Editors"/>
@@ -231,17 +217,6 @@
   </ENTRY>
   <ENTRY id="Property.DeUpdateSvc_ServiceName">
     <STRING lang="ru" value="DeUpdateSvc"/>
-  </ENTRY>
-  <ENTRY id="Property.GALLERY">
-    <STRING lang="cs" value="1"/>
-    <STRING lang="de" value="1"/>
-    <STRING lang="es" value="1"/>
-    <STRING lang="fr" value="1"/>
-    <STRING lang="ja" value="1"/>
-    <STRING lang="pt" value="1"/>
-    <STRING lang="pt_BR" value="1"/>
-    <STRING lang="ru" value="1"/>
-    <STRING lang="sl" value="1"/>
   </ENTRY>
   <ENTRY id="Property.GALLERY_SHORTCUT_NAME">
     <STRING lang="cs" value="Gallery"/>
@@ -286,28 +261,6 @@
     <STRING lang="pt_BR" value="Media"/>
     <STRING lang="ru" value="Media"/>
     <STRING lang="sl" value="Media"/>
-  </ENTRY>
-  <ENTRY id="Property.PACKAGE_NAME">
-    <STRING lang="cs" value="PACKAGE_NAME"/>
-    <STRING lang="de" value="PACKAGE_NAME"/>
-    <STRING lang="es" value="PACKAGE_NAME"/>
-    <STRING lang="fr" value="PACKAGE_NAME"/>
-    <STRING lang="ja" value="PACKAGE_NAME"/>
-    <STRING lang="pt" value="PACKAGE_NAME"/>
-    <STRING lang="pt_BR" value="PACKAGE_NAME"/>
-    <STRING lang="ru" value="PACKAGE_NAME"/>
-    <STRING lang="sl" value="PACKAGE_NAME"/>
-  </ENTRY>
-  <ENTRY id="Property.PLAYER">
-    <STRING lang="cs" value="1"/>
-    <STRING lang="de" value="1"/>
-    <STRING lang="es" value="1"/>
-    <STRING lang="fr" value="1"/>
-    <STRING lang="ja" value="1"/>
-    <STRING lang="pt" value="1"/>
-    <STRING lang="pt_BR" value="1"/>
-    <STRING lang="ru" value="1"/>
-    <STRING lang="sl" value="1"/>
   </ENTRY>
   <ENTRY id="Property.PRODUCT_INSTALL_FOLDER">
     <STRING lang="cs" value="DesktopEditors"/>
