@@ -312,6 +312,11 @@ public:
         return QRect();
     }
 
+    auto editorWindowFromViewId(int viewid) -> CEditorWindow *
+    {
+        return m_appmanager.editorWindowFromViewId(viewid);
+    }
+
     auto openDocument(const COpenOptions& opts) -> bool
     {
         CTabPanel * panel = CEditorTools::createEditorPanel(opts);

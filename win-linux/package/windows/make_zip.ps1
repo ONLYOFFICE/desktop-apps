@@ -19,7 +19,8 @@ if ( $Sign ) {
     Set-Location $DesktopPath
 
     $SignFiles = Get-ChildItem *.exe, converter\*.exe, converter\*.dll, `
-        ascdocumentscore.dll, hunspell.dll, ooxmlsignature.dll |
+        ascdocumentscore.dll, hunspell.dll, ooxmlsignature.dll, `
+        qtascdocumentscore.dll, videoplayer.dll |
         Resolve-Path -Relative
     # Sign
     Write-Host "signtool sign /a /n $CertName /t $TimestampServer /v $SignFiles" -ForegroundColor Yellow
