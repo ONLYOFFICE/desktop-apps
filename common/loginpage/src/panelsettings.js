@@ -427,7 +427,7 @@
                             if ( nativevars.theme && nativevars.theme.system == 'disabled' )
                                 _themes.shift();
 
-                            const _combo = $('#opts-ui-theme select', $panel);
+                            const _combo = $('#opts-ui-theme select', $panel).empty();
                             _themes.forEach(item => {
                                 const entries = Object.entries(item)[0];
                                 _combo.append(`<option value=${entries[0]} l10n>${entries[1]}</option>`);
