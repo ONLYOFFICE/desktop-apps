@@ -529,7 +529,7 @@ gl.WarningClearAppData =Quere borrar a configuración do usuario e os datos da c
 ;si.AssociateDescription =%1 සමඟ කාර්යාල ලේඛන ගොනු වර්ග සම්බන්ධ කරන්න
 ;zh_HK.AssociateDescription =與文書處理檔案類型聯結 %1
 ;======================================================================================================
-en.UpdateService =Service for update {#sAppName}
+en.UpdateService =Update service for {#sAppName}
 cs.UpdateService =Služba aktualizace {#sAppName}
 fi.UpdateService =Palvelu päivitystä varten {#sAppName}
 el.UpdateService =Υπηρεσία για ενημέρωση {#sAppName}
