@@ -61,7 +61,6 @@
 #endif
 
 #define TOP_NATIVE_WINDOW_HANDLE this
-//#define FILEDIALOG_DONT_USE_NATIVEDIALOGS
 using namespace std::placeholders;
 using namespace NSEditorApi;
 
@@ -344,9 +343,6 @@ QWidget* CMainWindow::createMainPanel(QWidget *parent)
 {
     QWidget *mainPanel = new QWidget(parent);
     mainPanel->setObjectName("mainPanel");
-//    mainPanel->setProperty("uitheme", QString::fromStdWString(AscAppManager::themes().current().originalId()));
-//    mainPanel->setProperty("uithemetype", AscAppManager::themes().current().stype());
-
     QGridLayout *_pMainGridLayout = new QGridLayout(mainPanel);
     _pMainGridLayout->setSpacing(0);
     _pMainGridLayout->setObjectName(QString::fromUtf8("mainGridLayout"));
@@ -360,7 +356,6 @@ QWidget* CMainWindow::createMainPanel(QWidget *parent)
     sizePolicy.setHorizontalStretch(1);
     pTabBar->setSizePolicy(sizePolicy);
 
-//    QSize wide_btn_size(29*g_dpi_ratio, TOOLBTN_HEIGHT*g_dpi_ratio);
     m_boxTitleBtns = createTopPanel(mainPanel);
     m_boxTitleBtns->setObjectName("CX11Caption");
     _pMainGridLayout->addWidget(m_boxTitleBtns, 0, 2, 1, 1);
@@ -385,10 +380,6 @@ QWidget* CMainWindow::createMainPanel(QWidget *parent)
 
     QPalette palette;
     if (isCustomWindowStyle()) {
-/*#ifdef __linux__
-        _pMainGridLayout->setMargin( CX11Decoration::customWindowBorderWith() * dpi_ratio );
-        //connect(m_boxTitleBtns, SIGNAL(mouseDoubleClicked()), SLOT(onMaximizeEvent()));
-#endif*/
     } else {
 //        m_pButtonMain->setProperty("theme", "light");
         QLinearGradient gradient(mainPanel->rect().topLeft(), QPoint(mainPanel->rect().left(), 29));
@@ -397,7 +388,7 @@ QWidget* CMainWindow::createMainPanel(QWidget *parent)
         palette.setBrush(QPalette::Background, QBrush(gradient));
         label->setFixedHeight(0);
     }
-//    m_pTabs->setAutoFillBackground(true);
+
     // Set TabWidget
     m_pTabs = new CAscTabWidget(mainPanel, pTabBar);
     m_pTabs->setObjectName(QString::fromUtf8("ascTabWidget"));
@@ -471,8 +462,6 @@ void CMainWindow::toggleButtonMain(bool toggle, bool delay)
                 m_pButtonMain->setProperty("class", "active");
                 m_pTabs->activate(false);
                 m_pMainWidget->setHidden(false);
-//                m_pTabs->setFocusedView();
-//                ((QCefView *)m_pMainWidget)->setFocusToCef();
             } else {
                 m_pButtonMain->setProperty("class", "normal");
                 m_pTabs->activate(true);
