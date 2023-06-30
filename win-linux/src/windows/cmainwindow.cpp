@@ -60,7 +60,6 @@
   #include "../version.h"
 #endif
 
-#define TOP_NATIVE_WINDOW_HANDLE this
 using namespace std::placeholders;
 using namespace NSEditorApi;
 
@@ -495,12 +494,6 @@ void CMainWindow::onTabsCountChanged(int count, int i, int d)
     if ( count == 0 ) {
         toggleButtonMain(true);
     }
-    if ( d < 0 ) {
-        //RecalculatePlaces();
-    } else
-    QTimer::singleShot(200, [=]{
-        //RecalculatePlaces();
-    });
 }
 
 void CMainWindow::onEditorAllowedClose(int uid)
