@@ -291,7 +291,6 @@ void CAscTabWidget::closeEditor(int i, bool m, bool r)
         CAscTabData * doc = view->data();
 
         if (doc && (!m || !doc->hasChanges())) {
-            m_pBar->removeTab(i);
             doc->close();
             AscAppManager::getInstance().DestroyCefView(view->cef()->GetId());
 

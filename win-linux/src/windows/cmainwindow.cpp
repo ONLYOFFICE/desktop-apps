@@ -548,6 +548,7 @@ void CMainWindow::onEditorAllowedClose(int uid)
             QWidget * _view = m_pTabs->widget(_index);
             _view->deleteLater();
 
+            m_pTabs->tabBar()->removeTab(_index);
             m_pTabs->removeTab(_index);
             //m_pTabs->adjustTabsSize();
 
