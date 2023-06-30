@@ -36,35 +36,31 @@
 #include <QStandardPaths>
 #include <QDir>
 #include <QRegularExpression>
-#include <QIcon>
-#include <QSysInfo>
 #include <QApplication>
 #include <QDesktopWidget>
-#include <QDesktopServices>
 #include <QUrl>
 #include <QJsonDocument>
 #include <QJsonObject>
-#include <QProcess>
 #include <QScreen>
 #include <QStorageInfo>
 #include <QPrinterInfo>
-#include <regex>
-#include <QEventLoop>
 #include "cascapplicationmanagerwrapper.h"
 #include "qdpichecker.h"
 #include "common/File.h"
 
 #ifdef _WIN32
+# include <QDesktopServices>
 #include <windowsx.h>
 #include "shlobj.h"
 #include "lmcons.h"
 typedef HRESULT (__stdcall *SetCurrentProcessExplicitAppUserModelIDProc)(PCWSTR AppID);
 #else
+# include <QProcess>
+# include <QEventLoop>
 #include <sys/stat.h>
 #include <stdlib.h>
 #endif
 
-#include <QDebug>
 //extern QStringList g_cmdArgs;
 
 namespace InputArgs {

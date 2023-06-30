@@ -33,20 +33,14 @@
 #include "components/asctabwidget.h"
 #include <QRegExp>
 #include <QHBoxLayout>
-#include <QLabel>
-#include <QFileInfo>
 #include <QApplication>
-#include <QTimer>
-#include <regex>
 #include "casctabdata.h"
 #include "common/Types.h"
 #include "defines.h"
 #include "utils.h"
 #include "cfilechecker.h"
 #include "ceditortools.h"
-#include "cascapplicationmanagerwrapper.h"
 #include "ctabundockevent.h"
-#include "OfficeFileFormats.h"
 
 
 using namespace std;

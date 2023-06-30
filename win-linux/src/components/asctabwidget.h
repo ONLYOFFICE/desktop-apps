@@ -33,11 +33,8 @@
 #ifndef ASCTABWIDGET
 #define ASCTABWIDGET
 
-#include <QResizeEvent>
-#include <QtWidgets/QPushButton>
 #include <QStackedWidget>
 #include "ctabbar.h"
-#include "qcefview.h"
 #include "cscalingwrapper.h"
 #include "ctabpanel.h"
 

@@ -36,13 +36,8 @@
 #include "utils.h"
 #include "components/cmessage.h"
 #include "cascapplicationmanagerwrapper.h"
-
 #include "../Common/OfficeFileFormats.h"
-
 #include <QList>
-#include <QDebug>
-
-#include "qcefview.h"
 
 #ifdef Q_OS_WIN
 # include <shobjidl.h>
@@ -51,7 +46,6 @@
 # include "platform_linux/xdgdesktopportal.h"
 # include "platform_linux/gtkfilechooser.h"
 #endif
-#include <string>
 
 
 namespace CFileDialogHelper {
