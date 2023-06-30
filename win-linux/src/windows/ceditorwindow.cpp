@@ -203,12 +203,7 @@ QWidget * CEditorWindow::createMainPanel(QWidget * parent, const QString& title)
 
     QGridLayout * mainGridLayout = new QGridLayout(mainPanel);
     mainGridLayout->setSpacing(0);
-//#ifdef Q_OS_WIN
     mainGridLayout->setMargin(0);
-/*#else
-    int b = !isCustom ? 0 : CX11Decoration::customWindowBorderWith() * m_dpiRatio;
-    mainGridLayout->setContentsMargins(QMargins(b,b,b,b));
-#endif*/
     mainPanel->setLayout(mainGridLayout);
 
     if (isCustom) {
@@ -247,18 +242,10 @@ QWidget * CEditorWindow::createMainPanel(QWidget * parent, const QString& title)
         }
 
         d_ptr->customizeTitleLabel();
-//        m_boxTitleBtns->setFixedSize(282*m_dpiRatio, TOOLBTN_HEIGHT*m_dpiRatio);
-
-//        QWidget * _lb = new QWidget;
-//        _lb->setFixedWidth( (small_btn_size.width() + layoutBtns->spacing()) * 3 );
-//        layoutBtns->insertWidget(0, _lb);
     } else {
 //        QLinearGradient gradient(centralWidget->rect().topLeft(), QPoint(centralWidget->rect().left(), 29));
 //        gradient.setColorAt(0, QColor("#eee"));
 //        gradient.setColorAt(1, QColor("#e4e4e4"));
-
-//        label->setFixedHeight(0);
-//        m_boxTitleBtns->setFixedSize(342*m_dpiRatio, 16*m_dpiRatio);
     }
 
     if ( !d_ptr->panel() ) {
@@ -266,17 +253,12 @@ QWidget * CEditorWindow::createMainPanel(QWidget * parent, const QString& title)
 //        pMainWidget->Create(&AscAppManager::getInstance(), cvwtSimple);
 //        pMainWidget->setObjectName( "mainPanel" );
 //        pMainWidget->setHidden(false);
-
 //        m_pMainView = (QWidget *)pMainWidget;
     } else {
         m_pMainView = static_cast<QWidget*>(d_ptr->panel());
         m_pMainView->setParent(mainPanel);
         m_pMainView->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-//        m_pMainView->setGeometry(mainPanel->geometry());
-//        m_pMainView->show();
     }
-
-//    m_pMainWidget->setVisible(false);
 
     d_ptr.get()->onScreenScalingFactor(m_dpiRatio);
     if (d_ptr->usedOldEditorVersion)  // For old editors only

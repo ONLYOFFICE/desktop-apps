@@ -37,21 +37,12 @@
 #include <QLabel>
 #include <QFormLayout>
 
-/*#ifdef _WIN32
-#include "win/qwinwidget.h"
 
-class CPrintProgress : public QWinWidget
-{
-    Q_OBJECT
-public:
-    explicit CPrintProgress(HWND hParentWnd);
-#else*/
 class CPrintProgress : public QObject
 {
     Q_OBJECT
 public:
     explicit CPrintProgress(QWidget * p = 0);
-//#endif
     ~CPrintProgress();
 
     void startProgress();
