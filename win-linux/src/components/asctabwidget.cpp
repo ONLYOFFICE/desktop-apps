@@ -42,6 +42,7 @@
 #include "ceditortools.h"
 #include "ctabundockevent.h"
 
+#define indexIsValid(i) (!(i < 0) && i < count())
 
 using namespace std;
 
@@ -265,7 +266,7 @@ int CAscTabWidget::addEditor(const COpenOptions& opts)
 
 void CAscTabWidget::closeEditor(int i, bool m, bool r)
 {
-    if (!(i < 0) && i < count()) {
+    if (indexIsValid(i)) {
         CTabPanel * view = panel(i);
         CAscTabData * doc = view->data();
 
@@ -474,8 +475,8 @@ void CAscTabWidget::updateTabIcon(int index)
                 CAscTabData& data = *(panel(index)->data());
                 return data.isViewType(cvwtEditor) && (data.features().empty() || data.hasFeature(L"uithemes"));
             };
-            const CTheme& ui_theme = AscAppManager::themes().current().isDark() && _is_editor_supports_theme(index) ?
-                                            AscAppManager::themes().current() : AscAppManager::themes().defaultLight();
+            const CTheme& ui_theme = GetCurrentTheme().isDark() && _is_editor_supports_theme(index) ?
+                                            GetCurrentTheme() : AscAppManager::themes().defaultLight();
 
             tab_type = pEditor->GetEditorType();
             switch ( tab_type ) {
@@ -910,7 +911,7 @@ int CAscTabWidget::modifiedCount()
 
 int CAscTabWidget::viewByIndex(int index)
 {
-    if (!(index < 0) && index < count()) {
+    if (indexIsValid(index)) {
         CCefView * view = panel(index)->cef();
         return view ? view->GetId() : -1;
     }
@@ -920,7 +921,7 @@ int CAscTabWidget::viewByIndex(int index)
 
 QString CAscTabWidget::titleByIndex(int index, bool mod)
 {
-    if (!(index < 0) && index < count()) {
+    if (indexIsValid(index)) {
         const CAscTabData * doc = panel(index)->data();
         if (doc)
             return doc->title(mod);
@@ -941,7 +942,7 @@ QString CAscTabWidget::urlByView(int id)
 
 bool CAscTabWidget::modifiedByIndex(int index)
 {
-    if (!(index < 0) && index < count()) {
+    if (indexIsValid(index)) {
         const CAscTabData * doc = panel(index)->data();
         return doc->hasChanges() && !doc->closed();
     }
@@ -1025,7 +1026,7 @@ int CAscTabWidget::findFragmented(const QString& portalname)
 
 bool CAscTabWidget::isFragmented(int index)
 {
-    if (!(index < 0) && index < count()) {
+    if (indexIsValid(index)) {
         const CTabPanel * cefpanel = panel(index);
         const CAscTabData * doc = cefpanel->data();
         return /*!doc->closed() &&*/ doc->isViewType(cvwtEditor) && ((CCefViewEditor *)cefpanel->cef())->CheckCloudCryptoNeedBuild();
@@ -1052,7 +1053,7 @@ int CAscTabWidget::findProcessed() const
 
 bool CAscTabWidget::isProcessed(int index) const
 {
-    if (!(index < 0) && index < count()) {
+    if (indexIsValid(index)) {
         const CTabPanel * cefpanel = panel(index);
         const CAscTabData * doc = cefpanel->data();
 
@@ -1172,11 +1173,11 @@ void CAscTabWidget::applyUITheme(const std::wstring& theme)
 {
     reloadTabIcons();
     updateIcons();
-    m_pBar->setIgnoreActiveTabColor(AscAppManager::themes().current().isDark());
+    m_pBar->setIgnoreActiveTabColor(GetCurrentTheme().isDark());
     m_pBar->polish();
     style()->polish(this);
 
-    QColor back_color = AscAppManager::themes().current().color(CTheme::ColorRole::ecrWindowBackground);
+    QColor back_color = GetColorByRole(ecrWindowBackground);
     for (int i(count()); i-- > 0; ) {
         panel(i)->setBackground(back_color);
     }

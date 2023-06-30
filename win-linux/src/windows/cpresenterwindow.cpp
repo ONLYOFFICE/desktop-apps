@@ -74,8 +74,8 @@ CPresenterWindow::~CPresenterWindow()
 void CPresenterWindow::applyTheme(const std::wstring& theme)
 {
     CWindowPlatform::applyTheme(theme);
-    m_pMainPanel->setProperty("uitheme", QString::fromStdWString(AscAppManager::themes().themeActualId(theme)));
-    m_pMainPanel->setProperty("uithemetype", AscAppManager::themes().current().stype());
+    m_pMainPanel->setProperty("uitheme", QString::fromStdWString(GetActualTheme(theme)));
+    m_pMainPanel->setProperty("uithemetype", GetCurrentTheme().stype());
     if (m_boxTitleBtns) {
         m_labelTitle->style()->polish(m_labelTitle);
         if (m_pTopButtons[BtnType::Btn_Minimize]) {
@@ -105,7 +105,7 @@ QWidget * CPresenterWindow::createMainPanel(QWidget * parent, const QString& tit
 {
     QWidget * mainPanel = new QWidget(parent);
     mainPanel->setObjectName("mainPanel");
-    mainPanel->setProperty("uitheme", QString::fromStdWString(AscAppManager::themes().current().id()));
+    mainPanel->setProperty("uitheme", QString::fromStdWString(GetCurrentTheme().id()));
     mainPanel->setStyleSheet(AscAppManager::getWindowStylesheets(m_dpiRatio));
 
     QGridLayout * mainGridLayout = new QGridLayout(mainPanel);
