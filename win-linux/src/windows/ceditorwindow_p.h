@@ -130,7 +130,7 @@ public:
             btnHome->setIcon(":/title/icons/buttons.svg", "svg-btn-home");
             //btnHome->setToolTip(CEditorWindow::tr("Open main window"));
             btnHome->setProperty("ToolTip", CEditorWindow::tr("Open main window"));
-            btnHome->setIconOpacity(AscAppManager::themes().current().color(CTheme::ColorRole::ecrButtonNormalOpacity));
+            btnHome->setIconOpacity(GetColorByRole(ecrButtonNormalOpacity));
             m_mapTitleButtons["home"] = btnHome;
             connect(btnHome, &QPushButton::clicked, std::bind(&CEditorWindow::onClickButtonHome, window));
             leftboxbuttons->layout()->addWidget(btnHome);
@@ -147,7 +147,7 @@ public:
         btn->setDisabled(jsonobj["disabled"].toBool());
         btn->setIconSize(QSize(20,20) * window->m_dpiRatio);
         btn->setMouseTracking(true);
-        btn->setIconOpacity(AscAppManager::themes().current().color(CTheme::ColorRole::ecrButtonNormalOpacity));
+        btn->setIconOpacity(GetColorByRole(ecrButtonNormalOpacity));
         if ( jsonobj.contains("visible") && !jsonobj["visible"].toBool() ) {
             btn->hide();
         }
@@ -337,7 +337,7 @@ public:
 
         if ( canExtendTitle() && window->isCustomWindowStyle() ) {
             window->m_pMainPanel->setProperty("window", "pretty");
-            changeTheme(AscAppManager::themes().current().id());
+            changeTheme(GetCurrentTheme().id());
         }
     }
 
@@ -346,20 +346,20 @@ public:
         std::wstring background, border;
         switch (panel()->data()->contentType()) {
         case etDocument:
-            background = AscAppManager::themes().current().value(CTheme::ColorRole::ecrTabWordActive);
+            background = GetColorValueByRole(ecrTabWordActive);
             border = background;
             break;
         case etPresentation:
-            background = AscAppManager::themes().current().value(CTheme::ColorRole::ecrTabSlideActive);
+            background = GetColorValueByRole(ecrTabSlideActive);
             border = background;
             break;
         case etSpreadsheet:
-            background = AscAppManager::themes().current().value(CTheme::ColorRole::ecrTabCellActive);
+            background = GetColorValueByRole(ecrTabCellActive);
             border = background;
             break;
         default:
-            background = AscAppManager::themes().current().value(CTheme::ColorRole::ecrWindowBackground);
-            border = AscAppManager::themes().current().value(CTheme::ColorRole::ecrWindowBorder);
+            background = GetColorValueByRole(ecrWindowBackground);
+            border = GetColorValueByRole(ecrWindowBorder);
         }
 
         window->setWindowColors(QColor(QString::fromStdWString(background)), QColor(QString::fromStdWString(border)));

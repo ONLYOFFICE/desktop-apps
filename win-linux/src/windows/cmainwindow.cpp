@@ -188,8 +188,8 @@ bool CMainWindow::holdView(int id) const
 void CMainWindow::applyTheme(const std::wstring& theme)
 {
     CWindowPlatform::applyTheme(theme);
-    m_pMainPanel->setProperty("uitheme", QString::fromStdWString(AscAppManager::themes().themeActualId(theme)));
-    m_pMainPanel->setProperty("uithemetype", AscAppManager::themes().current().stype());
+    m_pMainPanel->setProperty("uitheme", QString::fromStdWString(GetActualTheme(theme)));
+    m_pMainPanel->setProperty("uithemetype", GetCurrentTheme().stype());
     for (int i(m_pTabs->count()); !(--i < 0);) {
         CAscTabData& _doc = *m_pTabs->panel(i)->data();
         if ( _doc.isViewType(cvwtEditor) && !_doc.closed() ) {
@@ -203,14 +203,14 @@ void CMainWindow::applyTheme(const std::wstring& theme)
         foreach (auto btn, m_pTopButtons)
             btn->style()->polish(btn);
     }
-    m_pTabs->applyUITheme(AscAppManager::themes().themeActualId(theme));
+    m_pTabs->applyUITheme(GetActualTheme(theme));
     m_pMainPanel->style()->polish(m_pMainPanel);
     m_pMainPanel->update();
 
-    m_pButtonMain->setIcon(MAIN_ICON_PATH, AscAppManager::themes().current().isDark() ? "logo-light" : "logo-dark");
+    m_pButtonMain->setIcon(MAIN_ICON_PATH, GetCurrentTheme().isDark() ? "logo-light" : "logo-dark");
     m_pButtonMain->setIconSize(MAIN_ICON_SIZE * m_dpiRatio);
     if (m_pWidgetDownload && m_pWidgetDownload->toolButton()) {
-        m_pWidgetDownload->applyTheme(QString::fromStdWString(AscAppManager::themes().themeActualId(theme)));
+        m_pWidgetDownload->applyTheme(QString::fromStdWString(GetActualTheme(theme)));
         m_pWidgetDownload->toolButton()->style()->polish(m_pWidgetDownload->toolButton());
     }
 }
@@ -394,7 +394,7 @@ QWidget* CMainWindow::createMainPanel(QWidget *parent)
     _pMainGridLayout->addWidget(m_pTabs, 1, 0, 1, 3);
     m_pTabs->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     m_pTabs->activate(false);
-    m_pTabs->applyUITheme(AscAppManager::themes().current().id());
+    m_pTabs->applyUITheme(GetCurrentTheme().id());
 
     connect(m_pTabs, SIGNAL(currentChanged(int)), this, SLOT(onTabChanged(int)));
     connect(pTabBar, SIGNAL(tabBarClicked(int)), this, SLOT(onTabClicked(int)));
@@ -1349,7 +1349,7 @@ void CMainWindow::updateScalingFactor(double dpiratio)
     m_pTabs->setStyleSheet(_style);
 //    m_pTabs->updateScalingFactor(dpiratio);
     m_pTabs->reloadTabIcons();
-    m_pButtonMain->setIcon(MAIN_ICON_PATH, AscAppManager::themes().current().isDark() ? "logo-light" : "logo-dark");
+    m_pButtonMain->setIcon(MAIN_ICON_PATH, GetCurrentTheme().isDark() ? "logo-light" : "logo-dark");
     m_pButtonMain->setIconSize(MAIN_ICON_SIZE * dpiratio);
     if (m_pWidgetDownload && m_pWidgetDownload->toolButton()) {
         m_pWidgetDownload->updateScalingFactor(dpiratio);
