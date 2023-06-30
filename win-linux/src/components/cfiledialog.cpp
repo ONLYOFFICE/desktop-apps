@@ -229,7 +229,7 @@ QString CFileDialogWrapper::getFilter(const QString& extension) const
         return tr("PowerPoint Presentation") + " (*." + out + ")";
     } else {
         out.replace(0, 1, extension.left(1).toUpper());
-        return tr("%1 File (*.%2)").arg(out).arg(out.toLower());
+        return tr("%1 File (*.%2)").arg(out, out.toLower());
     }
 }
 

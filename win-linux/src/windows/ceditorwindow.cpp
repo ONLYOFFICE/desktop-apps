@@ -197,7 +197,6 @@ void CEditorWindow::applyTheme(const std::wstring& theme)
 
 QWidget * CEditorWindow::createMainPanel(QWidget * parent, const QString& title)
 {
-    bool isCustom = isCustomWindowStyle();
     QWidget * mainPanel = new QWidget(parent);
     mainPanel->setObjectName("mainPanel");
 
@@ -206,7 +205,7 @@ QWidget * CEditorWindow::createMainPanel(QWidget * parent, const QString& title)
     mainGridLayout->setMargin(0);
     mainPanel->setLayout(mainGridLayout);
 
-    if (isCustom) {
+    if (isCustomWindowStyle()) {
         m_boxTitleBtns = createTopPanel(mainPanel);
         m_boxTitleBtns->setObjectName("box-title-tools");
 
@@ -219,21 +218,13 @@ QWidget * CEditorWindow::createMainPanel(QWidget * parent, const QString& title)
         static_cast<QHBoxLayout*>(m_boxTitleBtns->layout())->insertWidget(0, m_labelTitle);
         if (d_ptr->usedOldEditorVersion)  // For old editors only
             static_cast<QHBoxLayout*>(m_boxTitleBtns->layout())->insertStretch(0);
-    }
 
-    mainPanel->setProperty("zoom", QString::number(m_dpiRatio) + "x");
-    mainPanel->setProperty("uitheme", QString::fromStdWString(AscAppManager::themes().current().id()));
-    mainPanel->setStyleSheet(AscAppManager::getWindowStylesheets(m_dpiRatio) + m_css);
-
-    bool _canExtendTitle = false;
-    if (isCustom) {
         if ( !d_ptr->canExtendTitle() ) {
             mainGridLayout->addWidget(m_boxTitleBtns, 0, 0);
             m_labelTitle->setText(APP_TITLE);
         } else {
             if (d_ptr->panel()->data()->contentType() != etUndefined)
                 mainPanel->setProperty("window", "pretty");
-            _canExtendTitle = true;
             int pos = (d_ptr->usedOldEditorVersion) ? 3 : 2;  // For old editors only
             auto *pIconSpacer = new QSpacerItem(ICON_SPACER_WIDTH, 5, QSizePolicy::Fixed, QSizePolicy::Fixed);
             auto *pTopLayout = static_cast<QHBoxLayout*>(m_boxTitleBtns->layout());
@@ -247,6 +238,10 @@ QWidget * CEditorWindow::createMainPanel(QWidget * parent, const QString& title)
 //        gradient.setColorAt(0, QColor("#eee"));
 //        gradient.setColorAt(1, QColor("#e4e4e4"));
     }
+
+    mainPanel->setProperty("zoom", QString::number(m_dpiRatio) + "x");
+    mainPanel->setProperty("uitheme", QString::fromStdWString(GetCurrentTheme().id()));
+    mainPanel->setStyleSheet(AscAppManager::getWindowStylesheets(m_dpiRatio) + m_css);
 
     if ( !d_ptr->panel() ) {
 //        QCefView * pMainWidget = AscAppManager::createViewer(centralWidget);
@@ -267,7 +262,7 @@ QWidget * CEditorWindow::createMainPanel(QWidget * parent, const QString& title)
         mainGridLayout->addWidget(m_pMainView, 1, 0, 1, 2);
     mainGridLayout->setRowStretch(1,1);
 
-    if (_canExtendTitle) {
+    if (d_ptr->canExtendTitle()) {
         if (d_ptr->usedOldEditorVersion)  // For old editors only
             mainGridLayout->addWidget(m_boxTitleBtns, 1, 0, Qt::AlignTop);
         else {
