@@ -31,40 +31,22 @@
 */
 
 #include "windows/cmainwindow.h"
-#include "cascapplicationmanagerwrapper.h"
 #include "ceditortools.h"
 #include "defines.h"
 #include "utils.h"
-#include "csplash.h"
-#include "clogger.h"
-#include "clangater.h"
-#include "components/cprintprogress.h"
 #include "components/cfiledialog.h"
-#include "qascprinter.h"
 #include "common/Types.h"
 #include "version.h"
 #include "components/cmessage.h"
-#include "../Common/OfficeFileFormats.h"
 #include <QDesktopWidget>
 #include <QGridLayout>
 #include <QTimer>
 #include <QApplication>
-#include <QIcon>
-#include <QPrinterInfo>
 #include "components/cprintdialog.h"
-#include <QDir>
-#include <QMenu>
-#include <QWidgetAction>
-#include <QStandardPaths>
 #include <QRegularExpression>
-#include <QMessageBox>
 #include <QJsonDocument>
 #include <QJsonObject>
-#include <QStorageInfo>
 #include <QMimeData>
-#include <stdexcept>
-#include <functional>
-#include <regex>
 #include <QPrintEngine>
 
 #ifdef _WIN32
@@ -75,7 +57,6 @@
 
 
 #ifdef _UPDMODULE
-  //#include "3dparty/WinSparkle/include/winsparkle.h"
   #include "../version.h"
 #endif
 

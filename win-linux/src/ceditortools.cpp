@@ -42,7 +42,6 @@
 #include "components/cmessage.h"
 #include <QApplication>
 #include <QDir>
-#include <QDebug>
 
 using namespace NSEditorApi;
 

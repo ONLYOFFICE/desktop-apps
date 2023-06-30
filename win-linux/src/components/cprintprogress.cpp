@@ -45,7 +45,6 @@
 # include "windows/platform_linux/cx11decoration.h"
 #endif // Q_WS_WIN32
 
-#include <QDebug>
 
 class CDialogEventFilter : public QObject
 {

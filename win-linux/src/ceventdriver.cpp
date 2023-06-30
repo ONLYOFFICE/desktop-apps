@@ -33,7 +33,6 @@
 #include "ceventdriver.h"
 #include "cascapplicationmanagerwrapper.h"
 
-#include <QDebug>
 
 CEventDriver::CEventDriver(QObject *parent)
     : QObject(parent)

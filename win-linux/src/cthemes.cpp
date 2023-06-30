@@ -6,7 +6,6 @@
 #endif
 #include "defines.h"
 #include "utils.h"
-
 #include <QSettings>
 #include <QJsonDocument>
 #include <QJsonObject>
@@ -15,7 +14,6 @@
 #include <QRegularExpression>
 #include <QProcess>
 #include <QPalette>
-#include <QDebug>
 
 #define QSTRING_FROM_WSTR(s) QString::fromStdWString(s)
 #define REGISTRY_THEME_KEY "UITheme"

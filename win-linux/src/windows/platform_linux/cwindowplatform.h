@@ -35,7 +35,6 @@
 
 #include "windows/cwindowbase.h"
 #include "cx11decoration.h"
-#include <memory>
 
 
 class CWindowPlatform : public CWindowBase, public CX11Decoration

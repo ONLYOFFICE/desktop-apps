@@ -1,14 +1,9 @@
 #ifndef DIALOG_OPEN_SSL_H
 #define DIALOG_OPEN_SSL_H
 
-#include <QMainWindow>
-#include <QTextEdit>
-#include <QPushButton>
-#include <QResizeEvent>
-#include <QPlainTextEdit>
 #include <QDialog>
-
 #include "applicationmanager.h"
+
 
 class CSslDialog_Private;
 class CDialogOpenSsl : public QDialog
