@@ -4,7 +4,7 @@
 #include <QLabel>
 #include <QTextEdit>
 #include <QPushButton>
-#include <QDebug>
+
 
 class CDialogCertificateInfo::Intf {
 public:

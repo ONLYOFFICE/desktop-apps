@@ -45,7 +45,6 @@
 # include "windows/platform_linux/cx11decoration.h"
 #endif // Q_WS_WIN32
 
-#include <QDebug>
 
 class CDialogEventFilter : public QObject
 {
@@ -79,15 +78,9 @@ public:
 };
 
 
-/*#if defined(_WIN32)
-CPrintProgress::CPrintProgress(HWND hParentWnd)
-    : QWinWidget(hParentWnd),
-      m_Dlg(this),
-#else*/
 CPrintProgress::CPrintProgress(QWidget * parent)
     : QObject(parent),
       m_Dlg(parent),
-//#endif
     m_fLayout(new QFormLayout),
     m_eventFilter(new CDialogEventFilter(this)), m_isRejected(false)
 {
@@ -102,12 +95,7 @@ CPrintProgress::CPrintProgress(QWidget * parent)
 //    icon->setProperty("type","msg-question");
 //    icon->setFixedSize(35*g_dpi_ratio, 35*g_dpi_ratio);
 
-    auto _dpi_ratio =
-/*#if defined(_WIN32)
-            Utils::getScreenDpiRatioByHWND(int(hParentWnd));
-#else*/
-            Utils::getScreenDpiRatioByWidget(parent);
-//#endif
+    auto _dpi_ratio = Utils::getScreenDpiRatioByWidget(parent);
 
     m_progressText = tr("Document is printing: page %1 of %2");
     m_progressLabel.setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Preferred);

@@ -33,11 +33,8 @@
 #ifndef ASCTABWIDGET
 #define ASCTABWIDGET
 
-#include <QResizeEvent>
-#include <QtWidgets/QPushButton>
 #include <QStackedWidget>
 #include "ctabbar.h"
-#include "qcefview.h"
 #include "cscalingwrapper.h"
 #include "ctabpanel.h"
 
@@ -113,7 +110,7 @@ class CAscTabWidget : public QStackedWidget, public CScalingWrapper
         }
     };
 
-    typedef std::map< int, std::pair<QString, QString> > CTabIconSet;
+    typedef std::map< int, std::pair<const char*, const char*> > CTabIconSet;
 
 private:
     std::map<int, QCefView*> m_mapDownloads;
@@ -122,7 +119,7 @@ private:
                 m_defWidthParams;
     bool m_isCustomStyle;
     CTabIconSet m_mapTabIcons;
-    QSize m_tabIconSize;
+//    QSize m_tabIconSize;
     CTabBar *m_pBar;
 
 signals:

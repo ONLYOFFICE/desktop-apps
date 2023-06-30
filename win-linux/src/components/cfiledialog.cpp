@@ -36,13 +36,8 @@
 #include "utils.h"
 #include "components/cmessage.h"
 #include "cascapplicationmanagerwrapper.h"
-
 #include "../Common/OfficeFileFormats.h"
-
 #include <QList>
-#include <QDebug>
-
-#include "qcefview.h"
 
 #ifdef Q_OS_WIN
 # include <shobjidl.h>
@@ -51,7 +46,6 @@
 # include "platform_linux/xdgdesktopportal.h"
 # include "platform_linux/gtkfilechooser.h"
 #endif
-#include <string>
 
 
 namespace CFileDialogHelper {
@@ -235,7 +229,7 @@ QString CFileDialogWrapper::getFilter(const QString& extension) const
         return tr("PowerPoint Presentation") + " (*." + out + ")";
     } else {
         out.replace(0, 1, extension.left(1).toUpper());
-        return tr("%1 File (*.%2)").arg(out).arg(out.toLower());
+        return tr("%1 File (*.%2)").arg(out, out.toLower());
     }
 }
 
@@ -476,35 +470,35 @@ int CFileDialogWrapper::getFormat()
     return m_format;
 }
 
-QString CFileDialogWrapper::joinFilters() const
-{
-    auto _get_all_exts = [] (const QList<QString>& l) {
-        QRegExp re("[\\w\\s]+\\((\\*\\.\\w+)\\)");
-        QString extns;
-        for ( auto f : l ) {
-            if ( !(re.indexIn(f) < 0) ) {
-                if ( !extns.isEmpty() )
-                    extns.append(" ");
+//QString CFileDialogWrapper::joinFilters() const
+//{
+//    auto _get_all_exts = [] (const QList<QString>& l) {
+//        QRegExp re("[\\w\\s]+\\((\\*\\.\\w+)\\)");
+//        QString extns;
+//        for ( auto f : l ) {
+//            if ( !(re.indexIn(f) < 0) ) {
+//                if ( !extns.isEmpty() )
+//                    extns.append(" ");
 
-                extns.append( re.cap(1) );
-            }
-        }
+//                extns.append( re.cap(1) );
+//            }
+//        }
 
-        return extns;
-    };
+//        return extns;
+//    };
 
-    QString _out;
-    QList<QString> _vl(m_mapFilters.values());
-//    _vl.insert(1, tr("All supported documents") + " (" + _get_all_exts(_vl) + ")");
-    for ( auto f : _vl ) {
-        if ( !_out.isEmpty() )
-            _out.append(";;");
+//    QString _out;
+//    QList<QString> _vl(m_mapFilters.values());
+////    _vl.insert(1, tr("All supported documents") + " (" + _get_all_exts(_vl) + ")");
+//    for ( auto f : _vl ) {
+//        if ( !_out.isEmpty() )
+//            _out.append(";;");
 
-        _out.append(f);
-    }
+//        _out.append(f);
+//    }
 
-    return _out;
-}
+//    return _out;
+//}
 
 QString CFileDialogWrapper::joinExtentions(const QString &filter) const
 {

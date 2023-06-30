@@ -31,40 +31,22 @@
 */
 
 #include "windows/cmainwindow.h"
-#include "cascapplicationmanagerwrapper.h"
 #include "ceditortools.h"
 #include "defines.h"
 #include "utils.h"
-#include "csplash.h"
-#include "clogger.h"
-#include "clangater.h"
-#include "components/cprintprogress.h"
 #include "components/cfiledialog.h"
-#include "qascprinter.h"
 #include "common/Types.h"
 #include "version.h"
 #include "components/cmessage.h"
-#include "../Common/OfficeFileFormats.h"
 #include <QDesktopWidget>
 #include <QGridLayout>
 #include <QTimer>
 #include <QApplication>
-#include <QIcon>
-#include <QPrinterInfo>
 #include "components/cprintdialog.h"
-#include <QDir>
-#include <QMenu>
-#include <QWidgetAction>
-#include <QStandardPaths>
 #include <QRegularExpression>
-#include <QMessageBox>
 #include <QJsonDocument>
 #include <QJsonObject>
-#include <QStorageInfo>
 #include <QMimeData>
-#include <stdexcept>
-#include <functional>
-#include <regex>
 #include <QPrintEngine>
 
 #ifdef _WIN32
@@ -75,12 +57,9 @@
 
 
 #ifdef _UPDMODULE
-  //#include "3dparty/WinSparkle/include/winsparkle.h"
   #include "../version.h"
 #endif
 
-#define TOP_NATIVE_WINDOW_HANDLE this
-//#define FILEDIALOG_DONT_USE_NATIVEDIALOGS
 using namespace std::placeholders;
 using namespace NSEditorApi;
 
@@ -126,10 +105,7 @@ QRect CMainWindow::windowRect() const
 QString CMainWindow::documentName(int vid)
 {
     int i = tabWidget()->tabIndexByView(vid);
-    if ( !(i < 0) ) {
-        return tabWidget()->panel(i)->data()->title();
-    }
-    return "";
+    return (i < 0) ? "" : tabWidget()->panel(i)->data()->title();
 }
 
 void CMainWindow::selectView(int viewid)
@@ -209,8 +185,8 @@ bool CMainWindow::holdView(int id) const
 void CMainWindow::applyTheme(const std::wstring& theme)
 {
     CWindowPlatform::applyTheme(theme);
-    m_pMainPanel->setProperty("uitheme", QString::fromStdWString(AscAppManager::themes().themeActualId(theme)));
-    m_pMainPanel->setProperty("uithemetype", AscAppManager::themes().current().stype());
+    m_pMainPanel->setProperty("uitheme", QString::fromStdWString(GetActualTheme(theme)));
+    m_pMainPanel->setProperty("uithemetype", GetCurrentTheme().stype());
     for (int i(m_pTabs->count()); !(--i < 0);) {
         CAscTabData& _doc = *m_pTabs->panel(i)->data();
         if ( _doc.isViewType(cvwtEditor) && !_doc.closed() ) {
@@ -224,14 +200,14 @@ void CMainWindow::applyTheme(const std::wstring& theme)
         foreach (auto btn, m_pTopButtons)
             btn->style()->polish(btn);
     }
-    m_pTabs->applyUITheme(AscAppManager::themes().themeActualId(theme));
+    m_pTabs->applyUITheme(GetActualTheme(theme));
     m_pMainPanel->style()->polish(m_pMainPanel);
     m_pMainPanel->update();
 
-    m_pButtonMain->setIcon(MAIN_ICON_PATH, AscAppManager::themes().current().isDark() ? "logo-light" : "logo-dark");
+    m_pButtonMain->setIcon(MAIN_ICON_PATH, GetCurrentTheme().isDark() ? "logo-light" : "logo-dark");
     m_pButtonMain->setIconSize(MAIN_ICON_SIZE * m_dpiRatio);
     if (m_pWidgetDownload && m_pWidgetDownload->toolButton()) {
-        m_pWidgetDownload->applyTheme(QString::fromStdWString(AscAppManager::themes().themeActualId(theme)));
+        m_pWidgetDownload->applyTheme(QString::fromStdWString(GetActualTheme(theme)));
         m_pWidgetDownload->toolButton()->style()->polish(m_pWidgetDownload->toolButton());
     }
 }
@@ -363,9 +339,6 @@ QWidget* CMainWindow::createMainPanel(QWidget *parent)
 {
     QWidget *mainPanel = new QWidget(parent);
     mainPanel->setObjectName("mainPanel");
-//    mainPanel->setProperty("uitheme", QString::fromStdWString(AscAppManager::themes().current().originalId()));
-//    mainPanel->setProperty("uithemetype", AscAppManager::themes().current().stype());
-
     QGridLayout *_pMainGridLayout = new QGridLayout(mainPanel);
     _pMainGridLayout->setSpacing(0);
     _pMainGridLayout->setObjectName(QString::fromUtf8("mainGridLayout"));
@@ -379,7 +352,6 @@ QWidget* CMainWindow::createMainPanel(QWidget *parent)
     sizePolicy.setHorizontalStretch(1);
     pTabBar->setSizePolicy(sizePolicy);
 
-//    QSize wide_btn_size(29*g_dpi_ratio, TOOLBTN_HEIGHT*g_dpi_ratio);
     m_boxTitleBtns = createTopPanel(mainPanel);
     m_boxTitleBtns->setObjectName("CX11Caption");
     _pMainGridLayout->addWidget(m_boxTitleBtns, 0, 2, 1, 1);
@@ -403,12 +375,7 @@ QWidget* CMainWindow::createMainPanel(QWidget *parent)
     QObject::connect(m_pButtonMain, SIGNAL(clicked()), this, SLOT(pushButtonMainClicked()));
 
     QPalette palette;
-    if (isCustomWindowStyle()) {
-/*#ifdef __linux__
-        _pMainGridLayout->setMargin( CX11Decoration::customWindowBorderWith() * dpi_ratio );
-        //connect(m_boxTitleBtns, SIGNAL(mouseDoubleClicked()), SLOT(onMaximizeEvent()));
-#endif*/
-    } else {
+    if (!isCustomWindowStyle()) {
 //        m_pButtonMain->setProperty("theme", "light");
         QLinearGradient gradient(mainPanel->rect().topLeft(), QPoint(mainPanel->rect().left(), 29));
         gradient.setColorAt(0, QColor(0xeee));
@@ -416,14 +383,14 @@ QWidget* CMainWindow::createMainPanel(QWidget *parent)
         palette.setBrush(QPalette::Background, QBrush(gradient));
         label->setFixedHeight(0);
     }
-//    m_pTabs->setAutoFillBackground(true);
+
     // Set TabWidget
     m_pTabs = new CAscTabWidget(mainPanel, pTabBar);
     m_pTabs->setObjectName(QString::fromUtf8("ascTabWidget"));
     _pMainGridLayout->addWidget(m_pTabs, 1, 0, 1, 3);
     m_pTabs->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     m_pTabs->activate(false);
-    m_pTabs->applyUITheme(AscAppManager::themes().current().id());
+    m_pTabs->applyUITheme(GetCurrentTheme().id());
 
     connect(m_pTabs, SIGNAL(currentChanged(int)), this, SLOT(onTabChanged(int)));
     connect(pTabBar, SIGNAL(tabBarClicked(int)), this, SLOT(onTabClicked(int)));
@@ -486,19 +453,11 @@ void CMainWindow::toggleButtonMain(bool toggle, bool delay)
 {
     auto _toggle = [=] (bool state) {
         if (m_pTabs->isActiveWidget() == state) {
-            if ( state ) {
-                m_pButtonMain->setProperty("class", "active");
-                m_pTabs->activate(false);
-                m_pMainWidget->setHidden(false);
-//                m_pTabs->setFocusedView();
-//                ((QCefView *)m_pMainWidget)->setFocusToCef();
-            } else {
-                m_pButtonMain->setProperty("class", "normal");
-                m_pTabs->activate(true);
-                m_pMainWidget->setHidden(true);
+            m_pButtonMain->setProperty("class", state ? "active" : "normal");
+            m_pTabs->activate(!state);
+            m_pMainWidget->setHidden(!state);
+            if (!state)
                 m_pTabs->setFocusedView();
-            }
-
             onTabChanged(m_pTabs->currentIndex());
         }
     };
@@ -525,12 +484,6 @@ void CMainWindow::onTabsCountChanged(int count, int i, int d)
     if ( count == 0 ) {
         toggleButtonMain(true);
     }
-    if ( d < 0 ) {
-        //RecalculatePlaces();
-    } else
-    QTimer::singleShot(200, [=]{
-        //RecalculatePlaces();
-    });
 }
 
 void CMainWindow::onEditorAllowedClose(int uid)
@@ -654,8 +607,7 @@ int CMainWindow::trySaveDocument(int index)
         toggleButtonMain(false);
         m_pTabs->setCurrentIndex(index);
 
-        modal_res = CMessage::showMessage(TOP_NATIVE_WINDOW_HANDLE,
-                                          getSaveMessage().arg(m_pTabs->titleByIndex(index)),
+        modal_res = CMessage::showMessage(this, getSaveMessage().arg(m_pTabs->titleByIndex(index)),
                                           MsgType::MSG_WARN, MsgBtns::mbYesDefNoCancel);
         switch (modal_res) {
         case MODAL_RESULT_NO: break;
@@ -720,7 +672,7 @@ void CMainWindow::doOpenLocalFile(COpenOptions& opts)
     if (!info.isFile()) { return; }
     if (!info.isReadable()) {
         QTimer::singleShot(0, this, [=] {
-            CMessage::error(TOP_NATIVE_WINDOW_HANDLE, QObject::tr("Access to file '%1' is denied!").arg(opts.url));
+            CMessage::error(this, QObject::tr("Access to file '%1' is denied!").arg(opts.url));
         });
         return;
     }
@@ -731,7 +683,7 @@ void CMainWindow::doOpenLocalFile(COpenOptions& opts)
     } else
     if (result == -255) {
         QTimer::singleShot(0, this, [=] {
-            CMessage::error(TOP_NATIVE_WINDOW_HANDLE, tr("File format not supported."));
+            CMessage::error(this, tr("File format not supported."));
         });
     }
     bringToTop();
@@ -755,8 +707,7 @@ void CMainWindow::onLocalFileRecent(const COpenOptions& opts)
     if ( !match.hasMatch() ) {
         QFileInfo _info(opts.url);
         if ( opts.srctype != etRecoveryFile && !_info.exists() ) {
-            int modal_res = CMessage::showMessage(TOP_NATIVE_WINDOW_HANDLE,
-                                                  tr("%1 doesn't exists!<br>Remove file from the list?").arg(_info.fileName()),
+            int modal_res = CMessage::showMessage(this, tr("%1 doesn't exists!<br>Remove file from the list?").arg(_info.fileName()),
                                                   MsgType::MSG_WARN, MsgBtns::mbYesDefNo);
             if (modal_res == MODAL_RESULT_YES) {
                 AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, "file:skip", QString::number(opts.id));
@@ -772,7 +723,7 @@ void CMainWindow::onLocalFileRecent(const COpenOptions& opts)
         toggleButtonMain(false);
     } else
     if (result == -255) {
-        CMessage::error(TOP_NATIVE_WINDOW_HANDLE, tr("File format not supported."));
+        CMessage::error(this, tr("File format not supported."));
     }
 }
 
@@ -816,7 +767,7 @@ void CMainWindow::onFileLocation(int uid, QString param)
 //            else {
 //            }
         } else {
-            CMessage::info(TOP_NATIVE_WINDOW_HANDLE, tr("Document must be saved firstly."));
+            CMessage::info(this, tr("Document must be saved firstly."));
         }
     } else {
         QRegularExpression _re("^((?:https?:\\/{2})?[^\\s\\/]+)", QRegularExpression::CaseInsensitiveOption);
@@ -903,7 +854,9 @@ void CMainWindow::onDocumentName(void * data)
 }
 
 void CMainWindow::onEditorConfig(int, std::wstring cfg)
-{}
+{
+    Q_UNUSED(cfg)
+}
 
 void CMainWindow::onWebAppsFeatures(int id, std::wstring opts)
 {
@@ -955,8 +908,7 @@ void CMainWindow::onDocumentSave(int id, bool cancel)
 
 void CMainWindow::onDocumentSaveInnerRequest(int id)
 {
-    int modal_res = CMessage::showMessage(TOP_NATIVE_WINDOW_HANDLE,
-                                          tr("Document must be saved to continue.<br>Save the document?"),
+    int modal_res = CMessage::showMessage(this, tr("Document must be saved to continue.<br>Save the document?"),
                                           MsgType::MSG_CONFIRM, MsgBtns::mbYesDefNo);
     CAscEditorSaveQuestion * pData = new CAscEditorSaveQuestion;
     pData->put_Value(modal_res == MODAL_RESULT_YES);
@@ -1063,6 +1015,7 @@ void CMainWindow::goStart()
 
 void CMainWindow::onDocumentPrint(void * opts)
 {
+    Q_UNUSED(opts)
 #ifdef __OS_WIN_XP
     if (QPrinterInfo::availablePrinterNames().size() == 0) {
         CMessage::info(TOP_NATIVE_WINDOW_HANDLE, tr("There are no printers available"));
@@ -1267,9 +1220,9 @@ void CMainWindow::onKeyDown(void * eventData)
                     EditorJSVariables::setVariable("helpUrl", _dir + "/apps");
                     EditorJSVariables::apply();
 
-                    CMessage::error(TOP_NATIVE_WINDOW_HANDLE, "Successfully");
+                    CMessage::error(this, "Successfully");
                 } else {
-                    CMessage::error(TOP_NATIVE_WINDOW_HANDLE, "Failed");
+                    CMessage::error(this, "Failed");
                 }
             }
         }
@@ -1386,7 +1339,7 @@ void CMainWindow::updateScalingFactor(double dpiratio)
     m_pTabs->setStyleSheet(_style);
 //    m_pTabs->updateScalingFactor(dpiratio);
     m_pTabs->reloadTabIcons();
-    m_pButtonMain->setIcon(MAIN_ICON_PATH, AscAppManager::themes().current().isDark() ? "logo-light" : "logo-dark");
+    m_pButtonMain->setIcon(MAIN_ICON_PATH, GetCurrentTheme().isDark() ? "logo-light" : "logo-dark");
     m_pButtonMain->setIconSize(MAIN_ICON_SIZE * dpiratio);
     if (m_pWidgetDownload && m_pWidgetDownload->toolButton()) {
         m_pWidgetDownload->updateScalingFactor(dpiratio);

@@ -1,7 +1,6 @@
 #include "components/canimatedicon.h"
-
 #include <QPainter>
-#include <QDebug>
+#include <QVariant>
 
 #define RELEASE_OBJECT(obj) if (obj) delete obj, obj = nullptr;
 

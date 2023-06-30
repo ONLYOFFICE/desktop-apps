@@ -33,13 +33,14 @@
 #ifndef CWINDOWSQUEUE_H
 #define CWINDOWSQUEUE_H
 
+#include <algorithm>
+#include <functional>
 #include <thread>
 #include <mutex>
 #include <utility>
 #include <vector>
 #include <atomic>
 
-#include <QDebug>
 
 #define THREAD_WAIT_INTERVAL 10
 
