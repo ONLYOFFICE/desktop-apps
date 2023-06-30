@@ -533,6 +533,7 @@ en.UpdateService =Update service for {#sAppName}
 cs.UpdateService =Služba aktualizace {#sAppName}
 fi.UpdateService =Palvelu päivitystä varten {#sAppName}
 el.UpdateService =Υπηρεσία για ενημέρωση {#sAppName}
+nl.UpdateService =Dienst voor update {#sAppName}
 ru.UpdateService =Сервис обновлений {#sAppName}
 fr.UpdateService =Service de mise à jour {#sAppName}
 it_IT.UpdateService =Servizio per l'aggiornamento {#sAppName}
@@ -545,6 +546,7 @@ tr.UpdateService ={#sAppName} için hizmet güncellemesi
 vi.UpdateService =Dịch vụ cập nhật {#sAppName}
 ja.UpdateService =アップデートサービス{#sAppName}
 ko.UpdateService ={#sAppName} 업데이트 서비스
+lv.UpdateService =Pakalpojums atjauninājumam {#sAppName}
 uk.UpdateService =Сервіс для оновлення {#sAppName}
 
 [Code]
