@@ -504,7 +504,7 @@ void CAscTabWidget::updateTabIcon(int index)
                     break;
                 }
             }
-            QString icon_name = is_active ? m_mapTabIcons.at(tab_type).second : m_mapTabIcons.at(tab_type).first;
+            const char *icon_name = is_active ? m_mapTabIcons.at(tab_type).second : m_mapTabIcons.at(tab_type).first;
             m_pBar->setTabIcon(index, QIcon(icon_name));
 //            m_pBar->setTabIconTheme(index, tab_theme);
             if ( index == currentIndex() ) {
@@ -527,20 +527,19 @@ void CAscTabWidget::setTabIcons(CTabIconSet& icons)
 void CAscTabWidget::reloadTabIcons()
 {
     m_mapTabIcons.clear();
+    static const char *icons[] = {":/tabbar/icons/newdoc.svg", ":/tabbar/icons/de.svg", ":/tabbar/icons/pe.svg",
+                                  ":/tabbar/icons/docxf.svg",  ":/tabbar/icons/se.svg", ":/tabbar/icons/portal_light.svg",
+                                  ":/tabbar/icons/portal.svg"};
+    int portal_icon = GetCurrentTheme().isDark() ? 5 : 6;
     m_mapTabIcons.insert({
-        {etUndefined, std::make_pair(":/tabbar/icons/newdoc.svg", ":/tabbar/icons/newdoc.svg")},
-        {etDocument, std::make_pair(":/tabbar/icons/de.svg", ":/tabbar/icons/de.svg")},
-        {etPresentation, std::make_pair(":/tabbar/icons/pe.svg", ":/tabbar/icons/pe.svg")},
-        {etDocumentMasterForm, std::make_pair(":/tabbar/icons/docxf.svg", ":/tabbar/icons/docxf.svg")},
-        {etSpreadsheet, std::make_pair(":/tabbar/icons/se.svg", ":/tabbar/icons/se.svg")}
+        {etUndefined,          std::make_pair(icons[0], icons[0])},
+        {etDocument,           std::make_pair(icons[1], icons[1])},
+        {etPresentation,       std::make_pair(icons[2], icons[2])},
+        {etDocumentMasterForm, std::make_pair(icons[3], icons[3])},
+        {etSpreadsheet,        std::make_pair(icons[4], icons[4])},
+        {etPortal,             std::make_pair(icons[portal_icon], icons[6])},
+        {etNewPortal,          std::make_pair(icons[portal_icon], icons[6])}
     });
-
-    AscAppManager::themes().current().isDark() ?
-        m_mapTabIcons.insert({{etPortal, std::make_pair(":/tabbar/icons/portal_light.svg", ":/tabbar/icons/portal.svg")},
-                        {etNewPortal, std::make_pair(":/tabbar/icons/portal_light.svg", ":/tabbar/icons/portal.svg")}}) :
-        m_mapTabIcons.insert({{etPortal, std::make_pair(":/tabbar/icons/portal.svg", ":/tabbar/icons/portal.svg")},
-                         {etNewPortal, std::make_pair(":/tabbar/icons/portal.svg", ":/tabbar/icons/portal.svg")}});
-
 }
 
 /*
@@ -698,10 +697,7 @@ bool CAscTabWidget::updatePortal(int index,const QString& url)
         CTabPanel * _panel = panel(index);
 
         if ( _panel->data()->contentType() == etPortal ) {
-            if ( url.isEmpty() )
-                _panel->cef()->load(_panel->data()->url());
-            else _panel->cef()->load(url.toStdWString());
-
+            _panel->cef()->load(url.isEmpty() ? _panel->data()->url() : url.toStdWString());
             return true;
         }
     }
@@ -952,19 +948,12 @@ bool CAscTabWidget::modifiedByIndex(int index)
 
 bool CAscTabWidget::isLocalByIndex(int index)
 {
-    if (!(index < 0) && index < count()) {
-        return panel(index)->data()->isLocal();
-    }
-
-    return true;
+    return indexIsValid(index) ? panel(index)->data()->isLocal() : true;
 }
 
-bool CAscTabWidget::closedByIndex(int index) {
-    if (!(index < 0) && index < count()) {
-        return panel(index)->data()->closed();
-    }
-
-    return true;
+bool CAscTabWidget::closedByIndex(int index)
+{
+    return indexIsValid(index) ? panel(index)->data()->closed() : true;
 }
 
 MapEditors CAscTabWidget::modified(const QString& portalname)

@@ -93,12 +93,8 @@ void CWindowPlatform::setWindowColors(const QColor& background, const QColor& bo
 
 void CWindowPlatform::adjustGeometry()
 {
-    if (!isMaximized()) {
-        const int border = int(CX11Decoration::customWindowBorderWith() * m_dpiRatio);
-        setContentsMargins(border, border, border, border);
-    } else {
-        setContentsMargins(0, 0, 0, 0);
-    }
+    int border = isMaximized() ? 0 : qRound(CX11Decoration::customWindowBorderWith() * m_dpiRatio);
+    setContentsMargins(border, border, border, border);
 }
 
 /** Protected **/

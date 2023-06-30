@@ -105,10 +105,7 @@ QRect CMainWindow::windowRect() const
 QString CMainWindow::documentName(int vid)
 {
     int i = tabWidget()->tabIndexByView(vid);
-    if ( !(i < 0) ) {
-        return tabWidget()->panel(i)->data()->title();
-    }
-    return "";
+    return (i < 0) ? "" : tabWidget()->panel(i)->data()->title();
 }
 
 void CMainWindow::selectView(int viewid)
@@ -378,8 +375,7 @@ QWidget* CMainWindow::createMainPanel(QWidget *parent)
     QObject::connect(m_pButtonMain, SIGNAL(clicked()), this, SLOT(pushButtonMainClicked()));
 
     QPalette palette;
-    if (isCustomWindowStyle()) {
-    } else {
+    if (!isCustomWindowStyle()) {
 //        m_pButtonMain->setProperty("theme", "light");
         QLinearGradient gradient(mainPanel->rect().topLeft(), QPoint(mainPanel->rect().left(), 29));
         gradient.setColorAt(0, QColor(0xeee));
@@ -457,17 +453,11 @@ void CMainWindow::toggleButtonMain(bool toggle, bool delay)
 {
     auto _toggle = [=] (bool state) {
         if (m_pTabs->isActiveWidget() == state) {
-            if ( state ) {
-                m_pButtonMain->setProperty("class", "active");
-                m_pTabs->activate(false);
-                m_pMainWidget->setHidden(false);
-            } else {
-                m_pButtonMain->setProperty("class", "normal");
-                m_pTabs->activate(true);
-                m_pMainWidget->setHidden(true);
+            m_pButtonMain->setProperty("class", state ? "active" : "normal");
+            m_pTabs->activate(!state);
+            m_pMainWidget->setHidden(!state);
+            if (!state)
                 m_pTabs->setFocusedView();
-            }
-
             onTabChanged(m_pTabs->currentIndex());
         }
     };
@@ -617,8 +607,7 @@ int CMainWindow::trySaveDocument(int index)
         toggleButtonMain(false);
         m_pTabs->setCurrentIndex(index);
 
-        modal_res = CMessage::showMessage(TOP_NATIVE_WINDOW_HANDLE,
-                                          getSaveMessage().arg(m_pTabs->titleByIndex(index)),
+        modal_res = CMessage::showMessage(this, getSaveMessage().arg(m_pTabs->titleByIndex(index)),
                                           MsgType::MSG_WARN, MsgBtns::mbYesDefNoCancel);
         switch (modal_res) {
         case MODAL_RESULT_NO: break;
@@ -683,7 +672,7 @@ void CMainWindow::doOpenLocalFile(COpenOptions& opts)
     if (!info.isFile()) { return; }
     if (!info.isReadable()) {
         QTimer::singleShot(0, this, [=] {
-            CMessage::error(TOP_NATIVE_WINDOW_HANDLE, QObject::tr("Access to file '%1' is denied!").arg(opts.url));
+            CMessage::error(this, QObject::tr("Access to file '%1' is denied!").arg(opts.url));
         });
         return;
     }
@@ -694,7 +683,7 @@ void CMainWindow::doOpenLocalFile(COpenOptions& opts)
     } else
     if (result == -255) {
         QTimer::singleShot(0, this, [=] {
-            CMessage::error(TOP_NATIVE_WINDOW_HANDLE, tr("File format not supported."));
+            CMessage::error(this, tr("File format not supported."));
         });
     }
     bringToTop();
@@ -718,8 +707,7 @@ void CMainWindow::onLocalFileRecent(const COpenOptions& opts)
     if ( !match.hasMatch() ) {
         QFileInfo _info(opts.url);
         if ( opts.srctype != etRecoveryFile && !_info.exists() ) {
-            int modal_res = CMessage::showMessage(TOP_NATIVE_WINDOW_HANDLE,
-                                                  tr("%1 doesn't exists!<br>Remove file from the list?").arg(_info.fileName()),
+            int modal_res = CMessage::showMessage(this, tr("%1 doesn't exists!<br>Remove file from the list?").arg(_info.fileName()),
                                                   MsgType::MSG_WARN, MsgBtns::mbYesDefNo);
             if (modal_res == MODAL_RESULT_YES) {
                 AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, "file:skip", QString::number(opts.id));
@@ -735,7 +723,7 @@ void CMainWindow::onLocalFileRecent(const COpenOptions& opts)
         toggleButtonMain(false);
     } else
     if (result == -255) {
-        CMessage::error(TOP_NATIVE_WINDOW_HANDLE, tr("File format not supported."));
+        CMessage::error(this, tr("File format not supported."));
     }
 }
 
@@ -779,7 +767,7 @@ void CMainWindow::onFileLocation(int uid, QString param)
 //            else {
 //            }
         } else {
-            CMessage::info(TOP_NATIVE_WINDOW_HANDLE, tr("Document must be saved firstly."));
+            CMessage::info(this, tr("Document must be saved firstly."));
         }
     } else {
         QRegularExpression _re("^((?:https?:\\/{2})?[^\\s\\/]+)", QRegularExpression::CaseInsensitiveOption);
@@ -866,7 +854,9 @@ void CMainWindow::onDocumentName(void * data)
 }
 
 void CMainWindow::onEditorConfig(int, std::wstring cfg)
-{}
+{
+    Q_UNUSED(cfg)
+}
 
 void CMainWindow::onWebAppsFeatures(int id, std::wstring opts)
 {
@@ -918,8 +908,7 @@ void CMainWindow::onDocumentSave(int id, bool cancel)
 
 void CMainWindow::onDocumentSaveInnerRequest(int id)
 {
-    int modal_res = CMessage::showMessage(TOP_NATIVE_WINDOW_HANDLE,
-                                          tr("Document must be saved to continue.<br>Save the document?"),
+    int modal_res = CMessage::showMessage(this, tr("Document must be saved to continue.<br>Save the document?"),
                                           MsgType::MSG_CONFIRM, MsgBtns::mbYesDefNo);
     CAscEditorSaveQuestion * pData = new CAscEditorSaveQuestion;
     pData->put_Value(modal_res == MODAL_RESULT_YES);
@@ -1026,6 +1015,7 @@ void CMainWindow::goStart()
 
 void CMainWindow::onDocumentPrint(void * opts)
 {
+    Q_UNUSED(opts)
 #ifdef __OS_WIN_XP
     if (QPrinterInfo::availablePrinterNames().size() == 0) {
         CMessage::info(TOP_NATIVE_WINDOW_HANDLE, tr("There are no printers available"));
@@ -1230,9 +1220,9 @@ void CMainWindow::onKeyDown(void * eventData)
                     EditorJSVariables::setVariable("helpUrl", _dir + "/apps");
                     EditorJSVariables::apply();
 
-                    CMessage::error(TOP_NATIVE_WINDOW_HANDLE, "Successfully");
+                    CMessage::error(this, "Successfully");
                 } else {
-                    CMessage::error(TOP_NATIVE_WINDOW_HANDLE, "Failed");
+                    CMessage::error(this, "Failed");
                 }
             }
         }
