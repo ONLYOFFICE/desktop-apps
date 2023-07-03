@@ -958,7 +958,11 @@ bool CTabBar::eventFilter(QObject *watched, QEvent *event)
             QMouseEvent* me = dynamic_cast<QMouseEvent*>(event);
             if (me->buttons().testFlag(Qt::LeftButton)) {
                 if (d->movedTab && !d->lock) {
-                    d->movedTab->move(me->x() - d->movedTabPressPosX, 0);
+                    int currPosX = d->movedTab->geometry().x() + d->movedTabPressPosX;
+                    int diffX = me->x() - currPosX;
+                    const int signDiffX = signum(diffX > 0);
+                    currPosX += qMin(diffX * signDiffX, d->cellWidth()/3) * signDiffX;
+                    d->movedTab->move(currPosX - d->movedTabPressPosX, 0);
                     int offsetX;
                     const int interIndex = d->getLayoutsIntersectedIndex(d->movedTab, offsetX);
                     if (/*interIndex != -1 &&*/ d->movedTab->index != interIndex && offsetX != 0) {
@@ -979,7 +983,7 @@ bool CTabBar::eventFilter(QObject *watched, QEvent *event)
                             emit currentChanged(interIndex);
                         }
                     }
-                    if (!d->tabArea->rect().contains(me->pos()) && d->tabArea->rect().right() >= me->x()) {
+                    if (!d->tabArea->rect().contains(QPoint(currPosX, me->y())) && d->tabArea->rect().right() >= currPosX) {
                         if (d->currentIndex != d->movedTabIndex)
                             d->reorderIndexes();
                         bool accepted = false;
