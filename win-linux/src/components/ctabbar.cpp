@@ -438,17 +438,13 @@ void CTabBar::CTabBarPrivate::changeScrollerState()
 
 void CTabBar::CTabBarPrivate::reorderIndexes()
 {
-    QVector<Tab*> dupTabList = tabList;
-    for (int i = 0; i < tabList.size(); i++) {
-        if (tabIndex(i) != i) {
-            for (int j = 0; j < tabList.size(); j++) {
-                if (j != i && dupTabList[j]->index == i) {
-                    tabList[i] = dupTabList[j];
-                    break;
-                }
-            }
-        }
+    const int size = tabList.size();
+    QVector<Tab*> dupTabList(size, nullptr);
+    for (int i = 0; i < size; i++) {
+        Q_ASSERT(tabIndex(i) > -1 && tabIndex(i) < size);
+        dupTabList[tabIndex(i)] = tabList[i];
     }
+    tabList = std::move(dupTabList);
 }
 
 void CTabBar::CTabBarPrivate::recalcWidth()
