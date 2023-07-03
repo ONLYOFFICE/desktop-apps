@@ -628,24 +628,24 @@ int CTabBar::insertTab(int index, const QIcon &icon, const QString &text)
     return actual_index;
 }
 
-void CTabBar::moveTab(int from, int to)
-{
-    while (d->animationInProgress)
-        qApp->processEvents();
+//void CTabBar::moveTab(int from, int to)
+//{
+//    while (d->animationInProgress)
+//        qApp->processEvents();
 
-    if (from == to || !d->indexIsValid(from) || !d->indexIsValid(to))
-        return;
+//    if (from == to || !d->indexIsValid(from) || !d->indexIsValid(to))
+//        return;
 
-    int posX = d->_tabRect(from).x();
-    d->tabList[from]->move(d->_tabRect(to).x(), 0);
-    d->tabList[to]->move(posX, 0);
-    int from_index = d->tabIndex(from);
-    d->tabIndex(from) = d->tabIndex(to);
-    d->tabIndex(to) = from_index;
-    std::swap(d->tabList[from], d->tabList[to]);
-    d->scrollTo(to);
-    emit tabMoved(from, to);
-}
+//    int posX = d->_tabRect(from).x();
+//    d->tabList[from]->move(d->_tabRect(to).x(), 0);
+//    d->tabList[to]->move(posX, 0);
+//    int from_index = d->tabIndex(from);
+//    d->tabIndex(from) = d->tabIndex(to);
+//    d->tabIndex(to) = from_index;
+//    std::swap(d->tabList[from], d->tabList[to]);
+//    d->scrollTo(to);
+//    emit tabMoved(from, to);
+//}
 
 void CTabBar::removeTab(int index)
 {
@@ -1063,18 +1063,18 @@ bool CTabBar::eventFilter(QObject *watched, QEvent *event)
             }
             break;
         }
-        case QEvent::MouseButtonDblClick: {
-            QMouseEvent* mouse_event = dynamic_cast<QMouseEvent*>(event);
-            if (mouse_event->button() == Qt::LeftButton) {
-                for (int i = 0; i < d->tabList.size(); i++) {
-                    if (d->tabList[i]->underMouse()) {
-                        emit tabBarDoubleClicked(i);
-                        return true;
-                    }
-                }
-            }
-            break;
-        }
+//        case QEvent::MouseButtonDblClick: {
+//            QMouseEvent* mouse_event = dynamic_cast<QMouseEvent*>(event);
+//            if (mouse_event->button() == Qt::LeftButton) {
+//                for (int i = 0; i < d->tabList.size(); i++) {
+//                    if (d->tabList[i]->underMouse()) {
+//                        emit tabBarDoubleClicked(i);
+//                        return true;
+//                    }
+//                }
+//            }
+//            break;
+//        }
         default:
             break;
         }
