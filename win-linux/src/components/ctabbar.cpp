@@ -45,7 +45,7 @@
 
 #define ANIMATION_DEFAULT_MS  0
 #define ANIMATION_SCROLL_MS   60
-#define ANIMATION_MOVE_TAB_MS 500
+#define ANIMATION_MOVE_TAB_MS 350
 #define TABSPACING 0
 #define DEFAULT_ICON_SIZE QSize(16,16)
 #define _tabRect(i) tabList[i]->geometry()
