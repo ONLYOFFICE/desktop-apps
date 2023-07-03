@@ -962,16 +962,17 @@ bool CTabBar::eventFilter(QObject *watched, QEvent *event)
                     if (/*interIndex != -1 &&*/ d->movedTab->index != interIndex && offsetX != 0) {
                         const int sign = signum(offsetX > 0);
                         if (sign * offsetX > d->movedTab->width()/2) {
-                            if (d->indexIsValid(interIndex + sign)) {
-                                int delta = d->tabLayouts[interIndex + sign].x() - d->_tabRect(interIndex).x();
-                                d->slide(interIndex, interIndex, delta, ANIMATION_MOVE_TAB_MS);
-                            }
-                            d->tabIndex(interIndex) += sign;
-                            d->movedTab->index = d->tabIndex(interIndex) - sign;
-                            d->currentIndex = d->movedTab->index;
-                            emit tabMoved(d->currentIndex, d->tabIndex(interIndex));
-                            emit currentChanged(d->currentIndex);
-                            d->reorderIndexes();
+                            const int destIndex = interIndex + sign;
+                            Q_ASSERT(destIndex > -1 && destIndex < d->tabList.size());
+
+                            int delta = d->tabLayouts[destIndex].x() - d->_tabRect(interIndex).x();
+                            d->slide(interIndex, interIndex, delta, ANIMATION_MOVE_TAB_MS);
+                            d->movedTab->index = interIndex;
+                            d->tabIndex(interIndex) = destIndex;
+                            d->currentIndex = interIndex;
+                            std::swap(d->tabList[interIndex], d->tabList[destIndex]);
+                            emit tabMoved(interIndex, destIndex);
+                            emit currentChanged(interIndex);
                         }
                     }
                     if (!d->tabArea->rect().contains(me->pos()) && d->tabArea->rect().right() >= me->x()) {
