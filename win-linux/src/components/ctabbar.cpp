@@ -50,6 +50,7 @@
 #define DEFAULT_ICON_SIZE QSize(16,16)
 #define _tabRect(i) tabList[i]->geometry()
 #define tabIndex(i) tabList[i]->index
+#define signum(a) (a ? 1 : -1);
 
 
 class Tab : public QFrame
@@ -264,8 +265,7 @@ int CTabBar::CTabBarPrivate::getIntersectedOffset(int index)
         QRect tabRect = _tabRect(index);
         if (!tabArea->rect().contains(tabRect) && tabArea->rect().intersects(tabRect)) {
             QRect interRect = tabArea->rect().intersected(tabRect);
-            int sign = (interRect.x() == 0) ? -1 : 1;
-            return sign * (cellWidth() - interRect.width());
+            return (cellWidth() - interRect.width()) * signum(interRect.x() != 0);
         }
     }
     return 0;
@@ -295,8 +295,7 @@ int CTabBar::CTabBarPrivate::getLayoutsIntersectedIndex(Tab *tab, int &offsetX)
     for (int i = 0; i < tabLayouts.size(); i++) {
         if (i != tab->index && tabRect.intersects(tabLayouts[i])) {
             QRect interRect = tabRect.intersected(tabLayouts[i]);
-            int sign = (tabRect.x() < tabLayouts[i].x()) ? -1 : 1;
-            offsetX = sign * interRect.width();
+            offsetX = interRect.width() * signum(tabRect.x() >= tabLayouts[i].x());
             return i;
         }
     }
@@ -967,7 +966,7 @@ bool CTabBar::eventFilter(QObject *watched, QEvent *event)
                     int offsetX;
                     const int interIndex = d->getLayoutsIntersectedIndex(d->movedTab, offsetX);
                     if (/*interIndex != -1 &&*/ d->movedTab->index != interIndex && offsetX != 0) {
-                        const int sign = (offsetX >= 0) ? 1 : -1;
+                        const int sign = signum(offsetX >= 0);
                         if (sign * offsetX > d->movedTab->width()/2) {
                             if (d->indexIsValid(interIndex + sign)) {
                                 int delta = d->tabLayouts[interIndex + sign].x() - d->_tabRect(interIndex).x();
