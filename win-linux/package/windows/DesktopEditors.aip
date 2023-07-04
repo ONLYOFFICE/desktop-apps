@@ -6,16 +6,17 @@
   <COMPONENT cid="caphyon.advinst.msicomp.MsiPropsComponent">
     <ROW Property="AI_APP_FILE" Value="[#DesktopEditors.exe]"/>
     <ROW Property="AI_BITMAP_DISPLAY_MODE" Value="0"/>
-    <ROW Property="AI_EXTERNALUIUNINSTALLERNAME" MultiBuildValue="DefaultBuild:aiui"/>
-    <ROW Property="AI_PRODUCTNAME_ARP" Value="[|ProductName] [|ProductVersion]" ValueLocId="-"/>
+    <ROW Property="AI_EXTERNALUIUNINSTALLERNAME" MultiBuildValue="MsiBuild64:aiui#MsiBuild32:aiui"/>
+    <ROW Property="AI_PRODUCTNAME_ARP" Value="[|ProductName] [|ProductVersion] ([|ARCH])" ValueLocId="-"/>
     <ROW Property="AI_SHORTCUTSREG" Value="0|0|0|0|"/>
     <ROW Property="AI_UNINSTALLER" Value="msiexec.exe"/>
     <ROW Property="ALLUSERS" Value="1"/>
+    <ROW Property="ARCH" Value="x64" MultiBuildValue="MsiBuild32:x86" ValueLocId="-"/>
     <ROW Property="ARPCOMMENTS" Value="Free desktop office suite for document editing and collaboration" ValueLocId="*"/>
     <ROW Property="ARPCONTACT" Value="20A-6, Ernesta Birznieka-Upisha str., Riga, LV-1050"/>
     <ROW Property="ARPHELPLINK" Value="http://dev.onlyoffice.org/"/>
     <ROW Property="ARPHELPTELEPHONE" Value="+371 66016425"/>
-    <ROW Property="ARPNOMODIFY" MultiBuildValue="DefaultBuild:1"/>
+    <ROW Property="ARPNOMODIFY" MultiBuildValue="MsiBuild64:1#MsiBuild32:1"/>
     <ROW Property="ARPNOREPAIR" Value="1"/>
     <ROW Property="ARPPRODUCTICON" Value="desktopeditors.exe" Type="8"/>
     <ROW Property="ARPSYSTEMCOMPONENT" Value="1"/>
@@ -50,9 +51,9 @@
     <ROW Property="GALLERY_SHORTCUT_NAME" Value="Gallery"/>
     <ROW Property="MANUFACTURER_INSTALL_FOLDER" Value="ONLYOFFICE"/>
     <ROW Property="MEDIA_SHORTCUT_NAME" Value="Media"/>
-    <ROW Property="MSIFASTINSTALL" MultiBuildValue="DefaultBuild:7"/>
+    <ROW Property="MSIFASTINSTALL" MultiBuildValue="MsiBuild64:7#MsiBuild32:7"/>
     <ROW Property="Manufacturer" Value="Ascensio System SIA"/>
-    <ROW Property="MsiLogging" MultiBuildValue="DefaultBuild:vp"/>
+    <ROW Property="MsiLogging" MultiBuildValue="MsiBuild64:vp#MsiBuild32:vp"/>
     <ROW Property="PLAYER" Value="1" Type="4" ValueLocId="-"/>
     <ROW Property="PRODUCT_INSTALL_FOLDER" Value="DesktopEditors"/>
     <ROW Property="ProductCode" Value="1029:{14361018-38E1-4A92-A787-78C1A1464AFD} 1031:{14361018-38E1-4A92-A787-78C1A1464AFD} 1033:{14361018-38E1-4A92-A787-78C1A1464AFD} 1036:{14361018-38E1-4A92-A787-78C1A1464AFD} 1041:{14361018-38E1-4A92-A787-78C1A1464AFD} 1046:{14361018-38E1-4A92-A787-78C1A1464AFD} 1049:{14361018-38E1-4A92-A787-78C1A1464AFD} 1060:{14361018-38E1-4A92-A787-78C1A1464AFD} 2070:{14361018-38E1-4A92-A787-78C1A1464AFD} 3082:{14361018-38E1-4A92-A787-78C1A1464AFD} " Type="16"/>
@@ -92,16 +93,16 @@
     <ROW Property="UNINSTALL_PREV_ERROR_TEXT" Value="To install [|ProductName], the previous version must be uninstalled."/>
     <ROW Property="UNINSTALL_PREV_MSGBOX" Value="The previous version of [|ProductName] detected, please click &apos;OK&apos; button to uninstall it, or &apos;Cancel&apos; to quit setup."/>
     <ROW Property="UpgradeCode" Value="{47EEF706-B0E4-4C43-944B-E5F914B92B79}"/>
-    <ROW Property="WindowsType9X" MultiBuildValue="DefaultBuild:Windows 9x/ME#MsiBuild:Windows 9x/ME" ValueLocId="-"/>
-    <ROW Property="WindowsType9XDisplay" MultiBuildValue="DefaultBuild:Windows 9x/ME#MsiBuild:Windows 9x/ME" ValueLocId="-"/>
-    <ROW Property="WindowsTypeNT" MultiBuildValue="DefaultBuild:Windows 9x/ME/NT/2000/XP/Vista/Windows 7/Windows 8 x86/Windows 8.1 x86/Windows 10 x86" ValueLocId="-"/>
-    <ROW Property="WindowsTypeNT40" MultiBuildValue="DefaultBuild:Windows NT 4.0#MsiBuild:Windows NT 4.0" ValueLocId="-"/>
-    <ROW Property="WindowsTypeNT40Display" MultiBuildValue="DefaultBuild:Windows NT 4.0#MsiBuild:Windows NT 4.0" ValueLocId="-"/>
-    <ROW Property="WindowsTypeNT50" MultiBuildValue="DefaultBuild:Windows 2000#MsiBuild:Windows 2000" ValueLocId="-"/>
-    <ROW Property="WindowsTypeNT50Display" MultiBuildValue="DefaultBuild:Windows 2000#MsiBuild:Windows 2000" ValueLocId="-"/>
-    <ROW Property="WindowsTypeNT5X" MultiBuildValue="DefaultBuild:Windows XP/2003#MsiBuild:Windows XP/2003" ValueLocId="-"/>
-    <ROW Property="WindowsTypeNT5XDisplay" MultiBuildValue="DefaultBuild:Windows XP/2003#MsiBuild:Windows XP/2003" ValueLocId="-"/>
-    <ROW Property="WindowsTypeNTDisplay" MultiBuildValue="DefaultBuild:32-bit Windows versions" ValueLocId="-"/>
+    <ROW Property="WindowsType9X" MultiBuildValue="MsiBuild64:Windows 9x/ME#MsiBuild32:Windows 9x/ME" ValueLocId="-"/>
+    <ROW Property="WindowsType9XDisplay" MultiBuildValue="MsiBuild64:Windows 9x/ME#MsiBuild32:Windows 9x/ME" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT" MultiBuildValue="MsiBuild64:Windows 9x/ME/NT/2000/XP/Vista/Windows 7/Windows 8 x86/Windows 8.1 x86/Windows 10 x86" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT40" MultiBuildValue="MsiBuild64:Windows NT 4.0#MsiBuild32:Windows NT 4.0" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT40Display" MultiBuildValue="MsiBuild64:Windows NT 4.0#MsiBuild32:Windows NT 4.0" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT50" MultiBuildValue="MsiBuild64:Windows 2000#MsiBuild32:Windows 2000" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT50Display" MultiBuildValue="MsiBuild64:Windows 2000#MsiBuild32:Windows 2000" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT5X" MultiBuildValue="MsiBuild64:Windows XP/2003#MsiBuild32:Windows XP/2003" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT5XDisplay" MultiBuildValue="MsiBuild64:Windows XP/2003#MsiBuild32:Windows XP/2003" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNTDisplay" MultiBuildValue="MsiBuild64:32-bit Windows versions" ValueLocId="-"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiDirsComponent">
     <ROW Directory="APPDIR" Directory_Parent="TARGETDIR" DefaultDir="APPDIR:." IsPseudoRoot="1"/>
@@ -142,10 +143,10 @@
     <ROW Component="ImageViewer.exe" ComponentId="{E8DFAC60-5575-4D64-AD43-FF684A2FAE8F}" Directory_="CUSTOM_PATH" Attributes="0" Condition="GALLERY = &quot;1&quot;" KeyPath="ImageViewer.exe"/>
     <ROW Component="MANUFACTURER_INSTALL_FOLDER_HK_CU" ComponentId="{BF7B083D-CB31-42CC-89EB-912C4461A8D0}" Directory_="APPDIR" Attributes="260" KeyPath="MANUFACTURER_INSTALL_FOLDER_HK_CU"/>
     <ROW Component="MANUFACTURER_INSTALL_FOLDER_HK_LM" ComponentId="{7EC4EC35-8E21-44D0-A29E-CCD3741056D9}" Directory_="APPDIR" Attributes="260" KeyPath="MANUFACTURER_INSTALL_FOLDER_HK_LM"/>
-    <ROW Component="MicrosoftVisualC" ComponentId="{CA1FCD66-ED15-4D94-81FD-0C927B78E132}" Directory_="APPDIR" Attributes="260" KeyPath="MicrosoftVisualC" Options="2"/>
-    <ROW Component="MicrosoftVisualC_1" ComponentId="{B176A670-4763-46DF-A796-3B8AB885DA4A}" Directory_="APPDIR" Attributes="260" KeyPath="MicrosoftVisualC_1" Options="2"/>
-    <ROW Component="MicrosoftVisualC_2" ComponentId="{B74A440D-1D6B-4EB1-BB72-605A30AF2D28}" Directory_="APPDIR" Attributes="260" KeyPath="MicrosoftVisualC_2" Options="2"/>
-    <ROW Component="MicrosoftVisualC_3" ComponentId="{A9673528-11FC-4EBA-896E-6F2998F6601F}" Directory_="APPDIR" Attributes="260" KeyPath="MicrosoftVisualC_3" Options="2"/>
+    <ROW Component="MicrosoftVisualC_2013_x64" ComponentId="{A9673528-11FC-4EBA-896E-6F2998F6601F}" Directory_="APPDIR" Attributes="260" KeyPath="MicrosoftVisualC_2013_x64" Options="2"/>
+    <ROW Component="MicrosoftVisualC_2013_x86" ComponentId="{B74A440D-1D6B-4EB1-BB72-605A30AF2D28}" Directory_="APPDIR" Attributes="4" KeyPath="MicrosoftVisualC_2013_x86" Options="2"/>
+    <ROW Component="MicrosoftVisualC_2015_x64" ComponentId="{CA1FCD66-ED15-4D94-81FD-0C927B78E132}" Directory_="APPDIR" Attributes="260" KeyPath="MicrosoftVisualC_2015_x64" Options="2"/>
+    <ROW Component="MicrosoftVisualC_2015_x86" ComponentId="{B176A670-4763-46DF-A796-3B8AB885DA4A}" Directory_="APPDIR" Attributes="4" KeyPath="MicrosoftVisualC_2015_x86" Options="2"/>
     <ROW Component="SHORTCUTDIR" ComponentId="{CB73F99E-8C5E-4F7A-9E2F-25EDC9FBDFC0}" Directory_="SHORTCUTDIR" Attributes="0"/>
     <ROW Component="Software" ComponentId="{90AC3C8E-9762-4613-B621-A0EFD3868D77}" Directory_="APPDIR" Attributes="260" KeyPath="Software_3"/>
     <ROW Component="Version" ComponentId="{3914F236-2B4C-4E31-95FA-F57F91FA19C9}" Directory_="APPDIR" Attributes="260" KeyPath="Version_1"/>
@@ -157,13 +158,13 @@
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatsComponent">
     <ROW Feature="ExtendedFeature" Feature_Parent="MainFeature" Title="ExtendedFeature" Description="ExtendedFeature" Display="5" Level="1" Directory_="CUSTOM_PATH" Attributes="0"/>
-    <ROW Feature="FileProgramAssociation" Feature_Parent="MainFeature" Title="File Program Association" Description="Description" Display="57" Level="1" Directory_="APPDIR" Attributes="0"/>
+    <ROW Feature="FileProgramAssociation" Feature_Parent="MainFeature" Title="File Program Association" Description="Description" Display="7" Level="1" Directory_="APPDIR" Attributes="0"/>
     <ROW Feature="FileTypeAssociations" Feature_Parent="MainFeature" Title="File Type Associations" Description="Description" Display="3" Level="1" Directory_="APPDIR" Attributes="0" Options="13"/>
     <ROW Feature="MainFeature" Title="MainFeature" Description="Description" Display="1" Level="1" Directory_="APPDIR" Attributes="0"/>
-    <ROW Feature="MicrosoftVisualC" Title="Microsoft Visual C++ 2015-2022 Redistributable (x64)" Description="Microsoft Visual C++ 2015-2022 Redistributable (x64)" Display="11" Level="1" Attributes="0"/>
-    <ROW Feature="MicrosoftVisualC_1" Title="Microsoft Visual C++ 2015-2022 Redistributable (x86)" Description="Microsoft Visual C++ 2015-2022 Redistributable (x86)" Display="9" Level="1" Attributes="0"/>
-    <ROW Feature="MicrosoftVisualC_2" Title="Microsoft Visual C++ 2013 Redistributable (x86)" Description="Microsoft Visual C++ 2013 Redistributable (x86)" Display="3" Level="1" Attributes="0"/>
-    <ROW Feature="MicrosoftVisualC_3" Title="Microsoft Visual C++ 2013 Redistributable (x64)" Description="Microsoft Visual C++ 2013 Redistributable (x64)" Display="5" Level="1" Attributes="0"/>
+    <ROW Feature="MicrosoftVisualC_2013_x64" Title="Microsoft Visual C++ 2013 Redistributable (x64)" Description="Microsoft Visual C++ 2013 Redistributable (x64)" Display="5" Level="1" Attributes="0" Builds="MsiBuild64"/>
+    <ROW Feature="MicrosoftVisualC_2013_x86" Title="Microsoft Visual C++ 2013 Redistributable (x86)" Description="Microsoft Visual C++ 2013 Redistributable (x86)" Display="3" Level="1" Attributes="0" Builds="MsiBuild32"/>
+    <ROW Feature="MicrosoftVisualC_2015_x64" Title="Microsoft Visual C++ 2015-2022 Redistributable (x64)" Description="Microsoft Visual C++ 2015-2022 Redistributable (x64)" Display="11" Level="1" Attributes="0" Builds="MsiBuild64"/>
+    <ROW Feature="MicrosoftVisualC_2015_x86" Title="Microsoft Visual C++ 2015-2022 Redistributable (x86)" Description="Microsoft Visual C++ 2015-2022 Redistributable (x86)" Display="9" Level="1" Attributes="0" Builds="MsiBuild32"/>
     <ROW Feature="csv" Feature_Parent="FileTypeAssociations" Title=".csv" Description="Description" Display="3" Level="4" Directory_="APPDIR" Attributes="2" Options="27"/>
     <ROW Feature="djvu" Feature_Parent="FileTypeAssociations" Title=".djvu" Description="Description" Display="5" Level="4" Directory_="APPDIR" Attributes="2" Options="27"/>
     <ROW Feature="doc" Feature_Parent="FileTypeAssociations" Title=".doc" Description="Description" Display="7" Level="4" Directory_="APPDIR" Attributes="2" Options="27"/>
@@ -200,8 +201,8 @@
     <ROW File="updatesvc.exe" Component_="updatesvc.exe" FileName="UPDATE~1.EXE|updatesvc.exe" Attributes="0" SourcePath="..\..\..\..\build_tools\out\win_64\onlyoffice\DesktopEditors\updatesvc.exe" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.BuildComponent">
-    <ROW BuildKey="DefaultBuild" BuildName="DefaultBuild" BuildOrder="1" BuildType="0" PackageFolder="." PackageFileName="DesktopEditors" Languages="en;ru;cs;de;es;fr;pt;pt_BR;sl;ja" LangOpt="1" InstallationType="4" ExtUI="true" UseLargeSchema="true" MsiPackageType="x64" UACExecutionLevel="2"/>
-    <ROW BuildKey="MsiBuild" BuildName="Eng" BuildOrder="2" BuildType="0" PackageFolder="." PackageFileName="DesktopEditors" Languages="en;ru;cs;de;es;fr;pt;pt_BR;sl;ja" LangOpt="1" InstallationType="4" UseLargeSchema="true"/>
+    <ROW BuildKey="MsiBuild32" BuildName="MsiBuild32" BuildOrder="2" BuildType="0" PackageFolder="." PackageFileName="[|MANUFACTURER_INSTALL_FOLDER]-[|PRODUCT_INSTALL_FOLDER]-[|ProductVersion]-[|ARCH]" Languages="en;ru;cs;de;es;fr;pt;pt_BR;sl;ja" LangOpt="1" InstallationType="4" ExtUI="true" UseLargeSchema="true" UACExecutionLevel="2"/>
+    <ROW BuildKey="MsiBuild64" BuildName="MsiBuild64" BuildOrder="1" BuildType="0" PackageFolder="." PackageFileName="[|MANUFACTURER_INSTALL_FOLDER]-[|PRODUCT_INSTALL_FOLDER]-[|ProductVersion]-[|ARCH]" Languages="en;ru;cs;de;es;fr;pt;pt_BR;sl;ja" LangOpt="1" InstallationType="4" ExtUI="true" UseLargeSchema="true" MsiPackageType="x64" UACExecutionLevel="2"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.DictionaryComponent">
     <ROW Path="&lt;AI_DICTS&gt;ui.ail"/>
@@ -822,7 +823,7 @@
     <ROW Action="AI_TxtUpdaterInstall" Type="1" Source="TxtUpdater.dll" Target="OnTxtUpdaterInstall"/>
     <ROW Action="AI_TxtUpdaterRollback" Type="11521" Source="TxtUpdater.dll" Target="OnTxtUpdaterRollback" WithoutSeq="true"/>
     <ROW Action="AI_VerifyPrereq" Type="1" Source="Prereq.dll" Target="VerifyPrereq"/>
-    <ROW Action="SET_APPDIR" Type="307" Source="APPDIR" Target="[ProgramFilesFolder][Manufacturer]\[ProductName]" MultiBuildTarget="DefaultBuild:[ProgramFiles64Folder][MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]"/>
+    <ROW Action="SET_APPDIR" Type="307" Source="APPDIR" Target="[ProgramFilesFolder][Manufacturer]\[ProductName]" MultiBuildTarget="MsiBuild64:[ProgramFiles64Folder][MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]#MsiBuild32:[ProgramFilesFolder][MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]"/>
     <ROW Action="SET_SHORTCUTDIR" Type="307" Source="SHORTCUTDIR" Target="[ProgramMenuFolder][SHORTCUT_FOLDER_NAME]"/>
     <ROW Action="SET_TARGETDIR_TO_APPDIR" Type="51" Source="TARGETDIR" Target="[APPDIR]"/>
     <ROW Action="SetCustomPath" Type="6" Source="utils.vbs" Target="SetCustomPath"/>
@@ -871,10 +872,10 @@
     <ROW Feature_="ExtendedFeature" Component_="VideoPlayer.exe"/>
     <ROW Feature_="ExtendedFeature" Component_="ImageViewer.exe"/>
     <ROW Feature_="MainFeature" Component_="AIShRegAnswer"/>
-    <ROW Feature_="MicrosoftVisualC" Component_="MicrosoftVisualC"/>
-    <ROW Feature_="MicrosoftVisualC_1" Component_="MicrosoftVisualC_1"/>
-    <ROW Feature_="MicrosoftVisualC_2" Component_="MicrosoftVisualC_2"/>
-    <ROW Feature_="MicrosoftVisualC_3" Component_="MicrosoftVisualC_3"/>
+    <ROW Feature_="MicrosoftVisualC_2015_x64" Component_="MicrosoftVisualC_2015_x64"/>
+    <ROW Feature_="MicrosoftVisualC_2015_x86" Component_="MicrosoftVisualC_2015_x86"/>
+    <ROW Feature_="MicrosoftVisualC_2013_x86" Component_="MicrosoftVisualC_2013_x86"/>
+    <ROW Feature_="MicrosoftVisualC_2013_x64" Component_="MicrosoftVisualC_2013_x64"/>
     <ROW Feature_="MainFeature" Component_="MANUFACTURER_INSTALL_FOLDER_HK_CU"/>
     <ROW Feature_="MainFeature" Component_="locale_HK_CU"/>
     <ROW Feature_="MainFeature" Component_="MANUFACTURER_INSTALL_FOLDER_HK_LM"/>
@@ -942,8 +943,8 @@
     <ROW Action="AI_DELETE_SHORTCUTS" Condition="NOT (REMOVE=&quot;ALL&quot;)" Sequence="1401"/>
     <ROW Action="AI_DEL_EMPTY_SHORTCUTDIR" Condition="NOT (REMOVE=&quot;ALL&quot;)" Sequence="6402"/>
     <ROW Action="AI_DATA_SETTER" Condition="NOT (REMOVE=&quot;ALL&quot;)" Sequence="6401"/>
-    <ROW Action="AI_ConfigureChainer" Condition="((UILevel = 2) OR (UILevel = 3)) AND (NOT UPGRADINGPRODUCTCODE)" Sequence="6598"/>
-    <ROW Action="AI_LaunchChainer" Condition="AI_PREREQ_CHAINER AND (NOT UPGRADINGPRODUCTCODE)" Sequence="6599"/>
+    <ROW Action="AI_ConfigureChainer" Condition="((UILevel = 2) OR (UILevel = 3)) AND (NOT UPGRADINGPRODUCTCODE)" Sequence="6597"/>
+    <ROW Action="AI_LaunchChainer" Condition="AI_PREREQ_CHAINER AND (NOT UPGRADINGPRODUCTCODE)" Sequence="6598"/>
     <ROW Action="AI_AppSearchEx" Sequence="101"/>
     <ROW Action="AI_VerifyPrereq" Sequence="1101"/>
     <ROW Action="AI_TxtUpdaterInstall" Sequence="5101"/>
@@ -960,7 +961,7 @@
     <ROW Action="AI_EnableDebugLog" Sequence="52"/>
     <ROW Action="AI_BACKUP_AI_SETUPEXEPATH" Sequence="95"/>
     <ROW Action="AI_RESTORE_AI_SETUPEXEPATH" Condition="AI_SETUPEXEPATH_ORIGINAL" Sequence="102"/>
-    <ROW Action="AI_RestartElevated" Sequence="51" Builds="DefaultBuild"/>
+    <ROW Action="AI_RestartElevated" Sequence="51" Builds="MsiBuild64;MsiBuild32"/>
     <ROW Action="AI_AppSearchEx" Sequence="101"/>
     <ROW Action="AI_DownloadPrereq" Sequence="1297"/>
     <ROW Action="AI_ExtractPrereq" Sequence="1298"/>
@@ -973,11 +974,11 @@
     <ROW Action="AI_PRESERVE_INSTALL_TYPE" Sequence="199"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiLaunchConditionsComponent">
-    <ROW Condition="( Version9X OR VersionNT64 )" Description="[ProductName] cannot be installed on [WindowsTypeNTDisplay]." DescriptionLocId="AI.LaunchCondition.NoNT" IsPredefined="true" Builds="DefaultBuild"/>
-    <ROW Condition="((VersionNT &lt;&gt; 501) AND (VersionNT &lt;&gt; 502))" Description="[ProductName] cannot be installed on [WindowsTypeNT5XDisplay]." DescriptionLocId="AI.LaunchCondition.NoNT5X" IsPredefined="true" Builds="DefaultBuild;MsiBuild"/>
-    <ROW Condition="(VersionNT &lt;&gt; 400)" Description="[ProductName] cannot be installed on [WindowsTypeNT40Display]." DescriptionLocId="AI.LaunchCondition.NoNT40" IsPredefined="true" Builds="DefaultBuild;MsiBuild"/>
-    <ROW Condition="(VersionNT &lt;&gt; 500)" Description="[ProductName] cannot be installed on [WindowsTypeNT50Display]." DescriptionLocId="AI.LaunchCondition.NoNT50" IsPredefined="true" Builds="DefaultBuild;MsiBuild"/>
-    <ROW Condition="VersionNT" Description="[ProductName] cannot be installed on [WindowsType9XDisplay]." DescriptionLocId="AI.LaunchCondition.No9X" IsPredefined="true" Builds="DefaultBuild;MsiBuild"/>
+    <ROW Condition="( Version9X OR VersionNT64 )" Description="[ProductName] cannot be installed on [WindowsTypeNTDisplay]." DescriptionLocId="AI.LaunchCondition.NoNT" IsPredefined="true" Builds="MsiBuild64"/>
+    <ROW Condition="((VersionNT &lt;&gt; 501) AND (VersionNT &lt;&gt; 502))" Description="[ProductName] cannot be installed on [WindowsTypeNT5XDisplay]." DescriptionLocId="AI.LaunchCondition.NoNT5X" IsPredefined="true" Builds="MsiBuild64;MsiBuild32"/>
+    <ROW Condition="(VersionNT &lt;&gt; 400)" Description="[ProductName] cannot be installed on [WindowsTypeNT40Display]." DescriptionLocId="AI.LaunchCondition.NoNT40" IsPredefined="true" Builds="MsiBuild64;MsiBuild32"/>
+    <ROW Condition="(VersionNT &lt;&gt; 500)" Description="[ProductName] cannot be installed on [WindowsTypeNT50Display]." DescriptionLocId="AI.LaunchCondition.NoNT50" IsPredefined="true" Builds="MsiBuild64;MsiBuild32"/>
+    <ROW Condition="VersionNT" Description="[ProductName] cannot be installed on [WindowsType9XDisplay]." DescriptionLocId="AI.LaunchCondition.No9X" IsPredefined="true" Builds="MsiBuild64;MsiBuild32"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiProgIdComponent">
     <ROW ProgId="[|ASSOC_PROG_ID].csv" Icon_="ext.exe"/>
@@ -1078,10 +1079,10 @@
     <ROW Registry="MANUFACTURER_INSTALL_FOLDER_HK_CU" Root="1" Key="Software\[MANUFACTURER_INSTALL_FOLDER]" Name="+" Component_="MANUFACTURER_INSTALL_FOLDER_HK_CU"/>
     <ROW Registry="MANUFACTURER_INSTALL_FOLDER_HK_LM" Root="2" Key="Software\[MANUFACTURER_INSTALL_FOLDER]" Name="+" Component_="MANUFACTURER_INSTALL_FOLDER_HK_LM"/>
     <ROW Registry="Microsoft" Root="-1" Key="Software\Microsoft" Name="\"/>
-    <ROW Registry="MicrosoftVisualC" Root="-1" Key="Software\Caphyon\Advanced Installer\Prereqs\[ProductCode]\[ProductVersion]" Name="MicrosoftVisualC" Value="1" Component_="MicrosoftVisualC"/>
-    <ROW Registry="MicrosoftVisualC_1" Root="-1" Key="Software\Caphyon\Advanced Installer\Prereqs\[ProductCode]\[ProductVersion]" Name="MicrosoftVisualC_1" Value="1" Component_="MicrosoftVisualC_1"/>
-    <ROW Registry="MicrosoftVisualC_2" Root="-1" Key="Software\Caphyon\Advanced Installer\Prereqs\[ProductCode]\[ProductVersion]" Name="MicrosoftVisualC_2" Value="1" Component_="MicrosoftVisualC_2"/>
-    <ROW Registry="MicrosoftVisualC_3" Root="-1" Key="Software\Caphyon\Advanced Installer\Prereqs\[ProductCode]\[ProductVersion]" Name="MicrosoftVisualC_3" Value="1" Component_="MicrosoftVisualC_3"/>
+    <ROW Registry="MicrosoftVisualC_2013_x64" Root="-1" Key="Software\Caphyon\Advanced Installer\Prereqs\[ProductCode]\[ProductVersion]" Name="MicrosoftVisualC_2013_x64" Value="1" Component_="MicrosoftVisualC_2013_x64"/>
+    <ROW Registry="MicrosoftVisualC_2013_x86" Root="-1" Key="Software\Caphyon\Advanced Installer\Prereqs\[ProductCode]\[ProductVersion]" Name="MicrosoftVisualC_2013_x86" Value="1" Component_="MicrosoftVisualC_2013_x86"/>
+    <ROW Registry="MicrosoftVisualC_2015_x64" Root="-1" Key="Software\Caphyon\Advanced Installer\Prereqs\[ProductCode]\[ProductVersion]" Name="MicrosoftVisualC_2015_x64" Value="1" Component_="MicrosoftVisualC_2015_x64"/>
+    <ROW Registry="MicrosoftVisualC_2015_x86" Root="-1" Key="Software\Caphyon\Advanced Installer\Prereqs\[ProductCode]\[ProductVersion]" Name="MicrosoftVisualC_2015_x86" Value="1" Component_="MicrosoftVisualC_2015_x86"/>
     <ROW Registry="ModifyPath" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="ModifyPath" Value="[AI_UNINSTALLER] /i [ProductCode] AI_UNINSTALLER_CTP=1" Component_="AI_CustomARPName"/>
     <ROW Registry="NoModify" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="NoModify" Value="#1" Component_="AI_DisableModify" VirtualValue="#"/>
     <ROW Registry="NoRepair" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="NoRepair" Value="#1" Component_="AI_CustomARPName" VirtualValue="#"/>
@@ -1299,25 +1300,25 @@
     <ROW Extension_="oform" Component_="DesktopEditors.exe" Verb="edit" Sequence="1" Command="&amp;Edit" Argument="&quot;%1&quot;"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.PreReqComponent">
-    <ROW PrereqKey="MicrosoftVisualC" DisplayName="Microsoft Visual C++ 2015-2022 Redistributable (x64)" VersionMin="14.32" SetupFileUrl="data\vcredist\vcredist_2022_x64.exe" Location="0" ExactSize="0" Operator="0" ComLine="/q /norestart" BasicUiComLine="/q /norestart" NoUiComLine="/q /norestart" Options="px" TargetName="Microsoft Visual C++ 2015-2022 Redistributable (x64)\vcredist_2022_x64.exe" Feature="MicrosoftVisualC"/>
-    <ROW PrereqKey="MicrosoftVisualC_1" DisplayName="Microsoft Visual C++ 2015-2022 Redistributable (x86)" VersionMin="14.32" SetupFileUrl="data\vcredist\vcredist_2022_x86.exe" Location="0" ExactSize="0" Operator="0" ComLine="/q /norestart" BasicUiComLine="/q /norestart" NoUiComLine="/q /norestart" Options="p" TargetName="Microsoft Visual C++ 2015-2022 Redistributable (x86)\vcredist_2022_x86.exe" Feature="MicrosoftVisualC_1"/>
-    <ROW PrereqKey="MicrosoftVisualC_2" DisplayName="Microsoft Visual C++ 2013 Redistributable (x86)" VersionMin="12.0.21005" SetupFileUrl="data\vcredist\vcredist_2013_x86.exe" Location="0" ExactSize="0" Operator="0" ComLine="/q /norestart" BasicUiComLine="/q /norestart" NoUiComLine="/q /norestart" Options="p" TargetName="Microsoft Visual C++ 2013 Redistributable (x86)\vcredist_2013_x86.exe" Feature="MicrosoftVisualC_2"/>
-    <ROW PrereqKey="MicrosoftVisualC_3" DisplayName="Microsoft Visual C++ 2013 Redistributable (x64)" VersionMin="12.0.21005" SetupFileUrl="data\vcredist\vcredist_2013_x64.exe" Location="0" ExactSize="0" Operator="0" ComLine="/q /norestart" BasicUiComLine="/q /norestart" NoUiComLine="/q /norestart" Options="px" TargetName="Microsoft Visual C++ 2013 Redistributable (x64)\vcredist_2013_x64.exe" Feature="MicrosoftVisualC_3"/>
-    <ATTRIBUTE name="PrereqsOrder" value="MicrosoftVisualC_2 MicrosoftVisualC_3 MicrosoftVisualC_1 MicrosoftVisualC"/>
+    <ROW PrereqKey="MicrosoftVisualC_2013_x64" DisplayName="Microsoft Visual C++ 2013 Redistributable (x64)" VersionMin="12.0.21005" SetupFileUrl="data\vcredist\vcredist_2013_x64.exe" Location="0" ExactSize="0" Operator="0" ComLine="/q /norestart" BasicUiComLine="/q /norestart" NoUiComLine="/q /norestart" Options="px" TargetName="Microsoft Visual C++ 2013 Redistributable (x64)\vcredist_2013_x64.exe" Builds="MsiBuild64" Feature="MicrosoftVisualC_2013_x64"/>
+    <ROW PrereqKey="MicrosoftVisualC_2013_x86" DisplayName="Microsoft Visual C++ 2013 Redistributable (x86)" VersionMin="12.0.21005" SetupFileUrl="data\vcredist\vcredist_2013_x86.exe" Location="0" ExactSize="0" Operator="0" ComLine="/q /norestart" BasicUiComLine="/q /norestart" NoUiComLine="/q /norestart" Options="p" TargetName="Microsoft Visual C++ 2013 Redistributable (x86)\vcredist_2013_x86.exe" Builds="MsiBuild32" Feature="MicrosoftVisualC_2013_x86"/>
+    <ROW PrereqKey="MicrosoftVisualC_2015_x64" DisplayName="Microsoft Visual C++ 2015-2022 Redistributable (x64)" VersionMin="14.32" SetupFileUrl="data\vcredist\vcredist_2022_x64.exe" Location="0" ExactSize="0" Operator="0" ComLine="/q /norestart" BasicUiComLine="/q /norestart" NoUiComLine="/q /norestart" Options="px" TargetName="Microsoft Visual C++ 2015-2022 Redistributable (x64)\vcredist_2022_x64.exe" Builds="MsiBuild64" Feature="MicrosoftVisualC_2015_x64"/>
+    <ROW PrereqKey="MicrosoftVisualC_2015_x86" DisplayName="Microsoft Visual C++ 2015-2022 Redistributable (x86)" VersionMin="14.32" SetupFileUrl="data\vcredist\vcredist_2022_x86.exe" Location="0" ExactSize="0" Operator="0" ComLine="/q /norestart" BasicUiComLine="/q /norestart" NoUiComLine="/q /norestart" Options="p" TargetName="Microsoft Visual C++ 2015-2022 Redistributable (x86)\vcredist_2022_x86.exe" Builds="MsiBuild32" Feature="MicrosoftVisualC_2015_x86"/>
+    <ATTRIBUTE name="PrereqsOrder" value="MicrosoftVisualC_2013_x64 MicrosoftVisualC_2013_x86 MicrosoftVisualC_2015_x64 MicrosoftVisualC_2015_x86"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.PreReqSearchComponent">
-    <ROW SearchKey="SystemFoldermsvcp120.dll" Prereq="MicrosoftVisualC_2" SearchType="0" SearchString="[SystemFolder]msvcp120.dll" VerMin="12.0.21005" Order="2" Property="PreReqSearch_5"/>
-    <ROW SearchKey="SystemFoldermsvcp120.dll_1" Prereq="MicrosoftVisualC_3" SearchType="0" SearchString="[SystemFolder]msvcp120.dll" VerMin="12.0.21005" Order="2" Property="PreReqSearch_10"/>
-    <ROW SearchKey="SystemFoldermsvcp140.dll" Prereq="MicrosoftVisualC" SearchType="0" SearchString="[SystemFolder]msvcp140.dll" VerMin="14.32.31332.0" Order="2" Property="PreReqSearch_8"/>
-    <ROW SearchKey="SystemFoldermsvcr120.dll" Prereq="MicrosoftVisualC_2" SearchType="0" SearchString="[SystemFolder]msvcr120.dll" VerMin="12.0.21005" Order="3" Property="PreReqSearch_6"/>
-    <ROW SearchKey="SystemFoldermsvcr120.dll_1" Prereq="MicrosoftVisualC_3" SearchType="0" SearchString="[SystemFolder]msvcr120.dll" VerMin="12.0.21005" Order="3" Property="PreReqSearch_11"/>
-    <ROW SearchKey="SystemFoldervcruntime140.dll" Prereq="MicrosoftVisualC_1" SearchType="0" SearchString="[SystemFolder]msvcp140.dll" VerMin="14.32.31332.0" Order="1" Property="PreReqSearch_1"/>
-    <ROW SearchKey="SystemFoldervcruntime140.dll_1" Prereq="MicrosoftVisualC_1" SearchType="0" SearchString="[SystemFolder]vcruntime140.dll" VerMin="14.32.31332.0" Order="3" Property="PreReqSearch_7"/>
-    <ROW SearchKey="SystemFoldervcruntime140.dll_2" Prereq="MicrosoftVisualC" SearchType="0" SearchString="[SystemFolder]vcruntime140.dll" VerMin="14.32.31332.0" Order="3" Property="PreReqSearch_9"/>
-    <ROW SearchKey="Version" Prereq="MicrosoftVisualC_1" SearchType="4" SearchString="{65E5BD06-6392-3027-8C26-853107D3CF1A}" VerMin="14.32.31332.0" Order="0" Property="PreReqSearch_2"/>
-    <ROW SearchKey="Version_1" Prereq="MicrosoftVisualC" SearchType="4" SearchString="{36F68A90-239C-34DF-B58C-64B30153CE35}" VerMin="14.32.31332.0" Order="2" Property="PreReqSearch_3"/>
-    <ROW SearchKey="Version_2" Prereq="MicrosoftVisualC_2" SearchType="4" SearchString="{B59F5BF1-67C8-3802-8E59-2CE551A39FC5}" VerMin="12.0.21005" Order="1" Property="PreReqSearch"/>
-    <ROW SearchKey="Version_3" Prereq="MicrosoftVisualC_3" SearchType="4" SearchString="{20400CF0-DE7C-327E-9AE4-F0F38D9085F8}" VerMin="12.0.21005" Order="1" Property="PreReqSearch_4"/>
+    <ROW SearchKey="SystemFoldermsvcp120.dll" Prereq="MicrosoftVisualC_2013_x86" SearchType="0" SearchString="[SystemFolder]msvcp120.dll" VerMin="12.0.21005" Order="2" Property="PreReqSearch_5"/>
+    <ROW SearchKey="SystemFoldermsvcp120.dll_1" Prereq="MicrosoftVisualC_2013_x64" SearchType="0" SearchString="[SystemFolder]msvcp120.dll" VerMin="12.0.21005" Order="2" Property="PreReqSearch_10" Platform="1"/>
+    <ROW SearchKey="SystemFoldermsvcp140.dll" Prereq="MicrosoftVisualC_2015_x64" SearchType="0" SearchString="[SystemFolder]msvcp140.dll" VerMin="14.32.31332.0" Order="1" Property="PreReqSearch_8" Platform="1"/>
+    <ROW SearchKey="SystemFoldermsvcr120.dll" Prereq="MicrosoftVisualC_2013_x86" SearchType="0" SearchString="[SystemFolder]msvcr120.dll" VerMin="12.0.21005" Order="3" Property="PreReqSearch_6"/>
+    <ROW SearchKey="SystemFoldermsvcr120.dll_1" Prereq="MicrosoftVisualC_2013_x64" SearchType="0" SearchString="[SystemFolder]msvcr120.dll" VerMin="12.0.21005" Order="3" Property="PreReqSearch_11" Platform="1"/>
+    <ROW SearchKey="SystemFoldervcruntime140.dll" Prereq="MicrosoftVisualC_2015_x86" SearchType="0" SearchString="[SystemFolder]msvcp140.dll" VerMin="14.32.31332.0" Order="1" Property="PreReqSearch_1"/>
+    <ROW SearchKey="SystemFoldervcruntime140.dll_1" Prereq="MicrosoftVisualC_2015_x86" SearchType="0" SearchString="[SystemFolder]vcruntime140.dll" VerMin="14.32.31332.0" Order="3" Property="PreReqSearch_7"/>
+    <ROW SearchKey="SystemFoldervcruntime140.dll_2" Prereq="MicrosoftVisualC_2015_x64" SearchType="0" SearchString="[SystemFolder]vcruntime140.dll" VerMin="14.32.31332.0" Order="3" Property="PreReqSearch_9" Platform="1"/>
+    <ROW SearchKey="Version" Prereq="MicrosoftVisualC_2015_x86" SearchType="4" SearchString="{65E5BD06-6392-3027-8C26-853107D3CF1A}" VerMin="14.32.31332.0" Order="0" Property="PreReqSearch_2"/>
+    <ROW SearchKey="Version_1" Prereq="MicrosoftVisualC_2015_x64" SearchType="4" SearchString="{36F68A90-239C-34DF-B58C-64B30153CE35}" VerMin="14.32.31332.0" Order="0" Property="PreReqSearch_3" Platform="1"/>
+    <ROW SearchKey="Version_2" Prereq="MicrosoftVisualC_2013_x86" SearchType="4" SearchString="{B59F5BF1-67C8-3802-8E59-2CE551A39FC5}" VerMin="12.0.21005" Order="1" Property="PreReqSearch"/>
+    <ROW SearchKey="Version_3" Prereq="MicrosoftVisualC_2013_x64" SearchType="4" SearchString="{20400CF0-DE7C-327E-9AE4-F0F38D9085F8}" VerMin="12.0.21005" Order="1" Property="PreReqSearch_4" Platform="1"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.TxtUpdateComponent">
     <ROW Name="ReplacePackage" TxtUpdateSet="package.config" FindPattern="package=.*" ReplacePattern="package=msi" Options="3" Order="0" FileEncoding="-1"/>
