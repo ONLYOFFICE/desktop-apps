@@ -981,7 +981,7 @@ bool CTabBar::eventFilter(QObject *watched, QEvent *event)
                             }
                         }
                     }
-                    if (!d->tabArea->rect().contains(QPoint(currPosX, me->y())) && d->tabArea->rect().right() >= currPosX) {
+                    if (!d->tabArea->rect().contains(me->pos()) && d->tabArea->rect().right() >= me->x()) {
                         if (d->currentIndex != d->movedTabIndex)
                             d->reorderIndexes();
                         bool accepted = false;
