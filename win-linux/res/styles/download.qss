@@ -80,6 +80,14 @@ CDownloadWidget[zoom="2x"] QLabel#labelName {font-size: 32px;}
 CDownloadWidget[zoom="2x"] QScrollBar:vertical {width: 20px;}
 CDownloadWidget[zoom="2x"] QScrollBar::handle:vertical {min-height: 50px; border-radius: 6px;}
 
+/* 2.25x */
+CDownloadWidget[zoom="2.25x"] QPushButton#buttonCancel {padding-left: 14px; padding-right: 14px; min-height: 50px; font-size: 27px;}
+CDownloadWidget[zoom="2.25x"] QProgressBar {border-radius: 5px; max-height: 11px; margin-right: 23px; margin-top: 2px;}
+CDownloadWidget[zoom="2.25x"] QProgressBar::chunk {border-radius: 5px;}
+CDownloadWidget[zoom="2.25x"] QLabel#labelName {font-size: 36px;}
+CDownloadWidget[zoom="2.25x"] QScrollBar:vertical {width: 23px;}
+CDownloadWidget[zoom="2.25x"] QScrollBar::handle:vertical {min-height: 56px; border-radius: 7px;}
+
 /* 2.5x */
 CDownloadWidget[zoom="2.5x"] QPushButton#buttonCancel {padding-left: 15px; padding-right: 15px; min-height: 55px; font-size: 30px;}
 CDownloadWidget[zoom="2.5x"] QProgressBar {border-radius: 5px; max-height: 13px; margin-right: 25px; margin-top: 3px;}
