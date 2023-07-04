@@ -956,27 +956,29 @@ bool CTabBar::eventFilter(QObject *watched, QEvent *event)
             QMouseEvent* me = dynamic_cast<QMouseEvent*>(event);
             if (me->buttons().testFlag(Qt::LeftButton)) {
                 if (d->movedTab && !d->lock) {
-                    int currPosX = d->movedTab->x() + d->movedTabPressPosX;
-                    int diffX = me->x() - currPosX;
+                    int currPosX = d->movedTab->x();
+                    int diffX = me->x() - currPosX - d->movedTabPressPosX;
                     const int signDiffX = signum(diffX > 0);
                     currPosX += qMin(diffX * signDiffX, d->cellWidth()/3) * signDiffX;
-                    d->movedTab->move(currPosX - d->movedTabPressPosX, 0);
-                    int offsetX;
-                    const int interIndex = d->getLayoutsIntersectedIndex(d->movedTab, offsetX);
-                    if (/*interIndex != -1 &&*/ d->movedTab->index != interIndex && offsetX != 0) {
-                        const int sign = signum(offsetX > 0);
-                        if (sign * offsetX > d->movedTab->width()/2) {
-                            const int destIndex = interIndex + sign;
-                            Q_ASSERT(destIndex > -1 && destIndex < d->tabList.size());
+                    if (currPosX >= d->tabLayouts[0].x() && currPosX <= d->tabLayouts[d->tabLayouts.size() - 1].x()) {
+                        d->movedTab->move(currPosX, 0);
+                        int offsetX;
+                        const int interIndex = d->getLayoutsIntersectedIndex(d->movedTab, offsetX);
+                        if (/*interIndex != -1 &&*/ d->movedTab->index != interIndex && offsetX != 0) {
+                            const int sign = signum(offsetX > 0);
+                            if (sign * offsetX > d->movedTab->width()/2) {
+                                const int destIndex = interIndex + sign;
+                                Q_ASSERT(destIndex > -1 && destIndex < d->tabList.size());
 
-                            int delta = d->tabLayouts[destIndex].x() - d->_tabRect(interIndex).x();
-                            d->slide(interIndex, interIndex, delta, ANIMATION_MOVE_TAB_MS);
-                            d->movedTab->index = interIndex;
-                            d->tabIndex(interIndex) = destIndex;
-                            d->currentIndex = interIndex;
-                            std::swap(d->tabList[interIndex], d->tabList[destIndex]);
-                            emit tabMoved(interIndex, destIndex);
-                            emit currentChanged(interIndex);
+                                int delta = d->tabLayouts[destIndex].x() - d->_tabRect(interIndex).x();
+                                d->slide(interIndex, interIndex, delta, ANIMATION_MOVE_TAB_MS);
+                                d->movedTab->index = interIndex;
+                                d->tabIndex(interIndex) = destIndex;
+                                d->currentIndex = interIndex;
+                                std::swap(d->tabList[interIndex], d->tabList[destIndex]);
+                                emit tabMoved(interIndex, destIndex);
+                                emit currentChanged(interIndex);
+                            }
                         }
                     }
                     if (!d->tabArea->rect().contains(QPoint(currPosX, me->y())) && d->tabArea->rect().right() >= currPosX) {
