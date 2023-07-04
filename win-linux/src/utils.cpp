@@ -212,6 +212,7 @@ namespace Scaling {
         case 150: return L"1.5";
         case 175: return L"1.75";
         case 200: return L"2";
+        case 225: return L"2.25";
         case 250: return L"2.5";
         case 300: return L"3";
         case 350: return L"3.5";
@@ -229,6 +230,7 @@ namespace Scaling {
         if ( value == L"1.5" ) return "150"; else
         if ( value == L"1.75" ) return "175"; else
         if ( value == L"2" ) return "200"; else
+        if ( value == L"2.25" ) return "225"; else
         if ( value == L"2.5" ) return "250"; else
         if ( value == L"3" ) return "300"; else
         if ( value == L"3.5" ) return "350"; else
@@ -515,7 +517,8 @@ inline double choose_scaling(double s)
     else if ( s > 3.5 ) return 4;
     else if ( s > 3 ) return 3.5;
     else if ( s > 2.5 ) return 3;
-    else if ( s > 2 ) return 2.5;
+    else if ( s > 2.25 ) return 2.5;
+    else if ( s > 2 ) return 2.25;
     else if ( s > 1.75 ) return 2;
     else if ( s > 1.5 ) return 1.75;
     else if ( s > 1.25 ) return 1.5;
