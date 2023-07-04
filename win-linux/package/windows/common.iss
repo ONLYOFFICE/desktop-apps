@@ -539,6 +539,7 @@ fr.UpdateService =Service de mise à jour {#sAppName}
 it_IT.UpdateService =Servizio per l'aggiornamento {#sAppName}
 pt_BR.UpdateService =Serviço para atualização {#sAppName}
 ;pt_PT.UpdateService =Serviço para atualizar {#sAppName}
+pl.UpdateService =Usługa do aktualizacji {#sAppName}
 ro.UpdateService =Serviciu de actualizare {#sAppName}
 sk.UpdateService =Služba aktualizácie {#sAppName}
 sl.UpdateService =Storitev za posodobitev {#sAppName}
