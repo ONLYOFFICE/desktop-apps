@@ -1018,7 +1018,7 @@ void CMainWindow::onDocumentPrint(void * opts)
     Q_UNUSED(opts)
 #ifdef __OS_WIN_XP
     if (QPrinterInfo::availablePrinterNames().size() == 0) {
-        CMessage::info(TOP_NATIVE_WINDOW_HANDLE, tr("There are no printers available"));
+        CMessage::info(this, tr("There are no printers available"));
         return;
     }
 #endif
