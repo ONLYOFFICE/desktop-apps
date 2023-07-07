@@ -146,6 +146,13 @@ void CWindowPlatform::adjustGeometry()
     }
 }
 
+/** Protected **/
+
+bool CWindowPlatform::isSessionInProgress()
+{
+    return m_isSessionInProgress;
+}
+
 /** Private **/
 
 bool CWindowPlatform::isTaskbarAutoHideOn()
@@ -378,6 +385,15 @@ bool CWindowPlatform::nativeEvent(const QByteArray &eventType, void *message, lo
 
     case WM_ERASEBKGND:
         return true;
+
+    case WM_QUERYENDSESSION:
+        m_isSessionInProgress = false;
+        break;
+
+    case WM_ENDSESSION:
+        if (!msg->wParam)
+            m_isSessionInProgress = true;
+        break;
 
     default:
         break;
