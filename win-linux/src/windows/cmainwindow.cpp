@@ -244,6 +244,31 @@ void CMainWindow::close()
     } else {
         onFullScreen(-1, false);
 
+#ifdef _WIN32
+        if (isSessionInProgress() && m_pTabs->count() > 1) {
+#else
+        if (m_pTabs->count() > 1) {
+#endif
+            GET_REGISTRY_USER(reg_user);
+            if (!reg_user.value("ignoreMsgAboutOpenTabs", false).toBool()) {
+                for (int i = 0; i < m_pTabs->count(); i++) {
+                    if (!m_pTabs->modifiedByIndex(i)) {
+                        bool dontAskAgain = false;
+                        int res = CMessage::showMessage(this, tr("More than one document is open.<br>Close the window anyway?"),
+                                                           MsgType::MSG_WARN, MsgBtns::mbYesDefNo, &dontAskAgain,
+                                                           tr("Don't ask again."));
+                        if (dontAskAgain)
+                            reg_user.setValue("ignoreMsgAboutOpenTabs", true);
+                        if (res != MODAL_RESULT_YES) {
+                            AscAppManager::cancelClose();
+                            return;
+                        }
+                        break;
+                    }
+                }
+            }
+        }
+
         for (int i(m_pTabs->count()); i-- > 0;) {
             if ( !m_pTabs->closedByIndex(i) ) {
                 if ( !m_pTabs->isProcessed(i) ) {
