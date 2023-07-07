@@ -101,6 +101,19 @@ void CWindowPlatform::toggleResizeable()
     m_isResizeable = !m_isResizeable;
 }
 
+void CWindowPlatform::bringToTop()
+{
+    if (IsIconic(m_hWnd)) {
+        ShowWindow(m_hWnd, SW_RESTORE);
+    }
+    WindowHelper::bringToTop(m_hWnd);
+}
+
+void CWindowPlatform::show(bool maximized)
+{
+    maximized ? CWindowBase::showMaximized() : CWindowBase::show();
+}
+
 void CWindowPlatform::adjustGeometry()
 {
     if (windowState().testFlag(Qt::WindowMinimized) || windowState().testFlag(Qt::WindowNoState)) {
@@ -133,27 +146,14 @@ void CWindowPlatform::adjustGeometry()
     }
 }
 
+/** Private **/
+
 bool CWindowPlatform::isTaskbarAutoHideOn()
 {
     APPBARDATA ABData;
     ABData.cbSize = sizeof(ABData);
     return (SHAppBarMessage(ABM_GETSTATE, &ABData) & ABS_AUTOHIDE) != 0;
 }
-
-void CWindowPlatform::bringToTop()
-{
-    if (IsIconic(m_hWnd)) {
-        ShowWindow(m_hWnd, SW_RESTORE);
-    }
-    WindowHelper::bringToTop(m_hWnd);
-}
-
-void CWindowPlatform::show(bool maximized)
-{
-    maximized ? CWindowBase::showMaximized() : CWindowBase::show();
-}
-
-/** Private **/
 
 void CWindowPlatform::setResizeableAreaWidth(int width)
 {
