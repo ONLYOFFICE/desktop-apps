@@ -62,8 +62,8 @@
 # define APP_HELPER       "/editors_helper"
 # define DAEMON_NAME      "/updatesvc"
 # define SUBFOLDER        "/desktopeditors"
-# define ARCHIVE_EXT      TEXT(".tar.gz")
-# define ARCHIVE_PATTERN  TEXT("*.tar.gz")
+# define ARCHIVE_EXT      TEXT(".tar.xz")
+# define ARCHIVE_PATTERN  TEXT("*.tar.xz")
 # define sleep(a) usleep(a*1000)
 #endif
 

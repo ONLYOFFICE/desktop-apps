@@ -47,7 +47,7 @@ int unzipArchive(const string &zipFilePath, const string &folderPath, std::atomi
     }
 
     struct archive *arch = archive_read_new();
-    archive_read_support_filter_gzip(arch);
+    archive_read_support_filter_xz(arch);
     archive_read_support_format_tar(arch);
     if (archive_read_open_filename(arch, zipFilePath.c_str(), BLOCK_SIZE) != ARCHIVE_OK) {
         error = "Cannot open archive";
