@@ -49,11 +49,32 @@
   <ENTRY id="Control.Text.ExtendedInstallDlg#Title">
     <STRING lang="ru" value="Выберите дополнительные задачи"/>
   </ENTRY>
+  <ENTRY id="Control.Text.FileAssociationsDlg#Description">
+    <STRING lang="cs" value="Vyberte přípony, které chcete přidružit k aplikaci [ProductName]"/>
+    <STRING lang="pt" value="Selecione as extensões que deseja associar ao [ProductName]"/>
+    <STRING lang="pt_BR" value="Selecione as extensões que deseja associar ao [ProductName]"/>
+  </ENTRY>
   <ENTRY id="Control.Text.FileAssociationsDlg#Deselect_all_button">
+    <STRING lang="cs" value="Zrušit výběr všech"/>
+    <STRING lang="pt" value="Desmarcar todos"/>
+    <STRING lang="pt_BR" value="Desmarcar todos"/>
     <STRING lang="ru" value="Deselect all"/>
   </ENTRY>
   <ENTRY id="Control.Text.FileAssociationsDlg#Select_all_button">
+    <STRING lang="cs" value="Vybrat vše"/>
+    <STRING lang="pt" value="Selecionar tudo"/>
+    <STRING lang="pt_BR" value="Selecionar tudo"/>
     <STRING lang="ru" value="Select all"/>
+  </ENTRY>
+  <ENTRY id="Control.Text.FileAssociationsDlg#Text">
+    <STRING lang="cs" value="Vyberte typy souborů, které chcete automaticky otevírat pomocí [ProductName]:"/>
+    <STRING lang="pt_BR" value="Selecione os tipos de arquivo que deseja abrir automaticamente com o [ProductName]:"/>
+    <STRING lang="ru" value="Selecione os tipos de arquivo que deseja abrir automaticamente com o [ProductName]:"/>
+  </ENTRY>
+  <ENTRY id="Control.Text.FileAssociationsDlg#Title">
+    <STRING lang="cs" value="Vyberte možnost Přidružení souborů"/>
+    <STRING lang="pt" value="Selecione Associações de Arquivo"/>
+    <STRING lang="pt_BR" value="Selecione Associações de Arquivo"/>
   </ENTRY>
   <ENTRY id="Control.Text.NewDialog#Back">
     <STRING lang="ru" value="[ButtonText_Back]"/>
@@ -75,6 +96,21 @@
   </ENTRY>
   <ENTRY id="Control.Text.NewDialog#Title">
     <STRING lang="ru" value="Сопоставление типов файлов"/>
+  </ENTRY>
+  <ENTRY id="Control.Text.ShortcutsDlg#Description">
+    <STRING lang="cs" value="Vytvoření zástupců aplikací"/>
+  </ENTRY>
+  <ENTRY id="Control.Text.ShortcutsDlg#DesktopShortcutsCheckBox">
+    <STRING lang="cs" value="Plocha"/>
+  </ENTRY>
+  <ENTRY id="Control.Text.ShortcutsDlg#ShortcutsDlgText">
+    <STRING lang="cs" value="Vytvořte zástupce aplikací [ProductName] Editors na následujících místech:"/>
+  </ENTRY>
+  <ENTRY id="Control.Text.ShortcutsDlg#StartmenuShortcutsCheckBox">
+    <STRING lang="cs" value="Složka Programy v nabídce Start"/>
+  </ENTRY>
+  <ENTRY id="Control.Text.ShortcutsDlg#Title">
+    <STRING lang="cs" value="Konfigurace zkratek"/>
   </ENTRY>
   <!-- Property table -->
   <ENTRY id="Property.ARPCOMMENTS">
