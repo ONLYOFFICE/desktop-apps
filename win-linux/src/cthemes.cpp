@@ -452,6 +452,10 @@ auto CThemes::setCurrentTheme(const std::wstring& name) -> void
         GET_REGISTRY_USER(_reg_user);
 //        _reg_user.setValue(REGISTRY_THEME_KEY, QString::fromStdWString(name));
         _reg_user.setValue(REGISTRY_THEME_KEY_7_2, QString::fromStdWString(name));
+
+        // TODO: remove after ver 7.5. back to keep theme id in REGISTRY_THEME_KEY
+        if ( _reg_user.contains(REGISTRY_THEME_KEY_7_2) )
+            _reg_user.remove(REGISTRY_THEME_KEY_7_2);
     }
 }
 
