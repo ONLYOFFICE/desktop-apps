@@ -525,7 +525,6 @@ void CMainWindow::onEditorAllowedClose(int uid)
             _view->deleteLater();
 
             m_pTabs->tabBar()->removeTab(_index);
-            m_pTabs->removeTab(_index);
             //m_pTabs->adjustTabsSize();
 
             onTabChanged(m_pTabs->currentIndex());
