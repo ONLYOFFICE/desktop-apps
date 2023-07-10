@@ -34,14 +34,10 @@
 #include "utils.h"
 #include <QX11Info>
 #include <QApplication>
-
-#include <QDebug>
-
 #include "X11/Xlib.h"
 #include "X11/cursorfont.h"
 #include <X11/Xutil.h>
 #include "platform_linux/xcbutils.h"
-//#include "gtk_addon.h"
 
 #define CUSTOM_BORDER_WIDTH 4
 #define MOTION_TIMER_MS 250

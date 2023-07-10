@@ -56,7 +56,7 @@ public:
     QSize iconSize() const;
     int insertTab(int index, const QString &text);
     int insertTab(int index, const QIcon &icon, const QString &text);
-    void moveTab(int from, int to);
+//    void moveTab(int from, int to);
     void removeTab(int index);
     void setElideMode(Qt::TextElideMode mode);
     void setIconSize(const QSize &size);
@@ -89,7 +89,7 @@ signals:
     void currentChanged(int index);
     void onCurrentChangedByWhell(int index);
     void tabBarClicked(int index);
-    void tabBarDoubleClicked(int index);
+//    void tabBarDoubleClicked(int index);
     void tabCloseRequested(int index);
     void tabMoved(int from, int to);
     void tabUndock(int index, bool &accepted);

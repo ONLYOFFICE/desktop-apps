@@ -1035,11 +1035,6 @@ void CAscApplicationManagerWrapper::initializeApp()
     else
     if ( InputArgs::contains(L"--custom-title-bar") || !reg_user.contains("titlebar") )
         reg_user.setValue("titlebar", "custom");
-    else
-    if ( InputArgs::contains(L"--geometry=default") ) {
-        reg_user.remove("maximized");
-        reg_user.remove("position");
-    }
 
     // read installation time and clean cash folders if expired
     if ( reg_system.contains("timestamp") ) {
@@ -1066,6 +1061,7 @@ void CAscApplicationManagerWrapper::initializeApp()
     _app.addStylesheets(CScalingFactor::SCALING_FACTOR_1_5, ":styles@1.5x/styles.qss");
     _app.addStylesheets(CScalingFactor::SCALING_FACTOR_1_75, ":styles@1.75x/styles.qss");
     _app.addStylesheets(CScalingFactor::SCALING_FACTOR_2, ":styles@2x/styles.qss");
+    _app.addStylesheets(CScalingFactor::SCALING_FACTOR_2_25, ":styles@2.25x/styles.qss");
     _app.addStylesheets(CScalingFactor::SCALING_FACTOR_2_5, ":styles@2.5x/styles.qss");
     _app.addStylesheets(CScalingFactor::SCALING_FACTOR_3, ":styles@3x/styles.qss");
     _app.addStylesheets(CScalingFactor::SCALING_FACTOR_3_5, ":styles@3.5x/styles.qss");
@@ -1494,8 +1490,11 @@ QString CAscApplicationManagerWrapper::getWindowStylesheets(double dpifactor)
     if ( dpifactor > 2.5 )
         return getWindowStylesheets(CScalingFactor::SCALING_FACTOR_3);
     else
-    if ( dpifactor > 2.0 )
+    if ( dpifactor > 2.25 )
         return getWindowStylesheets(CScalingFactor::SCALING_FACTOR_2_5);
+    else
+    if ( dpifactor > 2.0 )
+        return getWindowStylesheets(CScalingFactor::SCALING_FACTOR_2_25);
     else
     if ( dpifactor > 1.75 )
         return getWindowStylesheets(CScalingFactor::SCALING_FACTOR_2);

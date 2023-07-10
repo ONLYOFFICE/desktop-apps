@@ -2,8 +2,6 @@
 #include "utils.h"
 #include <memory>
 
-#include <QDebug>
-#include <QMessageBox>
 
 CLogger::CLogger(QObject *parent, QString fileName)
     : QObject(parent)

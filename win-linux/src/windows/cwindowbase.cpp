@@ -112,11 +112,11 @@ bool CWindowBase::isCustomWindowStyle()
     return pimpl->is_custom_window_;
 }
 
-void CWindowBase::updateScaling()
+void CWindowBase::updateScaling(bool resize)
 {
     double dpi_ratio = Utils::getScreenDpiRatioByWidget(this);
     if ( dpi_ratio != m_dpiRatio ) {
-        setScreenScalingFactor(dpi_ratio);
+        setScreenScalingFactor(dpi_ratio, resize);
         adjustGeometry();
     }
 }
@@ -135,8 +135,8 @@ void CWindowBase::setWindowColors(const QColor& background, const QColor& border
 void CWindowBase::applyTheme(const std::wstring& theme)
 {
     Q_UNUSED(theme)
-    QColor background = AscAppManager::themes().current().color(CTheme::ColorRole::ecrWindowBackground);
-    QColor border = AscAppManager::themes().current().color(CTheme::ColorRole::ecrWindowBorder);
+    QColor background = GetColorByRole(ecrWindowBackground);
+    QColor border = GetColorByRole(ecrWindowBorder);
     setWindowColors(background, border);
 }
 
@@ -237,10 +237,10 @@ bool CWindowBase::event(QEvent *event)
     return QMainWindow::event(event);
 }
 
-void CWindowBase::setScreenScalingFactor(double factor)
+void CWindowBase::setScreenScalingFactor(double factor, bool resize)
 {
-    setMinimumSize(0,0);
-    if (!isMaximized() && !QGuiApplication::queryKeyboardModifiers().testFlag(Qt::MetaModifier)) {
+    if (resize && !isMaximized()) {
+        setMinimumSize(0,0);
         double change_factor = factor / m_dpiRatio;
         QRect _src_rect = geometry();
         double dest_width_change = _src_rect.width() * (1 - change_factor);
@@ -304,6 +304,6 @@ void CWindowBase::showEvent(QShowEvent *event)
         m_windowActivated = true;
         setGeometry(m_window_rect);
         adjustGeometry();
-        applyTheme(AscAppManager::themes().current().id());
+        applyTheme(GetCurrentTheme().id());
     }
 }

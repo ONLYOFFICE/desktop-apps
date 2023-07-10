@@ -529,7 +529,26 @@ gl.WarningClearAppData =Quere borrar a configuración do usuario e os datos da c
 ;si.AssociateDescription =%1 සමඟ කාර්යාල ලේඛන ගොනු වර්ග සම්බන්ධ කරන්න
 ;zh_HK.AssociateDescription =與文書處理檔案類型聯結 %1
 ;======================================================================================================
-en.UpdateService =Service for update {#sAppName}
+en.UpdateService =Update service for {#sAppName}
+cs.UpdateService =Služba aktualizace {#sAppName}
+fi.UpdateService =Palvelu päivitystä varten {#sAppName}
+el.UpdateService =Υπηρεσία για ενημέρωση {#sAppName}
+nl.UpdateService =Dienst voor update {#sAppName}
+ru.UpdateService =Сервис обновлений {#sAppName}
+fr.UpdateService =Service de mise à jour {#sAppName}
+it_IT.UpdateService =Servizio per l'aggiornamento {#sAppName}
+pt_BR.UpdateService =Serviço para atualização {#sAppName}
+;pt_PT.UpdateService =Serviço para atualizar {#sAppName}
+pl.UpdateService =Usługa do aktualizacji {#sAppName}
+ro.UpdateService =Serviciu de actualizare {#sAppName}
+sk.UpdateService =Služba aktualizácie {#sAppName}
+sl.UpdateService =Storitev za posodobitev {#sAppName}
+tr.UpdateService ={#sAppName} için hizmet güncellemesi
+vi.UpdateService =Dịch vụ cập nhật {#sAppName}
+ja.UpdateService =アップデートサービス{#sAppName}
+ko.UpdateService ={#sAppName} 업데이트 서비스
+lv.UpdateService =Pakalpojums atjauninājumam {#sAppName}
+uk.UpdateService =Сервіс для оновлення {#sAppName}
 
 [Code]
 const
@@ -980,11 +999,9 @@ Source: {#DEPLOY_PATH}\*;                               DestDir: {app}; Flags: r
 Source: {#DEPLOY_PATH}\*;                               DestDir: {app}; Excludes: "editors\web-apps\apps\*\main\resources\help"; Flags: recursesubdirs;
 #endif
 Source: {#DEPLOY_PATH}\*.exe;                           DestDir: {app}; Flags: signonce;
-Source: {#DEPLOY_PATH}\ascdocumentscore.dll;            DestDir: {app}; Flags: signonce;
-Source: {#DEPLOY_PATH}\hunspell.dll;                    DestDir: {app}; Flags: signonce;
-Source: {#DEPLOY_PATH}\ooxmlsignature.dll;              DestDir: {app}; Flags: signonce;
-Source: {#DEPLOY_PATH}\converter\*.dll;                 DestDir: {app}\converter; Flags: signonce;
+Source: {#DEPLOY_PATH}\*.dll;                           DestDir: {app}; Flags: signonce;
 Source: {#DEPLOY_PATH}\converter\*.exe;                 DestDir: {app}\converter; Flags: signonce;
+Source: {#DEPLOY_PATH}\converter\*.dll;                 DestDir: {app}\converter; Flags: signonce;
 Source: ..\..\..\common\converter\package.config;       DestDir: {app}\converter;
 
 [InstallDelete]

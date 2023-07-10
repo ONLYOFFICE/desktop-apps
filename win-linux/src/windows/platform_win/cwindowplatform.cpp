@@ -101,6 +101,19 @@ void CWindowPlatform::toggleResizeable()
     m_isResizeable = !m_isResizeable;
 }
 
+void CWindowPlatform::bringToTop()
+{
+    if (IsIconic(m_hWnd)) {
+        ShowWindow(m_hWnd, SW_RESTORE);
+    }
+    WindowHelper::bringToTop(m_hWnd);
+}
+
+void CWindowPlatform::show(bool maximized)
+{
+    maximized ? CWindowBase::showMaximized() : CWindowBase::show();
+}
+
 void CWindowPlatform::adjustGeometry()
 {
     if (windowState().testFlag(Qt::WindowMinimized) || windowState().testFlag(Qt::WindowNoState)) {
@@ -133,27 +146,21 @@ void CWindowPlatform::adjustGeometry()
     }
 }
 
+/** Protected **/
+
+bool CWindowPlatform::isSessionInProgress()
+{
+    return m_isSessionInProgress;
+}
+
+/** Private **/
+
 bool CWindowPlatform::isTaskbarAutoHideOn()
 {
     APPBARDATA ABData;
     ABData.cbSize = sizeof(ABData);
     return (SHAppBarMessage(ABM_GETSTATE, &ABData) & ABS_AUTOHIDE) != 0;
 }
-
-void CWindowPlatform::bringToTop()
-{
-    if (IsIconic(m_hWnd)) {
-        ShowWindow(m_hWnd, SW_RESTORE);
-    }
-    WindowHelper::bringToTop(m_hWnd);
-}
-
-void CWindowPlatform::show(bool maximized)
-{
-    maximized ? CWindowBase::showMaximized() : CWindowBase::show();
-}
-
-/** Private **/
 
 void CWindowPlatform::setResizeableAreaWidth(int width)
 {
@@ -181,10 +188,26 @@ bool CWindowPlatform::nativeEvent(const QByteArray &eventType, void *message, lo
     switch (msg->message)
     {
     case WM_DPICHANGED: {
-        if (!WindowHelper::isLeftButtonPressed() || AscAppManager::IsUseSystemScaling()) {
-            updateScaling();
+        setMinimumSize(0,0);
+        if (AscAppManager::IsUseSystemScaling()) {
+            if (WindowHelper::isLeftButtonPressed() || (m_scaleChanged && !isMaximized())) {
+                RECT *prefRect = (RECT*)msg->lParam;
+                setGeometry(prefRect->left, prefRect->top, prefRect->right - prefRect->left, prefRect->bottom - prefRect->top);
+            }
+            QTimer::singleShot(0, this, [=]() {
+                updateScaling(false);
+            });
+        } else
+        if (m_scaleChanged && !isMaximized()) {
+            RECT *prefRect = (RECT*)msg->lParam;
+            setGeometry(prefRect->left, prefRect->top, prefRect->right - prefRect->left, prefRect->bottom - prefRect->top);
         }
-//        qDebug() << "WM_DPICHANGED: " << LOWORD(msg->wParam);
+        m_scaleChanged = false;
+        break;
+    }
+
+    case WM_DISPLAYCHANGE: {
+        m_scaleChanged = true;
         break;
     }
 
@@ -283,7 +306,9 @@ bool CWindowPlatform::nativeEvent(const QByteArray &eventType, void *message, lo
 
     case WM_SETFOCUS: {
         if (!m_closed && IsWindowEnabled(m_hWnd)) {
-            focus();
+            QTimer::singleShot(0, this, [=]() {
+                focus();
+            });
         }
         m_propertyTimer->stop();
         if (property("stabilized").toBool())
@@ -378,6 +403,15 @@ bool CWindowPlatform::nativeEvent(const QByteArray &eventType, void *message, lo
 
     case WM_ERASEBKGND:
         return true;
+
+    case WM_QUERYENDSESSION:
+        m_isSessionInProgress = false;
+        break;
+
+    case WM_ENDSESSION:
+        if (!msg->wParam)
+            m_isSessionInProgress = true;
+        break;
 
     default:
         break;

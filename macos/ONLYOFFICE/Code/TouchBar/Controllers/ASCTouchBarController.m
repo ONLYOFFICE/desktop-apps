@@ -389,7 +389,10 @@ NSString *tabScrubberItemIdentifier = @"tabItem";
         if (self.tabs.count < 1) {
             [self invalidateTouchBar];
         } else {
-            [self.tabsScrubber removeItemsAtIndexes:[NSIndexSet indexSetWithIndex:index]];
+            __weak __typeof__(self) weakSelf = self;
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.001 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [weakSelf.tabsScrubber removeItemsAtIndexes:[NSIndexSet indexSetWithIndex:index]];
+            });
         }
     }
 }

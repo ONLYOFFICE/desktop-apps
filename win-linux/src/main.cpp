@@ -140,7 +140,9 @@ int main( int argc, char *argv[] )
     }
 
     app.setAttribute(Qt::AA_UseHighDpiPixmaps);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 7, 0))
     app.setAttribute(Qt::AA_UseStyleSheetPropagationInWidgetStyles);
+#endif
     app.setStyle(QStyleFactory::create("Fusion"));
 
     /* the order is important */

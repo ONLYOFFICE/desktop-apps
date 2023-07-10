@@ -93,12 +93,8 @@ void CWindowPlatform::setWindowColors(const QColor& background, const QColor& bo
 
 void CWindowPlatform::adjustGeometry()
 {
-    if (!isMaximized()) {
-        const int border = int(CX11Decoration::customWindowBorderWith() * m_dpiRatio);
-        setContentsMargins(border, border, border, border);
-    } else {
-        setContentsMargins(0, 0, 0, 0);
-    }
+    int border = isMaximized() ? 0 : qRound(CX11Decoration::customWindowBorderWith() * m_dpiRatio);
+    setContentsMargins(border, border, border, border);
 }
 
 /** Protected **/
@@ -143,10 +139,10 @@ bool CWindowPlatform::nativeEvent(const QByteArray &ev_type, void *msg, long *re
     return CWindowBase::nativeEvent(ev_type, msg, res);
 }
 
-void CWindowPlatform::setScreenScalingFactor(double factor)
+void CWindowPlatform::setScreenScalingFactor(double factor, bool resize)
 {
     CX11Decoration::onDpiChanged(factor);
-    CWindowBase::setScreenScalingFactor(factor);
+    CWindowBase::setScreenScalingFactor(factor, resize);
 }
 
 /** Private **/
@@ -167,10 +163,10 @@ void CWindowPlatform::mouseReleaseEvent(QMouseEvent *e)
     CX11Decoration::dispatchMouseUp(e);
 }
 
-void CWindowPlatform::mouseDoubleClickEvent(QMouseEvent *)
+void CWindowPlatform::mouseDoubleClickEvent(QMouseEvent *me)
 {
     if (m_boxTitleBtns) {
-        if (m_boxTitleBtns->underMouse())
+        if (m_boxTitleBtns->geometry().contains(me->pos()))
             onMaximizeEvent();
     }
 }

@@ -845,7 +845,6 @@
 		FC5A2D3B1BAC075E001ACEB1 /* cefapplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cefapplication.h; sourceTree = "<group>"; };
 		FC5A2D3C1BAC075E001ACEB1 /* cefview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cefview.h; sourceTree = "<group>"; };
 		FC5A2D3D1BAC075E001ACEB1 /* keyboardchecker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = keyboardchecker.h; sourceTree = "<group>"; };
-		FC5A2D3E1BAC075E001ACEB1 /* qascprinter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = qascprinter.h; sourceTree = "<group>"; };
 		FC5A2D3F1BAC075E001ACEB1 /* spellchecker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = spellchecker.h; sourceTree = "<group>"; };
 		FC5A2D411BAC075E001ACEB1 /* Array.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Array.h; sourceTree = "<group>"; };
 		FC5A2D421BAC075E001ACEB1 /* ASCVariant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASCVariant.h; sourceTree = "<group>"; };
@@ -861,11 +860,8 @@
 		FC5A2D4D1BAC075E001ACEB1 /* Directory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Directory.h; sourceTree = "<group>"; };
 		FC5A2D4E1BAC075E001ACEB1 /* File.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = File.h; sourceTree = "<group>"; };
 		FC5A2D4F1BAC075E001ACEB1 /* Path.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Path.h; sourceTree = "<group>"; };
-		FC5A2D501BAC075E001ACEB1 /* String.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = String.h; sourceTree = "<group>"; };
 		FC5A2D511BAC075E001ACEB1 /* StringBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringBuilder.h; sourceTree = "<group>"; };
 		FC5A2D521BAC075E001ACEB1 /* Types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Types.h; sourceTree = "<group>"; };
-		FC5A2D541BAC075E001ACEB1 /* Editor_Api.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Editor_Api.h; sourceTree = "<group>"; };
-		FC5A2D551BAC075E001ACEB1 /* Editor_Defines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Editor_Defines.h; sourceTree = "<group>"; };
 		FC64391921B52DAF00A25CD1 /* NSDictionary+Extensions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Extensions.h"; sourceTree = "<group>"; };
 		FC64391A21B52E5700A25CD1 /* NSDictionary+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Extensions.m"; sourceTree = "<group>"; };
 		FC659BF71C75EE8B00C99776 /* ASCAboutController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASCAboutController.h; sourceTree = "<group>"; };
@@ -1283,7 +1279,6 @@
 				FC591593208DC6CE0006F664 /* xmlsec */,
 				FC5A2D351BAC075E001ACEB1 /* ChromiumBasedEditors */,
 				FC5A2D401BAC075E001ACEB1 /* common */,
-				FC5A2D531BAC075E001ACEB1 /* Word_Api */,
 			);
 			name = include;
 			sourceTree = "<group>";
@@ -1327,7 +1322,6 @@
 				FC5A2D3C1BAC075E001ACEB1 /* cefview.h */,
 				FC5A2D3D1BAC075E001ACEB1 /* keyboardchecker.h */,
 				FCD65B931BDFAFCB008361F1 /* nsascprinter.h */,
-				FC5A2D3E1BAC075E001ACEB1 /* qascprinter.h */,
 				FC5A2D3F1BAC075E001ACEB1 /* spellchecker.h */,
 			);
 			path = include;
@@ -1346,7 +1340,6 @@
 				FC5A2D4D1BAC075E001ACEB1 /* Directory.h */,
 				FC5A2D4E1BAC075E001ACEB1 /* File.h */,
 				FC5A2D4F1BAC075E001ACEB1 /* Path.h */,
-				FC5A2D501BAC075E001ACEB1 /* String.h */,
 				FC5A2D511BAC075E001ACEB1 /* StringBuilder.h */,
 				FC5A2D521BAC075E001ACEB1 /* Types.h */,
 			);
@@ -1366,16 +1359,6 @@
 			);
 			path = CPEncodings;
 			sourceTree = "<group>";
-		};
-		FC5A2D531BAC075E001ACEB1 /* Word_Api */ = {
-			isa = PBXGroup;
-			children = (
-				FC5A2D541BAC075E001ACEB1 /* Editor_Api.h */,
-				FC5A2D551BAC075E001ACEB1 /* Editor_Defines.h */,
-			);
-			name = Word_Api;
-			path = ../../core/DesktopEditor/Word_Api;
-			sourceTree = SOURCE_ROOT;
 		};
 		FC67182F1BD918250028600F /* Vendor */ = {
 			isa = PBXGroup;

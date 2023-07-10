@@ -85,7 +85,7 @@ void CMainWindowImpl::refreshAboutVersion()
 //    }
 
 #ifndef __OS_WIN_XP
-    _json_obj["uitheme"] = QString::fromStdWString(AscAppManager::themes().current().id());
+    _json_obj["uitheme"] = QString::fromStdWString(GetCurrentTheme().id());
 #endif
 
 #ifdef Q_OS_WIN

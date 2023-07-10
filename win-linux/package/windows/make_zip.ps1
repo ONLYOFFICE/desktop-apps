@@ -18,9 +18,8 @@ if ( -Not (Test-Path -Path $DesktopPath) ) {
 if ( $Sign ) {
     Set-Location $DesktopPath
 
-    $SignFiles = Get-ChildItem *.exe, converter\*.exe, converter\*.dll, `
-        ascdocumentscore.dll, hunspell.dll, ooxmlsignature.dll |
-        Resolve-Path -Relative
+    $SignFiles = Get-ChildItem *.exe, *.dll, converter\*.exe, converter\*.dll `
+        | Resolve-Path -Relative
     # Sign
     Write-Host "signtool sign /a /n $CertName /t $TimestampServer /v $SignFiles" -ForegroundColor Yellow
     & signtool sign /a /n $CertName /t $TimestampServer /v $SignFiles

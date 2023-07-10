@@ -2,17 +2,13 @@
 #include "defines.h"
 #include "defines_p.h"
 #include "utils.h"
-
 #include <QApplication>
 #include <QFile>
 #include <QSettings>
 #include <QRegularExpression>
 #include <QTranslator>
-
 #include <list>
 #include <algorithm>
-
-#include <QDebug>
 
 
 class CLangater::CLangaterIntf

@@ -44,6 +44,7 @@
 #import "NSDictionary+Extensions.h"
 #import "NSString+Extensions.h"
 #import "ASCLinguist.h"
+#import "ASCConstants.h"
 
 
 @interface ASCEditorJSVariables()
@@ -69,12 +70,16 @@
         _jsVariables = [NSMutableDictionary dictionary];
         _urlParams = [NSMutableDictionary dictionary];
 
-        NSString * url = [[NSUserDefaults standardUserDefaults] valueForKey:@"helpUrl"];
-#ifdef URL_WEBAPPS_HELP
+        NSString * url = [[NSUserDefaults standardUserDefaults] valueForKey:ASCUserWebappsHelpUrl];
         if ( url == nil || url.length == 0 ) {
-            url = URL_WEBAPPS_HELP;
+            url = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"ASCWebappsHelpUrl"];
         }
-#endif
+
+        if (url && [url length]) {
+            [_jsVariables setValue:url forKey:@"helpUrl"];
+            NSLog(@"set web-apps help url %@", url);
+        }
+
 
         if (url && [url length]) {
             [_jsVariables setValue:url forKey:@"helpUrl"];

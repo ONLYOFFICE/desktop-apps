@@ -6,7 +6,6 @@
 #endif
 #include "defines.h"
 #include "utils.h"
-
 #include <QSettings>
 #include <QJsonDocument>
 #include <QJsonObject>
@@ -16,7 +15,6 @@
 #include <QRegularExpression>
 #include <QProcess>
 #include <QPalette>
-#include <QDebug>
 #include <QApplication>
 #include <QJsonArray>
 

@@ -33,11 +33,9 @@
 #include "ccefeventstransformer.h"
 #include "applicationmanager_events.h"
 #include "common/Types.h"
-//#include "regex"
-
 #include <QProcess>
 #include <QTimer>
-#include <QDebug>
+
 using namespace NSEditorApi;
 
 CCefEventsTransformer::CCefEventsTransformer(QObject *parent)
