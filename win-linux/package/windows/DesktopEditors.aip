@@ -1321,7 +1321,7 @@
     <ROW SearchKey="Version_3" Prereq="MicrosoftVisualC_2013_x64" SearchType="4" SearchString="{20400CF0-DE7C-327E-9AE4-F0F38D9085F8}" VerMin="12.0.21005" Order="1" Property="PreReqSearch_4" Platform="1"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.TxtUpdateComponent">
-    <ROW Name="ReplacePackage" TxtUpdateSet="package.config" FindPattern="package=.*" ReplacePattern="package=msi" Options="3" Order="0" FileEncoding="-1"/>
+    <ROW Name="Append/Create" TxtUpdateSet="package.config" FindPattern="package=msi" Options="160" Order="0" FileEncoding="0"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.TxtUpdateSetComponent">
     <ROW Key="package.config" Component="CheckForUpdates" FileName="package.config" Directory="converter_Dir" Options="17"/>
