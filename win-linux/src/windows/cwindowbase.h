@@ -68,7 +68,7 @@ public:
 
     QWidget * handle() const;
     bool isCustomWindowStyle();
-    void updateScaling();
+    void updateScaling(bool resize = true);
     virtual void adjustGeometry() = 0;
     virtual void setWindowColors(const QColor&, const QColor& border = QColor());
     virtual void applyTheme(const std::wstring&);
@@ -84,7 +84,7 @@ protected:
     void moveToPrimaryScreen();
     void setIsCustomWindowStyle(bool);
     virtual bool event(QEvent*);
-    virtual void setScreenScalingFactor(double);
+    virtual void setScreenScalingFactor(double, bool resize = true);
     virtual void applyWindowState();
     virtual void setWindowTitle(const QString&);
     virtual void onMinimizeEvent();

@@ -420,9 +420,9 @@ bool CEditorWindow::event(QEvent * event)
     return CWindowPlatform::event(event);
 }
 
-void CEditorWindow::setScreenScalingFactor(double factor)
+void CEditorWindow::setScreenScalingFactor(double factor, bool resize)
 {
-    CWindowPlatform::setScreenScalingFactor(factor);
+    CWindowPlatform::setScreenScalingFactor(factor, resize);
     if (isCustomWindowStyle()) {
         m_boxTitleBtns->setFixedHeight(int(TOOLBTN_HEIGHT * factor));
         if (m_pSpacer && !d_ptr->usedOldEditorVersion) {

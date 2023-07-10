@@ -188,10 +188,26 @@ bool CWindowPlatform::nativeEvent(const QByteArray &eventType, void *message, lo
     switch (msg->message)
     {
     case WM_DPICHANGED: {
-        if (!WindowHelper::isLeftButtonPressed() || AscAppManager::IsUseSystemScaling()) {
-            updateScaling();
+        setMinimumSize(0,0);
+        if (AscAppManager::IsUseSystemScaling()) {
+            if (WindowHelper::isLeftButtonPressed() || (m_scaleChanged && !isMaximized())) {
+                RECT *prefRect = (RECT*)msg->lParam;
+                setGeometry(prefRect->left, prefRect->top, prefRect->right - prefRect->left, prefRect->bottom - prefRect->top);
+            }
+            QTimer::singleShot(0, this, [=]() {
+                updateScaling(false);
+            });
+        } else
+        if (m_scaleChanged && !isMaximized()) {
+            RECT *prefRect = (RECT*)msg->lParam;
+            setGeometry(prefRect->left, prefRect->top, prefRect->right - prefRect->left, prefRect->bottom - prefRect->top);
         }
-//        qDebug() << "WM_DPICHANGED: " << LOWORD(msg->wParam);
+        m_scaleChanged = false;
+        break;
+    }
+
+    case WM_DISPLAYCHANGE: {
+        m_scaleChanged = true;
         break;
     }
 
@@ -290,7 +306,9 @@ bool CWindowPlatform::nativeEvent(const QByteArray &eventType, void *message, lo
 
     case WM_SETFOCUS: {
         if (!m_closed && IsWindowEnabled(m_hWnd)) {
-            focus();
+            QTimer::singleShot(0, this, [=]() {
+                focus();
+            });
         }
         m_propertyTimer->stop();
         if (property("stabilized").toBool())
