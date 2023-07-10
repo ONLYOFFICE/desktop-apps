@@ -168,9 +168,9 @@ QWidget * CPresenterWindow::createMainPanel(QWidget * parent, const QString& tit
     return mainPanel;
 }
 
-void CPresenterWindow::setScreenScalingFactor(double factor)
+void CPresenterWindow::setScreenScalingFactor(double factor, bool resize)
 {
-    CWindowPlatform::setScreenScalingFactor(factor);
+    CWindowPlatform::setScreenScalingFactor(factor, resize);
     QString css(AscAppManager::getWindowStylesheets(factor));
     if (!css.isEmpty()) {                
         m_pMainPanel->setStyleSheet(css);

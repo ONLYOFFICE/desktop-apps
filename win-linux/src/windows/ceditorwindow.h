@@ -83,7 +83,7 @@ private:
     virtual void onMinimizeEvent() final;
     virtual void onMaximizeEvent() final;
     virtual bool event(QEvent *) final;
-    virtual void setScreenScalingFactor(double) final;
+    virtual void setScreenScalingFactor(double, bool resize = true) final;
 
     QMetaObject::Connection m_modalSlotConnection;
     QString m_css;

@@ -93,6 +93,7 @@ static NSString * const ASCUserLastSavePath                 = @"asc_save_path";
 static NSString * const ASCUserNameApp                      = @"asc_user_name_app";
 static NSString * const ASCUserUILanguage                   = @"asc_user_ui_lang";
 static NSString * const ASCUserUITheme                      = @"asc_user_ui_theme";
+static NSString * const ASCUserWebappsHelpUrl               = @"user_webapps_help_url";
 
 // Application event names
 static NSString * const ASCEventNameMainWindowSetFrame      = @"UI_mainWindowSetFrame";

@@ -68,6 +68,7 @@ private:
          m_closed,
          m_isResizeable,
          m_allowMaximize,
+         m_scaleChanged = false,
          m_isSessionInProgress = true;
 };
 

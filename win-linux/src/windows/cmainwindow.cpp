@@ -524,6 +524,8 @@ void CMainWindow::onEditorAllowedClose(int uid)
             m_pTabs->removeWidget(_view);
             _view->deleteLater();
 
+            m_pTabs->tabBar()->removeTab(_index);
+            m_pTabs->removeTab(_index);
             //m_pTabs->adjustTabsSize();
 
             onTabChanged(m_pTabs->currentIndex());
@@ -659,7 +661,7 @@ void CMainWindow::onPortalLogout(std::wstring wjson)
 
         if( jerror.error == QJsonParseError::NoError ) {
             QJsonObject objRoot = jdoc.object();
-            QString _portal = objRoot["portal"].toString(),
+            QString _portal = objRoot["domain"].toString(),
                     _action;
 
             if ( objRoot.contains("onsuccess") )
@@ -1372,9 +1374,9 @@ void CMainWindow::updateScalingFactor(double dpiratio)
     }
 }
 
-void CMainWindow::setScreenScalingFactor(double factor)
+void CMainWindow::setScreenScalingFactor(double factor, bool resize)
 {
-    CWindowPlatform::setScreenScalingFactor(factor);
+    CWindowPlatform::setScreenScalingFactor(factor, resize);
     QString css(AscAppManager::getWindowStylesheets(factor));
     if (!css.isEmpty()) {
         m_pMainPanel->setStyleSheet(css);

@@ -657,13 +657,14 @@
             $('.btn-quick.logout',this.$panelPortalList).attr('tooltip',utils.Lang.menuLogout);
         };
 
-        function _on_theme_changed(name) {
-            $('.carousel__slide__img > use').each((i, el) => {
-                const src = el.getAttribute('data-src');
-                if ( name == 'theme-dark' )
-                    el.setAttribute('xlink:href', `#${src}-dark`);
-                else el.setAttribute('xlink:href', `#${src}-light`);
-            });
+        function _on_theme_changed(name, type) {
+            if ( !!type )
+                $('.carousel__slide__img > use').each((i, el) => {
+                    const src = el.getAttribute('data-src');
+                    if ( type == 'dark' )
+                        el.setAttribute('xlink:href', `#${src}-dark`);
+                    else el.setAttribute('xlink:href', `#${src}-light`);
+                });
         }
 
         return {
