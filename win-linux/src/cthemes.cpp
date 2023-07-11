@@ -102,7 +102,7 @@ public:
                     if ( it != NSTheme::map_alias_names.end() &&
                             colorValues.contains(it->second) )
                     {
-                        jsonValues[color_name.second] = colorValues.value(it->second);
+                        jsonValues[color_name.second] = colorValues.value(it->second).toString();
                     }
                 }
             }
@@ -111,7 +111,7 @@ public:
             jsonValues = obj.value("values").toObject();
         }
 
-        is_system = false;
+//        is_system = false;
     }
 
     auto setDefaultThemes(const CTheme * const l, const CTheme * const d) -> void {
@@ -127,6 +127,7 @@ public:
     QJsonObject jsonValues;
     const CTheme * defdark = nullptr,
             * deflight = nullptr;
+    QString source_file;
 };
 
 /*
@@ -181,12 +182,25 @@ public:
         if ( user_theme == THEME_ID_SYSTEM )
             user_theme = THEME_DEFAULT_LIGHT_ID;
 #endif
-        if ( user_theme == THEME_ID_SYSTEM || rc_themes.find(user_theme) == rc_themes.end() ) {
-            current = new CTheme(rc_themes.at(is_system_theme_dark ? THEME_DEFAULT_DARK_ID : THEME_DEFAULT_LIGHT_ID));
-            current->m_priv->is_system = true;
-        } else current = new CTheme(rc_themes.at(user_theme));
 
+        current = new CTheme;
         current->m_priv->setDefaultThemes(getDefault(NSTheme::ThemeType::ttDark), getDefault(NSTheme::ThemeType::ttLight));
+        if ( user_theme.endsWith(".json") ) {
+            QDir directory(qApp->applicationDirPath() + "/uicolorthemes");
+            QString filepath{directory.absoluteFilePath(user_theme)};
+
+            if ( !QFile::exists(filepath) || !current->fromFile(filepath) ) {
+                user_theme = THEME_ID_SYSTEM;
+            }
+        } else
+        if ( rc_themes.find(user_theme) == rc_themes.end() || !current->fromFile(rc_themes.at(user_theme)) ) {
+            user_theme = THEME_ID_SYSTEM;
+        }
+
+        if ( user_theme == THEME_ID_SYSTEM ) {
+            current->fromFile(rc_themes.at(is_system_theme_dark ? THEME_DEFAULT_DARK_ID : THEME_DEFAULT_LIGHT_ID));
+            current->m_priv->is_system = true;
+        }
     }
 
     ~CThemesPrivate()
@@ -199,25 +213,40 @@ public:
 
     auto setCurrent(const QString& id) -> bool
     {
-        if ( id != THEME_ID_SYSTEM ) {
-            if ( rc_themes.find(id) != rc_themes.end() ) {
-                return current->fromFile(rc_themes.at(id));
-            } else
-            if ( local_themes.find(id) != local_themes.end() ) {
-                return current->fromJson(local_themes.at(id));
-            }
-        } else {
-            QString visual_theme_id = is_system_theme_dark ? THEME_DEFAULT_DARK_ID : THEME_DEFAULT_LIGHT_ID;
-            if ( current->id() != visual_theme_id.toStdWString() ) {
-                if ( !current->fromFile(rc_themes.at(visual_theme_id)) )
-                    return false;
+        if ( current->id() != id ) {
+            if ( id != THEME_ID_SYSTEM ) {
+                delete current;
+
+                current = new CTheme;
+                current->m_priv->setDefaultThemes(getDefault(NSTheme::ThemeType::ttDark), getDefault(NSTheme::ThemeType::ttLight));
+                if ( rc_themes.find(id) != rc_themes.end() ) {
+                    return current->fromFile(rc_themes.at(id));
+                } else
+                if ( local_themes.find(id) != local_themes.end() ) {
+                    if ( current->fromJson(local_themes.at(id).second) ) {
+                        current->m_priv->source_file = local_themes.at(id).first;
+                        return true;
+                    }
+//                    return current->fromJson(local_themes.at(id));
+                }
+            } else {
+                QString visual_theme_id = is_system_theme_dark ? THEME_DEFAULT_DARK_ID : THEME_DEFAULT_LIGHT_ID;
+                if ( current->id() != visual_theme_id.toStdWString() ) {
+                    delete current;
+
+                    current = new CTheme;
+                    if ( !current->fromFile(rc_themes.at(visual_theme_id)) )
+                        return false;
+                }
+
+                current->m_priv->is_system = true;
+                return true;
             }
 
-            current->m_priv->is_system = true;
-            return true;
+            return false;
         }
 
-        return false;
+        return true;
     }
 
     auto getDefault(NSTheme::ThemeType type) -> const CTheme * const
@@ -259,8 +288,8 @@ public:
                     if ( validateTheme(objRoot) ) {
                         json_themes_array.append(objRoot);
 
-                        local_themes[objRoot.value("id").toString()] = data;
-                        parseLocalTheme(doc.object());
+                        local_themes[objRoot.value("id").toString()] = std::make_pair(filename,data);
+//                        parseLocalTheme(doc.object());
                     }
                 }
             }
@@ -284,7 +313,7 @@ public:
 
     CThemes & parent;
     std::map<QString, QString> rc_themes;
-    std::map<QString, QByteArray> local_themes;
+    std::map<QString, std::pair<QString, QByteArray>> local_themes;
     bool is_system_theme_dark = false;
 
     CTheme * current = nullptr;
@@ -358,8 +387,9 @@ auto CTheme::stype() const -> QString
 auto CTheme::value(ColorRole r) const -> std::wstring
 {
     if ( NSTheme::map_names.find(r) != NSTheme::map_names.end() ) {
-        if ( m_priv->jsonValues.contains(NSTheme::map_names.at(r)) )
+        if ( m_priv->jsonValues.contains(NSTheme::map_names.at(r)) ) {
             return m_priv->jsonValues.value(NSTheme::map_names.at(r)).toString().toStdWString();
+        }
     }
 
     return L"";
@@ -448,12 +478,15 @@ auto CThemes::setCurrentTheme(const std::wstring& name) -> void
 {
     if ( !isThemeCurrent(name) && m_priv->setCurrent(QString::fromStdWString(name)) ) {
         GET_REGISTRY_USER(_reg_user);
-//        _reg_user.setValue(REGISTRY_THEME_KEY, QString::fromStdWString(name));
-        _reg_user.setValue(REGISTRY_THEME_KEY_7_2, QString::fromStdWString(name));
+
+        if ( !m_priv->current->m_priv->source_file.isEmpty() )
+            _reg_user.setValue(REGISTRY_THEME_KEY, m_priv->current->m_priv->source_file);
+        else _reg_user.setValue(REGISTRY_THEME_KEY, QString::fromStdWString(name));
 
         // TODO: remove after ver 7.5. back to keep theme id in REGISTRY_THEME_KEY
         if ( _reg_user.contains(REGISTRY_THEME_KEY_7_2) )
             _reg_user.remove(REGISTRY_THEME_KEY_7_2);
+
     }
 }
 
