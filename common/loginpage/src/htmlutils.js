@@ -48,7 +48,7 @@ var params = (function() {
 
 let ui_theme_name = params.uitheme || localStorage.getItem("ui-theme"), ui_theme_type;
 if ( !!ui_theme_name ) {
-    if ( /^{".+"}$/.test(ui_theme_name) ) {
+    if ( /^{".+"}+$/.test(ui_theme_name) ) {
         const obj = JSON.parse(ui_theme_name);
         ui_theme_name = obj['id'] || 'theme-dark';
         ui_theme_type = obj['type'];

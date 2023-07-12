@@ -175,6 +175,10 @@ namespace EditorJSVariables {
         vars_object[name] = obj;
     }
 
+    auto setVariable(const QString& name, const QJsonArray& array) -> void {
+        vars_object[name] = array;
+    }
+
     auto applyVariable(const QString& name, const QJsonObject& obj) -> void {
         vars_object[name] = obj;
         apply();

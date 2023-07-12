@@ -66,9 +66,41 @@
         },
     }
 
-    const t = window.RendererProcessVariable.theme;
-    const uitheme = { id: t.id, type: t.type }
+    const nativevars = window.RendererProcessVariable;
+    {
+        const create_colors_css = function (id, colors) {
+            if ( !!colors && !!id ) {
+                let _css_array = [':root .', id, '{'];
+                for (var c in colors) {
+                    _css_array.push('--', c, ':', colors[c], ';');
+                }
 
+                _css_array.push('}');
+                return _css_array.join('');
+            }
+        }
+
+        const write_theme_css = function (css) {
+            if ( !!css ) {
+                let style = document.createElement('style');
+                style.type = 'text/css';
+                style.innerHTML = css;
+                document.getElementsByTagName('head')[0].appendChild(style);
+            }
+        }
+
+        if ( nativevars.localthemes ) {
+            for ( const t of nativevars.localthemes ) {
+                const _css = create_colors_css(t.id, t.colors);
+                if ( _css ) {
+                    write_theme_css(_css);
+                    themes_map[t.id] = {text: t.name, type: t.type, l10n: t.l10n};
+                }
+            }
+        }
+    }
+
+    const uitheme = { id: nativevars.theme.id, type: nativevars.theme.type }
     uitheme.set_id = function (id) {
         if ( id == 'theme-system' )
             this.adapt_to_system_theme();
@@ -101,7 +133,6 @@
     uitheme.get_default_theme_for_type = type => type == THEME_TYPE_DARK ? THEME_ID_DEFAULT_DARK : THEME_ID_DEFAULT_LIGHT;
 
     uitheme.get_system_theme_type = () => {
-        const nativevars = window.RendererProcessVariable;
         if ( nativevars.theme && !!nativevars.theme.system ) {
             return nativevars.theme.system !== 'disabled' ? nativevars.theme.system : THEME_TYPE_LIGHT;
         } else {
@@ -459,7 +490,6 @@
                                             {'theme-dark': utils.Lang.settOptThemeDark},
                                             {'theme-contrast-dark': utils.Lang.settOptThemeContrastDark}];
 
-                            const nativevars = window.RendererProcessVariable;
                             if ( nativevars.theme && nativevars.theme.system == 'disabled' )
                                 _themes.shift();
 
@@ -469,12 +499,23 @@
                                 _combo.append(`<option value=${entries[0]} l10n>${entries[1]}</option>`);
                             });
 
+                            if ( nativevars.localthemes ) {
+                                for ( const t of nativevars.localthemes ) {
+                                    const _theme_title = t.l10n[utils.Lang.id] || t.name;
+                                    _combo.append(`<option value=${t.id} ml10n>${_theme_title}</option>`);
+                                }
+                            }
 
-                            ($optsUITheme = _combo)
-                            .val(opts.uitheme)
-                            .selectpicker().on('change', e => {
-                                $btnApply.isdisabled() && $btnApply.disable(false);})
-                            .parents('.settings-field').show();
+                            if ( !$optsUITheme ) {
+                                ($optsUITheme = _combo)
+                                .val(opts.uitheme)
+                                .selectpicker().on('change', e => {
+                                    $btnApply.isdisabled() && $btnApply.disable(false);})
+                                .parents('.settings-field').show();
+                            } else {
+                                $optsUITheme.val(opts.uitheme)
+                                            .selectpicker('refresh');
+                            }
                         }
                         _apply_theme(!!opts.uitheme ? opts.uitheme : 'theme-classic-light');
 
@@ -595,6 +636,14 @@
             $('option[value=silent]', this.view.$panel).attr('data-subtext', utils.Lang.settOptDescAUpdateSilent);
             $('option[value=ask]', this.view.$panel).attr('data-subtext', utils.Lang.settOptDescAUpdateAsk);
             $('option[value=disabled]', this.view.$panel).attr('data-subtext', utils.Lang.settOptDescDisabled);
+
+            // for ( let k of Object.keys(themes_map) ) {
+            //     const t = themes_map[k]
+            //     if ( t.l10n ) {
+            //         const _new_title = t.l10n[nl] || t.l10n[nl.substring(0,2)] || t.name;
+            //         $(`option[value=${k}]`, $optsUITheme).text(_new_title);
+            //     }
+            // }
         };
 
         return {
