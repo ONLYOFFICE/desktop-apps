@@ -213,7 +213,7 @@ public:
 
     auto setCurrent(const QString& id) -> bool
     {
-        if ( current->id() != id ) {
+        if ( current->id() != id.toStdWString() ) {
             if ( id != THEME_ID_SYSTEM ) {
                 delete current;
 
