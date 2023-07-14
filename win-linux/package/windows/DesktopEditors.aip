@@ -11,6 +11,7 @@
     <ROW Property="AI_SHORTCUTSREG" Value="0|0|0|0|"/>
     <ROW Property="AI_UNINSTALLER" Value="msiexec.exe"/>
     <ROW Property="ALLUSERS" Value="1"/>
+    <ROW Property="APP_USER_MODEL_ID" Value="ASC.Documents.5"/>
     <ROW Property="ARCH" Value="x64" MultiBuildValue="MsiBuild32:x86" ValueLocId="-"/>
     <ROW Property="ARPCOMMENTS" Value="Free desktop office suite for document editing and collaboration" ValueLocId="*"/>
     <ROW Property="ARPCONTACT" Value="20A-6, Ernesta Birznieka-Upisha str., Riga, LV-1050"/>
@@ -197,6 +198,10 @@
     <ROW File="VideoPlayer.exe" Component_="VideoPlayer.exe" FileName="VIDEOP~1.EXE|VideoPlayer.exe" Attributes="0" SourcePath="..\..\..\..\build_tools\out\win_64\onlyoffice\MediaViewer\VideoPlayer.exe" SelfReg="false"/>
     <ROW File="ImageViewer.exe" Component_="ImageViewer.exe" FileName="IMAGEV~1.EXE|ImageViewer.exe" Attributes="0" SourcePath="..\..\..\..\build_tools\out\win_64\onlyoffice\MediaViewer\ImageViewer.exe" SelfReg="false"/>
     <ROW File="updatesvc.exe" Component_="updatesvc.exe" FileName="UPDATE~1.EXE|updatesvc.exe" Attributes="0" SourcePath="..\..\..\..\build_tools\out\win_64\onlyoffice\DesktopEditors\updatesvc.exe" SelfReg="false"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.custcomp.MsiShortcutPropertyComponent">
+    <ROW MsiShortcutProperty="COMMON_SHORTCUT_NAME_SHORTCUTDIR2" Shortcut_="COMMON_SHORTCUT_NAME_SHORTCUTDIR" PropertyKey="System.AppUserModel.ID" PropVariantValue="[APP_USER_MODEL_ID]"/>
+    <ROW MsiShortcutProperty="COMMON_SHORTCUT_NAME_DESKTOP2" Shortcut_="COMMON_SHORTCUT_NAME_DESKTOP" PropertyKey="System.AppUserModel.ID" PropVariantValue="[APP_USER_MODEL_ID]"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.BuildComponent">
     <ROW BuildKey="MsiBuild32" BuildName="MsiBuild32" BuildOrder="2" BuildType="0" PackageFolder="." PackageFileName="[|MANUFACTURER_INSTALL_FOLDER]-[|PRODUCT_INSTALL_FOLDER]-[|ProductVersion]-[|ARCH]" Languages="en;ru;cs;de;es;fr;pt;pt_BR;sl;ja" LangOpt="1" InstallationType="4" ExtUI="true" UseLargeSchema="true" UACExecutionLevel="2"/>
