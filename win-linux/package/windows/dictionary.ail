@@ -118,6 +118,17 @@
     <STRING lang="cs" value="Konfigurace zkratek"/>
   </ENTRY>
   <!-- Property table -->
+  <ENTRY id="Property.APP_USER_MODEL_ID">
+    <STRING lang="cs" value="ASC.Documents.5"/>
+    <STRING lang="de" value="ASC.Documents.5"/>
+    <STRING lang="es" value="ASC.Documents.5"/>
+    <STRING lang="fr" value="ASC.Documents.5"/>
+    <STRING lang="ja" value="ASC.Documents.5"/>
+    <STRING lang="pt" value="ASC.Documents.5"/>
+    <STRING lang="pt_BR" value="ASC.Documents.5"/>
+    <STRING lang="ru" value="ASC.Documents.5"/>
+    <STRING lang="sl" value="ASC.Documents.5"/>
+  </ENTRY>
   <ENTRY id="Property.ARPCOMMENTS">
     <STRING lang="cs" value="Free desktop office suite for document editing and collaboration"/>
     <STRING lang="de" value="Free desktop office suite for document editing and collaboration"/>
