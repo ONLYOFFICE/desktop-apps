@@ -1,6 +1,6 @@
 
 CDownloadWidget {background: #ffffff;}
-
+QWidget#contentArea {background: #ffffff;}
 QPushButton {padding: 0px; font-weight: normal;}
 QPushButton:hover {background-color: #cecece;}
 QPushButton:pressed {background-color: #b7b7b7;}
@@ -28,6 +28,7 @@ QAbstractScrollArea::corner {background: transparent;}
 
 /* dark theme */
 CDownloadWidget[uitheme="theme-dark"] {background: #404040;}
+CDownloadWidget[uitheme="theme-dark"] QWidget#contentArea {background: #404040;}
 CDownloadWidget[uitheme="theme-dark"] QPushButton#buttonCancel {color: #d9d9d9;}
 CDownloadWidget[uitheme="theme-dark"] QPushButton#buttonCancel:hover {background: #555;}
 CDownloadWidget[uitheme="theme-dark"] QPushButton#buttonCancel:pressed {background: #606060;}
@@ -35,6 +36,7 @@ CDownloadWidget[uitheme="theme-dark"] QLabel#labelName {color: #d9d9d9;}
 
 /* contrast theme */
 CDownloadWidget[uitheme="theme-contrast-dark"] {background: #2a2a2a;}
+CDownloadWidget[uitheme="theme-contrast-dark"] QWidget#contentArea {background: #2a2a2a;}
 CDownloadWidget[uitheme="theme-contrast-dark"] QPushButton#buttonCancel {color: #d9d9d9;}
 CDownloadWidget[uitheme="theme-contrast-dark"] QPushButton#buttonCancel:hover {background: #555;}
 CDownloadWidget[uitheme="theme-contrast-dark"] QPushButton#buttonCancel:pressed {background: #606060;}

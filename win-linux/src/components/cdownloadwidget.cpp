@@ -82,6 +82,7 @@ CDownloadWidget::CDownloadWidget(QWidget *parent)
     m_pArea->setWidgetResizable(true);
 
     m_pContentArea = new QWidget(m_pArea);
+    m_pContentArea->setObjectName("contentArea");
     QVBoxLayout *lut = new QVBoxLayout(m_pContentArea);
     lut->setContentsMargins(MARGINS, MARGINS, MARGINS, MARGINS);
     lut->setSpacing(SPACING);
