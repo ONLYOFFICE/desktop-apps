@@ -94,8 +94,8 @@
     <ROW Property="UNINSTALL_PREV_ERROR_TEXT" Value="To install [|ProductName], the previous version must be uninstalled."/>
     <ROW Property="UNINSTALL_PREV_MSGBOX" Value="The previous version of [|ProductName] detected, please click &apos;OK&apos; button to uninstall it, or &apos;Cancel&apos; to quit setup."/>
     <ROW Property="UpgradeCode" Value="{47EEF706-B0E4-4C43-944B-E5F914B92B79}"/>
-    <ROW Property="VERSION" Value="0.0.0.0"/>
-    <ROW Property="VERSION_SHORT" Value="0.0"/>
+    <ROW Property="VERSION" Value="0.0.0.0" ValueLocId="-"/>
+    <ROW Property="VERSION_SHORT" Value="0.0" ValueLocId="-"/>
     <ROW Property="WindowsType9X" MultiBuildValue="MsiBuild64:Windows 9x/ME#MsiBuild32:Windows 9x/ME" ValueLocId="-"/>
     <ROW Property="WindowsType9XDisplay" MultiBuildValue="MsiBuild64:Windows 9x/ME#MsiBuild32:Windows 9x/ME" ValueLocId="-"/>
     <ROW Property="WindowsTypeNT" MultiBuildValue="MsiBuild64:Windows 9x/ME/NT/2000/XP/Vista/Windows 7/Windows 8 x86/Windows 8.1 x86/Windows 10 x86" ValueLocId="-"/>
