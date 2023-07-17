@@ -45,9 +45,9 @@
     <ROW Property="COMMON_SHORTCUT_NAME" Value="ONLYOFFICE Editors"/>
     <ROW Property="CTRLS" Value="2"/>
     <ROW Property="CUSTOM_PATH" Value="C:\[|ProgramFilesFolder][|Manufacturer]MediaViewer"/>
-    <ROW Property="DeUpdateSvc_DescriptionName" Value="Service for update [|ProductName]"/>
-    <ROW Property="DeUpdateSvc_DispalyName" Value="[|ProductName] update service"/>
-    <ROW Property="DeUpdateSvc_ServiceName" Value="DeUpdateSvc"/>
+    <ROW Property="DeUpdateSvc_DescriptionName" Value="Update service for ONLYOFFICE Desktop Editors"/>
+    <ROW Property="DeUpdateSvc_DispalyName" Value="ONLYOFFICE Update Service"/>
+    <ROW Property="DeUpdateSvc_ServiceName" Value="ONLYOFFICE Update Service"/>
     <ROW Property="GALLERY" Value="1" Type="4" ValueLocId="-"/>
     <ROW Property="GALLERY_SHORTCUT_NAME" Value="Gallery"/>
     <ROW Property="MANUFACTURER_INSTALL_FOLDER" Value="ONLYOFFICE"/>

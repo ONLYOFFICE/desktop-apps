@@ -267,13 +267,37 @@
     <STRING lang="sl" value="C:\[|ProgramFilesFolder][|Manufacturer]MediaViewer"/>
   </ENTRY>
   <ENTRY id="Property.DeUpdateSvc_DescriptionName">
-    <STRING lang="ru" value="Сервис для обновления [|ProductName]"/>
+    <STRING lang="cs" value="Služba aktualizace ONLYOFFICE Desktop Editors"/>
+    <STRING lang="de" value="Update service for ONLYOFFICE Desktop Editors"/>
+    <STRING lang="es" value="Update service for ONLYOFFICE Desktop Editors"/>
+    <STRING lang="fr" value="Service de mise à jour ONLYOFFICE Desktop Editors"/>
+    <STRING lang="ja" value="アップデートサービスONLYOFFICE Desktop Editors"/>
+    <STRING lang="pt" value="Update service for ONLYOFFICE Desktop Editors"/>
+    <STRING lang="pt_BR" value="Serviço para atualização ONLYOFFICE Desktop Editors"/>
+    <STRING lang="ru" value="Сервис обновлений ONLYOFFICE Desktop Editors"/>
+    <STRING lang="sl" value="Storitev za posodobitev ONLYOFFICE Desktop Editors"/>
   </ENTRY>
   <ENTRY id="Property.DeUpdateSvc_DispalyName">
-    <STRING lang="ru" value="Сервис обновления [|ProductName]"/>
+    <STRING lang="cs" value="ONLYOFFICE Update Service"/>
+    <STRING lang="de" value="ONLYOFFICE Update Service"/>
+    <STRING lang="es" value="ONLYOFFICE Update Service"/>
+    <STRING lang="fr" value="ONLYOFFICE Update Service"/>
+    <STRING lang="ja" value="ONLYOFFICE Update Service"/>
+    <STRING lang="pt" value="ONLYOFFICE Update Service"/>
+    <STRING lang="pt_BR" value="ONLYOFFICE Update Service"/>
+    <STRING lang="ru" value="ONLYOFFICE Update Service"/>
+    <STRING lang="sl" value="ONLYOFFICE Update Service"/>
   </ENTRY>
   <ENTRY id="Property.DeUpdateSvc_ServiceName">
-    <STRING lang="ru" value="DeUpdateSvc"/>
+    <STRING lang="cs" value="ONLYOFFICE Update Service"/>
+    <STRING lang="de" value="ONLYOFFICE Update Service"/>
+    <STRING lang="es" value="ONLYOFFICE Update Service"/>
+    <STRING lang="fr" value="ONLYOFFICE Update Service"/>
+    <STRING lang="ja" value="ONLYOFFICE Update Service"/>
+    <STRING lang="pt" value="ONLYOFFICE Update Service"/>
+    <STRING lang="pt_BR" value="ONLYOFFICE Update Service"/>
+    <STRING lang="ru" value="ONLYOFFICE Update Service"/>
+    <STRING lang="sl" value="ONLYOFFICE Update Service"/>
   </ENTRY>
   <ENTRY id="Property.GALLERY_SHORTCUT_NAME">
     <STRING lang="cs" value="Gallery"/>
