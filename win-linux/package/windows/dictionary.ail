@@ -104,18 +104,23 @@
   </ENTRY>
   <ENTRY id="Control.Text.ShortcutsDlg#Description">
     <STRING lang="cs" value="Vytvoření zástupců aplikací"/>
+    <STRING lang="pt" value="Crie atalhos na aplicação"/>
   </ENTRY>
   <ENTRY id="Control.Text.ShortcutsDlg#DesktopShortcutsCheckBox">
     <STRING lang="cs" value="Plocha"/>
+    <STRING lang="pt" value="Ambiente de Trabalho"/>
   </ENTRY>
   <ENTRY id="Control.Text.ShortcutsDlg#ShortcutsDlgText">
-    <STRING lang="cs" value="Vytvořte zástupce aplikací [ProductName] Editors na následujících místech:"/>
+    <STRING lang="cs" value="Vytvořte zástupce aplikací [ProductName] na následujících místech:"/>
+    <STRING lang="pt" value="Crie atalhos para o [ProductName] nas seguintes localizações:"/>
   </ENTRY>
   <ENTRY id="Control.Text.ShortcutsDlg#StartmenuShortcutsCheckBox">
     <STRING lang="cs" value="Složka Programy v nabídce Start"/>
+    <STRING lang="pt" value="Pasta de Programas do Menu Iniciar"/>
   </ENTRY>
   <ENTRY id="Control.Text.ShortcutsDlg#Title">
     <STRING lang="cs" value="Konfigurace zkratek"/>
+    <STRING lang="pt" value="Configure atalhos"/>
   </ENTRY>
   <!-- Property table -->
   <ENTRY id="Property.APP_USER_MODEL_ID">
