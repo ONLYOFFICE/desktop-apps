@@ -135,15 +135,15 @@
     <STRING lang="sl" value="ASC.Documents.5"/>
   </ENTRY>
   <ENTRY id="Property.ARPCOMMENTS">
-    <STRING lang="cs" value="Free desktop office suite for document editing and collaboration"/>
-    <STRING lang="de" value="Free desktop office suite for document editing and collaboration"/>
-    <STRING lang="es" value="Free desktop office suite for document editing and collaboration"/>
-    <STRING lang="fr" value="Free desktop office suite for document editing and collaboration"/>
-    <STRING lang="ja" value="Free desktop office suite for document editing and collaboration"/>
-    <STRING lang="pt" value="Free desktop office suite for document editing and collaboration"/>
-    <STRING lang="pt_BR" value="Free desktop office suite for document editing and collaboration"/>
+    <STRING lang="cs" value="Volně dostupný desktopový balíček pro úpravu dokumentů a spolupráci"/>
+    <STRING lang="de" value="Kostenlose Desktop-Office-Suite für Dokumentenbearbeitung und Zusammenarbeit"/>
+    <STRING lang="es" value="Paquete desktop de oficina gratuito para edición de documentos y colaboración"/>
+    <STRING lang="fr" value="Suite bureautique d'applications de bureau gratuite pour l'édition de documents et la collaboration"/>
+    <STRING lang="ja" value="ドキュメント編集と共同編集用の無料デスクトップオフィススイート"/>
+    <STRING lang="pt" value="Suite do Office para desktop gratuita para edição de documentos e colaboração"/>
+    <STRING lang="pt_BR" value="Pacote office para desktop gratuito para edição e colaboração em documentos"/>
     <STRING lang="ru" value="Бесплатный десктопный офисный пакет для редактирования документов и совместной работы"/>
-    <STRING lang="sl" value="Free desktop office suite for document editing and collaboration"/>
+    <STRING lang="sl" value="Brezplačen paket za namizje za urejanje dokumentov in sodelovanje z drugimi"/>
   </ENTRY>
   <ENTRY id="Property.ARPCONTACT">
     <STRING lang="cs" value="20A-6, Ernesta Birznieka-Upisha str., Riga, LV-1050"/>
