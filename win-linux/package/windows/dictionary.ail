@@ -310,6 +310,17 @@
     <STRING lang="ru" value="Gallery"/>
     <STRING lang="sl" value="Gallery"/>
   </ENTRY>
+  <ENTRY id="Property.JUMP_LIST_ARG">
+    <STRING lang="cs" value="Nový_dokument Nový_sešit Nová_prezentace Nová_šablona_formuláře"/>
+    <STRING lang="de" value="Neues_Dokument Neue_Tabelle Neue_Präsentation Neue_Formularvorlage"/>
+    <STRING lang="es" value="Nuevo_Documento Nueva_Hoja_de_Cálculo Nueva_Presentación Nueva_plantilla_de_formulario"/>
+    <STRING lang="fr" value="Nouveau_document Nouvelle_feuille_de_calcul Nouvelle_présentation Nouveau_modèle_de_formulaire"/>
+    <STRING lang="ja" value="新しいドキュメント 新しいスプレッドシート 新しいプレゼンテーション 新しいフォームテンプレート"/>
+    <STRING lang="pt" value=""/>
+    <STRING lang="pt_BR" value="Novo_Documento Nova_planilha Nova_apresentação Novo_Formulário_Mestre"/>
+    <STRING lang="ru" value="Новый_документ Новая_таблица Новая_презентация Новый_шаблон_формы"/>
+    <STRING lang="sl" value="Nov_dokument Nova_razpredelnica Nova_predstavitev Nova_predloga_za_obrazec"/>
+  </ENTRY>
   <ENTRY id="Property.Manufacturer">
     <STRING lang="cs" value="Ascensio System SIA"/>
     <STRING lang="de" value="Ascensio System SIA"/>
