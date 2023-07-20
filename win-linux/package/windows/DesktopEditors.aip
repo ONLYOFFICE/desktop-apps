@@ -50,6 +50,7 @@
     <ROW Property="DeUpdateSvc_ServiceName" Value="ONLYOFFICE Update Service"/>
     <ROW Property="GALLERY" Value="1" Type="4" ValueLocId="-"/>
     <ROW Property="GALLERY_SHORTCUT_NAME" Value="Gallery"/>
+    <ROW Property="JUMP_LIST_ARG" Value="New_document New_spreadsheet New_presentation New_form_template"/>
     <ROW Property="MANUFACTURER_INSTALL_FOLDER" Value="ONLYOFFICE"/>
     <ROW Property="MEDIA_SHORTCUT_NAME" Value="Media"/>
     <ROW Property="MSIFASTINSTALL" MultiBuildValue="MsiBuild64:7#MsiBuild32:7"/>
@@ -818,7 +819,7 @@
     <ROW Action="AI_SHOW_LOG" Type="65" Source="aicustact.dll" Target="LaunchLogFile" WithoutSeq="true"/>
     <ROW Action="AI_STORE_LOCATION" Type="51" Source="ARPINSTALLLOCATION" Target="[APPDIR]"/>
     <ROW Action="AI_VerifyPrereq" Type="1" Source="Prereq.dll" Target="VerifyPrereq"/>
-    <ROW Action="CreateJumpList" Type="210" Source="DesktopEditors.exe" Target="--create-jump-list"/>
+    <ROW Action="CreateJumpList" Type="210" Source="DesktopEditors.exe" Target="--create-jump-list [JUMP_LIST_ARG]"/>
     <ROW Action="RemoveJumpList" Type="210" Source="DesktopEditors.exe" Target="--remove-jump-list"/>
     <ROW Action="SET_APPDIR" Type="307" Source="APPDIR" Target="[ProgramFilesFolder][Manufacturer]\[ProductName]" MultiBuildTarget="MsiBuild64:[ProgramFiles64Folder][MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]#MsiBuild32:[ProgramFilesFolder][MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]"/>
     <ROW Action="SET_SHORTCUTDIR" Type="307" Source="SHORTCUTDIR" Target="[ProgramMenuFolder][SHORTCUT_FOLDER_NAME]"/>
