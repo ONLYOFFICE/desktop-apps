@@ -1842,12 +1842,7 @@ void CAscApplicationManagerWrapper::unbindReceiver(const CCefEventsGate * receiv
 
 void CAscApplicationManagerWrapper::onDownloadSaveDialog(const std::wstring& name, uint id)
 {
-/*#ifdef Q_OS_WIN
-    HWND parent = GetActiveWindow();
-#else*/
     QWidget * parent = WindowHelper::activeWindow();
-//#endif
-
     if ( parent ) {
         static bool saveInProcess = false;
         if ( !saveInProcess ) {
