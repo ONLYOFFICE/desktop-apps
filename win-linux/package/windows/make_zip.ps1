@@ -1,5 +1,7 @@
 param (
-    [string]$DesktopPath = "build\DesktopEditors",
+    [string]$BuildDir = "build",
+    [string]$DesktopDir = "DesktopEditors",
+    [string]$MultimediaDir,
     [Parameter(Mandatory)][string]$OutFile,
     [switch]$ExcludeHelp,
     [switch]$Sign,
@@ -11,35 +13,51 @@ $ErrorActionPreference = "Stop"
 Set-Location $PSScriptRoot
 
 # Check directory
-if ( -Not (Test-Path -Path $DesktopPath) ) {
-    Write-Error "Path $DesktopPath does not exist"
+if ( -Not (Test-Path -Path $BuildDir) ) {
+    Write-Error "Path $BuildDir does not exist"
 }
 
 if ( $Sign ) {
-    Set-Location $DesktopPath
+    if ( $DesktopDir ) {
+        Set-Location "$BuildDir\$DesktopDir"
 
-    $SignFiles = Get-ChildItem *.exe, converter\*.exe, converter\*.dll, `
-        ascdocumentscore.dll, hunspell.dll, ooxmlsignature.dll, `
-        qtascdocumentscore.dll, videoplayer.dll |
-        Resolve-Path -Relative
-    # Sign
-    Write-Host "signtool sign /a /n $CertName /t $TimestampServer /v $SignFiles" -ForegroundColor Yellow
-    & signtool sign /a /n $CertName /t $TimestampServer /v $SignFiles
-    if ( $LastExitCode -ne 0 ) { throw }
-    # Verify
-    Write-Host "signtool verify /pa /all /v $SignFiles" -ForegroundColor Yellow
-    & signtool verify /pa /all /v $SignFiles
-    if ( $LastExitCode -ne 0 ) { throw }
+        $SignFiles = Get-ChildItem *.exe, *.dll, converter\*.exe, converter\*.dll `
+            | Resolve-Path -Relative
+        # Sign
+        Write-Host "signtool sign /a /n $CertName /t $TimestampServer /v $SignFiles" -ForegroundColor Yellow
+        & signtool sign /a /n $CertName /t $TimestampServer /v $SignFiles
+        if ( $LastExitCode -ne 0 ) { throw }
+        # Verify
+        Write-Host "signtool verify /pa /all /v $SignFiles" -ForegroundColor Yellow
+        & signtool verify /pa /all /v $SignFiles
+        if ( $LastExitCode -ne 0 ) { throw }
 
-    Set-Location $PSScriptRoot
+        Set-Location $PSScriptRoot
+    }
+
+    if ( $MultimediaDir ) {
+        Set-Location "$BuildDir\$MultimediaDir"
+
+        $SignFiles = Get-ChildItem *.exe, *.dll | Resolve-Path -Relative
+        # Sign
+        Write-Host "signtool sign /a /n $CertName /t $TimestampServer /v $SignFiles" -ForegroundColor Yellow
+        & signtool sign /a /n $CertName /t $TimestampServer /v $SignFiles
+        if ( $LastExitCode -ne 0 ) { throw }
+        # Verify
+        Write-Host "signtool verify /pa /all /v $SignFiles" -ForegroundColor Yellow
+        & signtool verify /pa /all /v $SignFiles
+        if ( $LastExitCode -ne 0 ) { throw }
+
+        Set-Location $PSScriptRoot
+    }
 }
 
 # Create archive
 if ( !$ExcludeHelp ) {
-    Write-Host "7z a -y $OutFile .\$DesktopPath\*" -ForegroundColor Yellow
-    & 7z a -y $OutFile .\$DesktopPath\*
+    Write-Host "7z a -y $OutFile .\$BuildDir\*" -ForegroundColor Yellow
+    & 7z a -y $OutFile .\$BuildDir\*
 } else {
-    Write-Host "7z a -y $OutFile .\$DesktopPath\* -xr!editors\web-apps\apps\*\main\resources\help" -ForegroundColor Yellow
-    & 7z a -y $OutFile .\$DesktopPath\* -xr!editors\web-apps\apps\*\main\resources\help
+    Write-Host "7z a -y $OutFile .\$BuildDir\* -xr!$DesktopDir\editors\web-apps\apps\*\main\resources\help" -ForegroundColor Yellow
+    & 7z a -y $OutFile .\$BuildDir\* -xr!$DesktopDir\editors\web-apps\apps\*\main\resources\help
 }
 if ( $LastExitCode -ne 0 ) { throw }

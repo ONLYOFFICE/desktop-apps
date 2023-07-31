@@ -354,6 +354,9 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
         if ( !(cmd.find(L"go:folder") == std::wstring::npos) ) {
             if ( pData->get_Param() == L"offline" ) {}
             else {
+                if ( !m_pMainWindow || !m_pMainWindow->isVisible() )
+                    gotoMainWindow();
+
                 mainWindow()->onFileLocation(-1, QString::fromStdWString(pData->get_Param()));
 #ifdef Q_OS_LINUX
                 mainWindow()->bringToTop();

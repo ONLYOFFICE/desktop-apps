@@ -55,7 +55,7 @@ protected:
 
 private:
     QWidget * createMainPanel(QWidget *, const QString&, QWidget * view = nullptr);
-    virtual void setScreenScalingFactor(double) final;
+    virtual void setScreenScalingFactor(double, bool resize = true) final;
     virtual void onCloseEvent() final;
     virtual void focus() final;
 };
