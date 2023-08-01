@@ -393,9 +393,8 @@ public:
 
     void onDocumentChanged(int id, bool state) override
     {
+        CCefEventsGate::onDocumentChanged(id, state);
         if ( panel()->data()->hasChanges() != state ) {
-            CCefEventsGate::onDocumentChanged(id, state);
-
             if ( canExtendTitle() && window->isCustomWindowStyle() ) {
                 window->setWindowTitle(m_panel->data()->title());
                 window->m_boxTitleBtns->repaint();
