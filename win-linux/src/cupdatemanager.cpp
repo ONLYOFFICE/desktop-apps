@@ -515,9 +515,13 @@ void CUpdateManager::handleAppClose()
     if ( m_restartForUpdate ) {
 #ifdef _WIN32
         if (m_packageData->fileType != "archive") {
-            GET_REGISTRY_SYSTEM(reg_system)
-            QString prev_inst_lang = " /LANG=" + reg_system.value("locale", "en").toString();
-            if (!runProcess(m_packageData->fileName.toStdWString(), m_packageData->packageArgs + prev_inst_lang.toStdWString())) {
+            wstring args = m_packageData->packageArgs;
+            if (m_packageData->fileType == "iss") {
+                GET_REGISTRY_SYSTEM(reg_system)
+                QString prev_inst_lang = " /LANG=" + reg_system.value("locale", "en").toString();
+                args += prev_inst_lang.toStdWString();
+            }
+            if (!runProcess(m_packageData->fileName.toStdWString(), args)) {
                 criticalMsg(nullptr, QObject::tr("An error occurred while start install updates!"));
             }
         } else {

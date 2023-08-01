@@ -49,11 +49,37 @@
   <ENTRY id="Control.Text.ExtendedInstallDlg#Title">
     <STRING lang="ru" value="Выберите дополнительные задачи"/>
   </ENTRY>
+  <ENTRY id="Control.Text.FileAssociationsDlg#Description">
+    <STRING lang="cs" value="Vyberte přípony, které chcete přidružit k aplikaci [ProductName]"/>
+    <STRING lang="pt" value="Selecione as extensões que pretende associar ao [ProductName]"/>
+    <STRING lang="pt_BR" value="Selecione as extensões que deseja associar ao [ProductName]"/>
+    <STRING lang="sl" value="Izberite razširitve, ki jih želite povezati z namiznimi urejevalniki [ProductName]"/>
+  </ENTRY>
   <ENTRY id="Control.Text.FileAssociationsDlg#Deselect_all_button">
-    <STRING lang="ru" value="Deselect all"/>
+    <STRING lang="cs" value="Zrušit výběr všech"/>
+    <STRING lang="pt" value="Desselecionar tudo"/>
+    <STRING lang="pt_BR" value="Desmarcar todos"/>
+    <STRING lang="ru" value="Отменить всё"/>
+    <STRING lang="sl" value="Počistite vse"/>
   </ENTRY>
   <ENTRY id="Control.Text.FileAssociationsDlg#Select_all_button">
-    <STRING lang="ru" value="Select all"/>
+    <STRING lang="cs" value="Vybrat vše"/>
+    <STRING lang="pt" value="Selecionar tudo"/>
+    <STRING lang="pt_BR" value="Selecionar tudo"/>
+    <STRING lang="ru" value="Выбрать всё"/>
+    <STRING lang="sl" value="Izberite vse"/>
+  </ENTRY>
+  <ENTRY id="Control.Text.FileAssociationsDlg#Text">
+    <STRING lang="cs" value="Vyberte typy souborů, které chcete automaticky otevírat pomocí [ProductName]:"/>
+    <STRING lang="pt" value="Selecione os tipos de ficheiros que pretende abrir automaticamente com [ProductName]:"/>
+    <STRING lang="pt_BR" value="Selecione os tipos de arquivo que deseja abrir automaticamente com o [ProductName]:"/>
+    <STRING lang="sl" value="Izberite vrste datotek, ki jih želite samodejno odpreti s [ProductName]:"/>
+  </ENTRY>
+  <ENTRY id="Control.Text.FileAssociationsDlg#Title">
+    <STRING lang="cs" value="Vyberte možnost Přidružení souborů"/>
+    <STRING lang="pt" value="Selecionar Associações de Ficheiros"/>
+    <STRING lang="pt_BR" value="Selecione Associações de Arquivo"/>
+    <STRING lang="sl" value="Izberite povezave datoteke"/>
   </ENTRY>
   <ENTRY id="Control.Text.NewDialog#Back">
     <STRING lang="ru" value="[ButtonText_Back]"/>
@@ -76,17 +102,48 @@
   <ENTRY id="Control.Text.NewDialog#Title">
     <STRING lang="ru" value="Сопоставление типов файлов"/>
   </ENTRY>
+  <ENTRY id="Control.Text.ShortcutsDlg#Description">
+    <STRING lang="cs" value="Vytvoření zástupců aplikací"/>
+    <STRING lang="pt" value="Crie atalhos na aplicação"/>
+  </ENTRY>
+  <ENTRY id="Control.Text.ShortcutsDlg#DesktopShortcutsCheckBox">
+    <STRING lang="cs" value="Plocha"/>
+    <STRING lang="pt" value="Ambiente de Trabalho"/>
+  </ENTRY>
+  <ENTRY id="Control.Text.ShortcutsDlg#ShortcutsDlgText">
+    <STRING lang="cs" value="Vytvořte zástupce aplikací [ProductName] na následujících místech:"/>
+    <STRING lang="pt" value="Crie atalhos para o [ProductName] nas seguintes localizações:"/>
+  </ENTRY>
+  <ENTRY id="Control.Text.ShortcutsDlg#StartmenuShortcutsCheckBox">
+    <STRING lang="cs" value="Složka Programy v nabídce Start"/>
+    <STRING lang="pt" value="Pasta de Programas do Menu Iniciar"/>
+  </ENTRY>
+  <ENTRY id="Control.Text.ShortcutsDlg#Title">
+    <STRING lang="cs" value="Konfigurace zkratek"/>
+    <STRING lang="pt" value="Configure atalhos"/>
+  </ENTRY>
   <!-- Property table -->
+  <ENTRY id="Property.APP_USER_MODEL_ID">
+    <STRING lang="cs" value="ASC.Documents.5"/>
+    <STRING lang="de" value="ASC.Documents.5"/>
+    <STRING lang="es" value="ASC.Documents.5"/>
+    <STRING lang="fr" value="ASC.Documents.5"/>
+    <STRING lang="ja" value="ASC.Documents.5"/>
+    <STRING lang="pt" value="ASC.Documents.5"/>
+    <STRING lang="pt_BR" value="ASC.Documents.5"/>
+    <STRING lang="ru" value="ASC.Documents.5"/>
+    <STRING lang="sl" value="ASC.Documents.5"/>
+  </ENTRY>
   <ENTRY id="Property.ARPCOMMENTS">
-    <STRING lang="cs" value="Free desktop office suite for document editing and collaboration"/>
-    <STRING lang="de" value="Free desktop office suite for document editing and collaboration"/>
-    <STRING lang="es" value="Free desktop office suite for document editing and collaboration"/>
-    <STRING lang="fr" value="Free desktop office suite for document editing and collaboration"/>
-    <STRING lang="ja" value="Free desktop office suite for document editing and collaboration"/>
-    <STRING lang="pt" value="Free desktop office suite for document editing and collaboration"/>
-    <STRING lang="pt_BR" value="Free desktop office suite for document editing and collaboration"/>
+    <STRING lang="cs" value="Volně dostupný desktopový balíček pro úpravu dokumentů a spolupráci"/>
+    <STRING lang="de" value="Kostenlose Desktop-Office-Suite für Dokumentenbearbeitung und Zusammenarbeit"/>
+    <STRING lang="es" value="Paquete desktop de oficina gratuito para edición de documentos y colaboración"/>
+    <STRING lang="fr" value="Suite bureautique d'applications de bureau gratuite pour l'édition de documents et la collaboration"/>
+    <STRING lang="ja" value="ドキュメント編集と共同編集用の無料デスクトップオフィススイート"/>
+    <STRING lang="pt" value="Suite do Office para desktop gratuita para edição de documentos e colaboração"/>
+    <STRING lang="pt_BR" value="Pacote office para desktop gratuito para edição e colaboração em documentos"/>
     <STRING lang="ru" value="Бесплатный десктопный офисный пакет для редактирования документов и совместной работы"/>
-    <STRING lang="sl" value="Free desktop office suite for document editing and collaboration"/>
+    <STRING lang="sl" value="Brezplačen paket za namizje za urejanje dokumentov in sodelovanje z drugimi"/>
   </ENTRY>
   <ENTRY id="Property.ARPCONTACT">
     <STRING lang="cs" value="20A-6, Ernesta Birznieka-Upisha str., Riga, LV-1050"/>
@@ -210,13 +267,37 @@
     <STRING lang="sl" value="C:\[|ProgramFilesFolder][|Manufacturer]MediaViewer"/>
   </ENTRY>
   <ENTRY id="Property.DeUpdateSvc_DescriptionName">
-    <STRING lang="ru" value="Сервис для обновления [|ProductName]"/>
+    <STRING lang="cs" value="Služba aktualizace ONLYOFFICE Desktop Editors"/>
+    <STRING lang="de" value="Update service for ONLYOFFICE Desktop Editors"/>
+    <STRING lang="es" value="Update service for ONLYOFFICE Desktop Editors"/>
+    <STRING lang="fr" value="Service de mise à jour ONLYOFFICE Desktop Editors"/>
+    <STRING lang="ja" value="アップデートサービスONLYOFFICE Desktop Editors"/>
+    <STRING lang="pt" value="Update service for ONLYOFFICE Desktop Editors"/>
+    <STRING lang="pt_BR" value="Serviço para atualização ONLYOFFICE Desktop Editors"/>
+    <STRING lang="ru" value="Сервис обновлений ONLYOFFICE Desktop Editors"/>
+    <STRING lang="sl" value="Storitev za posodobitev ONLYOFFICE Desktop Editors"/>
   </ENTRY>
   <ENTRY id="Property.DeUpdateSvc_DispalyName">
-    <STRING lang="ru" value="Сервис обновления [|ProductName]"/>
+    <STRING lang="cs" value="ONLYOFFICE Update Service"/>
+    <STRING lang="de" value="ONLYOFFICE Update Service"/>
+    <STRING lang="es" value="ONLYOFFICE Update Service"/>
+    <STRING lang="fr" value="ONLYOFFICE Update Service"/>
+    <STRING lang="ja" value="ONLYOFFICE Update Service"/>
+    <STRING lang="pt" value="ONLYOFFICE Update Service"/>
+    <STRING lang="pt_BR" value="ONLYOFFICE Update Service"/>
+    <STRING lang="ru" value="ONLYOFFICE Update Service"/>
+    <STRING lang="sl" value="ONLYOFFICE Update Service"/>
   </ENTRY>
   <ENTRY id="Property.DeUpdateSvc_ServiceName">
-    <STRING lang="ru" value="DeUpdateSvc"/>
+    <STRING lang="cs" value="ONLYOFFICE Update Service"/>
+    <STRING lang="de" value="ONLYOFFICE Update Service"/>
+    <STRING lang="es" value="ONLYOFFICE Update Service"/>
+    <STRING lang="fr" value="ONLYOFFICE Update Service"/>
+    <STRING lang="ja" value="ONLYOFFICE Update Service"/>
+    <STRING lang="pt" value="ONLYOFFICE Update Service"/>
+    <STRING lang="pt_BR" value="ONLYOFFICE Update Service"/>
+    <STRING lang="ru" value="ONLYOFFICE Update Service"/>
+    <STRING lang="sl" value="ONLYOFFICE Update Service"/>
   </ENTRY>
   <ENTRY id="Property.GALLERY_SHORTCUT_NAME">
     <STRING lang="cs" value="Gallery"/>
@@ -228,6 +309,17 @@
     <STRING lang="pt_BR" value="Gallery"/>
     <STRING lang="ru" value="Gallery"/>
     <STRING lang="sl" value="Gallery"/>
+  </ENTRY>
+  <ENTRY id="Property.JUMP_LIST_ARG">
+    <STRING lang="cs" value="Nový_dokument Nový_sešit Nová_prezentace Nová_šablona_formuláře"/>
+    <STRING lang="de" value="Neues_Dokument Neue_Tabelle Neue_Präsentation Neue_Formularvorlage"/>
+    <STRING lang="es" value="Nuevo_Documento Nueva_Hoja_de_Cálculo Nueva_Presentación Nueva_plantilla_de_formulario"/>
+    <STRING lang="fr" value="Nouveau_document Nouvelle_feuille_de_calcul Nouvelle_présentation Nouveau_modèle_de_formulaire"/>
+    <STRING lang="ja" value="新しいドキュメント 新しいスプレッドシート 新しいプレゼンテーション 新しいフォームテンプレート"/>
+    <STRING lang="pt" value=""/>
+    <STRING lang="pt_BR" value="Novo_Documento Nova_planilha Nova_apresentação Novo_Formulário_Mestre"/>
+    <STRING lang="ru" value="Новый_документ Новая_таблица Новая_презентация Новый_шаблон_формы"/>
+    <STRING lang="sl" value="Nov_dokument Nova_razpredelnica Nova_predstavitev Nova_predloga_za_obrazec"/>
   </ENTRY>
   <ENTRY id="Property.Manufacturer">
     <STRING lang="cs" value="Ascensio System SIA"/>

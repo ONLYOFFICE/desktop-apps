@@ -7,10 +7,11 @@
     <ROW Property="AI_APP_FILE" Value="[#DesktopEditors.exe]"/>
     <ROW Property="AI_BITMAP_DISPLAY_MODE" Value="0"/>
     <ROW Property="AI_EXTERNALUIUNINSTALLERNAME" MultiBuildValue="MsiBuild64:aiui#MsiBuild32:aiui"/>
-    <ROW Property="AI_PRODUCTNAME_ARP" Value="[|ProductName] [|ProductVersion] ([|ARCH])" ValueLocId="-"/>
+    <ROW Property="AI_PRODUCTNAME_ARP" Value="[|ProductName] [|VERSION_SHORT] ([|ARCH])" ValueLocId="-"/>
     <ROW Property="AI_SHORTCUTSREG" Value="0|0|0|0|"/>
     <ROW Property="AI_UNINSTALLER" Value="msiexec.exe"/>
     <ROW Property="ALLUSERS" Value="1"/>
+    <ROW Property="APP_USER_MODEL_ID" Value="ASC.Documents.5"/>
     <ROW Property="ARCH" Value="x64" MultiBuildValue="MsiBuild32:x86" ValueLocId="-"/>
     <ROW Property="ARPCOMMENTS" Value="Free desktop office suite for document editing and collaboration" ValueLocId="*"/>
     <ROW Property="ARPCONTACT" Value="20A-6, Ernesta Birznieka-Upisha str., Riga, LV-1050"/>
@@ -44,11 +45,12 @@
     <ROW Property="COMMON_SHORTCUT_NAME" Value="ONLYOFFICE Editors"/>
     <ROW Property="CTRLS" Value="2"/>
     <ROW Property="CUSTOM_PATH" Value="C:\[|ProgramFilesFolder][|Manufacturer]MediaViewer"/>
-    <ROW Property="DeUpdateSvc_DescriptionName" Value="Service for update [|ProductName]"/>
-    <ROW Property="DeUpdateSvc_DispalyName" Value="[|ProductName] update service"/>
-    <ROW Property="DeUpdateSvc_ServiceName" Value="DeUpdateSvc"/>
+    <ROW Property="DeUpdateSvc_DescriptionName" Value="Update service for ONLYOFFICE Desktop Editors"/>
+    <ROW Property="DeUpdateSvc_DispalyName" Value="ONLYOFFICE Update Service"/>
+    <ROW Property="DeUpdateSvc_ServiceName" Value="ONLYOFFICE Update Service"/>
     <ROW Property="GALLERY" Value="1" Type="4" ValueLocId="-"/>
     <ROW Property="GALLERY_SHORTCUT_NAME" Value="Gallery"/>
+    <ROW Property="JUMP_LIST_ARG" Value="New_document New_spreadsheet New_presentation New_form_template"/>
     <ROW Property="MANUFACTURER_INSTALL_FOLDER" Value="ONLYOFFICE"/>
     <ROW Property="MEDIA_SHORTCUT_NAME" Value="Media"/>
     <ROW Property="MSIFASTINSTALL" MultiBuildValue="MsiBuild64:7#MsiBuild32:7"/>
@@ -93,6 +95,8 @@
     <ROW Property="UNINSTALL_PREV_ERROR_TEXT" Value="To install [|ProductName], the previous version must be uninstalled."/>
     <ROW Property="UNINSTALL_PREV_MSGBOX" Value="The previous version of [|ProductName] detected, please click &apos;OK&apos; button to uninstall it, or &apos;Cancel&apos; to quit setup."/>
     <ROW Property="UpgradeCode" Value="{47EEF706-B0E4-4C43-944B-E5F914B92B79}"/>
+    <ROW Property="VERSION" Value="0.0.0.0" ValueLocId="-"/>
+    <ROW Property="VERSION_SHORT" Value="0.0" ValueLocId="-"/>
     <ROW Property="WindowsType9X" MultiBuildValue="MsiBuild64:Windows 9x/ME#MsiBuild32:Windows 9x/ME" ValueLocId="-"/>
     <ROW Property="WindowsType9XDisplay" MultiBuildValue="MsiBuild64:Windows 9x/ME#MsiBuild32:Windows 9x/ME" ValueLocId="-"/>
     <ROW Property="WindowsTypeNT" MultiBuildValue="MsiBuild64:Windows 9x/ME/NT/2000/XP/Vista/Windows 7/Windows 8 x86/Windows 8.1 x86/Windows 10 x86" ValueLocId="-"/>
@@ -110,7 +114,6 @@
     <ROW Directory="DesktopFolder" Directory_Parent="TARGETDIR" DefaultDir="DESKTO~1|DesktopFolder" IsPseudoRoot="1"/>
     <ROW Directory="SHORTCUTDIR" Directory_Parent="TARGETDIR" DefaultDir="SHORTC~1|SHORTCUTDIR" IsPseudoRoot="1"/>
     <ROW Directory="TARGETDIR" DefaultDir="SourceDir"/>
-    <ROW Directory="converter_Dir" Directory_Parent="APPDIR" DefaultDir="CONVER~1|converter"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
     <ROW Component="AIShRegAnswer" ComponentId="{8BE0AC3F-59B9-4398-8A0B-085CE4B0F9C3}" Directory_="APPDIR" Attributes="260" KeyPath="AIShRegAnswer"/>
@@ -151,7 +154,6 @@
     <ROW Component="Software" ComponentId="{90AC3C8E-9762-4613-B621-A0EFD3868D77}" Directory_="APPDIR" Attributes="260" KeyPath="Software_3"/>
     <ROW Component="Version" ComponentId="{3914F236-2B4C-4E31-95FA-F57F91FA19C9}" Directory_="APPDIR" Attributes="260" KeyPath="Version_1"/>
     <ROW Component="VideoPlayer.exe" ComponentId="{39F3F737-40E8-42F0-9342-BF8232F34B72}" Directory_="CUSTOM_PATH" Attributes="0" Condition="PLAYER = &quot;1&quot;" KeyPath="VideoPlayer.exe"/>
-    <ROW Component="converter" ComponentId="{12A5FBD9-24E5-4B61-A2A4-CFEFA169122C}" Directory_="converter_Dir" Attributes="0"/>
     <ROW Component="locale_HK_CU" ComponentId="{FF7C0526-7824-44B9-AF7E-B51FC24167A9}" Directory_="APPDIR" Attributes="260" KeyPath="locale_HK_CU"/>
     <ROW Component="locale_HK_LM" ComponentId="{D09979D5-ED81-4DE9-8602-7C1C8D2C6B75}" Directory_="APPDIR" Attributes="260" KeyPath="locale_HK_LM"/>
     <ROW Component="updatesvc.exe" ComponentId="{954103D0-8D21-42C9-A924-247FCB9653F9}" Directory_="APPDIR" Attributes="256" KeyPath="updatesvc.exe"/>
@@ -200,6 +202,10 @@
     <ROW File="ImageViewer.exe" Component_="ImageViewer.exe" FileName="IMAGEV~1.EXE|ImageViewer.exe" Attributes="0" SourcePath="..\..\..\..\build_tools\out\win_64\onlyoffice\MediaViewer\ImageViewer.exe" SelfReg="false"/>
     <ROW File="updatesvc.exe" Component_="updatesvc.exe" FileName="UPDATE~1.EXE|updatesvc.exe" Attributes="0" SourcePath="..\..\..\..\build_tools\out\win_64\onlyoffice\DesktopEditors\updatesvc.exe" SelfReg="false"/>
   </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.custcomp.MsiShortcutPropertyComponent">
+    <ROW MsiShortcutProperty="COMMON_SHORTCUT_NAME_SHORTCUTDIR2" Shortcut_="COMMON_SHORTCUT_NAME_SHORTCUTDIR" PropertyKey="System.AppUserModel.ID" PropVariantValue="[APP_USER_MODEL_ID]"/>
+    <ROW MsiShortcutProperty="COMMON_SHORTCUT_NAME_DESKTOP2" Shortcut_="COMMON_SHORTCUT_NAME_DESKTOP" PropertyKey="System.AppUserModel.ID" PropVariantValue="[APP_USER_MODEL_ID]"/>
+  </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.BuildComponent">
     <ROW BuildKey="MsiBuild32" BuildName="MsiBuild32" BuildOrder="2" BuildType="0" PackageFolder="." PackageFileName="[|MANUFACTURER_INSTALL_FOLDER]-[|PRODUCT_INSTALL_FOLDER]-[|ProductVersion]-[|ARCH]" Languages="en;ru;cs;de;es;fr;pt;pt_BR;sl;ja" LangOpt="1" InstallationType="4" ExtUI="true" UseLargeSchema="true" UACExecutionLevel="2"/>
     <ROW BuildKey="MsiBuild64" BuildName="MsiBuild64" BuildOrder="1" BuildType="0" PackageFolder="." PackageFileName="[|MANUFACTURER_INSTALL_FOLDER]-[|PRODUCT_INSTALL_FOLDER]-[|ProductVersion]-[|ARCH]" Languages="en;ru;cs;de;es;fr;pt;pt_BR;sl;ja" LangOpt="1" InstallationType="4" ExtUI="true" UseLargeSchema="true" MsiPackageType="x64" UACExecutionLevel="2"/>
@@ -246,10 +252,6 @@
     <ROW Action="AI_ExtractPrereq" Description="Extracting prerequisite software" DescriptionLocId="ActionText.Description.AI_ExtractPrereq" Template="Extracting [1]{[2] completed}" TemplateLocId="ActionText.Template.AI_ExtractPrereq"/>
     <ROW Action="AI_InstallPostPrerequisite" Description="Installing prerequisite software" DescriptionLocId="ActionText.Description.AI_InstallPrerequisite" Template="Installing [1]{[2] completed}" TemplateLocId="ActionText.Template.AI_InstallPrerequisite"/>
     <ROW Action="AI_InstallPrerequisite" Description="Installing prerequisite software" DescriptionLocId="ActionText.Description.AI_InstallPrerequisite" Template="Installing [1]{[2] completed}" TemplateLocId="ActionText.Template.AI_InstallPrerequisite"/>
-    <ROW Action="AI_TxtUpdaterCommit" Description="Commit text file changes. " DescriptionLocId="ActionText.Description.AI_TxtUpdaterCommit" Template="Commit text file changes." TemplateLocId="ActionText.Template.AI_TxtUpdaterCommit"/>
-    <ROW Action="AI_TxtUpdaterConfig" Description="Executing text file updates" DescriptionLocId="ActionText.Description.AI_TxtUpdaterConfig" Template="Updating text file: &quot;[1]&quot;" TemplateLocId="ActionText.Template.AI_TxtUpdaterConfig"/>
-    <ROW Action="AI_TxtUpdaterInstall" Description="Generating actions to configure text files updates" DescriptionLocId="ActionText.Description.AI_TxtUpdaterInstall"/>
-    <ROW Action="AI_TxtUpdaterRollback" Description="Rolling back text file changes. " DescriptionLocId="ActionText.Description.AI_TxtUpdaterRollback" Template="Rolling back text file changes." TemplateLocId="ActionText.Template.AI_TxtUpdaterRollback"/>
     <ROW Action="AI_VerifyPrereq" Description="Verifying prerequisites" DescriptionLocId="ActionText.Description.AI_VerifyPrereq" Template="[1] was not installed correctly." TemplateLocId="ActionText.Template.AI_VerifyPrereq"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiAppSearchComponent">
@@ -259,7 +261,6 @@
   <COMPONENT cid="caphyon.advinst.msicomp.MsiBinaryComponent">
     <ROW Name="ExternalUICleaner.dll" SourcePath="&lt;AI_CUSTACTS&gt;ExternalUICleaner.dll"/>
     <ROW Name="Prereq.dll" SourcePath="&lt;AI_CUSTACTS&gt;Prereq.dll"/>
-    <ROW Name="TxtUpdater.dll" SourcePath="&lt;AI_CUSTACTS&gt;TxtUpdater.dll"/>
     <ROW Name="aicustact.dll" SourcePath="&lt;AI_CUSTACTS&gt;aicustact.dll"/>
     <ROW Name="aipackagechainer.exe" SourcePath="&lt;AI_CUSTACTS&gt;aipackagechainer.exe" DigSign="true"/>
     <ROW Name="background.bmp" SourcePath="data\background.bmp"/>
@@ -787,7 +788,6 @@
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCreateFolderComponent">
     <ROW Directory_="APPDIR" Component_="APPDIR" ManualDelete="true"/>
     <ROW Directory_="SHORTCUTDIR" Component_="SHORTCUTDIR" ManualDelete="false"/>
-    <ROW Directory_="converter_Dir" Component_="converter" ManualDelete="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCustActComponent">
     <ROW Action="AI_AppSearchEx" Type="1" Source="Prereq.dll" Target="DoAppSearchEx"/>
@@ -818,11 +818,9 @@
     <ROW Action="AI_RestartElevated" Type="1" Source="aicustact.dll" Target="RestartElevated"/>
     <ROW Action="AI_SHOW_LOG" Type="65" Source="aicustact.dll" Target="LaunchLogFile" WithoutSeq="true"/>
     <ROW Action="AI_STORE_LOCATION" Type="51" Source="ARPINSTALLLOCATION" Target="[APPDIR]"/>
-    <ROW Action="AI_TxtUpdaterCommit" Type="11777" Source="TxtUpdater.dll" Target="OnTxtUpdaterCommit" WithoutSeq="true"/>
-    <ROW Action="AI_TxtUpdaterConfig" Type="11265" Source="TxtUpdater.dll" Target="OnTxtUpdaterConfig" WithoutSeq="true"/>
-    <ROW Action="AI_TxtUpdaterInstall" Type="1" Source="TxtUpdater.dll" Target="OnTxtUpdaterInstall"/>
-    <ROW Action="AI_TxtUpdaterRollback" Type="11521" Source="TxtUpdater.dll" Target="OnTxtUpdaterRollback" WithoutSeq="true"/>
     <ROW Action="AI_VerifyPrereq" Type="1" Source="Prereq.dll" Target="VerifyPrereq"/>
+    <ROW Action="CreateJumpList" Type="210" Source="DesktopEditors.exe" Target="--create-jump-list [JUMP_LIST_ARG]"/>
+    <ROW Action="RemoveJumpList" Type="210" Source="DesktopEditors.exe" Target="--remove-jump-list"/>
     <ROW Action="SET_APPDIR" Type="307" Source="APPDIR" Target="[ProgramFilesFolder][Manufacturer]\[ProductName]" MultiBuildTarget="MsiBuild64:[ProgramFiles64Folder][MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]#MsiBuild32:[ProgramFilesFolder][MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]"/>
     <ROW Action="SET_SHORTCUTDIR" Type="307" Source="SHORTCUTDIR" Target="[ProgramMenuFolder][SHORTCUT_FOLDER_NAME]"/>
     <ROW Action="SET_TARGETDIR_TO_APPDIR" Type="51" Source="TARGETDIR" Target="[APPDIR]"/>
@@ -883,7 +881,6 @@
     <ROW Feature_="MainFeature" Component_="CheckForUpdates"/>
     <ROW Feature_="MainFeature" Component_="AppPath"/>
     <ROW Feature_="MainFeature" Component_="Version"/>
-    <ROW Feature_="MainFeature" Component_="converter"/>
     <ROW Feature_="MainFeature" Component_="Software"/>
     <ROW Feature_="FileProgramAssociation" Component_="ASCC_REG_REGISTERED_APP_NAME"/>
     <ROW Feature_="FileProgramAssociation" Component_="ASSOC_PROG_ID"/>
@@ -947,12 +944,13 @@
     <ROW Action="AI_LaunchChainer" Condition="AI_PREREQ_CHAINER AND (NOT UPGRADINGPRODUCTCODE)" Sequence="6598"/>
     <ROW Action="AI_AppSearchEx" Sequence="101"/>
     <ROW Action="AI_VerifyPrereq" Sequence="1101"/>
-    <ROW Action="AI_TxtUpdaterInstall" Sequence="5101"/>
     <ROW Action="SetLocaleProperty32" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) ) AND ( NOT VersionNT64 )" Sequence="53"/>
     <ROW Action="SetLocaleProperty64" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) ) AND ( VersionNT64 )" Sequence="55"/>
     <ROW Action="SetCustomPath" Condition="( NOT Installed )" Sequence="951"/>
     <ROW Action="UninstallOlderVersion32" Condition="( NOT Installed ) AND ( NOT VersionNT64 )" Sequence="51"/>
     <ROW Action="UninstallOlderVersion64" Condition="( NOT Installed ) AND ( VersionNT64 )" Sequence="52"/>
+    <ROW Action="RemoveJumpList" Condition="( Installed AND ( REMOVE = &quot;ALL&quot; OR AI_INSTALL_MODE = &quot;Remove&quot; ) )" Sequence="6602"/>
+    <ROW Action="CreateJumpList" Condition="( NOT Installed )" Sequence="6601"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiInstallUISequenceComponent">
     <ROW Action="AI_RESTORE_LOCATION" Condition="APPDIR=&quot;&quot;" Sequence="747"/>
@@ -1319,11 +1317,5 @@
     <ROW SearchKey="Version_1" Prereq="MicrosoftVisualC_2015_x64" SearchType="4" SearchString="{36F68A90-239C-34DF-B58C-64B30153CE35}" VerMin="14.32.31332.0" Order="0" Property="PreReqSearch_3" Platform="1"/>
     <ROW SearchKey="Version_2" Prereq="MicrosoftVisualC_2013_x86" SearchType="4" SearchString="{B59F5BF1-67C8-3802-8E59-2CE551A39FC5}" VerMin="12.0.21005" Order="1" Property="PreReqSearch"/>
     <ROW SearchKey="Version_3" Prereq="MicrosoftVisualC_2013_x64" SearchType="4" SearchString="{20400CF0-DE7C-327E-9AE4-F0F38D9085F8}" VerMin="12.0.21005" Order="1" Property="PreReqSearch_4" Platform="1"/>
-  </COMPONENT>
-  <COMPONENT cid="caphyon.advinst.msicomp.TxtUpdateComponent">
-    <ROW Name="ReplacePackage" TxtUpdateSet="package.config" FindPattern="package=.*" ReplacePattern="package=msi" Options="3" Order="0" FileEncoding="-1"/>
-  </COMPONENT>
-  <COMPONENT cid="caphyon.advinst.msicomp.TxtUpdateSetComponent">
-    <ROW Key="package.config" Component="CheckForUpdates" FileName="package.config" Directory="converter_Dir" Options="17"/>
   </COMPONENT>
 </DOCUMENT>
