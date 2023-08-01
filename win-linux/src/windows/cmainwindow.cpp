@@ -51,6 +51,7 @@
 
 #ifdef _WIN32
 # include "shlobj.h"
+# include <platform_win/printdialog.h>
 #else
 # include <platform_linux/gtkprintdialog.h>
 #endif
@@ -1085,7 +1086,7 @@ void CMainWindow::onDocumentPrint(void * opts)
 
 #ifdef _WIN32
         printer->setOutputFileName("");
-        CPrintDialog * dialog =  new CPrintDialog(printer, this);
+        PrintDialog * dialog =  new PrintDialog(printer, this);
 #else
         QFileInfo info(documentName);
         QString pdfName = Utils::lastPath(LOCAL_PATH_SAVE) + "/" + info.baseName() + ".pdf";
