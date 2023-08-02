@@ -1,4 +1,5 @@
 <svg width="377" height="193" viewBox="0 0 377 193" fill="none" xmlns="http://www.w3.org/2000/svg">
+<symbol id="welcome-light" viewBox="0 0 377 193">
 <g clip-path="url(#clip0_2601_126603)">
 <path d="M298 77V94H247" stroke="#AAAAAA" stroke-dasharray="2 4"/>
 <rect x="76.5" y="38.5" width="31" height="45" rx="1.5" fill="#F9F9F9" stroke="#AAAAAA"/>
@@ -216,4 +217,5 @@
 <rect width="377" height="146" fill="white" transform="translate(0 24)"/>
 </clipPath>
 </defs>
+</symbol>
 </svg>
