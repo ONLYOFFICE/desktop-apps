@@ -87,7 +87,7 @@ CTabBar[active=false] Tab[selected=true][hovered=true] #tabButton:pressed {image
 #mainPanel[uitheme=theme-contrast-dark] CTabBar[active=false] Tab[selected=true][hovered=true] #tabButton:hover {image: url(:/tabbar/icons/close_active_hover.svg);}
 #mainPanel[uitheme=theme-contrast-dark] Tab[selected=false][hovered=true] #tabButton:pressed,
 #mainPanel[uitheme=theme-contrast-dark] CTabBar[active=false] Tab[selected=true][hovered=true] #tabButton:pressed {image: url(:/tabbar/icons/close_active_pressed.svg);}
-#mainPanel[uitheme=theme-contrast-dark] Tab[selected=true] #tabButton:pressed {background: #424242;}
+#mainPanel[uitheme=theme-contrast-dark] Tab[selected=true] #tabButton:pressed {background: #cc0000;}
 #mainPanel[uitheme=theme-contrast-dark] Tab[selected=true][custom=true] #tabButton:pressed {background: transparent;}
 
 /* portal */
