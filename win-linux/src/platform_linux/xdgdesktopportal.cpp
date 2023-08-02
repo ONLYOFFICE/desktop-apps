@@ -1153,7 +1153,9 @@ QStringList Xdg::openXdgPortal(QWidget *parent,
     FilterItem filterItem[filterSize];
     int index = 0;
     foreach (const QString &flt, filterList) {
-        filterItem[index].name = strdup(flt.toUtf8().data());
+        QString flt_name = (mode == Mode::OPEN && flt.length() > 255 && flt.indexOf('(') > 1) ?
+                               flt.mid(0, flt.indexOf('(') - 1) : flt;
+        filterItem[index].name = strdup(flt_name.toUtf8().data());
         auto parse = flt.split('(');        
         if (parse.size() == 1) {
             filterItem[index].pattern = strdup("");
@@ -1169,7 +1171,9 @@ QStringList Xdg::openXdgPortal(QWidget *parent,
     selFilterItem.name = NULL;
     selFilterItem.pattern = NULL;
     if (mode != Mode::FOLDER && sel_filter) {
-        selFilterItem.name = strdup(sel_filter->toUtf8().data());
+        QString flt_name = (mode == Mode::OPEN && sel_filter->length() > 255 && sel_filter->indexOf('(') > 1) ?
+                               sel_filter->mid(0, sel_filter->indexOf('(') - 1) : *sel_filter;
+        selFilterItem.name = strdup(flt_name.toUtf8().data());
         auto parse = sel_filter->split('(');
         if (parse.size() == 1) {
             selFilterItem.pattern = strdup("");
