@@ -260,6 +260,7 @@ core_windows {
                $$PWD/src/windows/platform_win/caption.h \
                $$PWD/src/platform_win/singleapplication.h \
                $$PWD/src/platform_win/filechooser.h \
+               $$PWD/src/platform_win/printdialog.h \
                $$PWD/src/platform_win/message.h \
                $$PWD/src/platform_win/resource.h
 
@@ -267,6 +268,7 @@ core_windows {
                $$PWD/src/windows/platform_win/csnap.cpp \
                $$PWD/src/platform_win/singleapplication.cpp \
                $$PWD/src/platform_win/filechooser.cpp \
+               $$PWD/src/platform_win/printdialog.cpp \
                $$PWD/src/platform_win/message.cpp
 
     updmodule:!build_xp {
