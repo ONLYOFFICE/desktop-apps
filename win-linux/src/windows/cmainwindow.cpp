@@ -691,6 +691,24 @@ void CMainWindow::onPortalLogout(std::wstring wjson)
     }
 }
 
+void CMainWindow::onPortalLogin(int viewid, const std::wstring &json)
+{
+    if ( !(json.find(L"uiTheme") == std::wstring::npos) ) {
+        QJsonParseError jerror;
+        QJsonDocument jdoc = QJsonDocument::fromJson(QString::fromStdWString(json).toLatin1(), &jerror);
+
+        if( jerror.error == QJsonParseError::NoError ) {
+            QJsonObject objRoot = jdoc.object();
+            QString _ui_theme = objRoot["uiTheme"].toString();
+            if ( !_ui_theme.isEmpty() ) {
+//                onFileLocation(vid, _url);
+            }
+        }
+
+        m_pTabs->tabIndexByView(viewid);
+    }
+}
+
 void CMainWindow::doOpenLocalFile(COpenOptions& opts)
 {
     QFileInfo info(opts.url);
