@@ -59,6 +59,8 @@
 
 #ifdef __linux__
 # include "platform_linux/gtkprintdialog.h"
+#else
+# include "platform_win/printdialog.h"
 #endif
 
 #define TOP_PANEL_OFFSET 6*TOOLBTN_WIDTH
@@ -393,9 +395,8 @@ public:
 
     void onDocumentChanged(int id, bool state) override
     {
+        CCefEventsGate::onDocumentChanged(id, state);
         if ( panel()->data()->hasChanges() != state ) {
-            CCefEventsGate::onDocumentChanged(id, state);
-
             if ( canExtendTitle() && window->isCustomWindowStyle() ) {
                 window->setWindowTitle(m_panel->data()->title());
                 window->m_boxTitleBtns->repaint();
@@ -491,7 +492,7 @@ public:
 
 #ifdef _WIN32
             printer->setOutputFileName("");
-            CPrintDialog * dialog =  new CPrintDialog(printer, window->handle());
+            PrintDialog * dialog =  new PrintDialog(printer, window->handle());
 #else
             QFileInfo info(documentName);
             QString pdfName = Utils::lastPath(LOCAL_PATH_SAVE) + "/" + info.baseName() + ".pdf";
