@@ -591,17 +591,17 @@
         <location filename="../src/cupdatemanager.cpp" line="642"/>
         <location filename="../src/cupdatemanager.cpp" line="667"/>
         <source>A new version of %1 is available!</source>
-        <translation type="unfinished">%1 හි නව අනුවාදයක් තිබේ!</translation>
+        <translation>%1 හි නව අනුවාදයක් තිබේ!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="643"/>
         <source>%1 %2 is now available (you have %3). Would you like to download it now?</source>
-        <translation type="unfinished">%1 %2 දැන් තිබේ (%3 ඔබ සතුයි). දැන් එය බාගැනීමට කැමතිද?</translation>
+        <translation>%1 %2 දැන් තිබේ (%3 ඔබ සතුයි). දැන් එය බාගැනීමට කැමතිද?</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="668"/>
         <source>%1 %2 is now downloaded (you have %3). Would you like to install it now?</source>
-        <translation type="unfinished">%1 %2 දැන් බාගත වී ඇත (%3 ඔබ සතුයි). දැන් එය ස්ථාපනය කිරීමට කැමතිද?</translation>
+        <translation>%1 %2 දැන් බාගත වී ඇත (%3 ඔබ සතුයි). දැන් එය ස්ථාපනය කිරීමට කැමතිද?</translation>
     </message>
 </context>
 <context>
@@ -719,7 +719,7 @@
     <message>
         <location filename="../src/defines.h" line="128"/>
         <source>Cancel</source>
-        <translation type="unfinished">අවලංගු</translation>
+        <translation>අවලංගු</translation>
     </message>
     <message>
         <location filename="../src/defines.h" line="129"/>
