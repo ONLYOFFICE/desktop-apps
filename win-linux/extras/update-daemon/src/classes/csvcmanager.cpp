@@ -50,6 +50,7 @@
 # define DAEMON_NAME      L"/updatesvc.exe"
 # define DAEMON_NAME_OLD  L"/~updatesvc.exe"
 # define RESTART_BATCH    L"/svcrestart.bat"
+# define SUBFOLDER        TEXT("/" REG_APP_NAME)
 # define ARCHIVE_EXT      TEXT(".zip")
 # define ARCHIVE_PATTERN  TEXT("*.zip")
 # define sleep(a) Sleep(a)
@@ -381,6 +382,7 @@ void CSvcManager::startReplacingFiles()
 {
     tstring appPath = NS_File::appPath();
     tstring updPath = NS_File::parentPath(appPath) + UPDATE_PATH;
+    tstring updSubPath = NS_File::fileExists(updPath + SUBFOLDER + APP_LAUNCH_NAME) ? updPath + SUBFOLDER : updPath;
     tstring tmpPath = NS_File::parentPath(appPath) + BACKUP_PATH;
     if (!NS_File::dirExists(updPath)) {
         NS_Logger::WriteLog(TEXT("Update cancelled. Can't find folder: ") + updPath, true);
@@ -393,8 +395,8 @@ void CSvcManager::startReplacingFiles()
     {
         tstring apps[] = {APP_LAUNCH_NAME, APP_LAUNCH_NAME2, APP_HELPER, DAEMON_NAME};
         for (int i = 0; i < sizeof(apps) / sizeof(apps[0]); i++) {
-            if (!NS_File::verifyEmbeddedSignature(updPath + apps[i])) {
-                NS_Logger::WriteLog(L"Update cancelled. The file signature is missing: " + updPath + apps[i], true);
+            if (!NS_File::verifyEmbeddedSignature(updSubPath + apps[i])) {
+                NS_Logger::WriteLog(L"Update cancelled. The file signature is missing: " + updSubPath + apps[i], true);
                 return;
             }
         }
@@ -446,11 +448,7 @@ void CSvcManager::startReplacingFiles()
     }
 
     // Move update path to app path
-#ifdef _WIN32
-    if (!NS_File::replaceFolder(updPath, appPath, true)) {
-#else
-    if (!NS_File::replaceFolder(updPath + SUBFOLDER, appPath, true)) {
-#endif
+    if (!NS_File::replaceFolder(updSubPath, appPath, true)) {
         NS_Logger::WriteLog(TEXT("Update cancelled. Can't move updates to App path: ") + NS_Utils::GetLastErrorAsString(), true);
 
         if (NS_File::dirExists(appPath) && !NS_File::removeDirRecursively(appPath)) {
