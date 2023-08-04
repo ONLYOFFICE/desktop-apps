@@ -390,17 +390,14 @@ void CSvcManager::startReplacingFiles()
 #ifdef _WIN32
 # ifndef DONT_VERIFY_SIGNATURE
     // Verify the signature of executable files
-    if (!NS_File::verifyEmbeddedSignature(updPath + APP_LAUNCH_NAME)) {
-        NS_Logger::WriteLog(L"Update cancelled. The file signature is missing: " + updPath + APP_LAUNCH_NAME, true);
-        return;
-    }
-    if (!NS_File::verifyEmbeddedSignature(updPath + APP_LAUNCH_NAME2)) {
-        NS_Logger::WriteLog(L"Update cancelled. The file signature is missing: " + updPath + APP_LAUNCH_NAME2, true);
-        return;
-    }
-    if (!NS_File::verifyEmbeddedSignature(updPath + DAEMON_NAME)) {
-        NS_Logger::WriteLog(L"Update cancelled. The file signature is missing: " + updPath + DAEMON_NAME, true);
-        return;
+    {
+        tstring apps[] = {APP_LAUNCH_NAME, APP_LAUNCH_NAME2, APP_HELPER, DAEMON_NAME};
+        for (int i = 0; i < sizeof(apps) / sizeof(apps[0]); i++) {
+            if (!NS_File::verifyEmbeddedSignature(updPath + apps[i])) {
+                NS_Logger::WriteLog(L"Update cancelled. The file signature is missing: " + updPath + apps[i], true);
+                return;
+            }
+        }
     }
 # endif
 #endif
@@ -413,33 +410,22 @@ void CSvcManager::startReplacingFiles()
 
     // Wait until the main app closes
     {
-        int retries = 10;
 #ifdef _WIN32
-        tstring app(APP_LAUNCH_NAME2);
+        tstring apps[] = {APP_LAUNCH_NAME2, APP_HELPER};
 #else
-        tstring app(APP_LAUNCH_NAME);
+        tstring apps[] = {APP_LAUNCH_NAME, APP_HELPER};
 #endif
-        app = app.substr(1);
-        while (NS_File::isProcessRunning(app) && retries-- > 0)
-            sleep(500);
+        for (int i = 0; i < sizeof(apps) / sizeof(apps[0]); i++) {
+            int retries = 10;
+            tstring app(apps[i]);
+            app = app.substr(1);
+            while (NS_File::isProcessRunning(app) && retries-- > 0)
+                sleep(500);
 
-        if (NS_File::isProcessRunning(app)) {
-            NS_Logger::WriteLog(TEXT("Update cancelled. The main application is not closed!"), true);
-            return;
-        }
-    }
-
-    // Wait until editors_helper.exe closes
-    {
-        int retries = 10;
-        tstring app(APP_HELPER);
-        app = app.substr(1);
-        while (NS_File::isProcessRunning(app) && retries-- > 0)
-            sleep(500);
-
-        if (NS_File::isProcessRunning(app)) {
-            NS_Logger::WriteLog(TEXT("Update cancelled. The editors_helper is not closed!"), true);
-            return;
+            if (NS_File::isProcessRunning(app)) {
+                NS_Logger::WriteLog(TEXT("Update cancelled. The ") + app + TEXT(" is not closed!"), true);
+                return;
+            }
         }
     }
 
@@ -479,23 +465,20 @@ void CSvcManager::startReplacingFiles()
     }
 
 #ifdef _WIN32
-    // To support a version with unins000 files inside the working folder
-    if (NS_File::fileExists(tmpPath + L"/unins000.msg"))
-        NS_File::replaceFile(tmpPath + L"/unins000.msg", appPath + L"/unins000.msg");
-    if (NS_File::fileExists(tmpPath + L"/unins000.dat"))
-        NS_File::replaceFile(tmpPath + L"/unins000.dat", appPath + L"/unins000.dat");
-    if (NS_File::fileExists(tmpPath + L"/unins000.exe"))
-        NS_File::replaceFile(tmpPath + L"/unins000.exe", appPath + L"/unins000.exe");
+    // Moving the necessary files to their original location
+    {
+        tstring files[] = {L"/unins000.msg", L"/unins000.dat", L"/unins000.exe", L"/converter/package.config"};
+        for (int i = 0; i < sizeof(files) / sizeof(files[0]); i++) {
+            if (NS_File::fileExists(tmpPath + files[i]))
+                NS_File::replaceFile(tmpPath + files[i], appPath + files[i]);
+        }
+    }
 
     // To support a version without updatesvc.exe inside the working folder
     if (!NS_File::fileExists(appPath + DAEMON_NAME))
         NS_File::replaceFile(tmpPath + DAEMON_NAME, appPath + DAEMON_NAME);
     else
         NS_File::replaceFile(tmpPath + DAEMON_NAME, appPath + DAEMON_NAME_OLD);
-
-    // Package type sync
-    if (NS_File::fileExists(tmpPath + TEXT("/converter/package.config")))
-        NS_File::replaceFile(tmpPath + TEXT("/converter/package.config"), appPath + TEXT("/converter/package.config"));
 
     // Update version in registry
     {
