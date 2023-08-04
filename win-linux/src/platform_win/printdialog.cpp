@@ -123,12 +123,12 @@ private:
                                                        LRESULT *pResult) noexcept final {
         return S_FALSE;
     }
-    virtual HRESULT InitDone() noexcept final {
+    virtual HRESULT STDMETHODCALLTYPE InitDone() noexcept final {
         if (m_dialog_was_changed && *m_dialog_was_changed)   // Restore print dialog type
             resetLegacyPrintDialog();
         return S_FALSE;
     }
-    virtual HRESULT SelectionChange() noexcept final {
+    virtual HRESULT STDMETHODCALLTYPE SelectionChange() noexcept final {
         return S_FALSE;
     }
 
