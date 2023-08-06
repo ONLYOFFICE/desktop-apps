@@ -64,7 +64,7 @@
     if (@available(macOS 10.13, *)) {
         return [NSColor colorNamed:@"brend-PresentationEditor"];
     }
-    return UIColorFromRGB(0xaa5252);
+    return UIColorFromRGB(0xbe664f);
 }
 
 @end
