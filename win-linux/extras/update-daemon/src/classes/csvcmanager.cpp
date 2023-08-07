@@ -70,6 +70,7 @@
 
 #define UPDATE_PATH      TEXT("/" REG_APP_NAME "Updates")
 #define BACKUP_PATH      TEXT("/" REG_APP_NAME "Backup")
+#define PROVIDERS_PATH   TEXT("/providers")
 #define SUCCES_UNPACKED  TEXT("/success_unpacked.txt")
 
 using std::vector;
@@ -505,6 +506,25 @@ void CSvcManager::startReplacingFiles()
         }
     }
 #endif
+
+    // Merging provider folders
+    {
+        tstring err;
+        std::list<tstring> old_providers, new_providers;
+        if (NS_File::GetFilesList(tmpPath + PROVIDERS_PATH, &old_providers, err, true, true)) {
+            if (NS_File::GetFilesList(appPath + PROVIDERS_PATH, &new_providers, err, true, true)) {
+                for (auto &path : old_providers) {
+                    if (std::find(new_providers.begin(), new_providers.end(), path) == new_providers.end()) {
+                        if (!NS_File::replaceFolder(tmpPath + PROVIDERS_PATH + path, appPath + PROVIDERS_PATH + path)) {
+                            NS_Logger::WriteLog(TEXT("An error occurred while replace providers: ") + NS_Utils::GetLastErrorAsString());
+                        }
+                    }
+                }
+            } else
+                NS_Logger::WriteLog(DEFAULT_ERROR_MESSAGE + TEXT(" ") + err);
+        } else
+            NS_Logger::WriteLog(DEFAULT_ERROR_MESSAGE + TEXT(" ") + err);
+    }
 
     // Remove Backup dir
     NS_File::removeDirRecursively(tmpPath);
