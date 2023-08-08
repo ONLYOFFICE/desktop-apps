@@ -304,7 +304,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="93"/>
         <source>Macro-enabled Presentation File (*.pptm)</source>
-        <translation type="unfinished"></translation>
+        <translation>සාර්ව-සක්‍රිය සමර්පණ ගොනුව (*.pptm)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="95"/>
@@ -319,7 +319,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="97"/>
         <source>Macro-enabled spreadsheet template (*.xltm)</source>
-        <translation type="unfinished"></translation>
+        <translation>සාර්ව-සක්‍රිය පැතුරුම්පත් අච්චුව (*.xltm)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="98"/>
@@ -585,7 +585,7 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="330"/>
         <source>This folder configuration does not allow for updates! The folder name should be: </source>
-        <translation type="unfinished"></translation>
+        <translation>මෙම බහාලුම් වින්‍යාසය යාවත්කාල සඳහා ඉඩ නොදේ! බහාලුමේ නම විය යුතු වන්නේ:</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="642"/>
@@ -633,13 +633,13 @@
     <message>
         <location filename="../src/ceditortools.cpp" line="146"/>
         <source>XML File (*.xml)</source>
-        <translation type="unfinished"></translation>
+        <translation>XML ගොනුව (*.xml)</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="228"/>
         <location filename="../src/windows/cmainwindow.cpp" line="747"/>
         <source>Access to file &apos;%1&apos; is denied!</source>
-        <translation type="unfinished"></translation>
+        <translation>&apos;%1&apos; ගොනුවට ප්‍රවේශය ප්‍රතිෂේධනය කර ඇත!</translation>
     </message>
     <message>
         <location filename="../src/casctabdata.cpp" line="177"/>
@@ -694,27 +694,27 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="343"/>
         <source>An error occurred while check updates: Update Service not found!</source>
-        <translation type="unfinished"></translation>
+        <translation>යාවත්කාල පරීක්‍ෂාවේදී දෝෂයක් මතු විය: යාවත්කාල සේවාව හමු නොවිණි!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="446"/>
         <source>An error occurred while loading updates: Update Service not found!</source>
-        <translation type="unfinished"></translation>
+        <translation>යාවත්කාල පූරණයේදී දෝෂයක් මතු විය: යාවත්කාල සේවාව හමු නොවිණි!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="486"/>
         <source>An error occurred while unzip updates: Update Service not found!</source>
-        <translation type="unfinished"></translation>
+        <translation>යාවත්කාල පරීක්‍ෂාවේදී දෝෂයක් මතු විය: යාවත්කාල සේවාව හමු නොවිණි!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="497"/>
         <source>An error occurred while start install updates!</source>
-        <translation type="unfinished"></translation>
+        <translation>යාවත්කාල ස්ථාපනය ඇරඹීමේදී දෝෂයක් මතු විය!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="501"/>
         <source>An error occurred while start replacing files: Update Service not found!</source>
-        <translation type="unfinished"></translation>
+        <translation>ගොනු ප්‍රතිස්ථාපනය ඇරඹීමේදී  දෝෂයක් මතු විය: යාවත්කාල සේවාව හමු නොවිණි!</translation>
     </message>
     <message>
         <location filename="../src/defines.h" line="128"/>
@@ -724,48 +724,48 @@
     <message>
         <location filename="../src/defines.h" line="129"/>
         <source>Yes</source>
-        <translation type="unfinished">ඔව්</translation>
+        <translation>ඔව්</translation>
     </message>
     <message>
         <location filename="../src/defines.h" line="130"/>
         <source>No</source>
-        <translation type="unfinished">නැහැ</translation>
+        <translation>නැහැ</translation>
     </message>
     <message>
         <location filename="../src/components/cmessage.cpp" line="199"/>
         <location filename="../src/defines.h" line="131"/>
         <source>OK</source>
-        <translation type="unfinished">හරි</translation>
+        <translation>හරි</translation>
     </message>
     <message>
         <location filename="../src/defines.h" line="132"/>
         <source>Skip</source>
-        <translation type="unfinished">මඟහරින්න</translation>
+        <translation>මඟහරින්න</translation>
     </message>
     <message>
         <location filename="../src/defines.h" line="133"/>
         <source>Buy Now</source>
-        <translation type="unfinished"></translation>
+        <translation>මිලදී ගන්න</translation>
     </message>
     <message>
         <location filename="../src/defines.h" line="134"/>
         <source>Activate</source>
-        <translation type="unfinished"></translation>
+        <translation>සක්‍රියනය</translation>
     </message>
     <message>
         <location filename="../src/defines.h" line="135"/>
         <source>Continue</source>
-        <translation type="unfinished"></translation>
+        <translation>ඉදිරියට</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/xdgdesktopportal.cpp" line="1217"/>
         <source>An error occurred while opening the portal:&lt;br&gt;%1</source>
-        <translation type="unfinished"></translation>
+        <translation>ද්වාරය විවෘත කිරීමේදී දෝෂයක් මතු විය:&lt;br&gt;%1</translation>
     </message>
     <message>
         <location filename="../src/main.cpp" line="64"/>
         <source>App can&apos;t working correctly under admin rights.</source>
-        <translation type="unfinished"></translation>
+        <translation>පරිපාලන හිමිකම් යටතේ යෙදුම හරිහැටි වැඩ නොකරයි.</translation>
     </message>
     <message>
         <source>&amp;OK</source>
