@@ -71,6 +71,8 @@ l10n.en = {
     errLoginAuth: 'Error on user information query',
     errLoginPass: 'Check the password',
     errLoginWrongPhone: 'Wrong phone number format',
+    errNoConnection: 'No internet connection',
+    errNoConnectionDescription: 'Couldn’t load this section because you are experiencing possible network issues. Please check your internet connection and try again.',
     pshPortal: 'Cloud office URL',
     pshEmail: 'email',
     pshPass: 'password',

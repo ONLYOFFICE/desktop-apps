@@ -59,10 +59,16 @@
     var ViewTemplates = function(args) {
         var _lang = utils.Lang;
 
-        const msg = 'Oops! Something went wrong :(<br>Check internet connection';
-        this.emptyPanelContent = `<div id="frame"><h3>${msg}</h3>`;
+        const errorNoConnection = 'No internet connection';
+        const errorNoConnectionDescription = 'Couldn’t load this section because you are experiencing possible network issues. Please check your internet connection and try again.';
+        this.emptyPanelContent =
+            `<div id="frame">
+                <img id='idx-error-connection' src='../res/img/connection_error.png'>
+                <h3>${_lang.errNoConnection}</h3>
+                <h4 style='padding:0 40px; margin:0'>${_lang.errNoConnectionDescription}</h4>
+            </div>`;
 
-        args.tplPage = `<div class="action-panel ${args.action}">${this.emptyPanelContent}</div></div>`;
+        args.tplPage = `<div class="action-panel ${args.action}">${this.emptyPanelContent}</div>`;
         args.menu = '.main-column.tool-menu';
         args.field = '.main-column.col-center';
         args.itemindex = 0;
