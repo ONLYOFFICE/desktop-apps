@@ -887,7 +887,9 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
                 if ( !_app.m_pMainWindow ) {
                     _app.m_pMainWindow = _app.prepareMainWindow(_start_rect);
                     _app.m_pMainWindow->show(reg_user.value("maximized", false).toBool());
-                }
+                } else
+                if (!_app.m_pMainWindow->isVisible())
+                    _app.m_pMainWindow->show(_app.m_pMainWindow->windowState().testFlag(Qt::WindowMaximized));
 
                 _app.mainWindow()->attachEditor(panel);
                 QTimer::singleShot(100, &_app, [&]{
