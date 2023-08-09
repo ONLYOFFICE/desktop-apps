@@ -160,7 +160,7 @@
         <file alias="uk-UA.qm">langs/uk.qm</file>
         <file alias="vi-VN.qm">langs/vi.qm</file>
         <file alias="zh-CN.qm">langs/zh_CN.qm</file>
-        <file alias="zh-HK.qm">langs/zh_HK.qm</file>
+        <file alias="zh-TW.qm">langs/zh_TW.qm</file>
         <file alias="qtbase_ru-RU.qm">langs/qtbase_ru.qm</file>
     </qresource>
     <qresource prefix="/themes">

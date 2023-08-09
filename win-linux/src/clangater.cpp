@@ -122,7 +122,7 @@ private:
         ,{"pt-PT", "Português (Portugal)"}
         ,{"pl-PL", "Polski"}
         ,{"zh-CN", "简体中文"}
-        ,{"zh-HK", "繁體中文"}
+        ,{"zh-TW", "繁體中文"}
         ,{"ca-ES", "Catalan"}
         ,{"da-DK", "Dansk"}
         ,{"el-GR", "Ελληνικά"}
