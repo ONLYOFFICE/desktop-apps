@@ -52,28 +52,31 @@
 
         // args.id&&(args.id=`"id=${args.id}"`)||(args.id='');
 
-        let _html = `<div class="action-panel ${args.action}">` +
-                      '<div class="flexbox">' +
-                        '<div id="box-recovery" class="flex-item">' +
-                          '<div class="flexbox">'+
-                            `<h3 class="table-caption" l10n>${_lang.listRecoveryTitle}</h3>`+
-                            '<div class="table-box flex-fill">'+
-                              '<table id="tbl-filesrcv" class="table-files list"></table>'+
-                            '</div>' +
-                          '</div>' +
-                        '</div>' +
-                        '<div id="recovery-sep"></div>' +
-                        '<div id="box-recent" class="flex-item flex-fill">' +
-                          '<div class="flexbox">'+
-                            `<h3 class="table-caption" l10n>${_lang.listRecentFileTitle}</h3>`+
-                            '<div class="table-box flex-fill">'+
-                              '<table class="table-files list"></table>'+
-                              '<h4 class="text-emptylist img-before-el" l10n>' + _lang.textNoFiles + '</h4>' +
-                            '</div>' +
-                          '</div>' +
-                        '</div>' +
-                      '</div>' +
-                    '</div>';
+        let _html = `<div class="action-panel ${args.action}">
+                      <div class="flexbox">
+                        <div id="box-recovery" class="flex-item">
+                          <div class="flexbox">'+
+                            <h3 class="table-caption" l10n>${_lang.listRecoveryTitle}</h3>
+                            <div class="table-box flex-fill">
+                              <table id="tbl-filesrcv" class="table-files list"></table>
+                            </div>
+                          </div>
+                        </div>
+                        <div id="recovery-sep"></div>
+                        <div id="box-recent" class="flex-item flex-fill">
+                          <div class="flexbox">
+                            <div>
+                              <h3 class="table-caption" l10n>${_lang.listRecentFileTitle}</h3>
+                              <input type="text" id="idx-recent-filter">
+                            </div>
+                            <div class="table-box flex-fill">
+                              <table class="table-files list"></table>
+                              <h4 class="text-emptylist img-before-el" l10n>${_lang.textNoFiles}</h4>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>`;
 
         args.tplPage = _html;
         args.menu = '.main-column.tool-menu';
@@ -329,6 +332,30 @@
             }
         };
 
+        function _on_filter_recents(e) {
+            console.log('on recents filter', e.target.value)
+
+            const _filter = e.target.value;
+            if ( !_filter.length ) {
+                $('.table-files tr.hidden', this.view.$panel).removeClass('hidden')
+
+                collectionRecents.items.forEach(model => model.set('hidden', false));
+            } else {
+                const re = new RegExp(_filter, "gi");
+                collectionRecents.items.forEach(model => {
+                    const _path = model.get('path');
+                    if ( !re.test(_path) ) {
+                        $('#' + model.uid, this.view.$panel).addClass('hidden');
+                        model.set('hidden', true);
+                    } else
+                    if ( model.get('hidden') ) {
+                        $('#' + model.uid, this.view.$panel).removeClass('hidden');
+                        model.set('hidden', false);
+                    }
+                });
+            }
+        }
+
         return {
             init: function() {
                 baseController.prototype.init.apply(this, arguments);
@@ -385,6 +412,8 @@
                     if ( Menu.opened )
                         Menu.closeAll();
                 });
+
+                $('#idx-recent-filter', this.view.$panel).on('input', _on_filter_recents.bind(this));
 
                 return this;
             },
