@@ -189,6 +189,7 @@ public:
     static bool             canAppClose();
     static QCefView *       createViewer(QWidget * parent);
     static QString          newFileName(int format);
+    static QString          newFileName(const std::wstring& format);
     static CThemes &        themes();
     static CPrintData&      printData();
 
