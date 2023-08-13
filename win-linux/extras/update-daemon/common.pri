@@ -67,6 +67,9 @@ core_windows {
                $$PWD/src/classes/platform_win/cunzip.cpp \
                $$PWD/src/classes/platform_win/cdownloader.cpp
 
+    OTHER_FILES += $$PWD/res/version.rc \
+                   $$PWD/res/manifest/update-daemon.exe.manifest
+
     build_xp {
         DESTDIR = $$DESTDIR/xp
         DEFINES += __OS_WIN_XP
