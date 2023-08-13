@@ -30,7 +30,7 @@ ENV_PRODUCT_VERSION = $$(PRODUCT_VERSION)
 }
 
 core_windows {
-    RC_FILE = $$PWD/version.rc
+    RC_FILE = $$PWD/res/version.rc
 
     CONFIG += embed_manifest_exe
     # Uncomment to testing service control
