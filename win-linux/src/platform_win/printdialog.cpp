@@ -82,6 +82,7 @@ auto getPaperSizeFromPageSize(PageSize page_size)->int
     }
 }
 
+#ifndef __OS_WIN_XP
 auto resetLegacyPrintDialog()->void
 {
     HKEY hKey = NULL;
@@ -96,6 +97,7 @@ auto resetLegacyPrintDialog()->void
         RegCloseKey(hKey);
     }
 }
+#endif
 
 struct PrintDialogCallback : public IPrintDialogCallback
 {
@@ -124,8 +126,10 @@ private:
         return S_FALSE;
     }
     virtual HRESULT STDMETHODCALLTYPE InitDone() noexcept final {
+#ifndef __OS_WIN_XP
         if (m_dialog_was_changed && *m_dialog_was_changed)   // Restore print dialog type
             resetLegacyPrintDialog();
+#endif
         return S_FALSE;
     }
     virtual HRESULT STDMETHODCALLTYPE SelectionChange() noexcept final {
@@ -308,6 +312,7 @@ QDialog::DialogCode PrintDialog::exec()
 
     // Switch to legacy print dialog
     bool dialog_was_changed = false;
+#ifndef __OS_WIN_XP
     if (Utils::getWinVersion() >= Utils::WinVer::Win11) {
         HKEY hKey = NULL;
         if (RegOpenKeyEx(HKEY_CURRENT_USER, PRINT_DIALOG_REG_KEY, 0, KEY_ALL_ACCESS, &hKey) == ERROR_SUCCESS) {
@@ -323,6 +328,7 @@ QDialog::DialogCode PrintDialog::exec()
             RegCloseKey(hKey);
         }
     }
+#endif
 
     // Init dialog
     PRINTDLGEX dlg;
@@ -397,8 +403,10 @@ QDialog::DialogCode PrintDialog::exec()
         //    if (dlg.hDC)
         //        DeleteDC(dlg.hDC);
     } else {
+#ifndef __OS_WIN_XP
         if (dialog_was_changed)   // Restore print dialog type
             resetLegacyPrintDialog();
+#endif
         if (pDevMode)
             GlobalFree(pDevMode);
     }
