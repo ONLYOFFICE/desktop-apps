@@ -1,5 +1,5 @@
 
-#include "components/ctabpanel.h"
+#include "ctabpanel.h"
 #include "cascapplicationmanagerwrapper.h"
 #include "defines.h"
 #include "cefview.h"
@@ -123,6 +123,11 @@ bool CTabPanel::openLocalFile(const std::wstring& path, const std::wstring& para
 void CTabPanel::createLocalFile(int format, const std::wstring& name)
 {
     static_cast<CCefViewEditor *>(m_pViewer->GetCefView())->CreateLocalFile(format, name);
+}
+
+void CTabPanel::createLocalFile(const std::wstring& templatepath, const std::wstring& name)
+{
+    static_cast<CCefViewEditor *>(m_pViewer->GetCefView())->CreateLocalFile(0, name, templatepath);
 }
 
 bool CTabPanel::openRecoverFile(int id)

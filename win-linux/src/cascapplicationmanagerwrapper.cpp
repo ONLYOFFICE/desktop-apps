@@ -1968,6 +1968,16 @@ QString CAscApplicationManagerWrapper::newFileName(int format)
     }
 }
 
+QString CAscApplicationManagerWrapper::newFileName(const std::wstring& format)
+{
+    int _f = format == L"word" ? AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCX :
+                 format == L"cell" ? AVS_OFFICESTUDIO_FILE_SPREADSHEET_XLSX :
+                 format == L"form" ? AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCXF :
+                 format == L"slide" ? AVS_OFFICESTUDIO_FILE_PRESENTATION_PPTX : AVS_OFFICESTUDIO_FILE_UNKNOWN;
+
+    return newFileName(_f);
+}
+
 /*void CAscApplicationManagerWrapper::checkUpdates()
 {
     //APP_CAST(_app);
