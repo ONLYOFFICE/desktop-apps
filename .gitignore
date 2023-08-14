@@ -38,6 +38,7 @@ Makefile
 Makefile.*
 *.stash
 *.user
+*.user.*
 *.xcuserstate
 *.xcuserdatad
 *.xcscmblueprint

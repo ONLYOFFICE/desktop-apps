@@ -30,7 +30,7 @@ ENV_PRODUCT_VERSION = $$(PRODUCT_VERSION)
 }
 
 core_windows {
-    RC_FILE = $$PWD/version.rc
+    RC_FILE = $$PWD/res/version.rc
 
     CONFIG += embed_manifest_exe
     # Uncomment to testing service control
@@ -66,6 +66,9 @@ core_windows {
                $$PWD/src/classes/platform_win/capplication.cpp \
                $$PWD/src/classes/platform_win/cunzip.cpp \
                $$PWD/src/classes/platform_win/cdownloader.cpp
+
+    OTHER_FILES += $$PWD/res/version.rc \
+                   $$PWD/res/manifest/update-daemon.exe.manifest
 
     build_xp {
         DESTDIR = $$DESTDIR/xp
