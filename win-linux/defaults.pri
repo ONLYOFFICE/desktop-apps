@@ -272,8 +272,7 @@ core_windows {
                $$PWD/src/platform_win/printdialog.cpp \
                $$PWD/src/platform_win/message.cpp
 
-    OTHER_FILES += $$PWD/version.rc \
-                   $$PWD/res/manifest/DesktopEditors.exe.manifest
+    OTHER_FILES += $$PWD/res/manifest/DesktopEditors.exe.manifest
 
     updmodule:!build_xp {
         HEADERS += $$PWD/src/platform_win/updatedialog.h
