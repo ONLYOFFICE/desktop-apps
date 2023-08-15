@@ -30,9 +30,9 @@ ENV_PRODUCT_VERSION = $$(PRODUCT_VERSION)
 }
 
 core_windows {
+    CONFIG -= embed_manifest_exe
     RC_FILE = $$PWD/res/version.rc
 
-    CONFIG += embed_manifest_exe
     # Uncomment to testing service control
     #QMAKE_LFLAGS += /MANIFESTUAC:$$quote(\"level=\'requireAdministrator\' uiAccess=\'false\'\")
 
