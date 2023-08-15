@@ -1,3 +1,5 @@
+#pragma code_page(65001)
+
 ICON1       ICON    DISCARDABLE APP_ICON_PATH
 ICON2       ICON    DISCARDABLE "./res/doc.ico"
 ICON3       ICON    DISCARDABLE "./res/odt.ico"
@@ -25,7 +27,6 @@ ICON24      ICON    DISCARDABLE "./res/slide.ico"
 ICON25      ICON    DISCARDABLE "./res/form.ico"
 
 #include <windows.h>
-# pragma code_page(65001)
 #include "src/version.h"
 
 VS_VERSION_INFO VERSIONINFO
