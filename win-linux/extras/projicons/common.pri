@@ -23,6 +23,7 @@ ENV_PRODUCT_VERSION = $$(PRODUCT_VERSION)
                VER_PRODUCT_VERSION_COMMAS=$$replace(FULL_PRODUCT_VERSION, \., ",")
 }
 
+CONFIG -= embed_manifest_exe
 RC_FILE = $$PWD/version.rc
 
 contains(QMAKE_TARGET.arch, x86_64):{
