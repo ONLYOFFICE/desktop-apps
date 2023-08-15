@@ -12,6 +12,8 @@ TEMPLATE = app
 INCLUDEPATH += $$PWD/src
 HEADERS += $$PWD/src/version.h
 SOURCES += $$PWD/src/main.cpp
+OTHER_FILES += $$PWD/version.rc \
+               $$PWD/res/manifest/projicons.exe.manifest
 
 CONFIG += core_no_dst
 include($$PWD/../../../../core/Common/base.pri)
