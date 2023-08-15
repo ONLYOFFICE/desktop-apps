@@ -68,7 +68,7 @@ core_windows {
                $$PWD/src/classes/platform_win/cdownloader.cpp
 
     OTHER_FILES += $$PWD/res/version.rc \
-                   $$PWD/res/manifest/update-daemon.exe.manifest
+                   $$PWD/res/manifest/updatesvc.exe.manifest
 
     build_xp {
         DESTDIR = $$DESTDIR/xp
