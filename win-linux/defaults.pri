@@ -253,7 +253,8 @@ core_linux {
 core_windows {
     DEFINES += Q_COMPILER_INITIALIZER_LISTS
 
-    RC_ICONS += ./res/icons/desktop_icons.ico
+    CONFIG -= embed_manifest_exe
+#    RC_ICONS += ./res/icons/desktop_icons.ico
 
     HEADERS += $$PWD/src/windows/platform_win/cwindowplatform.h \
                $$PWD/src/windows/platform_win/csnap.h \
@@ -270,6 +271,8 @@ core_windows {
                $$PWD/src/platform_win/filechooser.cpp \
                $$PWD/src/platform_win/printdialog.cpp \
                $$PWD/src/platform_win/message.cpp
+
+    OTHER_FILES += $$PWD/res/manifest/DesktopEditors.exe.manifest
 
     updmodule:!build_xp {
         HEADERS += $$PWD/src/platform_win/updatedialog.h

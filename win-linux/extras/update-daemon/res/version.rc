@@ -1,12 +1,11 @@
-#include "../src/platform_win/resource.h"
-IDI_MAINICON   ICON    DISCARDABLE APP_ICON_PATH
-CREATEPROCESS_MANIFEST_RESOURCE_ID RT_MANIFEST "./manifest/update-daemon.exe.manifest"
-
+#pragma code_page(65001)
 #include <windows.h>
-#define RC_COMPILE_FLAG
-# pragma code_page(65001)
-# include "../src/version.h"
-#undef RC_COMPILE_FLAG
+#include "../src/platform_win/resource.h"
+
+IDI_MAINICON   ICON    DISCARDABLE APP_ICON_PATH
+CREATEPROCESS_MANIFEST_RESOURCE_ID RT_MANIFEST "./manifest/updatesvc.exe.manifest"
+
+#include "../src/version.h"
 
 VS_VERSION_INFO VERSIONINFO
 FILEVERSION     VER_FILEVERSION

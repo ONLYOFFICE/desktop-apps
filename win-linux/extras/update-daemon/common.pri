@@ -30,11 +30,8 @@ ENV_PRODUCT_VERSION = $$(PRODUCT_VERSION)
 }
 
 core_windows {
+    CONFIG -= embed_manifest_exe
     RC_FILE = $$PWD/res/version.rc
-
-    CONFIG += embed_manifest_exe
-    # Uncomment to testing service control
-    #QMAKE_LFLAGS += /MANIFESTUAC:$$quote(\"level=\'requireAdministrator\' uiAccess=\'false\'\")
 
     contains(QMAKE_TARGET.arch, x86_64):{
         QMAKE_LFLAGS_WINDOWS = /SUBSYSTEM:WINDOWS,5.02
@@ -68,7 +65,7 @@ core_windows {
                $$PWD/src/classes/platform_win/cdownloader.cpp
 
     OTHER_FILES += $$PWD/res/version.rc \
-                   $$PWD/res/manifest/update-daemon.exe.manifest
+                   $$PWD/res/manifest/updatesvc.exe.manifest
 
     build_xp {
         DESTDIR = $$DESTDIR/xp

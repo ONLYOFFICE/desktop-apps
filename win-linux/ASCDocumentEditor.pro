@@ -20,6 +20,7 @@ SOURCES += \
 RC_FILE = $$PWD/version.rc
 #DEFINES += _GLIBCXX_USE_CXX11_ABI=0
 DEFINES += __DONT_WRITE_IN_APP_TITLE
+DEFINES += APP_ICON_PATH=\"./res/icons/desktopeditors.ico\"
 
 message($$PLATFORM_BUILD)
 
