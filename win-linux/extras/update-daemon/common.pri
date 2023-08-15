@@ -33,9 +33,6 @@ core_windows {
     CONFIG -= embed_manifest_exe
     RC_FILE = $$PWD/res/version.rc
 
-    # Uncomment to testing service control
-    #QMAKE_LFLAGS += /MANIFESTUAC:$$quote(\"level=\'requireAdministrator\' uiAccess=\'false\'\")
-
     contains(QMAKE_TARGET.arch, x86_64):{
         QMAKE_LFLAGS_WINDOWS = /SUBSYSTEM:WINDOWS,5.02
     } else {
