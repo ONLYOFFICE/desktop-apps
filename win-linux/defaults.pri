@@ -253,6 +253,7 @@ core_linux {
 core_windows {
     DEFINES += Q_COMPILER_INITIALIZER_LISTS
 
+    CONFIG -= embed_manifest_exe
     RC_ICONS += ./res/icons/desktop_icons.ico
 
     HEADERS += $$PWD/src/windows/platform_win/cwindowplatform.h \
