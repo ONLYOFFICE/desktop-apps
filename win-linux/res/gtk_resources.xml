@@ -7,3 +7,9 @@
     <file>icons/app-icon_256.png</file>
   </gresource>
 </gresources>
+
+<!--
+Compiling:
+$ glib-compile-resources --target=gtk_resources.c --generate-source gtk_resources.xml
+$ glib-compile-resources --target=gtk_resources.h --generate-header gtk_resources.xml
+-->
