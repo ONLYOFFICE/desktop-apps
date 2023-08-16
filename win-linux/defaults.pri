@@ -227,11 +227,8 @@ core_linux {
                 $$PWD/src/platform_linux/xcbutils.cpp
 
     updmodule {
-        HEADERS += $$PWD/src/platform_linux/updatedialog.h \
-                   $$PWD/gtk_resources.h
-
-        SOURCES += $$PWD/src/platform_linux/updatedialog.cpp \
-                   $$PWD/gtk_resources.c
+        HEADERS += $$PWD/src/platform_linux/updatedialog.h
+        SOURCES += $$PWD/src/platform_linux/updatedialog.cpp
     }
 
     CONFIG += link_pkgconfig

@@ -44,5 +44,9 @@ message($$PLATFORM_BUILD)
     }
 #}
 
+updmodule:core_linux {
+    SOURCES += $$PWD/res/gtk_resources.c
+}
+
 HEADERS += \
     src/prop/cmainwindowimpl.h

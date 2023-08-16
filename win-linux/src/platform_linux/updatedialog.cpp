@@ -96,7 +96,7 @@ int WinDlg::showDialog(QWidget *parent,
     if (!content.isEmpty())
         gtk_message_dialog_format_secondary_text(GTK_MESSAGE_DIALOG(dialog), "%s", content.toLocal8Bit().data());
 
-    GtkWidget *image = gtk_image_new_from_resource("/res/icons/app-icon_64.png");
+    GtkWidget *image = gtk_image_new_from_resource("/icons/app-icon_64.png");
     gtk_message_dialog_set_image(GTK_MESSAGE_DIALOG(dialog), image);
     gtk_widget_show_all(image);
 
