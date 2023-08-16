@@ -462,6 +462,8 @@ void CUpdateManager::loadUpdates()
         if (!sendMessage(MSG_LoadUpdates, WStrToTStr(m_packageData->packageUrl), QStrToTStr(m_packageData->fileType))) {
             m_dialogSchedule->addToSchedule("criticalMsg", QObject::tr("An error occurred while loading updates: Update Service not found!"));
         }
+    } else {
+        m_dialogSchedule->addToSchedule("criticalMsg", QObject::tr("An error occurred while loading updates: package Url is empty!"));
     }
 }
 
