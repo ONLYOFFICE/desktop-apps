@@ -504,7 +504,7 @@ void CUpdateManager::unzipIfNeeded()
     m_lock = true;
 
     AscAppManager::sendCommandTo(0, "updates:link", "lock");
-    AscAppManager::sendCommandTo(0, "updates:download", QString("{\"progress\":\"100\"}")); // TODO: replace with unpacking message
+    AscAppManager::sendCommandTo(0, "updates:prepare");
     if (!sendMessage(MSG_UnzipIfNeeded, QStrToTStr(m_packageData->fileName), QStrToTStr(m_packageData->version))) {
         m_dialogSchedule->addToSchedule("criticalMsg", QObject::tr("An error occurred while unzip updates: Update Service not found!"));
     }
