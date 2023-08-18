@@ -32,9 +32,11 @@
 
 #include "platform_linux/utils.h"
 #include "classes/platform_linux/capplication.h"
+#include "classes/platform_linux/ctimer.h"
 #include "classes/csvcmanager.h"
 #include "../../src/defines.h"
 #include "../../src/prop/defines_p.h"
+#include <csignal>
 #include <cstring>
 
 
@@ -50,8 +52,24 @@ int main(int argc, char *argv[])
 
             CApplication app;
             CSvcManager upd;
-            socket.onMessageReceived([&app](void *buff, size_t) {
+            int pid = -1;
+            socket.onMessageReceived([&app, &pid](void *buff, size_t) {
                 if (strcmp((const char*)buff, "stop") == 0)
+                    app.exit(0);
+                else {
+                    char *err = NULL;
+                    int _pid = strtol((const char*)buff, &err, 10);
+                    if (!err || *err == '\0')
+                        pid = _pid;
+                }
+            });
+
+            // Checking for the completion of the main application:
+            // updatevc needs to be terminated when the main application is using a socket
+            // with the same address in the SingleApplication implementation and has been terminated incorrectly.
+            CTimer tmr;
+            tmr.start(5000, [&app, &pid]() {
+                if (pid != -1 && kill(pid, 0) != 0)
                     app.exit(0);
             });
             return app.exec();

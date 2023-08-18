@@ -30,33 +30,39 @@
  *
  */
 
-#ifndef SINGLE_APPLICATION_H
-#define SINGLE_APPLICATION_H
-
-#include <QApplication>
-#include <QByteArray>
-#include "csocket.h"
+#include "ctimer.h"
 
 
-class SingleApplication : public QApplication
+FnVoidVoid _callback = nullptr;
+
+
+VOID CALLBACK Timerproc(HWND hwnd, UINT uMsg, UINT_PTR idEvent, DWORD dwTime)
 {
-    Q_OBJECT
-public:
-    explicit SingleApplication( int &argc, char *argv[], const QString& servername = QString());
-    ~SingleApplication();
+    if (_callback)
+        _callback();
+}
 
-    bool isPrimary();
-    bool sendMessage(const QByteArray&);
+CTimer::CTimer()
+{
 
-signals:
-    void receivedMessage(QByteArray message);
+}
 
-private slots:
-    void invokeSignal(const QString&);
+CTimer::~CTimer()
+{
+    stop();
+}
 
-private:
-    CSocket *m_socket = nullptr;
-    bool    m_isPrimary = false;
-};
+void CTimer::stop()
+{
+    if (timerId != 0) {
+        KillTimer(NULL, timerId);
+        timerId = 0;
+    }
+}
 
-#endif // SINGLE_APPLICATION_H
+void CTimer::start(unsigned int timeout, FnVoidVoid callback)
+{
+    stop();
+    _callback = callback;
+    timerId = SetTimer(NULL, 0, timeout, Timerproc);
+}

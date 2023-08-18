@@ -49,6 +49,7 @@
 # define DAEMON_NAME L"/updatesvc.exe"
 #else
 # include <QProcess>
+# include <unistd.h>
 # include "components/cmessage.h"
 # include "platform_linux/updatedialog.h"
 # define DAEMON_NAME "/updatesvc"
@@ -229,8 +230,19 @@ CUpdateManager::CUpdateManager(QObject *parent):
 //        m_pTimer = new QTimer(this);
 //        m_pTimer->setSingleShot(false);
 //        connect(m_pTimer, SIGNAL(timeout()), this, SLOT(checkUpdates()));
-        if (IsPackage(Portable))
+        if (IsPackage(Portable)) {
             runProcess(QStrToTStr(qApp->applicationDirPath()) + DAEMON_NAME, TEXT("--run-as-app"));
+            QTimer::singleShot(0, this, []() {
+                std::string msg;
+#ifdef _WIN32
+                msg = std::to_string(GetCurrentProcessId());
+#else
+                msg = std::to_string(getpid());
+#endif
+                CSocket sock(INSTANCE_SVC_PORT, 0);
+                sock.sendMessage((void*)msg.c_str(), sizeof(msg));
+            });
+        }
         init();
     } else
         CLogger::log("Updates is off, URL is empty.");
