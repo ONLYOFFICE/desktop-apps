@@ -30,44 +30,28 @@
  *
  */
 
-#include "capplication.h"
-#include "platform_linux/utils.h"
-#include <iostream>
+#ifndef CTIMER_H
+#define CTIMER_H
+
 #include <SDL2/SDL.h>
+#include <functional>
+
+typedef std::function<void(void)> FnVoidVoid;
 
 
-CApplication::CApplication()
+class CTimer
 {
-    if (SDL_Init(SDL_INIT_EVENTS | SDL_INIT_TIMER) != 0)
-        NS_Logger::WriteLog(string("SDL_Init error: ") + SDL_GetError(), true);
-}
+public:
+    CTimer();
+    ~CTimer();
 
-CApplication::~CApplication()
-{
-    SDL_Quit();
-}
+    void stop();
 
-int CApplication::exec()
-{
-    int exit_code = 1;
-    SDL_Event event;
-    while (m_run && SDL_WaitEvent(&event)) {
-        switch (event.type) {
-            case SDL_QUIT:
-                exit_code = event.user.code;
-                break;
-            default:
-                break;
-        }
-    }
-    return exit_code;
-}
+    /* callback */
+    void start(unsigned int timeout, FnVoidVoid callback);
 
-void CApplication::exit(int code)
-{
-    m_run = false;
-    SDL_Event event;
-    event.type = SDL_QUIT;
-    event.user.code = code;
-    SDL_PushEvent(&event);
-}
+private:
+    SDL_TimerID timerID = 0;
+};
+
+#endif // CTIMER_H

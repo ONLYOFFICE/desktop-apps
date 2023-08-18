@@ -30,44 +30,36 @@
  *
  */
 
-#include "capplication.h"
-#include "platform_linux/utils.h"
-#include <iostream>
-#include <SDL2/SDL.h>
+#include "ctimer.h"
 
 
-CApplication::CApplication()
-{
-    if (SDL_Init(SDL_INIT_EVENTS | SDL_INIT_TIMER) != 0)
-        NS_Logger::WriteLog(string("SDL_Init error: ") + SDL_GetError(), true);
+Uint32 timerCallback(Uint32 interval, void *param) {
+    FnVoidVoid *callback = (FnVoidVoid*)param;
+    if (callback && *callback)
+        (*callback)();
+    return interval;
 }
 
-CApplication::~CApplication()
+CTimer::CTimer()
 {
-    SDL_Quit();
+
 }
 
-int CApplication::exec()
+CTimer::~CTimer()
 {
-    int exit_code = 1;
-    SDL_Event event;
-    while (m_run && SDL_WaitEvent(&event)) {
-        switch (event.type) {
-            case SDL_QUIT:
-                exit_code = event.user.code;
-                break;
-            default:
-                break;
-        }
+    stop();
+}
+
+void CTimer::stop()
+{
+    if (timerID != 0) {
+        SDL_RemoveTimer(timerID);
+        timerID = 0;
     }
-    return exit_code;
 }
 
-void CApplication::exit(int code)
+void CTimer::start(unsigned int timeout, FnVoidVoid callback)
 {
-    m_run = false;
-    SDL_Event event;
-    event.type = SDL_QUIT;
-    event.user.code = code;
-    SDL_PushEvent(&event);
+    stop();
+    timerID = SDL_AddTimer(timeout, timerCallback, (void*)&callback);
 }

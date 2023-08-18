@@ -30,44 +30,39 @@
  *
  */
 
-#include "capplication.h"
-#include "platform_linux/utils.h"
-#include <iostream>
-#include <SDL2/SDL.h>
+#include "ctimer.h"
 
 
-CApplication::CApplication()
+FnVoidVoid _callback = nullptr;
+
+
+VOID CALLBACK Timerproc(HWND hwnd, UINT uMsg, UINT_PTR idEvent, DWORD dwTime)
 {
-    if (SDL_Init(SDL_INIT_EVENTS | SDL_INIT_TIMER) != 0)
-        NS_Logger::WriteLog(string("SDL_Init error: ") + SDL_GetError(), true);
+    if (_callback)
+        _callback();
 }
 
-CApplication::~CApplication()
+CTimer::CTimer()
 {
-    SDL_Quit();
+
 }
 
-int CApplication::exec()
+CTimer::~CTimer()
 {
-    int exit_code = 1;
-    SDL_Event event;
-    while (m_run && SDL_WaitEvent(&event)) {
-        switch (event.type) {
-            case SDL_QUIT:
-                exit_code = event.user.code;
-                break;
-            default:
-                break;
-        }
+    stop();
+}
+
+void CTimer::stop()
+{
+    if (timerId != 0) {
+        KillTimer(NULL, timerId);
+        timerId = 0;
     }
-    return exit_code;
 }
 
-void CApplication::exit(int code)
+void CTimer::start(unsigned int timeout, FnVoidVoid callback)
 {
-    m_run = false;
-    SDL_Event event;
-    event.type = SDL_QUIT;
-    event.user.code = code;
-    SDL_PushEvent(&event);
+    stop();
+    _callback = callback;
+    timerId = SetTimer(NULL, 0, timeout, Timerproc);
 }
