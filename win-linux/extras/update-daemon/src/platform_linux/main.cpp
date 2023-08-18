@@ -34,6 +34,7 @@
 #include "classes/platform_linux/capplication.h"
 #include "classes/csvcmanager.h"
 #include "../../src/defines.h"
+#include "../../src/prop/defines_p.h"
 #include <cstring>
 
 

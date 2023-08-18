@@ -59,7 +59,7 @@
   typedef int SOCKET;
 #endif
 
-#define INADDR "127.0.0.1"
+#define INADDR "127.0.0.1\0"
 #define RETRIES_DELAY_MS 4000
 #define BUFFSIZE 1024
 
