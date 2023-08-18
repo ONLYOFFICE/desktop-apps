@@ -86,7 +86,7 @@ namespace NS_Utils
 
 namespace NS_File
 {
-    bool GetFilesList(const wstring &path, list<wstring> *lst, wstring &error, bool ignore_locked)
+    bool GetFilesList(const wstring &path, list<wstring> *lst, wstring &error, bool ignore_locked, bool folders_only)
     {
         wstring searchPath = toNativeSeparators(path) + L"\\*";
         if (searchPath.size() > MAX_PATH - 1) {
@@ -107,12 +107,18 @@ namespace NS_File
             if (ffd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) {
                 if (!wcscmp(ffd.cFileName, L".") || !wcscmp(ffd.cFileName, L".."))
                     continue;
+                if (folders_only) {
+                    lst->push_back(L"/" + wstring(ffd.cFileName));
+                    continue;
+                }
                 if (!GetFilesList(path + L"/" + wstring(ffd.cFileName), lst, error, ignore_locked)) {
                     FindClose(hFind);
                     return false;
                 }
-            } else
-                lst->push_back(path + L"/" + wstring(ffd.cFileName));
+            } else {
+                if (!folders_only)
+                    lst->push_back(path + L"/" + wstring(ffd.cFileName));
+            }
 
         } while (FindNextFile(hFind, &ffd) != 0);
 
