@@ -38,6 +38,7 @@
 #include "cscalingwrapper.h"
 #include "ctabpanel.h"
 
+#define etTemplateFile  AscEditorType(255)
 #define etLocalFile     AscEditorType(254)
 #define etRecoveryFile  AscEditorType(253)
 #define etRecentFile    AscEditorType(252)
