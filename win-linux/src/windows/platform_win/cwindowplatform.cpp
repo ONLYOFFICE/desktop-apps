@@ -127,15 +127,17 @@ void CWindowPlatform::adjustGeometry()
 #ifdef __OS_WIN_XP
             setContentsMargins(0, 0, 0, 0);
 #else
-            double dpi = qApp->screenAt(geometry().center())->logicalDotsPerInch()/96;
-            const int brd = (dpi <= 1.0) ? 8 :
-                            (dpi == 1.25) ? 9 :
-                            (dpi == 1.5) ? 11 :
-                            (dpi == 1.75) ? 12 :
-                            (dpi == 2.0) ? 13 :
-                            (dpi == 2.25) ? 14 :
-                            (dpi == 2.5) ? 16 : 6 * dpi;
-            const int border = (!isTaskbarAutoHideOn() && Utils::getWinVersion() > Utils::WinVer::Win7) ? brd: 0;
+            int border = 0;
+            if (!isTaskbarAutoHideOn() && Utils::getWinVersion() > Utils::WinVer::Win7) {
+                double dpi = qApp->screenAt(geometry().center())->logicalDotsPerInch()/96;
+                border = (dpi <= 1.0) ? 8 :
+                         (dpi == 1.25) ? 9 :
+                         (dpi == 1.5) ? 11 :
+                         (dpi == 1.75) ? 12 :
+                         (dpi == 2.0) ? 13 :
+                         (dpi == 2.25) ? 14 :
+                         (dpi == 2.5) ? 16 : 6 * dpi;
+            }
             setContentsMargins(border, border, border, border);
 #endif
         });
