@@ -416,6 +416,14 @@ bool CWindowPlatform::nativeEvent(const QByteArray &eventType, void *message, lo
     case WM_ERASEBKGND:
         return true;
 
+//    case WM_NCPAINT:
+    case WM_NCACTIVATE: {
+        // Prevent the title bar from being drawn when the window is restored or maximized
+        if (m_borderless)
+            return true;
+        break;
+    }
+
     case WM_QUERYENDSESSION:
         m_isSessionInProgress = false;
         break;
