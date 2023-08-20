@@ -263,10 +263,11 @@ bool CWindowPlatform::nativeEvent(const QByteArray &eventType, void *message, lo
     }
 
     case WM_NCCALCSIZE: {
-        NCCALCSIZE_PARAMS& params = *reinterpret_cast<NCCALCSIZE_PARAMS*>(msg->lParam);
-        if (params.rgrc[0].bottom != 0)
-            params.rgrc[0].bottom += 1;
-        *result = WVR_REDRAW;
+        if (!msg->wParam)
+            break;
+        NCCALCSIZE_PARAMS *params = (NCCALCSIZE_PARAMS*)msg->lParam;
+        params->rgrc[0].bottom += 1;
+        *result = WVR_ALIGNLEFT | WVR_ALIGNTOP | WVR_REDRAW;
         return true;
     }
 
