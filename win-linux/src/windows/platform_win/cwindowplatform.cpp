@@ -332,7 +332,9 @@ bool CWindowPlatform::nativeEvent(const QByteArray &eventType, void *message, lo
             SystemParametersInfoW(SPI_GETWORKAREA, 0, &workArea, 0);
             if (!EqualRect(&oldWorkArea, &workArea)) {
                 oldWorkArea = workArea;
-                adjustGeometry();
+                QTimer::singleShot(200, this, [=]() {
+                    adjustGeometry();
+                });
             }
         }
         break;
