@@ -98,6 +98,7 @@ CFileDialogWrapper::CFileDialogWrapper(QWidget * parent) : QObject(parent)
     m_mapFilters[AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_PDFA]  = tr("PDFA File (*.pdf)");
     m_mapFilters[AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_DJVU]  = tr("DJVU File (*.djvu)");
     m_mapFilters[AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_XPS]   = tr("XPS File (*.xps)");
+    m_mapFilters[AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_SVG]   = tr("SVG Image (*.svg)");
 
     m_mapFilters[AVS_OFFICESTUDIO_FILE_IMAGE_JPG]           = tr("JPG Image (*.jpg *.jpeg)");
     m_mapFilters[AVS_OFFICESTUDIO_FILE_IMAGE_PNG]           = tr("PNG Image (*.png)");
@@ -293,18 +294,20 @@ QString CFileDialogWrapper::modalOpenSingle(const QString& path, const QString& 
 
 QStringList CFileDialogWrapper::modalOpenImage(const QString& path)
 {
-    QString selected = tr("All Images") + " (*.jpeg *.jpg *.png *.gif *.bmp)";
+    QString selected = tr("All Images") + " (*.jpeg *.jpg *.png *.gif *.bmp *.svg)";
     QString filter = m_mapFilters[AVS_OFFICESTUDIO_FILE_UNKNOWN];
     filter.append(";;" + selected + ";;" + tr("Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp)"));
+    filter.append(";;" + m_mapFilters[AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_SVG]);
 
     return modalOpen(path, filter, &selected, false);
 }
 
 QStringList CFileDialogWrapper::modalOpenImages(const QString& path)
 {
-    QString selected = tr("All Images") + " (*.jpeg *.jpg *.png *.gif *.bmp)";
+    QString selected = tr("All Images") + " (*.jpeg *.jpg *.png *.gif *.bmp *.svg)";
     QString filter = m_mapFilters[AVS_OFFICESTUDIO_FILE_UNKNOWN];
     filter.append(";;" + selected + ";;" + tr("Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp)"));
+    filter.append(";;" + m_mapFilters[AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_SVG]);
 
     return modalOpen(path, filter, &selected, true);
 }
