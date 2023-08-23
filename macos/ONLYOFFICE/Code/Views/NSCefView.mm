@@ -158,6 +158,16 @@
     }
 }
 
+- (void)createFileWithNameFromTemplate:(NSString *)name tplpath:(NSString *)path {
+    if (m_pCefView) {
+        CCefViewEditor * editorView = dynamic_cast<CCefViewEditor *>(m_pCefView->GetCefView());
+
+        if (editorView) {
+            editorView->CreateLocalFile(0, [name stdwstring], [path stdwstring]);
+        }
+    }
+}
+
 - (void)openFileWithName:(NSString *)name type:(NSInteger)type {
     if (m_pCefView) {
         CCefViewEditor * editorView = dynamic_cast<CCefViewEditor *>(m_pCefView->GetCefView());
