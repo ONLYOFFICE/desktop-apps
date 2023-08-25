@@ -142,6 +142,11 @@ CAscTabWidget::CAscTabWidget(QWidget *parent, CTabBar *_pBar)
     static int _dropedindex = -1;
     QObject::connect(this, &CAscTabWidget::currentChanged, this, [=](int index) {
         QTimer::singleShot(0, this, [=]() {
+            if (index != -1 && index != m_pBar->currentIndex()) {
+                m_pBar->blockSignals(true);
+                m_pBar->setCurrentIndex(index);
+                m_pBar->blockSignals(false);
+            }
             updateIcons();
         });
         setFocusedView();
@@ -171,7 +176,9 @@ CAscTabWidget::CAscTabWidget(QWidget *parent, CTabBar *_pBar)
         }
     });
     auto turnOffAltHints = [=](int old_index, int index) {
-        this->setCurrentIndex(index);
+        QTimer::singleShot(0, this, [=]() {
+            setCurrentIndex(index);
+        });
         if (old_index > -1)
             AscAppManager::sendCommandTo(panel(old_index)->cef(), L"althints:show", L"false");
     };
