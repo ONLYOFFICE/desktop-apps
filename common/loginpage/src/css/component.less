@@ -38,12 +38,12 @@ button {
                 background-color: @highlight-button-hover;
             }
 
-            &:active {
+            &:active:not(:disabled) {
                 border-color: @highlight-button-pressed;
                 background-color: @highlight-button-pressed;
             }
 
-            &.btn--landing {
+            &.btn--landing:not(:disabled) {
                 &:hover {
                     background-color: @highlight-accent-button-hover;
                 }
