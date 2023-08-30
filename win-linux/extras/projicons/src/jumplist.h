@@ -40,5 +40,6 @@
 
 void CreateJumpList(const QStringList &list);
 void DeleteJumpList();
+void ClearHistory();
 
 #endif // JUMPLIST_H

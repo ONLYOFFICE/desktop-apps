@@ -176,3 +176,19 @@ void DeleteJumpList()
     }
     Q_UNUSED(hr);
 }
+
+void ClearHistory()
+{
+    HRESULT hr = CoInitializeEx(NULL, COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE);
+    if (SUCCEEDED(hr))
+    {
+        IApplicationDestinations *pad;
+        hr = CoCreateInstance(CLSID_ApplicationDestinations, NULL, CLSCTX_INPROC_SERVER, IID_PPV_ARGS(&pad));
+        if (SUCCEEDED(hr)) {
+            hr = pad->RemoveAllDestinations();
+            pad->Release();
+        }
+        CoUninitialize();
+    }
+    Q_UNUSED(hr);
+}
