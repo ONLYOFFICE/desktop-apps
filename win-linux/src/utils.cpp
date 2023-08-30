@@ -44,6 +44,7 @@
 #include <QScreen>
 #include <QStorageInfo>
 #include <QPrinterInfo>
+#include <QProcess>
 #include "cascapplicationmanagerwrapper.h"
 #include "qdpichecker.h"
 #include "common/File.h"
@@ -55,7 +56,6 @@
 #include "lmcons.h"
 typedef HRESULT (__stdcall *SetCurrentProcessExplicitAppUserModelIDProc)(PCWSTR AppID);
 #else
-# include <QProcess>
 # include <QEventLoop>
 #include <sys/stat.h>
 #include <stdlib.h>
@@ -727,6 +727,13 @@ Utils::WinVer Utils::getWinVersion()
             return  WinVer::Win11;
     }
     return WinVer::Undef;
+}
+
+void Utils::addToRecent(const std::wstring &path)
+{
+    QString _path = QString::fromStdWString(path);
+    QString appPath = qApp->applicationDirPath();
+    QProcess::startDetached(appPath + "/" + QString(REG_APP_NAME), {"--add-to-recent", QDir::toNativeSeparators(_path)}, appPath);
 }
 #endif
 

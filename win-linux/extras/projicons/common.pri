@@ -47,6 +47,7 @@ build_xp {
     DEFINES += __OS_WIN_XP
 } else {
     HEADERS += $$PWD/src/jumplist.h
+    SOURCES += $$PWD/src/jumplist.cpp
     LIBS += -lshlwapi \
             -lole32
 }

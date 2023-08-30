@@ -122,6 +122,7 @@ public:
         Undef, WinXP, WinVista, Win7, Win8, Win8_1, Win10, Win11
     };
     static WinVer getWinVersion();
+    static void addToRecent(const std::wstring&);
 #endif
 };
 
