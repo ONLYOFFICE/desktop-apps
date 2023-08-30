@@ -377,7 +377,7 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
             return true;
         } else
         if ( !(cmd.find(L"updates:action") == std::wstring::npos) ) {
-            qDebug() << "updates action" << pData->get_Param();
+            // qDebug() << "updates action" << pData->get_Param();
         }
 
         break; }
