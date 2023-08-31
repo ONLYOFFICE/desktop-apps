@@ -59,6 +59,7 @@
 #define DAY_TO_SEC 24*3600
 #define CHECK_ON_STARTUP_MS 9000
 #define CMD_ARGUMENT_UPDATES_CHANNEL L"--updates-appcast-channel"
+#define CMD_ARGUMENT_UPDATES_INTERVAL L"--updates-interval"
 #ifndef URL_APPCAST_UPDATES
 # define URL_APPCAST_UPDATES ""
 #endif
@@ -209,6 +210,15 @@ CUpdateManager::CUpdateManager(QObject *parent):
             std::wstring ch_updates = InputArgs::argument_value(CMD_ARGUMENT_UPDATES_CHANNEL);
             if ( ch_updates == L"dev" ) {
                 m_checkUrl = QString(URL_APPCAST_DEV_CHANNEL).toStdWString();
+            }
+        }
+        if ( InputArgs::contains(CMD_ARGUMENT_UPDATES_INTERVAL) ) {
+            int interval = QString::fromStdWString(InputArgs::argument_value(CMD_ARGUMENT_UPDATES_INTERVAL)).toInt();
+            if (interval >= 30) {
+                GET_REGISTRY_USER(reg_user)
+                reg_user.beginGroup("Updates");
+                reg_user.setValue("interval", interval);
+                reg_user.endGroup();
             }
         }
 
