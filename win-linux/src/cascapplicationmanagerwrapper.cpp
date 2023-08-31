@@ -84,9 +84,6 @@ CAscApplicationManagerWrapper::CAscApplicationManagerWrapper(CAscApplicationMana
 
 #ifdef _UPDMODULE
     m_pUpdateManager = new CUpdateManager(this);
-    connect(m_pUpdateManager, &CUpdateManager::progresChanged, this, [=](const int &percent) {
-        AscAppManager::sendCommandTo(0, "updates:download", QString("{\"progress\":\"%1\"}").arg(QString::number(percent)));
-    });
 #endif
 }
 
@@ -375,9 +372,6 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
             }
 
             return true;
-        } else
-        if ( !(cmd.find(L"updates:action") == std::wstring::npos) ) {
-            // qDebug() << "updates action" << pData->get_Param();
         }
 
         break; }
@@ -1636,15 +1630,9 @@ bool CAscApplicationManagerWrapper::applySettings(const wstring& wstrjson)
             _reg_user.setValue("editorWindowMode", m_private->m_openEditorWindow);
         }
 #ifdef _UPDMODULE
-#ifdef Q_OS_WIN
         if ( objRoot.contains("autoupdatemode") ) {
             m_pUpdateManager->setNewUpdateSetting(objRoot["autoupdatemode"].toString());
         }
-#else
-        if ( objRoot.contains("checkupdatesinterval") ) {
-            m_pUpdateManager->setNewUpdateSetting(objRoot["checkupdatesinterval"].toString());
-        }
-#endif
 #endif
     } else {
         /* parse settings error */

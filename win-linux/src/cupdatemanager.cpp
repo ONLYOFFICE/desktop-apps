@@ -54,6 +54,7 @@
 # define DAEMON_NAME "/updatesvc"
 #endif
 
+#define modeToEnum(mod) ((mod == "silent") ? UpdateMode::SILENT : (mod == "ask") ? UpdateMode::ASK : UpdateMode::DISABLE)
 #define WStrToTStr(str) QStrToTStr(QString::fromStdWString(str))
 #define CHECK_ON_STARTUP_MS 9000
 #define CMD_ARGUMENT_UPDATES_CHANNEL L"--updates-appcast-channel"
@@ -384,7 +385,7 @@ void CUpdateManager::updateNeededCheking()
 
 void CUpdateManager::onProgressSlot(const int percent)
 {
-    emit progresChanged(percent);
+    AscAppManager::sendCommandTo(0, "updates:download", QString("{\"progress\":\"%1\"}").arg(QString::number(percent)));
 }
 
 void CUpdateManager::onError(const QString &error)
@@ -536,19 +537,11 @@ void CUpdateManager::handleAppClose()
         sendMessage(MSG_StopDownload);
 }
 
-void CUpdateManager::scheduleRestartForUpdate()
-{
-    m_restartForUpdate = true;
-}
-
 void CUpdateManager::setNewUpdateSetting(const QString& _rate)
 {
     GET_REGISTRY_USER(reg_user);
     reg_user.setValue("autoUpdateMode", _rate);
-    int mode = (_rate == "silent") ?
-                    UpdateMode::SILENT : (_rate == "ask") ?
-                        UpdateMode::ASK : UpdateMode::DISABLE;
-    if (mode == UpdateMode::DISABLE)
+    if (modeToEnum(_rate) == UpdateMode::DISABLE) {
         destroyStartupTimer(m_pCheckOnStartupTimer);
 //    QTimer::singleShot(3000, this, &CUpdateManager::updateNeededCheking);
 }
@@ -572,16 +565,11 @@ void CUpdateManager::skipVersion()
 int CUpdateManager::getUpdateMode()
 {
     GET_REGISTRY_USER(reg_user);
-    const QString mode = reg_user.value("autoUpdateMode", "ask").toString();
-    return (mode == "silent") ?
-                UpdateMode::SILENT : (mode == "ask") ?
-                    UpdateMode::ASK : UpdateMode::DISABLE;
+    return modeToEnum(reg_user.value("autoUpdateMode", "ask").toString());
 }
 
 void CUpdateManager::onLoadCheckFinished(const QString &filePath)
 {
-//    if (m_lock)
-//        return;
     m_manualCheck = true;
     QFile jsonFile(filePath);
     if ( jsonFile.open(QIODevice::ReadOnly) ) {
@@ -661,7 +649,6 @@ void CUpdateManager::onCheckFinished(bool error, bool updateExist, const QString
                 } else {
                     QString args = QString("{\"version\":\"%1\"}").arg(version);
                     AscAppManager::sendCommandTo(0, "updates:checking", args);
-                    AscAppManager::sendCommandToAllEditors(L"updates:checking", args.toStdWString());
                     m_dialogSchedule->addToSchedule("showUpdateMessage");
                 }
                 break;
@@ -711,7 +698,7 @@ void CUpdateManager::showStartInstallMessage(QWidget *parent)
     m_lock = false;
     switch (result) {
     case WinDlg::DLG_RESULT_INSTALL: {
-        scheduleRestartForUpdate();
+        m_restartForUpdate = true;
         AscAppManager::closeAppWindows();
         break;
     }

@@ -74,16 +74,12 @@ public:
     void skipVersion();
     int  getUpdateMode();
     QString getVersion() const;
-    void scheduleRestartForUpdate();
     void handleAppClose();
     void loadUpdates();
     void installUpdates();
 
 public slots:
     void checkUpdates(bool manualCheck = false);
-
-signals:
-    void progresChanged(const int percent);
 
 private:
     void init();

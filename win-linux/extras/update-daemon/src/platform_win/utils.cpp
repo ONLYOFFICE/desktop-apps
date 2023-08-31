@@ -78,11 +78,11 @@ namespace NS_Utils
         if (showError)
             str += L" " + GetLastErrorAsString();
         wchar_t *title = const_cast<LPTSTR>(TEXT(VER_PRODUCTNAME_STR));
-        size_t title_size = wcslen(title) * sizeof(wchar_t);
+        DWORD title_size = (DWORD)wcslen(title) * sizeof(wchar_t);
         DWORD res;
         DWORD session_id = WTSGetActiveConsoleSessionId();
         WTSSendMessageW(WTS_CURRENT_SERVER_HANDLE, session_id, title, title_size,
-                            const_cast<LPTSTR>(str.c_str()), str.size() * sizeof(wchar_t),
+                            const_cast<LPTSTR>(str.c_str()), (DWORD)str.size() * sizeof(wchar_t),
                             MB_OK | MB_ICONERROR | MB_SERVICE_NOTIFICATION_NT3X | MB_SETFOREGROUND, 8, &res, TRUE);
         return res;
     }

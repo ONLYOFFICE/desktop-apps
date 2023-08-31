@@ -40,6 +40,9 @@
 #include "../../src/defines.h"
 #include "../../src/prop/defines_p.h"
 #ifdef _WIN32
+# ifndef WIN32_LEAN_AND_MEAN
+#  define WIN32_LEAN_AND_MEAN
+# endif
 # include "platform_win/utils.h"
 # include <codecvt>
 # include <WinInet.h>
