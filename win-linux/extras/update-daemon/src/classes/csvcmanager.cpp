@@ -75,6 +75,9 @@
 #define BACKUP_PATH      TEXT("/" REG_APP_NAME "Backup")
 #define PROVIDERS_PATH   TEXT("/providers")
 #define SUCCES_UNPACKED  TEXT("/success_unpacked.txt")
+#define __GLOBAL_LOCK if (m_lock) {NS_Logger::WriteLog(_T("Blocked in: ") + FUNCTION_INFO); return;} m_lock = true; \
+                          NS_Logger::WriteLog(_T("Locking and further execution: ") + FUNCTION_INFO);
+#define __UNLOCK m_lock = false; NS_Logger::WriteLog(_T("Unlocked in: ") + FUNCTION_INFO);
 
 using std::vector;
 
@@ -208,6 +211,7 @@ void CSvcManager::init()
         if (params.size() == 4) {
             switch (std::stoi(params[0])) {
             case MSG_CheckUpdates: {
+                __GLOBAL_LOCK
                 //DeleteUrlCacheEntry(params[1].c_str());
                 m_downloadMode = Mode::CHECK_UPDATES;
                 if (m_pDownloader)
@@ -216,6 +220,7 @@ void CSvcManager::init()
                 break;
             }
             case MSG_LoadUpdates: {
+                __GLOBAL_LOCK
                 m_downloadMode = Mode::DOWNLOAD_UPDATES;
                 if (m_pDownloader) {
                     tstring ext = (params[2] == TEXT("iss")) ? TEXT(".exe") :
@@ -236,7 +241,9 @@ void CSvcManager::init()
                 break;
 
             case MSG_StartReplacingFiles:
+                __GLOBAL_LOCK
                 startReplacingFiles();
+                __UNLOCK
                 break;
 
             case MSG_ClearTempFiles:
@@ -263,12 +270,12 @@ void CSvcManager::init()
 
 void CSvcManager::onCompleteUnzip(const int error)
 {
+    __UNLOCK
     if (error == UNZIP_OK) {
         // Сreate a file about successful unpacking for use in subsequent launches
         const tstring updPath = NS_File::parentPath(NS_File::appPath()) + UPDATE_PATH;
         list<tstring> successList{m_newVersion};
         if (!NS_File::writeToFile(updPath + SUCCES_UNPACKED, successList)) {
-            m_lock = false;
             return;
         }
         if (!sendMessage(MSG_ShowStartInstallMessage))
@@ -284,11 +291,11 @@ void CSvcManager::onCompleteUnzip(const int error)
     if (error == UNZIP_ABORT) {
         // Stop unzip
     }
-    m_lock = false;
 }
 
 void CSvcManager::onCompleteSlot(const int error, const tstring &filePath)
 {
+    __UNLOCK
     if (error == 0) {
         switch (m_downloadMode) {
         case Mode::CHECK_UPDATES:
@@ -322,16 +329,14 @@ void CSvcManager::onProgressSlot(const int percent)
 
 void CSvcManager::unzipIfNeeded(const tstring &filePath, const tstring &newVersion)
 {
-    if (m_lock)
-        return;
-    m_lock = true;
+    __GLOBAL_LOCK
 
     m_newVersion = newVersion;
     const tstring updPath = NS_File::parentPath(NS_File::appPath()) + UPDATE_PATH;
     auto unzip = [=]()->void {
         if (!NS_File::dirExists(updPath) && !NS_File::makePath(updPath)) {
             NS_Logger::WriteLog(TEXT("An error occurred while creating dir: ") + updPath);
-            m_lock = false;
+            __UNLOCK
             return;
         }
         m_pUnzip->extractArchive(filePath, updPath);
@@ -341,7 +346,7 @@ void CSvcManager::unzipIfNeeded(const tstring &filePath, const tstring &newVersi
         unzip();
     } else {
         if (isSuccessUnpacked(updPath + SUCCES_UNPACKED, newVersion)) {
-            m_lock = false;
+            __UNLOCK
             if (!sendMessage(MSG_ShowStartInstallMessage))
                 NS_Logger::WriteLog(DEFAULT_ERROR_MESSAGE);
 

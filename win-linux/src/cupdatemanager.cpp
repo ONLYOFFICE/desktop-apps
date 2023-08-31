@@ -66,6 +66,9 @@
 #ifndef URL_APPCAST_DEV_CHANNEL
 # define URL_APPCAST_DEV_CHANNEL ""
 #endif
+#define __GLOBAL_LOCK if (m_lock) {CLogger::log("Blocked in: " + FUNCTION_INFO); return;} m_lock = true; \
+                          CLogger::log("Locking and further execution:" + FUNCTION_INFO);
+#define __UNLOCK m_lock = false; CLogger::log("Unlocked in:" + FUNCTION_INFO);
 
 using std::vector;
 
@@ -307,7 +310,7 @@ void CUpdateManager::init()
 void CUpdateManager::criticalMsg(QWidget *parent, const QString &msg)
 {
     if (!m_manualCheck) {
-        m_lock = false;
+        __UNLOCK
         return;
     }
 #ifdef _WIN32
@@ -317,7 +320,7 @@ void CUpdateManager::criticalMsg(QWidget *parent, const QString &msg)
 #else
     CMessage::error(parent, msg);
 #endif
-    m_lock = false;
+    __UNLOCK
 }
 
 void CUpdateManager::clearTempFiles(const QString &except)
@@ -342,9 +345,7 @@ void CUpdateManager::checkUpdates(bool manualCheck)
     if (getUpdateMode() != UpdateMode::DISABLE)
         m_pIntervalStartTimer->start();
 
-    if (m_lock)
-        return;
-    m_lock = true;
+    __GLOBAL_LOCK
     AscAppManager::sendCommandTo(0, "updates:link", "lock");
     m_manualCheck = manualCheck;
     m_packageData->clear();
@@ -440,14 +441,14 @@ bool CUpdateManager::sendMessage(int cmd, const tstring &param1, const tstring &
 
 void CUpdateManager::loadUpdates()
 {
-//    if (m_lock)
-//        return;
+    __GLOBAL_LOCK
 
     if (isSavedPackageValid()) {
         m_packageData->fileName = m_savedPackageData->fileName;
-        if (m_packageData->fileType == "archive")
+        if (m_packageData->fileType == "archive") {
+            __UNLOCK
             unzipIfNeeded();
-        else {
+        } else {
             AscAppManager::sendCommandTo(0, "updates:download", "{\"progress\":\"done\"}");
             m_dialogSchedule->addToSchedule("showStartInstallMessage");
         }
@@ -462,8 +463,8 @@ void CUpdateManager::loadUpdates()
 
 void CUpdateManager::installUpdates()
 {
-    if (m_lock)
-        return;
+    __GLOBAL_LOCK
+
     if (ignoredVersion() != getVersion()) {
         AscAppManager::sendCommandTo(0, "updates:download", "{\"progress\":\"done\"}");
         m_dialogSchedule->addToSchedule("showStartInstallMessage");
@@ -490,9 +491,10 @@ void CUpdateManager::onLoadUpdateFinished(const QString &filePath)
     }
     m_packageData->fileName = filePath;
     savePackageData(m_packageData->version, filePath, m_packageData->fileType);
-    if (m_packageData->fileType == "archive")
+    if (m_packageData->fileType == "archive") {
+        __UNLOCK
         unzipIfNeeded();
-    else {
+    } else {
         AscAppManager::sendCommandTo(0, "updates:download", "{\"progress\":\"done\"}");
         m_dialogSchedule->addToSchedule("showStartInstallMessage");
     }
@@ -500,9 +502,7 @@ void CUpdateManager::onLoadUpdateFinished(const QString &filePath)
 
 void CUpdateManager::unzipIfNeeded()
 {
-    if (m_lock)
-        return;
-    m_lock = true;
+    __GLOBAL_LOCK
 
     AscAppManager::sendCommandTo(0, "updates:link", "lock");
     AscAppManager::sendCommandTo(0, "updates:download", QString("{\"progress\":\"100\"}")); // TODO: replace with unpacking message
@@ -551,10 +551,9 @@ void CUpdateManager::setNewUpdateSetting(const QString& _rate)
 
 void CUpdateManager::cancelLoading()
 {
-    if (m_lock)
-        return;
     AscAppManager::sendCommandTo(0, "updates:checking", QString("{\"version\":\"%1\"}").arg(m_packageData->version));
     sendMessage(MSG_StopDownload);
+    __UNLOCK
 }
 
 void CUpdateManager::skipVersion()
@@ -641,13 +640,13 @@ void CUpdateManager::onCheckFinished(bool error, bool updateExist, const QString
         if ( updateExist ) {
             switch (getUpdateMode()) {
             case UpdateMode::SILENT:
-                m_lock = false;
+                __UNLOCK
                 loadUpdates();
                 break;
             case UpdateMode::ASK:
             case UpdateMode::DISABLE:
                 if (isSavedPackageValid()) {
-                    m_lock = false;
+                    __UNLOCK
                     loadUpdates();
                 } else {
                     QString args = QString("{\"version\":\"%1\"}").arg(version);
@@ -658,7 +657,7 @@ void CUpdateManager::onCheckFinished(bool error, bool updateExist, const QString
             }
         } else {
             AscAppManager::sendCommandTo(0, "updates:checking", "{\"version\":\"no\"}");
-            m_lock = false;
+            __UNLOCK;
         }
     } else {
         m_dialogSchedule->addToSchedule("criticalMsg", changelog);
@@ -673,7 +672,7 @@ void CUpdateManager::showUpdateMessage(QWidget *parent) {
                                                                     getVersion(),
                                                                     QString(VER_FILEVERSION_STR)),
                         WinDlg::DlgBtns::mbSkipRemindDownload);
-    m_lock = false;
+    __UNLOCK
     switch (result) {
     case WinDlg::DLG_RESULT_DOWNLOAD:
         loadUpdates();
@@ -698,7 +697,7 @@ void CUpdateManager::showStartInstallMessage(QWidget *parent)
                                                                                 getVersion(),
                                                                                 QString(VER_FILEVERSION_STR)),
                                     WinDlg::DlgBtns::mbSkipRemindSaveandinstall);
-    m_lock = false;
+    __UNLOCK
     switch (result) {
     case WinDlg::DLG_RESULT_INSTALL: {
         m_restartForUpdate = true;
