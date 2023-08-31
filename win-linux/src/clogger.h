@@ -6,6 +6,8 @@
 #include <QTextStream>
 #include <QDateTime>
 
+#define FUNCTION_INFO QString("%1 Line: %2").arg(QString(__FUNCTION__), QString::number(__LINE__))
+
 class CLogger : public QObject
 {
     Q_OBJECT
