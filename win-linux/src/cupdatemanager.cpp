@@ -56,6 +56,7 @@
 
 #define modeToEnum(mod) ((mod == "silent") ? UpdateMode::SILENT : (mod == "ask") ? UpdateMode::ASK : UpdateMode::DISABLE)
 #define WStrToTStr(str) QStrToTStr(QString::fromStdWString(str))
+#define DAY_TO_SEC 24*3600
 #define CHECK_ON_STARTUP_MS 9000
 #define CMD_ARGUMENT_UPDATES_CHANNEL L"--updates-appcast-channel"
 #ifndef URL_APPCAST_UPDATES
@@ -128,16 +129,6 @@ auto currentArch()->QString
 #else
     return "_x64";
 #endif
-}
-
-auto destroyStartupTimer(QTimer* &timer)->void
-{
-    if (timer) {
-        if (timer->isActive())
-            timer->stop();
-        timer->deleteLater();
-        timer = nullptr;
-    }
 }
 
 auto getFileHash(const QString &fileName)->QString
@@ -227,9 +218,13 @@ CUpdateManager::CUpdateManager(QObject *parent):
 
     if ( !m_checkUrl.empty()) {
         CLogger::log("Updates is on, URL: " + QString::fromStdWString(m_checkUrl));
-//        m_pTimer = new QTimer(this);
-//        m_pTimer->setSingleShot(false);
-//        connect(m_pTimer, SIGNAL(timeout()), this, SLOT(checkUpdates()));
+        m_pIntervalTimer = new QTimer(this);
+        m_pIntervalTimer->setSingleShot(false);
+        connect(m_pIntervalTimer, SIGNAL(timeout()), this, SLOT(checkUpdates()));
+        m_pIntervalStartTimer = new QTimer(this);
+        m_pIntervalStartTimer->setSingleShot(true);
+        m_pIntervalStartTimer->setInterval(CHECK_ON_STARTUP_MS);
+        connect(m_pIntervalStartTimer, &QTimer::timeout, this, &CUpdateManager::updateNeededCheking);
         if (IsPackage(Portable))
             runProcess(QStrToTStr(qApp->applicationDirPath()) + DAEMON_NAME, TEXT("--run-as-app"));
         init();
@@ -257,15 +252,9 @@ void CUpdateManager::init()
     m_savedPackageData->fileName = reg_user.value("file", QString()).toString();
     m_savedPackageData->fileType = reg_user.value("type", QString()).toString();
     m_savedPackageData->version = reg_user.value("version", QString()).toString();
-//    m_lastCheck = time_t(reg_user.value("last_check", 0).toLongLong());
+    m_lastCheck = time_t(reg_user.value("last_check", 0).toLongLong());
+    m_interval = reg_user.value("interval", DAY_TO_SEC).toInt();
     reg_user.endGroup();
-    if (getUpdateMode() != UpdateMode::DISABLE) {
-        m_pCheckOnStartupTimer = new QTimer(this);
-        m_pCheckOnStartupTimer->setSingleShot(true);
-        m_pCheckOnStartupTimer->setInterval(CHECK_ON_STARTUP_MS);
-        connect(m_pCheckOnStartupTimer, &QTimer::timeout, this, &CUpdateManager::updateNeededCheking);
-        m_pCheckOnStartupTimer->start();
-    }
 
     m_socket->onMessageReceived([this](void *data, size_t) {
         tstring str((const tchar*)data), tmp;
@@ -334,12 +323,20 @@ void CUpdateManager::clearTempFiles(const QString &except)
 
 void CUpdateManager::checkUpdates(bool manualCheck)
 {
+    m_pIntervalStartTimer->stop();
+    m_lastCheck = time(nullptr);
+    GET_REGISTRY_USER(reg_user);
+    reg_user.beginGroup("Updates");
+    reg_user.setValue("last_check", static_cast<qlonglong>(m_lastCheck));
+    reg_user.endGroup();
+    if (getUpdateMode() != UpdateMode::DISABLE)
+        m_pIntervalStartTimer->start();
+
     if (m_lock)
         return;
     m_lock = true;
     AscAppManager::sendCommandTo(0, "updates:link", "lock");
     m_manualCheck = manualCheck;
-    destroyStartupTimer(m_pCheckOnStartupTimer);
     m_packageData->clear();
 
 #ifdef CHECK_DIRECTORY
@@ -350,37 +347,24 @@ void CUpdateManager::checkUpdates(bool manualCheck)
     }
 #endif
 
-//    m_lastCheck = time(nullptr);
-//    GET_REGISTRY_USER(reg_user);
-//    reg_user.beginGroup("Updates");
-//    reg_user.setValue("last_check", static_cast<qlonglong>(m_lastCheck));
-//    reg_user.endGroup();
-
     if (!sendMessage(MSG_CheckUpdates, WStrToTStr(m_checkUrl))) {
         m_dialogSchedule->addToSchedule("criticalMsg", QObject::tr("An error occurred while check updates: Update Service not found!"));
     }
-//    QTimer::singleShot(3000, this, [=]() {
-//        updateNeededCheking();
-//    });
 }
 
 void CUpdateManager::updateNeededCheking()
 {
-    checkUpdates();
-//    if (m_pTimer) {
-//        m_pTimer->stop();
-//        int interval = 0;
-//        const time_t DAY_TO_SEC = 24*3600;
-//        const time_t curr_time = time(nullptr);
-//        const time_t elapsed_time = curr_time - m_lastCheck;
-//        if (elapsed_time > DAY_TO_SEC) {
-//            checkUpdates();
-//        } else {
-//            interval = static_cast<int>(DAY_TO_SEC - elapsed_time);
-//            m_pTimer->setInterval(interval*1000);
-//            m_pTimer->start();
-//        }
-//    }
+    if (m_pIntervalTimer) {
+        m_pIntervalTimer->stop();
+        int elapsed_time = int(time(nullptr) - m_lastCheck);
+        if (elapsed_time > m_interval) {
+            checkUpdates();
+        } else {
+            int remaining_time = 1000 * (m_interval - elapsed_time);
+            m_pIntervalTimer->setInterval(remaining_time < CHECK_ON_STARTUP_MS + 1000 ? CHECK_ON_STARTUP_MS + 1000 : remaining_time);
+            m_pIntervalTimer->start();
+        }
+    }
 }
 
 void CUpdateManager::onProgressSlot(const int percent)
@@ -476,6 +460,12 @@ void CUpdateManager::installUpdates()
     }
 }
 
+void CUpdateManager::launchIntervalStartTimer()
+{
+    if (getUpdateMode() != UpdateMode::DISABLE)
+        m_pIntervalStartTimer->start();
+}
+
 QString CUpdateManager::getVersion() const
 {
     return m_packageData->version;
@@ -542,8 +532,11 @@ void CUpdateManager::setNewUpdateSetting(const QString& _rate)
     GET_REGISTRY_USER(reg_user);
     reg_user.setValue("autoUpdateMode", _rate);
     if (modeToEnum(_rate) == UpdateMode::DISABLE) {
-        destroyStartupTimer(m_pCheckOnStartupTimer);
-//    QTimer::singleShot(3000, this, &CUpdateManager::updateNeededCheking);
+        m_pIntervalStartTimer->stop();
+        m_pIntervalTimer->stop();
+    } else {
+        m_pIntervalStartTimer->start();
+    }
 }
 
 void CUpdateManager::cancelLoading()

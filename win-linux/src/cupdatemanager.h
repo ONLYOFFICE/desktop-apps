@@ -77,6 +77,7 @@ public:
     void handleAppClose();
     void loadUpdates();
     void installUpdates();
+    void launchIntervalStartTimer();
 
 public slots:
     void checkUpdates(bool manualCheck = false);
@@ -103,10 +104,11 @@ private:
                 m_manualCheck = false,
                 m_lock = false;
 
-//    QTimer      *m_pTimer = nullptr;
-//    time_t      m_lastCheck;
+    time_t      m_lastCheck = 0;
+    int         m_interval = 0;
 
-    QTimer      *m_pCheckOnStartupTimer = nullptr;
+    QTimer      *m_pIntervalStartTimer = nullptr,
+                *m_pIntervalTimer = nullptr;
     wstring     m_checkUrl;
 
     class DialogSchedule;
