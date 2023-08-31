@@ -71,6 +71,7 @@
 #import "ASCThemesController.h"
 #import "ASCEditorJSVariables.h"
 #import "ASCPresentationReporter.h"
+#import "ASCDocumentType.h"
 #import <Carbon/Carbon.h>
 
 #define rootTabId @"1CEF624D-9FF3-432B-9967-61361B5BFE8B"
@@ -735,8 +736,30 @@
 
 - (void)onCEFCreateTab:(NSNotification *)notification {
     if (notification && notification.userInfo) {
-        NSDictionary * params = (NSDictionary *)notification.userInfo;
-        
+        NSMutableDictionary * params = [notification.userInfo mutableCopy];
+
+        if ([params[@"action"] isEqualToNumber:@(ASCTabActionCreateLocalFileFromTemplate)]) {
+            NSOpenPanel * openPanel = [NSOpenPanel openPanel];
+            NSMutableArray * filter = [NSMutableArray array];
+
+            if ( [params[@"type"] isEqualToNumber:@(ASCDocumentTypePresentation)] ) {
+                [filter addObjectsFromArray:@[@"potx", @"otp"]];
+            } else if ( [params[@"type"] isEqualToNumber:@(ASCDocumentTypeSpreadsheet)] ) {
+                [filter addObjectsFromArray:@[@"xltx", @"xltm", @"ots"]];
+            } else {
+                [filter addObjectsFromArray:@[@"dotx", @"ott"]];
+            }
+
+            openPanel.canChooseDirectories = NO;
+            openPanel.allowsMultipleSelection = NO;
+            openPanel.canChooseFiles = YES;
+            openPanel.allowedFileTypes = filter;
+
+            if ([openPanel runModal] == NSModalResponseOK) {
+                [params setValue:[[openPanel URL] path] forKey:@"template"];
+            } else return;
+        }
+
         ASCTabView *tab = [[ASCTabView alloc] initWithFrame:CGRectZero];
         tab.title       = [NSString stringWithFormat:@"%@...", NSLocalizedString(@"Opening", nil)];
         tab.type        = ASCTabViewTypeOpening;
@@ -1787,6 +1810,7 @@
                 break;
             }
                 
+            case ASCTabActionCreateLocalFileFromTemplate:
             case ASCTabActionCreateLocalFile: {
                 int docType = CEFDocumentDocument;
                 if ( [tab.params[@"type"] isKindOfClass:[NSString class]] ) {
@@ -1814,7 +1838,12 @@
                         break;
                 }
                 
-                [cefView createFileWithName:docName type:docType];
+                if (action == ASCTabActionCreateLocalFile ) {
+                    [cefView createFileWithName:docName type:docType];
+                } else {
+                    [cefView createFileWithNameFromTemplate:docName tplpath:tab.params[@"template"]];
+                }
+
                 break;
             }
                 

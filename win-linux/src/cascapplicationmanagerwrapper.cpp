@@ -375,6 +375,9 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
             }
 
             return true;
+        } else
+        if ( !(cmd.find(L"updates:action") == std::wstring::npos) ) {
+            // qDebug() << "updates action" << pData->get_Param();
         }
 
         break; }
@@ -1924,6 +1927,16 @@ QString CAscApplicationManagerWrapper::newFileName(int format)
     case AVS_OFFICESTUDIO_FILE_PRESENTATION_PPTX:    return tr("Presentation%1.pptx").arg(++pptx_count);
     default:                                         return "Document.asc";
     }
+}
+
+QString CAscApplicationManagerWrapper::newFileName(const std::wstring& format)
+{
+    int _f = format == L"word" ? AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCX :
+                 format == L"cell" ? AVS_OFFICESTUDIO_FILE_SPREADSHEET_XLSX :
+                 format == L"form" ? AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCXF :
+                 format == L"slide" ? AVS_OFFICESTUDIO_FILE_PRESENTATION_PPTX : AVS_OFFICESTUDIO_FILE_UNKNOWN;
+
+    return newFileName(_f);
 }
 
 /*void CAscApplicationManagerWrapper::checkUpdates()
