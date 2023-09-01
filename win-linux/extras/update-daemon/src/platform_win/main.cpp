@@ -95,7 +95,7 @@ int __cdecl _tmain (int argc, TCHAR *argv[])
 
             CApplication app;
             CSvcManager upd;
-            socket.onMessageReceived([&app](void *buff, size_t bufsize) {
+            socket.onMessageReceived([&app](void *buff, size_t) {
                 if (strcmp((const char*)buff, "stop") == 0)
                     app.exit(0);
             });

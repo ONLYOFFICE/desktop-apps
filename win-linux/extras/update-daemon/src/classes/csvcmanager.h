@@ -38,19 +38,9 @@
 #ifdef _WIN32
 # include "classes/platform_win/cdownloader.h"
 # include "classes/platform_win/cunzip.h"
-# include <Windows.h>
-# define tstring std::wstring
-# define tchar wchar_t
-# define tstringstream std::wstringstream
-# define to_tstring to_wstring
 #else
 # include "classes/platform_linux/cdownloader.h"
 # include "classes/platform_linux/cunzip.h"
-# define TEXT(str) str
-# define tstring std::string
-# define tchar char
-# define tstringstream std::stringstream
-# define to_tstring to_string
 #endif
 
 typedef std::function<void(void)> FnVoidVoid;
@@ -73,9 +63,7 @@ private:
     void onProgressSlot(const int percent);
     void unzipIfNeeded(const tstring &filePath, const tstring &newVersion);
     void clearTempFiles(const tstring &prefix, const tstring &except = tstring());
-    void startReplacingFiles();
-    bool sendMessage(int cmd, const tstring &param1 = TEXT("null"), const tstring &param2 = TEXT("null"),
-                        const tstring &param3 = TEXT("null"));
+    void startReplacingFiles(const tstring &packageType, const bool restartAfterUpdate);
 
     FnVoidVoid   m_quit_callback = nullptr;
     tstring      m_newVersion;

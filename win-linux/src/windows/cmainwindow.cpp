@@ -901,6 +901,7 @@ void CMainWindow::onDocumentReady(int uid)
     } else {
         m_pTabs->applyDocumentChanging(uid, DOCUMENT_CHANGED_LOADING_FINISH);
     }
+    AscAppManager::getInstance().onDocumentReady(uid);
 }
 
 void CMainWindow::onDocumentLoadFinished(int uid)

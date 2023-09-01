@@ -41,8 +41,8 @@ using std::wstring;
 using std::to_wstring;
 using std::list;
 
-#define DEFAULT_ERROR_MESSAGE L"An error occurred: " + \
-    wstring(TEXT(__FUNCTION__)) + L" Line: " + to_wstring(__LINE__)
+#define FUNCTION_INFO wstring(TEXT(__FUNCTION__)) + L" Line: " + to_wstring(__LINE__)
+#define DEFAULT_ERROR_MESSAGE L"An error occurred: " + FUNCTION_INFO
 #define ADVANCED_ERROR_MESSAGE DEFAULT_ERROR_MESSAGE + \
     L" " + NS_Utils::GetLastErrorAsString()
 

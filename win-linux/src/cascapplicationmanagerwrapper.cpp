@@ -84,9 +84,6 @@ CAscApplicationManagerWrapper::CAscApplicationManagerWrapper(CAscApplicationMana
 
 #ifdef _UPDMODULE
     m_pUpdateManager = new CUpdateManager(this);
-    connect(m_pUpdateManager, &CUpdateManager::progresChanged, this, [=](const int &percent) {
-        AscAppManager::sendCommandTo(0, "updates:download", QString("{\"progress\":\"%1\"}").arg(QString::number(percent)));
-    });
 #endif
 }
 
@@ -289,7 +286,7 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
             return true;
         } else
 #ifdef _UPDMODULE
-        if ( !(cmd.find(L"update") == std::wstring::npos) ) {   // params: check, download, install, abort
+        if ( !(cmd.find(L"updates:action") == std::wstring::npos) ) {   // params: check, download, install, abort
             const QString params = QString::fromStdWString(pData->get_Param());
             if (params == "check") {
                 m_pUpdateManager->checkUpdates(true);
@@ -375,9 +372,6 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
             }
 
             return true;
-        } else
-        if ( !(cmd.find(L"updates:action") == std::wstring::npos) ) {
-            // qDebug() << "updates action" << pData->get_Param();
         }
 
         break; }
@@ -915,6 +909,22 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
             _app.m_pMainWindow->doOpenLocalFile(opts);
         }
     }
+}
+
+void CAscApplicationManagerWrapper::onDocumentReady(int uid)
+{
+#ifdef _UPDMODULE
+    if (uid < 0) {
+        QTimer::singleShot(50, this, [=]() {
+            m_pUpdateManager->refreshStartPage();
+        });
+    }
+    static bool lock = false;
+    if (!lock) {
+        lock = true;
+        m_pUpdateManager->launchIntervalStartTimer();
+    }
+#endif
 }
 
 void CAscApplicationManagerWrapper::startApp()
@@ -1636,15 +1646,9 @@ bool CAscApplicationManagerWrapper::applySettings(const wstring& wstrjson)
             _reg_user.setValue("editorWindowMode", m_private->m_openEditorWindow);
         }
 #ifdef _UPDMODULE
-#ifdef Q_OS_WIN
         if ( objRoot.contains("autoupdatemode") ) {
             m_pUpdateManager->setNewUpdateSetting(objRoot["autoupdatemode"].toString());
         }
-#else
-        if ( objRoot.contains("checkupdatesinterval") ) {
-            m_pUpdateManager->setNewUpdateSetting(objRoot["checkupdatesinterval"].toString());
-        }
-#endif
 #endif
     } else {
         /* parse settings error */

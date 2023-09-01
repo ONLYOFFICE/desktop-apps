@@ -35,7 +35,6 @@
 
 #include "version.h"
 #include <Windows.h>
-#include <tchar.h>
 #include <strsafe.h>
 
 #define SERVICE_NAME TEXT(VER_PRODUCTNAME_STR)

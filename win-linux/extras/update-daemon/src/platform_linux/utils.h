@@ -40,8 +40,8 @@ using std::string;
 using std::to_string;
 using std::list;
 
-#define DEFAULT_ERROR_MESSAGE "An error occurred: " + \
-    string(__FUNCTION__) + " Line: " + to_string(__LINE__)
+#define FUNCTION_INFO string(__FUNCTION__) + " Line: " + to_string(__LINE__)
+#define DEFAULT_ERROR_MESSAGE "An error occurred: " + FUNCTION_INFO
 #define ADVANCED_ERROR_MESSAGE DEFAULT_ERROR_MESSAGE + \
     " " + NS_Utils::GetLastErrorAsString()
 
