@@ -483,7 +483,7 @@ void CSvcManager::startReplacingFiles(const tstring &packageType, const bool res
         NS_File::replaceFile(tmpPath + DAEMON_NAME, appPath + DAEMON_NAME_OLD);
 
     // Update version in registry
-    {
+    if (packageType == TEXT("iss") || packageType == TEXT("msi")) {
         wstring ver;
         list<wstring> lines;
         if (NS_File::readFile(appPath + SUCCES_UNPACKED, lines)) {
@@ -495,7 +495,8 @@ void CSvcManager::startReplacingFiles(const tstring &packageType, const bool res
             HKEY hKey, hAppKey;
             if (RegOpenKeyEx(HKEY_LOCAL_MACHINE, TEXT("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall"), 0, KEY_ALL_ACCESS, &hKey) == ERROR_SUCCESS) {
                 wstring app_name(TEXT(WINDOW_NAME));
-                wstring app_key = app_name + L"_is1";
+                wstring app_key(app_name);
+                app_key += (packageType == TEXT("iss")) ? L"_is1" : L"_is2";
                 if (RegOpenKeyEx(hKey, app_key.c_str(), 0, KEY_ALL_ACCESS, &hAppKey) == ERROR_SUCCESS) {
                     wstring disp_name = app_name + L" " + ver + L" (" + currentArch().substr(1) + L")";
                     if (RegSetValueEx(hAppKey, TEXT("DisplayName"), 0, REG_SZ, (const BYTE*)disp_name.c_str(), (DWORD)(disp_name.length() + 1) * sizeof(WCHAR)) != ERROR_SUCCESS)
