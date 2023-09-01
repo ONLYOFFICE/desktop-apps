@@ -97,7 +97,7 @@ OutputBaseFileName                = {#sOutputFileName}
 SignTool                  =byparam $p
 #endif
 
-SetupIconFile                     = {#sBrandingFolder}\win-linux\extras\projicons\res\desktopeditors.ico
+SetupIconFile                     = {#sBrandingFolder}\win-linux\extras\projicons\res\icons\desktopeditors.ico
 WizardImageFile                   = {#sBrandingFolder}\win-linux\package\windows\data\dialogpicture*.bmp
 WizardSmallImageFile              = {#sBrandingFolder}\win-linux\package\windows\data\dialogicon*.bmp
 
