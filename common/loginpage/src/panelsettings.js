@@ -652,7 +652,7 @@
 
                 this.view.render();
 
-                const _scaling = [100, 125, 150, 175, 200, 225, 250, 300, 350, 400, 450, 500];
+                const _scaling = [100, 125, 150, 175, 200, 225, 250, 275, 300, 350, 400, 450, 500];
                 let _scaling_items = '';
                 _scaling.forEach(val => _scaling_items += `<option value="${val}">${val}%</option>`);
                 $('#opts-ui-scaling .combobox', this.view.$panel).append($(_scaling_items));
