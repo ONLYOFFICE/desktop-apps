@@ -143,7 +143,11 @@ auto formattedTime(time_t timestamp)->QString
     if (timestamp == 0)
         return QString::fromUtf8(formatted);
     struct tm timeinfo;
+#ifdef _WIN32
     if (localtime_s(&timeinfo, &timestamp) == 0) {
+#else
+    if (localtime_r(&timestamp, &timeinfo) != nullptr) {
+#endif
         memset(formatted, 0, sizeof(formatted));
         if (strftime(formatted, sizeof(formatted), "%d.%m.%Y %H:%M", &timeinfo) > 0)
             return QString::fromUtf8(formatted);
