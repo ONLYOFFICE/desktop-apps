@@ -728,6 +728,18 @@ Utils::WinVer Utils::getWinVersion()
     }
     return WinVer::Undef;
 }
+
+std::atomic_bool sessionInProgress{true};
+
+bool Utils::isSessionInProgress()
+{
+    return sessionInProgress;
+}
+
+void Utils::setSessionInProgress(bool state)
+{
+    sessionInProgress = state;
+}
 #endif
 
 QString Utils::replaceBackslash(const QString& path)

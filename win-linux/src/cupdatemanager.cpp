@@ -514,6 +514,10 @@ void CUpdateManager::handleAppClose()
                 criticalMsg(nullptr, QObject::tr("An error occurred while start install updates!"));
             }
         } else {
+            if (!Utils::isSessionInProgress()) {
+                CLogger::log("Update skipped: session is being terminated.");
+                return;
+            }
 #endif
             if (!m_socket->sendMessage(MSG_StartReplacingFiles, IsPackage(ISS) ? _T("iss") : IsPackage(MSI) ? _T("msi") :
                    IsPackage(Portable) ? _T("portable") : _T("other"), m_restartAfterUpdate ? _T("true") : _T("false"))) {
