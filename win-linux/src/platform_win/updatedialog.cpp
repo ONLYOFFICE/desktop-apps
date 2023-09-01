@@ -40,6 +40,10 @@
 #include <CommCtrl.h>
 #include <QTimer>
 
+#define DLG_PADDING 7
+#define BTN_SPACING 5
+#define BTN_PADDING 13
+#define DLG_PREF_WIDTH 240
 #define toWCharPtr(qstr) _wcsdup(qstr.toStdWString().c_str())
 #define TEXT_SKIP        toWCharPtr(QObject::tr("Skip this version"))
 #define TEXT_REMIND      toWCharPtr(QObject::tr("Remind me later"))
@@ -49,6 +53,24 @@
 #define TEXT_SAVEANDINS  toWCharPtr(QObject::tr("Save and Install Now"))
 #define TEXT_DOWNLOAD    toWCharPtr(QObject::tr("Download update"))
 
+
+static int calcApproxMinWidth(TASKDIALOG_BUTTON *pButtons, uint cButtons)
+{
+    int width = 0;
+    HDC hdc = GetDC(NULL);
+    long units = GetDialogBaseUnits();
+    HGDIOBJ hFont = GetStockObject(DEFAULT_GUI_FONT);
+    SelectObject(hdc, hFont);
+    for (uint i = 0; i < cButtons; i++) {
+        SIZE textSize = {0,0};
+        const wchar_t *text = pButtons[i].pszButtonText;
+        GetTextExtentPoint32(hdc, text, (int)std::wcslen(text), &textSize);
+        width += MulDiv(textSize.cx, 4, LOWORD(units));
+    }
+    ReleaseDC(NULL, hdc);
+    width +=  (2 * DLG_PADDING) + (2 * BTN_PADDING * cButtons) + (BTN_SPACING * (cButtons - 1));
+    return width;
+}
 
 static HRESULT CALLBACK Pftaskdialogcallback(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam, LONG_PTR lpRefData)
 {
@@ -140,7 +162,7 @@ int WinDlg::showDialog(QWidget *parent,
     config.pszWindowTitle     = lpCaption.c_str();
     config.pszMainInstruction = lpText.c_str();
     config.pszContent         = lpContent.c_str();
-//    config.cxWidth            = 240;
+    config.cxWidth            = calcApproxMinWidth(pButtons, cButtons) > DLG_PREF_WIDTH ? 0 : DLG_PREF_WIDTH;
 
     TaskDialogIndirect(&config, &msgboxID, NULL, NULL);
     for (int i = 0; i < (int)cButtons; i++)
