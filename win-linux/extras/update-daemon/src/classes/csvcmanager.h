@@ -63,7 +63,7 @@ private:
     void onProgressSlot(const int percent);
     void unzipIfNeeded(const tstring &filePath, const tstring &newVersion);
     void clearTempFiles(const tstring &prefix, const tstring &except = tstring());
-    void startReplacingFiles();
+    void startReplacingFiles(const tstring &packageType, const bool restartAfterUpdate);
 
     FnVoidVoid   m_quit_callback = nullptr;
     tstring      m_newVersion;

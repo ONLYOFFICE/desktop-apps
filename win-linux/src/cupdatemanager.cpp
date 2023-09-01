@@ -501,7 +501,7 @@ void CUpdateManager::unzipIfNeeded()
 
 void CUpdateManager::handleAppClose()
 {
-    if ( m_restartForUpdate ) {
+    if ( m_startUpdateOnClose ) {
 #ifdef _WIN32
         if (m_packageData->fileType != "archive") {
             wstring args = m_packageData->packageArgs;
@@ -515,7 +515,8 @@ void CUpdateManager::handleAppClose()
             }
         } else {
 #endif
-            if (!m_socket->sendMessage(MSG_StartReplacingFiles)) {
+            if (!m_socket->sendMessage(MSG_StartReplacingFiles, IsPackage(ISS) ? _T("iss") : IsPackage(MSI) ? _T("msi") :
+                   IsPackage(Portable) ? _T("portable") : _T("other"), m_restartAfterUpdate ? _T("true") : _T("false"))) {
                 criticalMsg(nullptr, QObject::tr("An error occurred while start replacing files: Update Service not found!"));
             }
 #ifdef _WIN32
@@ -653,12 +654,10 @@ void CUpdateManager::onCheckFinished(bool error, bool updateExist, const QString
 }
 
 void CUpdateManager::showUpdateMessage(QWidget *parent) {
-    int result = WinDlg::showDialog(parent,
-                        tr("A new version of %1 is available!").arg(QString(WINDOW_NAME)),
-                        tr("%1 %2 is now available (you have %3). "
-                           "Would you like to download it now?").arg(QString(WINDOW_NAME),
-                                                                    getVersion(),
-                                                                    QString(VER_FILEVERSION_STR)),
+    int result = WinDlg::showDialog(parent, tr("Update is available"),
+                        QString("%1\n%2: %3\n%4: %5\n%6").arg(QString(WINDOW_NAME), tr("Current version"),
+                        QString(VER_FILEVERSION_STR), tr("Update version"), getVersion(),
+                        tr("Would you like to download update now?")),
                         WinDlg::DlgBtns::mbSkipRemindDownload);
     __UNLOCK
     switch (result) {
@@ -678,27 +677,42 @@ void CUpdateManager::showUpdateMessage(QWidget *parent) {
 
 void CUpdateManager::showStartInstallMessage(QWidget *parent)
 {
-    int result = WinDlg::showDialog(parent,
-                                    tr("A new version of %1 is available!").arg(QString(WINDOW_NAME)),
-                                    tr("%1 %2 is now downloaded (you have %3). "
-                                       "Would you like to install it now?").arg(QString(WINDOW_NAME),
-                                                                                getVersion(),
-                                                                                QString(VER_FILEVERSION_STR)),
-                                    WinDlg::DlgBtns::mbSkipRemindSaveandinstall);
+    int result = WinDlg::showDialog(parent, tr("Update is ready to install"),
+                        QString("%1\n%2: %3\n%4: %5\n%6").arg(QString(WINDOW_NAME), tr("Current version"),
+                        QString(VER_FILEVERSION_STR), tr("Update version"), getVersion(),
+                        tr("Would you like to restart app now?")),
+                        WinDlg::DlgBtns::mbInslaterRestart);
     __UNLOCK
     switch (result) {
-    case WinDlg::DLG_RESULT_INSTALL: {
-        m_restartForUpdate = true;
+    case WinDlg::DLG_RESULT_RESTART: {
+        m_startUpdateOnClose = true;
+        m_restartAfterUpdate = true;
         AscAppManager::closeAppWindows();
         break;
     }
-    case WinDlg::DLG_RESULT_SKIP: {
-        skipVersion();
-        AscAppManager::sendCommandTo(0, "updates:link", "lock");
-        AscAppManager::sendCommandTo(0, "updates:checking", "{\"version\":\"no\"}");
+    case WinDlg::DLG_RESULT_INSLATER: {
+#ifdef _WIN32
+        if (m_packageData->fileType == "archive") {
+            m_startUpdateOnClose = true;
+            m_restartAfterUpdate = false;
+        } else {
+#endif
+            m_startUpdateOnClose = false;
+            m_restartAfterUpdate = false;
+#ifdef _WIN32
+        }
+#endif
         break;
     }
+//    case WinDlg::DLG_RESULT_SKIP: {
+//        skipVersion();
+//        AscAppManager::sendCommandTo(0, "updates:link", "lock");
+//        AscAppManager::sendCommandTo(0, "updates:checking", "{\"version\":\"no\"}");
+//        break;
+//    }
     default:
+        m_startUpdateOnClose = false;
+        m_restartAfterUpdate = false;
         break;
     }
 }

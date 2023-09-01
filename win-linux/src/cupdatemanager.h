@@ -88,7 +88,8 @@ private:
     PackageData      *m_packageData;
     SavedPackageData *m_savedPackageData;
 
-    bool        m_restartForUpdate = false,
+    bool        m_startUpdateOnClose = false,
+                m_restartAfterUpdate = false,
                 m_manualCheck = false,
                 m_lock = false;
 

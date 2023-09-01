@@ -237,7 +237,7 @@ void CSvcManager::init()
 
             case MSG_StartReplacingFiles:
                 __GLOBAL_LOCK
-                startReplacingFiles();
+                startReplacingFiles(params[1], params[2] == _T("true"));
                 __UNLOCK
                 break;
 
@@ -382,7 +382,7 @@ void CSvcManager::clearTempFiles(const tstring &prefix, const tstring &except)
     });
 }
 
-void CSvcManager::startReplacingFiles()
+void CSvcManager::startReplacingFiles(const tstring &packageType, const bool restartAfterUpdate)
 {
     tstring appPath = NS_File::appPath();
     tstring updPath = NS_File::parentPath(appPath) + UPDATE_PATH;
@@ -533,8 +533,10 @@ void CSvcManager::startReplacingFiles()
     NS_File::removeDirRecursively(tmpPath);
 
     // Restart program
-    if (!NS_File::runProcess(appPath + APP_LAUNCH_NAME, _T("")))
-        NS_Logger::WriteLog(_T("An error occurred while restarting the program!"), true);
+    if (restartAfterUpdate) {
+        if (!NS_File::runProcess(appPath + APP_LAUNCH_NAME, _T("")))
+            NS_Logger::WriteLog(_T("An error occurred while restarting the program!"), true);
+    }
 
     // Restart service
 #ifdef _WIN32
