@@ -52,6 +52,14 @@ enum UpdateMode {
     DISABLE=0, SILENT=1, ASK=2
 };
 
+struct Command {
+    bool isEmpty() const {
+        return (icon.isEmpty() && text.isEmpty() && btn_text.isEmpty() &&
+                   btn_action.isEmpty() && btn_lock.isEmpty());
+    }
+    QString icon, text, btn_text, btn_action, btn_lock;
+};
+
 class CUpdateManager: public QObject
 {
     Q_OBJECT
@@ -67,6 +75,7 @@ public:
     void handleAppClose();
     void loadUpdates();
     void installUpdates();
+    void refreshStartPage(const Command &cmd = Command());
     void launchIntervalStartTimer();
 
 public slots:
@@ -99,6 +108,8 @@ private:
     QTimer      *m_pIntervalStartTimer = nullptr,
                 *m_pIntervalTimer = nullptr;
     wstring     m_checkUrl;
+
+    Command     m_lastCommand;
 
     class DialogSchedule;
     DialogSchedule *m_dialogSchedule = nullptr;

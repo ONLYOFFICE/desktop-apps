@@ -286,7 +286,7 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
             return true;
         } else
 #ifdef _UPDMODULE
-        if ( !(cmd.find(L"update") == std::wstring::npos) ) {   // params: check, download, install, abort
+        if ( !(cmd.find(L"updates:action") == std::wstring::npos) ) {   // params: check, download, install, abort
             const QString params = QString::fromStdWString(pData->get_Param());
             if (params == "check") {
                 m_pUpdateManager->checkUpdates(true);
@@ -914,6 +914,11 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
 void CAscApplicationManagerWrapper::onDocumentReady(int uid)
 {
 #ifdef _UPDMODULE
+    if (uid < 0) {
+        QTimer::singleShot(50, this, [=]() {
+            m_pUpdateManager->refreshStartPage();
+        });
+    }
     static bool lock = false;
     if (!lock) {
         lock = true;
