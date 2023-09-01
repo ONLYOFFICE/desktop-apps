@@ -317,6 +317,7 @@ public:
             panel()->setReady();
             if (window->isActiveWindow())
                 window->focus();
+            AscAppManager::getInstance().onDocumentReady(uid);
     }
 
     void onDocumentName(void * data) override

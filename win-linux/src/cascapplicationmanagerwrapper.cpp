@@ -911,6 +911,17 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
     }
 }
 
+void CAscApplicationManagerWrapper::onDocumentReady(int uid)
+{
+#ifdef _UPDMODULE
+    static bool lock = false;
+    if (!lock) {
+        lock = true;
+        m_pUpdateManager->launchIntervalStartTimer();
+    }
+#endif
+}
+
 void CAscApplicationManagerWrapper::startApp()
 {
     APP_CAST(_app);
