@@ -239,7 +239,7 @@ CUpdateManager::CUpdateManager(QObject *parent):
         m_pIntervalStartTimer->setInterval(CHECK_ON_STARTUP_MS);
         connect(m_pIntervalStartTimer, &QTimer::timeout, this, &CUpdateManager::updateNeededCheking);
         if (IsPackage(Portable))
-            runProcess(QStrToTStr(qApp->applicationDirPath()) + DAEMON_NAME, TEXT("--run-as-app"));
+            runProcess(QStrToTStr(qApp->applicationDirPath()) + DAEMON_NAME, _T("--run-as-app"));
         init();
     } else
         CLogger::log("Updates is off, URL is empty.");
@@ -270,13 +270,8 @@ void CUpdateManager::init()
     reg_user.endGroup();
 
     m_socket->onMessageReceived([this](void *data, size_t) {
-        tstring str((const tchar*)data), tmp;
         vector<tstring> params;
-        tstringstream wss(str);
-        while (std::getline(wss, tmp, TEXT('|')))
-            params.push_back(std::move(tmp));
-
-        if (params.size() == 4) {
+        if (m_socket->parseMessage(data, params) == 3) {
             switch (std::stoi(params[0])) {
             case MSG_LoadCheckFinished:
                 QMetaObject::invokeMethod(this, "onLoadCheckFinished", Qt::QueuedConnection, Q_ARG(QString, TStrToQStr(params[1])));
@@ -328,7 +323,7 @@ void CUpdateManager::clearTempFiles(const QString &except)
     static bool lock = false;
     if (!lock) { // for one-time cleaning
         lock = true;
-        sendMessage(MSG_ClearTempFiles, QStrToTStr(QString(FILE_PREFIX)), QStrToTStr(except));
+        m_socket->sendMessage(MSG_ClearTempFiles, QStrToTStr(QString(FILE_PREFIX)), QStrToTStr(except));
     }
     if (except.isEmpty())
         savePackageData();
@@ -358,7 +353,7 @@ void CUpdateManager::checkUpdates(bool manualCheck)
     }
 #endif
 
-    if (!sendMessage(MSG_CheckUpdates, WStrToTStr(m_checkUrl))) {
+    if (!m_socket->sendMessage(MSG_CheckUpdates, WStrToTStr(m_checkUrl))) {
         m_dialogSchedule->addToSchedule("criticalMsg", QObject::tr("An error occurred while check updates: Update Service not found!"));
     }
 }
@@ -432,13 +427,6 @@ bool CUpdateManager::isVersionBHigherThanA(const QString &a, const QString &b)
     return false;
 }
 
-bool CUpdateManager::sendMessage(int cmd, const tstring &param1, const tstring &param2, const tstring &param3)
-{
-    tstring str = std::to_tstring(cmd) + TEXT("|") + param1 + TEXT("|") + param2 + TEXT("|") + param3;
-    size_t sz = str.size() * sizeof(str.front());
-    return m_socket->sendMessage((void*)str.c_str(), sz);
-}
-
 void CUpdateManager::loadUpdates()
 {
     __GLOBAL_LOCK
@@ -455,7 +443,7 @@ void CUpdateManager::loadUpdates()
 
     } else
     if (!m_packageData->packageUrl.empty()) {
-        if (!sendMessage(MSG_LoadUpdates, WStrToTStr(m_packageData->packageUrl), QStrToTStr(m_packageData->fileType))) {
+        if (!m_socket->sendMessage(MSG_LoadUpdates, WStrToTStr(m_packageData->packageUrl), QStrToTStr(m_packageData->fileType))) {
             m_dialogSchedule->addToSchedule("criticalMsg", QObject::tr("An error occurred while loading updates: Update Service not found!"));
         }
     }
@@ -506,7 +494,7 @@ void CUpdateManager::unzipIfNeeded()
 
     AscAppManager::sendCommandTo(0, "updates:link", "lock");
     AscAppManager::sendCommandTo(0, "updates:download", QString("{\"progress\":\"100\"}")); // TODO: replace with unpacking message
-    if (!sendMessage(MSG_UnzipIfNeeded, QStrToTStr(m_packageData->fileName), QStrToTStr(m_packageData->version))) {
+    if (!m_socket->sendMessage(MSG_UnzipIfNeeded, QStrToTStr(m_packageData->fileName), QStrToTStr(m_packageData->version))) {
         m_dialogSchedule->addToSchedule("criticalMsg", QObject::tr("An error occurred while unzip updates: Update Service not found!"));
     }
 }
@@ -527,14 +515,14 @@ void CUpdateManager::handleAppClose()
             }
         } else {
 #endif
-            if (!sendMessage(MSG_StartReplacingFiles)) {
+            if (!m_socket->sendMessage(MSG_StartReplacingFiles)) {
                 criticalMsg(nullptr, QObject::tr("An error occurred while start replacing files: Update Service not found!"));
             }
 #ifdef _WIN32
         }
 #endif
     } else
-        sendMessage(MSG_StopDownload);
+        m_socket->sendMessage(MSG_StopDownload);
 }
 
 void CUpdateManager::setNewUpdateSetting(const QString& _rate)
@@ -552,7 +540,7 @@ void CUpdateManager::setNewUpdateSetting(const QString& _rate)
 void CUpdateManager::cancelLoading()
 {
     AscAppManager::sendCommandTo(0, "updates:checking", QString("{\"version\":\"%1\"}").arg(m_packageData->version));
-    sendMessage(MSG_StopDownload);
+    m_socket->sendMessage(MSG_StopDownload);
     __UNLOCK
 }
 

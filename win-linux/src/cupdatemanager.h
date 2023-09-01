@@ -39,19 +39,9 @@
 #include "csocket.h"
 
 #ifdef _WIN32
-# include <Windows.h>
-# define tstring std::wstring
-# define tchar wchar_t
-# define tstringstream std::wstringstream
-# define to_tstring to_wstring
 # define QStrToTStr(a) a.toStdWString()
 # define TStrToQStr(a) QString::fromStdWString(a)
 #else
-# define TEXT(str) str
-# define tstring std::string
-# define tchar char
-# define tstringstream std::stringstream
-# define to_tstring to_string
 # define QStrToTStr(a) a.toStdString()
 # define TStrToQStr(a) QString::fromStdString(a)
 #endif
@@ -92,8 +82,6 @@ private:
     QString ignoredVersion();
     bool isSavedPackageValid();
     bool isVersionBHigherThanA(const QString &a, const QString &b);
-    bool sendMessage(int cmd, const tstring &param1 = TEXT("null"), const tstring &param2 = TEXT("null"),
-                        const tstring &param3 = TEXT("null"));
 
     struct PackageData;
     struct SavedPackageData;
