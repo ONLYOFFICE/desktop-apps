@@ -374,7 +374,10 @@ void CUpdateManager::checkUpdates(bool manualCheck)
 #endif
 
     if (!m_socket->sendMessage(MSG_CheckUpdates, WStrToTStr(m_checkUrl))) {
-        m_dialogSchedule->addToSchedule("criticalMsg", QObject::tr("An error occurred while check updates: Update Service not found!"));
+        refreshStartPage({"error", tr("An error occurred while check updates: Update Service not found!"),
+                             tr("Check for updates"), "check", "false"});
+        __UNLOCK
+//        m_dialogSchedule->addToSchedule("criticalMsg", QObject::tr("An error occurred while check updates: Update Service not found!"));
     }
 }
 
@@ -400,7 +403,9 @@ void CUpdateManager::onProgressSlot(const int percent)
 
 void CUpdateManager::onError(const QString &error)
 {
-    m_dialogSchedule->addToSchedule("criticalMsg", error);
+    refreshStartPage({"error", error, tr("Check for updates"), "check", "false"});
+    __UNLOCK
+//    m_dialogSchedule->addToSchedule("criticalMsg", error);
 }
 
 void CUpdateManager::savePackageData(const QString &version, const QString &fileName, const QString &fileType)
@@ -464,7 +469,9 @@ void CUpdateManager::loadUpdates()
     } else
     if (!m_packageData->packageUrl.empty()) {
         if (!m_socket->sendMessage(MSG_LoadUpdates, WStrToTStr(m_packageData->packageUrl), QStrToTStr(m_packageData->fileType))) {
-            m_dialogSchedule->addToSchedule("criticalMsg", QObject::tr("An error occurred while loading updates: Update Service not found!"));
+            refreshStartPage({"error", tr("An error occurred while loading updates: Update Service not found!"), tr("Check for updates"), "check", "false"});
+            __UNLOCK
+//            m_dialogSchedule->addToSchedule("criticalMsg", QObject::tr("An error occurred while loading updates: Update Service not found!"));
         } else {
             refreshStartPage({"load", tr("Downloading new version %1 (0%)").arg(m_packageData->version), tr("Cancel"), "abort", "false"});
         }
@@ -541,8 +548,10 @@ QString CUpdateManager::getVersion() const
 void CUpdateManager::onLoadUpdateFinished(const QString &filePath)
 {
     if (getFileHash(filePath) != m_packageData->hash) {
-        AscAppManager::sendCommandTo(0, "updates:checking", QString("{\"version\":\"%1\"}").arg(m_packageData->version));
-        m_dialogSchedule->addToSchedule("criticalMsg", "Update package error: md5 sum does not match the original.");
+        refreshStartPage({"error", tr("Update package error: md5 sum does not match the original."),
+                             tr("Check for updates"), "check", "false"});
+        __UNLOCK
+//        m_dialogSchedule->addToSchedule("criticalMsg", "Update package error: md5 sum does not match the original.");
         return;
     }
     m_packageData->fileName = filePath;
@@ -562,7 +571,9 @@ void CUpdateManager::unzipIfNeeded()
 
     refreshStartPage({"load", tr("Preparing update..."), tr("Cancel"), "abort", "true"});
     if (!m_socket->sendMessage(MSG_UnzipIfNeeded, QStrToTStr(m_packageData->fileName), QStrToTStr(m_packageData->version))) {
-        m_dialogSchedule->addToSchedule("criticalMsg", QObject::tr("An error occurred while unzip updates: Update Service not found!"));
+        refreshStartPage({"error", tr("An error occurred while unzip updates: Update Service not found!"), tr("Check for updates"), "check", "false"});
+        __UNLOCK
+//        m_dialogSchedule->addToSchedule("criticalMsg", QObject::tr("An error occurred while unzip updates: Update Service not found!"));
     }
 }
 
@@ -721,7 +732,9 @@ void CUpdateManager::onCheckFinished(bool error, bool updateExist, const QString
             __UNLOCK;
         }
     } else {
-        m_dialogSchedule->addToSchedule("criticalMsg", changelog);
+        refreshStartPage({"error", changelog, tr("Check for updates"), "check", "false"});
+        __UNLOCK
+//        m_dialogSchedule->addToSchedule("criticalMsg", changelog);
     }
 }
 
