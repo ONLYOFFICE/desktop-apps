@@ -907,25 +907,25 @@
     <ROW Feature_="MainFeature" Component_="updatesvc.exe"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiIconsComponent">
-    <ROW Name="ImageViewer.exe" SourcePath="..\..\extras\projicons\res\gallery.ico" Index="0"/>
-    <ROW Name="VideoPlayer.exe" SourcePath="..\..\extras\projicons\res\media.ico" Index="0"/>
-    <ROW Name="desktopeditors.exe" SourcePath="..\..\extras\projicons\res\desktopeditors.ico" Index="0"/>
-    <ROW Name="djvu.exe" SourcePath="..\..\extras\projicons\res\djvu.ico" Index="0"/>
-    <ROW Name="doc.exe" SourcePath="..\..\extras\projicons\res\doc.ico" Index="0"/>
-    <ROW Name="docx.exe" SourcePath="..\..\extras\projicons\res\docx.ico" Index="0"/>
-    <ROW Name="ext.exe" SourcePath="..\..\extras\projicons\res\csv.ico" Index="0"/>
-    <ROW Name="html.exe" SourcePath="..\..\extras\projicons\res\html.ico" Index="0"/>
-    <ROW Name="odp.exe" SourcePath="..\..\extras\projicons\res\odp.ico" Index="0"/>
-    <ROW Name="ods.exe" SourcePath="..\..\extras\projicons\res\ods.ico" Index="0"/>
-    <ROW Name="odt.exe" SourcePath="..\..\extras\projicons\res\odt.ico" Index="0"/>
-    <ROW Name="pdf.exe" SourcePath="..\..\extras\projicons\res\pdf.ico" Index="0"/>
-    <ROW Name="ppt.exe" SourcePath="..\..\extras\projicons\res\ppt.ico" Index="0"/>
-    <ROW Name="pptx.exe" SourcePath="..\..\extras\projicons\res\pptx.ico" Index="0"/>
-    <ROW Name="rtf.exe" SourcePath="..\..\extras\projicons\res\rtf.ico" Index="0"/>
-    <ROW Name="txt.exe" SourcePath="..\..\extras\projicons\res\txt.ico" Index="0"/>
-    <ROW Name="xls.exe" SourcePath="..\..\extras\projicons\res\xls.ico" Index="0"/>
-    <ROW Name="xlsx.exe" SourcePath="..\..\extras\projicons\res\xlsx.ico" Index="0"/>
-    <ROW Name="xps.exe" SourcePath="..\..\extras\projicons\res\xps.ico" Index="0"/>
+    <ROW Name="ImageViewer.exe" SourcePath="..\..\extras\projicons\res\icons\gallery.ico" Index="0"/>
+    <ROW Name="VideoPlayer.exe" SourcePath="..\..\extras\projicons\res\icons\media.ico" Index="0"/>
+    <ROW Name="desktopeditors.exe" SourcePath="..\..\extras\projicons\res\icons\desktopeditors.ico" Index="0"/>
+    <ROW Name="djvu.exe" SourcePath="..\..\extras\projicons\res\icons\djvu.ico" Index="0"/>
+    <ROW Name="doc.exe" SourcePath="..\..\extras\projicons\res\icons\doc.ico" Index="0"/>
+    <ROW Name="docx.exe" SourcePath="..\..\extras\projicons\res\icons\docx.ico" Index="0"/>
+    <ROW Name="ext.exe" SourcePath="..\..\extras\projicons\res\icons\csv.ico" Index="0"/>
+    <ROW Name="html.exe" SourcePath="..\..\extras\projicons\res\icons\html.ico" Index="0"/>
+    <ROW Name="odp.exe" SourcePath="..\..\extras\projicons\res\icons\odp.ico" Index="0"/>
+    <ROW Name="ods.exe" SourcePath="..\..\extras\projicons\res\icons\ods.ico" Index="0"/>
+    <ROW Name="odt.exe" SourcePath="..\..\extras\projicons\res\icons\odt.ico" Index="0"/>
+    <ROW Name="pdf.exe" SourcePath="..\..\extras\projicons\res\icons\pdf.ico" Index="0"/>
+    <ROW Name="ppt.exe" SourcePath="..\..\extras\projicons\res\icons\ppt.ico" Index="0"/>
+    <ROW Name="pptx.exe" SourcePath="..\..\extras\projicons\res\icons\pptx.ico" Index="0"/>
+    <ROW Name="rtf.exe" SourcePath="..\..\extras\projicons\res\icons\rtf.ico" Index="0"/>
+    <ROW Name="txt.exe" SourcePath="..\..\extras\projicons\res\icons\txt.ico" Index="0"/>
+    <ROW Name="xls.exe" SourcePath="..\..\extras\projicons\res\icons\xls.ico" Index="0"/>
+    <ROW Name="xlsx.exe" SourcePath="..\..\extras\projicons\res\icons\xlsx.ico" Index="0"/>
+    <ROW Name="xps.exe" SourcePath="..\..\extras\projicons\res\icons\xps.ico" Index="0"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiInstExSeqComponent">
     <ROW Action="AI_DOWNGRADE" Condition="AI_NEWERPRODUCTFOUND AND (UILevel &lt;&gt; 5)" Sequence="210"/>
