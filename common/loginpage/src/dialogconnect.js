@@ -173,7 +173,7 @@ window.DialogConnect = function(params) {
         _require_portal_info(protocol + portal, provider).then(
             _callback,
             obj => {
-                if ( obj.status == 'error' && obj.response.status == 404 ) {
+                if ( obj.status == 'error' && (obj.response.status == 404 || obj.response.statusCode == 404) ) {
                     protocol = protocol == "https://" ? "http://" : "https://";
                     return _require_portal_info(protocol + portal, provider);
                 } else _callback(obj);
@@ -262,6 +262,12 @@ window.DialogConnect = function(params) {
                         }
                     },
                     error: function(e, status, error) {
+// AscSimpleRequest
+// include/base/internal/cef_net_error_list.h
+// A connection attempt was refused.
+// NET_ERROR(CONNECTION_REFUSED, -102)
+
+                        if ( e.statusCode == -102 ) e.statusCode = 404;
                         reject({status:status, response:e});
                     }
                 });

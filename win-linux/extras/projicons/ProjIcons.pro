@@ -2,6 +2,6 @@
 DESTDIR = $$PWD
 include(common.pri)
 
-DEFINES += APP_ICON_PATH=\"./res/desktopeditors.ico\"
+DEFINES += APP_ICON_PATH=\"./res/icons/desktopeditors.ico\"
 DEFINES += APP_USER_MODEL_ID=\\\"ASC.Documents.5\\\"
 DEFINES += COPYRIGHT_YEAR=$${CURRENT_YEAR}

@@ -683,24 +683,44 @@ public:
                             NSString * nsParam = (NSString *)[NSString stringWithstdwstring:param];
                             ASCDocumentType docType = ASCDocumentTypeUnknown;
                             
-                            if ([nsParam isEqualToString:@"word"]) {
-                                docType = ASCDocumentTypeDocument;
-                            } else if ([nsParam isEqualToString:@"cell"]) {
-                                docType = ASCDocumentTypeSpreadsheet;
-                            } else if ([nsParam isEqualToString:@"slide"]) {
-                                docType = ASCDocumentTypePresentation;
-                            } else if ([nsParam isEqualToString:@"form"]) {
-                                docType = ASCDocumentTypeForm;
-                            }
+                            if ([nsParam hasPrefix:@"template:"]) {
+                                if ([nsParam hasSuffix:@"word"]) {
+                                    docType = ASCDocumentTypeDocument;
+                                } else
+                                if ([nsParam hasSuffix:@"slide"]) {
+                                    docType = ASCDocumentTypePresentation;
+                                } else
+                                if ([nsParam hasSuffix:@"cell"]) {
+                                    docType = ASCDocumentTypeSpreadsheet;
+                                }
 
-                            if (docType != ASCDocumentTypeUnknown) {
                                 [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameCreateTab
                                                                                     object:nil
                                                                                   userInfo:@{
-                                                                                      @"action"  : @(ASCTabActionCreateLocalFile),
+                                                                                      @"action"  : @(ASCTabActionCreateLocalFileFromTemplate),
                                                                                       @"type"    : @(docType),
                                                                                       @"active"  : @(YES)
                                                                                   }];
+                            } else {
+                                if ([nsParam isEqualToString:@"word"]) {
+                                    docType = ASCDocumentTypeDocument;
+                                } else if ([nsParam isEqualToString:@"cell"]) {
+                                    docType = ASCDocumentTypeSpreadsheet;
+                                } else if ([nsParam isEqualToString:@"slide"]) {
+                                    docType = ASCDocumentTypePresentation;
+                                } else if ([nsParam isEqualToString:@"form"]) {
+                                    docType = ASCDocumentTypeForm;
+                                }
+
+                                if (docType != ASCDocumentTypeUnknown) {
+                                    [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameCreateTab
+                                                                                        object:nil
+                                                                                      userInfo:@{
+                                                                                        @"action"  : @(ASCTabActionCreateLocalFile),
+                                                                                        @"type"    : @(docType),
+                                                                                        @"active"  : @(YES)
+                                    }];
+                                }
                             }
                         } else if (cmd.find(L"open:folder") != std::wstring::npos) {
                             [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameOpenLocalFile

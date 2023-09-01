@@ -1,8 +1,10 @@
-#include "src/platform_win/resource.h"
-IDI_MAINICON   ICON    DISCARDABLE "./res/icons/desktopeditors.ico"
-CREATEPROCESS_MANIFEST_RESOURCE_ID RT_MANIFEST "./res/manifest/DesktopEditors.manifest"
-
+#pragma code_page(65001)
 #include <windows.h>
+#include "src/platform_win/resource.h"
+
+IDI_MAINICON   ICON    DISCARDABLE APP_ICON_PATH
+CREATEPROCESS_MANIFEST_RESOURCE_ID RT_MANIFEST "./res/manifest/DesktopEditors.exe.manifest"
+
 #define RC_COMPILE_FLAG
 # include "src/version.h"
 #undef RC_COMPILE_FLAG
@@ -13,7 +15,7 @@ PRODUCTVERSION  VER_PRODUCTVERSION
 BEGIN
     BLOCK "StringFileInfo"
     BEGIN
-        BLOCK "040904E4"
+        BLOCK VER_LANG_AND_CHARSET
         BEGIN
             VALUE "CompanyName",        VER_COMPANYNAME_STR
             VALUE "FileDescription",    VER_FILEDESCRIPTION_STR
@@ -30,7 +32,7 @@ BEGIN
 
     BLOCK "VarFileInfo"
     BEGIN
-        VALUE "Translation", 0x409, 1252
+        VALUE "Translation", VER_LANG_ID, VER_CHARSET_ID
     END
 END
 

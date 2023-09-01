@@ -127,6 +127,7 @@ typedef unsigned char BYTE;
 #define APP_PORT   12010
 #define SVC_PORT   12011
 #define INSTANCE_SVC_PORT 12012
+#define INSTANCE_APP_PORT 13012
 
 #define BTN_TEXT_CANCEL QObject::tr("Cancel")
 #define BTN_TEXT_YES    QObject::tr("Yes")

@@ -57,20 +57,16 @@ namespace NS_Utils
 {
     wstring GetLastErrorAsString()
     {
-        DWORD errorMessageID = ::GetLastError();
-        if (errorMessageID == 0)
+        DWORD errID = ::GetLastError();
+        if (errID == 0)
             return L"";
 
-        LPWSTR messageBuffer = NULL;
-        size_t size = FormatMessage(FORMAT_MESSAGE_ALLOCATE_BUFFER |
-                                    FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS,
-                                    NULL, errorMessageID,
-                                    MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
-                                    (LPWSTR)&messageBuffer, 0, NULL);
-
-        wstring message(messageBuffer, (int)size);
-        LocalFree(messageBuffer);
-        return message;
+        LPWSTR msgBuff = NULL;
+        size_t size = FormatMessage(FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS,
+                                       NULL, errID, MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT), (LPWSTR)&msgBuff, 0, NULL);
+        wstring msg(msgBuff, size);
+        LocalFree(msgBuff);
+        return msg;
     }
 
     int ShowMessage(wstring str, bool showError)
@@ -78,11 +74,11 @@ namespace NS_Utils
         if (showError)
             str += L" " + GetLastErrorAsString();
         wchar_t *title = const_cast<LPTSTR>(TEXT(VER_PRODUCTNAME_STR));
-        size_t title_size = wcslen(title) * sizeof(wchar_t);
+        DWORD title_size = (DWORD)wcslen(title) * sizeof(wchar_t);
         DWORD res;
         DWORD session_id = WTSGetActiveConsoleSessionId();
         WTSSendMessageW(WTS_CURRENT_SERVER_HANDLE, session_id, title, title_size,
-                            const_cast<LPTSTR>(str.c_str()), str.size() * sizeof(wchar_t),
+                            const_cast<LPTSTR>(str.c_str()), (DWORD)str.size() * sizeof(wchar_t),
                             MB_OK | MB_ICONERROR | MB_SERVICE_NOTIFICATION_NT3X | MB_SETFOREGROUND, 8, &res, TRUE);
         return res;
     }
@@ -90,7 +86,7 @@ namespace NS_Utils
 
 namespace NS_File
 {
-    bool GetFilesList(const wstring &path, list<wstring> *lst, wstring &error, bool ignore_locked)
+    bool GetFilesList(const wstring &path, list<wstring> *lst, wstring &error, bool ignore_locked, bool folders_only)
     {
         wstring searchPath = toNativeSeparators(path) + L"\\*";
         if (searchPath.size() > MAX_PATH - 1) {
@@ -111,12 +107,18 @@ namespace NS_File
             if (ffd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) {
                 if (!wcscmp(ffd.cFileName, L".") || !wcscmp(ffd.cFileName, L".."))
                     continue;
+                if (folders_only) {
+                    lst->push_back(L"/" + wstring(ffd.cFileName));
+                    continue;
+                }
                 if (!GetFilesList(path + L"/" + wstring(ffd.cFileName), lst, error, ignore_locked)) {
                     FindClose(hFind);
                     return false;
                 }
-            } else
-                lst->push_back(path + L"/" + wstring(ffd.cFileName));
+            } else {
+                if (!folders_only)
+                    lst->push_back(path + L"/" + wstring(ffd.cFileName));
+            }
 
         } while (FindNextFile(hFind, &ffd) != 0);
 
@@ -335,7 +337,7 @@ namespace NS_File
 
     bool removeFile(const wstring &filePath)
     {
-        return DeleteFile(filePath.c_str()) != 0 ? true : false;
+        return DeleteFile(filePath.c_str()) != 0;
     }
 
     bool removeDirRecursively(const wstring &dir)
@@ -381,9 +383,7 @@ namespace NS_File
         if (!WTSQueryUserToken(sesId, &hUserToken)) {
             WCHAR buff[MAX_PATH] = {0};
             DWORD res = ::GetTempPath(MAX_PATH, buff);
-            if (res != 0)
-                return fromNativeSeparators(parentPath(buff));
-            return L"";
+            return (res != 0) ? fromNativeSeparators(parentPath(buff)) : L"";
         }
 
         HANDLE hTokenDup = NULL;
@@ -407,10 +407,7 @@ namespace NS_File
     {
         WCHAR buff[MAX_PATH];
         DWORD res = ::GetModuleFileName(NULL, buff, MAX_PATH);
-        if (res != 0) {
-            return fromNativeSeparators(parentPath(wstring(buff)));
-        }
-        return L"";
+        return (res != 0) ? fromNativeSeparators(parentPath(buff)) : L"";
     }
 
     string getFileHash(const wstring &fileName)
@@ -517,11 +514,7 @@ namespace NS_File
         winTrustData.pwszURLReference = NULL;
         winTrustData.dwUIContext = 0;
         winTrustData.pFile = &fileInfo;
-
-        LONG lStatus = WinVerifyTrust(NULL, &guidAction, &winTrustData);
-        if (lStatus == ERROR_SUCCESS)
-            return true;
-        return false;
+        return WinVerifyTrust(NULL, &guidAction, &winTrustData) == ERROR_SUCCESS;
     }
 }
 

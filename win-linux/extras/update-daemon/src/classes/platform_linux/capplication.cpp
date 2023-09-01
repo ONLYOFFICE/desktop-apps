@@ -38,7 +38,7 @@
 
 CApplication::CApplication()
 {
-    if (SDL_Init(SDL_INIT_VIDEO) != 0)
+    if (SDL_Init(SDL_INIT_EVENTS | SDL_INIT_TIMER) != 0)
         NS_Logger::WriteLog(string("SDL_Init error: ") + SDL_GetError(), true);
 }
 

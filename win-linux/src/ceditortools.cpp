@@ -199,6 +199,33 @@ namespace CEditorTools
         return _path;
     }
 
+    QString getlocaltemplate(const std::wstring& editor, int parentid)
+    {
+        ParentHandle parent;
+        if ( !(parentid < 0) )
+            parent = AscAppManager::windowHandleFromId(parentid);
+        else parent = qApp->activeWindow();
+
+        QString _filter;
+        if ( editor.compare(L"cell") == 0 ) {
+            _filter = CFileDialogWrapper::tr("Spreadsheet template") + " (*.xltx *.xltm *.ots)";
+        } else
+        if ( editor.compare(L"slide") == 0 ) {
+            _filter = CFileDialogWrapper::tr("Presentation template") + " (*.potx *.otp)";
+        } else {
+            _filter = CFileDialogWrapper::tr("Document template") + " (*.dotx *.ott)";
+        }
+
+        CFileDialogWrapper dlg(parent);
+
+        QString _path = Utils::lastPath(LOCAL_PATH_OPEN);
+        if ( !(_path = dlg.modalOpenSingle(_path, _filter)).isEmpty() ) {
+            Utils::keepLastPath(LOCAL_PATH_OPEN, QFileInfo(_path).absolutePath());
+        }
+
+        return _path;
+    }
+
     std::wstring getFolder(const std::wstring& path, int parentid)
     {
         ParentHandle parent;
@@ -252,6 +279,9 @@ namespace CEditorTools
         } else
         if (opts.srctype == etNewFile) {
             panel->createLocalFile(editorTypeFromFormat(opts.format), opts.name.toStdWString());
+        } else
+        if (opts.srctype == etTemplateFile) {
+            panel->createLocalFile(L"", opts.name.toStdWString());
         } else {
             panel->cef()->load(opts.wurl);
         }
@@ -259,7 +289,7 @@ namespace CEditorTools
         if ( result ) {
             CAscTabData * data = new CAscTabData(opts.name);
             data->setUrl(opts.wurl);
-            data->setIsLocal( opts.srctype == etLocalFile || opts.srctype == etNewFile ||
+            data->setIsLocal( opts.srctype == etLocalFile || opts.srctype == etNewFile || opts.srctype == etTemplateFile ||
                            (opts.srctype == etRecentFile && !CExistanceController::isFileRemote(opts.url)) );
 
             if ( opts.srctype == etNewFile )

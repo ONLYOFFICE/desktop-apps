@@ -153,12 +153,8 @@ SOURCES += \
 #    src/components/casclabel.cpp
 
 updmodule:!build_xp {
-    INCLUDEPATH += $$PWD/extras/update-daemon/src/classes
-    HEADERS += $$PWD/src/cupdatemanager.h \
-               $$PWD/extras/update-daemon/src/classes/csocket.h
-
-    SOURCES += $$PWD/src/cupdatemanager.cpp \
-               $$PWD/extras/update-daemon/src/classes/csocket.cpp
+    HEADERS += $$PWD/src/cupdatemanager.h
+    SOURCES += $$PWD/src/cupdatemanager.cpp
 }
 
 RESOURCES += $$PWD/resources.qrc
@@ -190,7 +186,8 @@ PLATFORM_BUILD=$$CORE_BUILDS_PLATFORM_PREFIX
 
 core_linux:LIBS += -Wl,-unresolved-symbols=ignore-in-shared-libs
 
-ADD_DEPENDENCY(PdfFile, DjVuFile, XpsFile, HtmlRenderer, UnicodeConverter, hunspell, ooxmlsignature, kernel, kernel_network, graphics, videoplayer, ascdocumentscore, qtascdocumentscore)
+ADD_DEPENDENCY(PdfFile, DjVuFile, XpsFile, HtmlRenderer, UnicodeConverter, hunspell, ooxmlsignature, kernel, kernel_network, graphics, ascdocumentscore, qtascdocumentscore)
+include($$CORE_ROOT_DIR/../desktop-sdk/ChromiumBasedEditors/videoplayerlib/videoplayerlib_deps.pri)
 
 core_linux {
     QT += network x11extras
@@ -198,6 +195,8 @@ core_linux {
     QMAKE_LFLAGS += "-Wl,-rpath,\'\$$ORIGIN\'"
     QMAKE_LFLAGS += "-Wl,-rpath,\'\$$ORIGIN/converter\'"
     QMAKE_LFLAGS += -static-libstdc++ -static-libgcc
+
+    INCLUDEPATH += $$PWD/extras/update-daemon/src/classes
 
     HEADERS +=  $$PWD/src/windows/platform_linux/cx11decoration.h \
                 #$$PWD/src/windows/platform_linux/gtk_addon.h \
@@ -210,7 +209,8 @@ core_linux {
                 $$PWD/src/platform_linux/gtkprintdialog.h \
                 $$PWD/src/platform_linux/gtkmessage.h \
                 $$PWD/src/platform_linux/gtkutils.h \
-                $$PWD/src/platform_linux/xcbutils.h
+                $$PWD/src/platform_linux/xcbutils.h \
+                $$PWD/extras/update-daemon/src/classes/csocket.h
 
     SOURCES +=  $$PWD/src/windows/platform_linux/cx11decoration.cpp \
                 #$$PWD/src/windows/platform_linux/gtk_addon.cpp \
@@ -224,14 +224,12 @@ core_linux {
                 $$PWD/src/platform_linux/gtkprintdialog.cpp \
                 $$PWD/src/platform_linux/gtkmessage.cpp \
                 $$PWD/src/platform_linux/gtkutils.cpp \
-                $$PWD/src/platform_linux/xcbutils.cpp
+                $$PWD/src/platform_linux/xcbutils.cpp \
+                $$PWD/extras/update-daemon/src/classes/csocket.cpp
 
     updmodule {
-        HEADERS += $$PWD/src/platform_linux/updatedialog.h \
-                   $$PWD/gtk_resources.h
-
-        SOURCES += $$PWD/src/platform_linux/updatedialog.cpp \
-                   $$PWD/gtk_resources.c
+        HEADERS += $$PWD/src/platform_linux/updatedialog.h
+        SOURCES += $$PWD/src/platform_linux/updatedialog.cpp
     }
 
     CONFIG += link_pkgconfig
@@ -253,7 +251,8 @@ core_linux {
 core_windows {
     DEFINES += Q_COMPILER_INITIALIZER_LISTS
 
-    RC_ICONS += ./res/icons/desktop_icons.ico
+    CONFIG -= embed_manifest_exe
+#    RC_ICONS += ./res/icons/desktop_icons.ico
 
     HEADERS += $$PWD/src/windows/platform_win/cwindowplatform.h \
                $$PWD/src/windows/platform_win/csnap.h \
@@ -271,9 +270,14 @@ core_windows {
                $$PWD/src/platform_win/printdialog.cpp \
                $$PWD/src/platform_win/message.cpp
 
+    OTHER_FILES += $$PWD/res/manifest/DesktopEditors.exe.manifest
+
     updmodule:!build_xp {
-        HEADERS += $$PWD/src/platform_win/updatedialog.h
-        SOURCES += $$PWD/src/platform_win/updatedialog.cpp
+        INCLUDEPATH += $$PWD/extras/update-daemon/src/classes
+        HEADERS += $$PWD/src/platform_win/updatedialog.h \
+                   $$PWD/extras/update-daemon/src/classes/csocket.h
+        SOURCES += $$PWD/src/platform_win/updatedialog.cpp \
+                   $$PWD/extras/update-daemon/src/classes/csocket.cpp
     }
 
     LIBS += -lwininet \

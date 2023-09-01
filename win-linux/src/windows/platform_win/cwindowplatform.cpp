@@ -64,10 +64,6 @@ CWindowPlatform::CWindowPlatform(const QRect &rect) :
     style |= (WS_CLIPCHILDREN | WS_MAXIMIZEBOX | WS_MINIMIZEBOX);
     style |= (Utils::getWinVersion() > Utils::WinVer::Win7) ? WS_OVERLAPPEDWINDOW : WS_POPUP;
     ::SetWindowLong(m_hWnd, GWL_STYLE, style);
-#ifndef __OS_WIN_XP
-    const MARGINS shadow = {-1, -1, -1, -1};
-    DwmExtendFrameIntoClientArea(m_hWnd, &shadow);
-#endif
     connect(this->window()->windowHandle(), &QWindow::screenChanged, this, [=]() {
         SetWindowPos(m_hWnd, 0, 0, 0, 0, 0, SWP_FRAMECHANGED | SWP_NOMOVE | SWP_NOSIZE);
     });
@@ -131,15 +127,17 @@ void CWindowPlatform::adjustGeometry()
 #ifdef __OS_WIN_XP
             setContentsMargins(0, 0, 0, 0);
 #else
-            double dpi = qApp->screenAt(geometry().center())->logicalDotsPerInch()/96;
-            const int brd = (dpi <= 1.0) ? 8 :
-                            (dpi == 1.25) ? 9 :
-                            (dpi == 1.5) ? 11 :
-                            (dpi == 1.75) ? 12 :
-                            (dpi == 2.0) ? 13 :
-                            (dpi == 2.25) ? 14 :
-                            (dpi == 2.5) ? 16 : 6 * dpi;
-            const int border = (!isTaskbarAutoHideOn() && Utils::getWinVersion() > Utils::WinVer::Win7) ? brd: 0;
+            int border = 0;
+            if (!isTaskbarAutoHideOn() && Utils::getWinVersion() > Utils::WinVer::Win7) {
+                double dpi = qApp->screenAt(geometry().center())->logicalDotsPerInch()/96;
+                border = (dpi <= 1.0) ? 8 :
+                         (dpi == 1.25) ? 9 :
+                         (dpi == 1.5) ? 11 :
+                         (dpi == 1.75) ? 12 :
+                         (dpi == 2.0) ? 13 :
+                         (dpi == 2.25) ? 14 :
+                         (dpi == 2.5) ? 16 : 6 * dpi;
+            }
             setContentsMargins(border, border, border, border);
 #endif
         });
@@ -187,6 +185,18 @@ bool CWindowPlatform::nativeEvent(const QByteArray &eventType, void *message, lo
     static uchar movParam = 0;
     switch (msg->message)
     {
+    case WM_ACTIVATE: {
+#ifndef __OS_WIN_XP
+        MARGINS mrg;
+        mrg.cxLeftWidth = 4;
+        mrg.cxRightWidth = 4;
+        mrg.cyBottomHeight = 4;
+        mrg.cyTopHeight = 29;
+        DwmExtendFrameIntoClientArea(m_hWnd, &mrg);
+#endif
+        return true;
+    }
+
     case WM_DPICHANGED: {
         setMinimumSize(0,0);
         if (AscAppManager::IsUseSystemScaling()) {
@@ -253,10 +263,11 @@ bool CWindowPlatform::nativeEvent(const QByteArray &eventType, void *message, lo
     }
 
     case WM_NCCALCSIZE: {
-        NCCALCSIZE_PARAMS& params = *reinterpret_cast<NCCALCSIZE_PARAMS*>(msg->lParam);
-        if (params.rgrc[0].bottom != 0)
-            params.rgrc[0].bottom += 1;
-        *result = WVR_REDRAW;
+        if (!msg->wParam)
+            break;
+        NCCALCSIZE_PARAMS *params = (NCCALCSIZE_PARAMS*)msg->lParam;
+        params->rgrc[0].bottom += 1;
+        *result = WVR_ALIGNLEFT | WVR_ALIGNTOP | WVR_REDRAW;
         return true;
     }
 
@@ -324,7 +335,9 @@ bool CWindowPlatform::nativeEvent(const QByteArray &eventType, void *message, lo
             SystemParametersInfoW(SPI_GETWORKAREA, 0, &workArea, 0);
             if (!EqualRect(&oldWorkArea, &workArea)) {
                 oldWorkArea = workArea;
-                adjustGeometry();
+                QTimer::singleShot(200, this, [=]() {
+                    adjustGeometry();
+                });
             }
         }
         break;
@@ -403,6 +416,18 @@ bool CWindowPlatform::nativeEvent(const QByteArray &eventType, void *message, lo
 
     case WM_ERASEBKGND:
         return true;
+
+    case WM_NCACTIVATE: {
+        // Prevent the title bar from being drawn when the window is restored or maximized
+        if (m_borderless) {
+            if (!msg->wParam) {
+                *result = TRUE;
+                break;
+            }
+            return true;
+        }
+        break;
+    }
 
     case WM_QUERYENDSESSION:
         m_isSessionInProgress = false;

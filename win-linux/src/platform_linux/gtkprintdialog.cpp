@@ -2,6 +2,9 @@
 #include <glib.h>
 #include "gtkutils.h"
 #include "gtkprintdialog.h"
+#include "components/cmessage.h"
+#include <string>
+#include <algorithm>
 #include <gdk/gdkx.h>
 #include <gtk/gtkunixprint.h>
 
@@ -12,6 +15,110 @@ typedef QPagedPaintDevice::PageSize PageSize;
 typedef QPrinter::Unit QUnit;
 typedef uint16_t WORD;
 
+
+static gboolean on_entry_key_press(GtkWidget *wgt, GdkEventKey *event, gpointer) {
+    guint keyval = gdk_keyval_to_unicode(event->keyval);
+    if (g_unichar_isdigit(keyval) || keyval == '-' || keyval == ',' ||
+            event->keyval == GDK_KEY_Delete   || event->keyval == GDK_KEY_BackSpace ||
+            event->keyval == GDK_KEY_Left     || event->keyval == GDK_KEY_Up ||
+            event->keyval == GDK_KEY_Right    || event->keyval == GDK_KEY_Down ||
+            event->keyval == GDK_KEY_Return   || event->keyval == GDK_KEY_Escape ||
+            event->keyval == GDK_KEY_KP_Enter || event->keyval == GDK_KEY_Tab) {
+        return FALSE;
+    }
+    if (wgt) {
+        gchar *text = gtk_widget_get_tooltip_text(wgt);
+        GtkWidget *popover = gtk_popover_new(wgt);
+        GtkWidget *label = gtk_label_new(text);
+        gtk_container_add(GTK_CONTAINER(popover), label);
+        g_object_set(G_OBJECT(label), "margin", 6, NULL);
+        g_signal_connect(G_OBJECT(popover), "hide", G_CALLBACK(gtk_widget_destroy), NULL);
+        g_signal_connect(G_OBJECT(popover), "key-press-event", G_CALLBACK(gtk_widget_destroy), NULL);
+        g_signal_connect(G_OBJECT(popover), "button-press-event", G_CALLBACK(gtk_widget_destroy), NULL);
+        gtk_widget_show_all(popover);
+    }
+    return TRUE;
+}
+
+static void get_page_ranges_entry(GtkWidget *dialog, gpointer user_data)
+{
+    GtkEntry **entry = (GtkEntry**)user_data;
+    if (dialog && entry) {
+        const gchar *entry_path = "GtkPrintUnixDialog.GtkBox.GtkBox.GtkNotebook.GtkBox.GtkBox.GtkBox.GtkGrid.GtkEntry";
+        GtkWidget *widget = find_widget_by_path(dialog, entry_path);
+        if (widget && GTK_IS_ENTRY(widget)) {
+            *entry = GTK_ENTRY(widget);
+            g_signal_connect(G_OBJECT(widget), "key-press-event", G_CALLBACK(on_entry_key_press), NULL);
+        }
+    }
+}
+
+static GtkPageRange *get_page_ranges(GtkEntry *entry, gint *num_ranges)
+{
+    const gchar *entry_text = entry ? gtk_entry_get_text(entry) : NULL;
+    if (entry_text && *entry_text && num_ranges) {
+        std::string ranges_str(entry_text);
+        ranges_str.erase(std::remove_if(ranges_str.begin(), ranges_str.end(), ::isspace), ranges_str.end());
+        if (ranges_str.empty())
+            return NULL;
+
+        int ranges_count = std::count(ranges_str.begin(), ranges_str.end(), ',') + 1;
+        GtkPageRange *page_ranges = (GtkPageRange*)g_malloc(ranges_count * sizeof(GtkPageRange));
+        memset(page_ranges, 0, ranges_count * sizeof(GtkPageRange));
+        size_t start_pos = 0;
+        size_t sep_pos = ranges_str.find_first_of(',');
+        for (int i = 0; i < ranges_count; i++) {
+            std::string range_str = ranges_str.substr(start_pos, sep_pos != std::string::npos ?
+                    sep_pos - start_pos : std::string::npos);
+            if (range_str.empty()) {
+                g_free(page_ranges);
+                return NULL;
+            }
+
+            int dash_count = std::count(range_str.begin(), range_str.end(), '-');
+            if (dash_count == 0) {
+                char *err = NULL;
+                gint page = strtol(range_str.c_str(), &err, 10);
+                if (err && *err) {
+                    g_free(page_ranges);
+                    return NULL;
+                }
+                page_ranges[i].start = page - 1;
+                page_ranges[i].end = page - 1;
+            } else
+            if (dash_count == 1) {
+                size_t dash_pos = range_str.find_first_of('-');
+                std::string from_page_str = range_str.substr(0, dash_pos);
+                std::string to_page_str = range_str.substr(dash_pos + 1);
+                if (from_page_str.empty() || to_page_str.empty()) {
+                    g_free(page_ranges);
+                    return NULL;
+                }
+
+                char *err1 = NULL, *err2 = NULL;
+                gint from_page = strtol(from_page_str.c_str(), &err1, 10);
+                gint to_page = strtol(to_page_str.c_str(), &err2, 10);
+                if ((err1 && *err1) || (err2 && *err2)) {
+                    g_free(page_ranges);
+                    return NULL;
+                }
+                page_ranges[i].start = from_page - 1;
+                page_ranges[i].end = to_page - 1;
+            } else {
+                g_free(page_ranges);
+                return NULL;
+            }
+
+            if (sep_pos != std::string::npos) {
+                start_pos = sep_pos + 1;
+                sep_pos = ranges_str.find_first_of(',', start_pos);
+            }
+        }
+        *num_ranges = ranges_count;
+        return page_ranges;
+    }
+    return NULL;
+}
 
 auto gtkPaperNameFromPageSize(PageSize page_size)->QString
 {
@@ -263,6 +370,9 @@ QDialog::DialogCode GtkPrintDialog::exec()
     GtkWidget *dialog;
     dialog = gtk_print_unix_dialog_new(m_title.toUtf8().data(), NULL);   
     gtk_window_set_type_hint(GTK_WINDOW(dialog), GDK_WINDOW_TYPE_HINT_DIALOG);
+
+    GtkEntry *page_ranges_entry = NULL;
+    g_signal_connect(G_OBJECT(dialog), "map", G_CALLBACK(get_page_ranges_entry), (gpointer)&page_ranges_entry);
     //g_signal_connect(G_OBJECT(dialog), "destroy", G_CALLBACK(gtk_main_quit), NULL);
     g_signal_connect(G_OBJECT(dialog), "realize", G_CALLBACK(set_parent), (gpointer)&parent_xid);
     g_signal_connect(G_OBJECT(dialog), "map_event", G_CALLBACK(set_focus), NULL);
@@ -286,6 +396,7 @@ QDialog::DialogCode GtkPrintDialog::exec()
     g_object_unref(G_OBJECT(settings));
     switch (res) {
     case GTK_RESPONSE_OK: {
+        exit_code = QDialog::DialogCode::Accepted;
         GtkPrinter *printer;
         printer = gtk_print_unix_dialog_get_selected_printer(GTK_PRINT_UNIX_DIALOG(dialog));
         {
@@ -313,28 +424,44 @@ QDialog::DialogCode GtkPrintDialog::exec()
                         range_arr[_print_pages] : range_arr[0];
 
             GtkPageSet page_set = gtk_print_settings_get_page_set(settings);
-            GtkPageRange* page_ranges;
-            gint num_ranges;
-            page_ranges = gtk_print_settings_get_page_ranges(settings, &num_ranges);
+            GtkPageRange* page_ranges = NULL;
+            gint num_ranges = 0;
+            // Reverse range order not working in GTK3
+            page_ranges = (m_print_range == PrintRange::PageRange) ? get_page_ranges(page_ranges_entry, &num_ranges) :
+                                                                     gtk_print_settings_get_page_ranges(settings, &num_ranges);
             if (!m_page_ranges.isEmpty())
                 m_page_ranges.clear();
-            for (gint i = 0; i < num_ranges; i++) {
-                int start = page_ranges[i].start + 1;
-                int end = page_ranges[i].end + 1;
 
-                if (page_set == GTK_PAGE_SET_ALL) {
-                    m_page_ranges.append(PageRanges(start, end));
-                } else {
-                    for (int page = start; page <= end; page++) {
-                        if (page % 2 == 0 && page_set == GTK_PAGE_SET_EVEN)
-                            m_page_ranges.append(PageRanges(page, page));   // Filter Even pages
+            if (page_ranges) {
+                int pagesCount = m_printer->toPage();
+                for (gint i = 0; i < num_ranges; i++) {
+                    int start = page_ranges[i].start + 1;
+                    int end = page_ranges[i].end + 1;
+                    start > pagesCount && (start = pagesCount);
+                    end > pagesCount && (end = pagesCount);
+                    bool reverse = (start > end);
+                    if (page_set == GTK_PAGE_SET_ALL) {
+                        if (reverse)
+                            for (int page = start; page >= end; page--)
+                                m_page_ranges.append(PageRanges(page, page));
                         else
-                        if (page % 2 != 0 && page_set == GTK_PAGE_SET_ODD)
-                            m_page_ranges.append(PageRanges(page, page));   // Filter Odd pages
+                            m_page_ranges.append(PageRanges(start, end));
+                    } else {
+                        for (int page = start; reverse ? page >= end : page <= end; reverse ? page-- : page++) {
+                            if (page % 2 == 0 && page_set == GTK_PAGE_SET_EVEN)
+                                m_page_ranges.append(PageRanges(page, page));   // Filter Even pages
+                            else
+                            if (page % 2 != 0 && page_set == GTK_PAGE_SET_ODD)
+                                m_page_ranges.append(PageRanges(page, page));   // Filter Odd pages
+                        }
                     }
+                    if (i == 0)
+                        m_printer->setFromTo(reverse ? end : start, reverse ? start : end);
                 }
-                if (i == 0)
-                    m_printer->setFromTo(start, end);
+                g_free(page_ranges);
+            } else {
+                res = GTK_RESPONSE_REJECT;
+                exit_code = QDialog::DialogCode::Rejected;
             }
 
             gboolean collate = gtk_print_settings_get_collate(settings);
@@ -396,7 +523,6 @@ QDialog::DialogCode GtkPrintDialog::exec()
             m_printer->setOrientation((print_ornt == 0 || print_ornt == 2) ?
                         orient_arr[0] : orient_arr[1]);
         }
-        exit_code = QDialog::DialogCode::Accepted;
         break;
     }
     case GTK_RESPONSE_APPLY: {  // ask for preview
@@ -410,6 +536,11 @@ QDialog::DialogCode GtkPrintDialog::exec()
     //gtk_main();
     while (gtk_events_pending())
         gtk_main_iteration_do(FALSE);
+
+    if (res == GTK_RESPONSE_REJECT)
+        CMessage::error(m_parent, QObject::tr("The syntaxis for the page range is invalid.<br>"
+                                              "Enter one or more page ranges, for example: 1-3,7,11."));
+
     return exit_code;
 }
 

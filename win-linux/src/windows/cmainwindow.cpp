@@ -521,11 +521,11 @@ void CMainWindow::onEditorAllowedClose(int uid)
     } else {
         int _index = m_pTabs->tabIndexByView(uid);
         if ( !(_index < 0) ) {
+            m_pTabs->tabBar()->removeTab(_index);
             QWidget * _view = m_pTabs->widget(_index);
             m_pTabs->removeWidget(_view);
             _view->deleteLater();
 
-            m_pTabs->tabBar()->removeTab(_index);
             //m_pTabs->adjustTabsSize();
 
             onTabChanged(m_pTabs->currentIndex());
@@ -707,6 +707,9 @@ void CMainWindow::doOpenLocalFile(COpenOptions& opts)
     int result = m_pTabs->openLocalDocument(opts, true);
     if ( !(result < 0) ) {
         toggleButtonMain(false, true);
+#ifdef _WIN32
+        Utils::addToRecent(opts.wurl);
+#endif
     } else
     if (result == -255) {
         QTimer::singleShot(0, this, [=] {
