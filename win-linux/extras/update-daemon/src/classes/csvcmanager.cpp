@@ -74,7 +74,6 @@
 
 #define UPDATE_PATH      _T("/" REG_APP_NAME "Updates")
 #define BACKUP_PATH      _T("/" REG_APP_NAME "Backup")
-#define PROVIDERS_PATH   _T("/providers")
 #define SUCCES_UNPACKED  _T("/success_unpacked.txt")
 #define __GLOBAL_LOCK if (m_lock) {NS_Logger::WriteLog(_T("Blocked in: ") + FUNCTION_INFO); return;} m_lock = true; \
                           NS_Logger::WriteLog(_T("Locking and further execution: ") + FUNCTION_INFO);
@@ -511,23 +510,23 @@ void CSvcManager::startReplacingFiles()
     }
 #endif
 
-    // Merging provider folders
+    // Merging template, provider folders
     {
-        tstring err;
-        std::list<tstring> old_providers, new_providers;
-        if (NS_File::GetFilesList(tmpPath + PROVIDERS_PATH, &old_providers, err, true, true)) {
-            if (NS_File::GetFilesList(appPath + PROVIDERS_PATH, &new_providers, err, true, true)) {
-                for (auto &path : old_providers) {
-                    if (std::find(new_providers.begin(), new_providers.end(), path) == new_providers.end()) {
-                        if (!NS_File::replaceFolder(tmpPath + PROVIDERS_PATH + path, appPath + PROVIDERS_PATH + path)) {
-                            NS_Logger::WriteLog(TEXT("An error occurred while replace providers: ") + NS_Utils::GetLastErrorAsString());
-                        }
+        tstring paths[] = {_T("/providers"), _T("/converter/empty")};
+        for (int i = 0; i < sizeof(paths) / sizeof(paths[0]); i++) {
+            tstring err;
+            std::list<tstring> old_paths, new_paths;
+            if (NS_File::GetFilesList(tmpPath + paths[i], &old_paths, err, true, true)) {
+                if (NS_File::GetFilesList(appPath + paths[i], &new_paths, err, true, true)) {
+                    for (auto &path : old_paths) {
+                        if (std::find(new_paths.begin(), new_paths.end(), path) == new_paths.end())
+                            NS_File::replaceFolder(tmpPath + paths[i] + path, appPath + paths[i] + path);
                     }
-                }
+                } else
+                    NS_Logger::WriteLog(DEFAULT_ERROR_MESSAGE + _T(" ") + err);
             } else
-                NS_Logger::WriteLog(DEFAULT_ERROR_MESSAGE + TEXT(" ") + err);
-        } else
-            NS_Logger::WriteLog(DEFAULT_ERROR_MESSAGE + TEXT(" ") + err);
+                NS_Logger::WriteLog(DEFAULT_ERROR_MESSAGE + _T(" ") + err);
+        }
     }
 
     // Remove Backup dir
