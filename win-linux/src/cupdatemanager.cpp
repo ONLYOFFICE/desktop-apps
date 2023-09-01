@@ -479,6 +479,9 @@ void CUpdateManager::loadUpdates()
         } else {
             refreshStartPage({"load", tr("Downloading new version %1 (0%)").arg(m_packageData->version), tr("Cancel"), "abort", "false"});
         }
+    } else {
+        refreshStartPage({"error", tr("An error occurred while loading updates: package Url is empty!"), tr("Check for updates"), "check", "false"});
+        __UNLOCK
     }
 }
 
