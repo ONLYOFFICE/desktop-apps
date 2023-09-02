@@ -32,6 +32,7 @@
 
 #include "components/ctabbar.h"
 #include "components/canimatedicon.h"
+#include "cascapplicationmanagerwrapper.h"
 #include <QApplication>
 #include <QHBoxLayout>
 #include <QLabel>
@@ -42,6 +43,7 @@
 #include <QStylePainter>
 #include <QStyle>
 #include <QTimer>
+
 
 #define ANIMATION_DEFAULT_MS  0
 #define ANIMATION_SCROLL_MS   60
@@ -63,7 +65,14 @@ public:
     void setText(const QString &text, Qt::TextElideMode mode = Qt::ElideRight);
     void elideText(Qt::TextElideMode mode = Qt::ElideRight);
     void setIcon(const QIcon &icon);
+    void setIcon(const QString &path);
+    void setThemeIcons(const std::pair<QString, QString> &);
+    void setColorThemeType(const QString&);
+    void setActive(bool state);
     void polish();
+    void refreshIcon(const QString& themetype);
+    void refreshTextColor();
+    void refreshCloseButton();
 
     QIcon  *tab_icon = nullptr;
     CAnimatedIcon *icon_label = nullptr;
@@ -74,6 +83,9 @@ public:
     int tab_width = -1;
     int index = -1;
 
+    std::pair<QString, QString> theme_icons;
+    QString tab_theme_type;
+    bool is_active = false;
 signals:
     void onTabWidthChanged(int width);
 
@@ -148,6 +160,97 @@ void Tab::setIcon(const QIcon &icon)
     icon_label->setPixmap(tab_icon->pixmap(icon_label->size()));
 }
 
+void Tab::setIcon(const QString &path)
+{
+    if ( !path.isEmpty() ) {
+        if ( tab_icon )
+            delete tab_icon, tab_icon = nullptr;
+
+        tab_icon = new QIcon(path);
+        icon_label->setPixmap(tab_icon->pixmap(icon_label->size()));
+    }
+}
+
+void Tab::setThemeIcons(const std::pair<QString, QString> & icons)
+{
+    theme_icons = icons;
+
+    if ( is_active )
+        setIcon(tab_theme_type == "dark" ? theme_icons.second : theme_icons.first);
+}
+
+void Tab::setColorThemeType(const QString& type)
+{
+    if ( tab_theme_type != type ) {
+        tab_theme_type = type;
+        setProperty("uithemetype", tab_theme_type);
+
+        if ( is_active ) {
+            refreshIcon(tab_theme_type);
+            refreshTextColor();
+        }
+
+        refreshCloseButton();
+    }
+}
+
+void Tab::setActive(bool state)
+{
+    if ( state != is_active ) {
+        is_active = state;
+
+        if ( is_active ) {
+            refreshIcon(tab_theme_type);
+        } else {
+            refreshIcon(AscAppManager::themes().current().isDark() ? "dark" : "light");
+        }
+
+        refreshTextColor();
+    }
+}
+
+void Tab::refreshIcon(const QString& themetype)
+{
+    setIcon(themetype == "dark" ? theme_icons.second : theme_icons.first);
+    icon_label->setSvgElement(themetype == "dark" ? "light" : "dark");
+}
+
+void Tab::refreshTextColor()
+{
+    const CTheme & _app_theme = AscAppManager::themes().current();
+    const CTheme & _tab_theme = tab_theme_type == "dark" ? AscAppManager::themes().defaultDark() :
+                                                            AscAppManager::themes().defaultLight();
+
+    QString _styles = "#tabText{color:" + QString::fromStdWString(_app_theme.value(CTheme::ColorRole::ecrTabSimpleActiveText)) + ";}"
+                      "[selected=true] #tabText{color:" + QString::fromStdWString(_tab_theme.value(CTheme::ColorRole::ecrTabSimpleActiveText)) + ";}";
+    text_label->setStyleSheet(_styles);
+}
+
+void Tab::refreshCloseButton()
+{
+    bool _is_app_theme_dark = AscAppManager::themes().current().isDark(),
+         _is_tab_theme_dark = tab_theme_type == "dark";
+
+    QString _image_normal = _is_app_theme_dark ? ":/tabbar/icons/close_active_normal.svg" : ":/tabbar/icons/close_normal.svg";
+    QString _image_hover = _is_app_theme_dark ? ":/tabbar/icons/close_active_hover.svg" : ":/tabbar/icons/close_hover.svg";
+    QString _image_pressed = _is_app_theme_dark ? ":/tabbar/icons/close_active_pressed.svg" : ":/tabbar/icons/close_pressed.svg";
+    QString _image_active_normal = _is_tab_theme_dark ? ":/tabbar/icons/close_active_normal.svg" : ":/tabbar/icons/close_normal.svg";
+    QString _image_active_hover = _is_tab_theme_dark ? ":/tabbar/icons/close_active_hover.svg" : ":/tabbar/icons/close_hover.svg";
+    QString _image_active_pressed = _is_tab_theme_dark ? ":/tabbar/icons/close_active_pressed.svg" : ":/tabbar/icons/close_pressed.svg";
+
+    QString _styles = "[hovered=true] #tabButton{image:url(" + _image_normal + ");}"
+                        "[hovered=true] #tabButton:hover{image:url(" + _image_hover + ");}"
+                        "[hovered=true] #tabButton:pressed{image:url(" + _image_pressed + ");}"
+                        "[selected=true] #tabButton{image:url(" + _image_active_normal + ");}"
+                        "[selected=true] #tabButton:hover{image:url(" + _image_active_hover + ");}"
+                        "[selected=true] #tabButton:pressed{image:url(" + _image_active_pressed + ");}";
+//                        "CTabBar[active=false] Tab[selected=true] #tabButton{image:url(" + _image_normal + ");}"
+//                        "CTabBar[active=false] Tab[selected=true] #tabButton:hover{image:url(" + _image_hover + ");}"
+//                        "CTabBar[active=false] Tab[selected=true] #tabButton:pressed{image:url(" + _image_pressed + ");}"
+        ;
+    close_btn->setStyleSheet(_styles);
+}
+
 void Tab::polish()
 {
     style()->polish(this);
@@ -176,7 +279,8 @@ void Tab::paintEvent(QPaintEvent *ev)
 {
     QFrame::paintEvent(ev);
     if (!tabcolor.isEmpty() && tabcolor != "none" && property("selected").toBool()) {
-        if (tabBar && tabBar->property("active").toBool() && !tabBar->ignoreActiveTabColor()) {
+//        if (tabBar && tabBar->property("active").toBool())
+        {
             QStylePainter p(this);
             p.fillRect(rect(), QBrush(QColor(tabcolor)));
         }
@@ -237,8 +341,6 @@ public:
     Qt::TextElideMode elideMode;
     Tab* movedTab = nullptr;
     bool lock = false;
-    bool isUIThemeDark = false;
-    bool ignore_tabcolor = false;
     int animationInProgress = 0;
     int movedTabPosX = 0;
     int movedTabPressPosX = 0;
@@ -383,13 +485,21 @@ void CTabBar::CTabBarPrivate::onCurrentChanged(int index)
 {
     while (animationInProgress)
         qApp->processEvents();
+
     recalcWidth();
-    scrollTo(index);
+
+    if ( !(index < 0) )
+        scrollTo(index);
+
     currentIndex = index;
+
     for (int i = 0; i < tabList.size(); i++) {
         tabList[i]->setProperty("selected", i == index);
+
+        tabList[i]->setActive(i == index);
         tabList[i]->polish();
     }
+
     emit owner->currentChanged(index);
 }
 
@@ -788,8 +898,10 @@ void CTabBar::setCurrentIndex(int index)
 {
     while (d->animationInProgress)
         qApp->processEvents();
-    if (!d->indexIsValid(index) || index == d->currentIndex)
+
+    if (/*!d->indexIsValid(index) ||*/ index == d->currentIndex)
         return;
+
     d->onCurrentChanged(index);
 }
 
@@ -821,10 +933,18 @@ void CTabBar::setTabLoading(int index, bool start)
     }
 }
 
-void CTabBar::setTabIconTheme(int index, TabTheme theme)
+void CTabBar::setTabThemeType(int index, TabTheme theme)
 {
-    if (CAnimatedIcon * icon = (CAnimatedIcon*)tabIconLabel(index))
-        icon->setSvgElement(theme == TabTheme::LightTab ? "dark" : "light");
+    if ( d->indexIsValid(index) ) {
+        d->tabList[index]->setColorThemeType(TabTheme::LightTab == theme ? "light" : "dark");
+    }
+}
+
+void CTabBar::setTabThemeIcons(int index, const std::pair<QString, QString> & icons)
+{
+    if ( d->indexIsValid(index) ) {
+        d->tabList[index]->setThemeIcons(icons);
+    }
 }
 
 void CTabBar::tabStartLoading(int index, const QString& theme)
@@ -832,16 +952,6 @@ void CTabBar::tabStartLoading(int index, const QString& theme)
     CAnimatedIcon * icon = (CAnimatedIcon*)tabIconLabel(index);
     if (icon && !icon->isStarted() )
         icon->startSvg(":/tabbar/icons/loader.svg", theme);
-}
-
-void CTabBar::setIgnoreActiveTabColor(bool ignore)
-{
-    d->ignore_tabcolor = ignore;
-}
-
-bool CTabBar::ignoreActiveTabColor()
-{
-    return d->ignore_tabcolor;
 }
 
 void CTabBar::polish()
@@ -852,6 +962,20 @@ void CTabBar::polish()
     d->scrollFrame->style()->polish(d->scrollFrame);
     d->leftButton->style()->polish(d->leftButton);
     d->rightButton->style()->polish(d->rightButton);
+}
+
+void CTabBar::refreshTheme()
+{
+    for (int i = 0; i < d->tabList.size(); i++) {
+        d->tabList[i]->refreshCloseButton();
+        d->tabList[i]->refreshTextColor();
+
+        if ( i != currentIndex() )
+            d->tabList[i]->refreshIcon(AscAppManager::themes().current().isDark() ? "dark" : "light");
+        else d->tabList[i]->refreshIcon(d->tabList[i]->tab_theme_type);
+
+        d->tabList[i]->polish();
+    }
 }
 
 int CTabBar::tabIndexAt(const QPoint &pos) const

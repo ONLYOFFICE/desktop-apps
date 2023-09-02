@@ -17,28 +17,17 @@ CTabBar #tabScroll>#rightButton:hover {image: url(:/tabbar/icons/scrolltab_rh.sv
 CTabBar #tabScroll>#rightButton:pressed {image: url(:/tabbar/icons/scrolltab_rp.svg);}
 
 Tab {background: #f1f1f1; border: none; border-right: 1px solid #dfdfdf; margin: 0px; padding: 0px;}
-Tab #tabIcon {background: transparent; /*image: url(:/tabbar/icons/res/icons/tabicon_oform_normal.svg);*/}
-Tab #tabText {color: #444; background: transparent; font-family: "Arial", "Helvetica", "Helvetica Neue", sans-serif;}
+Tab #tabIcon {background: transparent;}
+Tab #tabText {background: transparent; font-family: "Arial", "Helvetica", "Helvetica Neue", sans-serif;}
 Tab #tabButton {border: none; margin-top: 0px; image: none; background: transparent;}
 
 Tab[selected=true] {background: #446995; border-color: #446995;}
-Tab[selected=true] #tabText {color: #fff;}
-Tab[selected=true] #tabButton {image:url(:/tabbar/icons/close_active_normal.svg); /*background: #446995;*/}
-Tab[selected=true] #tabButton:hover {image: url(:/tabbar/icons/close_active_hover.svg);}
-Tab[selected=true] #tabButton:pressed {image: url(:/tabbar/icons/close_active_pressed.svg);}
 
-CTabBar[active=false] Tab[selected=true] {background: #f1f1f1; border-color: #dfdfdf;}
-CTabBar[active=false] Tab[selected=true] #tabText {color: #444;}
-CTabBar[active=false] Tab[selected=true] #tabButton {image: none; /*background: #f1f1f1;*/}
+CTabBar[active=false] Tab[selected=true] {border-color: #dfdfdf;}
+CTabBar[active=false] Tab[selected=true] #tabButton {image: none;}
 
 Tab[selected=false][hovered=true],
 CTabBar[active=false] Tab[selected=true][hovered=true] {background: #cecece;}
-Tab[selected=false][hovered=true] #tabButton,
-CTabBar[active=false] Tab[selected=true][hovered=true] #tabButton {image: url(:/tabbar/icons/close_normal.svg); /*background: #cecece;*/}
-Tab[selected=false][hovered=true] #tabButton:hover,
-CTabBar[active=false] Tab[selected=true][hovered=true] #tabButton:hover {image: url(:/tabbar/icons/close_hover.svg);}
-Tab[selected=false][hovered=true] #tabButton:pressed,
-CTabBar[active=false] Tab[selected=true][hovered=true] #tabButton:pressed {image: url(:/tabbar/icons/close_pressed.svg);}
 
 /* light */
 #mainPanel[uitheme=theme-light] Tab {border-right-color: #dfdfdf;}
@@ -52,21 +41,10 @@ CTabBar[active=false] Tab[selected=true][hovered=true] #tabButton:pressed {image
 #mainPanel[uitheme=theme-dark] CTabBar #tabScroll>QToolButton:hover {background: #555;}
 #mainPanel[uitheme=theme-dark] CTabBar #tabScroll>QToolButton:pressed {background: #606060;}
 #mainPanel[uitheme=theme-dark] Tab {background: #404040; border-right-color: #505050;}
-#mainPanel[uitheme=theme-dark] Tab #tabText {color: #dfdfdf;}
 #mainPanel[uitheme=theme-dark] Tab[selected=true] {background: #2a2a2a; border-color: #2a2a2a;}
 #mainPanel[uitheme=theme-dark] CTabBar[active=false] Tab[selected=true] {background: #404040; border-color: #505050;}
-#mainPanel[uitheme=theme-dark] CTabBar[active=false] Tab[selected=true][custom=true] #tabText {color: #dfdfdf;}
-#mainPanel[uitheme=theme-dark] CTabBar[active=false] Tab[selected=true][custom=true] #tabButton {image: none;}
 #mainPanel[uitheme=theme-dark] Tab[selected=false][hovered=true],
 #mainPanel[uitheme=theme-dark] CTabBar[active=false] Tab[selected=true][hovered=true] {background: #555;}
-#mainPanel[uitheme=theme-dark] Tab[selected=false][hovered=true] #tabButton,
-#mainPanel[uitheme=theme-dark] CTabBar[active=false] Tab[selected=true][hovered=true] #tabButton {image: url(:/tabbar/icons/close_active_normal.svg);}
-#mainPanel[uitheme=theme-dark] Tab[selected=false][hovered=true] #tabButton:hover,
-#mainPanel[uitheme=theme-dark] CTabBar[active=false] Tab[selected=true][hovered=true] #tabButton:hover {image: url(:/tabbar/icons/close_active_hover.svg);}
-#mainPanel[uitheme=theme-dark] Tab[selected=false][hovered=true] #tabButton:pressed,
-#mainPanel[uitheme=theme-dark] CTabBar[active=false] Tab[selected=true][hovered=true] #tabButton:pressed {image: url(:/tabbar/icons/close_active_pressed.svg);}
-#mainPanel[uitheme=theme-dark] Tab[selected=true] #tabButton:pressed {background: #555;}
-#mainPanel[uitheme=theme-dark] Tab[selected=true][custom=true] #tabButton:pressed {background: transparent;}
 
 /* contrast-dark */
 #mainPanel[uitheme=theme-contrast-dark] CTabBar {background: #2a2a2a;}
@@ -74,32 +52,12 @@ CTabBar[active=false] Tab[selected=true][hovered=true] #tabButton:pressed {image
 #mainPanel[uitheme=theme-contrast-dark] CTabBar #tabScroll>QToolButton:hover {background: #525252;}
 #mainPanel[uitheme=theme-contrast-dark] CTabBar #tabScroll>QToolButton:pressed {background: #424242;}
 #mainPanel[uitheme=theme-contrast-dark] Tab {background: #2a2a2a; border-right-color: #414141;}
-#mainPanel[uitheme=theme-contrast-dark] Tab #tabText {color: #fff;}
 #mainPanel[uitheme=theme-contrast-dark] Tab[selected=true] {background: #1e1e1e; border-color: #1e1e1e;}
 #mainPanel[uitheme=theme-contrast-dark] CTabBar[active=false] Tab[selected=true] {background: #2a2a2a; border-color: #414141;}
-#mainPanel[uitheme=theme-contrast-dark] CTabBar[active=false] Tab[selected=true][custom=true] #tabText {color: #fff;}
-#mainPanel[uitheme=theme-contrast-dark] CTabBar[active=false] Tab[selected=true][custom=true] #tabButton {image: none;}
 #mainPanel[uitheme=theme-contrast-dark] Tab[selected=false][hovered=true],
 #mainPanel[uitheme=theme-contrast-dark] CTabBar[active=false] Tab[selected=true][hovered=true] {background: #424242;}
-#mainPanel[uitheme=theme-contrast-dark] Tab[selected=false][hovered=true] #tabButton,
-#mainPanel[uitheme=theme-contrast-dark] CTabBar[active=false] Tab[selected=true][hovered=true] #tabButton {image: url(:/tabbar/icons/close_active_normal.svg);}
-#mainPanel[uitheme=theme-contrast-dark] Tab[selected=false][hovered=true] #tabButton:hover,
-#mainPanel[uitheme=theme-contrast-dark] CTabBar[active=false] Tab[selected=true][hovered=true] #tabButton:hover {image: url(:/tabbar/icons/close_active_hover.svg);}
-#mainPanel[uitheme=theme-contrast-dark] Tab[selected=false][hovered=true] #tabButton:pressed,
-#mainPanel[uitheme=theme-contrast-dark] CTabBar[active=false] Tab[selected=true][hovered=true] #tabButton:pressed {image: url(:/tabbar/icons/close_active_pressed.svg);}
-#mainPanel[uitheme=theme-contrast-dark] Tab[selected=true] #tabButton:pressed {background: #424242;}
-#mainPanel[uitheme=theme-contrast-dark] Tab[selected=true][custom=true] #tabButton:pressed {background: transparent;}
 
 /* portal */
-Tab[selected=true][custom=true],
-#mainPanel[uitheme=theme-dark] Tab[selected=true][custom=true],
-#mainPanel[uitheme=theme-contrast-dark] Tab[selected=true][custom=true] {background: #fff;}
-Tab[selected=true][custom=true] #tabText,
-#mainPanel[uitheme=theme-dark] Tab[selected=true][custom=true] #tabText,
-#mainPanel[uitheme=theme-contrast-dark] Tab[selected=true][custom=true] #tabText {color: #444;}
-Tab[selected=true][custom=true] #tabButton {image:url(:/tabbar/icons/close_normal.svg);}
-Tab[selected=true][custom=true] #tabButton:hover {image: url(:/tabbar/icons/close_hover.svg);}
-Tab[selected=true][custom=true] #tabButton:pressed {image: url(:/tabbar/icons/close_pressed.svg);}
 
 /* dark, contrast-dark */
 #mainPanel[uitheme=theme-dark] CTabBar #tabScroll>#leftButton,

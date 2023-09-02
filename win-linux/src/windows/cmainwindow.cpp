@@ -702,10 +702,11 @@ void CMainWindow::onPortalLogin(int viewid, const std::wstring &json)
             QString _ui_theme = objRoot["uiTheme"].toString();
             if ( !_ui_theme.isEmpty() ) {
 //                onFileLocation(vid, _url);
+
+                if ( _ui_theme == "default-dark" )
+                    m_pTabs->setTabThemeType(m_pTabs->tabIndexByView(viewid), "dark");
             }
         }
-
-        m_pTabs->tabIndexByView(viewid);
     }
 }
 

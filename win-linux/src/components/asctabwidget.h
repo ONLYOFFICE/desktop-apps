@@ -141,6 +141,7 @@ public:
     void closeEditorByIndex(int index, bool checkmodified = false);
     void closePortal(const std::wstring&, bool editors = false);
     void setStyleSheet(const QString&);
+    void setCurrentIndex(int);
     void applyUITheme(const std::wstring&);
 
     using QStackedWidget::count;
@@ -183,6 +184,8 @@ public:
     void reloadTabIcons();
     void updateIcons();
     void updateTabIcon(int);
+    void setTabActiveColor(int index, const std::wstring& color);
+    void setTabThemeType(int index, const QString& type);
     void setFocusedView(int index = -1);
     void setFullScreen(bool, int id = -1);
     QWidget * fullScreenWidget();
