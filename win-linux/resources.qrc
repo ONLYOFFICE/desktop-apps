@@ -104,6 +104,9 @@
     <qresource prefix="/styles@2.5x">
         <file alias="styles.qss">res/styles/styles@2.5x.qss</file>
     </qresource>
+    <qresource prefix="/styles@2.75x">
+        <file alias="styles.qss">res/styles/styles@2.75x.qss</file>
+    </qresource>
     <qresource prefix="/styles@3x">
         <file alias="styles.qss">res/styles/styles@3x.qss</file>
     </qresource>
