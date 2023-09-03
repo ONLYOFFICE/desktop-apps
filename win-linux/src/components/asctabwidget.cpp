@@ -252,7 +252,6 @@ int CAscTabWidget::addEditor(const COpenOptions& opts)
         m_pBar->addTab(data->title());
         m_pBar->setTabToolTip(tab_index, data->title());
         m_pBar->tabStartLoading(tab_index);
-        //m_pBar->setCurrentIndex(tab_index);
 
         //TODO: test for safe remove
 //        applyDocumentChanging(id_view, opts.type);
