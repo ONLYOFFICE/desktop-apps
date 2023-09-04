@@ -186,7 +186,7 @@ public:
         current = new CTheme;
         current->m_priv->setDefaultThemes(getDefault(NSTheme::ThemeType::ttDark), getDefault(NSTheme::ThemeType::ttLight));
         if ( user_theme.endsWith(".json") ) {
-            QDir directory(qApp->applicationDirPath() + "/uicolorthemes");
+            QDir directory(qApp->applicationDirPath() + "/uithemes");
             QString filepath{directory.absoluteFilePath(user_theme)};
 
             if ( !QFile::exists(filepath) || !current->fromFile(filepath) ) {
