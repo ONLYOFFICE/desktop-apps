@@ -758,6 +758,13 @@
             if ([openPanel runModal] == NSModalResponseOK) {
                 [params setValue:[[openPanel URL] path] forKey:@"template"];
             } else return;
+        } else
+        if ([params[@"action"] isEqualToNumber:@(ASCTabActionOpenLocalRecentFile)] ||
+                [params[@"action"] isEqualToNumber:@(ASCTabActionOpenLocalFile)])
+        {
+            if ( ![self canOpenFile:params[@"path"] tab:nil] ) {
+                return;
+            }
         }
 
         ASCTabView *tab = [[ASCTabView alloc] initWithFrame:CGRectZero];
