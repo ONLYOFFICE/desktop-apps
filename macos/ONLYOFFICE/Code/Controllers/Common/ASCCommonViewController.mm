@@ -1857,15 +1857,13 @@
             case ASCTabActionOpenLocalFile: {
                 NSString * filePath = tab.params[@"path"];
                 
-                if ([self canOpenFile:filePath tab:tab]) {
-                    int fileFormatType = CCefViewEditor::GetFileFormat([filePath stdwstring]);
-                    [cefView openFileWithName:filePath type:fileFormatType];
+                int fileFormatType = CCefViewEditor::GetFileFormat([filePath stdwstring]);
+                [cefView openFileWithName:filePath type:fileFormatType];
                     
-                    [[AnalyticsHelper sharedInstance] recordCachedEventWithCategory:ASCAnalyticsCategoryApplication
+                [[AnalyticsHelper sharedInstance] recordCachedEventWithCategory:ASCAnalyticsCategoryApplication
                                                                              action:@"Open local file"
                                                                               label:nil
                                                                               value:nil];
-                }
                 
                 break;
             }
@@ -1884,14 +1882,12 @@
                 NSInteger docId = [tab.params[@"fileId"] intValue];
                 NSString * filePath = tab.params[@"path"];
                 
-                if ([self canOpenFile:filePath tab:tab]) {
-                    [cefView openRecentFileWithId:docId];
+                [cefView openRecentFileWithId:docId];
                     
-                    [[AnalyticsHelper sharedInstance] recordCachedEventWithCategory:ASCAnalyticsCategoryApplication
+                [[AnalyticsHelper sharedInstance] recordCachedEventWithCategory:ASCAnalyticsCategoryApplication
                                                                              action:@"Open local file"
                                                                               label:nil
                                                                               value:nil];
-                }
                 
                 break;
             }
