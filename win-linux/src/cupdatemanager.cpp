@@ -57,6 +57,7 @@
 #define modeToEnum(mod) ((mod == "silent") ? UpdateMode::SILENT : (mod == "ask") ? UpdateMode::ASK : UpdateMode::DISABLE)
 #define WStrToTStr(str) QStrToTStr(QString::fromStdWString(str))
 #define DAY_TO_SEC 24*3600
+#define MINIMUM_INTERVAL 30
 #define CHECK_ON_STARTUP_MS 9000
 #define CMD_ARGUMENT_UPDATES_CHANNEL L"--updates-appcast-channel"
 #define CMD_ARGUMENT_UPDATES_INTERVAL L"--updates-interval"
@@ -225,7 +226,7 @@ CUpdateManager::CUpdateManager(QObject *parent):
         }
         if ( InputArgs::contains(CMD_ARGUMENT_UPDATES_INTERVAL) ) {
             int interval = QString::fromStdWString(InputArgs::argument_value(CMD_ARGUMENT_UPDATES_INTERVAL)).toInt();
-            if (interval >= 30) {
+            if (interval >= MINIMUM_INTERVAL) {
                 GET_REGISTRY_USER(reg_user)
                 reg_user.beginGroup("Updates");
                 reg_user.setValue("interval", interval);
@@ -277,6 +278,8 @@ void CUpdateManager::init()
     refreshStartPage({"lastcheck", tr("Last check performed ") + formattedTime(m_lastCheck),
                          tr("Check for updates"), "check", "false"});
     m_interval = reg_user.value("interval", DAY_TO_SEC).toInt();
+    if (m_interval < MINIMUM_INTERVAL)
+        m_interval = MINIMUM_INTERVAL;
     reg_user.endGroup();
 
     m_socket->onMessageReceived([this](void *data, size_t) {
