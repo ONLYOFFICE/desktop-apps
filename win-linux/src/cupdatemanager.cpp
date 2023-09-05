@@ -139,20 +139,8 @@ auto currentArch()->QString
 
 auto formattedTime(time_t timestamp)->QString
 {
-    char formatted[] = "--.--.---- --:--";
-    if (timestamp == 0)
-        return QString::fromUtf8(formatted);
-    struct tm timeinfo;
-#ifdef _WIN32
-    if (localtime_s(&timeinfo, &timestamp) == 0) {
-#else
-    if (localtime_r(&timestamp, &timeinfo) != nullptr) {
-#endif
-        memset(formatted, 0, sizeof(formatted));
-        if (strftime(formatted, sizeof(formatted), "%d.%m.%Y %H:%M", &timeinfo) > 0)
-            return QString::fromUtf8(formatted);
-    }
-    return QString::fromUtf8(formatted);
+    return (timestamp != 0) ? QLocale::system().toString(QDateTime::fromTime_t(timestamp), QLocale::ShortFormat) :
+               QString("--.--.---- --:--");
 }
 
 auto getFileHash(const QString &fileName)->QString
