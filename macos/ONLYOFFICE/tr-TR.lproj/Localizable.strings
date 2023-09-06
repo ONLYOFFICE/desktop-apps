@@ -38,7 +38,7 @@
 "Do you want to save the changes made to the document \"%@\"?" = "Belgeye yapılan değişiklikleri kaydetmek istiyor musunuz \"%@\"?";
 
 /* No comment provided by engineer. */
-"Document %ld.docx" = "Belge %ld.docx";
+"Document %ld.docxf" = "Belge %ld.docxf";
 
 /* No comment provided by engineer. */
 "Document template" = "Word Open XML Belge şablonu (*.dotx)";
@@ -119,10 +119,10 @@
 "PDF File" = "Taşınabilir Belge (*.pdf)";
 
 /* No comment provided by engineer. */
-"PDF/A File" = "Taşınabilir Belge / A (*.pdf)";
+"PDF/A File" = "Taşınabilir Belge /A (*.pdf)";
 
 /* No comment provided by engineer. */
-"Plain Text" = "Düz Metin (*.txt)";
+"Plain Text" = "Düz Metin Dosyası (*.txt)";
 
 /* No comment provided by engineer. */
 "PowerPoint 97-2003 Presentation" = "PowerPoint 97-2003 Sunumu (*.ppt)";

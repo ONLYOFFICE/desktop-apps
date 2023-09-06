@@ -1,26 +1,26 @@
 /* No comment provided by engineer. */
-"%@ Help" = "%@ Дапамога";
+"%@ Help" = "%@ Даведка";
 
 /* No comment provided by engineer. */
-"About %@" = "Аб %@";
+"About %@" = "Пра %@";
 
 /* No comment provided by engineer. */
-"Acknowledgments" = "Апавяшчэння";
+"Acknowledgments" = "Пацвярджэнні";
 
 /* No comment provided by engineer. */
 "Before signing the document, it must be saved." = "Перад падпісаннем дакумента яго неабходна захаваць.";
 
 /* No comment provided by engineer. */
-"Cancel" = "Адмяніць";
+"Cancel" = "Скасаваць";
 
 /* No comment provided by engineer. */
 "Cannot open file of Digital Signature" = "Немагчыма адкрыць файл лічбавага подпісу";
 
 /* No comment provided by engineer. */
-"Cannot open file of Private Key" = "Немагчыма адкрыць файл закрытага ключа";
+"Cannot open file of Private Key" = "Немагчыма адкрыць файл прыватнага ключа";
 
 /* No comment provided by engineer. */
-"Cannot open folder of the file location." = "Немагчыма адкрыць папку з месцазнаходжаннем файла.";
+"Cannot open folder of the file location." = "Немагчыма адкрыць каталог файла.";
 
 /* No comment provided by engineer. */
 "Comma-Separated Values" = "Значэнні, падзеленыя коскамі (*.csv)";
@@ -41,10 +41,10 @@
 "Document %ld.docx" = "Дакумент %ld.docx";
 
 /* No comment provided by engineer. */
-"Document template" = "Шаблон дакумента Word Open XML (*.dotx)";
+"Document %ld.docxf" = "Дакумент %ld.docxf";
 
 /* No comment provided by engineer. */
-"Electronic Publication" = "Электронная публікацыя (*.epub)";
+"Document template" = "Шаблон дакумента Word Open XML (*.dotx)";
 
 /* No comment provided by engineer. */
 "Excel 97-2003 Spreadsheet" = "Электронная табліца Excel 97-2003 (*.xls)";
@@ -56,7 +56,7 @@
 "FictionBook File" = "Файл FictionBook (*.fb2)";
 
 /* No comment provided by engineer. */
-"File \"%@\" can not be open or not exist." = "Файл \"%@\" не можа быць адкрыты або не існуе.";
+"File \"%@\" can not be open or not exist." = "Файл \"%@\" не існуе або яго немагчыма адкрыць.";
 
 /* No comment provided by engineer. */
 "File can not be open." = "Немагчыма адкрыць файл.";
@@ -68,16 +68,10 @@
 "Hide %@" = "Схаваць %@";
 
 /* No comment provided by engineer. */
-"HTML File" = "Файл HTML (*.html)";
-
-/* No comment provided by engineer. */
-"If you have already purchased %@, you should find your activation key in an email confirmation." = "Калі вы ўжо набылі %@, вы павінны знайсці ключ актывацыі ў пацверджанні па электроннай пошце.";
+"If you have already purchased %@, you should find your activation key in an email confirmation." = "Калі вы ўжо набылі %@, вам трэба знайсці ключ актывацыі ў лісце пацвярджэння, які быў адпраўлены па электроннай пошце.";
 
 /* No comment provided by engineer. */
 "License Agreement" = "Ліцэнзійнае пагадненне";
-
-/* No comment provided by engineer. */
-"MHT File" = "Файл MHT (*.mht)";
 
 /* No comment provided by engineer. */
 "Mobipocket e-book" = "Электронная кніга mobipocket (*.mobi)";
@@ -95,13 +89,13 @@
 "No" = "Не";
 
 /* No comment provided by engineer. */
-"OK" = "OK";
+"OK" = "Добра";
 
 /* No comment provided by engineer. */
 "ONLYOFFICE can not open the Digital Signature file. Try opening another file." = "ONLYOFFICE не можа адкрыць файл лічбавага подпісу. Паспрабуйце адкрыць іншы файл.";
 
 /* No comment provided by engineer. */
-"ONLYOFFICE can not open the Private Key. Try opening another file." = "ONLYOFFICE не можа адкрыць закрыты ключ. Паспрабуйце адкрыць іншы файл.";
+"ONLYOFFICE can not open the Private Key. Try opening another file." = "ONLYOFFICE не можа адкрыць прыватны ключ. Паспрабуйце адкрыць іншы файл.";
 
 /* No comment provided by engineer. */
 "OpenDocument Document Template" = "Шаблон дакумента OpenDocument (*.ott)";
@@ -116,7 +110,7 @@
 "Opening" = "Адкрыццё";
 
 /* No comment provided by engineer. */
-"OpenOffice Document" = "Тэкставы файл OpenDocument (*.odt) ";
+"OpenOffice Document" = "Тэкставы файл OpenDocument (*.odt)";
 
 /* No comment provided by engineer. */
 "OpenOffice Presentation" = "Прэзентацыя OpenDocument (*.odp)";
@@ -140,10 +134,10 @@
 "PowerPoint 2007 Presentation" = "Прэзентацыя Office Open XML (*.pptx)";
 
 /* No comment provided by engineer. */
-"PowerPoint Slide Show" = "Слайд-шоў Office Open XML (*.ppsx)";
+"PowerPoint Slide Show" = "Слайд-шоу Office Open XML (*.ppsx)";
 
 /* No comment provided by engineer. */
-"Preparing..." = "Ідзе падрыхтоўка ...";
+"Preparing..." = "Рыхтаванне...";
 
 /* No comment provided by engineer. */
 "Presentation %ld.pptx" = "Прэзентацыя %ld.pptx";
@@ -152,13 +146,13 @@
 "Presentation template" = "Шаблон прэзентацыі PowerPoint Open XML (*.potx)";
 
 /* No comment provided by engineer. */
-"Presenter View" = "Прагляд спікера";
+"Presenter View" = "Рэжым дакладчыка";
 
 /* No comment provided by engineer. */
-"Quit %@" = "Пакінуць %@";
+"Quit %@" = "Выйсці з %@";
 
 /* No comment provided by engineer. */
-"Review Changes..." = "Прагледзець змены ...";
+"Review Changes..." = "Пераглядзець змены ...";
 
 /* No comment provided by engineer. */
 "Rich Text Document" = "Багаты тэкставы дакумент (*.rtf)";
@@ -173,19 +167,19 @@
 "Spreadsheet %ld.xlsx" = "Табліца %ld.xlsx";
 
 /* No comment provided by engineer. */
-"Spreadsheet template" = "Шаблон табліцы Excel Open XML (*.xltx)";
+"Spreadsheet template" = "Шаблон электроннай табліцы Excel Open XML (*.xltx)";
 
 /* No comment provided by engineer. */
 "Thank you for evaluating %@!" = "Дзякуй за ацэнку %@!";
 
 /* No comment provided by engineer. */
-"The document \"%@\" must be built. Continue?" = "Дакумент \"%@\" павінен быць пабудаваны. Прадоўжыць?";
+"The document \"%@\" must be built. Continue?" = "Дакумент \"%@\" павінен быць сабраны. Працягнуць?";
 
 /* No comment provided by engineer. */
-"To open the file location, it must be saved." = "Каб адкрыць месцазнаходжанне файла, яго трэба захаваць.";
+"To open the file location, it must be saved." = "Каб адкрыць месца размяшчэння файла, яго трэба захаваць.";
 
 /* No comment provided by engineer. */
-"Unconfirmed" = "Непацверджаны";
+"Unconfirmed" = "Не пацверджана";
 
 /* No comment provided by engineer. */
 "Untitled" = "Без назвы";
@@ -212,17 +206,17 @@
 "Yes" = "Так";
 
 /* No comment provided by engineer. */
-"You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?" = "У вас ёсць %1$ld %2$@ дакументаў з непацверджанымі зменамі. Вы хочаце перагледзець гэтыя змены, перш чым пакінуць старонку?";
+"You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?" = "У вас ёсць %1$ld %2$@ дакументаў з непацверджанымі зменамі. Хочаце пераглядзець гэтыя змены, перш чым пакінуць старонку?";
 
 /* No comment provided by engineer. */
 "You have successfully activated %@." = "Вы паспяхова актывавалі %@.";
 
 /* No comment provided by engineer. */
-"Your changes will be lost if you don’t save them." = "Вашы змены будуць страчаны, калі вы іх не захаваеце.";
+"Your changes will be lost if you don’t save them." = "Змены страцяцца, калі вы іх не захаваеце.";
 
 /* No comment provided by engineer. */
-"Your subscription has expired.\n\nThe program works in the non-activated mode.\n\nNow you can prolong or upgrade your subscription with a discount." = "Твая падпіска скончылася.\n\nПраграма працуе ў неактываваным рэжыме.\n\nЦяпер вы можаце падоўжыць або абнавіць падпіску са зніжкай.";
+"Your subscription has expired.\n\nThe program works in the non-activated mode.\n\nNow you can prolong or upgrade your subscription with a discount." = "Ваша падпіска скончылася.\n\nПраграма працуе ў неактываваным рэжыме.\n\nЦяпер вы можаце працягнуць або абнавіць падпіску са зніжкай.";
 
 /* No comment provided by engineer. */
-"Your subscription is about to expire\n(%d days left).\n\nWe have a special offer for you." = "Ваша падпіска хутка скончыцца\n(засталося%d дзён).\n\nУ нас ёсць для вас спецыяльная прапанова.";
+"Your subscription is about to expire\n(%d days left).\n\nWe have a special offer for you." = "Ваша падпіска хутка скончыцца\n(засталося %d дзён).\n\nУ нас ёсць для вас спецыяльная прапанова.";
 

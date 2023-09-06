@@ -41,6 +41,9 @@
 "Document %ld.docx" = "Документ %ld.docx";
 
 /* No comment provided by engineer. */
+"Document %ld.docxf" = "Документ %ld.docxf";
+
+/* No comment provided by engineer. */
 "Document template" = "Шаблон документа Word Open XML (*.dotx)";
 
 /* No comment provided by engineer. */
@@ -116,10 +119,10 @@
 "PDF File" = "Портативний документ (*.pdf)";
 
 /* No comment provided by engineer. */
-"PDF/A File" = " Портативний документ / A (*.pdf)";
+"PDF/A File" = " Портативний документ /A (*.pdf)";
 
 /* No comment provided by engineer. */
-"Plain Text" = "Звичайний текст (*.txt)";
+"Plain Text" = "Звичайний текстовий файл (*.txt)";
 
 /* No comment provided by engineer. */
 "PowerPoint 97-2003 Presentation" = "Презентація PowerPoint 97-2003 (*.ppt)";

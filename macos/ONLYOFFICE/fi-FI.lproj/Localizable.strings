@@ -41,10 +41,13 @@
 "Document %ld.docx" = "Dokumentti %ld.docx";
 
 /* No comment provided by engineer. */
-"Document template" = "Word Open XML asiakirjamalli (*.dotx)";
+"Document %ld.docxf" = "Dokumentti %ld.docxf";
 
 /* No comment provided by engineer. */
-"Excel 97-2003 Spreadsheet" = "Excel 97–2003 -laskentataulukko (*.xls)";
+"Document template" = "Word Open XML-asiakirjamalli (*.dotx)";
+
+/* No comment provided by engineer. */
+"Excel 97-2003 Spreadsheet" = "Excel 97–2003-laskentataulukko (*.xls)";
 
 /* No comment provided by engineer. */
 "Excel 2007 Spreadsheet" = "Officen avoin XML-asiakirja (*.xlsx)";
@@ -116,13 +119,13 @@
 "PDF File" = "Kannettava asiakirja (*.pdf)";
 
 /* No comment provided by engineer. */
-"PDF/A File" = "Kannettava asiakirja / A (*.pdf)";
+"PDF/A File" = "Kannettava asiakirja /A (*.pdf)";
 
 /* No comment provided by engineer. */
 "Plain Text" = "Pelkkä Teksti (*.txt)";
 
 /* No comment provided by engineer. */
-"PowerPoint 97-2003 Presentation" = "PowerPoint 97–2003 -esitys (*.ppt)";
+"PowerPoint 97-2003 Presentation" = "PowerPoint 97–2003-esitys (*.ppt)";
 
 /* No comment provided by engineer. */
 "PowerPoint 2007 Presentation" = "Officen avoin XML-esitys (*.pptx)";
@@ -137,7 +140,7 @@
 "Presentation %ld.pptx" = "Esitys %ld.pptx";
 
 /* No comment provided by engineer. */
-"Presentation template" = "PowerPoint Open XML esityksen malli (*.potx)";
+"Presentation template" = "PowerPoint Open XML-esityksenmalli (*.potx)";
 
 /* No comment provided by engineer. */
 "Quit %@" = "Lopeta %@";
@@ -158,7 +161,7 @@
 "Spreadsheet %ld.xlsx" = "Laskentataulukko %ld.xlsx";
 
 /* No comment provided by engineer. */
-"Spreadsheet template" = "Excel Open XML laskentataulukkomalli (*.xltx)";
+"Spreadsheet template" = "Excel Open XML-laskentataulukkomalli (*.xltx)";
 
 /* No comment provided by engineer. */
 "Thank you for evaluating %@!" = "Kiitos arviostasi tuotteesta %@!";
@@ -182,13 +185,13 @@
 "Web Page" = "Verkkosivu";
 
 /* No comment provided by engineer. */
-"Word 97-2003 Document" = "Word 97–2003 -asiakirja (*.doc)";
+"Word 97-2003 Document" = "Word 97–2003-asiakirja (*.doc)";
 
 /* No comment provided by engineer. */
 "Word 2007 Document" = "Officen avoin XML-asiakirja (*.docx)";
 
 /* No comment provided by engineer. */
-"XML Paper Specification" = "OpenXPS-asiakirja(*.xps)";
+"XML Paper Specification" = "OpenXPS-asiakirja (*.xps)";
 
 /* No comment provided by engineer. */
 "Yes" = "Kyllä";
