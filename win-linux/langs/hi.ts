@@ -76,7 +76,7 @@
     </message>
     <message>
         <location filename="../src/platform_linux/cdialogopenssl.cpp" line="109"/>
-        <source>Certifacate password:</source>
+        <source>Certificate password:</source>
         <translation>सर्टिफिकेट का पासवर्ड:</translation>
     </message>
     <message>

@@ -72,7 +72,7 @@
     </message>
     <message>
         <location filename="../src/platform_linux/cdialogopenssl.cpp" line="109"/>
-        <source>Certifacate password:</source>
+        <source>Certificate password:</source>
         <translation>인증서 비밀번호:</translation>
     </message>
     <message>
