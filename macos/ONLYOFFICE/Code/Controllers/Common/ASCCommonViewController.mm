@@ -646,8 +646,9 @@
     BOOL canOpen = NO;
 
     if (path) {
-        NSURL * urlFile = [NSURL URLWithString:[path stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
         
+        NSURL * urlFile = [NSURL URLWithString:[path stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLPathAllowedCharacterSet]]];
+
         if (urlFile && [urlFile host]) {
             canOpen = YES;
         } else {
