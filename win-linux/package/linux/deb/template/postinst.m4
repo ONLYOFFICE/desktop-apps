@@ -27,12 +27,15 @@ fi
 if [ $(cat "$MIMEAPPS_LIST" | grep x-scheme-handler/M4_SCHEME_HANDLER | wc -l) -eq "0" ]; then
   echo "x-scheme-handler/M4_SCHEME_HANDLER=M4_DESKTOPEDITORS_EXEC.desktop" >>"$MIMEAPPS_LIST"
 fi
+
+ifelse(M4_COMPANY_NAME, ONLYOFFICE,
 if [ $(cat "$MIMEAPPS_LIST" | grep text/docxf | wc -l) -eq "0" ]; then
   echo "text/docxf=M4_DESKTOPEDITORS_EXEC.desktop" >>"$MIMEAPPS_LIST"
 fi
 if [ $(cat "$MIMEAPPS_LIST" | grep text/oform | wc -l) -eq "0" ]; then
   echo "text/oform=M4_DESKTOPEDITORS_EXEC.desktop" >>"$MIMEAPPS_LIST"
 fi
+,)
 
 ifelse(M4_COMPANY_NAME, ONLYOFFICE,
 xdg-mime install --mode system /opt/M4_DESKTOPEDITORS_PREFIX/mimetypes/onlyoffice-docxf.xml
