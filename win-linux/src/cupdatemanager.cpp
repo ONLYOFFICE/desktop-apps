@@ -479,10 +479,7 @@ void CUpdateManager::loadUpdates()
 void CUpdateManager::installUpdates()
 {
     __GLOBAL_LOCK
-
-    if (ignoredVersion() != getVersion()) {
-        m_dialogSchedule->addToSchedule("showStartInstallMessage");
-    }
+    m_dialogSchedule->addToSchedule("showStartInstallMessage");
 }
 
 void CUpdateManager::refreshStartPage(const Command &cmd)
@@ -534,7 +531,7 @@ void CUpdateManager::refreshStartPage(const Command &cmd)
 
 void CUpdateManager::launchIntervalStartTimer()
 {
-    if (getUpdateMode() != UpdateMode::DISABLE)
+    if (m_pIntervalStartTimer && getUpdateMode() != UpdateMode::DISABLE)
         m_pIntervalStartTimer->start();
 }
 
