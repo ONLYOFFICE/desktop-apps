@@ -202,6 +202,28 @@
     <ROW File="ImageViewer.exe" Component_="ImageViewer.exe" FileName="IMAGEV~1.EXE|ImageViewer.exe" Attributes="0" SourcePath="..\..\..\..\build_tools\out\win_64\onlyoffice\MediaViewer\ImageViewer.exe" SelfReg="false"/>
     <ROW File="updatesvc.exe" Component_="updatesvc.exe" FileName="UPDATE~1.EXE|updatesvc.exe" Attributes="0" SourcePath="..\..\..\..\build_tools\out\win_64\onlyoffice\DesktopEditors\updatesvc.exe" SelfReg="false"/>
   </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.custcomp.AiRegistryAliasComponent">
+    <ROW AliasRowId="NoModify" AliasRowOperation="2" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName]"/>
+    <ROW AliasRowId="InstallLocation" AliasRowOperation="2" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName]"/>
+    <ROW AliasRowId="HelpTelephone" AliasRowOperation="2" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName]"/>
+    <ROW AliasRowId="EstimatedSize" AliasRowOperation="2" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName]"/>
+    <ROW AliasRowId="DisplayVersion" AliasRowOperation="2" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName]"/>
+    <ROW AliasRowId="Contact" AliasRowOperation="2" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName]"/>
+    <ROW AliasRowId="Comments" AliasRowOperation="2" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName]"/>
+    <ROW AliasRowId="DisplayName" AliasRowOperation="2" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName]"/>
+    <ROW AliasRowId="DisplayIcon" AliasRowOperation="2" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName]"/>
+    <ROW AliasRowId="HelpLink" AliasRowOperation="2" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName]"/>
+    <ROW AliasRowId="URLUpdateInfo" AliasRowOperation="2" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName]"/>
+    <ROW AliasRowId="ModifyPath" AliasRowOperation="2" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName]"/>
+    <ROW AliasRowId="NoRepair" AliasRowOperation="2" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName]"/>
+    <ROW AliasRowId="Publisher" AliasRowOperation="2" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName]"/>
+    <ROW AliasRowId="Readme" AliasRowOperation="2" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName]"/>
+    <ROW AliasRowId="URLInfoAbout" AliasRowOperation="2" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName]"/>
+    <ROW AliasRowId="UninstallPath" AliasRowOperation="2" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName]"/>
+    <ROW AliasRowId="UninstallString" AliasRowOperation="2" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName]"/>
+    <ROW AliasRowId="VersionMajor" AliasRowOperation="2" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName]"/>
+    <ROW AliasRowId="VersionMinor" AliasRowOperation="2" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName]"/>
+  </COMPONENT>
   <COMPONENT cid="caphyon.advinst.custcomp.MsiShortcutPropertyComponent">
     <ROW MsiShortcutProperty="COMMON_SHORTCUT_NAME_SHORTCUTDIR2" Shortcut_="COMMON_SHORTCUT_NAME_SHORTCUTDIR" PropertyKey="System.AppUserModel.ID" PropVariantValue="[APP_USER_MODEL_ID]"/>
     <ROW MsiShortcutProperty="COMMON_SHORTCUT_NAME_DESKTOP2" Shortcut_="COMMON_SHORTCUT_NAME_DESKTOP" PropertyKey="System.AppUserModel.ID" PropVariantValue="[APP_USER_MODEL_ID]"/>
