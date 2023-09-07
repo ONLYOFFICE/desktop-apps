@@ -58,6 +58,7 @@
 #define WStrToTStr(str) QStrToTStr(QString::fromStdWString(str))
 #define DAY_TO_SEC 24*3600
 #define MINIMUM_INTERVAL 30
+#define RESET_MESSAGE_MS 20000
 #define CHECK_ON_STARTUP_MS 9000
 #define CMD_ARGUMENT_UPDATES_CHANNEL L"--updates-appcast-channel"
 #define CMD_ARGUMENT_UPDATES_INTERVAL L"--updates-interval"
@@ -247,6 +248,12 @@ CUpdateManager::CUpdateManager(QObject *parent):
         m_pIntervalStartTimer->setSingleShot(true);
         m_pIntervalStartTimer->setInterval(CHECK_ON_STARTUP_MS);
         connect(m_pIntervalStartTimer, &QTimer::timeout, this, &CUpdateManager::updateNeededCheking);
+        m_pLastCheckMsgTimer = new QTimer(this);
+        m_pLastCheckMsgTimer->setSingleShot(true);
+        m_pLastCheckMsgTimer->setInterval(RESET_MESSAGE_MS);
+        connect(m_pLastCheckMsgTimer, &QTimer::timeout, this, [=]() {
+            refreshStartPage({"lastcheck", tr("Last check performed ") + formattedTime(m_lastCheck)});
+        });
         if (IsPackage(Portable))
             runProcess(QStrToTStr(qApp->applicationDirPath()) + DAEMON_NAME, _T("--run-as-app"));
         init();
@@ -484,6 +491,8 @@ void CUpdateManager::installUpdates()
 
 void CUpdateManager::refreshStartPage(const Command &cmd)
 {
+    if (m_pLastCheckMsgTimer)
+        m_pLastCheckMsgTimer->stop();
     static bool lock = true;
     QJsonObject jsn, btn_jsn;
     if (cmd.isEmpty()) {
@@ -724,6 +733,7 @@ void CUpdateManager::onCheckFinished(bool error, bool updateExist, const QString
             }
         } else {
             refreshStartPage({"success", tr("Current version is up to date"), tr("Check for updates"), "check", "false"});
+            m_pLastCheckMsgTimer->start();
             __UNLOCK;
         }
     } else {
@@ -747,6 +757,7 @@ void CUpdateManager::showUpdateMessage(QWidget *parent) {
     case WinDlg::DLG_RESULT_SKIP: {
         skipVersion();
         refreshStartPage({"success", tr("Current version is up to date"), tr("Check for updates"), "check", "false"});
+        m_pLastCheckMsgTimer->start();
         break;
     }
     default:
