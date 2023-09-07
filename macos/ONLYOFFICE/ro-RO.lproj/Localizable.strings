@@ -41,6 +41,9 @@
 "Document %ld.docx" = "Document %ld.docx";
 
 /* No comment provided by engineer. */
+"Document %ld.docxf" = "Document %ld.docxf";
+
+/* No comment provided by engineer. */
 "Document template" = "Șablon document Word Open XML (*.dotx)";
 
 /* No comment provided by engineer. */
@@ -69,6 +72,12 @@
 
 /* No comment provided by engineer. */
 "License Agreement" = "Acord de licență";
+
+/* No comment provided by engineer. */
+"Macro-enabled Presentation" = "Prezentare cu macrocomenzi activate (*.pptm)";
+
+/* No comment provided by engineer. */
+"Macro-enabled spreadsheet template" = "Şablon foaie de calcul cu macrocomenzi activate (*.xltm)";
 
 /* No comment provided by engineer. */
 "Mobipocket e-book" = "Mobipocket e-book (*.mobi)";
@@ -119,7 +128,7 @@
 "PDF File" = "Formatul de Document Portabil (*.pdf)";
 
 /* No comment provided by engineer. */
-"PDF/A File" = "Formatul de Document Portabil / A (*.pdf)";
+"PDF/A File" = "Formatul de Document Portabil /A (*.pdf)";
 
 /* No comment provided by engineer. */
 "Plain Text" = "Fișier text simplu (*.txt)";

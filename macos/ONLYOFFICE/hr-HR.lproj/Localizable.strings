@@ -41,10 +41,13 @@
 "Document %ld.docx" = "Dokument %ld.docx";
 
 /* No comment provided by engineer. */
+"Document %ld.docxf" = "Dokument %ld.docxf";
+
+/* No comment provided by engineer. */
 "Document template" = "Word Open XML Predložak dokumenta (*.dotx)";
 
 /* No comment provided by engineer. */
-"Excel 97-2003 Spreadsheet" = "Excel 97-2003 Proračunska tablica  (*.xls)";
+"Excel 97-2003 Spreadsheet" = "Excel 97-2003 Proračunska tablica (*.xls)";
 
 /* No comment provided by engineer. */
 "Excel 2007 Spreadsheet" = "Office Open XML Proračunska tablica (*.xlsx)";
@@ -116,7 +119,7 @@
 "PDF File" = "Prijenosni format dokumenta (*.pdf)";
 
 /* No comment provided by engineer. */
-"PDF/A File" = "Prijenosni format dokumenta / A (*.pdf)";
+"PDF/A File" = "Prijenosni format dokumenta /A (*.pdf)";
 
 /* No comment provided by engineer. */
 "Plain Text" = "Običan tekst (*.txt)";

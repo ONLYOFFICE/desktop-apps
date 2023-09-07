@@ -41,13 +41,13 @@
 "Document %ld.docx" = "Documento %ld.docx";
 
 /* No comment provided by engineer. */
+"Document %ld.docxf" = "Documento %ld.docxf";
+
+/* No comment provided by engineer. */
 "Document template" = "Plantilla de documento Word Open XML (*.dotx)";
 
 /* No comment provided by engineer. */
 "Don't Save" = "No guardar";
-
-/* No comment provided by engineer. */
-"Electronic Publication" = "Archivo de publicación electrónica (*.epub)";
 
 /* No comment provided by engineer. */
 "Excel 97-2003 Spreadsheet" = "Hoja de cálculo Excel 97-2003 (*.xls)";
@@ -71,9 +71,6 @@
 "Hide %@" = "Esconder %@";
 
 /* No comment provided by engineer. */
-"HTML File" = "Archivo de lenguaje de marcado de hipertexto (*.html)";
-
-/* No comment provided by engineer. */
 "If you don't review your documents, all your changeses will be lost." = "Si no revisa sus documentos, todos sus cambios se perderán.";
 
 /* No comment provided by engineer. */
@@ -83,7 +80,10 @@
 "License Agreement" = "Acuerdo de Licencia";
 
 /* No comment provided by engineer. */
-"MHT File" = "Archivo de página web (*.mht)";
+"Macro-enabled Presentation" = "Presentación compatible con macros (*.pptm)";
+
+/* No comment provided by engineer. */
+"Macro-enabled spreadsheet template" = "Plantilla de hoja de cálculo compatible con macros (*.xltm)";
 
 /* No comment provided by engineer. */
 "Mobipocket e-book" = "Archivo Mobipocket (*.mobi)";
@@ -134,16 +134,16 @@
 "PDF File" = "Documento portátil (*.pdf)";
 
 /* No comment provided by engineer. */
-"PDF/A File" = "Documento portátil / A (*.pdf)";
+"PDF/A File" = "Documento portátil /A (*.pdf)";
 
 /* No comment provided by engineer. */
 "Plain Text" = "Archivo de texto sin formato (*.txt)";
 
 /* No comment provided by engineer. */
-"PowerPoint 97-2003 Presentation" = "Hoja de cálculo Excel 97-2003 (*.xls)";
+"PowerPoint 97-2003 Presentation" = "Presentación PowerPoint 97-2003 (*.ppt)";
 
 /* No comment provided by engineer. */
-"PowerPoint 2007 Presentation" = "Hoja de cálculo Office Open XML (*.xlsx)";
+"PowerPoint 2007 Presentation" = "Presentación Office Open XML (*.pptx)";
 
 /* No comment provided by engineer. */
 "PowerPoint Slide Show" = "Presentación con diapositivas Office Open XML (*.ppsx)";

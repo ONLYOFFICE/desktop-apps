@@ -646,8 +646,9 @@
     BOOL canOpen = NO;
 
     if (path) {
-        NSURL * urlFile = [NSURL URLWithString:[path stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
         
+        NSURL * urlFile = [NSURL URLWithString:[path stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLPathAllowedCharacterSet]]];
+
         if (urlFile && [urlFile host]) {
             canOpen = YES;
         } else {
@@ -758,6 +759,13 @@
             if ([openPanel runModal] == NSModalResponseOK) {
                 [params setValue:[[openPanel URL] path] forKey:@"template"];
             } else return;
+        } else
+        if ([params[@"action"] isEqualToNumber:@(ASCTabActionOpenLocalRecentFile)] ||
+                [params[@"action"] isEqualToNumber:@(ASCTabActionOpenLocalFile)])
+        {
+            if ( ![self canOpenFile:params[@"path"] tab:nil] ) {
+                return;
+            }
         }
 
         ASCTabView *tab = [[ASCTabView alloc] initWithFrame:CGRectZero];
@@ -1850,15 +1858,13 @@
             case ASCTabActionOpenLocalFile: {
                 NSString * filePath = tab.params[@"path"];
                 
-                if ([self canOpenFile:filePath tab:tab]) {
-                    int fileFormatType = CCefViewEditor::GetFileFormat([filePath stdwstring]);
-                    [cefView openFileWithName:filePath type:fileFormatType];
+                int fileFormatType = CCefViewEditor::GetFileFormat([filePath stdwstring]);
+                [cefView openFileWithName:filePath type:fileFormatType];
                     
-                    [[AnalyticsHelper sharedInstance] recordCachedEventWithCategory:ASCAnalyticsCategoryApplication
+                [[AnalyticsHelper sharedInstance] recordCachedEventWithCategory:ASCAnalyticsCategoryApplication
                                                                              action:@"Open local file"
                                                                               label:nil
                                                                               value:nil];
-                }
                 
                 break;
             }
@@ -1877,14 +1883,12 @@
                 NSInteger docId = [tab.params[@"fileId"] intValue];
                 NSString * filePath = tab.params[@"path"];
                 
-                if ([self canOpenFile:filePath tab:tab]) {
-                    [cefView openRecentFileWithId:docId];
+                [cefView openRecentFileWithId:docId];
                     
-                    [[AnalyticsHelper sharedInstance] recordCachedEventWithCategory:ASCAnalyticsCategoryApplication
+                [[AnalyticsHelper sharedInstance] recordCachedEventWithCategory:ASCAnalyticsCategoryApplication
                                                                              action:@"Open local file"
                                                                               label:nil
                                                                               value:nil];
-                }
                 
                 break;
             }

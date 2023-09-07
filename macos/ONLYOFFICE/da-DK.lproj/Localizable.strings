@@ -41,13 +41,16 @@
 "Document %ld.docx" = "Dokument %ld.docx";
 
 /* No comment provided by engineer. */
+"Document %ld.docxf" = "Dokument %ld.docxf";
+
+/* No comment provided by engineer. */
 "Document template" = "Word Open XML Dokumentskabelon (*.dotx)";
 
 /* No comment provided by engineer. */
 "Excel 97-2003 Spreadsheet" = "Excel 97-2003-regneark (*.xls)";
 
 /* No comment provided by engineer. */
-"Excel 2007 Spreadsheet" = "Office Open XML-regneark (*.docx)";
+"Excel 2007 Spreadsheet" = "Office Open XML-regneark (*.xlsx)";
 
 /* No comment provided by engineer. */
 "File \"%@\" can not be open or not exist." = "Fil \"%@\" kan ikke åbnes eller eksisterer ikke.";
@@ -104,7 +107,7 @@
 "Opening" = "Åbner";
 
 /* No comment provided by engineer. */
-"OpenOffice Document" = "OpenDocument Tekstfil (*.odt) ";
+"OpenOffice Document" = "OpenDocument Tekstfil (*.odt)";
 
 /* No comment provided by engineer. */
 "OpenOffice Presentation" = "OpenDocument Præsentation (*.odp)";

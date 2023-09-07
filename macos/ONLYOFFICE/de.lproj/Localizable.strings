@@ -41,13 +41,13 @@
 "Document %ld.docx" = "Dokument %ld.docx";
 
 /* No comment provided by engineer. */
+"Document %ld.docxf" = "Dokument %ld.docxf";
+
+/* No comment provided by engineer. */
 "Document template" = "Word Open XML-Dokumentvorlage (*.dotx)";
 
 /* No comment provided by engineer. */
 "Don't Save" = "Nicht speichern";
-
-/* No comment provided by engineer. */
-"Electronic Publication" = "Elektronische Publikation (*.epub)";
 
 /* No comment provided by engineer. */
 "Excel 97-2003 Spreadsheet" = "Excel 97-2003-Tabellenkalkulation (*.xls)";
@@ -71,9 +71,6 @@
 "Hide %@" = "%@ verbergen";
 
 /* No comment provided by engineer. */
-"HTML File" = "Fichier HyperText Markup Language-Datei (*.html)";
-
-/* No comment provided by engineer. */
 "If you don't review your documents, all your changeses will be lost." = "Wenn Sie Ihre Dokumente nicht überprüfen, gehen alle Änderungen verloren.";
 
 /* No comment provided by engineer. */
@@ -83,7 +80,10 @@
 "License Agreement" = "Lizenzvereinbarung";
 
 /* No comment provided by engineer. */
-"MHT File" = "Webseiten-Archiv (*.mht)";
+"Macro-enabled Presentation" = "Präsentation mit aktivierten Makros (*.pptm)";
+
+/* No comment provided by engineer. */
+"Macro-enabled spreadsheet template" = "Vorlage der Tabellenkalkulation mit aktivierten Makros (*.xltm)";
 
 /* No comment provided by engineer. */
 "Mobipocket e-book" = "Mobipocket-Datei (*.mobi)";
@@ -134,7 +134,7 @@
 "PDF File" = "Portables Dokumentenformat (*.pdf)";
 
 /* No comment provided by engineer. */
-"PDF/A File" = "Portables Dokumentenformat / A (*.pdf)";
+"PDF/A File" = "Portables Dokumentenformat /A (*.pdf)";
 
 /* No comment provided by engineer. */
 "Plain Text" = "Textdatei (*.txt)";

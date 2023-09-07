@@ -41,13 +41,13 @@
 "Document %ld.docx" = "Documento %ld.docx";
 
 /* No comment provided by engineer. */
+"Document %ld.docxf" = "Documento %ld.docxf";
+
+/* No comment provided by engineer. */
 "Document template" = "Modelo de documento do Open XML do Word (*.dotx)";
 
 /* No comment provided by engineer. */
 "Don't Save" = "Não salvar";
-
-/* No comment provided by engineer. */
-"Electronic Publication" = "Arquivo de publicação eletrônica (*.epub)";
 
 /* No comment provided by engineer. */
 "Excel 97-2003 Spreadsheet" = "Folha de cálculo do Excel 97-2003 (*.xls)";
@@ -71,9 +71,6 @@
 "Hide %@" = "Ocultar %@";
 
 /* No comment provided by engineer. */
-"HTML File" = "Linguagem de Marcação de HiperTexto (*.html)";
-
-/* No comment provided by engineer. */
 "If you don't review your documents, all your changeses will be lost." = "Se você não fizer a revisão dos seus documentos, todas as alterações serão perdidas.";
 
 /* No comment provided by engineer. */
@@ -81,9 +78,6 @@
 
 /* No comment provided by engineer. */
 "License Agreement" = "Contrato de licença";
-
-/* No comment provided by engineer. */
-"MHT File" = "Arquivo de página da Web (*.mht)";
 
 /* No comment provided by engineer. */
 "Mobipocket e-book" = "Arquivo Mobipocket (*.mobi)";
@@ -134,7 +128,7 @@
 "PDF File" = "Documento portátil (*.pdf)";
 
 /* No comment provided by engineer. */
-"PDF/A File" = "Documento portátil / A (*.pdf)";
+"PDF/A File" = "Documento portátil /A (*.pdf)";
 
 /* No comment provided by engineer. */
 "Plain Text" = "Arquivo de texto sem formatação (*.txt)";
@@ -167,7 +161,7 @@
 "Review Changes..." = "Rever alterações...";
 
 /* No comment provided by engineer. */
-"Rich Text Document" = "Ficheiro de Rich Text Format (*.rtf)";
+"Rich Text Document" = "Arquivo de Rich Text Format (*.rtf)";
 
 /* No comment provided by engineer. */
 "Save" = "Salvar";

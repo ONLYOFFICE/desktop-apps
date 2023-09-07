@@ -41,6 +41,9 @@
 "Document %ld.docx" = "ලේඛනය %ld.docx";
 
 /* No comment provided by engineer. */
+"Document %ld.docxf" = "ලේඛනය %ld.docxf";
+
+/* No comment provided by engineer. */
 "Document template" = "වර්ඩ් විවෘත XML ලේඛන අච්චුව (*.dotx)";
 
 /* No comment provided by engineer. */

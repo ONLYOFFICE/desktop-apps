@@ -41,6 +41,9 @@
 "Document %ld.docx" = "Dokuments %ld.docx";
 
 /* No comment provided by engineer. */
+"Document %ld.docxf" = "Dokuments %ld.docxf";
+
+/* No comment provided by engineer. */
 "Document template" = "Word Open XML Dokumenta veidne (*.dotx)";
 
 /* No comment provided by engineer. */
@@ -116,7 +119,7 @@
 "PDF File" = "Portatīvs dokuments (*.pdf)";
 
 /* No comment provided by engineer. */
-"PDF/A File" = "Portatīvs dokuments / A (*.pdf)";
+"PDF/A File" = "Portatīvs dokuments /A (*.pdf)";
 
 /* No comment provided by engineer. */
 "Plain Text" = "Parasts Teksts (*.txt)";

@@ -172,7 +172,7 @@
 
                 if ( this.view ) {
                     // this.view.$panel.find('.ver-checkupdate')[this.updates?'show':'hide']();
-                    this.view.$panel.find('.idx-update-cnt')[this.updates?'show':'hide']();
+                    this.view.$panel.find('#idx-update-cnt')[this.updates?'show':'hide']();
 
                     if ( this.updates ) {
                         const $btn = $('#idx-update-btnaction')

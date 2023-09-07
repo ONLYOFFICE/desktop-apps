@@ -511,9 +511,9 @@ void CSvcManager::startReplacingFiles(const tstring &packageType, const bool res
     }
 #endif
 
-    // Merging template, provider folders
+    // Merging providers, templates, uithemes folders
     {
-        tstring paths[] = {_T("/providers"), _T("/converter/empty")};
+        tstring paths[] = {_T("/providers"), _T("/converter/empty"), _T("/uithemes")};
         for (int i = 0; i < sizeof(paths) / sizeof(paths[0]); i++) {
             tstring err;
             std::list<tstring> old_paths, new_paths;

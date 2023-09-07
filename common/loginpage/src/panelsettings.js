@@ -127,7 +127,7 @@
     }
 
     uitheme.is_system_theme_dark = function () {
-        return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        return this.get_system_theme_type() == 'dark';
     }
 
     uitheme.get_default_theme_for_type = type => type == THEME_TYPE_DARK ? THEME_ID_DEFAULT_DARK : THEME_ID_DEFAULT_LIGHT;

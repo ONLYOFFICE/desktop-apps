@@ -41,6 +41,9 @@
 "Document %ld.docx" = "Dokument %ld.docx";
 
 /* No comment provided by engineer. */
+"Document %ld.docxf" = "Dokument %ld.docxf";
+
+/* No comment provided by engineer. */
 "Document template" = "Word Open XML predloga dokumenta (*.dotx)";
 
 /* No comment provided by engineer. */
@@ -116,10 +119,10 @@
 "PDF File" = "Prenosni document (*.pdf)";
 
 /* No comment provided by engineer. */
-"PDF/A File" = "Prenosni document / A (*.pdf)";
+"PDF/A File" = "Prenosni document /A (*.pdf)";
 
 /* No comment provided by engineer. */
-"Plain Text" = "Navadno besedilo (*.txt)";
+"Plain Text" = "Plain Text datoteka (*.txt)";
 
 /* No comment provided by engineer. */
 "PowerPoint 97-2003 Presentation" = "PowerPoint 97-2003 predstavitev (*.ppt)";

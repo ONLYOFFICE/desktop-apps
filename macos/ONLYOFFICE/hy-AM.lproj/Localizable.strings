@@ -41,6 +41,9 @@
 "Document %ld.docx" = "Փաստաթուղթ %ld.docx";
 
 /* No comment provided by engineer. */
+"Document %ld.docxf" = "Փաստաթուղթ %ld.docxf";
+
+/* No comment provided by engineer. */
 "Document template" = "Word Open XML Փաստաթղթի ձևանմուշ (*.dotx)";
 
 /* No comment provided by engineer. */

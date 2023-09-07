@@ -38,13 +38,13 @@
 "Do you want to save the changes made to the document \"%@\"?" = "Bạn có muốn lưu những thay đổi đã thực hiện đối với tài liệu \"%@\"?";
 
 /* No comment provided by engineer. */
-"Document %ld.docx" = "Văn bản %ld.docx";
+"Document %ld.docxf" = "Văn bản %ld.docxf";
 
 /* No comment provided by engineer. */
 "Document template" = "Word Open XML Mẫu văn bản (*.dotx)";
 
 /* No comment provided by engineer. */
-"Electronic Publication" = "Tập tin EPUB (*.epub)";
+"Don't Save" = "Không lưu";
 
 /* No comment provided by engineer. */
 "Excel 97-2003 Spreadsheet" = "Bảng tính Excel 97-2003 (*.xls)";
@@ -53,7 +53,7 @@
 "Excel 2007 Spreadsheet" = "Bảng tính Office Open XML (*.xlsx)";
 
 /* No comment provided by engineer. */
-"FictionBook File" = "Tập tin FB2 (*.fb2)";
+"FictionBook File" = "Tập tin FictionBook 2 (*.fb2)";
 
 /* No comment provided by engineer. */
 "File \"%@\" can not be open or not exist." = "Không thể mở tập tin \"%@\" hoặc nó không tồn tại.";
@@ -68,9 +68,6 @@
 "Hide %@" = "Ẩn %@";
 
 /* No comment provided by engineer. */
-"HTML File" = "Tập tin HTML (*.html)";
-
-/* No comment provided by engineer. */
 "If you don't review your documents, all your changeses will be lost." = "Nếu bạn không xem lại tài liệu của mình, tất cả thay đổi sẽ bị mất.";
 
 /* No comment provided by engineer. */
@@ -78,9 +75,6 @@
 
 /* No comment provided by engineer. */
 "License Agreement" = "Thỏa thuận cấp phép";
-
-/* No comment provided by engineer. */
-"MHT File" = "Tập tin MHT (*.mht)";
 
 /* No comment provided by engineer. */
 "Mobipocket e-book" = "Sách điện tử Mobipocket (*.mobi)";
@@ -131,10 +125,10 @@
 "PDF File" = "Tài liệu di động (*.pdf)";
 
 /* No comment provided by engineer. */
-"PDF/A File" = "Tài liệu di động / A (*.pdf)";
+"PDF/A File" = "Tài liệu di động /A (*.pdf)";
 
 /* No comment provided by engineer. */
-"Plain Text" = "Văn bản thuần (*.txt)";
+"Plain Text" = "Tập tin văn bản thuần (*.txt)";
 
 /* No comment provided by engineer. */
 "PowerPoint 97-2003 Presentation" = "Bản trình bày PowerPoint 97-2003 (*.ppt)";
@@ -155,6 +149,9 @@
 "Presentation template" = "PowerPoint Open XML Mẫu trình chiếu (*.potx)";
 
 /* No comment provided by engineer. */
+"Presenter View" = "Xem Trình chiếu";
+
+/* No comment provided by engineer. */
 "Quit %@" = "Thoát %@";
 
 /* No comment provided by engineer. */
@@ -168,6 +165,9 @@
 
 /* No comment provided by engineer. */
 "Save the document?" = "Lưu tập tin?";
+
+/* No comment provided by engineer. */
+"Signature Details" = "Chi tiết chữ ký";
 
 /* No comment provided by engineer. */
 "Spreadsheet %ld.xlsx" = "Bảng tính %ld.xlsx";
@@ -188,10 +188,16 @@
 "Unconfirmed" = "Chưa được xác nhận";
 
 /* No comment provided by engineer. */
+"Untitled" = "Untitled";
+
+/* No comment provided by engineer. */
 "Version %@ (%@)" = "Phiên bản %1$@ (%2$@)";
 
 /* No comment provided by engineer. */
 "Web Page" = "Trang Web";
+
+/* No comment provided by engineer. */
+"With access to pro features" = "Có quyền truy cập vào các tính năng pro";
 
 /* No comment provided by engineer. */
 "Word 97-2003 Document" = "Tài liệu Word 97-2003 (*.doc)";
