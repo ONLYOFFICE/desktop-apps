@@ -1097,6 +1097,7 @@ void CAscApplicationManagerWrapper::initializeApp()
     AscAppManager::getInstance().InitAdditionalEditorParams(wparams);
 //    AscAppManager::getInstance().applyTheme(themes().current().id(), true);
 
+    EditorJSVariables::setVariable("lang", CLangater::getCurrentLangCode());
     EditorJSVariables::applyVariable("theme", {
                                         {"type", _app.m_themes->current().stype()},
                                         {"id", QString::fromStdWString(_app.m_themes->current().id())}
@@ -1591,6 +1592,7 @@ bool CAscApplicationManagerWrapper::applySettings(const wstring& wstrjson)
 
                 _reg_user.setValue("locale", _lang_id);
                 CLangater::reloadTranslations(_lang_id);
+                EditorJSVariables::setVariable("lang", _lang_id);
             }
         }
 
