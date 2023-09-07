@@ -771,16 +771,11 @@ void CUpdateManager::showStartInstallMessage(QWidget *parent)
     }
     case WinDlg::DLG_RESULT_INSLATER: {
 #ifdef _WIN32
-        if (m_packageData->fileType == "archive") {
-            m_startUpdateOnClose = true;
-            m_restartAfterUpdate = false;
-        } else {
+        m_startUpdateOnClose = (m_packageData->fileType == "archive");
+#else
+        m_startUpdateOnClose = false;
 #endif
-            m_startUpdateOnClose = false;
-            m_restartAfterUpdate = false;
-#ifdef _WIN32
-        }
-#endif
+        m_restartAfterUpdate = false;
         break;
     }
 //    case WinDlg::DLG_RESULT_SKIP: {
