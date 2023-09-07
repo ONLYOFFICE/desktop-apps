@@ -37,3 +37,9 @@ define('VIDEOPLAYER[GenericName[en]]', 'Video Player')dnl
 define('VIDEOPLAYER[GenericName[ru]]', 'Видео проигрыватель')dnl
 define('VIDEOPLAYER[Comment[en]]', 'Play video file')dnl
 define('VIDEOPLAYER[Comment[ru]]', 'Проиграть видео файл')dnl
+dnl
+define('NEWFORM[Name[en]]', 'New form template')dnl
+define('NEWFORM[Name[de]]', 'Neue Formularvorlage')dnl
+define('NEWFORM[Name[fr]]', 'Nouveau modèle de formulaire')dnl
+define('NEWFORM[Name[es]]', 'Nueva plantilla de formulario')dnl
+define('NEWFORM[Name[ru]]', 'Создать шаблон формы')dnl
