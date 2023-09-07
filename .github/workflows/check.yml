@@ -1,18 +1,24 @@
-name: check
+name: Spellcheck
+
 on:
   workflow_dispatch:
   push:
+    branches:
+      - '*'
     paths:
       - 'win-linux/package/windows/update/changes/**'
       - 'macos/ONLYOFFICE/update/updates/ONLYOFFICE/changes/**'
       - '.aspell.*.pws'
+
 jobs:
   spellchecker:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
+
       - name: Setup aspell
         run: sudo apt-get -y update && sudo apt-get -y install aspell aspell-en aspell-ru
+
       - name: Run spellchecker for English Windows changelogs
         if: always()
         run: |
@@ -28,6 +34,7 @@ jobs:
             fi
           done
           exit ${RC:-0}
+
       - name: Run spellchecker for Russian Windows changelogs
         if: always()
         run: |
@@ -43,6 +50,7 @@ jobs:
             fi
           done
           exit ${RC:-0}
+
       - name: Run spellchecker for English macOS changelogs
         if: always()
         run: |
@@ -58,6 +66,7 @@ jobs:
             fi
           done
           exit ${RC:-0}
+
       - name: Run spellchecker for Russian macOS changelogs
         if: always()
         run: |
