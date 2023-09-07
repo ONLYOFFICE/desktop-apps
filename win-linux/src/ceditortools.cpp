@@ -281,7 +281,7 @@ namespace CEditorTools
             panel->createLocalFile(editorTypeFromFormat(opts.format), opts.name.toStdWString());
         } else
         if (opts.srctype == etTemplateFile) {
-            panel->createLocalFile(L"", opts.name.toStdWString());
+            panel->createLocalFile(opts.wurl, opts.name.toStdWString());
         } else {
             panel->cef()->load(opts.wurl);
         }
