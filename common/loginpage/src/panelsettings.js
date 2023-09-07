@@ -537,11 +537,11 @@
 
                         if ( !!opts.updates ) {
                             if ( opts.updates.mode !== undefined ) {
-                                if ( !['ask', 'disabled'].includes(opts.updates.mode) )
-                                    opts.updates.mode = 'ask';                          // for 7.3. to workaround 'silent' mode
+                                // if ( !['ask', 'disabled'].includes(opts.updates.mode) )
+                                    // opts.updates.mode = 'ask';                          // for 7.3. to workaround 'silent' mode
 
-                                // ($optsAutoupdateMode = ($('#opts-autoupdate-mode', $panel).show().find('select')))
-                                ($optsAutoupdateMode = ($('#opts-autoupdate', $panel).show().find('select')))
+                                ($optsAutoupdateMode = ($('#opts-autoupdate-mode', $panel).show().find('select')))
+                                // ($optsAutoupdateMode = ($('#opts-autoupdate', $panel).show().find('select')))
                                     .val(opts.updates.mode)
                                     .selectpicker().on('change', e => {
                                         $btnApply.isdisabled() && $btnApply.disable(false);
@@ -633,9 +633,9 @@
         }
 
         function _on_lang_changed(ol,nl) {
-            // $('option[value=silent]', this.view.$panel).attr('data-subtext', utils.Lang.settOptDescAUpdateSilent);
-            // $('option[value=ask]', this.view.$panel).attr('data-subtext', utils.Lang.settOptDescAUpdateAsk);
-            // $('option[value=disabled]', this.view.$panel).attr('data-subtext', utils.Lang.settOptDescDisabled);
+            $('option[value=silent]', this.view.$panel).attr('data-subtext', utils.Lang.settOptDescAUpdateSilent);
+            $('option[value=ask]', this.view.$panel).attr('data-subtext', utils.Lang.settOptDescAUpdateAsk);
+            $('option[value=disabled]', this.view.$panel).attr('data-subtext', utils.Lang.settOptDescDisabled);
 
             // for ( let k of Object.keys(themes_map) ) {
             //     const t = themes_map[k]
