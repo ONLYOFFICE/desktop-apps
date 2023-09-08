@@ -1,8 +1,9 @@
 #!/bin/sh
 
+ifelse(M4_COMPANY_NAME, ONLYOFFICE,
 set_names() {
   case $LANG in
-    cs*)
+    cs*`)'
       SOURCE_DOC_DIR="$SOURCE_DOC_DIR/cs-CZ"
       SOURCE_DOC_NAME="new"
       NEW_DOCX_NAME="Nový dokument"
@@ -10,7 +11,7 @@ set_names() {
       NEW_PPTX_NAME="Nová prezentace"
       NEW_DOCXF_NAME="Nová šablona formuláře"
       ;;
-    de*)
+    de*`)'
       SOURCE_DOC_DIR="$SOURCE_DOC_DIR/de-DE"
       SOURCE_DOC_NAME="new"
       NEW_DOCX_NAME="Neues Dokument"
@@ -18,7 +19,7 @@ set_names() {
       NEW_PPTX_NAME="Neue Präsentation"
       NEW_DOCXF_NAME="Neue Formularvorlage"
       ;;
-    es*)
+    es*`)'
       SOURCE_DOC_DIR="$SOURCE_DOC_DIR/es-ES"
       SOURCE_DOC_NAME="new"
       NEW_DOCX_NAME="Documento nuevo"
@@ -26,7 +27,7 @@ set_names() {
       NEW_PPTX_NAME="Presentación nueva"
       NEW_DOCXF_NAME="Nueva plantilla de formulario"
       ;;
-    fr*)
+    fr*`)'
       SOURCE_DOC_DIR="$SOURCE_DOC_DIR/fr-FR"
       SOURCE_DOC_NAME="new"
       NEW_DOCX_NAME="Nouveau document"
@@ -34,7 +35,7 @@ set_names() {
       NEW_PPTX_NAME="Nouvelle présentation"
       NEW_DOCXF_NAME="Nouveau modèle de formulaire"
       ;;
-    it*)
+    it*`)'
       SOURCE_DOC_DIR="$SOURCE_DOC_DIR/it-IT"
       SOURCE_DOC_NAME="new"
       NEW_DOCX_NAME="Nuovo documento"
@@ -42,7 +43,7 @@ set_names() {
       NEW_PPTX_NAME="Nuova presentazione"
       NEW_DOCXF_NAME="Nuovo modello di modulo"
       ;;
-    pt*)
+    pt*`)'
       SOURCE_DOC_DIR="$SOURCE_DOC_DIR/pt-BR"
       SOURCE_DOC_NAME="new"
       NEW_DOCX_NAME="Novo Documento"
@@ -50,7 +51,7 @@ set_names() {
       NEW_PPTX_NAME="Nova apresentação"
       NEW_DOCXF_NAME="Novo Formulário Mestre"
       ;;
-    ru*)
+    ru*`)'
       SOURCE_DOC_DIR="$SOURCE_DOC_DIR/ru-RU"
       SOURCE_DOC_NAME="new"
       NEW_DOCX_NAME="Новый документ"
@@ -58,7 +59,7 @@ set_names() {
       NEW_PPTX_NAME="Новая презентация"
       NEW_DOCXF_NAME="Новый шаблон формы"
       ;;
-    *)
+    *`)'
       SOURCE_DOC_DIR="$SOURCE_DOC_DIR/en-US"
       SOURCE_DOC_NAME="new"
       NEW_DOCX_NAME="New Document"
@@ -67,15 +68,13 @@ set_names() {
       NEW_DOCXF_NAME="New form template"
       ;;
   esac
-}
-
+},
 set_names_ru() {
   SOURCE_DOC_NAME="new"
   NEW_DOCX_NAME="Новый документ"
   NEW_XLSX_NAME="Новая эл.таблица"
   NEW_PPTX_NAME="Новая презентация"
-  NEW_DOCXF_NAME="Новый шаблон формы"
-}
+})
 
 check_templates() {
   if [ "$1" != "--new-document-templates" ]; then
@@ -116,10 +115,11 @@ check_templates() {
     cp $SOURCE_DOC_DIR/$SOURCE_DOC_NAME.pptx "$TEMPLATE_PPTX"
   fi
 
+  ifelse(M4_COMPANY_NAME, ONLYOFFICE,
   if [ $(ls -A $TEMPLATE_DIR/*.docxf 2>/dev/null | wc -l) -eq 0 ]
   then
     cp $SOURCE_DOC_DIR/$SOURCE_DOC_NAME.docxf "$TEMPLATE_DOCXF"
-  fi
+  fi)
 }
 
 check_templates "$@"
