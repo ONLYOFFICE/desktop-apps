@@ -414,7 +414,21 @@ namespace NS_File
             return fallbackTempPath();
         }
 
-        DWORD sesId = WTSGetActiveConsoleSessionId();
+        DWORD sesId = MAXDWORD;
+        {
+            DWORD count = 0;
+            WTS_SESSION_INFO *sesInfo = NULL;
+            if (WTSEnumerateSessions(WTS_CURRENT_SERVER_HANDLE, 0, 1, &sesInfo, &count)) {
+                for (DWORD i = 0; i < count; i++) {
+                    if (sesInfo[i].State == WTSActive || sesInfo[i].State == WTSConnected) {
+                        sesId = sesInfo[i].SessionId;
+                        break;
+                    }
+                }
+                WTSFreeMemory(sesInfo);
+            }
+        }
+
         if (sesId == MAXDWORD) {
             NS_Logger::WriteLog(ADVANCED_ERROR_MESSAGE);
             return fallbackTempPath();
