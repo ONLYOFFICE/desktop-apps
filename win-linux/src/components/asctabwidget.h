@@ -182,8 +182,6 @@ public:
 
     void setTabIcons(CTabIconSet&);
     void reloadTabIcons();
-    void updateIcons();
-    void updateTabIcon(int);
     void setTabActiveColor(int index, const std::wstring& color);
     void setTabThemeType(int index, const QString& type);
     void setFocusedView(int index = -1);
