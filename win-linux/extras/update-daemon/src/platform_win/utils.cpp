@@ -55,6 +55,18 @@
 
 namespace NS_Utils
 {
+    bool run_as_app = false;
+
+    void setRunAsApp()
+    {
+        run_as_app = true;
+    }
+
+    bool isRunAsApp()
+    {
+        return run_as_app;
+    }
+
     wstring GetLastErrorAsString()
     {
         DWORD errorMessageID = ::GetLastError();
@@ -78,6 +90,10 @@ namespace NS_Utils
         if (showError)
             str += L" " + GetLastErrorAsString();
         wchar_t *title = const_cast<LPTSTR>(TEXT(VER_PRODUCTNAME_STR));
+        if (isRunAsApp()) {
+            MessageBox(NULL, str.c_str(), title, MB_ICONERROR | MB_SERVICE_NOTIFICATION_NT3X | MB_SETFOREGROUND);
+            return 0;
+        }
         DWORD title_size = (DWORD)wcslen(title) * sizeof(wchar_t);
         DWORD res;
         DWORD session_id = WTSGetActiveConsoleSessionId();
@@ -379,6 +395,14 @@ namespace NS_File
 
     wstring tempPath()
     {
+        if (NS_Utils::isRunAsApp()) {
+            WCHAR buff[MAX_PATH] = {0};
+            DWORD res = ::GetTempPath(MAX_PATH, buff);
+            if (res != 0)
+                return fromNativeSeparators(parentPath(buff));
+            return L"";
+        }
+
         DWORD sesId = WTSGetActiveConsoleSessionId();
         if (sesId == 0xFFFFFFFF)
             return L"";
