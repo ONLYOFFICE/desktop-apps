@@ -53,6 +53,22 @@
 #define BUFSIZE 1024
 
 
+static DWORD GetActiveSessionId()
+{
+    DWORD sesId = MAXDWORD, count = 0;
+    WTS_SESSION_INFO *sesInfo = NULL;
+    if (WTSEnumerateSessions(WTS_CURRENT_SERVER_HANDLE, 0, 1, &sesInfo, &count)) {
+        for (DWORD i = 0; i < count; i++) {
+            if (sesInfo[i].State == WTSActive) {
+                sesId = sesInfo[i].SessionId;
+                break;
+            }
+        }
+        WTSFreeMemory(sesInfo);
+    }
+    return sesId;
+}
+
 namespace NS_Utils
 {
     bool run_as_app = false;
@@ -96,7 +112,7 @@ namespace NS_Utils
         }
         DWORD title_size = (DWORD)wcslen(title) * sizeof(wchar_t);
         DWORD res;
-        DWORD session_id = WTSGetActiveConsoleSessionId();
+        DWORD session_id = GetActiveSessionId();
         WTSSendMessageW(WTS_CURRENT_SERVER_HANDLE, session_id, title, title_size,
                             const_cast<LPTSTR>(str.c_str()), (DWORD)str.size() * sizeof(wchar_t),
                             MB_OK | MB_ICONERROR | MB_SERVICE_NOTIFICATION_NT3X | MB_SETFOREGROUND, 8, &res, TRUE);
@@ -199,7 +215,7 @@ namespace NS_File
             return false;
         }
 
-        DWORD dwSessionId = WTSGetActiveConsoleSessionId();
+        DWORD dwSessionId = GetActiveSessionId();
         if (dwSessionId == 0xFFFFFFFF) {
             return false;
         }
@@ -418,7 +434,7 @@ namespace NS_File
             return fallbackTempPath();
         }
 
-        DWORD sesId = WTSGetActiveConsoleSessionId();
+        DWORD sesId = GetActiveSessionId();
         if (sesId == 0xFFFFFFFF) {
             NS_Logger::WriteLog(ADVANCED_ERROR_MESSAGE);
             return fallbackTempPath();
