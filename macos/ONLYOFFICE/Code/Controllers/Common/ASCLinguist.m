@@ -78,7 +78,7 @@
         @"pt-BR": @"Português Brasileiro",
         @"pt-PT": @"Português (Portugal)",
         @"zh-CN": @"简体中文",
-        @"zh-HK": @"繁體中文",
+        @"zh-TW": @"繁體中文",
         @"sk-SK": @"Slovenčina",
         @"cs-CZ": @"Čeština",
         @"pl-PL": @"Polski",
