@@ -151,6 +151,9 @@ QPushButton* CWindowBase::createToolButton(QWidget * parent, const QString& name
     btn->setFixedSize(int(TOOLBTN_WIDTH*m_dpiRatio), int(TOOLBTN_HEIGHT*m_dpiRatio));
 #ifdef __linux__
     btn->setMouseTracking(true);
+    btn->setProperty("unix", true);
+#else
+    btn->setProperty("unix", false);
 #endif
     return btn;
 }
