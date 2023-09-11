@@ -414,8 +414,13 @@ bool CWindowPlatform::nativeEvent(const QByteArray &eventType, void *message, lo
 
     case WM_NCACTIVATE: {
         // Prevent the title bar from being drawn when the window is restored or maximized
-        if (m_borderless)
+        if (m_borderless) {
+            if (!msg->wParam) {
+                *result = TRUE;
+                break;
+            }
             return true;
+        }
         break;
     }
 
