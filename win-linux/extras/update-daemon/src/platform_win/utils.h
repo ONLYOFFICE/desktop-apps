@@ -48,6 +48,8 @@ using std::list;
 
 namespace NS_Utils
 {
+void setRunAsApp();
+bool isRunAsApp();
 wstring GetLastErrorAsString();
 int ShowMessage(wstring str, bool showError = false);
 }

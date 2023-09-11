@@ -311,6 +311,12 @@ void CSvcManager::onCompleteSlot(const int error, const tstring &filePath)
     } else
     if (error == -2) {
         m_socket->sendMessage(MSG_OtherError, _T("Update download failed: server connection error!"));
+    } else
+    if (error == -3) {
+        m_socket->sendMessage(MSG_OtherError, _T("Update download failed: wrong URL!"));
+    } else
+    if (error == -4) {
+        m_socket->sendMessage(MSG_OtherError, _T("Update download failed: unable to create file!"));
     } else {
         m_socket->sendMessage(MSG_OtherError, _T("Update download failed: network error!"));
     }

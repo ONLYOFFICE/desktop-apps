@@ -53,8 +53,36 @@
 #define BUFSIZE 1024
 
 
+static DWORD GetActiveSessionId()
+{
+    DWORD sesId = MAXDWORD, count = 0;
+    WTS_SESSION_INFO *sesInfo = NULL;
+    if (WTSEnumerateSessions(WTS_CURRENT_SERVER_HANDLE, 0, 1, &sesInfo, &count)) {
+        for (DWORD i = 0; i < count; i++) {
+            if (sesInfo[i].State == WTSActive) {
+                sesId = sesInfo[i].SessionId;
+                break;
+            }
+        }
+        WTSFreeMemory(sesInfo);
+    }
+    return sesId;
+}
+
 namespace NS_Utils
 {
+    bool run_as_app = false;
+
+    void setRunAsApp()
+    {
+        run_as_app = true;
+    }
+
+    bool isRunAsApp()
+    {
+        return run_as_app;
+    }
+
     wstring GetLastErrorAsString()
     {
         DWORD errorMessageID = ::GetLastError();
@@ -78,9 +106,13 @@ namespace NS_Utils
         if (showError)
             str += L" " + GetLastErrorAsString();
         wchar_t *title = const_cast<LPTSTR>(TEXT(VER_PRODUCTNAME_STR));
+        if (isRunAsApp()) {
+            MessageBox(NULL, str.c_str(), title, MB_ICONERROR | MB_SERVICE_NOTIFICATION_NT3X | MB_SETFOREGROUND);
+            return 0;
+        }
         DWORD title_size = (DWORD)wcslen(title) * sizeof(wchar_t);
         DWORD res;
-        DWORD session_id = WTSGetActiveConsoleSessionId();
+        DWORD session_id = GetActiveSessionId();
         WTSSendMessageW(WTS_CURRENT_SERVER_HANDLE, session_id, title, title_size,
                             const_cast<LPTSTR>(str.c_str()), (DWORD)str.size() * sizeof(wchar_t),
                             MB_OK | MB_ICONERROR | MB_SERVICE_NOTIFICATION_NT3X | MB_SETFOREGROUND, 8, &res, TRUE);
@@ -166,13 +198,7 @@ namespace NS_File
 
     bool runProcess(const wstring &fileName, const wstring &args)
     {
-        DWORD dwSessionId = WTSGetActiveConsoleSessionId();
-        if (dwSessionId == 0xFFFFFFFF) {
-            return false;
-        }
-
-        HANDLE hUserToken = NULL;
-        if (!WTSQueryUserToken(dwSessionId, &hUserToken)) {
+        if (NS_Utils::isRunAsApp()) {
             STARTUPINFO si;
             ZeroMemory(&si, sizeof(STARTUPINFO));
             si.cb = sizeof(STARTUPINFO);
@@ -186,6 +212,16 @@ namespace NS_File
                 CloseHandle(pi.hProcess);
                 return true;
             }
+            return false;
+        }
+
+        DWORD dwSessionId = GetActiveSessionId();
+        if (dwSessionId == 0xFFFFFFFF) {
+            return false;
+        }
+
+        HANDLE hUserToken = NULL;
+        if (!WTSQueryUserToken(dwSessionId, &hUserToken)) {
             return false;
         }
 
@@ -377,25 +413,44 @@ namespace NS_File
         return (delim == wstring::npos) ? L"" : path.substr(0, delim);
     }
 
+    wstring fallbackTempPath()
+    {
+        wstring path(L"C:/ProgramData"), dest_path = path + TEXT("/" VER_PRODUCTNAME_STR) + L" Temp";
+        if (!dirExists(dest_path) && CreateDirectory(dest_path.c_str(), NULL) == 0) {
+            NS_Logger::WriteLog(ADVANCED_ERROR_MESSAGE);
+            return path;
+        }
+        return dest_path;
+    }
+
     wstring tempPath()
     {
-        DWORD sesId = WTSGetActiveConsoleSessionId();
-        if (sesId == 0xFFFFFFFF)
-            return L"";
-
-        HANDLE hUserToken = NULL;
-        if (!WTSQueryUserToken(sesId, &hUserToken)) {
+        if (NS_Utils::isRunAsApp()) {
             WCHAR buff[MAX_PATH] = {0};
             DWORD res = ::GetTempPath(MAX_PATH, buff);
             if (res != 0)
                 return fromNativeSeparators(parentPath(buff));
-            return L"";
+            NS_Logger::WriteLog(ADVANCED_ERROR_MESSAGE);
+            return fallbackTempPath();
+        }
+
+        DWORD sesId = GetActiveSessionId();
+        if (sesId == 0xFFFFFFFF) {
+            NS_Logger::WriteLog(ADVANCED_ERROR_MESSAGE);
+            return fallbackTempPath();
+        }
+
+        HANDLE hUserToken = NULL;
+        if (!WTSQueryUserToken(sesId, &hUserToken)) {
+            NS_Logger::WriteLog(ADVANCED_ERROR_MESSAGE);
+            return fallbackTempPath();
         }
 
         HANDLE hTokenDup = NULL;
         if (!DuplicateTokenEx(hUserToken, MAXIMUM_ALLOWED, NULL, SecurityImpersonation, TokenPrimary, &hTokenDup)) {
             CloseHandle(hUserToken);
-            return L"";
+            NS_Logger::WriteLog(ADVANCED_ERROR_MESSAGE);
+            return fallbackTempPath();
         }
 
         WCHAR buff[MAX_PATH] = {0};
@@ -406,7 +461,8 @@ namespace NS_File
         }
         CloseHandle(hTokenDup);
         CloseHandle(hUserToken);
-        return L"";
+        NS_Logger::WriteLog(ADVANCED_ERROR_MESSAGE);
+        return fallbackTempPath();
     }
 
     wstring appPath()
