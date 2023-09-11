@@ -21,7 +21,7 @@ if ( nativevars ) {
 }
 
 const params = getUrlParams();
-window.i18n.lang = lang || (params["lang"] || 'en').split(/[\-\_]/)[0];
+window.i18n.set_lang(lang || (params["lang"] || 'en').split(/[\-\_]/)[0]);
 !theme && (theme = params['uitheme'] || 'light');
 page = params['page'];
 

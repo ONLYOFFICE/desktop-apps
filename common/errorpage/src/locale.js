@@ -1,4 +1,4 @@
-﻿const locale = {
+﻿const langs = {
     en: {
         msgNoConn: 'Internet connection failed...',
         msgNoConnDesc: 'Check connection',
@@ -7,10 +7,22 @@
     }
 }
 
-locale.ru = {
+langs.ru = {
     msgNoConn: 'Страница не доступна...',
     msgNoConnDesc: 'Проверьте соединение',
 }
 
-locale.tr = n => locale[locale.lang][n] || locale.en[n];
-window.i18n = locale;
+
+const locale = function() {
+    let lang;
+    return {
+        tr: function(n) {
+            return (langs[lang] && langs[lang][n]) || langs.en[n];
+        },
+        set_lang: function(l) {
+            lang = l;
+        },
+    }
+}
+
+window.i18n = new locale;
