@@ -31,7 +31,7 @@ pl.UninstallOptionClearData=Usuń wszystkie ustawienia użytkownika oraz dane pa
 lo.UninstallOptionClearData=ລືບຂໍ້ມູນທີ່ເຫັບໄວ້ໃນແອັບພລິເຄຊັ່ນ ແລະ ລືບການຕັ້ງຄ່າຜູ້ໃຊ້ທັ້ງໝົດ
 nl.UninstallOptionClearData=Alle gebruikersinstellingen en cachegegevens van toepassingen wissen
 hy_AM.UninstallOptionClearData=Մաքրել օգտատիրոջ բոլոր կարգավորումները և հավելվածի քեշավորված տվյալները
-si.UninstallOptionClearData=සියළුම පරිශ්‍රීලක සැකසුම් හා නිහිතගත යෙදුමේ දත්ත මකන්න
+si.UninstallOptionClearData=සියළුම පරිශ්‍රීලක සැකසුම් හා යෙදුමේ නිහිතගත දත්ත මකන්න
 zh_TW.UninstallOptionClearData=清除所有使用者戶設定和應用程序暫存資料
 da.UninstallOptionClearData=Slet alle brugerdata og applikationens cachede data
 
