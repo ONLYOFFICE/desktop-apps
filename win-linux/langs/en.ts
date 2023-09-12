@@ -714,7 +714,7 @@
     <message>
         <location filename="../src/main.cpp" line="64"/>
         <source>App can&apos;t working correctly under admin rights.</source>
-        <translation></translation>
+        <translation>App can&apos;t work correctly under admin rights.</translation>
     </message>
 </context>
 </TS>
