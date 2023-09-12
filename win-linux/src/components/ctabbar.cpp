@@ -955,8 +955,9 @@ void CTabBar::refreshTheme()
             d->tabList[i]->refreshIcon(AscAppManager::themes().current().isDark() ? "dark" : "light");
         else d->tabList[i]->refreshIcon(d->tabList[i]->tab_theme_type);
 
-        d->tabList[i]->polish();
     }
+
+    polish();
 }
 
 int CTabBar::tabIndexAt(const QPoint &pos) const
