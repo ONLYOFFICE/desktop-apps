@@ -240,6 +240,13 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
                     QJsonObject json{{"skiptoparea", TOOLBTN_HEIGHT},{"singlewindow",true}};
                     sendCommandTo(ptr, L"window:features", Utils::stringifyJson(json).toStdWString());
                 }
+
+                if ( InputArgs::contains(L"--system-title-bar") ) {
+                    QJsonObject json{{"style:change", QJsonObject{{"element","body"},
+                                                                    {"action", "merge"},
+                                                                    {"style","#title-doc-name{display:none}"}}}};
+                    sendCommandTo(ptr, L"window:features", Utils::stringifyJson(json).toStdWString());
+                }
             }
             return true;
         } else
