@@ -101,6 +101,7 @@ endif
 LINUX_DEPS += $(BIN_FILES)
 LINUX_DEPS += $(DESKTOP_FILES)
 LINUX_DEPS += $(SYMLINK)
+LINUX_DEPS += common/usr/share/doc/$(PACKAGE_NAME)/NEWS
 
 DEB_DEPS += deb/build/debian/changelog
 DEB_DEPS += deb/build/debian/compat
@@ -156,6 +157,9 @@ M4_PARAMS += -D M4_PACKAGE_NAME='$(PACKAGE_NAME)'
 M4_PARAMS += -D M4_PACKAGE_EDITION='$(PACKAGE_EDITION)'
 M4_PARAMS += -D M4_DESKTOPEDITORS_PREFIX='$(DESKTOPEDITORS_PREFIX)'
 M4_PARAMS += -D M4_DESKTOPEDITORS_EXEC='$(DESKTOPEDITORS_EXEC)'
+M4_PARAMS += -D M4_VERSION='$(PRODUCT_VERSION)'
+M4_PARAMS += -D M4_DATE='$(shell date -R)'
+M4_PARAMS += -D M4_DATE_SHORT='$(shell date -I)'
 ifneq ($(COMPANY_NAME), ONLYOFFICE)
 	M4_PARAMS += -D M4_MEDIAVIEWER_PREFIX='$(MEDIAVIEWER_PREFIX)'
 	M4_PARAMS += -D M4_IMAGEVIEWER_EXEC='$(IMAGEVIEWER_EXEC)'
@@ -191,6 +195,15 @@ else
 	RPM_PARAMS += --define '_scheme_handler oo-office'
 endif
 RPM_PARAMS += --define '_binary_payload w7.xzdio'
+
+CHANGES_DEB = ../../../common/changes/$(PRODUCT_VERSION)/changes_deb
+CHANGES_RPM = ../../../common/changes/$(PRODUCT_VERSION)/changes_rpm
+
+ifeq ($(COMPANY_NAME), ONLYOFFICE)
+	CHANGES_HTML = ../../../common/changes/$(PRODUCT_VERSION)/changes.html
+else
+	CHANGES_HTML = ../../../common/changes/$(PRODUCT_VERSION)/changes_ru.html
+endif
 
 .PHONY: all clean branding packages rpm deb deb-astra apt-rpm suse-rpm tar desktopeditor qt-redist libstdc++-addon libc-addon
 
@@ -249,6 +262,8 @@ clean:
 		apt-rpm/$(PACKAGE_NAME).spec \
 		urpmi/$(PACKAGE_NAME).spec \
 		suse-rpm/$(PACKAGE_NAME).spec \
+		common/usr/share/doc/$(PACKAGE_NAME) \
+		../../../common/changes/$(PRODUCT_VERSION)/changes_??? \
 		$(INSTALLER)
 
 branding: $(BRANDING_DIR)
@@ -309,6 +324,25 @@ deb/build/debian/% : deb/template/%
 
 deb/build/debian/% : deb/template/%.m4
 	mkdir -pv $(@D) && m4 $(M4_DEB_PARAMS) $< > $@
+
+deb/build/debian/changelog : deb/template/changelog.m4
+	mkdir -pv $(@D) && m4 $(M4_DEB_PARAMS) $< > $@
+
+	cp $(CHANGES_HTML) $(CHANGES_DEB)
+	sed -i '/DOCTYPE/,/div class/d' $(CHANGES_DEB)
+	sed -i '/div class/,/html/d' $(CHANGES_DEB)
+	sed -i 's/<\/li>//g' $(CHANGES_DEB)
+	sed -i 's/<\/h4>//g' $(CHANGES_DEB)
+	sed -i 's/<\/h2>/:/g' $(CHANGES_DEB)
+	sed -i 's/ \{,\}<li>/    - /g' $(CHANGES_DEB)
+	sed -i 's/ \{,\}<h4>/  * /g' $(CHANGES_DEB)
+	sed -i 's/ \{,\}<h2>/  * /g' $(CHANGES_DEB)
+	sed -i '/<ul>/d' $(CHANGES_DEB)
+	sed -i '/<\/ul>/d' $(CHANGES_DEB)
+	sed -i '/<h1>/d' $(CHANGES_DEB)
+	sed -i '/^$$/d' $(CHANGES_DEB)
+
+	sed -i '2r $(CHANGES_DEB)' deb/build/debian/changelog
 
 deb/build/debian/$(PACKAGE_NAME).% : deb/template/package.%.m4
 	mkdir -pv $(@D) && m4 $(M4_DEB_PARAMS) $< > $@
@@ -379,11 +413,32 @@ common/usr/share/applications/variables.m4 : branding
 common/usr/share/applications/$(DESKTOPEDITORS_EXEC).desktop : common/usr/share/applications/desktopeditors.desktop.m4 common/usr/share/applications/variables.m4
 common/usr/share/applications/$(IMAGEVIEWER_EXEC).desktop : common/usr/share/applications/imageviewer.desktop.m4 common/usr/share/applications/variables.m4
 common/usr/share/applications/$(VIDEOPLAYER_EXEC).desktop : common/usr/share/applications/videoplayer.desktop.m4 common/usr/share/applications/variables.m4
+common/usr/share/doc/$(PACKAGE_NAME)/NEWS : common/usr/share/doc/NEWS.m4
 common/usr/bin/desktopeditors : common/usr/bin/$(DESKTOPEDITORS_EXEC)
 common/usr/bin/$(COMPANY_NAME_LOW) : common/usr/bin/$(DESKTOPEDITORS_EXEC)
 
 $(BIN_FILES) $(DESKTOP_FILES) :
 	m4 -I'common/usr/share/applications' $(M4_PARAMS) $< > $@
+
+common/usr/share/doc/$(PACKAGE_NAME)/NEWS :
+	mkdir -p common/usr/share/doc/$(PACKAGE_NAME)
+	m4 -I'common/usr/doc' $(M4_PARAMS) $< > $@
+
+	cp $(CHANGES_HTML) $(CHANGES_RPM)
+	sed -i '/DOCTYPE/,/div class/d' $(CHANGES_RPM)
+	sed -i '/div class/,/html/d' $(CHANGES_RPM)
+	sed -i 's/<\/li>//g' $(CHANGES_RPM)
+	sed -i 's/<\/h4>//g' $(CHANGES_RPM)
+	sed -i 's/<\/h2>/:/g' $(CHANGES_RPM)
+	sed -i 's/ \{,\}<li>/  - /g' $(CHANGES_RPM)
+	sed -i 's/ \{,\}<h4>/* /g' $(CHANGES_RPM)
+	sed -i 's/ \{,\}<h2>//g' $(CHANGES_RPM)
+	sed -i '/<ul>/d' $(CHANGES_RPM)
+	sed -i '/<\/ul>/d' $(CHANGES_RPM)
+	sed -i '/<h1>/d' $(CHANGES_RPM)
+	sed -i '/^$$/d' $(CHANGES_RPM)
+
+	sed -i '2r $(CHANGES_RPM)' common/usr/share/doc/$(PACKAGE_NAME)/NEWS
 
 $(SYMLINK) :
 	ln -srf $< $@
