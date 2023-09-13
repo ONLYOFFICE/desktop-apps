@@ -412,7 +412,7 @@ int CAscTabWidget::addOAuthPortal(const QString& portal, const QString& type, co
     m_pBar->insertTab(tab_index, _portal);
     m_pBar->setTabToolTip(tab_index, portal);
     m_pBar->setTabThemeType(tab_index, CTabBar::LightTab);
-    m_pBar->setTabThemeIcons(tab_index, std::make_pair(":/tabbar/icons/portal_light.svg", ":/tabbar/icons/portal.svg"));
+    m_pBar->setTabThemeIcons(tab_index, std::make_pair(":/tabbar/icons/portal.svg", ":/tabbar/icons/portal_light.svg"));
     m_pBar->setActiveTabColor(tab_index, QString::fromStdWString(AscAppManager::themes().current().value(CTheme::ColorRole::ecrTabSimpleActiveBackground)));
 //    m_pBar->tabStartLoading(tab_index);
 
