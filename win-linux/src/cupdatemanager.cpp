@@ -257,8 +257,10 @@ CUpdateManager::CUpdateManager(QObject *parent):
         if (IsPackage(Portable))
             runProcess(QStrToTStr(qApp->applicationDirPath()) + DAEMON_NAME, _T("--run-as-app"));
         init();
-    } else
+    } else {
         CLogger::log("Updates is off, URL is empty.");
+        refreshStartPage({"error", tr("Unable to check update: URL not defined."), tr("Check for updates"), "", "true"});
+    }
 }
 
 CUpdateManager::~CUpdateManager()
