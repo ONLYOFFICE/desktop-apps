@@ -1,6 +1,5 @@
 
 QT  += core gui widgets gui-private widgets-private core-private printsupport
-QT  += multimedia multimediawidgets
 QT  += svg
 
 TEMPLATE = app
@@ -47,7 +46,7 @@ TRANSLATIONS = ./langs/en.ts \
                 ./langs/uk.ts \
                 ./langs/vi.ts \
                 ./langs/be.ts \
-                ./langs/zh_HK.ts \
+                ./langs/zh_TW.ts \
                 ./langs/si.ts
 
 
@@ -190,7 +189,8 @@ PLATFORM_BUILD=$$CORE_BUILDS_PLATFORM_PREFIX
 
 core_linux:LIBS += -Wl,-unresolved-symbols=ignore-in-shared-libs
 
-ADD_DEPENDENCY(PdfFile, DjVuFile, XpsFile, HtmlRenderer, UnicodeConverter, hunspell, ooxmlsignature, kernel, kernel_network, graphics, videoplayer, ascdocumentscore, qtascdocumentscore)
+ADD_DEPENDENCY(PdfFile, DjVuFile, XpsFile, HtmlRenderer, UnicodeConverter, hunspell, ooxmlsignature, kernel, kernel_network, graphics, ascdocumentscore, qtascdocumentscore)
+include($$CORE_ROOT_DIR/../desktop-sdk/ChromiumBasedEditors/videoplayerlib/videoplayerlib_deps.pri)
 
 core_linux {
     QT += network x11extras
@@ -260,6 +260,7 @@ core_windows {
                $$PWD/src/windows/platform_win/caption.h \
                $$PWD/src/platform_win/singleapplication.h \
                $$PWD/src/platform_win/filechooser.h \
+               $$PWD/src/platform_win/printdialog.h \
                $$PWD/src/platform_win/message.h \
                $$PWD/src/platform_win/resource.h
 
@@ -267,6 +268,7 @@ core_windows {
                $$PWD/src/windows/platform_win/csnap.cpp \
                $$PWD/src/platform_win/singleapplication.cpp \
                $$PWD/src/platform_win/filechooser.cpp \
+               $$PWD/src/platform_win/printdialog.cpp \
                $$PWD/src/platform_win/message.cpp
 
     updmodule:!build_xp {

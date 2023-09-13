@@ -118,8 +118,7 @@ static void nativeFileDialog(const Window &parent_xid,
     if (mode != Gtk::Mode::FOLDER) {
         parseString(&list, flt, ";;");
         for (guint i = 0; i < g_slist_length(list); i++) {
-            char *flt_name = (char*)g_slist_nth(list, i)->data;
-            if (flt_name != NULL) {
+            if (char *flt_name = (char*)g_slist_nth(list, i)->data) {
                 GtkFileFilter *filter = gtk_file_filter_new();
                 gtk_file_filter_set_name(filter, flt_name);
                 //g_print("%s\n", flt_name);
@@ -144,10 +143,8 @@ static void nativeFileDialog(const Window &parent_xid,
                     }
                 }
                 gtk_file_chooser_add_filter(chooser, filter);
-                if (sel_filter && *sel_filter) {
-                    if (strcmp(flt_name, *sel_filter) == 0)
-                        gtk_file_chooser_set_filter(chooser, filter);
-                }
+                if (sel_filter && *sel_filter && strcmp(flt_name, *sel_filter) == 0)
+                    gtk_file_chooser_set_filter(chooser, filter);
             }
         }
     }

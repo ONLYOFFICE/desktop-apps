@@ -44,6 +44,7 @@
 #define etNewFile       AscEditorType(251)
 #define etPortal        AscEditorType(250)
 #define etNewPortal     AscEditorType(249)
+#define etTemplateFile  AscEditorType(248)
 
 typedef CefViewWrapperType CefType;
 typedef QMap<int, QString> MapEditors;

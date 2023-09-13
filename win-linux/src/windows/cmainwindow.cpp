@@ -51,6 +51,7 @@
 
 #ifdef _WIN32
 # include "shlobj.h"
+# include <platform_win/printdialog.h>
 #else
 # include <platform_linux/gtkprintdialog.h>
 #endif
@@ -520,11 +521,11 @@ void CMainWindow::onEditorAllowedClose(int uid)
     } else {
         int _index = m_pTabs->tabIndexByView(uid);
         if ( !(_index < 0) ) {
+            m_pTabs->tabBar()->removeTab(_index);
             QWidget * _view = m_pTabs->widget(_index);
             m_pTabs->removeWidget(_view);
             _view->deleteLater();
 
-            m_pTabs->tabBar()->removeTab(_index);
             //m_pTabs->adjustTabsSize();
 
             onTabChanged(m_pTabs->currentIndex());
@@ -918,6 +919,7 @@ void CMainWindow::onDocumentReady(int uid)
     } else {
         m_pTabs->applyDocumentChanging(uid, DOCUMENT_CHANGED_LOADING_FINISH);
     }
+    AscAppManager::getInstance().onDocumentReady(uid);
 }
 
 void CMainWindow::onDocumentLoadFinished(int uid)
@@ -1103,7 +1105,7 @@ void CMainWindow::onDocumentPrint(void * opts)
 
 #ifdef _WIN32
         printer->setOutputFileName("");
-        CPrintDialog * dialog =  new CPrintDialog(printer, this);
+        PrintDialog * dialog =  new PrintDialog(printer, this);
 #else
         QFileInfo info(documentName);
         QString pdfName = Utils::lastPath(LOCAL_PATH_SAVE) + "/" + info.baseName() + ".pdf";

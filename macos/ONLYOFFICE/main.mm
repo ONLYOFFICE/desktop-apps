@@ -104,12 +104,14 @@ int main(int argc, const char * argv[]) {
         [[NSUserDefaults standardUserDefaults] setObject:uiTheme forKey:ASCUserUITheme];
     }
 
+    NSString * systemColorScheme = [NSApplication isSystemDarkMode] ? @"dark" : @"light";
     [[ASCEditorJSVariables instance] setParameter:@"uitheme" withString:uiTheme];
-    [[ASCSharedSettings sharedInstance] setSetting:([NSApplication isSystemDarkMode] ? @"dark" : @"light") forKey:kSettingsColorScheme];
+    [[ASCSharedSettings sharedInstance] setSetting:systemColorScheme forKey:kSettingsColorScheme];
     [[ASCEditorJSVariables instance] applyParameters];
 
     [[ASCEditorJSVariables instance] setVariable:@"theme" withObject:@{@"id":uiTheme,
-                                                                       @"system":[NSApplication isSystemDarkMode] ? @"dark" : @"light"}];
+                                                                       @"system":systemColorScheme,
+                                                                       @"type":systemColorScheme}];
     [[ASCEditorJSVariables instance] apply];
 
     // setup doc sign

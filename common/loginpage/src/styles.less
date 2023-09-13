@@ -1136,7 +1136,7 @@ li.menu-item {
     margin-right: 20px;
 }
 
-#id-features-available {
+#id-features-available, #idx-update-cnt {
     display: none;
 }
 
@@ -1178,5 +1178,48 @@ li.menu-item {
         height: 100%;
         align-items: center;
         justify-content: center;
+    }
+}
+
+#idx-update-cnt {
+    background-color: @background-tabbar;
+    border-radius: 5px;
+    padding: 20px 30px;
+    margin: 10px 0;
+    max-width: 800px;
+
+    .status-field {
+        height: 40px;
+
+        &:first-child {
+            margin-bottom: 20px;
+        }
+    }
+
+    #idx-update-status-icon {
+        width: 28px;
+        height: 28px;
+/*        display: block;*/
+        margin-right: 8px;
+
+        &[data-icon=success] {
+            fill: @icon-success;
+        }
+        &[data-icon=error] {
+            fill: @border-error;
+        }
+        &[data-icon=load], &[data-icon=lastcheck] {
+            fill: @highlight-text-select;
+        }
+
+        &[data-icon=load] {
+            animation: rotate 1.5s linear infinite;
+        }
+
+        @keyframes rotate {
+            to {
+                transform: rotate(360deg);
+            }
+        }
     }
 }

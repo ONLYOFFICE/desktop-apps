@@ -84,9 +84,6 @@ CAscApplicationManagerWrapper::CAscApplicationManagerWrapper(CAscApplicationMana
 
 #ifdef _UPDMODULE
     m_pUpdateManager = new CUpdateManager(this);
-    connect(m_pUpdateManager, &CUpdateManager::progresChanged, this, [=](const int &percent) {
-        AscAppManager::sendCommandTo(0, "updates:download", QString("{\"progress\":\"%1\"}").arg(QString::number(percent)));
-    });
 #endif
 }
 
@@ -243,6 +240,13 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
                     QJsonObject json{{"skiptoparea", TOOLBTN_HEIGHT},{"singlewindow",true}};
                     sendCommandTo(ptr, L"window:features", Utils::stringifyJson(json).toStdWString());
                 }
+
+                if ( InputArgs::contains(L"--system-title-bar") ) {
+                    QJsonObject json{{"style:change", QJsonObject{{"element","body"},
+                                                                    {"action", "merge"},
+                                                                    {"style","#title-doc-name{display:none}"}}}};
+                    sendCommandTo(ptr, L"window:features", Utils::stringifyJson(json).toStdWString());
+                }
             }
             return true;
         } else
@@ -293,7 +297,7 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
             return true;
         } else
 #ifdef _UPDMODULE
-        if ( !(cmd.find(L"update") == std::wstring::npos) ) {   // params: check, download, install, abort
+        if ( !(cmd.find(L"updates:action") == std::wstring::npos) ) {   // params: check, download, install, abort
             const QString params = QString::fromStdWString(pData->get_Param());
             if (params == "check") {
                 m_pUpdateManager->checkUpdates(true);
@@ -891,7 +895,9 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
                 if ( !_app.m_pMainWindow ) {
                     _app.m_pMainWindow = _app.prepareMainWindow(_start_rect);
                     _app.m_pMainWindow->show(reg_user.value("maximized", false).toBool());
-                }
+                } else
+                if (!_app.m_pMainWindow->isVisible())
+                    _app.m_pMainWindow->show(_app.m_pMainWindow->windowState().testFlag(Qt::WindowMaximized));
 
                 _app.mainWindow()->attachEditor(panel);
                 QTimer::singleShot(100, &_app, [&]{
@@ -914,6 +920,22 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
             _app.m_pMainWindow->doOpenLocalFile(opts);
         }
     }
+}
+
+void CAscApplicationManagerWrapper::onDocumentReady(int uid)
+{
+#ifdef _UPDMODULE
+    if (uid < 0) {
+        QTimer::singleShot(50, this, [=]() {
+            m_pUpdateManager->refreshStartPage();
+        });
+    }
+    static bool lock = false;
+    if (!lock) {
+        lock = true;
+        m_pUpdateManager->launchIntervalStartTimer();
+    }
+#endif
 }
 
 void CAscApplicationManagerWrapper::startApp()
@@ -1067,6 +1089,7 @@ void CAscApplicationManagerWrapper::initializeApp()
     _app.addStylesheets(CScalingFactor::SCALING_FACTOR_2, ":styles@2x/styles.qss");
     _app.addStylesheets(CScalingFactor::SCALING_FACTOR_2_25, ":styles@2.25x/styles.qss");
     _app.addStylesheets(CScalingFactor::SCALING_FACTOR_2_5, ":styles@2.5x/styles.qss");
+    _app.addStylesheets(CScalingFactor::SCALING_FACTOR_2_75, ":styles@2.75x/styles.qss");
     _app.addStylesheets(CScalingFactor::SCALING_FACTOR_3, ":styles@3x/styles.qss");
     _app.addStylesheets(CScalingFactor::SCALING_FACTOR_3_5, ":styles@3.5x/styles.qss");
     _app.addStylesheets(CScalingFactor::SCALING_FACTOR_4, ":styles@4x/styles.qss");
@@ -1491,8 +1514,11 @@ QString CAscApplicationManagerWrapper::getWindowStylesheets(double dpifactor)
     if ( dpifactor > 3.0 )
         return getWindowStylesheets(CScalingFactor::SCALING_FACTOR_3_5);
     else
-    if ( dpifactor > 2.5 )
+    if ( dpifactor > 2.75 )
         return getWindowStylesheets(CScalingFactor::SCALING_FACTOR_3);
+    else
+    if ( dpifactor > 2.5 )
+        return getWindowStylesheets(CScalingFactor::SCALING_FACTOR_2_75);
     else
     if ( dpifactor > 2.25 )
         return getWindowStylesheets(CScalingFactor::SCALING_FACTOR_2_5);
@@ -1635,15 +1661,9 @@ bool CAscApplicationManagerWrapper::applySettings(const wstring& wstrjson)
             _reg_user.setValue("editorWindowMode", m_private->m_openEditorWindow);
         }
 #ifdef _UPDMODULE
-#ifdef Q_OS_WIN
         if ( objRoot.contains("autoupdatemode") ) {
             m_pUpdateManager->setNewUpdateSetting(objRoot["autoupdatemode"].toString());
         }
-#else
-        if ( objRoot.contains("checkupdatesinterval") ) {
-            m_pUpdateManager->setNewUpdateSetting(objRoot["checkupdatesinterval"].toString());
-        }
-#endif
 #endif
     } else {
         /* parse settings error */
@@ -1926,6 +1946,16 @@ QString CAscApplicationManagerWrapper::newFileName(int format)
     case AVS_OFFICESTUDIO_FILE_PRESENTATION_PPTX:    return tr("Presentation%1.pptx").arg(++pptx_count);
     default:                                         return "Document.asc";
     }
+}
+
+QString CAscApplicationManagerWrapper::newFileName(const std::wstring& format)
+{
+    int _f = format == L"word" ? AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCX :
+                 format == L"cell" ? AVS_OFFICESTUDIO_FILE_SPREADSHEET_XLSX :
+                 format == L"form" ? AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCXF :
+                 format == L"slide" ? AVS_OFFICESTUDIO_FILE_PRESENTATION_PPTX : AVS_OFFICESTUDIO_FILE_UNKNOWN;
+
+    return newFileName(_f);
 }
 
 /*void CAscApplicationManagerWrapper::checkUpdates()

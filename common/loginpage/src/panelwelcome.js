@@ -84,7 +84,8 @@
         init: function() {
             baseController.prototype.init.apply(this, arguments);
 
-            const is_dark_theme = localStorage.getItem('ui-theme') == 'theme-dark';
+            const ui_theme = localStorage.getItem('ui-theme');
+            const is_dark_theme = ui_theme == 'theme-dark' || ui_theme == 'theme-contrast-dark';
             let img = `<svg class='img-welcome'><use href=${!is_dark_theme ? '#welcome-light' : '#welcome-dark'}></svg>`;
 
             if (window.utils.inParams.osver == 'winxp' || /windows nt 5/i.test(navigator.appVersion)) {

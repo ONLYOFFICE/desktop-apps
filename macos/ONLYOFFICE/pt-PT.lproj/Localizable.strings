@@ -41,7 +41,10 @@
 "Document %ld.docx" = "Documento %ld.docx";
 
 /* No comment provided by engineer. */
-"Document template" = "Modelo de documento Excel Open XML (*.xltx)";
+"Document %ld.docxf" = "Documento %ld.docxf";
+
+/* No comment provided by engineer. */
+"Document template" = "Modelo de documento Word Open XML (*.dotx)";
 
 /* No comment provided by engineer. */
 "Excel 97-2003 Spreadsheet" = "Folha de cálculo do Excel 97-2003 (*.xls)";
@@ -119,16 +122,16 @@
 "PDF File" = "Documento portátil (*.pdf)";
 
 /* No comment provided by engineer. */
-"PDF/A File" = "Documento portátil / A (*.pdf)";
+"PDF/A File" = "Documento portátil /A (*.pdf)";
 
 /* No comment provided by engineer. */
-"Plain Text" = "Texto Simples (*.txt)";
+"Plain Text" = "Documento de Texto Simples (*.txt)";
 
 /* No comment provided by engineer. */
-"PowerPoint 97-2003 Presentation" = "Apresentação em PowerPoint 97-2003 (*.doc)";
+"PowerPoint 97-2003 Presentation" = "Apresentação em PowerPoint 97-2003 (*.ppt)";
 
 /* No comment provided by engineer. */
-"PowerPoint 2007 Presentation" = "Apresentação em XML Open Office (*.docx)";
+"PowerPoint 2007 Presentation" = "Apresentação em XML Open Office (*.pptx)";
 
 /* No comment provided by engineer. */
 "PowerPoint Slide Show" = "Apresentação de diapositivos XML Open Office (*.ppsx)";

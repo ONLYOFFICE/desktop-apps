@@ -35,23 +35,17 @@
 
 #include <QObject>
 #include <QTimer>
+
+#ifdef __linux__
+# define __STDC_WANT_LIB_EXT1__ 1
+#endif
 #include <ctime>
 #include "csocket.h"
 
 #ifdef _WIN32
-# include <Windows.h>
-# define tstring std::wstring
-# define tchar wchar_t
-# define tstringstream std::wstringstream
-# define to_tstring to_wstring
 # define QStrToTStr(a) a.toStdWString()
 # define TStrToQStr(a) QString::fromStdWString(a)
 #else
-# define TEXT(str) str
-# define tstring std::string
-# define tchar char
-# define tstringstream std::stringstream
-# define to_tstring to_string
 # define QStrToTStr(a) a.toStdString()
 # define TStrToQStr(a) QString::fromStdString(a)
 #endif
@@ -60,6 +54,14 @@ using std::wstring;
 
 enum UpdateMode {
     DISABLE=0, SILENT=1, ASK=2
+};
+
+struct Command {
+    bool isEmpty() const {
+        return (icon.isEmpty() && text.isEmpty() && btn_text.isEmpty() &&
+                   btn_action.isEmpty() && btn_lock.isEmpty());
+    }
+    QString icon, text, btn_text, btn_action, btn_lock;
 };
 
 class CUpdateManager: public QObject
@@ -74,16 +76,14 @@ public:
     void skipVersion();
     int  getUpdateMode();
     QString getVersion() const;
-    void scheduleRestartForUpdate();
     void handleAppClose();
     void loadUpdates();
     void installUpdates();
+    void refreshStartPage(const Command &cmd = Command());
+    void launchIntervalStartTimer();
 
 public slots:
     void checkUpdates(bool manualCheck = false);
-
-signals:
-    void progresChanged(const int percent);
 
 private:
     void init();
@@ -95,23 +95,26 @@ private:
     QString ignoredVersion();
     bool isSavedPackageValid();
     bool isVersionBHigherThanA(const QString &a, const QString &b);
-    bool sendMessage(int cmd, const tstring &param1 = TEXT("null"), const tstring &param2 = TEXT("null"),
-                        const tstring &param3 = TEXT("null"));
 
     struct PackageData;
     struct SavedPackageData;
     PackageData      *m_packageData;
     SavedPackageData *m_savedPackageData;
 
-    bool        m_restartForUpdate = false,
+    bool        m_startUpdateOnClose = false,
+                m_restartAfterUpdate = false,
                 m_manualCheck = false,
                 m_lock = false;
 
-//    QTimer      *m_pTimer = nullptr;
-//    time_t      m_lastCheck;
+    time_t      m_lastCheck = 0;
+    int         m_interval = 0;
 
-    QTimer      *m_pCheckOnStartupTimer = nullptr;
+    QTimer      *m_pIntervalStartTimer = nullptr,
+                *m_pLastCheckMsgTimer = nullptr,
+                *m_pIntervalTimer = nullptr;
     wstring     m_checkUrl;
+
+    Command     m_lastCommand;
 
     class DialogSchedule;
     DialogSchedule *m_dialogSchedule = nullptr;

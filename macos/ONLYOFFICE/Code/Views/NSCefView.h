@@ -57,6 +57,7 @@
 
 - (void)loadWithUrl:(NSString *)url;
 - (void)createFileWithName:(NSString *)name type:(NSInteger)type;
+- (void)createFileWithNameFromTemplate:(NSString *)name tplpath:(NSString *)path;
 - (void)openFileWithName:(NSString *)name type:(NSInteger)type;
 - (void)openRecentFileWithId:(NSInteger)index;
 - (void)openRecoverFileWithId:(NSInteger)index;

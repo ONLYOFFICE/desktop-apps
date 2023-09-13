@@ -41,10 +41,10 @@
 "Document %ld.docx" = "Document %ld.docx";
 
 /* No comment provided by engineer. */
-"Document template" = "Plantilla de document Word Open XML (*.dotx)";
+"Document %ld.docxf" = "Document %ld.docxf";
 
 /* No comment provided by engineer. */
-"Electronic Publication" = "Publicació electronica (*.epub)";
+"Document template" = "Plantilla de document Word Open XML (*.dotx)";
 
 /* No comment provided by engineer. */
 "Excel 97-2003 Spreadsheet" = "Full de càlcul Excel 97-2003 (*.xls)";
@@ -68,16 +68,10 @@
 "Hide %@" = "Ocultar %@";
 
 /* No comment provided by engineer. */
-"HTML File" = "Fitxer HTML (*.html)";
-
-/* No comment provided by engineer. */
 "If you have already purchased %@, you should find your activation key in an email confirmation." = "Si ja has comprat %@, hauries de trobar la clau d'activació en un correu electronic de confirmació.";
 
 /* No comment provided by engineer. */
 "License Agreement" = "Acord de llicència";
-
-/* No comment provided by engineer. */
-"MHT File" = "Fitxer MHT (*.mht)";
 
 /* No comment provided by engineer. */
 "Mobipocket e-book" = "Llibre electrònic de butxaca (*.mobi)";
@@ -128,13 +122,13 @@
 "PDF File" = "Document portàtil (*.pdf)";
 
 /* No comment provided by engineer. */
-"PDF/A File" = "Document portàtil / A (*.pdf)";
+"PDF/A File" = "Document portàtil /A (*.pdf)";
 
 /* No comment provided by engineer. */
 "Plain Text" = "Text pla (*.txt)";
 
 /* No comment provided by engineer. */
-"PowerPoint 97-2003 Presentation" = "Presentació de diapositives PowerPoint 97-2003 (*.ppt)";
+"PowerPoint 97-2003 Presentation" = "Presentació PowerPoint 97-2003 (*.ppt)";
 
 /* No comment provided by engineer. */
 "PowerPoint 2007 Presentation" = "Presentació Office Open XML (*.pptx)";

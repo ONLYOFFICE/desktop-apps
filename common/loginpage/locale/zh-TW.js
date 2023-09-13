@@ -1,4 +1,4 @@
-l10n.zh_HK = {
+l10n.zh_TW = {
     welWelcome: '歡迎使用 ONLYOFFICE 桌面編輯器！',
     welDescr: '以離線方式在文件上工作，或將套件連線至您的雲端：ONLYOFFICE, ownCloud, Nextcloud',
     btnConnect: '立即連線',

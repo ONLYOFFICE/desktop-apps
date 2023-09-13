@@ -41,6 +41,9 @@
 "Document %ld.docx" = "Dokument %ld.docx";
 
 /* No comment provided by engineer. */
+"Document %ld.docxf" = "Dokument %ld.docxf";
+
+/* No comment provided by engineer. */
 "Document template" = "Szablon dokumentu Word Open XML (*.dotx)";
 
 /* No comment provided by engineer. */

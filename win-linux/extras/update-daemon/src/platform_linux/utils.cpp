@@ -160,7 +160,7 @@ namespace NS_File
         app_path = parentPath(path);
     }
 
-    bool GetFilesList(const string &path, list<string> *lst, string &error, bool ignore_locked)
+    bool GetFilesList(const string &path, list<string> *lst, string &error, bool ignore_locked, bool folders_only)
     {
         DIR *dir = opendir(path.c_str());
         if (!dir) {
@@ -185,12 +185,16 @@ namespace NS_File
             if (S_ISDIR(info.st_mode)) {
                 if (ignore_locked && access(_path, R_OK) != 0)
                     continue;
+                if (folders_only) {
+                    lst->push_back(string("/") + entry->d_name);
+                    continue;
+                }
                 if (!GetFilesList(_path, lst, error, ignore_locked)) {
                     closedir(dir);
                     return false;
                 }
             } else
-            if (S_ISREG(info.st_mode))
+            if (!folders_only && S_ISREG(info.st_mode))
                 lst->push_back(_path);
 
         }

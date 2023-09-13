@@ -26,6 +26,9 @@
 "Document %ld.docx" = "Dokument %ld.docx";
 
 /* No comment provided by engineer. */
+"Document %ld.docxf" = "Dokument %ld.docxf";
+
+/* No comment provided by engineer. */
 "Excel 97-2003 Spreadsheet" = "Excel 97-2003-kalkylblad (*.xls)";
 
 /* No comment provided by engineer. */

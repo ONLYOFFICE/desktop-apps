@@ -41,20 +41,22 @@ using std::wstring;
 using std::to_wstring;
 using std::list;
 
-#define DEFAULT_ERROR_MESSAGE L"An error occurred: " + \
-    wstring(TEXT(__FUNCTION__)) + L" Line: " + to_wstring(__LINE__)
+#define FUNCTION_INFO wstring(TEXT(__FUNCTION__)) + L" Line: " + to_wstring(__LINE__)
+#define DEFAULT_ERROR_MESSAGE L"An error occurred: " + FUNCTION_INFO
 #define ADVANCED_ERROR_MESSAGE DEFAULT_ERROR_MESSAGE + \
     L" " + NS_Utils::GetLastErrorAsString()
 
 namespace NS_Utils
 {
+void setRunAsApp();
+bool isRunAsApp();
 wstring GetLastErrorAsString();
 int ShowMessage(wstring str, bool showError = false);
 }
 
 namespace NS_File
 {
-bool GetFilesList(const wstring &path, list<wstring> *lst, wstring &error, bool ignore_locked = false);
+bool GetFilesList(const wstring &path, list<wstring> *lst, wstring &error, bool ignore_locked = false, bool folders_only = false);
 bool readFile(const wstring &filePath, list<wstring> &linesList);
 bool writeToFile(const wstring &filePath, list<wstring> &linesList);
 bool runProcess(const wstring &fileName, const wstring &args);

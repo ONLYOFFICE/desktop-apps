@@ -40,8 +40,8 @@ using std::string;
 using std::to_string;
 using std::list;
 
-#define DEFAULT_ERROR_MESSAGE "An error occurred: " + \
-    string(__FUNCTION__) + " Line: " + to_string(__LINE__)
+#define FUNCTION_INFO string(__FUNCTION__) + " Line: " + to_string(__LINE__)
+#define DEFAULT_ERROR_MESSAGE "An error occurred: " + FUNCTION_INFO
 #define ADVANCED_ERROR_MESSAGE DEFAULT_ERROR_MESSAGE + \
     " " + NS_Utils::GetLastErrorAsString()
 
@@ -54,7 +54,7 @@ int ShowMessage(string str, bool showError = false);
 namespace NS_File
 {
 void setAppPath(const string &path);
-bool GetFilesList(const string &path, list<string> *lst, string &error, bool ignore_locked = false);
+bool GetFilesList(const string &path, list<string> *lst, string &error, bool ignore_locked = false, bool folders_only = false);
 bool readFile(const string &filePath, list<string> &linesList);
 bool writeToFile(const string &filePath, list<string> &linesList);
 bool runProcess(const string &fileName, const string &args);

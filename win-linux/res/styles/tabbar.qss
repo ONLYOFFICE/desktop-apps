@@ -150,6 +150,14 @@ Tab #tabButton {width: 16px; max-width: 16px; max-height: 16px; border-width: 2p
 #mainPanel[zoom="2.5x"] Tab #tabText {font-size: 25px;}
 #mainPanel[zoom="2.5x"] Tab #tabButton {width: 40px; max-width: 40px; max-height: 40px; border-width: 2px;}
 
+/* 2.75x */
+#mainPanel[zoom="2.75x"] CTabBar #tabScroll {min-width: 88px; max-width: 88px;}
+#mainPanel[zoom="2.75x"] CTabBar #tabScroll>QToolButton {max-height: 77px;}
+#mainPanel[zoom="2.75x"] Tab {min-width: 113px; max-width: 371px; width: 371px; height: 77px; border-right-width: 3px;}
+#mainPanel[zoom="2.75x"] Tab #tabIcon {padding-left: 8px; padding-right: 8px; min-width: 44px; min-height: 44px; max-width: 44px; max-height: 44px;}
+#mainPanel[zoom="2.75x"] Tab #tabText {font-size: 28px;}
+#mainPanel[zoom="2.75x"] Tab #tabButton {width: 44px; max-width: 44px; max-height: 44px; border-width: 2px;}
+
 /* 3x */
 #mainPanel[zoom="3x"] CTabBar #tabScroll {min-width: 96px; max-width: 96px;}
 #mainPanel[zoom="3x"] CTabBar #tabScroll>QToolButton {max-height: 84px;}

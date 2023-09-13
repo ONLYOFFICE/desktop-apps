@@ -51,6 +51,7 @@ typedef NS_ENUM(int, ASCTabActionType) {
     ASCTabActionOpenPortal,
     ASCTabActionOpenUrl,
     ASCTabActionCreateLocalFile,
+    ASCTabActionCreateLocalFileFromTemplate,
     ASCTabActionOpenLocalFile,
     ASCTabActionOpenLocalRecentFile,
     ASCTabActionOpenLocalRecoverFile,

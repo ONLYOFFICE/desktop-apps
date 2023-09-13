@@ -41,10 +41,10 @@
 "Document %ld.docx" = "Documento %ld.docx";
 
 /* No comment provided by engineer. */
-"Document template" = "Modelo do documento Word Open XML (*.dotx)";
+"Document %ld.docxf" = "Documento %ld.docxf";
 
 /* No comment provided by engineer. */
-"Electronic Publication" = "Publicación electronica (*.epub)";
+"Document template" = "Modelo do documento Word Open XML (*.dotx)";
 
 /* No comment provided by engineer. */
 "Excel 97-2003 Spreadsheet" = "Folla de cálculo Excel 97-2003 (*.xls)";
@@ -68,9 +68,6 @@
 "Hide %@" = "Agochar %@";
 
 /* No comment provided by engineer. */
-"HTML File" = "Ficheiro HTML (*.html)";
-
-/* No comment provided by engineer. */
 "If you don't review your documents, all your changeses will be lost." = "Se non revisa os seus documentos, perderanse todos os seus cambios.";
 
 /* No comment provided by engineer. */
@@ -78,9 +75,6 @@
 
 /* No comment provided by engineer. */
 "License Agreement" = "Acordo da licenza";
-
-/* No comment provided by engineer. */
-"MHT File" = "Ficheiro MHT (*.mht)";
 
 /* No comment provided by engineer. */
 "Mobipocket e-book" = "Libro electrónico Mobipocket (*.mobi)";
@@ -122,7 +116,7 @@
 "OpenOffice Document" = "Ficheiro de texto OpenDocument (*.odt)";
 
 /* No comment provided by engineer. */
-"OpenOffice Presentation" = "Presentación de OpenDocument  (*.odp)";
+"OpenOffice Presentation" = "Presentación de OpenDocument (*.odp)";
 
 /* No comment provided by engineer. */
 "OpenOffice Spreadsheet" = "Folla de cálculo de OpenDocument (*.ods)";
@@ -131,7 +125,7 @@
 "PDF File" = "Documento portátil (*.pdf)";
 
 /* No comment provided by engineer. */
-"PDF/A File" = "Documento portátil / A  (*.pdf)";
+"PDF/A File" = "Documento portátil /A (*.pdf)";
 
 /* No comment provided by engineer. */
 "Plain Text" = "Texto plano (*.txt)";

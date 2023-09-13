@@ -40,8 +40,12 @@
 #include "../../src/defines.h"
 #include "../../src/prop/defines_p.h"
 #ifdef _WIN32
+# ifndef WIN32_LEAN_AND_MEAN
+#  define WIN32_LEAN_AND_MEAN
+# endif
 # include "platform_win/utils.h"
 # include <codecvt>
+# include <Windows.h>
 # include <WinInet.h>
 # include <shlwapi.h>
 # define APP_LAUNCH_NAME  L"/DesktopEditors.exe"
@@ -50,6 +54,7 @@
 # define DAEMON_NAME      L"/updatesvc.exe"
 # define DAEMON_NAME_OLD  L"/~updatesvc.exe"
 # define RESTART_BATCH    L"/svcrestart.bat"
+# define SUBFOLDER        TEXT("/" REG_APP_NAME)
 # define ARCHIVE_EXT      TEXT(".zip")
 # define ARCHIVE_PATTERN  TEXT("*.zip")
 # define sleep(a) Sleep(a)
@@ -62,14 +67,17 @@
 # define APP_HELPER       "/editors_helper"
 # define DAEMON_NAME      "/updatesvc"
 # define SUBFOLDER        "/desktopeditors"
-# define ARCHIVE_EXT      TEXT(".tar.xz")
-# define ARCHIVE_PATTERN  TEXT("*.tar.xz")
+# define ARCHIVE_EXT      _T(".tar.xz")
+# define ARCHIVE_PATTERN  _T("*.tar.xz")
 # define sleep(a) usleep(a*1000)
 #endif
 
-#define UPDATE_PATH      TEXT("/" REG_APP_NAME "Updates")
-#define BACKUP_PATH      TEXT("/" REG_APP_NAME "Backup")
-#define SUCCES_UNPACKED  TEXT("/success_unpacked.txt")
+#define UPDATE_PATH      _T("/" REG_APP_NAME "Updates")
+#define BACKUP_PATH      _T("/" REG_APP_NAME "Backup")
+#define SUCCES_UNPACKED  _T("/success_unpacked.txt")
+#define __GLOBAL_LOCK if (m_lock) {NS_Logger::WriteLog(_T("Blocked in: ") + FUNCTION_INFO); return;} m_lock = true; \
+                          NS_Logger::WriteLog(_T("Locking and further execution: ") + FUNCTION_INFO);
+#define __UNLOCK m_lock = false; NS_Logger::WriteLog(_T("Unlocked in: ") + FUNCTION_INFO);
 
 using std::vector;
 
@@ -83,7 +91,7 @@ auto currentArch()->tstring
     return L"_x86";
 # endif
 #else
-    return TEXT("_x64");
+    return _T("_x64");
 #endif
 }
 
@@ -105,7 +113,7 @@ auto generateTmpFileName(const tstring &ext)->tstring
     uuid_unparse(uuid, uuid_str);
     uuid_tstr = uuid_str;
 #endif
-    return NS_File::tempPath() + TEXT("/") + TEXT(FILE_PREFIX) + uuid_tstr + currentArch() + ext;
+    return NS_File::tempPath() + _T("/") + _T(FILE_PREFIX) + uuid_tstr + currentArch() + ext;
 }
 
 auto isSuccessUnpacked(const tstring &successFilePath, const tstring &version)->bool
@@ -194,30 +202,27 @@ void CSvcManager::init()
         onCompleteUnzip(error);
     });
     m_socket->onMessageReceived([=](void *data, size_t) {
-        tstring str((const tchar*)data), tmp;
         vector<tstring> params;
-        tstringstream wss(str);
-        while (std::getline(wss, tmp, TEXT('|')))
-            params.push_back(std::move(tmp));
-
-        if (params.size() == 4) {
+        if (m_socket->parseMessage(data, params) == 3) {
             switch (std::stoi(params[0])) {
             case MSG_CheckUpdates: {
+                __GLOBAL_LOCK
                 //DeleteUrlCacheEntry(params[1].c_str());
                 m_downloadMode = Mode::CHECK_UPDATES;
                 if (m_pDownloader)
-                    m_pDownloader->downloadFile(params[1], generateTmpFileName(TEXT(".json")));
-                NS_Logger::WriteLog(TEXT("Received MSG_CheckUpdates, URL: ") + params[1]);
+                    m_pDownloader->downloadFile(params[1], generateTmpFileName(_T(".json")));
+                NS_Logger::WriteLog(_T("Received MSG_CheckUpdates, URL: ") + params[1]);
                 break;
             }
             case MSG_LoadUpdates: {
+                __GLOBAL_LOCK
                 m_downloadMode = Mode::DOWNLOAD_UPDATES;
                 if (m_pDownloader) {
-                    tstring ext = (params[2] == TEXT("iss")) ? TEXT(".exe") :
-                                  (params[2] == TEXT("msi")) ? TEXT(".msi") : ARCHIVE_EXT;
+                    tstring ext = (params[2] == _T("iss")) ? _T(".exe") :
+                                  (params[2] == _T("msi")) ? _T(".msi") : ARCHIVE_EXT;
                     m_pDownloader->downloadFile(params[1], generateTmpFileName(ext));
                 }
-                NS_Logger::WriteLog(TEXT("Received MSG_LoadUpdates, URL: ") + params[1]);
+                NS_Logger::WriteLog(_T("Received MSG_LoadUpdates, URL: ") + params[1]);
                 break;
             }
             case MSG_StopDownload: {
@@ -231,7 +236,9 @@ void CSvcManager::init()
                 break;
 
             case MSG_StartReplacingFiles:
-                startReplacingFiles();
+                __GLOBAL_LOCK
+                startReplacingFiles(params[1], params[2] == _T("true"));
+                __UNLOCK
                 break;
 
             case MSG_ClearTempFiles:
@@ -258,39 +265,39 @@ void CSvcManager::init()
 
 void CSvcManager::onCompleteUnzip(const int error)
 {
+    __UNLOCK
     if (error == UNZIP_OK) {
         // Сreate a file about successful unpacking for use in subsequent launches
         const tstring updPath = NS_File::parentPath(NS_File::appPath()) + UPDATE_PATH;
         list<tstring> successList{m_newVersion};
         if (!NS_File::writeToFile(updPath + SUCCES_UNPACKED, successList)) {
-            m_lock = false;
             return;
         }
-        if (!sendMessage(MSG_ShowStartInstallMessage))
+        if (!m_socket->sendMessage(MSG_ShowStartInstallMessage))
             NS_Logger::WriteLog(DEFAULT_ERROR_MESSAGE);
 
     } else
     if (error == UNZIP_ERROR) {
-        tstring error(TEXT("An error occured while unpacking the archive"));
-        if (!sendMessage(MSG_OtherError, error))
+        tstring error(_T("An error occured while unpacking the archive"));
+        if (!m_socket->sendMessage(MSG_OtherError, error))
             NS_Logger::WriteLog(DEFAULT_ERROR_MESSAGE);
 
     } else
     if (error == UNZIP_ABORT) {
         // Stop unzip
     }
-    m_lock = false;
 }
 
 void CSvcManager::onCompleteSlot(const int error, const tstring &filePath)
 {
+    __UNLOCK
     if (error == 0) {
         switch (m_downloadMode) {
         case Mode::CHECK_UPDATES:
-            sendMessage(MSG_LoadCheckFinished, filePath);
+            m_socket->sendMessage(MSG_LoadCheckFinished, filePath);
             break;
         case Mode::DOWNLOAD_UPDATES:
-            sendMessage(MSG_LoadUpdateFinished, filePath);
+            m_socket->sendMessage(MSG_LoadUpdateFinished, filePath);
             break;
         default:
             break;
@@ -300,33 +307,37 @@ void CSvcManager::onCompleteSlot(const int error, const tstring &filePath)
         // Pause or Stop
     } else
     if (error == -1) {
-        sendMessage(MSG_OtherError, TEXT("Update download failed: out of memory!"));
+        m_socket->sendMessage(MSG_OtherError, _T("Update download failed: out of memory!"));
     } else
     if (error == -2) {
-        sendMessage(MSG_OtherError, TEXT("Update download failed: server connection error!"));
+        m_socket->sendMessage(MSG_OtherError, _T("Update download failed: server connection error!"));
+    } else
+    if (error == -3) {
+        m_socket->sendMessage(MSG_OtherError, _T("Update download failed: wrong URL!"));
+    } else
+    if (error == -4) {
+        m_socket->sendMessage(MSG_OtherError, _T("Update download failed: unable to create file!"));
     } else {
-        sendMessage(MSG_OtherError, TEXT("Update download failed: network error!"));
+        m_socket->sendMessage(MSG_OtherError, _T("Update download failed: network error!"));
     }
 }
 
 void CSvcManager::onProgressSlot(const int percent)
 {
     if (m_downloadMode == Mode::DOWNLOAD_UPDATES)
-        sendMessage(MSG_Progress, to_tstring(percent));
+        m_socket->sendMessage(MSG_Progress, to_tstring(percent));
 }
 
 void CSvcManager::unzipIfNeeded(const tstring &filePath, const tstring &newVersion)
 {
-    if (m_lock)
-        return;
-    m_lock = true;
+    __GLOBAL_LOCK
 
     m_newVersion = newVersion;
     const tstring updPath = NS_File::parentPath(NS_File::appPath()) + UPDATE_PATH;
     auto unzip = [=]()->void {
         if (!NS_File::dirExists(updPath) && !NS_File::makePath(updPath)) {
-            NS_Logger::WriteLog(TEXT("An error occurred while creating dir: ") + updPath);
-            m_lock = false;
+            NS_Logger::WriteLog(_T("An error occurred while creating dir: ") + updPath);
+            __UNLOCK
             return;
         }
         m_pUnzip->extractArchive(filePath, updPath);
@@ -336,8 +347,8 @@ void CSvcManager::unzipIfNeeded(const tstring &filePath, const tstring &newVersi
         unzip();
     } else {
         if (isSuccessUnpacked(updPath + SUCCES_UNPACKED, newVersion)) {
-            m_lock = false;
-            if (!sendMessage(MSG_ShowStartInstallMessage))
+            __UNLOCK
+            if (!m_socket->sendMessage(MSG_ShowStartInstallMessage))
                 NS_Logger::WriteLog(DEFAULT_ERROR_MESSAGE);
 
         } else {
@@ -358,7 +369,7 @@ void CSvcManager::clearTempFiles(const tstring &prefix, const tstring &except)
         tstring _error;
         list<tstring> filesList;
         if (!NS_File::GetFilesList(NS_File::tempPath(), &filesList, _error, true)) {
-            NS_Logger::WriteLog(DEFAULT_ERROR_MESSAGE + TEXT(" ") + _error);
+            NS_Logger::WriteLog(DEFAULT_ERROR_MESSAGE + _T(" ") + _error);
             return;
         }
         for (auto &filePath : filesList) {
@@ -377,69 +388,56 @@ void CSvcManager::clearTempFiles(const tstring &prefix, const tstring &except)
     });
 }
 
-void CSvcManager::startReplacingFiles()
+void CSvcManager::startReplacingFiles(const tstring &packageType, const bool restartAfterUpdate)
 {
     tstring appPath = NS_File::appPath();
     tstring updPath = NS_File::parentPath(appPath) + UPDATE_PATH;
+    tstring updSubPath = NS_File::fileExists(updPath + SUBFOLDER + APP_LAUNCH_NAME) ? updPath + SUBFOLDER : updPath;
     tstring tmpPath = NS_File::parentPath(appPath) + BACKUP_PATH;
     if (!NS_File::dirExists(updPath)) {
-        NS_Logger::WriteLog(TEXT("Update cancelled. Can't find folder: ") + updPath, true);
+        NS_Logger::WriteLog(_T("Update cancelled. Can't find folder: ") + updPath, true);
         return;
     }
 
 #ifdef _WIN32
 # ifndef DONT_VERIFY_SIGNATURE
     // Verify the signature of executable files
-    if (!NS_File::verifyEmbeddedSignature(updPath + APP_LAUNCH_NAME)) {
-        NS_Logger::WriteLog(L"Update cancelled. The file signature is missing: " + updPath + APP_LAUNCH_NAME, true);
-        return;
-    }
-    if (!NS_File::verifyEmbeddedSignature(updPath + APP_LAUNCH_NAME2)) {
-        NS_Logger::WriteLog(L"Update cancelled. The file signature is missing: " + updPath + APP_LAUNCH_NAME2, true);
-        return;
-    }
-    if (!NS_File::verifyEmbeddedSignature(updPath + DAEMON_NAME)) {
-        NS_Logger::WriteLog(L"Update cancelled. The file signature is missing: " + updPath + DAEMON_NAME, true);
-        return;
+    {
+        tstring apps[] = {APP_LAUNCH_NAME, APP_LAUNCH_NAME2, APP_HELPER, DAEMON_NAME};
+        for (int i = 0; i < sizeof(apps) / sizeof(apps[0]); i++) {
+            if (!NS_File::verifyEmbeddedSignature(updSubPath + apps[i])) {
+                NS_Logger::WriteLog(L"Update cancelled. The file signature is missing: " + updSubPath + apps[i], true);
+                return;
+            }
+        }
     }
 # endif
 #endif
 
     // Check backup folder
     if (NS_File::dirExists(tmpPath) && !NS_File::removeDirRecursively(tmpPath)) {
-        NS_Logger::WriteLog(TEXT("Update cancelled. Can't delete folder: ") + tmpPath, true);
+        NS_Logger::WriteLog(_T("Update cancelled. Can't delete folder: ") + tmpPath, true);
         return;
     }
 
     // Wait until the main app closes
     {
-        int retries = 10;
 #ifdef _WIN32
-        tstring app(APP_LAUNCH_NAME2);
+        tstring apps[] = {APP_LAUNCH_NAME2, APP_HELPER};
 #else
-        tstring app(APP_LAUNCH_NAME);
+        tstring apps[] = {APP_LAUNCH_NAME, APP_HELPER};
 #endif
-        app = app.substr(1);
-        while (NS_File::isProcessRunning(app) && retries-- > 0)
-            sleep(500);
+        for (int i = 0; i < sizeof(apps) / sizeof(apps[0]); i++) {
+            int retries = 10;
+            tstring app(apps[i]);
+            app = app.substr(1);
+            while (NS_File::isProcessRunning(app) && retries-- > 0)
+                sleep(500);
 
-        if (NS_File::isProcessRunning(app)) {
-            NS_Logger::WriteLog(TEXT("Update cancelled. The main application is not closed!"), true);
-            return;
-        }
-    }
-
-    // Wait until editors_helper.exe closes
-    {
-        int retries = 10;
-        tstring app(APP_HELPER);
-        app = app.substr(1);
-        while (NS_File::isProcessRunning(app) && retries-- > 0)
-            sleep(500);
-
-        if (NS_File::isProcessRunning(app)) {
-            NS_Logger::WriteLog(TEXT("Update cancelled. The editors_helper is not closed!"), true);
-            return;
+            if (NS_File::isProcessRunning(app)) {
+                NS_Logger::WriteLog(_T("Update cancelled. The ") + app + _T(" is not closed!"), true);
+                return;
+            }
         }
     }
 
@@ -453,39 +451,36 @@ void CSvcManager::startReplacingFiles()
 #else
     if (!NS_File::replaceFolder(appPath, tmpPath, true)) {
 #endif
-        NS_Logger::WriteLog(TEXT("Update cancelled. Can't replace files to backup: ") + NS_Utils::GetLastErrorAsString(), true);
+        NS_Logger::WriteLog(_T("Update cancelled. Can't replace files to backup: ") + NS_Utils::GetLastErrorAsString(), true);
         if (NS_File::dirExists(tmpPath) && !NS_File::dirIsEmpty(tmpPath) && !NS_File::replaceFolder(tmpPath, appPath))
-            NS_Logger::WriteLog(TEXT("Can't restore files from backup!"), true);
+            NS_Logger::WriteLog(_T("Can't restore files from backup!"), true);
         return;
     }
 
     // Move update path to app path
-#ifdef _WIN32
-    if (!NS_File::replaceFolder(updPath, appPath, true)) {
-#else
-    if (!NS_File::replaceFolder(updPath + SUBFOLDER, appPath, true)) {
-#endif
-        NS_Logger::WriteLog(TEXT("Update cancelled. Can't move updates to App path: ") + NS_Utils::GetLastErrorAsString(), true);
+    if (!NS_File::replaceFolder(updSubPath, appPath, true)) {
+        NS_Logger::WriteLog(_T("Update cancelled. Can't move updates to App path: ") + NS_Utils::GetLastErrorAsString(), true);
 
         if (NS_File::dirExists(appPath) && !NS_File::removeDirRecursively(appPath)) {
-            NS_Logger::WriteLog(TEXT("An error occurred while remove App path: ") + NS_Utils::GetLastErrorAsString(), true);
+            NS_Logger::WriteLog(_T("An error occurred while remove App path: ") + NS_Utils::GetLastErrorAsString(), true);
             return;
         }
         if (!NS_File::replaceFolder(tmpPath, appPath, true))
-            NS_Logger::WriteLog(TEXT("An error occurred while restore files from backup: ") + NS_Utils::GetLastErrorAsString(), true);
+            NS_Logger::WriteLog(_T("An error occurred while restore files from backup: ") + NS_Utils::GetLastErrorAsString(), true);
 
         NS_File::removeDirRecursively(updPath);
         return;
     }
 
 #ifdef _WIN32
-    // To support a version with unins000 files inside the working folder
-    if (NS_File::fileExists(tmpPath + L"/unins000.msg"))
-        NS_File::replaceFile(tmpPath + L"/unins000.msg", appPath + L"/unins000.msg");
-    if (NS_File::fileExists(tmpPath + L"/unins000.dat"))
-        NS_File::replaceFile(tmpPath + L"/unins000.dat", appPath + L"/unins000.dat");
-    if (NS_File::fileExists(tmpPath + L"/unins000.exe"))
-        NS_File::replaceFile(tmpPath + L"/unins000.exe", appPath + L"/unins000.exe");
+    // Moving the necessary files to their original location
+    {
+        tstring files[] = {L"/unins000.msg", L"/unins000.dat", L"/unins000.exe", L"/converter/package.config"};
+        for (int i = 0; i < sizeof(files) / sizeof(files[0]); i++) {
+            if (NS_File::fileExists(tmpPath + files[i]))
+                NS_File::replaceFile(tmpPath + files[i], appPath + files[i]);
+        }
+    }
 
     // To support a version without updatesvc.exe inside the working folder
     if (!NS_File::fileExists(appPath + DAEMON_NAME))
@@ -493,12 +488,8 @@ void CSvcManager::startReplacingFiles()
     else
         NS_File::replaceFile(tmpPath + DAEMON_NAME, appPath + DAEMON_NAME_OLD);
 
-    // Package type sync
-    if (NS_File::fileExists(tmpPath + TEXT("/converter/package.config")))
-        NS_File::replaceFile(tmpPath + TEXT("/converter/package.config"), appPath + TEXT("/converter/package.config"));
-
     // Update version in registry
-    {
+    if (packageType == TEXT("iss") || packageType == TEXT("msi")) {
         wstring ver;
         list<wstring> lines;
         if (NS_File::readFile(appPath + SUCCES_UNPACKED, lines)) {
@@ -510,7 +501,8 @@ void CSvcManager::startReplacingFiles()
             HKEY hKey, hAppKey;
             if (RegOpenKeyEx(HKEY_LOCAL_MACHINE, TEXT("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall"), 0, KEY_ALL_ACCESS, &hKey) == ERROR_SUCCESS) {
                 wstring app_name(TEXT(WINDOW_NAME));
-                wstring app_key = app_name + L"_is1";
+                wstring app_key(app_name);
+                app_key += (packageType == TEXT("iss")) ? L"_is1" : L"";
                 if (RegOpenKeyEx(hKey, app_key.c_str(), 0, KEY_ALL_ACCESS, &hAppKey) == ERROR_SUCCESS) {
                     wstring disp_name = app_name + L" " + ver + L" (" + currentArch().substr(1) + L")";
                     if (RegSetValueEx(hAppKey, TEXT("DisplayName"), 0, REG_SZ, (const BYTE*)disp_name.c_str(), (DWORD)(disp_name.length() + 1) * sizeof(WCHAR)) != ERROR_SUCCESS)
@@ -525,22 +517,36 @@ void CSvcManager::startReplacingFiles()
     }
 #endif
 
+    // Merging providers, templates, uithemes folders
+    {
+        tstring paths[] = {_T("/providers"), _T("/converter/empty"), _T("/uithemes")};
+        for (int i = 0; i < sizeof(paths) / sizeof(paths[0]); i++) {
+            tstring err;
+            std::list<tstring> old_paths, new_paths;
+            if (NS_File::GetFilesList(tmpPath + paths[i], &old_paths, err, true, true)) {
+                if (NS_File::GetFilesList(appPath + paths[i], &new_paths, err, true, true)) {
+                    for (auto &path : old_paths) {
+                        if (std::find(new_paths.begin(), new_paths.end(), path) == new_paths.end())
+                            NS_File::replaceFolder(tmpPath + paths[i] + path, appPath + paths[i] + path);
+                    }
+                } else
+                    NS_Logger::WriteLog(DEFAULT_ERROR_MESSAGE + _T(" ") + err);
+            } else
+                NS_Logger::WriteLog(DEFAULT_ERROR_MESSAGE + _T(" ") + err);
+        }
+    }
+
     // Remove Backup dir
     NS_File::removeDirRecursively(tmpPath);
 
     // Restart program
-    if (!NS_File::runProcess(appPath + APP_LAUNCH_NAME, TEXT("")))
-        NS_Logger::WriteLog(TEXT("An error occurred while restarting the program!"), true);
+    if (restartAfterUpdate) {
+        if (!NS_File::runProcess(appPath + APP_LAUNCH_NAME, _T("")))
+            NS_Logger::WriteLog(_T("An error occurred while restarting the program!"), true);
+    }
 
     // Restart service
 #ifdef _WIN32
     restartService();
 #endif
-}
-
-bool CSvcManager::sendMessage(int cmd, const tstring &param1, const tstring &param2, const tstring &param3)
-{
-    tstring str = to_tstring(cmd) + TEXT("|") + param1 + TEXT("|") + param2 + TEXT("|") + param3;
-    size_t sz = str.size() * sizeof(str.front());
-    return m_socket->sendMessage((void*)str.c_str(), sz);
 }

@@ -125,6 +125,19 @@ QPushButton#toolButtonClose:pressed {background-color: #d75050;}
     font-size: 30px;
 }
 
+/* 2.75x */
+#mainPanel[zoom="2.75x"] #toolButtonMinimize,
+#mainPanel[zoom="2.75x"] #toolButtonClose,
+#mainPanel[zoom="2.75x"] #toolButtonMaximize
+{
+    padding: 14px 33px 19px;
+}
+#mainPanel[zoom="2.75x"] #iconuser,
+#mainPanel[zoom="2.75x"] #labelTitle
+{
+    font-size: 33px;
+}
+
 /* 3x */
 #mainPanel[zoom="3x"] #toolButtonMinimize,
 #mainPanel[zoom="3x"] #toolButtonClose,

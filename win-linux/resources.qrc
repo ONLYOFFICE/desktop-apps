@@ -104,6 +104,9 @@
     <qresource prefix="/styles@2.5x">
         <file alias="styles.qss">res/styles/styles@2.5x.qss</file>
     </qresource>
+    <qresource prefix="/styles@2.75x">
+        <file alias="styles.qss">res/styles/styles@2.75x.qss</file>
+    </qresource>
     <qresource prefix="/styles@3x">
         <file alias="styles.qss">res/styles/styles@3x.qss</file>
     </qresource>
@@ -124,7 +127,7 @@
         <file alias="bg-BG.qm">langs/bg.qm</file>
         <file alias="ca-ES.qm">langs/ca.qm</file>
         <file alias="cs-CZ.qm">langs/cs.qm</file>
-        <file alias="da-DK.qm">langs/de.qm</file>
+        <file alias="da-DK.qm">langs/da.qm</file>
         <file alias="de-DE.qm">langs/de.qm</file>
         <file alias="el-GR.qm">langs/el_GR.qm</file>
         <file alias="en-US.qm">langs/en.qm</file>
@@ -160,7 +163,7 @@
         <file alias="uk-UA.qm">langs/uk.qm</file>
         <file alias="vi-VN.qm">langs/vi.qm</file>
         <file alias="zh-CN.qm">langs/zh_CN.qm</file>
-        <file alias="zh-HK.qm">langs/zh_HK.qm</file>
+        <file alias="zh-TW.qm">langs/zh_TW.qm</file>
         <file alias="qtbase_ru-RU.qm">langs/qtbase_ru.qm</file>
     </qresource>
     <qresource prefix="/themes">

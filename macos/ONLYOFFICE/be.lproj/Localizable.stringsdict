@@ -40,10 +40,10 @@ The trial period will end in %d days, after that you will not be able to create 
 			<string>You are using a trial version of the application.
 The trial period will end in %d days, after that you will not be able to create and edit documents.</string>
 			<key>one</key>
-			<string>Вы выкарыстоўваеце пробную версію прыкладання.
+			<string>Вы выкарыстоўваеце пробную версію праграмы.
 Пробны перыяд скончыцца праз %d дзень, пасля чаго вы не зможаце ствараць і рэдагаваць дакументы.</string>
 			<key>other</key>
-			<string>Вы выкарыстоўваеце пробную версію прыкладання.
+			<string>Вы выкарыстоўваеце пробную версію праграмы.
 Пробны перыяд скончыцца праз %d дзён, пасля чаго вы не зможаце ствараць і рэдагаваць дакументы..</string>
 		</dict>
 	</dict>
@@ -62,9 +62,9 @@ The trial period will end in %d days, after that you will not be able to create 
 			<key>many</key>
 			<string>You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?</string>
 			<key>one</key>
-			<string>У вас ёсць %ld%@ дакумент з непацверджанымі зменамі. Вы хочаце перагледзець гэтыя змены, перш чым пакінуць старонку?</string>
+			<string>У вас ёсць %ld%@ дакумент з непацверджанымі зменамі. Хочаце пераглядзець гэтыя змены, перш чым пакінуць старонку?</string>
 			<key>other</key>
-			<string>У вас ёсць %ld%@ дакументаў з непацверджанымі зменамі. Вы хочаце перагледзець гэтыя змены, перш чым пакінуць старонку?</string>
+			<string>У вас ёсць %ld%@ дакументаў з непацверджанымі зменамі. Хочаце пераглядзець гэтыя змены, перш чым пакінуць старонку?</string>
 		</dict>
 	</dict>
 </dict>
