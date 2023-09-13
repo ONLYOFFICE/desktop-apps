@@ -619,10 +619,13 @@ void CUpdateManager::setNewUpdateSetting(const QString& _rate)
     GET_REGISTRY_USER(reg_user);
     reg_user.setValue("autoUpdateMode", _rate);
     if (modeToEnum(_rate) == UpdateMode::DISABLE) {
-        m_pIntervalStartTimer->stop();
-        m_pIntervalTimer->stop();
+        if (m_pIntervalStartTimer)
+            m_pIntervalStartTimer->stop();
+        if (m_pIntervalTimer)
+            m_pIntervalTimer->stop();
     } else {
-        m_pIntervalStartTimer->start();
+        if (m_pIntervalStartTimer)
+            m_pIntervalStartTimer->start();
     }
 }
 
