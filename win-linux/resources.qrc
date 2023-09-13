@@ -48,6 +48,7 @@
         <file alias="docxf.svg">res/icons/tabbar/tabicon_docxf_normal.svg</file>
         <file alias="pe.svg">res/icons/tabbar/tabicon_pe_normal.svg</file>
         <file alias="se.svg">res/icons/tabbar/tabicon_se_normal.svg</file>
+        <file alias="pdf.svg">res/icons/tabbar/tabicon_pdf_normal.svg</file>
         <file alias="portal.svg">res/icons/tabbar/portal.svg</file>
         <file alias="portal_light.svg">res/icons/tabbar/portal_light.svg</file>
         <file alias="newdoc.svg">res/icons/tabbar/tabicon_undefined.svg</file>

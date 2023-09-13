@@ -453,6 +453,10 @@ int CAscTabWidget::insertPanel(QWidget * panel, int index)
             tabcolor =  QString::fromStdWString(ui_theme.value(CTheme::ColorRole::ecrTabWordActive));
             m_pBar->setTabThemeType(tabindex, CTabBar::DarkTab);
             break;
+        case etDocumentViewer:
+            tabcolor =  QString::fromStdWString(ui_theme.value(CTheme::ColorRole::ecrTabViewerActive));
+            m_pBar->setTabThemeType(tabindex, CTabBar::DarkTab);
+            break;
         default:
             tabcolor =  QString::fromStdWString(ui_theme.value(CTheme::ColorRole::ecrTabDefaultActiveBackground));
             m_pBar->setTabThemeType(tabindex, /*ui_theme.isDark() ? CTabBar::DarkTab :*/ CTabBar::LightTab);
@@ -491,7 +495,7 @@ void CAscTabWidget::reloadTabIcons()
     m_mapTabIcons.clear();
     const char *icons[] = {":/tabbar/icons/newdoc.svg", ":/tabbar/icons/de.svg", ":/tabbar/icons/pe.svg",
                            ":/tabbar/icons/docxf.svg",  ":/tabbar/icons/se.svg", ":/tabbar/icons/portal_light.svg",
-                           ":/tabbar/icons/portal.svg"};
+                           ":/tabbar/icons/portal.svg", ":/tabbar/icons/pdf.svg"};
     int portal_icon = GetCurrentTheme().isDark() ? 5 : 6;
     m_mapTabIcons.insert({
         {etUndefined,          std::make_pair(icons[0], icons[0])},
@@ -499,6 +503,7 @@ void CAscTabWidget::reloadTabIcons()
         {etPresentation,       std::make_pair(icons[2], icons[2])},
         {etDocumentMasterForm, std::make_pair(icons[3], icons[3])},
         {etSpreadsheet,        std::make_pair(icons[4], icons[4])},
+        {etDocumentViewer,     std::make_pair(icons[7], icons[7])},
         {etPortal,             std::make_pair(icons[portal_icon], icons[6])},
         {etNewPortal,          std::make_pair(icons[portal_icon], icons[6])}
     });
@@ -803,6 +808,12 @@ void CAscTabWidget::applyDocumentChanging(int id, int type)
             m_pBar->setTabThemeType(tabIndex, CTabBar::DarkTab);
             m_pBar->setActiveTabColor(tabIndex,
                 QString::fromStdWString(ui_theme.value(CTheme::ColorRole::ecrTabSlideActive)));
+            break;
+        case etDocumentViewer:
+            panel(tabIndex)->applyLoader("loader:style", "pdf");
+            m_pBar->setTabThemeType(tabIndex, CTabBar::DarkTab);
+            m_pBar->setActiveTabColor(tabIndex,
+                QString::fromStdWString(ui_theme.value(CTheme::ColorRole::ecrTabViewerActive)));
             break;
         default: break;
         }
@@ -1184,6 +1195,9 @@ void CAscTabWidget::applyUITheme(const std::wstring& theme)
         case etDocumentMasterForm:
         case etDocument:
             m_pBar->setActiveTabColor(i, tab_color.at(0));
+            break;
+        case etDocumentViewer:
+            m_pBar->setActiveTabColor(i, QString::fromStdWString(ui_theme.value(CTheme::ColorRole::ecrTabViewerActive)));
             break;
         default: break;
         }

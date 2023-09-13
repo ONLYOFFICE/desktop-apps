@@ -38,6 +38,7 @@ namespace NSTheme {
             {CTheme::ColorRole::ecrTabWordActive, "brand-word"},
             {CTheme::ColorRole::ecrTabSlideActive, "brand-slide"},
             {CTheme::ColorRole::ecrTabCellActive, "brand-cell"},
+            {CTheme::ColorRole::ecrTabViewerActive, "brand-pdf"},
 
             {CTheme::ColorRole::ecrWindowBackground, "window-background"},
             {CTheme::ColorRole::ecrWindowBorder, "window-border"},
