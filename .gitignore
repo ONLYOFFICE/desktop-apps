@@ -27,7 +27,7 @@ win-linux/package/linux/suse-rpm/builddir
 win-linux/package/linux/tar
 
 common/loginpage/build/plugins/*
-common/loginpage/build/node_modules/*
+common/**/node_modules/*
 common/loginpage/deploy/*
 common/loginpage/src/dlglogin.min.js
 common/converter/*
