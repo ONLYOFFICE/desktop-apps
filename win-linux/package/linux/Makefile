@@ -205,6 +205,7 @@ ifeq ($(COMPANY_NAME), ONLYOFFICE)
 else
 	CHANGES_HTML = changes_ru.html
 endif
+CHANGES_DIR_LIST = $(shell ls -r $(CHANGES_DIR) | grep -v 0.0.0)
 
 .PHONY: all clean branding packages rpm deb deb-astra apt-rpm suse-rpm tar desktopeditor qt-redist libstdc++-addon libc-addon
 
@@ -330,31 +331,19 @@ $(CHANGELOG_DEB_ASTRA) : $(CHANGELOG_DEB)
 	mkdir -p $(shell dirname $(CHANGELOG_DEB_ASTRA))
 	cp $(CHANGELOG_DEB) $(CHANGELOG_DEB_ASTRA)
 
-$(CHANGELOG_DEB) : $(CHANGELOG_DEB_M4)
+$(CHANGELOG_DEB) : $(CHANGELOG_DEB_M4) $(CHANGELOG_RPM)
 	$(foreach dir, \
-		$(shell ls -r $(CHANGES_DIR) | grep -v 0.0.0), \
+		$(CHANGES_DIR_LIST), \
 		$(shell \
-			sed '/DOCTYPE/,/div class/d' $(CHANGES_DIR)/$(dir)/$(CHANGES_HTML) | \
-			sed '/div class/,/html/d' | \
-			sed 's/<\/li>//g' | \
-			sed 's/<\/h4>//g' | \
-			sed 's/<\/h2>/:/g' | \
-			sed 's/<code>//g' | \
-			sed 's/<\/code>//g' | \
-			sed 's/ \{,\}<li>/    - /g' | \
-			sed 's/ \{,\}<h4>/  * /g' | \
-			sed 's/ \{,\}<h2>/  * /g' | \
-			sed '/<ul>/d' | \
-			sed '/<\/ul>/d' | \
-			sed '/<h1>/d' | \
-			sed '/^$$/d' \
+			sed 's/^[^ *]/* &/' $(CHANGES_DIR)/$(dir)/changes_rpm | \
+			sed 's/^/  /' \
 			> $(CHANGES_DIR)/$(dir)/changes_deb; \
 			mkdir -p deb/build/debian; \
 			m4 $(M4_DEB_PARAMS) -D M4_PACKAGE_VERSION='$(dir)' -D M4_DATE='$(shell date -d "$(shell grep \"releasedate\" $(CHANGES_DIR)/$(dir)/$(CHANGES_HTML) | sed 's/.* - //' | sed 's/<\/span>.*//' | sed 's/{{DATE}}/$(shell date -R)/')" -R)' $(CHANGELOG_DEB_M4) | sed '2r $(CHANGES_DIR)/$(dir)/changes_deb' >> $(CHANGELOG_DEB)))
 
 $(CHANGELOG_RPM) :
 	$(foreach dir, \
-		$(shell ls -r $(CHANGES_DIR) | grep -v 0.0.0), \
+		$(CHANGES_DIR_LIST), \
 		$(shell \
 			sed '/DOCTYPE/,/div class/d' $(CHANGES_DIR)/$(dir)/$(CHANGES_HTML) | \
 			sed '/div class/,/html/d' | \
