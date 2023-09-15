@@ -646,6 +646,15 @@ function SendTextMessageTimeout(hWnd: HWND; Msg: UINT; wParam: WPARAM; lParam: P
 //procedure checkArchitectureVersion; forward;
 function GetHKLM: Integer; forward;
 
+function NoUpdates: Boolean;
+      begin
+        Result := false;
+        if CheckCommandlineParam('/noupdates') then
+        begin
+          Result := True;
+        end;
+      end;
+
 procedure InitializeWizard();
 var
   paramSkip: string;
@@ -810,10 +819,9 @@ begin
       StringChangeEx(translateArgs, ' ', '_', True);
       StringChangeEx(translateArgs, '+', ' ', True);
       Exec(ExpandConstant('{app}\{#iconsExe}'), '--create-jump-list ' + translateArgs, '', SW_SHOWNORMAL, ewWaitUntilTerminated, ErrorCode);
-      if CheckCommandlineParam('/noupdates') then begin
-        RegWriteDWordValue(HKEY_LOCAL_MACHINE, ExpandConstant('{#APP_REG_PATH}'), 'CheckForUpdates', 0);
-      end else
+      if not NoUpdates then begin
         Exec(ExpandConstant('{app}\updatesvc.exe'), '--install "' + ExpandConstant('{cm:UpdateService}') + '."', '', SW_HIDE, ewWaitUntilTerminated, ErrorCode);
+      end;
     end;
     // migrate from the prev version when user's data saved to system common path
     commonCachePath := ExpandConstant('{commonappdata}\{#APP_PATH}\data\cache');
@@ -1040,6 +1048,7 @@ Root: HKLM; Subkey: {#APP_REG_PATH};  ValueType: string;   ValueName: AppPath;  
 Root: HKLM; Subkey: {#APP_REG_PATH};  ValueType: string;   ValueName: locale;     ValueData: {code:getAppPrevLang}; Flags: uninsdeletevalue;
 Root: HKCU; Subkey: {#APP_REG_PATH};  ValueType: string;   ValueName: locale;     ValueData: {code:getAppPrevLang}; Flags: uninsdeletevalue;
 Root: HKLM; Subkey: {#APP_REG_PATH};  ValueType: qword;    ValueName: timestamp;  ValueData: {code:getPosixTime}; Flags: uninsdeletevalue;
+Root: HKLM; Subkey: {#APP_REG_PATH};  ValueType: dword;    ValueName: CheckForUpdates;  ValueData: 0; Flags: uninsdeletevalue; Check: NoUpdates;
 
 #ifdef _ONLYOFFICE
 Root: HKLM; Subkey: "SOFTWARE\Classes\{#sAppProtocol}"; ValueType: "string"; ValueData: "URL:{#sAppName} Protocol"; Flags: uninsdeletekey;
