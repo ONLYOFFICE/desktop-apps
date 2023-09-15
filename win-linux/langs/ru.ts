@@ -690,7 +690,7 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="372"/>
         <source>This folder configuration does not allow for updates! The folder name should be: </source>
-        <translation type="unfinished"></translation>
+        <translation>Данная конфигурация папки не позволяет устанавливать обновления! Имя папки должно быть: </translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="379"/>
@@ -788,15 +788,15 @@
     </message>
     <message>
         <source>A new version of %1 is available!</source>
-        <translation type="obsolete">Доступна новая версия %1!</translation>
+        <translation>Доступна новая версия %1!</translation>
     </message>
     <message>
         <source>%1 %2 is now available (you have %3). Would you like to download it now?</source>
-        <translation type="obsolete">Доступна версия %2 %1 (текущая версия %3). Хотите скачать ее прямо сейчас?</translation>
+        <translation>Доступна версия %2 %1 (текущая версия %3). Хотите скачать ее прямо сейчас?</translation>
     </message>
     <message>
         <source>%1 %2 is now downloaded (you have %3). Would you like to install it now?</source>
-        <translation type="obsolete">Загружена версия %2 %1 (текущая версия %3). Хотите установить ее прямо сейчас?</translation>
+        <translation>Загружена версия %2 %1 (текущая версия %3). Хотите установить ее прямо сейчас?</translation>
     </message>
 </context>
 <context>
@@ -820,13 +820,13 @@
     <message>
         <location filename="../src/ceditortools.cpp" line="145"/>
         <source>XML File (*.xml)</source>
-        <translation type="unfinished"></translation>
+        <translation>Файл XML (*.xml)</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="254"/>
         <location filename="../src/windows/cmainwindow.cpp" line="702"/>
         <source>Access to file &apos;%1&apos; is denied!</source>
-        <translation type="unfinished"></translation>
+        <translation>Доступ к файлу &apos;%1&apos; запрещен!</translation>
     </message>
     <message>
         <location filename="../src/casctabdata.cpp" line="177"/>
@@ -893,63 +893,79 @@
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="596"/>
+        <location filename="../src/cupdatemanager.cpp" line="343"/>
+        <source>An error occurred while check updates: Update Service not found!</source>
+        <translation>При проверке обновлений произошла ошибка: Сервис обновлений не найден!</translation>
+    </message>
+    <message>
+        <location filename="../src/cupdatemanager.cpp" line="446"/>
+        <source>An error occurred while loading updates: Update Service not found!</source>
+        <translation>При загрузке обновлений произошла ошибка: Сервис обновлений не найден!</translation>
+    </message>
+    <message>
+        <location filename="../src/cupdatemanager.cpp" line="486"/>
+        <source>An error occurred while unzip updates: Update Service not found!</source>
+        <translation>При разархивировании обновлений произошла ошибка: Сервис обновлений не найден!</translation>
+    </message>
+    <message>
+        <location filename="../src/cupdatemanager.cpp" line="497"/>
         <source>An error occurred while start install updates!</source>
-        <translation type="unfinished"></translation>
+        <translation>При запуске установки обновлений произошла ошибка!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="606"/>
         <source>An error occurred while start replacing files: Update Service not found!</source>
-        <translation type="unfinished"></translation>
+        <translation>При запуске замены файлов произошла ошибка: Сервис обновлений не найден!</translation>
     </message>
     <message>
         <location filename="../src/defines.h" line="131"/>
         <source>Cancel</source>
-        <translation type="unfinished">Отмена</translation>
+        <translation>Отмена</translation>
     </message>
     <message>
         <location filename="../src/defines.h" line="132"/>
         <source>Yes</source>
-        <translation type="unfinished">Да</translation>
+        <translation>Да</translation>
     </message>
     <message>
         <location filename="../src/defines.h" line="133"/>
         <source>No</source>
-        <translation type="unfinished">Нет</translation>
+        <translation>Нет</translation>
     </message>
     <message>
         <location filename="../src/components/cmessage.cpp" line="199"/>
         <location filename="../src/defines.h" line="134"/>
         <source>OK</source>
-        <translation type="unfinished">OK</translation>
+        <translation>OK</translation>
     </message>
     <message>
         <location filename="../src/defines.h" line="135"/>
         <source>Skip</source>
-        <translation type="unfinished">Пропустить</translation>
+        <translation>Пропустить</translation>
     </message>
     <message>
         <location filename="../src/defines.h" line="136"/>
         <source>Buy Now</source>
-        <translation type="unfinished"></translation>
+        <translation>Купить сейчас</translation>
     </message>
     <message>
         <location filename="../src/defines.h" line="137"/>
         <source>Activate</source>
-        <translation type="unfinished"></translation>
+        <translation>Активировать</translation>
     </message>
     <message>
         <location filename="../src/defines.h" line="138"/>
         <source>Continue</source>
-        <translation type="unfinished"></translation>
+        <translation>Продолжить</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/xdgdesktopportal.cpp" line="1217"/>
         <source>An error occurred while opening the portal:&lt;br&gt;%1</source>
-        <translation type="unfinished"></translation>
+        <translation>При открытии портала произошла ошибка: &lt;br&gt;%1</translation>
     </message>
     <message>
         <source>App can&apos;t working correctly under admin rights.</source>
-        <translation type="obsolete">Приложение работает не корректно при запуске с правами администратора.</translation>
+        <translation>Приложение работает некорректно при запуске с правами администратора.</translation>
     </message>
 </context>
 </TS>

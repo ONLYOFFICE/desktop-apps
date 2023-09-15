@@ -333,7 +333,7 @@ no.AdditionalTasks =Oppgaver:
 uk.AdditionalTasks =Завдання:
 be.AdditionalTasks =Задачы:
 gl.AdditionalTasks =Tarefas:
-si.AdditionalTasks =කාර්යයන්:
+si.AdditionalTasks =කාර්යන්:
 zh_TW.AdditionalTasks =工作：
 ;======================================================================================================
 en.Uninstall =Uninstall
@@ -502,7 +502,7 @@ no.WarningClearAppData =Vil du slette brukerinnstillinger og bufrede data for pr
 uk.WarningClearAppData =Очистити налаштування користувача та кешовані дані програми?
 be.WarningClearAppData =Хочаце ачысціць налады карыстальніка і кэшаваныя даныя прыкладання?
 gl.WarningClearAppData =Quere borrar a configuración do usuario e os datos da caché do aplicativo?
-si.WarningClearAppData =ඔබට පරිශ්‍රීලක සැකසුම් හා නිහිතගත යෙදුමේ දත්ත හිස් කිරීමට අවශ්‍යද?
+si.WarningClearAppData =ඔබට පරිශ්‍රීලක සැකසුම් හා යෙදුමේ නිහිතගත දත්ත හිස් කිරීමට වුවමනාද?
 zh_TW.WarningClearAppData =您想要清除使用者設定和應用程式內的快取資料嗎?
 ;======================================================================================================
 

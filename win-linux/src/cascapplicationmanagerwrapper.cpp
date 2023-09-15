@@ -240,11 +240,22 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
                     QJsonObject json{{"skiptoparea", TOOLBTN_HEIGHT},{"singlewindow",true}};
                     sendCommandTo(ptr, L"window:features", Utils::stringifyJson(json).toStdWString());
                 }
+
+                if ( InputArgs::contains(L"--system-title-bar") ) {
+                    QJsonObject json{{"style:change", QJsonObject{{"element","body"},
+                                                                    {"action", "merge"},
+                                                                    {"style","#title-doc-name{display:none}"}}}};
+                    sendCommandTo(ptr, L"window:features", Utils::stringifyJson(json).toStdWString());
+                }
             }
             return true;
         } else
         if ( cmd.compare(L"portal:login") == 0 ) {
             AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, L"portal:login", pData->get_Param());
+            if ( m_pMainWindow ) {
+                m_pMainWindow->onPortalLogin(event->get_SenderId(), pData->get_Param());
+            }
+
             return true;
         } else
         if ( cmd.compare(L"portal:logout") == 0 ) {

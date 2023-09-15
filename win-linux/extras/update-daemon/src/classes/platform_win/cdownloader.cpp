@@ -197,7 +197,9 @@ void CDownloader::start()
         int error = (hr == DNL_OK) ? 0 :
                     (hr == DNL_ABORT) ? 1 :
                     (hr == DNL_OUT_MEM) ? -1 :
-                    (hr == DNL_CONN_ERR) ? -2 : -3;
+                    (hr == DNL_CONN_ERR) ? -2 :
+                    (hr == DNL_URL_ERR) ? -3 :
+                    (hr == DNL_CREAT_ERR) ? -4 : -5;
 
         if (m_complete_callback)
             m_complete_callback(error);

@@ -95,7 +95,7 @@
         <location filename="../src/platform_linux/cdialogopenssl.cpp" line="222"/>
         <location filename="../src/platform_linux/cdialogopenssl.cpp" line="225"/>
         <source>Open Document</source>
-        <translation type="unfinished">Բացել փաստաթուղթը</translation>
+        <translation>Բացել փաստաթուղթը</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/cdialogopenssl.cpp" line="244"/>
@@ -179,7 +179,7 @@
     <message>
         <location filename="../src/windows/ceditorwindow_p.h" line="466"/>
         <source>There are no printers available</source>
-        <translation type="unfinished"></translation>
+        <translation>Տպիչներ չկան</translation>
     </message>
 </context>
 <context>
@@ -287,7 +287,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="87"/>
         <source>Macro-enabled Presentation File (*.pptm)</source>
-        <translation type="unfinished"></translation>
+        <translation>Մակրո-միացված ներկայացման ֆայլ (*.pptm)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="89"/>
@@ -299,7 +299,12 @@
         <translation type="vanished">Excel Open XML Աղյուսակի ձևանմուշ (*.xltx)</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="92"/>
+        <location filename="../src/components/cfiledialog.cpp" line="97"/>
+        <source>Macro-enabled spreadsheet template (*.xltm)</source>
+        <translation>Մակրո-միացված աղյուսակի ձևանմուշ (*.xltm)</translation>
+    </message>
+    <message>
+        <location filename="../src/components/cfiledialog.cpp" line="98"/>
         <source>XLS File (*.xls)</source>
         <translation>Excel 97-2003 աղյուսակ (*.xls)</translation>
     </message>
@@ -370,7 +375,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="103"/>
         <source>JPG Image (*.jpg *.jpeg)</source>
-        <translation type="unfinished"></translation>
+        <translation>JPG պատկեր (*.jpg *.jpeg)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="104"/>
@@ -443,7 +448,7 @@
         <location filename="../src/components/cfiledialog.cpp" line="253"/>
         <location filename="../src/components/cfiledialog.cpp" line="363"/>
         <source>All supported files</source>
-        <translation type="unfinished"></translation>
+        <translation>Բոլոր աջակցվող ֆայլերը</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="211"/>
@@ -499,7 +504,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="402"/>
         <source>Select Folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Ընտրել պանակ</translation>
     </message>
 </context>
 <context>
@@ -518,42 +523,42 @@
         <location filename="../src/windows/cmainwindow.cpp" line="713"/>
         <location filename="../src/windows/cmainwindow.cpp" line="753"/>
         <source>File format not supported.</source>
-        <translation type="unfinished">Ֆայլի ֆորմատը հասանելի չէ։</translation>
+        <translation>Ֆայլի ֆորմատը հասանելի չէ։</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="737"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
-        <translation type="unfinished">%1 հասանելի չէ։ Հնարավոր է, որ այն անվանափոխվել է, տեղափոխվել կամ ջնջվել։&lt;br&gt;Ցանկանու՞մ եք ֆայլը հեռացնել ցանկից։</translation>
+        <translation>%1 հասանելի չէ։ Հնարավոր է, որ այն անվանափոխվել է, տեղափոխվել կամ ջնջվել։&lt;br&gt;Ցանկանու՞մ եք ֆայլը հեռացնել ցանկից։</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="797"/>
         <source>Document must be saved firstly.</source>
-        <translation type="unfinished">Առաջին հերթին պետք է պահպանել փաստաթուղթը։</translation>
+        <translation>Առաջին հերթին պետք է պահպանել փաստաթուղթը։</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="939"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
-        <translation type="unfinished">Շարունակելու համար պետք է պահպանել փաստաթուղթը։&lt;br&gt;Պահպանե՞լ փաստաթուղթը։</translation>
+        <translation>Շարունակելու համար պետք է պահպանել փաստաթուղթը։&lt;br&gt;Պահպանե՞լ փաստաթուղթը։</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="1049"/>
         <source>There are no printers available</source>
-        <translation type="unfinished"></translation>
+        <translation>Տպիչներ չկան</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="1108"/>
         <source>Print Document</source>
-        <translation type="unfinished">Տպել փաստաթուղթը։</translation>
+        <translation>Տպել փաստաթուղթը։</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="1308"/>
         <source>Sign Up</source>
-        <translation type="unfinished">Ստեղծել պորտալ</translation>
+        <translation>Ստեղծել պորտալ</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="1391"/>
         <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
-        <translation type="unfinished">%1 փոփոխվել է&lt;br&gt;Ցանկանու՞մ եք պահպանել փոփոխությունները։</translation>
+        <translation>%1 փոփոխվել է&lt;br&gt;Ցանկանու՞մ եք պահպանել փոփոխությունները։</translation>
     </message>
 </context>
 <context>
@@ -662,7 +667,7 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="372"/>
         <source>This folder configuration does not allow for updates! The folder name should be: </source>
-        <translation type="unfinished"></translation>
+        <translation>Այս թղթապանակի կազմաձևումը թույլ չի տալիս թարմացումներ: Թղթապանակի անվանումը պետք է լինի՝</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="379"/>
@@ -784,128 +789,149 @@
     <message>
         <location filename="../src/ceditortools.cpp" line="145"/>
         <source>XML File (*.xml)</source>
-        <translation type="unfinished"></translation>
+        <translation>XML Ֆայլ (*.xml)</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="254"/>
         <location filename="../src/windows/cmainwindow.cpp" line="702"/>
         <source>Access to file &apos;%1&apos; is denied!</source>
-        <translation type="unfinished"></translation>
+        <translation>&apos;%1&apos; ֆայլի մատչումը արգելված է:</translation>
     </message>
     <message>
         <location filename="../src/casctabdata.cpp" line="177"/>
         <source>Read only</source>
-        <translation type="unfinished"></translation>
+        <translation>Միայն կարդալու համար</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/updatedialog.cpp" line="45"/>
         <location filename="../src/platform_win/updatedialog.cpp" line="48"/>
         <source>Skip this version</source>
-        <translation type="unfinished"></translation>
+        <translation>Բաց թողնել այս տարբերակը</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/updatedialog.cpp" line="46"/>
         <location filename="../src/platform_win/updatedialog.cpp" line="49"/>
         <source>Remind me later</source>
-        <translation type="unfinished"></translation>
+        <translation>Հիշեցնել ինձ ավելի ուշ</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/updatedialog.cpp" line="47"/>
         <location filename="../src/platform_win/updatedialog.cpp" line="50"/>
         <source>Install update</source>
-        <translation type="unfinished"></translation>
+        <translation>Տեղադրել թարմացումը</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/updatedialog.cpp" line="48"/>
         <location filename="../src/platform_win/updatedialog.cpp" line="51"/>
         <source>Install later</source>
-        <translation type="unfinished"></translation>
+        <translation>Տեղադրել հաջորդ սկզբում</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/updatedialog.cpp" line="49"/>
         <location filename="../src/platform_win/updatedialog.cpp" line="52"/>
         <source>Save and Restart Now</source>
-        <translation type="unfinished"></translation>
+        <translation>Պահպանել և վերագործարկել հիմա</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/updatedialog.cpp" line="50"/>
         <location filename="../src/platform_win/updatedialog.cpp" line="53"/>
         <source>Save and Install Now</source>
-        <translation type="unfinished"></translation>
+        <translation>Պահպանել և տեղադրել հիմա</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/updatedialog.cpp" line="51"/>
         <location filename="../src/platform_win/updatedialog.cpp" line="54"/>
         <source>Download update</source>
-        <translation type="unfinished"></translation>
+        <translation>Ներբեռնել թարմացումը</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/updatedialog.cpp" line="68"/>
         <location filename="../src/platform_win/updatedialog.cpp" line="99"/>
         <source>Software Update</source>
-        <translation type="unfinished"></translation>
+        <translation>Ծրագրի թարմացում</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/updatedialog.cpp" line="71"/>
         <location filename="../src/platform_win/updatedialog.cpp" line="102"/>
         <source>Release notes</source>
-        <translation type="unfinished"></translation>
+        <translation>Թողարկման նշումներ</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="596"/>
+        <location filename="../src/cupdatemanager.cpp" line="343"/>
+        <source>An error occurred while check updates: Update Service not found!</source>
+        <translation>Թարմացումները ստուգելիս սխալ է տեղի ունեցել ՝ Թարմացման ծառայությունը չի գտնվել:</translation>
+    </message>
+    <message>
+        <location filename="../src/cupdatemanager.cpp" line="446"/>
+        <source>An error occurred while loading updates: Update Service not found!</source>
+        <translation>Թարմացումները բեռնելիս սխալ է տեղի ունեցել՝ Թարմացման ծառայությունը չի գտնվել:</translation>
+    </message>
+    <message>
+        <location filename="../src/cupdatemanager.cpp" line="486"/>
+        <source>An error occurred while unzip updates: Update Service not found!</source>
+        <translation>Թարմացումներն անջատելիս սխալ տեղի ունեցավ՝ Թարմացման ծառայությունը չի գտնվել: </translation>
+    </message>
+    <message>
+        <location filename="../src/cupdatemanager.cpp" line="497"/>
         <source>An error occurred while start install updates!</source>
-        <translation type="unfinished"></translation>
+        <translation>Տեղադրման թարմացումները սկսելիս սխալ առաջացավ:</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="606"/>
         <source>An error occurred while start replacing files: Update Service not found!</source>
-        <translation type="unfinished"></translation>
+        <translation>Սխալ է տեղի ունեցել ֆայլերը փոխարինելիս՝ Թարմացման ծառայությունը չի գտնվել:</translation>
     </message>
     <message>
         <location filename="../src/defines.h" line="131"/>
         <source>Cancel</source>
-        <translation type="unfinished">Չեղարկել</translation>
+        <translation>Չեղարկել</translation>
     </message>
     <message>
         <location filename="../src/defines.h" line="132"/>
         <source>Yes</source>
-        <translation type="unfinished">Այո</translation>
+        <translation>Այո</translation>
     </message>
     <message>
         <location filename="../src/defines.h" line="133"/>
         <source>No</source>
-        <translation type="unfinished">Ոչ</translation>
+        <translation>Ոչ</translation>
     </message>
     <message>
         <location filename="../src/components/cmessage.cpp" line="199"/>
         <location filename="../src/defines.h" line="134"/>
         <source>OK</source>
-        <translation type="unfinished">Լավ</translation>
+        <translation>Լավ</translation>
     </message>
     <message>
         <location filename="../src/defines.h" line="135"/>
         <source>Skip</source>
-        <translation type="unfinished"></translation>
+        <translation>Բաց թողնել</translation>
     </message>
     <message>
         <location filename="../src/defines.h" line="136"/>
         <source>Buy Now</source>
-        <translation type="unfinished"></translation>
+        <translation>Գնել հիմա</translation>
     </message>
     <message>
         <location filename="../src/defines.h" line="137"/>
         <source>Activate</source>
-        <translation type="unfinished"></translation>
+        <translation>Ակտիվացնել</translation>
     </message>
     <message>
         <location filename="../src/defines.h" line="138"/>
         <source>Continue</source>
-        <translation type="unfinished"></translation>
+        <translation>Շարունակել</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/xdgdesktopportal.cpp" line="1217"/>
         <source>An error occurred while opening the portal:&lt;br&gt;%1</source>
-        <translation type="unfinished"></translation>
+        <translation>Պորտալը բացելիս սխալ տեղի ունեցավ՝&lt;br&gt;%1</translation>
+    </message>
+    <message>
+        <location filename="../src/main.cpp" line="64"/>
+        <source>App can&apos;t working correctly under admin rights.</source>
+        <translation>Հավելվածը չի կարող ճիշտ աշխատել ադմինիստրատորի իրավունքների ներքո:</translation>
     </message>
     <message>
         <source>&amp;OK</source>

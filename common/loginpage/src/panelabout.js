@@ -82,18 +82,25 @@
                                         </div>
                                     </section>`;
         let _html = `<div class="flexbox">
+                        <h3 class='table-caption' l10n>${_lang.actAbout}</h3>
                         <div class="box-ver">
-                            <div class="${_opts.logocls}">
-                                <svg class="ver-logo">
-                                    <use id="idx-ver-logo--light" href="#idx-logo-light" />
-                                    <use id="idx-ver-logo--dark" href="#idx-logo-dark" />
-                                </svg>
-                            </div><p></p>
-                            <div class="ver-version" l10n>${_opts.appname} ${_lang.strVersion} ${_opts.version}</div>
+                            <section class="hbox">
+                                <div id="idx-about-cut-logo" class="${_opts.logocls}">
+                                    <svg class="ver-logo">
+                                        <use id="idx-ver-logo--light" href="#idx-logo-light" />
+                                        <use id="idx-ver-logo--dark" href="#idx-logo-dark" />
+                                    </svg>
+                                </div>
+                                <div class="vbox">
+                                    <p id="idx-about-appname">${_opts.appname}</p>
+                                    <p id="idx-about-version" l10n>${_lang.strVersion} ${_opts.version}</p>
+                                </div>
+                            </section><p></p>
+                            <div class="ver-version hidden" l10n>${_opts.appname} ${_lang.strVersion} ${_opts.version}</div>
+                            ${_updates_status}
                             <div id='id-features-available' l10n>${_lang.aboutProFeaturesAvailable}</div>
                             ${_opts.edition}<p></p>
-                            <a class="ver-checkupdate link" draggable='false' data-state='check' href="#" l10n>${_lang.checkUpdates}</a><p />
-                            ${_updates_status}
+                            <a class="ver-checkupdate link hidden" draggable='false' data-state='check' href="#" l10n>${_lang.checkUpdates}</a><p />
                             <a class="ver-changelog link" draggable='false' target="popup" href=${_opts.changelog} l10n>${_lang.aboutChangelog}</a><p />
                             <div class="ver-copyright">${_opts.rights}</div>
                             <a class="ver-site link" target="popup" href="${_opts.link}">${_opts.site}</a>
@@ -152,14 +159,14 @@
                 }
 
                 this.view.renderpanel(this.view.paneltemplate(args));
-                const $label = this.view.$panel.find('.ver-checkupdate');
-                $label.on('click', (e) => {
-                    if ( performance.now() - last_click_time < 1000 ) return;
-                    last_click_time = performance.now();
+                // const $label = this.view.$panel.find('.ver-checkupdate');
+                // $label.on('click', (e) => {
+                //     if ( performance.now() - last_click_time < 1000 ) return;
+                //     last_click_time = performance.now();
 
-                    window.sdk.execCommand('update', $label.data('state'));
-                });
-                $label[this.updates===true?'show':'hide']();
+                //     window.sdk.execCommand('update', $label.data('state'));
+                // });
+                // $label[this.updates===true?'show':'hide']();
                 if ( args.opts ) {
                     this.view.$panel.find('.ver-changelog')[!!args.opts.changelog?'show':'hide']();
                 }
@@ -183,41 +190,41 @@
                 }
             } else
             if (/^updates:checking/.test(cmd)) {
-                const $label = this.view.$panel.find('.ver-checkupdate');
-                const opts = JSON.parse(param);
-                if ( opts.version == 'no' ) {
-                    $label.text(utils.Lang.updateNoUpdates);
-                } else {
-                    $label.text(utils.Lang.updateAvialable.replace('$1', opts.version));
-                    $label.data('state', 'download');
-                }
-                $label.show();
+                // const $label = this.view.$panel.find('.ver-checkupdate');
+                // const opts = JSON.parse(param);
+                // if ( opts.version == 'no' ) {
+                //     $label.text(utils.Lang.updateNoUpdates);
+                // } else {
+                //     $label.text(utils.Lang.updateAvialable.replace('$1', opts.version));
+                //     $label.data('state', 'download');
+                // }
+                // $label.show();
             } else
             if (/updates:download/.test(cmd)) {
-                const opts = JSON.parse(param);
-                const $label = this.view.$panel.find('.ver-checkupdate');
+                // const opts = JSON.parse(param);
+                // const $label = this.view.$panel.find('.ver-checkupdate');
 
-                if ( opts.progress == 'done' ) {
-                    $label.text(utils.Lang.updateDownloadFinished);
-                    $label.data('state', 'install');
-                } else
-                if ( opts.progress == 'aborted' ) {
-                    $label.text(utils.Lang.updateDownloadCanceled);
-                } else {
-                    $label.text(utils.Lang.updateDownloadProgress.replace('$1', opts.progress));
-                    $label.data('state', 'abort');
-                }
+                // if ( opts.progress == 'done' ) {
+                //     $label.text(utils.Lang.updateDownloadFinished);
+                //     $label.data('state', 'install');
+                // } else
+                // if ( opts.progress == 'aborted' ) {
+                //     $label.text(utils.Lang.updateDownloadCanceled);
+                // } else {
+                //     $label.text(utils.Lang.updateDownloadProgress.replace('$1', opts.progress));
+                //     $label.data('state', 'abort');
+                // }
             } else
             if (/updates:link/.test(cmd)) {
-                const $label = this.view.$panel.find('.ver-checkupdate');
-                let opts = {};
-                if ( param == 'lock' || param == 'unlock' )
-                    opts.disabled = param == 'lock';
-                else opts = JSON.parse(param);
+                // const $label = this.view.$panel.find('.ver-checkupdate');
+                // let opts = {};
+                // if ( param == 'lock' || param == 'unlock' )
+                //     opts.disabled = param == 'lock';
+                // else opts = JSON.parse(param);
 
-                if ( opts.disabled != undefined ) {
-                    $label.attr('disabled', opts.disabled ? 'disabled' : false);
-                }
+                // if ( opts.disabled != undefined ) {
+                    // $label.attr('disabled', opts.disabled ? 'disabled' : false);
+                // }
             } else
             if (/updates:status/.test(cmd)) {
                 on_updates_info.call(this, JSON.parse(param))

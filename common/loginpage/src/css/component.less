@@ -368,6 +368,10 @@ input[type="radio"] {
             color: @text-normal-pressed;
             background-color: @highlight-button-hover;
         }
+
+        & small {
+            color: @text-secondary;
+        }
     }
 
     > .active > a {
@@ -377,6 +381,10 @@ input[type="radio"] {
         &:hover, &:focus {
             background-color: @highlight-button-pressed;
             color: @text-normal-pressed;
+        }
+
+        & small.text-muted {
+            color: @text-secondary !important;
         }
     }
 

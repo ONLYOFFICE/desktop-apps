@@ -70,11 +70,11 @@ public:
     void setActiveTabColor(int index, const QString&);
     void setUseTabCustomPalette(int, bool);
     void setTabLoading(int, bool);
-    void setTabIconTheme(int, TabTheme);
+    void setTabThemeType(int, TabTheme);
+    void setTabThemeIcons(int, const std::pair<QString, QString> &);
     void tabStartLoading(int, const QString& theme = QString());
-    void setIgnoreActiveTabColor(bool ignore);
-    bool ignoreActiveTabColor();
     void polish();
+    void refreshTheme();
     int tabIndexAt(const QPoint &pos) const;
     QWidget* tabIconLabel(int index) const;
     QWidget* tabButton(int index) const;

@@ -521,11 +521,11 @@ void CMainWindow::onEditorAllowedClose(int uid)
     } else {
         int _index = m_pTabs->tabIndexByView(uid);
         if ( !(_index < 0) ) {
-            m_pTabs->tabBar()->removeTab(_index);
             QWidget * _view = m_pTabs->widget(_index);
             m_pTabs->removeWidget(_view);
             _view->deleteLater();
 
+            m_pTabs->tabBar()->removeTab(_index);
             //m_pTabs->adjustTabsSize();
 
             onTabChanged(m_pTabs->currentIndex());
@@ -692,6 +692,25 @@ void CMainWindow::onPortalLogout(std::wstring wjson)
     }
 }
 
+void CMainWindow::onPortalLogin(int viewid, const std::wstring &json)
+{
+    if ( !(json.find(L"uiTheme") == std::wstring::npos) ) {
+        QJsonParseError jerror;
+        QJsonDocument jdoc = QJsonDocument::fromJson(QString::fromStdWString(json).toLatin1(), &jerror);
+
+        if( jerror.error == QJsonParseError::NoError ) {
+            QJsonObject objRoot = jdoc.object();
+            QString _ui_theme = objRoot["uiTheme"].toString();
+            if ( !_ui_theme.isEmpty() ) {
+//                onFileLocation(vid, _url);
+
+                if ( _ui_theme == "default-dark" )
+                    m_pTabs->setTabThemeType(m_pTabs->tabIndexByView(viewid), "dark");
+            }
+        }
+    }
+}
+
 void CMainWindow::doOpenLocalFile(COpenOptions& opts)
 {
     QFileInfo info(opts.url);
@@ -762,7 +781,6 @@ void CMainWindow::createLocalFile(const QString& name, int format)
     int tabIndex = m_pTabs->addEditor(opts);
 
     if ( !(tabIndex < 0) ) {
-        m_pTabs->updateIcons();
         m_pTabs->setCurrentIndex(tabIndex);
 
         toggleButtonMain(false, true);

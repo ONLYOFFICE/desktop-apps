@@ -725,7 +725,7 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="372"/>
         <source>This folder configuration does not allow for updates! The folder name should be: </source>
-        <translation type="unfinished"></translation>
+        <translation>Esta configuración de carpeta no permite actualizaciones. El nombre de la carpeta debe ser: </translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="379"/>
@@ -823,15 +823,15 @@
     </message>
     <message>
         <source>A new version of %1 is available!</source>
-        <translation type="obsolete">¡Una nueva versión de %1 está disponible!</translation>
+        <translation>¡Una nueva versión de %1 está disponible!</translation>
     </message>
     <message>
         <source>%1 %2 is now available (you have %3). Would you like to download it now?</source>
-        <translation type="obsolete">%1 %2 ya está disponible (usted tiene %3). ¿Desea descargarlo ahora?</translation>
+        <translation>%1 %2 ya está disponible (usted tiene %3). ¿Desea descargarlo ahora?</translation>
     </message>
     <message>
         <source>%1 %2 is now downloaded (you have %3). Would you like to install it now?</source>
-        <translation type="obsolete">%1 %2 ya está descargado (usted tiene %3). ¿Desea instalarlo ahora?</translation>
+        <translation>%1 %2 ya está descargado (usted tiene %3). ¿Desea instalarlo ahora?</translation>
     </message>
 </context>
 <context>
@@ -863,13 +863,13 @@
     <message>
         <location filename="../src/ceditortools.cpp" line="145"/>
         <source>XML File (*.xml)</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivo XML (*.xml)</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="254"/>
         <location filename="../src/windows/cmainwindow.cpp" line="702"/>
         <source>Access to file &apos;%1&apos; is denied!</source>
-        <translation type="unfinished"></translation>
+        <translation>¡El acceso al archivo &apos;%1&apos; está denegado!</translation>
     </message>
     <message>
         <location filename="../src/casctabdata.cpp" line="177"/>
@@ -936,59 +936,80 @@
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="596"/>
+        <location filename="../src/cupdatemanager.cpp" line="343"/>
+        <source>An error occurred while check updates: Update Service not found!</source>
+        <translation>Se ha producido un error al comprobar las actualizaciones: ¡No se ha encontrado el servicio de actualización!</translation>
+    </message>
+    <message>
+        <location filename="../src/cupdatemanager.cpp" line="446"/>
+        <source>An error occurred while loading updates: Update Service not found!</source>
+        <translation>Se ha producido un error al cargar las actualizaciones: ¡No se ha encontrado el servicio de actualización!</translation>
+    </message>
+    <message>
+        <location filename="../src/cupdatemanager.cpp" line="486"/>
+        <source>An error occurred while unzip updates: Update Service not found!</source>
+        <translation>Se ha producido un error al extraer las actualizaciones: ¡No se ha encontrado el servicio de actualización!</translation>
+    </message>
+    <message>
+        <location filename="../src/cupdatemanager.cpp" line="497"/>
         <source>An error occurred while start install updates!</source>
-        <translation type="unfinished"></translation>
+        <translation>Se ha producido un error al iniciar la instalación de actualizaciones.</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="606"/>
         <source>An error occurred while start replacing files: Update Service not found!</source>
-        <translation type="unfinished"></translation>
+        <translation>Se ha producido un error al iniciar la sustitución de archivos: ¡No se ha encontrado el servicio de actualización!</translation>
     </message>
     <message>
         <location filename="../src/defines.h" line="131"/>
         <source>Cancel</source>
-        <translation type="unfinished">Cancelar</translation>
+        <translation>Cancelar</translation>
     </message>
     <message>
         <location filename="../src/defines.h" line="132"/>
         <source>Yes</source>
-        <translation type="unfinished">Sí</translation>
+        <translation>Sí</translation>
     </message>
     <message>
         <location filename="../src/defines.h" line="133"/>
         <source>No</source>
-        <translation type="unfinished">No</translation>
+        <translation>No</translation>
     </message>
     <message>
         <location filename="../src/components/cmessage.cpp" line="199"/>
         <location filename="../src/defines.h" line="134"/>
         <source>OK</source>
-        <translation type="unfinished">Aceptar</translation>
+        <translation>Aceptar</translation>
     </message>
     <message>
         <location filename="../src/defines.h" line="135"/>
         <source>Skip</source>
-        <translation type="unfinished">Omitir</translation>
+        <translation>Omitir</translation>
     </message>
     <message>
         <location filename="../src/defines.h" line="136"/>
         <source>Buy Now</source>
-        <translation type="unfinished"></translation>
+        <translation>Comprar ahora</translation>
     </message>
     <message>
         <location filename="../src/defines.h" line="137"/>
         <source>Activate</source>
-        <translation type="unfinished"></translation>
+        <translation>Activar</translation>
     </message>
     <message>
         <location filename="../src/defines.h" line="138"/>
         <source>Continue</source>
-        <translation type="unfinished"></translation>
+        <translation>Continuar</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/xdgdesktopportal.cpp" line="1217"/>
         <source>An error occurred while opening the portal:&lt;br&gt;%1</source>
-        <translation type="unfinished"></translation>
+        <translation>Se ha producido un error al abrir el portal: &lt;br&gt;%1</translation>
+    </message>
+    <message>
+        <location filename="../src/main.cpp" line="64"/>
+        <source>App can&apos;t working correctly under admin rights.</source>
+        <translation>La app no puede funcionar correctamente con los derechos de administrador.</translation>
     </message>
     <message>
         <source>&amp;OK</source>

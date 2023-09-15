@@ -303,7 +303,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="87"/>
         <source>Macro-enabled Presentation File (*.pptm)</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivo de apresentação habilitado para macro (*.pptm)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="89"/>
@@ -315,7 +315,12 @@
         <translation type="vanished">Modelo de planilha do Excel Open XML (*.xltx)</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="92"/>
+        <location filename="../src/components/cfiledialog.cpp" line="97"/>
+        <source>Macro-enabled spreadsheet template (*.xltm)</source>
+        <translation>Modelo de planilha habilitado para macro (*.xltm)</translation>
+    </message>
+    <message>
+        <location filename="../src/components/cfiledialog.cpp" line="98"/>
         <source>XLS File (*.xls)</source>
         <translation>Folha de cálculo do Excel 97-2003 (*.xls)</translation>
     </message>
@@ -682,7 +687,7 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="372"/>
         <source>This folder configuration does not allow for updates! The folder name should be: </source>
-        <translation type="unfinished"></translation>
+        <translation>Esta configuração de pasta não permite atualizações! O nome da pasta deve ser: </translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="379"/>
@@ -780,15 +785,15 @@
     </message>
     <message>
         <source>A new version of %1 is available!</source>
-        <translation type="obsolete">Uma nova versão do %1 está disponível!</translation>
+        <translation>Uma nova versão do %1 está disponível!</translation>
     </message>
     <message>
         <source>%1 %2 is now available (you have %3). Would you like to download it now?</source>
-        <translation type="obsolete">%1 %2 agora está disponível (você tem %3). Deseja baixá-lo agora?</translation>
+        <translation>%1 %2 agora está disponível (você tem %3). Deseja baixá-lo agora?</translation>
     </message>
     <message>
         <source>%1 %2 is now downloaded (you have %3). Would you like to install it now?</source>
-        <translation type="obsolete">%1 %2 foi baixado (você tem %3). Você gostaria de instalar agora?</translation>
+        <translation>%1 %2 foi baixado (você tem %3). Você gostaria de instalar agora?</translation>
     </message>
 </context>
 <context>
@@ -820,13 +825,13 @@
     <message>
         <location filename="../src/ceditortools.cpp" line="145"/>
         <source>XML File (*.xml)</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivo XML (*.xml)</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="254"/>
         <location filename="../src/windows/cmainwindow.cpp" line="702"/>
         <source>Access to file &apos;%1&apos; is denied!</source>
-        <translation type="unfinished"></translation>
+        <translation>Acesso ao arquivo &apos;%1&apos; negado!</translation>
     </message>
     <message>
         <location filename="../src/casctabdata.cpp" line="177"/>
@@ -893,59 +898,80 @@
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="596"/>
+        <location filename="../src/cupdatemanager.cpp" line="343"/>
+        <source>An error occurred while check updates: Update Service not found!</source>
+        <translation>Ocorreu um erro ao verificar atualizações: Serviço de atualização não encontrado!</translation>
+    </message>
+    <message>
+        <location filename="../src/cupdatemanager.cpp" line="446"/>
+        <source>An error occurred while loading updates: Update Service not found!</source>
+        <translation>Corrija um erro ao verificar atualizações: Serviço de atualização não encontrado!</translation>
+    </message>
+    <message>
+        <location filename="../src/cupdatemanager.cpp" line="486"/>
+        <source>An error occurred while unzip updates: Update Service not found!</source>
+        <translation>Ocorreu um erro ao descompactar atualizações: Serviço de atualização não encontrado!</translation>
+    </message>
+    <message>
+        <location filename="../src/cupdatemanager.cpp" line="497"/>
         <source>An error occurred while start install updates!</source>
-        <translation type="unfinished"></translation>
+        <translation>Ocorreu um erro ao iniciar a instalação das atualizações!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="606"/>
         <source>An error occurred while start replacing files: Update Service not found!</source>
-        <translation type="unfinished"></translation>
+        <translation>Ocorreu um erro ao iniciar a substituição de arquivos: Serviço de atualização não encontrado!</translation>
     </message>
     <message>
         <location filename="../src/defines.h" line="131"/>
         <source>Cancel</source>
-        <translation type="unfinished">Cancelar</translation>
+        <translation>Cancelar</translation>
     </message>
     <message>
         <location filename="../src/defines.h" line="132"/>
         <source>Yes</source>
-        <translation type="unfinished">Sim</translation>
+        <translation>Sim</translation>
     </message>
     <message>
         <location filename="../src/defines.h" line="133"/>
         <source>No</source>
-        <translation type="unfinished">Não</translation>
+        <translation>Não</translation>
     </message>
     <message>
         <location filename="../src/components/cmessage.cpp" line="199"/>
         <location filename="../src/defines.h" line="134"/>
         <source>OK</source>
-        <translation type="unfinished">OK</translation>
+        <translation>OK</translation>
     </message>
     <message>
         <location filename="../src/defines.h" line="135"/>
         <source>Skip</source>
-        <translation type="unfinished">Pular</translation>
+        <translation>Pular</translation>
     </message>
     <message>
         <location filename="../src/defines.h" line="136"/>
         <source>Buy Now</source>
-        <translation type="unfinished"></translation>
+        <translation>Comprar agora</translation>
     </message>
     <message>
         <location filename="../src/defines.h" line="137"/>
         <source>Activate</source>
-        <translation type="unfinished"></translation>
+        <translation>Ativar</translation>
     </message>
     <message>
         <location filename="../src/defines.h" line="138"/>
         <source>Continue</source>
-        <translation type="unfinished"></translation>
+        <translation>Continuar</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/xdgdesktopportal.cpp" line="1217"/>
         <source>An error occurred while opening the portal:&lt;br&gt;%1</source>
-        <translation type="unfinished"></translation>
+        <translation>Ocorreu um erro ao abrir o portal: &lt;br&gt;%1</translation>
+    </message>
+    <message>
+        <location filename="../src/main.cpp" line="64"/>
+        <source>App can&apos;t working correctly under admin rights.</source>
+        <translation>O aplicativo não funciona corretamente com direitos de administrador.</translation>
     </message>
     <message>
         <source>&amp;OK</source>
