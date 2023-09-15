@@ -334,6 +334,8 @@ $(CHANGELOG_DEB) : $(CHANGELOG_DEB_M4)
 			sed 's/<\/li>//g' | \
 			sed 's/<\/h4>//g' | \
 			sed 's/<\/h2>/:/g' | \
+			sed 's/<code>//g' | \
+			sed 's/<\/code>//g' | \
 			sed 's/ \{,\}<li>/    - /g' | \
 			sed 's/ \{,\}<h4>/  * /g' | \
 			sed 's/ \{,\}<h2>/  * /g' | \
@@ -344,6 +346,28 @@ $(CHANGELOG_DEB) : $(CHANGELOG_DEB_M4)
 			> $(CHANGES_DIR)/$(dir)/changes_deb; \
 			mkdir -p deb/build/debian; \
 			m4 $(M4_DEB_PARAMS) -D M4_PACKAGE_VERSION='$(dir)' -D M4_DATE='$(shell date -d "$(shell grep \"releasedate\" $(CHANGES_DIR)/$(dir)/$(CHANGES_HTML) | sed 's/.* - //' | sed 's/<\/span>.*//' | sed 's/{{DATE}}/$(shell date -R)/')" -R)' $(CHANGELOG_DEB_M4) | sed '2r $(CHANGES_DIR)/$(dir)/changes_deb' >> $(CHANGELOG_DEB)))
+
+$(CHANGELOG_RPM) :
+	$(foreach dir, \
+		$(shell ls -r $(CHANGES_DIR) | grep -v 0.0.0), \
+		$(shell \
+			sed '/DOCTYPE/,/div class/d' $(CHANGES_DIR)/$(dir)/$(CHANGES_HTML) | \
+			sed '/div class/,/html/d' | \
+			sed 's/<\/li>//g' | \
+			sed 's/<\/h4>//g' | \
+			sed 's/<\/h2>/:/g' | \
+			sed 's/<code>//g' | \
+			sed 's/<\/code>//g' | \
+			sed 's/ \{,\}<li>/  - /g' | \
+			sed 's/ \{,\}<h4>/* /g' | \
+			sed 's/ \{,\}<h2>//g' | \
+			sed '/<ul>/d' | \
+			sed '/<\/ul>/d' | \
+			sed '/<h1>/d' | \
+			sed '/^$$/d' \
+			> $(CHANGES_DIR)/$(dir)/changes_rpm; \
+			mkdir -p $(shell dirname $(CHANGELOG_RPM)); \
+			m4 $(M4_PARAMS) -D M4_VERSION='$(dir)' -D M4_DATE_SHORT='$(shell date -d "$(shell grep \"releasedate\" $(CHANGES_DIR)/$(dir)/$(CHANGES_HTML) | sed 's/.* - //' | sed 's/<\/span>.*//' | sed 's/{{DATE}}/$(shell date -R)/')" -I)' $(CHANGELOG_RPM_M4) | sed '2r $(CHANGES_DIR)/$(dir)/changes_rpm' >> $(CHANGELOG_RPM)))
 
 deb/build/debian/$(PACKAGE_NAME).% : deb/template/package.%.m4
 	mkdir -pv $(@D) && m4 $(M4_DEB_PARAMS) $< > $@
@@ -419,26 +443,6 @@ common/usr/bin/$(COMPANY_NAME_LOW) : common/usr/bin/$(DESKTOPEDITORS_EXEC)
 
 $(BIN_FILES) $(DESKTOP_FILES) :
 	m4 -I'common/usr/share/applications' $(M4_PARAMS) $< > $@
-
-$(CHANGELOG_RPM) :
-	$(foreach dir, \
-		$(shell ls -r $(CHANGES_DIR) | grep -v 0.0.0), \
-		$(shell \
-			sed '/DOCTYPE/,/div class/d' $(CHANGES_DIR)/$(dir)/$(CHANGES_HTML) | \
-			sed '/div class/,/html/d' | \
-			sed 's/<\/li>//g' | \
-			sed 's/<\/h4>//g' | \
-			sed 's/<\/h2>/:/g' | \
-			sed 's/ \{,\}<li>/  - /g' | \
-			sed 's/ \{,\}<h4>/* /g' | \
-			sed 's/ \{,\}<h2>//g' | \
-			sed '/<ul>/d' | \
-			sed '/<\/ul>/d' | \
-			sed '/<h1>/d' | \
-			sed '/^$$/d' \
-			> $(CHANGES_DIR)/$(dir)/changes_rpm; \
-			mkdir -p $(shell dirname $(CHANGELOG_RPM)); \
-			m4 $(M4_PARAMS) -D M4_VERSION='$(dir)' -D M4_DATE_SHORT='$(shell date -d "$(shell grep \"releasedate\" $(CHANGES_DIR)/$(dir)/$(CHANGES_HTML) | sed 's/.* - //' | sed 's/<\/span>.*//' | sed 's/{{DATE}}/$(shell date -R)/')" -I)' $(CHANGELOG_RPM_M4) | sed '2r $(CHANGES_DIR)/$(dir)/changes_rpm' >> $(CHANGELOG_RPM)))
 
 $(SYMLINK) :
 	ln -srf $< $@
