@@ -76,6 +76,7 @@ CHANGELOG_RPM = common/usr/share/doc/$(PACKAGE_NAME)/NEWS
 CHANGELOG_RPM_M4 = common/usr/share/doc/NEWS.m4
 CHANGELOG_DEB = deb/build/debian/changelog
 CHANGELOG_DEB_M4 = deb/template/changelog.m4
+CHANGELOG_DEB_ASTRA = deb-astra/build/debian/changelog
 
 ifeq ($(COMPANY_NAME), ONLYOFFICE)
 	DESKTOPEDITORS_PREFIX := $(COMPANY_NAME_LOW)/$(PRODUCT_NAME_LOW)
@@ -121,7 +122,7 @@ DEB_DEPS += deb/build/debian/$(PACKAGE_NAME).install
 DEB_DEPS += deb/build/debian/$(PACKAGE_NAME).links
 DEB_DEPS += deb/build/debian/$(PACKAGE_NAME)-help.install
 
-DEB_ASTRA_DEPS += deb-astra/build/debian/changelog
+DEB_ASTRA_DEPS += $(CHANGELOG_DEB_ASTRA)
 DEB_ASTRA_DEPS += deb-astra/build/debian/compat
 DEB_ASTRA_DEPS += deb-astra/build/debian/control
 DEB_ASTRA_DEPS += deb-astra/build/debian/postinst
@@ -324,6 +325,10 @@ deb/build/debian/% : deb/template/%
 
 deb/build/debian/% : deb/template/%.m4
 	mkdir -pv $(@D) && m4 $(M4_DEB_PARAMS) $< > $@
+
+$(CHANGELOG_DEB_ASTRA) : $(CHANGELOG_DEB)
+	mkdir -p $(shell dirname $(CHANGELOG_DEB_ASTRA))
+	cp $(CHANGELOG_DEB) $(CHANGELOG_DEB_ASTRA)
 
 $(CHANGELOG_DEB) : $(CHANGELOG_DEB_M4)
 	$(foreach dir, \
