@@ -589,23 +589,23 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="330"/>
         <source>This folder configuration does not allow for updates! The folder name should be: </source>
-        <translation type="unfinished"></translation>
+        <translation>此文件夹配置不允许更新！文件夹名称应为： </translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="642"/>
         <location filename="../src/cupdatemanager.cpp" line="667"/>
         <source>A new version of %1 is available!</source>
-        <translation type="unfinished">%1 的新版本现已发布！</translation>
+        <translation>%1 的新版本现已发布！</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="643"/>
         <source>%1 %2 is now available (you have %3). Would you like to download it now?</source>
-        <translation type="unfinished">%1 %2 现已可用（您使用的是 %3）。您是否要立即下载新版本？</translation>
+        <translation>%1 %2 现已可用（您使用的是 %3）。您是否要立即下载新版本？</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="668"/>
         <source>%1 %2 is now downloaded (you have %3). Would you like to install it now?</source>
-        <translation type="unfinished">%1 %2 已经下载完成（您使用的是 %3）。您是否要立即安装新版本？</translation>
+        <translation>%1 %2 已经下载完成（您使用的是 %3）。您是否要立即安装新版本？</translation>
     </message>
 </context>
 <context>
@@ -637,13 +637,13 @@
     <message>
         <location filename="../src/ceditortools.cpp" line="146"/>
         <source>XML File (*.xml)</source>
-        <translation type="unfinished"></translation>
+        <translation>XML 文件 (*.xml)</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="228"/>
         <location filename="../src/windows/cmainwindow.cpp" line="747"/>
         <source>Access to file &apos;%1&apos; is denied!</source>
-        <translation type="unfinished"></translation>
+        <translation>拒绝访问‘%1’文件！</translation>
     </message>
     <message>
         <location filename="../src/casctabdata.cpp" line="177"/>
@@ -698,78 +698,78 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="343"/>
         <source>An error occurred while check updates: Update Service not found!</source>
-        <translation type="unfinished"></translation>
+        <translation>检查更新时发生错误： 未找到更新服务！</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="446"/>
         <source>An error occurred while loading updates: Update Service not found!</source>
-        <translation type="unfinished"></translation>
+        <translation>加载更新时发生错误： 未找到更新服务！</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="486"/>
         <source>An error occurred while unzip updates: Update Service not found!</source>
-        <translation type="unfinished"></translation>
+        <translation>解压更新时发生错误： 未找到更新服务！</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="497"/>
         <source>An error occurred while start install updates!</source>
-        <translation type="unfinished"></translation>
+        <translation>开始安装更新时发生错误！</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="501"/>
         <source>An error occurred while start replacing files: Update Service not found!</source>
-        <translation type="unfinished"></translation>
+        <translation>开始替换文件时发生错误： 未找到更新服务！</translation>
     </message>
     <message>
         <location filename="../src/defines.h" line="128"/>
         <source>Cancel</source>
-        <translation type="unfinished">取消</translation>
+        <translation>取消</translation>
     </message>
     <message>
         <location filename="../src/defines.h" line="129"/>
         <source>Yes</source>
-        <translation type="unfinished">是</translation>
+        <translation>是</translation>
     </message>
     <message>
         <location filename="../src/defines.h" line="130"/>
         <source>No</source>
-        <translation type="unfinished">否</translation>
+        <translation>否</translation>
     </message>
     <message>
         <location filename="../src/components/cmessage.cpp" line="199"/>
         <location filename="../src/defines.h" line="131"/>
         <source>OK</source>
-        <translation type="unfinished">确定</translation>
+        <translation>确定</translation>
     </message>
     <message>
         <location filename="../src/defines.h" line="132"/>
         <source>Skip</source>
-        <translation type="unfinished">跳过</translation>
+        <translation>跳过</translation>
     </message>
     <message>
         <location filename="../src/defines.h" line="133"/>
         <source>Buy Now</source>
-        <translation type="unfinished"></translation>
+        <translation>立即购买</translation>
     </message>
     <message>
         <location filename="../src/defines.h" line="134"/>
         <source>Activate</source>
-        <translation type="unfinished"></translation>
+        <translation>激活</translation>
     </message>
     <message>
         <location filename="../src/defines.h" line="135"/>
         <source>Continue</source>
-        <translation type="unfinished"></translation>
+        <translation>继续</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/xdgdesktopportal.cpp" line="1217"/>
         <source>An error occurred while opening the portal:&lt;br&gt;%1</source>
-        <translation type="unfinished"></translation>
+        <translation>打开门户网站时发生错误： &lt;br&gt;%1</translation>
     </message>
     <message>
         <location filename="../src/main.cpp" line="64"/>
         <source>App can&apos;t working correctly under admin rights.</source>
-        <translation type="unfinished"></translation>
+        <translation>应用程序在管理员权限下无法正常运行。</translation>
     </message>
     <message>
         <source>&amp;OK</source>

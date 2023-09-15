@@ -1136,7 +1136,7 @@ no.extXPS =OpenXPS-dokument
 uk.extXPS =Документ OpenXPS
 be.extXPS =Дакумент OpenXPS
 gl.extXPS =Documento OpenXPS
-si.extXPS =ඕපන්XPS ලේඛනය
+si.extXPS =ඕපන් XPS ලේඛනය
 zh_TW.extXPS =OpenXPS 檔案
 
 en.extOFORM =ONLYOFFICE Fillable Online Form
