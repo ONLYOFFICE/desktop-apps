@@ -242,7 +242,6 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
                 }
 
                 if ( InputArgs::contains(L"--system-title-bar") ) {
-                {
                     QJsonObject json{{"element","body"},
                                         {"action", "merge"},
                                         {"style","#title-doc-name{display:none}"}};
