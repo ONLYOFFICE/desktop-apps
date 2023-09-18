@@ -62,7 +62,7 @@
     ViewAbout.prototype.paneltemplate = function(args) {
         var _opts = args.opts;
         !!_opts.active && (_opts.edition = !!_opts.edition ? _opts.edition + ' ' + _opts.active : _opts.active);
-        _opts.edition = !!_opts.edition ? `<div class="ver-edition">${_opts.edition}</div>` : '';
+        _opts.edition = !!_opts.edition ? `<div id="idx-ver-edition" class="about-field">${_opts.edition}</div>` : '';
 
         let _ext_ver = '';
         if ( !!_opts.arch ) _ext_ver += `${_opts.arch == 'x64' ? 'x64' : 'x86'}`;
@@ -99,10 +99,10 @@
                             <div class="ver-version hidden" l10n>${_opts.appname} ${_lang.strVersion} ${_opts.version}</div>
                             ${_updates_status}
                             <div id='id-features-available' l10n>${_lang.aboutProFeaturesAvailable}</div>
-                            ${_opts.edition}<p></p>
-                            <a class="ver-checkupdate link hidden" draggable='false' data-state='check' href="#" l10n>${_lang.checkUpdates}</a><p />
-                            <a class="ver-changelog link" draggable='false' target="popup" href=${_opts.changelog} l10n>${_lang.aboutChangelog}</a><p />
-                            <div class="ver-copyright">${_opts.rights}</div>
+                            ${_opts.edition}
+                            <a class="ver-checkupdate link hidden" draggable='false' data-state='check' href="#" l10n>${_lang.checkUpdates}</a>
+                            <div class="about-field"><a class="ver-changelog link" draggable='false' target="popup" href=${_opts.changelog} l10n>${_lang.aboutChangelog}</a></div>
+                            <div class="ver-copyright about-field">${_opts.rights}</div>
                             <a class="ver-site link" target="popup" href="${_opts.link}">${_opts.site}</a>
                         </div>`+
                         // '<div class="box-license flex-fill">'+
