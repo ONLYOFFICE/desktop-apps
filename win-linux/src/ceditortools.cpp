@@ -325,6 +325,9 @@ namespace CEditorTools
         if (format > AVS_OFFICESTUDIO_FILE_SPREADSHEET && format < AVS_OFFICESTUDIO_FILE_CROSSPLATFORM ) {
             return etSpreadsheet;
         }
+        else
+        if (format > AVS_OFFICESTUDIO_FILE_CROSSPLATFORM && format < AVS_OFFICESTUDIO_FILE_IMAGE )
+            return etDocumentViewer;
 
         return etUndefined;
     }

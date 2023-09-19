@@ -51,6 +51,7 @@ CAscTabData::CAscTabData(const QString& t, AscEditorType ct)
     case etDocument:
     case etSpreadsheet:
     case etPresentation:
+    case etDocumentViewer:
         _vtype = cvwtEditor;
         break;
     default:

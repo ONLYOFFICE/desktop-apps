@@ -20,6 +20,7 @@ public:
         , ecrTabWordActive
         , ecrTabCellActive
         , ecrTabSlideActive
+        , ecrTabViewerActive
         , ecrTabSimpleActiveBackground
         , ecrTabSimpleActiveText
         , ecrTabDefaultActiveBackground
