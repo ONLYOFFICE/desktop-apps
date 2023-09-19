@@ -205,7 +205,7 @@ ifeq ($(COMPANY_NAME), ONLYOFFICE)
 else
 	CHANGES_HTML = changes_ru.html
 endif
-CHANGES_DIR_LIST = $(shell ls -r $(CHANGES_DIR) | grep -v 0.0.0)
+CHANGES_DIR_LIST = $(shell ls -r $(CHANGES_DIR) | grep -v template)
 
 .PHONY: all clean branding packages rpm deb deb-astra apt-rpm suse-rpm tar desktopeditor qt-redist libstdc++-addon libc-addon
 
