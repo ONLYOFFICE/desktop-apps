@@ -121,22 +121,11 @@ if [ -x "$UPDATE_MENUS" ]; then
   update-menus
 fi
 
-MIMEAPPS_LIST="/usr/share/applications/mimeapps.list"
-if [ ! -f "$MIMEAPPS_LIST" ]; then
-  echo "[Default Applications]" >"$MIMEAPPS_LIST"
-fi
-if [ $(cat "$MIMEAPPS_LIST" | grep x-scheme-handler/%{_scheme_handler} | wc -l) -eq "0" ]; then
-  echo "x-scheme-handler/%{_scheme_handler}=%{_desktopeditors_exec}.desktop" >>"$MIMEAPPS_LIST"
-fi
-if [ $(cat "$MIMEAPPS_LIST" | grep text/docxf | wc -l) -eq "0" ]; then
-  echo "text/docxf=%{_desktopeditors_exec}.desktop" >>"$MIMEAPPS_LIST"
-fi
-if [ $(cat "$MIMEAPPS_LIST" | grep text/oform | wc -l) -eq "0" ]; then
-  echo "text/oform=%{_desktopeditors_exec}.desktop" >>"$MIMEAPPS_LIST"
-fi
-
 xdg-mime install --mode system /opt/%{_desktopeditors_prefix}/mimetypes/onlyoffice-docxf.xml
 xdg-mime install --mode system /opt/%{_desktopeditors_prefix}/mimetypes/onlyoffice-oform.xml
+
+update-mime-database /usr/share/mime
+update-desktop-database /usr/share/applications
 
 # Update cache of .desktop file MIME types. Non-fatal since it's just a cache.
 #update-desktop-database > /dev/null 2>&1 || true
