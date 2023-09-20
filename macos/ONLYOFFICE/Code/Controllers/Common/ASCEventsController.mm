@@ -280,16 +280,15 @@ public:
                         break;
                     }
 
-                    case ASC_MENU_EVENT_TYPE_CEF_LOCALFILE_RECENTOPEN:
+//                    case ASC_MENU_EVENT_TYPE_CEF_LOCALFILE_RECENTOPEN:
                     case ASC_MENU_EVENT_TYPE_CEF_LOCALFILE_RECOVEROPEN: {
                         NSEditorApi::CAscLocalOpenFileRecent_Recover* pData = (NSEditorApi::CAscLocalOpenFileRecent_Recover*)pEvent->m_pData;
                         
-                        BOOL isRecover = pData->get_IsRecover();
                         
                         [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameCreateTab
                                                                             object:nil
                                                                           userInfo:@{
-                                                                                     @"action"  : isRecover ? @(ASCTabActionOpenLocalRecoverFile) : @(ASCTabActionOpenLocalRecentFile),
+                                                                                     @"action"  : @(ASCTabActionOpenLocalRecoverFile),
                                                                                      @"active"  : @(YES),
                                                                                      @"fileId"  : @(pData->get_Id()),
                                                                                      @"path"    : [NSString stringWithstdwstring:pData->get_Path()]
@@ -752,7 +751,16 @@ public:
                                 }
                             }
                         } else if (cmd.find(L"open:recent") != std::wstring::npos) {
-                            NSLog(@"open:recent");
+                            if (NSDictionary * json = [[NSString stringWithstdwstring:param] dictionary]) {
+                                [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameCreateTab
+                                                                                    object:nil
+                                                                                  userInfo:@{
+                                                                                             @"action"  : @(ASCTabActionOpenLocalRecentFile),
+                                                                                             @"active"  : @(YES),
+                                                                                             @"fileId"  : json[@"id"],
+                                                                                             @"path"    : json[@"path"]
+                                                                                             }];
+                            }
                         } else if (cmd.find(L"webapps:features") != std::wstring::npos) {
                             CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
                             CCefView * pCefView = appManager->GetViewById(senderId);
