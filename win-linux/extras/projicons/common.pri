@@ -10,7 +10,8 @@ CONFIG  -= debug_and_release debug_and_release_target
 TEMPLATE = app
 
 INCLUDEPATH += $$PWD/src
-HEADERS += $$PWD/src/version.h
+HEADERS += $$PWD/src/version.h \
+           $$PWD/src/resource.h
 SOURCES += $$PWD/src/main.cpp
 OTHER_FILES += $$PWD/version.rc \
                $$PWD/res/manifest/projicons.exe.manifest
