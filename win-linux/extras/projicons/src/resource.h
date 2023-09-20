@@ -23,3 +23,4 @@
 #define IDI_ICON23  123
 #define IDI_ICON24  124
 #define IDI_ICON25  125
+#define IDI_ICON26  126

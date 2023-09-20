@@ -26,6 +26,7 @@ IDI_ICON22      ICON    DISCARDABLE "./res/icons/html.ico"
 IDI_ICON23      ICON    DISCARDABLE "./res/icons/xls.ico"
 IDI_ICON24      ICON    DISCARDABLE "./res/icons/ods.ico"
 IDI_ICON25      ICON    DISCARDABLE "./res/icons/csv.ico"
+IDI_ICON26      ICON    DISCARDABLE "./res/icons/uninstall.ico"
 
 #include <windows.h>
 #include "src/version.h"
