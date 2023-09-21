@@ -41,13 +41,13 @@
 "Document %ld.docx" = "Документ %ld.docx";
 
 /* No comment provided by engineer. */
+"Document %ld.docxf" = "Документ %ld.docxf";
+
+/* No comment provided by engineer. */
 "Document template" = "Шаблон документа Word Open XML (*.dotx)";
 
 /* No comment provided by engineer. */
 "Don't Save" = "Не сохранять";
-
-/* No comment provided by engineer. */
-"Electronic Publication" = "Электронная книга (*.epub)";
 
 /* No comment provided by engineer. */
 "Excel 97-2003 Spreadsheet" = "Электронная таблица Excel 97-2003 (*.xls)";
@@ -71,9 +71,6 @@
 "Hide %@" = "Скрыть %@";
 
 /* No comment provided by engineer. */
-"HTML File" = "Веб-страница (*.html)";
-
-/* No comment provided by engineer. */
 "If you don't review your documents, all your changeses will be lost." = "Если Вы не просмотрите эти документы, все внесенные изменения будут потеряны.";
 
 /* No comment provided by engineer. */
@@ -83,10 +80,13 @@
 "License Agreement" = "Пользовательское соглашение";
 
 /* No comment provided by engineer. */
-"MHT File" = "Веб-архив (*.mht)";
+"Macro-enabled Presentation" = "Презентация с поддержкой макросов (*.pptm)";
 
 /* No comment provided by engineer. */
-"Mobipocket e-book" = "Электронная книга (*.epub)";
+"Macro-enabled spreadsheet template" = "Шаблон электронной таблицы с поддержкой макросов (*.xltm)";
+
+/* No comment provided by engineer. */
+"Mobipocket e-book" = "Файл Mobipocket (*.mobi)";
 
 /* No comment provided by engineer. */
 "new-document" = "Новый Документ";
@@ -134,7 +134,7 @@
 "PDF File" = "Переносимый документ (*.pdf)";
 
 /* No comment provided by engineer. */
-"PDF/A File" = "Переносимый документ / A (*.pdf)";
+"PDF/A File" = "Переносимый документ /A (*.pdf)";
 
 /* No comment provided by engineer. */
 "Plain Text" = "Текстовый файл (*.txt)";

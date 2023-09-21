@@ -68,11 +68,6 @@ $(document).ready(function() {
         CommonEvents.fire("portal:create");
     });
 
-    if (!window.LoginDlg) {
-        $('.tools-connect').hide();
-        hideAction('connect');
-    }
-
     if (!window.config.portals.checklist) {
         $('.tools-connect').hide();
         hideAction('connect');

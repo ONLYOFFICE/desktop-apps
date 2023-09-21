@@ -66,6 +66,81 @@
         },
     }
 
+    const nativevars = window.RendererProcessVariable;
+    {
+        const create_colors_css = function (id, colors) {
+            if ( !!colors && !!id ) {
+                let _css_array = [':root .', id, '{'];
+                for (var c in colors) {
+                    _css_array.push('--', c, ':', colors[c], ';');
+                }
+
+                _css_array.push('}');
+                return _css_array.join('');
+            }
+        }
+
+        const write_theme_css = function (css) {
+            if ( !!css ) {
+                let style = document.createElement('style');
+                style.type = 'text/css';
+                style.innerHTML = css;
+                document.getElementsByTagName('head')[0].appendChild(style);
+            }
+        }
+
+        if ( nativevars.localthemes ) {
+            for ( const t of nativevars.localthemes ) {
+                const _css = create_colors_css(t.id, t.colors);
+                if ( _css ) {
+                    write_theme_css(_css);
+                    themes_map[t.id] = {text: t.name, type: t.type, l10n: t.l10n};
+                }
+            }
+        }
+    }
+
+    const uitheme = { id: nativevars.theme.id, type: nativevars.theme.type }
+    uitheme.set_id = function (id) {
+        if ( id == 'theme-system' )
+            this.adapt_to_system_theme();
+        else this.id = id;
+    }
+
+    uitheme.is_theme_system = function () {
+        return this.id == 'theme-system'
+    }
+
+    uitheme.is_system_theme_avalaible = function () {
+        return t.system !== 'disabled'
+    }
+
+    uitheme.adapt_to_system_theme = function () {
+        this.id = 'theme-system';
+        this.type = this.is_system_theme_dark() ? 'dark' : 'light';
+    }
+
+    uitheme.relevant_theme_id = function () {
+        if ( this.is_theme_system() )
+            return this.is_system_theme_dark() ? 'theme-dark' : 'theme-classic-light';
+        return this.id;
+    }
+
+    uitheme.is_system_theme_dark = function () {
+        return this.get_system_theme_type() == 'dark';
+    }
+
+    uitheme.get_default_theme_for_type = type => type == THEME_TYPE_DARK ? THEME_ID_DEFAULT_DARK : THEME_ID_DEFAULT_LIGHT;
+
+    uitheme.get_system_theme_type = () => {
+        if ( nativevars.theme && !!nativevars.theme.system ) {
+            return nativevars.theme.system !== 'disabled' ? nativevars.theme.system : THEME_TYPE_LIGHT;
+        } else {
+            return window.matchMedia('(prefers-color-scheme: dark)').matches ? THEME_TYPE_DARK : THEME_TYPE_LIGHT;
+        }
+    }
+
+
     var ControllerSettings = function(args={}) {
         args.caption = 'Settings';
         args.action =
@@ -106,13 +181,8 @@
                                             <label class='sett__caption' l10n>${_lang.settScaling}</label><label class='sett__caption'> *</label>
                                             <div class='sett--label-lift-top hbox'>
                                                 <section class='box-cmp-select'>
-                                                    <select class='combobox'>
+                                                    <select class='combobox' data-size="5">
                                                         <option value='0' l10n>${_lang.settOptScalingAuto}</option>
-                                                        <option value='100'>100%</option>
-                                                        <option value='125'>125%</option>
-                                                        <option value='150'>150%</option>
-                                                        <option value='175'>175%</option>
-                                                        <option value='200'>200%</option>
                                                     </select>
                                                 </section>
                                             </div>
@@ -238,18 +308,16 @@
             $btnApply.disable(false);
         };
 
-        function _apply_theme(name, type) {
-            if ( name == 'theme-system' ) {
-                name = get_default_theme(get_system_theme_type());
-            }
+        function _apply_theme(id, type) {
+            uitheme.set_id(id);
 
-            if ( !$("body").hasClass(name) ) {
-                const _type = (type == 'dark' || /theme-(?:[a-z]+-)?dark(?:-[a-z]*)?/.test(name)) ? 'theme-type-dark' : 'theme-type-light';
+            const theme_id = uitheme.relevant_theme_id();
+            if ( !$("body").hasClass(theme_id) ) {
+                const _type = (type == 'dark' || /theme-(?:[a-z]+-)?dark(?:-[a-z]*)?/.test(theme_id)) ? 'theme-type-dark' : 'theme-type-light';
                 const _cls = document.body.className.replace(/theme-[\w-]+/gi,'').trim();
-                document.body.className = `${_cls?_cls+' ':''}${name} ${_type}`;
+                document.body.className = `${_cls?_cls+' ':''}${theme_id} ${_type}`;
 
-                localStorage.setItem('ui-theme-id', name);
-                CommonEvents.fire('theme:changed', [name, themes_map[name].type]);
+                CommonEvents.fire('theme:changed', [theme_id, themes_map[theme_id].type]);
             }
         };
 
@@ -422,8 +490,6 @@
                                             {'theme-dark': utils.Lang.settOptThemeDark},
                                             {'theme-contrast-dark': utils.Lang.settOptThemeContrastDark}];
 
-
-                            const nativevars = window.RendererProcessVariable;
                             if ( nativevars.theme && nativevars.theme.system == 'disabled' )
                                 _themes.shift();
 
@@ -433,12 +499,23 @@
                                 _combo.append(`<option value=${entries[0]} l10n>${entries[1]}</option>`);
                             });
 
+                            if ( nativevars.localthemes ) {
+                                for ( const t of nativevars.localthemes ) {
+                                    const _theme_title = t.l10n[utils.Lang.id] || t.name;
+                                    _combo.append(`<option value=${t.id} ml10n>${_theme_title}</option>`);
+                                }
+                            }
 
-                            ($optsUITheme = _combo)
-                            .val(opts.uitheme)
-                            .selectpicker().on('change', e => {
-                                $btnApply.isdisabled() && $btnApply.disable(false);})
-                            .parents('.settings-field').show();
+                            if ( !$optsUITheme ) {
+                                ($optsUITheme = _combo)
+                                .val(opts.uitheme)
+                                .selectpicker().on('change', e => {
+                                    $btnApply.isdisabled() && $btnApply.disable(false);})
+                                .parents('.settings-field').show();
+                            } else {
+                                $optsUITheme.val(opts.uitheme)
+                                            .selectpicker('refresh');
+                            }
                         }
                         _apply_theme(!!opts.uitheme ? opts.uitheme : 'theme-classic-light');
 
@@ -460,11 +537,11 @@
 
                         if ( !!opts.updates ) {
                             if ( opts.updates.mode !== undefined ) {
-                                if ( !['ask', 'disabled'].includes(opts.updates.mode) )
-                                    opts.updates.mode = 'ask';                          // for 7.3. to workaround 'silent' mode
+                                // if ( !['ask', 'disabled'].includes(opts.updates.mode) )
+                                    // opts.updates.mode = 'ask';                          // for 7.3. to workaround 'silent' mode
 
-                                // ($optsAutoupdateMode = ($('#opts-autoupdate-mode', $panel).show().find('select')))
-                                ($optsAutoupdateMode = ($('#opts-autoupdate', $panel).show().find('select')))
+                                ($optsAutoupdateMode = ($('#opts-autoupdate-mode', $panel).show().find('select')))
+                                // ($optsAutoupdateMode = ($('#opts-autoupdate', $panel).show().find('select')))
                                     .val(opts.updates.mode)
                                     .selectpicker().on('change', e => {
                                         $btnApply.isdisabled() && $btnApply.disable(false);
@@ -525,13 +602,6 @@
             }
         };
 
-        const get_system_theme_type = () => {
-            const nativevars = window.RendererProcessVariable;
-            return nativevars.theme && !!nativevars.theme.system ? nativevars.theme.system :
-                            window.matchMedia('(prefers-color-scheme: dark)').matches ? THEME_TYPE_DARK : THEME_TYPE_LIGHT;
-            //window.matchMedia('(prefers-color-scheme: dark)').matches ? THEME_TYPE_DARK : THEME_TYPE_LIGHT;
-        }
-        const get_default_theme = type => type == THEME_TYPE_DARK ? THEME_ID_DEFAULT_DARK : THEME_ID_DEFAULT_LIGHT;
         const on_system_theme_dark = e =>
             sdk.command("system:changed", JSON.stringify({'colorscheme': e.target.matches ? THEME_TYPE_DARK:THEME_TYPE_LIGHT}));
 
@@ -566,6 +636,14 @@
             $('option[value=silent]', this.view.$panel).attr('data-subtext', utils.Lang.settOptDescAUpdateSilent);
             $('option[value=ask]', this.view.$panel).attr('data-subtext', utils.Lang.settOptDescAUpdateAsk);
             $('option[value=disabled]', this.view.$panel).attr('data-subtext', utils.Lang.settOptDescDisabled);
+
+            // for ( let k of Object.keys(themes_map) ) {
+            //     const t = themes_map[k]
+            //     if ( t.l10n ) {
+            //         const _new_title = t.l10n[nl] || t.l10n[nl.substring(0,2)] || t.name;
+            //         $(`option[value=${k}]`, $optsUITheme).text(_new_title);
+            //     }
+            // }
         };
 
         return {
@@ -573,6 +651,11 @@
                 baseController.prototype.init.apply(this, arguments);
 
                 this.view.render();
+
+                const _scaling = [100, 125, 150, 175, 200, 225, 250, 275, 300, 350, 400, 450, 500];
+                let _scaling_items = '';
+                _scaling.forEach(val => _scaling_items += `<option value="${val}">${val}%</option>`);
+                $('#opts-ui-scaling .combobox', this.view.$panel).append($(_scaling_items));
 
                 let me = this;
                 me.view.$panel.find('#sett-box-user > a.link').on('click', e => {
@@ -627,7 +710,7 @@
                 return this;
             },
             currentTheme: function() {
-                const name = localStorage.getItem('ui-theme-id');
+                const name = uitheme.id;
                 return {name: name, type: themes_map[name] ? themes_map[name].type : THEME_TYPE_LIGHT};
             },
         };

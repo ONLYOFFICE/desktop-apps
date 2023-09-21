@@ -2,7 +2,7 @@
 "1b7-l0-nxx.title" = "Знайсці";
 
 /* Class = "NSMenuItem"; title = "Lower"; ObjectID = "1tx-W0-xDw"; */
-"1tx-W0-xDw.title" = "Знізіць";
+"1tx-W0-xDw.title" = "Ніжэй";
 
 /* Class = "NSMenuItem"; title = "Customize Toolbar…"; ObjectID = "1UK-8n-QPP"; */
 "1UK-8n-QPP.title" = "Наладзіць панэль інструментаў…";
@@ -11,19 +11,19 @@
 "1Xt-HY-uBw.title" = "ONLYOFFICE";
 
 /* Class = "NSMenuItem"; title = "Raise"; ObjectID = "2h7-ER-AoG"; */
-"2h7-ER-AoG.title" = "Падняць";
+"2h7-ER-AoG.title" = "Вышэй";
 
 /* Class = "NSMenuItem"; title = "Transformations"; ObjectID = "2oI-Rn-ZJC"; */
-"2oI-Rn-ZJC.title" = "Пераўтварэнні";
+"2oI-Rn-ZJC.title" = "Трансфармацыі";
 
 /* Class = "NSMenu"; title = "Spelling"; ObjectID = "3IN-sU-3Bg"; */
-"3IN-sU-3Bg.title" = "Арфаграфія";
+"3IN-sU-3Bg.title" = "Правапіс";
 
 /* Class = "NSMenuItem"; title = "Use Default"; ObjectID = "3Om-Ey-2VK"; */
-"3Om-Ey-2VK.title" = "Выкарыстаць па змаўчанні";
+"3Om-Ey-2VK.title" = "Выкарыстаць прадвызначаны";
 
 /* Class = "NSMenu"; title = "Speech"; ObjectID = "3rS-ZA-NoH"; */
-"3rS-ZA-NoH.title" = "Мова";
+"3rS-ZA-NoH.title" = "Маўленне";
 
 /* Class = "NSMenuItem"; title = "Find"; ObjectID = "4EN-yA-p0u"; */
 "4EN-yA-p0u.title" = "Знайсці";
@@ -32,10 +32,10 @@
 "4et-TX-a4m.title" = "Ліцэнзійнае пагадненне";
 
 /* Class = "NSMenuItem"; title = "Quit ONLYOFFICE"; ObjectID = "4sb-4s-VLi"; */
-"4sb-4s-VLi.title" = "Пакінуць ONLYOFFICE";
+"4sb-4s-VLi.title" = "Выйсці з ONLYOFFICE";
 
 /* Class = "NSMenuItem"; title = "About ONLYOFFICE"; ObjectID = "5kV-Vb-QxS"; */
-"5kV-Vb-QxS.title" = "Аб ONLYOFFICE";
+"5kV-Vb-QxS.title" = "Пра ONLYOFFICE";
 
 /* Class = "NSMenuItem"; title = "Edit"; ObjectID = "5QF-Oa-p0T"; */
 "5QF-Oa-p0T.title" = "Рэдагаваць";
@@ -44,37 +44,37 @@
 "5Vv-lz-BsD.title" = "Скапіяваць стыль";
 
 /* Class = "NSMenuItem"; title = "Redo"; ObjectID = "6dh-zS-Vam"; */
-"6dh-zS-Vam.title" = "Перарабіць";
+"6dh-zS-Vam.title" = "Паўтарыць";
 
 /* Class = "NSButtonCell"; title = "License agreement"; ObjectID = "8Ga-Cu-VGe"; */
 "8Ga-Cu-VGe.title" = "Ліцэнзійнае пагадненне";
 
 /* Class = "NSMenu"; title = "Writing Direction"; ObjectID = "8mr-sm-Yjd"; */
-"8mr-sm-Yjd.title" = "Напрамак напісання";
+"8mr-sm-Yjd.title" = "Кірунак напісання";
 
 /* Class = "NSMenuItem"; title = "New"; ObjectID = "9aQ-wl-gjS"; */
-"9aQ-wl-gjS.title" = "Новы";
+"9aQ-wl-gjS.title" = "Стварыць";
 
 /* Class = "NSTextFieldCell"; title = "none"; ObjectID = "9i7-kj-42B"; */
-"9i7-kj-42B.title" = "ніякі";
+"9i7-kj-42B.title" = "няма";
 
 /* Class = "NSMenuItem"; title = "Substitutions"; ObjectID = "9ic-FL-obx"; */
 "9ic-FL-obx.title" = "Замены";
 
 /* Class = "NSMenuItem"; title = "Smart Copy/Paste"; ObjectID = "9yt-4B-nSM"; */
-"9yt-4B-nSM.title" = "Разумная Копія/Устаўка";
+"9yt-4B-nSM.title" = "Разумнае капіяванне/Устаўлянне";
 
 /* Class = "NSMenuItem"; title = "Tighten"; ObjectID = "46P-cB-AYj"; */
-"46P-cB-AYj.title" = "Зацягнуць";
+"46P-cB-AYj.title" = "Падцягнуць";
 
 /* Class = "NSMenuItem"; title = "Correct Spelling Automatically"; ObjectID = "78Y-hA-62v"; */
-"78Y-hA-62v.title" = "Аўтаматычна выправіць правапіс";
+"78Y-hA-62v.title" = "Аўтаматычна выпраўляць правапіс";
 
 /* Class = "NSMenuItem"; title = "Use Default"; ObjectID = "agt-UL-0e3"; */
-"agt-UL-0e3.title" = "Выкарыстаць па змаўчанні";
+"agt-UL-0e3.title" = "Выкарыстоўваць прадвызначаны";
 
 /* Class = "NSMenuItem"; title = "Print…"; ObjectID = "aTl-1u-JFS"; */
-"aTl-1u-JFS.title" = "Раздрукаваць…";
+"aTl-1u-JFS.title" = "Друкаваць…";
 
 /* Class = "NSMenuItem"; title = "Window"; ObjectID = "aUF-d1-5bR"; */
 "aUF-d1-5bR.title" = "Акно";
@@ -89,31 +89,31 @@
 "BgM-ve-c93.title" = "\tЗлева направа";
 
 /* Class = "NSMenuItem"; title = "Show Colors"; ObjectID = "bgn-CT-cEk"; */
-"bgn-CT-cEk.title" = "Паказаць колеры";
+"bgn-CT-cEk.title" = "Паказваць колеры";
 
 /* Class = "NSMenu"; title = "File"; ObjectID = "bib-Uj-vzu"; */
 "bib-Uj-vzu.title" = "Файл";
 
 /* Class = "NSMenuItem"; title = "Preferences…"; ObjectID = "BOF-NM-1cW"; */
-"BOF-NM-1cW.title" = "Параметры…";
+"BOF-NM-1cW.title" = "Налады…";
 
 /* Class = "NSMenuItem"; title = "Use Selection for Find"; ObjectID = "buJ-ug-pKt"; */
-"buJ-ug-pKt.title" = "Выкарыстаць Выбар для пошуку";
+"buJ-ug-pKt.title" = "Выкарыстаць вылучанае для пошуку";
 
 /* Class = "NSMenuItem"; title = "Save As…"; ObjectID = "Bw7-FT-i3A"; */
 "Bw7-FT-i3A.title" = "Захаваць як…";
 
 /* Class = "NSMenu"; title = "Transformations"; ObjectID = "c8a-y6-VQd"; */
-"c8a-y6-VQd.title" = "Пераўтварэнні";
+"c8a-y6-VQd.title" = "Трансфармацыі";
 
 /* Class = "NSMenuItem"; title = "Use None"; ObjectID = "cDB-IK-hbR"; */
 "cDB-IK-hbR.title" = "Не выкарыстоўваць";
 
 /* Class = "NSMenuItem"; title = "Acknowledgments"; ObjectID = "CJU-dx-a9l"; */
-"CJU-dx-a9l.title" = "Апавяшчэння";
+"CJU-dx-a9l.title" = "Пацвярджэнні";
 
 /* Class = "NSMenuItem"; title = "Selection"; ObjectID = "cqv-fj-IhA"; */
-"cqv-fj-IhA.title" = "Выбар";
+"cqv-fj-IhA.title" = "Вылучэнне";
 
 /* Class = "NSMenuItem"; title = "Smart Links"; ObjectID = "cwL-P1-jid"; */
 "cwL-P1-jid.title" = "Разумныя спасылкі";
@@ -131,16 +131,16 @@
 "DOj-j9-dza.title" = "Табліца";
 
 /* Class = "NSMenuItem"; title = "Undo"; ObjectID = "dRJ-4n-Yzg"; */
-"dRJ-4n-Yzg.title" = "Адмяніць";
+"dRJ-4n-Yzg.title" = "Адрабіць";
 
 /* Class = "NSMenuItem"; title = "Spelling and Grammar"; ObjectID = "Dv1-io-Yv7"; */
-"Dv1-io-Yv7.title" = "Арфаграфія і граматыка";
+"Dv1-io-Yv7.title" = "Правапіс і граматыка";
 
 /* Class = "NSMenuItem"; title = "Close"; ObjectID = "DVo-aG-piG"; */
-"DVo-aG-piG.title" = "Зачыніць";
+"DVo-aG-piG.title" = "Закрыць";
 
 /* Class = "NSMenu"; title = "Help"; ObjectID = "F2S-fz-NVQ"; */
-"F2S-fz-NVQ.title" = "Дапамога";
+"F2S-fz-NVQ.title" = "Даведка";
 
 /* Class = "NSMenuItem"; title = "Text"; ObjectID = "Fal-I4-PZk"; */
 "Fal-I4-PZk.title" = "Тэкст";
@@ -155,7 +155,7 @@
 "FoF-wl-Dxi.title" = "Імя карыстальніка";
 
 /* Class = "NSMenuItem"; title = "Bold"; ObjectID = "GB9-OM-e27"; */
-"GB9-OM-e27.title" = "Тлусты шрыфт";
+"GB9-OM-e27.title" = "Тоўсты";
 
 /* Class = "NSMenu"; title = "Format"; ObjectID = "GEO-Iw-cKr"; */
 "GEO-Iw-cKr.title" = "Фармат";
@@ -167,22 +167,22 @@
 "gm3-6i-EnL.title" = "Назва файла";
 
 /* Class = "NSMenuItem"; title = "Use Default"; ObjectID = "GUa-eO-cwY"; */
-"GUa-eO-cwY.title" = "Выкарыстаць па змаўчанні";
+"GUa-eO-cwY.title" = "Выкарыстоўваць прадвызначаны";
 
 /* Class = "NSMenuItem"; title = "Paste"; ObjectID = "gVA-U4-sdL"; */
 "gVA-U4-sdL.title" = "Уставіць";
 
 /* Class = "NSMenuItem"; title = "Writing Direction"; ObjectID = "H1b-Si-o9J"; */
-"H1b-Si-o9J.title" = "Напрамак напісання";
+"H1b-Si-o9J.title" = "Кірунак напісання";
 
 /* Class = "NSMenuItem"; title = "View"; ObjectID = "H8h-7b-M4v"; */
 "H8h-7b-M4v.title" = "Прагляд";
 
 /* Class = "NSMenu"; title = "New"; ObjectID = "hD5-Cz-ItX"; */
-"hD5-Cz-ItX.title" = "Новы";
+"hD5-Cz-ItX.title" = "Стварыць";
 
 /* Class = "NSMenuItem"; title = "Show Spelling and Grammar"; ObjectID = "HFo-cy-zxI"; */
-"HFo-cy-zxI.title" = "Паказаць арфаграфію і граматыку";
+"HFo-cy-zxI.title" = "Паказваць правапіс і граматыку";
 
 /* Class = "NSMenuItem"; title = "Text Replacement"; ObjectID = "HFQ-gK-NFA"; */
 "HFQ-gK-NFA.title" = "Замена тэксту";
@@ -197,10 +197,10 @@
 "HyV-fh-RgO.title" = "Прагляд";
 
 /* Class = "NSMenuItem"; title = "Check Document Now"; ObjectID = "hz2-CU-CR7"; */
-"hz2-CU-CR7.title" = "Праверыць дакумент зараз";
+"hz2-CU-CR7.title" = "Праверыць дакумент";
 
 /* Class = "NSMenu"; title = "Services"; ObjectID = "hz9-B4-Xy5"; */
-"hz9-B4-Xy5.title" = "Паслугі";
+"hz9-B4-Xy5.title" = "Сэрвісы";
 
 /* Class = "NSMenuItem"; title = "Subscript"; ObjectID = "I0S-gh-46l"; */
 "I0S-gh-46l.title" = "Індэкс";
@@ -212,13 +212,13 @@
 "IAo-SY-fd9.title" = "Адкрыць…";
 
 /* Class = "NSMenu"; title = "Baseline"; ObjectID = "ijk-EB-dga"; */
-"ijk-EB-dga.title" = "Зыходная лінія";
+"ijk-EB-dga.title" = "Базавая лінія";
 
 /* Class = "NSWindow"; title = "ONLYOFFICE"; ObjectID = "IQv-IB-iLA"; */
 "IQv-IB-iLA.title" = "ONLYOFFICE";
 
 /* Class = "NSMenuItem"; title = "Justify"; ObjectID = "J5U-5w-g23"; */
-"J5U-5w-g23.title" = "Абгрунтуйце";
+"J5U-5w-g23.title" = "Выраўнаваць";
 
 /* Class = "NSMenuItem"; title = "Use None"; ObjectID = "J7y-lM-qPV"; */
 "J7y-lM-qPV.title" = "Не выкарыстоўваць";
@@ -251,28 +251,28 @@
 "LVM-kO-fVI.title" = "Уставіць лінейку";
 
 /* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "m0C-e9-0oc"; */
-"m0C-e9-0oc.title" = "Адмяніць";
+"m0C-e9-0oc.title" = "Скасаваць";
 
 /* Class = "NSMenuItem"; title = "Check Grammar With Spelling"; ObjectID = "mK6-2p-4JG"; */
-"mK6-2p-4JG.title" = "Праверыць граматыку з правапісам";
+"mK6-2p-4JG.title" = "Правяранне граматыкі і правапісу";
 
 /* Class = "NSMenuItem"; title = "Copy Ruler"; ObjectID = "MkV-Pr-PK5"; */
 "MkV-Pr-PK5.title" = "Скапіяваць лінейку";
 
 /* Class = "NSMenuItem"; title = "Services"; ObjectID = "NMo-om-nkz"; */
-"NMo-om-nkz.title" = "Паслугі";
+"NMo-om-nkz.title" = "Сэрвісы";
 
 /* Class = "NSMenuItem"; title = "\tDefault"; ObjectID = "Nop-cj-93Q"; */
-"Nop-cj-93Q.title" = "\tПа змаўчанні";
+"Nop-cj-93Q.title" = "\tПрадвызначана";
 
 /* Class = "NSMenuItem"; title = "Ligatures"; ObjectID = "o6e-r0-MWq"; */
 "o6e-r0-MWq.title" = "Лігатуры";
 
 /* Class = "NSMenuItem"; title = "Baseline"; ObjectID = "OaQ-X3-Vso"; */
-"OaQ-X3-Vso.title" = "Зыходная лінія";
+"OaQ-X3-Vso.title" = "Базавая лінія";
 
 /* Class = "NSMenu"; title = "Open Recent"; ObjectID = "oas-Oc-fiZ"; */
-"oas-Oc-fiZ.title" = "Адкрыць Апошнія";
+"oas-Oc-fiZ.title" = "Адкрыць нядаўнія";
 
 /* Class = "NSMenuItem"; title = "Loosen"; ObjectID = "ogc-rX-tC1"; */
 "ogc-rX-tC1.title" = "Паслабіць";
@@ -284,7 +284,7 @@
 "OwM-mh-QMV.title" = "Знайсці папярэдняе";
 
 /* Class = "NSMenuItem"; title = "Minimize"; ObjectID = "OY7-WF-poV"; */
-"OY7-WF-poV.title" = "Мінімізаваць";
+"OY7-WF-poV.title" = "Згарнуць";
 
 /* Class = "NSMenuItem"; title = "Stop Speaking"; ObjectID = "Oyz-dy-DGm"; */
 "Oyz-dy-DGm.title" = "Перастаньце гаварыць";
@@ -305,7 +305,7 @@
 "q09-fT-Sye.title" = "Знайсці наступнае";
 
 /* Class = "NSMenuItem"; title = "Page Setup…"; ObjectID = "qIS-W8-SiK"; */
-"qIS-W8-SiK.title" = "Налада старонкі…";
+"qIS-W8-SiK.title" = "Наладжванне старонкі…";
 
 /* Class = "NSMenuItem"; title = "Zoom"; ObjectID = "R4o-n2-Eq4"; */
 "R4o-n2-Eq4.title" = "Павялічыць";
@@ -314,34 +314,34 @@
 "RB4-Sm-HuC.title" = "\tСправа налева";
 
 /* Class = "NSMenuItem"; title = "Check Spelling While Typing"; ObjectID = "rbD-Rh-wIN"; */
-"rbD-Rh-wIN.title" = "Правяраць арфаграфію падчас набору тэксту";
+"rbD-Rh-wIN.title" = "Правяраць правапіс падчас уводу тэксту";
 
 /* Class = "NSMenuItem"; title = "Smart Dashes"; ObjectID = "rgM-f4-ycn"; */
 "rgM-f4-ycn.title" = "Разумныя працяжнікі";
 
 /* Class = "NSButtonCell"; title = "Close"; ObjectID = "Riu-oE-8dj"; */
-"Riu-oE-8dj.title" = "Зачыніць";
+"Riu-oE-8dj.title" = "Закрыць";
 
 /* Class = "NSTextFieldCell"; title = "none"; ObjectID = "Rkd-xb-FRJ"; */
-"Rkd-xb-FRJ.title" = "ніякі";
+"Rkd-xb-FRJ.title" = "няма";
 
 /* Class = "NSButtonCell"; title = "Logout"; ObjectID = "RmO-tv-UKh"; */
-"RmO-tv-UKh.title" = "Выйсці з сістэмы";
+"RmO-tv-UKh.title" = "Выйсці";
 
 /* Class = "NSMenuItem"; title = "Superscript"; ObjectID = "Rqc-34-cIF"; */
 "Rqc-34-cIF.title" = "Верхні індэкс";
 
 /* Class = "NSMenuItem"; title = "Select All"; ObjectID = "Ruw-6m-B2m"; */
-"Ruw-6m-B2m.title" = "Выбраць усё";
+"Ruw-6m-B2m.title" = "Абраць усё";
 
 /* Class = "NSMenuItem"; title = "Jump to Selection"; ObjectID = "S0p-oC-mLd"; */
-"S0p-oC-mLd.title" = "Перайсці да выбару";
+"S0p-oC-mLd.title" = "Перайсці да вылучэння";
 
 /* Class = "NSTextFieldCell"; title = "Copyright info"; ObjectID = "sGd-zc-V0B"; */
-"sGd-zc-V0B.title" = "Інфармацыя аб аўтарскім праве";
+"sGd-zc-V0B.title" = "Інфармацыя пра аўтарскія правы";
 
 /* Class = "NSMenuItem"; title = "Show Toolbar"; ObjectID = "snW-S8-Cw5"; */
-"snW-S8-Cw5.title" = "Паказаць панэль інструментаў";
+"snW-S8-Cw5.title" = "Паказваць панэль інструментаў";
 
 /* Class = "NSMenu"; title = "Window"; ObjectID = "Td7-aD-5lo"; */
 "Td7-aD-5lo.title" = "Акно";
@@ -353,13 +353,13 @@
 "tlD-Oa-oAM.title" = "Керн";
 
 /* Class = "NSMenuItem"; title = "Data Detectors"; ObjectID = "tRr-pd-1PS"; */
-"tRr-pd-1PS.title" = "Дэтэктары дадзеных";
+"tRr-pd-1PS.title" = "Дэтэктары даных";
 
 /* Class = "NSMenuItem"; title = "Open Recent"; ObjectID = "tXI-mr-wws"; */
-"tXI-mr-wws.title" = "Адкрыць Апошнія";
+"tXI-mr-wws.title" = "Адкрыць нядаўнія";
 
 /* Class = "NSMenuItem"; title = "Check for Updates…"; ObjectID = "ud7-wC-A79"; */
-"ud7-wC-A79.title" = "Праверыць наяўнасць абнаўленняў…";
+"ud7-wC-A79.title" = "Праверыць на наяўнасць абнаўленняў…";
 
 /* Class = "NSMenuItem"; title = "Capitalize"; ObjectID = "UEZ-Bs-lqG"; */
 "UEZ-Bs-lqG.title" = "З вялікай літары";
@@ -371,10 +371,10 @@
 "uRl-iY-unG.title" = "Выразаць";
 
 /* Class = "NSMenuItem"; title = "Hide Others"; ObjectID = "Vdr-fp-XzO"; */
-"Vdr-fp-XzO.title" = "Схаваць Иншыя";
+"Vdr-fp-XzO.title" = "Схаваць іншыя";
 
 /* Class = "NSMenuItem"; title = "Center"; ObjectID = "VIY-Ag-zcb"; */
-"VIY-Ag-zcb.title" = "Сцэнтраваць";
+"VIY-Ag-zcb.title" = "Па цэнтры";
 
 /* Class = "NSMenuItem"; title = "Italic"; ObjectID = "Vjx-xi-njq"; */
 "Vjx-xi-njq.title" = "Курсіў";
@@ -383,7 +383,7 @@
 "vKC-jM-MkH.title" = "Уставіць стыль";
 
 /* Class = "NSMenuItem"; title = "Show Ruler"; ObjectID = "vLm-3I-IUL"; */
-"vLm-3I-IUL.title" = "Паказаць лінейку";
+"vLm-3I-IUL.title" = "Паказваць лінейку";
 
 /* Class = "NSMenuItem"; title = "Make Upper Case"; ObjectID = "vmV-6d-7jI"; */
 "vmV-6d-7jI.title" = "Зрабіць з вялікай літары";
@@ -398,7 +398,7 @@
 "W48-6f-4Dl.title" = "Рэдагаваць";
 
 /* Class = "NSMenuItem"; title = "Align Right"; ObjectID = "wb2-vD-lq4"; */
-"wb2-vD-lq4.title" = "Выраўнаць па правым краі";
+"wb2-vD-lq4.title" = "Выраўнаваць па правым краі";
 
 /* Class = "NSMenuItem"; title = "Paste and Match Style"; ObjectID = "WeT-3V-zwk"; */
 "WeT-3V-zwk.title" = "Уставіць і супаставіць стыль";
@@ -407,10 +407,10 @@
 "wpe-8d-5DV.title" = "Тэкставая ячэйка";
 
 /* Class = "NSMenuItem"; title = "Help"; ObjectID = "wpr-3q-Mcd"; */
-"wpr-3q-Mcd.title" = "Дапамога";
+"wpr-3q-Mcd.title" = "Даведка";
 
 /* Class = "NSMenuItem"; title = "Underline"; ObjectID = "WRG-CD-K1S"; */
-"WRG-CD-K1S.title" = "Падкрэсліць";
+"WRG-CD-K1S.title" = "Падкрэслены";
 
 /* Class = "NSMenuItem"; title = "Copy"; ObjectID = "x3v-GG-iWU"; */
 "x3v-GG-iWU.title" = "Скапіяваць";
@@ -419,10 +419,10 @@
 "xCO-ey-2lo.title" = "Прадукт";
 
 /* Class = "NSMenuItem"; title = "Use All"; ObjectID = "xQD-1f-W4t"; */
-"xQD-1f-W4t.title" = "Выкарыстаць усе";
+"xQD-1f-W4t.title" = "Выкарыстоўваць усе";
 
 /* Class = "NSMenuItem"; title = "Speech"; ObjectID = "xrE-MZ-jX0"; */
-"xrE-MZ-jX0.title" = "Мова";
+"xrE-MZ-jX0.title" = "Маўленне";
 
 /* Class = "NSMenuItem"; title = "Find…"; ObjectID = "Xz5-n4-O0W"; */
 "Xz5-n4-O0W.title" = "Знайсці…";
@@ -431,19 +431,19 @@
 "YEy-JH-Tfz.title" = "Знайсці і замяніць…";
 
 /* Class = "NSMenuItem"; title = "\tDefault"; ObjectID = "YGs-j5-SAR"; */
-"YGs-j5-SAR.title" = "\tПа змаўчанні";
+"YGs-j5-SAR.title" = "\tПрадвызначана";
 
 /* Class = "NSMenuItem"; title = "Start Speaking"; ObjectID = "Ynk-f8-cLZ"; */
 "Ynk-f8-cLZ.title" = "Пачніце гаварыць";
 
 /* Class = "NSMenuItem"; title = "Show Substitutions"; ObjectID = "z6F-FW-3nz"; */
-"z6F-FW-3nz.title" = "Паказаць замену";
+"z6F-FW-3nz.title" = "Паказваць замены";
 
 /* Class = "NSTextFieldCell"; title = "Version"; ObjectID = "ZbA-hc-8PE"; */
 "ZbA-hc-8PE.title" = "Версія";
 
 /* Class = "NSMenuItem"; title = "Align Left"; ObjectID = "ZM1-6Q-yy1"; */
-"ZM1-6Q-yy1.title" = "Выраўнаць па левым краі";
+"ZM1-6Q-yy1.title" = "Выраўнаваць па левым краі";
 
 /* Class = "NSTextFieldCell"; title = "Email:"; ObjectID = "Zsi-3o-ASl"; */
 "Zsi-3o-ASl.title" = "Адрас электроннай пошты:";

@@ -50,6 +50,13 @@ CWindowPlatform::CWindowPlatform(const QRect &rect) :
         CX11Decoration::turnOff();
     setIsCustomWindowStyle(!CX11Decoration::isDecorated());
     setFocusPolicy(Qt::StrongFocus);
+    setProperty("stabilized", true);
+    m_propertyTimer = new QTimer(this);
+    m_propertyTimer->setSingleShot(true);
+    m_propertyTimer->setInterval(100);
+    connect(m_propertyTimer, &QTimer::timeout, this, [=]() {
+        setProperty("stabilized", true);
+    });
 }
 
 CWindowPlatform::~CWindowPlatform()
@@ -86,12 +93,8 @@ void CWindowPlatform::setWindowColors(const QColor& background, const QColor& bo
 
 void CWindowPlatform::adjustGeometry()
 {
-    if (!isMaximized()) {
-        const int border = int(CX11Decoration::customWindowBorderWith() * m_dpiRatio);
-        setContentsMargins(border, border, border, border);
-    } else {
-        setContentsMargins(0, 0, 0, 0);
-    }
+    int border = (CX11Decoration::isDecorated() || isMaximized()) ? 0 : qRound(CX11Decoration::customWindowBorderWith() * m_dpiRatio);
+    setContentsMargins(border, border, border, border);
 }
 
 /** Protected **/
@@ -121,8 +124,13 @@ bool CWindowPlatform::nativeEvent(const QByteArray &ev_type, void *msg, long *re
         xcb_generic_event_t *ev = static_cast<xcb_generic_event_t*>(msg);
         switch (ev->response_type & ~0x80) {
         case XCB_FOCUS_IN:
-            if (isNativeFocus())
+            if (isNativeFocus()) {
                 focus();
+                m_propertyTimer->stop();
+                if (property("stabilized").toBool())
+                    setProperty("stabilized", false);
+                m_propertyTimer->start();
+            }
             break;
         default:
             break;
@@ -155,10 +163,10 @@ void CWindowPlatform::mouseReleaseEvent(QMouseEvent *e)
     CX11Decoration::dispatchMouseUp(e);
 }
 
-void CWindowPlatform::mouseDoubleClickEvent(QMouseEvent *)
+void CWindowPlatform::mouseDoubleClickEvent(QMouseEvent *me)
 {
     if (m_boxTitleBtns) {
-        if (m_boxTitleBtns->underMouse())
+        if (m_boxTitleBtns->geometry().contains(me->pos()))
             onMaximizeEvent();
     }
 }

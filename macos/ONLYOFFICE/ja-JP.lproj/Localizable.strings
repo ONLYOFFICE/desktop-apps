@@ -41,6 +41,9 @@
 "Document %ld.docx" = "ドキュメント %ld.docx";
 
 /* No comment provided by engineer. */
+"Document %ld.docxf" = "ドキュメント %ld.docxf";
+
+/* No comment provided by engineer. */
 "Document template" = "Word オープン XMLドキュメントテンプレート (*.dotx)";
 
 /* No comment provided by engineer. */
@@ -72,6 +75,12 @@
 
 /* No comment provided by engineer. */
 "License Agreement" = "ライセンス契約";
+
+/* No comment provided by engineer. */
+"Macro-enabled Presentation" = "マクロ対応プレゼンテーション（*.pptm）";
+
+/* No comment provided by engineer. */
+"Macro-enabled spreadsheet template" = "マクロ対応表計算テンプレート（*.xltm）";
 
 /* No comment provided by engineer. */
 "Mobipocket e-book" = "Mobipocketファイル (*.mobi)";

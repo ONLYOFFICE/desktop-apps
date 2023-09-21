@@ -2,17 +2,13 @@
 #include "defines.h"
 #include "defines_p.h"
 #include "utils.h"
-
 #include <QApplication>
 #include <QFile>
 #include <QSettings>
 #include <QRegularExpression>
 #include <QTranslator>
-
 #include <list>
 #include <algorithm>
-
-#include <QDebug>
 
 
 class CLangater::CLangaterIntf
@@ -126,7 +122,7 @@ private:
         ,{"pt-PT", "Português (Portugal)"}
         ,{"pl-PL", "Polski"}
         ,{"zh-CN", "简体中文"}
-        ,{"zh-HK", "繁體中文"}
+        ,{"zh-TW", "繁體中文"}
         ,{"ca-ES", "Catalan"}
         ,{"da-DK", "Dansk"}
         ,{"el-GR", "Ελληνικά"}

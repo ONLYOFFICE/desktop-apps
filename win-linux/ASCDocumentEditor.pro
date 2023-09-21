@@ -23,7 +23,7 @@ DEFINES += __DONT_WRITE_IN_APP_TITLE
 
 message($$PLATFORM_BUILD)
 
-win32 {
+#win32 {
     updmodule:!build_xp {
         DEFINES += _UPDMODULE
 
@@ -41,7 +41,7 @@ win32 {
         message(appcast url: $$ENV_URL_APPCAST_MAIN)
         message(appcast dev url: \\\"$$ENV_URL_APPCAST_DEV\\\")
     }
-}
+#}
 
 HEADERS += \
     src/prop/cmainwindowimpl.h

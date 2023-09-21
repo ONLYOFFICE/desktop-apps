@@ -59,6 +59,8 @@
 
 #ifdef __linux__
 # include "platform_linux/gtkprintdialog.h"
+#else
+# include "platform_win/printdialog.h"
 #endif
 
 #define TOP_PANEL_OFFSET 6*TOOLBTN_WIDTH
@@ -66,59 +68,6 @@
 
 using namespace NSEditorApi;
 
-const QString g_css =
-        "#mainPanel{background-color:%1;}"
-        "#box-title-tools{background-color:%1;}"
-        "QPushButton[act=tool]:hover{background-color:rgba(0,0,0,20%);}"
-        "QPushButton#toolButtonClose:hover{background-color:#d42b2b;}"
-        "QPushButton#toolButtonClose:pressed{background-color:#d75050;}"
-#ifdef Q_OS_LINUX
-        "#box-title-tools QLabel{font-size:11px;font-family:\"Helvetica Neue\",Helvetica,Arial,sans-serif;}"
-        "#labelTitle{color:#444;}"
-#else
-        "#box-title-tools QLabel{font-family:\"Helvetica Neue\",Helvetica,Arial,sans-serif;font-weight:bold;}"
-        "#labelTitle{color:#444;}"
-        "#mainPanel[window=pretty] #labelTitle{font-size:12px;}"
-#endif
-        "#iconuser{color:#fff;font-size:11px;}"
-        "#mainPanel[window=pretty] QPushButton[act=tool]:hover{background-color:rgba(255,255,255,20%);}"
-        "#mainPanel[window=pretty] QPushButton#toolButtonMinimize,"
-        "#mainPanel[window=pretty] QPushButton#toolButtonClose {background-image:url(:/minclose_light.png);}"
-        "#mainPanel[window=pretty] QPushButton#toolButtonClose:hover{background-color:#d42b2b;}"
-        "#mainPanel[window=pretty] QPushButton#toolButtonMaximize{background-image:url(:/max_light.png);}"
-        "#mainPanel[window=pretty] #labelTitle{color:#fff;}"
-        "#mainPanel[zoom=\"1.25x\"] #toolButtonMinimize,#mainPanel[zoom=\"1.25x\"] #toolButtonClose,"
-        "#mainPanel[zoom=\"1.25x\"] #toolButtonMaximize{padding: 6px 15px 9px;}"
-        "#mainPanel[zoom=\"1.25x\"] #iconuser,"
-        "#mainPanel[zoom=\"1.25x\"] #labelTitle{font-size:15px;}"
-        "#mainPanel[zoom=\"1.25x\"][window=pretty] QPushButton#toolButtonMinimize,"
-        "#mainPanel[zoom=\"1.25x\"][window=pretty] QPushButton#toolButtonClose {background-image:url(:/minclose_light_1.25x.png);}"
-        "#mainPanel[zoom=\"1.25x\"][window=pretty] QPushButton#toolButtonMaximize{background-image:url(:/max_light_1.25x.png);}"
-        "#mainPanel[zoom=\"1.5x\"] #toolButtonMinimize,#mainPanel[zoom=\"1.5x\"] #toolButtonClose,"
-        "#mainPanel[zoom=\"1.5x\"] #toolButtonMaximize{padding: 8px 18px 11px;}"
-        "#mainPanel[zoom=\"1.5x\"] #iconuser,"
-        "#mainPanel[zoom=\"1.5x\"] #labelTitle{font-size:18px;}"
-        "#mainPanel[zoom=\"1.5x\"][window=pretty] QPushButton#toolButtonMinimize,"
-        "#mainPanel[zoom=\"1.5x\"][window=pretty] QPushButton#toolButtonClose {background-image:url(:/minclose_light_1.5x.png);}"
-        "#mainPanel[zoom=\"1.5x\"][window=pretty] QPushButton#toolButtonMaximize{background-image:url(:/max_light_1.5x.png);}"
-        "#mainPanel[zoom=\"1.75x\"] #toolButtonMinimize,#mainPanel[zoom=\"1.75x\"] #toolButtonClose,"
-        "#mainPanel[zoom=\"1.75x\"] #toolButtonMaximize{padding: 9px 21px 12px;}"
-        "#mainPanel[zoom=\"1.75x\"] #iconuser,"
-        "#mainPanel[zoom=\"1.75x\"] #labelTitle{font-size:21px;}"
-        "#mainPanel[zoom=\"1.75x\"][window=pretty] QPushButton#toolButtonMinimize,"
-        "#mainPanel[zoom=\"1.75x\"][window=pretty] QPushButton#toolButtonClose {background-image:url(:/minclose_light_1.75x.png);}"
-        "#mainPanel[zoom=\"1.75x\"][window=pretty] QPushButton#toolButtonMaximize{background-image:url(:/max_light_1.75x.png);}"
-        "#mainPanel[zoom=\"2x\"] #toolButtonMinimize,#mainPanel[zoom=\"2x\"] #toolButtonClose,"
-        "#mainPanel[zoom=\"2x\"] #toolButtonMaximize{padding: 10px 24px 14px;}"
-        "#mainPanel[zoom=\"2x\"] #iconuser,"
-        "#mainPanel[zoom=\"2x\"] #labelTitle{font-size:24px;}"
-        "#mainPanel[zoom=\"2x\"][window=pretty] QPushButton#toolButtonMinimize,"
-        "#mainPanel[zoom=\"2x\"][window=pretty] QPushButton#toolButtonClose {background-image:url(:/minclose_light_2x.png);}"
-        "#mainPanel[zoom=\"2x\"][window=pretty] QPushButton#toolButtonMaximize{background-image:url(:/max_light_2x.png);}"
-        "#mainPanel[uitheme=theme-dark] #iconuser,"
-        "#mainPanel[uitheme=theme-dark] #labelTitle{color:rgba(255,255,255,80%);}"
-        "#mainPanel[uitheme=theme-contrast-dark] #iconuser,"
-        "#mainPanel[uitheme=theme-contrast-dark] #labelTitle{color:#e8e8e8;}";
 
 auto prepare_editor_css(int type, const CTheme& theme) -> QString {
     std::wstring c;
@@ -127,8 +76,9 @@ auto prepare_editor_css(int type, const CTheme& theme) -> QString {
     case etDocument: c = theme.value(CTheme::ColorRole::ecrTabWordActive); break;
     case etPresentation: c = theme.value(CTheme::ColorRole::ecrTabSlideActive); break;
     case etSpreadsheet: c = theme.value(CTheme::ColorRole::ecrTabCellActive); break;
+    case etDocumentViewer: c = theme.value(CTheme::ColorRole::ecrTabViewerActive); break;
     }
-
+    QString g_css(Utils::readStylesheets(":/styles/editor.qss"));
     return g_css.arg(QString::fromStdWString(c));
 }
 
@@ -137,6 +87,7 @@ auto editor_color(int type) -> QColor {
     case etDocument: return GetColorByRole(ecrTabWordActive);
     case etPresentation: return GetColorByRole(ecrTabSlideActive);
     case etSpreadsheet: return GetColorByRole(ecrTabCellActive);
+    case etDocumentViewer: return GetColorByRole(ecrTabViewerActive);
     default: return GetColorByRole(ecrTabWordActive);
     }
 }
@@ -183,7 +134,7 @@ public:
             btnHome->setIcon(":/title/icons/buttons.svg", "svg-btn-home");
             //btnHome->setToolTip(CEditorWindow::tr("Open main window"));
             btnHome->setProperty("ToolTip", CEditorWindow::tr("Open main window"));
-            btnHome->setIconOpacity(AscAppManager::themes().current().color(CTheme::ColorRole::ecrButtonNormalOpacity));
+            btnHome->setIconOpacity(GetColorByRole(ecrButtonNormalOpacity));
             m_mapTitleButtons["home"] = btnHome;
             connect(btnHome, &QPushButton::clicked, std::bind(&CEditorWindow::onClickButtonHome, window));
             leftboxbuttons->layout()->addWidget(btnHome);
@@ -200,7 +151,7 @@ public:
         btn->setDisabled(jsonobj["disabled"].toBool());
         btn->setIconSize(QSize(20,20) * window->m_dpiRatio);
         btn->setMouseTracking(true);
-        btn->setIconOpacity(AscAppManager::themes().current().color(CTheme::ColorRole::ecrButtonNormalOpacity));
+        btn->setIconOpacity(GetColorByRole(ecrButtonNormalOpacity));
         if ( jsonobj.contains("visible") && !jsonobj["visible"].toBool() ) {
             btn->hide();
         }
@@ -368,6 +319,7 @@ public:
             panel()->setReady();
             if (window->isActiveWindow())
                 window->focus();
+            AscAppManager::getInstance().onDocumentReady(uid);
     }
 
     void onDocumentName(void * data) override
@@ -390,7 +342,7 @@ public:
 
         if ( canExtendTitle() && window->isCustomWindowStyle() ) {
             window->m_pMainPanel->setProperty("window", "pretty");
-            changeTheme(AscAppManager::themes().current().id());
+            changeTheme(GetCurrentTheme().id());
         }
     }
 
@@ -399,20 +351,24 @@ public:
         std::wstring background, border;
         switch (panel()->data()->contentType()) {
         case etDocument:
-            background = AscAppManager::themes().current().value(CTheme::ColorRole::ecrTabWordActive);
+            background = GetColorValueByRole(ecrTabWordActive);
             border = background;
             break;
         case etPresentation:
-            background = AscAppManager::themes().current().value(CTheme::ColorRole::ecrTabSlideActive);
+            background = GetColorValueByRole(ecrTabSlideActive);
             border = background;
             break;
         case etSpreadsheet:
-            background = AscAppManager::themes().current().value(CTheme::ColorRole::ecrTabCellActive);
+            background = GetColorValueByRole(ecrTabCellActive);
+            border = background;
+            break;
+        case etDocumentViewer:
+            background = GetColorValueByRole(ecrTabViewerActive);
             border = background;
             break;
         default:
-            background = AscAppManager::themes().current().value(CTheme::ColorRole::ecrWindowBackground);
-            border = AscAppManager::themes().current().value(CTheme::ColorRole::ecrWindowBorder);
+            background = GetColorValueByRole(ecrWindowBackground);
+            border = GetColorValueByRole(ecrWindowBorder);
         }
 
         window->setWindowColors(QColor(QString::fromStdWString(background)), QColor(QString::fromStdWString(border)));
@@ -446,9 +402,8 @@ public:
 
     void onDocumentChanged(int id, bool state) override
     {
+        CCefEventsGate::onDocumentChanged(id, state);
         if ( panel()->data()->hasChanges() != state ) {
-            CCefEventsGate::onDocumentChanged(id, state);
-
             if ( canExtendTitle() && window->isCustomWindowStyle() ) {
                 window->setWindowTitle(m_panel->data()->title());
                 window->m_boxTitleBtns->repaint();
@@ -544,7 +499,7 @@ public:
 
 #ifdef _WIN32
             printer->setOutputFileName("");
-            CPrintDialog * dialog =  new CPrintDialog(printer, window->handle());
+            PrintDialog * dialog =  new PrintDialog(printer, window->handle());
 #else
             QFileInfo info(documentName);
             QString pdfName = Utils::lastPath(LOCAL_PATH_SAVE) + "/" + info.baseName() + ".pdf";
@@ -769,10 +724,8 @@ public:
     {
         iconuser->setFixedHeight(0.85 * TOOLBTN_HEIGHT * window->m_dpiRatio);
         iconuser->setFixedWidth(iconuser->height());
-        auto iconTextColor = editor_color(panel()->data()->contentType()).name();
-        iconuser->setStyleSheet(QString("QLabel#iconuser "
-            "{background: #d9ffffff; border-radius: %1px; color: %2;}")
-                .arg(QString::number(iconuser->height()/2), iconTextColor));
+        iconuser->setStyleSheet(QString("#iconuser {border-radius: %1px;}")
+                     .arg(QString::number(iconuser->height()/2)));
     }
 
     QLabel * iconCrypted()

@@ -33,11 +33,9 @@
 #include "ccefeventstransformer.h"
 #include "applicationmanager_events.h"
 #include "common/Types.h"
-//#include "regex"
-
 #include <QProcess>
 #include <QTimer>
-#include <QDebug>
+
 using namespace NSEditorApi;
 
 CCefEventsTransformer::CCefEventsTransformer(QObject *parent)
@@ -60,9 +58,6 @@ void CCefEventsTransformer::OnEvent(QObject * target, NSEditorApi::CAscCefMenuEv
     switch (event->m_nType) {
 //    case ASC_MENU_EVENT_TYPE_CEF_CREATETAB: {
 //        CAscCreateTab * pData = (CAscCreateTab *)event->m_pData;
-
-//        QMetaObject::invokeMethod(target, "onCloudDocumentOpen", Qt::QueuedConnection,
-//                Q_ARG(std::wstring, pData->get_Url()), Q_ARG(int, pData->get_IdEqual()), Q_ARG(bool, pData->get_Active()));
 
 //        break;}
 

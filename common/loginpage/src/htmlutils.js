@@ -7,7 +7,11 @@ function checkScaling() {
                                 screen and (min-resolution: 1.5dppx) and (max-resolution: 1.74dppx)`,
         'pixel-ratio__1_75': `screen and (-webkit-min-device-pixel-ratio: 1.75) and (-webkit-max-device-pixel-ratio: 1.99),
                                 screen and (min-resolution: 1.75dppx) and (max-resolution: 1.99dppx)`,
-        'pixel-ratio__2': `screen and (-webkit-min-device-pixel-ratio: 2), screen and (min-resolution: 2dppx), screen and (min-resolution: 192dpi)`
+        'pixel-ratio__2': `screen and (-webkit-min-device-pixel-ratio: 2) and (-webkit-max-device-pixel-ratio: 2.24),
+                                screen and (min-resolution: 2dppx) and (max-resolution: 2.24dppx),
+                                screen and (min-resolution: 192dpi) and (max-resolution: 215dpi)`,
+        'pixel-ratio__2_5': `screen and (-webkit-min-device-pixel-ratio: 2.25), screen and (min-resolution: 2.25dppx),
+                                screen and (min-resolution: 216dpi)`,
     };
 
     for (var c in matches) {
@@ -44,7 +48,7 @@ var params = (function() {
 
 let ui_theme_name = params.uitheme || localStorage.getItem("ui-theme"), ui_theme_type;
 if ( !!ui_theme_name ) {
-    if ( /^{".+"}$/.test(ui_theme_name) ) {
+    if ( /^{".+"}+$/.test(ui_theme_name) ) {
         const obj = JSON.parse(ui_theme_name);
         ui_theme_name = obj['id'] || 'theme-dark';
         ui_theme_type = obj['type'];

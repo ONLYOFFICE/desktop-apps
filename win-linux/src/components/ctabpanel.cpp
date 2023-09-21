@@ -4,8 +4,7 @@
 #include "defines.h"
 #include "cefview.h"
 #include <QHBoxLayout>
-#include <QPainter>
-#include <QDebug>
+
 
 using namespace NSEditorApi;
 

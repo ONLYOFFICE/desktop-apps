@@ -1,0 +1,56 @@
+#CX11Caption {
+    min-width: 613px;
+}
+
+#labelAppTitle {
+    margin-top: -7px;
+    font-size: 39px;
+}
+
+QPushButton {
+    border: 4px solid #cbcbcb;
+    padding: 0 70px;
+    height: 77px;
+    border-radius: 7px;
+    font-size: 39px;
+}
+
+QPushButton#toolButtonMaximize,QPushButton#toolButtonMinimize,
+    QPushButton#toolButtonClose {
+        padding: 18px 42px 25px;
+}
+
+QPushButton#toolButtonMain {
+    font-size: 35px;
+    border-right-width: 4px;
+}
+
+QPushButton#toolButtonMain[theme=light] {
+    border-width: 4px;
+    border-bottom: 0 none;
+}
+
+QPushButton#toolButtonMain[class=normal],
+    QPushButton#toolButtonMain[class=normal]:hover
+{
+    border-bottom-width: 4px;
+}
+
+QPushButton#toolButtonDownload {max-width: 140px; width: 140px; max-height: 98px; height: 98px;}
+
+/* ToolTip*/
+
+#CToolTip>QLabel {
+    min-height: 91px;
+    margin: 0px;
+    padding-left: 35px; padding-right: 35px;
+    font-size: 39px;
+    border: 4px solid #c0c0c0;
+    border-radius: 16px;
+}
+#mainPanel[uitheme=theme-dark] #CToolTip>QLabel {
+    border: 4px solid #666666;
+}
+#mainPanel[uitheme=theme-contrast-dark] #CToolTip>QLabel {
+    border: 4px solid #696969;
+}

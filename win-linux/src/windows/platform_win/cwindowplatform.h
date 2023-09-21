@@ -52,6 +52,9 @@ public:
     virtual void show(bool);
     virtual void adjustGeometry() final;
 
+protected:
+    bool isSessionInProgress();
+
 private:
     bool isTaskbarAutoHideOn();
     void setResizeableAreaWidth(int);
@@ -65,7 +68,8 @@ private:
          m_closed,
          m_isResizeable,
          m_allowMaximize,
-         m_scaleChanged = false;
+         m_scaleChanged = false,
+         m_isSessionInProgress = true;
 };
 
 #endif // CWINDOWPLATFORM_H

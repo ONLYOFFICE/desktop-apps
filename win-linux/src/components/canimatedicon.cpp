@@ -1,7 +1,6 @@
 #include "components/canimatedicon.h"
-
 #include <QPainter>
-#include <QDebug>
+#include <QVariant>
 
 #define RELEASE_OBJECT(obj) if (obj) delete obj, obj = nullptr;
 
@@ -53,7 +52,8 @@ void CAnimatedIcon::startSvg(const QString& source, const QString& eid)
             if ( !eid.isEmpty() ) m_svgElemId = eid;
 
             if ( m_image ) delete m_image;
-            m_image = new QPixmap( m_svgSize );
+            int icon_size = qMin(width(), height());
+            m_image = new QPixmap(icon_size, icon_size);
 
             connect(m_svg, &QSvgRenderer::repaintNeeded, this, &CAnimatedIcon::onSvgRepaint);
         } else {

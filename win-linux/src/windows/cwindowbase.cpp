@@ -135,8 +135,8 @@ void CWindowBase::setWindowColors(const QColor& background, const QColor& border
 void CWindowBase::applyTheme(const std::wstring& theme)
 {
     Q_UNUSED(theme)
-    QColor background = AscAppManager::themes().current().color(CTheme::ColorRole::ecrWindowBackground);
-    QColor border = AscAppManager::themes().current().color(CTheme::ColorRole::ecrWindowBorder);
+    QColor background = GetColorByRole(ecrWindowBackground);
+    QColor border = GetColorByRole(ecrWindowBorder);
     setWindowColors(background, border);
 }
 
@@ -226,11 +226,7 @@ bool CWindowBase::event(QEvent *event)
        QWidget *wgt = qApp->widgetAt(hlp->globalPos());
        if (wgt && !findChild<CToolTip*>()) {
            QString text("");
-           CTabBar *bar = dynamic_cast<CTabBar*>(wgt);
-           if (bar) {
-               int index = bar->tabAt(bar->mapFromGlobal(hlp->globalPos()));
-               text = bar->tabProperty(index, "ToolTip").toString();
-           } else
+           if (wgt->property("ToolTip").isValid())
                text = wgt->property("ToolTip").toString();
            if (m_pMainPanel && !text.isEmpty()) {
                CToolTip *tool = new CToolTip(m_pMainPanel, text, hlp->globalPos());
@@ -308,6 +304,6 @@ void CWindowBase::showEvent(QShowEvent *event)
         m_windowActivated = true;
         setGeometry(m_window_rect);
         adjustGeometry();
-        applyTheme(AscAppManager::themes().current().id());
+        applyTheme(GetCurrentTheme().id());
     }
 }

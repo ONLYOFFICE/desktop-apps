@@ -3,6 +3,7 @@
 #include <QEvent>
 
 #define WINDOW_CLASS_NAME L"CWin11Snap"
+#define SNAP_POPUP_NAME L"PopupHost"
 #define DELAY 500
 #define ALPHA 0x30
 #define COLOR 0x00ffffff
@@ -11,12 +12,15 @@
 #endif
 
 
+QMap<HWINEVENTHOOK, HWND> CWin11Snap::m_hookMap = QMap<HWINEVENTHOOK, HWND>();
+
 CWin11Snap::CWin11Snap(QPushButton *btn) :
+    QObject(btn),
     m_pBtn(btn),
     m_pTopLevelWidget(nullptr),
     m_allowedChangeSize(false)
 {
-    m_hInstance = GetModuleHandle(nullptr);
+    HINSTANCE m_hInstance = GetModuleHandle(nullptr);
     WNDCLASSEX wcx{sizeof(WNDCLASSEX)};
     wcx.style = CS_HREDRAW | CS_VREDRAW;
     wcx.hInstance = m_hInstance;
@@ -33,7 +37,7 @@ CWin11Snap::CWin11Snap(QPushButton *btn) :
     m_hWnd = CreateWindowEx(
                 WS_EX_TOOLWINDOW | WS_EX_LAYERED,
                 WINDOW_CLASS_NAME,
-                L"",
+                L"CWin11SnapWindow",
                 WS_MAXIMIZEBOX | WS_THICKFRAME,
                 pos.x(), pos.y(), size.width(), size.height(),
                 nullptr,
@@ -46,19 +50,21 @@ CWin11Snap::CWin11Snap(QPushButton *btn) :
     m_pTopLevelWidget = m_pBtn->nativeParentWidget();
     m_pBtn->installEventFilter(this);
     m_pBtn->setAttribute(Qt::WA_Hover);
-    connect(m_pBtn, &QPushButton::destroyed, this, [=](){
-        DestroyWindow(m_hWnd);
-        this->deleteLater();
-    });
     m_pTimer = new QTimer(this);
     m_pTimer->setSingleShot(true);
     m_pTimer->setInterval(DELAY);
     connect(m_pTimer, &QTimer::timeout, this, &CWin11Snap::show);
+    m_snapPopupEventHook = SetWinEventHook(EVENT_OBJECT_DESTROY, EVENT_OBJECT_DESTROY, NULL, snapPopupEventProc,
+                                              0, 0, WINEVENT_OUTOFCONTEXT | WINEVENT_SKIPOWNPROCESS);
+    m_hookMap[m_snapPopupEventHook] = m_hWnd;
 }
 
 CWin11Snap::~CWin11Snap()
 {
-
+    if (m_hookMap.contains(m_snapPopupEventHook))
+        m_hookMap.remove(m_snapPopupEventHook);
+    UnhookWinEvent(m_snapPopupEventHook);
+    DestroyWindow(m_hWnd);
 }
 
 void CWin11Snap::show()
@@ -109,18 +115,21 @@ LRESULT CWin11Snap::WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
                                                        int(rect.bottom - rect.top));
             }
             ShowWindow(hWnd, SW_HIDE);
+            window->m_allowedChangeSize = false;
         }
+        break;
+
+    case WM_SETFOCUS:
         window->m_allowedChangeSize = false;
         break;
 
     case WM_NCMOUSELEAVE: {
         SetLayeredWindowAttributes(hWnd, 0, 0x00, LWA_ALPHA);
-        window->m_allowedChangeSize = true;
         break;
     }
 
     case WM_NCLBUTTONDOWN: {
-        emit window->m_pBtn->click();
+        window->m_pBtn->click();
         SetLayeredWindowAttributes(hWnd, 0, 0x00, LWA_ALPHA);
         ShowWindow(hWnd, SW_HIDE);
         return TRUE;
@@ -135,6 +144,8 @@ LRESULT CWin11Snap::WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
     }
 
     case WM_NCHITTEST: {
+        if (!window->m_allowedChangeSize)
+            window->m_allowedChangeSize = true;
         return HTMAXBUTTON;
     }
 
@@ -146,4 +157,15 @@ LRESULT CWin11Snap::WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
         break;
     }
     return DefWindowProc(hWnd, msg, wParam, lParam);
+}
+
+void CWin11Snap::snapPopupEventProc(HWINEVENTHOOK hook, DWORD event, HWND hwnd, LONG, LONG , DWORD, DWORD)
+{
+    if (event == EVENT_OBJECT_DESTROY) {
+        const int len = sizeof(SNAP_POPUP_NAME)/sizeof(WCHAR);
+        WCHAR title[len + 1] = {0};
+        GetWindowText(hwnd, title, len);
+        if (lstrcmpi(title, SNAP_POPUP_NAME) == 0 && m_hookMap.contains(hook))
+            ShowWindow(m_hookMap[hook], SW_HIDE);
+    }
 }

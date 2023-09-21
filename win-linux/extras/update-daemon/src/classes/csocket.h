@@ -33,7 +33,24 @@
 #ifndef CSOCKET_H
 #define CSOCKET_H
 
+#include <string>
+#include <vector>
 #include <functional>
+#ifdef _WIN32
+# include <tchar.h>
+# define tchar wchar_t
+# define tstringstream std::wstringstream
+# define tstring std::wstring
+# define to_tstring to_wstring
+#else
+# define _T(str) str
+# define tchar char
+# define tstringstream std::stringstream
+# define tstring std::string
+# define to_tstring to_string
+#endif
+
+using std::size_t;
 
 typedef std::function<void(void*, size_t)> FnVoidData;
 typedef std::function<void(const char*)> FnVoidCharPtr;
@@ -62,8 +79,10 @@ public:
     /* callback */
     bool isPrimaryInstance();
     bool sendMessage(void *data, size_t size);
+    bool sendMessage(int cmd, const tstring &param1 = _T(""), const tstring &param2 = _T(""));
     void onMessageReceived(FnVoidData callback);
     void onError(FnVoidCharPtr callback);
+    int  parseMessage(void *data, std::vector<tstring> &params);
 
 private:
     class CSocketPrv;

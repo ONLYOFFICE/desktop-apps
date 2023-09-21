@@ -42,7 +42,6 @@
 #include "components/cmessage.h"
 #include <QApplication>
 #include <QDir>
-#include <QDebug>
 
 using namespace NSEditorApi;
 
@@ -282,7 +281,7 @@ namespace CEditorTools
             panel->createLocalFile(editorTypeFromFormat(opts.format), opts.name.toStdWString());
         } else
         if (opts.srctype == etTemplateFile) {
-            panel->createLocalFile(L"", opts.name.toStdWString());
+            panel->createLocalFile(opts.wurl, opts.name.toStdWString());
         } else {
             panel->cef()->load(opts.wurl);
         }
@@ -296,13 +295,6 @@ namespace CEditorTools
             if ( opts.srctype == etNewFile )
                 data->setContentType(editorTypeFromFormat(opts.format));
 
-            if ( !data->isLocal() ) {
-                QRegularExpression re("ascdesktop:\\/\\/compare");
-                QRegularExpressionMatch match = re.match(QString::fromStdWString(data->url()));
-                if ( match.hasMatch() ) {
-                     data->setIsLocal(true);
-                }
-            }
 
 
             panel->setData(data);
@@ -333,6 +325,9 @@ namespace CEditorTools
         if (format > AVS_OFFICESTUDIO_FILE_SPREADSHEET && format < AVS_OFFICESTUDIO_FILE_CROSSPLATFORM ) {
             return etSpreadsheet;
         }
+        else
+        if (format > AVS_OFFICESTUDIO_FILE_CROSSPLATFORM && format < AVS_OFFICESTUDIO_FILE_IMAGE )
+            return etDocumentViewer;
 
         return etUndefined;
     }

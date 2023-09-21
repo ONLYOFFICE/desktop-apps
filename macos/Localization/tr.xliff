@@ -136,9 +136,9 @@
         <target state="translated">Belgeye yapılan değişiklikleri kaydetmek istiyor musunuz "%@"?</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
-      <trans-unit id="Document %ld.docx" xml:space="preserve">
-        <source>Document %ld.docx</source>
-        <target state="translated">Belge %ld.docx</target>
+      <trans-unit id="Document %ld.docxf" xml:space="preserve">
+        <source>Document %ld.docxf</source>
+        <target state="translated">Belge %ld.docxf</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Document template" xml:space="preserve">

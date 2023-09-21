@@ -74,7 +74,6 @@
 #import "ASCDocumentType.h"
 #import <Carbon/Carbon.h>
 
-
 #define rootTabId @"1CEF624D-9FF3-432B-9967-61361B5BFE8B"
 
 @interface ASCCommonViewController() <ASCTabsControlDelegate, ASCTitleBarControllerDelegate, ASCUserInfoViewControllerDelegate> {
@@ -647,8 +646,9 @@
     BOOL canOpen = NO;
 
     if (path) {
-        NSURL * urlFile = [NSURL URLWithString:[path stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
         
+        NSURL * urlFile = [NSURL URLWithString:[path stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]];
+
         if (urlFile && [urlFile host]) {
             canOpen = YES;
         } else {
@@ -738,7 +738,6 @@
 - (void)onCEFCreateTab:(NSNotification *)notification {
     if (notification && notification.userInfo) {
         NSMutableDictionary * params = [notification.userInfo mutableCopy];
-        
         if ([params[@"action"] isEqualToNumber:@(ASCTabActionCreateLocalFileFromTemplate)]) {
             NSOpenPanel * openPanel = [NSOpenPanel openPanel];
             NSMutableArray * filter = [NSMutableArray array];
@@ -759,6 +758,13 @@
             if ([openPanel runModal] == NSModalResponseOK) {
                 [params setValue:[[openPanel URL] path] forKey:@"template"];
             } else return;
+        } else
+        if ([params[@"action"] isEqualToNumber:@(ASCTabActionOpenLocalRecentFile)] ||
+                [params[@"action"] isEqualToNumber:@(ASCTabActionOpenLocalFile)])
+        {
+            if ( ![self canOpenFile:params[@"path"] tab:nil] ) {
+                return;
+            }
         }
 
         ASCTabView *tab = [[ASCTabView alloc] initWithFrame:CGRectZero];
@@ -925,15 +931,38 @@
         
         //NSLog(@"ui oncefkeydown");
         if (eventData) {
-//            NSEditorApi::CAscKeyboardDown * pData = (NSEditorApi::CAscKeyboardDown *)[eventData pointerValue];
-//
-//            int     keyCode     = pData->get_KeyCode();
-//            bool    isCtrl      = pData->get_IsCtrl();
-//            BOOL    isCommand   = pData->get_IsCommandMac();
-//
-//            if(isCtrl && keyCode == kVK_ANSI_W) {
-//                [self tabs:self.tabsControl willRemovedTab:[self.tabsControl selectedTab]];
-//            }
+            NSEditorApi::CAscKeyboardDown * pData = (NSEditorApi::CAscKeyboardDown *)[eventData pointerValue];
+
+            if ( pData->get_KeyCode() == 112 /*kVK_F1*/ && pData->get_IsShift() && pData->get_IsCtrl() ) {
+                NSOpenPanel * openPanel = [NSOpenPanel openPanel];
+
+                openPanel.canChooseDirectories = YES;
+                openPanel.allowsMultipleSelection = NO;
+                openPanel.canChooseFiles = NO;
+                openPanel.allowedFileTypes = [ASCConstants images];
+//                openPanel.directoryURL = [NSURL fileURLWithPath:directory];
+
+                [openPanel beginSheetModalForWindow:[NSApp mainWindow] completionHandler:^(NSInteger result){
+                    [openPanel orderOut:self];
+
+                    if (result == NSFileHandlingPanelOKButton) {
+                        NSString * pathToHelp = [[[openPanel directoryURL] path] stringByAppendingString: @"/apps"];
+                        NSString * pathContents = [pathToHelp stringByAppendingString:@"/documenteditor/main/resources/help/en/Contents.json"];
+
+                        NSAlert * alert = [[NSAlert alloc] init];
+                        if ( [[NSFileManager defaultManager] fileExistsAtPath:pathContents] ) {
+                            [[NSUserDefaults standardUserDefaults] setValue:pathToHelp forKey:@"helpUrl"];
+                            [[ASCEditorJSVariables instance] setVariable:@"helpUrl" withString:pathToHelp];
+                            [[ASCEditorJSVariables instance] apply];
+
+                            [alert setMessageText:@"Successfully"];
+                        } else {
+                            [alert setMessageText:@"Failed"];
+                        }
+                        [alert runModal];
+                    }
+                }];
+            }
         }
     }
 }
@@ -1817,7 +1846,7 @@
                 }
                 
                 if (action == ASCTabActionCreateLocalFile ) {
-                [cefView createFileWithName:docName type:docType];
+                    [cefView createFileWithName:docName type:docType];
                 } else {
                     [cefView createFileWithNameFromTemplate:docName tplpath:tab.params[@"template"]];
                 }
@@ -1828,15 +1857,13 @@
             case ASCTabActionOpenLocalFile: {
                 NSString * filePath = tab.params[@"path"];
                 
-                if ([self canOpenFile:filePath tab:tab]) {
-                    int fileFormatType = CCefViewEditor::GetFileFormat([filePath stdwstring]);
-                    [cefView openFileWithName:filePath type:fileFormatType];
+                int fileFormatType = CCefViewEditor::GetFileFormat([filePath stdwstring]);
+                [cefView openFileWithName:filePath type:fileFormatType];
                     
-                    [[AnalyticsHelper sharedInstance] recordCachedEventWithCategory:ASCAnalyticsCategoryApplication
+                [[AnalyticsHelper sharedInstance] recordCachedEventWithCategory:ASCAnalyticsCategoryApplication
                                                                              action:@"Open local file"
                                                                               label:nil
                                                                               value:nil];
-                }
                 
                 break;
             }
@@ -1855,14 +1882,12 @@
                 NSInteger docId = [tab.params[@"fileId"] intValue];
                 NSString * filePath = tab.params[@"path"];
                 
-                if ([self canOpenFile:filePath tab:tab]) {
-                    [cefView openRecentFileWithId:docId];
+                [cefView openRecentFileWithId:docId];
                     
-                    [[AnalyticsHelper sharedInstance] recordCachedEventWithCategory:ASCAnalyticsCategoryApplication
+                [[AnalyticsHelper sharedInstance] recordCachedEventWithCategory:ASCAnalyticsCategoryApplication
                                                                              action:@"Open local file"
                                                                               label:nil
                                                                               value:nil];
-                }
                 
                 break;
             }

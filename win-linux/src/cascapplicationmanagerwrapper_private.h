@@ -207,7 +207,6 @@ public:
                     if ( _url.rfind(L"http://",0) == 0 || _url.rfind(L"https://",0) == 0 ) {
                         COpenOptions opts{_url};
                         opts.id = _view ? _view->GetId() : -1;
-//                        mainWindow()->mainPanel()->onCloudDocumentOpen(_url, _id, true);
                     } else {
 //                        /* open local file */
                     }

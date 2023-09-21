@@ -78,6 +78,8 @@
     AscAppManager::themes().themeActualId(theme)
 #define GetColorByRole(role) \
     GetCurrentTheme().color(CTheme::ColorRole::role)
+#define GetColorValueByRole(role) \
+    GetCurrentTheme().value(CTheme::ColorRole::role)
 #define IsPackage(type) (AppOptions::packageType() == AppOptions::AppPackageType::type)
 
 #define LOCAL_PATH_OPEN         1
@@ -117,6 +119,7 @@ typedef unsigned char BYTE;
 #define WSTR(str)               TO_WSTR(str)
 
 #ifdef __linux
+# define VK_F1 0x70
 # define VK_F4 0x73
 # define VK_TAB 0x09
 #endif

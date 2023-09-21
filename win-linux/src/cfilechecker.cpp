@@ -5,7 +5,6 @@
 #include <QTextDocumentFragment>
 #include <QUrl>
 
-#include <QDebug>
 
 #define FILE_UNKNOWN    0
 #define FILE_EXISTS     1

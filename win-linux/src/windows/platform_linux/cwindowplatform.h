@@ -35,7 +35,6 @@
 
 #include "windows/cwindowbase.h"
 #include "cx11decoration.h"
-#include <memory>
 
 
 class CWindowPlatform : public CWindowBase, public CX11Decoration
@@ -59,7 +58,8 @@ private:
     virtual void mouseMoveEvent(QMouseEvent *) final;
     virtual void mousePressEvent(QMouseEvent *) final;
     virtual void mouseReleaseEvent(QMouseEvent *) final;
-    virtual void mouseDoubleClickEvent(QMouseEvent *) final;    
+    virtual void mouseDoubleClickEvent(QMouseEvent *) final;
+    QTimer *m_propertyTimer;
 };
 
 #endif // CWINDOWPLATFORM_H

@@ -83,6 +83,14 @@ enum class CScalingFactor
     SCALING_FACTOR_1_5,
     SCALING_FACTOR_1_75,
     SCALING_FACTOR_2,
+    SCALING_FACTOR_2_25,
+    SCALING_FACTOR_2_5,
+    SCALING_FACTOR_2_75,
+    SCALING_FACTOR_3,
+    SCALING_FACTOR_3_5,
+    SCALING_FACTOR_4,
+    SCALING_FACTOR_4_5,
+    SCALING_FACTOR_5
 };
 
 class CAscApplicationManagerWrapper;
@@ -197,7 +205,7 @@ public:
     uint logoutCount(const std::wstring& portal) const;
     void Logout(const std::wstring& portal);
     void launchAppClose();
-
+    void onDocumentReady(int uid);
     void OnEvent(NSEditorApi::CAscCefMenuEvent *);
     bool event(QEvent *event);
 private:
@@ -206,8 +214,6 @@ private:
 
     CAscApplicationManagerWrapper(CAscApplicationManagerWrapper_Private *);
 
-    class DialogSchedule;
-    std::unique_ptr<DialogSchedule> m_dialogSchedule;
 #ifdef _UPDMODULE
     CUpdateManager *m_pUpdateManager;
 #endif
