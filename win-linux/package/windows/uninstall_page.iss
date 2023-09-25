@@ -74,9 +74,10 @@ begin
 
     CheckBox := TNewCheckBox.Create(UninstallProgressForm);
     CheckBox.Parent := UninstallFirstPage;
-    CheckBox.Top := PageText.Top + ScaleY(50);
+    CheckBox.Top := PageText.Top + PageText.Height + ScaleY(8);
     CheckBox.Left := PageText.Left;
     CheckBox.Width := UninstallProgressForm.Width;
+    CheckBox.Height := ScaleY(17);
     CheckBox.Caption := ' ' + ExpandConstant('{cm:UninstallOptionClearData}');
 
     UninstallProgressForm.InnerNotebook.ActivePage := UninstallFirstPage;
