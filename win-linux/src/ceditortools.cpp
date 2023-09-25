@@ -281,7 +281,7 @@ namespace CEditorTools
             panel->createLocalFile(editorTypeFromFormat(opts.format), opts.name.toStdWString());
         } else
         if (opts.srctype == etTemplateFile) {
-            panel->createLocalFile(L"", opts.name.toStdWString());
+            panel->createLocalFile(opts.wurl, opts.name.toStdWString());
         } else {
             panel->cef()->load(opts.wurl);
         }
@@ -325,6 +325,9 @@ namespace CEditorTools
         if (format > AVS_OFFICESTUDIO_FILE_SPREADSHEET && format < AVS_OFFICESTUDIO_FILE_CROSSPLATFORM ) {
             return etSpreadsheet;
         }
+        else
+        if (format > AVS_OFFICESTUDIO_FILE_CROSSPLATFORM && format < AVS_OFFICESTUDIO_FILE_IMAGE )
+            return etDocumentViewer;
 
         return etUndefined;
     }

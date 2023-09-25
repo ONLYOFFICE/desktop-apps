@@ -48,6 +48,7 @@
         <file alias="docxf.svg">res/icons/tabbar/tabicon_docxf_normal.svg</file>
         <file alias="pe.svg">res/icons/tabbar/tabicon_pe_normal.svg</file>
         <file alias="se.svg">res/icons/tabbar/tabicon_se_normal.svg</file>
+        <file alias="pdf.svg">res/icons/tabbar/tabicon_pdf_normal.svg</file>
         <file alias="portal.svg">res/icons/tabbar/portal.svg</file>
         <file alias="portal_light.svg">res/icons/tabbar/portal_light.svg</file>
         <file alias="newdoc.svg">res/icons/tabbar/tabicon_undefined.svg</file>
@@ -104,6 +105,9 @@
     <qresource prefix="/styles@2.5x">
         <file alias="styles.qss">res/styles/styles@2.5x.qss</file>
     </qresource>
+    <qresource prefix="/styles@2.75x">
+        <file alias="styles.qss">res/styles/styles@2.75x.qss</file>
+    </qresource>
     <qresource prefix="/styles@3x">
         <file alias="styles.qss">res/styles/styles@3x.qss</file>
     </qresource>
@@ -124,7 +128,7 @@
         <file alias="bg-BG.qm">langs/bg.qm</file>
         <file alias="ca-ES.qm">langs/ca.qm</file>
         <file alias="cs-CZ.qm">langs/cs.qm</file>
-        <file alias="da-DK.qm">langs/de.qm</file>
+        <file alias="da-DK.qm">langs/da.qm</file>
         <file alias="de-DE.qm">langs/de.qm</file>
         <file alias="el-GR.qm">langs/el_GR.qm</file>
         <file alias="en-US.qm">langs/en.qm</file>

@@ -187,11 +187,19 @@ window.DialogConnect = function(params) {
         if ( !!item ) {
             const $portal = $body.find('#auth-portal');
             if ( item.entryPage ) {
+                if ( !$portal.data("autoportal") )
+                    $portal.data("userportal", $portal.val());
+                $portal.data("autoportal", true);
+
                 $portal[0].disabled = true;
                 $portal.val(item.entryPage)
             } else {
+                if ( $portal.data("autoportal") ) {
+                    $portal.val($portal.data("userportal"));
+                    $portal.data("autoportal", false);
+                }
+
                 $portal[0].disabled = false;
-                $portal.val("")
             }
         }
     }

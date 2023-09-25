@@ -85,6 +85,7 @@ enum class CScalingFactor
     SCALING_FACTOR_2,
     SCALING_FACTOR_2_25,
     SCALING_FACTOR_2_5,
+    SCALING_FACTOR_2_75,
     SCALING_FACTOR_3,
     SCALING_FACTOR_3_5,
     SCALING_FACTOR_4,
@@ -204,7 +205,7 @@ public:
     uint logoutCount(const std::wstring& portal) const;
     void Logout(const std::wstring& portal);
     void launchAppClose();
-
+    void onDocumentReady(int uid);
     void OnEvent(NSEditorApi::CAscCefMenuEvent *);
     bool event(QEvent *event);
 private:

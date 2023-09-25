@@ -1,6 +1,5 @@
 
 QT  += core gui widgets gui-private widgets-private core-private printsupport
-QT  += multimedia multimediawidgets
 QT  += svg
 
 TEMPLATE = app

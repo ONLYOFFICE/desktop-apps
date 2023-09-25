@@ -84,9 +84,6 @@ CAscApplicationManagerWrapper::CAscApplicationManagerWrapper(CAscApplicationMana
 
 #ifdef _UPDMODULE
     m_pUpdateManager = new CUpdateManager(this);
-    connect(m_pUpdateManager, &CUpdateManager::progresChanged, this, [=](const int &percent) {
-        AscAppManager::sendCommandTo(0, "updates:download", QString("{\"progress\":\"%1\"}").arg(QString::number(percent)));
-    });
 #endif
 }
 
@@ -243,11 +240,22 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
                     QJsonObject json{{"skiptoparea", TOOLBTN_HEIGHT},{"singlewindow",true}};
                     sendCommandTo(ptr, L"window:features", Utils::stringifyJson(json).toStdWString());
                 }
+
+                if ( InputArgs::contains(L"--system-title-bar") ) {
+                    QJsonObject json{{"element","body"},
+                                        {"action", "merge"},
+                                        {"style","#title-doc-name{display:none}"}};
+                    sendCommandTo(ptr, L"style:change", Utils::stringifyJson(json).toStdWString());
+                }
             }
             return true;
         } else
         if ( cmd.compare(L"portal:login") == 0 ) {
             AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, L"portal:login", pData->get_Param());
+            if ( m_pMainWindow ) {
+                m_pMainWindow->onPortalLogin(event->get_SenderId(), pData->get_Param());
+            }
+
             return true;
         } else
         if ( cmd.compare(L"portal:logout") == 0 ) {
@@ -289,7 +297,7 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
             return true;
         } else
 #ifdef _UPDMODULE
-        if ( !(cmd.find(L"update") == std::wstring::npos) ) {   // params: check, download, install, abort
+        if ( !(cmd.find(L"updates:action") == std::wstring::npos) ) {   // params: check, download, install, abort
             const QString params = QString::fromStdWString(pData->get_Param());
             if (params == "check") {
                 m_pUpdateManager->checkUpdates(true);
@@ -375,9 +383,6 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
             }
 
             return true;
-        } else
-        if ( !(cmd.find(L"updates:action") == std::wstring::npos) ) {
-            // qDebug() << "updates action" << pData->get_Param();
         }
 
         break; }
@@ -917,6 +922,22 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
     }
 }
 
+void CAscApplicationManagerWrapper::onDocumentReady(int uid)
+{
+#ifdef _UPDMODULE
+    if (uid < 0) {
+        QTimer::singleShot(50, this, [=]() {
+            m_pUpdateManager->refreshStartPage();
+        });
+    }
+    static bool lock = false;
+    if (!lock) {
+        lock = true;
+        m_pUpdateManager->launchIntervalStartTimer();
+    }
+#endif
+}
+
 void CAscApplicationManagerWrapper::startApp()
 {
     APP_CAST(_app);
@@ -1068,6 +1089,7 @@ void CAscApplicationManagerWrapper::initializeApp()
     _app.addStylesheets(CScalingFactor::SCALING_FACTOR_2, ":styles@2x/styles.qss");
     _app.addStylesheets(CScalingFactor::SCALING_FACTOR_2_25, ":styles@2.25x/styles.qss");
     _app.addStylesheets(CScalingFactor::SCALING_FACTOR_2_5, ":styles@2.5x/styles.qss");
+    _app.addStylesheets(CScalingFactor::SCALING_FACTOR_2_75, ":styles@2.75x/styles.qss");
     _app.addStylesheets(CScalingFactor::SCALING_FACTOR_3, ":styles@3x/styles.qss");
     _app.addStylesheets(CScalingFactor::SCALING_FACTOR_3_5, ":styles@3.5x/styles.qss");
     _app.addStylesheets(CScalingFactor::SCALING_FACTOR_4, ":styles@4x/styles.qss");
@@ -1493,8 +1515,11 @@ QString CAscApplicationManagerWrapper::getWindowStylesheets(double dpifactor)
     if ( dpifactor > 3.0 )
         return getWindowStylesheets(CScalingFactor::SCALING_FACTOR_3_5);
     else
-    if ( dpifactor > 2.5 )
+    if ( dpifactor > 2.75 )
         return getWindowStylesheets(CScalingFactor::SCALING_FACTOR_3);
+    else
+    if ( dpifactor > 2.5 )
+        return getWindowStylesheets(CScalingFactor::SCALING_FACTOR_2_75);
     else
     if ( dpifactor > 2.25 )
         return getWindowStylesheets(CScalingFactor::SCALING_FACTOR_2_5);
@@ -1638,15 +1663,9 @@ bool CAscApplicationManagerWrapper::applySettings(const wstring& wstrjson)
             _reg_user.setValue("editorWindowMode", m_private->m_openEditorWindow);
         }
 #ifdef _UPDMODULE
-#ifdef Q_OS_WIN
         if ( objRoot.contains("autoupdatemode") ) {
             m_pUpdateManager->setNewUpdateSetting(objRoot["autoupdatemode"].toString());
         }
-#else
-        if ( objRoot.contains("checkupdatesinterval") ) {
-            m_pUpdateManager->setNewUpdateSetting(objRoot["checkupdatesinterval"].toString());
-        }
-#endif
 #endif
     } else {
         /* parse settings error */

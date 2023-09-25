@@ -32,6 +32,7 @@
 
 #include "csocket.h"
 #include <future>
+#include <sstream>
 
 #ifdef _WIN32
 # define _WINSOCK_DEPRECATED_NO_WARNINGS
@@ -274,6 +275,14 @@ bool CSocket::sendMessage(void *data, size_t size)
     return true;
 }
 
+bool CSocket::sendMessage(int cmd, const tstring &param1, const tstring &param2)
+{
+    tstring str = std::to_tstring(cmd) + _T("|") + (param1.empty() ? _T("null") : param1) +
+                  _T("|") + (param2.empty() ? _T("null") : param2);
+    size_t sz = str.size() * sizeof(str.front());
+    return sendMessage((void*)str.c_str(), sz);
+}
+
 void CSocket::onMessageReceived(FnVoidData callback)
 {
     pimpl->m_received_callback = callback;
@@ -282,4 +291,13 @@ void CSocket::onMessageReceived(FnVoidData callback)
 void CSocket::onError(FnVoidCharPtr callback)
 {
     pimpl->m_error_callback = callback;
+}
+
+int CSocket::parseMessage(void *data, std::vector<tstring> &params)
+{
+    tstring str((const tchar*)data), tmp;
+    tstringstream wss(str);
+    while (std::getline(wss, tmp, _T('|')))
+        params.push_back(tmp == _T("null") ? _T("") : std::move(tmp));
+    return (int)params.size();
 }

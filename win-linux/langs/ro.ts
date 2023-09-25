@@ -589,23 +589,23 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="330"/>
         <source>This folder configuration does not allow for updates! The folder name should be: </source>
-        <translation type="unfinished"></translation>
+        <translation>Actualizări nu sunt acceptate pentru această configurație a folderului! Nume de folder trebuie să fie: </translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="642"/>
         <location filename="../src/cupdatemanager.cpp" line="667"/>
         <source>A new version of %1 is available!</source>
-        <translation type="unfinished">Este disponibilă o nouă versiune a aplicației %1!</translation>
+        <translation>Este disponibilă o nouă versiune a aplicației %1!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="643"/>
         <source>%1 %2 is now available (you have %3). Would you like to download it now?</source>
-        <translation type="unfinished">Aplicația %1 este disponibilă în versiunea %2 (versiunea dvs %3). Doriți să încărcați acum?</translation>
+        <translation>Aplicația %1 este disponibilă în versiunea %2 (versiunea dvs %3). Doriți să încărcați acum?</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="668"/>
         <source>%1 %2 is now downloaded (you have %3). Would you like to install it now?</source>
-        <translation type="unfinished">Aplicația %1 %2 a fost încărcată (versiunea dvs %3). Doriți să instalați acum?</translation>
+        <translation>Aplicația %1 %2 a fost încărcată (versiunea dvs %3). Doriți să instalați acum?</translation>
     </message>
 </context>
 <context>
@@ -637,13 +637,13 @@
     <message>
         <location filename="../src/ceditortools.cpp" line="146"/>
         <source>XML File (*.xml)</source>
-        <translation type="unfinished"></translation>
+        <translation>XML File (*.xml)</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="228"/>
         <location filename="../src/windows/cmainwindow.cpp" line="747"/>
         <source>Access to file &apos;%1&apos; is denied!</source>
-        <translation type="unfinished"></translation>
+        <translation>Acces la fișierul &apos;%1&apos; refuzat!</translation>
     </message>
     <message>
         <location filename="../src/casctabdata.cpp" line="177"/>
@@ -698,78 +698,78 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="343"/>
         <source>An error occurred while check updates: Update Service not found!</source>
-        <translation type="unfinished"></translation>
+        <translation>A intervenit o eroare în timpul verificării a actualizărilor: Serviciu de Actualizare nu s-a găsit.</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="446"/>
         <source>An error occurred while loading updates: Update Service not found!</source>
-        <translation type="unfinished"></translation>
+        <translation>A intervenit o eroare în timpul încărcării a actualizărilor: Serviciu de Actualizare nu s-a găsit.</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="486"/>
         <source>An error occurred while unzip updates: Update Service not found!</source>
-        <translation type="unfinished"></translation>
+        <translation>A intervenit o eroare în timpul dezarhivării a actualizărilor: Serviciu de Actualizare nu s-a găsit.</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="497"/>
         <source>An error occurred while start install updates!</source>
-        <translation type="unfinished"></translation>
+        <translation>A intervenit o eroare în timpul instalării a actualizărilor:</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="501"/>
         <source>An error occurred while start replacing files: Update Service not found!</source>
-        <translation type="unfinished"></translation>
+        <translation>A intervenit o eroare în timpul înlocuirii a fișierelor: Serviciu de Actualizare nu s-a găsit.</translation>
     </message>
     <message>
         <location filename="../src/defines.h" line="128"/>
         <source>Cancel</source>
-        <translation type="unfinished">Revocare</translation>
+        <translation>Revocare</translation>
     </message>
     <message>
         <location filename="../src/defines.h" line="129"/>
         <source>Yes</source>
-        <translation type="unfinished">Da</translation>
+        <translation>Da</translation>
     </message>
     <message>
         <location filename="../src/defines.h" line="130"/>
         <source>No</source>
-        <translation type="unfinished">Nu</translation>
+        <translation>Nu</translation>
     </message>
     <message>
         <location filename="../src/components/cmessage.cpp" line="199"/>
         <location filename="../src/defines.h" line="131"/>
         <source>OK</source>
-        <translation type="unfinished">OK</translation>
+        <translation>OK</translation>
     </message>
     <message>
         <location filename="../src/defines.h" line="132"/>
         <source>Skip</source>
-        <translation type="unfinished">Ignorare</translation>
+        <translation>Ignorare</translation>
     </message>
     <message>
         <location filename="../src/defines.h" line="133"/>
         <source>Buy Now</source>
-        <translation type="unfinished"></translation>
+        <translation>Cumpărare acum</translation>
     </message>
     <message>
         <location filename="../src/defines.h" line="134"/>
         <source>Activate</source>
-        <translation type="unfinished"></translation>
+        <translation>Activare</translation>
     </message>
     <message>
         <location filename="../src/defines.h" line="135"/>
         <source>Continue</source>
-        <translation type="unfinished"></translation>
+        <translation>Continuare</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/xdgdesktopportal.cpp" line="1217"/>
         <source>An error occurred while opening the portal:&lt;br&gt;%1</source>
-        <translation type="unfinished"></translation>
+        <translation>A intervenit o eroare în timpul deschiderii a portalului:&lt;br&gt;%1</translation>
     </message>
     <message>
         <location filename="../src/main.cpp" line="64"/>
         <source>App can&apos;t working correctly under admin rights.</source>
-        <translation type="unfinished"></translation>
+        <translation>Aplicația nu funcționează corect cu privilegii de administrator.</translation>
     </message>
     <message>
         <source>&amp;OK</source>

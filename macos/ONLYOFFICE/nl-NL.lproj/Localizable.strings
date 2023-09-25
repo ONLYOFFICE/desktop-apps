@@ -41,6 +41,9 @@
 "Document %ld.docx" = "Document %ld.docx";
 
 /* No comment provided by engineer. */
+"Document %ld.docxf" = "Document %ld.docxf";
+
+/* No comment provided by engineer. */
 "Document template" = "Word Open XML Document Sjabloon (*.dotx)";
 
 /* No comment provided by engineer. */
@@ -119,7 +122,7 @@
 "PDF File" = "Portable Document (*.pdf)";
 
 /* No comment provided by engineer. */
-"PDF/A File" = "Portable Document / A (*.pdf)";
+"PDF/A File" = "Portable Document /A (*.pdf)";
 
 /* No comment provided by engineer. */
 "Plain Text" = "Standaard Tekstbestand (*.txt)";

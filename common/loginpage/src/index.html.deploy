@@ -50,8 +50,19 @@
 
         @font-face {
             font-family: 'Open Sans';
-            src: url('fonts/opensans/OpenSans-Regular.ttf');
+            /*src: url('fonts/opensans/OpenSans-Regular.ttf');*/
+            src: url('fonts/OpenSans-Regular.ttf');
             font-weight: normal;
+        }
+        @font-face {
+            font-family: 'Open Sans';
+            src: url('fonts/OpenSans-Bold.ttf');
+            font-weight: bold;
+        }
+        @font-face {
+            font-family: 'Open Sans';
+            src: url('fonts/OpenSans-Light.ttf');
+            font-weight: 100;
         }
     </style>
 </head>

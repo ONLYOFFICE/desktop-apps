@@ -38,6 +38,7 @@ namespace NSTheme {
             {CTheme::ColorRole::ecrTabWordActive, "brand-word"},
             {CTheme::ColorRole::ecrTabSlideActive, "brand-slide"},
             {CTheme::ColorRole::ecrTabCellActive, "brand-cell"},
+            {CTheme::ColorRole::ecrTabViewerActive, "brand-pdf"},
 
             {CTheme::ColorRole::ecrWindowBackground, "window-background"},
             {CTheme::ColorRole::ecrWindowBorder, "window-border"},
@@ -186,7 +187,7 @@ public:
         current = new CTheme;
         current->m_priv->setDefaultThemes(getDefault(NSTheme::ThemeType::ttDark), getDefault(NSTheme::ThemeType::ttLight));
         if ( user_theme.endsWith(".json") ) {
-            QDir directory(qApp->applicationDirPath() + "/uicolorthemes");
+            QDir directory(qApp->applicationDirPath() + "/uithemes");
             QString filepath{directory.absoluteFilePath(user_theme)};
 
             if ( !QFile::exists(filepath) || !current->fromFile(filepath) ) {

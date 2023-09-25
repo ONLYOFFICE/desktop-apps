@@ -14,7 +14,7 @@ lo.UninstallPageLabel=ກົດປຸ່ມຖອນການຕິດຕັ້�
 nl.UninstallPageLabel=Druk op Verwijderen om verder te gaan met het verwijderen.
 hy_AM.UninstallPageLabel=Ապատեղադրեք՝ ապատեղադրումը շարունակելու համար:
 si.UninstallPageLabel=අස්ථාපනය සඳහා ඉදිරියට යාමට අස්ථාපනය ඔබන්න.
-zh_tw.UninstallPageLabel=按解除安裝以進行解除安裝。
+zh_TW.UninstallPageLabel=按解除安裝以進行解除安裝。
 da.UninstallPageLabel=Tryk Afinstaller for at fortsætte med afinstallationen.
 
 
@@ -31,8 +31,8 @@ pl.UninstallOptionClearData=Usuń wszystkie ustawienia użytkownika oraz dane pa
 lo.UninstallOptionClearData=ລືບຂໍ້ມູນທີ່ເຫັບໄວ້ໃນແອັບພລິເຄຊັ່ນ ແລະ ລືບການຕັ້ງຄ່າຜູ້ໃຊ້ທັ້ງໝົດ
 nl.UninstallOptionClearData=Alle gebruikersinstellingen en cachegegevens van toepassingen wissen
 hy_AM.UninstallOptionClearData=Մաքրել օգտատիրոջ բոլոր կարգավորումները և հավելվածի քեշավորված տվյալները
-si.UninstallOptionClearData=සියළුම පරිශ්‍රීලක සැකසුම් හා නිහිතගත යෙදුමේ දත්ත මකන්න
-zh_tw.UninstallOptionClearData=清除所有使用者戶設定和應用程序暫存資料
+si.UninstallOptionClearData=සියළුම පරිශ්‍රීලක සැකසුම් හා යෙදුමේ නිහිතගත දත්ත මකන්න
+zh_TW.UninstallOptionClearData=清除所有使用者戶設定和應用程序暫存資料
 da.UninstallOptionClearData=Slet alle brugerdata og applikationens cachede data
 
 
@@ -74,9 +74,10 @@ begin
 
     CheckBox := TNewCheckBox.Create(UninstallProgressForm);
     CheckBox.Parent := UninstallFirstPage;
-    CheckBox.Top := PageText.Top + ScaleY(50);
+    CheckBox.Top := PageText.Top + PageText.Height + ScaleY(8);
     CheckBox.Left := PageText.Left;
     CheckBox.Width := UninstallProgressForm.Width;
+    CheckBox.Height := ScaleY(17);
     CheckBox.Caption := ' ' + ExpandConstant('{cm:UninstallOptionClearData}');
 
     UninstallProgressForm.InnerNotebook.ActivePage := UninstallFirstPage;

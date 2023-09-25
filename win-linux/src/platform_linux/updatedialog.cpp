@@ -45,7 +45,7 @@
 #define TEXT_SKIP        toCharPtr(QObject::tr("Skip this version"))
 #define TEXT_REMIND      toCharPtr(QObject::tr("Remind me later"))
 #define TEXT_INSTALL     toCharPtr(QObject::tr("Install update"))
-#define TEXT_INSLATER    toCharPtr(QObject::tr("Install on Next Start"))
+#define TEXT_INSLATER    toCharPtr(QObject::tr("Install later"))
 #define TEXT_RESTART     toCharPtr(QObject::tr("Save and Restart Now"))
 #define TEXT_SAVEANDINS  toCharPtr(QObject::tr("Save and Install Now"))
 #define TEXT_DOWNLOAD    toCharPtr(QObject::tr("Download update"))

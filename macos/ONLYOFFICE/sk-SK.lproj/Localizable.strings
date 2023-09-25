@@ -41,6 +41,9 @@
 "Document %ld.docx" = "Dokument %ld.docx";
 
 /* No comment provided by engineer. */
+"Document %ld.docxf" = "Dokument %ld.docxf";
+
+/* No comment provided by engineer. */
 "Document template" = "Šablóna dokumentu Word Open XML (*.dotx)";
 
 /* No comment provided by engineer. */
@@ -119,10 +122,10 @@
 "PDF File" = "Prenosný document (*.pdf)";
 
 /* No comment provided by engineer. */
-"PDF/A File" = "Prenosný document / A (*.pdf)";
+"PDF/A File" = "Prenosný document /A (*.pdf)";
 
 /* No comment provided by engineer. */
-"Plain Text" = "Obyčajný text (*.txt)";
+"Plain Text" = "Súbor obyčajného textu (*.txt)";
 
 /* No comment provided by engineer. */
 "PowerPoint 97-2003 Presentation" = "Prezentácia PowerPoint 97-2003 (*.ppt)";

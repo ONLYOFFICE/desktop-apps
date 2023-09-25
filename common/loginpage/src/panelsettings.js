@@ -127,7 +127,7 @@
     }
 
     uitheme.is_system_theme_dark = function () {
-        return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        return this.get_system_theme_type() == 'dark';
     }
 
     uitheme.get_default_theme_for_type = type => type == THEME_TYPE_DARK ? THEME_ID_DEFAULT_DARK : THEME_ID_DEFAULT_LIGHT;
@@ -537,11 +537,11 @@
 
                         if ( !!opts.updates ) {
                             if ( opts.updates.mode !== undefined ) {
-                                if ( !['ask', 'disabled'].includes(opts.updates.mode) )
-                                    opts.updates.mode = 'ask';                          // for 7.3. to workaround 'silent' mode
+                                // if ( !['ask', 'disabled'].includes(opts.updates.mode) )
+                                    // opts.updates.mode = 'ask';                          // for 7.3. to workaround 'silent' mode
 
-                                // ($optsAutoupdateMode = ($('#opts-autoupdate-mode', $panel).show().find('select')))
-                                ($optsAutoupdateMode = ($('#opts-autoupdate', $panel).show().find('select')))
+                                ($optsAutoupdateMode = ($('#opts-autoupdate-mode', $panel).show().find('select')))
+                                // ($optsAutoupdateMode = ($('#opts-autoupdate', $panel).show().find('select')))
                                     .val(opts.updates.mode)
                                     .selectpicker().on('change', e => {
                                         $btnApply.isdisabled() && $btnApply.disable(false);
@@ -633,9 +633,9 @@
         }
 
         function _on_lang_changed(ol,nl) {
-            // $('option[value=silent]', this.view.$panel).attr('data-subtext', utils.Lang.settOptDescAUpdateSilent);
-            // $('option[value=ask]', this.view.$panel).attr('data-subtext', utils.Lang.settOptDescAUpdateAsk);
-            // $('option[value=disabled]', this.view.$panel).attr('data-subtext', utils.Lang.settOptDescDisabled);
+            $('option[value=silent]', this.view.$panel).attr('data-subtext', utils.Lang.settOptDescAUpdateSilent);
+            $('option[value=ask]', this.view.$panel).attr('data-subtext', utils.Lang.settOptDescAUpdateAsk);
+            $('option[value=disabled]', this.view.$panel).attr('data-subtext', utils.Lang.settOptDescDisabled);
 
             // for ( let k of Object.keys(themes_map) ) {
             //     const t = themes_map[k]
@@ -652,7 +652,7 @@
 
                 this.view.render();
 
-                const _scaling = [100, 125, 150, 175, 200, 225, 250, 300, 350, 400, 450, 500];
+                const _scaling = [100, 125, 150, 175, 200, 225, 250, 275, 300, 350, 400, 450, 500];
                 let _scaling_items = '';
                 _scaling.forEach(val => _scaling_items += `<option value="${val}">${val}%</option>`);
                 $('#opts-ui-scaling .combobox', this.view.$panel).append($(_scaling_items));

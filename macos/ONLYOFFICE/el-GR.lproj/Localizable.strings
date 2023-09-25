@@ -41,13 +41,16 @@
 "Document %ld.docx" = "Έγγραφο %ld.docx";
 
 /* No comment provided by engineer. */
+"Document %ld.docxf" = "Έγγραφο %ld.docxf";
+
+/* No comment provided by engineer. */
 "Document template" = "Πρότυπο εγγράφου Word με ανοιχτή μορφή XML (*.dotx)";
 
 /* No comment provided by engineer. */
 "Excel 97-2003 Spreadsheet" = "Υπολογιστικό φύλλο Excel 97-2003 (*.xls)";
 
 /* No comment provided by engineer. */
-"Excel 2007 Spreadsheet" = "Υπολογιστικό φύλλο Office με ανοιχτή μορφή XML  (*.xlsx)";
+"Excel 2007 Spreadsheet" = "Υπολογιστικό φύλλο Office με ανοιχτή μορφή XML (*.xlsx)";
 
 /* No comment provided by engineer. */
 "File \"%@\" can not be open or not exist." = "Το αρχείο \"%@\" δεν μπορεί να ανοιχθεί ή δεν υπάρχει.";
@@ -119,10 +122,10 @@
 "PDF File" = "Φορητό έγγραφο (*.pdf)";
 
 /* No comment provided by engineer. */
-"PDF/A File" = "Φορητό έγγραφο / A (*.pdf)";
+"PDF/A File" = "Φορητό έγγραφο /A (*.pdf)";
 
 /* No comment provided by engineer. */
-"Plain Text" = "Απλό κείμενο (*.txt)";
+"Plain Text" = "Αρχείο απλού κειμένου (*.txt)";
 
 /* No comment provided by engineer. */
 "PowerPoint 97-2003 Presentation" = "Παρουσίαση PowerPoint 97-2003 (*.ppt)";

@@ -76,6 +76,7 @@ auto prepare_editor_css(int type, const CTheme& theme) -> QString {
     case etDocument: c = theme.value(CTheme::ColorRole::ecrTabWordActive); break;
     case etPresentation: c = theme.value(CTheme::ColorRole::ecrTabSlideActive); break;
     case etSpreadsheet: c = theme.value(CTheme::ColorRole::ecrTabCellActive); break;
+    case etDocumentViewer: c = theme.value(CTheme::ColorRole::ecrTabViewerActive); break;
     }
     QString g_css(Utils::readStylesheets(":/styles/editor.qss"));
     return g_css.arg(QString::fromStdWString(c));
@@ -86,6 +87,7 @@ auto editor_color(int type) -> QColor {
     case etDocument: return GetColorByRole(ecrTabWordActive);
     case etPresentation: return GetColorByRole(ecrTabSlideActive);
     case etSpreadsheet: return GetColorByRole(ecrTabCellActive);
+    case etDocumentViewer: return GetColorByRole(ecrTabViewerActive);
     default: return GetColorByRole(ecrTabWordActive);
     }
 }
@@ -317,6 +319,7 @@ public:
             panel()->setReady();
             if (window->isActiveWindow())
                 window->focus();
+            AscAppManager::getInstance().onDocumentReady(uid);
     }
 
     void onDocumentName(void * data) override
@@ -357,6 +360,10 @@ public:
             break;
         case etSpreadsheet:
             background = GetColorValueByRole(ecrTabCellActive);
+            border = background;
+            break;
+        case etDocumentViewer:
+            background = GetColorValueByRole(ecrTabViewerActive);
             border = background;
             break;
         default:

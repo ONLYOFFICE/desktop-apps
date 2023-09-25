@@ -23,7 +23,7 @@
 "Cannot open folder of the file location." = "ບໍ່ສາມາດເປີດໂຟນເດີ້ເພື່ອເຂົ້າເຖິງຟາຍ.";
 
 /* No comment provided by engineer. */
-"Comma-Separated Values" = "ຄ່າທີ່ຂັ້ນດ້ວຍເຄື່ອງໝາຍຈຸດ  (*.csv)";
+"Comma-Separated Values" = "ຄ່າທີ່ຂັ້ນດ້ວຍເຄື່ອງໝາຍຈຸດ (*.csv)";
 
 /* No comment provided by engineer. */
 "Create portal" = "ສ້າງໜ້າຕ່າງ";
@@ -41,10 +41,13 @@
 "Document %ld.docx" = "ເອກະສານ %ld.docx";
 
 /* No comment provided by engineer. */
+"Document %ld.docxf" = "ເອກະສານ %ld.docxf";
+
+/* No comment provided by engineer. */
 "Document template" = "ເປີດໄຟລ໌ XML ໃນຮູບແບບເອກະສານ Word (*.dotx)";
 
 /* No comment provided by engineer. */
-"Excel 97-2003 Spreadsheet" = "ຕາຕະລາງ  Excel 97-2003 (*.xls)";
+"Excel 97-2003 Spreadsheet" = "ຕາຕະລາງ Excel 97-2003 (*.xls)";
 
 /* No comment provided by engineer. */
 "Excel 2007 Spreadsheet" = "ເປີດຕາຕະລາງ XML (*.xlsx)";
@@ -71,7 +74,7 @@
 "License Agreement" = "ສັນຍາ ໃບອະນຸຍາດ";
 
 /* No comment provided by engineer. */
-"Mobipocket e-book" = "ປຶ້ມອີເລັກໂຕຮນິກແບບພົກພາ  (*.mobi)";
+"Mobipocket e-book" = "ໄຟລ໌ Mobipocket e-book (*.mobi)";
 
 /* No comment provided by engineer. */
 "new-document" = "ເອກະສານໃໝ່";
@@ -107,22 +110,22 @@
 "Opening" = "ກໍາລັງເປີດ";
 
 /* No comment provided by engineer. */
-"OpenOffice Document" = "ຄວາມເອກະສານ  (*.odt)";
+"OpenOffice Document" = "ເປີດເອກະສານໄຟລ໌ Text (*.odt)";
 
 /* No comment provided by engineer. */
 "OpenOffice Presentation" = "ເປິດເອກະສານນຳສະເໜີ (*.odp)";
 
 /* No comment provided by engineer. */
-"OpenOffice Spreadsheet" = "ເປິດຕາຕະລາງເອກະສານ (*.ods)";
+"OpenOffice Spreadsheet" = "ເປີດເອກະສານໃນຮູບແບບຕາຕະລາງ (*.ods)";
 
 /* No comment provided by engineer. */
-"PDF File" = "ເອກະສານພົກພາ  (*.pdf)";
+"PDF File" = "ເອກະສານພົກພາ (*.pdf)";
 
 /* No comment provided by engineer. */
-"PDF/A File" = "ເອກະສານພົກພາ /A (*.pdf)";
+"PDF/A File" = "ເອກະສານແບບພົກພາ /A (*.pdf)";
 
 /* No comment provided by engineer. */
-"Plain Text" = "ໄຟລ໌ Text ທຳມະດາ (*.txt)";
+"Plain Text" = "ໄຟລ໌ຂໍ້ຄວາມທຳມະດາ (*.txt)";
 
 /* No comment provided by engineer. */
 "PowerPoint 97-2003 Presentation" = "ນຳສະເໜີ PowerPoint 97-2003 (*.ppt)";

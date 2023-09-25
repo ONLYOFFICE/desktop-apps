@@ -38,13 +38,13 @@
 #include "cscalingwrapper.h"
 #include "ctabpanel.h"
 
-#define etTemplateFile  AscEditorType(255)
 #define etLocalFile     AscEditorType(254)
 #define etRecoveryFile  AscEditorType(253)
 #define etRecentFile    AscEditorType(252)
 #define etNewFile       AscEditorType(251)
 #define etPortal        AscEditorType(250)
 #define etNewPortal     AscEditorType(249)
+#define etTemplateFile  AscEditorType(248)
 
 typedef CefViewWrapperType CefType;
 typedef QMap<int, QString> MapEditors;
@@ -142,6 +142,7 @@ public:
     void closeEditorByIndex(int index, bool checkmodified = false);
     void closePortal(const std::wstring&, bool editors = false);
     void setStyleSheet(const QString&);
+    void setCurrentIndex(int);
     void applyUITheme(const std::wstring&);
 
     using QStackedWidget::count;
@@ -182,8 +183,8 @@ public:
 
     void setTabIcons(CTabIconSet&);
     void reloadTabIcons();
-    void updateIcons();
-    void updateTabIcon(int);
+    void setTabActiveColor(int index, const std::wstring& color);
+    void setTabThemeType(int index, const QString& type);
     void setFocusedView(int index = -1);
     void setFullScreen(bool, int id = -1);
     QWidget * fullScreenWidget();

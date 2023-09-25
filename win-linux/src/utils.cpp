@@ -218,6 +218,7 @@ namespace Scaling {
         case 200: return L"2";
         case 225: return L"2.25";
         case 250: return L"2.5";
+        case 275: return L"2.75";
         case 300: return L"3";
         case 350: return L"3.5";
         case 400: return L"4";
@@ -236,6 +237,7 @@ namespace Scaling {
         if ( value == L"2" ) return "200"; else
         if ( value == L"2.25" ) return "225"; else
         if ( value == L"2.5" ) return "250"; else
+        if ( value == L"2.75" ) return "275"; else
         if ( value == L"3" ) return "300"; else
         if ( value == L"3.5" ) return "350"; else
         if ( value == L"4" ) return "400"; else
@@ -459,7 +461,7 @@ void Utils::openFileLocation(const QString& path)
     QFileInfo fileInfo(path);
     if ( !_file_browser.isEmpty() && _file_browser != "unknown" ) {
         qputenv("LD_LIBRARY_PATH", "");
-        QProcess::startDetached(_file_browser, QStringList{_arg_select, fileInfo.absoluteFilePath()});        
+        QProcess::startDetached(_file_browser, QStringList{_arg_select, fileInfo.absoluteFilePath()});
     } else
         system(QString("LD_LIBRARY_PATH='' xdg-open \"%1\"").arg(fileInfo.path()).toUtf8());
 #endif
@@ -520,7 +522,8 @@ inline double choose_scaling(double s)
     else if ( s > 4 ) return 4.5;
     else if ( s > 3.5 ) return 4;
     else if ( s > 3 ) return 3.5;
-    else if ( s > 2.5 ) return 3;
+    else if ( s > 2.75 ) return 3;
+    else if ( s > 2.5 ) return 2.75;
     else if ( s > 2.25 ) return 2.5;
     else if ( s > 2 ) return 2.25;
     else if ( s > 1.75 ) return 2;
@@ -734,6 +737,18 @@ void Utils::addToRecent(const std::wstring &path)
     QString _path = QString::fromStdWString(path);
     QString appPath = qApp->applicationDirPath();
     QProcess::startDetached(appPath + "/" + QString(REG_APP_NAME), {"--add-to-recent", QDir::toNativeSeparators(_path)}, appPath);
+}
+
+std::atomic_bool sessionInProgress{true};
+
+bool Utils::isSessionInProgress()
+{
+    return sessionInProgress;
+}
+
+void Utils::setSessionInProgress(bool state)
+{
+    sessionInProgress = state;
 }
 #endif
 
@@ -1021,7 +1036,7 @@ namespace WindowHelper {
         _panel->setGeometry(0,0,_parent->width(),_parent->height());
 
         return _parent;
-    }   
+    }
 
     auto useNativeDialog() -> bool
     {

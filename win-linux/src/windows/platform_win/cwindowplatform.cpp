@@ -430,12 +430,15 @@ bool CWindowPlatform::nativeEvent(const QByteArray &eventType, void *message, lo
     }
 
     case WM_QUERYENDSESSION:
+        Utils::setSessionInProgress(false);
         m_isSessionInProgress = false;
         break;
 
     case WM_ENDSESSION:
-        if (!msg->wParam)
+        if (!msg->wParam) {
+            Utils::setSessionInProgress(true);
             m_isSessionInProgress = true;
+        }
         break;
 
     default:

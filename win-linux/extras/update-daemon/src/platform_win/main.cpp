@@ -90,6 +90,7 @@ int __cdecl _tmain (int argc, TCHAR *argv[])
             return 0;
         } else
         if (lstrcmpi(argv[1], _T("--run-as-app")) == 0) {
+            NS_Utils::setRunAsApp();
             CSocket socket(0, INSTANCE_SVC_PORT);
             if (!socket.isPrimaryInstance())
                 return 0;
@@ -179,7 +180,7 @@ VOID WINAPI SvcMain(DWORD argc, LPTSTR *argv)
     upd.aboutToQuit([]() {
         ReportSvcStatus(SERVICE_STOPPED, NO_ERROR, 0);
     });
-    WaitForSingleObject(gSvcStopEvent, INFINITE);    
+    WaitForSingleObject(gSvcStopEvent, INFINITE);
     CloseHandle(gSvcStopEvent);
 }
 

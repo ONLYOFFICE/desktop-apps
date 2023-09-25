@@ -5,6 +5,7 @@
         "brand-word": "#1e1e1e",
         "brand-slide": "#1e1e1e",
         "brand-cell": "#1e1e1e",
+        "brand-pdf": "#2a2a2a",
 
         "window-background": "#2a2a2a",
         "window-border": "#616161",
@@ -17,8 +18,8 @@
 
         "tab-active-background": "#121212",
         "tab-simple-active-background": "#fff",
-        "tab-simple-active-text": "#444",
-        "tab-default-active-background": "#121212",
+        "tab-simple-active-text": "#fff",
+        "tab-default-active-background": "#fff",
         "tab-default-active-text": "#fff",
         "tab-divider": "#414141",
 

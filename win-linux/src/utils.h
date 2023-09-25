@@ -123,6 +123,8 @@ public:
     };
     static WinVer getWinVersion();
     static void addToRecent(const std::wstring&);
+    static bool isSessionInProgress();
+    static void setSessionInProgress(bool);
 #endif
 };
 
@@ -160,4 +162,3 @@ namespace WindowHelper {
 }
 
 #endif // UTILS_H
-
