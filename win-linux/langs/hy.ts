@@ -320,27 +320,27 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="66"/>
         <source>DOCX Document</source>
-        <translation type="unfinished"></translation>
+        <translation>DOCX փաստաթուղթ</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="70"/>
         <source>OpenDocument Document template</source>
-        <translation type="unfinished"></translation>
+        <translation>ԲացՓաստաթուղթ Փաստաթղթի ձևանմուշ</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="85"/>
         <source>OpenDocument Presentation Template</source>
-        <translation type="unfinished"></translation>
+        <translation>ԲացՓաստաթուղթ Ներկայացման ձևանմուշ</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="91"/>
         <source>Macro-enabled spreadsheet template</source>
-        <translation type="unfinished"></translation>
+        <translation>Մակրո միացված աղյուսակի ձևանմուշ</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="94"/>
         <source>OpenDocument Spreadsheet Template</source>
-        <translation type="unfinished"></translation>
+        <translation>ԲացՓաստաթուղթ Աղյուսակի ձևանմուշ</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="95"/>
@@ -370,7 +370,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="101"/>
         <source>SVG Image (*.svg)</source>
-        <translation type="unfinished"></translation>
+        <translation>SVG Պատկեր (*.svg)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="103"/>
@@ -454,19 +454,19 @@
         <location filename="../src/ceditortools.cpp" line="211"/>
         <location filename="../src/components/cfiledialog.cpp" line="90"/>
         <source>Spreadsheet template</source>
-        <translation type="unfinished"></translation>
+        <translation>Աղյուսակի ձևանմուշ</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="214"/>
         <location filename="../src/components/cfiledialog.cpp" line="83"/>
         <source>Presentation template</source>
-        <translation type="unfinished"></translation>
+        <translation>Ներկայացման ձևանմուշ</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="216"/>
         <location filename="../src/components/cfiledialog.cpp" line="67"/>
         <source>Document template</source>
-        <translation type="unfinished"></translation>
+        <translation>Փաստաթղթի ձևանմուշ</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="267"/>
@@ -512,12 +512,12 @@
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="258"/>
         <source>More than one document is open.&lt;br&gt;Close the window anyway?</source>
-        <translation type="unfinished"></translation>
+        <translation>Մեկից ավելի փաստաթղթեր բաց են:&lt;br&gt;Ամեն դեպքում փակե՞լ պատուհանը։</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="260"/>
         <source>Don&apos;t ask again.</source>
-        <translation type="unfinished"></translation>
+        <translation>Այլևս չհարցնել։</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="713"/>
@@ -622,7 +622,7 @@
         <location filename="../src/cupdatemanager.cpp" line="285"/>
         <location filename="../src/cupdatemanager.cpp" line="629"/>
         <source>Last check performed </source>
-        <translation type="unfinished"></translation>
+        <translation>Կատարված վերջին ստուգումը </translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="286"/>
@@ -638,31 +638,31 @@
         <location filename="../src/cupdatemanager.cpp" line="740"/>
         <location filename="../src/cupdatemanager.cpp" line="759"/>
         <source>Check for updates</source>
-        <translation type="unfinished"></translation>
+        <translation>Թարմացումների ստուգում</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="305"/>
         <location filename="../src/cupdatemanager.cpp" line="467"/>
         <location filename="../src/cupdatemanager.cpp" line="567"/>
         <source>To finish updating, restart app</source>
-        <translation type="unfinished"></translation>
+        <translation>Թարմացումն ավարտելու համար վերագործարկեք հավելվածը</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="305"/>
         <location filename="../src/cupdatemanager.cpp" line="467"/>
         <location filename="../src/cupdatemanager.cpp" line="567"/>
         <source>Restart</source>
-        <translation type="unfinished"></translation>
+        <translation>Վերագործարկել</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="365"/>
         <source>Checking for updates...</source>
-        <translation type="unfinished"></translation>
+        <translation>Թարմացումների ստուգում...</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="371"/>
         <source>Updates are not allowed!</source>
-        <translation type="unfinished"></translation>
+        <translation>Թարմացումներն անթույլատրելի են:</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="372"/>
@@ -672,96 +672,96 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="379"/>
         <source>An error occurred while check updates: Update Service not found!</source>
-        <translation type="unfinished"></translation>
+        <translation>Թարմացումները ստուգելիս սխալ առաջացավ՝ թարմացման ծառայությունը չի գտնվել:</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="403"/>
         <source>Downloading new version %1 (%2%)</source>
-        <translation type="unfinished"></translation>
+        <translation>Նոր տարբերակի ներբեռնում %1 (%2%)</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="474"/>
         <source>An error occurred while loading updates: Update Service not found!</source>
-        <translation type="unfinished"></translation>
+        <translation>Թարմացումները բեռնելիս սխալ է տեղի ունեցել՝ թարմացման ծառայությունը չի գտնվել:</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="478"/>
         <source>Downloading new version %1 (0%)</source>
-        <translation type="unfinished"></translation>
+        <translation>Նոր տարբերակի ներբեռնում %1 (0%)</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="478"/>
         <location filename="../src/cupdatemanager.cpp" line="576"/>
         <source>Cancel</source>
-        <translation type="unfinished">Չեղարկել</translation>
+        <translation>Չեղարկել</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="481"/>
         <source>An error occurred while loading updates: package Url is empty!</source>
-        <translation type="unfinished"></translation>
+        <translation>Թարմացումները բեռնելիս սխալ տեղի ունեցավ՝ փաթեթի URL-ը դատարկ է:</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="555"/>
         <source>Update package error: md5 sum does not match the original.</source>
-        <translation type="unfinished"></translation>
+        <translation>Փաթեթի թարմացման սխալ՝ md5 գումարը չի համապատասխանում բնօրինակին:</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="576"/>
         <source>Preparing update...</source>
-        <translation type="unfinished"></translation>
+        <translation>Թարմացման նախապատրաստում...</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="578"/>
         <source>An error occurred while unzip updates: Update Service not found!</source>
-        <translation type="unfinished"></translation>
+        <translation>Թարմացումներն անջատելիս սխալ տեղի ունեցավ` թարմացման ծառայությունը չի գտնվել:</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="728"/>
         <source>Update is available (version %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Թարմացումը հասանելի է (տարբերակ %1)</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="729"/>
         <source>Download update</source>
-        <translation type="unfinished"></translation>
+        <translation>Ներբեռնել թարմացումը</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="735"/>
         <location filename="../src/cupdatemanager.cpp" line="759"/>
         <source>Current version is up to date</source>
-        <translation type="unfinished"></translation>
+        <translation>Ներկայիս տարբերակը արդիական է</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="747"/>
         <source>Update is available</source>
-        <translation type="unfinished"></translation>
+        <translation>Թարմացումը հասանելի է</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="748"/>
         <location filename="../src/cupdatemanager.cpp" line="771"/>
         <source>Current version</source>
-        <translation type="unfinished"></translation>
+        <translation>Ներկայիս տարբերակը</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="749"/>
         <location filename="../src/cupdatemanager.cpp" line="772"/>
         <source>Update version</source>
-        <translation type="unfinished"></translation>
+        <translation>Թարմացնել տարբերակը</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="750"/>
         <source>Would you like to download update now?</source>
-        <translation type="unfinished"></translation>
+        <translation>Ցանկանու՞մ եք ներբեռնել թարմացումը հիմա:</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="770"/>
         <source>Update is ready to install</source>
-        <translation type="unfinished"></translation>
+        <translation>Թարմացումը պատրաստ է տեղադրման</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="773"/>
         <source>Would you like to restart app now?</source>
-        <translation type="unfinished"></translation>
+        <translation>Ցանկանու՞մ եք վերագործարկել հավելվածը հիմա:</translation>
     </message>
 </context>
 <context>

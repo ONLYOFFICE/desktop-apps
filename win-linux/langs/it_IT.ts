@@ -195,7 +195,7 @@
     <message>
         <location filename="../src/windows/ceditorwindow_p.h" line="466"/>
         <source>There are no printers available</source>
-        <translation type="unfinished">Non ci sono stampanti disponibili</translation>
+        <translation>Non ci sono stampanti disponibili</translation>
     </message>
 </context>
 <context>
@@ -335,27 +335,27 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="66"/>
         <source>DOCX Document</source>
-        <translation type="unfinished"></translation>
+        <translation>Documento DOCX</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="70"/>
         <source>OpenDocument Document template</source>
-        <translation type="unfinished"></translation>
+        <translation>Modello di documento OpenDocument</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="85"/>
         <source>OpenDocument Presentation Template</source>
-        <translation type="unfinished"></translation>
+        <translation>Modello di presentazione OpenDocument</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="91"/>
         <source>Macro-enabled spreadsheet template</source>
-        <translation type="unfinished"></translation>
+        <translation>Modello di foglio di calcolo abilitato per le macro</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="94"/>
         <source>OpenDocument Spreadsheet Template</source>
-        <translation type="unfinished"></translation>
+        <translation>Modello di foglio di calcolo OpenDocument</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="95"/>
@@ -385,7 +385,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="101"/>
         <source>SVG Image (*.svg)</source>
-        <translation type="unfinished"></translation>
+        <translation>Immagine SVG (*.svg)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="103"/>
@@ -469,19 +469,19 @@
         <location filename="../src/ceditortools.cpp" line="211"/>
         <location filename="../src/components/cfiledialog.cpp" line="90"/>
         <source>Spreadsheet template</source>
-        <translation type="unfinished"></translation>
+        <translation>Modello di foglio di calcolo</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="214"/>
         <location filename="../src/components/cfiledialog.cpp" line="83"/>
         <source>Presentation template</source>
-        <translation type="unfinished"></translation>
+        <translation>Modello di presentazione</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="216"/>
         <location filename="../src/components/cfiledialog.cpp" line="67"/>
         <source>Document template</source>
-        <translation type="unfinished"></translation>
+        <translation>Modello di documento</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="267"/>
@@ -527,12 +527,12 @@
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="258"/>
         <source>More than one document is open.&lt;br&gt;Close the window anyway?</source>
-        <translation type="unfinished"></translation>
+        <translation>Sono aperti più documenti.&lt;br&gt;Chiudere comunque la finestra?</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="260"/>
         <source>Don&apos;t ask again.</source>
-        <translation type="unfinished"></translation>
+        <translation>Non chiedermelo più.</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="713"/>
@@ -641,7 +641,7 @@
         <location filename="../src/cupdatemanager.cpp" line="285"/>
         <location filename="../src/cupdatemanager.cpp" line="629"/>
         <source>Last check performed </source>
-        <translation type="unfinished"></translation>
+        <translation>Ultimo controllo effettuato </translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="286"/>
@@ -657,31 +657,31 @@
         <location filename="../src/cupdatemanager.cpp" line="740"/>
         <location filename="../src/cupdatemanager.cpp" line="759"/>
         <source>Check for updates</source>
-        <translation type="unfinished"></translation>
+        <translation>Controllo degli aggiornamenti in corso</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="305"/>
         <location filename="../src/cupdatemanager.cpp" line="467"/>
         <location filename="../src/cupdatemanager.cpp" line="567"/>
         <source>To finish updating, restart app</source>
-        <translation type="unfinished"></translation>
+        <translation>Per completare l&apos;aggiornamento, riavvia l&apos;app</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="305"/>
         <location filename="../src/cupdatemanager.cpp" line="467"/>
         <location filename="../src/cupdatemanager.cpp" line="567"/>
         <source>Restart</source>
-        <translation type="unfinished"></translation>
+        <translation>Riavvia</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="365"/>
         <source>Checking for updates...</source>
-        <translation type="unfinished"></translation>
+        <translation>Controllo degli aggiornamenti in corso...</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="371"/>
         <source>Updates are not allowed!</source>
-        <translation type="unfinished"></translation>
+        <translation>Gli aggiornamenti non sono consentiti!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="372"/>
@@ -691,96 +691,96 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="379"/>
         <source>An error occurred while check updates: Update Service not found!</source>
-        <translation type="unfinished"></translation>
+        <translation>Si è verificato un errore durante il controllo degli aggiornamenti: Servizio aggiornamenti non è stato trovato!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="403"/>
         <source>Downloading new version %1 (%2%)</source>
-        <translation type="unfinished"></translation>
+        <translation>Download della nuova versione %1 (%2%)</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="474"/>
         <source>An error occurred while loading updates: Update Service not found!</source>
-        <translation type="unfinished"></translation>
+        <translation>Si è verificato un errore durante il caricamento degli aggiornamenti: Servizio aggiornamenti non è stato trovato!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="478"/>
         <source>Downloading new version %1 (0%)</source>
-        <translation type="unfinished"></translation>
+        <translation>Download della nuova versione %1 (0%)</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="478"/>
         <location filename="../src/cupdatemanager.cpp" line="576"/>
         <source>Cancel</source>
-        <translation type="unfinished">Annulla</translation>
+        <translation>Annulla</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="481"/>
         <source>An error occurred while loading updates: package Url is empty!</source>
-        <translation type="unfinished"></translation>
+        <translation>Si è verificato un errore durante il caricamento degli aggiornamenti: l&apos;URL del pacchetto è vuoto!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="555"/>
         <source>Update package error: md5 sum does not match the original.</source>
-        <translation type="unfinished"></translation>
+        <translation>Errore del pacchetto di aggiornamento: la somma md5 non corrisponde all&apos;originale.</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="576"/>
         <source>Preparing update...</source>
-        <translation type="unfinished"></translation>
+        <translation>Preparazione dell&apos;aggiornamento in corso...</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="578"/>
         <source>An error occurred while unzip updates: Update Service not found!</source>
-        <translation type="unfinished"></translation>
+        <translation>Si è verificato un errore durante l&apos;estrazione degli aggiornamenti: Servizio aggiornamenti non è stato trovato!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="728"/>
         <source>Update is available (version %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>L&apos;aggiornamento è disponibile (versione %1)</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="729"/>
         <source>Download update</source>
-        <translation type="unfinished">Scaricare l&apos;aggiornamento</translation>
+        <translation>Scaricare l&apos;aggiornamento</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="735"/>
         <location filename="../src/cupdatemanager.cpp" line="759"/>
         <source>Current version is up to date</source>
-        <translation type="unfinished"></translation>
+        <translation>La versione presente è aggiornata</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="747"/>
         <source>Update is available</source>
-        <translation type="unfinished"></translation>
+        <translation>L&apos;aggiornamento è disponibile</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="748"/>
         <location filename="../src/cupdatemanager.cpp" line="771"/>
         <source>Current version</source>
-        <translation type="unfinished"></translation>
+        <translation>Versione attuale</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="749"/>
         <location filename="../src/cupdatemanager.cpp" line="772"/>
         <source>Update version</source>
-        <translation type="unfinished"></translation>
+        <translation>Aggiorna versione</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="750"/>
         <source>Would you like to download update now?</source>
-        <translation type="unfinished"></translation>
+        <translation>Desideri scaricare l&apos;aggiornamento ora?</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="770"/>
         <source>Update is ready to install</source>
-        <translation type="unfinished"></translation>
+        <translation>L&apos;aggiornamento è pronto per l&apos;installazione</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="773"/>
         <source>Would you like to restart app now?</source>
-        <translation type="unfinished"></translation>
+        <translation>Desideri riavviare l&apos;app ora?</translation>
     </message>
     <message>
         <source>A new version of %1 is available!</source>
@@ -863,7 +863,7 @@
         <location filename="../src/platform_linux/updatedialog.cpp" line="48"/>
         <location filename="../src/platform_win/updatedialog.cpp" line="51"/>
         <source>Install later</source>
-        <translation type="unfinished"></translation>
+        <translation>Installa più tardi</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/updatedialog.cpp" line="49"/>

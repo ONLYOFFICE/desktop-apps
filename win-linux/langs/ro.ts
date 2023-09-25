@@ -335,27 +335,27 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="66"/>
         <source>DOCX Document</source>
-        <translation type="unfinished"></translation>
+        <translation>Document DOCX</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="70"/>
         <source>OpenDocument Document template</source>
-        <translation type="unfinished"></translation>
+        <translation>Document șablon OpenDocument</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="85"/>
         <source>OpenDocument Presentation Template</source>
-        <translation type="unfinished"></translation>
+        <translation>Șablon de prezentare OpenDocument</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="91"/>
         <source>Macro-enabled spreadsheet template</source>
-        <translation type="unfinished"></translation>
+        <translation>Șablon de foaie de calcul cu macrocomenzi activate</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="94"/>
         <source>OpenDocument Spreadsheet Template</source>
-        <translation type="unfinished"></translation>
+        <translation>Șablon de foaie de calcul OpenDocument</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="95"/>
@@ -385,7 +385,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="101"/>
         <source>SVG Image (*.svg)</source>
-        <translation type="unfinished"></translation>
+        <translation>Imaginea SVG (*.svg)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="103"/>
@@ -469,19 +469,19 @@
         <location filename="../src/ceditortools.cpp" line="211"/>
         <location filename="../src/components/cfiledialog.cpp" line="90"/>
         <source>Spreadsheet template</source>
-        <translation type="unfinished"></translation>
+        <translation>Șablon de foaie de calcul</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="214"/>
         <location filename="../src/components/cfiledialog.cpp" line="83"/>
         <source>Presentation template</source>
-        <translation type="unfinished"></translation>
+        <translation>Șablon de prezentare</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="216"/>
         <location filename="../src/components/cfiledialog.cpp" line="67"/>
         <source>Document template</source>
-        <translation type="unfinished"></translation>
+        <translation>Document șablon</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="267"/>
@@ -527,12 +527,12 @@
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="258"/>
         <source>More than one document is open.&lt;br&gt;Close the window anyway?</source>
-        <translation type="unfinished"></translation>
+        <translation>Mai multe documente sunt deschise.&lt;br&gt;Doriți să închideți fereastra oricum?</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="260"/>
         <source>Don&apos;t ask again.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nu mai întreba din nou.</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="713"/>
@@ -641,7 +641,7 @@
         <location filename="../src/cupdatemanager.cpp" line="285"/>
         <location filename="../src/cupdatemanager.cpp" line="629"/>
         <source>Last check performed </source>
-        <translation type="unfinished"></translation>
+        <translation>Ultima verificare efectuată </translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="286"/>
@@ -657,31 +657,31 @@
         <location filename="../src/cupdatemanager.cpp" line="740"/>
         <location filename="../src/cupdatemanager.cpp" line="759"/>
         <source>Check for updates</source>
-        <translation type="unfinished"></translation>
+        <translation>Verificarea a actualizărilor</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="305"/>
         <location filename="../src/cupdatemanager.cpp" line="467"/>
         <location filename="../src/cupdatemanager.cpp" line="567"/>
         <source>To finish updating, restart app</source>
-        <translation type="unfinished"></translation>
+        <translation>Pentru a finaliza actualizarea, reporniți aplicația</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="305"/>
         <location filename="../src/cupdatemanager.cpp" line="467"/>
         <location filename="../src/cupdatemanager.cpp" line="567"/>
         <source>Restart</source>
-        <translation type="unfinished"></translation>
+        <translation>Repornire</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="365"/>
         <source>Checking for updates...</source>
-        <translation type="unfinished"></translation>
+        <translation>Verificarea a actualizărilor...</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="371"/>
         <source>Updates are not allowed!</source>
-        <translation type="unfinished"></translation>
+        <translation>Actualizări nu sunt permise!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="372"/>
@@ -691,96 +691,96 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="379"/>
         <source>An error occurred while check updates: Update Service not found!</source>
-        <translation type="unfinished"></translation>
+        <translation>A intervenit o eroare în timpul verificării a actualizărilor: Serviciu de Actualizare nu s-a găsit!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="403"/>
         <source>Downloading new version %1 (%2%)</source>
-        <translation type="unfinished"></translation>
+        <translation>Descărcarea noii versiuni %1 (%2%)</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="474"/>
         <source>An error occurred while loading updates: Update Service not found!</source>
-        <translation type="unfinished"></translation>
+        <translation>A intervenit o eroare în timpul incărcării a actualizărilor: Serviciu de Actualizare nu s-a găsit!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="478"/>
         <source>Downloading new version %1 (0%)</source>
-        <translation type="unfinished"></translation>
+        <translation>Descărcarea noii versiuni %1 (0%)</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="478"/>
         <location filename="../src/cupdatemanager.cpp" line="576"/>
         <source>Cancel</source>
-        <translation type="unfinished">Revocare</translation>
+        <translation>Revocare</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="481"/>
         <source>An error occurred while loading updates: package Url is empty!</source>
-        <translation type="unfinished"></translation>
+        <translation>A intervenit o eroare la încărcarea actualizărilor: Pachetul URL este gol!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="555"/>
         <source>Update package error: md5 sum does not match the original.</source>
-        <translation type="unfinished"></translation>
+        <translation>Eroare de actualizare a pachetului: suma md5 nu se potrivește cu suma modelului.</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="576"/>
         <source>Preparing update...</source>
-        <translation type="unfinished"></translation>
+        <translation>Pregătire pentru actualizarea...</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="578"/>
         <source>An error occurred while unzip updates: Update Service not found!</source>
-        <translation type="unfinished"></translation>
+        <translation>A intervenit o eroare în timpul dezarhivării a actualizărilor: Serviciu de Actualizare nu s-a găsit!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="728"/>
         <source>Update is available (version %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>O actualizare este disponibilă (versiune %1)</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="729"/>
         <source>Download update</source>
-        <translation type="unfinished">Descărcare actualizare</translation>
+        <translation>Descărcare actualizare</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="735"/>
         <location filename="../src/cupdatemanager.cpp" line="759"/>
         <source>Current version is up to date</source>
-        <translation type="unfinished"></translation>
+        <translation>Versiunea curentă este actualizată</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="747"/>
         <source>Update is available</source>
-        <translation type="unfinished"></translation>
+        <translation>Actualizarea este disponibilă</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="748"/>
         <location filename="../src/cupdatemanager.cpp" line="771"/>
         <source>Current version</source>
-        <translation type="unfinished"></translation>
+        <translation>Versiunea curentă</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="749"/>
         <location filename="../src/cupdatemanager.cpp" line="772"/>
         <source>Update version</source>
-        <translation type="unfinished"></translation>
+        <translation>Actualizați versiunea</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="750"/>
         <source>Would you like to download update now?</source>
-        <translation type="unfinished"></translation>
+        <translation>Doriți să descărcați actualizarea acum?</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="770"/>
         <source>Update is ready to install</source>
-        <translation type="unfinished"></translation>
+        <translation>Actualizarea este gata de instalare</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="773"/>
         <source>Would you like to restart app now?</source>
-        <translation type="unfinished"></translation>
+        <translation>Doriți să reporniți aplicația acum?</translation>
     </message>
     <message>
         <source>A new version of %1 is available!</source>
@@ -863,7 +863,7 @@
         <location filename="../src/platform_linux/updatedialog.cpp" line="48"/>
         <location filename="../src/platform_win/updatedialog.cpp" line="51"/>
         <source>Install later</source>
-        <translation type="unfinished"></translation>
+        <translation>Instalare ulterioară</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/updatedialog.cpp" line="49"/>

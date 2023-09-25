@@ -335,27 +335,27 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="66"/>
         <source>DOCX Document</source>
-        <translation type="unfinished"></translation>
+        <translation>DOCX 文档</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="70"/>
         <source>OpenDocument Document template</source>
-        <translation type="unfinished"></translation>
+        <translation>OpenDocument 文本文档模板</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="85"/>
         <source>OpenDocument Presentation Template</source>
-        <translation type="unfinished"></translation>
+        <translation>OpenDocument 演示文稿模板</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="91"/>
         <source>Macro-enabled spreadsheet template</source>
-        <translation type="unfinished"></translation>
+        <translation>支持宏的电子表格模板</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="94"/>
         <source>OpenDocument Spreadsheet Template</source>
-        <translation type="unfinished"></translation>
+        <translation>OpenDocument 电子表格模板</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="95"/>
@@ -385,7 +385,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="101"/>
         <source>SVG Image (*.svg)</source>
-        <translation type="unfinished"></translation>
+        <translation>SVG 图像 (*.svg)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="103"/>
@@ -469,19 +469,19 @@
         <location filename="../src/ceditortools.cpp" line="211"/>
         <location filename="../src/components/cfiledialog.cpp" line="90"/>
         <source>Spreadsheet template</source>
-        <translation type="unfinished"></translation>
+        <translation>电子表格模板</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="214"/>
         <location filename="../src/components/cfiledialog.cpp" line="83"/>
         <source>Presentation template</source>
-        <translation type="unfinished"></translation>
+        <translation>演示文稿模板</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="216"/>
         <location filename="../src/components/cfiledialog.cpp" line="67"/>
         <source>Document template</source>
-        <translation type="unfinished"></translation>
+        <translation>文本文档模板</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="267"/>
@@ -527,12 +527,12 @@
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="258"/>
         <source>More than one document is open.&lt;br&gt;Close the window anyway?</source>
-        <translation type="unfinished"></translation>
+        <translation>您还有其他已打开的文档。&lt;br&gt;无论如何都要关闭？</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="260"/>
         <source>Don&apos;t ask again.</source>
-        <translation type="unfinished"></translation>
+        <translation>别再问了。</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="713"/>
@@ -641,7 +641,7 @@
         <location filename="../src/cupdatemanager.cpp" line="285"/>
         <location filename="../src/cupdatemanager.cpp" line="629"/>
         <source>Last check performed </source>
-        <translation type="unfinished"></translation>
+        <translation>上次检查 </translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="286"/>
@@ -657,31 +657,31 @@
         <location filename="../src/cupdatemanager.cpp" line="740"/>
         <location filename="../src/cupdatemanager.cpp" line="759"/>
         <source>Check for updates</source>
-        <translation type="unfinished"></translation>
+        <translation>检查更新</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="305"/>
         <location filename="../src/cupdatemanager.cpp" line="467"/>
         <location filename="../src/cupdatemanager.cpp" line="567"/>
         <source>To finish updating, restart app</source>
-        <translation type="unfinished"></translation>
+        <translation>要完成更新，请重新启动应用程序</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="305"/>
         <location filename="../src/cupdatemanager.cpp" line="467"/>
         <location filename="../src/cupdatemanager.cpp" line="567"/>
         <source>Restart</source>
-        <translation type="unfinished"></translation>
+        <translation>重新启动</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="365"/>
         <source>Checking for updates...</source>
-        <translation type="unfinished"></translation>
+        <translation>检查更新...</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="371"/>
         <source>Updates are not allowed!</source>
-        <translation type="unfinished"></translation>
+        <translation>不允许更新！</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="372"/>
@@ -691,96 +691,96 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="379"/>
         <source>An error occurred while check updates: Update Service not found!</source>
-        <translation type="unfinished"></translation>
+        <translation>检查更新时发生错误： 未找到更新服务！</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="403"/>
         <source>Downloading new version %1 (%2%)</source>
-        <translation type="unfinished"></translation>
+        <translation>下载新版本 %1 (%2%)</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="474"/>
         <source>An error occurred while loading updates: Update Service not found!</source>
-        <translation type="unfinished"></translation>
+        <translation>加载更新时发生错误： 未找到更新服务！</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="478"/>
         <source>Downloading new version %1 (0%)</source>
-        <translation type="unfinished"></translation>
+        <translation>下载新版本 %1 (0%)</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="478"/>
         <location filename="../src/cupdatemanager.cpp" line="576"/>
         <source>Cancel</source>
-        <translation type="unfinished">取消</translation>
+        <translation>取消</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="481"/>
         <source>An error occurred while loading updates: package Url is empty!</source>
-        <translation type="unfinished"></translation>
+        <translation>加载更新时发生错误：软件包 Url 为空！</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="555"/>
         <source>Update package error: md5 sum does not match the original.</source>
-        <translation type="unfinished"></translation>
+        <translation>更新软件包错误：md5 不匹配。</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="576"/>
         <source>Preparing update...</source>
-        <translation type="unfinished"></translation>
+        <translation>准备更新...</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="578"/>
         <source>An error occurred while unzip updates: Update Service not found!</source>
-        <translation type="unfinished"></translation>
+        <translation>解压更新时发生错误： 未找到更新服务！</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="728"/>
         <source>Update is available (version %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>可更新（版本 %1）</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="729"/>
         <source>Download update</source>
-        <translation type="unfinished">下载更新</translation>
+        <translation>下载更新</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="735"/>
         <location filename="../src/cupdatemanager.cpp" line="759"/>
         <source>Current version is up to date</source>
-        <translation type="unfinished"></translation>
+        <translation>当前版本已更新</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="747"/>
         <source>Update is available</source>
-        <translation type="unfinished"></translation>
+        <translation>可更新</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="748"/>
         <location filename="../src/cupdatemanager.cpp" line="771"/>
         <source>Current version</source>
-        <translation type="unfinished"></translation>
+        <translation>当前版本</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="749"/>
         <location filename="../src/cupdatemanager.cpp" line="772"/>
         <source>Update version</source>
-        <translation type="unfinished"></translation>
+        <translation>更新版本</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="750"/>
         <source>Would you like to download update now?</source>
-        <translation type="unfinished"></translation>
+        <translation>现在要下载更新吗？</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="770"/>
         <source>Update is ready to install</source>
-        <translation type="unfinished"></translation>
+        <translation>更新已准备就绪，可以安装</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="773"/>
         <source>Would you like to restart app now?</source>
-        <translation type="unfinished"></translation>
+        <translation>现在要重启应用程序吗？</translation>
     </message>
     <message>
         <source>A new version of %1 is available!</source>
@@ -863,7 +863,7 @@
         <location filename="../src/platform_linux/updatedialog.cpp" line="48"/>
         <location filename="../src/platform_win/updatedialog.cpp" line="51"/>
         <source>Install later</source>
-        <translation type="unfinished"></translation>
+        <translation>稍后安装</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/updatedialog.cpp" line="49"/>

@@ -335,27 +335,27 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="66"/>
         <source>DOCX Document</source>
-        <translation type="unfinished"></translation>
+        <translation>Документ DOCX</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="70"/>
         <source>OpenDocument Document template</source>
-        <translation type="unfinished"></translation>
+        <translation>Шаблон документа OpenDocument</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="85"/>
         <source>OpenDocument Presentation Template</source>
-        <translation type="unfinished"></translation>
+        <translation>Шаблон презентации OpenDocument</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="91"/>
         <source>Macro-enabled spreadsheet template</source>
-        <translation type="unfinished"></translation>
+        <translation>Шаблон электронной таблицы с поддержкой макросов</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="94"/>
         <source>OpenDocument Spreadsheet Template</source>
-        <translation type="unfinished"></translation>
+        <translation>Шаблон электронной таблицы OpenDocument</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="95"/>
@@ -385,7 +385,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="101"/>
         <source>SVG Image (*.svg)</source>
-        <translation type="unfinished"></translation>
+        <translation>Изображение SVG (*.svg)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="103"/>
@@ -469,19 +469,19 @@
         <location filename="../src/ceditortools.cpp" line="211"/>
         <location filename="../src/components/cfiledialog.cpp" line="90"/>
         <source>Spreadsheet template</source>
-        <translation type="unfinished"></translation>
+        <translation>Шаблон электронной таблицы</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="214"/>
         <location filename="../src/components/cfiledialog.cpp" line="83"/>
         <source>Presentation template</source>
-        <translation type="unfinished"></translation>
+        <translation>Шаблон презентации</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="216"/>
         <location filename="../src/components/cfiledialog.cpp" line="67"/>
         <source>Document template</source>
-        <translation type="unfinished"></translation>
+        <translation>Шаблон документа</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="267"/>
@@ -527,12 +527,12 @@
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="258"/>
         <source>More than one document is open.&lt;br&gt;Close the window anyway?</source>
-        <translation type="unfinished"></translation>
+        <translation>Открыто более одного документа.&lt;br&gt;Все равно закрыть окно?</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="260"/>
         <source>Don&apos;t ask again.</source>
-        <translation type="unfinished"></translation>
+        <translation>Больше не спрашивать.</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="713"/>
@@ -645,7 +645,7 @@
         <location filename="../src/cupdatemanager.cpp" line="285"/>
         <location filename="../src/cupdatemanager.cpp" line="629"/>
         <source>Last check performed </source>
-        <translation type="unfinished"></translation>
+        <translation>Последняя проверка выполнена </translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="286"/>
@@ -661,31 +661,31 @@
         <location filename="../src/cupdatemanager.cpp" line="740"/>
         <location filename="../src/cupdatemanager.cpp" line="759"/>
         <source>Check for updates</source>
-        <translation type="unfinished"></translation>
+        <translation>Проверка обновлений</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="305"/>
         <location filename="../src/cupdatemanager.cpp" line="467"/>
         <location filename="../src/cupdatemanager.cpp" line="567"/>
         <source>To finish updating, restart app</source>
-        <translation type="unfinished"></translation>
+        <translation>Для завершения обновления перезапустите приложение</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="305"/>
         <location filename="../src/cupdatemanager.cpp" line="467"/>
         <location filename="../src/cupdatemanager.cpp" line="567"/>
         <source>Restart</source>
-        <translation type="unfinished"></translation>
+        <translation>Перезапустить</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="365"/>
         <source>Checking for updates...</source>
-        <translation type="unfinished"></translation>
+        <translation>Проверка обновлений...</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="371"/>
         <source>Updates are not allowed!</source>
-        <translation type="unfinished"></translation>
+        <translation>Обновления не разрешены!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="372"/>
@@ -695,96 +695,96 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="379"/>
         <source>An error occurred while check updates: Update Service not found!</source>
-        <translation type="unfinished"></translation>
+        <translation>При проверке обновлений произошла ошибка: Сервис обновлений не найден!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="403"/>
         <source>Downloading new version %1 (%2%)</source>
-        <translation type="unfinished"></translation>
+        <translation>Загрузка новой версии %1 (%2%)</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="474"/>
         <source>An error occurred while loading updates: Update Service not found!</source>
-        <translation type="unfinished"></translation>
+        <translation>При загрузке обновлений произошла ошибка: Сервис обновлений не найден!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="478"/>
         <source>Downloading new version %1 (0%)</source>
-        <translation type="unfinished"></translation>
+        <translation>Загрузка новой версии %1 (0%)</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="478"/>
         <location filename="../src/cupdatemanager.cpp" line="576"/>
         <source>Cancel</source>
-        <translation type="unfinished">Отмена</translation>
+        <translation>Отмена</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="481"/>
         <source>An error occurred while loading updates: package Url is empty!</source>
-        <translation type="unfinished"></translation>
+        <translation>При загрузке обновлений произошла ошибка: URL-адрес пакета пуст!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="555"/>
         <source>Update package error: md5 sum does not match the original.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ошибка при обновлении пакета: сумма md5 не соответствует оригиналу.</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="576"/>
         <source>Preparing update...</source>
-        <translation type="unfinished"></translation>
+        <translation>Подготовка обновления...</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="578"/>
         <source>An error occurred while unzip updates: Update Service not found!</source>
-        <translation type="unfinished"></translation>
+        <translation>При разархивировании обновлений произошла ошибка: Сервис обновлений не найден!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="728"/>
         <source>Update is available (version %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Доступно обновление (версия %1)</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="729"/>
         <source>Download update</source>
-        <translation type="unfinished">Скачать обновление</translation>
+        <translation>Скачать обновление</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="735"/>
         <location filename="../src/cupdatemanager.cpp" line="759"/>
         <source>Current version is up to date</source>
-        <translation type="unfinished"></translation>
+        <translation>Текущая версия является актуальной</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="747"/>
         <source>Update is available</source>
-        <translation type="unfinished"></translation>
+        <translation>Обновление доступно</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="748"/>
         <location filename="../src/cupdatemanager.cpp" line="771"/>
         <source>Current version</source>
-        <translation type="unfinished"></translation>
+        <translation>Текущая версия</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="749"/>
         <location filename="../src/cupdatemanager.cpp" line="772"/>
         <source>Update version</source>
-        <translation type="unfinished"></translation>
+        <translation>Обновить версию</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="750"/>
         <source>Would you like to download update now?</source>
-        <translation type="unfinished"></translation>
+        <translation>Хотите загрузить обновление сейчас?</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="770"/>
         <source>Update is ready to install</source>
-        <translation type="unfinished"></translation>
+        <translation>Обновление готово к установке</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="773"/>
         <source>Would you like to restart app now?</source>
-        <translation type="unfinished"></translation>
+        <translation>Хотите перезапустить приложение сейчас?</translation>
     </message>
     <message>
         <source>A new version of %1 is available!</source>
@@ -859,7 +859,7 @@
         <location filename="../src/platform_linux/updatedialog.cpp" line="48"/>
         <location filename="../src/platform_win/updatedialog.cpp" line="51"/>
         <source>Install later</source>
-        <translation type="unfinished"></translation>
+        <translation>Установить позже</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/updatedialog.cpp" line="49"/>
