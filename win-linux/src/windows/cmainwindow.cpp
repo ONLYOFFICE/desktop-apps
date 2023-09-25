@@ -1311,7 +1311,7 @@ void CMainWindow::onPortalNew(QString in)
         if (!(_tab_index < 0)) {
             int _uid = m_pTabs->viewByIndex(_tab_index);
             m_pTabs->applyDocumentChanging(_uid, _name, _domain);
-            m_pTabs->applyDocumentChanging(_uid, etPortal);
+            m_pTabs->applyDocumentChanging(_uid, int(etPortal));
             onTabChanged(m_pTabs->currentIndex());
         }
     }

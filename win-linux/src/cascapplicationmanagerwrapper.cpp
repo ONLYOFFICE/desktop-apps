@@ -800,7 +800,7 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
     for (const auto& arg: vargs) {
         COpenOptions open_opts;
         open_opts.name = QCoreApplication::translate("CAscTabWidget", "Document");
-        open_opts.srctype = etUndefined;
+        open_opts.srctype = AscEditorType::etUndefined;
 
         const size_t p = arg.find(prefix);
         if ( p == 0 ) {
@@ -830,7 +830,7 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
             open_opts.wurl = arg;
         }
 
-        if (open_opts.srctype == etUndefined) {
+        if (open_opts.srctype == AscEditorType::etUndefined) {
             if ( _app.m_pMainWindow && _app.m_private->bringEditorToFront(QString::fromStdWString(open_opts.wurl)) ) {
                 continue;
             } else

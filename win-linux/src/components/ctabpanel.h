@@ -29,7 +29,7 @@ public:
 
     void openLocalFile(const std::wstring& sFilePath, int nFileFormat, const std::wstring& params);
     bool openLocalFile(const std::wstring& sFilePath, const std::wstring& params);
-    void createLocalFile(int nFileFormat, const std::wstring& sName = L"");
+    void createLocalFile(AscEditorType nFileFormat, const std::wstring& sName = L"");
     void createLocalFile(const std::wstring& templatepath, const std::wstring& name);
     bool openRecoverFile(int id);
     bool openRecentFile(int id);
