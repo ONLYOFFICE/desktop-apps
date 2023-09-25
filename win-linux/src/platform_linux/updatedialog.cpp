@@ -69,11 +69,11 @@ int WinDlg::showDialog(QWidget *parent,
     QString primaryText = QTextDocumentFragment::fromHtml(msg).toPlainText();
     QString linkText = !QString(RELEASE_NOTES).isEmpty() ?
                 QString("\n<a href=\"%1\">%2</a>").arg(QString(RELEASE_NOTES), QObject::tr("Release notes")) : "";
+    WindowHelper::CParentDisable oDisabler(parent);
     Window parent_xid = (parent) ? (Window)parent->winId() : 0L;
 
 //    GResource *resource = gtk_resources_get_resource();
 //    g_resources_register(resource);
-    WindowHelper::CParentDisable oDisabler(parent);
     gtk_init(NULL, NULL);
     GtkDialogFlags flags;
     flags = (GtkDialogFlags)(GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT);
