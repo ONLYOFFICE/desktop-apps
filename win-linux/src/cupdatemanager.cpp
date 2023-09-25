@@ -256,7 +256,7 @@ CUpdateManager::CUpdateManager(QObject *parent):
             refreshStartPage({"lastcheck", tr("Last check performed ") + formattedTime(m_lastCheck)});
         });
         if (IsPackage(Portable)) {
-            runProcess(QStrToTStr(qApp->applicationDirPath()) + DAEMON_NAME, TEXT("--run-as-app"));
+            runProcess(QStrToTStr(qApp->applicationDirPath()) + DAEMON_NAME, _T("--run-as-app"));
             QTimer::singleShot(0, this, []() {
                 std::string msg;
 #ifdef _WIN32
