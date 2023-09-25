@@ -78,8 +78,6 @@ CAscApplicationManagerWrapper::CAscApplicationManagerWrapper(CAscApplicationMana
     };
     m_queueToClose->setcallback(callback_);
 
-    NSBaseVideoLibrary::Init(nullptr);
-
     m_themes = std::make_shared<CThemes>();
 
 #ifdef _UPDMODULE
@@ -89,8 +87,6 @@ CAscApplicationManagerWrapper::CAscApplicationManagerWrapper(CAscApplicationMana
 
 CAscApplicationManagerWrapper::~CAscApplicationManagerWrapper()
 {
-    NSBaseVideoLibrary::Destroy();
-
     delete m_queueToClose, m_queueToClose = nullptr;
 
 //    CSingleWindow * _sw = nullptr;
