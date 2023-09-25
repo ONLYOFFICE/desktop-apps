@@ -78,8 +78,6 @@ CAscApplicationManagerWrapper::CAscApplicationManagerWrapper(CAscApplicationMana
     };
     m_queueToClose->setcallback(callback_);
 
-    NSBaseVideoLibrary::Init(nullptr);
-
     m_themes = std::make_shared<CThemes>();
 
 #ifdef _UPDMODULE
@@ -89,8 +87,6 @@ CAscApplicationManagerWrapper::CAscApplicationManagerWrapper(CAscApplicationMana
 
 CAscApplicationManagerWrapper::~CAscApplicationManagerWrapper()
 {
-    NSBaseVideoLibrary::Destroy();
-
     delete m_queueToClose, m_queueToClose = nullptr;
 
 //    CSingleWindow * _sw = nullptr;
@@ -242,10 +238,10 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
                 }
 
                 if ( InputArgs::contains(L"--system-title-bar") ) {
-                    QJsonObject json{{"style:change", QJsonObject{{"element","body"},
-                                                                    {"action", "merge"},
-                                                                    {"style","#title-doc-name{display:none}"}}}};
-                    sendCommandTo(ptr, L"window:features", Utils::stringifyJson(json).toStdWString());
+                    QJsonObject json{{"element","body"},
+                                        {"action", "merge"},
+                                        {"style","#title-doc-name{display:none}"}};
+                    sendCommandTo(ptr, L"style:change", Utils::stringifyJson(json).toStdWString());
                 }
             }
             return true;
@@ -804,7 +800,7 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
     for (const auto& arg: vargs) {
         COpenOptions open_opts;
         open_opts.name = QCoreApplication::translate("CAscTabWidget", "Document");
-        open_opts.srctype = etUndefined;
+        open_opts.srctype = AscEditorType::etUndefined;
 
         const size_t p = arg.find(prefix);
         if ( p == 0 ) {
@@ -834,7 +830,7 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
             open_opts.wurl = arg;
         }
 
-        if (open_opts.srctype == etUndefined) {
+        if (open_opts.srctype == AscEditorType::etUndefined) {
             if ( _app.m_pMainWindow && _app.m_private->bringEditorToFront(QString::fromStdWString(open_opts.wurl)) ) {
                 continue;
             } else

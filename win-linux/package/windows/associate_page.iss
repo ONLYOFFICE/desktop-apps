@@ -1725,21 +1725,16 @@ begin
     end else begin
       labelDesc           := TNewStaticText.Create(associatePage);
       labelDesc.Parent    := associatePage.Surface;
+      labelDesc.Width     := associatePage.SurfaceWidth;
       labelDesc.WordWrap  := True;
       labelDesc.Caption   := ExpandConstant('{cm:warnWin10FileAssociationDesc}');
-      labelDesc.AutoSize  := True;
-      labelDesc.Width     := associatePage.SurfaceWidth;
-      labelDesc.Left      := 0;
-      labelDesc.Top       := 0;
 
       labelPath           := TNewStaticText.Create(associatePage);
       labelPath.Parent    := associatePage.Surface;
+      labelPath.Top       := labelDesc.Top + labelDesc.Height + ScaleY(8);
+      labelPath.Width     := associatePage.SurfaceWidth;
       labelPath.WordWrap  := True;
       labelPath.Caption   := ExpandConstant('{cm:warnWin10FileAssociationPath}');
-      labelPath.AutoSize  := True;
-      labelPath.Width     := associatePage.SurfaceWidth;
-      labelPath.Left      := 0;
-      labelPath.Top       := labelDesc.Top + 50;
       labelPath.Font.Style := [fsBold];
     end
   end else begin

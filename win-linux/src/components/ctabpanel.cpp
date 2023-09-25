@@ -119,14 +119,14 @@ bool CTabPanel::openLocalFile(const std::wstring& path, const std::wstring& para
     return true;
 }
 
-void CTabPanel::createLocalFile(int format, const std::wstring& name)
+void CTabPanel::createLocalFile(AscEditorType format, const std::wstring& name)
 {
     static_cast<CCefViewEditor *>(m_pViewer->GetCefView())->CreateLocalFile(format, name);
 }
 
 void CTabPanel::createLocalFile(const std::wstring& templatepath, const std::wstring& name)
 {
-    static_cast<CCefViewEditor *>(m_pViewer->GetCefView())->CreateLocalFile(0, name, templatepath);
+    static_cast<CCefViewEditor *>(m_pViewer->GetCefView())->CreateLocalFile(AscEditorType::etUndefined, name, templatepath);
 }
 
 bool CTabPanel::openRecoverFile(int id)
