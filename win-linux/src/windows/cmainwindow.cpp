@@ -174,7 +174,7 @@ bool CMainWindow::pointInTabs(const QPoint& pt)
 {
     QRect _rc_title(m_pMainPanel->geometry());
     _rc_title.setHeight(tabWidget()->tabBar()->height());
-    _rc_title.adjust(m_pButtonMain->width(), 1, -3*int(TOOLBTN_WIDTH*m_dpiRatio), 0);
+    _rc_title.adjust(m_pButtonMain->width(), 1, -3*int(TITLEBTN_WIDTH*m_dpiRatio), 0);
     return _rc_title.contains(mapFromGlobal(pt));
 }
 
@@ -1376,7 +1376,7 @@ void CMainWindow::updateScalingFactor(double dpiratio)
     layoutBtns->setSpacing(int(1 * dpiratio));
     if (isCustomWindowStyle()) {
         layoutBtns->setContentsMargins(0,0,0,0);
-        QSize small_btn_size(int(TOOLBTN_WIDTH*dpiratio), int(TOOLBTN_HEIGHT*dpiratio));
+        QSize small_btn_size(int(TITLEBTN_WIDTH*dpiratio), int(TOOLBTN_HEIGHT*dpiratio));
         foreach (auto btn, m_pTopButtons)
             btn->setFixedSize(small_btn_size);
     }*/

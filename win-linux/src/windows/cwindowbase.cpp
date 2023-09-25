@@ -148,7 +148,7 @@ QPushButton* CWindowBase::createToolButton(QWidget * parent, const QString& name
     btn->setObjectName(name);
     btn->setProperty("class", "normal");
     btn->setProperty("act", "tool");
-    btn->setFixedSize(int(TOOLBTN_WIDTH*m_dpiRatio), int(TOOLBTN_HEIGHT*m_dpiRatio));
+    btn->setFixedSize(int(TITLEBTN_WIDTH*m_dpiRatio), int(TOOLBTN_HEIGHT*m_dpiRatio));
 #ifdef __linux__
     btn->setMouseTracking(true);
     btn->setProperty("unix", true);
@@ -258,7 +258,7 @@ void CWindowBase::setScreenScalingFactor(double factor, bool resize)
         pLayoutBtns->setSpacing(int(1 * m_dpiRatio));
         if (isCustomWindowStyle()) {
             pLayoutBtns->setContentsMargins(0, 0, 0, 0);
-            QSize small_btn_size(int(TOOLBTN_WIDTH*m_dpiRatio), int(TOOLBTN_HEIGHT*m_dpiRatio));
+            QSize small_btn_size(int(TITLEBTN_WIDTH*m_dpiRatio), int(TOOLBTN_HEIGHT*m_dpiRatio));
             foreach (auto pBtn, m_pTopButtons)
                 pBtn->setFixedSize(small_btn_size);
         }

@@ -206,7 +206,7 @@ public:
         int right_btns = 3;
         int spacing = window->m_boxTitleBtns->layout()->spacing();
         int left_offset = left_btns*TOOLBTN_WIDTH + 3*spacing; // added extra spacing
-        int right_offset = right_btns*(TOOLBTN_WIDTH + spacing);
+        int right_offset = right_btns*(TITLEBTN_WIDTH + spacing);
         int diffW = (left_offset - right_offset)*dpiRatio;
         if (iconuser) {
             diffW -= ICON_SPACER_WIDTH + spacing*dpiRatio;
@@ -608,7 +608,7 @@ public:
             }
 
             for (const auto& btn: m_mapTitleButtons) {
-                btn->setFixedSize(QSize(int(TOOLBTN_WIDTH*f), int(TOOLBTN_HEIGHT*f)));
+                btn->setFixedSize(QSize(int(TITLEBTN_WIDTH*f), int(TOOLBTN_HEIGHT*f)));
                 btn->setIconSize(QSize(20,20) * f);
             }
             centerTitle(f);
@@ -828,7 +828,7 @@ public:
         if ( iconcrypted )
             basewidth -= iconcrypted->width();
 
-        basewidth -= m_mapTitleButtons.count() * (TOOLBTN_WIDTH + 1) * window->m_dpiRatio;
+        basewidth -= m_mapTitleButtons.count() * (TITLEBTN_WIDTH + 1) * window->m_dpiRatio;
 
         return basewidth;
     }
