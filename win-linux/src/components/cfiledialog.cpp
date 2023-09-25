@@ -446,7 +446,7 @@ int CFileDialogWrapper::getKey(const QString &value)
 {
 #ifdef Q_OS_LINUX
     QString _sv{value};
-    if ( WindowHelper::getEnvInfo() == "GNOME" ) {
+    if ( WindowHelper::getEnvInfo() == WindowHelper::GNOME ) {
         QRegularExpression _re_strbegin("^(.+)\\s\\（", QRegularExpression::CaseInsensitiveOption);
         QRegularExpressionMatch _re_match = _re_strbegin.match(value);
 

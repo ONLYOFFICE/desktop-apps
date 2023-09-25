@@ -61,7 +61,6 @@ int main( int argc, char *argv[] )
     qputenv("QT_QPA_PLATFORM", "xcb");
     qputenv("GDK_BACKEND", "x11");
     InputArgs::init(argc, argv);
-    WindowHelper::initEnvInfo();
     if (geteuid() == 0) {
         CMessage::warning(nullptr, WARNING_LAUNCH_WITH_ADMIN_RIGHTS);
         return 0;
