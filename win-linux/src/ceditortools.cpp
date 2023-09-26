@@ -70,7 +70,7 @@ namespace CEditorTools
                         c.context->AddRef();
 
                         _progress.setProgress(curr, count);
-                        qApp->processEvents();
+                        PROCESSEVENTS();
 
                         pData = new CAscPrintPage();
                         pData->put_Context(c.context);

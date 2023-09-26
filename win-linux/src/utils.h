@@ -41,6 +41,7 @@
 #endif
 #include "components/cfullscrwidget.h"
 
+#define PROCESSEVENTS() AscAppManager::getInstance().processEvents()
 
 namespace InputArgs {
     auto init(int argc, char** const argv) -> void;
