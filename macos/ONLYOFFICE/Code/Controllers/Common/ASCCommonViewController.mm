@@ -71,7 +71,6 @@
 #import "ASCThemesController.h"
 #import "ASCEditorJSVariables.h"
 #import "ASCPresentationReporter.h"
-#import "ASCDocumentType.h"
 #import <Carbon/Carbon.h>
 
 #define rootTabId @"1CEF624D-9FF3-432B-9967-61361B5BFE8B"
@@ -397,7 +396,7 @@
                                                                 object:nil
                                                               userInfo:@{
                                                                          @"action"  : @(ASCTabActionCreateLocalFile),
-                                                                         @"type"    : @(CEFDocumentDocument),
+                                                                         @"type"    : @(int(AscEditorType::etDocument)),
                                                                          @"active"  : @(YES)
                                                                          }];
         } else if ([senderId isEqualToString:[NSString stringWithFormat:kCreationButtonIdentifier, @"spreadsheet"]]) {
@@ -405,7 +404,7 @@
                                                                 object:nil
                                                               userInfo:@{
                                                                          @"action"  : @(ASCTabActionCreateLocalFile),
-                                                                         @"type"    : @(CEFDocumentSpreadsheet),
+                                                                         @"type"    : @(int(AscEditorType::etSpreadsheet)),
                                                                          @"active"  : @(YES)
                                                                          }];
         } else if ([senderId isEqualToString:[NSString stringWithFormat:kCreationButtonIdentifier, @"presentation"]]) {
@@ -413,7 +412,7 @@
                                                                 object:nil
                                                               userInfo:@{
                                                                          @"action"  : @(ASCTabActionCreateLocalFile),
-                                                                         @"type"    : @(CEFDocumentPresentation),
+                                                                         @"type"    : @(int(AscEditorType::etPresentation)),
                                                                          @"active"  : @(YES)
                                                                          }];
         } else {
@@ -743,9 +742,9 @@
             NSOpenPanel * openPanel = [NSOpenPanel openPanel];
             NSMutableArray * filter = [NSMutableArray array];
 
-            if ( [params[@"type"] isEqualToNumber:@(ASCDocumentTypePresentation)] ) {
+            if ( [params[@"type"] isEqualToNumber:@((int)AscEditorType::etPresentation)] ) {
                 [filter addObjectsFromArray:@[@"potx", @"otp"]];
-            } else if ( [params[@"type"] isEqualToNumber:@(ASCDocumentTypeSpreadsheet)] ) {
+            } else if ( [params[@"type"] isEqualToNumber:@((int)AscEditorType::etSpreadsheet)] ) {
                 [filter addObjectsFromArray:@[@"xltx", @"xltm", @"ots"]];
             } else {
                 [filter addObjectsFromArray:@[@"dotx", @"ott"]];
@@ -1820,30 +1819,32 @@
                 
             case ASCTabActionCreateLocalFileFromTemplate:
             case ASCTabActionCreateLocalFile: {
-                int docType = CEFDocumentDocument;
+                AscEditorType docType = AscEditorType::etDocument;
                 if ( [tab.params[@"type"] isKindOfClass:[NSString class]] ) {
                     NSString * param = tab.params[@"type"];
-                    if ([param isEqualToString:@"cell"]) docType = CEFDocumentSpreadsheet;
-                    else if ([param isEqualToString:@"slide"]) docType = CEFDocumentPresentation;
-                    else if ([param isEqualToString:@"form"]) docType = CEFDocumentForm;
-                    else /*if ([param isEqualToString:@"word"])*/ docType = CEFDocumentDocument;
-                } else docType = [tab.params[@"type"] intValue];
+                    if ([param isEqualToString:@"cell"]) docType = AscEditorType::etSpreadsheet;
+                    else if ([param isEqualToString:@"slide"]) docType = AscEditorType::etPresentation;
+                    else if ([param isEqualToString:@"form"]) docType = AscEditorType::etDocumentMasterForm;
+//                    else /*if ([param isEqualToString:@"word"])*/ docType = AscEditorType::etDocument;
+                } else docType = (AscEditorType)[tab.params[@"type"] intValue];
 
                 NSString * docName = NSLocalizedString(@"Untitled", nil);
                 
                 switch (docType) {
-                    case CEFDocumentDocument:
+                    case AscEditorType::etDocument:
                         docName = [NSString stringWithFormat:NSLocalizedString(@"Document %ld.docx", nil), ++documentNameCounter];
                         break;
-                    case CEFDocumentSpreadsheet:
+                    case AscEditorType::etSpreadsheet:
                         docName = [NSString stringWithFormat:NSLocalizedString(@"Spreadsheet %ld.xlsx", nil), ++spreadsheetNameCounter];
                         break;
-                    case CEFDocumentPresentation:
+                    case AscEditorType::etPresentation:
                         docName = [NSString stringWithFormat:NSLocalizedString(@"Presentation %ld.pptx", nil), ++presentationNameCounter];
                         break;
-                    case CEFDocumentForm:
+                    case AscEditorType::etDocumentMasterOForm:
+                    case AscEditorType::etDocumentMasterForm:
                         docName = [NSString stringWithFormat:NSLocalizedString(@"Document %ld.docxf", nil), ++documentNameCounter];
                         break;
+                    default: break;
                 }
                 
                 if (action == ASCTabActionCreateLocalFile ) {

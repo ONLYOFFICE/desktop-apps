@@ -67,6 +67,13 @@
     return UIColorFromRGB(0xbe664f);
 }
 
++ (NSColor *) brandPdfEditor {
+    if (@available(macOS 10.13, *)) {
+        return [NSColor colorNamed:@"brand-PdfEditor"];
+    }
+    return UIColorFromRGB(0xaa5252);
+}
+
 @end
 
 #pragma mark - Extensions

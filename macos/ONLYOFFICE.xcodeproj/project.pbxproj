@@ -79,7 +79,7 @@
 		FC0BD6A1258B63F700C47F95 /* ASCPopoverLightView.m in Sources */ = {isa = PBXBuildFile; fileRef = FC1127581BBAAC8000AA3648 /* ASCPopoverLightView.m */; };
 		FC0BD6A2258B63F700C47F95 /* NSCefView.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC98BAD51BAC43B400747944 /* NSCefView.mm */; };
 		FC0BD6A3258B63F700C47F95 /* ASCTabsControl.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C8C206CEE85001B7837 /* ASCTabsControl.m */; };
-		FC0BD6A4258B63F700C47F95 /* ASCTitleBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA9A1921BA6DE2700ABF3AB /* ASCTitleBarController.m */; };
+		FC0BD6A4258B63F700C47F95 /* ASCTitleBarController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FCA9A1921BA6DE2700ABF3AB /* ASCTitleBarController.mm */; };
 		FC0BD6A5258B63F700C47F95 /* SFBPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = FC3BFDFB1BBE83AB0040C904 /* SFBPopover.m */; };
 		FC0BD6A6258B63F700C47F95 /* ASCEventsController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC3B77841BB2A94300DB9705 /* ASCEventsController.mm */; };
 		FC0BD6A7258B63F700C47F95 /* ASCAboutController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC659BF81C75EE8B00C99776 /* ASCAboutController.m */; };
@@ -221,7 +221,7 @@
 		FCA3F3102570EC9500DCAB12 /* file-epub.icns in Resources */ = {isa = PBXBuildFile; fileRef = FCA3F3062570EC9500DCAB12 /* file-epub.icns */; };
 		FCA4502E1C2063460007134D /* ASCSharedSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA4502D1C2063460007134D /* ASCSharedSettings.m */; };
 		FCA9A1901BA6DC6000ABF3AB /* ASCCommonViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FCA9A18F1BA6DC6000ABF3AB /* ASCCommonViewController.mm */; };
-		FCA9A1951BA6DE2700ABF3AB /* ASCTitleBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA9A1921BA6DE2700ABF3AB /* ASCTitleBarController.m */; };
+		FCA9A1951BA6DE2700ABF3AB /* ASCTitleBarController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FCA9A1921BA6DE2700ABF3AB /* ASCTitleBarController.mm */; };
 		FCA9A1961BA6DE2700ABF3AB /* ASCTitleWindowController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FCA9A1941BA6DE2700ABF3AB /* ASCTitleWindowController.mm */; };
 		FCAA9A3E1BBA802100F3C47F /* ASCDownloadCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = FCAA9A3D1BBA802100F3C47F /* ASCDownloadCellView.m */; };
 		FCAA9A441BBA817B00F3C47F /* ASCDownloadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCAA9A431BBA817B00F3C47F /* ASCDownloadViewController.m */; };
@@ -260,7 +260,7 @@
 		FCB4C6DA26DD018B0012C20D /* ASCPopoverLightView.m in Sources */ = {isa = PBXBuildFile; fileRef = FC1127581BBAAC8000AA3648 /* ASCPopoverLightView.m */; };
 		FCB4C6DB26DD018B0012C20D /* NSCefView.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC98BAD51BAC43B400747944 /* NSCefView.mm */; };
 		FCB4C6DC26DD018B0012C20D /* ASCTabsControl.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC77C8C206CEE85001B7837 /* ASCTabsControl.m */; };
-		FCB4C6DD26DD018B0012C20D /* ASCTitleBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA9A1921BA6DE2700ABF3AB /* ASCTitleBarController.m */; };
+		FCB4C6DD26DD018B0012C20D /* ASCTitleBarController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FCA9A1921BA6DE2700ABF3AB /* ASCTitleBarController.mm */; };
 		FCB4C6DE26DD018B0012C20D /* SFBPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = FC3BFDFB1BBE83AB0040C904 /* SFBPopover.m */; };
 		FCB4C6DF26DD018B0012C20D /* ASCEventsController.mm in Sources */ = {isa = PBXBuildFile; fileRef = FC3B77841BB2A94300DB9705 /* ASCEventsController.mm */; };
 		FCB4C6E026DD018B0012C20D /* ASCAboutController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC659BF81C75EE8B00C99776 /* ASCAboutController.m */; };
@@ -786,7 +786,6 @@
 		BE95F0A623E9FF590045E0CB /* mac_cefview.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mac_cefview.h; sourceTree = "<group>"; };
 		FC033D251BB13B9900F6C55F /* mac_application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mac_application.h; sourceTree = "<group>"; };
 		FC035A5B24855E8C00AF820F /* ASCTabViewType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ASCTabViewType.h; sourceTree = "<group>"; };
-		FC035A5C2485625400AF820F /* ASCDocumentType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ASCDocumentType.h; sourceTree = "<group>"; };
 		FC09073D1C1855A400D9E881 /* editors */ = {isa = PBXFileReference; lastKnownFileType = folder; name = editors; path = Vendor/ONLYOFFICE/editors; sourceTree = SOURCE_ROOT; };
 		FC0907401C186A7A00D9E881 /* converter */ = {isa = PBXFileReference; lastKnownFileType = folder; name = converter; path = Vendor/ONLYOFFICE/converter; sourceTree = SOURCE_ROOT; };
 		FC0BD6FB258B63F700C47F95 /* ONLYOFFICE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ONLYOFFICE.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -937,7 +936,7 @@
 		FCA9A18E1BA6DC6000ABF3AB /* ASCCommonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASCCommonViewController.h; sourceTree = "<group>"; };
 		FCA9A18F1BA6DC6000ABF3AB /* ASCCommonViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ASCCommonViewController.mm; sourceTree = "<group>"; };
 		FCA9A1911BA6DE2700ABF3AB /* ASCTitleBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASCTitleBarController.h; sourceTree = "<group>"; };
-		FCA9A1921BA6DE2700ABF3AB /* ASCTitleBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASCTitleBarController.m; sourceTree = "<group>"; };
+		FCA9A1921BA6DE2700ABF3AB /* ASCTitleBarController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ASCTitleBarController.mm; sourceTree = "<group>"; };
 		FCA9A1931BA6DE2700ABF3AB /* ASCTitleWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASCTitleWindowController.h; sourceTree = "<group>"; };
 		FCA9A1941BA6DE2700ABF3AB /* ASCTitleWindowController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ASCTitleWindowController.mm; sourceTree = "<group>"; };
 		FCAA9A3C1BBA802100F3C47F /* ASCDownloadCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASCDownloadCellView.h; sourceTree = "<group>"; };
@@ -1147,7 +1146,6 @@
 			isa = PBXGroup;
 			children = (
 				FC035A5B24855E8C00AF820F /* ASCTabViewType.h */,
-				FC035A5C2485625400AF820F /* ASCDocumentType.h */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -1717,7 +1715,7 @@
 				FCA0B33E1B9EB5960073EDD4 /* ASCTitleWindow.h */,
 				FCA0B33F1B9EB5960073EDD4 /* ASCTitleWindow.m */,
 				FCA9A1911BA6DE2700ABF3AB /* ASCTitleBarController.h */,
-				FCA9A1921BA6DE2700ABF3AB /* ASCTitleBarController.m */,
+				FCA9A1921BA6DE2700ABF3AB /* ASCTitleBarController.mm */,
 				FCA9A1931BA6DE2700ABF3AB /* ASCTitleWindowController.h */,
 				FCA9A1941BA6DE2700ABF3AB /* ASCTitleWindowController.mm */,
 				FC25A1A51C2E844800063A42 /* ASCTabViewController.h */,
@@ -2305,7 +2303,7 @@
 				FC0BD6A1258B63F700C47F95 /* ASCPopoverLightView.m in Sources */,
 				FC0BD6A2258B63F700C47F95 /* NSCefView.mm in Sources */,
 				FC0BD6A3258B63F700C47F95 /* ASCTabsControl.m in Sources */,
-				FC0BD6A4258B63F700C47F95 /* ASCTitleBarController.m in Sources */,
+				FC0BD6A4258B63F700C47F95 /* ASCTitleBarController.mm in Sources */,
 				FC0BD6A5258B63F700C47F95 /* SFBPopover.m in Sources */,
 				FC0BD6A6258B63F700C47F95 /* ASCEventsController.mm in Sources */,
 				FC0BD6A7258B63F700C47F95 /* ASCAboutController.m in Sources */,
@@ -2380,7 +2378,7 @@
 				FCB4C6DA26DD018B0012C20D /* ASCPopoverLightView.m in Sources */,
 				FCB4C6DB26DD018B0012C20D /* NSCefView.mm in Sources */,
 				FCB4C6DC26DD018B0012C20D /* ASCTabsControl.m in Sources */,
-				FCB4C6DD26DD018B0012C20D /* ASCTitleBarController.m in Sources */,
+				FCB4C6DD26DD018B0012C20D /* ASCTitleBarController.mm in Sources */,
 				FCB4C6DE26DD018B0012C20D /* SFBPopover.m in Sources */,
 				FCB4C6DF26DD018B0012C20D /* ASCEventsController.mm in Sources */,
 				FCB4C6E026DD018B0012C20D /* ASCAboutController.m in Sources */,
@@ -2455,7 +2453,7 @@
 				FC1127591BBAAC8000AA3648 /* ASCPopoverLightView.m in Sources */,
 				FC98BAD61BAC43B400747944 /* NSCefView.mm in Sources */,
 				FCC77C94206CEE85001B7837 /* ASCTabsControl.m in Sources */,
-				FCA9A1951BA6DE2700ABF3AB /* ASCTitleBarController.m in Sources */,
+				FCA9A1951BA6DE2700ABF3AB /* ASCTitleBarController.mm in Sources */,
 				FC3BFE001BBE83AB0040C904 /* SFBPopover.m in Sources */,
 				FC3B77851BB2A94300DB9705 /* ASCEventsController.mm in Sources */,
 				FC659BFA1C75EE8B00C99776 /* ASCAboutController.m in Sources */,

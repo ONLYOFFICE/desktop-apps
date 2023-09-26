@@ -50,8 +50,9 @@
 #import "ASCDownloadViewController.h"
 #import "ASCDownloadController.h"
 #import "ASCMenuButtonCell.h"
-#import "ASCDocumentType.h"
 #import "ASCThemesController.h"
+#import "ASCApplicationManager.h"
+
 
 static float kASCWindowDefaultTrafficButtonsLeftMargin = 0;
 static float kASCWindowMinTitleWidth = 0;
@@ -124,6 +125,26 @@ static float kASCWindowMinTitleWidth = 0;
 
     self.downloadWidthConstraint.constant = .0f;
     self.downloadImageView.canDrawSubviewsIntoLayer = YES;
+    self.downloadImageView.animates = NO;
+    self.downloadImageView.hidden = NO;
+
+    NSDataAsset * asset = [[NSDataAsset alloc] initWithName:@"progress_download_icon"];
+    NSBitmapImageRep * rep = [[NSBitmapImageRep alloc] initWithData:[asset data]];
+    int framescount = [[rep valueForProperty:NSImageFrameCount] intValue];
+    [rep setProperty:NSImageCurrentFrame withValue:[NSNumber numberWithUnsignedInt:15]];
+    NSData *repData = [rep representationUsingType:NSPNGFileType properties:nil];
+    NSImage * img = [[NSImage alloc] initWithData:repData];
+    [self.downloadImageView setImage:img];
+
+//    NSImage * image = [NSImage imageNamed:@"progress_download_icon"];
+//    if ( image ) {
+//
+//        NSLog(@"download1: image loaded, %d", framescount);
+////        self.downloadImageView.image = image;
+//        [self.downloadImageView setImage:img];
+//    } else {
+//        NSLog(@"download1: load failed");
+//    }
 
     kASCWindowDefaultTrafficButtonsLeftMargin = NSWidth(self.closeButtonFullscreen.frame) - 2.0; // OSX 10.11 magic
 
@@ -172,7 +193,8 @@ static float kASCWindowMinTitleWidth = 0;
     [[[ASCDownloadController sharedInstance] multicastDelegate] addDelegate:self];
     [self.tabsControl.multicastDelegate addDelegate:self];
     
-    [self.userProfileButton setHidden:YES];
+//    [self.userProfileButton setHidden:YES];
+        [self.userProfileButton setHidden:NO];
     [self.portalButton setState:NSControlStateValueOn];
     
     [self.tabsControl removeAllConstraints];
@@ -245,7 +267,7 @@ static float kASCWindowMinTitleWidth = 0;
 
     // Layout title and tabs
     CGFloat containerWidth  = CGRectGetWidth(self.titleContainerView.frame);
-    CGFloat maxTabsWidth    = containerWidth - kASCWindowMinTitleWidth;
+    CGFloat maxTabsWidth    = containerWidth - kASCWindowMinTitleWidth - 100;
     CGFloat actualTabsWidth = self.tabsControl.maxTabWidth * [self.tabsControl.tabs count];
     
     self.tabsControl.frame  = CGRectMake(0, 0, MIN(actualTabsWidth, maxTabsWidth), CGRectGetHeight(self.tabsControl.frame));
@@ -257,7 +279,6 @@ static float kASCWindowMinTitleWidth = 0;
 
 #pragma mark -
 #pragma mark CEF events handler
-
 - (void)onCEFChangedTabEditorType:(NSNotification *)notification {
     if (notification && notification.userInfo) {
         NSDictionary * params   = (NSDictionary *)notification.userInfo;
@@ -266,13 +287,15 @@ static float kASCWindowMinTitleWidth = 0;
         
         ASCTabView * tab = [self.tabsControl tabWithUUID:viewId];
         
+//        NSLog(@"on change editor type %ld %lu", type);
+        
         if (tab) {
             ASCTabViewType docType = ASCTabViewTypeUnknown;
-            switch (type) {
-                case ASCDocumentTypeDocument     : docType = ASCTabViewTypeDocument; break;
-                case ASCDocumentTypeSpreadsheet  : docType = ASCTabViewTypeSpreadsheet; break;
-                case ASCDocumentTypePresentation : docType = ASCTabViewTypePresentation; break;
-                    
+            switch (AscEditorType(type)) {
+                case AscEditorType::etDocument     : docType = ASCTabViewTypeDocument; break;
+                case AscEditorType::etSpreadsheet  : docType = ASCTabViewTypeSpreadsheet; break;
+                case AscEditorType::etPresentation : docType = ASCTabViewTypePresentation; break;
+                case AscEditorType::etPdf          : docType = ASCTabViewTypePdf; break;
                 default:
                     break;
             }
