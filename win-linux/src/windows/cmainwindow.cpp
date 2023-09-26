@@ -287,7 +287,7 @@ void CMainWindow::close()
                 }
             }
 
-            qApp->processEvents();
+            PROCESSEVENTS();
         }
     }
 }
@@ -1138,7 +1138,7 @@ void CMainWindow::onDocumentPrint(void * opts)
         if ( AscAppManager::printData().isQuickPrint() ) {
             dialog->accept();
         } else modal_res = dialog->exec();
-        qApp->processEvents();
+        PROCESSEVENTS();
 
         if ( modal_res == QDialog::Accepted ) {
             if ( !AscAppManager::printData().isQuickPrint() )
@@ -1209,7 +1209,7 @@ void CMainWindow::onFullScreen(int id, bool apply)
     if (isHidden()) {
         m_pTabs->setFullScreen(apply);
         toggleButtonMain(false);
-        QCoreApplication::processEvents();
+        PROCESSEVENTS();
         focus();
     }
 }

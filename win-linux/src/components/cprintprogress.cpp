@@ -42,6 +42,7 @@
 //#define WINVER 0x0500
 # include <windows.h>
 #else
+# include "cascapplicationmanagerwrapper.h"
 # include "windows/platform_linux/cx11decoration.h"
 #endif // Q_WS_WIN32
 
@@ -159,7 +160,7 @@ void CPrintProgress::startProgress()
 
 #ifdef __linux
     while ( !m_showed ) {
-        qApp->processEvents();
+        PROCESSEVENTS();
     }
 #endif
 }

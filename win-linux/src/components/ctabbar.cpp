@@ -53,6 +53,7 @@
 #define _tabRect(i) tabList[i]->geometry()
 #define tabIndex(i) tabList[i]->index
 #define signum(a) (a ? 1 : -1);
+#define PROCESSEVENTS() AscAppManager::getInstance().processEvents()
 
 
 class Tab : public QFrame
@@ -448,7 +449,7 @@ void CTabBar::CTabBarPrivate::slide(int from, int to, int offset, int animation_
 void CTabBar::CTabBarPrivate::scrollToDirection(int direction)
 {
     while (animationInProgress)
-        qApp->processEvents();
+        PROCESSEVENTS();
 
     if (tabList.isEmpty())
         return;
@@ -467,7 +468,7 @@ void CTabBar::CTabBarPrivate::scrollToDirection(int direction)
 void CTabBar::CTabBarPrivate::scrollTo(int index)
 {
     while (animationInProgress)
-        qApp->processEvents();
+        PROCESSEVENTS();
 
     if (!indexIsValid(index))
         return;
@@ -484,7 +485,7 @@ void CTabBar::CTabBarPrivate::scrollTo(int index)
 void CTabBar::CTabBarPrivate::onCurrentChanged(int index)
 {
     while (animationInProgress)
-        qApp->processEvents();
+        PROCESSEVENTS();
 
     recalcWidth();
 
@@ -507,7 +508,7 @@ void CTabBar::CTabBarPrivate::onTabWidthChanged(int width)
 {
     Q_UNUSED(width)
     while (animationInProgress)
-        qApp->processEvents();
+        PROCESSEVENTS();
 
     if (!tabList.isEmpty())
         iconSize = tabList[0]->icon_label->size();
@@ -563,7 +564,7 @@ void CTabBar::CTabBarPrivate::recalcWidth()
     tabArea->setMinimumWidth(minWidth);
     tabArea->setMaximumWidth(minWidth * tabList.size());
     owner->setMaximumWidth(tabArea->maximumWidth() + scrollFrame->maximumWidth());
-    qApp->processEvents();
+    PROCESSEVENTS();
 }
 
 bool CTabBar::CTabBarPrivate::indexIsValid(int index)
@@ -630,7 +631,7 @@ CTabBar::~CTabBar()
 int CTabBar::addTab(const QString &text)
 {
     while (d->animationInProgress)
-        qApp->processEvents();
+        PROCESSEVENTS();
 
     const int lastIndex = d->tabList.size() - 1;
     const int posX = (lastIndex == -1) ? 0 : d->nextTabPosByPrev(lastIndex);
@@ -688,18 +689,18 @@ QSize CTabBar::iconSize() const
 int CTabBar::insertTab(int index, const QString &text)
 {
     while (d->animationInProgress)
-        qApp->processEvents();
+        PROCESSEVENTS();
 
     if (!d->indexIsValid(index))
         return addTab(text);
 
     while (d->animationInProgress)
-        qApp->processEvents();
+        PROCESSEVENTS();
 
     int posX = d->_tabRect(index).left();
     d->slide(index, d->tabList.size() - 1, d->cellWidth(), ANIMATION_DEFAULT_MS);
     while (d->animationInProgress)
-        qApp->processEvents();
+        PROCESSEVENTS();
 
     Tab *tab = new Tab(d->tabArea);
     tab->move(posX, 0);
@@ -737,7 +738,7 @@ int CTabBar::insertTab(int index, const QIcon &icon, const QString &text)
 void CTabBar::removeTab(int index)
 {
     while (d->animationInProgress)
-        qApp->processEvents();
+        PROCESSEVENTS();
 
     if (!d->indexIsValid(index))
         return;
@@ -748,14 +749,14 @@ void CTabBar::removeTab(int index)
         if (prevIndex > -1) {
             d->slide(0, prevIndex, d->cellWidth(), ANIMATION_DEFAULT_MS);
             while (d->animationInProgress)
-                qApp->processEvents();
+                PROCESSEVENTS();
         }
     } else {
         const int nextIndex = index + 1;
         if (nextIndex < d->tabList.size()) {
             d->slide(nextIndex, d->tabList.size() - 1, -1 * d->cellWidth(), ANIMATION_DEFAULT_MS);
             while (d->animationInProgress)
-                qApp->processEvents();
+                PROCESSEVENTS();
         }
     }
 
@@ -878,7 +879,7 @@ void CTabBar::setTabToolTip(int index, const QString &text)
 void CTabBar::setCurrentIndex(int index)
 {
     while (d->animationInProgress)
-        qApp->processEvents();
+        PROCESSEVENTS();
 
     if (/*!d->indexIsValid(index) ||*/ index == d->currentIndex)
         return;
@@ -1099,7 +1100,7 @@ bool CTabBar::eventFilter(QObject *watched, QEvent *event)
                             QTimer::singleShot(0, this, [=]() {
                                 removeTab(d->currentIndex);
                                 while (d->animationInProgress)
-                                    qApp->processEvents();
+                                    PROCESSEVENTS();
                                 d->changeScrollerState();
                             });
                         }
@@ -1133,7 +1134,7 @@ bool CTabBar::eventFilter(QObject *watched, QEvent *event)
                             else
                                 d->scrollTo(i);
                             while (d->animationInProgress)
-                                qApp->processEvents();
+                                PROCESSEVENTS();
                             QCursor::setPos(oldCurPos);
                             d->lock = false;
                             return true;
@@ -1147,7 +1148,7 @@ bool CTabBar::eventFilter(QObject *watched, QEvent *event)
             QMouseEvent* mouse_event = dynamic_cast<QMouseEvent*>(event);
             if (mouse_event->button() == Qt::LeftButton) {
                 while (d->animationInProgress)
-                    qApp->processEvents();
+                    PROCESSEVENTS();
                 if (d->movedTab) {
                     if (d->currentIndex != d->movedTabIndex) {
                         d->reorderIndexes();
