@@ -971,23 +971,22 @@ void CMainWindow::onDocumentSaveInnerRequest(int id)
 void CMainWindow::onDocumentDownload(void * info)
 {
     CAscDownloadFileInfo *pData = reinterpret_cast<CAscDownloadFileInfo*>(info);
-    if (!pData->get_IsCanceled()) {
-        if ( !m_pWidgetDownload ) {
-            m_pWidgetDownload = new CDownloadWidget(this);
-            connect(m_pWidgetDownload, &QWidget::destroyed, this, [=]() {
-                m_pWidgetDownload = nullptr;
-            });
-            QHBoxLayout * layoutBtns = qobject_cast<QHBoxLayout *>(m_boxTitleBtns->layout());
-            layoutBtns->insertWidget(1, m_pWidgetDownload->toolButton());
-            m_pWidgetDownload->show();
-            std::vector<std::string> files{":/styles/download.qss"};
-            m_pWidgetDownload->setStyleSheet(Utils::readStylesheets(&files));
-            m_pWidgetDownload->applyTheme(m_pMainPanel->property("uitheme").toString());
-            m_pWidgetDownload->updateScalingFactor(m_dpiRatio);
-            m_pWidgetDownload->move(geometry().bottomRight() - m_pWidgetDownload->rect().bottomRight());
-        }
-        m_pWidgetDownload->downloadProcess(info);
+    if (!m_pWidgetDownload && !pData->get_IsCanceled() && !pData->get_FilePath().empty()) {
+        m_pWidgetDownload = new CDownloadWidget(this);
+        connect(m_pWidgetDownload, &QWidget::destroyed, this, [=]() {
+            m_pWidgetDownload = nullptr;
+        });
+        QHBoxLayout * layoutBtns = qobject_cast<QHBoxLayout *>(m_boxTitleBtns->layout());
+        layoutBtns->insertWidget(1, m_pWidgetDownload->toolButton());
+        m_pWidgetDownload->show();
+        std::vector<std::string> files{":/styles/download.qss"};
+        m_pWidgetDownload->setStyleSheet(Utils::readStylesheets(&files));
+        m_pWidgetDownload->applyTheme(m_pMainPanel->property("uitheme").toString());
+        m_pWidgetDownload->updateScalingFactor(m_dpiRatio);
+        m_pWidgetDownload->move(geometry().bottomRight() - m_pWidgetDownload->rect().bottomRight());
     }
+    if (m_pWidgetDownload)
+        m_pWidgetDownload->downloadProcess(info);
 }
 
 void CMainWindow::onDocumentFragmented(int id, bool isfragmented)

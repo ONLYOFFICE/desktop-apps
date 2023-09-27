@@ -161,11 +161,11 @@ void CDownloadWidget::downloadProcess(void * info)
     int id = pData->get_IdDownload();
 
     std::map<int, CDownloadItem *>::iterator iter = m_mapDownloads.find(id);
-    if (pData->get_IsComplete()) {
-        removeFile(iter);
-    } else
     if (pData->get_IsCanceled()) {
         slot_downloadCanceled(id);
+    } else
+    if (pData->get_IsComplete()) {
+        removeFile(iter);
     } else {
         if (iter == m_mapDownloads.end()) {
             QString path = QString::fromStdWString(pData->get_FilePath()),
@@ -214,7 +214,7 @@ void CDownloadWidget::removeFile(MapItem iter)
         RELEASEOBJECT(di)
 
         m_mapDownloads.erase(iter);
-        if (!m_mapDownloads.size() && m_pToolButton->isVisible()) {
+        if (m_mapDownloads.empty()) {
             m_pToolButton->deleteLater();
             deleteLater();
         }
