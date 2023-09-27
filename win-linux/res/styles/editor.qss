@@ -1,8 +1,8 @@
 #mainPanel {background-color: %1;}
 #box-title-tools {background-color: %1;}
 #box-title-tools QLabel {font-family: "Arial", "Helvetica", "Helvetica Neue", sans-serif;}
-#labelTitle {color: #444; font-weight: bold;}
-#iconuser {color: %1; background: #d9ffffff; font-size: 12px;}
+#labelTitle {color: #444; font-weight: normal;}
+#iconuser {color: %1; background: #d9ffffff; font-size: 10px;}
 QPushButton[act=tool]:hover {background-color: rgba(0,0,0,20%);}
 QPushButton#toolButtonClose:hover {background-color: #d42b2b;}
 QPushButton#toolButtonClose:pressed {background-color: #d75050;}
@@ -54,7 +54,7 @@ QPushButton#toolButtonClose:pressed {background-color: #d75050;}
 {
     padding: 6px 15px 9px;
 }
-#mainPanel[zoom="1.25x"] #iconuser,
+#mainPanel[zoom="1.25x"] #iconuser {font-size: 13px;}
 #mainPanel[zoom="1.25x"] #labelTitle
 {
     font-size: 15px;
@@ -67,7 +67,7 @@ QPushButton#toolButtonClose:pressed {background-color: #d75050;}
 {
     padding: 8px 18px 11px;
 }
-#mainPanel[zoom="1.5x"] #iconuser,
+#mainPanel[zoom="1.5x"] #iconuser {font-size: 15px;}
 #mainPanel[zoom="1.5x"] #labelTitle
 {
     font-size: 18px;
@@ -80,7 +80,7 @@ QPushButton#toolButtonClose:pressed {background-color: #d75050;}
 {
     padding: 9px 21px 12px;
 }
-#mainPanel[zoom="1.75x"] #iconuser,
+#mainPanel[zoom="1.75x"] #iconuser {font-size: 18px;}
 #mainPanel[zoom="1.75x"] #labelTitle
 {
     font-size: 21px;
@@ -93,7 +93,7 @@ QPushButton#toolButtonClose:pressed {background-color: #d75050;}
 {
     padding: 10px 24px 14px;
 }
-#mainPanel[zoom="2x"] #iconuser,
+#mainPanel[zoom="2x"] #iconuser {font-size: 21px;}
 #mainPanel[zoom="2x"] #labelTitle
 {
     font-size: 24px;
@@ -106,7 +106,7 @@ QPushButton#toolButtonClose:pressed {background-color: #d75050;}
 {
     padding: 11px 27px 16px;
 }
-#mainPanel[zoom="2.25x"] #iconuser,
+#mainPanel[zoom="2.25x"] #iconuser {font-size: 23px;}
 #mainPanel[zoom="2.25x"] #labelTitle
 {
     font-size: 27px;
@@ -119,7 +119,7 @@ QPushButton#toolButtonClose:pressed {background-color: #d75050;}
 {
     padding: 13px 30px 18px;
 }
-#mainPanel[zoom="2.5x"] #iconuser,
+#mainPanel[zoom="2.5x"] #iconuser {font-size: 25px;}
 #mainPanel[zoom="2.5x"] #labelTitle
 {
     font-size: 30px;
@@ -132,7 +132,7 @@ QPushButton#toolButtonClose:pressed {background-color: #d75050;}
 {
     padding: 14px 33px 19px;
 }
-#mainPanel[zoom="2.75x"] #iconuser,
+#mainPanel[zoom="2.75x"] #iconuser {font-size: 28px;}
 #mainPanel[zoom="2.75x"] #labelTitle
 {
     font-size: 33px;
@@ -145,7 +145,7 @@ QPushButton#toolButtonClose:pressed {background-color: #d75050;}
 {
     padding: 15px 36px 21px;
 }
-#mainPanel[zoom="3x"] #iconuser,
+#mainPanel[zoom="3x"] #iconuser {font-size: 30px;}
 #mainPanel[zoom="3x"] #labelTitle
 {
     font-size: 36px;
@@ -158,7 +158,7 @@ QPushButton#toolButtonClose:pressed {background-color: #d75050;}
 {
     padding: 18px 42px 25px;
 }
-#mainPanel[zoom="3.5x"] #iconuser,
+#mainPanel[zoom="3.5x"] #iconuser {font-size: 35px;}
 #mainPanel[zoom="3.5x"] #labelTitle
 {
     font-size: 42px;
@@ -171,7 +171,7 @@ QPushButton#toolButtonClose:pressed {background-color: #d75050;}
 {
     padding: 20px 48px 28px;
 }
-#mainPanel[zoom="4x"] #iconuser,
+#mainPanel[zoom="4x"] #iconuser {font-size: 40px;}
 #mainPanel[zoom="4x"] #labelTitle
 {
     font-size: 48px;
@@ -184,7 +184,7 @@ QPushButton#toolButtonClose:pressed {background-color: #d75050;}
 {
     padding: 23px 54px 32px;
 }
-#mainPanel[zoom="4.5x"] #iconuser,
+#mainPanel[zoom="4.5x"] #iconuser {font-size: 45px;}
 #mainPanel[zoom="4.5x"] #labelTitle
 {
     font-size: 54px;
@@ -197,7 +197,7 @@ QPushButton#toolButtonClose:pressed {background-color: #d75050;}
 {
     padding: 25px 60px 35px;
 }
-#mainPanel[zoom="5x"] #iconuser,
+#mainPanel[zoom="5x"] #iconuser {font-size: 50px;}
 #mainPanel[zoom="5x"] #labelTitle
 {
     font-size: 60px;

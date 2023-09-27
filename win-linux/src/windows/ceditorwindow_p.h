@@ -722,7 +722,7 @@ public:
 
     void adjustIconUser()
     {
-        iconuser->setFixedHeight(0.85 * TOOLBTN_HEIGHT * window->m_dpiRatio);
+        iconuser->setFixedHeight(20 * window->m_dpiRatio);
         iconuser->setFixedWidth(iconuser->height());
         iconuser->setStyleSheet(QString("#iconuser {border-radius: %1px;}")
                      .arg(QString::number(iconuser->height()/2)));
