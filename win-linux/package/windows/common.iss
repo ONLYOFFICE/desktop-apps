@@ -787,7 +787,7 @@ begin
     UnassociateExtensions();
   end else
   if CurUninstallStep = usPostUninstall then begin
-
+    RemoveExtraFiles();
   end;
 end;
 
@@ -1051,3 +1051,4 @@ Type: filesandordirs; Name: {commonappdata}\{#APP_PATH}\*;  AfterInstall: Refres
 Type: files; Name: "{app}\new_word.bat";
 Type: files; Name: "{app}\new_cell.bat";
 Type: files; Name: "{app}\new_slide.bat";
+Type: files; Name: "{app}\svcrestart.bat";
