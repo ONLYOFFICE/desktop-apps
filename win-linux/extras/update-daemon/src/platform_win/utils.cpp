@@ -178,6 +178,35 @@ namespace NS_File
         return true;
     }
 
+    bool readBinFile(const wstring &filePath, list<wstring> &linesList)
+    {
+        std::ifstream file(filePath.c_str(), std::ios::in | std::ios::binary);
+        if (!file.is_open()) {
+            NS_Logger::WriteLog(L"An error occurred while opening: " + filePath);
+            return false;
+        }
+        while (file.peek() != EOF) {
+            WORD len = 0;
+            file.read((char*)(&len), sizeof(WORD));
+            if (file.fail()) {
+                NS_Logger::WriteLog(L"An error occurred while reading: " + filePath);
+                file.close();
+                return false;
+            }
+            wstring line;
+            line.resize(len);
+            file.read((char*)&line[0], len * sizeof(wchar_t));
+            if (file.fail()) {
+                NS_Logger::WriteLog(L"An error occurred while reading: " + filePath);
+                file.close();
+                return false;
+            }
+            linesList.push_back(std::move(line));
+        }
+        file.close();
+        return true;
+    }
+
     bool writeToFile(const wstring &filePath, list<wstring> &linesList)
     {
         std::wofstream file(filePath.c_str(), std::ios_base::out);
@@ -188,6 +217,32 @@ namespace NS_File
         for (auto &line : linesList)
             file << line << std::endl;
 
+        file.close();
+        return true;
+    }
+
+    bool writeToBinFile(const wstring &filePath, list<wstring> &linesList)
+    {
+        std::ofstream file(filePath.c_str(), std::ios::binary | std::ios::app);
+        if (!file.is_open()) {
+            NS_Logger::WriteLog(L"An error occurred while writing: " + filePath);
+            return false;
+        }
+        for (auto &line : linesList) {
+            WORD len = line.length();
+            file.write((const char*)&len, sizeof(WORD));
+            if (file.fail()) {
+                NS_Logger::WriteLog(L"An error occurred while writing: " + filePath);
+                file.close();
+                return false;
+            }
+            file.write((const char*)line.c_str(), len * sizeof(wchar_t));
+            if (file.fail()) {
+                NS_Logger::WriteLog(L"An error occurred while writing: " + filePath);
+                file.close();
+                return false;
+            }
+        }
         file.close();
         return true;
     }

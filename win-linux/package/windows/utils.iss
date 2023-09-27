@@ -119,3 +119,65 @@ begin
      SaveStringsToFile(fileName, lines, False);
    end;
 end;
+
+function ReadBinFile(fileName: String; list: TStringList): Boolean;
+var
+  fs: TFileStream;
+  buff: String;
+  len: Word;
+  ch: Char;
+begin
+  Result := False;
+  if not FileExists(fileName) then
+    Exit;
+  list.Clear;
+  try
+    fs := TFileStream.Create(fileName, fmOpenRead);
+  except
+    Exit;
+  end;
+  while fs.Position < fs.Size do begin
+    SetLength(buff, 1);
+    try
+      fs.ReadBuffer(buff, SizeOf(len));
+    except
+      fs.Free;
+      Exit;
+    end;
+    len := Ord(buff[1]);
+    SetLength(buff, len);
+    try
+      fs.ReadBuffer(buff, len * SizeOf(ch));
+    except
+      fs.Free;
+      Exit;
+    end;
+    list.Add(buff);
+  end;
+  Result := True;
+  fs.Free;
+end;
+
+procedure RemoveExtraFiles();
+var
+  i: Integer;
+  appPath, path: String;
+  files: TStringList;
+begin
+  files := TStringList.Create;
+  appPath := ExpandConstant('{app}');
+  if ReadBinFile(appPath + '\unins000.bin', files) then begin
+    for i := 0 to files.Count - 1 do begin
+      if DeleteFile(appPath + files[i]) then begin
+        path := ExtractFileDir(files[i]);
+        while (path <> '\') do begin
+          if not RemoveDir(appPath + path) then
+            break;
+          path := ExtractFileDir(path);
+        end;
+      end;
+    end;
+  end;
+  files.Free;
+  DeleteFile(appPath + '\unins000.bin');
+end;

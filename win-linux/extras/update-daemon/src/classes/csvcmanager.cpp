@@ -54,6 +54,7 @@
 # define DAEMON_NAME      L"/updatesvc.exe"
 # define DAEMON_NAME_OLD  L"/~updatesvc.exe"
 # define RESTART_BATCH    L"/svcrestart.bat"
+# define UNINSTALL_LIST   L"/unins000.bin"
 # define SUBFOLDER        TEXT("/" REG_APP_NAME)
 # define ARCHIVE_EXT      TEXT(".zip")
 # define ARCHIVE_PATTERN  TEXT("*.zip")
@@ -273,6 +274,37 @@ void CSvcManager::onCompleteUnzip(const int error)
         if (!NS_File::writeToFile(updPath + SUCCES_UNPACKED, successList)) {
             return;
         }
+#ifdef _WIN32
+        // Adding new app files to the uninstall list
+        auto fillSubpathVec = [](const tstring &path, vector<tstring> &vec)->bool {
+            tstring _error;
+            list<tstring> filesList;
+            if (!NS_File::GetFilesList(path, &filesList, _error)) {
+                NS_Logger::WriteLog(DEFAULT_ERROR_MESSAGE + TEXT(" ") + _error);
+                return false;
+            }
+            for (auto &filePath : filesList) {
+                tstring subPath = filePath.substr(path.length());
+                vec.push_back(std::move(subPath));
+            }
+            return true;
+        };
+
+        vector<wstring> updVec, appVec;
+        const tstring appPath = NS_File::appPath();
+        if (fillSubpathVec(appPath, appVec) && fillSubpathVec(updPath, updVec)) {
+            list<tstring> delList;
+            if (NS_File::fileExists(appPath + UNINSTALL_LIST) && !NS_File::readBinFile(appPath + UNINSTALL_LIST, delList))
+                NS_Logger::WriteLog(DEFAULT_ERROR_MESSAGE);
+
+            for (auto &updFile : updVec) {
+                if (std::find(appVec.begin(), appVec.end(), updFile) == appVec.end())
+                    delList.push_back(NS_File::toNativeSeparators(updFile));
+            }
+            if (!NS_File::writeToBinFile(updPath + UNINSTALL_LIST, delList))
+                NS_Logger::WriteLog(DEFAULT_ERROR_MESSAGE);
+        }
+#endif
         if (!m_socket->sendMessage(MSG_ShowStartInstallMessage))
             NS_Logger::WriteLog(DEFAULT_ERROR_MESSAGE);
 
