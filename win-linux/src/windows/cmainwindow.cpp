@@ -920,14 +920,14 @@ void CMainWindow::onDocumentReady(int uid)
             focus(); // TODO: move to app manager
         });
     } else {
-        m_pTabs->applyDocumentChanging(uid, DOCUMENT_CHANGED_LOADING_FINISH);
+        m_pTabs->applyPageLoadingStatus(uid, DOCUMENT_CHANGED_LOADING_FINISH);
     }
     AscAppManager::getInstance().onDocumentReady(uid);
 }
 
 void CMainWindow::onDocumentLoadFinished(int uid)
 {
-    m_pTabs->applyDocumentChanging(uid, DOCUMENT_CHANGED_PAGE_LOAD_FINISH);
+    m_pTabs->applyPageLoadingStatus(uid, DOCUMENT_CHANGED_PAGE_LOAD_FINISH);
 }
 
 void CMainWindow::onDocumentChanged(int id, bool changed)

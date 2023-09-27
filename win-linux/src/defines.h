@@ -92,10 +92,6 @@
 #define DOWNLOAD_PAGE "https://www.onlyoffice.com/en/download-desktop.aspx"
 #define RELEASE_NOTES "https://github.com/ONLYOFFICE/DesktopEditors/blob/master/CHANGELOG.md"
 
-#define DOCUMENT_CHANGED_LOADING_START          -255
-#define DOCUMENT_CHANGED_LOADING_FINISH         -254
-#define DOCUMENT_CHANGED_PAGE_LOAD_FINISH       -253
-
 #ifdef __linux
 typedef unsigned char BYTE;
 #else
