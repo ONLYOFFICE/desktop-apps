@@ -44,8 +44,8 @@ cp -r $COMMON/opt/desktopeditors/* $DESKTOPEDITORS_PREFIX
 cp -t $BIN_DIR $COMMON/usr/bin/%{_desktopeditors_exec}
 cp -t $DATA_DIR/applications $COMMON/usr/share/applications/%{_desktopeditors_exec}.desktop
 echo "package = rpm" > $DESKTOPEDITORS_PREFIX/converter/package.config
-mkdir -p $DATA_DIR/doc/%{_desktopeditors_exec}
-cp $COMMON/usr/share/doc/%{_desktopeditors_exec}/NEWS $DATA_DIR/doc/%{_desktopeditors_exec}
+mkdir -p $DATA_DIR/doc/%{_package_name}
+cp $COMMON/usr/share/doc/%{_package_name}/NEWS $DATA_DIR/doc/%{_package_name}
 
 %if "%{_company_name}" == "ONLYOFFICE"
 # help
