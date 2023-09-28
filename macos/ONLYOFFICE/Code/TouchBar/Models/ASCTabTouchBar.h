@@ -47,7 +47,8 @@ typedef NS_ENUM(NSInteger, ASCTabTouchBarType)
     ASCTabTouchBarTypeSpreadsheet   = 2,
     ASCTabTouchBarTypePresentation  = 3,
     ASCTabTouchBarTypePortal        = 4,
-    ASCTabTouchBarTypePage          = 5
+    ASCTabTouchBarTypePage          = 5,
+    ASCTabTouchBarTypePdf           = 6
 };
 
 NS_ASSUME_NONNULL_BEGIN
