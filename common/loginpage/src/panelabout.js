@@ -154,7 +154,7 @@
                     this.view.$menuitem.removeClass('extra');
                     this.view.$panel.append(this.view.paneltemplate(args));
                 } else {
-                    if ( !!args.opts?.edition ) {
+                    if ( !!args.opts && !!args.opts.edition ) {
                         $('#idx-ver-edition').html(args.opts.edition);
                     }
                 }
