@@ -79,10 +79,6 @@ CAscApplicationManagerWrapper::CAscApplicationManagerWrapper(CAscApplicationMana
     m_queueToClose->setcallback(callback_);
 
     m_themes = std::make_shared<CThemes>();
-
-#ifdef _UPDMODULE
-    m_pUpdateManager = new CUpdateManager(this);
-#endif
 }
 
 CAscApplicationManagerWrapper::~CAscApplicationManagerWrapper()
@@ -113,7 +109,8 @@ CAscApplicationManagerWrapper::~CAscApplicationManagerWrapper()
     }
 #if defined (_UPDMODULE)
     // Start update installation
-    m_pUpdateManager->handleAppClose();
+    if (m_pUpdateManager)
+        m_pUpdateManager->handleAppClose();
 #endif
 //    m_vecEditors.clear();
 }
@@ -294,20 +291,22 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
         } else
 #ifdef _UPDMODULE
         if ( !(cmd.find(L"updates:action") == std::wstring::npos) ) {   // params: check, download, install, abort
-            const QString params = QString::fromStdWString(pData->get_Param());
-            if (params == "check") {
-                m_pUpdateManager->checkUpdates(true);
-            } else
-            if (params == "download") {
-                m_pUpdateManager->loadUpdates();
-            } else
-            if (params == "install") {
-                m_pUpdateManager->installUpdates();
-            } else
-            if (params == "abort") {
-                m_pUpdateManager->cancelLoading();
+            if (m_pUpdateManager) {
+                const QString params = QString::fromStdWString(pData->get_Param());
+                if (params == "check") {
+                    m_pUpdateManager->checkUpdates(true);
+                } else
+                if (params == "download") {
+                    m_pUpdateManager->loadUpdates();
+                } else
+                if (params == "install") {
+                    m_pUpdateManager->installUpdates();
+                } else
+                if (params == "abort") {
+                    m_pUpdateManager->cancelLoading();
+                }
+                return true;
             }
-            return true;
         } else
 #endif
         if ( cmd.compare(L"title:button") == 0 ) {
@@ -921,15 +920,14 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
 void CAscApplicationManagerWrapper::onDocumentReady(int uid)
 {
 #ifdef _UPDMODULE
+    if (!m_pUpdateManager) {
+        m_pUpdateManager = new CUpdateManager(this);
+        m_pUpdateManager->launchIntervalStartTimer();
+    }
     if (uid < 0) {
         QTimer::singleShot(50, this, [=]() {
             m_pUpdateManager->refreshStartPage();
         });
-    }
-    static bool lock = false;
-    if (!lock) {
-        lock = true;
-        m_pUpdateManager->launchIntervalStartTimer();
     }
 #endif
 }
@@ -1658,7 +1656,8 @@ bool CAscApplicationManagerWrapper::applySettings(const wstring& wstrjson)
         }
 #ifdef _UPDMODULE
         if ( objRoot.contains("autoupdatemode") ) {
-            m_pUpdateManager->setNewUpdateSetting(objRoot["autoupdatemode"].toString());
+            if (m_pUpdateManager)
+                m_pUpdateManager->setNewUpdateSetting(objRoot["autoupdatemode"].toString());
         }
 #endif
     } else {

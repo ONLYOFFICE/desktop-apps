@@ -215,7 +215,7 @@ private:
     CAscApplicationManagerWrapper(CAscApplicationManagerWrapper_Private *);
 
 #ifdef _UPDMODULE
-    CUpdateManager *m_pUpdateManager;
+    CUpdateManager *m_pUpdateManager = nullptr;
 #endif
 };
 
