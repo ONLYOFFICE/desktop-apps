@@ -4,7 +4,7 @@
 <context>
     <name>CAscApplicationManagerWrapper</name>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1171"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1178"/>
         <source>Presenter View</source>
         <translation>Mode présentateur</translation>
     </message>
@@ -21,18 +21,18 @@
         <translation type="vanished">Toutes les fenêtres de l&apos;éditeur seront fermées. Voulez-vous continuer ?</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1932"/>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1933"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1939"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1940"/>
         <source>Document%1.docx</source>
         <translation>Document%1.docx</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1934"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1941"/>
         <source>Book%1.xlsx</source>
         <translation>Livre%1.xlsx</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1935"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1942"/>
         <source>Presentation%1.pptx</source>
         <translation>Diaporama%1.pptx</translation>
     </message>
@@ -56,8 +56,8 @@
 <context>
     <name>CAscTabWidget</name>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="795"/>
-        <location filename="../src/components/asctabwidget.cpp" line="644"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="802"/>
+        <location filename="../src/components/asctabwidget.cpp" line="622"/>
         <source>Document</source>
         <translation>Ouverture...</translation>
     </message>
@@ -160,22 +160,22 @@
 <context>
     <name>CEditorWindow</name>
     <message>
-        <location filename="../src/windows/ceditorwindow_p.h" line="134"/>
+        <location filename="../src/windows/ceditorwindow_p.h" line="136"/>
         <source>Open main window</source>
         <translation>Ouvrir la fenêtre principale</translation>
     </message>
     <message>
-        <location filename="../src/windows/ceditorwindow_p.h" line="425"/>
+        <location filename="../src/windows/ceditorwindow_p.h" line="431"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
         <translation>Le document doit être enregistré pour continuer.&lt;br&gt;Enregistrer le document ?</translation>
     </message>
     <message>
-        <location filename="../src/windows/ceditorwindow_p.h" line="514"/>
+        <location filename="../src/windows/ceditorwindow_p.h" line="520"/>
         <source>Print Document</source>
         <translation>Imprimer document</translation>
     </message>
     <message>
-        <location filename="../src/windows/ceditorwindow_p.h" line="695"/>
+        <location filename="../src/windows/ceditorwindow_p.h" line="701"/>
         <source>Document must be saved firstly.</source>
         <translation>Le document doit d’abord être enregistré.</translation>
     </message>
@@ -185,7 +185,7 @@
         <translation>%1 a été modifié.&lt;br&gt;Voulez-vous enregistrer les changements ?</translation>
     </message>
     <message>
-        <location filename="../src/ceditortools.cpp" line="361"/>
+        <location filename="../src/ceditortools.cpp" line="364"/>
         <source>Some data will lost.&lt;br&gt;Continue?</source>
         <translation>Si vous continuez à enregistrer dans ce format toutes les fonctions sauf le texte seront perdues.&lt;br&gt;Êtes-vous sûr de vouloir continuer ?</translation>
     </message>
@@ -193,7 +193,7 @@
 <context>
     <name>CEditorWindowPrivate</name>
     <message>
-        <location filename="../src/windows/ceditorwindow_p.h" line="466"/>
+        <location filename="../src/windows/ceditorwindow_p.h" line="472"/>
         <source>There are no printers available</source>
         <translation>Il n&apos;y a pas d&apos;imprimantes disponibles</translation>
     </message>
@@ -535,43 +535,43 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="713"/>
-        <location filename="../src/windows/cmainwindow.cpp" line="753"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="732"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="772"/>
         <source>File format not supported.</source>
         <translation>Format de fichier non pris en charge.</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="737"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="756"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
         <translation>%1 n’est pas disponible. Il peut être renomé, supprimé ou déplacé.&lt;br&gt;Voulez-vous supprimer le fichier de la liste ?</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="797"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="815"/>
         <source>Document must be saved firstly.</source>
         <translation>Le document doit d’abord être enregistré.</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="939"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="957"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
         <translation>Le document doit être enregistré pour continuer.&lt;br&gt;Enregistrer le document ?</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="1049"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="1067"/>
         <source>There are no printers available</source>
         <translation>Il n&apos;y a pas d&apos;imprimantes disponibles</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="1108"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="1126"/>
         <source>Print Document</source>
         <translation>Imprimer document</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="1308"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="1326"/>
         <source>Sign Up</source>
         <translation>Créer bureau de cloud</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="1391"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="1409"/>
         <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
         <translation>%1 a été modifié.&lt;br&gt;Voulez-vous enregistrer les changements ?</translation>
     </message>
@@ -614,22 +614,22 @@
 <context>
     <name>CPrintProgress</name>
     <message>
-        <location filename="../src/components/cprintprogress.cpp" line="100"/>
+        <location filename="../src/components/cprintprogress.cpp" line="101"/>
         <source>Document is printing: page %1 of %2</source>
         <translation>Impression du document: page %1 sur %2</translation>
     </message>
     <message>
-        <location filename="../src/components/cprintprogress.cpp" line="102"/>
+        <location filename="../src/components/cprintprogress.cpp" line="103"/>
         <source>Document is preparing</source>
         <translation>Préparation du document</translation>
     </message>
     <message>
-        <location filename="../src/components/cprintprogress.cpp" line="108"/>
+        <location filename="../src/components/cprintprogress.cpp" line="109"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Annuler</translation>
     </message>
     <message>
-        <location filename="../src/components/cprintprogress.cpp" line="118"/>
+        <location filename="../src/components/cprintprogress.cpp" line="119"/>
         <source>Printing...</source>
         <translation>Impression...</translation>
     </message>
@@ -638,161 +638,167 @@
     <name>CUpdateManager</name>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="255"/>
-        <location filename="../src/cupdatemanager.cpp" line="285"/>
-        <location filename="../src/cupdatemanager.cpp" line="629"/>
+        <location filename="../src/cupdatemanager.cpp" line="287"/>
+        <location filename="../src/cupdatemanager.cpp" line="634"/>
         <source>Last check performed </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="286"/>
-        <location filename="../src/cupdatemanager.cpp" line="365"/>
-        <location filename="../src/cupdatemanager.cpp" line="380"/>
-        <location filename="../src/cupdatemanager.cpp" line="408"/>
-        <location filename="../src/cupdatemanager.cpp" line="474"/>
-        <location filename="../src/cupdatemanager.cpp" line="481"/>
-        <location filename="../src/cupdatemanager.cpp" line="556"/>
-        <location filename="../src/cupdatemanager.cpp" line="578"/>
-        <location filename="../src/cupdatemanager.cpp" line="630"/>
-        <location filename="../src/cupdatemanager.cpp" line="735"/>
+        <location filename="../src/cupdatemanager.cpp" line="262"/>
+        <location filename="../src/cupdatemanager.cpp" line="288"/>
+        <location filename="../src/cupdatemanager.cpp" line="367"/>
+        <location filename="../src/cupdatemanager.cpp" line="382"/>
+        <location filename="../src/cupdatemanager.cpp" line="410"/>
+        <location filename="../src/cupdatemanager.cpp" line="476"/>
+        <location filename="../src/cupdatemanager.cpp" line="483"/>
+        <location filename="../src/cupdatemanager.cpp" line="558"/>
+        <location filename="../src/cupdatemanager.cpp" line="580"/>
+        <location filename="../src/cupdatemanager.cpp" line="635"/>
         <location filename="../src/cupdatemanager.cpp" line="740"/>
-        <location filename="../src/cupdatemanager.cpp" line="759"/>
+        <location filename="../src/cupdatemanager.cpp" line="745"/>
+        <location filename="../src/cupdatemanager.cpp" line="764"/>
         <source>Check for updates</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="305"/>
-        <location filename="../src/cupdatemanager.cpp" line="467"/>
-        <location filename="../src/cupdatemanager.cpp" line="567"/>
+        <location filename="../src/cupdatemanager.cpp" line="262"/>
+        <source>Unable to check update: URL not defined.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/cupdatemanager.cpp" line="307"/>
+        <location filename="../src/cupdatemanager.cpp" line="469"/>
+        <location filename="../src/cupdatemanager.cpp" line="569"/>
         <source>To finish updating, restart app</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="305"/>
-        <location filename="../src/cupdatemanager.cpp" line="467"/>
-        <location filename="../src/cupdatemanager.cpp" line="567"/>
+        <location filename="../src/cupdatemanager.cpp" line="307"/>
+        <location filename="../src/cupdatemanager.cpp" line="469"/>
+        <location filename="../src/cupdatemanager.cpp" line="569"/>
         <source>Restart</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="365"/>
+        <location filename="../src/cupdatemanager.cpp" line="367"/>
         <source>Checking for updates...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="371"/>
+        <location filename="../src/cupdatemanager.cpp" line="373"/>
         <source>Updates are not allowed!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="372"/>
+        <location filename="../src/cupdatemanager.cpp" line="374"/>
         <source>This folder configuration does not allow for updates! The folder name should be: </source>
         <translation>Cette configuration de dossier ne permet pas les mises à jour ! Le nom du dossier doit être : </translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="379"/>
+        <location filename="../src/cupdatemanager.cpp" line="381"/>
         <source>An error occurred while check updates: Update Service not found!</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Une erreur s&apos;est produite lors de la vérification des mises à jour : Service de mise à jour introuvable !</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="403"/>
+        <location filename="../src/cupdatemanager.cpp" line="405"/>
         <source>Downloading new version %1 (%2%)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="474"/>
+        <location filename="../src/cupdatemanager.cpp" line="476"/>
         <source>An error occurred while loading updates: Update Service not found!</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Une erreur s&apos;est produite lors du chargement des mises à jour : Service de mise à jour introuvable !</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="478"/>
+        <location filename="../src/cupdatemanager.cpp" line="480"/>
         <source>Downloading new version %1 (0%)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="478"/>
-        <location filename="../src/cupdatemanager.cpp" line="576"/>
+        <location filename="../src/cupdatemanager.cpp" line="480"/>
+        <location filename="../src/cupdatemanager.cpp" line="578"/>
         <source>Cancel</source>
         <translation type="unfinished">Annuler</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="481"/>
+        <location filename="../src/cupdatemanager.cpp" line="483"/>
         <source>An error occurred while loading updates: package Url is empty!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="555"/>
+        <location filename="../src/cupdatemanager.cpp" line="557"/>
         <source>Update package error: md5 sum does not match the original.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="576"/>
+        <location filename="../src/cupdatemanager.cpp" line="578"/>
         <source>Preparing update...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="578"/>
+        <location filename="../src/cupdatemanager.cpp" line="580"/>
         <source>An error occurred while unzip updates: Update Service not found!</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Une erreur s&apos;est produite lors de la décompression des mises à jour : Service de mise à jour introuvable !</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="728"/>
+        <location filename="../src/cupdatemanager.cpp" line="733"/>
         <source>Update is available (version %1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="729"/>
+        <location filename="../src/cupdatemanager.cpp" line="734"/>
         <source>Download update</source>
         <translation type="unfinished">Télécharger la mise à jour</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="735"/>
-        <location filename="../src/cupdatemanager.cpp" line="759"/>
+        <location filename="../src/cupdatemanager.cpp" line="740"/>
+        <location filename="../src/cupdatemanager.cpp" line="764"/>
         <source>Current version is up to date</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="747"/>
+        <location filename="../src/cupdatemanager.cpp" line="752"/>
         <source>Update is available</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="748"/>
-        <location filename="../src/cupdatemanager.cpp" line="771"/>
+        <location filename="../src/cupdatemanager.cpp" line="753"/>
+        <location filename="../src/cupdatemanager.cpp" line="776"/>
         <source>Current version</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="749"/>
-        <location filename="../src/cupdatemanager.cpp" line="772"/>
+        <location filename="../src/cupdatemanager.cpp" line="754"/>
+        <location filename="../src/cupdatemanager.cpp" line="777"/>
         <source>Update version</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="750"/>
+        <location filename="../src/cupdatemanager.cpp" line="755"/>
         <source>Would you like to download update now?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="770"/>
+        <location filename="../src/cupdatemanager.cpp" line="775"/>
         <source>Update is ready to install</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="773"/>
+        <location filename="../src/cupdatemanager.cpp" line="778"/>
         <source>Would you like to restart app now?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>A new version of %1 is available!</source>
-        <translation>La nouvelle version de %1 est disponible !</translation>
+        <translation type="vanished">La nouvelle version de %1 est disponible !</translation>
     </message>
     <message>
         <source>%1 %2 is now available (you have %3). Would you like to download it now?</source>
-        <translation>%1 %2 est disponible (vous avez %3). Voulez-vous le télécharger maintenant ?</translation>
+        <translation type="vanished">%1 %2 est disponible (vous avez %3). Voulez-vous le télécharger maintenant ?</translation>
     </message>
     <message>
         <source>%1 %2 is now downloaded (you have %3). Would you like to install it now?</source>
-        <translation>%1 %2 est téléchargé (vous avez %3). Voulez-vous l&apos;installer maintenant ?</translation>
+        <translation type="vanished">%1 %2 est téléchargé (vous avez %3). Voulez-vous l&apos;installer maintenant ?</translation>
     </message>
 </context>
 <context>
@@ -828,12 +834,12 @@
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="254"/>
-        <location filename="../src/windows/cmainwindow.cpp" line="702"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="721"/>
         <source>Access to file &apos;%1&apos; is denied!</source>
         <translation>L&apos;accès au fichier &quot;%1&quot; est refusé !</translation>
     </message>
     <message>
-        <location filename="../src/casctabdata.cpp" line="177"/>
+        <location filename="../src/casctabdata.cpp" line="178"/>
         <source>Read only</source>
         <translation>Lecture seule</translation>
     </message>
@@ -896,28 +902,24 @@
         <translation>Notes de mise à jour</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="596"/>
-        <location filename="../src/cupdatemanager.cpp" line="343"/>
         <source>An error occurred while check updates: Update Service not found!</source>
-        <translation>Une erreur s&apos;est produite lors de la vérification des mises à jour : Service de mise à jour introuvable !</translation>
+        <translation type="vanished">Une erreur s&apos;est produite lors de la vérification des mises à jour : Service de mise à jour introuvable !</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="446"/>
         <source>An error occurred while loading updates: Update Service not found!</source>
-        <translation>Une erreur s&apos;est produite lors du chargement des mises à jour : Service de mise à jour introuvable !</translation>
+        <translation type="vanished">Une erreur s&apos;est produite lors du chargement des mises à jour : Service de mise à jour introuvable !</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="486"/>
         <source>An error occurred while unzip updates: Update Service not found!</source>
-        <translation>Une erreur s&apos;est produite lors de la décompression des mises à jour : Service de mise à jour introuvable !</translation>
+        <translation type="vanished">Une erreur s&apos;est produite lors de la décompression des mises à jour : Service de mise à jour introuvable !</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="497"/>
+        <location filename="../src/cupdatemanager.cpp" line="598"/>
         <source>An error occurred while start install updates!</source>
         <translation>Une erreur s&apos;est produite lors de l&apos;installation des mises à jour !</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="606"/>
+        <location filename="../src/cupdatemanager.cpp" line="608"/>
         <source>An error occurred while start replacing files: Update Service not found!</source>
         <translation>Une erreur s&apos;est produite lors du lancement du remplacement des fichiers : Service de mise à jour introuvable !</translation>
     </message>
@@ -968,9 +970,8 @@
         <translation>Une erreur s&apos;est produite lors de l&apos;ouverture du portail : &lt;br&gt;%1</translation>
     </message>
     <message>
-        <location filename="../src/main.cpp" line="64"/>
         <source>App can&apos;t working correctly under admin rights.</source>
-        <translation>L&apos;application ne peut pas fonctionner correctement avec des droits d&apos;administrateur.</translation>
+        <translation type="vanished">L&apos;application ne peut pas fonctionner correctement avec des droits d&apos;administrateur.</translation>
     </message>
     <message>
         <source>&amp;OK</source>
