@@ -4,7 +4,7 @@
 <context>
     <name>CAscApplicationManagerWrapper</name>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1171"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1178"/>
         <source>Presenter View</source>
         <translation>Ներկայացնողի դիտում</translation>
     </message>
@@ -21,18 +21,18 @@
         <translation type="vanished">Խմբագրիչի բոլոր պատուհանները կփակվեն։ Ցանկանու՞մ եք շարունակել։</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1932"/>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1933"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1939"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1940"/>
         <source>Document%1.docx</source>
         <translation>Փաստաթուղթ%1.docx</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1934"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1941"/>
         <source>Book%1.xlsx</source>
         <translation>Գիրք%1.xlsx</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1935"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1942"/>
         <source>Presentation%1.pptx</source>
         <translation>Շնորհանդես%1.pptx</translation>
     </message>
@@ -40,8 +40,8 @@
 <context>
     <name>CAscTabWidget</name>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="795"/>
-        <location filename="../src/components/asctabwidget.cpp" line="644"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="802"/>
+        <location filename="../src/components/asctabwidget.cpp" line="622"/>
         <source>Document</source>
         <translation>Բացվում է...</translation>
     </message>
@@ -149,27 +149,27 @@
         <translation>%1 փոփոխվել է։&lt;br&gt;Ցանկանու՞մ եք պահպանել փոփոխությունները։</translation>
     </message>
     <message>
-        <location filename="../src/ceditortools.cpp" line="361"/>
+        <location filename="../src/ceditortools.cpp" line="364"/>
         <source>Some data will lost.&lt;br&gt;Continue?</source>
         <translation>Եթե շարունակեք պահպանել այս ֆորմատով, բոլոր գործառույթները, բացի տեքստից, կկորչեն։&lt;br&gt;Վստա՞հ եք, որ ցանկանում եք շարունակել։</translation>
     </message>
     <message>
-        <location filename="../src/windows/ceditorwindow_p.h" line="134"/>
+        <location filename="../src/windows/ceditorwindow_p.h" line="136"/>
         <source>Open main window</source>
         <translation>Բացել հիմնական պատուհանը</translation>
     </message>
     <message>
-        <location filename="../src/windows/ceditorwindow_p.h" line="425"/>
+        <location filename="../src/windows/ceditorwindow_p.h" line="431"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
         <translation>Շարունակելու համար պետք է պահպանել փաստաթուղթը։&lt;br&gt;Պահպանե՞լ փաստաթուղթը։</translation>
     </message>
     <message>
-        <location filename="../src/windows/ceditorwindow_p.h" line="514"/>
+        <location filename="../src/windows/ceditorwindow_p.h" line="520"/>
         <source>Print Document</source>
         <translation>Տպել փաստաթուղթը։</translation>
     </message>
     <message>
-        <location filename="../src/windows/ceditorwindow_p.h" line="695"/>
+        <location filename="../src/windows/ceditorwindow_p.h" line="701"/>
         <source>Document must be saved firstly.</source>
         <translation>Առաջին հերթին պետք է պահպանել փաստաթուղթը։</translation>
     </message>
@@ -177,7 +177,7 @@
 <context>
     <name>CEditorWindowPrivate</name>
     <message>
-        <location filename="../src/windows/ceditorwindow_p.h" line="466"/>
+        <location filename="../src/windows/ceditorwindow_p.h" line="472"/>
         <source>There are no printers available</source>
         <translation>Տպիչներ չկան</translation>
     </message>
@@ -299,12 +299,11 @@
         <translation type="vanished">Excel Open XML Աղյուսակի ձևանմուշ (*.xltx)</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="97"/>
         <source>Macro-enabled spreadsheet template (*.xltm)</source>
-        <translation>Մակրո-միացված աղյուսակի ձևանմուշ (*.xltm)</translation>
+        <translation type="vanished">Մակրո-միացված աղյուսակի ձևանմուշ (*.xltm)</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="98"/>
+        <location filename="../src/components/cfiledialog.cpp" line="92"/>
         <source>XLS File (*.xls)</source>
         <translation>Excel 97-2003 աղյուսակ (*.xls)</translation>
     </message>
@@ -520,43 +519,43 @@
         <translation>Այլևս չհարցնել։</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="713"/>
-        <location filename="../src/windows/cmainwindow.cpp" line="753"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="732"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="772"/>
         <source>File format not supported.</source>
         <translation>Ֆայլի ֆորմատը հասանելի չէ։</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="737"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="756"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
         <translation>%1 հասանելի չէ։ Հնարավոր է, որ այն անվանափոխվել է, տեղափոխվել կամ ջնջվել։&lt;br&gt;Ցանկանու՞մ եք ֆայլը հեռացնել ցանկից։</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="797"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="815"/>
         <source>Document must be saved firstly.</source>
         <translation>Առաջին հերթին պետք է պահպանել փաստաթուղթը։</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="939"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="957"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
         <translation>Շարունակելու համար պետք է պահպանել փաստաթուղթը։&lt;br&gt;Պահպանե՞լ փաստաթուղթը։</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="1049"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="1067"/>
         <source>There are no printers available</source>
         <translation>Տպիչներ չկան</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="1108"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="1126"/>
         <source>Print Document</source>
         <translation>Տպել փաստաթուղթը։</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="1308"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="1326"/>
         <source>Sign Up</source>
         <translation>Ստեղծել պորտալ</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="1391"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="1409"/>
         <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
         <translation>%1 փոփոխվել է&lt;br&gt;Ցանկանու՞մ եք պահպանել փոփոխությունները։</translation>
     </message>
@@ -595,22 +594,22 @@
 <context>
     <name>CPrintProgress</name>
     <message>
-        <location filename="../src/components/cprintprogress.cpp" line="100"/>
+        <location filename="../src/components/cprintprogress.cpp" line="101"/>
         <source>Document is printing: page %1 of %2</source>
         <translation>Փաստաթուղթը տպվում է՝ էջ %1 %2-ից</translation>
     </message>
     <message>
-        <location filename="../src/components/cprintprogress.cpp" line="102"/>
+        <location filename="../src/components/cprintprogress.cpp" line="103"/>
         <source>Document is preparing</source>
         <translation>Փաստաթուղթը պատրաստվում է</translation>
     </message>
     <message>
-        <location filename="../src/components/cprintprogress.cpp" line="108"/>
+        <location filename="../src/components/cprintprogress.cpp" line="109"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Չեղարկել</translation>
     </message>
     <message>
-        <location filename="../src/components/cprintprogress.cpp" line="118"/>
+        <location filename="../src/components/cprintprogress.cpp" line="119"/>
         <source>Printing...</source>
         <translation>Տպվում է...</translation>
     </message>
@@ -619,147 +618,153 @@
     <name>CUpdateManager</name>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="255"/>
-        <location filename="../src/cupdatemanager.cpp" line="285"/>
-        <location filename="../src/cupdatemanager.cpp" line="629"/>
+        <location filename="../src/cupdatemanager.cpp" line="287"/>
+        <location filename="../src/cupdatemanager.cpp" line="634"/>
         <source>Last check performed </source>
         <translation>Կատարված վերջին ստուգումը </translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="286"/>
-        <location filename="../src/cupdatemanager.cpp" line="365"/>
-        <location filename="../src/cupdatemanager.cpp" line="380"/>
-        <location filename="../src/cupdatemanager.cpp" line="408"/>
-        <location filename="../src/cupdatemanager.cpp" line="474"/>
-        <location filename="../src/cupdatemanager.cpp" line="481"/>
-        <location filename="../src/cupdatemanager.cpp" line="556"/>
-        <location filename="../src/cupdatemanager.cpp" line="578"/>
-        <location filename="../src/cupdatemanager.cpp" line="630"/>
-        <location filename="../src/cupdatemanager.cpp" line="735"/>
+        <location filename="../src/cupdatemanager.cpp" line="262"/>
+        <location filename="../src/cupdatemanager.cpp" line="288"/>
+        <location filename="../src/cupdatemanager.cpp" line="367"/>
+        <location filename="../src/cupdatemanager.cpp" line="382"/>
+        <location filename="../src/cupdatemanager.cpp" line="410"/>
+        <location filename="../src/cupdatemanager.cpp" line="476"/>
+        <location filename="../src/cupdatemanager.cpp" line="483"/>
+        <location filename="../src/cupdatemanager.cpp" line="558"/>
+        <location filename="../src/cupdatemanager.cpp" line="580"/>
+        <location filename="../src/cupdatemanager.cpp" line="635"/>
         <location filename="../src/cupdatemanager.cpp" line="740"/>
-        <location filename="../src/cupdatemanager.cpp" line="759"/>
+        <location filename="../src/cupdatemanager.cpp" line="745"/>
+        <location filename="../src/cupdatemanager.cpp" line="764"/>
         <source>Check for updates</source>
         <translation>Թարմացումների ստուգում</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="305"/>
-        <location filename="../src/cupdatemanager.cpp" line="467"/>
-        <location filename="../src/cupdatemanager.cpp" line="567"/>
+        <location filename="../src/cupdatemanager.cpp" line="262"/>
+        <source>Unable to check update: URL not defined.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/cupdatemanager.cpp" line="307"/>
+        <location filename="../src/cupdatemanager.cpp" line="469"/>
+        <location filename="../src/cupdatemanager.cpp" line="569"/>
         <source>To finish updating, restart app</source>
         <translation>Թարմացումն ավարտելու համար վերագործարկեք հավելվածը</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="305"/>
-        <location filename="../src/cupdatemanager.cpp" line="467"/>
-        <location filename="../src/cupdatemanager.cpp" line="567"/>
+        <location filename="../src/cupdatemanager.cpp" line="307"/>
+        <location filename="../src/cupdatemanager.cpp" line="469"/>
+        <location filename="../src/cupdatemanager.cpp" line="569"/>
         <source>Restart</source>
         <translation>Վերագործարկել</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="365"/>
+        <location filename="../src/cupdatemanager.cpp" line="367"/>
         <source>Checking for updates...</source>
         <translation>Թարմացումների ստուգում...</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="371"/>
+        <location filename="../src/cupdatemanager.cpp" line="373"/>
         <source>Updates are not allowed!</source>
         <translation>Թարմացումներն անթույլատրելի են:</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="372"/>
+        <location filename="../src/cupdatemanager.cpp" line="374"/>
         <source>This folder configuration does not allow for updates! The folder name should be: </source>
         <translation>Այս թղթապանակի կազմաձևումը թույլ չի տալիս թարմացումներ: Թղթապանակի անվանումը պետք է լինի՝</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="379"/>
+        <location filename="../src/cupdatemanager.cpp" line="381"/>
         <source>An error occurred while check updates: Update Service not found!</source>
         <translation>Թարմացումները ստուգելիս սխալ առաջացավ՝ թարմացման ծառայությունը չի գտնվել:</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="403"/>
+        <location filename="../src/cupdatemanager.cpp" line="405"/>
         <source>Downloading new version %1 (%2%)</source>
         <translation>Նոր տարբերակի ներբեռնում %1 (%2%)</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="474"/>
+        <location filename="../src/cupdatemanager.cpp" line="476"/>
         <source>An error occurred while loading updates: Update Service not found!</source>
         <translation>Թարմացումները բեռնելիս սխալ է տեղի ունեցել՝ թարմացման ծառայությունը չի գտնվել:</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="478"/>
+        <location filename="../src/cupdatemanager.cpp" line="480"/>
         <source>Downloading new version %1 (0%)</source>
         <translation>Նոր տարբերակի ներբեռնում %1 (0%)</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="478"/>
-        <location filename="../src/cupdatemanager.cpp" line="576"/>
+        <location filename="../src/cupdatemanager.cpp" line="480"/>
+        <location filename="../src/cupdatemanager.cpp" line="578"/>
         <source>Cancel</source>
         <translation>Չեղարկել</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="481"/>
+        <location filename="../src/cupdatemanager.cpp" line="483"/>
         <source>An error occurred while loading updates: package Url is empty!</source>
         <translation>Թարմացումները բեռնելիս սխալ տեղի ունեցավ՝ փաթեթի URL-ը դատարկ է:</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="555"/>
+        <location filename="../src/cupdatemanager.cpp" line="557"/>
         <source>Update package error: md5 sum does not match the original.</source>
         <translation>Փաթեթի թարմացման սխալ՝ md5 գումարը չի համապատասխանում բնօրինակին:</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="576"/>
+        <location filename="../src/cupdatemanager.cpp" line="578"/>
         <source>Preparing update...</source>
         <translation>Թարմացման նախապատրաստում...</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="578"/>
+        <location filename="../src/cupdatemanager.cpp" line="580"/>
         <source>An error occurred while unzip updates: Update Service not found!</source>
         <translation>Թարմացումներն անջատելիս սխալ տեղի ունեցավ` թարմացման ծառայությունը չի գտնվել:</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="728"/>
+        <location filename="../src/cupdatemanager.cpp" line="733"/>
         <source>Update is available (version %1)</source>
         <translation>Թարմացումը հասանելի է (տարբերակ %1)</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="729"/>
+        <location filename="../src/cupdatemanager.cpp" line="734"/>
         <source>Download update</source>
         <translation>Ներբեռնել թարմացումը</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="735"/>
-        <location filename="../src/cupdatemanager.cpp" line="759"/>
+        <location filename="../src/cupdatemanager.cpp" line="740"/>
+        <location filename="../src/cupdatemanager.cpp" line="764"/>
         <source>Current version is up to date</source>
         <translation>Ներկայիս տարբերակը արդիական է</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="747"/>
+        <location filename="../src/cupdatemanager.cpp" line="752"/>
         <source>Update is available</source>
         <translation>Թարմացումը հասանելի է</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="748"/>
-        <location filename="../src/cupdatemanager.cpp" line="771"/>
+        <location filename="../src/cupdatemanager.cpp" line="753"/>
+        <location filename="../src/cupdatemanager.cpp" line="776"/>
         <source>Current version</source>
         <translation>Ներկայիս տարբերակը</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="749"/>
-        <location filename="../src/cupdatemanager.cpp" line="772"/>
+        <location filename="../src/cupdatemanager.cpp" line="754"/>
+        <location filename="../src/cupdatemanager.cpp" line="777"/>
         <source>Update version</source>
         <translation>Թարմացնել տարբերակը</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="750"/>
+        <location filename="../src/cupdatemanager.cpp" line="755"/>
         <source>Would you like to download update now?</source>
         <translation>Ցանկանու՞մ եք ներբեռնել թարմացումը հիմա:</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="770"/>
+        <location filename="../src/cupdatemanager.cpp" line="775"/>
         <source>Update is ready to install</source>
         <translation>Թարմացումը պատրաստ է տեղադրման</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="773"/>
+        <location filename="../src/cupdatemanager.cpp" line="778"/>
         <source>Would you like to restart app now?</source>
         <translation>Ցանկանու՞մ եք վերագործարկել հավելվածը հիմա:</translation>
     </message>
@@ -793,12 +798,12 @@
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="254"/>
-        <location filename="../src/windows/cmainwindow.cpp" line="702"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="721"/>
         <source>Access to file &apos;%1&apos; is denied!</source>
         <translation>&apos;%1&apos; ֆայլի մատչումը արգելված է:</translation>
     </message>
     <message>
-        <location filename="../src/casctabdata.cpp" line="177"/>
+        <location filename="../src/casctabdata.cpp" line="178"/>
         <source>Read only</source>
         <translation>Միայն կարդալու համար</translation>
     </message>
@@ -857,28 +862,24 @@
         <translation>Թողարկման նշումներ</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="596"/>
-        <location filename="../src/cupdatemanager.cpp" line="343"/>
         <source>An error occurred while check updates: Update Service not found!</source>
-        <translation>Թարմացումները ստուգելիս սխալ է տեղի ունեցել ՝ Թարմացման ծառայությունը չի գտնվել:</translation>
+        <translation type="vanished">Թարմացումները ստուգելիս սխալ է տեղի ունեցել ՝ Թարմացման ծառայությունը չի գտնվել:</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="446"/>
         <source>An error occurred while loading updates: Update Service not found!</source>
-        <translation>Թարմացումները բեռնելիս սխալ է տեղի ունեցել՝ Թարմացման ծառայությունը չի գտնվել:</translation>
+        <translation type="vanished">Թարմացումները բեռնելիս սխալ է տեղի ունեցել՝ Թարմացման ծառայությունը չի գտնվել:</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="486"/>
         <source>An error occurred while unzip updates: Update Service not found!</source>
-        <translation>Թարմացումներն անջատելիս սխալ տեղի ունեցավ՝ Թարմացման ծառայությունը չի գտնվել: </translation>
+        <translation type="vanished">Թարմացումներն անջատելիս սխալ տեղի ունեցավ՝ Թարմացման ծառայությունը չի գտնվել: </translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="497"/>
+        <location filename="../src/cupdatemanager.cpp" line="598"/>
         <source>An error occurred while start install updates!</source>
         <translation>Տեղադրման թարմացումները սկսելիս սխալ առաջացավ:</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="606"/>
+        <location filename="../src/cupdatemanager.cpp" line="608"/>
         <source>An error occurred while start replacing files: Update Service not found!</source>
         <translation>Սխալ է տեղի ունեցել ֆայլերը փոխարինելիս՝ Թարմացման ծառայությունը չի գտնվել:</translation>
     </message>
@@ -929,9 +930,8 @@
         <translation>Պորտալը բացելիս սխալ տեղի ունեցավ՝&lt;br&gt;%1</translation>
     </message>
     <message>
-        <location filename="../src/main.cpp" line="64"/>
         <source>App can&apos;t working correctly under admin rights.</source>
-        <translation>Հավելվածը չի կարող ճիշտ աշխատել ադմինիստրատորի իրավունքների ներքո:</translation>
+        <translation type="vanished">Հավելվածը չի կարող ճիշտ աշխատել ադմինիստրատորի իրավունքների ներքո:</translation>
     </message>
     <message>
         <source>&amp;OK</source>
