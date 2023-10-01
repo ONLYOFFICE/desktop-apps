@@ -29,7 +29,8 @@ if ( $Sign ) {
     if ( $DesktopDir ) {
         Set-Location "$BuildDir\$DesktopDir"
 
-        $SignFiles = Get-ChildItem *.exe, *.dll, converter\*.exe, converter\*.dll `
+        $SignFiles = Get-ChildItem `
+            *.exe, *.dll, converter\*.exe, converter\*.dll, plugins\*\*.dll `
             | Resolve-Path -Relative
         # Sign
         Write-Host "signtool sign /a /n $CertName /t $TimestampServer $SignFiles" -ForegroundColor Yellow
@@ -46,7 +47,8 @@ if ( $Sign ) {
     if ( $MultimediaDir ) {
         Set-Location "$BuildDir\$MultimediaDir"
 
-        $SignFiles = Get-ChildItem *.exe, *.dll | Resolve-Path -Relative
+        $SignFiles = Get-ChildItem *.exe, *.dll, plugins\*\*.dll `
+            | Resolve-Path -Relative
         # Sign
         Write-Host "signtool sign /a /n $CertName /t $TimestampServer /v $SignFiles" -ForegroundColor Yellow
         & signtool sign /a /n $CertName /t $TimestampServer /v $SignFiles

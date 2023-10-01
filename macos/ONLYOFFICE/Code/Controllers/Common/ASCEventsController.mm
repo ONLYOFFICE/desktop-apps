@@ -40,7 +40,6 @@
 
 #import "ASCEventsController.h"
 #import "ASCConstants.h"
-#import "ASCDocumentType.h"
 #import "ASCExternalController.h"
 #import "ASCPresentationReporter.h"
 #import "ASCSharedSettings.h"
@@ -680,43 +679,43 @@ public:
                             /// Create local files
                             
                             NSString * nsParam = (NSString *)[NSString stringWithstdwstring:param];
-                            ASCDocumentType docType = ASCDocumentTypeUnknown;
+                            AscEditorType docType = AscEditorType::etUndefined;
                             
                             if ([nsParam hasPrefix:@"template:"]) {
                                 if ([nsParam hasSuffix:@"word"]) {
-                                    docType = ASCDocumentTypeDocument;
+                                    docType = AscEditorType::etDocument;
                                 } else
                                 if ([nsParam hasSuffix:@"slide"]) {
-                                    docType = ASCDocumentTypePresentation;
+                                    docType = AscEditorType::etPresentation;
                                 } else
                                 if ([nsParam hasSuffix:@"cell"]) {
-                                    docType = ASCDocumentTypeSpreadsheet;
+                                    docType = AscEditorType::etSpreadsheet;
                                 }
 
                                 [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameCreateTab
                                                                                     object:nil
                                                                                   userInfo:@{
                                                                                       @"action"  : @(ASCTabActionCreateLocalFileFromTemplate),
-                                                                                      @"type"    : @(docType),
+                                                                                      @"type"    : @(int(docType)),
                                                                                       @"active"  : @(YES)
                                                                                   }];
                             } else {
                                 if ([nsParam isEqualToString:@"word"]) {
-                                    docType = ASCDocumentTypeDocument;
+                                    docType = AscEditorType::etDocument;
                                 } else if ([nsParam isEqualToString:@"cell"]) {
-                                    docType = ASCDocumentTypeSpreadsheet;
+                                    docType = AscEditorType::etSpreadsheet;
                                 } else if ([nsParam isEqualToString:@"slide"]) {
-                                    docType = ASCDocumentTypePresentation;
+                                    docType = AscEditorType::etPresentation;
                                 } else if ([nsParam isEqualToString:@"form"]) {
-                                    docType = ASCDocumentTypeForm;
+                                    docType = AscEditorType::etDocumentMasterForm;
                                 }
 
-                                if (docType != ASCDocumentTypeUnknown) {
+                                if ( docType != AscEditorType::etUndefined ) {
                                     [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameCreateTab
                                                                                         object:nil
                                                                                       userInfo:@{
                                                                                         @"action"  : @(ASCTabActionCreateLocalFile),
-                                                                                        @"type"    : @(docType),
+                                                                                        @"type"    : @(int(docType)),
                                                                                         @"active"  : @(YES)
                                     }];
                                 }

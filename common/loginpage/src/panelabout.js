@@ -116,10 +116,6 @@
 
         return _html;
     };
-    ViewAbout.prototype.renderpanel = function(template) {
-        this.$panel && this.$panel.empty();
-        this.$panel.append(template);
-    };
 
     window.ControllerAbout = ControllerAbout;
 
@@ -156,9 +152,13 @@
                     this.view = new ViewAbout(args);
                     this.view.render();
                     this.view.$menuitem.removeClass('extra');
+                    this.view.$panel.append(this.view.paneltemplate(args));
+                } else {
+                    if ( !!args.opts && !!args.opts.edition ) {
+                        $('#idx-ver-edition').html(args.opts.edition);
+                    }
                 }
 
-                this.view.renderpanel(this.view.paneltemplate(args));
                 // const $label = this.view.$panel.find('.ver-checkupdate');
                 // $label.on('click', (e) => {
                 //     if ( performance.now() - last_click_time < 1000 ) return;

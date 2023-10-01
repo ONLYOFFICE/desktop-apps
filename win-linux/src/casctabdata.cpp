@@ -39,7 +39,7 @@ CAscTabData::CAscTabData(const QString& t, CefType wt)
     , _is_local(false)
     , _vtype(wt)
     , _url()
-    , _typeContent(etUndefined)
+    , _typeContent(AscEditorType::etUndefined)
 {}
 
 CAscTabData::CAscTabData(const QString& t, AscEditorType ct)
@@ -48,10 +48,10 @@ CAscTabData::CAscTabData(const QString& t, AscEditorType ct)
     , _typeContent(ct)
 {
     switch (ct) {
-    case etDocument:
-    case etSpreadsheet:
-    case etPresentation:
-    case etDocumentViewer:
+    case AscEditorType::etDocument:
+    case AscEditorType::etSpreadsheet:
+    case AscEditorType::etPresentation:
+    case AscEditorType::etPdf:
         _vtype = cvwtEditor;
         break;
     default:

@@ -113,6 +113,8 @@
                return [NSColor brendSpreadsheetEditor];
             } else if ([name isEqualToString:tabSlideActiveBackgroundColor]) {
                return [NSColor brendPresentationEditor];
+            } else if ([name isEqualToString:tabPdfActiveBackgroundColor]) {
+               return [NSColor brandPdfEditor];
             }
         }
     }

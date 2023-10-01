@@ -242,9 +242,10 @@ public:
             } else
             if ( cmd.compare(L"create:new") == 0 ) {
                 const std::wstring & format = data.get_Param();
+                const std::wstring search_tpl = L"template:";
 
-                if ( format.rfind(L"template:", 0) == 0 ) {
-                    std::wstring type = format.substr(format.size() - 4);
+                if ( format.rfind(search_tpl, 0) == 0 ) {
+                    std::wstring type = format.substr(search_tpl.length());
                     std::wstring file_path = CEditorTools::getlocaltemplate(type, event.m_nSenderId).toStdWString();
 
                     if ( !file_path.empty() ) {

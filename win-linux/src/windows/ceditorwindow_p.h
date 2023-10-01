@@ -69,25 +69,25 @@
 using namespace NSEditorApi;
 
 
-auto prepare_editor_css(int type, const CTheme& theme) -> QString {
+auto prepare_editor_css(AscEditorType type, const CTheme& theme) -> QString {
     std::wstring c;
     switch (type) {
     default: c = theme.value(CTheme::ColorRole::ecrTabWordActive); break;
-    case etDocument: c = theme.value(CTheme::ColorRole::ecrTabWordActive); break;
-    case etPresentation: c = theme.value(CTheme::ColorRole::ecrTabSlideActive); break;
-    case etSpreadsheet: c = theme.value(CTheme::ColorRole::ecrTabCellActive); break;
-    case etDocumentViewer: c = theme.value(CTheme::ColorRole::ecrTabViewerActive); break;
+    case AscEditorType::etDocument: c = theme.value(CTheme::ColorRole::ecrTabWordActive); break;
+    case AscEditorType::etPresentation: c = theme.value(CTheme::ColorRole::ecrTabSlideActive); break;
+    case AscEditorType::etSpreadsheet: c = theme.value(CTheme::ColorRole::ecrTabCellActive); break;
+    case AscEditorType::etPdf: c = theme.value(CTheme::ColorRole::ecrTabViewerActive); break;
     }
     QString g_css(Utils::readStylesheets(":/styles/editor.qss"));
     return g_css.arg(QString::fromStdWString(c));
 }
 
-auto editor_color(int type) -> QColor {
+auto editor_color(AscEditorType type) -> QColor {
     switch (type) {
-    case etDocument: return GetColorByRole(ecrTabWordActive);
-    case etPresentation: return GetColorByRole(ecrTabSlideActive);
-    case etSpreadsheet: return GetColorByRole(ecrTabCellActive);
-    case etDocumentViewer: return GetColorByRole(ecrTabViewerActive);
+    case AscEditorType::etDocument: return GetColorByRole(ecrTabWordActive);
+    case AscEditorType::etPresentation: return GetColorByRole(ecrTabSlideActive);
+    case AscEditorType::etSpreadsheet: return GetColorByRole(ecrTabCellActive);
+    case AscEditorType::etPdf: return GetColorByRole(ecrTabViewerActive);
     default: return GetColorByRole(ecrTabWordActive);
     }
 }
@@ -350,19 +350,19 @@ public:
     {
         std::wstring background, border;
         switch (panel()->data()->contentType()) {
-        case etDocument:
+        case AscEditorType::etDocument:
             background = GetColorValueByRole(ecrTabWordActive);
             border = background;
             break;
-        case etPresentation:
+        case AscEditorType::etPresentation:
             background = GetColorValueByRole(ecrTabSlideActive);
             border = background;
             break;
-        case etSpreadsheet:
+        case AscEditorType::etSpreadsheet:
             background = GetColorValueByRole(ecrTabCellActive);
             border = background;
             break;
-        case etDocumentViewer:
+        case AscEditorType::etPdf:
             background = GetColorValueByRole(ecrTabViewerActive);
             border = background;
             break;
@@ -722,7 +722,7 @@ public:
 
     void adjustIconUser()
     {
-        iconuser->setFixedHeight(0.85 * TOOLBTN_HEIGHT * window->m_dpiRatio);
+        iconuser->setFixedHeight(20 * window->m_dpiRatio);
         iconuser->setFixedWidth(iconuser->height());
         iconuser->setStyleSheet(QString("#iconuser {border-radius: %1px;}")
                      .arg(QString::number(iconuser->height()/2)));

@@ -137,6 +137,10 @@
                 self.layer.backgroundColor = [[NSColor brendPresentationEditor] CGColor];
                 [_imageView setImage:[NSImage imageNamed:@"touchbar-tab-presentation"]];
                 break;
+            case ASCTabTouchBarTypePdf:
+                self.layer.backgroundColor = [[NSColor brandPdfEditor] CGColor];
+                [_imageView setImage:[NSImage imageNamed:@"touchbar-tab-document"]];
+                break;
             default:
                 self.layer.backgroundColor = [[NSColor whiteColor] CGColor];
                 [_imageView setImage:[NSImage imageNamed:NSImageNameTouchBarOpenInBrowserTemplate]];

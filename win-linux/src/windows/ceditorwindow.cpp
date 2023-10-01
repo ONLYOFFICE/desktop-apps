@@ -223,7 +223,7 @@ QWidget * CEditorWindow::createMainPanel(QWidget * parent, const QString& title)
             mainGridLayout->addWidget(m_boxTitleBtns, 0, 0);
             m_labelTitle->setText(APP_TITLE);
         } else {
-            if (d_ptr->panel()->data()->contentType() != etUndefined)
+            if (d_ptr->panel()->data()->contentType() != AscEditorType::etUndefined)
                 mainPanel->setProperty("window", "pretty");
             int pos = (d_ptr->usedOldEditorVersion) ? 3 : 2;  // For old editors only
             auto *pIconSpacer = new QSpacerItem(ICON_SPACER_WIDTH, 5, QSizePolicy::Fixed, QSizePolicy::Fixed);

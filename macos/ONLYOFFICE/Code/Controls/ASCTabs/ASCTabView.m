@@ -113,6 +113,8 @@ static NSUInteger const kASTabViewCloseButtonSize = 12;
                @{@"normal": @"icon_tabs_se_inactive", @"active": @"icon_tabs_se_active"},
                // ASCTabViewTypePresentation
                @{@"normal": @"icon_tabs_pe_inactive", @"active": @"icon_tabs_pe_active"},
+               // ASCTabViewTypePdf
+               @{@"normal": @"icon_tabs_pdf_inactive", @"active": @"icon_tabs_pdf_active"},
                // ASCTabViewTypePortal
                @{@"normal": @"icon_tab_portal_active", @"active": @"icon_tab_portal_active"}
                ]
@@ -240,6 +242,14 @@ static NSUInteger const kASTabViewCloseButtonSize = 12;
     } else if (type == ASCTabViewTypePresentation) {
         tabViewCell.activeColor = [ASCThemesController currentThemeColor:tabSlideActiveBackgroundColor];
         tabViewCell.clickColor  = [ASCThemesController currentThemeColor:tabSlideActiveBackgroundColor];
+        if (@available(macOS 10.13, *)) {
+            tabViewCell.activeTextColor = [NSColor colorNamed:@"tab-editorsActiveTextColor"];
+        } else {
+            tabViewCell.activeTextColor = UIColorFromRGB(0xffffff);
+        }
+    } else if (type == ASCTabViewTypePdf) {
+        tabViewCell.activeColor = [ASCThemesController currentThemeColor:tabPdfActiveBackgroundColor];
+        tabViewCell.clickColor  = [ASCThemesController currentThemeColor:tabPdfActiveBackgroundColor];
         if (@available(macOS 10.13, *)) {
             tabViewCell.activeTextColor = [NSColor colorNamed:@"tab-editorsActiveTextColor"];
         } else {

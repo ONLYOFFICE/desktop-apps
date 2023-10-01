@@ -67,11 +67,11 @@ public:
 */
 
 COpenOptions::COpenOptions() :
-    srctype(etUndefined), id(-1)
+    srctype(AscEditorType::etUndefined), id(-1)
 {}
 
 COpenOptions::COpenOptions(wstring _url_) :
-    COpenOptions(_url_, etUndefined, -1)
+    COpenOptions(_url_, AscEditorType::etUndefined, -1)
 {}
 
 COpenOptions::COpenOptions(wstring _url_, AscEditorType _srctype_) :
@@ -440,20 +440,20 @@ int CAscTabWidget::insertPanel(QWidget * panel, int index)
         const CTheme & ui_theme = AscAppManager::themes().current();
         const AscEditorType tab_type = tabdata->contentType();
         switch ( tab_type ) {
-        case etPresentation:
+        case AscEditorType::etPresentation:
             tabcolor = QString::fromStdWString(ui_theme.value(CTheme::ColorRole::ecrTabSlideActive));
             m_pBar->setTabThemeType(tabindex, CTabBar::DarkTab);
             break;
-        case etSpreadsheet:
+        case AscEditorType::etSpreadsheet:
             tabcolor =  QString::fromStdWString(ui_theme.value(CTheme::ColorRole::ecrTabCellActive));
             m_pBar->setTabThemeType(tabindex, CTabBar::DarkTab);
             break;
-        case etDocumentMasterForm:
-        case etDocument:
+        case AscEditorType::etDocumentMasterForm:
+        case AscEditorType::etDocument:
             tabcolor =  QString::fromStdWString(ui_theme.value(CTheme::ColorRole::ecrTabWordActive));
             m_pBar->setTabThemeType(tabindex, CTabBar::DarkTab);
             break;
-        case etDocumentViewer:
+        case AscEditorType::etPdf:
             tabcolor =  QString::fromStdWString(ui_theme.value(CTheme::ColorRole::ecrTabViewerActive));
             m_pBar->setTabThemeType(tabindex, CTabBar::DarkTab);
             break;
@@ -498,12 +498,12 @@ void CAscTabWidget::reloadTabIcons()
                            ":/tabbar/icons/portal.svg", ":/tabbar/icons/pdf.svg"};
     int portal_icon = GetCurrentTheme().isDark() ? 5 : 6;
     m_mapTabIcons.insert({
-        {etUndefined,          std::make_pair(icons[0], icons[0])},
-        {etDocument,           std::make_pair(icons[1], icons[1])},
-        {etPresentation,       std::make_pair(icons[2], icons[2])},
-        {etDocumentMasterForm, std::make_pair(icons[3], icons[3])},
-        {etSpreadsheet,        std::make_pair(icons[4], icons[4])},
-        {etDocumentViewer,     std::make_pair(icons[7], icons[7])},
+        {AscEditorType::etUndefined,          std::make_pair(icons[0], icons[0])},
+        {AscEditorType::etDocument,           std::make_pair(icons[1], icons[1])},
+        {AscEditorType::etPresentation,       std::make_pair(icons[2], icons[2])},
+        {AscEditorType::etDocumentMasterForm, std::make_pair(icons[3], icons[3])},
+        {AscEditorType::etSpreadsheet,        std::make_pair(icons[4], icons[4])},
+        {AscEditorType::etPdf,                std::make_pair(icons[7], icons[7])},
         {etPortal,             std::make_pair(icons[portal_icon], icons[6])},
         {etNewPortal,          std::make_pair(icons[portal_icon], icons[6])}
     });
@@ -620,7 +620,7 @@ int CAscTabWidget::openCloudDocument(COpenOptions& opts, bool select, bool force
             m_pBar->setCurrentIndex(tabIndex);
     } else {
         opts.name   = tr("Document");
-//        opts.type   = etUndefined;
+//        opts.type   = AscEditorType::etUndefined;
         tabIndex    = addEditor(opts);
 
         if (select && !(tabIndex < 0))
@@ -769,26 +769,26 @@ void CAscTabWidget::applyDocumentChanging(int id, int type)
         panel(tabIndex)->data()->setContentType(AscEditorType(type));
 
         const CTheme & ui_theme = AscAppManager::themes().current();
-        switch (type) {
-        case etDocument:
+        switch (AscEditorType(type)) {
+        case AscEditorType::etDocument:
             panel(tabIndex)->applyLoader("loader:style", "word");
             m_pBar->setTabThemeType(tabIndex, CTabBar::DarkTab);
             m_pBar->setActiveTabColor(tabIndex,
                 QString::fromStdWString(ui_theme.value(CTheme::ColorRole::ecrTabWordActive)));
             break;
-        case etSpreadsheet:
+        case AscEditorType::etSpreadsheet:
             panel(tabIndex)->applyLoader("loader:style", "cell");
             m_pBar->setTabThemeType(tabIndex, CTabBar::DarkTab);
             m_pBar->setActiveTabColor(tabIndex,
                 QString::fromStdWString(ui_theme.value(CTheme::ColorRole::ecrTabCellActive)));
             break;
-        case etPresentation:
+        case AscEditorType::etPresentation:
             panel(tabIndex)->applyLoader("loader:style", "slide");
             m_pBar->setTabThemeType(tabIndex, CTabBar::DarkTab);
             m_pBar->setActiveTabColor(tabIndex,
                 QString::fromStdWString(ui_theme.value(CTheme::ColorRole::ecrTabSlideActive)));
             break;
-        case etDocumentViewer:
+        case AscEditorType::etPdf:
             panel(tabIndex)->applyLoader("loader:style", "pdf");
             m_pBar->setTabThemeType(tabIndex, CTabBar::DarkTab);
             m_pBar->setActiveTabColor(tabIndex,
@@ -797,7 +797,8 @@ void CAscTabWidget::applyDocumentChanging(int id, int type)
         default: break;
         }
 
-        const char *icon_name = tabIndex == m_pBar->currentIndex() ? m_mapTabIcons.at(type).second : m_mapTabIcons.at(type).first;
+        const char *icon_name = tabIndex == m_pBar->currentIndex() ?
+                                    m_mapTabIcons.at(AscEditorType(type)).second : m_mapTabIcons.at(AscEditorType(type)).first;
         m_pBar->setTabIcon(tabIndex, QIcon(icon_name));
     }
 }
@@ -1186,17 +1187,17 @@ void CAscTabWidget::applyUITheme(const std::wstring& theme)
         panel(i)->setBackground(back_color);
 
         switch ( panel(i)->data()->contentType() ) {
-        case etPresentation:
+        case AscEditorType::etPresentation:
             m_pBar->setActiveTabColor(i, tab_color.at(2));
             break;
-        case etSpreadsheet:
+        case AscEditorType::etSpreadsheet:
             m_pBar->setActiveTabColor(i, tab_color.at(1));
             break;
-        case etDocumentMasterForm:
-        case etDocument:
+        case AscEditorType::etDocumentMasterForm:
+        case AscEditorType::etDocument:
             m_pBar->setActiveTabColor(i, tab_color.at(0));
             break;
-        case etDocumentViewer:
+        case AscEditorType::etPdf:
             m_pBar->setActiveTabColor(i, QString::fromStdWString(ui_theme.value(CTheme::ColorRole::ecrTabViewerActive)));
             break;
         default: break;

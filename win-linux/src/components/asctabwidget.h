@@ -115,7 +115,7 @@ class CAscTabWidget : public QStackedWidget, public CScalingWrapper
         }
     };
 
-    typedef std::map< int, std::pair<const char*, const char*> > CTabIconSet;
+    typedef std::map< AscEditorType, std::pair<const char*, const char*> > CTabIconSet;
 
 private:
     std::map<int, QCefView*> m_mapDownloads;

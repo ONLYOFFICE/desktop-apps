@@ -72,6 +72,12 @@ DEB_ASTRA = deb-astra/$(PACKAGE_NAME)_$(PACKAGE_VERSION)$(DEB_ASTRA_RELEASE_SUFF
 TAR = $(TAR_PACKAGE_DIR)/$(PACKAGE_NAME)-$(PACKAGE_VERSION)$(TAR_RELEASE_SUFFIX)-$(TAR_ARCH).tar.xz
 HELP_TAR = $(TAR_PACKAGE_DIR)/$(PACKAGE_NAME)-help-$(PACKAGE_VERSION)$(TAR_RELEASE_SUFFIX)-any.tar.xz
 
+CHANGELOG_RPM = common/usr/share/doc/$(PACKAGE_NAME)/NEWS
+CHANGELOG_RPM_M4 = common/usr/share/doc/NEWS.m4
+CHANGELOG_DEB = deb/build/debian/changelog
+CHANGELOG_DEB_M4 = deb/template/changelog.m4
+CHANGELOG_DEB_ASTRA = deb-astra/build/debian/changelog
+
 ifeq ($(COMPANY_NAME), ONLYOFFICE)
 	DESKTOPEDITORS_PREFIX := $(COMPANY_NAME_LOW)/$(PRODUCT_NAME_LOW)
 	DESKTOPEDITORS_EXEC := $(PACKAGE_NAME)
@@ -101,8 +107,9 @@ endif
 LINUX_DEPS += $(BIN_FILES)
 LINUX_DEPS += $(DESKTOP_FILES)
 LINUX_DEPS += $(SYMLINK)
+LINUX_DEPS += $(CHANGELOG_RPM)
 
-DEB_DEPS += deb/build/debian/changelog
+DEB_DEPS += $(CHANGELOG_DEB)
 DEB_DEPS += deb/build/debian/compat
 DEB_DEPS += deb/build/debian/control
 DEB_DEPS += deb/build/debian/postinst
@@ -115,7 +122,7 @@ DEB_DEPS += deb/build/debian/$(PACKAGE_NAME).install
 DEB_DEPS += deb/build/debian/$(PACKAGE_NAME).links
 DEB_DEPS += deb/build/debian/$(PACKAGE_NAME)-help.install
 
-DEB_ASTRA_DEPS += deb-astra/build/debian/changelog
+DEB_ASTRA_DEPS += $(CHANGELOG_DEB_ASTRA)
 DEB_ASTRA_DEPS += deb-astra/build/debian/compat
 DEB_ASTRA_DEPS += deb-astra/build/debian/control
 DEB_ASTRA_DEPS += deb-astra/build/debian/postinst
@@ -192,6 +199,14 @@ else
 endif
 RPM_PARAMS += --define '_binary_payload w7.xzdio'
 
+CHANGES_DIR = ../../../common/changes
+ifeq ($(COMPANY_NAME), ONLYOFFICE)
+	CHANGES_HTML = changes.html
+else
+	CHANGES_HTML = changes_ru.html
+endif
+CHANGES_DIR_LIST = $(shell ls -r $(CHANGES_DIR) | grep -v template)
+
 .PHONY: all clean branding packages rpm deb deb-astra apt-rpm suse-rpm tar desktopeditor qt-redist libstdc++-addon libc-addon
 
 all: rpm deb apt-rpm urpmi suse-rpm tar
@@ -249,6 +264,8 @@ clean:
 		apt-rpm/$(PACKAGE_NAME).spec \
 		urpmi/$(PACKAGE_NAME).spec \
 		suse-rpm/$(PACKAGE_NAME).spec \
+		$(shell dirname $(CHANGELOG_RPM)) \
+		$(CHANGES_DIR)/*/changes_??? \
 		$(INSTALLER)
 
 branding: $(BRANDING_DIR)
@@ -309,6 +326,42 @@ deb/build/debian/% : deb/template/%
 
 deb/build/debian/% : deb/template/%.m4
 	mkdir -pv $(@D) && m4 $(M4_DEB_PARAMS) $< > $@
+
+$(CHANGELOG_DEB_ASTRA) : $(CHANGELOG_DEB)
+	mkdir -p $(shell dirname $(CHANGELOG_DEB_ASTRA))
+	cp $(CHANGELOG_DEB) $(CHANGELOG_DEB_ASTRA)
+
+$(CHANGELOG_DEB) : $(CHANGELOG_DEB_M4) $(CHANGELOG_RPM)
+	$(foreach dir, \
+		$(CHANGES_DIR_LIST), \
+		$(shell \
+			sed 's/^[^ *]/* &/' $(CHANGES_DIR)/$(dir)/changes_rpm | \
+			sed 's/^/  /' \
+			> $(CHANGES_DIR)/$(dir)/changes_deb; \
+			mkdir -p deb/build/debian; \
+			m4 $(M4_DEB_PARAMS) -D M4_PACKAGE_VERSION='$(dir)' -D M4_DATE='$(shell date -d "$(shell grep \"releasedate\" $(CHANGES_DIR)/$(dir)/$(CHANGES_HTML) | sed 's/.* - //' | sed 's/<\/span>.*//' | sed 's/{{DATE}}/$(shell date -R)/')" -R)' $(CHANGELOG_DEB_M4) | sed '2r $(CHANGES_DIR)/$(dir)/changes_deb' >> $(CHANGELOG_DEB)))
+
+$(CHANGELOG_RPM) :
+	$(foreach dir, \
+		$(CHANGES_DIR_LIST), \
+		$(shell \
+			sed '/DOCTYPE/,/div class/d' $(CHANGES_DIR)/$(dir)/$(CHANGES_HTML) | \
+			sed '/div class/,/html/d' | \
+			sed 's/<\/li>//g' | \
+			sed 's/<\/h4>//g' | \
+			sed 's/<\/h2>/:/g' | \
+			sed 's/<code>//g' | \
+			sed 's/<\/code>//g' | \
+			sed 's/ \{,\}<li>/  - /g' | \
+			sed 's/ \{,\}<h4>/* /g' | \
+			sed 's/ \{,\}<h2>//g' | \
+			sed '/<ul>/d' | \
+			sed '/<\/ul>/d' | \
+			sed '/<h1>/d' | \
+			sed '/^$$/d' \
+			> $(CHANGES_DIR)/$(dir)/changes_rpm; \
+			mkdir -p $(shell dirname $(CHANGELOG_RPM)); \
+			m4 $(M4_PARAMS) -D M4_VERSION='$(dir)' -D M4_DATE_SHORT='$(shell date -d "$(shell grep \"releasedate\" $(CHANGES_DIR)/$(dir)/$(CHANGES_HTML) | sed 's/.* - //' | sed 's/<\/span>.*//' | sed 's/{{DATE}}/$(shell date -R)/')" -I)' $(CHANGELOG_RPM_M4) | sed '2r $(CHANGES_DIR)/$(dir)/changes_rpm' >> $(CHANGELOG_RPM)))
 
 deb/build/debian/$(PACKAGE_NAME).% : deb/template/package.%.m4
 	mkdir -pv $(@D) && m4 $(M4_DEB_PARAMS) $< > $@

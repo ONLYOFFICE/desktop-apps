@@ -70,7 +70,7 @@ namespace CEditorTools
                         c.context->AddRef();
 
                         _progress.setProgress(curr, count);
-                        qApp->processEvents();
+                        PROCESSEVENTS();
 
                         pData = new CAscPrintPage();
                         pData->put_Context(c.context);
@@ -312,24 +312,24 @@ namespace CEditorTools
 
     auto editorTypeFromFormat(int format) -> AscEditorType {
         if ( format == AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCXF ) {
-            return etDocumentMasterForm;
+            return AscEditorType::etDocumentMasterForm;
         } else
         if ( (format > AVS_OFFICESTUDIO_FILE_DOCUMENT && format < AVS_OFFICESTUDIO_FILE_PRESENTATION) ||
                 format == AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_PDF || format == AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_PDFA ||
                     format == AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_DJVU )
-            return etDocument;
+            return AscEditorType::etDocument;
         else
         if ( format > AVS_OFFICESTUDIO_FILE_PRESENTATION && format < AVS_OFFICESTUDIO_FILE_SPREADSHEET )
-            return etPresentation;
+            return AscEditorType::etPresentation;
         else
         if (format > AVS_OFFICESTUDIO_FILE_SPREADSHEET && format < AVS_OFFICESTUDIO_FILE_CROSSPLATFORM ) {
-            return etSpreadsheet;
+            return AscEditorType::etSpreadsheet;
         }
         else
         if (format > AVS_OFFICESTUDIO_FILE_CROSSPLATFORM && format < AVS_OFFICESTUDIO_FILE_IMAGE )
-            return etDocumentViewer;
+            return AscEditorType::etPdf;
 
-        return etUndefined;
+        return AscEditorType::etUndefined;
     }
 
     auto processLocalFileSaveAs(const CAscCefMenuEvent * event) -> void {
