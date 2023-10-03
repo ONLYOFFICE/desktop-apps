@@ -33,14 +33,25 @@
 #ifndef CDOWNLOADWIDGET_H
 #define CDOWNLOADWIDGET_H
 
-#include <QDialog>
-#include <QScrollArea>
+#include <QWidget>
 #include "cpushbutton.h"
+#include "cscalingwrapper.h"
 
+//class CProfileMenuFilter;
+class CProfileMenuFilter : public QObject {
+public:
+    CProfileMenuFilter(QObject *);
 
-class CDownloadWidget : public QDialog
+    bool eventFilter(QObject *, QEvent *);
+    void setMenuButton(QPushButton *);
+private:
+    QPushButton * _parentButton;
+};
+
+class CDownloadWidget : public QWidget, public CScalingWrapper
 {
     Q_OBJECT
+
     class CDownloadItem;
     typedef std::map<int, CDownloadItem *>::const_iterator MapItem;
 
@@ -50,24 +61,27 @@ public:
 
     void downloadProcess(void *);
     QPushButton * toolButton();
+//    void updateProgress();
 //    void cancelAll();
-    void updateScalingFactor(double);
-    void applyTheme(const QString&);
+
+    void updateScalingFactor(double) override;
 
 protected:
     QWidget * addFile(const QString&, int);
     void removeFile(int);
     void removeFile(MapItem);
+    void updateLayoutGeomentry();
     void updateProgress(MapItem, void *);
     QString getFileName(const QString&) const;
-    void closeEvent(QCloseEvent *) final;
+
+    void applyScaling(double);
+    void resizeEvent(QResizeEvent *);
 
 private:
-    void polish();
-    CPushButton * m_pToolButton = nullptr;
-    QScrollArea * m_pArea = nullptr;
-    QWidget *m_pContentArea = nullptr;
+    CPushButton * m_pToolButton;
     std::map<int, CDownloadItem *> m_mapDownloads;
+    QMargins m_defMargins;
+    int m_defSpacing;
 
 signals:
     void downloadCanceled(int);
