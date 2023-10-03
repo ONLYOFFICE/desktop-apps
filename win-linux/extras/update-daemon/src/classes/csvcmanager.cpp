@@ -278,8 +278,7 @@ void CSvcManager::onCompleteUnzip(const int error)
 
     } else
     if (error == UNZIP_ERROR) {
-        tstring error(_T("An error occured while unpacking the archive"));
-        if (!m_socket->sendMessage(MSG_OtherError, error))
+        if (!m_socket->sendMessage(MSG_OtherError, _T("SVC_TXT_ERR_UNPACKING")))
             NS_Logger::WriteLog(DEFAULT_ERROR_MESSAGE);
 
     } else
@@ -307,18 +306,18 @@ void CSvcManager::onCompleteSlot(const int error, const tstring &filePath)
         // Pause or Stop
     } else
     if (error == -1) {
-        m_socket->sendMessage(MSG_OtherError, _T("Update download failed: out of memory!"));
+        m_socket->sendMessage(MSG_OtherError, _T("SVC_TXT_ERR_DNL_OUT_MEM"));
     } else
     if (error == -2) {
-        m_socket->sendMessage(MSG_OtherError, _T("Update download failed: server connection error!"));
+        m_socket->sendMessage(MSG_OtherError, _T("SVC_TXT_ERR_DNL_CONN"));
     } else
     if (error == -3) {
-        m_socket->sendMessage(MSG_OtherError, _T("Update download failed: wrong URL!"));
+        m_socket->sendMessage(MSG_OtherError, _T("SVC_TXT_ERR_DNL_URL"));
     } else
     if (error == -4) {
-        m_socket->sendMessage(MSG_OtherError, _T("Update download failed: unable to create file!"));
+        m_socket->sendMessage(MSG_OtherError, _T("SVC_TXT_ERR_DNL_CREAT"));
     } else {
-        m_socket->sendMessage(MSG_OtherError, _T("Update download failed: network error!"));
+        m_socket->sendMessage(MSG_OtherError, _T("SVC_TXT_ERR_DNL_INET"));
     }
 }
 

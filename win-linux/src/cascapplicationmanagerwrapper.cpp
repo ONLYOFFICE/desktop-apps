@@ -1619,6 +1619,10 @@ bool CAscApplicationManagerWrapper::applySettings(const wstring& wstrjson)
 
                 _reg_user.setValue("locale", _lang_id);
                 CLangater::reloadTranslations(_lang_id);
+#ifdef _UPDMODULE
+                if (m_pUpdateManager)
+                    m_pUpdateManager->refreshStartPage();
+#endif
             }
         }
 

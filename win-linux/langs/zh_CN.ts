@@ -4,7 +4,7 @@
 <context>
     <name>CAscApplicationManagerWrapper</name>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1178"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1176"/>
         <source>Presenter View</source>
         <translation>演示者视图</translation>
     </message>
@@ -21,18 +21,18 @@
         <translation type="vanished">所有编辑器窗口都将关闭。 你想继续吗？</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1939"/>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1940"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1942"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1943"/>
         <source>Document%1.docx</source>
         <translation>文档%1.docx</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1941"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1944"/>
         <source>Book%1.xlsx</source>
         <translation>工作簿%1.xlsx</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1942"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1945"/>
         <source>Presentation%1.pptx</source>
         <translation>演示文稿%1.pptx</translation>
     </message>
@@ -56,7 +56,7 @@
 <context>
     <name>CAscTabWidget</name>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="802"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="801"/>
         <location filename="../src/components/asctabwidget.cpp" line="622"/>
         <source>Document</source>
         <translation>打开中...</translation>
@@ -637,154 +637,177 @@
 <context>
     <name>CUpdateManager</name>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="255"/>
-        <location filename="../src/cupdatemanager.cpp" line="287"/>
-        <location filename="../src/cupdatemanager.cpp" line="634"/>
         <source>Last check performed </source>
-        <translation>上次检查 </translation>
+        <translation type="vanished">上次检查 </translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="262"/>
-        <location filename="../src/cupdatemanager.cpp" line="288"/>
-        <location filename="../src/cupdatemanager.cpp" line="367"/>
-        <location filename="../src/cupdatemanager.cpp" line="382"/>
-        <location filename="../src/cupdatemanager.cpp" line="410"/>
-        <location filename="../src/cupdatemanager.cpp" line="476"/>
-        <location filename="../src/cupdatemanager.cpp" line="483"/>
-        <location filename="../src/cupdatemanager.cpp" line="558"/>
-        <location filename="../src/cupdatemanager.cpp" line="580"/>
-        <location filename="../src/cupdatemanager.cpp" line="635"/>
-        <location filename="../src/cupdatemanager.cpp" line="740"/>
-        <location filename="../src/cupdatemanager.cpp" line="745"/>
-        <location filename="../src/cupdatemanager.cpp" line="764"/>
+        <location filename="../src/cupdatemanager.cpp" line="101"/>
         <source>Check for updates</source>
         <translation>检查更新</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="262"/>
+        <location filename="../src/cupdatemanager.cpp" line="93"/>
         <source>Unable to check update: URL not defined.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="307"/>
-        <location filename="../src/cupdatemanager.cpp" line="469"/>
-        <location filename="../src/cupdatemanager.cpp" line="569"/>
+        <location filename="../src/cupdatemanager.cpp" line="91"/>
         <source>To finish updating, restart app</source>
         <translation>要完成更新，请重新启动应用程序</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="307"/>
-        <location filename="../src/cupdatemanager.cpp" line="469"/>
-        <location filename="../src/cupdatemanager.cpp" line="569"/>
+        <location filename="../src/cupdatemanager.cpp" line="103"/>
         <source>Restart</source>
         <translation>重新启动</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="367"/>
+        <location filename="../src/cupdatemanager.cpp" line="87"/>
         <source>Checking for updates...</source>
         <translation>检查更新...</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="373"/>
+        <location filename="../src/cupdatemanager.cpp" line="92"/>
         <source>Updates are not allowed!</source>
         <translation>不允许更新！</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="374"/>
+        <location filename="../src/cupdatemanager.cpp" line="402"/>
         <source>This folder configuration does not allow for updates! The folder name should be: </source>
         <translation>此文件夹配置不允许更新！文件夹名称应为： </translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="381"/>
+        <location filename="../src/cupdatemanager.cpp" line="95"/>
         <source>An error occurred while check updates: Update Service not found!</source>
         <translation>检查更新时发生错误： 未找到更新服务！</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="405"/>
+        <location filename="../src/cupdatemanager.cpp" line="89"/>
         <source>Downloading new version %1 (%2%)</source>
         <translation>下载新版本 %1 (%2%)</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="476"/>
+        <location filename="../src/cupdatemanager.cpp" line="96"/>
         <source>An error occurred while loading updates: Update Service not found!</source>
         <translation>加载更新时发生错误： 未找到更新服务！</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="480"/>
         <source>Downloading new version %1 (0%)</source>
-        <translation>下载新版本 %1 (0%)</translation>
+        <translation type="vanished">下载新版本 %1 (0%)</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="480"/>
-        <location filename="../src/cupdatemanager.cpp" line="578"/>
+        <location filename="../src/cupdatemanager.cpp" line="104"/>
         <source>Cancel</source>
         <translation>取消</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="483"/>
+        <location filename="../src/cupdatemanager.cpp" line="94"/>
         <source>An error occurred while loading updates: package Url is empty!</source>
         <translation>加载更新时发生错误：软件包 Url 为空！</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="557"/>
+        <location filename="../src/cupdatemanager.cpp" line="99"/>
         <source>Update package error: md5 sum does not match the original.</source>
         <translation>更新软件包错误：md5 不匹配。</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="578"/>
+        <location filename="../src/cupdatemanager.cpp" line="90"/>
         <source>Preparing update...</source>
         <translation>准备更新...</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="580"/>
+        <location filename="../src/cupdatemanager.cpp" line="97"/>
         <source>An error occurred while unzip updates: Update Service not found!</source>
         <translation>解压更新时发生错误： 未找到更新服务！</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="733"/>
+        <location filename="../src/cupdatemanager.cpp" line="88"/>
         <source>Update is available (version %1)</source>
         <translation>可更新（版本 %1）</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="734"/>
+        <location filename="../src/cupdatemanager.cpp" line="102"/>
         <source>Download update</source>
         <translation>下载更新</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="740"/>
-        <location filename="../src/cupdatemanager.cpp" line="764"/>
+        <location filename="../src/cupdatemanager.cpp" line="86"/>
         <source>Current version is up to date</source>
         <translation>当前版本已更新</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="752"/>
+        <location filename="../src/cupdatemanager.cpp" line="77"/>
+        <source>An error occured while unpacking the archive</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/cupdatemanager.cpp" line="78"/>
+        <source>Update download failed: out of memory!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/cupdatemanager.cpp" line="79"/>
+        <source>Update download failed: server connection error!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/cupdatemanager.cpp" line="80"/>
+        <source>Update download failed: wrong URL!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/cupdatemanager.cpp" line="81"/>
+        <source>Update download failed: unable to create file!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/cupdatemanager.cpp" line="82"/>
+        <source>Update download failed: network error!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/cupdatemanager.cpp" line="83"/>
+        <source>A service error has occurred!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/cupdatemanager.cpp" line="85"/>
+        <source>Last check performed %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/cupdatemanager.cpp" line="98"/>
+        <source>Error opening JSON file.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/cupdatemanager.cpp" line="795"/>
         <source>Update is available</source>
         <translation>可更新</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="753"/>
-        <location filename="../src/cupdatemanager.cpp" line="776"/>
+        <location filename="../src/cupdatemanager.cpp" line="796"/>
+        <location filename="../src/cupdatemanager.cpp" line="819"/>
         <source>Current version</source>
         <translation>当前版本</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="754"/>
-        <location filename="../src/cupdatemanager.cpp" line="777"/>
+        <location filename="../src/cupdatemanager.cpp" line="797"/>
+        <location filename="../src/cupdatemanager.cpp" line="820"/>
         <source>Update version</source>
         <translation>更新版本</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="755"/>
+        <location filename="../src/cupdatemanager.cpp" line="798"/>
         <source>Would you like to download update now?</source>
         <translation>现在要下载更新吗？</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="775"/>
+        <location filename="../src/cupdatemanager.cpp" line="818"/>
         <source>Update is ready to install</source>
         <translation>更新已准备就绪，可以安装</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="778"/>
+        <location filename="../src/cupdatemanager.cpp" line="821"/>
         <source>Would you like to restart app now?</source>
         <translation>现在要重启应用程序吗？</translation>
     </message>
@@ -914,12 +937,12 @@
         <translation type="vanished">解压更新时发生错误： 未找到更新服务！</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="598"/>
+        <location filename="../src/cupdatemanager.cpp" line="643"/>
         <source>An error occurred while start install updates!</source>
         <translation>开始安装更新时发生错误！</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="608"/>
+        <location filename="../src/cupdatemanager.cpp" line="653"/>
         <source>An error occurred while start replacing files: Update Service not found!</source>
         <translation>开始替换文件时发生错误： 未找到更新服务！</translation>
     </message>
