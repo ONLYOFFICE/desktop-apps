@@ -622,7 +622,7 @@
     <ROW Registry="ASSOC_PROG_ID" Root="2" Key="Software\Classes\[ASSOC_PROG_ID]" Name="\"/>
     <ROW Registry="AdvancedInstaller" Root="-1" Key="Software\Caphyon\Advanced Installer" Name="\"/>
     <ROW Registry="ApplicationDescription" Root="2" Key="Software\[MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]\Capabilities" Name="ApplicationDescription" Value="[ARPCOMMENTS]" Component_="ASCC_REG_REGISTERED_APP_NAME"/>
-    <ROW Registry="ApplicationIcon" Root="2" Key="Software\[MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]\Capabilities" Name="ApplicationIcon" Value="&quot;[APPDIR]editors.exe,0&quot;" Component_="ASCC_REG_REGISTERED_APP_NAME"/>
+    <ROW Registry="ApplicationIcon" Root="2" Key="Software\[MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]\Capabilities" Name="ApplicationIcon" Value="[APPDIR]DesktopEditors.exe,0" Component_="ASCC_REG_REGISTERED_APP_NAME"/>
     <ROW Registry="ApplicationName" Root="2" Key="Software\[MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]\Capabilities" Name="ApplicationName" Value="[ProductName]" Component_="ASCC_REG_REGISTERED_APP_NAME"/>
     <ROW Registry="Capabilities" Root="2" Key="Software\[MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]\Capabilities" Name="\"/>
     <ROW Registry="Caphyon" Root="-1" Key="Software\Caphyon" Name="\"/>
