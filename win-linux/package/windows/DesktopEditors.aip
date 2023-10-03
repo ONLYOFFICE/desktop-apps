@@ -11,6 +11,7 @@
     <ROW Property="AI_SHORTCUTSREG" Value="0|0|0|0|"/>
     <ROW Property="AI_UNINSTALLER" Value="msiexec.exe"/>
     <ROW Property="ALLUSERS" Value="1"/>
+    <ROW Property="APP_PROTOCOL" Value="oo-office"/>
     <ROW Property="APP_USER_MODEL_ID" Value="ASC.Documents.5"/>
     <ROW Property="ARCH" Value="x64" MultiBuildValue="MsiBuild32:x86" ValueLocId="-"/>
     <ROW Property="ARPCOMMENTS" Value="Free desktop office suite for document editing and collaboration" ValueLocId="*"/>
@@ -77,11 +78,8 @@
     <ROW Component="AIShRegAnswer" ComponentId="{8BE0AC3F-59B9-4398-8A0B-085CE4B0F9C3}" Directory_="APPDIR" Attributes="260" KeyPath="AIShRegAnswer"/>
     <ROW Component="AI_CustomARPName" ComponentId="{026D2C20-2E12-4C52-B7E0-34DBED460A0C}" Directory_="APPDIR" Attributes="260" KeyPath="DisplayName" Options="1"/>
     <ROW Component="AI_DisableModify" ComponentId="{4DA67DA3-424D-4EB7-8B0F-7AE95B073B87}" Directory_="APPDIR" Attributes="260" KeyPath="NoModify" Options="1"/>
-    <ROW Component="APPDIR" ComponentId="{967A56B9-E2F1-42F8-869D-7791391AFB48}" Directory_="APPDIR" Attributes="0"/>
     <ROW Component="ASCC_REG_REGISTERED_APP_NAME" ComponentId="{C8863101-46C1-4E82-9386-1AD91948DE6A}" Directory_="APPDIR" Attributes="260" KeyPath="ASCC_REG_REGISTERED_APP_NAME"/>
     <ROW Component="ASSOC_PROG_ID" ComponentId="{9D33C055-B150-47B2-AB67-51C8FECB3260}" Directory_="APPDIR" Attributes="260" KeyPath="_"/>
-    <ROW Component="AppPath" ComponentId="{F5736577-3D67-460A-B2AC-EA0010D0FDFF}" Directory_="APPDIR" Attributes="260" KeyPath="Path_1"/>
-    <ROW Component="CheckForUpdates" ComponentId="{3DCD7E37-9F70-475E-9C31-D72353971685}" Directory_="APPDIR" Attributes="260" KeyPath="CheckForUpdates"/>
     <ROW Component="DesktopEditors.exe" ComponentId="{FA0F79B8-DC4D-49BC-808A-1821966D6C0C}" Directory_="APPDIR" Attributes="0" KeyPath="DesktopEditors.exe"/>
     <ROW Component="FileAssociation_csv" ComponentId="{2002B59E-DC3A-4307-B9BF-B4ADBC6890DC}" Directory_="APPDIR" Attributes="260" KeyPath="csv"/>
     <ROW Component="FileAssociation_djvu" ComponentId="{214A8DA3-552D-42C3-9252-C936958AED65}" Directory_="APPDIR" Attributes="260" KeyPath="djvu"/>
@@ -102,18 +100,16 @@
     <ROW Component="FileAssociation_xlsx" ComponentId="{2669FDA4-D749-4AE4-A804-7CFEFA5E5566}" Directory_="APPDIR" Attributes="260" KeyPath="xlsx"/>
     <ROW Component="FileAssociation_xps" ComponentId="{CA70CAF5-ABAB-45FF-A440-32B3C8FDE8D0}" Directory_="APPDIR" Attributes="260" KeyPath="xps"/>
     <ROW Component="ImageViewer.exe" ComponentId="{E8DFAC60-5575-4D64-AD43-FF684A2FAE8F}" Directory_="CUSTOM_PATH" Attributes="0" Condition="GALLERY = &quot;1&quot;" KeyPath="ImageViewer.exe"/>
-    <ROW Component="MANUFACTURER_INSTALL_FOLDER_HK_CU" ComponentId="{BF7B083D-CB31-42CC-89EB-912C4461A8D0}" Directory_="APPDIR" Attributes="260" KeyPath="MANUFACTURER_INSTALL_FOLDER_HK_CU"/>
-    <ROW Component="MANUFACTURER_INSTALL_FOLDER_HK_LM" ComponentId="{7EC4EC35-8E21-44D0-A29E-CCD3741056D9}" Directory_="APPDIR" Attributes="260" KeyPath="MANUFACTURER_INSTALL_FOLDER_HK_LM"/>
     <ROW Component="MicrosoftVisualC_2013_x64" ComponentId="{A9673528-11FC-4EBA-896E-6F2998F6601F}" Directory_="APPDIR" Attributes="260" KeyPath="MicrosoftVisualC_2013_x64" Options="2"/>
     <ROW Component="MicrosoftVisualC_2013_x86" ComponentId="{B74A440D-1D6B-4EB1-BB72-605A30AF2D28}" Directory_="APPDIR" Attributes="4" KeyPath="MicrosoftVisualC_2013_x86" Options="2"/>
     <ROW Component="MicrosoftVisualC_2015_x64" ComponentId="{CA1FCD66-ED15-4D94-81FD-0C927B78E132}" Directory_="APPDIR" Attributes="260" KeyPath="MicrosoftVisualC_2015_x64" Options="2"/>
     <ROW Component="MicrosoftVisualC_2015_x86" ComponentId="{B176A670-4763-46DF-A796-3B8AB885DA4A}" Directory_="APPDIR" Attributes="4" KeyPath="MicrosoftVisualC_2015_x86" Options="2"/>
     <ROW Component="SHORTCUTDIR" ComponentId="{CB73F99E-8C5E-4F7A-9E2F-25EDC9FBDFC0}" Directory_="SHORTCUTDIR" Attributes="0"/>
-    <ROW Component="Software" ComponentId="{90AC3C8E-9762-4613-B621-A0EFD3868D77}" Directory_="APPDIR" Attributes="260" KeyPath="Software_3"/>
-    <ROW Component="Version" ComponentId="{3914F236-2B4C-4E31-95FA-F57F91FA19C9}" Directory_="APPDIR" Attributes="260" KeyPath="Version_1"/>
     <ROW Component="VideoPlayer.exe" ComponentId="{39F3F737-40E8-42F0-9342-BF8232F34B72}" Directory_="CUSTOM_PATH" Attributes="0" Condition="PLAYER = &quot;1&quot;" KeyPath="VideoPlayer.exe"/>
-    <ROW Component="locale_HK_CU" ComponentId="{FF7C0526-7824-44B9-AF7E-B51FC24167A9}" Directory_="APPDIR" Attributes="260" KeyPath="locale_HK_CU"/>
-    <ROW Component="locale_HK_LM" ComponentId="{D09979D5-ED81-4DE9-8602-7C1C8D2C6B75}" Directory_="APPDIR" Attributes="260" KeyPath="locale_HK_LM"/>
+    <ROW Component="app_dir" ComponentId="{967A56B9-E2F1-42F8-869D-7791391AFB48}" Directory_="APPDIR" Attributes="0"/>
+    <ROW Component="reg_app_protocol" ComponentId="{C28686D3-D274-4005-93D2-EC95B27607E3}" Directory_="APPDIR" Attributes="260" Condition="ProductName = &quot;ONLYOFFICE Desktop Editors&quot;" KeyPath="__6"/>
+    <ROW Component="reg_hkcu_sofware_app" ComponentId="{BF7B083D-CB31-42CC-89EB-912C4461A8D0}" Directory_="APPDIR" Attributes="260" KeyPath="MANUFACTURER_INSTALL_FOLDER_HK_CU"/>
+    <ROW Component="reg_hklm_software_app" ComponentId="{8EDBC005-A947-4D41-B83B-8C6518CE6018}" Directory_="APPDIR" Attributes="260" KeyPath="MANUFACTURER_INSTALL_FOLDER_HK_LM"/>
     <ROW Component="updatesvc.exe" ComponentId="{954103D0-8D21-42C9-A924-247FCB9653F9}" Directory_="APPDIR" Attributes="256" KeyPath="updatesvc.exe"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatsComponent">
@@ -442,7 +438,7 @@
     <ROW Dialog_="UserExit" Control_="Finish" Event="DoAction" Argument="AI_CleanPrePrereq" Condition="1" Ordering="102"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCreateFolderComponent">
-    <ROW Directory_="APPDIR" Component_="APPDIR" ManualDelete="true"/>
+    <ROW Directory_="APPDIR" Component_="app_dir" ManualDelete="true"/>
     <ROW Directory_="SHORTCUTDIR" Component_="SHORTCUTDIR" ManualDelete="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCustActComponent">
@@ -495,7 +491,7 @@
     <ROW Dialog="ExtendedInstallDlg" HCentering="50" VCentering="50" Width="370" Height="270" Attributes="3" Title="[ProductName] [Setup]" Control_Default="Next" Control_Cancel="Cancel"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatCompsComponent">
-    <ROW Feature_="MainFeature" Component_="APPDIR"/>
+    <ROW Feature_="MainFeature" Component_="app_dir"/>
     <ROW Feature_="MainFeature" Component_="AI_CustomARPName"/>
     <ROW Feature_="MainFeature" Component_="AI_DisableModify"/>
     <ROW Feature_="ExtendedFeature" Component_="VideoPlayer.exe"/>
@@ -505,14 +501,7 @@
     <ROW Feature_="MicrosoftVisualC_2015_x86" Component_="MicrosoftVisualC_2015_x86"/>
     <ROW Feature_="MicrosoftVisualC_2013_x86" Component_="MicrosoftVisualC_2013_x86"/>
     <ROW Feature_="MicrosoftVisualC_2013_x64" Component_="MicrosoftVisualC_2013_x64"/>
-    <ROW Feature_="MainFeature" Component_="MANUFACTURER_INSTALL_FOLDER_HK_CU"/>
-    <ROW Feature_="MainFeature" Component_="locale_HK_CU"/>
-    <ROW Feature_="MainFeature" Component_="MANUFACTURER_INSTALL_FOLDER_HK_LM"/>
-    <ROW Feature_="MainFeature" Component_="locale_HK_LM"/>
-    <ROW Feature_="MainFeature" Component_="CheckForUpdates"/>
-    <ROW Feature_="MainFeature" Component_="AppPath"/>
-    <ROW Feature_="MainFeature" Component_="Version"/>
-    <ROW Feature_="MainFeature" Component_="Software"/>
+    <ROW Feature_="MainFeature" Component_="reg_hkcu_sofware_app"/>
     <ROW Feature_="FileProgramAssociation" Component_="ASCC_REG_REGISTERED_APP_NAME"/>
     <ROW Feature_="FileProgramAssociation" Component_="ASSOC_PROG_ID"/>
     <ROW Feature_="FileProgramAssociation" Component_="FileAssociation_xps"/>
@@ -536,6 +525,8 @@
     <ROW Feature_="MainFeature" Component_="DesktopEditors.exe"/>
     <ROW Feature_="MainFeature" Component_="SHORTCUTDIR"/>
     <ROW Feature_="MainFeature" Component_="updatesvc.exe"/>
+    <ROW Feature_="FileProgramAssociation" Component_="reg_app_protocol"/>
+    <ROW Feature_="MainFeature" Component_="reg_hklm_software_app"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiIconsComponent">
     <ROW Name="ImageViewer.exe" SourcePath="..\..\extras\projicons\res\gallery.ico" Index="0"/>
@@ -626,7 +617,7 @@
     <ROW Registry="ApplicationName" Root="2" Key="Software\[MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]\Capabilities" Name="ApplicationName" Value="[ProductName]" Component_="ASCC_REG_REGISTERED_APP_NAME"/>
     <ROW Registry="Capabilities" Root="2" Key="Software\[MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]\Capabilities" Name="\"/>
     <ROW Registry="Caphyon" Root="-1" Key="Software\Caphyon" Name="\"/>
-    <ROW Registry="CheckForUpdates" Root="2" Key="Software\[MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]" Name="CheckForUpdates" Value="#0" Component_="CheckForUpdates" VirtualValue="#"/>
+    <ROW Registry="CheckForUpdates" Root="2" Key="Software\[MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]" Name="CheckForUpdates" Value="#0" Component_="reg_hklm_software_app" VirtualValue="#"/>
     <ROW Registry="Classes" Root="2" Key="Software\Classes" Name="\"/>
     <ROW Registry="Comments" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="Comments" Value="[ARPCOMMENTS]" Component_="AI_CustomARPName"/>
     <ROW Registry="Contact" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="Contact" Value="[ARPCONTACT]" Component_="AI_CustomARPName"/>
@@ -644,6 +635,7 @@
     <ROW Registry="DefaultIcon_18" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Xps\DefaultIcon" Name="\"/>
     <ROW Registry="DefaultIcon_19" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Document.1\DefaultIcon" Name="\"/>
     <ROW Registry="DefaultIcon_2" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Csv\DefaultIcon" Name="\"/>
+    <ROW Registry="DefaultIcon_20" Root="2" Key="Software\Classes\[APP_PROTOCOL]\DefaultIcon" Name="\"/>
     <ROW Registry="DefaultIcon_3" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Document.12\DefaultIcon" Name="\"/>
     <ROW Registry="DefaultIcon_4" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Document.2\DefaultIcon" Name="\"/>
     <ROW Registry="DefaultIcon_5" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Oform\DefaultIcon" Name="\"/>
@@ -661,8 +653,8 @@
     <ROW Registry="HelpTelephone" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="HelpTelephone" Value="[ARPHELPTELEPHONE]" Component_="AI_CustomARPName"/>
     <ROW Registry="InstallLocation" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="InstallLocation" Value="[APPDIR]" Component_="AI_CustomARPName"/>
     <ROW Registry="Installs" Root="-1" Key="Software\Caphyon\Advanced Installer\Installs" Name="\"/>
-    <ROW Registry="MANUFACTURER_INSTALL_FOLDER_HK_CU" Root="1" Key="Software\[MANUFACTURER_INSTALL_FOLDER]" Name="+" Component_="MANUFACTURER_INSTALL_FOLDER_HK_CU"/>
-    <ROW Registry="MANUFACTURER_INSTALL_FOLDER_HK_LM" Root="2" Key="Software\[MANUFACTURER_INSTALL_FOLDER]" Name="+" Component_="MANUFACTURER_INSTALL_FOLDER_HK_LM"/>
+    <ROW Registry="MANUFACTURER_INSTALL_FOLDER_HK_CU" Root="1" Key="Software\[MANUFACTURER_INSTALL_FOLDER]" Name="+" Component_="reg_hkcu_sofware_app"/>
+    <ROW Registry="MANUFACTURER_INSTALL_FOLDER_HK_LM" Root="2" Key="Software\[MANUFACTURER_INSTALL_FOLDER]" Name="+" Component_="reg_hklm_software_app"/>
     <ROW Registry="Microsoft" Root="-1" Key="Software\Microsoft" Name="\"/>
     <ROW Registry="MicrosoftVisualC_2013_x64" Root="-1" Key="Software\Caphyon\Advanced Installer\Prereqs\[ProductCode]\[ProductVersion]" Name="MicrosoftVisualC_2013_x64" Value="1" Component_="MicrosoftVisualC_2013_x64"/>
     <ROW Registry="MicrosoftVisualC_2013_x86" Root="-1" Key="Software\Caphyon\Advanced Installer\Prereqs\[ProductCode]\[ProductVersion]" Name="MicrosoftVisualC_2013_x86" Value="1" Component_="MicrosoftVisualC_2013_x86"/>
@@ -673,7 +665,7 @@
     <ROW Registry="NoRepair" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="NoRepair" Value="#1" Component_="AI_CustomARPName" VirtualValue="#"/>
     <ROW Registry="PRODUCT_INSTALL_FOLDER" Root="2" Key="Software\[MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]" Name="\"/>
     <ROW Registry="PRODUCT_INSTALL_FOLDER_1" Root="1" Key="Software\[MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]" Name="\"/>
-    <ROW Registry="Path_1" Root="2" Key="Software\[MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]" Name="AppPath" Value="[APPDIR]" Component_="AppPath"/>
+    <ROW Registry="Path_1" Root="2" Key="Software\[MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]" Name="AppPath" Value="[APPDIR]" Component_="reg_hklm_software_app"/>
     <ROW Registry="Prereqs" Root="-1" Key="Software\Caphyon\Advanced Installer\Prereqs" Name="\"/>
     <ROW Registry="ProductCode" Root="-1" Key="Software\Caphyon\Advanced Installer\Installs\[ProductCode]" Name="\"/>
     <ROW Registry="ProductCode_1" Root="-1" Key="Software\Caphyon\Advanced Installer\Prereqs\[ProductCode]" Name="\"/>
@@ -685,15 +677,15 @@
     <ROW Registry="Software" Root="-1" Key="Software" Name="\"/>
     <ROW Registry="Software_1" Root="2" Key="Software" Name="\"/>
     <ROW Registry="Software_2" Root="1" Key="Software" Name="\"/>
-    <ROW Registry="Software_3" Root="0" Key="Software" Name="+" Component_="Software"/>
     <ROW Registry="URLInfoAbout" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="URLInfoAbout" Value="[ARPURLINFOABOUT]" Component_="AI_CustomARPName"/>
+    <ROW Registry="URLProtocol" Root="2" Key="Software\Classes\[APP_PROTOCOL]" Name="URL Protocol" Component_="reg_app_protocol"/>
     <ROW Registry="URLUpdateInfo" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="URLUpdateInfo" Value="[ARPURLUPDATEINFO]" Component_="AI_CustomARPName"/>
     <ROW Registry="Uninstall" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall" Name="\"/>
     <ROW Registry="UninstallPath" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="UninstallPath" Value="[AI_UNINSTALLER] /x [ProductCode] AI_UNINSTALLER_CTP=1" Component_="AI_CustomARPName"/>
     <ROW Registry="UninstallString" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="UninstallString" Value="[AI_UNINSTALLER] /x [ProductCode] AI_UNINSTALLER_CTP=1" Component_="AI_CustomARPName"/>
     <ROW Registry="VersionMajor" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="VersionMajor" Value="#6" Component_="AI_CustomARPName" VirtualValue="#"/>
     <ROW Registry="VersionMinor" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="VersionMinor" Value="#4" Component_="AI_CustomARPName" VirtualValue="#"/>
-    <ROW Registry="Version_1" Root="2" Key="Software\[MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]" Name="Version" Value="[ProductVersion]" Component_="Version"/>
+    <ROW Registry="Version_1" Root="2" Key="Software\[MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]" Name="Version" Value="[ProductVersion]" Component_="reg_hklm_software_app"/>
     <ROW Registry="Windows" Root="-1" Key="Software\Microsoft\Windows" Name="\"/>
     <ROW Registry="_" Root="2" Key="Software\Classes\[ASSOC_PROG_ID]" Value="[ASSOC_APP_FRIENDLY_NAME]" Component_="ASSOC_PROG_ID"/>
     <ROW Registry="__1" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Csv\DefaultIcon" Value="[APPDIR]DesktopEditors.exe,20" Component_="FileAssociation_csv"/>
@@ -706,6 +698,7 @@
     <ROW Registry="__17" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Pdf\shell\open\command" Value="&quot;[APPDIR]DesktopEditors.exe&quot; &quot;%1&quot;" Component_="FileAssociation_pdf"/>
     <ROW Registry="__18" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Oform\shell\open\command" Value="&quot;[APPDIR]DesktopEditors.exe&quot; &quot;%1&quot;" Component_="FileAssociation_oform"/>
     <ROW Registry="__19" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Rtf\DefaultIcon" Value="[APPDIR]DesktopEditors.exe,15" Component_="FileAssociation_rtf"/>
+    <ROW Registry="__2" Root="2" Key="Software\Classes\[APP_PROTOCOL]\DefaultIcon" Value="[APPDIR]DesktopEditors.exe,0" Component_="reg_app_protocol"/>
     <ROW Registry="__20" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Rtf\shell\open\command" Value="&quot;[APPDIR]DesktopEditors.exe&quot; &quot;%1&quot;" Component_="FileAssociation_rtf"/>
     <ROW Registry="__23" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Sheet.1\DefaultIcon" Value="[APPDIR]DesktopEditors.exe,18" Component_="FileAssociation_xls"/>
     <ROW Registry="__24" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Sheet.1\shell\open\command" Value="&quot;[APPDIR]DesktopEditors.exe&quot; &quot;%1&quot;" Component_="FileAssociation_xls"/>
@@ -730,8 +723,10 @@
     <ROW Registry="__46" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Xps\DefaultIcon" Value="[APPDIR]DesktopEditors.exe,6" Component_="FileAssociation_xps"/>
     <ROW Registry="__47" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Xps\shell\open\command" Value="&quot;[APPDIR]DesktopEditors.exe&quot; &quot;%1&quot;" Component_="FileAssociation_xps"/>
     <ROW Registry="__5" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].DjVu\shell\open\command" Value="&quot;[APPDIR]DesktopEditors.exe&quot; &quot;%1&quot;" Component_="FileAssociation_djvu"/>
+    <ROW Registry="__6" Root="2" Key="Software\Classes\[APP_PROTOCOL]" Value="URL:[ASSOC_APP_FRIENDLY_NAME] Protocol" Component_="reg_app_protocol"/>
     <ROW Registry="__7" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Document.1\DefaultIcon" Value="[APPDIR]DesktopEditors.exe,11" Component_="FileAssociation_doc"/>
     <ROW Registry="__8" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Document.1\shell\open\command" Value="&quot;[APPDIR]DesktopEditors.exe&quot; &quot;%1&quot;" Component_="FileAssociation_doc"/>
+    <ROW Registry="__9" Root="2" Key="Software\Classes\[APP_PROTOCOL]\shell\open\command" Value="&quot;[APPDIR]DesktopEditors.exe&quot; &quot;%1&quot;" Component_="reg_app_protocol"/>
     <ROW Registry="command" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Document.12\shell\open\command" Name="\"/>
     <ROW Registry="command_1" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Document.2\shell\open\command" Name="\"/>
     <ROW Registry="command_10" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Docxf\shell\open\command" Name="\"/>
@@ -743,6 +738,7 @@
     <ROW Registry="command_16" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].DjVu\shell\open\command" Name="\"/>
     <ROW Registry="command_17" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Document.1\shell\open\command" Name="\"/>
     <ROW Registry="command_18" Root="2" Key="Software\Classes\[ASSOC_PROG_ID]\shell\open\command" Name="\"/>
+    <ROW Registry="command_19" Root="2" Key="Software\Classes\[APP_PROTOCOL]\shell\open\command" Name="\" Component_="reg_app_protocol"/>
     <ROW Registry="command_2" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Pdf\shell\open\command" Name="\"/>
     <ROW Registry="command_3" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Oform\shell\open\command" Name="\"/>
     <ROW Registry="command_4" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Rtf\shell\open\command" Name="\"/>
@@ -757,12 +753,13 @@
     <ROW Registry="doc" Root="2" Key="Software\[MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]\Capabilities\FileAssociations" Name=".doc" Value="[ASCC_REG_PREFIX].Document.1" Component_="FileAssociation_doc"/>
     <ROW Registry="docx" Root="2" Key="Software\[MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]\Capabilities\FileAssociations" Name=".docx" Value="[ASCC_REG_PREFIX].Document.12" Component_="FileAssociation_docx"/>
     <ROW Registry="docxf" Root="2" Key="Software\[MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]\Capabilities\FileAssociations" Name=".docxf" Value="[ASCC_REG_PREFIX].Docxf" Component_="FileAssociation_docxf"/>
-    <ROW Registry="locale_HK_CU" Root="1" Key="Software\[MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]" Name="locale" Value="[LOCALE]" Component_="locale_HK_CU"/>
-    <ROW Registry="locale_HK_LM" Root="2" Key="Software\[MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]" Name="locale" Value="[LOCALE]" Component_="locale_HK_LM"/>
+    <ROW Registry="locale_HK_CU" Root="1" Key="Software\[MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]" Name="locale" Value="[LOCALE]" Component_="reg_hkcu_sofware_app"/>
+    <ROW Registry="locale_HK_LM" Root="2" Key="Software\[MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]" Name="locale" Value="[LOCALE]" Component_="reg_hklm_software_app"/>
     <ROW Registry="odp" Root="2" Key="Software\[MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]\Capabilities\FileAssociations" Name=".odp" Value="[ASCC_REG_PREFIX].Show.2" Component_="FileAssociation_odp"/>
     <ROW Registry="ods" Root="2" Key="Software\[MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]\Capabilities\FileAssociations" Name=".ods" Value="[ASCC_REG_PREFIX].Sheet.2" Component_="FileAssociation_ods"/>
     <ROW Registry="odt" Root="2" Key="Software\[MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]\Capabilities\FileAssociations" Name=".odt" Value="[ASCC_REG_PREFIX].Document.2" Component_="FileAssociation_odt"/>
     <ROW Registry="oform" Root="2" Key="Software\[MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]\Capabilities\FileAssociations" Name=".oform" Value="[ASCC_REG_PREFIX].Oform" Component_="FileAssociation_oform"/>
+    <ROW Registry="oooffice" Root="2" Key="Software\Classes\[APP_PROTOCOL]" Name="\"/>
     <ROW Registry="open" Root="2" Key="Software\Classes\[ASSOC_PROG_ID]\shell\open" Name="\"/>
     <ROW Registry="open_1" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Csv\shell\open" Name="+" Component_="FileAssociation_csv"/>
     <ROW Registry="open_10" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Document.1\shell\open" Name="+" Component_="FileAssociation_doc"/>
@@ -772,6 +769,7 @@
     <ROW Registry="open_14" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Rtf\shell\open" Name="+" Component_="FileAssociation_rtf"/>
     <ROW Registry="open_15" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Sheet.1\shell\open" Name="+" Component_="FileAssociation_xls"/>
     <ROW Registry="open_16" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Sheet.12\shell\open" Name="+" Component_="FileAssociation_xlsx"/>
+    <ROW Registry="open_17" Root="2" Key="Software\Classes\[APP_PROTOCOL]\shell\open" Name="+" Component_="reg_app_protocol"/>
     <ROW Registry="open_19" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Oform\shell\open" Name="+" Component_="FileAssociation_oform"/>
     <ROW Registry="open_2" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Sheet.2\shell\open" Name="+" Component_="FileAssociation_ods"/>
     <ROW Registry="open_22" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Docxf\shell\open" Name="+" Component_="FileAssociation_docxf"/>
@@ -797,6 +795,7 @@
     <ROW Registry="shell_14" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].SlideShow.1\shell" Name="+" Component_="FileAssociation_pps"/>
     <ROW Registry="shell_15" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].SlideShow.12\shell" Name="+" Component_="FileAssociation_ppsx"/>
     <ROW Registry="shell_16" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Xps\shell" Name="+" Component_="FileAssociation_xps"/>
+    <ROW Registry="shell_17" Root="2" Key="Software\Classes\[APP_PROTOCOL]\shell" Name="+" Component_="reg_app_protocol"/>
     <ROW Registry="shell_19" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Oform\shell" Name="+" Component_="FileAssociation_oform"/>
     <ROW Registry="shell_2" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].DjVu\shell" Name="+" Component_="FileAssociation_djvu"/>
     <ROW Registry="shell_22" Root="2" Key="Software\Classes\[ASCC_REG_PREFIX].Docxf\shell" Name="+" Component_="FileAssociation_docxf"/>
