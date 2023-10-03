@@ -128,10 +128,10 @@
     <ATTRIBUTE name="CurrentFeature" value="MainFeature"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFilesComponent">
-    <ROW File="DesktopEditors.exe" Component_="DesktopEditors.exe" FileName="DESKTO~1.EXE|DesktopEditors.exe" Attributes="0" SourcePath="..\..\..\..\build_tools\out\win_64\onlyoffice\DesktopEditors\DesktopEditors.exe" SelfReg="false"/>
-    <ROW File="VideoPlayer.exe" Component_="VideoPlayer.exe" FileName="VIDEOP~1.EXE|VideoPlayer.exe" Attributes="0" SourcePath="..\..\..\..\build_tools\out\win_64\onlyoffice\MediaViewer\VideoPlayer.exe" SelfReg="false"/>
-    <ROW File="ImageViewer.exe" Component_="ImageViewer.exe" FileName="IMAGEV~1.EXE|ImageViewer.exe" Attributes="0" SourcePath="..\..\..\..\build_tools\out\win_64\onlyoffice\MediaViewer\ImageViewer.exe" SelfReg="false"/>
-    <ROW File="updatesvc.exe" Component_="updatesvc.exe" FileName="UPDATE~1.EXE|updatesvc.exe" Attributes="0" SourcePath="..\..\..\..\build_tools\out\win_64\onlyoffice\DesktopEditors\updatesvc.exe" SelfReg="false"/>
+    <ROW File="DesktopEditors.exe" Component_="DesktopEditors.exe" FileName="DESKTO~1.EXE|DesktopEditors.exe" Attributes="0" SourcePath="build\DesktopEditors\DesktopEditors.exe" SelfReg="false"/>
+    <ROW File="VideoPlayer.exe" Component_="VideoPlayer.exe" FileName="VIDEOP~1.EXE|VideoPlayer.exe" Attributes="0" SourcePath="build\MediaViewer\VideoPlayer.exe" SelfReg="false"/>
+    <ROW File="ImageViewer.exe" Component_="ImageViewer.exe" FileName="IMAGEV~1.EXE|ImageViewer.exe" Attributes="0" SourcePath="build\MediaViewer\ImageViewer.exe" SelfReg="false"/>
+    <ROW File="updatesvc.exe" Component_="updatesvc.exe" FileName="UPDATE~1.EXE|updatesvc.exe" Attributes="0" SourcePath="build\DesktopEditors\updatesvc.exe" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.custcomp.AiRegistryAliasComponent">
     <ROW AliasRowId="NoModify" AliasRowOperation="2" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName]"/>
