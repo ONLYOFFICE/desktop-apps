@@ -339,6 +339,17 @@ bool CWindowPlatform::nativeEvent(const QByteArray &eventType, void *message, lo
                     adjustGeometry();
                 });
             }
+        } else if (msg->wParam == 0) {
+            const std::wstring param{(wchar_t*)msg->lParam};
+            if (param == L"ImmersiveColorSet") {
+                QSettings _reg("HKEY_CURRENT_USER\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize", QSettings::NativeFormat);
+                bool _changed_theme_dark = _reg.value("AppsUseLightTheme", 1).toInt() == 0;
+
+                if (_changed_theme_dark != AscAppManager::themes().isSystemSchemeDark()) {
+                    AscAppManager::themes().onSystemDarkColorScheme(_changed_theme_dark);
+                    qDebug() << "system theme changed";
+                }
+            }
         }
         break;
     }
