@@ -67,10 +67,10 @@ if ( $Sign ) {
 $OutFile = "$Env:COMPANY_NAME-$DesktopDir-$Env:PRODUCT_VERSION.$Env:BUILD_NUMBER-$Suffix.zip"
 if ( !$ExcludeHelp ) {
     Write-Host "7z a -y $OutFile .\$BuildDir\$DesktopDir\*" -ForegroundColor Yellow
-    & 7z a -y $OutFile .\$BuildDir\$DesktopDir\* -xr!vlc-cache-gen.exe
+    & 7z a -y $OutFile .\$BuildDir\$DesktopDir\*
 } else {
     Write-Host "7z a -y $OutFile .\$BuildDir\$DesktopDir\* -xr!editors\web-apps\apps\*\main\resources\help" -ForegroundColor Yellow
-    & 7z a -y $OutFile .\$BuildDir\$DesktopDir\* -xr!editors\web-apps\apps\*\main\resources\help -xr!vlc-cache-gen.exe
+    & 7z a -y $OutFile .\$BuildDir\$DesktopDir\* -xr!editors\web-apps\apps\*\main\resources\help
 }
 if ( $LastExitCode -ne 0 ) { throw }
 
