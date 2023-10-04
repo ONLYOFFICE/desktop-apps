@@ -743,6 +743,7 @@ public:
 
     void onWebAppsFeatures(int, std::wstring f) override
     {
+        bool is_read_only = panel()->data()->hasFeature(L"readonly\":");
         panel()->data()->setFeatures(f);
 
         if ( m_panel->data()->hasFeature(L"uitype\":\"fillform") ) {
@@ -753,7 +754,7 @@ public:
             qobject_cast<QBoxLayout *>(boxtitlelabel->layout())->insertWidget(0, iconCrypted());
         }
 
-        if ( panel()->data()->hasFeature(L"readonly\":") && boxtitlelabel ) {
+        if ( is_read_only != panel()->data()->hasFeature(L"readonly\":") && boxtitlelabel ) {
             window->setWindowTitle(m_panel->data()->title());
             window->m_boxTitleBtns->repaint();
         }
