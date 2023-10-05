@@ -340,6 +340,8 @@ $(CHANGELOG_DEB) : $(CHANGELOG_DEB_M4) $(CHANGELOG_RPM)
 			> $(CHANGES_DIR)/$(dir)/changes_deb; \
 			mkdir -p deb/build/debian; \
 			m4 $(M4_DEB_PARAMS) -D M4_PACKAGE_VERSION='$(dir)' -D M4_DATE='$(shell date -d "$(shell grep \"releasedate\" $(CHANGES_DIR)/$(dir)/$(CHANGES_HTML) | sed 's/.* - //' | sed 's/<\/span>.*//' | sed 's/{{DATE}}/$(shell date -R)/')" -R)' $(CHANGELOG_DEB_M4) | sed '2r $(CHANGES_DIR)/$(dir)/changes_deb' >> $(CHANGELOG_DEB)))
+	$(shell \
+		sed -i 's/$(PRODUCT_VERSION)/$(PACKAGE_VERSION)/' $(CHANGELOG_DEB))
 
 $(CHANGELOG_RPM) :
 	$(foreach dir, \
