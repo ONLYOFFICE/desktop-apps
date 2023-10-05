@@ -118,7 +118,7 @@ public:
 
     void init(CTabPanel * const p) override {
         CCefEventsGate::init(p);
-        if (!m_panel->data()->hasFeature(L"btnhome") || viewerMode()) {  // For old editors only
+        if (!m_panel->data()->hasFeature(L"btnhome") || viewerMode() || fillformMode()) {  // For old editors only
             usedOldEditorVersion = true;
             leftboxbuttons = new QWidget;
             leftboxbuttons->setLayout(new QHBoxLayout);
@@ -178,7 +178,7 @@ public:
     auto extendableTitleToSimple() -> void {
         Q_ASSERT(window->m_boxTitleBtns != nullptr);
         QGridLayout * const _layout = static_cast<QGridLayout*>(window->m_pMainPanel->layout());
-        if ( !_layout->findChild<QWidget*>(window->m_boxTitleBtns->objectName()) ) {
+        if ( !_layout->itemAtPosition(0,0) && !_layout->findChild<QWidget*>(window->m_boxTitleBtns->objectName()) ) {
             _layout->addWidget(window->m_boxTitleBtns,0,0,Qt::AlignTop);
             if (iconuser)
                 iconuser->hide();
@@ -202,7 +202,7 @@ public:
 
     auto centerTitle(double dpiRatio)->void
     {
-        int left_btns = viewerMode() ? 1 : 6;
+        int left_btns = (viewerMode() || fillformMode()) ? 1 : 6;
         int right_btns = 3;
         int spacing = window->m_boxTitleBtns->layout()->spacing();
         int left_offset = left_btns*TOOLBTN_WIDTH + 3*spacing; // added extra spacing
@@ -210,7 +210,7 @@ public:
         int diffW = (left_offset - right_offset)*dpiRatio;
         if (iconuser) {
             diffW -= ICON_SPACER_WIDTH + spacing*dpiRatio;
-            if (!viewerMode()) {
+            if (!viewerMode() && !fillformMode()) {
                 diffW -= iconuser->width() + spacing*dpiRatio;
             }
         }
@@ -229,7 +229,7 @@ public:
         if( jerror.error == QJsonParseError::NoError ) {
             QJsonObject objRoot = jdoc.object();
 
-            if ( viewerMode() )
+            if ( viewerMode() && !fillformMode())
                 extendableTitleToSimple();
 
             if ( canExtendTitle() ) {
@@ -312,7 +312,7 @@ public:
                 panel()->data()->setFeatures(L"old version of editor");
                 extendableTitleToSimple();
             }
-            if (m_panel->data()->hasFeature(L"btnhome") && usedOldEditorVersion && !viewerMode()) {  // For old editors only
+            if (m_panel->data()->hasFeature(L"btnhome") && usedOldEditorVersion && !viewerMode() && !fillformMode()) {  // For old editors only
                 usedOldEditorVersion = false;
                 adjustToNewEditorVersion();
             }
@@ -748,6 +748,7 @@ public:
 
         if ( m_panel->data()->hasFeature(L"uitype\":\"fillform") ) {
              ffWindowCustomize();
+             centerTitle(window->m_dpiRatio);
         }
 
         if ( panel()->data()->hasFeature(L"crypted\":true") && boxtitlelabel && !iconcrypted ) {
@@ -821,6 +822,11 @@ public:
         return m_panel->data()->hasFeature(L"viewmode\":true");
     }
 
+    auto fillformMode() -> bool {
+        QFileInfo i{QString::fromStdWString(m_panel->data()->url())};
+        return i.suffix() == "oform" || m_panel->data()->hasFeature(L"uitype\":\"fillform");
+    }
+
     auto calcTitleLabelWidth(int basewidth) const -> int {
         if ( iconuser )
             basewidth -= iconuser->width();
@@ -868,8 +874,17 @@ public:
     auto ffWindowCustomize() -> void {
         Q_ASSERT(window->m_boxTitleBtns != nullptr);
         QGridLayout * const _layout = static_cast<QGridLayout*>(window->m_pMainPanel->layout());
-        if ( !_layout->findChild<QWidget*>(window->m_boxTitleBtns->objectName()) ) {
+        if ( !_layout->itemAtPosition(0,0) && !_layout->findChild<QWidget*>(window->m_boxTitleBtns->objectName()) ) {
             _layout->addWidget(window->m_boxTitleBtns,0,0,Qt::AlignTop);
+            if (iconuser)
+                 iconuser->hide();
+            auto layout = qobject_cast<QHBoxLayout*>(window->m_boxTitleBtns->layout());
+            auto stretch = layout->takeAt(1);
+            if (stretch)
+                 delete stretch;
+            stretch = layout->takeAt(2);
+            if (stretch)
+                 delete stretch;
         }
     }
 };
