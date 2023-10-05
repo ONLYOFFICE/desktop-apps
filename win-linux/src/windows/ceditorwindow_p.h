@@ -878,6 +878,13 @@ public:
             _layout->addWidget(window->m_boxTitleBtns,0,0,Qt::AlignTop);
             if (iconuser)
                  iconuser->hide();
+            auto layout = qobject_cast<QHBoxLayout*>(window->m_boxTitleBtns->layout());
+            auto stretch = layout->takeAt(1);
+            if (stretch)
+                 delete stretch;
+            stretch = layout->takeAt(2);
+            if (stretch)
+                 delete stretch;
         }
     }
 };
