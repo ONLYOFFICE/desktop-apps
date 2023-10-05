@@ -76,10 +76,8 @@ CEditorWindow::CEditorWindow(const QRect& rect, CTabPanel* panel)
     AscAppManager::bindReceiver(panel->cef()->GetId(), d_ptr.get());
     AscAppManager::sendCommandTo(panel->cef(), L"editor:config", L"request");
 
-    QFileInfo i{QString::fromStdWString(panel->data()->url())};
-    if ( i.suffix() == "oform" || panel->data()->hasFeature(L"uitype\":\"fillform") ) {
+    if (d_ptr->fillformMode())
         d_ptr->ffWindowCustomize();
-    }
 
     QTimer::singleShot(200, this, [=]() {
         if (d_ptr->canExtendTitle())

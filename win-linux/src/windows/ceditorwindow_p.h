@@ -178,7 +178,7 @@ public:
     auto extendableTitleToSimple() -> void {
         Q_ASSERT(window->m_boxTitleBtns != nullptr);
         QGridLayout * const _layout = static_cast<QGridLayout*>(window->m_pMainPanel->layout());
-        if ( !_layout->findChild<QWidget*>(window->m_boxTitleBtns->objectName()) ) {
+        if ( !_layout->itemAtPosition(0,0) && !_layout->findChild<QWidget*>(window->m_boxTitleBtns->objectName()) ) {
             _layout->addWidget(window->m_boxTitleBtns,0,0,Qt::AlignTop);
             if (iconuser)
                 iconuser->hide();
@@ -821,6 +821,11 @@ public:
         return m_panel->data()->hasFeature(L"viewmode\":true");
     }
 
+    auto fillformMode() -> bool {
+        QFileInfo i{QString::fromStdWString(m_panel->data()->url())};
+        return i.suffix() == "oform" || m_panel->data()->hasFeature(L"uitype\":\"fillform");
+    }
+
     auto calcTitleLabelWidth(int basewidth) const -> int {
         if ( iconuser )
             basewidth -= iconuser->width();
@@ -868,7 +873,7 @@ public:
     auto ffWindowCustomize() -> void {
         Q_ASSERT(window->m_boxTitleBtns != nullptr);
         QGridLayout * const _layout = static_cast<QGridLayout*>(window->m_pMainPanel->layout());
-        if ( !_layout->findChild<QWidget*>(window->m_boxTitleBtns->objectName()) ) {
+        if ( !_layout->itemAtPosition(0,0) && !_layout->findChild<QWidget*>(window->m_boxTitleBtns->objectName()) ) {
             _layout->addWidget(window->m_boxTitleBtns,0,0,Qt::AlignTop);
         }
     }
