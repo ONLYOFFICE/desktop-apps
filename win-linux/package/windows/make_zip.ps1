@@ -66,11 +66,11 @@ if ( $Sign ) {
 
 $OutFile = "$Env:COMPANY_NAME-$DesktopDir-$Env:PRODUCT_VERSION.$Env:BUILD_NUMBER-$Suffix.zip"
 if ( !$ExcludeHelp ) {
-    Write-Host "7z a -y $OutFile .\$BuildDir\$DesktopDir\*" -ForegroundColor Yellow
-    & 7z a -y $OutFile .\$BuildDir\$DesktopDir\*  -xr!.\vlc-cache-gen.exe
+    Write-Host "7z a -y $OutFile .\$BuildDir\$DesktopDir\* -xr!vlc-cache-gen.exe" -ForegroundColor Yellow
+    & 7z a -y $OutFile .\$BuildDir\$DesktopDir\*  -xr!"vlc-cache-gen.exe"
 } else {
-    Write-Host "7z a -y $OutFile .\$BuildDir\$DesktopDir\* -xr!editors\web-apps\apps\*\main\resources\help" -ForegroundColor Yellow
-    & 7z a -y $OutFile .\$BuildDir\$DesktopDir\* -xr!editors\web-apps\apps\*\main\resources\help  -xr!.\vlc-cache-gen.exe
+    Write-Host "7z a -y $OutFile .\$BuildDir\$DesktopDir\* -xr!editors\web-apps\apps\*\main\resources\help -xr!vlc-cache-gen.exe" -ForegroundColor Yellow
+    & 7z a -y $OutFile .\$BuildDir\$DesktopDir\* -xr!editors\web-apps\apps\*\main\resources\help  -xr!"vlc-cache-gen.exe"
 }
 if ( $LastExitCode -ne 0 ) { throw }
 
