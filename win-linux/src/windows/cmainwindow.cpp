@@ -242,9 +242,9 @@ void CMainWindow::close()
         onFullScreen(-1, false);
 
 #ifdef _WIN32
-        if (isSessionInProgress() && m_pTabs->count() > 1) {
+        if (isSessionInProgress() && m_pTabs->count(cvwtEditor) > 1) {
 #else
-        if (m_pTabs->count() > 1) {
+        if (m_pTabs->count(cvwtEditor) > 1) {
 #endif
             GET_REGISTRY_USER(reg_user);
             if (!reg_user.value("ignoreMsgAboutOpenTabs", false).toBool()) {
