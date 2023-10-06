@@ -163,6 +163,15 @@ auto restartService()->void
     CloseHandle(pi.hProcess);
     CloseHandle(pi.hThread);
 }
+
+auto verToAppVer(const wstring &ver)->wstring
+{
+    size_t pos = ver.find(L'.');
+    if (pos == std::wstring::npos)
+        return ver;
+    pos = ver.find(L'.', pos + 1);
+    return (pos == std::wstring::npos) ? ver : ver.substr(0, pos);
+}
 #endif
 
 CSvcManager::CSvcManager():
@@ -503,7 +512,7 @@ void CSvcManager::startReplacingFiles(const tstring &packageType, const bool res
                 wstring app_key(app_name);
                 app_key += (packageType == TEXT("iss")) ? L"_is1" : L"";
                 if (RegOpenKeyEx(hKey, app_key.c_str(), 0, KEY_ALL_ACCESS, &hAppKey) == ERROR_SUCCESS) {
-                    wstring disp_name = app_name + L" " + ver + L" (" + currentArch().substr(1) + L")";
+                    wstring disp_name = app_name + L" " + verToAppVer(ver) + L" (" + currentArch().substr(1) + L")";
                     if (RegSetValueEx(hAppKey, TEXT("DisplayName"), 0, REG_SZ, (const BYTE*)disp_name.c_str(), (DWORD)(disp_name.length() + 1) * sizeof(WCHAR)) != ERROR_SUCCESS)
                         NS_Logger::WriteLog(L"Can't update DisplayName in registry!");
                     if (RegSetValueEx(hAppKey, TEXT("DisplayVersion"), 0, REG_SZ, (const BYTE*)ver.c_str(), (DWORD)(ver.length() + 1) * sizeof(WCHAR)) != ERROR_SUCCESS)
