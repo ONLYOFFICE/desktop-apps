@@ -65,6 +65,7 @@
 
 #define TOP_PANEL_OFFSET 6*TOOLBTN_WIDTH
 #define ICON_SPACER_WIDTH 9
+#define ICON_SIZE QSize(20,20)
 
 using namespace NSEditorApi;
 
@@ -605,6 +606,7 @@ public:
 
             if ( iconcrypted ) {
                 iconcrypted->setPixmap(QIcon{":/title/icons/secure.svg"}.pixmap(QSize(20,20) * f));
+                iconcrypted->setFixedSize(ICON_SIZE * f);
             }
 
             for (const auto& btn: m_mapTitleButtons) {
@@ -730,12 +732,22 @@ public:
 
     QLabel * iconCrypted()
     {
-        Q_ASSERT(window->m_boxTitleBtns != nullptr);
+        Q_ASSERT(window->m_labelTitle != nullptr);
         if ( !iconcrypted ) {
-            iconcrypted = new QLabel(window->m_boxTitleBtns);
+            iconcrypted = new QLabel(window->m_labelTitle);
             iconcrypted->setObjectName("iconcrypted");
 
             iconcrypted->setPixmap(QIcon{":/title/icons/secure.svg"}.pixmap(QSize(20,20) * window->m_dpiRatio));
+            iconcrypted->setFixedSize(ICON_SIZE * window->m_dpiRatio);
+            int y = (window->m_labelTitle->height() - ICON_SIZE.height() * window->m_dpiRatio)/2;
+            iconcrypted->move(0, y);
+            connect(window->m_labelTitle, &CElipsisLabel::onResize, this, [=](QSize size, int textWidth) {
+                if (iconcrypted) {
+                    int x = (size.width() - textWidth)/2 - ((ICON_SIZE.width() + 6) * window->m_dpiRatio);
+                    int y = (size.height() - ICON_SIZE.height() * window->m_dpiRatio)/2;
+                    iconcrypted->move(x, y);
+                }
+            });
         }
 
         return iconcrypted;
@@ -752,7 +764,7 @@ public:
         }
 
         if ( panel()->data()->hasFeature(L"crypted\":true") && boxtitlelabel && !iconcrypted ) {
-            qobject_cast<QBoxLayout *>(boxtitlelabel->layout())->insertWidget(0, iconCrypted());
+             iconCrypted();
         }
 
         if ( is_read_only != panel()->data()->hasFeature(L"readonly\":") && boxtitlelabel ) {
@@ -855,12 +867,10 @@ public:
         boxtitlelabel->layout()->setSpacing(0);
         boxtitlelabel->layout()->setMargin(0);
         boxtitlelabel->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
-
-        if ( m_panel->data()->hasFeature(L"crypted\":true") && !iconcrypted ) {
-            boxtitlelabel->layout()->addWidget(iconCrypted());
-        }
-
         boxtitlelabel->layout()->addWidget(window->m_labelTitle);
+        if ( m_panel->data()->hasFeature(L"crypted\":true") && !iconcrypted ) {
+            iconCrypted();
+        }
 
         if (usedOldEditorVersion) {  // For old editors only
             _layout->insertWidget(1, boxtitlelabel);
