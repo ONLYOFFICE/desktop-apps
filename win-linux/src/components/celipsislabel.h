@@ -38,6 +38,7 @@
 
 class CElipsisLabel : public QLabel
 {
+    Q_OBJECT
 public:
     CElipsisLabel(const QString &text, QWidget *parent = Q_NULLPTR);
     CElipsisLabel(QWidget *parent = Q_NULLPTR, Qt::WindowFlags f = Qt::WindowFlags());
@@ -45,6 +46,9 @@ public:
     auto setText(const QString&) -> void;
     auto setEllipsisMode(Qt::TextElideMode) -> void;
     auto updateText() -> void;
+
+signals:
+    void onResize(QSize size, int textWidth);
 
 protected:
     virtual void resizeEvent(QResizeEvent *event) final;

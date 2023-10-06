@@ -1716,8 +1716,7 @@ void CAscApplicationManagerWrapper::applyTheme(const wstring& theme, bool force)
                                             {"type", _app.m_themes->current().stype()},
                                             {"id", QString::fromStdWString(_app.m_themes->current().id())}
 #ifndef Q_OS_LINUX
-//                                            ,{"system", _app.m_themes->isSystemSchemeDark() ? "dark" : "light"}
-                                            ,{"system", "disabled"}
+                                            ,{"system", _app.m_themes->isSystemSchemeDark() ? "dark" : "light"}
 #else
                                             ,{"system", "disabled"}
 #endif
