@@ -67,7 +67,7 @@
                           <div class="flexbox">
                             <div>
                               <h3 class="table-caption" l10n>${_lang.listRecentFileTitle}</h3>
-                              <input type="text" id="idx-recent-filter">
+                              <input type="text" id="idx-recent-filter" style="display:none;">
                             </div>
                             <div class="table-box flex-fill">
                               <table class="table-files list"></table>
