@@ -270,14 +270,14 @@ public:
     }
 
     auto searchLocalThemes() -> void {
-        QDir directory(qApp->applicationDirPath() + "/uicolorthemes");
-        QStringList themes = directory.entryList(QStringList() << "*.json", QDir::Files);
+        QFileInfoList themes = QDir(qApp->applicationDirPath() + "/uithemes").entryInfoList(QStringList() << "*.json", QDir::Files);
+        themes.append(QDir(Utils::getAppCommonPath() + "/uithemes").entryInfoList(QStringList() << "*.json", QDir::Files));
 
         QFile file;
         QJsonParseError je;
         QJsonArray json_themes_array;
-        foreach(QString filename, themes) {
-            file.setFileName(directory.absoluteFilePath(filename));
+        foreach(auto t, themes) {
+            file.setFileName(t.absoluteFilePath());
             if ( file.open(QIODevice::ReadOnly) ) {
                 QByteArray data{file.readAll()};
                 file.close();
@@ -289,7 +289,7 @@ public:
                     if ( validateTheme(objRoot) ) {
                         json_themes_array.append(objRoot);
 
-                        local_themes[objRoot.value("id").toString()] = std::make_pair(filename,data);
+                        local_themes[objRoot.value("id").toString()] = std::make_pair(t.fileName(),data);
 //                        parseLocalTheme(doc.object());
                     }
                 }
