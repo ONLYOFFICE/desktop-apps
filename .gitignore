@@ -27,8 +27,15 @@ win-linux/package/linux/urpmi/builddir
 win-linux/package/linux/suse-rpm/builddir
 win-linux/package/linux/tar
 
+
+/common/loginpage/res/img/allconnect.svg
+/common/loginpage/res/img/allwelcome.svg
+/common/loginpage/res/img/format.svg
+/common/loginpage/res/img/common.svg
+
 common/loginpage/build/plugins/*
 common/loginpage/build/node_modules/*
+common/loginpage/build/sprites/node_modules
 common/loginpage/deploy/*
 common/loginpage/src/dlglogin.min.js
 common/converter/*

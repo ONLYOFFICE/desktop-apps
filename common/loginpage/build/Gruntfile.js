@@ -12,7 +12,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-text-replace');
     grunt.loadNpmTasks('grunt-inline');
     grunt.loadNpmTasks('grunt-terser');
-
+    
     function doRegisterInitializeAppTask(name, appName, configFile) {
         return grunt.registerTask('init-build-' + name, 'Initialize build ' + appName, function(){
             defaultConfig = configFile;
@@ -163,10 +163,14 @@ module.exports = function(grunt) {
         }
     });
 
+    grunt.registerTask('prebuild-sprites', function() {
+        require('./sprites/Gruntfile.js')(grunt,'../');
+        grunt.task.run('svg_sprite');
+    });
 
     doRegisterInitializeAppTask('startpage', 'Desktop start page', 'startpage.json');
 
-    grunt.registerTask('deploy-desktop-startpage', ['desktop-app-extra', 'copy', 'less', 'terser:dialogconnect',
+    grunt.registerTask('deploy-desktop-startpage', ['prebuild-sprites','desktop-app-extra', 'copy', 'less', 'terser:dialogconnect',
         'concat', 'clean', 'inline', 'terser:core', 'terser:langs', 'htmlmin', 'compile-html']);
     grunt.registerTask('default', ['init-build-startpage','deploy-desktop-startpage']);
 };
