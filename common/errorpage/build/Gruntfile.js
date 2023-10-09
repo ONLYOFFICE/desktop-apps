@@ -1,23 +1,12 @@
 module.exports = function(grunt) {
-    // var defaultConfig;
-
-
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-htmlmin');
     grunt.loadNpmTasks('grunt-text-replace');
     grunt.loadNpmTasks('grunt-svgmin');
     grunt.loadNpmTasks('grunt-terser');
 
-    function doRegisterInitializeAppTask(name, appName, configFile) {
-        return grunt.registerTask('init-build-' + name, 'Initialize build ' + appName, function(){
-            // defaultConfig = configFile;
-        });
-    }
-
     grunt.registerTask('desktop-app-extra', function() {
         grunt.initConfig({
-            // pkg: grunt.file.readJSON(defaultConfig),
-
             terser: {
                 options: {
                     format: {
@@ -41,7 +30,7 @@ module.exports = function(grunt) {
                         minifyCSS: true
                     },
                     files: {
-                        '../deploy/error.html': '../src/index.html.deploy'
+                        '../deploy/index.html': '../src/index.html.deploy'
                     }
                 }
             },
@@ -121,8 +110,9 @@ module.exports = function(grunt) {
         }
     });
 
-
-    doRegisterInitializeAppTask('startpage', 'Desktop start page', 'startpage.json');
+    grunt.registerTask('init-build-startpage', 'Initialize build Desktop connection error page', function(){
+        grunt.log.ok('Desktop connection error page config loaded successfully'.green);
+    });
 
     grunt.registerTask('deploy-desktop-startpage', ['desktop-app-extra', 'clean', 'terser', 'htmlmin', 'svgmin', 'compile-html']);
     grunt.registerTask('default', ['init-build-startpage','deploy-desktop-startpage']);
