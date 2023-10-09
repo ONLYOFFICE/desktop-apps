@@ -105,4 +105,7 @@ l10n.pt_BR = {
     updateDownloadFinished: 'Download finalizado. Clique para instalar',
     updateDownloadCanceled: 'Download cancelado',
     updateDownloadProgress: 'Baixando $1%. Clique para parar',
+    settOptDescDisabled: "A verificação automática de atualizações será desativada",
+    settOptDescAUpdateSilent: "Baixe atualizações e pergunte antes de instalar",
+    settOptDescAUpdateAsk: "Você será notificado sobre todas as etapas de atualização",
 }
