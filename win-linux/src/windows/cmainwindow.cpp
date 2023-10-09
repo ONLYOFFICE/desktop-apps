@@ -256,7 +256,7 @@ void CMainWindow::close()
                     if (!m_pTabs->modifiedByIndex(i)) {
                         bool dontAskAgain = false;
                         int res = CMessage::showMessage(this, tr("More than one document is open.<br>Close the window anyway?"),
-                                                           MsgType::MSG_WARN, MsgBtns::mbYesDefNo, &dontAskAgain,
+                                                           MsgType::MSG_WARN, MsgBtns::mbYesNo, &dontAskAgain,
                                                            tr("Don't ask again."));
                         if (dontAskAgain)
                             reg_user.setValue("ignoreMsgAboutOpenTabs", true);
