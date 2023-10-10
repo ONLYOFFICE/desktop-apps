@@ -163,14 +163,14 @@ module.exports = function(grunt) {
         }
     });
 
-    grunt.registerTask('prebuild-sprites', function() {
-        require('./sprites/Gruntfile.js')(grunt,'../');
+    grunt.registerTask('prebuild-svg-sprites', function() {
+        require('./sprites/sprites')(grunt, '../');
         grunt.task.run('svg_sprite');
     });
 
     doRegisterInitializeAppTask('startpage', 'Desktop start page', 'startpage.json');
 
-    grunt.registerTask('deploy-desktop-startpage', ['prebuild-sprites','desktop-app-extra', 'copy', 'less', 'terser:dialogconnect',
+    grunt.registerTask('deploy-desktop-startpage', ['prebuild-svg-sprites','desktop-app-extra', 'copy', 'less', 'terser:dialogconnect',
         'concat', 'clean', 'inline', 'terser:core', 'terser:langs', 'htmlmin', 'compile-html']);
     grunt.registerTask('default', ['init-build-startpage','deploy-desktop-startpage']);
 };

@@ -11,6 +11,7 @@
     "grunt-contrib-htmlmin": "^3.1.0",
     "grunt-contrib-less": "^3.0.0",
     "grunt-inline": "file:plugins/grunt-inline",
+    "iconsprite": "file:sprites",
     "grunt-terser": "^2.0.0",
     "grunt-text-replace": "0.4.0",
     "lodash": "^4.17.20",
