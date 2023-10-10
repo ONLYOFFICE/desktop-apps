@@ -281,10 +281,10 @@ desktopeditor: branding $(LINUX_DEPS)
 	cp -rf ../../../common/package/mimetypes common/opt/desktopeditors
 
 ifeq ($(COMPANY_NAME), ONLYOFFICE)
-	for path in common documenteditor presentationeditor spreadsheeteditor; do \
-		mkdir -p common/help/desktopeditors/editors/web-apps/apps/$$path/main/resources; \
-		mv -ft common/help/desktopeditors/editors/web-apps/apps/$$path/main/resources \
-			common/opt/desktopeditors/editors/web-apps/apps/$$path/main/resources/help; \
+	for path in common/opt/desktopeditors/editors/web-apps/apps/*/main/resources/help; do \
+		path_new=$$(echo $$path | sed 's|/opt/|/help/|'); \
+		mkdir -p $$path_new; \
+		mv -fT $$path $$path_new; \
 	done
 endif
 
