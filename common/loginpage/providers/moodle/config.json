@@ -6,6 +6,7 @@
     },
     "editorPage": "/mod/onlyofficeeditor/view.php",
     "cryptoSupport": "true",
+    "startPage": "/login/index.php",
     "icons": {
         "themeLight":{
             "connectionsList": "./assets/listicon.svg",
