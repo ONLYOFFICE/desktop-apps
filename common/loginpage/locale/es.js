@@ -105,4 +105,7 @@ l10n.es = {
     updateDownloadFinished: 'Descarga finalizada. Haga clic para instalar',
     updateDownloadCanceled: 'Descarga cancelada',
     updateDownloadProgress: 'Descargando $1%. Haga clic para cancelar',
+    settOptDescDisabled: "Se desactivará la comprobación automática de actualizaciones",
+    settOptDescAUpdateSilent: "Descargar actualizaciones y preguntar antes de instalarlas",
+    settOptDescAUpdateAsk: "Se le notificarán todos los pasos de las actualizaciones",
 }

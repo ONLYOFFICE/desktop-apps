@@ -105,4 +105,7 @@ l10n.it_IT = {
     updateDownloadFinished: 'Download completato. Clicca per installare',
     updateDownloadCanceled: 'Download annullato',
     updateDownloadProgress: 'Scaricamento $ 1%. Clicca per interrompere',
+    settOptDescDisabled: "Il controllo automatico degli aggiornamenti verrà disabilitato",
+    settOptDescAUpdateSilent: "Scarica gli aggiornamenti e chiedi prima dell'installazione",
+    settOptDescAUpdateAsk: "Riceverai una notifica su tutte le fasi di aggiornamento",
 }

@@ -628,7 +628,7 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="93"/>
         <source>Unable to check update: URL not defined.</source>
-        <translation type="unfinished"></translation>
+        <translation>Հնարավոր չէ ստուգել թարմացումը. URL-ը սահմանված չէ:</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="91"/>
@@ -717,47 +717,47 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="77"/>
         <source>An error occured while unpacking the archive</source>
-        <translation type="unfinished"></translation>
+        <translation>Արխիվը բացելիս սխալ է տեղի ունեցել ։</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="78"/>
         <source>Update download failed: out of memory!</source>
-        <translation type="unfinished"></translation>
+        <translation>Թարմացման ներբեռնումը ձախողվեց՝ հիշողությունը սպառվել է:</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="79"/>
         <source>Update download failed: server connection error!</source>
-        <translation type="unfinished"></translation>
+        <translation>Թարմացման ներբեռնումը ձախողվեց՝ սերվերի միացման սխալ:</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="80"/>
         <source>Update download failed: wrong URL!</source>
-        <translation type="unfinished"></translation>
+        <translation>Թարմացման ներբեռնումը ձախողվեց՝ սխալ URL:</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="81"/>
         <source>Update download failed: unable to create file!</source>
-        <translation type="unfinished"></translation>
+        <translation>Թարմացման ներբեռնումը ձախողվեց՝ հնարավոր չէ ստեղծել ֆայլ:</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="82"/>
         <source>Update download failed: network error!</source>
-        <translation type="unfinished"></translation>
+        <translation>Թարմացման ներբեռնումը ձախողվեց՝ ցանցի սխալ:</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="83"/>
         <source>A service error has occurred!</source>
-        <translation type="unfinished"></translation>
+        <translation>Ծառայության սխալ է տեղի ունեցել:</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="85"/>
         <source>Last check performed %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Կատարված վերջին ստուգումը %1։</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="98"/>
         <source>Error opening JSON file.</source>
-        <translation type="unfinished"></translation>
+        <translation>JSON ֆայլի բացման սխալ:</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="795"/>

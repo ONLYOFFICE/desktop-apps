@@ -786,7 +786,7 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="795"/>
         <source>Update is available</source>
-        <translation>Обновление доступно</translation>
+        <translation>Доступно обновление</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="796"/>
