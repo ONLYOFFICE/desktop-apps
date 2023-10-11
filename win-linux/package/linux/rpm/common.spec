@@ -178,3 +178,7 @@ for icon in "/opt/%{_desktopeditors_prefix}/asc-de-"*.png; do
   size="${icon##*/asc-de-}"
   "$XDG_ICON_RESOURCE" install --size "${size%.png}" "$icon" "%{_package_name}"
 done
+
+%changelog
+
+%include ../common/usr/share/doc/%{_package_name}/ChangeLog

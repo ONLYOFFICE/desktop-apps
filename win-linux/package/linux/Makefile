@@ -72,8 +72,10 @@ DEB_ASTRA = deb-astra/$(PACKAGE_NAME)_$(PACKAGE_VERSION)$(DEB_ASTRA_RELEASE_SUFF
 TAR = $(TAR_PACKAGE_DIR)/$(PACKAGE_NAME)-$(PACKAGE_VERSION)$(TAR_RELEASE_SUFFIX)-$(TAR_ARCH).tar.xz
 HELP_TAR = $(TAR_PACKAGE_DIR)/$(PACKAGE_NAME)-help-$(PACKAGE_VERSION)$(TAR_RELEASE_SUFFIX)-any.tar.xz
 
-CHANGELOG_RPM = common/usr/share/doc/$(PACKAGE_NAME)/NEWS
-CHANGELOG_RPM_M4 = common/usr/share/doc/NEWS.m4
+NEWS_RPM = common/usr/share/doc/$(PACKAGE_NAME)/NEWS
+NEWS_RPM_M4 = common/usr/share/doc/NEWS.m4
+CHANGELOG_RPM = common/usr/share/doc/$(PACKAGE_NAME)/ChangeLog
+CHANGELOG_RPM_M4 = common/usr/share/doc/ChangeLog.m4
 CHANGELOG_DEB = deb/build/debian/changelog
 CHANGELOG_DEB_M4 = deb/template/changelog.m4
 CHANGELOG_DEB_ASTRA = deb-astra/build/debian/changelog
@@ -266,6 +268,7 @@ clean:
 		suse-rpm/$(PACKAGE_NAME).spec \
 		$(shell dirname $(CHANGELOG_RPM)) \
 		$(CHANGES_DIR)/*/changes_??? \
+		$(CHANGES_DIR)/*/news_??? \
 		$(INSTALLER)
 
 branding: $(BRANDING_DIR)
@@ -335,7 +338,7 @@ $(CHANGELOG_DEB) : $(CHANGELOG_DEB_M4) $(CHANGELOG_RPM)
 	$(foreach dir, \
 		$(CHANGES_DIR_LIST), \
 		$(shell \
-			sed 's/^[^ *]/* &/' $(CHANGES_DIR)/$(dir)/changes_rpm | \
+			sed 's/^[^ *]/* &/' $(CHANGES_DIR)/$(dir)/news_rpm | \
 			sed 's/^/  /' \
 			> $(CHANGES_DIR)/$(dir)/changes_deb; \
 			mkdir -p deb/build/debian; \
@@ -361,9 +364,19 @@ $(CHANGELOG_RPM) :
 			sed '/<\/ul>/d' | \
 			sed '/<h1>/d' | \
 			sed '/^$$/d' \
+			> $(CHANGES_DIR)/$(dir)/news_rpm; \
+			mkdir -p $(shell dirname $(NEWS_RPM)); \
+			m4 $(M4_PARAMS) -D M4_VERSION='$(dir)' -D M4_DATE_SHORT='$(shell date -d "$(shell grep \"releasedate\" $(CHANGES_DIR)/$(dir)/$(CHANGES_HTML) | sed 's/.* - //' | sed 's/<\/span>.*//' | sed 's/{{DATE}}/$(shell date -R)/')" -I)' $(NEWS_RPM_M4) | sed '2r $(CHANGES_DIR)/$(dir)/news_rpm' >> $(NEWS_RPM)))
+
+	$(foreach dir, \
+		$(CHANGES_DIR_LIST), \
+		$(shell \
+			sed 's/  - /    - /' $(CHANGES_DIR)/$(dir)/news_rpm | \
+			sed 's/* /  - /' | \
+			sed 's/^[^ *]/- &/' \
 			> $(CHANGES_DIR)/$(dir)/changes_rpm; \
 			mkdir -p $(shell dirname $(CHANGELOG_RPM)); \
-			m4 $(M4_PARAMS) -D M4_VERSION='$(dir)' -D M4_DATE_SHORT='$(shell date -d "$(shell grep \"releasedate\" $(CHANGES_DIR)/$(dir)/$(CHANGES_HTML) | sed 's/.* - //' | sed 's/<\/span>.*//' | sed 's/{{DATE}}/$(shell date -R)/')" -I)' $(CHANGELOG_RPM_M4) | sed '2r $(CHANGES_DIR)/$(dir)/changes_rpm' >> $(CHANGELOG_RPM)))
+			m4 $(M4_PARAMS) -D M4_VERSION='$(dir)' -D M4_DATE='$(shell LC_TIME="en_US.UTF-8" date -d "$(shell grep \"releasedate\" $(CHANGES_DIR)/$(dir)/$(CHANGES_HTML) | sed 's/.* - //' | sed 's/<\/span>.*//' | sed 's/{{DATE}}/$(shell date -R)/')" +"%a %b %d %Y")' $(CHANGELOG_RPM_M4) | sed '1r $(CHANGES_DIR)/$(dir)/changes_rpm' >> $(CHANGELOG_RPM)))
 
 deb/build/debian/$(PACKAGE_NAME).% : deb/template/package.%.m4
 	mkdir -pv $(@D) && m4 $(M4_DEB_PARAMS) $< > $@
