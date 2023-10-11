@@ -5,6 +5,13 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-svgmin');
     grunt.loadNpmTasks('grunt-terser');
 
+    let locales_js = [];
+    const locales_path = '../locale'
+    const fs = require('fs');
+    fs.readdirSync(locales_path).forEach(f => {
+            locales_js.push(`${locales_path}/${f}`)
+        });
+
     grunt.registerTask('desktop-app-extra', function() {
         grunt.initConfig({
             terser: {
@@ -17,7 +24,7 @@ module.exports = function(grunt) {
                     },
                 },
                 core: {
-                    src: ['../src/locale.js', '../src/code.js'],
+                    src: ['../src/locale.js', ...locales_js, '../src/code.js'],
                     dest: '../deploy/code.min.js',
                 },
             },
@@ -72,7 +79,7 @@ module.exports = function(grunt) {
     grunt.registerTask('compile-html', function(){
         if ( !grunt.option('external-image') ) {
             grunt.config('replace.insert-css', {
-                    src: ['../deploy/error.html'],
+                    src: ['../deploy/index.html'],
                     overwrite: true,
                     replacements: [{
                         from: /(\<link[^\<]+stylesheet[^\<]+href="(\w+\.css)\"\>)/,

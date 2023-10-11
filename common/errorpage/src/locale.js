@@ -7,11 +7,6 @@
     }
 }
 
-langs.ru = {
-    msgNoConn: 'Страница не доступна...',
-    msgNoConnDesc: 'Проверьте соединение',
-}
-
 
 const locale = function() {
     let lang;
