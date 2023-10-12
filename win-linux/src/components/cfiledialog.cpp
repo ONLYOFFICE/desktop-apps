@@ -177,7 +177,7 @@ bool CFileDialogWrapper::modalSaveAs(QString& fileName, int selected)
     QWidget * _parent = CFileDialogHelper::useModalDialog() ?
                 (QWidget *)parent() : nullptr;
 #ifndef _WIN32
-    WindowHelper::CParentDisable oDisabler(qobject_cast<QWidget*>(parent()));
+    WindowHelper::CParentDisable oDisabler(_parent);
 #endif
 
     while (true) {
@@ -262,7 +262,7 @@ QStringList CFileDialogWrapper::modalOpen(const QString& path, const QString& fi
                 (QWidget *)parent() : nullptr;
     QFileDialog::Options _opts;       
 #ifdef __linux__
-    WindowHelper::CParentDisable oDisabler(qobject_cast<QWidget*>(parent()));
+    WindowHelper::CParentDisable oDisabler(_parent);
 #endif
     const QString title = (m_title.isEmpty()) ? tr("Open Document") : m_title;
 
@@ -397,7 +397,7 @@ QString CFileDialogWrapper::selectFolder(const QString& folder)
     QFileDialog::Options _opts{QFileDialog::ShowDirsOnly};
 
 #ifdef __linux__
-    WindowHelper::CParentDisable oDisabler(qobject_cast<QWidget*>(parent()));
+    WindowHelper::CParentDisable oDisabler(_parent);
 #endif
     const QString title = (m_title.isEmpty()) ? tr("Select Folder") : m_title;
 
