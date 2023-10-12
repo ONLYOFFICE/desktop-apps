@@ -855,28 +855,22 @@ namespace WindowHelper {
     }
 
     // Linux Environment Info
-    QString desktop_env;
+    int desktop_env = -1;
 
-    auto initEnvInfo() -> void {
-        const QString env = QString::fromUtf8(getenv("XDG_CURRENT_DESKTOP"));
-        if (env.indexOf("Unity") != -1) {
-            const QString session = QString::fromUtf8(getenv("DESKTOP_SESSION"));
-            if (session.indexOf("gnome-fallback") != -1)
-                desktop_env = "GNOME";
-            else desktop_env = "UNITY";
-        } else
-        if (env.indexOf("GNOME") != -1)
-            desktop_env = "GNOME";
-        else
-        if (env.indexOf("KDE") != -1)
-            desktop_env = "KDE";
-        else desktop_env = "OTHER";
-    }
-
-    auto getEnvInfo() -> QString {
-        if ( desktop_env.isEmpty() )
-            initEnvInfo();
-
+    auto getEnvInfo() -> int {
+        if ( desktop_env == -1 ) {
+            const QString env(qgetenv("XDG_CURRENT_DESKTOP"));
+            if (env.indexOf("Unity") != -1) {
+                const QString session(qgetenv("DESKTOP_SESSION"));
+                desktop_env = (session.indexOf("gnome-fallback") != -1) ? GNOME : UNITY;
+            } else
+            if (env.indexOf("GNOME") != -1)
+                desktop_env = GNOME;
+            else
+            if (env.indexOf("KDE") != -1)
+                desktop_env = KDE;
+            else desktop_env = OTHER;
+        }
         return desktop_env;
     }
 

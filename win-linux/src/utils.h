@@ -143,8 +143,13 @@ namespace WindowHelper {
     };
 
 //    auto check_button_state(Qt::MouseButton b) -> bool;
-    auto initEnvInfo() -> void;
-    auto getEnvInfo() -> QString;
+    enum DesktopEnv {
+        UNITY = 0,
+        GNOME,
+        KDE,
+        OTHER
+    };
+    auto getEnvInfo() -> int;
     auto useGtkDialog() -> bool;
 #else
     auto isWindowSystemDocked(HWND handle) -> bool;

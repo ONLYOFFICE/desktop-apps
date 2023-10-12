@@ -159,7 +159,7 @@ public:
         QSettings _reg("HKEY_CURRENT_USER\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize", QSettings::NativeFormat);
         is_system_theme_dark = _reg.value("AppsUseLightTheme", 1).toInt() == 0;
 #else
-        if ( WindowHelper::getEnvInfo() == "KDE" ) {
+        if ( WindowHelper::getEnvInfo() == WindowHelper::KDE ) {
             QColor color = QPalette().base().color();
             int r, g, b;
             color.getRgb(&r, &g, &b);
