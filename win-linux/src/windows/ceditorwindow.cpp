@@ -241,7 +241,11 @@ QWidget * CEditorWindow::createMainPanel(QWidget * parent, const QString& title)
 
     mainPanel->setProperty("zoom", QString::number(m_dpiRatio) + "x");
     mainPanel->setProperty("uitheme", QString::fromStdWString(GetCurrentTheme().id()));
-    mainPanel->setStyleSheet(AscAppManager::getWindowStylesheets(m_dpiRatio) + m_css);
+    QString css(AscAppManager::getWindowStylesheets(m_dpiRatio) + m_css);
+#ifdef __linux__
+    css.append(Utils::readStylesheets(":styles/styles_unix.qss"));
+#endif
+    mainPanel->setStyleSheet(css);
 
     if ( !d_ptr->panel() ) {
 //        QCefView * pMainWidget = AscAppManager::createViewer(centralWidget);
@@ -435,6 +439,9 @@ void CEditorWindow::setScreenScalingFactor(double factor, bool resize)
 
     QString css(AscAppManager::getWindowStylesheets(factor));
     css.append(m_css);
+#ifdef __linux__
+    css.append(Utils::readStylesheets(":styles/styles_unix.qss"));
+#endif
     m_pMainPanel->setStyleSheet(css);
 
     d_ptr.get()->onScreenScalingFactor(factor);

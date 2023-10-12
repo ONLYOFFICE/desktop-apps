@@ -54,8 +54,10 @@ QPushButton#toolButtonMaximize, QPushButton#toolButtonMain,
 QPushButton#toolButtonMaximize,QPushButton#toolButtonMinimize,
     QPushButton#toolButtonClose {
         background-origin: content;
-        padding: 5px 12px 7px;
+        padding: 5px 0px 7px;
 }
+QPushButton#toolButtonMaximize[kde=true], QPushButton#toolButtonMinimize[kde=true],
+    QPushButton#toolButtonClose[kde=true] {padding: 2px 0px 7px;}
 
 QPushButton#toolButtonClose:hover {
     background-color:#d42b2b;
@@ -81,8 +83,8 @@ QPushButton#toolButtonClose {
     image: url(:/close.svg) center no-repeat;
 }
 
-QPushButton#toolButtonClose[class=normal]:hover,
-    QPushButton#toolButtonClose[class=normal]:pressed {
+QPushButton#toolButtonClose[class=normal][unix=false]:hover,
+    QPushButton#toolButtonClose[class=normal][unix=false]:pressed {
         image: url(:/close_light.svg) center no-repeat;
 }
 

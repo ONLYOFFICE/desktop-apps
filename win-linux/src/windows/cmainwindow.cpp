@@ -72,6 +72,7 @@ CMainWindow::CMainWindow(const QRect &rect) :
     setObjectName("MainWindow");
     m_pMainPanel = createMainPanel(this);
     setCentralWidget(m_pMainPanel);
+    QString css{AscAppManager::getWindowStylesheets(m_dpiRatio)};
 #ifdef __linux__
     setAcceptDrops(true);
     if (isCustomWindowStyle()) {
@@ -80,8 +81,9 @@ CMainWindow::CMainWindow(const QRect &rect) :
         setMouseTracking(true);
     }
     QMetaObject::connectSlotsByName(this);
-#endif
-    m_pMainPanel->setStyleSheet(AscAppManager::getWindowStylesheets(m_dpiRatio));
+    css.append(Utils::readStylesheets(":styles/styles_unix.qss"));
+#endif    
+    m_pMainPanel->setStyleSheet(css);
     updateScalingFactor(m_dpiRatio);
     goStart();
 }
@@ -1399,6 +1401,9 @@ void CMainWindow::setScreenScalingFactor(double factor, bool resize)
 {
     CWindowPlatform::setScreenScalingFactor(factor, resize);
     QString css(AscAppManager::getWindowStylesheets(factor));
+#ifdef __linux__
+    css.append(Utils::readStylesheets(":styles/styles_unix.qss"));
+#endif
     if (!css.isEmpty()) {
         m_pMainPanel->setStyleSheet(css);
     }

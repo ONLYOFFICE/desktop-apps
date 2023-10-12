@@ -1093,7 +1093,11 @@ void CAscApplicationManagerWrapper::initializeApp()
     _app.m_private->applyStylesheets();
 
     // TODO: merge stylesheets and apply for the whole app
-    qApp->setStyleSheet( Utils::readStylesheets(":styles/styles.qss") );
+    QString css{Utils::readStylesheets(":styles/styles.qss")};
+#ifdef __linux__
+    css.append(Utils::readStylesheets(":styles/styles_unix.qss"));
+#endif
+    qApp->setStyleSheet(css);
 
     // Font
     QFont mainFont = QApplication::font();

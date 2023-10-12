@@ -8,7 +8,7 @@ QPushButton#toolButtonClose:hover {background-color: #d42b2b;}
 QPushButton#toolButtonClose:pressed {background-color: #d75050;}
 
 /* pretty */
-#mainPanel[window=pretty] QPushButton[act=tool]:hover
+#mainPanel[window=pretty] QPushButton[act=tool][unix=false]:hover
 {
     background-color: rgba(255,255,255,20%);
 }
@@ -20,7 +20,7 @@ QPushButton#toolButtonClose:pressed {background-color: #d75050;}
 {
     image: url(:/close_light.svg);
 }
-#mainPanel[window=pretty] QPushButton#toolButtonClose:hover
+#mainPanel[window=pretty] QPushButton#toolButtonClose[unix=false]:hover
 {
     background-color: #d42b2b;
 }
@@ -52,7 +52,7 @@ QPushButton#toolButtonClose:pressed {background-color: #d75050;}
 #mainPanel[zoom="1.25x"] #toolButtonClose,
 #mainPanel[zoom="1.25x"] #toolButtonMaximize
 {
-    padding: 6px 15px 9px;
+    padding: 6px 0px 9px;
 }
 #mainPanel[zoom="1.25x"] #iconuser {font-size: 13px;}
 #mainPanel[zoom="1.25x"] #labelTitle
@@ -65,7 +65,7 @@ QPushButton#toolButtonClose:pressed {background-color: #d75050;}
 #mainPanel[zoom="1.5x"] #toolButtonClose,
 #mainPanel[zoom="1.5x"] #toolButtonMaximize
 {
-    padding: 8px 18px 11px;
+    padding: 8px 0px 11px;
 }
 #mainPanel[zoom="1.5x"] #iconuser {font-size: 15px;}
 #mainPanel[zoom="1.5x"] #labelTitle
@@ -78,7 +78,7 @@ QPushButton#toolButtonClose:pressed {background-color: #d75050;}
 #mainPanel[zoom="1.75x"] #toolButtonClose,
 #mainPanel[zoom="1.75x"] #toolButtonMaximize
 {
-    padding: 9px 21px 12px;
+    padding: 9px 0px 12px;
 }
 #mainPanel[zoom="1.75x"] #iconuser {font-size: 18px;}
 #mainPanel[zoom="1.75x"] #labelTitle
@@ -91,7 +91,7 @@ QPushButton#toolButtonClose:pressed {background-color: #d75050;}
 #mainPanel[zoom="2x"] #toolButtonClose,
 #mainPanel[zoom="2x"] #toolButtonMaximize
 {
-    padding: 10px 24px 14px;
+    padding: 10px 0px 14px;
 }
 #mainPanel[zoom="2x"] #iconuser {font-size: 21px;}
 #mainPanel[zoom="2x"] #labelTitle
@@ -104,7 +104,7 @@ QPushButton#toolButtonClose:pressed {background-color: #d75050;}
 #mainPanel[zoom="2.25x"] #toolButtonClose,
 #mainPanel[zoom="2.25x"] #toolButtonMaximize
 {
-    padding: 11px 27px 16px;
+    padding: 11px 0px 16px;
 }
 #mainPanel[zoom="2.25x"] #iconuser {font-size: 23px;}
 #mainPanel[zoom="2.25x"] #labelTitle
@@ -117,7 +117,7 @@ QPushButton#toolButtonClose:pressed {background-color: #d75050;}
 #mainPanel[zoom="2.5x"] #toolButtonClose,
 #mainPanel[zoom="2.5x"] #toolButtonMaximize
 {
-    padding: 13px 30px 18px;
+    padding: 13px 0px 18px;
 }
 #mainPanel[zoom="2.5x"] #iconuser {font-size: 25px;}
 #mainPanel[zoom="2.5x"] #labelTitle
@@ -130,7 +130,7 @@ QPushButton#toolButtonClose:pressed {background-color: #d75050;}
 #mainPanel[zoom="2.75x"] #toolButtonClose,
 #mainPanel[zoom="2.75x"] #toolButtonMaximize
 {
-    padding: 14px 33px 19px;
+    padding: 14px 0px 19px;
 }
 #mainPanel[zoom="2.75x"] #iconuser {font-size: 28px;}
 #mainPanel[zoom="2.75x"] #labelTitle
@@ -143,7 +143,7 @@ QPushButton#toolButtonClose:pressed {background-color: #d75050;}
 #mainPanel[zoom="3x"] #toolButtonClose,
 #mainPanel[zoom="3x"] #toolButtonMaximize
 {
-    padding: 15px 36px 21px;
+    padding: 15px 0px 21px;
 }
 #mainPanel[zoom="3x"] #iconuser {font-size: 30px;}
 #mainPanel[zoom="3x"] #labelTitle
@@ -156,7 +156,7 @@ QPushButton#toolButtonClose:pressed {background-color: #d75050;}
 #mainPanel[zoom="3.5x"] #toolButtonClose,
 #mainPanel[zoom="3.5x"] #toolButtonMaximize
 {
-    padding: 18px 42px 25px;
+    padding: 18px 0px 25px;
 }
 #mainPanel[zoom="3.5x"] #iconuser {font-size: 35px;}
 #mainPanel[zoom="3.5x"] #labelTitle
@@ -169,7 +169,7 @@ QPushButton#toolButtonClose:pressed {background-color: #d75050;}
 #mainPanel[zoom="4x"] #toolButtonClose,
 #mainPanel[zoom="4x"] #toolButtonMaximize
 {
-    padding: 20px 48px 28px;
+    padding: 20px 0px 28px;
 }
 #mainPanel[zoom="4x"] #iconuser {font-size: 40px;}
 #mainPanel[zoom="4x"] #labelTitle
@@ -182,7 +182,7 @@ QPushButton#toolButtonClose:pressed {background-color: #d75050;}
 #mainPanel[zoom="4.5x"] #toolButtonClose,
 #mainPanel[zoom="4.5x"] #toolButtonMaximize
 {
-    padding: 23px 54px 32px;
+    padding: 23px 0px 32px;
 }
 #mainPanel[zoom="4.5x"] #iconuser {font-size: 45px;}
 #mainPanel[zoom="4.5x"] #labelTitle
@@ -195,7 +195,7 @@ QPushButton#toolButtonClose:pressed {background-color: #d75050;}
 #mainPanel[zoom="5x"] #toolButtonClose,
 #mainPanel[zoom="5x"] #toolButtonMaximize
 {
-    padding: 25px 60px 35px;
+    padding: 25px 0px 35px;
 }
 #mainPanel[zoom="5x"] #iconuser {font-size: 50px;}
 #mainPanel[zoom="5x"] #labelTitle

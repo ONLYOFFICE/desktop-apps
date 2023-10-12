@@ -17,8 +17,10 @@ QPushButton {
 
 QPushButton#toolButtonMaximize,QPushButton#toolButtonMinimize,
     QPushButton#toolButtonClose {
-        padding: 20px 48px 28px;
+        padding: 20px 0px 28px;
 }
+QPushButton#toolButtonMaximize[kde=true], QPushButton#toolButtonMinimize[kde=true],
+    QPushButton#toolButtonClose[kde=true] {padding: 8px 0px 28px;}
 
 QPushButton#toolButtonMain {
     font-size: 40px;

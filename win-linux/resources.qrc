@@ -130,7 +130,9 @@
     </qresource>
     <qresource prefix="/styles">
         <file alias="styles.qss">res/styles/styles.qss</file>
+        <file alias="styles_unix.qss">res/styles/styles_unix.qss</file>
         <file alias="editor.qss">res/styles/editor.qss</file>
+        <file alias="editor_unix.qss">res/styles/editor_unix.qss</file>
         <file alias="message.qss">res/styles/message.qss</file>
         <file alias="tabbar.qss">res/styles/tabbar.qss</file>
         <file alias="download.qss">res/styles/download.qss</file>
