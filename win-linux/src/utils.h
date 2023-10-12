@@ -135,10 +135,10 @@ namespace WindowHelper {
     {
         QWidget* m_pChild = nullptr;
     public:
-        CParentDisable(QWidget* parent = nullptr);
+        CParentDisable(QWidget* &parent);
         ~CParentDisable();
 
-        void disable(QWidget* parent);
+        void disable(QWidget* &parent);
         void enable();
     };
 

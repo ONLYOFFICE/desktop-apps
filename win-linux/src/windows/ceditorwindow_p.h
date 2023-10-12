@@ -483,7 +483,8 @@ public:
         isPrinting = true;
 
 #ifdef Q_OS_LINUX
-        WindowHelper::CParentDisable oDisabler(window->handle());
+        QWidget *parent = window->handle();
+        WindowHelper::CParentDisable oDisabler(parent);
 #endif
         if ( !(pagescount < 1) ) {
             CAscMenuEvent * pEvent;
@@ -517,9 +518,9 @@ public:
             }
 
 # ifdef FILEDIALOG_DONT_USE_NATIVEDIALOGS
-            CPrintDialog * dialog =  new CPrintDialog(printer, window->handle());
+            CPrintDialog * dialog =  new CPrintDialog(printer, parent);
 # else
-            GtkPrintDialog * dialog = new GtkPrintDialog(printer, window->handle());
+            GtkPrintDialog * dialog = new GtkPrintDialog(printer, parent);
 # endif
 #endif // _WIN32
 

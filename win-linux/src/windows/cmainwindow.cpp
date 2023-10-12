@@ -1079,7 +1079,8 @@ void CMainWindow::onDocumentPrint(void * opts)
         return;
 
 #ifdef Q_OS_LINUX
-    WindowHelper::CParentDisable disabler(qobject_cast<QWidget*>(this));
+    QWidget *parent = qobject_cast<QWidget*>(this);
+    WindowHelper::CParentDisable disabler(parent);
 #endif
 
     CCefView * pView = AscAppManager::getInstance().GetViewById(AscAppManager::printData().viewId());
@@ -1121,9 +1122,9 @@ void CMainWindow::onDocumentPrint(void * opts)
         }
 
 # ifdef FILEDIALOG_DONT_USE_NATIVEDIALOGS
-        CPrintDialog * dialog =  new CPrintDialog(printer, this);
+        CPrintDialog * dialog =  new CPrintDialog(printer, parent);
 # else
-        GtkPrintDialog * dialog = new GtkPrintDialog(printer, this);
+        GtkPrintDialog * dialog = new GtkPrintDialog(printer, parent);
 # endif
 #endif // _WIN32
 
