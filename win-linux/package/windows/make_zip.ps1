@@ -40,11 +40,11 @@ Copy-Item -Path "$BrandingDir\data\visual_elements_icon_*" `
 # Move Help
 Get-ChildItem "$BuildDir\$DesktopDir\editors\web-apps\apps\*\main\resources\help" -Directory `
     | ForEach-Object {
-        $src = Resolve-Path -Relative $_.FullName
-        $dst = $src -replace "$DesktopDir", "$DesktopHelpDir"
-        Write-Host "Move: $src > $dst" -ForegroundColor Yellow
-        New-Item $dst -ItemType Directory -Force | Out-Null
-        Move-Item -Path $src -Destination $dst -Force
+        $src = $(Split-Path $_.FullName -Parent | Resolve-Path -Relative)
+        $dst = $src.Replace("\$DesktopDir\","\$DesktopHelpDir\")
+        Write-Host "Move: $src\help > $dst" -ForegroundColor Yellow
+        New-Item "$dst" -ItemType Directory | Out-Null
+        Move-Item -Path "$src\help" -Destination "$dst"
     }
 
 if ( $DesktopDir ) {
