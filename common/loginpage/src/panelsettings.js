@@ -228,6 +228,7 @@
                                                 <section class='box-cmp-select'>
                                                     <select class='combobox' data-size='5'></select>
                                                 </section>
+                                                <button class="btn btn--primary" id="idx-btn-addtheme" l10n>Add theme</button>
                                             </div>
                                         </div>
                                         <div class='settings-field' id="opts-launch-mode" style='display:none;'>
@@ -646,6 +647,10 @@
             // }
         };
 
+        const _on_add_theme = function() {
+            sdk.command("uitheme:add", "local");
+        }
+
         return {
             init: function() {
                 baseController.prototype.init.apply(this, arguments);
@@ -673,6 +678,8 @@
                     if ( $btnApply.prop('disabled') )
                         $btnApply.prop('disabled', false);
                 });
+
+                $('#idx-btn-addtheme').on('click', _on_add_theme);
 
                 let _user_name = localStorage.getItem('username') || '';
                 let _open_mode = localStorage.getItem('docopenmode') || 'edit';

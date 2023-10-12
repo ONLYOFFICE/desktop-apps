@@ -2,6 +2,7 @@
 #define CTHEMES_H
 
 #include <QColor>
+#include <QJsonArray>
 
 #ifdef Q_OS_WIN
 # include <windows.h>
@@ -62,6 +63,7 @@ public:
     auto defaultDark() -> const CTheme&;
     auto defaultLight() -> const CTheme&;
 
+    auto addLocalTheme(const std::wstring&) -> bool;
     auto setCurrentTheme(const std::wstring&) -> void;
     auto isThemeCurrent(const std::wstring& id) -> bool;
 //    auto isThemeDark(const std::wstring& id) -> bool;
@@ -73,6 +75,7 @@ public:
     auto onSystemDarkColorScheme(bool isdark) -> void;
     auto isSystemSchemeDark() -> const bool;
     auto parseThemeName(const std::wstring&) -> std::wstring;
+    auto localThemesToJson() -> QJsonArray;
 private:
     class CThemesPrivate;
     CThemesPrivate * m_priv = nullptr;

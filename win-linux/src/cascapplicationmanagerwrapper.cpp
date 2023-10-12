@@ -333,6 +333,12 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
             applyTheme( themes().parseThemeName(pData->get_Param()) );
             return true;
         } else
+        if ( !(cmd.find(L"uitheme:add") == std::wstring::npos) ) {
+            std::wstring file_path = CEditorTools::getlocalfile(L"", event->get_SenderId()).toStdWString();
+            themes().addLocalTheme(file_path);
+            qDebug() << "theme" << file_path;
+            return true;
+        } else
         if ( !(cmd.find(L"files:check") == std::wstring::npos) ) {
             CExistanceController::check(QString::fromStdWString(pData->get_Param()));
             return true;
@@ -1112,6 +1118,10 @@ void CAscApplicationManagerWrapper::initializeApp()
 
     AscAppManager::getInstance().InitAdditionalEditorParams(wparams);
 //    AscAppManager::getInstance().applyTheme(themes().current().id(), true);
+
+    QJsonArray local_themes_array = themes().localThemesToJson();
+    if ( !local_themes_array.isEmpty() )
+        EditorJSVariables::setVariable("localthemes", local_themes_array);
 
     EditorJSVariables::setVariable("lang", CLangater::getCurrentLangCode());
     EditorJSVariables::applyVariable("theme", {
