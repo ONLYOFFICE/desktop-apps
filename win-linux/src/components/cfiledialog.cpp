@@ -145,7 +145,7 @@ bool CFileDialogWrapper::modalSaveAs(QString& fileName, int selected)
 #else
     QString _croped_name = fileName.left(fileName.lastIndexOf("."));
 #endif
-    reFilter.setPattern("\\(\\*(\\.\\w+)\\)$");
+    reFilter.setPattern("\\(\\*(\\.\\w+)");
 
     auto _exec_dialog = [=] (QWidget * p, QString n, QString f, QString& sf) {
         QFileDialog::Options _opts{QFileDialog::DontConfirmOverwrite};
