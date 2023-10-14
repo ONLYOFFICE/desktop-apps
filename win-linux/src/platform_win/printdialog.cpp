@@ -149,6 +149,7 @@ PrintDialog::PrintDialog(QPrinter *printer, QWidget *parent) :
     if (m_printer->collateCopies())
         m_options |= PrintOption::PrintCollateCopies;
     m_page_ranges.append(PageRanges(m_printer->fromPage(), m_printer->toPage()));
+    m_pages_count = m_printer->toPage();
 }
 
 PrintDialog::~PrintDialog()
@@ -345,8 +346,8 @@ QDialog::DialogCode PrintDialog::exec()
     dlg.nMaxPageRanges = MAXPAGERANGES;
     dlg.nPageRanges    = 1;
     dlg.lpPageRanges   = page_ranges;
-    dlg.nMinPage = (DWORD)m_printer->fromPage();
-    dlg.nMaxPage = (DWORD)m_printer->toPage();
+    dlg.nMinPage       = 1;
+    dlg.nMaxPage       = (DWORD)m_pages_count;
     PrintDialogCallback clb(&dialog_was_changed);
     dlg.lpCallback     = static_cast<IPrintDialogCallback*>(&clb);
 
