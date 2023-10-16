@@ -106,7 +106,11 @@ QWidget * CPresenterWindow::createMainPanel(QWidget * parent, const QString& tit
     QWidget * mainPanel = new QWidget(parent);
     mainPanel->setObjectName("mainPanel");
     mainPanel->setProperty("uitheme", QString::fromStdWString(GetCurrentTheme().id()));
-    mainPanel->setStyleSheet(AscAppManager::getWindowStylesheets(m_dpiRatio));
+    QString css(AscAppManager::getWindowStylesheets(m_dpiRatio));
+#ifdef __linux__
+    css.append(Utils::readStylesheets(":styles/styles_unix.qss"));
+#endif
+    mainPanel->setStyleSheet(css);
 
     QGridLayout * mainGridLayout = new QGridLayout(mainPanel);
     mainGridLayout->setSpacing(0);
@@ -172,6 +176,9 @@ void CPresenterWindow::setScreenScalingFactor(double factor, bool resize)
 {
     CWindowPlatform::setScreenScalingFactor(factor, resize);
     QString css(AscAppManager::getWindowStylesheets(factor));
+#ifdef __linux__
+    css.append(Utils::readStylesheets(":styles/styles_unix.qss"));
+#endif
     if (!css.isEmpty()) {                
         m_pMainPanel->setStyleSheet(css);
     }

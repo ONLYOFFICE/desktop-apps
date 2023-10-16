@@ -35,19 +35,25 @@
 #include "defines.h"
 #include "utils.h"
 #include <QTimer>
+#include <QPainter>
+#include <QX11Info>
 #include <xcb/xcb.h>
 
 #ifdef DOCUMENTSCORE_OPENSSL_SUPPORT
 # include "platform_linux/cdialogopenssl.h"
 #endif
+#define WINDOW_CORNER_RADIUS 6
 
 
 CWindowPlatform::CWindowPlatform(const QRect &rect) :
     CWindowBase(rect),
     CX11Decoration(this)
 {
-    if (isCustomWindowStyle())
+    if (isCustomWindowStyle()) {
+        if (QX11Info::isCompositingManagerRunning())
+            setAttribute(Qt::WA_TranslucentBackground);
         CX11Decoration::turnOff();
+    }
     setIsCustomWindowStyle(!CX11Decoration::isDecorated());
     setFocusPolicy(Qt::StrongFocus);
     setProperty("stabilized", true);
@@ -143,6 +149,30 @@ void CWindowPlatform::setScreenScalingFactor(double factor, bool resize)
 {
     CX11Decoration::onDpiChanged(factor);
     CWindowBase::setScreenScalingFactor(factor, resize);
+}
+
+void CWindowPlatform::paintEvent(QPaintEvent *event)
+{
+    CWindowBase::paintEvent(event);
+    if (!QX11Info::isCompositingManagerRunning())
+        return;
+
+    QPainter pnt(this);
+    pnt.setRenderHint(QPainter::Antialiasing);
+    int d = 2 * WINDOW_CORNER_RADIUS * m_dpiRatio;
+    QPainterPath path;
+    path.moveTo(width(), d/2);
+    path.arcTo(width() - d, 0, d, d, 0, 90);
+    path.lineTo(d/2, 0);
+    path.arcTo(0, 0, d, d, 90, 90);
+    path.lineTo(0, height());
+    path.lineTo(width(), height());
+    path.lineTo(width(), d/2);
+    path.closeSubpath();
+    pnt.fillPath(path, palette().window().color());
+    QColor borderColor = property("borderColor").value<QColor>();
+    pnt.strokePath(path, QPen(borderColor, 1));
+    pnt.end();
 }
 
 /** Private **/

@@ -57,6 +57,7 @@
 typedef HRESULT (__stdcall *SetCurrentProcessExplicitAppUserModelIDProc)(PCWSTR AppID);
 #else
 # include <QEventLoop>
+# include <QX11Info>
 #include <sys/stat.h>
 #include <stdlib.h>
 #endif
@@ -821,7 +822,7 @@ std::wstring Utils::appUserName()
 
 namespace WindowHelper {
 #ifdef Q_OS_LINUX
-    CParentDisable::CParentDisable(QWidget* parent)
+    CParentDisable::CParentDisable(QWidget* &parent)
     {
         disable(parent);
     }
@@ -831,16 +832,27 @@ namespace WindowHelper {
         enable();
     }
 
-    void CParentDisable::disable(QWidget* parent)
+    void CParentDisable::disable(QWidget* &parent)
     {
         if (parent) {
             parent->setProperty("blocked", true);
-            QEventLoop loop;  // Fixed Cef rendering before reopening the dialog
-            QTimer::singleShot(60, &loop, SLOT(quit()));
-            loop.exec();
-            m_pChild = new QWidget(parent, Qt::FramelessWindowHint | Qt::SubWindow  | Qt::BypassWindowManagerHint);
+            Qt::WindowFlags flags = Qt::FramelessWindowHint;
+            if (!QX11Info::isCompositingManagerRunning()) {
+                flags |= (Qt::SubWindow | Qt::BypassWindowManagerHint);
+                QEventLoop loop;  // Fixed Cef rendering before reopening the dialog
+                QTimer::singleShot(60, &loop, SLOT(quit()));
+                loop.exec();
+            } else
+                flags |= Qt::Dialog;
+            m_pChild = new QWidget(parent, flags);
             m_pChild->setAttribute(Qt::WA_TranslucentBackground);
-            m_pChild->setGeometry(0, 0, parent->width(), parent->height());
+            if (QX11Info::isCompositingManagerRunning()) {
+                m_pChild->setWindowModality(Qt::ApplicationModal);
+                m_pChild->move(parent->pos() - QPoint(10,10));
+                m_pChild->setFixedSize(parent->size() + QSize(20,20));
+                parent = m_pChild;
+            } else
+                m_pChild->setGeometry(parent->rect());
             m_pChild->show();
         }
     }
@@ -850,7 +862,7 @@ namespace WindowHelper {
         if ( m_pChild ) {
             if (m_pChild->parent())
                 m_pChild->parent()->setProperty("blocked", false);
-            m_pChild->deleteLater();
+            delete m_pChild, m_pChild = nullptr;
         }
     }
 

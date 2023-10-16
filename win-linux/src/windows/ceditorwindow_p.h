@@ -79,6 +79,9 @@ auto prepare_editor_css(AscEditorType type, const CTheme& theme) -> QString {
     case AscEditorType::etPdf: c = theme.value(CTheme::ColorRole::ecrTabViewerActive); break;
     }
     QString g_css(Utils::readStylesheets(":/styles/editor.qss"));
+#ifdef __linux__
+    g_css.append(Utils::readStylesheets(":styles/editor_unix.qss"));
+#endif
     return g_css.arg(QString::fromStdWString(c));
 }
 
@@ -206,7 +209,7 @@ public:
         int right_btns = 3;
         int spacing = window->m_boxTitleBtns->layout()->spacing();
         int left_offset = left_btns*TOOLBTN_WIDTH + 3*spacing; // added extra spacing
-        int right_offset = right_btns*(TOOLBTN_WIDTH + spacing);
+        int right_offset = right_btns*(TITLEBTN_WIDTH + spacing);
         int diffW = (left_offset - right_offset)*dpiRatio;
         if (iconuser) {
             diffW -= ICON_SPACER_WIDTH + spacing*dpiRatio;
@@ -394,6 +397,9 @@ public:
             window->m_css = prepare_editor_css(editor_type, GetCurrentTheme());
             QString css(AscAppManager::getWindowStylesheets(window->m_dpiRatio));
             css.append(window->m_css);
+#ifdef __linux__
+            css.append(Utils::readStylesheets(":styles/styles_unix.qss"));
+#endif
             window->m_pMainPanel->setStyleSheet(css);
         }
         setWindowColors();
@@ -477,7 +483,8 @@ public:
         isPrinting = true;
 
 #ifdef Q_OS_LINUX
-        WindowHelper::CParentDisable oDisabler(window->handle());
+        QWidget *parent = window->handle();
+        WindowHelper::CParentDisable oDisabler(parent);
 #endif
         if ( !(pagescount < 1) ) {
             CAscMenuEvent * pEvent;
@@ -511,9 +518,9 @@ public:
             }
 
 # ifdef FILEDIALOG_DONT_USE_NATIVEDIALOGS
-            CPrintDialog * dialog =  new CPrintDialog(printer, window->handle());
+            CPrintDialog * dialog =  new CPrintDialog(printer, parent);
 # else
-            GtkPrintDialog * dialog = new GtkPrintDialog(printer, window->handle());
+            GtkPrintDialog * dialog = new GtkPrintDialog(printer, parent);
 # endif
 #endif // _WIN32
 
@@ -608,7 +615,7 @@ public:
             }
 
             for (const auto& btn: m_mapTitleButtons) {
-                btn->setFixedSize(QSize(int(TOOLBTN_WIDTH*f), int(TOOLBTN_HEIGHT*f)));
+                btn->setFixedSize(QSize(int(TITLEBTN_WIDTH*f), int(TOOLBTN_HEIGHT*f)));
                 btn->setIconSize(QSize(20,20) * f);
             }
             centerTitle(f);
@@ -828,7 +835,7 @@ public:
         if ( iconcrypted )
             basewidth -= iconcrypted->width();
 
-        basewidth -= m_mapTitleButtons.count() * (TOOLBTN_WIDTH + 1) * window->m_dpiRatio;
+        basewidth -= m_mapTitleButtons.count() * (TITLEBTN_WIDTH + 1) * window->m_dpiRatio;
 
         return basewidth;
     }

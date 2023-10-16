@@ -72,6 +72,7 @@ CMainWindow::CMainWindow(const QRect &rect) :
     setObjectName("MainWindow");
     m_pMainPanel = createMainPanel(this);
     setCentralWidget(m_pMainPanel);
+    QString css{AscAppManager::getWindowStylesheets(m_dpiRatio)};
 #ifdef __linux__
     setAcceptDrops(true);
     if (isCustomWindowStyle()) {
@@ -80,8 +81,9 @@ CMainWindow::CMainWindow(const QRect &rect) :
         setMouseTracking(true);
     }
     QMetaObject::connectSlotsByName(this);
-#endif
-    m_pMainPanel->setStyleSheet(AscAppManager::getWindowStylesheets(m_dpiRatio));
+    css.append(Utils::readStylesheets(":styles/styles_unix.qss"));
+#endif    
+    m_pMainPanel->setStyleSheet(css);
     updateScalingFactor(m_dpiRatio);
     goStart();
 }
@@ -174,7 +176,7 @@ bool CMainWindow::pointInTabs(const QPoint& pt)
 {
     QRect _rc_title(m_pMainPanel->geometry());
     _rc_title.setHeight(tabWidget()->tabBar()->height());
-    _rc_title.adjust(m_pButtonMain->width(), 1, -3*int(TOOLBTN_WIDTH*m_dpiRatio), 0);
+    _rc_title.adjust(m_pButtonMain->width(), 1, -3*int(TITLEBTN_WIDTH*m_dpiRatio), 0);
     return _rc_title.contains(mapFromGlobal(pt));
 }
 
@@ -1077,7 +1079,8 @@ void CMainWindow::onDocumentPrint(void * opts)
         return;
 
 #ifdef Q_OS_LINUX
-    WindowHelper::CParentDisable disabler(qobject_cast<QWidget*>(this));
+    QWidget *parent = qobject_cast<QWidget*>(this);
+    WindowHelper::CParentDisable disabler(parent);
 #endif
 
     CCefView * pView = AscAppManager::getInstance().GetViewById(AscAppManager::printData().viewId());
@@ -1119,9 +1122,9 @@ void CMainWindow::onDocumentPrint(void * opts)
         }
 
 # ifdef FILEDIALOG_DONT_USE_NATIVEDIALOGS
-        CPrintDialog * dialog =  new CPrintDialog(printer, this);
+        CPrintDialog * dialog =  new CPrintDialog(printer, parent);
 # else
-        GtkPrintDialog * dialog = new GtkPrintDialog(printer, this);
+        GtkPrintDialog * dialog = new GtkPrintDialog(printer, parent);
 # endif
 #endif // _WIN32
 
@@ -1375,7 +1378,7 @@ void CMainWindow::updateScalingFactor(double dpiratio)
     layoutBtns->setSpacing(int(1 * dpiratio));
     if (isCustomWindowStyle()) {
         layoutBtns->setContentsMargins(0,0,0,0);
-        QSize small_btn_size(int(TOOLBTN_WIDTH*dpiratio), int(TOOLBTN_HEIGHT*dpiratio));
+        QSize small_btn_size(int(TITLEBTN_WIDTH*dpiratio), int(TOOLBTN_HEIGHT*dpiratio));
         foreach (auto btn, m_pTopButtons)
             btn->setFixedSize(small_btn_size);
     }*/
@@ -1399,6 +1402,9 @@ void CMainWindow::setScreenScalingFactor(double factor, bool resize)
 {
     CWindowPlatform::setScreenScalingFactor(factor, resize);
     QString css(AscAppManager::getWindowStylesheets(factor));
+#ifdef __linux__
+    css.append(Utils::readStylesheets(":styles/styles_unix.qss"));
+#endif
     if (!css.isEmpty()) {
         m_pMainPanel->setStyleSheet(css);
     }
