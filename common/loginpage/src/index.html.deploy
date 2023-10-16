@@ -111,14 +111,8 @@
     </div>
 
     <div class="injected-svg">
-    <inline src="../res/img/connect1-light.svg" />
-    <inline src="../res/img/connect2-light.svg" />
-    <inline src="../res/img/connect3-light.svg" />
-    <inline src="../res/img/connect1-dark.svg" />
-    <inline src="../res/img/connect2-dark.svg" />
-    <inline src="../res/img/connect3-dark.svg" />
-    <inline src="../res/img/welcome-light.svg" />
-    <inline src="../res/img/welcome-dark.svg" />
+    <inline src="../res/img/allconnect.svg" />
+    <inline src="../res/img/allwelcome.svg" />
     <inline src="../res/img/logo.svg" />
     <inline src="../res/img/update_status.svg" />
     </div>

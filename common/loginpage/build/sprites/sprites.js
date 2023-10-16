@@ -6,26 +6,18 @@ module.exports = (grunt, rootpathprefix) => {
             options: {
                 svg: {
                     rootAttributes: {
-                        //xmlns:'http://www.w3.org/2000/svg',
+                        xmlns:'http://www.w3.org/2000/svg',
+                        fill: 'none',
                     },
                 },
                 shape: {
                     id: {
                         separator: ""
                     },
-                    transform: [{
-                        svgo: {
-                            plugins: [
-                                'removeXMLNS',
-                                {
-                                    name: "removeAttrs",
-                                    params: {
-                                        attrs: "(fill|stroke)"
-                                    }
-                                },
-                            ]
-                        },
-                    }]
+                    transform: [],
+                    dimension: {
+                        attributes: true
+                    }
                 },
                 mode: {
                     symbol: {
@@ -43,7 +35,7 @@ module.exports = (grunt, rootpathprefix) => {
                             sprite: `allconnect.svg`,
                         },
                     },
-                }
+                },
             },
             allwelcome: {
                 src: [`${_path}res/img/welcome*.svg`],
@@ -84,9 +76,23 @@ module.exports = (grunt, rootpathprefix) => {
                     },
                 }
             },
+        },
+        replace_allconnect:{
+            dist: {
+                files:[ {
+                    src: [`${_path}res/img/allconnect.svg`],
+                    dest: `${_path}res/img/`,
+                }],
+                options: {
+                    replacements: [{
+                        pattern: ' fill="#fff"',
+                        replacement: ' fill="white"',
+                    }]
+                }
+            }
         }
     });
 
     grunt.loadNpmTasks('grunt-svg-sprite');
-    grunt.registerTask('generate-sprite', ['svg_sprite']);
+    grunt.registerTask('generate-sprite', ['svg_sprite', 'replace_allconnect']);
 }
