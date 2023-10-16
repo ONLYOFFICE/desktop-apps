@@ -111,7 +111,7 @@ namespace NS_Utils
         DWORD session_id = GetActiveSessionId();
         WTSSendMessageW(WTS_CURRENT_SERVER_HANDLE, session_id, title, title_size,
                             const_cast<LPTSTR>(str.c_str()), (DWORD)str.size() * sizeof(wchar_t),
-                            MB_OK | MB_ICONERROR | MB_SERVICE_NOTIFICATION_NT3X | MB_SETFOREGROUND, 8, &res, TRUE);
+                            MB_OK | MB_ICONERROR | MB_SERVICE_NOTIFICATION_NT3X | MB_SETFOREGROUND, 30, &res, TRUE);
         return res;
     }
 }
