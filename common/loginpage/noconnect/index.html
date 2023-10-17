@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>ONLYOFFICE Documents error</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+
+    <style>
+        html {
+            height: 100%;
+        }
+
+        body {
+            margin: 0;
+            height: 100%;
+
+            --text-normal: rgba(0,0,0,.8);
+        }
+
+        body.theme-type-dark {
+            background-color: #333;
+            --text-normal: rgba(255,255,255,.8);
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+    <link rel="stylesheet" href="../noconnect/styles.css" />
+</head>
+<body>
+    <script src="../vendor/svg-injector/svg-injector.min.js"></script>
+    <div class="hidden">
+        <img class="inline-svg" src="./connection_error.svg">
+    </div>
+    <script>
+        var svgpoints = document.querySelectorAll('img.inline-svg');
+        SVGInjector(svgpoints, {evalScripts:'never'});
+    </script>
+    <!-- <script src="./locale.js"></script> -->
+    <script src="./code.js"></script>
+    <script src="./l10n/ru.js"></script>
+    <script src="./init.js"></script>
+</body>
+</html>
