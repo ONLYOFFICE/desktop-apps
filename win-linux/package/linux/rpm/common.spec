@@ -44,6 +44,8 @@ cp -r $COMMON/opt/desktopeditors/* $DESKTOPEDITORS_PREFIX
 cp -t $BIN_DIR $COMMON/usr/bin/%{_desktopeditors_exec}
 cp -t $DATA_DIR/applications $COMMON/usr/share/applications/%{_desktopeditors_exec}.desktop
 echo "package = rpm" > $DESKTOPEDITORS_PREFIX/converter/package.config
+mkdir -p $DATA_DIR/doc/%{_package_name}
+cp $COMMON/usr/share/doc/%{_package_name}/NEWS $DATA_DIR/doc/%{_package_name}
 
 %if "%{_company_name}" == "ONLYOFFICE"
 # help
@@ -72,13 +74,11 @@ rm -rf "%{buildroot}"
 %files
 %attr(-, root, root) /opt/*
 %attr(-, root, root) %{_datadir}/applications/*
+%attr(-, root, root) %{_datadir}/doc/*
 %attr(755, root, root) %{_bindir}/%{_desktopeditors_exec}
 %if "%{_company_name}" == "ONLYOFFICE"
 %attr(-, root, root) %{_bindir}/desktopeditors
-%exclude /opt/%{_desktopeditors_prefix}/editors/web-apps/apps/common/main/resources/help
-%exclude /opt/%{_desktopeditors_prefix}/editors/web-apps/apps/documenteditor/main/resources/help
-%exclude /opt/%{_desktopeditors_prefix}/editors/web-apps/apps/presentationeditor/main/resources/help
-%exclude /opt/%{_desktopeditors_prefix}/editors/web-apps/apps/spreadsheeteditor/main/resources/help
+%exclude /opt/%{_desktopeditors_prefix}/editors/web-apps/apps/*/main/resources/help
 %else
 %attr(755, root, root) %{_bindir}/%{_imageviewer_exec}
 %attr(755, root, root) %{_bindir}/%{_videoplayer_exec}
@@ -89,10 +89,7 @@ rm -rf "%{buildroot}"
 %if "%{_company_name}" == "ONLYOFFICE"
 %files help
 %defattr(-, root, root, -)
-/opt/%{_desktopeditors_prefix}/editors/web-apps/apps/common/main/resources/help
-/opt/%{_desktopeditors_prefix}/editors/web-apps/apps/documenteditor/main/resources/help
-/opt/%{_desktopeditors_prefix}/editors/web-apps/apps/presentationeditor/main/resources/help
-/opt/%{_desktopeditors_prefix}/editors/web-apps/apps/spreadsheeteditor/main/resources/help
+/opt/%{_desktopeditors_prefix}/editors/web-apps/apps/*/main/resources/help
 %endif
 
 %pre
@@ -121,22 +118,11 @@ if [ -x "$UPDATE_MENUS" ]; then
   update-menus
 fi
 
-MIMEAPPS_LIST="/usr/share/applications/mimeapps.list"
-if [ ! -f "$MIMEAPPS_LIST" ]; then
-  echo "[Default Applications]" >"$MIMEAPPS_LIST"
-fi
-if [ $(cat "$MIMEAPPS_LIST" | grep x-scheme-handler/%{_scheme_handler} | wc -l) -eq "0" ]; then
-  echo "x-scheme-handler/%{_scheme_handler}=%{_desktopeditors_exec}.desktop" >>"$MIMEAPPS_LIST"
-fi
-if [ $(cat "$MIMEAPPS_LIST" | grep text/docxf | wc -l) -eq "0" ]; then
-  echo "text/docxf=%{_desktopeditors_exec}.desktop" >>"$MIMEAPPS_LIST"
-fi
-if [ $(cat "$MIMEAPPS_LIST" | grep text/oform | wc -l) -eq "0" ]; then
-  echo "text/oform=%{_desktopeditors_exec}.desktop" >>"$MIMEAPPS_LIST"
-fi
-
 xdg-mime install --mode system /opt/%{_desktopeditors_prefix}/mimetypes/onlyoffice-docxf.xml
 xdg-mime install --mode system /opt/%{_desktopeditors_prefix}/mimetypes/onlyoffice-oform.xml
+
+update-mime-database /usr/share/mime
+update-desktop-database /usr/share/applications
 
 # Update cache of .desktop file MIME types. Non-fatal since it's just a cache.
 #update-desktop-database > /dev/null 2>&1 || true
@@ -192,3 +178,7 @@ for icon in "/opt/%{_desktopeditors_prefix}/asc-de-"*.png; do
   size="${icon##*/asc-de-}"
   "$XDG_ICON_RESOURCE" install --size "${size%.png}" "$icon" "%{_package_name}"
 done
+
+%changelog
+
+%include ../common/usr/share/doc/%{_package_name}/ChangeLog

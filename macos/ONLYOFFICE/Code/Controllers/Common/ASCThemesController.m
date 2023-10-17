@@ -103,18 +103,20 @@
                 return [NSColor colorNamed:@"tab-portal-activeColor"];
             else return kColorRGBA(255, 255, 255, 1.0);
         }
-    } else if ([name isEqualToString:tabWordActiveBackgroundColor]) {
+    } else {
         if ( [theme isEqualToString:uiThemeDark] ) return UIColorFromRGB(0x2a2a2a);
         else if ( [theme isEqualToString:uiThemeContrastDark] ) return UIColorFromRGB(0x1e1e1e);
-        else return [NSColor brendDocumentEditor];
-    } else if ([name isEqualToString:tabCellActiveBackgroundColor]) {
-        if ( [theme isEqualToString:uiThemeDark] ) return UIColorFromRGB(0x2a2a2a);
-        else if ( [theme isEqualToString:uiThemeContrastDark] ) return UIColorFromRGB(0x1e1e1e);
-        else return [NSColor brendSpreadsheetEditor];
-    } else if ([name isEqualToString:tabSlideActiveBackgroundColor]) {
-        if ( [theme isEqualToString:uiThemeDark] ) return UIColorFromRGB(0x2a2a2a);
-        else if ( [theme isEqualToString:uiThemeContrastDark] ) return UIColorFromRGB(0x1e1e1e);
-        else return [NSColor brendPresentationEditor];
+        else {
+            if ([name isEqualToString:tabWordActiveBackgroundColor]) {
+               return [NSColor brendDocumentEditor];
+            } else if ([name isEqualToString:tabCellActiveBackgroundColor]) {
+               return [NSColor brendSpreadsheetEditor];
+            } else if ([name isEqualToString:tabSlideActiveBackgroundColor]) {
+               return [NSColor brendPresentationEditor];
+            } else if ([name isEqualToString:tabPdfActiveBackgroundColor]) {
+               return [NSColor brandPdfEditor];
+            }
+        }
     }
 
     return NULL;

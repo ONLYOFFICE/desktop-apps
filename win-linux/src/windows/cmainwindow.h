@@ -117,7 +117,6 @@ public slots:
     void onEditorActionRequest(int, const QString&);
     void onTabsCountChanged(int, int, int);
     void onWebAppsFeatures(int id, std::wstring);
-    void onCloudDocumentOpen(std::wstring, int, bool);
     void onDocumentType(int id, int type);
     void onDocumentName(void *);
     void onEditorConfig(int, std::wstring cfg);
@@ -137,6 +136,7 @@ public slots:
     void onFileLocation(int, QString);
     void onPortalOpen(QString);
     void onPortalLogout(std::wstring portal);
+    void onPortalLogin(int viewid, const std::wstring& json);
     void onPortalNew(QString);
     void onPortalCreate();
     void onOutsideAuth(QString);
@@ -148,20 +148,16 @@ public slots:
 
 private:
     QWidget * createMainPanel(QWidget *parent);
-    inline CTabBar *tabBar();
     int  trySaveDocument(int);
 
-    CTabBarWrapper*  m_pTabBarWrapper;
-    CAscTabWidget *  m_pTabs;
-    CSVGPushButton*  m_pButtonMain;
-    QWidget*         m_pMainWidget;
-    QPushButton*     m_pButtonProfile;
-    CDownloadWidget* m_pWidgetDownload;
+    CAscTabWidget *  m_pTabs = nullptr;
+    CSVGPushButton*  m_pButtonMain = nullptr;
+    QWidget*         m_pMainWidget = nullptr;
+    QPushButton*     m_pButtonProfile = nullptr;
+    CDownloadWidget* m_pWidgetDownload = nullptr;
     QString          m_savePortal;
-    bool             m_isMaximized;
-    int              m_saveAction;
-    struct           printdata;
-    printdata*       m_printData;
+    bool             m_isMaximized = false;
+    int              m_saveAction = 0;
 
     bool m_isCloseAll = false;
 

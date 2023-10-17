@@ -38,7 +38,7 @@
 "Do you want to save the changes made to the document \"%@\"?" = "क्या आप दस्तावेज़ में किए गए बदलावों को सहेजना चाहते हैं \"%@\"?";
 
 /* No comment provided by engineer. */
-"Document %ld.docx" = "दस्तावेज़ %आईडी.डॉक्स";
+"Document %ld.docx" = "दस्तावेज़ %आईडी.docx";
 
 /* No comment provided by engineer. */
 "Document template" = "दस्तावेज़ टेम्पलेट (*.dotx)";
@@ -134,7 +134,7 @@
 "Preparing..." = "तैयार कर रहा है...";
 
 /* No comment provided by engineer. */
-"Presentation %ld.pptx" = "प्रस्तुति %आईडी.पीपीटीएक्स";
+"Presentation %ld.pptx" = "प्रस्तुति %आईडी.pptx";
 
 /* No comment provided by engineer. */
 "Presentation template" = "प्रस्तुति टेम्पलेट (*.potx)";
@@ -155,7 +155,7 @@
 "Save the document?" = "दस्तावेज़ को सहेजें?";
 
 /* No comment provided by engineer. */
-"Spreadsheet %ld.xlsx" = "स्प्रेडशीट %आईडी.एक्सएलएसएक्स";
+"Spreadsheet %ld.xlsx" = "स्प्रेडशीट %आईडी.xlsx";
 
 /* No comment provided by engineer. */
 "Spreadsheet template" = "स्प्रेडशीट टेम्पलेट (*.xltx)";

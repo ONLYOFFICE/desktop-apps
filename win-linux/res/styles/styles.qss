@@ -1,6 +1,5 @@
 
-#mainPanel,
-#tabWrapper {
+#mainPanel {
     margin: 0;
     padding: 0;
     background: #f1f1f1;
@@ -18,75 +17,12 @@
     font-size: 11px;
 }
 
-#paddingWidget {
-    min-width: 0px;
-    max-width: 0px;
-    border: none; background: transparent;
-}
-
-#scrollerFrame {
-    min-width: 32px;
-    max-width: 32px;
-    border: none; background: transparent;
-}
-
-#scrollerFrame>QToolButton {
-    margin: 0px;
-    border: none; background-color: #f1f1f1;
-}
-#scrollerFrame>QToolButton:hover {background-color: #cecece;}
-#scrollerFrame>QToolButton:pressed {background-color: #b7b7b7;}
-
-#scrollerFrame>QToolButton#leftButton {
-    image: url(:/tabbar/icons/scrolltab_ln.png) center no-repeat;
-}
-
-#scrollerFrame>QToolButton#leftButton:disabled {
-    image: url(:/tabbar/icons/scrolltab_ld.png) center no-repeat;
-}
-
-#scrollerFrame>QToolButton#leftButton:hover {
-    image: url(:/tabbar/icons/scrolltab_lh.png) center no-repeat;
-}
-
-#scrollerFrame>QToolButton#leftButton:pressed {
-    image: url(:/tabbar/icons/scrolltab_lp.png) center no-repeat;
-}
-
-#scrollerFrame>QToolButton#rightButton {
-    image: url(:/tabbar/icons/scrolltab_rn.png) center no-repeat;
-}
-
-#scrollerFrame>QToolButton#rightButton:disabled {
-    image: url(:/tabbar/icons/scrolltab_rd.png) center no-repeat;
-}
-
-#scrollerFrame>QToolButton#rightButton:hover {
-    image: url(:/tabbar/icons/scrolltab_rh.png) center no-repeat;
-}
-
-#scrollerFrame>QToolButton#rightButton:pressed {
-    image: url(:/tabbar/icons/scrolltab_rp.png) center no-repeat;
-}
-
-QPushButton#toolButtonMaximize, QPushButton#toolButtonMain,
-    QPushButton#toolButtonMinimize, QPushButton#toolButtonClose,
-    QPushButton#toolButtonDownload {
-        border: none;
-        margin: 0;
-        padding: 0;
-        border-radius:0;
-}
-
-QPushButton#toolButtonDownload {
-    background-origin: content;
-    padding: 6px;
-}
-
-QPushButton#toolButtonMaximize,QPushButton#toolButtonMinimize,
-    QPushButton#toolButtonClose {
-        background-origin: content;
-        padding: 5px 12px 7px;
+QPushButton {
+    /*background-color:#d9d9d9;*/
+    padding:0 20px;
+    font-weight: normal;
+    height: 22px;
+    font-size: 12px;
 }
 
 QPushButton[act=tool] {
@@ -106,6 +42,21 @@ QPushButton[act=tool]:pressed {
     background-color:#b7b7b7;
 }
 
+QPushButton#toolButtonMaximize, QPushButton#toolButtonMain,
+    QPushButton#toolButtonMinimize, QPushButton#toolButtonClose,
+    QPushButton#toolButtonDownload {
+        border: none;
+        margin: 0;
+        padding: 0;
+        border-radius:0;
+}
+
+QPushButton#toolButtonMaximize,QPushButton#toolButtonMinimize,
+    QPushButton#toolButtonClose {
+        background-origin: content;
+        padding: 5px 12px 7px;
+}
+
 QPushButton#toolButtonClose:hover {
     background-color:#d42b2b;
 }
@@ -115,48 +66,24 @@ QPushButton#toolButtonClose:pressed {
 }
 
 QPushButton#toolButtonMaximize {
-    background-image:url(:/res/icons/maximize.png);
+    image: url(:/restore.svg) center no-repeat;
 }
-
-QPushButton#toolButtonMaximize[class=normal] {
-    background-position: left top;
-}
-
-QPushButton#toolButtonMaximize[class=normal]:hover,
-    QPushButton#pushButtonMaximize[class=normal]:pressed {
-        background-position: right top;
-}
-
 
 QPushButton#toolButtonMaximize[class=min] {
-    background-position: left bottom;
+    image: url(:/maximize.svg) center no-repeat;
 }
 
-QPushButton#toolButtonMaximize[class=min]:hover,
-    QPushButton#toolButtonMaximize[class=min]:pressed {
-        background-position: right bottom;
+QPushButton#toolButtonMinimize {
+    image: url(:/minimize.svg) center no-repeat;
 }
 
-QPushButton#toolButtonMinimize, QPushButton#toolButtonClose {
-    background-image:url(:/res/icons/minimize-close.png);
-}
-
-QPushButton#toolButtonMinimize[class=normal] {
-    background-position: left top;
-}
-
-QPushButton#toolButtonMinimize[class=normal]:hover,
-    QPushButton#toolButtonMinimize[class=normal]:pressed {
-        background-position: right top;
-}
-
-QPushButton#toolButtonClose[class=normal] {
-    background-position: left bottom;
+QPushButton#toolButtonClose {
+    image: url(:/close.svg) center no-repeat;
 }
 
 QPushButton#toolButtonClose[class=normal]:hover,
     QPushButton#toolButtonClose[class=normal]:pressed {
-        background-position: right bottom;
+        image: url(:/close_light.svg) center no-repeat;
 }
 
 QPushButton#toolButtonMain {
@@ -205,17 +132,17 @@ QPushButton::menu-indicator {
     /*border: 1px solid white;*/
     width: 10px;
     height: 10px;
-    border-image: url(:/res/icons/menu-indicator.png) 0 0 0 0 repeat repeat;
+    image: url(:/menu_indicator_normal_light.svg);
     left: -2px;
     top: -2px;
 }
 
 QPushButton::menu-indicator:disabled {
-    border-image: url(:/res/icons/menu-indicator.png) 0 0 0 10 repeat repeat;
+    image: url(:/menu_indicator_pressed_light.svg);
 }
 
 QPushButton::menu-indicator:hover {
-    border-image: url(:/res/icons/menu-indicator.png) 0 10 0 0 repeat repeat;
+    image: url(:/menu_indicator_hover_light.svg);
 }
 
 /*QPushButton[theme=dark]::menu-indicator {*/
@@ -231,7 +158,8 @@ QPushButton::menu-indicator:hover {
 /*}*/
 
 QPushButton#toolButtonDownload {
-    /*background-repeat: no-repeat;*/
+    background-origin: content;
+    padding: 6px;
 }
 
 QPushButton#toolButtonDownload::menu-indicator {
@@ -244,9 +172,7 @@ QPushButton#toolButtonDownload::menu-indicator {
 /**************************/
 
 #mainPanel[uitheme=theme-dark],
-#mainPanel[uitheme=theme-dark] #tabWrapper,
-#mainPanel[uitheme=theme-dark] #CX11Caption,
-#mainPanel[uitheme=theme-dark] QTabBar {
+#mainPanel[uitheme=theme-dark] #CX11Caption {
     background-color: #404040;
 }
 
@@ -271,13 +197,19 @@ QPushButton#toolButtonDownload::menu-indicator {
 }
 
 #mainPanel[uithemetype=dark] QPushButton#toolButtonMaximize {
-    background-image:url(:/max_light.png);
+    image: url(:/restore_light.svg) center no-repeat;
 }
 
-#mainPanel[uithemetype=dark] QPushButton#toolButtonMinimize,
-    #mainPanel[uithemetype=dark] QPushButton#toolButtonClose
-{
-    background-image:url(:/minclose_light.png);
+#mainPanel[uithemetype=dark] QPushButton#toolButtonMaximize[class=min] {
+    image: url(:/maximize_light.svg) center no-repeat;
+}
+
+#mainPanel[uithemetype=dark] QPushButton#toolButtonMinimize {
+    image: url(:/minimize_light.svg) center no-repeat;
+}
+
+#mainPanel[uithemetype=dark] QPushButton#toolButtonClose {
+    image: url(:/close_light.svg) center no-repeat;
 }
 
 #mainPanel[uitheme=theme-dark] QPushButton#toolButtonMinimize:hover,
@@ -292,110 +224,37 @@ QPushButton#toolButtonDownload::menu-indicator {
     background-color: #606060;
 }
 
-#mainPanel[uitheme=theme-dark] QTabBar QToolButton::left-arrow,
-    #mainPanel[uitheme=theme-dark] QTabBar QToolButton::right-arrow
-{
-    background-color: #606060;
+/* Contrast-Dark*/
+
+#mainPanel[uitheme=theme-contrast-dark],
+#mainPanel[uitheme=theme-contrast-dark] #CX11Caption {
+    background-color: #2a2a2a;
 }
 
-#mainPanel[uitheme=theme-dark] QTabBar QToolButton:pressed {
-    background-color: #606060;
-}
-
-
-#mainPanel[uitheme=theme-dark] QPrintDialog,
-    #mainPanel[uitheme=theme-dark] QPrintPropertiesDialog
-{
-    background-color: #404040;
-}
-
-#mainPanel[uitheme=theme-dark] QPrintDialog QLabel {
+#mainPanel[uitheme=theme-contrast-dark] #labelAppTitle {
     color: #d9d9d9;
 }
 
-#mainPanel[uitheme=theme-dark] QPrintDialog QPushButton,
-    #mainPanel[uitheme=theme-dark] QPrintDialog QToolButton
+#mainPanel[uitheme=theme-contrast-dark] QPushButton#toolButtonMain[class=active] {
+    background: #1e1e1e;
+}
+
+#mainPanel[uitheme=theme-contrast-dark] QPushButton#toolButtonMain {
+    border-right-color: #414141;
+}
+
+#mainPanel[uitheme=theme-contrast-dark] QPushButton#toolButtonMain[class=normal] {
+    background: #2a2a2a;
+}
+
+#mainPanel[uitheme=theme-contrast-dark] QPushButton#toolButtonMain[class=normal]:hover {
+    background: #424242;
+}
+
+#mainPanel[uitheme=theme-contrast-dark] QPushButton#toolButtonMinimize:hover,
+    #mainPanel[uitheme=theme-contrast-dark] QPushButton#toolButtonMaximize:hover
 {
     background-color: #555;
-    color: #d9d9d9;
-    border: 1px solid rgba(255,255,255,.8);
-}
-
-#mainPanel[uitheme=theme-dark] QPrintDialog QPushButton:focus {
-    border: 2px solid rgba(255,255,255,.9);
-}
-
-#mainPanel[uitheme=theme-dark] QPrintDialog QLineEdit {
-    background-color: #404040;
-    color: #d9d9d9;
-}
-
-#mainPanel[uitheme=theme-dark] QPrintDialog QGroupBox {
-    background-color: #404040;
-}
-
-#mainPanel[uitheme=theme-dark] QPrintDialog QGroupBox::title {
-    color: #d9d9d9;
-}
-
-#mainPanel[uitheme=theme-dark] QPrintDialog QComboBox{
-    background-color: #404040;
-    selection-background-color: #606060;
-    color: #d9d9d9;
-}
-
-#mainPanel[uitheme=theme-dark] QPrintDialog QComboBox QAbstractItemView {
-    background-color: #404040;
-}
-
-
-#mainPanel[uitheme=theme-dark] QPrintDialog QRadioButton,
-    #mainPanel[uitheme=theme-dark] QPrintDialog QCheckBox
-{
-    color: #d9d9d9;
-}
-
-#mainPanel[uitheme=theme-dark] QPrintDialog QTabWidget::pane {
-    background-color: #404040;
-    border: 1px solid rgba(255,255,255,.8);
-    position:absolute;
-    top:-1px;
-}
-
-#mainPanel[uitheme=theme-dark] QPrintDialog QWidget {
-    background-color: #404040;
-}
-
-#mainPanel[uitheme=theme-dark] QPrintDialog QTabBar::tab {
-    color: #d9d9d9;
-}
-
-#mainPanel[uitheme=theme-dark] QSpinBox,
-    #mainPanel[uitheme=theme-dark] QDoubleSpinBox,
-    #mainPanel[uitheme=theme-dark] QTimeEdit
-{
-    background-color: #404040;
-    color: #d9d9d9;
-}
-
-#mainPanel[uitheme=theme-dark] QPrintDialog *::up-arrow {
-    border-image: url(:/arrow_down_dark.png) 3 0 0 0 repeat repeat;
-}
-
-#mainPanel[uitheme=theme-dark] QPrintDialog *::up-arrow:disabled,
-    #mainPanel[uitheme=theme-dark] QPrintDialog *::up-arrow:off
-{
-    border-image: url(:/arrow_down_dark.png) 3 0 0 5 repeat repeat;
-}
-
-#mainPanel[uitheme=theme-dark] QPrintDialog *::down-arrow {
-    border-image: url(:/arrow_down_dark.png) 0 0 0 0 repeat repeat;
-}
-
-#mainPanel[uitheme=theme-dark] QPrintDialog *::down-arrow:disabled,
-    #mainPanel[uitheme=theme-dark] QPrintDialog ::down-arrow:off
-{
-    border-image: url(:/arrow_down_dark.png) 0 0 0 5 repeat repeat;
 }
 
 /***********************************/
@@ -414,74 +273,9 @@ QPushButton#toolButtonDownload::menu-indicator {
     border-right-color:#dfdfdf;
 }
 
-/***********************************/
-
-QTabBar {
-    font-size: 11px;
-    background-color: #f1f1f1;
-}
-
-QTabBar::tab { }
-
-QTabBar::tab::selected {
-    padding-left: 0px;
-}
-
-QTabBar::tear { width: 0px; }
-QTabBar::tab:first { }
-QTabBar::tab:only-one { }
-QTabBar::tab:last { }
-
-QTabBar::close-button {
-    image: url(:/res/icons/tab_close_normal.png);
-    margin-top: -1px;
-    icon-size:16px;
-}
-
-QTabBar::close-button:hover {
-    image:url(:/res/icons/tab_close_hover.png);
-}
-
-QTabBar::close-button:pressed {
-    image:url(:/res/icons/tab_close_active.png);
-}
-
-QTabBar QToolButton,
-    QTabBar QToolButton:disabled {
-    background-color:#f1f1f1;
-    border:0 none;
-    width: 40px;
-}
-
-QTabBar::scroller {
-    width: 0px;
-}
-
-QLabel[class=tab-icon] {
-    padding:0 0 2px 4px;
-}
-
-QTabBar QToolButton[class=tab-close]{
-    background-image:url(:/tabbar/icons/close_normal.png);
-}
-QTabBar QToolButton[class=tab-close][state=active]{
-    background-image:url(:/tabbar/icons/close_active.png);
-}
-QTabBar QToolButton[class=tab-close]:hover{
-    background-position:right top;
-}
-QTabBar QToolButton[class=tab-close]:pressed{
-    background-position:left bottom;
-}
-QTabBar QToolButton[class=tab-close]{
-    background-color:rgba(255,255,255,0);
-}
-
-
-/*MyLabel { qproperty-pixmap: url(pixmap.png); }*/
-/*MyGroupBox { qproperty-titleColor: rgb(100, 200, 100); }*/
 
 /* download widget */
+
 QMenu#menuButtonDownload {
     /*padding: 0;*/
     border: 1px solid #d1d1d1;
@@ -544,201 +338,7 @@ CDownloadWidget[hdpi] QLabel#labelName {
     font-size: 32px;
 }
 
-/* end of download widget */
-
-QPrintDialog, QPrintPropertiesDialog {
-    /*background-color:#fff;*/
-    font-family: 'Helvetica Neue',Arial;
-    /*color: #444;*/
-}
-
-QPrintDialog QWidget {
-    /*selection-background-color: rgba(0,0,0,0.4);*/
-}
-
-QPrintDialog QLabel {
-    /*color:#444;*/
-    font-size: 11px;
-    font-weight: bold;
-}
-
-QPushButton {
-    /*background-color:#d9d9d9;*/
-    padding:0 20px;
-    font-weight: normal;
-    height: 22px;
-    font-size: 12px;
-}
-
-QDialog QPushButton {
-    min-width: 40px;
-}
-
-QPrintDialog QToolButton{
-    /*background-color: red;*/
-    border: 1px solid #cbcbcb;
-    border-radius:2px;
-    height: 22px;
-}
-
-QPrintDialog QLineEdit{
-    font-weight: normal;
-    font-size: 11px;
-    /*color: #444;*/
-    border: 1px solid #cbcbcb;
-    height: 22px;
-    border-radius:2px;
-}
-
-QPrintDialog QGroupBox {
-    border: 1px solid #cbcbcb;
-    margin-top: 4ex;
-    border-radius:2px;
-    font-size: 11px;
-    padding:8px;
-}
-
-QPrintDialog QGroupBox::title {
-    subcontrol-origin: margin;
-}
-
-QPrintDialog QComboBox{
-    border: 1px solid #cbcbcb;
-    font-family: 'Helvetica Neue',Arial;
-    font-size: 11px;
-    height: 22px;
-    border-radius:2px;
-    /*background-color: #fff;*/
-
-    /*selection-background-color: red;*/
-    show-decoration-selected: 1;
-}
-
-QPrintDialog QComboBox::down-arrow{
-    /* border-image: url(:/res/icons/arrow_down.png) 0 0 0 0 repeat repeat; */
-    /* width: 5px; */
-    /* height: 3px; */
-}
-
-QPrintDialog QComboBox::drop-down{
-    border:0 none;
-}
-
-QPrintDialog QComboBox:!editable:on {
-    /*background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #D3D3D3, stop:0.4 #D8D8D8, stop:0.5 #DDDDDD, stop:1.0 #E1E1E1);*/
-    /*background:#cbced1;*/
-}
-
-QPrintDialog QComboBox QAbstractItemView {
-    border: 1px solid #cbcbcb;
-    border-radius:2px;
-    /*background-color: #fff;*/
-    /*selection-background-color: rgba(255, 255, 255, 0.5);*/
-}
-
-QPrintDialog QRadioButton::indicator{
-    width:13px;
-    height:13px;
-}
-
-QPrintDialog QRadioButton, QPrintDialog QCheckBox {
-    font-size: 11px;
-    /*color: 444;*/
-}
-
-QPrintDialog QRadioButton::indicator::unchecked{
-    border-image: url(:/res/icons/radiobox.png) 0 0 0 0 repeat repeat;
-}
-
-QPrintDialog QRadioButton::indicator::checked{
-    border-image: url(:/res/icons/radiobox.png) 13 0 0 0 repeat repeat;
-}
-
-QPrintDialog QCheckBox::indicator{
-    width:14px;
-    height:14px;
-}
-
-QPrintDialog QCheckBox::indicator::checked{
-    border-image: url(:/res/icons/checkbox.png) 14 0 0 0 repeat repeat;
-}
-
-QPrintDialog QCheckBox::indicator::unchecked{
-    border-image: url(:/res/icons/checkbox.png) 0 0 0 0 repeat repeat;
-}
-
-QSpinBox, QDoubleSpinBox, QTimeEdit {
-    border: 1px solid #cbcbcb;
-    border-radius:2px;
-    height:22px;
-    font-size: 11px;
-    /*background-color:#fff;*/
-}
-
-QPrintDialog *::up-arrow, QPrintDialog *::down-arrow {
-    width: 5px;
-    height: 3px;
-}
-
-QPrintDialog *::up-arrow {
-    border-image: url(:/res/icons/arrow_down.png) 3 0 0 0 repeat repeat;
-    margin-bottom:1px;
-}
-
-QPrintDialog *::up-arrow:disabled, QPrintDialog *::up-arrow:off {
-    border-image: url(:/res/icons/arrow_down.png) 3 0 0 5 repeat repeat;
-}
-
-/*QSpinBox::down-arrow, QDoubleSpinBox::down-arrow, QTimeEdit::down-arrow {*/
-QPrintDialog *::down-arrow {
-    border-image: url(:/res/icons/arrow_down.png) 0 0 0 0 repeat repeat;
-    margin-top:1px;
-}
-
-QPrintDialog *::down-arrow:disabled, QPrintDialog ::down-arrow:off {
-    border-image: url(:/res/icons/arrow_down.png) 0 0 0 5 repeat repeat;
-}
-
-QPrintDialog *::up-button, QPrintDialog  *::down-button {
-    border: 0 none;
-}
-
-QPrintDialog QTabWidget::pane{
-    /*background-color: white;*/
-    /*border: 1px solid #cbcbcb;*/
-    /*position:absolute;*/
-    /*top: -1px;*/
-}
-QPrintDialog QTabBar::tab {
-    /*background-color:#fff;*/
-    border: 1px solid #cbcbcb;
-    padding: 0 10px;
-    border-top-left-radius: 2px;
-    border-top-right-radius: 2px;
-    margin-right:-1px;
-    font-size: 11px;
-}
-
-QPrintDialog QTabBar::tab:first {
-}
-
-QPrintDialog QTabBar::tab:last {
-    margin-right:0;
-}
-
-QPrintDialog QTabBar::tab:selected {
-    padding: 0 10px;
-}
-
-QPrintDialog QTabBar::tab:selected {
-    background-color:rgba(255,255,255,0.3);
-    /*border-bottom-color: transparent;*/
-}
-
-QPrintDialog QTabBar::tab:!selected {
-    /*margin-top: 2px;*/
-    /*color:#444;*/
-}
+/* ToolTip*/
 
 #CToolTip>QLabel {
     min-height: 26px;
@@ -746,7 +346,7 @@ QPrintDialog QTabBar::tab:!selected {
     padding-left: 10px; padding-right: 10px;
     padding-top: 0px; padding-bottom: 0px;
     color: #373737;
-    font-family: "Libra Sans";
+    font-family: "Arial", "Helvetica", "Helvetica Neue", sans-serif;
     font-size: 11px;
     font-weight: normal;
     qproperty-alignment: AlignCenter;

@@ -100,7 +100,7 @@ module.exports = function(grunt) {
                 },
                 dialogconnect: {
                     files: {
-                        '../src/dlglogin.min.js' : ['../src/dlglogin.js','../src/dialogconnect.js']
+                        '../src/dialogconnect.min.js' : ['../src/dialogconnect.js']
                     }
                 },
             },

@@ -63,46 +63,18 @@
 
         @font-face {
             font-family: 'Open Sans';
-            src: url('../../package/fonts/OpenSans-Bold.ttf');
-            font-weight: bold;
-        }
-        @font-face {
-            font-family: 'Open Sans';
-            src: url('../../package/fonts/OpenSans-BoldItalic.ttf');
+            src: url('../../../../core-fonts/opensans/OpenSans-Regular.ttf');
             font-weight: normal;
-            font-style: italic;
         }
         @font-face {
             font-family: 'Open Sans';
-            src: url('../../package/fonts/OpenSans-ExtraBold.ttf');
-            font-weight: bolder;
-        }
-        @font-face {
-            font-family: 'Open Sans';
-            src: url('../../package/fonts/OpenSans-ExtraBoldItalic.ttf');
-            font-weight: bolder;
-            font-style: italic;
-        }
-        @font-face {
-            font-family: 'Open Sans';
-            src: url('../../package/fonts/OpenSans-Italic.ttf');
-            font-style: italic;
-        }
-        @font-face {
-            font-family: 'Open Sans';
-            src: url('../../package/fonts/OpenSans-Light.ttf');
+            src: url('../../../../core-fonts/opensans/OpenSans-Light.ttf');
             font-weight: 100;
         }
         @font-face {
             font-family: 'Open Sans';
-            src: url('../../package/fonts/OpenSans-LightItalic.ttf');
-            font-weight: lighter;
-            font-style: italic;
-        }
-        @font-face {
-            font-family: 'Open Sans';
-            src: url('../../package/fonts/OpenSans-Regular.ttf');
-            font-weight: normal;
+            src: url('../../../../core-fonts/opensans/OpenSans-Bold.ttf');
+            font-weight: bold;
         }
     </style>
 </head>
@@ -162,6 +134,7 @@
     <img class="inline-svg" src="../res/img/welcome.svg">
     <img class="inline-svg" src="../res/img/welcome_dark.svg">
     <img class="inline-svg" src="../res/img/logo.svg">
+    <img class="inline-svg" src="../res/img/update_status.svg">
     <script>
         var svgpoints = document.querySelectorAll('img.inline-svg');
         SVGInjector(svgpoints, {evalScripts:'never'});
@@ -207,7 +180,7 @@
     <script src="../locale/uk.js"></script>
     <script src="../locale/vi.js"></script>
     <script src="../locale/zh-CN.js"></script>
-    <script src="../locale/zh-HK.js"></script>
+    <script src="../locale/zh-TW.js"></script>
 
     <script type="text/javascript" src="../vendor/jquery/jquery.min.js"></script>
     <script type="text/javascript" src="../vendor/bootstrap/dropdown.js"></script>
@@ -228,7 +201,8 @@
     <script type="text/javascript" src="paneltemplates.js"></script>
     <script src="panelsettings.js"></script>
     <script src="panelexternal.js"></script>
-    <script type="text/javascript" src="dlglogin.js"></script>
+    <!-- TODO: remove after ver 8.0. login proc via portal's api isn't used any more -->
+    <!-- <script type="text/javascript" src="dlglogin.js"></script> -->
     <script src="dialogconnect.js"></script>
     <script type="text/javascript" src="panels.js"></script>
 

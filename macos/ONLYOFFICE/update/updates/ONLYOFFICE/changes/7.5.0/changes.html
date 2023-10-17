@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>ONLYOFFICE Release Notes</title>
+    <style type="text/css">
+        /* variables */
+        :root {
+            --color-black: #141923;
+            --color-white: #fff;
+            --color-gray-100: #f7fafc;
+            --color-gray-200: #edf2f7;
+            --color-gray-300: #e2e8f0;
+            --color-gray-400: #cbd5e0;
+            --color-gray-500: #a0aec0;
+            --color-gray-600: #718096;
+            --color-gray-700: #4a5568;
+            --color-gray-800: #2d3748;
+            --color-gray-900: #1a202c;
+        }
+        body {
+            background: var(--color-white);
+            color: var(--color-gray-800);
+            font: 12px "Lucida Grande", "Lucida Sans Unicode", Verdana, Lucida, Helvetica, sans-serif;
+        }
+        h1, h2, h3 {
+            color: var(--color-gray-800);
+            font-weight: normal;
+            font-style: normal;
+        }
+        h1 {
+            font-size: 1.7em;
+        }
+        h2 {
+            font-size: 1.4em;
+            font-weight: lighter;
+        }
+        h4 {
+            font-size: 1.2em;
+            font-weight: lighter;
+        }
+        code {
+            background: var(--color-gray-200);
+            font-family: monospace;
+            padding: 1px 5px;
+        }
+        ul {
+            padding: 7.5.0 20px;
+        }
+        li {
+            margin-left: 20px;
+            margin-bottom: 0.2em;
+            padding: 0;
+        }
+        hr {
+            margin: 20px 0;
+            border: var(--color-gray-400) solid 0.5px;
+        }
+        .releasedate {
+            color: var(--color-gray-600);
+            font-weight: lighter;
+        }
+
+        /* prefers light mode */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background: var(--color-gray-900);
+                color: var(--color-gray-200);
+            }
+
+            h1, h2, h3 {
+                color: var(--color-white);
+            }
+
+            code {
+                background: var(--color-gray-800);
+                color: var(--color-gray-200);
+            }
+
+            .releasedate {
+                color: var(--color-gray-600);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="version">
+        <h1>ONLYOFFICE 7.5.0<span class="releasedate"> - {{DATE}}</span></h1>
+
+        <h2>New Features</h2>
+
+        <h4>All Editors</h4>
+        <ul>
+            <li>Added support for interface scales >200% (225, 250, 275, 300, 350, 400, 450, 500)</li>
+            <li>Files from the "Recent files" list of the application have been added to the "File" > “Open Recent” section, according to the editor formats</li>
+            <li>Updated <code>VLC</code> libraries (for Windows)</li>
+            <li>Updated the <code>“About”</code> page and the “Check for updates” block (for Windows)</li>
+            <li>Added a list of changes to deb/rpm packages (for Linux)</li>
+            <li>The "Last used" option has been added to the editors settings for "Default Zoom Value"</li>
+            <li>Add a menu for quick access to the most popular symbols to the button for inserting symbols</li>
+            <li>Support for SVG images</li>
+            <li>Add a setting to hide the toolbar for equation</li>
+            <li>Add hints for images in SmartArt objects</li>
+            <li>Add the ability to open files protected with a password in the embedded viewer</li>
+            <li>Add the ability to edit points of the autoshape border to the right panel</li>
+            <li>Only <code>Ctrl + .</code>/<code>Ctrl + ,</code> keyboard shortcuts are now used for superscript/subscript characters</li>
+            <li>Change keyboard shortcuts for moving through the text on macOS</li>
+        </ul>
+        <h4>Document Editor</h4>
+        <ul>
+            <li>Automatic hyphenation</li>
+            <li>Change the selection logic, add the “Smart paragraph selection” option in Advanced Setting</li>
+            <li>Add the “Remove content control when contents are edited” option to content control settings</li>
+            <li>Change behavior of the <code>Accept/Reject</code> review buttons in the toolbar</li>
+            <li>Disable the Zoom out action for the <code>Ctrl + Numpad</code> keyboard shortcut due to the conflict with inserting an em dash</li>
+            <li>Change the keyboard shortcut for strikeout text formatting on macOS: <code>Ctrl + 5</code> replaced with <code>Cmd + Shift + X</code></li>
+            <li>Change the keyboard shortcut for inserting ellipsis on macOS: <code>Ctrl + Option + .</code> replaced with <code>Option + ;</code></li>
+        </ul>
+        <h4>Spreadsheet Editor</h4>
+        <ul>
+            <li>The ability to display only formulas in cells</li>
+            <li>Trace precedents / dependents</li>
+            <li>New function: <code>SORTBY</code></li>
+            <li>Added presets for "Margins" and the ability to show/hide "Print titles" in the "File" > "Print" menu</li>
+            <li>Add the ability to set a number format in the field settings for pivot tables</li>
+            <li>The Show details feature for working with a Pivot Table</li>
+            <li>Improvement of the ability to open data on a new sheet by double-clicking a value in a Pivot Table</li>
+            <li>Autocompletion for days of the week and months when stretching a cell value</li>
+            <li>Drag-and-drop for columns and rows</li>
+            <li>Add filters by date and the ability to display data with the "Date" format in the form of a tree in the Autofilter window</li>
+            <li>Inserting images into headers/footers</li>
+            <li>External data update for the currently edited source file</li>
+            <li>The last used Delimiter and Encoding setting for CSV files is now stored locally on the client side</li>
+            <li>The ability to insert page breaks from the Layout toolbar</li>
+            <li>Add the ability to open the source for external links</li>
+            <li>Add the <code>Alt + Down</code> keyboard shortcut for opening the Autofilter window when the header of a column with a filter is selected</li>
+
+        </ul>
+        <h4>Presentation Editor</h4>
+        <ul>
+            <li>Add the <code>"Morph"</code> transition</li>
+            <li>Assigning names to objects in advanced settings</li>
+            <li>The "Number slides from" option has been added to the slide size settings</li>
+            <li>Notes and Handouts in headers/footers settings</li>
+            <li>Slide placeholders have alternative descriptions</li>
+            <li>SmartArt insertion is available via a slide placeholder</li>
+            <li>Add the ability to navigate to the specific slide with the consecutive pressing of the *slide number* + Enter when previewing a presentation</li>
+            <li>Change the keyboard shortcut for starting a presentation on macOS: <code>Cmd + Shift + Return</code> is used</li>
+        </ul>
+        <h4>Forms</h4>
+        <ul>
+            <li>Bring settings on the right toolbar to unified appearance</li>
+        </ul>
+        <h4>PDF Editor</h4>
+        <ul>
+            <li>Support for the PDF form, annotations, comments and drawings</li>
+        </ul>
+    </div>
+</body>
+</html>

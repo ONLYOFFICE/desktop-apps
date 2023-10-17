@@ -36,35 +36,31 @@
 #include <QStandardPaths>
 #include <QDir>
 #include <QRegularExpression>
-#include <QIcon>
-#include <QSysInfo>
 #include <QApplication>
 #include <QDesktopWidget>
-#include <QDesktopServices>
 #include <QUrl>
 #include <QJsonDocument>
 #include <QJsonObject>
-#include <QProcess>
 #include <QScreen>
 #include <QStorageInfo>
 #include <QPrinterInfo>
-#include <regex>
-#include <QEventLoop>
 #include "cascapplicationmanagerwrapper.h"
 #include "qdpichecker.h"
 #include "common/File.h"
 
 #ifdef _WIN32
+# include <QDesktopServices>
 #include <windowsx.h>
 #include "shlobj.h"
 #include "lmcons.h"
 typedef HRESULT (__stdcall *SetCurrentProcessExplicitAppUserModelIDProc)(PCWSTR AppID);
 #else
+# include <QProcess>
+# include <QEventLoop>
 #include <sys/stat.h>
 #include <stdlib.h>
 #endif
 
-#include <QDebug>
 //extern QStringList g_cmdArgs;
 
 namespace InputArgs {
@@ -158,10 +154,16 @@ namespace EditorJSVariables {
 #endif
         if ( InputArgs::contains(L"--help-url") )
             vars_object["helpUrl"] = QUrl(QString::fromStdWString(InputArgs::argument_value(L"--help-url"))).toString();
+        else {
+            GET_REGISTRY_USER(_reg_user)
+
+            if ( _reg_user.contains("helpUrl") )
+                vars_object["helpUrl"] = _reg_user.value("helpUrl").toString();
 #ifdef URL_WEBAPPS_HELP
-        else if ( !QString(URL_WEBAPPS_HELP).isEmpty() )
-            vars_object["helpUrl"] = URL_WEBAPPS_HELP;
+            else if ( !QString(URL_WEBAPPS_HELP).isEmpty() )
+                vars_object["helpUrl"] = URL_WEBAPPS_HELP;
 #endif
+        }
         vars_object["defaultPrinterName"] = QPrinterInfo::defaultPrinterName();
     }
 
@@ -171,6 +173,10 @@ namespace EditorJSVariables {
 
     auto setVariable(const QString& name, const QJsonObject& obj) -> void {
         vars_object[name] = obj;
+    }
+
+    auto setVariable(const QString& name, const QJsonArray& array) -> void {
+        vars_object[name] = array;
     }
 
     auto applyVariable(const QString& name, const QJsonObject& obj) -> void {
@@ -195,9 +201,49 @@ namespace AppOptions {
         if ( _package == "msi" ) return AppPackageType::MSI; else
         if ( _package == "snap" ) return AppPackageType::Snap; else
         if ( _package == "flatpack" ) return AppPackageType::Flatpack; else
-        if( _package.isEmpty() ) return AppPackageType::Portable;
+        /*if( _package.isEmpty() )*/ return AppPackageType::Portable;
 
         return AppPackageType::Unknown;
+    }
+}
+
+namespace Scaling {
+    auto scalingToFactor(const QString& scaling) -> std::wstring
+    {
+        switch ( scaling.toInt() ) {
+        case 100: return L"1";
+        case 125: return L"1.25";
+        case 150: return L"1.5";
+        case 175: return L"1.75";
+        case 200: return L"2";
+        case 225: return L"2.25";
+        case 250: return L"2.5";
+        case 275: return L"2.75";
+        case 300: return L"3";
+        case 350: return L"3.5";
+        case 400: return L"4";
+        case 450: return L"4.5";
+        case 500: return L"5";
+        default: return L"0";
+        }
+    }
+
+    auto factorToScaling(const std::wstring& value) -> QString
+    {
+        if ( value == L"1" ) return "100"; else
+        if ( value == L"1.25" ) return "125"; else
+        if ( value == L"1.5" ) return "150"; else
+        if ( value == L"1.75" ) return "175"; else
+        if ( value == L"2" ) return "200"; else
+        if ( value == L"2.25" ) return "225"; else
+        if ( value == L"2.5" ) return "250"; else
+        if ( value == L"2.75" ) return "275"; else
+        if ( value == L"3" ) return "300"; else
+        if ( value == L"3.5" ) return "350"; else
+        if ( value == L"4" ) return "400"; else
+        if ( value == L"4.5" ) return "450"; else
+        if ( value == L"5" ) return "500";
+        else return "0";
     }
 }
 
@@ -472,7 +518,15 @@ QString Utils::stringifyJson(const QJsonObject& obj)
 
 inline double choose_scaling(double s)
 {
-    if ( s > 1.75 ) return 2;
+    if ( s > 4.5 ) return 5;
+    else if ( s > 4 ) return 4.5;
+    else if ( s > 3.5 ) return 4;
+    else if ( s > 3 ) return 3.5;
+    else if ( s > 2.75 ) return 3;
+    else if ( s > 2.5 ) return 2.75;
+    else if ( s > 2.25 ) return 2.5;
+    else if ( s > 2 ) return 2.25;
+    else if ( s > 1.75 ) return 2;
     else if ( s > 1.5 ) return 1.75;
     else if ( s > 1.25 ) return 1.5;
     else if ( s > 1 ) return 1.25;
@@ -676,6 +730,18 @@ Utils::WinVer Utils::getWinVersion()
             return  WinVer::Win11;
     }
     return WinVer::Undef;
+}
+
+std::atomic_bool sessionInProgress{true};
+
+bool Utils::isSessionInProgress()
+{
+    return sessionInProgress;
+}
+
+void Utils::setSessionInProgress(bool state)
+{
+    sessionInProgress = state;
 }
 #endif
 

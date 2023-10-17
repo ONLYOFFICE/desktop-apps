@@ -42,26 +42,66 @@
 #include "version.h"
 #include "clangater.h"
 #include "clogger.h"
-#include "components/cmessage.h"
 #include "cascapplicationmanagerwrapper.h"
 #include <QCryptographicHash>
 #ifdef _WIN32
-# include <Windows.h>
 # include "platform_win/updatedialog.h"
 # define DAEMON_NAME L"/updatesvc.exe"
+#else
+# include <QProcess>
+# include "components/cmessage.h"
+# include "platform_linux/updatedialog.h"
+# define DAEMON_NAME "/updatesvc"
 #endif
 
-//#define CHECK_DIRECTORY
+#define modeToEnum(mod) ((mod == "silent") ? UpdateMode::SILENT : (mod == "ask") ? UpdateMode::ASK : UpdateMode::DISABLE)
+#define WStrToTStr(str) QStrToTStr(QString::fromStdWString(str))
+#define DAY_TO_SEC 24*3600
+#define MINIMUM_INTERVAL 30
+#define RESET_MESSAGE_MS 20000
 #define CHECK_ON_STARTUP_MS 9000
 #define CMD_ARGUMENT_UPDATES_CHANNEL L"--updates-appcast-channel"
+#define CMD_ARGUMENT_UPDATES_INTERVAL L"--updates-interval"
 #ifndef URL_APPCAST_UPDATES
 # define URL_APPCAST_UPDATES ""
 #endif
 #ifndef URL_APPCAST_DEV_CHANNEL
 # define URL_APPCAST_DEV_CHANNEL ""
 #endif
+#define __GLOBAL_LOCK if (m_lock) {CLogger::log("Blocked in: " + FUNCTION_INFO); return;} m_lock = true; \
+                          CLogger::log("Locking and further execution:" + FUNCTION_INFO);
+#define __UNLOCK m_lock = false; CLogger::log("Unlocked in:" + FUNCTION_INFO);
 
 using std::vector;
+
+const char *SVC_TXT_ERR_UNPACKING   = QT_TRANSLATE_NOOP("CUpdateManager", "An error occured while unpacking the archive"),
+           *SVC_TXT_ERR_DNL_OUT_MEM = QT_TRANSLATE_NOOP("CUpdateManager", "Update download failed: out of memory!"),
+           *SVC_TXT_ERR_DNL_CONN    = QT_TRANSLATE_NOOP("CUpdateManager", "Update download failed: server connection error!"),
+           *SVC_TXT_ERR_DNL_URL     = QT_TRANSLATE_NOOP("CUpdateManager", "Update download failed: wrong URL!"),
+           *SVC_TXT_ERR_DNL_CREAT   = QT_TRANSLATE_NOOP("CUpdateManager", "Update download failed: unable to create file!"),
+           *SVC_TXT_ERR_DNL_INET    = QT_TRANSLATE_NOOP("CUpdateManager", "Update download failed: network error!"),
+           *SVC_TXT_ERR_OTHER       = QT_TRANSLATE_NOOP("CUpdateManager", "A service error has occurred!"),
+
+           *TXT_LAST_CHECK      = QT_TRANSLATE_NOOP("CUpdateManager", "Last check performed %1"),
+           *TXT_UPDATED         = QT_TRANSLATE_NOOP("CUpdateManager", "Current version is up to date"),
+           *TXT_CHECKING_UPD    = QT_TRANSLATE_NOOP("CUpdateManager", "Checking for updates..."),
+           *TXT_AVAILABLE_UPD   = QT_TRANSLATE_NOOP("CUpdateManager", "Update is available (version %1)"),
+           *TXT_DOWNLOADING_UPD = QT_TRANSLATE_NOOP("CUpdateManager", "Downloading new version %1 (%2%)"),
+           *TXT_PREPARING_UPD   = QT_TRANSLATE_NOOP("CUpdateManager", "Preparing update..."),
+           *TXT_RESTART_TO_UPD  = QT_TRANSLATE_NOOP("CUpdateManager", "To finish updating, restart app"),
+           *TXT_ERR_NOT_ALLOWED = QT_TRANSLATE_NOOP("CUpdateManager", "Updates are not allowed!"),
+           *TXT_ERR_URL         = QT_TRANSLATE_NOOP("CUpdateManager", "Unable to check update: URL not defined."),
+           *TXT_ERR_PACK_URL    = QT_TRANSLATE_NOOP("CUpdateManager", "An error occurred while loading updates: package Url is empty!"),
+           *TXT_ERR_CHECK       = QT_TRANSLATE_NOOP("CUpdateManager", "An error occurred while check updates: Update Service not found!"),
+           *TXT_ERR_LOAD        = QT_TRANSLATE_NOOP("CUpdateManager", "An error occurred while loading updates: Update Service not found!"),
+           *TXT_ERR_UNZIP       = QT_TRANSLATE_NOOP("CUpdateManager", "An error occurred while unzip updates: Update Service not found!"),
+           *TXT_ERR_JSON        = QT_TRANSLATE_NOOP("CUpdateManager", "Error opening JSON file."),
+           *TXT_ERR_MD5         = QT_TRANSLATE_NOOP("CUpdateManager", "Update package error: md5 sum does not match the original."),
+
+           *BTN_TXT_CHECK    = QT_TRANSLATE_NOOP("CUpdateManager", "Check for updates"),
+           *BTN_TXT_DOWNLOAD = QT_TRANSLATE_NOOP("CUpdateManager", "Download update"),
+           *BTN_TXT_RESTART  = QT_TRANSLATE_NOOP("CUpdateManager", "Restart"),
+           *BTN_TXT_CANCEL   = QT_TRANSLATE_NOOP("CUpdateManager", "Cancel");
 
 class CUpdateManager::DialogSchedule : public QObject
 {
@@ -76,12 +116,14 @@ private:
         QString method,
                 text;
     };
+    QObject *m_owner = nullptr;
     QTimer *m_timer = nullptr;
     QVector<Tag> m_shedule_vec;
 };
 
 CUpdateManager::DialogSchedule::DialogSchedule(QObject *owner) :
-    QObject(owner)
+    QObject(owner),
+    m_owner(owner)
 {
     m_timer = new QTimer(this);
     m_timer->setInterval(500);
@@ -98,7 +140,7 @@ CUpdateManager::DialogSchedule::DialogSchedule(QObject *owner) :
             m_shedule_vec.removeFirst();
             if (m_shedule_vec.isEmpty()) {
                 m_timer->stop();
-                AscAppManager::sendCommandTo(0, "updates:link", "unlock");
+                qobject_cast<CUpdateManager*>(owner)->refreshStartPage({"", {}, nullptr, "", "false"});
             }
         }
     });
@@ -109,7 +151,7 @@ void CUpdateManager::DialogSchedule::addToSchedule(const QString &method, const 
     m_shedule_vec.push_back({method, text});
     if (!m_timer->isActive()) {
         m_timer->start();
-        AscAppManager::sendCommandTo(0, "updates:link", "lock");
+        qobject_cast<CUpdateManager*>(m_owner)->refreshStartPage({"", {}, nullptr, "", "true"});
     }
 }
 
@@ -126,14 +168,10 @@ auto currentArch()->QString
 #endif
 }
 
-auto destroyStartupTimer(QTimer* &timer)->void
+auto formattedTime(time_t timestamp)->QString
 {
-    if (timer) {
-        if (timer->isActive())
-            timer->stop();
-        timer->deleteLater();
-        timer = nullptr;
-    }
+    return (timestamp != 0) ? QLocale::system().toString(QDateTime::fromTime_t(timestamp), QLocale::ShortFormat) :
+               QString("--.--.---- --:--");
 }
 
 auto getFileHash(const QString &fileName)->QString
@@ -150,8 +188,9 @@ auto getFileHash(const QString &fileName)->QString
     return QString();
 }
 
-auto runProcess(const wstring &fileName, const wstring &args, bool runAsAdmin = false)->BOOL
+auto runProcess(const tstring &fileName, const tstring &args, bool runAsAdmin = false)->bool
 {
+#ifdef _WIN32
     SHELLEXECUTEINFO shExInfo = {0};
     shExInfo.cbSize = sizeof(shExInfo);
     shExInfo.fMask = SEE_MASK_NOCLOSEPROCESS | SEE_MASK_NO_CONSOLE | SEE_MASK_FLAG_NO_UI;
@@ -165,9 +204,15 @@ auto runProcess(const wstring &fileName, const wstring &args, bool runAsAdmin = 
     if (ShellExecuteEx(&shExInfo)) {
         //WaitForSingleObject(shExInfo.hProcess, INFINITE);
         CloseHandle(shExInfo.hProcess);
-        return TRUE;
+        return true;
     }
-    return FALSE;
+#else
+    Q_UNUSED(runAsAdmin)
+    QStringList _args = QString::fromStdString(args).split(" ");
+    if (QProcess::startDetached(QString::fromStdString(fileName), _args))
+        return true;
+#endif
+    return false;
 }
 
 struct CUpdateManager::PackageData {
@@ -206,24 +251,45 @@ CUpdateManager::CUpdateManager(QObject *parent):
         if ( InputArgs::contains(CMD_ARGUMENT_UPDATES_CHANNEL) ) {
             std::wstring ch_updates = InputArgs::argument_value(CMD_ARGUMENT_UPDATES_CHANNEL);
             if ( ch_updates == L"dev" ) {
-                m_checkUrl = TEXT(URL_APPCAST_DEV_CHANNEL);
+                m_checkUrl = QString(URL_APPCAST_DEV_CHANNEL).toStdWString();
+            }
+        }
+        if ( InputArgs::contains(CMD_ARGUMENT_UPDATES_INTERVAL) ) {
+            int interval = QString::fromStdWString(InputArgs::argument_value(CMD_ARGUMENT_UPDATES_INTERVAL)).toInt();
+            if (interval >= MINIMUM_INTERVAL) {
+                GET_REGISTRY_USER(reg_user)
+                reg_user.beginGroup("Updates");
+                reg_user.setValue("interval", interval);
+                reg_user.endGroup();
             }
         }
 
         if ( m_checkUrl.empty() )
-            m_checkUrl = TEXT(URL_APPCAST_UPDATES);
+            m_checkUrl = QString(URL_APPCAST_UPDATES).toStdWString();
     }
 
     if ( !m_checkUrl.empty()) {
         CLogger::log("Updates is on, URL: " + QString::fromStdWString(m_checkUrl));
-//        m_pTimer = new QTimer(this);
-//        m_pTimer->setSingleShot(false);
-//        connect(m_pTimer, SIGNAL(timeout()), this, SLOT(checkUpdates()));
+        m_pIntervalTimer = new QTimer(this);
+        m_pIntervalTimer->setSingleShot(false);
+        connect(m_pIntervalTimer, SIGNAL(timeout()), this, SLOT(checkUpdates()));
+        m_pIntervalStartTimer = new QTimer(this);
+        m_pIntervalStartTimer->setSingleShot(true);
+        m_pIntervalStartTimer->setInterval(CHECK_ON_STARTUP_MS);
+        connect(m_pIntervalStartTimer, &QTimer::timeout, this, &CUpdateManager::updateNeededCheking);
+        m_pLastCheckMsgTimer = new QTimer(this);
+        m_pLastCheckMsgTimer->setSingleShot(true);
+        m_pLastCheckMsgTimer->setInterval(RESET_MESSAGE_MS);
+        connect(m_pLastCheckMsgTimer, &QTimer::timeout, this, [=]() {
+            refreshStartPage({"lastcheck", {TXT_LAST_CHECK, formattedTime(m_lastCheck)}});
+        });
         if (IsPackage(Portable))
-            runProcess(qApp->applicationDirPath().toStdWString() + DAEMON_NAME, L"--run-as-app");
+            runProcess(QStrToTStr(qApp->applicationDirPath()) + DAEMON_NAME, _T("--run-as-app"));
         init();
-    } else
+    } else {
         CLogger::log("Updates is off, URL is empty.");
+        refreshStartPage({"error", {TXT_ERR_URL}, BTN_TXT_CHECK, "", "true"});
+    }
 }
 
 CUpdateManager::~CUpdateManager()
@@ -246,34 +312,27 @@ void CUpdateManager::init()
     m_savedPackageData->fileName = reg_user.value("file", QString()).toString();
     m_savedPackageData->fileType = reg_user.value("type", QString()).toString();
     m_savedPackageData->version = reg_user.value("version", QString()).toString();
-//    m_lastCheck = time_t(reg_user.value("last_check", 0).toLongLong());
+    m_lastCheck = time_t(reg_user.value("last_check", 0).toLongLong());
+    refreshStartPage({"lastcheck", {TXT_LAST_CHECK, formattedTime(m_lastCheck)}, BTN_TXT_CHECK, "check", "false"});
+    m_interval = reg_user.value("interval", DAY_TO_SEC).toInt();
+    if (m_interval < MINIMUM_INTERVAL)
+        m_interval = MINIMUM_INTERVAL;
     reg_user.endGroup();
-    if (getUpdateMode() != UpdateMode::DISABLE) {
-        m_pCheckOnStartupTimer = new QTimer(this);
-        m_pCheckOnStartupTimer->setSingleShot(true);
-        m_pCheckOnStartupTimer->setInterval(CHECK_ON_STARTUP_MS);
-        connect(m_pCheckOnStartupTimer, &QTimer::timeout, this, &CUpdateManager::updateNeededCheking);
-        m_pCheckOnStartupTimer->start();
-    }
 
-    m_socket->onMessageReceived([this](void *data, size_t size) {
-        wstring str((const wchar_t*)data), tmp;
-        vector<wstring> params;
-        std::wstringstream wss(str);
-        while (std::getline(wss, tmp, L'|'))
-            params.push_back(std::move(tmp));
-
-        if (params.size() == 4) {
+    m_socket->onMessageReceived([this](void *data, size_t) {
+        vector<tstring> params;
+        if (m_socket->parseMessage(data, params) == 3) {
             switch (std::stoi(params[0])) {
             case MSG_LoadCheckFinished:
-                QMetaObject::invokeMethod(this, "onLoadCheckFinished", Qt::QueuedConnection, Q_ARG(QString, QString::fromStdWString(params[1])));
+                QMetaObject::invokeMethod(this, "onLoadCheckFinished", Qt::QueuedConnection, Q_ARG(QString, TStrToQStr(params[1])));
                 break;
 
             case MSG_LoadUpdateFinished:
-                QMetaObject::invokeMethod(this, "onLoadUpdateFinished", Qt::QueuedConnection, Q_ARG(QString, QString::fromStdWString(params[1])));
+                QMetaObject::invokeMethod(this, "onLoadUpdateFinished", Qt::QueuedConnection, Q_ARG(QString, TStrToQStr(params[1])));
                 break;
 
             case MSG_ShowStartInstallMessage: {
+                refreshStartPage({"success", {TXT_RESTART_TO_UPD}, BTN_TXT_RESTART, "install", "false"});
                 QMetaObject::invokeMethod(m_dialogSchedule, "addToSchedule", Qt::QueuedConnection, Q_ARG(QString, QString("showStartInstallMessage")));
                 break;
             }
@@ -283,7 +342,7 @@ void CUpdateManager::init()
                 break;
 
             case MSG_OtherError:
-                QMetaObject::invokeMethod(this, "onError", Qt::QueuedConnection, Q_ARG(QString, QString::fromStdWString(params[1])));
+                QMetaObject::invokeMethod(this, "onError", Qt::QueuedConnection, Q_ARG(QString, TStrToQStr(params[1])));
                 break;
 
             default:
@@ -296,13 +355,17 @@ void CUpdateManager::init()
 void CUpdateManager::criticalMsg(QWidget *parent, const QString &msg)
 {
     if (!m_manualCheck) {
-        m_lock = false;
+        __UNLOCK
         return;
     }
+#ifdef _WIN32
     HWND parent_hwnd = (parent) ? (HWND)parent->winId() : NULL;
     wstring lpText = msg.toStdWString();
     MessageBoxW(parent_hwnd, lpText.c_str(), TEXT(APP_TITLE), MB_ICONERROR | MB_SERVICE_NOTIFICATION_NT3X | MB_SETFOREGROUND);
-    m_lock = false;
+#else
+    CMessage::error(parent, msg);
+#endif
+    __UNLOCK
 }
 
 void CUpdateManager::clearTempFiles(const QString &except)
@@ -310,7 +373,7 @@ void CUpdateManager::clearTempFiles(const QString &except)
     static bool lock = false;
     if (!lock) { // for one-time cleaning
         lock = true;
-        sendMessage(MSG_ClearTempFiles, TEXT(FILE_PREFIX), except.toStdWString());
+        m_socket->sendMessage(MSG_ClearTempFiles, QStrToTStr(QString(FILE_PREFIX)), QStrToTStr(except));
     }
     if (except.isEmpty())
         savePackageData();
@@ -318,62 +381,81 @@ void CUpdateManager::clearTempFiles(const QString &except)
 
 void CUpdateManager::checkUpdates(bool manualCheck)
 {
-    if (m_lock)
-        return;
-    m_lock = true;
+    m_pIntervalStartTimer->stop();
+    m_lastCheck = time(nullptr);
+    GET_REGISTRY_USER(reg_user);
+    reg_user.beginGroup("Updates");
+    reg_user.setValue("last_check", static_cast<qlonglong>(m_lastCheck));
+    reg_user.endGroup();
+    if (getUpdateMode() != UpdateMode::DISABLE)
+        m_pIntervalStartTimer->start();
+
+    __GLOBAL_LOCK
+
+    refreshStartPage({"load", {TXT_CHECKING_UPD}, BTN_TXT_CHECK, "check", "true"});
     m_manualCheck = manualCheck;
-    destroyStartupTimer(m_pCheckOnStartupTimer);
     m_packageData->clear();
 
 #ifdef CHECK_DIRECTORY
     if (QFileInfo(qApp->applicationDirPath()).baseName() != QString(REG_APP_NAME)) {
+        refreshStartPage({"error", {TXT_ERR_NOT_ALLOWED}});
         m_dialogSchedule->addToSchedule("criticalMsg", tr("This folder configuration does not allow for "
                        "updates! The folder name should be: ") + QString(REG_APP_NAME));
         return;
     }
 #endif
 
-//    m_lastCheck = time(nullptr);
-//    GET_REGISTRY_USER(reg_user);
-//    reg_user.beginGroup("Updates");
-//    reg_user.setValue("last_check", static_cast<qlonglong>(m_lastCheck));
-//    reg_user.endGroup();
-
-    if (!sendMessage(MSG_CheckUpdates, m_checkUrl)) {
-        m_dialogSchedule->addToSchedule("criticalMsg", QObject::tr("An error occurred while check updates: Update Service not found!"));
+    if (!m_socket->sendMessage(MSG_CheckUpdates, WStrToTStr(m_checkUrl))) {
+        refreshStartPage({"error", {TXT_ERR_CHECK}, BTN_TXT_CHECK, "check", "false"});
+        __UNLOCK
+//        m_dialogSchedule->addToSchedule("criticalMsg", QObject::tr("An error occurred while check updates: Update Service not found!"));
     }
-//    QTimer::singleShot(3000, this, [=]() {
-//        updateNeededCheking();
-//    });
 }
 
 void CUpdateManager::updateNeededCheking()
 {
-    checkUpdates();
-//    if (m_pTimer) {
-//        m_pTimer->stop();
-//        int interval = 0;
-//        const time_t DAY_TO_SEC = 24*3600;
-//        const time_t curr_time = time(nullptr);
-//        const time_t elapsed_time = curr_time - m_lastCheck;
-//        if (elapsed_time > DAY_TO_SEC) {
-//            checkUpdates();
-//        } else {
-//            interval = static_cast<int>(DAY_TO_SEC - elapsed_time);
-//            m_pTimer->setInterval(interval*1000);
-//            m_pTimer->start();
-//        }
-//    }
+    if (m_pIntervalTimer) {
+        m_pIntervalTimer->stop();
+        int elapsed_time = int(time(nullptr) - m_lastCheck);
+        if (elapsed_time > m_interval) {
+            checkUpdates();
+        } else {
+            int remaining_time = 1000 * (m_interval - elapsed_time);
+            m_pIntervalTimer->setInterval(remaining_time < CHECK_ON_STARTUP_MS + 1000 ? CHECK_ON_STARTUP_MS + 1000 : remaining_time);
+            m_pIntervalTimer->start();
+        }
+    }
 }
 
 void CUpdateManager::onProgressSlot(const int percent)
 {
-    emit progresChanged(percent);
+    refreshStartPage({"", {TXT_DOWNLOADING_UPD, m_packageData->version, QString::number(percent)}});
 }
 
 void CUpdateManager::onError(const QString &error)
 {
-    m_dialogSchedule->addToSchedule("criticalMsg", error);
+    const char *_error = SVC_TXT_ERR_OTHER;
+    if (error == "SVC_TXT_ERR_UNPACKING")
+        _error = SVC_TXT_ERR_UNPACKING;
+    else
+    if (error == "SVC_TXT_ERR_DNL_OUT_MEM")
+        _error = SVC_TXT_ERR_DNL_OUT_MEM;
+    else
+    if (error == "SVC_TXT_ERR_DNL_CONN")
+        _error = SVC_TXT_ERR_DNL_CONN;
+    else
+    if (error == "SVC_TXT_ERR_DNL_URL")
+        _error = SVC_TXT_ERR_DNL_URL;
+    else
+    if (error == "SVC_TXT_ERR_DNL_CREAT")
+        _error = SVC_TXT_ERR_DNL_CREAT;
+    else
+    if (error == "SVC_TXT_ERR_DNL_INET")
+        _error = SVC_TXT_ERR_DNL_INET;
+
+    refreshStartPage({"error", {_error}, BTN_TXT_CHECK, "check", "false"});
+    __UNLOCK
+//    m_dialogSchedule->addToSchedule("criticalMsg", error);
 }
 
 void CUpdateManager::savePackageData(const QString &version, const QString &fileName, const QString &fileType)
@@ -420,40 +502,94 @@ bool CUpdateManager::isVersionBHigherThanA(const QString &a, const QString &b)
     return false;
 }
 
-bool CUpdateManager::sendMessage(int cmd, const wstring &param1, const wstring &param2, const wstring &param3)
-{
-    wstring str = std::to_wstring(cmd) + L"|" + param1 + L"|" + param2 + L"|" + param3;
-    size_t sz = str.size() * sizeof(str.front());
-    return m_socket->sendMessage((void*)str.c_str(), sz);
-}
-
 void CUpdateManager::loadUpdates()
 {
-//    if (m_lock)
-//        return;
+    __GLOBAL_LOCK
 
     if (isSavedPackageValid()) {
         m_packageData->fileName = m_savedPackageData->fileName;
-        AscAppManager::sendCommandTo(0, "updates:download", QString("{\"progress\":\"100\"}"));
-        if (m_packageData->fileType == "archive")
+        if (m_packageData->fileType == "archive") {
+            __UNLOCK
             unzipIfNeeded();
-        else
+        } else {
+            refreshStartPage({"success", {TXT_RESTART_TO_UPD}, BTN_TXT_RESTART, "install", "false"});
             m_dialogSchedule->addToSchedule("showStartInstallMessage");
+        }
 
     } else
     if (!m_packageData->packageUrl.empty()) {
-        if (!sendMessage(MSG_LoadUpdates, m_packageData->packageUrl, m_packageData->fileType.toStdWString())) {
-            m_dialogSchedule->addToSchedule("criticalMsg", QObject::tr("An error occurred while loading updates: Update Service not found!"));
+        if (!m_socket->sendMessage(MSG_LoadUpdates, WStrToTStr(m_packageData->packageUrl), QStrToTStr(m_packageData->fileType))) {
+            refreshStartPage({"error", {TXT_ERR_LOAD}, BTN_TXT_CHECK, "check", "false"});
+            __UNLOCK
+//            m_dialogSchedule->addToSchedule("criticalMsg", QObject::tr("An error occurred while loading updates: Update Service not found!"));
+        } else {
+            refreshStartPage({"load", {TXT_DOWNLOADING_UPD, m_packageData->version, "0"}, BTN_TXT_CANCEL, "abort", "false"});
         }
+    } else {
+        refreshStartPage({"error", {TXT_ERR_PACK_URL}, BTN_TXT_CHECK, "check", "false"});
+        __UNLOCK
     }
 }
 
 void CUpdateManager::installUpdates()
 {
-    if (m_lock)
+    __GLOBAL_LOCK
+    m_dialogSchedule->addToSchedule("showStartInstallMessage");
+}
+
+void CUpdateManager::refreshStartPage(const Command &cmd)
+{
+    if (m_pLastCheckMsgTimer)
+        m_pLastCheckMsgTimer->stop();
+    static bool lock = true;
+    QJsonObject jsn, btn_jsn;
+    if (cmd.isEmpty()) {
+        if (lock)
+            lock = false;
+        if (!m_lastCommand.icon.isEmpty())
+            jsn["icon"] = m_lastCommand.icon;
+        if (m_lastCommand.text.text != nullptr)
+            jsn["text"] = tr(m_lastCommand.text.text, "CUpdateManager").arg(m_lastCommand.text.arg1, m_lastCommand.text.arg2);
+        if (m_lastCommand.btn_text != nullptr)
+            btn_jsn["text"] = tr(m_lastCommand.btn_text, "CUpdateManager");
+        if (!m_lastCommand.btn_action.isEmpty())
+            btn_jsn["action"] = m_lastCommand.btn_action;
+        if (!m_lastCommand.btn_lock.isEmpty())
+            btn_jsn["lock"] = m_lastCommand.btn_lock;
+    } else {
+        if (!cmd.icon.isEmpty()) {
+            m_lastCommand.icon = cmd.icon;
+            jsn["icon"] = cmd.icon;
+        }
+        if (cmd.text.text != nullptr) {
+            m_lastCommand.text = cmd.text;
+            jsn["text"] = tr(cmd.text.text, "CUpdateManager").arg(cmd.text.arg1, cmd.text.arg2);
+        }
+        if (cmd.btn_text != nullptr) {
+            m_lastCommand.btn_text = cmd.btn_text;
+            btn_jsn["text"] = tr(cmd.btn_text, "CUpdateManager");
+        }
+        if (!cmd.btn_action.isEmpty()) {
+            m_lastCommand.btn_action = cmd.btn_action;
+            btn_jsn["action"] = cmd.btn_action;
+        }
+        if (!cmd.btn_lock.isEmpty()) {
+            m_lastCommand.btn_lock = cmd.btn_lock;
+            btn_jsn["lock"] = cmd.btn_lock;
+        }
+    }
+    if (lock)
         return;
-    if (ignoredVersion() != getVersion())
-        m_dialogSchedule->addToSchedule("showStartInstallMessage");
+    if (!btn_jsn.isEmpty())
+        jsn["button"] = btn_jsn;
+    if (!jsn.isEmpty())
+        AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, "updates:status", Utils::stringifyJson(jsn));
+}
+
+void CUpdateManager::launchIntervalStartTimer()
+{
+    if (m_pIntervalStartTimer && getUpdateMode() != UpdateMode::DISABLE)
+        m_pIntervalStartTimer->start();
 }
 
 QString CUpdateManager::getVersion() const
@@ -464,32 +600,38 @@ QString CUpdateManager::getVersion() const
 void CUpdateManager::onLoadUpdateFinished(const QString &filePath)
 {
     if (getFileHash(filePath) != m_packageData->hash) {
-        AscAppManager::sendCommandTo(0, "updates:checking", QString("{\"version\":\"%1\"}").arg(m_packageData->version));
-        m_dialogSchedule->addToSchedule("criticalMsg", "Update package error: md5 sum does not match the original.");
+        refreshStartPage({"error", {TXT_ERR_MD5}, BTN_TXT_CHECK, "check", "false"});
+        __UNLOCK
+//        m_dialogSchedule->addToSchedule("criticalMsg", "Update package error: md5 sum does not match the original.");
         return;
     }
     m_packageData->fileName = filePath;
     savePackageData(m_packageData->version, filePath, m_packageData->fileType);
-    if (m_packageData->fileType == "archive")
+    if (m_packageData->fileType == "archive") {
+        __UNLOCK
         unzipIfNeeded();
-    else
+    } else {
+        refreshStartPage({"success", {TXT_RESTART_TO_UPD}, BTN_TXT_RESTART, "install", "false"});
         m_dialogSchedule->addToSchedule("showStartInstallMessage");
+    }
 }
 
 void CUpdateManager::unzipIfNeeded()
 {
-    if (m_lock)
-        return;
-    m_lock = true;
+    __GLOBAL_LOCK
 
-    if (!sendMessage(MSG_UnzipIfNeeded, m_packageData->fileName.toStdWString(), m_packageData->version.toStdWString())) {
-        m_dialogSchedule->addToSchedule("criticalMsg", QObject::tr("An error occurred while unzip updates: Update Service not found!"));
+    refreshStartPage({"load", {TXT_PREPARING_UPD}, BTN_TXT_CANCEL, "abort", "true"});
+    if (!m_socket->sendMessage(MSG_UnzipIfNeeded, QStrToTStr(m_packageData->fileName), QStrToTStr(m_packageData->version))) {
+        refreshStartPage({"error", {TXT_ERR_UNZIP}, BTN_TXT_CHECK, "check", "false"});
+        __UNLOCK
+//        m_dialogSchedule->addToSchedule("criticalMsg", QObject::tr("An error occurred while unzip updates: Update Service not found!"));
     }
 }
 
 void CUpdateManager::handleAppClose()
 {
-    if ( m_restartForUpdate ) {
+    if ( m_startUpdateOnClose ) {
+#ifdef _WIN32
         if (m_packageData->fileType != "archive") {
             wstring args = m_packageData->packageArgs;
             if (m_packageData->fileType == "iss") {
@@ -501,37 +643,42 @@ void CUpdateManager::handleAppClose()
                 criticalMsg(nullptr, QObject::tr("An error occurred while start install updates!"));
             }
         } else {
-            if (!sendMessage(MSG_StartReplacingFiles)) {
+            if (!Utils::isSessionInProgress()) {
+                CLogger::log("Update skipped: session is being terminated.");
+                return;
+            }
+#endif
+            if (!m_socket->sendMessage(MSG_StartReplacingFiles, IsPackage(ISS) ? _T("iss") : IsPackage(MSI) ? _T("msi") :
+                   IsPackage(Portable) ? _T("portable") : _T("other"), m_restartAfterUpdate ? _T("true") : _T("false"))) {
                 criticalMsg(nullptr, QObject::tr("An error occurred while start replacing files: Update Service not found!"));
             }
+#ifdef _WIN32
         }
+#endif
     } else
-        sendMessage(MSG_StopDownload);
-}
-
-void CUpdateManager::scheduleRestartForUpdate()
-{
-    m_restartForUpdate = true;
+        m_socket->sendMessage(MSG_StopDownload);
 }
 
 void CUpdateManager::setNewUpdateSetting(const QString& _rate)
 {
     GET_REGISTRY_USER(reg_user);
     reg_user.setValue("autoUpdateMode", _rate);
-    int mode = (_rate == "silent") ?
-                    UpdateMode::SILENT : (_rate == "ask") ?
-                        UpdateMode::ASK : UpdateMode::DISABLE;
-    if (mode == UpdateMode::DISABLE)
-        destroyStartupTimer(m_pCheckOnStartupTimer);
-//    QTimer::singleShot(3000, this, &CUpdateManager::updateNeededCheking);
+    if (modeToEnum(_rate) == UpdateMode::DISABLE) {
+        if (m_pIntervalStartTimer)
+            m_pIntervalStartTimer->stop();
+        if (m_pIntervalTimer)
+            m_pIntervalTimer->stop();
+    } else {
+        if (m_pIntervalStartTimer)
+            m_pIntervalStartTimer->start();
+    }
 }
 
 void CUpdateManager::cancelLoading()
 {
-    if (m_lock)
-        return;
-    AscAppManager::sendCommandTo(0, "updates:checking", QString("{\"version\":\"%1\"}").arg(m_packageData->version));
-    sendMessage(MSG_StopDownload);
+    refreshStartPage({"lastcheck", {TXT_LAST_CHECK, formattedTime(m_lastCheck)}, BTN_TXT_CHECK, "check", "false"});
+    m_socket->sendMessage(MSG_StopDownload);
+    __UNLOCK
 }
 
 void CUpdateManager::skipVersion()
@@ -545,16 +692,11 @@ void CUpdateManager::skipVersion()
 int CUpdateManager::getUpdateMode()
 {
     GET_REGISTRY_USER(reg_user);
-    const QString mode = reg_user.value("autoUpdateMode", "ask").toString();
-    return (mode == "silent") ?
-                UpdateMode::SILENT : (mode == "ask") ?
-                    UpdateMode::ASK : UpdateMode::DISABLE;
+    return modeToEnum(reg_user.value("autoUpdateMode", "ask").toString());
 }
 
 void CUpdateManager::onLoadCheckFinished(const QString &filePath)
 {
-//    if (m_lock)
-//        return;
     m_manualCheck = true;
     QFile jsonFile(filePath);
     if ( jsonFile.open(QIODevice::ReadOnly) ) {
@@ -594,7 +736,9 @@ void CUpdateManager::onLoadCheckFinished(const QString &filePath)
                 }
             }
 #else
-            // TO_DO: linux package parsing
+            QJsonObject win = package.value("linux_64").toObject();
+            QJsonObject package_type = win.value("archive").toObject();
+            m_packageData->fileType = "archive";
 #endif
             m_packageData->packageUrl = package_type.value("url").toString().toStdWString();
             m_packageData->hash = package_type.value("md5").toString().toLower();
@@ -611,7 +755,7 @@ void CUpdateManager::onLoadCheckFinished(const QString &filePath)
             onCheckFinished(false, false, "", "");
         }
     } else {
-        onCheckFinished(true, false, "", "Error opening JSON file.");
+        onCheckFinished(true, false, "", "");
     }
 }
 
@@ -619,44 +763,49 @@ void CUpdateManager::onCheckFinished(bool error, bool updateExist, const QString
 {
     if ( !error) {
         if ( updateExist ) {
-            QString args = QString("{\"version\":\"%1\"}").arg(version);
-            AscAppManager::sendCommandTo(0, "updates:checking", args);
-            AscAppManager::sendCommandToAllEditors(L"updates:checking", args.toStdWString());
             switch (getUpdateMode()) {
             case UpdateMode::SILENT:
-                m_lock = false;
+                __UNLOCK
                 loadUpdates();
                 break;
             case UpdateMode::ASK:
             case UpdateMode::DISABLE:
-                m_dialogSchedule->addToSchedule("showUpdateMessage");
+                if (isSavedPackageValid()) {
+                    __UNLOCK
+                    loadUpdates();
+                } else {
+                    refreshStartPage({"lastcheck", {TXT_AVAILABLE_UPD, version}, BTN_TXT_DOWNLOAD, "download", "false"});
+                    m_dialogSchedule->addToSchedule("showUpdateMessage");
+                }
                 break;
             }
         } else {
-            AscAppManager::sendCommandTo(0, "updates:checking", "{\"version\":\"no\"}");
-            m_lock = false;
+            refreshStartPage({"success", {TXT_UPDATED}, BTN_TXT_CHECK, "check", "false"});
+            m_pLastCheckMsgTimer->start();
+            __UNLOCK;
         }
     } else {
-        m_dialogSchedule->addToSchedule("criticalMsg", changelog);
+        refreshStartPage({"error", {TXT_ERR_JSON}, BTN_TXT_CHECK, "check", "false"});
+        __UNLOCK
+//        m_dialogSchedule->addToSchedule("criticalMsg", changelog);
     }
 }
 
 void CUpdateManager::showUpdateMessage(QWidget *parent) {
-    int result = WinDlg::showDialog(parent,
-                        tr("A new version of %1 is available!").arg(QString(WINDOW_NAME)),
-                        tr("%1 %2 is now available (you have %3). "
-                           "Would you like to download it now?").arg(QString(WINDOW_NAME),
-                                                                    getVersion(),
-                                                                    QString(VER_FILEVERSION_STR)),
+    int result = WinDlg::showDialog(parent, tr("Update is available"),
+                        QString("%1\n%2: %3\n%4: %5\n%6").arg(QString(WINDOW_NAME), tr("Current version"),
+                        QString(VER_FILEVERSION_STR), tr("Update version"), getVersion(),
+                        tr("Would you like to download update now?")),
                         WinDlg::DlgBtns::mbSkipRemindDownload);
-    m_lock = false;
+    __UNLOCK
     switch (result) {
     case WinDlg::DLG_RESULT_DOWNLOAD:
         loadUpdates();
         break;
     case WinDlg::DLG_RESULT_SKIP: {
         skipVersion();
-        AscAppManager::sendCommandTo(0, "updates:checking", "{\"version\":\"no\"}");
+        refreshStartPage({"success", {TXT_UPDATED}, BTN_TXT_CHECK, "check", "false"});
+        m_pLastCheckMsgTimer->start();
         break;
     }
     default:
@@ -666,27 +815,37 @@ void CUpdateManager::showUpdateMessage(QWidget *parent) {
 
 void CUpdateManager::showStartInstallMessage(QWidget *parent)
 {
-    AscAppManager::sendCommandTo(0, "updates:download", "{\"progress\":\"done\"}");
-    int result = WinDlg::showDialog(parent,
-                                    tr("A new version of %1 is available!").arg(QString(WINDOW_NAME)),
-                                    tr("%1 %2 is now downloaded (you have %3). "
-                                       "Would you like to install it now?").arg(QString(WINDOW_NAME),
-                                                                                getVersion(),
-                                                                                QString(VER_FILEVERSION_STR)),
-                                    WinDlg::DlgBtns::mbSkipRemindSaveandinstall);
-    m_lock = false;
+    int result = WinDlg::showDialog(parent, tr("Update is ready to install"),
+                        QString("%1\n%2: %3\n%4: %5\n%6").arg(QString(WINDOW_NAME), tr("Current version"),
+                        QString(VER_FILEVERSION_STR), tr("Update version"), getVersion(),
+                        tr("Would you like to restart app now?")),
+                        WinDlg::DlgBtns::mbInslaterRestart);
+    __UNLOCK
     switch (result) {
-    case WinDlg::DLG_RESULT_INSTALL: {
-        scheduleRestartForUpdate();
+    case WinDlg::DLG_RESULT_RESTART: {
+        m_startUpdateOnClose = true;
+        m_restartAfterUpdate = true;
         AscAppManager::closeAppWindows();
         break;
     }
-    case WinDlg::DLG_RESULT_SKIP: {
-        skipVersion();
-        AscAppManager::sendCommandTo(0, "updates:checking", "{\"version\":\"no\"}");
+    case WinDlg::DLG_RESULT_INSLATER: {
+#ifdef _WIN32
+        m_startUpdateOnClose = (m_packageData->fileType == "archive");
+#else
+        m_startUpdateOnClose = false;
+#endif
+        m_restartAfterUpdate = false;
         break;
     }
+//    case WinDlg::DLG_RESULT_SKIP: {
+//        skipVersion();
+//        AscAppManager::sendCommandTo(0, "updates:link", "lock");
+//        AscAppManager::sendCommandTo(0, "updates:checking", "{\"version\":\"no\"}");
+//        break;
+//    }
     default:
+        m_startUpdateOnClose = false;
+        m_restartAfterUpdate = false;
         break;
     }
 }

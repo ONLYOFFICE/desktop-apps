@@ -186,6 +186,10 @@ static NSTouchBarItemIdentifier const kNewItemsItemIdentifier = @"com.onlyoffice
                 isChange = self.tabs[index].type != ASCTabTouchBarTypePresentation;
                 self.tabs[index].type = ASCTabTouchBarTypePresentation;
                 break;
+            case ASCTabViewTypePdf:
+                isChange = self.tabs[index].type != ASCTabTouchBarTypePdf;
+                self.tabs[index].type = ASCTabTouchBarTypePdf;
+                break;
             default:
                 isChange = self.tabs[index].type != ASCTabTouchBarTypePortal;
                 self.tabs[index].type = ASCTabTouchBarTypePortal;

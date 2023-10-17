@@ -364,4 +364,3 @@ void CDownloadWidget::updateScalingFactor(double f)
 //        removeFile(e.first);
 //    }
 //}
-

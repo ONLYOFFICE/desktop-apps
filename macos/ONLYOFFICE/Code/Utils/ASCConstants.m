@@ -55,7 +55,7 @@
 }
 
 + (NSArray *)images {
-    return @[@"jpg", @"jpeg", @"png", @"gif", @"bmp", @"tif", @"tiff", @"ico"];
+    return @[@"jpg", @"jpeg", @"png", @"gif", @"bmp", @"tif", @"tiff", @"ico", @"svg"];
 }
 
 + (NSArray *)videos {
@@ -68,17 +68,17 @@
 }
 
 + (NSArray *)documents {
-    return @[@"docx", @"doc", @"odt", @"ott", @"rtf", @"docm", @"dotx", @"dotm", @"docxf", @"fodt", @"wps", @"wpt",
+    return @[@"docx", @"doc", @"odt", @"ott", @"rtf", @"docm", @"dot", @"dotx", @"dotm", @"docxf", @"fodt", @"wps", @"wpt",
              @"xml", @"pdf", @"epub", @"djv", @"djvu", @"txt", @"html", @"htm", @"mht", @"mhtml", @"xps", @"doctx",
              @"fb2", @"oform", @"sxw", @"stw"];
 }
 
 + (NSArray *)spreadsheets {
-    return @[@"xls", @"xlsx", @"csv", @"ods", @"xltx", @"ots", @"xltm", @"xml", @"fods", @"et", @"ett", @"sxc"];
+    return @[@"xls", @"xlsx", @"xlsm", @"xlsb", @"csv", @"ods", @"xltx", @"ots", @"xltm", @"xml", @"fods", @"et", @"ett", @"sxc"];
 }
 
 + (NSArray *)presentations {
-    return @[@"ppt", @"pptx", @"ppsx", @"odp", @"potx", @"otp", @"pps", @"ppsm", @"potm", @"fodp", @"dps", @"dpt", @"sxi"];
+    return @[@"ppt", @"pptx", @"pptm", @"ppsx", @"odp", @"potx", @"otp", @"pps", @"ppsm", @"potm", @"fodp", @"dps", @"dpt", @"sxi"];
 }
 
 + (NSArray *)cancryptformats {

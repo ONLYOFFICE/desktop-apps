@@ -3,11 +3,9 @@
 #include "utils.h"
 #include "platform_linux/xdgdesktopportal.h"
 #include "platform_linux/gtkfilechooser.h"
-
+#include <QPushButton>
 #include <QGridLayout>
 #include <QFileDialog>
-#include <QtNetwork/QSslSocket>
-
 #include <QLabel>
 #include <QLineEdit>
 #include <QToolButton>

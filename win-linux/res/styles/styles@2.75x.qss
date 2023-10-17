@@ -1,0 +1,96 @@
+#CX11Caption {
+    min-width: 481px;
+}
+
+#labelAppTitle {
+    margin-top: -6px;
+    font-size: 30px;
+}
+
+QPushButton {
+    border: 3px solid #cbcbcb;
+    padding: 0 55px;
+    height: 61px;
+    border-radius: 6px;
+    font-size: 30px;
+}
+
+QPushButton#toolButtonMaximize,QPushButton#toolButtonMinimize,
+    QPushButton#toolButtonClose {
+        padding: 14px 33px 19px;
+}
+
+QPushButton#toolButtonMain {
+    font-size: 28px;
+    border-right-width: 3px;
+}
+
+QPushButton#toolButtonMain[theme=light] {
+    border-width: 3px;
+    border-bottom: 0 none;
+}
+
+QPushButton#toolButtonMain[class=normal],
+    QPushButton#toolButtonMain[class=normal]:hover
+{
+    border-bottom-width: 3px;
+}
+
+QPushButton::menu-indicator {
+    width: 28px;
+    height: 28px;
+    left: -6px;
+    top: -3px;
+}
+
+QPushButton#toolButtonDownload {
+    padding: 17px;
+}
+
+QPushButton#toolButtonDownload::menu-indicator {
+    top: -28px;
+    left: -11px;
+}
+
+/* download widget */
+
+QMenu[hdpi]#menuButtonDownload {
+    border-width: 3px;
+}
+
+CDownloadWidget[hdpi] QProgressBar {
+    border-radius: 6px;
+    max-height: 14px;
+    margin-right: 28px;
+    margin-top: 3px;
+    min-width: 550px;
+}
+
+CDownloadWidget[hdpi] QProgressBar::chunk {
+    border-radius: 6px;
+}
+
+CDownloadWidget[hdpi] QPushButton#buttonCancel {
+    font-size: 33px;
+}
+
+CDownloadWidget[hdpi] QLabel#labelName {
+    font-size: 44px;
+}
+
+/* ToolTip*/
+
+#CToolTip>QLabel {
+    min-height: 72px;
+    margin: 0px;
+    padding-left: 28px; padding-right: 28px;
+    font-size: 30px;
+    border: 3px solid #c0c0c0;
+    border-radius: 12px;
+}
+#mainPanel[uitheme=theme-dark] #CToolTip>QLabel {
+    border: 3px solid #666666;
+}
+#mainPanel[uitheme=theme-contrast-dark] #CToolTip>QLabel {
+    border: 3px solid #696969;
+}

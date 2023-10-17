@@ -31,11 +31,12 @@
 */
 
 #include "components/csvgpushbutton.h"
-
-#include <QtSvg>
+#include <QStyle>
+#include <QFile>
 #include <QSvgRenderer>
 #include <QPainter>
-#include <QDebug>
+#include <QTextStream>
+
 
 CSVGPushButton::CSVGPushButton(QWidget * parent)
     : QPushButton(parent)

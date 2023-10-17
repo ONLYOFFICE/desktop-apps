@@ -80,6 +80,12 @@
             NSLog(@"set web-apps help url %@", url);
         }
 
+
+        if (url && [url length]) {
+            [_jsVariables setValue:url forKey:@"helpUrl"];
+            NSLog(@"set web-apps help url %@", url);
+        }
+
         [self setParameter:@"lang" withString:[ASCLinguist appLanguageCode]];
     }
 

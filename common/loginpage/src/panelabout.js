@@ -62,7 +62,7 @@
     ViewAbout.prototype.paneltemplate = function(args) {
         var _opts = args.opts;
         !!_opts.active && (_opts.edition = !!_opts.edition ? _opts.edition + ' ' + _opts.active : _opts.active);
-        _opts.edition = !!_opts.edition ? `<div class="ver-edition">${_opts.edition}</div>` : '';
+        _opts.edition = !!_opts.edition ? `<div id="idx-ver-edition" class="about-field">${_opts.edition}</div>` : '';
 
         let _ext_ver = '';
         if ( !!_opts.arch ) _ext_ver += `${_opts.arch == 'x64' ? 'x64' : 'x86'}`;
@@ -70,20 +70,39 @@
         if ( !!_ext_ver ) _opts.version += ` (${_ext_ver.trim()})`;
 
         var _lang = utils.Lang;
+        const _updates_status = `<section id="idx-update-cnt">
+                                        <div class="status-field hbox">
+                                            <svg class="icon" id="idx-update-status-icon">
+                                                <use href=""></use>
+                                            </svg>
+                                            <label id="idx-update-status-text"></label>
+                                        </div>
+                                        <div class="status-field">
+                                            <button id="idx-update-btnaction" class="btn btn--landing"></button>
+                                        </div>
+                                    </section>`;
         let _html = `<div class="flexbox">
+                        <h3 class='table-caption' l10n>${_lang.actAbout}</h3>
                         <div class="box-ver">
-                            <div class="${_opts.logocls}">
-                                <svg class="ver-logo">
-                                    <use id="idx-ver-logo--light" href="#idx-logo-light" />
-                                    <use id="idx-ver-logo--dark" href="#idx-logo-dark" />
-                                </svg>
-                            </div><p></p>
-                            <div class="ver-version" l10n>${_opts.appname} ${_lang.strVersion} ${_opts.version}</div>
+                            <section class="hbox">
+                                <div id="idx-about-cut-logo" class="${_opts.logocls}">
+                                    <svg class="ver-logo">
+                                        <use id="idx-ver-logo--light" href="#idx-logo-light" />
+                                        <use id="idx-ver-logo--dark" href="#idx-logo-dark" />
+                                    </svg>
+                                </div>
+                                <div class="vbox">
+                                    <p id="idx-about-appname">${_opts.appname}</p>
+                                    <p id="idx-about-version" l10n>${_lang.strVersion} ${_opts.version}</p>
+                                </div>
+                            </section><p></p>
+                            <div class="ver-version hidden" l10n>${_opts.appname} ${_lang.strVersion} ${_opts.version}</div>
+                            ${_updates_status}
                             <div id='id-features-available' l10n>${_lang.aboutProFeaturesAvailable}</div>
-                            ${_opts.edition}<p></p>
-                            <a class="ver-checkupdate link" draggable='false' data-state='check' href="#" l10n>${_lang.checkUpdates}</a><p />
-                            <a class="ver-changelog link" draggable='false' target="popup" href=${_opts.changelog} l10n>${_lang.aboutChangelog}</a><p />
-                            <div class="ver-copyright">${_opts.rights}</div>
+                            ${_opts.edition}
+                            <a class="ver-checkupdate link hidden" draggable='false' data-state='check' href="#" l10n>${_lang.checkUpdates}</a>
+                            <div class="about-field"><a class="ver-changelog link" draggable='false' target="popup" href=${_opts.changelog} l10n>${_lang.aboutChangelog}</a></div>
+                            <div class="ver-copyright about-field">${_opts.rights}</div>
                             <a class="ver-site link" target="popup" href="${_opts.link}">${_opts.site}</a>
                         </div>`+
                         // '<div class="box-license flex-fill">'+
@@ -96,10 +115,6 @@
         }
 
         return _html;
-    };
-    ViewAbout.prototype.renderpanel = function(template) {
-        this.$panel && this.$panel.empty();
-        this.$panel.append(template);
     };
 
     window.ControllerAbout = ControllerAbout;
@@ -137,17 +152,21 @@
                     this.view = new ViewAbout(args);
                     this.view.render();
                     this.view.$menuitem.removeClass('extra');
+                    this.view.$panel.append(this.view.paneltemplate(args));
+                } else {
+                    if ( !!args.opts && !!args.opts.edition ) {
+                        $('#idx-ver-edition').html(args.opts.edition);
+                    }
                 }
 
-                this.view.renderpanel(this.view.paneltemplate(args));
-                const $label = this.view.$panel.find('.ver-checkupdate');
-                $label.on('click', (e) => {
-                    if ( performance.now() - last_click_time < 1000 ) return;
-                    last_click_time = performance.now();
+                // const $label = this.view.$panel.find('.ver-checkupdate');
+                // $label.on('click', (e) => {
+                //     if ( performance.now() - last_click_time < 1000 ) return;
+                //     last_click_time = performance.now();
 
-                    window.sdk.execCommand('update', $label.data('state'));
-                });
-                $label[this.updates===true?'show':'hide']();
+                //     window.sdk.execCommand('update', $label.data('state'));
+                // });
+                // $label[this.updates===true?'show':'hide']();
                 if ( args.opts ) {
                     this.view.$panel.find('.ver-changelog')[!!args.opts.changelog?'show':'hide']();
                 }
@@ -159,47 +178,99 @@
                 this.updates = param == 'on';
 
                 if ( this.view ) {
-                    this.view.$panel.find('.ver-checkupdate')[this.updates?'show':'hide']();
+                    // this.view.$panel.find('.ver-checkupdate')[this.updates?'show':'hide']();
+                    this.view.$panel.find('#idx-update-cnt')[this.updates?'show':'hide']();
+
+                    if ( this.updates ) {
+                        const $btn = $('#idx-update-btnaction')
+                        $btn.click(e => {
+                            sdk.execCommand('updates:action', $btn.data('action'));
+                        });
+                    }
                 }
             } else
             if (/^updates:checking/.test(cmd)) {
-                const $label = this.view.$panel.find('.ver-checkupdate');
-                const opts = JSON.parse(param);
-                if ( opts.version == 'no' ) {
-                    $label.text(utils.Lang.updateNoUpdates);
-                } else {
-                    $label.text(utils.Lang.updateAvialable.replace('$1', opts.version));
-                    $label.data('state', 'download');
-                }
-                $label.show();
+                // const $label = this.view.$panel.find('.ver-checkupdate');
+                // const opts = JSON.parse(param);
+                // if ( opts.version == 'no' ) {
+                //     $label.text(utils.Lang.updateNoUpdates);
+                // } else {
+                //     $label.text(utils.Lang.updateAvialable.replace('$1', opts.version));
+                //     $label.data('state', 'download');
+                // }
+                // $label.show();
             } else
             if (/updates:download/.test(cmd)) {
-                const opts = JSON.parse(param);
-                const $label = this.view.$panel.find('.ver-checkupdate');
+                // const opts = JSON.parse(param);
+                // const $label = this.view.$panel.find('.ver-checkupdate');
 
-                if ( opts.progress == 'done' ) {
-                    $label.text(utils.Lang.updateDownloadFinished);
-                    $label.data('state', 'install');
-                } else
-                if ( opts.progress == 'aborted' ) {
-                    $label.text(utils.Lang.updateDownloadCanceled);
-                } else {
-                    $label.text(utils.Lang.updateDownloadProgress.replace('$1', opts.progress));
-                    $label.data('state', 'abort');
-                }
+                // if ( opts.progress == 'done' ) {
+                //     $label.text(utils.Lang.updateDownloadFinished);
+                //     $label.data('state', 'install');
+                // } else
+                // if ( opts.progress == 'aborted' ) {
+                //     $label.text(utils.Lang.updateDownloadCanceled);
+                // } else {
+                //     $label.text(utils.Lang.updateDownloadProgress.replace('$1', opts.progress));
+                //     $label.data('state', 'abort');
+                // }
             } else
             if (/updates:link/.test(cmd)) {
-                const $label = this.view.$panel.find('.ver-checkupdate');
-                let opts = {};
-                if ( param == 'lock' || param == 'unlock' )
-                    opts.disabled = param == 'lock';
-                else opts = JSON.parse(param);
+                // const $label = this.view.$panel.find('.ver-checkupdate');
+                // let opts = {};
+                // if ( param == 'lock' || param == 'unlock' )
+                //     opts.disabled = param == 'lock';
+                // else opts = JSON.parse(param);
 
-                if ( opts.disabled != undefined ) {
-                    $label.attr('disabled', opts.disabled ? 'disabled' : false);
-                }
+                // if ( opts.disabled != undefined ) {
+                    // $label.attr('disabled', opts.disabled ? 'disabled' : false);
+                // }
+            } else
+            if (/updates:status/.test(cmd)) {
+                on_updates_info.call(this, JSON.parse(param))
             }
         };
+
+        const on_updates_info = function(info) {
+                if ( info.text ) {
+                    $('#idx-update-status-text', this.view.$panel).text(info.text);
+                }
+
+                if ( info.icon ) {
+                    const $icon = $('#idx-update-status-icon', this.view.$panel);
+
+                    let icon_id;
+                    switch (info.icon) {
+                    case 'error': icon_id = 'error'; break;
+                    case 'load': icon_id = 'load'; break;
+                    case 'lastcheck': icon_id = 'lastcheck'; break;
+                    default: icon_id = 'success'; break;
+                    }
+
+                    $icon.attr('data-icon', icon_id);
+                    $('use', $icon).attr('href', `#${icon_id}`)
+                }
+
+                if ( info.button ) {
+                    const $button = $('#idx-update-btnaction', this.view.$panel);
+                    if ( info.button.text ) {
+                        $button.text(info.button.text);
+                        $button.data("action", info.button.action);
+                    }
+
+                    if ( info.button.lock ) {
+                        $button.disable(info.button.lock=='true');
+                    }
+
+                    if ( info.button == 'lock' ) {
+                        $button.disable(true);
+                    } else
+                    if ( info.button == 'unlock' ) {
+                        $button.disable(false);
+                    }
+
+                }
+        }
 
         return {
             init: function() {

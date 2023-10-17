@@ -93,20 +93,4 @@ private:
     void sendButtonRelease();
 };
 
-/*class CX11Caption : public QWidget
-{
-public:
-    Q_OBJECT
-
-signals:
-    void mouseDoubleClicked();
-
-public:
-    explicit CX11Caption(QWidget* parent);
-    virtual ~CX11Caption();
-
-    virtual void paintEvent(QPaintEvent *event);
-    virtual void mouseDoubleClickEvent(QMouseEvent *event);
-};*/
-
 #endif // CX11DECORATION_H

@@ -6,16 +6,17 @@
 #endif
 #include "defines.h"
 #include "utils.h"
-
 #include <QSettings>
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QColor>
 #include <QFile>
+#include <QDir>
 #include <QRegularExpression>
 #include <QProcess>
 #include <QPalette>
-#include <QDebug>
+#include <QApplication>
+#include <QJsonArray>
 
 #define QSTRING_FROM_WSTR(s) QString::fromStdWString(s)
 #define REGISTRY_THEME_KEY "UITheme"
@@ -34,25 +35,46 @@ namespace NSTheme {
     };
 
     static const std::map<CTheme::ColorRole, QString> map_names = {
-            {CTheme::ColorRole::ecrTabWordActive, "brand_word"},
-            {CTheme::ColorRole::ecrTabSlideActive, "brand_slide"},
-            {CTheme::ColorRole::ecrTabCellActive, "brand_cell"},
+            {CTheme::ColorRole::ecrTabWordActive, "brand-word"},
+            {CTheme::ColorRole::ecrTabSlideActive, "brand-slide"},
+            {CTheme::ColorRole::ecrTabCellActive, "brand-cell"},
+            {CTheme::ColorRole::ecrTabViewerActive, "brand-pdf"},
 
-            {CTheme::ColorRole::ecrWindowBackground, "window_background"},
-            {CTheme::ColorRole::ecrWindowBorder, "window_border"},
+            {CTheme::ColorRole::ecrWindowBackground, "window-background"},
+            {CTheme::ColorRole::ecrWindowBorder, "window-border"},
 
-            {CTheme::ColorRole::ecrTextNormal, "text_normal"},
-            {CTheme::ColorRole::ecrTextPressed, "text_normal_pressed"},
+            {CTheme::ColorRole::ecrTextNormal, "text-normal"},
+            {CTheme::ColorRole::ecrTextPressed, "text-normal-pressed"},
 
-    //      {  "tab_active_background": "#fff",
-            {CTheme::ColorRole::ecrTabSimpleActiveBackground, "tab_simple_active_background"},
-            {CTheme::ColorRole::ecrTabSimpleActiveText, "tab_simple_active_text"},
-            {CTheme::ColorRole::ecrTabDefaultActiveBackground, "tab_default_active_background"},
-            {CTheme::ColorRole::ecrTabDefaultActiveText, "tab_default_active_text"},
-    //      {  "tab_divider": "#a5a5a5",
+    //      {  "tab-active-background": "#fff",
+            {CTheme::ColorRole::ecrTabSimpleActiveBackground, "tab-simple-active-background"},
+            {CTheme::ColorRole::ecrTabSimpleActiveText, "tab-simple-active-text"},
+            {CTheme::ColorRole::ecrTabDefaultActiveBackground, "tab-default-active-background"},
+            {CTheme::ColorRole::ecrTabDefaultActiveText, "tab-default-active-text"},
+    //      {  "tab-divider": "#a5a5a5",
 
-            {CTheme::ColorRole::ecrButtonNormalOpacity, "button_normal_opacity"},
+            {CTheme::ColorRole::ecrButtonNormalOpacity, "button-normal-opacity"},
             {CTheme::ColorRole::ecrLogoColor, "logo"}
+        };
+
+    static const std::map<QString, QString> map_alias_names = {
+            {"brand-word", "toolbar-header-document"},
+            {"brand-slide", "toolbar-header-presentation"},
+            {"brand-cell", "toolbar-header-spreadsheet"},
+
+            {"window-background", "background-toolbar"},
+//            {CTheme::ColorRole::ecrWindowBorder, "window-border"},
+
+//            {CTheme::ColorRole::ecrTextNormal, "text-normal"},
+//            {CTheme::ColorRole::ecrTextPressed, "text-normal-pressed"},
+
+//            {CTheme::ColorRole::ecrTabSimpleActiveBackground, "tab-simple-active-background"},
+//            {CTheme::ColorRole::ecrTabSimpleActiveText, "tab-simple-active-text"},
+//            {CTheme::ColorRole::ecrTabDefaultActiveBackground, "tab-default-active-background"},
+//            {CTheme::ColorRole::ecrTabDefaultActiveText, "tab-default-active-text"},
+
+//            {CTheme::ColorRole::ecrButtonNormalOpacity, "button-normal-opacity"},
+//            {CTheme::ColorRole::ecrLogoColor, "logo"}
         };
 }
 
@@ -67,8 +89,35 @@ public:
         id = obj.value("id").toString().toStdWString();
         type = obj.value("type").toString() == NSTheme::theme_type_dark ?
                             NSTheme::ThemeType::ttDark : NSTheme::ThemeType::ttLight;
-        jsonValues = obj.value("values").toObject();
-        is_system = false;
+        if ( obj.contains("colors") ) {
+            QJsonObject colorValues = obj.value("colors").toObject();
+
+            const CTheme * default_theme = type == NSTheme::ThemeType::ttDark ? defdark : deflight;
+            jsonValues = QJsonObject(default_theme->m_priv->jsonValues);
+
+            for ( const auto &color_name : NSTheme::map_names ) {
+                if ( colorValues.contains(color_name.second) ) {
+                    jsonValues[color_name.second] = colorValues.value(color_name.second);
+                } else {
+                    const auto it = NSTheme::map_alias_names.find(color_name.second);
+                    if ( it != NSTheme::map_alias_names.end() &&
+                            colorValues.contains(it->second) )
+                    {
+                        jsonValues[color_name.second] = colorValues.value(it->second).toString();
+                    }
+                }
+            }
+
+        } else {
+            jsonValues = obj.value("values").toObject();
+        }
+
+//        is_system = false;
+    }
+
+    auto setDefaultThemes(const CTheme * const l, const CTheme * const d) -> void {
+        defdark = d;
+        deflight = l;
     }
 
     std::wstring id;
@@ -77,6 +126,9 @@ public:
     bool is_system{false};
 
     QJsonObject jsonValues;
+    const CTheme * defdark = nullptr,
+            * deflight = nullptr;
+    QString source_file;
 };
 
 /*
@@ -131,10 +183,25 @@ public:
         if ( user_theme == THEME_ID_SYSTEM )
             user_theme = THEME_DEFAULT_LIGHT_ID;
 #endif
-        if ( user_theme == THEME_ID_SYSTEM || rc_themes.find(user_theme) == rc_themes.end() ) {
-            current = new CTheme(rc_themes.at(is_system_theme_dark ? THEME_DEFAULT_DARK_ID : THEME_DEFAULT_LIGHT_ID));
+
+        current = new CTheme;
+        current->m_priv->setDefaultThemes(getDefault(NSTheme::ThemeType::ttDark), getDefault(NSTheme::ThemeType::ttLight));
+        if ( user_theme.endsWith(".json") ) {
+            QDir directory(qApp->applicationDirPath() + "/uithemes");
+            QString filepath{directory.absoluteFilePath(user_theme)};
+
+            if ( !QFile::exists(filepath) || !current->fromFile(filepath) ) {
+                user_theme = THEME_ID_SYSTEM;
+            }
+        } else
+        if ( rc_themes.find(user_theme) == rc_themes.end() || !current->fromFile(rc_themes.at(user_theme)) ) {
+            user_theme = THEME_ID_SYSTEM;
+        }
+
+        if ( user_theme == THEME_ID_SYSTEM ) {
+            current->fromFile(rc_themes.at(is_system_theme_dark ? THEME_DEFAULT_DARK_ID : THEME_DEFAULT_LIGHT_ID));
             current->m_priv->is_system = true;
-        } else current = new CTheme(rc_themes.at(user_theme));
+        }
     }
 
     ~CThemesPrivate()
@@ -145,27 +212,45 @@ public:
         }
     }
 
-    auto setCurrent(const QString& id) -> bool
+    auto setCurrent(const QString& id, bool force = false) -> bool
     {
-        if ( id != THEME_ID_SYSTEM ) {
-            if ( rc_themes.find(id) != rc_themes.end() ) {
-                return current->fromFile(rc_themes.at(id));
-            }
-        } else {
-            QString visual_theme_id = is_system_theme_dark ? THEME_DEFAULT_DARK_ID : THEME_DEFAULT_LIGHT_ID;
-            if ( current->id() != visual_theme_id.toStdWString() ) {
-                if ( !current->fromFile(rc_themes.at(visual_theme_id)) )
-                    return false;
+        if ( current->id() != id.toStdWString() || force ) {
+            if ( id != THEME_ID_SYSTEM ) {
+                delete current;
+
+                current = new CTheme;
+                current->m_priv->setDefaultThemes(getDefault(NSTheme::ThemeType::ttDark), getDefault(NSTheme::ThemeType::ttLight));
+                if ( rc_themes.find(id) != rc_themes.end() ) {
+                    return current->fromFile(rc_themes.at(id));
+                } else
+                if ( local_themes.find(id) != local_themes.end() ) {
+                    if ( current->fromJson(local_themes.at(id).second) ) {
+                        current->m_priv->source_file = local_themes.at(id).first;
+                        return true;
+                    }
+//                    return current->fromJson(local_themes.at(id));
+                }
+            } else {
+                QString visual_theme_id = is_system_theme_dark ? THEME_DEFAULT_DARK_ID : THEME_DEFAULT_LIGHT_ID;
+                if ( current->id() != visual_theme_id.toStdWString() ) {
+                    delete current;
+
+                    current = new CTheme;
+                    if ( !current->fromFile(rc_themes.at(visual_theme_id)) )
+                        return false;
+                }
+
+                current->m_priv->is_system = true;
+                return true;
             }
 
-            current->m_priv->is_system = true;
-            return true;
+            return false;
         }
 
-        return false;
+        return true;
     }
 
-    auto getDefault(NSTheme::ThemeType type) -> const CTheme *
+    auto getDefault(NSTheme::ThemeType type) -> const CTheme * const
     {
         if ( type == NSTheme::ThemeType::ttDark ) {
             if ( !dark ) {
@@ -184,8 +269,52 @@ public:
         }
     }
 
+    auto searchLocalThemes() -> void {
+        QDir directory(qApp->applicationDirPath() + "/uicolorthemes");
+        QStringList themes = directory.entryList(QStringList() << "*.json", QDir::Files);
+
+        QFile file;
+        QJsonParseError je;
+        QJsonArray json_themes_array;
+        foreach(QString filename, themes) {
+            file.setFileName(directory.absoluteFilePath(filename));
+            if ( file.open(QIODevice::ReadOnly) ) {
+                QByteArray data{file.readAll()};
+                file.close();
+
+                QJsonDocument doc = QJsonDocument::fromJson(data, &je);
+                if ( je.error == QJsonParseError::NoError ) {
+                    QJsonObject objRoot = doc.object();
+
+                    if ( validateTheme(objRoot) ) {
+                        json_themes_array.append(objRoot);
+
+                        local_themes[objRoot.value("id").toString()] = std::make_pair(filename,data);
+//                        parseLocalTheme(doc.object());
+                    }
+                }
+            }
+        }
+
+        if ( json_themes_array.size() ) {
+            EditorJSVariables::setVariable("localthemes", json_themes_array);
+        }
+    }
+
+    auto parseLocalTheme(const QJsonObject& obj) -> void {
+
+    }
+
+    auto validateTheme(const QJsonObject& root) -> bool {
+        if ( root.contains("id") ) {
+            return true;
+        }
+        return false;
+    }
+
     CThemes & parent;
     std::map<QString, QString> rc_themes;
+    std::map<QString, std::pair<QString, QByteArray>> local_themes;
     bool is_system_theme_dark = false;
 
     CTheme * current = nullptr;
@@ -259,8 +388,9 @@ auto CTheme::stype() const -> QString
 auto CTheme::value(ColorRole r) const -> std::wstring
 {
     if ( NSTheme::map_names.find(r) != NSTheme::map_names.end() ) {
-        if ( m_priv->jsonValues.contains(NSTheme::map_names.at(r)) )
+        if ( m_priv->jsonValues.contains(NSTheme::map_names.at(r)) ) {
             return m_priv->jsonValues.value(NSTheme::map_names.at(r)).toString().toStdWString();
+        }
     }
 
     return L"";
@@ -319,6 +449,7 @@ auto CTheme::isSystem() const -> bool
 CThemes::CThemes()
     : m_priv(new CThemes::CThemesPrivate(this))
 {
+    m_priv->searchLocalThemes();
 }
 
 CThemes::~CThemes()
@@ -346,10 +477,17 @@ auto CThemes::defaultLight() -> const CTheme&
 
 auto CThemes::setCurrentTheme(const std::wstring& name) -> void
 {
-    if ( !isThemeCurrent(name) && m_priv->setCurrent(QString::fromStdWString(name)) ) {
+    if ( !isThemeCurrent(name) && m_priv->setCurrent(QString::fromStdWString(name), true) ) {
         GET_REGISTRY_USER(_reg_user);
-//        _reg_user.setValue(REGISTRY_THEME_KEY, QString::fromStdWString(name));
-        _reg_user.setValue(REGISTRY_THEME_KEY_7_2, QString::fromStdWString(name));
+
+        if ( !m_priv->current->m_priv->source_file.isEmpty() )
+            _reg_user.setValue(REGISTRY_THEME_KEY, m_priv->current->m_priv->source_file);
+        else _reg_user.setValue(REGISTRY_THEME_KEY, QString::fromStdWString(name));
+
+        // TODO: remove after ver 7.5. back to keep theme id in REGISTRY_THEME_KEY
+        if ( _reg_user.contains(REGISTRY_THEME_KEY_7_2) )
+            _reg_user.remove(REGISTRY_THEME_KEY_7_2);
+
     }
 }
 

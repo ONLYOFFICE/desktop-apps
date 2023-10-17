@@ -1,6 +1,5 @@
 
 QT  += core gui widgets gui-private widgets-private core-private printsupport
-QT  += multimedia multimediawidgets
 QT  += svg
 
 TEMPLATE = app
@@ -47,7 +46,7 @@ TRANSLATIONS = ./langs/en.ts \
                 ./langs/uk.ts \
                 ./langs/vi.ts \
                 ./langs/be.ts \
-                ./langs/zh_HK.ts \
+                ./langs/zh_TW.ts \
                 ./langs/si.ts
 
 
@@ -71,7 +70,6 @@ HEADERS += \
     $$PWD/src/windows/ceditorwindow_p.h \
     $$PWD/src/windows/cpresenterwindow.h \
     $$PWD/src/components/asctabwidget.h \
-    $$PWD/src/components/ctabbarwrapper.h \
     $$PWD/src/components/cdownloadwidget.h \
     $$PWD/src/components/cpushbutton.h \
     $$PWD/src/components/cfiledialog.h \
@@ -122,7 +120,6 @@ SOURCES += \
     $$PWD/src/components/cpushbutton.cpp \
     $$PWD/src/components/cfiledialog.cpp \
     $$PWD/src/components/cprintprogress.cpp \
-    $$PWD/src/components/ctabbarwrapper.cpp \
     $$PWD/src/components/ctabbar.cpp \
     $$PWD/src/components/cmessage.cpp \
     $$PWD/src/components/canimatedicon.cpp \
@@ -154,6 +151,15 @@ SOURCES += \
 #    src/ctabstyle.cpp
 #    src/components/casclabel.cpp
 
+updmodule:!build_xp {
+    INCLUDEPATH += $$PWD/extras/update-daemon/src/classes
+    HEADERS += $$PWD/src/cupdatemanager.h \
+               $$PWD/extras/update-daemon/src/classes/csocket.h
+
+    SOURCES += $$PWD/src/cupdatemanager.cpp \
+               $$PWD/extras/update-daemon/src/classes/csocket.cpp
+}
+
 RESOURCES += $$PWD/resources.qrc
 DEFINES += COPYRIGHT_YEAR=$${CURRENT_YEAR}
 
@@ -183,7 +189,8 @@ PLATFORM_BUILD=$$CORE_BUILDS_PLATFORM_PREFIX
 
 core_linux:LIBS += -Wl,-unresolved-symbols=ignore-in-shared-libs
 
-ADD_DEPENDENCY(PdfFile, DjVuFile, XpsFile, HtmlRenderer, UnicodeConverter, hunspell, ooxmlsignature, kernel, kernel_network, graphics, videoplayer, ascdocumentscore, qtascdocumentscore)
+ADD_DEPENDENCY(PdfFile, DjVuFile, XpsFile, HtmlRenderer, UnicodeConverter, hunspell, ooxmlsignature, kernel, kernel_network, graphics, ascdocumentscore, qtascdocumentscore)
+include($$CORE_ROOT_DIR/../desktop-sdk/ChromiumBasedEditors/videoplayerlib/videoplayerlib_deps.pri)
 
 core_linux {
     QT += network x11extras
@@ -219,6 +226,14 @@ core_linux {
                 $$PWD/src/platform_linux/gtkutils.cpp \
                 $$PWD/src/platform_linux/xcbutils.cpp
 
+    updmodule {
+        HEADERS += $$PWD/src/platform_linux/updatedialog.h \
+                   $$PWD/gtk_resources.h
+
+        SOURCES += $$PWD/src/platform_linux/updatedialog.cpp \
+                   $$PWD/gtk_resources.c
+    }
+
     CONFIG += link_pkgconfig
     PKGCONFIG += glib-2.0 gtk+-3.0 atk gtk+-unix-print-3.0 xcb
     LIBS += -lX11 -lX11-xcb
@@ -245,6 +260,7 @@ core_windows {
                $$PWD/src/windows/platform_win/caption.h \
                $$PWD/src/platform_win/singleapplication.h \
                $$PWD/src/platform_win/filechooser.h \
+               $$PWD/src/platform_win/printdialog.h \
                $$PWD/src/platform_win/message.h \
                $$PWD/src/platform_win/resource.h
 
@@ -252,18 +268,12 @@ core_windows {
                $$PWD/src/windows/platform_win/csnap.cpp \
                $$PWD/src/platform_win/singleapplication.cpp \
                $$PWD/src/platform_win/filechooser.cpp \
+               $$PWD/src/platform_win/printdialog.cpp \
                $$PWD/src/platform_win/message.cpp
 
     updmodule:!build_xp {
-        HEADERS += $$PWD/src/cupdatemanager.h
-        SOURCES += $$PWD/src/cupdatemanager.cpp
-
-        INCLUDEPATH += $$PWD/extras/update-daemon/src/classes
-        HEADERS += $$PWD/src/platform_win/updatedialog.h \
-                   $$PWD/extras/update-daemon/src/classes/csocket.h
-
-        SOURCES += $$PWD/src/platform_win/updatedialog.cpp \
-                   $$PWD/extras/update-daemon/src/classes/csocket.cpp
+        HEADERS += $$PWD/src/platform_win/updatedialog.h
+        SOURCES += $$PWD/src/platform_win/updatedialog.cpp
     }
 
     LIBS += -lwininet \

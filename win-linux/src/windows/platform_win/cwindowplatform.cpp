@@ -64,10 +64,6 @@ CWindowPlatform::CWindowPlatform(const QRect &rect) :
     style |= (WS_CLIPCHILDREN | WS_MAXIMIZEBOX | WS_MINIMIZEBOX);
     style |= (Utils::getWinVersion() > Utils::WinVer::Win7) ? WS_OVERLAPPEDWINDOW : WS_POPUP;
     ::SetWindowLong(m_hWnd, GWL_STYLE, style);
-#ifndef __OS_WIN_XP
-    const MARGINS shadow = {-1, -1, -1, -1};
-    DwmExtendFrameIntoClientArea(m_hWnd, &shadow);
-#endif
     connect(this->window()->windowHandle(), &QWindow::screenChanged, this, [=]() {
         SetWindowPos(m_hWnd, 0, 0, 0, 0, 0, SWP_FRAMECHANGED | SWP_NOMOVE | SWP_NOSIZE);
     });
@@ -99,6 +95,19 @@ void CWindowPlatform::toggleBorderless(bool showmax)
 void CWindowPlatform::toggleResizeable()
 {
     m_isResizeable = !m_isResizeable;
+}
+
+void CWindowPlatform::bringToTop()
+{
+    if (IsIconic(m_hWnd)) {
+        ShowWindow(m_hWnd, SW_RESTORE);
+    }
+    WindowHelper::bringToTop(m_hWnd);
+}
+
+void CWindowPlatform::show(bool maximized)
+{
+    maximized ? CWindowBase::showMaximized() : CWindowBase::show();
 }
 
 void CWindowPlatform::adjustGeometry()
@@ -133,27 +142,21 @@ void CWindowPlatform::adjustGeometry()
     }
 }
 
+/** Protected **/
+
+bool CWindowPlatform::isSessionInProgress()
+{
+    return m_isSessionInProgress;
+}
+
+/** Private **/
+
 bool CWindowPlatform::isTaskbarAutoHideOn()
 {
     APPBARDATA ABData;
     ABData.cbSize = sizeof(ABData);
     return (SHAppBarMessage(ABM_GETSTATE, &ABData) & ABS_AUTOHIDE) != 0;
 }
-
-void CWindowPlatform::bringToTop()
-{
-    if (IsIconic(m_hWnd)) {
-        ShowWindow(m_hWnd, SW_RESTORE);
-    }
-    WindowHelper::bringToTop(m_hWnd);
-}
-
-void CWindowPlatform::show(bool maximized)
-{
-    maximized ? CWindowBase::showMaximized() : CWindowBase::show();
-}
-
-/** Private **/
 
 void CWindowPlatform::setResizeableAreaWidth(int width)
 {
@@ -180,6 +183,18 @@ bool CWindowPlatform::nativeEvent(const QByteArray &eventType, void *message, lo
     static uchar movParam = 0;
     switch (msg->message)
     {
+    case WM_ACTIVATE: {
+#ifndef __OS_WIN_XP
+        MARGINS mrg;
+        mrg.cxLeftWidth = 4;
+        mrg.cxRightWidth = 4;
+        mrg.cyBottomHeight = 4;
+        mrg.cyTopHeight = 29;
+        DwmExtendFrameIntoClientArea(m_hWnd, &mrg);
+#endif
+        return true;
+    }
+
     case WM_DPICHANGED: {
         setMinimumSize(0,0);
         if (AscAppManager::IsUseSystemScaling()) {
@@ -396,6 +411,30 @@ bool CWindowPlatform::nativeEvent(const QByteArray &eventType, void *message, lo
 
     case WM_ERASEBKGND:
         return true;
+
+    case WM_NCACTIVATE: {
+        // Prevent the title bar from being drawn when the window is restored or maximized
+        if (m_borderless) {
+            if (!msg->wParam) {
+                *result = TRUE;
+                break;
+            }
+            return true;
+        }
+        break;
+    }
+
+    case WM_QUERYENDSESSION:
+        Utils::setSessionInProgress(false);
+        m_isSessionInProgress = false;
+        break;
+
+    case WM_ENDSESSION:
+        if (!msg->wParam) {
+            Utils::setSessionInProgress(true);
+            m_isSessionInProgress = true;
+        }
+        break;
 
     default:
         break;

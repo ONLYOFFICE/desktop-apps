@@ -50,46 +50,19 @@
 
         @font-face {
             font-family: 'Open Sans';
+            /*src: url('fonts/opensans/OpenSans-Regular.ttf');*/
+            src: url('fonts/OpenSans-Regular.ttf');
+            font-weight: normal;
+        }
+        @font-face {
+            font-family: 'Open Sans';
             src: url('fonts/OpenSans-Bold.ttf');
             font-weight: bold;
         }
         @font-face {
             font-family: 'Open Sans';
-            src: url('fonts/OpenSans-BoldItalic.ttf');
-            font-weight: normal;
-            font-style: italic;
-        }
-        @font-face {
-            font-family: 'Open Sans';
-            src: url('fonts/OpenSans-ExtraBold.ttf');
-            font-weight: bolder;
-        }
-        @font-face {
-            font-family: 'Open Sans';
-            src: url('fonts/OpenSans-ExtraBoldItalic.ttf');
-            font-weight: bolder;
-            font-style: italic;
-        }
-        @font-face {
-            font-family: 'Open Sans';
-            src: url('fonts/OpenSans-Italic.ttf');
-            font-style: italic;
-        }
-        @font-face {
-            font-family: 'Open Sans';
             src: url('fonts/OpenSans-Light.ttf');
             font-weight: 100;
-        }
-        @font-face {
-            font-family: 'Open Sans';
-            src: url('fonts/OpenSans-LightItalic.ttf');
-            font-weight: lighter;
-            font-style: italic;
-        }
-        @font-face {
-            font-family: 'Open Sans';
-            src: url('fonts/OpenSans-Regular.ttf');
-            font-weight: normal;
         }
     </style>
 </head>
@@ -147,6 +120,7 @@
     <inline src="../res/img/welcome.svg" />
     <inline src="../res/img/welcome_dark.svg" />
     <inline src="../res/img/logo.svg" />
+    <inline src="../res/img/update_status.svg" />
     </div>
 
     <script>var l10n = l10n || {}</script>

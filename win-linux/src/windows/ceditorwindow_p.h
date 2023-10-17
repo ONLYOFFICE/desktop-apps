@@ -59,84 +59,36 @@
 
 #ifdef __linux__
 # include "platform_linux/gtkprintdialog.h"
+#else
+# include "platform_win/printdialog.h"
 #endif
 
 #define TOP_PANEL_OFFSET 6*TOOLBTN_WIDTH
 #define ICON_SPACER_WIDTH 9
+#define ICON_SIZE QSize(20,20)
 
 using namespace NSEditorApi;
 
-const QString g_css =
-        "#mainPanel{background-color:%1;}"
-        "#box-title-tools{background-color:%1;}"
-        "QPushButton[act=tool]:hover{background-color:rgba(0,0,0,20%);}"
-        "QPushButton#toolButtonClose:hover{background-color:#d42b2b;}"
-        "QPushButton#toolButtonClose:pressed{background-color:#d75050;}"
-#ifdef Q_OS_LINUX
-        "#box-title-tools QLabel{font-size:11px;font-family:\"Helvetica Neue\",Helvetica,Arial,sans-serif;}"
-        "#labelTitle{color:#444;}"
-#else
-        "#box-title-tools QLabel{font-family:\"Helvetica Neue\",Helvetica,Arial,sans-serif;font-weight:bold;}"
-        "#labelTitle{color:#444;}"
-        "#mainPanel[window=pretty] #labelTitle{font-size:12px;}"
-#endif
-        "#iconuser{color:#fff;font-size:11px;}"
-        "#mainPanel[window=pretty] QPushButton[act=tool]:hover{background-color:rgba(255,255,255,20%);}"
-        "#mainPanel[window=pretty] QPushButton#toolButtonMinimize,"
-        "#mainPanel[window=pretty] QPushButton#toolButtonClose {background-image:url(:/minclose_light.png);}"
-        "#mainPanel[window=pretty] QPushButton#toolButtonClose:hover{background-color:#d42b2b;}"
-        "#mainPanel[window=pretty] QPushButton#toolButtonMaximize{background-image:url(:/max_light.png);}"
-        "#mainPanel[window=pretty] #labelTitle{color:#fff;}"
-        "#mainPanel[zoom=\"1.25x\"] #toolButtonMinimize,#mainPanel[zoom=\"1.25x\"] #toolButtonClose,"
-        "#mainPanel[zoom=\"1.25x\"] #toolButtonMaximize{padding: 6px 15px 9px;}"
-        "#mainPanel[zoom=\"1.25x\"] #iconuser,"
-        "#mainPanel[zoom=\"1.25x\"] #labelTitle{font-size:15px;}"
-        "#mainPanel[zoom=\"1.25x\"][window=pretty] QPushButton#toolButtonMinimize,"
-        "#mainPanel[zoom=\"1.25x\"][window=pretty] QPushButton#toolButtonClose {background-image:url(:/minclose_light_1.25x.png);}"
-        "#mainPanel[zoom=\"1.25x\"][window=pretty] QPushButton#toolButtonMaximize{background-image:url(:/max_light_1.25x.png);}"
-        "#mainPanel[zoom=\"1.5x\"] #toolButtonMinimize,#mainPanel[zoom=\"1.5x\"] #toolButtonClose,"
-        "#mainPanel[zoom=\"1.5x\"] #toolButtonMaximize{padding: 8px 18px 11px;}"
-        "#mainPanel[zoom=\"1.5x\"] #iconuser,"
-        "#mainPanel[zoom=\"1.5x\"] #labelTitle{font-size:18px;}"
-        "#mainPanel[zoom=\"1.5x\"][window=pretty] QPushButton#toolButtonMinimize,"
-        "#mainPanel[zoom=\"1.5x\"][window=pretty] QPushButton#toolButtonClose {background-image:url(:/minclose_light_1.5x.png);}"
-        "#mainPanel[zoom=\"1.5x\"][window=pretty] QPushButton#toolButtonMaximize{background-image:url(:/max_light_1.5x.png);}"
-        "#mainPanel[zoom=\"1.75x\"] #toolButtonMinimize,#mainPanel[zoom=\"1.75x\"] #toolButtonClose,"
-        "#mainPanel[zoom=\"1.75x\"] #toolButtonMaximize{padding: 9px 21px 12px;}"
-        "#mainPanel[zoom=\"1.75x\"] #iconuser,"
-        "#mainPanel[zoom=\"1.75x\"] #labelTitle{font-size:21px;}"
-        "#mainPanel[zoom=\"1.75x\"][window=pretty] QPushButton#toolButtonMinimize,"
-        "#mainPanel[zoom=\"1.75x\"][window=pretty] QPushButton#toolButtonClose {background-image:url(:/minclose_light_1.75x.png);}"
-        "#mainPanel[zoom=\"1.75x\"][window=pretty] QPushButton#toolButtonMaximize{background-image:url(:/max_light_1.75x.png);}"
-        "#mainPanel[zoom=\"2x\"] #toolButtonMinimize,#mainPanel[zoom=\"2x\"] #toolButtonClose,"
-        "#mainPanel[zoom=\"2x\"] #toolButtonMaximize{padding: 10px 24px 14px;}"
-        "#mainPanel[zoom=\"2x\"] #iconuser,"
-        "#mainPanel[zoom=\"2x\"] #labelTitle{font-size:24px;}"
-        "#mainPanel[zoom=\"2x\"][window=pretty] QPushButton#toolButtonMinimize,"
-        "#mainPanel[zoom=\"2x\"][window=pretty] QPushButton#toolButtonClose {background-image:url(:/minclose_light_2x.png);}"
-        "#mainPanel[zoom=\"2x\"][window=pretty] QPushButton#toolButtonMaximize{background-image:url(:/max_light_2x.png);}"
-        "#mainPanel[uitheme=theme-dark] #iconuser,"
-        "#mainPanel[uitheme=theme-dark] #labelTitle{color:rgba(255,255,255,80%);}"
-        "#mainPanel[uitheme=theme-contrast-dark] #iconuser,"
-        "#mainPanel[uitheme=theme-contrast-dark] #labelTitle{color:#e8e8e8;}";
 
-auto prepare_editor_css(int type, const CTheme& theme) -> QString {
+auto prepare_editor_css(AscEditorType type, const CTheme& theme) -> QString {
     std::wstring c;
     switch (type) {
     default: c = theme.value(CTheme::ColorRole::ecrTabWordActive); break;
-    case etDocument: c = theme.value(CTheme::ColorRole::ecrTabWordActive); break;
-    case etPresentation: c = theme.value(CTheme::ColorRole::ecrTabSlideActive); break;
-    case etSpreadsheet: c = theme.value(CTheme::ColorRole::ecrTabCellActive); break;
+    case AscEditorType::etDocument: c = theme.value(CTheme::ColorRole::ecrTabWordActive); break;
+    case AscEditorType::etPresentation: c = theme.value(CTheme::ColorRole::ecrTabSlideActive); break;
+    case AscEditorType::etSpreadsheet: c = theme.value(CTheme::ColorRole::ecrTabCellActive); break;
+    case AscEditorType::etPdf: c = theme.value(CTheme::ColorRole::ecrTabViewerActive); break;
     }
-
+    QString g_css(Utils::readStylesheets(":/styles/editor.qss"));
     return g_css.arg(QString::fromStdWString(c));
 }
 
-auto editor_color(int type) -> QColor {
+auto editor_color(AscEditorType type) -> QColor {
     switch (type) {
-    case etDocument: return GetColorByRole(ecrTabWordActive);
-    case etPresentation: return GetColorByRole(ecrTabSlideActive);
-    case etSpreadsheet: return GetColorByRole(ecrTabCellActive);
+    case AscEditorType::etDocument: return GetColorByRole(ecrTabWordActive);
+    case AscEditorType::etPresentation: return GetColorByRole(ecrTabSlideActive);
+    case AscEditorType::etSpreadsheet: return GetColorByRole(ecrTabCellActive);
+    case AscEditorType::etPdf: return GetColorByRole(ecrTabViewerActive);
     default: return GetColorByRole(ecrTabWordActive);
     }
 }
@@ -167,7 +119,7 @@ public:
 
     void init(CTabPanel * const p) override {
         CCefEventsGate::init(p);
-        if (!m_panel->data()->hasFeature(L"btnhome") || viewerMode()) {  // For old editors only
+        if (!m_panel->data()->hasFeature(L"btnhome") || viewerMode() || fillformMode()) {  // For old editors only
             usedOldEditorVersion = true;
             leftboxbuttons = new QWidget;
             leftboxbuttons->setLayout(new QHBoxLayout);
@@ -183,7 +135,7 @@ public:
             btnHome->setIcon(":/title/icons/buttons.svg", "svg-btn-home");
             //btnHome->setToolTip(CEditorWindow::tr("Open main window"));
             btnHome->setProperty("ToolTip", CEditorWindow::tr("Open main window"));
-            btnHome->setIconOpacity(AscAppManager::themes().current().color(CTheme::ColorRole::ecrButtonNormalOpacity));
+            btnHome->setIconOpacity(GetColorByRole(ecrButtonNormalOpacity));
             m_mapTitleButtons["home"] = btnHome;
             connect(btnHome, &QPushButton::clicked, std::bind(&CEditorWindow::onClickButtonHome, window));
             leftboxbuttons->layout()->addWidget(btnHome);
@@ -200,7 +152,7 @@ public:
         btn->setDisabled(jsonobj["disabled"].toBool());
         btn->setIconSize(QSize(20,20) * window->m_dpiRatio);
         btn->setMouseTracking(true);
-        btn->setIconOpacity(AscAppManager::themes().current().color(CTheme::ColorRole::ecrButtonNormalOpacity));
+        btn->setIconOpacity(GetColorByRole(ecrButtonNormalOpacity));
         if ( jsonobj.contains("visible") && !jsonobj["visible"].toBool() ) {
             btn->hide();
         }
@@ -227,7 +179,7 @@ public:
     auto extendableTitleToSimple() -> void {
         Q_ASSERT(window->m_boxTitleBtns != nullptr);
         QGridLayout * const _layout = static_cast<QGridLayout*>(window->m_pMainPanel->layout());
-        if ( !_layout->findChild<QWidget*>(window->m_boxTitleBtns->objectName()) ) {
+        if ( !_layout->itemAtPosition(0,0) && !_layout->findChild<QWidget*>(window->m_boxTitleBtns->objectName()) ) {
             _layout->addWidget(window->m_boxTitleBtns,0,0,Qt::AlignTop);
             if (iconuser)
                 iconuser->hide();
@@ -251,7 +203,7 @@ public:
 
     auto centerTitle(double dpiRatio)->void
     {
-        int left_btns = viewerMode() ? 1 : 6;
+        int left_btns = (viewerMode() || fillformMode()) ? 1 : 6;
         int right_btns = 3;
         int spacing = window->m_boxTitleBtns->layout()->spacing();
         int left_offset = left_btns*TOOLBTN_WIDTH + 3*spacing; // added extra spacing
@@ -259,7 +211,7 @@ public:
         int diffW = (left_offset - right_offset)*dpiRatio;
         if (iconuser) {
             diffW -= ICON_SPACER_WIDTH + spacing*dpiRatio;
-            if (!viewerMode()) {
+            if (!viewerMode() && !fillformMode()) {
                 diffW -= iconuser->width() + spacing*dpiRatio;
             }
         }
@@ -278,7 +230,7 @@ public:
         if( jerror.error == QJsonParseError::NoError ) {
             QJsonObject objRoot = jdoc.object();
 
-            if ( viewerMode() )
+            if ( viewerMode() && !fillformMode())
                 extendableTitleToSimple();
 
             if ( canExtendTitle() ) {
@@ -361,13 +313,14 @@ public:
                 panel()->data()->setFeatures(L"old version of editor");
                 extendableTitleToSimple();
             }
-            if (m_panel->data()->hasFeature(L"btnhome") && usedOldEditorVersion && !viewerMode()) {  // For old editors only
+            if (m_panel->data()->hasFeature(L"btnhome") && usedOldEditorVersion && !viewerMode() && !fillformMode()) {  // For old editors only
                 usedOldEditorVersion = false;
                 adjustToNewEditorVersion();
             }
             panel()->setReady();
             if (window->isActiveWindow())
                 window->focus();
+            AscAppManager::getInstance().onDocumentReady(uid);
     }
 
     void onDocumentName(void * data) override
@@ -390,7 +343,7 @@ public:
 
         if ( canExtendTitle() && window->isCustomWindowStyle() ) {
             window->m_pMainPanel->setProperty("window", "pretty");
-            changeTheme(AscAppManager::themes().current().id());
+            changeTheme(GetCurrentTheme().id());
         }
     }
 
@@ -398,21 +351,25 @@ public:
     {
         std::wstring background, border;
         switch (panel()->data()->contentType()) {
-        case etDocument:
-            background = AscAppManager::themes().current().value(CTheme::ColorRole::ecrTabWordActive);
+        case AscEditorType::etDocument:
+            background = GetColorValueByRole(ecrTabWordActive);
             border = background;
             break;
-        case etPresentation:
-            background = AscAppManager::themes().current().value(CTheme::ColorRole::ecrTabSlideActive);
+        case AscEditorType::etPresentation:
+            background = GetColorValueByRole(ecrTabSlideActive);
             border = background;
             break;
-        case etSpreadsheet:
-            background = AscAppManager::themes().current().value(CTheme::ColorRole::ecrTabCellActive);
+        case AscEditorType::etSpreadsheet:
+            background = GetColorValueByRole(ecrTabCellActive);
+            border = background;
+            break;
+        case AscEditorType::etPdf:
+            background = GetColorValueByRole(ecrTabViewerActive);
             border = background;
             break;
         default:
-            background = AscAppManager::themes().current().value(CTheme::ColorRole::ecrWindowBackground);
-            border = AscAppManager::themes().current().value(CTheme::ColorRole::ecrWindowBorder);
+            background = GetColorValueByRole(ecrWindowBackground);
+            border = GetColorValueByRole(ecrWindowBorder);
         }
 
         window->setWindowColors(QColor(QString::fromStdWString(background)), QColor(QString::fromStdWString(border)));
@@ -446,9 +403,8 @@ public:
 
     void onDocumentChanged(int id, bool state) override
     {
+        CCefEventsGate::onDocumentChanged(id, state);
         if ( panel()->data()->hasChanges() != state ) {
-            CCefEventsGate::onDocumentChanged(id, state);
-
             if ( canExtendTitle() && window->isCustomWindowStyle() ) {
                 window->setWindowTitle(m_panel->data()->title());
                 window->m_boxTitleBtns->repaint();
@@ -544,7 +500,7 @@ public:
 
 #ifdef _WIN32
             printer->setOutputFileName("");
-            CPrintDialog * dialog =  new CPrintDialog(printer, window->handle());
+            PrintDialog * dialog =  new PrintDialog(printer, window->handle());
 #else
             QFileInfo info(documentName);
             QString pdfName = Utils::lastPath(LOCAL_PATH_SAVE) + "/" + info.baseName() + ".pdf";
@@ -650,6 +606,7 @@ public:
 
             if ( iconcrypted ) {
                 iconcrypted->setPixmap(QIcon{":/title/icons/secure.svg"}.pixmap(QSize(20,20) * f));
+                iconcrypted->setFixedSize(ICON_SIZE * f);
             }
 
             for (const auto& btn: m_mapTitleButtons) {
@@ -767,22 +724,30 @@ public:
 
     void adjustIconUser()
     {
-        iconuser->setFixedHeight(0.85 * TOOLBTN_HEIGHT * window->m_dpiRatio);
+        iconuser->setFixedHeight(20 * window->m_dpiRatio);
         iconuser->setFixedWidth(iconuser->height());
-        auto iconTextColor = editor_color(panel()->data()->contentType()).name();
-        iconuser->setStyleSheet(QString("QLabel#iconuser "
-            "{background: #d9ffffff; border-radius: %1px; color: %2;}")
-                .arg(QString::number(iconuser->height()/2), iconTextColor));
+        iconuser->setStyleSheet(QString("#iconuser {border-radius: %1px;}")
+                     .arg(QString::number(iconuser->height()/2)));
     }
 
     QLabel * iconCrypted()
     {
-        Q_ASSERT(window->m_boxTitleBtns != nullptr);
+        Q_ASSERT(window->m_labelTitle != nullptr);
         if ( !iconcrypted ) {
-            iconcrypted = new QLabel(window->m_boxTitleBtns);
+            iconcrypted = new QLabel(window->m_labelTitle);
             iconcrypted->setObjectName("iconcrypted");
 
             iconcrypted->setPixmap(QIcon{":/title/icons/secure.svg"}.pixmap(QSize(20,20) * window->m_dpiRatio));
+            iconcrypted->setFixedSize(ICON_SIZE * window->m_dpiRatio);
+            int y = (window->m_labelTitle->height() - ICON_SIZE.height() * window->m_dpiRatio)/2;
+            iconcrypted->move(0, y);
+            connect(window->m_labelTitle, &CElipsisLabel::onResize, this, [=](QSize size, int textWidth) {
+                if (iconcrypted) {
+                    int x = (size.width() - textWidth)/2 - ((ICON_SIZE.width() + 6) * window->m_dpiRatio);
+                    int y = (size.height() - ICON_SIZE.height() * window->m_dpiRatio)/2;
+                    iconcrypted->move(x, y);
+                }
+            });
         }
 
         return iconcrypted;
@@ -790,17 +755,19 @@ public:
 
     void onWebAppsFeatures(int, std::wstring f) override
     {
+        bool is_read_only = panel()->data()->hasFeature(L"readonly\":");
         panel()->data()->setFeatures(f);
 
         if ( m_panel->data()->hasFeature(L"uitype\":\"fillform") ) {
              ffWindowCustomize();
+             centerTitle(window->m_dpiRatio);
         }
 
         if ( panel()->data()->hasFeature(L"crypted\":true") && boxtitlelabel && !iconcrypted ) {
-            qobject_cast<QBoxLayout *>(boxtitlelabel->layout())->insertWidget(0, iconCrypted());
+             iconCrypted();
         }
 
-        if ( panel()->data()->hasFeature(L"readonly\":") && boxtitlelabel ) {
+        if ( is_read_only != panel()->data()->hasFeature(L"readonly\":") && boxtitlelabel ) {
             window->setWindowTitle(m_panel->data()->title());
             window->m_boxTitleBtns->repaint();
         }
@@ -867,6 +834,11 @@ public:
         return m_panel->data()->hasFeature(L"viewmode\":true");
     }
 
+    auto fillformMode() -> bool {
+        QFileInfo i{QString::fromStdWString(m_panel->data()->url())};
+        return i.suffix() == "oform" || m_panel->data()->hasFeature(L"uitype\":\"fillform");
+    }
+
     auto calcTitleLabelWidth(int basewidth) const -> int {
         if ( iconuser )
             basewidth -= iconuser->width();
@@ -895,12 +867,10 @@ public:
         boxtitlelabel->layout()->setSpacing(0);
         boxtitlelabel->layout()->setMargin(0);
         boxtitlelabel->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
-
-        if ( m_panel->data()->hasFeature(L"crypted\":true") && !iconcrypted ) {
-            boxtitlelabel->layout()->addWidget(iconCrypted());
-        }
-
         boxtitlelabel->layout()->addWidget(window->m_labelTitle);
+        if ( m_panel->data()->hasFeature(L"crypted\":true") && !iconcrypted ) {
+            iconCrypted();
+        }
 
         if (usedOldEditorVersion) {  // For old editors only
             _layout->insertWidget(1, boxtitlelabel);
@@ -914,8 +884,17 @@ public:
     auto ffWindowCustomize() -> void {
         Q_ASSERT(window->m_boxTitleBtns != nullptr);
         QGridLayout * const _layout = static_cast<QGridLayout*>(window->m_pMainPanel->layout());
-        if ( !_layout->findChild<QWidget*>(window->m_boxTitleBtns->objectName()) ) {
+        if ( !_layout->itemAtPosition(0,0) && !_layout->findChild<QWidget*>(window->m_boxTitleBtns->objectName()) ) {
             _layout->addWidget(window->m_boxTitleBtns,0,0,Qt::AlignTop);
+            if (iconuser)
+                 iconuser->hide();
+            auto layout = qobject_cast<QHBoxLayout*>(window->m_boxTitleBtns->layout());
+            auto stretch = layout->takeAt(1);
+            if (stretch)
+                 delete stretch;
+            stretch = layout->takeAt(2);
+            if (stretch)
+                 delete stretch;
         }
     }
 };

@@ -41,6 +41,9 @@
 "Document %ld.docx" = "Doiciméad %ld.docx";
 
 /* No comment provided by engineer. */
+"Document %ld.docxf" = "Doiciméad %ld.docxf";
+
+/* No comment provided by engineer. */
 "Document template" = "Teimpléad doiciméad Word Open XML (*.dotx)";
 
 /* No comment provided by engineer. */
@@ -98,7 +101,7 @@
 "OpenDocument Presentation Template" = "Teimpléad cur i láthair OpenDocument (*.otp)";
 
 /* No comment provided by engineer. */
-"OpenDocument Spreadsheet Template" = "Teimpléad scarbhileog OpenDocument *.(ots)";
+"OpenDocument Spreadsheet Template" = "Teimpléad scarbhileog OpenDocument (*.ots)";
 
 /* No comment provided by engineer. */
 "Opening" = "Ag Oscailt";

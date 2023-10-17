@@ -1,11 +1,10 @@
 
-#include "components/ctabpanel.h"
+#include "ctabpanel.h"
 #include "cascapplicationmanagerwrapper.h"
 #include "defines.h"
 #include "cefview.h"
 #include <QHBoxLayout>
-#include <QPainter>
-#include <QDebug>
+
 
 using namespace NSEditorApi;
 
@@ -120,9 +119,14 @@ bool CTabPanel::openLocalFile(const std::wstring& path, const std::wstring& para
     return true;
 }
 
-void CTabPanel::createLocalFile(int format, const std::wstring& name)
+void CTabPanel::createLocalFile(AscEditorType format, const std::wstring& name)
 {
     static_cast<CCefViewEditor *>(m_pViewer->GetCefView())->CreateLocalFile(format, name);
+}
+
+void CTabPanel::createLocalFile(const std::wstring& templatepath, const std::wstring& name)
+{
+    static_cast<CCefViewEditor *>(m_pViewer->GetCefView())->CreateLocalFile(AscEditorType::etUndefined, name, templatepath);
 }
 
 bool CTabPanel::openRecoverFile(int id)

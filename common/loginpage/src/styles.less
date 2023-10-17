@@ -306,10 +306,12 @@ li.menu-item {
 
     &.settings {
         overflow-x: hidden;
+        min-width: 450px;
     }
 
     &.about {
         overflow-x: scroll;
+        min-width: 450px;
     }
 
     &.templates {
@@ -898,6 +900,7 @@ li.menu-item {
     font-size: 13px;
     user-select: text;
     color: @text-normal;
+    margin-top: 10px;
 
     .row-copyright {
         margin-bottom: 0;
@@ -1136,7 +1139,7 @@ li.menu-item {
     margin-right: 20px;
 }
 
-#id-features-available {
+#id-features-available, #idx-update-cnt {
     display: none;
 }
 
@@ -1179,4 +1182,72 @@ li.menu-item {
         align-items: center;
         justify-content: center;
     }
+}
+
+#idx-update-cnt {
+    background-color: @background-tabbar;
+    border-radius: 5px;
+    padding: 20px 30px;
+    margin: 25px 0;
+    max-width: 800px;
+
+    .status-field {
+        height: 40px;
+
+        &:first-child {
+            margin-bottom: 20px;
+        }
+    }
+
+    #idx-update-status-icon {
+        width: 28px;
+        height: 28px;
+/*        display: block;*/
+        margin-right: 8px;
+
+        &[data-icon=success] {
+            fill: @icon-success;
+        }
+        &[data-icon=error] {
+            fill: @border-error;
+        }
+        &[data-icon=load], &[data-icon=lastcheck] {
+            fill: @highlight-text-select;
+        }
+
+        &[data-icon=load] {
+            animation: rotate 1.5s linear infinite;
+        }
+
+        @keyframes rotate {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+    }
+}
+
+#idx-about-cut-logo {
+    width: 52px;
+    overflow: hidden;
+    margin-right: 15px;
+    height: 45px;
+}
+
+#idx-about-appname {
+    font-weight: bold;
+    font-size: 18px;
+    margin: -8px 0 0 0;
+}
+
+#idx-about-version {
+    margin: 4px 0 -4px;
+}
+
+.about-field {
+    margin-bottom: 10px;
+}
+
+.hidden {
+    display: none;
 }

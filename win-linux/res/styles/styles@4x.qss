@@ -1,0 +1,104 @@
+#CX11Caption {
+    min-width: 700px;
+}
+
+#labelAppTitle {
+    margin-top: -8px;
+    font-size: 44px;
+}
+
+QPushButton {
+    border: 4px solid #cbcbcb;
+    padding: 0 80px;
+    height: 88px;
+    border-radius: 8px;
+    font-size: 44px;
+}
+
+QPushButton#toolButtonMaximize,QPushButton#toolButtonMinimize,
+    QPushButton#toolButtonClose {
+        padding: 20px 48px 28px;
+}
+
+QPushButton#toolButtonMain {
+    font-size: 40px;
+    border-right-width: 4px;
+}
+
+QPushButton#toolButtonMain[theme=light] {
+    border-width: 4px;
+    border-bottom: 0 none;
+}
+
+QPushButton#toolButtonMain[class=normal],
+    QPushButton#toolButtonMain[class=normal]:hover
+{
+    border-bottom-width: 4px;
+}
+
+QPushButton::menu-indicator {
+    width: 40px;
+    height: 40px;
+    left: -8px;
+    top: -4px;
+}
+
+/*QPushButton[theme=dark]::menu-indicator:disabled {*/
+    /*border-image: url(:/res/icons/menu-indicator-dark.png) 0 0 0 20 repeat repeat;*/
+/*}*/
+
+/*QPushButton[theme=dark]::menu-indicator:hover {*/
+    /*border-image: url(:/res/icons/menu-indicator-dark.png) 0 20 0 0 repeat repeat;*/
+/*}*/
+
+QPushButton#toolButtonDownload {
+    padding: 24px;
+}
+
+QPushButton#toolButtonDownload::menu-indicator {
+    top: -40px;
+    left: -16px;
+}
+
+/* download widget */
+
+QMenu[hdpi]#menuButtonDownload {
+    border-width: 4px;
+}
+
+CDownloadWidget[hdpi] QProgressBar {
+    border-radius: 8px;
+    max-height: 20px;
+    margin-right: 40px;
+    margin-top: 4px;
+    min-width: 800px;
+}
+
+CDownloadWidget[hdpi] QProgressBar::chunk {
+    border-radius: 8px;
+}
+
+CDownloadWidget[hdpi] QPushButton#buttonCancel {
+    font-size: 48px;
+}
+
+CDownloadWidget[hdpi] QLabel#labelName {
+    font-size: 64px;
+}
+
+/* ToolTip*/
+
+#CToolTip>QLabel {
+    min-height: 104px;
+    margin: 0px;
+    padding-left: 40px; padding-right: 40px;
+    font-size: 44px;
+    border: 4px solid #c0c0c0;
+    border-radius: 18px;
+}
+#mainPanel[uitheme=theme-dark] #CToolTip>QLabel {
+    border: 4px solid #666666;
+}
+#mainPanel[uitheme=theme-contrast-dark] #CToolTip>QLabel {
+    border: 4px solid #696969;
+}

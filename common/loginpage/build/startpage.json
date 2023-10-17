@@ -73,7 +73,7 @@
                     ,"../src/panelwelcome.js"
                     ,"../src/panelsettings.js"
                     ,"../src/panelexternal.js"
-                    ,"../src/dlglogin.min.js"
+                    ,"../src/dialogconnect.min.js"
                     ,"../src/panels.js"
                 ],
                 "dest": "../deploy/build.js"

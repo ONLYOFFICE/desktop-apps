@@ -40,7 +40,6 @@
 
 #import "ASCEventsController.h"
 #import "ASCConstants.h"
-#import "ASCDocumentType.h"
 #import "ASCExternalController.h"
 #import "ASCPresentationReporter.h"
 #import "ASCSharedSettings.h"
@@ -280,16 +279,15 @@ public:
                         break;
                     }
 
-                    case ASC_MENU_EVENT_TYPE_CEF_LOCALFILE_RECENTOPEN:
+//                    case ASC_MENU_EVENT_TYPE_CEF_LOCALFILE_RECENTOPEN:
                     case ASC_MENU_EVENT_TYPE_CEF_LOCALFILE_RECOVEROPEN: {
                         NSEditorApi::CAscLocalOpenFileRecent_Recover* pData = (NSEditorApi::CAscLocalOpenFileRecent_Recover*)pEvent->m_pData;
                         
-                        BOOL isRecover = pData->get_IsRecover();
                         
                         [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameCreateTab
                                                                             object:nil
                                                                           userInfo:@{
-                                                                                     @"action"  : isRecover ? @(ASCTabActionOpenLocalRecoverFile) : @(ASCTabActionOpenLocalRecentFile),
+                                                                                     @"action"  : @(ASCTabActionOpenLocalRecoverFile),
                                                                                      @"active"  : @(YES),
                                                                                      @"fileId"  : @(pData->get_Id()),
                                                                                      @"path"    : [NSString stringWithstdwstring:pData->get_Path()]
@@ -681,26 +679,46 @@ public:
                             /// Create local files
                             
                             NSString * nsParam = (NSString *)[NSString stringWithstdwstring:param];
-                            ASCDocumentType docType = ASCDocumentTypeUnknown;
+                            AscEditorType docType = AscEditorType::etUndefined;
                             
-                            if ([nsParam isEqualToString:@"word"]) {
-                                docType = ASCDocumentTypeDocument;
-                            } else if ([nsParam isEqualToString:@"cell"]) {
-                                docType = ASCDocumentTypeSpreadsheet;
-                            } else if ([nsParam isEqualToString:@"slide"]) {
-                                docType = ASCDocumentTypePresentation;
-                            } else if ([nsParam isEqualToString:@"form"]) {
-                                docType = ASCDocumentTypeForm;
-                            }
+                            if ([nsParam hasPrefix:@"template:"]) {
+                                if ([nsParam hasSuffix:@"word"]) {
+                                    docType = AscEditorType::etDocument;
+                                } else
+                                if ([nsParam hasSuffix:@"slide"]) {
+                                    docType = AscEditorType::etPresentation;
+                                } else
+                                if ([nsParam hasSuffix:@"cell"]) {
+                                    docType = AscEditorType::etSpreadsheet;
+                                }
 
-                            if (docType != ASCDocumentTypeUnknown) {
                                 [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameCreateTab
                                                                                     object:nil
                                                                                   userInfo:@{
-                                                                                      @"action"  : @(ASCTabActionCreateLocalFile),
-                                                                                      @"type"    : @(docType),
+                                                                                      @"action"  : @(ASCTabActionCreateLocalFileFromTemplate),
+                                                                                      @"type"    : @(int(docType)),
                                                                                       @"active"  : @(YES)
                                                                                   }];
+                            } else {
+                                if ([nsParam isEqualToString:@"word"]) {
+                                    docType = AscEditorType::etDocument;
+                                } else if ([nsParam isEqualToString:@"cell"]) {
+                                    docType = AscEditorType::etSpreadsheet;
+                                } else if ([nsParam isEqualToString:@"slide"]) {
+                                    docType = AscEditorType::etPresentation;
+                                } else if ([nsParam isEqualToString:@"form"]) {
+                                    docType = AscEditorType::etDocumentMasterForm;
+                                }
+
+                                if ( docType != AscEditorType::etUndefined ) {
+                                    [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameCreateTab
+                                                                                        object:nil
+                                                                                      userInfo:@{
+                                                                                        @"action"  : @(ASCTabActionCreateLocalFile),
+                                                                                        @"type"    : @(int(docType)),
+                                                                                        @"active"  : @(YES)
+                                    }];
+                                }
                             }
                         } else if (cmd.find(L"open:folder") != std::wstring::npos) {
                             [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameOpenLocalFile
@@ -732,7 +750,16 @@ public:
                                 }
                             }
                         } else if (cmd.find(L"open:recent") != std::wstring::npos) {
-                            NSLog(@"open:recent");
+                            if (NSDictionary * json = [[NSString stringWithstdwstring:param] dictionary]) {
+                                [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameCreateTab
+                                                                                    object:nil
+                                                                                  userInfo:@{
+                                                                                             @"action"  : @(ASCTabActionOpenLocalRecentFile),
+                                                                                             @"active"  : @(YES),
+                                                                                             @"fileId"  : json[@"id"],
+                                                                                             @"path"    : json[@"path"]
+                                                                                             }];
+                            }
                         } else if (cmd.find(L"webapps:features") != std::wstring::npos) {
                             CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
                             CCefView * pCefView = appManager->GetViewById(senderId);

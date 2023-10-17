@@ -24,11 +24,13 @@ jobs:
         run: |
           CHANGES_WIN=win-linux/package/windows/update/changes
           CHANGES_MAC=macos/ONLYOFFICE/update/updates/ONLYOFFICE/changes
+          CHANGES_LINUX=common/changes
 
-          rm -rfv $CHANGES_WIN/$VERSION $CHANGES_MAC/$VERSION
+          rm -rfv $CHANGES_WIN/$VERSION $CHANGES_MAC/$VERSION $CHANGES_LINUX/$VERSION
           cp -fRTv $CHANGES_WIN/0.0.0 $CHANGES_WIN/$VERSION
           cp -fRTv $CHANGES_MAC/0.0.0 $CHANGES_MAC/$VERSION
-          find $CHANGES_WIN/$VERSION $CHANGES_MAC/$VERSION -name "*.html" -print \
+          cp -fRTv $CHANGES_LINUX/template $CHANGES_LINUX/$VERSION
+          find $CHANGES_WIN/$VERSION $CHANGES_MAC/$VERSION $CHANGES_LINUX/$VERSION -name "*.html" -print \
             -exec sed -e 's/0.0.0/'${VERSION}'/g' -e 's/000/'${VERSION//./}'/g' -i {} \;
 
       - name: Commit changes

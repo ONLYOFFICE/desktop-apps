@@ -33,16 +33,10 @@
 #ifndef ASCTABWIDGET
 #define ASCTABWIDGET
 
-#include <QResizeEvent>
-//#include <QtWidgets/QTabWidget>
-#include <QtWidgets/QTabBar>
-#include <QtWidgets/QPushButton>
-#include "ctabbarwrapper.h"
-#include "qcefview.h"
+#include <QStackedWidget>
+#include "ctabbar.h"
 #include "cscalingwrapper.h"
 #include "ctabpanel.h"
-
-#include <QDebug>
 
 #define etLocalFile     AscEditorType(254)
 #define etRecoveryFile  AscEditorType(253)
@@ -50,6 +44,7 @@
 #define etNewFile       AscEditorType(251)
 #define etPortal        AscEditorType(250)
 #define etNewPortal     AscEditorType(249)
+#define etTemplateFile  AscEditorType(248)
 
 typedef CefViewWrapperType CefType;
 typedef QMap<int, QString> MapEditors;
@@ -76,7 +71,7 @@ struct COpenOptions {
     eOpenMode mode = eOpenMode::edit;
 };
 
-class CAscTabWidget : public QTabWidget, public CScalingWrapper
+class CAscTabWidget : public QStackedWidget, public CScalingWrapper
 {
     Q_OBJECT
 
@@ -116,9 +111,7 @@ class CAscTabWidget : public QTabWidget, public CScalingWrapper
         }
     };
 
-    typedef std::map< int, std::pair<QString, QString> > CTabIconSet;
-
-    using QTabWidget::tabBar;
+    typedef std::map< AscEditorType, std::pair<const char*, const char*> > CTabIconSet;
 
 private:
     std::map<int, QCefView*> m_mapDownloads;
@@ -127,7 +120,7 @@ private:
                 m_defWidthParams;
     bool m_isCustomStyle;
     CTabIconSet m_mapTabIcons;
-    QSize m_tabIconSize;
+//    QSize m_tabIconSize;
     CTabBar *m_pBar;
 
 signals:
@@ -149,17 +142,16 @@ public:
     void closeEditorByIndex(int index, bool checkmodified = false);
     void closePortal(const std::wstring&, bool editors = false);
     void setStyleSheet(const QString&);
+    void setCurrentIndex(int);
     void applyUITheme(const std::wstring&);
 
-    using QTabWidget::count;
+    using QStackedWidget::count;
     int  count(int type) const;
     int  count(const std::wstring& portal, bool exclude = false);
     bool hasForPortal(const QString&);
 
-    void updateScalingFactor(double) override;
 protected:
-    void tabInserted(int index) override;
-    void tabRemoved(int index) override;
+    int insertWidget(int index, QWidget* widget);
     void closeEditor(int, bool, bool);
 
 public:
@@ -191,8 +183,8 @@ public:
 
     void setTabIcons(CTabIconSet&);
     void reloadTabIcons();
-    void updateIcons();
-    void updateTabIcon(int);
+    void setTabActiveColor(int index, const std::wstring& color);
+    void setTabThemeType(int index, const QString& type);
     void setFocusedView(int index = -1);
     void setFullScreen(bool, int id = -1);
     QWidget * fullScreenWidget();

@@ -1,30 +1,17 @@
-QLabel[class=msg-icon] {
-    background-image: url(":/res/icons/message_icons.png");
-}
+
 QLabel[class=msg-icon][type=msg-warn] {
-    background-position: bottom right;
+    image: url(":/message_warn.svg");
 }
 QLabel[class=msg-icon][type=msg-error] {
-    background-position: top left;
+    image: url(":/message_error.svg");
 }
 QLabel[class=msg-icon][type=msg-info] {
-    background-position: bottom left;
+    image: url(":/message_info.svg");
 }
 QLabel[class=msg-icon][type=msg-confirm] {
-    background-position: top right;
+    image: url(":/message_confirm.svg");
 }
-#messageBody[scaling="1.25x"] QLabel[class=msg-icon] {
-    background-image: url(":/message_icons_1.25x.png");
-}
-#messageBody[scaling="1.5x"] QLabel[class=msg-icon] {
-    background-image: url(":/message_icons_1.5x.png");
-}
-#messageBody[scaling="1.75x"] QLabel[class=msg-icon] {
-    background-image: url(":/message_icons_1.75x.png");
-}
-#messageBody[scaling="2x"] QLabel[class=msg-icon] {
-    background-image: url(":/message_icons_2x.png");
-}
+
 #messageBody QLabel[class=msg-report] {
     font-size: 11px;
 }
@@ -40,6 +27,31 @@ QLabel[class=msg-icon][type=msg-confirm] {
 #messageBody[scaling="2x"] QLabel[class=msg-report] {
     font-size: 22px;
 }
+#messageBody[scaling="2.25x"] QLabel[class=msg-report] {
+    font-size: 25px;
+}
+#messageBody[scaling="2.5x"] QLabel[class=msg-report] {
+    font-size: 28px;
+}
+#messageBody[scaling="2.75x"] QLabel[class=msg-report] {
+    font-size: 30px;
+}
+#messageBody[scaling="3x"] QLabel[class=msg-report] {
+    font-size: 33px;
+}
+#messageBody[scaling="3.5x"] QLabel[class=msg-report] {
+    font-size: 39px;
+}
+#messageBody[scaling="4x"] QLabel[class=msg-report] {
+    font-size: 44px;
+}
+#messageBody[scaling="4.5x"] QLabel[class=msg-report] {
+    font-size: 50px;
+}
+#messageBody[scaling="5x"] QLabel[class=msg-report] {
+    font-size: 55px;
+}
+
 #messageBody[scaling="2x"] QPushButton {
     /* border: 2px solid #cbcbcb; */
     /* border-radius:4px; */
@@ -57,17 +69,56 @@ QLabel[class=msg-icon][type=msg-confirm] {
     height: 28px;
     font-size: 14px;
 }
-
 #messageBody[scaling="1.75x"] QPushButton {
     padding:0 35px;
     height: 38px;
     font-size: 19px;
 }
-
+#messageBody[scaling="2.25x"] QPushButton {
+    padding:0 45px;
+    height: 50px;
+    font-size: 25px;
+}
+#messageBody[scaling="2.5x"] QPushButton {
+    padding:0 50px;
+    height: 55px;
+    font-size: 28px;
+}
+#messageBody[scaling="2.75x"] QPushButton {
+    padding:0 55px;
+    height: 61px;
+    font-size: 30px;
+}
+#messageBody[scaling="3x"] QPushButton {
+    padding:0 60px;
+    height: 66px;
+    font-size: 33px;
+}
+#messageBody[scaling="3.5x"] QPushButton {
+    padding:0 70px;
+    height: 77px;
+    font-size: 39px;
+}
+#messageBody[scaling="4x"] QPushButton {
+    padding:0 80px;
+    height: 88px;
+    font-size: 44px;
+}
+#messageBody[scaling="4.5x"] QPushButton {
+    padding:0 90px;
+    height: 99px;
+    font-size: 50px;
+}
+#messageBody[scaling="5x"] QPushButton {
+    padding:0 100px;
+    height: 110px;
+    font-size: 55px;
+}
 QPushButton {
     outline: 0 none;
 }
 
+/* dark theme */
 #messageBody[uitheme=theme-dark] {
     background-color: #404040;
     color: rgba(255,255,255,.8);
@@ -83,22 +134,59 @@ QPushButton {
     border: 1px solid rgba(255,255,255,.8);
 }
 
+#messageBody[uitheme=theme-dark][scaling="2.25x"] QPushButton,
 #messageBody[uitheme=theme-dark][scaling="2x"] QPushButton,
+#messageBody[uitheme=theme-dark][scaling="1.75x"] QPushButton,
     #messageBody[uitheme=theme-dark][scaling="1.5x"] QPushButton
 {
-    border: 2px solid rgba(255,255,255,.8);
+    border-width: 2px;
+}
+#messageBody[uitheme=theme-dark][scaling="2.5x"] QPushButton,
+#messageBody[uitheme=theme-dark][scaling="2.75x"] QPushButton,
+#messageBody[uitheme=theme-dark][scaling="3x"] QPushButton
+{
+    border-width: 3px;
+}
+#messageBody[uitheme=theme-dark][scaling="3.5x"] QPushButton,
+#messageBody[uitheme=theme-dark][scaling="4x"] QPushButton
+{
+    border-width: 4px;
+}
+#messageBody[uitheme=theme-dark][scaling="4.5x"] QPushButton,
+#messageBody[uitheme=theme-dark][scaling="5x"] QPushButton
+{
+    border-width: 5px;
 }
 
 #messageBody[uitheme=theme-dark] QPushButton:focus {
     border: 2px solid rgba(255,255,255,.9);
 }
-
 #messageBody[uitheme=theme-dark][scaling="1.5x"] QPushButton:focus {
-    border: 3px solid rgba(255,255,255,.9);
+    border-width: 3px;
 }
-
+#messageBody[uitheme=theme-dark][scaling="1.75x"] QPushButton:focus,
 #messageBody[uitheme=theme-dark][scaling="2x"] QPushButton:focus {
-    border: 4px solid rgba(255,255,255,.9);
+    border-width: 4px;
+}
+#messageBody[uitheme=theme-dark][scaling="2.25x"] QPushButton:focus,
+#messageBody[uitheme=theme-dark][scaling="2.5x"] QPushButton:focus {
+    border-width: 5px;
+}
+#messageBody[uitheme=theme-dark][scaling="2.75x"] QPushButton:focus,
+#messageBody[uitheme=theme-dark][scaling="3x"] QPushButton:focus {
+    border-width: 6px;
+}
+#messageBody[uitheme=theme-dark][scaling="3.5x"] QPushButton:focus {
+    border-width: 7px;
+}
+#messageBody[uitheme=theme-dark][scaling="4x"] QPushButton:focus {
+    border-width: 8px;
+}
+#messageBody[uitheme=theme-dark][scaling="4.5x"] QPushButton:focus {
+    border-width: 9px;
+}
+#messageBody[uitheme=theme-dark][scaling="5x"] QPushButton:focus {
+    border-width: 10px;
 }
 
 #messageBody[uitheme=theme-dark] QPushButton:pressed {
@@ -121,22 +209,59 @@ QPushButton {
     border: 1px solid #e8e8e8;
 }
 
+#messageBody[uitheme=theme-contrast-dark][scaling="2.25x"] QPushButton,
 #messageBody[uitheme=theme-contrast-dark][scaling="2x"] QPushButton,
+#messageBody[uitheme=theme-contrast-dark][scaling="1.75x"] QPushButton,
     #messageBody[uitheme=theme-contrast-dark][scaling="1.5x"] QPushButton
 {
-    border: 2px solid rgba#e8e8e8;
+    border-width: 2px;
+}
+#messageBody[uitheme=theme-contrast-dark][scaling="2.5x"] QPushButton,
+#messageBody[uitheme=theme-contrast-dark][scaling="2.75x"] QPushButton,
+#messageBody[uitheme=theme-contrast-dark][scaling="3x"] QPushButton
+{
+    border-width: 3px;
+}
+#messageBody[uitheme=theme-contrast-dark][scaling="3.5x"] QPushButton,
+#messageBody[uitheme=theme-contrast-dark][scaling="4x"] QPushButton
+{
+    border-width: 4px;
+}
+#messageBody[uitheme=theme-contrast-dark][scaling="4.5x"] QPushButton,
+#messageBody[uitheme=theme-contrast-dark][scaling="5x"] QPushButton
+{
+    border-width: 5px;
 }
 
 #messageBody[uitheme=theme-contrast-dark] QPushButton:focus {
     border: 2px solid #e6e6e6;
 }
-
 #messageBody[uitheme=theme-contrast-dark][scaling="1.5x"] QPushButton:focus {
     border-width: 3px;
 }
-
+#messageBody[uitheme=theme-contrast-dark][scaling="1.75x"] QPushButton:focus,
 #messageBody[uitheme=theme-contrast-dark][scaling="2x"] QPushButton:focus {
     border-width: 4px;
+}
+#messageBody[uitheme=theme-contrast-dark][scaling="2.25x"] QPushButton:focus,
+#messageBody[uitheme=theme-contrast-dark][scaling="2.5x"] QPushButton:focus {
+    border-width: 5px;
+}
+#messageBody[uitheme=theme-contrast-dark][scaling="2.75x"] QPushButton:focus,
+#messageBody[uitheme=theme-contrast-dark][scaling="3x"] QPushButton:focus {
+    border-width: 6px;
+}
+#messageBody[uitheme=theme-contrast-dark][scaling="3.5x"] QPushButton:focus {
+    border-width: 7px;
+}
+#messageBody[uitheme=theme-contrast-dark][scaling="4x"] QPushButton:focus {
+    border-width: 8px;
+}
+#messageBody[uitheme=theme-contrast-dark][scaling="4.5x"] QPushButton:focus {
+    border-width: 9px;
+}
+#messageBody[uitheme=theme-contrast-dark][scaling="5x"] QPushButton:focus {
+    border-width: 10px;
 }
 
 #messageBody[uitheme=theme-contrast-dark] QPushButton:pressed {

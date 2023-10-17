@@ -148,12 +148,22 @@
     }
 }
 
-- (void)createFileWithName:(NSString *)name type:(NSInteger)type {
+- (void)createFileWithName:(NSString *)name type:(AscEditorType)type {
     if (m_pCefView) {
         CCefViewEditor * editorView = dynamic_cast<CCefViewEditor *>(m_pCefView->GetCefView());
         
         if (editorView) {
-            editorView->CreateLocalFile((int)type, [name stdwstring]);
+            editorView->CreateLocalFile((AscEditorType)type, [name stdwstring]);
+        }
+    }
+}
+
+- (void)createFileWithNameFromTemplate:(NSString *)name tplpath:(NSString *)path {
+    if (m_pCefView) {
+        CCefViewEditor * editorView = dynamic_cast<CCefViewEditor *>(m_pCefView->GetCefView());
+
+        if (editorView) {
+            editorView->CreateLocalFile(AscEditorType::etUndefined, [name stdwstring], [path stdwstring]);
         }
     }
 }

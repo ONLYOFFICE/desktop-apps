@@ -207,7 +207,6 @@ public:
                     if ( _url.rfind(L"http://",0) == 0 || _url.rfind(L"https://",0) == 0 ) {
                         COpenOptions opts{_url};
                         opts.id = _view ? _view->GetId() : -1;
-//                        mainWindow()->mainPanel()->onCloudDocumentOpen(_url, _id, true);
                     } else {
 //                        /* open local file */
                     }
@@ -240,16 +239,32 @@ public:
             } else
             if ( cmd.compare(L"create:new") == 0 ) {
                 const std::wstring & format = data.get_Param();
-                int _f = format == L"word" ? AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCX :
-                            format == L"cell" ? AVS_OFFICESTUDIO_FILE_SPREADSHEET_XLSX :
-                            format == L"form" ? AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCXF :
-                            format == L"slide" ? AVS_OFFICESTUDIO_FILE_PRESENTATION_PPTX : AVS_OFFICESTUDIO_FILE_UNKNOWN;
+                const std::wstring search_tpl = L"template:";
 
-                COpenOptions opts{m_appmanager.newFileName(_f), etNewFile};
-                opts.format = _f;
-                opts.parent_id = event.m_nSenderId;
+                if ( format.rfind(search_tpl, 0) == 0 ) {
+                    std::wstring type = format.substr(search_tpl.length());
+                    std::wstring file_path = CEditorTools::getlocaltemplate(type, event.m_nSenderId).toStdWString();
 
-                openDocument(opts);
+                    if ( !file_path.empty() ) {
+                        COpenOptions opts{file_path, etTemplateFile};
+                        opts.name = m_appmanager.newFileName(type);
+                        opts.parent_id = event.m_nSenderId;
+
+                        openDocument(opts);
+                    }
+                } else {
+                    int _f = format == L"word" ? AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCX :
+                                 format == L"cell" ? AVS_OFFICESTUDIO_FILE_SPREADSHEET_XLSX :
+                                 format == L"form" ? AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCXF :
+                                 format == L"slide" ? AVS_OFFICESTUDIO_FILE_PRESENTATION_PPTX : AVS_OFFICESTUDIO_FILE_UNKNOWN;
+
+                    COpenOptions opts{m_appmanager.newFileName(_f), etNewFile};
+                    opts.format = _f;
+                    opts.parent_id = event.m_nSenderId;
+
+                    openDocument(opts);
+                }
+
                 return true;
             }
 

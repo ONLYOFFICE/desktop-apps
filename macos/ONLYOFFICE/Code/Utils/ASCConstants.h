@@ -51,17 +51,11 @@ typedef NS_ENUM(int, ASCTabActionType) {
     ASCTabActionOpenPortal,
     ASCTabActionOpenUrl,
     ASCTabActionCreateLocalFile,
+    ASCTabActionCreateLocalFileFromTemplate,
     ASCTabActionOpenLocalFile,
     ASCTabActionOpenLocalRecentFile,
     ASCTabActionOpenLocalRecoverFile,
     ASCTabActionSaveLocalFile,
-};
-
-typedef NS_ENUM(int, CEFDocumentType) {
-    CEFDocumentDocument = 0,
-    CEFDocumentSpreadsheet = 2,
-    CEFDocumentPresentation = 1,
-    CEFDocumentForm = 3,
 };
 
 static NSString * const kRegHelpUrl                         = @"kRegHelpUrl";
