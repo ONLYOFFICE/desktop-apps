@@ -5,6 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
     <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="noconnect.css">
 
     <style type="text/css">
         html {
@@ -121,6 +122,7 @@
     <inline src="../res/img/welcome_dark.svg" />
     <inline src="../res/img/logo.svg" />
     <inline src="../res/img/update_status.svg" />
+    <inline src="../noconnect/connection_error.svg" />
     </div>
 
     <script>var l10n = l10n || {}</script>

@@ -12,6 +12,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-text-replace');
     grunt.loadNpmTasks('grunt-inline');
     grunt.loadNpmTasks('grunt-terser');
+    // grunt.loadNpmTasks('grunt-svgmin');
 
     function doRegisterInitializeAppTask(name, appName, configFile) {
         return grunt.registerTask('init-build-' + name, 'Initialize build ' + appName, function(){
@@ -103,6 +104,11 @@ module.exports = function(grunt) {
                         '../src/dialogconnect.min.js' : ['../src/dialogconnect.js']
                     }
                 },
+                noconnect: {
+                    files: {
+                        '../deploy/noconnect.js' : ['../noconnect/code.js', '../noconnect/l10n/*.js']
+                    }
+                },
             },
 
             htmlmin: {
@@ -134,39 +140,127 @@ module.exports = function(grunt) {
         });
     });
 
-    grunt.registerTask('compile-html', function(){
-        if (!grunt.option('external-image')) {
-            grunt.config('replace.insert-css', {
-                    src: ['../deploy/index.html'],
-                    overwrite: true,
-                    replacements: [{
-                        from: /(\<link[^\<]+stylesheet[^\<]+href="(\w+\.css)\"\>)/,
-                        to: function(matchedWord, index, fullText, regexMatches) {
-                            var css = grunt.file.read('../deploy/' + regexMatches[1]);
-                            return '<style type="text/css">' + css + '</style>';
-                        }
-                    },{
-                        from: /(\<script\s[^\>]+replace[^\>]+"([\w\S\.]+\.js)\"\>\<\/script\>)/g,
-                        to: function(matchedWord, index, fullText, regexMatches) {
-                            if (!grunt.file.exists('../deploy/' + regexMatches[1])) {
-                                grunt.log.error().writeln('file does not exists: ' + regexMatches[1]);
-                            } 
+    grunt.registerTask('connection-error', function() {
+        grunt.initConfig({
+            terser: {
+                options: {
+                    format: {
+                        comments: false,
+                    },
+                    compress: {
+                        drop_console: true,
+                    },
+                },
+                noconnect: {
+                    files: {
+                        '../deploy/code.min.js' : ['../noconnect/code.js', '../noconnect/l10n/*.js', '../noconnect/init.js']
+                    }
+                },
+            },
 
-                            var script = grunt.file.read('../deploy/' + regexMatches[1]);
-                            return '<script>' + script + '</script>';
-                        }
+            htmlmin: {
+                options: {
+                    removeComments: true,
+                    collapseWhitespace: true,
+                    minifyCSS: true
+                },
+                dist: {
+                    files: {
+                        '../deploy/noconnect.html': '../noconnect/index.html.deploy'
+                    }
+                }
+            },
+
+            clean: {
+                options: {
+                    force: true
+                },
+                files: ["../deploy/*.svg"]
+            },
+
+            copy: {
+                main: {
+                    files: [{
+                        expand: true,
+                        cwd: "../noconnect",
+                        src: ['*.svg'],
+                        dest: '../deploy/'
                     }]
-            });
+                }
+            },
 
-            grunt.config('clean.files', ['../deploy/*.js','../deploy/*.css','../deploy/locale']);
-            grunt.task.run('replace:insert-css', 'clean');
-        }
+            svgmin: {
+                options: {
+                    plugins: [
+                        {
+                            name: 'preset-default',
+                            params: {
+                                overrides: {
+                                    sortAttrs: false,
+                                    removeUselessDefs: false,
+                                    cleanupIds: false,
+                                }
+                            }
+                        }
+                    ]
+                },
+                dist: {
+                    files: [{
+                        expand: true,
+                        cwd: "../noconnect",
+                        src: ['*.svg'],
+                        dest: '../deploy',
+                    }]
+                }
+            },
+        });
+    });
+
+    grunt.registerTask('compile-html', function(task){
+        const src_ = [`../deploy/${task == 'noconnect'?'noconnect.html':'index.html'}`];
+        grunt.config('replace.insert-css', {
+            src: src_,
+            overwrite: true,
+            replacements: [{
+                from: /(\<link[^\<]+stylesheet[^\<]+href="(\w+\.css)\"\>)/g,
+                to: function(matchedWord, index, fullText, regexMatches) {
+                    var css = grunt.file.read('../deploy/' + regexMatches[1]);
+                    return '<style type="text/css">' + css + '</style>';
+                }
+            },{
+                from: /(\<script\s[^\>]+replace[^\>]+"([\w\S\.]+\.js)\"\>\<\/script\>)/g,
+                to: function(matchedWord, index, fullText, regexMatches) {
+                    if (!grunt.file.exists('../deploy/' + regexMatches[1])) {
+                        grunt.log.error().writeln('file does not exists: ' + regexMatches[1]);
+                    }
+
+                    var script = grunt.file.read('../deploy/' + regexMatches[1]);
+                    return '<script>' + script + '</script>';
+                }
+            },{
+                from: /(\<img\s[^\>]+inline-svg[^\>]+"([\w\S\.]+\.svg)\"\>)/g,
+                to: function(matchedWord, index, fullText, regexMatches) {
+                    console.log('replace svg ', regexMatches[1]);
+                    if (!grunt.file.exists('../deploy/' + regexMatches[1])) {
+                        grunt.log.error().writeln('file does not exists: ' + regexMatches[1]);
+                    }
+
+                    const svgsource = grunt.file.read('../deploy/' + regexMatches[1]);
+                    return svgsource;
+                }
+            }]
+        });
+
+        grunt.config('clean.files', ['../deploy/*.js','../deploy/*.css','../deploy/locale', ...grunt.config('clean.files')]);
+        grunt.task.run('replace:insert-css', 'clean');
+        // grunt.task.run('replace:insert-css');
     });
 
 
     doRegisterInitializeAppTask('startpage', 'Desktop start page', 'startpage.json');
 
-    grunt.registerTask('deploy-desktop-startpage', ['desktop-app-extra', 'copy', 'less', 'terser:dialogconnect',
+    grunt.registerTask('deploy-connection-error', ['connection-error', 'terser:noconnect', 'copy', 'htmlmin', /*'svgmin',*/ 'compile-html:noconnect']);
+    grunt.registerTask('deploy-desktop-startpage', ['desktop-app-extra', 'copy', 'less', 'terser:dialogconnect', 'terser:noconnect',
         'concat', 'clean', 'inline', 'terser:core', 'terser:langs', 'htmlmin', 'compile-html']);
-    grunt.registerTask('default', ['init-build-startpage','deploy-desktop-startpage']);
+    grunt.registerTask('default', ['init-build-startpage','deploy-desktop-startpage','deploy-connection-error']);
 };
