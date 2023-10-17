@@ -1190,8 +1190,9 @@ void CMainWindow::onFullScreen(int id, bool apply)
             m_isMaximized = windowState().testFlag(Qt::WindowMaximized);
             m_pTabs->setFullScreen(apply, id);
             QTimer::singleShot(0, this, [=] {
-                CAscMenuEvent * pEvent = new CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_ONFULLSCREENENTER);
-                AscAppManager::getInstance().GetViewById(id)->Apply(pEvent);
+                CCefView* pView = AscAppManager::getInstance().GetViewById(id);
+                if (pView)
+                    pView->Apply(new CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_ONFULLSCREENENTER));
             });
         }
     } else
