@@ -76,8 +76,21 @@ module.exports = (grunt, rootpathprefix) => {
                     },
                 }
             },
+            update_status: {
+                src: [`${_path}res/img/update_status/*.svg`],
+                dest: `${_path}res/img/`,
+                options: {
+                    mode: {
+                        symbol: {
+                            inline: true,
+                            dest: './',
+                            sprite: `update_status.svg`,
+                        },
+                    },
+                }
+            },
         },
-        replace_allconnect:{
+        replace_allconnect: {                   //when fill =#fff the fill turns orange on the light theme page
             dist: {
                 files:[ {
                     src: [`${_path}res/img/allconnect.svg`],
