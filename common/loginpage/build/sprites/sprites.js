@@ -24,28 +24,28 @@ module.exports = (grunt, rootpathprefix) => {
                     },
                 },
             },
-            allconnect: {
+            connect: {
                 src: [`${_path}res/img/connect*.svg`],
                 dest: `${_path}res/img/`,
                 options: {
                     mode: {
                         symbol: {
                             inline: true,
-                            dest: './',
-                            sprite: `allconnect.svg`,
+                            dest: './generated',
+                            sprite: `connect.svg`,
                         },
                     },
                 },
             },
-            allwelcome: {
+            welcome: {
                 src: [`${_path}res/img/welcome*.svg`],
                 dest: `${_path}res/img/`,
                 options: {
                     mode: {
                         symbol: {
                             inline: true,
-                            dest: './',
-                            sprite: `allwelcome.svg`,
+                            dest: './generated',
+                            sprite: `welcome.svg`,
                         },
                     },
                 }
@@ -57,7 +57,7 @@ module.exports = (grunt, rootpathprefix) => {
                     mode: {
                         symbol: {
                             inline: true,
-                            dest: './',
+                            dest: './generated',
                             sprite: `formats.svg`,
                         },
                     },
@@ -70,7 +70,7 @@ module.exports = (grunt, rootpathprefix) => {
                     mode: {
                         symbol: {
                             inline: true,
-                            dest: './',
+                            dest: './generated',
                             sprite: `common.svg`,
                         },
                     },
@@ -83,7 +83,7 @@ module.exports = (grunt, rootpathprefix) => {
                     mode: {
                         symbol: {
                             inline: true,
-                            dest: './',
+                            dest: './generated',
                             sprite: `update_status.svg`,
                         },
                     },

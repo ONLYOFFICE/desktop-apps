@@ -12,7 +12,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-text-replace');
     grunt.loadNpmTasks('grunt-inline');
     grunt.loadNpmTasks('grunt-terser');
-    
+
     function doRegisterInitializeAppTask(name, appName, configFile) {
         return grunt.registerTask('init-build-' + name, 'Initialize build ' + appName, function(){
             defaultConfig = configFile;
