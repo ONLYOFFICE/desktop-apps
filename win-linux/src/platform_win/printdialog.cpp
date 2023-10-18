@@ -448,7 +448,10 @@ int PrintDialog::toPage()
 
 void PrintDialog::setFromTo(int from, int to)
 {
-    m_printer->setFromTo(from, to);
+    from < 1 && (from = 1); to < 1 && (to = 1);
+    from > m_pages_count && (from = m_pages_count);
+    to > m_pages_count && (to = m_pages_count);
+    m_printer->setFromTo(from > to ? to : from, from > to ? from : to);
     if (!m_page_ranges.isEmpty())
         m_page_ranges.clear();
     m_page_ranges.append(PageRanges(m_printer->fromPage(), m_printer->toPage()));
