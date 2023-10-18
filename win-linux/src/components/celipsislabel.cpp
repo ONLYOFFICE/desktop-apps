@@ -62,6 +62,13 @@ void CElipsisLabel::resizeEvent(QResizeEvent *event)
     if ( event->size().width() != event->oldSize().width() ) {
         QString elt = ellipsis_text_(this, orig_text, elide_mode);
         QLabel::setText(elt);
+        QFontMetrics fm(font());
+#if (QT_VERSION < QT_VERSION_CHECK(5,11,0))
+        int textWidth = fm.width(elt);
+#else
+        int textWidth = fm.horizontalAdvance(elt);
+#endif
+        emit onResize(event->size(), textWidth);
     }
 }
 

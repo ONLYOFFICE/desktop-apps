@@ -70,6 +70,7 @@ private:
     PrintOptions m_options;
     PrintRange m_print_range;
     QVector<PageRanges> m_page_ranges;
+    int m_pages_count;
 };
 
 #endif // PRINTDIALOG_H

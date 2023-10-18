@@ -248,9 +248,9 @@ void CMainWindow::close()
         onFullScreen(-1, false);
 
 #ifdef _WIN32
-        if (isSessionInProgress() && m_pTabs->count() > 1) {
+        if (isSessionInProgress() && m_pTabs->count(cvwtEditor) > 1) {
 #else
-        if (m_pTabs->count() > 1) {
+        if (m_pTabs->count(cvwtEditor) > 1) {
 #endif
             GET_REGISTRY_USER(reg_user);
             if (!reg_user.value("ignoreMsgAboutOpenTabs", false).toBool()) {
@@ -314,7 +314,7 @@ void CMainWindow::dragEnterEvent(QDragEnterEvent *event)
         return;
 
     QSet<QString> _exts;
-    _exts << "docx" << "doc" << "odt" << "rtf" << "txt" << "doct" << "dotx" << "ott";
+    _exts << "docx" << "doc" << "odt" << "rtf" << "txt" << "doct" << "dotx" << "ott" << "docxf" << "oform";
     _exts << "html" << "mht" << "epub";
     _exts << "pptx" << "ppt" << "odp" << "ppsx" << "pptt" << "potx" << "otp";
     _exts << "xlsx" << "xls" << "ods" << "csv" << "xlst" << "xltx" << "ots";
@@ -1206,8 +1206,9 @@ void CMainWindow::onFullScreen(int id, bool apply)
             m_isMaximized = windowState().testFlag(Qt::WindowMaximized);
             m_pTabs->setFullScreen(apply, id);
             QTimer::singleShot(0, this, [=] {
-                CAscMenuEvent * pEvent = new CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_ONFULLSCREENENTER);
-                AscAppManager::getInstance().GetViewById(id)->Apply(pEvent);
+                CCefView* pView = AscAppManager::getInstance().GetViewById(id);
+                if (pView)
+                    pView->Apply(new CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_ONFULLSCREENENTER));
             });
         }
     } else
