@@ -1677,10 +1677,10 @@ begin
 
   ChlbAudio  := nil;
   createPage := False;
-  if not WizardSilent then begin
+  if not WizardSilent() then begin
     paramSkip := GetCommandlineParam('/skip');
     if (not Length(paramSkip) > 0) or (paramSkip <> 'associates') then begin
-      createPage := True
+      createPage := True;
     end
   end;
 
