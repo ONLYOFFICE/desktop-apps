@@ -1180,6 +1180,17 @@ be.extOFORM =Запаўняльная анлайн-форма ONLYOFFICE
 gl.extOFORM =Formulario en liña encheble ONLYOFFICE
 si.extOFORM =ඔන්ලිඔෆිස් පුරවන මාර්ගගත ආකෘතිපත්‍ර
 zh_TW.extOFORM =ONLYOFFICE可填写的在线表格
+
+en.extPOT =PowerPoint Template
+
+en.extPPTM =PowerPoint Open XML Macro-Enabled Presentation
+
+en.extEPUB =Open eBook File
+
+en.extFB2 =FictionBook 2.0 File
+
+en.extDOTX =Word Open XML Document Template
+
 ;======================================================================================================
 
 en.jumpDOCX =New document
@@ -1570,9 +1581,9 @@ var
   prefix: string;
 begin
 #ifdef _ONLYOFFICE
-  SetArrayLength(AudioExts, 18);
+  SetArrayLength(AudioExts, 23);
 #else
-  SetArrayLength(AudioExts, 16);
+  SetArrayLength(AudioExts, 21);
 #endif
   SetArrayLength(AudioExtEnabled,  GetArrayLength(AudioExts));
 
@@ -1593,9 +1604,14 @@ begin
   AudioExts[13] := 'PDF';
   AudioExts[14] := 'DJVU';
   AudioExts[15] := 'XPS';
+  AudioExts[16] := 'POT';
+  AudioExts[17] := 'PPTM';
+  AudioExts[18] := 'EPUB';
+  AudioExts[19] := 'FB2';
+  AudioExts[20] := 'DOTX';
 #ifdef _ONLYOFFICE
-  AudioExts[16] := 'OFORM';
-  AudioExts[17] := 'DOCXF';
+  AudioExts[21] := 'OFORM';
+  AudioExts[22] := 'DOCXF';
 #endif
   
   SetArrayLength(ExtensionRegistryInfo,  GetArrayLength(AudioExts));
@@ -1619,9 +1635,14 @@ begin
   ExtensionRegistryInfo[13] := prefix + 'Pdf:'          + ExpandConstant('{cm:extPDF}')             + ':' + '5';
   ExtensionRegistryInfo[14] := prefix + 'DjVu:'         + ExpandConstant('{cm:extDJVU}')            + ':' + '4';
   ExtensionRegistryInfo[15] := prefix + 'Xps:'          + ExpandConstant('{cm:extXPS}')             + ':' + '6';
+  ExtensionRegistryInfo[16] := prefix + 'Pot:'          + ExpandConstant('{cm:extPOT}')             + ':' + '26';
+  ExtensionRegistryInfo[17] := prefix + 'Pptm:'         + ExpandConstant('{cm:extPPTM}')            + ':' + '27';
+  ExtensionRegistryInfo[18] := prefix + 'Epub:'         + ExpandConstant('{cm:extEPUB}')            + ':' + '28';
+  ExtensionRegistryInfo[19] := prefix + 'Fb2:'          + ExpandConstant('{cm:extFB2}')             + ':' + '29';
+  ExtensionRegistryInfo[20] := prefix + 'Dotx:'         + ExpandConstant('{cm:extDOTX}')            + ':' + '30';
 #ifdef _ONLYOFFICE
-  ExtensionRegistryInfo[16] := prefix + 'Oform:'        + ExpandConstant('{cm:extOFORM}')           + ':' + '12';
-  ExtensionRegistryInfo[17] := prefix + 'Docxf:'        + ExpandConstant('{cm:extDOCXF}')           + ':' + '13';
+  ExtensionRegistryInfo[21] := prefix + 'Oform:'        + ExpandConstant('{cm:extOFORM}')           + ':' + '12';
+  ExtensionRegistryInfo[22] := prefix + 'Docxf:'        + ExpandConstant('{cm:extDOCXF}')           + ':' + '13';
 #endif
 end;
 
