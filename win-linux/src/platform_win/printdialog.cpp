@@ -34,6 +34,7 @@
 #include <commdlg.h>
 #include "printdialog.h"
 #include "utils.h"
+#include "components/cmessage.h"
 
 #define MAXPAGERANGES 32
 #define PRINT_DIALOG_REG_KEY L"Software\\Microsoft\\Print\\UnifiedPrintDialog\0"
@@ -448,7 +449,14 @@ int PrintDialog::toPage()
 
 void PrintDialog::setFromTo(int from, int to)
 {
-    m_printer->setFromTo(from, to);
+    from < 1 && (from = 1); to < 1 && (to = 1);
+    if (m_pages_count < from || m_pages_count < to) {
+        CMessage::warning(m_parent, QObject::tr("Specified range %1-%2 exceeds document limits: maximum number of pages is %3")
+                                        .arg(QString::number(from), QString::number(to), QString::number(m_pages_count)));
+    }
+    from > m_pages_count && (from = m_pages_count);
+    to > m_pages_count && (to = m_pages_count);
+    m_printer->setFromTo(from > to ? to : from, from > to ? from : to);
     if (!m_page_ranges.isEmpty())
         m_page_ranges.clear();
     m_page_ranges.append(PageRanges(m_printer->fromPage(), m_printer->toPage()));
