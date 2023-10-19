@@ -79,19 +79,6 @@ begin
    end;
 end;
 
-function checkVCRedist2013(): Boolean;
-var
-  upgradecode: String;
-begin
-
-  if Is64BitInstallMode then
-    upgradecode := '{20400CF0-DE7C-327E-9AE4-F0F38D9085F8}' //x64
-  else
-    upgradecode := '{B59F5BF1-67C8-3802-8E59-2CE551A39FC5}'; //x86
-
-  Result :=  msiproductupgrade(upgradecode, '12.0.21005');
-end;
-
 function checkVCRedist2022(): Boolean;
 var
   upgradecode: String;
