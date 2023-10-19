@@ -477,8 +477,9 @@ public:
         if ( isPrinting ) return;
         isPrinting = true;
 
+        QWidget *parent = window->handle();
 #ifdef Q_OS_LINUX
-        WindowHelper::CParentDisable oDisabler(window->handle());
+        WindowHelper::CParentDisable oDisabler(parent);
 #endif
         if ( !(pagescount < 1) ) {
             CAscMenuEvent * pEvent;
@@ -583,7 +584,8 @@ public:
 #ifndef _WIN32
             RELEASEOBJECT(dialog)
 #endif
-        }
+        } else
+            CMessage::warning(parent, tr("There are no pages set to print."));
 
         isPrinting = false;
     }

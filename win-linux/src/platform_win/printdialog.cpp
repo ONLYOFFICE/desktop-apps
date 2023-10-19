@@ -32,6 +32,7 @@
 
 #include <windows.h>
 #include <commdlg.h>
+#include <comdef.h>
 #include "printdialog.h"
 #include "utils.h"
 #include "components/cmessage.h"
@@ -353,7 +354,8 @@ QDialog::DialogCode PrintDialog::exec()
     dlg.lpCallback     = static_cast<IPrintDialogCallback*>(&clb);
 
     QDialog::DialogCode exit_code = QDialog::DialogCode::Rejected;
-    if (PrintDlgEx(&dlg) == S_OK) {
+    HRESULT hr = PrintDlgEx(&dlg);
+    if (hr == S_OK) {
         switch (dlg.dwResultAction) {
         case PD_RESULT_PRINT: {
             LPDEVMODE pDevmode = (LPDEVMODE)GlobalLock(dlg.hDevMode);
@@ -411,6 +413,9 @@ QDialog::DialogCode PrintDialog::exec()
 #endif
         if (pDevMode)
             GlobalFree(pDevMode);
+
+        const wchar_t *err = _com_error(hr).ErrorMessage();
+        CMessage::error(m_parent, QObject::tr("Unable to open print dialog:<br>%1").arg(QString::fromStdWString(err)));
     }
     GlobalFree(page_ranges);
 

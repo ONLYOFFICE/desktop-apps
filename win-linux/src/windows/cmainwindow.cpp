@@ -1063,8 +1063,9 @@ void CMainWindow::onDocumentPrint(void * opts)
         printInProcess = true; else
         return;
 
+    QWidget *parent = qobject_cast<QWidget*>(this);
 #ifdef Q_OS_LINUX
-    WindowHelper::CParentDisable disabler(qobject_cast<QWidget*>(this));
+    WindowHelper::CParentDisable disabler(parent);
 #endif
 
     CCefView * pView = AscAppManager::getInstance().GetViewById(AscAppManager::printData().viewId());
@@ -1177,7 +1178,8 @@ void CMainWindow::onDocumentPrint(void * opts)
 #ifndef _WIN32
         RELEASEOBJECT(dialog)
 #endif
-    }
+    } else
+        CMessage::warning(parent, tr("There are no pages set to print."));
 
     printInProcess = false;
 //    RELEASEINTERFACE(pData)
