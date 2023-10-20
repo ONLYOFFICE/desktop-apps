@@ -63,7 +63,8 @@ public:
     auto defaultDark() -> const CTheme&;
     auto defaultLight() -> const CTheme&;
 
-    auto addLocalTheme(const std::wstring&) -> bool;
+//    auto addLocalTheme(const std::wstring&) -> bool;
+    auto addLocalTheme(const QJsonObject&, const QString& filepath) -> bool;
     auto setCurrentTheme(const std::wstring&) -> void;
     auto isThemeCurrent(const std::wstring& id) -> bool;
 //    auto isThemeDark(const std::wstring& id) -> bool;
@@ -76,6 +77,7 @@ public:
     auto isSystemSchemeDark() -> const bool;
     auto parseThemeName(const std::wstring&) -> std::wstring;
     auto localThemesToJson() -> QJsonArray;
+    auto contains(const QString& id) -> bool;
 private:
     class CThemesPrivate;
     CThemesPrivate * m_priv = nullptr;

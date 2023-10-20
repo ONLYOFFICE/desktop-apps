@@ -226,6 +226,26 @@ namespace CEditorTools
         return _path;
     }
 
+    QString getlocaltheme(int parentid)
+    {
+        ParentHandle parent;
+        if ( !(parentid < 0) )
+            parent = AscAppManager::windowHandleFromId(parentid);
+        else parent = qApp->activeWindow();
+
+        QString _filter;
+            _filter = CFileDialogWrapper::tr("Theme file") + " (*.json)";
+
+        CFileDialogWrapper dlg(parent);
+
+        QString _path = Utils::lastPath(LOCAL_PATH_OPEN);
+        if ( !(_path = dlg.modalOpenSingle(_path, _filter)).isEmpty() ) {
+            Utils::keepLastPath(LOCAL_PATH_OPEN, QFileInfo(_path).absolutePath());
+        }
+
+        return _path;
+    }
+
     std::wstring getFolder(const std::wstring& path, int parentid)
     {
         ParentHandle parent;

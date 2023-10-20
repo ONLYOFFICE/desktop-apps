@@ -116,6 +116,7 @@ public:
     static QByteArray readStylesheets(std::vector<std::string> const *);
     static QByteArray readStylesheets(const QString&);
     static QJsonObject parseJsonString(const std::wstring&);
+    static QJsonObject parseJsonFile(const QString&);
     static bool updatesAllowed();
 
 #ifdef _WIN32

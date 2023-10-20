@@ -302,20 +302,20 @@ public:
     auto addThemeFromFile(const QString& path) -> bool {
         QFile file(path);
         if ( file.open(QIODevice::ReadOnly) ) {
+            QString fileName = file.fileName();
             QByteArray data{file.readAll()};
+            file.close();
 
-            QJsonParseError je;
-            QJsonDocument doc = QJsonDocument::fromJson(data, &je);
-            if ( je.error == QJsonParseError::NoError ) {
+            QJsonParseError jpe;
+            QJsonDocument doc = QJsonDocument::fromJson(data, &jpe);
+            if ( jpe.error == QJsonParseError::NoError ) {
                 QJsonObject objRoot = doc.object();
 
                 if ( validateTheme(objRoot) ) {
-                    local_themes[objRoot.value("id").toString()] = std::make_pair(file.fileName(), data);
+                    local_themes[objRoot.value("id").toString()] = std::make_pair(fileName, data);
                     return true;
                 }
             }
-
-            file.close();
         }
 
         return false;
@@ -518,6 +518,12 @@ auto CThemes::themeActualId(const std::wstring& id) const -> std::wstring
         m_priv->is_system_theme_dark ? WSTR(THEME_DEFAULT_DARK_ID) : WSTR(THEME_DEFAULT_LIGHT_ID);
 }
 
+auto CThemes::contains(const QString& id) -> bool
+{
+    return m_priv->local_themes.find(id) != m_priv->local_themes.end() ||
+                m_priv->rc_themes.find(id) != m_priv->rc_themes.end();
+}
+
 auto CThemes::isColorDark(const std::wstring& color) -> bool
 {
     return isColorDark(QString::fromStdWString(color));
@@ -551,9 +557,27 @@ auto CThemes::parseThemeName(const std::wstring& wjson) -> std::wstring
     return wjson;
 }
 
-auto CThemes::addLocalTheme(const std::wstring& path) -> bool
+//auto CThemes::addLocalTheme(const std::wstring& path) -> bool
+//{
+//    if ( m_priv->addThemeFromFile(QString::fromStdWString(path)) ) {
+//        return true;
+//    }
+
+//    return false;
+//}
+
+auto CThemes::addLocalTheme(const QJsonObject& jsonobj, const QString& filepath) -> bool
 {
-    if ( m_priv->addThemeFromFile(QString::fromStdWString(path)) ) {
+    if ( m_priv->validateTheme(jsonobj) ) {
+        if ( !filepath.isEmpty() ) {
+            if (!QFile::copy(filepath, Utils::getAppCommonPath() + "/uithemes/" + QFileInfo(filepath).fileName()))
+                return false;
+        }
+
+        QByteArray data = QJsonDocument(jsonobj).toJson(QJsonDocument::Compact);
+        m_priv->local_themes[jsonobj.value("id").toString()] = std::make_pair("", data);
+//        m_priv->local_themes[jsonobj.value("id").toString()] = std::make_pair(fileName, data);
+
         return true;
     }
 

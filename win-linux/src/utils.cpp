@@ -679,6 +679,23 @@ QJsonObject Utils::parseJsonString(const std::wstring& wjson)
     return QJsonObject();
 }
 
+QJsonObject Utils::parseJsonFile(const QString& path)
+{
+    QFile file(path);
+    if ( file.open(QIODevice::ReadOnly) ) {
+        QByteArray data{file.readAll()};
+        file.close();
+
+        QJsonParseError jpe;
+        QJsonDocument jdoc = QJsonDocument::fromJson(data, &jpe);
+        if ( jpe.error == QJsonParseError::NoError ) {
+            return jdoc.object();
+        }
+    }
+
+    return QJsonObject();
+}
+
 bool Utils::updatesAllowed()
 {
     GET_REGISTRY_SYSTEM(reg_system)
