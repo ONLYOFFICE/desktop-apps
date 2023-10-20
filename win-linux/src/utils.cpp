@@ -666,7 +666,7 @@ QByteArray Utils::readStylesheets(const QString& path)
     return _css;
 }
 
-QJsonObject Utils::parseJson(const std::wstring& wjson)
+QJsonObject Utils::parseJsonString(const std::wstring& wjson)
 {
     QJsonParseError jerror;
     QByteArray stringdata = QString::fromStdWString(wjson).toUtf8();
