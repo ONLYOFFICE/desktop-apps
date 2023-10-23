@@ -43,6 +43,7 @@ public:
     ~CDownloaderPrivate()
     {}
 
+    FnVoidIntInt m_query_callback = nullptr;
     FnVoidInt m_complete_callback = nullptr,
               m_progress_callback = nullptr;
     string    m_url,
@@ -83,6 +84,32 @@ CDownloader::~CDownloader()
     if (pimpl->m_future.valid())
         pimpl->m_future.wait();
     delete pimpl, pimpl = nullptr;
+}
+
+void CDownloader::queryContentLenght(const string &url)
+{
+    if (url.empty() || pimpl->m_lock)
+        return;
+
+    pimpl->m_lock = true;
+    pimpl->m_future = std::async(std::launch::async, [=]() {
+        double fileSize = 0;
+        CURLcode res = CURLE_FAILED_INIT;
+        if (CURL *curl = curl_easy_init()) {
+            curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
+            curl_easy_setopt(curl, CURLOPT_NOBODY, 1L);
+            res = curl_easy_perform(curl);
+            if (res == CURLE_OK)
+                curl_easy_getinfo(curl, CURLINFO_CONTENT_LENGTH_DOWNLOAD, &fileSize);
+            curl_easy_cleanup(curl);
+        }
+        int error = (res == CURLE_OK) ? 0 :
+                    (res == CURLE_HTTP_RETURNED_ERROR) ? -2 : -3;
+
+        if (pimpl->m_query_callback)
+            pimpl->m_query_callback(error, (int)fileSize);
+        pimpl->m_lock = false;
+    });
 }
 
 void CDownloader::downloadFile(const string &url, const string &filePath)
@@ -148,6 +175,11 @@ void CDownloader::stop()
 string CDownloader::GetFilePath()
 {
     return pimpl->m_filePath;
+}
+
+void CDownloader::onQueryResponse(FnVoidIntInt callback)
+{
+    pimpl->m_query_callback = callback;
 }
 
 void CDownloader::onComplete(FnVoidInt callback)
