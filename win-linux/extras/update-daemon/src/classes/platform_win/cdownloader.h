@@ -35,11 +35,13 @@
 
 #include <string>
 #include <functional>
-#include <future>
 
 typedef std::function<void(int)> FnVoidInt;
 
 using std::wstring;
+
+
+class CDownloaderPrivate;
 
 class CDownloader
 {
@@ -57,13 +59,7 @@ public:
     void onProgress(FnVoidInt callback);
 
 private:
-    FnVoidInt m_complete_callback = nullptr,
-              m_progress_callback = nullptr;
-    wstring   m_url,
-              m_filePath;
-    std::future<void> m_future;
-    std::atomic_bool m_run,
-                     m_lock;
+    CDownloaderPrivate *pimpl = nullptr;
 };
 
 #endif // CDOWNLOADER_H
