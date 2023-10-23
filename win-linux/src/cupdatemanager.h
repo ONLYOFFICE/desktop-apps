@@ -102,7 +102,6 @@ private:
     void init();
     void clearTempFiles(const QString &except = QString());
     void updateNeededCheking();
-    void onCheckFinished(bool error, bool updateExist, const QString &version, const QString &changelog);
     void unzipIfNeeded();
     void savePackageData(const QString &version = QString(), const QString &fileName = QString(), const QString &fileType = QString());
     QString ignoredVersion();
@@ -135,6 +134,7 @@ private:
     CSocket *m_socket = nullptr;
 
 private slots:
+    void onCheckFinished(bool error, bool updateExist, const QString &version, const QString &changelog);
     void onLoadCheckFinished(const QString &filePath);
     void showUpdateMessage(QWidget *parent);
     void onLoadUpdateFinished(const QString &filePath);

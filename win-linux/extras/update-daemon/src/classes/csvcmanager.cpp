@@ -202,6 +202,9 @@ void CSvcManager::aboutToQuit(FnVoidVoid callback)
 
 void CSvcManager::init()
 {
+    m_pDownloader->onQueryResponse([=](int error, int lenght) {
+        onQueryResponse(error, lenght);
+    });
     m_pDownloader->onComplete([=](int error) {
         onCompleteSlot(error, m_pDownloader->GetFilePath());
     });
@@ -233,6 +236,13 @@ void CSvcManager::init()
                     m_pDownloader->downloadFile(params[1], generateTmpFileName(ext));
                 }
                 NS_Logger::WriteLog(_T("Received MSG_LoadUpdates, URL: ") + params[1]);
+                break;
+            }
+            case MSG_RequestContentLenght: {
+                __GLOBAL_LOCK
+                if (m_pDownloader)
+                    m_pDownloader->queryContentLenght(params[1]);
+                NS_Logger::WriteLog(_T("Received MSG_RequestContentLenght, URL: ") + params[1]);
                 break;
             }
             case MSG_StopDownload: {
@@ -271,6 +281,12 @@ void CSvcManager::init()
 #endif
         NS_Logger::WriteLog(_error);
     });
+}
+
+void CSvcManager::onQueryResponse(const int error, const int lenght)
+{
+    __UNLOCK
+    m_socket->sendMessage(MSG_RequestContentLenght, (error == 0) ? to_tstring(lenght) : _T(""));
 }
 
 void CSvcManager::onCompleteUnzip(const int error)

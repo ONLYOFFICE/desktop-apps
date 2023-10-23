@@ -37,6 +37,7 @@
 #include <functional>
 
 typedef std::function<void(int)> FnVoidInt;
+typedef std::function<void(int,int)> FnVoidIntInt;
 
 using std::string;
 
@@ -49,6 +50,7 @@ public:
     CDownloader();
     ~CDownloader();
 
+    void queryContentLenght(const string &url);
     void downloadFile(const string &url, const string &filePath);
     void start();
     void pause();
@@ -56,6 +58,7 @@ public:
     string GetFilePath();
 
     /* callback */
+    void onQueryResponse(FnVoidIntInt callback);
     void onComplete(FnVoidInt callback);
     void onProgress(FnVoidInt callback);
 

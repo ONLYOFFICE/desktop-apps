@@ -164,6 +164,7 @@ public:
             DeleteFile(m_filePath.c_str());
         return result;
     }
+    FnVoidIntInt m_query_callback = nullptr;
     FnVoidInt m_complete_callback = nullptr,
               m_progress_callback = nullptr;
     wstring   m_url,
@@ -186,6 +187,26 @@ CDownloader::~CDownloader()
     if (pimpl->m_future.valid())
         pimpl->m_future.wait();
     delete pimpl, pimpl = nullptr;
+}
+
+void CDownloader::queryContentLenght(const wstring &url)
+{
+    if (url.empty() || pimpl->m_lock)
+        return;
+
+    pimpl->m_lock = true;
+    pimpl->m_future = std::async(std::launch::async, [=]() {
+        DWORD dwFileSize = 0;
+        Connection conn;
+        int hr = initConnection(url, dwFileSize, conn);
+        int error = (hr == DNL_OK) ? 0 :
+                    (hr == DNL_CONN_ERR) ? -2 :
+                    (hr == DNL_URL_ERR) ? -3 : -5;
+
+        if (pimpl->m_query_callback)
+            pimpl->m_query_callback(error, dwFileSize);
+        pimpl->m_lock = false;
+    });
 }
 
 void CDownloader::downloadFile(const std::wstring &url, const std::wstring &filePath)
@@ -230,6 +251,11 @@ void CDownloader::stop()
 wstring CDownloader::GetFilePath()
 {
     return pimpl->m_filePath;
+}
+
+void CDownloader::onQueryResponse(FnVoidIntInt callback)
+{
+    pimpl->m_query_callback = callback;
 }
 
 void CDownloader::onComplete(FnVoidInt callback)
