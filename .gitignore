@@ -27,6 +27,8 @@ win-linux/package/linux/urpmi/builddir
 win-linux/package/linux/suse-rpm/builddir
 win-linux/package/linux/tar
 
+
+common/loginpage/res/img/generated/*
 common/loginpage/build/plugins/*
 common/**/node_modules/*
 common/loginpage/deploy/*
