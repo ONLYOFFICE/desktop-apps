@@ -127,15 +127,17 @@ void CWindowPlatform::adjustGeometry()
 #ifdef __OS_WIN_XP
             setContentsMargins(0, 0, 0, 0);
 #else
-            double dpi = qApp->screenAt(geometry().center())->logicalDotsPerInch()/96;
-            const int brd = (dpi <= 1.0) ? 8 :
-                            (dpi == 1.25) ? 9 :
-                            (dpi == 1.5) ? 11 :
-                            (dpi == 1.75) ? 12 :
-                            (dpi == 2.0) ? 13 :
-                            (dpi == 2.25) ? 14 :
-                            (dpi == 2.5) ? 16 : 6 * dpi;
-            const int border = (!isTaskbarAutoHideOn() && Utils::getWinVersion() > Utils::WinVer::Win7) ? brd: 0;
+            int border = 0;
+            if (!isTaskbarAutoHideOn() && Utils::getWinVersion() > Utils::WinVer::Win7) {
+                double dpi = qApp->screenAt(geometry().center())->logicalDotsPerInch()/96;
+                border = (dpi <= 1.0) ? 8 :
+                         (dpi == 1.25) ? 9 :
+                         (dpi == 1.5) ? 11 :
+                         (dpi == 1.75) ? 12 :
+                         (dpi == 2.0) ? 13 :
+                         (dpi == 2.25) ? 14 :
+                         (dpi == 2.5) ? 16 : 6 * dpi;
+            }
             setContentsMargins(border, border, border, border);
 #endif
         });
@@ -261,10 +263,11 @@ bool CWindowPlatform::nativeEvent(const QByteArray &eventType, void *message, lo
     }
 
     case WM_NCCALCSIZE: {
-        NCCALCSIZE_PARAMS& params = *reinterpret_cast<NCCALCSIZE_PARAMS*>(msg->lParam);
-        if (params.rgrc[0].bottom != 0)
-            params.rgrc[0].bottom += 1;
-        *result = WVR_REDRAW;
+        if (!msg->wParam)
+            break;
+        NCCALCSIZE_PARAMS *params = (NCCALCSIZE_PARAMS*)msg->lParam;
+        params->rgrc[0].bottom += 1;
+        *result = WVR_ALIGNLEFT | WVR_ALIGNTOP | WVR_REDRAW;
         return true;
     }
 
@@ -332,7 +335,20 @@ bool CWindowPlatform::nativeEvent(const QByteArray &eventType, void *message, lo
             SystemParametersInfoW(SPI_GETWORKAREA, 0, &workArea, 0);
             if (!EqualRect(&oldWorkArea, &workArea)) {
                 oldWorkArea = workArea;
-                adjustGeometry();
+                QTimer::singleShot(200, this, [=]() {
+                    adjustGeometry();
+                });
+            }
+        } else if (msg->wParam == 0) {
+            const std::wstring param{(wchar_t*)msg->lParam};
+            if (param == L"ImmersiveColorSet") {
+                QSettings _reg("HKEY_CURRENT_USER\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize", QSettings::NativeFormat);
+                bool _changed_theme_dark = _reg.value("AppsUseLightTheme", 1).toInt() == 0;
+
+                if (_changed_theme_dark != AscAppManager::themes().isSystemSchemeDark()) {
+                    AscAppManager::themes().onSystemDarkColorScheme(_changed_theme_dark);
+                    qDebug() << "system theme changed";
+                }
             }
         }
         break;

@@ -4,7 +4,7 @@
 <context>
     <name>CAscApplicationManagerWrapper</name>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1178"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1176"/>
         <source>Presenter View</source>
         <translation>Visualizzazione del presenter</translation>
     </message>
@@ -21,18 +21,18 @@
         <translation type="vanished">Tutte le finestre dell&apos;editor verranno chiuse. Vuoi continuare?</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1939"/>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1940"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1942"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1943"/>
         <source>Document%1.docx</source>
         <translation>Documento%1.docx</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1941"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1944"/>
         <source>Book%1.xlsx</source>
         <translation>Foglio%1.xlsx</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1942"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1945"/>
         <source>Presentation%1.pptx</source>
         <translation>Presentazione%1.pptx</translation>
     </message>
@@ -56,7 +56,7 @@
 <context>
     <name>CAscTabWidget</name>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="802"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="801"/>
         <location filename="../src/components/asctabwidget.cpp" line="622"/>
         <source>Document</source>
         <translation>Apertura...</translation>
@@ -92,7 +92,7 @@
     </message>
     <message>
         <location filename="../src/platform_linux/cdialogopenssl.cpp" line="107"/>
-        <source>Certifacate password:</source>
+        <source>Certificate password:</source>
         <translation>Password certificato:</translation>
     </message>
     <message>
@@ -637,154 +637,177 @@
 <context>
     <name>CUpdateManager</name>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="255"/>
-        <location filename="../src/cupdatemanager.cpp" line="287"/>
-        <location filename="../src/cupdatemanager.cpp" line="634"/>
         <source>Last check performed </source>
-        <translation>Ultimo controllo effettuato </translation>
+        <translation type="vanished">Ultimo controllo effettuato </translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="262"/>
-        <location filename="../src/cupdatemanager.cpp" line="288"/>
-        <location filename="../src/cupdatemanager.cpp" line="367"/>
-        <location filename="../src/cupdatemanager.cpp" line="382"/>
-        <location filename="../src/cupdatemanager.cpp" line="410"/>
-        <location filename="../src/cupdatemanager.cpp" line="476"/>
-        <location filename="../src/cupdatemanager.cpp" line="483"/>
-        <location filename="../src/cupdatemanager.cpp" line="558"/>
-        <location filename="../src/cupdatemanager.cpp" line="580"/>
-        <location filename="../src/cupdatemanager.cpp" line="635"/>
-        <location filename="../src/cupdatemanager.cpp" line="740"/>
-        <location filename="../src/cupdatemanager.cpp" line="745"/>
-        <location filename="../src/cupdatemanager.cpp" line="764"/>
+        <location filename="../src/cupdatemanager.cpp" line="101"/>
         <source>Check for updates</source>
-        <translation>Controllo degli aggiornamenti in corso</translation>
+        <translation>Controlla gli aggiornamenti</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="262"/>
+        <location filename="../src/cupdatemanager.cpp" line="93"/>
         <source>Unable to check update: URL not defined.</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossibile controllare l&apos;aggiornamento: URL non definito.</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="307"/>
-        <location filename="../src/cupdatemanager.cpp" line="469"/>
-        <location filename="../src/cupdatemanager.cpp" line="569"/>
+        <location filename="../src/cupdatemanager.cpp" line="91"/>
         <source>To finish updating, restart app</source>
         <translation>Per completare l&apos;aggiornamento, riavvia l&apos;app</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="307"/>
-        <location filename="../src/cupdatemanager.cpp" line="469"/>
-        <location filename="../src/cupdatemanager.cpp" line="569"/>
+        <location filename="../src/cupdatemanager.cpp" line="103"/>
         <source>Restart</source>
         <translation>Riavvia</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="367"/>
+        <location filename="../src/cupdatemanager.cpp" line="87"/>
         <source>Checking for updates...</source>
         <translation>Controllo degli aggiornamenti in corso...</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="373"/>
+        <location filename="../src/cupdatemanager.cpp" line="92"/>
         <source>Updates are not allowed!</source>
         <translation>Gli aggiornamenti non sono consentiti!</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="374"/>
+        <location filename="../src/cupdatemanager.cpp" line="402"/>
         <source>This folder configuration does not allow for updates! The folder name should be: </source>
         <translation>La configurazione di questa cartella non consente di applicare gli aggiornamenti! Il nome della cartella dovrebbe essere: </translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="381"/>
+        <location filename="../src/cupdatemanager.cpp" line="95"/>
         <source>An error occurred while check updates: Update Service not found!</source>
         <translation>Si è verificato un errore durante il controllo degli aggiornamenti: Servizio aggiornamenti non è stato trovato!</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="405"/>
+        <location filename="../src/cupdatemanager.cpp" line="89"/>
         <source>Downloading new version %1 (%2%)</source>
         <translation>Download della nuova versione %1 (%2%)</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="476"/>
+        <location filename="../src/cupdatemanager.cpp" line="96"/>
         <source>An error occurred while loading updates: Update Service not found!</source>
         <translation>Si è verificato un errore durante il caricamento degli aggiornamenti: Servizio aggiornamenti non è stato trovato!</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="480"/>
         <source>Downloading new version %1 (0%)</source>
-        <translation>Download della nuova versione %1 (0%)</translation>
+        <translation type="vanished">Download della nuova versione %1 (0%)</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="480"/>
-        <location filename="../src/cupdatemanager.cpp" line="578"/>
+        <location filename="../src/cupdatemanager.cpp" line="104"/>
         <source>Cancel</source>
         <translation>Annulla</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="483"/>
+        <location filename="../src/cupdatemanager.cpp" line="94"/>
         <source>An error occurred while loading updates: package Url is empty!</source>
         <translation>Si è verificato un errore durante il caricamento degli aggiornamenti: l&apos;URL del pacchetto è vuoto!</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="557"/>
+        <location filename="../src/cupdatemanager.cpp" line="99"/>
         <source>Update package error: md5 sum does not match the original.</source>
         <translation>Errore del pacchetto di aggiornamento: la somma md5 non corrisponde all&apos;originale.</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="578"/>
+        <location filename="../src/cupdatemanager.cpp" line="90"/>
         <source>Preparing update...</source>
         <translation>Preparazione dell&apos;aggiornamento in corso...</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="580"/>
+        <location filename="../src/cupdatemanager.cpp" line="97"/>
         <source>An error occurred while unzip updates: Update Service not found!</source>
         <translation>Si è verificato un errore durante l&apos;estrazione degli aggiornamenti: Servizio aggiornamenti non è stato trovato!</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="733"/>
+        <location filename="../src/cupdatemanager.cpp" line="88"/>
         <source>Update is available (version %1)</source>
         <translation>L&apos;aggiornamento è disponibile (versione %1)</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="734"/>
+        <location filename="../src/cupdatemanager.cpp" line="102"/>
         <source>Download update</source>
         <translation>Scaricare l&apos;aggiornamento</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="740"/>
-        <location filename="../src/cupdatemanager.cpp" line="764"/>
+        <location filename="../src/cupdatemanager.cpp" line="86"/>
         <source>Current version is up to date</source>
         <translation>La versione presente è aggiornata</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="752"/>
+        <location filename="../src/cupdatemanager.cpp" line="77"/>
+        <source>An error occured while unpacking the archive</source>
+        <translation>Si è verificato un errore durante la decompressione dell&apos;archivio</translation>
+    </message>
+    <message>
+        <location filename="../src/cupdatemanager.cpp" line="78"/>
+        <source>Update download failed: out of memory!</source>
+        <translation>Download dell&apos;aggiornamento non riuscito: memoria esaurita!</translation>
+    </message>
+    <message>
+        <location filename="../src/cupdatemanager.cpp" line="79"/>
+        <source>Update download failed: server connection error!</source>
+        <translation>Download dell&apos;aggiornamento non riuscito: errore di connessione al server!</translation>
+    </message>
+    <message>
+        <location filename="../src/cupdatemanager.cpp" line="80"/>
+        <source>Update download failed: wrong URL!</source>
+        <translation>Download dell&apos;aggiornamento non riuscito: URL errato!</translation>
+    </message>
+    <message>
+        <location filename="../src/cupdatemanager.cpp" line="81"/>
+        <source>Update download failed: unable to create file!</source>
+        <translation>Download dell&apos;aggiornamento non riuscito: impossibile creare il file!</translation>
+    </message>
+    <message>
+        <location filename="../src/cupdatemanager.cpp" line="82"/>
+        <source>Update download failed: network error!</source>
+        <translation>Download dell&apos;aggiornamento non riuscito: errore di rete!</translation>
+    </message>
+    <message>
+        <location filename="../src/cupdatemanager.cpp" line="83"/>
+        <source>A service error has occurred!</source>
+        <translation>Si è verificato un errore di servizio!</translation>
+    </message>
+    <message>
+        <location filename="../src/cupdatemanager.cpp" line="85"/>
+        <source>Last check performed %1</source>
+        <translation>Ultimo controllo effettuato %1</translation>
+    </message>
+    <message>
+        <location filename="../src/cupdatemanager.cpp" line="98"/>
+        <source>Error opening JSON file.</source>
+        <translation>Si è verificato un errore durante l&apos;apertura del file JSON.</translation>
+    </message>
+    <message>
+        <location filename="../src/cupdatemanager.cpp" line="795"/>
         <source>Update is available</source>
         <translation>L&apos;aggiornamento è disponibile</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="753"/>
-        <location filename="../src/cupdatemanager.cpp" line="776"/>
+        <location filename="../src/cupdatemanager.cpp" line="796"/>
+        <location filename="../src/cupdatemanager.cpp" line="819"/>
         <source>Current version</source>
         <translation>Versione attuale</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="754"/>
-        <location filename="../src/cupdatemanager.cpp" line="777"/>
+        <location filename="../src/cupdatemanager.cpp" line="797"/>
+        <location filename="../src/cupdatemanager.cpp" line="820"/>
         <source>Update version</source>
         <translation>Aggiorna versione</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="755"/>
+        <location filename="../src/cupdatemanager.cpp" line="798"/>
         <source>Would you like to download update now?</source>
         <translation>Desideri scaricare l&apos;aggiornamento ora?</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="775"/>
+        <location filename="../src/cupdatemanager.cpp" line="818"/>
         <source>Update is ready to install</source>
         <translation>L&apos;aggiornamento è pronto per l&apos;installazione</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="778"/>
+        <location filename="../src/cupdatemanager.cpp" line="821"/>
         <source>Would you like to restart app now?</source>
         <translation>Desideri riavviare l&apos;app ora?</translation>
     </message>
@@ -914,12 +937,12 @@
         <translation type="vanished">Si è verificato un errore durante la decompressione degli aggiornamenti: il Servizio aggiornamenti non è stato trovato!</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="598"/>
+        <location filename="../src/cupdatemanager.cpp" line="643"/>
         <source>An error occurred while start install updates!</source>
         <translation>Si è verificato un errore durante l&apos;installazione degli aggiornamenti!</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="608"/>
+        <location filename="../src/cupdatemanager.cpp" line="653"/>
         <source>An error occurred while start replacing files: Update Service not found!</source>
         <translation>Si è verificato un errore all&apos;inizio della sostituzione dei file: il Servizio aggiornamenti non è stato trovato!</translation>
     </message>

@@ -31,100 +31,81 @@
 */
 
 #include "components/cdownloadwidget.h"
-
+#include "components/celipsislabel.h"
+#include "cascapplicationmanagerwrapper.h"
 #include <QVBoxLayout>
 #include <QLabel>
 #include <QProgressBar>
-#include <QPushButton>
-#include <QMenu>
-#include <QEvent>
-#include <QActionEvent>
 #include <QApplication>
-#include <QWidgetAction>
-#include "qcefview.h"
+#include <QScrollBar>
 #include "common/Types.h"
-#include "windows/cwindowbase.h"
 
-#include <QDebug>
-
-#define DOWNLOAD_WIDGET_MAX_WIDTH 350
+#define DOWNLOAD_WIDGET_MIN_SIZE QSize(450, 250)
+#define MARGINS 6
+#define SPACING 6
 
 using namespace NSEditorApi;
 
-CProfileMenuFilter::CProfileMenuFilter(QObject *parent)
-    : QObject(parent), _parentButton(NULL)
-{}
 
-bool CProfileMenuFilter::eventFilter(QObject * obj, QEvent *event)
+class CDownloadWidget::CDownloadItem
 {
-    if (!_parentButton)
-        return false;
-
-    QMenu * menu = dynamic_cast<QMenu*>(obj);
-    if ( event->type() == QEvent::Show && obj == _parentButton->menu() ) {
-        QPoint pos = ((QWidget*)_parentButton->parent())->mapToGlobal(_parentButton->pos());
-        pos += QPoint(_parentButton->width() - menu->width(), _parentButton->height() + 6);
-        _parentButton->menu()->move(pos);
-
-        return true;
-    }
-
-    return false;
-}
-
-void CProfileMenuFilter::setMenuButton(QPushButton * button)
-{
-    _parentButton = button;
-}
-
-class CDownloadWidget::CDownloadItem {
 public:
     CDownloadItem(QWidget * w)
         : _p_progress(w), _is_temp(true)
     {}
 
     QWidget * progress() const { return _p_progress; }
-
     bool is_temporary() const { return _is_temp; }
     void set_is_temporary(bool v) { _is_temp = v; }
+
 private:
     QWidget * _p_progress;
     bool _is_temp;
 };
 
+
 CDownloadWidget::CDownloadWidget(QWidget *parent)
-    : QWidget(parent)
-    , CScalingWrapper(parent)
+    : QDialog(parent)
     , m_pToolButton(new CPushButton)
 {
-    setLayout(new QVBoxLayout);
-    m_defMargins = QMargins(layout()->contentsMargins());
-    m_defSpacing = layout()->spacing();
+    setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
+    setMinimumSize(DOWNLOAD_WIDGET_MIN_SIZE);
 
-    connect(this, &CDownloadWidget::downloadCanceled, this, &CDownloadWidget::slot_downloadCanceled, Qt::QueuedConnection);
+    QVBoxLayout *main_lut = new QVBoxLayout(this);
+    main_lut->setContentsMargins(0, 0, 0, 0);
+    main_lut->setSpacing(0);
+    setLayout(main_lut);
 
-    setMaximumWidth(DOWNLOAD_WIDGET_MAX_WIDTH);
+    m_pArea = new QScrollArea(this);
+    m_pArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    m_pArea->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+    m_pArea->setWidgetResizable(true);
+
+    m_pContentArea = new QWidget(m_pArea);
+    m_pContentArea->setObjectName("contentArea");
+    QVBoxLayout *lut = new QVBoxLayout(m_pContentArea);
+    lut->setContentsMargins(MARGINS, MARGINS, MARGINS, MARGINS);
+    lut->setSpacing(SPACING);
+    m_pContentArea->setLayout(lut);
+    m_pArea->setWidget(m_pContentArea);
+    main_lut->addWidget(m_pArea);
+    m_pContentArea->setGeometry(0, 0, width(), height());
+
+    connect(this, &CDownloadWidget::downloadCanceled, this, [=](int id) {
+        AscAppManager::getInstance().CancelDownload(id);
+        slot_downloadCanceled(id);
+    });
 
     m_pToolButton->setObjectName("toolButtonDownload");
-    m_pToolButton->setFixedSize(QSize(33, TOOLBTN_HEIGHT));
-    m_pToolButton->setVisible(false, false);
-
-    QPair<QString,QString> _icon_download{":/res/icons/downloading.gif", ":/res/icons/downloading_2x.gif"};
-    m_pToolButton->setAnimatedIcon( _icon_download );
-
-    QMenu * menuDownload = new QMenu;
-    QWidgetAction * waction = new QWidgetAction(menuDownload);
-    waction->setDefaultWidget(this);
-    menuDownload->setObjectName("menuButtonDownload");
-    menuDownload->addAction(waction);
-
-    m_pToolButton->setMenu(menuDownload);
-
-    CProfileMenuFilter * eventFilter = new CProfileMenuFilter(this);
-    eventFilter->setMenuButton(m_pToolButton);
-    menuDownload->installEventFilter(eventFilter);
-
-    applyScaling(scaling());
+    m_pToolButton->setProperty("act", "tool");
+    m_pToolButton->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+    m_pToolButton->setVisible(false);
+    connect(m_pToolButton, &QPushButton::clicked, this, [=]() {
+        show();
+    });
+    m_pToolButton->setAnimatedIcon(":/downloading.svg");
+    QSpacerItem *spacer = new QSpacerItem(5, 5, QSizePolicy::Fixed, QSizePolicy::Expanding);
+    lut->addSpacerItem(spacer);    
 }
 
 CDownloadWidget::~CDownloadWidget()
@@ -139,15 +120,19 @@ QPushButton * CDownloadWidget::toolButton()
 
 QWidget * CDownloadWidget::addFile(const QString& fn, int id)
 {
-    QWidget * widget = new QWidget(this);
+    QWidget * widget = new QWidget(m_pContentArea);
     QGridLayout * grid = new QGridLayout;
 
-    QLabel * name = new QLabel(fn);
+    CElipsisLabel * name = new CElipsisLabel(fn);
     name->setObjectName("labelName");
+    name->setEllipsisMode(Qt::ElideRight);
+    name->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
     QProgressBar * progress = new QProgressBar;
+    progress->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
     QPushButton * cancel = new QPushButton(tr("Cancel"));
     cancel->setObjectName("buttonCancel");
-    connect(cancel, &QPushButton::clicked, [=](){
+    cancel->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
+    connect(cancel, &QPushButton::clicked, qApp, [=](){
         emit downloadCanceled(id);
     });
 
@@ -156,14 +141,14 @@ QWidget * CDownloadWidget::addFile(const QString& fn, int id)
     grid->setColumnStretch(0, 1);
     grid->setColumnStretch(1, 0);
 
-    grid->addWidget(name, 0, 0, 1, -1);
+    grid->addWidget(name, 0, 0, 1, 1);
     grid->addWidget(progress, 1, 0, 1, 1);
     grid->addWidget(cancel, 1, 1, 1, 1);
 
     widget->setLayout(grid);
-    layout()->addWidget(widget);
-
-    updateLayoutGeomentry();
+    if (QVBoxLayout *lut = dynamic_cast<QVBoxLayout*>(m_pContentArea->layout()))
+        lut->insertWidget(lut->count() - 1, widget);
+    widget->show();
     return widget;
 }
 
@@ -176,15 +161,13 @@ void CDownloadWidget::downloadProcess(void * info)
     int id = pData->get_IdDownload();
 
     std::map<int, CDownloadItem *>::iterator iter = m_mapDownloads.find(id);
-    if (pData->get_IsComplete()) {
-        removeFile(iter);
-    } else
     if (pData->get_IsCanceled()) {
         slot_downloadCanceled(id);
+    } else
+    if (pData->get_IsComplete()) {
+        removeFile(iter);
     } else {
         if (iter == m_mapDownloads.end()) {
-//            ADDREFINTERFACE(pData);
-
             QString path = QString::fromStdWString(pData->get_FilePath()),
                     file_name = "Unconfirmed";
 
@@ -205,18 +188,7 @@ void CDownloadWidget::downloadProcess(void * info)
                 }
             }
         }
-
         updateProgress(iter, pData);
-    }
-}
-
-void CDownloadWidget::updateLayoutGeomentry()
-{
-    adjustSize();
-
-    if (m_pToolButton && m_pToolButton->menu()) {
-        QActionEvent e(QEvent::ActionChanged, m_pToolButton->menu()->actions().at(0));
-        QApplication::sendEvent(m_pToolButton->menu(), &e);
     }
 }
 
@@ -235,35 +207,29 @@ void CDownloadWidget::removeFile(MapItem iter)
     if (iter != m_mapDownloads.end()) {
         CDownloadItem * di = static_cast<CDownloadItem *>((*iter).second);
 
-//        CAscDownloadFileInfo * pData = reinterpret_cast<CAscDownloadFileInfo *>(di->info());
-//        RELEASEINTERFACE(pData)
-
         QWidget * pItemWidget = di->progress();
-
         layout()->removeWidget(pItemWidget);
 
         RELEASEOBJECT(pItemWidget)
         RELEASEOBJECT(di)
 
-        updateLayoutGeomentry();
         m_mapDownloads.erase(iter);
-
-        m_pToolButton->menu()->close();
-        if (!m_mapDownloads.size() && m_pToolButton->isVisible())
-            m_pToolButton->hide();
+        if (m_mapDownloads.empty()) {
+            m_pToolButton->deleteLater();
+            deleteLater();
+        }
     }
 }
 
 void CDownloadWidget::updateProgress(MapItem iter, void * data)
 {
-    QLabel * label_name;
+    CElipsisLabel * label_name;
     QProgressBar * progress;
     CDownloadItem * d_item;
     CAscDownloadFileInfo * pData;
 
     d_item = static_cast<CDownloadItem *>((*iter).second);
     if (d_item) {
-//        pData = reinterpret_cast<CAscDownloadFileInfo *>(d_item->info());
         pData = reinterpret_cast<CAscDownloadFileInfo *>(data);
         progress = qobject_cast<QProgressBar *>(d_item->progress()->layout()->itemAt(1)->widget());
 
@@ -275,13 +241,9 @@ void CDownloadWidget::updateProgress(MapItem iter, void * data)
             QString path = QString().fromStdWString(pData->get_FilePath());
 
             if (!path.isEmpty()) {
-                label_name = qobject_cast<QLabel *>(d_item->progress()->layout()->itemAt(0)->widget());
-
-                QFontMetrics metrics(label_name->font());
-                label_name->setText(metrics.elidedText(getFileName(path), Qt::ElideRight, DOWNLOAD_WIDGET_MAX_WIDTH - 36));
+                label_name = static_cast<CElipsisLabel*>(d_item->progress()->layout()->itemAt(0)->widget());
+                label_name->setText(getFileName(path));
                 d_item->set_is_temporary(false);
-
-                d_item->progress()->adjustSize();
 
                 if ( !m_pToolButton->isVisible()) {
                     m_pToolButton->setVisible(true);
@@ -302,61 +264,48 @@ QString CDownloadWidget::getFileName(const QString& path) const
     return "";
 }
 
-void CDownloadWidget::resizeEvent(QResizeEvent * e)
+void CDownloadWidget::closeEvent(QCloseEvent *ev)
 {
-//    qDebug() << "resize: " << e->size();
+    ev->ignore();
+    hide();
 }
 
-void CDownloadWidget::applyScaling(double factor)
+void CDownloadWidget::polish()
 {
-    if ( factor > 1 ) {
-        setProperty("hdpi", true);
-        m_pToolButton->menu()->setProperty("hdpi", true);
-    } else {
-        setProperty("hdpi", QVariant(QVariant::Invalid));
-        m_pToolButton->menu()->setProperty("hdpi", QVariant(QVariant::Invalid));
-    }
-
-    layout()->setContentsMargins(m_defMargins * factor);
-    layout()->setSpacing(int(m_defSpacing * factor));
-
-    m_pToolButton->setScaling(factor);
-    setMaximumWidth(int(DOWNLOAD_WIDGET_MAX_WIDTH * factor));
-
-    for (int i(0); i < layout()->count(); ++i) {
-        QWidget * _d_item = layout()->itemAt(i)->widget();
-
-        int j = _d_item->layout()->count();
-        while ( !(--j < 0) ) {
-            QWidget * _qw = _d_item->layout()->itemAt(j)->widget();
-
-            _qw->style()->unpolish(_qw);
-            _qw->style()->polish(_qw);
+    style()->polish(this);
+    m_pArea->style()->polish(m_pArea);
+    m_pArea->verticalScrollBar()->style()->polish(m_pArea->verticalScrollBar());
+    m_pContentArea->style()->polish(m_pContentArea);
+    for (int i(0); i < m_pContentArea->layout()->count(); ++i) {
+        auto item = m_pContentArea->layout()->itemAt(i);
+        if (item && item->widget()) {
+            QWidget * _d_item = item->widget();
+            int j = _d_item->layout()->count();
+            while ( !(--j < 0) ) {
+                QWidget * _qw = _d_item->layout()->itemAt(j)->widget();
+                _qw->style()->polish(_qw);
+            }
         }
     }
-
-//    qApp->setStyleSheet(qApp->styleSheet());
-//    style()->unpolish(this);
-//    style()->polish(this);
-//    update();
-
-    m_pToolButton->menu()->style()->unpolish(m_pToolButton->menu());
-    m_pToolButton->menu()->style()->polish(m_pToolButton->menu());
-    QPixmap::grabWidget(m_pToolButton->menu());
 }
 
-void CDownloadWidget::updateScalingFactor(double f)
+void CDownloadWidget::updateScalingFactor(double factor)
 {
-    CScalingWrapper::updateScalingFactor(f);
-    applyScaling(scaling());
+    setProperty("zoom", QString::number(factor) + "x");
+    setMinimumSize(DOWNLOAD_WIDGET_MIN_SIZE * factor);
+    m_pArea->verticalScrollBar()->setFixedWidth(qRound(10 * factor));
+    int mrg = qRound(MARGINS * factor);
+    m_pContentArea->layout()->setContentsMargins(mrg, mrg, mrg, mrg);
+    m_pContentArea->layout()->setSpacing(qRound(SPACING * factor));
+    m_pToolButton->setIconSize((QSizeF(20,20) * factor).toSize());
+    polish();
 }
 
-//void CDownloadWidget::updateProgress()
-//{
-//    for (auto e : m_mapDownloads) {
-//        updateProgress(e);
-//    }
-//}
+void CDownloadWidget::applyTheme(const QString &theme)
+{
+    setProperty("uitheme", theme);
+    polish();
+}
 
 //void CDownloadWidget::cancelAll()
 //{

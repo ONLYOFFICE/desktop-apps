@@ -766,27 +766,6 @@ void CAscTabWidget::applyDocumentChanging(int id, int type)
 {
     int tabIndex = tabIndexByView(id);
     if ( !(tabIndex < 0) ) {
-        if ( type == DOCUMENT_CHANGED_LOADING_START ) {
-//            ((CTabBar *)tabBar())->setTabLoading(tabIndex, true);
-            return;
-        } else
-        if ( type == DOCUMENT_CHANGED_LOADING_FINISH ) {
-            m_pBar->setTabLoading(tabIndex, false);
-            panel(tabIndex)->applyLoader("hide");
-            panel(tabIndex)->setReady();
-            return;
-        } else
-        if ( type == DOCUMENT_CHANGED_PAGE_LOAD_FINISH ) {
-            if ( !panel(tabIndex)->data()->eventLoadSupported() ) {
-                m_pBar->setTabLoading(tabIndex, false);
-                panel(tabIndex)->applyLoader("hide");
-            }
-
-            return;
-        }
-    }
-
-    if ( !(tabIndex < 0) ) {
         panel(tabIndex)->data()->setContentType(AscEditorType(type));
 
         const CTheme & ui_theme = AscAppManager::themes().current();
@@ -821,6 +800,27 @@ void CAscTabWidget::applyDocumentChanging(int id, int type)
         const char *icon_name = tabIndex == m_pBar->currentIndex() ?
                                     m_mapTabIcons.at(AscEditorType(type)).second : m_mapTabIcons.at(AscEditorType(type)).first;
         m_pBar->setTabIcon(tabIndex, QIcon(icon_name));
+    }
+}
+
+void CAscTabWidget::applyPageLoadingStatus(int id, int state)
+{
+    int tabIndex = tabIndexByView(id);
+    if ( !(tabIndex < 0) ) {
+        if ( state == DOCUMENT_CHANGED_LOADING_START ) {
+//            ((CTabBar *)tabBar())->setTabLoading(tabIndex, true);
+        } else
+        if ( state == DOCUMENT_CHANGED_LOADING_FINISH ) {
+            m_pBar->setTabLoading(tabIndex, false);
+            panel(tabIndex)->applyLoader("hide");
+            panel(tabIndex)->setReady();
+        } else
+        if ( state == DOCUMENT_CHANGED_PAGE_LOAD_FINISH ) {
+            if ( !panel(tabIndex)->data()->eventLoadSupported() ) {
+                m_pBar->setTabLoading(tabIndex, false);
+                panel(tabIndex)->applyLoader("hide");
+            }
+        }
     }
 }
 

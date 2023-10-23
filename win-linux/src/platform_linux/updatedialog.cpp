@@ -69,11 +69,11 @@ int WinDlg::showDialog(QWidget *parent,
     QString primaryText = QTextDocumentFragment::fromHtml(msg).toPlainText();
     QString linkText = !QString(RELEASE_NOTES).isEmpty() ?
                 QString("\n<a href=\"%1\">%2</a>").arg(QString(RELEASE_NOTES), QObject::tr("Release notes")) : "";
+    WindowHelper::CParentDisable oDisabler(parent);
     Window parent_xid = (parent) ? (Window)parent->winId() : 0L;
 
 //    GResource *resource = gtk_resources_get_resource();
 //    g_resources_register(resource);
-    WindowHelper::CParentDisable oDisabler(parent);
     gtk_init(NULL, NULL);
     GtkDialogFlags flags;
     flags = (GtkDialogFlags)(GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT);
@@ -96,7 +96,7 @@ int WinDlg::showDialog(QWidget *parent,
     if (!content.isEmpty())
         gtk_message_dialog_format_secondary_text(GTK_MESSAGE_DIALOG(dialog), "%s", content.toLocal8Bit().data());
 
-    GtkWidget *image = gtk_image_new_from_resource("/res/icons/app-icon_64.png");
+    GtkWidget *image = gtk_image_new_from_resource("/icons/app-icon_64.png");
     gtk_message_dialog_set_image(GTK_MESSAGE_DIALOG(dialog), image);
     gtk_widget_show_all(image);
 

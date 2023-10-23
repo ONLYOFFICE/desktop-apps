@@ -56,12 +56,25 @@ enum UpdateMode {
     DISABLE=0, SILENT=1, ASK=2
 };
 
+struct ComplexText {
+    ComplexText(const char *_text = nullptr, const QString &_arg1 = "", const QString &_arg2 = "") :
+        text(_text), arg1(_arg1), arg2(_arg2) {}
+    const char *text = nullptr;
+    QString arg1, arg2;
+};
+
 struct Command {
+    Command(const QString &_icon = "", const ComplexText &_text = ComplexText(), const char *_btn_text = nullptr,
+                const QString &_btn_action = "", const QString &_btn_lock = "") :
+        icon(_icon), text(_text), btn_text(_btn_text), btn_action(_btn_action), btn_lock(_btn_lock) {}
     bool isEmpty() const {
-        return (icon.isEmpty() && text.isEmpty() && btn_text.isEmpty() &&
+        return (icon.isEmpty() && text.text == nullptr && btn_text == nullptr &&
                    btn_action.isEmpty() && btn_lock.isEmpty());
     }
-    QString icon, text, btn_text, btn_action, btn_lock;
+    QString icon;
+    ComplexText text;
+    const char *btn_text = nullptr;
+    QString btn_action, btn_lock;
 };
 
 class CUpdateManager: public QObject
@@ -89,7 +102,6 @@ private:
     void init();
     void clearTempFiles(const QString &except = QString());
     void updateNeededCheking();
-    void onCheckFinished(bool error, bool updateExist, const QString &version, const QString &changelog);
     void unzipIfNeeded();
     void savePackageData(const QString &version = QString(), const QString &fileName = QString(), const QString &fileType = QString());
     QString ignoredVersion();
@@ -122,6 +134,7 @@ private:
     CSocket *m_socket = nullptr;
 
 private slots:
+    void onCheckFinished(bool error, bool updateExist, const QString &version, const QString &changelog);
     void onLoadCheckFinished(const QString &filePath);
     void showUpdateMessage(QWidget *parent);
     void onLoadUpdateFinished(const QString &filePath);

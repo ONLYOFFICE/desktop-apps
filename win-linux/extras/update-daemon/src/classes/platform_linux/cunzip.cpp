@@ -71,7 +71,7 @@ int unzipArchive(const string &zipFilePath, const string &folderPath, std::atomi
         }
 
         char outpath[1024] = {0};
-        snprintf(outpath, sizeof(outpath), "%s%s", folderPath.c_str(), entryname);
+        snprintf(outpath, sizeof(outpath), "%s/%s", folderPath.c_str(), entryname);
 
         if (archive_entry_filetype(entry) == AE_IFREG) {
             archive_entry_set_pathname(entry, outpath);

@@ -72,6 +72,7 @@ CMainWindow::CMainWindow(const QRect &rect) :
     setObjectName("MainWindow");
     m_pMainPanel = createMainPanel(this);
     setCentralWidget(m_pMainPanel);
+    QString css{AscAppManager::getWindowStylesheets(m_dpiRatio)};
 #ifdef __linux__
     setAcceptDrops(true);
     if (isCustomWindowStyle()) {
@@ -80,8 +81,9 @@ CMainWindow::CMainWindow(const QRect &rect) :
         setMouseTracking(true);
     }
     QMetaObject::connectSlotsByName(this);
-#endif
-    m_pMainPanel->setStyleSheet(AscAppManager::getWindowStylesheets(m_dpiRatio));
+    css.append(Utils::readStylesheets(":styles/styles_unix.qss"));
+#endif    
+    m_pMainPanel->setStyleSheet(css);
     updateScalingFactor(m_dpiRatio);
     goStart();
 }
@@ -174,7 +176,7 @@ bool CMainWindow::pointInTabs(const QPoint& pt)
 {
     QRect _rc_title(m_pMainPanel->geometry());
     _rc_title.setHeight(tabWidget()->tabBar()->height());
-    _rc_title.adjust(m_pButtonMain->width(), 1, -3*int(TOOLBTN_WIDTH*m_dpiRatio), 0);
+    _rc_title.adjust(m_pButtonMain->width(), 1, -3*int(TITLEBTN_WIDTH*m_dpiRatio), 0);
     return _rc_title.contains(mapFromGlobal(pt));
 }
 
@@ -207,6 +209,10 @@ void CMainWindow::applyTheme(const std::wstring& theme)
 
     m_pButtonMain->setIcon(MAIN_ICON_PATH, GetCurrentTheme().isDark() ? "logo-light" : "logo-dark");
     m_pButtonMain->setIconSize(MAIN_ICON_SIZE * m_dpiRatio);
+    if (m_pWidgetDownload && m_pWidgetDownload->toolButton()) {
+        m_pWidgetDownload->applyTheme(QString::fromStdWString(GetActualTheme(theme)));
+        m_pWidgetDownload->toolButton()->style()->polish(m_pWidgetDownload->toolButton());
+    }
 }
 
 /** Private **/
@@ -242,9 +248,9 @@ void CMainWindow::close()
         onFullScreen(-1, false);
 
 #ifdef _WIN32
-        if (isSessionInProgress() && m_pTabs->count() > 1) {
+        if (isSessionInProgress() && m_pTabs->count(cvwtEditor) > 1) {
 #else
-        if (m_pTabs->count() > 1) {
+        if (m_pTabs->count(cvwtEditor) > 1) {
 #endif
             GET_REGISTRY_USER(reg_user);
             if (!reg_user.value("ignoreMsgAboutOpenTabs", false).toBool()) {
@@ -252,7 +258,7 @@ void CMainWindow::close()
                     if (!m_pTabs->modifiedByIndex(i)) {
                         bool dontAskAgain = false;
                         int res = CMessage::showMessage(this, tr("More than one document is open.<br>Close the window anyway?"),
-                                                           MsgType::MSG_WARN, MsgBtns::mbYesDefNo, &dontAskAgain,
+                                                           MsgType::MSG_WARN, MsgBtns::mbYesNo, &dontAskAgain,
                                                            tr("Don't ask again."));
                         if (dontAskAgain)
                             reg_user.setValue("ignoreMsgAboutOpenTabs", true);
@@ -308,7 +314,7 @@ void CMainWindow::dragEnterEvent(QDragEnterEvent *event)
         return;
 
     QSet<QString> _exts;
-    _exts << "docx" << "doc" << "odt" << "rtf" << "txt" << "doct" << "dotx" << "ott";
+    _exts << "docx" << "doc" << "odt" << "rtf" << "txt" << "doct" << "dotx" << "ott" << "docxf" << "oform";
     _exts << "html" << "mht" << "epub";
     _exts << "pptx" << "ppt" << "odp" << "ppsx" << "pptt" << "potx" << "otp";
     _exts << "xlsx" << "xls" << "ods" << "csv" << "xlst" << "xltx" << "ots";
@@ -722,6 +728,9 @@ void CMainWindow::doOpenLocalFile(COpenOptions& opts)
     int result = m_pTabs->openLocalDocument(opts, true);
     if ( !(result < 0) ) {
         toggleButtonMain(false, true);
+#ifdef _WIN32
+        Utils::addToRecent(opts.wurl);
+#endif
     } else
     if (result == -255) {
         QTimer::singleShot(0, this, [=] {
@@ -913,14 +922,14 @@ void CMainWindow::onDocumentReady(int uid)
             focus(); // TODO: move to app manager
         });
     } else {
-        m_pTabs->applyDocumentChanging(uid, DOCUMENT_CHANGED_LOADING_FINISH);
+        m_pTabs->applyPageLoadingStatus(uid, DOCUMENT_CHANGED_LOADING_FINISH);
     }
     AscAppManager::getInstance().onDocumentReady(uid);
 }
 
 void CMainWindow::onDocumentLoadFinished(int uid)
 {
-    m_pTabs->applyDocumentChanging(uid, DOCUMENT_CHANGED_PAGE_LOAD_FINISH);
+    m_pTabs->applyPageLoadingStatus(uid, DOCUMENT_CHANGED_PAGE_LOAD_FINISH);
 }
 
 void CMainWindow::onDocumentChanged(int id, bool changed)
@@ -963,17 +972,23 @@ void CMainWindow::onDocumentSaveInnerRequest(int id)
 
 void CMainWindow::onDocumentDownload(void * info)
 {
-    if ( !m_pWidgetDownload ) {
+    CAscDownloadFileInfo *pData = reinterpret_cast<CAscDownloadFileInfo*>(info);
+    if (!m_pWidgetDownload && !pData->get_IsCanceled() && !pData->get_FilePath().empty()) {
         m_pWidgetDownload = new CDownloadWidget(this);
-
+        connect(m_pWidgetDownload, &QWidget::destroyed, this, [=]() {
+            m_pWidgetDownload = nullptr;
+        });
         QHBoxLayout * layoutBtns = qobject_cast<QHBoxLayout *>(m_boxTitleBtns->layout());
         layoutBtns->insertWidget(1, m_pWidgetDownload->toolButton());
+        m_pWidgetDownload->show();
+        std::vector<std::string> files{":/styles/download.qss"};
+        m_pWidgetDownload->setStyleSheet(Utils::readStylesheets(&files));
+        m_pWidgetDownload->applyTheme(m_pMainPanel->property("uitheme").toString());
+        m_pWidgetDownload->updateScalingFactor(m_dpiRatio);
+        m_pWidgetDownload->move(geometry().bottomRight() - m_pWidgetDownload->rect().bottomRight());
     }
-
-    m_pWidgetDownload->downloadProcess(info);
-
-//    CAscDownloadFileInfo * pData = reinterpret_cast<CAscDownloadFileInfo *>(info);
-//    RELEASEINTERFACE(pData);
+    if (m_pWidgetDownload)
+        m_pWidgetDownload->downloadProcess(info);
 }
 
 void CMainWindow::onDocumentFragmented(int id, bool isfragmented)
@@ -1064,7 +1079,8 @@ void CMainWindow::onDocumentPrint(void * opts)
         return;
 
 #ifdef Q_OS_LINUX
-    WindowHelper::CParentDisable disabler(qobject_cast<QWidget*>(this));
+    QWidget *parent = qobject_cast<QWidget*>(this);
+    WindowHelper::CParentDisable disabler(parent);
 #endif
 
     CCefView * pView = AscAppManager::getInstance().GetViewById(AscAppManager::printData().viewId());
@@ -1106,9 +1122,9 @@ void CMainWindow::onDocumentPrint(void * opts)
         }
 
 # ifdef FILEDIALOG_DONT_USE_NATIVEDIALOGS
-        CPrintDialog * dialog =  new CPrintDialog(printer, this);
+        CPrintDialog * dialog =  new CPrintDialog(printer, parent);
 # else
-        GtkPrintDialog * dialog = new GtkPrintDialog(printer, this);
+        GtkPrintDialog * dialog = new GtkPrintDialog(printer, parent);
 # endif
 #endif // _WIN32
 
@@ -1190,8 +1206,9 @@ void CMainWindow::onFullScreen(int id, bool apply)
             m_isMaximized = windowState().testFlag(Qt::WindowMaximized);
             m_pTabs->setFullScreen(apply, id);
             QTimer::singleShot(0, this, [=] {
-                CAscMenuEvent * pEvent = new CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_ONFULLSCREENENTER);
-                AscAppManager::getInstance().GetViewById(id)->Apply(pEvent);
+                CCefView* pView = AscAppManager::getInstance().GetViewById(id);
+                if (pView)
+                    pView->Apply(new CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_ONFULLSCREENENTER));
             });
         }
     } else
@@ -1362,7 +1379,7 @@ void CMainWindow::updateScalingFactor(double dpiratio)
     layoutBtns->setSpacing(int(1 * dpiratio));
     if (isCustomWindowStyle()) {
         layoutBtns->setContentsMargins(0,0,0,0);
-        QSize small_btn_size(int(TOOLBTN_WIDTH*dpiratio), int(TOOLBTN_HEIGHT*dpiratio));
+        QSize small_btn_size(int(TITLEBTN_WIDTH*dpiratio), int(TOOLBTN_HEIGHT*dpiratio));
         foreach (auto btn, m_pTopButtons)
             btn->setFixedSize(small_btn_size);
     }*/
@@ -1376,12 +1393,19 @@ void CMainWindow::updateScalingFactor(double dpiratio)
     m_pTabs->reloadTabIcons();
     m_pButtonMain->setIcon(MAIN_ICON_PATH, GetCurrentTheme().isDark() ? "logo-light" : "logo-dark");
     m_pButtonMain->setIconSize(MAIN_ICON_SIZE * dpiratio);
+    if (m_pWidgetDownload && m_pWidgetDownload->toolButton()) {
+        m_pWidgetDownload->updateScalingFactor(dpiratio);
+        m_pWidgetDownload->toolButton()->style()->polish(m_pWidgetDownload->toolButton());
+    }
 }
 
 void CMainWindow::setScreenScalingFactor(double factor, bool resize)
 {
     CWindowPlatform::setScreenScalingFactor(factor, resize);
     QString css(AscAppManager::getWindowStylesheets(factor));
+#ifdef __linux__
+    css.append(Utils::readStylesheets(":styles/styles_unix.qss"));
+#endif
     if (!css.isEmpty()) {
         m_pMainPanel->setStyleSheet(css);
     }

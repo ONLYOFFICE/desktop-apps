@@ -342,16 +342,25 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
             QRegularExpressionMatch match = re.match(QString::fromStdWString(pData->get_Param()));
             if ( match.hasMatch() ) {
                 bool is_dark = match.captured(1) == "dark";
-                m_themes->onSystemDarkColorScheme(is_dark);
+
+                if ( m_themes->isSystemSchemeDark() != is_dark ) {
+                    m_themes->onSystemDarkColorScheme(is_dark);
+
+                    QJsonObject jparams{{"theme", QJsonObject{{"system", match.captured(1)}}}};
+                    QString params = Utils::stringifyJson(jparams);
+                    for (auto i: GetViewsId()) {
+                        sendCommandTo(GetViewById(i), L"renderervars:changed", params.toStdWString());
+                    }
 
 #ifndef Q_OS_WIN
-                for (auto i: GetViewsId()) {
-                    sendCommandTo(GetViewById(i), cmd, pData->get_Param());
-                }
+//                    for (auto i: GetViewsId()) {
+//                        sendCommandTo(GetViewById(i), cmd, pData->get_Param());
+//                    }
 #endif
 
-                if ( themes().current().isSystem() && themes().current().isDark() != is_dark )
-                    applyTheme(themes().current().id());
+                    if ( themes().current().isSystem() && themes().current().isDark() != is_dark )
+                        applyTheme(themes().current().id());
+                }
             }
 
 
@@ -1093,7 +1102,11 @@ void CAscApplicationManagerWrapper::initializeApp()
     _app.m_private->applyStylesheets();
 
     // TODO: merge stylesheets and apply for the whole app
-    qApp->setStyleSheet( Utils::readStylesheets(":styles/styles.qss") );
+    QString css{Utils::readStylesheets(":styles/styles.qss")};
+#ifdef __linux__
+    css.append(Utils::readStylesheets(":styles/styles_unix.qss"));
+#endif
+    qApp->setStyleSheet(css);
 
     // Font
     QFont mainFont = QApplication::font();
@@ -1113,6 +1126,7 @@ void CAscApplicationManagerWrapper::initializeApp()
     AscAppManager::getInstance().InitAdditionalEditorParams(wparams);
 //    AscAppManager::getInstance().applyTheme(themes().current().id(), true);
 
+    EditorJSVariables::setVariable("lang", CLangater::getCurrentLangCode());
     EditorJSVariables::applyVariable("theme", {
                                         {"type", _app.m_themes->current().stype()},
                                         {"id", QString::fromStdWString(_app.m_themes->current().id())}
@@ -1610,6 +1624,10 @@ bool CAscApplicationManagerWrapper::applySettings(const wstring& wstrjson)
 
                 _reg_user.setValue("locale", _lang_id);
                 CLangater::reloadTranslations(_lang_id);
+#ifdef _UPDMODULE
+                if (m_pUpdateManager)
+                    m_pUpdateManager->refreshStartPage();
+#endif
             }
         }
 
@@ -1703,8 +1721,7 @@ void CAscApplicationManagerWrapper::applyTheme(const wstring& theme, bool force)
                                             {"type", _app.m_themes->current().stype()},
                                             {"id", QString::fromStdWString(_app.m_themes->current().id())}
 #ifndef Q_OS_LINUX
-//                                            ,{"system", _app.m_themes->isSystemSchemeDark() ? "dark" : "light"}
-                                            ,{"system", "disabled"}
+                                            ,{"system", _app.m_themes->isSystemSchemeDark() ? "dark" : "light"}
 #else
                                             ,{"system", "disabled"}
 #endif

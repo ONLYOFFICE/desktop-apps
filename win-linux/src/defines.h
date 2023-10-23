@@ -92,10 +92,6 @@
 #define DOWNLOAD_PAGE "https://www.onlyoffice.com/en/download-desktop.aspx"
 #define RELEASE_NOTES "https://github.com/ONLYOFFICE/DesktopEditors/blob/master/CHANGELOG.md"
 
-#define DOCUMENT_CHANGED_LOADING_START          -255
-#define DOCUMENT_CHANGED_LOADING_FINISH         -254
-#define DOCUMENT_CHANGED_PAGE_LOAD_FINISH       -253
-
 #ifdef __linux
 typedef unsigned char BYTE;
 #else
@@ -127,6 +123,7 @@ typedef unsigned char BYTE;
 #define APP_PORT   12010
 #define SVC_PORT   12011
 #define INSTANCE_SVC_PORT 12012
+#define INSTANCE_APP_PORT 13012
 
 #define BTN_TEXT_CANCEL QObject::tr("Cancel")
 #define BTN_TEXT_YES    QObject::tr("Yes")

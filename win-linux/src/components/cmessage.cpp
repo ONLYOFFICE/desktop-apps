@@ -96,7 +96,6 @@ public:
                            bool   *checkBoxState = nullptr,
                            const QString &chekBoxText = QString());
 private:
-    void modal();
     void setButtons(std::initializer_list<QString>);
     void setButtons(MsgBtns);
     void setIcon(MsgType);
@@ -336,6 +335,9 @@ int QtMsg::showMessage(QWidget *parent,
                           bool   *checkBoxState,
                           const QString &chekBoxText)
 {
+#ifdef __linux__
+    WindowHelper::CParentDisable oDisabler(parent);
+#endif
     QtMsg dlg(parent);
     dlg.setText(msg);
     dlg.setIcon(msgType);
@@ -343,20 +345,10 @@ int QtMsg::showMessage(QWidget *parent,
         dlg.setButtons(msgBtns);
     if (checkBoxState != nullptr)
         dlg.setCheckBox(chekBoxText, *checkBoxState);
-    dlg.modal();
+    dlg.exec();
     if (checkBoxState != nullptr)
         *checkBoxState = dlg.getCheckStatus();
     return m_modalresult;
-}
-
-void QtMsg::modal()
-{
-#if defined(_WIN32)
-    exec();
-#else
-    WindowHelper::CParentDisable oDisabler(parentWidget());
-    exec();
-#endif
 }
 
 void QtMsg::setIcon(MsgType msgType)

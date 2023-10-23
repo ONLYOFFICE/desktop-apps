@@ -105,4 +105,7 @@ l10n.fr = {
     updateDownloadFinished: 'Téléchargement terminé. Cliquez pour installer',
     updateDownloadCanceled: 'Téléchargement annulé',
     updateDownloadProgress: 'Téléchargement de $1%. Cliquez pour arrêter',
+    settOptDescDisabled: "Vérification automatique des mises à jour sera désactivée",
+    settOptDescAUpdateSilent: "Télécharger les mises à jour et demander avant l'installation",
+    settOptDescAUpdateAsk: "Vous serez averti de toutes les étapes de mise à jour",
 }

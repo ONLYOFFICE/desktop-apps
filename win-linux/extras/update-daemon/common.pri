@@ -30,11 +30,8 @@ ENV_PRODUCT_VERSION = $$(PRODUCT_VERSION)
 }
 
 core_windows {
-    RC_FILE = $$PWD/version.rc
-
-    CONFIG += embed_manifest_exe
-    # Uncomment to testing service control
-    #QMAKE_LFLAGS += /MANIFESTUAC:$$quote(\"level=\'requireAdministrator\' uiAccess=\'false\'\")
+    CONFIG -= embed_manifest_exe
+    RC_FILE = $$PWD/res/version.rc
 
     contains(QMAKE_TARGET.arch, x86_64):{
         QMAKE_LFLAGS_WINDOWS = /SUBSYSTEM:WINDOWS,5.02
@@ -58,14 +55,19 @@ core_windows {
                $$PWD/src/platform_win/svccontrol.h \
                $$PWD/src/classes/platform_win/capplication.h \
                $$PWD/src/classes/platform_win/cunzip.h \
-               $$PWD/src/classes/platform_win/cdownloader.h
+               $$PWD/src/classes/platform_win/cdownloader.h \
+               $$PWD/src/classes/platform_win/ctimer.h
 
     SOURCES += $$PWD/src/platform_win/main.cpp \
                $$PWD/src/platform_win/utils.cpp \
                $$PWD/src/platform_win/svccontrol.cpp \
                $$PWD/src/classes/platform_win/capplication.cpp \
                $$PWD/src/classes/platform_win/cunzip.cpp \
-               $$PWD/src/classes/platform_win/cdownloader.cpp
+               $$PWD/src/classes/platform_win/cdownloader.cpp \
+               $$PWD/src/classes/platform_win/ctimer.cpp
+
+    OTHER_FILES += $$PWD/res/version.rc \
+                   $$PWD/res/manifest/updatesvc.exe.manifest
 
     build_xp {
         DESTDIR = $$DESTDIR/xp
@@ -94,13 +96,15 @@ core_linux {
     HEADERS += $$PWD/src/platform_linux/utils.h \
                $$PWD/src/classes/platform_linux/capplication.h \
                $$PWD/src/classes/platform_linux/cunzip.h \
-               $$PWD/src/classes/platform_linux/cdownloader.h
+               $$PWD/src/classes/platform_linux/cdownloader.h \
+               $$PWD/src/classes/platform_linux/ctimer.h
 
     SOURCES += $$PWD/src/platform_linux/main.cpp \
                $$PWD/src/platform_linux/utils.cpp \
                $$PWD/src/classes/platform_linux/capplication.cpp \
                $$PWD/src/classes/platform_linux/cunzip.cpp \
-               $$PWD/src/classes/platform_linux/cdownloader.cpp
+               $$PWD/src/classes/platform_linux/cdownloader.cpp \
+               $$PWD/src/classes/platform_linux/ctimer.cpp
 
     CONFIG += link_pkgconfig
     PKGCONFIG += gtk+-3.0

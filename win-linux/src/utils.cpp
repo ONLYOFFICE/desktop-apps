@@ -44,6 +44,7 @@
 #include <QScreen>
 #include <QStorageInfo>
 #include <QPrinterInfo>
+#include <QProcess>
 #include "cascapplicationmanagerwrapper.h"
 #include "qdpichecker.h"
 #include "common/File.h"
@@ -55,8 +56,8 @@
 #include "lmcons.h"
 typedef HRESULT (__stdcall *SetCurrentProcessExplicitAppUserModelIDProc)(PCWSTR AppID);
 #else
-# include <QProcess>
 # include <QEventLoop>
+# include <QX11Info>
 #include <sys/stat.h>
 #include <stdlib.h>
 #endif
@@ -461,7 +462,7 @@ void Utils::openFileLocation(const QString& path)
     QFileInfo fileInfo(path);
     if ( !_file_browser.isEmpty() && _file_browser != "unknown" ) {
         qputenv("LD_LIBRARY_PATH", "");
-        QProcess::startDetached(_file_browser, QStringList{_arg_select, fileInfo.absoluteFilePath()});        
+        QProcess::startDetached(_file_browser, QStringList{_arg_select, fileInfo.absoluteFilePath()});
     } else
         system(QString("LD_LIBRARY_PATH='' xdg-open \"%1\"").arg(fileInfo.path()).toUtf8());
 #endif
@@ -732,6 +733,13 @@ Utils::WinVer Utils::getWinVersion()
     return WinVer::Undef;
 }
 
+void Utils::addToRecent(const std::wstring &path)
+{
+    QString _path = QString::fromStdWString(path);
+    QString appPath = qApp->applicationDirPath();
+    QProcess::startDetached(appPath + "/" + QString(REG_APP_NAME), {"--add-to-recent", QDir::toNativeSeparators(_path)}, appPath);
+}
+
 std::atomic_bool sessionInProgress{true};
 
 bool Utils::isSessionInProgress()
@@ -814,7 +822,7 @@ std::wstring Utils::appUserName()
 
 namespace WindowHelper {
 #ifdef Q_OS_LINUX
-    CParentDisable::CParentDisable(QWidget* parent)
+    CParentDisable::CParentDisable(QWidget* &parent)
     {
         disable(parent);
     }
@@ -824,16 +832,27 @@ namespace WindowHelper {
         enable();
     }
 
-    void CParentDisable::disable(QWidget* parent)
+    void CParentDisable::disable(QWidget* &parent)
     {
         if (parent) {
             parent->setProperty("blocked", true);
-            QEventLoop loop;  // Fixed Cef rendering before reopening the dialog
-            QTimer::singleShot(60, &loop, SLOT(quit()));
-            loop.exec();
-            m_pChild = new QWidget(parent, Qt::FramelessWindowHint | Qt::SubWindow  | Qt::BypassWindowManagerHint);
+            Qt::WindowFlags flags = Qt::FramelessWindowHint;
+            if (!QX11Info::isCompositingManagerRunning()) {
+                flags |= (Qt::SubWindow | Qt::BypassWindowManagerHint);
+                QEventLoop loop;  // Fixed Cef rendering before reopening the dialog
+                QTimer::singleShot(60, &loop, SLOT(quit()));
+                loop.exec();
+            } else
+                flags |= Qt::Dialog;
+            m_pChild = new QWidget(parent, flags);
             m_pChild->setAttribute(Qt::WA_TranslucentBackground);
-            m_pChild->setGeometry(0, 0, parent->width(), parent->height());
+            if (QX11Info::isCompositingManagerRunning()) {
+                m_pChild->setWindowModality(Qt::ApplicationModal);
+                m_pChild->move(parent->pos() - QPoint(10,10));
+                m_pChild->setFixedSize(parent->size() + QSize(20,20));
+                parent = m_pChild;
+            } else
+                m_pChild->setGeometry(parent->rect());
             m_pChild->show();
         }
     }
@@ -843,33 +862,27 @@ namespace WindowHelper {
         if ( m_pChild ) {
             if (m_pChild->parent())
                 m_pChild->parent()->setProperty("blocked", false);
-            m_pChild->deleteLater();
+            delete m_pChild, m_pChild = nullptr;
         }
     }
 
     // Linux Environment Info
-    QString desktop_env;
+    int desktop_env = -1;
 
-    auto initEnvInfo() -> void {
-        const QString env = QString::fromUtf8(getenv("XDG_CURRENT_DESKTOP"));
-        if (env.indexOf("Unity") != -1) {
-            const QString session = QString::fromUtf8(getenv("DESKTOP_SESSION"));
-            if (session.indexOf("gnome-fallback") != -1)
-                desktop_env = "GNOME";
-            else desktop_env = "UNITY";
-        } else
-        if (env.indexOf("GNOME") != -1)
-            desktop_env = "GNOME";
-        else
-        if (env.indexOf("KDE") != -1)
-            desktop_env = "KDE";
-        else desktop_env = "OTHER";
-    }
-
-    auto getEnvInfo() -> QString {
-        if ( desktop_env.isEmpty() )
-            initEnvInfo();
-
+    auto getEnvInfo() -> int {
+        if ( desktop_env == -1 ) {
+            const QString env(qgetenv("XDG_CURRENT_DESKTOP"));
+            if (env.indexOf("Unity") != -1) {
+                const QString session(qgetenv("DESKTOP_SESSION"));
+                desktop_env = (session.indexOf("gnome-fallback") != -1) ? GNOME : UNITY;
+            } else
+            if (env.indexOf("GNOME") != -1)
+                desktop_env = GNOME;
+            else
+            if (env.indexOf("KDE") != -1)
+                desktop_env = KDE;
+            else desktop_env = OTHER;
+        }
         return desktop_env;
     }
 
@@ -1029,7 +1042,7 @@ namespace WindowHelper {
         _panel->setGeometry(0,0,_parent->width(),_parent->height());
 
         return _parent;
-    }   
+    }
 
     auto useNativeDialog() -> bool
     {

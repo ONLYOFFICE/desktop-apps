@@ -85,20 +85,16 @@ namespace NS_Utils
 
     wstring GetLastErrorAsString()
     {
-        DWORD errorMessageID = ::GetLastError();
-        if (errorMessageID == 0)
+        DWORD errID = ::GetLastError();
+        if (errID == 0)
             return L"";
 
-        LPWSTR messageBuffer = NULL;
-        size_t size = FormatMessage(FORMAT_MESSAGE_ALLOCATE_BUFFER |
-                                    FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS,
-                                    NULL, errorMessageID,
-                                    MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
-                                    (LPWSTR)&messageBuffer, 0, NULL);
-
-        wstring message(messageBuffer, (int)size);
-        LocalFree(messageBuffer);
-        return message;
+        LPWSTR msgBuff = NULL;
+        size_t size = FormatMessage(FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS,
+                                       NULL, errID, MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT), (LPWSTR)&msgBuff, 0, NULL);
+        wstring msg(msgBuff, size);
+        LocalFree(msgBuff);
+        return msg;
     }
 
     int ShowMessage(wstring str, bool showError)
@@ -115,7 +111,7 @@ namespace NS_Utils
         DWORD session_id = GetActiveSessionId();
         WTSSendMessageW(WTS_CURRENT_SERVER_HANDLE, session_id, title, title_size,
                             const_cast<LPTSTR>(str.c_str()), (DWORD)str.size() * sizeof(wchar_t),
-                            MB_OK | MB_ICONERROR | MB_SERVICE_NOTIFICATION_NT3X | MB_SETFOREGROUND, 8, &res, TRUE);
+                            MB_OK | MB_ICONERROR | MB_SERVICE_NOTIFICATION_NT3X | MB_SETFOREGROUND, 30, &res, TRUE);
         return res;
     }
 }
@@ -182,6 +178,35 @@ namespace NS_File
         return true;
     }
 
+    bool readBinFile(const wstring &filePath, list<wstring> &linesList)
+    {
+        std::ifstream file(filePath.c_str(), std::ios::in | std::ios::binary);
+        if (!file.is_open()) {
+            NS_Logger::WriteLog(L"An error occurred while opening: " + filePath);
+            return false;
+        }
+        while (file.peek() != EOF) {
+            WORD len = 0;
+            file.read((char*)(&len), sizeof(WORD));
+            if (file.fail()) {
+                NS_Logger::WriteLog(L"An error occurred while reading: " + filePath);
+                file.close();
+                return false;
+            }
+            wstring line;
+            line.resize(len);
+            file.read((char*)&line[0], len * sizeof(wchar_t));
+            if (file.fail()) {
+                NS_Logger::WriteLog(L"An error occurred while reading: " + filePath);
+                file.close();
+                return false;
+            }
+            linesList.push_back(std::move(line));
+        }
+        file.close();
+        return true;
+    }
+
     bool writeToFile(const wstring &filePath, list<wstring> &linesList)
     {
         std::wofstream file(filePath.c_str(), std::ios_base::out);
@@ -192,6 +217,32 @@ namespace NS_File
         for (auto &line : linesList)
             file << line << std::endl;
 
+        file.close();
+        return true;
+    }
+
+    bool writeToBinFile(const wstring &filePath, list<wstring> &linesList)
+    {
+        std::ofstream file(filePath.c_str(), std::ios::binary | std::ios::app);
+        if (!file.is_open()) {
+            NS_Logger::WriteLog(L"An error occurred while writing: " + filePath);
+            return false;
+        }
+        for (auto &line : linesList) {
+            WORD len = line.length();
+            file.write((const char*)&len, sizeof(WORD));
+            if (file.fail()) {
+                NS_Logger::WriteLog(L"An error occurred while writing: " + filePath);
+                file.close();
+                return false;
+            }
+            file.write((const char*)line.c_str(), len * sizeof(wchar_t));
+            if (file.fail()) {
+                NS_Logger::WriteLog(L"An error occurred while writing: " + filePath);
+                file.close();
+                return false;
+            }
+        }
         file.close();
         return true;
     }
@@ -377,7 +428,7 @@ namespace NS_File
 
     bool removeFile(const wstring &filePath)
     {
-        return DeleteFile(filePath.c_str()) != 0 ? true : false;
+        return DeleteFile(filePath.c_str()) != 0;
     }
 
     bool removeDirRecursively(const wstring &dir)
@@ -469,10 +520,7 @@ namespace NS_File
     {
         WCHAR buff[MAX_PATH];
         DWORD res = ::GetModuleFileName(NULL, buff, MAX_PATH);
-        if (res != 0) {
-            return fromNativeSeparators(parentPath(wstring(buff)));
-        }
-        return L"";
+        return (res != 0) ? fromNativeSeparators(parentPath(buff)) : L"";
     }
 
     string getFileHash(const wstring &fileName)
@@ -579,11 +627,7 @@ namespace NS_File
         winTrustData.pwszURLReference = NULL;
         winTrustData.dwUIContext = 0;
         winTrustData.pFile = &fileInfo;
-
-        LONG lStatus = WinVerifyTrust(NULL, &guidAction, &winTrustData);
-        if (lStatus == ERROR_SUCCESS)
-            return true;
-        return false;
+        return WinVerifyTrust(NULL, &guidAction, &winTrustData) == ERROR_SUCCESS;
     }
 }
 

@@ -66,7 +66,7 @@ platform :mac do
 
     desc 'Create DMG image'
     sh("npm install appdmg")
-    sh("npx appdmg resources/appdmg.json ../#{build}/#{app_name}.dmg")
+    sh("npx appdmg resources/appdmg.json ../#{build}/#{scheme}-#{version_number}.dmg")
 
     if options[:skip_git_bump]
       next

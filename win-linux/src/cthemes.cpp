@@ -159,7 +159,7 @@ public:
         QSettings _reg("HKEY_CURRENT_USER\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize", QSettings::NativeFormat);
         is_system_theme_dark = _reg.value("AppsUseLightTheme", 1).toInt() == 0;
 #else
-        if ( WindowHelper::getEnvInfo() == "KDE" ) {
+        if ( WindowHelper::getEnvInfo() == WindowHelper::KDE ) {
             QColor color = QPalette().base().color();
             int r, g, b;
             color.getRgb(&r, &g, &b);
@@ -212,9 +212,9 @@ public:
         }
     }
 
-    auto setCurrent(const QString& id) -> bool
+    auto setCurrent(const QString& id, bool force = false) -> bool
     {
-        if ( current->id() != id.toStdWString() ) {
+        if ( current->id() != id.toStdWString() || force ) {
             if ( id != THEME_ID_SYSTEM ) {
                 delete current;
 
@@ -270,14 +270,14 @@ public:
     }
 
     auto searchLocalThemes() -> void {
-        QDir directory(qApp->applicationDirPath() + "/uicolorthemes");
-        QStringList themes = directory.entryList(QStringList() << "*.json", QDir::Files);
+        QFileInfoList themes = QDir(qApp->applicationDirPath() + "/uithemes").entryInfoList(QStringList() << "*.json", QDir::Files);
+        themes.append(QDir(Utils::getAppCommonPath() + "/uithemes").entryInfoList(QStringList() << "*.json", QDir::Files));
 
         QFile file;
         QJsonParseError je;
         QJsonArray json_themes_array;
-        foreach(QString filename, themes) {
-            file.setFileName(directory.absoluteFilePath(filename));
+        foreach(auto t, themes) {
+            file.setFileName(t.absoluteFilePath());
             if ( file.open(QIODevice::ReadOnly) ) {
                 QByteArray data{file.readAll()};
                 file.close();
@@ -289,7 +289,7 @@ public:
                     if ( validateTheme(objRoot) ) {
                         json_themes_array.append(objRoot);
 
-                        local_themes[objRoot.value("id").toString()] = std::make_pair(filename,data);
+                        local_themes[objRoot.value("id").toString()] = std::make_pair(t.fileName(),data);
 //                        parseLocalTheme(doc.object());
                     }
                 }
@@ -477,7 +477,7 @@ auto CThemes::defaultLight() -> const CTheme&
 
 auto CThemes::setCurrentTheme(const std::wstring& name) -> void
 {
-    if ( !isThemeCurrent(name) && m_priv->setCurrent(QString::fromStdWString(name)) ) {
+    if ( !isThemeCurrent(name) && m_priv->setCurrent(QString::fromStdWString(name), true) ) {
         GET_REGISTRY_USER(_reg_user);
 
         if ( !m_priv->current->m_priv->source_file.isEmpty() )

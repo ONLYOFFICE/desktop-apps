@@ -30,8 +30,7 @@ win-linux/package/linux/tar
 
 common/loginpage/res/img/generated/*
 common/loginpage/build/plugins/*
-common/**/build/node_modules/*
-common/loginpage/build/sprites/node_modules/*
+common/**/node_modules/*
 common/loginpage/deploy/*
 common/loginpage/src/dlglogin.min.js
 common/converter/*
@@ -43,6 +42,7 @@ Makefile
 Makefile.*
 *.stash
 *.user
+*.user.*
 *.xcuserstate
 *.xcuserdatad
 *.xcscmblueprint

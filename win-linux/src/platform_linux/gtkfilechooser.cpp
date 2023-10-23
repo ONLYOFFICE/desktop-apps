@@ -6,39 +6,39 @@
 #include <gdk/gdkx.h>
 
 
-static void find_children(GList **list, GtkWidget *wgt, const gchar *name)
-{
-    GList *children = gtk_container_get_children(GTK_CONTAINER(wgt));
-    if (!children)
-        return;
-    for (guint i = 0; i < g_list_length(children); i++) {
-        GtkWidget *child = GTK_WIDGET(g_list_nth(children, i)->data);
-        if (strcmp(name, gtk_widget_get_name(child)) == 0)
-            *list = g_list_append(*list, (gpointer)child);
-        find_children(list, child, name);
-    }
-}
+//static void find_children(GList **list, GtkWidget *wgt, const gchar *name)
+//{
+//    GList *children = gtk_container_get_children(GTK_CONTAINER(wgt));
+//    if (!children)
+//        return;
+//    for (guint i = 0; i < g_list_length(children); i++) {
+//        GtkWidget *child = GTK_WIDGET(g_list_nth(children, i)->data);
+//        if (strcmp(name, gtk_widget_get_name(child)) == 0)
+//            *list = g_list_append(*list, (gpointer)child);
+//        find_children(list, child, name);
+//    }
+//}
 
-static void set_ellipsize(GtkWidget *dialog)
-{
-    GList *list = NULL;
-    find_children(&list, dialog, "GtkComboBoxText");
-    for (guint i = 0; i < g_list_length(list); i++) {
-        GtkComboBoxText *combo = GTK_COMBO_BOX_TEXT(g_list_nth(list, i)->data);
-        GtkCellRenderer *cell = gtk_cell_renderer_text_new();
-        g_object_set(cell,
-                     "width", 450,
-                     //"popup-fixed-width", FALSE,
-                     "ellipsize", PANGO_ELLIPSIZE_END,
-                     NULL);
+//static void set_ellipsize(GtkWidget *dialog)
+//{
+//    GList *list = NULL;
+//    find_children(&list, dialog, "GtkComboBoxText");
+//    for (guint i = 0; i < g_list_length(list); i++) {
+//        GtkComboBoxText *combo = GTK_COMBO_BOX_TEXT(g_list_nth(list, i)->data);
+//        GtkCellRenderer *cell = gtk_cell_renderer_text_new();
+//        g_object_set(cell,
+//                     "width", 450,
+//                     //"popup-fixed-width", FALSE,
+//                     "ellipsize", PANGO_ELLIPSIZE_END,
+//                     NULL);
 
-        gtk_cell_layout_clear(GTK_CELL_LAYOUT(combo));
-        gtk_cell_layout_pack_start(GTK_CELL_LAYOUT(combo), cell, TRUE);
-        gtk_cell_layout_set_attributes(GTK_CELL_LAYOUT(combo), cell, "text", 0, NULL);
-        //g_signal_connect(G_OBJECT(combo), "notify::popup-shown", G_CALLBACK(on_popup), NULL);
-    }
-    g_list_free(list);
-}
+//        gtk_cell_layout_clear(GTK_CELL_LAYOUT(combo));
+//        gtk_cell_layout_pack_start(GTK_CELL_LAYOUT(combo), cell, TRUE);
+//        gtk_cell_layout_set_attributes(GTK_CELL_LAYOUT(combo), cell, "text", 0, NULL);
+//        //g_signal_connect(G_OBJECT(combo), "notify::popup-shown", G_CALLBACK(on_popup), NULL);
+//    }
+//    g_list_free(list);
+//}
 
 static char* substr(const char *src, int m, int n)
 {
@@ -120,10 +120,19 @@ static void nativeFileDialog(const Window &parent_xid,
         for (guint i = 0; i < g_slist_length(list); i++) {
             if (char *flt_name = (char*)g_slist_nth(list, i)->data) {
                 GtkFileFilter *filter = gtk_file_filter_new();
-                gtk_file_filter_set_name(filter, flt_name);
                 //g_print("%s\n", flt_name);
                 char *start = strchr(flt_name, '(');
                 char *end = strchr(flt_name, ')');
+                char *short_flt_name = NULL;
+                if (mode == Gtk::Mode::OPEN && strlen(flt_name) > 255 && start != NULL) {
+                    int end_index = (int)(start - flt_name - 1);
+                    if (end_index > 0)
+                        short_flt_name = substr(flt_name, 0, end_index);
+                }
+                gtk_file_filter_set_name(filter, short_flt_name ? short_flt_name : flt_name);
+                if (short_flt_name)
+                    free(short_flt_name);
+
                 if (start != NULL && end != NULL) {
                     int start_index = (int)(start - flt_name);
                     int end_index = (int)(end - flt_name);
@@ -149,7 +158,7 @@ static void nativeFileDialog(const Window &parent_xid,
         }
     }
 
-    set_ellipsize(dialog);
+//    set_ellipsize(dialog);
     gint res = gtk_dialog_run(GTK_DIALOG(dialog));
     if (res == GTK_RESPONSE_ACCEPT) {
         if (sel_multiple) {

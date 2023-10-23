@@ -97,7 +97,7 @@ OutputBaseFileName                = {#sOutputFileName}
 SignTool                  =byparam $p
 #endif
 
-SetupIconFile                     = {#sBrandingFolder}\win-linux\extras\projicons\res\desktopeditors.ico
+SetupIconFile                     = {#sBrandingFolder}\win-linux\extras\projicons\res\icons\desktopeditors.ico
 WizardImageFile                   = {#sBrandingFolder}\win-linux\package\windows\data\dialogpicture*.bmp
 WizardSmallImageFile              = {#sBrandingFolder}\win-linux\package\windows\data\dialogicon*.bmp
 
@@ -583,7 +583,7 @@ var
 begin
   Result := True;
   if RegGetValueNames(
-  HKEY_LOCAL_MACHINE, 
+  HKEY_LOCAL_MACHINE,
   'SOFTWARE\Microsoft\Windows\CurrentVersion\Installer\UpgradeCodes\{#sUpgradeCode}',
   Names) then begin
     ConfirmUninstall := IDOK;
@@ -593,48 +593,48 @@ begin
         Exit;
       end;
     end;
-    
+
     for i := 1 to 32 do begin
       arrayCode[i] := (Names[0])[i];
     end;
-  
+
     ProductCode := '{';
-    
+
     for i := 8 downto 1 do begin
       ProductCode := ProductCode + arrayCode[i];
     end;
-    
+
     ProductCode := ProductCode + '-';
-    
+
     for i := 12 downto 9 do begin
       ProductCode := ProductCode + arrayCode[i];
     end;
-    
+
     ProductCode := ProductCode + '-';
-    
+
     for i := 16 downto 13 do begin
       ProductCode := ProductCode + arrayCode[i];
     end;
-    
+
     ProductCode := ProductCode + '-';
-  
+
     j := 17;
-    while j < 32 do begin     
+    while j < 32 do begin
       tmp := arrayCode[j];
       arrayCode[j] := arrayCode[j + 1];
       arrayCode[j + 1] := tmp;
       j := j + 2;
     end;
-    
+
     for i := 17 to 32 do begin
       ProductCode := ProductCode + arrayCode[i];
       if i = 20 then begin
         ProductCode := ProductCode + '-';
       end
     end;
-    
+
     ProductCode := ProductCode + '}';
-    
+
     DeleteString := 'msiexec.exe /x ' + ProductCode;
     Exec('>', DeleteString, '', SW_SHOW, ewWaitUntilTerminated, ResultCode);
   end
@@ -652,7 +652,7 @@ var
   path: string;
 begin
   InitializeAssociatePage();
-  
+
   if not UninstallPreviosVersion() then begin
     Abort;
   end;
@@ -676,7 +676,7 @@ begin
   OutResult := True;
 
   if IsWin64 then
-  begin 
+  begin
     if Is64BitInstallMode then
     begin
       regkey := HKLM32;
@@ -742,7 +742,7 @@ begin
       Exec(ExpandConstant('{app}\{#iconsExe}'), '--remove-jump-list', '', SW_SHOWNORMAL, ewWaitUntilTerminated, ErrorCode);
       Exec(ExpandConstant('{app}\updatesvc.exe'), '--delete', '', SW_HIDE, ewWaitUntilTerminated, ErrorCode);
     end;
-    
+
     RegQueryStringValue(GetHKLM(), ExpandConstant('{#APP_REG_PATH}'), 'uninstall', regValue);
 
     if (regValue <> 'full') and
@@ -787,7 +787,7 @@ begin
     UnassociateExtensions();
   end else
   if CurUninstallStep = usPostUninstall then begin
-    
+    RemoveExtraFiles();
   end;
 end;
 
@@ -800,6 +800,7 @@ var
 begin
   if CurStep = ssPostInstall then begin
     DoPostInstall();
+    CreateBatchFiles();
     GetWindowsVersionEx(version);
     if (version.Major > 6) or ((version.Major = 6) and (version.Minor >= 1)) then begin
 #ifdef _ONLYOFFICE
@@ -899,12 +900,12 @@ procedure checkArchitectureVersion;
   //isExists: Boolean;
 begin
   if IsWin64 then
-  begin 
+  begin
     if Is64BitInstallMode then
     begin
       //isExists := RegKeyExists(GetHKLM(), 'SOFTWARE\Wow6432Node\ONLYOFFICE\ASCDocumentEditor')
       MsgBox(ExpandConstant('{cm:WarningWrongArchitecture,64,32}'), mbInformation, MB_OK)
-    end else 
+    end else
     begin
       //isExists := RegKeyExists(GetHKLM(), 'SOFTWARE\ONLYOFFICE\ASCDocumentEditor');
       MsgBox(ExpandConstant('{cm:WarningWrongArchitecture,32,64}'), mbInformation, MB_OK)
@@ -914,9 +915,9 @@ end;
 *)
 
 function getPosixTime: string;
-var 
+var
   fileTime: TFileTime;
-  fileTimeNano100: Int64;  
+  fileTimeNano100: Int64;
 begin
   //GetSystemTime(systemTime);
 
@@ -982,9 +983,6 @@ Name: {commonappdata}\{#APP_PATH}\webdata\cloud; Flags: uninsalwaysuninstall;
 
 
 [Files]
-Source: data\vcredist\vcredist_2013_{#sWinArch}.exe; DestDir: {app}; Flags: deleteafterinstall; \
-  AfterInstall: installVCRedist(ExpandConstant('{app}\vcredist_2013_{#sWinArch}.exe'), ExpandConstant('{cm:InstallAdditionalComponents}')); \
-  Check: not checkVCRedist2013;
 Source: data\vcredist\vcredist_2022_{#sWinArch}.exe; DestDir: {app}; Flags: deleteafterinstall; \
   AfterInstall: installVCRedist(ExpandConstant('{app}\vcredist_2022_{#sWinArch}.exe'), ExpandConstant('{cm:InstallAdditionalComponents}')); \
   Check: not checkVCRedist2022;
@@ -993,10 +991,9 @@ Source: {#sBrandingFolder}\win-linux\package\windows\data\VisualElementsManifest
 Source: {#sBrandingFolder}\win-linux\package\windows\data\visual_elements_icon_150x150.png;  DestDir: {app}\browser;   MinVersion: 6.3;
 Source: {#sBrandingFolder}\win-linux\package\windows\data\visual_elements_icon_71x71.png;    DestDir: {app}\browser;   MinVersion: 6.3;
 
-#if defined(_WIN_XP) + defined(EMBED_HELP)
 Source: {#DEPLOY_PATH}\*;                               DestDir: {app}; Flags: recursesubdirs;
-#else
-Source: {#DEPLOY_PATH}\*;                               DestDir: {app}; Excludes: "editors\web-apps\apps\*\main\resources\help"; Flags: recursesubdirs;
+#if defined(_WIN_XP) | defined(EMBED_HELP)
+Source: "{#DEPLOY_PATH}-Help\*";                        DestDir: {app}; Flags: recursesubdirs;
 #endif
 Source: {#DEPLOY_PATH}\*.exe;                           DestDir: {app}; Flags: signonce;
 Source: {#DEPLOY_PATH}\*.dll;                           DestDir: {app}; Flags: signonce;
@@ -1016,18 +1013,15 @@ Name: desktopicon; Description: {cm:CreateDesktopIcon,{#sAppName}}; GroupDescrip
 ;Name: {commondesktop}\{#sAppName}; FileName: {app}\{#NAME_EXE_OUT}; WorkingDir: {app}; Tasks: desktopicon;
 Name: {commondesktop}\{#sAppIconName}; FileName: {app}\{#iconsExe}; WorkingDir: {app}; Tasks: desktopicon; IconFilename: {app}\app.ico; AppUserModelID: {#APP_USER_MODEL_ID};
 Name: {group}\{#sAppIconName};         Filename: {app}\{#iconsExe}; WorkingDir: {app}; IconFilename: {app}\app.ico; AppUserModelID: {#APP_USER_MODEL_ID};
-Name: {group}\{cm:Uninstall}; Filename: {uninstallexe}; WorkingDir: {app};
-;Name: "{group}\{cm:extDOCX}"; IconFilename: "{app}\{#iconsExe}"; IconIndex: 14; Filename: "{app}\{#iconsExe}"; Parameters: "--new:word"
-;Name: "{group}\{cm:extXLSX}"; IconFilename: "{app}\{#iconsExe}"; IconIndex: 15; Filename: "{app}\{#iconsExe}"; Parameters: "--new:cell"
-;Name: "{group}\{cm:extPPTX}"; IconFilename: "{app}\{#iconsExe}"; IconIndex: 16; Filename: "{app}\{#iconsExe}"; Parameters: "--new:slide"
-;#ifdef _ONLYOFFICE
-;Name: "{group}\{cm:extDOCXF}"; IconFilename: "{app}\{#iconsExe}"; IconIndex: 17; Filename: "{app}\{#iconsExe}"; Parameters: "--new:form"
-;#endif
+Name: {group}\{cm:Uninstall}; IconFilename: {app}\{#iconsExe}; IconIndex: 25; Filename: {uninstallexe}; WorkingDir: {app};
+Name: "{group}\{cm:jumpDOCX}"; IconFilename: "{app}\{#iconsExe}"; IconIndex: 14; Filename: "{app}\new_word.bat";
+Name: "{group}\{cm:jumpXLSX}"; IconFilename: "{app}\{#iconsExe}"; IconIndex: 15; Filename: "{app}\new_cell.bat";
+Name: "{group}\{cm:jumpPPTX}"; IconFilename: "{app}\{#iconsExe}"; IconIndex: 16; Filename: "{app}\new_slide.bat";
 
 [Run]
 ;Filename: {app}\{#NAME_EXE_OUT}; Description: {cm:Launch,{#sAppName}}; Flags: postinstall nowait skipifsilent;
 Filename: {app}\{#iconsExe}; Description: {cm:Launch,{#sAppName}}; Flags: postinstall nowait skipifsilent runasoriginaluser;
-;Filename: http://www.onlyoffice.com/remove-portal-feedback-form.aspx; Description: Visit website; Flags: postinstall shellexec nowait 
+;Filename: http://www.onlyoffice.com/remove-portal-feedback-form.aspx; Description: Visit website; Flags: postinstall shellexec nowait
 
 
 [Ini]
@@ -1050,3 +1044,7 @@ Root: HKLM; Subkey: "SOFTWARE\Classes\{#sAppProtocol}\Shell\Open\Command"; Value
 
 [UninstallDelete]
 Type: filesandordirs; Name: {commonappdata}\{#APP_PATH}\*;  AfterInstall: RefreshEnvironment;
+Type: files; Name: "{app}\new_word.bat";
+Type: files; Name: "{app}\new_cell.bat";
+Type: files; Name: "{app}\new_slide.bat";
+Type: files; Name: "{app}\svcrestart.bat";

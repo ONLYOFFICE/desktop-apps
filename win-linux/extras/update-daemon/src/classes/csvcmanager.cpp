@@ -54,6 +54,7 @@
 # define DAEMON_NAME      L"/updatesvc.exe"
 # define DAEMON_NAME_OLD  L"/~updatesvc.exe"
 # define RESTART_BATCH    L"/svcrestart.bat"
+# define UNINSTALL_LIST   L"/unins000.bin"
 # define SUBFOLDER        TEXT("/" REG_APP_NAME)
 # define ARCHIVE_EXT      TEXT(".zip")
 # define ARCHIVE_PATTERN  TEXT("*.zip")
@@ -163,6 +164,15 @@ auto restartService()->void
     CloseHandle(pi.hProcess);
     CloseHandle(pi.hThread);
 }
+
+auto verToAppVer(const wstring &ver)->wstring
+{
+    size_t pos = ver.find(L'.');
+    if (pos == std::wstring::npos)
+        return ver;
+    pos = ver.find(L'.', pos + 1);
+    return (pos == std::wstring::npos) ? ver : ver.substr(0, pos);
+}
 #endif
 
 CSvcManager::CSvcManager():
@@ -192,6 +202,9 @@ void CSvcManager::aboutToQuit(FnVoidVoid callback)
 
 void CSvcManager::init()
 {
+    m_pDownloader->onQueryResponse([=](int error, int lenght) {
+        onQueryResponse(error, lenght);
+    });
     m_pDownloader->onComplete([=](int error) {
         onCompleteSlot(error, m_pDownloader->GetFilePath());
     });
@@ -223,6 +236,13 @@ void CSvcManager::init()
                     m_pDownloader->downloadFile(params[1], generateTmpFileName(ext));
                 }
                 NS_Logger::WriteLog(_T("Received MSG_LoadUpdates, URL: ") + params[1]);
+                break;
+            }
+            case MSG_RequestContentLenght: {
+                __GLOBAL_LOCK
+                if (m_pDownloader)
+                    m_pDownloader->queryContentLenght(params[1]);
+                NS_Logger::WriteLog(_T("Received MSG_RequestContentLenght, URL: ") + params[1]);
                 break;
             }
             case MSG_StopDownload: {
@@ -263,6 +283,12 @@ void CSvcManager::init()
     });
 }
 
+void CSvcManager::onQueryResponse(const int error, const int lenght)
+{
+    __UNLOCK
+    m_socket->sendMessage(MSG_RequestContentLenght, (error == 0) ? to_tstring(lenght) : _T(""));
+}
+
 void CSvcManager::onCompleteUnzip(const int error)
 {
     __UNLOCK
@@ -273,13 +299,43 @@ void CSvcManager::onCompleteUnzip(const int error)
         if (!NS_File::writeToFile(updPath + SUCCES_UNPACKED, successList)) {
             return;
         }
+#ifdef _WIN32
+        // Adding new app files to the uninstall list
+        auto fillSubpathVec = [](const tstring &path, vector<tstring> &vec)->bool {
+            tstring _error;
+            list<tstring> filesList;
+            if (!NS_File::GetFilesList(path, &filesList, _error)) {
+                NS_Logger::WriteLog(DEFAULT_ERROR_MESSAGE + TEXT(" ") + _error);
+                return false;
+            }
+            for (auto &filePath : filesList) {
+                tstring subPath = filePath.substr(path.length());
+                vec.push_back(std::move(subPath));
+            }
+            return true;
+        };
+
+        vector<wstring> updVec, appVec;
+        const tstring appPath = NS_File::appPath();
+        if (fillSubpathVec(appPath, appVec) && fillSubpathVec(updPath, updVec)) {
+            list<tstring> delList;
+            if (NS_File::fileExists(appPath + UNINSTALL_LIST) && !NS_File::readBinFile(appPath + UNINSTALL_LIST, delList))
+                NS_Logger::WriteLog(DEFAULT_ERROR_MESSAGE);
+
+            for (auto &updFile : updVec) {
+                if (std::find(appVec.begin(), appVec.end(), updFile) == appVec.end())
+                    delList.push_back(NS_File::toNativeSeparators(updFile));
+            }
+            if (!NS_File::writeToBinFile(updPath + UNINSTALL_LIST, delList))
+                NS_Logger::WriteLog(DEFAULT_ERROR_MESSAGE);
+        }
+#endif
         if (!m_socket->sendMessage(MSG_ShowStartInstallMessage))
             NS_Logger::WriteLog(DEFAULT_ERROR_MESSAGE);
 
     } else
     if (error == UNZIP_ERROR) {
-        tstring error(_T("An error occured while unpacking the archive"));
-        if (!m_socket->sendMessage(MSG_OtherError, error))
+        if (!m_socket->sendMessage(MSG_OtherError, _T("SVC_TXT_ERR_UNPACKING")))
             NS_Logger::WriteLog(DEFAULT_ERROR_MESSAGE);
 
     } else
@@ -307,18 +363,18 @@ void CSvcManager::onCompleteSlot(const int error, const tstring &filePath)
         // Pause or Stop
     } else
     if (error == -1) {
-        m_socket->sendMessage(MSG_OtherError, _T("Update download failed: out of memory!"));
+        m_socket->sendMessage(MSG_OtherError, _T("SVC_TXT_ERR_DNL_OUT_MEM"));
     } else
     if (error == -2) {
-        m_socket->sendMessage(MSG_OtherError, _T("Update download failed: server connection error!"));
+        m_socket->sendMessage(MSG_OtherError, _T("SVC_TXT_ERR_DNL_CONN"));
     } else
     if (error == -3) {
-        m_socket->sendMessage(MSG_OtherError, _T("Update download failed: wrong URL!"));
+        m_socket->sendMessage(MSG_OtherError, _T("SVC_TXT_ERR_DNL_URL"));
     } else
     if (error == -4) {
-        m_socket->sendMessage(MSG_OtherError, _T("Update download failed: unable to create file!"));
+        m_socket->sendMessage(MSG_OtherError, _T("SVC_TXT_ERR_DNL_CREAT"));
     } else {
-        m_socket->sendMessage(MSG_OtherError, _T("Update download failed: network error!"));
+        m_socket->sendMessage(MSG_OtherError, _T("SVC_TXT_ERR_DNL_INET"));
     }
 }
 
@@ -504,7 +560,7 @@ void CSvcManager::startReplacingFiles(const tstring &packageType, const bool res
                 wstring app_key(app_name);
                 app_key += (packageType == TEXT("iss")) ? L"_is1" : L"";
                 if (RegOpenKeyEx(hKey, app_key.c_str(), 0, KEY_ALL_ACCESS, &hAppKey) == ERROR_SUCCESS) {
-                    wstring disp_name = app_name + L" " + ver + L" (" + currentArch().substr(1) + L")";
+                    wstring disp_name = app_name + L" " + verToAppVer(ver) + L" (" + currentArch().substr(1) + L")";
                     if (RegSetValueEx(hAppKey, TEXT("DisplayName"), 0, REG_SZ, (const BYTE*)disp_name.c_str(), (DWORD)(disp_name.length() + 1) * sizeof(WCHAR)) != ERROR_SUCCESS)
                         NS_Logger::WriteLog(L"Can't update DisplayName in registry!");
                     if (RegSetValueEx(hAppKey, TEXT("DisplayVersion"), 0, REG_SZ, (const BYTE*)ver.c_str(), (DWORD)(ver.length() + 1) * sizeof(WCHAR)) != ERROR_SUCCESS)

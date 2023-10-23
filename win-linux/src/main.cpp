@@ -50,6 +50,8 @@
 int main( int argc, char *argv[] )
 {
 #ifdef _WIN32
+    if (argc > 1 && strcmp(argv[1], "--add-to-recent") == 0)
+        return 0;
     Core_SetProcessDpiAwareness();
     Utils::setAppUserModelId(APP_USER_MODEL_ID);
     WCHAR * cm_line = GetCommandLine();
@@ -59,7 +61,6 @@ int main( int argc, char *argv[] )
     qputenv("QT_QPA_PLATFORM", "xcb");
     qputenv("GDK_BACKEND", "x11");
     InputArgs::init(argc, argv);
-    WindowHelper::initEnvInfo();
     if (geteuid() == 0) {
         CMessage::warning(nullptr, WARNING_LAUNCH_WITH_ADMIN_RIGHTS);
         return 0;
@@ -95,6 +96,7 @@ int main( int argc, char *argv[] )
         manager->m_oSettings.recover_path               = (user_data_path + "/recover").toStdWString();
         manager->m_oSettings.user_plugins_path          = (user_data_path + "/sdkjs-plugins").toStdWString();
         manager->m_oSettings.local_editors_path         = app_path + L"/editors/web-apps/apps/api/documents/index.html";
+        manager->m_oSettings.connection_error_path      = app_path + L"/converter/connection/index.html";
         manager->m_oSettings.additional_fonts_folder.push_back(app_path + L"/fonts");
         manager->m_oSettings.country = Utils::systemLocationCode().toStdString();
     };

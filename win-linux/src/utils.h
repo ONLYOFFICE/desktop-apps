@@ -123,6 +123,7 @@ public:
         Undef, WinXP, WinVista, Win7, Win8, Win8_1, Win10, Win11
     };
     static WinVer getWinVersion();
+    static void addToRecent(const std::wstring&);
     static bool isSessionInProgress();
     static void setSessionInProgress(bool);
 #endif
@@ -134,16 +135,21 @@ namespace WindowHelper {
     {
         QWidget* m_pChild = nullptr;
     public:
-        CParentDisable(QWidget* parent = nullptr);
+        CParentDisable(QWidget* &parent);
         ~CParentDisable();
 
-        void disable(QWidget* parent);
+        void disable(QWidget* &parent);
         void enable();
     };
 
 //    auto check_button_state(Qt::MouseButton b) -> bool;
-    auto initEnvInfo() -> void;
-    auto getEnvInfo() -> QString;
+    enum DesktopEnv {
+        UNITY = 0,
+        GNOME,
+        KDE,
+        OTHER
+    };
+    auto getEnvInfo() -> int;
     auto useGtkDialog() -> bool;
 #else
     auto isWindowSystemDocked(HWND handle) -> bool;
@@ -162,4 +168,3 @@ namespace WindowHelper {
 }
 
 #endif // UTILS_H
-

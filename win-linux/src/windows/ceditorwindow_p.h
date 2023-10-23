@@ -65,6 +65,7 @@
 
 #define TOP_PANEL_OFFSET 6*TOOLBTN_WIDTH
 #define ICON_SPACER_WIDTH 9
+#define ICON_SIZE QSize(20,20)
 
 using namespace NSEditorApi;
 
@@ -79,6 +80,9 @@ auto prepare_editor_css(AscEditorType type, const CTheme& theme) -> QString {
     case AscEditorType::etPdf: c = theme.value(CTheme::ColorRole::ecrTabViewerActive); break;
     }
     QString g_css(Utils::readStylesheets(":/styles/editor.qss"));
+#ifdef __linux__
+    g_css.append(Utils::readStylesheets(":styles/editor_unix.qss"));
+#endif
     return g_css.arg(QString::fromStdWString(c));
 }
 
@@ -118,7 +122,7 @@ public:
 
     void init(CTabPanel * const p) override {
         CCefEventsGate::init(p);
-        if (!m_panel->data()->hasFeature(L"btnhome") || viewerMode()) {  // For old editors only
+        if (!m_panel->data()->hasFeature(L"btnhome") || viewerMode() || fillformMode()) {  // For old editors only
             usedOldEditorVersion = true;
             leftboxbuttons = new QWidget;
             leftboxbuttons->setLayout(new QHBoxLayout);
@@ -178,7 +182,7 @@ public:
     auto extendableTitleToSimple() -> void {
         Q_ASSERT(window->m_boxTitleBtns != nullptr);
         QGridLayout * const _layout = static_cast<QGridLayout*>(window->m_pMainPanel->layout());
-        if ( !_layout->findChild<QWidget*>(window->m_boxTitleBtns->objectName()) ) {
+        if ( !_layout->itemAtPosition(0,0) && !_layout->findChild<QWidget*>(window->m_boxTitleBtns->objectName()) ) {
             _layout->addWidget(window->m_boxTitleBtns,0,0,Qt::AlignTop);
             if (iconuser)
                 iconuser->hide();
@@ -202,15 +206,15 @@ public:
 
     auto centerTitle(double dpiRatio)->void
     {
-        int left_btns = viewerMode() ? 1 : 6;
+        int left_btns = (viewerMode() || fillformMode()) ? 1 : 6;
         int right_btns = 3;
         int spacing = window->m_boxTitleBtns->layout()->spacing();
         int left_offset = left_btns*TOOLBTN_WIDTH + 3*spacing; // added extra spacing
-        int right_offset = right_btns*(TOOLBTN_WIDTH + spacing);
+        int right_offset = right_btns*(TITLEBTN_WIDTH + spacing);
         int diffW = (left_offset - right_offset)*dpiRatio;
         if (iconuser) {
             diffW -= ICON_SPACER_WIDTH + spacing*dpiRatio;
-            if (!viewerMode()) {
+            if (!viewerMode() && !fillformMode()) {
                 diffW -= iconuser->width() + spacing*dpiRatio;
             }
         }
@@ -229,7 +233,7 @@ public:
         if( jerror.error == QJsonParseError::NoError ) {
             QJsonObject objRoot = jdoc.object();
 
-            if ( viewerMode() )
+            if ( viewerMode() && !fillformMode())
                 extendableTitleToSimple();
 
             if ( canExtendTitle() ) {
@@ -312,7 +316,7 @@ public:
                 panel()->data()->setFeatures(L"old version of editor");
                 extendableTitleToSimple();
             }
-            if (m_panel->data()->hasFeature(L"btnhome") && usedOldEditorVersion && !viewerMode()) {  // For old editors only
+            if (m_panel->data()->hasFeature(L"btnhome") && usedOldEditorVersion && !viewerMode() && !fillformMode()) {  // For old editors only
                 usedOldEditorVersion = false;
                 adjustToNewEditorVersion();
             }
@@ -394,6 +398,9 @@ public:
             window->m_css = prepare_editor_css(editor_type, GetCurrentTheme());
             QString css(AscAppManager::getWindowStylesheets(window->m_dpiRatio));
             css.append(window->m_css);
+#ifdef __linux__
+            css.append(Utils::readStylesheets(":styles/styles_unix.qss"));
+#endif
             window->m_pMainPanel->setStyleSheet(css);
         }
         setWindowColors();
@@ -477,7 +484,8 @@ public:
         isPrinting = true;
 
 #ifdef Q_OS_LINUX
-        WindowHelper::CParentDisable oDisabler(window->handle());
+        QWidget *parent = window->handle();
+        WindowHelper::CParentDisable oDisabler(parent);
 #endif
         if ( !(pagescount < 1) ) {
             CAscMenuEvent * pEvent;
@@ -511,9 +519,9 @@ public:
             }
 
 # ifdef FILEDIALOG_DONT_USE_NATIVEDIALOGS
-            CPrintDialog * dialog =  new CPrintDialog(printer, window->handle());
+            CPrintDialog * dialog =  new CPrintDialog(printer, parent);
 # else
-            GtkPrintDialog * dialog = new GtkPrintDialog(printer, window->handle());
+            GtkPrintDialog * dialog = new GtkPrintDialog(printer, parent);
 # endif
 #endif // _WIN32
 
@@ -605,10 +613,11 @@ public:
 
             if ( iconcrypted ) {
                 iconcrypted->setPixmap(QIcon{":/title/icons/secure.svg"}.pixmap(QSize(20,20) * f));
+                iconcrypted->setFixedSize(ICON_SIZE * f);
             }
 
             for (const auto& btn: m_mapTitleButtons) {
-                btn->setFixedSize(QSize(int(TOOLBTN_WIDTH*f), int(TOOLBTN_HEIGHT*f)));
+                btn->setFixedSize(QSize(int(TITLEBTN_WIDTH*f), int(TOOLBTN_HEIGHT*f)));
                 btn->setIconSize(QSize(20,20) * f);
             }
             centerTitle(f);
@@ -730,12 +739,22 @@ public:
 
     QLabel * iconCrypted()
     {
-        Q_ASSERT(window->m_boxTitleBtns != nullptr);
+        Q_ASSERT(window->m_labelTitle != nullptr);
         if ( !iconcrypted ) {
-            iconcrypted = new QLabel(window->m_boxTitleBtns);
+            iconcrypted = new QLabel(window->m_labelTitle);
             iconcrypted->setObjectName("iconcrypted");
 
             iconcrypted->setPixmap(QIcon{":/title/icons/secure.svg"}.pixmap(QSize(20,20) * window->m_dpiRatio));
+            iconcrypted->setFixedSize(ICON_SIZE * window->m_dpiRatio);
+            int y = (window->m_labelTitle->height() - ICON_SIZE.height() * window->m_dpiRatio)/2;
+            iconcrypted->move(0, y);
+            connect(window->m_labelTitle, &CElipsisLabel::onResize, this, [=](QSize size, int textWidth) {
+                if (iconcrypted) {
+                    int x = (size.width() - textWidth)/2 - ((ICON_SIZE.width() + 6) * window->m_dpiRatio);
+                    int y = (size.height() - ICON_SIZE.height() * window->m_dpiRatio)/2;
+                    iconcrypted->move(x, y);
+                }
+            });
         }
 
         return iconcrypted;
@@ -743,17 +762,19 @@ public:
 
     void onWebAppsFeatures(int, std::wstring f) override
     {
+        bool is_read_only = panel()->data()->hasFeature(L"readonly\":");
         panel()->data()->setFeatures(f);
 
         if ( m_panel->data()->hasFeature(L"uitype\":\"fillform") ) {
              ffWindowCustomize();
+             centerTitle(window->m_dpiRatio);
         }
 
         if ( panel()->data()->hasFeature(L"crypted\":true") && boxtitlelabel && !iconcrypted ) {
-            qobject_cast<QBoxLayout *>(boxtitlelabel->layout())->insertWidget(0, iconCrypted());
+             iconCrypted();
         }
 
-        if ( panel()->data()->hasFeature(L"readonly\":") && boxtitlelabel ) {
+        if ( is_read_only != panel()->data()->hasFeature(L"readonly\":") && boxtitlelabel ) {
             window->setWindowTitle(m_panel->data()->title());
             window->m_boxTitleBtns->repaint();
         }
@@ -820,6 +841,11 @@ public:
         return m_panel->data()->hasFeature(L"viewmode\":true");
     }
 
+    auto fillformMode() -> bool {
+        QFileInfo i{QString::fromStdWString(m_panel->data()->url())};
+        return i.suffix() == "oform" || m_panel->data()->hasFeature(L"uitype\":\"fillform");
+    }
+
     auto calcTitleLabelWidth(int basewidth) const -> int {
         if ( iconuser )
             basewidth -= iconuser->width();
@@ -828,7 +854,7 @@ public:
         if ( iconcrypted )
             basewidth -= iconcrypted->width();
 
-        basewidth -= m_mapTitleButtons.count() * (TOOLBTN_WIDTH + 1) * window->m_dpiRatio;
+        basewidth -= m_mapTitleButtons.count() * (TITLEBTN_WIDTH + 1) * window->m_dpiRatio;
 
         return basewidth;
     }
@@ -848,12 +874,10 @@ public:
         boxtitlelabel->layout()->setSpacing(0);
         boxtitlelabel->layout()->setMargin(0);
         boxtitlelabel->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
-
-        if ( m_panel->data()->hasFeature(L"crypted\":true") && !iconcrypted ) {
-            boxtitlelabel->layout()->addWidget(iconCrypted());
-        }
-
         boxtitlelabel->layout()->addWidget(window->m_labelTitle);
+        if ( m_panel->data()->hasFeature(L"crypted\":true") && !iconcrypted ) {
+            iconCrypted();
+        }
 
         if (usedOldEditorVersion) {  // For old editors only
             _layout->insertWidget(1, boxtitlelabel);
@@ -867,8 +891,17 @@ public:
     auto ffWindowCustomize() -> void {
         Q_ASSERT(window->m_boxTitleBtns != nullptr);
         QGridLayout * const _layout = static_cast<QGridLayout*>(window->m_pMainPanel->layout());
-        if ( !_layout->findChild<QWidget*>(window->m_boxTitleBtns->objectName()) ) {
+        if ( !_layout->itemAtPosition(0,0) && !_layout->findChild<QWidget*>(window->m_boxTitleBtns->objectName()) ) {
             _layout->addWidget(window->m_boxTitleBtns,0,0,Qt::AlignTop);
+            if (iconuser)
+                 iconuser->hide();
+            auto layout = qobject_cast<QHBoxLayout*>(window->m_boxTitleBtns->layout());
+            auto stretch = layout->takeAt(1);
+            if (stretch)
+                 delete stretch;
+            stretch = layout->takeAt(2);
+            if (stretch)
+                 delete stretch;
         }
     }
 };
