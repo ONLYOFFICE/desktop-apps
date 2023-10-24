@@ -441,6 +441,9 @@ void CSvcManager::clearTempFiles(const tstring &prefix, const tstring &except)
                     NS_File::removeFile(filePath);
             }
         }
+        tstring updPath = NS_File::parentPath(NS_File::appPath()) + UPDATE_PATH;
+        if (except.empty() && NS_File::dirExists(updPath))
+            NS_File::removeDirRecursively(updPath);
     });
 }
 
@@ -592,14 +595,14 @@ void CSvcManager::startReplacingFiles(const tstring &packageType, const bool res
         }
     }
 
-    // Remove Backup dir
-    NS_File::removeDirRecursively(tmpPath);
-
     // Restart program
     if (restartAfterUpdate) {
         if (!NS_File::runProcess(appPath + APP_LAUNCH_NAME, _T("")))
             NS_Logger::WriteLog(_T("An error occurred while restarting the program!"), true);
     }
+
+    // Remove Backup dir
+    NS_File::removeDirRecursively(tmpPath);
 
     // Restart service
 #ifdef _WIN32

@@ -14,6 +14,7 @@
 #define sAppProtocol                    'oo-office'
 
 #define APP_PATH                        str(sIntCompanyName + "\" + sIntProductName)
+#define UPD_PATH                        str(sIntProductName + "Updates")
 #define APP_REG_PATH                    str("Software\" + APP_PATH)
 #ifndef DEPLOY_PATH
   #define DEPLOY_PATH                   str("..\..\..\..\build_tools\out\" + sPlatformFull + "\" + APP_PATH)
