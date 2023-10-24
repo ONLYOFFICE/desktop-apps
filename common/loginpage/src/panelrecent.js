@@ -46,7 +46,8 @@
 
     ControllerRecent.prototype = Object.create(baseController.prototype);
     ControllerRecent.prototype.constructor = ControllerRecent;
-
+    var ShouldConnectSVG = () => window.devicePixelRatio >= 2 || window.devicePixelRatio == 1;
+    var isSvgIcons = ShouldConnectSVG();
     var ViewRecent = function(args) {
         var _lang = utils.Lang;
 
@@ -102,7 +103,12 @@
 
             var _tpl = `<tr${id} class="${info.crypted ? 'crypted' : ''}">
                           <td class="row-cell cicon">
-                            <i class="icon ${info.type=='folder'?'img-el folder':`img-format ${info.format}`}" />
+                             ${info.type=='folder'?`<i class="icon img-el folder'"/>`:
+                                `${!isSvgIcons ?
+                                    `<i class="icon img-format ${info.format}"/>`:
+                                    `<svg class = "icon"><use xlink:href="#${info.format}"></use></svg>`
+                                }`
+                            }
                           </td>
                           <td class="row-cell cname">
                             <p class="name primary">${info.name}</p>
@@ -114,11 +120,31 @@
 
             return _tpl;
         },
+        onscale: function (insertSvg) {
+            if(insertSvg === isSvgIcons)  return;
+            let elm,icoName, elmIcon;
+            $('.cicon', this.$boxRecent).each(function (e) {
+                elm = $(this);
+                elmIcon = isSvgIcons ? $('use', elm) : $('i.img-format',elm);
+                if(!elmIcon) return;
+                if(isSvgIcons) {
+                    icoName = elmIcon.attr('xlink:href').substring(1);
+                    $('svg', elm).remove();
+                    elm.append($(`<i class="icon img-format ${icoName}"/>`));
+                } else {
+                    icoName =  elmIcon.attr('class').split(' ').filter((cls)=> cls != 'icon' && cls != 'img-format');
+                    $('i',elm).remove();
+                    elm.append($(`<svg class = "icon"><use xlink:href="#${icoName}"></use></svg>`)).appendTo(elm);
+                }
+            });
+            isSvgIcons = insertSvg;
+        },
         updatelistsize: function() {
             // set fixed height for scrollbar appearing. 
             var _available_height = this.$panel.height();
             var _box_recent_height = _available_height;
 
+            this.onscale(ShouldConnectSVG());
             if (!this.$boxRecovery.find('tr').size()) {
                 // $boxRecent.height($boxRecent.parent().height());
             } else {
