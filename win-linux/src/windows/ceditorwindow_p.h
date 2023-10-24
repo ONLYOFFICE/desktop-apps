@@ -477,8 +477,9 @@ public:
         if ( isPrinting ) return;
         isPrinting = true;
 
+        QWidget *parent = window->handle();
 #ifdef Q_OS_LINUX
-        WindowHelper::CParentDisable oDisabler(window->handle());
+        WindowHelper::CParentDisable oDisabler(parent);
 #endif
         if ( !(pagescount < 1) ) {
             CAscMenuEvent * pEvent;
@@ -583,7 +584,8 @@ public:
 #ifndef _WIN32
             RELEASEOBJECT(dialog)
 #endif
-        }
+        } else
+            CMessage::warning(parent, tr("There are no pages set to print."));
 
         isPrinting = false;
     }
@@ -755,7 +757,7 @@ public:
 
     void onWebAppsFeatures(int, std::wstring f) override
     {
-        bool is_read_only = panel()->data()->hasFeature(L"readonly\":");
+        bool is_read_only = panel()->data()->hasFeature(L"readonly\":true");
         panel()->data()->setFeatures(f);
 
         if ( m_panel->data()->hasFeature(L"uitype\":\"fillform") ) {

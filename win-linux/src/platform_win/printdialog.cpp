@@ -32,8 +32,10 @@
 
 #include <windows.h>
 #include <commdlg.h>
+#include <comdef.h>
 #include "printdialog.h"
 #include "utils.h"
+#include "components/cmessage.h"
 
 #define MAXPAGERANGES 32
 #define PRINT_DIALOG_REG_KEY L"Software\\Microsoft\\Print\\UnifiedPrintDialog\0"
@@ -352,7 +354,8 @@ QDialog::DialogCode PrintDialog::exec()
     dlg.lpCallback     = static_cast<IPrintDialogCallback*>(&clb);
 
     QDialog::DialogCode exit_code = QDialog::DialogCode::Rejected;
-    if (PrintDlgEx(&dlg) == S_OK) {
+    HRESULT hr = PrintDlgEx(&dlg);
+    if (hr == S_OK) {
         switch (dlg.dwResultAction) {
         case PD_RESULT_PRINT: {
             LPDEVMODE pDevmode = (LPDEVMODE)GlobalLock(dlg.hDevMode);
@@ -410,6 +413,9 @@ QDialog::DialogCode PrintDialog::exec()
 #endif
         if (pDevMode)
             GlobalFree(pDevMode);
+
+        const wchar_t *err = _com_error(hr).ErrorMessage();
+        CMessage::error(m_parent, QObject::tr("Unable to open print dialog:<br>%1").arg(QString::fromStdWString(err)));
     }
     GlobalFree(page_ranges);
 
@@ -448,7 +454,14 @@ int PrintDialog::toPage()
 
 void PrintDialog::setFromTo(int from, int to)
 {
-    m_printer->setFromTo(from, to);
+    from < 1 && (from = 1); to < 1 && (to = 1);
+    if (m_pages_count < from || m_pages_count < to) {
+        CMessage::warning(m_parent, QObject::tr("Specified range %1-%2 exceeds document limits: maximum number of pages is %3")
+                                        .arg(QString::number(from), QString::number(to), QString::number(m_pages_count)));
+    }
+    from > m_pages_count && (from = m_pages_count);
+    to > m_pages_count && (to = m_pages_count);
+    m_printer->setFromTo(from > to ? to : from, from > to ? from : to);
     if (!m_page_ranges.isEmpty())
         m_page_ranges.clear();
     m_page_ranges.append(PageRanges(m_printer->fromPage(), m_printer->toPage()));
