@@ -46,8 +46,8 @@
 
     ControllerRecent.prototype = Object.create(baseController.prototype);
     ControllerRecent.prototype.constructor = ControllerRecent;
-    var ShouldConnectSVG = () => window.devicePixelRatio >= 2 || window.devicePixelRatio == 1;
-    var isSvgIcons = ShouldConnectSVG();
+    var shouldConnectSVG = () => window.devicePixelRatio >= 2 || window.devicePixelRatio == 1;
+    var isSvgIcons = shouldConnectSVG();
     var ViewRecent = function(args) {
         var _lang = utils.Lang;
 
@@ -103,7 +103,7 @@
 
             var _tpl = `<tr${id} class="${info.crypted ? 'crypted' : ''}">
                           <td class="row-cell cicon">
-                             ${info.type=='folder'?`<i class="icon img-el folder'"/>`:
+                             ${info.type=='folder'?`<i class="icon img-el folder"/>`:
                                 `${!isSvgIcons ?
                                     `<i class="icon img-format ${info.format}"/>`:
                                     `<svg class = "icon"><use xlink:href="#${info.format}"></use></svg>`
@@ -144,7 +144,7 @@
             var _available_height = this.$panel.height();
             var _box_recent_height = _available_height;
 
-            this.onscale(ShouldConnectSVG());
+            this.onscale(shouldConnectSVG());
             if (!this.$boxRecovery.find('tr').size()) {
                 // $boxRecent.height($boxRecent.parent().height());
             } else {
