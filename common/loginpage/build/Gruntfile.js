@@ -256,11 +256,15 @@ module.exports = function(grunt) {
         // grunt.task.run('replace:insert-css');
     });
 
+    grunt.registerTask('prebuild-svg-sprites', function() {
+        require('./sprites/sprites')(grunt, '../');
+        grunt.task.run('svg_sprite');
+    });
 
     doRegisterInitializeAppTask('startpage', 'Desktop start page', 'startpage.json');
 
     grunt.registerTask('deploy-connection-error', ['connection-error', 'terser:noconnect', 'copy', 'htmlmin', /*'svgmin',*/ 'compile-html:noconnect']);
-    grunt.registerTask('deploy-desktop-startpage', ['desktop-app-extra', 'copy', 'less', 'terser:dialogconnect', 'terser:noconnect',
+    grunt.registerTask('deploy-desktop-startpage', ['prebuild-svg-sprites', 'desktop-app-extra', 'copy', 'less', 'terser:dialogconnect', 'terser:noconnect',
         'concat', 'clean', 'inline', 'terser:core', 'terser:langs', 'htmlmin', 'compile-html']);
     grunt.registerTask('default', ['init-build-startpage','deploy-desktop-startpage','deploy-connection-error']);
 };

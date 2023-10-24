@@ -219,6 +219,7 @@ auto runProcess(const tstring &fileName, const tstring &args, bool runAsAdmin = 
 struct CUpdateManager::PackageData {
     QString fileName,
             fileType,
+            fileSize,
             hash,
             version;
     wstring packageUrl,
@@ -226,6 +227,7 @@ struct CUpdateManager::PackageData {
     void clear() {
         fileName.clear();
         fileType.clear();
+        fileSize.clear();
         hash.clear();
         version.clear();
         packageUrl.clear();
@@ -352,6 +354,14 @@ void CUpdateManager::init()
             case MSG_Progress:
                 QMetaObject::invokeMethod(this, "onProgressSlot", Qt::QueuedConnection, Q_ARG(int, std::stoi(params[1])));
                 break;
+
+            case MSG_RequestContentLenght: {
+                double fileSize = std::stod(params[1])/1024/1024;
+                m_packageData->fileSize = (fileSize == 0) ? "--" : QString::number(fileSize, 'f', 1);
+                QMetaObject::invokeMethod(this, "onCheckFinished", Qt::QueuedConnection, Q_ARG(bool, false), Q_ARG(bool, true),
+                                          Q_ARG(QString, m_packageData->version), Q_ARG(QString, ""));
+                break;
+            }
 
             case MSG_OtherError:
                 QMetaObject::invokeMethod(this, "onError", Qt::QueuedConnection, Q_ARG(QString, TStrToQStr(params[1])));
@@ -762,7 +772,10 @@ void CUpdateManager::onLoadCheckFinished(const QString &filePath)
             QJsonValue changelog = release_notes.value(lang);
 
             clearTempFiles(isSavedPackageValid() ? m_savedPackageData->fileName : "");
-            onCheckFinished(false, true, m_packageData->version, changelog.toString());
+            if (m_packageData->packageUrl.empty() || !m_socket->sendMessage(MSG_RequestContentLenght, WStrToTStr(m_packageData->packageUrl))) {
+                m_packageData->fileSize = "--";
+                onCheckFinished(false, true, m_packageData->version, "");
+            }
         } else {
             clearTempFiles();
             onCheckFinished(false, false, "", "");
@@ -806,9 +819,9 @@ void CUpdateManager::onCheckFinished(bool error, bool updateExist, const QString
 
 void CUpdateManager::showUpdateMessage(QWidget *parent) {
     int result = WinDlg::showDialog(parent, tr("Update is available"),
-                        QString("%1\n%2: %3\n%4: %5\n%6").arg(QString(WINDOW_NAME), tr("Current version"),
+                        QString("%1\n%2: %3\n%4: %5\n%6 (%7 MB)").arg(QString(WINDOW_NAME), tr("Current version"),
                         QString(VER_FILEVERSION_STR), tr("Update version"), getVersion(),
-                        tr("Would you like to download update now?")),
+                        tr("Would you like to download update now?"), m_packageData->fileSize),
                         WinDlg::DlgBtns::mbSkipRemindDownload);
     __UNLOCK
     switch (result) {

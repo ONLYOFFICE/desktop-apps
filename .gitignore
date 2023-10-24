@@ -5,6 +5,7 @@ win-linux/3dparty/WinSparkle/win_64
 win-linux/extras/projicons/build
 win-linux/extras/update-daemon/build
 win-linux/extras/update-daemon/event_message/build
+win-linux/extras/online-installer/build
 win-linux/ASCDocumentEditor.build/*
 
 
@@ -27,6 +28,8 @@ win-linux/package/linux/urpmi/builddir
 win-linux/package/linux/suse-rpm/builddir
 win-linux/package/linux/tar
 
+
+common/loginpage/res/img/generated/*
 common/loginpage/build/plugins/*
 common/**/node_modules/*
 common/loginpage/deploy/*

@@ -58,6 +58,7 @@ public:
 
 private:
     void init();
+    void onQueryResponse(const int error, const int lenght);
     void onCompleteUnzip(const int error);
     void onCompleteSlot(const int error, const tstring &filePath);
     void onProgressSlot(const int percent);

@@ -202,6 +202,9 @@ void CSvcManager::aboutToQuit(FnVoidVoid callback)
 
 void CSvcManager::init()
 {
+    m_pDownloader->onQueryResponse([=](int error, int lenght) {
+        onQueryResponse(error, lenght);
+    });
     m_pDownloader->onComplete([=](int error) {
         onCompleteSlot(error, m_pDownloader->GetFilePath());
     });
@@ -233,6 +236,13 @@ void CSvcManager::init()
                     m_pDownloader->downloadFile(params[1], generateTmpFileName(ext));
                 }
                 NS_Logger::WriteLog(_T("Received MSG_LoadUpdates, URL: ") + params[1]);
+                break;
+            }
+            case MSG_RequestContentLenght: {
+                __GLOBAL_LOCK
+                if (m_pDownloader)
+                    m_pDownloader->queryContentLenght(params[1]);
+                NS_Logger::WriteLog(_T("Received MSG_RequestContentLenght, URL: ") + params[1]);
                 break;
             }
             case MSG_StopDownload: {
@@ -271,6 +281,12 @@ void CSvcManager::init()
 #endif
         NS_Logger::WriteLog(_error);
     });
+}
+
+void CSvcManager::onQueryResponse(const int error, const int lenght)
+{
+    __UNLOCK
+    m_socket->sendMessage(MSG_RequestContentLenght, (error == 0) ? to_tstring(lenght) : _T(""));
 }
 
 void CSvcManager::onCompleteUnzip(const int error)
@@ -425,6 +441,9 @@ void CSvcManager::clearTempFiles(const tstring &prefix, const tstring &except)
                     NS_File::removeFile(filePath);
             }
         }
+        tstring updPath = NS_File::parentPath(NS_File::appPath()) + UPDATE_PATH;
+        if (except.empty() && NS_File::dirExists(updPath))
+            NS_File::removeDirRecursively(updPath);
     });
 }
 
@@ -576,14 +595,14 @@ void CSvcManager::startReplacingFiles(const tstring &packageType, const bool res
         }
     }
 
-    // Remove Backup dir
-    NS_File::removeDirRecursively(tmpPath);
-
     // Restart program
     if (restartAfterUpdate) {
         if (!NS_File::runProcess(appPath + APP_LAUNCH_NAME, _T("")))
             NS_Logger::WriteLog(_T("An error occurred while restarting the program!"), true);
     }
+
+    // Remove Backup dir
+    NS_File::removeDirRecursively(tmpPath);
 
     // Restart service
 #ifdef _WIN32

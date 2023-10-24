@@ -67,7 +67,8 @@ enum MsgCommands {
     MSG_ClearTempFiles,
     MSG_Progress,
     MSG_StopDownload,
-    MSG_OtherError
+    MSG_OtherError,
+    MSG_RequestContentLenght
 };
 
 class CSocket
