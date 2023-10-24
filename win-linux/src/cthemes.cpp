@@ -212,9 +212,9 @@ public:
         }
     }
 
-    auto setCurrent(const QString& id) -> bool
+    auto setCurrent(const QString& id, bool force = false) -> bool
     {
-        if ( current->id() != id.toStdWString() ) {
+        if ( current->id() != id.toStdWString() || force ) {
             if ( id != THEME_ID_SYSTEM ) {
                 delete current;
 
@@ -477,7 +477,7 @@ auto CThemes::defaultLight() -> const CTheme&
 
 auto CThemes::setCurrentTheme(const std::wstring& name) -> void
 {
-    if ( !isThemeCurrent(name) && m_priv->setCurrent(QString::fromStdWString(name)) ) {
+    if ( !isThemeCurrent(name) && m_priv->setCurrent(QString::fromStdWString(name), true) ) {
         GET_REGISTRY_USER(_reg_user);
 
         if ( !m_priv->current->m_priv->source_file.isEmpty() )

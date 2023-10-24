@@ -105,4 +105,7 @@ l10n.ro = {
     updateDownloadFinished: 'Descărcare încheiată. Faceți clic pentru a instala',
     updateDownloadCanceled: 'Descărcare anulată',
     updateDownloadProgress: 'Se descarcă $1%. Faceți clic pentru a opri descărcarea',
+    settOptDescDisabled: "Verificarea automată a actualizărilor va fi dezactivată",
+    settOptDescAUpdateSilent: "Descarcă actualizări și întreabă înainte de a instala",
+    settOptDescAUpdateAsk: "Veți primi notificări privind fiecare etapă de actualizare",
 }

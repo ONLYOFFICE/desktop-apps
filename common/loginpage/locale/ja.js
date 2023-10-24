@@ -105,4 +105,7 @@ l10n.ja = {
     updateDownloadFinished: 'ダウンロードが完了しました。クリックしてインストールしてください',
     updateDownloadCanceled: 'ダウンロードがキャンセルされました',
     updateDownloadProgress: 'ダウンロードは$1%です。停止するにはクリックしてください',
+    settOptDescDisabled: "アップデートの自動チェックは無効になります",
+    settOptDescAUpdateSilent: "アップデートをダウンロードし、インストールする前に通知します",
+    settOptDescAUpdateAsk: "すべてのアップデート手順が通知されます",
 }

@@ -146,8 +146,6 @@
     <ROW Component="ImageViewer.exe" ComponentId="{E8DFAC60-5575-4D64-AD43-FF684A2FAE8F}" Directory_="CUSTOM_PATH" Attributes="0" Condition="GALLERY = &quot;1&quot;" KeyPath="ImageViewer.exe"/>
     <ROW Component="MANUFACTURER_INSTALL_FOLDER_HK_CU" ComponentId="{BF7B083D-CB31-42CC-89EB-912C4461A8D0}" Directory_="APPDIR" Attributes="260" KeyPath="MANUFACTURER_INSTALL_FOLDER_HK_CU"/>
     <ROW Component="MANUFACTURER_INSTALL_FOLDER_HK_LM" ComponentId="{7EC4EC35-8E21-44D0-A29E-CCD3741056D9}" Directory_="APPDIR" Attributes="260" KeyPath="MANUFACTURER_INSTALL_FOLDER_HK_LM"/>
-    <ROW Component="MicrosoftVisualC_2013_x64" ComponentId="{A9673528-11FC-4EBA-896E-6F2998F6601F}" Directory_="APPDIR" Attributes="260" KeyPath="MicrosoftVisualC_2013_x64" Options="2"/>
-    <ROW Component="MicrosoftVisualC_2013_x86" ComponentId="{B74A440D-1D6B-4EB1-BB72-605A30AF2D28}" Directory_="APPDIR" Attributes="4" KeyPath="MicrosoftVisualC_2013_x86" Options="2"/>
     <ROW Component="MicrosoftVisualC_2015_x64" ComponentId="{CA1FCD66-ED15-4D94-81FD-0C927B78E132}" Directory_="APPDIR" Attributes="260" KeyPath="MicrosoftVisualC_2015_x64" Options="2"/>
     <ROW Component="MicrosoftVisualC_2015_x86" ComponentId="{B176A670-4763-46DF-A796-3B8AB885DA4A}" Directory_="APPDIR" Attributes="4" KeyPath="MicrosoftVisualC_2015_x86" Options="2"/>
     <ROW Component="SHORTCUTDIR" ComponentId="{CB73F99E-8C5E-4F7A-9E2F-25EDC9FBDFC0}" Directory_="SHORTCUTDIR" Attributes="0"/>
@@ -163,8 +161,6 @@
     <ROW Feature="FileProgramAssociation" Feature_Parent="MainFeature" Title="File Program Association" Description="Description" Display="7" Level="1" Directory_="APPDIR" Attributes="0"/>
     <ROW Feature="FileTypeAssociations" Feature_Parent="MainFeature" Title="File Type Associations" Description="Description" Display="3" Level="1" Directory_="APPDIR" Attributes="0" Options="13"/>
     <ROW Feature="MainFeature" Title="MainFeature" Description="Description" Display="1" Level="1" Directory_="APPDIR" Attributes="0"/>
-    <ROW Feature="MicrosoftVisualC_2013_x64" Title="Microsoft Visual C++ 2013 Redistributable (x64)" Description="Microsoft Visual C++ 2013 Redistributable (x64)" Display="5" Level="1" Attributes="0" Builds="MsiBuild64"/>
-    <ROW Feature="MicrosoftVisualC_2013_x86" Title="Microsoft Visual C++ 2013 Redistributable (x86)" Description="Microsoft Visual C++ 2013 Redistributable (x86)" Display="3" Level="1" Attributes="0" Builds="MsiBuild32"/>
     <ROW Feature="MicrosoftVisualC_2015_x64" Title="Microsoft Visual C++ 2015-2022 Redistributable (x64)" Description="Microsoft Visual C++ 2015-2022 Redistributable (x64)" Display="11" Level="1" Attributes="0" Builds="MsiBuild64"/>
     <ROW Feature="MicrosoftVisualC_2015_x86" Title="Microsoft Visual C++ 2015-2022 Redistributable (x86)" Description="Microsoft Visual C++ 2015-2022 Redistributable (x86)" Display="9" Level="1" Attributes="0" Builds="MsiBuild32"/>
     <ROW Feature="csv" Feature_Parent="FileTypeAssociations" Title=".csv" Description="Description" Display="3" Level="4" Directory_="APPDIR" Attributes="2" Options="27"/>
@@ -911,8 +907,6 @@
     <ROW Feature_="MainFeature" Component_="AIShRegAnswer"/>
     <ROW Feature_="MicrosoftVisualC_2015_x64" Component_="MicrosoftVisualC_2015_x64"/>
     <ROW Feature_="MicrosoftVisualC_2015_x86" Component_="MicrosoftVisualC_2015_x86"/>
-    <ROW Feature_="MicrosoftVisualC_2013_x86" Component_="MicrosoftVisualC_2013_x86"/>
-    <ROW Feature_="MicrosoftVisualC_2013_x64" Component_="MicrosoftVisualC_2013_x64"/>
     <ROW Feature_="MainFeature" Component_="MANUFACTURER_INSTALL_FOLDER_HK_CU"/>
     <ROW Feature_="MainFeature" Component_="locale_HK_CU"/>
     <ROW Feature_="MainFeature" Component_="MANUFACTURER_INSTALL_FOLDER_HK_LM"/>
@@ -1117,8 +1111,6 @@
     <ROW Registry="MANUFACTURER_INSTALL_FOLDER_HK_CU" Root="1" Key="Software\[MANUFACTURER_INSTALL_FOLDER]" Name="+" Component_="MANUFACTURER_INSTALL_FOLDER_HK_CU"/>
     <ROW Registry="MANUFACTURER_INSTALL_FOLDER_HK_LM" Root="2" Key="Software\[MANUFACTURER_INSTALL_FOLDER]" Name="+" Component_="MANUFACTURER_INSTALL_FOLDER_HK_LM"/>
     <ROW Registry="Microsoft" Root="-1" Key="Software\Microsoft" Name="\"/>
-    <ROW Registry="MicrosoftVisualC_2013_x64" Root="-1" Key="Software\Caphyon\Advanced Installer\Prereqs\[ProductCode]\[ProductVersion]" Name="MicrosoftVisualC_2013_x64" Value="1" Component_="MicrosoftVisualC_2013_x64"/>
-    <ROW Registry="MicrosoftVisualC_2013_x86" Root="-1" Key="Software\Caphyon\Advanced Installer\Prereqs\[ProductCode]\[ProductVersion]" Name="MicrosoftVisualC_2013_x86" Value="1" Component_="MicrosoftVisualC_2013_x86"/>
     <ROW Registry="MicrosoftVisualC_2015_x64" Root="-1" Key="Software\Caphyon\Advanced Installer\Prereqs\[ProductCode]\[ProductVersion]" Name="MicrosoftVisualC_2015_x64" Value="1" Component_="MicrosoftVisualC_2015_x64"/>
     <ROW Registry="MicrosoftVisualC_2015_x86" Root="-1" Key="Software\Caphyon\Advanced Installer\Prereqs\[ProductCode]\[ProductVersion]" Name="MicrosoftVisualC_2015_x86" Value="1" Component_="MicrosoftVisualC_2015_x86"/>
     <ROW Registry="ModifyPath" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="ModifyPath" Value="[AI_UNINSTALLER] /i [ProductCode] AI_UNINSTALLER_CTP=1" Component_="AI_CustomARPName"/>
@@ -1338,24 +1330,16 @@
     <ROW Extension_="oform" Component_="DesktopEditors.exe" Verb="edit" Sequence="1" Command="&amp;Edit" Argument="&quot;%1&quot;"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.PreReqComponent">
-    <ROW PrereqKey="MicrosoftVisualC_2013_x64" DisplayName="Microsoft Visual C++ 2013 Redistributable (x64)" VersionMin="12.0.21005" SetupFileUrl="data\vcredist\vcredist_2013_x64.exe" Location="0" ExactSize="0" Operator="0" ComLine="/q /norestart" Options="px" TargetName="Microsoft Visual C++ 2013 Redistributable (x64)\vcredist_2013_x64.exe" Builds="MsiBuild64" Feature="MicrosoftVisualC_2013_x64"/>
-    <ROW PrereqKey="MicrosoftVisualC_2013_x86" DisplayName="Microsoft Visual C++ 2013 Redistributable (x86)" VersionMin="12.0.21005" SetupFileUrl="data\vcredist\vcredist_2013_x86.exe" Location="0" ExactSize="0" Operator="0" ComLine="/q /norestart" Options="p" TargetName="Microsoft Visual C++ 2013 Redistributable (x86)\vcredist_2013_x86.exe" Builds="MsiBuild32" Feature="MicrosoftVisualC_2013_x86"/>
     <ROW PrereqKey="MicrosoftVisualC_2015_x64" DisplayName="Microsoft Visual C++ 2015-2022 Redistributable (x64)" VersionMin="14.32" SetupFileUrl="data\vcredist\vcredist_2022_x64.exe" Location="0" ExactSize="0" Operator="0" ComLine="/q /norestart" Options="px" TargetName="Microsoft Visual C++ 2015-2022 Redistributable (x64)\vcredist_2022_x64.exe" Builds="MsiBuild64" Feature="MicrosoftVisualC_2015_x64"/>
     <ROW PrereqKey="MicrosoftVisualC_2015_x86" DisplayName="Microsoft Visual C++ 2015-2022 Redistributable (x86)" VersionMin="14.32" SetupFileUrl="data\vcredist\vcredist_2022_x86.exe" Location="0" ExactSize="0" Operator="0" ComLine="/q /norestart" Options="p" TargetName="Microsoft Visual C++ 2015-2022 Redistributable (x86)\vcredist_2022_x86.exe" Builds="MsiBuild32" Feature="MicrosoftVisualC_2015_x86"/>
-    <ATTRIBUTE name="PrereqsOrder" value="MicrosoftVisualC_2013_x64 MicrosoftVisualC_2013_x86 MicrosoftVisualC_2015_x64 MicrosoftVisualC_2015_x86"/>
+    <ATTRIBUTE name="PrereqsOrder" value="MicrosoftVisualC_2015_x64 MicrosoftVisualC_2015_x86"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.PreReqSearchComponent">
-    <ROW SearchKey="SystemFoldermsvcp120.dll" Prereq="MicrosoftVisualC_2013_x86" SearchType="0" SearchString="[SystemFolder]msvcp120.dll" VerMin="12.0.21005" Order="2" Property="PreReqSearch_5"/>
-    <ROW SearchKey="SystemFoldermsvcp120.dll_1" Prereq="MicrosoftVisualC_2013_x64" SearchType="0" SearchString="[SystemFolder]msvcp120.dll" VerMin="12.0.21005" Order="2" Property="PreReqSearch_10" Platform="1"/>
     <ROW SearchKey="SystemFoldermsvcp140.dll" Prereq="MicrosoftVisualC_2015_x64" SearchType="0" SearchString="[SystemFolder]msvcp140.dll" VerMin="14.32.31332.0" Order="1" Property="PreReqSearch_8" Platform="1"/>
-    <ROW SearchKey="SystemFoldermsvcr120.dll" Prereq="MicrosoftVisualC_2013_x86" SearchType="0" SearchString="[SystemFolder]msvcr120.dll" VerMin="12.0.21005" Order="3" Property="PreReqSearch_6"/>
-    <ROW SearchKey="SystemFoldermsvcr120.dll_1" Prereq="MicrosoftVisualC_2013_x64" SearchType="0" SearchString="[SystemFolder]msvcr120.dll" VerMin="12.0.21005" Order="3" Property="PreReqSearch_11" Platform="1"/>
     <ROW SearchKey="SystemFoldervcruntime140.dll" Prereq="MicrosoftVisualC_2015_x86" SearchType="0" SearchString="[SystemFolder]msvcp140.dll" VerMin="14.32.31332.0" Order="1" Property="PreReqSearch_1"/>
     <ROW SearchKey="SystemFoldervcruntime140.dll_1" Prereq="MicrosoftVisualC_2015_x86" SearchType="0" SearchString="[SystemFolder]vcruntime140.dll" VerMin="14.32.31332.0" Order="3" Property="PreReqSearch_7"/>
     <ROW SearchKey="SystemFoldervcruntime140.dll_2" Prereq="MicrosoftVisualC_2015_x64" SearchType="0" SearchString="[SystemFolder]vcruntime140.dll" VerMin="14.32.31332.0" Order="3" Property="PreReqSearch_9" Platform="1"/>
     <ROW SearchKey="Version" Prereq="MicrosoftVisualC_2015_x86" SearchType="4" SearchString="{65E5BD06-6392-3027-8C26-853107D3CF1A}" VerMin="14.32.31332.0" Order="0" Property="PreReqSearch_2"/>
     <ROW SearchKey="Version_1" Prereq="MicrosoftVisualC_2015_x64" SearchType="4" SearchString="{36F68A90-239C-34DF-B58C-64B30153CE35}" VerMin="14.32.31332.0" Order="0" Property="PreReqSearch_3" Platform="1"/>
-    <ROW SearchKey="Version_2" Prereq="MicrosoftVisualC_2013_x86" SearchType="4" SearchString="{B59F5BF1-67C8-3802-8E59-2CE551A39FC5}" VerMin="12.0.21005" Order="1" Property="PreReqSearch"/>
-    <ROW SearchKey="Version_3" Prereq="MicrosoftVisualC_2013_x64" SearchType="4" SearchString="{20400CF0-DE7C-327E-9AE4-F0F38D9085F8}" VerMin="12.0.21005" Order="1" Property="PreReqSearch_4" Platform="1"/>
   </COMPONENT>
 </DOCUMENT>

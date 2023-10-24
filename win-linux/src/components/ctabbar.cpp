@@ -1149,7 +1149,7 @@ bool CTabBar::eventFilter(QObject *watched, QEvent *event)
             if (mouse_event->button() == Qt::LeftButton) {
                 while (d->animationInProgress)
                     PROCESSEVENTS();
-                if (d->movedTab) {
+                if (d->movedTab && !d->lock) {
                     if (d->currentIndex != d->movedTabIndex) {
                         d->reorderIndexes();
                         int posX = d->tabLayouts[d->currentIndex].x();
