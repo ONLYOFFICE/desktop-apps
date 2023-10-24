@@ -5,6 +5,7 @@ win-linux/3dparty/WinSparkle/win_64
 win-linux/extras/projicons/build
 win-linux/extras/update-daemon/build
 win-linux/extras/update-daemon/event_message/build
+win-linux/extras/online-installer/build
 win-linux/ASCDocumentEditor.build/*
 
 

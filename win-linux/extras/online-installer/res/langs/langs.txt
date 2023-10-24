@@ -1,0 +1,76 @@
+//                File format for text translations
+// This file is used to store translations of text using a given format. 
+// Each translation consists of a label and a corresponding translations 
+// in different languages. Below is the file structure:
+//
+// LABEL
+// language_code1 =Translation1
+// language_code2 =Translation2
+// ...
+// 
+//    LABEL: The label serves as a translation identifier and written as 
+// one word. Valid characters for the label are numbers, letters, and "_".
+//    language_code1, language_code2, and so on are the ISO 639-1:2002 
+// language codes that will be translated into (for example: en, ru).
+//    Translations: Immediately after the symbol "=" is the translation of 
+// the text into the specified language. The end of the translation string 
+// is a newline. Translations may include special characters and spaces.
+//    Note: comments are allowed only at the beginning of the file.
+
+
+CAPTION_TEXT
+en =ONLYOFFICE Online Installer
+ru =ONLYOFFICE Онлайн Установщик
+
+MESSAGE_TEXT_ERR1
+en =The application cannot continue because this architecture is not supported.
+ru =Приложение не может продолжить работу, так как эта архитектура не поддерживается.
+
+MESSAGE_TEXT_ERR2
+en =The application is already running.
+ru =Приложение уже запущено.
+
+LABEL_TITLE_TEXT 
+en =Preparing for installation
+ru =Подготовка к установке
+
+LABEL_MESSAGE_TEXT
+en =Downloading a package
+ru =Загрузка пакета
+
+LABEL_MESSAGE_TEXT_ERR1
+en =An error occurred during initialization.\nPlease try restarting the app later.
+ru =Произошла ошибка при инициализации.\nПопробуйте перезапустить приложение позже.
+
+LABEL_MESSAGE_TEXT_ERR2
+en =Package download failed: Not enough memory!\nPlease try restarting the app later.
+ru =Ошибка при загрузке пакета: Недостаточно памяти!\nПопробуйте перезапустить приложение позже.
+
+LABEL_MESSAGE_TEXT_ERR3
+en =Package download failed: Server connection error!\nPlease try restarting the app later.
+ru =Ошибка при загрузке пакета: Ошибка соединения!\nПопробуйте перезапустить приложение позже.
+
+LABEL_MESSAGE_TEXT_ERR4
+en =Package download failed: Network error!\nPlease try restarting the app later.
+ru =Ошибка при загрузке пакета: Ошибка сети!\nПопробуйте перезапустить приложение позже.
+
+LABEL_MESSAGE_TEXT_ERR5
+en =An error occurred while running the package.\nPlease try restarting the app later.
+ru =Произошла ошибка при запуске установщика.\nПопробуйте перезапустить приложение позже.
+
+LABEL_MESSAGE_TEXT_ERR6
+en =An error occurred during initialization: Url not set.
+ru =Произошла ошибка при инициализации: Не задан Url.
+
+LABEL_MESSAGE_TEXT_ERR7
+en =An error occurred during initialization: File name not specified.
+ru =Произошла ошибка при инициализации: Не задано имя файла.
+
+BUTTON_CANCEL_TEXT
+en =Cancel
+ru =Отмена
+
+SILENT_CHECK_TEXT
+en =Silent Installation
+ru =Тихая установка
+
