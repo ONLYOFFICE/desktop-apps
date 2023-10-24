@@ -58,6 +58,7 @@ namespace CEditorTools
     void getlocalfile(void * data);
     QString getlocalfile(const std::wstring& path, int parentid = -1);
     QString getlocaltemplate(const std::wstring& editor, int parentid);
+    QString getlocaltheme(int parentid);
     std::wstring getFolder(const std::wstring&, int parentid = -1);
 
     auto createEditorPanel(const COpenOptions& opts, const QRect& rect = QRect()) -> CTabPanel *;

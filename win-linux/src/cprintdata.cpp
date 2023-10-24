@@ -57,7 +57,7 @@ public:
     int copies_count = 1;
 
     auto parseJsonOptions(const std::wstring& json) -> bool {
-        QJsonObject jsonOptions = Utils::parseJson(json);
+        QJsonObject jsonOptions = Utils::parseJsonString(json);
         if ( jsonOptions.contains("nativeOptions") ) {
             QJsonObject native = jsonOptions["nativeOptions"].toObject();
             if ( native.contains("quickPrint") && native["quickPrint"].toBool() ) {

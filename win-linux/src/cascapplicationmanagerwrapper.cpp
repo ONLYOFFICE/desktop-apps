@@ -333,6 +333,43 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
             applyTheme( themes().parseThemeName(pData->get_Param()) );
             return true;
         } else
+        if ( !(cmd.find(L"uitheme:add") == std::wstring::npos) ) {
+            QString file_path = CEditorTools::getlocaltheme(event->get_SenderId());
+
+            QJsonObject json_obj = Utils::parseJsonFile(file_path);
+            if ( !json_obj.isEmpty() ) {
+                if ( json_obj.contains("id") ) {
+                    QString id = json_obj.value("id").toString();
+                    if ( themes().contains(id) ) {
+                        qDebug() << "theme is already loaded";
+                        CMessage::info(WindowHelper::currentTopWindow(), "This theme has been already loaded");
+                    } else {
+                        if ( themes().addLocalTheme(json_obj, file_path) ) {
+                            QJsonArray local_themes_array = themes().localThemesToJson();
+                            if ( !local_themes_array.isEmpty() ) {
+                                EditorJSVariables::setVariable("localthemes", local_themes_array);
+                                EditorJSVariables::apply();
+                            }
+
+                            qDebug() << "send theme to editors";
+
+                            QJsonArray new_local_themes;
+                            new_local_themes.append(json_obj);
+                            sendCommandToAllEditors(L"uitheme:added",
+                                QString(QJsonDocument(new_local_themes).toJson(QJsonDocument::Compact)).toStdWString());
+                        }
+                    }
+                } else {
+                    qDebug() << "theme source is broken";
+                    CMessage::error(WindowHelper::currentTopWindow(), "This file doesn't contain theme");
+                }
+            } else {
+                qDebug() << "theme file is not valid";
+                CMessage::error(WindowHelper::currentTopWindow(), "This theme file is not valid");
+            }
+
+            return true;
+        } else
         if ( !(cmd.find(L"files:check") == std::wstring::npos) ) {
             CExistanceController::check(QString::fromStdWString(pData->get_Param()));
             return true;
@@ -1135,6 +1172,10 @@ void CAscApplicationManagerWrapper::initializeApp()
     AscAppManager::getInstance().InitAdditionalEditorParams(wparams);
 //    AscAppManager::getInstance().applyTheme(themes().current().id(), true);
 
+    QJsonArray local_themes_array = themes().localThemesToJson();
+    if ( !local_themes_array.isEmpty() )
+        EditorJSVariables::setVariable("localthemes", local_themes_array);
+
     EditorJSVariables::setVariable("lang", CLangater::getCurrentLangCode());
     EditorJSVariables::applyVariable("theme", {
                                         {"type", _app.m_themes->current().stype()},
@@ -1501,9 +1542,9 @@ void CAscApplicationManagerWrapper::sendCommandToAllEditors(const std::wstring& 
     for ( auto i : _app.GetViewsId() ) {
         target = _app.GetViewById(i);
 
-        if ( target->GetType() == cvwtEditor ) {
+//        if ( target->GetType() == cvwtEditor ) {
             sendCommandTo(target, cmd, args);
-        }
+//        }
     }
 }
 
