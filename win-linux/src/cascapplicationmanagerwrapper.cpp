@@ -341,8 +341,8 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
                 if ( json_obj.contains("id") ) {
                     QString id = json_obj.value("id").toString();
                     if ( themes().contains(id) ) {
-                        /* theme already loadedl */
                         qDebug() << "theme is already loaded";
+                        CMessage::info(WindowHelper::currentTopWindow(), "This theme has been already loaded");
                     } else {
                         if ( themes().addLocalTheme(json_obj, file_path) ) {
                             QJsonArray local_themes_array = themes().localThemesToJson();
@@ -360,15 +360,13 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
                         }
                     }
                 } else {
-                    /* source theme error */
                     qDebug() << "theme source is broken";
+                    CMessage::error(WindowHelper::currentTopWindow(), "This file doesn't contain theme");
                 }
             } else {
-                /* source file read error */
                 qDebug() << "theme file is not valid";
+                CMessage::error(WindowHelper::currentTopWindow(), "This theme file is not valid");
             }
-
-            qDebug() << "theme" << file_path;
 
             return true;
         } else
