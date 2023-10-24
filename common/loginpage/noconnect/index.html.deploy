@@ -1,12 +1,12 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>ONLYOFFICE Documents error</title>
+    <title>asc error</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="description" content="" />
     <meta name="keywords" content="" />
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <style>
         html {
@@ -61,23 +61,9 @@
     </style>
 </head>
 <body>
-    <section class="center">
-        <svg class="icon">
-            <use href="#connection_error"></use>
-        </svg>
-        <label id="idx-msg-short" class="description description__short">ASD</label>
-        <label id="idx-msg-long" class="description description__long">asd</label>
-    </section>
-    <script src="../vendor/svg-injector/svg-injector.min.js"></script>
     <div class="hidden">
-        <img class="inline-svg" src="../res/connection_error.svg">
+        <img class="inline-svg" src="connection_error.svg">
     </div>
-    <script>
-        var svgpoints = document.querySelectorAll('img.inline-svg');
-        SVGInjector(svgpoints, {evalScripts:'never'});
-    </script>
-    <script src="./locale.js"></script>
-    <script src="../locale/ru.js"></script>
-    <script src="./code.js"></script>
+    <script someprefix replace src="./code.min.js"></script>
 </body>
 </html>
