@@ -595,14 +595,14 @@ void CSvcManager::startReplacingFiles(const tstring &packageType, const bool res
         }
     }
 
-    // Remove Backup dir
-    NS_File::removeDirRecursively(tmpPath);
-
     // Restart program
     if (restartAfterUpdate) {
         if (!NS_File::runProcess(appPath + APP_LAUNCH_NAME, _T("")))
             NS_Logger::WriteLog(_T("An error occurred while restarting the program!"), true);
     }
+
+    // Remove Backup dir
+    NS_File::removeDirRecursively(tmpPath);
 
     // Restart service
 #ifdef _WIN32
