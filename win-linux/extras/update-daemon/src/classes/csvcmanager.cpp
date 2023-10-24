@@ -441,6 +441,9 @@ void CSvcManager::clearTempFiles(const tstring &prefix, const tstring &except)
                     NS_File::removeFile(filePath);
             }
         }
+        tstring updPath = NS_File::parentPath(NS_File::appPath()) + UPDATE_PATH;
+        if (except.empty() && NS_File::dirExists(updPath))
+            NS_File::removeDirRecursively(updPath);
     });
 }
 
