@@ -1059,7 +1059,7 @@ void CAscApplicationManagerWrapper::startApp()
         bool _nc_exist = QFileInfo::exists(_nc_path) || QFile::copy(":/noconnect.html", _nc_path);
 
         if ( _nc_exist ) {
-            _app.m_oSettings.connection_error_path = _nc_path;
+            _app.m_oSettings.connection_error_path = _nc_path.toStdWString();
         }
     }
 
