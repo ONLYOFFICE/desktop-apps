@@ -89,7 +89,7 @@ public:
             }
 
             if ( native.contains("paperOrientation") ) {
-                page_orientation = native["paperOrientation"].toString() == "portrait" ? QPageLayout::Portrait : QPageLayout::Landscape;
+                page_orientation = native["paperOrientation"].toString() == "landscape" ? QPageLayout::Landscape : QPageLayout::Portrait;
             }
 
             if ( native.contains("paperSize") ) {
@@ -145,6 +145,11 @@ CPrintData::CPrintData()
     : m_priv(new CPrintData::CPrintDataPrivate)
 {
 
+}
+
+CPrintData::~CPrintData()
+{
+    delete m_priv, m_priv = nullptr;
 }
 
 auto CPrintData::init(NSEditorApi::CAscPrintEnd * data) -> void
