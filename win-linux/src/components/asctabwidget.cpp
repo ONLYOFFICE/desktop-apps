@@ -513,15 +513,15 @@ void CAscTabWidget::setTabActiveColor(int index, const std::wstring& color)
 {
 }
 
-void CAscTabWidget::setTabThemeType(int index, const QString& type)
+void CAscTabWidget::setTabTheme(int index, const QString& type, const QString& color)
 {
     if ( !(index < 0) && index < count() ) {
-        if ( type == "dark" ) {
-            m_pBar->setActiveTabColor(index, "#333");
-            m_pBar->setTabThemeType(index, CTabBar::DarkTab);
-        } else {
-            m_pBar->setActiveTabColor(index, "#fff");
-            m_pBar->setTabThemeType(index, CTabBar::LightTab);
+        if ( !type.isEmpty() ) {
+            m_pBar->setTabThemeType(index, type == "dark" ? CTabBar::DarkTab : CTabBar::LightTab);
+        }
+
+        if ( !color.isEmpty() ) {
+            m_pBar->setActiveTabColor(index, color);
         }
     }
 }

@@ -697,11 +697,27 @@ void CMainWindow::onPortalLogin(int viewid, const std::wstring &json)
         if( jerror.error == QJsonParseError::NoError ) {
             QJsonObject objRoot = jdoc.object();
             QString _ui_theme = objRoot["uiTheme"].toString();
-            if ( !_ui_theme.isEmpty() ) {
-//                onFileLocation(vid, _url);
 
-                if ( _ui_theme == "default-dark" )
-                    m_pTabs->setTabThemeType(m_pTabs->tabIndexByView(viewid), "dark");
+            if ( !_ui_theme.isEmpty() )
+                onPortalUITheme(viewid, _ui_theme.toStdWString());
+        }
+    }
+}
+
+void CMainWindow::onPortalUITheme(int viewid, const std::wstring& json)
+{
+    if ( !json.empty() ) {
+        if ( json.rfind(L"default-", 0) == 0 ) {
+            if ( json.compare(L"default-dark") == 0 )
+                m_pTabs->setTabTheme(m_pTabs->tabIndexByView(viewid), "dark", "#333");
+            else m_pTabs->setTabTheme(m_pTabs->tabIndexByView(viewid), "light", "#fff");
+        } else {
+            QJsonParseError jerror;
+            QJsonDocument jdoc = QJsonDocument::fromJson(QString::fromStdWString(json).toLatin1(), &jerror);
+
+            if( jerror.error == QJsonParseError::NoError ) {
+                QJsonObject objRoot = jdoc.object();
+                m_pTabs->setTabTheme(m_pTabs->tabIndexByView(viewid), objRoot["type"].toString(), objRoot["color"].toString());
             }
         }
     }
