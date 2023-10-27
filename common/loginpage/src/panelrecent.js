@@ -103,12 +103,13 @@
 
             var _tpl = `<tr${id} class="${info.crypted ? 'crypted' : ''}">
                           <td class="row-cell cicon">
-                             ${info.type=='folder'?`<i class="icon img-el folder"/>`:
-                                `${!isSvgIcons ?
-                                    `<i class="icon img-format ${info.format}"/>`:
-                                    `<svg class = "icon"><use xlink:href="#${info.format}"></use></svg>`
-                                }`
+                            ${!isSvgIcons ?
+                                `<i class="icon ${info.type=='folder'?'img-el folder':`img-format ${info.format}`}" />`:
+                                `<svg class = "icon ${info.type=='folder'?'folder':''}">
+                                    <use xlink:href="#${info.type=='folder'?'folder-small':`${info.format}`}"></use>
+                                </svg>`
                             }
+                            
                           </td>
                           <td class="row-cell cname">
                             <p class="name primary">${info.name}</p>
@@ -134,9 +135,22 @@
                 } else {
                     icoName =  elmIcon.attr('class').split(' ').filter((cls)=> cls != 'icon' && cls != 'img-format');
                     $('i',elm).remove();
-                    elm.append($(`<svg class = "icon"><use xlink:href="#${icoName}"></use></svg>`)).appendTo(elm);
+                    elm.append($(`<svg class = "icon"><use xlink:href="#${icoName}"></use></svg>`));
                 }
             });
+
+            $('#box-recent-folders td.cicon').each(function (e){
+                elm=$(this);
+                if(isSvgIcons) {
+                    $('svg', elm).remove();
+                    elm.append($('<i class="icon img-el folder" />'));
+                } else {
+                    $('i.folder', elm).remove();
+                    elm.append($('<svg class = "icon  folder"> <use xlink:href="#folder-small"></use></svg>'));
+                }
+
+            });
+
             isSvgIcons = insertSvg;
         },
         updatelistsize: function() {
