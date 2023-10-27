@@ -227,7 +227,7 @@
                                                 <section class='box-cmp-select'>
                                                     <select class='combobox' data-size='5'></select>
                                                 </section>
-                                                <button class="btn btn--primary" id="idx-btn-addtheme" l10n>Add theme</button>
+                                                <button class="btn btn--primary hidden" id="idx-btn-addtheme" l10n>Add theme</button>
                                             </div>
                                         </div>
                                         <div class='settings-field' id="opts-launch-mode" style='display:none;'>
@@ -509,8 +509,13 @@
                                             {'theme-dark': utils.Lang.settOptThemeDark},
                                             {'theme-contrast-dark': utils.Lang.settOptThemeContrastDark}];
 
-                            if ( nativevars.theme && nativevars.theme.system == 'disabled' )
-                                _themes.shift();
+                            if ( nativevars.theme ) {
+                                if ( nativevars.theme.system == 'disabled' )
+                                    _themes.shift();
+
+                                if ( nativevars.theme.addlocal == 'on' )
+                                    $('#idx-btn-addtheme').show();
+                            }
 
                             const _combo = $('#opts-ui-theme select', $panel).empty();
                             _themes.forEach(item => {
