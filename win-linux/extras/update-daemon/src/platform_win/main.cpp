@@ -95,9 +95,16 @@ int __cdecl _tmain (int argc, TCHAR *argv[])
             if (!socket.isPrimaryInstance())
                 return 0;
 
+            int pid = -1;
+            if (argc > 2) {
+                wchar_t *err = NULL;
+                int _pid = wcstol(argv[2], &err, 10);
+                if (!err || *err == L'\0')
+                    pid = _pid;
+            }
+
             CApplication app;
             CSvcManager upd;
-            int pid = -1;
             socket.onMessageReceived([&app, &pid](void *buff, size_t) {
                 if (strcmp((const char*)buff, "stop") == 0)
                     app.exit(0);
