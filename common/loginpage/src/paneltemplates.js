@@ -108,6 +108,7 @@
                 errorBox.render({
                     parent: $('#frame')[0],
                     lang: utils.Lang.id,
+                    page: 'templates',
                 });
 
                 const _check_url_avail = () => {
