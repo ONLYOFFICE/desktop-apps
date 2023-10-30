@@ -31,6 +31,7 @@
 */
 
 'use strict';
+var isSvgIcons = false;
 $(document).ready(function() {
     $('.tool-menu').on('click', '> .menu-item > a', onActionClick);
     $('.tool-quick-menu .menu-item a').click(onNewFileClick);
@@ -54,7 +55,8 @@ $(document).ready(function() {
     $('a[action="new:xlsx"] > .text').text(utils.Lang.newXlsx);
     $('a[action="new:pptx"] > .text').text(utils.Lang.newPptx);
     $('a[action="new:form"] > .text').text(utils.Lang.newForm);
-
+    replaceIcons();
+    $(window).resize(replaceIcons);
 
     if (!localStorage.welcome) {
         app.controller.welcome = (new ControllerWelcome).init();
@@ -153,6 +155,24 @@ var OPEN_FILE_RECOVERY = 1;
 var OPEN_FILE_RECENT = 2;
 var OPEN_FILE_FOLDER = 3;
 var Scroll_offset = '16px';
+
+function replaceIcons() {
+    console.log(window.devicePixelRatio);
+    console.log(isSvgIcons);
+
+    if(isSvgIcons== (window.devicePixelRatio>=2 || window.devicePixelRatio==1)) return;
+
+    ['docx', 'xlsx', 'pptx', 'form'].forEach(function (e){
+        let parentElm =$(`a[action="new:${e}"]`);
+        //let format = e == 'form' ? 'docxf' : e;
+        $(isSvgIcons? 'svg' :'i',parentElm).remove();
+        if(isSvgIcons )
+            parentElm.prepend( $( '<i class="icon img-el"></i>') );
+        else
+            parentElm.prepend( $(`<svg class="icon"><use xlink:href="#${e == 'form' ? 'docxf' : e }-big"></use> </svg>`));
+    });
+    isSvgIcons = !isSvgIcons;
+}
 
 function onNewFileClick(e) {
     if ($(e.currentTarget).parent().hasClass('disabled'))
