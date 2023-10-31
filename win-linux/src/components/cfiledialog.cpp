@@ -335,7 +335,7 @@ QStringList CFileDialogWrapper::modalOpenDocuments(const QString& path, bool mul
     QString filter = m_mapFilters[AVS_OFFICESTUDIO_FILE_UNKNOWN];
     filter.prepend(tr("Text documents") + " (*.docx *.doc *.odt *.ott *.rtf *.docm *.dotx *.dotm *.fb2 *.fodt *.wps *.wpt *.xml);;");
 
-    return modalOpen(path, filter, nullptr, multi);
+    return modalOpen(path, filter, &filter, multi);
 }
 
 QStringList CFileDialogWrapper::modalOpenSpreadsheets(const QString& path, bool multi)
