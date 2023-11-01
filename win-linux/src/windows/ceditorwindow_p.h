@@ -769,7 +769,7 @@ public:
              iconCrypted();
         }
 
-        if ( is_read_only != panel()->data()->hasFeature(L"readonly\":") && boxtitlelabel ) {
+        if ( is_read_only != panel()->data()->hasFeature(L"readonly\":true") && boxtitlelabel ) {
             window->setWindowTitle(m_panel->data()->title());
             window->m_boxTitleBtns->repaint();
         }
