@@ -157,8 +157,6 @@ var OPEN_FILE_FOLDER = 3;
 var Scroll_offset = '16px';
 
 function replaceIcons() {
-    console.log(window.devicePixelRatio);
-    console.log(isSvgIcons);
 
     if(isSvgIcons== (window.devicePixelRatio>=2 || window.devicePixelRatio==1)) return;
 

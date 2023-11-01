@@ -452,7 +452,12 @@ li.menu-item {
         padding: 0;
         opacity: .8;
         background-color: transparent;
-
+        svg.icon {
+            fill: #5a5a5a;
+            .theme-type-dark & {
+                fill: #a5a5a5;
+            }
+        }
         .icon {
             width: 24px;
             height: 24px;
