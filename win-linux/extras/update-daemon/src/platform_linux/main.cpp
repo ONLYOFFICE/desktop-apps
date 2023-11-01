@@ -40,6 +40,14 @@
 #include <cstring>
 
 
+void strToNum(const char *str, int &num)
+{
+    char *err = NULL;
+    int _num = strtol(str, &err, 10);
+    if (!err || *err == '\0')
+        num = _num;
+}
+
 int main(int argc, char *argv[])
 {
     NS_File::setAppPath(argv[0]);
@@ -50,18 +58,17 @@ int main(int argc, char *argv[])
             if (!socket.isPrimaryInstance())
                 return 0;
 
+            int pid = -1;
+            if (argc > 2)
+                strToNum(argv[2], pid);
+
             CApplication app;
             CSvcManager upd;
-            int pid = -1;
             socket.onMessageReceived([&app, &pid](void *buff, size_t) {
                 if (strcmp((const char*)buff, "stop") == 0)
                     app.exit(0);
-                else {
-                    char *err = NULL;
-                    int _pid = strtol((const char*)buff, &err, 10);
-                    if (!err || *err == '\0')
-                        pid = _pid;
-                }
+                else
+                    strToNum((const char*)buff, pid);
             });
 
             // Checking for the completion of the main application:

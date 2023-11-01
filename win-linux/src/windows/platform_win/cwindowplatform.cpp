@@ -194,7 +194,7 @@ bool CWindowPlatform::nativeEvent(const QByteArray &eventType, void *message, lo
         mrg.cyTopHeight = 29;
         DwmExtendFrameIntoClientArea(m_hWnd, &mrg);
 #endif
-        return true;
+        break;
     }
 
     case WM_DPICHANGED: {
@@ -431,7 +431,7 @@ bool CWindowPlatform::nativeEvent(const QByteArray &eventType, void *message, lo
     case WM_NCACTIVATE: {
         // Prevent the title bar from being drawn when the window is restored or maximized
         if (m_borderless) {
-            if (!msg->wParam) {
+            if (!LOWORD(msg->wParam)) {
                 *result = TRUE;
                 break;
             }

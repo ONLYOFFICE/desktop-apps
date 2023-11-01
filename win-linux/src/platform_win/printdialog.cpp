@@ -195,7 +195,7 @@ QDialog::DialogCode PrintDialog::exec()
 //    auto qt_supports_multi_copies = m_printer->supportsMultipleCopies();
 //    auto qt_selection_option = m_printer->printerSelectionOption();
 //    auto qt_output_format = m_printer->outputFormat();
-//    auto qt_paper_source = m_printer->paperSource();
+    auto qt_paper_source = m_printer->paperSource();
 
     // Qt-PrintOptions:
     // None = 0
@@ -274,6 +274,23 @@ QDialog::DialogCode PrintDialog::exec()
 
 //                if (pDevMode->dmFields & DM_COLLATE)
 //                    pDevMode->dmCollate = DMCOLLATE_TRUE;
+
+                if (pDevMode->dmFields & DM_DEFAULTSOURCE)
+                    pDevMode->dmDefaultSource = (qt_paper_source == QPrinter::Auto) ? DMBIN_AUTO :
+                                                (qt_paper_source == QPrinter::Cassette) ? DMBIN_CASSETTE :
+                                                (qt_paper_source == QPrinter::Envelope) ? DMBIN_ENVELOPE :
+                                                (qt_paper_source == QPrinter::EnvelopeManual) ? DMBIN_ENVMANUAL :
+                                                (qt_paper_source == QPrinter::FormSource) ? DMBIN_FORMSOURCE :
+                                                (qt_paper_source == QPrinter::LargeCapacity) ? DMBIN_LARGECAPACITY :
+                                                (qt_paper_source == QPrinter::LargeFormat) ? DMBIN_LARGEFMT :
+                                                (qt_paper_source == QPrinter::LastPaperSource) ? DMBIN_LAST :
+                                                (qt_paper_source == QPrinter::Lower) ? DMBIN_LOWER :
+                                                (qt_paper_source == QPrinter::Manual) ? DMBIN_MANUAL :
+                                                (qt_paper_source == QPrinter::Middle) ? DMBIN_MIDDLE :
+                                                (qt_paper_source == QPrinter::OnlyOne) ? DMBIN_ONLYONE :
+                                                (qt_paper_source == QPrinter::SmallFormat) ? DMBIN_SMALLFMT :
+                                                (qt_paper_source == QPrinter::Tractor) ? DMBIN_TRACTOR :
+                                                (qt_paper_source == QPrinter::Upper) ? DMBIN_UPPER : DMBIN_USER;
 
                 if (pDevMode->dmFields & DM_COPIES)
                     pDevMode->dmCopies = qt_copy_count;
@@ -359,6 +376,21 @@ QDialog::DialogCode PrintDialog::exec()
             if (pDevmode) {
                 m_printer->setPrinterName(QString::fromStdWString(pDevmode->dmDeviceName));
                 m_printer->setColorMode(pDevmode->dmColor == DMCOLOR_COLOR ? QPrinter::Color : QPrinter::GrayScale);
+                m_printer->setPaperSource(pDevmode->dmDefaultSource == DMBIN_AUTO ? QPrinter::Auto :
+                                          pDevmode->dmDefaultSource == DMBIN_CASSETTE ? QPrinter::Cassette :
+                                          pDevmode->dmDefaultSource == DMBIN_ENVELOPE ? QPrinter::Envelope :
+                                          pDevmode->dmDefaultSource == DMBIN_ENVMANUAL ? QPrinter::EnvelopeManual :
+                                          pDevmode->dmDefaultSource == DMBIN_FORMSOURCE ? QPrinter::FormSource :
+                                          pDevmode->dmDefaultSource == DMBIN_LARGECAPACITY ? QPrinter::LargeCapacity :
+                                          pDevmode->dmDefaultSource == DMBIN_LARGEFMT ? QPrinter::LargeFormat :
+                                          pDevmode->dmDefaultSource == DMBIN_LAST ? QPrinter::LastPaperSource :
+                                          pDevmode->dmDefaultSource == DMBIN_LOWER ? QPrinter::Lower :
+                                          pDevmode->dmDefaultSource == DMBIN_MANUAL ? QPrinter::Manual :
+                                          pDevmode->dmDefaultSource == DMBIN_MIDDLE ? QPrinter::Middle :
+                                          pDevmode->dmDefaultSource == DMBIN_ONLYONE ? QPrinter::OnlyOne :
+                                          pDevmode->dmDefaultSource == DMBIN_SMALLFMT ? QPrinter::SmallFormat :
+                                          pDevmode->dmDefaultSource == DMBIN_TRACTOR ? QPrinter::Tractor :
+                                          pDevmode->dmDefaultSource == DMBIN_UPPER ? QPrinter::Upper : QPrinter::CustomSource);
                 m_print_range = (dlg.Flags & PD_SELECTION) ? PrintRange::Selection :
                                     (dlg.Flags & PD_PAGENUMS) ? PrintRange::PageRange :
                                     (dlg.Flags & PD_CURRENTPAGE) ? PrintRange::CurrentPage : PrintRange::AllPages;

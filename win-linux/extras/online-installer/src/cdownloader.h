@@ -28,42 +28,42 @@
  * Creative Commons Attribution-ShareAlike 4.0 International. See the License
  * terms at http://creativecommons.org/licenses/by-sa/4.0/legalcode
  *
-*/
+ */
 
-#ifndef CEDITORTOOLS_H
-#define CEDITORTOOLS_H
+#ifndef CDOWNLOADER_H
+#define CDOWNLOADER_H
 
-#include "qascprinter.h"
-#include "cascapplicationmanagerwrapper.h"
-#include "components/cprintdialog.h"
+#include <string>
+#include <functional>
+#include <future>
 
-namespace CEditorTools
+typedef std::function<void(int)> FnVoidInt;
+
+using std::wstring;
+
+class CDownloader
 {
-    struct sPrintConf
-    {
-        sPrintConf(CCefView * v, QAscPrinterContext * c, QVector<PageRanges> *ranges, ParentHandle p)
-            : view(v)
-            , context(c)
-            , page_ranges(ranges)
-            , parent(p)
-        {}
+public:
+    CDownloader();
+    ~CDownloader();
 
-        CCefView * view;
-        QAscPrinterContext * context;
-        QVector<PageRanges> *page_ranges;
-        ParentHandle parent;
-    };
+    void downloadFile(const wstring &url, const wstring &filePath);
+    void start();
+    void stop();
+    wstring GetFilePath();
 
-    void print(const sPrintConf&);
-    void getlocalfile(void * data);
-    QString getlocalfile(const std::wstring& path, int parentid = -1);
-    QString getlocaltemplate(const std::wstring& editor, int parentid);
-    QString getlocaltheme(int parentid);
-    std::wstring getFolder(const std::wstring&, int parentid = -1);
+    /* callback */
+    void onComplete(FnVoidInt callback);
+    void onProgress(FnVoidInt callback);
 
-    auto createEditorPanel(const COpenOptions& opts, const QRect& rect = QRect()) -> CTabPanel *;
-    auto editorTypeFromFormat(int format) -> AscEditorType;
-    auto processLocalFileSaveAs(const NSEditorApi::CAscCefMenuEvent * event) -> void;
-}
+private:
+    FnVoidInt m_complete_callback = nullptr,
+              m_progress_callback = nullptr;
+    wstring   m_url,
+              m_filePath;
+    std::future<void> m_future;
+    std::atomic_bool m_run,
+                     m_lock;
+};
 
-#endif // CEDITORTOOLS_H
+#endif // CDOWNLOADER_H

@@ -41,6 +41,7 @@ class CPrintData
 {
 public:
     explicit CPrintData();
+    ~CPrintData();
 
     auto init(NSEditorApi::CAscPrintEnd *) -> void;
     auto init(int, NSEditorApi::CAscPrintEnd *) -> void;

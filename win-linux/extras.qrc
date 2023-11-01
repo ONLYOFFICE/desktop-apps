@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/">
+        <file alias="noconnect.html">../common/loginpage/deploy/noconnect.html</file>
+    </qresource>
+</RCC>

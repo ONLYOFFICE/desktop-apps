@@ -67,7 +67,7 @@
     }
 
     const nativevars = window.RendererProcessVariable;
-    {
+
         const create_colors_css = function (id, colors) {
             if ( !!colors && !!id ) {
                 let _css_array = [':root .', id, '{'];
@@ -98,7 +98,6 @@
                 }
             }
         }
-    }
 
     const uitheme = { id: nativevars.theme.id, type: nativevars.theme.type }
     uitheme.set_id = function (id) {
@@ -228,6 +227,7 @@
                                                 <section class='box-cmp-select'>
                                                     <select class='combobox' data-size='5'></select>
                                                 </section>
+                                                <button class="btn btn--primary hidden" id="idx-btn-addtheme" l10n>Add theme</button>
                                             </div>
                                         </div>
                                         <div class='settings-field' id="opts-launch-mode" style='display:none;'>
@@ -320,6 +320,25 @@
                 CommonEvents.fire('theme:changed', [theme_id, themes_map[theme_id].type]);
             }
         };
+
+        function _add_themes(objs) {
+            const _combo = $('#opts-ui-theme select', $panel);
+            if ( objs ) {
+                !(objs instanceof Array) && (objs = [objs]);
+
+                objs.forEach(t => {
+                    const _css = create_colors_css(t.id, t.colors);
+                    if ( _css ) {
+                        write_theme_css(_css);
+                        themes_map[t.id] = {text: t.name, type: t.type, l10n: t.l10n};
+
+                        const _theme_title = t.l10n[utils.Lang.id] || t.name;
+                        _combo.append(`<option value=${t.id} l10n>${_theme_title}</option>`);
+                    }
+                });
+                $optsUITheme.selectpicker('refresh');
+            }
+        }
 
         const _validate_user_name = name => {
             // return /^[\p{L}\p{M}\p{N}'"\.\- ]+$/u.test(name);
@@ -490,8 +509,13 @@
                                             {'theme-dark': utils.Lang.settOptThemeDark},
                                             {'theme-contrast-dark': utils.Lang.settOptThemeContrastDark}];
 
-                            if ( nativevars.theme && nativevars.theme.system == 'disabled' )
-                                _themes.shift();
+                            if ( nativevars.theme ) {
+                                if ( nativevars.theme.system == 'disabled' )
+                                    _themes.shift();
+
+                                if ( nativevars.theme.addlocal == 'on' )
+                                    $('#idx-btn-addtheme').show();
+                            }
 
                             const _combo = $('#opts-ui-theme select', $panel).empty();
                             _themes.forEach(item => {
@@ -587,6 +611,19 @@
 
                 _apply_theme(param);
             } else
+            if (/uitheme:added/.test(cmd)) {
+                console.log('theme added');
+
+                let _theme;
+                try {
+                    _theme = JSON.parse(param);
+                }
+                catch (e) {}
+
+                if ( _theme ) {
+                    _add_themes(_theme);
+                }
+            } else
             if (/renderervars:changed/.test(cmd)) {
                 let opts;
                 try { opts = JSON.parse( $('<div>').html(param).text() ); }
@@ -646,6 +683,10 @@
             // }
         };
 
+        const _on_click_add_theme = function() {
+            sdk.command("uitheme:add", "local");
+        }
+
         return {
             init: function() {
                 baseController.prototype.init.apply(this, arguments);
@@ -673,6 +714,8 @@
                     if ( $btnApply.prop('disabled') )
                         $btnApply.prop('disabled', false);
                 });
+
+                $('#idx-btn-addtheme').on('click', _on_click_add_theme);
 
                 let _user_name = localStorage.getItem('username') || '';
                 let _open_mode = localStorage.getItem('docopenmode') || 'edit';

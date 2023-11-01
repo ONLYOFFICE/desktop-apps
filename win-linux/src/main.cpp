@@ -96,7 +96,6 @@ int main( int argc, char *argv[] )
         manager->m_oSettings.recover_path               = (user_data_path + "/recover").toStdWString();
         manager->m_oSettings.user_plugins_path          = (user_data_path + "/sdkjs-plugins").toStdWString();
         manager->m_oSettings.local_editors_path         = app_path + L"/editors/web-apps/apps/api/documents/index.html";
-        manager->m_oSettings.connection_error_path      = app_path + L"/converter/connection/index.html";
         manager->m_oSettings.additional_fonts_folder.push_back(app_path + L"/fonts");
         manager->m_oSettings.country = Utils::systemLocationCode().toStdString();
     };

@@ -57,7 +57,7 @@ public:
     int copies_count = 1;
 
     auto parseJsonOptions(const std::wstring& json) -> bool {
-        QJsonObject jsonOptions = Utils::parseJson(json);
+        QJsonObject jsonOptions = Utils::parseJsonString(json);
         if ( jsonOptions.contains("nativeOptions") ) {
             QJsonObject native = jsonOptions["nativeOptions"].toObject();
             if ( native.contains("quickPrint") && native["quickPrint"].toBool() ) {
@@ -89,7 +89,7 @@ public:
             }
 
             if ( native.contains("paperOrientation") ) {
-                page_orientation = native["paperOrientation"].toString() == "portrait" ? QPageLayout::Portrait : QPageLayout::Landscape;
+                page_orientation = native["paperOrientation"].toString() == "landscape" ? QPageLayout::Landscape : QPageLayout::Portrait;
             }
 
             if ( native.contains("paperSize") ) {
@@ -145,6 +145,11 @@ CPrintData::CPrintData()
     : m_priv(new CPrintData::CPrintDataPrivate)
 {
 
+}
+
+CPrintData::~CPrintData()
+{
+    delete m_priv, m_priv = nullptr;
 }
 
 auto CPrintData::init(NSEditorApi::CAscPrintEnd * data) -> void

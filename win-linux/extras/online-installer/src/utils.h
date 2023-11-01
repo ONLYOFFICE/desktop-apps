@@ -30,40 +30,53 @@
  *
 */
 
-#ifndef CEDITORTOOLS_H
-#define CEDITORTOOLS_H
+#ifndef UTILS_H
+#define UTILS_H
 
-#include "qascprinter.h"
-#include "cascapplicationmanagerwrapper.h"
-#include "components/cprintdialog.h"
+#include <string>
+#include <list>
+#include <tchar.h>
 
-namespace CEditorTools
+using std::string;
+using std::wstring;
+using std::to_wstring;
+using std::list;
+
+#define DEFAULT_ERROR_MESSAGE _T("An error occurred: ") + \
+    wstring(_T(__FUNCTION__)) + _T(" Line: ") + to_wstring(__LINE__)
+#define ADVANCED_ERROR_MESSAGE DEFAULT_ERROR_MESSAGE + \
+    _T(" ") + NS_Utils::GetLastErrorAsString()
+
+
+enum class WinVer : unsigned char {
+    Undef, WinXP, WinVista, Win7, Win8, Win8_1, Win10, Win11
+};
+
+namespace NS_Utils
 {
-    struct sPrintConf
-    {
-        sPrintConf(CCefView * v, QAscPrinterContext * c, QVector<PageRanges> *ranges, ParentHandle p)
-            : view(v)
-            , context(c)
-            , page_ranges(ranges)
-            , parent(p)
-        {}
-
-        CCefView * view;
-        QAscPrinterContext * context;
-        QVector<PageRanges> *page_ranges;
-        ParentHandle parent;
-    };
-
-    void print(const sPrintConf&);
-    void getlocalfile(void * data);
-    QString getlocalfile(const std::wstring& path, int parentid = -1);
-    QString getlocaltemplate(const std::wstring& editor, int parentid);
-    QString getlocaltheme(int parentid);
-    std::wstring getFolder(const std::wstring&, int parentid = -1);
-
-    auto createEditorPanel(const COpenOptions& opts, const QRect& rect = QRect()) -> CTabPanel *;
-    auto editorTypeFromFormat(int format) -> AscEditorType;
-    auto processLocalFileSaveAs(const NSEditorApi::CAscCefMenuEvent * event) -> void;
+wstring GetLastErrorAsString();
+void ShowMessage(wstring str, bool showError = false);
 }
 
-#endif // CEDITORTOOLS_H
+namespace NS_File
+{
+bool runProcess(const wstring &fileName, const wstring &args, bool runAsAdmin = false);
+//bool isProcessRunning(const wstring &fileName);
+bool fileExists(const wstring &filePath);
+bool removeFile(const wstring &filePath);
+wstring fromNativeSeparators(const wstring &path);
+wstring toNativeSeparators(const wstring &path);
+wstring parentPath(const wstring &path);
+//wstring tempPath();
+wstring appPath();
+WinVer getWinVersion();
+//bool verifyEmbeddedSignature(const wstring &fileName);
+}
+
+namespace NS_Logger
+{
+void AllowWriteLog();
+void WriteLog(const wstring &log, bool showMessage = false);
+}
+
+#endif // UTILS_H

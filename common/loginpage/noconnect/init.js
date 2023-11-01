@@ -21,23 +21,14 @@ if ( nativevars ) {
 }
 
 const params = getUrlParams();
-window.i18n.set_lang(lang || (params["lang"] || 'en').split(/[\-\_]/)[0]);
 !theme && (theme = params['uitheme'] || 'light');
 page = params['page'];
 
+errorBox.render({
+    page: params['page'],
+    lang: lang || params["lang"],
+});
+
 if ( theme == 'dark' ) {
     document.body.classList.add('theme-type-dark')
-}
-
-const ms = document.getElementById("idx-msg-short");
-if ( ms ) ms.innerText = window.i18n.tr("msgNoConn");
-
-const ml = document.getElementById("idx-msg-long");
-if ( ml ) {
-    if ( page == 'file' )
-        ml.innerText = window.i18n.tr("msgFileNoConnDesc");
-    else
-    if ( page == 'templates')
-        ml.innerText = window.i18n.tr("msgTemplatesNoConnDesc");
-    else ml.innerText = window.i18n.tr("msgNoConnDesc");
 }

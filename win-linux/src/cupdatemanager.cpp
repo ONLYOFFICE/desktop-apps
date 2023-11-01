@@ -47,12 +47,14 @@
 #ifdef _WIN32
 # include "platform_win/updatedialog.h"
 # define DAEMON_NAME L"/updatesvc.exe"
+# define GetPid() GetCurrentProcessId()
 #else
 # include <QProcess>
 # include <unistd.h>
 # include "components/cmessage.h"
 # include "platform_linux/updatedialog.h"
 # define DAEMON_NAME "/updatesvc"
+# define GetPid() getpid()
 #endif
 
 #define modeToEnum(mod) ((mod == "silent") ? UpdateMode::SILENT : (mod == "ask") ? UpdateMode::ASK : UpdateMode::DISABLE)
@@ -287,17 +289,11 @@ CUpdateManager::CUpdateManager(QObject *parent):
             refreshStartPage({"lastcheck", {TXT_LAST_CHECK, formattedTime(m_lastCheck)}});
         });
         if (IsPackage(Portable)) {
-            runProcess(QStrToTStr(qApp->applicationDirPath()) + DAEMON_NAME, _T("--run-as-app"));
-            QTimer::singleShot(0, this, []() {
-                std::string msg;
-#ifdef _WIN32
-                msg = std::to_string(GetCurrentProcessId());
-#else
-                msg = std::to_string(getpid());
-#endif
-                CSocket sock(INSTANCE_SVC_PORT, 0);
-                sock.sendMessage((void*)msg.c_str(), sizeof(msg));
-            });
+            int pid = GetPid();
+            std::string msg = std::to_string(pid);
+            CSocket sock(INSTANCE_SVC_PORT, 0);
+            sock.sendMessage((void*)msg.c_str(), msg.length() + 1);
+            runProcess(QStrToTStr(qApp->applicationDirPath()) + DAEMON_NAME, _T("--run-as-app ") + std::to_tstring(pid));
         }
         init();
     } else {

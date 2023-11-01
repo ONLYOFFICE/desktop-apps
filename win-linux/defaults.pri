@@ -327,6 +327,10 @@ build_xp {
     DESTDIR = $$DESTDIR/xp
 }
 
+exists($$PWD/../common/loginpage/deploy/noconnect.html) {
+    RESOURCES += $$PWD/extras.qrc
+}
+
 OBJECTS_DIR = $$DESTDIR/obj
 MOC_DIR = $$DESTDIR/moc
 RCC_DIR = $$DESTDIR/rcc
