@@ -1,8 +1,9 @@
 <Application xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'>
   <VisualElements
       ShowNameOnSquare150x150Logo='on'
+      Square310x310Logo='browser\visual_elements_icon_310x310.png'
       Square150x150Logo='browser\visual_elements_icon_150x150.png'
-      Square70x70Logo='browser\visual_elements_icon_71x71.png'
+      Square70x70Logo='browser\visual_elements_icon_70x70.png'
       ForegroundText='light'
       BackgroundColor='#181b31'/>
 </Application>
