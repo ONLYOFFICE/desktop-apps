@@ -101,15 +101,15 @@
             let id = !!info.uid ? (` id="${info.uid}"`) : '';
             info.crypted == undefined && (info.crypted = false);
 
-            var _tpl = `<tr${id} class="${info.crypted ? 'crypted' : ''}">
+            var _tpl = `<tr${id} class="${info.crypted ? `crypted${isSvgIcons ?'-svg':''}` : ''}">
                           <td class="row-cell cicon">
                             ${!isSvgIcons ?
                                 `<i class="icon ${info.type=='folder'?'img-el folder':`img-format ${info.format}`}" />`:
                                 `<svg class = "icon ${info.type=='folder'?'folder':''}">
                                     <use xlink:href="#${info.type=='folder'?'folder-small':`${info.format}`}"></use>
-                                </svg>`
-                            }
-                            
+                                </svg>
+                                ${info.crypted?'<svg class = "shield"> <use xlink:href="#shield"></use></svg>':''}`
+                            }                            
                           </td>
                           <td class="row-cell cname">
                             <p class="name primary">${info.name}</p>
@@ -121,11 +121,15 @@
 
             return _tpl;
         },
-        onscale: function (insertSvg) {
-            if(insertSvg === isSvgIcons)  return;
-            let elm,icoName, elmIcon;
-            $('.cicon', this.$boxRecent).each(function (e) {
+        onscale: function () {
+            if(isSvgIcons === shouldConnectSVG())  return;
+            let elm,icoName, elmIcon, parent;
+            $('.cicon', this.$boxRecent).each(function () {
                 elm = $(this);
+                parent = elm.parent();
+                if(parent.hasClass('crypted-svg') || parent.hasClass('crypted'))
+                    parent.toggleClass('crypted-svg crypted');
+
                 elmIcon = isSvgIcons ? $('use', elm) : $('i.img-format',elm);
                 if(!elmIcon) return;
                 if(isSvgIcons) {
@@ -136,10 +140,12 @@
                     icoName =  elmIcon.attr('class').split(' ').filter((cls)=> cls != 'icon' && cls != 'img-format');
                     $('i',elm).remove();
                     elm.append($(`<svg class = "icon"><use xlink:href="#${icoName}"></use></svg>`));
+                    if(parent.hasClass('crypted-svg'))
+                        elm.append($('<svg class = "shield"><use xlink:href="#shield"></use></svg>'));
                 }
             });
 
-            $('#box-recent-folders td.cicon').each(function (e){
+            $('#box-recent-folders td.cicon').each(function (){
                 elm=$(this);
                 if(isSvgIcons) {
                     $('svg', elm).remove();
@@ -148,10 +154,8 @@
                     $('i.folder', elm).remove();
                     elm.append($('<svg class = "icon  folder"> <use xlink:href="#folder-small"></use></svg>'));
                 }
-
             });
-
-            isSvgIcons = insertSvg;
+            isSvgIcons = !isSvgIcons;
         },
         updatelistsize: function() {
             // set fixed height for scrollbar appearing. 
