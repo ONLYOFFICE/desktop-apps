@@ -50,20 +50,20 @@ public:
 
     void downloadProcess(void *);
     QPushButton * toolButton();
-//    void cancelAll();
     void updateScalingFactor(double);
     void applyTheme(const QString&);
 
 protected:
-    QWidget * addFile(const QString&, int);
     void removeFile(int);
-    void removeFile(MapItem);
     void updateProgress(MapItem, void *);
-    QString getFileName(const QString&) const;
-    void closeEvent(QCloseEvent *) final;
+    virtual void closeEvent(QCloseEvent *) final;
 
 private:
+    QWidget * addFile(const QString&, int);
+    QString getFileName(const QString&) const;
+    void removeFile(MapItem);
     void polish();
+
     CPushButton * m_pToolButton = nullptr;
     QScrollArea * m_pArea = nullptr;
     QWidget *m_pContentArea = nullptr;

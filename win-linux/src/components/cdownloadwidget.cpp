@@ -38,6 +38,7 @@
 #include <QProgressBar>
 #include <QApplication>
 #include <QScrollBar>
+#include <QFileInfo>
 #include "common/Types.h"
 
 #define DOWNLOAD_WIDGET_MIN_SIZE QSize(450, 250)
@@ -62,6 +63,18 @@ private:
     QWidget * _p_progress;
     bool _is_temp;
 };
+
+static void polishItem(QWidget *item)
+{
+    item->style()->polish(item);
+    if (QLayout *lut = item->layout()) {
+        for (int i = 0; i < lut->count(); i++) {
+            QLayoutItem *litem = lut->itemAt(i);
+            if (litem && litem->widget())
+                litem->widget()->style()->polish(litem->widget());
+        }
+    }
+}
 
 
 CDownloadWidget::CDownloadWidget(QWidget *parent)
@@ -132,7 +145,7 @@ QWidget * CDownloadWidget::addFile(const QString& fn, int id)
     QPushButton * cancel = new QPushButton(tr("Cancel"));
     cancel->setObjectName("buttonCancel");
     cancel->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
-    connect(cancel, &QPushButton::clicked, qApp, [=](){
+    connect(cancel, &QPushButton::clicked, this, [=](){
         emit downloadCanceled(id);
     });
 
@@ -174,12 +187,8 @@ void CDownloadWidget::downloadProcess(void * info)
             if (path.length()) {
                 file_name = getFileName(path);
             }
-
-            QWidget * download_field = addFile(file_name, id);
-            CDownloadItem * item = new CDownloadItem(download_field);
-
+            CDownloadItem * item = new CDownloadItem(addFile(file_name, id));
             iter = m_mapDownloads.insert( std::pair<int, CDownloadItem *>(id, item) ).first;
-
             if (!path.isEmpty()) {
                 item->set_is_temporary(false);
 
@@ -205,14 +214,10 @@ void CDownloadWidget::removeFile(int id)
 void CDownloadWidget::removeFile(MapItem iter)
 {
     if (iter != m_mapDownloads.end()) {
-        CDownloadItem * di = static_cast<CDownloadItem *>((*iter).second);
-
-        QWidget * pItemWidget = di->progress();
-        layout()->removeWidget(pItemWidget);
-
-        RELEASEOBJECT(pItemWidget)
+        CDownloadItem * di = iter->second;
+        layout()->removeWidget(di->widget);
+        RELEASEOBJECT(di->widget)
         RELEASEOBJECT(di)
-
         m_mapDownloads.erase(iter);
         if (m_mapDownloads.empty()) {
             m_pToolButton->deleteLater();
@@ -255,13 +260,8 @@ void CDownloadWidget::updateProgress(MapItem iter, void * data)
 
 QString CDownloadWidget::getFileName(const QString& path) const
 {
-    if (path.length()) {
-        QRegExp rx("([^\\\\\"]+)\"?$");
-        if (!(rx.indexIn(path) < 0))
-            return rx.cap(1);
-    }
-
-    return "";
+    QFileInfo info(path);
+    return info.fileName();
 }
 
 void CDownloadWidget::closeEvent(QCloseEvent *ev)
@@ -278,14 +278,8 @@ void CDownloadWidget::polish()
     m_pContentArea->style()->polish(m_pContentArea);
     for (int i(0); i < m_pContentArea->layout()->count(); ++i) {
         auto item = m_pContentArea->layout()->itemAt(i);
-        if (item && item->widget()) {
-            QWidget * _d_item = item->widget();
-            int j = _d_item->layout()->count();
-            while ( !(--j < 0) ) {
-                QWidget * _qw = _d_item->layout()->itemAt(j)->widget();
-                _qw->style()->polish(_qw);
-            }
-        }
+        if (item && item->widget())
+            polishItem(item->widget());
     }
 }
 
@@ -307,9 +301,3 @@ void CDownloadWidget::applyTheme(const QString &theme)
     polish();
 }
 
-//void CDownloadWidget::cancelAll()
-//{
-//    for (auto e : m_mapDownloads) {
-//        removeFile(e.first);
-//    }
-//}
