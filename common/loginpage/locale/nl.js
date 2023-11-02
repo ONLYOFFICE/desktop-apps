@@ -1,4 +1,4 @@
-l10n.nl = {
+﻿l10n.nl = {
     welWelcome: 'Welkom bij ONLYOFFICE Desktop Editors!',
     welDescr: 'Werk offline aan documenten of sluit de suite aan op uw cloud: ONLYOFFICE, ownCloud, Nextcloud.',
     btnConnect: 'Nu verbinden',
@@ -91,4 +91,21 @@ l10n.nl = {
     settOptLaunchMode: 'Open bestand',
     settOptLaunchInTab: 'In tabblad',
     settOptLaunchInWindow: 'In venster',
+    settSpellcheckDetection: 'Spelling taal detectie',
+    settOptDisabled: 'Uitgeschakeld',
+    settOptEnabled: 'Ingeschakeld',
+    aboutChangelog: 'Changelog',
+    updateNoUpdates: 'App is up-to-date',
+    updateAvialable: 'Versie $1 is beschikbaar. Klik om te downloaden.',
+    settOptThemeSystem: 'Zelfde als systeem',
+    settOptThemeContrastDark: 'Contrast donker',
+    settAUpdateMode: 'Automatische updatemodus',
+    settOptAUpdateSilent: 'Stille modus',
+    settOptAUpdateAsk: 'Vragen om te downloaden',
+    updateDownloadFinished: 'Downloaden voltooid. Klik om te installeren',
+    updateDownloadCanceled: 'Downloaden geannuleerd',
+    updateDownloadProgress: 'Downloaden van $1%. Klik om te stoppen',
+    settOptDescDisabled: "Automatisch controleren van updates wordt uitgeschakeld",
+    settOptDescAUpdateSilent: "Download updates en vraag vóór installatie",
+    settOptDescAUpdateAsk: "U krijgt bericht over alle update stappen",
 }

@@ -518,22 +518,22 @@
         <location filename="../src/windows/cmainwindow.cpp" line="732"/>
         <location filename="../src/windows/cmainwindow.cpp" line="772"/>
         <source>File format not supported.</source>
-        <translation type="unfinished">Faili formaati ei toetata.</translation>
+        <translation>Faili formaati ei toetata.</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="756"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
-        <translation type="unfinished">%1 ei ole saadaval. Ta võib olla uue nimega, muudetud või kustutatud.&lt;br&gt; Kas sa soovid faili listist eemaldada?</translation>
+        <translation>%1 ei ole saadaval. Ta võib olla uue nimega, muudetud või kustutatud.&lt;br&gt; Kas sa soovid faili listist eemaldada?</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="815"/>
         <source>Document must be saved firstly.</source>
-        <translation type="unfinished">Dokument tuleb enne salvestada.</translation>
+        <translation>Dokument tuleb enne salvestada.</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="957"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
-        <translation type="unfinished">Dokument tuleb salvestada, et jätkata.&lt;br&gt;Salvestasid dokumendi?</translation>
+        <translation>Dokument tuleb salvestada, et jätkata.&lt;br&gt;Salvestasid dokumendi?</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="1067"/>
@@ -543,17 +543,17 @@
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="1126"/>
         <source>Print Document</source>
-        <translation type="unfinished">Prindi dokument</translation>
+        <translation>Prindi dokument</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="1326"/>
         <source>Sign Up</source>
-        <translation type="unfinished">Loo portaal</translation>
+        <translation>Loo portaal</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="1409"/>
         <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
-        <translation type="unfinished">%1 on muudetud.&lt;br&gt;Kas sa tahad muutused salvestada?</translation>
+        <translation>%1 on muudetud.&lt;br&gt;Kas sa tahad muutused salvestada?</translation>
     </message>
 </context>
 <context>
@@ -665,7 +665,7 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="104"/>
         <source>Cancel</source>
-        <translation type="unfinished">Tühista</translation>
+        <translation>Tühista</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="94"/>
@@ -881,23 +881,23 @@
     <message>
         <location filename="../src/defines.h" line="131"/>
         <source>Cancel</source>
-        <translation type="unfinished">Tühista</translation>
+        <translation>Tühista</translation>
     </message>
     <message>
         <location filename="../src/defines.h" line="132"/>
         <source>Yes</source>
-        <translation type="unfinished">Jah</translation>
+        <translation>Jah</translation>
     </message>
     <message>
         <location filename="../src/defines.h" line="133"/>
         <source>No</source>
-        <translation type="unfinished">Ei</translation>
+        <translation>Ei</translation>
     </message>
     <message>
         <location filename="../src/components/cmessage.cpp" line="199"/>
         <location filename="../src/defines.h" line="134"/>
         <source>OK</source>
-        <translation type="unfinished">OK</translation>
+        <translation>OK</translation>
     </message>
     <message>
         <location filename="../src/defines.h" line="135"/>

@@ -619,7 +619,7 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="95"/>
         <source>An error occurred while check updates: Update Service not found!</source>
-        <translation></translation>
+        <translation>An error occurred while checking updates: Update Service not found!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="89"/>
@@ -654,7 +654,7 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="97"/>
         <source>An error occurred while unzip updates: Update Service not found!</source>
-        <translation></translation>
+        <translation>An error occurred while unzipping updates: Update Service not found!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="88"/>

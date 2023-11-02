@@ -56,6 +56,7 @@ l10n.si = {
     actActivate: 'ක්‍රියාත්මක',
     actAbout: 'පිළිබඳව',
     actSettings: 'සැකසුම්',
+    actTemplates: 'අච්චු',
     licKeyHolder: 'සක්‍රියන යතුර ආදානය',
     btnActivate: 'ක්‍රියාත්මක',
     licGetLicense: 'දැන් බලපත්‍රය ගන්න',
@@ -104,4 +105,7 @@ l10n.si = {
     updateDownloadFinished: 'බාගැනීම අහවරයි. ස්ථාපනයට ඔබන්න',
     updateDownloadCanceled: 'බාගැනීම අවලංගු කෙරිණි',
     updateDownloadProgress: '$1% බාගැනෙමින්. නැවතීමට ඔබන්න',
+    settOptDescDisabled: "යාවත්කාල ස්වයංක්‍රීය පරීක්‍ෂාව අක්‍රිය වනු ඇත",
+    settOptDescAUpdateSilent: "යාවත්කාල බාගෙන ස්ථාපනයට පෙර අසන්න",
+    settOptDescAUpdateAsk: "සියළුම යාවත්කාල පියවර ගැන ඔබට දැනුම් දෙනු ඇත",
 }

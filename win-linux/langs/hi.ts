@@ -95,7 +95,7 @@
         <location filename="../src/platform_linux/cdialogopenssl.cpp" line="222"/>
         <location filename="../src/platform_linux/cdialogopenssl.cpp" line="225"/>
         <source>Open Document</source>
-        <translation type="unfinished">दस्तावेज़ खोलें</translation>
+        <translation>दस्तावेज़ खोलें</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/cdialogopenssl.cpp" line="244"/>
@@ -518,22 +518,22 @@
         <location filename="../src/windows/cmainwindow.cpp" line="732"/>
         <location filename="../src/windows/cmainwindow.cpp" line="772"/>
         <source>File format not supported.</source>
-        <translation type="unfinished">फ़ाइल प्रारूप समर्थित नहीं है।</translation>
+        <translation>फ़ाइल प्रारूप समर्थित नहीं है।</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="756"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
-        <translation type="unfinished">%1 यह उपलब्ध नहीं है। शायद इसका नाम बदला गया है, इसे कहीं और डाला गया है या इसे डिलीट कर दिया गया है।&lt;br&gt;क्या आप सूची से यह फ़ाइल को हटाना चाहते हैं?</translation>
+        <translation>%1 यह उपलब्ध नहीं है। शायद इसका नाम बदला गया है, इसे कहीं और डाला गया है या इसे डिलीट कर दिया गया है।&lt;br&gt;क्या आप सूची से यह फ़ाइल को हटाना चाहते हैं?</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="815"/>
         <source>Document must be saved firstly.</source>
-        <translation type="unfinished">दस्तावेज़ को पहले सहेजना आवश्यक है।</translation>
+        <translation>दस्तावेज़ को पहले सहेजना आवश्यक है।</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="957"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
-        <translation type="unfinished">जारी रखने के लिए दस्तावेज़ को सहेजना आवश्यक है।&lt;br&gt;दस्तावेज़ को सहेजें?</translation>
+        <translation>जारी रखने के लिए दस्तावेज़ को सहेजना आवश्यक है।&lt;br&gt;दस्तावेज़ को सहेजें?</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="1067"/>
@@ -543,17 +543,17 @@
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="1126"/>
         <source>Print Document</source>
-        <translation type="unfinished">दस्तावेज़ को प्रिंट करें</translation>
+        <translation>दस्तावेज़ को प्रिंट करें</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="1326"/>
         <source>Sign Up</source>
-        <translation type="unfinished">पोर्टल बनाएँ</translation>
+        <translation>पोर्टल बनाएँ</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="1409"/>
         <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
-        <translation type="unfinished">%1 को संशोधित कर लिया गया है। &lt;br&gt;क्या आप बदलावों को सहेजना चाहते हैं?</translation>
+        <translation>%1 को संशोधित कर लिया गया है। &lt;br&gt;क्या आप बदलावों को सहेजना चाहते हैं?</translation>
     </message>
 </context>
 <context>
@@ -665,7 +665,7 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="104"/>
         <source>Cancel</source>
-        <translation type="unfinished">रद्द करें</translation>
+        <translation>रद्द करें</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="94"/>
@@ -881,23 +881,23 @@
     <message>
         <location filename="../src/defines.h" line="131"/>
         <source>Cancel</source>
-        <translation type="unfinished">रद्द करें</translation>
+        <translation>रद्द करें</translation>
     </message>
     <message>
         <location filename="../src/defines.h" line="132"/>
         <source>Yes</source>
-        <translation type="unfinished">हाँ</translation>
+        <translation>हाँ</translation>
     </message>
     <message>
         <location filename="../src/defines.h" line="133"/>
         <source>No</source>
-        <translation type="unfinished">नहीं</translation>
+        <translation>नहीं</translation>
     </message>
     <message>
         <location filename="../src/components/cmessage.cpp" line="199"/>
         <location filename="../src/defines.h" line="134"/>
         <source>OK</source>
-        <translation type="unfinished">ठीक है</translation>
+        <translation>ठीक है</translation>
     </message>
     <message>
         <location filename="../src/defines.h" line="135"/>

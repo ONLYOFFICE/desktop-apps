@@ -105,4 +105,7 @@ l10n.pt_PT = {
     updateDownloadFinished: 'A transferência está concluída. Clique para instalar',
     updateDownloadCanceled: 'Transferência cancelada',
     updateDownloadProgress: 'A transferir $1%. Clique para parar',
+    settOptDescDisabled: "A verificação automática de atualizações será desativada",
+    settOptDescAUpdateSilent: "Baixe atualizações e pergunte antes de instalar",
+    settOptDescAUpdateAsk: "Você será notificado sobre todas as etapas de atualização",
 }

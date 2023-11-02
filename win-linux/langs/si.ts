@@ -299,7 +299,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="87"/>
         <source>Macro-enabled Presentation File (*.pptm)</source>
-        <translation type="unfinished"></translation>
+        <translation>සාර්ව-සක්‍රිය සමර්පණ ගොනුව (*.pptm)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="89"/>
@@ -332,22 +332,22 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="70"/>
         <source>OpenDocument Document template</source>
-        <translation type="unfinished"></translation>
+        <translation>ඕපන්ඩොකියුමන්ට් ලේඛන අච්චුව</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="85"/>
         <source>OpenDocument Presentation Template</source>
-        <translation type="unfinished"></translation>
+        <translation>ඕපන්ඩොකියුමන්ට් සමර්පණ අච්චුව</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="91"/>
         <source>Macro-enabled spreadsheet template</source>
-        <translation type="unfinished"></translation>
+        <translation>සාර්ව-සක්‍රිය පැතුරුම්පත් අච්චුව</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="94"/>
         <source>OpenDocument Spreadsheet Template</source>
-        <translation type="unfinished"></translation>
+        <translation>ඕපන්ඩොකියුමන්ට් පැතුරුම්පත් අච්චුව</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="95"/>
@@ -377,7 +377,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="101"/>
         <source>SVG Image (*.svg)</source>
-        <translation type="unfinished"></translation>
+        <translation>SVG අනුරුව (*.svg)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="103"/>
@@ -666,7 +666,7 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="95"/>
         <source>An error occurred while check updates: Update Service not found!</source>
-        <translation type="unfinished"></translation>
+        <translation>යාවත්කාල පරීක්‍ෂාවේදී දෝෂයක් මතු විය: යාවත්කාල සේවාව හමු නොවිණි!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="89"/>
@@ -676,12 +676,12 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="96"/>
         <source>An error occurred while loading updates: Update Service not found!</source>
-        <translation type="unfinished"></translation>
+        <translation>යාවත්කාල පූරණයේදී දෝෂයක් මතු විය: යාවත්කාල සේවාව හමු නොවිණි!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="104"/>
         <source>Cancel</source>
-        <translation type="unfinished">අවලංගු</translation>
+        <translation>අවලංගු</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="94"/>
@@ -701,7 +701,7 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="97"/>
         <source>An error occurred while unzip updates: Update Service not found!</source>
-        <translation type="unfinished"></translation>
+        <translation>යාවත්කාල පරීක්‍ෂාවේදී දෝෂයක් මතු විය: යාවත්කාල සේවාව හමු නොවිණි!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="88"/>
@@ -711,7 +711,7 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="102"/>
         <source>Download update</source>
-        <translation type="unfinished">යාවත්කාලය බාගන්න</translation>
+        <translation>යාවත්කාලය බාගන්න</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="86"/>
@@ -837,13 +837,13 @@
     <message>
         <location filename="../src/ceditortools.cpp" line="145"/>
         <source>XML File (*.xml)</source>
-        <translation type="unfinished"></translation>
+        <translation>XML ගොනුව (*.xml)</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="254"/>
         <location filename="../src/windows/cmainwindow.cpp" line="721"/>
         <source>Access to file &apos;%1&apos; is denied!</source>
-        <translation type="unfinished"></translation>
+        <translation>&apos;%1&apos; ගොනුවට ප්‍රවේශය ප්‍රතිෂේධනය කර ඇත</translation>
     </message>
     <message>
         <location filename="../src/casctabdata.cpp" line="178"/>
@@ -911,58 +911,58 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="643"/>
         <source>An error occurred while start install updates!</source>
-        <translation type="unfinished"></translation>
+        <translation>යාවත්කාල ස්ථාපනය ඇරඹීමේදී දෝෂයක් මතු විය!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="653"/>
         <source>An error occurred while start replacing files: Update Service not found!</source>
-        <translation type="unfinished"></translation>
+        <translation>ගොනු ප්‍රතිස්ථාපනය ඇරඹීමේදී  දෝෂයක් මතු විය: යාවත්කාල සේවාව හමු නොවිණි!</translation>
     </message>
     <message>
         <location filename="../src/defines.h" line="131"/>
         <source>Cancel</source>
-        <translation type="unfinished">අවලංගු</translation>
+        <translation>අවලංගු</translation>
     </message>
     <message>
         <location filename="../src/defines.h" line="132"/>
         <source>Yes</source>
-        <translation type="unfinished">ඔව්</translation>
+        <translation>ඔව්</translation>
     </message>
     <message>
         <location filename="../src/defines.h" line="133"/>
         <source>No</source>
-        <translation type="unfinished">නැහැ</translation>
+        <translation>නැහැ</translation>
     </message>
     <message>
         <location filename="../src/components/cmessage.cpp" line="199"/>
         <location filename="../src/defines.h" line="134"/>
         <source>OK</source>
-        <translation type="unfinished">හරි</translation>
+        <translation>හරි</translation>
     </message>
     <message>
         <location filename="../src/defines.h" line="135"/>
         <source>Skip</source>
-        <translation type="unfinished">මඟහරින්න</translation>
+        <translation>මඟහරින්න</translation>
     </message>
     <message>
         <location filename="../src/defines.h" line="136"/>
         <source>Buy Now</source>
-        <translation type="unfinished"></translation>
+        <translation>මිලදී ගන්න</translation>
     </message>
     <message>
         <location filename="../src/defines.h" line="137"/>
         <source>Activate</source>
-        <translation type="unfinished"></translation>
+        <translation>සක්‍රියනය</translation>
     </message>
     <message>
         <location filename="../src/defines.h" line="138"/>
         <source>Continue</source>
-        <translation type="unfinished"></translation>
+        <translation>ඉදිරියට</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/xdgdesktopportal.cpp" line="1217"/>
         <source>An error occurred while opening the portal:&lt;br&gt;%1</source>
-        <translation type="unfinished"></translation>
+        <translation>ද්වාරය විවෘත කිරීමේදී දෝෂයක් මතු විය:&lt;br&gt;%1</translation>
     </message>
     <message>
         <source>&amp;OK</source>

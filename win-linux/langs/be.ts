@@ -95,7 +95,7 @@
         <location filename="../src/platform_linux/cdialogopenssl.cpp" line="222"/>
         <location filename="../src/platform_linux/cdialogopenssl.cpp" line="225"/>
         <source>Open Document</source>
-        <translation type="unfinished">Адкрыць дакумент</translation>
+        <translation>Адкрыць дакумент</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/cdialogopenssl.cpp" line="244"/>
@@ -518,22 +518,22 @@
         <location filename="../src/windows/cmainwindow.cpp" line="732"/>
         <location filename="../src/windows/cmainwindow.cpp" line="772"/>
         <source>File format not supported.</source>
-        <translation type="unfinished">Фармат файла не падтрымліваецца</translation>
+        <translation>Фармат файла не падтрымліваецца.</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="756"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
-        <translation type="unfinished">%1 недаступны. Яго можна перайменаваць, перамясціць або выдаліць.&lt;br&gt;Хочаце выдаліць файл са спісу?</translation>
+        <translation>%1 недаступны. Яго можна перайменаваць, перамясціць або выдаліць.&lt;br&gt;Хочаце выдаліць файл са спісу?</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="815"/>
         <source>Document must be saved firstly.</source>
-        <translation type="unfinished">Спачатку трэба захаваць дакумент.</translation>
+        <translation>Спачатку трэба захаваць дакумент.</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="957"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
-        <translation type="unfinished">Каб працягнуць, дакумент трэба захаваць.&lt;br&gt;Захаваць дакумент?</translation>
+        <translation>Каб працягнуць, дакумент трэба захаваць.&lt;br&gt;Захаваць дакумент?</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="1067"/>
@@ -543,17 +543,17 @@
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="1126"/>
         <source>Print Document</source>
-        <translation type="unfinished">Друкаваць дакумент</translation>
+        <translation>Друкаваць дакумент</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="1326"/>
         <source>Sign Up</source>
-        <translation type="unfinished">Зарэгістравацца</translation>
+        <translation>Зарэгістравацца</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="1409"/>
         <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
-        <translation type="unfinished">%1 быў зменены.&lt;br&gt;Захаваць змены?</translation>
+        <translation>%1 быў зменены.&lt;br&gt;Захаваць змены?</translation>
     </message>
 </context>
 <context>
@@ -665,7 +665,7 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="104"/>
         <source>Cancel</source>
-        <translation type="unfinished">Скасаваць</translation>
+        <translation>Скасаваць</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="94"/>
@@ -790,7 +790,7 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper_private.h" line="233"/>
         <source>File %1 cannot be opened or doesn&apos;t exists.</source>
-        <translation>Файл %1 не існуе або яго немагчыма адкрыць. &gt;</translation>
+        <translation>Файл %1 не існуе або яго немагчыма адкрыць.</translation>
     </message>
     <message>
         <source>All supported files (*.txt *.csv)</source>
@@ -885,23 +885,23 @@
     <message>
         <location filename="../src/defines.h" line="131"/>
         <source>Cancel</source>
-        <translation type="unfinished">Скасаваць</translation>
+        <translation>Скасаваць</translation>
     </message>
     <message>
         <location filename="../src/defines.h" line="132"/>
         <source>Yes</source>
-        <translation type="unfinished">Так</translation>
+        <translation>Так</translation>
     </message>
     <message>
         <location filename="../src/defines.h" line="133"/>
         <source>No</source>
-        <translation type="unfinished">Не</translation>
+        <translation>Не</translation>
     </message>
     <message>
         <location filename="../src/components/cmessage.cpp" line="199"/>
         <location filename="../src/defines.h" line="134"/>
         <source>OK</source>
-        <translation type="unfinished">Добра</translation>
+        <translation>Добра</translation>
     </message>
     <message>
         <location filename="../src/defines.h" line="135"/>
