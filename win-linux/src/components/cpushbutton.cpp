@@ -43,23 +43,12 @@ CPushButton::CPushButton(QWidget *parent)
 
 CPushButton::~CPushButton()
 {
-    if (m_animation) {
-        m_animation->stop();
-        m_animation->disconnect();
-        delete m_animation, m_animation = nullptr;
-    }
+    releaseSvg();
 }
 
 void CPushButton::setAnimatedIcon(const QString &path)
 {
-    if (m_animation) {
-        m_animation->stop();
-        m_animation->disconnect();
-        delete m_animation, m_animation = nullptr;
-    }
-
-    if (m_renderer)
-        delete m_renderer, m_renderer = nullptr;
+    releaseSvg();
     m_renderer = new QSvgRenderer(path, this);
 
     m_animation = new QVariantAnimation(this);
@@ -75,6 +64,18 @@ void CPushButton::setAnimatedIcon(const QString &path)
             applyAnimatedIcon(opacity);
     });
     m_animation->start(QAbstractAnimation::KeepWhenStopped);
+}
+
+void CPushButton::releaseSvg()
+{
+    if (m_animation) {
+        if (m_animation->state() != QAbstractAnimation::Stopped)
+            m_animation->stop();
+        m_animation->disconnect();
+        delete m_animation, m_animation = nullptr;
+    }
+    if (m_renderer)
+        delete m_renderer, m_renderer = nullptr;
 }
 
 void CPushButton::applyAnimatedIcon(double opacity)

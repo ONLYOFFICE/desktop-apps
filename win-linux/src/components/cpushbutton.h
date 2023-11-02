@@ -47,6 +47,7 @@ public:
 
 private:
     void applyAnimatedIcon(double);
+    void releaseSvg();
     QVariantAnimation * m_animation = nullptr;
     QSvgRenderer *m_renderer = nullptr;
 };
