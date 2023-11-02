@@ -90,7 +90,7 @@ module.exports = (grunt, rootpathprefix) => {
                 }
             },
             logo: {
-                src: [`${_path}res/idx-logo*.svg`],
+                src: [`${_path}res/img/idx-logo*.svg`],
                 dest: `${_path}res/img/`,
                 options: {
                     mode: {
