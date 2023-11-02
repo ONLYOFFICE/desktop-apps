@@ -46,6 +46,8 @@
     ControllerFolders.prototype = Object.create(baseController.prototype);
     ControllerFolders.prototype.constructor = ControllerFolders;
 
+    var shouldConnectSVG = () => window.devicePixelRatio >= 2 || window.devicePixelRatio == 1;
+    var isSvgIcons = shouldConnectSVG();
     var ViewFolders = function(args) {
         var _lang = utils.Lang;
 
@@ -57,7 +59,9 @@
                                 `<h3 class="table-caption" l10n>${_lang.listRecentDirTitle}</h3>`+
                                 '<div class="table-box flex-fill">'+
                                     `<table ${args.id} class="table-files list"></table>` +
-                                    `<h4 class="text-emptylist img-before-el" l10n>${_lang.textNoFiles}</h4>` +
+                                    `<h4 class="text-emptylist${isSvgIcons? '-svg': ''} img-before-el" l10n>
+                                        ${isSvgIcons? '<svg><use xlink:href="#folder-big"></use></svg>':''}
+                                        ${_lang.textNoFiles}</h4>` +
                                 '</div>' +
                                 '<div id="box-open-acts" class="lst-tools">'+
                                     `<button id="btn-openlocal" class="btn btn--primary" l10n>${_lang.btnBrowse}</button>` +
@@ -112,7 +116,18 @@
                 this.view.$panel.find('#btn-openlocal').click(()=>{
                     openFile(OPEN_FILE_FOLDER, '');
                 });
-
+                $(window).resize(()=>{
+                    if(isSvgIcons == shouldConnectSVG()) return;
+                    if(isSvgIcons) {
+                        $('.text-emptylist-svg svg', '#box-recent-folders').remove();
+                        $('.text-emptylist-svg', '#box-recent-folders').toggleClass('text-emptylist text-emptylist-svg');
+                    } else {
+                        let emptylist = $('.text-emptylist', '#box-recent-folders');
+                        emptylist.toggleClass('text-emptylist text-emptylist-svg');
+                        emptylist.prepend($('<svg class = "empty-folder"><use xlink:href="#folder-big"></use></svg>'));
+                    }
+                    isSvgIcons = !isSvgIcons;
+                });
                 window.sdk.on('onupdaterecents', _on_update.bind(this));
 
                 return this;

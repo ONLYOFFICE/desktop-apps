@@ -737,8 +737,10 @@ li.menu-item {
     /*height: 100%;*/
     /*overflow-y: scroll;*/
 
-    &:not(.empty) .text-emptylist {
-        display: none;
+    &:not(.empty) {
+        .text-emptylist-svg, .text-emptylist {
+            display: none;
+        }
     }
 
 }
@@ -767,7 +769,7 @@ li.menu-item {
     }
 }
 
-.text-emptylist::before {
+.text-emptylist::before,  .text-emptylist-svg svg {
     content: '';
     display: block;
     background-position: 0 -48px;

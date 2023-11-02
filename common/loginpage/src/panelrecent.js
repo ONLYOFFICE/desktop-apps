@@ -72,7 +72,10 @@
                             </div>
                             <div class="table-box flex-fill">
                               <table class="table-files list"></table>
-                              <h4 class="text-emptylist img-before-el" l10n>${_lang.textNoFiles}</h4>
+                              <h4 class="text-emptylist${isSvgIcons? '-svg' : ''} img-before-el" l10n>                                
+                                  ${isSvgIcons? '<svg><use xlink:href="#folder-big"></use></svg>':''}
+                                  ${_lang.textNoFiles}
+                              </h4>
                             </div>
                           </div>
                         </div>
@@ -155,6 +158,14 @@
                     elm.append($('<svg class = "icon  folder"> <use xlink:href="#folder-small"></use></svg>'));
                 }
             });
+            if(isSvgIcons) {
+                $('.text-emptylist-svg svg', this.$boxRecent).remove();
+                 $('.text-emptylist-svg', this.$boxRecent).toggleClass('text-emptylist text-emptylist-svg');
+            } else {
+                let emptylist = $('.text-emptylist', this.$boxRecent);
+                emptylist.toggleClass('text-emptylist text-emptylist-svg');
+                emptylist.prepend($('<svg class = "empty-folder"><use xlink:href="#folder-big"></use></svg>'));
+            }
             isSvgIcons = !isSvgIcons;
         },
         updatelistsize: function() {
