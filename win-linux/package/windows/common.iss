@@ -990,8 +990,7 @@ Source: data\vcredist\vcredist_2022_{#sWinArch}.exe; DestDir: {app}; Flags: dele
   Check: not checkVCRedist2022;
 
 Source: {#sBrandingFolder}\win-linux\package\windows\data\VisualElementsManifest.xml;        DestDir: {app}; DestName: {#VISEFFECTS_MANIFEST_NAME}; MinVersion: 6.3;
-Source: {#sBrandingFolder}\win-linux\package\windows\data\visual_elements_icon_150x150.png;  DestDir: {app}\browser;   MinVersion: 6.3;
-Source: {#sBrandingFolder}\win-linux\package\windows\data\visual_elements_icon_71x71.png;    DestDir: {app}\browser;   MinVersion: 6.3;
+Source: {#sBrandingFolder}\win-linux\package\windows\data\visual_elements_icon_*;            DestDir: {app}\browser;   MinVersion: 6.3;
 
 Source: {#DEPLOY_PATH}\*;                               DestDir: {app}; Flags: recursesubdirs;
 #if defined(_WIN_XP) | defined(EMBED_HELP)
