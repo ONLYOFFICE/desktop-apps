@@ -938,7 +938,7 @@ function getAppPrevLang(param: string): string;
 var
   lang: string;
 begin
-  if not (WizardSilent and
+  if not (WizardSilent() and
         RegValueExists(GetHKLM(), '{#APP_REG_PATH}', 'locale') and
             RegQueryStringValue(GetHKLM(), '{#APP_REG_PATH}', 'locale', lang)) then
   begin
