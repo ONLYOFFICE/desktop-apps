@@ -67,8 +67,8 @@ public:
 //    auto isThemeDark(const std::wstring& id) -> bool;
     auto themeActualId(const std::wstring& id) const -> std::wstring;
 
-    auto isColorDark(const std::wstring&) -> bool;
-    auto isColorDark(const QString&) -> bool;
+    static auto isColorDark(const std::wstring&) -> bool;
+    static auto isColorDark(const QString&) -> bool;
 
     auto onSystemDarkColorScheme(bool isdark) -> void;
     auto isSystemSchemeDark() -> const bool;

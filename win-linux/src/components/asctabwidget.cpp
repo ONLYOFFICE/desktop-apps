@@ -522,6 +522,10 @@ void CAscTabWidget::setTabTheme(int index, const QString& type, const QString& c
 
         if ( !color.isEmpty() ) {
             m_pBar->setActiveTabColor(index, color);
+
+            if ( type.isEmpty() ) {
+                m_pBar->setTabThemeType(index, CThemes::isColorDark(color) ? CTabBar::DarkTab : CTabBar::LightTab);
+            }
         }
     }
 }

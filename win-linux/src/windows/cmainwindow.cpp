@@ -696,10 +696,14 @@ void CMainWindow::onPortalLogin(int viewid, const std::wstring &json)
 
         if( jerror.error == QJsonParseError::NoError ) {
             QJsonObject objRoot = jdoc.object();
-            QString _ui_theme = objRoot["uiTheme"].toString();
+            QJsonValue value = objRoot["uiTheme"];
 
-            if ( !_ui_theme.isEmpty() )
-                onPortalUITheme(viewid, _ui_theme.toStdWString());
+            if ( value.isString() )
+                onPortalUITheme(viewid, value.toString().toStdWString());
+            else
+            if ( value.isObject() )
+                onPortalUITheme(viewid, QString(QJsonDocument(value.toObject()).toJson(QJsonDocument::Compact)).toStdWString());
+
         }
     }
 }
