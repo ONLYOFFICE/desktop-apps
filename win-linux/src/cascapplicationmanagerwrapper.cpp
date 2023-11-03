@@ -85,34 +85,14 @@ CAscApplicationManagerWrapper::~CAscApplicationManagerWrapper()
 {
     delete m_queueToClose, m_queueToClose = nullptr;
 
-//    CSingleWindow * _sw = nullptr;
-//    for (auto const& w : m_vecEditors) {
-//        _sw = reinterpret_cast<CSingleWindow *>(w);
-
-//        if ( _sw ) {
-//#ifdef _WIN32
-//            delete _sw, _sw = NULL;
-//#else
-//            _sw->deleteLater();
-//#endif
-//        }
-//    }
-
-
     if ( m_pMainWindow ) {
-#ifdef _WIN32
-        //delete m_pMainWindow, m_pMainWindow= nullptr;
         m_pMainWindow->deleteLater();
-#else
-        m_pMainWindow->deleteLater();
-#endif
     }
 #if defined (_UPDMODULE)
     // Start update installation
     if (m_pUpdateManager)
         m_pUpdateManager->handleAppClose();
 #endif
-//    m_vecEditors.clear();
 }
 
 void CAscApplicationManagerWrapper::StartSaveDialog(const std::wstring& sName, unsigned int nId)
@@ -2022,17 +2002,6 @@ QString CAscApplicationManagerWrapper::newFileName(const std::wstring& format)
 
     return newFileName(_f);
 }
-
-/*void CAscApplicationManagerWrapper::checkUpdates()
-{
-    //APP_CAST(_app);
-
-    //if ( !_app.m_updater ) {
-        //_app.m_updater = std::make_shared<CAppUpdater>();
-    //}
-
-    _app.m_updater->checkUpdates();
-}*/
 
 wstring CAscApplicationManagerWrapper::userSettings(const wstring& name)
 {
