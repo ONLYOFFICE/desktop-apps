@@ -27,6 +27,12 @@ IDI_ICON23      ICON    DISCARDABLE "./res/icons/xls.ico"
 IDI_ICON24      ICON    DISCARDABLE "./res/icons/ods.ico"
 IDI_ICON25      ICON    DISCARDABLE "./res/icons/csv.ico"
 IDI_ICON26      ICON    DISCARDABLE "./res/icons/uninstall.ico"
+IDI_ICON27      ICON    DISCARDABLE "./res/icons/pot.ico"
+IDI_ICON28      ICON    DISCARDABLE "./res/icons/pptm.ico"
+IDI_ICON29      ICON    DISCARDABLE "./res/icons/epub.ico"
+IDI_ICON30      ICON    DISCARDABLE "./res/icons/fb2.ico"
+IDI_ICON31      ICON    DISCARDABLE "./res/icons/dotx.ico"
+IDI_ICON32      ICON    DISCARDABLE "./res/icons/oxps.ico"
 
 #include <windows.h>
 #include "src/version.h"
