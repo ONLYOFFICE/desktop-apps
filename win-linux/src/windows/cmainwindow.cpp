@@ -413,6 +413,7 @@ QWidget* CMainWindow::createMainPanel(QWidget *parent)
     }
 
     // Set TabWidget
+    _pMainGridLayout->addItem(new QSpacerItem(5, 5, QSizePolicy::Fixed, QSizePolicy::Expanding), 1, 0, 1, 1);
     m_pTabs = new CAscTabWidget(mainPanel, pTabBar);
     m_pTabs->setObjectName(QString::fromUtf8("ascTabWidget"));
     _pMainGridLayout->addWidget(m_pTabs, 1, 0, 1, 3);
