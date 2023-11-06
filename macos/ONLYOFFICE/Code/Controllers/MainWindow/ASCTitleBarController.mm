@@ -130,7 +130,7 @@ static float kASCWindowMinTitleWidth = 0;
 
     NSDataAsset * asset = [[NSDataAsset alloc] initWithName:@"progress_download_icon"];
     NSBitmapImageRep * rep = [[NSBitmapImageRep alloc] initWithData:[asset data]];
-    int framescount = [[rep valueForProperty:NSImageFrameCount] intValue];
+//    int framescount = [[rep valueForProperty:NSImageFrameCount] intValue];
     [rep setProperty:NSImageCurrentFrame withValue:[NSNumber numberWithUnsignedInt:15]];
     NSData *repData = [rep representationUsingType:NSPNGFileType properties:nil];
     NSImage * img = [[NSImage alloc] initWithData:repData];
