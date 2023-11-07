@@ -156,6 +156,15 @@ var OPEN_FILE_RECENT = 2;
 var OPEN_FILE_FOLDER = 3;
 var Scroll_offset = '16px';
 
+{
+    const mq = "screen and (-webkit-min-device-pixel-ratio: 1.01) and (-webkit-max-device-pixel-ratio: 1.99), " +
+                                "screen and (min-resolution: 1.01dppx) and (max-resolution: 1.99dppx)";
+
+    window.matchMedia(mq).addEventListener('change', e => {
+        CommonEvents.fire("icons:svg", !e.target.matches);
+    });
+}
+
 function replaceIcons() {
 
     if(isSvgIcons== (window.devicePixelRatio>=2 || window.devicePixelRatio==1)) return;
