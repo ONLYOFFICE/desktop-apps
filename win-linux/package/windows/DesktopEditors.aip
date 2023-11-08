@@ -66,6 +66,8 @@
     <ROW Property="REGISTER_OTT" Value="1" Type="4" ValueLocId="-"/>
     <ROW Property="REGISTER_PDF" Value="0" Type="4" ValueLocId="-"/>
     <ROW Property="REGISTER_POTX" Value="1" Type="4" ValueLocId="-"/>
+    <ROW Property="REGISTER_PPS" Value="1" Type="4" ValueLocId="-"/>
+    <ROW Property="REGISTER_PPSX" Value="1" Type="4" ValueLocId="-"/>
     <ROW Property="REGISTER_PPT" Value="1" Type="4" ValueLocId="-"/>
     <ROW Property="REGISTER_PPTX" Value="1" Type="4" ValueLocId="-"/>
     <ROW Property="REGISTER_RTF" Value="0" Type="4" ValueLocId="-"/>
@@ -470,35 +472,37 @@
     <ROW Dialog_="FileAssociationsCustomDlg" Control="Description" Type="Text" X="25" Y="23" Width="280" Height="15" Attributes="196611" Text="Select the extensions you want associated with [ProductName]" Order="700" TextLocId="Control.Text.FileAssociationsDlg#Description"/>
     <ROW Dialog_="FileAssociationsCustomDlg" Control="Title" Type="Text" X="15" Y="6" Width="200" Height="15" Attributes="196611" Text="Select File Associations" TextStyle="[DlgTitleFont]" Order="800" TextLocId="Control.Text.FileAssociationsDlg#Title"/>
     <ROW Dialog_="FileAssociationsCustomDlg" Control="Text" Type="Text" X="24" Y="53" Width="320" Height="26" Attributes="196611" Text="Please select the file types you want to automatically open with [ProductName]:" Order="900" TextLocId="Control.Text.FileAssociationsDlg#Text"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_doc" Type="CheckBox" X="35" Y="90" Width="50" Height="13" Attributes="3" Property="REGISTER_DOC" Text=".doc" Order="1000" TextLocId="-"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_docx" Type="CheckBox" X="95" Y="90" Width="50" Height="13" Attributes="3" Property="REGISTER_DOCX" Text=".docx" Order="1100" TextLocId="-"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_dotx" Type="CheckBox" X="155" Y="90" Width="50" Height="13" Attributes="3" Property="REGISTER_DOTX" Text=".dotx" Order="1200" TextLocId="-"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_odt" Type="CheckBox" X="215" Y="90" Width="50" Height="13" Attributes="3" Property="REGISTER_ODT" Text=".odt" Order="1300" TextLocId="-"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_ott" Type="CheckBox" X="275" Y="90" Width="50" Height="13" Attributes="3" Property="REGISTER_OTT" Text=".ott" Order="1400" TextLocId="-"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_xls" Type="CheckBox" X="35" Y="112" Width="50" Height="13" Attributes="3" Property="REGISTER_XLS" Text=".xls" Order="1500" TextLocId="-"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_xlsx" Type="CheckBox" X="95" Y="112" Width="50" Height="13" Attributes="3" Property="REGISTER_XLSX" Text=".xlsx" Order="1600" TextLocId="-"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_xltx" Type="CheckBox" X="155" Y="112" Width="50" Height="13" Attributes="3" Property="REGISTER_XLTX" Text=".xltx" Order="1700" TextLocId="-"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_ods" Type="CheckBox" X="215" Y="112" Width="50" Height="13" Attributes="3" Property="REGISTER_ODS" Text=".ods" Order="1800" TextLocId="-"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_ots" Type="CheckBox" X="275" Y="112" Width="50" Height="13" Attributes="3" Property="REGISTER_OTS" Text=".ots" Order="1900" TextLocId="-"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_ppt" Type="CheckBox" X="35" Y="134" Width="50" Height="13" Attributes="3" Property="REGISTER_PPT" Text=".ppt" Order="2000" TextLocId="-"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_pptx" Type="CheckBox" X="95" Y="134" Width="50" Height="13" Attributes="3" Property="REGISTER_PPTX" Text=".pptx" Order="2100" TextLocId="-"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_potx" Type="CheckBox" X="155" Y="134" Width="50" Height="13" Attributes="3" Property="REGISTER_POTX" Text=".potx" Order="2200" TextLocId="-"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_odp" Type="CheckBox" X="215" Y="134" Width="50" Height="13" Attributes="3" Property="REGISTER_ODP" Text=".odp" Order="2300" TextLocId="-"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_otp" Type="CheckBox" X="275" Y="134" Width="50" Height="13" Attributes="3" Property="REGISTER_OTP" Text=".otp" Order="2400" TextLocId="-"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_djvu" Type="CheckBox" X="35" Y="156" Width="50" Height="13" Attributes="3" Property="REGISTER_DJVU" Text=".djvu" Order="2500" TextLocId="-"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_epub" Type="CheckBox" X="95" Y="156" Width="50" Height="13" Attributes="3" Property="REGISTER_EPUB" Text=".epub" Order="2600" TextLocId="-"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_fb2" Type="CheckBox" X="155" Y="156" Width="50" Height="13" Attributes="3" Property="REGISTER_FB2" Text=".fb2" Order="2700" TextLocId="-"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_pdf" Type="CheckBox" X="215" Y="156" Width="50" Height="13" Attributes="3" Property="REGISTER_PDF" Text=".pdf" Order="2800" TextLocId="-"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_rtf" Type="CheckBox" X="275" Y="156" Width="50" Height="13" Attributes="3" Property="REGISTER_RTF" Text=".rtf" Order="2900" TextLocId="-"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_txt" Type="CheckBox" X="35" Y="178" Width="50" Height="13" Attributes="3" Property="REGISTER_TXT" Text=".txt" Order="3000" TextLocId="-"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_csv" Type="CheckBox" X="95" Y="178" Width="50" Height="13" Attributes="3" Property="REGISTER_CSV" Text=".csv" Order="3100" TextLocId="-"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_html" Type="CheckBox" X="155" Y="178" Width="50" Height="13" Attributes="3" Property="REGISTER_HTML" Text=".html" Order="3200" TextLocId="-"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_xml" Type="CheckBox" X="215" Y="178" Width="50" Height="13" Attributes="3" Property="REGISTER_XML" Text=".xml" Order="3300" TextLocId="-"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_xps" Type="CheckBox" X="275" Y="178" Width="50" Height="13" Attributes="3" Property="REGISTER_XPS" Text=".xps" Order="3400" TextLocId="-"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_docxf" Type="CheckBox" X="35" Y="200" Width="50" Height="13" Attributes="3" Property="REGISTER_DOCXF" Text=".docxf" Order="3500" TextLocId="-"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_oform" Type="CheckBox" X="95" Y="200" Width="50" Height="13" Attributes="3" Property="REGISTER_OFORM" Text=".oform" Order="3600" TextLocId="-"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control="Select_all_button" Type="PushButton" X="215" Y="211" Width="56" Height="17" Attributes="2" Text="Select all" Order="3700" TextLocId="Control.Text.FileAssociationsDlg#Select_all_button"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control="Deselect_all_button" Type="PushButton" X="272" Y="211" Width="56" Height="17" Attributes="2" Text="Deselect all" Order="3800" TextLocId="Control.Text.FileAssociationsDlg#Deselect_all_button"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_doc" Type="CheckBox" X="35" Y="80" Width="50" Height="13" Attributes="3" Property="REGISTER_DOC" Text=".doc" Order="1000" TextLocId="-"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_docx" Type="CheckBox" X="95" Y="80" Width="50" Height="13" Attributes="3" Property="REGISTER_DOCX" Text=".docx" Order="1100" TextLocId="-"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_dotx" Type="CheckBox" X="155" Y="80" Width="50" Height="13" Attributes="3" Property="REGISTER_DOTX" Text=".dotx" Order="1200" TextLocId="-"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_odt" Type="CheckBox" X="215" Y="80" Width="50" Height="13" Attributes="3" Property="REGISTER_ODT" Text=".odt" Order="1300" TextLocId="-"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_ott" Type="CheckBox" X="275" Y="80" Width="50" Height="13" Attributes="3" Property="REGISTER_OTT" Text=".ott" Order="1400" TextLocId="-"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_xls" Type="CheckBox" X="35" Y="100" Width="50" Height="13" Attributes="3" Property="REGISTER_XLS" Text=".xls" Order="1500" TextLocId="-"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_xlsx" Type="CheckBox" X="95" Y="100" Width="50" Height="13" Attributes="3" Property="REGISTER_XLSX" Text=".xlsx" Order="1600" TextLocId="-"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_xltx" Type="CheckBox" X="155" Y="100" Width="50" Height="13" Attributes="3" Property="REGISTER_XLTX" Text=".xltx" Order="1700" TextLocId="-"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_ods" Type="CheckBox" X="215" Y="100" Width="50" Height="13" Attributes="3" Property="REGISTER_ODS" Text=".ods" Order="1800" TextLocId="-"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_ots" Type="CheckBox" X="275" Y="100" Width="50" Height="13" Attributes="3" Property="REGISTER_OTS" Text=".ots" Order="1900" TextLocId="-"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_ppt" Type="CheckBox" X="35" Y="120" Width="50" Height="13" Attributes="3" Property="REGISTER_PPT" Text=".ppt" Order="2000" TextLocId="-"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_pptx" Type="CheckBox" X="95" Y="120" Width="50" Height="13" Attributes="3" Property="REGISTER_PPTX" Text=".pptx" Order="2100" TextLocId="-"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_potx" Type="CheckBox" X="155" Y="120" Width="50" Height="13" Attributes="3" Property="REGISTER_POTX" Text=".potx" Order="2200" TextLocId="-"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_odp" Type="CheckBox" X="215" Y="120" Width="50" Height="13" Attributes="3" Property="REGISTER_ODP" Text=".odp" Order="2300" TextLocId="-"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_otp" Type="CheckBox" X="275" Y="120" Width="50" Height="13" Attributes="3" Property="REGISTER_OTP" Text=".otp" Order="2400" TextLocId="-"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_pps" Type="CheckBox" X="35" Y="140" Width="50" Height="13" Attributes="3" Property="REGISTER_PPS" Text=".pps" Order="2500" TextLocId="-"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_ppsx" Type="CheckBox" X="95" Y="140" Width="50" Height="13" Attributes="3" Property="REGISTER_PPSX" Text=".ppsx" Order="2600" TextLocId="-"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_djvu" Type="CheckBox" X="35" Y="160" Width="50" Height="13" Attributes="3" Property="REGISTER_DJVU" Text=".djvu" Order="2700" TextLocId="-"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_epub" Type="CheckBox" X="95" Y="160" Width="50" Height="13" Attributes="3" Property="REGISTER_EPUB" Text=".epub" Order="2800" TextLocId="-"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_fb2" Type="CheckBox" X="155" Y="160" Width="50" Height="13" Attributes="3" Property="REGISTER_FB2" Text=".fb2" Order="2900" TextLocId="-"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_pdf" Type="CheckBox" X="215" Y="160" Width="50" Height="13" Attributes="3" Property="REGISTER_PDF" Text=".pdf" Order="3000" TextLocId="-"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_rtf" Type="CheckBox" X="275" Y="160" Width="50" Height="13" Attributes="3" Property="REGISTER_RTF" Text=".rtf" Order="3100" TextLocId="-"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_txt" Type="CheckBox" X="35" Y="180" Width="50" Height="13" Attributes="3" Property="REGISTER_TXT" Text=".txt" Order="3200" TextLocId="-"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_csv" Type="CheckBox" X="95" Y="180" Width="50" Height="13" Attributes="3" Property="REGISTER_CSV" Text=".csv" Order="3300" TextLocId="-"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_html" Type="CheckBox" X="155" Y="180" Width="50" Height="13" Attributes="3" Property="REGISTER_HTML" Text=".html" Order="3400" TextLocId="-"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_xml" Type="CheckBox" X="215" Y="180" Width="50" Height="13" Attributes="3" Property="REGISTER_XML" Text=".xml" Order="3500" TextLocId="-"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_xps" Type="CheckBox" X="275" Y="180" Width="50" Height="13" Attributes="3" Property="REGISTER_XPS" Text=".xps" Order="3600" TextLocId="-"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_docxf" Type="CheckBox" X="35" Y="200" Width="50" Height="13" Attributes="3" Property="REGISTER_DOCXF" Text=".docxf" Order="3700" TextLocId="-"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_oform" Type="CheckBox" X="95" Y="200" Width="50" Height="13" Attributes="3" Property="REGISTER_OFORM" Text=".oform" Order="3800" TextLocId="-"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control="Select_all_button" Type="PushButton" X="215" Y="211" Width="56" Height="17" Attributes="2" Text="Select all" Order="3900" TextLocId="Control.Text.FileAssociationsDlg#Select_all_button"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control="Deselect_all_button" Type="PushButton" X="272" Y="211" Width="56" Height="17" Attributes="2" Text="Deselect all" Order="4000" TextLocId="Control.Text.FileAssociationsDlg#Deselect_all_button"/>
     <ROW Dialog_="FilesInUse" Control="BannerBitmap" Type="Bitmap" X="0" Y="0" Width="370" Height="44" Attributes="1048577" Text="banner.png" Order="400" MsiKey="FilesInUse#BannerBitmap"/>
     <ROW Dialog_="FilesInUse" Control="Title" Type="Text" X="15" Y="6" Width="200" Height="15" Attributes="196611" Text="Files in Use" TextStyle="[DlgTitleFont]" Order="600" TextLocId="Control.Text.FilesInUse#Title" MsiKey="FilesInUse#Title"/>
     <ROW Dialog_="FilesInUse" Control="Text" Type="Text" X="20" Y="55" Width="330" Height="30" Attributes="3" Text="The following applications are using files that need to be updated by this setup. You can either close the applications and then click &quot;Retry&quot;, or click &quot;Ignore&quot; so that the installer continues the installation and replaces these files when your system restarts." Order="700" TextLocId="Control.Text.FilesInUse#Text" MsiKey="FilesInUse#Text"/>
