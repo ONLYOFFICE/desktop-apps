@@ -1165,7 +1165,7 @@ bool CTabBar::eventFilter(QObject *watched, QEvent *event)
             } else
             if (mouse_event->button() == Qt::MiddleButton) {
                 for (int i = 0; i < d->tabList.size(); i++) {
-                    if (d->tabList[i]->close_btn->underMouse()) {
+                    if (d->_tabRect(i).contains(mouse_event->pos())) {
                         emit tabCloseRequested(i);
                         return true;
                     }
