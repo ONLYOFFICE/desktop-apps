@@ -1044,19 +1044,12 @@
     <ROW Registry="reg_fa_progid_icon__doc" Root="0" Key="[ASCC_REG_PREFIX].Document.1\DefaultIcon" Value="[APPDIR]DesktopEditors.exe,11" Component_="c_reg_fa_progid__doc"/>
     <ROW Registry="reg_fa_progid_icon__docx" Root="0" Key="[ASCC_REG_PREFIX].Document.12\DefaultIcon" Value="[APPDIR]DesktopEditors.exe,7" Component_="c_reg_fa_progid__docx"/>
     <ROW Registry="reg_fa_progid_icon__docxf" Root="0" Key="[ASCC_REG_PREFIX].Docxf\DefaultIcon" Value="[APPDIR]DesktopEditors.exe,13" Component_="c_reg_fa_progid__docxf"/>
-    <ROW Registry="reg_fa_progid_icon__dotx" Root="0" Key="[ASCC_REG_PREFIX].Dotx\DefaultIcon" Value="[APPDIR]DesktopEditors.exe,0" Component_="c_reg_fa_progid__dotx"/>
-    <ROW Registry="reg_fa_progid_icon__epub" Root="0" Key="[ASCC_REG_PREFIX].Epub\DefaultIcon" Value="[APPDIR]DesktopEditors.exe,0" Component_="c_reg_fa_progid__epub"/>
-    <ROW Registry="reg_fa_progid_icon__fb2" Root="0" Key="[ASCC_REG_PREFIX].Fb2\DefaultIcon" Value="[APPDIR]DesktopEditors.exe,0" Component_="c_reg_fa_progid__fb2"/>
     <ROW Registry="reg_fa_progid_icon__html" Root="0" Key="[ASCC_REG_PREFIX].Html\DefaultIcon" Value="[APPDIR]DesktopEditors.exe,21" Component_="c_reg_fa_progid__html"/>
     <ROW Registry="reg_fa_progid_icon__odp" Root="0" Key="[ASCC_REG_PREFIX].Show.2\DefaultIcon" Value="[APPDIR]DesktopEditors.exe,3" Component_="c_reg_fa_progid__odp"/>
     <ROW Registry="reg_fa_progid_icon__ods" Root="0" Key="[ASCC_REG_PREFIX].Sheet.2\DefaultIcon" Value="[APPDIR]DesktopEditors.exe,23" Component_="c_reg_fa_progid__ods"/>
     <ROW Registry="reg_fa_progid_icon__odt" Root="0" Key="[ASCC_REG_PREFIX].Document.2\DefaultIcon" Value="[APPDIR]DesktopEditors.exe,18" Component_="c_reg_fa_progid__odt"/>
     <ROW Registry="reg_fa_progid_icon__oform" Root="0" Key="[ASCC_REG_PREFIX].Oform\DefaultIcon" Value="[APPDIR]DesktopEditors.exe,12" Component_="c_reg_fa_progid__oform"/>
-    <ROW Registry="reg_fa_progid_icon__otp" Root="0" Key="[ASCC_REG_PREFIX].Otp\DefaultIcon" Value="[APPDIR]DesktopEditors.exe,0" Component_="c_reg_fa_progid__otp"/>
-    <ROW Registry="reg_fa_progid_icon__ots" Root="0" Key="[ASCC_REG_PREFIX].Ots\DefaultIcon" Value="[APPDIR]DesktopEditors.exe,0" Component_="c_reg_fa_progid__ots"/>
-    <ROW Registry="reg_fa_progid_icon__ott" Root="0" Key="[ASCC_REG_PREFIX].Ott\DefaultIcon" Value="[APPDIR]DesktopEditors.exe,0" Component_="c_reg_fa_progid__ott"/>
     <ROW Registry="reg_fa_progid_icon__pdf" Root="0" Key="[ASCC_REG_PREFIX].Pdf\DefaultIcon" Value="[APPDIR]DesktopEditors.exe,5" Component_="c_reg_fa_progid__pdf"/>
-    <ROW Registry="reg_fa_progid_icon__potx" Root="0" Key="[ASCC_REG_PREFIX].Potx\DefaultIcon" Value="[APPDIR]DesktopEditors.exe,0" Component_="c_reg_fa_progid__potx"/>
     <ROW Registry="reg_fa_progid_icon__pps" Root="0" Key="[ASCC_REG_PREFIX].SlideShow.1\DefaultIcon" Value="[APPDIR]DesktopEditors.exe,2" Component_="c_reg_fa_progid__pps"/>
     <ROW Registry="reg_fa_progid_icon__ppsx" Root="0" Key="[ASCC_REG_PREFIX].SlideShow.12\DefaultIcon" Value="[APPDIR]DesktopEditors.exe,8" Component_="c_reg_fa_progid__ppsx"/>
     <ROW Registry="reg_fa_progid_icon__ppt" Root="0" Key="[ASCC_REG_PREFIX].Show.1\DefaultIcon" Value="[APPDIR]DesktopEditors.exe,1" Component_="c_reg_fa_progid__ppt"/>
@@ -1065,27 +1058,18 @@
     <ROW Registry="reg_fa_progid_icon__txt" Root="0" Key="[ASCC_REG_PREFIX].Txt\DefaultIcon" Value="[APPDIR]DesktopEditors.exe,20" Component_="c_reg_fa_progid__txt"/>
     <ROW Registry="reg_fa_progid_icon__xls" Root="0" Key="[ASCC_REG_PREFIX].Sheet.1\DefaultIcon" Value="[APPDIR]DesktopEditors.exe,22" Component_="c_reg_fa_progid__xls"/>
     <ROW Registry="reg_fa_progid_icon__xlsx" Root="0" Key="[ASCC_REG_PREFIX].Sheet.12\DefaultIcon" Value="[APPDIR]DesktopEditors.exe,10" Component_="c_reg_fa_progid__xlsx"/>
-    <ROW Registry="reg_fa_progid_icon__xltx" Root="0" Key="[ASCC_REG_PREFIX].Xltx\DefaultIcon" Value="[APPDIR]DesktopEditors.exe,0" Component_="c_reg_fa_progid__xltx"/>
-    <ROW Registry="reg_fa_progid_icon__xml" Root="0" Key="[ASCC_REG_PREFIX].Xml\DefaultIcon" Value="[APPDIR]DesktopEditors.exe,0" Component_="c_reg_fa_progid__xml"/>
     <ROW Registry="reg_fa_progid_icon__xps" Root="0" Key="[ASCC_REG_PREFIX].Xps\DefaultIcon" Value="[APPDIR]DesktopEditors.exe,6" Component_="c_reg_fa_progid__xps"/>
     <ROW Registry="reg_fa_progid_icon_k__csv" Root="0" Key="[ASCC_REG_PREFIX].Csv\DefaultIcon" Name="\"/>
     <ROW Registry="reg_fa_progid_icon_k__djvu" Root="0" Key="[ASCC_REG_PREFIX].DjVu\DefaultIcon" Name="\"/>
     <ROW Registry="reg_fa_progid_icon_k__doc" Root="0" Key="[ASCC_REG_PREFIX].Document.1\DefaultIcon" Name="\"/>
     <ROW Registry="reg_fa_progid_icon_k__docx" Root="0" Key="[ASCC_REG_PREFIX].Document.12\DefaultIcon" Name="\"/>
     <ROW Registry="reg_fa_progid_icon_k__docxf" Root="0" Key="[ASCC_REG_PREFIX].Docxf\DefaultIcon" Name="\"/>
-    <ROW Registry="reg_fa_progid_icon_k__dotx" Root="0" Key="[ASCC_REG_PREFIX].Dotx\DefaultIcon" Name="\"/>
-    <ROW Registry="reg_fa_progid_icon_k__epub" Root="0" Key="[ASCC_REG_PREFIX].Epub\DefaultIcon" Name="\"/>
-    <ROW Registry="reg_fa_progid_icon_k__fb2" Root="0" Key="[ASCC_REG_PREFIX].Fb2\DefaultIcon" Name="\"/>
     <ROW Registry="reg_fa_progid_icon_k__html" Root="0" Key="[ASCC_REG_PREFIX].Html\DefaultIcon" Name="\"/>
     <ROW Registry="reg_fa_progid_icon_k__odp" Root="0" Key="[ASCC_REG_PREFIX].Show.2\DefaultIcon" Name="\"/>
     <ROW Registry="reg_fa_progid_icon_k__ods" Root="0" Key="[ASCC_REG_PREFIX].Sheet.2\DefaultIcon" Name="\"/>
     <ROW Registry="reg_fa_progid_icon_k__odt" Root="0" Key="[ASCC_REG_PREFIX].Document.2\DefaultIcon" Name="\"/>
     <ROW Registry="reg_fa_progid_icon_k__oform" Root="0" Key="[ASCC_REG_PREFIX].Oform\DefaultIcon" Name="\"/>
-    <ROW Registry="reg_fa_progid_icon_k__otp" Root="0" Key="[ASCC_REG_PREFIX].Otp\DefaultIcon" Name="\"/>
-    <ROW Registry="reg_fa_progid_icon_k__ots" Root="0" Key="[ASCC_REG_PREFIX].Ots\DefaultIcon" Name="\"/>
-    <ROW Registry="reg_fa_progid_icon_k__ott" Root="0" Key="[ASCC_REG_PREFIX].Ott\DefaultIcon" Name="\"/>
     <ROW Registry="reg_fa_progid_icon_k__pdf" Root="0" Key="[ASCC_REG_PREFIX].Pdf\DefaultIcon" Name="\"/>
-    <ROW Registry="reg_fa_progid_icon_k__potx" Root="0" Key="[ASCC_REG_PREFIX].Potx\DefaultIcon" Name="\"/>
     <ROW Registry="reg_fa_progid_icon_k__pps" Root="0" Key="[ASCC_REG_PREFIX].SlideShow.1\DefaultIcon" Name="\"/>
     <ROW Registry="reg_fa_progid_icon_k__ppsx" Root="0" Key="[ASCC_REG_PREFIX].SlideShow.12\DefaultIcon" Name="\"/>
     <ROW Registry="reg_fa_progid_icon_k__ppt" Root="0" Key="[ASCC_REG_PREFIX].Show.1\DefaultIcon" Name="\"/>
@@ -1094,8 +1078,6 @@
     <ROW Registry="reg_fa_progid_icon_k__txt" Root="0" Key="[ASCC_REG_PREFIX].Txt\DefaultIcon" Name="\"/>
     <ROW Registry="reg_fa_progid_icon_k__xls" Root="0" Key="[ASCC_REG_PREFIX].Sheet.1\DefaultIcon" Name="\"/>
     <ROW Registry="reg_fa_progid_icon_k__xlsx" Root="0" Key="[ASCC_REG_PREFIX].Sheet.12\DefaultIcon" Name="\"/>
-    <ROW Registry="reg_fa_progid_icon_k__xltx" Root="0" Key="[ASCC_REG_PREFIX].Xltx\DefaultIcon" Name="\"/>
-    <ROW Registry="reg_fa_progid_icon_k__xml" Root="0" Key="[ASCC_REG_PREFIX].Xml\DefaultIcon" Name="\"/>
     <ROW Registry="reg_fa_progid_icon_k__xps" Root="0" Key="[ASCC_REG_PREFIX].Xps\DefaultIcon" Name="\"/>
     <ROW Registry="reg_fa_progid_k__csv" Root="0" Key="[ASCC_REG_PREFIX].Csv" Name="\"/>
     <ROW Registry="reg_fa_progid_k__djvu" Root="0" Key="[ASCC_REG_PREFIX].DjVu" Name="\"/>
