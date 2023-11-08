@@ -176,6 +176,9 @@ void CAscTabData::setFeatures(const wstring& fs)
 
         if ( _str_readonly.isEmpty() )
             _str_readonly = " (" + QObject::tr("Read only") + ")";
+    } else
+    if ( hasFeature(L"readonly\":false") ) {
+        _is_readonly = false;
     }
 }
 

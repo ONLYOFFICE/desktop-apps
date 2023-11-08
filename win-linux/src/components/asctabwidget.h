@@ -184,7 +184,7 @@ public:
     void setTabIcons(CTabIconSet&);
     void reloadTabIcons();
     void setTabActiveColor(int index, const std::wstring& color);
-    void setTabThemeType(int index, const QString& type);
+    void setTabTheme(int index, const QString& type, const QString& color);
     void setFocusedView(int index = -1);
     void setFullScreen(bool, int id = -1);
     QWidget * fullScreenWidget();
