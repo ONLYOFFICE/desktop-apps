@@ -115,7 +115,7 @@
     <ROW Component="c_exe_imageviewer" ComponentId="{E8DFAC60-5575-4D64-AD43-FF684A2FAE8F}" Directory_="CUSTOM_PATH" Attributes="256" Condition="GALLERY = &quot;1&quot;" KeyPath="ImageViewer.exe"/>
     <ROW Component="c_exe_updatesvc" ComponentId="{954103D0-8D21-42C9-A924-247FCB9653F9}" Directory_="APPDIR" Attributes="256" KeyPath="updatesvc.exe"/>
     <ROW Component="c_exe_videoplayer" ComponentId="{39F3F737-40E8-42F0-9342-BF8232F34B72}" Directory_="CUSTOM_PATH" Attributes="256" Condition="PLAYER = &quot;1&quot;" KeyPath="VideoPlayer.exe"/>
-    <ROW Component="c_reg_cu_sw_app" ComponentId="{BF7B083D-CB31-42CC-89EB-912C4461A8D0}" Directory_="APPDIR" Attributes="260" KeyPath="reg_cu_sw_app"/>
+    <ROW Component="c_reg_cu_sw_app" ComponentId="{BF7B083D-CB31-42CC-89EB-912C4461A8D0}" Directory_="APPDIR" Attributes="260" KeyPath="reg_cu_sw_company"/>
     <ROW Component="c_reg_fa_cap__csv" ComponentId="{2002B59E-DC3A-4307-B9BF-B4ADBC6890DC}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_cap__csv"/>
     <ROW Component="c_reg_fa_cap__djvu" ComponentId="{214A8DA3-552D-42C3-9252-C936958AED65}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_cap__djvu"/>
     <ROW Component="c_reg_fa_cap__doc" ComponentId="{2A868F5D-AEBD-4D31-80A1-FDBCDFB97D1F}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_cap__doc"/>
@@ -232,9 +232,9 @@
     <ROW Component="c_reg_fa_type__xltx" ComponentId="{34BA886A-53E1-4718-B137-AC21A4A0F98E}" Directory_="APPDIR" Attributes="260" Condition="REGISTER_XLTX = 1" KeyPath="reg_fa_type__xltx"/>
     <ROW Component="c_reg_fa_type__xml" ComponentId="{95107AD0-08FB-4A92-A44F-7D57D019945E}" Directory_="APPDIR" Attributes="260" Condition="REGISTER_XML = 1" KeyPath="reg_fa_type__xml"/>
     <ROW Component="c_reg_fa_type__xps" ComponentId="{63EC416C-ADB8-4148-B5C6-AC64F707D605}" Directory_="APPDIR" Attributes="260" Condition="REGISTER_XPS = 1" KeyPath="reg_fa_type__xps"/>
-    <ROW Component="c_reg_progid" ComponentId="{9D33C055-B150-47B2-AB67-51C8FECB3260}" Directory_="APPDIR" Attributes="260" KeyPath="reg_progid_icon"/>
-    <ROW Component="c_reg_protocol" ComponentId="{C28686D3-D274-4005-93D2-EC95B27607E3}" Directory_="APPDIR" Attributes="260" Condition="ProductName = &quot;ONLYOFFICE Desktop Editors&quot;" KeyPath="reg_protocol_url_protocol"/>
-    <ROW Component="c_reg_sw_app" ComponentId="{86375F1D-EF9C-44F1-B331-7545DA000717}" Directory_="APPDIR" Attributes="260" KeyPath="reg_sw_app_cap_applicationdescription"/>
+    <ROW Component="c_reg_progid" ComponentId="{9D33C055-B150-47B2-AB67-51C8FECB3260}" Directory_="APPDIR" Attributes="260" KeyPath="reg_progid"/>
+    <ROW Component="c_reg_protocol" ComponentId="{C28686D3-D274-4005-93D2-EC95B27607E3}" Directory_="APPDIR" Attributes="260" Condition="ProductName = &quot;ONLYOFFICE Desktop Editors&quot;" KeyPath="reg_protocol"/>
+    <ROW Component="c_reg_sw_app" ComponentId="{86375F1D-EF9C-44F1-B331-7545DA000717}" Directory_="APPDIR" Attributes="260" KeyPath="reg_sw_company"/>
     <ROW Component="c_reg_sw_registeredapps" ComponentId="{2637A7F2-DBD3-45D4-AE10-ADD61BFC4414}" Directory_="APPDIR" Attributes="260" KeyPath="reg_sw_registeredapps"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatsComponent">
@@ -901,8 +901,6 @@
     <ROW Registry="ModifyPath" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="ModifyPath" Value="[AI_UNINSTALLER] /i [ProductCode] AI_UNINSTALLER_CTP=1" Component_="AI_CustomARPName"/>
     <ROW Registry="NoModify" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="NoModify" Value="#1" Component_="AI_DisableModify" VirtualValue="#"/>
     <ROW Registry="NoRepair" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="NoRepair" Value="#1" Component_="AI_CustomARPName" VirtualValue="#"/>
-    <ROW Registry="PRODUCT_INSTALL_FOLDER" Root="-1" Key="Software\[MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]" Name="\"/>
-    <ROW Registry="PRODUCT_INSTALL_FOLDER_1" Root="1" Key="Software\[MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]" Name="\"/>
     <ROW Registry="Prereqs" Root="-1" Key="Software\Caphyon\Advanced Installer\Prereqs" Name="\"/>
     <ROW Registry="ProductCode" Root="-1" Key="Software\Caphyon\Advanced Installer\Installs\[ProductCode]" Name="\"/>
     <ROW Registry="ProductCode_1" Root="-1" Key="Software\Caphyon\Advanced Installer\Prereqs\[ProductCode]" Name="\"/>
@@ -921,8 +919,9 @@
     <ROW Registry="VersionMajor" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="VersionMajor" Value="#6" Component_="AI_CustomARPName" VirtualValue="#"/>
     <ROW Registry="VersionMinor" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="VersionMinor" Value="#4" Component_="AI_CustomARPName" VirtualValue="#"/>
     <ROW Registry="Windows" Root="-1" Key="Software\Microsoft\Windows" Name="\"/>
-    <ROW Registry="reg_cu_sw_app" Root="1" Key="Software\[MANUFACTURER_INSTALL_FOLDER]" Name="*" Component_="c_reg_cu_sw_app"/>
+    <ROW Registry="reg_cu_sw_app" Root="1" Key="Software\[MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]" Name="*"/>
     <ROW Registry="reg_cu_sw_app_locale" Root="1" Key="Software\[MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]" Name="locale" Value="[LOCALE]" Component_="c_reg_cu_sw_app"/>
+    <ROW Registry="reg_cu_sw_company" Root="1" Key="Software\[MANUFACTURER_INSTALL_FOLDER]" Name="+" Component_="c_reg_cu_sw_app"/>
     <ROW Registry="reg_fa_cap__csv" Root="-1" Key="Software\[MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]\Capabilities\FileAssociations" Name=".csv" Value="[ASCC_REG_PREFIX].Csv" Component_="c_reg_fa_cap__csv"/>
     <ROW Registry="reg_fa_cap__djvu" Root="-1" Key="Software\[MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]\Capabilities\FileAssociations" Name=".djvu" Value="[ASCC_REG_PREFIX].DjVu" Component_="c_reg_fa_cap__djvu"/>
     <ROW Registry="reg_fa_cap__doc" Root="-1" Key="Software\[MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]\Capabilities\FileAssociations" Name=".doc" Value="[ASCC_REG_PREFIX].Document.1" Component_="c_reg_fa_cap__doc"/>
@@ -1300,7 +1299,7 @@
     <ROW Registry="reg_protocol_shell_open_command_k" Root="0" Key="[APP_PROTOCOL]\shell\open\command" Name="\"/>
     <ROW Registry="reg_protocol_shell_open_k" Root="0" Key="[APP_PROTOCOL]\shell\open" Name="\"/>
     <ROW Registry="reg_protocol_url_protocol" Root="0" Key="[APP_PROTOCOL]" Name="URL Protocol" Component_="c_reg_protocol"/>
-    <ROW Registry="reg_sw_app" Root="-1" Key="Software\[MANUFACTURER_INSTALL_FOLDER]" Name="*" Component_="c_reg_sw_app"/>
+    <ROW Registry="reg_sw_app" Root="-1" Key="Software\[MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]" Name="*"/>
     <ROW Registry="reg_sw_app_apppath" Root="-1" Key="Software\[MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]" Name="AppPath" Value="[APPDIR]" Component_="c_reg_sw_app"/>
     <ROW Registry="reg_sw_app_cap" Root="-1" Key="Software\[MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]\Capabilities" Name="\"/>
     <ROW Registry="reg_sw_app_cap_applicationdescription" Root="-1" Key="Software\[MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]\Capabilities" Name="ApplicationDescription" Value="[ARPCOMMENTS]" Component_="c_reg_sw_app"/>
@@ -1310,6 +1309,7 @@
     <ROW Registry="reg_sw_app_checkforupdates" Root="-1" Key="Software\[MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]" Name="CheckForUpdates" Value="#0" Component_="c_reg_sw_app" VirtualValue="#"/>
     <ROW Registry="reg_sw_app_locale" Root="-1" Key="Software\[MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]" Name="locale" Value="[LOCALE]" Component_="c_reg_sw_app"/>
     <ROW Registry="reg_sw_app_version" Root="-1" Key="Software\[MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]" Name="Version" Value="[ProductVersion]" Component_="c_reg_sw_app"/>
+    <ROW Registry="reg_sw_company" Root="-1" Key="Software\[MANUFACTURER_INSTALL_FOLDER]" Name="+" Component_="c_reg_sw_app"/>
     <ROW Registry="reg_sw_registeredapps" Root="-1" Key="Software\RegisteredApplications" Name="[ASCC_REG_REGISTERED_APP_NAME]" Value="Software\[MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]\Capabilities" Component_="c_reg_sw_registeredapps"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiServCtrlComponent">
