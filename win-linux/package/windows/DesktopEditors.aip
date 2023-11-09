@@ -70,6 +70,7 @@
     <ROW Property="REGISTER_PPSX" Value="1" Type="4" ValueLocId="-"/>
     <ROW Property="REGISTER_PPT" Value="1" Type="4" ValueLocId="-"/>
     <ROW Property="REGISTER_PPTX" Value="1" Type="4" ValueLocId="-"/>
+    <ROW Property="REGISTER_PROTOCOL" Value="1" Type="4" ValueLocId="-"/>
     <ROW Property="REGISTER_RTF" Value="0" Type="4" ValueLocId="-"/>
     <ROW Property="REGISTER_TXT" Value="0" Type="4" ValueLocId="-"/>
     <ROW Property="REGISTER_XLS" Value="1" Type="4" ValueLocId="-"/>
@@ -233,7 +234,7 @@
     <ROW Component="c_reg_fa_type__xml" ComponentId="{95107AD0-08FB-4A92-A44F-7D57D019945E}" Directory_="APPDIR" Attributes="260" Condition="REGISTER_XML = 1" KeyPath="reg_fa_type__xml"/>
     <ROW Component="c_reg_fa_type__xps" ComponentId="{63EC416C-ADB8-4148-B5C6-AC64F707D605}" Directory_="APPDIR" Attributes="260" Condition="REGISTER_XPS = 1" KeyPath="reg_fa_type__xps"/>
     <ROW Component="c_reg_progid" ComponentId="{9D33C055-B150-47B2-AB67-51C8FECB3260}" Directory_="APPDIR" Attributes="260" KeyPath="reg_progid"/>
-    <ROW Component="c_reg_protocol" ComponentId="{C28686D3-D274-4005-93D2-EC95B27607E3}" Directory_="APPDIR" Attributes="260" Condition="ProductName = &quot;ONLYOFFICE Desktop Editors&quot;" KeyPath="reg_protocol"/>
+    <ROW Component="c_reg_protocol" ComponentId="{C28686D3-D274-4005-93D2-EC95B27607E3}" Directory_="APPDIR" Attributes="260" Condition="REGISTER_PROTOCOL = 1" KeyPath="reg_protocol"/>
     <ROW Component="c_reg_sw_app" ComponentId="{86375F1D-EF9C-44F1-B331-7545DA000717}" Directory_="APPDIR" Attributes="260" KeyPath="reg_sw_company"/>
     <ROW Component="c_reg_sw_registeredapps" ComponentId="{2637A7F2-DBD3-45D4-AE10-ADD61BFC4414}" Directory_="APPDIR" Attributes="260" KeyPath="reg_sw_registeredapps"/>
   </COMPONENT>
