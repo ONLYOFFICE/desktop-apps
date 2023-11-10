@@ -833,9 +833,9 @@
     <ROW Feature_="FileProgramCapatibilities" Component_="c_reg_ua_cap__protocol"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiIconsComponent">
-    <ROW Name="ImageViewer.exe" SourcePath="..\..\extras\projicons\res\gallery.ico" Index="0"/>
-    <ROW Name="VideoPlayer.exe" SourcePath="..\..\extras\projicons\res\media.ico" Index="0"/>
-    <ROW Name="desktopeditors.exe" SourcePath="..\..\extras\projicons\res\desktopeditors.ico" Index="0"/>
+    <ROW Name="ImageViewer.exe" SourcePath="..\..\extras\projicons\res\icons\gallery.ico" Index="0"/>
+    <ROW Name="VideoPlayer.exe" SourcePath="..\..\extras\projicons\res\icons\media.ico" Index="0"/>
+    <ROW Name="desktopeditors.exe" SourcePath="..\..\extras\projicons\res\icons\desktopeditors.ico" Index="0"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiInstExSeqComponent">
     <ROW Action="AI_DOWNGRADE" Condition="AI_NEWERPRODUCTFOUND AND (UILevel &lt;&gt; 5)" Sequence="210"/>
