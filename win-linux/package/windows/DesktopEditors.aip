@@ -146,6 +146,10 @@
     <ROW Component="c_reg_fa_cap__xltx" ComponentId="{34E34196-2AA3-46CC-BD78-3772AAF600D8}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_cap__xltx"/>
     <ROW Component="c_reg_fa_cap__xml" ComponentId="{F6549CA8-52A0-4B94-AA5E-100A78E81AF0}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_cap__xml"/>
     <ROW Component="c_reg_fa_cap__xps" ComponentId="{CA70CAF5-ABAB-45FF-A440-32B3C8FDE8D0}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_cap__xps"/>
+    <ROW Component="c_reg_fa_new__docx" ComponentId="{F05C6909-8124-4C86-BEAE-89373FF4BE07}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_type_progid__docx"/>
+    <ROW Component="c_reg_fa_new__docxf" ComponentId="{CEF19BD3-1039-4290-8E67-FA7A9DCAF5D9}" Directory_="APPDIR" Attributes="260" Condition="ProductName = &quot;ONLYOFFICE Desktop Editors&quot;" KeyPath="reg_fa_type_progid__docxf"/>
+    <ROW Component="c_reg_fa_new__pptx" ComponentId="{60295DF1-6BD2-4B1C-8075-99690858B4F6}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_type_progid__pptx"/>
+    <ROW Component="c_reg_fa_new__xlsx" ComponentId="{3444FDB3-CA06-4150-8790-92DDB9C5E0F4}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_type_progid__xlsx"/>
     <ROW Component="c_reg_fa_openwith__csv" ComponentId="{8B453AFC-A678-4034-8460-2EFFECD13529}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_openwith__csv"/>
     <ROW Component="c_reg_fa_openwith__djvu" ComponentId="{20FB5477-6192-4277-B61E-0FF401758469}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_openwith__djvu"/>
     <ROW Component="c_reg_fa_openwith__doc" ComponentId="{F1B1CEDC-E7A4-42F4-9512-346E4EED0485}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_openwith__doc"/>
@@ -240,6 +244,7 @@
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatsComponent">
     <ROW Feature="ExtendedFeature" Feature_Parent="MainFeature" Title="ExtendedFeature" Display="3" Level="1" Directory_="CUSTOM_PATH" Attributes="0"/>
+    <ROW Feature="FileNewTemplates" Feature_Parent="MainFeature" Title="File New Templates" Display="15" Level="1" Directory_="APPDIR" Attributes="0"/>
     <ROW Feature="FileOpenWith" Feature_Parent="MainFeature" Title="File Open With" Display="9" Level="1" Directory_="APPDIR" Attributes="0"/>
     <ROW Feature="FileProgIds" Feature_Parent="MainFeature" Title="File Prog Ids" Display="6" Level="1" Directory_="APPDIR" Attributes="0"/>
     <ROW Feature="FileProgramCapatibilities" Feature_Parent="MainFeature" Title="File Program Capatibilities" Display="11" Level="1" Directory_="APPDIR" Attributes="0"/>
@@ -389,6 +394,7 @@
     <ROW Feature_="FileTypeAssociations" Level="4" Condition="REGISTER_NONE = 1"/>
     <ROW Feature_="FileProgramCapatibilities" Level="4" Condition="REGISTER_PROG_NONE = 1"/>
     <ROW Feature_="ExtendedFeature" Level="4" Condition="GALLERY &lt;&gt; &quot;1&quot; AND PLAYER &lt;&gt; &quot;1&quot;"/>
+    <ROW Feature_="FileNewTemplates" Level="4" Condition="REGISTER_NONE = 1"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiControlComponent">
     <ROW Dialog_="AdminBrowseDlg" Control="OK" Type="PushButton" X="304" Y="243" Width="56" Height="17" Attributes="3" Text="[ButtonText_OK]" Order="300" TextLocId="-" MsiKey="AdminBrowseDlg#OK"/>
@@ -819,6 +825,10 @@
     <ROW Feature_="FileTypeAssociations" Component_="c_reg_fa_type__xltx"/>
     <ROW Feature_="FileTypeAssociations" Component_="c_reg_fa_type__xml"/>
     <ROW Feature_="FileTypeAssociations" Component_="c_reg_fa_type__xps"/>
+    <ROW Feature_="FileNewTemplates" Component_="c_reg_fa_new__docx"/>
+    <ROW Feature_="FileNewTemplates" Component_="c_reg_fa_new__docxf"/>
+    <ROW Feature_="FileNewTemplates" Component_="c_reg_fa_new__xlsx"/>
+    <ROW Feature_="FileNewTemplates" Component_="c_reg_fa_new__pptx"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiIconsComponent">
     <ROW Name="ImageViewer.exe" SourcePath="..\..\extras\projicons\res\gallery.ico" Index="0"/>
@@ -1282,6 +1292,18 @@
     <ROW Registry="reg_fa_type_k__xltx" Root="0" Key=".xltx" Name="\"/>
     <ROW Registry="reg_fa_type_k__xml" Root="0" Key=".xml" Name="\"/>
     <ROW Registry="reg_fa_type_k__xps" Root="0" Key=".xps" Name="\"/>
+    <ROW Registry="reg_fa_type_progid__docx" Root="0" Key=".docx\[ASCC_REG_PREFIX].Document.12" Name="*" Component_="c_reg_fa_new__docx"/>
+    <ROW Registry="reg_fa_type_progid__docxf" Root="0" Key=".docxf\[ASCC_REG_PREFIX].Docxf" Name="*" Component_="c_reg_fa_new__docxf"/>
+    <ROW Registry="reg_fa_type_progid__pptx" Root="0" Key=".pptx\[ASCC_REG_PREFIX].Show.12" Name="*" Component_="c_reg_fa_new__pptx"/>
+    <ROW Registry="reg_fa_type_progid__xlsx" Root="0" Key=".xlsx\[ASCC_REG_PREFIX].Sheet.12" Name="*" Component_="c_reg_fa_new__xlsx"/>
+    <ROW Registry="reg_fa_type_progid_shellnew__docx" Root="0" Key=".docx\[ASCC_REG_PREFIX].Document.12\ShellNew" Name="\"/>
+    <ROW Registry="reg_fa_type_progid_shellnew__docxf" Root="0" Key=".docxf\[ASCC_REG_PREFIX].Docxf\ShellNew" Name="\"/>
+    <ROW Registry="reg_fa_type_progid_shellnew__pptx" Root="0" Key=".pptx\[ASCC_REG_PREFIX].Show.12\ShellNew" Name="\"/>
+    <ROW Registry="reg_fa_type_progid_shellnew__xlsx" Root="0" Key=".xlsx\[ASCC_REG_PREFIX].Sheet.12\ShellNew" Name="\"/>
+    <ROW Registry="reg_fa_type_progid_shellnew_filename__docx" Root="0" Key=".docx\[ASCC_REG_PREFIX].Document.12\ShellNew" Name="FileName" Value="[APPDIR]converter\empty\en-US\new.docx" Component_="c_reg_fa_new__docx"/>
+    <ROW Registry="reg_fa_type_progid_shellnew_filename__docxf" Root="0" Key=".docxf\[ASCC_REG_PREFIX].Docxf\ShellNew" Name="FileName" Value="[APPDIR]converter\empty\en-US\new.docxf" Component_="c_reg_fa_new__docxf"/>
+    <ROW Registry="reg_fa_type_progid_shellnew_filename__pptx" Root="0" Key=".pptx\[ASCC_REG_PREFIX].Show.12\ShellNew" Name="FileName" Value="[APPDIR]converter\empty\en-US\new.pptx" Component_="c_reg_fa_new__pptx"/>
+    <ROW Registry="reg_fa_type_progid_shellnew_filename__xlsx" Root="0" Key=".xlsx\[ASCC_REG_PREFIX].Sheet.12\ShellNew" Name="FileName" Value="[APPDIR]converter\empty\en-US\new.xlsx" Component_="c_reg_fa_new__xlsx"/>
     <ROW Registry="reg_progid" Root="0" Key="[ASSOC_PROG_ID]" Value="[ASSOC_APP_FRIENDLY_NAME]" Component_="c_reg_progid"/>
     <ROW Registry="reg_progid_icon" Root="0" Key="[ASSOC_PROG_ID]\DefaultIcon" Value="[#DesktopEditors.exe],0" Component_="c_reg_progid"/>
     <ROW Registry="reg_progid_icon_k" Root="0" Key="[ASSOC_PROG_ID]\DefaultIcon" Name="\"/>
