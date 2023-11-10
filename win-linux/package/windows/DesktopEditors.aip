@@ -20,7 +20,7 @@
     <ROW Property="ARPHELPTELEPHONE" Value="+371 66016425"/>
     <ROW Property="ARPNOMODIFY" MultiBuildValue="MsiBuild64:1#MsiBuild32:1"/>
     <ROW Property="ARPNOREPAIR" Value="1"/>
-    <ROW Property="ARPPRODUCTICON" Value="desktopeditors.exe" Type="8"/>
+    <ROW Property="ARPPRODUCTICON" Value="i_desktopeditors" Type="8"/>
     <ROW Property="ARPSYSTEMCOMPONENT" Value="1"/>
     <ROW Property="ARPURLINFOABOUT" Value="http://www.onlyoffice.com"/>
     <ROW Property="ARPURLUPDATEINFO" Value="http://www.onlyoffice.com/download.aspx"/>
@@ -833,9 +833,9 @@
     <ROW Feature_="FileProgramCapatibilities" Component_="c_reg_ua_cap__protocol"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiIconsComponent">
-    <ROW Name="ImageViewer.exe" SourcePath="..\..\extras\projicons\res\gallery.ico" Index="0"/>
-    <ROW Name="VideoPlayer.exe" SourcePath="..\..\extras\projicons\res\media.ico" Index="0"/>
-    <ROW Name="desktopeditors.exe" SourcePath="..\..\extras\projicons\res\desktopeditors.ico" Index="0"/>
+    <ROW Name="i_desktopeditors" SourcePath="..\..\extras\projicons\res\icons\desktopeditors.ico" Index="0"/>
+    <ROW Name="i_imageviewer" SourcePath="..\..\extras\projicons\res\icons\gallery.ico" Index="0"/>
+    <ROW Name="i_videoplayer" SourcePath="..\..\extras\projicons\res\icons\media.ico" Index="0"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiInstExSeqComponent">
     <ROW Action="AI_DOWNGRADE" Condition="AI_NEWERPRODUCTFOUND AND (UILevel &lt;&gt; 5)" Sequence="210"/>
@@ -1346,10 +1346,10 @@
     <ROW ServiceInstall="updatesvc.exe" Name="[DeUpdateSvc_ServiceName]" DisplayName="[DeUpdateSvc_DispalyName]" ServiceType="16" StartType="4" ErrorControl="1" Component_="c_exe_updatesvc" Description="[DeUpdateSvc_DescriptionName]"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiShortsComponent">
-    <ROW Shortcut="COMMON_SHORTCUT_NAME_DESKTOP" Directory_="DesktopFolder" Name="ONLYOF~1|[|COMMON_SHORTCUT_NAME]" Component_="c_exe_desktopeditors" Target="[#DesktopEditors.exe]" Hotkey="0" Icon_="desktopeditors.exe" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
-    <ROW Shortcut="COMMON_SHORTCUT_NAME_SHORTCUTDIR" Directory_="SHORTCUTDIR" Name="ONLYOF~2|[|COMMON_SHORTCUT_NAME]" Component_="c_exe_desktopeditors" Target="[#DesktopEditors.exe]" Hotkey="0" Icon_="desktopeditors.exe" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
-    <ROW Shortcut="GALLERY_SHORTCUT_NAME" Directory_="SHORTCUTDIR" Name="ONLYOF~1|[|GALLERY_SHORTCUT_NAME]" Component_="c_exe_imageviewer" Target="[#ImageViewer.exe]" Hotkey="0" Icon_="ImageViewer.exe" IconIndex="0" ShowCmd="1" WkDir="CUSTOM_PATH"/>
-    <ROW Shortcut="MEDIA_SHORTCUT_NAME" Directory_="SHORTCUTDIR" Name="ONLYOF~1|[|MEDIA_SHORTCUT_NAME]" Component_="c_exe_videoplayer" Target="[#VideoPlayer.exe]" Hotkey="0" Icon_="VideoPlayer.exe" IconIndex="0" ShowCmd="1" WkDir="CUSTOM_PATH"/>
+    <ROW Shortcut="COMMON_SHORTCUT_NAME_DESKTOP" Directory_="DesktopFolder" Name="ONLYOF~1|[|COMMON_SHORTCUT_NAME]" Component_="c_exe_desktopeditors" Target="[#DesktopEditors.exe]" Hotkey="0" Icon_="i_desktopeditors" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
+    <ROW Shortcut="COMMON_SHORTCUT_NAME_SHORTCUTDIR" Directory_="SHORTCUTDIR" Name="ONLYOF~2|[|COMMON_SHORTCUT_NAME]" Component_="c_exe_desktopeditors" Target="[#DesktopEditors.exe]" Hotkey="0" Icon_="i_desktopeditors" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
+    <ROW Shortcut="GALLERY_SHORTCUT_NAME" Directory_="SHORTCUTDIR" Name="ONLYOF~1|[|GALLERY_SHORTCUT_NAME]" Component_="c_exe_imageviewer" Target="[#ImageViewer.exe]" Hotkey="0" Icon_="i_imageviewer" IconIndex="0" ShowCmd="1" WkDir="CUSTOM_PATH"/>
+    <ROW Shortcut="MEDIA_SHORTCUT_NAME" Directory_="SHORTCUTDIR" Name="ONLYOF~1|[|MEDIA_SHORTCUT_NAME]" Component_="c_exe_videoplayer" Target="[#VideoPlayer.exe]" Hotkey="0" Icon_="i_videoplayer" IconIndex="0" ShowCmd="1" WkDir="CUSTOM_PATH"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiThemeComponent">
     <ATTRIBUTE name="UsedTheme" value="classic"/>
