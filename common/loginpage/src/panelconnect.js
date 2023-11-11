@@ -178,10 +178,7 @@
 
         baseView.prototype.constructor.call(this, args);
     };
-    var shouldConnectSVG = function () {
-        return window.devicePixelRatio >=2 || window.devicePixelRatio == 1;
-    };
-    var isSvgIcons = shouldConnectSVG();
+    var isSvgIcons = window.devicePixelRatio >=2 || window.devicePixelRatio == 1;
 
     ViewPortals.prototype = Object.create(baseView.prototype);
     ViewPortals.prototype.constructor = ViewPortals;
@@ -204,8 +201,8 @@
                         <td class="cell-tools">
                             <div class="hlayout">
                                 <button class="btn-quick logout" tooltip="${utils.Lang.menuLogout}">
-                                    ${isSvgIcons? `<svg class = "icon"><use xlink:href="#logout"></use></svg>` :
-                                    `<i class="icon img-el theme-inverted" />`}
+                                    ${isSvgIcons? `<svg class = "icon"><use xlink:href="#logout"></use></svg>` : ''}
+                                    <i class="icon img-el theme-inverted" />
                                 </button>
                             </span>
                         </td>`;
@@ -222,15 +219,12 @@
 
             return edit===true ? _row : `<tr id=${info.elid}>${_row}</tr>`;
         },
-        onscale: function () {
-            if(isSvgIcons == shouldConnectSVG()) return;
-
+        onscale: function (pasteSvg) {
             $('button.logout',this.$panelPortalList).each(function (){
                 let elm = $(this);
-                $(isSvgIcons?'svg':'i',elm).remove();
-                elm.append(isSvgIcons ? $('<i class="icon img-el theme-inverted" />'):$('<svg class = "icon"><use xlink:href="#logout"></use></svg>'));
+                if(pasteSvg && !elm.find('svg').length)
+                    elm.append($('<svg class = "icon"><use xlink:href="#logout"></use></svg>'));
             });
-            isSvgIcons = !isSvgIcons;
         }
     });
 
@@ -730,10 +724,7 @@
                 window.CommonEvents.on('portal:create', _on_create_portal);
                 window.CommonEvents.on('lang:changed', _on_lang_changed);
                 window.CommonEvents.on('theme:changed', _on_theme_changed);
-
-                $(window).resize(()=>{
-                    this.view.onscale();
-                });
+                window.CommonEvents.on("icons:svg", this.view.onscale);
 
                 return this;
             },

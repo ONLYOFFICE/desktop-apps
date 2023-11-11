@@ -46,8 +46,7 @@
     ControllerFolders.prototype = Object.create(baseController.prototype);
     ControllerFolders.prototype.constructor = ControllerFolders;
 
-    var shouldConnectSVG = () => window.devicePixelRatio >= 2 || window.devicePixelRatio == 1;
-    var isSvgIcons = shouldConnectSVG();
+    var isSvgIcons = window.devicePixelRatio >= 2 || window.devicePixelRatio == 1;
     var ViewFolders = function(args) {
         var _lang = utils.Lang;
 
@@ -116,17 +115,11 @@
                 this.view.$panel.find('#btn-openlocal').click(()=>{
                     openFile(OPEN_FILE_FOLDER, '');
                 });
-                $(window).resize(()=>{
-                    if(isSvgIcons == shouldConnectSVG()) return;
-                    if(isSvgIcons) {
-                        $('.text-emptylist-svg svg', '#box-recent-folders').remove();
-                        $('.text-emptylist-svg', '#box-recent-folders').toggleClass('text-emptylist text-emptylist-svg');
-                    } else {
-                        let emptylist = $('.text-emptylist', '#box-recent-folders');
-                        emptylist.toggleClass('text-emptylist text-emptylist-svg');
+                window.CommonEvents.on("icons:svg", (pasteSvg)=>{
+                    let emptylist = $('[class*="text-emptylist"]', '#box-recent-folders');
+                    emptylist.toggleClass('text-emptylist text-emptylist-svg');
+                    if(pasteSvg && !emptylist.find('svg').length)
                         emptylist.prepend($('<svg class = "empty-folder"><use xlink:href="#folder-big"></use></svg>'));
-                    }
-                    isSvgIcons = !isSvgIcons;
                 });
                 window.sdk.on('onupdaterecents', _on_update.bind(this));
 

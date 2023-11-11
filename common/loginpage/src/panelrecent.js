@@ -46,8 +46,7 @@
 
     ControllerRecent.prototype = Object.create(baseController.prototype);
     ControllerRecent.prototype.constructor = ControllerRecent;
-    var shouldConnectSVG = () => window.devicePixelRatio >= 2 || window.devicePixelRatio == 1;
-    var isSvgIcons = shouldConnectSVG();
+    var isSvgIcons = window.devicePixelRatio >= 2 || window.devicePixelRatio == 1;
     var ViewRecent = function(args) {
         var _lang = utils.Lang;
 
@@ -106,13 +105,13 @@
 
             var _tpl = `<tr${id} class="${info.crypted ? `crypted${isSvgIcons ?'-svg':''}` : ''}">
                           <td class="row-cell cicon">
-                            ${!isSvgIcons ?
-                                `<i class="icon ${info.type=='folder'?'img-el folder':`img-format ${info.format}`}" />`:
-                                `<svg class = "icon ${info.type=='folder'?'folder':''}">
-                                    <use xlink:href="#${info.type=='folder'?'folder-small':`${info.format}`}"></use>
-                                </svg>
-                                ${info.crypted?'<svg class = "shield"> <use xlink:href="#shield"></use></svg>':''}`
-                            }                            
+                            <i class="icon ${info.type=='folder'?'img-el folder':`img-format ${info.format}`}" />
+                        ${!isSvgIcons ?'':
+                            `<svg class = "icon ${info.type=='folder'?'folder':''}">
+                                <use xlink:href="#${info.type=='folder'?'folder-small':`${info.format}`}"></use>
+                            </svg>
+                            ${info.crypted?'<svg class = "shield"> <use xlink:href="#shield"></use></svg>':''}`
+                        }                            
                           </td>
                           <td class="row-cell cname">
                             <p class="name primary">${info.name}</p>
@@ -124,56 +123,46 @@
 
             return _tpl;
         },
-        onscale: function () {
-            if(isSvgIcons === shouldConnectSVG())  return;
-            let elm,icoName, elmIcon, parent;
-            $('.cicon', this.$boxRecent).each(function () {
-                elm = $(this);
-                parent = elm.parent();
-                if(parent.hasClass('crypted-svg') || parent.hasClass('crypted'))
-                    parent.toggleClass('crypted-svg crypted');
+        onscale: function (pasteSvg) {
+            let elm,icoName, elmIcon, parent,
+                emptylist = $('[class*="text-emptylist"]', '#box-recent');
+            emptylist.toggleClass('text-emptylist text-emptylist-svg');
 
-                elmIcon = isSvgIcons ? $('use', elm) : $('i.img-format',elm);
-                if(!elmIcon) return;
-                if(isSvgIcons) {
-                    icoName = elmIcon.attr('xlink:href').substring(1);
-                    $('svg', elm).remove();
-                    elm.append($(`<i class="icon img-format ${icoName}"/>`));
-                } else {
-                    icoName =  elmIcon.attr('class').split(' ').filter((cls)=> cls != 'icon' && cls != 'img-format');
-                    $('i',elm).remove();
-                    elm.append($(`<svg class = "icon"><use xlink:href="#${icoName}"></use></svg>`));
-                    if(parent.hasClass('crypted-svg'))
-                        elm.append($('<svg class = "shield"><use xlink:href="#shield"></use></svg>'));
-                }
+            if(pasteSvg && !emptylist.find('svg').length)
+                emptylist.prepend($('<svg class = "empty-folder"><use xlink:href="#folder-big"></use></svg>'));
+
+            $('#box-recent .cicon').each(function () {
+                 elm = $(this);
+                 parent = elm.parent();
+                 if(parent.hasClass('crypted-svg') || parent.hasClass('crypted'))
+                     parent.toggleClass('crypted-svg crypted');
+
+                 if(!pasteSvg || !!$('svg',elm).length) return;
+
+                 icoName = $('i.icon', elm).attr('class').split(' ').filter((cls) => cls != 'icon' && cls != 'img-format');
+                 elm.append($(`<svg class = "icon"><use xlink:href="#${icoName}"></use></svg>`));
+                 if(parent.hasClass('crypted-svg'))
+                     elm.append($('<svg class = "shield"><use xlink:href="#shield"></use></svg>'));
             });
 
             $('#box-recent-folders td.cicon').each(function (){
-                elm=$(this);
-                if(isSvgIcons) {
-                    $('svg', elm).remove();
-                    elm.append($('<i class="icon img-el folder" />'));
-                } else {
-                    $('i.folder', elm).remove();
-                    elm.append($('<svg class = "icon  folder"> <use xlink:href="#folder-small"></use></svg>'));
-                }
-            });
-            if(isSvgIcons) {
-                $('.text-emptylist-svg svg', this.$boxRecent).remove();
-                 $('.text-emptylist-svg', this.$boxRecent).toggleClass('text-emptylist text-emptylist-svg');
-            } else {
-                let emptylist = $('.text-emptylist', this.$boxRecent);
-                emptylist.toggleClass('text-emptylist text-emptylist-svg');
-                emptylist.prepend($('<svg class = "empty-folder"><use xlink:href="#folder-big"></use></svg>'));
-            }
-            isSvgIcons = !isSvgIcons;
+                elm=$(this)
+                parent = elm.parent();
+                if(parent.hasClass('crypted-svg') || parent.hasClass('crypted'))
+                    parent.toggleClass('crypted-svg crypted');
+                if(!pasteSvg || !!$('svg',elm).length) return;
+
+                elm.append($('<svg class = "icon  folder"> <use xlink:href="#folder-small"></use></svg>'));
+                if(parent.hasClass('crypted-svg'))
+                    elm.append($('<svg class = "shield"><use xlink:href="#shield"></use></svg>'));
+
+                });
         },
         updatelistsize: function() {
             // set fixed height for scrollbar appearing. 
             var _available_height = this.$panel.height();
             var _box_recent_height = _available_height;
 
-            this.onscale(shouldConnectSVG());
             if (!this.$boxRecovery.find('tr').size()) {
                 // $boxRecent.height($boxRecent.parent().height());
             } else {
@@ -453,7 +442,7 @@
                 $(window).resize(()=>{
                     this.view.updatelistsize();
                 });
-
+                CommonEvents.on("icons:svg", this.view.onscale);
                 CommonEvents.on('portal:authorized', (data)=>{
                     if ( data.type == 'fileid' ) {
                         let fileid = data.id;

@@ -31,7 +31,6 @@
 */
 
 'use strict';
-var isSvgIcons = false;
 $(document).ready(function() {
     $('.tool-menu').on('click', '> .menu-item > a', onActionClick);
     $('.tool-quick-menu .menu-item a').click(onNewFileClick);
@@ -55,8 +54,8 @@ $(document).ready(function() {
     $('a[action="new:xlsx"] > .text').text(utils.Lang.newXlsx);
     $('a[action="new:pptx"] > .text').text(utils.Lang.newPptx);
     $('a[action="new:form"] > .text').text(utils.Lang.newForm);
-    replaceIcons();
-    $(window).resize(replaceIcons);
+    replaceIcons(window.devicePixelRatio>=2 || window.devicePixelRatio==1);
+    CommonEvents.on("icons:svg", replaceIcons);
 
     if (!localStorage.welcome) {
         app.controller.welcome = (new ControllerWelcome).init();
@@ -161,24 +160,16 @@ var Scroll_offset = '16px';
                                 "screen and (min-resolution: 1.01dppx) and (max-resolution: 1.99dppx)";
 
     window.matchMedia(mq).addEventListener('change', e => {
-        CommonEvents.fire("icons:svg", !e.target.matches);
+        CommonEvents.fire("icons:svg", [!e.target.matches]);
     });
 }
 
-function replaceIcons() {
-
-    if(isSvgIcons== (window.devicePixelRatio>=2 || window.devicePixelRatio==1)) return;
-
-    ['docx', 'xlsx', 'pptx', 'form'].forEach(function (e){
-        let parentElm =$(`a[action="new:${e}"]`);
-        //let format = e == 'form' ? 'docxf' : e;
-        $(isSvgIcons? 'svg' :'i',parentElm).remove();
-        if(isSvgIcons )
-            parentElm.prepend( $( '<i class="icon img-el"></i>') );
-        else
-            parentElm.prepend( $(`<svg class="icon"><use xlink:href="#${e == 'form' ? 'docxf' : e }-big"></use> </svg>`));
-    });
-    isSvgIcons = !isSvgIcons;
+function replaceIcons(pasteSvg) {
+    if(pasteSvg && !$('.tool-quick-menu').find('svg.icon').length) {
+        ['docx', 'xlsx', 'pptx', 'form'].forEach(function (e) {
+            $(`a[action="new:${e}"]`).prepend($(`<svg class="icon"><use xlink:href="#${e == 'form' ? 'docxf' : e}-big"></use> </svg>`));
+        });
+    }
 }
 
 function onNewFileClick(e) {

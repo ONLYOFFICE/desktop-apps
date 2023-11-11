@@ -146,6 +146,29 @@ h4 {
     }
 }
 
+.switch-svg {
+    @media only screen {
+        @media (-webkit-min-device-pixel-ratio: 1.1) and (-webkit-max-device-pixel-ratio: 1.9),
+        (min-resolution: 1.1dppx) and (max-resolution: 1.9dppx),
+        (min-resolution: 97dpi) and (max-resolution: 191dpi)
+        {
+            svg.icon{ display: none;}
+        }
+        @media (-webkit-device-pixel-ratio: 1),
+        (resolution: 1dppx),
+        (resolution: 96dpi)
+        {
+            i.icon{ display: none;}
+        }
+        @media (-webkit-min-device-pixel-ratio: 2),
+        (min-resolution: 2dppx),
+        (min-resolution: 192dpi)
+        {
+            i.icon{ display: none;}
+        }
+    }
+}
+
 .tool-quick-menu {
     border-bottom: @scaled-one-px solid @border-divider;
     padding: 0 0 28px 27px;
@@ -174,6 +197,7 @@ h4 {
                 display: block;
                 margin-right: 19px;
             }
+            .switch-svg();
         }
 
         a[action='new:xlsx'] {
@@ -675,7 +699,7 @@ li.menu-item {
             background-position: -58px -48px;
         }
     }
-
+    .switch-svg();
     .crypted {
         .icon:before {
             content: ' ';
@@ -685,6 +709,9 @@ li.menu-item {
             top: 17px;
             left: 14px;
             background-position: -58px -74px;
+        }
+        svg {
+            display: none;
         }
     }
     .crypted-svg .shield {
@@ -776,6 +803,10 @@ li.menu-item {
     width: 58px;
     height: 78px;
     margin: 50px auto 10px;;
+}
+
+.text-emptylist svg.icon {
+    display: none;
 }
 
 #tbl-filesrcv {
