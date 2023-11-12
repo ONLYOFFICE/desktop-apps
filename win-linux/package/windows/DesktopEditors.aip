@@ -201,12 +201,12 @@
     <ROW Component="c_reg_fa_progid__ppsx" ComponentId="{E51D562D-0FA6-4B2C-AE76-28BBF47B2736}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_progid__ppsx"/>
     <ROW Component="c_reg_fa_progid__ppt" ComponentId="{0DB272DA-2F26-472C-BD0B-2FF1EE6435E5}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_progid__ppt"/>
     <ROW Component="c_reg_fa_progid__pptx" ComponentId="{E313F9AA-0710-440D-8008-E70001D6B01F}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_progid__pptx"/>
-    <ROW Component="c_reg_fa_progid__rtf" ComponentId="{D5829591-7F55-4505-996F-88E1DC415777}" Directory_="APPDIR" Attributes="4" KeyPath="reg_fa_progid__rtf"/>
+    <ROW Component="c_reg_fa_progid__rtf" ComponentId="{D5829591-7F55-4505-996F-88E1DC415777}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_progid__rtf"/>
     <ROW Component="c_reg_fa_progid__txt" ComponentId="{1F1867B1-258B-43AE-8DF7-9235585BA09B}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_progid__txt"/>
     <ROW Component="c_reg_fa_progid__xls" ComponentId="{E49C212F-5A5F-413B-9E04-C5EDB3CA4570}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_progid__xls"/>
     <ROW Component="c_reg_fa_progid__xlsx" ComponentId="{BDDF080A-C3BA-40A7-8C58-98DF2A706E75}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_progid__xlsx"/>
-    <ROW Component="c_reg_fa_progid__xltx" ComponentId="{AE5E4E29-AFC5-4432-845D-39938D29D30F}" Directory_="APPDIR" Attributes="4" KeyPath="reg_fa_progid__xltx"/>
-    <ROW Component="c_reg_fa_progid__xml" ComponentId="{1BDE6040-0CCB-4A9A-B497-7DAAC9C40704}" Directory_="APPDIR" Attributes="4" KeyPath="reg_fa_progid__xml"/>
+    <ROW Component="c_reg_fa_progid__xltx" ComponentId="{AE5E4E29-AFC5-4432-845D-39938D29D30F}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_progid__xltx"/>
+    <ROW Component="c_reg_fa_progid__xml" ComponentId="{1BDE6040-0CCB-4A9A-B497-7DAAC9C40704}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_progid__xml"/>
     <ROW Component="c_reg_fa_progid__xps" ComponentId="{8AEB6A27-8564-4F09-86CA-A5832BEC7461}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_progid__xps"/>
     <ROW Component="c_reg_fa_type__csv" ComponentId="{B714EA64-93F8-4377-BA72-727F07C8187F}" Directory_="APPDIR" Attributes="260" Condition="REGISTER_CSV = 1" KeyPath="reg_fa_type__csv"/>
     <ROW Component="c_reg_fa_type__djvu" ComponentId="{CC6E3841-95A9-4C56-A29E-8DD8DF4C9F8C}" Directory_="APPDIR" Attributes="260" Condition="REGISTER_DJVU = 1" KeyPath="reg_fa_type__djvu"/>
