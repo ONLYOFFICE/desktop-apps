@@ -250,8 +250,10 @@ QStringList CFileDialogWrapper::modalOpen(const QString& path, const QString& fi
                     tr("Presentations") + " (*.pptx *.ppt *.odp *.otp *.ppsm *.ppsx *.pps *.potx *.pot *.potm *.fodp *.dps *.dpt *.sxi);;" +
                     tr("Web Page") + " (*.html *.htm *.mht *.mhtml *.epub);;" +
                     tr("Text files") + " (*.txt *.csv)";
+#ifdef __linux__
         _all_sup_files = tr("All supported files") + " " + joinExtentions(_filter_);
         _filter_.prepend(_all_sup_files + ";;");
+#endif
         _filter_.append(";;" + m_mapFilters[AVS_OFFICESTUDIO_FILE_UNKNOWN]);
     }
     const QString _default_sel_filter = _all_sup_files.isEmpty() ?
