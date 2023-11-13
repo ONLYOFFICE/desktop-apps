@@ -889,8 +889,11 @@
                         }
                     }
 
-                NSApplicationPresentationOptions options = NSApplicationPresentationHideDock | NSApplicationPresentationHideMenuBar;
-                [item.view enterFullScreenMode:ppeScreen withOptions:@{NSFullScreenModeApplicationPresentationOptions: @(options)}];
+                NSApplicationPresentationOptions options = NSApplicationPresentationAutoHideDock | NSApplicationPresentationAutoHideMenuBar;
+                [item.view enterFullScreenMode:ppeScreen withOptions:@{
+                        NSFullScreenModeApplicationPresentationOptions: @(options),
+                                            NSFullScreenModeAllScreens: @(NO)
+                                                                     }];
                 if ( tab ) {
                     [[self cefViewWithTab:tab] focus];
                 }
