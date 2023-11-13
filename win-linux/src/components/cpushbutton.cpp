@@ -32,7 +32,6 @@
 
 #include "components/cpushbutton.h"
 #include <QPainter>
-#include <math.h>
 
 #define ANIMATION_MS 2500
 
@@ -49,21 +48,35 @@ CPushButton::~CPushButton()
 void CPushButton::setAnimatedIcon(const QString &path)
 {
     releaseSvg();
+    if (path.isEmpty())
+        return;
     m_renderer = new QSvgRenderer(path, this);
 
     m_animation = new QVariantAnimation(this);
-    m_animation->setStartValue(0.0);
-    m_animation->setKeyValueAt(0.5, 1.0);
-    m_animation->setEndValue(0.0);
+    m_animation->setStartValue(0);
+    m_animation->setEndValue(360);
     m_animation->setDuration(ANIMATION_MS);
     m_animation->setLoopCount(-1);
     m_animation->setEasingCurve(QEasingCurve::Linear);
     connect(m_animation, &QVariantAnimation::valueChanged, this, [=](const QVariant &val) {
-        double opacity = round(val.toReal() * 100) / 100;
-        if (qRound(opacity * 100) % 2 == 0) // frequency limitation
-            applyAnimatedIcon(opacity);
+        onSvgRepaint(val.toDouble());
     });
     m_animation->start(QAbstractAnimation::KeepWhenStopped);
+}
+
+void CPushButton::setStaticIcon(const QString &path)
+{
+    releaseSvg();
+    if (path.isEmpty())
+        return;
+//    m_renderer = new QSvgRenderer(path, this);
+//    onSvgRepaint(0);
+    setIcon(QIcon(path));
+}
+
+bool CPushButton::isStarted()
+{
+    return m_animation && m_animation->state() == QAbstractAnimation::Running;
 }
 
 void CPushButton::releaseSvg()
@@ -78,19 +91,21 @@ void CPushButton::releaseSvg()
         delete m_renderer, m_renderer = nullptr;
 }
 
-void CPushButton::applyAnimatedIcon(double opacity)
+void CPushButton::onSvgRepaint(double angle)
 {
     if (m_renderer && m_renderer->isValid()) {
         QSize icon_size = iconSize();
-        QImage img(icon_size, QImage::Format_ARGB32);
-        img.fill(Qt::transparent);
-        QPixmap pixmap = QPixmap::fromImage(img, Qt::NoFormatConversion);
+        double offset = (double)icon_size.height()/2;
+        QPixmap pixmap(icon_size);
+        pixmap.fill(Qt::transparent);
 
         QPainter painter(&pixmap);
         painter.setCompositionMode(QPainter::CompositionMode_SourceOver);
         painter.setRenderHint(QPainter::Antialiasing);
-        painter.setOpacity(opacity);
-        m_renderer->render(&painter, QRect(QPoint(0,0), icon_size));
+        painter.translate(offset, offset);
+        painter.rotate(angle);
+        painter.translate(-offset, -offset);
+        m_renderer->render(&painter);
         painter.end();
         setIcon(QIcon(pixmap));
     }
