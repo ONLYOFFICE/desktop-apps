@@ -7,6 +7,7 @@
 #include <algorithm>
 #include <gdk/gdkx.h>
 #include <gtk/gtkunixprint.h>
+#include "components/cmessage.h"
 
 #define PDF_PRINTER_NAME "Print to File"
 #define LPR_PRINTER_NAME "Print to LPR"
@@ -172,6 +173,7 @@ GtkPrintDialog::GtkPrintDialog(QPrinter *printer, QWidget *parent) :
     if (m_printer->collateCopies())
         m_options |= PrintOption::PrintCollateCopies;
     m_page_ranges.append(PageRanges(m_printer->fromPage(), m_printer->toPage()));
+    m_pages_count = m_printer->toPage();
 }
 
 GtkPrintDialog::~GtkPrintDialog()
@@ -576,7 +578,14 @@ int GtkPrintDialog::toPage()
 
 void GtkPrintDialog::setFromTo(int from, int to)
 {
-    m_printer->setFromTo(from, to);
+    from < 1 && (from = 1); to < 1 && (to = 1);
+    if (m_pages_count < from || m_pages_count < to) {
+        CMessage::warning(m_parent, QObject::tr("Specified range %1-%2 exceeds document limits: maximum number of pages is %3")
+                                        .arg(QString::number(from), QString::number(to), QString::number(m_pages_count)));
+    }
+    from > m_pages_count && (from = m_pages_count);
+    to > m_pages_count && (to = m_pages_count);
+    m_printer->setFromTo(from > to ? to : from, from > to ? from : to);
     if (!m_page_ranges.isEmpty())
         m_page_ranges.clear();
     m_page_ranges.append(PageRanges(m_printer->fromPage(), m_printer->toPage()));

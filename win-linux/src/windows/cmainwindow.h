@@ -137,6 +137,7 @@ public slots:
     void onPortalOpen(QString);
     void onPortalLogout(std::wstring portal);
     void onPortalLogin(int viewid, const std::wstring& json);
+    void onPortalUITheme(int viewid, const std::wstring& json);
     void onPortalNew(QString);
     void onPortalCreate();
     void onOutsideAuth(QString);

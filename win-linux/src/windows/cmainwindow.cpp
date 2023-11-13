@@ -703,13 +703,33 @@ void CMainWindow::onPortalLogin(int viewid, const std::wstring &json)
 
         if( jerror.error == QJsonParseError::NoError ) {
             QJsonObject objRoot = jdoc.object();
-            QString _ui_theme = objRoot["uiTheme"].toString();
-            if ( !_ui_theme.isEmpty() ) {
-//                onFileLocation(vid, _url);
+            QJsonValue value = objRoot["uiTheme"];
 
-                if ( _ui_theme == "default-dark" )
-                    m_pTabs->setTabThemeType(m_pTabs->tabIndexByView(viewid), "dark");
+            if ( value.isString() )
+                onPortalUITheme(viewid, value.toString().toStdWString());
+            else
+            if ( value.isObject() )
+                onPortalUITheme(viewid, QString(QJsonDocument(value.toObject()).toJson(QJsonDocument::Compact)).toStdWString());
+
             }
+        }
+    }
+
+void CMainWindow::onPortalUITheme(int viewid, const std::wstring& json)
+{
+    if ( !json.empty() ) {
+        if ( json.rfind(L"default-", 0) == 0 ) {
+            if ( json.compare(L"default-dark") == 0 )
+                m_pTabs->setTabTheme(m_pTabs->tabIndexByView(viewid), "dark", "#333");
+            else m_pTabs->setTabTheme(m_pTabs->tabIndexByView(viewid), "light", "#fff");
+        } else {
+            QJsonParseError jerror;
+            QJsonDocument jdoc = QJsonDocument::fromJson(QString::fromStdWString(json).toLatin1(), &jerror);
+
+            if( jerror.error == QJsonParseError::NoError ) {
+                QJsonObject objRoot = jdoc.object();
+                m_pTabs->setTabTheme(m_pTabs->tabIndexByView(viewid), objRoot["type"].toString(), objRoot["color"].toString());
+}
         }
     }
 }
@@ -1079,8 +1099,8 @@ void CMainWindow::onDocumentPrint(void * opts)
         printInProcess = true; else
         return;
 
-#ifdef Q_OS_LINUX
     QWidget *parent = qobject_cast<QWidget*>(this);
+#ifdef Q_OS_LINUX
     WindowHelper::CParentDisable disabler(parent);
 #endif
 
@@ -1194,7 +1214,8 @@ void CMainWindow::onDocumentPrint(void * opts)
 #ifndef _WIN32
         RELEASEOBJECT(dialog)
 #endif
-    }
+    } else
+        CMessage::warning(parent, tr("There are no pages set to print."));
 
     printInProcess = false;
 //    RELEASEINTERFACE(pData)

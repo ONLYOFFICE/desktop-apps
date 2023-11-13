@@ -494,7 +494,7 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
         } else
         if ( m_countViews == 1 && mainWindow() && mainWindow()->isAboutToClose() ) {        // if only start page exists
             emit aboutToQuit();
-            DestroyCefView(-1);
+//            DestroyCefView(-1);
         }
 
         break;
@@ -1291,7 +1291,9 @@ void CAscApplicationManagerWrapper::launchAppClose()
             }
         } else {
             emit aboutToQuit();
-            DestroyCefView(-1);
+            QTimer::singleShot(0, this, [=]() {
+                DestroyCefView(-1);
+            });
         }
     } else {
         cancelClose();
