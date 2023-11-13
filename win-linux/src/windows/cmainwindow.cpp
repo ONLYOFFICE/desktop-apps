@@ -982,8 +982,7 @@ void CMainWindow::onDocumentDownload(void * info)
         QHBoxLayout * layoutBtns = qobject_cast<QHBoxLayout *>(m_boxTitleBtns->layout());
         layoutBtns->insertWidget(1, m_pWidgetDownload->toolButton());
         m_pWidgetDownload->show();
-        std::vector<std::string> files{":/styles/download.qss"};
-        m_pWidgetDownload->setStyleSheet(Utils::readStylesheets(&files));
+        m_pWidgetDownload->setStyleSheet(Utils::readStylesheets(":/styles/download.qss"));
         m_pWidgetDownload->applyTheme(m_pMainPanel->property("uitheme").toString());
         m_pWidgetDownload->updateScalingFactor(m_dpiRatio);
         m_pWidgetDownload->move(geometry().bottomRight() - m_pWidgetDownload->rect().bottomRight());
