@@ -37,7 +37,7 @@ QPushButton#toolButtonMain[class=normal],
     border-bottom-width: 1px;
 }
 
-QPushButton#toolButtonDownload {max-width: 50px; width: 50px; max-height: 35px; height: 35px;}
+QPushButton#toolButtonDownload {border-right-width: 1px; max-width: 50px; width: 50px; max-height: 35px; height: 35px;}
 
 /* ToolTip*/
 

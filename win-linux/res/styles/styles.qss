@@ -145,7 +145,7 @@ QPushButton::menu-indicator {width: 0px; height: 0px;}
     /*border-image: url(:/res/icons/menu-indicator-dark.png) 0 10 0 0 repeat repeat;*/
 /*}*/
 
-QPushButton#toolButtonDownload {max-width: 40px; width: 40px; max-height: 28px; height: 28px;}
+QPushButton#toolButtonDownload {border-right: 1px solid #dfdfdf; max-width: 40px; width: 40px; max-height: 28px; height: 28px;}
 
 /**************************/
 /* dark theme definitions */
@@ -160,6 +160,7 @@ QPushButton#toolButtonDownload {max-width: 40px; width: 40px; max-height: 28px; 
     color: #d9d9d9;
 }
 
+#mainPanel[uitheme=theme-dark] QPushButton#toolButtonDownload,
 #mainPanel[uitheme=theme-dark] QPushButton#toolButtonMain {
     border-right-color: #333;
 }
@@ -222,6 +223,7 @@ QPushButton#toolButtonDownload {max-width: 40px; width: 40px; max-height: 28px; 
     background: #1e1e1e;
 }
 
+#mainPanel[uitheme=theme-contrast-dark] QPushButton#toolButtonDownload,
 #mainPanel[uitheme=theme-contrast-dark] QPushButton#toolButtonMain {
     border-right-color: #1e1e1e;
 }
