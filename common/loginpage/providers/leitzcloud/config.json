@@ -1,0 +1,22 @@
+{
+    "provider": "leitzcloud",
+    "name": "leitzcloud",
+    "entryPage": "https://web.leitz-cloud.com/files/",
+    "extraLogout": "https://leitz-cloud.com/",
+    "editorPage": "/edit/",
+    "startPage": "/",
+    "cryptoSupport": "true",
+    "check": {
+        "url": "https://web.leitz-cloud.com/api/2/version"
+    },
+    "icons": {
+        "themeLight": {
+            "connectionsList": "./assets/listicon.svg",
+            "buttonLogo": "./assets/buttonlogo.svg"
+        },
+        "themeDark": {
+            "connectionsList": "./assets/listicon_dark.svg",
+            "buttonLogo": "./assets/buttonlogo_dark.svg"
+        }
+    }
+}
