@@ -116,18 +116,11 @@
         [self.appNameText setStringValue:locProductName];
         
         // Version
-        [self.versionText setStringValue:[NSString stringWithFormat:NSLocalizedString(@"Version %@ (%@.%@)", nil),
-                                          [infoDictionary objectForKey:@"CFBundleShortVersionString"],
-                                          [infoDictionary objectForKey:@"CFBundleVersion"],
-                                          [infoDictionary objectForKey:@"ASCBundleBuildNumber"]]];
+        [self.versionText setStringValue:[NSString stringWithFormat:NSLocalizedString(@"Version %@", nil),
+                                          [infoDictionary objectForKey:@"CFBundleShortVersionString"]]];
         
-#if _V8_VERSION
-        [self.versionText setStringValue:[NSString stringWithFormat:@"%@ x86", [self.versionText stringValue]]];
-#elif _X86_64_ONLY
-        [self.versionText setStringValue:[NSString stringWithFormat:@"%@ x86_64", [self.versionText stringValue]]];
-#elif _ARM_ONLY
-        [self.versionText setStringValue:[NSString stringWithFormat:@"%@ Apple Silicon", [self.versionText stringValue]]];
-#endif
+        NSClickGestureRecognizer *click = [[NSClickGestureRecognizer alloc] initWithTarget:self action:@selector(onVersionClick:)];
+        [self.versionText addGestureRecognizer:click];
         
         // If has extra features
         if ([[[ASCSharedSettings sharedInstance] settingByKey:kSettingsHasExtraFeatures] boolValue]) {
@@ -164,6 +157,23 @@
     }
     
     [NSApp stopModal];
+}
+
+- (void)onVersionClick:(NSTextField *)sender {
+    NSDictionary * infoDictionary = [[NSBundle mainBundle] infoDictionary];
+
+    [self.versionText setStringValue:[NSString stringWithFormat:NSLocalizedString(@"Version %@ (%@-%@)", nil),
+                                      [infoDictionary objectForKey:@"CFBundleShortVersionString"],
+                                      [infoDictionary objectForKey:@"CFBundleVersion"],
+                                      [infoDictionary objectForKey:@"ASCBundleBuildNumber"]]];
+    
+#if _V8_VERSION
+    [self.versionText setStringValue:[NSString stringWithFormat:@"%@ x86", [self.versionText stringValue]]];
+#elif _X86_64_ONLY
+    [self.versionText setStringValue:[NSString stringWithFormat:@"%@ x86_64", [self.versionText stringValue]]];
+#elif _ARM_ONLY
+    [self.versionText setStringValue:[NSString stringWithFormat:@"%@ Apple Silicon", [self.versionText stringValue]]];
+#endif
 }
 
 @end
