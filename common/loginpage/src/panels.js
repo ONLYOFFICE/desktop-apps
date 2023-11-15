@@ -54,7 +54,8 @@ $(document).ready(function() {
     $('a[action="new:xlsx"] > .text').text(utils.Lang.newXlsx);
     $('a[action="new:pptx"] > .text').text(utils.Lang.newPptx);
     $('a[action="new:form"] > .text').text(utils.Lang.newForm);
-
+    replaceIcons(window.devicePixelRatio>=2 || window.devicePixelRatio==1);
+    CommonEvents.on("icons:svg", replaceIcons);
 
     if (!localStorage.welcome) {
         app.controller.welcome = (new ControllerWelcome).init();
@@ -153,6 +154,23 @@ var OPEN_FILE_RECOVERY = 1;
 var OPEN_FILE_RECENT = 2;
 var OPEN_FILE_FOLDER = 3;
 var Scroll_offset = '16px';
+
+{
+    const mq = "screen and (-webkit-min-device-pixel-ratio: 1.01) and (-webkit-max-device-pixel-ratio: 1.99), " +
+                                "screen and (min-resolution: 1.01dppx) and (max-resolution: 1.99dppx)";
+
+    window.matchMedia(mq).addEventListener('change', e => {
+        CommonEvents.fire("icons:svg", [!e.target.matches]);
+    });
+}
+
+function replaceIcons(pasteSvg) {
+    if(pasteSvg && !$('.tool-quick-menu').find('svg.icon').length) {
+        ['docx', 'xlsx', 'pptx', 'form'].forEach(function (e) {
+            $(`a[action="new:${e}"]`).prepend($(`<svg class="icon"><use xlink:href="#${e == 'form' ? 'docxf' : e}-big"></use> </svg>`));
+        });
+    }
+}
 
 function onNewFileClick(e) {
     if ($(e.currentTarget).parent().hasClass('disabled'))

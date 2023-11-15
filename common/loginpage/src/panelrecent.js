@@ -46,7 +46,7 @@
 
     ControllerRecent.prototype = Object.create(baseController.prototype);
     ControllerRecent.prototype.constructor = ControllerRecent;
-
+    var isSvgIcons = window.devicePixelRatio >= 2 || window.devicePixelRatio == 1;
     var ViewRecent = function(args) {
         var _lang = utils.Lang;
 
@@ -71,7 +71,10 @@
                             </div>
                             <div class="table-box flex-fill">
                               <table class="table-files list"></table>
-                              <h4 class="text-emptylist img-before-el" l10n>${_lang.textNoFiles}</h4>
+                              <h4 class="text-emptylist${isSvgIcons? '-svg' : ''} img-before-el" l10n>                                
+                                  ${isSvgIcons? '<svg><use xlink:href="#folder-big"></use></svg>':''}
+                                  ${_lang.textNoFiles}
+                              </h4>
                             </div>
                           </div>
                         </div>
@@ -100,9 +103,15 @@
             let id = !!info.uid ? (` id="${info.uid}"`) : '';
             info.crypted == undefined && (info.crypted = false);
 
-            var _tpl = `<tr${id} class="${info.crypted ? 'crypted' : ''}">
+            var _tpl = `<tr${id} class="${info.crypted ? `crypted${isSvgIcons ?'-svg':''}` : ''}">
                           <td class="row-cell cicon">
                             <i class="icon ${info.type=='folder'?'img-el folder':`img-format ${info.format}`}" />
+                        ${!isSvgIcons ?'':
+                            `<svg class = "icon ${info.type=='folder'?'folder':''}">
+                                <use xlink:href="#${info.type=='folder'?'folder-small':`${info.format}`}"></use>
+                            </svg>
+                            ${info.crypted?'<svg class = "shield"> <use xlink:href="#shield"></use></svg>':''}`
+                        }                            
                           </td>
                           <td class="row-cell cname">
                             <p class="name primary">${info.name}</p>
@@ -113,6 +122,41 @@
                 _tpl += `<td class="row-cell cdate minor">${info.date}</td>`;
 
             return _tpl;
+        },
+        onscale: function (pasteSvg) {
+            let elm,icoName, elmIcon, parent,
+                emptylist = $('[class*="text-emptylist"]', '#box-recent');
+            emptylist.toggleClass('text-emptylist text-emptylist-svg');
+
+            if(pasteSvg && !emptylist.find('svg').length)
+                emptylist.prepend($('<svg class = "empty-folder"><use xlink:href="#folder-big"></use></svg>'));
+
+            $('#box-recent .cicon').each(function () {
+                 elm = $(this);
+                 parent = elm.parent();
+                 if(parent.hasClass('crypted-svg') || parent.hasClass('crypted'))
+                     parent.toggleClass('crypted-svg crypted');
+
+                 if(!pasteSvg || !!$('svg',elm).length) return;
+
+                 icoName = $('i.icon', elm).attr('class').split(' ').filter((cls) => cls != 'icon' && cls != 'img-format');
+                 elm.append($(`<svg class = "icon"><use xlink:href="#${icoName}"></use></svg>`));
+                 if(parent.hasClass('crypted-svg'))
+                     elm.append($('<svg class = "shield"><use xlink:href="#shield"></use></svg>'));
+            });
+
+            $('#box-recent-folders td.cicon').each(function (){
+                elm=$(this)
+                parent = elm.parent();
+                if(parent.hasClass('crypted-svg') || parent.hasClass('crypted'))
+                    parent.toggleClass('crypted-svg crypted');
+                if(!pasteSvg || !!$('svg',elm).length) return;
+
+                elm.append($('<svg class = "icon  folder"> <use xlink:href="#folder-small"></use></svg>'));
+                if(parent.hasClass('crypted-svg'))
+                    elm.append($('<svg class = "shield"><use xlink:href="#shield"></use></svg>'));
+
+                });
         },
         updatelistsize: function() {
             // set fixed height for scrollbar appearing. 
@@ -398,7 +442,7 @@
                 $(window).resize(()=>{
                     this.view.updatelistsize();
                 });
-
+                CommonEvents.on("icons:svg", this.view.onscale);
                 CommonEvents.on('portal:authorized', (data)=>{
                     if ( data.type == 'fileid' ) {
                         let fileid = data.id;

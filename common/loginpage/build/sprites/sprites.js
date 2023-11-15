@@ -89,6 +89,19 @@ module.exports = (grunt, rootpathprefix) => {
                     },
                 }
             },
+            logo: {
+                src: [`${_path}res/img/idx-logo*.svg`],
+                dest: `${_path}res/img/`,
+                options: {
+                    mode: {
+                        symbol: {
+                            inline: true,
+                            dest: './generated',
+                            sprite: `logo.svg`,
+                        },
+                    },
+                }
+            },
         },
         replace_allconnect: {                   //when fill =#fff the fill turns orange on the light theme page
             dist: {
@@ -98,8 +111,8 @@ module.exports = (grunt, rootpathprefix) => {
                 }],
                 options: {
                     replacements: [{
-                        pattern: ' fill="#fff"',
-                        replacement: ' fill="white"',
+                        pattern: 'fill="#fff"',
+                        replacement: 'fill="white"',
                     }]
                 }
             }
