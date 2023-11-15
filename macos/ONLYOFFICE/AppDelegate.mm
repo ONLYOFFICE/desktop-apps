@@ -182,6 +182,34 @@
     });
 }
 
+-(NSMenu *)applicationDockMenu:(NSApplication *)sender {
+    NSMenu * menu = [[NSMenu alloc] initWithTitle:@"dockNewMenu"];
+
+    NSString * item_text = NSLocalizedStringWithDefaultValue(@"new-document", @"Localizable", [NSBundle mainBundle], @"New Document", nil);
+    NSMenuItem *
+    itemNewDoc = [[NSMenuItem alloc] initWithTitle:item_text
+                                            action:@selector(onMenuNew:)
+                                     keyEquivalent:@""];
+    [itemNewDoc setTag: 0];
+    [menu addItem: itemNewDoc];
+    
+    item_text = NSLocalizedStringWithDefaultValue(@"new-spreadsheet", @"Localizable", [NSBundle mainBundle], @"New Spreadsheet", nil);
+    itemNewDoc = [[NSMenuItem alloc] initWithTitle:item_text
+                                            action:@selector(onMenuNew:)
+                                     keyEquivalent:@""];
+    [itemNewDoc setTag: 2];
+    [menu addItem: itemNewDoc];
+    
+    item_text = NSLocalizedStringWithDefaultValue(@"new-presentation", @"Localizable", [NSBundle mainBundle], @"New Presentation", nil);
+    itemNewDoc = [[NSMenuItem alloc] initWithTitle:item_text
+                                            action:@selector(onMenuNew:)
+                                     keyEquivalent:@""];
+    [itemNewDoc setTag: 1];
+    [menu addItem: itemNewDoc];
+
+    return menu;
+}
+
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
     // Insert code here to tear down your application
 
