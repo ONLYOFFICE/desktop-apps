@@ -44,9 +44,12 @@ public:
     explicit CPushButton(QWidget *parent = nullptr);
     ~CPushButton();
     void setAnimatedIcon(const QString &path);
+    void setStaticIcon(const QString &path);
+    bool isStarted();
 
 private:
-    void applyAnimatedIcon(double);
+    void releaseSvg();
+    void onSvgRepaint(double);
     QVariantAnimation * m_animation = nullptr;
     QSvgRenderer *m_renderer = nullptr;
 };

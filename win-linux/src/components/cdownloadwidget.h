@@ -33,15 +33,15 @@
 #ifndef CDOWNLOADWIDGET_H
 #define CDOWNLOADWIDGET_H
 
-#include <QDialog>
+#include <QWidget>
 #include <QScrollArea>
 #include "cpushbutton.h"
 
 
-class CDownloadWidget : public QDialog
+class CDownloadWidget : public QWidget
 {
     Q_OBJECT
-    class CDownloadItem;
+    struct CDownloadItem;
     typedef std::map<int, CDownloadItem *>::const_iterator MapItem;
 
 public:
@@ -50,30 +50,32 @@ public:
 
     void downloadProcess(void *);
     QPushButton * toolButton();
-//    void cancelAll();
     void updateScalingFactor(double);
     void applyTheme(const QString&);
 
 protected:
-    QWidget * addFile(const QString&, int);
-    void removeFile(int);
-    void removeFile(MapItem);
-    void updateProgress(MapItem, void *);
-    QString getFileName(const QString&) const;
-    void closeEvent(QCloseEvent *) final;
+    virtual void closeEvent(QCloseEvent *) final;
+    virtual bool eventFilter(QObject*, QEvent*) final;
 
 private:
+    QWidget * addFile(const QString&, int);
+    QString getFileName(const QString&) const;
+    void removeFile(MapItem);
+    void onStart();
+    void onFinish(int);
+    void clearlAll();
     void polish();
+
     CPushButton * m_pToolButton = nullptr;
     QScrollArea * m_pArea = nullptr;
     QWidget *m_pContentArea = nullptr;
+    QFrame *m_mainFrame = nullptr,
+           *m_titleFrame = nullptr;
     std::map<int, CDownloadItem *> m_mapDownloads;
+    double m_dpiRatio = 1;
 
 signals:
     void downloadCanceled(int);
-
-private slots:
-    void slot_downloadCanceled(int);
 };
 
 #endif // CDOWNLOADWIDGET_H

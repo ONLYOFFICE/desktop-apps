@@ -80,6 +80,8 @@ int WinMsg::showMessage(QWidget *parent,
     std::wstring lpText = QTextDocumentFragment::fromHtml(msg).toPlainText().toStdWString();
     std::wstring lpCheckBoxText = chekBoxText.toStdWString();
     HWND parent_hwnd = (parent) ? (HWND)parent->winId() : nullptr;
+    if (parent_hwnd && IsIconic(parent_hwnd))
+        ShowWindow(parent_hwnd, SW_RESTORE);
 
     int msgboxID = 0;
 #ifndef __OS_WIN_XP

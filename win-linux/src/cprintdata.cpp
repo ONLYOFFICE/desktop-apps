@@ -135,6 +135,9 @@ public:
 
         pages_count = data->get_PagesCount();
         current_page = data->get_CurrentPage();
+        print_range = QPrintDialog::AllPages;
+        page_from = 1;
+        page_to = pages_count;
 
         parseJsonOptions(data->get_Options());
     }

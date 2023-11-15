@@ -413,6 +413,7 @@ QWidget* CMainWindow::createMainPanel(QWidget *parent)
     }
 
     // Set TabWidget
+    _pMainGridLayout->addItem(new QSpacerItem(5, 5, QSizePolicy::Fixed, QSizePolicy::Expanding), 1, 0, 1, 1);
     m_pTabs = new CAscTabWidget(mainPanel, pTabBar);
     m_pTabs->setObjectName(QString::fromUtf8("ascTabWidget"));
     _pMainGridLayout->addWidget(m_pTabs, 1, 0, 1, 3);
@@ -702,13 +703,33 @@ void CMainWindow::onPortalLogin(int viewid, const std::wstring &json)
 
         if( jerror.error == QJsonParseError::NoError ) {
             QJsonObject objRoot = jdoc.object();
-            QString _ui_theme = objRoot["uiTheme"].toString();
-            if ( !_ui_theme.isEmpty() ) {
-//                onFileLocation(vid, _url);
+            QJsonValue value = objRoot["uiTheme"];
 
-                if ( _ui_theme == "default-dark" )
-                    m_pTabs->setTabThemeType(m_pTabs->tabIndexByView(viewid), "dark");
+            if ( value.isString() )
+                onPortalUITheme(viewid, value.toString().toStdWString());
+            else
+            if ( value.isObject() )
+                onPortalUITheme(viewid, QString(QJsonDocument(value.toObject()).toJson(QJsonDocument::Compact)).toStdWString());
+
             }
+        }
+    }
+
+void CMainWindow::onPortalUITheme(int viewid, const std::wstring& json)
+{
+    if ( !json.empty() ) {
+        if ( json.rfind(L"default-", 0) == 0 ) {
+            if ( json.compare(L"default-dark") == 0 )
+                m_pTabs->setTabTheme(m_pTabs->tabIndexByView(viewid), "dark", "#333");
+            else m_pTabs->setTabTheme(m_pTabs->tabIndexByView(viewid), "light", "#fff");
+        } else {
+            QJsonParseError jerror;
+            QJsonDocument jdoc = QJsonDocument::fromJson(QString::fromStdWString(json).toLatin1(), &jerror);
+
+            if( jerror.error == QJsonParseError::NoError ) {
+                QJsonObject objRoot = jdoc.object();
+                m_pTabs->setTabTheme(m_pTabs->tabIndexByView(viewid), objRoot["type"].toString(), objRoot["color"].toString());
+}
         }
     }
 }
@@ -980,12 +1001,9 @@ void CMainWindow::onDocumentDownload(void * info)
         });
         QHBoxLayout * layoutBtns = qobject_cast<QHBoxLayout *>(m_boxTitleBtns->layout());
         layoutBtns->insertWidget(1, m_pWidgetDownload->toolButton());
-        m_pWidgetDownload->show();
-        std::vector<std::string> files{":/styles/download.qss"};
-        m_pWidgetDownload->setStyleSheet(Utils::readStylesheets(&files));
+        m_pWidgetDownload->setStyleSheet(Utils::readStylesheets(":/styles/download.qss"));
         m_pWidgetDownload->applyTheme(m_pMainPanel->property("uitheme").toString());
         m_pWidgetDownload->updateScalingFactor(m_dpiRatio);
-        m_pWidgetDownload->move(geometry().bottomRight() - m_pWidgetDownload->rect().bottomRight());
     }
     if (m_pWidgetDownload)
         m_pWidgetDownload->downloadProcess(info);
@@ -1078,8 +1096,8 @@ void CMainWindow::onDocumentPrint(void * opts)
         printInProcess = true; else
         return;
 
-#ifdef Q_OS_LINUX
     QWidget *parent = qobject_cast<QWidget*>(this);
+#ifdef Q_OS_LINUX
     WindowHelper::CParentDisable disabler(parent);
 #endif
 
@@ -1193,7 +1211,8 @@ void CMainWindow::onDocumentPrint(void * opts)
 #ifndef _WIN32
         RELEASEOBJECT(dialog)
 #endif
-    }
+    } else
+        CMessage::warning(parent, tr("There are no pages set to print."));
 
     printInProcess = false;
 //    RELEASEINTERFACE(pData)

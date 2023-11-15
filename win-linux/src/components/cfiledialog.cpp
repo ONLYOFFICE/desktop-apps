@@ -242,16 +242,18 @@ QStringList CFileDialogWrapper::modalOpen(const QString& path, const QString& fi
 //        _filter_ = joinFilters();
         _filter_ =  tr("Text documents") +
 #ifndef __LOCK_OFORM_FORMATS
-                        " (*.docx *.doc *.odt *.ott *.rtf *.docm *.dot *.dotx *.dotm *.fb2 *.fodt *.wps *.wpt *.xml *.pdf *.djv *.djvu *.docxf *.oform *.sxw *.stw *.xps);;" +
+                        " (*.docx *.doc *.odt *.ott *.rtf *.docm *.dot *.dotx *.dotm *.fb2 *.fodt *.wps *.wpt *.xml *.pdf *.djv *.djvu *.docxf *.oform *.sxw *.stw *.xps *.oxps);;" +
 #else
-                        " (*.docx *.doc *.odt *.ott *.rtf *.docm *.dot *.dotx *.dotm *.fb2 *.fodt *.wps *.wpt *.xml *.pdf *.djv *.djvu *.sxw *.stw *.xps);;" +
+                        " (*.docx *.doc *.odt *.ott *.rtf *.docm *.dot *.dotx *.dotm *.fb2 *.fodt *.wps *.wpt *.xml *.pdf *.djv *.djvu *.sxw *.stw *.xps *.oxps);;" +
 #endif
                     tr("Spreadsheets") + " (*.xlsx *.xls *.xlsm *.xlsb *.ods *.ots *.xltx *.xltm *.xml *.fods *.et *.ett *.sxc);;" +
                     tr("Presentations") + " (*.pptx *.ppt *.odp *.otp *.ppsm *.ppsx *.pps *.potx *.pot *.potm *.fodp *.dps *.dpt *.sxi);;" +
                     tr("Web Page") + " (*.html *.htm *.mht *.mhtml *.epub);;" +
                     tr("Text files") + " (*.txt *.csv)";
+#ifdef __linux__
         _all_sup_files = tr("All supported files") + " " + joinExtentions(_filter_);
         _filter_.prepend(_all_sup_files + ";;");
+#endif
         _filter_.append(";;" + m_mapFilters[AVS_OFFICESTUDIO_FILE_UNKNOWN]);
     }
     const QString _default_sel_filter = _all_sup_files.isEmpty() ?
@@ -335,7 +337,7 @@ QStringList CFileDialogWrapper::modalOpenDocuments(const QString& path, bool mul
     QString filter = m_mapFilters[AVS_OFFICESTUDIO_FILE_UNKNOWN];
     filter.prepend(tr("Text documents") + " (*.docx *.doc *.odt *.ott *.rtf *.docm *.dotx *.dotm *.fb2 *.fodt *.wps *.wpt *.xml);;");
 
-    return modalOpen(path, filter, nullptr, multi);
+    return modalOpen(path, filter, &filter, multi);
 }
 
 QStringList CFileDialogWrapper::modalOpenSpreadsheets(const QString& path, bool multi)

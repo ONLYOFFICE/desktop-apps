@@ -483,8 +483,8 @@ public:
         if ( isPrinting ) return;
         isPrinting = true;
 
-#ifdef Q_OS_LINUX
         QWidget *parent = window->handle();
+#ifdef Q_OS_LINUX
         WindowHelper::CParentDisable oDisabler(parent);
 #endif
         if ( !(pagescount < 1) ) {
@@ -590,7 +590,8 @@ public:
 #ifndef _WIN32
             RELEASEOBJECT(dialog)
 #endif
-        }
+        } else
+            CMessage::warning(parent, tr("There are no pages set to print."));
 
         isPrinting = false;
     }
@@ -762,7 +763,7 @@ public:
 
     void onWebAppsFeatures(int, std::wstring f) override
     {
-        bool is_read_only = panel()->data()->hasFeature(L"readonly\":");
+        bool is_read_only = panel()->data()->hasFeature(L"readonly\":true");
         panel()->data()->setFeatures(f);
 
         if ( m_panel->data()->hasFeature(L"uitype\":\"fillform") ) {
@@ -774,7 +775,7 @@ public:
              iconCrypted();
         }
 
-        if ( is_read_only != panel()->data()->hasFeature(L"readonly\":") && boxtitlelabel ) {
+        if ( is_read_only != panel()->data()->hasFeature(L"readonly\":true") && boxtitlelabel ) {
             window->setWindowTitle(m_panel->data()->title());
             window->m_boxTitleBtns->repaint();
         }

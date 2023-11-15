@@ -116,9 +116,10 @@
         [self.appNameText setStringValue:locProductName];
         
         // Version
-        [self.versionText setStringValue:[NSString stringWithFormat:NSLocalizedString(@"Version %@ (%@)", nil),
+        [self.versionText setStringValue:[NSString stringWithFormat:NSLocalizedString(@"Version %@ (%@.%@)", nil),
                                           [infoDictionary objectForKey:@"CFBundleShortVersionString"],
-                                          [infoDictionary objectForKey:@"CFBundleVersion"]]];
+                                          [infoDictionary objectForKey:@"CFBundleVersion"],
+                                          [infoDictionary objectForKey:@"ASCBundleBuildNumber"]]];
         
 #if _V8_VERSION
         [self.versionText setStringValue:[NSString stringWithFormat:@"%@ x86", [self.versionText stringValue]]];

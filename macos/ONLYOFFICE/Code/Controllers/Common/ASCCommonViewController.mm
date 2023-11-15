@@ -814,7 +814,7 @@
     if (notification && notification.userInfo) {
         NSDictionary * params   = (NSDictionary *)notification.userInfo;
         NSString * viewId       = params[@"viewId"];
-        NSInteger type          = [params[@"type"] integerValue];
+//        NSInteger type          = [params[@"type"] integerValue];
 
         ASCTabView * tab = [self.tabsControl tabWithUUID:viewId];
 
@@ -889,7 +889,11 @@
                         }
                     }
 
-                [item.view enterFullScreenMode:ppeScreen withOptions:@{NSFullScreenModeAllScreens: @(NO)}];
+                NSApplicationPresentationOptions options = NSApplicationPresentationAutoHideDock | NSApplicationPresentationAutoHideMenuBar;
+                [item.view enterFullScreenMode:ppeScreen withOptions:@{
+                        NSFullScreenModeApplicationPresentationOptions: @(options),
+                                            NSFullScreenModeAllScreens: @(NO)
+                                                                     }];
                 if ( tab ) {
                     [[self cefViewWithTab:tab] focus];
                 }
@@ -1882,7 +1886,7 @@
             }
             case ASCTabActionOpenLocalRecentFile: {
                 NSInteger docId = [tab.params[@"fileId"] intValue];
-                NSString * filePath = tab.params[@"path"];
+//                NSString * filePath = tab.params[@"path"];
                 
                 [cefView openRecentFileWithId:docId];
                     
