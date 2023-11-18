@@ -17,7 +17,7 @@ l10n.de = {
     listRecentFileTitle:'Neueste Dateien',
     listRecentDirTitle:'Neueste Ordner',
     menuFileOpen: 'Öffnen',
-    menuFileExplore: 'In dem Ordner anzeigen',
+    menuFileExplore: 'In dem Ordner anzeigen',
     menuRemoveModel: 'Aus Liste entfernen',
     menuClear: 'Löschen',
     menuLogout: 'Abmelden',
