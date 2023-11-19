@@ -173,11 +173,11 @@ bool CEditorWindow::holdView(const std::wstring& portal) const
 void CEditorWindow::undock(bool maximized)
 {
     if (isCustomWindowStyle()) {
-        m_restoreMaximized = maximized;
+        m_restoreMaximized = false;
         CWindowPlatform::show(false);
         captureMouse();
     } else {
-        CWindowPlatform::show(maximized);
+        CWindowPlatform::show(false);
     }
 }
 

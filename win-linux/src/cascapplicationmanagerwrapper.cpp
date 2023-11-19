@@ -1616,7 +1616,7 @@ bool CAscApplicationManagerWrapper::event(QEvent *event)
 //                SKIP_EVENTS_QUEUE([=]{
                     if ( _main_window ) {
                         QRect rect = _main_window->windowState().testFlag(Qt::WindowMaximized) ?
-                                    QRect() : _main_window->windowRect();
+                                     _main_window->normalGeometry() : _main_window->windowRect();
 
                         CEditorWindow * editor_win = new CEditorWindow(rect.translated(QPoint(50,50)), _editor);
                         editor_win->undock(_main_window->isMaximized());
