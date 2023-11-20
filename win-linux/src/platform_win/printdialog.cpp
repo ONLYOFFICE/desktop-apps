@@ -254,7 +254,8 @@ QDialog::DialogCode PrintDialog::exec()
 
     PRINTPAGERANGE *page_ranges = (PRINTPAGERANGE*)GlobalAlloc(GPTR, MAXPAGERANGES * sizeof(PRINTPAGERANGE));
     Q_ASSERT(page_ranges != nullptr);
-    page_ranges[0] = {(DWORD)m_printer->fromPage(), (DWORD)m_printer->toPage()};
+    page_ranges[0] = {m_page_ranges.isEmpty() ? 1 : (DWORD)m_page_ranges[0].fromPage,
+                      m_page_ranges.isEmpty() ? m_pages_count : (DWORD)m_page_ranges[0].toPage};
 
     // Input settings
     LPDEVMODE pDevMode = NULL;
@@ -496,7 +497,7 @@ void PrintDialog::setFromTo(int from, int to)
     m_printer->setFromTo(from > to ? to : from, from > to ? from : to);
     if (!m_page_ranges.isEmpty())
         m_page_ranges.clear();
-    m_page_ranges.append(PageRanges(m_printer->fromPage(), m_printer->toPage()));
+    m_page_ranges.append(PageRanges(from, to));
 }
 
 void PrintDialog::accept()
