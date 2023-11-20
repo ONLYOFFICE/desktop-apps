@@ -1,6 +1,6 @@
 l10n.pt_BR = {
     welWelcome: 'Bem-vindo ao ONLYOFFICE Desktop Editors!',
-    welDescr: 'Trabalhe em documentos offline ou conecte-se à sua nuvem: ONLYOFFICE, ownCloud, Nextcloud.',
+    welDescr: 'Trabalhe em documentos offline ou conecte-se à sua nuvem: ONLYOFFICE, ownCloud, Nextcloud.',
     btnConnect: 'Conectar',
     textHavePortal: 'Já usa o nuvem?',
     btnCreatePortal: 'Criar ONLYOFFICE na nuvem',
@@ -65,7 +65,7 @@ l10n.pt_BR = {
     checkUpdates: 'Verifique atualizações',
     strVersion: 'versão',
     emptySlide1Title: 'Compartilhe e colabore',
-    emptySlide1Text: 'Escolha modo de coedição em tempo real - Rápido ou Restrito, converse em seu documento, adicione comentários ou compartilhá-lo para revisão.',
+    emptySlide1Text: 'Escolha modo de coedição em tempo real - Rápido ou Restrito, converse em seu documento, adicione comentários ou compartilhá-lo para revisão.',
     emptySlide2Title: 'Visualize ou restaure versões anteriores',
     emptySlide2Text: 'Restaure ou apenas visualize versões anteriores do seu documento, controle as alterações e autores delas.',
     emptySlide3Title: 'Armazene na nuvem',
