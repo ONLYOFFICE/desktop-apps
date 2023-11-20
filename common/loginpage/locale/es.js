@@ -75,7 +75,7 @@ l10n.es = {
     settOpenMode: 'Abrir documento en modo de vista previa',
     setBtnApply: 'Aplicar',
     settLanguage: 'Idioma de la interfaz',
-    settAfterRestart: 'Los cambios se aplicarán después de reiniciar la aplicación',
+    settAfterRestart: 'Los cambios se aplicarán después de reiniciar la aplicación',
     settShowEncryptOpts: 'Probar cifrado de extremo a extremo',
     settCheckUpdates: 'Buscar actualizaciones automáticamente',
     settOptCheckNever: 'Nunca',
