@@ -341,7 +341,8 @@
                     if ( !_provider.extraLogout )
                         _provider.extraLogout = [];
 
-                    _provider.extraLogout.push(_provider.entryPage);
+                    if ( !_provider.extraLogout.includes(_provider.entryPage) )
+                        _provider.extraLogout.push(_provider.entryPage);
                 }
 
                 info.extra = _provider.extraLogout;
