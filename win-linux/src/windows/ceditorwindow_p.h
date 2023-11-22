@@ -686,17 +686,28 @@ public:
 
     void onPortalLogout(std::wstring wjson) override
     {
+        if ( m_panel->data()->closed() ) return;
+
         QJsonParseError jerror;
         QByteArray stringdata = QString::fromStdWString(wjson).toUtf8();
         QJsonDocument jdoc = QJsonDocument::fromJson(stringdata, &jerror);
 
         if( jerror.error == QJsonParseError::NoError ) {
             QJsonObject objRoot = jdoc.object();
-            QString portal = objRoot["domain"].toString();
+            std::vector<QString> _portals{objRoot["domain"].toString()};
 
-            if ( m_panel && !portal.isEmpty() ) {
-                if ( !m_panel->data()->closed() && QString::fromStdWString(m_panel->data()->url()).startsWith(portal) )
+            if ( objRoot.contains("extra") && objRoot["extra"].isArray() ) {
+                QJsonArray a = objRoot["extra"].toArray();
+                for (auto&& v: a) {
+                    _portals.push_back(v.toString());
+                }
+            }
+
+            for (auto& u: _portals) {
+                if ( QString::fromStdWString(m_panel->data()->url()).startsWith(u) ) {
                     window->closeWindow();
+                    break;
+                }
             }
         }
     }

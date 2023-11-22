@@ -233,19 +233,30 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
         } else
         if ( cmd.compare(L"portal:logout") == 0 ) {
             const wstring& wjson = pData->get_Param();
-            wstring wportal;
 
-            QRegularExpression re("domain\":\"(https?:\\/\\/[^\\s\"]+)");
-            QRegularExpressionMatch match = re.match(QString::fromStdWString(wjson));
-            if ( match.hasMatch() )
-                wportal = match.captured(1).toStdWString();
+            QJsonParseError jerror;
+            QJsonDocument jdoc = QJsonDocument::fromJson(QString::fromStdWString(wjson).toUtf8(), &jerror);
 
-            if ( !wportal.empty() ) {
-                if ( (m_closeCount = logoutCount(wportal)) > 0 ) {
-                    m_closeTarget = wjson;
-                    broadcastEvent(event);
-                } else {
-                    Logout(wjson);
+            if( jerror.error == QJsonParseError::NoError ) {
+                QJsonObject objRoot = jdoc.object();
+                QString _portal = objRoot["domain"].toString();
+
+                if ( !_portal.isEmpty() ) {
+                    m_closeCount = logoutCount(_portal.toStdWString());
+
+                    if ( objRoot.contains("extra") && objRoot["extra"].isArray() ) {
+                        QJsonArray a = objRoot["extra"].toArray();
+                        for (auto&& v: a) {
+                            m_closeCount += logoutCount(v.toString().toStdWString());
+                        }
+                    }
+
+                    if ( m_closeCount > 0 ) {
+                        m_closeTarget = wjson;
+                        broadcastEvent(event);
+                    } else {
+                        Logout(wjson);
+                    }
                 }
             }
 
@@ -1862,24 +1873,30 @@ void CAscApplicationManagerWrapper::Logout(const wstring& wjson)
 
         if( jerror.error == QJsonParseError::NoError ) {
             QJsonObject objRoot = jdoc.object();
+
             const wstring& portal = objRoot["domain"].toString().toStdWString();
-
-            CAscApplicationManager::Logout(portal);
-            if ( objRoot.contains("extra") && objRoot["extra"].isArray() ) {
-                QJsonArray a = objRoot["extra"].toArray();
-                for (auto v: a)
-                    CAscApplicationManager::Logout(v.toString().toStdWString());
-            }
-
             sendCommandTo(SEND_TO_ALL_START_PAGE, L"portal:logout", portal);
 
-            int index = mainWindow()->tabWidget()->tabIndexByUrl(portal);
-            if ( !(index < 0) ) {
-                if ( objRoot.contains("onsuccess") &&
-                        objRoot["onsuccess"].toString() == "reload" )
-                {
-                    mainWindow()->tabWidget()->panel(index)->cef()->reload();
-                } else mainWindow()->tabWidget()->closeEditorByIndex(index);
+            std::vector<std::wstring> _portals{portal};
+
+            if ( objRoot.contains("extra") && objRoot["extra"].isArray() ) {
+                QJsonArray a = objRoot["extra"].toArray();
+                for (auto&& v: a) {
+                    _portals.push_back(v.toString().toStdWString());
+                }
+            }
+
+            for (auto& v: _portals) {
+                CAscApplicationManager::Logout(v);
+
+                int index = mainWindow()->tabWidget()->tabIndexByUrl(v);
+                if ( !(index < 0) ) {
+                    if ( objRoot.contains("onsuccess") &&
+                            objRoot["onsuccess"].toString() == "reload" )
+                    {
+                        mainWindow()->tabWidget()->panel(index)->cef()->reload();
+                    } else mainWindow()->tabWidget()->closeEditorByIndex(index);
+                }
             }
         }
     }
