@@ -1259,92 +1259,116 @@
 - (void)onCEFPortalLogout:(NSNotification *)notification {
     if (notification && notification.userInfo) {
         id json = notification.userInfo;
-        NSString * url = json[@"domain"];
-        BOOL isReload = [@"reload" isEqualToString:json[@"onsuccess"]];
+        NSString * portal = json[@"domain"];
+        NSMutableArray * portals = [NSMutableArray arrayWithObject:portal];
 
-        if (url) {
+        if (portal) {
+            BOOL isReload = [@"reload" isEqualToString:json[@"onsuccess"]];
             self.shouldLogoutPortal = YES;
-
+            
+            if ( json[@"extra"] != nil ) {
+                NSArray * urls = [json valueForKey:@"extra"];
+                
+                for ( NSString * u in urls ) {
+                    [portals addObject:u];
+                }
+            }
+            
+            bool (^_is_array_contains_url)(NSArray *, NSString *) = ^(NSArray * arr, NSString * s) {
+                if ( s && s.length )
+                    for ( NSString * u in arr ) {
+                        if ( [s rangeOfString:u].location != NSNotFound )
+                            return true;
+                    }
+                
+                return false;
+            };
+            
             NSMutableArray * portalTabs = [NSMutableArray array];
             NSInteger unsaved = 0;
-
-            NSString *logoutVirtualUrl = [url virtualUrl];
-
+            
             for (ASCTabView * tab in self.tabsControl.tabs) {
                 NSString * tabVirtualUrl = [tab.params[@"url"] virtualUrl];
-
-                if (tabVirtualUrl && tabVirtualUrl.length > 0 && [tabVirtualUrl rangeOfString:logoutVirtualUrl].location != NSNotFound) {
-                    [portalTabs addObject:tab];
-
-                    if (tab.changed) {
-                        unsaved++;
+                
+                if ( !tabVirtualUrl ) {
+                    NSString * pathString = tab.params[@"path"];
+                    NSRange typeRange = [pathString rangeOfString:@"^https?://"
+                                                          options:NSRegularExpressionSearch];
+                    
+                    if ( typeRange.location != NSNotFound )
+                        tabVirtualUrl = pathString;
+                }
+                
+                if ( _is_array_contains_url(portals, tabVirtualUrl) ) {
+                    if ( isReload ) {
+                        if ( NSCefView * cefView = [self cefViewWithTab:tab] ) {
+                            [cefView reload];
+                        }
+                    } else {
+                        [portalTabs addObject:tab];
+                        
+                        if (tab.changed) {
+                            unsaved++;
+                        }
                     }
                 }
             }
             
-            if (isReload) {
-                for (ASCTabView * tab in portalTabs) {
-                    if (NSCefView * cefView = [self cefViewWithTab:tab]) {
-                        [cefView reload];
-                    }
-                }
-            } else if (unsaved > 0) {
-                NSString * productName = [ASCHelper appName];
-
-                NSAlert *alert = [[NSAlert alloc] init];
-                [alert addButtonWithTitle:NSLocalizedString(@"Review Changes...", nil)];
-                [[alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)] setKeyEquivalent:@"\e"];
-                [alert addButtonWithTitle:NSLocalizedString(@"Delete and Quit", nil)];
-                [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?", nil), (long)unsaved, productName]];
-                [alert setInformativeText:NSLocalizedString(@"If you don't review your documents, all your changeses will be lost.", nil)];
-                [alert setAlertStyle:NSAlertStyleInformational];
-
-                NSInteger result = [alert runModal];
-
-                if (result == NSAlertFirstButtonReturn) {
-                    // "Review Changes..." clicked
-
-                    for (ASCTabView * tab in portalTabs) {
-                        if (tab.changed) {
-                            [self.tabsWithChanges addObject:tab];
-                        } else {
+            if ( !isReload ) {
+                if (unsaved > 0) {
+                    NSString * productName = [ASCHelper appName];
+                    
+                    NSAlert *alert = [[NSAlert alloc] init];
+                    [alert addButtonWithTitle:NSLocalizedString(@"Review Changes...", nil)];
+                    [[alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)] setKeyEquivalent:@"\e"];
+                    [alert addButtonWithTitle:NSLocalizedString(@"Delete and Quit", nil)];
+                    [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?", nil), (long)unsaved, productName]];
+                    [alert setInformativeText:NSLocalizedString(@"If you don't review your documents, all your changeses will be lost.", nil)];
+                    [alert setAlertStyle:NSAlertStyleInformational];
+                    
+                    NSInteger result = [alert runModal];
+                    
+                    if (result == NSAlertFirstButtonReturn) {
+                        // "Review Changes..." clicked
+                        
+                        for (ASCTabView * tab in portalTabs) {
+                            if (tab.changed) {
+                                [self.tabsWithChanges addObject:tab];
+                            } else {
+                                [self.tabsControl removeTab:tab selected:NO];
+                            }
+                        }
+                        
+                        [self safeCloseTabsWithChanges];
+                    } else if (result == NSAlertSecondButtonReturn) {
+                        return;
+                    } else {
+                        // "Delete and Quit" clicked
+                        
+                        for (ASCTabView * tab in portalTabs) {
                             [self.tabsControl removeTab:tab selected:NO];
                         }
                     }
-                    
-                    [self safeCloseTabsWithChanges];
-                } else if (result == NSAlertSecondButtonReturn) {
-                    return;
                 } else {
-                    // "Delete and Quit" clicked
-
                     for (ASCTabView * tab in portalTabs) {
                         [self.tabsControl removeTab:tab selected:NO];
                     }
+                    
+                    [self.tabView selectTabViewItemWithIdentifier:rootTabId];
                 }
-            } else {
-                for (ASCTabView * tab in portalTabs) {
-                    [self.tabsControl removeTab:tab selected:NO];
-                }
-
-                [self.tabView selectTabViewItemWithIdentifier:rootTabId];
             }
         }
 
         if (self.shouldLogoutPortal) {
             CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
 
-            appManager->Logout([url stdwstring]);
-            if ( json[@"extra"] != nil ) {
-                NSArray * urls = [json valueForKey:@"extra"];
-                for ( NSString * u in urls ) {
-                    appManager->Logout([u stdwstring]);
-                }
+            for ( NSString * u in portals ) {
+                appManager->Logout([u stdwstring]);
             }
 
             NSEditorApi::CAscExecCommandJS * pCommand = new NSEditorApi::CAscExecCommandJS;
             pCommand->put_Command(L"portal:logout");
-            pCommand->put_Param([url stdwstring]);
+            pCommand->put_Param([portal stdwstring]);
 
             NSEditorApi::CAscMenuEvent* pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND_JS);
             pEvent->m_pData = pCommand;
