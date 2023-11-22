@@ -1662,16 +1662,17 @@
         ASCTabView * tab = [self.tabsControl tabWithUUID:viewId];
         if (tab) {
             if (isFragmented) {
-                NSAlert * alert = [NSAlert new];
-                [alert addButtonWithTitle:NSLocalizedString(@"Yes", nil)];
-                [alert addButtonWithTitle:NSLocalizedString(@"No", nil)];
-                [[alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)] setKeyEquivalent:@"\e"];
-                [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"The document \"%@\" must be built. Continue?", nil), [tab title]]];
-                [alert setAlertStyle:NSAlertStyleInformational];
-
-                NSInteger returnCode = [alert runModalSheet];
-
-                if (returnCode == NSAlertFirstButtonReturn) {
+//                windows code skip this warning for ver 5.2
+//                NSAlert * alert = [NSAlert new];
+//                [alert addButtonWithTitle:NSLocalizedString(@"Yes", nil)];
+//                [alert addButtonWithTitle:NSLocalizedString(@"No", nil)];
+//                [[alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)] setKeyEquivalent:@"\e"];
+//                [alert setMessageText:[NSString stringWithFormat:NSLocalizedString(@"The document \"%@\" must be built. Continue?", nil), [tab title]]];
+//                [alert setAlertStyle:NSAlertStyleInformational];
+//
+//                NSInteger returnCode = [alert runModalSheet];
+//
+//                if (returnCode == NSAlertFirstButtonReturn) {
                     NSCefView * cefView = [self cefViewWithTab:tab];
 
                     if (cefView) {
@@ -1681,11 +1682,11 @@
                         [cefView apply:pEvent];
                         return;
                     }
-                } else if (returnCode == NSAlertSecondButtonReturn) {
-                    //
-                } else {
-                    return;
-                }
+//                } else if (returnCode == NSAlertSecondButtonReturn) {
+//                    //
+//                } else {
+//                    return;
+//                }
             }
 
             [self.tabsControl removeTab:tab selected:YES];
