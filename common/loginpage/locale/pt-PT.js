@@ -75,7 +75,7 @@ l10n.pt_PT = {
     settOpenMode: 'Abrir um documento em modo de pré-visualização',
     setBtnApply: 'Aplicar',
     settLanguage: 'Idioma da interface',
-    settAfterRestart: 'A opção será aplicada depois de reiniciar a aplicação',
+    settAfterRestart: 'A definição será aplicada após reiniciar a aplicação',
     settShowEncryptOpts: 'Teste a encriptação ponto a ponto',
     settCheckUpdates: 'Procurar atualizações automaticamente',
     settOptCheckNever: 'Nunca',
@@ -105,4 +105,7 @@ l10n.pt_PT = {
     updateDownloadFinished: 'A transferência está concluída. Clique para instalar',
     updateDownloadCanceled: 'Transferência cancelada',
     updateDownloadProgress: 'A transferir $1%. Clique para parar',
+    settOptDescDisabled: "A verificação automática de atualizações será desativada",
+    settOptDescAUpdateSilent: "Transferir atualizações e perguntar antes de instalar",
+    settOptDescAUpdateAsk: "Será notificado sobre todas as etapas de atualização",
 }
