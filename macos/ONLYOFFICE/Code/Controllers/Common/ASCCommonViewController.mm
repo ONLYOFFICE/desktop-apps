@@ -429,7 +429,7 @@
 
 - (BOOL)shouldTerminateApplication {
     NSInteger unsaved = 0;
-    BOOL preventTerminate = NO;
+//    BOOL preventTerminate = NO;
 
     [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameFullscreen
                                                         object:nil
@@ -443,14 +443,12 @@
         // Blockchain check
         if (NSCefView * cefView = [self cefViewWithTab:tab]) {
             if ([cefView checkCloudCryptoNeedBuild]) {
-                preventTerminate = YES;
+                self.shouldTerminateApp = YES;
+                return NO;
             }
         }
     }
 
-    if (preventTerminate) {
-        return NO;
-    }
 
     if (unsaved > 0) {
         NSString * productName = [ASCHelper appName];
@@ -1676,7 +1674,7 @@
                     NSCefView * cefView = [self cefViewWithTab:tab];
 
                     if (cefView) {
-                        self.shouldTerminateApp = NO;
+//                        self.shouldTerminateApp = NO;
 
                         NSEditorApi::CAscMenuEvent * pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_ENCRYPTED_CLOUD_BUILD);
                         [cefView apply:pEvent];
