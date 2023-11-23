@@ -92,21 +92,6 @@ begin
   Result :=  msiproductupgrade(upgradecode, '14.32.31332.0');
 end;
 
-procedure CreateBatchFiles();
-var
-   i: Integer;
-   fileName: String;
-   names, lines: TArrayOfString;
-begin
-   names := ['word', 'cell', 'slide'];
-   SetArrayLength(lines, 1);
-   for i := 0 to GetArrayLength(names) - 1 do begin
-     fileName := ExpandConstant('{app}\new_' + names[i] + '.bat');
-     lines[0] := ExpandConstant('start {#iconsExe} --new:' + names[i]);
-     SaveStringsToFile(fileName, lines, False);
-   end;
-end;
-
 function ReadBinFile(fileName: String; list: TStringList): Boolean;
 var
   fs: TFileStream;

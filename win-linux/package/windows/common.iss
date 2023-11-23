@@ -800,7 +800,6 @@ var
 begin
   if CurStep = ssPostInstall then begin
     DoPostInstall();
-    CreateBatchFiles();
     GetWindowsVersionEx(version);
     if (version.Major > 6) or ((version.Major = 6) and (version.Minor >= 1)) then begin
 #ifdef _ONLYOFFICE
@@ -1044,7 +1043,4 @@ Root: HKLM; Subkey: "SOFTWARE\Classes\{#sAppProtocol}\Shell\Open\Command"; Value
 [UninstallDelete]
 Type: filesandordirs; Name: {commonappdata}\{#APP_PATH}\*;  AfterInstall: RefreshEnvironment;
 Type: filesandordirs; Name: "{app}\..\{#UPD_PATH}";
-Type: files; Name: "{app}\new_word.bat";
-Type: files; Name: "{app}\new_cell.bat";
-Type: files; Name: "{app}\new_slide.bat";
 Type: files; Name: "{app}\svcrestart.bat";
