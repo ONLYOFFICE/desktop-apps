@@ -81,8 +81,8 @@ ChangesEnvironment        =yes
 SetupMutex                =ASC
 
 #if str(_ARCH) == "64"
-ArchitecturesAllowed              = x64
-ArchitecturesInstallIn64BitMode   = x64
+ArchitecturesAllowed              = x64 arm64
+ArchitecturesInstallIn64BitMode   = x64 arm64
 #endif
 
 #ifndef _WIN_XP
