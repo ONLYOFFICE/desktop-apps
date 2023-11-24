@@ -227,7 +227,7 @@
                                                 <section class='box-cmp-select'>
                                                     <select class='combobox' data-size='5'></select>
                                                 </section>
-                                                <button class="btn btn--primary hidden" id="idx-btn-addtheme" l10n>Add theme</button>
+                                                <button class="btn btn--primary hidden" id="idx-btn-addtheme" l10n>Custom theme</button>
                                             </div>
                                         </div>
                                         <div class='settings-field' id="opts-launch-mode" style='display:none;'>
