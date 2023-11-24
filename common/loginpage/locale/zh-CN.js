@@ -105,4 +105,7 @@ l10n.zh_CN = {
     updateDownloadFinished: '下载完成。点击安装',
     updateDownloadCanceled: '下载已取消',
     updateDownloadProgress: '正在下载 $1%。点击停止',
+    settOptDescDisabled: "自动检查更新将被禁用",
+    settOptDescAUpdateSilent: "下载更新并在安装前询问",
+    settOptDescAUpdateAsk: "您将获得所有更新步骤的通知",
 }

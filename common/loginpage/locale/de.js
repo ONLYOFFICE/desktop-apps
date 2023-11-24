@@ -105,4 +105,7 @@ l10n.de = {
     updateDownloadFinished: 'Herunterladen abgeschlossen. Für Installation hier klicken',
     updateDownloadCanceled: 'Herunterladen abgebrochen',
     updateDownloadProgress: '$1% wird heruntergeladen. Zum Abbrechen hier klicken',
+    settOptDescDisabled: "Die automatische Prüfung von Updates wird deaktiviert",
+    settOptDescAUpdateSilent: "Updates herunterladen und vor der Installation fragen",
+    settOptDescAUpdateAsk: "Sie werden über alle Aktualisierungsschritte benachrichtigt",
 }
