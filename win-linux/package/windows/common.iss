@@ -1,5 +1,7 @@
 ﻿; -- Installer Common --
 
+#define ISPP_LECAGY Int(DecodeVer(PREPROCVER,1)) < 6
+
 #if str(_ARCH) == "64"
   #define sWinArch                  "x64"
   #define sPlatform                 "win_64"
@@ -80,7 +82,7 @@ AppMutex                  ={code:getAppMutex}
 ChangesEnvironment        =yes
 SetupMutex                =ASC
 
-#if Int(DecodeVer(PREPROCVER,1)) < 6 && str(_ARCH) == "64"
+#if ISPP_LECAGY && str(_ARCH) == "64"
 ArchitecturesAllowed              = x64
 ArchitecturesInstallIn64BitMode   = x64
 #elif str(_ARCH) == "64"
@@ -138,7 +140,7 @@ Name: sk; MessagesFile: compiler:Languages\Slovak.isl;     LicenseFile: {#sBrand
 Name: sl; MessagesFile: compiler:Languages\Slovenian.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 Name: sv; MessagesFile: compiler:Languages\Swedish.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 Name: tr; MessagesFile: compiler:Languages\Turkish.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
-#if Int(DecodeVer(PREPROCVER,1)) < 6
+#if ISPP_LECAGY
 Name: vi; MessagesFile: compiler:Languages\Vietnamese.islu; LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 Name: hy_AM; MessagesFile: compiler:Languages\Armenian.islu;    LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 #else
