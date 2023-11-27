@@ -82,12 +82,14 @@ AppMutex                  ={code:getAppMutex}
 ChangesEnvironment        =yes
 SetupMutex                =ASC
 
-#if ISPP_LECAGY && str(_ARCH) == "64"
+#if str(_ARCH) == "64"
+#if ISPP_LECAGY
 ArchitecturesAllowed              = x64
 ArchitecturesInstallIn64BitMode   = x64
-#elif str(_ARCH) == "64"
+#else
 ArchitecturesAllowed              = x64 arm64
 ArchitecturesInstallIn64BitMode   = x64 arm64
+#endif
 #endif
 
 #ifndef _WIN_XP
