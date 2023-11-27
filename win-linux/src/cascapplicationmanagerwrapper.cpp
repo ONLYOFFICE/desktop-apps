@@ -351,6 +351,10 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
                                                         QString(QJsonDocument(new_local_themes).toJson(QJsonDocument::Compact)).toStdWString());
                             }
                         }
+
+                        QTimer::singleShot(0, this, [id]{
+                            AscAppManager::getInstance().applyTheme(id.toStdWString());
+                        });
                     } else {
                         qDebug() << "theme source is broken";
                         CMessage::error(WindowHelper::currentTopWindow(), "This file doesn't contain theme");
