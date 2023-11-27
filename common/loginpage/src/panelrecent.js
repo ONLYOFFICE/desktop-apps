@@ -55,7 +55,7 @@
         let _html = `<div class="action-panel ${args.action}">
                       <div class="flexbox">
                         <div id="box-recovery" class="flex-item">
-                          <div class="flexbox">'+
+                          <div class="flexbox">
                             <h3 class="table-caption" l10n>${_lang.listRecoveryTitle}</h3>
                             <div class="table-box flex-fill">
                               <table id="tbl-filesrcv" class="table-files list"></table>
