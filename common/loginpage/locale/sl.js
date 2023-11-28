@@ -10,7 +10,7 @@ l10n.sl = {
     btnNext: 'Naprej',
     portalEmptyTitle: 'Poveži se s svojim oblakom',
     portalEmptyDescr: 'Shrani svoje dokumente v oblak in do njih dostopaj kadarkoli in od koderkoli. Deli jih in upravljaj skupaj z drugimi. Klepetaj preko dokumenta, dodajaj komentarje, deli dokument z drugimi za pregledovanje.',
-    portalEmptyAdv1: 'Še nimaš računa v oblaku? Pridruži se spletu s storitvijo ONLYOFFICE v oblaku in  <br />brezplačno preizkusi zmogljivost in uporabnost.',
+    portalEmptyAdv1: 'Še nimaš računa v oblaku? Pridruži se spletu s storitvijo ONLYOFFICE v oblaku in <br />brezplačno preizkusi zmogljivost in uporabnost.',
     portalListTitle: 'Povezani oblaki',
     textNoFiles: 'Tukaj ni nobenih datotek',
     listRecoveryTitle: 'Obnovi datoteke',

@@ -56,6 +56,7 @@ l10n.da = {
     actActivate: 'Aktiver',
     actAbout: 'Om',
     actSettings: 'Indstillinger',
+    actTemplates: 'Skabeloner',
     licKeyHolder: 'indtast aktiveringsnøgle',
     btnActivate: 'Aktiver',
     licGetLicense: 'Få licens nu',
