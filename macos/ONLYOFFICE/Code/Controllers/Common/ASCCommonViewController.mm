@@ -896,8 +896,7 @@
                     [[self cefViewWithTab:tab] focus];
                 }
 
-                if ( [screens count] > 1 )
-                    [win_main setIsVisible:false];
+                [win_main setIsVisible:false];
             } else if ([item.view isInFullScreenMode]) {
                 [win_main setIsVisible:true];
                 [item.view exitFullScreenModeWithOptions:nil];
