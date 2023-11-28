@@ -80,13 +80,12 @@ AppMutex                  ={code:getAppMutex}
 ChangesEnvironment        =yes
 SetupMutex                =ASC
 
-#if str(_ARCH) == "64"
-#define ArchitecturesAllowed "x64"
-#if Int(DecodeVer(PREPROCVER,1)) >= 6
-#define ArchitecturesAllowed "{#ArchitecturesAllowed} arm64"
-#endif
-ArchitecturesAllowed              = {#ArchitecturesAllowed}
-ArchitecturesInstallIn64BitMode   = {#ArchitecturesAllowed}
+#if Int(DecodeVer(PREPROCVER,1)) >= 6 && str(_ARCH) == "64"
+ArchitecturesAllowed              = x64 arm64
+ArchitecturesInstallIn64BitMode   = x64 arm64
+#elif str(_ARCH) == "64"
+ArchitecturesAllowed              = x64
+ArchitecturesInstallIn64BitMode   = x64
 #endif
 
 #ifndef _WIN_XP
