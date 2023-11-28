@@ -1478,17 +1478,13 @@
 
     NSInteger returnCode = [alert runModalSheet];
 
-    if (returnCode == NSAlertFirstButtonReturn) {
-        NSEditorApi::CAscEditorSaveQuestion * pEventData = new NSEditorApi::CAscEditorSaveQuestion();
-        NSEditorApi::CAscMenuEvent* pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_DOCUMENTEDITORS_SAVE_YES_NO);
+    NSEditorApi::CAscEditorSaveQuestion * pEventData = new NSEditorApi::CAscEditorSaveQuestion();
+    NSEditorApi::CAscMenuEvent* pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_DOCUMENTEDITORS_SAVE_YES_NO);
 
-        if (pEvent && pEventData) {
-            pEventData->put_Value(true);
-            pEvent->m_pData = pEventData;
+    pEventData->put_Value(returnCode == NSAlertFirstButtonReturn);
+    pEvent->m_pData = pEventData;
 
-            [cefView apply:pEvent];
-        }
-    }
+    [cefView apply:pEvent];
 }
 
 - (void)onCEFStartPageReady:(NSNotification *)notification {
