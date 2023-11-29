@@ -44,7 +44,7 @@ l10n.zh_CN = {
     pshPhone: '电话号码',
     pshCode: '短信发送的代码',
     loginNoteAssignPhone: '双因素身份认证已启用，将为您提供附加的ONLYOFFICE云安全保护。请输入您的手机号码，以便继续使用云office。手机号码必须使用含国家/地区代码的国际格式。',
-    loginNoteApplyCode: '双因素身份认证已启用。已将代码通过短信发送到$1号码。',    
+    loginNoteApplyCode: '双因素身份认证已启用。已将代码通过短信发送到$1号码。',
     newDoc: '文档',
     newXlsx: '电子表格',
     newPptx: '演示文稿',

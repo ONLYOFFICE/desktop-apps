@@ -527,7 +527,7 @@
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="756"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
-        <translation>ບໍ່ມີ. ມັນອາດຈະຖືກປ່ຽນຊື່, ຍ້າຍຫລືລຶບ.&lt;br&gt;ທ່ານຕ້ອງການທີ່ຈະເອົາໄຟລ໌ນັ້ນອອກຈາກບັນຊີບໍ?</translation>
+        <translation>%1 ບໍ່ມີ. ມັນອາດຈະຖືກປ່ຽນຊື່, ຍ້າຍຫລືລຶບ.&lt;br&gt;ທ່ານຕ້ອງການທີ່ຈະເອົາໄຟລ໌ນັ້ນອອກຈາກບັນຊີບໍ?</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="815"/>
@@ -654,7 +654,7 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="95"/>
         <source>An error occurred while check updates: Update Service not found!</source>
-        <translation type="unfinished">ມີຂໍ້ຜິດພາດເກີດຂຶ້ນໃນຂະນະທີ່ກວດສອບການອັບເດດ: ບໍ່ພົບບໍລິການອັບເດດ!</translation>
+        <translation>ມີຂໍ້ຜິດພາດເກີດຂຶ້ນໃນຂະນະທີ່ກວດສອບການອັບເດດ: ບໍ່ພົບບໍລິການອັບເດດ!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="89"/>
@@ -664,12 +664,12 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="96"/>
         <source>An error occurred while loading updates: Update Service not found!</source>
-        <translation type="unfinished">ເກີດຄວາມຜິດພາດໃນລະຫວ່າງການໂຫຼດອັບເດດ: ບໍ່ພົບບໍລິການອັບເດດ!</translation>
+        <translation>ເກີດຄວາມຜິດພາດໃນລະຫວ່າງການໂຫຼດອັບເດດ: ບໍ່ພົບບໍລິການອັບເດດ!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="104"/>
         <source>Cancel</source>
-        <translation type="unfinished">ຍົກເລີກ</translation>
+        <translation>ຍົກເລີກ</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="94"/>
@@ -689,7 +689,7 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="97"/>
         <source>An error occurred while unzip updates: Update Service not found!</source>
-        <translation type="unfinished">ມີຂໍ້ຜິດພາດເກີດຂຶ້ນໃນຂະນະທີ່ unzip ອັບເດດ: ບໍ່ພົບບໍລິການອັບເດດ!</translation>
+        <translation>ມີຂໍ້ຜິດພາດເກີດຂຶ້ນໃນຂະນະທີ່ unzip ອັບເດດ: ບໍ່ພົບບໍລິການອັບເດດ!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="88"/>
@@ -699,7 +699,7 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="102"/>
         <source>Download update</source>
-        <translation type="unfinished">ດາວໂຫລດອັບເດດ</translation>
+        <translation>ດາວໂຫລດອັບເດດ</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="86"/>

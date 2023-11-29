@@ -648,7 +648,7 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="93"/>
         <source>Unable to check update: URL not defined.</source>
-        <translation type="unfinished"></translation>
+        <translation>无法检查更新：URL 未定义。</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="91"/>
