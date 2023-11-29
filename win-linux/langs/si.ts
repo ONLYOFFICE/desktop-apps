@@ -332,27 +332,27 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="66"/>
         <source>DOCX Document</source>
-        <translation type="unfinished"></translation>
+        <translation>DOCX ලේඛනය</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="70"/>
         <source>OpenDocument Document template</source>
-        <translation type="unfinished"></translation>
+        <translation>OpenDocument ලේඛන අච්චුව</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="85"/>
         <source>OpenDocument Presentation Template</source>
-        <translation type="unfinished"></translation>
+        <translation>OpenDocument සමර්පණ අච්චුව</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="91"/>
         <source>Macro-enabled spreadsheet template</source>
-        <translation type="unfinished"></translation>
+        <translation>සාර්ව-සක්‍රිය පැතුරුම්පත් අච්චුව</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="94"/>
         <source>OpenDocument Spreadsheet Template</source>
-        <translation type="unfinished"></translation>
+        <translation>OpenDocument පැතුරුම්පත් අච්චුව</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="95"/>
@@ -382,7 +382,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="101"/>
         <source>SVG Image (*.svg)</source>
-        <translation type="unfinished"></translation>
+        <translation>SVG අනුරුව (*.svg)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="103"/>
@@ -466,19 +466,19 @@
         <location filename="../src/ceditortools.cpp" line="211"/>
         <location filename="../src/components/cfiledialog.cpp" line="90"/>
         <source>Spreadsheet template</source>
-        <translation type="unfinished"></translation>
+        <translation>පැතුරුම්පත් අච්චුව</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="214"/>
         <location filename="../src/components/cfiledialog.cpp" line="83"/>
         <source>Presentation template</source>
-        <translation type="unfinished"></translation>
+        <translation>සමර්පණ අච්චුව</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="216"/>
         <location filename="../src/components/cfiledialog.cpp" line="67"/>
         <source>Document template</source>
-        <translation type="unfinished"></translation>
+        <translation>ලේඛන අච්චුව</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="267"/>
@@ -524,12 +524,12 @@
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="258"/>
         <source>More than one document is open.&lt;br&gt;Close the window anyway?</source>
-        <translation type="unfinished"></translation>
+        <translation>ලේඛනයකට වඩා විවෘතයි.&lt;br&gt;කෙසේ වුවත් කවුළුව වසන්න ද?</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="260"/>
         <source>Don&apos;t ask again.</source>
-        <translation type="unfinished"></translation>
+        <translation>නැවත අසන්න එපා.</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="732"/>
@@ -636,37 +636,37 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="101"/>
         <source>Check for updates</source>
-        <translation type="unfinished"></translation>
+        <translation>යාවත්කාල පරීක්‍ෂා කරන්න</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="93"/>
         <source>Unable to check update: URL not defined.</source>
-        <translation type="unfinished"></translation>
+        <translation>යාවත්කාල පරීක්‍ෂාවට නොහැකිය: ඒ.ස.නි. දක්වා නැත.</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="91"/>
         <source>To finish updating, restart app</source>
-        <translation type="unfinished"></translation>
+        <translation>යාවත්කාලය නිමාවට යෙදුම යළි අරඹන්න</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="103"/>
         <source>Restart</source>
-        <translation type="unfinished"></translation>
+        <translation>යළි අරඹන්න</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="87"/>
         <source>Checking for updates...</source>
-        <translation type="unfinished"></translation>
+        <translation>යාවත්කාල පරීක්‍ෂා වෙමින්</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="92"/>
         <source>Updates are not allowed!</source>
-        <translation type="unfinished"></translation>
+        <translation>යාවත්කාල සඳහා ඉඩ නොදේ!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="402"/>
         <source>This folder configuration does not allow for updates! The folder name should be: </source>
-        <translation>මෙම බහාලුම් වින්‍යාසය යාවත්කාල සඳහා ඉඩ නොදේ! බහාලුමේ නම විය යුතු වන්නේ:</translation>
+        <translation>මෙම බහාලුම් වින්‍යාසය යාවත්කාල සඳහා ඉඩ නොදේ! බහාලුමේ නම විය යුතු වන්නේ: </translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="95"/>
@@ -676,7 +676,7 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="89"/>
         <source>Downloading new version %1 (%2%)</source>
-        <translation type="unfinished"></translation>
+        <translation>නව අනුවාදය බාගැනෙමින් %1 (%2%)</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="96"/>
@@ -686,22 +686,22 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="104"/>
         <source>Cancel</source>
-        <translation type="unfinished">අවලංගු</translation>
+        <translation>අවලංගු</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="94"/>
         <source>An error occurred while loading updates: package Url is empty!</source>
-        <translation type="unfinished"></translation>
+        <translation>යාවත්කාලය පූරණයේ දී දෝෂයක් සිදු විය: ඇසුරුමේ ඒ.ස.නි. හිස්ය!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="99"/>
         <source>Update package error: md5 sum does not match the original.</source>
-        <translation type="unfinished"></translation>
+        <translation>යාවත්කාල වන ඇසුරුමේ දෝෂයකි: md5 ඓක්‍යය මුල් පිටපතට නොගැළපේ.</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="90"/>
         <source>Preparing update...</source>
-        <translation type="unfinished"></translation>
+        <translation>යාවත්කාලයට සූදානම් වෙමින්...</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="97"/>
@@ -711,94 +711,94 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="88"/>
         <source>Update is available (version %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>යාවත්කාලයක් තිබේ (අනුවාදය %1)</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="102"/>
         <source>Download update</source>
-        <translation type="unfinished">යාවත්කාලය බාගන්න</translation>
+        <translation>යාවත්කාලය බාගන්න</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="86"/>
         <source>Current version is up to date</source>
-        <translation type="unfinished"></translation>
+        <translation>වත්මන් අනුවාදය යාවත්කාලීනයි</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="77"/>
         <source>An error occured while unpacking the archive</source>
-        <translation type="unfinished"></translation>
+        <translation>හැකිළුම දිග හැරීමේදී දෝෂයක් සිදු විය</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="78"/>
         <source>Update download failed: out of memory!</source>
-        <translation type="unfinished"></translation>
+        <translation>යාවත්කාලය බාගැනීමට අසමත් විය: මතකය පිරී ඇත!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="79"/>
         <source>Update download failed: server connection error!</source>
-        <translation type="unfinished"></translation>
+        <translation>යාවත්කාලය බාගැනීමට අසමත් විය: සේවාදායකයට සම්බන්ධතාවයේ දෝෂයකි!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="80"/>
         <source>Update download failed: wrong URL!</source>
-        <translation type="unfinished"></translation>
+        <translation>යාවත්කාලය බාගැනීමට අසමත් විය: ඒ.ස.නි. වැරදිය!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="81"/>
         <source>Update download failed: unable to create file!</source>
-        <translation type="unfinished"></translation>
+        <translation>යාවත්කාලය බාගැනීමට අසමත් විය: ගොනුව සෑදීමට නොහැකිය!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="82"/>
         <source>Update download failed: network error!</source>
-        <translation type="unfinished"></translation>
+        <translation>යාවත්කාලය බාගැනීමට අසමත් විය: ජාලයේ දෝෂයකි!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="83"/>
         <source>A service error has occurred!</source>
-        <translation type="unfinished"></translation>
+        <translation>සේවාවේ දෝෂයක් මතු විය!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="85"/>
         <source>Last check performed %1</source>
-        <translation type="unfinished"></translation>
+        <translation>අවසාන පරීක්‍ෂාව: %1</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="98"/>
         <source>Error opening JSON file.</source>
-        <translation type="unfinished"></translation>
+        <translation>JSON ගොනුව ඇරීමේ දෝෂයකි.</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="795"/>
         <source>Update is available</source>
-        <translation type="unfinished"></translation>
+        <translation>යාවත්කාලයක් තිබේ</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="796"/>
         <location filename="../src/cupdatemanager.cpp" line="819"/>
         <source>Current version</source>
-        <translation type="unfinished"></translation>
+        <translation>වත්මන් අනුවාදය</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="797"/>
         <location filename="../src/cupdatemanager.cpp" line="820"/>
         <source>Update version</source>
-        <translation type="unfinished"></translation>
+        <translation>නව අනුවාදය</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="798"/>
         <source>Would you like to download update now?</source>
-        <translation type="unfinished"></translation>
+        <translation>දැන් යාවත්කාලය බාගැනීමට කැමතිද?</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="818"/>
         <source>Update is ready to install</source>
-        <translation type="unfinished"></translation>
+        <translation>යාවත්කාලය ස්ථාපනය සඳහා සූදානම්</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="821"/>
         <source>Would you like to restart app now?</source>
-        <translation type="unfinished"></translation>
+        <translation>දැන් යෙදුම නැවත ආරම්භයට කැමතිද?</translation>
     </message>
     <message>
         <source>A new version of %1 is available!</source>
@@ -881,7 +881,7 @@
         <location filename="../src/platform_linux/updatedialog.cpp" line="48"/>
         <location filename="../src/platform_win/updatedialog.cpp" line="51"/>
         <source>Install later</source>
-        <translation type="unfinished"></translation>
+        <translation>පසුව ස්ථාපනය කරන්න</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/updatedialog.cpp" line="49"/>
@@ -893,7 +893,7 @@
         <location filename="../src/platform_linux/updatedialog.cpp" line="50"/>
         <location filename="../src/platform_win/updatedialog.cpp" line="53"/>
         <source>Save and Install Now</source>
-        <translation>ස්ථාපනය</translation>
+        <translation>සුරකින්න හා ස්ථාපනය කරන්න</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/updatedialog.cpp" line="51"/>

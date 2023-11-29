@@ -44,7 +44,7 @@ l10n.zh_CN = {
     pshPhone: '电话号码',
     pshCode: '短信发送的代码',
     loginNoteAssignPhone: '双因素身份认证已启用，将为您提供附加的ONLYOFFICE云安全保护。请输入您的手机号码，以便继续使用云office。手机号码必须使用含国家/地区代码的国际格式。',
-    loginNoteApplyCode: '双因素身份认证已启用。已将代码通过短信发送到$1号码。',    
+    loginNoteApplyCode: '双因素身份认证已启用。已将代码通过短信发送到$1号码。',
     newDoc: '文档',
     newXlsx: '电子表格',
     newPptx: '演示文稿',
@@ -105,4 +105,7 @@ l10n.zh_CN = {
     updateDownloadFinished: '下载完成。点击安装',
     updateDownloadCanceled: '下载已取消',
     updateDownloadProgress: '正在下载 $1%。点击停止',
+    settOptDescDisabled: "自动检查更新将被禁用",
+    settOptDescAUpdateSilent: "下载更新并在安装前询问",
+    settOptDescAUpdateAsk: "您将获得所有更新步骤的通知",
 }

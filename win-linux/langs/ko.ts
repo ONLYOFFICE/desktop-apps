@@ -91,7 +91,7 @@
         <location filename="../src/platform_linux/cdialogopenssl.cpp" line="222"/>
         <location filename="../src/platform_linux/cdialogopenssl.cpp" line="225"/>
         <source>Open Document</source>
-        <translation type="unfinished">문서 열기</translation>
+        <translation>문서 열기</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/cdialogopenssl.cpp" line="244"/>
@@ -175,7 +175,7 @@
     <message>
         <location filename="../src/windows/ceditorwindow_p.h" line="472"/>
         <source>There are no printers available</source>
-        <translation type="unfinished"></translation>
+        <translation>사용 가능한 프린터가 없습니다</translation>
     </message>
 </context>
 <context>
@@ -283,7 +283,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="87"/>
         <source>Macro-enabled Presentation File (*.pptm)</source>
-        <translation type="unfinished"></translation>
+        <translation>매크로 지원 프레젠테이션 파일(*.pptm)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="89"/>
@@ -311,27 +311,27 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="66"/>
         <source>DOCX Document</source>
-        <translation type="unfinished"></translation>
+        <translation>DOCX 문서</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="70"/>
         <source>OpenDocument Document template</source>
-        <translation type="unfinished"></translation>
+        <translation>OpenDocument 문서 템플릿</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="85"/>
         <source>OpenDocument Presentation Template</source>
-        <translation type="unfinished"></translation>
+        <translation>OpenDocument 프레젠테이션 템플릿</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="91"/>
         <source>Macro-enabled spreadsheet template</source>
-        <translation type="unfinished"></translation>
+        <translation>매크로 지원 스프레드시트 템플릿</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="94"/>
         <source>OpenDocument Spreadsheet Template</source>
-        <translation type="unfinished"></translation>
+        <translation>OpenDocument 스프레드시트 템플릿</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="95"/>
@@ -361,12 +361,12 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="101"/>
         <source>SVG Image (*.svg)</source>
-        <translation type="unfinished"></translation>
+        <translation>SVG 이미지(*.svg)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="103"/>
         <source>JPG Image (*.jpg *.jpeg)</source>
-        <translation type="unfinished"></translation>
+        <translation>JPG 이미지(*.jpg *.jpeg)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="104"/>
@@ -439,25 +439,25 @@
         <location filename="../src/components/cfiledialog.cpp" line="253"/>
         <location filename="../src/components/cfiledialog.cpp" line="363"/>
         <source>All supported files</source>
-        <translation type="unfinished"></translation>
+        <translation>지원되는 모든 파일</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="211"/>
         <location filename="../src/components/cfiledialog.cpp" line="90"/>
         <source>Spreadsheet template</source>
-        <translation type="unfinished"></translation>
+        <translation>스프레드시트 템플릿</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="214"/>
         <location filename="../src/components/cfiledialog.cpp" line="83"/>
         <source>Presentation template</source>
-        <translation type="unfinished"></translation>
+        <translation>프레젠테이션 템플릿</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="216"/>
         <location filename="../src/components/cfiledialog.cpp" line="67"/>
         <source>Document template</source>
-        <translation type="unfinished"></translation>
+        <translation>문서 템플릿</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="267"/>
@@ -495,7 +495,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="402"/>
         <source>Select Folder</source>
-        <translation type="unfinished"></translation>
+        <translation>폴더 선택</translation>
     </message>
 </context>
 <context>
@@ -503,53 +503,53 @@
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="258"/>
         <source>More than one document is open.&lt;br&gt;Close the window anyway?</source>
-        <translation type="unfinished"></translation>
+        <translation>두 개 이상의 문서가 열려 있습니다.&lt;br&gt;그래도 창을 닫으시겠습니까?</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="260"/>
         <source>Don&apos;t ask again.</source>
-        <translation type="unfinished"></translation>
+        <translation>다시 표시 안함.</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="732"/>
         <location filename="../src/windows/cmainwindow.cpp" line="772"/>
         <source>File format not supported.</source>
-        <translation type="unfinished">지원되지 않는 파일 형식입니다.</translation>
+        <translation>지원되지 않는 파일 형식입니다.</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="756"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
-        <translation type="unfinished">%1이 이용 불가합니다. 이름이 변경되었거나, 이동되었거나, 삭제된 것 같습니다.&lt;br&gt;목록에서 파일을 제거하시겠습니까?</translation>
+        <translation>%1이 이용 불가합니다. 이름이 변경되었거나, 이동되었거나, 삭제된 것 같습니다.&lt;br&gt;목록에서 파일을 제거하시겠습니까?</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="815"/>
         <source>Document must be saved firstly.</source>
-        <translation type="unfinished">문서를 먼저 저장해야 합니다.</translation>
+        <translation>문서를 먼저 저장해야 합니다.</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="957"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
-        <translation type="unfinished">계속하려면 문서를 저장해야 합니다.&lt;br&gt;문서를 저장하시겠습니까?</translation>
+        <translation>계속하려면 문서를 저장해야 합니다.&lt;br&gt;문서를 저장하시겠습니까?</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="1067"/>
         <source>There are no printers available</source>
-        <translation type="unfinished"></translation>
+        <translation>사용 가능한 프린터가 없습니다</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="1126"/>
         <source>Print Document</source>
-        <translation type="unfinished">문서 인쇄</translation>
+        <translation>문서 인쇄</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="1326"/>
         <source>Sign Up</source>
-        <translation type="unfinished">포털 생성</translation>
+        <translation>포털 생성</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="1409"/>
         <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
-        <translation type="unfinished">%1이 수정되었습니다.&lt;br&gt;변경 사항을 저장하시겠습니까?</translation>
+        <translation>%1이 수정되었습니다.&lt;br&gt;변경 사항을 저장하시겠습니까?</translation>
     </message>
 </context>
 <context>
@@ -611,169 +611,169 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="101"/>
         <source>Check for updates</source>
-        <translation type="unfinished"></translation>
+        <translation>업데이트 확인</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="93"/>
         <source>Unable to check update: URL not defined.</source>
-        <translation type="unfinished"></translation>
+        <translation>업데이트를 확인할 수 없습니다: URL이 정의되지 않았습니다.</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="91"/>
         <source>To finish updating, restart app</source>
-        <translation type="unfinished"></translation>
+        <translation>업데이트를 완료하려면 앱을 다시 시작하세요</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="103"/>
         <source>Restart</source>
-        <translation type="unfinished"></translation>
+        <translation>다시 시작</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="87"/>
         <source>Checking for updates...</source>
-        <translation type="unfinished"></translation>
+        <translation>업데이트 확인 중...</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="92"/>
         <source>Updates are not allowed!</source>
-        <translation type="unfinished"></translation>
+        <translation>업데이트가 허용되지 않습니다!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="402"/>
         <source>This folder configuration does not allow for updates! The folder name should be: </source>
-        <translation type="unfinished"></translation>
+        <translation>이 폴더 구성에서는 업데이트가 허용되지 않습니다! 폴더 이름은 다음과 같아야 합니다: </translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="95"/>
         <source>An error occurred while check updates: Update Service not found!</source>
-        <translation type="unfinished"></translation>
+        <translation>업데이트를 확인하는 동안 오류가 발생했습니다: 업데이트 서비스를 찾을 수 없습니다!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="89"/>
         <source>Downloading new version %1 (%2%)</source>
-        <translation type="unfinished"></translation>
+        <translation>새버전 %1 (%2%) 다운로드 중</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="96"/>
         <source>An error occurred while loading updates: Update Service not found!</source>
-        <translation type="unfinished"></translation>
+        <translation>업데이트를 로드하는 중 오류가 발생했습니다: 업데이트 서비스를 찾을 수 없습니다!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="104"/>
         <source>Cancel</source>
-        <translation type="unfinished">취소</translation>
+        <translation>취소</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="94"/>
         <source>An error occurred while loading updates: package Url is empty!</source>
-        <translation type="unfinished"></translation>
+        <translation>업데이트를 로드하는 중 오류가 발생했습니다: 패키지 URL이 비어 있습니다!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="99"/>
         <source>Update package error: md5 sum does not match the original.</source>
-        <translation type="unfinished"></translation>
+        <translation>업데이트 패키지 오류입니다: md5 합계가 원본과 일치하지 않습니다.</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="90"/>
         <source>Preparing update...</source>
-        <translation type="unfinished"></translation>
+        <translation>업데이트 준비 중...</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="97"/>
         <source>An error occurred while unzip updates: Update Service not found!</source>
-        <translation type="unfinished"></translation>
+        <translation>업데이트 압축을 푸는 동안 오류가 발생했습니다: 업데이트 서비스를 찾을 수 없습니다!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="88"/>
         <source>Update is available (version %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>업데이트할 수 있습니다(버전 %1)</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="102"/>
         <source>Download update</source>
-        <translation type="unfinished"></translation>
+        <translation>업데이트 다운로드</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="86"/>
         <source>Current version is up to date</source>
-        <translation type="unfinished"></translation>
+        <translation>현재 버전이 최신입니다</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="77"/>
         <source>An error occured while unpacking the archive</source>
-        <translation type="unfinished"></translation>
+        <translation>아카이브 압축을 푸는 중 오류가 발생했습니다</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="78"/>
         <source>Update download failed: out of memory!</source>
-        <translation type="unfinished"></translation>
+        <translation>업데이트 다운로드에 실패했습니다: 메모리가 부족합니다!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="79"/>
         <source>Update download failed: server connection error!</source>
-        <translation type="unfinished"></translation>
+        <translation>업데이트다운로드에 실패했습니다: 서버 연결 오류입니다!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="80"/>
         <source>Update download failed: wrong URL!</source>
-        <translation type="unfinished"></translation>
+        <translation>업데이트다운로드에 실패했습니다: 잘못된 URL입니다!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="81"/>
         <source>Update download failed: unable to create file!</source>
-        <translation type="unfinished"></translation>
+        <translation>업데이트 다운로드에 실패했습니다: 파일을 생성할 수 없습니다!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="82"/>
         <source>Update download failed: network error!</source>
-        <translation type="unfinished"></translation>
+        <translation>업데이트 다운로드에 실패했습니다: 네트워크 오류가 발생했습니다!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="83"/>
         <source>A service error has occurred!</source>
-        <translation type="unfinished"></translation>
+        <translation>서비스 오류가 발생했습니다!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="85"/>
         <source>Last check performed %1</source>
-        <translation type="unfinished"></translation>
+        <translation>마지막 확인이 수행되었습니다 %1</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="98"/>
         <source>Error opening JSON file.</source>
-        <translation type="unfinished"></translation>
+        <translation>JSON 파일을 여는 동안 오류가 발생했습니다.</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="795"/>
         <source>Update is available</source>
-        <translation type="unfinished"></translation>
+        <translation>업데이트할 수 있습니다</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="796"/>
         <location filename="../src/cupdatemanager.cpp" line="819"/>
         <source>Current version</source>
-        <translation type="unfinished"></translation>
+        <translation>현재 버전</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="797"/>
         <location filename="../src/cupdatemanager.cpp" line="820"/>
         <source>Update version</source>
-        <translation type="unfinished"></translation>
+        <translation>버전 업데이트</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="798"/>
         <source>Would you like to download update now?</source>
-        <translation type="unfinished"></translation>
+        <translation>지금 업데이트를 다운로드하시겠습니까?</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="818"/>
         <source>Update is ready to install</source>
-        <translation type="unfinished"></translation>
+        <translation>업데이트 설치가 준비되었습니다</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="821"/>
         <source>Would you like to restart app now?</source>
-        <translation type="unfinished"></translation>
+        <translation>지금 앱을 다시 시작하시겠습니까?</translation>
     </message>
 </context>
 <context>
@@ -801,128 +801,128 @@
     <message>
         <location filename="../src/ceditortools.cpp" line="145"/>
         <source>XML File (*.xml)</source>
-        <translation type="unfinished"></translation>
+        <translation>XML 파일(*.xml)</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="254"/>
         <location filename="../src/windows/cmainwindow.cpp" line="721"/>
         <source>Access to file &apos;%1&apos; is denied!</source>
-        <translation type="unfinished"></translation>
+        <translation>&apos;%1&apos; 파일에 대한 액세스가 거부되었습니다!</translation>
     </message>
     <message>
         <location filename="../src/casctabdata.cpp" line="178"/>
         <source>Read only</source>
-        <translation type="unfinished"></translation>
+        <translation>읽기 전용</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/updatedialog.cpp" line="45"/>
         <location filename="../src/platform_win/updatedialog.cpp" line="48"/>
         <source>Skip this version</source>
-        <translation type="unfinished"></translation>
+        <translation>이 버전 건너뛰기</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/updatedialog.cpp" line="46"/>
         <location filename="../src/platform_win/updatedialog.cpp" line="49"/>
         <source>Remind me later</source>
-        <translation type="unfinished"></translation>
+        <translation>나중에 다시 표시</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/updatedialog.cpp" line="47"/>
         <location filename="../src/platform_win/updatedialog.cpp" line="50"/>
         <source>Install update</source>
-        <translation type="unfinished"></translation>
+        <translation>업데이트 설치</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/updatedialog.cpp" line="48"/>
         <location filename="../src/platform_win/updatedialog.cpp" line="51"/>
         <source>Install later</source>
-        <translation type="unfinished"></translation>
+        <translation>나중에 설치</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/updatedialog.cpp" line="49"/>
         <location filename="../src/platform_win/updatedialog.cpp" line="52"/>
         <source>Save and Restart Now</source>
-        <translation type="unfinished"></translation>
+        <translation>저장 후 지금 다시 시작</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/updatedialog.cpp" line="50"/>
         <location filename="../src/platform_win/updatedialog.cpp" line="53"/>
         <source>Save and Install Now</source>
-        <translation type="unfinished"></translation>
+        <translation>저장 후 지금 설치</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/updatedialog.cpp" line="51"/>
         <location filename="../src/platform_win/updatedialog.cpp" line="54"/>
         <source>Download update</source>
-        <translation type="unfinished"></translation>
+        <translation>업데이트 다운로드</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/updatedialog.cpp" line="68"/>
         <location filename="../src/platform_win/updatedialog.cpp" line="99"/>
         <source>Software Update</source>
-        <translation type="unfinished"></translation>
+        <translation>소프트웨어 업데이트</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/updatedialog.cpp" line="71"/>
         <location filename="../src/platform_win/updatedialog.cpp" line="102"/>
         <source>Release notes</source>
-        <translation type="unfinished"></translation>
+        <translation>릴리즈 노트</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="643"/>
         <source>An error occurred while start install updates!</source>
-        <translation type="unfinished"></translation>
+        <translation>업데이트 설치를 시작하는 동안 오류가 발생했습니다!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="653"/>
         <source>An error occurred while start replacing files: Update Service not found!</source>
-        <translation type="unfinished"></translation>
+        <translation>파일 교체를 시작하는 동안 오류가 발생했습니다: 업데이트 서비스를 찾을 수 없습니다!</translation>
     </message>
     <message>
         <location filename="../src/defines.h" line="131"/>
         <source>Cancel</source>
-        <translation type="unfinished">취소</translation>
+        <translation>취소</translation>
     </message>
     <message>
         <location filename="../src/defines.h" line="132"/>
         <source>Yes</source>
-        <translation type="unfinished">네</translation>
+        <translation>네</translation>
     </message>
     <message>
         <location filename="../src/defines.h" line="133"/>
         <source>No</source>
-        <translation type="unfinished">아니오</translation>
+        <translation>아니오</translation>
     </message>
     <message>
         <location filename="../src/components/cmessage.cpp" line="199"/>
         <location filename="../src/defines.h" line="134"/>
         <source>OK</source>
-        <translation type="unfinished">확인</translation>
+        <translation>확인</translation>
     </message>
     <message>
         <location filename="../src/defines.h" line="135"/>
         <source>Skip</source>
-        <translation type="unfinished"></translation>
+        <translation>건너뛰기</translation>
     </message>
     <message>
         <location filename="../src/defines.h" line="136"/>
         <source>Buy Now</source>
-        <translation type="unfinished"></translation>
+        <translation>지금 구매</translation>
     </message>
     <message>
         <location filename="../src/defines.h" line="137"/>
         <source>Activate</source>
-        <translation type="unfinished"></translation>
+        <translation>활성화</translation>
     </message>
     <message>
         <location filename="../src/defines.h" line="138"/>
         <source>Continue</source>
-        <translation type="unfinished"></translation>
+        <translation>계속</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/xdgdesktopportal.cpp" line="1217"/>
         <source>An error occurred while opening the portal:&lt;br&gt;%1</source>
-        <translation type="unfinished"></translation>
+        <translation>포털을 여는 동안 오류가 발생했습니다:&lt;br&gt;%1</translation>
     </message>
     <message>
         <source>&amp;OK</source>

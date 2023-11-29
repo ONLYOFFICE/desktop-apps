@@ -705,37 +705,37 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="77"/>
         <source>An error occured while unpacking the archive</source>
-        <translation type="unfinished"></translation>
+        <translation>S&apos;ha produït un error en desempaquetar l&apos;arxiu</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="78"/>
         <source>Update download failed: out of memory!</source>
-        <translation type="unfinished"></translation>
+        <translation>Ha fallat la baixada de l&apos;actualització: no hi ha memoria!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="79"/>
         <source>Update download failed: server connection error!</source>
-        <translation type="unfinished"></translation>
+        <translation>Ha fallat la baixada de l&apos;actualització: error de connexió del servidor!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="80"/>
         <source>Update download failed: wrong URL!</source>
-        <translation type="unfinished"></translation>
+        <translation>Ha fallat la baixada de l&apos;actualització: URL incorrecte!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="81"/>
         <source>Update download failed: unable to create file!</source>
-        <translation type="unfinished"></translation>
+        <translation>Ha fallat la baixada de l&apos;actualització: no s&apos;ha pogut crear el fitxer!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="82"/>
         <source>Update download failed: network error!</source>
-        <translation type="unfinished"></translation>
+        <translation>Ha fallat la baixada de l&apos;actualització: error de xarxa!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="83"/>
         <source>A service error has occurred!</source>
-        <translation type="unfinished"></translation>
+        <translation>S&apos;ha produït un error de servei!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="85"/>
@@ -745,7 +745,7 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="98"/>
         <source>Error opening JSON file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Error en obrir l&apos;arxiu JSON.</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="795"/>

@@ -648,7 +648,7 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="93"/>
         <source>Unable to check update: URL not defined.</source>
-        <translation type="unfinished"></translation>
+        <translation>无法检查更新：URL 未定义。</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="91"/>
@@ -737,47 +737,47 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="77"/>
         <source>An error occured while unpacking the archive</source>
-        <translation type="unfinished"></translation>
+        <translation>解压压缩包时发生错误</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="78"/>
         <source>Update download failed: out of memory!</source>
-        <translation type="unfinished"></translation>
+        <translation>更新下载失败：内存不足！</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="79"/>
         <source>Update download failed: server connection error!</source>
-        <translation type="unfinished"></translation>
+        <translation>更新下载失败：服务器连接错误！</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="80"/>
         <source>Update download failed: wrong URL!</source>
-        <translation type="unfinished"></translation>
+        <translation>更新下载失败：URL 错误！</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="81"/>
         <source>Update download failed: unable to create file!</source>
-        <translation type="unfinished"></translation>
+        <translation>更新下载失败：无法创建文件！</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="82"/>
         <source>Update download failed: network error!</source>
-        <translation type="unfinished"></translation>
+        <translation>更新下载失败：网络错误！</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="83"/>
         <source>A service error has occurred!</source>
-        <translation type="unfinished"></translation>
+        <translation>发生服务错误！</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="85"/>
         <source>Last check performed %1</source>
-        <translation type="unfinished"></translation>
+        <translation>最后一次检查 %1</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="98"/>
         <source>Error opening JSON file.</source>
-        <translation type="unfinished"></translation>
+        <translation>打开 JSON 文件时出错。</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="795"/>

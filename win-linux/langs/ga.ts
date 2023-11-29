@@ -95,7 +95,7 @@
         <location filename="../src/platform_linux/cdialogopenssl.cpp" line="222"/>
         <location filename="../src/platform_linux/cdialogopenssl.cpp" line="225"/>
         <source>Open Document</source>
-        <translation type="unfinished">Oscail doiciméad</translation>
+        <translation>Oscail doiciméad</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/cdialogopenssl.cpp" line="244"/>
@@ -522,22 +522,22 @@
         <location filename="../src/windows/cmainwindow.cpp" line="732"/>
         <location filename="../src/windows/cmainwindow.cpp" line="772"/>
         <source>File format not supported.</source>
-        <translation type="unfinished">Ní thacaítear le formáid comhaid.</translation>
+        <translation>Ní thacaítear le formáid comhaid.</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="756"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
-        <translation type="unfinished">Níl %1 ar fáil.D’fhéadfaí é a athainmniú, a bhogadh nó a scriosadh.&lt;br&gt;Ar mhaith leat an comhad a bhaint den liosta?</translation>
+        <translation>Níl %1 ar fáil.D’fhéadfaí é a athainmniú, a bhogadh nó a scriosadh.&lt;br&gt;Ar mhaith leat an comhad a bhaint den liosta?</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="815"/>
         <source>Document must be saved firstly.</source>
-        <translation type="unfinished">Caithfear an doiciméad a shábháil ar dtús.</translation>
+        <translation>Caithfear an doiciméad a shábháil ar dtús.</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="957"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
-        <translation type="unfinished">Caithfear an doiciméad a shábháil chun leanúint ar aghaidh.&lt;br&gt;Sábháil an doiciméad?</translation>
+        <translation>Caithfear an doiciméad a shábháil chun leanúint ar aghaidh.&lt;br&gt;Sábháil an doiciméad?</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="1067"/>
@@ -547,17 +547,17 @@
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="1126"/>
         <source>Print Document</source>
-        <translation type="unfinished">Doiciméad a phriontáil</translation>
+        <translation>Doiciméad a phriontáil</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="1326"/>
         <source>Sign Up</source>
-        <translation type="unfinished">Cruthaigh tairseach</translation>
+        <translation>Cruthaigh tairseach</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="1409"/>
         <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
-        <translation type="unfinished">Mionathraíodh %1.&lt;br&gt;Ar mhaith leat na hathruithe a shábháil?</translation>
+        <translation>Mionathraíodh %1.&lt;br&gt;Ar mhaith leat na hathruithe a shábháil?</translation>
     </message>
 </context>
 <context>
@@ -669,7 +669,7 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="104"/>
         <source>Cancel</source>
-        <translation type="unfinished">Cealaigh</translation>
+        <translation>Cealaigh</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="94"/>
@@ -885,23 +885,23 @@
     <message>
         <location filename="../src/defines.h" line="131"/>
         <source>Cancel</source>
-        <translation type="unfinished">Cealaigh</translation>
+        <translation>Cealaigh</translation>
     </message>
     <message>
         <location filename="../src/defines.h" line="132"/>
         <source>Yes</source>
-        <translation type="unfinished">Tá</translation>
+        <translation>Tá</translation>
     </message>
     <message>
         <location filename="../src/defines.h" line="133"/>
         <source>No</source>
-        <translation type="unfinished">Níl</translation>
+        <translation>Níl</translation>
     </message>
     <message>
         <location filename="../src/components/cmessage.cpp" line="199"/>
         <location filename="../src/defines.h" line="134"/>
         <source>OK</source>
-        <translation type="unfinished">OK</translation>
+        <translation>OK</translation>
     </message>
     <message>
         <location filename="../src/defines.h" line="135"/>

@@ -299,7 +299,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="87"/>
         <source>Macro-enabled Presentation File (*.pptm)</source>
-        <translation type="unfinished"></translation>
+        <translation>Macro-enabled præsentationsfil (*.pptm)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="89"/>
@@ -327,27 +327,27 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="66"/>
         <source>DOCX Document</source>
-        <translation type="unfinished"></translation>
+        <translation>DOCX-dokument</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="70"/>
         <source>OpenDocument Document template</source>
-        <translation type="unfinished"></translation>
+        <translation>OpenDocument dokumentskabelon</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="85"/>
         <source>OpenDocument Presentation Template</source>
-        <translation type="unfinished"></translation>
+        <translation>OpenDocument præsentationsskabelon</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="91"/>
         <source>Macro-enabled spreadsheet template</source>
-        <translation type="unfinished"></translation>
+        <translation>Macro-enabled regnearksskabelon</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="94"/>
         <source>OpenDocument Spreadsheet Template</source>
-        <translation type="unfinished"></translation>
+        <translation>OpenDocument regnearksskabelon</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="95"/>
@@ -377,7 +377,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="101"/>
         <source>SVG Image (*.svg)</source>
-        <translation type="unfinished"></translation>
+        <translation>SVG-billede (*.svg)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="103"/>
@@ -461,19 +461,19 @@
         <location filename="../src/ceditortools.cpp" line="211"/>
         <location filename="../src/components/cfiledialog.cpp" line="90"/>
         <source>Spreadsheet template</source>
-        <translation type="unfinished"></translation>
+        <translation>Regnearkskabelon</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="214"/>
         <location filename="../src/components/cfiledialog.cpp" line="83"/>
         <source>Presentation template</source>
-        <translation type="unfinished"></translation>
+        <translation>Præsentationsskabelon</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="216"/>
         <location filename="../src/components/cfiledialog.cpp" line="67"/>
         <source>Document template</source>
-        <translation type="unfinished"></translation>
+        <translation>Dokumentskabelon</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="267"/>
@@ -519,12 +519,12 @@
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="258"/>
         <source>More than one document is open.&lt;br&gt;Close the window anyway?</source>
-        <translation type="unfinished"></translation>
+        <translation>Mere end et document er åbent.&lt;br&gt;Ønsker at lukke vinduet alligevel?</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="260"/>
         <source>Don&apos;t ask again.</source>
-        <translation type="unfinished"></translation>
+        <translation>Spørg ikke igen.</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="732"/>
@@ -631,169 +631,169 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="101"/>
         <source>Check for updates</source>
-        <translation type="unfinished"></translation>
+        <translation>Tjek for opdateringer</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="93"/>
         <source>Unable to check update: URL not defined.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kunne ikke tjekke opdatering: URL ikke defineret.</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="91"/>
         <source>To finish updating, restart app</source>
-        <translation type="unfinished"></translation>
+        <translation>Genstart appen for at afslutte opdatering</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="103"/>
         <source>Restart</source>
-        <translation type="unfinished"></translation>
+        <translation>Genstart</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="87"/>
         <source>Checking for updates...</source>
-        <translation type="unfinished"></translation>
+        <translation>Tjekker for opdateringer…</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="92"/>
         <source>Updates are not allowed!</source>
-        <translation type="unfinished"></translation>
+        <translation>Opdateringer er ikke tilladt!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="402"/>
         <source>This folder configuration does not allow for updates! The folder name should be: </source>
-        <translation type="unfinished"></translation>
+        <translation>Denne mappekonfiguration tillader ikke opdateringer! Mappens navn skal være: </translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="95"/>
         <source>An error occurred while check updates: Update Service not found!</source>
-        <translation type="unfinished"></translation>
+        <translation>En fejl opstod under kontrol af opdateringer: Tjeneste ikke fundet!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="89"/>
         <source>Downloading new version %1 (%2%)</source>
-        <translation type="unfinished"></translation>
+        <translation>Downloader ny version %1 (%2%)</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="96"/>
         <source>An error occurred while loading updates: Update Service not found!</source>
-        <translation type="unfinished"></translation>
+        <translation>En fejl opstod under indlæsning af opdateringer: Tjeneste ikke fundet!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="104"/>
         <source>Cancel</source>
-        <translation type="unfinished">Annuller</translation>
+        <translation>Annuller</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="94"/>
         <source>An error occurred while loading updates: package Url is empty!</source>
-        <translation type="unfinished"></translation>
+        <translation>En fejl opstod under indlæsning af opdateringer: Pakke-URL er tom!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="99"/>
         <source>Update package error: md5 sum does not match the original.</source>
-        <translation type="unfinished"></translation>
+        <translation>Fejl i opdateringspakke: md5 sum matcher ikke den originale.</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="90"/>
         <source>Preparing update...</source>
-        <translation type="unfinished"></translation>
+        <translation>Forbereder opdatering…</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="97"/>
         <source>An error occurred while unzip updates: Update Service not found!</source>
-        <translation type="unfinished"></translation>
+        <translation>Der opstod en fejl under udpakning af opdateringer: Opdateringstjeneste ikke fundet!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="88"/>
         <source>Update is available (version %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Opdatering er tilgængelig (version %1)</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="102"/>
         <source>Download update</source>
-        <translation type="unfinished">Download opdatering</translation>
+        <translation>Download opdatering</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="86"/>
         <source>Current version is up to date</source>
-        <translation type="unfinished"></translation>
+        <translation>Den aktuelle version er opdateret</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="77"/>
         <source>An error occured while unpacking the archive</source>
-        <translation type="unfinished"></translation>
+        <translation>En fejl opstod under udpakning af arkivet</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="78"/>
         <source>Update download failed: out of memory!</source>
-        <translation type="unfinished"></translation>
+        <translation>Download af opdatering mislykkedes: hukommelsen er opbrugt!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="79"/>
         <source>Update download failed: server connection error!</source>
-        <translation type="unfinished"></translation>
+        <translation>Download af opdatering mislykkedes: fejl i serverforbindelsen!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="80"/>
         <source>Update download failed: wrong URL!</source>
-        <translation type="unfinished"></translation>
+        <translation>Download af opdatering mislykkedes: forkert URL!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="81"/>
         <source>Update download failed: unable to create file!</source>
-        <translation type="unfinished"></translation>
+        <translation>Download af opdatering mislykkedes: kunne ikke oprette fil!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="82"/>
         <source>Update download failed: network error!</source>
-        <translation type="unfinished"></translation>
+        <translation>Download af opdatering mislykkedes: netværksfejl!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="83"/>
         <source>A service error has occurred!</source>
-        <translation type="unfinished"></translation>
+        <translation>Der opstod en tjenestefejl!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="85"/>
         <source>Last check performed %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Sidste tjek udført %1</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="98"/>
         <source>Error opening JSON file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Fejl under åbning af JSON-fil.</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="795"/>
         <source>Update is available</source>
-        <translation type="unfinished"></translation>
+        <translation>Opdatering er tilgængelig</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="796"/>
         <location filename="../src/cupdatemanager.cpp" line="819"/>
         <source>Current version</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktuel version</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="797"/>
         <location filename="../src/cupdatemanager.cpp" line="820"/>
         <source>Update version</source>
-        <translation type="unfinished"></translation>
+        <translation>pdateringsversion</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="798"/>
         <source>Would you like to download update now?</source>
-        <translation type="unfinished"></translation>
+        <translation>Ønsker du at downloade opdateringen nu?</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="818"/>
         <source>Update is ready to install</source>
-        <translation type="unfinished"></translation>
+        <translation>Opdatering er klar til at blive installeret</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="821"/>
         <source>Would you like to restart app now?</source>
-        <translation type="unfinished"></translation>
+        <translation>Ønsker du at genstarte appen nu?</translation>
     </message>
     <message>
         <source>A new version of %1 is available!</source>
@@ -837,13 +837,13 @@
     <message>
         <location filename="../src/ceditortools.cpp" line="145"/>
         <source>XML File (*.xml)</source>
-        <translation type="unfinished"></translation>
+        <translation>XML-dokument (*.xml)</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="254"/>
         <location filename="../src/windows/cmainwindow.cpp" line="721"/>
         <source>Access to file &apos;%1&apos; is denied!</source>
-        <translation type="unfinished"></translation>
+        <translation>Adgang til filen %1 er nægtet!</translation>
     </message>
     <message>
         <location filename="../src/casctabdata.cpp" line="178"/>
@@ -876,7 +876,7 @@
         <location filename="../src/platform_linux/updatedialog.cpp" line="48"/>
         <location filename="../src/platform_win/updatedialog.cpp" line="51"/>
         <source>Install later</source>
-        <translation type="unfinished"></translation>
+        <translation>Installer senere</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/updatedialog.cpp" line="49"/>
@@ -911,58 +911,58 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="643"/>
         <source>An error occurred while start install updates!</source>
-        <translation type="unfinished"></translation>
+        <translation>En fejl opstod under påbegyndelsen af installering af opdateringer!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="653"/>
         <source>An error occurred while start replacing files: Update Service not found!</source>
-        <translation type="unfinished"></translation>
+        <translation>En fejl opstod under påbegyndelsen af erstatning af filer: Opdateringstjeneste ikke fundet!</translation>
     </message>
     <message>
         <location filename="../src/defines.h" line="131"/>
         <source>Cancel</source>
-        <translation type="unfinished">Annuller</translation>
+        <translation>Annuller</translation>
     </message>
     <message>
         <location filename="../src/defines.h" line="132"/>
         <source>Yes</source>
-        <translation type="unfinished">Ja</translation>
+        <translation>Ja</translation>
     </message>
     <message>
         <location filename="../src/defines.h" line="133"/>
         <source>No</source>
-        <translation type="unfinished">Nej</translation>
+        <translation>Nej</translation>
     </message>
     <message>
         <location filename="../src/components/cmessage.cpp" line="199"/>
         <location filename="../src/defines.h" line="134"/>
         <source>OK</source>
-        <translation type="unfinished">OK</translation>
+        <translation>OK</translation>
     </message>
     <message>
         <location filename="../src/defines.h" line="135"/>
         <source>Skip</source>
-        <translation type="unfinished">Spring over</translation>
+        <translation>Spring over</translation>
     </message>
     <message>
         <location filename="../src/defines.h" line="136"/>
         <source>Buy Now</source>
-        <translation type="unfinished"></translation>
+        <translation>Køb nu</translation>
     </message>
     <message>
         <location filename="../src/defines.h" line="137"/>
         <source>Activate</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktiver</translation>
     </message>
     <message>
         <location filename="../src/defines.h" line="138"/>
         <source>Continue</source>
-        <translation type="unfinished"></translation>
+        <translation>Fortsæt</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/xdgdesktopportal.cpp" line="1217"/>
         <source>An error occurred while opening the portal:&lt;br&gt;%1</source>
-        <translation type="unfinished"></translation>
+        <translation>En fejl opstod under åbningen af portalen:&lt;br&gt;%1</translation>
     </message>
     <message>
         <source>&amp;OK</source>

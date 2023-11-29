@@ -95,7 +95,7 @@
         <location filename="../src/platform_linux/cdialogopenssl.cpp" line="222"/>
         <location filename="../src/platform_linux/cdialogopenssl.cpp" line="225"/>
         <source>Open Document</source>
-        <translation type="unfinished">Dokumentum megnyitása</translation>
+        <translation>Dokumentum megnyitása</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/cdialogopenssl.cpp" line="244"/>
@@ -179,7 +179,7 @@
     <message>
         <location filename="../src/windows/ceditorwindow_p.h" line="472"/>
         <source>There are no printers available</source>
-        <translation type="unfinished"></translation>
+        <translation>Nincs elérhető nyomtató</translation>
     </message>
 </context>
 <context>
@@ -287,7 +287,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="87"/>
         <source>Macro-enabled Presentation File (*.pptm)</source>
-        <translation type="unfinished"></translation>
+        <translation>Makróbarát prezentáció fájl (*.pptm)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="89"/>
@@ -315,27 +315,27 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="66"/>
         <source>DOCX Document</source>
-        <translation type="unfinished"></translation>
+        <translation>DOCX dokumentum</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="70"/>
         <source>OpenDocument Document template</source>
-        <translation type="unfinished"></translation>
+        <translation>OpenDocument dokumentum sablon</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="85"/>
         <source>OpenDocument Presentation Template</source>
-        <translation type="unfinished"></translation>
+        <translation>OpenDocument prezentáció sablon</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="91"/>
         <source>Macro-enabled spreadsheet template</source>
-        <translation type="unfinished"></translation>
+        <translation>Makróbarát munkalap sablon</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="94"/>
         <source>OpenDocument Spreadsheet Template</source>
-        <translation type="unfinished"></translation>
+        <translation>OpenDocument munkalap sablon</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="95"/>
@@ -365,12 +365,12 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="101"/>
         <source>SVG Image (*.svg)</source>
-        <translation type="unfinished"></translation>
+        <translation>SVG kép (*.svg)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="103"/>
         <source>JPG Image (*.jpg *.jpeg)</source>
-        <translation type="unfinished"></translation>
+        <translation>JPG kép (*.jpg *.jpeg)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="104"/>
@@ -443,25 +443,25 @@
         <location filename="../src/components/cfiledialog.cpp" line="253"/>
         <location filename="../src/components/cfiledialog.cpp" line="363"/>
         <source>All supported files</source>
-        <translation type="unfinished"></translation>
+        <translation>Összes támogatott fájl</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="211"/>
         <location filename="../src/components/cfiledialog.cpp" line="90"/>
         <source>Spreadsheet template</source>
-        <translation type="unfinished"></translation>
+        <translation>Munkalap sablon</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="214"/>
         <location filename="../src/components/cfiledialog.cpp" line="83"/>
         <source>Presentation template</source>
-        <translation type="unfinished"></translation>
+        <translation>Prezentáció sablon</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="216"/>
         <location filename="../src/components/cfiledialog.cpp" line="67"/>
         <source>Document template</source>
-        <translation type="unfinished"></translation>
+        <translation>Dokumentumsablon</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="267"/>
@@ -499,7 +499,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="402"/>
         <source>Select Folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Mappa kiválasztása</translation>
     </message>
 </context>
 <context>
@@ -507,53 +507,53 @@
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="258"/>
         <source>More than one document is open.&lt;br&gt;Close the window anyway?</source>
-        <translation type="unfinished"></translation>
+        <translation>Egynél több dokumentum van megnyitva.&lt;br&gt;Biztosan bezárja az ablakot?</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="260"/>
         <source>Don&apos;t ask again.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ne kérdezzen rá újra.</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="732"/>
         <location filename="../src/windows/cmainwindow.cpp" line="772"/>
         <source>File format not supported.</source>
-        <translation type="unfinished">A fájlformátum nem támogatott.</translation>
+        <translation>A fájlformátum nem támogatott.</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="756"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
-        <translation type="unfinished">%1 nem elérhető. Lehet, hogy átnevezésre, áthelyezésre vagy törlésre került.&lt;br&gt;Eltávolítja a fájlt a listáról?</translation>
+        <translation>%1 nem elérhető. Lehet, hogy átnevezésre, áthelyezésre vagy törlésre került.&lt;br&gt;Eltávolítja a fájlt a listáról?</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="815"/>
         <source>Document must be saved firstly.</source>
-        <translation type="unfinished">Előbb mentenie kell a dokumentumot.</translation>
+        <translation>Előbb mentenie kell a dokumentumot.</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="957"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
-        <translation type="unfinished">A folytatáshoz mentenie kell a dokumentumot.&lt;br&gt;Menti a dokumentumot?</translation>
+        <translation>A folytatáshoz mentenie kell a dokumentumot.&lt;br&gt;Menti a dokumentumot?</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="1067"/>
         <source>There are no printers available</source>
-        <translation type="unfinished"></translation>
+        <translation>Nincs elérhető nyomtató</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="1126"/>
         <source>Print Document</source>
-        <translation type="unfinished">Dokumentum nyomtatása</translation>
+        <translation>Dokumentum nyomtatása</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="1326"/>
         <source>Sign Up</source>
-        <translation type="unfinished">Portál létrehozása</translation>
+        <translation>Portál létrehozása</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="1409"/>
         <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
-        <translation type="unfinished">%1 módosítva lett.&lt;br&gt;Menti a módosításokat?</translation>
+        <translation>%1 módosítva lett.&lt;br&gt;Menti a módosításokat?</translation>
     </message>
 </context>
 <context>
@@ -615,169 +615,169 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="101"/>
         <source>Check for updates</source>
-        <translation type="unfinished"></translation>
+        <translation>Frissítések keresése</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="93"/>
         <source>Unable to check update: URL not defined.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nem lehetséges a frissítések ellenőrzése: URL nem meghatározott.</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="91"/>
         <source>To finish updating, restart app</source>
-        <translation type="unfinished"></translation>
+        <translation>A frissítés befejezéséhez indítsa újra az alkalmazást</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="103"/>
         <source>Restart</source>
-        <translation type="unfinished"></translation>
+        <translation>Újraindítás</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="87"/>
         <source>Checking for updates...</source>
-        <translation type="unfinished"></translation>
+        <translation>Frissítések keresése...</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="92"/>
         <source>Updates are not allowed!</source>
-        <translation type="unfinished"></translation>
+        <translation>Frissítés nem megengedett!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="402"/>
         <source>This folder configuration does not allow for updates! The folder name should be: </source>
-        <translation type="unfinished"></translation>
+        <translation>A jelenlegi mappakonfiguráció nem teszi lehetővé a frissítést! A mappa neve a következő kell, hogy legyen: </translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="95"/>
         <source>An error occurred while check updates: Update Service not found!</source>
-        <translation type="unfinished"></translation>
+        <translation>Hiba történt a frissítések ellenőrzése közben: Frissítési szolgáltatás nem található!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="89"/>
         <source>Downloading new version %1 (%2%)</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 (%2%) új verzió letöltése</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="96"/>
         <source>An error occurred while loading updates: Update Service not found!</source>
-        <translation type="unfinished"></translation>
+        <translation>Hiba történt a frissítések betöltése közben: Frissítési szolgáltatás nem található!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="104"/>
         <source>Cancel</source>
-        <translation type="unfinished">Mégse</translation>
+        <translation>Mégse</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="94"/>
         <source>An error occurred while loading updates: package Url is empty!</source>
-        <translation type="unfinished"></translation>
+        <translation>Hiba történt a frissítések betöltése közben: a csomag URL-je üres!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="99"/>
         <source>Update package error: md5 sum does not match the original.</source>
-        <translation type="unfinished"></translation>
+        <translation>Frissítéscsomag hiba: md5 összeg nem egyezik meg az eredetivel.</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="90"/>
         <source>Preparing update...</source>
-        <translation type="unfinished"></translation>
+        <translation>Frissítés előkészítése...</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="97"/>
         <source>An error occurred while unzip updates: Update Service not found!</source>
-        <translation type="unfinished"></translation>
+        <translation>Hiba történt a frissítések kicsomagolása közben: Frissítési szolgáltatás nem található!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="88"/>
         <source>Update is available (version %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Elérhető frissítés (%1 verzió)</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="102"/>
         <source>Download update</source>
-        <translation type="unfinished"></translation>
+        <translation>Frissítés letöltése</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="86"/>
         <source>Current version is up to date</source>
-        <translation type="unfinished"></translation>
+        <translation>Az aktuális verzió naprakész</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="77"/>
         <source>An error occured while unpacking the archive</source>
-        <translation type="unfinished"></translation>
+        <translation>Hiba történt az arhívum kicsomagolása közben</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="78"/>
         <source>Update download failed: out of memory!</source>
-        <translation type="unfinished"></translation>
+        <translation>Frissítés letöltése sikertelen: nincs elegendő memória!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="79"/>
         <source>Update download failed: server connection error!</source>
-        <translation type="unfinished"></translation>
+        <translation>Frissítés letöltése sikertelen: hiba történt a szerverkapcsolat létrehozása közben!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="80"/>
         <source>Update download failed: wrong URL!</source>
-        <translation type="unfinished"></translation>
+        <translation>Frissítés letöltése sikertelen: nem megfelelő URL!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="81"/>
         <source>Update download failed: unable to create file!</source>
-        <translation type="unfinished"></translation>
+        <translation>Frissítés letöltése sikertelen: nem hozható létre a fájl!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="82"/>
         <source>Update download failed: network error!</source>
-        <translation type="unfinished"></translation>
+        <translation>Frissítés letöltése sikertelen: hálózati hiba!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="83"/>
         <source>A service error has occurred!</source>
-        <translation type="unfinished"></translation>
+        <translation>Szolgáltatási hiba történt!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="85"/>
         <source>Last check performed %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Utolsó ellenőrzés elvégezve %1</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="98"/>
         <source>Error opening JSON file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Hiba történt a JSON file megnyitása közben.</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="795"/>
         <source>Update is available</source>
-        <translation type="unfinished"></translation>
+        <translation>Elérhető frissítés</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="796"/>
         <location filename="../src/cupdatemanager.cpp" line="819"/>
         <source>Current version</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktuális verzió</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="797"/>
         <location filename="../src/cupdatemanager.cpp" line="820"/>
         <source>Update version</source>
-        <translation type="unfinished"></translation>
+        <translation>Frissítés verzió</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="798"/>
         <source>Would you like to download update now?</source>
-        <translation type="unfinished"></translation>
+        <translation>Szeretné most letölteni a frissítést?</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="818"/>
         <source>Update is ready to install</source>
-        <translation type="unfinished"></translation>
+        <translation>A frissítés telepítésre kész</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="821"/>
         <source>Would you like to restart app now?</source>
-        <translation type="unfinished"></translation>
+        <translation>Szeretné most újraindítani az alkalamzást?</translation>
     </message>
 </context>
 <context>
@@ -790,7 +790,7 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper_private.h" line="233"/>
         <source>File %1 cannot be opened or doesn&apos;t exists.</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 fájl nem nyitható meg vagy nem létezik.</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="136"/>
@@ -801,128 +801,128 @@
     <message>
         <location filename="../src/ceditortools.cpp" line="145"/>
         <source>XML File (*.xml)</source>
-        <translation type="unfinished"></translation>
+        <translation>XML fájl (*.xml)</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="254"/>
         <location filename="../src/windows/cmainwindow.cpp" line="721"/>
         <source>Access to file &apos;%1&apos; is denied!</source>
-        <translation type="unfinished"></translation>
+        <translation>&apos;%1&apos; fájlhoz hozzáférés megtagadva!</translation>
     </message>
     <message>
         <location filename="../src/casctabdata.cpp" line="178"/>
         <source>Read only</source>
-        <translation type="unfinished"></translation>
+        <translation>Csak olvasható</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/updatedialog.cpp" line="45"/>
         <location filename="../src/platform_win/updatedialog.cpp" line="48"/>
         <source>Skip this version</source>
-        <translation type="unfinished"></translation>
+        <translation>Ezen verzió kihagyása</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/updatedialog.cpp" line="46"/>
         <location filename="../src/platform_win/updatedialog.cpp" line="49"/>
         <source>Remind me later</source>
-        <translation type="unfinished"></translation>
+        <translation>Emlékeztessen később</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/updatedialog.cpp" line="47"/>
         <location filename="../src/platform_win/updatedialog.cpp" line="50"/>
         <source>Install update</source>
-        <translation type="unfinished"></translation>
+        <translation>Frissítés telepítése</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/updatedialog.cpp" line="48"/>
         <location filename="../src/platform_win/updatedialog.cpp" line="51"/>
         <source>Install later</source>
-        <translation type="unfinished"></translation>
+        <translation>Telepítés később</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/updatedialog.cpp" line="49"/>
         <location filename="../src/platform_win/updatedialog.cpp" line="52"/>
         <source>Save and Restart Now</source>
-        <translation type="unfinished"></translation>
+        <translation>Mentés és ujraindítás most</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/updatedialog.cpp" line="50"/>
         <location filename="../src/platform_win/updatedialog.cpp" line="53"/>
         <source>Save and Install Now</source>
-        <translation>Telepítés</translation>
+        <translation>Mentés és telepítés most</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/updatedialog.cpp" line="51"/>
         <location filename="../src/platform_win/updatedialog.cpp" line="54"/>
         <source>Download update</source>
-        <translation type="unfinished"></translation>
+        <translation>Frissítés letöltése</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/updatedialog.cpp" line="68"/>
         <location filename="../src/platform_win/updatedialog.cpp" line="99"/>
         <source>Software Update</source>
-        <translation type="unfinished"></translation>
+        <translation>Szoftverfrissítés</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/updatedialog.cpp" line="71"/>
         <location filename="../src/platform_win/updatedialog.cpp" line="102"/>
         <source>Release notes</source>
-        <translation type="unfinished"></translation>
+        <translation>Kiadási megjegyzések</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="643"/>
         <source>An error occurred while start install updates!</source>
-        <translation type="unfinished"></translation>
+        <translation>Hiba történt a frissítések telepítése közben!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="653"/>
         <source>An error occurred while start replacing files: Update Service not found!</source>
-        <translation type="unfinished"></translation>
+        <translation>Hiba történt a fájlok helyettesítése közben: Frissítési szolgáltatás nem található!</translation>
     </message>
     <message>
         <location filename="../src/defines.h" line="131"/>
         <source>Cancel</source>
-        <translation type="unfinished">Mégse</translation>
+        <translation>Mégse</translation>
     </message>
     <message>
         <location filename="../src/defines.h" line="132"/>
         <source>Yes</source>
-        <translation type="unfinished">Igen</translation>
+        <translation>Igen</translation>
     </message>
     <message>
         <location filename="../src/defines.h" line="133"/>
         <source>No</source>
-        <translation type="unfinished">Nem</translation>
+        <translation>Nem</translation>
     </message>
     <message>
         <location filename="../src/components/cmessage.cpp" line="199"/>
         <location filename="../src/defines.h" line="134"/>
         <source>OK</source>
-        <translation type="unfinished">OK</translation>
+        <translation>OK</translation>
     </message>
     <message>
         <location filename="../src/defines.h" line="135"/>
         <source>Skip</source>
-        <translation type="unfinished"></translation>
+        <translation>Kihagyás</translation>
     </message>
     <message>
         <location filename="../src/defines.h" line="136"/>
         <source>Buy Now</source>
-        <translation type="unfinished"></translation>
+        <translation>Megvásárlás</translation>
     </message>
     <message>
         <location filename="../src/defines.h" line="137"/>
         <source>Activate</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktiválás</translation>
     </message>
     <message>
         <location filename="../src/defines.h" line="138"/>
         <source>Continue</source>
-        <translation type="unfinished"></translation>
+        <translation>Folytatás</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/xdgdesktopportal.cpp" line="1217"/>
         <source>An error occurred while opening the portal:&lt;br&gt;%1</source>
-        <translation type="unfinished"></translation>
+        <translation>Hiba történt a &lt;br&gt;%1 portál megnyitása közben</translation>
     </message>
     <message>
         <source>&amp;OK</source>

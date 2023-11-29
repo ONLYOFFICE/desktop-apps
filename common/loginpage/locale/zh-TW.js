@@ -105,4 +105,7 @@ l10n.zh_TW = {
     updateDownloadFinished: '下載完成， 點擊安裝',
     updateDownloadCanceled: '下載已取消',
     updateDownloadProgress: '正在下載$1%。 點擊停止',
+    settOptDescDisabled: "自動檢查更新將被停用",
+    settOptDescAUpdateSilent: "下載更新並在安裝前詢問",
+    settOptDescAUpdateAsk: "您將收到所有更新步驟的相關通知",
 }

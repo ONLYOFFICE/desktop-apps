@@ -705,37 +705,37 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="77"/>
         <source>An error occured while unpacking the archive</source>
-        <translation type="unfinished"></translation>
+        <translation>Arşivi açarken bir hata oluştu</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="78"/>
         <source>Update download failed: out of memory!</source>
-        <translation type="unfinished"></translation>
+        <translation>Güncelleme indirme işlemi başarısız oldu: bellek yetersiz!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="79"/>
         <source>Update download failed: server connection error!</source>
-        <translation type="unfinished"></translation>
+        <translation>Güncelleme indirme işlemi başarısız oldu: sunucu bağlantı hatası!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="80"/>
         <source>Update download failed: wrong URL!</source>
-        <translation type="unfinished"></translation>
+        <translation>Güncelleme indirme işlemi başarısız oldu: yanlış URL!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="81"/>
         <source>Update download failed: unable to create file!</source>
-        <translation type="unfinished"></translation>
+        <translation>Güncelleme indirme işlemi başarısız oldu: dosya oluşturulamıyor!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="82"/>
         <source>Update download failed: network error!</source>
-        <translation type="unfinished"></translation>
+        <translation>Güncelleme indirme işlemi başarısız oldu: ağ hatası!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="83"/>
         <source>A service error has occurred!</source>
-        <translation type="unfinished"></translation>
+        <translation>Bir servis hatası oluştu!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="85"/>
@@ -745,7 +745,7 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="98"/>
         <source>Error opening JSON file.</source>
-        <translation type="unfinished"></translation>
+        <translation>JSON dosyası açılırken hata oluştu.</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="795"/>
@@ -852,7 +852,7 @@
         <location filename="../src/platform_linux/updatedialog.cpp" line="50"/>
         <location filename="../src/platform_win/updatedialog.cpp" line="53"/>
         <source>Save and Install Now</source>
-        <translation>Kurulum</translation>
+        <translation>Şimdi Kaydet ve Yükle</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/updatedialog.cpp" line="51"/>
