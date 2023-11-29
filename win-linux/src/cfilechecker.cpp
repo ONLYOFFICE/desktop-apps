@@ -4,6 +4,7 @@
 #include <QFileInfo>
 #include <QTextDocumentFragment>
 #include <QUrl>
+#include "utils.h"
 
 
 #define FILE_UNKNOWN    0
@@ -42,15 +43,7 @@ void CFileInspector::run()
 
 bool CFileInspector::isLocalFile(const QString& path)
 {
-    QUrl url = QUrl::fromUserInput(path);
-    if ( !url.isValid() ) {
-        QFileInfo info(path);
-
-        if ( info.isFile() )
-            return QUrl::fromUserInput(info.absoluteFilePath()).isLocalFile();
-    }
-
-    return url.isLocalFile();
+    return Utils::isFileLocal(path);
 }
 
 /**/
