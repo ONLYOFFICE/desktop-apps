@@ -260,6 +260,12 @@
                                             </section>
                                         </div>
                                         <!-- end section -->
+                                        <div class='settings-field' style='display:none;'>
+                                            <section class='switch-labeled hbox' id='sett-box-rtl-mode'>
+                                                <input type="checkbox" class="checkbox" id="sett-rtl-mode">
+                                                <label for="sett-rtl-mode" class='sett__caption' l10n>RTL Interface *</label>
+                                            </section>
+                                        </div>
                                     </section>
                                     <div class="lst-tools" id="sett-tools-dyn">
                                         <button class="btn btn--primary sett-btn--apply" id="sett-btn-apply" l10n>${_lang.setBtnApply}</button>
@@ -300,6 +306,7 @@
             $optsSpellcheckMode,
             $optsLaunchMode,
             $optsAutoupdateMode;
+        let $chRtl;
 
         function _set_user_name(name) {
             let me = this;
@@ -402,6 +409,10 @@
                 if ( $optsSpellcheckMode ) {
                     _new_settings.spellcheckdetect = $optsSpellcheckMode.val();
                     $optsSpellcheckMode.selectpicker('refresh');
+                }
+
+                if ( $chRtl ) {
+                    _new_settings.rtl = $chRtl.prop("checked");
                 }
 
                 sdk.command("settings:apply", JSON.stringify(_new_settings));
@@ -585,6 +596,17 @@
                                 }
                             }
                         }
+                    }
+
+                    if ( opts.rtl !== undefined ) {
+                        $chRtl = $('#sett-box-rtl-mode', $panel).parent().show().find('#sett-rtl-mode');
+                        $chRtl.prop('checked', !!opts.rtl)
+                            .on('change', e => {
+                                $btnApply.prop('disabled') && $btnApply.prop('disabled', false);
+                            });
+
+                        document.body.setAttribute('dir', 'rtl');
+                        document.body.classList.add('rtl');
                     }
 
                     $('.settings-field:visible:last').css('margin-bottom','0');
