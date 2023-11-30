@@ -15,7 +15,7 @@ typedef unordered_map<wstring, LocaleMap> TranslationsMap;
 class Translator
 {
 public:
-    Translator(unsigned short langId, int resourceId);
+    Translator(unsigned long langId, int resourceId);
     ~Translator();
 
     static wstring tr(const char*);
