@@ -950,6 +950,7 @@ void CAscApplicationManagerWrapper::onDocumentReady(int uid)
 #ifdef _UPDMODULE
     if (!m_pUpdateManager) {
         m_pUpdateManager = new CUpdateManager(this);
+        m_pUpdateManager->setServiceLang();
         m_pUpdateManager->launchIntervalStartTimer();
     }
     if (uid < 0) {
@@ -1660,8 +1661,10 @@ bool CAscApplicationManagerWrapper::applySettings(const wstring& wstrjson)
                 _reg_user.setValue("locale", _lang_id);
                 CLangater::reloadTranslations(_lang_id);
 #ifdef _UPDMODULE
-                if (m_pUpdateManager)
+                if (m_pUpdateManager) {
+                    m_pUpdateManager->setServiceLang(_lang_id);
                     m_pUpdateManager->refreshStartPage();
+                }
 #endif
             }
         }

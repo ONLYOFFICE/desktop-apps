@@ -68,6 +68,7 @@ enum MsgCommands {
     MSG_Progress,
     MSG_StopDownload,
     MSG_OtherError,
+    MSG_SetLanguage,
     MSG_RequestContentLenght
 };
 

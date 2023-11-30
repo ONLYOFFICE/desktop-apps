@@ -94,6 +94,7 @@ public:
     void installUpdates();
     void refreshStartPage(const Command &cmd = Command());
     void launchIntervalStartTimer();
+    void setServiceLang(QString lang = QString());
 
 public slots:
     void checkUpdates(bool manualCheck = false);

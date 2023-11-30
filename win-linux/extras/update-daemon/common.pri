@@ -17,10 +17,12 @@ INCLUDEPATH += $$PWD/../../src/prop
 
 HEADERS += $$PWD/src/version.h \
            $$PWD/src/classes/csocket.h \
-           $$PWD/src/classes/csvcmanager.h
+           $$PWD/src/classes/csvcmanager.h \
+           $$PWD/src/classes/translator.h
 
 SOURCES += $$PWD/src/classes/csocket.cpp \
-           $$PWD/src/classes/csvcmanager.cpp
+           $$PWD/src/classes/csvcmanager.cpp \
+           $$PWD/src/classes/translator.cpp
 
 ENV_PRODUCT_VERSION = $$(PRODUCT_VERSION)
 !isEmpty(ENV_PRODUCT_VERSION) {

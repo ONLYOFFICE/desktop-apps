@@ -32,6 +32,7 @@
 
 #include "capplication.h"
 #include "platform_linux/utils.h"
+#include "classes/translator.h"
 #include <iostream>
 #include <SDL2/SDL.h>
 
@@ -39,7 +40,7 @@
 CApplication::CApplication()
 {
     if (SDL_Init(SDL_INIT_EVENTS | SDL_INIT_TIMER) != 0)
-        NS_Logger::WriteLog(string("SDL_Init error: ") + SDL_GetError(), true);
+        NS_Logger::WriteLog(_TR("SDL init error:") + _T(" ") + SDL_GetError(), true);
 }
 
 CApplication::~CApplication()

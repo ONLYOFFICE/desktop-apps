@@ -35,13 +35,16 @@
 
 #include <string>
 #include <list>
+#include "classes/translator.h"
 
 using std::string;
 using std::to_string;
 using std::list;
 
+#define _TR(str) Translator::tr(str)
+
 #define FUNCTION_INFO string(__FUNCTION__) + " Line: " + to_string(__LINE__)
-#define DEFAULT_ERROR_MESSAGE "An error occurred: " + FUNCTION_INFO
+#define DEFAULT_ERROR_MESSAGE _TR("An error occurred:") + " " + FUNCTION_INFO
 #define ADVANCED_ERROR_MESSAGE DEFAULT_ERROR_MESSAGE + \
     " " + NS_Utils::GetLastErrorAsString()
 
@@ -49,6 +52,7 @@ namespace NS_Utils
 {
 string GetLastErrorAsString();
 int ShowMessage(string str, bool showError = false);
+string GetSysLanguage();
 }
 
 namespace NS_File
