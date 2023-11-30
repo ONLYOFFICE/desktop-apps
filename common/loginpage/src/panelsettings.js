@@ -605,8 +605,10 @@
                                 $btnApply.prop('disabled') && $btnApply.prop('disabled', false);
                             });
 
-                        document.body.setAttribute('dir', 'rtl');
-                        document.body.classList.add('rtl');
+                        if ( opts.rtl ) {
+                            document.body.setAttribute('dir', 'rtl');
+                            document.body.classList.add('rtl');
+                        }
                     }
 
                     $('.settings-field:visible:last').css('margin-bottom','0');
