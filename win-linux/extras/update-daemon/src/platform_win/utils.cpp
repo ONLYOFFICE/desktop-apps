@@ -31,6 +31,7 @@
 */
 
 #include "platform_win/utils.h"
+#include "classes/translator.h"
 #include "version.h"
 #include <Windows.h>
 #include <shellapi.h>
@@ -49,6 +50,8 @@
 #include <userenv.h>
 #include <vector>
 #include <sstream>
+#include "../../src/defines.h"
+#include "../../src/prop/defines_p.h"
 
 #define BUFSIZE 1024
 
@@ -101,7 +104,8 @@ namespace NS_Utils
     {
         if (showError)
             str += L" " + GetLastErrorAsString();
-        wchar_t *title = const_cast<LPTSTR>(TEXT(VER_PRODUCTNAME_STR));
+        wstring prod_name = _TR(VER_PRODUCTNAME_STR);
+        wchar_t *title = const_cast<LPTSTR>(prod_name.c_str());
         if (isRunAsApp()) {
             MessageBox(NULL, str.c_str(), title, MB_ICONERROR | MB_SERVICE_NOTIFICATION_NT3X | MB_SETFOREGROUND);
             return 0;
@@ -113,6 +117,23 @@ namespace NS_Utils
                             const_cast<LPTSTR>(str.c_str()), (DWORD)str.size() * sizeof(wchar_t),
                             MB_OK | MB_ICONERROR | MB_SERVICE_NOTIFICATION_NT3X | MB_SETFOREGROUND, 30, &res, TRUE);
         return res;
+    }
+
+    wstring GetAppLanguage()
+    {
+        wstring lang = TEXT("en"), subkey = TEXT("SOFTWARE\\" REG_GROUP_KEY "\\" REG_APP_NAME);
+        HKEY hKey = NULL;
+        if (RegOpenKeyEx(HKEY_LOCAL_MACHINE, subkey.c_str(), 0, KEY_ALL_ACCESS, &hKey) == ERROR_SUCCESS) {
+            DWORD type = REG_SZ, cbData = 0;
+            if (RegGetValue(hKey, NULL, TEXT("locale"), RRF_RT_REG_SZ, &type, NULL, &cbData) == ERROR_SUCCESS) {
+                wchar_t *pvData = (wchar_t*)malloc(cbData);
+                if (RegGetValueW(hKey, NULL, TEXT("locale"), RRF_RT_REG_SZ, &type, (void*)pvData, &cbData) == ERROR_SUCCESS)
+                    lang = pvData;
+                free(pvData);
+            }
+            RegCloseKey(hKey);
+        }
+        return lang;
     }
 }
 

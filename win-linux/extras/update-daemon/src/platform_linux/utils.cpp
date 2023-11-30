@@ -142,12 +142,24 @@ namespace NS_Utils
         gtk_init(NULL, NULL);
         GtkWidget *dialog = gtk_message_dialog_new(NULL, GTK_DIALOG_MODAL, GTK_MESSAGE_ERROR, GTK_BUTTONS_OK,
                                                       "%s", str.c_str());
-        gtk_window_set_title(GTK_WINDOW(dialog), VER_PRODUCTNAME_STR);
+        string prod_name = _TR(VER_PRODUCTNAME_STR);
+        gtk_window_set_title(GTK_WINDOW(dialog), prod_name.c_str());
         int res = gtk_dialog_run(GTK_DIALOG(dialog));
         gtk_widget_destroy(dialog);
         while (gtk_events_pending())
             gtk_main_iteration_do(FALSE);
         return res;
+    }
+
+    string GetSysLanguage()
+    {
+        string lang("en_EN");
+        size_t pos = std::string::npos;
+        if (char *_lang = getenv("LANG")) {
+            lang = _lang;
+            pos = lang.find('.');
+        }
+        return (pos == std::string::npos) ? lang : lang.substr(0, pos);
     }
 }
 

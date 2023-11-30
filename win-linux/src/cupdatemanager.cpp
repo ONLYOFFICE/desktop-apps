@@ -611,6 +611,15 @@ void CUpdateManager::launchIntervalStartTimer()
         m_pIntervalStartTimer->start();
 }
 
+void CUpdateManager::setServiceLang(QString lang)
+{
+    if (lang.isEmpty())
+        lang = CLangater::getLangName();
+    lang.replace('-', '_');
+    if (!m_socket->sendMessage(MSG_SetLanguage, QStrToTStr(lang)))
+        CLogger::log("Cannot set service language to: " + lang);
+}
+
 QString CUpdateManager::getVersion() const
 {
     return m_packageData->version;

@@ -31,6 +31,7 @@
  */
 
 #include "svccontrol.h"
+#include "classes/translator.h"
 #include "platform_win/utils.h"
 #include <aclapi.h>
 #include <tchar.h>

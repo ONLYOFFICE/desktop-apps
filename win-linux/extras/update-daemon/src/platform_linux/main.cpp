@@ -34,10 +34,12 @@
 #include "classes/platform_linux/capplication.h"
 #include "classes/platform_linux/ctimer.h"
 #include "classes/csvcmanager.h"
+#include "classes/translator.h"
 #include "../../src/defines.h"
 #include "../../src/prop/defines_p.h"
 #include <csignal>
 #include <cstring>
+#include <locale>
 
 
 void strToNum(const char *str, int &num)
@@ -54,6 +56,8 @@ int main(int argc, char *argv[])
 
     if (argc > 1) {
         if (strcmp(argv[1], "--run-as-app") == 0) {
+            std::locale::global(std::locale(""));
+            Translator lang(NS_Utils::GetSysLanguage(), "/langs/langs.iss");
             CSocket socket(0, INSTANCE_SVC_PORT);
             if (!socket.isPrimaryInstance())
                 return 0;

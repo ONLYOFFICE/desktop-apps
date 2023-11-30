@@ -30,11 +30,14 @@
  *
 */
 
+#include <locale>
 #include "utils.h"
+#include "platform_win/resource.h"
 #include "platform_win/svccontrol.h"
 #include "classes/platform_win/capplication.h"
 #include "classes/platform_win/ctimer.h"
 #include "classes/csvcmanager.h"
+#include "classes/translator.h"
 #include "../../src/defines.h"
 #include "../../src/prop/defines_p.h"
 
@@ -91,6 +94,8 @@ int __cdecl _tmain (int argc, TCHAR *argv[])
         } else
         if (lstrcmpi(argv[1], _T("--run-as-app")) == 0) {
             NS_Utils::setRunAsApp();
+            std::locale::global(std::locale(""));
+            Translator lang(NS_Utils::GetAppLanguage().c_str(), IDT_TRANSLATIONS);
             CSocket socket(0, INSTANCE_SVC_PORT);
             if (!socket.isPrimaryInstance())
                 return 0;
@@ -131,6 +136,8 @@ int __cdecl _tmain (int argc, TCHAR *argv[])
         }
     }
 
+    std::locale::global(std::locale(""));
+    Translator lang(NS_Utils::GetAppLanguage().c_str(), IDT_TRANSLATIONS);
     SERVICE_TABLE_ENTRY DispatchTable[] =
     {
         {(LPTSTR)SERVICE_NAME, (LPSERVICE_MAIN_FUNCTION)SvcMain},
@@ -138,7 +145,7 @@ int __cdecl _tmain (int argc, TCHAR *argv[])
     };
 
     if (StartServiceCtrlDispatcher(DispatchTable) == 0) {
-       NS_Utils::ShowMessage(L"ServiceCtrlDispatcher returned error:", true);
+       NS_Utils::ShowMessage(_TR("ServiceCtrlDispatcher returned error:") + _T(" ") + NS_Utils::GetLastErrorAsString(), true);
        return GetLastError();
     }
 
