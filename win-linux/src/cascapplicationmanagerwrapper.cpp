@@ -1176,10 +1176,10 @@ void CAscApplicationManagerWrapper::initializeApp()
     EditorJSVariables::setVariable("lang", CLangater::getCurrentLangCode());
     EditorJSVariables::applyVariable("theme", {
                                         {"type", _app.m_themes->current().stype()},
-                                        {"id", QString::fromStdWString(_app.m_themes->current().id())}
+                                        {"id", QString::fromStdWString(_app.m_themes->current().id())},
+                                        {"addlocal", "on"}
 #ifndef Q_OS_LINUX
                                         ,{"system", _app.m_themes->isSystemSchemeDark() ? "dark" : "light"}
-                                        ,{"addlocal", "on"}
 #else
                                         ,{"system", "disabled"}
 #endif
