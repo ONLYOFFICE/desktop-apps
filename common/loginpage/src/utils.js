@@ -182,6 +182,7 @@ utils.defines.FileFormat = {
     FILE_DOCUMENT_DOC_FLAT: FILE_DOCUMENT + 0x0010,
     FILE_DOCUMENT_OFORM: FILE_DOCUMENT + 0x0015,
     FILE_DOCUMENT_DOCXF: FILE_DOCUMENT + 0x0016,
+    FILE_DOCUMENT_OFORM_PDF: FILE_DOCUMENT + 0x0017,
     
     FILE_PRESENTATION:      FILE_PRESENTATION,
     FILE_PRESENTATION_PPTX: FILE_PRESENTATION + 0x0001,
@@ -236,6 +237,7 @@ utils.parseFileFormat = function(format) {
     case utils.defines.FileFormat.FILE_DOCUMENT_OTT:        return 'ott';
     case utils.defines.FileFormat.FILE_DOCUMENT_OFORM:      return 'oform';
     case utils.defines.FileFormat.FILE_DOCUMENT_DOCXF:      return 'docxf';
+    case utils.defines.FileFormat.FILE_DOCUMENT_OFORM_PDF:  return 'pdf';
 
     case utils.defines.FileFormat.FILE_SPREADSHEET_XLS:     return 'xls';
     case utils.defines.FileFormat.FILE_SPREADSHEET_XLTX:    return 'xltx';
