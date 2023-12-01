@@ -325,6 +325,7 @@
             if ( objs ) {
                 !(objs instanceof Array) && (objs = [objs]);
 
+                const _divider = _combo.find('[data-divider]');
                 objs.forEach(t => {
                     const _css = create_colors_css(t.id, t.colors);
                     if ( _css ) {
@@ -332,7 +333,11 @@
                         themes_map[t.id] = {text: t.name, type: t.type, l10n: t.l10n};
 
                         const _theme_title = t.l10n[utils.Lang.id] || t.name;
-                        _combo.append(`<option value=${t.id} l10n>${_theme_title}</option>`);
+                        const _theme_menu_item = `<option value=${t.id} l10n>${_theme_title}</option>`;
+
+                        if ( _divider.length )
+                            _divider.before(_theme_menu_item);
+                        else _combo.append(_theme_menu_item);
                     }
                 });
                 $optsUITheme.selectpicker('refresh');
