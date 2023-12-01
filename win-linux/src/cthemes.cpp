@@ -570,8 +570,10 @@ auto CThemes::addLocalTheme(const QJsonObject& jsonobj, const QString& filepath)
 {
     if ( m_priv->validateTheme(jsonobj) ) {
         if ( !filepath.isEmpty() ) {
-            if (!QFile::copy(filepath, Utils::getAppCommonPath() + "/uithemes/" + QFileInfo(filepath).fileName()))
-                return false;
+            const QString dest_dir = Utils::getAppCommonPath() + "/uithemes";
+            if ( QDir(dest_dir).mkpath(".") )
+                if (!QFile::copy(filepath, dest_dir + "/" + QFileInfo(filepath).fileName()))
+                    return false;
         }
 
         QByteArray data = QJsonDocument(jsonobj).toJson(QJsonDocument::Compact);
