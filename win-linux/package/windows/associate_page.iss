@@ -6,6 +6,7 @@ ChangesAssociations=true
 [CustomMessages]
 
 en.AssociateDescription =Associate office document file types with {#ASSC_APP_NAME}
+ar_SA.AssociateDescription =هل تريد ربط صيغة المستند بـ {#ASSC_APP_NAME}
 bg.AssociateDescription =Свържете типовете файлове на офис документи с {#ASSC_APP_NAME}
 ca.AssociateDescription =Associa els tipus de fitxers de documents d'oficina amb{#ASSC_APP_NAME}
 cs.AssociateDescription =Přiřadit typy souborů kancelářských dokumentů {#ASSC_APP_NAME}
@@ -48,6 +49,7 @@ si.AssociateDescription ={#ASSC_APP_NAME} සමඟ කාර්යාල ලේ
 zh_TW.AssociateDescription =與文書處理檔案類型聯結{#ASSC_APP_NAME}
 
 en.AssociateCaption =File Associations
+ar_SA.AssociateCaption =ربط الملفات
 bg.AssociateCaption =Свързвания на файлове
 ca.AssociateCaption =Associacions de fitxers
 cs.AssociateCaption =Asociace souboru
@@ -90,8 +92,9 @@ si.AssociateCaption =ගොනු නිශ්‍රය
 zh_TW.AssociateCaption =檔案聯結
 
 en.AssociateDont =Do not associate
-ca.AssociateDont =No associar
+ar_SA.AssociateDont =عدم ربط
 bg.AssociateDont =Не свързвай
+ca.AssociateDont =No associar
 cs.AssociateDont =Neasociováno
 el.AssociateDont =Να μην γίνει συσχετισμός
 ;et.AssociateDont =Ära ühenda
@@ -132,6 +135,7 @@ si.AssociateDont =නිශ්‍ර කොකරන්න
 zh_TW.AssociateDont =不要聯結
 
 en.AssociateAll =Associate all
+ar_SA.AssociateAll =ربط الكل
 bg.AssociateAll =Свържи всички
 ca.AssociateAll =Associar tots
 cs.AssociateAll =Asociovat vše
@@ -174,6 +178,7 @@ si.AssociateAll =සියල්ල නිහ්ශ්‍රය
 zh_TW.AssociateAll =全部聯結
 
 en.AssociateSel =Associate selected
+ar_SA.AssociateSel =ربط المختار
 bg.AssociateSel =Свържи избраните
 ca.AssociateSel =Associar seleccionats
 cs.AssociateSel =Vybraná asociace
@@ -216,6 +221,7 @@ si.AssociateSel =තේරූ දෑ නිහ්ශ්‍රය
 zh_TW.AssociateSel =聯結已選定
 
 en.AssociateAudio =File types
+ar_SA.AssociateAudio =صيغ المف
 bg.AssociateAudio =Типове файлове
 ca.AssociateAudio =Tipus de fitxers
 cs.AssociateAudio =Typy souborů
@@ -258,6 +264,7 @@ si.AssociateAudio =ගොනු වර්ග
 zh_TW.AssociateAudio =檔案類型
 
 en.extMSWord =Microsoft Word Document
+ar_SA.extMSWord =مستند مايكروسوفت وورد
 bg.extMSWord =Microsoft Word документ
 ca.extMSWord =Document Microsoft Word
 cs.extMSWord =Microsoft Word Dokument
@@ -300,6 +307,7 @@ si.extMSWord =මයික්‍රොසොෆ්ට් වර්ඩ් ලේ�
 zh_TW.extMSWord =Microsoft Word 文件
 
 en.extMSExcel =Microsoft Excel Workbook
+ar_SA.extMSExcel =جدول بياني مايكروسوفت إكسل
 bg.extMSExcel =Microsoft Excel работна книга
 ca.extMSExcel =Llibre de Microsoft Excel
 cs.extMSExcel =Microsoft Excel Sešit
@@ -342,6 +350,7 @@ si.extMSExcel =මයික්‍රොසොෆ්ට් එක්සෙල් 
 zh_TW.extMSExcel =Microsoft Excel 活頁簿
 
 en.extMSPresentation =Microsoft PowerPoint Presentation
+ar_SA.extMSPresentation =عرض تقديمي مايكروسوفت بوربوينت قابل للتعديل
 bg.extMSPresentation =Microsoft PowerPoint презентация
 ca.extMSPresentation =Presentació Microsoft PowerPoint
 cs.extMSPresentation =Microsoft PowerPoint Prezentace
@@ -384,6 +393,7 @@ si.extMSPresentation =මයික්‍රොසොෆ්ට් පවර්ප
 zh_TW.extMSPresentation =Microsoft PowerPoint 簡報
 
 en.extMSSlideshow =Microsoft PowerPoint Slideshow
+ar_SA.extMSSlideshow =عرض تقديمي مايكروسوفت بوربوينت غير قابل للتعديل
 bg.extMSSlideshow =Microsoft PowerPoint слайдшоу
 ca.extMSSlideshow =Presentació de diapositives Microsoft PowerPoint
 cs.extMSSlideshow =Microsoft PowerPoint Slideshow
@@ -426,6 +436,7 @@ si.extMSSlideshow =මයික්‍රොසොෆ්ට් පවර්පො
 zh_TW.extMSSlideshow =Microsoft PowerPoint 投影片
 
 en.extODT =OpenDocument Text File
+ar_SA.extODT =ملف نصي ليبري أوفس
 bg.extODT =OpenDocument текстов файл
 ca.extODT =Fitxer de text OpenDocument
 cs.extODT =Textový soubor OpenDocument
@@ -468,6 +479,7 @@ si.extODT =ඕපන්ඩොකියුමන්ට් පෙළ ලේඛන�
 zh_TW.extODT =OpenDocument Text 文件
 
 en.extODS =OpenDocument Spreadsheet
+ar_SA.extODS =جدول ليبري أوفس
 bg.extODS =OpenDocument електронна таблица
 ca.extODS =Full de càlcul OpenDocument
 cs.extODS =Sešit OpenDocument
@@ -510,6 +522,7 @@ si.extODS =ඕපන්ඩොකියුමන්ට් පැතුරුම�
 zh_TW.extODS =OpenDocument 試算表
 
 en.extODP =OpenDocument Presentation
+ar_SA.extODP =عرض ليبري أوفس
 bg.extODP =OpenDocument презентация
 ca.extODP =Presentació OpenDocument
 cs.extODP =Prezentace OpenDocument
@@ -552,6 +565,7 @@ si.extODP =ඕපන්ඩොකියුමන්ට් සමර්පණය
 zh_TW.extODP =OpenDocument 簡報
 
 en.extDOC =Word 97-2003 Document
+ar_SA.extDOC =مستند وورد 97-2003
 bg.extDOC =Word 97-2003 документ
 ca.extDOC =Document Word 97-2003
 cs.extDOC =Dokument Word 97-2003
@@ -594,6 +608,7 @@ si.extDOC =වර්ඩ් 97-2003 ලේඛනය
 zh_TW.extDOC =Word 97-2003 文件
 
 en.extDOCX =Office Open XML Document
+ar_SA.extDOCX =مستند وورد
 bg.extDOCX =Office Open XML документ
 ca.extDOCX =Document Office Open XML
 cs.extDOCX =Dokument Office Open XML
@@ -636,6 +651,7 @@ si.extDOCX =ඔෆිස් විවෘත XML ලේඛනය
 zh_TW.extDOCX =Office Open XML 文件
 
 en.extDOCXF =ONLYOFFICE Form Template
+ar_SA.extDOCXF =قالب استبيان أونلي أوفس
 bg.extDOCXF =ONLYOFFICE Шаблон на формуляр
 ca.extDOCXF =Plantilla de formulari ONLYOFFICE
 cs.extDOCXF =Šablona formuláře ONLYOFFICE
@@ -678,6 +694,7 @@ si.extDOCXF =ඔන්ලිඔෆිස් ආකෘතිපත්‍ර අ�
 zh_TW.extDOCXF =ONLYOFFICE 文档表单模板
 
 en.extXLS =Excel 97-2003 Spreadsheet
+ar_SA.extXLS =جدول إكسل 97-2003
 bg.extXLS =Excel 97-2003 таблица
 ca.extXLS =Full de càlcul Excel 97-2003
 cs.extXLS =Tabulka Excel 97-2003
@@ -720,6 +737,7 @@ si.extXLS =එක්සෙල් 97-2003 පැතුරුම්පත
 zh_TW.extXLS =Excel 97-2003 試算表
 
 en.extXLSX =Office Open XML Spreadsheet
+ar_SA.extXLSX =جدول إكسل
 bg.extXLSX =Office Open XML таблица
 ca.extXLSX =Full de càlcul Office Open XML
 cs.extXLSX =Tabulkový procesor Office Open XML
@@ -762,6 +780,7 @@ si.extXLSX =ඔෆිස් විවෘත XML පැතුරුම්පත
 zh_TW.extXLSX =Office Open XML 試算表
 
 en.extPPT =PowerPoint 97-2003 Presentation
+ar_SA.extPPT =عرض بوربوينت 97-2003
 bg.extPPT =PowerPoint 97-2003 Презентация
 ca.extPPT =Presentació de diapositives PowerPoint 97-2003
 cs.extPPT =Prezentace PowerPoint 97-2003
@@ -804,6 +823,7 @@ si.extPPT =පවර්පොයින්ට් 97-2003 සමර්පණය
 zh_TW.extPPT =PowerPoint 97-2003 簡報
 
 en.extPPTX =Office Open XML Presentation
+ar_SA.extPPTX =عرض بوربوينت قابل للتعديل
 bg.extPPTX =Office Open XML Презентация
 ca.extPPTX =Presentació Office Open XML
 cs.extPPTX =Prezentace Office Open XML
@@ -846,6 +866,7 @@ si.extPPTX =ඔෆිස් විවෘත XML සමර්පණය
 zh_TW.extPPTX =Office Open XML 簡報
 
 en.extPPS =PowerPoint 97-2003 Slide Show
+ar_SA.extPPS =عرض بوربوينت 97-2003
 bg.extPPS =PowerPoint 97-2003 Слайдшоу
 ca.extPPS =Presentació de diapositives PowerPoint 97-2003
 cs.extPPS =Prezentace PowerPoint 97-2003
@@ -888,6 +909,7 @@ si.extPPS =පවර්පොයින්ට් 97-2003 චිත්‍රකා
 zh_TW.extPPS =PowerPoint 97-2003投影片
 
 en.extPPSX =Office Open XML Slide Show
+ar_SA.extPPSX =عرض بوربوينت غير قابل للتعديل
 bg.extPPSX =Office Open XML Слайдшоу
 ca.extPPSX =Presentació de diapositives Office Open XML
 cs.extPPSX =Office Open XML Slide Show
@@ -930,6 +952,7 @@ si.extPPSX =ඔෆිස් විවෘත XML චිත්‍රකාච ද�
 zh_TW.extPPSX =Office Open XML 投影片
 
 en.extRTF =Rich Text Format File
+ar_SA.extRTF =ملف نصي غني
 bg.extRTF =Файл с богат текстов формат
 ca.extRTF =Fitxer en format de text enriquit
 cs.extRTF =Soubor ve formátu Rich Text
@@ -972,6 +995,7 @@ si.extRTF =පොහොසත් පෙළ ආකෘති ගොනුව
 zh_TW.extRTF =Rich Text Format 文件
 
 en.extCSV =Comma Separated Values
+ar_SA.extCSV =قيم مفرّقة بفاصلة
 bg.extCSV =Стойности, разделени със запетая
 ca.extCSV =Valors separats per comes
 cs.extCSV =Hodnoty oddělené čárkou
@@ -1014,6 +1038,7 @@ si.extCSV =අල්පවිරාම මගින් වෙන්කළ අග
 zh_TW.extCSV =逗點分隔值
 
 en.extPDF =Portable Document
+ar_SA.extPDF =بي دي إف
 bg.extPDF =Преносим документ
 ca.extPDF =Document portàtil
 cs.extPDF =Přenosný dokument
@@ -1056,6 +1081,7 @@ si.extPDF =සුවහ ලේඛනය
 zh_TW.extPDF =PDF 檔案
 
 en.extDJVU =Digital Document
+ar_SA.extDJVU =مستند رقمي
 bg.extDJVU =Дигитален документ
 ca.extDJVU =Document digital
 cs.extDJVU =Digitální dokument
@@ -1098,6 +1124,7 @@ si.extDJVU =සංඛ්‍යාංක ලේඛනය
 zh_TW.extDJVU =DjVu 檔案
 
 en.extXPS =OpenXPS Document
+ar_SA.extXPS =مستند أوبن إكس بي إس
 bg.extXPS =OpenXPS Документ
 ca.extXPS =Document OpenXPS
 cs.extXPS =Dokumentu OpenXPS
@@ -1146,14 +1173,17 @@ en.extPPTM =PowerPoint Open XML Macro-Enabled Presentation
 en.extEPUB =Open eBook File
 
 en.extFB2 =FictionBook 2.0 File
+ar_SA.extFB2 =ملف فكشنبوك 2.0
 
 en.extDOTX =Word Open XML Document Template
+ar_SA.extDOTX =قالب وور
 
 en.extOXPS =Open XML Paper Specification
 
 ;======================================================================================================
 
 en.jumpDOCX =New document
+ar_SA.jumpDOCX =مستند جديد
 bg.jumpDOCX =Нов документ
 ca.jumpDOCX =Nou document
 cs.jumpDOCX =Nový dokument
@@ -1196,6 +1226,7 @@ si.jumpDOCX =නව ලේඛනය
 zh_TW.jumpDOCX =新文件
 
 en.jumpXLSX =New spreadsheet
+ar_SA.jumpXLSX =جدول بياني جديد
 bg.jumpXLSX =Нова електронна таблица
 ca.jumpXLSX =Nou full de càlcul
 cs.jumpXLSX =Nový sešit
@@ -1238,6 +1269,7 @@ si.jumpXLSX =නව පැතුරුම්පත
 zh_TW.jumpXLSX =新試算表
 
 en.jumpPPTX =New presentation
+ar_SA.jumpPPTX =عرض تقديمي جديد
 bg.jumpPPTX =Нова презентация
 ca.jumpPPTX =Nova presentació
 cs.jumpPPTX =Nová prezentace
@@ -1280,6 +1312,7 @@ si.jumpPPTX =නව සමර්පණය
 zh_TW.jumpPPTX =新簡報
 
 en.jumpDOCXF =New form template
+ar_SA.jumpDOCXF =قالب استبيان جديد
 bg.jumpDOCXF =Нов шаблон на формуляр
 ca.jumpDOCXF =Nova plantilla de formulari
 cs.jumpDOCXF =Nová šablona formuláře
@@ -1322,6 +1355,7 @@ si.jumpDOCXF =නව ආකෘතිපත්‍ර අච්චුව
 zh_TW.jumpDOCXF =New form template
 
 en.defprogAppDescription=Free desktop office suite for document editing and collaboration
+ar_SA.defprogAppDescription=حزمة برامج مكتبية مجانية لتحرير المستندات والتعاون لإنجازها مع رفقائك
 bg.defprogAppDescription=Безплатен офис пакет за редактиране и съвместна работа по документи
 ca.defprogAppDescription=Suite d'oficina gratuïta per a l'edició de documents i col·laboració
 cs.defprogAppDescription=Volně dostupný desktopový balíček pro úpravu dokumentů a spolupráci
@@ -1364,6 +1398,7 @@ si.defprogAppDescription=ලේඛන සංස්කරණය සහ සහය�
 zh_TW.defprogAppDescription=使用於檔案編輯和協作的免費桌面辦公套件
 
 en.warnWin10FileAssociationDesc=To associate the files with the application, open the following window after the installation is complete:
+ar_SA.warnWin10FileAssociationDesc=لربط الملفات مع التطبيق، افتح النافذة التالية بعد إكمال التثبيت
 bg.warnWin10FileAssociationDesc=За да свържете файловете с приложението, отворете следния прозорец, след като инсталацията приключи:
 ca.warnWin10FileAssociationDesc=Per associar els fitxers a l'aplicació, obriu la finestra següent després de la instal·lació:
 cs.warnWin10FileAssociationDesc=Pro připojení souborů k aplikaci, otevřete následující okno po dokončení aplikace:
@@ -1406,6 +1441,7 @@ si.warnWin10FileAssociationDesc=යෙදුම සමඟ ගොනු නිහ
 zh_TW.warnWin10FileAssociationDesc=當安裝完成後，開啟以下的視窗將檔案與應用程式聯結：
 
 en.warnWin10FileAssociationPath=Settings > Apps > Default apps
+ar_SA.warnWin10FileAssociationPath=الإعدادات > تطبيقات > الافتراضية
 bg.warnWin10FileAssociationPath=Настройки> Приложения> Приложение по подразбиране
 ca.warnWin10FileAssociationPath=Configuració> Aplicacions> Aplicacions predeterminades
 cs.warnWin10FileAssociationPath=Nastavení > Aplikace > Výchozí aplikace
@@ -1448,6 +1484,7 @@ si.warnWin10FileAssociationPath=සැකසුම් > යෙදුම් > ප
 zh_TW.warnWin10FileAssociationPath=設定 > 應用程式 > 預設應用程式
 
 en.runOpenDefaultApps=Open Default apps
+ar_SA.runOpenDefaultApps=افتح التطبيقات الافتراضية
 bg.runOpenDefaultApps=Отвори приложения по подразбиране
 ca.runOpenDefaultApps=Obriu les aplicacions per defecte
 cs.runOpenDefaultApps=Otevřít výchozí aplikaci

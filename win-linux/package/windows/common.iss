@@ -163,6 +163,7 @@ Name: be; MessagesFile: compiler:Languages\Belarusian.isl;     LicenseFile: {#sB
 Name: gl; MessagesFile: compiler:Languages\Galician.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 Name: si; MessagesFile: compiler:Languages\Sinhala.islu;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 Name: zh_TW; MessagesFile: compiler:Languages\ChineseTraditional.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
+Name: ar_SA; MessagesFile: compiler:Languages\Arabic.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 
 [LangOptions]
 lo.LanguageName=ພາສາລາວ
@@ -174,6 +175,7 @@ en.PrevVer=The previous version of {#sAppName} detected, please click 'OK' butto
 ru.PrevVer=Обнаружена предыдущая версия {#sAppName}, нажмите кнопку 'OK' чтобы удалить её, или 'Отмена' чтобы выйти из программы инсталляции.
 ;======================================================================================================
 en.Launch =Launch %1
+ar_SA.Launch =بدء تشغيل %1
 bg.Launch =Пускане %1
 ca.Launch =Llança %1
 cs.Launch =Spuštění %1
@@ -216,6 +218,7 @@ si.Launch =%1 දියත් කරන්න
 zh_TW.Launch =啓動 %1
 ;======================================================================================================
 en.CreateDesktopIcon =Create %1 &desktop icon
+ar_SA.CreateDesktopIcon =إنشاء %1 &أيقونة سطح المكتب
 bg.CreateDesktopIcon =Създаване на %1 &икона на работния плот
 ca.CreateDesktopIcon =Crea una icona d'escriptori per a %1
 cs.CreateDesktopIcon =Vytvořte %1 &ikonu pracovní plochy
@@ -258,6 +261,7 @@ si.CreateDesktopIcon =%1 වැඩතල නිරූපකය සාදන්�
 zh_TW.CreateDesktopIcon =建立 %1 和桌面圖示
 ;======================================================================================================
 en.InstallAdditionalComponents =Installing additional system components. Please wait...
+ar_SA.InstallAdditionalComponents =جاري تثبيت مكونات نظام إضافية. الرجاء الانتظار...
 ca.InstallAdditionalComponents =Instal·lació de components de sistema addicionals. Si us plau, espereu...
 bg.InstallAdditionalComponents =Инсталиране на допълнителни системни компоненти. Моля, изчакайте...
 cs.InstallAdditionalComponents =Instalace dalších systémových komponent. Prosím, čekejte...
@@ -300,6 +304,7 @@ si.InstallAdditionalComponents =අතිරේක පද්ධති සංර�
 zh_TW.InstallAdditionalComponents =正在安裝附加系統元件，請稍候...
 ;======================================================================================================
 en.AdditionalTasks =Tasks:
+ar_SA.AdditionalTasks =المهام:
 bg.AdditionalTasks =Задачи:
 ca.AdditionalTasks =Tasques:
 cs.AdditionalTasks =Úkoly:
@@ -342,6 +347,7 @@ si.AdditionalTasks =කාර්යන්:
 zh_TW.AdditionalTasks =工作：
 ;======================================================================================================
 en.Uninstall =Uninstall
+ar_SA.Uninstall =إزالة التثبيت
 bg.AdditionalTasks =Деинсталиране
 ca.AdditionalTasks =Desinstal·lar
 cs.Uninstall =Odinstalovat
@@ -384,6 +390,7 @@ si.Uninstall =අස්ථාපනය
 zh_TW.Uninstall =解除安裝
 ;======================================================================================================
 en.WarningWrongArchitecture =You are trying to install the %1-bit application version over the %2-bit version installed. Please uninstall the previous version first or download the correct version for installation.
+ar_SA.WarningWrongArchitecture =أنت تحاول تثبيت نسخة %1-bit من التطبيق على نسخة %2-bit المثبتة. فضلًا قم بإزالة النسخة السابقة أولًا أو قم بتحميل النسخة الصحيحة ليتم تثبيتها.
 bg.WarningWrongArchitecture =Опитвате се да инсталирате %1-битовата версия на приложението над инсталираната %2-битова версия. Моля, деинсталирайте първо предишната версия или изтеглете правилната версия за инсталиране.
 ca.WarningWrongArchitecture =Estau provant a instal·lar la versió de l'aplicació %1-bit amb la versió %2-bit instal·lada. Si us plau, desintaleu primer la versió anterior o descarregeu la versió correcta per a la instal·lació.
 cs.WarningWrongArchitecture =Pokoušíte se nainstalovat %1-bit verzi aplikace na nainstalovanou %2-bitovou verzi. Nejprve odinstalujte předchozí verzi nebo stáhněte správnou verzi pro instalaci.
@@ -427,6 +434,7 @@ zh_TW.WarningWrongArchitecture =您正在嘗試安裝 %1-bit 應用程式版本�
 ;======================================================================================================
 
 en.UpdateAppRunning=Setup has detected that %1 is currently running.%n%nIt'll be closed automatically. Click OK to continue, or Cancel to exit.
+ar_SA.UpdateAppRunning=تم اكتشاف أن %1 قيد التشغيل.%n%nسيتم إغلاقه بشكل تلقائي. اضغط حسنًا للإكمال، أو إلغاء.
 bg.UpdateAppRunning=Настройката установи, че %1 в момента работи.%n%nТова ще бъде затворено автоматично. Щракнете върху OK, за да продължите, или Отказ, за да излезете.
 ca.UpdateAppRunning=La configuració ha detectat que actualment s'està executant %1.%n%n Es tancarà automàticament. Feu clic a D'acord per continuar o Cancel·la per sortir.
 cs.UpdateAppRunning=V rámci nastavení bylo zjištěno, že je aktuálně spuštěné 1%.%n%nBude automaticky zavřen. Chcete-li pokračovat, klikněte na tlačítko OK nebo Zrušit pro ukončení.
@@ -469,6 +477,7 @@ si.UpdateAppRunning=%1 දැනට ධාවනය වන බව පිහි�
 zh_TW.UpdateAppRunning=安裝程式偵測到 %1 正在執行中。%n%n將會自動關閉。 點擊 確認 繼續，或 取消 離開。
 ;======================================================================================================
 en.WarningClearAppData =Do you want to clear the user settings and application cached data?
+ar_SA.WarningClearAppData =هل تريد مسح إعدادات المستخدم وبيانات التطبيق المؤقتة؟
 bg.WarningClearAppData =Искате ли да изчистите потребителските настройки и кешираните данни на приложението?
 ca.WarningClearAppData =Voleu esborrar la configuració de l'usuari i les dades de la memòria cau de l'aplicació?
 cs.WarningClearAppData =Chcete zrušit uživatelské nastavení a údaje uložené v paměti?
@@ -513,6 +522,7 @@ zh_TW.WarningClearAppData =您想要清除使用者設定和應用程式內的�
 
 
 ;en.AssociateDescription =Associate office document file types with %1
+;ar_SA.AssociateDescription =هل تريد ربط صيغة المستند بـ %1
 ;bg.AssociateDescription =Свържете типовете файлове на офис документи с %1
 ;it_IT.AssociateDescription =Associa i file documentodi Office con %1
 ;cs.AssociateDescription =Asociovat typy souborů kancelářských dokumentů s %1
@@ -535,6 +545,7 @@ zh_TW.WarningClearAppData =您想要清除使用者設定和應用程式內的�
 ;zh_TW.AssociateDescription =與文書處理檔案類型聯結 %1
 ;======================================================================================================
 en.UpdateService =Update service for {#sAppName}
+ar_SA.UpdateService =خدمة التحديث لـ {#sAppName}
 cs.UpdateService =Služba aktualizace {#sAppName}
 fi.UpdateService =Palvelu päivitystä varten {#sAppName}
 el.UpdateService =Υπηρεσία για ενημέρωση {#sAppName}
