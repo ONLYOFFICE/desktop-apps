@@ -552,8 +552,10 @@ void CUpdateManager::loadUpdates()
 
 void CUpdateManager::installUpdates()
 {
-    __GLOBAL_LOCK
-    m_dialogSchedule->addToSchedule("showStartInstallMessage");
+    __UNLOCK
+    m_startUpdateOnClose = true;
+    m_restartAfterUpdate = true;
+    AscAppManager::closeAppWindows();
 }
 
 void CUpdateManager::refreshStartPage(const Command &cmd)
