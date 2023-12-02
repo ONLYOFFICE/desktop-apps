@@ -314,7 +314,7 @@ void CMainWindow::dragEnterEvent(QDragEnterEvent *event)
         return;
 
     QSet<QString> _exts;
-    _exts << "docx" << "doc" << "odt" << "rtf" << "txt" << "doct" << "dotx" << "ott" << "docxf" << "oform";
+    _exts << "docx" << "doc" << "odt" << "rtf" << "txt" << "doct" << "dotx" << "ott" << "docxf";
     _exts << "html" << "mht" << "epub";
     _exts << "pptx" << "ppt" << "odp" << "ppsx" << "pptt" << "potx" << "otp";
     _exts << "xlsx" << "xls" << "ods" << "csv" << "xlst" << "xltx" << "ots";
