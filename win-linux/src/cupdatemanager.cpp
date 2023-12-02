@@ -818,7 +818,7 @@ void CUpdateManager::onCheckFinished(bool error, bool updateExist, const QString
 void CUpdateManager::showUpdateMessage(QWidget *parent) {
     int result = WinDlg::showDialog(parent, tr("Update is available"),
                         QString("%1\n%2: %3\n%4: %5\n%6 (%7 MB)").arg(QString(WINDOW_NAME), tr("Current version"),
-                        QString(VER_FILEVERSION_STR), tr("Update version"), getVersion(),
+                        QString(VER_FILEVERSION_STR), tr("New version"), getVersion(),
                         tr("Would you like to download update now?"), m_packageData->fileSize),
                         WinDlg::DlgBtns::mbSkipRemindDownload);
     __UNLOCK
@@ -840,9 +840,9 @@ void CUpdateManager::showUpdateMessage(QWidget *parent) {
 void CUpdateManager::showStartInstallMessage(QWidget *parent)
 {
     int result = WinDlg::showDialog(parent, tr("Update is ready to install"),
-                        QString("%1\n%2: %3\n%4: %5\n%6").arg(QString(WINDOW_NAME), tr("Current version"),
-                        QString(VER_FILEVERSION_STR), tr("Update version"), getVersion(),
-                        tr("Would you like to restart app now?")),
+                        QString("%1: %2\n%3: %4\n%5").arg(tr("Current version"),
+                        QString(VER_FILEVERSION_STR), tr("New version"), getVersion(),
+                        tr("To finish updating, restart the app")),
                         WinDlg::DlgBtns::mbInslaterRestart);
     __UNLOCK
     switch (result) {
