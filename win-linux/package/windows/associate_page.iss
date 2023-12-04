@@ -1210,18 +1210,22 @@ si.extOFORM =ඔන්ලිඔෆිස් පුරවන මාර්ගග�
 zh_TW.extOFORM =ONLYOFFICE可填写的在线表格
 
 en.extPOT =PowerPoint Template
+ar_SA.extPOT =قالب بوربوينت
 
 en.extPPTM =PowerPoint Open XML Macro-Enabled Presentation
+ar_SA.extPPTM =عرض بوربوينت مع خاصية الماكرو
 
 en.extEPUB =Open eBook File
+ar_SA.extEPUB =كتاب النشر الإلكتروني
 
 en.extFB2 =FictionBook 2.0 File
 ar_SA.extFB2 =ملف فكشنبوك 2.0
 
 en.extDOTX =Word Open XML Document Template
-ar_SA.extDOTX =قالب وور
+ar_SA.extDOTX =قالب وورد
 
 en.extOXPS =Open XML Paper Specification
+ar_SA.extOXPS =مستند أوبن إكس بي إس
 
 ;======================================================================================================
 
