@@ -65,7 +65,7 @@ int WinDlg::showDialog(QWidget *parent,
                        const QString &content,
                        DlgBtns dlgBtns)
 {
-    QString title = QString("  %1").arg(QObject::tr(WINDOW_TITLE));
+    QString title = QString("  %1").arg(WINDOW_TITLE);
     QString primaryText = QTextDocumentFragment::fromHtml(msg).toPlainText();
     QString linkText = !QString(RELEASE_NOTES).isEmpty() ?
                 QString("\n<a href=\"%1\">%2</a>").arg(QString(RELEASE_NOTES), QObject::tr("Release notes")) : "";
