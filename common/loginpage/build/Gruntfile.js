@@ -52,9 +52,7 @@ module.exports = function(grunt) {
                         compress: true,
                         ieCompat: false
                     },
-                    files: {
-                        "<%= pkg.desktop.less.files.dest %>": packageFile['desktop']['less']['files']['src']
-                    }
+                    files: packageFile.desktop.less.files
                 }
             },
 
