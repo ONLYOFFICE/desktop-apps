@@ -657,25 +657,37 @@ int CMainWindow::trySaveDocument(int index)
 
 void CMainWindow::onPortalLogout(std::wstring wjson)
 {
+    const auto _is_url_starts_with = [](const QString& url, const std::vector<QString>& v) -> bool {
+        for (auto& i: v) {
+            if ( url.startsWith(i) )
+                return true;
+        }
+
+        return false;
+    };
+
+
     if ( m_pTabs->count() ) {
         QJsonParseError jerror;
-        QByteArray stringdata = QString::fromStdWString(wjson).toUtf8();
-        QJsonDocument jdoc = QJsonDocument::fromJson(stringdata, &jerror);
+        QJsonDocument jdoc = QJsonDocument::fromJson(QString::fromStdWString(wjson).toUtf8(), &jerror);
 
         if( jerror.error == QJsonParseError::NoError ) {
             QJsonObject objRoot = jdoc.object();
-            QString _portal = objRoot["domain"].toString(),
-                    _action;
+            std::vector<QString> _portals{objRoot["domain"].toString()};
 
-            if ( objRoot.contains("onsuccess") )
-                _action = objRoot["onsuccess"].toString();
+            if ( objRoot.contains("extra") && objRoot["extra"].isArray() ) {
+                QJsonArray a = objRoot["extra"].toArray();
+                for (auto&& v: a) {
+                    _portals.push_back(v.toString());
+                }
+            }
 
             for (int i(m_pTabs->count()); !(--i < 0);) {
                 int _answer = MODAL_RESULT_NO;
 
                 CAscTabData& _doc = *m_pTabs->panel(i)->data();
                 if ( _doc.isViewType(cvwtEditor) && !_doc.closed() &&
-                        QString::fromStdWString(_doc.url()).startsWith(_portal) )
+                        _is_url_starts_with(QString::fromStdWString(_doc.url()), _portals) )
                 {
                     if ( _doc.hasChanges() ) {
                         _answer = trySaveDocument(i);

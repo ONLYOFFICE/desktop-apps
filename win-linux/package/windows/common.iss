@@ -81,8 +81,13 @@ ChangesEnvironment        =yes
 SetupMutex                =ASC
 
 #if str(_ARCH) == "64"
+#if Int(DecodeVer(PREPROCVER,1)) >= 6
+ArchitecturesAllowed              = x64 arm64
+ArchitecturesInstallIn64BitMode   = x64 arm64
+#else
 ArchitecturesAllowed              = x64
 ArchitecturesInstallIn64BitMode   = x64
+#endif
 #endif
 
 #ifndef _WIN_XP
@@ -811,7 +816,6 @@ var
 begin
   if CurStep = ssPostInstall then begin
     DoPostInstall();
-    CreateBatchFiles();
     GetWindowsVersionEx(version);
     if (version.Major > 6) or ((version.Major = 6) and (version.Minor >= 1)) then begin
 #ifdef _ONLYOFFICE
@@ -1024,9 +1028,9 @@ Name: desktopicon; Description: {cm:CreateDesktopIcon,{#sAppName}}; GroupDescrip
 Name: {commondesktop}\{#sAppIconName}; FileName: {app}\{#iconsExe}; WorkingDir: {app}; Tasks: desktopicon; IconFilename: {app}\app.ico; AppUserModelID: {#APP_USER_MODEL_ID};
 Name: {group}\{#sAppIconName};         Filename: {app}\{#iconsExe}; WorkingDir: {app}; IconFilename: {app}\app.ico; AppUserModelID: {#APP_USER_MODEL_ID};
 Name: {group}\{cm:Uninstall}; IconFilename: {app}\{#iconsExe}; IconIndex: 25; Filename: {uninstallexe}; WorkingDir: {app};
-Name: "{group}\{cm:jumpDOCX}"; IconFilename: "{app}\{#iconsExe}"; IconIndex: 14; Filename: "{app}\new_word.bat";
-Name: "{group}\{cm:jumpXLSX}"; IconFilename: "{app}\{#iconsExe}"; IconIndex: 15; Filename: "{app}\new_cell.bat";
-Name: "{group}\{cm:jumpPPTX}"; IconFilename: "{app}\{#iconsExe}"; IconIndex: 16; Filename: "{app}\new_slide.bat";
+Name: "{group}\{cm:jumpDOCX}"; IconFilename: "{app}\{#iconsExe}"; IconIndex: 14; Filename: "{app}\{#iconsExe}"; Parameters: "--new:word";
+Name: "{group}\{cm:jumpXLSX}"; IconFilename: "{app}\{#iconsExe}"; IconIndex: 15; Filename: "{app}\{#iconsExe}"; Parameters: "--new:cell";
+Name: "{group}\{cm:jumpPPTX}"; IconFilename: "{app}\{#iconsExe}"; IconIndex: 16; Filename: "{app}\{#iconsExe}"; Parameters: "--new:slide";
 
 [Run]
 ;Filename: {app}\{#NAME_EXE_OUT}; Description: {cm:Launch,{#sAppName}}; Flags: postinstall nowait skipifsilent;
@@ -1055,7 +1059,4 @@ Root: HKLM; Subkey: "SOFTWARE\Classes\{#sAppProtocol}\Shell\Open\Command"; Value
 [UninstallDelete]
 Type: filesandordirs; Name: {commonappdata}\{#APP_PATH}\*;  AfterInstall: RefreshEnvironment;
 Type: filesandordirs; Name: "{app}\..\{#UPD_PATH}";
-Type: files; Name: "{app}\new_word.bat";
-Type: files; Name: "{app}\new_cell.bat";
-Type: files; Name: "{app}\new_slide.bat";
 Type: files; Name: "{app}\svcrestart.bat";

@@ -61,22 +61,23 @@ namespace CFileDialogHelper {
 
 CFileDialogWrapper::CFileDialogWrapper(QWidget * parent) : QObject(parent)
 {
-    m_mapFilters[AVS_OFFICESTUDIO_FILE_UNKNOWN]         = tr("All files (*.*)");
+	m_mapFilters[AVS_OFFICESTUDIO_FILE_UNKNOWN]              = tr("All files (*.*)");
 
-    m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCX]   = tr("DOCX Document") + " (*.docx)";
-    m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_DOTX]   = tr("Document template") + " (*.dotx)";
-    m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_DOC]    = tr("DOC Document (*.doc)");
-    m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_ODT]    = tr("ODT Document (*.odt)");
-    m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_OTT]    = tr("OpenDocument Document template") + " (*.ott)";
-    m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_RTF]    = tr("RTF File (*.rtf)");
-    m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_TXT]    = tr("TXT File (*.txt)");
-    m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_HTML]   = tr("HTML File (*.html)");
-    m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_MHT]    = tr("MHT File (*.mht)");
-    m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_EPUB]   = tr("EPUB File (*.epub)");
-    m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_FB2]    = tr("FB2 File (*.fb2)");
-    m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_MOBI]   = tr("MOBI File (*.mobi)");
-    m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_OFORM]  = tr("OFORM Document (*.oform)");
-    m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCXF]  = tr("DOCXF Document (*.docxf)");
+	m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCX]        = tr("DOCX Document") + " (*.docx)";
+	m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_DOTX]        = tr("Document template") + " (*.dotx)";
+	m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_DOC]         = tr("DOC Document (*.doc)");
+	m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_ODT]         = tr("ODT Document (*.odt)");
+	m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_OTT]         = tr("OpenDocument Document template") + " (*.ott)";
+	m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_RTF]         = tr("RTF File (*.rtf)");
+	m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_TXT]         = tr("TXT File (*.txt)");
+	m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_HTML]        = tr("HTML File (*.html)");
+	m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_MHT]         = tr("MHT File (*.mht)");
+	m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_EPUB]        = tr("EPUB File (*.epub)");
+	m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_FB2]         = tr("FB2 File (*.fb2)");
+	m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_MOBI]        = tr("MOBI File (*.mobi)");
+	m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_OFORM]       = tr("OFORM Document (*.oform)");
+	m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_OFORM_PDF]   = tr("ONLYOFFICE Form Document (*.pdf)");
+	m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCXF]       = tr("DOCXF Document (*.docxf)");
 
     m_mapFilters[AVS_OFFICESTUDIO_FILE_PRESENTATION_PPTX]   = tr("PPTX File (*.pptx)");
     m_mapFilters[AVS_OFFICESTUDIO_FILE_PRESENTATION_PPT]    = tr("PPT File (*.ppt)");

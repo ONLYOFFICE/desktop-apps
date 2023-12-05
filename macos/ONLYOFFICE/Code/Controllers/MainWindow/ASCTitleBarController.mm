@@ -404,6 +404,11 @@ static float kASCWindowMinTitleWidth = 0;
                 [self.tabsControl updateTab:tab];
             }
         }
+    } else {
+        if ( [self.portalButton state] != NSControlStateValueOn ) {
+            [ASCThemesController isSystemDarkMode] ? [self.portalButton setImage:[NSImage imageNamed:@"logo-tab-light"]] :
+                                                        [self.portalButton setImage:[NSImage imageNamed:@"logo-tab-dark"]];
+        }
     }
 }
 

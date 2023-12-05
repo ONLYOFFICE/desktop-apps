@@ -242,6 +242,10 @@
                      @"description" : NSLocalizedString(@"ONLYOFFICE Fillable Online Form", nil),
                      @"extension"   : @"oform"
              },
+             @(AVS_OFFICESTUDIO_FILE_DOCUMENT_OFORM_PDF): @{
+                     @"description" : NSLocalizedString(@"ONLYOFFICE Form Document", nil),
+                     @"extension"   : @"pdf"
+             },
              @(AVS_OFFICESTUDIO_FILE_IMAGE_PNG): @{
                      @"description" : NSLocalizedString(@"PNG Image", nil),
                      @"extension"   : @"png"

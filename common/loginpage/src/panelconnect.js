@@ -336,8 +336,17 @@
 
             let info = {domain:model.path};
             const _provider = config.portals.providers.find(model.provider);
-            if ( _provider && !!_provider.extraLogout )
+            if ( _provider ) {
+                if ( !!_provider.entryPage ) {
+                    if ( !_provider.extraLogout )
+                        _provider.extraLogout = [];
+
+                    if ( !_provider.extraLogout.includes(_provider.entryPage) )
+                        _provider.extraLogout.push(_provider.entryPage);
+                }
+
                 info.extra = _provider.extraLogout;
+            };
 
             window.sdk.execCommand('portal:logout', JSON.stringify(info));
         };

@@ -227,7 +227,6 @@
                                                 <section class='box-cmp-select'>
                                                     <select class='combobox' data-size='5'></select>
                                                 </section>
-                                                <button class="btn btn--primary hidden" id="idx-btn-addtheme" l10n>Add theme</button>
                                             </div>
                                         </div>
                                         <div class='settings-field' id="opts-launch-mode" style='display:none;'>
@@ -326,6 +325,7 @@
             if ( objs ) {
                 !(objs instanceof Array) && (objs = [objs]);
 
+                const _divider = _combo.find('[data-divider]');
                 objs.forEach(t => {
                     const _css = create_colors_css(t.id, t.colors);
                     if ( _css ) {
@@ -333,7 +333,11 @@
                         themes_map[t.id] = {text: t.name, type: t.type, l10n: t.l10n};
 
                         const _theme_title = t.l10n[utils.Lang.id] || t.name;
-                        _combo.append(`<option value=${t.id} l10n>${_theme_title}</option>`);
+                        const _theme_menu_item = `<option value=${t.id} l10n>${_theme_title}</option>`;
+
+                        if ( _divider.length )
+                            _divider.before(_theme_menu_item);
+                        else _combo.append(_theme_menu_item);
                     }
                 });
                 $optsUITheme.selectpicker('refresh');
@@ -512,9 +516,6 @@
                             if ( nativevars.theme ) {
                                 if ( nativevars.theme.system == 'disabled' )
                                     _themes.shift();
-
-                                if ( nativevars.theme.addlocal == 'on' )
-                                    $('#idx-btn-addtheme').show();
                             }
 
                             const _combo = $('#opts-ui-theme select', $panel).empty();
@@ -533,12 +534,31 @@
                             if ( !$optsUITheme ) {
                                 ($optsUITheme = _combo)
                                 .val(opts.uitheme)
-                                .selectpicker().on('change', e => {
-                                    $btnApply.isdisabled() && $btnApply.disable(false);})
+                                .selectpicker().on('changed.bs.select', (e, index, selected, previous) => {
+                                    $btnApply.isdisabled() && $btnApply.disable(false);
+
+                                    console.log('select theme', index, selected, previous);
+                                    if ( selected && e.target.value == 'add' ) {
+                                        sdk.command("uitheme:add", "local");
+
+                                        $optsUITheme.val(previous)
+                                                    .selectpicker('refresh');
+                                    }
+                                })
                                 .parents('.settings-field').show();
                             } else {
                                 $optsUITheme.val(opts.uitheme)
                                             .selectpicker('refresh');
+                            }
+
+                            if ( nativevars.theme ) {
+                                if ( nativevars.theme.addlocal == 'on' ) {
+                                    const _combo = $('#opts-ui-theme select', $panel);
+                                    _combo.append(`<option data-divider="true"></option>
+                                                    <option value="add" l10n>${utils.Lang.settOptThemeAddLocal}</option>`);
+
+                                    $optsUITheme.selectpicker('refresh');
+                                }
                             }
                         }
                         _apply_theme(!!opts.uitheme ? opts.uitheme : 'theme-classic-light');
@@ -683,10 +703,6 @@
             // }
         };
 
-        const _on_click_add_theme = function() {
-            sdk.command("uitheme:add", "local");
-        }
-
         return {
             init: function() {
                 baseController.prototype.init.apply(this, arguments);
@@ -714,8 +730,6 @@
                     if ( $btnApply.prop('disabled') )
                         $btnApply.prop('disabled', false);
                 });
-
-                $('#idx-btn-addtheme').on('click', _on_click_add_theme);
 
                 let _user_name = localStorage.getItem('username') || '';
                 let _open_mode = localStorage.getItem('docopenmode') || 'edit';

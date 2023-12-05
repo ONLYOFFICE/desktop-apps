@@ -783,8 +783,10 @@ void CTabBar::removeTab(int index)
         if (index > 0) {
             d->recalcWidth();
         } else {
-            const int initialMaxIndex = d->tabList.size(); // max index before deletion
-            d->onCurrentChanged(index < initialMaxIndex ? index : -1);
+            if ( property("active").toBool() ) {
+                const int initialMaxIndex = d->tabList.size(); // max index before deletion
+                d->onCurrentChanged(index < initialMaxIndex ? index : -1);
+            }
         }
     }
 }

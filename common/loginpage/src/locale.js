@@ -131,6 +131,7 @@ l10n.en = {
     updateNoUpdates: 'App is up to date',
     updateAvialable: 'Version $1 is available. Click to download.',
     settOptThemeSystem: 'Same as system',
+    settOptThemeAddLocal: 'Add local theme',
     settOptThemeContrastDark: 'Contrast Dark',
     settAUpdateMode: 'Autoupdate mode',
     settOptAUpdateSilent: 'Silent mode',

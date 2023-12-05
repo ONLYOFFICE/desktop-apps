@@ -30,25 +30,13 @@ ifeq ($(UNAME_M),x86_64)
 	RPM_ARCH = x86_64
 	DEB_ARCH = amd64
 	TAR_ARCH = x86_64
-	URPMI_ARCH = x86_64
-	APT_RPM_ARCH = x86_64
-	ARCHITECTURE = 64
-endif
-ifneq ($(filter %86,$(UNAME_M)),)
-	RPM_ARCH = i686
-	DEB_ARCH = i386
-	URPMI_ARCH = i586
-	APT_RPM_ARCH = i586
-	TAR_ARCH = x86
-	ARCHITECTURE = 32
+	PLATFORM = linux_64
 endif
 ifneq ($(filter aarch%,$(UNAME_M)),)
 	RPM_ARCH = aarch64
 	DEB_ARCH = arm64
-	URPMI_ARCH = aarch64
-	APT_RPM_ARCH = aarch64
 	TAR_ARCH = aarch64
-	ARCHITECTURE = arm64
+	PLATFORM = linux_arm64
 endif
 
 RPM_BUILD_DIR = $(PWD)/rpm/builddir
@@ -58,14 +46,14 @@ SUSE_RPM_BUILD_DIR = $(PWD)/suse-rpm/builddir
 TAR_BUILD_DIR = $(PWD)/tar
 
 RPM_PACKAGE_DIR = $(RPM_BUILD_DIR)/RPMS/$(RPM_ARCH)
-APT_RPM_PACKAGE_DIR = $(APT_RPM_BUILD_DIR)/RPMS/$(APT_RPM_ARCH)
-URPMI_PACKAGE_DIR = $(URPMI_BUILD_DIR)/RPMS/$(URPMI_ARCH)
+APT_RPM_PACKAGE_DIR = $(APT_RPM_BUILD_DIR)/RPMS/$(RPM_ARCH)
+URPMI_PACKAGE_DIR = $(URPMI_BUILD_DIR)/RPMS/$(RPM_ARCH)
 SUSE_RPM_PACKAGE_DIR = $(SUSE_RPM_BUILD_DIR)/RPMS/$(RPM_ARCH)
 TAR_PACKAGE_DIR = $(TAR_BUILD_DIR)
 
 RPM = $(RPM_PACKAGE_DIR)/$(PACKAGE_NAME)-$(PACKAGE_VERSION)$(RPM_RELEASE_SUFFIX).$(RPM_ARCH).rpm
-APT_RPM = $(APT_RPM_PACKAGE_DIR)/$(PACKAGE_NAME)-$(PACKAGE_VERSION)$(APT_RPM_RELEASE_SUFFIX).$(APT_RPM_ARCH).rpm
-URPMI = $(URPMI_PACKAGE_DIR)/$(PACKAGE_NAME)-$(PACKAGE_VERSION)$(URPMI_RELEASE_SUFFIX).$(URPMI_ARCH).rpm
+APT_RPM = $(APT_RPM_PACKAGE_DIR)/$(PACKAGE_NAME)-$(PACKAGE_VERSION)$(APT_RPM_RELEASE_SUFFIX).$(RPM_ARCH).rpm
+URPMI = $(URPMI_PACKAGE_DIR)/$(PACKAGE_NAME)-$(PACKAGE_VERSION)$(URPMI_RELEASE_SUFFIX).$(RPM_ARCH).rpm
 SUSE_RPM = $(SUSE_RPM_PACKAGE_DIR)/$(PACKAGE_NAME)-$(PACKAGE_VERSION)$(SUSE_RPM_RELEASE_SUFFIX).$(RPM_ARCH).rpm
 DEB = deb/$(PACKAGE_NAME)_$(PACKAGE_VERSION)$(DEB_RELEASE_SUFFIX)_$(DEB_ARCH).deb
 DEB_ASTRA = deb-astra/$(PACKAGE_NAME)_$(PACKAGE_VERSION)$(DEB_ASTRA_RELEASE_SUFFIX)_$(DEB_ARCH).deb
@@ -139,21 +127,10 @@ DEB_ASTRA_DEPS += common/usr/share/flyfm/templates/desktopeditors.docx.desktop
 DEB_ASTRA_DEPS += common/usr/share/flyfm/templates/desktopeditors.xlsx.desktop
 DEB_ASTRA_DEPS += common/usr/share/flyfm/templates/desktopeditors.pptx.desktop
 
-INSTALLER_DEPENDENCY += desktopeditor
-
-USR_LIB_X64 := /usr/lib/x86_64-linux-gnu
-
-SRC += ../../../../build_tools/out/linux_$(ARCHITECTURE)/$(DESKTOPEDITORS_PREFIX)
+SRC += ../../../../build_tools/out/$(PLATFORM)/$(DESKTOPEDITORS_PREFIX)
 ifneq ($(COMPANY_NAME), ONLYOFFICE)
-	SRC += ../../../../build_tools/out/linux_$(ARCHITECTURE)/$(MEDIAVIEWER_PREFIX)
+	SRC += ../../../../build_tools/out/$(PLATFORM)/$(MEDIAVIEWER_PREFIX)
 endif
-
-
-INSTALLER := qt-installer/$(PACKAGE_NAME)-installer-$(TAR_ARCH)
-#QT_LIBS := $(shell qmake -query QT_INSTALL_LIBS)
-#QT_PLUGINS := $(shell qmake -query QT_INSTALL_PLUGINS)
-
-PLATFORM := linux_64_static_stdlib
 
 M4_PARAMS += -D M4_COMPANY_NAME='$(COMPANY_NAME)'
 M4_PARAMS += -D M4_PRODUCT_NAME='$(PRODUCT_NAME)'
@@ -209,16 +186,7 @@ else
 endif
 CHANGES_DIR_LIST = $(shell ls -r $(CHANGES_DIR) | grep -v template)
 
-.PHONY: all clean branding packages rpm deb deb-astra apt-rpm suse-rpm tar desktopeditor qt-redist libstdc++-addon libc-addon
-
-all: rpm deb apt-rpm urpmi suse-rpm tar
-#installer
-
-rpm: $(RPM)
-
-deb: $(DEB)
-
-deb-astra: $(DEB_ASTRA)
+all: tar deb deb-astra rpm apt-rpm suse-rpm urpmi
 
 ifeq ($(COMPANY_NAME), ONLYOFFICE)
 tar: $(TAR) $(HELP_TAR)
@@ -226,24 +194,17 @@ else
 tar: $(TAR)
 endif
 
-apt-rpm: $(APT_RPM)
+deb: $(DEB)
 
-urpmi: $(URPMI)
+deb-astra: $(DEB_ASTRA)
+
+rpm: $(RPM)
+
+apt-rpm: $(APT_RPM)
 
 suse-rpm: $(SUSE_RPM)
 
-rpm_aarch64 : ARCHITECTURE = arm64
-rpm_aarch64 : RPM_ARCH = aarch64
-rpm_aarch64 : $(RPM)
-
-installer: $(INSTALLER)
-
-PACKAGES += $(DEB) $(RPM) $(APT_RPM) $(URPMI) $(SUSE_RPM) $(TAR) $(HELP_TAR)
-ifneq ($(COMPANY_NAME), ONLYOFFICE)
-PACKAGES += $(DEB_ASTRA)
-endif
-
-packages: $(PACKAGES)
+urpmi: $(URPMI)
 
 clean:
 	rm -rfv \
@@ -268,13 +229,12 @@ clean:
 		suse-rpm/$(PACKAGE_NAME).spec \
 		$(shell dirname $(CHANGELOG_RPM)) \
 		$(CHANGES_DIR)/*/changes_??? \
-		$(CHANGES_DIR)/*/news_??? \
-		$(INSTALLER)
+		$(CHANGES_DIR)/*/news_???
 
 branding: $(BRANDING_DIR)
 	cp -rf $(BRANDING_DIR)/* $(PWD)/
 
-desktopeditor: branding $(LINUX_DEPS)
+desktop: branding $(LINUX_DEPS)
 	mkdir -p common/opt
 	cp -rft common/opt $(SRC)
 
@@ -297,25 +257,7 @@ ifneq ($(COMPANY_NAME), ONLYOFFICE)
 	chmod 755 common/opt/mediaviewer/VideoPlayer
 endif
 
-qt-redist:
-	cp -r -L -t common/opt/desktopeditors/ \
-		$(QT_PLUGINS)/bearer \
-		$(QT_PLUGINS)/imageformats \
-		$(QT_PLUGINS)/platforms \
-		$(QT_PLUGINS)/platformthemes \
-		$(QT_PLUGINS)/printsupport \
-		$(QT_LIBS)/libQt5Core.so.5 \
-		$(QT_LIBS)/libQt5DBus.so.5 \
-		$(QT_LIBS)/libQt5Gui.so.5 \
-		$(QT_LIBS)/libQt5PrintSupport.so.5 \
-		$(QT_LIBS)/libQt5Widgets.so.5 \
-		$(QT_LIBS)/libQt5X11Extras.so.5 \
-		$(QT_LIBS)/libQt5XcbQpa.so.5
-		# $(USR_LIB_X64)/libicudata.so.52 \
-		# $(USR_LIB_X64)/libicui18n.so.52 \
-		# $(USR_LIB_X64)/libicuuc.so.52
-
-$(RPM): desktopeditor rpm/$(PACKAGE_NAME).spec
+$(RPM): desktop rpm/$(PACKAGE_NAME).spec
 	cd rpm && rpmbuild -bb \
 		--define "_topdir $(RPM_BUILD_DIR)" \
 		--define "_build_number $(BUILD_NUMBER)$(RPM_RELEASE_SUFFIX)" \
@@ -395,31 +337,31 @@ deb-astra/build/debian/$(PACKAGE_NAME).% : deb/template/package.%.m4
 	mkdir -pv $(@D) && \
 	m4 $(M4_DEB_ASTRA_PARAMS) $< > $@
 
-$(DEB): desktopeditor $(DEB_DEPS)
+$(DEB): desktop $(DEB_DEPS)
 	cd deb/build && dpkg-buildpackage -b -uc -us
 
-$(DEB_ASTRA): desktopeditor $(DEB_ASTRA_DEPS)
+$(DEB_ASTRA): desktop $(DEB_ASTRA_DEPS)
 	cd deb-astra/build && dpkg-buildpackage -b -uc -us
 
-$(APT_RPM): desktopeditor apt-rpm/$(PACKAGE_NAME).spec
-	cd apt-rpm && setarch $(APT_RPM_ARCH) rpmbuild -bb \
+$(APT_RPM): desktop apt-rpm/$(PACKAGE_NAME).spec
+	cd apt-rpm && setarch $(RPM_ARCH) rpmbuild -bb \
 		--define "_topdir $(APT_RPM_BUILD_DIR)" \
 		--define "_build_number $(BUILD_NUMBER)$(APT_RPM_RELEASE_SUFFIX)" \
-		--define "_package_arch $(APT_RPM_ARCH)" \
+		--define "_package_arch $(RPM_ARCH)" \
 		--target $(RPM_ARCH) \
 		$(RPM_PARAMS) \
 		package.spec
 
-$(URPMI): desktopeditor urpmi/$(PACKAGE_NAME).spec
-	cd urpmi && setarch $(URPMI_ARCH) rpmbuild -bb \
+$(URPMI): desktop urpmi/$(PACKAGE_NAME).spec
+	cd urpmi && setarch $(RPM_ARCH) rpmbuild -bb \
 		--define "_topdir $(URPMI_BUILD_DIR)" \
 		--define "_build_number $(BUILD_NUMBER)$(URPMI_RELEASE_SUFFIX)" \
-		--define "_package_arch $(URPMI_ARCH)" \
+		--define "_package_arch $(RPM_ARCH)" \
 		--target $(RPM_ARCH) \
 		$(RPM_PARAMS) \
 		package.spec
 
-$(SUSE_RPM): desktopeditor suse-rpm/$(PACKAGE_NAME).spec
+$(SUSE_RPM): desktop suse-rpm/$(PACKAGE_NAME).spec
 	cd suse-rpm && rpmbuild -bb \
 		--define "_topdir $(SUSE_RPM_BUILD_DIR)" \
 		--define "_build_number $(BUILD_NUMBER)$(SUSE_RPM_RELEASE_SUFFIX)" \
@@ -428,17 +370,14 @@ $(SUSE_RPM): desktopeditor suse-rpm/$(PACKAGE_NAME).spec
 		$(RPM_PARAMS) \
 		package.spec
 
-$(TAR): desktopeditor
+$(TAR): desktop
 	mkdir -p $(TAR_PACKAGE_DIR) common/opt/desktopeditors/app
 	cp -ft common/opt/desktopeditors/app $(DESKTOP_FILES)
 	tar -cI"xz -9T0" --owner=root --group=root -f"$@" -C common/opt desktopeditors
 
-$(HELP_TAR): desktopeditor
+$(HELP_TAR): desktop
 	mkdir -p $(TAR_PACKAGE_DIR)
 	tar -cI"xz -9T0" --owner=root --group=root -f"$@" -C common/help desktopeditors
-
-$(INSTALLER): $(INSTALLER_DEPENDENCY)
-	cd qt-installer && ./make-install.sh
 
 common/usr/bin/$(DESKTOPEDITORS_EXEC) : common/usr/bin/desktopeditors.m4
 common/usr/bin/$(IMAGEVIEWER_EXEC) : common/usr/bin/imageviewer.m4
@@ -461,3 +400,5 @@ $(SYMLINK) :
 
 %/$(PACKAGE_NAME).spec : %/package.spec 
 	cp $< $@
+
+.PHONY: all tar deb deb-astra rpm apt-rpm suse-rpm urpmi clean desktop branding
