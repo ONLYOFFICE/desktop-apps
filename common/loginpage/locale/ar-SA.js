@@ -1,4 +1,4 @@
-l10n.ar-SA = {
+l10n.ar_SA = {
     welWelcome: 'مرحبًا بك في محرر أونلي أوفس لسطح المكتب!',
     welDescr: 'اعمل على مستنداتك بدون اتصال أو اتصل لسحابتك: أونلي أوفس, ownCloud, Nextcloud.',
     btnConnect: 'اتصل الآن',
