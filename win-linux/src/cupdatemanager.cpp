@@ -95,9 +95,9 @@ const char *SVC_TXT_ERR_UNPACKING   = QT_TRANSLATE_NOOP("CUpdateManager", "An er
            *TXT_ERR_NOT_ALLOWED = QT_TRANSLATE_NOOP("CUpdateManager", "Updates are not allowed!"),
            *TXT_ERR_URL         = QT_TRANSLATE_NOOP("CUpdateManager", "Unable to check update: URL not defined."),
            *TXT_ERR_PACK_URL    = QT_TRANSLATE_NOOP("CUpdateManager", "An error occurred while loading updates: package Url is empty!"),
-           *TXT_ERR_CHECK       = QT_TRANSLATE_NOOP("CUpdateManager", "An error occurred while check updates: Update Service not found!"),
-           *TXT_ERR_LOAD        = QT_TRANSLATE_NOOP("CUpdateManager", "An error occurred while loading updates: Update Service not found!"),
-           *TXT_ERR_UNZIP       = QT_TRANSLATE_NOOP("CUpdateManager", "An error occurred while unzip updates: Update Service not found!"),
+           *TXT_ERR_CHECK       = QT_TRANSLATE_NOOP("CUpdateManager", "An error occurred while check updates: the Update Service is not installed or is not running!"),
+           *TXT_ERR_LOAD        = QT_TRANSLATE_NOOP("CUpdateManager", "An error occurred while loading updates: the Update Service is not installed or is not running!"),
+           *TXT_ERR_UNZIP       = QT_TRANSLATE_NOOP("CUpdateManager", "An error occurred while unzip updates: the Update Service is not installed or is not running!"),
            *TXT_ERR_JSON        = QT_TRANSLATE_NOOP("CUpdateManager", "Error opening JSON file."),
            *TXT_ERR_MD5         = QT_TRANSLATE_NOOP("CUpdateManager", "Update package error: md5 sum does not match the original."),
 
@@ -552,8 +552,10 @@ void CUpdateManager::loadUpdates()
 
 void CUpdateManager::installUpdates()
 {
-    __GLOBAL_LOCK
-    m_dialogSchedule->addToSchedule("showStartInstallMessage");
+    __UNLOCK
+    m_startUpdateOnClose = true;
+    m_restartAfterUpdate = true;
+    AscAppManager::closeAppWindows();
 }
 
 void CUpdateManager::refreshStartPage(const Command &cmd)
@@ -816,7 +818,7 @@ void CUpdateManager::onCheckFinished(bool error, bool updateExist, const QString
 void CUpdateManager::showUpdateMessage(QWidget *parent) {
     int result = WinDlg::showDialog(parent, tr("Update is available"),
                         QString("%1\n%2: %3\n%4: %5\n%6 (%7 MB)").arg(QString(WINDOW_NAME), tr("Current version"),
-                        QString(VER_FILEVERSION_STR), tr("Update version"), getVersion(),
+                        QString(VER_FILEVERSION_STR), tr("New version"), getVersion(),
                         tr("Would you like to download update now?"), m_packageData->fileSize),
                         WinDlg::DlgBtns::mbSkipRemindDownload);
     __UNLOCK
@@ -838,9 +840,9 @@ void CUpdateManager::showUpdateMessage(QWidget *parent) {
 void CUpdateManager::showStartInstallMessage(QWidget *parent)
 {
     int result = WinDlg::showDialog(parent, tr("Update is ready to install"),
-                        QString("%1\n%2: %3\n%4: %5\n%6").arg(QString(WINDOW_NAME), tr("Current version"),
-                        QString(VER_FILEVERSION_STR), tr("Update version"), getVersion(),
-                        tr("Would you like to restart app now?")),
+                        QString("%1: %2\n%3: %4\n%5").arg(tr("Current version"),
+                        QString(VER_FILEVERSION_STR), tr("New version"), getVersion(),
+                        tr("To finish updating, restart the app")),
                         WinDlg::DlgBtns::mbInslaterRestart);
     __UNLOCK
     switch (result) {

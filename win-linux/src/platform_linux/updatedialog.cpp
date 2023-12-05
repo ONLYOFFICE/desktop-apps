@@ -45,8 +45,8 @@
 #define TEXT_SKIP        toCharPtr(QObject::tr("Skip this version"))
 #define TEXT_REMIND      toCharPtr(QObject::tr("Remind me later"))
 #define TEXT_INSTALL     toCharPtr(QObject::tr("Install update"))
-#define TEXT_INSLATER    toCharPtr(QObject::tr("Install later"))
-#define TEXT_RESTART     toCharPtr(QObject::tr("Save and Restart Now"))
+#define TEXT_INSLATER    toCharPtr(QObject::tr("Later"))
+#define TEXT_RESTART     toCharPtr(QObject::tr("Restart Now"))
 #define TEXT_SAVEANDINS  toCharPtr(QObject::tr("Save and Install Now"))
 #define TEXT_DOWNLOAD    toCharPtr(QObject::tr("Download update"))
 #define AddButton(name, response) \
@@ -65,7 +65,7 @@ int WinDlg::showDialog(QWidget *parent,
                        const QString &content,
                        DlgBtns dlgBtns)
 {
-    QString title = QString("  %1").arg(QObject::tr("Software Update"));
+//    QString title = QString("  %1").arg(WINDOW_TITLE);
     QString primaryText = QTextDocumentFragment::fromHtml(msg).toPlainText();
     QString linkText = !QString(RELEASE_NOTES).isEmpty() ?
                 QString("\n<a href=\"%1\">%2</a>").arg(QString(RELEASE_NOTES), QObject::tr("Release notes")) : "";
@@ -92,7 +92,7 @@ int WinDlg::showDialog(QWidget *parent,
     tag.dialog = dialog;
     tag.parent_xid = (ulong)parent_xid;
     g_signal_connect_swapped(G_OBJECT(dialog), "focus_out_event", G_CALLBACK(focus_out), (gpointer)&tag);
-    gtk_window_set_title(GTK_WINDOW(dialog), title.toLocal8Bit().data());
+//    gtk_window_set_title(GTK_WINDOW(dialog), title.toLocal8Bit().data());
     if (!content.isEmpty())
         gtk_message_dialog_format_secondary_text(GTK_MESSAGE_DIALOG(dialog), "%s", content.toLocal8Bit().data());
 
