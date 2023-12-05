@@ -160,7 +160,7 @@ QPushButton#toolButtonDownload {border-right: 1px solid #dfdfdf; max-width: 40px
     color: #d9d9d9;
 }
 
-#mainPanel[uitheme=theme-dark] QPushButton#toolButtonDownload,
+#mainPanel[uitheme=theme-dark] QPushButton#toolButtonDownload {border-color: #505050;}
 #mainPanel[uitheme=theme-dark] QPushButton#toolButtonMain {
     border-right-color: #333;
 }
@@ -223,7 +223,7 @@ QPushButton#toolButtonDownload {border-right: 1px solid #dfdfdf; max-width: 40px
     background: #1e1e1e;
 }
 
-#mainPanel[uitheme=theme-contrast-dark] QPushButton#toolButtonDownload,
+#mainPanel[uitheme=theme-contrast-dark] QPushButton#toolButtonDownload {border-color: #414141;}
 #mainPanel[uitheme=theme-contrast-dark] QPushButton#toolButtonMain {
     border-right-color: #1e1e1e;
 }
@@ -248,6 +248,7 @@ QPushButton#toolButtonDownload {border-right: 1px solid #dfdfdf; max-width: 40px
 /* classic light theme definitions */
 /***********************************/
 
+#mainPanel[uitheme=theme-classic-light] QPushButton#toolButtonDownload {border-color: #cbcbcb;}
 #mainPanel[uitheme=theme-classic-light] QPushButton#toolButtonMain {
     border-right-color: #f1f1f1;
 }
