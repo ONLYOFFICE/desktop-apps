@@ -259,11 +259,33 @@ QDialog::DialogCode PrintDialog::exec()
 
     // Input settings
     HGLOBAL hDevMode = NULL;
+    HGLOBAL hDevNames = NULL;
     {
         HANDLE hPrinter = NULL;
         LPWSTR pPrinterName = &qt_printer_name[0];
         if (OpenPrinter(pPrinterName, &hPrinter, NULL)) {
             DWORD dwNeeded = 0, dwRet = 0;
+            GetPrinter(hPrinter, 2, NULL, 0, &dwNeeded);
+            if (GetLastError() == ERROR_INSUFFICIENT_BUFFER) {
+                PRINTER_INFO_2 *prntInfo = (PRINTER_INFO_2*)GlobalAlloc(GPTR, dwNeeded);
+                if (GetPrinter(hPrinter, 2, (LPBYTE)prntInfo, dwNeeded, &dwRet)) {
+                    dwNeeded = sizeof(DEVNAMES) + 3 * MAX_PATH * sizeof(WCHAR);
+                    hDevNames = GlobalAlloc(GHND, dwNeeded);
+                    Q_ASSERT(hDevNames);
+                    LPDEVNAMES pDevNames = (LPDEVNAMES)GlobalLock(hDevNames);
+                    Q_ASSERT(pDevNames);
+                    pDevNames->wDriverOffset = sizeof(DEVNAMES)/sizeof(WCHAR);
+                    pDevNames->wDeviceOffset = pDevNames->wDriverOffset + MAX_PATH;
+                    pDevNames->wOutputOffset = pDevNames->wDeviceOffset + MAX_PATH;
+                    pDevNames->wDefault = 0;
+                    wcsncpy_s((LPWSTR)pDevNames + pDevNames->wDriverOffset, MAX_PATH, prntInfo->pDriverName, _TRUNCATE);
+                    wcsncpy_s((LPWSTR)pDevNames + pDevNames->wDeviceOffset, MAX_PATH, prntInfo->pPrinterName, _TRUNCATE);
+                    wcsncpy_s((LPWSTR)pDevNames + pDevNames->wOutputOffset, MAX_PATH, prntInfo->pPortName, _TRUNCATE);
+                    GlobalUnlock(hDevNames);
+                }
+                GlobalFree(prntInfo);
+            }
+
             dwNeeded = DocumentProperties(parent_hwnd, hPrinter, pPrinterName, NULL, NULL, 0);
             Q_ASSERT(dwNeeded >= sizeof(DEVMODE));
             hDevMode = GlobalAlloc(GHND, dwNeeded);
@@ -363,7 +385,7 @@ QDialog::DialogCode PrintDialog::exec()
 //    dlg.ExclusionFlags = PD_EXCL_COPIESANDCOLLATE;
     dlg.hwndOwner      = parent_hwnd;
     dlg.hInstance      = NULL;
-    dlg.hDevNames      = NULL;
+    dlg.hDevNames      = hDevNames;
     dlg.hDevMode       = hDevMode;
     dlg.nStartPage     = START_PAGE_GENERAL;
     dlg.nCopies        = qt_copy_count;
@@ -453,6 +475,8 @@ QDialog::DialogCode PrintDialog::exec()
 #endif
         if (hDevMode)
             GlobalFree(hDevMode);
+        if (hDevNames)
+            GlobalFree(hDevNames);
 
         const wchar_t *err = _com_error(hr).ErrorMessage();
         CMessage::error(m_parent, QObject::tr("Unable to open print dialog:<br>%1").arg(QString::fromStdWString(err)));
