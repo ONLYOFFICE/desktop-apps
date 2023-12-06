@@ -380,9 +380,14 @@ QDialog::DialogCode PrintDialog::exec()
     if (hr == S_OK) {
         switch (dlg.dwResultAction) {
         case PD_RESULT_PRINT: {
+            if (dlg.hDevNames) {
+                LPDEVNAMES pDevnames = (LPDEVNAMES)GlobalLock(dlg.hDevNames);
+                LPWSTR lpDeviceName = (LPWSTR)pDevnames + pDevnames->wDeviceOffset;
+                m_printer->setPrinterName(QString::fromWCharArray(lpDeviceName));
+                GlobalUnlock(dlg.hDevNames);
+            }
             if (dlg.hDevMode) {
                 LPDEVMODE pDevmode = (LPDEVMODE)GlobalLock(dlg.hDevMode);
-                m_printer->setPrinterName(QString::fromStdWString(pDevmode->dmDeviceName));
                 m_printer->setColorMode(pDevmode->dmColor == DMCOLOR_COLOR ? QPrinter::Color : QPrinter::GrayScale);
                 m_printer->setPaperSource(pDevmode->dmDefaultSource == DMBIN_AUTO ? QPrinter::Auto :
                                           pDevmode->dmDefaultSource == DMBIN_CASSETTE ? QPrinter::Cassette :
