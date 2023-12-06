@@ -258,7 +258,7 @@ QDialog::DialogCode PrintDialog::exec()
                       m_page_ranges.isEmpty() ? m_pages_count : (DWORD)m_page_ranges[0].toPage};
 
     // Input settings
-    LPDEVMODE pDevMode = NULL;
+    HGLOBAL hDevMode = NULL;
     {
         HANDLE hPrinter = NULL;
         LPWSTR pPrinterName = &qt_printer_name[0];
@@ -266,7 +266,10 @@ QDialog::DialogCode PrintDialog::exec()
             DWORD dwNeeded = 0, dwRet = 0;
             dwNeeded = DocumentProperties(parent_hwnd, hPrinter, pPrinterName, NULL, NULL, 0);
             Q_ASSERT(dwNeeded >= sizeof(DEVMODE));
-            pDevMode = (LPDEVMODE)GlobalAlloc(GPTR, dwNeeded);
+            hDevMode = GlobalAlloc(GHND, dwNeeded);
+            Q_ASSERT(hDevMode);
+            LPDEVMODE pDevMode = (LPDEVMODE)GlobalLock(hDevMode);
+            Q_ASSERT(pDevMode);
             dwRet = DocumentProperties(parent_hwnd, hPrinter, pPrinterName, pDevMode, NULL, DM_OUT_BUFFER);
             if (dwRet == IDOK) {
                 if (pDevMode->dmFields & DM_YRESOLUTION)
@@ -323,9 +326,10 @@ QDialog::DialogCode PrintDialog::exec()
 
                 dwRet = DocumentProperties(parent_hwnd, hPrinter, pPrinterName, pDevMode, pDevMode, DM_IN_BUFFER | DM_OUT_BUFFER);
             }
+            GlobalUnlock(hDevMode);
             if (dwRet != IDOK) {
-                free(pDevMode);
-                pDevMode = NULL;
+                GlobalFree(hDevMode);
+                hDevMode = NULL;
             }
             ClosePrinter(hPrinter);
         }
@@ -360,7 +364,7 @@ QDialog::DialogCode PrintDialog::exec()
     dlg.hwndOwner      = parent_hwnd;
     dlg.hInstance      = NULL;
     dlg.hDevNames      = NULL;
-    dlg.hDevMode       = (HGLOBAL)pDevMode;
+    dlg.hDevMode       = hDevMode;
     dlg.nStartPage     = START_PAGE_GENERAL;
     dlg.nCopies        = qt_copy_count;
     dlg.nMaxPageRanges = MAXPAGERANGES;
@@ -376,8 +380,7 @@ QDialog::DialogCode PrintDialog::exec()
     if (hr == S_OK) {
         switch (dlg.dwResultAction) {
         case PD_RESULT_PRINT: {
-            LPDEVMODE pDevmode = (LPDEVMODE)GlobalLock(dlg.hDevMode);
-            if (pDevmode) {
+            if (LPDEVMODE pDevmode = (LPDEVMODE)GlobalLock(dlg.hDevMode)) {
                 m_printer->setPrinterName(QString::fromStdWString(pDevmode->dmDeviceName));
                 m_printer->setColorMode(pDevmode->dmColor == DMCOLOR_COLOR ? QPrinter::Color : QPrinter::GrayScale);
                 m_printer->setPaperSource(pDevmode->dmDefaultSource == DMBIN_AUTO ? QPrinter::Auto :
@@ -424,8 +427,8 @@ QDialog::DialogCode PrintDialog::exec()
                 QPageSize ps(QSizeF(width, height), QPageSize::Millimeter);
                 m_printer->setPageSize(ps);
                 m_printer->setPageOrientation(pDevmode->dmOrientation == DMORIENT_PORTRAIT ? QPageLayout::Portrait : QPageLayout::Landscape);
+                GlobalUnlock(dlg.hDevMode);
             }
-            GlobalUnlock(dlg.hDevMode);
             exit_code = QDialog::DialogCode::Accepted;
             break;
         }
@@ -444,8 +447,8 @@ QDialog::DialogCode PrintDialog::exec()
         if (dialog_was_changed)   // Restore print dialog type
             resetLegacyPrintDialog();
 #endif
-        if (pDevMode)
-            GlobalFree(pDevMode);
+        if (hDevMode)
+            GlobalFree(hDevMode);
 
         const wchar_t *err = _com_error(hr).ErrorMessage();
         CMessage::error(m_parent, QObject::tr("Unable to open print dialog:<br>%1").arg(QString::fromStdWString(err)));
