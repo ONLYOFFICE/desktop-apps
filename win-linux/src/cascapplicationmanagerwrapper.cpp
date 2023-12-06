@@ -331,30 +331,28 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
                 QJsonObject json_obj = Utils::parseJsonFile(file_path);
                 if ( !json_obj.isEmpty() ) {
                     if ( json_obj.contains("id") ) {
-                        QString id = json_obj.value("id").toString();
-                        if ( themes().contains(id) ) {
-                            qDebug() << "theme is already loaded";
-                            CMessage::info(WindowHelper::currentTopWindow(), "This theme has been already loaded");
-                        } else {
-                            if ( themes().addLocalTheme(json_obj, file_path) ) {
-                                QJsonArray local_themes_array = themes().localThemesToJson();
-                                if ( !local_themes_array.isEmpty() ) {
-                                    EditorJSVariables::setVariable("localthemes", local_themes_array);
-                                    EditorJSVariables::apply();
-                                }
-
-                                qDebug() << "send theme to editors";
-
-                                QJsonArray new_local_themes;
-                                new_local_themes.append(json_obj);
-                                sendCommandToAllEditors(L"uitheme:added",
-                                                        QString(QJsonDocument(new_local_themes).toJson(QJsonDocument::Compact)).toStdWString());
-                            }
+                        if ( m_themes->checkDestinationThemeFileExist(file_path) ) {
+                            int res = CMessage::showMessage(WindowHelper::currentTopWindow(),
+                                                            QObject::tr("File %1 is already loaded. Replace it?").arg(QFileInfo(file_path).fileName()),
+                                                            MsgType::MSG_CONFIRM, MsgBtns::mbYesDefNo);
+                            if ( res == MODAL_RESULT_NO )
+                                return true;
                         }
 
-                        QTimer::singleShot(0, this, [id]{
-                            AscAppManager::getInstance().applyTheme(id.toStdWString());
-                        });
+                        if ( themes().addLocalTheme(json_obj, file_path) ) {
+                            QJsonArray local_themes_array = themes().localThemesToJson();
+                            if ( !local_themes_array.isEmpty() ) {
+                                EditorJSVariables::setVariable("localthemes", local_themes_array);
+                                EditorJSVariables::apply();
+                            }
+
+                            qDebug() << "send theme to editors";
+
+                            QJsonArray new_local_themes;
+                            new_local_themes.append(json_obj);
+                            sendCommandToAllEditors(L"uitheme:added",
+                                                    QString(QJsonDocument(new_local_themes).toJson(QJsonDocument::Compact)).toStdWString());
+                        }
                     } else {
                         qDebug() << "theme source is broken";
                         CMessage::error(WindowHelper::currentTopWindow(), "This file doesn't contain theme");

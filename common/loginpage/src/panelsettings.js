@@ -80,11 +80,16 @@
             }
         }
 
-        const write_theme_css = function (css) {
+        const write_theme_css = function (css, id) {
             if ( !!css ) {
+                const $style = $(`style [data-theme-id=${id}]`);
+                if ( $style.length )
+                    $style.remove();
+
                 let style = document.createElement('style');
                 style.type = 'text/css';
                 style.innerHTML = css;
+                style.setAttribute('data-theme-id', id);
                 document.getElementsByTagName('head')[0].appendChild(style);
             }
         }
@@ -93,7 +98,7 @@
             for ( const t of nativevars.localthemes ) {
                 const _css = create_colors_css(t.id, t.colors);
                 if ( _css ) {
-                    write_theme_css(_css);
+                    write_theme_css(_css, t.id);
                     themes_map[t.id] = {text: t.name, type: t.type, l10n: t.l10n};
                 }
             }
@@ -329,7 +334,7 @@
                 objs.forEach(t => {
                     const _css = create_colors_css(t.id, t.colors);
                     if ( _css ) {
-                        write_theme_css(_css);
+                        write_theme_css(_css, t.id);
                         themes_map[t.id] = {text: t.name, type: t.type, l10n: t.l10n};
 
                         const _theme_title = t.l10n[utils.Lang.id] || t.name;
@@ -535,14 +540,13 @@
                                 ($optsUITheme = _combo)
                                 .val(opts.uitheme)
                                 .selectpicker().on('changed.bs.select', (e, index, selected, previous) => {
-                                    $btnApply.isdisabled() && $btnApply.disable(false);
-
-                                    console.log('select theme', index, selected, previous);
                                     if ( selected && e.target.value == 'add' ) {
                                         sdk.command("uitheme:add", "local");
 
                                         $optsUITheme.val(previous)
                                                     .selectpicker('refresh');
+                                    } else {
+                                        $btnApply.isdisabled() && $btnApply.disable(false);
                                     }
                                 })
                                 .parents('.settings-field').show();
@@ -642,6 +646,11 @@
 
                 if ( _theme ) {
                     _add_themes(_theme);
+
+                    $optsUITheme.val(_theme[0].id)
+                                .selectpicker('refresh');
+
+                    $btnApply.isdisabled() && $btnApply.disable(false);
                 }
             } else
             if (/renderervars:changed/.test(cmd)) {

@@ -615,6 +615,12 @@ auto CThemes::localThemesToJson() -> QJsonArray
     return json_themes_array;
 }
 
+auto CThemes::checkDestinationThemeFileExist(const QString& srcfilepath) -> bool
+{
+    const QString dest_file_path = getUserThemesPath() + "/" + QFileInfo(srcfilepath).fileName();
+    return QFile::exists(dest_file_path);
+}
+
 auto CThemes::onSystemDarkColorScheme(bool isdark) -> void
 {
     if ( isdark != m_priv->is_system_theme_dark ) {
