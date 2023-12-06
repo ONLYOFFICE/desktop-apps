@@ -78,6 +78,11 @@ namespace NSTheme {
         };
 }
 
+auto getUserThemesPath() -> QString
+{
+    return Utils::getAppCommonPath() + "/uithemes";
+}
+
 /*
  * CThemePrivate
 */
@@ -200,7 +205,7 @@ public:
 
             QString file_path = search_user_theme({Utils::getAppCommonPath() + "/uithemes",
                                                    qApp->applicationDirPath() + "/uithemes"}, user_theme);
-            if ( !file_path.isEmpty() || !current->fromFile(file_path) ) {
+            if ( file_path.isEmpty() || !current->fromFile(file_path) ) {
                 user_theme = THEME_ID_SYSTEM;
             }
         } else
@@ -570,17 +575,23 @@ auto CThemes::addLocalTheme(const QJsonObject& jsonobj, const QString& filepath)
 {
     if ( m_priv->validateTheme(jsonobj) ) {
         if ( !filepath.isEmpty() ) {
-            const QString dest_dir = Utils::getAppCommonPath() + "/uithemes";
-            if ( QDir(dest_dir).mkpath(".") )
-                if (!QFile::copy(filepath, dest_dir + "/" + QFileInfo(filepath).fileName()))
+            const QString dest_dir = getUserThemesPath();
+            if ( QDir(dest_dir).mkpath(".") ) {
+                QString dest_file_path = dest_dir + "/" + QFileInfo(filepath).fileName();
+                if ( QFile::exists(dest_file_path) )
+                    QFile::remove(dest_file_path);
+
+                if (!QFile::copy(filepath, dest_file_path))
                     return false;
+                else {
+                    QByteArray data = QJsonDocument(jsonobj).toJson(QJsonDocument::Compact);
+//                    m_priv->local_themes[jsonobj.value("id").toString()] = std::make_pair("", data);
+                    m_priv->local_themes[jsonobj.value("id").toString()] = std::make_pair(dest_file_path, data);
+
+                    return true;
+                }
+            }
         }
-
-        QByteArray data = QJsonDocument(jsonobj).toJson(QJsonDocument::Compact);
-        m_priv->local_themes[jsonobj.value("id").toString()] = std::make_pair("", data);
-//        m_priv->local_themes[jsonobj.value("id").toString()] = std::make_pair(fileName, data);
-
-        return true;
     }
 
     return false;
