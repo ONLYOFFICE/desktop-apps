@@ -1783,24 +1783,38 @@ end;
 
 procedure AddContextMenuNewItems;
 var
-  dir, regpath, progpath, oldValue: String;
+  lang, dir, regpath, progpath, oldValue: String;
   langs, args, values: TArrayOfString;
   version: TWindowsVersion;
+  found: Boolean;
   i: Integer;
 begin
-  langs := ['az-Latn-AZ', 'bg-BG', 'cs-CZ', 'de-DE', 'el-GR', 'en-GB', 'en-US', 'es-ES', 
+  langs := ['az-Latn-AZ', 'bg-BG', 'cs-CZ', 'de-DE', 'el-GR', 'en-US', 'en-GB', 'es-ES', 
             'eu-ES',      'fr-FR', 'gl-ES', 'hy-AM', 'it-IT', 'ja-JP', 'ko-KR', 'lv-LV', 
-            'ms-MY',      'nl-NL', 'pl-PL', 'pt-BR', 'pt-PT', 'ru-RU', 'sk-SK', 'sv-SE', 
+            'ms-MY',      'nl-NL', 'pl-PL', 'pt-PT', 'pt-BR', 'ru-RU', 'sk-SK', 'sv-SE', 
             'tr-TR',      'uk-UA', 'vi-VN', 'zh-CN', 'zh-TW'];
 
+  found := False;
   dir := 'en-US';
+  lang := ExpandConstant('{language}');
+  StringChangeEx(lang, '_', '-', True);
   for i := 0 to GetArrayLength(langs) - 1 do begin
-    if langs[i] = ExpandConstant('{language}') then begin
+    if langs[i] = lang then begin
        dir := langs[i];
+       found := True;
        break;
     end;
   end;
-  
+
+  if not found then begin
+    for i := 0 to GetArrayLength(langs) - 1 do begin
+      if Copy(langs[i], 1, 2) = lang then begin
+        dir := langs[i];
+        break;
+      end;
+    end;
+  end;
+
   args := ['new.docx:.docx:.Document.12:7', 
            'new.pptx:.pptx:.Show.12:9', 
            'new.xlsx:.xlsx:.Sheet.12:10' 
