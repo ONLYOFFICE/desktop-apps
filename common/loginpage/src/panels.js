@@ -35,6 +35,16 @@ $(document).ready(function() {
     $('.tool-menu').on('click', '> .menu-item > a', onActionClick);
     $('.tool-quick-menu .menu-item a').click(onNewFileClick);
 
+    if ( window.utils.isWinXp ) {
+        $('a[action] use').each((i, e) => {
+            const _attr_href = e.getAttribute('href');
+            if ( !!_attr_href ) {
+                const $el = $(e), $parent = $el.parent();
+                $el.remove();
+                $parent.html(`<use xlink:href="${_attr_href}"></use>`);
+            }
+        });
+    }
 
     !window.app && (window.app = {controller:{}});
     !window.app.controller && (window.app.controller = {});
