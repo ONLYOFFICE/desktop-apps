@@ -85,6 +85,7 @@ int WinDlg::showDialog(QWidget *parent,
                                     "%s",
                                     primaryText.toLocal8Bit().data());
 
+    gtk_window_set_skip_taskbar_hint(GTK_WINDOW(dialog), TRUE);
     g_signal_connect(G_OBJECT(dialog), "realize", G_CALLBACK(set_parent), (gpointer)&parent_xid);
     g_signal_connect(G_OBJECT(dialog), "map_event", G_CALLBACK(set_focus), NULL);
     DialogTag tag;  // unable to send parent_xid via g_signal_connect and "focus_out_event"
