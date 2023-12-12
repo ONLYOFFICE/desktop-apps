@@ -67,8 +67,8 @@ int main( int argc, char *argv[] )
 #endif
     QCoreApplication::setAttribute(Qt::AA_DisableHighDpiScaling);
     QCoreApplication::setAttribute(Qt::AA_Use96Dpi);
-    QCoreApplication::setApplicationName(QString::fromUtf8(WINDOW_NAME));
-    QApplication::setApplicationDisplayName(QString::fromUtf8(WINDOW_NAME));
+    QCoreApplication::setApplicationName(QString::fromLocal8Bit(WINDOW_NAME));
+    QApplication::setApplicationDisplayName(QString::fromLocal8Bit(WINDOW_NAME));
 
     QString user_data_path = Utils::getUserPath() + APP_DATA_PATH;
     auto setup_paths = [&user_data_path](CAscApplicationManager * manager) {
