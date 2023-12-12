@@ -176,6 +176,12 @@
                                                 </section>
                                             </div>
                                         </div>
+                                        <div class='settings-field' style='display:none;'>
+                                            <section class='switch-labeled hbox' id='sett-box-rtl-mode'>
+                                                <input type="checkbox" class="checkbox" id="sett-rtl-mode">
+                                                <label for="sett-rtl-mode" class='sett__caption' l10n>RTL Interface *</label>
+                                            </section>
+                                        </div>
                                         <div class='settings-field' id='opts-ui-scaling' style='display:none'>
                                             <label class='sett__caption' l10n>${_lang.settScaling}</label><label class='sett__caption'> *</label>
                                             <div class='sett--label-lift-top hbox'>
@@ -260,12 +266,6 @@
                                             </section>
                                         </div>
                                         <!-- end section -->
-                                        <div class='settings-field' style='display:none;'>
-                                            <section class='switch-labeled hbox' id='sett-box-rtl-mode'>
-                                                <input type="checkbox" class="checkbox" id="sett-rtl-mode">
-                                                <label for="sett-rtl-mode" class='sett__caption' l10n>RTL Interface *</label>
-                                            </section>
-                                        </div>
                                     </section>
                                     <div class="lst-tools" id="sett-tools-dyn">
                                         <button class="btn btn--primary sett-btn--apply" id="sett-btn-apply" l10n>${_lang.setBtnApply}</button>
@@ -434,12 +434,20 @@
                 $btnApply.disable(false);
         };
 
+        function _is_lang_rtl(code) {
+            return code == 'ar-SA';
+        }
+
         function _on_lang_change(e) {
             let l = $optsLang.find('select').val(),
                 c = utils.Lang.tr('setBtnApply', l);
             if ( !!c ) $btnApply.text(c);
             if ( $btnApply.isdisabled() ) {
                 $btnApply.disable(false);
+            }
+
+            if ( $chRtl ) {
+                $chRtl.prop("checked", _is_lang_rtl(l));
             }
 
             $optsLang.toggleClass('notted', true);
