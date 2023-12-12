@@ -30,6 +30,9 @@
  *
 */
 
+#ifdef __linux__
+# include "platform_linux/gtkutils.h"
+#endif
 #include "utils.h"
 #include "defines.h"
 #include <QSettings>
@@ -710,6 +713,18 @@ bool Utils::updatesAllowed()
     return false;
 }
 
+void Utils::addToRecent(const std::wstring &path)
+{
+    QString _path = QString::fromStdWString(path);
+#ifdef _WIN32
+    QString appPath = qApp->applicationDirPath();
+    QProcess::startDetached(appPath + "/" + QString(REG_APP_NAME), {"--add-to-recent", QDir::toNativeSeparators(_path)}, appPath);
+#else
+    std::string uri = "file://" + _path.toStdString();
+    add_to_recent(uri.c_str());
+#endif
+}
+
 #ifdef _WIN32
 Utils::WinVer Utils::getWinVersion()
 {
@@ -748,13 +763,6 @@ Utils::WinVer Utils::getWinVersion()
             return  WinVer::Win11;
     }
     return WinVer::Undef;
-}
-
-void Utils::addToRecent(const std::wstring &path)
-{
-    QString _path = QString::fromStdWString(path);
-    QString appPath = qApp->applicationDirPath();
-    QProcess::startDetached(appPath + "/" + QString(REG_APP_NAME), {"--add-to-recent", QDir::toNativeSeparators(_path)}, appPath);
 }
 
 std::atomic_bool sessionInProgress{true};

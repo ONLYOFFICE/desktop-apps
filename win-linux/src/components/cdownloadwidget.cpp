@@ -343,9 +343,7 @@ void CDownloadWidget::downloadProcess(void * info)
                             CMessage::error(parentWidget(), tr("Can't open file: ") + path);
                     } else {
                         AscAppManager::handleInputCmd({path.toStdWString()});
-#ifdef _WIN32
                         Utils::addToRecent(path.toStdWString());
-#endif
                     }
                 });
 

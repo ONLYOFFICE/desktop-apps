@@ -232,9 +232,7 @@ public:
                             CMessage::error(m_appmanager.mainWindow()->handle(),
                                             QObject::tr("File %1 cannot be opened or doesn't exists.").arg(_info.fileName()));
                         }
-#ifdef _WIN32
                         else Utils::addToRecent(file_path);
-#endif
                     }
                 }
 
