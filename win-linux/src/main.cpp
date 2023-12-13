@@ -69,7 +69,7 @@ int main( int argc, char *argv[] )
     QCoreApplication::setAttribute(Qt::AA_DisableHighDpiScaling);
     QCoreApplication::setAttribute(Qt::AA_Use96Dpi);
     //QTextCodec::setCodecForTr(QTextCodec::codecForName("Windows-1251"));
-    QCoreApplication::setApplicationName(QString(WINDOW_NAME) + " (1)");
+    QCoreApplication::setApplicationName(QString(WINDOW_NAME) + " (1) (фыва)");
     QApplication::setApplicationDisplayName(QString(WINDOW_NAME) + " (2)");
 
     QString user_data_path = Utils::getUserPath() + APP_DATA_PATH;
