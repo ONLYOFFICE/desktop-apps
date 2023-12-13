@@ -21,6 +21,7 @@ sk.CAPTION_TEXT =Servis aktualizácie ONLYOFFICE
 sl.CAPTION_TEXT =Storitev posodabljanja ONLYOFFICE
 tr.CAPTION_TEXT =ONLYOFFICE Güncelleme Hizmeti
 uk.CAPTION_TEXT =Служба оновлень ONLYOFFICE
+vi.CAPTION_TEXT =Dịch vụ Cập nhật ONLYOFFICE
 
 en.MESSAGE_TEXT_ERR1 =An error occurred:
 ru.MESSAGE_TEXT_ERR1 =Произошла ошибка:
@@ -44,6 +45,7 @@ sk.MESSAGE_TEXT_ERR1 =Vyskytla sa chyba:
 sl.MESSAGE_TEXT_ERR1 =Pojavila se je napaka:
 tr.MESSAGE_TEXT_ERR1 =Bir hata oluştu:
 uk.MESSAGE_TEXT_ERR1 =Сталася помилка:
+vi.MESSAGE_TEXT_ERR1 =Đã xảy ra lỗi:
 
 en.MESSAGE_TEXT_ERR2 =An error occurred while deleting:
 ru.MESSAGE_TEXT_ERR2 =Произошла ошибка при удалении:
@@ -67,6 +69,7 @@ sk.MESSAGE_TEXT_ERR2 =Pri vymazávaní došlo k chybe:
 sl.MESSAGE_TEXT_ERR2 =Pojavila se je napaka med brisanjem:
 tr.MESSAGE_TEXT_ERR2 =Silinirken bir hata oluştu:
 uk.MESSAGE_TEXT_ERR2 =Сталася помилка під час видалення:
+vi.MESSAGE_TEXT_ERR2 =Đã xảy ra lỗi khi xóa:
 
 en.MESSAGE_TEXT_ERR3 =An error occurred while creating:
 ru.MESSAGE_TEXT_ERR3 =Произошла ошибка при создании:
@@ -90,6 +93,7 @@ sk.MESSAGE_TEXT_ERR3 =Pri vytváraní došlo k chybe:
 sl.MESSAGE_TEXT_ERR3 =Pojavila se je napaka md ustvarjanjem:
 tr.MESSAGE_TEXT_ERR3 =Oluşturulurken bir hata oluştu:
 uk.MESSAGE_TEXT_ERR3 =Сталася помилка під час створення:
+vi.MESSAGE_TEXT_ERR3 =Đã xảy ra lỗi khi tạo:
 
 en.MESSAGE_TEXT_ERR4 =An error occurred while restarting the service!
 ru.MESSAGE_TEXT_ERR4 =Произошла ошибка при перезапуске сервиса!
@@ -113,6 +117,7 @@ sk.MESSAGE_TEXT_ERR4 =Pri reštartovaní služby došlo k chybe!
 sl.MESSAGE_TEXT_ERR4 =Med ponovnim zagonom storitve je prišlo do napake!
 tr.MESSAGE_TEXT_ERR4 =Hizmet yeniden başlatılırken bir hata oluştu!
 uk.MESSAGE_TEXT_ERR4 =Сталася помилка під час перезапуску служби!
+vi.MESSAGE_TEXT_ERR4 =Đã xảy ra lỗi khi khởi động lại dịch vụ!
 
 en.MESSAGE_TEXT_ERR5 =Update cancelled. Can't find folder:
 ru.MESSAGE_TEXT_ERR5 =Обновление отменено. Не удалось найти папку:
@@ -136,6 +141,7 @@ sk.MESSAGE_TEXT_ERR5 =Aktualizácia zrušená. Nie je možné nájsť priečinok
 sl.MESSAGE_TEXT_ERR5 =Posodobitev preklicana. Ne najdem mape:
 tr.MESSAGE_TEXT_ERR5 =Güncelleme iptal edildi. Klasör bulunamıyor:
 uk.MESSAGE_TEXT_ERR5 =Оновлення скасовано. Не вдається знайти папку:
+vi.MESSAGE_TEXT_ERR5 =Đã hủy cập nhật. Không thể tìm thấy thư mục:
 
 en.MESSAGE_TEXT_ERR6 =Update cancelled. The file signature is missing:
 ru.MESSAGE_TEXT_ERR6 =Обновление отменено. Отсутствует подпись файла:
@@ -159,6 +165,7 @@ sk.MESSAGE_TEXT_ERR6 =Aktualizácia zrušená. Chýba podpis súboru:
 sl.MESSAGE_TEXT_ERR6 =Posodobitev preklicana. Manjka podpis datoteke:
 tr.MESSAGE_TEXT_ERR6 =Güncelleme iptal edildi. Dosya imzası eksik:
 uk.MESSAGE_TEXT_ERR6 =Оновлення скасовано. Відсутній підпис файлу:
+vi.MESSAGE_TEXT_ERR6 =Đã hủy cập nhật. Thiếu chữ ký tập tin:
 
 en.MESSAGE_TEXT_ERR7 =Update cancelled. Can't delete folder:
 ru.MESSAGE_TEXT_ERR7 =Обновление отменено. Не удалось удалить папку:
@@ -182,6 +189,7 @@ sk.MESSAGE_TEXT_ERR7 =Aktualizácia zrušená. Nie je možné odstrániť prieč
 sl.MESSAGE_TEXT_ERR7 =Posodobitev preklicana. Mape ni mogoče izbrisati:
 tr.MESSAGE_TEXT_ERR7 =Güncelleme iptal edildi. Klasör silinemiyor:
 uk.MESSAGE_TEXT_ERR7 =Оновлення скасовано. Не вдається видалити папку:
+vi.MESSAGE_TEXT_ERR7 =Đã hủy cập nhật. Không thể xóa thư mục:
 
 en.MESSAGE_TEXT_ERR8 =Update cancelled. The program is not closed:
 ru.MESSAGE_TEXT_ERR8 =Обновление отменено. Приложение не закрыто:
@@ -205,6 +213,7 @@ sk.MESSAGE_TEXT_ERR8 =Aktualizácia zrušená. Program nie je ukončený:
 sl.MESSAGE_TEXT_ERR8 =Posodobitev preklicana. Program ni zaprt:
 tr.MESSAGE_TEXT_ERR8 =Güncelleme iptal edildi. Program kapalı değil:
 uk.MESSAGE_TEXT_ERR8 =Оновлення скасовано. Програма не закрита:
+vi.MESSAGE_TEXT_ERR8 =Đã hủy cập nhật. Chương trình chưa được đóng:
 
 en.MESSAGE_TEXT_ERR9 =Update cancelled. Can't create folder:
 ru.MESSAGE_TEXT_ERR9 =Обновление отменено. Не удалось создать папку:
@@ -228,6 +237,7 @@ sk.MESSAGE_TEXT_ERR9 =Aktualizácia zrušená. Nie je možné vytvoriť priečin
 sl.MESSAGE_TEXT_ERR9 =Posodobitev preklicana. Mape ni mogoče ustvariti:
 tr.MESSAGE_TEXT_ERR9 =Güncelleme iptal edildi. Klasör oluşturulamıyor:
 uk.MESSAGE_TEXT_ERR9 =Оновлення скасовано. Не вдається створити папку:
+vi.MESSAGE_TEXT_ERR9 =Đã hủy cập nhật. Không thể tạo thư mục:
 
 en.MESSAGE_TEXT_ERR10 =Update cancelled. Can't replace files to backup:
 ru.MESSAGE_TEXT_ERR10 =Обновление отменено. Не удалось переместить файлы в резервную копию:
@@ -251,6 +261,7 @@ sk.MESSAGE_TEXT_ERR10 =Aktualizácia zrušená. Nie je možné nahradiť súbory
 sl.MESSAGE_TEXT_ERR10 =Posodobitev preklicana. Datotek za varnostno kopiranje ni mogoče zamenjati:
 tr.MESSAGE_TEXT_ERR10 =Güncelleme iptal edildi. Yedeklenecek dosyalar değiştirilemiyor:
 uk.MESSAGE_TEXT_ERR10 =Оновлення скасовано. Не вдається замінити файли для резервної копії:
+vi.MESSAGE_TEXT_ERR10 =Đã hủy cập nhật. Không thể thay thế tập tin để sao lưu:
 
 en.MESSAGE_TEXT_ERR11 =Can't restore files from backup!
 ru.MESSAGE_TEXT_ERR11 =Не удалось восстановить файлы из резервной копии!
@@ -274,6 +285,7 @@ sk.MESSAGE_TEXT_ERR11 =Nie je možné obnoviť súbory zo zálohy!
 sl.MESSAGE_TEXT_ERR11 =Datotek ni mogoče obnoviti iz varnostne kopije!
 tr.MESSAGE_TEXT_ERR11 =Dosyalar yedeklemeden geri yüklenemiyor!
 uk.MESSAGE_TEXT_ERR11 =Не вдається відновити файли з резервної копії!
+vi.MESSAGE_TEXT_ERR11 =Không thể khôi phục tập tin từ bản sao lưu!
 
 en.MESSAGE_TEXT_ERR12 =Update cancelled. Can't move updates to App path:
 ru.MESSAGE_TEXT_ERR12 =Обновление отменено. Не удалось переместить обновления в папку приложения:
@@ -297,6 +309,7 @@ sk.MESSAGE_TEXT_ERR12 =Aktualizácia zrušená. Nie je možné presunúť aktual
 sl.MESSAGE_TEXT_ERR12 =Posodobitev preklicana. Posodobitev ni mogoče premakniti na pot aplikacije:
 tr.MESSAGE_TEXT_ERR12 =Güncelleme iptal edildi. Güncellemeler Uygulama yoluna taşınamıyor:
 uk.MESSAGE_TEXT_ERR12 =Оновлення скасовано. Не вдається перемістити оновлення до шляху застосунку:
+vi.MESSAGE_TEXT_ERR12 =Đã hủy cập nhật. Không thể chuyển các bản cập nhật sang đường dẫn Ứng dụng:
 
 en.MESSAGE_TEXT_ERR13 =An error occurred while remove App path:
 ru.MESSAGE_TEXT_ERR13 =Произошла ошибка при удалении папки приложения:
@@ -320,6 +333,7 @@ sk.MESSAGE_TEXT_ERR13 =Pri odstraňovaní cesty k aplikácii došlo k chybe:
 sl.MESSAGE_TEXT_ERR13 =Pri odstranjevanju poti aplikacije je prišlo do napake:
 tr.MESSAGE_TEXT_ERR13 =Uygulama yolu kaldırılırken bir hata oluştu:
 uk.MESSAGE_TEXT_ERR13 =Сталася помилка під час видалення шляху застосунку:
+vi.MESSAGE_TEXT_ERR13 =Đã xảy ra lỗi khi xóa đường dẫn Ứng dụng:
 
 en.MESSAGE_TEXT_ERR14 =An error occurred while restore files from backup:
 ru.MESSAGE_TEXT_ERR14 =Произошла ошибка при восстановлении файлов из резервной копии:
@@ -343,6 +357,7 @@ sk.MESSAGE_TEXT_ERR14 =Pri obnovovaní súborov zo zálohy došlo k chybe:
 sl.MESSAGE_TEXT_ERR14 =Med obnavljanjem datotek iz varnostne kopije je prišlo do napake:
 tr.MESSAGE_TEXT_ERR14 =Yedeklemeden dosyalar geri yüklenirken bir hata oluştu:
 uk.MESSAGE_TEXT_ERR14 =Сталася помилка під час відновлення файлів із резервної копії:
+vi.MESSAGE_TEXT_ERR14 =Đã xảy ra lỗi khi khôi phục tập tin từ bản sao lưu:
 
 en.MESSAGE_TEXT_ERR15 =An error occurred while restarting the program!
 ru.MESSAGE_TEXT_ERR15 =Произошла ошибка при перезапуске приложения!
@@ -366,6 +381,7 @@ sk.MESSAGE_TEXT_ERR15 =Pri reštartovaní programu došlo k chybe!
 sl.MESSAGE_TEXT_ERR15 =Pri ponovnem zagonu programa je prišlo do napake!
 tr.MESSAGE_TEXT_ERR15 =Program yeniden başlatılırken bir hata oluştu!
 uk.MESSAGE_TEXT_ERR15 =Сталася помилка під час перезапуску програми!
+vi.MESSAGE_TEXT_ERR15 =Đã xảy ra lỗi khi khởi động lại chương trình!
 
 en.MESSAGE_TEXT_ERR16 =SDL init error:
 ru.MESSAGE_TEXT_ERR16 =Ошибка инициализации SDL:
@@ -389,6 +405,7 @@ sk.MESSAGE_TEXT_ERR16 =Chyba SDL init:
 sl.MESSAGE_TEXT_ERR16 =Napaka pri zagonu SDL:
 tr.MESSAGE_TEXT_ERR16 =SDL başlatma hatası:
 uk.MESSAGE_TEXT_ERR16 =Помилка запуску SDL:
+vi.MESSAGE_TEXT_ERR16 =Lỗi khởi tạo SDL:
 
 en.MESSAGE_TEXT_ERR17 =ServiceCtrlDispatcher returned error:
 ru.MESSAGE_TEXT_ERR17 =ServiceCtrlDispatcher вернул ошибку:
@@ -412,3 +429,4 @@ sk.MESSAGE_TEXT_ERR17 =ServiceCtrlDispatcher vrátil chybu:
 sl.MESSAGE_TEXT_ERR17 =ServiceCtrlDispatcher je vrnil napako:
 tr.MESSAGE_TEXT_ERR17 =ServiceCtrlDispatcher hata döndürdü:
 uk.MESSAGE_TEXT_ERR17 =ServiceCtrlDispatcher повернув помилку:
+vi.MESSAGE_TEXT_ERR17 =ServiceCtrlDispatcher đã trả lỗi:
