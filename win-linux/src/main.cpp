@@ -45,6 +45,7 @@
 #include "chelp.h"
 #include "common/File.h"
 #include <QStyleFactory>
+#include <QTextCodec>
 
 
 int main( int argc, char *argv[] )
@@ -67,6 +68,7 @@ int main( int argc, char *argv[] )
 #endif
     QCoreApplication::setAttribute(Qt::AA_DisableHighDpiScaling);
     QCoreApplication::setAttribute(Qt::AA_Use96Dpi);
+    QTextCodec::setCodecForTr(QTextCodec::codecForName("Windows-1251"));
     QCoreApplication::setApplicationName(QObject::tr(WINDOW_NAME) + " (1)");
     QApplication::setApplicationDisplayName(QObject::tr(WINDOW_NAME) + " (2)");
 
