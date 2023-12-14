@@ -339,8 +339,7 @@ void CDownloadWidget::downloadProcess(void * info)
                 connect(open, &QPushButton::clicked, this, [=]() {
                     hide();
                     if (CCefViewEditor::GetFileFormat(path.toStdWString()) == 0) {
-                        if (!QDesktopServices::openUrl(QUrl::fromLocalFile(path)))
-                            CMessage::error(parentWidget(), tr("Can't open file: ") + path);
+                        Utils::openUrl(QUrl::fromLocalFile(path).toString());
                     } else {
                         AscAppManager::handleInputCmd({path.toStdWString()});
 #ifdef _WIN32
