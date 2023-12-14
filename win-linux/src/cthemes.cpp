@@ -298,7 +298,22 @@ public:
     }
 
     auto validateTheme(const QJsonObject& root) -> bool {
-        if ( root.contains("id") ) {
+        if ( root.contains("id") && root.contains("name") ) {
+            static QRegularExpression _re_legal_symb("[^\\w\\d\\-]");
+//            static QRegularExpression _re_legal_color("[^\\w\\d\\-\\#]");
+            if ( root.value("id").toString().contains(_re_legal_symb) ) {
+                return false;
+            }
+
+            if ( root.contains("colors") ) {
+                const QJsonObject _colors = root.value("colors").toObject();
+                foreach (const auto& c, _colors.keys()) {
+                    if ( c.contains(_re_legal_symb) /*|| _colors[c].toString().contains(_re_legal_color)*/ ) {
+                        return false;
+                    }
+                }
+            }
+
             return true;
         }
         return false;
@@ -527,6 +542,11 @@ auto CThemes::contains(const QString& id) -> bool
 {
     return m_priv->local_themes.find(id) != m_priv->local_themes.end() ||
                 m_priv->rc_themes.find(id) != m_priv->rc_themes.end();
+}
+
+auto CThemes::validate(const QJsonObject& json) -> bool
+{
+    return m_priv->validateTheme(json);
 }
 
 auto CThemes::isColorDark(const std::wstring& color) -> bool

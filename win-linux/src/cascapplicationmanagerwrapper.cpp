@@ -339,19 +339,22 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
                                 return true;
                         }
 
-                        if ( themes().addLocalTheme(json_obj, file_path) ) {
-                            QJsonArray local_themes_array = themes().localThemesToJson();
-                            if ( !local_themes_array.isEmpty() ) {
-                                EditorJSVariables::setVariable("localthemes", local_themes_array);
-                                EditorJSVariables::apply();
+                        if ( !themes().validate(json_obj) ) {
+                            qDebug() << "theme source is broken";
+                            CMessage::error(WindowHelper::currentTopWindow(), "Selected theme isn't valid");
+                        } else {
+                            if ( themes().addLocalTheme(json_obj, file_path) ) {
+                                QJsonArray local_themes_array = themes().localThemesToJson();
+                                if ( !local_themes_array.isEmpty() ) {
+                                    EditorJSVariables::setVariable("localthemes", local_themes_array);
+                                    EditorJSVariables::apply();
+                                }
+
+                                QJsonArray new_local_themes;
+                                new_local_themes.append(json_obj);
+                                sendCommandToAllEditors(L"uitheme:added",
+                                                        QString(QJsonDocument(new_local_themes).toJson(QJsonDocument::Compact)).toStdWString());
                             }
-
-                            qDebug() << "send theme to editors";
-
-                            QJsonArray new_local_themes;
-                            new_local_themes.append(json_obj);
-                            sendCommandToAllEditors(L"uitheme:added",
-                                                    QString(QJsonDocument(new_local_themes).toJson(QJsonDocument::Compact)).toStdWString());
                         }
                     } else {
                         qDebug() << "theme source is broken";
