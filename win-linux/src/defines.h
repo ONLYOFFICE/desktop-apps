@@ -54,7 +54,7 @@
 # define APP_MUTEX_NAME "TEAMLAB"
 #endif
 
-#define WINDOW_NAME "r7-office-desktopeditors"
+#define WINDOW_NAME "onlyoffice-desktopeditors"
 #define WINDOW_CLASS_NAME L"DocEditorsWindowClass"
 #define WINDOW_EDITOR_CLASS_NAME L"SingleWindowClass"
 #define REG_APP_NAME "DesktopEditors"
