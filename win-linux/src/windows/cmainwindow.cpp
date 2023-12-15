@@ -1017,7 +1017,7 @@ void CMainWindow::onDocumentDownload(void * info)
         m_pWidgetDownload->applyTheme(m_pMainPanel->property("uitheme").toString());
         m_pWidgetDownload->updateScalingFactor(m_dpiRatio);
     }
-    if (m_pWidgetDownload)
+    if (m_pWidgetDownload && !pData->get_FilePath().empty())
         m_pWidgetDownload->downloadProcess(info);
 }
 
