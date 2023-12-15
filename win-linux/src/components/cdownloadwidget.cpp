@@ -199,10 +199,6 @@ CDownloadWidget::CDownloadWidget(QWidget *parent)
     m_pArea->setWidget(m_pContentArea);
     m_mainFrame->layout()->addWidget(m_pArea);
 
-    connect(this, &CDownloadWidget::downloadCanceled, this, [=](int id) {
-        AscAppManager::getInstance().CancelDownload(id);
-    });
-
     m_pToolButton->setObjectName("toolButtonDownload");
     m_pToolButton->setProperty("act", "tool");
     m_pToolButton->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
@@ -255,7 +251,7 @@ QWidget * CDownloadWidget::addFile(const QString& fn, int id)
     cancel->setObjectName("buttonCancel");
     cancel->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
     connect(cancel, &QPushButton::clicked, this, [=](){
-        emit downloadCanceled(id);
+        AscAppManager::getInstance().CancelDownload(id);
     });
     grid->addWidget(cancel, 0, 1, 1, 1);
 
@@ -365,11 +361,7 @@ void CDownloadWidget::downloadProcess(void * info)
     } else {
         if (iter == m_mapDownloads.end()) {
             QString path = QString::fromStdWString(pData->get_FilePath()),
-                    file_name = "Unconfirmed";
-
-            if (path.length()) {
-                file_name = getFileName(path);
-            }
+                    file_name = path.isEmpty() ? "Unconfirmed" : getFileName(path);
             CDownloadItem * item = new CDownloadItem(addFile(file_name, id));
             iter = m_mapDownloads.insert( std::pair<int, CDownloadItem *>(id, item) ).first;
             if (!path.isEmpty()) {
