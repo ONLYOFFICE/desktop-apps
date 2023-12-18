@@ -95,7 +95,7 @@
         <location filename="../src/platform_linux/cdialogopenssl.cpp" line="222"/>
         <location filename="../src/platform_linux/cdialogopenssl.cpp" line="225"/>
         <source>Open Document</source>
-        <translation type="unfinished">Åpne dokument</translation>
+        <translation>Åpne dokument</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/cdialogopenssl.cpp" line="244"/>
@@ -138,12 +138,12 @@
     <message>
         <location filename="../src/components/cdownloadwidget.cpp" line="174"/>
         <source>Downloads</source>
-        <translation type="unfinished"></translation>
+        <translation>Nedlastinger</translation>
     </message>
     <message>
         <location filename="../src/components/cdownloadwidget.cpp" line="177"/>
         <source>Clear</source>
-        <translation type="unfinished"></translation>
+        <translation>Klar</translation>
     </message>
     <message>
         <location filename="../src/components/cdownloadwidget.cpp" line="254"/>
@@ -154,22 +154,22 @@
         <location filename="../src/components/cdownloadwidget.cpp" line="273"/>
         <location filename="../src/components/cdownloadwidget.cpp" line="386"/>
         <source>kBps</source>
-        <translation type="unfinished"></translation>
+        <translation>kBps</translation>
     </message>
     <message>
         <location filename="../src/components/cdownloadwidget.cpp" line="300"/>
         <source>Canceled</source>
-        <translation type="unfinished"></translation>
+        <translation>Avbrudt</translation>
     </message>
     <message>
         <location filename="../src/components/cdownloadwidget.cpp" line="336"/>
         <source>Open</source>
-        <translation type="unfinished"></translation>
+        <translation>Åpne</translation>
     </message>
     <message>
         <location filename="../src/components/cdownloadwidget.cpp" line="354"/>
         <source>Show in folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Vis i mappe</translation>
     </message>
 </context>
 <context>
