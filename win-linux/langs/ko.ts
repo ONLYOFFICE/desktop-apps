@@ -91,7 +91,7 @@
         <location filename="../src/platform_linux/cdialogopenssl.cpp" line="222"/>
         <location filename="../src/platform_linux/cdialogopenssl.cpp" line="225"/>
         <source>Open Document</source>
-        <translation type="unfinished">문서 열기</translation>
+        <translation>문서 열기</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/cdialogopenssl.cpp" line="244"/>
@@ -134,12 +134,12 @@
     <message>
         <location filename="../src/components/cdownloadwidget.cpp" line="174"/>
         <source>Downloads</source>
-        <translation type="unfinished"></translation>
+        <translation>다운로드</translation>
     </message>
     <message>
         <location filename="../src/components/cdownloadwidget.cpp" line="177"/>
         <source>Clear</source>
-        <translation type="unfinished"></translation>
+        <translation>지우기</translation>
     </message>
     <message>
         <location filename="../src/components/cdownloadwidget.cpp" line="254"/>
@@ -150,22 +150,22 @@
         <location filename="../src/components/cdownloadwidget.cpp" line="273"/>
         <location filename="../src/components/cdownloadwidget.cpp" line="386"/>
         <source>kBps</source>
-        <translation type="unfinished"></translation>
+        <translation>kBps</translation>
     </message>
     <message>
         <location filename="../src/components/cdownloadwidget.cpp" line="300"/>
         <source>Canceled</source>
-        <translation type="unfinished"></translation>
+        <translation>취소된</translation>
     </message>
     <message>
         <location filename="../src/components/cdownloadwidget.cpp" line="336"/>
         <source>Open</source>
-        <translation type="unfinished"></translation>
+        <translation>열기</translation>
     </message>
     <message>
         <location filename="../src/components/cdownloadwidget.cpp" line="354"/>
         <source>Show in folder</source>
-        <translation type="unfinished"></translation>
+        <translation>폴더에 표시</translation>
     </message>
 </context>
 <context>

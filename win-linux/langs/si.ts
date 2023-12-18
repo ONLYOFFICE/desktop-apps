@@ -150,12 +150,12 @@
     <message>
         <location filename="../src/components/cdownloadwidget.cpp" line="174"/>
         <source>Downloads</source>
-        <translation type="unfinished"></translation>
+        <translation>බාගත කිරීම්</translation>
     </message>
     <message>
         <location filename="../src/components/cdownloadwidget.cpp" line="177"/>
         <source>Clear</source>
-        <translation type="unfinished"></translation>
+        <translation>හිස් කරන්න</translation>
     </message>
     <message>
         <location filename="../src/components/cdownloadwidget.cpp" line="254"/>
@@ -166,22 +166,22 @@
         <location filename="../src/components/cdownloadwidget.cpp" line="273"/>
         <location filename="../src/components/cdownloadwidget.cpp" line="386"/>
         <source>kBps</source>
-        <translation type="unfinished"></translation>
+        <translation>kBps</translation>
     </message>
     <message>
         <location filename="../src/components/cdownloadwidget.cpp" line="300"/>
         <source>Canceled</source>
-        <translation type="unfinished"></translation>
+        <translation>අවලංගු කෙරිණි</translation>
     </message>
     <message>
         <location filename="../src/components/cdownloadwidget.cpp" line="336"/>
         <source>Open</source>
-        <translation type="unfinished"></translation>
+        <translation>අරින්න</translation>
     </message>
     <message>
         <location filename="../src/components/cdownloadwidget.cpp" line="354"/>
         <source>Show in folder</source>
-        <translation type="unfinished"></translation>
+        <translation>ෆෝල්ඩරයේ පෙන්වන්න</translation>
     </message>
 </context>
 <context>
