@@ -93,6 +93,7 @@ static void nativeFileDialog(const Window &parent_xid,
                                          GTK_RESPONSE_ACCEPT,
                                          NULL);
 
+    gtk_window_set_skip_taskbar_hint(GTK_WINDOW(dialog), TRUE);
     //g_signal_connect(G_OBJECT(dialog), "destroy", G_CALLBACK(gtk_main_quit), NULL);
     g_signal_connect(G_OBJECT(dialog), "realize", G_CALLBACK(set_parent), (gpointer)&parent_xid);
     g_signal_connect(G_OBJECT(dialog), "map_event", G_CALLBACK(set_focus), NULL);

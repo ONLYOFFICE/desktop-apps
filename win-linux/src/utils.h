@@ -118,13 +118,13 @@ public:
     static QJsonObject parseJsonString(const std::wstring&);
     static QJsonObject parseJsonFile(const QString&);
     static bool updatesAllowed();
+    static void addToRecent(const std::wstring&);
 
 #ifdef _WIN32
     enum class WinVer : uchar {
         Undef, WinXP, WinVista, Win7, Win8, Win8_1, Win10, Win11
     };
     static WinVer getWinVersion();
-    static void addToRecent(const std::wstring&);
     static bool isSessionInProgress();
     static void setSessionInProgress(bool);
 #endif
