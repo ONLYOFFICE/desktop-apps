@@ -758,6 +758,7 @@ public:
 
             iconcrypted->setPixmap(QIcon{":/title/icons/secure.svg"}.pixmap(QSize(20,20) * window->m_dpiRatio));
             iconcrypted->setFixedSize(ICON_SIZE * window->m_dpiRatio);
+            iconcrypted->show();
             int y = (window->m_labelTitle->height() - ICON_SIZE.height() * window->m_dpiRatio)/2;
             iconcrypted->move(0, y);
             connect(window->m_labelTitle, &CElipsisLabel::onResize, this, [=](QSize size, int textWidth) {
