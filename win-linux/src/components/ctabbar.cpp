@@ -54,6 +54,7 @@
 #define tabIndex(i) tabList[i]->index
 #define signum(a) (a ? 1 : -1);
 #define PROCESSEVENTS() AscAppManager::getInstance().processEvents()
+#define SKIP_EVENTS_QUEUE(callback) QTimer::singleShot(0, this, callback)
 
 
 class Tab : public QFrame
@@ -121,6 +122,7 @@ Tab::Tab(QWidget *parent) :
 
     text_label = new QLabel(this);
     text_label->setObjectName("tabText");
+    text_label->setAlignment((AscAppManager::isRtlEnabled() ? Qt::AlignRight : Qt::AlignLeft) | Qt::AlignVCenter | Qt::AlignAbsolute);
     text_label->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
     lut->addWidget(text_label);
 
@@ -269,7 +271,7 @@ void Tab::resizeEvent(QResizeEvent *event)
     } else {
         if (tab_width != new_width) {
             tab_width = new_width;
-            QTimer::singleShot(0, this, [=]() {
+            SKIP_EVENTS_QUEUE([=]() {
                 emit onTabWidthChanged(tab_width);
             });
         }
@@ -316,6 +318,7 @@ public:
         Left, Right
     };
 
+    Tab* createTab(int posX, const QString &text);
     int getIntersectedOffset(int index);
     int getIntersectedIndex(int direction, int &offsetX);
     int getLayoutsIntersectedIndex(Tab *tab, int &offsetX);
@@ -361,6 +364,28 @@ CTabBar::CTabBarPrivate::CTabBarPrivate(CTabBar* owner) :
 
 CTabBar::CTabBarPrivate::~CTabBarPrivate()
 {}
+
+Tab* CTabBar::CTabBarPrivate::createTab(int posX, const QString &text)
+{
+    Tab *tab = new Tab(tabArea);
+    tab->move(posX, 0);
+    tab->setFixedHeight(tabArea->height());
+    tab->setText(text, elideMode);
+    if (tab->icon_label->minimumSize().isNull()) {
+        tab->icon_label->setBaseSize(iconSize);
+        tab->icon_label->setFixedSize(iconSize);
+    }
+    connect(tab->close_btn, &QToolButton::clicked, tab, [=]() {
+        emit owner->tabCloseRequested(tab->index);
+    });
+    connect(tab, &Tab::onTabWidthChanged, tab, [=](int width) {
+        if (tab_width != width) {
+            tab_width = width;
+            onTabWidthChanged(width);
+        }
+    });
+    return tab;
+}
 
 int CTabBar::CTabBarPrivate::getIntersectedOffset(int index)
 {
@@ -448,6 +473,8 @@ void CTabBar::CTabBarPrivate::slide(int from, int to, int offset, int animation_
 
 void CTabBar::CTabBarPrivate::scrollToDirection(int direction)
 {
+    if (AscAppManager::isRtlEnabled())
+        direction = (direction == Direction::Left) ? Direction::Right : Direction::Left;
     while (animationInProgress)
         PROCESSEVENTS();
 
@@ -535,7 +562,10 @@ void CTabBar::CTabBarPrivate::changeScrollerState()
             break;
         }
     }
-    leftButton->setEnabled(allowScroll);
+    if (AscAppManager::isRtlEnabled())
+        rightButton->setEnabled(allowScroll);
+    else
+        leftButton->setEnabled(allowScroll);
 
     allowScroll = false;
     for (int i = 0; i < tabList.size(); i++) {
@@ -544,7 +574,10 @@ void CTabBar::CTabBarPrivate::changeScrollerState()
             break;
         }
     }
-    rightButton->setEnabled(allowScroll);
+    if (AscAppManager::isRtlEnabled())
+        leftButton->setEnabled(allowScroll);
+    else
+        rightButton->setEnabled(allowScroll);
 }
 
 void CTabBar::CTabBarPrivate::reorderIndexes()
@@ -600,8 +633,8 @@ CTabBar::CTabBar(QWidget *parent) :
 
     d->leftButton = new QToolButton(d->scrollFrame);
     d->rightButton = new QToolButton(d->scrollFrame);
-    d->leftButton->setObjectName("leftButton");
-    d->rightButton->setObjectName("rightButton");
+    d->leftButton->setObjectName(AscAppManager::isRtlEnabled() ? "rightButton" : "leftButton");
+    d->rightButton->setObjectName(AscAppManager::isRtlEnabled() ? "leftButton" : "rightButton");
 
     scrollLayout->addWidget(d->leftButton);
     scrollLayout->addWidget(d->rightButton);
@@ -635,25 +668,9 @@ int CTabBar::addTab(const QString &text)
 
     const int lastIndex = d->tabList.size() - 1;
     const int posX = (lastIndex == -1) ? 0 : d->nextTabPosByPrev(lastIndex);
-    Tab *tab = new Tab(d->tabArea);
-    tab->move(posX, 0);
-    tab->setFixedHeight(d->tabArea->height());
-    tab->setText(text, d->elideMode);
-    if (tab->icon_label->minimumSize().isNull()) {
-        tab->icon_label->setBaseSize(d->iconSize);
-        tab->icon_label->setFixedSize(d->iconSize);
-    }
+    Tab *tab = d->createTab(posX, text);
     tab->index = lastIndex + 1;
     d->tabList.append(tab);
-    connect(tab->close_btn, &QToolButton::clicked, this, [=]() {
-        emit tabCloseRequested(tab->index);
-    });
-    connect(tab, &Tab::onTabWidthChanged, this, [=](int width) {
-        if (d->tab_width != width) {
-            d->tab_width = width;
-            d->onTabWidthChanged(width);
-        }
-    });
     tabInserted(lastIndex + 1);
     d->onCurrentChanged(lastIndex + 1);
     return d->currentIndex;
@@ -694,35 +711,15 @@ int CTabBar::insertTab(int index, const QString &text)
     if (!d->indexIsValid(index))
         return addTab(text);
 
-    while (d->animationInProgress)
-        PROCESSEVENTS();
-
     int posX = d->_tabRect(index).left();
     d->slide(index, d->tabList.size() - 1, d->cellWidth(), ANIMATION_DEFAULT_MS);
     while (d->animationInProgress)
         PROCESSEVENTS();
 
-    Tab *tab = new Tab(d->tabArea);
-    tab->move(posX, 0);
-    tab->setFixedHeight(d->tabArea->height());
-    tab->setText(text, d->elideMode);
-    if (tab->icon_label->minimumSize().isNull()) {
-        tab->icon_label->setBaseSize(d->iconSize);
-        tab->icon_label->setFixedSize(d->iconSize);
-    }
+    Tab *tab = d->createTab(posX, text);
     d->tabList.insert(index, tab);
     for (int i = index; i < d->tabList.size(); i++)
         d->tabIndex(i) = i;
-
-    connect(tab->close_btn, &QToolButton::clicked, this, [=]() {
-        emit tabCloseRequested(tab->index);
-    });
-    connect(tab, &Tab::onTabWidthChanged, this, [=](int width) {
-        if (d->tab_width != width) {
-            d->tab_width = width;
-            d->onTabWidthChanged(width);
-        }
-    });
     tabInserted(index);
     d->onCurrentChanged(index);
     return d->currentIndex;
@@ -733,6 +730,27 @@ int CTabBar::insertTab(int index, const QIcon &icon, const QString &text)
     const int actual_index = insertTab(index, text);
     setTabIcon(actual_index, icon);
     return actual_index;
+}
+
+void CTabBar::swapTabs(int from, int to)
+{
+    while (d->animationInProgress)
+        PROCESSEVENTS();
+    if (from == to || !d->indexIsValid(from) || !d->indexIsValid(to))
+        return;
+    int posX = d->_tabRect(from).x();
+    d->tabList[from]->move(d->_tabRect(to).x(), 0);
+    d->tabList[to]->move(posX, 0);
+    int from_index = d->tabIndex(from);
+    d->tabIndex(from) = d->tabIndex(to);
+    d->tabIndex(to) = from_index;
+    std::swap(d->tabList[from], d->tabList[to]);
+    emit tabsSwapped(from, to);
+    if (from == d->currentIndex)
+        d->onCurrentChanged(to);
+    else
+    if (to == d->currentIndex)
+        d->onCurrentChanged(from);
 }
 
 void CTabBar::removeTab(int index)
@@ -863,7 +881,7 @@ void CTabBar::setTabIcon(int index, const QIcon &icon)
 void CTabBar::setTabText(int index, const QString &text)
 {
     if (d->indexIsValid(index))
-        d->tabList[index]->setText(text);
+        d->tabList[index]->setText(text, d->elideMode);
 }
 
 void CTabBar::setTabToolTip(int index, const QString &text)
@@ -1088,7 +1106,8 @@ bool CTabBar::eventFilter(QObject *watched, QEvent *event)
                             }
                         }
                     }
-                    if (!d->tabArea->rect().contains(me->pos()) && d->tabArea->rect().right() >= me->x()) {
+                    bool undockDirectionIsValid = AscAppManager::isRtlEnabled() ? d->tabArea->rect().left() <= me->x() : d->tabArea->rect().right() >= me->x();
+                    if (!d->tabArea->rect().contains(me->pos()) && undockDirectionIsValid) {
                         if (d->currentIndex != d->movedTabIndex)
                             d->reorderIndexes();
                         bool accepted = false;
@@ -1097,7 +1116,7 @@ bool CTabBar::eventFilter(QObject *watched, QEvent *event)
                             d->movedTab->hide();
                             d->movedTab = nullptr;
                             d->movedTabIndex = -1;
-                            QTimer::singleShot(0, this, [=]() {
+                            SKIP_EVENTS_QUEUE([=]() {
                                 removeTab(d->currentIndex);
                                 while (d->animationInProgress)
                                     PROCESSEVENTS();
@@ -1197,6 +1216,22 @@ bool CTabBar::eventFilter(QObject *watched, QEvent *event)
         case QEvent::Leave:
             QApplication::postEvent(d->tabArea, new QMouseEvent(QEvent::MouseButtonRelease, QCursor::pos(), Qt::LeftButton, Qt::LeftButton, Qt::NoModifier));
             break;
+        case QEvent::LayoutDirectionChange: {
+            SKIP_EVENTS_QUEUE([=]() {
+                for (int i = 0; i < d->tabList.size(); i++) {
+                    d->tabList[i]->polish();
+                    d->tabList[i]->text_label->setAlignment((AscAppManager::isRtlEnabled() ? Qt::AlignRight : Qt::AlignLeft) | Qt::AlignVCenter | Qt::AlignAbsolute);
+                }
+                d->leftButton->setObjectName(AscAppManager::isRtlEnabled() ? "rightButton" : "leftButton");
+                d->rightButton->setObjectName(AscAppManager::isRtlEnabled() ? "leftButton" : "rightButton");
+                d->leftButton->style()->polish(d->leftButton);
+                d->rightButton->style()->polish(d->rightButton);
+                int n = count();
+                for (int i = 0; i < n/2; i++)
+                    swapTabs(i, n - i - 1);
+            });
+            break;
+        }
         default:
             break;
         }

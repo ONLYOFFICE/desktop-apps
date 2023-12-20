@@ -36,6 +36,7 @@
 #include "utils.h"
 #include <gtk/gtkmessagedialog.h>
 #include "updatedialog.h"
+#include "cascapplicationmanagerwrapper.h"
 #include <gdk/gdkx.h>
 //extern "C" {
 //#include "gtk_resources.h"
@@ -77,6 +78,9 @@ int WinDlg::showDialog(QWidget *parent,
     gtk_init(NULL, NULL);
     GtkDialogFlags flags;
     flags = (GtkDialogFlags)(GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT);
+
+    if (AscAppManager::isRtlEnabled())
+        gtk_widget_set_default_direction(GTK_TEXT_DIR_RTL);
     GtkWidget *dialog = NULL;
     dialog = gtk_message_dialog_new(NULL,
                                     flags,

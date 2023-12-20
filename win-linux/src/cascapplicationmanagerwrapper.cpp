@@ -54,6 +54,8 @@ using namespace std;
 using namespace std::placeholders;
 
 
+bool CAscApplicationManagerWrapper::m_rtlEnabled = false;
+
 CAscApplicationManagerWrapper::CAscApplicationManagerWrapper(CAscApplicationManagerWrapper const&)
 {
 
@@ -1159,6 +1161,11 @@ void CAscApplicationManagerWrapper::initializeApp()
     if ( !local_themes_array.isEmpty() )
         EditorJSVariables::setVariable("localthemes", local_themes_array);
 
+    const bool _is_rtl = reg_user.contains("forcedRtl") ? reg_user.value("forcedRtl", false).toBool() :
+                       CLangater::isRtlLanguage(CLangater::getCurrentLangCode());
+    AscAppManager::setRtlEnabled(_is_rtl);
+    EditorJSVariables::setVariable("rtl", _is_rtl ? "yes" : "no");
+
     EditorJSVariables::setVariable("lang", CLangater::getCurrentLangCode());
     EditorJSVariables::applyVariable("theme", {
                                         {"type", _app.m_themes->current().stype()},
@@ -1637,6 +1644,28 @@ bool CAscApplicationManagerWrapper::event(QEvent *event)
     return QObject::event(event);
 }
 
+void CAscApplicationManagerWrapper::setRtlEnabled(bool state)
+{
+    if (m_rtlEnabled != state) {
+        m_rtlEnabled = state;
+        Qt::LayoutDirection direct = m_rtlEnabled ? Qt::RightToLeft : Qt::LeftToRight;
+        APP_CAST(_app);
+        if (_app.m_pMainWindow)
+            _app.m_pMainWindow->setLayoutDirection(direct);
+        for (auto const &r : _app.m_winsReporter)
+            r.second->setLayoutDirection(direct);
+        for (auto const &e : _app.m_vecEditors) {
+            CEditorWindow *editor = reinterpret_cast<CEditorWindow*>(e);
+            editor->setLayoutDirection(direct);
+        }
+    }
+}
+
+bool CAscApplicationManagerWrapper::isRtlEnabled()
+{
+    return m_rtlEnabled;
+}
+
 bool CAscApplicationManagerWrapper::applySettings(const wstring& wstrjson)
 {
     QJsonParseError jerror;
@@ -1689,6 +1718,16 @@ bool CAscApplicationManagerWrapper::applySettings(const wstring& wstrjson)
 
         if ( objRoot.contains("spellcheckdetect") ) {
             setUserSettings(L"spell-check-input-mode", objRoot["spellcheckdetect"].toString() == "off" ? L"0" : L"default");
+        }
+
+        if ( objRoot.contains("rtl") ) {
+            _reg_user.setValue("forcedRtl", objRoot["rtl"].toBool(false));
+
+            /*
+             * show message and relaunch app
+            */
+        } else {
+            _reg_user.remove("forcedRtl");
         }
 
         wstring params = QString("lang=%1&username=%3&location=%2")

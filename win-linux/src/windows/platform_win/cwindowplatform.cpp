@@ -55,6 +55,8 @@ CWindowPlatform::CWindowPlatform(const QRect &rect) :
     m_isResizeable(true),
     m_allowMaximize(true)
 {
+    if (AscAppManager::isRtlEnabled())
+        setLayoutDirection(Qt::RightToLeft);
     setWindowFlags(windowFlags() | Qt::Window | Qt::FramelessWindowHint
                    | Qt::WindowSystemMenuHint | Qt::WindowMaximizeButtonHint
                    |Qt::WindowMinimizeButtonHint | Qt::MSWindowsFixedSizeDialogHint);
@@ -149,6 +151,17 @@ void CWindowPlatform::adjustGeometry()
 bool CWindowPlatform::isSessionInProgress()
 {
     return m_isSessionInProgress;
+}
+
+bool CWindowPlatform::event(QEvent * event)
+{
+    if (event->type() == QEvent::LayoutDirectionChange) {
+        if (m_pMainPanel) {
+            m_pMainPanel->setProperty("rtl", AscAppManager::isRtlEnabled());
+            onLayoutDirectionChanged();
+        }
+    }
+    return CWindowBase::event(event);
 }
 
 /** Private **/

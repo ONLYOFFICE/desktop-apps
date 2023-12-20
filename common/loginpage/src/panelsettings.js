@@ -176,6 +176,12 @@
                                                 </section>
                                             </div>
                                         </div>
+                                        <div class='settings-field' style='display:none;'>
+                                            <section class='switch-labeled hbox' id='sett-box-rtl-mode'>
+                                                <input type="checkbox" class="checkbox" id="sett-rtl-mode">
+                                                <label for="sett-rtl-mode" class='sett__caption' l10n>RTL Interface *</label>
+                                            </section>
+                                        </div>
                                         <div class='settings-field' id='opts-ui-scaling' style='display:none'>
                                             <label class='sett__caption' l10n>${_lang.settScaling}</label><label class='sett__caption'> *</label>
                                             <div class='sett--label-lift-top hbox'>
@@ -271,7 +277,7 @@
                                 </div>
                                 <div class="spacer" />
                             </div>
-                            <p id="caption-restart" class="sett__caption" style="display:none;text-align:left;margin-block-start:0.5em;"><label>* - </label><label l10n>${_lang.settAfterRestart}</label></p>
+                            <p id="caption-restart" class="sett__caption" style="display:none;"><label>* - </label><label l10n>${_lang.settAfterRestart}</label></p>
                         </div>
                     </div>`;
 
@@ -300,6 +306,7 @@
             $optsSpellcheckMode,
             $optsLaunchMode,
             $optsAutoupdateMode;
+        let $chRtl;
 
         function _set_user_name(name) {
             let me = this;
@@ -404,6 +411,10 @@
                     $optsSpellcheckMode.selectpicker('refresh');
                 }
 
+                if ( $chRtl ) {
+                    _new_settings.rtl = $chRtl.prop("checked");
+                }
+
                 sdk.command("settings:apply", JSON.stringify(_new_settings));
                 $btnApply.disable(true);
                 
@@ -423,12 +434,20 @@
                 $btnApply.disable(false);
         };
 
+        function _is_lang_rtl(code) {
+            return code == 'ar-SA';
+        }
+
         function _on_lang_change(e) {
             let l = $optsLang.find('select').val(),
                 c = utils.Lang.tr('setBtnApply', l);
             if ( !!c ) $btnApply.text(c);
             if ( $btnApply.isdisabled() ) {
                 $btnApply.disable(false);
+            }
+
+            if ( $chRtl ) {
+                $chRtl.prop("checked", _is_lang_rtl(l));
             }
 
             $optsLang.toggleClass('notted', true);
@@ -584,6 +603,19 @@
                                         });
                                 }
                             }
+                        }
+                    }
+
+                    if ( opts.rtl !== undefined ) {
+                        $chRtl = $('#sett-box-rtl-mode', $panel).parent().show().find('#sett-rtl-mode');
+                        $chRtl.prop('checked', !!opts.rtl)
+                            .on('change', e => {
+                                $btnApply.prop('disabled') && $btnApply.prop('disabled', false);
+                            });
+
+                        if ( opts.rtl ) {
+                            document.body.setAttribute('dir', 'rtl');
+                            document.body.classList.add('rtl');
                         }
                     }
 

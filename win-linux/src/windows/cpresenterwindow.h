@@ -52,6 +52,7 @@ public:
 
 protected:
     void closeEvent(QCloseEvent *) final;
+    virtual void onLayoutDirectionChanged() final;
 
 private:
     QWidget * createMainPanel(QWidget *, const QString&, QWidget * view = nullptr);

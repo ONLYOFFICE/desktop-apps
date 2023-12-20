@@ -3,6 +3,7 @@
 #include "gtkutils.h"
 #include "gtkprintdialog.h"
 #include "components/cmessage.h"
+#include "cascapplicationmanagerwrapper.h"
 #include <string>
 #include <algorithm>
 #include <gdk/gdkx.h>
@@ -369,6 +370,8 @@ QDialog::DialogCode GtkPrintDialog::exec()
     }
 
     // Init dialog
+    if (AscAppManager::isRtlEnabled())
+        gtk_widget_set_default_direction(GTK_TEXT_DIR_RTL);
     GtkWidget *dialog;
     dialog = gtk_print_unix_dialog_new(m_title.toUtf8().data(), NULL);   
     gtk_window_set_type_hint(GTK_WINDOW(dialog), GDK_WINDOW_TYPE_HINT_DIALOG);
