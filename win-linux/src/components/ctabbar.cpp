@@ -54,6 +54,7 @@
 #define tabIndex(i) tabList[i]->index
 #define signum(a) (a ? 1 : -1);
 #define PROCESSEVENTS() AscAppManager::getInstance().processEvents()
+#define SKIP_EVENTS_QUEUE(callback) QTimer::singleShot(0, this, callback)
 
 
 class Tab : public QFrame
@@ -269,7 +270,7 @@ void Tab::resizeEvent(QResizeEvent *event)
     } else {
         if (tab_width != new_width) {
             tab_width = new_width;
-            QTimer::singleShot(0, this, [=]() {
+            SKIP_EVENTS_QUEUE([=]() {
                 emit onTabWidthChanged(tab_width);
             });
         }
@@ -316,6 +317,7 @@ public:
         Left, Right
     };
 
+    Tab* createTab(int posX, const QString &text);
     int getIntersectedOffset(int index);
     int getIntersectedIndex(int direction, int &offsetX);
     int getLayoutsIntersectedIndex(Tab *tab, int &offsetX);
@@ -361,6 +363,28 @@ CTabBar::CTabBarPrivate::CTabBarPrivate(CTabBar* owner) :
 
 CTabBar::CTabBarPrivate::~CTabBarPrivate()
 {}
+
+Tab* CTabBar::CTabBarPrivate::createTab(int posX, const QString &text)
+{
+    Tab *tab = new Tab(tabArea);
+    tab->move(posX, 0);
+    tab->setFixedHeight(tabArea->height());
+    tab->setText(text, elideMode);
+    if (tab->icon_label->minimumSize().isNull()) {
+        tab->icon_label->setBaseSize(iconSize);
+        tab->icon_label->setFixedSize(iconSize);
+    }
+    connect(tab->close_btn, &QToolButton::clicked, tab, [=]() {
+        emit owner->tabCloseRequested(tab->index);
+    });
+    connect(tab, &Tab::onTabWidthChanged, tab, [=](int width) {
+        if (tab_width != width) {
+            tab_width = width;
+            onTabWidthChanged(width);
+        }
+    });
+    return tab;
+}
 
 int CTabBar::CTabBarPrivate::getIntersectedOffset(int index)
 {
@@ -635,25 +659,9 @@ int CTabBar::addTab(const QString &text)
 
     const int lastIndex = d->tabList.size() - 1;
     const int posX = (lastIndex == -1) ? 0 : d->nextTabPosByPrev(lastIndex);
-    Tab *tab = new Tab(d->tabArea);
-    tab->move(posX, 0);
-    tab->setFixedHeight(d->tabArea->height());
-    tab->setText(text, d->elideMode);
-    if (tab->icon_label->minimumSize().isNull()) {
-        tab->icon_label->setBaseSize(d->iconSize);
-        tab->icon_label->setFixedSize(d->iconSize);
-    }
+    Tab *tab = d->createTab(posX, text);
     tab->index = lastIndex + 1;
     d->tabList.append(tab);
-    connect(tab->close_btn, &QToolButton::clicked, this, [=]() {
-        emit tabCloseRequested(tab->index);
-    });
-    connect(tab, &Tab::onTabWidthChanged, this, [=](int width) {
-        if (d->tab_width != width) {
-            d->tab_width = width;
-            d->onTabWidthChanged(width);
-        }
-    });
     tabInserted(lastIndex + 1);
     d->onCurrentChanged(lastIndex + 1);
     return d->currentIndex;
@@ -694,35 +702,15 @@ int CTabBar::insertTab(int index, const QString &text)
     if (!d->indexIsValid(index))
         return addTab(text);
 
-    while (d->animationInProgress)
-        PROCESSEVENTS();
-
     int posX = d->_tabRect(index).left();
     d->slide(index, d->tabList.size() - 1, d->cellWidth(), ANIMATION_DEFAULT_MS);
     while (d->animationInProgress)
         PROCESSEVENTS();
 
-    Tab *tab = new Tab(d->tabArea);
-    tab->move(posX, 0);
-    tab->setFixedHeight(d->tabArea->height());
-    tab->setText(text, d->elideMode);
-    if (tab->icon_label->minimumSize().isNull()) {
-        tab->icon_label->setBaseSize(d->iconSize);
-        tab->icon_label->setFixedSize(d->iconSize);
-    }
+    Tab *tab = d->createTab(posX, text);
     d->tabList.insert(index, tab);
     for (int i = index; i < d->tabList.size(); i++)
         d->tabIndex(i) = i;
-
-    connect(tab->close_btn, &QToolButton::clicked, this, [=]() {
-        emit tabCloseRequested(tab->index);
-    });
-    connect(tab, &Tab::onTabWidthChanged, this, [=](int width) {
-        if (d->tab_width != width) {
-            d->tab_width = width;
-            d->onTabWidthChanged(width);
-        }
-    });
     tabInserted(index);
     d->onCurrentChanged(index);
     return d->currentIndex;
@@ -863,7 +851,7 @@ void CTabBar::setTabIcon(int index, const QIcon &icon)
 void CTabBar::setTabText(int index, const QString &text)
 {
     if (d->indexIsValid(index))
-        d->tabList[index]->setText(text);
+        d->tabList[index]->setText(text, d->elideMode);
 }
 
 void CTabBar::setTabToolTip(int index, const QString &text)
@@ -1097,7 +1085,7 @@ bool CTabBar::eventFilter(QObject *watched, QEvent *event)
                             d->movedTab->hide();
                             d->movedTab = nullptr;
                             d->movedTabIndex = -1;
-                            QTimer::singleShot(0, this, [=]() {
+                            SKIP_EVENTS_QUEUE([=]() {
                                 removeTab(d->currentIndex);
                                 while (d->animationInProgress)
                                     PROCESSEVENTS();
