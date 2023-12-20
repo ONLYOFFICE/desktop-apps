@@ -171,6 +171,7 @@ CDownloadWidget::CDownloadWidget(QWidget *parent)
     QLabel *labelTitle = new QLabel(m_titleFrame);
     labelTitle->setObjectName("labelTitle");
     labelTitle->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
+    labelTitle->setAlignment((AscAppManager::isRtlEnabled() ? Qt::AlignRight : Qt::AlignLeft)  | Qt::AlignAbsolute);
     labelTitle->setText(tr("Downloads"));
     m_titleFrame->layout()->addWidget(labelTitle);
 
@@ -210,8 +211,10 @@ CDownloadWidget::CDownloadWidget(QWidget *parent)
     connect(m_pToolButton, &QPushButton::clicked, this, [=]() {
         polish();
         show();
-        QPoint offset(-1 * MAIN_WINDOW_BORDER_WIDTH * m_dpiRatio, (TITLE_HEIGHT + MAIN_WINDOW_BORDER_WIDTH) * m_dpiRatio);
-        QPoint pos = parent->geometry().topRight() - QPoint(WIDGET_MAX_WIDTH, 0) + offset + QPoint(qRound(SHADOW - MARGINS/3), qRound(-SHADOW + MARGINS/3));
+        QPoint pos = AscAppManager::isRtlEnabled() ? parent->geometry().topLeft() : parent->geometry().topRight() - QPoint(WIDGET_MAX_WIDTH, 0);
+        QPoint brd_offset((AscAppManager::isRtlEnabled() ? 1 : -1) * MAIN_WINDOW_BORDER_WIDTH * m_dpiRatio, (TITLE_HEIGHT + MAIN_WINDOW_BORDER_WIDTH) * m_dpiRatio);
+        QPoint shd_offset((AscAppManager::isRtlEnabled() ? -1 : 1) * qRound(SHADOW - MARGINS/3), qRound(-SHADOW + MARGINS/3));
+        pos += brd_offset + shd_offset;
         move(pos);
         int prefHeight = m_mapDownloads.size() * ITEM_MAX_HEIGHT + 74 * m_dpiRatio;
         setGeometry(QRect(pos, QSize(WIDGET_MAX_WIDTH, (prefHeight > WIDGET_MAX_HEIGHT) ? WIDGET_MAX_HEIGHT : prefHeight)));
@@ -248,6 +251,7 @@ QWidget * CDownloadWidget::addFile(const QString& fn, int id)
     CElipsisLabel * name = new CElipsisLabel(fn);
     name->setObjectName("labelName");
     name->setEllipsisMode(Qt::ElideRight);
+    name->setAlignment((AscAppManager::isRtlEnabled() ? Qt::AlignRight : Qt::AlignLeft) | Qt::AlignAbsolute);
     name->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
     grid->addWidget(name, 0, 0, 1, 1);
 
@@ -273,6 +277,7 @@ QWidget * CDownloadWidget::addFile(const QString& fn, int id)
     CElipsisLabel * info = new CElipsisLabel(QString("0 %1").arg(tr("kBps")));
     info->setObjectName("labelInfo");
     info->setEllipsisMode(Qt::ElideRight);
+    info->setAlignment((AscAppManager::isRtlEnabled() ? Qt::AlignRight : Qt::AlignLeft) | Qt::AlignAbsolute);
     info->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
     grid->addWidget(info, 2, 0, 1, 2);
 
@@ -325,6 +330,7 @@ void CDownloadWidget::downloadProcess(void * info)
             }
             QLabel *size_label = new QLabel;
             size_label->setObjectName("labelSize");
+            size_label->setAlignment((AscAppManager::isRtlEnabled() ? Qt::AlignRight : Qt::AlignLeft) | Qt::AlignAbsolute);
             size_label->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
             size_label->setText(getFileSize(QString::fromStdWString(pData->get_FilePath())));
             lut->addWidget(size_label, 1, 0, 1, 2);
@@ -503,6 +509,22 @@ void CDownloadWidget::applyTheme(const QString &theme)
     else
         m_pToolButton->setStaticIcon(AscAppManager::themes().current().isDark() ? ":/loading_finished_light.svg" : ":/loading_finished.svg");
     polish();
+}
+
+void CDownloadWidget::onLayoutDirectionChanged()
+{
+    setLayoutDirection(AscAppManager::isRtlEnabled() ? Qt::RightToLeft : Qt::LeftToRight);
+    if (QLabel *labelTitle = m_titleFrame->findChild<QLabel*>("labelTitle"))
+        labelTitle->setAlignment((AscAppManager::isRtlEnabled() ? Qt::AlignRight : Qt::AlignLeft) | Qt::AlignAbsolute);
+    for (int i = 0; i < m_pContentArea->layout()->count(); ++i) {
+        auto item = m_pContentArea->layout()->itemAt(i);
+        if (item && item->widget()) {
+            const auto lb_list = item->widget()->findChildren<QLabel*>();
+            for (QLabel *lb : lb_list) {
+                lb->setAlignment((AscAppManager::isRtlEnabled() ? Qt::AlignRight : Qt::AlignLeft) | Qt::AlignAbsolute);
+            }
+        }
+    }
 }
 
 void CDownloadWidget::onStart()

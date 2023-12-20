@@ -99,6 +99,11 @@ void CPresenterWindow::closeEvent(QCloseEvent *e)
     e->ignore();
 }
 
+void CPresenterWindow::onLayoutDirectionChanged()
+{
+
+}
+
 /** Private **/
 
 QWidget * CPresenterWindow::createMainPanel(QWidget * parent, const QString& title, QWidget * view)

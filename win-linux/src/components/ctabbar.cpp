@@ -122,6 +122,7 @@ Tab::Tab(QWidget *parent) :
 
     text_label = new QLabel(this);
     text_label->setObjectName("tabText");
+    text_label->setAlignment((AscAppManager::isRtlEnabled() ? Qt::AlignRight : Qt::AlignLeft) | Qt::AlignVCenter | Qt::AlignAbsolute);
     text_label->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
     lut->addWidget(text_label);
 
@@ -472,6 +473,8 @@ void CTabBar::CTabBarPrivate::slide(int from, int to, int offset, int animation_
 
 void CTabBar::CTabBarPrivate::scrollToDirection(int direction)
 {
+    if (AscAppManager::isRtlEnabled())
+        direction = (direction == Direction::Left) ? Direction::Right : Direction::Left;
     while (animationInProgress)
         PROCESSEVENTS();
 
@@ -559,7 +562,10 @@ void CTabBar::CTabBarPrivate::changeScrollerState()
             break;
         }
     }
-    leftButton->setEnabled(allowScroll);
+    if (AscAppManager::isRtlEnabled())
+        rightButton->setEnabled(allowScroll);
+    else
+        leftButton->setEnabled(allowScroll);
 
     allowScroll = false;
     for (int i = 0; i < tabList.size(); i++) {
@@ -568,7 +574,10 @@ void CTabBar::CTabBarPrivate::changeScrollerState()
             break;
         }
     }
-    rightButton->setEnabled(allowScroll);
+    if (AscAppManager::isRtlEnabled())
+        leftButton->setEnabled(allowScroll);
+    else
+        rightButton->setEnabled(allowScroll);
 }
 
 void CTabBar::CTabBarPrivate::reorderIndexes()
@@ -624,8 +633,8 @@ CTabBar::CTabBar(QWidget *parent) :
 
     d->leftButton = new QToolButton(d->scrollFrame);
     d->rightButton = new QToolButton(d->scrollFrame);
-    d->leftButton->setObjectName("leftButton");
-    d->rightButton->setObjectName("rightButton");
+    d->leftButton->setObjectName(AscAppManager::isRtlEnabled() ? "rightButton" : "leftButton");
+    d->rightButton->setObjectName(AscAppManager::isRtlEnabled() ? "leftButton" : "rightButton");
 
     scrollLayout->addWidget(d->leftButton);
     scrollLayout->addWidget(d->rightButton);
@@ -721,6 +730,27 @@ int CTabBar::insertTab(int index, const QIcon &icon, const QString &text)
     const int actual_index = insertTab(index, text);
     setTabIcon(actual_index, icon);
     return actual_index;
+}
+
+void CTabBar::swapTabs(int from, int to)
+{
+    while (d->animationInProgress)
+        PROCESSEVENTS();
+    if (from == to || !d->indexIsValid(from) || !d->indexIsValid(to))
+        return;
+    int posX = d->_tabRect(from).x();
+    d->tabList[from]->move(d->_tabRect(to).x(), 0);
+    d->tabList[to]->move(posX, 0);
+    int from_index = d->tabIndex(from);
+    d->tabIndex(from) = d->tabIndex(to);
+    d->tabIndex(to) = from_index;
+    std::swap(d->tabList[from], d->tabList[to]);
+    emit tabsSwapped(from, to);
+    if (from == d->currentIndex)
+        d->onCurrentChanged(to);
+    else
+    if (to == d->currentIndex)
+        d->onCurrentChanged(from);
 }
 
 void CTabBar::removeTab(int index)
@@ -1076,7 +1106,8 @@ bool CTabBar::eventFilter(QObject *watched, QEvent *event)
                             }
                         }
                     }
-                    if (!d->tabArea->rect().contains(me->pos()) && d->tabArea->rect().right() >= me->x()) {
+                    bool undockDirectionIsValid = AscAppManager::isRtlEnabled() ? d->tabArea->rect().left() <= me->x() : d->tabArea->rect().right() >= me->x();
+                    if (!d->tabArea->rect().contains(me->pos()) && undockDirectionIsValid) {
                         if (d->currentIndex != d->movedTabIndex)
                             d->reorderIndexes();
                         bool accepted = false;
@@ -1185,6 +1216,22 @@ bool CTabBar::eventFilter(QObject *watched, QEvent *event)
         case QEvent::Leave:
             QApplication::postEvent(d->tabArea, new QMouseEvent(QEvent::MouseButtonRelease, QCursor::pos(), Qt::LeftButton, Qt::LeftButton, Qt::NoModifier));
             break;
+        case QEvent::LayoutDirectionChange: {
+            SKIP_EVENTS_QUEUE([=]() {
+                for (int i = 0; i < d->tabList.size(); i++) {
+                    d->tabList[i]->polish();
+                    d->tabList[i]->text_label->setAlignment((AscAppManager::isRtlEnabled() ? Qt::AlignRight : Qt::AlignLeft) | Qt::AlignVCenter | Qt::AlignAbsolute);
+                }
+                d->leftButton->setObjectName(AscAppManager::isRtlEnabled() ? "rightButton" : "leftButton");
+                d->rightButton->setObjectName(AscAppManager::isRtlEnabled() ? "leftButton" : "rightButton");
+                d->leftButton->style()->polish(d->leftButton);
+                d->rightButton->style()->polish(d->rightButton);
+                int n = count();
+                for (int i = 0; i < n/2; i++)
+                    swapTabs(i, n - i - 1);
+            });
+            break;
+        }
         default:
             break;
         }
