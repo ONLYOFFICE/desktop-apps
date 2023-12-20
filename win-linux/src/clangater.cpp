@@ -304,3 +304,8 @@ void CLangater::addTranslation(const QString& dir)
 {
     addTranslation(dir, getInstance()->m_lang);
 }
+
+bool CLangater::isRtlLanguage(const QString &lang) {
+    QLocale loc = lang.isEmpty() ? QLocale::system() : QLocale(lang);
+    return loc.textDirection() == Qt::LayoutDirection::RightToLeft;
+}
