@@ -1833,8 +1833,8 @@ begin
        RegWriteStringValue(HKEY_LOCAL_MACHINE, regpath, 'FileName', progpath + '\' + values[0]);
      end;
      if version.Major = 10 then begin
-       RegQueryStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\' + values[1], '', oldValue);
-       RegWriteStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\' + values[1], '{#ASCC_REG_PREFIX}', oldValue);
+       if (i < 3) and RegQueryStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\' + values[1], '', oldValue) then
+         RegWriteStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\' + values[1], '{#ASCC_REG_PREFIX}', oldValue);
        RegWriteStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\' + values[1], '', '{#ASCC_REG_PREFIX}' + values[2]);
      end;
   end;
@@ -1948,7 +1948,7 @@ procedure UnassociateExtensions;
 var
   i: Integer;
   argsArray: TArrayOfString;
-  ext, str, oldValue: string;
+  ext, str, oldValue, defaultVal: string;
   version: TWindowsVersion;
 begin
   initExtensions();
@@ -1991,19 +1991,14 @@ begin
 
   GetWindowsVersionEx(version);
   if version.Major = 10 then begin
-    if RegQueryStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.docx', '{#ASCC_REG_PREFIX}', oldValue) then
-       RegWriteStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.docx', '', oldValue);
-    if RegQueryStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.xlsx', '{#ASCC_REG_PREFIX}', oldValue) then
-       RegWriteStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.xlsx', '', oldValue);
-    if RegQueryStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.pptx', '{#ASCC_REG_PREFIX}', oldValue) then
-       RegWriteStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.pptx', '', oldValue);
-#ifdef _ONLYOFFICE
-    if RegQueryStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.docxf', '{#ASCC_REG_PREFIX}', oldValue) then
-       RegWriteStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.docxf', '', oldValue);
-    RegDeleteValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.docxf', '{#ASCC_REG_PREFIX}');
-#endif
-    RegDeleteValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.docx', '{#ASCC_REG_PREFIX}');
-    RegDeleteValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.xlsx', '{#ASCC_REG_PREFIX}');
-    RegDeleteValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.pptx', '{#ASCC_REG_PREFIX}');
+    argsArray := ['docx', 'pptx', 'xlsx'];
+    for i := 0 to GetArrayLength(argsArray) - 1 do begin
+       if not RegQueryStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.' + argsArray[i], '', defaultVal) and
+         RegQueryStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.' + argsArray[i], '{#ASCC_REG_PREFIX}', oldValue) and
+           RegKeyExists(HKEY_LOCAL_MACHINE, 'Software\Classes\.' + argsArray[i] + '\' + oldValue) then begin
+             RegWriteStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.' + argsArray[i], '', oldValue);
+       end;
+       RegDeleteValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.' + argsArray[i], '{#ASCC_REG_PREFIX}');
+    end;
   end;
 end;
