@@ -66,6 +66,7 @@
 #define TOP_PANEL_OFFSET 6*TOOLBTN_WIDTH
 #define ICON_SPACER_WIDTH 9
 #define ICON_SIZE QSize(20,20)
+#define MARGINS 6
 
 using namespace NSEditorApi;
 
@@ -219,8 +220,34 @@ public:
             }
         }
         QMargins mrg(0, 0, 0, 2*dpiRatio);
-        diffW > 0 ? mrg.setRight(diffW) : mrg.setLeft(-diffW);
+        if (AscAppManager::isRtlEnabled())
+            diffW > 0 ? mrg.setLeft(diffW) : mrg.setRight(-diffW);
+        else
+            diffW > 0 ? mrg.setRight(diffW) : mrg.setLeft(-diffW);
         boxtitlelabel->setContentsMargins(mrg);
+    }
+
+    auto onLayoutDirectionChanged()->void
+    {
+        if (boxtitlelabel) {
+            QMargins mrg = boxtitlelabel->contentsMargins();
+            if (AscAppManager::isRtlEnabled()) {
+                mrg.setLeft(mrg.right());
+                mrg.setRight(0);
+            } else {
+                mrg.setRight(mrg.left());
+                mrg.setLeft(0);
+            }
+            boxtitlelabel->setContentsMargins(mrg);
+        }
+        if (iconcrypted) {
+            QSize size = window->m_labelTitle->size();
+            int offset = window->m_labelTitle->textWidth()/2 + MARGINS * window->m_dpiRatio;
+            int x = size.width()/2;
+            x += AscAppManager::isRtlEnabled() ? offset : -offset - ICON_SIZE.width() * window->m_dpiRatio;
+            int y = (size.height() - ICON_SIZE.height() * window->m_dpiRatio)/2;
+            iconcrypted->move(x, y);
+        }
     }
 
     void onEditorConfig(int, std::wstring cfg) override
@@ -758,11 +785,14 @@ public:
 
             iconcrypted->setPixmap(QIcon{":/title/icons/secure.svg"}.pixmap(QSize(20,20) * window->m_dpiRatio));
             iconcrypted->setFixedSize(ICON_SIZE * window->m_dpiRatio);
+            iconcrypted->show();
             int y = (window->m_labelTitle->height() - ICON_SIZE.height() * window->m_dpiRatio)/2;
             iconcrypted->move(0, y);
             connect(window->m_labelTitle, &CElipsisLabel::onResize, this, [=](QSize size, int textWidth) {
                 if (iconcrypted) {
-                    int x = (size.width() - textWidth)/2 - ((ICON_SIZE.width() + 6) * window->m_dpiRatio);
+                    int offset = textWidth/2 + MARGINS * window->m_dpiRatio;
+                    int x = size.width()/2;
+                    x += AscAppManager::isRtlEnabled() ? offset : -offset - ICON_SIZE.width() * window->m_dpiRatio;
                     int y = (size.height() - ICON_SIZE.height() * window->m_dpiRatio)/2;
                     iconcrypted->move(x, y);
                 }

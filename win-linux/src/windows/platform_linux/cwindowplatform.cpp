@@ -49,6 +49,8 @@ CWindowPlatform::CWindowPlatform(const QRect &rect) :
     CWindowBase(rect),
     CX11Decoration(this)
 {
+    if (AscAppManager::isRtlEnabled())
+        setLayoutDirection(Qt::RightToLeft);
     if (isCustomWindowStyle()) {
         if (QX11Info::isCompositingManagerRunning())
             setAttribute(Qt::WA_TranslucentBackground);
@@ -120,6 +122,12 @@ bool CWindowPlatform::event(QEvent * event)
     if (event->type() == QEvent::HoverLeave) {
         if (m_boxTitleBtns)
             m_boxTitleBtns->setCursor(QCursor(Qt::ArrowCursor));
+    } else
+    if (event->type() == QEvent::LayoutDirectionChange) {
+        if (m_pMainPanel) {
+            m_pMainPanel->setProperty("rtl", AscAppManager::isRtlEnabled());
+            onLayoutDirectionChanged();
+        }
     }
     return CWindowBase::event(event);
 }

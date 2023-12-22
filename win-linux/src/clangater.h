@@ -20,6 +20,7 @@ public:
     static QString getLangName(const QString& code = QString());
     static void addTranslation(const QString& dir, const QString& name);
     static void addTranslation(const QString& dir);
+    static bool isRtlLanguage(const QString &lang = QString());
 
     static QJsonObject availableLangsToJson();
 

@@ -54,6 +54,8 @@ public:
 
 protected:
     bool isSessionInProgress();
+    virtual bool event(QEvent *event) override;
+    virtual void onLayoutDirectionChanged() = 0;
 
 private:
     bool isTaskbarAutoHideOn();

@@ -26,6 +26,7 @@ QPushButton#toolButtonMain {
     /*font-size: 20px;*/
     border-right-width: 2px;
 }
+#mainPanel[rtl=true] QPushButton#toolButtonMain {border-left-width: 2px;}
 
 QPushButton#toolButtonMain[theme=light] {
     border-width: 2px;
@@ -39,6 +40,7 @@ QPushButton#toolButtonMain[class=normal],
 }
 
 QPushButton#toolButtonDownload {border-right-width: 2px; max-width: 70px; width: 70px; max-height: 49px; height: 49px;}
+#mainPanel[rtl=true] QPushButton#toolButtonDownload {border-left-width: 2px;}
 
 /* ToolTip*/
 

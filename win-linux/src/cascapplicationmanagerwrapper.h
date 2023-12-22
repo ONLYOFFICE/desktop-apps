@@ -120,6 +120,7 @@ private:
     CMainWindow * m_pMainWindow = nullptr;
 
     std::shared_ptr<CThemes> m_themes;
+    static bool m_rtlEnabled;
 
 public:
     CWindowsQueue<sWinTag>& closeQueue();
@@ -201,6 +202,8 @@ public:
 
     static void             closeAppWindows();      // TODO: combine with launchAppClose
     static void             cancelClose();
+    static void             setRtlEnabled(bool);
+    static bool             isRtlEnabled();
 
     uint logoutCount(const std::wstring& portal) const;
     void Logout(const std::wstring& portal);

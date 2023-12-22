@@ -52,6 +52,7 @@ public:
     QPushButton * toolButton();
     void updateScalingFactor(double);
     void applyTheme(const QString&);
+    void onLayoutDirectionChanged();
 
 protected:
     virtual void closeEvent(QCloseEvent *) final;

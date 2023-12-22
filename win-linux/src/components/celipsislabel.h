@@ -46,6 +46,7 @@ public:
     auto setText(const QString&) -> void;
     auto setEllipsisMode(Qt::TextElideMode) -> void;
     auto updateText() -> void;
+    auto textWidth() -> int;
 
 signals:
     void onResize(QSize size, int textWidth);
