@@ -205,6 +205,10 @@ CDownloadWidget::CDownloadWidget(QWidget *parent)
     m_pToolButton->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
     m_pToolButton->setVisible(false);
     connect(m_pToolButton, &QPushButton::clicked, this, [=]() {
+        if (isVisible()) {
+            hide();
+            return;
+        }
         polish();
         show();
         QPoint pos = AscAppManager::isRtlEnabled() ? parent->geometry().topLeft() : parent->geometry().topRight() - QPoint(WIDGET_MAX_WIDTH, 0);
@@ -427,7 +431,7 @@ bool CDownloadWidget::eventFilter(QObject *obj, QEvent *ev)
 {
     switch (ev->type()) {
     case QEvent::WindowDeactivate:
-        if (obj == this)
+        if (obj == this && !m_pToolButton->underMouse())
             hide();
         break;
     case QEvent::HoverEnter:
