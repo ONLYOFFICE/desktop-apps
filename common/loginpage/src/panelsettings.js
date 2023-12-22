@@ -184,7 +184,7 @@
                                         <div class='settings-field' style='display:none;'>
                                             <section class='switch-labeled hbox' id='sett-box-rtl-mode'>
                                                 <input type="checkbox" class="checkbox" id="sett-rtl-mode">
-                                                <label for="sett-rtl-mode" class='sett__caption' l10n>RTL Interface *</label>
+                                                <label for="sett-rtl-mode" class='sett__caption' l10n>${_lang.settRtlMode} (Beta) *</label>
                                             </section>
                                         </div>
                                         <div class='settings-field' id='opts-ui-scaling' style='display:none'>
