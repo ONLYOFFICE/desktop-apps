@@ -72,7 +72,7 @@
         args.id&&(args.id=`id=${args.id}`)||(args.id='');
 
         var _html_empty_panel_with_carousel =
-                        `<div id="box-empty-portals" class="empty flex-center">
+                        `<div id="box-empty-portals" class="empty flex-center offcet-center">
                             <section class="center-box">
                               <h3 class="empty-title" l10n style="margin:0 0 60px;">${_lang.portalEmptyTitle}</h3>
                               <div class='carousel'>
