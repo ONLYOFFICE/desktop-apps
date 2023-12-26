@@ -351,7 +351,8 @@ void CEditorWindow::captureMouse()
 //        if ( cursor.x > _g.right() - dpiCorr(150) )
 //            _window_offset_x = _g.right() - dpiCorr(150);
 //        else _window_offset_x = cursor.x - _g.x();
-        move(cursor.x - dpiCorr(CAPTURED_WINDOW_OFFSET_X), cursor.y - dpiCorr(CAPTURED_WINDOW_OFFSET_Y));
+        SetWindowPos((HWND)winId(), NULL, cursor.x - dpiCorr(CAPTURED_WINDOW_OFFSET_X), cursor.y - dpiCorr(CAPTURED_WINDOW_OFFSET_Y),
+                        0, 0, SWP_NOZORDER | SWP_NOSIZE | SWP_NOACTIVATE);
         ReleaseCapture();
         PostMessage((HWND)winId(), WM_NCLBUTTONDOWN, HTCAPTION, MAKELPARAM(cursor.x, cursor.y));
     }
