@@ -34,9 +34,6 @@
 #include "cascapplicationmanagerwrapper.h"
 #include "defines.h"
 #include "utils.h"
-#include "csplash.h"
-#include "clogger.h"
-#include "clangater.h"
 #include <QTimer>
 #include <QDesktopWidget>
 #include <QWindow>
@@ -175,11 +172,6 @@ bool CWindowPlatform::event(QEvent * event)
 
 /** Private **/
 
-void CWindowPlatform::setResizeableAreaWidth(int width)
-{
-    m_resAreaWidth = (width < 0) ? 0 : width;
-}
-
 void CWindowPlatform::changeEvent(QEvent *event)
 {
     CWindowBase::changeEvent(event);
@@ -241,38 +233,6 @@ bool CWindowPlatform::nativeEvent(const QByteArray &eventType, void *message, lo
             RECT winrect;
             GetWindowRect(msg->hwnd, &winrect);
             TrackPopupMenu(GetSystemMenu(msg->hwnd, false ), TPM_TOPALIGN | TPM_LEFTALIGN, winrect.left + 5, winrect.top + 5, 0, msg->hwnd, NULL);
-        }
-        break;
-    }
-
-    case WM_KEYDOWN: {
-        if (msg->wParam == VK_F5 || msg->wParam == VK_F6 || msg->wParam == VK_F7) {
-            //SendMessage(msg->hwnd, WM_KEYDOWN, msg->wParam, msg->lParam);
-        } else
-        if (msg->wParam == VK_TAB) {
-            SetFocus(HWND(winId()));
-        }
-        break;
-    }
-
-    case WM_SYSCOMMAND: {
-        if (GET_SC_WPARAM(msg->wParam) == SC_KEYMENU) {
-            return false;
-        } else
-        if (GET_SC_WPARAM(msg->wParam) == SC_RESTORE) {
-
-        } else
-        if (GET_SC_WPARAM(msg->wParam) == SC_MINIMIZE) {
-
-        } else
-        if (GET_SC_WPARAM(msg->wParam) == SC_SIZE) {
-            break;
-        } else
-        if (GET_SC_WPARAM(msg->wParam) == SC_MOVE) {
-            break;
-        } else
-        if (GET_SC_WPARAM(msg->wParam) == SC_MAXIMIZE) {
-            break;
         }
         break;
     }

@@ -35,9 +35,6 @@
 
 #include "windows/cwindowbase.h"
 #include <QtWidgets/QApplication>
-#include <QShowEvent>
-#include <QMargins>
-#include <QRect>
 
 
 class CWindowPlatform : public CWindowBase
@@ -58,7 +55,6 @@ protected:
     virtual void onLayoutDirectionChanged() = 0;
 
 private:
-    void setResizeableAreaWidth(int);
     virtual void changeEvent(QEvent*) final;
     virtual bool nativeEvent(const QByteArray&, void*, long*) final;
 
