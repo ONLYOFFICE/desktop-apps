@@ -272,6 +272,8 @@ utils.parseFileFormat = function(format) {
     case utils.defines.FileFormat.FILE_CROSSPLATFORM_PDF:   return 'pdf';
     case utils.defines.FileFormat.FILE_CROSSPLATFORM_DJVU:  return 'djvu';
     case utils.defines.FileFormat.FILE_CROSSPLATFORM_XPS:   return 'xps';
+
+    default: return 'neutral';
     }
 
     return '';

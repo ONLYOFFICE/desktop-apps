@@ -105,10 +105,10 @@
 
             var _tpl = `<tr${id} class="${info.crypted ? `crypted${isSvgIcons ?'-svg':''}` : ''}">
                           <td class="row-cell cicon">
-                            <i class="icon ${info.type=='folder'?'img-el folder':`img-format ${info.format? info.format :'neutral' }`}" />
+                            <i class="icon ${info.type=='folder'?'img-el folder':`img-format ${info.format}`}" />
                         ${!isSvgIcons ?'':
                             `<svg class = "icon ${info.type=='folder'?'folder':''}">
-                                <use xlink:href="#${info.type=='folder'?'folder-small':`${info.format? info.format :'neutral'}`}"></use>
+                                <use xlink:href="#${info.type=='folder'?'folder-small':`${info.format}`}"></use>
                             </svg>
                             ${info.crypted?'<svg class = "shield"> <use xlink:href="#shield"></use></svg>':''}`
                         }                            
