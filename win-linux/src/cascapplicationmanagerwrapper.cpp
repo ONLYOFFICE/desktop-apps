@@ -1054,15 +1054,6 @@ void CAscApplicationManagerWrapper::startApp()
         _app.m_pMainWindow->show(_is_maximized);
     }
 
-    if ( QFileInfo::exists(":/noconnect.html") ) {
-        QString _nc_path = Utils::getAppCommonPath() + "/noconnect.html";
-        bool _nc_exist = QFileInfo::exists(_nc_path) || QFile::copy(":/noconnect.html", _nc_path);
-
-        if ( _nc_exist ) {
-            _app.m_oSettings.connection_error_path = _nc_path.toStdWString();
-        }
-    }
-
     QObject::connect(CExistanceController::getInstance(), &CExistanceController::checked, [] (const QString& name, int uid, bool exists) {
         if ( !exists ) {
             QJsonObject _json_obj{{QString::number(uid), exists}};
