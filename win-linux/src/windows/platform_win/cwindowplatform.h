@@ -58,7 +58,6 @@ protected:
     virtual void onLayoutDirectionChanged() = 0;
 
 private:
-    bool isTaskbarAutoHideOn();
     void setResizeableAreaWidth(int);
     virtual void changeEvent(QEvent*) final;
     virtual bool nativeEvent(const QByteArray&, void*, long*) final;
