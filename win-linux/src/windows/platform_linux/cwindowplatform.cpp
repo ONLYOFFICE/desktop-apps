@@ -178,8 +178,7 @@ void CWindowPlatform::paintEvent(QPaintEvent *event)
     path.lineTo(width(), d/2);
     path.closeSubpath();
     pnt.fillPath(path, palette().window().color());
-    QColor borderColor = property("borderColor").value<QColor>();
-    pnt.strokePath(path, QPen(borderColor, 1));
+    pnt.strokePath(path, QPen(m_brdColor, 1));
     pnt.end();
 }
 
