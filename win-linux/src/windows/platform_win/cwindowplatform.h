@@ -37,6 +37,16 @@
 #include <QtWidgets/QApplication>
 
 
+struct FRAME {
+    FRAME() : left(0), top(0)
+    {}
+    FRAME(FRAME &frame) {
+        left = frame.left;
+        top = frame.top;
+    }
+    int left, top;
+};
+
 class CWindowPlatform : public CWindowBase
 {
 public:
@@ -61,10 +71,14 @@ private:
     QTimer *m_propertyTimer;
     HWND m_hWnd;
     int  m_resAreaWidth;
+    FRAME m_frame;
     bool m_borderless,
          m_closed,
          m_isResizeable,
          m_allowMaximize,
+         m_isMaximized = false,
+         m_isThemeActive = true,
+         m_isTaskbarAutoHideOn = false,
          m_scaleChanged = false,
          m_isSessionInProgress = true;
 };

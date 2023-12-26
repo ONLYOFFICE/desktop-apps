@@ -989,6 +989,25 @@ namespace WindowHelper {
         ::SetActiveWindow(hwnd);
         ::AttachThreadInput(frgID, appID, FALSE);
     }
+
+    auto getColorizationColor(bool isActive) -> QColor
+    {
+        QColor color = GetColorByRole(ecrWindowBorder);
+        QSettings reg("HKEY_CURRENT_USER\\SOFTWARE\\Microsoft\\Windows\\DWM", QSettings::NativeFormat);
+        if (isActive && reg.value("ColorPrevalence", 0).toInt() != 0) {
+            DWORD dwcolor = 0;
+            BOOL opaque = TRUE;
+            static HRESULT(WINAPI *DwmGetColorizationColor)(DWORD*, BOOL*) = NULL;
+            if (!DwmGetColorizationColor) {
+                if (HMODULE module = GetModuleHandleA("dwmapi"))
+                    *(FARPROC*)&DwmGetColorizationColor = GetProcAddress(module, "DwmGetColorizationColor");
+            }
+            if (DwmGetColorizationColor && SUCCEEDED(DwmGetColorizationColor(&dwcolor, &opaque))) {
+                color = QColor((dwcolor & 0xff0000) >> 16, (dwcolor & 0xff00) >> 8, dwcolor & 0xff);
+            }
+        }
+        return color;
+    }
 #endif
 
     auto correctWindowMinimumSize(const QRect& windowrect, const QSize& minsize) -> QSize

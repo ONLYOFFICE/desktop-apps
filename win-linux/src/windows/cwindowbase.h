@@ -42,7 +42,7 @@
 #define EDITOR_WINDOW_MIN_WIDTH  920
 
 #define BUTTON_MAIN_WIDTH   112
-#define MAIN_WINDOW_BORDER_WIDTH 4
+#define MAIN_WINDOW_BORDER_WIDTH 1
 #define WINDOW_TITLE_MIN_WIDTH 200
 #define TOOLBTN_HEIGHT      28
 #define TOOLBTN_WIDTH       40
@@ -75,7 +75,7 @@ public:
     bool isCustomWindowStyle();
     void updateScaling(bool resize = true);
     virtual void adjustGeometry() = 0;
-    virtual void setWindowColors(const QColor&, const QColor& border = QColor());
+    virtual void setWindowColors(const QColor&, const QColor& border = QColor(), bool isActive = false);
     virtual void applyTheme(const std::wstring&);
 
 protected:
@@ -103,7 +103,8 @@ protected:
                   *m_boxTitleBtns = nullptr,
                   *m_pMainView = nullptr;
     double         m_dpiRatio;
-    QColor         m_brdColor;
+    QColor         m_brdColor,
+                   m_bkgColor;
 
     virtual void showEvent(QShowEvent *);
 

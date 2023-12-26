@@ -158,6 +158,7 @@ namespace WindowHelper {
     auto correctModalOrder(HWND windowhandle, HWND modalhandle) -> void;
     auto adjustWindowRect(HWND, double, LPRECT) -> void;
     auto bringToTop(HWND) -> void;
+    auto getColorizationColor(bool isActive = true) -> QColor;
 #endif
 
     auto correctWindowMinimumSize(const QRect&, const QSize&) -> QSize;
