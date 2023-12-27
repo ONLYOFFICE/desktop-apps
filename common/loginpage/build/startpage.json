@@ -54,10 +54,13 @@
             ]
         },
         "less": {
-            "files": {
+            "files": [{
                 "src": "../src/styles.less",
                 "dest": "../deploy/styles.css"
-            }
+            },{
+                "src": "../src/css/rtl.less",
+                "dest": "../deploy/rtl.css"
+            }]
         },
         "concat": {
             "files": {

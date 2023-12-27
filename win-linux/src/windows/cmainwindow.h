@@ -106,6 +106,7 @@ public:
 protected:
     virtual QString getSaveMessage() const;
     virtual void refreshAboutVersion() {};
+    virtual void onLayoutDirectionChanged() final;
     void closeEvent(QCloseEvent *) override;
     void showEvent(QShowEvent *) override;
 

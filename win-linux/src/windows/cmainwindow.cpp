@@ -147,6 +147,8 @@ int CMainWindow::attachEditor(QWidget * panel, int index)
 int CMainWindow::attachEditor(QWidget * panel, const QPoint& pt)
 {
     QPoint _pt_local = tabWidget()->tabBar()->mapFromGlobal(pt);
+    if (AscAppManager::isRtlEnabled())
+        _pt_local -= QPoint(32 * m_dpiRatio, 0); // Minus tabScroll width
 #ifdef Q_OS_WIN
 # if (QT_VERSION < QT_VERSION_CHECK(5, 10, 0))
     QPoint _tl = windowRect().topLeft();
@@ -176,7 +178,9 @@ bool CMainWindow::pointInTabs(const QPoint& pt)
 {
     QRect _rc_title(m_pMainPanel->geometry());
     _rc_title.setHeight(tabWidget()->tabBar()->height());
-    _rc_title.adjust(m_pButtonMain->width(), 1, -3*int(TITLEBTN_WIDTH*m_dpiRatio), 0);
+    int dx1 = (AscAppManager::isRtlEnabled()) ? 3 * int(TITLEBTN_WIDTH * m_dpiRatio) : m_pButtonMain->width();
+    int dx2 = (AscAppManager::isRtlEnabled()) ? -1 * m_pButtonMain->width() : -3 * int(TITLEBTN_WIDTH * m_dpiRatio);
+    _rc_title.adjust(dx1, 1, dx2, 0);
     return _rc_title.contains(mapFromGlobal(pt));
 }
 
@@ -367,6 +371,7 @@ QWidget* CMainWindow::createMainPanel(QWidget *parent)
 {
     QWidget *mainPanel = new QWidget(parent);
     mainPanel->setObjectName("mainPanel");
+    mainPanel->setProperty("rtl", AscAppManager::isRtlEnabled());
     QGridLayout *_pMainGridLayout = new QGridLayout(mainPanel);
     _pMainGridLayout->setSpacing(0);
     _pMainGridLayout->setObjectName(QString::fromUtf8("mainGridLayout"));
@@ -761,9 +766,7 @@ void CMainWindow::doOpenLocalFile(COpenOptions& opts)
     int result = m_pTabs->openLocalDocument(opts, true);
     if ( !(result < 0) ) {
         toggleButtonMain(false, true);
-#ifdef _WIN32
         Utils::addToRecent(opts.wurl);
-#endif
     } else
     if (result == -255) {
         QTimer::singleShot(0, this, [=] {
@@ -1013,6 +1016,7 @@ void CMainWindow::onDocumentDownload(void * info)
         });
         QHBoxLayout * layoutBtns = qobject_cast<QHBoxLayout *>(m_boxTitleBtns->layout());
         layoutBtns->insertWidget(1, m_pWidgetDownload->toolButton());
+        m_pWidgetDownload->setLayoutDirection(AscAppManager::isRtlEnabled() ? Qt::RightToLeft : Qt::LeftToRight);
         m_pWidgetDownload->setStyleSheet(Utils::readStylesheets(":/styles/download.qss"));
         m_pWidgetDownload->applyTheme(m_pMainPanel->property("uitheme").toString());
         m_pWidgetDownload->updateScalingFactor(m_dpiRatio);
@@ -1497,4 +1501,13 @@ bool CMainWindow::isAboutToClose() const
 void CMainWindow::cancelClose()
 {
     m_isCloseAll && (m_isCloseAll = false);
+}
+
+void CMainWindow::onLayoutDirectionChanged()
+{
+    m_pButtonMain->style()->polish(m_pButtonMain);
+    if (m_pWidgetDownload && m_pWidgetDownload->toolButton()) {
+        m_pWidgetDownload->onLayoutDirectionChanged();
+        m_pWidgetDownload->toolButton()->style()->polish(m_pWidgetDownload->toolButton());
+    }
 }

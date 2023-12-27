@@ -36,6 +36,7 @@
 #include "utils.h"
 #include <gtk/gtkmessagedialog.h>
 #include "updatedialog.h"
+#include "cascapplicationmanagerwrapper.h"
 #include <gdk/gdkx.h>
 //extern "C" {
 //#include "gtk_resources.h"
@@ -77,6 +78,9 @@ int WinDlg::showDialog(QWidget *parent,
     gtk_init(NULL, NULL);
     GtkDialogFlags flags;
     flags = (GtkDialogFlags)(GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT);
+
+    if (AscAppManager::isRtlEnabled())
+        gtk_widget_set_default_direction(GTK_TEXT_DIR_RTL);
     GtkWidget *dialog = NULL;
     dialog = gtk_message_dialog_new(NULL,
                                     flags,
@@ -85,6 +89,7 @@ int WinDlg::showDialog(QWidget *parent,
                                     "%s",
                                     primaryText.toLocal8Bit().data());
 
+    gtk_window_set_skip_taskbar_hint(GTK_WINDOW(dialog), TRUE);
     g_signal_connect(G_OBJECT(dialog), "realize", G_CALLBACK(set_parent), (gpointer)&parent_xid);
     g_signal_connect(G_OBJECT(dialog), "map_event", G_CALLBACK(set_focus), NULL);
     DialogTag tag;  // unable to send parent_xid via g_signal_connect and "focus_out_event"

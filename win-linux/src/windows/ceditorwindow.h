@@ -67,6 +67,7 @@ public:
 
 protected:
     void closeEvent(QCloseEvent *) override;
+    virtual void onLayoutDirectionChanged() final;
 
 private:
     QWidget * createMainPanel(QWidget *, const QString&);

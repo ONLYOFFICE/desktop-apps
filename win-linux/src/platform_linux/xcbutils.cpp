@@ -70,6 +70,14 @@ void XcbUtils::setNativeFocusTo(xcb_window_t window)
     }
 }
 
+static void SetSkipTaskbar(Display* disp, Window win)
+{
+    Atom wm_state = XInternAtom(disp, "_NET_WM_STATE", True);
+    Atom wm_state_skip_taskbar = XInternAtom(disp, "_NET_WM_STATE_SKIP_TASKBAR", True);
+    if (wm_state != None && wm_state_skip_taskbar != None)
+        XChangeProperty(disp, win, wm_state, XA_ATOM, 32, PropModeReplace, (const unsigned char*)&wm_state_skip_taskbar, 1);
+}
+
 static void GetWindowName(Display* disp, Window win, char **name) {
     XClassHint* class_hint = NULL;
     class_hint = XAllocClassHint();
@@ -135,6 +143,7 @@ void XcbUtils::findWindowAsync(const char *window_name,
                     if (strstr(name, window_name) != NULL) {
                         if (IsVisible(disp, win_list[i])) {
                             win_found = win_list[i];
+                            SetSkipTaskbar(disp, win_found);
                             callback((xcb_window_t)win_found);
                         }
                         free(name);

@@ -1,0 +1,234 @@
+/* No comment provided by engineer. */
+"%@ Help" = "%@ مساعدة";
+
+/* No comment provided by engineer. */
+"About %@" = "عن %@";
+
+/* No comment provided by engineer. */
+"Acknowledgments" = "شكر وتقدير لـ";
+
+/* No comment provided by engineer. */
+"Before signing the document, it must be saved." = "لإجراء توقيع المستند، يجب الحفظ أولًا";
+
+/* No comment provided by engineer. */
+"Cancel" = "إلغاء";
+
+/* No comment provided by engineer. */
+"Cannot open file of Digital Signature" = "غير قادر على فتح ملف التوقيع الرقمي";
+
+/* No comment provided by engineer. */
+"Cannot open file of Private Key" = "غير قادر على فتح ملف مفتاح التشفير الخاص";
+
+/* No comment provided by engineer. */
+"Cannot open folder of the file location." = "غير قادر على فتح المجلد للمكان المختار";
+
+/* No comment provided by engineer. */
+"Comma-Separated Values" = "قيم مفرّقة بفاصلة (*.csv)";
+
+/* No comment provided by engineer. */
+"Create portal" = "إنشاء بوابة سحابية";
+
+/* No comment provided by engineer. */
+"Delete and Quit" = "حذف وخروج";
+
+/* No comment provided by engineer. */
+"DjVu File" = "مستند رقمي (*.djvu)";
+
+/* No comment provided by engineer. */
+"Do you want to save the changes made to the document \"%@\"?" = "هل تريد حفظ التغييرات للمستند \"%@\"؟";
+
+/* No comment provided by engineer. */
+"Document %ld.docx" = "مستند %ld.docx";
+
+/* No comment provided by engineer. */
+"Document %ld.docxf" = "مستند %ld.docxf";
+
+/* No comment provided by engineer. */
+"Document template" = "قالب وورد (*.dotx)";
+
+/* No comment provided by engineer. */
+"Don't Save" = "عدم الحفظ";
+
+/* No comment provided by engineer. */
+"Excel 97-2003 Spreadsheet" = "جدول إكسل 97-2003 (*.xls)";
+
+/* No comment provided by engineer. */
+"Excel 2007 Spreadsheet" = "جدول إكسل (*.xlsx)";
+
+/* No comment provided by engineer. */
+"FictionBook File" = "ملف فكشنبوك 2 (*.fb2)";
+
+/* No comment provided by engineer. */
+"File \"%@\" can not be open or not exist." = "\"%@\" غير قابل للفتح أو غير موجود.";
+
+/* No comment provided by engineer. */
+"File can not be open." = "غير قادر على فتح الملف.";
+
+/* No comment provided by engineer. */
+"File Format:" = "صيغة الملف:";
+
+/* No comment provided by engineer. */
+"Hide %@" = "إخفاء %@";
+
+/* No comment provided by engineer. */
+"If you don't review your documents, all your changeses will be lost." = "إن لم تراجع مستنداتك، فستخسر التغييرات.";
+
+/* No comment provided by engineer. */
+"If you have already purchased %@, you should find your activation key in an email confirmation." = "إن قمت بشراء %@ من قبل، فسوف تجد رمز التفعيل في رسالة تأكيدية بالبريد الإلكتروني.";
+
+/* No comment provided by engineer. */
+"License Agreement" = "الموافقة على الترخيص";
+
+/* No comment provided by engineer. */
+"Macro-enabled Presentation" = "عرض بوربوينت مع خاصية الماكرو (*.pptm)";
+
+/* No comment provided by engineer. */
+"Macro-enabled spreadsheet template" = "قالب جدول إكسيل مع خاصية الماكرو (*.xltm)";
+
+/* No comment provided by engineer. */
+"Mobipocket e-book" = "ملف موبي بوكيت (*.mobi)";
+
+/* No comment provided by engineer. */
+"new-document" = "مستند جديد";
+
+/* No comment provided by engineer. */
+"new-presentation" = "عرض تقديمي جديد";
+
+/* No comment provided by engineer. */
+"new-spreadsheet" = "جدول بياني جديد";
+
+/* No comment provided by engineer. */
+"No" = "لا";
+
+/* No comment provided by engineer. */
+"OK" = "حسنًا";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE can not open the Digital Signature file. Try opening another file." = "أونلي أوفيس غير قادر على فتح ملف التوقيع الرقمي. جرّب ملفًّا آخر.";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE can not open the Private Key. Try opening another file." = "أونلي أوفيس غير قادر على فتح مفتاح التشفير الخاص. جرّب ملفًّا آخر.";
+
+/* No comment provided by engineer. */
+"OpenDocument Document Template" = "مستند ليبري أوفس (*.ott)";
+
+/* No comment provided by engineer. */
+"OpenDocument Presentation Template" = "قالب عرض ليبري أوفس (*.otp)";
+
+/* No comment provided by engineer. */
+"OpenDocument Spreadsheet Template" = "قالب جدول ليبري أوفس (*.ots)";
+
+/* No comment provided by engineer. */
+"Opening" = "جاري الفتح";
+
+/* No comment provided by engineer. */
+"OpenOffice Document" = "ملف نصي ليبري أوفس (*.odt)";
+
+/* No comment provided by engineer. */
+"OpenOffice Presentation" = "عرض ليبري أوفس (*.odp)";
+
+/* No comment provided by engineer. */
+"OpenOffice Spreadsheet" = "جدول ليبري أوفس (*.ods)";
+
+/* No comment provided by engineer. */
+"PDF File" = "بي دي إف (*.pdf)";
+
+/* No comment provided by engineer. */
+"PDF/A File" = "بي دي إف طويل الأجل (*.pdf)";
+
+/* No comment provided by engineer. */
+"Plain Text" = "ملف نصي (*.txt)";
+
+/* No comment provided by engineer. */
+"PowerPoint 97-2003 Presentation" = "عرض بوربوينت 97-2003 (*.ppt)";
+
+/* No comment provided by engineer. */
+"PowerPoint 2007 Presentation" = "عرض بوربوينت قابل للتعديل (*.pptx)";
+
+/* No comment provided by engineer. */
+"PowerPoint Slide Show" = "عرض بوربوينت غير قابل للتعديل (*.ppsx)";
+
+/* No comment provided by engineer. */
+"Preparing..." = "تجهيز...";
+
+/* No comment provided by engineer. */
+"Presentation %ld.pptx" = "عرض %ld.pptx";
+
+/* No comment provided by engineer. */
+"Presentation template" = "قالب عرض بوربوينت (*.potx)";
+
+/* No comment provided by engineer. */
+"Presenter View" = "وضع إلقاء العرض";
+
+/* No comment provided by engineer. */
+"Quit %@" = "خروج من %@";
+
+/* No comment provided by engineer. */
+"Review Changes..." = "مراجعة التغييرات...";
+
+/* No comment provided by engineer. */
+"Rich Text Document" = "ملف نصي غني  (*.rtf)";
+
+/* No comment provided by engineer. */
+"Save" = "حفظ";
+
+/* No comment provided by engineer. */
+"Save the document?" = "حفظ المستند؟";
+
+/* No comment provided by engineer. */
+"Signature Details" = "معلومات التوقيع";
+
+/* No comment provided by engineer. */
+"Spreadsheet %ld.xlsx" = "جدول %ld.xlsx";
+
+/* No comment provided by engineer. */
+"Spreadsheet template" = "قالب جدول إكسل (*.xltx)";
+
+/* No comment provided by engineer. */
+"Thank you for evaluating %@!" = "شكرًا على تقييم %@!";
+
+/* No comment provided by engineer. */
+"The document \"%@\" must be built. Continue?" = "المستند \"%@\" يجب بناؤه. استمر؟";
+
+/* No comment provided by engineer. */
+"To open the file location, it must be saved." = "لفتح مكان الملف، يجب الحفظ.";
+
+/* No comment provided by engineer. */
+"Unconfirmed" = "غير مؤكد";
+
+/* No comment provided by engineer. */
+"Untitled" = "بدون عنوان";
+
+/* No comment provided by engineer. */
+"Web Page" = "صفحة ويب";
+
+/* No comment provided by engineer. */
+"With access to pro features" = "مع صلاحية استخدام للميزات المدفوعة";
+
+/* No comment provided by engineer. */
+"Word 97-2003 Document" = "مستند وورد 97-2003 (*.doc)";
+
+/* No comment provided by engineer. */
+"Word 2007 Document" = "مستند وورد (*.docx)";
+
+/* No comment provided by engineer. */
+"XML Paper Specification" = "مستند أوبن إكس بي إس (*.xps)";
+
+/* No comment provided by engineer. */
+"Yes" = "نعم";
+
+/* No comment provided by engineer. */
+"You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?" = "لديك %1$ld %2$@ مستندات بتغييرات غير مؤكدة. هل تريد مراجعة التغييرات قبل الخروج؟";
+
+/* No comment provided by engineer. */
+"You have successfully activated %@." = "لقد تم تفعيل %@.";
+
+/* No comment provided by engineer. */
+"Your changes will be lost if you don’t save them." = "سوف يتم فقد التغييرات إن لم تقم بالحفظ.";
+
+/* No comment provided by engineer. */
+"Your subscription has expired.\n\nThe program works in the non-activated mode.\n\nNow you can prolong or upgrade your subscription with a discount." = "لقد انتهى اشتراكك.\n\nالبرنامج يعمل في وضع عدم التفعيل.\n\nالآن يمكنك تجديد أو تطوير اشتراكك مع خصم.";
+
+/* No comment provided by engineer. */
+"Your subscription is about to expire\n(%d days left).\n\nWe have a special offer for you." = "اشتراكك على وشك الانتهاء\n(%d أيام متبقية).\n\nلدينا عرض خاص لك.";
+

@@ -394,9 +394,7 @@ namespace CEditorTools
                             AscAppManager::GetFileFormatByExtentionForSave(pSaveData->get_Path());
 
                     pSaveData->put_FileType(format > -1 ? format : 0);
-#ifdef _WIN32
                     Utils::addToRecent(_full_path.toStdWString());
-#endif
                 }
             }
 

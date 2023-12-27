@@ -72,6 +72,13 @@ void set_parent(GtkWidget *dialog, gpointer data)
     }
 }
 
+void add_to_recent(const gchar *uri)
+{
+    gtk_init(NULL, NULL);
+    GtkRecentManager *rm = gtk_recent_manager_get_default();
+    gtk_recent_manager_add_item(rm, uri);
+}
+
 GtkWidget *find_widget_by_path(GtkWidget *parent, const gchar *widget_path)
 {
     if (!parent)
