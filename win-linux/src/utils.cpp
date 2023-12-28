@@ -99,7 +99,7 @@ namespace InputArgs {
                         return true;
                     else {
                         wchar_t d = s.at(n+l);
-                        if (d == L':' || d == L'=')
+                        if (d == L':' || d == L'=' || d == L'|')
                             return true;
                     }
                 }

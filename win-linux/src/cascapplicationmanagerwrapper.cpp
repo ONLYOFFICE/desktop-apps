@@ -795,6 +795,19 @@ CMainWindow * CAscApplicationManagerWrapper::prepareMainWindow(const QRect& r)
         additional.append(arg_portal);
     }
 
+    std::wstring app_scheme = _app.GetExternalSchemeName();
+    if ( !app_scheme.empty() ) {
+        if ( app_scheme.back() != L':' )
+            app_scheme += L":";
+
+        std::wstring _panel_select_action = app_scheme + L"//action|panel";
+        std::wstring _panel_to_select = InputArgs::argument_value(_panel_select_action);
+
+        if ( !_panel_to_select.empty() ) {
+            additional.append("&panel=" + QString::fromStdWString(_panel_to_select));
+        }
+    }
+
 #if defined(__OS_WIN_XP)
     additional.append("&osver=winxp");
 #endif
@@ -841,6 +854,8 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
 
         open_scheme.push_back(app_scheme);
     }
+    std::wstring app_action = app_scheme + L"//action|";
+    std::wstring app_action_plugin = app_scheme + L"//action|install-plugin";
 
     for (const auto& arg: vargs) {
         COpenOptions open_opts;
@@ -871,6 +886,17 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
 
 //            if ( check_param(arg, L"single-window") )
 //                in_new_window = true;
+        } else
+        if ( arg.rfind(app_action, 0) == 0 ) {
+            if ( arg.rfind(app_action_plugin, 0) == 0 ) {
+                std::wstring _plugin_name = arg.substr(app_action_plugin.size() + 1);
+                if ( !_plugin_name.empty() ) {
+//                    _app.installEditorsPlugin(_plugin_name);
+                }
+                qDebug() << "install plugin" << _plugin_name;
+            }
+
+            continue;
         } else {
             open_opts.wurl = arg;
         }

@@ -70,8 +70,11 @@ $(document).ready(function() {
         selectAction('welcome');
 
         localStorage.setItem('welcome', 'have been');
-    } else 
-        selectAction('recent');
+    } else {
+        if ( !!utils.inParams.panel && $(`.action-panel.${utils.inParams.panel}`).length )
+            selectAction(utils.inParams.panel);
+        else selectAction('recent');
+    }
 
     $('#placeholder').on('click', '.newportal', function(){
         CommonEvents.fire("portal:create");
@@ -138,6 +141,8 @@ function onActionClick(e) {
 };
 
 function selectAction(action) {
+    if ( !$(`.action-panel.${action}`).length ) return;
+
     $('.tool-menu > .menu-item').removeClass('selected');
     $('.tool-menu a[action='+action+']').parent().addClass('selected');
     $('.action-panel').hide();
