@@ -242,7 +242,7 @@ QStringList CFileDialogWrapper::modalOpen(const QString& path, const QString& fi
 //        _filter_ = joinFilters();
         _filter_ =  tr("Text documents") +
 #ifndef __LOCK_OFORM_FORMATS
-                        " (*.docx *.doc *.odt *.ott *.rtf *.docm *.dot *.dotx *.dotm *.fb2 *.fodt *.wps *.wpt *.xml *.pdf *.djv *.djvu *.docxf *.sxw *.stw *.xps *.oxps);;" +
+                        " (*.docx *.doc *.odt *.ott *.rtf *.docm *.dot *.dotx *.dotm *.fb2 *.fodt *.wps *.wpt *.xml *.pdf *.djv *.djvu *.docxf *.oform *.sxw *.stw *.xps *.oxps);;" +
 #else
                         " (*.docx *.doc *.odt *.ott *.rtf *.docm *.dot *.dotx *.dotm *.fb2 *.fodt *.wps *.wpt *.xml *.pdf *.djv *.djvu *.sxw *.stw *.xps *.oxps);;" +
 #endif
@@ -358,7 +358,11 @@ QStringList CFileDialogWrapper::modalOpenPresentations(const QString& path, bool
 
 QStringList CFileDialogWrapper::modalOpenForEncrypt(const QString& path, bool multi)
 {
-    QString _filter = tr("Text documents") + " (*.docx *.docxf *.docm *.dotm *.dotx);;" +
+#ifndef __LOCK_OFORM_FORMATS
+    QString _filter = tr("Text documents") + " (*.docx *.docxf *.docm *.dotm *.dotx *.oform);;" +
+#else
+    QString _filter = tr("Text documents") + " (*.docx *.docm *.dotm *.dotx);;" +
+#endif
                         tr("Spreadsheets") + " (*.xlsx *.xlsm *.xltm *.xltx);;" +
                         tr("Presentations") + " (*.potm *.potx *.ppsm *.pptm *.ppsx *.pptx)";
 
