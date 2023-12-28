@@ -82,9 +82,6 @@
 
         const write_theme_css = function (css, id) {
             if ( !!css ) {
-                const $style = $(`style [data-theme-id=${id}]`);
-                if ( $style.length )
-                    $style.remove();
 
                 let style = document.createElement('style');
                 style.type = 'text/css';
@@ -341,6 +338,12 @@
                 objs.forEach(t => {
                     const _css = create_colors_css(t.id, t.colors);
                     if ( _css ) {
+                        const _$style = $(`style[data-theme-id=${t.id}]`);
+                        if ( _$style.length ) {
+                            _$style.remove();
+                            _combo.find(`option[value=${t.id}]`).remove();
+                        }
+
                         write_theme_css(_css, t.id);
                         themes_map[t.id] = {text: t.name, type: t.type, l10n: t.l10n};
 
