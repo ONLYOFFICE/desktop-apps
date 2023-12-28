@@ -13,7 +13,7 @@
         <path d="M135.975 60.543c2.938 1.757 6.537 2.142 9.77.715 3.232-1.426 5.374-4.344 6.056-7.699.149-.733-.603-1.265-1.288-.963l-14.381 6.346c-.685.303-.8 1.216-.157 1.6ZM153 13l14.5 6-1.5 1.5-9.5 4.5-3.5-9.5V13Z" fill="#AAA"/>
         <path d="M228.228 172.603a9 9 0 0 0 3.096 5.099l-104.038 9.224a2.998 2.998 0 0 1-3.184-2.299l-15.767-66.791a3 3 0 0 1 2.507-3.661l33.08-4.592a.998.998 0 0 1 .797.239l6.735 5.915a5 5 0 0 0 3.909 1.206l56.85-6.982a3 3 0 0 1 3.301 2.359l12.714 60.283Z" fill="#EFEFEF" stroke="#AAA" stroke-width="2"/>
         <g filter="url(#b)">
-            <path d="m274.409 80.993-33.669 75.7a1 1 0 0 1-1.318.509l-62.188-27.517a1.001 1.001 0 0 1-.51-1.32l37.222-84.121a1.001 1.001 0 0 1 1.325-.508l53.464 24.016 5.674 13.24Z" fill="#fff" stroke="#AAA" stroke-width="2"/>
+            <path d="m274.409 80.993-33.669 75.7a1 1 0 0 1-1.318.509l-62.188-27.517a1.001 1.001 0 0 1-.51-1.32l37.222-84.121a1.001 1.001 0 0 1 1.325-.508l53.464 24.016 5.674 13.24Z" fill="white" stroke="#AAA" stroke-width="2"/>
             <path d="m202.9 118.905-9.628 4.506 22.885 10.062-3.811-13.692-6.992 3.48-2.454-4.356Z" fill="#FF6F3D"/>
             <rect x="199.561" y="96.682" width="54" height="32" rx="3" transform="rotate(23.734 199.561 96.682)" stroke="#AAA" stroke-width="2"/>
             <circle cx="205.974" cy="113.156" r="2.5" transform="rotate(23.734 205.974 113.156)" fill="#FF6F3D"/>
@@ -31,17 +31,17 @@
         <path d="M263.594 175.89a.999.999 0 0 1-1.462-.895l.072-8.229a1 1 0 0 1 1.522-.844l7.223 4.421a1 1 0 0 1-.06 1.739l-7.295 3.808ZM210.558 13.965a1 1 0 0 1-1.397.994l-7.542-3.291a1 1 0 0 1-.18-1.731l6.898-4.912a1 1 0 0 1 1.577.736l.644 8.204Z" fill="#95C03D"/>
         <path d="M246.534 10.921a1 1 0 0 1-1.44-.931l.278-8.225a1 1 0 0 1 1.543-.806l7.109 4.6a1 1 0 0 1-.102 1.737l-7.388 3.625ZM89.559 149.87a1 1 0 0 1-1.592.639l-6.559-4.969a1 1 0 0 1 .231-1.725l7.858-3.157a1 1 0 0 1 1.36 1.086l-1.298 8.126Z" fill="#5FC1E8"/>
         <path d="M50 105a2 2 0 0 1 2-2h28a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-6v4l-8-4H52a2 2 0 0 1-2-2v-14Z" fill="#E2E2E2"/>
-        <circle cx="58" cy="112" r="2" fill="#fff"/>
-        <circle cx="66" cy="112" r="2" fill="#fff"/>
-        <circle cx="74" cy="112" r="2" fill="#fff"/>
+        <circle cx="58" cy="112" r="2" fill="white"/>
+        <circle cx="66" cy="112" r="2" fill="white"/>
+        <circle cx="74" cy="112" r="2" fill="white"/>
         <path d="M315 130a2 2 0 0 0-2-2h-28a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h6v4l8-4h14a2 2 0 0 0 2-2v-14Z" fill="#E2E2E2"/>
-        <circle cx="2" cy="2" r="2" transform="matrix(-1 0 0 1 309 135)" fill="#fff"/>
-        <circle cx="2" cy="2" r="2" transform="matrix(-1 0 0 1 301 135)" fill="#fff"/>
-        <circle cx="2" cy="2" r="2" transform="matrix(-1 0 0 1 293 135)" fill="#fff"/>
+        <circle cx="2" cy="2" r="2" transform="matrix(-1 0 0 1 309 135)" fill="white"/>
+        <circle cx="2" cy="2" r="2" transform="matrix(-1 0 0 1 301 135)" fill="white"/>
+        <circle cx="2" cy="2" r="2" transform="matrix(-1 0 0 1 293 135)" fill="white"/>
     </g>
     <defs>
         <clipPath id="a">
-            <path fill="#fff" d="M0 0h377v193H0z"/>
+            <path fill="white" d="M0 0h377v193H0z"/>
         </clipPath>
         <filter id="b" x="150.639" y="24.648" width="149.861" height="165.64" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
             <feFlood flood-opacity="0" result="BackgroundImageFix"/>
