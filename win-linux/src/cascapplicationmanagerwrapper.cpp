@@ -1070,12 +1070,6 @@ void CAscApplicationManagerWrapper::startApp()
 
     handleInputCmd(in_args);
     if ( _app.m_vecEditors.empty() && !_app.m_pMainWindow ) {
-//        _app.m_private->createStartPanel();
-
-//        CMainWindow * _window = createMainWindow(_start_rect);
-//        _window->mainPanel()->attachStartPanel(_app.m_private->m_pStartPanel);
-//        _window->show(_is_maximized);
-
         _app.m_pMainWindow = _app.prepareMainWindow();
         _app.m_pMainWindow->show(_is_maximized);
     }
