@@ -358,7 +358,11 @@ QStringList CFileDialogWrapper::modalOpenPresentations(const QString& path, bool
 
 QStringList CFileDialogWrapper::modalOpenForEncrypt(const QString& path, bool multi)
 {
+#ifndef __LOCK_OFORM_FORMATS
     QString _filter = tr("Text documents") + " (*.docx *.docxf *.docm *.dotm *.dotx *.oform);;" +
+#else
+    QString _filter = tr("Text documents") + " (*.docx *.docm *.dotm *.dotx);;" +
+#endif
                         tr("Spreadsheets") + " (*.xlsx *.xlsm *.xltm *.xltx);;" +
                         tr("Presentations") + " (*.potm *.potx *.ppsm *.pptm *.ppsx *.pptx)";
 
