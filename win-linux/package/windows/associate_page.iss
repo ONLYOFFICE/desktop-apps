@@ -2036,7 +2036,7 @@ begin
     for i := 0 to GetArrayLength(argsArray) - 1 do begin
        if not RegQueryStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.' + argsArray[i], '', defaultVal) and
          RegQueryStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.' + argsArray[i], '{#ASCC_REG_PREFIX}', oldValue) and
-           RegKeyExists(HKEY_LOCAL_MACHINE, 'Software\Classes\.' + argsArray[i] + '\' + oldValue) then begin
+           RegKeyExists(HKEY_LOCAL_MACHINE, 'Software\Classes\' + oldValue) then begin
              RegWriteStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.' + argsArray[i], '', oldValue);
        end;
        RegDeleteValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.' + argsArray[i], '{#ASCC_REG_PREFIX}');
