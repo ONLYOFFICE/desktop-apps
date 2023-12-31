@@ -893,7 +893,6 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
                 if ( !_plugin_name.empty() ) {
 //                    _app.installEditorsPlugin(_plugin_name);
                 }
-                qDebug() << "install plugin" << _plugin_name;
             }
 
             continue;
