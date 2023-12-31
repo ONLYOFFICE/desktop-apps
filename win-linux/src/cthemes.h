@@ -78,6 +78,8 @@ public:
     auto parseThemeName(const std::wstring&) -> std::wstring;
     auto localThemesToJson() -> QJsonArray;
     auto contains(const QString& id) -> bool;
+    auto validate(const QJsonObject&) -> bool;
+    auto checkDestinationThemeFileExist(const QString& srcpath) -> bool;
 private:
     class CThemesPrivate;
     CThemesPrivate * m_priv = nullptr;

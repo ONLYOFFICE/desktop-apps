@@ -74,9 +74,6 @@ private:
            *m_titleFrame = nullptr;
     std::map<int, CDownloadItem *> m_mapDownloads;
     double m_dpiRatio = 1;
-
-signals:
-    void downloadCanceled(int);
 };
 
 #endif // CDOWNLOADWIDGET_H

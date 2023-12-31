@@ -359,8 +359,16 @@ bool CWindowPlatform::nativeEvent(const QByteArray &eventType, void *message, lo
                 bool _changed_theme_dark = _reg.value("AppsUseLightTheme", 1).toInt() == 0;
 
                 if (_changed_theme_dark != AscAppManager::themes().isSystemSchemeDark()) {
-                    AscAppManager::themes().onSystemDarkColorScheme(_changed_theme_dark);
-                    qDebug() << "system theme changed";
+                    NSEditorApi::CAscCefMenuEvent * ns_event = new NSEditorApi::CAscCefMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND);
+                    NSEditorApi::CAscExecCommand * pData = new NSEditorApi::CAscExecCommand;
+                    pData->put_Command(L"system:changed");
+
+                    QJsonObject _json_obj{{"colorscheme", _changed_theme_dark ? "dark" : "light"}};
+                    pData->put_Param(Utils::stringifyJson(_json_obj).toStdWString());
+
+                    ns_event->m_pData = pData;
+                    ns_event->m_nSenderId = 0;
+                    AscAppManager::getInstance().OnEvent(ns_event);
                 }
             }
         }

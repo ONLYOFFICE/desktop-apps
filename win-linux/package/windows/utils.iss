@@ -92,6 +92,19 @@ begin
   Result :=  msiproductupgrade(upgradecode, '14.32.31332.0');
 end;
 
+function checkVCRedist2019(): Boolean;
+var
+  upgradecode: String;
+begin
+
+  if Is64BitInstallMode then
+    upgradecode := '{C146EF48-4D31-3C3D-A2C5-1E91AF8A0A9B}' //x64
+  else
+    upgradecode := '{F899BAD3-98ED-308E-A905-56B5338963FF}'; //x86
+
+  Result :=  msiproductupgrade(upgradecode, '14.27.29114.0');
+end;
+
 function ReadBinFile(fileName: String; list: TStringList): Boolean;
 var
   fs: TFileStream;

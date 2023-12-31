@@ -99,7 +99,7 @@ l10n.de = {
     updateAvialable: 'Version $1 ist verfügbar. Klicken Sie hier zum Herunterladen.',
     settOptThemeSystem: 'Wie im System',
     settOptThemeContrastDark: 'Dunkler Kontrast',
-    settAUpdateMode: 'utomatische Aktualisierung',
+    settAUpdateMode: 'Automatische Aktualisierung',
     settOptAUpdateSilent: 'Lautlos',
     settOptAUpdateAsk: 'Anfrage zum Herunterladen',
     updateDownloadFinished: 'Herunterladen abgeschlossen. Für Installation hier klicken',

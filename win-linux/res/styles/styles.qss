@@ -256,6 +256,7 @@ QPushButton#toolButtonDownload {border-left: 0px; border-right: 1px solid #dfdfd
 /* classic light theme definitions */
 /***********************************/
 
+#mainPanel[uitheme=theme-classic-light] QPushButton#toolButtonDownload {border-color: #cbcbcb;}
 #mainPanel[uitheme=theme-classic-light] QPushButton#toolButtonMain {
     border-color: #f1f1f1;
 }

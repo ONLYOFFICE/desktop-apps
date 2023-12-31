@@ -244,7 +244,7 @@ h4 {
 .img-format {
     background: -webkit-image-set(data-uri('formats.png') 1x, data-uri('formats@1.25x.png') 1.25x,
         data-uri('formats@1.5x.png') 1.5x, data-uri('formats@1.75x.png') 1.75x, data-uri('formats@2x.png') 2x) no-repeat;
-    background-size: 744px auto;
+    background-size: 1056px auto;
 }
 
 li.menu-item {
@@ -610,7 +610,7 @@ li.menu-item {
             .format-from-index(4);
         }
 
-        &.htm {
+        &.htm, &.html {
             .format-from-index(5);
         }
 
@@ -691,6 +691,45 @@ li.menu-item {
         &.oform {
             .format-from-index(30);
         }
+        &.xlsb {
+            .format-from-index(31);
+        }
+        &.docm {
+            .format-from-index(32);
+        }
+        &.dotm {
+            .format-from-index(33);
+        }
+        &.fodt {
+            .format-from-index(34);
+        }
+        &.xltm {
+            .format-from-index(35);
+        }
+        &.xlsm {
+            .format-from-index(36);
+        }
+        &.fods {
+            .format-from-index(37);
+        }
+        &.pptm {
+            .format-from-index(38);
+        }
+        &.ppsm {
+            .format-from-index(39);
+        }
+        &.potm {
+            .format-from-index(40);
+        }
+        &.fodp {
+            .format-from-index(41);
+        }
+        &.md {
+            .format-from-index(42);
+        }
+        &.neutral {
+            .format-from-index(43);
+        }
 
         &.folder {
             height: 24px;
@@ -708,7 +747,7 @@ li.menu-item {
             height: 16px;
             top: 17px;
             left: 14px;
-            background-position: -58px -74px;
+            background-position: -60px -76px;
         }
         svg {
             display: none;
@@ -1248,19 +1287,20 @@ li.menu-item {
     }
 
     #idx-update-status-icon {
+        min-width: 28px;
         width: 28px;
         height: 28px;
 /*        display: block;*/
         margin-right: 8px;
 
         &[data-icon=success] {
-            fill: @icon-success;
+            fill: #95C038;
         }
         &[data-icon=error] {
-            fill: @border-error;
+            fill: #FF6F3D;
         }
         &[data-icon=load], &[data-icon=lastcheck] {
-            fill: @highlight-text-select;
+            fill: #5DC0E8;
         }
 
         &[data-icon=load] {
@@ -1283,7 +1323,8 @@ li.menu-item {
 }
 
 #idx-about-appname {
-    font-weight: bold;
+/*    font-weight: bold;*/
+    text-shadow: 1px 0 0 @text-normal;
     font-size: 18px;
     margin: -8px 0 0 0;
 }
@@ -1307,4 +1348,10 @@ li.menu-item {
 
 .hidden {
     display: none;
+}
+
+.dropdown-menu {
+    .divider {
+        background-color: @border-divider;
+    }
 }

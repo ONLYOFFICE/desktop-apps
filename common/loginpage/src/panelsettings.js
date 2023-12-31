@@ -80,11 +80,13 @@
             }
         }
 
-        const write_theme_css = function (css) {
+        const write_theme_css = function (css, id) {
             if ( !!css ) {
+
                 let style = document.createElement('style');
                 style.type = 'text/css';
                 style.innerHTML = css;
+                style.setAttribute('data-theme-id', id);
                 document.getElementsByTagName('head')[0].appendChild(style);
             }
         }
@@ -93,7 +95,7 @@
             for ( const t of nativevars.localthemes ) {
                 const _css = create_colors_css(t.id, t.colors);
                 if ( _css ) {
-                    write_theme_css(_css);
+                    write_theme_css(_css, t.id);
                     themes_map[t.id] = {text: t.name, type: t.type, l10n: t.l10n};
                 }
             }
@@ -179,7 +181,7 @@
                                         <div class='settings-field' style='display:none;'>
                                             <section class='switch-labeled hbox' id='sett-box-rtl-mode'>
                                                 <input type="checkbox" class="checkbox" id="sett-rtl-mode">
-                                                <label for="sett-rtl-mode" class='sett__caption' l10n>RTL Interface *</label>
+                                                <label for="sett-rtl-mode" class='sett__caption' l10n>${_lang.settRtlMode} (Beta) *</label>
                                             </section>
                                         </div>
                                         <div class='settings-field' id='opts-ui-scaling' style='display:none'>
@@ -336,7 +338,13 @@
                 objs.forEach(t => {
                     const _css = create_colors_css(t.id, t.colors);
                     if ( _css ) {
-                        write_theme_css(_css);
+                        const _$style = $(`style[data-theme-id=${t.id}]`);
+                        if ( _$style.length ) {
+                            _$style.remove();
+                            _combo.find(`option[value=${t.id}]`).remove();
+                        }
+
+                        write_theme_css(_css, t.id);
                         themes_map[t.id] = {text: t.name, type: t.type, l10n: t.l10n};
 
                         const _theme_title = t.l10n[utils.Lang.id] || t.name;
@@ -554,14 +562,13 @@
                                 ($optsUITheme = _combo)
                                 .val(opts.uitheme)
                                 .selectpicker().on('changed.bs.select', (e, index, selected, previous) => {
-                                    $btnApply.isdisabled() && $btnApply.disable(false);
-
-                                    console.log('select theme', index, selected, previous);
                                     if ( selected && e.target.value == 'add' ) {
                                         sdk.command("uitheme:add", "local");
 
                                         $optsUITheme.val(previous)
                                                     .selectpicker('refresh');
+                                    } else {
+                                        $btnApply.isdisabled() && $btnApply.disable(false);
                                     }
                                 })
                                 .parents('.settings-field').show();
@@ -674,6 +681,11 @@
 
                 if ( _theme ) {
                     _add_themes(_theme);
+
+                    $optsUITheme.val(_theme[0].id)
+                                .selectpicker('refresh');
+
+                    $btnApply.isdisabled() && $btnApply.disable(false);
                 }
             } else
             if (/renderervars:changed/.test(cmd)) {

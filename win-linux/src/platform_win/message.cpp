@@ -77,7 +77,7 @@ int WinMsg::showMessage(QWidget *parent,
                         bool  *checkBoxState,
                         const QString &chekBoxText)
 {
-    std::wstring lpCaption = QString("  %1").arg(APP_TITLE).toStdWString();
+    std::wstring lpCaption = QString("  %1").arg(WINDOW_TITLE).toStdWString();
     std::wstring lpText = QTextDocumentFragment::fromHtml(msg).toPlainText().toStdWString();
     std::wstring lpCheckBoxText = chekBoxText.toStdWString();
     HWND parent_hwnd = (parent) ? (HWND)parent->winId() : nullptr;

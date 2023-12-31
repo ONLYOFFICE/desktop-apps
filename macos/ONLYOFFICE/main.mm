@@ -88,7 +88,9 @@ int main(int argc, const char * argv[]) {
     fontsDirectories.push_back([[resourcePath stringByAppendingPathComponent:@"login/fonts"] stdwstring]);
     appManager->m_oSettings.additional_fonts_folder = fontsDirectories;
     
-    appManager->m_oSettings.connection_error_path = [[resourcePath stringByAppendingPathComponent:@"login/noconnect.html"] stdwstring];
+    if( [[NSFileManager defaultManager] fileExistsAtPath:@"login/noconnect.html"] ) {
+        appManager->m_oSettings.connection_error_path = [[resourcePath stringByAppendingPathComponent:@"login/noconnect.html"] stdwstring];
+    }
     
     // setup username
     NSString * fullName = [[NSUserDefaults standardUserDefaults] valueForKey:ASCUserNameApp];

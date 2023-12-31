@@ -35,6 +35,16 @@ $(document).ready(function() {
     $('.tool-menu').on('click', '> .menu-item > a', onActionClick);
     $('.tool-quick-menu .menu-item a').click(onNewFileClick);
 
+    if ( window.utils.isWinXp ) {
+        $('a[action] use').each((i, e) => {
+            const _attr_href = e.getAttribute('href');
+            if ( !!_attr_href ) {
+                const $el = $(e), $parent = $el.parent();
+                $el.remove();
+                $parent.html(`<use xlink:href="${_attr_href}"></use>`);
+            }
+        });
+    }
 
     !window.app && (window.app = {controller:{}});
     !window.app.controller && (window.app.controller = {});
@@ -60,8 +70,11 @@ $(document).ready(function() {
         selectAction('welcome');
 
         localStorage.setItem('welcome', 'have been');
-    } else 
-        selectAction('recent');
+    } else {
+        if ( !!utils.inParams.panel && $(`.action-panel.${utils.inParams.panel}`).length )
+            selectAction(utils.inParams.panel);
+        else selectAction('recent');
+    }
 
     $('#placeholder').on('click', '.newportal', function(){
         CommonEvents.fire("portal:create");
@@ -128,6 +141,8 @@ function onActionClick(e) {
 };
 
 function selectAction(action) {
+    if ( !$(`.action-panel.${action}`).length ) return;
+
     $('.tool-menu > .menu-item').removeClass('selected');
     $('.tool-menu a[action='+action+']').parent().addClass('selected');
     $('.action-panel').hide();

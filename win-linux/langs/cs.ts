@@ -4,7 +4,7 @@
 <context>
     <name>CAscApplicationManagerWrapper</name>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1176"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1239"/>
         <source>Presenter View</source>
         <translation>Náhled prezentace</translation>
     </message>
@@ -21,18 +21,18 @@
         <translation type="vanished">Všechna okna editoru budou zavřena. Chceš pokračovat?</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1942"/>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1943"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2012"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2013"/>
         <source>Document%1.docx</source>
         <translation>Dokument%1.docx</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1944"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2014"/>
         <source>Book%1.xlsx</source>
         <translation>Sešit%1.xlsx</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1945"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2015"/>
         <source>Presentation%1.pptx</source>
         <translation>Prezentace%1.pptx</translation>
     </message>
@@ -56,8 +56,8 @@
 <context>
     <name>CAscTabWidget</name>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="801"/>
-        <location filename="../src/components/asctabwidget.cpp" line="622"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="845"/>
+        <location filename="../src/components/asctabwidget.cpp" line="626"/>
         <source>Document</source>
         <translation>Otevírám...</translation>
     </message>
@@ -152,40 +152,71 @@
 <context>
     <name>CDownloadWidget</name>
     <message>
-        <location filename="../src/components/cdownloadwidget.cpp" line="132"/>
+        <location filename="../src/components/cdownloadwidget.cpp" line="174"/>
+        <source>Downloads</source>
+        <translation>Stahování</translation>
+    </message>
+    <message>
+        <location filename="../src/components/cdownloadwidget.cpp" line="177"/>
+        <source>Clear</source>
+        <translation>Vyčistit</translation>
+    </message>
+    <message>
+        <location filename="../src/components/cdownloadwidget.cpp" line="254"/>
         <source>Cancel</source>
         <translation>Storno</translation>
+    </message>
+    <message>
+        <location filename="../src/components/cdownloadwidget.cpp" line="273"/>
+        <location filename="../src/components/cdownloadwidget.cpp" line="386"/>
+        <source>kBps</source>
+        <translation>kBps</translation>
+    </message>
+    <message>
+        <location filename="../src/components/cdownloadwidget.cpp" line="300"/>
+        <source>Canceled</source>
+        <translation>Zrušeno</translation>
+    </message>
+    <message>
+        <location filename="../src/components/cdownloadwidget.cpp" line="336"/>
+        <source>Open</source>
+        <translation>Otevřít</translation>
+    </message>
+    <message>
+        <location filename="../src/components/cdownloadwidget.cpp" line="354"/>
+        <source>Show in folder</source>
+        <translation>Zobrazit ve složce</translation>
     </message>
 </context>
 <context>
     <name>CEditorWindow</name>
     <message>
-        <location filename="../src/windows/ceditorwindow_p.h" line="136"/>
+        <location filename="../src/windows/ceditorwindow_p.h" line="140"/>
         <source>Open main window</source>
         <translation>Otevřít hlavní okno</translation>
     </message>
     <message>
-        <location filename="../src/windows/ceditorwindow_p.h" line="431"/>
+        <location filename="../src/windows/ceditorwindow_p.h" line="438"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
         <translation>Než budete pokračovat, musíte dokument uložit.&lt;br&gt;Chcete dokument uložit?</translation>
     </message>
     <message>
-        <location filename="../src/windows/ceditorwindow_p.h" line="520"/>
+        <location filename="../src/windows/ceditorwindow_p.h" line="528"/>
         <source>Print Document</source>
         <translation>Vytisknout dokument</translation>
     </message>
     <message>
-        <location filename="../src/windows/ceditorwindow_p.h" line="701"/>
+        <location filename="../src/windows/ceditorwindow_p.h" line="722"/>
         <source>Document must be saved firstly.</source>
         <translation>Dokument musíte nejprve uložit.</translation>
     </message>
     <message>
-        <location filename="../src/windows/ceditorwindow.cpp" line="137"/>
+        <location filename="../src/windows/ceditorwindow.cpp" line="135"/>
         <source>%1 has been changed. Save changes?</source>
         <translation>%1 byl upraven.&lt;br&gt;Chcete uložit tyto změny?</translation>
     </message>
     <message>
-        <location filename="../src/ceditortools.cpp" line="364"/>
+        <location filename="../src/ceditortools.cpp" line="384"/>
         <source>Some data will lost.&lt;br&gt;Continue?</source>
         <translation>Pokud budete pokračovat v ukládání v tomto formátu, vše kromě textu bude ztraceno.&lt;br&gt;Opravdu chcete pokračovat?</translation>
     </message>
@@ -193,9 +224,14 @@
 <context>
     <name>CEditorWindowPrivate</name>
     <message>
-        <location filename="../src/windows/ceditorwindow_p.h" line="472"/>
+        <location filename="../src/windows/ceditorwindow_p.h" line="479"/>
         <source>There are no printers available</source>
         <translation>Nejsou k dispozici žádné tiskárny</translation>
+    </message>
+    <message>
+        <location filename="../src/windows/ceditorwindow_p.h" line="594"/>
+        <source>There are no pages set to print.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -263,9 +299,8 @@
         <translation>Soubor Mobipocket (*.mobi)</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="78"/>
         <source>OFORM Document (*.oform)</source>
-        <translation>Vyplnitelný online formulář ONLYOFFICE (*.oform)</translation>
+        <translation type="vanished">Vyplnitelný online formulář ONLYOFFICE (*.oform)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="79"/>
@@ -337,6 +372,11 @@
         <location filename="../src/components/cfiledialog.cpp" line="70"/>
         <source>OpenDocument Document template</source>
         <translation>Šablona dokumentu OpenDocument</translation>
+    </message>
+    <message>
+        <location filename="../src/components/cfiledialog.cpp" line="78"/>
+        <source>ONLYOFFICE Form Document (*.pdf)</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="85"/>
@@ -425,22 +465,22 @@
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="243"/>
-        <location filename="../src/components/cfiledialog.cpp" line="336"/>
-        <location filename="../src/components/cfiledialog.cpp" line="359"/>
+        <location filename="../src/components/cfiledialog.cpp" line="338"/>
+        <location filename="../src/components/cfiledialog.cpp" line="361"/>
         <source>Text documents</source>
         <translation>Textové dokumenty</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="249"/>
-        <location filename="../src/components/cfiledialog.cpp" line="344"/>
-        <location filename="../src/components/cfiledialog.cpp" line="360"/>
+        <location filename="../src/components/cfiledialog.cpp" line="346"/>
+        <location filename="../src/components/cfiledialog.cpp" line="362"/>
         <source>Spreadsheets</source>
         <translation>Tabulky</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="250"/>
-        <location filename="../src/components/cfiledialog.cpp" line="352"/>
-        <location filename="../src/components/cfiledialog.cpp" line="361"/>
+        <location filename="../src/components/cfiledialog.cpp" line="354"/>
+        <location filename="../src/components/cfiledialog.cpp" line="363"/>
         <source>Presentations</source>
         <translation>Prezentace</translation>
     </message>
@@ -456,8 +496,8 @@
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="136"/>
-        <location filename="../src/components/cfiledialog.cpp" line="253"/>
-        <location filename="../src/components/cfiledialog.cpp" line="363"/>
+        <location filename="../src/components/cfiledialog.cpp" line="254"/>
+        <location filename="../src/components/cfiledialog.cpp" line="365"/>
         <source>All supported files</source>
         <translation>Všechny podporované soubory</translation>
     </message>
@@ -480,40 +520,45 @@
         <translation>Šablona dokumentu</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="267"/>
+        <location filename="../src/ceditortools.cpp" line="237"/>
+        <source>Theme file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/components/cfiledialog.cpp" line="269"/>
         <source>Open Document</source>
         <translation>Otevřít dokument</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="297"/>
-        <location filename="../src/components/cfiledialog.cpp" line="307"/>
+        <location filename="../src/components/cfiledialog.cpp" line="299"/>
+        <location filename="../src/components/cfiledialog.cpp" line="309"/>
         <source>All Images</source>
         <translation>Všechny obrázky</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="299"/>
-        <location filename="../src/components/cfiledialog.cpp" line="309"/>
+        <location filename="../src/components/cfiledialog.cpp" line="301"/>
+        <location filename="../src/components/cfiledialog.cpp" line="311"/>
         <source>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp)</source>
         <translation>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp)</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="318"/>
-        <location filename="../src/components/cfiledialog.cpp" line="327"/>
+        <location filename="../src/components/cfiledialog.cpp" line="320"/>
+        <location filename="../src/components/cfiledialog.cpp" line="329"/>
         <source>Plugin file (*.plugin)</source>
         <translation>Soubor pluginu (*.plugin)</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="380"/>
+        <location filename="../src/components/cfiledialog.cpp" line="382"/>
         <source>Video file</source>
         <translation>Videosoubor</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="385"/>
+        <location filename="../src/components/cfiledialog.cpp" line="387"/>
         <source>Audio file</source>
         <translation>Zvukový soubor</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="402"/>
+        <location filename="../src/components/cfiledialog.cpp" line="404"/>
         <source>Select Folder</source>
         <translation>Vybrat složku</translation>
     </message>
@@ -521,53 +566,58 @@
 <context>
     <name>CMainWindow</name>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="258"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="260"/>
         <source>More than one document is open.&lt;br&gt;Close the window anyway?</source>
         <translation>Je otevřen více než jeden dokument.&lt;br&gt;Zavřít okno i tak?</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="260"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="262"/>
         <source>Don&apos;t ask again.</source>
         <translation>Neptejte se znovu.</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="732"/>
-        <location filename="../src/windows/cmainwindow.cpp" line="772"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="770"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="810"/>
         <source>File format not supported.</source>
         <translation>Formát souboru není podporován.</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="756"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="794"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
         <translation>%1 není dostupný. Možná byl přejmenován, přesunut nebo smazán.&lt;br&gt;Chcete odstranit soubor ze seznamu?</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="815"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="853"/>
         <source>Document must be saved firstly.</source>
         <translation>Dokument musíte nejprve uložit.</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="957"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="995"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
         <translation>Než budete pokračovat, musíte dokument uložit.&lt;br&gt;Chcete dokument uložit?</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="1067"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="1101"/>
         <source>There are no printers available</source>
         <translation>Nejsou k dispozici žádné tiskárny</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="1126"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="1161"/>
         <source>Print Document</source>
         <translation>Vytisknout dokument</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="1326"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="1227"/>
+        <source>There are no pages set to print.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/windows/cmainwindow.cpp" line="1363"/>
         <source>Sign Up</source>
         <translation>Vytvořit kanceláře cloud</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="1409"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="1449"/>
         <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
         <translation>%1 byl upraven.&lt;br&gt;Chcete uložit tyto změny?</translation>
     </message>
@@ -633,37 +683,37 @@
 <context>
     <name>CUpdateManager</name>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="101"/>
+        <location filename="../src/cupdatemanager.cpp" line="104"/>
         <source>Check for updates</source>
         <translation>Zkontrolujte aktualizace</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="93"/>
+        <location filename="../src/cupdatemanager.cpp" line="96"/>
         <source>Unable to check update: URL not defined.</source>
         <translation>Nelze zkontrolovat aktualizaci: adresa URL není definována.</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="91"/>
+        <location filename="../src/cupdatemanager.cpp" line="94"/>
         <source>To finish updating, restart app</source>
         <translation>Chcete-li dokončit aktualizaci, restartujte aplikaci</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="103"/>
+        <location filename="../src/cupdatemanager.cpp" line="106"/>
         <source>Restart</source>
         <translation>Restartovat</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="87"/>
+        <location filename="../src/cupdatemanager.cpp" line="90"/>
         <source>Checking for updates...</source>
         <translation>Kontrola aktualizací...</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="92"/>
+        <location filename="../src/cupdatemanager.cpp" line="95"/>
         <source>Updates are not allowed!</source>
         <translation>Aktualizace nejsou povoleny!</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="402"/>
+        <location filename="../src/cupdatemanager.cpp" line="420"/>
         <source>This folder configuration does not allow for updates! The folder name should be: </source>
         <translation>Tato konfigurace složky neumožňuje aktualizace! Název složky by měl být: </translation>
     </message>
@@ -688,17 +738,17 @@
         <translation>Storno</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="94"/>
+        <location filename="../src/cupdatemanager.cpp" line="97"/>
         <source>An error occurred while loading updates: package Url is empty!</source>
         <translation>Při načítání aktualizací došlo k chybě: Url balíčku je prázdný!</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="99"/>
+        <location filename="../src/cupdatemanager.cpp" line="102"/>
         <source>Update package error: md5 sum does not match the original.</source>
         <translation>Chyba aktualizace balíčku: součet md5 neodpovídá originálu.</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="90"/>
+        <location filename="../src/cupdatemanager.cpp" line="93"/>
         <source>Preparing update...</source>
         <translation>Příprava aktualizace...</translation>
     </message>
@@ -713,90 +763,105 @@
         <translation>Je k dispozici aktualizace (verze  %1)</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="102"/>
+        <location filename="../src/cupdatemanager.cpp" line="105"/>
         <source>Download update</source>
         <translation>Stáhnout aktualizaci</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="86"/>
+        <location filename="../src/cupdatemanager.cpp" line="89"/>
         <source>Current version is up to date</source>
         <translation>Aktuální verze je aktuální</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="77"/>
+        <location filename="../src/cupdatemanager.cpp" line="80"/>
         <source>An error occured while unpacking the archive</source>
         <translation>Při rozbalování archivu došlo k chybě</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="78"/>
+        <location filename="../src/cupdatemanager.cpp" line="81"/>
         <source>Update download failed: out of memory!</source>
         <translation>Stažení aktualizace se nezdařilo: došla paměť!</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="79"/>
+        <location filename="../src/cupdatemanager.cpp" line="82"/>
         <source>Update download failed: server connection error!</source>
         <translation>Stažení aktualizace se nezdařilo: chyba připojení k serveru!</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="80"/>
+        <location filename="../src/cupdatemanager.cpp" line="83"/>
         <source>Update download failed: wrong URL!</source>
         <translation>Stažení aktualizace se nezdařilo: nesprávná URL adresa!</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="81"/>
+        <location filename="../src/cupdatemanager.cpp" line="84"/>
         <source>Update download failed: unable to create file!</source>
         <translation>Stažení aktualizace se nezdařilo: nelze vytvořit soubor!</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="82"/>
+        <location filename="../src/cupdatemanager.cpp" line="85"/>
         <source>Update download failed: network error!</source>
         <translation>Stažení aktualizace se nezdařilo: chyba sítě!</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="83"/>
+        <location filename="../src/cupdatemanager.cpp" line="86"/>
         <source>A service error has occurred!</source>
         <translation>Došlo k chybě služby!</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="85"/>
+        <location filename="../src/cupdatemanager.cpp" line="88"/>
         <source>Last check performed %1</source>
         <translation>Poslední provedená kontrola %1</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="98"/>
+        <source>An error occurred while check updates: the Update Service is not installed or is not running!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/cupdatemanager.cpp" line="99"/>
+        <source>An error occurred while loading updates: the Update Service is not installed or is not running!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/cupdatemanager.cpp" line="100"/>
+        <source>An error occurred while unzip updates: the Update Service is not installed or is not running!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/cupdatemanager.cpp" line="101"/>
         <source>Error opening JSON file.</source>
         <translation>Chyba při otevírání souboru JSON.</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="795"/>
+        <location filename="../src/cupdatemanager.cpp" line="819"/>
         <source>Update is available</source>
         <translation>Je k dispozici aktualizace</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="796"/>
-        <location filename="../src/cupdatemanager.cpp" line="819"/>
+        <location filename="../src/cupdatemanager.cpp" line="820"/>
+        <location filename="../src/cupdatemanager.cpp" line="843"/>
         <source>Current version</source>
         <translation>Aktuální verze</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="797"/>
-        <location filename="../src/cupdatemanager.cpp" line="820"/>
-        <source>Update version</source>
+        <location filename="../src/cupdatemanager.cpp" line="821"/>
+        <location filename="../src/cupdatemanager.cpp" line="844"/>
+        <source>New version</source>
         <translation>Aktualizovaná verze</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="798"/>
-        <source>Would you like to download update now?</source>
+        <location filename="../src/cupdatemanager.cpp" line="845"/>
+        <source>To finish updating, restart the app</source>
         <translation>Chcete si nyní stáhnout aktualizaci?</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="818"/>
-        <source>Update is ready to install</source>
+        <location filename="../src/cupdatemanager.cpp" line="822"/>
+        <source>Would you like to download update now?</source>
         <translation>Aktualizace je připravena k instalaci</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="821"/>
-        <source>Would you like to restart app now?</source>
+        <location filename="../src/cupdatemanager.cpp" line="842"/>
+        <source>Update is ready to install</source>
         <translation>Chcete nyní aplikaci restartovat?</translation>
     </message>
     <message>
@@ -844,8 +909,8 @@
         <translation>Soubor XML (*.xml)</translation>
     </message>
     <message>
-        <location filename="../src/ceditortools.cpp" line="254"/>
-        <location filename="../src/windows/cmainwindow.cpp" line="721"/>
+        <location filename="../src/ceditortools.cpp" line="274"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="756"/>
         <source>Access to file &apos;%1&apos; is denied!</source>
         <translation>Přístup k souboru &apos;%1&apos; je odepřen!</translation>
     </message>
@@ -873,20 +938,24 @@
         <translation>Nainstalovat aktualizaci</translation>
     </message>
     <message>
-        <source>Install on Next Start</source>
-        <translation type="vanished">Nainstalovat při dalším spuštění</translation>
-    </message>
-    <message>
         <location filename="../src/platform_linux/updatedialog.cpp" line="48"/>
         <location filename="../src/platform_win/updatedialog.cpp" line="51"/>
-        <source>Install later</source>
+        <source>Later</source>
         <translation>Instalace později</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/updatedialog.cpp" line="49"/>
         <location filename="../src/platform_win/updatedialog.cpp" line="52"/>
+        <source>Restart Now</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Install on Next Start</source>
+        <translation type="vanished">Nainstalovat při dalším spuštění</translation>
+    </message>
+    <message>
         <source>Save and Restart Now</source>
-        <translation>Uložit a restartovat nyní</translation>
+        <translation type="vanished">Uložit a restartovat nyní</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/updatedialog.cpp" line="50"/>
@@ -901,10 +970,8 @@
         <translation>Stáhnout aktualizaci</translation>
     </message>
     <message>
-        <location filename="../src/platform_linux/updatedialog.cpp" line="68"/>
-        <location filename="../src/platform_win/updatedialog.cpp" line="99"/>
         <source>Software Update</source>
-        <translation>Aktualizace softwaru</translation>
+        <translation type="vanished">Aktualizace softwaru</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/updatedialog.cpp" line="71"/>
@@ -913,64 +980,100 @@
         <translation>Poznámky k vydání</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="643"/>
+        <location filename="../src/cupdatemanager.cpp" line="664"/>
         <source>An error occurred while start install updates!</source>
         <translation>Při zahájení instalace aktualizací došlo k chybě!</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="653"/>
+        <location filename="../src/cupdatemanager.cpp" line="674"/>
         <source>An error occurred while start replacing files: Update Service not found!</source>
         <translation>Při spouštění nahrazování souborů došlo k chybě: Aktualizační služba nebyla nalezena!</translation>
     </message>
     <message>
-        <location filename="../src/defines.h" line="131"/>
+        <location filename="../src/defines.h" line="129"/>
         <source>Cancel</source>
         <translation>Storno</translation>
     </message>
     <message>
-        <location filename="../src/defines.h" line="132"/>
+        <location filename="../src/defines.h" line="130"/>
         <source>Yes</source>
         <translation>Ano</translation>
     </message>
     <message>
-        <location filename="../src/defines.h" line="133"/>
+        <location filename="../src/defines.h" line="131"/>
         <source>No</source>
         <translation>Ne</translation>
     </message>
     <message>
-        <location filename="../src/components/cmessage.cpp" line="199"/>
-        <location filename="../src/defines.h" line="134"/>
+        <location filename="../src/components/cmessage.cpp" line="198"/>
+        <location filename="../src/defines.h" line="132"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
     <message>
-        <location filename="../src/defines.h" line="135"/>
+        <location filename="../src/defines.h" line="133"/>
         <source>Skip</source>
         <translation>Přeskočit</translation>
     </message>
     <message>
-        <location filename="../src/defines.h" line="136"/>
+        <location filename="../src/defines.h" line="134"/>
         <source>Buy Now</source>
         <translation>Koupit nyní</translation>
     </message>
     <message>
-        <location filename="../src/defines.h" line="137"/>
+        <location filename="../src/defines.h" line="135"/>
         <source>Activate</source>
         <translation>Aktivace</translation>
     </message>
     <message>
-        <location filename="../src/defines.h" line="138"/>
+        <location filename="../src/defines.h" line="136"/>
         <source>Continue</source>
         <translation>Pokračovat</translation>
     </message>
     <message>
-        <location filename="../src/platform_linux/xdgdesktopportal.cpp" line="1217"/>
+        <location filename="../src/platform_linux/xdgdesktopportal.cpp" line="1221"/>
         <source>An error occurred while opening the portal:&lt;br&gt;%1</source>
         <translation>Při otevírání portálu došlo k chybě:&lt;br&gt;%1</translation>
     </message>
     <message>
         <source>&amp;OK</source>
         <translation type="obsolete">&amp;OK</translation>
+    </message>
+    <message>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="336"/>
+        <source>File %1 is already loaded. Replace it?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/components/cdownloadwidget.cpp" line="124"/>
+        <source>B</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/components/cdownloadwidget.cpp" line="127"/>
+        <source>kB</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/components/cdownloadwidget.cpp" line="129"/>
+        <source>MB</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/platform_linux/gtkprintdialog.cpp" line="543"/>
+        <source>The syntaxis for the page range is invalid.&lt;br&gt;Enter one or more page ranges, for example: 1-3,7,11.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/platform_linux/gtkprintdialog.cpp" line="583"/>
+        <location filename="../src/platform_win/printdialog.cpp" line="525"/>
+        <source>Specified range %1-%2 exceeds document limits: maximum number of pages is %3</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/platform_win/printdialog.cpp" line="484"/>
+        <source>Unable to open print dialog:&lt;br&gt;%1</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

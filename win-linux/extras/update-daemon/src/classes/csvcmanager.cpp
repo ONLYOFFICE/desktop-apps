@@ -174,6 +174,15 @@ auto verToAppVer(const wstring &ver)->wstring
     pos = ver.find(L'.', pos + 1);
     return (pos == std::wstring::npos) ? ver : ver.substr(0, pos);
 }
+
+auto getCurrentDate()->wstring
+{
+    SYSTEMTIME sysTime;
+    GetLocalTime(&sysTime);
+    wchar_t frmDate[9] = {0};
+    swprintf(frmDate, _ARRAYSIZE(frmDate), L"%04d%02d%02d", sysTime.wYear, sysTime.wMonth, sysTime.wDay);
+    return frmDate;
+}
 #endif
 
 CSvcManager::CSvcManager():
@@ -569,10 +578,13 @@ void CSvcManager::startReplacingFiles(const tstring &packageType, const bool res
                 app_key += (packageType == TEXT("iss")) ? L"_is1" : L"";
                 if (RegOpenKeyEx(hKey, app_key.c_str(), 0, KEY_ALL_ACCESS, &hAppKey) == ERROR_SUCCESS) {
                     wstring disp_name = app_name + L" " + verToAppVer(ver) + L" (" + currentArch().substr(1) + L")";
+                    wstring ins_date = getCurrentDate();
                     if (RegSetValueEx(hAppKey, TEXT("DisplayName"), 0, REG_SZ, (const BYTE*)disp_name.c_str(), (DWORD)(disp_name.length() + 1) * sizeof(WCHAR)) != ERROR_SUCCESS)
                         NS_Logger::WriteLog(L"Can't update DisplayName in registry!");
                     if (RegSetValueEx(hAppKey, TEXT("DisplayVersion"), 0, REG_SZ, (const BYTE*)ver.c_str(), (DWORD)(ver.length() + 1) * sizeof(WCHAR)) != ERROR_SUCCESS)
                         NS_Logger::WriteLog(L"Can't update DisplayVersion in registry!");
+                    if (RegSetValueEx(hAppKey, TEXT("InstallDate"), 0, REG_SZ, (const BYTE*)ins_date.c_str(), (DWORD)(ins_date.length() + 1) * sizeof(WCHAR)) != ERROR_SUCCESS)
+                        NS_Logger::WriteLog(L"Can't update InstallDate in registry!");
                     RegCloseKey(hAppKey);
                 }
                 RegCloseKey(hKey);

@@ -142,6 +142,7 @@ l10n.en = {
     settOptDescDisabled: "Auto checking updates will be disabled",
     settOptDescAUpdateSilent: "Download updates and ask before install",
     settOptDescAUpdateAsk: "You will be notified about all updates steps",
+    settRtlMode: "RTL Interface",
 }
 
 

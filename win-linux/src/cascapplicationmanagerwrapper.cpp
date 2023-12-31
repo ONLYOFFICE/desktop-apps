@@ -333,10 +333,17 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
                 QJsonObject json_obj = Utils::parseJsonFile(file_path);
                 if ( !json_obj.isEmpty() ) {
                     if ( json_obj.contains("id") ) {
-                        QString id = json_obj.value("id").toString();
-                        if ( themes().contains(id) ) {
-                            qDebug() << "theme is already loaded";
-                            CMessage::info(WindowHelper::currentTopWindow(), "This theme has been already loaded");
+                        if ( m_themes->checkDestinationThemeFileExist(file_path) ) {
+                            int res = CMessage::showMessage(WindowHelper::currentTopWindow(),
+                                                            QObject::tr("File %1 is already loaded. Replace it?").arg(QFileInfo(file_path).fileName()),
+                                                            MsgType::MSG_CONFIRM, MsgBtns::mbYesDefNo);
+                            if ( res == MODAL_RESULT_NO )
+                                return true;
+                        }
+
+                        if ( !themes().validate(json_obj) ) {
+                            qDebug() << "theme source is broken";
+                            CMessage::error(WindowHelper::currentTopWindow(), "Selected theme isn't valid");
                         } else {
                             if ( themes().addLocalTheme(json_obj, file_path) ) {
                                 QJsonArray local_themes_array = themes().localThemesToJson();
@@ -345,18 +352,12 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
                                     EditorJSVariables::apply();
                                 }
 
-                                qDebug() << "send theme to editors";
-
                                 QJsonArray new_local_themes;
                                 new_local_themes.append(json_obj);
                                 sendCommandToAllEditors(L"uitheme:added",
                                                         QString(QJsonDocument(new_local_themes).toJson(QJsonDocument::Compact)).toStdWString());
                             }
                         }
-
-                        QTimer::singleShot(0, this, [id]{
-                            AscAppManager::getInstance().applyTheme(id.toStdWString());
-                        });
                     } else {
                         qDebug() << "theme source is broken";
                         CMessage::error(WindowHelper::currentTopWindow(), "This file doesn't contain theme");
@@ -794,6 +795,19 @@ CMainWindow * CAscApplicationManagerWrapper::prepareMainWindow(const QRect& r)
         additional.append(arg_portal);
     }
 
+    std::wstring app_scheme = _app.GetExternalSchemeName();
+    if ( !app_scheme.empty() ) {
+        if ( app_scheme.back() != L':' )
+            app_scheme += L":";
+
+        std::wstring _panel_select_action = app_scheme + L"//action|panel";
+        std::wstring _panel_to_select = InputArgs::argument_value(_panel_select_action);
+
+        if ( !_panel_to_select.empty() ) {
+            additional.append("&panel=" + QString::fromStdWString(_panel_to_select));
+        }
+    }
+
 #if defined(__OS_WIN_XP)
     additional.append("&osver=winxp");
 #endif
@@ -840,6 +854,8 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
 
         open_scheme.push_back(app_scheme);
     }
+    std::wstring app_action = app_scheme + L"//action|";
+    std::wstring app_action_plugin = app_scheme + L"//action|install-plugin";
 
     for (const auto& arg: vargs) {
         COpenOptions open_opts;
@@ -870,6 +886,16 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
 
 //            if ( check_param(arg, L"single-window") )
 //                in_new_window = true;
+        } else
+        if ( arg.rfind(app_action, 0) == 0 ) {
+            if ( arg.rfind(app_action_plugin, 0) == 0 ) {
+                std::wstring _plugin_name = arg.substr(app_action_plugin.size() + 1);
+                if ( !_plugin_name.empty() ) {
+//                    _app.installEditorsPlugin(_plugin_name);
+                }
+            }
+
+            continue;
         } else {
             open_opts.wurl = arg;
         }
@@ -1044,23 +1070,8 @@ void CAscApplicationManagerWrapper::startApp()
 
     handleInputCmd(in_args);
     if ( _app.m_vecEditors.empty() && !_app.m_pMainWindow ) {
-//        _app.m_private->createStartPanel();
-
-//        CMainWindow * _window = createMainWindow(_start_rect);
-//        _window->mainPanel()->attachStartPanel(_app.m_private->m_pStartPanel);
-//        _window->show(_is_maximized);
-
         _app.m_pMainWindow = _app.prepareMainWindow();
         _app.m_pMainWindow->show(_is_maximized);
-    }
-
-    if ( QFileInfo::exists(":/noconnect.html") ) {
-        QString _nc_path = Utils::getAppCommonPath() + "/noconnect.html";
-        bool _nc_exist = QFileInfo::exists(_nc_path) || QFile::copy(":/noconnect.html", _nc_path);
-
-        if ( _nc_exist ) {
-            _app.m_oSettings.connection_error_path = _nc_path.toStdWString();
-        }
     }
 
     QObject::connect(CExistanceController::getInstance(), &CExistanceController::checked, [] (const QString& name, int uid, bool exists) {

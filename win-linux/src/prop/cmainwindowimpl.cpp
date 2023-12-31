@@ -61,7 +61,11 @@ void CMainWindowImpl::refreshAboutVersion()
 # endif
 #endif
     _json_obj["edition"]    = _license;
+#if defined(ABOUT_PAGE_APP_NAME)
+    _json_obj["appname"]    = ABOUT_PAGE_APP_NAME;
+#else
     _json_obj["appname"]    = WINDOW_NAME;
+#endif
     _json_obj["rights"]     = "© " ABOUT_COPYRIGHT_STR;
     _json_obj["link"]       = URL_SITE;
 //    _json_obj["changelog"]  = "https://github.com/ONLYOFFICE/DesktopEditors/blob/master/CHANGELOG.md";

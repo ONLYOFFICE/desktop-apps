@@ -49,8 +49,8 @@
 #define TEXT_SKIP        toWCharPtr(QObject::tr("Skip this version"))
 #define TEXT_REMIND      toWCharPtr(QObject::tr("Remind me later"))
 #define TEXT_INSTALL     toWCharPtr(QObject::tr("Install update"))
-#define TEXT_INSLATER    toWCharPtr(QObject::tr("Install later"))
-#define TEXT_RESTART     toWCharPtr(QObject::tr("Save and Restart Now"))
+#define TEXT_INSLATER    toWCharPtr(QObject::tr("Later"))
+#define TEXT_RESTART     toWCharPtr(QObject::tr("Restart Now"))
 #define TEXT_SAVEANDINS  toWCharPtr(QObject::tr("Save and Install Now"))
 #define TEXT_DOWNLOAD    toWCharPtr(QObject::tr("Download update"))
 
@@ -97,7 +97,7 @@ int WinDlg::showDialog(QWidget *parent,
                        const QString &content,
                        DlgBtns dlgBtns)
 {
-    std::wstring lpCaption = QString("  %1").arg(QObject::tr("Software Update")).toStdWString();
+    std::wstring lpCaption = QString("  %1").arg(WINDOW_TITLE).toStdWString();
     std::wstring lpText = QTextDocumentFragment::fromHtml(msg).toPlainText().toStdWString();
     QString linkText = !QString(RELEASE_NOTES).isEmpty() ?
                 QString("\n<a href=\"%1\">%2</a>").arg(QString(RELEASE_NOTES), QObject::tr("Release notes")) : "";

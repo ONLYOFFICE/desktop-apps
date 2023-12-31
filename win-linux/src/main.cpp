@@ -98,6 +98,7 @@ int main( int argc, char *argv[] )
         manager->m_oSettings.local_editors_path         = app_path + L"/editors/web-apps/apps/api/documents/index.html";
         manager->m_oSettings.additional_fonts_folder.push_back(app_path + L"/fonts");
         manager->m_oSettings.country = Utils::systemLocationCode().toStdString();
+        manager->m_oSettings.connection_error_path      = app_path + L"/editors/webext/noconnect.html";
     };
 
     if ( InputArgs::contains(L"--version") ) {

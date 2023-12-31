@@ -1166,49 +1166,6 @@ gl.extXPS =Documento OpenXPS
 si.extXPS =ඕපන් XPS ලේඛනය
 zh_TW.extXPS =OpenXPS 檔案
 
-en.extOFORM =ONLYOFFICE Fillable Online Form
-ar_SA.extOFORM =استبيان قابل للتعبئة أونلي أوفيس أونلاين
-bg.extOFORM =ONLYOFFICE Онлайн формуляр за попълване
-ca.extOFORM =Formulari d'emplenament en línia d’ONLYOFFICE
-cs.extOFORM =Vyplnitelný online formulář ONLYOFFICE
-el.extOFORM =Διαδικτυακή Φόρμα ONLYOFFICE με δυνατότητα συμπλήρωσης
-;et.extOFORM =ONLYOFFICE täidetav veebivorm
-fi.extOFORM =ONLYOFFICE täytettävä online-lomake
-;lt.extOFORM =ONLYOFFICE Užpildoma Internetinė Anketa
-lo.extOFORM =ສາມາດຕື່ມແບບຟອມ ອອນລາຍ ໄດ້ ONLYOFFICE
-nl.extOFORM =ONLYOFFICE Invulbaar Online Formulier
-ru.extOFORM =Заполняемая онлайн-форма ONLYOFFICE
-de.extOFORM =ONLYOFFICE-Form für Online-Ausfüllung
-fr.extOFORM =Formulaire ONLYOFFICE en ligne remplissable
-es.extOFORM =Formulario rellenable online ONLYOFFICE
-id.extOFORM =ONLYOFFICE Fillable Online Form
-it_IT.extOFORM =Modulo online compilabile ONLYOFFICE
-pt_BR.extOFORM =Formulário online preenchível do ONLYOFFICE
-;pt_PT.extOFORM =Formulário Online Preenchível ONLYOFFICE
-pl.extOFORM =Formularz ONLYOFFICE do wypełnienia online
-ro.extOFORM =Forma ONLYOFFICE spre completare online
-sk.extOFORM =ONLYOFFICE vyplniteľný online formulár
-sl.extOFORM =ONLYOFFICE spletni obrazec z izpolnjevanjem
-sv.extOFORM =ONLYOFFICE ifyllbart onlineformulär
-tr.extOFORM =ONLYOFFICE Doldurulabilir Çevrimiçi Form
-vi.extOFORM =Biểu mẫu trực tuyến có thể điền ONLYOFFICE
-zh_CN.extOFORM =ONLYOFFICE可填写的在线表格
-hy_AM.extOFORM =ONLYOFFICE լրացվող առցանց ձև
-;hr.extOFORM =ONLYOFFICE Ispunjivi online obrazac
-da.extOFORM =ONLYOFFICE udfyldbar onlineformular
-;hi.extOFORM =ओनलीऑफिस भरने योग्य ऑनलाइन फॉर्म
-hu.extOFORM =ONLYOFFICE kitölthető online sablon
-;ga_IE.extOFORM =ONLYOFFICE Fillable Online Form
-ja.extOFORM =ONLYOFFICE記入可能なオンライン フォーム
-ko.extOFORM =ONLYOFFICE 작성 가능한 온라인 양식
-lv.extOFORM =ONLYOFFICE aizpildāmā tiešsaistes veidlapa
-no.extOFORM =ONLYOFFICE utfyllbart elektronisk skjema
-uk.extOFORM =Онлайн-форма для заповнення ONLYOFFICE
-be.extOFORM =Запаўняльная анлайн-форма ONLYOFFICE
-gl.extOFORM =Formulario en liña encheble ONLYOFFICE
-si.extOFORM =ඔන්ලිඔෆිස් පුරවන මාර්ගගත ආකෘතිපත්‍ර
-zh_TW.extOFORM =ONLYOFFICE可填写的在线表格
-
 en.extPOT =PowerPoint Template
 ar_SA.extPOT =قالب بوربوينت
 
@@ -1625,7 +1582,7 @@ var
   prefix: string;
 begin
 #ifdef _ONLYOFFICE
-  SetArrayLength(AudioExts, 24);
+  SetArrayLength(AudioExts, 23);
 #else
   SetArrayLength(AudioExts, 22);
 #endif
@@ -1655,8 +1612,7 @@ begin
   AudioExts[20] := 'DOTX';
   AudioExts[21] := 'OXPS';
 #ifdef _ONLYOFFICE
-  AudioExts[22] := 'OFORM';
-  AudioExts[23] := 'DOCXF';
+  AudioExts[22] := 'DOCXF';
 #endif
   
   SetArrayLength(ExtensionRegistryInfo,  GetArrayLength(AudioExts));
@@ -1687,8 +1643,7 @@ begin
   ExtensionRegistryInfo[20] := prefix + 'Dotx:'         + ExpandConstant('{cm:extDOTX}')            + ':' + '30';
   ExtensionRegistryInfo[21] := prefix + 'Oxps:'         + ExpandConstant('{cm:extOXPS}')            + ':' + '31';
 #ifdef _ONLYOFFICE
-  ExtensionRegistryInfo[22] := prefix + 'Oform:'        + ExpandConstant('{cm:extOFORM}')           + ':' + '12';
-  ExtensionRegistryInfo[23] := prefix + 'Docxf:'        + ExpandConstant('{cm:extDOCXF}')           + ':' + '13';
+  ExtensionRegistryInfo[22] := prefix + 'Docxf:'        + ExpandConstant('{cm:extDOCXF}')           + ':' + '13';
 #endif
 end;
 
@@ -1869,24 +1824,38 @@ end;
 
 procedure AddContextMenuNewItems;
 var
-  dir, regpath, progpath, oldValue: String;
+  lang, dir, regpath, progpath, oldValue: String;
   langs, args, values: TArrayOfString;
   version: TWindowsVersion;
+  found: Boolean;
   i: Integer;
 begin
-  langs := ['az-Latn-AZ', 'bg-BG', 'cs-CZ', 'de-DE', 'el-GR', 'en-GB', 'en-US', 'es-ES', 
+  langs := ['az-Latn-AZ', 'bg-BG', 'cs-CZ', 'de-DE', 'el-GR', 'en-US', 'en-GB', 'es-ES', 
             'eu-ES',      'fr-FR', 'gl-ES', 'hy-AM', 'it-IT', 'ja-JP', 'ko-KR', 'lv-LV', 
-            'ms-MY',      'nl-NL', 'pl-PL', 'pt-BR', 'pt-PT', 'ru-RU', 'sk-SK', 'sv-SE', 
+            'ms-MY',      'nl-NL', 'pl-PL', 'pt-PT', 'pt-BR', 'ru-RU', 'sk-SK', 'sv-SE', 
             'tr-TR',      'uk-UA', 'vi-VN', 'zh-CN', 'zh-TW'];
 
+  found := False;
   dir := 'en-US';
+  lang := ExpandConstant('{language}');
+  StringChangeEx(lang, '_', '-', True);
   for i := 0 to GetArrayLength(langs) - 1 do begin
-    if langs[i] = ExpandConstant('{language}') then begin
+    if langs[i] = lang then begin
        dir := langs[i];
+       found := True;
        break;
     end;
   end;
   
+  if not found then begin
+    for i := 0 to GetArrayLength(langs) - 1 do begin
+      if Copy(langs[i], 1, 2) = lang then begin
+        dir := langs[i];
+        break;
+      end;
+    end;
+  end;
+
   args := ['new.docx:.docx:.Document.12:7', 
            'new.pptx:.pptx:.Show.12:9', 
            'new.xlsx:.xlsx:.Sheet.12:10' 
@@ -1905,7 +1874,7 @@ begin
        RegWriteStringValue(HKEY_LOCAL_MACHINE, regpath, 'FileName', progpath + '\' + values[0]);
      end;
      if version.Major = 10 then begin
-       RegQueryStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\' + values[1], '', oldValue);
+       if (i < 3) and RegQueryStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\' + values[1], '', oldValue) then
        RegWriteStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\' + values[1], '{#ASCC_REG_PREFIX}', oldValue);
        RegWriteStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\' + values[1], '', '{#ASCC_REG_PREFIX}' + values[2]);
      end;
@@ -1971,16 +1940,14 @@ begin
 
 #ifndef _ONLYOFFICE
   //TODO: for bug 55795. remove for ver 7.3
-  SetArrayLength(cleanExts, 2);
-  SetArrayLength(extensionInfo, 2);
+  SetArrayLength(cleanExts, 1);
+  SetArrayLength(extensionInfo, 1);
 
   prefix := '{#ASCC_REG_PREFIX}' + '.';
 
-  cleanExts[0]  := 'OFORM';
-  cleanExts[1]  := 'DOCXF';
+  cleanExts[0]  := 'DOCXF';
 
-  extensionInfo[0] := prefix + 'Oform:' + ExpandConstant('{cm:extOFORM}') + ':' + '12';
-  extensionInfo[1] := prefix + 'Docxf:' + ExpandConstant('{cm:extDOCXF}') + ':' + '13';
+  extensionInfo[0] := prefix + 'Docxf:' + ExpandConstant('{cm:extDOCXF}') + ':' + '13';
 
   for  i := 0 to GetArrayLength(cleanExts) - 1 do
   begin     
@@ -2022,7 +1989,7 @@ procedure UnassociateExtensions;
 var
   i: Integer;
   argsArray: TArrayOfString;
-  ext, str, oldValue: string;
+  ext, str, oldValue, defaultVal: string;
   version: TWindowsVersion;
 begin
   initExtensions();
@@ -2065,19 +2032,14 @@ begin
 
   GetWindowsVersionEx(version);
   if version.Major = 10 then begin
-    if RegQueryStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.docx', '{#ASCC_REG_PREFIX}', oldValue) then
-       RegWriteStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.docx', '', oldValue);
-    if RegQueryStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.xlsx', '{#ASCC_REG_PREFIX}', oldValue) then
-       RegWriteStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.xlsx', '', oldValue);
-    if RegQueryStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.pptx', '{#ASCC_REG_PREFIX}', oldValue) then
-       RegWriteStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.pptx', '', oldValue);
-#ifdef _ONLYOFFICE
-    if RegQueryStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.docxf', '{#ASCC_REG_PREFIX}', oldValue) then
-       RegWriteStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.docxf', '', oldValue);
-    RegDeleteValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.docxf', '{#ASCC_REG_PREFIX}');
-#endif
-    RegDeleteValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.docx', '{#ASCC_REG_PREFIX}');
-    RegDeleteValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.xlsx', '{#ASCC_REG_PREFIX}');
-    RegDeleteValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.pptx', '{#ASCC_REG_PREFIX}');
+    argsArray := ['docx', 'pptx', 'xlsx'];
+    for i := 0 to GetArrayLength(argsArray) - 1 do begin
+       if not RegQueryStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.' + argsArray[i], '', defaultVal) and
+         RegQueryStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.' + argsArray[i], '{#ASCC_REG_PREFIX}', oldValue) and
+           RegKeyExists(HKEY_LOCAL_MACHINE, 'Software\Classes\.' + argsArray[i] + '\' + oldValue) then begin
+             RegWriteStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.' + argsArray[i], '', oldValue);
+  end;
+       RegDeleteValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.' + argsArray[i], '{#ASCC_REG_PREFIX}');
+end;
   end;
 end;

@@ -78,6 +78,11 @@ namespace NSTheme {
         };
 }
 
+auto getUserThemesPath() -> QString
+{
+    return Utils::getAppCommonPath() + "/uithemes";
+}
+
 /*
  * CThemePrivate
 */
@@ -200,7 +205,7 @@ public:
 
             QString file_path = search_user_theme({Utils::getAppCommonPath() + "/uithemes",
                                                    qApp->applicationDirPath() + "/uithemes"}, user_theme);
-            if ( !file_path.isEmpty() || !current->fromFile(file_path) ) {
+            if ( file_path.isEmpty() || !current->fromFile(file_path) ) {
                 user_theme = THEME_ID_SYSTEM;
             }
         } else
@@ -293,7 +298,22 @@ public:
     }
 
     auto validateTheme(const QJsonObject& root) -> bool {
-        if ( root.contains("id") ) {
+        if ( root.contains("id") && root.contains("name") ) {
+            static QRegularExpression _re_legal_symb("[^\\w\\d\\-]");
+//            static QRegularExpression _re_legal_color("[^\\w\\d\\-\\#]");
+            if ( root.value("id").toString().contains(_re_legal_symb) ) {
+                return false;
+            }
+
+            if ( root.contains("colors") ) {
+                const QJsonObject _colors = root.value("colors").toObject();
+                foreach (const auto& c, _colors.keys()) {
+                    if ( c.contains(_re_legal_symb) /*|| _colors[c].toString().contains(_re_legal_color)*/ ) {
+                        return false;
+                    }
+                }
+            }
+
             return true;
         }
         return false;
@@ -524,6 +544,11 @@ auto CThemes::contains(const QString& id) -> bool
                 m_priv->rc_themes.find(id) != m_priv->rc_themes.end();
 }
 
+auto CThemes::validate(const QJsonObject& json) -> bool
+{
+    return m_priv->validateTheme(json);
+}
+
 auto CThemes::isColorDark(const std::wstring& color) -> bool
 {
     return isColorDark(QString::fromStdWString(color));
@@ -570,17 +595,23 @@ auto CThemes::addLocalTheme(const QJsonObject& jsonobj, const QString& filepath)
 {
     if ( m_priv->validateTheme(jsonobj) ) {
         if ( !filepath.isEmpty() ) {
-            const QString dest_dir = Utils::getAppCommonPath() + "/uithemes";
-            if ( QDir(dest_dir).mkpath(".") )
-                if (!QFile::copy(filepath, dest_dir + "/" + QFileInfo(filepath).fileName()))
+            const QString dest_dir = getUserThemesPath();
+            if ( QDir(dest_dir).mkpath(".") ) {
+                QString dest_file_path = dest_dir + "/" + QFileInfo(filepath).fileName();
+                if ( QFile::exists(dest_file_path) )
+                    QFile::remove(dest_file_path);
+
+                if (!QFile::copy(filepath, dest_file_path))
                     return false;
+                else {
+                    QByteArray data = QJsonDocument(jsonobj).toJson(QJsonDocument::Compact);
+//                    m_priv->local_themes[jsonobj.value("id").toString()] = std::make_pair("", data);
+                    m_priv->local_themes[jsonobj.value("id").toString()] = std::make_pair(dest_file_path, data);
+
+                    return true;
+                }
+            }
         }
-
-        QByteArray data = QJsonDocument(jsonobj).toJson(QJsonDocument::Compact);
-        m_priv->local_themes[jsonobj.value("id").toString()] = std::make_pair("", data);
-//        m_priv->local_themes[jsonobj.value("id").toString()] = std::make_pair(fileName, data);
-
-        return true;
     }
 
     return false;
@@ -602,6 +633,12 @@ auto CThemes::localThemesToJson() -> QJsonArray
     }
 
     return json_themes_array;
+}
+
+auto CThemes::checkDestinationThemeFileExist(const QString& srcfilepath) -> bool
+{
+    const QString dest_file_path = getUserThemesPath() + "/" + QFileInfo(srcfilepath).fileName();
+    return QFile::exists(dest_file_path);
 }
 
 auto CThemes::onSystemDarkColorScheme(bool isdark) -> void

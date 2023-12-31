@@ -1360,8 +1360,8 @@
     <ROW UpgradeCode="{BD3B6686-BDB3-4C4B-A4B1-B3195E8AE3FA}" VersionMin="0.0.0" Language="1049" Attributes="5" ActionProperty="UPGRADE_1"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.PreReqComponent">
-    <ROW PrereqKey="MicrosoftVisualC_2015_x64" DisplayName="Microsoft Visual C++ 2015-2022 Redistributable (x64)" VersionMin="14.32" SetupFileUrl="data\vcredist\vcredist_2022_x64.exe" Location="0" ExactSize="0" Operator="0" ComLine="/q /norestart" Options="px" TargetName="Microsoft Visual C++ 2015-2022 Redistributable (x64)\vcredist_2022_x64.exe" Builds="MsiBuild64" Feature="MicrosoftVisualC_2015_x64"/>
-    <ROW PrereqKey="MicrosoftVisualC_2015_x86" DisplayName="Microsoft Visual C++ 2015-2022 Redistributable (x86)" VersionMin="14.32" SetupFileUrl="data\vcredist\vcredist_2022_x86.exe" Location="0" ExactSize="0" Operator="0" ComLine="/q /norestart" Options="p" TargetName="Microsoft Visual C++ 2015-2022 Redistributable (x86)\vcredist_2022_x86.exe" Builds="MsiBuild32" Feature="MicrosoftVisualC_2015_x86"/>
+    <ROW PrereqKey="MicrosoftVisualC_2015_x64" DisplayName="Microsoft Visual C++ 2015-2022 Redistributable (x64)" VersionMin="14.32" SetupFileUrl="data\vcredist_x64.exe" Location="0" ExactSize="0" Operator="0" ComLine="/q /norestart" Options="px" TargetName="Microsoft Visual C++ 2015-2022 Redistributable (x64)\vcredist_x64.exe" Builds="MsiBuild64" Feature="MicrosoftVisualC_2015_x64"/>
+    <ROW PrereqKey="MicrosoftVisualC_2015_x86" DisplayName="Microsoft Visual C++ 2015-2022 Redistributable (x86)" VersionMin="14.32" SetupFileUrl="data\vcredist_x86.exe" Location="0" ExactSize="0" Operator="0" ComLine="/q /norestart" Options="p" TargetName="Microsoft Visual C++ 2015-2022 Redistributable (x86)\vcredist_x86.exe" Builds="MsiBuild32" Feature="MicrosoftVisualC_2015_x86"/>
     <ATTRIBUTE name="PrereqsOrder" value="MicrosoftVisualC_2015_x64 MicrosoftVisualC_2015_x86"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.PreReqSearchComponent">
