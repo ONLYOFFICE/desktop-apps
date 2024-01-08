@@ -854,7 +854,7 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
 
         open_scheme.push_back(app_scheme);
     }
-    std::wstring app_action = app_scheme + L"//action|";
+    std::wstring app_action = app_scheme + L"//action";
     std::wstring app_action_plugin = app_scheme + L"//action|install-plugin";
 
     for (const auto& arg: vargs) {
@@ -888,14 +888,21 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
 //                in_new_window = true;
         } else
         if ( arg.rfind(app_action, 0) == 0 ) {
-            if ( arg.rfind(app_action_plugin, 0) == 0 ) {
-                std::wstring _plugin_name = arg.substr(app_action_plugin.size() + 1);
-                if ( !_plugin_name.empty() ) {
-//                    _app.installEditorsPlugin(_plugin_name);
-                }
-            }
+            // correct url from browsers
+            std::wstring argScheme = arg;
+            Utils::replaceAll(argScheme, L"%7C", L"|");
+            if (argScheme[argScheme.length() - 1] == '/')
+                argScheme.pop_back();
 
-            continue;
+            if ( argScheme.rfind(app_action_plugin, 0) == 0 ) {
+                std::wstring _plugin_name = argScheme.substr(app_action_plugin.size() + 1);
+                if ( !_plugin_name.empty() ) {
+                    _app.InstallPluginFromStore(_plugin_name);
+                }
+                continue;
+            } else {
+                open_opts.wurl = argScheme;
+            }
         } else {
             open_opts.wurl = arg;
         }
