@@ -66,12 +66,14 @@ static void GetFrameMetricsForDpi(FRAME &frame, double dpi, bool maximized = fal
     WinVer ver = Utils::getWinVersion();
     int index = (ver == WinVer::WinXP) ? 0 :
                     (ver <= WinVer::Win7) ? 1 :
-                    (ver <= WinVer::Win8_1) ? 2 : 3;
-    const int left[4][13] = { // Left margin for scales 100-500%
+                    (ver <= WinVer::Win8_1) ? 2 :
+                    (ver <= WinVer::Win10) ? 3 : 4;
+    const int left[5][13] = { // Left margin for scales 100-500%
         {0, 0, 0,  0,  0,  1,  1,  1,  2,  2,  2,  2,  1}, // WinXp: for NC width 3px
         {4, 5, 7,  8,  9,  10, 12, 14, 17, 19, 22, 24, 5}, // WinVista - Win7: for NC width 3px
         {7, 8, 10, 11, 12, 13, 15, 17, 20, 22, 25, 27, 5}, // Win8 - Win8.1
-        {0, 0, 0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0}  // Win10 - Win11
+        {0, 0, 0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0}, // Win10
+        {0, 0, 0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0}  // Win11
     };
     frame.left = (dpi <= 1.0) ? left[index][0] :
                  (dpi <= 1.25) ? left[index][1] :
@@ -86,11 +88,12 @@ static void GetFrameMetricsForDpi(FRAME &frame, double dpi, bool maximized = fal
                  (dpi <= 4.5) ? left[index][10] :
                  (dpi <= 5.0) ? left[index][11] : left[index][12] * dpi;
 
-    const int top[4][13] = { // Top margin for scales 100-500%
+    const int top[5][13] = { // Top margin for scales 100-500%
         {0,  0,  0,  0,  0,  1,  1,  1,  2,  2,   2,   2,   1}, // WinXp: for NC width 3px
         {4,  5,  7,  8,  9,  10, 12, 14, 17, 19,  22,  24,  5}, // WinVista - Win7: for NC width 3px
         {7,  8,  10, 11, 12, 13, 15, 17, 20, 22,  25,  27,  5}, // Win8 - Win8.1
-        {31, 38, 45, 52, 58, 65, 72, 85, 99, 112, 126, 139, 28} // Win10 - Win11
+        {31, 38, 45, 52, 58, 65, 72, 85, 99, 112, 126, 139, 28}, // Win10
+        {30, 37, 43, 50, 56, 63, 69, 82, 95, 108, 121, 134, 27}  // Win11
     };
     frame.top = (dpi <= 1.0) ? top[index][0] :
                 (dpi <= 1.25) ? top[index][1] :
@@ -108,11 +111,12 @@ static void GetFrameMetricsForDpi(FRAME &frame, double dpi, bool maximized = fal
     if (!maximized)
         return;
 
-    const int left_ofs[4][13] = { // Left offset for scales 100-500%
+    const int left_ofs[5][13] = { // Left offset for scales 100-500%
         {-3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -1}, // WinXp
         {-3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -1}, // WinVista - Win7
         {0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0}, // Win8 - Win8.1
-        {0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0}   // Win10 - Win11
+        {0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0}, // Win10
+        {0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0}  // Win11
     };
     frame.left -= (dpi <= 1.0) ? left_ofs[index][0] :
                   (dpi <= 1.25) ? left_ofs[index][1] :
@@ -127,11 +131,12 @@ static void GetFrameMetricsForDpi(FRAME &frame, double dpi, bool maximized = fal
                   (dpi <= 4.5) ? left_ofs[index][10] :
                   (dpi <= 5.0) ? left_ofs[index][11] : left_ofs[index][12] * dpi;
 
-    const int top_ofs[4][13] = { // Top offset for scales 100-500%
+    const int top_ofs[5][13] = { // Top offset for scales 100-500%
         {-3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -1}, // WinXp
         {-3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -1}, // WinVista - Win7
         {0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0}, // Win8 - Win8.1
-        {8,  9,  11, 12, 13, 14, 16, 18, 21, 24, 27, 30, 6}   // Win10 - Win11
+        {8,  9,  11, 12, 13, 14, 16, 18, 21, 24, 27, 30, 6}, // Win10
+        {7,  8,  9,  10, 11, 12, 13, 15, 17, 19, 21, 23, 5}  // Win11
     };
     frame.top -= (dpi <= 1.0) ? top_ofs[index][0] :
                  (dpi <= 1.25) ? top_ofs[index][1] :
@@ -265,10 +270,15 @@ void CWindowPlatform::adjustGeometry()
             if (Utils::getWinVersion() <= WinVer::Win7)
                 border -= NC_AREA_WIDTH;
             mrg = QMargins(border, border, border, border);
+        } else
+        if (Utils::getWinVersion() == WinVer::Win10) {
+            int border = qRound(MAIN_WINDOW_BORDER_WIDTH * m_dpiRatio);
+            mrg = QMargins(border, border + MAIN_WINDOW_BORDER_WIDTH, border, border);
         } else {
-            mrg = QMargins(0, qRound(MAIN_WINDOW_BORDER_WIDTH * m_dpiRatio) + MAIN_WINDOW_BORDER_WIDTH, 0, 0);
+            int border = qRound(MAIN_WINDOW_BORDER_WIDTH * m_dpiRatio);
+            mrg = QMargins(border, border, border, border);
         }
-        m_resAreaWidth = mrg.top();
+        m_resAreaWidth = mrg.top() + MAIN_WINDOW_BORDER_WIDTH;
     }
     setContentsMargins(mrg);
 }
