@@ -900,9 +900,9 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
                     _app.InstallPluginFromStore(_plugin_name);
                 }
                 continue;
-            } else {
-                open_opts.wurl = argScheme;
             }
+
+            continue;
         } else {
             open_opts.wurl = arg;
         }
