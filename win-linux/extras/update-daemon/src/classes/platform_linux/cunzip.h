@@ -57,6 +57,7 @@ public:
 
     /* callback */
     void onComplete(FnVoidInt callback);
+    void onProgress(FnVoidInt callback);
 
 private:
     class CUnzipPrivate;

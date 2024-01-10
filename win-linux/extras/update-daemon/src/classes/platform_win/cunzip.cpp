@@ -44,6 +44,40 @@ public:
     ~CUnzipPrivate()
     {}
 
+    bool calcFilesCountRecursively(IShellDispatch *pISD, const CComPtr<Folder> &pSrcFolder)
+    {
+        CComPtr<FolderItems> pItems;
+        if (FAILED(pSrcFolder->Items(&pItems)))
+            return false;
+
+        long itemCount = 0;
+        if (FAILED(pItems->get_Count(&itemCount)))
+            return false;
+
+        for (int i = 0; i < itemCount; i++) {
+            CComPtr<FolderItem> pItem;
+            if (FAILED(pItems->Item(CComVariant(i), &pItem)))
+                return false;
+
+            VARIANT_BOOL isFolder = VARIANT_FALSE;
+            if (FAILED(pItem->get_IsFolder(&isFolder)))
+                return false;
+
+            if (isFolder == VARIANT_TRUE) {
+                CComPtr<Folder> pSubFolder;
+                if (FAILED(pISD->NameSpace(CComVariant(pItem), &pSubFolder)))
+                    return false;
+
+                if (!calcFilesCountRecursively(pISD, pSubFolder))
+                    return false;
+
+            } else {
+                ++total_count;
+            }
+        }
+        return true;
+    }
+
     int extractRecursively(IShellDispatch *pISD, const CComPtr<Folder> &pSrcFolder, const wstring &destFolder)
     {
         CComPtr<FolderItems> pItems;
@@ -92,6 +126,14 @@ public:
                     return UNZIP_ERROR;
                 if (FAILED(pDestFolder->CopyHere(CComVariant(pItem), CComVariant(1024 | 512 | 16 | 4))))
                     return UNZIP_ERROR;
+                if (total_count > 0 && progress_callback) {
+                    ++curr_count;
+                    int percent = static_cast<int>(100.0 * ((double)curr_count / total_count));
+                    if (percent != prev_percent) {
+                        progress_callback(percent);
+                        prev_percent = percent;
+                    }
+                }
             }
         }
         return UNZIP_OK;
@@ -122,6 +164,12 @@ public:
             CoUninitialize();
             return UNZIP_ERROR;
         }
+
+        prev_percent = -1;
+        curr_count = 0;
+        total_count = 0;
+        if (!calcFilesCountRecursively(pShell, pSrcFolder))
+            total_count = 0;
         int res = extractRecursively(pShell, pSrcFolder, path);
         pSrcFolder.Release();
         pShell->Release();
@@ -129,9 +177,13 @@ public:
         return res;
     }
 
-    FnVoidInt complete_callback = nullptr;
+    FnVoidInt complete_callback = nullptr,
+              progress_callback = nullptr;
     std::atomic_bool run;
     std::future<void> future;
+    int curr_count = 0,
+        total_count = 0,
+        prev_percent = -1;
 };
 
 CUnzip::CUnzip() :
@@ -169,4 +221,9 @@ void CUnzip::stop()
 void CUnzip::onComplete(FnVoidInt callback)
 {
     pimpl->complete_callback = callback;
+}
+
+void CUnzip::onProgress(FnVoidInt callback)
+{
+    pimpl->progress_callback = callback;
 }

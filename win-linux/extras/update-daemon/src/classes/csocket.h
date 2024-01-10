@@ -66,6 +66,7 @@ enum MsgCommands {
     MSG_StartReplacingFiles,
     MSG_ClearTempFiles,
     MSG_Progress,
+    MSG_UnzipProgress,
     MSG_StopDownload,
     MSG_OtherError,
     MSG_SetLanguage,

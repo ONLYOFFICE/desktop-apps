@@ -141,6 +141,7 @@ private slots:
     void onLoadUpdateFinished(const QString &filePath);
     void showStartInstallMessage(QWidget *parent);
     void onProgressSlot(const int percent);
+    void onUnzipProgressSlot(const int percent);
     void onError(const QString &error);
     void criticalMsg(QWidget *parent, const QString &msg);
 };

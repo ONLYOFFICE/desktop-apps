@@ -91,6 +91,7 @@ const char *SVC_TXT_ERR_UNPACKING   = QT_TRANSLATE_NOOP("CUpdateManager", "An er
            *TXT_AVAILABLE_UPD   = QT_TRANSLATE_NOOP("CUpdateManager", "Update is available (version %1)"),
            *TXT_DOWNLOADING_UPD = QT_TRANSLATE_NOOP("CUpdateManager", "Downloading new version %1 (%2%)"),
            *TXT_PREPARING_UPD   = QT_TRANSLATE_NOOP("CUpdateManager", "Preparing update..."),
+           *TXT_UNZIP_UPD       = QT_TRANSLATE_NOOP("CUpdateManager", "Preparing update (%1%)"),
            *TXT_RESTART_TO_UPD  = QT_TRANSLATE_NOOP("CUpdateManager", "To finish updating, restart app"),
            *TXT_ERR_NOT_ALLOWED = QT_TRANSLATE_NOOP("CUpdateManager", "Updates are not allowed!"),
            *TXT_ERR_URL         = QT_TRANSLATE_NOOP("CUpdateManager", "Unable to check update: URL not defined."),
@@ -351,6 +352,10 @@ void CUpdateManager::init()
                 QMetaObject::invokeMethod(this, "onProgressSlot", Qt::QueuedConnection, Q_ARG(int, std::stoi(params[1])));
                 break;
 
+            case MSG_UnzipProgress:
+                QMetaObject::invokeMethod(this, "onUnzipProgressSlot", Qt::QueuedConnection, Q_ARG(int, std::stoi(params[1])));
+                break;
+
             case MSG_RequestContentLenght: {
                 double fileSize = std::stod(params[1])/1024/1024;
                 m_packageData->fileSize = (fileSize == 0) ? "--" : QString::number(fileSize, 'f', 1);
@@ -448,6 +453,11 @@ void CUpdateManager::updateNeededCheking()
 void CUpdateManager::onProgressSlot(const int percent)
 {
     refreshStartPage({"", {TXT_DOWNLOADING_UPD, m_packageData->version, QString::number(percent)}});
+}
+
+void CUpdateManager::onUnzipProgressSlot(const int percent)
+{
+    refreshStartPage({"", {TXT_UNZIP_UPD, QString::number(percent)}});
 }
 
 void CUpdateManager::onError(const QString &error)

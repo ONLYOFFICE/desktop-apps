@@ -34,6 +34,7 @@
 #include "platform_linux/utils.h"
 #include <archive.h>
 #include <archive_entry.h>
+#include <sys/stat.h>
 #include <cstring>
 
 #define BLOCK_SIZE 10240
@@ -53,6 +54,10 @@ public:
             error = "Archive path is empty or dest dir not exist";
             return UNZIP_ERROR;
         }
+        int prev_percent = -1;
+        struct stat file_stat;
+        long total_size = (stat(zipFilePath.c_str(), &file_stat) == 0) ? file_stat.st_size : 0;
+
         struct archive *arch = archive_read_new();
         archive_read_support_filter_xz(arch);
         archive_read_support_format_tar(arch);
@@ -89,6 +94,13 @@ public:
                     error = "Cannot extract entry";
                     break;
                 }
+                if (total_size > 0 && progress_callback) {
+                    int percent = static_cast<int>(100.0 * ((double)archive_filter_bytes(arch, -1)/total_size));
+                    if (percent != prev_percent) {
+                        progress_callback(percent);
+                        prev_percent = percent;
+                    }
+                }
             }
         }
 
@@ -102,7 +114,8 @@ public:
         return ex_code;
     }
 
-    FnVoidInt complete_callback = nullptr;
+    FnVoidInt complete_callback = nullptr,
+              progress_callback = nullptr;
     std::atomic_bool run;
     std::future<void> future;
 };
@@ -147,4 +160,9 @@ void CUnzip::stop()
 void CUnzip::onComplete(FnVoidInt callback)
 {
     pimpl->complete_callback = callback;
+}
+
+void CUnzip::onProgress(FnVoidInt callback)
+{
+    pimpl->progress_callback = callback;
 }
