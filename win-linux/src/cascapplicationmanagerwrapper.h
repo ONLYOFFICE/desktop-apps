@@ -205,6 +205,9 @@ public:
     static void             setRtlEnabled(bool);
     static bool             isRtlEnabled();
 
+    std::wstring GetExternalSchemeName();
+    using CAscApplicationManager::GetExternalSchemeName;
+
     uint logoutCount(const std::wstring& portal) const;
     void Logout(const std::wstring& portal);
     void launchAppClose();

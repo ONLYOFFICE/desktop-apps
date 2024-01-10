@@ -109,6 +109,12 @@ void CAscApplicationManagerWrapper::StartSaveDialog(const std::wstring& sName, u
     OnEvent(event);
 }
 
+std::wstring CAscApplicationManagerWrapper::GetExternalSchemeName()
+{
+    std::wstring scheme = CAscApplicationManager::GetExternalSchemeName();
+    return !scheme.empty() ? scheme.back() != L':' ? scheme + L":" : scheme : L"";
+}
+
 void CAscApplicationManagerWrapper::OnEvent(CAscCefMenuEvent * event)
 {
     if ( event->m_nType == ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND ) {
@@ -849,9 +855,6 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
     std::vector<std::wstring> open_scheme{L"http://",L"https://"};
     std::wstring app_scheme = _app.GetExternalSchemeName();
     if ( !app_scheme.empty() ) {
-        if ( app_scheme.back() != L':' )
-            app_scheme += L":";
-
         open_scheme.push_back(app_scheme);
     }
     std::wstring app_action = app_scheme + L"//action";
