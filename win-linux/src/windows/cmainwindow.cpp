@@ -959,6 +959,12 @@ void CMainWindow::onDocumentReady(int uid)
 {
     if ( uid < 0 ) {
         QTimer::singleShot(20, this, [=]{
+            m_isStartPageReady = true;
+            if ( !m_keepedAction.empty() ) {
+                handleWindowAction(m_keepedAction);
+                m_keepedAction.clear();
+            }
+
             refreshAboutVersion();
             AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, L"app:ready");
             focus(); // TODO: move to app manager
@@ -1515,5 +1521,19 @@ void CMainWindow::onLayoutDirectionChanged()
     if (m_pWidgetDownload && m_pWidgetDownload->toolButton()) {
         m_pWidgetDownload->onLayoutDirectionChanged();
         m_pWidgetDownload->toolButton()->style()->polish(m_pWidgetDownload->toolButton());
+    }
+}
+
+void CMainWindow::handleWindowAction(const std::wstring& action)
+{
+    if ( !m_isStartPageReady ) {
+        m_keepedAction = action;
+    } else {
+        if ( action.rfind(L"panel|") == 0 ) {
+            std::wstring _panel_to_select = action.substr(std::wstring(L"panel|").size());
+
+            qDebug() << "panel name" << _panel_to_select;
+            AscAppManager::sendCommandTo(0, L"panel:select", _panel_to_select);
+        }
     }
 }

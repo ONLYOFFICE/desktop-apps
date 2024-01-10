@@ -801,19 +801,6 @@ CMainWindow * CAscApplicationManagerWrapper::prepareMainWindow(const QRect& r)
         additional.append(arg_portal);
     }
 
-    std::wstring app_scheme = _app.GetExternalSchemeName();
-    if ( !app_scheme.empty() ) {
-        if ( app_scheme.back() != L':' )
-            app_scheme += L":";
-
-        std::wstring _panel_select_action = app_scheme + L"//action|panel";
-        std::wstring _panel_to_select = InputArgs::argument_value(_panel_select_action);
-
-        if ( !_panel_to_select.empty() ) {
-            additional.append("&panel=" + QString::fromStdWString(_panel_to_select));
-        }
-    }
-
 #if defined(__OS_WIN_XP)
     additional.append("&osver=winxp");
 #endif
@@ -859,6 +846,7 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
     }
     std::wstring app_action = app_scheme + L"//action";
     std::wstring app_action_plugin = app_scheme + L"//action|install-plugin";
+    std::vector<std::wstring> vec_window_actions;
 
     for (const auto& arg: vargs) {
         COpenOptions open_opts;
@@ -902,7 +890,8 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
                 if ( !_plugin_name.empty() ) {
                     _app.InstallPluginFromStore(_plugin_name);
                 }
-                continue;
+            } else {
+                vec_window_actions.push_back(argScheme);
             }
 
             continue;
@@ -994,6 +983,29 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
             opts.url = QString::fromStdWString(opts.wurl);
 
             _app.m_pMainWindow->doOpenLocalFile(opts);
+        }
+    }
+
+    if ( !vec_window_actions.empty() ) {
+        QTimer::singleShot(0, &_app, [vec_window_actions]{
+            CAscApplicationManagerWrapper::getInstance().handleDeeplinkActions(vec_window_actions);
+        });
+    }
+}
+
+void CAscApplicationManagerWrapper::handleDeeplinkActions(const std::vector<std::wstring>& actions)
+{
+    std::wstring app_scheme = GetExternalSchemeName();
+    if ( !app_scheme.empty() ) {
+        const std::wstring app_action_panel = app_scheme + L"//action|panel|";
+
+        for (const auto& a: actions) {
+            if ( a.rfind(app_action_panel, 0) == 0 ) {
+                std::wstring _action = a.substr(app_action_panel.size() - 6);
+
+                gotoMainWindow();
+                m_pMainWindow->handleWindowAction(_action);
+            }
         }
     }
 }

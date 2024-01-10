@@ -139,6 +139,7 @@ private:
     bool applySettings(const std::wstring& wstrjson);
     void sendSettings(const std::wstring& opts);
     void applyTheme(const std::wstring&, bool force = false);
+    void handleDeeplinkActions(const std::vector<std::wstring>& actions);
 
     CMainWindow * prepareMainWindow(const QRect& r = QRect());
     CMainWindow * mainWindowFromViewId(int uid) const;
