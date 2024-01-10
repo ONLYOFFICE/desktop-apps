@@ -1530,10 +1530,10 @@ void CMainWindow::handleWindowAction(const std::wstring& action)
         m_keepedAction = action;
     } else {
         if ( action.rfind(L"panel|") == 0 ) {
-            std::wstring _panel_to_select = action.substr(std::wstring(L"panel|").size());
+            const std::wstring _panel_to_select = action.substr(std::wstring(L"panel|").size());
 
-            qDebug() << "panel name" << _panel_to_select;
-            AscAppManager::sendCommandTo(0, L"panel:select", _panel_to_select);
+            if ( !_panel_to_select.empty() )
+                AscAppManager::sendCommandTo(0, L"panel:select", _panel_to_select);
         }
     }
 }
