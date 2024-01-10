@@ -143,6 +143,7 @@ l10n.en = {
     settOptDescAUpdateSilent: "Download updates and ask before install",
     settOptDescAUpdateAsk: "You will be notified about all updates steps",
     settRtlMode: "RTL Interface",
+    welSlide1Title: "Powerful editors",
 }
 
 
