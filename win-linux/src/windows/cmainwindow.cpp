@@ -500,7 +500,7 @@ void CMainWindow::toggleButtonMain(bool toggle, bool delay)
     };
 
     if ( delay ) {
-        QTimer::singleShot(200, [=]{ _toggle(toggle); });
+        QTimer::singleShot(200, this, [=]{ _toggle(toggle); });
     } else {
         _toggle(toggle);
     }
@@ -792,7 +792,7 @@ void CMainWindow::onLocalFileRecent(void * d)
 
 void CMainWindow::onLocalFileRecent(const COpenOptions& opts)
 {
-    QRegularExpression re(rePortalName);
+    static QRegularExpression re(rePortalName);
     QRegularExpressionMatch match = re.match(opts.url);
 
     bool forcenew = false;
@@ -861,7 +861,7 @@ void CMainWindow::onFileLocation(int uid, QString param)
             CMessage::info(this, tr("Document must be saved firstly."));
         }
     } else {
-        QRegularExpression _re("^((?:https?:\\/{2})?[^\\s\\/]+)", QRegularExpression::CaseInsensitiveOption);
+        static QRegularExpression _re("^((?:https?:\\/{2})?[^\\s\\/]+)", QRegularExpression::CaseInsensitiveOption);
         QRegularExpressionMatch _re_match = _re.match(param);
 
         if ( _re_match.hasMatch() ) {
@@ -872,7 +872,8 @@ void CMainWindow::onFileLocation(int uid, QString param)
                 if ( _folder.contains("?") )
                     _folder.append("&desktop=true");
                 else {
-                    int pos = _folder.indexOf(QRegularExpression("#\\d+"));
+                    static QRegularExpression _re_dig("#\\d+");
+                    int pos = _folder.indexOf(_re_dig);
                     !(pos < 0) ? _folder.insert(pos, "?desktop=true&") : _folder.append("?desktop=true");
                 }
             }
