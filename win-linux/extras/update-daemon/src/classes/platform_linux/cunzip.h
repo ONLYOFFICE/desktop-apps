@@ -59,9 +59,8 @@ public:
     void onComplete(FnVoidInt callback);
 
 private:
-    FnVoidInt m_complete_callback = nullptr;
-    std::atomic_bool m_run;
-    std::future<void> m_future;
+    class CUnzipPrivate;
+    CUnzipPrivate *pimpl = nullptr;
 };
 
 #endif // CUNZIP_H

@@ -36,123 +36,137 @@
 #include <Shldisp.h>
 
 
-int extractRecursively(IShellDispatch *pISD, const CComPtr<Folder> &pSrcFolder, const wstring &destFolder, std::atomic_bool &run)
+class CUnzip::CUnzipPrivate
 {
-    CComPtr<FolderItems> pItems;
-    if (FAILED(pSrcFolder->Items(&pItems)))
-        return UNZIP_ERROR;
+public:
+    CUnzipPrivate()
+    {}
+    ~CUnzipPrivate()
+    {}
 
-    long itemCount = 0;
-    if (FAILED(pItems->get_Count(&itemCount)))
-        return UNZIP_ERROR;
-
-    for (int i = 0; i < itemCount; i++) {
-        if (!run)
-            return UNZIP_ABORT;
-
-        CComPtr<FolderItem> pItem;
-        if (FAILED(pItems->Item(CComVariant(i), &pItem)))
+    int extractRecursively(IShellDispatch *pISD, const CComPtr<Folder> &pSrcFolder, const wstring &destFolder)
+    {
+        CComPtr<FolderItems> pItems;
+        if (FAILED(pSrcFolder->Items(&pItems)))
             return UNZIP_ERROR;
 
-        VARIANT_BOOL isFolder = VARIANT_FALSE;
-        if (FAILED(pItem->get_IsFolder(&isFolder)))
+        long itemCount = 0;
+        if (FAILED(pItems->get_Count(&itemCount)))
             return UNZIP_ERROR;
 
-        if (isFolder == VARIANT_TRUE) {
-            // Source path
-            CComPtr<Folder> pSubFolder;
-            if (FAILED(pISD->NameSpace(CComVariant(pItem), &pSubFolder)))
+        for (int i = 0; i < itemCount; i++) {
+            if (!run)
+                return UNZIP_ABORT;
+
+            CComPtr<FolderItem> pItem;
+            if (FAILED(pItems->Item(CComVariant(i), &pItem)))
                 return UNZIP_ERROR;
 
-            // Dest path
-            BSTR bstrName;
-            if (FAILED(pItem->get_Name(&bstrName)))
+            VARIANT_BOOL isFolder = VARIANT_FALSE;
+            if (FAILED(pItem->get_IsFolder(&isFolder)))
                 return UNZIP_ERROR;
 
-            wstring targetFolder = destFolder + L"\\" + bstrName;
-            SysFreeString(bstrName);
-            if (CreateDirectory(targetFolder.c_str(), NULL) == 0)
-                return UNZIP_ERROR;
+            if (isFolder == VARIANT_TRUE) {
+                // Source path
+                CComPtr<Folder> pSubFolder;
+                if (FAILED(pISD->NameSpace(CComVariant(pItem), &pSubFolder)))
+                    return UNZIP_ERROR;
 
-            int res = extractRecursively(pISD, pSubFolder, targetFolder, run);
-            if (res != UNZIP_OK)
-                return res;
+                // Dest path
+                BSTR bstrName;
+                if (FAILED(pItem->get_Name(&bstrName)))
+                    return UNZIP_ERROR;
 
-        } else {
-            CComPtr<Folder> pDestFolder;
-            if (FAILED(pISD->NameSpace(CComVariant(destFolder.c_str()), &pDestFolder)))
-                return UNZIP_ERROR;
-            if (FAILED(pDestFolder->CopyHere(CComVariant(pItem), CComVariant(1024 | 512 | 16 | 4))))
-                return UNZIP_ERROR;
+                wstring targetFolder = destFolder + L"\\" + bstrName;
+                SysFreeString(bstrName);
+                if (CreateDirectory(targetFolder.c_str(), NULL) == 0)
+                    return UNZIP_ERROR;
+
+                int res = extractRecursively(pISD, pSubFolder, targetFolder);
+                if (res != UNZIP_OK)
+                    return res;
+
+            } else {
+                CComPtr<Folder> pDestFolder;
+                if (FAILED(pISD->NameSpace(CComVariant(destFolder.c_str()), &pDestFolder)))
+                    return UNZIP_ERROR;
+                if (FAILED(pDestFolder->CopyHere(CComVariant(pItem), CComVariant(1024 | 512 | 16 | 4))))
+                    return UNZIP_ERROR;
+            }
         }
-    }
-    return UNZIP_OK;
-}
-
-int unzipArchive(const wstring &zipFilePath, const wstring &folderPath, std::atomic_bool &run)
-{
-    if (!NS_File::fileExists(zipFilePath) || !NS_File::dirExists(folderPath))
-        return UNZIP_ERROR;
-
-    wstring file = NS_File::toNativeSeparators(zipFilePath);
-    wstring path = NS_File::toNativeSeparators(folderPath);
-
-    HRESULT hr = CoInitializeEx(NULL, COINIT_APARTMENTTHREADED);
-    if (FAILED(hr))
-        return UNZIP_ERROR;
-
-    IShellDispatch *pShell = NULL;
-    hr = CoCreateInstance(CLSID_Shell, NULL, CLSCTX_INPROC_SERVER, IID_PPV_ARGS(&pShell));
-    if (FAILED(hr)) {
-        CoUninitialize();
-        return UNZIP_ERROR;
+        return UNZIP_OK;
     }
 
-    CComPtr<Folder> pSrcFolder;
-    if (FAILED(pShell->NameSpace(CComVariant(file.c_str()), &pSrcFolder))) {
+    int unzipArchive(const wstring &zipFilePath, const wstring &folderPath)
+    {
+        if (!NS_File::fileExists(zipFilePath) || !NS_File::dirExists(folderPath))
+            return UNZIP_ERROR;
+
+        wstring file = NS_File::toNativeSeparators(zipFilePath);
+        wstring path = NS_File::toNativeSeparators(folderPath);
+
+        HRESULT hr = CoInitializeEx(NULL, COINIT_APARTMENTTHREADED);
+        if (FAILED(hr))
+            return UNZIP_ERROR;
+
+        IShellDispatch *pShell = NULL;
+        hr = CoCreateInstance(CLSID_Shell, NULL, CLSCTX_INPROC_SERVER, IID_PPV_ARGS(&pShell));
+        if (FAILED(hr)) {
+            CoUninitialize();
+            return UNZIP_ERROR;
+        }
+
+        CComPtr<Folder> pSrcFolder;
+        if (FAILED(pShell->NameSpace(CComVariant(file.c_str()), &pSrcFolder))) {
+            pShell->Release();
+            CoUninitialize();
+            return UNZIP_ERROR;
+        }
+        int res = extractRecursively(pShell, pSrcFolder, path);
+        pSrcFolder.Release();
         pShell->Release();
         CoUninitialize();
-        return UNZIP_ERROR;
+        return res;
     }
 
-    int res = extractRecursively(pShell, pSrcFolder, path, run);
-    pSrcFolder.Release();
-    pShell->Release();
-    CoUninitialize();
-    return res;
-}
+    FnVoidInt complete_callback = nullptr;
+    std::atomic_bool run;
+    std::future<void> future;
+};
 
-CUnzip::CUnzip()
+CUnzip::CUnzip() :
+    pimpl(new CUnzipPrivate)
 {
-    m_run = false;
+    pimpl->run = false;
 }
 
 CUnzip::~CUnzip()
 {
-    m_run = false;
-    if (m_future.valid())
-        m_future.wait();
+    pimpl->run = false;
+    if (pimpl->future.valid())
+        pimpl->future.wait();
+    delete pimpl, pimpl = nullptr;
 }
 
 void CUnzip::extractArchive(const wstring &zipFilePath, const wstring &folderPath)
 {
-    m_run = false;
-    if (m_future.valid())
-        m_future.wait();
-    m_run = true;
-    m_future = std::async(std::launch::async, [=]() {
-        int res = unzipArchive(zipFilePath, folderPath, m_run);
-        if (m_complete_callback)
-            m_complete_callback(res);
+    pimpl->run = false;
+    if (pimpl->future.valid())
+        pimpl->future.wait();
+    pimpl->run = true;
+    pimpl->future = std::async(std::launch::async, [=]() {
+        int res = pimpl->unzipArchive(zipFilePath, folderPath);
+        if (pimpl->complete_callback)
+            pimpl->complete_callback(res);
     });
 }
 
 void CUnzip::stop()
 {
-    m_run = false;
+    pimpl->run = false;
 }
 
 void CUnzip::onComplete(FnVoidInt callback)
 {
-    m_complete_callback = callback;
+    pimpl->complete_callback = callback;
 }
