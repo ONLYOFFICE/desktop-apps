@@ -114,21 +114,21 @@
 
     /// Handle links
     
-    NSMutableArray<NSURL *> * appLinks = @[].mutableCopy;
+    NSMutableArray<NSURL *> * openLinks = @[].mutableCopy;
     
     [urls enumerateObjectsUsingBlock:^(NSURL * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([obj.scheme isEqualToString:kSchemeApp]) {
-            [appLinks addObject:obj];
+                [openLinks addObject:obj];
         }
     }];
     
-    if (appLinks.count > 0) {
+    if (openLinks.count > 0) {
         if (NSArray<NSURL *> * storedAppLinks = [[ASCSharedSettings sharedInstance] settingByKey:kSettingsOpenAppLinks]) {
             NSMutableArray * extendArrayLinks = [storedAppLinks mutableCopy];
-            [extendArrayLinks addObjectsFromArray:appLinks];
+            [extendArrayLinks addObjectsFromArray:openLinks];
             [[ASCSharedSettings sharedInstance] setSetting:extendArrayLinks forKey:kSettingsOpenAppLinks];
         } else {
-            [[ASCSharedSettings sharedInstance] setSetting:appLinks forKey:kSettingsOpenAppLinks];
+            [[ASCSharedSettings sharedInstance] setSetting:openLinks forKey:kSettingsOpenAppLinks];
         }
         
         [[NSNotificationCenter defaultCenter] postNotificationName:ASCEventNameOpenAppLinks
