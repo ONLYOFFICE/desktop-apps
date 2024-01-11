@@ -224,6 +224,9 @@ void CSvcManager::init()
     m_pUnzip->onComplete([=](int error) {
         onCompleteUnzip(error);
     });
+    m_pUnzip->onProgress([=](int percent) {
+        m_socket->sendMessage(MSG_UnzipProgress, to_tstring(percent));
+    });
     m_socket->onMessageReceived([=](void *data, size_t) {
         vector<tstring> params;
         if (m_socket->parseMessage(data, params) == 3) {

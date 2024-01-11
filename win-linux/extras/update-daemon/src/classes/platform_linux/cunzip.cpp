@@ -34,101 +34,135 @@
 #include "platform_linux/utils.h"
 #include <archive.h>
 #include <archive_entry.h>
+#include <sys/stat.h>
 #include <cstring>
 
 #define BLOCK_SIZE 10240
 
 
-int unzipArchive(const string &zipFilePath, const string &folderPath, std::atomic_bool &run, string &error)
+class CUnzip::CUnzipPrivate
 {
-    if (!NS_File::fileExists(zipFilePath) || !NS_File::dirExists(folderPath)) {
-        error = "Archive path is empty or dest dir not exist";
-        return UNZIP_ERROR;
-    }
+public:
+    CUnzipPrivate()
+    {}
+    ~CUnzipPrivate()
+    {}
 
-    struct archive *arch = archive_read_new();
-    archive_read_support_filter_xz(arch);
-    archive_read_support_format_tar(arch);
-    if (archive_read_open_filename(arch, zipFilePath.c_str(), BLOCK_SIZE) != ARCHIVE_OK) {
-        error = "Cannot open archive";
-        archive_read_free(arch);
-        return UNZIP_ERROR;
-    }
+    int unzipArchive(const string &zipFilePath, const string &folderPath, string &error)
+    {
+        if (!NS_File::fileExists(zipFilePath) || !NS_File::dirExists(folderPath)) {
+            error = "Archive path is empty or dest dir not exist";
+            return UNZIP_ERROR;
+        }
+        int prev_percent = -1;
+        struct stat file_stat;
+        long total_size = (stat(zipFilePath.c_str(), &file_stat) == 0) ? file_stat.st_size : 0;
 
-    int res = ARCHIVE_OK;
-    int ex_code = UNZIP_OK;
-    struct archive_entry *entry;
-    while ((res = archive_read_next_header(arch, &entry)) == ARCHIVE_OK) {
-        if (!run) {
-            ex_code = UNZIP_ABORT;
-            break;
+        struct archive *arch = archive_read_new();
+        archive_read_support_filter_xz(arch);
+        archive_read_support_format_tar(arch);
+        if (archive_read_open_filename(arch, zipFilePath.c_str(), BLOCK_SIZE) != ARCHIVE_OK) {
+            error = "Cannot open archive";
+            archive_read_free(arch);
+            return UNZIP_ERROR;
         }
 
-        const char *entryname = archive_entry_pathname(entry);
-        if (!entryname) {
-            error = "Invalid entry name";
-            break;
-        }
-
-        char outpath[1024] = {0};
-        snprintf(outpath, sizeof(outpath), "%s/%s", folderPath.c_str(), entryname);
-
-        if (archive_entry_filetype(entry) == AE_IFREG) {
-            archive_entry_set_pathname(entry, outpath);
-            res = archive_read_extract(arch, entry, ARCHIVE_EXTRACT_TIME | ARCHIVE_EXTRACT_PERM
-                                                       | ARCHIVE_EXTRACT_ACL | ARCHIVE_EXTRACT_FFLAGS
-                                                       | ARCHIVE_EXTRACT_NO_OVERWRITE);
-            if (res != ARCHIVE_OK) {
-                error = "Cannot extract entry";
+        int res = ARCHIVE_OK;
+        int ex_code = UNZIP_OK;
+        struct archive_entry *entry;
+        while ((res = archive_read_next_header(arch, &entry)) == ARCHIVE_OK) {
+            if (!run) {
+                ex_code = UNZIP_ABORT;
                 break;
             }
+
+            const char *entryname = archive_entry_pathname(entry);
+            if (!entryname) {
+                error = "Invalid entry name";
+                break;
+            }
+
+            char outpath[1024] = {0};
+            snprintf(outpath, sizeof(outpath), "%s/%s", folderPath.c_str(), entryname);
+
+            if (archive_entry_filetype(entry) == AE_IFREG) {
+                archive_entry_set_pathname(entry, outpath);
+                res = archive_read_extract(arch, entry, ARCHIVE_EXTRACT_TIME | ARCHIVE_EXTRACT_PERM
+                                                            | ARCHIVE_EXTRACT_ACL | ARCHIVE_EXTRACT_FFLAGS
+                                                            | ARCHIVE_EXTRACT_NO_OVERWRITE);
+                if (res != ARCHIVE_OK) {
+                    error = "Cannot extract entry";
+                    break;
+                }
+                if (total_size > 0 && progress_callback) {
+                    int percent = static_cast<int>(100.0 * ((double)archive_filter_bytes(arch, -1)/total_size));
+                    if (percent != prev_percent) {
+                        progress_callback(percent);
+                        prev_percent = percent;
+                    }
+                }
+            }
         }
+
+        if (res != ARCHIVE_EOF && ex_code != UNZIP_ABORT) {
+            error = string("Error reading archive: ") + archive_error_string(arch);
+            ex_code = UNZIP_ERROR;
+        }
+
+        archive_read_close(arch);
+        archive_read_free(arch);
+        return ex_code;
     }
 
-    if (res != ARCHIVE_EOF && ex_code != UNZIP_ABORT) {
-        error = string("Error reading archive: ") + archive_error_string(arch);
-        ex_code = UNZIP_ERROR;
-    }
+    FnVoidInt complete_callback = nullptr,
+              progress_callback = nullptr;
+    std::atomic_bool run;
+    std::future<void> future;
+};
 
-    archive_read_close(arch);
-    archive_read_free(arch);
-    return ex_code;
-}
 
-CUnzip::CUnzip()
+
+CUnzip::CUnzip() :
+    pimpl(new CUnzipPrivate)
 {
-    m_run = false;
+    pimpl->run = false;
 }
 
 CUnzip::~CUnzip()
 {
-    m_run = false;
-    if (m_future.valid())
-        m_future.wait();
+    pimpl->run = false;
+    if (pimpl->future.valid())
+        pimpl->future.wait();
+    delete pimpl, pimpl = nullptr;
 }
 
 void CUnzip::extractArchive(const string &zipFilePath, const string &folderPath)
 {
-    m_run = false;
-    if (m_future.valid())
-        m_future.wait();
-    m_run = true;
-    m_future = std::async(std::launch::async, [=]() {
+    pimpl->run = false;
+    if (pimpl->future.valid())
+        pimpl->future.wait();
+    pimpl->run = true;
+    pimpl->future = std::async(std::launch::async, [=]() {
         string error;
-        int res = unzipArchive(zipFilePath, folderPath, m_run, error);
+        int res = pimpl->unzipArchive(zipFilePath, folderPath, error);
         if (!error.empty())
             fprintf(stderr, "%s", error.c_str());
-        if (m_complete_callback)
-            m_complete_callback(res);
+        if (pimpl->complete_callback)
+            pimpl->complete_callback(res);
     });
 }
 
 void CUnzip::stop()
 {
-    m_run = false;
+    pimpl->run = false;
 }
 
 void CUnzip::onComplete(FnVoidInt callback)
 {
-    m_complete_callback = callback;
+    pimpl->complete_callback = callback;
+}
+
+void CUnzip::onProgress(FnVoidInt callback)
+{
+    pimpl->progress_callback = callback;
 }
