@@ -118,7 +118,33 @@
     
     [urls enumerateObjectsUsingBlock:^(NSURL * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([obj.scheme isEqualToString:kSchemeApp]) {
+            NSString * strLink = [obj.absoluteString stringByRemovingPercentEncoding];
+            
+            NSString * actionSelectPanel = [NSString stringWithFormat:@"%@://%@|", kSchemeApp, @"action|panel"];
+            NSString * actionInstallPlugin = [NSString stringWithFormat:@"%@://%@|", kSchemeApp, @"action|install-plugin"];
+            if ( [strLink hasPrefix:actionSelectPanel] ) {
+                NSString * panelName = [strLink substringFromIndex:actionSelectPanel.length];
+                
+                if ( panelName.length ) {
+                    NSEditorApi::CAscExecCommandJS * pCommand = new NSEditorApi::CAscExecCommandJS;
+                    pCommand->put_Command(L"panel:select");
+                    pCommand->put_Param([panelName stdwstring]);
+
+                    NSEditorApi::CAscMenuEvent* pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND_JS);
+                    pEvent->m_pData = pCommand;
+
+                    CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
+                    appManager->SetEventToAllMainWindows(pEvent);
+                }
+            } else
+            if ( [strLink hasPrefix:actionInstallPlugin] ) {
+                NSString * pluginName = [strLink substringFromIndex:actionInstallPlugin.length];
+
+                CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
+                appManager->InstallPluginFromStore([pluginName stdwstring]);
+            } else {
                 [openLinks addObject:obj];
+            }
         }
     }];
     
