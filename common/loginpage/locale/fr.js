@@ -98,6 +98,7 @@ l10n.fr = {
     updateNoUpdates: 'Application est mise à jour',
     updateAvialable: 'Version $1 est disponible. Cliquez pour télécharger.',
     settOptThemeSystem: 'Identique à système',
+    settOptThemeAddLocal: 'Ajouter un thème local',
     settOptThemeContrastDark: 'Contraste sombre',
     settAUpdateMode: 'Mode de mise à jour automatique',
     settOptAUpdateSilent: 'Mode silencieux',
@@ -108,4 +109,5 @@ l10n.fr = {
     settOptDescDisabled: "Vérification automatique des mises à jour sera désactivée",
     settOptDescAUpdateSilent: "Télécharger les mises à jour et demander avant l'installation",
     settOptDescAUpdateAsk: "Vous serez averti de toutes les étapes de mise à jour",
+    settRtlMode: "Interface RTL",
 }
