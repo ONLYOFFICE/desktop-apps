@@ -884,8 +884,7 @@ public:
     }
 
     auto fillformMode() -> bool {
-        QFileInfo i{QString::fromStdWString(m_panel->data()->url())};
-        return i.suffix() == "oform" || m_panel->data()->hasFeature(L"uitype\":\"fillform");
+        return m_panel->data()->hasFeature(L"uitype\":\"fillform");
     }
 
     auto calcTitleLabelWidth(int basewidth) const -> int {
