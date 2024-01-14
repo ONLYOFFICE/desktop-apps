@@ -3,6 +3,7 @@
 #include <glib.h>
 #include "gtkutils.h"
 #include "gtkfilechooser.h"
+#include "cascapplicationmanagerwrapper.h"
 #include <gdk/gdkx.h>
 
 
@@ -82,6 +83,9 @@ static void nativeFileDialog(const Window &parent_xid,
         GTK_FILE_CHOOSER_ACTION_SAVE,
         GTK_FILE_CHOOSER_ACTION_SELECT_FOLDER
     };
+
+    if (AscAppManager::isRtlEnabled())
+        gtk_widget_set_default_direction(GTK_TEXT_DIR_RTL);
     GtkWidget *dialog = NULL;
     dialog = gtk_file_chooser_dialog_new(title,
                                          NULL,

@@ -33,6 +33,7 @@
 #include <QTextDocumentFragment>
 #include "updatedialog.h"
 #include "platform_win/resource.h"
+#include "cascapplicationmanagerwrapper.h"
 #include "defines.h"
 #include "utils.h"
 #include <string.h>
@@ -152,6 +153,8 @@ int WinDlg::showDialog(QWidget *parent,
     config.dwFlags            = TDF_ENABLE_HYPERLINKS |
                                 TDF_POSITION_RELATIVE_TO_WINDOW |
                                 TDF_ALLOW_DIALOG_CANCELLATION;
+    if (AscAppManager::isRtlEnabled())
+        config.dwFlags |= TDF_RTL_LAYOUT;
     config.hwndParent         = parent_hwnd;
     config.hInstance          = GetModuleHandle(NULL);
     config.pfCallback         = (PFTASKDIALOGCALLBACK)Pftaskdialogcallback;

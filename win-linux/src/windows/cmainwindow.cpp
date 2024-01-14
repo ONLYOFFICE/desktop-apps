@@ -147,6 +147,8 @@ int CMainWindow::attachEditor(QWidget * panel, int index)
 int CMainWindow::attachEditor(QWidget * panel, const QPoint& pt)
 {
     QPoint _pt_local = tabWidget()->tabBar()->mapFromGlobal(pt);
+    if (AscAppManager::isRtlEnabled())
+        _pt_local -= QPoint(32 * m_dpiRatio, 0); // Minus tabScroll width
 #ifdef Q_OS_WIN
 # if (QT_VERSION < QT_VERSION_CHECK(5, 10, 0))
     QPoint _tl = windowRect().topLeft();
@@ -176,7 +178,9 @@ bool CMainWindow::pointInTabs(const QPoint& pt)
 {
     QRect _rc_title(m_pMainPanel->geometry());
     _rc_title.setHeight(tabWidget()->tabBar()->height());
-    _rc_title.adjust(m_pButtonMain->width(), 1, -3*int(TITLEBTN_WIDTH*m_dpiRatio), 0);
+    int dx1 = (AscAppManager::isRtlEnabled()) ? 3 * int(TITLEBTN_WIDTH * m_dpiRatio) : m_pButtonMain->width();
+    int dx2 = (AscAppManager::isRtlEnabled()) ? -1 * m_pButtonMain->width() : -3 * int(TITLEBTN_WIDTH * m_dpiRatio);
+    _rc_title.adjust(dx1, 1, dx2, 0);
     return _rc_title.contains(mapFromGlobal(pt));
 }
 
@@ -314,7 +318,10 @@ void CMainWindow::dragEnterEvent(QDragEnterEvent *event)
         return;
 
     QSet<QString> _exts;
-    _exts << "docx" << "doc" << "odt" << "rtf" << "txt" << "doct" << "dotx" << "ott" << "docxf";
+    _exts << "docx" << "doc" << "odt" << "rtf" << "txt" << "doct" << "dotx" << "ott";
+#ifndef __LOCK_OFORM_FORMATS
+    _exts << "docxf" << "oform";
+#endif
     _exts << "html" << "mht" << "epub";
     _exts << "pptx" << "ppt" << "odp" << "ppsx" << "pptt" << "potx" << "otp";
     _exts << "xlsx" << "xls" << "ods" << "csv" << "xlst" << "xltx" << "ots";
@@ -367,6 +374,7 @@ QWidget* CMainWindow::createMainPanel(QWidget *parent)
 {
     QWidget *mainPanel = new QWidget(parent);
     mainPanel->setObjectName("mainPanel");
+    mainPanel->setProperty("rtl", AscAppManager::isRtlEnabled());
     QGridLayout *_pMainGridLayout = new QGridLayout(mainPanel);
     _pMainGridLayout->setSpacing(0);
     _pMainGridLayout->setObjectName(QString::fromUtf8("mainGridLayout"));
@@ -492,7 +500,7 @@ void CMainWindow::toggleButtonMain(bool toggle, bool delay)
     };
 
     if ( delay ) {
-        QTimer::singleShot(200, [=]{ _toggle(toggle); });
+        QTimer::singleShot(200, this, [=]{ _toggle(toggle); });
     } else {
         _toggle(toggle);
     }
@@ -784,7 +792,7 @@ void CMainWindow::onLocalFileRecent(void * d)
 
 void CMainWindow::onLocalFileRecent(const COpenOptions& opts)
 {
-    QRegularExpression re(rePortalName);
+    static QRegularExpression re(rePortalName);
     QRegularExpressionMatch match = re.match(opts.url);
 
     bool forcenew = false;
@@ -853,7 +861,7 @@ void CMainWindow::onFileLocation(int uid, QString param)
             CMessage::info(this, tr("Document must be saved firstly."));
         }
     } else {
-        QRegularExpression _re("^((?:https?:\\/{2})?[^\\s\\/]+)", QRegularExpression::CaseInsensitiveOption);
+        static QRegularExpression _re("^((?:https?:\\/{2})?[^\\s\\/]+)", QRegularExpression::CaseInsensitiveOption);
         QRegularExpressionMatch _re_match = _re.match(param);
 
         if ( _re_match.hasMatch() ) {
@@ -864,7 +872,8 @@ void CMainWindow::onFileLocation(int uid, QString param)
                 if ( _folder.contains("?") )
                     _folder.append("&desktop=true");
                 else {
-                    int pos = _folder.indexOf(QRegularExpression("#\\d+"));
+                    static QRegularExpression _re_dig("#\\d+");
+                    int pos = _folder.indexOf(_re_dig);
                     !(pos < 0) ? _folder.insert(pos, "?desktop=true&") : _folder.append("?desktop=true");
                 }
             }
@@ -950,6 +959,12 @@ void CMainWindow::onDocumentReady(int uid)
 {
     if ( uid < 0 ) {
         QTimer::singleShot(20, this, [=]{
+            m_isStartPageReady = true;
+            if ( !m_keepedAction.empty() ) {
+                handleWindowAction(m_keepedAction);
+                m_keepedAction.clear();
+            }
+
             refreshAboutVersion();
             AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, L"app:ready");
             focus(); // TODO: move to app manager
@@ -1013,6 +1028,7 @@ void CMainWindow::onDocumentDownload(void * info)
         });
         QHBoxLayout * layoutBtns = qobject_cast<QHBoxLayout *>(m_boxTitleBtns->layout());
         layoutBtns->insertWidget(1, m_pWidgetDownload->toolButton());
+        m_pWidgetDownload->setLayoutDirection(AscAppManager::isRtlEnabled() ? Qt::RightToLeft : Qt::LeftToRight);
         m_pWidgetDownload->setStyleSheet(Utils::readStylesheets(":/styles/download.qss"));
         m_pWidgetDownload->applyTheme(m_pMainPanel->property("uitheme").toString());
         m_pWidgetDownload->updateScalingFactor(m_dpiRatio);
@@ -1497,4 +1513,27 @@ bool CMainWindow::isAboutToClose() const
 void CMainWindow::cancelClose()
 {
     m_isCloseAll && (m_isCloseAll = false);
+}
+
+void CMainWindow::onLayoutDirectionChanged()
+{
+    m_pButtonMain->style()->polish(m_pButtonMain);
+    if (m_pWidgetDownload && m_pWidgetDownload->toolButton()) {
+        m_pWidgetDownload->onLayoutDirectionChanged();
+        m_pWidgetDownload->toolButton()->style()->polish(m_pWidgetDownload->toolButton());
+    }
+}
+
+void CMainWindow::handleWindowAction(const std::wstring& action)
+{
+    if ( !m_isStartPageReady ) {
+        m_keepedAction = action;
+    } else {
+        if ( action.rfind(L"panel|") == 0 ) {
+            const std::wstring _panel_to_select = action.substr(std::wstring(L"panel|").size());
+
+            if ( !_panel_to_select.empty() )
+                AscAppManager::sendCommandTo(0, L"panel:select", _panel_to_select);
+        }
+    }
 }

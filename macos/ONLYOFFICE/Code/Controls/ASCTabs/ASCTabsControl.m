@@ -660,6 +660,18 @@ static NSString * const kASCTabsMulticastDelegateKey = @"asctabsmulticastDelegat
     }
 }
 
+- (void)otherMouseDown:(NSEvent *)event {
+//    [super otherMouseDown:event];
+    
+    NSPoint dragPoint = [self.tabsView convertPoint:event.locationInWindow fromView:nil];
+    for (ASCTabView * tab in self.tabs) {
+        if (NSPointInRect(dragPoint, [tab frame])) {
+            [self tabDidClose: tab];
+            break;
+        }
+    }
+}
+
 - (void)addTab:(ASCTabView *)tab {
     [self addTab:tab selected:YES];
 }

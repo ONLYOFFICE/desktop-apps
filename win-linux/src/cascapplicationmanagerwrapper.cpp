@@ -54,6 +54,8 @@ using namespace std;
 using namespace std::placeholders;
 
 
+bool CAscApplicationManagerWrapper::m_rtlEnabled = false;
+
 CAscApplicationManagerWrapper::CAscApplicationManagerWrapper(CAscApplicationManagerWrapper const&)
 {
 
@@ -105,6 +107,12 @@ void CAscApplicationManagerWrapper::StartSaveDialog(const std::wstring& sName, u
     event->m_pData = data;
 
     OnEvent(event);
+}
+
+std::wstring CAscApplicationManagerWrapper::GetExternalSchemeName()
+{
+    std::wstring scheme = CAscApplicationManager::GetExternalSchemeName();
+    return !scheme.empty() ? scheme.back() != L':' ? scheme + L":" : scheme : L"";
 }
 
 void CAscApplicationManagerWrapper::OnEvent(CAscCefMenuEvent * event)
@@ -834,11 +842,11 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
     std::vector<std::wstring> open_scheme{L"http://",L"https://"};
     std::wstring app_scheme = _app.GetExternalSchemeName();
     if ( !app_scheme.empty() ) {
-        if ( app_scheme.back() != L':' )
-            app_scheme += L":";
-
         open_scheme.push_back(app_scheme);
     }
+    std::wstring app_action = app_scheme + L"//action";
+    std::wstring app_action_plugin = app_scheme + L"//action|install-plugin";
+    std::vector<std::wstring> vec_window_actions;
 
     for (const auto& arg: vargs) {
         COpenOptions open_opts;
@@ -869,6 +877,24 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
 
 //            if ( check_param(arg, L"single-window") )
 //                in_new_window = true;
+        } else
+        if ( arg.rfind(app_action, 0) == 0 ) {
+            // correct url from browsers
+            std::wstring argScheme = arg;
+            Utils::replaceAll(argScheme, L"%7C", L"|");
+            if (argScheme[argScheme.length() - 1] == '/')
+                argScheme.pop_back();
+
+            if ( argScheme.rfind(app_action_plugin, 0) == 0 ) {
+                std::wstring _plugin_name = argScheme.substr(app_action_plugin.size() + 1);
+                if ( !_plugin_name.empty() ) {
+                    _app.InstallPluginFromStore(_plugin_name);
+                }
+            } else {
+                vec_window_actions.push_back(argScheme);
+            }
+
+            continue;
         } else {
             open_opts.wurl = arg;
         }
@@ -913,8 +939,8 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
         }
 
         // TODO: remove for ver 7.2. skip single window for --review flag without --forse-use-window
-        if ( open_in_new_window )
-            open_in_new_window = std::find(vargs.begin(), vargs.end(), L"--force-use-tab") == std::end(vargs);
+        // if ( open_in_new_window )
+        //    open_in_new_window = std::find(vargs.begin(), vargs.end(), L"--force-use-tab") == std::end(vargs);
         //
 
         CTabPanel * panel = CEditorTools::createEditorPanel(open_opts);
@@ -957,6 +983,29 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
             opts.url = QString::fromStdWString(opts.wurl);
 
             _app.m_pMainWindow->doOpenLocalFile(opts);
+        }
+    }
+
+    if ( !vec_window_actions.empty() ) {
+        QTimer::singleShot(0, &_app, [vec_window_actions]{
+            CAscApplicationManagerWrapper::getInstance().handleDeeplinkActions(vec_window_actions);
+        });
+    }
+}
+
+void CAscApplicationManagerWrapper::handleDeeplinkActions(const std::vector<std::wstring>& actions)
+{
+    std::wstring app_scheme = GetExternalSchemeName();
+    if ( !app_scheme.empty() ) {
+        const std::wstring app_action_panel = app_scheme + L"//action|panel|";
+
+        for (const auto& a: actions) {
+            if ( a.rfind(app_action_panel, 0) == 0 ) {
+                std::wstring _action = a.substr(app_action_panel.size() - 6);
+
+                gotoMainWindow();
+                m_pMainWindow->handleWindowAction(_action);
+            }
         }
     }
 }
@@ -1042,23 +1091,8 @@ void CAscApplicationManagerWrapper::startApp()
 
     handleInputCmd(in_args);
     if ( _app.m_vecEditors.empty() && !_app.m_pMainWindow ) {
-//        _app.m_private->createStartPanel();
-
-//        CMainWindow * _window = createMainWindow(_start_rect);
-//        _window->mainPanel()->attachStartPanel(_app.m_private->m_pStartPanel);
-//        _window->show(_is_maximized);
-
         _app.m_pMainWindow = _app.prepareMainWindow();
         _app.m_pMainWindow->show(_is_maximized);
-    }
-
-    if ( QFileInfo::exists(":/noconnect.html") ) {
-        QString _nc_path = Utils::getAppCommonPath() + "/noconnect.html";
-        bool _nc_exist = QFileInfo::exists(_nc_path) || QFile::copy(":/noconnect.html", _nc_path);
-
-        if ( _nc_exist ) {
-            _app.m_oSettings.connection_error_path = _nc_path.toStdWString();
-        }
     }
 
     QObject::connect(CExistanceController::getInstance(), &CExistanceController::checked, [] (const QString& name, int uid, bool exists) {
@@ -1173,6 +1207,11 @@ void CAscApplicationManagerWrapper::initializeApp()
     QJsonArray local_themes_array = themes().localThemesToJson();
     if ( !local_themes_array.isEmpty() )
         EditorJSVariables::setVariable("localthemes", local_themes_array);
+
+    const bool _is_rtl = reg_user.contains("forcedRtl") ? reg_user.value("forcedRtl", false).toBool() :
+                       CLangater::isRtlLanguage(CLangater::getCurrentLangCode());
+    AscAppManager::setRtlEnabled(_is_rtl);
+    EditorJSVariables::setVariable("rtl", _is_rtl ? "yes" : "no");
 
     EditorJSVariables::setVariable("lang", CLangater::getCurrentLangCode());
     EditorJSVariables::applyVariable("theme", {
@@ -1652,6 +1691,28 @@ bool CAscApplicationManagerWrapper::event(QEvent *event)
     return QObject::event(event);
 }
 
+void CAscApplicationManagerWrapper::setRtlEnabled(bool state)
+{
+    if (m_rtlEnabled != state) {
+        m_rtlEnabled = state;
+        Qt::LayoutDirection direct = m_rtlEnabled ? Qt::RightToLeft : Qt::LeftToRight;
+        APP_CAST(_app);
+        if (_app.m_pMainWindow)
+            _app.m_pMainWindow->setLayoutDirection(direct);
+        for (auto const &r : _app.m_winsReporter)
+            r.second->setLayoutDirection(direct);
+        for (auto const &e : _app.m_vecEditors) {
+            CEditorWindow *editor = reinterpret_cast<CEditorWindow*>(e);
+            editor->setLayoutDirection(direct);
+        }
+    }
+}
+
+bool CAscApplicationManagerWrapper::isRtlEnabled()
+{
+    return m_rtlEnabled;
+}
+
 bool CAscApplicationManagerWrapper::applySettings(const wstring& wstrjson)
 {
     QJsonParseError jerror;
@@ -1702,6 +1763,16 @@ bool CAscApplicationManagerWrapper::applySettings(const wstring& wstrjson)
 
         if ( objRoot.contains("spellcheckdetect") ) {
             setUserSettings(L"spell-check-input-mode", objRoot["spellcheckdetect"].toString() == "off" ? L"0" : L"default");
+        }
+
+        if ( objRoot.contains("rtl") ) {
+            _reg_user.setValue("forcedRtl", objRoot["rtl"].toBool(false));
+
+            /*
+             * show message and relaunch app
+            */
+        } else {
+            _reg_user.remove("forcedRtl");
         }
 
         wstring params = QString("lang=%1&username=%3&location=%2")

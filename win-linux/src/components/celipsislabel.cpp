@@ -85,6 +85,18 @@ auto CElipsisLabel::setEllipsisMode(Qt::TextElideMode mode) -> void
     elide_mode = mode;
 }
 
+auto CElipsisLabel::textWidth() -> int
+{
+    QString elt = ellipsis_text_(this, orig_text, elide_mode);
+    QFontMetrics fm(font());
+#if (QT_VERSION < QT_VERSION_CHECK(5,11,0))
+    int textWidth = fm.width(elt);
+#else
+    int textWidth = fm.horizontalAdvance(elt);
+#endif
+    return textWidth;
+}
+
 auto CElipsisLabel::updateText() -> void
 {
     QString elt = ellipsis_text_(this, orig_text, elide_mode);

@@ -98,6 +98,7 @@ l10n.hy = {
     updateNoUpdates: 'Հավելվածը թարմացված է',
     updateAvialable: '$1 տարբերակը հասանելի է։Սեղմեք՝ ներբեռնելու համար։',
     settOptThemeSystem: 'Նույնը, ինչ համակարգը',
+    settOptThemeAddLocal: 'Ավելացնել տեղական թեմա',
     settOptThemeContrastDark: 'Մութ հակադրություն',
     settAUpdateMode: 'Ավտոթարմացման ռեժիմ',
     settOptAUpdateSilent: 'Լուռ ռեժիմ',
@@ -108,4 +109,5 @@ l10n.hy = {
     settOptDescDisabled: "Ավտոմատ ստուգման թարմացումները կանջատվեն։",
     settOptDescAUpdateSilent: "Ներբեռնեք թարմացումները և հարցրեք նախքան տեղադրելը։",
     settOptDescAUpdateAsk: "Դուք կտեղեկացվեք թարմացումների բոլոր քայլերի մասին։",
+    settRtlMode: "RTL ինտերֆեյս",
 }

@@ -120,6 +120,7 @@ private:
     CMainWindow * m_pMainWindow = nullptr;
 
     std::shared_ptr<CThemes> m_themes;
+    static bool m_rtlEnabled;
 
 public:
     CWindowsQueue<sWinTag>& closeQueue();
@@ -138,6 +139,7 @@ private:
     bool applySettings(const std::wstring& wstrjson);
     void sendSettings(const std::wstring& opts);
     void applyTheme(const std::wstring&, bool force = false);
+    void handleDeeplinkActions(const std::vector<std::wstring>& actions);
 
     CMainWindow * prepareMainWindow(const QRect& r = QRect());
     CMainWindow * mainWindowFromViewId(int uid) const;
@@ -201,6 +203,11 @@ public:
 
     static void             closeAppWindows();      // TODO: combine with launchAppClose
     static void             cancelClose();
+    static void             setRtlEnabled(bool);
+    static bool             isRtlEnabled();
+
+    std::wstring GetExternalSchemeName();
+    using CAscApplicationManager::GetExternalSchemeName;
 
     uint logoutCount(const std::wstring& portal) const;
     void Logout(const std::wstring& portal);

@@ -314,8 +314,14 @@ namespace CEditorTools
 
             if ( opts.srctype == etNewFile )
                 data->setContentType(editorTypeFromFormat(opts.format));
-
-
+            else {
+                if ( _file_format != 0 ) {
+                    data->setContentType(editorTypeFromFormat(_file_format));
+                } else
+                if ( opts.format != 0 ) {
+                    data->setContentType(editorTypeFromFormat(opts.format));
+                }
+            }
 
             panel->setData(data);
             //if ( !rect.isEmpty() )
@@ -333,6 +339,9 @@ namespace CEditorTools
     auto editorTypeFromFormat(int format) -> AscEditorType {
         if ( format == AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCXF ) {
             return AscEditorType::etDocumentMasterForm;
+        } else
+        if ( format == AVS_OFFICESTUDIO_FILE_DOCUMENT_OFORM_PDF ) {
+            return AscEditorType::etPdf;
         } else
         if ( (format > AVS_OFFICESTUDIO_FILE_DOCUMENT && format < AVS_OFFICESTUDIO_FILE_PRESENTATION) ||
                 format == AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_PDF || format == AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_PDFA ||

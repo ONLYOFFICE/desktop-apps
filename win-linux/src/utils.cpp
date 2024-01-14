@@ -99,7 +99,7 @@ namespace InputArgs {
                         return true;
                     else {
                         wchar_t d = s.at(n+l);
-                        if (d == L':' || d == L'=')
+                        if (d == L':' || d == L'=' || d == L'|')
                             return true;
                     }
                 }
@@ -773,6 +773,16 @@ void Utils::setSessionInProgress(bool state)
 QString Utils::replaceBackslash(const QString& path)
 {
     return QString(path).replace(QRegularExpression("\\\\"), "/");
+}
+
+void Utils::replaceAll(std::wstring& subject, const std::wstring& search, const std::wstring& replace)
+{
+    size_t pos = 0;
+    while ((pos = subject.find(search, pos)) != std::wstring::npos)
+    {
+        subject.replace(pos, search.length(), replace);
+        pos += replace.length();
+    }
 }
 
 bool Utils::setAppUserModelId(const QString& modelid)

@@ -177,6 +177,7 @@
         <file alias="styles.qss">res/styles/styles@5x.qss</file>
     </qresource>
     <qresource prefix="/i18n">
+        <file alias="ar-SA.qm">langs/ar_SA.qm</file>
         <file alias="be-BY.qm">langs/be.qm</file>
         <file alias="bg-BG.qm">langs/bg.qm</file>
         <file alias="ca-ES.qm">langs/ca.qm</file>

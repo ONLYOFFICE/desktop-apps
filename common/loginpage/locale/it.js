@@ -98,6 +98,7 @@ l10n.it_IT = {
     updateNoUpdates: 'L\'app è aggiornata',
     updateAvialable: 'È disponibile la versione $1. Fai clic per scaricarla.',
     settOptThemeSystem: 'Uguale al sistema',
+    settOptThemeAddLocal: 'Aggiungere un tema locale',
     settOptThemeContrastDark: 'Contrasto scuro',
     settAUpdateMode: 'Modalità aggiornamento automatico',
     settOptAUpdateSilent: 'Modalità silenziosa',
@@ -108,4 +109,5 @@ l10n.it_IT = {
     settOptDescDisabled: "Il controllo automatico degli aggiornamenti verrà disabilitato",
     settOptDescAUpdateSilent: "Scarica gli aggiornamenti e chiedi prima dell'installazione",
     settOptDescAUpdateAsk: "Riceverai una notifica su tutte le fasi di aggiornamento",
+    settRtlMode: "Interfaccia RTL",
 }

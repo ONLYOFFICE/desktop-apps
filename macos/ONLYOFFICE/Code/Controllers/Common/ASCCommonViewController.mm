@@ -363,7 +363,7 @@
             tab.params      = [@{
                 @"action": @(ASCTabActionOpenUrl),
                 @"title": [NSString stringWithFormat:@"%@...", NSLocalizedString(@"Opening", nil)],
-                @"url": link.absoluteString
+                @"url": [link.absoluteString stringByRemovingPercentEncoding]
             } mutableCopy];
 
             [self.tabsControl addTab:tab selected:YES];

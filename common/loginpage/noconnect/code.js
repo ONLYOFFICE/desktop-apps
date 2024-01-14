@@ -1,4 +1,4 @@
-﻿{
+{
 
 !window.l10n && (window.l10n = {boxNoConnect:{}});
 !window.l10n.boxNoConnect && (window.l10n.boxNoConnect = {});
@@ -7,8 +7,12 @@ const langs = {
     en: {
         msgNoConn: 'Internet connection failed...',
         msgNoConnDesc: 'Check connection',
-        msgFileNoConnDesc: "You are unable to edit the document because the Internet connection is lost or restricted. Please check your connection and re-open the document to continue.",
-        msgTemplatesNoConnDesc: "Couldn't load this section because you are experiencing possible network issues. Please check your internet connection and try again.",
+        msgFileNoConn: 'Check your Internet connection',
+        msgFileNoConnDesc: "You are unable to edit the document because the Internet connection is lost or restricted. Please check your connection and reopen the document to continue.",
+        msgTemplatesNoConn: 'Check your Internet connection',
+        msgTemplatesNoConnDesc: "Couldn't load this section because you are experiencing possible network issues. Please check your Internet connection and try again.",
+        msgFileError: 'Oops! Something went wrong',
+        msgFileErrorDesc: "We lost access to your file due to a lack of memory or some other reason. Please don't worry and try reopening the file. Close this tab to continue.",
     }
 }
 
@@ -17,6 +21,13 @@ const error_box = function() {
     const _tr = (n, l) => {
         return (l10n.boxNoConnect[l] && l10n.boxNoConnect[l][n]) || langs.en[n];
     }
+
+    const page_t10s = {
+        "def": ["msgNoConn", "msgNoConnDesc"],
+        "cloudfile": ["msgFileNoConn", "msgFileNoConnDesc"],
+        "templates": ["msgTemplatesNoConn", "msgTemplatesNoConnDesc"],
+        "fileerr": ["msgFileError", "msgFileErrorDesc"],
+    };
 
     const _fix_lang = l => {
         if ( l && l10n && l10n.boxNoConnect ) {
@@ -45,23 +56,26 @@ const error_box = function() {
             if ( !args.parent ) args.parent = document.body;
             args.parent.insertAdjacentHTML('beforeend', html_);
 
-            _page = args.page;
+            _page = args.page || 'def';
             this.translate(args.lang);
         },
         translate: function(lang) {
+            const page = !page_t10s[_page] ? 'def' : _page;
             lang = _fix_lang(lang);
 
             const ms = document.getElementById("idx-msg-short");
-            if ( ms ) ms.innerText = _tr("msgNoConn", lang);
+            if ( ms ) ms.innerText = _tr(page_t10s[page][0], lang);
 
             const ml = document.getElementById("idx-msg-long");
             if ( ml ) {
-                if ( _page == 'file' )
-                    ml.innerText = _tr("msgFileNoConnDesc", lang);
-                else
-                if ( _page == 'templates')
-                    ml.innerText = _tr("msgTemplatesNoConnDesc", lang);
-                else ml.innerText = _tr("msgNoConnDesc", lang);
+                ml.innerText = _tr(page_t10s[page][1], lang);
+
+                // if ( _page == 'file' ) {
+                //     ml.innerText = _tr("msgFileNoConnDesc", lang);
+                // } else
+                // if ( _page == 'templates') {
+                //     ml.innerText = _tr("msgTemplatesNoConnDesc", lang);
+                // } else ml.innerText = _tr("msgNoConnDesc", lang);
             }
         },
     }

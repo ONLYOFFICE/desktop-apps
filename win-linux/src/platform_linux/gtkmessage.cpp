@@ -36,6 +36,7 @@
 #include <gtk/gtkcheckbutton.h>
 #include <gtk/gtktogglebutton.h>
 #include "gtkmessage.h"
+#include "cascapplicationmanagerwrapper.h"
 #include <gdk/gdkx.h>
 
 
@@ -84,6 +85,8 @@ int GtkMsg::showMessage(QWidget *parent,
     GtkDialogFlags flags;
     flags = (GtkDialogFlags)(GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT);
 
+    if (AscAppManager::isRtlEnabled())
+        gtk_widget_set_default_direction(GTK_TEXT_DIR_RTL);
     GtkWidget *dialog = NULL;
     dialog = gtk_message_dialog_new(NULL,
                                     flags,
