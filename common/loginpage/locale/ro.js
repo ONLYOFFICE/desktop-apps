@@ -98,6 +98,7 @@ l10n.ro = {
     updateNoUpdates: 'Aplicația este actualizată',
     updateAvialable: 'Versiunea $1 este disponibilă. Faceți clic pentru a descărca.',
     settOptThemeSystem: 'La fel ca sistemul',
+    settOptThemeAddLocal: 'Adăugare temă locală',
     settOptThemeContrastDark: 'Contrast Întunecat',
     settAUpdateMode: 'Modul de actualizare automată',
     settOptAUpdateSilent: 'Mod silențios',
@@ -108,4 +109,5 @@ l10n.ro = {
     settOptDescDisabled: "Verificarea automată a actualizărilor va fi dezactivată",
     settOptDescAUpdateSilent: "Descarcă actualizări și întreabă înainte de a instala",
     settOptDescAUpdateAsk: "Veți primi notificări privind fiecare etapă de actualizare",
+    settRtlMode: "Interfață de limbă de la dreapta la stânga",
 }

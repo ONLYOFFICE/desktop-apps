@@ -98,6 +98,7 @@ l10n.ja = {
     updateNoUpdates: 'アプリのバージョンは最新です',
     updateAvialable: 'バージョン $1 が利用可能になっています。クリックしてダウンロードしてください。',
     settOptThemeSystem: 'システム設定と同じ',
+    settOptThemeAddLocal: 'ローカルテーマの追加',
     settOptThemeContrastDark: 'ダークコントラスト',
     settAUpdateMode: '自動更新モード',
     settOptAUpdateSilent: 'サイレントモード',
@@ -108,4 +109,5 @@ l10n.ja = {
     settOptDescDisabled: "アップデートの自動チェックは無効になります",
     settOptDescAUpdateSilent: "アップデートをダウンロードし、インストールする前に通知します",
     settOptDescAUpdateAsk: "すべてのアップデート手順が通知されます",
+    settRtlMode: "右横書きのインターフェース",
 }

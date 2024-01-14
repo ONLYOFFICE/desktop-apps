@@ -98,6 +98,7 @@ l10n.pt_BR = {
     updateNoUpdates: 'Aplicativo está atualizado',
     updateAvialable: 'A versão $1 está disponível. Clique para baixar.',
     settOptThemeSystem: 'O mesmo que sistema',
+    settOptThemeAddLocal: 'Adicionar tema local',
     settOptThemeContrastDark: 'Contraste escuro',
     settAUpdateMode: 'Modo de atualização automática',
     settOptAUpdateSilent: 'Modo silencioso',
@@ -108,4 +109,5 @@ l10n.pt_BR = {
     settOptDescDisabled: "A verificação automática de atualizações será desativada",
     settOptDescAUpdateSilent: "Baixe atualizações e pergunte antes de instalar",
     settOptDescAUpdateAsk: "Você será notificado sobre todas as etapas de atualização",
+    settRtlMode: "Interface RTL",
 }
