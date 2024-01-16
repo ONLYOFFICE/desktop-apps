@@ -34,12 +34,7 @@
 #include "classes/translator.h"
 #include "version.h"
 #include <Windows.h>
-#include <shellapi.h>
 #include <shlwapi.h>
-#include <combaseapi.h>
-#include <comutil.h>
-#include <oleauto.h>
-#include <iostream>
 #include <fstream>
 #include <regex>
 #include <cstdio>

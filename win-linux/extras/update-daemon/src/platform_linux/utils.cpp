@@ -32,21 +32,11 @@
 
 #include "platform_linux/utils.h"
 #include "version.h"
-#include <cstring>
-#include <iostream>
 #include <fstream>
 #include <regex>
-#include <cstdio>
-#include <cerrno>
-#include <vector>
-#include <unistd.h>
-#include <sstream>
-#include <stdlib.h>
 #include <sys/stat.h>
-#include <dirent.h>
 #include <gtk/gtk.h>
 #include <openssl/md5.h>
-#include <libgen.h>
 #include <fcntl.h>
 
 #define BUFSIZE 1024
