@@ -43,8 +43,8 @@ public:
     explicit CWindowPlatform(const QRect&);
     virtual ~CWindowPlatform();
 
-    void toggleBorderless(bool);
-    void toggleResizeable();
+//    void toggleBorderless(bool);
+//    void toggleResizeable();
     void bringToTop();
     virtual void show(bool);
     virtual void adjustGeometry() final;
@@ -66,7 +66,7 @@ private:
     bool m_borderless,
          m_closed,
          m_isResizeable,
-         m_allowMaximize,
+//         m_allowMaximize,
          m_scaleChanged = false,
          m_isSessionInProgress = true;
 };

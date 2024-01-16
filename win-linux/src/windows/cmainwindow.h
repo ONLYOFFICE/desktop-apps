@@ -75,7 +75,7 @@ signals:
     void aboutToClose();
 
 private:
-    void captureMouse(int);
+//    void captureMouse(int);
 #ifdef __linux__
     virtual void dragEnterEvent(QDragEnterEvent *event) final;
     virtual void dropEvent(QDropEvent *event) final;

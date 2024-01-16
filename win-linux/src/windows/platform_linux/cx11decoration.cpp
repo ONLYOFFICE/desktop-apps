@@ -454,10 +454,10 @@ void CX11Decoration::dispatchMouseMove(QMouseEvent *e)
             } else {
                 m_motionTimer->stop();
                 sendButtonRelease();
-                QTimer::singleShot(25, [=]() {
-                    if (m_window->size() == m_startSize)
-                        QApplication::postEvent(m_window, new QEvent(QEvent::User));
-                });
+//                QTimer::singleShot(25, [=]() {
+//                    if (m_window->size() == m_startSize)
+//                        QApplication::postEvent(m_window, new QEvent(QEvent::User));
+//                });
             }
         });
     }

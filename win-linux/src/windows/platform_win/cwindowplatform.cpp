@@ -41,7 +41,7 @@
 #include <QJsonObject>
 #include <shellapi.h>
 
-#define UM_SNAPPING 0x02
+//#define UM_SNAPPING 0x02
 
 
 CWindowPlatform::CWindowPlatform(const QRect &rect) :
@@ -50,8 +50,8 @@ CWindowPlatform::CWindowPlatform(const QRect &rect) :
     m_resAreaWidth(MAIN_WINDOW_BORDER_WIDTH),
     m_borderless(true),
     m_closed(false),
-    m_isResizeable(true),
-    m_allowMaximize(true)
+    m_isResizeable(true)
+//    m_allowMaximize(true)
 {
     if (AscAppManager::isRtlEnabled())
         setLayoutDirection(Qt::RightToLeft);
@@ -84,18 +84,18 @@ CWindowPlatform::~CWindowPlatform()
 
 /** Public **/
 
-void CWindowPlatform::toggleBorderless(bool showmax)
-{
-    if (isVisible()) {
-        m_borderless = !m_borderless;
-        show(showmax);
-    }
-}
+//void CWindowPlatform::toggleBorderless(bool showmax)
+//{
+//    if (isVisible()) {
+//        m_borderless = !m_borderless;
+//        show(showmax);
+//    }
+//}
 
-void CWindowPlatform::toggleResizeable()
-{
-    m_isResizeable = !m_isResizeable;
-}
+//void CWindowPlatform::toggleResizeable()
+//{
+//    m_isResizeable = !m_isResizeable;
+//}
 
 void CWindowPlatform::bringToTop()
 {
@@ -193,7 +193,7 @@ bool CWindowPlatform::nativeEvent(const QByteArray &eventType, void *message, lo
     MSG* msg = reinterpret_cast<MSG*>(message);
 #endif
 
-    static uchar movParam = 0;
+//    static uchar movParam = 0;
     switch (msg->message)
     {
     case WM_ACTIVATE: {
@@ -232,14 +232,14 @@ bool CWindowPlatform::nativeEvent(const QByteArray &eventType, void *message, lo
         break;
     }
 
-    case WM_SYSKEYDOWN: {
-        if (msg->wParam == VK_SPACE) {
-            RECT winrect;
-            GetWindowRect(msg->hwnd, &winrect);
-            TrackPopupMenu(GetSystemMenu(msg->hwnd, false ), TPM_TOPALIGN | TPM_LEFTALIGN, winrect.left + 5, winrect.top + 5, 0, msg->hwnd, NULL);
-        }
-        break;
-    }
+//    case WM_SYSKEYDOWN: {
+//        if (msg->wParam == VK_SPACE) {
+//            RECT winrect;
+//            GetWindowRect(msg->hwnd, &winrect);
+//            TrackPopupMenu(GetSystemMenu(msg->hwnd, false ), TPM_TOPALIGN | TPM_LEFTALIGN, winrect.left + 5, winrect.top + 5, 0, msg->hwnd, NULL);
+//        }
+//        break;
+//    }
 
     case WM_NCCALCSIZE: {
         if (!msg->wParam)
@@ -394,20 +394,20 @@ bool CWindowPlatform::nativeEvent(const QByteArray &eventType, void *message, lo
         break;
     }
 
-    case WM_EXITSIZEMOVE:
-        if (m_allowMaximize)
-            QApplication::postEvent(this, new QEvent(QEvent::User));
-        break;
+//    case WM_EXITSIZEMOVE:
+//        if (m_allowMaximize)
+//            QApplication::postEvent(this, new QEvent(QEvent::User));
+//        break;
 
-    case WM_MOVE:
-        if (movParam != 0)
-            movParam = 0;
-        break;
+//    case WM_MOVE:
+//        if (movParam != 0)
+//            movParam = 0;
+//        break;
 
-    case WM_MOVING:
-        if (m_allowMaximize && ++movParam == UM_SNAPPING)
-            m_allowMaximize = false;
-        break;
+//    case WM_MOVING:
+//        if (m_allowMaximize && ++movParam == UM_SNAPPING)
+//            m_allowMaximize = false;
+//        break;
 
     case WM_PAINT:
         return false;

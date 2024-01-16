@@ -310,15 +310,15 @@ void CEditorWindow::onMoveEvent(const QRect&)
 #endif
 }
 
-void CEditorWindow::onExitSizeMove()
-{
-    if ( m_restoreMaximized ) {
-        m_restoreMaximized = false;
-        CWindowPlatform::show(true);
-    }
-    if (!isActiveWindow())
-        activateWindow();
-}
+//void CEditorWindow::onExitSizeMove()
+//{
+//    if ( m_restoreMaximized ) {
+//        m_restoreMaximized = false;
+//        CWindowPlatform::show(true);
+//    }
+//    if (!isActiveWindow())
+//        activateWindow();
+//}
 
 void CEditorWindow::captureMouse()
 {
@@ -397,9 +397,9 @@ bool CEditorWindow::event(QEvent * event)
     if (event->type() == QEvent::Resize) {
         onSizeEvent(0);
     } else
-    if (event->type() == QEvent::User) {
-        onExitSizeMove();
-    } else
+//    if (event->type() == QEvent::User) {
+//        onExitSizeMove();
+//    } else
     if (event->type() == QEvent::Move) {
         QMoveEvent * _e = static_cast<QMoveEvent *>(event);
         onMoveEvent(QRect(_e->pos(), QSize(1,1)));
