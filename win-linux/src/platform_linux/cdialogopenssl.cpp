@@ -173,6 +173,7 @@ CDialogOpenSsl::CDialogOpenSsl(QWidget *parent)
 
 CDialogOpenSsl::~CDialogOpenSsl()
 {
+    delete m_private, m_private = nullptr;
 }
 
 void CDialogOpenSsl::onBtnCertificateClick()

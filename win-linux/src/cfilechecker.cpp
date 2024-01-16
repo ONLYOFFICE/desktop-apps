@@ -31,7 +31,7 @@ void CFileInspector::run()
     int result = FILE_UNKNOWN;
     if (QUrl::fromUserInput(m_file).isLocalFile()) {
         if ( !isInterruptionRequested() ) {
-            result = QFileInfo(m_file).exists() ? FILE_EXISTS : FILE_ABSENT;
+            result = QFileInfo::exists(m_file) ? FILE_EXISTS : FILE_ABSENT;
         }
     } else {
         result = FILE_REMOTE;

@@ -396,10 +396,10 @@ void Utils::openUrl(const QString& url)
 void Utils::openFileLocation(const QString& path)
 {
 #if defined(Q_OS_WIN)
-    ITEMIDLIST * idl = ILCreateFromPath(QDir::toNativeSeparators(path).toStdWString().c_str());
-    if ( idl ) {
-        SHOpenFolderAndSelectItems(idl, 0, 0, 0);
-        ILFree(const_cast<LPITEMIDLIST>(idl));
+    auto _path = QDir::toNativeSeparators(path).toStdWString();
+    if (LPITEMIDLIST idl = ILCreateFromPath(_path.c_str())) {
+        SHOpenFolderAndSelectItems(static_cast<LPCITEMIDLIST>(idl), 0, 0, 0);
+        ILFree(idl);
     }
 #else
     static QString _file_browser;

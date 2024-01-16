@@ -2,7 +2,7 @@
 #define DIALOG_OPEN_SSL_H
 
 #include <QDialog>
-#include "applicationmanager.h"
+#include "applicationmanager_events.h"
 
 
 class CSslDialog_Private;

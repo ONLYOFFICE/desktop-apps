@@ -24,7 +24,7 @@ public:
     QTranslator * createTranslator(const QString& file)
     {
         QTranslator * t = nullptr;
-        for (auto d: m_dirs) {
+        for (const auto &d: m_dirs) {
             t = createTranslator(file, d);
             if ( t ) break;
         }

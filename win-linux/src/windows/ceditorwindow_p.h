@@ -261,7 +261,7 @@ public:
                 }
 
                 if ( objRoot.contains("title") /*&& m_mapTitleButtons.empty()*/ ) {
-                    QJsonArray _btns = objRoot["title"].toObject().value("buttons").toArray();
+                    const QJsonArray _btns = objRoot["title"].toObject().value("buttons").toArray();
                     QHBoxLayout * _layout = qobject_cast<QHBoxLayout *>(window->m_boxTitleBtns->layout());
 
                     if (usedOldEditorVersion) {  // For old editors only

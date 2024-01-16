@@ -32,10 +32,10 @@
 
 #include "components/cfiledialog.h"
 #include <QFileDialog>
+#include <QRegularExpression>
 #include "defines.h"
 #include "utils.h"
 #include "components/cmessage.h"
-#include "cascapplicationmanagerwrapper.h"
 #include "../Common/OfficeFileFormats.h"
 #include <QList>
 

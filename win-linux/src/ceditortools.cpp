@@ -170,7 +170,7 @@ namespace CEditorTools
             /* data consits id of cefview */
             pData->put_IsMultiselect(true);
             std::vector<std::wstring>& _files = pData->get_Files();
-            for ( const auto& f : _list ) {
+            for ( const auto& f : qAsConst(_list) ) {
                 _files.push_back(f.toStdWString());
             }
 

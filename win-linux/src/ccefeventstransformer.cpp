@@ -71,7 +71,7 @@ void CCefEventsTransformer::OnEvent(QObject * target, NSEditorApi::CAscCefMenuEv
         CAscDocumentName * pData = (CAscDocumentName *)event->m_pData;
 
         ADDREFINTERFACE(pData)
-        QMetaObject::invokeMethod(target, "onDocumentName", Qt::QueuedConnection, Q_ARG(void *, pData));
+        QMetaObject::invokeMethod(target, "onDocumentName", Qt::QueuedConnection, Q_ARG(void*, pData));
         break; }
 
     case ASC_MENU_EVENT_TYPE_CEF_MODIFY_CHANGED: {
@@ -170,7 +170,7 @@ void CCefEventsTransformer::OnEvent(QObject * target, NSEditorApi::CAscCefMenuEv
         CAscLocalSaveFileDialog * pData = (CAscLocalSaveFileDialog *)event->m_pData;
 
         ADDREFINTERFACE(pData);
-        QMetaObject::invokeMethod(target, "onLocalFileSaveAs", Qt::QueuedConnection, Q_ARG(void *, pData));
+        QMetaObject::invokeMethod(target, "onLocalFileSaveAs", Qt::QueuedConnection, Q_ARG(void*, pData));
         break;}
 
     case ASC_MENU_EVENT_TYPE_CEF_PORTAL_OPEN: {
