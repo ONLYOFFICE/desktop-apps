@@ -321,97 +321,97 @@ namespace SvcControl
         CloseServiceHandle(schSCManager);
     }
 
-    VOID __stdcall DoUpdateSvcDacl(LPTSTR pTrusteeName) // Updates the service DACL to grant control access to the Guest account
-    {
-        SC_HANDLE schSCManager, schService;
-        if (!GetServiceHandle(schSCManager, schService, READ_CONTROL | WRITE_DAC))
-            return;
+//    VOID __stdcall DoUpdateSvcDacl(LPTSTR pTrusteeName) // Updates the service DACL to grant control access to the Guest account
+//    {
+//        SC_HANDLE schSCManager, schService;
+//        if (!GetServiceHandle(schSCManager, schService, READ_CONTROL | WRITE_DAC))
+//            return;
 
-        BOOL   bDaclPresent   = FALSE;
-        BOOL   bDaclDefaulted = FALSE;
-        PACL   pacl           = NULL;
-        PACL   pNewAcl        = NULL;
+//        BOOL   bDaclPresent   = FALSE;
+//        BOOL   bDaclDefaulted = FALSE;
+//        PACL   pacl           = NULL;
+//        PACL   pNewAcl        = NULL;
 
-        // Get the current security descriptor.
-        PSECURITY_DESCRIPTOR psd = NULL;
-        DWORD  dwBytesNeeded  = 0;
-        DWORD  dwSize         = 0;
-        if (!QueryServiceObjectSecurity(schService,
-                                        DACL_SECURITY_INFORMATION,
-                                        &psd,  // using NULL does not work on all versions
-                                        0,
-                                        &dwBytesNeeded))
-        {
-            if (GetLastError() == ERROR_INSUFFICIENT_BUFFER) {
-                dwSize = dwBytesNeeded;
-                psd = (PSECURITY_DESCRIPTOR)HeapAlloc(GetProcessHeap(), HEAP_ZERO_MEMORY, dwSize);
-                if (psd == NULL) {
-                    // Note: HeapAlloc does not support GetLastError.
-                    NS_Logger::WriteLog(ADVANCED_ERROR_MESSAGE);
-                    goto dacl_cleanup;
-                }
+//        // Get the current security descriptor.
+//        PSECURITY_DESCRIPTOR psd = NULL;
+//        DWORD  dwBytesNeeded  = 0;
+//        DWORD  dwSize         = 0;
+//        if (!QueryServiceObjectSecurity(schService,
+//                                        DACL_SECURITY_INFORMATION,
+//                                        &psd,  // using NULL does not work on all versions
+//                                        0,
+//                                        &dwBytesNeeded))
+//        {
+//            if (GetLastError() == ERROR_INSUFFICIENT_BUFFER) {
+//                dwSize = dwBytesNeeded;
+//                psd = (PSECURITY_DESCRIPTOR)HeapAlloc(GetProcessHeap(), HEAP_ZERO_MEMORY, dwSize);
+//                if (psd == NULL) {
+//                    // Note: HeapAlloc does not support GetLastError.
+//                    NS_Logger::WriteLog(ADVANCED_ERROR_MESSAGE);
+//                    goto dacl_cleanup;
+//                }
 
-                if (!QueryServiceObjectSecurity(schService, DACL_SECURITY_INFORMATION, psd,
-                                                    dwSize, &dwBytesNeeded))
-                {
-                    NS_Logger::WriteLog(ADVANCED_ERROR_MESSAGE);
-                    goto dacl_cleanup;
-                }
+//                if (!QueryServiceObjectSecurity(schService, DACL_SECURITY_INFORMATION, psd,
+//                                                    dwSize, &dwBytesNeeded))
+//                {
+//                    NS_Logger::WriteLog(ADVANCED_ERROR_MESSAGE);
+//                    goto dacl_cleanup;
+//                }
 
-            } else {
-                NS_Logger::WriteLog(ADVANCED_ERROR_MESSAGE);
-                goto dacl_cleanup;
-            }
-        }
+//            } else {
+//                NS_Logger::WriteLog(ADVANCED_ERROR_MESSAGE);
+//                goto dacl_cleanup;
+//            }
+//        }
 
-        // Get the DACL.
-        if (!GetSecurityDescriptorDacl(psd, &bDaclPresent, &pacl, &bDaclDefaulted))
-        {
-            NS_Logger::WriteLog(ADVANCED_ERROR_MESSAGE);
-            goto dacl_cleanup;
-        }
+//        // Get the DACL.
+//        if (!GetSecurityDescriptorDacl(psd, &bDaclPresent, &pacl, &bDaclDefaulted))
+//        {
+//            NS_Logger::WriteLog(ADVANCED_ERROR_MESSAGE);
+//            goto dacl_cleanup;
+//        }
 
-        // Build the ACE.
-        EXPLICIT_ACCESS ea;
-        BuildExplicitAccessWithName(&ea, pTrusteeName, SERVICE_START | SERVICE_STOP | READ_CONTROL | DELETE,
-                                        SET_ACCESS, NO_INHERITANCE);
+//        // Build the ACE.
+//        EXPLICIT_ACCESS ea;
+//        BuildExplicitAccessWithName(&ea, pTrusteeName, SERVICE_START | SERVICE_STOP | READ_CONTROL | DELETE,
+//                                        SET_ACCESS, NO_INHERITANCE);
 
-        if (SetEntriesInAcl(1, &ea, pacl, &pNewAcl) != ERROR_SUCCESS) {
-            NS_Logger::WriteLog(ADVANCED_ERROR_MESSAGE);
-            goto dacl_cleanup;
-        }
+//        if (SetEntriesInAcl(1, &ea, pacl, &pNewAcl) != ERROR_SUCCESS) {
+//            NS_Logger::WriteLog(ADVANCED_ERROR_MESSAGE);
+//            goto dacl_cleanup;
+//        }
 
-        // Initialize a new security descriptor.
-        SECURITY_DESCRIPTOR sd;
-        if (!InitializeSecurityDescriptor(&sd, SECURITY_DESCRIPTOR_REVISION))
-        {
-            NS_Logger::WriteLog(ADVANCED_ERROR_MESSAGE);
-            goto dacl_cleanup;
-        }
+//        // Initialize a new security descriptor.
+//        SECURITY_DESCRIPTOR sd;
+//        if (!InitializeSecurityDescriptor(&sd, SECURITY_DESCRIPTOR_REVISION))
+//        {
+//            NS_Logger::WriteLog(ADVANCED_ERROR_MESSAGE);
+//            goto dacl_cleanup;
+//        }
 
-        // Set the new DACL in the security descriptor.
-        if (!SetSecurityDescriptorDacl(&sd, TRUE, pNewAcl, FALSE)) {
-            NS_Logger::WriteLog(ADVANCED_ERROR_MESSAGE);
-            goto dacl_cleanup;
-        }
+//        // Set the new DACL in the security descriptor.
+//        if (!SetSecurityDescriptorDacl(&sd, TRUE, pNewAcl, FALSE)) {
+//            NS_Logger::WriteLog(ADVANCED_ERROR_MESSAGE);
+//            goto dacl_cleanup;
+//        }
 
-        // Set the new DACL for the service object.
-        if (!SetServiceObjectSecurity(schService, DACL_SECURITY_INFORMATION, &sd))
-        {
-            NS_Logger::WriteLog(ADVANCED_ERROR_MESSAGE);
-            goto dacl_cleanup;
-        } else
-            printf("Service DACL updated successfully\n");
+//        // Set the new DACL for the service object.
+//        if (!SetServiceObjectSecurity(schService, DACL_SECURITY_INFORMATION, &sd))
+//        {
+//            NS_Logger::WriteLog(ADVANCED_ERROR_MESSAGE);
+//            goto dacl_cleanup;
+//        } else
+//            printf("Service DACL updated successfully\n");
 
-    dacl_cleanup:
-        CloseServiceHandle(schSCManager);
-        CloseServiceHandle(schService);
+//    dacl_cleanup:
+//        CloseServiceHandle(schSCManager);
+//        CloseServiceHandle(schService);
 
-        if (pNewAcl != NULL)
-            LocalFree((HLOCAL)pNewAcl);
-        if (psd != NULL)
-            HeapFree(GetProcessHeap(), 0, (LPVOID)psd);
-    }
+//        if (pNewAcl != NULL)
+//            LocalFree((HLOCAL)pNewAcl);
+//        if (psd != NULL)
+//            HeapFree(GetProcessHeap(), 0, (LPVOID)psd);
+//    }
 
     VOID __stdcall DoStopSvc()
     {
