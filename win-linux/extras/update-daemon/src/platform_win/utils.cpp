@@ -34,16 +34,11 @@
 #include "classes/translator.h"
 #include "version.h"
 #include <Windows.h>
-#include <shellapi.h>
 #include <shlwapi.h>
-#include <combaseapi.h>
-#include <comutil.h>
-#include <oleauto.h>
-#include <iostream>
 #include <fstream>
 #include <regex>
 #include <cstdio>
-#include <Wincrypt.h>
+//#include <Wincrypt.h>
 #include <WtsApi32.h>
 #include <Softpub.h>
 #include <TlHelp32.h>
@@ -53,7 +48,7 @@
 #include "../../src/defines.h"
 #include "../../src/prop/defines_p.h"
 
-#define BUFSIZE 1024
+//#define BUFSIZE 1024
 
 
 static DWORD GetActiveSessionId()
@@ -544,86 +539,86 @@ namespace NS_File
         return (res != 0) ? fromNativeSeparators(parentPath(buff)) : L"";
     }
 
-    string getFileHash(const wstring &fileName)
-    {
-        HANDLE hFile = NULL;
-        hFile = CreateFile(fileName.c_str(),
-            GENERIC_READ,
-            FILE_SHARE_READ,
-            NULL,
-            OPEN_EXISTING,
-            FILE_FLAG_SEQUENTIAL_SCAN,
-            NULL);
+//    string getFileHash(const wstring &fileName)
+//    {
+//        HANDLE hFile = NULL;
+//        hFile = CreateFile(fileName.c_str(),
+//            GENERIC_READ,
+//            FILE_SHARE_READ,
+//            NULL,
+//            OPEN_EXISTING,
+//            FILE_FLAG_SEQUENTIAL_SCAN,
+//            NULL);
 
-        if (hFile == INVALID_HANDLE_VALUE) {
-            return "";
-        }
+//        if (hFile == INVALID_HANDLE_VALUE) {
+//            return "";
+//        }
 
-        // Get handle to the crypto provider
-        HCRYPTPROV hProv = 0;
-        if (!CryptAcquireContext(&hProv, NULL, NULL, PROV_RSA_FULL, CRYPT_VERIFYCONTEXT)) {
-            CloseHandle(hFile);
-            return "";
-        }
+//        // Get handle to the crypto provider
+//        HCRYPTPROV hProv = 0;
+//        if (!CryptAcquireContext(&hProv, NULL, NULL, PROV_RSA_FULL, CRYPT_VERIFYCONTEXT)) {
+//            CloseHandle(hFile);
+//            return "";
+//        }
 
-        HCRYPTHASH hHash = 0;
-        if (!CryptCreateHash(hProv, CALG_MD5, 0, 0, &hHash)) {
-            CloseHandle(hFile);
-            CryptReleaseContext(hProv, 0);
-            return "";
-        }
+//        HCRYPTHASH hHash = 0;
+//        if (!CryptCreateHash(hProv, CALG_MD5, 0, 0, &hHash)) {
+//            CloseHandle(hFile);
+//            CryptReleaseContext(hProv, 0);
+//            return "";
+//        }
 
-        DWORD cbRead = 0;
-        BYTE rgbFile[BUFSIZE];
-        BOOL bResult = FALSE;
-        while ((bResult = ReadFile(hFile, rgbFile, BUFSIZE, &cbRead, NULL))) {
-            if (cbRead == 0)
-                break;
+//        DWORD cbRead = 0;
+//        BYTE rgbFile[BUFSIZE];
+//        BOOL bResult = FALSE;
+//        while ((bResult = ReadFile(hFile, rgbFile, BUFSIZE, &cbRead, NULL))) {
+//            if (cbRead == 0)
+//                break;
 
-            if (!CryptHashData(hHash, rgbFile, cbRead, 0)) {
-                CryptReleaseContext(hProv, 0);
-                CryptDestroyHash(hHash);
-                CloseHandle(hFile);
-                return "";
-            }
-        }
+//            if (!CryptHashData(hHash, rgbFile, cbRead, 0)) {
+//                CryptReleaseContext(hProv, 0);
+//                CryptDestroyHash(hHash);
+//                CloseHandle(hFile);
+//                return "";
+//            }
+//        }
 
-        if (!bResult) {
-            CryptReleaseContext(hProv, 0);
-            CryptDestroyHash(hHash);
-            CloseHandle(hFile);
-            return "";
-        }
+//        if (!bResult) {
+//            CryptReleaseContext(hProv, 0);
+//            CryptDestroyHash(hHash);
+//            CloseHandle(hFile);
+//            return "";
+//        }
 
-        DWORD cbHashSize = 0,
-              dwCount = sizeof(DWORD);
-        if (!CryptGetHashParam( hHash, HP_HASHSIZE, (BYTE*)&cbHashSize, &dwCount, 0)) {
-            CryptReleaseContext(hProv, 0);
-            CryptDestroyHash(hHash);
-            CloseHandle(hFile);
-            return "";
-        }
+//        DWORD cbHashSize = 0,
+//              dwCount = sizeof(DWORD);
+//        if (!CryptGetHashParam( hHash, HP_HASHSIZE, (BYTE*)&cbHashSize, &dwCount, 0)) {
+//            CryptReleaseContext(hProv, 0);
+//            CryptDestroyHash(hHash);
+//            CloseHandle(hFile);
+//            return "";
+//        }
 
-        std::vector<BYTE> buffer(cbHashSize);
-        if (!CryptGetHashParam(hHash, HP_HASHVAL, reinterpret_cast<BYTE*>(&buffer[0]), &cbHashSize, 0)) {
-            CryptReleaseContext(hProv, 0);
-            CryptDestroyHash(hHash);
-            CloseHandle(hFile);
-            return "";
-        }
+//        std::vector<BYTE> buffer(cbHashSize);
+//        if (!CryptGetHashParam(hHash, HP_HASHVAL, reinterpret_cast<BYTE*>(&buffer[0]), &cbHashSize, 0)) {
+//            CryptReleaseContext(hProv, 0);
+//            CryptDestroyHash(hHash);
+//            CloseHandle(hFile);
+//            return "";
+//        }
 
-        std::ostringstream oss;
-        for (std::vector<BYTE>::const_iterator it = buffer.begin(); it != buffer.end(); ++it) {
-            oss.fill('0');
-            oss.width(2);
-            oss << std::hex << static_cast<const int>(*it);
-        }
+//        std::ostringstream oss;
+//        for (std::vector<BYTE>::const_iterator it = buffer.begin(); it != buffer.end(); ++it) {
+//            oss.fill('0');
+//            oss.width(2);
+//            oss << std::hex << static_cast<const int>(*it);
+//        }
 
-        CryptReleaseContext(hProv, 0);
-        CryptDestroyHash(hHash);
-        CloseHandle(hFile);
-        return oss.str();
-    }
+//        CryptReleaseContext(hProv, 0);
+//        CryptDestroyHash(hHash);
+//        CloseHandle(hFile);
+//        return oss.str();
+//    }
 
     bool verifyEmbeddedSignature(const wstring &fileName)
     {

@@ -38,9 +38,7 @@
 #include "updatedialog.h"
 #include "cascapplicationmanagerwrapper.h"
 #include <gdk/gdkx.h>
-//extern "C" {
-//#include "gtk_resources.h"
-//}
+#include "res/gresource.c"
 
 #define toCharPtr(qstr) qstr.toLocal8Bit().data()
 #define TEXT_SKIP        toCharPtr(QObject::tr("Skip this version"))
@@ -69,12 +67,10 @@ int WinDlg::showDialog(QWidget *parent,
 //    QString title = QString("  %1").arg(WINDOW_TITLE);
     QString primaryText = QTextDocumentFragment::fromHtml(msg).toPlainText();
     QString linkText = !QString(RELEASE_NOTES).isEmpty() ?
-                QString("\n<a href=\"%1\">%2</a>").arg(QString(RELEASE_NOTES), QObject::tr("Release notes")) : "";
+                QString("<a href=\"%1\">%2</a>").arg(QString(RELEASE_NOTES), QObject::tr("Release notes")) : "";
     WindowHelper::CParentDisable oDisabler(parent);
     Window parent_xid = (parent) ? (Window)parent->winId() : 0L;
 
-//    GResource *resource = gtk_resources_get_resource();
-//    g_resources_register(resource);
     gtk_init(NULL, NULL);
     GtkDialogFlags flags;
     flags = (GtkDialogFlags)(GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT);
@@ -86,8 +82,7 @@ int WinDlg::showDialog(QWidget *parent,
                                     flags,
                                     GTK_MESSAGE_OTHER, // Message type doesn't show icon
                                     GTK_BUTTONS_NONE,
-                                    "%s",
-                                    primaryText.toLocal8Bit().data());
+                                    "%s", primaryText.toLocal8Bit().data());
 
     gtk_window_set_skip_taskbar_hint(GTK_WINDOW(dialog), TRUE);
     g_signal_connect(G_OBJECT(dialog), "realize", G_CALLBACK(set_parent), (gpointer)&parent_xid);
@@ -101,9 +96,11 @@ int WinDlg::showDialog(QWidget *parent,
     if (!content.isEmpty())
         gtk_message_dialog_format_secondary_text(GTK_MESSAGE_DIALOG(dialog), "%s", content.toLocal8Bit().data());
 
-    GtkWidget *image = gtk_image_new_from_resource("/icons/app-icon_64.png");
-    gtk_message_dialog_set_image(GTK_MESSAGE_DIALOG(dialog), image);
-    gtk_widget_show_all(image);
+    if (GtkWidget *image = gtk_image_new_from_resource("/icons/app-icon_64.png")) {
+        gtk_message_dialog_set_image(GTK_MESSAGE_DIALOG(dialog), image);
+        gtk_widget_set_margin_top(image, 6);
+        gtk_widget_show_all(image);
+    }
 
     if (!linkText.isEmpty()) {
         GtkWidget *msg_area = gtk_message_dialog_get_message_area(GTK_MESSAGE_DIALOG(dialog));
@@ -113,8 +110,18 @@ int WinDlg::showDialog(QWidget *parent,
         gtk_label_set_max_width_chars(GTK_LABEL(label), 50);
         g_signal_connect(G_OBJECT(label), "activate-link", G_CALLBACK(on_link_clicked), NULL);
         gtk_container_add(GTK_CONTAINER(msg_area), label);
-        gtk_widget_set_halign(label, GTK_ALIGN_START);
         gtk_widget_show_all(label);
+    }
+
+    { // Set text alignment
+        GtkWidget *msg_area = gtk_message_dialog_get_message_area(GTK_MESSAGE_DIALOG(dialog));
+        GList *children = gtk_container_get_children(GTK_CONTAINER(msg_area));
+        for (GList *iter = children; iter != NULL; iter = g_list_next(iter)) {
+            GtkWidget *child = GTK_WIDGET(iter->data);
+            if (GTK_IS_LABEL(child))
+                gtk_widget_set_halign(child, GTK_ALIGN_START);
+        }
+        g_list_free(children);
     }
 
     switch (dlgBtns) {

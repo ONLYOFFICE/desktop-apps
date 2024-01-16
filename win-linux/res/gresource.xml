@@ -2,9 +2,6 @@
 <gresources>
   <gresource prefix="/">
     <file>icons/app-icon_64.png</file>
-    <file>icons/app-icon_96.png</file>
-    <file>icons/app-icon_128.png</file>
-    <file>icons/app-icon_256.png</file>
   </gresource>
 </gresources>
 

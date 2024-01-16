@@ -15,7 +15,6 @@
 #include <algorithm>
 #include <functional>
 
-#include "cstyletweaks.h"
 #include "defines.h"
 #include "version.h"
 #include "components/cfiledialog.h"
@@ -119,7 +118,7 @@ void CAscApplicationManagerWrapper::OnEvent(CAscCefMenuEvent * event)
         }
     }
 
-    QMetaObject::invokeMethod(this, "onCoreEvent", Qt::QueuedConnection, Q_ARG(void *, event));
+    QMetaObject::invokeMethod(this, "onCoreEvent", Qt::QueuedConnection, Q_ARG(void*, event));
 }
 
 void CAscApplicationManagerWrapper::onCoreEvent(void * e)

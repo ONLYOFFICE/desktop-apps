@@ -33,28 +33,16 @@
 #ifndef CEDITORWINDOW_P_H
 #define CEDITORWINDOW_P_H
 
-#include "ccefeventsgate.h"
-#include "ceditorwindow.h"
-#include "cascapplicationmanagerwrapper.h"
-#include "cascapplicationmanagerwrapper_private.h"
-#include "applicationmanager_events.h"
 #include "utils.h"
 #include "common/Types.h"
 #include "components/cmessage.h"
-#include "qascprinter.h"
 #include "ceditortools.h"
-#include "components/csvgpushbutton.h"
-#include "defines.h"
 #include "components/cfullscrwidget.h"
 #include "components/cprintdialog.h"
-
-#include <QPrinterInfo>
-#include <QDesktopWidget>
 #include <QJsonDocument>
 #include <QJsonArray>
 #include <QJsonObject>
 #include <QGridLayout>
-#include <QStandardPaths>
 #include <QPrintEngine>
 
 #ifdef __linux__
@@ -273,7 +261,7 @@ public:
                 }
 
                 if ( objRoot.contains("title") /*&& m_mapTitleButtons.empty()*/ ) {
-                    QJsonArray _btns = objRoot["title"].toObject().value("buttons").toArray();
+                    const QJsonArray _btns = objRoot["title"].toObject().value("buttons").toArray();
                     QHBoxLayout * _layout = qobject_cast<QHBoxLayout *>(window->m_boxTitleBtns->layout());
 
                     if (usedOldEditorVersion) {  // For old editors only
@@ -465,7 +453,7 @@ public:
                                           CEditorWindow::tr("Document must be saved to continue.<br>Save the document?"),
                                           MsgType::MSG_CONFIRM, MsgBtns::mbYesDefNo);
         CAscEditorSaveQuestion * pData = new CAscEditorSaveQuestion;
-        pData->put_Value((reply == MODAL_RESULT_YES) ? true : false);
+        pData->put_Value(reply == MODAL_RESULT_YES);
 
         CAscMenuEvent * pEvent = new CAscMenuEvent(ASC_MENU_EVENT_TYPE_DOCUMENTEDITORS_SAVE_YES_NO);
         pEvent->m_pData = pData;

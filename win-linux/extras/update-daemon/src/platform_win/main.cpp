@@ -49,7 +49,6 @@ HANDLE                  gSvcStopEvent = NULL;
 VOID WINAPI SvcMain(DWORD argc, LPTSTR *argv);
 VOID WINAPI SvcCtrlHandler(DWORD dwCtrl);
 VOID ReportSvcStatus(DWORD, DWORD, DWORD);
-VOID SvcReportEvent(LPTSTR);
 
 
 int __cdecl _tmain (int argc, TCHAR *argv[])
@@ -86,6 +85,11 @@ int __cdecl _tmain (int argc, TCHAR *argv[])
         if (lstrcmpi(argv[1], _T("--description")) == 0) {
             if (argc > 2)
                 SvcControl::DoUpdateSvcDesc(argv[2]);
+            return 0;
+        } else
+        if (lstrcmpi(argv[1], _T("--info")) == 0) {
+            NS_Utils::setRunAsApp();
+            SvcControl::DoQuerySvc();
             return 0;
         } else
         if (lstrcmpi(argv[1], _T("--update_dacl")) == 0) {

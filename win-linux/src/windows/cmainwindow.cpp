@@ -298,17 +298,17 @@ void CMainWindow::close()
     }
 }
 
-void CMainWindow::captureMouse(int tabindex)
-{
-    if (tabindex >= 0 && tabindex < tabWidget()->count()) {
-        QPoint spt = tabWidget()->tabBar()->tabRect(tabindex).topLeft() + QPoint(30, 10);
-        QTimer::singleShot(0, this, [=] {
-            QMouseEvent event(QEvent::MouseButtonPress, spt, Qt::LeftButton, Qt::MouseButton::NoButton, Qt::NoModifier);
-            QCoreApplication::sendEvent((QWidget *)tabWidget()->tabBar(), &event);
-            tabWidget()->tabBar()->grabMouse();
-        });
-    }
-}
+//void CMainWindow::captureMouse(int tabindex)
+//{
+//    if (tabindex >= 0 && tabindex < tabWidget()->count()) {
+//        QPoint spt = tabWidget()->tabBar()->tabRect(tabindex).topLeft() + QPoint(30, 10);
+//        QTimer::singleShot(0, this, [=] {
+//            QMouseEvent event(QEvent::MouseButtonPress, spt, Qt::LeftButton, Qt::MouseButton::NoButton, Qt::NoModifier);
+//            QCoreApplication::sendEvent((QWidget *)tabWidget()->tabBar(), &event);
+//            tabWidget()->tabBar()->grabMouse();
+//        });
+//    }
+//}
 
 #ifdef __linux__
 void CMainWindow::dragEnterEvent(QDragEnterEvent *event)

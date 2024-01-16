@@ -43,7 +43,7 @@ namespace SvcControl
 {
 VOID SvcInstall(void);
 VOID __stdcall DoStartSvc(void);
-VOID __stdcall DoUpdateSvcDacl(LPTSTR pTrusteeName);
+//VOID __stdcall DoUpdateSvcDacl(LPTSTR pTrusteeName);
 VOID __stdcall DoStopSvc(void);
 VOID __stdcall DoQuerySvc(void);
 VOID __stdcall DoUpdateSvcDesc(LPTSTR szDesc);

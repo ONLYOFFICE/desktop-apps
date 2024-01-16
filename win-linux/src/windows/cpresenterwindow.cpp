@@ -35,16 +35,7 @@
 #include "cascapplicationmanagerwrapper.h"
 #include "defines.h"
 #include "utils.h"
-#include "csplash.h"
-#include "clogger.h"
-#include "clangater.h"
-#include <QDesktopWidget>
 #include <QGridLayout>
-#include <QTimer>
-#include <stdexcept>
-#include <functional>
-#include <QApplication>
-#include <QIcon>
 
 using namespace std::placeholders;
 

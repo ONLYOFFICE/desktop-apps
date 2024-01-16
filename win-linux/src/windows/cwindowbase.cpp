@@ -34,8 +34,6 @@
 #include "cascapplicationmanagerwrapper.h"
 #include "components/ctooltip.h"
 #include "utils.h"
-#include "ccefeventsgate.h"
-#include "clangater.h"
 #include "defines.h"
 #ifdef _WIN32
 # include "windows/platform_win/caption.h"
@@ -44,9 +42,6 @@
 # endif
 #endif
 #include <QApplication>
-#include <QDesktopWidget>
-#include <QVariant>
-#include <QSettings>
 #include <QHBoxLayout>
 #include <QScreen>
 #include <functional>
@@ -123,8 +118,7 @@ void CWindowBase::updateScaling(bool resize)
 
 void CWindowBase::setWindowColors(const QColor& background, const QColor& border)
 {
-    Q_UNUSED(border)
-    setProperty("borderColor", border);
+    m_brdColor = border;
     setStyleSheet(QString("QMainWindow{border:1px solid %1;"
 #ifdef _WIN32
                           "border-bottom:2px solid %1;"

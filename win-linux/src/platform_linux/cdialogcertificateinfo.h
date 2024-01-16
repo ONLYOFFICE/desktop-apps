@@ -8,6 +8,7 @@ class CDialogCertificateInfo : public QDialog
 public:
     explicit CDialogCertificateInfo(QWidget *parent);
     CDialogCertificateInfo(QWidget *, const std::wstring &);
+    ~CDialogCertificateInfo();
 
 private:
     class Intf;

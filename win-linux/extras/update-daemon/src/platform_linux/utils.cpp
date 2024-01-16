@@ -32,24 +32,14 @@
 
 #include "platform_linux/utils.h"
 #include "version.h"
-#include <cstring>
-#include <iostream>
 #include <fstream>
 #include <regex>
-#include <cstdio>
-#include <cerrno>
-#include <vector>
-#include <unistd.h>
-#include <sstream>
-#include <stdlib.h>
 #include <sys/stat.h>
-#include <dirent.h>
 #include <gtk/gtk.h>
-#include <openssl/md5.h>
-#include <libgen.h>
+//#include <openssl/md5.h>
 #include <fcntl.h>
 
-#define BUFSIZE 1024
+//#define BUFSIZE 1024
 
 
 static void replace(string &str, const string &from, const string &to)
@@ -443,31 +433,31 @@ namespace NS_File
         return app_path;
     }
 
-    string getFileHash(const string &fileName)
-    {
-        FILE *file = fopen(fileName.c_str(), "rb");
-        if (!file)
-            return "";
+//    string getFileHash(const string &fileName)
+//    {
+//        FILE *file = fopen(fileName.c_str(), "rb");
+//        if (!file)
+//            return "";
 
-        int bytes;
-        unsigned char data[1024];
-        unsigned char digest[MD5_DIGEST_LENGTH];
-        MD5_CTX mdContext;
-        MD5_Init(&mdContext);
-        while ((bytes = fread(data, 1, 1024, file)) != 0)
-            MD5_Update(&mdContext, data, bytes);
+//        int bytes;
+//        unsigned char data[1024];
+//        unsigned char digest[MD5_DIGEST_LENGTH];
+//        MD5_CTX mdContext;
+//        MD5_Init(&mdContext);
+//        while ((bytes = fread(data, 1, 1024, file)) != 0)
+//            MD5_Update(&mdContext, data, bytes);
 
-        MD5_Final(digest, &mdContext);
-        fclose(file);
+//        MD5_Final(digest, &mdContext);
+//        fclose(file);
 
-        std::ostringstream oss;
-        for (int i = 0; i < MD5_DIGEST_LENGTH; i++) {
-            oss.fill('0');
-            oss.width(2);
-            oss << std::hex << static_cast<const int>(digest[i]);
-        }
-        return oss.str();
-    }
+//        std::ostringstream oss;
+//        for (int i = 0; i < MD5_DIGEST_LENGTH; i++) {
+//            oss.fill('0');
+//            oss.width(2);
+//            oss << std::hex << static_cast<const int>(digest[i]);
+//        }
+//        return oss.str();
+//    }
 
 //    bool verifyEmbeddedSignature(const string &fileName)
 //    {

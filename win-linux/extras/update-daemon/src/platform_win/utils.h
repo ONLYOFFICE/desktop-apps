@@ -79,7 +79,7 @@ wstring toNativeSeparators(const wstring &path);
 wstring parentPath(const wstring &path);
 wstring tempPath();
 wstring appPath();
-string getFileHash(const wstring &fileName);
+//string getFileHash(const wstring &fileName);
 bool verifyEmbeddedSignature(const wstring &fileName);
 }
 

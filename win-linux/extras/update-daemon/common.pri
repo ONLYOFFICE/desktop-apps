@@ -76,20 +76,10 @@ core_windows {
         DEFINES += __OS_WIN_XP
     }
 
-    LIBS += -luser32 \
-            -lkernel32 \
-            -lshell32 \
-            -lshlwapi \
-            -lole32 \
-            -loleaut32 \
-            -lcomsuppw \
-            -ladvapi32 \
-            -lwinhttp \
-            -lwininet \
+    LIBS += -lwinhttp \
             -lws2_32 \
             -lrpcrt4 \
             -lwtsapi32 \
-            -lcrypt32 \
             -lwintrust \
             -luserenv
 }
@@ -110,7 +100,7 @@ core_linux {
 
     CONFIG += link_pkgconfig
     PKGCONFIG += gtk+-3.0
-    LIBS += -lSDL2 -lcurl -lssl -lcrypto -luuid -larchive -lpthread
+    LIBS += -lSDL2 -lcurl -luuid -larchive -lpthread
 }
 
 OBJECTS_DIR = $$DESTDIR/obj
