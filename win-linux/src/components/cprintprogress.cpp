@@ -39,7 +39,6 @@
 #include "utils.h"
 
 #ifdef _WIN32
-//#define WINVER 0x0500
 # include <windows.h>
 #else
 # include "cascapplicationmanagerwrapper.h"

@@ -93,7 +93,6 @@ HEADERS += \
     $$PWD/src/utils.h \
     $$PWD/src/cstyletweaks.h \
     $$PWD/src/chelp.h \
-    #$$PWD/src/csplash.h \
     $$PWD/src/cfilechecker.h \
     $$PWD/src/clogger.h \
     $$PWD/src/clangater.h \
@@ -106,10 +105,6 @@ HEADERS += \
     $$PWD/src/ceventdriver.h \
     $$PWD/src/cappeventfilter.h \
     $$PWD/src/cthemes.h
-#    src/ctabbar_p.h \
-#    src/ctabstyle.h \
-#    src/ctabstyle_p.h
-#    src/components/casclabel.h
 
 SOURCES += \
     $$PWD/src/windows/cmainwindow.cpp \
@@ -130,7 +125,6 @@ SOURCES += \
     $$PWD/src/components/cfullscrwidget.cpp \
     $$PWD/src/components/cprintdialog.cpp \
     $$PWD/src/components/ctooltip.cpp \
-    #$$PWD/src/csplash.cpp \
     $$PWD/src/main.cpp \
     $$PWD/src/ccefeventstransformer.cpp \
     $$PWD/src/cascapplicationmanagerwrapper.cpp \
@@ -149,8 +143,6 @@ SOURCES += \
     $$PWD/src/ceventdriver.cpp \
     $$PWD/src/cappeventfilter.cpp \
     $$PWD/src/cthemes.cpp
-#    src/ctabstyle.cpp
-#    src/components/casclabel.cpp
 
 updmodule:!build_xp {
     HEADERS += $$PWD/src/cupdatemanager.h
@@ -213,8 +205,6 @@ core_linux {
                 $$PWD/extras/update-daemon/src/classes/csocket.h
 
     SOURCES +=  $$PWD/src/windows/platform_linux/cx11decoration.cpp \
-                #$$PWD/src/windows/platform_linux/gtk_addon.cpp \
-                #$$PWD/src/windows/platform_linux/cx11caption.cpp \
                 $$PWD/src/windows/platform_linux/cwindowplatform.cpp \
                 $$PWD/src/platform_linux/cdialogopenssl.cpp \
                 $$PWD/src/platform_linux/cdialogcertificateinfo.cpp \

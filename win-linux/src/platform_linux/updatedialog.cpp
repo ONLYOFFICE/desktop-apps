@@ -38,9 +38,6 @@
 #include "updatedialog.h"
 #include "cascapplicationmanagerwrapper.h"
 #include <gdk/gdkx.h>
-//extern "C" {
-//#include "gtk_resources.h"
-//}
 
 #define toCharPtr(qstr) qstr.toLocal8Bit().data()
 #define TEXT_SKIP        toCharPtr(QObject::tr("Skip this version"))
@@ -73,8 +70,6 @@ int WinDlg::showDialog(QWidget *parent,
     WindowHelper::CParentDisable oDisabler(parent);
     Window parent_xid = (parent) ? (Window)parent->winId() : 0L;
 
-//    GResource *resource = gtk_resources_get_resource();
-//    g_resources_register(resource);
     gtk_init(NULL, NULL);
     GtkDialogFlags flags;
     flags = (GtkDialogFlags)(GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT);

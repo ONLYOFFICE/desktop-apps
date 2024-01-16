@@ -245,7 +245,6 @@ bool CWindowPlatform::nativeEvent(const QByteArray &eventType, void *message, lo
 
     case WM_KEYDOWN: {
         if (msg->wParam == VK_F5 || msg->wParam == VK_F6 || msg->wParam == VK_F7) {
-            //SendMessage(msg->hwnd, WM_KEYDOWN, msg->wParam, msg->lParam);
         } else
         if (msg->wParam == VK_TAB) {
             SetFocus(HWND(winId()));
