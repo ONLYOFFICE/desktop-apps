@@ -31,23 +31,8 @@
 */
 
 #include "windows/ceditorwindow.h"
-#include "utils.h"
-#include "defines.h"
-#include "cascapplicationmanagerwrapper.h"
-#include "components/cfiledialog.h"
-#include "components/cmessage.h"
-#include "../Common/OfficeFileFormats.h"
-#include "common/Types.h"
-
-#include <QGridLayout>
-#include <QPushButton>
-#include <QRegion>
-#include <QLabel>
-#include <QJsonDocument>
-#include <QJsonObject>
-#include <QDir>
-
 #include "windows/ceditorwindow_p.h"
+#include <QApplication>
 
 #define CAPTURED_WINDOW_OFFSET_X  6*TOOLBTN_WIDTH + 10
 #define CAPTURED_WINDOW_OFFSET_Y  15

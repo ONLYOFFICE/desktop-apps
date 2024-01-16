@@ -35,9 +35,6 @@
 
 #include "windows/cwindowbase.h"
 #include <QtWidgets/QApplication>
-#include <QShowEvent>
-#include <QMargins>
-#include <QRect>
 
 
 class CWindowPlatform : public CWindowBase

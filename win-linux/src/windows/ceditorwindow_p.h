@@ -33,28 +33,16 @@
 #ifndef CEDITORWINDOW_P_H
 #define CEDITORWINDOW_P_H
 
-#include "ccefeventsgate.h"
-#include "ceditorwindow.h"
-#include "cascapplicationmanagerwrapper.h"
-#include "cascapplicationmanagerwrapper_private.h"
-#include "applicationmanager_events.h"
 #include "utils.h"
 #include "common/Types.h"
 #include "components/cmessage.h"
-#include "qascprinter.h"
 #include "ceditortools.h"
-#include "components/csvgpushbutton.h"
-#include "defines.h"
 #include "components/cfullscrwidget.h"
 #include "components/cprintdialog.h"
-
-#include <QPrinterInfo>
-#include <QDesktopWidget>
 #include <QJsonDocument>
 #include <QJsonArray>
 #include <QJsonObject>
 #include <QGridLayout>
-#include <QStandardPaths>
 #include <QPrintEngine>
 
 #ifdef __linux__

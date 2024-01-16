@@ -34,8 +34,6 @@
 #include "cascapplicationmanagerwrapper.h"
 #include "components/ctooltip.h"
 #include "utils.h"
-#include "ccefeventsgate.h"
-#include "clangater.h"
 #include "defines.h"
 #ifdef _WIN32
 # include "windows/platform_win/caption.h"
@@ -44,9 +42,6 @@
 # endif
 #endif
 #include <QApplication>
-#include <QDesktopWidget>
-#include <QVariant>
-#include <QSettings>
 #include <QHBoxLayout>
 #include <QScreen>
 #include <functional>

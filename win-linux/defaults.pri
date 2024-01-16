@@ -91,7 +91,6 @@ HEADERS += \
     $$PWD/src/cascapplicationmanagerwrapper_private.h \
     $$PWD/src/casctabdata.h \
     $$PWD/src/utils.h \
-    $$PWD/src/cstyletweaks.h \
     $$PWD/src/chelp.h \
     $$PWD/src/cfilechecker.h \
     $$PWD/src/clogger.h \
@@ -130,7 +129,6 @@ SOURCES += \
     $$PWD/src/cascapplicationmanagerwrapper.cpp \
     $$PWD/src/casctabdata.cpp \
     $$PWD/src/utils.cpp \
-    $$PWD/src/cstyletweaks.cpp \
     $$PWD/src/chelp.cpp \
     $$PWD/src/cfilechecker.cpp \
     $$PWD/src/clogger.cpp \

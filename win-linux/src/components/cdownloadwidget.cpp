@@ -32,7 +32,6 @@
 
 #include "components/cdownloadwidget.h"
 #include "components/celipsislabel.h"
-#include "components/cmessage.h"
 #include "cascapplicationmanagerwrapper.h"
 #include "utils.h"
 #include <QVBoxLayout>

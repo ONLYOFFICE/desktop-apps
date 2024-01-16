@@ -15,7 +15,6 @@
 #include <algorithm>
 #include <functional>
 
-#include "cstyletweaks.h"
 #include "defines.h"
 #include "version.h"
 #include "components/cfiledialog.h"
