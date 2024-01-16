@@ -35,7 +35,6 @@
 
 #include <QWidget>
 #include <QMouseEvent>
-#include <QTimer>
 
 #define FORCE_LINUX_CUSTOMWINDOW_MARGINS
 

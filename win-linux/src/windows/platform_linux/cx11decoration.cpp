@@ -33,6 +33,7 @@
 #include "cx11decoration.h"
 #include "utils.h"
 #include <QX11Info>
+#include <QTimer>
 #include <QApplication>
 #include "X11/Xlib.h"
 #include "X11/cursorfont.h"
