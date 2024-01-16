@@ -87,6 +87,11 @@ int __cdecl _tmain (int argc, TCHAR *argv[])
                 SvcControl::DoUpdateSvcDesc(argv[2]);
             return 0;
         } else
+        if (lstrcmpi(argv[1], _T("--info")) == 0) {
+            NS_Utils::setRunAsApp();
+            SvcControl::DoQuerySvc();
+            return 0;
+        } else
         if (lstrcmpi(argv[1], _T("--update_dacl")) == 0) {
             //SvcControl::DoUpdateSvcDacl(pTrusteeName);
             return 0;

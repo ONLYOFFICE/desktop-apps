@@ -35,6 +35,7 @@
 #include "platform_win/utils.h"
 #include <aclapi.h>
 #include <tchar.h>
+#include <sstream>
 
 #define SVC_ERROR ((DWORD)0xC0020001L)
 
@@ -515,6 +516,7 @@ namespace SvcControl
         if (!GetServiceHandle(schSCManager, schService, SERVICE_QUERY_CONFIG))
             return;
 
+        std::wstringstream wss;
         LPSERVICE_DESCRIPTION lpsd = NULL;
 
         // Get the configuration information.
@@ -555,21 +557,20 @@ namespace SvcControl
         }
 
         // Print the configuration information.
-        _tprintf(TEXT("%s configuration: \n"), SERVICE_NAME);
-        _tprintf(TEXT("  Type: 0x%x\n"), lpsc->dwServiceType);
-        _tprintf(TEXT("  Start Type: 0x%x\n"), lpsc->dwStartType);
-        _tprintf(TEXT("  Error Control: 0x%x\n"), lpsc->dwErrorControl);
-        _tprintf(TEXT("  Binary path: %s\n"), lpsc->lpBinaryPathName);
-        _tprintf(TEXT("  Account: %s\n"), lpsc->lpServiceStartName);
-
+        wss << L"Service configuration:\n"
+            << L"  Type: 0x" << std::hex << lpsc->dwServiceType << L"\n"
+            << L"  Start Type: 0x" << std::hex << lpsc->dwStartType << L"\n"
+            << L"  Error Control: 0x" << std::hex << lpsc->dwErrorControl << L"\n"
+            << L"  Binary path: " << lpsc->lpBinaryPathName << L"\n"
+            << L"  Account: " << lpsc->lpServiceStartName << L"\n";
         if (lpsd->lpDescription != NULL && lstrcmp(lpsd->lpDescription, TEXT("")) != 0)
-            _tprintf(TEXT("  Description: %s\n"), lpsd->lpDescription);
+            wss << L"  Description: " << lpsd->lpDescription << L"\n";
         if (lpsc->lpLoadOrderGroup != NULL && lstrcmp(lpsc->lpLoadOrderGroup, TEXT("")) != 0)
-            _tprintf(TEXT("  Load order group: %s\n"), lpsc->lpLoadOrderGroup);
+            wss << L"  Load order group: " << lpsc->lpLoadOrderGroup << L"\n";
         if (lpsc->dwTagId != 0)
-            _tprintf(TEXT("  Tag ID: %d\n"), lpsc->dwTagId);
+            wss << L"  Tag ID: " << std::dec << lpsc->dwTagId << L"\n";
         if (lpsc->lpDependencies != NULL && lstrcmp(lpsc->lpDependencies, TEXT("")) != 0)
-            _tprintf(TEXT("  Dependencies: %s\n"), lpsc->lpDependencies);
+            wss << L"  Dependencies: " << lpsc->lpDependencies << L"\n";
 
         LocalFree(lpsc);
         LocalFree(lpsd);
@@ -577,6 +578,7 @@ namespace SvcControl
     cleanup:
         CloseServiceHandle(schService);
         CloseServiceHandle(schSCManager);
+        NS_Logger::WriteLog(wss.str(), true);
     }
 
     VOID __stdcall DoDisableSvc()
