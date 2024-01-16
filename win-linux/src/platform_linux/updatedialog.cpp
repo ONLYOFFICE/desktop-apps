@@ -38,6 +38,7 @@
 #include "updatedialog.h"
 #include "cascapplicationmanagerwrapper.h"
 #include <gdk/gdkx.h>
+#include "res/gresource.c"
 
 #define toCharPtr(qstr) qstr.toLocal8Bit().data()
 #define TEXT_SKIP        toCharPtr(QObject::tr("Skip this version"))
