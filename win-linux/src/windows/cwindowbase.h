@@ -103,6 +103,7 @@ protected:
                   *m_boxTitleBtns = nullptr,
                   *m_pMainView = nullptr;
     double         m_dpiRatio;
+    QColor         m_brdColor;
 
     virtual void showEvent(QShowEvent *);
 

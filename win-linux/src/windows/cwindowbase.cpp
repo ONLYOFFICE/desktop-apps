@@ -118,8 +118,7 @@ void CWindowBase::updateScaling(bool resize)
 
 void CWindowBase::setWindowColors(const QColor& background, const QColor& border)
 {
-    Q_UNUSED(border)
-    setProperty("borderColor", border);
+    m_brdColor = border;
     setStyleSheet(QString("QMainWindow{border:1px solid %1;"
 #ifdef _WIN32
                           "border-bottom:2px solid %1;"

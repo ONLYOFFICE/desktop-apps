@@ -42,7 +42,14 @@
 #include <shellapi.h>
 
 //#define UM_SNAPPING 0x02
+#define SKIP_EVENTS_QUEUE(callback) QTimer::singleShot(0, this, callback)
 
+static bool isTaskbarAutoHideOn()
+{
+    APPBARDATA ABData;
+    ABData.cbSize = sizeof(ABData);
+    return (SHAppBarMessage(ABM_GETSTATE, &ABData) & ABS_AUTOHIDE) != 0;
+}
 
 CWindowPlatform::CWindowPlatform(const QRect &rect) :
     CWindowBase(rect),
@@ -58,6 +65,7 @@ CWindowPlatform::CWindowPlatform(const QRect &rect) :
     setWindowFlags(windowFlags() | Qt::Window | Qt::FramelessWindowHint
                    | Qt::WindowSystemMenuHint | Qt::WindowMaximizeButtonHint
                    |Qt::WindowMinimizeButtonHint | Qt::MSWindowsFixedSizeDialogHint);
+    m_borderless = isCustomWindowStyle();
     m_hWnd = (HWND)winId();
     LONG style = ::GetWindowLong(m_hWnd, GWL_STYLE);
     style &= ~(WS_CAPTION | WS_SYSMENU | WS_THICKFRAME);
@@ -115,7 +123,7 @@ void CWindowPlatform::adjustGeometry()
     if (windowState().testFlag(Qt::WindowMinimized) || windowState().testFlag(Qt::WindowNoState)) {
         const int border = int(MAIN_WINDOW_BORDER_WIDTH * m_dpiRatio);
         setContentsMargins(border, border, border, border+1);
-        setResizeableAreaWidth(border);
+        m_resAreaWidth = border;
     } else
     if (windowState().testFlag(Qt::WindowMaximized)) {
         QTimer::singleShot(25, this, [=]() {
@@ -164,18 +172,6 @@ bool CWindowPlatform::event(QEvent * event)
 
 /** Private **/
 
-bool CWindowPlatform::isTaskbarAutoHideOn()
-{
-    APPBARDATA ABData;
-    ABData.cbSize = sizeof(ABData);
-    return (SHAppBarMessage(ABM_GETSTATE, &ABData) & ABS_AUTOHIDE) != 0;
-}
-
-void CWindowPlatform::setResizeableAreaWidth(int width)
-{
-    m_resAreaWidth = (width < 0) ? 0 : width;
-}
-
 void CWindowPlatform::changeEvent(QEvent *event)
 {
     CWindowBase::changeEvent(event);
@@ -215,7 +211,7 @@ bool CWindowPlatform::nativeEvent(const QByteArray &eventType, void *message, lo
                 RECT *prefRect = (RECT*)msg->lParam;
                 setGeometry(prefRect->left, prefRect->top, prefRect->right - prefRect->left, prefRect->bottom - prefRect->top);
             }
-            QTimer::singleShot(0, this, [=]() {
+            SKIP_EVENTS_QUEUE([=]() {
                 updateScaling(false);
             });
         } else
@@ -242,7 +238,7 @@ bool CWindowPlatform::nativeEvent(const QByteArray &eventType, void *message, lo
 //    }
 
     case WM_NCCALCSIZE: {
-        if (!msg->wParam)
+        if (!m_borderless || !msg->wParam)
             break;
         NCCALCSIZE_PARAMS *params = (NCCALCSIZE_PARAMS*)msg->lParam;
         params->rgrc[0].bottom += 1;
@@ -251,52 +247,47 @@ bool CWindowPlatform::nativeEvent(const QByteArray &eventType, void *message, lo
     }
 
     case WM_NCHITTEST: {
-        if (m_borderless) {
+        if (m_borderless && m_isResizeable) {
             *result = 0;
-            const LONG border = (LONG)m_resAreaWidth;
             RECT rect;
             GetWindowRect(msg->hwnd, &rect);
-            long x = GET_X_LPARAM(msg->lParam);
-            long y = GET_Y_LPARAM(msg->lParam);
-            if (m_isResizeable) {
-                if (x <= rect.left + border) {
-                    if (y <= rect.top + border)
-                        *result = HTTOPLEFT;
-                    else
-                    if (y > rect.top + border && y < rect.bottom - border)
-                        *result = HTLEFT;
-                    else
-                    if (y >= rect.bottom - border)
-                        *result = HTBOTTOMLEFT;
-                } else
-                if (x > rect.left + border && x < rect.right - border) {
-                    if (y <= rect.top + border)
-                        *result = HTTOP;
-                    else
-                    if (y >= rect.bottom - border)
-                        *result = HTBOTTOM;
-                } else
-                if (x >= rect.right - border) {
-                    if (y <= rect.top + border)
-                        *result = HTTOPRIGHT;
-                    else
-                    if (y > rect.top + border && y < rect.bottom - border)
-                        *result = HTRIGHT;
-                    else
-                    if (y >= rect.bottom - border)
-                        *result = HTBOTTOMRIGHT;
-                }
+            int x = GET_X_LPARAM(msg->lParam);
+            int y = GET_Y_LPARAM(msg->lParam);
+            if (x <= rect.left + m_resAreaWidth) {
+                if (y <= rect.top + m_resAreaWidth)
+                    *result = HTTOPLEFT;
+                else
+                if (y > rect.top + m_resAreaWidth && y < rect.bottom - m_resAreaWidth)
+                    *result = HTLEFT;
+                else
+                if (y >= rect.bottom - m_resAreaWidth)
+                    *result = HTBOTTOMLEFT;
+            } else
+            if (x > rect.left + m_resAreaWidth && x < rect.right - m_resAreaWidth) {
+                if (y <= rect.top + m_resAreaWidth)
+                    *result = HTTOP;
+                else
+                if (y >= rect.bottom - m_resAreaWidth)
+                    *result = HTBOTTOM;
+            } else
+            if (x >= rect.right - m_resAreaWidth) {
+                if (y <= rect.top + m_resAreaWidth)
+                    *result = HTTOPRIGHT;
+                else
+                if (y > rect.top + m_resAreaWidth && y < rect.bottom - m_resAreaWidth)
+                    *result = HTRIGHT;
+                else
+                if (y >= rect.bottom - m_resAreaWidth)
+                    *result = HTBOTTOMRIGHT;
             }
-            if (*result != 0)
-                return true;
-            return false;
+            return (*result != 0);
         }
         break;
     }
 
     case WM_SETFOCUS: {
         if (!m_closed && IsWindowEnabled(m_hWnd)) {
-            QTimer::singleShot(0, this, [=]() {
+            SKIP_EVENTS_QUEUE([=]() {
                 focus();
             });
         }
@@ -366,13 +357,8 @@ bool CWindowPlatform::nativeEvent(const QByteArray &eventType, void *message, lo
                     dispDevice.cb = sizeof(dispDevice);
                     if (EnumDisplayDevices(monInfo.szDevice, 0, &dispDevice, EDD_GET_DEVICE_INTERFACE_NAME)) {
                         HANDLE hDevice;
-                        hDevice = CreateFile(dispDevice.DeviceID,
-                                             GENERIC_READ,
-                                             FILE_SHARE_READ,
-                                             NULL,
-                                             OPEN_EXISTING,
-                                             FILE_ATTRIBUTE_READONLY,
-                                             NULL);
+                        hDevice = CreateFile(dispDevice.DeviceID, GENERIC_READ, FILE_SHARE_READ,
+                                                NULL, OPEN_EXISTING, FILE_ATTRIBUTE_READONLY, NULL);
                         if (hDevice != INVALID_HANDLE_VALUE) {
                             BOOL res;
                             if (GetDevicePowerState(hDevice, &res)) {
