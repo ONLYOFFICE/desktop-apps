@@ -1,43 +1,20 @@
-#CX11Caption {
-    min-width: 525px;
-}
+#CX11Caption {min-width: 525px;}
+#labelAppTitle {margin-top: -6px; font-size: 33px;}
 
-#labelAppTitle {
-    margin-top: -6px;
-    font-size: 33px;
-}
+QPushButton {border: 3px solid #cbcbcb; padding: 0 60px; height: 66px; border-radius: 6px; font-size: 33px;}
+QPushButton#toolButtonMaximize,
+QPushButton#toolButtonMinimize,
+QPushButton#toolButtonClose {padding: 15px 0px 21px;}
 
-QPushButton {
-    border: 3px solid #cbcbcb;
-    padding: 0 60px;
-    height: 66px;
-    border-radius: 6px;
-    font-size: 33px;
-}
+QPushButton#toolButtonMaximize[kde=true],
+QPushButton#toolButtonMinimize[kde=true],
+QPushButton#toolButtonClose[kde=true] {padding: 6px 0px 21px;}
 
-QPushButton#toolButtonMaximize,QPushButton#toolButtonMinimize,
-    QPushButton#toolButtonClose {
-        padding: 15px 0px 21px;
-}
-QPushButton#toolButtonMaximize[kde=true], QPushButton#toolButtonMinimize[kde=true],
-    QPushButton#toolButtonClose[kde=true] {padding: 6px 0px 21px;}
-
-QPushButton#toolButtonMain {
-    font-size: 30px;
-    border-right-width: 3px;
-}
-#mainPanel[rtl=true] QPushButton#toolButtonMain {border-left-width: 3px;}
-
-QPushButton#toolButtonMain[theme=light] {
-    border-width: 3px;
-    border-bottom: 0 none;
-}
-
+QPushButton#toolButtonMain {font-size: 30px; border-right-width: 3px;}
+QPushButton#toolButtonMain[theme=light] {border-width: 3px; border-bottom: 0 none;}
 QPushButton#toolButtonMain[class=normal],
-    QPushButton#toolButtonMain[class=normal]:hover
-{
-    border-bottom-width: 3px;
-}
+QPushButton#toolButtonMain[class=normal]:hover {border-bottom-width: 3px;}
+#mainPanel[rtl=true] QPushButton#toolButtonMain {border-left-width: 3px;}
 
 QPushButton#toolButtonDownload {border-right-width: 3px; max-width: 120px; width: 120px; max-height: 84px; height: 84px;}
 #mainPanel[rtl=true] QPushButton#toolButtonDownload {border-left-width: 3px;}
@@ -49,12 +26,7 @@ QPushButton#toolButtonDownload {border-right-width: 3px; max-width: 120px; width
     margin: 0px;
     padding-left: 30px; padding-right: 30px;
     font-size: 33px;
-    border: 3px solid #c0c0c0;
-    border-radius: 14px;
+    border: 3px solid #c0c0c0; border-radius: 14px;
 }
-#mainPanel[uitheme=theme-dark] #CToolTip>QLabel {
-    border: 3px solid #666666;
-}
-#mainPanel[uitheme=theme-contrast-dark] #CToolTip>QLabel {
-    border: 3px solid #696969;
-}
+#mainPanel[uitheme=theme-dark] #CToolTip>QLabel {border: 3px solid #666666;}
+#mainPanel[uitheme=theme-contrast-dark] #CToolTip>QLabel {border: 3px solid #696969;}
