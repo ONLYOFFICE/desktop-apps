@@ -117,6 +117,7 @@ int main(int argc, const char * argv[]) {
     [[ASCEditorJSVariables instance] setVariable:@"theme" withObject:@{@"id":uiTheme,
                                                                        @"system":systemColorScheme,
                                                                        @"type":systemColorScheme}];
+    [[ASCEditorJSVariables instance] setVariable:@"rtl" withBool:[ASCLinguist isUILayoutDirectionRtl]];
     [[ASCEditorJSVariables instance] apply];
 
     // setup doc sign

@@ -52,6 +52,7 @@
 #import "ASCMenuButtonCell.h"
 #import "ASCThemesController.h"
 #import "ASCApplicationManager.h"
+#import "ASCLinguist.h"
 
 
 static float kASCWindowDefaultTrafficButtonsLeftMargin = 0;
@@ -115,6 +116,10 @@ static float kASCWindowMinTitleWidth = 0;
         self.standardButtonsDefaults = @[[mainWindow standardWindowButton:NSWindowCloseButton],
                                          [mainWindow standardWindowButton:NSWindowMiniaturizeButton],
                                          [mainWindow standardWindowButton:NSWindowZoomButton]];
+        
+        if ( [ASCLinguist isUILayoutDirectionRtl] ) {
+            self.standardButtonsDefaults = [[self.standardButtonsDefaults reverseObjectEnumerator] allObjects];
+        }
     }
     
     [self.standardButtonsDefaults enumerateObjectsUsingBlock:^(NSButton *standardButton, NSUInteger idx, BOOL *stop) {
@@ -224,6 +229,9 @@ static float kASCWindowMinTitleWidth = 0;
         }
     }
 
+    if ( [ASCLinguist isUILayoutDirectionRtl] )
+        [self.view setUserInterfaceLayoutDirection:NSUserInterfaceLayoutDirectionRightToLeft];
+
     [self doLayout];
 }
 
@@ -250,10 +258,17 @@ static float kASCWindowMinTitleWidth = 0;
 }
 
 - (void)doLayout {
+    CGFloat btnContainerWidth = CGRectGetWidth([self.standardButtonsDefaults[0] frame]) + 6.0;
+    CGFloat leftOffset = kASCWindowDefaultTrafficButtonsLeftMargin;
+    if ( [ASCLinguist isUILayoutDirectionRtl] ) {
+        CGFloat windowWidth = CGRectGetWidth([[self view] frame]);
+        leftOffset = windowWidth - kASCWindowDefaultTrafficButtonsLeftMargin - btnContainerWidth * 3;
+    }
+
     void (^layoutStandartButtons)(NSArray *, BOOL) = ^ (NSArray *views, BOOL hidden) {
         [views enumerateObjectsUsingBlock:^(NSView *view, NSUInteger idx, BOOL *stop) {
             NSRect frame = view.frame;
-            frame.origin.x = kASCWindowDefaultTrafficButtonsLeftMargin + idx * (NSWidth(frame) + 6.0);
+            frame.origin.x = leftOffset + idx * btnContainerWidth;
             frame.origin.y = (int)((NSHeight(view.superview.frame) - NSHeight(view.frame)) / 2.0);
             
             [view setFrame:frame];
