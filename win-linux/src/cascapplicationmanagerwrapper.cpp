@@ -217,8 +217,6 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
                 }
 
                 if ( !((pData->get_Param()).find(L"framesize") == std::wstring::npos) ) {
-                    qDebug() << "size:" << pData->get_Param();
-
                     CCefViewWidgetImpl * _impl = ptr->GetWidgetImpl();
                     if ( _impl ) {
                         QJsonParseError jerror;
@@ -236,7 +234,6 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
                                     m_receivers[sid]->onWebAppsFeatures(sid, feature);
                                 else m_pMainWindow->onWebAppsFeatures(sid, feature);
                             }
-                            qDebug() << "cef geometry" << g.width() << g.height();
                         }
                     }
                 }
