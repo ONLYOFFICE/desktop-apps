@@ -144,6 +144,10 @@ l10n.en = {
     settOptDescAUpdateAsk: "You will be notified about all updates steps",
     settRtlMode: "RTL Interface",
     welSlide1Title: "Powerful editors",
+    welDescription: 'Work on documents, spreadsheets, presentations, forms, and PDFs on your computer with ease. Connect to your cloud to share and collaborate: ONLYOFFICE, Nextcloud, ownCloud, Liferay or kDrive.',
+    connect1Description: 'Share and co-edit files together with your co-workers in real time. Enable strict mode for private editing, track changes and review texts, add comments, use the built-in chat and make calls.',
+    connect2Title: 'Connect to your cloud',
+    connect2Description: 'Work in the cloud from your desktop app to access your online files, share them with other users, and work together in real time with awesome collaboration tools in hand.',
 }
 
 

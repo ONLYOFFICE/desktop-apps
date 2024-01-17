@@ -51,19 +51,44 @@
         var _lang = utils.Lang;
 
         var _html = `<div class="action-panel ${args.action}">
-                      <div class="flex-center">
-                        <section class="center-box">
-                          <h3 style="margin-top:0;" l10n>${_lang.welWelcome}</h3>
-                          <h4 class="text-description" l10n>${_lang.welDescr}</h4>
-                          <imagewelcome>
-                          <div class="tools-connect">
-                            <button class="btn btn--landing newportal" l10n>${_lang.btnCreatePortal}</button>
-                            <section class="link-connect">
-                              <label l10n>${_lang.textHavePortal}</label>
-                              <a class="login link" href="#" l10n>${_lang.btnConnect}</a>
+                      <div class="flexbox content-box">
+                         <section class="center-box">
+                              <div class='carousel'>
+                                <figure class='carousel__slidebox'>                                
+                                    <div class='carousel__slide active'>
+                                        <p class='carousel__slide__text title' l10n>${_lang.welWelcome}</p>
+                                        <p class='carousel__slide__text descr' l10n>${_lang.welDescription}</p>
+                                        <svg class='carousel__slide__img'>
+                                            <use xlink:href='#connect3' data-src='welcome'>
+                                        </svg>
+                                    </div>
+                                    <div class='carousel__slide'>
+                                        <p class='carousel__slide__text title' l10n>${_lang.emptySlide1Title}</p>
+                                        <p class='carousel__slide__text descr' l10n>${_lang.connect1Description}</p>
+                                        <svg class='carousel__slide__img'>
+                                            <use xlink:href='#connect1' data-src='connect1'>
+                                        </svg>
+                                    </div>
+                                    <div class='carousel__slide'>
+                                        <p class='carousel__slide__text title' l10n>${_lang.connect2Title}</p>
+                                        <p class='carousel__slide__text descr' l10n>${_lang.connect2Description}</p>
+                                        <svg class='carousel__slide__img'>
+                                            <use xlink:href='#connect2' data-src='connect2'>
+                                        </svg>
+                                    </div>
+                                </figure>
+                                <nav class='carousel__scrolls'>
+                                    <div class='carousel__scroll__btn prev' value='prev'></div>
+                                    <div class='carousel__scroll__btn next' value='next'></div>
+                                </nav>
+                              </div>
+                              <div class="tools-connect">
+                                <button class="btn btn--landing newportal" l10n>${_lang.btnCreatePortal}</button>
+                                <section class="link-connect">
+                                  <label l10n>${_lang.textHavePortal}</label><a class="login link" l10n href="#">${_lang.btnConnect}</a>
+                                </section>
+                              </div>
                             </section>
-                          </div>
-                        </section>
                       </div>
                     </div>`;
 
@@ -83,22 +108,78 @@
     utils.fn.extend(ControllerWelcome.prototype, {
         init: function() {
             baseController.prototype.init.apply(this, arguments);
-
-            const ui_theme = localStorage.getItem('ui-theme');
-            const is_dark_theme = ui_theme == 'theme-dark' || ui_theme == 'theme-contrast-dark';
-            let img = `<svg class='img-welcome'><use href=${!is_dark_theme ? '#welcome-light' : '#welcome-dark'}></svg>`;
-
-            if (window.utils.inParams.osver == 'winxp' || /windows nt 5/i.test(navigator.appVersion)) {
-                img = img.replace(' href=', ' xlink:href=');
-            }
-
-            this.view.tplPage = this.view.tplPage.replace(/<imagewelcome>/, img);
             this.view.render();
+            let carousel = {};
+            var _scrollCarousel = function (direction) {
+                function __check_limits(v, max) {
+                    if ( v < 0 ) return max;
+                    else if ( v > max ) return 0;
+                    else return v;
+                };
 
-            window.CommonEvents.on('theme:changed', name => {
-                const is_dark_theme = name == 'theme-dark';
-                $('svg.img-welcome use', this.view.$panel).attr('href', !is_dark_theme ? '#welcome-light' : '#welcome-dark');
-            });
+                let _activeindex = carousel.$items.filter('.active').index();
+                direction == 'next' ? ++_activeindex : --_activeindex;
+
+                _activeindex = __check_limits(_activeindex, carousel.$items.length - 1);
+
+                let _pre_index = _activeindex - 1,
+                    _pro_index = _activeindex + 1;
+
+                _pre_index = __check_limits(_pre_index, carousel.$items.length - 1);
+                _pro_index = __check_limits(_pro_index, carousel.$items.length - 1);
+
+                carousel.$items.eq(_activeindex).addClass('migrate');
+                if ( direction == 'next' ) {
+                    carousel.$items.filter('.pre-active-w').removeClass('pre-active-w').addClass('migrate');
+                    carousel.$items.eq(_pre_index).removeClass('migrate pre-active-w active pro-active-w').addClass('pre-active-w');
+                } else {
+                    carousel.$items.filter('.pro-active-w').removeClass('pro-active-w').addClass('migrate');
+                    carousel.$items.eq(_pro_index).removeClass('migrate pre-active-w active pro-active-w').addClass('pro-active-w');
+                }
+
+                carousel.$items.eq(_activeindex).removeClass('migrate pre-active-w pro-active-w').addClass('active');
+
+                if ( direction == 'next' )
+                    carousel.$items.eq(_pro_index).removeClass('migrate pre-active-w active pro-active-w').addClass('pro-active-w');
+                else carousel.$items.eq(_pre_index).removeClass('migrate pre-active-w active pro-active-w').addClass('pre-active-w');
+            };
+
+            var _initCarousel = function() {
+                let _$panel = this.view.$panel;
+                carousel.$items = _$panel.find('.carousel__slide');
+                let _activeindex = carousel.$items.filter('.active').index();
+
+               if ( !(navigator.userAgent.indexOf("Windows NT 5.") < 0) ||
+                    !(navigator.userAgent.indexOf("Windows NT 6.0") < 0) )
+                {
+                    $('.carousel', _$panel).addClass('winxp');
+                }
+
+                let _pre_index = _activeindex - 1,
+                    _pro_index = _activeindex + 1;
+
+                if ( _pre_index < 0 ) _pre_index = carousel.$items.length - 1;
+                if ( _pro_index > carousel.$items.length - 1 ) _pro_index = 0;
+                 carousel.$items.eq(_pre_index).addClass('pre-active-w');
+                 carousel.$items.eq(_pro_index).addClass('pro-active-w');
+
+               _$panel.find('.carousel__scrolls > .carousel__scroll__btn')
+                     .on('click', e => {
+                         _scrollCarousel(e.target.getAttribute('value'));
+                     });
+
+                _on_theme_changed(localStorage.getItem('ui-theme-id'));
+            };
+            var _on_theme_changed = function(name,type) {if ( !!type )
+                $('.carousel__slide__img > use').each((i, el) => {
+                    const src = el.getAttribute('data-src');
+                    if ( type == 'dark' )
+                        el.setAttribute('xlink:href', `#${src}-dark`);
+                    else el.setAttribute('xlink:href', `#${src}-light`);
+                });};
+
+            _initCarousel.call(this);
+            window.CommonEvents.on('theme:changed',_on_theme_changed);
 
             return this;
         }
