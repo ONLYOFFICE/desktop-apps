@@ -881,6 +881,7 @@ public:
     }
 
     auto viewerMode() const -> bool {
+        if ( m_panel->data()->hasFrame() ) return true;
         return m_panel->data()->hasFeature(L"viewmode\":true");
     }
 
