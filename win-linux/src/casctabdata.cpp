@@ -180,6 +180,13 @@ void CAscTabData::setFeatures(const wstring& fs)
     if ( hasFeature(L"readonly\":false") ) {
         _is_readonly = false;
     }
+
+    if ( hasFeature(L"hasframe\":true") ) {
+        _has_frame = true;
+    } else
+    if ( hasFeature(L"hasframe\":false") ) {
+        _has_frame = false;
+    }
 }
 
 wstring CAscTabData::features() const
@@ -196,4 +203,9 @@ bool CAscTabData::hasFeature(const wstring& f) const
     }
 
     return false;
+}
+
+bool CAscTabData::hasFrame() const
+{
+    return _has_frame;
 }

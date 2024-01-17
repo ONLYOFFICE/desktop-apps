@@ -876,10 +876,12 @@ public:
     {
         if ( m_panel->data()->features().empty() ) return true;
         else if ( m_panel->data()->hasFeature(L"uitype\":\"fillform") ) return true;
+        else if ( m_panel->data()->hasFrame() ) return true;
         else return !viewerMode() && (m_panel->data()->isLocal() || m_panel->data()->hasFeature(L"titlebuttons\":"));
     }
 
     auto viewerMode() const -> bool {
+        if ( m_panel->data()->hasFrame() ) return true;
         return m_panel->data()->hasFeature(L"viewmode\":true");
     }
 

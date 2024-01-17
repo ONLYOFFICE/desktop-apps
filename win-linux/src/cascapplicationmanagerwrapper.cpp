@@ -216,6 +216,31 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
                         m_receivers[sid]->onWebAppsFeatures(sid,L"\"uitype\":\"fillform\"");
                 }
 
+                if ( !((pData->get_Param()).find(L"framesize") == std::wstring::npos) ) {
+                    qDebug() << "size:" << pData->get_Param();
+
+                    CCefViewWidgetImpl * _impl = ptr->GetWidgetImpl();
+                    if ( _impl ) {
+                        QJsonParseError jerror;
+                        const QJsonDocument jdoc = QJsonDocument::fromJson(QString::fromStdWString(pData->get_Param()).toUtf8(), &jerror);
+
+                        if( jerror.error == QJsonParseError::NoError ) {
+                            const QJsonObject obj = jdoc.object()["framesize"].toObject();
+                            int _frame_w = obj["width"].toInt(),
+                                _frame_h = obj["height"].toInt();
+
+                            QRect g = static_cast<QCefView *>(_impl)->geometry();
+                            if ( g.width() != _frame_w || g.height() != _frame_h ) {
+                                const std::wstring feature = L"\"hasframe\":true";
+                                if ( m_receivers.find(sid) != m_receivers.end() )
+                                    m_receivers[sid]->onWebAppsFeatures(sid, feature);
+                                else m_pMainWindow->onWebAppsFeatures(sid, feature);
+                            }
+                            qDebug() << "cef geometry" << g.width() << g.height();
+                        }
+                    }
+                }
+
                 auto * editor = editorWindowFromViewId(event->get_SenderId());
                 if ( editor && editor->isCustomWindowStyle() ) {
                     QJsonObject json{{"skiptoparea", TOOLBTN_HEIGHT},{"singlewindow",true}};
