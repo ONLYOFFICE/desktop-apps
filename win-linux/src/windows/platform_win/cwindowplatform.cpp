@@ -321,7 +321,7 @@ bool CWindowPlatform::nativeEvent(const QByteArray &eventType, void *message, lo
         m_dpi = (double)HIWORD(msg->wParam)/96;
         GetFrameMetricsForDpi(m_frame, m_dpi, m_isMaximized);
         if (AscAppManager::IsUseSystemScaling()) {
-            if (WindowHelper::isLeftButtonPressed() || (m_scaleChanged && !isMaximized())) {
+            if (WindowHelper::isLeftButtonPressed() || (m_scaleChanged && !m_isMaximized)) {
                 RECT *prefRect = (RECT*)msg->lParam;
                 setGeometry(prefRect->left, prefRect->top, prefRect->right - prefRect->left, prefRect->bottom - prefRect->top);
             }
@@ -329,7 +329,7 @@ bool CWindowPlatform::nativeEvent(const QByteArray &eventType, void *message, lo
                 updateScaling(false);
             });
         } else
-        if (m_scaleChanged && !isMaximized()) {
+        if (m_scaleChanged && !m_isMaximized) {
             RECT *prefRect = (RECT*)msg->lParam;
             setGeometry(prefRect->left, prefRect->top, prefRect->right - prefRect->left, prefRect->bottom - prefRect->top);
         }
