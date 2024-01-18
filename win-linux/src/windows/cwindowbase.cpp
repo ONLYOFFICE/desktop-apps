@@ -116,15 +116,28 @@ void CWindowBase::updateScaling(bool resize)
     }
 }
 
-void CWindowBase::setWindowColors(const QColor& background, const QColor& border)
+void CWindowBase::setWindowColors(const QColor& background, const QColor& border, bool isActive)
 {
     m_brdColor = border;
-    setStyleSheet(QString("QMainWindow{border:1px solid %1;"
+    m_bkgColor = background;
 #ifdef _WIN32
-                          "border-bottom:2px solid %1;"
+    QString css;
+    if (Utils::getWinVersion() <= Utils::WinVer::Win7) {
+        css = QString("QMainWindow{background-color: %1;}").arg(background.name());
+    } else
+    if (Utils::getWinVersion() < Utils::WinVer::Win10) {
+        css = QString("QMainWindow{border:1px solid %1; background-color: %2;}").arg(border.name(), background.name());
+    } else
+    if (Utils::getWinVersion() == Utils::WinVer::Win10) {
+        QColor brdColor = WindowHelper::getColorizationColor(isActive);
+        css = QString("QMainWindow{border-top: 1px solid %1; background-color: %2;}").arg(brdColor.name(), background.name());
+    } else {
+        css = QString("QMainWindow{background-color: %1;}").arg(background.name());
+    }
+#else
+    QString css = QString("QMainWindow{border:1px solid %1; background-color: %2;}").arg(border.name(), background.name());
 #endif
-                          "background-color: %2;"
-                          "}").arg(border.name(), background.name()));
+    setStyleSheet(css);
 }
 
 void CWindowBase::applyTheme(const std::wstring& theme)
@@ -132,7 +145,7 @@ void CWindowBase::applyTheme(const std::wstring& theme)
     Q_UNUSED(theme)
     QColor background = GetColorByRole(ecrWindowBackground);
     QColor border = GetColorByRole(ecrWindowBorder);
-    setWindowColors(background, border);
+    setWindowColors(background, border, isActiveWindow());
 }
 
 /** Protected **/

@@ -36,8 +36,12 @@
 #include <QWidget>
 #include <QWindow>
 #include <Windows.h>
+#include <Windowsx.h>
 #include <QPushButton>
 #include <QCoreApplication>
+#include "utils.h"
+
+#define RESIZE_AREA_PART 0.14
 
 
 class Caption: public QWidget
@@ -45,18 +49,29 @@ class Caption: public QWidget
 public:
     Caption(QWidget *parent = Q_NULLPTR, Qt::WindowFlags f = Qt::WindowFlags()):
         QWidget(parent, f)
-    {}
+    {
+        hwnd_root = ::GetAncestor((HWND)winId(), GA_ROOT);
+    }
 
 private:
+    HWND hwnd_root;
+
+    bool isResizingAvailable() {
+        return Utils::getWinVersion() >= Utils::WinVer::Win10 && !IsZoomed(hwnd_root);
+    }
+
+    bool isPointInResizeArea(int posY) {
+        return posY <= RESIZE_AREA_PART * height();
+    }
+
     bool postMsg(DWORD cmd) {
         POINT pt;
         ::GetCursorPos(&pt);
         QPoint pos = mapFromGlobal(QPoint(int(pt.x), int(pt.y)));
         QPushButton *pushButton = childAt(pos) ? qobject_cast<QPushButton*>(childAt(pos)) : nullptr;
         if (!pushButton) {
-            HWND hWnd = ::GetAncestor((HWND)(window()->windowHandle()->winId()), GA_ROOT);
             ::ReleaseCapture();
-            ::PostMessage(hWnd, cmd, HTCAPTION, POINTTOPOINTS(pt));
+            ::PostMessage(hwnd_root, cmd, isResizingAvailable() && isPointInResizeArea(pos.y()) ? HTTOP : HTCAPTION, POINTTOPOINTS(pt));
             QCoreApplication::postEvent(parent(), new QEvent(QEvent::MouseButtonPress));
             return true;
         }
@@ -81,6 +96,15 @@ private:
         case WM_LBUTTONDBLCLK: {
             if (postMsg(WM_NCLBUTTONDBLCLK))
                 return true;
+            break;
+        }
+        case WM_MOUSEMOVE: {
+            if (isResizingAvailable()) {
+                int y = GET_Y_LPARAM(msg->lParam);
+                QPoint pos = QPoint(GET_X_LPARAM(msg->lParam), y);
+                QPushButton *pushButton = childAt(pos) ? qobject_cast<QPushButton*>(childAt(pos)) : nullptr;
+                setCursor(!pushButton && isPointInResizeArea(y) ? Qt::SizeVerCursor : Qt::ArrowCursor);
+            }
             break;
         }
         default:
