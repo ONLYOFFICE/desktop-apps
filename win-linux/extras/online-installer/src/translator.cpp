@@ -25,7 +25,7 @@ bool isValidLocaleCharacter(wchar_t c)
 wstring getPrimaryLang(const wstring &lang)
 {
     if (lang.empty()) {
-        NS_Logger::WriteLog(ADVANCED_ERROR_MESSAGE);
+        NS_Logger::WriteLog(_T("An error occurred: ") + wstring(_T(__FUNCTION__)));
         return L"en";
     }
     size_t pos = lang.find(L'_');
@@ -37,7 +37,7 @@ wstring getPrimaryLang(const wstring &lang)
         if (_lang.length() == 2)
             return _lang;
     }
-    NS_Logger::WriteLog(ADVANCED_ERROR_MESSAGE);
+    NS_Logger::WriteLog(_T("An error occurred: ") + wstring(_T(__FUNCTION__)));
     return L"en";
 }
 
@@ -51,7 +51,7 @@ wstring StrToWStr(const char* str)
         if (outSize > 0)
             wstr = pDestBuf;
         else
-            NS_Logger::WriteLog(DEFAULT_ERROR_MESSAGE);
+            NS_Logger::WriteLog(_T("An error occurred: ") + wstring(_T(__FUNCTION__)));
         delete[] pDestBuf;
     }
     return wstr;
