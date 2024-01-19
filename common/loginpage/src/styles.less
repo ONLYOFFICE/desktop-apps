@@ -91,6 +91,11 @@ h4 {
     float: left;
     border-right: @scaled-one-px solid @border-tabbar;
 
+    .rtl & {
+        border-right: 0 none;
+        border-left: @scaled-one-px solid @border-tabbar;
+    }
+
     @media screen and (max-width: 1000px) {
         /*width: 32%;*/
         /*max-width: @col-width;*/
