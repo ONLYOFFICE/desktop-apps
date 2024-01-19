@@ -470,9 +470,9 @@
     <ROW Dialog_="ExtendedInstallDlg" Control="MediaButtonCheckBox" Type="CheckBox" X="53" Y="109" Width="162" Height="11" Attributes="3" Property="PLAYER" Text="Install Media" Order="1000" TextLocId="Control.Text.ExtendedInstallDlg#MediaButtonCheckBox"/>
     <ROW Dialog_="ExtendedInstallDlg" Control="GalleryButtonCheckBox" Type="CheckBox" X="53" Y="131" Width="162" Height="11" Attributes="3" Property="GALLERY" Text="Install Gallery" Order="1100" TextLocId="Control.Text.ExtendedInstallDlg#GalleryButtonCheckBox"/>
     <ROW Dialog_="FatalError" Control="Bitmap" Type="Bitmap" X="0" Y="0" Width="370" Height="234" Attributes="1048577" Text="background.bmp" Order="300" MsiKey="FatalError#Bitmap"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control="Next" Type="PushButton" X="236" Y="243" Width="56" Height="17" Attributes="3" Text="[ButtonText_Next]" Order="100" Options="1"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control="Cancel" Type="PushButton" X="304" Y="243" Width="56" Height="17" Attributes="3" Text="[ButtonText_Cancel]" Order="200" Options="1"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control="Back" Type="PushButton" X="180" Y="243" Width="56" Height="17" Attributes="3" Text="[ButtonText_Back]" Order="300" Options="1"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control="Next" Type="PushButton" X="236" Y="243" Width="56" Height="17" Attributes="3" Text="[ButtonText_Next]" Order="100" TextLocId="-" Options="1"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control="Cancel" Type="PushButton" X="304" Y="243" Width="56" Height="17" Attributes="3" Text="[ButtonText_Cancel]" Order="200" TextLocId="-" Options="1"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control="Back" Type="PushButton" X="180" Y="243" Width="56" Height="17" Attributes="3" Text="[ButtonText_Back]" Order="300" TextLocId="-" Options="1"/>
     <ROW Dialog_="FileAssociationsCustomDlg" Control="BannerBitmap" Type="Bitmap" X="0" Y="0" Width="370" Height="44" Attributes="1048577" Text="banner.png" Order="400"/>
     <ROW Dialog_="FileAssociationsCustomDlg" Control="BannerLine" Type="Line" X="0" Y="44" Width="372" Height="0" Attributes="1" Order="500"/>
     <ROW Dialog_="FileAssociationsCustomDlg" Control="BottomLine" Type="Line" X="5" Y="234" Width="368" Height="0" Attributes="1" Order="600"/>
