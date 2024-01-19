@@ -47,7 +47,8 @@ CWin11Snap::CWin11Snap(QPushButton *btn) :
     SetWindowLongPtr(m_hWnd, GWLP_USERDATA, reinterpret_cast<LONG_PTR>(this));
     SetLayeredWindowAttributes(m_hWnd, 0, 0x00, LWA_ALPHA);
 
-    m_pTopLevelWidget = m_pBtn->nativeParentWidget();
+    HWND root = GetAncestor((HWND)m_pBtn->winId(), GA_ROOT);
+    m_pTopLevelWidget = QWidget::find((WId)root);
     m_pBtn->installEventFilter(this);
     m_pBtn->setAttribute(Qt::WA_Hover);
     m_pTimer = new QTimer(this);
