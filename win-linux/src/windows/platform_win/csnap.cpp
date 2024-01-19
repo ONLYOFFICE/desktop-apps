@@ -3,7 +3,7 @@
 #include <QEvent>
 
 #define WINDOW_CLASS_NAME L"CWin11Snap"
-#define SNAP_POPUP_NAME L"PopupHost"
+#define SNAP_POPUP_NAME L"DesktopWindowXamlSource"
 #define DELAY 500
 #define ALPHA 0x30
 #define COLOR 0x00ffffff
@@ -163,7 +163,7 @@ void CWin11Snap::snapPopupEventProc(HWINEVENTHOOK hook, DWORD event, HWND hwnd, 
 {
     if (event == EVENT_OBJECT_DESTROY) {
         const int len = sizeof(SNAP_POPUP_NAME)/sizeof(WCHAR);
-        WCHAR title[len + 1] = {0};
+        WCHAR title[len] = {0};
         GetWindowText(hwnd, title, len);
         if (lstrcmpi(title, SNAP_POPUP_NAME) == 0 && m_hookMap.contains(hook))
             ShowWindow(m_hookMap[hook], SW_HIDE);
