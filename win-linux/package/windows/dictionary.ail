@@ -55,20 +55,6 @@
     <STRING lang="pt_BR" value="Selecione as extensões que deseja associar ao [ProductName]"/>
     <STRING lang="sl" value="Izberite razširitve, ki jih želite povezati z namiznimi urejevalniki [ProductName]"/>
   </ENTRY>
-  <ENTRY id="Control.Text.FileAssociationsDlg#Deselect_all_button">
-    <STRING lang="cs" value="Zrušit výběr všech"/>
-    <STRING lang="pt" value="Desselecionar tudo"/>
-    <STRING lang="pt_BR" value="Desmarcar todos"/>
-    <STRING lang="ru" value="Отменить всё"/>
-    <STRING lang="sl" value="Počistite vse"/>
-  </ENTRY>
-  <ENTRY id="Control.Text.FileAssociationsDlg#Select_all_button">
-    <STRING lang="cs" value="Vybrat vše"/>
-    <STRING lang="pt" value="Selecionar tudo"/>
-    <STRING lang="pt_BR" value="Selecionar tudo"/>
-    <STRING lang="ru" value="Выбрать всё"/>
-    <STRING lang="sl" value="Izberite vse"/>
-  </ENTRY>
   <ENTRY id="Control.Text.FileAssociationsDlg#Text">
     <STRING lang="cs" value="Vyberte typy souborů, které chcete automaticky otevírat pomocí [ProductName]:"/>
     <STRING lang="pt" value="Selecione os tipos de ficheiros que pretende abrir automaticamente com [ProductName]:"/>
@@ -419,5 +405,19 @@
     <STRING lang="pt_BR" value="The previous version of [|ProductName] detected, please click &apos;OK&apos; button to uninstall it, or &apos;Cancel&apos; to quit setup."/>
     <STRING lang="ru" value="Обнаружена предыдущая версия [|ProductName], нажмите кнопку &apos;OK&apos; чтобы удалить её, или &apos;Отмена&apos; чтобы выйти из программы инсталляции."/>
     <STRING lang="sl" value="The previous version of [|ProductName] detected, please click &apos;OK&apos; button to uninstall it, or &apos;Cancel&apos; to quit setup."/>
+  </ENTRY>
+  <ENTRY id="ButtonText_DeselectAll">
+    <STRING lang="cs" value="Zrušit výběr všech"/>
+    <STRING lang="pt" value="Desselecionar tudo"/>
+    <STRING lang="pt_BR" value="Desmarcar todos"/>
+    <STRING lang="ru" value="Отменить всё"/>
+    <STRING lang="sl" value="Počistite vse"/>
+  </ENTRY>
+  <ENTRY id="ButtonText_SelectAll">
+    <STRING lang="cs" value="Vybrat vše"/>
+    <STRING lang="pt" value="Selecionar tudo"/>
+    <STRING lang="pt_BR" value="Selecionar tudo"/>
+    <STRING lang="ru" value="Выбрать всё"/>
+    <STRING lang="sl" value="Izberite vse"/>
   </ENTRY>
 </DICTIONARY>
