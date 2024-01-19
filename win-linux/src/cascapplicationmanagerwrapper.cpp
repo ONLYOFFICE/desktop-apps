@@ -227,8 +227,10 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
                             int _frame_w = obj["width"].toInt(),
                                 _frame_h = obj["height"].toInt();
 
-                            QRect g = static_cast<QCefView *>(_impl)->geometry();
-                            if ( g.width() != _frame_w || g.height() != _frame_h ) {
+                            QCefView * view = static_cast<QCefView *>(_impl);
+                            const QSize s = view->geometry().size() / Utils::getScreenDpiRatioByWidget(view);
+
+                            if ( abs(s.width() - _frame_w) > 1 || abs(s.height() - _frame_h) > 1 ) {
                                 const std::wstring feature = L"\"hasframe\":true";
                                 if ( m_receivers.find(sid) != m_receivers.end() )
                                     m_receivers[sid]->onWebAppsFeatures(sid, feature);
