@@ -64,12 +64,16 @@ private:
         return posY <= RESIZE_AREA_PART * height();
     }
 
+    QPushButton* buttonAtPos(const QPoint &pos) {
+        QWidget *child = childAt(pos);
+        return child ? qobject_cast<QPushButton*>(child) : nullptr;
+    }
+
     bool postMsg(DWORD cmd) {
         POINT pt;
         ::GetCursorPos(&pt);
         QPoint pos = mapFromGlobal(QPoint(int(pt.x), int(pt.y)));
-        QPushButton *pushButton = childAt(pos) ? qobject_cast<QPushButton*>(childAt(pos)) : nullptr;
-        if (!pushButton) {
+        if (!buttonAtPos(pos)) {
             ::ReleaseCapture();
             ::PostMessage(hwnd_root, cmd, isResizingAvailable() && isPointInResizeArea(pos.y()) ? HTTOP : HTCAPTION, POINTTOPOINTS(pt));
             QCoreApplication::postEvent(parent(), new QEvent(QEvent::MouseButtonPress));
@@ -78,7 +82,7 @@ private:
         return false;
     }
 
-    bool nativeEvent(const QByteArray &eventType, void *message, long *result)
+    virtual bool nativeEvent(const QByteArray &eventType, void *message, long *result) override
     {
     #if (QT_VERSION == QT_VERSION_CHECK(5, 11, 1))
         MSG* msg = *reinterpret_cast<MSG**>(message);
@@ -101,9 +105,7 @@ private:
         case WM_MOUSEMOVE: {
             if (isResizingAvailable()) {
                 int y = GET_Y_LPARAM(msg->lParam);
-                QPoint pos = QPoint(GET_X_LPARAM(msg->lParam), y);
-                QPushButton *pushButton = childAt(pos) ? qobject_cast<QPushButton*>(childAt(pos)) : nullptr;
-                setCursor(!pushButton && isPointInResizeArea(y) ? Qt::SizeVerCursor : Qt::ArrowCursor);
+                setCursor(!buttonAtPos(QPoint(GET_X_LPARAM(msg->lParam), y)) && isPointInResizeArea(y) ? Qt::SizeVerCursor : Qt::ArrowCursor);
             }
             break;
         }
