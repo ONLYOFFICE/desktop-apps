@@ -422,6 +422,10 @@ bool CWindowPlatform::nativeEvent(const QByteArray &eventType, void *message, lo
     }
 
     case WM_SETTINGCHANGE: {
+        if (msg->wParam == SPI_SETWINARRANGING) {
+            if (Utils::getWinVersion() > WinVer::Win10 && m_boxTitleBtns)
+                SendMessageW((HWND)m_boxTitleBtns->winId(), WM_SETTINGCHANGE, 0, 0);
+        } else
         if (msg->wParam == SPI_SETWORKAREA) {
             static RECT oldWorkArea = {0,0,0,0};
             RECT workArea; // Taskbar show/hide detection

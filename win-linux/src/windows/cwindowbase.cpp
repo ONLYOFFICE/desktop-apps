@@ -194,12 +194,12 @@ QWidget* CWindowBase::createTopPanel(QWidget *parent)
             m_pTopButtons.push_back(btn);
             layoutBtns->addWidget(btn);
         }
-#if defined (_WIN32) && !defined (__OS_WIN_XP)
-        if (Utils::getWinVersion() >= Utils::WinVer::Win11) {
-            CWin11Snap *snap = new CWin11Snap(m_pTopButtons[BtnType::Btn_Maximize]);
-            Q_UNUSED(snap)
-        }
-#endif
+//#if defined (_WIN32) && !defined (__OS_WIN_XP)
+//        if (Utils::getWinVersion() >= Utils::WinVer::Win11) {
+//            CWin11Snap *snap = new CWin11Snap(m_pTopButtons[BtnType::Btn_Maximize]);
+//            Q_UNUSED(snap)
+//        }
+//#endif
     }
     return _boxTitleBtns;
 }

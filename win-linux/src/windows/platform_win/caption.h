@@ -37,6 +37,7 @@
 #include <QWindow>
 #include <Windows.h>
 #include <Windowsx.h>
+#include <QStyle>
 #include <QPushButton>
 #include <QCoreApplication>
 #include "utils.h"
@@ -51,10 +52,18 @@ public:
         QWidget(parent, f)
     {
         hwnd_root = ::GetAncestor((HWND)winId(), GA_ROOT);
+        snapLayoutAllowed = isArrangingAllowed();
     }
 
 private:
     HWND hwnd_root;
+    bool snapLayoutAllowed = false;
+
+    bool isArrangingAllowed() {
+        BOOL arranging = FALSE;
+        SystemParametersInfoA(SPI_GETWINARRANGING, 0, &arranging, 0);
+        return (arranging == TRUE);
+    }
 
     bool isResizingAvailable() {
         return Utils::getWinVersion() >= Utils::WinVer::Win10 && !IsZoomed(hwnd_root);
@@ -64,9 +73,20 @@ private:
         return posY <= RESIZE_AREA_PART * height();
     }
 
+    QPoint cursorPos() {
+        POINT pt;
+        ::GetCursorPos(&pt);
+        return mapFromGlobal(QPoint(pt.x, pt.y));
+    }
+
     QPushButton* buttonAtPos(const QPoint &pos) {
         QWidget *child = childAt(pos);
         return child ? qobject_cast<QPushButton*>(child) : nullptr;
+    }
+
+    QPushButton* buttonMaxUnderMouse() {
+        QPushButton *btn = buttonAtPos(cursorPos());
+        return (btn && btn->objectName() == "toolButtonMaximize") ? btn : nullptr;
     }
 
     bool postMsg(DWORD cmd) {
@@ -107,6 +127,54 @@ private:
                 int y = GET_Y_LPARAM(msg->lParam);
                 setCursor(!buttonAtPos(QPoint(GET_X_LPARAM(msg->lParam), y)) && isPointInResizeArea(y) ? Qt::SizeVerCursor : Qt::ArrowCursor);
             }
+            break;
+        }
+        case WM_NCLBUTTONDOWN: {
+            if (Utils::getWinVersion() < Utils::WinVer::Win11)
+                break;
+            if (QPushButton *btn = buttonMaxUnderMouse()) {
+                btn->setProperty("hovered", false);
+                btn->setProperty("pressed", true);
+                btn->style()->polish(btn);
+                btn->repaint();
+            }
+            break;
+        }
+        case WM_TIMER: {
+            QPushButton *btn = buttonMaxUnderMouse();
+            if (!btn) {
+                KillTimer(msg->hwnd, msg->wParam);
+                if (QPushButton *btn = findChild<QPushButton*>("toolButtonMaximize")) {
+                    btn->setProperty("hovered", false);
+                    btn->setProperty("pressed", false);
+                    btn->style()->polish(btn);
+                }
+            }
+            break;
+        }
+        case WM_NCHITTEST: {
+            if (Utils::getWinVersion() < Utils::WinVer::Win11 || !snapLayoutAllowed)
+                break;
+            *result = 0;
+            if (QPushButton *btn = buttonMaxUnderMouse()) {
+                if (!btn->property("hovered").toBool()) {
+                    btn->setProperty("hovered", true);
+                    btn->style()->polish(btn);
+                    SetTimer(msg->hwnd, 1, 200, NULL);
+                }
+                *result = HTMAXBUTTON;
+            }
+            return (*result != 0);
+        }
+        case WM_CAPTURECHANGED: {
+            if (Utils::getWinVersion() < Utils::WinVer::Win11)
+                break;
+            if (QPushButton *btn = buttonMaxUnderMouse())
+                btn->click();
+            break;
+        }
+        case WM_SETTINGCHANGE: {
+            snapLayoutAllowed = isArrangingAllowed();
             break;
         }
         default:
