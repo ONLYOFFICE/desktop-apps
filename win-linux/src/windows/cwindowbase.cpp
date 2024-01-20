@@ -37,9 +37,9 @@
 #include "defines.h"
 #ifdef _WIN32
 # include "windows/platform_win/caption.h"
-# ifndef __OS_WIN_XP
-#  include "windows/platform_win/csnap.h"
-# endif
+//# ifndef __OS_WIN_XP
+//#  include "windows/platform_win/csnap.h"
+//# endif
 #endif
 #include <QApplication>
 #include <QHBoxLayout>
