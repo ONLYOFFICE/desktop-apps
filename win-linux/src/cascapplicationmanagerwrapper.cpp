@@ -1752,6 +1752,17 @@ bool CAscApplicationManagerWrapper::applySettings(const wstring& wstrjson)
         if ( _user_newname.isEmpty() )
             _user_newname = QString::fromStdWString(Utils::systemUserName());
 
+        if ( objRoot.contains("rtl") ) {
+            _reg_user.setValue("forcedRtl", objRoot["rtl"].toBool(false));
+
+            /*
+             * show message and relaunch app
+            */
+        } else {
+            _reg_user.remove("forcedRtl");
+        }
+
+
         QString _lang_id = CLangater::getCurrentLangCode();
         if ( objRoot.contains("langid") ) {
             QString l = objRoot.value("langid").toString();
@@ -1787,16 +1798,6 @@ bool CAscApplicationManagerWrapper::applySettings(const wstring& wstrjson)
 
         if ( objRoot.contains("spellcheckdetect") ) {
             setUserSettings(L"spell-check-input-mode", objRoot["spellcheckdetect"].toString() == "off" ? L"0" : L"default");
-        }
-
-        if ( objRoot.contains("rtl") ) {
-            _reg_user.setValue("forcedRtl", objRoot["rtl"].toBool(false));
-
-            /*
-             * show message and relaunch app
-            */
-        } else {
-            _reg_user.remove("forcedRtl");
         }
 
         wstring params = QString("lang=%1&username=%3&location=%2")

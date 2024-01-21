@@ -635,15 +635,18 @@
                     }
 
                     if ( opts.rtl !== undefined ) {
-                        $chRtl = $('#sett-box-rtl-mode', $panel).parent().show().find('#sett-rtl-mode');
-                        $chRtl.prop('checked', !!opts.rtl)
-                            .on('change', e => {
-                                $btnApply.prop('disabled') && $btnApply.prop('disabled', false);
-                            });
+                        if ( !$chRtl || $chRtl.prop('checked') != opts.rtl ) {
+                            $chRtl = $('#sett-box-rtl-mode', $panel).parent().show().find('#sett-rtl-mode');
+                            $chRtl.prop('checked', !!opts.rtl)
+                                .on('change', e => {
+                                    $btnApply.prop('disabled') && $btnApply.prop('disabled', false);
+                                });
 
-                        if ( opts.rtl ) {
-                            document.body.setAttribute('dir', 'rtl');
-                            document.body.classList.add('rtl');
+                            if ( opts.rtl ) {
+                                document.body.setAttribute('dir', 'rtl');
+                                document.body.classList.add('rtl');
+                            }
+
                         }
                     }
 
