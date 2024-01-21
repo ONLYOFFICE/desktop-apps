@@ -264,7 +264,9 @@ void CWindowPlatform::adjustGeometry()
             mrg = QMargins(border, border, border, border);
         } else
         if (Utils::getWinVersion() == WinVer::Win10) {
-            mrg = QMargins(0, MAIN_WINDOW_BORDER_WIDTH, 0, 0);
+            int brdWidth = 0;
+            SystemParametersInfo(SPI_GETBORDER, 0, &brdWidth, 0);
+            mrg = QMargins(0, brdWidth, 0, 0);
         }
         m_resAreaWidth = mrg.top();
     }
