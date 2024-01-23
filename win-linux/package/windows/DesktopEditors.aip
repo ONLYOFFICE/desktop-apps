@@ -48,15 +48,15 @@
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="ONLYOFFICE Desktop Editors"/>
     <ROW Property="ProductVersion" Value="0.0.0.0" Options="32"/>
-    <ROW Property="REGISTER_CSV" Value="0" Type="4" ValueLocId="-"/>
-    <ROW Property="REGISTER_DJVU" Value="0" Type="4" ValueLocId="-"/>
+    <ROW Property="REGISTER_CSV" Value="1" Type="4" ValueLocId="-"/>
+    <ROW Property="REGISTER_DJVU" Value="1" Type="4" ValueLocId="-"/>
     <ROW Property="REGISTER_DOC" Value="1" Type="4" ValueLocId="-"/>
     <ROW Property="REGISTER_DOCX" Value="1" Type="4" ValueLocId="-"/>
     <ROW Property="REGISTER_DOCXF" Value="1" Type="4" ValueLocId="-"/>
     <ROW Property="REGISTER_DOTX" Value="1" Type="4" ValueLocId="-"/>
-    <ROW Property="REGISTER_EPUB" Value="0" Type="4" ValueLocId="-"/>
-    <ROW Property="REGISTER_FB2" Value="0" Type="4" ValueLocId="-"/>
-    <ROW Property="REGISTER_HTML" Value="0" Type="4" ValueLocId="-"/>
+    <ROW Property="REGISTER_EPUB" Value="1" Type="4" ValueLocId="-"/>
+    <ROW Property="REGISTER_FB2" Value="1" Type="4" ValueLocId="-"/>
+    <ROW Property="REGISTER_HTML" Value="1" Type="4" ValueLocId="-"/>
     <ROW Property="REGISTER_ODP" Value="1" Type="4" ValueLocId="-"/>
     <ROW Property="REGISTER_ODS" Value="1" Type="4" ValueLocId="-"/>
     <ROW Property="REGISTER_ODT" Value="1" Type="4" ValueLocId="-"/>
@@ -64,20 +64,20 @@
     <ROW Property="REGISTER_OTP" Value="1" Type="4" ValueLocId="-"/>
     <ROW Property="REGISTER_OTS" Value="1" Type="4" ValueLocId="-"/>
     <ROW Property="REGISTER_OTT" Value="1" Type="4" ValueLocId="-"/>
-    <ROW Property="REGISTER_PDF" Value="0" Type="4" ValueLocId="-"/>
+    <ROW Property="REGISTER_PDF" Value="1" Type="4" ValueLocId="-"/>
     <ROW Property="REGISTER_POTX" Value="1" Type="4" ValueLocId="-"/>
     <ROW Property="REGISTER_PPS" Value="1" Type="4" ValueLocId="-"/>
     <ROW Property="REGISTER_PPSX" Value="1" Type="4" ValueLocId="-"/>
     <ROW Property="REGISTER_PPT" Value="1" Type="4" ValueLocId="-"/>
     <ROW Property="REGISTER_PPTX" Value="1" Type="4" ValueLocId="-"/>
     <ROW Property="REGISTER_PROTOCOL" Value="1" Type="4" ValueLocId="-"/>
-    <ROW Property="REGISTER_RTF" Value="0" Type="4" ValueLocId="-"/>
-    <ROW Property="REGISTER_TXT" Value="0" Type="4" ValueLocId="-"/>
+    <ROW Property="REGISTER_RTF" Value="1" Type="4" ValueLocId="-"/>
+    <ROW Property="REGISTER_TXT" Value="1" Type="4" ValueLocId="-"/>
     <ROW Property="REGISTER_XLS" Value="1" Type="4" ValueLocId="-"/>
     <ROW Property="REGISTER_XLSX" Value="1" Type="4" ValueLocId="-"/>
     <ROW Property="REGISTER_XLTX" Value="1" Type="4" ValueLocId="-"/>
-    <ROW Property="REGISTER_XML" Value="0" Type="4" ValueLocId="-"/>
-    <ROW Property="REGISTER_XPS" Value="0" Type="4" ValueLocId="-"/>
+    <ROW Property="REGISTER_XML" Value="1" Type="4" ValueLocId="-"/>
+    <ROW Property="REGISTER_XPS" Value="1" Type="4" ValueLocId="-"/>
     <ROW Property="RUNAPPLICATION" Value="1" Type="4"/>
     <ROW Property="SHORTCUT_FOLDER_NAME" Value="ONLYOFFICE"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND;UPGRADE_1"/>
@@ -508,8 +508,8 @@
     <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_xps" Type="CheckBox" X="275" Y="180" Width="50" Height="13" Attributes="3" Property="REGISTER_XPS" Text=".xps" Order="3600" TextLocId="-"/>
     <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_docxf" Type="CheckBox" X="35" Y="200" Width="50" Height="13" Attributes="3" Property="REGISTER_DOCXF" Text=".docxf" Order="3700" TextLocId="-"/>
     <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_oform" Type="CheckBox" X="95" Y="200" Width="50" Height="13" Attributes="3" Property="REGISTER_OFORM" Text=".oform" Order="3800" TextLocId="-"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control="Select_all_button" Type="PushButton" X="215" Y="211" Width="56" Height="17" Attributes="2" Text="Select all" Order="3900" TextLocId="Control.Text.FileAssociationsDlg#Select_all_button"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control="Deselect_all_button" Type="PushButton" X="272" Y="211" Width="56" Height="17" Attributes="2" Text="Deselect all" Order="4000" TextLocId="Control.Text.FileAssociationsDlg#Deselect_all_button"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control="PushButton_SelectAll" Type="PushButton" X="200" Y="210" Width="80" Height="17" Attributes="3" Text="Select All" Order="3900" TextLocId="ButtonText_SelectAll"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control="PushButton_DeselectAll" Type="PushButton" X="280" Y="210" Width="80" Height="17" Attributes="3" Text="Deselect All" Order="4000" TextLocId="ButtonText_DeselectAll"/>
     <ROW Dialog_="FilesInUse" Control="BannerBitmap" Type="Bitmap" X="0" Y="0" Width="370" Height="44" Attributes="1048577" Text="banner.png" Order="400" MsiKey="FilesInUse#BannerBitmap"/>
     <ROW Dialog_="FilesInUse" Control="Title" Type="Text" X="15" Y="6" Width="200" Height="15" Attributes="196611" Text="Files in Use" TextStyle="[DlgTitleFont]" Order="600" TextLocId="Control.Text.FilesInUse#Title" MsiKey="FilesInUse#Title"/>
     <ROW Dialog_="FilesInUse" Control="Text" Type="Text" X="20" Y="55" Width="330" Height="30" Attributes="3" Text="The following applications are using files that need to be updated by this setup. You can either close the applications and then click &quot;Retry&quot;, or click &quot;Ignore&quot; so that the installer continues the installation and replaces these files when your system restarts." Order="700" TextLocId="Control.Text.FilesInUse#Text" MsiKey="FilesInUse#Text"/>
@@ -641,6 +641,64 @@
     <ROW Dialog_="FileAssociationsCustomDlg" Control_="Cancel" Event="SpawnDialog" Argument="CancelDlg" Condition="1" Ordering="100"/>
     <ROW Dialog_="FileAssociationsCustomDlg" Control_="Next" Event="NewDialog" Argument="VerifyReadyDlg" Condition="AI_INSTALL" Ordering="1"/>
     <ROW Dialog_="FileAssociationsCustomDlg" Control_="Back" Event="NewDialog" Argument="ShortcutsDlg" Condition="AI_INSTALL" Ordering="1"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_DOC]" Argument="1" Condition="AI_INSTALL" Ordering="0"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_DOCX]" Argument="1" Condition="AI_INSTALL" Ordering="1"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_DOTX]" Argument="1" Condition="AI_INSTALL" Ordering="2"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_ODT]" Argument="1" Condition="AI_INSTALL" Ordering="3"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_OTT]" Argument="1" Condition="AI_INSTALL" Ordering="4"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_XLS]" Argument="1" Condition="AI_INSTALL" Ordering="5"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_XLSX]" Argument="1" Condition="AI_INSTALL" Ordering="6"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_XLTX]" Argument="1" Condition="AI_INSTALL" Ordering="7"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_ODS]" Argument="1" Condition="AI_INSTALL" Ordering="8"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_OTS]" Argument="1" Condition="AI_INSTALL" Ordering="9"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_PPT]" Argument="1" Condition="AI_INSTALL" Ordering="10"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_PPTX]" Argument="1" Condition="AI_INSTALL" Ordering="11"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_POTX]" Argument="1" Condition="AI_INSTALL" Ordering="12"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_ODP]" Argument="1" Condition="AI_INSTALL" Ordering="13"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_OTP]" Argument="1" Condition="AI_INSTALL" Ordering="14"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_PPS]" Argument="1" Condition="AI_INSTALL" Ordering="15"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_PPSX]" Argument="1" Condition="AI_INSTALL" Ordering="16"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_DJVU]" Argument="1" Condition="AI_INSTALL" Ordering="17"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_EPUB]" Argument="1" Condition="AI_INSTALL" Ordering="18"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_FB2]" Argument="1" Condition="AI_INSTALL" Ordering="19"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_PDF]" Argument="1" Condition="AI_INSTALL" Ordering="20"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_RTF]" Argument="1" Condition="AI_INSTALL" Ordering="21"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_TXT]" Argument="1" Condition="AI_INSTALL" Ordering="22"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_CSV]" Argument="1" Condition="AI_INSTALL" Ordering="23"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_HTML]" Argument="1" Condition="AI_INSTALL" Ordering="24"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_XML]" Argument="1" Condition="AI_INSTALL" Ordering="25"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_XPS]" Argument="1" Condition="AI_INSTALL" Ordering="26"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_DOCXF]" Argument="1" Condition="AI_INSTALL" Ordering="27"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_OFORM]" Argument="1" Condition="AI_INSTALL" Ordering="28"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_DOC]" Argument="{}" Condition="AI_INSTALL" Ordering="0"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_DOCX]" Argument="{}" Condition="AI_INSTALL" Ordering="1"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_DOTX]" Argument="{}" Condition="AI_INSTALL" Ordering="2"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_ODT]" Argument="{}" Condition="AI_INSTALL" Ordering="3"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_OTT]" Argument="{}" Condition="AI_INSTALL" Ordering="4"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_XLS]" Argument="{}" Condition="AI_INSTALL" Ordering="5"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_XLSX]" Argument="{}" Condition="AI_INSTALL" Ordering="6"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_XLTX]" Argument="{}" Condition="AI_INSTALL" Ordering="7"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_ODS]" Argument="{}" Condition="AI_INSTALL" Ordering="8"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_OTS]" Argument="{}" Condition="AI_INSTALL" Ordering="9"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_PPT]" Argument="{}" Condition="AI_INSTALL" Ordering="10"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_PPTX]" Argument="{}" Condition="AI_INSTALL" Ordering="11"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_POTX]" Argument="{}" Condition="AI_INSTALL" Ordering="12"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_ODP]" Argument="{}" Condition="AI_INSTALL" Ordering="13"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_OTP]" Argument="{}" Condition="AI_INSTALL" Ordering="14"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_PPS]" Argument="{}" Condition="AI_INSTALL" Ordering="15"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_PPSX]" Argument="{}" Condition="AI_INSTALL" Ordering="16"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_DJVU]" Argument="{}" Condition="AI_INSTALL" Ordering="17"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_EPUB]" Argument="{}" Condition="AI_INSTALL" Ordering="18"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_FB2]" Argument="{}" Condition="AI_INSTALL" Ordering="19"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_PDF]" Argument="{}" Condition="AI_INSTALL" Ordering="20"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_RTF]" Argument="{}" Condition="AI_INSTALL" Ordering="21"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_TXT]" Argument="{}" Condition="AI_INSTALL" Ordering="22"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_CSV]" Argument="{}" Condition="AI_INSTALL" Ordering="23"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_HTML]" Argument="{}" Condition="AI_INSTALL" Ordering="24"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_XML]" Argument="{}" Condition="AI_INSTALL" Ordering="25"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_XPS]" Argument="{}" Condition="AI_INSTALL" Ordering="26"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_DOCXF]" Argument="{}" Condition="AI_INSTALL" Ordering="27"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_OFORM]" Argument="{}" Condition="AI_INSTALL" Ordering="28"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCreateFolderComponent">
     <ROW Directory_="APPDIR" Component_="c_dir_app" ManualDelete="true"/>
