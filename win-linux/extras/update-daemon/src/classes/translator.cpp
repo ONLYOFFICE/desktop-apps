@@ -38,11 +38,11 @@ tstring getPrimaryLang(const tstring &lang)
     }
     size_t pos = lang.find(_T('_'));
     if (pos == tstring::npos) {
-        if (lang.length() == 2)
+        if (lang.length() == 2 || lang.length() == 3)
             return lang;
     } else {
         tstring _lang = lang.substr(0, pos);
-        if (_lang.length() == 2)
+        if (_lang.length() == 2 || lang.length() == 3)
             return _lang;
     }
     NS_Logger::WriteLog(_T("An error occurred: ") + FUNCTION_INFO);
@@ -189,7 +189,7 @@ void Translator::parseTranslations()
                             break;
                     }
                     size_t locale_len = end - pos;
-                    if (locale_len == 2 || locale_len == 5) {
+                    if (locale_len < 12 && locale_len != 1 && locale_len != 4 && locale_len != 9) {
                         token = TOKEN_BEGIN_LOCALE;
                         continue;
                     } else {
