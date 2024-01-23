@@ -1,6 +1,6 @@
 l10n.ar_SA = {
     welWelcome: 'مرحبًا بك في محرر ONLYOFFICE لسطح المكتب!',
-    welDescr: 'اعمل على مستنداتك بدون اتصال أو اتصل بسحابتك: ONLYOFFICE ownCloud, Nextcloud.',
+    welDescr: 'اعمل على مستنداتك بدون اتصال أو اتصل بسحابتك: ONLYOFFICE, ownCloud, Nextcloud.',
     btnConnect: 'اتصل الآن',
     textHavePortal: 'هل تستخدم سحابة من قبل؟',
     btnCreatePortal: 'أنشئ سحابة ONLYOFFICE',
@@ -10,7 +10,7 @@ l10n.ar_SA = {
     btnNext: 'التالي',
     portalEmptyTitle: 'اتصل بسحابتك',
     portalEmptyDescr: 'خزّن مستنداتك في السحابة للوصول إليها في أي مكان، وزمان. يمكنك نشرها والتعاون عليها مع رفقائك. كذلك يمكنك التحدث، إضافة التعليقات، أو نشرها ليتم مراجعتها.',
-    portalEmptyAdv1: 'ليس لديك حساب سحابي بعد؟ اتصل بالخدمة السحابية ل ONLYOFFICEو <br />جرب الميزات التعاونية مجانًّا',
+    portalEmptyAdv1: 'ليس لديك حساب سحابي بعد؟ اتصل بالخدمة السحابية ل ONLYOFFICE و <br />جرب الميزات التعاونية مجانًّا',
     portalListTitle: 'السحابات المتصلة',
     textNoFiles: 'لا توجد ملفات',
     listRecoveryTitle:'استرجاع الملفات',
