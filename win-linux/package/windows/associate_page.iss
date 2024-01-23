@@ -1874,7 +1874,7 @@ begin
   langs := ['az-Latn-AZ', 'bg-BG', 'cs-CZ', 'de-DE', 'el-GR', 'en-US', 'en-GB', 'es-ES', 
             'eu-ES',      'fr-FR', 'gl-ES', 'hy-AM', 'it-IT', 'ja-JP', 'ko-KR', 'lv-LV', 
             'ms-MY',      'nl-NL', 'pl-PL', 'pt-PT', 'pt-BR', 'ru-RU', 'sk-SK', 'sv-SE', 
-            'tr-TR',      'uk-UA', 'vi-VN', 'zh-CN', 'zh-TW'];
+            'tr-TR',      'uk-UA', 'vi-VN', 'zh-CN', 'zh-TW', 'sr-Latn-RS'];
 
   found := False;
   dir := 'en-US';
