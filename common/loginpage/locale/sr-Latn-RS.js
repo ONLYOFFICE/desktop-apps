@@ -1,4 +1,4 @@
-l10n.sr_latn = {
+l10n.sr_Latn_RS = {
     welWelcome: 'Dobro došli u ONLYOFFICE Desktop Uređivače!',
     welDescr: 'Radite na dokumentima oflajn ili konektujte paket na svoj oblak: ONLYOFFICE, ownCloud, Nextcloud.',
     btnConnect: 'Poveži Sad',

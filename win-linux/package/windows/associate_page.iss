@@ -47,7 +47,7 @@ be.AssociateDescription =Звязаць тыпы файлаў дакумента
 gl.AssociateDescription =Asociar tipos de ficheiros de documentos de oficina con {#ASSC_APP_NAME}
 si.AssociateDescription ={#ASSC_APP_NAME} සමඟ කාර්යාල ලේඛන ගොනු වර්ග සම්බන්ධ කරන්න
 zh_TW.AssociateDescription =與文書處理檔案類型聯結{#ASSC_APP_NAME}
-sr_latn.AssociateDescription =Poveži ofis dokument fajl tipove sa {#ASSC_APP_NAME}
+sr_Latn_RS.AssociateDescription =Poveži ofis dokument fajl tipove sa {#ASSC_APP_NAME}
 
 en.AssociateCaption =File Associations
 ar_SA.AssociateCaption =ربط الملفات
@@ -91,7 +91,7 @@ be.AssociateCaption =Асацыяцыя файлаў
 gl.AssociateCaption =Asociacións do ficheiro
 si.AssociateCaption =ගොනු නිශ්‍රය
 zh_TW.AssociateCaption =檔案聯結
-sr_latn.AssociateCaption =Fajl povezivanja
+sr_Latn_RS.AssociateCaption =Fajl povezivanja
 
 en.AssociateDont =Do not associate
 ar_SA.AssociateDont =عدم ربط
@@ -135,7 +135,7 @@ be.AssociateDont =Не звязваць
 gl.AssociateDont =Non asociar
 si.AssociateDont =නිශ්‍ර කොකරන්න
 zh_TW.AssociateDont =不要聯結
-sr_latn.AssociateDont =Nemoj da povežeš
+sr_Latn_RS.AssociateDont =Nemoj da povežeš
 
 en.AssociateAll =Associate all
 ar_SA.AssociateAll =ربط الكل
@@ -179,7 +179,7 @@ be.AssociateAll =Звязаць усе
 gl.AssociateAll =Asociar todo
 si.AssociateAll =සියල්ල නිහ්ශ්‍රය
 zh_TW.AssociateAll =全部聯結
-sr_latn.AssociateAll =Poveži sve
+sr_Latn_RS.AssociateAll =Poveži sve
 
 en.AssociateSel =Associate selected
 ar_SA.AssociateSel =ربط المختار
@@ -223,7 +223,7 @@ be.AssociateSel =Звязаць выбраныя
 gl.AssociateSel =Asociación seleccionada
 si.AssociateSel =තේරූ දෑ නිහ්ශ්‍රය
 zh_TW.AssociateSel =聯結已選定
-sr_latn.AssociateSel =Poveži odabrano
+sr_Latn_RS.AssociateSel =Poveži odabrano
 
 en.AssociateAudio =File types
 ar_SA.AssociateAudio =صيغ المف
@@ -267,7 +267,7 @@ be.AssociateAudio =Тыпы файлаў
 gl.AssociateAudio =Tipos de ficheiros
 si.AssociateAudio =ගොනු වර්ග
 zh_TW.AssociateAudio =檔案類型
-sr_latn.AssociateAudio =Fajl tipovi
+sr_Latn_RS.AssociateAudio =Fajl tipovi
 
 en.extMSWord =Microsoft Word Document
 ar_SA.extMSWord =مستند مايكروسوفت وورد
@@ -311,7 +311,7 @@ be.extMSWord =Дакумент Microsoft Word
 gl.extMSWord =Documentos de Microsoft Word
 si.extMSWord =මයික්‍රොසොෆ්ට් වර්ඩ් ලේඛනය
 zh_TW.extMSWord =Microsoft Word 文件
-sr_latn.extMSWord =Microsoft Word Dokument
+sr_Latn_RS.extMSWord =Microsoft Word Dokument
 
 en.extMSExcel =Microsoft Excel Workbook
 ar_SA.extMSExcel =جدول بياني مايكروسوفت إكسل
@@ -355,7 +355,7 @@ be.extMSExcel =Рабочы сшытак Microsoft Excel
 gl.extMSExcel =Caderno de traballo do Microsoft Excel
 si.extMSExcel =මයික්‍රොසොෆ්ට් එක්සෙල් ලේඛනය
 zh_TW.extMSExcel =Microsoft Excel 活頁簿
-sr_latn.extMSExcel =Microsoft Excel Radna knjiga
+sr_Latn_RS.extMSExcel =Microsoft Excel Radna knjiga
 
 en.extMSPresentation =Microsoft PowerPoint Presentation
 ar_SA.extMSPresentation =عرض تقديمي مايكروسوفت بوربوينت قابل للتعديل
@@ -399,7 +399,7 @@ be.extMSPresentation =Прэзентацыя Microsoft PowerPoint
 gl.extMSPresentation =Presentación de PowerPoint de Microsoft
 si.extMSPresentation =මයික්‍රොසොෆ්ට් පවර්පොයින්ට් සමර්පණය
 zh_TW.extMSPresentation =Microsoft PowerPoint 簡報
-sr_latn.extMSPresentation =Microsoft PowerPoint Prezentacija
+sr_Latn_RS.extMSPresentation =Microsoft PowerPoint Prezentacija
 
 en.extMSSlideshow =Microsoft PowerPoint Slideshow
 ar_SA.extMSSlideshow =عرض تقديمي مايكروسوفت بوربوينت غير قابل للتعديل
@@ -443,7 +443,7 @@ be.extMSSlideshow =Слайд-шоу Microsoft PowerPoint
 gl.extMSSlideshow =Presentación de Microsoft PowerPoint
 si.extMSSlideshow =මයික්‍රොසොෆ්ට් පවර්පොයින්ට් සල්යිඩ්ෂෝ
 zh_TW.extMSSlideshow =Microsoft PowerPoint 投影片
-sr_latn.extMSSlideshow =Microsoft PowerPoint Slajd-Šou
+sr_Latn_RS.extMSSlideshow =Microsoft PowerPoint Slajd-Šou
 
 en.extODT =OpenDocument Text File
 ar_SA.extODT =ملف نصي ليبري أوفس
@@ -487,7 +487,7 @@ be.extODT =Тэкставы файл OpenDocument
 gl.extODT =Ficheiro de texto OpenDocument
 si.extODT =ඕපන්ඩොකියුමන්ට් පෙළ ලේඛනය
 zh_TW.extODT =OpenDocument Text 文件
-sr_latn.extODT =OpenDocument Tekst Fajl
+sr_Latn_RS.extODT =OpenDocument Tekst Fajl
 
 en.extODS =OpenDocument Spreadsheet
 ar_SA.extODS =جدول ليبري أوفس
@@ -531,7 +531,7 @@ be.extODS =Электронная табліца OpenDocument
 gl.extODS =Folla de cálculo de OpenDocument
 si.extODS =ඕපන්ඩොකියුමන්ට් පැතුරුම්පත
 zh_TW.extODS =OpenDocument 試算表
-sr_latn.extODS =OpenDocument Proračunska Tabela
+sr_Latn_RS.extODS =OpenDocument Proračunska Tabela
 
 en.extODP =OpenDocument Presentation
 ar_SA.extODP =عرض ليبري أوفس
@@ -575,7 +575,7 @@ be.extODP =Прэзентацыя OpenDocument
 gl.extODP =Presentación de OpenDocument
 si.extODP =ඕපන්ඩොකියුමන්ට් සමර්පණය
 zh_TW.extODP =OpenDocument 簡報
-sr_latn.extODP =OpenDocument Prezentacija
+sr_Latn_RS.extODP =OpenDocument Prezentacija
 
 en.extDOC =Word 97-2003 Document
 ar_SA.extDOC =مستند وورد 97-2003
@@ -619,7 +619,7 @@ be.extDOC =Дакумент Word 97-2003
 gl.extDOC =Documento Word 97-2003
 si.extDOC =වර්ඩ් 97-2003 ලේඛනය
 zh_TW.extDOC =Word 97-2003 文件
-sr_latn.extDOC =Word 97-2003 Dokument
+sr_Latn_RS.extDOC =Word 97-2003 Dokument
 
 en.extDOCX =Office Open XML Document
 ar_SA.extDOCX =مستند وورد
@@ -663,7 +663,7 @@ be.extDOCX =Дакумент Office Open XML
 gl.extDOCX =Documento Office Open XML
 si.extDOCX =ඔෆිස් විවෘත XML ලේඛනය
 zh_TW.extDOCX =Office Open XML 文件
-sr_latn.extDOCX =Office Open XML Dokument
+sr_Latn_RS.extDOCX =Office Open XML Dokument
 
 en.extDOCXF =ONLYOFFICE Form Template
 ar_SA.extDOCXF =قالب استبيان أونلي أوفس
@@ -707,7 +707,7 @@ be.extDOCXF =Шаблон формы ONLYOFFICE
 gl.extDOCXF =ONLYOFFICE Modelo de formulario
 si.extDOCXF =ඔන්ලිඔෆිස් ආකෘතිපත්‍ර අච්චුව
 zh_TW.extDOCXF =ONLYOFFICE 文档表单模板
-sr_latn.extDOCXF =ONLYOFFICE Formular Šablon
+sr_Latn_RS.extDOCXF =ONLYOFFICE Formular Šablon
 
 en.extXLS =Excel 97-2003 Spreadsheet
 ar_SA.extXLS =جدول إكسل 97-2003
@@ -751,7 +751,7 @@ be.extXLS =Электронная табліца Excel 97-2003
 gl.extXLS =Folla de cálculo Excel 97-2003
 si.extXLS =එක්සෙල් 97-2003 පැතුරුම්පත
 zh_TW.extXLS =Excel 97-2003 試算表
-sr_latn.extXLS =Excel 97-2003 Proračunska Tabela
+sr_Latn_RS.extXLS =Excel 97-2003 Proračunska Tabela
 
 en.extXLSX =Office Open XML Spreadsheet
 ar_SA.extXLSX =جدول إكسل
@@ -795,7 +795,7 @@ be.extXLSX =Электронная табліца Office Open XML
 gl.extXLSX =Folla de cálcula Office Open XML
 si.extXLSX =ඔෆිස් විවෘත XML පැතුරුම්පත
 zh_TW.extXLSX =Office Open XML 試算表
-sr_latn.extXLSX =Office Open XML Proračunska Tabela
+sr_Latn_RS.extXLSX =Office Open XML Proračunska Tabela
 
 en.extPPT =PowerPoint 97-2003 Presentation
 ar_SA.extPPT =عرض بوربوينت 97-2003
@@ -839,7 +839,7 @@ be.extPPT =Прэзентацыя PowerPoint 97-2003
 gl.extPPT =Presentación de Powerpoint 97-2003
 si.extPPT =පවර්පොයින්ට් 97-2003 සමර්පණය
 zh_TW.extPPT =PowerPoint 97-2003 簡報
-sr_latn.extPPT =PowerPoint 97-2003 Prezentacija
+sr_Latn_RS.extPPT =PowerPoint 97-2003 Prezentacija
 
 en.extPPTX =Office Open XML Presentation
 ar_SA.extPPTX =عرض بوربوينت قابل للتعديل
@@ -883,7 +883,7 @@ be.extPPTX =Прэзентацыя Office Open XML
 gl.extPPTX =Presentación do Office Open XML
 si.extPPTX =ඔෆිස් විවෘත XML සමර්පණය
 zh_TW.extPPTX =Office Open XML 簡報
-sr_latn.extPPTX =Office Open XML Prezentacija
+sr_Latn_RS.extPPTX =Office Open XML Prezentacija
 
 en.extPPS =PowerPoint 97-2003 Slide Show
 ar_SA.extPPS =عرض بوربوينت 97-2003
@@ -927,7 +927,7 @@ be.extPPS =Слайд-шоу PowerPoint 97-2003
 gl.extPPS =Presentación de diapositivas de Powerpoint 97-2003
 si.extPPS =පවර්පොයින්ට් 97-2003 චිත්‍රකාච දැක්ම
 zh_TW.extPPS =PowerPoint 97-2003投影片
-sr_latn.extPPS =PowerPoint 97-2003 Slajd Šou
+sr_Latn_RS.extPPS =PowerPoint 97-2003 Slajd Šou
 
 en.extPPSX =Office Open XML Slide Show
 ar_SA.extPPSX =عرض بوربوينت غير قابل للتعديل
@@ -971,7 +971,7 @@ be.extPPSX =Слайд-шоу Office Open XML
 gl.extPPSX =Presentación de diapositivas de Office Open XML
 si.extPPSX =ඔෆිස් විවෘත XML චිත්‍රකාච දැක්ම
 zh_TW.extPPSX =Office Open XML 投影片
-sr_latn.extPPSX =Office Open XML Slajd Šou
+sr_Latn_RS.extPPSX =Office Open XML Slajd Šou
 
 en.extRTF =Rich Text Format File
 ar_SA.extRTF =ملف نصي غني
@@ -1015,7 +1015,7 @@ be.extRTF =Багаты тэкставы дакумент
 gl.extRTF =Ficheiro con formato de texto enriquecido
 si.extRTF =පොහොසත් පෙළ ආකෘති ගොනුව
 zh_TW.extRTF =Rich Text Format 文件
-sr_latn.extRTF =Bogati Tekst Format Fajl
+sr_Latn_RS.extRTF =Bogati Tekst Format Fajl
 
 en.extCSV =Comma Separated Values
 ar_SA.extCSV =قيم مفرّقة بفاصلة
@@ -1059,7 +1059,7 @@ be.extCSV =Значэнні, падзеленыя коскамі
 gl.extCSV =Valores separados por comas
 si.extCSV =අල්පවිරාම මගින් වෙන්කළ අගයන්
 zh_TW.extCSV =逗點分隔值
-sr_latn.extCSV =Vrednosti Odvojene Zarezom
+sr_Latn_RS.extCSV =Vrednosti Odvojene Zarezom
 
 en.extPDF =Portable Document
 ar_SA.extPDF =بي دي إف
@@ -1103,7 +1103,7 @@ be.extPDF =Пераносны дакумент
 gl.extPDF =Documento portátil
 si.extPDF =සුවහ ලේඛනය
 zh_TW.extPDF =PDF 檔案
-sr_latn.extPDF =Prenosivi Dokument
+sr_Latn_RS.extPDF =Prenosivi Dokument
 
 en.extDJVU =Digital Document
 ar_SA.extDJVU =مستند رقمي
@@ -1147,7 +1147,7 @@ be.extDJVU =Лічбавы дакумент
 gl.extDJVU =Documento dixital
 si.extDJVU =සංඛ්‍යාංක ලේඛනය
 zh_TW.extDJVU =DjVu 檔案
-sr_latn.extDJVU =Digitalni Dokument
+sr_Latn_RS.extDJVU =Digitalni Dokument
 
 en.extXPS =OpenXPS Document
 ar_SA.extXPS =مستند أوبن إكس بي إس
@@ -1191,31 +1191,31 @@ be.extXPS =Дакумент OpenXPS
 gl.extXPS =Documento OpenXPS
 si.extXPS =ඕපන් XPS ලේඛනය
 zh_TW.extXPS =OpenXPS 檔案
-sr_latn.extXPS =OpenXPS Dokument
+sr_Latn_RS.extXPS =OpenXPS Dokument
 
 en.extPOT =PowerPoint Template
 ar_SA.extPOT =قالب بوربوينت
-sr_latn.extPOT =PowerPoint Šablon
+sr_Latn_RS.extPOT =PowerPoint Šablon
 
 en.extPPTM =PowerPoint Open XML Macro-Enabled Presentation
 ar_SA.extPPTM =عرض بوربوينت مع خاصية الماكرو
-sr_latn.extPPTM =PowerPoint Open XML Makro-omogućena Prezentacija
+sr_Latn_RS.extPPTM =PowerPoint Open XML Makro-omogućena Prezentacija
 
 en.extEPUB =Open eBook File
 ar_SA.extEPUB =كتاب النشر الإلكتروني
-sr_latn.extEPUB =Open eBook Fajl
+sr_Latn_RS.extEPUB =Open eBook Fajl
 
 en.extFB2 =FictionBook 2.0 File
 ar_SA.extFB2 =ملف فكشنبوك 2.0
-sr_latn.extFB2 =KnjigaFikcije 2.0 Fajl
+sr_Latn_RS.extFB2 =KnjigaFikcije 2.0 Fajl
 
 en.extDOTX =Word Open XML Document Template
 ar_SA.extDOTX =قالب وورد
-sr_latn.extDOTX =Word Open XML Dokument Šablon
+sr_Latn_RS.extDOTX =Word Open XML Dokument Šablon
 
 en.extOXPS =Open XML Paper Specification
 ar_SA.extOXPS =مستند أوبن إكس بي إس
-sr_latn.extOXPS =Open XML Papir Specifikacija
+sr_Latn_RS.extOXPS =Open XML Papir Specifikacija
 
 ;======================================================================================================
 
@@ -1261,7 +1261,7 @@ be.jumpDOCX =Новы дакумент
 gl.jumpDOCX =Novo documento
 si.jumpDOCX =නව ලේඛනය
 zh_TW.jumpDOCX =新文件
-sr_latn.jumpDOCX =Novi dokument
+sr_Latn_RS.jumpDOCX =Novi dokument
 
 en.jumpXLSX =New spreadsheet
 ar_SA.jumpXLSX =جدول بياني جديد
@@ -1305,7 +1305,7 @@ be.jumpXLSX =Новая электронная табліца
 gl.jumpXLSX =Nova folla de cálculo
 si.jumpXLSX =නව පැතුරුම්පත
 zh_TW.jumpXLSX =新試算表
-sr_latn.jumpXLSX =Nova proračunska tabela
+sr_Latn_RS.jumpXLSX =Nova proračunska tabela
 
 en.jumpPPTX =New presentation
 ar_SA.jumpPPTX =عرض تقديمي جديد
@@ -1349,7 +1349,7 @@ be.jumpPPTX =Новая прэзентацыя
 gl.jumpPPTX =Nova presentación
 si.jumpPPTX =නව සමර්පණය
 zh_TW.jumpPPTX =新簡報
-sr_latn.jumpPPTX =Nova prezentacija
+sr_Latn_RS.jumpPPTX =Nova prezentacija
 
 en.jumpDOCXF =New form template
 ar_SA.jumpDOCXF =قالب استبيان جديد
@@ -1393,7 +1393,7 @@ be.jumpDOCXF =Новы шаблон формы
 gl.jumpDOCXF =Novo Modelo de Formulario
 si.jumpDOCXF =නව ආකෘතිපත්‍ර අච්චුව
 zh_TW.jumpDOCXF =New form template
-sr_latn.jumpDOCXF =Novi formular šablon
+sr_Latn_RS.jumpDOCXF =Novi formular šablon
 
 en.defprogAppDescription=Free desktop office suite for document editing and collaboration
 ar_SA.defprogAppDescription=حزمة برامج مكتبية مجانية لتحرير المستندات والتعاون لإنجازها مع رفقائك
@@ -1437,7 +1437,7 @@ be.defprogAppDescription=Бясплатны настольны офісны па
 gl.defprogAppDescription=Suite ofimática de escritorio gratuíta para a edición e colaboración de documentos
 si.defprogAppDescription=ලේඛන සංස්කරණය සහ සහයෝගිත්‍වය සඳහා නොමිලේ වැඩතල කාර්යාල කට්ටලය
 zh_TW.defprogAppDescription=使用於檔案編輯和協作的免費桌面辦公套件
-sr_latn.defprogAppDescription=Besplatni desktop ofis paket za uređivanje dokumenata i saradnju
+sr_Latn_RS.defprogAppDescription=Besplatni desktop ofis paket za uređivanje dokumenata i saradnju
 
 en.warnWin10FileAssociationDesc=To associate the files with the application, open the following window after the installation is complete:
 ar_SA.warnWin10FileAssociationDesc=لربط الملفات مع التطبيق، افتح النافذة التالية بعد إكمال التثبيت
@@ -1481,7 +1481,7 @@ be.warnWin10FileAssociationDesc=Каб звязаць файлы з прыкла
 gl.warnWin10FileAssociationDesc=Para asociar os ficheiros co aplicativo, abra a seguinte xanela despois de completar a instalación:
 si.warnWin10FileAssociationDesc=යෙදුම සමඟ ගොනු නිහ්ශ්‍රයට, ස්ථාපනය අවසන් වූ පසු පහත කවුළුව විවෘත කරන්න:
 zh_TW.warnWin10FileAssociationDesc=當安裝完成後，開啟以下的視窗將檔案與應用程式聯結：
-sr_latn.warnWin10FileAssociationDesc=Da biste povezali fajlove sa aplikacijom, otvorite predstojeći prozor nakon što se instalacija završi
+sr_Latn_RS.warnWin10FileAssociationDesc=Da biste povezali fajlove sa aplikacijom, otvorite predstojeći prozor nakon što se instalacija završi
 
 en.warnWin10FileAssociationPath=Settings > Apps > Default apps
 ar_SA.warnWin10FileAssociationPath=الإعدادات > تطبيقات > الافتراضية
@@ -1525,7 +1525,7 @@ be.warnWin10FileAssociationPath=Налады> Прыкладанні> Прыкл
 gl.warnWin10FileAssociationPath=Configuración> Aplicativos> Aplicativos por defecto
 si.warnWin10FileAssociationPath=සැකසුම් > යෙදුම් > පෙරනිමි යෙදුම්
 zh_TW.warnWin10FileAssociationPath=設定 > 應用程式 > 預設應用程式
-sr_latn.warnWin10FileAssociationPath=Podešavanja > Aplikacije > Podrazumevane aplikacije
+sr_Latn_RS.warnWin10FileAssociationPath=Podešavanja > Aplikacije > Podrazumevane aplikacije
 
 en.runOpenDefaultApps=Open Default apps
 ar_SA.runOpenDefaultApps=افتح التطبيقات الافتراضية
@@ -1569,7 +1569,7 @@ be.runOpenDefaultApps=Адкрыць прыкладанні па змаўчан�
 gl.runOpenDefaultApps=Abrir aplicativos por defecto
 si.runOpenDefaultApps=පෙරනිමි යෙදුම් අරින්න
 zh_TW.runOpenDefaultApps=開啟預設應用程式
-sr_latn.runOpenDefaultApps=Otvori Podrazumevane Aplikacije
+sr_Latn_RS.runOpenDefaultApps=Otvori Podrazumevane Aplikacije
 
 [Run]
 Filename: ms-settings:defaultapps; Description: {cm:runOpenDefaultApps}; Flags:postinstall shellexec nowait unchecked; MinVersion: 10.0.10240;
