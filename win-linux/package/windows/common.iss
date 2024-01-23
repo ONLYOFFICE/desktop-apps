@@ -168,6 +168,7 @@ Name: ar_SA; MessagesFile: compiler:Languages\Arabic.isl;     LicenseFile: {#sBr
 [LangOptions]
 lo.LanguageName=ພາສາລາວ
 ;ga_IE.LanguageName=Gaeilge
+ar_SA.LanguageName=الْعَرَبِيَّة
 
 [CustomMessages]
 ;======================================================================================================
