@@ -408,16 +408,24 @@
   </ENTRY>
   <ENTRY id="ButtonText_DeselectAll">
     <STRING lang="cs" value="Zrušit výběr všech"/>
+    <STRING lang="de" value="Alle abwählen"/>
+    <STRING lang="es" value="Desmarcar todo"/>
+    <STRING lang="fr" value="Désélectionner tout"/>
+    <STRING lang="ja" value="選択を解除"/>
     <STRING lang="pt" value="Desselecionar tudo"/>
-    <STRING lang="pt_BR" value="Desmarcar todos"/>
-    <STRING lang="ru" value="Отменить всё"/>
+    <STRING lang="pt_BR" value="Desmarcar Todos"/>
+    <STRING lang="ru" value="Снять выделение"/>
     <STRING lang="sl" value="Počistite vse"/>
   </ENTRY>
   <ENTRY id="ButtonText_SelectAll">
     <STRING lang="cs" value="Vybrat vše"/>
+    <STRING lang="de" value="Alle auswählen"/>
+    <STRING lang="es" value="Seleccionar todo"/>
+    <STRING lang="fr" value="Tout sélectionner"/>
+    <STRING lang="ja" value="すべて選択"/>
     <STRING lang="pt" value="Selecionar tudo"/>
-    <STRING lang="pt_BR" value="Selecionar tudo"/>
-    <STRING lang="ru" value="Выбрать всё"/>
+    <STRING lang="pt_BR" value="Selecionar Tudo"/>
+    <STRING lang="ru" value="Выбрать все"/>
     <STRING lang="sl" value="Izberite vse"/>
   </ENTRY>
 </DICTIONARY>
