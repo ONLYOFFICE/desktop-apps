@@ -295,7 +295,11 @@ namespace CEditorTools
             result = panel->openRecoverFile(opts.id);
         } else
         if (opts.srctype == etRecentFile) {
-            result = panel->openRecentFile(opts.id);
+            if ( opts.id < 0 ) {
+                if ( opts.wurl.length() )
+                    panel->cef()->load(opts.wurl);
+            } else
+                result = panel->openRecentFile(opts.id);
         } else
         if (opts.srctype == etNewFile) {
             panel->createLocalFile(editorTypeFromFormat(opts.format), opts.name.toStdWString());
