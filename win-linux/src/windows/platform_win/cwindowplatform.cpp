@@ -314,6 +314,8 @@ bool CWindowPlatform::nativeEvent(const QByteArray &eventType, void *message, lo
     switch (msg->message)
     {
     case WM_ACTIVATE: {
+        if (LOWORD(msg->wParam) == WA_ACTIVE && Utils::getWinVersion() == WinVer::Win10)
+            CWindowBase::setWindowColors(m_bkgColor, m_brdColor, true);
         SetWindowPos(msg->hwnd, 0, 0, 0, 0, 0, SWP_NOCOPYBITS | SWP_NOMOVE | SWP_NOSIZE | SWP_NOACTIVATE | SWP_NOZORDER | SWP_FRAMECHANGED);
         break;
     }
