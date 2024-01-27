@@ -105,13 +105,13 @@ protected:
     double         m_dpiRatio;
     QColor         m_brdColor,
                    m_bkgColor;
+    QRect          m_window_rect;
 
     virtual void showEvent(QShowEvent *);
 
 private:
     class CWindowBasePrivate;
     std::unique_ptr<CWindowBasePrivate> pimpl;
-    QRect m_window_rect;
     bool  m_windowActivated;
 };
 

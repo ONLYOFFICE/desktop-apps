@@ -88,6 +88,7 @@ CWindowBase::CWindowBase(const QRect& rect)
         m_window_rect = _screen_size.intersected(m_window_rect);
     else
         m_window_rect = QRect(QPoint(100, 100)*m_dpiRatio, MAIN_WINDOW_DEFAULT_SIZE * m_dpiRatio);
+    setGeometry(m_window_rect);
 }
 
 CWindowBase::~CWindowBase()
@@ -317,7 +318,6 @@ void CWindowBase::showEvent(QShowEvent *event)
     QMainWindow::showEvent(event);
     if (!m_windowActivated) {
         m_windowActivated = true;
-        setGeometry(m_window_rect);
         adjustGeometry();
         applyTheme(GetCurrentTheme().id());
     }

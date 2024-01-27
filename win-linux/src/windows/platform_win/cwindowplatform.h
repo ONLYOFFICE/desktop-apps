@@ -77,6 +77,7 @@ private:
          m_closed,
          m_isResizeable,
 //         m_allowMaximize,
+         m_isActivated = false,
          m_isMaximized = false,
          m_isThemeActive = true,
          m_isTaskbarAutoHideOn = false,
