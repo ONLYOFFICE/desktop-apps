@@ -48,7 +48,8 @@ TRANSLATIONS = ./langs/en.ts \
                 ./langs/be.ts \
                 ./langs/zh_TW.ts \
                 ./langs/si.ts \
-                ./langs/ar_SA.ts
+                ./langs/ar_SA.ts \
+                ./langs/sr_Latn_RS.ts
 
 
 CORE_ROOT_DIR = $$PWD/../../core
