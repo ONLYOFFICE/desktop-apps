@@ -313,14 +313,19 @@ bool CWindowPlatform::nativeEvent(const QByteArray &eventType, void *message, lo
 //    static uchar movParam = 0;
     switch (msg->message)
     {
-    case WM_ACTIVATE: {
-        if (LOWORD(msg->wParam) == WA_ACTIVE && Utils::getWinVersion() == WinVer::Win10)
-            CWindowBase::setWindowColors(m_bkgColor, m_brdColor, true);
+    case WM_ACTIVATE: {           
         SetWindowPos(msg->hwnd, 0, 0, 0, 0, 0, SWP_NOCOPYBITS | SWP_NOMOVE | SWP_NOSIZE | SWP_NOACTIVATE | SWP_NOZORDER | SWP_FRAMECHANGED);
-        if (!m_isActivated) {
-            m_isActivated = true;
-            if (m_borderless && !m_isMaximized)
-                setGeometry(m_window_rect);
+        if (LOWORD(msg->wParam) == WA_ACTIVE) {
+            if (Utils::getWinVersion() == WinVer::Win10)
+                CWindowBase::setWindowColors(m_bkgColor, m_brdColor, true);
+            if (!m_isActivated) {
+                m_isActivated = true;
+                if (m_borderless && !m_isMaximized) {
+                    SKIP_EVENTS_QUEUE([=]() {
+                        setGeometry(m_window_rect);
+                    });
+                }
+            }
         }
         break;
     }
@@ -329,25 +334,8 @@ bool CWindowPlatform::nativeEvent(const QByteArray &eventType, void *message, lo
         setMinimumSize(0,0);
         m_dpi = (double)HIWORD(msg->wParam)/96;
         GetFrameMetricsForDpi(m_frame, m_dpi, m_isMaximized);
-        if (AscAppManager::IsUseSystemScaling()) {
-            if (WindowHelper::isLeftButtonPressed() || (m_scaleChanged && !m_isMaximized)) {
-                RECT *prefRect = (RECT*)msg->lParam;
-                setGeometry(prefRect->left, prefRect->top, prefRect->right - prefRect->left, prefRect->bottom - prefRect->top);
-            }
-            SKIP_EVENTS_QUEUE([=]() {
-                updateScaling(false);
-            });
-        } else
-        if (m_scaleChanged && !m_isMaximized) {
-            RECT *prefRect = (RECT*)msg->lParam;
-            setGeometry(prefRect->left, prefRect->top, prefRect->right - prefRect->left, prefRect->bottom - prefRect->top);
-        }
-        m_scaleChanged = false;
-        break;
-    }
-
-    case WM_DISPLAYCHANGE: {
-        m_scaleChanged = true;
+        if (AscAppManager::IsUseSystemScaling())
+            updateScaling(false);
         break;
     }
 
