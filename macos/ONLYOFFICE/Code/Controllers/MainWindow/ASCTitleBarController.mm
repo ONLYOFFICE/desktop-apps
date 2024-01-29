@@ -229,8 +229,6 @@ static float kASCWindowMinTitleWidth = 0;
         }
     }
 
-    if ( [ASCLinguist isUILayoutDirectionRtl] )
-        [self.view setUserInterfaceLayoutDirection:NSUserInterfaceLayoutDirectionRightToLeft];
 
     [self doLayout];
 }

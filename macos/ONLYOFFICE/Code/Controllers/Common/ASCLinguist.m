@@ -51,13 +51,15 @@ static BOOL uiLayoutDirectionRTL = NO;
 
 //    bool l = [NSLocale characterDirectionForLanguage:[ASCLinguist appLanguageCode]] == NSLocaleLanguageDirectionRightToLeft;
     NSString * direction = [[NSUserDefaults standardUserDefaults] objectForKey:ASCUserUILayoutDirection];
-    if ( direction != nil ) {
+    if ( direction != nil )
         uiLayoutDirectionRTL = [direction isEqualToString:@"rtl"];
-
-        if ( uiLayoutDirectionRTL ) {
-            // [[NSUserDefaults standardUserDefaults] setObject:@"YES" forKey:@"AppleTextDirection"];
-            // [[NSUserDefaults standardUserDefaults] setObject:@"YES" forKey:@"NSForceRightToLeftWritingDirection"];
-        }
+    
+    if ( uiLayoutDirectionRTL ) {
+         [[NSUserDefaults standardUserDefaults] setObject:@"YES" forKey:@"AppleTextDirection"];
+         [[NSUserDefaults standardUserDefaults] setObject:@"YES" forKey:@"NSForceRightToLeftWritingDirection"];
+    } else {
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"AppleTextDirection"];
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"NSForceRightToLeftWritingDirection"];
     }
 }
 
