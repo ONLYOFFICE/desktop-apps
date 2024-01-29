@@ -68,26 +68,19 @@ public:
 };
 
 
-CWindowBase::CWindowBase(const QRect& rect)
+CWindowBase::CWindowBase(const QRect& rc)
     : QMainWindow(nullptr)
     , m_pTopButtons(3, nullptr)
     , pimpl{new CWindowBasePrivate}
     , m_windowActivated(false)
 {
     setWindowIcon(Utils::appIcon());
-    if ( !rect.isEmpty() ) {
-        m_dpiRatio = Utils::getScreenDpiRatio(rect.topLeft());
-        m_window_rect = rect;
-    } else {
-        QScreen * _screen = QApplication::primaryScreen();
-        m_dpiRatio = Utils::getScreenDpiRatio(_screen->geometry().topLeft());
-        m_window_rect = QRect(QPoint(100, 100)*m_dpiRatio, MAIN_WINDOW_DEFAULT_SIZE * m_dpiRatio);
-    }
-    QRect _screen_size = Utils::getScreenGeometry(m_window_rect.topLeft());
-    if (_screen_size.intersects(m_window_rect))
-        m_window_rect = _screen_size.intersected(m_window_rect);
-    else
-        m_window_rect = QRect(QPoint(100, 100)*m_dpiRatio, MAIN_WINDOW_DEFAULT_SIZE * m_dpiRatio);
+    m_dpiRatio = !rc.isEmpty() ? Utils::getScreenDpiRatio(rc.topLeft()) :
+                     Utils::getScreenDpiRatio(qApp->primaryScreen()->geometry().topLeft());
+    QRect def_rc = QRect(QPoint(100, 100) * m_dpiRatio, MAIN_WINDOW_DEFAULT_SIZE * m_dpiRatio);
+    QRect out_rc = !rc.isEmpty() ? rc : def_rc;
+    QRect scr_rc = Utils::getScreenGeometry(out_rc.topLeft());
+    m_window_rect = scr_rc.intersects(out_rc) ? scr_rc.intersected(out_rc) : def_rc;
     setGeometry(m_window_rect);
 }
 
@@ -223,11 +216,9 @@ void CWindowBase::saveWindowState()
 void CWindowBase::moveToPrimaryScreen()
 {
     QMainWindow::showNormal();
-    QRect rect = QApplication::primaryScreen()->availableGeometry();
-    double dpiRatio = Utils::getScreenDpiRatio(rect.topLeft());
-    m_window_rect = QRect(rect.translated(100, 100).topLeft() * dpiRatio,
-                          MAIN_WINDOW_DEFAULT_SIZE * dpiRatio);
-    setGeometry(m_window_rect);
+    QRect scr_rc = qApp->primaryScreen()->availableGeometry();
+    double dpiRatio = Utils::getScreenDpiRatio(scr_rc.topLeft());
+    setGeometry(QRect(scr_rc.translated(100, 100).topLeft() * dpiRatio, MAIN_WINDOW_DEFAULT_SIZE * dpiRatio));
 }
 
 void CWindowBase::setIsCustomWindowStyle(bool custom)
