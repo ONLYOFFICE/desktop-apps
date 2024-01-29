@@ -152,6 +152,7 @@ private:
         ,{"gl-ES", "Galego"}
         ,{"si-LK", "සිංහල"}
         ,{"ar-SA", "اَلْعَرَبِيَّة"}
+        ,{"sr-Latn-RS", "Srpski"}
     };
 };
 
