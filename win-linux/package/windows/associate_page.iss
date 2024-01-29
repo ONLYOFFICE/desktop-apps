@@ -1865,7 +1865,7 @@ end;
 
 procedure AddContextMenuNewItems;
 var
-  lang, dir, regpath, progpath, oldValue: String;
+  lang, dir, regpath, progpath: String;
   langs, args, values: TArrayOfString;
   version: TWindowsVersion;
   found: Boolean;
@@ -1915,8 +1915,6 @@ begin
        RegWriteStringValue(HKEY_LOCAL_MACHINE, regpath, 'FileName', progpath + '\' + values[0]);
      end;
      if version.Major = 10 then begin
-       if (i < 3) and RegQueryStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\' + values[1], '', oldValue) then
-       RegWriteStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\' + values[1], '{#ASCC_REG_PREFIX}', oldValue);
        RegWriteStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\' + values[1], '', '{#ASCC_REG_PREFIX}' + values[2]);
      end;
   end;
@@ -2030,7 +2028,7 @@ procedure UnassociateExtensions;
 var
   i: Integer;
   argsArray: TArrayOfString;
-  ext, str, oldValue, defaultVal: string;
+  ext, str: string;
   version: TWindowsVersion;
 begin
   initExtensions();
@@ -2070,17 +2068,4 @@ begin
 #ifdef _ONLYOFFICE
   RegDeleteKeyIncludingSubkeys(HKEY_LOCAL_MACHINE, ExpandConstant('Software\Classes\.docxf\{#ASCC_REG_PREFIX}.Docxf'));
 #endif
-
-  GetWindowsVersionEx(version);
-  if version.Major = 10 then begin
-    argsArray := ['docx', 'pptx', 'xlsx'];
-    for i := 0 to GetArrayLength(argsArray) - 1 do begin
-       if not RegQueryStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.' + argsArray[i], '', defaultVal) and
-         RegQueryStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.' + argsArray[i], '{#ASCC_REG_PREFIX}', oldValue) and
-           RegKeyExists(HKEY_LOCAL_MACHINE, 'Software\Classes\.' + argsArray[i] + '\' + oldValue) then begin
-             RegWriteStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.' + argsArray[i], '', oldValue);
-  end;
-       RegDeleteValue(HKEY_LOCAL_MACHINE, 'Software\Classes\.' + argsArray[i], '{#ASCC_REG_PREFIX}');
-end;
-  end;
 end;
