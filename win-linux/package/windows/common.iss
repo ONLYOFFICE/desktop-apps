@@ -164,7 +164,7 @@ Name: gl; MessagesFile: compiler:Languages\Galician.isl;     LicenseFile: {#sBra
 Name: si; MessagesFile: compiler:Languages\Sinhala.islu;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 Name: zh_TW; MessagesFile: compiler:Languages\ChineseTraditional.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 Name: ar_SA; MessagesFile: compiler:Languages\Arabic.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
-Name: sr_latn; MessagesFile: compiler:Languages\SerbianLatin.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
+Name: sr_Latn_RS; MessagesFile: compiler:Languages\SerbianLatin.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 
 [LangOptions]
 lo.LanguageName=ພາສາລາວ
@@ -217,7 +217,7 @@ be.Launch =Запусціць %1
 gl.Launch =Iniciar %1
 si.Launch =%1 දියත් කරන්න
 zh_TW.Launch =啓動 %1
-sr_latn.Launch =Lansiraj %1
+sr_Latn_RS.Launch =Lansiraj %1
 ;======================================================================================================
 en.CreateDesktopIcon =Create %1 &desktop icon
 ar_SA.CreateDesktopIcon =إنشاء %1 &أيقونة سطح المكتب
@@ -261,7 +261,7 @@ be.CreateDesktopIcon =Стварыце значок %1 на &працоўным 
 gl.CreateDesktopIcon =Crear unha icona de escritorio& %1
 si.CreateDesktopIcon =%1 වැඩතල නිරූපකය සාදන්න
 zh_TW.CreateDesktopIcon =建立 %1 和桌面圖示
-sr_latn.CreateDesktopIcon =Kreiraj %1 &desktop ikonicu
+sr_Latn_RS.CreateDesktopIcon =Kreiraj %1 &desktop ikonicu
 ;======================================================================================================
 en.InstallAdditionalComponents =Installing additional system components. Please wait...
 ar_SA.InstallAdditionalComponents =جاري تثبيت مكونات نظام إضافية. الرجاء الانتظار...
@@ -305,7 +305,7 @@ be.InstallAdditionalComponents =Устаноўка дадатковых камп
 gl.InstallAdditionalComponents =Estase a instalar compoñentes adicionais do sistema. Agarda...
 si.InstallAdditionalComponents =අතිරේක පද්ධති සංරචක ස්ථාපනය වෙමින්. රැඳී සිටින්න...
 zh_TW.InstallAdditionalComponents =正在安裝附加系統元件，請稍候...
-sr_latn.InstallAdditionalComponents =Instaliranje dodatnih sistemskih komponenti. Molimo sačekajte...
+sr_Latn_RS.InstallAdditionalComponents =Instaliranje dodatnih sistemskih komponenti. Molimo sačekajte...
 ;======================================================================================================
 en.AdditionalTasks =Tasks:
 ar_SA.AdditionalTasks =المهام:
@@ -349,7 +349,7 @@ be.AdditionalTasks =Задачы:
 gl.AdditionalTasks =Tarefas:
 si.AdditionalTasks =කාර්යන්:
 zh_TW.AdditionalTasks =工作：
-sr_latn.AdditionalTasks =Zadaci:
+sr_Latn_RS.AdditionalTasks =Zadaci:
 ;======================================================================================================
 en.Uninstall =Uninstall
 ar_SA.Uninstall =إزالة التثبيت
@@ -393,7 +393,7 @@ be.Uninstall =Выдаліць
 gl.Uninstall =Desinstalar
 si.Uninstall =අස්ථාපනය
 zh_TW.Uninstall =解除安裝
-sr_latn.Uninstall =Deinstaliraj
+sr_Latn_RS.Uninstall =Deinstaliraj
 ;======================================================================================================
 en.WarningWrongArchitecture =You are trying to install the %1-bit application version over the %2-bit version installed. Please uninstall the previous version first or download the correct version for installation.
 ar_SA.WarningWrongArchitecture =أنت تحاول تثبيت نسخة %1-bit من التطبيق على نسخة %2-bit المثبتة. فضلًا قم بإزالة النسخة السابقة أولًا أو قم بتحميل النسخة الصحيحة ليتم تثبيتها.
@@ -437,7 +437,7 @@ be.WarningWrongArchitecture =Вы спрабуеце ўсталяваць %1-б�
 gl.WarningWrongArchitecture =Está a intentar instalar a versión do aplicativo %1 bits sobre a versión instalada de %2 bits. Desinstale primeiro a versión anterior ou descargue a versión correcta para a instalación.
 si.WarningWrongArchitecture =ඔබ ස්ථාපිත බිටු-%2 අනුවාදයට උඩින්ග යෙදුමේ බිටු-%1 අනුවාදය ස්ථාපනයට තැත් කරයි. කරුණාකර පෙර අනුවාදය අස්ථාපනය කරන්න හෝ ස්ථාපනය සඳහා නිවැරදි අනුවාදය බාගන්න.
 zh_TW.WarningWrongArchitecture =您正在嘗試安裝 %1-bit 應用程式版本超過 %2-bit 目前已安裝的版本。 請先解除安裝先前的版本或下載正確的版本再進行安裝。
-sr_latn.WarningWrongArchitecture =Pokušavate da instalirate %1-bit aplikacija verziju preko %2-bit instalirane verzije. Molimo prvo deinstalirajte prethodnu verziju ili preuzmite tačnu verziju za instalaciju.
+sr_Latn_RS.WarningWrongArchitecture =Pokušavate da instalirate %1-bit aplikacija verziju preko %2-bit instalirane verzije. Molimo prvo deinstalirajte prethodnu verziju ili preuzmite tačnu verziju za instalaciju.
 ;======================================================================================================
 
 en.UpdateAppRunning=Setup has detected that %1 is currently running.%n%nIt'll be closed automatically. Click OK to continue, or Cancel to exit.
@@ -482,7 +482,7 @@ be.UpdateAppRunning=Налада выявіла, што %1 зараз працу
 gl.UpdateAppRunning=A instalación detectou que %1 está en execución.%En% Pecharase automaticamente. Preme en Aceptar para continuar ou en Cancelar para saír.
 si.UpdateAppRunning=%1 දැනට ධාවනය වන බව පිහිටුමට අනාවරණය වී ඇත.%n%nඑය ස්වයංක්‍රීයව වසා දමනු ඇත. ඉදිරියට යාමට හරි ද, හෝ පිටවීමට අවලංගු ද ඔබන්න.
 zh_TW.UpdateAppRunning=安裝程式偵測到 %1 正在執行中。%n%n將會自動關閉。 點擊 確認 繼續，或 取消 離開。
-sr_latn.UpdateAppRunning=Setup je detektovao da %1 se trenutno izvršava.%n%nBiće zatvoreno automatski. Kliknite OK da nastavite, ili Otkaži da izađete.
+sr_Latn_RS.UpdateAppRunning=Setup je detektovao da %1 se trenutno izvršava.%n%nBiće zatvoreno automatski. Kliknite OK da nastavite, ili Otkaži da izađete.
 ;======================================================================================================
 en.WarningClearAppData =Do you want to clear the user settings and application cached data?
 ar_SA.WarningClearAppData =هل تريد مسح إعدادات المستخدم وبيانات التطبيق المؤقتة؟
@@ -526,7 +526,7 @@ be.WarningClearAppData =Хочаце ачысціць налады карыст�
 gl.WarningClearAppData =Quere borrar a configuración do usuario e os datos da caché do aplicativo?
 si.WarningClearAppData =ඔබට පරිශ්‍රීලක සැකසුම් හා යෙදුමේ නිහිතගත දත්ත හිස් කිරීමට වුවමනාද?
 zh_TW.WarningClearAppData =您想要清除使用者設定和應用程式內的快取資料嗎?
-sr_latn.WarningClearAppData =Da li želite da obrišete korisničke postavke i keširane podatke aplikacije?
+sr_Latn_RS.WarningClearAppData =Da li želite da obrišete korisničke postavke i keširane podatke aplikacije?
 ;======================================================================================================
 
 
@@ -552,7 +552,7 @@ sr_latn.WarningClearAppData =Da li želite da obrišete korisničke postavke i k
 ;gl.AssociateDescription =Asociar tipos de ficheiros de documentos de oficina con %1
 ;si.AssociateDescription =%1 සමඟ කාර්යාල ලේඛන ගොනු වර්ග සම්බන්ධ කරන්න
 ;zh_TW.AssociateDescription =與文書處理檔案類型聯結 %1
-;sr_latn.AssociateDescription =Poveži vrste ofis fajl dokumenata sa %1
+;sr_Latn_RS.AssociateDescription =Poveži vrste ofis fajl dokumenata sa %1
 ;======================================================================================================
 en.UpdateService =Update service for {#sAppName}
 ar_SA.UpdateService =خدمة التحديث لـ {#sAppName}
@@ -575,7 +575,7 @@ ja.UpdateService =アップデートサービス{#sAppName}
 ko.UpdateService ={#sAppName} 업데이트 서비스
 lv.UpdateService =Pakalpojums atjauninājumam {#sAppName}
 uk.UpdateService =Сервіс для оновлення {#sAppName}
-sr_latn.UpdateService =Ažuriraj uslugu za {#sAppName}
+sr_Latn_RS.UpdateService =Ažuriraj uslugu za {#sAppName}
 
 [Code]
 const
