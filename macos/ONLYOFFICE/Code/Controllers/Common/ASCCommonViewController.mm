@@ -1904,9 +1904,14 @@
             }
             case ASCTabActionOpenLocalRecentFile: {
                 NSInteger docId = [tab.params[@"fileId"] intValue];
-//                NSString * filePath = tab.params[@"path"];
                 
-                [cefView openRecentFileWithId:docId];
+                if ( !(docId < 0) )
+                    [cefView openRecentFileWithId:docId];
+                else {
+                    NSString * filePath = tab.params[@"path"];
+                    if ( filePath && filePath.length )
+                        [cefView loadWithUrl:filePath];
+                }
                     
                 [[AnalyticsHelper sharedInstance] recordCachedEventWithCategory:ASCAnalyticsCategoryApplication
                                                                              action:@"Open local file"
