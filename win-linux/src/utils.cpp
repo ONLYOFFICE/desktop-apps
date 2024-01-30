@@ -988,6 +988,16 @@ namespace WindowHelper {
         ::SetActiveWindow(hwnd);
         ::AttachThreadInput(frgID, appID, FALSE);
     }
+
+    auto toggleLayoutDirection(HWND hwnd) -> void
+    {
+        LONG exstyle = GetWindowLong(hwnd, GWL_EXSTYLE);
+        if (exstyle & WS_EX_LAYOUTRTL)
+            SetWindowLong(hwnd, GWL_EXSTYLE, exstyle & ~WS_EX_LAYOUTRTL);
+        else
+        if (AscAppManager::isRtlEnabled())
+            SetWindowLong(hwnd, GWL_EXSTYLE, exstyle | WS_EX_LAYOUTRTL);
+    }
 #endif
 
     auto correctWindowMinimumSize(const QRect& windowrect, const QSize& minsize) -> QSize
