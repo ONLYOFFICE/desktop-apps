@@ -42,6 +42,74 @@ QScrollBar::add-page:vertical,
 QScrollBar::sub-page:vertical {background: none;}
 QAbstractScrollArea::corner {background: transparent;}
 
+/* dark theme */
+CDownloadWidget[uitheme="theme-dark"] QWidget#contentArea,
+CDownloadWidget[uitheme="theme-dark"] QFrame#mainFrame,
+CDownloadWidget[uitheme="theme-dark"] QFrame#titleFrame,
+CDownloadWidget[uitheme="theme-dark"] QFrame#downloadItem {background: #333333;}
+CDownloadWidget[uitheme="theme-dark"] QFrame#mainFrame,
+CDownloadWidget[uitheme="theme-dark"] QFrame#titleFrame {border-color: #666666;}
+
+CDownloadWidget[uitheme="theme-dark"] QPushButton {color: #96c8fd;}
+CDownloadWidget[uitheme="theme-dark"] QPushButton#buttonCancel {color: #333333;}
+CDownloadWidget[uitheme="theme-dark"] QPushButton:hover {color: #d6d6d6;}
+CDownloadWidget[uitheme="theme-dark"] QPushButton:pressed {color: #858585;}
+
+CDownloadWidget[uitheme="theme-dark"] QProgressBar {background-color: #858585; border-color: #858585;}
+CDownloadWidget[uitheme="theme-dark"] QProgressBar::chunk {background-color: #96c8fd;}
+
+CDownloadWidget[uitheme="theme-dark"] QLabel {color: #d6d6d6;}
+CDownloadWidget[uitheme="theme-dark"] QLabel#labelSize,
+CDownloadWidget[uitheme="theme-dark"] QLabel#labelInfo {color: #858585;}
+
+CDownloadWidget[uitheme="theme-dark"] QFrame#downloadItem[hovered=true] {background: #555555;}
+CDownloadWidget[uitheme="theme-dark"] QFrame#downloadItem[hovered=true] #buttonCancel {color: #96c8fd;}
+CDownloadWidget[uitheme="theme-dark"] QFrame#downloadItem[hovered=true] QPushButton:hover,
+CDownloadWidget[uitheme="theme-dark"] QFrame#downloadItem[hovered=true] #buttonCancel:hover {color: #d6d6d6;}
+CDownloadWidget[uitheme="theme-dark"] QFrame#downloadItem[hovered=true] QPushButton:pressed,
+CDownloadWidget[uitheme="theme-dark"] QFrame#downloadItem[hovered=true] #buttonCancel:pressed {color: #999999;}
+CDownloadWidget[uitheme="theme-dark"] QFrame#downloadItem[hovered=true] QProgressBar {background-color: #999999; border-color: #999999;}
+CDownloadWidget[uitheme="theme-dark"] QFrame#downloadItem[hovered=true] #labelSize,
+CDownloadWidget[uitheme="theme-dark"] QFrame#downloadItem[hovered=true] #labelInfo {color: #999999;}
+
+CDownloadWidget[uitheme="theme-dark"] QScrollArea,
+CDownloadWidget[uitheme="theme-dark"] QScrollBar {background: #333333;}
+CDownloadWidget[uitheme="theme-dark"] QScrollBar::handle:vertical {background: #999999;}
+
+/* contrast theme */
+CDownloadWidget[uitheme="theme-contrast-dark"] QWidget#contentArea,
+CDownloadWidget[uitheme="theme-contrast-dark"] QFrame#mainFrame,
+CDownloadWidget[uitheme="theme-contrast-dark"] QFrame#titleFrame,
+CDownloadWidget[uitheme="theme-contrast-dark"] QFrame#downloadItem {background: #2a2a2a;}
+CDownloadWidget[uitheme="theme-contrast-dark"] QFrame#mainFrame,
+CDownloadWidget[uitheme="theme-contrast-dark"] QFrame#titleFrame {border-color: #666666;}
+
+CDownloadWidget[uitheme="theme-contrast-dark"] QPushButton {color: #96c8fd;}
+CDownloadWidget[uitheme="theme-contrast-dark"] QPushButton#buttonCancel {color: #2a2a2a;}
+CDownloadWidget[uitheme="theme-contrast-dark"] QPushButton:hover {color: #d6d6d6;}
+CDownloadWidget[uitheme="theme-contrast-dark"] QPushButton:pressed {color: #858585;}
+
+CDownloadWidget[uitheme="theme-contrast-dark"] QProgressBar {background-color: #858585; border-color: #858585;}
+CDownloadWidget[uitheme="theme-contrast-dark"] QProgressBar::chunk {background-color: #96c8fd;}
+
+CDownloadWidget[uitheme="theme-contrast-dark"] QLabel {color: #d6d6d6;}
+CDownloadWidget[uitheme="theme-contrast-dark"] QLabel#labelSize,
+CDownloadWidget[uitheme="theme-contrast-dark"] QLabel#labelInfo {color: #858585;}
+
+CDownloadWidget[uitheme="theme-contrast-dark"] QFrame#downloadItem[hovered=true] {background: #555555;}
+CDownloadWidget[uitheme="theme-contrast-dark"] QFrame#downloadItem[hovered=true] #buttonCancel {color: #96c8fd;}
+CDownloadWidget[uitheme="theme-contrast-dark"] QFrame#downloadItem[hovered=true] QPushButton:hover,
+CDownloadWidget[uitheme="theme-contrast-dark"] QFrame#downloadItem[hovered=true] #buttonCancel:hover {color: #d6d6d6;}
+CDownloadWidget[uitheme="theme-contrast-dark"] QFrame#downloadItem[hovered=true] QPushButton:pressed,
+CDownloadWidget[uitheme="theme-contrast-dark"] QFrame#downloadItem[hovered=true] #buttonCancel:pressed {color: #999999;}
+CDownloadWidget[uitheme="theme-contrast-dark"] QFrame#downloadItem[hovered=true] QProgressBar {background-color: #999999; border-color: #999999;}
+CDownloadWidget[uitheme="theme-contrast-dark"] QFrame#downloadItem[hovered=true] #labelSize,
+CDownloadWidget[uitheme="theme-contrast-dark"] QFrame#downloadItem[hovered=true] #labelInfo {color: #999999;}
+
+CDownloadWidget[uitheme="theme-contrast-dark"] QScrollArea,
+CDownloadWidget[uitheme="theme-contrast-dark"] QScrollBar {background: #2a2a2a;}
+CDownloadWidget[uitheme="theme-contrast-dark"] QScrollBar::handle:vertical {background: #999999;}
+
 /* 1.0x */
 QPushButton {height: 14px; font-size: 11px; icon-size: 12px;}
 QPushButton#buttonClear {max-height: 22px;}
