@@ -5,7 +5,7 @@ QFrame#mainFrame,
 QFrame#titleFrame,
 QFrame#downloadItem {background: #ffffff;}
 
-QPushButton {border: none; color: #3a83db; background: transparent; padding: 0px; margin: 0px; font-weight: normal; font-family: "Open Sans", sans-serif, "Arial";}
+QPushButton {border: none; color: #3a83db; background: transparent; padding: 0px; margin: 0px; font-weight: normal; font-family: "Arial", "Helvetica", "Helvetica Neue", sans-serif;}
 QPushButton::menu-indicator {width: 0px; height: 0px;}
 QPushButton#buttonCancel {color: #ffffff;}
 QPushButton:hover {color: #444444;}
@@ -14,7 +14,7 @@ QPushButton:pressed {color: #a5a5a5;}
 QProgressBar {background-color: #e6e6e6; border-color: #e6e6e6; margin: 0px;}
 QProgressBar::chunk {background-color: #3a83db;}
 
-QLabel {color: #444444; font-family: "Open Sans", sans-serif, "Arial";}
+QLabel {color: #444444; font-family: "Arial", "Helvetica", "Helvetica Neue", sans-serif;}
 QLabel#labelSize,
 QLabel#labelInfo {color: #a5a5a5;}
 
