@@ -20,7 +20,9 @@ QLabel#labelInfo {color: #a5a5a5;}
 
 QFrame#downloadItem[hovered=true] {background: #e0e0e0;}
 QFrame#downloadItem[hovered=true] #buttonCancel {color: #3a83db;}
+QFrame#downloadItem[hovered=true] QPushButton:hover,
 QFrame#downloadItem[hovered=true] #buttonCancel:hover {color: #444444;}
+QFrame#downloadItem[hovered=true] QPushButton:pressed,
 QFrame#downloadItem[hovered=true] #buttonCancel:pressed {color: #868686;}
 QFrame#downloadItem[hovered=true] QProgressBar {background-color: #cacaca; border-color: #cacaca;}
 QFrame#downloadItem[hovered=true] #labelSize,
