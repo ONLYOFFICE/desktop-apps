@@ -151,6 +151,7 @@ private:
         ,{"lo-LA", "ພາສາລາວ"}
         ,{"gl-ES", "Galego"}
         ,{"si-LK", "සිංහල"}
+        ,{"ar-SA", "اَلْعَرَبِيَّة"}
     };
 };
 
@@ -303,4 +304,9 @@ void CLangater::addTranslation(const QString& dir, const QString& lang)
 void CLangater::addTranslation(const QString& dir)
 {
     addTranslation(dir, getInstance()->m_lang);
+}
+
+bool CLangater::isRtlLanguage(const QString &lang) {
+    QLocale loc = lang.isEmpty() ? QLocale::system() : QLocale(lang);
+    return loc.textDirection() == Qt::LayoutDirection::RightToLeft;
 }

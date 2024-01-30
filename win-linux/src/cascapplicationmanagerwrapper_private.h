@@ -167,7 +167,7 @@ public:
             const std::wstring & cmd = data.get_Command();
 
             if ( cmd.compare(L"open:recent") == 0 ) {
-                QJsonObject objRoot = Utils::parseJson(data.get_Param());
+                QJsonObject objRoot = Utils::parseJsonString(data.get_Param());
                 if ( !objRoot.isEmpty() ) {
                     QString _path = objRoot["path"].toString();
                     if ( bringEditorToFront( _path ) )
@@ -232,6 +232,9 @@ public:
                             CMessage::error(m_appmanager.mainWindow()->handle(),
                                             QObject::tr("File %1 cannot be opened or doesn't exists.").arg(_info.fileName()));
                         }
+#ifdef _WIN32
+                        else Utils::addToRecent(file_path);
+#endif
                     }
                 }
 

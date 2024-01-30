@@ -55,20 +55,6 @@
     <STRING lang="pt_BR" value="Selecione as extensões que deseja associar ao [ProductName]"/>
     <STRING lang="sl" value="Izberite razširitve, ki jih želite povezati z namiznimi urejevalniki [ProductName]"/>
   </ENTRY>
-  <ENTRY id="Control.Text.FileAssociationsDlg#Deselect_all_button">
-    <STRING lang="cs" value="Zrušit výběr všech"/>
-    <STRING lang="pt" value="Desselecionar tudo"/>
-    <STRING lang="pt_BR" value="Desmarcar todos"/>
-    <STRING lang="ru" value="Отменить всё"/>
-    <STRING lang="sl" value="Počistite vse"/>
-  </ENTRY>
-  <ENTRY id="Control.Text.FileAssociationsDlg#Select_all_button">
-    <STRING lang="cs" value="Vybrat vše"/>
-    <STRING lang="pt" value="Selecionar tudo"/>
-    <STRING lang="pt_BR" value="Selecionar tudo"/>
-    <STRING lang="ru" value="Выбрать всё"/>
-    <STRING lang="sl" value="Izberite vse"/>
-  </ENTRY>
   <ENTRY id="Control.Text.FileAssociationsDlg#Text">
     <STRING lang="cs" value="Vyberte typy souborů, které chcete automaticky otevírat pomocí [ProductName]:"/>
     <STRING lang="pt" value="Selecione os tipos de ficheiros que pretende abrir automaticamente com [ProductName]:"/>
@@ -123,6 +109,17 @@
     <STRING lang="pt" value="Configure atalhos"/>
   </ENTRY>
   <!-- Property table -->
+  <ENTRY id="Property.APP_PROTOCOL">
+    <STRING lang="cs" value="oo-office"/>
+    <STRING lang="de" value="oo-office"/>
+    <STRING lang="es" value="oo-office"/>
+    <STRING lang="fr" value="oo-office"/>
+    <STRING lang="ja" value="oo-office"/>
+    <STRING lang="pt" value="oo-office"/>
+    <STRING lang="pt_BR" value="oo-office"/>
+    <STRING lang="ru" value="oo-office"/>
+    <STRING lang="sl" value="oo-office"/>
+  </ENTRY>
   <ENTRY id="Property.APP_USER_MODEL_ID">
     <STRING lang="cs" value="ASC.Documents.5"/>
     <STRING lang="de" value="ASC.Documents.5"/>
@@ -138,7 +135,7 @@
     <STRING lang="cs" value="Volně dostupný desktopový balíček pro úpravu dokumentů a spolupráci"/>
     <STRING lang="de" value="Kostenlose Desktop-Office-Suite für Dokumentenbearbeitung und Zusammenarbeit"/>
     <STRING lang="es" value="Paquete desktop de oficina gratuito para edición de documentos y colaboración"/>
-    <STRING lang="fr" value="Suite bureautique d'applications de bureau gratuite pour l'édition de documents et la collaboration"/>
+    <STRING lang="fr" value="Suite bureautique d&apos;applications de bureau gratuite pour l&apos;édition de documents et la collaboration"/>
     <STRING lang="ja" value="ドキュメント編集と共同編集用の無料デスクトップオフィススイート"/>
     <STRING lang="pt" value="Suite do Office para desktop gratuita para edição de documentos e colaboração"/>
     <STRING lang="pt_BR" value="Pacote office para desktop gratuito para edição e colaboração em documentos"/>
@@ -408,5 +405,27 @@
     <STRING lang="pt_BR" value="The previous version of [|ProductName] detected, please click &apos;OK&apos; button to uninstall it, or &apos;Cancel&apos; to quit setup."/>
     <STRING lang="ru" value="Обнаружена предыдущая версия [|ProductName], нажмите кнопку &apos;OK&apos; чтобы удалить её, или &apos;Отмена&apos; чтобы выйти из программы инсталляции."/>
     <STRING lang="sl" value="The previous version of [|ProductName] detected, please click &apos;OK&apos; button to uninstall it, or &apos;Cancel&apos; to quit setup."/>
+  </ENTRY>
+  <ENTRY id="ButtonText_DeselectAll">
+    <STRING lang="cs" value="Zrušit výběr všech"/>
+    <STRING lang="de" value="Alle abwählen"/>
+    <STRING lang="es" value="Desmarcar todo"/>
+    <STRING lang="fr" value="Désélectionner tout"/>
+    <STRING lang="ja" value="選択を解除"/>
+    <STRING lang="pt" value="Desselecionar tudo"/>
+    <STRING lang="pt_BR" value="Desmarcar Todos"/>
+    <STRING lang="ru" value="Снять выделение"/>
+    <STRING lang="sl" value="Počistite vse"/>
+  </ENTRY>
+  <ENTRY id="ButtonText_SelectAll">
+    <STRING lang="cs" value="Vybrat vše"/>
+    <STRING lang="de" value="Alle auswählen"/>
+    <STRING lang="es" value="Seleccionar todo"/>
+    <STRING lang="fr" value="Tout sélectionner"/>
+    <STRING lang="ja" value="すべて選択"/>
+    <STRING lang="pt" value="Selecionar tudo"/>
+    <STRING lang="pt_BR" value="Selecionar Tudo"/>
+    <STRING lang="ru" value="Выбрать все"/>
+    <STRING lang="sl" value="Izberite vse"/>
   </ENTRY>
 </DICTIONARY>

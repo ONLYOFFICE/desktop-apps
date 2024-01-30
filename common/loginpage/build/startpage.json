@@ -19,6 +19,10 @@
                     "dest": "../deploy/index.html"
                 },
                 {
+                    "src": "../noconnect/styles.css",
+                    "dest": "../deploy/noconnect.css"
+                },
+                {
                     "src": "../vendor/jquery/jquery.min.js",
                     "dest": "../deploy/jquery.min.js"
                 },
@@ -50,10 +54,13 @@
             ]
         },
         "less": {
-            "files": {
+            "files": [{
                 "src": "../src/styles.less",
                 "dest": "../deploy/styles.css"
-            }
+            },{
+                "src": "../src/css/rtl.less",
+                "dest": "../deploy/rtl.css"
+            }]
         },
         "concat": {
             "files": {
@@ -65,6 +72,7 @@
                     ,"../src/model.js"
                     ,"../src/menu.js"
                     ,"../src/base.js"
+                    ,"../deploy/noconnect.js"
                     ,"../src/paneltemplates.js"
                     ,"../src/panelrecent.js"
                     ,"../src/panelfolders.js"

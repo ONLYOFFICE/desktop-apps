@@ -54,6 +54,7 @@
 # define DAEMON_NAME      L"/updatesvc.exe"
 # define DAEMON_NAME_OLD  L"/~updatesvc.exe"
 # define RESTART_BATCH    L"/svcrestart.bat"
+# define UNINSTALL_LIST   L"/unins000.bin"
 # define SUBFOLDER        TEXT("/" REG_APP_NAME)
 # define ARCHIVE_EXT      TEXT(".zip")
 # define ARCHIVE_PATTERN  TEXT("*.zip")
@@ -172,6 +173,15 @@ auto verToAppVer(const wstring &ver)->wstring
     pos = ver.find(L'.', pos + 1);
     return (pos == std::wstring::npos) ? ver : ver.substr(0, pos);
 }
+
+auto getCurrentDate()->wstring
+{
+    SYSTEMTIME sysTime;
+    GetLocalTime(&sysTime);
+    wchar_t frmDate[9] = {0};
+    swprintf(frmDate, _ARRAYSIZE(frmDate), L"%04d%02d%02d", sysTime.wYear, sysTime.wMonth, sysTime.wDay);
+    return frmDate;
+}
 #endif
 
 CSvcManager::CSvcManager():
@@ -201,6 +211,9 @@ void CSvcManager::aboutToQuit(FnVoidVoid callback)
 
 void CSvcManager::init()
 {
+    m_pDownloader->onQueryResponse([=](int error, int lenght) {
+        onQueryResponse(error, lenght);
+    });
     m_pDownloader->onComplete([=](int error) {
         onCompleteSlot(error, m_pDownloader->GetFilePath());
     });
@@ -232,6 +245,13 @@ void CSvcManager::init()
                     m_pDownloader->downloadFile(params[1], generateTmpFileName(ext));
                 }
                 NS_Logger::WriteLog(_T("Received MSG_LoadUpdates, URL: ") + params[1]);
+                break;
+            }
+            case MSG_RequestContentLenght: {
+                __GLOBAL_LOCK
+                if (m_pDownloader)
+                    m_pDownloader->queryContentLenght(params[1]);
+                NS_Logger::WriteLog(_T("Received MSG_RequestContentLenght, URL: ") + params[1]);
                 break;
             }
             case MSG_StopDownload: {
@@ -272,6 +292,12 @@ void CSvcManager::init()
     });
 }
 
+void CSvcManager::onQueryResponse(const int error, const int lenght)
+{
+    __UNLOCK
+    m_socket->sendMessage(MSG_RequestContentLenght, (error == 0) ? to_tstring(lenght) : _T(""));
+}
+
 void CSvcManager::onCompleteUnzip(const int error)
 {
     __UNLOCK
@@ -282,6 +308,37 @@ void CSvcManager::onCompleteUnzip(const int error)
         if (!NS_File::writeToFile(updPath + SUCCES_UNPACKED, successList)) {
             return;
         }
+#ifdef _WIN32
+        // Adding new app files to the uninstall list
+        auto fillSubpathVec = [](const tstring &path, vector<tstring> &vec)->bool {
+            tstring _error;
+            list<tstring> filesList;
+            if (!NS_File::GetFilesList(path, &filesList, _error)) {
+                NS_Logger::WriteLog(DEFAULT_ERROR_MESSAGE + TEXT(" ") + _error);
+                return false;
+            }
+            for (auto &filePath : filesList) {
+                tstring subPath = filePath.substr(path.length());
+                vec.push_back(std::move(subPath));
+            }
+            return true;
+        };
+
+        vector<wstring> updVec, appVec;
+        const tstring appPath = NS_File::appPath();
+        if (fillSubpathVec(appPath, appVec) && fillSubpathVec(updPath, updVec)) {
+            list<tstring> delList;
+            if (NS_File::fileExists(appPath + UNINSTALL_LIST) && !NS_File::readBinFile(appPath + UNINSTALL_LIST, delList))
+                NS_Logger::WriteLog(DEFAULT_ERROR_MESSAGE);
+
+            for (auto &updFile : updVec) {
+                if (std::find(appVec.begin(), appVec.end(), updFile) == appVec.end())
+                    delList.push_back(NS_File::toNativeSeparators(updFile));
+            }
+            if (!NS_File::writeToBinFile(updPath + UNINSTALL_LIST, delList))
+                NS_Logger::WriteLog(DEFAULT_ERROR_MESSAGE);
+        }
+#endif
         if (!m_socket->sendMessage(MSG_ShowStartInstallMessage))
             NS_Logger::WriteLog(DEFAULT_ERROR_MESSAGE);
 
@@ -393,6 +450,9 @@ void CSvcManager::clearTempFiles(const tstring &prefix, const tstring &except)
                     NS_File::removeFile(filePath);
             }
         }
+        tstring updPath = NS_File::parentPath(NS_File::appPath()) + UPDATE_PATH;
+        if (except.empty() && NS_File::dirExists(updPath))
+            NS_File::removeDirRecursively(updPath);
     });
 }
 
@@ -513,10 +573,13 @@ void CSvcManager::startReplacingFiles(const tstring &packageType, const bool res
                 app_key += (packageType == TEXT("iss")) ? L"_is1" : L"";
                 if (RegOpenKeyEx(hKey, app_key.c_str(), 0, KEY_ALL_ACCESS, &hAppKey) == ERROR_SUCCESS) {
                     wstring disp_name = app_name + L" " + verToAppVer(ver) + L" (" + currentArch().substr(1) + L")";
+                    wstring ins_date = getCurrentDate();
                     if (RegSetValueEx(hAppKey, TEXT("DisplayName"), 0, REG_SZ, (const BYTE*)disp_name.c_str(), (DWORD)(disp_name.length() + 1) * sizeof(WCHAR)) != ERROR_SUCCESS)
                         NS_Logger::WriteLog(L"Can't update DisplayName in registry!");
                     if (RegSetValueEx(hAppKey, TEXT("DisplayVersion"), 0, REG_SZ, (const BYTE*)ver.c_str(), (DWORD)(ver.length() + 1) * sizeof(WCHAR)) != ERROR_SUCCESS)
                         NS_Logger::WriteLog(L"Can't update DisplayVersion in registry!");
+                    if (RegSetValueEx(hAppKey, TEXT("InstallDate"), 0, REG_SZ, (const BYTE*)ins_date.c_str(), (DWORD)(ins_date.length() + 1) * sizeof(WCHAR)) != ERROR_SUCCESS)
+                        NS_Logger::WriteLog(L"Can't update InstallDate in registry!");
                     RegCloseKey(hAppKey);
                 }
                 RegCloseKey(hKey);
@@ -544,14 +607,14 @@ void CSvcManager::startReplacingFiles(const tstring &packageType, const bool res
         }
     }
 
-    // Remove Backup dir
-    NS_File::removeDirRecursively(tmpPath);
-
     // Restart program
     if (restartAfterUpdate) {
         if (!NS_File::runProcess(appPath + APP_LAUNCH_NAME, _T("")))
             NS_Logger::WriteLog(_T("An error occurred while restarting the program!"), true);
     }
+
+    // Remove Backup dir
+    NS_File::removeDirRecursively(tmpPath);
 
     // Restart service
 #ifdef _WIN32

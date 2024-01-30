@@ -79,19 +79,6 @@ begin
    end;
 end;
 
-function checkVCRedist2013(): Boolean;
-var
-  upgradecode: String;
-begin
-
-  if Is64BitInstallMode then
-    upgradecode := '{20400CF0-DE7C-327E-9AE4-F0F38D9085F8}' //x64
-  else
-    upgradecode := '{B59F5BF1-67C8-3802-8E59-2CE551A39FC5}'; //x86
-
-  Result :=  msiproductupgrade(upgradecode, '12.0.21005');
-end;
-
 function checkVCRedist2022(): Boolean;
 var
   upgradecode: String;
@@ -103,4 +90,79 @@ begin
     upgradecode := '{65E5BD06-6392-3027-8C26-853107D3CF1A}'; //x86
 
   Result :=  msiproductupgrade(upgradecode, '14.32.31332.0');
+end;
+
+function checkVCRedist2019(): Boolean;
+var
+  upgradecode: String;
+begin
+
+  if Is64BitInstallMode then
+    upgradecode := '{C146EF48-4D31-3C3D-A2C5-1E91AF8A0A9B}' //x64
+  else
+    upgradecode := '{F899BAD3-98ED-308E-A905-56B5338963FF}'; //x86
+
+  Result :=  msiproductupgrade(upgradecode, '14.27.29114.0');
+end;
+
+function ReadBinFile(fileName: String; list: TStringList): Boolean;
+var
+  fs: TFileStream;
+  buff: String;
+  len: Word;
+  ch: Char;
+begin
+  Result := False;
+  if not FileExists(fileName) then
+    Exit;
+  list.Clear;
+  try
+    fs := TFileStream.Create(fileName, fmOpenRead);
+  except
+    Exit;
+  end;
+  while fs.Position < fs.Size do begin
+    SetLength(buff, 1);
+    try
+      fs.ReadBuffer(buff, SizeOf(len));
+    except
+      fs.Free;
+      Exit;
+    end;
+    len := Ord(buff[1]);
+    SetLength(buff, len);
+    try
+      fs.ReadBuffer(buff, len * SizeOf(ch));
+    except
+      fs.Free;
+      Exit;
+    end;
+    list.Add(buff);
+  end;
+  Result := True;
+  fs.Free;
+end;
+
+procedure RemoveExtraFiles();
+var
+  i: Integer;
+  appPath, path: String;
+  files: TStringList;
+begin
+  files := TStringList.Create;
+  appPath := ExpandConstant('{app}');
+  if ReadBinFile(appPath + '\unins000.bin', files) then begin
+    for i := 0 to files.Count - 1 do begin
+      if DeleteFile(appPath + files[i]) then begin
+        path := ExtractFileDir(files[i]);
+        while (path <> '\') do begin
+          if not RemoveDir(appPath + path) then
+            break;
+          path := ExtractFileDir(path);
+        end;
+      end;
+    end;
+  end;
+  files.Free;
+  DeleteFile(appPath + '\unins000.bin');
 end;

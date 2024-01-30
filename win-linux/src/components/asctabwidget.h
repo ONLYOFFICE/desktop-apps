@@ -46,6 +46,10 @@
 #define etNewPortal     AscEditorType(249)
 #define etTemplateFile  AscEditorType(248)
 
+#define DOCUMENT_CHANGED_LOADING_START          -255
+#define DOCUMENT_CHANGED_LOADING_FINISH         -254
+#define DOCUMENT_CHANGED_PAGE_LOAD_FINISH       -253
+
 typedef CefViewWrapperType CefType;
 typedef QMap<int, QString> MapEditors;
 
@@ -195,6 +199,7 @@ public:
     void applyDocumentChanging(int id, int type);
     void applyDocumentChanging(int id, const QString& name, const QString& descr);
     void applyDocumentChanging(int id, bool iscontentchanged);
+    void applyPageLoadingStatus(int id, int state);
     void setCustomWindowParams(bool iscustom);
     void cancelDocumentSaving(int index);
     void setEditorOptions(int, const std::wstring&);

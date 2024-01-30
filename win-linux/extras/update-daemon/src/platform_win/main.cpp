@@ -33,6 +33,7 @@
 #include "utils.h"
 #include "platform_win/svccontrol.h"
 #include "classes/platform_win/capplication.h"
+#include "classes/platform_win/ctimer.h"
 #include "classes/csvcmanager.h"
 #include "../../src/defines.h"
 #include "../../src/prop/defines_p.h"
@@ -94,11 +95,37 @@ int __cdecl _tmain (int argc, TCHAR *argv[])
             if (!socket.isPrimaryInstance())
                 return 0;
 
+            int pid = -1;
+            if (argc > 2) {
+                wchar_t *err = NULL;
+                int _pid = wcstol(argv[2], &err, 10);
+                if (!err || *err == L'\0')
+                    pid = _pid;
+            }
+
             CApplication app;
             CSvcManager upd;
-            socket.onMessageReceived([&app](void *buff, size_t) {
+            socket.onMessageReceived([&app, &pid](void *buff, size_t) {
                 if (strcmp((const char*)buff, "stop") == 0)
                     app.exit(0);
+                else {
+                    char *err = NULL;
+                    int _pid = strtol((const char*)buff, &err, 10);
+                    if (!err || *err == '\0')
+                        pid = _pid;
+                }
+            });
+
+            // Termination on crash of the main application
+            CTimer tmr;
+            tmr.start(30000, [&app, &pid]() {
+                if (pid > 0) {
+                    HANDLE procHandle = OpenProcess(PROCESS_QUERY_INFORMATION, FALSE, pid);
+                    if (procHandle)
+                        CloseHandle(procHandle);
+                    else
+                        app.exit(0);
+                }
             });
             return app.exec();
         }
@@ -160,7 +187,7 @@ VOID WINAPI SvcMain(DWORD argc, LPTSTR *argv)
     upd.aboutToQuit([]() {
         ReportSvcStatus(SERVICE_STOPPED, NO_ERROR, 0);
     });
-    WaitForSingleObject(gSvcStopEvent, INFINITE);    
+    WaitForSingleObject(gSvcStopEvent, INFINITE);
     CloseHandle(gSvcStopEvent);
 }
 

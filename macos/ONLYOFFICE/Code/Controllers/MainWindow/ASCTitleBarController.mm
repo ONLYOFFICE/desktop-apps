@@ -130,7 +130,7 @@ static float kASCWindowMinTitleWidth = 0;
 
     NSDataAsset * asset = [[NSDataAsset alloc] initWithName:@"progress_download_icon"];
     NSBitmapImageRep * rep = [[NSBitmapImageRep alloc] initWithData:[asset data]];
-    int framescount = [[rep valueForProperty:NSImageFrameCount] intValue];
+//    int framescount = [[rep valueForProperty:NSImageFrameCount] intValue];
     [rep setProperty:NSImageCurrentFrame withValue:[NSNumber numberWithUnsignedInt:15]];
     NSData *repData = [rep representationUsingType:NSPNGFileType properties:nil];
     NSImage * img = [[NSImage alloc] initWithData:repData];
@@ -403,6 +403,11 @@ static float kASCWindowMinTitleWidth = 0;
                 [tab setType:tab.type];
                 [self.tabsControl updateTab:tab];
             }
+        }
+    } else {
+        if ( [self.portalButton state] != NSControlStateValueOn ) {
+            [ASCThemesController isSystemDarkMode] ? [self.portalButton setImage:[NSImage imageNamed:@"logo-tab-light"]] :
+                                                        [self.portalButton setImage:[NSImage imageNamed:@"logo-tab-dark"]];
         }
     }
 }

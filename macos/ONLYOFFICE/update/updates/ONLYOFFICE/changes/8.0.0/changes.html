@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>ONLYOFFICE Release Notes</title>
+    <style type="text/css">
+        /* variables */
+        :root {
+            --color-black: #141923;
+            --color-white: #fff;
+            --color-gray-100: #f7fafc;
+            --color-gray-200: #edf2f7;
+            --color-gray-300: #e2e8f0;
+            --color-gray-400: #cbd5e0;
+            --color-gray-500: #a0aec0;
+            --color-gray-600: #718096;
+            --color-gray-700: #4a5568;
+            --color-gray-800: #2d3748;
+            --color-gray-900: #1a202c;
+        }
+        body {
+            background: var(--color-white);
+            color: var(--color-gray-800);
+            font: 12px "Lucida Grande", "Lucida Sans Unicode", Verdana, Lucida, Helvetica, sans-serif;
+        }
+        h1, h2, h3 {
+            color: var(--color-gray-800);
+            font-weight: normal;
+            font-style: normal;
+        }
+        h1 {
+            font-size: 1.7em;
+        }
+        h2 {
+            font-size: 1.4em;
+            font-weight: lighter;
+        }
+        h4 {
+            font-size: 1.2em;
+            font-weight: lighter;
+        }
+        code {
+            background: var(--color-gray-200);
+            font-family: monospace;
+            padding: 1px 5px;
+        }
+        ul {
+            padding: 8.0.0 20px;
+        }
+        li {
+            margin-left: 20px;
+            margin-bottom: 0.2em;
+            padding: 0;
+        }
+        hr {
+            margin: 20px 0;
+            border: var(--color-gray-400) solid 0.5px;
+        }
+        .releasedate {
+            color: var(--color-gray-600);
+            font-weight: lighter;
+        }
+
+        /* prefers light mode */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background: var(--color-gray-900);
+                color: var(--color-gray-200);
+            }
+
+            h1, h2, h3 {
+                color: var(--color-white);
+            }
+
+            code {
+                background: var(--color-gray-800);
+                color: var(--color-gray-200);
+            }
+
+            .releasedate {
+                color: var(--color-gray-600);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="version">
+        <h1>ONLYOFFICE 8.0.0<span class="releasedate"> - {{DATE}}</span></h1>
+
+        <h2>New Features</h2>
+
+        <h4>All Editors</h4>
+        <ul>
+            <li>Add the ability to encrypt `PDF` files</li>
+            <li>Add the Moodle provider</li>
+            <li>Add the ability to upload local themes to the Desktop Editors (Windows, Linux)</li>
+            <li>Add shortcuts to the Start menu for creating new files to EXE package (Windows)</li>
+            <li>Add a list of recent files and the ability to pin them via the context menu of the application in Jump List (Windows)</li>
+            <li>The draw.io plugin is excluded from the default installation package</li>
+            <li>All logos in the application and installation packages have been updated</li>
+            <li>VC Redist 2013 is excluded from the default installation package and is not required for the application to work (Windows)</li>
+            <li>Add the ability to Select/Deselect all formats on the MSI installer file associations page</li>
+            <li>Add OS compatibility manifests for executable files (Windows)</li>
+            <li>Improved the updates section and the update service for future versions of the application (Windows)</li>
+            <li>Adapt styles of window control buttons in accordance with OS design (Linux)</li>
+            <li>Change the widget for displaying downloads from the portal and the download indicator (Windows, Linux)</li>
+            <li>Move adding a comment to the entire document from the bottom of the comments panel to the settings button</li>
+            <li>Add a button for adding a comment to text to the header of the comments panel (similar to the button in the toolbar)</li>
+            <li>Add the interface translation into Arabic (ar-SA, Arabic - Saudi Arabia)</li>
+            <li>All buttons that do not fit in height should be placed into More button: category buttons, as well as plugins that were opened in the left panel</li>
+            <li>Add the setting to enable support for Screen readers</li>
+            <li>Add RTL support (beta) to the editors UI</li>
+        </ul>
+        <h4>Document Editor</h4>
+        <ul>
+            <li>Add partially support for bidirectional text</li>
+        </ul>
+        <h4>Spreadsheet Editor</h4>
+        <ul>
+            <li>Add the new Goal Seek functionality</li>
+            <li>Add the new Series tool for creating number sequences</li>
+            <li>Implement a wizard for inserting charts: display a list of recommended charts and previews for all types of charts based on the selected data</li>
+            <li>Expand cell filling settings</li>
+            <li>Add the Expand/Collapse menu item to the toolbar and the context menu of Pivot tables</li>
+            <li>Add the ability to center a sheet horizontally and vertically when printing</li>
+            <li>Add the ability to get a link to the selected range in the viewing mode</li>
+        </ul>
+        <h4>Presentation Editor</h4>
+        <ul>
+            <li>Add the ability to set the final color for animation effects that change color</li>
+            <li>Make animation effect icons inactive if the effect cannot be applied to an object</li>
+            <li>Add partially support for bidirectional text</li>
+        </ul>
+        <h4>Forms</h4>
+        <ul>
+            <li>Switching from the `OFORM` to `PDF` format containing forms in accordance with the OOXML format</li>
+            <li>Dialog for converting old `OFORM` files to `PDF`</li>
+            <li>For the radio button field, add the setting for the name of the selected element (Radio button choice)</li>
+            <li>Add a chain of tips when working with docxf files</li>
+        </ul>
+    </div>
+</body>
+</html>

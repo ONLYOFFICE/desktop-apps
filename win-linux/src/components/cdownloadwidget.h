@@ -34,25 +34,14 @@
 #define CDOWNLOADWIDGET_H
 
 #include <QWidget>
+#include <QScrollArea>
 #include "cpushbutton.h"
-#include "cscalingwrapper.h"
 
-//class CProfileMenuFilter;
-class CProfileMenuFilter : public QObject {
-public:
-    CProfileMenuFilter(QObject *);
 
-    bool eventFilter(QObject *, QEvent *);
-    void setMenuButton(QPushButton *);
-private:
-    QPushButton * _parentButton;
-};
-
-class CDownloadWidget : public QWidget, public CScalingWrapper
+class CDownloadWidget : public QWidget
 {
     Q_OBJECT
-
-    class CDownloadItem;
+    struct CDownloadItem;
     typedef std::map<int, CDownloadItem *>::const_iterator MapItem;
 
 public:
@@ -61,33 +50,30 @@ public:
 
     void downloadProcess(void *);
     QPushButton * toolButton();
-//    void updateProgress();
-//    void cancelAll();
-
-    void updateScalingFactor(double) override;
+    void updateScalingFactor(double);
+    void applyTheme(const QString&);
+    void onLayoutDirectionChanged();
 
 protected:
-    QWidget * addFile(const QString&, int);
-    void removeFile(int);
-    void removeFile(MapItem);
-    void updateLayoutGeomentry();
-    void updateProgress(MapItem, void *);
-    QString getFileName(const QString&) const;
-
-    void applyScaling(double);
-    void resizeEvent(QResizeEvent *);
+    virtual void closeEvent(QCloseEvent *) final;
+    virtual bool eventFilter(QObject*, QEvent*) final;
 
 private:
-    CPushButton * m_pToolButton;
+    QWidget * addFile(const QString&, int);
+    QString getFileName(const QString&) const;
+    void removeFile(MapItem);
+    void onStart();
+    void onFinish(int);
+    void clearlAll();
+    void polish();
+
+    CPushButton * m_pToolButton = nullptr;
+    QScrollArea * m_pArea = nullptr;
+    QWidget *m_pContentArea = nullptr;
+    QFrame *m_mainFrame = nullptr,
+           *m_titleFrame = nullptr;
     std::map<int, CDownloadItem *> m_mapDownloads;
-    QMargins m_defMargins;
-    int m_defSpacing;
-
-signals:
-    void downloadCanceled(int);
-
-private slots:
-    void slot_downloadCanceled(int);
+    double m_dpiRatio = 1;
 };
 
 #endif // CDOWNLOADWIDGET_H

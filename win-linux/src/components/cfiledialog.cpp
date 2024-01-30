@@ -61,22 +61,22 @@ namespace CFileDialogHelper {
 
 CFileDialogWrapper::CFileDialogWrapper(QWidget * parent) : QObject(parent)
 {
-    m_mapFilters[AVS_OFFICESTUDIO_FILE_UNKNOWN]         = tr("All files (*.*)");
+	m_mapFilters[AVS_OFFICESTUDIO_FILE_UNKNOWN]              = tr("All files (*.*)");
 
-    m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCX]   = tr("DOCX Document") + " (*.docx)";
-    m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_DOTX]   = tr("Document template") + " (*.dotx)";
-    m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_DOC]    = tr("DOC Document (*.doc)");
-    m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_ODT]    = tr("ODT Document (*.odt)");
-    m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_OTT]    = tr("OpenDocument Document template") + " (*.ott)";
-    m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_RTF]    = tr("RTF File (*.rtf)");
-    m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_TXT]    = tr("TXT File (*.txt)");
-    m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_HTML]   = tr("HTML File (*.html)");
-    m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_MHT]    = tr("MHT File (*.mht)");
-    m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_EPUB]   = tr("EPUB File (*.epub)");
-    m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_FB2]    = tr("FB2 File (*.fb2)");
-    m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_MOBI]   = tr("MOBI File (*.mobi)");
-    m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_OFORM]  = tr("OFORM Document (*.oform)");
-    m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCXF]  = tr("DOCXF Document (*.docxf)");
+	m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCX]        = tr("DOCX Document") + " (*.docx)";
+	m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_DOTX]        = tr("Document template") + " (*.dotx)";
+	m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_DOC]         = tr("DOC Document (*.doc)");
+	m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_ODT]         = tr("ODT Document (*.odt)");
+	m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_OTT]         = tr("OpenDocument Document template") + " (*.ott)";
+	m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_RTF]         = tr("RTF File (*.rtf)");
+	m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_TXT]         = tr("TXT File (*.txt)");
+	m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_HTML]        = tr("HTML File (*.html)");
+	m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_MHT]         = tr("MHT File (*.mht)");
+	m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_EPUB]        = tr("EPUB File (*.epub)");
+	m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_FB2]         = tr("FB2 File (*.fb2)");
+	m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_MOBI]        = tr("MOBI File (*.mobi)");
+	m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_OFORM_PDF]   = tr("ONLYOFFICE Form Document (*.pdf)");
+	m_mapFilters[AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCXF]       = tr("DOCXF Document (*.docxf)");
 
     m_mapFilters[AVS_OFFICESTUDIO_FILE_PRESENTATION_PPTX]   = tr("PPTX File (*.pptx)");
     m_mapFilters[AVS_OFFICESTUDIO_FILE_PRESENTATION_PPT]    = tr("PPT File (*.ppt)");
@@ -145,7 +145,7 @@ bool CFileDialogWrapper::modalSaveAs(QString& fileName, int selected)
 #else
     QString _croped_name = fileName.left(fileName.lastIndexOf("."));
 #endif
-    reFilter.setPattern("\\(\\*(\\.\\w+)\\)$");
+    reFilter.setPattern("\\(\\*(\\.\\w+)");
 
     auto _exec_dialog = [=] (QWidget * p, QString n, QString f, QString& sf) {
         QFileDialog::Options _opts{QFileDialog::DontConfirmOverwrite};
@@ -177,7 +177,7 @@ bool CFileDialogWrapper::modalSaveAs(QString& fileName, int selected)
     QWidget * _parent = CFileDialogHelper::useModalDialog() ?
                 (QWidget *)parent() : nullptr;
 #ifndef _WIN32
-    WindowHelper::CParentDisable oDisabler(qobject_cast<QWidget*>(parent()));
+    WindowHelper::CParentDisable oDisabler(_parent);
 #endif
 
     while (true) {
@@ -242,16 +242,18 @@ QStringList CFileDialogWrapper::modalOpen(const QString& path, const QString& fi
 //        _filter_ = joinFilters();
         _filter_ =  tr("Text documents") +
 #ifndef __LOCK_OFORM_FORMATS
-                        " (*.docx *.doc *.odt *.ott *.rtf *.docm *.dot *.dotx *.dotm *.fb2 *.fodt *.wps *.wpt *.xml *.pdf *.djv *.djvu *.docxf *.oform *.sxw *.stw *.xps);;" +
+                        " (*.docx *.doc *.odt *.ott *.rtf *.docm *.dot *.dotx *.dotm *.fb2 *.fodt *.wps *.wpt *.xml *.pdf *.djv *.djvu *.docxf *.oform *.sxw *.stw *.xps *.oxps);;" +
 #else
-                        " (*.docx *.doc *.odt *.ott *.rtf *.docm *.dot *.dotx *.dotm *.fb2 *.fodt *.wps *.wpt *.xml *.pdf *.djv *.djvu *.sxw *.stw *.xps);;" +
+                        " (*.docx *.doc *.odt *.ott *.rtf *.docm *.dot *.dotx *.dotm *.fb2 *.fodt *.wps *.wpt *.xml *.pdf *.djv *.djvu *.sxw *.stw *.xps *.oxps);;" +
 #endif
                     tr("Spreadsheets") + " (*.xlsx *.xls *.xlsm *.xlsb *.ods *.ots *.xltx *.xltm *.xml *.fods *.et *.ett *.sxc);;" +
                     tr("Presentations") + " (*.pptx *.ppt *.odp *.otp *.ppsm *.ppsx *.pps *.potx *.pot *.potm *.fodp *.dps *.dpt *.sxi);;" +
                     tr("Web Page") + " (*.html *.htm *.mht *.mhtml *.epub);;" +
                     tr("Text files") + " (*.txt *.csv)";
+#ifdef __linux__
         _all_sup_files = tr("All supported files") + " " + joinExtentions(_filter_);
         _filter_.prepend(_all_sup_files + ";;");
+#endif
         _filter_.append(";;" + m_mapFilters[AVS_OFFICESTUDIO_FILE_UNKNOWN]);
     }
     const QString _default_sel_filter = _all_sup_files.isEmpty() ?
@@ -262,7 +264,7 @@ QStringList CFileDialogWrapper::modalOpen(const QString& path, const QString& fi
                 (QWidget *)parent() : nullptr;
     QFileDialog::Options _opts;       
 #ifdef __linux__
-    WindowHelper::CParentDisable oDisabler(qobject_cast<QWidget*>(parent()));
+    WindowHelper::CParentDisable oDisabler(_parent);
 #endif
     const QString title = (m_title.isEmpty()) ? tr("Open Document") : m_title;
 
@@ -356,7 +358,11 @@ QStringList CFileDialogWrapper::modalOpenPresentations(const QString& path, bool
 
 QStringList CFileDialogWrapper::modalOpenForEncrypt(const QString& path, bool multi)
 {
+#ifndef __LOCK_OFORM_FORMATS
     QString _filter = tr("Text documents") + " (*.docx *.docxf *.docm *.dotm *.dotx *.oform);;" +
+#else
+    QString _filter = tr("Text documents") + " (*.docx *.docm *.dotm *.dotx);;" +
+#endif
                         tr("Spreadsheets") + " (*.xlsx *.xlsm *.xltm *.xltx);;" +
                         tr("Presentations") + " (*.potm *.potx *.ppsm *.pptm *.ppsx *.pptx)";
 
@@ -397,7 +403,7 @@ QString CFileDialogWrapper::selectFolder(const QString& folder)
     QFileDialog::Options _opts{QFileDialog::ShowDirsOnly};
 
 #ifdef __linux__
-    WindowHelper::CParentDisable oDisabler(qobject_cast<QWidget*>(parent()));
+    WindowHelper::CParentDisable oDisabler(_parent);
 #endif
     const QString title = (m_title.isEmpty()) ? tr("Select Folder") : m_title;
 
@@ -446,7 +452,7 @@ int CFileDialogWrapper::getKey(const QString &value)
 {
 #ifdef Q_OS_LINUX
     QString _sv{value};
-    if ( WindowHelper::getEnvInfo() == "GNOME" ) {
+    if ( WindowHelper::getEnvInfo() == WindowHelper::GNOME ) {
         QRegularExpression _re_strbegin("^(.+)\\s\\（", QRegularExpression::CaseInsensitiveOption);
         QRegularExpressionMatch _re_match = _re_strbegin.match(value);
 

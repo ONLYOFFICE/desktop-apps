@@ -47,11 +47,14 @@
 #ifdef _WIN32
 # include "platform_win/updatedialog.h"
 # define DAEMON_NAME L"/updatesvc.exe"
+# define GetPid() GetCurrentProcessId()
 #else
 # include <QProcess>
+# include <unistd.h>
 # include "components/cmessage.h"
 # include "platform_linux/updatedialog.h"
 # define DAEMON_NAME "/updatesvc"
+# define GetPid() getpid()
 #endif
 
 #define modeToEnum(mod) ((mod == "silent") ? UpdateMode::SILENT : (mod == "ask") ? UpdateMode::ASK : UpdateMode::DISABLE)
@@ -92,9 +95,9 @@ const char *SVC_TXT_ERR_UNPACKING   = QT_TRANSLATE_NOOP("CUpdateManager", "An er
            *TXT_ERR_NOT_ALLOWED = QT_TRANSLATE_NOOP("CUpdateManager", "Updates are not allowed!"),
            *TXT_ERR_URL         = QT_TRANSLATE_NOOP("CUpdateManager", "Unable to check update: URL not defined."),
            *TXT_ERR_PACK_URL    = QT_TRANSLATE_NOOP("CUpdateManager", "An error occurred while loading updates: package Url is empty!"),
-           *TXT_ERR_CHECK       = QT_TRANSLATE_NOOP("CUpdateManager", "An error occurred while check updates: Update Service not found!"),
-           *TXT_ERR_LOAD        = QT_TRANSLATE_NOOP("CUpdateManager", "An error occurred while loading updates: Update Service not found!"),
-           *TXT_ERR_UNZIP       = QT_TRANSLATE_NOOP("CUpdateManager", "An error occurred while unzip updates: Update Service not found!"),
+           *TXT_ERR_CHECK       = QT_TRANSLATE_NOOP("CUpdateManager", "An error occurred while check updates: the Update Service is not installed or is not running!"),
+           *TXT_ERR_LOAD        = QT_TRANSLATE_NOOP("CUpdateManager", "An error occurred while loading updates: the Update Service is not installed or is not running!"),
+           *TXT_ERR_UNZIP       = QT_TRANSLATE_NOOP("CUpdateManager", "An error occurred while unzip updates: the Update Service is not installed or is not running!"),
            *TXT_ERR_JSON        = QT_TRANSLATE_NOOP("CUpdateManager", "Error opening JSON file."),
            *TXT_ERR_MD5         = QT_TRANSLATE_NOOP("CUpdateManager", "Update package error: md5 sum does not match the original."),
 
@@ -218,6 +221,7 @@ auto runProcess(const tstring &fileName, const tstring &args, bool runAsAdmin = 
 struct CUpdateManager::PackageData {
     QString fileName,
             fileType,
+            fileSize,
             hash,
             version;
     wstring packageUrl,
@@ -225,6 +229,7 @@ struct CUpdateManager::PackageData {
     void clear() {
         fileName.clear();
         fileType.clear();
+        fileSize.clear();
         hash.clear();
         version.clear();
         packageUrl.clear();
@@ -283,8 +288,13 @@ CUpdateManager::CUpdateManager(QObject *parent):
         connect(m_pLastCheckMsgTimer, &QTimer::timeout, this, [=]() {
             refreshStartPage({"lastcheck", {TXT_LAST_CHECK, formattedTime(m_lastCheck)}});
         });
-        if (IsPackage(Portable))
-            runProcess(QStrToTStr(qApp->applicationDirPath()) + DAEMON_NAME, _T("--run-as-app"));
+        if (IsPackage(Portable)) {
+            int pid = GetPid();
+            std::string msg = std::to_string(pid);
+            CSocket sock(INSTANCE_SVC_PORT, 0);
+            sock.sendMessage((void*)msg.c_str(), msg.length() + 1);
+            runProcess(QStrToTStr(qApp->applicationDirPath()) + DAEMON_NAME, _T("--run-as-app ") + std::to_tstring(pid));
+        }
         init();
     } else {
         CLogger::log("Updates is off, URL is empty.");
@@ -340,6 +350,14 @@ void CUpdateManager::init()
             case MSG_Progress:
                 QMetaObject::invokeMethod(this, "onProgressSlot", Qt::QueuedConnection, Q_ARG(int, std::stoi(params[1])));
                 break;
+
+            case MSG_RequestContentLenght: {
+                double fileSize = std::stod(params[1])/1024/1024;
+                m_packageData->fileSize = (fileSize == 0) ? "--" : QString::number(fileSize, 'f', 1);
+                QMetaObject::invokeMethod(this, "onCheckFinished", Qt::QueuedConnection, Q_ARG(bool, false), Q_ARG(bool, true),
+                                          Q_ARG(QString, m_packageData->version), Q_ARG(QString, ""));
+                break;
+            }
 
             case MSG_OtherError:
                 QMetaObject::invokeMethod(this, "onError", Qt::QueuedConnection, Q_ARG(QString, TStrToQStr(params[1])));
@@ -528,13 +546,16 @@ void CUpdateManager::loadUpdates()
     } else {
         refreshStartPage({"error", {TXT_ERR_PACK_URL}, BTN_TXT_CHECK, "check", "false"});
         __UNLOCK
+//        m_dialogSchedule->addToSchedule("criticalMsg", QObject::tr("An error occurred while loading updates: package Url is empty!"));
     }
 }
 
 void CUpdateManager::installUpdates()
 {
-    __GLOBAL_LOCK
-    m_dialogSchedule->addToSchedule("showStartInstallMessage");
+    __UNLOCK
+    m_startUpdateOnClose = true;
+    m_restartAfterUpdate = true;
+    AscAppManager::closeAppWindows();
 }
 
 void CUpdateManager::refreshStartPage(const Command &cmd)
@@ -749,7 +770,10 @@ void CUpdateManager::onLoadCheckFinished(const QString &filePath)
             QJsonValue changelog = release_notes.value(lang);
 
             clearTempFiles(isSavedPackageValid() ? m_savedPackageData->fileName : "");
-            onCheckFinished(false, true, m_packageData->version, changelog.toString());
+            if (m_packageData->packageUrl.empty() || !m_socket->sendMessage(MSG_RequestContentLenght, WStrToTStr(m_packageData->packageUrl))) {
+                m_packageData->fileSize = "--";
+                onCheckFinished(false, true, m_packageData->version, "");
+            }
         } else {
             clearTempFiles();
             onCheckFinished(false, false, "", "");
@@ -793,9 +817,9 @@ void CUpdateManager::onCheckFinished(bool error, bool updateExist, const QString
 
 void CUpdateManager::showUpdateMessage(QWidget *parent) {
     int result = WinDlg::showDialog(parent, tr("Update is available"),
-                        QString("%1\n%2: %3\n%4: %5\n%6").arg(QString(WINDOW_NAME), tr("Current version"),
-                        QString(VER_FILEVERSION_STR), tr("Update version"), getVersion(),
-                        tr("Would you like to download update now?")),
+                        QString("%1\n%2: %3\n%4: %5\n%6 (%7 MB)").arg(QString(WINDOW_NAME), tr("Current version"),
+                        QString(VER_FILEVERSION_STR), tr("New version"), getVersion(),
+                        tr("Would you like to download update now?"), m_packageData->fileSize),
                         WinDlg::DlgBtns::mbSkipRemindDownload);
     __UNLOCK
     switch (result) {
@@ -816,9 +840,9 @@ void CUpdateManager::showUpdateMessage(QWidget *parent) {
 void CUpdateManager::showStartInstallMessage(QWidget *parent)
 {
     int result = WinDlg::showDialog(parent, tr("Update is ready to install"),
-                        QString("%1\n%2: %3\n%4: %5\n%6").arg(QString(WINDOW_NAME), tr("Current version"),
-                        QString(VER_FILEVERSION_STR), tr("Update version"), getVersion(),
-                        tr("Would you like to restart app now?")),
+                        QString("%1: %2\n%3: %4\n%5").arg(tr("Current version"),
+                        QString(VER_FILEVERSION_STR), tr("New version"), getVersion(),
+                        tr("To finish updating, restart the app")),
                         WinDlg::DlgBtns::mbInslaterRestart);
     __UNLOCK
     switch (result) {

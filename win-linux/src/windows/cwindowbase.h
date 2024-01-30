@@ -46,6 +46,11 @@
 #define WINDOW_TITLE_MIN_WIDTH 200
 #define TOOLBTN_HEIGHT      28
 #define TOOLBTN_WIDTH       40
+#ifdef _WIN32
+# define TITLEBTN_WIDTH     40
+#else
+# define TITLEBTN_WIDTH     (WindowHelper::getEnvInfo() == WindowHelper::KDE ? 24 : 28)
+#endif
 #define TITLE_HEIGHT        28
 
 #include <QMainWindow>

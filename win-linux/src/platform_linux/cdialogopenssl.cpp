@@ -104,7 +104,7 @@ CDialogOpenSsl::CDialogOpenSsl(QWidget *parent)
     QGridLayout * _main_layout = new QGridLayout(this);
 
     m_private->_txtCertPath->setPlaceholderText(tr("select certificate file..."));
-    m_private->_labelCertPass->setText(tr("Certifacate password:"));
+    m_private->_labelCertPass->setText(tr("Certificate password:"));
     m_private->_txtKeyPath->setPlaceholderText(tr("select key file..."));
     m_private->_labelKeyPass->setText(tr("Key password:"));
 

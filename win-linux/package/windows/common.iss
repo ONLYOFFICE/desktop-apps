@@ -81,8 +81,13 @@ ChangesEnvironment        =yes
 SetupMutex                =ASC
 
 #if str(_ARCH) == "64"
+#if Int(DecodeVer(PREPROCVER,1)) >= 6
+ArchitecturesAllowed              = x64 arm64
+ArchitecturesInstallIn64BitMode   = x64 arm64
+#else
 ArchitecturesAllowed              = x64
 ArchitecturesInstallIn64BitMode   = x64
+#endif
 #endif
 
 #ifndef _WIN_XP
@@ -97,7 +102,7 @@ OutputBaseFileName                = {#sOutputFileName}
 SignTool                  =byparam $p
 #endif
 
-SetupIconFile                     = {#sBrandingFolder}\win-linux\extras\projicons\res\desktopeditors.ico
+SetupIconFile                     = {#sBrandingFolder}\win-linux\extras\projicons\res\icons\desktopeditors.ico
 WizardImageFile                   = {#sBrandingFolder}\win-linux\package\windows\data\dialogpicture*.bmp
 WizardSmallImageFile              = {#sBrandingFolder}\win-linux\package\windows\data\dialogicon*.bmp
 
@@ -158,10 +163,12 @@ Name: be; MessagesFile: compiler:Languages\Belarusian.isl;     LicenseFile: {#sB
 Name: gl; MessagesFile: compiler:Languages\Galician.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 Name: si; MessagesFile: compiler:Languages\Sinhala.islu;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 Name: zh_TW; MessagesFile: compiler:Languages\ChineseTraditional.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
+Name: ar_SA; MessagesFile: compiler:Languages\Arabic.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 
 [LangOptions]
 lo.LanguageName=ພາສາລາວ
 ;ga_IE.LanguageName=Gaeilge
+ar_SA.LanguageName=الْعَرَبِيَّة
 
 [CustomMessages]
 ;======================================================================================================
@@ -169,6 +176,7 @@ en.PrevVer=The previous version of {#sAppName} detected, please click 'OK' butto
 ru.PrevVer=Обнаружена предыдущая версия {#sAppName}, нажмите кнопку 'OK' чтобы удалить её, или 'Отмена' чтобы выйти из программы инсталляции.
 ;======================================================================================================
 en.Launch =Launch %1
+ar_SA.Launch =بدء تشغيل %1
 bg.Launch =Пускане %1
 ca.Launch =Llança %1
 cs.Launch =Spuštění %1
@@ -211,6 +219,7 @@ si.Launch =%1 දියත් කරන්න
 zh_TW.Launch =啓動 %1
 ;======================================================================================================
 en.CreateDesktopIcon =Create %1 &desktop icon
+ar_SA.CreateDesktopIcon =إنشاء %1 &أيقونة سطح المكتب
 bg.CreateDesktopIcon =Създаване на %1 &икона на работния плот
 ca.CreateDesktopIcon =Crea una icona d'escriptori per a %1
 cs.CreateDesktopIcon =Vytvořte %1 &ikonu pracovní plochy
@@ -253,6 +262,7 @@ si.CreateDesktopIcon =%1 වැඩතල නිරූපකය සාදන්�
 zh_TW.CreateDesktopIcon =建立 %1 和桌面圖示
 ;======================================================================================================
 en.InstallAdditionalComponents =Installing additional system components. Please wait...
+ar_SA.InstallAdditionalComponents =جاري تثبيت مكونات نظام إضافية. الرجاء الانتظار...
 ca.InstallAdditionalComponents =Instal·lació de components de sistema addicionals. Si us plau, espereu...
 bg.InstallAdditionalComponents =Инсталиране на допълнителни системни компоненти. Моля, изчакайте...
 cs.InstallAdditionalComponents =Instalace dalších systémových komponent. Prosím, čekejte...
@@ -295,6 +305,7 @@ si.InstallAdditionalComponents =අතිරේක පද්ධති සංර�
 zh_TW.InstallAdditionalComponents =正在安裝附加系統元件，請稍候...
 ;======================================================================================================
 en.AdditionalTasks =Tasks:
+ar_SA.AdditionalTasks =المهام:
 bg.AdditionalTasks =Задачи:
 ca.AdditionalTasks =Tasques:
 cs.AdditionalTasks =Úkoly:
@@ -337,6 +348,7 @@ si.AdditionalTasks =කාර්යන්:
 zh_TW.AdditionalTasks =工作：
 ;======================================================================================================
 en.Uninstall =Uninstall
+ar_SA.Uninstall =إزالة التثبيت
 bg.AdditionalTasks =Деинсталиране
 ca.AdditionalTasks =Desinstal·lar
 cs.Uninstall =Odinstalovat
@@ -379,6 +391,7 @@ si.Uninstall =අස්ථාපනය
 zh_TW.Uninstall =解除安裝
 ;======================================================================================================
 en.WarningWrongArchitecture =You are trying to install the %1-bit application version over the %2-bit version installed. Please uninstall the previous version first or download the correct version for installation.
+ar_SA.WarningWrongArchitecture =أنت تحاول تثبيت نسخة %1-bit من التطبيق على نسخة %2-bit المثبتة. فضلًا قم بإزالة النسخة السابقة أولًا أو قم بتحميل النسخة الصحيحة ليتم تثبيتها.
 bg.WarningWrongArchitecture =Опитвате се да инсталирате %1-битовата версия на приложението над инсталираната %2-битова версия. Моля, деинсталирайте първо предишната версия или изтеглете правилната версия за инсталиране.
 ca.WarningWrongArchitecture =Estau provant a instal·lar la versió de l'aplicació %1-bit amb la versió %2-bit instal·lada. Si us plau, desintaleu primer la versió anterior o descarregeu la versió correcta per a la instal·lació.
 cs.WarningWrongArchitecture =Pokoušíte se nainstalovat %1-bit verzi aplikace na nainstalovanou %2-bitovou verzi. Nejprve odinstalujte předchozí verzi nebo stáhněte správnou verzi pro instalaci.
@@ -422,6 +435,7 @@ zh_TW.WarningWrongArchitecture =您正在嘗試安裝 %1-bit 應用程式版本�
 ;======================================================================================================
 
 en.UpdateAppRunning=Setup has detected that %1 is currently running.%n%nIt'll be closed automatically. Click OK to continue, or Cancel to exit.
+ar_SA.UpdateAppRunning=تم اكتشاف أن %1 قيد التشغيل.%n%nسيتم إغلاقه بشكل تلقائي. اضغط حسنًا للإكمال، أو إلغاء.
 bg.UpdateAppRunning=Настройката установи, че %1 в момента работи.%n%nТова ще бъде затворено автоматично. Щракнете върху OK, за да продължите, или Отказ, за да излезете.
 ca.UpdateAppRunning=La configuració ha detectat que actualment s'està executant %1.%n%n Es tancarà automàticament. Feu clic a D'acord per continuar o Cancel·la per sortir.
 cs.UpdateAppRunning=V rámci nastavení bylo zjištěno, že je aktuálně spuštěné 1%.%n%nBude automaticky zavřen. Chcete-li pokračovat, klikněte na tlačítko OK nebo Zrušit pro ukončení.
@@ -464,6 +478,7 @@ si.UpdateAppRunning=%1 දැනට ධාවනය වන බව පිහි�
 zh_TW.UpdateAppRunning=安裝程式偵測到 %1 正在執行中。%n%n將會自動關閉。 點擊 確認 繼續，或 取消 離開。
 ;======================================================================================================
 en.WarningClearAppData =Do you want to clear the user settings and application cached data?
+ar_SA.WarningClearAppData =هل تريد مسح إعدادات المستخدم وبيانات التطبيق المؤقتة؟
 bg.WarningClearAppData =Искате ли да изчистите потребителските настройки и кешираните данни на приложението?
 ca.WarningClearAppData =Voleu esborrar la configuració de l'usuari i les dades de la memòria cau de l'aplicació?
 cs.WarningClearAppData =Chcete zrušit uživatelské nastavení a údaje uložené v paměti?
@@ -508,6 +523,7 @@ zh_TW.WarningClearAppData =您想要清除使用者設定和應用程式內的�
 
 
 ;en.AssociateDescription =Associate office document file types with %1
+;ar_SA.AssociateDescription =هل تريد ربط صيغة المستند بـ %1
 ;bg.AssociateDescription =Свържете типовете файлове на офис документи с %1
 ;it_IT.AssociateDescription =Associa i file documentodi Office con %1
 ;cs.AssociateDescription =Asociovat typy souborů kancelářských dokumentů s %1
@@ -530,6 +546,7 @@ zh_TW.WarningClearAppData =您想要清除使用者設定和應用程式內的�
 ;zh_TW.AssociateDescription =與文書處理檔案類型聯結 %1
 ;======================================================================================================
 en.UpdateService =Update service for {#sAppName}
+ar_SA.UpdateService =خدمة التحديث لـ {#sAppName}
 cs.UpdateService =Služba aktualizace {#sAppName}
 fi.UpdateService =Palvelu päivitystä varten {#sAppName}
 el.UpdateService =Υπηρεσία για ενημέρωση {#sAppName}
@@ -583,7 +600,7 @@ var
 begin
   Result := True;
   if RegGetValueNames(
-  HKEY_LOCAL_MACHINE, 
+  HKEY_LOCAL_MACHINE,
   'SOFTWARE\Microsoft\Windows\CurrentVersion\Installer\UpgradeCodes\{#sUpgradeCode}',
   Names) then begin
     ConfirmUninstall := IDOK;
@@ -593,48 +610,48 @@ begin
         Exit;
       end;
     end;
-    
+
     for i := 1 to 32 do begin
       arrayCode[i] := (Names[0])[i];
     end;
-  
+
     ProductCode := '{';
-    
+
     for i := 8 downto 1 do begin
       ProductCode := ProductCode + arrayCode[i];
     end;
-    
+
     ProductCode := ProductCode + '-';
-    
+
     for i := 12 downto 9 do begin
       ProductCode := ProductCode + arrayCode[i];
     end;
-    
+
     ProductCode := ProductCode + '-';
-    
+
     for i := 16 downto 13 do begin
       ProductCode := ProductCode + arrayCode[i];
     end;
-    
+
     ProductCode := ProductCode + '-';
-  
+
     j := 17;
-    while j < 32 do begin     
+    while j < 32 do begin
       tmp := arrayCode[j];
       arrayCode[j] := arrayCode[j + 1];
       arrayCode[j + 1] := tmp;
       j := j + 2;
     end;
-    
+
     for i := 17 to 32 do begin
       ProductCode := ProductCode + arrayCode[i];
       if i = 20 then begin
         ProductCode := ProductCode + '-';
       end
     end;
-    
+
     ProductCode := ProductCode + '}';
-    
+
     DeleteString := 'msiexec.exe /x ' + ProductCode;
     Exec('>', DeleteString, '', SW_SHOW, ewWaitUntilTerminated, ResultCode);
   end
@@ -652,7 +669,7 @@ var
   path: string;
 begin
   InitializeAssociatePage();
-  
+
   if not UninstallPreviosVersion() then begin
     Abort;
   end;
@@ -676,7 +693,7 @@ begin
   OutResult := True;
 
   if IsWin64 then
-  begin 
+  begin
     if Is64BitInstallMode then
     begin
       regkey := HKLM32;
@@ -742,7 +759,7 @@ begin
       Exec(ExpandConstant('{app}\{#iconsExe}'), '--remove-jump-list', '', SW_SHOWNORMAL, ewWaitUntilTerminated, ErrorCode);
       Exec(ExpandConstant('{app}\updatesvc.exe'), '--delete', '', SW_HIDE, ewWaitUntilTerminated, ErrorCode);
     end;
-    
+
     RegQueryStringValue(GetHKLM(), ExpandConstant('{#APP_REG_PATH}'), 'uninstall', regValue);
 
     if (regValue <> 'full') and
@@ -787,7 +804,7 @@ begin
     UnassociateExtensions();
   end else
   if CurUninstallStep = usPostUninstall then begin
-    
+    RemoveExtraFiles();
   end;
 end;
 
@@ -899,12 +916,12 @@ procedure checkArchitectureVersion;
   //isExists: Boolean;
 begin
   if IsWin64 then
-  begin 
+  begin
     if Is64BitInstallMode then
     begin
       //isExists := RegKeyExists(GetHKLM(), 'SOFTWARE\Wow6432Node\ONLYOFFICE\ASCDocumentEditor')
       MsgBox(ExpandConstant('{cm:WarningWrongArchitecture,64,32}'), mbInformation, MB_OK)
-    end else 
+    end else
     begin
       //isExists := RegKeyExists(GetHKLM(), 'SOFTWARE\ONLYOFFICE\ASCDocumentEditor');
       MsgBox(ExpandConstant('{cm:WarningWrongArchitecture,32,64}'), mbInformation, MB_OK)
@@ -914,9 +931,9 @@ end;
 *)
 
 function getPosixTime: string;
-var 
+var
   fileTime: TFileTime;
-  fileTimeNano100: Int64;  
+  fileTimeNano100: Int64;
 begin
   //GetSystemTime(systemTime);
 
@@ -937,7 +954,7 @@ function getAppPrevLang(param: string): string;
 var
   lang: string;
 begin
-  if not (WizardSilent and
+  if not (WizardSilent() and
         RegValueExists(GetHKLM(), '{#APP_REG_PATH}', 'locale') and
             RegQueryStringValue(GetHKLM(), '{#APP_REG_PATH}', 'locale', lang)) then
   begin
@@ -982,12 +999,15 @@ Name: {commonappdata}\{#APP_PATH}\webdata\cloud; Flags: uninsalwaysuninstall;
 
 
 [Files]
-Source: data\vcredist\vcredist_2013_{#sWinArch}.exe; DestDir: {app}; Flags: deleteafterinstall; \
-  AfterInstall: installVCRedist(ExpandConstant('{app}\vcredist_2013_{#sWinArch}.exe'), ExpandConstant('{cm:InstallAdditionalComponents}')); \
-  Check: not checkVCRedist2013;
-Source: data\vcredist\vcredist_2022_{#sWinArch}.exe; DestDir: {app}; Flags: deleteafterinstall; \
-  AfterInstall: installVCRedist(ExpandConstant('{app}\vcredist_2022_{#sWinArch}.exe'), ExpandConstant('{cm:InstallAdditionalComponents}')); \
+#ifndef _WIN_XP
+Source: data\vcredist_{#sWinArch}.exe; DestDir: {app}; Flags: deleteafterinstall; \
+  AfterInstall: installVCRedist(ExpandConstant('{app}\vcredist_{#sWinArch}.exe'), ExpandConstant('{cm:InstallAdditionalComponents}')); \
   Check: not checkVCRedist2022;
+#else
+Source: data\vcredist_{#sWinArch}.exe; DestDir: {app}; Flags: deleteafterinstall; \
+  AfterInstall: installVCRedist(ExpandConstant('{app}\vcredist_{#sWinArch}.exe'), ExpandConstant('{cm:InstallAdditionalComponents}')); \
+  Check: not checkVCRedist2019;
+#endif
 
 Source: {#sBrandingFolder}\win-linux\package\windows\data\VisualElementsManifest.xml;        DestDir: {app}; DestName: {#VISEFFECTS_MANIFEST_NAME}; MinVersion: 6.3;
 Source: {#sBrandingFolder}\win-linux\package\windows\data\visual_elements_icon_*;            DestDir: {app}\browser;   MinVersion: 6.3;
@@ -1014,18 +1034,18 @@ Name: desktopicon; Description: {cm:CreateDesktopIcon,{#sAppName}}; GroupDescrip
 ;Name: {commondesktop}\{#sAppName}; FileName: {app}\{#NAME_EXE_OUT}; WorkingDir: {app}; Tasks: desktopicon;
 Name: {commondesktop}\{#sAppIconName}; FileName: {app}\{#iconsExe}; WorkingDir: {app}; Tasks: desktopicon; IconFilename: {app}\app.ico; AppUserModelID: {#APP_USER_MODEL_ID};
 Name: {group}\{#sAppIconName};         Filename: {app}\{#iconsExe}; WorkingDir: {app}; IconFilename: {app}\app.ico; AppUserModelID: {#APP_USER_MODEL_ID};
-Name: {group}\{cm:Uninstall}; Filename: {uninstallexe}; WorkingDir: {app};
-;Name: "{group}\{cm:extDOCX}"; IconFilename: "{app}\{#iconsExe}"; IconIndex: 14; Filename: "{app}\{#iconsExe}"; Parameters: "--new:word"
-;Name: "{group}\{cm:extXLSX}"; IconFilename: "{app}\{#iconsExe}"; IconIndex: 15; Filename: "{app}\{#iconsExe}"; Parameters: "--new:cell"
-;Name: "{group}\{cm:extPPTX}"; IconFilename: "{app}\{#iconsExe}"; IconIndex: 16; Filename: "{app}\{#iconsExe}"; Parameters: "--new:slide"
-;#ifdef _ONLYOFFICE
-;Name: "{group}\{cm:extDOCXF}"; IconFilename: "{app}\{#iconsExe}"; IconIndex: 17; Filename: "{app}\{#iconsExe}"; Parameters: "--new:form"
-;#endif
+Name: {group}\{cm:Uninstall}; IconFilename: {app}\{#iconsExe}; IconIndex: 25; Filename: {uninstallexe}; WorkingDir: {app};
+Name: "{group}\{cm:jumpDOCX}"; IconFilename: "{app}\{#iconsExe}"; IconIndex: 14; Filename: "{app}\{#iconsExe}"; Parameters: "--new:word";
+Name: "{group}\{cm:jumpXLSX}"; IconFilename: "{app}\{#iconsExe}"; IconIndex: 15; Filename: "{app}\{#iconsExe}"; Parameters: "--new:cell";
+Name: "{group}\{cm:jumpPPTX}"; IconFilename: "{app}\{#iconsExe}"; IconIndex: 16; Filename: "{app}\{#iconsExe}"; Parameters: "--new:slide";
+#ifdef _ONLYOFFICE
+Name: "{group}\{cm:jumpDOCXF}"; IconFilename: "{app}\{#iconsExe}"; IconIndex: 17; Filename: "{app}\{#iconsExe}"; Parameters: "--new:form";
+#endif
 
 [Run]
 ;Filename: {app}\{#NAME_EXE_OUT}; Description: {cm:Launch,{#sAppName}}; Flags: postinstall nowait skipifsilent;
 Filename: {app}\{#iconsExe}; Description: {cm:Launch,{#sAppName}}; Flags: postinstall nowait skipifsilent runasoriginaluser;
-;Filename: http://www.onlyoffice.com/remove-portal-feedback-form.aspx; Description: Visit website; Flags: postinstall shellexec nowait 
+;Filename: http://www.onlyoffice.com/remove-portal-feedback-form.aspx; Description: Visit website; Flags: postinstall shellexec nowait
 
 
 [Ini]
@@ -1048,3 +1068,5 @@ Root: HKLM; Subkey: "SOFTWARE\Classes\{#sAppProtocol}\Shell\Open\Command"; Value
 
 [UninstallDelete]
 Type: filesandordirs; Name: {commonappdata}\{#APP_PATH}\*;  AfterInstall: RefreshEnvironment;
+Type: filesandordirs; Name: "{app}\..\{#UPD_PATH}";
+Type: files; Name: "{app}\svcrestart.bat";

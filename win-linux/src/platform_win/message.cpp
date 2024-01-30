@@ -33,6 +33,7 @@
 #include <QTextDocumentFragment>
 #include "message.h"
 #include "utils.h"
+#include "cascapplicationmanagerwrapper.h"
 #include <string.h>
 #include <Windows.h>
 #include <QTimer>
@@ -76,7 +77,7 @@ int WinMsg::showMessage(QWidget *parent,
                         bool  *checkBoxState,
                         const QString &chekBoxText)
 {
-    std::wstring lpCaption = QString("  %1").arg(APP_TITLE).toStdWString();
+    std::wstring lpCaption = QString("  %1").arg(WINDOW_TITLE).toStdWString();
     std::wstring lpText = QTextDocumentFragment::fromHtml(msg).toPlainText().toStdWString();
     std::wstring lpCheckBoxText = chekBoxText.toStdWString();
     HWND parent_hwnd = (parent) ? (HWND)parent->winId() : nullptr;
@@ -172,6 +173,8 @@ int WinMsg::showMessage(QWidget *parent,
     config.dwFlags            = TDF_POSITION_RELATIVE_TO_WINDOW |
                                 TDF_ALLOW_DIALOG_CANCELLATION |
                                 TDF_SIZE_TO_CONTENT;
+    if (AscAppManager::isRtlEnabled())
+        config.dwFlags |= TDF_RTL_LAYOUT;
     config.hwndParent         = parent_hwnd;
     config.hInstance          = GetModuleHandle(NULL);
     config.pfCallback         = (PFTASKDIALOGCALLBACK)Pftaskdialogcallback;

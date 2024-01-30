@@ -32,10 +32,21 @@
 
 #include "platform_linux/utils.h"
 #include "classes/platform_linux/capplication.h"
+#include "classes/platform_linux/ctimer.h"
 #include "classes/csvcmanager.h"
 #include "../../src/defines.h"
+#include "../../src/prop/defines_p.h"
+#include <csignal>
 #include <cstring>
 
+
+void strToNum(const char *str, int &num)
+{
+    char *err = NULL;
+    int _num = strtol(str, &err, 10);
+    if (!err || *err == '\0')
+        num = _num;
+}
 
 int main(int argc, char *argv[])
 {
@@ -47,10 +58,25 @@ int main(int argc, char *argv[])
             if (!socket.isPrimaryInstance())
                 return 0;
 
+            int pid = -1;
+            if (argc > 2)
+                strToNum(argv[2], pid);
+
             CApplication app;
             CSvcManager upd;
-            socket.onMessageReceived([&app](void *buff, size_t) {
+            socket.onMessageReceived([&app, &pid](void *buff, size_t) {
                 if (strcmp((const char*)buff, "stop") == 0)
+                    app.exit(0);
+                else
+                    strToNum((const char*)buff, pid);
+            });
+
+            // Checking for the completion of the main application:
+            // updatevc needs to be terminated when the main application is using a socket
+            // with the same address in the SingleApplication implementation and has been terminated incorrectly.
+            CTimer tmr;
+            tmr.start(5000, [&app, &pid]() {
+                if (pid != -1 && kill(pid, 0) != 0)
                     app.exit(0);
             });
             return app.exec();

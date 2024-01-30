@@ -10,8 +10,11 @@ CONFIG  -= debug_and_release debug_and_release_target
 TEMPLATE = app
 
 INCLUDEPATH += $$PWD/src
-HEADERS += $$PWD/src/version.h
+HEADERS += $$PWD/src/version.h \
+           $$PWD/src/resource.h
 SOURCES += $$PWD/src/main.cpp
+OTHER_FILES += $$PWD/version.rc \
+               $$PWD/res/manifest/projicons.exe.manifest
 
 CONFIG += core_no_dst
 include($$PWD/../../../../core/Common/base.pri)
@@ -23,6 +26,7 @@ ENV_PRODUCT_VERSION = $$(PRODUCT_VERSION)
                VER_PRODUCT_VERSION_COMMAS=$$replace(FULL_PRODUCT_VERSION, \., ",")
 }
 
+CONFIG -= embed_manifest_exe
 RC_FILE = $$PWD/version.rc
 
 contains(QMAKE_TARGET.arch, x86_64):{
@@ -44,6 +48,7 @@ build_xp {
     DEFINES += __OS_WIN_XP
 } else {
     HEADERS += $$PWD/src/jumplist.h
+    SOURCES += $$PWD/src/jumplist.cpp
     LIBS += -lshlwapi \
             -lole32
 }

@@ -67,7 +67,7 @@
     }
 
     const nativevars = window.RendererProcessVariable;
-    {
+
         const create_colors_css = function (id, colors) {
             if ( !!colors && !!id ) {
                 let _css_array = [':root .', id, '{'];
@@ -80,11 +80,13 @@
             }
         }
 
-        const write_theme_css = function (css) {
+        const write_theme_css = function (css, id) {
             if ( !!css ) {
+
                 let style = document.createElement('style');
                 style.type = 'text/css';
                 style.innerHTML = css;
+                style.setAttribute('data-theme-id', id);
                 document.getElementsByTagName('head')[0].appendChild(style);
             }
         }
@@ -93,12 +95,11 @@
             for ( const t of nativevars.localthemes ) {
                 const _css = create_colors_css(t.id, t.colors);
                 if ( _css ) {
-                    write_theme_css(_css);
+                    write_theme_css(_css, t.id);
                     themes_map[t.id] = {text: t.name, type: t.type, l10n: t.l10n};
                 }
             }
         }
-    }
 
     const uitheme = { id: nativevars.theme.id, type: nativevars.theme.type }
     uitheme.set_id = function (id) {
@@ -176,6 +177,13 @@
                                                     <select class='combobox' data-size="10"></select>
                                                 </section>
                                             </div>
+                                        </div>
+                                        <div class='settings-field' style='display:none;'>
+                                            <section class='switch-labeled hbox' id='sett-box-rtl-mode'>
+                                                <input type="checkbox" class="checkbox" id="sett-rtl-mode">
+                                                <label for="sett-rtl-mode" class='sett__caption' l10n>${_lang.settRtlMode} *</label>
+                                                <span class='sett__caption sett__caption-beta'>Beta</span>
+                                            </section>
                                         </div>
                                         <div class='settings-field' id='opts-ui-scaling' style='display:none'>
                                             <label class='sett__caption' l10n>${_lang.settScaling}</label><label class='sett__caption'> *</label>
@@ -271,7 +279,7 @@
                                 </div>
                                 <div class="spacer" />
                             </div>
-                            <p id="caption-restart" class="sett__caption" style="display:none;text-align:left;margin-block-start:0.5em;"><label>* - </label><label l10n>${_lang.settAfterRestart}</label></p>
+                            <p id="caption-restart" class="sett__caption" style="display:none;"><label>* - </label><label l10n>${_lang.settAfterRestart}</label></p>
                         </div>
                     </div>`;
 
@@ -300,6 +308,7 @@
             $optsSpellcheckMode,
             $optsLaunchMode,
             $optsAutoupdateMode;
+        let $chRtl;
 
         function _set_user_name(name) {
             let me = this;
@@ -320,6 +329,36 @@
                 CommonEvents.fire('theme:changed', [theme_id, themes_map[theme_id].type]);
             }
         };
+
+        function _add_themes(objs) {
+            const _combo = $('#opts-ui-theme select', $panel);
+            if ( objs ) {
+                !(objs instanceof Array) && (objs = [objs]);
+
+                const _divider = _combo.find('[data-divider]');
+                objs.forEach(t => {
+                    const _css = create_colors_css(t.id, t.colors);
+                    if ( _css ) {
+                        const _$style = $(`style[data-theme-id=${t.id}]`);
+                        if ( _$style.length ) {
+                            _$style.remove();
+                            _combo.find(`option[value=${t.id}]`).remove();
+                        }
+
+                        write_theme_css(_css, t.id);
+                        themes_map[t.id] = {text: t.name, type: t.type, l10n: t.l10n};
+
+                        const _theme_title = t.l10n[utils.Lang.id] || t.name;
+                        const _theme_menu_item = `<option value=${t.id} l10n>${_theme_title}</option>`;
+
+                        if ( _divider.length )
+                            _divider.before(_theme_menu_item);
+                        else _combo.append(_theme_menu_item);
+                    }
+                });
+                $optsUITheme.selectpicker('refresh');
+            }
+        }
 
         const _validate_user_name = name => {
             // return /^[\p{L}\p{M}\p{N}'"\.\- ]+$/u.test(name);
@@ -385,6 +424,10 @@
                     $optsSpellcheckMode.selectpicker('refresh');
                 }
 
+                if ( $chRtl ) {
+                    _new_settings.rtl = $chRtl.prop("checked");
+                }
+
                 sdk.command("settings:apply", JSON.stringify(_new_settings));
                 $btnApply.disable(true);
                 
@@ -404,12 +447,20 @@
                 $btnApply.disable(false);
         };
 
+        function _is_lang_rtl(code) {
+            return code == 'ar-SA';
+        }
+
         function _on_lang_change(e) {
             let l = $optsLang.find('select').val(),
                 c = utils.Lang.tr('setBtnApply', l);
             if ( !!c ) $btnApply.text(c);
             if ( $btnApply.isdisabled() ) {
                 $btnApply.disable(false);
+            }
+
+            if ( $chRtl ) {
+                $chRtl.prop("checked", _is_lang_rtl(l));
             }
 
             $optsLang.toggleClass('notted', true);
@@ -490,8 +541,10 @@
                                             {'theme-dark': utils.Lang.settOptThemeDark},
                                             {'theme-contrast-dark': utils.Lang.settOptThemeContrastDark}];
 
-                            if ( nativevars.theme && nativevars.theme.system == 'disabled' )
-                                _themes.shift();
+                            if ( nativevars.theme ) {
+                                if ( nativevars.theme.system == 'disabled' )
+                                    _themes.shift();
+                            }
 
                             const _combo = $('#opts-ui-theme select', $panel).empty();
                             _themes.forEach(item => {
@@ -509,12 +562,30 @@
                             if ( !$optsUITheme ) {
                                 ($optsUITheme = _combo)
                                 .val(opts.uitheme)
-                                .selectpicker().on('change', e => {
-                                    $btnApply.isdisabled() && $btnApply.disable(false);})
+                                .selectpicker().on('changed.bs.select', (e, index, selected, previous) => {
+                                    if ( selected && e.target.value == 'add' ) {
+                                        sdk.command("uitheme:add", "local");
+
+                                        $optsUITheme.val(previous)
+                                                    .selectpicker('refresh');
+                                    } else {
+                                        $btnApply.isdisabled() && $btnApply.disable(false);
+                                    }
+                                })
                                 .parents('.settings-field').show();
                             } else {
                                 $optsUITheme.val(opts.uitheme)
                                             .selectpicker('refresh');
+                            }
+
+                            if ( nativevars.theme ) {
+                                if ( nativevars.theme.addlocal == 'on' ) {
+                                    const _combo = $('#opts-ui-theme select', $panel);
+                                    _combo.append(`<option data-divider="true"></option>
+                                                    <option value="add" l10n>${utils.Lang.settOptThemeAddLocal}</option>`);
+
+                                    $optsUITheme.selectpicker('refresh');
+                                }
                             }
                         }
                         _apply_theme(!!opts.uitheme ? opts.uitheme : 'theme-classic-light');
@@ -563,6 +634,22 @@
                         }
                     }
 
+                    if ( opts.rtl !== undefined ) {
+                        if ( !$chRtl || $chRtl.prop('checked') != opts.rtl ) {
+                            $chRtl = $('#sett-box-rtl-mode', $panel).parent().show().find('#sett-rtl-mode');
+                            $chRtl.prop('checked', !!opts.rtl)
+                                .on('change', e => {
+                                    $btnApply.prop('disabled') && $btnApply.prop('disabled', false);
+                                });
+
+                            if ( opts.rtl ) {
+                                document.body.setAttribute('dir', 'rtl');
+                                document.body.classList.add('rtl');
+                            }
+
+                        }
+                    }
+
                     $('.settings-field:visible:last').css('margin-bottom','0');
                 } else
                 if (/updates/.test(cmd)) {
@@ -586,6 +673,24 @@
                 }
 
                 _apply_theme(param);
+            } else
+            if (/uitheme:added/.test(cmd)) {
+                console.log('theme added');
+
+                let _theme;
+                try {
+                    _theme = JSON.parse(param);
+                }
+                catch (e) {}
+
+                if ( _theme ) {
+                    _add_themes(_theme);
+
+                    $optsUITheme.val(_theme[0].id)
+                                .selectpicker('refresh');
+
+                    $btnApply.isdisabled() && $btnApply.disable(false);
+                }
             } else
             if (/renderervars:changed/.test(cmd)) {
                 let opts;

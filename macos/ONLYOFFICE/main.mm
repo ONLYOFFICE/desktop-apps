@@ -68,24 +68,29 @@ int main(int argc, const char * argv[]) {
     // setup common user directory
     appManager->m_oSettings.SetUserDataPath([[ASCHelper applicationDataPath] stdwstring]);
     
+    NSString * resourcePath = [[NSBundle mainBundle] resourcePath];
     // setup Editors directory
-    appManager->m_oSettings.local_editors_path = [[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"editors/web-apps/apps/api/documents/index.html"] stdwstring];
+    appManager->m_oSettings.local_editors_path = [[resourcePath stringByAppendingPathComponent:@"editors/web-apps/apps/api/documents/index.html"] stdwstring];
     
-    appManager->m_oSettings.system_plugins_path = [[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"editors/sdkjs-plugins"] stdwstring];
+    appManager->m_oSettings.system_plugins_path = [[resourcePath stringByAppendingPathComponent:@"editors/sdkjs-plugins"] stdwstring];
     
     // setup Dictionary directory
-    appManager->m_oSettings.spell_dictionaries_path = [[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"dictionaries"] stdwstring];
+    appManager->m_oSettings.spell_dictionaries_path = [[resourcePath stringByAppendingPathComponent:@"dictionaries"] stdwstring];
     
     // setup Recovery directory
     appManager->m_oSettings.recover_path = [[ASCHelper recoveryDataPath] stdwstring];
     
     // setup Converter directory
-    appManager->m_oSettings.file_converter_path = [[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"converter"] stdwstring];
+    appManager->m_oSettings.file_converter_path = [[resourcePath stringByAppendingPathComponent:@"converter"] stdwstring];
     
     // setup editor fonts directory
     std::vector<std::wstring> fontsDirectories;
-    fontsDirectories.push_back([[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"login/fonts"] stdwstring]);
+    fontsDirectories.push_back([[resourcePath stringByAppendingPathComponent:@"login/fonts"] stdwstring]);
     appManager->m_oSettings.additional_fonts_folder = fontsDirectories;
+    
+    if( [[NSFileManager defaultManager] fileExistsAtPath:@"login/noconnect.html"] ) {
+        appManager->m_oSettings.connection_error_path = [[resourcePath stringByAppendingPathComponent:@"login/noconnect.html"] stdwstring];
+    }
     
     // setup username
     NSString * fullName = [[NSUserDefaults standardUserDefaults] valueForKey:ASCUserNameApp];

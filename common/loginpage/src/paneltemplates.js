@@ -60,7 +60,7 @@
         var _lang = utils.Lang;
 
         const msg = 'Oops! Something went wrong :(<br>Check internet connection';
-        this.emptyPanelContent = `<div id="frame"><h3>${msg}</h3>`;
+        this.emptyPanelContent = `<div id="frame">`;
 
         args.tplPage = `<div class="action-panel ${args.action}">${this.emptyPanelContent}</div></div>`;
         args.menu = '.main-column.tool-menu';
@@ -105,6 +105,11 @@
             init: function() {
                 baseController.prototype.init.apply(this, arguments);
                 this.view.render();
+                errorBox.render({
+                    parent: $('#frame')[0],
+                    lang: utils.Lang.id,
+                    page: 'templates',
+                });
 
                 const _check_url_avail = () => {
                     if ( !iframe ) {
@@ -127,6 +132,8 @@
                 });
 
                 CommonEvents.on('lang:changed', (old, newlang) => {
+                    window.errorBox.translate(newlang);
+
                     if ( !!iframe ) {
                         // iframe.contentWindow.postMessage(JSON.stringify({lang: newlang}));
                         _remove_frame(this.view.emptyPanelContent);

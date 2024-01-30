@@ -53,6 +53,8 @@ protected:
     virtual bool event(QEvent *event) override;
     virtual bool nativeEvent(const QByteArray&, void*, long*) final;
     virtual void setScreenScalingFactor(double, bool resize = true) override;
+    virtual void paintEvent(QPaintEvent *event) override;
+    virtual void onLayoutDirectionChanged() = 0;
 
 private:
     virtual void mouseMoveEvent(QMouseEvent *) final;

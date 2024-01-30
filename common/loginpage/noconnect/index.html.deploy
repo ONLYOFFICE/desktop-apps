@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>asc error</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        html {
+            height: 100%;
+        }
+
+        body {
+            margin: 0;
+            height: 100%;
+        }
+
+        body.theme-type-dark {
+            background-color: #333;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .center {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
+        }
+
+        svg.icon {
+            width: 300px;
+            height: 300px;
+            /* margin-bottom: 20px; */
+        }
+
+        .description {
+            margin: 20px 0;
+            color: #444;
+            font-family: Arial, Helvetica, sans-serif;
+            text-align: center;
+            padding: 0 20px;
+            max-width: 800px;
+        }
+
+        .theme-type-dark .description {
+            color: #fff;
+        }
+
+        .description__short {
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="hidden">
+        <img class="inline-svg" src="connection_error.svg">
+    </div>
+    <script someprefix replace src="./code.min.js"></script>
+</body>
+</html>

@@ -36,6 +36,7 @@
 #include "utils.h"
 #include <gtk/gtkmessagedialog.h>
 #include "updatedialog.h"
+#include "cascapplicationmanagerwrapper.h"
 #include <gdk/gdkx.h>
 //extern "C" {
 //#include "gtk_resources.h"
@@ -45,8 +46,8 @@
 #define TEXT_SKIP        toCharPtr(QObject::tr("Skip this version"))
 #define TEXT_REMIND      toCharPtr(QObject::tr("Remind me later"))
 #define TEXT_INSTALL     toCharPtr(QObject::tr("Install update"))
-#define TEXT_INSLATER    toCharPtr(QObject::tr("Install later"))
-#define TEXT_RESTART     toCharPtr(QObject::tr("Save and Restart Now"))
+#define TEXT_INSLATER    toCharPtr(QObject::tr("Later"))
+#define TEXT_RESTART     toCharPtr(QObject::tr("Restart Now"))
 #define TEXT_SAVEANDINS  toCharPtr(QObject::tr("Save and Install Now"))
 #define TEXT_DOWNLOAD    toCharPtr(QObject::tr("Download update"))
 #define AddButton(name, response) \
@@ -65,18 +66,21 @@ int WinDlg::showDialog(QWidget *parent,
                        const QString &content,
                        DlgBtns dlgBtns)
 {
-    QString title = QString("  %1").arg(QObject::tr("Software Update"));
+//    QString title = QString("  %1").arg(WINDOW_TITLE);
     QString primaryText = QTextDocumentFragment::fromHtml(msg).toPlainText();
     QString linkText = !QString(RELEASE_NOTES).isEmpty() ?
                 QString("\n<a href=\"%1\">%2</a>").arg(QString(RELEASE_NOTES), QObject::tr("Release notes")) : "";
+    WindowHelper::CParentDisable oDisabler(parent);
     Window parent_xid = (parent) ? (Window)parent->winId() : 0L;
 
 //    GResource *resource = gtk_resources_get_resource();
 //    g_resources_register(resource);
-    WindowHelper::CParentDisable oDisabler(parent);
     gtk_init(NULL, NULL);
     GtkDialogFlags flags;
     flags = (GtkDialogFlags)(GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT);
+
+    if (AscAppManager::isRtlEnabled())
+        gtk_widget_set_default_direction(GTK_TEXT_DIR_RTL);
     GtkWidget *dialog = NULL;
     dialog = gtk_message_dialog_new(NULL,
                                     flags,
@@ -92,11 +96,11 @@ int WinDlg::showDialog(QWidget *parent,
     tag.dialog = dialog;
     tag.parent_xid = (ulong)parent_xid;
     g_signal_connect_swapped(G_OBJECT(dialog), "focus_out_event", G_CALLBACK(focus_out), (gpointer)&tag);
-    gtk_window_set_title(GTK_WINDOW(dialog), title.toLocal8Bit().data());
+//    gtk_window_set_title(GTK_WINDOW(dialog), title.toLocal8Bit().data());
     if (!content.isEmpty())
         gtk_message_dialog_format_secondary_text(GTK_MESSAGE_DIALOG(dialog), "%s", content.toLocal8Bit().data());
 
-    GtkWidget *image = gtk_image_new_from_resource("/res/icons/app-icon_64.png");
+    GtkWidget *image = gtk_image_new_from_resource("/icons/app-icon_64.png");
     gtk_message_dialog_set_image(GTK_MESSAGE_DIALOG(dialog), image);
     gtk_widget_show_all(image);
 

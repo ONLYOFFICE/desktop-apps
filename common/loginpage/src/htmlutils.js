@@ -1,6 +1,7 @@
 
 function checkScaling() {
     const matches = {
+        'pixel-ratio__1': `screen (-webkit-max-device-pixel-ratio: 1.24)`,
         'pixel-ratio__1_25': `screen and (-webkit-min-device-pixel-ratio: 1.25) and (-webkit-max-device-pixel-ratio: 1.49),
                                 screen and (min-resolution: 1.25dppx) and (max-resolution: 1.49dppx)`,
         'pixel-ratio__1_5': `screen and (-webkit-min-device-pixel-ratio: 1.5) and (-webkit-max-device-pixel-ratio: 1.74),

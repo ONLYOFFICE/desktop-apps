@@ -197,7 +197,7 @@ QDialog::DialogCode PrintDialog::exec()
 //    auto qt_supports_multi_copies = m_printer->supportsMultipleCopies();
 //    auto qt_selection_option = m_printer->printerSelectionOption();
 //    auto qt_output_format = m_printer->outputFormat();
-//    auto qt_paper_source = m_printer->paperSource();
+    auto qt_paper_source = m_printer->paperSource();
 
     // Qt-PrintOptions:
     // None = 0
@@ -254,18 +254,44 @@ QDialog::DialogCode PrintDialog::exec()
 
     PRINTPAGERANGE *page_ranges = (PRINTPAGERANGE*)GlobalAlloc(GPTR, MAXPAGERANGES * sizeof(PRINTPAGERANGE));
     Q_ASSERT(page_ranges != nullptr);
-    page_ranges[0] = {(DWORD)m_printer->fromPage(), (DWORD)m_printer->toPage()};
+    page_ranges[0] = {m_page_ranges.isEmpty() ? 1 : (DWORD)m_page_ranges[0].fromPage,
+                      m_page_ranges.isEmpty() ? m_pages_count : (DWORD)m_page_ranges[0].toPage};
 
     // Input settings
-    LPDEVMODE pDevMode = NULL;
+    HGLOBAL hDevMode = NULL;
+    HGLOBAL hDevNames = NULL;
     {
         HANDLE hPrinter = NULL;
         LPWSTR pPrinterName = &qt_printer_name[0];
         if (OpenPrinter(pPrinterName, &hPrinter, NULL)) {
             DWORD dwNeeded = 0, dwRet = 0;
+            GetPrinter(hPrinter, 2, NULL, 0, &dwNeeded);
+            if (GetLastError() == ERROR_INSUFFICIENT_BUFFER) {
+                PRINTER_INFO_2 *prntInfo = (PRINTER_INFO_2*)GlobalAlloc(GPTR, dwNeeded);
+                if (GetPrinter(hPrinter, 2, (LPBYTE)prntInfo, dwNeeded, &dwRet)) {
+                    dwNeeded = sizeof(DEVNAMES) + 3 * MAX_PATH * sizeof(WCHAR);
+                    hDevNames = GlobalAlloc(GHND, dwNeeded);
+                    Q_ASSERT(hDevNames);
+                    LPDEVNAMES pDevNames = (LPDEVNAMES)GlobalLock(hDevNames);
+                    Q_ASSERT(pDevNames);
+                    pDevNames->wDriverOffset = sizeof(DEVNAMES)/sizeof(WCHAR);
+                    pDevNames->wDeviceOffset = pDevNames->wDriverOffset + MAX_PATH;
+                    pDevNames->wOutputOffset = pDevNames->wDeviceOffset + MAX_PATH;
+                    pDevNames->wDefault = 0;
+                    wcsncpy_s((LPWSTR)pDevNames + pDevNames->wDriverOffset, MAX_PATH, prntInfo->pDriverName, _TRUNCATE);
+                    wcsncpy_s((LPWSTR)pDevNames + pDevNames->wDeviceOffset, MAX_PATH, prntInfo->pPrinterName, _TRUNCATE);
+                    wcsncpy_s((LPWSTR)pDevNames + pDevNames->wOutputOffset, MAX_PATH, prntInfo->pPortName, _TRUNCATE);
+                    GlobalUnlock(hDevNames);
+                }
+                GlobalFree(prntInfo);
+            }
+
             dwNeeded = DocumentProperties(parent_hwnd, hPrinter, pPrinterName, NULL, NULL, 0);
             Q_ASSERT(dwNeeded >= sizeof(DEVMODE));
-            pDevMode = (LPDEVMODE)GlobalAlloc(GPTR, dwNeeded);
+            hDevMode = GlobalAlloc(GHND, dwNeeded);
+            Q_ASSERT(hDevMode);
+            LPDEVMODE pDevMode = (LPDEVMODE)GlobalLock(hDevMode);
+            Q_ASSERT(pDevMode);
             dwRet = DocumentProperties(parent_hwnd, hPrinter, pPrinterName, pDevMode, NULL, DM_OUT_BUFFER);
             if (dwRet == IDOK) {
                 if (pDevMode->dmFields & DM_YRESOLUTION)
@@ -276,6 +302,23 @@ QDialog::DialogCode PrintDialog::exec()
 
 //                if (pDevMode->dmFields & DM_COLLATE)
 //                    pDevMode->dmCollate = DMCOLLATE_TRUE;
+
+                if (pDevMode->dmFields & DM_DEFAULTSOURCE)
+                    pDevMode->dmDefaultSource = (qt_paper_source == QPrinter::Auto) ? DMBIN_AUTO :
+                                                (qt_paper_source == QPrinter::Cassette) ? DMBIN_CASSETTE :
+                                                (qt_paper_source == QPrinter::Envelope) ? DMBIN_ENVELOPE :
+                                                (qt_paper_source == QPrinter::EnvelopeManual) ? DMBIN_ENVMANUAL :
+                                                (qt_paper_source == QPrinter::FormSource) ? DMBIN_FORMSOURCE :
+                                                (qt_paper_source == QPrinter::LargeCapacity) ? DMBIN_LARGECAPACITY :
+                                                (qt_paper_source == QPrinter::LargeFormat) ? DMBIN_LARGEFMT :
+                                                (qt_paper_source == QPrinter::LastPaperSource) ? DMBIN_LAST :
+                                                (qt_paper_source == QPrinter::Lower) ? DMBIN_LOWER :
+                                                (qt_paper_source == QPrinter::Manual) ? DMBIN_MANUAL :
+                                                (qt_paper_source == QPrinter::Middle) ? DMBIN_MIDDLE :
+                                                (qt_paper_source == QPrinter::OnlyOne) ? DMBIN_ONLYONE :
+                                                (qt_paper_source == QPrinter::SmallFormat) ? DMBIN_SMALLFMT :
+                                                (qt_paper_source == QPrinter::Tractor) ? DMBIN_TRACTOR :
+                                                (qt_paper_source == QPrinter::Upper) ? DMBIN_UPPER : DMBIN_USER;
 
                 if (pDevMode->dmFields & DM_COPIES)
                     pDevMode->dmCopies = qt_copy_count;
@@ -305,9 +348,10 @@ QDialog::DialogCode PrintDialog::exec()
 
                 dwRet = DocumentProperties(parent_hwnd, hPrinter, pPrinterName, pDevMode, pDevMode, DM_IN_BUFFER | DM_OUT_BUFFER);
             }
+            GlobalUnlock(hDevMode);
             if (dwRet != IDOK) {
-                free(pDevMode);
-                pDevMode = NULL;
+                GlobalFree(hDevMode);
+                hDevMode = NULL;
             }
             ClosePrinter(hPrinter);
         }
@@ -341,8 +385,8 @@ QDialog::DialogCode PrintDialog::exec()
 //    dlg.ExclusionFlags = PD_EXCL_COPIESANDCOLLATE;
     dlg.hwndOwner      = parent_hwnd;
     dlg.hInstance      = NULL;
-    dlg.hDevNames      = NULL;
-    dlg.hDevMode       = (HGLOBAL)pDevMode;
+    dlg.hDevNames      = hDevNames;
+    dlg.hDevMode       = hDevMode;
     dlg.nStartPage     = START_PAGE_GENERAL;
     dlg.nCopies        = qt_copy_count;
     dlg.nMaxPageRanges = MAXPAGERANGES;
@@ -358,10 +402,30 @@ QDialog::DialogCode PrintDialog::exec()
     if (hr == S_OK) {
         switch (dlg.dwResultAction) {
         case PD_RESULT_PRINT: {
-            LPDEVMODE pDevmode = (LPDEVMODE)GlobalLock(dlg.hDevMode);
-            if (pDevmode) {
-                m_printer->setPrinterName(QString::fromStdWString(pDevmode->dmDeviceName));
+            if (dlg.hDevNames) {
+                LPDEVNAMES pDevnames = (LPDEVNAMES)GlobalLock(dlg.hDevNames);
+                LPWSTR lpDeviceName = (LPWSTR)pDevnames + pDevnames->wDeviceOffset;
+                m_printer->setPrinterName(QString::fromWCharArray(lpDeviceName));
+                GlobalUnlock(dlg.hDevNames);
+            }
+            if (dlg.hDevMode) {
+                LPDEVMODE pDevmode = (LPDEVMODE)GlobalLock(dlg.hDevMode);
                 m_printer->setColorMode(pDevmode->dmColor == DMCOLOR_COLOR ? QPrinter::Color : QPrinter::GrayScale);
+                m_printer->setPaperSource(pDevmode->dmDefaultSource == DMBIN_AUTO ? QPrinter::Auto :
+                                          pDevmode->dmDefaultSource == DMBIN_CASSETTE ? QPrinter::Cassette :
+                                          pDevmode->dmDefaultSource == DMBIN_ENVELOPE ? QPrinter::Envelope :
+                                          pDevmode->dmDefaultSource == DMBIN_ENVMANUAL ? QPrinter::EnvelopeManual :
+                                          pDevmode->dmDefaultSource == DMBIN_FORMSOURCE ? QPrinter::FormSource :
+                                          pDevmode->dmDefaultSource == DMBIN_LARGECAPACITY ? QPrinter::LargeCapacity :
+                                          pDevmode->dmDefaultSource == DMBIN_LARGEFMT ? QPrinter::LargeFormat :
+                                          pDevmode->dmDefaultSource == DMBIN_LAST ? QPrinter::LastPaperSource :
+                                          pDevmode->dmDefaultSource == DMBIN_LOWER ? QPrinter::Lower :
+                                          pDevmode->dmDefaultSource == DMBIN_MANUAL ? QPrinter::Manual :
+                                          pDevmode->dmDefaultSource == DMBIN_MIDDLE ? QPrinter::Middle :
+                                          pDevmode->dmDefaultSource == DMBIN_ONLYONE ? QPrinter::OnlyOne :
+                                          pDevmode->dmDefaultSource == DMBIN_SMALLFMT ? QPrinter::SmallFormat :
+                                          pDevmode->dmDefaultSource == DMBIN_TRACTOR ? QPrinter::Tractor :
+                                          pDevmode->dmDefaultSource == DMBIN_UPPER ? QPrinter::Upper : QPrinter::CustomSource);
                 m_print_range = (dlg.Flags & PD_SELECTION) ? PrintRange::Selection :
                                     (dlg.Flags & PD_PAGENUMS) ? PrintRange::PageRange :
                                     (dlg.Flags & PD_CURRENTPAGE) ? PrintRange::CurrentPage : PrintRange::AllPages;
@@ -391,8 +455,8 @@ QDialog::DialogCode PrintDialog::exec()
                 QPageSize ps(QSizeF(width, height), QPageSize::Millimeter);
                 m_printer->setPageSize(ps);
                 m_printer->setPageOrientation(pDevmode->dmOrientation == DMORIENT_PORTRAIT ? QPageLayout::Portrait : QPageLayout::Landscape);
+                GlobalUnlock(dlg.hDevMode);
             }
-            GlobalUnlock(dlg.hDevMode);
             exit_code = QDialog::DialogCode::Accepted;
             break;
         }
@@ -411,8 +475,10 @@ QDialog::DialogCode PrintDialog::exec()
         if (dialog_was_changed)   // Restore print dialog type
             resetLegacyPrintDialog();
 #endif
-        if (pDevMode)
-            GlobalFree(pDevMode);
+        if (hDevMode)
+            GlobalFree(hDevMode);
+        if (hDevNames)
+            GlobalFree(hDevNames);
 
         const wchar_t *err = _com_error(hr).ErrorMessage();
         CMessage::error(m_parent, QObject::tr("Unable to open print dialog:<br>%1").arg(QString::fromStdWString(err)));
@@ -464,7 +530,7 @@ void PrintDialog::setFromTo(int from, int to)
     m_printer->setFromTo(from > to ? to : from, from > to ? from : to);
     if (!m_page_ranges.isEmpty())
         m_page_ranges.clear();
-    m_page_ranges.append(PageRanges(m_printer->fromPage(), m_printer->toPage()));
+    m_page_ranges.append(PageRanges(from, to));
 }
 
 void PrintDialog::accept()

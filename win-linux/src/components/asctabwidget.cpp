@@ -187,6 +187,23 @@ CAscTabWidget::CAscTabWidget(QWidget *parent, CTabBar *_pBar)
         removeWidget(wgt);
         insertWidget(to, wgt);
     });
+    QObject::connect(m_pBar, &CTabBar::tabsSwapped, this, [=](int from, int to) {
+        if (from == to || !indexIsValid(from) || !indexIsValid(to))
+            return;
+        auto wgt_from = widget(from);
+        auto wgt_to = widget(to);
+        blockSignals(true);
+        removeWidget(wgt_from);
+        removeWidget(wgt_to);
+        insertWidget(from < to ? from : to, from < to ? wgt_to : wgt_from);
+        insertWidget(from < to ? to : from, from < to ? wgt_from : wgt_to);
+        if (from == m_pBar->currentIndex())
+            QStackedWidget::setCurrentIndex(to);
+        else
+        if (to == m_pBar->currentIndex())
+            QStackedWidget::setCurrentIndex(from);
+        blockSignals(false);
+    });
 }
 
 CTabPanel * CAscTabWidget::panel(int index) const
@@ -220,7 +237,7 @@ int CAscTabWidget::addEditor(const COpenOptions& opts)
 
     pView->initAsEditor();
 
-    int tab_index = -1;
+    int tab_index = AscAppManager::isRtlEnabled() ? 0 : -1;
     bool res_open = true;
     if (opts.srctype == etLocalFile) {
         pView->openLocalFile(opts.wurl, file_format, L"");
@@ -247,8 +264,8 @@ int CAscTabWidget::addEditor(const COpenOptions& opts)
         data->setChanged(opts.srctype == etRecoveryFile);
 
         pView->setData(data);
-        tab_index = addWidget(panelwidget);
-        m_pBar->addTab(data->title());
+        tab_index = insertWidget(tab_index, panelwidget);
+        m_pBar->insertTab(tab_index, data->title());
         m_pBar->setTabToolTip(tab_index, data->title());
         m_pBar->tabStartLoading(tab_index);
 
@@ -367,7 +384,7 @@ int CAscTabWidget::addPortal(const QString& url, const QString& name, const QStr
     data->setUrl(_url);
     pView->setData(data);
 
-    int tab_index = -1;
+    int tab_index = AscAppManager::isRtlEnabled() ? 0 : -1;
 
     tab_index = insertWidget(tab_index, panelwidget);
     m_pBar->insertTab(tab_index, portal);
@@ -408,7 +425,7 @@ int CAscTabWidget::addOAuthPortal(const QString& portal, const QString& type, co
     data->setUrl(portal);
     pView->setData(data);
 
-    int tab_index = -1;
+    int tab_index = AscAppManager::isRtlEnabled() ? 0 : -1;
 
     tab_index = insertWidget(tab_index, panelwidget);
     m_pBar->insertTab(tab_index, _portal);
@@ -423,7 +440,7 @@ int CAscTabWidget::addOAuthPortal(const QString& portal, const QString& type, co
 
 int CAscTabWidget::insertPanel(QWidget * panel, int index)
 {
-    int tabindex = -1;
+    int tabindex = AscAppManager::isRtlEnabled() ? 0 : -1;
 
     CTabPanel * _panel = dynamic_cast<CTabPanel *>(panel);
     Q_ASSERT(_panel != nullptr);
@@ -432,6 +449,8 @@ int CAscTabWidget::insertPanel(QWidget * panel, int index)
 
         QWidget * panelwidget = createTabPanel(this, _panel);
 
+        if (index < 0 && AscAppManager::isRtlEnabled())
+            index = 0;
         tabindex = insertWidget(index, panelwidget);
         m_pBar->insertTab(tabindex, tabdata->title());
         m_pBar->setTabToolTip(tabindex, tabdata->title());
@@ -770,27 +789,6 @@ void CAscTabWidget::applyDocumentChanging(int id, int type)
 {
     int tabIndex = tabIndexByView(id);
     if ( !(tabIndex < 0) ) {
-        if ( type == DOCUMENT_CHANGED_LOADING_START ) {
-//            ((CTabBar *)tabBar())->setTabLoading(tabIndex, true);
-            return;
-        } else
-        if ( type == DOCUMENT_CHANGED_LOADING_FINISH ) {
-            m_pBar->setTabLoading(tabIndex, false);
-            panel(tabIndex)->applyLoader("hide");
-            panel(tabIndex)->setReady();
-            return;
-        } else
-        if ( type == DOCUMENT_CHANGED_PAGE_LOAD_FINISH ) {
-            if ( !panel(tabIndex)->data()->eventLoadSupported() ) {
-                m_pBar->setTabLoading(tabIndex, false);
-                panel(tabIndex)->applyLoader("hide");
-            }
-
-            return;
-        }
-    }
-
-    if ( !(tabIndex < 0) ) {
         panel(tabIndex)->data()->setContentType(AscEditorType(type));
 
         const CTheme & ui_theme = AscAppManager::themes().current();
@@ -825,6 +823,27 @@ void CAscTabWidget::applyDocumentChanging(int id, int type)
         const char *icon_name = tabIndex == m_pBar->currentIndex() ?
                                     m_mapTabIcons.at(AscEditorType(type)).second : m_mapTabIcons.at(AscEditorType(type)).first;
         m_pBar->setTabIcon(tabIndex, QIcon(icon_name));
+    }
+}
+
+void CAscTabWidget::applyPageLoadingStatus(int id, int state)
+{
+    int tabIndex = tabIndexByView(id);
+    if ( !(tabIndex < 0) ) {
+        if ( state == DOCUMENT_CHANGED_LOADING_START ) {
+//            ((CTabBar *)tabBar())->setTabLoading(tabIndex, true);
+        } else
+        if ( state == DOCUMENT_CHANGED_LOADING_FINISH ) {
+            m_pBar->setTabLoading(tabIndex, false);
+            panel(tabIndex)->applyLoader("hide");
+            panel(tabIndex)->setReady();
+        } else
+        if ( state == DOCUMENT_CHANGED_PAGE_LOAD_FINISH ) {
+            if ( !panel(tabIndex)->data()->eventLoadSupported() ) {
+                m_pBar->setTabLoading(tabIndex, false);
+                panel(tabIndex)->applyLoader("hide");
+            }
+        }
     }
 }
 

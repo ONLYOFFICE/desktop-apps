@@ -58,7 +58,9 @@ namespace NS_File
 {
 bool GetFilesList(const wstring &path, list<wstring> *lst, wstring &error, bool ignore_locked = false, bool folders_only = false);
 bool readFile(const wstring &filePath, list<wstring> &linesList);
+bool readBinFile(const wstring &filePath, list<wstring> &linesList);
 bool writeToFile(const wstring &filePath, list<wstring> &linesList);
+bool writeToBinFile(const wstring &filePath, list<wstring> &linesList);
 bool runProcess(const wstring &fileName, const wstring &args);
 bool isProcessRunning(const wstring &fileName);
 bool fileExists(const wstring &filePath);

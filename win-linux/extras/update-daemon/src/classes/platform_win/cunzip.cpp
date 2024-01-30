@@ -36,25 +36,14 @@
 #include <Shldisp.h>
 
 
-bool StringToFolder(CComPtr<IShellDispatch> &pISD, CComPtr<Folder> &folder, const wstring &path)
-{
-    CComVariant vPath(CComBSTR(path.c_str()));
-    vPath.ChangeType(VT_BSTR);
-    HRESULT hr = pISD->NameSpace(vPath, &folder);
-    return FAILED(hr) ? false : true;
-}
-
-int extractRecursively(CComPtr<IShellDispatch> &pISD, const CComPtr<Folder> &pSrcFolder,
-                         const wstring &destFolder, CComVariant &vOptions, std::atomic_bool &run)
+int extractRecursively(IShellDispatch *pISD, const CComPtr<Folder> &pSrcFolder, const wstring &destFolder, std::atomic_bool &run)
 {
     CComPtr<FolderItems> pItems;
-    HRESULT hr = pSrcFolder->Items(&pItems);
-    if (FAILED(hr))
+    if (FAILED(pSrcFolder->Items(&pItems)))
         return UNZIP_ERROR;
 
     long itemCount = 0;
-    hr = pItems->get_Count(&itemCount);
-    if (FAILED(hr))
+    if (FAILED(pItems->get_Count(&itemCount)))
         return UNZIP_ERROR;
 
     for (int i = 0; i < itemCount; i++) {
@@ -62,52 +51,38 @@ int extractRecursively(CComPtr<IShellDispatch> &pISD, const CComPtr<Folder> &pSr
             return UNZIP_ABORT;
 
         CComPtr<FolderItem> pItem;
-        hr = pItems->Item(CComVariant(i), &pItem);
-        if (FAILED(hr))
+        if (FAILED(pItems->Item(CComVariant(i), &pItem)))
             return UNZIP_ERROR;
-
-        CComBSTR srcPath;
-        hr = pItem->get_Path(&srcPath);
-        if (FAILED(hr))
-            return UNZIP_ERROR;
-
-        CComVariant vSrcPath(srcPath);
-        vSrcPath.ChangeType(VT_BSTR);
 
         VARIANT_BOOL isFolder = VARIANT_FALSE;
-        hr = pItem->get_IsFolder(&isFolder);
-        if (FAILED(hr))
+        if (FAILED(pItem->get_IsFolder(&isFolder)))
             return UNZIP_ERROR;
 
         if (isFolder == VARIANT_TRUE) {
             // Source path
             CComPtr<Folder> pSubFolder;
-            hr = pISD->NameSpace(vSrcPath, &pSubFolder);
-            if (FAILED(hr))
+            if (FAILED(pISD->NameSpace(CComVariant(pItem), &pSubFolder)))
                 return UNZIP_ERROR;
 
             // Dest path
-            CComBSTR bstrName;
-            hr = pItem->get_Name(&bstrName);
-            if (FAILED(hr))
+            BSTR bstrName;
+            if (FAILED(pItem->get_Name(&bstrName)))
                 return UNZIP_ERROR;
 
-            wstring targetFolder(destFolder);
-            targetFolder += L"\\";
-            targetFolder += bstrName;
+            wstring targetFolder = destFolder + L"\\" + bstrName;
+            SysFreeString(bstrName);
             if (CreateDirectory(targetFolder.c_str(), NULL) == 0)
                 return UNZIP_ERROR;
 
-            int res = extractRecursively(pISD, pSubFolder, targetFolder, vOptions, run);
+            int res = extractRecursively(pISD, pSubFolder, targetFolder, run);
             if (res != UNZIP_OK)
                 return res;
 
         } else {
             CComPtr<Folder> pDestFolder;
-            if (!StringToFolder(pISD, pDestFolder, destFolder))
+            if (FAILED(pISD->NameSpace(CComVariant(destFolder.c_str()), &pDestFolder)))
                 return UNZIP_ERROR;
-            hr = pDestFolder->CopyHere(vSrcPath, vOptions);
-            if (FAILED(hr))
+            if (FAILED(pDestFolder->CopyHere(CComVariant(pItem), CComVariant(1024 | 512 | 16 | 4))))
                 return UNZIP_ERROR;
         }
     }
@@ -126,7 +101,7 @@ int unzipArchive(const wstring &zipFilePath, const wstring &folderPath, std::ato
     if (FAILED(hr))
         return UNZIP_ERROR;
 
-    CComPtr<IShellDispatch> pShell;
+    IShellDispatch *pShell = NULL;
     hr = CoCreateInstance(CLSID_Shell, NULL, CLSCTX_INPROC_SERVER, IID_PPV_ARGS(&pShell));
     if (FAILED(hr)) {
         CoUninitialize();
@@ -134,18 +109,15 @@ int unzipArchive(const wstring &zipFilePath, const wstring &folderPath, std::ato
     }
 
     CComPtr<Folder> pSrcFolder;
-    if (!StringToFolder(pShell, pSrcFolder, file)) {
-        pShell.Release();
+    if (FAILED(pShell->NameSpace(CComVariant(file.c_str()), &pSrcFolder))) {
+        pShell->Release();
         CoUninitialize();
         return UNZIP_ERROR;
     }
 
-    CComVariant vOptions(0);
-    vOptions.vt = VT_I4;
-    vOptions.lVal = 1024 | 512 | 16 | 4;
-    int res = extractRecursively(pShell, pSrcFolder, path, vOptions, run);
+    int res = extractRecursively(pShell, pSrcFolder, path, run);
     pSrcFolder.Release();
-    pShell.Release();
+    pShell->Release();
     CoUninitialize();
     return res;
 }

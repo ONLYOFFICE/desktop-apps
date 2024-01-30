@@ -72,6 +72,7 @@ CMainWindow::CMainWindow(const QRect &rect) :
     setObjectName("MainWindow");
     m_pMainPanel = createMainPanel(this);
     setCentralWidget(m_pMainPanel);
+    QString css{AscAppManager::getWindowStylesheets(m_dpiRatio)};
 #ifdef __linux__
     setAcceptDrops(true);
     if (isCustomWindowStyle()) {
@@ -80,8 +81,9 @@ CMainWindow::CMainWindow(const QRect &rect) :
         setMouseTracking(true);
     }
     QMetaObject::connectSlotsByName(this);
-#endif
-    m_pMainPanel->setStyleSheet(AscAppManager::getWindowStylesheets(m_dpiRatio));
+    css.append(Utils::readStylesheets(":styles/styles_unix.qss"));
+#endif    
+    m_pMainPanel->setStyleSheet(css);
     updateScalingFactor(m_dpiRatio);
     goStart();
 }
@@ -145,6 +147,8 @@ int CMainWindow::attachEditor(QWidget * panel, int index)
 int CMainWindow::attachEditor(QWidget * panel, const QPoint& pt)
 {
     QPoint _pt_local = tabWidget()->tabBar()->mapFromGlobal(pt);
+    if (AscAppManager::isRtlEnabled())
+        _pt_local -= QPoint(32 * m_dpiRatio, 0); // Minus tabScroll width
 #ifdef Q_OS_WIN
 # if (QT_VERSION < QT_VERSION_CHECK(5, 10, 0))
     QPoint _tl = windowRect().topLeft();
@@ -174,7 +178,9 @@ bool CMainWindow::pointInTabs(const QPoint& pt)
 {
     QRect _rc_title(m_pMainPanel->geometry());
     _rc_title.setHeight(tabWidget()->tabBar()->height());
-    _rc_title.adjust(m_pButtonMain->width(), 1, -3*int(TOOLBTN_WIDTH*m_dpiRatio), 0);
+    int dx1 = (AscAppManager::isRtlEnabled()) ? 3 * int(TITLEBTN_WIDTH * m_dpiRatio) : m_pButtonMain->width();
+    int dx2 = (AscAppManager::isRtlEnabled()) ? -1 * m_pButtonMain->width() : -3 * int(TITLEBTN_WIDTH * m_dpiRatio);
+    _rc_title.adjust(dx1, 1, dx2, 0);
     return _rc_title.contains(mapFromGlobal(pt));
 }
 
@@ -207,6 +213,10 @@ void CMainWindow::applyTheme(const std::wstring& theme)
 
     m_pButtonMain->setIcon(MAIN_ICON_PATH, GetCurrentTheme().isDark() ? "logo-light" : "logo-dark");
     m_pButtonMain->setIconSize(MAIN_ICON_SIZE * m_dpiRatio);
+    if (m_pWidgetDownload && m_pWidgetDownload->toolButton()) {
+        m_pWidgetDownload->applyTheme(QString::fromStdWString(GetActualTheme(theme)));
+        m_pWidgetDownload->toolButton()->style()->polish(m_pWidgetDownload->toolButton());
+    }
 }
 
 /** Private **/
@@ -252,7 +262,7 @@ void CMainWindow::close()
                     if (!m_pTabs->modifiedByIndex(i)) {
                         bool dontAskAgain = false;
                         int res = CMessage::showMessage(this, tr("More than one document is open.<br>Close the window anyway?"),
-                                                           MsgType::MSG_WARN, MsgBtns::mbYesDefNo, &dontAskAgain,
+                                                           MsgType::MSG_WARN, MsgBtns::mbYesNo, &dontAskAgain,
                                                            tr("Don't ask again."));
                         if (dontAskAgain)
                             reg_user.setValue("ignoreMsgAboutOpenTabs", true);
@@ -308,7 +318,10 @@ void CMainWindow::dragEnterEvent(QDragEnterEvent *event)
         return;
 
     QSet<QString> _exts;
-    _exts << "docx" << "doc" << "odt" << "rtf" << "txt" << "doct" << "dotx" << "ott" << "docxf" << "oform";
+    _exts << "docx" << "doc" << "odt" << "rtf" << "txt" << "doct" << "dotx" << "ott";
+#ifndef __LOCK_OFORM_FORMATS
+    _exts << "docxf" << "oform";
+#endif
     _exts << "html" << "mht" << "epub";
     _exts << "pptx" << "ppt" << "odp" << "ppsx" << "pptt" << "potx" << "otp";
     _exts << "xlsx" << "xls" << "ods" << "csv" << "xlst" << "xltx" << "ots";
@@ -361,6 +374,7 @@ QWidget* CMainWindow::createMainPanel(QWidget *parent)
 {
     QWidget *mainPanel = new QWidget(parent);
     mainPanel->setObjectName("mainPanel");
+    mainPanel->setProperty("rtl", AscAppManager::isRtlEnabled());
     QGridLayout *_pMainGridLayout = new QGridLayout(mainPanel);
     _pMainGridLayout->setSpacing(0);
     _pMainGridLayout->setObjectName(QString::fromUtf8("mainGridLayout"));
@@ -407,6 +421,7 @@ QWidget* CMainWindow::createMainPanel(QWidget *parent)
     }
 
     // Set TabWidget
+    _pMainGridLayout->addItem(new QSpacerItem(5, 5, QSizePolicy::Fixed, QSizePolicy::Expanding), 1, 0, 1, 1);
     m_pTabs = new CAscTabWidget(mainPanel, pTabBar);
     m_pTabs->setObjectName(QString::fromUtf8("ascTabWidget"));
     _pMainGridLayout->addWidget(m_pTabs, 1, 0, 1, 3);
@@ -485,7 +500,7 @@ void CMainWindow::toggleButtonMain(bool toggle, bool delay)
     };
 
     if ( delay ) {
-        QTimer::singleShot(200, [=]{ _toggle(toggle); });
+        QTimer::singleShot(200, this, [=]{ _toggle(toggle); });
     } else {
         _toggle(toggle);
     }
@@ -650,25 +665,37 @@ int CMainWindow::trySaveDocument(int index)
 
 void CMainWindow::onPortalLogout(std::wstring wjson)
 {
+    const auto _is_url_starts_with = [](const QString& url, const std::vector<QString>& v) -> bool {
+        for (auto& i: v) {
+            if ( url.startsWith(i) )
+                return true;
+        }
+
+        return false;
+    };
+
+
     if ( m_pTabs->count() ) {
         QJsonParseError jerror;
-        QByteArray stringdata = QString::fromStdWString(wjson).toUtf8();
-        QJsonDocument jdoc = QJsonDocument::fromJson(stringdata, &jerror);
+        QJsonDocument jdoc = QJsonDocument::fromJson(QString::fromStdWString(wjson).toUtf8(), &jerror);
 
         if( jerror.error == QJsonParseError::NoError ) {
             QJsonObject objRoot = jdoc.object();
-            QString _portal = objRoot["domain"].toString(),
-                    _action;
+            std::vector<QString> _portals{objRoot["domain"].toString()};
 
-            if ( objRoot.contains("onsuccess") )
-                _action = objRoot["onsuccess"].toString();
+            if ( objRoot.contains("extra") && objRoot["extra"].isArray() ) {
+                QJsonArray a = objRoot["extra"].toArray();
+                for (auto&& v: a) {
+                    _portals.push_back(v.toString());
+                }
+            }
 
             for (int i(m_pTabs->count()); !(--i < 0);) {
                 int _answer = MODAL_RESULT_NO;
 
                 CAscTabData& _doc = *m_pTabs->panel(i)->data();
                 if ( _doc.isViewType(cvwtEditor) && !_doc.closed() &&
-                        QString::fromStdWString(_doc.url()).startsWith(_portal) )
+                        _is_url_starts_with(QString::fromStdWString(_doc.url()), _portals) )
                 {
                     if ( _doc.hasChanges() ) {
                         _answer = trySaveDocument(i);
@@ -704,9 +731,9 @@ void CMainWindow::onPortalLogin(int viewid, const std::wstring &json)
             if ( value.isObject() )
                 onPortalUITheme(viewid, QString(QJsonDocument(value.toObject()).toJson(QJsonDocument::Compact)).toStdWString());
 
+            }
         }
     }
-}
 
 void CMainWindow::onPortalUITheme(int viewid, const std::wstring& json)
 {
@@ -722,7 +749,7 @@ void CMainWindow::onPortalUITheme(int viewid, const std::wstring& json)
             if( jerror.error == QJsonParseError::NoError ) {
                 QJsonObject objRoot = jdoc.object();
                 m_pTabs->setTabTheme(m_pTabs->tabIndexByView(viewid), objRoot["type"].toString(), objRoot["color"].toString());
-            }
+}
         }
     }
 }
@@ -742,6 +769,9 @@ void CMainWindow::doOpenLocalFile(COpenOptions& opts)
     int result = m_pTabs->openLocalDocument(opts, true);
     if ( !(result < 0) ) {
         toggleButtonMain(false, true);
+#ifdef _WIN32
+        Utils::addToRecent(opts.wurl);
+#endif
     } else
     if (result == -255) {
         QTimer::singleShot(0, this, [=] {
@@ -762,7 +792,7 @@ void CMainWindow::onLocalFileRecent(void * d)
 
 void CMainWindow::onLocalFileRecent(const COpenOptions& opts)
 {
-    QRegularExpression re(rePortalName);
+    static QRegularExpression re(rePortalName);
     QRegularExpressionMatch match = re.match(opts.url);
 
     bool forcenew = false;
@@ -831,7 +861,7 @@ void CMainWindow::onFileLocation(int uid, QString param)
             CMessage::info(this, tr("Document must be saved firstly."));
         }
     } else {
-        QRegularExpression _re("^((?:https?:\\/{2})?[^\\s\\/]+)", QRegularExpression::CaseInsensitiveOption);
+        static QRegularExpression _re("^((?:https?:\\/{2})?[^\\s\\/]+)", QRegularExpression::CaseInsensitiveOption);
         QRegularExpressionMatch _re_match = _re.match(param);
 
         if ( _re_match.hasMatch() ) {
@@ -842,7 +872,8 @@ void CMainWindow::onFileLocation(int uid, QString param)
                 if ( _folder.contains("?") )
                     _folder.append("&desktop=true");
                 else {
-                    int pos = _folder.indexOf(QRegularExpression("#\\d+"));
+                    static QRegularExpression _re_dig("#\\d+");
+                    int pos = _folder.indexOf(_re_dig);
                     !(pos < 0) ? _folder.insert(pos, "?desktop=true&") : _folder.append("?desktop=true");
                 }
             }
@@ -928,19 +959,25 @@ void CMainWindow::onDocumentReady(int uid)
 {
     if ( uid < 0 ) {
         QTimer::singleShot(20, this, [=]{
+            m_isStartPageReady = true;
+            if ( !m_keepedAction.empty() ) {
+                handleWindowAction(m_keepedAction);
+                m_keepedAction.clear();
+            }
+
             refreshAboutVersion();
             AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, L"app:ready");
             focus(); // TODO: move to app manager
         });
     } else {
-        m_pTabs->applyDocumentChanging(uid, DOCUMENT_CHANGED_LOADING_FINISH);
+        m_pTabs->applyPageLoadingStatus(uid, DOCUMENT_CHANGED_LOADING_FINISH);
     }
     AscAppManager::getInstance().onDocumentReady(uid);
 }
 
 void CMainWindow::onDocumentLoadFinished(int uid)
 {
-    m_pTabs->applyDocumentChanging(uid, DOCUMENT_CHANGED_PAGE_LOAD_FINISH);
+    m_pTabs->applyPageLoadingStatus(uid, DOCUMENT_CHANGED_PAGE_LOAD_FINISH);
 }
 
 void CMainWindow::onDocumentChanged(int id, bool changed)
@@ -983,17 +1020,21 @@ void CMainWindow::onDocumentSaveInnerRequest(int id)
 
 void CMainWindow::onDocumentDownload(void * info)
 {
-    if ( !m_pWidgetDownload ) {
+    CAscDownloadFileInfo *pData = reinterpret_cast<CAscDownloadFileInfo*>(info);
+    if (!m_pWidgetDownload && !pData->get_IsCanceled() && !pData->get_FilePath().empty()) {
         m_pWidgetDownload = new CDownloadWidget(this);
-
+        connect(m_pWidgetDownload, &QWidget::destroyed, this, [=]() {
+            m_pWidgetDownload = nullptr;
+        });
         QHBoxLayout * layoutBtns = qobject_cast<QHBoxLayout *>(m_boxTitleBtns->layout());
         layoutBtns->insertWidget(1, m_pWidgetDownload->toolButton());
+        m_pWidgetDownload->setLayoutDirection(AscAppManager::isRtlEnabled() ? Qt::RightToLeft : Qt::LeftToRight);
+        m_pWidgetDownload->setStyleSheet(Utils::readStylesheets(":/styles/download.qss"));
+        m_pWidgetDownload->applyTheme(m_pMainPanel->property("uitheme").toString());
+        m_pWidgetDownload->updateScalingFactor(m_dpiRatio);
     }
-
-    m_pWidgetDownload->downloadProcess(info);
-
-//    CAscDownloadFileInfo * pData = reinterpret_cast<CAscDownloadFileInfo *>(info);
-//    RELEASEINTERFACE(pData);
+    if (m_pWidgetDownload && !pData->get_FilePath().empty())
+        m_pWidgetDownload->downloadProcess(info);
 }
 
 void CMainWindow::onDocumentFragmented(int id, bool isfragmented)
@@ -1127,9 +1168,9 @@ void CMainWindow::onDocumentPrint(void * opts)
         }
 
 # ifdef FILEDIALOG_DONT_USE_NATIVEDIALOGS
-        CPrintDialog * dialog =  new CPrintDialog(printer, this);
+        CPrintDialog * dialog =  new CPrintDialog(printer, parent);
 # else
-        GtkPrintDialog * dialog = new GtkPrintDialog(printer, this);
+        GtkPrintDialog * dialog = new GtkPrintDialog(printer, parent);
 # endif
 #endif // _WIN32
 
@@ -1385,7 +1426,7 @@ void CMainWindow::updateScalingFactor(double dpiratio)
     layoutBtns->setSpacing(int(1 * dpiratio));
     if (isCustomWindowStyle()) {
         layoutBtns->setContentsMargins(0,0,0,0);
-        QSize small_btn_size(int(TOOLBTN_WIDTH*dpiratio), int(TOOLBTN_HEIGHT*dpiratio));
+        QSize small_btn_size(int(TITLEBTN_WIDTH*dpiratio), int(TOOLBTN_HEIGHT*dpiratio));
         foreach (auto btn, m_pTopButtons)
             btn->setFixedSize(small_btn_size);
     }*/
@@ -1399,12 +1440,19 @@ void CMainWindow::updateScalingFactor(double dpiratio)
     m_pTabs->reloadTabIcons();
     m_pButtonMain->setIcon(MAIN_ICON_PATH, GetCurrentTheme().isDark() ? "logo-light" : "logo-dark");
     m_pButtonMain->setIconSize(MAIN_ICON_SIZE * dpiratio);
+    if (m_pWidgetDownload && m_pWidgetDownload->toolButton()) {
+        m_pWidgetDownload->updateScalingFactor(dpiratio);
+        m_pWidgetDownload->toolButton()->style()->polish(m_pWidgetDownload->toolButton());
+    }
 }
 
 void CMainWindow::setScreenScalingFactor(double factor, bool resize)
 {
     CWindowPlatform::setScreenScalingFactor(factor, resize);
     QString css(AscAppManager::getWindowStylesheets(factor));
+#ifdef __linux__
+    css.append(Utils::readStylesheets(":styles/styles_unix.qss"));
+#endif
     if (!css.isEmpty()) {
         m_pMainPanel->setStyleSheet(css);
     }
@@ -1465,4 +1513,27 @@ bool CMainWindow::isAboutToClose() const
 void CMainWindow::cancelClose()
 {
     m_isCloseAll && (m_isCloseAll = false);
+}
+
+void CMainWindow::onLayoutDirectionChanged()
+{
+    m_pButtonMain->style()->polish(m_pButtonMain);
+    if (m_pWidgetDownload && m_pWidgetDownload->toolButton()) {
+        m_pWidgetDownload->onLayoutDirectionChanged();
+        m_pWidgetDownload->toolButton()->style()->polish(m_pWidgetDownload->toolButton());
+    }
+}
+
+void CMainWindow::handleWindowAction(const std::wstring& action)
+{
+    if ( !m_isStartPageReady ) {
+        m_keepedAction = action;
+    } else {
+        if ( action.rfind(L"panel|") == 0 ) {
+            const std::wstring _panel_to_select = action.substr(std::wstring(L"panel|").size());
+
+            if ( !_panel_to_select.empty() )
+                AscAppManager::sendCommandTo(0, L"panel:select", _panel_to_select);
+        }
+    }
 }

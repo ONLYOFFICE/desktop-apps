@@ -226,6 +226,26 @@ namespace CEditorTools
         return _path;
     }
 
+    QString getlocaltheme(int parentid)
+    {
+        ParentHandle parent;
+        if ( !(parentid < 0) )
+            parent = AscAppManager::windowHandleFromId(parentid);
+        else parent = qApp->activeWindow();
+
+        QString _filter;
+            _filter = CFileDialogWrapper::tr("Theme file") + " (*.json)";
+
+        CFileDialogWrapper dlg(parent);
+
+        QString _path = Utils::lastPath(LOCAL_PATH_OPEN);
+        if ( !(_path = dlg.modalOpenSingle(_path, _filter)).isEmpty() ) {
+            Utils::keepLastPath(LOCAL_PATH_OPEN, QFileInfo(_path).absolutePath());
+        }
+
+        return _path;
+    }
+
     std::wstring getFolder(const std::wstring& path, int parentid)
     {
         ParentHandle parent;
@@ -275,7 +295,11 @@ namespace CEditorTools
             result = panel->openRecoverFile(opts.id);
         } else
         if (opts.srctype == etRecentFile) {
-            result = panel->openRecentFile(opts.id);
+            if ( opts.id < 0 ) {
+                if ( opts.wurl.length() )
+                    panel->cef()->load(opts.wurl);
+            } else
+                result = panel->openRecentFile(opts.id);
         } else
         if (opts.srctype == etNewFile) {
             panel->createLocalFile(editorTypeFromFormat(opts.format), opts.name.toStdWString());
@@ -294,8 +318,14 @@ namespace CEditorTools
 
             if ( opts.srctype == etNewFile )
                 data->setContentType(editorTypeFromFormat(opts.format));
-
-
+            else {
+                if ( _file_format != 0 ) {
+                    data->setContentType(editorTypeFromFormat(_file_format));
+                } else
+                if ( opts.format != 0 ) {
+                    data->setContentType(editorTypeFromFormat(opts.format));
+                }
+            }
 
             panel->setData(data);
             //if ( !rect.isEmpty() )
@@ -313,6 +343,9 @@ namespace CEditorTools
     auto editorTypeFromFormat(int format) -> AscEditorType {
         if ( format == AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCXF ) {
             return AscEditorType::etDocumentMasterForm;
+        } else
+        if ( format == AVS_OFFICESTUDIO_FILE_DOCUMENT_OFORM_PDF ) {
+            return AscEditorType::etPdf;
         } else
         if ( (format > AVS_OFFICESTUDIO_FILE_DOCUMENT && format < AVS_OFFICESTUDIO_FILE_PRESENTATION) ||
                 format == AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_PDF || format == AVS_OFFICESTUDIO_FILE_CROSSPLATFORM_PDFA ||
@@ -374,6 +407,9 @@ namespace CEditorTools
                             AscAppManager::GetFileFormatByExtentionForSave(pSaveData->get_Path());
 
                     pSaveData->put_FileType(format > -1 ? format : 0);
+#ifdef _WIN32
+                    Utils::addToRecent(_full_path.toStdWString());
+#endif
                 }
             }
 

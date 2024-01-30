@@ -54,6 +54,8 @@ using namespace std;
 using namespace std::placeholders;
 
 
+bool CAscApplicationManagerWrapper::m_rtlEnabled = false;
+
 CAscApplicationManagerWrapper::CAscApplicationManagerWrapper(CAscApplicationManagerWrapper const&)
 {
 
@@ -85,34 +87,14 @@ CAscApplicationManagerWrapper::~CAscApplicationManagerWrapper()
 {
     delete m_queueToClose, m_queueToClose = nullptr;
 
-//    CSingleWindow * _sw = nullptr;
-//    for (auto const& w : m_vecEditors) {
-//        _sw = reinterpret_cast<CSingleWindow *>(w);
-
-//        if ( _sw ) {
-//#ifdef _WIN32
-//            delete _sw, _sw = NULL;
-//#else
-//            _sw->deleteLater();
-//#endif
-//        }
-//    }
-
-
     if ( m_pMainWindow ) {
-#ifdef _WIN32
-        //delete m_pMainWindow, m_pMainWindow= nullptr;
         m_pMainWindow->deleteLater();
-#else
-        m_pMainWindow->deleteLater();
-#endif
     }
 #if defined (_UPDMODULE)
     // Start update installation
     if (m_pUpdateManager)
         m_pUpdateManager->handleAppClose();
 #endif
-//    m_vecEditors.clear();
 }
 
 void CAscApplicationManagerWrapper::StartSaveDialog(const std::wstring& sName, unsigned int nId)
@@ -125,6 +107,12 @@ void CAscApplicationManagerWrapper::StartSaveDialog(const std::wstring& sName, u
     event->m_pData = data;
 
     OnEvent(event);
+}
+
+std::wstring CAscApplicationManagerWrapper::GetExternalSchemeName()
+{
+    std::wstring scheme = CAscApplicationManager::GetExternalSchemeName();
+    return !scheme.empty() ? scheme.back() != L':' ? scheme + L":" : scheme : L"";
 }
 
 void CAscApplicationManagerWrapper::OnEvent(CAscCefMenuEvent * event)
@@ -228,6 +216,30 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
                         m_receivers[sid]->onWebAppsFeatures(sid,L"\"uitype\":\"fillform\"");
                 }
 
+                if ( !((pData->get_Param()).find(L"framesize") == std::wstring::npos) ) {
+                    CCefViewWidgetImpl * _impl = ptr->GetWidgetImpl();
+                    if ( _impl ) {
+                        QJsonParseError jerror;
+                        const QJsonDocument jdoc = QJsonDocument::fromJson(QString::fromStdWString(pData->get_Param()).toUtf8(), &jerror);
+
+                        if( jerror.error == QJsonParseError::NoError ) {
+                            const QJsonObject obj = jdoc.object()["framesize"].toObject();
+                            int _frame_w = obj["width"].toInt(),
+                                _frame_h = obj["height"].toInt();
+
+                            QCefView * view = static_cast<QCefView *>(_impl);
+                            const QSize s = view->geometry().size() / Utils::getScreenDpiRatioByWidget(view);
+
+                            if ( abs(s.width() - _frame_w) > 1 || abs(s.height() - _frame_h) > 1 ) {
+                                const std::wstring feature = L"\"hasframe\":true";
+                                if ( m_receivers.find(sid) != m_receivers.end() )
+                                    m_receivers[sid]->onWebAppsFeatures(sid, feature);
+                                else m_pMainWindow->onWebAppsFeatures(sid, feature);
+                            }
+                        }
+                    }
+                }
+
                 auto * editor = editorWindowFromViewId(event->get_SenderId());
                 if ( editor && editor->isCustomWindowStyle() ) {
                     QJsonObject json{{"skiptoparea", TOOLBTN_HEIGHT},{"singlewindow",true}};
@@ -253,19 +265,30 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
         } else
         if ( cmd.compare(L"portal:logout") == 0 ) {
             const wstring& wjson = pData->get_Param();
-            wstring wportal;
 
-            QRegularExpression re("domain\":\"(https?:\\/\\/[^\\s\"]+)");
-            QRegularExpressionMatch match = re.match(QString::fromStdWString(wjson));
-            if ( match.hasMatch() )
-                wportal = match.captured(1).toStdWString();
+            QJsonParseError jerror;
+            QJsonDocument jdoc = QJsonDocument::fromJson(QString::fromStdWString(wjson).toUtf8(), &jerror);
 
-            if ( !wportal.empty() ) {
-                if ( (m_closeCount = logoutCount(wportal)) > 0 ) {
-                    m_closeTarget = wjson;
-                    broadcastEvent(event);
-                } else {
-                    Logout(wjson);
+            if( jerror.error == QJsonParseError::NoError ) {
+                QJsonObject objRoot = jdoc.object();
+                QString _portal = objRoot["domain"].toString();
+
+                if ( !_portal.isEmpty() ) {
+                    m_closeCount = logoutCount(_portal.toStdWString());
+
+                    if ( objRoot.contains("extra") && objRoot["extra"].isArray() ) {
+                        QJsonArray a = objRoot["extra"].toArray();
+                        for (auto&& v: a) {
+                            m_closeCount += logoutCount(v.toString().toStdWString());
+                        }
+                    }
+
+                    if ( m_closeCount > 0 ) {
+                        m_closeTarget = wjson;
+                        broadcastEvent(event);
+                    } else {
+                        Logout(wjson);
+                    }
                 }
             }
 
@@ -331,6 +354,50 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
         } else
         if ( !(cmd.find(L"uitheme:changed") == std::wstring::npos) ) {
             applyTheme( themes().parseThemeName(pData->get_Param()) );
+            return true;
+        } else
+        if ( !(cmd.find(L"uitheme:add") == std::wstring::npos) ) {
+            QString file_path = CEditorTools::getlocaltheme(event->get_SenderId());
+
+            if ( !file_path.isEmpty() ) {
+                QJsonObject json_obj = Utils::parseJsonFile(file_path);
+                if ( !json_obj.isEmpty() ) {
+                    if ( json_obj.contains("id") ) {
+                        if ( m_themes->checkDestinationThemeFileExist(file_path) ) {
+                            int res = CMessage::showMessage(WindowHelper::currentTopWindow(),
+                                                            QObject::tr("File %1 is already loaded. Replace it?").arg(QFileInfo(file_path).fileName()),
+                                                            MsgType::MSG_CONFIRM, MsgBtns::mbYesDefNo);
+                            if ( res == MODAL_RESULT_NO )
+                                return true;
+                        }
+
+                        if ( !themes().validate(json_obj) ) {
+                            qDebug() << "theme source is broken";
+                            CMessage::error(WindowHelper::currentTopWindow(), "Selected theme isn't valid");
+                        } else {
+                            if ( themes().addLocalTheme(json_obj, file_path) ) {
+                                QJsonArray local_themes_array = themes().localThemesToJson();
+                                if ( !local_themes_array.isEmpty() ) {
+                                    EditorJSVariables::setVariable("localthemes", local_themes_array);
+                                    EditorJSVariables::apply();
+                                }
+
+                                QJsonArray new_local_themes;
+                                new_local_themes.append(json_obj);
+                                sendCommandToAllEditors(L"uitheme:added",
+                                                        QString(QJsonDocument(new_local_themes).toJson(QJsonDocument::Compact)).toStdWString());
+                            }
+                        }
+                    } else {
+                        qDebug() << "theme source is broken";
+                        CMessage::error(WindowHelper::currentTopWindow(), "This file doesn't contain theme");
+                    }
+                } else {
+                    qDebug() << "theme file is not valid";
+                    CMessage::error(WindowHelper::currentTopWindow(), "This theme file is not valid");
+                }
+            }
+
             return true;
         } else
         if ( !(cmd.find(L"files:check") == std::wstring::npos) ) {
@@ -799,11 +866,11 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
     std::vector<std::wstring> open_scheme{L"http://",L"https://"};
     std::wstring app_scheme = _app.GetExternalSchemeName();
     if ( !app_scheme.empty() ) {
-        if ( app_scheme.back() != L':' )
-            app_scheme += L":";
-
         open_scheme.push_back(app_scheme);
     }
+    std::wstring app_action = app_scheme + L"//action";
+    std::wstring app_action_plugin = app_scheme + L"//action|install-plugin";
+    std::vector<std::wstring> vec_window_actions;
 
     for (const auto& arg: vargs) {
         COpenOptions open_opts;
@@ -834,6 +901,24 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
 
 //            if ( check_param(arg, L"single-window") )
 //                in_new_window = true;
+        } else
+        if ( arg.rfind(app_action, 0) == 0 ) {
+            // correct url from browsers
+            std::wstring argScheme = arg;
+            Utils::replaceAll(argScheme, L"%7C", L"|");
+            if (argScheme[argScheme.length() - 1] == '/')
+                argScheme.pop_back();
+
+            if ( argScheme.rfind(app_action_plugin, 0) == 0 ) {
+                std::wstring _plugin_name = argScheme.substr(app_action_plugin.size() + 1);
+                if ( !_plugin_name.empty() ) {
+                    _app.InstallPluginFromStore(_plugin_name);
+                }
+            } else {
+                vec_window_actions.push_back(argScheme);
+            }
+
+            continue;
         } else {
             open_opts.wurl = arg;
         }
@@ -878,8 +963,8 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
         }
 
         // TODO: remove for ver 7.2. skip single window for --review flag without --forse-use-window
-        if ( open_in_new_window )
-            open_in_new_window = std::find(vargs.begin(), vargs.end(), L"--force-use-tab") == std::end(vargs);
+        // if ( open_in_new_window )
+        //    open_in_new_window = std::find(vargs.begin(), vargs.end(), L"--force-use-tab") == std::end(vargs);
         //
 
         CTabPanel * panel = CEditorTools::createEditorPanel(open_opts);
@@ -922,6 +1007,29 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
             opts.url = QString::fromStdWString(opts.wurl);
 
             _app.m_pMainWindow->doOpenLocalFile(opts);
+        }
+    }
+
+    if ( !vec_window_actions.empty() ) {
+        QTimer::singleShot(0, &_app, [vec_window_actions]{
+            CAscApplicationManagerWrapper::getInstance().handleDeeplinkActions(vec_window_actions);
+        });
+    }
+}
+
+void CAscApplicationManagerWrapper::handleDeeplinkActions(const std::vector<std::wstring>& actions)
+{
+    std::wstring app_scheme = GetExternalSchemeName();
+    if ( !app_scheme.empty() ) {
+        const std::wstring app_action_panel = app_scheme + L"//action|panel|";
+
+        for (const auto& a: actions) {
+            if ( a.rfind(app_action_panel, 0) == 0 ) {
+                std::wstring _action = a.substr(app_action_panel.size() - 6);
+
+                gotoMainWindow();
+                m_pMainWindow->handleWindowAction(_action);
+            }
         }
     }
 }
@@ -1007,12 +1115,6 @@ void CAscApplicationManagerWrapper::startApp()
 
     handleInputCmd(in_args);
     if ( _app.m_vecEditors.empty() && !_app.m_pMainWindow ) {
-//        _app.m_private->createStartPanel();
-
-//        CMainWindow * _window = createMainWindow(_start_rect);
-//        _window->mainPanel()->attachStartPanel(_app.m_private->m_pStartPanel);
-//        _window->show(_is_maximized);
-
         _app.m_pMainWindow = _app.prepareMainWindow();
         _app.m_pMainWindow->show(_is_maximized);
     }
@@ -1102,7 +1204,11 @@ void CAscApplicationManagerWrapper::initializeApp()
     _app.m_private->applyStylesheets();
 
     // TODO: merge stylesheets and apply for the whole app
-    qApp->setStyleSheet( Utils::readStylesheets(":styles/styles.qss") );
+    QString css{Utils::readStylesheets(":styles/styles.qss")};
+#ifdef __linux__
+    css.append(Utils::readStylesheets(":styles/styles_unix.qss"));
+#endif
+    qApp->setStyleSheet(css);
 
     // Font
     QFont mainFont = QApplication::font();
@@ -1122,9 +1228,20 @@ void CAscApplicationManagerWrapper::initializeApp()
     AscAppManager::getInstance().InitAdditionalEditorParams(wparams);
 //    AscAppManager::getInstance().applyTheme(themes().current().id(), true);
 
+    QJsonArray local_themes_array = themes().localThemesToJson();
+    if ( !local_themes_array.isEmpty() )
+        EditorJSVariables::setVariable("localthemes", local_themes_array);
+
+    const bool _is_rtl = reg_user.contains("forcedRtl") ? reg_user.value("forcedRtl", false).toBool() :
+                       CLangater::isRtlLanguage(CLangater::getCurrentLangCode());
+    AscAppManager::setRtlEnabled(_is_rtl);
+    EditorJSVariables::setVariable("rtl", _is_rtl ? "yes" : "no");
+
+    EditorJSVariables::setVariable("lang", CLangater::getCurrentLangCode());
     EditorJSVariables::applyVariable("theme", {
                                         {"type", _app.m_themes->current().stype()},
-                                        {"id", QString::fromStdWString(_app.m_themes->current().id())}
+                                        {"id", QString::fromStdWString(_app.m_themes->current().id())},
+                                        {"addlocal", "on"}
 #ifndef Q_OS_LINUX
                                         ,{"system", _app.m_themes->isSystemSchemeDark() ? "dark" : "light"}
 #else
@@ -1489,9 +1606,9 @@ void CAscApplicationManagerWrapper::sendCommandToAllEditors(const std::wstring& 
     for ( auto i : _app.GetViewsId() ) {
         target = _app.GetViewById(i);
 
-        if ( target->GetType() == cvwtEditor ) {
+//        if ( target->GetType() == cvwtEditor ) {
             sendCommandTo(target, cmd, args);
-        }
+//        }
     }
 }
 
@@ -1598,6 +1715,28 @@ bool CAscApplicationManagerWrapper::event(QEvent *event)
     return QObject::event(event);
 }
 
+void CAscApplicationManagerWrapper::setRtlEnabled(bool state)
+{
+    if (m_rtlEnabled != state) {
+        m_rtlEnabled = state;
+        Qt::LayoutDirection direct = m_rtlEnabled ? Qt::RightToLeft : Qt::LeftToRight;
+        APP_CAST(_app);
+        if (_app.m_pMainWindow)
+            _app.m_pMainWindow->setLayoutDirection(direct);
+        for (auto const &r : _app.m_winsReporter)
+            r.second->setLayoutDirection(direct);
+        for (auto const &e : _app.m_vecEditors) {
+            CEditorWindow *editor = reinterpret_cast<CEditorWindow*>(e);
+            editor->setLayoutDirection(direct);
+        }
+    }
+}
+
+bool CAscApplicationManagerWrapper::isRtlEnabled()
+{
+    return m_rtlEnabled;
+}
+
 bool CAscApplicationManagerWrapper::applySettings(const wstring& wstrjson)
 {
     QJsonParseError jerror;
@@ -1612,6 +1751,17 @@ bool CAscApplicationManagerWrapper::applySettings(const wstring& wstrjson)
         QString _user_newname = objRoot["username"].toString();
         if ( _user_newname.isEmpty() )
             _user_newname = QString::fromStdWString(Utils::systemUserName());
+
+        if ( objRoot.contains("rtl") ) {
+            _reg_user.setValue("forcedRtl", objRoot["rtl"].toBool(false));
+
+            /*
+             * show message and relaunch app
+            */
+        } else {
+            _reg_user.remove("forcedRtl");
+        }
+
 
         QString _lang_id = CLangater::getCurrentLangCode();
         if ( objRoot.contains("langid") ) {
@@ -1824,24 +1974,30 @@ void CAscApplicationManagerWrapper::Logout(const wstring& wjson)
 
         if( jerror.error == QJsonParseError::NoError ) {
             QJsonObject objRoot = jdoc.object();
+
             const wstring& portal = objRoot["domain"].toString().toStdWString();
-
-            CAscApplicationManager::Logout(portal);
-            if ( objRoot.contains("extra") && objRoot["extra"].isArray() ) {
-                QJsonArray a = objRoot["extra"].toArray();
-                for (auto v: a)
-                    CAscApplicationManager::Logout(v.toString().toStdWString());
-            }
-
             sendCommandTo(SEND_TO_ALL_START_PAGE, L"portal:logout", portal);
 
-            int index = mainWindow()->tabWidget()->tabIndexByUrl(portal);
-            if ( !(index < 0) ) {
-                if ( objRoot.contains("onsuccess") &&
-                        objRoot["onsuccess"].toString() == "reload" )
-                {
-                    mainWindow()->tabWidget()->panel(index)->cef()->reload();
-                } else mainWindow()->tabWidget()->closeEditorByIndex(index);
+            std::vector<std::wstring> _portals{portal};
+
+            if ( objRoot.contains("extra") && objRoot["extra"].isArray() ) {
+                QJsonArray a = objRoot["extra"].toArray();
+                for (auto&& v: a) {
+                    _portals.push_back(v.toString().toStdWString());
+                }
+            }
+
+            for (auto& v: _portals) {
+                CAscApplicationManager::Logout(v);
+
+                int index = mainWindow()->tabWidget()->tabIndexByUrl(v);
+                if ( !(index < 0) ) {
+                    if ( objRoot.contains("onsuccess") &&
+                            objRoot["onsuccess"].toString() == "reload" )
+                    {
+                        mainWindow()->tabWidget()->panel(index)->cef()->reload();
+                    } else mainWindow()->tabWidget()->closeEditorByIndex(index);
+                }
             }
         }
     }
@@ -1966,17 +2122,6 @@ QString CAscApplicationManagerWrapper::newFileName(const std::wstring& format)
 
     return newFileName(_f);
 }
-
-/*void CAscApplicationManagerWrapper::checkUpdates()
-{
-    //APP_CAST(_app);
-
-    //if ( !_app.m_updater ) {
-        //_app.m_updater = std::make_shared<CAppUpdater>();
-    //}
-
-    _app.m_updater->checkUpdates();
-}*/
 
 wstring CAscApplicationManagerWrapper::userSettings(const wstring& name)
 {

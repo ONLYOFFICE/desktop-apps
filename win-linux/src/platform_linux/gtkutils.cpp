@@ -32,6 +32,7 @@
 
 #include "gtkutils.h"
 #include <gdk/gdkx.h>
+#include <string.h>
 #include "platform_linux/xcbutils.h"
 
 
@@ -69,4 +70,41 @@ void set_parent(GtkWidget *dialog, gpointer data)
                 gdk_window_set_transient_for(gdk_dialog, gdk_qtparent);
         }
     }
+}
+
+GtkWidget *find_widget_by_path(GtkWidget *parent, const gchar *widget_path)
+{
+    if (!parent)
+        return NULL;
+
+    gchar *str_path = NULL;
+    gtk_widget_path(parent, NULL, &str_path, NULL);
+    if (!str_path)
+        return NULL;
+
+    if (strcmp(str_path, widget_path) == 0) {
+        g_free(str_path);
+        return parent;
+    }
+    g_free(str_path);
+
+    if (GTK_IS_CONTAINER(parent)) {
+        GList *children = gtk_container_get_children(GTK_CONTAINER(parent));
+        GList *iter = children;
+        while (iter) {
+            if (GtkWidget *child = find_widget_by_path(GTK_WIDGET(iter->data), widget_path)) {
+                g_list_free(children);
+                return child;
+            }
+            iter = g_list_next(iter);
+        }
+        if (children)
+            g_list_free(children);
+
+    } else
+    if (GTK_IS_BIN(parent)) {
+        GtkWidget *child = gtk_bin_get_child(GTK_BIN(parent));
+        return find_widget_by_path(child, widget_path);
+    }
+    return NULL;
 }

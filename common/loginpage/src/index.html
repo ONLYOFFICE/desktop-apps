@@ -7,13 +7,11 @@
     <meta name="description" content="" />
     <meta name="keywords" content="" />
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-touch-fullscreen" content="yes">
-
     <!-- debug begin -->
     <link rel="stylesheet/less" type="text/css" href="styles.less" />
+    <link rel="stylesheet/less" type="text/css" href="css/rtl.less" />
     <!-- debug end -->
+    <link rel="stylesheet/less" href="../noconnect/styles.css" />
 
     <!-- release section -->
     <!--<link rel="stylesheet" type="text/css" href="styles.css">-->
@@ -92,25 +90,33 @@
                 <h3 class="createnew" l10n>Create new</h3>
                 <li class="menu-item">
                   <a action="new:docx">
-                    <i class="icon img-el"></i>
+                    <svg class="icon" data-iconname="docx" data-precls="img-el">
+                        <use href="#docx-big"></use>
+                    </svg>
                     <span class="text" l10n>DOCUMENT</span>
                   </a>
                 </li>
                 <li class="menu-item">
                   <a action="new:xlsx">
-                    <i class="icon img-el"></i>
+                    <svg class="icon" data-iconname="xlsx" data-precls="img-el">
+                        <use href="#xlsx-big"></use>
+                    </svg>
                     <span class="text" l10n>SPREADSHEET</span>
                   </a>
                 </li>
                 <li class="menu-item">
                   <a action="new:pptx">
-                    <i class="icon img-el"></i>
+                    <svg class="icon" data-iconname="pptx" data-precls="img-el">
+                        <use href="#pptx-big"></use>
+                    </svg>
                     <span class="text" l10n>PRESENTATION</span>
                   </a>
                 </li>
                 <li class="menu-item" style="padding-bottom:0;">
                   <a action="new:form">
-                    <i class="icon img-el"></i>
+                    <svg class="icon" data-iconname="form" data-precls="img-el">
+                        <use href="#docxf-big"></use>
+                    </svg>
                     <span class="text" l10n="newForm">MASTER FORM</span>
                   </a>
                 </li>
@@ -125,16 +131,13 @@
     </div>
 
     <script src="../vendor/svg-injector/svg-injector.min.js"></script>
-    <img class="inline-svg" src="../res/img/connect1.svg">
-    <img class="inline-svg" src="../res/img/connect2.svg">
-    <img class="inline-svg" src="../res/img/connect3.svg">
-    <img class="inline-svg" src="../res/img/connect1_dark.svg">
-    <img class="inline-svg" src="../res/img/connect2_dark.svg">
-    <img class="inline-svg" src="../res/img/connect3_dark.svg">
-    <img class="inline-svg" src="../res/img/welcome.svg">
-    <img class="inline-svg" src="../res/img/welcome_dark.svg">
-    <img class="inline-svg" src="../res/img/logo.svg">
-    <img class="inline-svg" src="../res/img/update_status.svg">
+    <img class="inline-svg" src="../res/img/generated/connect.svg">
+    <img class="inline-svg" src="../res/img/generated/welcome.svg">
+    <img class="inline-svg" src="../res/img/generated/logo.svg">
+    <img class="inline-svg" src="../res/img/generated/update_status.svg">
+    <img class="inline-svg" src="../res/img/generated/formats.svg">
+    <img class="inline-svg" src="../res/img/generated/common.svg">
+    <img class="inline-svg" src="../noconnect/connection_error.svg">
     <script>
         var svgpoints = document.querySelectorAll('img.inline-svg');
         SVGInjector(svgpoints, {evalScripts:'never'});
@@ -181,6 +184,10 @@
     <script src="../locale/vi.js"></script>
     <script src="../locale/zh-CN.js"></script>
     <script src="../locale/zh-TW.js"></script>
+    <script src="../locale/ar-SA.js"></script>
+
+    <script src="../noconnect/code.js"></script>
+    <script src="../noconnect/l10n/ru.js"></script>
 
     <script type="text/javascript" src="../vendor/jquery/jquery.min.js"></script>
     <script type="text/javascript" src="../vendor/bootstrap/dropdown.js"></script>

@@ -239,7 +239,11 @@ QWidget * CEditorWindow::createMainPanel(QWidget * parent, const QString& title)
 
     mainPanel->setProperty("zoom", QString::number(m_dpiRatio) + "x");
     mainPanel->setProperty("uitheme", QString::fromStdWString(GetCurrentTheme().id()));
-    mainPanel->setStyleSheet(AscAppManager::getWindowStylesheets(m_dpiRatio) + m_css);
+    QString css(AscAppManager::getWindowStylesheets(m_dpiRatio) + m_css);
+#ifdef __linux__
+    css.append(Utils::readStylesheets(":styles/styles_unix.qss"));
+#endif
+    mainPanel->setStyleSheet(css);
 
     if ( !d_ptr->panel() ) {
 //        QCefView * pMainWidget = AscAppManager::createViewer(centralWidget);
@@ -339,15 +343,15 @@ void CEditorWindow::captureMouse()
 #ifdef _WIN32
     POINT cursor{0,0};
     if (GetCursorPos(&cursor)) {
-        QRect _g{geometry()};
-        int _window_offset_x;
-        if (cursor.x - _g.x() < dpiCorr(CAPTURED_WINDOW_OFFSET_X))
-            _window_offset_x = dpiCorr(CAPTURED_WINDOW_OFFSET_X);
-        else
-        if ( cursor.x > _g.right() - dpiCorr(150) )
-            _window_offset_x = _g.right() - dpiCorr(150);
-        else _window_offset_x = cursor.x - _g.x();
-        move(cursor.x - _window_offset_x, cursor.y - dpiCorr(CAPTURED_WINDOW_OFFSET_Y));
+//        QRect _g{geometry()};
+//        int _window_offset_x;
+//        if (cursor.x - _g.x() < dpiCorr(CAPTURED_WINDOW_OFFSET_X))
+//            _window_offset_x = dpiCorr(CAPTURED_WINDOW_OFFSET_X);
+//        else
+//        if ( cursor.x > _g.right() - dpiCorr(150) )
+//            _window_offset_x = _g.right() - dpiCorr(150);
+//        else _window_offset_x = cursor.x - _g.x();
+        move(cursor.x - dpiCorr(CAPTURED_WINDOW_OFFSET_X), cursor.y - dpiCorr(CAPTURED_WINDOW_OFFSET_Y));
         ReleaseCapture();
         PostMessage((HWND)winId(), WM_NCLBUTTONDOWN, HTCAPTION, MAKELPARAM(cursor.x, cursor.y));
     }
@@ -433,6 +437,9 @@ void CEditorWindow::setScreenScalingFactor(double factor, bool resize)
 
     QString css(AscAppManager::getWindowStylesheets(factor));
     css.append(m_css);
+#ifdef __linux__
+    css.append(Utils::readStylesheets(":styles/styles_unix.qss"));
+#endif
     m_pMainPanel->setStyleSheet(css);
 
     d_ptr.get()->onScreenScalingFactor(factor);
@@ -449,4 +456,9 @@ void CEditorWindow::closeEvent(QCloseEvent * e)
 {
     AscAppManager::getInstance().closeQueue().enter(sWinTag{CLOSE_QUEUE_WIN_TYPE_EDITOR, size_t(this)});
     e->ignore();
+}
+
+void CEditorWindow::onLayoutDirectionChanged()
+{
+    d_ptr->onLayoutDirectionChanged();
 }

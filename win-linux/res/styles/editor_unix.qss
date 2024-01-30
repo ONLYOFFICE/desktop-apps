@@ -1,0 +1,96 @@
+#mainPanel[window=pretty] QPushButton#toolButtonMinimize[unix=true] {image: url(:/minimize_unix_normal_light.svg);}
+#mainPanel[window=pretty] QPushButton#toolButtonMinimize[unix=true]:hover {image: url(:/minimize_unix_hover_light.svg);}
+#mainPanel[window=pretty] QPushButton#toolButtonMinimize[unix=true]:pressed {image: url(:/minimize_unix_pressed_light.svg);}
+
+#mainPanel[window=pretty] QPushButton#toolButtonMinimize[unix=true][kde=true] {image: url(:/minimize_kde_normal_light.svg);}
+#mainPanel[window=pretty] QPushButton#toolButtonMinimize[unix=true][kde=true]:hover {image: url(:/minimize_kde_hover_light.svg);}
+#mainPanel[window=pretty] QPushButton#toolButtonMinimize[unix=true][kde=true]:pressed {image: url(:/minimize_kde_pressed_light.svg);}
+
+#mainPanel[window=pretty] QPushButton#toolButtonClose[unix=true] {image: url(:/close_unix_normal_light.svg);}
+#mainPanel[window=pretty] QPushButton#toolButtonClose[unix=true]:hover {image: url(:/close_unix_hover_light.svg);}
+#mainPanel[window=pretty] QPushButton#toolButtonClose[unix=true]:pressed {image: url(:/close_unix_pressed_light.svg);}
+
+#mainPanel[window=pretty] QPushButton#toolButtonClose[unix=true][kde=true] {image: url(:/close_kde_normal_light.svg);}
+#mainPanel[window=pretty] QPushButton#toolButtonClose[unix=true][kde=true]:hover {image: url(:/close_kde_hover_light.svg);}
+#mainPanel[window=pretty] QPushButton#toolButtonClose[unix=true][kde=true]:pressed {image: url(:/close_kde_pressed_light.svg);}
+
+#mainPanel[window=pretty] QPushButton#toolButtonMaximize[unix=true] {image: url(:/restore_unix_normal_light.svg);}
+#mainPanel[window=pretty] QPushButton#toolButtonMaximize[unix=true]:hover {image: url(:/restore_unix_hover_light.svg);}
+#mainPanel[window=pretty] QPushButton#toolButtonMaximize[unix=true]:pressed {image: url(:/restore_unix_pressed_light.svg);}
+
+#mainPanel[window=pretty] QPushButton#toolButtonMaximize[unix=true][kde=true] {image: url(:/restore_kde_normal_light.svg);}
+#mainPanel[window=pretty] QPushButton#toolButtonMaximize[unix=true][kde=true]:hover {image: url(:/restore_kde_hover_light.svg);}
+#mainPanel[window=pretty] QPushButton#toolButtonMaximize[unix=true][kde=true]:pressed {image: url(:/restore_kde_pressed_light.svg);}
+
+#mainPanel[window=pretty] QPushButton#toolButtonMaximize[class=min][unix=true] {image: url(:/maximize_unix_normal_light.svg);}
+#mainPanel[window=pretty] QPushButton#toolButtonMaximize[class=min][unix=true]:hover {image: url(:/maximize_unix_hover_light.svg);}
+#mainPanel[window=pretty] QPushButton#toolButtonMaximize[class=min][unix=true]:pressed {image: url(:/maximize_unix_pressed_light.svg);}
+
+#mainPanel[window=pretty] QPushButton#toolButtonMaximize[class=min][unix=true][kde=true] {image: url(:/maximize_kde_normal_light.svg);}
+#mainPanel[window=pretty] QPushButton#toolButtonMaximize[class=min][unix=true][kde=true]:hover {image: url(:/maximize_kde_hover_light.svg);}
+#mainPanel[window=pretty] QPushButton#toolButtonMaximize[class=min][unix=true][kde=true]:pressed {image: url(:/maximize_kde_pressed_light.svg);}
+
+/* 1.0x */
+#toolButtonMinimize[kde=true],
+#toolButtonClose[kde=true],
+#toolButtonMaximize[kde=true] {padding: 2px 0px 7px;}
+
+/* 1.25x */
+#mainPanel[zoom="1.25x"] #toolButtonMinimize[kde=true],
+#mainPanel[zoom="1.25x"] #toolButtonClose[kde=true],
+#mainPanel[zoom="1.25x"] #toolButtonMaximize[kde=true] {padding: 3px 0px 8px;}
+
+/* 1.5x */
+#mainPanel[zoom="1.5x"] #toolButtonMinimize[kde=true],
+#mainPanel[zoom="1.5x"] #toolButtonClose[kde=true],
+#mainPanel[zoom="1.5x"] #toolButtonMaximize[kde=true] {padding: 3px 0px 10px;}
+
+/* 1.75x */
+#mainPanel[zoom="1.75x"] #toolButtonMinimize[kde=true],
+#mainPanel[zoom="1.75x"] #toolButtonClose[kde=true],
+#mainPanel[zoom="1.75x"] #toolButtonMaximize[kde=true] {padding: 4px 0px 12px;}
+
+/* 2x */
+#mainPanel[zoom="2x"] #toolButtonMinimize[kde=true],
+#mainPanel[zoom="2x"] #toolButtonClose[kde=true],
+#mainPanel[zoom="2x"] #toolButtonMaximize[kde=true] {padding: 4px 0px 14px;}
+
+/* 2.25x */
+#mainPanel[zoom="2.25x"] #toolButtonMinimize[kde=true],
+#mainPanel[zoom="2.25x"] #toolButtonClose[kde=true],
+#mainPanel[zoom="2.25x"] #toolButtonMaximize[kde=true] {padding: 5px 0px 15px;}
+
+/* 2.5x */
+#mainPanel[zoom="2.5x"] #toolButtonMinimize[kde=true],
+#mainPanel[zoom="2.5x"] #toolButtonClose[kde=true],
+#mainPanel[zoom="2.5x"] #toolButtonMaximize[kde=true] {padding: 5px 0px 17px;}
+
+/* 2.75x */
+#mainPanel[zoom="2.75x"] #toolButtonMinimize[kde=true],
+#mainPanel[zoom="2.75x"] #toolButtonClose[kde=true],
+#mainPanel[zoom="2.75x"] #toolButtonMaximize[kde=true] {padding: 6px 0px 19px;}
+
+/* 3x */
+#mainPanel[zoom="3x"] #toolButtonMinimize[kde=true],
+#mainPanel[zoom="3x"] #toolButtonClose[kde=true],
+#mainPanel[zoom="3x"] #toolButtonMaximize[kde=true] {padding: 6px 0px 21px;}
+
+/* 3.5x */
+#mainPanel[zoom="3.5x"] #toolButtonMinimize[kde=true],
+#mainPanel[zoom="3.5x"] #toolButtonClose[kde=true],
+#mainPanel[zoom="3.5x"] #toolButtonMaximize[kde=true] {padding: 7px 0px 24px;}
+
+/* 4x */
+#mainPanel[zoom="4x"] #toolButtonMinimize[kde=true],
+#mainPanel[zoom="4x"] #toolButtonClose[kde=true],
+#mainPanel[zoom="4x"] #toolButtonMaximize[kde=true] {padding: 8px 0px 28px;}
+
+/* 4.5x */
+#mainPanel[zoom="4.5x"] #toolButtonMinimize[kde=true],
+#mainPanel[zoom="4.5x"] #toolButtonClose[kde=true],
+#mainPanel[zoom="4.5x"] #toolButtonMaximize[kde=true] {padding: 9px 0px 31px;}
+
+/* 5x */
+#mainPanel[zoom="5x"] #toolButtonMinimize[kde=true],
+#mainPanel[zoom="5x"] #toolButtonClose[kde=true],
+#mainPanel[zoom="5x"] #toolButtonMaximize[kde=true] {padding: 10px 0px 35px;}

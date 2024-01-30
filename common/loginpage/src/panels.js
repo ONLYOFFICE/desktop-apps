@@ -35,6 +35,16 @@ $(document).ready(function() {
     $('.tool-menu').on('click', '> .menu-item > a', onActionClick);
     $('.tool-quick-menu .menu-item a').click(onNewFileClick);
 
+    if ( window.utils.isWinXp ) {
+        $('a[action] use').each((i, e) => {
+            const _attr_href = e.getAttribute('href');
+            if ( !!_attr_href ) {
+                const $el = $(e), $parent = $el.parent();
+                $el.remove();
+                $parent.html(`<use xlink:href="${_attr_href}"></use>`);
+            }
+        });
+    }
 
     !window.app && (window.app = {controller:{}});
     !window.app.controller && (window.app.controller = {});
@@ -55,14 +65,16 @@ $(document).ready(function() {
     $('a[action="new:pptx"] > .text').text(utils.Lang.newPptx);
     $('a[action="new:form"] > .text').text(utils.Lang.newForm);
 
-
     if (!localStorage.welcome) {
         app.controller.welcome = (new ControllerWelcome).init();
         selectAction('welcome');
 
         localStorage.setItem('welcome', 'have been');
-    } else 
-        selectAction('recent');
+    } else {
+        if ( !!utils.inParams.panel && $(`.action-panel.${utils.inParams.panel}`).length )
+            selectAction(utils.inParams.panel);
+        else selectAction('recent');
+    }
 
     $('#placeholder').on('click', '.newportal', function(){
         CommonEvents.fire("portal:create");
@@ -129,6 +141,8 @@ function onActionClick(e) {
 };
 
 function selectAction(action) {
+    if ( !$(`.action-panel.${action}`).length ) return;
+
     $('.tool-menu > .menu-item').removeClass('selected');
     $('.tool-menu a[action='+action+']').parent().addClass('selected');
     $('.action-panel').hide();
@@ -153,6 +167,35 @@ var OPEN_FILE_RECOVERY = 1;
 var OPEN_FILE_RECENT = 2;
 var OPEN_FILE_FOLDER = 3;
 var Scroll_offset = '16px';
+
+{
+    const mq = "screen and (-webkit-min-device-pixel-ratio: 1.01) and (-webkit-max-device-pixel-ratio: 1.99), " +
+                                "screen and (min-resolution: 1.01dppx) and (max-resolution: 1.99dppx)";
+
+    const mql = window.matchMedia(mq);
+    mql.addEventListener('change', e => {
+        CommonEvents.fire("icons:svg", [!e.target.matches]);
+        replaceIcons(!e.target.matches);
+    });
+
+    replaceIcons(!mql.matches);
+}
+
+function replaceIcons(usesvg) {
+    if ( usesvg ) {
+    } else {
+        $('svg.icon', $('.tool-quick-menu')).each((i, el) => {
+            el = $(el);
+            const p = el.parent();
+            if ( $('i.icon', p).length == 0 ) {
+                const icon_pre_class = el.data("precls");
+                const icon_class = el.data("iconname");
+                const t = `<i class="icon ${icon_pre_class? icon_pre_class : ''} ${icon_class}" />`;
+                $(t).insertAfter(el);
+            }
+        });
+    }
+}
 
 function onNewFileClick(e) {
     if ($(e.currentTarget).parent().hasClass('disabled'))

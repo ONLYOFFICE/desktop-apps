@@ -182,7 +182,10 @@ utils.defines.FileFormat = {
     FILE_DOCUMENT_DOC_FLAT: FILE_DOCUMENT + 0x0010,
     FILE_DOCUMENT_OFORM: FILE_DOCUMENT + 0x0015,
     FILE_DOCUMENT_DOCXF: FILE_DOCUMENT + 0x0016,
-    
+    FILE_DOCUMENT_OFORM_PDF: FILE_DOCUMENT + 0x0017,
+    FILE_DOCUMENT_XML:   FILE_DOCUMENT + 0x0030,
+
+
     FILE_PRESENTATION:      FILE_PRESENTATION,
     FILE_PRESENTATION_PPTX: FILE_PRESENTATION + 0x0001,
     FILE_PRESENTATION_PPT:  FILE_PRESENTATION + 0x0002,
@@ -203,8 +206,9 @@ utils.defines.FileFormat = {
     FILE_SPREADSHEET_XLSM:  FILE_SPREADSHEET + 0x0005,
     FILE_SPREADSHEET_XLTX:  FILE_SPREADSHEET + 0x0006,
     FILE_SPREADSHEET_XLTM:  FILE_SPREADSHEET + 0x0007,
-    FILE_SPREADSHEET_ODS_FLAT: FILE_SPREADSHEET + 0x0008,
-    FILE_SPREADSHEET_OTS:   FILE_SPREADSHEET + 0x0009,
+    FILE_SPREADSHEET_XLSB:  FILE_SPREADSHEET + 0x0008,
+    FILE_SPREADSHEET_ODS_FLAT: FILE_SPREADSHEET + 0x0009,
+    FILE_SPREADSHEET_OTS:   FILE_SPREADSHEET + 0x000a,
 
     FILE_CROSSPLATFORM:     FILE_CROSSPLATFORM,
     FILE_CROSSPLATFORM_PDF: FILE_CROSSPLATFORM + 0x0001,
@@ -227,21 +231,31 @@ utils.parseFileFormat = function(format) {
     case utils.defines.FileFormat.FILE_DOCUMENT_ODT:        return 'odt';
     case utils.defines.FileFormat.FILE_DOCUMENT_RTF:        return 'rtf';
     case utils.defines.FileFormat.FILE_DOCUMENT_TXT:        return 'txt';
-    case utils.defines.FileFormat.FILE_DOCUMENT_HTML:       return 'htm';
+    case utils.defines.FileFormat.FILE_DOCUMENT_HTML:       return 'html';
     case utils.defines.FileFormat.FILE_DOCUMENT_MHT:        return 'mht';
     case utils.defines.FileFormat.FILE_DOCUMENT_EPUB:       return 'epub';
     case utils.defines.FileFormat.FILE_DOCUMENT_FB2:        return 'fb2';
+    case utils.defines.FileFormat.FILE_DOCUMENT_DOCM:       return 'docm';
     case utils.defines.FileFormat.FILE_DOCUMENT_DOTX:       return 'dotx';
     case utils.defines.FileFormat.FILE_DOCUMENT_OTT:        return 'ott';
     case utils.defines.FileFormat.FILE_DOCUMENT_OFORM:      return 'oform';
     case utils.defines.FileFormat.FILE_DOCUMENT_DOCXF:      return 'docxf';
+    case utils.defines.FileFormat.FILE_DOCUMENT_OFORM_PDF:  return 'pdf';
+    case utils.defines.FileFormat.FILE_DOCUMENT_ODT_FLAT:   return 'fodt';
+    case utils.defines.FileFormat.FILE_DOCUMENT_DOTM:       return 'dotm';
+    case utils.defines.FileFormat.FILE_DOCUMENT_DOTM:       return 'dotm';
+    case utils.defines.FileFormat.FILE_DOCUMENT_XML:        return 'xml';
 
     case utils.defines.FileFormat.FILE_SPREADSHEET_XLS:     return 'xls';
     case utils.defines.FileFormat.FILE_SPREADSHEET_XLTX:    return 'xltx';
     case utils.defines.FileFormat.FILE_SPREADSHEET_XLSX:    return 'xlsx';
+    case utils.defines.FileFormat.FILE_SPREADSHEET_XLSB:    return 'xlsb';
     case utils.defines.FileFormat.FILE_SPREADSHEET_ODS:     return 'ods';
     case utils.defines.FileFormat.FILE_SPREADSHEET_CSV:     return 'csv';
     case utils.defines.FileFormat.FILE_SPREADSHEET_OTS:     return 'ots';
+    case utils.defines.FileFormat.FILE_SPREADSHEET_XLTM:    return 'xltm';
+    case utils.defines.FileFormat.FILE_SPREADSHEET_XLSM:    return 'xlsm';
+    case utils.defines.FileFormat.FILE_SPREADSHEET_ODS_FLAT:return 'fods';
 
     case utils.defines.FileFormat.FILE_PRESENTATION_PPT:    return 'ppt';
     case utils.defines.FileFormat.FILE_PRESENTATION_POTX:   return 'potx';
@@ -249,11 +263,17 @@ utils.parseFileFormat = function(format) {
     case utils.defines.FileFormat.FILE_PRESENTATION_ODP:    return 'odp';
     case utils.defines.FileFormat.FILE_PRESENTATION_PPSX:   return 'ppsx';
     case utils.defines.FileFormat.FILE_PRESENTATION_OTP:    return 'otp';
+    case utils.defines.FileFormat.FILE_PRESENTATION_PPTM:   return 'pptm';
+    case utils.defines.FileFormat.FILE_PRESENTATION_PPSM:   return 'ppsm';
+    case utils.defines.FileFormat.FILE_PRESENTATION_POTM:   return 'potm';
+    case utils.defines.FileFormat.FILE_PRESENTATION_ODP_FLAT: return 'fodp';
 
     case utils.defines.FileFormat.FILE_CROSSPLATFORM_PDFA:
     case utils.defines.FileFormat.FILE_CROSSPLATFORM_PDF:   return 'pdf';
     case utils.defines.FileFormat.FILE_CROSSPLATFORM_DJVU:  return 'djvu';
     case utils.defines.FileFormat.FILE_CROSSPLATFORM_XPS:   return 'xps';
+
+    default: return 'neutral';
     }
 
     return '';
@@ -368,6 +388,10 @@ utils.fn.uuid = function() {
     return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
         (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16));
 };
+
+utils.fn.needUseSvg = function () {
+    return !(window.devicePixelRatio < 2) || window.devicePixelRatio == 1;
+}
 
 function getUrlParams() {
     var e,

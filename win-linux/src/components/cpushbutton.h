@@ -34,43 +34,24 @@
 #define CPUSHBUTTON_H
 
 #include <QPushButton>
-#include <QPropertyAnimation>
+#include <QSvgRenderer>
+#include <QVariantAnimation>
 
 class CPushButton : public QPushButton
 {
     Q_OBJECT
-
 public:
-    explicit CPushButton(QWidget *parent, double scaling);
-    CPushButton(double scaling = 1);
+    explicit CPushButton(QWidget *parent = nullptr);
     ~CPushButton();
-
-    void setAnimatedIcon(QPair<QString, QString>&, bool autostart = false);
-    void startIconAnimation(bool);
-
-    void setEnabled(bool);
-    void setVisible(bool visible, bool animation);
-    void setScaling(double);
-    void setFixedSize(const QSize&);
-
-protected:
-    void paintEvent(QPaintEvent *);
+    void setAnimatedIcon(const QString &path);
+    void setStaticIcon(const QString &path);
+    bool isStarted();
 
 private:
-    QMovie * _movie;
-    QPropertyAnimation * _animation;
-    QPair<QString, QString> _icon;
-    QSize _fixed_size;
-    double _dpi_ratio;
-
-    void applyAnimatedIcon(const QString&);
-
-signals:
-
-public slots:
-    void setButtonIcon(int);
-    void setVisible(bool visible);
-    void onAnimationFinished();
+    void releaseSvg();
+    void onSvgRepaint(double);
+    QVariantAnimation * m_animation = nullptr;
+    QSvgRenderer *m_renderer = nullptr;
 };
 
 #endif // CPUSHBUTTON_H

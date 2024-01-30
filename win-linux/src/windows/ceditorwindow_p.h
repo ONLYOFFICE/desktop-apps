@@ -66,6 +66,7 @@
 #define TOP_PANEL_OFFSET 6*TOOLBTN_WIDTH
 #define ICON_SPACER_WIDTH 9
 #define ICON_SIZE QSize(20,20)
+#define MARGINS 6
 
 using namespace NSEditorApi;
 
@@ -80,6 +81,9 @@ auto prepare_editor_css(AscEditorType type, const CTheme& theme) -> QString {
     case AscEditorType::etPdf: c = theme.value(CTheme::ColorRole::ecrTabViewerActive); break;
     }
     QString g_css(Utils::readStylesheets(":/styles/editor.qss"));
+#ifdef __linux__
+    g_css.append(Utils::readStylesheets(":styles/editor_unix.qss"));
+#endif
     return g_css.arg(QString::fromStdWString(c));
 }
 
@@ -207,7 +211,7 @@ public:
         int right_btns = 3;
         int spacing = window->m_boxTitleBtns->layout()->spacing();
         int left_offset = left_btns*TOOLBTN_WIDTH + 3*spacing; // added extra spacing
-        int right_offset = right_btns*(TOOLBTN_WIDTH + spacing);
+        int right_offset = right_btns*(TITLEBTN_WIDTH + spacing);
         int diffW = (left_offset - right_offset)*dpiRatio;
         if (iconuser) {
             diffW -= ICON_SPACER_WIDTH + spacing*dpiRatio;
@@ -216,8 +220,34 @@ public:
             }
         }
         QMargins mrg(0, 0, 0, 2*dpiRatio);
-        diffW > 0 ? mrg.setRight(diffW) : mrg.setLeft(-diffW);
+        if (AscAppManager::isRtlEnabled())
+            diffW > 0 ? mrg.setLeft(diffW) : mrg.setRight(-diffW);
+        else
+            diffW > 0 ? mrg.setRight(diffW) : mrg.setLeft(-diffW);
         boxtitlelabel->setContentsMargins(mrg);
+    }
+
+    auto onLayoutDirectionChanged()->void
+    {
+        if (boxtitlelabel) {
+            QMargins mrg = boxtitlelabel->contentsMargins();
+            if (AscAppManager::isRtlEnabled()) {
+                mrg.setLeft(mrg.right());
+                mrg.setRight(0);
+            } else {
+                mrg.setRight(mrg.left());
+                mrg.setLeft(0);
+            }
+            boxtitlelabel->setContentsMargins(mrg);
+        }
+        if (iconcrypted) {
+            QSize size = window->m_labelTitle->size();
+            int offset = window->m_labelTitle->textWidth()/2 + MARGINS * window->m_dpiRatio;
+            int x = size.width()/2;
+            x += AscAppManager::isRtlEnabled() ? offset : -offset - ICON_SIZE.width() * window->m_dpiRatio;
+            int y = (size.height() - ICON_SIZE.height() * window->m_dpiRatio)/2;
+            iconcrypted->move(x, y);
+        }
     }
 
     void onEditorConfig(int, std::wstring cfg) override
@@ -395,6 +425,9 @@ public:
             window->m_css = prepare_editor_css(editor_type, GetCurrentTheme());
             QString css(AscAppManager::getWindowStylesheets(window->m_dpiRatio));
             css.append(window->m_css);
+#ifdef __linux__
+            css.append(Utils::readStylesheets(":styles/styles_unix.qss"));
+#endif
             window->m_pMainPanel->setStyleSheet(css);
         }
         setWindowColors();
@@ -513,9 +546,9 @@ public:
             }
 
 # ifdef FILEDIALOG_DONT_USE_NATIVEDIALOGS
-            CPrintDialog * dialog =  new CPrintDialog(printer, window->handle());
+            CPrintDialog * dialog =  new CPrintDialog(printer, parent);
 # else
-            GtkPrintDialog * dialog = new GtkPrintDialog(printer, window->handle());
+            GtkPrintDialog * dialog = new GtkPrintDialog(printer, parent);
 # endif
 #endif // _WIN32
 
@@ -612,7 +645,7 @@ public:
             }
 
             for (const auto& btn: m_mapTitleButtons) {
-                btn->setFixedSize(QSize(int(TOOLBTN_WIDTH*f), int(TOOLBTN_HEIGHT*f)));
+                btn->setFixedSize(QSize(int(TITLEBTN_WIDTH*f), int(TOOLBTN_HEIGHT*f)));
                 btn->setIconSize(QSize(20,20) * f);
             }
             centerTitle(f);
@@ -680,17 +713,28 @@ public:
 
     void onPortalLogout(std::wstring wjson) override
     {
+        if ( m_panel->data()->closed() ) return;
+
         QJsonParseError jerror;
         QByteArray stringdata = QString::fromStdWString(wjson).toUtf8();
         QJsonDocument jdoc = QJsonDocument::fromJson(stringdata, &jerror);
 
         if( jerror.error == QJsonParseError::NoError ) {
             QJsonObject objRoot = jdoc.object();
-            QString portal = objRoot["domain"].toString();
+            std::vector<QString> _portals{objRoot["domain"].toString()};
 
-            if ( m_panel && !portal.isEmpty() ) {
-                if ( !m_panel->data()->closed() && QString::fromStdWString(m_panel->data()->url()).startsWith(portal) )
+            if ( objRoot.contains("extra") && objRoot["extra"].isArray() ) {
+                QJsonArray a = objRoot["extra"].toArray();
+                for (auto&& v: a) {
+                    _portals.push_back(v.toString());
+                }
+            }
+
+            for (auto& u: _portals) {
+                if ( QString::fromStdWString(m_panel->data()->url()).startsWith(u) ) {
                     window->closeWindow();
+                    break;
+                }
             }
         }
     }
@@ -741,11 +785,14 @@ public:
 
             iconcrypted->setPixmap(QIcon{":/title/icons/secure.svg"}.pixmap(QSize(20,20) * window->m_dpiRatio));
             iconcrypted->setFixedSize(ICON_SIZE * window->m_dpiRatio);
+            iconcrypted->show();
             int y = (window->m_labelTitle->height() - ICON_SIZE.height() * window->m_dpiRatio)/2;
             iconcrypted->move(0, y);
             connect(window->m_labelTitle, &CElipsisLabel::onResize, this, [=](QSize size, int textWidth) {
                 if (iconcrypted) {
-                    int x = (size.width() - textWidth)/2 - ((ICON_SIZE.width() + 6) * window->m_dpiRatio);
+                    int offset = textWidth/2 + MARGINS * window->m_dpiRatio;
+                    int x = size.width()/2;
+                    x += AscAppManager::isRtlEnabled() ? offset : -offset - ICON_SIZE.width() * window->m_dpiRatio;
                     int y = (size.height() - ICON_SIZE.height() * window->m_dpiRatio)/2;
                     iconcrypted->move(x, y);
                 }
@@ -829,16 +876,17 @@ public:
     {
         if ( m_panel->data()->features().empty() ) return true;
         else if ( m_panel->data()->hasFeature(L"uitype\":\"fillform") ) return true;
+        else if ( m_panel->data()->hasFrame() ) return false;
         else return !viewerMode() && (m_panel->data()->isLocal() || m_panel->data()->hasFeature(L"titlebuttons\":"));
     }
 
     auto viewerMode() const -> bool {
+        if ( m_panel->data()->hasFrame() ) return true;
         return m_panel->data()->hasFeature(L"viewmode\":true");
     }
 
     auto fillformMode() -> bool {
-        QFileInfo i{QString::fromStdWString(m_panel->data()->url())};
-        return i.suffix() == "oform" || m_panel->data()->hasFeature(L"uitype\":\"fillform");
+        return m_panel->data()->hasFeature(L"uitype\":\"fillform");
     }
 
     auto calcTitleLabelWidth(int basewidth) const -> int {
@@ -849,7 +897,7 @@ public:
         if ( iconcrypted )
             basewidth -= iconcrypted->width();
 
-        basewidth -= m_mapTitleButtons.count() * (TOOLBTN_WIDTH + 1) * window->m_dpiRatio;
+        basewidth -= m_mapTitleButtons.count() * (TITLEBTN_WIDTH + 1) * window->m_dpiRatio;
 
         return basewidth;
     }

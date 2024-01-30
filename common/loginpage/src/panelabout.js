@@ -93,7 +93,7 @@
                                 </div>
                                 <div class="vbox">
                                     <p id="idx-about-appname">${_opts.appname}</p>
-                                    <p id="idx-about-version" l10n>${_lang.strVersion} ${_opts.version}</p>
+                                    <p id="idx-about-version"><span l10n>${_lang.strVersion}</span> ${_opts.version}</p>
                                 </div>
                             </section><p></p>
                             <div class="ver-version hidden" l10n>${_opts.appname} ${_lang.strVersion} ${_opts.version}</div>

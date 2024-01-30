@@ -78,6 +78,11 @@ namespace NSTheme {
         };
 }
 
+auto getUserThemesPath() -> QString
+{
+    return Utils::getAppCommonPath() + "/uithemes";
+}
+
 /*
  * CThemePrivate
 */
@@ -159,7 +164,7 @@ public:
         QSettings _reg("HKEY_CURRENT_USER\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize", QSettings::NativeFormat);
         is_system_theme_dark = _reg.value("AppsUseLightTheme", 1).toInt() == 0;
 #else
-        if ( WindowHelper::getEnvInfo() == "KDE" ) {
+        if ( WindowHelper::getEnvInfo() == WindowHelper::KDE ) {
             QColor color = QPalette().base().color();
             int r, g, b;
             color.getRgb(&r, &g, &b);
@@ -187,10 +192,20 @@ public:
         current = new CTheme;
         current->m_priv->setDefaultThemes(getDefault(NSTheme::ThemeType::ttDark), getDefault(NSTheme::ThemeType::ttLight));
         if ( user_theme.endsWith(".json") ) {
-            QDir directory(qApp->applicationDirPath() + "/uithemes");
-            QString filepath{directory.absoluteFilePath(user_theme)};
+            auto search_user_theme = [](const std::vector<QString>& paths, const QString& name) -> QString
+            {
+                for ( auto& p: paths ) {
+                    QFileInfo info{QDir(p).absoluteFilePath(name)};
+                    if ( info.exists() )
+                        return info.absoluteFilePath();
+                }
 
-            if ( !QFile::exists(filepath) || !current->fromFile(filepath) ) {
+                return "";
+            };
+
+            QString file_path = search_user_theme({Utils::getAppCommonPath() + "/uithemes",
+                                                   qApp->applicationDirPath() + "/uithemes"}, user_theme);
+            if ( file_path.isEmpty() || !current->fromFile(file_path) ) {
                 user_theme = THEME_ID_SYSTEM;
             }
         } else
@@ -270,34 +285,11 @@ public:
     }
 
     auto searchLocalThemes() -> void {
-        QDir directory(qApp->applicationDirPath() + "/uicolorthemes");
-        QStringList themes = directory.entryList(QStringList() << "*.json", QDir::Files);
+        QFileInfoList themes = QDir(qApp->applicationDirPath() + "/uithemes").entryInfoList(QStringList() << "*.json", QDir::Files);
+        themes.append(QDir(Utils::getAppCommonPath() + "/uithemes").entryInfoList(QStringList() << "*.json", QDir::Files));
 
-        QFile file;
-        QJsonParseError je;
-        QJsonArray json_themes_array;
-        foreach(QString filename, themes) {
-            file.setFileName(directory.absoluteFilePath(filename));
-            if ( file.open(QIODevice::ReadOnly) ) {
-                QByteArray data{file.readAll()};
-                file.close();
-
-                QJsonDocument doc = QJsonDocument::fromJson(data, &je);
-                if ( je.error == QJsonParseError::NoError ) {
-                    QJsonObject objRoot = doc.object();
-
-                    if ( validateTheme(objRoot) ) {
-                        json_themes_array.append(objRoot);
-
-                        local_themes[objRoot.value("id").toString()] = std::make_pair(filename,data);
-//                        parseLocalTheme(doc.object());
-                    }
-                }
-            }
-        }
-
-        if ( json_themes_array.size() ) {
-            EditorJSVariables::setVariable("localthemes", json_themes_array);
+        foreach(auto t, themes) {
+            addThemeFromFile(t.absoluteFilePath());
         }
     }
 
@@ -306,9 +298,46 @@ public:
     }
 
     auto validateTheme(const QJsonObject& root) -> bool {
-        if ( root.contains("id") ) {
+        if ( root.contains("id") && root.contains("name") ) {
+            static QRegularExpression _re_legal_symb("[^\\w\\d\\-]");
+//            static QRegularExpression _re_legal_color("[^\\w\\d\\-\\#]");
+            if ( root.value("id").toString().contains(_re_legal_symb) ) {
+                return false;
+            }
+
+            if ( root.contains("colors") ) {
+                const QJsonObject _colors = root.value("colors").toObject();
+                foreach (const auto& c, _colors.keys()) {
+                    if ( c.contains(_re_legal_symb) /*|| _colors[c].toString().contains(_re_legal_color)*/ ) {
+                        return false;
+                    }
+                }
+            }
+
             return true;
         }
+        return false;
+    }
+
+    auto addThemeFromFile(const QString& path) -> bool {
+        QFile file(path);
+        if ( file.open(QIODevice::ReadOnly) ) {
+            QString fileName = file.fileName();
+            QByteArray data{file.readAll()};
+            file.close();
+
+            QJsonParseError jpe;
+            QJsonDocument doc = QJsonDocument::fromJson(data, &jpe);
+            if ( jpe.error == QJsonParseError::NoError ) {
+                QJsonObject objRoot = doc.object();
+
+                if ( validateTheme(objRoot) ) {
+                    local_themes[objRoot.value("id").toString()] = std::make_pair(fileName, data);
+                    return true;
+                }
+            }
+        }
+
         return false;
     }
 
@@ -509,6 +538,17 @@ auto CThemes::themeActualId(const std::wstring& id) const -> std::wstring
         m_priv->is_system_theme_dark ? WSTR(THEME_DEFAULT_DARK_ID) : WSTR(THEME_DEFAULT_LIGHT_ID);
 }
 
+auto CThemes::contains(const QString& id) -> bool
+{
+    return m_priv->local_themes.find(id) != m_priv->local_themes.end() ||
+                m_priv->rc_themes.find(id) != m_priv->rc_themes.end();
+}
+
+auto CThemes::validate(const QJsonObject& json) -> bool
+{
+    return m_priv->validateTheme(json);
+}
+
 auto CThemes::isColorDark(const std::wstring& color) -> bool
 {
     return isColorDark(QString::fromStdWString(color));
@@ -540,6 +580,65 @@ auto CThemes::parseThemeName(const std::wstring& wjson) -> std::wstring
     }
 
     return wjson;
+}
+
+//auto CThemes::addLocalTheme(const std::wstring& path) -> bool
+//{
+//    if ( m_priv->addThemeFromFile(QString::fromStdWString(path)) ) {
+//        return true;
+//    }
+
+//    return false;
+//}
+
+auto CThemes::addLocalTheme(const QJsonObject& jsonobj, const QString& filepath) -> bool
+{
+    if ( m_priv->validateTheme(jsonobj) ) {
+        if ( !filepath.isEmpty() ) {
+            const QString dest_dir = getUserThemesPath();
+            if ( QDir(dest_dir).mkpath(".") ) {
+                QString dest_file_path = dest_dir + "/" + QFileInfo(filepath).fileName();
+                if ( QFile::exists(dest_file_path) )
+                    QFile::remove(dest_file_path);
+
+                if (!QFile::copy(filepath, dest_file_path))
+                    return false;
+                else {
+                    QByteArray data = QJsonDocument(jsonobj).toJson(QJsonDocument::Compact);
+//                    m_priv->local_themes[jsonobj.value("id").toString()] = std::make_pair("", data);
+                    m_priv->local_themes[jsonobj.value("id").toString()] = std::make_pair(dest_file_path, data);
+
+                    return true;
+                }
+            }
+        }
+    }
+
+    return false;
+}
+
+auto CThemes::localThemesToJson() -> QJsonArray
+{
+    QJsonArray json_themes_array;
+
+    QJsonParseError je;
+    QJsonDocument doc;
+    foreach(auto const& t, m_priv->local_themes) {
+        auto const& i = t.second;
+
+        doc = QJsonDocument::fromJson(i.second, &je);
+        if ( QJsonParseError::NoError == je.error ) {
+            json_themes_array.append(doc.object());
+        }
+    }
+
+    return json_themes_array;
+}
+
+auto CThemes::checkDestinationThemeFileExist(const QString& srcfilepath) -> bool
+{
+    const QString dest_file_path = getUserThemesPath() + "/" + QFileInfo(srcfilepath).fileName();
+    return QFile::exists(dest_file_path);
 }
 
 auto CThemes::onSystemDarkColorScheme(bool isdark) -> void
