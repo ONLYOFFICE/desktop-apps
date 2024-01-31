@@ -82,7 +82,7 @@ int WINAPI _tWinMain(_In_ HINSTANCE hInst, _In_opt_ HINSTANCE hPrevInstance, _In
     data.file_name = &fileName;
 
     InitCommonControls();
-    HWND hDlg = CreateDialogParam(hInst, MAKEINTRESOURCE(IDD_DIALOG), NULL, DialogProc, (LPARAM)&data);
+    HWND hDlg = CreateDialogParam(hInst, MAKEINTRESOURCE(NS_Utils::IsRtlLanguage(lcid) ? IDD_DIALOG_RTL : IDD_DIALOG), NULL, DialogProc, (LPARAM)&data);
     ShowWindow(hDlg, nCmdShow);
 
     BOOL ret;

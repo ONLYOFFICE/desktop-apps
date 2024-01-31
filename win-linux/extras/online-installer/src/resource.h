@@ -2,6 +2,7 @@
 
 #define IDI_MAINICON          101
 #define IDD_DIALOG            102
+#define IDD_DIALOG_RTL        103
 
 #define IDC_MAIN_ICON         1001
 #define IDC_LABEL_TITLE       1002

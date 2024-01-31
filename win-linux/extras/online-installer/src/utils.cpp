@@ -41,6 +41,10 @@
 #include <sstream>
 
 #define _TR(str) Translator::tr(str).c_str()
+#define BIT123_LAYOUTRTL 0x08000000
+#ifndef LOCALE_IREADINGLAYOUT
+# define LOCALE_IREADINGLAYOUT 0x70
+#endif
 
 
 namespace NS_Utils
@@ -66,6 +70,20 @@ namespace NS_Utils
         wstring caption(_T("    "));
         caption.append(_TR(CAPTION_TEXT));
         MessageBox(NULL, str.c_str(), caption.c_str(), MB_ICONERROR | MB_SERVICE_NOTIFICATION_NT3X | MB_SETFOREGROUND);
+    }
+
+    bool IsRtlLanguage(unsigned long lcid)
+    {
+        if (NS_File::getWinVersion() >= WinVer::Win7) {
+            DWORD layout = 0;
+            if (GetLocaleInfo(lcid, LOCALE_IREADINGLAYOUT | LOCALE_RETURN_NUMBER, (LPWSTR)&layout, sizeof(layout)/sizeof(WCHAR)) > 0)
+                return layout == 1;
+        } else {
+            LOCALESIGNATURE lsig;
+            if (GetLocaleInfo(lcid, LOCALE_FONTSIGNATURE, (LPWSTR)&lsig, sizeof(lsig)/sizeof(WCHAR)) > 0)
+                return (lsig.lsUsb[3] & BIT123_LAYOUTRTL) != 0;
+        }
+        return false;
     }
 }
 
