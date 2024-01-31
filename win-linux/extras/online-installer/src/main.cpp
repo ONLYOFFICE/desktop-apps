@@ -40,7 +40,7 @@ int WINAPI _tWinMain(_In_ HINSTANCE hInst, _In_opt_ HINSTANCE hPrevInstance, _In
 {
     UNREFERENCED_PARAMETER(hPrevInstance);
     std::locale::global(std::locale(""));
-    Translator lang(LOCALE_USER_DEFAULT, IDT_TRANSLATIONS);
+    Translator lang(GetUserDefaultUILanguage(), IDT_TRANSLATIONS);
     HANDLE hMutex = CreateMutex(NULL, FALSE, _T(VER_PRODUCTNAME_STR));
     if (GetLastError() == ERROR_ALREADY_EXISTS) {
         NS_Utils::ShowMessage(_TR(MESSAGE_TEXT_ERR2));
