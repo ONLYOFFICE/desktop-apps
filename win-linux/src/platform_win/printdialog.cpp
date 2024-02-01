@@ -397,6 +397,7 @@ QDialog::DialogCode PrintDialog::exec()
     PrintDialogCallback clb(&dialog_was_changed);
     dlg.lpCallback     = static_cast<IPrintDialogCallback*>(&clb);
 
+    WindowHelper::toggleLayoutDirection(parent_hwnd);
     QDialog::DialogCode exit_code = QDialog::DialogCode::Rejected;
     HRESULT hr = PrintDlgEx(&dlg);
     if (hr == S_OK) {
@@ -485,6 +486,7 @@ QDialog::DialogCode PrintDialog::exec()
     }
     GlobalFree(page_ranges);
 
+    WindowHelper::toggleLayoutDirection(parent_hwnd);
     return exit_code;
 }
 
