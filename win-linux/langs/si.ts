@@ -227,7 +227,7 @@
     <message>
         <location filename="../src/windows/ceditorwindow_p.h" line="594"/>
         <source>There are no pages set to print.</source>
-        <translation type="unfinished"></translation>
+        <translation>මුද්‍රණයට කිසිදු පිටුවක් සකස් කර නැත.</translation>
     </message>
 </context>
 <context>
@@ -366,32 +366,32 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="66"/>
         <source>DOCX Document</source>
-        <translation>DOCX ලේඛනය</translation>
+        <translation>ඔෆිස් ඕපන් XML ලේඛනය (*.docx)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="70"/>
         <source>OpenDocument Document template</source>
-        <translation>OpenDocument ලේඛන අච්චුව</translation>
+        <translation>ඕපන්ඩොකියුමන්ට් ලේඛන අච්චුව (*.ott)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="78"/>
         <source>ONLYOFFICE Form Document (*.pdf)</source>
-        <translation type="unfinished"></translation>
+        <translation>ඔන්ලිඔෆිස් ආකෘතිපත්‍ර ලේඛනය (*.pdf)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="85"/>
         <source>OpenDocument Presentation Template</source>
-        <translation>OpenDocument සමර්පණ අච්චුව</translation>
+        <translation>ඕපන්ඩොකියුමන්ට් සමර්පණ අච්චුව (*.otp)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="91"/>
         <source>Macro-enabled spreadsheet template</source>
-        <translation>සාර්ව-සක්‍රිය පැතුරුම්පත් අච්චුව</translation>
+        <translation>සාර්ව-සක්‍රිය පැතුරුම්පත් අච්චුව (*.xltm)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="94"/>
         <source>OpenDocument Spreadsheet Template</source>
-        <translation>OpenDocument පැතුරුම්පත් අච්චුව</translation>
+        <translation>ඕපන්ඩොකියුමන්ට් පැතුරුම්පත් අච්චුව (*.ots)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="95"/>
@@ -505,24 +505,24 @@
         <location filename="../src/ceditortools.cpp" line="211"/>
         <location filename="../src/components/cfiledialog.cpp" line="90"/>
         <source>Spreadsheet template</source>
-        <translation>පැතුරුම්පත් අච්චුව</translation>
+        <translation>එක්සෙල් විවෘත XML පැතුරුම්පත් අච්චුව (*.xltx)</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="214"/>
         <location filename="../src/components/cfiledialog.cpp" line="83"/>
         <source>Presentation template</source>
-        <translation>සමර්පණ අච්චුව</translation>
+        <translation>පවර්පොයින් විවෘත XML සමර්පණ අච්චුව (*.potx)</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="216"/>
         <location filename="../src/components/cfiledialog.cpp" line="67"/>
         <source>Document template</source>
-        <translation>ලේඛන අච්චුව</translation>
+        <translation>වර්ඩ් විවෘත XML ලේඛන අච්චුව (*.dotx)</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="237"/>
         <source>Theme file</source>
-        <translation type="unfinished"></translation>
+        <translation>තේමාවේ ගොනුව</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="269"/>
@@ -609,7 +609,7 @@
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="1227"/>
         <source>There are no pages set to print.</source>
-        <translation type="unfinished"></translation>
+        <translation>මුද්‍රණයට කිසිදු පිටුවක් සකස් කර නැත.</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="1363"/>
@@ -800,17 +800,17 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="98"/>
         <source>An error occurred while check updates: the Update Service is not installed or is not running!</source>
-        <translation type="unfinished"></translation>
+        <translation>යාවත්කාල පරීක්‍ෂාවේ දී දෝෂයක් මතු විය: යාවත්කාල සේවාව ස්ථාපනය කර නැත හෝ ධාවනය නොවේ!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="99"/>
         <source>An error occurred while loading updates: the Update Service is not installed or is not running!</source>
-        <translation type="unfinished"></translation>
+        <translation>යාවත්කාල පූරණයේ දී දෝෂයක් මතු විය: යාවත්කාල සේවාව ස්ථාපනය කර නැත හෝ ධාවනය නොවේ!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="100"/>
         <source>An error occurred while unzip updates: the Update Service is not installed or is not running!</source>
-        <translation type="unfinished"></translation>
+        <translation>යාවත්කාල දිගහරින විට දෝෂයක් මතු විය: යාවත්කාල සේවාව ස්ථාපනය කර නැත හෝ ධාවනය නොවේ!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="101"/>
@@ -932,7 +932,7 @@
         <location filename="../src/platform_linux/updatedialog.cpp" line="49"/>
         <location filename="../src/platform_win/updatedialog.cpp" line="52"/>
         <source>Restart Now</source>
-        <translation type="unfinished"></translation>
+        <translation>යළි අරඹන්න</translation>
     </message>
     <message>
         <source>Install on Next Start</source>
@@ -1043,38 +1043,38 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="336"/>
         <source>File %1 is already loaded. Replace it?</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 ගොනුව දැනටමත් පූරණය වී ඇත. ප්‍රතිස්ථාපනය කරන්නද?</translation>
     </message>
     <message>
         <location filename="../src/components/cdownloadwidget.cpp" line="124"/>
         <source>B</source>
-        <translation type="unfinished"></translation>
+        <translation>බ.</translation>
     </message>
     <message>
         <location filename="../src/components/cdownloadwidget.cpp" line="127"/>
         <source>kB</source>
-        <translation type="unfinished"></translation>
+        <translation>කි.බ.</translation>
     </message>
     <message>
         <location filename="../src/components/cdownloadwidget.cpp" line="129"/>
         <source>MB</source>
-        <translation type="unfinished"></translation>
+        <translation>මෙ.බ.</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/gtkprintdialog.cpp" line="543"/>
         <source>The syntaxis for the page range is invalid.&lt;br&gt;Enter one or more page ranges, for example: 1-3,7,11.</source>
-        <translation type="unfinished"></translation>
+        <translation>පිටු පරාසය සඳහා පද ගැළපුම වලංගු නොවේ.&lt;br&gt;මෙවැනි පිටු පරාසයක් හෝ කිහිපයක් ඇතුල් කරන්න. උදා: 1-3,7,11.</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/gtkprintdialog.cpp" line="583"/>
         <location filename="../src/platform_win/printdialog.cpp" line="525"/>
         <source>Specified range %1-%2 exceeds document limits: maximum number of pages is %3</source>
-        <translation type="unfinished"></translation>
+        <translation>%1-%2 නිරූපිත පරාසය ලේඛනයේ සීමා ඉක්මවයි: උපරිම පිටු ගණන %3 කි</translation>
     </message>
     <message>
         <location filename="../src/platform_win/printdialog.cpp" line="484"/>
         <source>Unable to open print dialog:&lt;br&gt;%1</source>
-        <translation type="unfinished"></translation>
+        <translation>මුද්‍රණ කවුළුව විවෘත කිරීමට නොහැකිය:&lt;br&gt;%1</translation>
     </message>
 </context>
 <context>

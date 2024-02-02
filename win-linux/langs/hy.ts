@@ -215,7 +215,7 @@
     <message>
         <location filename="../src/windows/ceditorwindow_p.h" line="594"/>
         <source>There are no pages set to print.</source>
-        <translation type="unfinished"></translation>
+        <translation>Տպելու համար նախատեսված էջեր չկան:</translation>
     </message>
 </context>
 <context>
@@ -354,32 +354,32 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="66"/>
         <source>DOCX Document</source>
-        <translation>DOCX փաստաթուղթ</translation>
+        <translation>Office Open XML փաստաթուղթ (*.docx)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="70"/>
         <source>OpenDocument Document template</source>
-        <translation>ԲացՓաստաթուղթ Փաստաթղթի ձևանմուշ</translation>
+        <translation>OpenDocument փաստաթղթի ձևանմուշ (*.ott)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="78"/>
         <source>ONLYOFFICE Form Document (*.pdf)</source>
-        <translation type="unfinished"></translation>
+        <translation>ONLYOFFICE Ձևաթուղթ (*.pdf)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="85"/>
         <source>OpenDocument Presentation Template</source>
-        <translation>ԲացՓաստաթուղթ Ներկայացման ձևանմուշ</translation>
+        <translation>OpenDocument շնորհանդեսի ձևանմուշ (*.otp)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="91"/>
         <source>Macro-enabled spreadsheet template</source>
-        <translation>Մակրո միացված աղյուսակի ձևանմուշ</translation>
+        <translation>Մակրո-միացված աղյուսակի ձևանմուշ (*.xltm)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="94"/>
         <source>OpenDocument Spreadsheet Template</source>
-        <translation>ԲացՓաստաթուղթ Աղյուսակի ձևանմուշ</translation>
+        <translation>OpenDocument աղյուսակի ձևանմուշ (*.ots)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="95"/>
@@ -493,24 +493,24 @@
         <location filename="../src/ceditortools.cpp" line="211"/>
         <location filename="../src/components/cfiledialog.cpp" line="90"/>
         <source>Spreadsheet template</source>
-        <translation>Աղյուսակի ձևանմուշ</translation>
+        <translation>Excel Open XML Աղյուսակի ձևանմուշ (*.xltx)</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="214"/>
         <location filename="../src/components/cfiledialog.cpp" line="83"/>
         <source>Presentation template</source>
-        <translation>Ներկայացման ձևանմուշ</translation>
+        <translation>PowerPoint Open XML Ներկայացման ձևանմուշ (*.potx)</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="216"/>
         <location filename="../src/components/cfiledialog.cpp" line="67"/>
         <source>Document template</source>
-        <translation>Փաստաթղթի ձևանմուշ</translation>
+        <translation>Word Open XML Փաստաթղթի ձևանմուշ (*.dotx)</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="237"/>
         <source>Theme file</source>
-        <translation type="unfinished"></translation>
+        <translation>Թեմայի ֆայլ</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="269"/>
@@ -597,7 +597,7 @@
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="1227"/>
         <source>There are no pages set to print.</source>
-        <translation type="unfinished"></translation>
+        <translation>Տպելու համար նախատեսված էջեր չկան:</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="1363"/>
@@ -804,17 +804,17 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="98"/>
         <source>An error occurred while check updates: the Update Service is not installed or is not running!</source>
-        <translation type="unfinished"></translation>
+        <translation>Թարմացումները ստուգելիս սխալ առաջացավ. Թարմացման ծառայությունը տեղադրված չէ կամ չի աշխատում:</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="99"/>
         <source>An error occurred while loading updates: the Update Service is not installed or is not running!</source>
-        <translation type="unfinished"></translation>
+        <translation>Թարմացումները բեռնելիս սխալ առաջացավ. Թարմացման ծառայությունը տեղադրված չէ կամ չի աշխատում:</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="100"/>
         <source>An error occurred while unzip updates: the Update Service is not installed or is not running!</source>
-        <translation type="unfinished"></translation>
+        <translation>Թարմացումները բացելիս սխալ է տեղի ունեցել. Թարմացման ծառայությունը տեղադրված չէ կամ չի գործարկվել:</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="101"/>
@@ -836,12 +836,12 @@
         <location filename="../src/cupdatemanager.cpp" line="821"/>
         <location filename="../src/cupdatemanager.cpp" line="844"/>
         <source>New version</source>
-        <translation type="unfinished"></translation>
+        <translation>Նոր տարբերակ</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="845"/>
         <source>To finish updating, restart the app</source>
-        <translation type="unfinished"></translation>
+        <translation>Թարմացումն ավարտելու համար վերագործարկեք հավելվածը</translation>
     </message>
     <message>
         <source>Update version</source>
@@ -922,13 +922,13 @@
         <location filename="../src/platform_linux/updatedialog.cpp" line="48"/>
         <location filename="../src/platform_win/updatedialog.cpp" line="51"/>
         <source>Later</source>
-        <translation type="unfinished"></translation>
+        <translation>Ավելի ուշ</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/updatedialog.cpp" line="49"/>
         <location filename="../src/platform_win/updatedialog.cpp" line="52"/>
         <source>Restart Now</source>
-        <translation type="unfinished"></translation>
+        <translation>Վերագործարկեք Հիմա</translation>
     </message>
     <message>
         <source>Install later</source>
@@ -1039,38 +1039,38 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="336"/>
         <source>File %1 is already loaded. Replace it?</source>
-        <translation type="unfinished"></translation>
+        <translation>Ֆայլը %1 արդեն բեռնված է: Փոխարինե՞լ:</translation>
     </message>
     <message>
         <location filename="../src/components/cdownloadwidget.cpp" line="124"/>
         <source>B</source>
-        <translation type="unfinished"></translation>
+        <translation>Բայթ</translation>
     </message>
     <message>
         <location filename="../src/components/cdownloadwidget.cpp" line="127"/>
         <source>kB</source>
-        <translation type="unfinished"></translation>
+        <translation>Կիլոբյթ</translation>
     </message>
     <message>
         <location filename="../src/components/cdownloadwidget.cpp" line="129"/>
         <source>MB</source>
-        <translation type="unfinished"></translation>
+        <translation>Մեգաբայթ</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/gtkprintdialog.cpp" line="543"/>
         <source>The syntaxis for the page range is invalid.&lt;br&gt;Enter one or more page ranges, for example: 1-3,7,11.</source>
-        <translation type="unfinished"></translation>
+        <translation>Էջի տիրույթի շարահյուսությունն անվավեր է.&lt;br&gt;Մուտքագրեք մեկ կամ մի քանի էջերի տիրույթ, օրինակ՝ 1-3,7,11:</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/gtkprintdialog.cpp" line="583"/>
         <location filename="../src/platform_win/printdialog.cpp" line="525"/>
         <source>Specified range %1-%2 exceeds document limits: maximum number of pages is %3</source>
-        <translation type="unfinished"></translation>
+        <translation>Նշված տիրույթը %1-%2 գերազանցում է փաստաթղթի սահմանաչափերը. էջերի առավելագույն քանակը %3</translation>
     </message>
     <message>
         <location filename="../src/platform_win/printdialog.cpp" line="484"/>
         <source>Unable to open print dialog:&lt;br&gt;%1</source>
-        <translation type="unfinished"></translation>
+        <translation>Հնարավոր չէ բացել տպման երկխոսությունը՝&lt;br&gt;%1</translation>
     </message>
 </context>
 <context>

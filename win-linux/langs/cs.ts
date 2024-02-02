@@ -366,12 +366,12 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="66"/>
         <source>DOCX Document</source>
-        <translation>Dokument DOCX</translation>
+        <translation>Dokument Office Open XML (*.docx)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="70"/>
         <source>OpenDocument Document template</source>
-        <translation>Šablona dokumentu OpenDocument</translation>
+        <translation>Šablona dokumentu OpenDocument (*.ott)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="78"/>
@@ -381,17 +381,17 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="85"/>
         <source>OpenDocument Presentation Template</source>
-        <translation>Šablona prezentace OpenDocument</translation>
+        <translation>Šablona prezentace OpenDocument (*.otp)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="91"/>
         <source>Macro-enabled spreadsheet template</source>
-        <translation>Šablona tabulkového procesoru s podporou maker</translation>
+        <translation>Šablona tabulkového procesoru s podporou maker (*xltm)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="94"/>
         <source>OpenDocument Spreadsheet Template</source>
-        <translation>Šablona tabulkového procesoru OpenDocument</translation>
+        <translation>Šablona tabulkového procesoru OpenDocument (*.ots)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="95"/>
@@ -505,19 +505,19 @@
         <location filename="../src/ceditortools.cpp" line="211"/>
         <location filename="../src/components/cfiledialog.cpp" line="90"/>
         <source>Spreadsheet template</source>
-        <translation>Šablona tabulky</translation>
+        <translation>Šablona sešitu Excel Open XML (*.xltx)</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="214"/>
         <location filename="../src/components/cfiledialog.cpp" line="83"/>
         <source>Presentation template</source>
-        <translation>Šablona prezentace</translation>
+        <translation>Šablona prezentace PowerPoint Open XML (*.potx)</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="216"/>
         <location filename="../src/components/cfiledialog.cpp" line="67"/>
         <source>Document template</source>
-        <translation>Šablona dokumentu</translation>
+        <translation>Šablona dokumentu Word Open XML (*.dotx)</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="237"/>

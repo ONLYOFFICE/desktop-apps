@@ -346,12 +346,12 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="66"/>
         <source>DOCX Document</source>
-        <translation>DOCX 문서</translation>
+        <translation>Office Open XML 문서(*.docx)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="70"/>
         <source>OpenDocument Document template</source>
-        <translation>OpenDocument 문서 템플릿</translation>
+        <translation>OpenDocument 문서 템플릿(*.ott)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="78"/>
@@ -361,17 +361,17 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="85"/>
         <source>OpenDocument Presentation Template</source>
-        <translation>OpenDocument 프레젠테이션 템플릿</translation>
+        <translation>OpenDocument프레젠테이션 템플릿 (*.otp)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="91"/>
         <source>Macro-enabled spreadsheet template</source>
-        <translation>매크로 지원 스프레드시트 템플릿</translation>
+        <translation>매크로 지원 스프레드시트 템플릿 (*xltm)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="94"/>
         <source>OpenDocument Spreadsheet Template</source>
-        <translation>OpenDocument 스프레드시트 템플릿</translation>
+        <translation>OpenDocument 스프레드시트 템플릿 (*.ots)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="95"/>
@@ -485,19 +485,19 @@
         <location filename="../src/ceditortools.cpp" line="211"/>
         <location filename="../src/components/cfiledialog.cpp" line="90"/>
         <source>Spreadsheet template</source>
-        <translation>스프레드시트 템플릿</translation>
+        <translation>Excel Open XML 스프레드시트 템플릿(*.xltx)</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="214"/>
         <location filename="../src/components/cfiledialog.cpp" line="83"/>
         <source>Presentation template</source>
-        <translation>프레젠테이션 템플릿</translation>
+        <translation>PowerPoint Open XML 프레젠테이션 템플릿(*.potx)</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="216"/>
         <location filename="../src/components/cfiledialog.cpp" line="67"/>
         <source>Document template</source>
-        <translation>문서 템플릿</translation>
+        <translation>Word Open XML 문서 템플릿(*.dotx)</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="237"/>

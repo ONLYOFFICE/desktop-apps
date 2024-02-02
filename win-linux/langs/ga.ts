@@ -389,12 +389,12 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="66"/>
         <source>DOCX Document</source>
-        <translation>DOCX doiciméad</translation>
+        <translation>Doiciméad Office Open XML (*.docx)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="70"/>
         <source>OpenDocument Document template</source>
-        <translation>OpenDocument Teimpléid Documéid</translation>
+        <translation>Teimpléad doiciméad OpenDocument (*.ott)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="78"/>
@@ -404,17 +404,17 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="85"/>
         <source>OpenDocument Presentation Template</source>
-        <translation>OpenDocument Teimpléid Presentation</translation>
+        <translation>Teimpléad cur i láthair OpenDocument (*.otp)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="91"/>
         <source>Macro-enabled spreadsheet template</source>
-        <translation>Macra-chumasaithe Spreadsheet teimpléid</translation>
+        <translation>Macra-chumasaithe Spreadsheet teimpléid (*xltm)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="94"/>
         <source>OpenDocument Spreadsheet Template</source>
-        <translation>OpenDocument Teimpléid Spreadsheet</translation>
+        <translation>Teimpléad scarbhileog OpenDocument (*.ots)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="101"/>
@@ -498,19 +498,19 @@
         <location filename="../src/ceditortools.cpp" line="211"/>
         <location filename="../src/components/cfiledialog.cpp" line="90"/>
         <source>Spreadsheet template</source>
-        <translation>Teimpléad Spreadsheet</translation>
+        <translation>Teimpléad scarbhileog Excel Open XML (*.xltx)</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="214"/>
         <location filename="../src/components/cfiledialog.cpp" line="83"/>
         <source>Presentation template</source>
-        <translation>Teimpléid Presentation</translation>
+        <translation>Teimpléad cur i láthair PowerPoint Open XML (*.potx)</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="216"/>
         <location filename="../src/components/cfiledialog.cpp" line="67"/>
         <source>Document template</source>
-        <translation>Teimpléad doiciméad</translation>
+        <translation>Teimpléad doiciméad Word Open XML (*.dotx)</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="237"/>

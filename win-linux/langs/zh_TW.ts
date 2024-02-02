@@ -159,7 +159,7 @@
     <message>
         <location filename="../src/components/cdownloadwidget.cpp" line="177"/>
         <source>Clear</source>
-        <translation type="unfinished"></translation>
+        <translation>清除</translation>
     </message>
     <message>
         <location filename="../src/components/cdownloadwidget.cpp" line="254"/>
@@ -175,12 +175,12 @@
     <message>
         <location filename="../src/components/cdownloadwidget.cpp" line="300"/>
         <source>Canceled</source>
-        <translation type="unfinished"></translation>
+        <translation>以取消</translation>
     </message>
     <message>
         <location filename="../src/components/cdownloadwidget.cpp" line="336"/>
         <source>Open</source>
-        <translation type="unfinished"></translation>
+        <translation>開啟</translation>
     </message>
     <message>
         <location filename="../src/components/cdownloadwidget.cpp" line="354"/>
@@ -231,7 +231,7 @@
     <message>
         <location filename="../src/windows/ceditorwindow_p.h" line="594"/>
         <source>There are no pages set to print.</source>
-        <translation type="unfinished"></translation>
+        <translation>尚未設定要列印的頁面</translation>
     </message>
 </context>
 <context>
@@ -366,32 +366,32 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="66"/>
         <source>DOCX Document</source>
-        <translation>DOCX文件</translation>
+        <translation>Office Open XML 文件(*.docx)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="70"/>
         <source>OpenDocument Document template</source>
-        <translation>OpenDocument文件範本</translation>
+        <translation>OpenDocument文件範本(*.ott)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="78"/>
         <source>ONLYOFFICE Form Document (*.pdf)</source>
-        <translation type="unfinished"></translation>
+        <translation>ONLYOFFICE格式文件(*.pdf)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="85"/>
         <source>OpenDocument Presentation Template</source>
-        <translation>OpenDocument簡報範本</translation>
+        <translation>OpenDocument簡報範本(*.otp)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="91"/>
         <source>Macro-enabled spreadsheet template</source>
-        <translation>啟用巨集的試算表範本</translation>
+        <translation>啟用巨集的試算表範本 (*xltm)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="94"/>
         <source>OpenDocument Spreadsheet Template</source>
-        <translation>OpenDocument試算表範本</translation>
+        <translation>OpenDocument試算表範本(*.ots)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="95"/>
@@ -505,24 +505,24 @@
         <location filename="../src/ceditortools.cpp" line="211"/>
         <location filename="../src/components/cfiledialog.cpp" line="90"/>
         <source>Spreadsheet template</source>
-        <translation>試算表範本</translation>
+        <translation>Excel Open XML 試算表範本(*.xltx)</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="214"/>
         <location filename="../src/components/cfiledialog.cpp" line="83"/>
         <source>Presentation template</source>
-        <translation>簡報範本</translation>
+        <translation>PowerPoint Open XML 簡報範本(*.potx)</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="216"/>
         <location filename="../src/components/cfiledialog.cpp" line="67"/>
         <source>Document template</source>
-        <translation>文件範本</translation>
+        <translation>Word Open XML 文件範本(*.dotx)</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="237"/>
         <source>Theme file</source>
-        <translation type="unfinished"></translation>
+        <translation>主題檔案</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="269"/>
@@ -609,7 +609,7 @@
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="1227"/>
         <source>There are no pages set to print.</source>
-        <translation type="unfinished"></translation>
+        <translation>尚未設定要列印的頁面</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="1363"/>
@@ -815,17 +815,17 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="98"/>
         <source>An error occurred while check updates: the Update Service is not installed or is not running!</source>
-        <translation type="unfinished"></translation>
+        <translation>檢查更新時發生錯誤：更新服務未安裝或未執行！</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="99"/>
         <source>An error occurred while loading updates: the Update Service is not installed or is not running!</source>
-        <translation type="unfinished"></translation>
+        <translation>載入更新時發生錯誤：更新服務未安裝或未執行！</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="100"/>
         <source>An error occurred while unzip updates: the Update Service is not installed or is not running!</source>
-        <translation type="unfinished"></translation>
+        <translation>解壓縮更新時發生錯誤：更新服務未安裝或未運行！</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="101"/>
@@ -941,13 +941,13 @@
         <location filename="../src/platform_linux/updatedialog.cpp" line="48"/>
         <location filename="../src/platform_win/updatedialog.cpp" line="51"/>
         <source>Later</source>
-        <translation>稍後安裝</translation>
+        <translation>稍後</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/updatedialog.cpp" line="49"/>
         <location filename="../src/platform_win/updatedialog.cpp" line="52"/>
         <source>Restart Now</source>
-        <translation type="unfinished"></translation>
+        <translation>立即重新啟動</translation>
     </message>
     <message>
         <source>Install on Next Start</source>
@@ -1042,38 +1042,38 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="336"/>
         <source>File %1 is already loaded. Replace it?</source>
-        <translation type="unfinished"></translation>
+        <translation>檔案 %1 已載入。是否取代？</translation>
     </message>
     <message>
         <location filename="../src/components/cdownloadwidget.cpp" line="124"/>
         <source>B</source>
-        <translation type="unfinished"></translation>
+        <translation>位元組</translation>
     </message>
     <message>
         <location filename="../src/components/cdownloadwidget.cpp" line="127"/>
         <source>kB</source>
-        <translation type="unfinished"></translation>
+        <translation>千位元組</translation>
     </message>
     <message>
         <location filename="../src/components/cdownloadwidget.cpp" line="129"/>
         <source>MB</source>
-        <translation type="unfinished"></translation>
+        <translation>兆位元組</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/gtkprintdialog.cpp" line="543"/>
         <source>The syntaxis for the page range is invalid.&lt;br&gt;Enter one or more page ranges, for example: 1-3,7,11.</source>
-        <translation type="unfinished"></translation>
+        <translation>頁面範圍的語法無效。&lt;br&gt;輸入一個或多個頁面範圍，例如：1-3,7,11。</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/gtkprintdialog.cpp" line="583"/>
         <location filename="../src/platform_win/printdialog.cpp" line="525"/>
         <source>Specified range %1-%2 exceeds document limits: maximum number of pages is %3</source>
-        <translation type="unfinished"></translation>
+        <translation>指定的範圍 %1-%2 超出文件限制：頁數上限為 %3</translation>
     </message>
     <message>
         <location filename="../src/platform_win/printdialog.cpp" line="484"/>
         <source>Unable to open print dialog:&lt;br&gt;%1</source>
-        <translation type="unfinished"></translation>
+        <translation>無法開啟列印對話視窗：&lt;br&gt;%1</translation>
     </message>
 </context>
 <context>
