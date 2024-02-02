@@ -12,6 +12,11 @@
     return urlParams;
 }
 
+const sdk = window.AscDesktopEditor;
+if ( sdk ) {
+    sdk.execCommand('error:page', 'open');
+}
+
 const nativevars = window.RendererProcessVariable;
 let lang, theme, page;
 
