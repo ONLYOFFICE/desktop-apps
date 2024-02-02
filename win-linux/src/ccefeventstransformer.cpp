@@ -245,6 +245,9 @@ void CCefEventsTransformer::OnEvent(QObject * target, NSEditorApi::CAscCefMenuEv
         if ( cmd.compare(L"encrypt:isneedbuild") == 0 ) {
             bool isFragmented = pData->get_Param() == L"true" ? true : false;
             QMetaObject::invokeMethod(target, "onDocumentFragmented", Qt::QueuedConnection, Q_ARG(int, event->get_SenderId()), Q_ARG(bool, isFragmented));
+        } else
+        if ( cmd.compare(L"error:page") == 0 ) {
+            QMetaObject::invokeMethod(target, "onErrorPage", Qt::QueuedConnection, Q_ARG(int, event->get_SenderId()), Q_ARG(std::wstring, pData->get_Param()));
         } else {
 //            std::wregex _re_appcmd(L"^app\\:(\\w+)", std::tr1::wregex::icase);
 //            auto _iter_cmd = std::wsregex_iterator(cmd.begin(), cmd.end(), _re_appcmd);

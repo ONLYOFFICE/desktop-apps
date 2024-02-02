@@ -96,3 +96,6 @@ void CCefEventsGate::onReporterMode(int, bool m)
 {
     panel()->setReporterMode(m);
 }
+
+void CCefEventsGate::onErrorPage(int, const std::wstring&)
+{}
