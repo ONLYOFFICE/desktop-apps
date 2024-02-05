@@ -169,6 +169,7 @@ Name: sr_Latn_RS; MessagesFile: compiler:Languages\SerbianLatin.isl;     License
 [LangOptions]
 lo.LanguageName=ພາສາລາວ
 ;ga_IE.LanguageName=Gaeilge
+ar_SA.LanguageName=الْعَرَبِيَّة
 
 [CustomMessages]
 ;======================================================================================================

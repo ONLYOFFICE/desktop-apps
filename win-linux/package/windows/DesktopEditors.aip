@@ -48,15 +48,15 @@
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="ONLYOFFICE Desktop Editors"/>
     <ROW Property="ProductVersion" Value="0.0.0.0" Options="32"/>
-    <ROW Property="REGISTER_CSV" Value="0" Type="4" ValueLocId="-"/>
-    <ROW Property="REGISTER_DJVU" Value="0" Type="4" ValueLocId="-"/>
+    <ROW Property="REGISTER_CSV" Value="1" Type="4" ValueLocId="-"/>
+    <ROW Property="REGISTER_DJVU" Value="1" Type="4" ValueLocId="-"/>
     <ROW Property="REGISTER_DOC" Value="1" Type="4" ValueLocId="-"/>
     <ROW Property="REGISTER_DOCX" Value="1" Type="4" ValueLocId="-"/>
     <ROW Property="REGISTER_DOCXF" Value="1" Type="4" ValueLocId="-"/>
     <ROW Property="REGISTER_DOTX" Value="1" Type="4" ValueLocId="-"/>
-    <ROW Property="REGISTER_EPUB" Value="0" Type="4" ValueLocId="-"/>
-    <ROW Property="REGISTER_FB2" Value="0" Type="4" ValueLocId="-"/>
-    <ROW Property="REGISTER_HTML" Value="0" Type="4" ValueLocId="-"/>
+    <ROW Property="REGISTER_EPUB" Value="1" Type="4" ValueLocId="-"/>
+    <ROW Property="REGISTER_FB2" Value="1" Type="4" ValueLocId="-"/>
+    <ROW Property="REGISTER_HTML" Value="1" Type="4" ValueLocId="-"/>
     <ROW Property="REGISTER_ODP" Value="1" Type="4" ValueLocId="-"/>
     <ROW Property="REGISTER_ODS" Value="1" Type="4" ValueLocId="-"/>
     <ROW Property="REGISTER_ODT" Value="1" Type="4" ValueLocId="-"/>
@@ -64,25 +64,26 @@
     <ROW Property="REGISTER_OTP" Value="1" Type="4" ValueLocId="-"/>
     <ROW Property="REGISTER_OTS" Value="1" Type="4" ValueLocId="-"/>
     <ROW Property="REGISTER_OTT" Value="1" Type="4" ValueLocId="-"/>
-    <ROW Property="REGISTER_PDF" Value="0" Type="4" ValueLocId="-"/>
+    <ROW Property="REGISTER_PDF" Value="1" Type="4" ValueLocId="-"/>
     <ROW Property="REGISTER_POTX" Value="1" Type="4" ValueLocId="-"/>
     <ROW Property="REGISTER_PPS" Value="1" Type="4" ValueLocId="-"/>
     <ROW Property="REGISTER_PPSX" Value="1" Type="4" ValueLocId="-"/>
     <ROW Property="REGISTER_PPT" Value="1" Type="4" ValueLocId="-"/>
     <ROW Property="REGISTER_PPTX" Value="1" Type="4" ValueLocId="-"/>
     <ROW Property="REGISTER_PROTOCOL" Value="1" Type="4" ValueLocId="-"/>
-    <ROW Property="REGISTER_RTF" Value="0" Type="4" ValueLocId="-"/>
-    <ROW Property="REGISTER_TXT" Value="0" Type="4" ValueLocId="-"/>
+    <ROW Property="REGISTER_RTF" Value="1" Type="4" ValueLocId="-"/>
+    <ROW Property="REGISTER_TXT" Value="1" Type="4" ValueLocId="-"/>
     <ROW Property="REGISTER_XLS" Value="1" Type="4" ValueLocId="-"/>
     <ROW Property="REGISTER_XLSX" Value="1" Type="4" ValueLocId="-"/>
     <ROW Property="REGISTER_XLTX" Value="1" Type="4" ValueLocId="-"/>
-    <ROW Property="REGISTER_XML" Value="0" Type="4" ValueLocId="-"/>
-    <ROW Property="REGISTER_XPS" Value="0" Type="4" ValueLocId="-"/>
+    <ROW Property="REGISTER_XML" Value="1" Type="4" ValueLocId="-"/>
+    <ROW Property="REGISTER_XPS" Value="1" Type="4" ValueLocId="-"/>
     <ROW Property="RUNAPPLICATION" Value="1" Type="4"/>
     <ROW Property="SHORTCUT_FOLDER_NAME" Value="ONLYOFFICE"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND;UPGRADE_1"/>
     <ROW Property="UNINSTALL_PREV_ERROR_TEXT" Value="To install [|ProductName], the previous version must be uninstalled."/>
     <ROW Property="UNINSTALL_PREV_MSGBOX" Value="The previous version of [|ProductName] detected, please click &apos;OK&apos; button to uninstall it, or &apos;Cancel&apos; to quit setup."/>
+    <ROW Property="UPDATE_SERVICE" Value="0" ValueLocId="-"/>
     <ROW Property="UpgradeCode" Value="{47EEF706-B0E4-4C43-944B-E5F914B92B79}"/>
     <ROW Property="VERSION" Value="0.0.0.0" ValueLocId="-"/>
     <ROW Property="VERSION_SHORT" Value="0.0" ValueLocId="-"/>
@@ -253,6 +254,7 @@
     <ROW Feature="MainFeature" Title="MainFeature" Description="Description" Display="1" Level="1" Directory_="APPDIR" Attributes="0"/>
     <ROW Feature="MicrosoftVisualC_2015_x64" Title="Microsoft Visual C++ 2015-2022 Redistributable (x64)" Description="Microsoft Visual C++ 2015-2022 Redistributable (x64)" Display="11" Level="1" Attributes="0" Builds="MsiBuild64"/>
     <ROW Feature="MicrosoftVisualC_2015_x86" Title="Microsoft Visual C++ 2015-2022 Redistributable (x86)" Description="Microsoft Visual C++ 2015-2022 Redistributable (x86)" Display="9" Level="1" Attributes="0" Builds="MsiBuild32"/>
+    <ROW Feature="UpdateService" Feature_Parent="MainFeature" Title="Update Service" Display="17" Level="4" Directory_="APPDIR" Attributes="0"/>
     <ATTRIBUTE name="CurrentFeature" value="MainFeature"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFilesComponent">
@@ -295,8 +297,8 @@
     <ROW Action="AI_CleanPrePrereq" Condition="AI_BOOTSTRAPPER AND (NOT AI_PrereqsFulfilled)" Sequence="652"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.BuildComponent">
-    <ROW BuildKey="MsiBuild32" BuildName="MsiBuild32" BuildOrder="2" BuildType="0" PackageFolder="." PackageFileName="[|MANUFACTURER_INSTALL_FOLDER]-[|PRODUCT_INSTALL_FOLDER]-[|ProductVersion]-[|ARCH]" Languages="en;ru;cs;de;es;fr;pt;pt_BR;sl;ja" LangOpt="1" InstallationType="4" SummInfoMetadata="Subject:[|ProductName] [|ProductVersion] ([|ARCH])" ExtUI="true" UseLargeSchema="true" UACExecutionLevel="2"/>
-    <ROW BuildKey="MsiBuild64" BuildName="MsiBuild64" BuildOrder="1" BuildType="0" PackageFolder="." PackageFileName="[|MANUFACTURER_INSTALL_FOLDER]-[|PRODUCT_INSTALL_FOLDER]-[|ProductVersion]-[|ARCH]" Languages="en;ru;cs;de;es;fr;pt;pt_BR;sl;ja" LangOpt="1" InstallationType="4" SummInfoMetadata="Subject:[|ProductName] [|ProductVersion] ([|ARCH])" ExtUI="true" UseLargeSchema="true" MsiPackageType="x64" UACExecutionLevel="2"/>
+    <ROW BuildKey="MsiBuild32" BuildName="MsiBuild32" BuildOrder="2" BuildType="0" PackageFolder="." PackageFileName="[|MANUFACTURER_INSTALL_FOLDER]-[|PRODUCT_INSTALL_FOLDER]-[|ProductVersion]-[|ARCH]" Languages="en;ru;cs;de;es;fr;pt;pt_BR;sl;ja" LangOpt="1" InstallationType="4" SummInfoMetadata="Subject:[|ProductName] [|ProductVersion] ([|ARCH])#Template:;1033,1049,1029,1031,3082,1036,2070,1046,1060,1041,0" ExtUI="true" UseLargeSchema="true" UACExecutionLevel="2"/>
+    <ROW BuildKey="MsiBuild64" BuildName="MsiBuild64" BuildOrder="1" BuildType="0" PackageFolder="." PackageFileName="[|MANUFACTURER_INSTALL_FOLDER]-[|PRODUCT_INSTALL_FOLDER]-[|ProductVersion]-[|ARCH]" Languages="en;ru;cs;de;es;fr;pt;pt_BR;sl;ja" LangOpt="1" InstallationType="4" SummInfoMetadata="Subject:[|ProductName] [|ProductVersion] ([|ARCH])#Template:;1033,1049,1029,1031,3082,1036,2070,1046,1060,1041,0" ExtUI="true" UseLargeSchema="true" MsiPackageType="x64" UACExecutionLevel="2"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.DictionaryComponent">
     <ROW Path="&lt;AI_DICTS&gt;ui.ail"/>
@@ -396,6 +398,7 @@
     <ROW Feature_="FileProgramCapatibilities" Level="4" Condition="REGISTER_PROG_NONE = 1"/>
     <ROW Feature_="ExtendedFeature" Level="4" Condition="GALLERY &lt;&gt; &quot;1&quot; AND PLAYER &lt;&gt; &quot;1&quot;"/>
     <ROW Feature_="FileNewTemplates" Level="4" Condition="REGISTER_NONE = 1"/>
+    <ROW Feature_="UpdateService" Level="1" Condition="UPDATE_SERVICE = 1"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiControlComponent">
     <ROW Dialog_="AdminBrowseDlg" Control="OK" Type="PushButton" X="304" Y="243" Width="56" Height="17" Attributes="3" Text="[ButtonText_OK]" Order="300" TextLocId="-" MsiKey="AdminBrowseDlg#OK"/>
@@ -467,9 +470,9 @@
     <ROW Dialog_="ExtendedInstallDlg" Control="MediaButtonCheckBox" Type="CheckBox" X="53" Y="109" Width="162" Height="11" Attributes="3" Property="PLAYER" Text="Install Media" Order="1000" TextLocId="Control.Text.ExtendedInstallDlg#MediaButtonCheckBox"/>
     <ROW Dialog_="ExtendedInstallDlg" Control="GalleryButtonCheckBox" Type="CheckBox" X="53" Y="131" Width="162" Height="11" Attributes="3" Property="GALLERY" Text="Install Gallery" Order="1100" TextLocId="Control.Text.ExtendedInstallDlg#GalleryButtonCheckBox"/>
     <ROW Dialog_="FatalError" Control="Bitmap" Type="Bitmap" X="0" Y="0" Width="370" Height="234" Attributes="1048577" Text="background.bmp" Order="300" MsiKey="FatalError#Bitmap"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control="Next" Type="PushButton" X="236" Y="243" Width="56" Height="17" Attributes="3" Text="[ButtonText_Next]" Order="100" Options="1"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control="Cancel" Type="PushButton" X="304" Y="243" Width="56" Height="17" Attributes="3" Text="[ButtonText_Cancel]" Order="200" Options="1"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control="Back" Type="PushButton" X="180" Y="243" Width="56" Height="17" Attributes="3" Text="[ButtonText_Back]" Order="300" Options="1"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control="Next" Type="PushButton" X="236" Y="243" Width="56" Height="17" Attributes="3" Text="[ButtonText_Next]" Order="100" TextLocId="-" Options="1"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control="Cancel" Type="PushButton" X="304" Y="243" Width="56" Height="17" Attributes="3" Text="[ButtonText_Cancel]" Order="200" TextLocId="-" Options="1"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control="Back" Type="PushButton" X="180" Y="243" Width="56" Height="17" Attributes="3" Text="[ButtonText_Back]" Order="300" TextLocId="-" Options="1"/>
     <ROW Dialog_="FileAssociationsCustomDlg" Control="BannerBitmap" Type="Bitmap" X="0" Y="0" Width="370" Height="44" Attributes="1048577" Text="banner.png" Order="400"/>
     <ROW Dialog_="FileAssociationsCustomDlg" Control="BannerLine" Type="Line" X="0" Y="44" Width="372" Height="0" Attributes="1" Order="500"/>
     <ROW Dialog_="FileAssociationsCustomDlg" Control="BottomLine" Type="Line" X="5" Y="234" Width="368" Height="0" Attributes="1" Order="600"/>
@@ -505,8 +508,8 @@
     <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_xps" Type="CheckBox" X="275" Y="180" Width="50" Height="13" Attributes="3" Property="REGISTER_XPS" Text=".xps" Order="3600" TextLocId="-"/>
     <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_docxf" Type="CheckBox" X="35" Y="200" Width="50" Height="13" Attributes="3" Property="REGISTER_DOCXF" Text=".docxf" Order="3700" TextLocId="-"/>
     <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_oform" Type="CheckBox" X="95" Y="200" Width="50" Height="13" Attributes="3" Property="REGISTER_OFORM" Text=".oform" Order="3800" TextLocId="-"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control="Select_all_button" Type="PushButton" X="215" Y="211" Width="56" Height="17" Attributes="2" Text="Select all" Order="3900" TextLocId="Control.Text.FileAssociationsDlg#Select_all_button"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control="Deselect_all_button" Type="PushButton" X="272" Y="211" Width="56" Height="17" Attributes="2" Text="Deselect all" Order="4000" TextLocId="Control.Text.FileAssociationsDlg#Deselect_all_button"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control="PushButton_SelectAll" Type="PushButton" X="200" Y="210" Width="80" Height="17" Attributes="3" Text="Select All" Order="3900" TextLocId="ButtonText_SelectAll"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control="PushButton_DeselectAll" Type="PushButton" X="280" Y="210" Width="80" Height="17" Attributes="3" Text="Deselect All" Order="4000" TextLocId="ButtonText_DeselectAll"/>
     <ROW Dialog_="FilesInUse" Control="BannerBitmap" Type="Bitmap" X="0" Y="0" Width="370" Height="44" Attributes="1048577" Text="banner.png" Order="400" MsiKey="FilesInUse#BannerBitmap"/>
     <ROW Dialog_="FilesInUse" Control="Title" Type="Text" X="15" Y="6" Width="200" Height="15" Attributes="196611" Text="Files in Use" TextStyle="[DlgTitleFont]" Order="600" TextLocId="Control.Text.FilesInUse#Title" MsiKey="FilesInUse#Title"/>
     <ROW Dialog_="FilesInUse" Control="Text" Type="Text" X="20" Y="55" Width="330" Height="30" Attributes="3" Text="The following applications are using files that need to be updated by this setup. You can either close the applications and then click &quot;Retry&quot;, or click &quot;Ignore&quot; so that the installer continues the installation and replaces these files when your system restarts." Order="700" TextLocId="Control.Text.FilesInUse#Text" MsiKey="FilesInUse#Text"/>
@@ -638,6 +641,64 @@
     <ROW Dialog_="FileAssociationsCustomDlg" Control_="Cancel" Event="SpawnDialog" Argument="CancelDlg" Condition="1" Ordering="100"/>
     <ROW Dialog_="FileAssociationsCustomDlg" Control_="Next" Event="NewDialog" Argument="VerifyReadyDlg" Condition="AI_INSTALL" Ordering="1"/>
     <ROW Dialog_="FileAssociationsCustomDlg" Control_="Back" Event="NewDialog" Argument="ShortcutsDlg" Condition="AI_INSTALL" Ordering="1"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_DOC]" Argument="1" Condition="AI_INSTALL" Ordering="0"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_DOCX]" Argument="1" Condition="AI_INSTALL" Ordering="1"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_DOTX]" Argument="1" Condition="AI_INSTALL" Ordering="2"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_ODT]" Argument="1" Condition="AI_INSTALL" Ordering="3"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_OTT]" Argument="1" Condition="AI_INSTALL" Ordering="4"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_XLS]" Argument="1" Condition="AI_INSTALL" Ordering="5"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_XLSX]" Argument="1" Condition="AI_INSTALL" Ordering="6"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_XLTX]" Argument="1" Condition="AI_INSTALL" Ordering="7"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_ODS]" Argument="1" Condition="AI_INSTALL" Ordering="8"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_OTS]" Argument="1" Condition="AI_INSTALL" Ordering="9"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_PPT]" Argument="1" Condition="AI_INSTALL" Ordering="10"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_PPTX]" Argument="1" Condition="AI_INSTALL" Ordering="11"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_POTX]" Argument="1" Condition="AI_INSTALL" Ordering="12"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_ODP]" Argument="1" Condition="AI_INSTALL" Ordering="13"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_OTP]" Argument="1" Condition="AI_INSTALL" Ordering="14"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_PPS]" Argument="1" Condition="AI_INSTALL" Ordering="15"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_PPSX]" Argument="1" Condition="AI_INSTALL" Ordering="16"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_DJVU]" Argument="1" Condition="AI_INSTALL" Ordering="17"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_EPUB]" Argument="1" Condition="AI_INSTALL" Ordering="18"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_FB2]" Argument="1" Condition="AI_INSTALL" Ordering="19"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_PDF]" Argument="1" Condition="AI_INSTALL" Ordering="20"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_RTF]" Argument="1" Condition="AI_INSTALL" Ordering="21"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_TXT]" Argument="1" Condition="AI_INSTALL" Ordering="22"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_CSV]" Argument="1" Condition="AI_INSTALL" Ordering="23"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_HTML]" Argument="1" Condition="AI_INSTALL" Ordering="24"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_XML]" Argument="1" Condition="AI_INSTALL" Ordering="25"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_XPS]" Argument="1" Condition="AI_INSTALL" Ordering="26"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_DOCXF]" Argument="1" Condition="AI_INSTALL" Ordering="27"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_OFORM]" Argument="1" Condition="AI_INSTALL" Ordering="28"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_DOC]" Argument="{}" Condition="AI_INSTALL" Ordering="0"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_DOCX]" Argument="{}" Condition="AI_INSTALL" Ordering="1"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_DOTX]" Argument="{}" Condition="AI_INSTALL" Ordering="2"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_ODT]" Argument="{}" Condition="AI_INSTALL" Ordering="3"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_OTT]" Argument="{}" Condition="AI_INSTALL" Ordering="4"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_XLS]" Argument="{}" Condition="AI_INSTALL" Ordering="5"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_XLSX]" Argument="{}" Condition="AI_INSTALL" Ordering="6"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_XLTX]" Argument="{}" Condition="AI_INSTALL" Ordering="7"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_ODS]" Argument="{}" Condition="AI_INSTALL" Ordering="8"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_OTS]" Argument="{}" Condition="AI_INSTALL" Ordering="9"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_PPT]" Argument="{}" Condition="AI_INSTALL" Ordering="10"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_PPTX]" Argument="{}" Condition="AI_INSTALL" Ordering="11"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_POTX]" Argument="{}" Condition="AI_INSTALL" Ordering="12"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_ODP]" Argument="{}" Condition="AI_INSTALL" Ordering="13"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_OTP]" Argument="{}" Condition="AI_INSTALL" Ordering="14"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_PPS]" Argument="{}" Condition="AI_INSTALL" Ordering="15"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_PPSX]" Argument="{}" Condition="AI_INSTALL" Ordering="16"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_DJVU]" Argument="{}" Condition="AI_INSTALL" Ordering="17"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_EPUB]" Argument="{}" Condition="AI_INSTALL" Ordering="18"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_FB2]" Argument="{}" Condition="AI_INSTALL" Ordering="19"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_PDF]" Argument="{}" Condition="AI_INSTALL" Ordering="20"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_RTF]" Argument="{}" Condition="AI_INSTALL" Ordering="21"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_TXT]" Argument="{}" Condition="AI_INSTALL" Ordering="22"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_CSV]" Argument="{}" Condition="AI_INSTALL" Ordering="23"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_HTML]" Argument="{}" Condition="AI_INSTALL" Ordering="24"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_XML]" Argument="{}" Condition="AI_INSTALL" Ordering="25"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_XPS]" Argument="{}" Condition="AI_INSTALL" Ordering="26"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_DOCXF]" Argument="{}" Condition="AI_INSTALL" Ordering="27"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_OFORM]" Argument="{}" Condition="AI_INSTALL" Ordering="28"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCreateFolderComponent">
     <ROW Directory_="APPDIR" Component_="c_dir_app" ManualDelete="true"/>
@@ -704,7 +765,6 @@
     <ROW Feature_="MicrosoftVisualC_2015_x86" Component_="MicrosoftVisualC_2015_x86"/>
     <ROW Feature_="MainFeature" Component_="c_reg_cu_sw_app"/>
     <ROW Feature_="MainFeature" Component_="c_dir_shortcut"/>
-    <ROW Feature_="MainFeature" Component_="c_exe_updatesvc"/>
     <ROW Feature_="MainFeature" Component_="c_reg_sw_registeredapps"/>
     <ROW Feature_="MainFeature" Component_="c_reg_sw_app"/>
     <ROW Feature_="MainFeature" Component_="c_reg_progid"/>
@@ -831,6 +891,7 @@
     <ROW Feature_="FileNewTemplates" Component_="c_reg_fa_new__xlsx"/>
     <ROW Feature_="FileNewTemplates" Component_="c_reg_fa_new__pptx"/>
     <ROW Feature_="FileProgramCapatibilities" Component_="c_reg_ua_cap__protocol"/>
+    <ROW Feature_="UpdateService" Component_="c_exe_updatesvc"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiIconsComponent">
     <ROW Name="i_desktopeditors" SourcePath="..\..\extras\projicons\res\icons\desktopeditors.ico" Index="0"/>
@@ -1332,7 +1393,7 @@
     <ROW Registry="reg_sw_app_cap_applicationname" Root="-1" Key="Software\[MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]\Capabilities" Name="ApplicationName" Value="[ProductName]" Component_="c_reg_sw_app"/>
     <ROW Registry="reg_sw_app_cap_fileassociations" Root="-1" Key="Software\[MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]\Capabilities\FileAssociations" Name="\"/>
     <ROW Registry="reg_sw_app_cap_urlassociations" Root="-1" Key="Software\[MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]\Capabilities\URLAssociations" Name="\"/>
-    <ROW Registry="reg_sw_app_checkforupdates" Root="-1" Key="Software\[MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]" Name="CheckForUpdates" Value="#0" Component_="c_reg_sw_app" VirtualValue="#"/>
+    <ROW Registry="reg_sw_app_checkforupdates" Root="-1" Key="Software\[MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]" Name="CheckForUpdates" Value="#[UPDATE_SERVICE]" Component_="c_reg_sw_app" ValueLocId="-" VirtualValue="#"/>
     <ROW Registry="reg_sw_app_locale" Root="-1" Key="Software\[MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]" Name="locale" Value="[LOCALE]" Component_="c_reg_sw_app"/>
     <ROW Registry="reg_sw_app_version" Root="-1" Key="Software\[MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]" Name="Version" Value="[ProductVersion]" Component_="c_reg_sw_app"/>
     <ROW Registry="reg_sw_company" Root="-1" Key="Software\[MANUFACTURER_INSTALL_FOLDER]" Name="+" Component_="c_reg_sw_app"/>
@@ -1340,10 +1401,10 @@
     <ROW Registry="reg_ua_cap__protocol" Root="-1" Key="Software\[MANUFACTURER_INSTALL_FOLDER]\[PRODUCT_INSTALL_FOLDER]\Capabilities\URLAssociations" Name="[APP_PROTOCOL]" Value="[ASSOC_PROG_ID]" Component_="c_reg_ua_cap__protocol"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiServCtrlComponent">
-    <ROW ServiceControl="updatesvc.exe" Name="[DeUpdateSvc_ServiceName]" Event="128" Wait="1" Component_="c_exe_updatesvc"/>
+    <ROW ServiceControl="updatesvc.exe" Name="[DeUpdateSvc_ServiceName]" Event="161" Wait="0" Component_="c_exe_updatesvc"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiServInstComponent">
-    <ROW ServiceInstall="updatesvc.exe" Name="[DeUpdateSvc_ServiceName]" DisplayName="[DeUpdateSvc_DispalyName]" ServiceType="16" StartType="4" ErrorControl="1" Component_="c_exe_updatesvc" Description="[DeUpdateSvc_DescriptionName]"/>
+    <ROW ServiceInstall="updatesvc.exe" Name="[DeUpdateSvc_ServiceName]" DisplayName="[DeUpdateSvc_DispalyName]" ServiceType="16" StartType="2" ErrorControl="1" Component_="c_exe_updatesvc" Description="[DeUpdateSvc_DescriptionName]"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiShortsComponent">
     <ROW Shortcut="COMMON_SHORTCUT_NAME_DESKTOP" Directory_="DesktopFolder" Name="ONLYOF~1|[|COMMON_SHORTCUT_NAME]" Component_="c_exe_desktopeditors" Target="[#DesktopEditors.exe]" Hotkey="0" Icon_="i_desktopeditors" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>

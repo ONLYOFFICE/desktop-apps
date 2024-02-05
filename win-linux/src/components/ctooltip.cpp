@@ -31,6 +31,7 @@
 */
 
 #include "ctooltip.h"
+#include "cascapplicationmanagerwrapper.h"
 #include <QPropertyAnimation>
 #include <QGraphicsOpacityEffect>
 #include <QLayout>
@@ -127,6 +128,8 @@ void CToolTip::showEvent(QShowEvent *event)
         QTimer::singleShot(FADE_TIMEOUT_MS, this, [=]() {
             showEffect(EffectType::Fade);
         });
+        if (AscAppManager::isRtlEnabled())
+            move(pos() - QPoint(width(), 0));
     }
 }
 
