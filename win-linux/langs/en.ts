@@ -342,12 +342,12 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="66"/>
         <source>DOCX Document</source>
-        <translation>Office Open XML Document (*.docx)</translation>
+        <translation>Office Open XML Document</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="70"/>
         <source>OpenDocument Document template</source>
-        <translation>OpenDocument Document Template (*.ott)</translation>
+        <translation>OpenDocument Document Template</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="78"/>
@@ -357,17 +357,17 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="85"/>
         <source>OpenDocument Presentation Template</source>
-        <translation>OpenDocument Presentation Template (*.otp)</translation>
+        <translation>OpenDocument Presentation Template</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="91"/>
         <source>Macro-enabled spreadsheet template</source>
-        <translation>Macro-enabled Spreadsheet Template (*xltm)</translation>
+        <translation>Macro-enabled Spreadsheet Template</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="94"/>
         <source>OpenDocument Spreadsheet Template</source>
-        <translation>OpenDocument Spreadsheet Template (*.ots)</translation>
+        <translation>OpenDocument Spreadsheet Template</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="95"/>
@@ -481,19 +481,19 @@
         <location filename="../src/ceditortools.cpp" line="211"/>
         <location filename="../src/components/cfiledialog.cpp" line="90"/>
         <source>Spreadsheet template</source>
-        <translation>Excel Open XML Spreadsheet Template (*.xltx)</translation>
+        <translation>Excel Open XML Spreadsheet Template</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="214"/>
         <location filename="../src/components/cfiledialog.cpp" line="83"/>
         <source>Presentation template</source>
-        <translation>PowerPoint Open XML Presentation Template (*.potx)</translation>
+        <translation>PowerPoint Open XML Presentation Template</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="216"/>
         <location filename="../src/components/cfiledialog.cpp" line="67"/>
         <source>Document template</source>
-        <translation>Word Open XML Document Template (*.dotx)</translation>
+        <translation>Word Open XML Document Template</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="237"/>

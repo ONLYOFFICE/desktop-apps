@@ -354,7 +354,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="66"/>
         <source>DOCX Document</source>
-        <translation>Office Open XML փաստաթուղթ (*.docx)</translation>
+        <translation>Office Open XML փաստաթուղթ</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="70"/>
@@ -369,17 +369,17 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="85"/>
         <source>OpenDocument Presentation Template</source>
-        <translation>OpenDocument շնորհանդեսի ձևանմուշ (*.otp)</translation>
+        <translation>OpenDocument շնորհանդեսի ձևանմուշ</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="91"/>
         <source>Macro-enabled spreadsheet template</source>
-        <translation>Մակրո-միացված աղյուսակի ձևանմուշ (*.xltm)</translation>
+        <translation>Մակրո-միացված աղյուսակի ձևանմուշ</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="94"/>
         <source>OpenDocument Spreadsheet Template</source>
-        <translation>OpenDocument աղյուսակի ձևանմուշ (*.ots)</translation>
+        <translation>OpenDocument աղյուսակի ձևանմուշ</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="95"/>
@@ -493,19 +493,19 @@
         <location filename="../src/ceditortools.cpp" line="211"/>
         <location filename="../src/components/cfiledialog.cpp" line="90"/>
         <source>Spreadsheet template</source>
-        <translation>Excel Open XML Աղյուսակի ձևանմուշ (*.xltx)</translation>
+        <translation>Excel Open XML Աղյուսակի ձևանմուշ</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="214"/>
         <location filename="../src/components/cfiledialog.cpp" line="83"/>
         <source>Presentation template</source>
-        <translation>PowerPoint Open XML Ներկայացման ձևանմուշ (*.potx)</translation>
+        <translation>PowerPoint Open XML Ներկայացման ձևանմուշ</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="216"/>
         <location filename="../src/components/cfiledialog.cpp" line="67"/>
         <source>Document template</source>
-        <translation>Word Open XML Փաստաթղթի ձևանմուշ (*.dotx)</translation>
+        <translation>Word Open XML Փաստաթղթի ձևանմուշ</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="237"/>

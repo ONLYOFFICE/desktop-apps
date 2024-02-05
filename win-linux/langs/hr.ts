@@ -350,12 +350,12 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="66"/>
         <source>DOCX Document</source>
-        <translation>Office Open XML Dokument (*.docx)</translation>
+        <translation>Office Open XML Dokument</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="70"/>
         <source>OpenDocument Document template</source>
-        <translation>OpenDocument Predložak dokumenta (*.ott)</translation>
+        <translation>OpenDocument Predložak dokumenta</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="78"/>
@@ -365,17 +365,17 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="85"/>
         <source>OpenDocument Presentation Template</source>
-        <translation>OpenDocument Predložak prezentacije (*.otp)</translation>
+        <translation>OpenDocument Predložak prezentacije</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="91"/>
         <source>Macro-enabled spreadsheet template</source>
-        <translation>Predložak proračunske tablice s omogućenim makronaredbama (*xltm)</translation>
+        <translation>Predložak proračunske tablice s omogućenim makronaredbama</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="94"/>
         <source>OpenDocument Spreadsheet Template</source>
-        <translation>OpenDocument Predložak tablice (*.ots)</translation>
+        <translation>OpenDocument Predložak tablice</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="95"/>
@@ -489,19 +489,19 @@
         <location filename="../src/ceditortools.cpp" line="211"/>
         <location filename="../src/components/cfiledialog.cpp" line="90"/>
         <source>Spreadsheet template</source>
-        <translation>Excel Open XML Predložak tablice (*.xltx)</translation>
+        <translation>Excel Open XML Predložak tablice</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="214"/>
         <location filename="../src/components/cfiledialog.cpp" line="83"/>
         <source>Presentation template</source>
-        <translation>PowerPoint Open XML Predložak prezentacije (*.potx)</translation>
+        <translation>PowerPoint Open XML Predložak prezentacije</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="216"/>
         <location filename="../src/components/cfiledialog.cpp" line="67"/>
         <source>Document template</source>
-        <translation>Word Open XML Predložak dokumenta (*.dotx)</translation>
+        <translation>Word Open XML Predložak dokumenta</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="237"/>

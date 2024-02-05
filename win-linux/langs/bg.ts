@@ -366,12 +366,12 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="66"/>
         <source>DOCX Document</source>
-        <translation>Office Open XML Документ (*.docx)</translation>
+        <translation>Office Open XML Документ</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="70"/>
         <source>OpenDocument Document template</source>
-        <translation>OpenDocument Шаблон за документ (*.ott)</translation>
+        <translation>OpenDocument Шаблон за документ</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="78"/>
@@ -381,17 +381,17 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="85"/>
         <source>OpenDocument Presentation Template</source>
-        <translation>OpenDocument Шаблон за презентация (*.otp)</translation>
+        <translation>OpenDocument Шаблон за презентация</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="91"/>
         <source>Macro-enabled spreadsheet template</source>
-        <translation>Макро-активиран Шаблон за Таблица (*xltm)</translation>
+        <translation>Макро-активиран Шаблон за Таблица</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="94"/>
         <source>OpenDocument Spreadsheet Template</source>
-        <translation>OpenDocument Шаблон за таблица (*.ots)</translation>
+        <translation>OpenDocument Шаблон за таблица</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="95"/>
@@ -505,19 +505,19 @@
         <location filename="../src/ceditortools.cpp" line="211"/>
         <location filename="../src/components/cfiledialog.cpp" line="90"/>
         <source>Spreadsheet template</source>
-        <translation>Excel Open XML Шаблон за таблица (*.xltx)</translation>
+        <translation>Excel Open XML Шаблон за таблица</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="214"/>
         <location filename="../src/components/cfiledialog.cpp" line="83"/>
         <source>Presentation template</source>
-        <translation>PowerPoint Open XML Шаблон за презентация (*.potx)</translation>
+        <translation>PowerPoint Open XML Шаблон за презентация</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="216"/>
         <location filename="../src/components/cfiledialog.cpp" line="67"/>
         <source>Document template</source>
-        <translation>Word Open XML Шаблон за документ (*.dotx)</translation>
+        <translation>Word Open XML Шаблон за документ</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="237"/>

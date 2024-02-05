@@ -350,12 +350,12 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="66"/>
         <source>DOCX Document</source>
-        <translation>Dokument Open Office XML (*.docx)</translation>
+        <translation>Dokument Open Office XML</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="70"/>
         <source>OpenDocument Document template</source>
-        <translation>Szablon dokumentu OpenDocument (*.ott)</translation>
+        <translation>Szablon dokumentu OpenDocument</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="78"/>
@@ -365,17 +365,17 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="85"/>
         <source>OpenDocument Presentation Template</source>
-        <translation>Szablon prezentacji OpenDocument (*.otp)</translation>
+        <translation>Szablon prezentacji OpenDocument</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="91"/>
         <source>Macro-enabled spreadsheet template</source>
-        <translation>Szablon arkusza kalkulacyjnego z obsługą makr (*xltm)</translation>
+        <translation>Szablon arkusza kalkulacyjnego z obsługą makr</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="94"/>
         <source>OpenDocument Spreadsheet Template</source>
-        <translation>Szablon arkusza kalkulacyjnego OpenDocument (*.ots)</translation>
+        <translation>Szablon arkusza kalkulacyjnego OpenDocument</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="95"/>
@@ -489,19 +489,19 @@
         <location filename="../src/ceditortools.cpp" line="211"/>
         <location filename="../src/components/cfiledialog.cpp" line="90"/>
         <source>Spreadsheet template</source>
-        <translation>Szablon arkusza kalkulacyjnego Excel Open XML (*.xltx)</translation>
+        <translation>Szablon arkusza kalkulacyjnego Excel Open XML</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="214"/>
         <location filename="../src/components/cfiledialog.cpp" line="83"/>
         <source>Presentation template</source>
-        <translation>Szablon prezentacji PowerPoint Open XML (*.potx)</translation>
+        <translation>Szablon prezentacji PowerPoint Open XML</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="216"/>
         <location filename="../src/components/cfiledialog.cpp" line="67"/>
         <source>Document template</source>
-        <translation>Szablon dokumentu Word Open XML (*.dotx)</translation>
+        <translation>Szablon dokumentu Word Open XML</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="237"/>

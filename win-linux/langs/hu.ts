@@ -350,12 +350,12 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="66"/>
         <source>DOCX Document</source>
-        <translation>Office nyílt XML formátumú dokumentum (*.docx)</translation>
+        <translation>Office nyílt XML formátumú dokumentum</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="70"/>
         <source>OpenDocument Document template</source>
-        <translation>OpenDocument dokumentumsablon (*.ott)</translation>
+        <translation>OpenDocument dokumentumsablon</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="78"/>
@@ -365,17 +365,17 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="85"/>
         <source>OpenDocument Presentation Template</source>
-        <translation>OpenDocument bemutatósablon (*.otp)</translation>
+        <translation>OpenDocument bemutatósablon</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="91"/>
         <source>Macro-enabled spreadsheet template</source>
-        <translation>Makróbarát munkalap sablon (*xltm)</translation>
+        <translation>Makróbarát munkalap sablon</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="94"/>
         <source>OpenDocument Spreadsheet Template</source>
-        <translation>OpenDocument számolótábla-sablon (*.ots)</translation>
+        <translation>OpenDocument számolótábla-sablon</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="95"/>
@@ -489,19 +489,19 @@
         <location filename="../src/ceditortools.cpp" line="211"/>
         <location filename="../src/components/cfiledialog.cpp" line="90"/>
         <source>Spreadsheet template</source>
-        <translation>Excel Open XML számolótábla-sablon (*.xltx)</translation>
+        <translation>Excel Open XML számolótábla-sablon</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="214"/>
         <location filename="../src/components/cfiledialog.cpp" line="83"/>
         <source>Presentation template</source>
-        <translation>PowerPoint Open XML prezentáció sablon (*.potx)</translation>
+        <translation>PowerPoint Open XML prezentáció sablon</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="216"/>
         <location filename="../src/components/cfiledialog.cpp" line="67"/>
         <source>Document template</source>
-        <translation>Word Open XML Dokumentumsablon (*.dotx)</translation>
+        <translation>Word Open XML Dokumentumsablon</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="237"/>

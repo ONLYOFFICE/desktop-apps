@@ -370,17 +370,17 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="66"/>
         <source>DOCX Document</source>
-        <translation>Документ Office Open XML (*.docx)</translation>
+        <translation>Документ Office Open XML</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="70"/>
         <source>OpenDocument Document template</source>
-        <translation>Шаблон документа OpenDocument (*.ott)</translation>
+        <translation>Шаблон документа OpenDocument</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="78"/>
         <source>ONLYOFFICE Form Document (*.pdf)</source>
-        <translation>Документ ONLYOFFICE Form (*.pdf)</translation>
+        <translation>Документ ONLYOFFICE Form</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="85"/>
@@ -390,12 +390,12 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="91"/>
         <source>Macro-enabled spreadsheet template</source>
-        <translation>Шаблон электронной таблицы с поддержкой макросов (*.xltm)</translation>
+        <translation>Шаблон электронной таблицы с поддержкой макросов</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="94"/>
         <source>OpenDocument Spreadsheet Template</source>
-        <translation>Шаблон электронной таблицы OpenDocument (*.ots)</translation>
+        <translation>Шаблон электронной таблицы OpenDocument</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="95"/>
@@ -509,19 +509,19 @@
         <location filename="../src/ceditortools.cpp" line="211"/>
         <location filename="../src/components/cfiledialog.cpp" line="90"/>
         <source>Spreadsheet template</source>
-        <translation>Шаблон электронной таблицы Excel Open XML (*.xltx)</translation>
+        <translation>Шаблон электронной таблицы Excel Open XML</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="214"/>
         <location filename="../src/components/cfiledialog.cpp" line="83"/>
         <source>Presentation template</source>
-        <translation>Шаблон презентации PowerPoint Open XML (*.potx)</translation>
+        <translation>Шаблон презентации PowerPoint Open XML</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="216"/>
         <location filename="../src/components/cfiledialog.cpp" line="67"/>
         <source>Document template</source>
-        <translation>Шаблон документа Word Open XML (*.dotx)</translation>
+        <translation>Шаблон документа Word Open XML</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="237"/>

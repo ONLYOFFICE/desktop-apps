@@ -350,12 +350,12 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="66"/>
         <source>DOCX Document</source>
-        <translation>Office Open XML Belgesi (*.docx)</translation>
+        <translation>Office Open XML Belgesi</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="70"/>
         <source>OpenDocument Document template</source>
-        <translation>OpenDocument Belge Şablonu (*.ott)</translation>
+        <translation>OpenDocument Belge Şablonu</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="78"/>
@@ -365,17 +365,17 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="85"/>
         <source>OpenDocument Presentation Template</source>
-        <translation>OpenDocument Sunum Şablonu (*.otp)</translation>
+        <translation>OpenDocument Sunum Şablonu</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="91"/>
         <source>Macro-enabled spreadsheet template</source>
-        <translation>Makro Etkinleştirilmiş Elektronik Tablo Şablonu (*xltm)</translation>
+        <translation>Makro Etkinleştirilmiş Elektronik Tablo Şablonu</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="94"/>
         <source>OpenDocument Spreadsheet Template</source>
-        <translation>OpenDocument Tablo Şablonu (*.ots)</translation>
+        <translation>OpenDocument Tablo Şablonu</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="95"/>
@@ -489,19 +489,19 @@
         <location filename="../src/ceditortools.cpp" line="211"/>
         <location filename="../src/components/cfiledialog.cpp" line="90"/>
         <source>Spreadsheet template</source>
-        <translation>Excel Open XML Tablo Şablonu (*.xltx)</translation>
+        <translation>Excel Open XML Tablo Şablonu</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="214"/>
         <location filename="../src/components/cfiledialog.cpp" line="83"/>
         <source>Presentation template</source>
-        <translation>PowerPoint Open XML Sunum Şablonu (*.potx)</translation>
+        <translation>PowerPoint Open XML Sunum Şablonu</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="216"/>
         <location filename="../src/components/cfiledialog.cpp" line="67"/>
         <source>Document template</source>
-        <translation>Word Open XML Belge şablonu (*.dotx)</translation>
+        <translation>Word Open XML Belge şablonu</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="237"/>

@@ -350,12 +350,12 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="66"/>
         <source>DOCX Document</source>
-        <translation>Office Open XML-document (*.docx)</translation>
+        <translation>Office Open XML-document</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="70"/>
         <source>OpenDocument Document template</source>
-        <translation>OpenDocument-dokumentmall (*.ott)</translation>
+        <translation>OpenDocument-dokumentmall</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="78"/>
@@ -365,17 +365,17 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="85"/>
         <source>OpenDocument Presentation Template</source>
-        <translation>OpenDocument-presentationsmall (*.otp)</translation>
+        <translation>OpenDocument-presentationsmall</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="91"/>
         <source>Macro-enabled spreadsheet template</source>
-        <translation>Makroaktiverad kalkylbladsmall (*xltm)</translation>
+        <translation>Makroaktiverad kalkylbladsmall</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="94"/>
         <source>OpenDocument Spreadsheet Template</source>
-        <translation>OpenDocument-kalkylbladsmall (*.ots)</translation>
+        <translation>OpenDocument-kalkylbladsmall</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="95"/>
@@ -489,19 +489,19 @@
         <location filename="../src/ceditortools.cpp" line="211"/>
         <location filename="../src/components/cfiledialog.cpp" line="90"/>
         <source>Spreadsheet template</source>
-        <translation>Excel Open XML-kalkylbladsmall (*.xltx)</translation>
+        <translation>Excel Open XML-kalkylbladsmall</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="214"/>
         <location filename="../src/components/cfiledialog.cpp" line="83"/>
         <source>Presentation template</source>
-        <translation>PowerPoint Open XML-presentationsmall (*.potx)</translation>
+        <translation>PowerPoint Open XML-presentationsmall</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="216"/>
         <location filename="../src/components/cfiledialog.cpp" line="67"/>
         <source>Document template</source>
-        <translation>Word Open XML-dokumentmall (*.dotx)</translation>
+        <translation>Word Open XML-dokumentmall</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="237"/>
