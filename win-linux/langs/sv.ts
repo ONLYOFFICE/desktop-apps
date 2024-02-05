@@ -350,7 +350,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="66"/>
         <source>DOCX Document</source>
-        <translation>Office Open XML-document (*.docx)</translation>
+        <translation>Office Open XML-document</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="70"/>

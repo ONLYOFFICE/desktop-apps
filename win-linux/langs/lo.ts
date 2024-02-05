@@ -354,7 +354,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="66"/>
         <source>DOCX Document</source>
-        <translation>ເປີດເອກະສານ XML (*.docx)</translation>
+        <translation>ເປີດເອກະສານ XML</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="70"/>

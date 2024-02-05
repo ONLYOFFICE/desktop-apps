@@ -370,7 +370,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="66"/>
         <source>DOCX Document</source>
-        <translation>Office Open XML 文档(*.docx)</translation>
+        <translation>Office Open XML 文档</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="70"/>

@@ -350,7 +350,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="66"/>
         <source>DOCX Document</source>
-        <translation>Έγγραφο Office με ανοιχτή μορφή XML (*.docx)</translation>
+        <translation>Έγγραφο Office με ανοιχτή μορφή XML</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="70"/>

@@ -354,7 +354,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="66"/>
         <source>DOCX Document</source>
-        <translation type="unfinished">Office Open XML փաստաթուղթ (*.docx)</translation>
+        <translation>Office Open XML փաստաթուղթ</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="70"/>

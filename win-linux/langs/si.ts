@@ -366,7 +366,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="66"/>
         <source>DOCX Document</source>
-        <translation>ඔෆිස් ඕපන් XML ලේඛනය (*.docx)</translation>
+        <translation>ඔෆිස් ඕපන් XML ලේඛනය</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="70"/>

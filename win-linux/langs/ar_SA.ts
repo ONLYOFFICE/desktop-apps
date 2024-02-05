@@ -348,7 +348,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="66"/>
         <source>DOCX Document</source>
-        <translation>مستند وورد (*.docx)</translation>
+        <translation>مستند وورد</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="70"/>
