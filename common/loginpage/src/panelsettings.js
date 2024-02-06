@@ -463,6 +463,7 @@
                 $chRtl.prop("checked", _is_lang_rtl(l));
             }
 
+            $(document.body).toggleClass('rtl-font', _is_lang_rtl(l));
             $optsLang.toggleClass('notted', true);
         };
 
