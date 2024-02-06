@@ -231,7 +231,6 @@
     <message>
         <location filename="../src/windows/ceditorwindow_p.h" line="594"/>
         <source>There are no pages set to print.</source>
-feature/new_ts_01-24
         <translation>Nicio pagină setată pentru imprimare.</translation>
     </message>
 </context>
@@ -614,7 +613,6 @@ feature/new_ts_01-24
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="1227"/>
         <source>There are no pages set to print.</source>
-feature/new_ts_01-24
         <translation>Nicio pagină setată pentru imprimare.</translation>
     </message>
     <message>
