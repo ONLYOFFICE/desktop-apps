@@ -52,7 +52,7 @@ l10n.pt_PT = {
     actCreateNew: 'Criar novo',
     actRecentFiles: 'Ficheiros recentes',
     actOpenLocal: 'Abrir ficheiro local',
-    actConnectTo: 'Ligar à cloud',
+    actConnectTo: 'Ligar à nuvem',
     actActivate: 'Ativar',
     actAbout: 'Sobre',
     actSettings: 'Definições',
@@ -107,7 +107,7 @@ l10n.pt_PT = {
     updateDownloadCanceled: 'Transferência cancelada',
     updateDownloadProgress: 'A transferir $1%. Clique para parar',
     settOptDescDisabled: "A verificação automática de atualizações será desativada",
-    settOptDescAUpdateSilent: "Baixe e instale a atualização em segundo plano",
+    settOptDescAUpdateSilent: "Transfira e instale a atualização em segundo plano",
     settOptDescAUpdateAsk: "Será notificado sobre todas as etapas de atualização",
     settRtlMode: "Interface RTL",
 }
