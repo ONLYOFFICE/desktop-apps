@@ -216,7 +216,7 @@
     <message>
         <location filename="../src/windows/ceditorwindow_p.h" line="594"/>
         <source>There are no pages set to print.</source>
-        <translation type="unfinished"></translation>
+        <translation>لا توجد صفحات مضبوطة للطباعة.</translation>
     </message>
 </context>
 <context>
@@ -353,7 +353,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="70"/>
         <source>OpenDocument Document template</source>
-        <translation>قالب مستند ليبري أوفس</translation>
+        <translation>مستند ليبري أوفس</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="85"/>
@@ -363,7 +363,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="91"/>
         <source>Macro-enabled spreadsheet template</source>
-        <translation>قالب جدول مع خاصية الماكرو</translation>
+        <translation>قالب جدول إكسيل مع خاصية الماكرو</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="94"/>
@@ -482,24 +482,24 @@
         <location filename="../src/ceditortools.cpp" line="211"/>
         <location filename="../src/components/cfiledialog.cpp" line="90"/>
         <source>Spreadsheet template</source>
-        <translation>قالب جدول بياني</translation>
+        <translation>قالب جدول إكسل</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="214"/>
         <location filename="../src/components/cfiledialog.cpp" line="83"/>
         <source>Presentation template</source>
-        <translation>قالب عرض تقديمي</translation>
+        <translation>قالب عرض بوربوينت</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="216"/>
         <location filename="../src/components/cfiledialog.cpp" line="67"/>
         <source>Document template</source>
-        <translation>قالب مستند</translation>
+        <translation>قالب وورد</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="237"/>
         <source>Theme file</source>
-        <translation type="unfinished"></translation>
+        <translation>نسق ملف</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="269"/>
@@ -586,7 +586,7 @@
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="1215"/>
         <source>There are no pages set to print.</source>
-        <translation type="unfinished"></translation>
+        <translation>لا توجد صفحات مضبوطة للطباعة.</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="1351"/>
@@ -951,33 +951,33 @@
     <message>
         <location filename="../src/components/cdownloadwidget.cpp" line="124"/>
         <source>B</source>
-        <translation type="unfinished"></translation>
+        <translation>بايت</translation>
     </message>
     <message>
         <location filename="../src/components/cdownloadwidget.cpp" line="127"/>
         <source>kB</source>
-        <translation type="unfinished"></translation>
+        <translation>كيلو بايت</translation>
     </message>
     <message>
         <location filename="../src/components/cdownloadwidget.cpp" line="129"/>
         <source>MB</source>
-        <translation type="unfinished"></translation>
+        <translation>ميغاباي</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/gtkprintdialog.cpp" line="543"/>
         <source>The syntaxis for the page range is invalid.&lt;br&gt;Enter one or more page ranges, for example: 1-3,7,11.</source>
-        <translation type="unfinished"></translation>
+        <translation>بناء الجملة لنطاق الصفحات غير صالح.&lt;br&gt;أدخل نطاق صفحة واحدة أو أكثر، على سبيل المثال: 1-3،7،11.</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/gtkprintdialog.cpp" line="583"/>
         <location filename="../src/platform_win/printdialog.cpp" line="491"/>
         <source>Specified range %1-%2 exceeds document limits: maximum number of pages is %3</source>
-        <translation type="unfinished"></translation>
+        <translation>النطاق المحدد 1%-2% يتجاوز حدود المستند: الحد الأقصى لعدد الصفحات هو 3%</translation>
     </message>
     <message>
         <location filename="../src/platform_win/printdialog.cpp" line="450"/>
         <source>Unable to open print dialog:&lt;br&gt;%1</source>
-        <translation type="unfinished"></translation>
+        <translation>غير قادر على فتح مربع حوار الطباعة: &lt;br&gt;%1</translation>
     </message>
 </context>
 </TS>

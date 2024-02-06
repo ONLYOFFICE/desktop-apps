@@ -370,12 +370,12 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="66"/>
         <source>DOCX Document</source>
-        <translation>DOCX-Dokument</translation>
+        <translation>Office Open XML-Dokument</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="70"/>
         <source>OpenDocument Document template</source>
-        <translation>Vorlage eines OpenDocument-Dokuments</translation>
+        <translation>OpenDocument Dokumentvorlage</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="78"/>
@@ -385,7 +385,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="85"/>
         <source>OpenDocument Presentation Template</source>
-        <translation>Vorlage einer OpenDocument-Präsentation</translation>
+        <translation>OpenDocument Präsentationsvorlage</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="91"/>
@@ -395,7 +395,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="94"/>
         <source>OpenDocument Spreadsheet Template</source>
-        <translation>Vorlage einer OpenDocument-Tabellenkalkulation</translation>
+        <translation>OpenDocument Tabellenvorlage</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="95"/>
@@ -509,19 +509,19 @@
         <location filename="../src/ceditortools.cpp" line="211"/>
         <location filename="../src/components/cfiledialog.cpp" line="90"/>
         <source>Spreadsheet template</source>
-        <translation>Vorlage einer Tabellenkalkulation</translation>
+        <translation>Excel Open XML-Tabellenvorlage</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="214"/>
         <location filename="../src/components/cfiledialog.cpp" line="83"/>
         <source>Presentation template</source>
-        <translation>Vorlage einer Präsentation</translation>
+        <translation>PowerPoint Open XML-Präsentationsvorlage</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="216"/>
         <location filename="../src/components/cfiledialog.cpp" line="67"/>
         <source>Document template</source>
-        <translation>Vorlage eines Dokuments</translation>
+        <translation>Word Open XML-Dokumentvorlage</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="237"/>

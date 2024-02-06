@@ -354,12 +354,12 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="66"/>
         <source>DOCX Document</source>
-        <translation>DOCX փաստաթուղթ</translation>
+        <translation>Office Open XML փաստաթուղթ</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="70"/>
         <source>OpenDocument Document template</source>
-        <translation>ԲացՓաստաթուղթ Փաստաթղթի ձևանմուշ</translation>
+        <translation>OpenDocument փաստաթղթի ձևանմուշ (*.ott)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="78"/>
@@ -369,17 +369,17 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="85"/>
         <source>OpenDocument Presentation Template</source>
-        <translation>ԲացՓաստաթուղթ Ներկայացման ձևանմուշ</translation>
+        <translation>OpenDocument շնորհանդեսի ձևանմուշ</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="91"/>
         <source>Macro-enabled spreadsheet template</source>
-        <translation>Մակրո միացված աղյուսակի ձևանմուշ</translation>
+        <translation>Մակրո-միացված աղյուսակի ձևանմուշ</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="94"/>
         <source>OpenDocument Spreadsheet Template</source>
-        <translation>ԲացՓաստաթուղթ Աղյուսակի ձևանմուշ</translation>
+        <translation>OpenDocument աղյուսակի ձևանմուշ</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="95"/>
@@ -493,19 +493,19 @@
         <location filename="../src/ceditortools.cpp" line="211"/>
         <location filename="../src/components/cfiledialog.cpp" line="90"/>
         <source>Spreadsheet template</source>
-        <translation>Աղյուսակի ձևանմուշ</translation>
+        <translation>Excel Open XML Աղյուսակի ձևանմուշ</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="214"/>
         <location filename="../src/components/cfiledialog.cpp" line="83"/>
         <source>Presentation template</source>
-        <translation>Ներկայացման ձևանմուշ</translation>
+        <translation>PowerPoint Open XML Ներկայացման ձևանմուշ</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="216"/>
         <location filename="../src/components/cfiledialog.cpp" line="67"/>
         <source>Document template</source>
-        <translation>Փաստաթղթի ձևանմուշ</translation>
+        <translation>Word Open XML Փաստաթղթի ձևանմուշ</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="237"/>

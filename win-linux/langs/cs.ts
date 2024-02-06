@@ -231,7 +231,7 @@
     <message>
         <location filename="../src/windows/ceditorwindow_p.h" line="594"/>
         <source>There are no pages set to print.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nejsou nastaveny žádné stránky k tisku.</translation>
     </message>
 </context>
 <context>
@@ -366,7 +366,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="66"/>
         <source>DOCX Document</source>
-        <translation>Dokument DOCX</translation>
+        <translation>Dokument Office Open XML</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="70"/>
@@ -376,7 +376,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="78"/>
         <source>ONLYOFFICE Form Document (*.pdf)</source>
-        <translation type="unfinished"></translation>
+        <translation>Formulář ONLYOFFICE (*.pdf)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="85"/>
@@ -505,24 +505,24 @@
         <location filename="../src/ceditortools.cpp" line="211"/>
         <location filename="../src/components/cfiledialog.cpp" line="90"/>
         <source>Spreadsheet template</source>
-        <translation>Šablona tabulky</translation>
+        <translation>Šablona sešitu Excel Open XML</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="214"/>
         <location filename="../src/components/cfiledialog.cpp" line="83"/>
         <source>Presentation template</source>
-        <translation>Šablona prezentace</translation>
+        <translation>Šablona prezentace PowerPoint Open XML</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="216"/>
         <location filename="../src/components/cfiledialog.cpp" line="67"/>
         <source>Document template</source>
-        <translation>Šablona dokumentu</translation>
+        <translation>Šablona dokumentu Word Open XML</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="237"/>
         <source>Theme file</source>
-        <translation type="unfinished"></translation>
+        <translation>Soubor s motivem</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="269"/>
@@ -609,7 +609,7 @@
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="1227"/>
         <source>There are no pages set to print.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nejsou nastaveny žádné stránky k tisku.</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="1363"/>
@@ -815,17 +815,17 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="98"/>
         <source>An error occurred while check updates: the Update Service is not installed or is not running!</source>
-        <translation type="unfinished"></translation>
+        <translation>Při kontrole aktualizací došlo k chybě: Aktualizační služba není nainstalována nebo není spuštěna!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="99"/>
         <source>An error occurred while loading updates: the Update Service is not installed or is not running!</source>
-        <translation type="unfinished"></translation>
+        <translation>Při načítání aktualizací došlo k chybě: Aktualizační služba není nainstalována nebo není spuštěna!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="100"/>
         <source>An error occurred while unzip updates: the Update Service is not installed or is not running!</source>
-        <translation type="unfinished"></translation>
+        <translation>Při rozbalování aktualizací došlo k chybě: Aktualizační služba není nainstalována nebo není spuštěna!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="101"/>
@@ -847,7 +847,7 @@
         <location filename="../src/cupdatemanager.cpp" line="821"/>
         <location filename="../src/cupdatemanager.cpp" line="844"/>
         <source>New version</source>
-        <translation>Aktualizovaná verze</translation>
+        <translation>Nová verze</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="845"/>
@@ -947,7 +947,7 @@
         <location filename="../src/platform_linux/updatedialog.cpp" line="49"/>
         <location filename="../src/platform_win/updatedialog.cpp" line="52"/>
         <source>Restart Now</source>
-        <translation type="unfinished"></translation>
+        <translation>Restartovat nyní</translation>
     </message>
     <message>
         <source>Install on Next Start</source>
@@ -1042,38 +1042,38 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="336"/>
         <source>File %1 is already loaded. Replace it?</source>
-        <translation type="unfinished"></translation>
+        <translation>Soubor %1 je již načten. Nahradit jej?</translation>
     </message>
     <message>
         <location filename="../src/components/cdownloadwidget.cpp" line="124"/>
         <source>B</source>
-        <translation type="unfinished"></translation>
+        <translation>B</translation>
     </message>
     <message>
         <location filename="../src/components/cdownloadwidget.cpp" line="127"/>
         <source>kB</source>
-        <translation type="unfinished"></translation>
+        <translation>kB</translation>
     </message>
     <message>
         <location filename="../src/components/cdownloadwidget.cpp" line="129"/>
         <source>MB</source>
-        <translation type="unfinished"></translation>
+        <translation>MB</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/gtkprintdialog.cpp" line="543"/>
         <source>The syntaxis for the page range is invalid.&lt;br&gt;Enter one or more page ranges, for example: 1-3,7,11.</source>
-        <translation type="unfinished"></translation>
+        <translation>Syntaxe pro rozsah stránek je neplatná.&lt;br&gt;Zadejte jeden nebo více rozsahů stránek, například: 1-3,7,11.</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/gtkprintdialog.cpp" line="583"/>
         <location filename="../src/platform_win/printdialog.cpp" line="525"/>
         <source>Specified range %1-%2 exceeds document limits: maximum number of pages is %3</source>
-        <translation type="unfinished"></translation>
+        <translation>Zadaný rozsah %1-%2 překračuje limity dokumentu: maximální počet stránek je %3</translation>
     </message>
     <message>
         <location filename="../src/platform_win/printdialog.cpp" line="484"/>
         <source>Unable to open print dialog:&lt;br&gt;%1</source>
-        <translation type="unfinished"></translation>
+        <translation>Nelze otevřít dialogové okno pro tisk:&lt;br&gt;%1</translation>
     </message>
 </context>
 <context>

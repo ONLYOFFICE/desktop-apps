@@ -350,12 +350,12 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="66"/>
         <source>DOCX Document</source>
-        <translation>Dokument DOCX</translation>
+        <translation>Office Open XML Dokument</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="70"/>
         <source>OpenDocument Document template</source>
-        <translation>Predložak dokumenta OpenDocument</translation>
+        <translation>OpenDocument Predložak dokumenta</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="78"/>
@@ -365,7 +365,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="85"/>
         <source>OpenDocument Presentation Template</source>
-        <translation>Predložak prezentacije OpenDocument</translation>
+        <translation>OpenDocument Predložak prezentacije</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="91"/>
@@ -375,7 +375,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="94"/>
         <source>OpenDocument Spreadsheet Template</source>
-        <translation>Predložak proračunske tablice OpenDocument</translation>
+        <translation>OpenDocument Predložak tablice</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="95"/>
@@ -489,19 +489,19 @@
         <location filename="../src/ceditortools.cpp" line="211"/>
         <location filename="../src/components/cfiledialog.cpp" line="90"/>
         <source>Spreadsheet template</source>
-        <translation>Predložak proračunske tablice</translation>
+        <translation>Excel Open XML Predložak tablice</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="214"/>
         <location filename="../src/components/cfiledialog.cpp" line="83"/>
         <source>Presentation template</source>
-        <translation>Predložak prezentacije</translation>
+        <translation>PowerPoint Open XML Predložak prezentacije</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="216"/>
         <location filename="../src/components/cfiledialog.cpp" line="67"/>
         <source>Document template</source>
-        <translation>Predložak dokumenta</translation>
+        <translation>Word Open XML Predložak dokumenta</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="237"/>

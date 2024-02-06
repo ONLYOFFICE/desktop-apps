@@ -215,7 +215,7 @@
     <message>
         <location filename="../src/windows/ceditorwindow_p.h" line="594"/>
         <source>There are no pages set to print.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nav nevienas lapas, ko drukāt.</translation>
     </message>
 </context>
 <context>
@@ -350,22 +350,22 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="66"/>
         <source>DOCX Document</source>
-        <translation>DOCX dokuments</translation>
+        <translation>Office Open XML dokuments</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="70"/>
         <source>OpenDocument Document template</source>
-        <translation>OpenDocument dokumenta veidne</translation>
+        <translation>OpenDocument Dokumenta veidne</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="78"/>
         <source>ONLYOFFICE Form Document (*.pdf)</source>
-        <translation type="unfinished"></translation>
+        <translation>ONLYOFFICE veidlapas dokuments (*.pdf)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="85"/>
         <source>OpenDocument Presentation Template</source>
-        <translation>OpenDocument prezentācijas veidne</translation>
+        <translation>OpenDocument Prezentācijas veidne</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="91"/>
@@ -375,7 +375,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="94"/>
         <source>OpenDocument Spreadsheet Template</source>
-        <translation>OpenDocument izklājlapas veidne</translation>
+        <translation>OpenDocument Izklājlapas veidne</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="95"/>
@@ -489,24 +489,24 @@
         <location filename="../src/ceditortools.cpp" line="211"/>
         <location filename="../src/components/cfiledialog.cpp" line="90"/>
         <source>Spreadsheet template</source>
-        <translation>Izklājlapas veidne</translation>
+        <translation>Excel Open XML Izklājlapas veidne</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="214"/>
         <location filename="../src/components/cfiledialog.cpp" line="83"/>
         <source>Presentation template</source>
-        <translation>Prezentācijas veidne</translation>
+        <translation>PowerPoint Open XML Prezentācijas veidne</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="216"/>
         <location filename="../src/components/cfiledialog.cpp" line="67"/>
         <source>Document template</source>
-        <translation>Dokumenta veidne</translation>
+        <translation>Word Open XML Dokumenta veidne</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="237"/>
         <source>Theme file</source>
-        <translation type="unfinished"></translation>
+        <translation>Motīva fails</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="269"/>
@@ -593,7 +593,7 @@
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="1227"/>
         <source>There are no pages set to print.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nav nevienas lapas, ko drukāt.</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="1363"/>
@@ -752,37 +752,37 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="80"/>
         <source>An error occured while unpacking the archive</source>
-        <translation type="unfinished"></translation>
+        <translation>Atpakojot arhīvu, radās kļūda</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="81"/>
         <source>Update download failed: out of memory!</source>
-        <translation type="unfinished"></translation>
+        <translation>Neizdevās lejupielādēt atjauninājumu: trūkst atmiņas!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="82"/>
         <source>Update download failed: server connection error!</source>
-        <translation type="unfinished"></translation>
+        <translation>Neizdevās lejupielādēt atjauninājumu: servera savienojuma kļūda!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="83"/>
         <source>Update download failed: wrong URL!</source>
-        <translation type="unfinished"></translation>
+        <translation>Neizdevās lejupielādēt atjauninājumu: nepareizs vietrādis URL!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="84"/>
         <source>Update download failed: unable to create file!</source>
-        <translation type="unfinished"></translation>
+        <translation>Neizdevās lejupielādēt atjauninājumu: nevar izveidot failu!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="85"/>
         <source>Update download failed: network error!</source>
-        <translation type="unfinished"></translation>
+        <translation>Neizdevās lejupielādēt atjauninājumu: tīkla kļūda!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="86"/>
         <source>A service error has occurred!</source>
-        <translation type="unfinished"></translation>
+        <translation>Radās pakalpojuma kļūda!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="88"/>
@@ -792,22 +792,22 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="98"/>
         <source>An error occurred while check updates: the Update Service is not installed or is not running!</source>
-        <translation type="unfinished"></translation>
+        <translation>Pārbaudot atjauninājumus, radās kļūda: atjaunināšanas pakalpojums nav instalēts vai nedarbojas!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="99"/>
         <source>An error occurred while loading updates: the Update Service is not installed or is not running!</source>
-        <translation type="unfinished"></translation>
+        <translation>Ielādējot atjauninājumus, radās kļūda: atjaunināšanas pakalpojums nav instalēts vai nedarbojas!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="100"/>
         <source>An error occurred while unzip updates: the Update Service is not installed or is not running!</source>
-        <translation type="unfinished"></translation>
+        <translation>Izpakojot atjauninājumus, radās kļūda: atjaunināšanas pakalpojums nav instalēts vai nedarbojas!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="101"/>
         <source>Error opening JSON file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Atverot JSON failu, radās kļūda.</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="819"/>
@@ -824,12 +824,12 @@
         <location filename="../src/cupdatemanager.cpp" line="821"/>
         <location filename="../src/cupdatemanager.cpp" line="844"/>
         <source>New version</source>
-        <translation type="unfinished"></translation>
+        <translation>Jauna versija</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="845"/>
         <source>To finish updating, restart the app</source>
-        <translation type="unfinished"></translation>
+        <translation>Lai pabeigtu atjaunināšanu, restartējiet lietotni</translation>
     </message>
     <message>
         <source>Update version</source>
@@ -910,13 +910,13 @@
         <location filename="../src/platform_linux/updatedialog.cpp" line="48"/>
         <location filename="../src/platform_win/updatedialog.cpp" line="51"/>
         <source>Later</source>
-        <translation type="unfinished"></translation>
+        <translation>Vēlāk</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/updatedialog.cpp" line="49"/>
         <location filename="../src/platform_win/updatedialog.cpp" line="52"/>
         <source>Restart Now</source>
-        <translation type="unfinished"></translation>
+        <translation>Restartēt tagad</translation>
     </message>
     <message>
         <source>Install later</source>
@@ -930,7 +930,7 @@
         <location filename="../src/platform_linux/updatedialog.cpp" line="50"/>
         <location filename="../src/platform_win/updatedialog.cpp" line="53"/>
         <source>Save and Install Now</source>
-        <translation>Instalēt</translation>
+        <translation>Saglabājiet un instalējiet tūlīt</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/updatedialog.cpp" line="51"/>
@@ -1011,38 +1011,38 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="336"/>
         <source>File %1 is already loaded. Replace it?</source>
-        <translation type="unfinished"></translation>
+        <translation>Fails %1 jau ir ielādēts. Vai to aizstāt?</translation>
     </message>
     <message>
         <location filename="../src/components/cdownloadwidget.cpp" line="124"/>
         <source>B</source>
-        <translation type="unfinished"></translation>
+        <translation>B</translation>
     </message>
     <message>
         <location filename="../src/components/cdownloadwidget.cpp" line="127"/>
         <source>kB</source>
-        <translation type="unfinished"></translation>
+        <translation>KB</translation>
     </message>
     <message>
         <location filename="../src/components/cdownloadwidget.cpp" line="129"/>
         <source>MB</source>
-        <translation type="unfinished"></translation>
+        <translation>MB</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/gtkprintdialog.cpp" line="543"/>
         <source>The syntaxis for the page range is invalid.&lt;br&gt;Enter one or more page ranges, for example: 1-3,7,11.</source>
-        <translation type="unfinished"></translation>
+        <translation>Lapu diapazona sintakse ir nederīga.&lt;br&gt;Ievadiet vienu vai vairākus lappušu diapazonus, piemēram: 1-3,7,11.</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/gtkprintdialog.cpp" line="583"/>
         <location filename="../src/platform_win/printdialog.cpp" line="525"/>
         <source>Specified range %1-%2 exceeds document limits: maximum number of pages is %3</source>
-        <translation type="unfinished"></translation>
+        <translation>Norādītais diapazons %1–%2 pārsniedz dokumenta ierobežojumus: maksimālais lappušu skaits ir %3</translation>
     </message>
     <message>
         <location filename="../src/platform_win/printdialog.cpp" line="484"/>
         <source>Unable to open print dialog:&lt;br&gt;%1</source>
-        <translation type="unfinished"></translation>
+        <translation>Nevar atvērt drukāšanas dialoglodziņu:&lt;br&gt;%1</translation>
     </message>
 </context>
 <context>
