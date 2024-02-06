@@ -56,6 +56,7 @@ namespace NS_Utils
 {
 wstring GetLastErrorAsString();
 void ShowMessage(wstring str, bool showError = false);
+bool IsRtlLanguage(unsigned long lcid);
 }
 
 namespace NS_File

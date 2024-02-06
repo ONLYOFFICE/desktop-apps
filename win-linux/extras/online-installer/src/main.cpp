@@ -40,7 +40,8 @@ int WINAPI _tWinMain(_In_ HINSTANCE hInst, _In_opt_ HINSTANCE hPrevInstance, _In
 {
     UNREFERENCED_PARAMETER(hPrevInstance);
     std::locale::global(std::locale(""));
-    Translator lang(GetUserDefaultUILanguage(), IDT_TRANSLATIONS);
+    LCID lcid = MAKELCID(GetUserDefaultUILanguage(), SORT_DEFAULT);
+    Translator lang(lcid, IDT_TRANSLATIONS);
     HANDLE hMutex = CreateMutex(NULL, FALSE, _T(VER_PRODUCTNAME_STR));
     if (GetLastError() == ERROR_ALREADY_EXISTS) {
         NS_Utils::ShowMessage(_TR(MESSAGE_TEXT_ERR2));
@@ -81,7 +82,7 @@ int WINAPI _tWinMain(_In_ HINSTANCE hInst, _In_opt_ HINSTANCE hPrevInstance, _In
     data.file_name = &fileName;
 
     InitCommonControls();
-    HWND hDlg = CreateDialogParam(hInst, MAKEINTRESOURCE(IDD_DIALOG), NULL, DialogProc, (LPARAM)&data);
+    HWND hDlg = CreateDialogParam(hInst, MAKEINTRESOURCE(NS_Utils::IsRtlLanguage(lcid) ? IDD_DIALOG_RTL : IDD_DIALOG), NULL, DialogProc, (LPARAM)&data);
     ShowWindow(hDlg, nCmdShow);
 
     BOOL ret;

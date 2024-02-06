@@ -41,6 +41,10 @@
 #include <sstream>
 
 #define _TR(str) Translator::tr(str).c_str()
+#define BIT123_LAYOUTRTL 0x08000000
+#ifndef LOCALE_IREADINGLAYOUT
+# define LOCALE_IREADINGLAYOUT 0x70
+#endif
 
 
 namespace NS_Utils
@@ -66,6 +70,20 @@ namespace NS_Utils
         wstring caption(_T("    "));
         caption.append(_TR(CAPTION_TEXT));
         MessageBox(NULL, str.c_str(), caption.c_str(), MB_ICONERROR | MB_SERVICE_NOTIFICATION_NT3X | MB_SETFOREGROUND);
+    }
+
+    bool IsRtlLanguage(unsigned long lcid)
+    {
+        if (NS_File::getWinVersion() >= WinVer::Win7) {
+            DWORD layout = 0;
+            if (GetLocaleInfo(lcid, LOCALE_IREADINGLAYOUT | LOCALE_RETURN_NUMBER, (LPWSTR)&layout, sizeof(layout)/sizeof(WCHAR)) > 0)
+                return layout == 1;
+        } else {
+            LOCALESIGNATURE lsig;
+            if (GetLocaleInfo(lcid, LOCALE_FONTSIGNATURE, (LPWSTR)&lsig, sizeof(lsig)/sizeof(WCHAR)) > 0)
+                return (lsig.lsUsb[3] & BIT123_LAYOUTRTL) != 0;
+        }
+        return false;
     }
 }
 
@@ -158,41 +176,28 @@ namespace NS_File
 
     WinVer getWinVersion()
     {
-        NTSTATUS(WINAPI *RtlGetVersion)(LPOSVERSIONINFOEXW);
-        *(FARPROC*)&RtlGetVersion = GetProcAddress(GetModuleHandleA("ntdll"), "RtlGetVersion");
-        if (RtlGetVersion != NULL) {
-            OSVERSIONINFOEXW osInfo;
-            osInfo.dwOSVersionInfoSize = sizeof(osInfo);
-            RtlGetVersion(&osInfo);
-
-            if (osInfo.dwMajorVersion == 5L && (osInfo.dwMinorVersion == 1L || osInfo.dwMinorVersion == 2L))
-                return WinVer::WinXP;
-            else
-            if (osInfo.dwMajorVersion == 6L && osInfo.dwMinorVersion == 0L)
-                return  WinVer::WinVista;
-            else
-            if (osInfo.dwMajorVersion == 6L && osInfo.dwMinorVersion == 1L)
-                return  WinVer::Win7;
-            else
-            if (osInfo.dwMajorVersion == 6L && osInfo.dwMinorVersion == 2L)
-                return  WinVer::Win8;
-            else
-            if (osInfo.dwMajorVersion == 6L && osInfo.dwMinorVersion == 3L)
-                return  WinVer::Win8_1;
-            else
-            if (osInfo.dwMajorVersion == 10L) {
-                if (osInfo.dwMinorVersion == 0L) {
-                    if (osInfo.dwBuildNumber < 22000)
-                        return  WinVer::Win10;
-                    else
-                        return  WinVer::Win11;
-                } else
-                    return  WinVer::Win11;
-            } else
-                if (osInfo.dwMajorVersion > 10L)
-                    return  WinVer::Win11;
+        static WinVer winVer = WinVer::Undef;
+        if (winVer == WinVer::Undef) {
+            if (HMODULE module = GetModuleHandleA("ntdll")) {
+                NTSTATUS(WINAPI *RtlGetVersion)(LPOSVERSIONINFOEXW);
+                *(FARPROC*)&RtlGetVersion = GetProcAddress(module, "RtlGetVersion");
+                if (RtlGetVersion) {
+                    OSVERSIONINFOEXW os = {0};
+                    os.dwOSVersionInfoSize = sizeof(os);
+                    RtlGetVersion(&os);
+                    winVer = os.dwMajorVersion == 5L && (os.dwMinorVersion == 1L || os.dwMinorVersion == 2L) ? WinVer::WinXP :
+                             os.dwMajorVersion == 6L && os.dwMinorVersion == 0L ? WinVer::WinVista :
+                             os.dwMajorVersion == 6L && os.dwMinorVersion == 1L ? WinVer::Win7 :
+                             os.dwMajorVersion == 6L && os.dwMinorVersion == 2L ? WinVer::Win8 :
+                             os.dwMajorVersion == 6L && os.dwMinorVersion == 3L ? WinVer::Win8_1 :
+                             os.dwMajorVersion == 10L && os.dwMinorVersion == 0L && os.dwBuildNumber < 22000 ? WinVer::Win10 :
+                             os.dwMajorVersion == 10L && os.dwMinorVersion == 0L && os.dwBuildNumber >= 22000 ? WinVer::Win11 :
+                             os.dwMajorVersion == 10L && os.dwMinorVersion > 0L ? WinVer::Win11 :
+                             os.dwMajorVersion > 10L ? WinVer::Win11 : WinVer::Undef;
+                }
+            }
         }
-        return WinVer::Undef;
+        return winVer;
     }
 
 //    bool verifyEmbeddedSignature(const wstring &fileName)
