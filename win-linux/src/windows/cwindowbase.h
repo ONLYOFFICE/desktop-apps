@@ -44,7 +44,7 @@
 #define BUTTON_MAIN_WIDTH   112
 #define MAIN_WINDOW_BORDER_WIDTH 1
 #define WINDOW_TITLE_MIN_WIDTH 200
-#define TOOLBTN_HEIGHT      28
+#define TOOLBTN_HEIGHT      32
 #define TOOLBTN_WIDTH       40
 #ifdef _WIN32
 # define TITLEBTN_WIDTH     40
