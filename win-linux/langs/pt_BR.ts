@@ -1099,6 +1099,7 @@
     <message>
         <location filename="../src/platform_linux/gtkprintdialog.cpp" line="543"/>
         <source>The syntaxis for the page range is invalid.&lt;br&gt;Enter one or more page ranges, for example: 1-3,7,11.</source>
+feature/new_ts_01-24
         <translation>A sintaxe do intervalo de páginas é inválida.&lt;br&gt;Insira um ou mais intervalos de páginas, por exemplo: 1-3,7,11.</translation>
     </message>
     <message>

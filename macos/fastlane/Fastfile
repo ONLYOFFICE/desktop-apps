@@ -42,6 +42,10 @@ platform :mac do
       path: "ONLYOFFICE/Resources/#{scheme}/Info.plist",
       key: "CFBundleVersion"
     )
+    app_build_number = get_info_plist_value(
+      path: "ONLYOFFICE/Resources/#{scheme}/Info.plist",
+      key: "ASCBundleBuildNumber"
+    )
 
     desc 'Build for developer id and notarize'
     gym(
@@ -66,7 +70,7 @@ platform :mac do
 
     desc 'Create DMG image'
     sh("npm install appdmg")
-    sh("npx appdmg resources/appdmg.json ../#{build}/#{scheme}-#{version_number}.dmg")
+    sh("npx appdmg resources/appdmg.json ../#{build}/#{scheme}-#{version_number}-#{app_build_number}.dmg")
 
     if options[:skip_git_bump]
       next

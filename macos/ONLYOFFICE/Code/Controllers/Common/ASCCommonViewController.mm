@@ -363,7 +363,7 @@
             tab.params      = [@{
                 @"action": @(ASCTabActionOpenUrl),
                 @"title": [NSString stringWithFormat:@"%@...", NSLocalizedString(@"Opening", nil)],
-                @"url": link.absoluteString
+                @"url": [link.absoluteString stringByRemovingPercentEncoding]
             } mutableCopy];
 
             [self.tabsControl addTab:tab selected:YES];
@@ -1904,9 +1904,14 @@
             }
             case ASCTabActionOpenLocalRecentFile: {
                 NSInteger docId = [tab.params[@"fileId"] intValue];
-//                NSString * filePath = tab.params[@"path"];
                 
-                [cefView openRecentFileWithId:docId];
+                if ( !(docId < 0) )
+                    [cefView openRecentFileWithId:docId];
+                else {
+                    NSString * filePath = tab.params[@"path"];
+                    if ( filePath && filePath.length )
+                        [cefView loadWithUrl:filePath];
+                }
                     
                 [[AnalyticsHelper sharedInstance] recordCachedEventWithCategory:ASCAnalyticsCategoryApplication
                                                                              action:@"Open local file"

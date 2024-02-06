@@ -100,6 +100,7 @@ public:
     void setMouseTracking(bool);
 #endif
     void doOpenLocalFile(COpenOptions&);
+    void handleWindowAction(const std::wstring& action);
     virtual void setScreenScalingFactor(double, bool resize = true) final;
     virtual void updateScalingFactor(double) final;
 
@@ -162,6 +163,8 @@ private:
     int              m_saveAction = 0;
 
     bool m_isCloseAll = false;
+    bool m_isStartPageReady = false;
+    std::wstring m_keepedAction;
 
 private slots:
     virtual void onCloseEvent() final;
