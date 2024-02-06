@@ -98,8 +98,11 @@ void CMainWindowImpl::refreshAboutVersion()
 
     GET_REGISTRY_USER(reg_user);
     _json_obj["editorwindowmode"] = reg_user.value("editorWindowMode",false).toBool();
+
+#ifndef __OS_WIN_XP
     _json_obj["rtl"] = reg_user.contains("forcedRtl") ? reg_user.value("forcedRtl", false).toBool() :
                            CLangater::isRtlLanguage(CLangater::getCurrentLangCode());
+#endif
 
     // Read update settings
 #ifdef _UPDMODULE
