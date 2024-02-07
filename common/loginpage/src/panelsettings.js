@@ -521,6 +521,8 @@
                                 $panel.find('.settings-field-lang label[l10n]').after(`<label class='sett__caption'>*</label>`);
                                 $('#caption-restart', $panel).show();
                             }
+
+                            $(document.body).toggleClass('rtl-font', _is_lang_rtl(opts.locale.current));
                         }
 
                         if ( opts.uiscaling != undefined && !$optsUIScaling ) {
