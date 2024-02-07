@@ -47,7 +47,7 @@ QPushButton#toolButtonClose:pressed {background-color: #d75050;}
 /* 2x */
 #mainPanel[zoom="2x"] #toolButtonMinimize,
 #mainPanel[zoom="2x"] #toolButtonClose,
-#mainPanel[zoom="2x"] #toolButtonMaximize {padding: 10px 0px 14px;}
+#mainPanel[zoom="2x"] #toolButtonMaximize {padding: 12px 0px 16px;}
 #mainPanel[zoom="2x"] #iconuser {font-size: 21px;}
 #mainPanel[zoom="2x"] #labelTitle {font-size: 24px;}
 
