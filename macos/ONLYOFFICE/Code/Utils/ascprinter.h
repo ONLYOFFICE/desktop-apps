@@ -94,7 +94,6 @@ public:
     ASCPrinterInfo *        m_pPrinterInfo;
 
     std::vector<bool>       m_arOrientation; // true - Horizontal
-//	bool 					m_bLock;
 }
 
 - (id) initWithParams:(CGRect)frame manager:(CAscApplicationManager*)_manager viewId:(int)_viewId info:(ASCPrinterInfo*)_info;
@@ -112,7 +111,6 @@ public:
         m_pManager      = _manager;
         m_pView         = m_pManager->GetViewById(_viewId);
         m_pPrinterInfo  = _info;
-//		m_bLock 		= false;
     }
     return self;
 }
@@ -152,6 +150,23 @@ public:
 	[pInfo setOrientation:NSPaperOrientationPortrait];
 	[self fillInfo];
 	m_arOrientation.resize(m_pPrinterInfo->m_nPagesCount);
+	for (int nPage = 0; nPage < m_pPrinterInfo->m_nPagesCount; nPage++)
+	{
+		NSEditorApi::CAscMenuEvent* pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_PRINT_PAGE_CHECK);
+		NSEditorApi::CAscPrintPage* pData = new NSEditorApi::CAscPrintPage();
+		pData->put_Context(m_pPrinterInfo->m_pContext);
+		m_pPrinterInfo->m_pContext->AddRef();
+
+		pData->put_Page(nPage);
+
+		pEvent->m_pData = pData;
+		m_pView->Apply(pEvent);
+
+		m_arOrientation[nPage] = pData->get_IsRotate();
+		NSLog(@"[knowsPageRange] Set orientation for page %d: %d", nPage, pData->get_IsRotate());
+
+		pEvent->Release();
+	}
 
 	range->location = 1;
 	range->length   = m_pPrinterInfo->m_nPagesCount;
@@ -194,83 +209,47 @@ public:
         free(pResolutions);
     }
 
-    double dKoefX = m_pPrinterInfo->m_dDpiX / 72.0;
-    double dKoefY = m_pPrinterInfo->m_dDpiY / 72.0;
-
-    m_pPrinterInfo->m_nPaperWidthOrigin = (int)pInfo.paperSize.width;
-    m_pPrinterInfo->m_nPaperHeightOrigin = (int)pInfo.paperSize.height;
-
-    m_pPrinterInfo->m_nPaperWidth = (int)(dKoefX * pInfo.paperSize.width);
-    m_pPrinterInfo->m_nPaperHeight = (int)(dKoefY * pInfo.paperSize.height);
-	NSLog(@"[fillInfo] Set page sizes: %d, %d", m_pPrinterInfo->m_nPaperWidth, m_pPrinterInfo->m_nPaperHeight);
+	[self recalcPageSizes];
 }
 
 // Recalculate actual page sizes and margins taking into account orientation.
 - (void) recalcPageSizes
 {
 	NSPrintInfo* pInfo = [[NSPrintOperation currentOperation] printInfo];
-	NSRect _rectMargins = pInfo.imageablePageBounds;
 
 	double dKoefX = m_pPrinterInfo->m_dDpiX / 72.0;
 	double dKoefY = m_pPrinterInfo->m_dDpiY / 72.0;
+	NSLog(@"[recalcPageSizes] DPI: %.2f, %.2f", m_pPrinterInfo->m_dDpiX, m_pPrinterInfo->m_dDpiY);
 
-	m_pPrinterInfo->m_nPaperWidthActual = (int)(dKoefX * pInfo.paperSize.width);
-	m_pPrinterInfo->m_nPaperHeightActual = (int)(dKoefY * pInfo.paperSize.height);
-	NSLog(@"[recalcSizes] Set actual page sizes: %d, %d", m_pPrinterInfo->m_nPaperWidthActual, m_pPrinterInfo->m_nPaperHeightActual);
+	m_pPrinterInfo->m_nPaperWidthOrigin = (int)pInfo.paperSize.width;
+	m_pPrinterInfo->m_nPaperHeightOrigin = (int)pInfo.paperSize.height;
+
+	NSRect _rectMargins = pInfo.imageablePageBounds;
+
+	m_pPrinterInfo->m_nPaperWidth = (int)(dKoefX * pInfo.paperSize.width);
+	m_pPrinterInfo->m_nPaperHeight = (int)(dKoefY * pInfo.paperSize.height);
+	NSLog(@"[recalcPageSizes] Set page sizes: %d, %d", m_pPrinterInfo->m_nPaperWidth, m_pPrinterInfo->m_nPaperHeight);
 
 	m_pPrinterInfo->m_nMarginLeft = (int)(dKoefX * _rectMargins.origin.x);
-	m_pPrinterInfo->m_nMarginRight = (int)(dKoefX * (pInfo.paperSize.width - (_rectMargins.origin.x + _rectMargins.size.width)));
-	m_pPrinterInfo->m_nMarginTop = (int)(dKoefY * (pInfo.paperSize.height - (_rectMargins.origin.y + _rectMargins.size.height)));
+	m_pPrinterInfo->m_nMarginRight = (int)(dKoefX * (m_pPrinterInfo->m_nPaperWidthOrigin - (_rectMargins.origin.x + _rectMargins.size.width)));
+	m_pPrinterInfo->m_nMarginTop = (int)(dKoefY * (m_pPrinterInfo->m_nPaperHeightOrigin - (_rectMargins.origin.y + _rectMargins.size.height)));
 	m_pPrinterInfo->m_nMarginBottom = (int)(dKoefY * _rectMargins.origin.y);
 }
 
 - (NSRect)rectForPage:(NSInteger)page
 {
-//    [self fillInfo];
-//	if (m_bLock)
-//	{
-//		m_bLock = false;
-//		NSLog(@"Unlocked");
-//	}
-
     int nPage = (int)(page - 1);
     if (nPage < m_pPrinterInfo->m_nPagesCount)
     {
         NSPrintInfo* pInfo = [[NSPrintOperation currentOperation] printInfo];
 
-		NSEditorApi::CAscMenuEvent* pEvent = new NSEditorApi::CAscMenuEvent(ASC_MENU_EVENT_TYPE_CEF_PRINT_PAGE_CHECK);
-		NSEditorApi::CAscPrintPage* pData = new NSEditorApi::CAscPrintPage();
-		pData->put_Context(m_pPrinterInfo->m_pContext);
-		m_pPrinterInfo->m_pContext->AddRef();
-
-		pData->put_Page(nPage);
-
-		pEvent->m_pData = pData;
-		m_pView->Apply(pEvent);
-		/* NOTE:
-		 * Seems that this event checks if sheet is ALREADY right positioned or not. And if it is not, then IsRotate would be `true`.
-		 * BUT for landscape sheets width and height may be swaped!
-		 */
-
-		m_arOrientation[nPage] = pData->get_IsRotate();
-		NSLog(@"[rectForPage] Set orientation for page %d: %d", nPage, pData->get_IsRotate());
-
-		pEvent->Release();
-
 		NSLog(@"[rectForPage] Applying orientation %d for page %d (previous orientation: %d)", (int)m_arOrientation[nPage], nPage, (int)[pInfo orientation]);
         [pInfo setOrientation: (m_arOrientation[nPage]) ? NSPaperOrientationLandscape : NSPaperOrientationPortrait];
-
+		// update page sizes and margins
 		[self recalcPageSizes];
     }
 
-	// fill info AFTER changing the orientation
-//	[self fillInfo];
-
-	/* NOTE:
-	 * This rect sets not size of page, but size of printed content INSIDE of the page.
-	 * Hence it should take ACTUAL sizes of page with orientation applied.
-	 */
-    NSRect R = NSMakeRect( 0, 0, m_pPrinterInfo->m_nPaperWidthActual, m_pPrinterInfo->m_nPaperHeightActual );
+    NSRect R = NSMakeRect( 0, 0, m_pPrinterInfo->m_nPaperWidth, m_pPrinterInfo->m_nPaperHeight );
 	NSLog(@"[rectForPage] Applied actual rect sizes for page %d", nPage);
     [self setFrame: R];
     return R;
