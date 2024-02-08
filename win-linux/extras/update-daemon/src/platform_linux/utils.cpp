@@ -33,6 +33,7 @@
 #include "platform_linux/utils.h"
 #include "version.h"
 #include <fstream>
+#include <stack>
 #include <algorithm>
 #include <sys/stat.h>
 #include <gtk/gtk.h>
@@ -324,15 +325,16 @@ namespace NS_File
 
     bool makePath(const string &path)
     {
-        list<string> pathsList;
+        std::stack<string> pathsList;
         string last_path(path);
         while (!last_path.empty() && !dirExists(last_path)) {
-            pathsList.push_front(last_path);
+            pathsList.push(last_path);
             last_path = parentPath(last_path);
         }
-        for (list<string>::iterator it = pathsList.begin(); it != pathsList.end(); ++it) {
-            if (mkdir(it->c_str(), S_IRWXU | S_IRWXG | S_IRWXO) != 0)
+        while(!pathsList.empty()) {
+            if (mkdir(pathsList.top().c_str(), S_IRWXU | S_IRWXG | S_IRWXO) != 0)
                 return false;
+            pathsList.pop();
         }
         return true;
     }

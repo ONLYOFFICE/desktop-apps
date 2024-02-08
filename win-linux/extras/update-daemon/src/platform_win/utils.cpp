@@ -44,6 +44,7 @@
 #include <TlHelp32.h>
 #include <userenv.h>
 #include <vector>
+#include <stack>
 #include <sstream>
 #include "../../src/defines.h"
 #include "../../src/prop/defines_p.h"
@@ -371,15 +372,16 @@ namespace NS_File
 
     bool makePath(const wstring &path)
     {
-        list<wstring> pathsList;
+        std::stack<wstring> pathsList;
         wstring last_path(path);
         while (!last_path.empty() && !dirExists(last_path)) {
-            pathsList.push_front(last_path);
+            pathsList.push(last_path);
             last_path = parentPath(last_path);
         }
-        for (list<wstring>::iterator it = pathsList.begin(); it != pathsList.end(); ++it) {
-            if (::CreateDirectory(it->c_str(), NULL) == 0)
+        while(!pathsList.empty()) {
+            if (::CreateDirectory(pathsList.top().c_str(), NULL) == 0)
                 return false;
+            pathsList.pop();
         }
         return true;
     }
