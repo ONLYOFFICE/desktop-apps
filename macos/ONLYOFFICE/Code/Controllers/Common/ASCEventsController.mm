@@ -330,11 +330,18 @@ public:
                         
                         // End hotfix ODP presentation
                         
+                        NSDictionary * formatInfo = [ASCConstants ascFormatsInfo][@(pData->get_FileType())];
+                        NSDictionary * originalFileInfo = @{
+                                                        @"type"         : @(pData->get_FileType()),
+                                                        @"typeInfo"     : formatInfo ? formatInfo : @{}
+                                                        };
+
                         [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameSaveLocal
                                                                             object:nil
                                                                           userInfo:@{
                                                                                      @"path"    : [NSString stringWithstdwstring:pData->get_Path()],
-                                                                                     @"fileType": @(pData->get_FileType()),
+//                                                                                     @"fileType": @(pData->get_FileType()),
+                                                                                     @"original": originalFileInfo,
                                                                                      @"supportedFormats" : supportFormats,
                                                                                      @"viewId"  : [NSString stringWithFormat:@"%d", pData->get_Id()]
                                                                                      }];

@@ -109,12 +109,29 @@
     }];
     
     if (NSNotFound == index) {
+        if ( _original ) {
+            NSString * postfix = _original[@"typeInfo"][@"extension"];
+            if ( postfix ) {
+                predicate = [NSPredicate predicateWithFormat:@"self.extension == %@", postfix];
+                index = [_filters indexOfObjectPassingTest:^BOOL(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    return [predicate evaluateWithObject:obj];
+                }];
+            }
+        }
+    }
+
+    if ( NSNotFound == index ) {
         NSInteger selectIndex = MAX([_popupFormats indexOfSelectedItem], 0);
         _filterType = [_filters[selectIndex][@"type"] intValue];
     } else {
         [_popupFormats selectItemAtIndex:index];
         [[self savePanel] setAllowedFileTypes:@[_filters[index][@"extension"]]];
     }
+}
+
+- (void)setOriginal:(NSDictionary *)original {
+    _original = original;
+    [self setFilterType:[original[@"type"] intValue]];
 }
 
 @end

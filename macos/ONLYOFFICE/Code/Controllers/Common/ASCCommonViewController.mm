@@ -583,14 +583,15 @@
         
         [self.tabsControl selectTab:tab];
         
-        __block NSInteger fileType = [params[@"fileType"] intValue];
+//        __block NSInteger fileType = [params[@"fileType"] intValue];
         
         __block ASCSavePanelWithFormatController * saveController = [ASCSavePanelWithFormatController new];
         
         NSSavePanel * savePanel = [saveController savePanel];
         
         saveController.filters = formats;
-        saveController.filterType = fileType;
+        saveController.original = params[@"original"];
+//        saveController.filterType = fileType;
         
         if (!path || path.length < 1) {
             path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
