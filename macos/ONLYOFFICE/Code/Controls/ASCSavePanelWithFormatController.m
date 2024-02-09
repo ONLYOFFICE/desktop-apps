@@ -97,14 +97,13 @@
 }
 
 - (void)setFilterType:(NSInteger)filterType {
-    _filterType = filterType;
-
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"self.type == %@", @(filterType)];
-    
     if ([_filters count] < 1) {
         return;
     }
     
+    _filterType = filterType;
+
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"self.type == %@", @(filterType)];
     NSUInteger index = [_filters indexOfObjectPassingTest:^BOOL(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         return [predicate evaluateWithObject:obj];
     }];
