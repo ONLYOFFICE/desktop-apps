@@ -81,7 +81,7 @@ l10n.en = {
     newDoc: 'Document',
     newXlsx: 'Spreadsheet',
     newPptx: 'Presentation',
-    newForm: 'Form template',
+    newForm: 'PDF Form',
     actCreateNew: 'Create new',
     actRecentFiles: 'Recent files',
     actOpenLocal: 'Open local file',
