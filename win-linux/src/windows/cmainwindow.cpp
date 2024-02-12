@@ -375,6 +375,11 @@ QWidget* CMainWindow::createMainPanel(QWidget *parent)
     QWidget *mainPanel = new QWidget(parent);
     mainPanel->setObjectName("mainPanel");
     mainPanel->setProperty("rtl", AscAppManager::isRtlEnabled());
+#ifdef _WIN32
+    mainPanel->setProperty("unix", false);
+#else
+    mainPanel->setProperty("unix", true);
+#endif
     QGridLayout *_pMainGridLayout = new QGridLayout(mainPanel);
     _pMainGridLayout->setSpacing(0);
     _pMainGridLayout->setObjectName(QString::fromUtf8("mainGridLayout"));
