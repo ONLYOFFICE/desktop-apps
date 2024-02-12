@@ -48,7 +48,7 @@ l10n.hu = {
     newDoc: 'Dokumentum',
     newXlsx: 'Számolótábla',
     newPptx: 'Bemutató',
-    newForm: 'Űrlapsablon',
+    newForm: 'PDF űrlap',
     actCreateNew: 'Új létrehozása',
     actRecentFiles: 'Legutóbbi fájlok',
     actOpenLocal: 'Helyi fájl megnyitása',

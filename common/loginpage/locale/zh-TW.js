@@ -48,7 +48,7 @@ l10n.zh_TW = {
     newDoc: '文件',
     newXlsx: '試算表',
     newPptx: '簡報',
-    newForm: 'Form template',
+    newForm: 'PDF表格',
     actCreateNew: '新增',
     actRecentFiles: '最近使用過的檔案',
     actOpenLocal: '開啟本機檔案',

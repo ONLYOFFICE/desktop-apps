@@ -48,7 +48,7 @@ l10n.pt_BR = {
     newDoc: 'Documento',
     newXlsx: 'Planilha',
     newPptx: 'Apresentação',
-    newForm: 'Modelo de formulário',
+    newForm: 'Formulário PDF',
     actCreateNew: 'Criar novo',
     actRecentFiles: 'Arquivos recentes',
     actOpenLocal: 'Abrir arquivo local',

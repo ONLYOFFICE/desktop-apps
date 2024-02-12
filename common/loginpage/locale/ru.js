@@ -48,7 +48,7 @@ l10n.ru = {
     newDoc: 'Документ',
     newXlsx: 'Таблица',
     newPptx: 'Презентация',
-    newForm: 'Шаблон формы',
+    newForm: 'PDF-форма',
     actCreateNew: 'Создать',
     actRecentFiles: 'Последние файлы',
     actOpenLocal: 'Открыть локальный файл',

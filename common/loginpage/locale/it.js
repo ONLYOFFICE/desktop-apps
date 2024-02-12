@@ -48,7 +48,7 @@ l10n.it_IT = {
     newDoc: 'Documento',
     newXlsx: 'Foglio di calcolo',
     newPptx: 'Presentazione',
-    newForm: 'Modello di modulo',
+    newForm: 'Modulo PDF',
     actCreateNew: 'Crea nuovo',
     actRecentFiles: 'File recenti',
     actOpenLocal: 'Apri file locale',

@@ -48,7 +48,7 @@ l10n.ja = {
     newDoc: 'ドキュメント',
     newXlsx: 'スプレッドシート',
     newPptx: 'プレゼンテーション',
-    newForm: 'フォーム テンプレート',
+    newForm: 'PDFフォーム',
     actCreateNew: '新規作成',
     actRecentFiles: '最近のファイル',
     actOpenLocal: 'ローカルファイルを開く',

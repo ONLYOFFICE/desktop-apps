@@ -48,7 +48,7 @@ l10n.zh_CN = {
     newDoc: '文档',
     newXlsx: '电子表格',
     newPptx: '演示文稿',
-    newForm: '表单模板',
+    newForm: 'PDF表格',
     actCreateNew: '新建',
     actRecentFiles: '最近使用的文件',
     actOpenLocal: '打开本地文件',
