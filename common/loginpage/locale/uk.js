@@ -48,7 +48,7 @@ l10n.uk = {
     newDoc: 'Документ',
     newXlsx: 'Електронна таблиця',
     newPptx: 'Презентація',
-    newForm: 'Шаблон форми',
+    newForm: 'Форма PDF',
     actCreateNew: 'Створити',
     actRecentFiles: 'Останні файли',
     actOpenLocal: 'Відкрити локальний файл',

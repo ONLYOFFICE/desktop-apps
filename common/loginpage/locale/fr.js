@@ -48,7 +48,7 @@ l10n.fr = {
     newDoc: 'Document',
     newXlsx: 'Classeur',
     newPptx: 'Presentation',
-    newForm: 'Modèle de formulaire',
+    newForm: 'Formulaire PDF',
     actCreateNew: 'Créer nouveau',
     actRecentFiles: 'Fichiers récents',
     actOpenLocal: 'Ouvrir fichier local',

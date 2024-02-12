@@ -48,7 +48,7 @@ l10n.nl = {
     newDoc: 'Document',
     newXlsx: 'Spreadsheet',
     newPptx: 'Presentatie',
-    newForm: 'Formulier sjabloon',
+    newForm: 'PDF-formulier',
     actCreateNew: 'Maak nieuwe aan',
     actRecentFiles: 'Recente bestanden',
     actOpenLocal: 'Open lokaal bestand',
