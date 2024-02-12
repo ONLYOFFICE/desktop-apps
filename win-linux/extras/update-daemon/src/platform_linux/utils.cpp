@@ -33,12 +33,15 @@
 #include "platform_linux/utils.h"
 #include "version.h"
 #include <fstream>
-#include <regex>
+#include <algorithm>
 #include <sys/stat.h>
 #include <gtk/gtk.h>
 //#include <openssl/md5.h>
 #include <fcntl.h>
+#include "../../src/defines.h"
+#include "../../src/prop/defines_p.h"
 
+#define APP_CONFIG_PATH "/.config/" REG_GROUP_KEY "/" REG_APP_NAME ".conf"
 //#define BUFSIZE 1024
 
 
@@ -150,6 +153,22 @@ namespace NS_Utils
             pos = lang.find('.');
         }
         return (pos == std::string::npos) ? lang : lang.substr(0, pos);
+    }
+
+    string GetAppLanguage()
+    {
+        string lang = "en_US", value = "locale=", path = string("/home/") + getlogin() + APP_CONFIG_PATH;
+        list<string> lst;
+        NS_File::readFile(path, lst);
+        for (const auto &str : lst) {
+            size_t pos = str.find(value);
+            if (pos != string::npos) {
+                lang = str.substr(pos + value.length());
+                std::replace(lang.begin(), lang.end(), '-', '_');
+                return lang;
+            }
+        }
+        return lang;
     }
 }
 

@@ -57,7 +57,7 @@ int main(int argc, char *argv[])
     if (argc > 1) {
         if (strcmp(argv[1], "--run-as-app") == 0) {
             std::locale::global(std::locale(""));
-            Translator lang(NS_Utils::GetSysLanguage(), "/langs/langs.iss");
+            Translator lang(NS_Utils::GetAppLanguage(), "/langs/langs.iss");
             CSocket socket(0, INSTANCE_SVC_PORT);
             if (!socket.isPrimaryInstance())
                 return 0;
