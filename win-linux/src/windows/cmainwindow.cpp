@@ -32,6 +32,7 @@
 
 #include "windows/cmainwindow.h"
 #include "ceditortools.h"
+#include "clangater.h"
 #include "defines.h"
 #include "utils.h"
 #include "components/cfiledialog.h"
@@ -375,6 +376,12 @@ QWidget* CMainWindow::createMainPanel(QWidget *parent)
     QWidget *mainPanel = new QWidget(parent);
     mainPanel->setObjectName("mainPanel");
     mainPanel->setProperty("rtl", AscAppManager::isRtlEnabled());
+    mainPanel->setProperty("rtl-font", CLangater::isRtlLanguage(CLangater::getCurrentLangCode()));
+#ifdef _WIN32
+    mainPanel->setProperty("unix", false);
+#else
+    mainPanel->setProperty("unix", true);
+#endif
     QGridLayout *_pMainGridLayout = new QGridLayout(mainPanel);
     _pMainGridLayout->setSpacing(0);
     _pMainGridLayout->setObjectName(QString::fromUtf8("mainGridLayout"));

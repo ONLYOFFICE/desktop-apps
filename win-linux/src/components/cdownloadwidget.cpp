@@ -34,6 +34,7 @@
 #include "components/celipsislabel.h"
 #include "components/cmessage.h"
 #include "cascapplicationmanagerwrapper.h"
+#include "clangater.h"
 #include "utils.h"
 #include <QVBoxLayout>
 #include <QLabel>
@@ -209,6 +210,7 @@ CDownloadWidget::CDownloadWidget(QWidget *parent)
             hide();
             return;
         }
+        setProperty("rtl-font", CLangater::isRtlLanguage(CLangater::getCurrentLangCode()));
         polish();
         show();
         QPoint pos = AscAppManager::isRtlEnabled() ? parent->geometry().topLeft() : parent->geometry().topRight() - QPoint(WIDGET_MAX_WIDTH, 0);
