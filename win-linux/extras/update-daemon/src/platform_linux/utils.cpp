@@ -145,16 +145,16 @@ namespace NS_Utils
         return res;
     }
 
-    string GetSysLanguage()
-    {
-        string lang("en_EN");
-        size_t pos = std::string::npos;
-        if (char *_lang = getenv("LANG")) {
-            lang = _lang;
-            pos = lang.find('.');
-        }
-        return (pos == std::string::npos) ? lang : lang.substr(0, pos);
-    }
+//    string GetSysLanguage()
+//    {
+//        string lang("en_EN");
+//        size_t pos = std::string::npos;
+//        if (char *_lang = getenv("LANG")) {
+//            lang = _lang;
+//            pos = lang.find('.');
+//        }
+//        return (pos == std::string::npos) ? lang : lang.substr(0, pos);
+//    }
 
     string GetAppLanguage()
     {
