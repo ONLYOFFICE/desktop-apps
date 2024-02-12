@@ -116,7 +116,7 @@ namespace NS_Utils
 
     wstring GetAppLanguage()
     {
-        wstring lang = TEXT("en"), subkey = TEXT("SOFTWARE\\" REG_GROUP_KEY "\\" REG_APP_NAME);
+        wstring lang = TEXT("en_US"), subkey = TEXT("SOFTWARE\\" REG_GROUP_KEY "\\" REG_APP_NAME);
         HKEY hKey = NULL;
         if (RegOpenKeyEx(HKEY_LOCAL_MACHINE, subkey.c_str(), 0, KEY_ALL_ACCESS, &hKey) == ERROR_SUCCESS) {
             DWORD type = REG_SZ, cbData = 0;
@@ -387,7 +387,7 @@ namespace NS_File
     bool replaceFile(const wstring &oldFilePath, const wstring &newFilePath)
     {
         return MoveFileExW(oldFilePath.c_str(), newFilePath.c_str(), MOVEFILE_REPLACE_EXISTING |
-                              MOVEFILE_WRITE_THROUGH | MOVEFILE_COPY_ALLOWED) != 0 ? true : false;
+                              MOVEFILE_WRITE_THROUGH | MOVEFILE_COPY_ALLOWED) != 0;
     }
 
     bool replaceFolder(const wstring &from, const wstring &to, bool remove_existing)
@@ -402,10 +402,10 @@ namespace NS_File
             return false;
         }
 
-        WCHAR src_vol[MAX_PATH+1] = {0};
-        WCHAR dst_vol[MAX_PATH+1] = {0};
-        BOOL src_res = GetVolumePathName(from.c_str(), src_vol, sizeof(src_vol)/sizeof(WCHAR));
-        BOOL dst_res = GetVolumePathName(parentPath(to).c_str(), dst_vol, sizeof(dst_vol)/sizeof(WCHAR));
+        WCHAR src_vol[MAX_PATH] = {0};
+        WCHAR dst_vol[MAX_PATH] = {0};
+        BOOL src_res = GetVolumePathName(from.c_str(), src_vol, MAX_PATH);
+        BOOL dst_res = GetVolumePathName(parentPath(to).c_str(), dst_vol, MAX_PATH);
 
         bool can_use_rename = (src_res != 0 && dst_res != 0 && wcscmp(src_vol, dst_vol) == 0);
         if (!dirExists(to) && can_use_rename) {
@@ -450,7 +450,7 @@ namespace NS_File
     bool removeDirRecursively(const wstring &dir)
     {
         WCHAR pFrom[_MAX_PATH + 1] = {0};
-        swprintf_s(pFrom, sizeof(pFrom)/sizeof(WCHAR), L"%s%c", dir.c_str(), '\0');
+        swprintf_s(pFrom, sizeof(pFrom)/sizeof(WCHAR), L"%s%c", dir.c_str(), L'\0');
         SHFILEOPSTRUCT fop = {
             NULL,
             FO_DELETE,
