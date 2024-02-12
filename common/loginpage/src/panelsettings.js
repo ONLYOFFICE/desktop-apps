@@ -648,6 +648,8 @@
                             if ( opts.rtl ) {
                                 document.body.setAttribute('dir', 'rtl');
                                 document.body.classList.add('rtl');
+
+                                $userName.attr('dir', 'rtl');
                             }
 
                         }
