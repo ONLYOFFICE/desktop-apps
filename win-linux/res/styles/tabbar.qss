@@ -107,6 +107,7 @@ Tab {min-width: 41px; max-width: 135px; width: 135px; height: 28px;}
 Tab #tabIcon {padding: 0px; min-width: 15px; min-height: 15px; max-width: 15px; max-height: 15px;}
 Tab #tabText {font-size: 11px;}
 Tab #tabButton {width: 16px; max-width: 16px; max-height: 16px; border-width: 2px;}
+#mainPanel[rtl-font=true][unix=true] Tab #tabText {font-size: 12px;}
 
 /* 1.25x */
 #mainPanel[zoom="1.25x"] CTabBar #tabScroll {min-width: 48px; max-width: 48px;}
@@ -116,6 +117,7 @@ Tab #tabButton {width: 16px; max-width: 16px; max-height: 16px; border-width: 2p
 #mainPanel[zoom="1.25x"] Tab #tabText {font-size: 14px;}
 #mainPanel[zoom="1.25x"] Tab #tabButton {width: 20px; max-width: 20px; max-height: 20px; border-width: 2px;}
 #mainPanel[zoom="1.25x"][rtl=true] Tab {border-left-width: 1px;}
+#mainPanel[zoom="1.25x"][rtl-font=true][unix=true] Tab #tabText {font-size: 15px;}
 
 /* 1.5x */
 #mainPanel[zoom="1.5x"] CTabBar #tabScroll {min-width: 48px; max-width: 48px;}
@@ -125,6 +127,7 @@ Tab #tabButton {width: 16px; max-width: 16px; max-height: 16px; border-width: 2p
 #mainPanel[zoom="1.5x"] Tab #tabText {font-size: 15px;}
 #mainPanel[zoom="1.5x"] Tab #tabButton {width: 24px; max-width: 24px; max-height: 24px; border-width: 2px;}
 #mainPanel[zoom="1.5x"][rtl=true] Tab {border-left-width: 2px;}
+#mainPanel[zoom="1.5x"][rtl-font=true][unix=true] Tab #tabText {font-size: 17px;}
 
 /* 1.75x */
 #mainPanel[zoom="1.75x"] CTabBar #tabScroll {min-width: 64px; max-width: 64px;}
@@ -134,6 +137,7 @@ Tab #tabButton {width: 16px; max-width: 16px; max-height: 16px; border-width: 2p
 #mainPanel[zoom="1.75x"] Tab #tabText {font-size: 18px;}
 #mainPanel[zoom="1.75x"] Tab #tabButton {width: 28px; max-width: 28px; max-height: 28px; border-width: 2px;}
 #mainPanel[zoom="1.75x"][rtl=true] Tab {border-left-width: 2px;}
+#mainPanel[zoom="1.75x"][rtl-font=true][unix=true] Tab #tabText {font-size: 19px;}
 
 /* 2x */
 #mainPanel[zoom="2x"] CTabBar #tabScroll {min-width: 64px; max-width: 64px;}
@@ -143,6 +147,7 @@ Tab #tabButton {width: 16px; max-width: 16px; max-height: 16px; border-width: 2p
 #mainPanel[zoom="2x"] Tab #tabText {font-size: 20px;}
 #mainPanel[zoom="2x"] Tab #tabButton {width: 32px; max-width: 32px; max-height: 32px; border-width: 2px;}
 #mainPanel[zoom="2x"][rtl=true] Tab {border-left-width: 2px;}
+#mainPanel[zoom="2x"][rtl-font=true][unix=true] Tab #tabText {font-size: 22px;}
 
 /* 2.25x */
 #mainPanel[zoom="2.25x"] CTabBar #tabScroll {min-width: 72px; max-width: 72px;}
@@ -152,6 +157,7 @@ Tab #tabButton {width: 16px; max-width: 16px; max-height: 16px; border-width: 2p
 #mainPanel[zoom="2.25x"] Tab #tabText {font-size: 23px;}
 #mainPanel[zoom="2.25x"] Tab #tabButton {width: 36px; max-width: 36px; max-height: 36px; border-width: 2px;}
 #mainPanel[zoom="2.25x"][rtl=true] Tab {border-left-width: 2px;}
+#mainPanel[zoom="2.25x"][rtl-font=true][unix=true] Tab #tabText {font-size: 25px;}
 
 /* 2.5x */
 #mainPanel[zoom="2.5x"] CTabBar #tabScroll {min-width: 80px; max-width: 80px;}
@@ -161,6 +167,7 @@ Tab #tabButton {width: 16px; max-width: 16px; max-height: 16px; border-width: 2p
 #mainPanel[zoom="2.5x"] Tab #tabText {font-size: 25px;}
 #mainPanel[zoom="2.5x"] Tab #tabButton {width: 40px; max-width: 40px; max-height: 40px; border-width: 2px;}
 #mainPanel[zoom="2.5x"][rtl=true] Tab {border-left-width: 3px;}
+#mainPanel[zoom="2.5x"][rtl-font=true][unix=true] Tab #tabText {font-size: 27px;}
 
 /* 2.75x */
 #mainPanel[zoom="2.75x"] CTabBar #tabScroll {min-width: 88px; max-width: 88px;}
@@ -170,6 +177,7 @@ Tab #tabButton {width: 16px; max-width: 16px; max-height: 16px; border-width: 2p
 #mainPanel[zoom="2.75x"] Tab #tabText {font-size: 28px;}
 #mainPanel[zoom="2.75x"] Tab #tabButton {width: 44px; max-width: 44px; max-height: 44px; border-width: 2px;}
 #mainPanel[zoom="2.75x"][rtl=true] Tab {border-left-width: 3px;}
+#mainPanel[zoom="2.75x"][rtl-font=true][unix=true] Tab #tabText {font-size: 30px;}
 
 /* 3x */
 #mainPanel[zoom="3x"] CTabBar #tabScroll {min-width: 96px; max-width: 96px;}
@@ -179,6 +187,7 @@ Tab #tabButton {width: 16px; max-width: 16px; max-height: 16px; border-width: 2p
 #mainPanel[zoom="3x"] Tab #tabText {font-size: 30px;}
 #mainPanel[zoom="3x"] Tab #tabButton {width: 48px; max-width: 48px; max-height: 48px; border-width: 2px;}
 #mainPanel[zoom="3x"][rtl=true] Tab {border-left-width: 3px;}
+#mainPanel[zoom="3x"][rtl-font=true][unix=true] Tab #tabText {font-size: 34px;}
 
 /* 3.5x */
 #mainPanel[zoom="3.5x"] CTabBar #tabScroll {min-width: 112px; max-width: 112px;}
@@ -188,6 +197,7 @@ Tab #tabButton {width: 16px; max-width: 16px; max-height: 16px; border-width: 2p
 #mainPanel[zoom="3.5x"] Tab #tabText {font-size: 35px;}
 #mainPanel[zoom="3.5x"] Tab #tabButton {width: 56px; max-width: 56px; max-height: 56px; border-width: 2px;}
 #mainPanel[zoom="3.5x"][rtl=true] Tab {border-left-width: 4px;}
+#mainPanel[zoom="3.5x"][rtl-font=true][unix=true] Tab #tabText {font-size: 39px;}
 
 /* 4x */
 #mainPanel[zoom="4x"] CTabBar #tabScroll {min-width: 128px; max-width: 128px;}
@@ -197,6 +207,7 @@ Tab #tabButton {width: 16px; max-width: 16px; max-height: 16px; border-width: 2p
 #mainPanel[zoom="4x"] Tab #tabText {font-size: 40px;}
 #mainPanel[zoom="4x"] Tab #tabButton {width: 64px; max-width: 64px; max-height: 64px; border-width: 2px;}
 #mainPanel[zoom="4x"][rtl=true] Tab {border-left-width: 4px;}
+#mainPanel[zoom="4x"][rtl-font=true][unix=true] Tab #tabText {font-size: 44px;}
 
 /* 4.5x */
 #mainPanel[zoom="4.5x"] CTabBar #tabScroll {min-width: 144px; max-width: 144px;}
@@ -206,6 +217,7 @@ Tab #tabButton {width: 16px; max-width: 16px; max-height: 16px; border-width: 2p
 #mainPanel[zoom="4.5x"] Tab #tabText {font-size: 45px;}
 #mainPanel[zoom="4.5x"] Tab #tabButton {width: 72px; max-width: 72px; max-height: 72px; border-width: 2px;}
 #mainPanel[zoom="4.5x"][rtl=true] Tab {border-left-width: 5px;}
+#mainPanel[zoom="4.5x"][rtl-font=true][unix=true] Tab #tabText {font-size: 49px;}
 
 /* 5x */
 #mainPanel[zoom="5x"] CTabBar #tabScroll {min-width: 160px; max-width: 160px;}
@@ -215,3 +227,4 @@ Tab #tabButton {width: 16px; max-width: 16px; max-height: 16px; border-width: 2p
 #mainPanel[zoom="5x"] Tab #tabText {font-size: 50px;}
 #mainPanel[zoom="5x"] Tab #tabButton {width: 80px; max-width: 80px; max-height: 80px; border-width: 2px;}
 #mainPanel[zoom="5x"][rtl=true] Tab {border-left-width: 5px;}
+#mainPanel[zoom="5x"][rtl-font=true][unix=true] Tab #tabText {font-size: 55px;}
