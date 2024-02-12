@@ -21,6 +21,7 @@ Tab #tabIcon {background: transparent;}
 Tab #tabText {background: transparent; font-family: "Arial", "Helvetica", "Helvetica Neue", sans-serif;}
 Tab #tabButton {border: none; margin-top: 0px; image: none; background: transparent;}
 #mainPanel[rtl=true] Tab {border-right: 0px; border-left: 1px solid #dfdfdf;}
+#mainPanel[rtl-font=true] Tab #tabText {font-family: "Segoe UI", "Traditional Arabic", "Noto Sans";}
 
 Tab[selected=true] {background: #446995; border-color: #446995;}
 
