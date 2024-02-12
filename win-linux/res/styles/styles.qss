@@ -291,3 +291,4 @@ QPushButton#toolButtonDownload {border-left: 0px; border-right: 1px solid #dfdfd
     color: #d2d2d2;
     background-color: #212121;
 }
+#mainPanel[rtl=true] #CToolTip>QLabel {font-family: "Segoe UI", "Traditional Arabic", "Noto Sans";}

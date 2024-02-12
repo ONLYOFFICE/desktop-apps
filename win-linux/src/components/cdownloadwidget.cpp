@@ -209,6 +209,7 @@ CDownloadWidget::CDownloadWidget(QWidget *parent)
             hide();
             return;
         }
+        setProperty("rtl", AscAppManager::isRtlEnabled());
         polish();
         show();
         QPoint pos = AscAppManager::isRtlEnabled() ? parent->geometry().topLeft() : parent->geometry().topRight() - QPoint(WIDGET_MAX_WIDTH, 0);
