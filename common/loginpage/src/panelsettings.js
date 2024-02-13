@@ -649,7 +649,7 @@
                                 document.body.setAttribute('dir', 'rtl');
                                 document.body.classList.add('rtl');
 
-                                $userName.attr('dir', 'rtl');
+                                $userName.css('direction', 'rtl');
                             }
 
                         }
