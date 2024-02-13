@@ -1269,25 +1269,21 @@ CPresenterWindow * CAscApplicationManagerWrapper::createReporterWindow(void * da
     pView->CreateReporter(this, pCreateData);
 
     QString _doc_name;
-    QRect _currentRect;
+    QWindow *wnd = nullptr;
     if ( m_pMainWindow && m_pMainWindow->holdView(parentid) ) {
         _doc_name = m_pMainWindow->documentName(parentid);
-        _currentRect = m_pMainWindow->windowRect();
+        wnd = m_pMainWindow->windowHandle();
     } else {
         CEditorWindow * _window = editorWindowFromViewId(parentid);
 
         if ( _window ) {
             _doc_name = _window->documentName();
-            _currentRect = _window->geometry();
+            wnd = _window->windowHandle();
         }
     }
 
-#if QT_VERSION < QT_VERSION_CHECK(5, 11, 0)
-    int _scrNum = QApplication::desktop()->screenNumber(_currentRect.topLeft());
-    QRect _scr_rect = QApplication::desktop()->availableGeometry(_scrNum);
-#else
-    QRect _scr_rect = QApplication::screenAt(_currentRect.topLeft())->availableGeometry();
-#endif
+    QScreen *scr = (wnd && wnd->screen()) ? wnd->screen() : QApplication::primaryScreen();
+    QRect _scr_rect = scr->availableGeometry();
     int _scr_dpi_ratio = Utils::getScreenDpiRatio(_scr_rect.topLeft());
 
     GET_REGISTRY_USER(reg_user)
