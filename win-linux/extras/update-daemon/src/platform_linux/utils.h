@@ -52,7 +52,8 @@ namespace NS_Utils
 {
 string GetLastErrorAsString();
 int ShowMessage(string str, bool showError = false);
-string GetSysLanguage();
+//string GetSysLanguage();
+string GetAppLanguage();
 }
 
 namespace NS_File

@@ -44,6 +44,7 @@
 #include <TlHelp32.h>
 #include <userenv.h>
 #include <vector>
+#include <stack>
 #include <sstream>
 #include "../../src/defines.h"
 #include "../../src/prop/defines_p.h"
@@ -116,9 +117,9 @@ namespace NS_Utils
 
     wstring GetAppLanguage()
     {
-        wstring lang = TEXT("en"), subkey = TEXT("SOFTWARE\\" REG_GROUP_KEY "\\" REG_APP_NAME);
-        HKEY hKey = NULL;
-        if (RegOpenKeyEx(HKEY_LOCAL_MACHINE, subkey.c_str(), 0, KEY_ALL_ACCESS, &hKey) == ERROR_SUCCESS) {
+        wstring lang = TEXT("en_US"), subkey = TEXT("SOFTWARE\\" REG_GROUP_KEY "\\" REG_APP_NAME);
+        HKEY hKey = NULL, hRootKey = isRunAsApp() ? HKEY_CURRENT_USER : HKEY_LOCAL_MACHINE;
+        if (RegOpenKeyEx(hRootKey, subkey.c_str(), 0, KEY_ALL_ACCESS, &hKey) == ERROR_SUCCESS) {
             DWORD type = REG_SZ, cbData = 0;
             if (RegGetValue(hKey, NULL, TEXT("locale"), RRF_RT_REG_SZ, &type, NULL, &cbData) == ERROR_SUCCESS) {
                 wchar_t *pvData = (wchar_t*)malloc(cbData);
@@ -371,15 +372,16 @@ namespace NS_File
 
     bool makePath(const wstring &path)
     {
-        list<wstring> pathsList;
+        std::stack<wstring> pathsList;
         wstring last_path(path);
         while (!last_path.empty() && !dirExists(last_path)) {
-            pathsList.push_front(last_path);
+            pathsList.push(last_path);
             last_path = parentPath(last_path);
         }
-        for (list<wstring>::iterator it = pathsList.begin(); it != pathsList.end(); ++it) {
-            if (::CreateDirectory(it->c_str(), NULL) == 0)
+        while(!pathsList.empty()) {
+            if (::CreateDirectory(pathsList.top().c_str(), NULL) == 0)
                 return false;
+            pathsList.pop();
         }
         return true;
     }
@@ -387,7 +389,7 @@ namespace NS_File
     bool replaceFile(const wstring &oldFilePath, const wstring &newFilePath)
     {
         return MoveFileExW(oldFilePath.c_str(), newFilePath.c_str(), MOVEFILE_REPLACE_EXISTING |
-                              MOVEFILE_WRITE_THROUGH | MOVEFILE_COPY_ALLOWED) != 0 ? true : false;
+                              MOVEFILE_WRITE_THROUGH | MOVEFILE_COPY_ALLOWED) != 0;
     }
 
     bool replaceFolder(const wstring &from, const wstring &to, bool remove_existing)
@@ -402,10 +404,10 @@ namespace NS_File
             return false;
         }
 
-        WCHAR src_vol[MAX_PATH+1] = {0};
-        WCHAR dst_vol[MAX_PATH+1] = {0};
-        BOOL src_res = GetVolumePathName(from.c_str(), src_vol, sizeof(src_vol)/sizeof(WCHAR));
-        BOOL dst_res = GetVolumePathName(parentPath(to).c_str(), dst_vol, sizeof(dst_vol)/sizeof(WCHAR));
+        WCHAR src_vol[MAX_PATH] = {0};
+        WCHAR dst_vol[MAX_PATH] = {0};
+        BOOL src_res = GetVolumePathName(from.c_str(), src_vol, MAX_PATH);
+        BOOL dst_res = GetVolumePathName(parentPath(to).c_str(), dst_vol, MAX_PATH);
 
         bool can_use_rename = (src_res != 0 && dst_res != 0 && wcscmp(src_vol, dst_vol) == 0);
         if (!dirExists(to) && can_use_rename) {
@@ -450,7 +452,7 @@ namespace NS_File
     bool removeDirRecursively(const wstring &dir)
     {
         WCHAR pFrom[_MAX_PATH + 1] = {0};
-        swprintf_s(pFrom, sizeof(pFrom)/sizeof(WCHAR), L"%s%c", dir.c_str(), '\0');
+        swprintf_s(pFrom, sizeof(pFrom)/sizeof(WCHAR), L"%s%c", dir.c_str(), L'\0');
         SHFILEOPSTRUCT fop = {
             NULL,
             FO_DELETE,

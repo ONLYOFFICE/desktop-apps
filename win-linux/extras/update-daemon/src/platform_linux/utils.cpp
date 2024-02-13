@@ -33,12 +33,16 @@
 #include "platform_linux/utils.h"
 #include "version.h"
 #include <fstream>
-#include <regex>
+#include <stack>
+#include <algorithm>
 #include <sys/stat.h>
 #include <gtk/gtk.h>
 //#include <openssl/md5.h>
 #include <fcntl.h>
+#include "../../src/defines.h"
+#include "../../src/prop/defines_p.h"
 
+#define APP_CONFIG_PATH "/.config/" REG_GROUP_KEY "/" REG_APP_NAME ".conf"
 //#define BUFSIZE 1024
 
 
@@ -141,15 +145,31 @@ namespace NS_Utils
         return res;
     }
 
-    string GetSysLanguage()
+//    string GetSysLanguage()
+//    {
+//        string lang("en_EN");
+//        size_t pos = std::string::npos;
+//        if (char *_lang = getenv("LANG")) {
+//            lang = _lang;
+//            pos = lang.find('.');
+//        }
+//        return (pos == std::string::npos) ? lang : lang.substr(0, pos);
+//    }
+
+    string GetAppLanguage()
     {
-        string lang("en_EN");
-        size_t pos = std::string::npos;
-        if (char *_lang = getenv("LANG")) {
-            lang = _lang;
-            pos = lang.find('.');
+        string lang = "en_US", value = "locale=", path = string("/home/") + getlogin() + APP_CONFIG_PATH;
+        list<string> lst;
+        NS_File::readFile(path, lst);
+        for (const auto &str : lst) {
+            size_t pos = str.find(value);
+            if (pos != string::npos) {
+                lang = str.substr(pos + value.length());
+                std::replace(lang.begin(), lang.end(), '-', '_');
+                return lang;
+            }
         }
-        return (pos == std::string::npos) ? lang : lang.substr(0, pos);
+        return lang;
     }
 }
 
@@ -305,15 +325,16 @@ namespace NS_File
 
     bool makePath(const string &path)
     {
-        list<string> pathsList;
+        std::stack<string> pathsList;
         string last_path(path);
         while (!last_path.empty() && !dirExists(last_path)) {
-            pathsList.push_front(last_path);
+            pathsList.push(last_path);
             last_path = parentPath(last_path);
         }
-        for (list<string>::iterator it = pathsList.begin(); it != pathsList.end(); ++it) {
-            if (mkdir(it->c_str(), S_IRWXU | S_IRWXG | S_IRWXO) != 0)
+        while(!pathsList.empty()) {
+            if (mkdir(pathsList.top().c_str(), S_IRWXU | S_IRWXG | S_IRWXO) != 0)
                 return false;
+            pathsList.pop();
         }
         return true;
     }
