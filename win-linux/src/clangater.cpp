@@ -49,9 +49,9 @@ void setNativeUILanguage(std::wstring localeTag)
     if (lcid != 0)
         InitMUILanguage(LANGIDFROMLCID(lcid));
 #else
-    LCID lcid = LocaleNameToLCID(localeTag.c_str(), 0);
-    if (lcid != 0 && IsValidLocale(lcid, LCID_INSTALLED) != 0)
-        SetThreadUILanguage(LANGIDFROMLCID(lcid));
+//    LCID lcid = LocaleNameToLCID(localeTag.c_str(), 0);
+//    if (lcid != 0 && IsValidLocale(lcid, LCID_INSTALLED) != 0)
+//        SetThreadUILanguage(LANGIDFROMLCID(lcid));
 #endif
 }
 #endif
