@@ -33,6 +33,7 @@
 #include "components/ctabbar.h"
 #include "components/canimatedicon.h"
 #include "cascapplicationmanagerwrapper.h"
+#include "defines.h"
 #include <QApplication>
 #include <QHBoxLayout>
 #include <QLabel>
@@ -285,7 +286,13 @@ void Tab::paintEvent(QPaintEvent *ev)
 //        if (tabBar && tabBar->property("active").toBool())
         {
             QStylePainter p(this);
-            p.fillRect(rect(), QBrush(QColor(tabcolor)));
+            auto bkgColor = GetColorByRole(ecrWindowBackground);
+            QLinearGradient gr(0, 0, 0, height());
+            gr.setColorAt(0.0, bkgColor);
+            gr.setColorAt(0.049, bkgColor);
+            gr.setColorAt(0.05, QColor(tabcolor));
+            gr.setColorAt(1.0, QColor(tabcolor));
+            p.fillRect(rect(), gr);
         }
     }
 }

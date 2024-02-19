@@ -18,7 +18,7 @@ QPushButton#toolButtonDownload {border: none; margin: 0; padding: 0; border-radi
 
 QPushButton#toolButtonMaximize,
 QPushButton#toolButtonMinimize,
-QPushButton#toolButtonClose {background-origin: content; padding: 6px 0px 8px;}
+QPushButton#toolButtonClose {background-origin: content; padding: 5px 0px 7px;}
 
 QPushButton#toolButtonMaximize[kde=true],
 QPushButton#toolButtonMinimize[kde=true],
@@ -36,7 +36,6 @@ QPushButton#toolButtonClose[class=normal][unix=false]:hover,
 QPushButton#toolButtonClose[class=normal][unix=false]:pressed {image: url(:/close_light.svg) center no-repeat;}
 
 QPushButton#toolButtonMain {
-    margin-top: 2px;
     background: #fff;
     font-size: 10px;
     font-family: 'Open Sans',sans-serif;

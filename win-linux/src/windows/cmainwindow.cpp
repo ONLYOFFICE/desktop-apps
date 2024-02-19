@@ -1421,7 +1421,7 @@ void CMainWindow::updateScalingFactor(double dpiratio)
         foreach (auto btn, m_pTopButtons)
             btn->setFixedSize(small_btn_size);
     }*/
-    m_pButtonMain->setFixedSize(int(BUTTON_MAIN_WIDTH * dpiratio), int((TITLE_HEIGHT + 2) * dpiratio));
+    m_pButtonMain->setFixedSize(int(BUTTON_MAIN_WIDTH * dpiratio), int(TITLE_HEIGHT * dpiratio));
     m_pMainPanel->setProperty("zoom", QString::number(dpiratio) + "x");
     std::vector<std::string> _files{":/styles/tabbar.qss"};
     QString _style = Utils::readStylesheets(&_files);

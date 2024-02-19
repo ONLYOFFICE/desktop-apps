@@ -178,7 +178,6 @@ QWidget* CWindowBase::createTopPanel(QWidget *parent)
     layoutBtns->setContentsMargins(0, 0, 0, 0);
     layoutBtns->setSpacing(int(1*m_dpiRatio));
     layoutBtns->addStretch();
-    layoutBtns->setAlignment(Qt::AlignTop);
     _boxTitleBtns->setLayout(layoutBtns);
     if (isCustomWindowStyle()) {
         const QString names[3] = {"toolButtonMinimize", "toolButtonMaximize", "toolButtonClose"};
