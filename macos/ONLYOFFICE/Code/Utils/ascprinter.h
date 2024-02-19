@@ -86,6 +86,7 @@ public:
 	ASCPrinterInfo *        m_pPrinterInfo;
 
 	std::vector<bool>       m_arOrientation; // true - Horizontal
+	bool					m_isFirstPrint;	 // true if it is first printing process for current print operation
 }
 
 - (id) initWithParams:(CGRect)frame manager:(CAscApplicationManager*)_manager viewId:(int)_viewId info:(ASCPrinterInfo*)_info;
@@ -103,6 +104,7 @@ public:
 		m_pManager      = _manager;
 		m_pView         = m_pManager->GetViewById(_viewId);
 		m_pPrinterInfo  = _info;
+		m_isFirstPrint	= true;
 	}
 	return self;
 }
@@ -137,6 +139,8 @@ public:
 	[pInfo setTopMargin:0];
 	[pInfo setBottomMargin:0];
 
+	NSPaperOrientation prevOrientation = pInfo.orientation;
+	bool areAllHor = true;	// true if all pages are in landscape (horizontal) orientation
 	// calculate page width and height in PORTRAIT orientation
 	[pInfo setOrientation:NSPaperOrientationPortrait];
 	[self fillInfo];
@@ -154,6 +158,8 @@ public:
 		m_pView->Apply(pEvent);
 
 		m_arOrientation[nPage] = pData->get_IsRotate();
+		if (areAllHor && !pData->get_IsRotate())
+			areAllHor = false;
 
 		pEvent->Release();
 	}
@@ -161,10 +167,18 @@ public:
 	range->location = 1;
 	range->length   = m_pPrinterInfo->m_nPagesCount;
 
-	// for correctly displaying preview when all pages are in landscape orientation
-	// TODO: remove this
-	if (m_pPrinterInfo->m_nPagesCount > 0 && m_arOrientation[0])
-		[pInfo setOrientation: NSPaperOrientationLandscape];
+	if (m_isFirstPrint)
+	{
+		// apply landscape orientation right away if all pages are in landscape orientation
+		if (areAllHor && m_pPrinterInfo->m_nPagesCount > 0)
+			[pInfo setOrientation: NSPaperOrientationLandscape];
+		m_isFirstPrint = false;
+	}
+	else
+	{
+		// restore previously set page orientation
+		[pInfo setOrientation:prevOrientation];
+	}
 
 	return YES;
 }
@@ -236,7 +250,11 @@ public:
 	{
 		NSPrintInfo* pInfo = [[NSPrintOperation currentOperation] printInfo];
 
-		[pInfo setOrientation: (m_arOrientation[nPage]) ? NSPaperOrientationLandscape : NSPaperOrientationPortrait];
+		if ([pInfo jobDisposition] != NSPrintSpoolJob)
+		{
+			[pInfo setOrientation: (m_arOrientation[nPage]) ? NSPaperOrientationLandscape : NSPaperOrientationPortrait];
+		}
+
 		// update page sizes and margins
 		[self recalcPageSizes];
 	}
@@ -343,6 +361,7 @@ public:
 		options |= NSPrintPanelShowsPaperSize;
 		// commented since we can't select which pages to print directly in app
 //		options |= NSPrintPanelShowsPrintSelection;
+		options |= NSPrintPanelShowsOrientation;
 		options |= NSPrintPanelShowsPreview;
 
 		NSPrintOperation* pro;
@@ -425,6 +444,15 @@ public:
 
 		CGContextConcatCTM(_context, orig_cg_matrix_inv);
 		CGContextConcatCTM(_context, orig_cg_matrix);
+
+		NSPrintInfo* pInfo = [[NSPrintOperation currentOperation] printInfo];
+		if ([pInfo jobDisposition] == NSPrintSpoolJob && fabs(dAngle - M_PI_2) <= 1e-5)
+		{
+			// if printing to a preview panel (or an actual printer) and dAngle is PI/2,
+			// then rotate image by 90 degrees and translate it to fit in rect
+			CGAffineTransform transform = CGAffineTransformMake(0, -1, 1, 0, fX, fH + fY);
+			CGContextConcatCTM(_context, transform);
+		}
 
 		CGRect _rect = NSMakeRect(fX, fY, fW, fH);
 		CGContextDrawImage(_context, _rect, pCgImage);
