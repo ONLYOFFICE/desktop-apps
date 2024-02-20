@@ -650,7 +650,7 @@ gl.extDOCX =Documento Office Open XML
 si.extDOCX =ඔෆිස් විවෘත XML ලේඛනය
 zh_TW.extDOCX =Office Open XML 文件
 
-en.extDOCXF =ONLYOFFICE Form Template
+en.extDOCXF =ONLYOFFICE PDF Form
 ar_SA.extDOCXF =قالب استبيان أونلي أوفس
 bg.extDOCXF =ONLYOFFICE Шаблон на формуляр
 ca.extDOCXF =Plantilla de formulari ONLYOFFICE
