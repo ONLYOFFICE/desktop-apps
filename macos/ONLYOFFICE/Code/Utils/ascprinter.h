@@ -437,19 +437,7 @@ public:
 		fY = (m_oInfo.m_nPaperHeightOrigin - fY - fH);
 
 		CGContextRef _context = (CGContextRef)[[NSGraphicsContext currentContext] graphicsPort];
-
-		CGAffineTransform orig_cg_matrix = CGContextGetCTM(_context);
-		CGAffineTransform orig_cg_matrix_inv = CGAffineTransformInvert(orig_cg_matrix);
-
-		orig_cg_matrix.a = fabs(orig_cg_matrix.a);
-		orig_cg_matrix.d = fabs(orig_cg_matrix.d);
-		orig_cg_matrix.tx = 0;
-		orig_cg_matrix.ty = 0;
-
 		CGContextSaveGState(_context);
-
-		CGContextConcatCTM(_context, orig_cg_matrix_inv);
-		CGContextConcatCTM(_context, orig_cg_matrix);
 
 		NSPrintInfo* pInfo = [[NSPrintOperation currentOperation] printInfo];
 		if ([pInfo jobDisposition] == NSPrintSpoolJob && fabs(dAngle - M_PI_2) <= 1e-5)
