@@ -280,6 +280,9 @@ class ASCPrinterContext : public NSEditorApi::CAscPrinterContextBase
 	CCefView* m_pParent;
 
 public:
+	static bool isCurrentlyPrinting;
+
+public:
 	ASCPrinterContext(CAscApplicationManager* pManager) : NSEditorApi::CAscPrinterContextBase()
 	{
 		m_pManager = pManager;
@@ -289,6 +292,8 @@ public:
 
 	void BeginPaint(NSDictionary * info, id sender, SEL didRunSelector)
 	{
+		isCurrentlyPrinting = true;
+
 		int viewId          = [info[@"viewId"] intValue];
 		int pageCurrent     = [info[@"currentPage"] intValue];
 
@@ -389,6 +394,7 @@ public:
 		m_pParent->Apply(pEventEnd);
 
 		m_pView = nil;
+		isCurrentlyPrinting = false;
 		this->Release();
 	}
 
@@ -458,5 +464,8 @@ public:
 		CGDataProviderRelease(pDataProvider);
 	}
 };
+
+// TODO: move outside of the header file
+bool ASCPrinterContext::isCurrentlyPrinting = false;
 
 #endif  // NSASCPRINTER_H
