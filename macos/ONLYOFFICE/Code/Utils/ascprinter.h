@@ -264,6 +264,12 @@ public:
 	return R;
 }
 
+- (NSPoint)locationOfPrintRect:(NSRect)rect
+{
+	// This method makes sure that we center the view on the page to remove unprintable margins
+	return NSMakePoint((m_pPrinterInfo->m_nPaperWidth - rect.size.width) / 2.0, (m_pPrinterInfo->m_nPaperHeight - rect.size.height) / 2.0);
+}
+
 @end
 
 class ASCPrinterContext : public NSEditorApi::CAscPrinterContextBase
