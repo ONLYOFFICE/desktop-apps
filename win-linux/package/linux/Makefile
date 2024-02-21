@@ -64,6 +64,7 @@ NEWS_RPM = common/usr/share/doc/$(PACKAGE_NAME)/NEWS
 NEWS_RPM_M4 = common/usr/share/doc/NEWS.m4
 CHANGELOG_RPM = common/usr/share/doc/$(PACKAGE_NAME)/ChangeLog
 CHANGELOG_RPM_M4 = common/usr/share/doc/ChangeLog.m4
+CHANGELOG_RPM_PACKAGE = common/usr/share/doc/$(PACKAGE_NAME)/RpmChangeLog
 CHANGELOG_DEB = deb/build/debian/changelog
 CHANGELOG_DEB_M4 = deb/template/changelog.m4
 CHANGELOG_DEB_ASTRA = deb-astra/build/debian/changelog
@@ -98,6 +99,7 @@ LINUX_DEPS += $(BIN_FILES)
 LINUX_DEPS += $(DESKTOP_FILES)
 LINUX_DEPS += $(SYMLINK)
 LINUX_DEPS += $(CHANGELOG_RPM)
+LINUX_DEPS += $(CHANGELOG_RPM_PACKAGE)
 
 DEB_DEPS += $(CHANGELOG_DEB)
 DEB_DEPS += deb/build/debian/compat
@@ -319,6 +321,9 @@ $(CHANGELOG_RPM) :
 			> $(CHANGES_DIR)/$(dir)/changes_rpm; \
 			mkdir -p $(shell dirname $(CHANGELOG_RPM)); \
 			m4 $(M4_PARAMS) -D M4_VERSION='$(dir)' -D M4_DATE='$(shell LC_TIME="en_US.UTF-8" date -d "$(shell grep \"releasedate\" $(CHANGES_DIR)/$(dir)/$(CHANGES_HTML) | sed 's/.* - //' | sed 's/<\/span>.*//' | sed 's/{{DATE}}/$(shell date -R)/')" +"%a %b %d %Y")' $(CHANGELOG_RPM_M4) | sed '1r $(CHANGES_DIR)/$(dir)/changes_rpm' >> $(CHANGELOG_RPM)))
+
+$(CHANGELOG_RPM_PACKAGE) : common/usr/share/doc/RpmChangeLog.m4
+	mkdir -pv $(@D) && m4 $(M4_PARAMS) -D M4_VERSION='$(dir)' $< > $@
 
 deb/build/debian/$(PACKAGE_NAME).% : deb/template/package.%.m4
 	mkdir -pv $(@D) && m4 $(M4_DEB_PARAMS) $< > $@

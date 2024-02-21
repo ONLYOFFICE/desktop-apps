@@ -181,4 +181,4 @@ done
 
 %changelog
 
-%include ../common/usr/share/doc/%{_package_name}/ChangeLog
+%include ../common/usr/share/doc/%{_package_name}/RpmChangeLog
