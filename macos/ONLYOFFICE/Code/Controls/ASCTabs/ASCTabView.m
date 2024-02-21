@@ -128,7 +128,7 @@ static NSUInteger const kASTabViewCloseButtonSize = 12;
     [self setBordered:NO];
     [self setCell:tabCell];
     [self setState:NSControlStateValueOn];
-    [self.cell setImagePosition:NSImageLeft];
+//    [self.cell setImagePosition:NSImageLeft];
     [self.cell setBordered:NO];
         
     self.close = [[ASCButton alloc] initWithFrame:CGRectZero];

@@ -306,7 +306,7 @@
     }
     
     if (self.closeButton) {
-        rightOffset = CGRectGetHeight(self.closeButton.frame) * 1.5;
+        rightOffset = CGRectGetHeight(self.closeButton.frame) * 1.5 + 2;
     }
     
     if (CGRectGetWidth(frame) - leftOffset - rightOffset > 15) {
