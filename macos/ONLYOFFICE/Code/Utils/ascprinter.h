@@ -55,6 +55,8 @@ public:
 	int     m_nPaperWidthOrigin;
 	int     m_nPaperHeightOrigin;
 
+	bool	m_bIsPrintingOnScreen;		// true if printing to preview panel on screen
+
 	NSEditorApi::CAscPrinterContextBase* m_pContext;
 
 public:
@@ -76,6 +78,8 @@ public:
 
 		m_nPaperWidthOrigin = 0;
 		m_nPaperHeightOrigin = 0;
+
+		m_bIsPrintingOnScreen = false;
 	}
 };
 
@@ -249,12 +253,26 @@ public:
 	if (nPage < m_pPrinterInfo->m_nPagesCount)
 	{
 		NSPrintInfo* pInfo = [[NSPrintOperation currentOperation] printInfo];
+		// check if printing on screen
+		if (nPage == 0)
+		{
+			PMPrintSession printSession = (PMPrintSession)[pInfo PMPrintSession];
+			PMPrintSettings printSettings = (PMPrintSettings)[pInfo PMPrintSettings];
 
-		if ([pInfo jobDisposition] != NSPrintSpoolJob)
+			PMDestinationType destType;
+			PMSessionGetDestinationType(printSession, printSettings, &destType);
+
+			CFURLRef destLocation;
+			PMSessionCopyDestinationLocation(printSession, printSettings, &destLocation);
+
+			m_pPrinterInfo->m_bIsPrintingOnScreen = (destType == kPMDestinationPrinter ||
+													 (destType == kPMDestinationFile && destLocation == NULL));
+		}
+		// apply page orientation only when not printing to screen
+		if (!m_pPrinterInfo->m_bIsPrintingOnScreen)
 		{
 			[pInfo setOrientation: (m_arOrientation[nPage]) ? NSPaperOrientationLandscape : NSPaperOrientationPortrait];
 		}
-
 		// update page sizes and margins
 		[self recalcPageSizes];
 	}
@@ -445,10 +463,9 @@ public:
 		CGContextRef _context = (CGContextRef)[[NSGraphicsContext currentContext] graphicsPort];
 		CGContextSaveGState(_context);
 
-		NSPrintInfo* pInfo = [[NSPrintOperation currentOperation] printInfo];
-		if ([pInfo jobDisposition] == NSPrintSpoolJob && fabs(dAngle - M_PI_2) <= 1e-5)
+		if (m_oInfo.m_bIsPrintingOnScreen && fabs(dAngle - M_PI_2) <= 1e-5)
 		{
-			// if printing to a preview panel (or an actual printer) and dAngle is PI/2,
+			// if printing to a preview panel (or an actual printer) and `dAngle` is PI/2,
 			// then rotate image by 90 degrees and translate it to fit in rect
 			CGAffineTransform transform = CGAffineTransformMake(0, -1, 1, 0, fX, fH + fY);
 			CGContextConcatCTM(_context, transform);
