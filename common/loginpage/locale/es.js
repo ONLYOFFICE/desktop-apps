@@ -92,7 +92,7 @@ l10n.es = {
     settOptLaunchInTab: 'En pestaña',
     settOptLaunchInWindow: 'En ventana',
     settSpellcheckDetection: 'Detección del idioma de corrección ortográfica',
-    settOptDisabled: 'Disabled',
+    settOptDisabled: 'Desactivado',
     settOptEnabled: 'Habilitada',
     aboutChangelog: 'Registro de cambios',
     updateNoUpdates: 'La aplicación está actualizada',

@@ -92,7 +92,7 @@ l10n.ja = {
     settOptLaunchInTab: 'タブで',
     settOptLaunchInWindow: 'ウィンドウで',
     settSpellcheckDetection: 'スペルチェック',
-    settOptDisabled: 'Disabled',
+    settOptDisabled: '無効',
     settOptEnabled: '有効',
     aboutChangelog: '変更ログ',
     updateNoUpdates: 'アプリのバージョンは最新です',

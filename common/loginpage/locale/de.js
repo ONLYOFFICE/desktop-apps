@@ -92,7 +92,7 @@ l10n.de = {
     settOptLaunchInTab: 'in einer Registerkarte',
     settOptLaunchInWindow: 'in einem Fenster',
     settSpellcheckDetection: 'Sprachenerkennung für Rechtschreibprüfung',
-    settOptDisabled: 'Disabled',
+    settOptDisabled: 'Deaktiviert',
     settOptEnabled: 'Angeschaltet',
     aboutChangelog: 'Änderungsliste',
     updateNoUpdates: 'Die letzte App-Version installiert',

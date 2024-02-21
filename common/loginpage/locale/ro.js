@@ -92,7 +92,7 @@ l10n.ro = {
     settOptLaunchInTab: 'În filă',
     settOptLaunchInWindow: 'În fereastră',
     settSpellcheckDetection: 'Detectarea limbii de verificare ortografică',
-    settOptDisabled: 'Disabled',
+    settOptDisabled: 'Dezactivat',
     settOptEnabled: 'Activat',
     aboutChangelog: 'Jurnal de modificări',
     updateNoUpdates: 'Aplicația este actualizată',

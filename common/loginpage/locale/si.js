@@ -92,7 +92,7 @@ l10n.si = {
     settOptLaunchInTab: 'ස්වකීය පටිත්තෙහි',
     settOptLaunchInWindow: 'ස්වකීය කවුළුවෙහි',
     settSpellcheckDetection: 'අකුරු වින්‍යාස භාෂාව අනාවරණය',
-    settOptDisabled: 'අබලයි',
+    settOptDisabled: 'අබල කර ඇත',
     settOptEnabled: 'සබලයි',
     aboutChangelog: 'වෙනස්කම් සටහන',
     updateNoUpdates: 'යෙදුම යාවත්කාලීනයි',

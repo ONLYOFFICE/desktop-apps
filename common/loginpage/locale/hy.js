@@ -92,7 +92,7 @@ l10n.hy = {
     settOptLaunchInTab: 'Ներդիրում',
     settOptLaunchInWindow: 'Պատուհանում',
     settSpellcheckDetection: 'Ուղղագրական լեզվի հայտնաբերում',
-    settOptDisabled: 'Disabled',
+    settOptDisabled: 'Անջատված',
     settOptEnabled: 'Միացված է',
     aboutChangelog: 'Փոփոխությունների օրագիր',
     updateNoUpdates: 'Հավելվածը թարմացված է',

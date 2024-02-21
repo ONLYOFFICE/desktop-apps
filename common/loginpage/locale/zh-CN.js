@@ -92,7 +92,7 @@ l10n.zh_CN = {
     settOptLaunchInTab: '标签页中',
     settOptLaunchInWindow: '窗口中',
     settSpellcheckDetection: '拼写语言检测',
-    settOptDisabled: 'Disabled',
+    settOptDisabled: '已停用',
     settOptEnabled: '已启用',
     aboutChangelog: '更新日志',
     updateNoUpdates: '这是应用程序最新版',
