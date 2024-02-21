@@ -88,7 +88,8 @@ static NSUInteger const kASTabViewCloseButtonSize = 12;
 
 - (instancetype)copyWithZone:(NSZone *)zone
 {
-    ASCTabView * copy = [[ASCTabView allocWithZone:zone] initWithFrame:self.frame];
+//    ASCTabView * copy = [[ASCTabView allocWithZone:zone] initWithFrame:self.frame];
+    ASCTabView * copy = [[ASCTabView allocWithZone:zone] initWithFrame:CGRectZero];
     copy.type = self.type;
 
     ASCTabViewCell * cellCopy = [self.cell copy];
@@ -96,6 +97,7 @@ static NSUInteger const kASTabViewCloseButtonSize = 12;
     [copy setState:[self state]];
     [copy setNeedsDisplay];
 
+    copy.frame = self.frame;
     return copy;
 }
 
@@ -141,12 +143,9 @@ static NSUInteger const kASTabViewCloseButtonSize = 12;
     [self.cell setCloseButton:self.close];
     
     [self.close setAutoresizingMask:NSViewMinXMargin | NSViewMaxYMargin];
-    [self.close setFrame:CGRectMake(
-                                    CGRectGetWidth(self.frame) - kASTabViewCloseButtonSize * 1.5,
-                                    kASTabViewCloseButtonSize / 1.5,
-                                    kASTabViewCloseButtonSize,
-                                    kASTabViewCloseButtonSize
-                                    )];
+
+    if ( CGRectGetWidth(self.frame) )
+        [self setButtonCloseOrigin:self.frame];
 
     __weak __typeof__(self) weakSelf = self;
     tabCell.updateState = ^{
@@ -167,6 +166,10 @@ static NSUInteger const kASTabViewCloseButtonSize = 12;
 }
 
 - (void)setFrame:(NSRect)frame {
+    if ( self.frame.size.width != frame.size.width ) {
+        [self setButtonCloseOrigin:frame];
+    }
+
     [super setFrame:frame];
 }
 
@@ -274,6 +277,18 @@ static NSUInteger const kASTabViewCloseButtonSize = 12;
             [_delegate tabDidUpdate:self];
         }
     }
+}
+
+- (void)setButtonCloseOrigin:(NSRect)rect {
+    CGFloat btnCloseOriginLeft = -([self userInterfaceLayoutDirection] == NSUserInterfaceLayoutDirectionRightToLeft ?
+                                        CGRectGetWidth(rect) - kASTabViewCloseButtonSize / 1.5 : kASTabViewCloseButtonSize * 1.5);
+
+    NSLog(@"tabview btn close origin %f %@", btnCloseOriginLeft, NSStringFromRect(rect));
+    [self.close setFrame:CGRectMake(btnCloseOriginLeft,
+                                    kASTabViewCloseButtonSize / 1.5,
+                                    kASTabViewCloseButtonSize,
+                                    kASTabViewCloseButtonSize
+                                    )];
 }
 
 - (NSString *)title {
