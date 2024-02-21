@@ -1048,12 +1048,16 @@
         NSLog(@"options: %@", nameLocales);
 
         CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
-        
-        if (appManager) {
-            m_pContext = new ASCPrinterContext(appManager);
-//            m_pContext->BeginPaint([viewId intValue], [pagesCount intValue], self, @selector(printOperationDidRun:success:contextInfo:));
-            m_pContext->BeginPaint(notification.userInfo, self, @selector(printOperationDidRun:success:contextInfo:));
-        }
+
+        // using synchronization to be sure that flag `ASCPrinterContext::isCurrentlyPrinting` is correctly handled
+        static dispatch_queue_t printQueue = dispatch_queue_create(NULL, NULL);
+        dispatch_sync(printQueue, ^{
+            if (appManager && !ASCPrinterContext::isCurrentlyPrinting) {
+                m_pContext = new ASCPrinterContext(appManager);
+                //            m_pContext->BeginPaint([viewId intValue], [pagesCount intValue], self, @selector(printOperationDidRun:success:contextInfo:));
+                m_pContext->BeginPaint(notification.userInfo, self, @selector(printOperationDidRun:success:contextInfo:));
+            }
+        });
     }
 }
 
