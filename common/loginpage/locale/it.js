@@ -92,7 +92,7 @@ l10n.it_IT = {
     settOptLaunchInTab: 'Nella scheda',
     settOptLaunchInWindow: 'Nella finestra',
     settSpellcheckDetection: 'Rilevamento lingua dell\'ortografia',
-    settOptDisabled: 'Disabled',
+    settOptDisabled: 'Disattivato',
     settOptEnabled: 'Abilitato',
     aboutChangelog: 'Registro delle modifiche',
     updateNoUpdates: 'L\'app è aggiornata',

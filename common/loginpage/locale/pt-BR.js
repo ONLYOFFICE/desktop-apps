@@ -92,7 +92,7 @@ l10n.pt_BR = {
     settOptLaunchInTab: 'Na guia',
     settOptLaunchInWindow: 'Na janela',
     settSpellcheckDetection: 'Detecção de linguagem ortográfica',
-    settOptDisabled: 'Disabled',
+    settOptDisabled: 'Desabilitado',
     settOptEnabled: 'Habilitado',
     aboutChangelog: 'Registro de Alterações',
     updateNoUpdates: 'Aplicativo está atualizado',

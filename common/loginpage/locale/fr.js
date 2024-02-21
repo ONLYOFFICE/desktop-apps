@@ -92,7 +92,7 @@ l10n.fr = {
     settOptLaunchInTab: 'Dans un onglet',
     settOptLaunchInWindow: 'Dans une fenêtre',
     settSpellcheckDetection: 'Détection de la langue de vérification linguistique',
-    settOptDisabled: 'Disabled',
+    settOptDisabled: 'Désactivé',
     settOptEnabled: 'Activée',
     aboutChangelog: 'Journal des modifications',
     updateNoUpdates: 'Application est mise à jour',

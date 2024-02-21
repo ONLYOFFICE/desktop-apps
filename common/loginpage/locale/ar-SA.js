@@ -92,7 +92,7 @@ l10n.ar_SA = {
     settOptLaunchInTab: 'في علامة تبويب جديدة',
     settOptLaunchInWindow: 'في نافذة جديدة',
     settSpellcheckDetection: 'تحرّي التدقيق الإملائي',
-    settOptDisabled: 'Disabled',
+    settOptDisabled: 'ناچالاککراوە',
     settOptEnabled: 'تمكين',
     aboutChangelog: 'سِجِل التغيير',
     updateNoUpdates: 'نسخة التطبيق الحالية هي الأحدث',

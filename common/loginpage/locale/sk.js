@@ -92,7 +92,7 @@ l10n.sk = {
     settOptLaunchInTab: 'V tabuľke',
     settOptLaunchInWindow: 'V okne',
     settSpellcheckDetection: 'Rozpoznávanie jazyka pravopisu',
-    settOptDisabled: 'Vypnuté',
+    settOptDisabled: 'Zakázané',
     settOptEnabled: 'Zapnuté',
     aboutChangelog: 'Protokol zmien',
     updateNoUpdates: 'Aplikácia je aktuálna',

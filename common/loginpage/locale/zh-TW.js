@@ -92,7 +92,7 @@ l10n.zh_TW = {
     settOptLaunchInTab: '標籤中',
     settOptLaunchInWindow: '視窗中',
     settSpellcheckDetection: '拼寫語言偵測',
-    settOptDisabled: '已禁用',
+    settOptDisabled: '已停用',
     settOptEnabled: '已啟用',
     aboutChangelog: '變更日誌',
     updateNoUpdates: '應用程序已為最新版本',
