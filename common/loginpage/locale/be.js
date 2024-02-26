@@ -48,7 +48,7 @@ l10n.be = {
     newDoc: 'Дакумент',
     newXlsx: 'Табліца',
     newPptx: 'Прэзентацыя',
-    newForm: 'Шаблон формы',
+    newForm: 'PDF форма',
     actCreateNew: 'Стварыць',
     actRecentFiles: 'Нядаўнія файлы',
     actOpenLocal: 'Адкрыць лакальны файл',

@@ -214,7 +214,7 @@
                                                     <select class='combobox'>
                                                         <option data-subtext="${_lang.settOptDescAUpdateSilent}" value='silent' l10n>${_lang.settOptAUpdateSilent}</option>
                                                         <option data-subtext="${_lang.settOptDescAUpdateAsk}" value='ask' l10n>${_lang.settOptAUpdateAsk}</option>
-                                                        <option data-subtext="${_lang.settOptDescDisabled}" value='disabled' l10n>${_lang.settOptDisabled}</option>
+                                                        <option data-subtext="${_lang.settOptDescDisabled}" value='disabled' l10n>${_lang.settOptAUpdateDisabled}</option>
                                                     </select>
                                                 </section>
                                             </div>
@@ -463,6 +463,7 @@
                 $chRtl.prop("checked", _is_lang_rtl(l));
             }
 
+            $(document.body).toggleClass('rtl-font', _is_lang_rtl(l));
             $optsLang.toggleClass('notted', true);
         };
 
@@ -520,6 +521,8 @@
                                 $panel.find('.settings-field-lang label[l10n]').after(`<label class='sett__caption'>*</label>`);
                                 $('#caption-restart', $panel).show();
                             }
+
+                            $(document.body).toggleClass('rtl-font', _is_lang_rtl(opts.locale.current));
                         }
 
                         if ( opts.uiscaling != undefined && !$optsUIScaling ) {
@@ -645,6 +648,8 @@
                             if ( opts.rtl ) {
                                 document.body.setAttribute('dir', 'rtl');
                                 document.body.classList.add('rtl');
+
+                                $userName.css('direction', 'rtl');
                             }
 
                         }

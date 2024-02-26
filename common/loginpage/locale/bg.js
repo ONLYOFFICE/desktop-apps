@@ -48,7 +48,7 @@ l10n.bg = {
     newDoc: 'Документ',
     newXlsx: 'Електронна таблица',
     newPptx: 'Презентация',
-    newForm: 'Шаблон на формуляр',
+    newForm: 'PDF формуляр',
     actCreateNew: 'Създай нов',
     actRecentFiles: 'Последни файлове',
     actOpenLocal: 'Отвори локален файл',

@@ -50,6 +50,12 @@ core_debug:DESTDIR = $$DESTDIR/build/debug
 DESTDIR = $$DESTDIR/$$CORE_BUILDS_PLATFORM_PREFIX
 
 core_windows {
+    ZLIB_DIR = $$CORE_ROOT_DIR/OfficeUtils/src/zlib-1.2.11
+    MINIZIP_DIR = $$ZLIB_DIR/contrib/minizip
+    INCLUDEPATH += $$ZLIB_DIR \
+                   $$ZLIB_DIR/../../src \
+                   $$MINIZIP_DIR
+
     HEADERS += $$PWD/src/platform_win/utils.h \
                $$PWD/src/platform_win/resource.h \
                $$PWD/src/platform_win/svccontrol.h \
@@ -65,6 +71,27 @@ core_windows {
                $$PWD/src/classes/platform_win/cunzip.cpp \
                $$PWD/src/classes/platform_win/cdownloader.cpp \
                $$PWD/src/classes/platform_win/ctimer.cpp
+
+    SOURCES += $$ZLIB_DIR/../../src/zlib_addon.c \
+               $$ZLIB_DIR/adler32.c \
+               $$ZLIB_DIR/crc32.c \
+               $$ZLIB_DIR/inffast.c \
+               $$ZLIB_DIR/inflate.c \
+               $$ZLIB_DIR/inftrees.c \
+               $$ZLIB_DIR/zutil.c \
+               $$MINIZIP_DIR/ioapi.c \
+               $$MINIZIP_DIR/iowin32.c \
+               $$MINIZIP_DIR/unzip.c
+
+    HEADERS += $$ZLIB_DIR/../../src/zlib_addon.h \
+               $$ZLIB_DIR/crc32.h \
+               $$ZLIB_DIR/inffast.h \
+               $$ZLIB_DIR/inflate.h \
+               $$ZLIB_DIR/inftrees.h \
+               $$ZLIB_DIR/zutil.h \
+               $$MINIZIP_DIR/ioapi.h \
+               $$MINIZIP_DIR/iowin32.h \
+               $$MINIZIP_DIR/unzip.h
 
     OTHER_FILES += $$PWD/res/version.rc \
                    $$PWD/res/manifest/updatesvc.exe.manifest

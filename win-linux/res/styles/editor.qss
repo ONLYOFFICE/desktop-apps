@@ -1,6 +1,7 @@
 #mainPanel {background-color: %1;}
 #box-title-tools {background-color: %1;}
 #box-title-tools QLabel {font-family: "Arial", "Helvetica", "Helvetica Neue", sans-serif;}
+#mainPanel[rtl-font=true] #box-title-tools QLabel {font-family: "Segoe UI", "Traditional Arabic", "Noto Sans";}
 #labelTitle {color: #444; font-weight: normal;}
 #iconuser {color: %1; background: #d9ffffff; font-size: 10px;}
 QPushButton[act=tool]:hover {background-color: rgba(0,0,0,20%);}

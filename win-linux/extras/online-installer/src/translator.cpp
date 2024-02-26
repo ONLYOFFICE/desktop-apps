@@ -27,7 +27,7 @@ wstring StrToWStr(const char* str)
         if (outSize > 0)
             wstr = pDestBuf;
         else
-            NS_Logger::WriteLog(DEFAULT_ERROR_MESSAGE);
+            NS_Logger::WriteLog(_T("An error occurred: ") + wstring(_T(__FUNCTION__)));
         delete[] pDestBuf;
     }
     return wstr;

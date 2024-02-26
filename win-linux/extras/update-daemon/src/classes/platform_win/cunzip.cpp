@@ -32,6 +32,7 @@
 
 #include "cunzip.h"
 #include "platform_win/utils.h"
+#ifdef USE_NATIVE_UNZIP
 #include <atlbase.h>
 #include <Shldisp.h>
 
@@ -121,6 +122,90 @@ int unzipArchive(const wstring &zipFilePath, const wstring &folderPath, std::ato
     CoUninitialize();
     return res;
 }
+#else
+#include <Windows.h>
+#include <codecvt>
+#include "unzip.h"
+
+#define MAX_PATH_LEN 512
+#define BLOCK_SIZE   8192
+
+
+int unzipArchive(const wstring &zipFilePath, const wstring &folderPath, std::atomic_bool &run)
+{
+    if (!NS_File::fileExists(zipFilePath) || !NS_File::dirExists(folderPath))
+        return UNZIP_ERROR;
+
+    std::wstring_convert<std::codecvt_utf8<wchar_t>> utf8_conv;
+    std::string utf8ZipFilePath = utf8_conv.to_bytes(NS_File::fromNativeSeparators(zipFilePath));
+    std::string utf8FolderPath = utf8_conv.to_bytes(NS_File::fromNativeSeparators(folderPath));
+
+    unzFile hzf = unzOpen(utf8ZipFilePath.c_str());
+    if (!hzf)
+        return UNZIP_ERROR;
+
+    unz_global_info g_info;
+    if (unzGetGlobalInfo(hzf, &g_info) != UNZ_OK) {
+        unzClose(hzf);
+        return UNZIP_ERROR;
+    }
+
+    uLong total_count = g_info.number_entry;
+    for (uLong i = 0; i < total_count; ++i) {
+        if (!run) {
+            unzClose(hzf);
+            return UNZIP_ABORT;
+        }
+        unz_file_info file_info;
+        char entry_name[MAX_PATH_LEN];
+        if (unzGetCurrentFileInfo(hzf, &file_info, entry_name, MAX_PATH_LEN, NULL, 0, NULL, 0) != UNZ_OK) {
+            unzClose(hzf);
+            return UNZIP_ERROR;
+        }
+
+        char out_path[MAX_PATH_LEN];
+        snprintf(out_path, MAX_PATH_LEN, "%s/%s", utf8FolderPath.c_str(), entry_name);
+        if (entry_name[strlen(entry_name) - 1] == '/') {
+            if (::CreateDirectoryA(out_path, NULL) == 0)
+                return UNZIP_ERROR;
+
+        } else {
+            if (unzOpenCurrentFile(hzf) != UNZ_OK) {
+                unzClose(hzf);
+                return UNZIP_ERROR;
+            }
+
+            FILE *hFile = fopen(out_path, "wb");
+            if (!hFile) {
+                unzCloseCurrentFile(hzf);
+                unzClose(hzf);
+                return UNZIP_ERROR;
+            }
+
+            int bytes_read = 0;
+            do {
+                char buff[BLOCK_SIZE] = {0};
+                bytes_read = unzReadCurrentFile(hzf, buff, BLOCK_SIZE);
+                if (bytes_read < 0 || (bytes_read > 0 && fwrite(buff, bytes_read, 1, hFile) != 1)) {
+                    fclose(hFile);
+                    unzCloseCurrentFile(hzf);
+                    unzClose(hzf);
+                    return UNZIP_ERROR;
+                }
+            } while (bytes_read > 0);
+            fclose(hFile);
+            unzCloseCurrentFile(hzf);
+        }
+
+        if ((i + 1) < total_count && unzGoToNextFile(hzf) != UNZ_OK) {
+            unzClose(hzf);
+            return UNZIP_ERROR;
+        }
+    }
+    unzClose(hzf);
+    return UNZIP_OK;
+}
+#endif
 
 CUnzip::CUnzip()
 {
