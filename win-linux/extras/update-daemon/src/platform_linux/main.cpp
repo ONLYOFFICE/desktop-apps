@@ -52,8 +52,6 @@ void strToNum(const char *str, int &num)
 
 int main(int argc, char *argv[])
 {
-    NS_File::setAppPath(argv[0]);
-
     if (argc > 1) {
         if (strcmp(argv[1], "--run-as-app") == 0) {
             std::locale::global(std::locale(""));
