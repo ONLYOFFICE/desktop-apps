@@ -256,11 +256,12 @@ static float kASCWindowMinTitleWidth = 0;
 }
 
 - (void)doLayout {
-    CGFloat btnContainerWidth = CGRectGetWidth([self.standardButtonsDefaults[0] frame]) + 6.0;
+    int btnSpacing = 6.0;
+    CGFloat btnContainerWidth = CGRectGetWidth([self.standardButtonsDefaults[0] frame]) + btnSpacing;
     CGFloat leftOffset = kASCWindowDefaultTrafficButtonsLeftMargin;
     if ( [ASCLinguist isUILayoutDirectionRtl] ) {
         CGFloat windowWidth = CGRectGetWidth([[self view] frame]);
-        leftOffset = windowWidth - kASCWindowDefaultTrafficButtonsLeftMargin - btnContainerWidth * 3;
+        leftOffset = windowWidth - kASCWindowDefaultTrafficButtonsLeftMargin - btnContainerWidth * 3 + btnSpacing;
     }
 
     void (^layoutStandartButtons)(NSArray *, BOOL) = ^ (NSArray *views, BOOL hidden) {
@@ -283,7 +284,14 @@ static float kASCWindowMinTitleWidth = 0;
     CGFloat maxTabsWidth    = containerWidth - kASCWindowMinTitleWidth - 100;
     CGFloat actualTabsWidth = self.tabsControl.maxTabWidth * [self.tabsControl.tabs count];
     
-    self.tabsControl.frame  = CGRectMake(0, 0, MIN(actualTabsWidth, maxTabsWidth), CGRectGetHeight(self.tabsControl.frame));
+    int rtlDependedLeftOffset = 0;
+    if ([self.view userInterfaceLayoutDirection] == NSUserInterfaceLayoutDirectionRightToLeft) {
+        NSRect rect = [[self.tabsControl superview] frame];
+        rtlDependedLeftOffset = rect.size.width - MIN(actualTabsWidth, maxTabsWidth);
+    }
+    
+    self.tabsControl.frame  = CGRectMake(rtlDependedLeftOffset, 0, MIN(actualTabsWidth, maxTabsWidth), CGRectGetHeight(self.tabsControl.frame));
+    NSLog(@"tabs width %@", NSStringFromRect([self.tabsControl frame]));
 }
 
 - (void)viewWillTransitionToSize:(NSSize)newSize {

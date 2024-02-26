@@ -318,8 +318,10 @@ static NSString * const kASCTabsMulticastDelegateKey = @"asctabsmulticastDelegat
         
         // Don't animate if it is hidden, as it will screw order of tabs
         if (anim && ![tabView isHidden]) {
+            NSLog(@"tabs layoutTabs anim %ld %@", idx, NSStringFromRect(rect));
             [[tabView animator] setFrame:rect];
         } else {
+            NSLog(@"tabs layoutTabs %ld %hhd %@", idx, anim, NSStringFromRect(rect));
             [tabView setFrame:rect];
         }
         
@@ -596,7 +598,8 @@ static NSString * const kASCTabsMulticastDelegateKey = @"asctabsmulticastDelegat
         
         newRect.origin.x = nextX;
         draggingTab.frame = CGRectOffset(newRect, -scrollPosition, 0);
-        
+        NSLog(@"tab dragging copy %@", NSStringFromRect(draggingTab.frame));
+
         BOOL movingLeft = (nextPoint.x < prevPoint.x);
         BOOL movingRight = (nextPoint.x > prevPoint.x);
         
@@ -620,7 +623,10 @@ static NSString * const kASCTabsMulticastDelegateKey = @"asctabsmulticastDelegat
 - (void)addTab:(ASCTabView *)tab selected:(BOOL)selected {
     if (tab) {
         tab.hidden = YES;
-        [self.tabs addObject:tab];
+        if ( [self userInterfaceLayoutDirection] != NSUserInterfaceLayoutDirectionRightToLeft )
+            [self.tabs addObject:tab];
+        else
+            [self.tabs insertObject:tab atIndex:0];
         
         if (_delegate && [_delegate respondsToSelector:@selector(tabs:didResize:)]) {
             [_delegate tabs:self didResize:CGRectZero];
@@ -631,8 +637,10 @@ static NSString * const kASCTabsMulticastDelegateKey = @"asctabsmulticastDelegat
         tab.hidden = NO;
         tab.frame = CGRectOffset(tab.frame, 0, -CGRectGetHeight(self.scrollView.frame));
         
+        NSLog(@"tabs addtab before %@, %@", NSStringFromRect(tab.frame), NSStringFromRect(self.scrollView.frame));
         [self.tabsView setFrame:CGRectMake(0.0, 0.0, CGRectGetMaxX(tab.frame), CGRectGetHeight(self.scrollView.frame))];
-        
+        NSLog(@"tabs addtab after %@, %@", NSStringFromRect(tab.frame), NSStringFromRect(self.scrollView.frame));
+
         tab.delegate    = self;
         tab.target      = self;
         tab.action      = @selector(handleSelectTab:);
@@ -644,6 +652,7 @@ static NSString * const kASCTabsMulticastDelegateKey = @"asctabsmulticastDelegat
             [context setAllowsImplicitAnimation:YES];
             tab.animator.frame = CGRectOffset(tab.frame, 0, CGRectGetHeight(self.scrollView.frame));
             [tab.superview scrollRectToVisible:tab.frame];
+            NSLog(@"tab animation %@", NSStringFromRect(tab.animator.frame));
         } completionHandler:^{
             [self layoutTabs:nil animated:NO];
             [self updateAuxiliaryButtons];
