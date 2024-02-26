@@ -283,7 +283,6 @@ static NSUInteger const kASTabViewCloseButtonSize = 12;
     CGFloat btnCloseOriginLeft = -([self userInterfaceLayoutDirection] == NSUserInterfaceLayoutDirectionRightToLeft ?
                                         CGRectGetWidth(rect) - kASTabViewCloseButtonSize / 1.5 : kASTabViewCloseButtonSize * 1.5);
 
-    NSLog(@"tabview btn close origin %f %@", btnCloseOriginLeft, NSStringFromRect(rect));
     [self.close setFrame:CGRectMake(btnCloseOriginLeft,
                                     kASTabViewCloseButtonSize / 1.5,
                                     kASTabViewCloseButtonSize,
