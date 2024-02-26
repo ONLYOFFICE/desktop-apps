@@ -51,6 +51,7 @@
 #else
 # include <QProcess>
 # include <unistd.h>
+# include <spawn.h>
 # include "components/cmessage.h"
 # include "platform_linux/updatedialog.h"
 # define DAEMON_NAME "/updatesvc"
@@ -210,13 +211,25 @@ auto runProcess(const tstring &fileName, const tstring &args, bool runAsAdmin = 
         CloseHandle(shExInfo.hProcess);
         return true;
     }
+    return false;
 #else
     Q_UNUSED(runAsAdmin)
-    QStringList _args = QString::fromStdString(args).split(" ");
-    if (QProcess::startDetached(QString::fromStdString(fileName), _args))
-        return true;
+    const QStringList args_list = args.empty() ? QStringList() : QString::fromStdString(args).split(" ");
+    char **_args = new char*[args_list.size() + 2];
+    int i = 0;
+    _args[i++] = const_cast<char*>(fileName.c_str());
+    for (const auto &arg : args_list)
+        _args[i++] = arg.toLocal8Bit().data();
+    _args[i] = NULL;
+    pid_t pid;
+    posix_spawn_file_actions_t acts;
+    posix_spawn_file_actions_init(&acts);
+    posix_spawn_file_actions_addclosefrom_np(&acts, 0);
+    int res = posix_spawn(&pid, fileName.c_str(), &acts, NULL, _args, environ);
+    posix_spawn_file_actions_destroy(&acts);
+    delete[] _args;
+    return res == 0;
 #endif
-    return false;
 }
 
 struct CUpdateManager::PackageData {
