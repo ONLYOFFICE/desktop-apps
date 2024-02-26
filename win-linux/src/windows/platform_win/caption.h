@@ -63,7 +63,7 @@ private:
         return false;
     }
 
-    bool nativeEvent(const QByteArray &eventType, void *message, long *result)
+    virtual bool nativeEvent(const QByteArray &eventType, void *message, long *result) override
     {
     #if (QT_VERSION == QT_VERSION_CHECK(5, 11, 1))
         MSG* msg = *reinterpret_cast<MSG**>(message);
