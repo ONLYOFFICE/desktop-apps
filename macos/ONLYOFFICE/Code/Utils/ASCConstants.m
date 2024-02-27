@@ -181,6 +181,10 @@
                      @"description" : NSLocalizedString(@"Excel 2007 Spreadsheet", nil),
                      @"extension"   : @"xlsx"
                      },
+             @(AVS_OFFICESTUDIO_FILE_SPREADSHEET_XLSB): @{
+                     @"description" : NSLocalizedString(@"Excel Binary Workbook", nil),
+                     @"extension"   : @"xlsb"
+                     },
              @(AVS_OFFICESTUDIO_FILE_SPREADSHEET_XLS): @{
                      @"description" : NSLocalizedString(@"Excel 97-2003 Spreadsheet", nil),
                      @"extension"   : @"xls"
