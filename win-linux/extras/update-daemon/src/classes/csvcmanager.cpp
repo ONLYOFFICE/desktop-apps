@@ -68,6 +68,7 @@
 # define APP_LAUNCH_NAME  "/DesktopEditors"
 # define APP_HELPER       "/editors_helper"
 # define DAEMON_NAME      "/updatesvc"
+# define DAEMON_NAME_OLD  "/~updatesvc"
 # define SUBFOLDER        "/desktopeditors"
 # define ARCHIVE_EXT      _T(".tar.xz")
 # define ARCHIVE_PATTERN  _T("*.tar.xz")
@@ -271,6 +272,12 @@ void CSvcManager::init()
             case MSG_StartReplacingFiles:
                 __GLOBAL_LOCK
                 startReplacingFiles(params[1], params[2] == _T("true"));
+                __UNLOCK
+                break;
+
+            case MSG_StartReplacingService:
+                __GLOBAL_LOCK
+                startReplacingService(params[2] == _T("true"));
                 __UNLOCK
                 break;
 
@@ -623,6 +630,76 @@ void CSvcManager::startReplacingFiles(const tstring &packageType, const bool res
 
     // Remove Backup dir
     NS_File::removeDirRecursively(tmpPath);
+
+    // Restart service
+#ifdef _WIN32
+    restartService();
+#endif
+}
+
+void CSvcManager::startReplacingService(const bool restartAfterUpdate)
+{
+    tstring appPath = NS_File::appPath();
+    tstring updPath = NS_File::parentPath(appPath) + UPDATE_PATH;
+    tstring updSubPath = NS_File::fileExists(updPath + SUBFOLDER + APP_LAUNCH_NAME) ? updPath + SUBFOLDER : updPath;
+    if (!NS_File::dirExists(updPath)) {
+        NS_Logger::WriteLog(_TR("Update cancelled. Can't find folder:") + _T(" ") + updPath, true);
+        return;
+    }
+
+#ifdef _WIN32
+# ifndef DONT_VERIFY_SIGNATURE
+    // Verify the signature of executable files
+    if (!NS_File::verifyEmbeddedSignature(updSubPath + DAEMON_NAME)) {
+        NS_Logger::WriteLog(_TR("Update cancelled. The file signature is missing:") + _T(" ") + updSubPath + DAEMON_NAME, true);
+        return;
+    }
+# endif
+#endif
+
+    // Wait until the main app closes
+    {
+#ifdef _WIN32
+        tstring apps[] = {APP_LAUNCH_NAME2, APP_HELPER};
+#else
+        tstring apps[] = {APP_LAUNCH_NAME, APP_HELPER};
+#endif
+        for (int i = 0; i < sizeof(apps) / sizeof(apps[0]); i++) {
+            int retries = 10;
+            tstring app(apps[i]);
+            app = app.substr(1);
+            while (NS_File::isProcessRunning(app) && retries-- > 0)
+                sleep(500);
+
+            if (NS_File::isProcessRunning(app)) {
+                NS_Logger::WriteLog(_TR("Update cancelled. The program is not closed:") + _T(" ") + app, true);
+                return;
+            }
+        }
+    }
+
+    // Rename updatesvc.exe to ~updatesvc.exe
+    if (NS_File::fileExists(appPath + DAEMON_NAME) && !NS_File::replaceFile(appPath + DAEMON_NAME, appPath + DAEMON_NAME_OLD)) {
+        NS_Logger::WriteLog(_TR("Update cancelled. Can't rename updatesvc.exe to ~updatesvc.exe:") + _T(" ") + NS_Utils::GetLastErrorAsString(), true);
+        return;
+    }
+
+    // Move updatesvc.exe to app path
+    if (!NS_File::replaceFile(updSubPath + DAEMON_NAME, appPath + DAEMON_NAME)) {
+        NS_Logger::WriteLog(_TR("Update cancelled. Can't replace file updatesvc.exe to app path:") + _T(" ") + NS_Utils::GetLastErrorAsString(), true);
+        if (NS_File::fileExists(appPath + DAEMON_NAME_OLD) && !NS_File::replaceFile(appPath + DAEMON_NAME_OLD, appPath + DAEMON_NAME))
+            NS_Logger::WriteLog(_TR("Can't restore file updatesvc.exe!"), true);
+        return;
+    }
+
+    // Restart program
+    if (restartAfterUpdate) {
+        if (!NS_File::runProcess(appPath + APP_LAUNCH_NAME, _T("")))
+            NS_Logger::WriteLog(_TR("An error occurred while restarting the program!"), true);
+    }
+
+    // Remove Update dir
+    NS_File::removeDirRecursively(updPath);
 
     // Restart service
 #ifdef _WIN32

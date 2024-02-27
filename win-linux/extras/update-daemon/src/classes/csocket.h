@@ -70,7 +70,8 @@ enum MsgCommands {
     MSG_OtherError,
     MSG_RequestContentLenght,
     MSG_UnzipProgress,
-    MSG_SetLanguage
+    MSG_SetLanguage,
+    MSG_StartReplacingService
 };
 
 class CSocket

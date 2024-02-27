@@ -35,12 +35,16 @@
 #include "classes/platform_linux/ctimer.h"
 #include "classes/csvcmanager.h"
 #include "classes/translator.h"
+#include "version.h"
 #include "../../src/defines.h"
 #include "../../src/prop/defines_p.h"
 #include <csignal>
 #include <cstring>
 #include <locale>
 
+#define DECL_VERSION __attribute__((section(".version_info"), unused))
+
+volatile static const char DECL_VERSION version[] = VER_STRING;
 
 void strToNum(const char *str, int &num)
 {
