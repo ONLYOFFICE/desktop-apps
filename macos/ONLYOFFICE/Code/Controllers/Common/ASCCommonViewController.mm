@@ -1034,6 +1034,9 @@
 - (void)printOperationDidRun:(NSPrintOperation *)printOperation success:(BOOL)success contextInfo:(void *)contextInfo {
     if (m_pContext) {
         m_pContext->EndPaint();
+        
+        m_pContext->Release();
+        m_pContext = nullptr;
     }
 }
 
