@@ -77,11 +77,9 @@ int main(int argc, char *argv[])
                     strToNum((const char*)buff, pid);
             });
 
-            // Checking for the completion of the main application:
-            // updatevc needs to be terminated when the main application is using a socket
-            // with the same address in the SingleApplication implementation and has been terminated incorrectly.
+            // Termination on crash of the main application
             CTimer tmr;
-            tmr.start(5000, [&app, &pid]() {
+            tmr.start(30000, [&app, &pid]() {
                 if (pid != -1 && kill(pid, 0) != 0)
                     app.exit(0);
             });
