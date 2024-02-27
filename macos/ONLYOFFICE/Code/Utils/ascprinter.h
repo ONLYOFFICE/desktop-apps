@@ -413,7 +413,6 @@ public:
 
 		m_pView = nil;
 		isCurrentlyPrinting = false;
-		this->Release();
 	}
 
 	virtual void GetLogicalDPI(int& nDpiX, int& nDpiY)
