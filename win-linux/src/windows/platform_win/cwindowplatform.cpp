@@ -194,11 +194,13 @@ bool CWindowPlatform::nativeEvent(const QByteArray &eventType, void *message, lo
     {
     case WM_ACTIVATE: {
 #ifndef __OS_WIN_XP
-        MARGINS mrg;
-        mrg.cxLeftWidth = 4;
-        mrg.cxRightWidth = 4;
-        mrg.cyBottomHeight = 4;
-        mrg.cyTopHeight = 29;
+        MARGINS mrg = {4, 4, 29, 4};
+        if (Utils::getWinVersion() > Utils::WinVer::Win10) {
+            mrg.cxLeftWidth = 1;
+            mrg.cxRightWidth = 0;
+            mrg.cyBottomHeight = 0;
+            mrg.cyTopHeight = 0;
+        }
         DwmExtendFrameIntoClientArea(m_hWnd, &mrg);
 #endif
         break;
@@ -299,6 +301,10 @@ bool CWindowPlatform::nativeEvent(const QByteArray &eventType, void *message, lo
     }
 
     case WM_SETTINGCHANGE: {
+        if (msg->wParam == SPI_SETWINARRANGING) {
+            if (Utils::getWinVersion() > Utils::WinVer::Win10 && m_boxTitleBtns)
+                SendMessage((HWND)m_boxTitleBtns->winId(), WM_SETTINGCHANGE, 0, 0);
+        } else
         if (msg->wParam == SPI_SETWORKAREA) {
             static RECT oldWorkArea = {0,0,0,0};
             RECT workArea; // Taskbar show/hide detection

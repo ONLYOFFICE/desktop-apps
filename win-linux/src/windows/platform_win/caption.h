@@ -36,8 +36,11 @@
 #include <QWidget>
 #include <QWindow>
 #include <Windows.h>
+#include <Windowsx.h>
+#include <QStyle>
 #include <QPushButton>
 #include <QCoreApplication>
+#include "utils.h"
 
 
 class Caption: public QWidget
@@ -45,25 +48,51 @@ class Caption: public QWidget
 public:
     Caption(QWidget *parent = Q_NULLPTR, Qt::WindowFlags f = Qt::WindowFlags()):
         QWidget(parent, f)
-    {}
+    {
+        hwnd_root = ::GetAncestor((HWND)winId(), GA_ROOT);
+        snapLayoutAllowed = isArrangingAllowed();
+    }
 
 private:
+    HWND hwnd_root;
+    bool snapLayoutAllowed = false;
+
+    bool isArrangingAllowed() {
+        BOOL arranging = FALSE;
+        SystemParametersInfoA(SPI_GETWINARRANGING, 0, &arranging, 0);
+        return (arranging == TRUE);
+    }
+
+    QPoint cursorPos() {
+        POINT pt;
+        ::GetCursorPos(&pt);
+        return mapFromGlobal(QPoint(pt.x, pt.y));
+    }
+
+    QPushButton* buttonAtPos(const QPoint &pos) {
+        QWidget *child = childAt(pos);
+        return child ? qobject_cast<QPushButton*>(child) : nullptr;
+    }
+
+    QPushButton* buttonMaxUnderMouse() {
+        QPushButton *btn = buttonAtPos(cursorPos());
+        return (btn && btn->objectName() == "toolButtonMaximize") ? btn : nullptr;
+    }
+
     bool postMsg(DWORD cmd) {
         POINT pt;
         ::GetCursorPos(&pt);
         QPoint pos = mapFromGlobal(QPoint(int(pt.x), int(pt.y)));
-        QPushButton *pushButton = childAt(pos) ? qobject_cast<QPushButton*>(childAt(pos)) : nullptr;
-        if (!pushButton) {
-            HWND hWnd = ::GetAncestor((HWND)(window()->windowHandle()->winId()), GA_ROOT);
+        if (!buttonAtPos(pos)) {
             ::ReleaseCapture();
-            ::PostMessage(hWnd, cmd, HTCAPTION, POINTTOPOINTS(pt));
+            ::PostMessage(hwnd_root, cmd, HTCAPTION, POINTTOPOINTS(pt));
             QCoreApplication::postEvent(parent(), new QEvent(QEvent::MouseButtonPress));
             return true;
         }
         return false;
     }
 
-    bool nativeEvent(const QByteArray &eventType, void *message, long *result)
+    virtual bool nativeEvent(const QByteArray &eventType, void *message, long *result) override
     {
     #if (QT_VERSION == QT_VERSION_CHECK(5, 11, 1))
         MSG* msg = *reinterpret_cast<MSG**>(message);
@@ -81,6 +110,54 @@ private:
         case WM_LBUTTONDBLCLK: {
             if (postMsg(WM_NCLBUTTONDBLCLK))
                 return true;
+            break;
+        }
+        case WM_NCLBUTTONDOWN: {
+            if (Utils::getWinVersion() < Utils::WinVer::Win11)
+                break;
+            if (QPushButton *btn = buttonMaxUnderMouse()) {
+                btn->setProperty("hovered", false);
+                btn->setProperty("pressed", true);
+                btn->style()->polish(btn);
+                btn->repaint();
+            }
+            break;
+        }
+        case WM_TIMER: {
+            QPushButton *btn = buttonMaxUnderMouse();
+            if (!btn) {
+                KillTimer(msg->hwnd, msg->wParam);
+                if (QPushButton *btn = findChild<QPushButton*>("toolButtonMaximize")) {
+                    btn->setProperty("hovered", false);
+                    btn->setProperty("pressed", false);
+                    btn->style()->polish(btn);
+                }
+            }
+            break;
+        }
+        case WM_NCHITTEST: {
+            if (Utils::getWinVersion() < Utils::WinVer::Win11 || !snapLayoutAllowed)
+                break;
+            *result = 0;
+            if (QPushButton *btn = buttonMaxUnderMouse()) {
+                if (!btn->property("hovered").toBool()) {
+                    btn->setProperty("hovered", true);
+                    btn->style()->polish(btn);
+                    SetTimer(msg->hwnd, 1, 200, NULL);
+                }
+                *result = HTMAXBUTTON;
+            }
+            return (*result != 0);
+        }
+        case WM_CAPTURECHANGED: {
+            if (Utils::getWinVersion() < Utils::WinVer::Win11)
+                break;
+            if (QPushButton *btn = buttonMaxUnderMouse())
+                btn->click();
+            break;
+        }
+        case WM_SETTINGCHANGE: {
+            snapLayoutAllowed = isArrangingAllowed();
             break;
         }
         default:
