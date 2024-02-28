@@ -318,10 +318,8 @@ static NSString * const kASCTabsMulticastDelegateKey = @"asctabsmulticastDelegat
         
         // Don't animate if it is hidden, as it will screw order of tabs
         if (anim && ![tabView isHidden]) {
-            NSLog(@"tabs layoutTabs anim %ld %@", idx, NSStringFromRect(rect));
             [[tabView animator] setFrame:rect];
         } else {
-            NSLog(@"tabs layoutTabs %ld %hhd %@", idx, anim, NSStringFromRect(rect));
             [tabView setFrame:rect];
         }
         
@@ -637,9 +635,8 @@ static NSString * const kASCTabsMulticastDelegateKey = @"asctabsmulticastDelegat
         tab.hidden = NO;
         tab.frame = CGRectOffset(tab.frame, 0, -CGRectGetHeight(self.scrollView.frame));
         
-        NSLog(@"tabs addtab before %@, %@", NSStringFromRect(tab.frame), NSStringFromRect(self.scrollView.frame));
-        [self.tabsView setFrame:CGRectMake(0.0, 0.0, CGRectGetMaxX(tab.frame), CGRectGetHeight(self.scrollView.frame))];
-        NSLog(@"tabs addtab after %@, %@", NSStringFromRect(tab.frame), NSStringFromRect(self.scrollView.frame));
+        if ( [self userInterfaceLayoutDirection] != NSUserInterfaceLayoutDirectionRightToLeft )
+            [self.tabsView setFrame:CGRectMake(0.0, 0.0, CGRectGetMaxX(tab.frame), CGRectGetHeight(self.scrollView.frame))];
 
         tab.delegate    = self;
         tab.target      = self;

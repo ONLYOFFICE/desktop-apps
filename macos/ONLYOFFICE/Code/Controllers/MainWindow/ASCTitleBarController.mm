@@ -71,6 +71,8 @@ static float kASCWindowMinTitleWidth = 0;
 @property (weak) IBOutlet NSButton *portalButton;
 @property (weak) IBOutlet NSButton *userProfileButton;
 @property (weak) IBOutlet NSLayoutConstraint *downloadWidthConstraint;
+@property (weak) IBOutlet NSLayoutConstraint *buttonPortalLeadingConstraint;
+@property (weak) IBOutlet NSLayoutConstraint *buttonPortalTrailingConstraint;
 @property (weak) IBOutlet NSImageView *downloadImageView;
 @property (weak) IBOutlet NSView *downloadBackgroundView;
 @property (nonatomic) SFBPopover * popover;
@@ -201,6 +203,10 @@ static float kASCWindowMinTitleWidth = 0;
 //    [self.userProfileButton setHidden:YES];
         [self.userProfileButton setHidden:NO];
     [self.portalButton setState:NSControlStateValueOn];
+    if ( [self.view userInterfaceLayoutDirection] == NSUserInterfaceLayoutDirectionRightToLeft ) {
+        self.buttonPortalLeadingConstraint.constant = -1;
+        self.buttonPortalTrailingConstraint.constant = 0;
+    }
     
     [self.tabsControl removeAllConstraints];
 
@@ -291,7 +297,6 @@ static float kASCWindowMinTitleWidth = 0;
     }
     
     self.tabsControl.frame  = CGRectMake(rtlDependedLeftOffset, 0, MIN(actualTabsWidth, maxTabsWidth), CGRectGetHeight(self.tabsControl.frame));
-    NSLog(@"tabs width %@", NSStringFromRect([self.tabsControl frame]));
 }
 
 - (void)viewWillTransitionToSize:(NSSize)newSize {
