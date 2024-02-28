@@ -117,7 +117,7 @@ static float kASCWindowMinTitleWidth = 0;
                                          [mainWindow standardWindowButton:NSWindowMiniaturizeButton],
                                          [mainWindow standardWindowButton:NSWindowZoomButton]];
         
-        if ( [ASCLinguist isUILayoutDirectionRtl] ) {
+        if ( [self.view userInterfaceLayoutDirection] == NSUserInterfaceLayoutDirectionRightToLeft ) {
             self.standardButtonsDefaults = [[self.standardButtonsDefaults reverseObjectEnumerator] allObjects];
         }
     }
