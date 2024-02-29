@@ -33,6 +33,7 @@
 #include "windows/ceditorwindow.h"
 #include "windows/ceditorwindow_p.h"
 #include <QApplication>
+#include <clangater.h>
 
 #define CAPTURED_WINDOW_OFFSET_X  (6*TOOLBTN_WIDTH + 10) * m_dpiRatio
 #define CAPTURED_WINDOW_OFFSET_Y  15 * m_dpiRatio

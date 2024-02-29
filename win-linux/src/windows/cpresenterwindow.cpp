@@ -36,6 +36,7 @@
 #include "defines.h"
 #include "utils.h"
 #include <QGridLayout>
+#include <clangater.h>
 
 using namespace std::placeholders;
 
