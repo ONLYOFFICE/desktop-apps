@@ -708,15 +708,27 @@ static NSString * const kASCTabsMulticastDelegateKey = @"asctabsmulticastDelegat
             if (selected) {                
                 NSInteger tabsCount = [self.tabs count];
                 
-                if (tabsCount > tabIndex) {
-                    [self selectTab:[self.tabs objectAtIndex:tabIndex]];
-                } else if (tabsCount > tabIndex - 1 && tabIndex - 1 >= 0) {
-                    [self selectTab:[self.tabs objectAtIndex:tabIndex - 1]];
-                } else if (tabsCount > 0) {
-                    [self selectTab:[self.tabs objectAtIndex:tabsCount - 1]];
-                } else {
-                    [self selectTab:nil];
+                ASCTabView * tabToSelect = nil;
+                if ( tabsCount ) {
+                    if ( [self userInterfaceLayoutDirection] != NSUserInterfaceLayoutDirectionRightToLeft ) {
+                        if (tabsCount > tabIndex) {
+                            tabToSelect = [self.tabs objectAtIndex:tabIndex];
+//                        } else if (tabsCount > tabIndex - 1 && tabIndex - 1 >= 0) {
+//                            tabToSelect = [self.tabs objectAtIndex:tabIndex - 1];
+//                        } else if (tabsCount > 0) {
+                        } else {
+                            tabToSelect = [self.tabs objectAtIndex:tabsCount - 1];
+                        }
+                    } else {
+                        if ( tabIndex > 0 ) {
+                            tabToSelect = [self.tabs objectAtIndex:tabIndex - 1];
+                        } else {
+                            tabToSelect = [self.tabs objectAtIndex:tabIndex];
+                        }
+                    }
                 }
+
+                [self selectTab:tabToSelect];
             }
         }];
     }
