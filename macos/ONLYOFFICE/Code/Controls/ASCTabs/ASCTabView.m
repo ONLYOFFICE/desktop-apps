@@ -166,11 +166,13 @@ static NSUInteger const kASTabViewCloseButtonSize = 12;
 }
 
 - (void)setFrame:(NSRect)frame {
-    if ( self.frame.size.width != frame.size.width ) {
-        [self setButtonCloseOrigin:frame];
-    }
+    bool needUpdateCloseOrigin = self.frame.size.width != frame.size.width;
 
     [super setFrame:frame];
+
+    if ( needUpdateCloseOrigin ) {
+        [self setButtonCloseOrigin:frame];
+    }
 }
 
 - (void)setState:(NSInteger)state {
@@ -280,8 +282,8 @@ static NSUInteger const kASTabViewCloseButtonSize = 12;
 }
 
 - (void)setButtonCloseOrigin:(NSRect)rect {
-    CGFloat btnCloseOriginLeft = -([self userInterfaceLayoutDirection] == NSUserInterfaceLayoutDirectionRightToLeft ?
-                                        CGRectGetWidth(rect) - kASTabViewCloseButtonSize / 1.5 : kASTabViewCloseButtonSize * 1.5);
+    CGFloat btnCloseOriginLeft = [self userInterfaceLayoutDirection] != NSUserInterfaceLayoutDirectionRightToLeft ?
+                                        CGRectGetWidth(rect) - kASTabViewCloseButtonSize * 1.5 : kASTabViewCloseButtonSize / 1.5;
 
     [self.close setFrame:CGRectMake(btnCloseOriginLeft,
                                     kASTabViewCloseButtonSize / 1.5,
