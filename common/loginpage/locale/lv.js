@@ -48,7 +48,7 @@ l10n.lv = {
     newDoc: 'Dokuments',
     newXlsx: 'Izklājlapa',
     newPptx: 'Prezentācija',
-    newForm: 'Veidlapas veidne',
+    newForm: 'PDF veidlapa',
     actCreateNew: 'Izveidot jaunu',
     actRecentFiles: 'Pēdējie faili',
     actOpenLocal: 'Atvērt lokālu failu',

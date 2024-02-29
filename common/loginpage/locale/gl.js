@@ -48,7 +48,7 @@ l10n.gl = {
     newDoc: 'Documento',
     newXlsx: 'Folla de cálculo',
     newPptx: 'Presentación',
-    newForm: 'Modelo de formulario',
+    newForm: 'Formulario PDF',
     actCreateNew: 'Crear novo',
     actRecentFiles: 'Ficheiros recentes',
     actOpenLocal: 'Abrir ficheiro local',

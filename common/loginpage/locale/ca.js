@@ -48,7 +48,7 @@ l10n.ca = {
     newDoc: 'Document',
     newXlsx: 'Full de càlcul',
     newPptx: 'Presentació',
-    newForm: 'Plantilla de formulari',
+    newForm: 'Formulari PDF',
     actCreateNew: 'Crear nou',
     actRecentFiles: 'Arxius recents',
     actOpenLocal: 'Obre fitxer local',

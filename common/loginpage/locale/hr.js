@@ -48,7 +48,7 @@ l10n.hr = {
     newDoc: 'Dokument',
     newXlsx: 'Tablica',
     newPptx: 'Prezentacija',
-    newForm: 'Predložak obrasca',
+    newForm: 'PDF obrazac',
     actCreateNew: 'Stvori novo',
     actRecentFiles: 'Nedavne datoteke',
     actOpenLocal: 'Otvori lokalnu datoteku',

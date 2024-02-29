@@ -48,7 +48,7 @@ l10n.lo = {
     newDoc: 'ເອກສານ',
     newXlsx: 'ຄຳນວນ',
     newPptx: 'ນຳສະເໜີ',
-    newForm: 'ແບບຟອມ',
+    newForm: 'ແບບຟອມ PDF',
     actCreateNew: 'ສ້າງໃໝ່',
     actRecentFiles: 'ໄຟລ໌ຫຼ້າສຸດ',
     actOpenLocal: 'ເປີດແຟ້ມທ້ອງຖິ່ນ',

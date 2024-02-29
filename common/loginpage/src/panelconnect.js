@@ -549,11 +549,16 @@
                 }
 
 
-                let _p;
                 !obj.provider && (obj.provider = 'onlyoffice');
-                if ( !config.portals.checklist.find(i => i.provider == obj.provider) &&
-                            (_p = config.portals.checklist.find(i => i.name.toLowerCase() == obj.provider.toLowerCase())) )
-                    obj.provider = _p.provider;
+                if ( !config.portals.checklist.find(i => i.provider == obj.provider) ) {
+                    let _p = config.portals.checklist.find(i => i.name.toLowerCase() == obj.provider.toLowerCase());
+                    if ( _p )
+                        obj.provider = _p.provider;
+                    else {
+                        console.warn(`login: "${obj.provider}" is unknown provider. please, check provider id.`);
+                        return;
+                    }
+                }
 
                 let info = {
                     portal: obj.domain,
