@@ -280,24 +280,24 @@
         [item setTitle:[NSString stringWithFormat:NSLocalizedString(@"Quit %@", nil), productName]];
         return YES;
     } else if ([item action] == @selector(onMenuNew:)) {
-        return YES;
+        return [[self getMainWindow] isVisible];
     } else if ([item action] == @selector(onMenuOpen:)) {
-        return YES;
+        return [[self getMainWindow] isVisible];
     } else if ([item action] == @selector(onMenuSave:)) {
-        return nil != tab;
+        return nil != tab && [[self getMainWindow] isVisible];
     } else if ([item action] == @selector(onMenuSaveAs:)) {
-        return nil != tab;
+        return nil != tab && [[self getMainWindow] isVisible];
     } else if ([item action] == @selector(onMenuPrint:)) {
-        return nil != tab;
+        return nil != tab && [[self getMainWindow] isVisible];
     } else if ([item action] == @selector(onShowHelp:)) {
         [item setTitle:[NSString stringWithFormat:NSLocalizedString(@"%@ Help", nil), productName]];
         return YES;
     } else if ([item action] == @selector(onMenuAcknowledgments:)) {
-        return YES;
+        return [[self getMainWindow] isVisible];
     } else if ([item action] == @selector(onMenuEULA:)) {
-        return YES;
+        return [[self getMainWindow] isVisible];
     } else if ([item action] == @selector(onPreferences:)) {
-        return YES;
+        return [[self getMainWindow] isVisible];
     }
     
     return [super validateMenuItem:item];

@@ -40,6 +40,7 @@
 #endif
 #include "defines.h"
 #include "clangater.h"
+#include "clogger.h"
 #include "version.h"
 #include "utils.h"
 #include "chelp.h"
@@ -62,6 +63,10 @@ int main( int argc, char *argv[] )
     InputArgs::init(argc, argv);
     if (geteuid() == 0) {
         CMessage::warning(nullptr, WARNING_LAUNCH_WITH_ADMIN_RIGHTS);
+        return 0;
+    }
+    if ( InputArgs::contains(L"--set-instapp-port") ) {
+        Utils::setInstAppPort(std::stoi(InputArgs::argument_value(L"--set-instapp-port")));
         return 0;
     }
 #endif
@@ -136,7 +141,8 @@ int main( int argc, char *argv[] )
                     _out_args.append(arg + ";");
             }
         }
-        app.sendMessage(_out_args.toUtf8());
+        bool res = app.sendMessage(_out_args.toUtf8());
+        CLogger::log("The instance is not primary and will be closed. Parameter sending status: " + QString::number(res));
         return 0;
     }
 

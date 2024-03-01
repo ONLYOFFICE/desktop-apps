@@ -36,6 +36,7 @@
 #include "defines.h"
 #include "utils.h"
 #include <QGridLayout>
+#include <clangater.h>
 
 using namespace std::placeholders;
 
@@ -84,6 +85,15 @@ bool CPresenterWindow::holdView(int id) const
     return ((QCefView *)m_pMainView)->GetCefView()->GetId() == id;
 }
 
+void CPresenterWindow::showEvent(QShowEvent *ev)
+{
+    CWindowPlatform::showEvent(ev);
+    if (ev->type() == QShowEvent::Show) {
+        m_pMainView->resize(m_pMainPanel->size() - QSize(0, m_boxTitleBtns->height()));
+        static_cast<QCefView*>(m_pMainView)->GetCefView()->resizeEvent();
+    }
+}
+
 void CPresenterWindow::closeEvent(QCloseEvent *e)
 {
     onCloseEvent();
@@ -101,6 +111,7 @@ QWidget * CPresenterWindow::createMainPanel(QWidget * parent, const QString& tit
 {
     QWidget * mainPanel = new QWidget(parent);
     mainPanel->setObjectName("mainPanel");
+    mainPanel->setProperty("rtl-font", CLangater::isRtlLanguage(CLangater::getCurrentLangCode()));
     mainPanel->setProperty("uitheme", QString::fromStdWString(GetCurrentTheme().id()));
     QString css(AscAppManager::getWindowStylesheets(m_dpiRatio));
 #ifdef __linux__

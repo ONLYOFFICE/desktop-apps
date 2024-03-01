@@ -961,7 +961,7 @@
     <message>
         <location filename="../src/components/cdownloadwidget.cpp" line="129"/>
         <source>MB</source>
-        <translation>ميغاباي</translation>
+        <translation>ميغابايت</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/gtkprintdialog.cpp" line="543"/>

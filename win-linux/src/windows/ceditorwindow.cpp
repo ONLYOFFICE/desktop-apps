@@ -33,6 +33,7 @@
 #include "windows/ceditorwindow.h"
 #include "windows/ceditorwindow_p.h"
 #include <QApplication>
+#include <clangater.h>
 
 #define CAPTURED_WINDOW_OFFSET_X  (6*TOOLBTN_WIDTH + 10) * m_dpiRatio
 #define CAPTURED_WINDOW_OFFSET_Y  15 * m_dpiRatio
@@ -222,6 +223,7 @@ QWidget * CEditorWindow::createMainPanel(QWidget * parent, const QString& title)
 //        gradient.setColorAt(1, QColor("#e4e4e4"));
     }
 
+    mainPanel->setProperty("rtl-font", CLangater::isRtlLanguage(CLangater::getCurrentLangCode()));
     mainPanel->setProperty("zoom", QString::number(m_dpiRatio) + "x");
     mainPanel->setProperty("uitheme", QString::fromStdWString(GetCurrentTheme().id()));
     QString css(AscAppManager::getWindowStylesheets(m_dpiRatio) + m_css);
@@ -391,6 +393,14 @@ bool CEditorWindow::event(QEvent * event)
 {
     if (event->type() == QEvent::Resize) {
         onSizeEvent(0);
+    } else
+    if (event->type() == QEvent::Show) {
+        QTimer::singleShot(0, this, [=]() {
+            if (m_pMainView) {
+                d_ptr->panel()->view()->resize(m_pMainView->size());
+                d_ptr->panel()->cef()->resizeEvent();
+            }
+        });
     } else
 //    if (event->type() == QEvent::User) {
 //        onExitSizeMove();

@@ -244,7 +244,6 @@ core_windows {
 #    RC_ICONS += ./res/icons/desktop_icons.ico
 
     HEADERS += $$PWD/src/windows/platform_win/cwindowplatform.h \
-               $$PWD/src/windows/platform_win/csnap.h \
                $$PWD/src/windows/platform_win/caption.h \
                $$PWD/src/platform_win/singleapplication.h \
                $$PWD/src/platform_win/filechooser.h \
@@ -253,7 +252,6 @@ core_windows {
                $$PWD/src/platform_win/resource.h
 
     SOURCES += $$PWD/src/windows/platform_win/cwindowplatform.cpp \
-               $$PWD/src/windows/platform_win/csnap.cpp \
                $$PWD/src/platform_win/singleapplication.cpp \
                $$PWD/src/platform_win/filechooser.cpp \
                $$PWD/src/platform_win/printdialog.cpp \

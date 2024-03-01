@@ -5,7 +5,9 @@
 
 QPushButton {/*background-color:#d9d9d9;*/ padding:0 20px; font-weight: normal; height: 22px; font-size: 12px;}
 QPushButton[act=tool] {/*background-origin: content;*/ border: none; margin: 0; padding: 0; border-radius:0;}
+QPushButton[act=tool][hovered=true],
 QPushButton[act=tool]:hover {background-color:#cecece;}
+QPushButton[act=tool][pressed=true],
 QPushButton[act=tool]:pressed {background-color:#b7b7b7;}
 
 QPushButton#toolButtonMaximize,
@@ -13,6 +15,7 @@ QPushButton#toolButtonMinimize,
 QPushButton#toolButtonClose,
 QPushButton#toolButtonMain,
 QPushButton#toolButtonDownload {border: none; margin: 0; padding: 0; border-radius: 0;}
+#mainPanel[rtl-font=true] #labelAppTitle {font-family: "Segoe UI", "Traditional Arabic", "Noto Sans";}
 
 QPushButton#toolButtonMaximize,
 QPushButton#toolButtonMinimize,
@@ -78,9 +81,11 @@ QPushButton#toolButtonDownload {border-left: 0px; border-right: 1px solid #dfdfd
 
 #mainPanel[uitheme=theme-dark] QPushButton#toolButtonMinimize:hover,
 #mainPanel[uitheme=theme-dark] QPushButton#toolButtonMaximize:hover,
+#mainPanel[uitheme=theme-dark] QPushButton#toolButtonMaximize[hovered=true],
 #mainPanel[uitheme=theme-dark] QPushButton#toolButtonDownload:hover {background-color: #555;}
 #mainPanel[uitheme=theme-dark] QPushButton#toolButtonMinimize:pressed,
 #mainPanel[uitheme=theme-dark] QPushButton#toolButtonMaximize:pressed,
+#mainPanel[uitheme=theme-dark] QPushButton#toolButtonMaximize[pressed=true],
 #mainPanel[uitheme=theme-dark] QPushButton#toolButtonDownload:pressed {background-color: #606060;}
 
 /* Contrast-Dark*/
@@ -98,6 +103,7 @@ QPushButton#toolButtonDownload {border-left: 0px; border-right: 1px solid #dfdfd
 
 #mainPanel[uitheme=theme-contrast-dark] QPushButton#toolButtonMinimize:hover,
 #mainPanel[uitheme=theme-contrast-dark] QPushButton#toolButtonMaximize:hover,
+#mainPanel[uitheme=theme-contrast-dark] QPushButton#toolButtonMaximize[hovered=true],
 #mainPanel[uitheme=theme-contrast-dark] QPushButton#toolButtonDownload:hover {background-color: #555;}
 
 /***********************************/
@@ -123,3 +129,4 @@ QPushButton#toolButtonDownload {border-left: 0px; border-right: 1px solid #dfdfd
 }
 #mainPanel[uitheme=theme-dark] #CToolTip>QLabel {margin: 0px; border: 1px solid #666666; color: #d2d2d2; background-color: #333333;}
 #mainPanel[uitheme=theme-contrast-dark] #CToolTip>QLabel {margin: 0px; border: 1px solid #696969; color: #d2d2d2; background-color: #212121;}
+#mainPanel[rtl-font=true] #CToolTip>QLabel {font-family: "Segoe UI", "Traditional Arabic", "Noto Sans";}

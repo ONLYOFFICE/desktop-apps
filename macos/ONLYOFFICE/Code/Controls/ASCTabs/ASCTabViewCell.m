@@ -294,6 +294,9 @@
 - (void)drawImage:(NSImage *)image withFrame:(NSRect)frame inView:(NSView *)controlView {
     NSSize size = [image size];
     CGRect rect = CGRectMake(8, (CGRectGetHeight(frame) - size.width) * .5 - 1, size.width, size.height);
+    if ( [self userInterfaceLayoutDirection] == NSUserInterfaceLayoutDirectionRightToLeft )
+        rect.origin.x = frame.size.width - 8 - size.width;
+
     [super drawImage:image withFrame:rect inView:controlView];
 }
 
@@ -306,9 +309,15 @@
     }
     
     if (self.closeButton) {
-        rightOffset = CGRectGetHeight(self.closeButton.frame) * 1.5;
+        rightOffset = CGRectGetHeight(self.closeButton.frame) * 1.5 + 2;
     }
     
+    if ( [self userInterfaceLayoutDirection] == NSUserInterfaceLayoutDirectionRightToLeft ) {
+        CGFloat t = leftOffset;
+        leftOffset = rightOffset;
+        rightOffset = t;
+    }
+
     if (CGRectGetWidth(frame) - leftOffset - rightOffset > 15) {
         return [super drawTitle:title withFrame:CGRectMake(frame.origin.x + leftOffset, frame.origin.y, frame.size.width - rightOffset - leftOffset, frame.size.height) inView:controlView];
     } else {
@@ -327,7 +336,9 @@
         color = self.activeTextColor;
     }
     
-    [paragraphStyle setAlignment:NSLeftTextAlignment];
+    if ( [self userInterfaceLayoutDirection] == NSUserInterfaceLayoutDirectionRightToLeft )
+        [paragraphStyle setAlignment:NSRightTextAlignment];
+    else [paragraphStyle setAlignment:NSLeftTextAlignment];
     [paragraphStyle setLineBreakMode:NSLineBreakByTruncatingTail];
     
     [attributedTitle addAttributes:@{

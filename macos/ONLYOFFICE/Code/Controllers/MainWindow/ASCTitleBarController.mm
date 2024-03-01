@@ -52,6 +52,7 @@
 #import "ASCMenuButtonCell.h"
 #import "ASCThemesController.h"
 #import "ASCApplicationManager.h"
+#import "ASCLinguist.h"
 
 
 static float kASCWindowDefaultTrafficButtonsLeftMargin = 0;
@@ -70,6 +71,8 @@ static float kASCWindowMinTitleWidth = 0;
 @property (weak) IBOutlet NSButton *portalButton;
 @property (weak) IBOutlet NSButton *userProfileButton;
 @property (weak) IBOutlet NSLayoutConstraint *downloadWidthConstraint;
+@property (weak) IBOutlet NSLayoutConstraint *buttonPortalLeadingConstraint;
+@property (weak) IBOutlet NSLayoutConstraint *buttonPortalTrailingConstraint;
 @property (weak) IBOutlet NSImageView *downloadImageView;
 @property (weak) IBOutlet NSView *downloadBackgroundView;
 @property (nonatomic) SFBPopover * popover;
@@ -115,6 +118,10 @@ static float kASCWindowMinTitleWidth = 0;
         self.standardButtonsDefaults = @[[mainWindow standardWindowButton:NSWindowCloseButton],
                                          [mainWindow standardWindowButton:NSWindowMiniaturizeButton],
                                          [mainWindow standardWindowButton:NSWindowZoomButton]];
+        
+        if ( [self.view userInterfaceLayoutDirection] == NSUserInterfaceLayoutDirectionRightToLeft ) {
+            self.standardButtonsDefaults = [[self.standardButtonsDefaults reverseObjectEnumerator] allObjects];
+        }
     }
     
     [self.standardButtonsDefaults enumerateObjectsUsingBlock:^(NSButton *standardButton, NSUInteger idx, BOOL *stop) {
@@ -196,6 +203,10 @@ static float kASCWindowMinTitleWidth = 0;
 //    [self.userProfileButton setHidden:YES];
         [self.userProfileButton setHidden:NO];
     [self.portalButton setState:NSControlStateValueOn];
+    if ( [self.view userInterfaceLayoutDirection] == NSUserInterfaceLayoutDirectionRightToLeft ) {
+        self.buttonPortalLeadingConstraint.constant = -1;
+        self.buttonPortalTrailingConstraint.constant = 0;
+    }
     
     [self.tabsControl removeAllConstraints];
 
@@ -224,6 +235,7 @@ static float kASCWindowMinTitleWidth = 0;
         }
     }
 
+
     [self doLayout];
 }
 
@@ -250,10 +262,18 @@ static float kASCWindowMinTitleWidth = 0;
 }
 
 - (void)doLayout {
+    int btnSpacing = 6.0;
+    CGFloat btnContainerWidth = CGRectGetWidth([self.standardButtonsDefaults[0] frame]) + btnSpacing;
+    CGFloat leftOffset = kASCWindowDefaultTrafficButtonsLeftMargin;
+    if ( [ASCLinguist isUILayoutDirectionRtl] ) {
+        CGFloat windowWidth = CGRectGetWidth([[self view] frame]);
+        leftOffset = windowWidth - kASCWindowDefaultTrafficButtonsLeftMargin - btnContainerWidth * 3 + btnSpacing;
+    }
+
     void (^layoutStandartButtons)(NSArray *, BOOL) = ^ (NSArray *views, BOOL hidden) {
         [views enumerateObjectsUsingBlock:^(NSView *view, NSUInteger idx, BOOL *stop) {
             NSRect frame = view.frame;
-            frame.origin.x = kASCWindowDefaultTrafficButtonsLeftMargin + idx * (NSWidth(frame) + 6.0);
+            frame.origin.x = leftOffset + idx * btnContainerWidth;
             frame.origin.y = (int)((NSHeight(view.superview.frame) - NSHeight(view.frame)) / 2.0);
             
             [view setFrame:frame];
@@ -270,7 +290,13 @@ static float kASCWindowMinTitleWidth = 0;
     CGFloat maxTabsWidth    = containerWidth - kASCWindowMinTitleWidth - 100;
     CGFloat actualTabsWidth = self.tabsControl.maxTabWidth * [self.tabsControl.tabs count];
     
-    self.tabsControl.frame  = CGRectMake(0, 0, MIN(actualTabsWidth, maxTabsWidth), CGRectGetHeight(self.tabsControl.frame));
+    int rtlDependedLeftOffset = 0;
+    if ([self.view userInterfaceLayoutDirection] == NSUserInterfaceLayoutDirectionRightToLeft) {
+        NSRect rect = [[self.tabsControl superview] frame];
+        rtlDependedLeftOffset = rect.size.width - MIN(actualTabsWidth, maxTabsWidth);
+    }
+    
+    self.tabsControl.frame  = CGRectMake(rtlDependedLeftOffset, 0, MIN(actualTabsWidth, maxTabsWidth), CGRectGetHeight(self.tabsControl.frame));
 }
 
 - (void)viewWillTransitionToSize:(NSSize)newSize {

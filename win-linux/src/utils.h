@@ -128,6 +128,9 @@ public:
     static WinVer getWinVersion();
     static bool isSessionInProgress();
     static void setSessionInProgress(bool);
+#else
+    static void setInstAppPort(int);
+    static int getInstAppPort();
 #endif
 };
 

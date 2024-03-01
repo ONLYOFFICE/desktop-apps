@@ -175,13 +175,6 @@ namespace NS_Utils
 
 namespace NS_File
 {
-    string app_path;
-
-    void setAppPath(const std::string &path)
-    {
-        app_path = parentPath(path);
-    }
-
     bool GetFilesList(const string &path, list<string> *lst, string &error, bool ignore_locked, bool folders_only)
     {
         DIR *dir = opendir(path.c_str());
@@ -451,7 +444,9 @@ namespace NS_File
 
     string appPath()
     {
-        return app_path;
+        char path[PATH_MAX] = {0};
+        ssize_t count = readlink("/proc/self/exe", path, PATH_MAX);
+        return (count > 0) ? parentPath(string(path, count)) : "";
     }
 
 //    string getFileHash(const string &fileName)

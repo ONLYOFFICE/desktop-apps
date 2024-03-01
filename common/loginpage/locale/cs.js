@@ -48,7 +48,7 @@ l10n.cs = {
     newDoc: 'Dokument',
     newXlsx: 'Sešit',
     newPptx: 'Prezentace',
-    newForm: 'Šablona formuláře',
+    newForm: 'PDF formulář',
     actCreateNew: 'Vytvořit nový',
     actRecentFiles: 'Poslední soubory',
     actOpenLocal: 'Otevřít soubor',

@@ -48,7 +48,7 @@ l10n.fi = {
     newDoc: 'Dokumentti',
     newXlsx: 'Taulukkolaskenta',
     newPptx: 'Esitys',
-    newForm: 'Lomakemalli',
+    newForm: 'PDF-lomake',
     actCreateNew: 'Luo uusi',
     actRecentFiles: 'Viimeisimmät tiedostot',
     actOpenLocal: 'Avaa paikallinen tiedosto',

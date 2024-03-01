@@ -70,13 +70,14 @@ enum MsgCommands {
     MSG_OtherError,
     MSG_RequestContentLenght,
     MSG_UnzipProgress,
-    MSG_SetLanguage
+    MSG_SetLanguage,
+    MSG_StartReplacingService
 };
 
 class CSocket
 {
 public:
-    CSocket(int sender_port, int receiver_port);
+    CSocket(int sender_port, int receiver_port, bool retry_connect = true, bool use_unique_addr = false);
     ~CSocket();
 
     /* callback */

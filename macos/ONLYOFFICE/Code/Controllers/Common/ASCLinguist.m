@@ -42,10 +42,25 @@
 
 @implementation ASCLinguist
 
+static BOOL uiLayoutDirectionRTL = NO;
+
 + (void)init {
     [[NSUserDefaults standardUserDefaults] setObject:[NSArray arrayWithObject:[ASCLinguist appLanguageCode]] forKey:@"AppleLanguages"];
     [[NSUserDefaults standardUserDefaults] setObject:[ASCLinguist appLanguageCode] forKey:@"AppleLocale"];
     [[NSUserDefaults standardUserDefaults] synchronize];
+
+//    bool l = [NSLocale characterDirectionForLanguage:[ASCLinguist appLanguageCode]] == NSLocaleLanguageDirectionRightToLeft;
+    NSString * direction = [[NSUserDefaults standardUserDefaults] objectForKey:ASCUserUILayoutDirection];
+    if ( direction != nil )
+        uiLayoutDirectionRTL = [direction isEqualToString:@"rtl"];
+    
+    if ( uiLayoutDirectionRTL ) {
+         [[NSUserDefaults standardUserDefaults] setObject:@"YES" forKey:@"AppleTextDirection"];
+         [[NSUserDefaults standardUserDefaults] setObject:@"YES" forKey:@"NSForceRightToLeftWritingDirection"];
+    } else {
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"AppleTextDirection"];
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"NSForceRightToLeftWritingDirection"];
+    }
 }
 
 + (NSString *)appLanguageCode {
@@ -65,6 +80,18 @@
     [[NSUserDefaults standardUserDefaults] setObject:langCode forKey:@"AppleLocale"];
 
     [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
++ (void)setUILayoutDirectionRtl:(BOOL)value {
+    if ( value )
+        [[NSUserDefaults standardUserDefaults] setObject:@"rtl" forKey:ASCUserUILayoutDirection];
+    else [[NSUserDefaults standardUserDefaults] removeObjectForKey:ASCUserUILayoutDirection];
+
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
++ (BOOL)isUILayoutDirectionRtl {
+    return uiLayoutDirectionRTL;
 }
 
 + (NSDictionary *)availableLanguages {
