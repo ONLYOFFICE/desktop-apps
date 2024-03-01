@@ -40,6 +40,7 @@
 #endif
 #include "defines.h"
 #include "clangater.h"
+#include "clogger.h"
 #include "version.h"
 #include "utils.h"
 #include "chelp.h"
@@ -136,7 +137,8 @@ int main( int argc, char *argv[] )
                     _out_args.append(arg + ";");
             }
         }
-        app.sendMessage(_out_args.toUtf8());
+        bool res = app.sendMessage(_out_args.toUtf8());
+        CLogger::log("The instance is not primary and will be closed. Parameter sending status: " + QString::number(res));
         return 0;
     }
 
