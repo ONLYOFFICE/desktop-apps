@@ -66,7 +66,19 @@
 
 typedef struct sockaddr_in SockAddr;
 
-static bool initSocket(u_short port, SOCKET &tmpd, SockAddr &addr, int &ret, std::string &error)
+static unsigned long inetAddrFromUserId()
+{
+#ifdef _WIN32
+    return inet_addr(INADDR);
+#else
+    uint16_t uid = uint16_t(getuid() - 1000);
+    char addr[14];
+    snprintf(addr, sizeof(addr), "127.%d.%d.1", (uid >> 8) & 0xff, uid & 0xff);
+    return inet_addr(addr);
+#endif
+}
+
+static bool initSocket(u_short port, SOCKET &tmpd, SockAddr &addr, int &ret, std::string &error, bool use_unique_addr)
 {
 #ifdef _WIN32
     WSADATA wsaData = {0};
@@ -87,7 +99,7 @@ static bool initSocket(u_short port, SOCKET &tmpd, SockAddr &addr, int &ret, std
     }
     memset(&addr, 0, sizeof(SockAddr));
     addr.sin_family = AF_INET;
-    addr.sin_addr.s_addr = inet_addr(INADDR);
+    addr.sin_addr.s_addr = use_unique_addr ? inetAddrFromUserId() : inet_addr(INADDR);
     addr.sin_port = htons(port);
     ret = ::bind(tmpd, (struct sockaddr*)&addr, sizeof(addr));
     return true;
@@ -113,6 +125,7 @@ public:
     std::future<void> m_future;
     int m_sender_port;
     std::atomic_bool m_run,
+                     m_use_unique_addr,
                      m_socket_created;
 };
 
@@ -131,7 +144,7 @@ bool CSocket::CSocketPrv::createSocket(u_short port)
     SOCKET tmpd;
     SockAddr addr;
     std::string error;
-    if (!initSocket(port, tmpd, addr, ret, error)) {
+    if (!initSocket(port, tmpd, addr, ret, error, m_use_unique_addr)) {
         postError(error.c_str());
         return false;
     }
@@ -151,7 +164,7 @@ bool CSocket::CSocketPrv::connectToSocket(u_short port)
     SOCKET tmpd;
     SockAddr addr;
     std::string error;
-    if (!initSocket(port, tmpd, addr, ret, error)) {
+    if (!initSocket(port, tmpd, addr, ret, error, m_use_unique_addr)) {
         postError(error.c_str());
         return false;
     }
@@ -210,9 +223,10 @@ void CSocket::CSocketPrv::postError(const char *error)
         m_error_callback(error);
 }
 
-CSocket::CSocket(int sender_port, int receiver_port, bool retry_connect) :
+CSocket::CSocket(int sender_port, int receiver_port, bool retry_connect, bool use_unique_addr) :
     pimpl(new CSocketPrv)
 {
+    pimpl->m_use_unique_addr = use_unique_addr;
     pimpl->m_sender_port = sender_port;
     if (receiver_port <= 0)
         return;
