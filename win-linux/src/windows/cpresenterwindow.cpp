@@ -85,6 +85,15 @@ bool CPresenterWindow::holdView(int id) const
     return ((QCefView *)m_pMainView)->GetCefView()->GetId() == id;
 }
 
+void CPresenterWindow::showEvent(QShowEvent *ev)
+{
+    CWindowPlatform::showEvent(ev);
+    if (ev->type() == QShowEvent::Show) {
+        m_pMainView->resize(m_pMainPanel->size() - QSize(0, m_boxTitleBtns->height()));
+        static_cast<QCefView*>(m_pMainView)->GetCefView()->resizeEvent();
+    }
+}
+
 void CPresenterWindow::closeEvent(QCloseEvent *e)
 {
     onCloseEvent();
