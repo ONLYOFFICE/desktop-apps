@@ -1499,7 +1499,8 @@
     NSString * uiTheme = [[NSUserDefaults standardUserDefaults] valueForKey:ASCUserUITheme] ?: @"theme-classic-light";
 
     NSMutableDictionary * json_langs = @{
-        @"uitheme": uiTheme
+        @"uitheme": uiTheme,
+        @"rtl": @([ASCLinguist isUILayoutDirectionRtl])
     }.mutableCopy;
 
     NSDictionary * langs = [ASCLinguist availableLanguages];

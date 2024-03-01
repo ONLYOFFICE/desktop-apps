@@ -1524,6 +1524,8 @@ DQ
                         </constraints>
                     </visualEffectView>
                     <connections>
+                        <outlet property="buttonPortalLeadingConstraint" destination="uuy-Bp-Btg" id="fCx-Gr-meh"/>
+                        <outlet property="buttonPortalTrailingConstraint" destination="65D-sw-LvF" id="KNM-pi-Y91"/>
                         <outlet property="downloadBackgroundView" destination="M3X-hR-EHh" id="Cd9-iN-qsn"/>
                         <outlet property="downloadImageView" destination="rvn-zR-QDB" id="Gjm-Bh-1gJ"/>
                         <outlet property="downloadWidthConstraint" destination="MhZ-JW-eYH" id="K1U-Qh-V7Q"/>

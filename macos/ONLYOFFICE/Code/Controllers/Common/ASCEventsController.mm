@@ -672,6 +672,10 @@ public:
                                     [[ASCEditorJSVariables instance] setParameter:@"uitheme" withString:uiTheme];
                                 }
 
+                                if ( [json objectForKey:@"rtl"] != nil ) {
+                                    [ASCLinguist setUILayoutDirectionRtl:[json[@"rtl"] boolValue]];
+                                }
+
                                 [[ASCEditorJSVariables instance] applyParameters];
                             }
                         } else if (cmd.find(L"encrypt:isneedbuild") != std::wstring::npos) {

@@ -98,7 +98,7 @@
     NSView * superview = view.superview;
     
     view.translatesAutoresizingMaskIntoConstraints = NO;
-    
+
     // leading
     [superview addConstraint:[NSLayoutConstraint constraintWithItem:view
                                                           attribute:NSLayoutAttributeLeading
@@ -116,10 +116,17 @@
                                                          multiplier:1
                                                            constant:0]];
     // width
+//    [superview addConstraint:[NSLayoutConstraint constraintWithItem:superview
+//                                                          attribute:NSLayoutAttributeWidth
+//                                                          relatedBy:NSLayoutRelationEqual
+//                                                             toItem:view attribute:NSLayoutAttributeWidth
+//                                                         multiplier:1
+//                                                           constant:0]];
+    // width
     [superview addConstraint:[NSLayoutConstraint constraintWithItem:superview
-                                                          attribute:NSLayoutAttributeWidth
+                                                          attribute:NSLayoutAttributeTrailing
                                                           relatedBy:NSLayoutRelationEqual
-                                                             toItem:view attribute:NSLayoutAttributeWidth
+                                                             toItem:view attribute:NSLayoutAttributeTrailing
                                                          multiplier:1
                                                            constant:0]];
     // height
