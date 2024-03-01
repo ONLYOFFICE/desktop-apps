@@ -65,6 +65,10 @@ int main( int argc, char *argv[] )
         CMessage::warning(nullptr, WARNING_LAUNCH_WITH_ADMIN_RIGHTS);
         return 0;
     }
+    if ( InputArgs::contains(L"--set-instapp-port") ) {
+        Utils::setInstAppPort(std::stoi(InputArgs::argument_value(L"--set-instapp-port")));
+        return 0;
+    }
 #endif
     QCoreApplication::setAttribute(Qt::AA_DisableHighDpiScaling);
     QCoreApplication::setAttribute(Qt::AA_Use96Dpi);
