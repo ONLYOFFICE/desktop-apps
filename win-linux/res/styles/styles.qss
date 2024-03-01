@@ -127,16 +127,6 @@ QPushButton#toolButtonDownload {border-left: 0px; border-right: 1px solid #dfdfd
     border: 1px solid #c0c0c0; border-radius: 4px;
     background-color: #ffffff; background-clip: border-box;
 }
-#mainPanel[uitheme=theme-dark] #CToolTip>QLabel {
-    margin: 0px;
-    border: 1px solid #666666;
-    color: #d2d2d2;
-    background-color: #333333;
-}
-#mainPanel[uitheme=theme-contrast-dark] #CToolTip>QLabel {
-    margin: 0px;
-    border: 1px solid #696969;
-    color: #d2d2d2;
-    background-color: #212121;
-}
+#mainPanel[uitheme=theme-dark] #CToolTip>QLabel {margin: 0px; border: 1px solid #666666; color: #d2d2d2; background-color: #333333;}
+#mainPanel[uitheme=theme-contrast-dark] #CToolTip>QLabel {margin: 0px; border: 1px solid #696969; color: #d2d2d2; background-color: #212121;}
 #mainPanel[rtl-font=true] #CToolTip>QLabel {font-family: "Segoe UI", "Traditional Arabic", "Noto Sans";}

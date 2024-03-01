@@ -103,7 +103,11 @@ core_windows {
         DEFINES += __OS_WIN_XP
     }
 
-    LIBS += -lwinhttp \
+    LIBS += -luser32 \
+            -lshell32 \
+            -lshlwapi \
+            -ladvapi32 \
+            -lwinhttp \
             -lws2_32 \
             -lrpcrt4 \
             -lwtsapi32 \
