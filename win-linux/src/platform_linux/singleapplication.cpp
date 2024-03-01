@@ -39,7 +39,7 @@
 
 SingleApplication::SingleApplication(int &argc, char *argv[], const QString&) :
     QApplication(argc, argv),
-    m_socket(new CSocket(0, INSTANCE_APP_PORT))
+    m_socket(new CSocket(0, INSTANCE_APP_PORT, false))
 {
     if (m_socket->isPrimaryInstance()) {
         m_isPrimary = true;

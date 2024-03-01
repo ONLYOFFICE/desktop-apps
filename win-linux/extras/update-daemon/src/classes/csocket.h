@@ -77,7 +77,7 @@ enum MsgCommands {
 class CSocket
 {
 public:
-    CSocket(int sender_port, int receiver_port);
+    CSocket(int sender_port, int receiver_port, bool retry_connect = true);
     ~CSocket();
 
     /* callback */

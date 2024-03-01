@@ -210,7 +210,7 @@ void CSocket::CSocketPrv::postError(const char *error)
         m_error_callback(error);
 }
 
-CSocket::CSocket(int sender_port, int receiver_port) :
+CSocket::CSocket(int sender_port, int receiver_port, bool retry_connect) :
     pimpl(new CSocketPrv)
 {
     pimpl->m_sender_port = sender_port;
@@ -218,7 +218,7 @@ CSocket::CSocket(int sender_port, int receiver_port) :
         return;
     pimpl->m_socket_created = pimpl->createSocket(receiver_port);
     pimpl->m_future = std::async(std::launch::async, [=]() {
-        while (pimpl->m_run && !pimpl->m_socket_created) {
+        while (retry_connect && pimpl->m_run && !pimpl->m_socket_created) {
             pimpl->postError("Unable to create socket, retrying after 4 seconds.");
             sleep(RETRIES_DELAY_MS);
             pimpl->m_socket_created = pimpl->createSocket(receiver_port);
