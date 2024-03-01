@@ -27,7 +27,7 @@ Function UninstallOlderVersion
   If (RegistryExist(regPath) = True) Then
     RegistryPath = objShell.RegRead(regPath)
     If Session.Property("UILevel") <> 2 Then 
-      Button = MsgBox(Session.Property("UNINSTALL_PREV_MSGBOX"), 1, Session.Property("Setup") + " " + Session.Property("ProductName"))
+      Button = MsgBox(Session.Property("UninstallPrevDlg_MsgBox"), 1, Session.Property("Setup") + " " + Session.Property("ProductName"))
     End If
     If Button = 1 Then
       objShell.Run RegistryPath, 0, True
@@ -48,7 +48,7 @@ Function SetLocaleProperty
   Dim regPath
   Dim locale
 
-  regPath = "HKEY_LOCAL_MACHINE\SOFTWARE\" + Session.Property("MANUFACTURER_INSTALL_FOLDER") + "\" + Session.Property("PRODUCT_INSTALL_FOLDER") + "\locale"
+  regPath = "HKEY_LOCAL_MACHINE\SOFTWARE\" + Session.Property("VendorShortName") + "\" + Session.Property("AppShortName") + "\locale"
 
   If (RegistryExist(regPath) = True) Then
     locale = objShell.RegRead(regPath)
