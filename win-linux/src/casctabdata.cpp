@@ -162,6 +162,11 @@ bool CAscTabData::eventLoadSupported() const
     return _event_load_supported;
 }
 
+void CAscTabData::setHasError()
+{
+    _has_error = true;
+}
+
 void CAscTabData::setEventLoadSupported(bool value)
 {
     _event_load_supported = value;
@@ -208,4 +213,9 @@ bool CAscTabData::hasFeature(const wstring& f) const
 bool CAscTabData::hasFrame() const
 {
     return _has_frame;
+}
+
+bool CAscTabData::hasError() const
+{
+    return _has_error;
 }
