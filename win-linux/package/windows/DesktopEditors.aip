@@ -38,6 +38,10 @@
     <ROW Property="MSIFASTINSTALL" MultiBuildValue="MsiBuild64:7#MsiBuild32:7"/>
     <ROW Property="Manufacturer" Value="Ascensio System SIA" ValueLocId="-"/>
     <ROW Property="MsiLogging" MultiBuildValue="MsiBuild64:vp#MsiBuild32:vp"/>
+    <ROW Property="NewDocument" Value="New document"/>
+    <ROW Property="NewForm" Value="New PDF Form"/>
+    <ROW Property="NewPresentation" Value="New presentation"/>
+    <ROW Property="NewSpreadsheet" Value="New spreadsheet"/>
     <ROW Property="PLAYER" Value="0" Type="4" ValueLocId="-"/>
     <ROW Property="PackageName" Value="[|VendorName] [|AppName]" ValueLocId="-"/>
     <ROW Property="PackageShortName" Value="[|VendorShortName]-[|AppShortName]" ValueLocId="-"/>
@@ -954,6 +958,10 @@
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiIconsComponent">
     <ROW Name="i_desktopeditors" SourcePath="..\..\extras\projicons\res\icons\desktopeditors.ico" Index="0"/>
+    <ROW Name="i_desktopeditors_cell" SourcePath="..\..\extras\projicons\res\icons\word.ico" Index="0"/>
+    <ROW Name="i_desktopeditors_form" SourcePath="..\..\extras\projicons\res\icons\form.ico" Index="0"/>
+    <ROW Name="i_desktopeditors_slide" SourcePath="..\..\extras\projicons\res\icons\slide.ico" Index="0"/>
+    <ROW Name="i_desktopeditors_word" SourcePath="..\..\extras\projicons\res\icons\cell.ico" Index="0"/>
     <ROW Name="i_imageviewer" SourcePath="..\..\extras\projicons\res\icons\gallery.ico" Index="0"/>
     <ROW Name="i_videoplayer" SourcePath="..\..\extras\projicons\res\icons\media.ico" Index="0"/>
   </COMPONENT>
@@ -1470,6 +1478,10 @@
   <COMPONENT cid="caphyon.advinst.msicomp.MsiShortsComponent">
     <ROW Shortcut="sc_desktop_exe_desktopeditors" Directory_="DesktopFolder" Name="ONLYOF~2|[|DesktopEditorsName]" Component_="c_exe_desktopeditors" Target="[#DesktopEditors.exe]" Hotkey="0" Icon_="i_desktopeditors" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
     <ROW Shortcut="sc_menu_exe_desktopeditors" Directory_="SHORTCUTDIR" Name="ONLYOF~3|[|DesktopEditorsName]" Component_="c_exe_desktopeditors" Target="[#DesktopEditors.exe]" Hotkey="0" Icon_="i_desktopeditors" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
+    <ROW Shortcut="sc_menu_exe_desktopeditors_cell" Directory_="SHORTCUTDIR" Name="NEWSPR~1|[|NewSpreadsheet]" Component_="c_exe_desktopeditors" Target="[#DesktopEditors.exe]" Arguments="--new:cell" Hotkey="0" Icon_="i_desktopeditors_cell" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
+    <ROW Shortcut="sc_menu_exe_desktopeditors_form" Directory_="SHORTCUTDIR" Name="NEWPDF~1|[|NewForm]" Component_="c_exe_desktopeditors" Target="[#DesktopEditors.exe]" Arguments="--new:form" Hotkey="0" Icon_="i_desktopeditors_form" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
+    <ROW Shortcut="sc_menu_exe_desktopeditors_slide" Directory_="SHORTCUTDIR" Name="NEWPRE~1|[|NewPresentation]" Component_="c_exe_desktopeditors" Target="[#DesktopEditors.exe]" Arguments="--new:slide" Hotkey="0" Icon_="i_desktopeditors_slide" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
+    <ROW Shortcut="sc_menu_exe_desktopeditors_word" Directory_="SHORTCUTDIR" Name="NEWDOC~1|[|NewDocument]" Component_="c_exe_desktopeditors" Target="[#DesktopEditors.exe]" Arguments="--new:word" Hotkey="0" Icon_="i_desktopeditors_word" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
     <ROW Shortcut="sc_menu_exe_imageviewer" Directory_="SHORTCUTDIR" Name="ONLYOF~1|[|ImageViewerName]" Component_="c_exe_imageviewer" Target="[#ImageViewer.exe]" Hotkey="0" Icon_="i_imageviewer" IconIndex="0" ShowCmd="1" WkDir="CUSTOM_PATH"/>
     <ROW Shortcut="sc_menu_exe_videoplayer" Directory_="SHORTCUTDIR" Name="ONLYOF~1|[|VideoPlayerName]" Component_="c_exe_videoplayer" Target="[#VideoPlayer.exe]" Hotkey="0" Icon_="i_videoplayer" IconIndex="0" ShowCmd="1" WkDir="CUSTOM_PATH"/>
   </COMPONENT>
