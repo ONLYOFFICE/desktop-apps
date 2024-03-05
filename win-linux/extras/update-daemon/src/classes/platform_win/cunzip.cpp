@@ -39,6 +39,24 @@
 #define MAX_PATH_LEN 512
 #define BLOCK_SIZE   8192
 
+static bool makePathA(char *path, size_t root_offset = 0) {
+    char *it = path + root_offset;
+    while (*it++ != '\0') {
+        while (*it != '\0' && *it != '/')
+            it++;
+        if (*it == '\0' && *(it - 1) == '/')
+            break;
+        char tmp = *it;
+        *it = '\0';
+        if (CreateDirectoryA(path, NULL) == 0 && GetLastError() != ERROR_ALREADY_EXISTS) {
+            *it = tmp;
+            return false;
+        }
+        *it = tmp;
+    }
+    return true;
+}
+
 class CUnzip::CUnzipPrivate
 {
 public:
@@ -83,7 +101,7 @@ public:
             char out_path[MAX_PATH_LEN];
             snprintf(out_path, MAX_PATH_LEN, "%s/%s", utf8FolderPath.c_str(), entry_name);
             if (entry_name[strlen(entry_name) - 1] == '/') {
-                if (::CreateDirectoryA(out_path, NULL) == 0)
+                if (::CreateDirectoryA(out_path, NULL) == 0 && !makePathA(out_path, utf8FolderPath.size() + 1))
                     return UNZIP_ERROR;
 
             } else {
