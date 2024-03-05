@@ -11,11 +11,11 @@
     "grunt-contrib-htmlmin": "^3.1.0",
     "grunt-contrib-less": "^3.0.0",
     "grunt-inline": "file:plugins/grunt-inline",
-    "iconsprite": "file:sprites",
     "grunt-terser": "^2.0.0",
     "grunt-text-replace": "0.4.0",
+    "iconsprite": "file:sprites",
     "lodash": "^4.17.20",
-    "terser": "^5.17.3"
+    "terser": "^5.28.1"
   },
   "overrides": {
     "tough-cookie": "4.1.3",
