@@ -48,6 +48,7 @@
 #import "OfficeFileFormats.h"
 #import "ASCLinguist.h"
 #import "mac_application.h"
+#import "mac_cefviewmedia.h"
 #import "NSApplication+Extensions.h"
 #import "ASCEditorJSVariables.h"
 #import "ASCThemesController.h"
@@ -359,6 +360,33 @@ public:
                                                                                      }];
                         break;
                     }
+
+					case ASC_MENU_EVENT_TYPE_SYSTEM_EXTERNAL_MEDIA_START:
+					case ASC_MENU_EVENT_TYPE_SYSTEM_EXTERNAL_MEDIA_END: {
+						NSLog(@"MEDIA EVENT: %d", pEvent->m_nType);
+						CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
+						CCefView * pCefView = appManager->GetViewById(pRawEvent->get_SenderId());
+						
+						if (pCefView)
+						{
+							CCefViewWidgetImpl* pWidgetImpl = pCefView->GetWidgetImpl();
+
+							if (pWidgetImpl)
+							{
+								CCefViewMedia* pCefViewMedia = static_cast<CCefViewMedia*>(pWidgetImpl);
+								if (pEvent->m_nType == ASC_MENU_EVENT_TYPE_SYSTEM_EXTERNAL_MEDIA_START)
+								{
+									pCefViewMedia->OnMediaStart(static_cast<NSEditorApi::CAscExternalMedia*>(pEvent->m_pData));
+								}
+								else
+								{
+									pCefViewMedia->OnMediaEnd();
+								}
+							}
+						}
+
+						break;
+					}
 
                     case ASC_MENU_EVENT_TYPE_DOCUMENTEDITORS_OPENFILENAME_DIALOG: {
                         NSEditorApi::CAscLocalOpenFileDialog* pData = (NSEditorApi::CAscLocalOpenFileDialog*)pEvent->m_pData;
