@@ -1424,6 +1424,15 @@ void CMainWindow::onReporterMode(int id, bool status)
     }
 }
 
+void CMainWindow::onErrorPage(int id, const std::wstring& action)
+{
+    CCefView * view = AscAppManager::getInstance().GetViewById(id);
+    if ( view && cvwtEditor == view->GetType() && action.compare(L"open") == 0 ) {
+        int ind = m_pTabs->tabIndexByView(id);
+        m_pTabs->panel(ind)->data()->setHasError();
+    }
+}
+
 void CMainWindow::updateScalingFactor(double dpiratio)
 {
     CScalingWrapper::updateScalingFactor(dpiratio);

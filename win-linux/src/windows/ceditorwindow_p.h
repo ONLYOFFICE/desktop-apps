@@ -109,28 +109,32 @@ public:
             leftboxbuttons->deleteLater();
     }
 
+    void createHomeButton() {
+        leftboxbuttons = new QWidget;
+        leftboxbuttons->setLayout(new QHBoxLayout);
+        leftboxbuttons->layout()->setSpacing(0);
+        leftboxbuttons->layout()->setMargin(0);
+
+        CSVGPushButton * btnHome = new CSVGPushButton;
+        btnHome->setProperty("class", "normal");
+        btnHome->setProperty("act", "tool");
+        btnHome->setFixedSize(QSize(TOOLBTN_WIDTH,TOOLBTN_HEIGHT) * window->m_dpiRatio);
+        btnHome->setIconSize(QSize(20,20) * window->m_dpiRatio);
+        btnHome->setMouseTracking(true);
+        btnHome->setIcon(":/title/icons/buttons.svg", "svg-btn-home");
+        //btnHome->setToolTip(CEditorWindow::tr("Open main window"));
+        btnHome->setProperty("ToolTip", CEditorWindow::tr("Open main window"));
+        btnHome->setIconOpacity(GetColorByRole(ecrButtonNormalOpacity));
+        m_mapTitleButtons["home"] = btnHome;
+        connect(btnHome, &QPushButton::clicked, std::bind(&CEditorWindow::onClickButtonHome, window));
+        leftboxbuttons->layout()->addWidget(btnHome);
+    }
+
     void init(CTabPanel * const p) override {
         CCefEventsGate::init(p);
-        if (!m_panel->data()->hasFeature(L"btnhome") || viewerMode() || fillformMode()) {  // For old editors only
+        if (!m_panel->data()->hasFeature(L"btnhome") || viewerMode() || fillformMode() || m_panel->data()->hasError()) {
             usedOldEditorVersion = true;
-            leftboxbuttons = new QWidget;
-            leftboxbuttons->setLayout(new QHBoxLayout);
-            leftboxbuttons->layout()->setSpacing(0);
-            leftboxbuttons->layout()->setMargin(0);
-
-            CSVGPushButton * btnHome = new CSVGPushButton;
-            btnHome->setProperty("class", "normal");
-            btnHome->setProperty("act", "tool");
-            btnHome->setFixedSize(QSize(TOOLBTN_WIDTH,TOOLBTN_HEIGHT) * window->m_dpiRatio);
-            btnHome->setIconSize(QSize(20,20) * window->m_dpiRatio);
-            btnHome->setMouseTracking(true);
-            btnHome->setIcon(":/title/icons/buttons.svg", "svg-btn-home");
-            //btnHome->setToolTip(CEditorWindow::tr("Open main window"));
-            btnHome->setProperty("ToolTip", CEditorWindow::tr("Open main window"));
-            btnHome->setIconOpacity(GetColorByRole(ecrButtonNormalOpacity));
-            m_mapTitleButtons["home"] = btnHome;
-            connect(btnHome, &QPushButton::clicked, std::bind(&CEditorWindow::onClickButtonHome, window));
-            leftboxbuttons->layout()->addWidget(btnHome);
+            createHomeButton();
         }
     }
 
@@ -168,14 +172,15 @@ public:
         return btn;
     }
 
-    auto extendableTitleToSimple() -> void {
+    auto extendableTitleToSimple(bool set_title = true) -> void {
         Q_ASSERT(window->m_boxTitleBtns != nullptr);
         QGridLayout * const _layout = static_cast<QGridLayout*>(window->m_pMainPanel->layout());
         if ( !_layout->itemAtPosition(0,0) && !_layout->findChild<QWidget*>(window->m_boxTitleBtns->objectName()) ) {
             _layout->addWidget(window->m_boxTitleBtns,0,0,Qt::AlignTop);
             if (iconuser)
                 iconuser->hide();
-            window->m_labelTitle->setText(APP_TITLE);
+            if (set_title)
+                window->m_labelTitle->setText(APP_TITLE);
             changeTheme(GetCurrentTheme().id());
         }
     }
@@ -195,7 +200,7 @@ public:
 
     auto centerTitle(double dpiRatio)->void
     {
-        int left_btns = (viewerMode() || fillformMode()) ? 1 : 6;
+        int left_btns = (viewerMode() || fillformMode() || m_panel->data()->hasError()) ? 1 : 6;
         int right_btns = 3;
         int spacing = window->m_boxTitleBtns->layout()->spacing();
         int left_offset = left_btns*TOOLBTN_WIDTH + 3*spacing; // added extra spacing
@@ -203,7 +208,7 @@ public:
         int diffW = (left_offset - right_offset)*dpiRatio;
         if (iconuser) {
             diffW -= ICON_SPACER_WIDTH + spacing*dpiRatio;
-            if (!viewerMode() && !fillformMode()) {
+            if (!viewerMode() && !fillformMode() && !m_panel->data()->hasError()) {
                 diffW -= iconuser->width() + spacing*dpiRatio;
             }
         }
@@ -611,6 +616,32 @@ public:
         isPrinting = false;
     }
 
+    void onErrorPage(int id, const std::wstring& action) override
+    {
+        if (m_panel->data()->viewType() == cvwtEditor && action.compare(L"open") == 0) {
+            m_panel->data()->setHasError();
+            if (window->isCustomWindowStyle() && canExtendTitle()) {
+                extendableTitleToSimple(false);
+                if (!leftboxbuttons)
+                    createHomeButton();
+                else {
+                    for (auto it = m_mapTitleButtons.begin(); it != m_mapTitleButtons.end();) {
+                        if (it.key() != "home") {
+                            delete it.value();
+                            it = m_mapTitleButtons.erase(it);
+                            continue;
+                        }
+                        ++it;
+                    }
+                }
+                QHBoxLayout *lut = qobject_cast<QHBoxLayout*>(window->m_boxTitleBtns->layout());
+                if (lut->itemAt(0)->widget() != leftboxbuttons)
+                    lut->insertWidget(0, leftboxbuttons);
+                leftboxbuttons->show();
+                centerTitle(window->m_dpiRatio);
+            }
+        }
+    }
 
     void onEditorAllowedClose(int) override
     {

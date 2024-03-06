@@ -203,9 +203,11 @@ QWidget * CEditorWindow::createMainPanel(QWidget * parent, const QString& title)
         if (d_ptr->usedOldEditorVersion)  // For old editors only
             static_cast<QHBoxLayout*>(m_boxTitleBtns->layout())->insertStretch(0);
 
-        if ( !d_ptr->canExtendTitle() ) {
+        if ( !d_ptr->canExtendTitle() || d_ptr->panel()->data()->hasError()) {
             mainGridLayout->addWidget(m_boxTitleBtns, 0, 0);
             m_labelTitle->setText(APP_TITLE);
+            if (d_ptr->panel()->data()->hasError())
+                mainPanel->setProperty("window", "pretty");
         } else {
             if (d_ptr->panel()->data()->contentType() != AscEditorType::etUndefined)
                 mainPanel->setProperty("window", "pretty");
@@ -251,7 +253,7 @@ QWidget * CEditorWindow::createMainPanel(QWidget * parent, const QString& title)
         mainGridLayout->addWidget(m_pMainView, 1, 0, 1, 2);
     mainGridLayout->setRowStretch(1,1);
 
-    if (d_ptr->canExtendTitle()) {
+    if (d_ptr->canExtendTitle() && !d_ptr->panel()->data()->hasError()) {
         if (d_ptr->usedOldEditorVersion)  // For old editors only
             mainGridLayout->addWidget(m_boxTitleBtns, 1, 0, Qt::AlignTop);
         else {
@@ -277,7 +279,7 @@ void CEditorWindow::recalculatePlaces()
         d_ptr->panel()->view()->SetCaptionMaskSize(int(TITLE_HEIGHT * m_dpiRatio));
     }
 
-    if ( d_ptr->canExtendTitle() ) {
+    if ( d_ptr->canExtendTitle() && !d_ptr->panel()->data()->hasError() ) {
         m_pMainView->lower();
     }
 }

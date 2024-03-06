@@ -300,6 +300,7 @@ struct CUpdateManager::PackageData {
             version;
     wstring packageUrl,
             packageArgs;
+    bool    isInstallable = true;
     void clear() {
         fileName.clear();
         fileType.clear();
@@ -309,6 +310,7 @@ struct CUpdateManager::PackageData {
         version.clear();
         packageUrl.clear();
         packageArgs.clear();
+        isInstallable = true;
     }
 };
 
@@ -864,7 +866,10 @@ void CUpdateManager::onLoadCheckFinished(const QString &filePath)
             const QString lang = CLangater::getCurrentLangCode() == "ru-RU" ? "ru-RU" : "en-EN";
             QJsonValue changelog = release_notes.value(lang);
 
-            clearTempFiles(isSavedPackageValid() ? m_savedPackageData->fileName : "");
+            QString min_version = root.value("minVersion").toString();
+            if (!min_version.isEmpty() && isVersionBHigherThanA(curr_version, min_version))
+                m_packageData->isInstallable = false;
+            clearTempFiles(m_packageData->isInstallable && isSavedPackageValid() ? m_savedPackageData->fileName : "");
             if (m_packageData->packageUrl.empty() || !m_socket->sendMessage(MSG_RequestContentLenght, WStrToTStr(m_packageData->packageUrl))) {
                 m_packageData->fileSize = "--";
                 onCheckFinished(false, true, m_packageData->version, "");
@@ -900,6 +905,11 @@ void CUpdateManager::onCheckFinished(bool error, bool updateExist, const QString
                 __UNLOCK
                 loadUpdates();
                 return;
+            } else
+            if (!m_packageData->isInstallable) {
+                refreshStartPage({"lastcheck", {TXT_AVAILABLE_UPD, version}, BTN_TXT_CHECK, "check", "false"});
+                m_dialogSchedule->addToSchedule("showUpdateMessage");
+                return;
             }
             switch (getUpdateMode()) {
             case UpdateMode::SILENT:
@@ -933,15 +943,21 @@ void CUpdateManager::showUpdateMessage(QWidget *parent) {
     QString name = (m_packageData->object == "app") ? QString(WINDOW_NAME) : QString(SERVICE_NAME);
     QString curr_version = (m_packageData->object == "app") ? QString(VER_FILEVERSION_STR) :
                                getFileVersion(QStrToTStr(qApp->applicationDirPath()) + DAEMON_NAME);
+    QString text = m_packageData->isInstallable ? tr("Would you like to download update now?") :
+                       tr("The current version does not support installing this update directly. "
+                          "To install updates, you can download the required package from the official website.");
     int result = WinDlg::showDialog(parent, tr("Update is available"),
                         QString("%1\n%2: %3\n%4: %5\n%6 (%7 MB)").arg(name, tr("Current version"),
                         curr_version, tr("New version"), getVersion(),
-                        tr("Would you like to download update now?"), m_packageData->fileSize),
+                        text, m_packageData->fileSize),
                         WinDlg::DlgBtns::mbSkipRemindDownload);
     __UNLOCK
     switch (result) {
     case WinDlg::DLG_RESULT_DOWNLOAD:
-        loadUpdates();
+        if (m_packageData->isInstallable)
+            loadUpdates();
+        else
+            Utils::openUrl(DOWNLOAD_PAGE);
         break;
     case WinDlg::DLG_RESULT_SKIP: {
         skipVersion();
