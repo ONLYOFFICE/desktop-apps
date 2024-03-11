@@ -129,6 +129,50 @@
     <STRING lang="ru" value="ru"/>
     <STRING lang="sl" value="sl"/>
   </ENTRY>
+  <ENTRY id="Property.NewDocument">
+    <STRING lang="cs" value="Nový dokument"/>
+    <STRING lang="de" value="Neues Dokument"/>
+    <STRING lang="es" value="Nuevo Documento"/>
+    <STRING lang="fr" value="Nouveau document"/>
+    <STRING lang="ja" value="新しいドキュメント"/>
+    <STRING lang="pt" value="Novo documento"/>
+    <STRING lang="pt_BR" value="Novo Documento"/>
+    <STRING lang="ru" value="Новый документ"/>
+    <STRING lang="sl" value="Nov dokument"/>
+  </ENTRY>
+  <ENTRY id="Property.NewForm">
+    <STRING lang="cs" value="Nový PDF formulář"/>
+    <STRING lang="de" value="Neues PDF-Formular"/>
+    <STRING lang="es" value="Nuevo formulario PDF"/>
+    <STRING lang="fr" value="Nouveau formulaire PDF"/>
+    <STRING lang="ja" value="新しいPDFフォーム"/>
+    <STRING lang="pt" value="Novo formulário PDF"/>
+    <STRING lang="pt_BR" value="Novo formulário PDF"/>
+    <STRING lang="ru" value="Новая PDF-форма"/>
+    <STRING lang="sl" value="Novi PDF obrazec"/>
+  </ENTRY>
+  <ENTRY id="Property.NewPresentation">
+    <STRING lang="cs" value="Nová prezentace"/>
+    <STRING lang="de" value="Neue Präsentation"/>
+    <STRING lang="es" value="Nueva Presentación"/>
+    <STRING lang="fr" value="Nouvelle présentation"/>
+    <STRING lang="ja" value="新しいプレゼンテーション"/>
+    <STRING lang="pt" value="Nova Apresentação"/>
+    <STRING lang="pt_BR" value="Nova apresentação"/>
+    <STRING lang="ru" value="Новая презентация"/>
+    <STRING lang="sl" value="Nova predstavitev"/>
+  </ENTRY>
+  <ENTRY id="Property.NewSpreadsheet">
+    <STRING lang="cs" value="Nový sešit"/>
+    <STRING lang="de" value="Neue Tabelle"/>
+    <STRING lang="es" value="Nueva Hoja de Cálculo"/>
+    <STRING lang="fr" value="Nouvelle feuille de calcul"/>
+    <STRING lang="ja" value="新しいスプレッドシート"/>
+    <STRING lang="pt" value="Nova folha de cálculo"/>
+    <STRING lang="pt_BR" value="Nova planilha"/>
+    <STRING lang="ru" value="Новая таблица"/>
+    <STRING lang="sl" value="Nova razpredelnica"/>
+  </ENTRY>
   <ENTRY id="Property.ServiceDescription">
     <STRING lang="cs" value="Služba aktualizace [PackageName]"/>
     <STRING lang="de" value="Update service for [PackageName]"/>
