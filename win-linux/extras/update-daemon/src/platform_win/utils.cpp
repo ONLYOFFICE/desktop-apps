@@ -44,7 +44,6 @@
 #include <TlHelp32.h>
 #include <userenv.h>
 #include <vector>
-#include <stack>
 #include <sstream>
 #include "../../src/defines.h"
 #include "../../src/prop/defines_p.h"
@@ -370,18 +369,26 @@ namespace NS_File
         return PathIsDirectoryEmpty(dirName.c_str());
     }
 
-    bool makePath(const wstring &path)
-    {
-        std::stack<wstring> pathsList;
-        wstring last_path(path);
-        while (!last_path.empty() && !dirExists(last_path)) {
-            pathsList.push(last_path);
-            last_path = parentPath(last_path);
-        }
-        while(!pathsList.empty()) {
-            if (::CreateDirectory(pathsList.top().c_str(), NULL) == 0)
+    bool makePath(wstring &path, size_t root_offset) {
+        size_t len = path.length();
+        if (len == 0 || root_offset >= len)
+            return false;
+        if (CreateDirectoryW(path.c_str(), NULL) != 0 || GetLastError() == ERROR_ALREADY_EXISTS)
+            return true;
+        wchar_t *out = &path[0];
+        wchar_t *it = out + root_offset;
+        while (*it++ != '\0') {
+            while (*it != '\0' && *it != '/' && *it != '\\')
+                it++;
+            if (*it == '\0' && (*(it - 1) == '/' || *(it - 1) == '\\'))
+                break;
+            wchar_t tmp = *it;
+            *it = '\0';
+            if (CreateDirectoryW(out, NULL) == 0 && GetLastError() != ERROR_ALREADY_EXISTS) {
+                *it = tmp;
                 return false;
-            pathsList.pop();
+            }
+            *it = tmp;
         }
         return true;
     }
@@ -428,8 +435,9 @@ namespace NS_File
             for (const wstring &sourcePath : filesList) {
                 if (!sourcePath.empty()) {
                     wstring dest = to + sourcePath.substr(sourceLength);
-                    if (!NS_File::dirExists(NS_File::parentPath(dest)) && !NS_File::makePath(NS_File::parentPath(dest))) {
-                        NS_Logger::WriteLog(L"Can't create path: " + NS_File::parentPath(dest));
+                    wstring dest_path = NS_File::parentPath(dest);
+                    if (!NS_File::dirExists(dest_path) && !NS_File::makePath(dest_path)) {
+                        NS_Logger::WriteLog(L"Can't create path: " + dest_path);
                         return false;
                     }
                     if (MoveFileEx(sourcePath.c_str(), dest.c_str(), MOVEFILE_REPLACE_EXISTING |
@@ -478,7 +486,7 @@ namespace NS_File
 
     wstring parentPath(const wstring &path)
     {
-        wstring::size_type delim = path.find_last_of(L"\\/");
+        wstring::size_type delim = (path.size() > 1) ? path.find_last_of(L"\\/", path.size() - 2) : wstring::npos;
         return (delim == wstring::npos) ? L"" : path.substr(0, delim);
     }
 

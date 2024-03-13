@@ -413,8 +413,8 @@ void CSvcManager::unzipIfNeeded(const tstring &filePath, const tstring &newVersi
     __GLOBAL_LOCK
 
     m_newVersion = newVersion;
-    const tstring updPath = NS_File::parentPath(NS_File::appPath()) + UPDATE_PATH;
-    auto unzip = [=]()->void {
+    tstring updPath = NS_File::parentPath(NS_File::appPath()) + UPDATE_PATH;
+    auto unzip = [=, &updPath]()->void {
         if (!NS_File::dirExists(updPath) && !NS_File::makePath(updPath)) {
             NS_Logger::WriteLog(_T("An error occurred while creating dir: ") + updPath);
             __UNLOCK

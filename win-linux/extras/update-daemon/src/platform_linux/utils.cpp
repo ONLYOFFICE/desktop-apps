@@ -33,7 +33,6 @@
 #include "platform_linux/utils.h"
 #include "version.h"
 #include <fstream>
-#include <stack>
 #include <algorithm>
 #include <sys/stat.h>
 #include <gtk/gtk.h>
@@ -99,8 +98,9 @@ static bool moving_folder_content(const string &from, const string &to, bool use
     for (const string &sourcePath : filesList) {
         if (!sourcePath.empty()) {
             string dest = to + sourcePath.substr(sourceLength);
-            if (!NS_File::dirExists(NS_File::parentPath(dest)) && !NS_File::makePath(NS_File::parentPath(dest))) {
-                NS_Logger::WriteLog("Can't create path: " + NS_File::parentPath(dest));
+            string dest_path = NS_File::parentPath(dest);
+            if (!NS_File::dirExists(dest_path) && !NS_File::makePath(dest_path)) {
+                NS_Logger::WriteLog("Can't create path: " + dest_path);
                 return false;
             }
             if (use_rename) {
@@ -316,18 +316,26 @@ namespace NS_File
         return (count == 0);
     }
 
-    bool makePath(const string &path)
-    {
-        std::stack<string> pathsList;
-        string last_path(path);
-        while (!last_path.empty() && !dirExists(last_path)) {
-            pathsList.push(last_path);
-            last_path = parentPath(last_path);
-        }
-        while(!pathsList.empty()) {
-            if (mkdir(pathsList.top().c_str(), S_IRWXU | S_IRWXG | S_IRWXO) != 0)
+    bool makePath(string &path, size_t root_offset) {
+        size_t len = path.length();
+        if (len == 0 || root_offset >= len)
+            return false;
+        if (mkdir(path.c_str(), S_IRWXU | S_IRWXG | S_IRWXO) == 0 || errno == EEXIST)
+            return true;
+        char *out = &path[0];
+        char *it = out + root_offset;
+        while (*it++ != '\0') {
+            while (*it != '\0' && *it != '/')
+                it++;
+            if (*it == '\0' && *(it - 1) == '/')
+                break;
+            char tmp = *it;
+            *it = '\0';
+            if (mkdir(out, S_IRWXU | S_IRWXG | S_IRWXO) != 0 && errno != EEXIST) {
+                *it = tmp;
                 return false;
-            pathsList.pop();
+            }
+            *it = tmp;
         }
         return true;
     }
@@ -426,7 +434,7 @@ namespace NS_File
 
     string parentPath(const string &path)
     {
-        string::size_type delim = path.find_last_of("\\/");
+        string::size_type delim = (path.size() > 1) ? path.find_last_of('/', path.size() - 2) : string::npos;
         return (delim == string::npos) ? "" : path.substr(0, delim);
     }
 
