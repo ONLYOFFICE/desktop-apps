@@ -1529,6 +1529,11 @@ void CMainWindow::cancelClose()
     m_isCloseAll && (m_isCloseAll = false);
 }
 
+QSize CMainWindow::contentSize()
+{
+    return m_pMainWidget ? m_pMainWidget->size() : QSize();
+}
+
 void CMainWindow::onLayoutDirectionChanged()
 {
     m_pButtonMain->style()->polish(m_pButtonMain);
