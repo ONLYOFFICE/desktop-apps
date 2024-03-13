@@ -51,7 +51,6 @@ public:
     virtual bool holdView(int id) const final;
 
 protected:
-    virtual void showEvent(QShowEvent*) override;
     void closeEvent(QCloseEvent *) final;
     virtual void onLayoutDirectionChanged() final;
 

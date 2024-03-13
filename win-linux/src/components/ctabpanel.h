@@ -12,10 +12,10 @@ class CTabPanel : public QWidget
     Q_OBJECT
 
 public:
-    explicit CTabPanel(QWidget *parent = nullptr);
+    explicit CTabPanel(QWidget *parent, const QSize& s);
     ~CTabPanel();
 
-    static CTabPanel * createEditorPanel(QWidget *parent = nullptr);
+    static CTabPanel * createEditorPanel(QWidget *parent, const QSize& size);
 
     QCefView * view() const;
     CCefView * cef() const;
@@ -38,7 +38,7 @@ public:
     void setReady();
     //void resize(int w, int h);
     //void resizeEvent(QResizeEvent *event);
-    virtual void showEvent(QShowEvent *event) override;
+    //void showEvent(QShowEvent *event);
 
     bool prettyTitle() { return m_prettyTitle; }
     void setPrettyTitle(bool v) { m_prettyTitle = v; }

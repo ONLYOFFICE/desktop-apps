@@ -71,6 +71,8 @@ public:
     explicit CWindowBase(const QRect&);
     virtual ~CWindowBase();   
 
+    static QRect startRect(const QRect &rc, double &dpi);
+    static QSize expectedContentSize(const QRect &rc, bool extended = false);
     QWidget * handle() const;
     bool isCustomWindowStyle();
     void updateScaling(bool resize = true);
