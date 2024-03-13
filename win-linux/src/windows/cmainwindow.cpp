@@ -1517,10 +1517,6 @@ void CMainWindow::showEvent(QShowEvent * e)
 {
     CWindowPlatform::showEvent(e);
     cancelClose();
-    if (e->type() == QEvent::Show) {
-        m_pMainWidget->resize(m_pMainPanel->size() - QSize(0, m_boxTitleBtns->height()));
-        static_cast<QCefView*>(m_pMainWidget)->GetCefView()->resizeEvent();
-    }
 }
 
 bool CMainWindow::isAboutToClose() const

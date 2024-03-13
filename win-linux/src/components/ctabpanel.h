@@ -38,7 +38,7 @@ public:
     void setReady();
     //void resize(int w, int h);
     //void resizeEvent(QResizeEvent *event);
-    virtual void showEvent(QShowEvent *event) override;
+    //void showEvent(QShowEvent *event);
 
     bool prettyTitle() { return m_prettyTitle; }
     void setPrettyTitle(bool v) { m_prettyTitle = v; }
