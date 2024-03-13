@@ -319,7 +319,7 @@ public:
         if ( !(viewid < 0) ) {
             CEditorWindow * editor = m_appmanager.editorWindowFromViewId(viewid);
             if ( editor )
-                return editor->geometry();
+                return editor->normalGeometry();
             else
             if ( m_appmanager.mainWindow() && m_appmanager.mainWindow()->holdView(viewid) )
                 return m_appmanager.mainWindow()->windowRect();
