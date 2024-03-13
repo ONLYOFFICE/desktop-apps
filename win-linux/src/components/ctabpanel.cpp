@@ -150,14 +150,10 @@ bool CTabPanel::isReady()
     m_pViewer->resize(event->size());
 }*/
 
-void CTabPanel::showEvent(QShowEvent *ev)
+/*void CTabPanel::showEvent(QShowEvent *)
 {
-    QWidget::showEvent(ev);
-    if (ev->type() == QShowEvent::Show) {
-        m_pViewer->resize(size());
-        cef()->resizeEvent();
-    }
-}
+//    cef()->resizeEvent();
+}*/
 
 /*void CTabPanel::paintEvent(QPaintEvent *)
 {

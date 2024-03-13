@@ -396,14 +396,6 @@ bool CEditorWindow::event(QEvent * event)
     if (event->type() == QEvent::Resize) {
         onSizeEvent(0);
     } else
-    if (event->type() == QEvent::Show) {
-        QTimer::singleShot(0, this, [=]() {
-            if (m_pMainView) {
-                d_ptr->panel()->view()->resize(m_pMainView->size());
-                d_ptr->panel()->cef()->resizeEvent();
-            }
-        });
-    } else
 //    if (event->type() == QEvent::User) {
 //        onExitSizeMove();
 //    } else
