@@ -92,31 +92,31 @@ public:
     {
     }
 
-    auto createStartPanel() -> void {
-        GET_REGISTRY_USER(reg_user)
+//    auto createStartPanel() -> void {
+//        GET_REGISTRY_USER(reg_user)
 
-        m_pStartPanel = AscAppManager::createViewer(nullptr);
-        m_pStartPanel->Create(&m_appmanager, cvwtSimple);
-        m_pStartPanel->setObjectName("mainPanel");
+//        m_pStartPanel = AscAppManager::createViewer(nullptr, QSize());
+//        m_pStartPanel->Create(&m_appmanager, cvwtSimple);
+//        m_pStartPanel->setObjectName("mainPanel");
 
-        QString data_path;
-#if defined(QT_DEBUG)
-        data_path = reg_user.value("startpage").value<QString>();
-#endif
+//        QString data_path;
+//#if defined(QT_DEBUG)
+//        data_path = reg_user.value("startpage").value<QString>();
+//#endif
 
-        if ( data_path.isEmpty() )
-            data_path = qApp->applicationDirPath() + "/index.html";
+//        if ( data_path.isEmpty() )
+//            data_path = qApp->applicationDirPath() + "/index.html";
 
-        QString additional = "?waitingloader=yes&lang=" + CLangater::getCurrentLangCode();
-        QString _portal = reg_user.value("portal").value<QString>();
-        if (!_portal.isEmpty()) {
-            QString arg_portal = (additional.isEmpty() ? "?portal=" : "&portal=") + _portal;
-            additional.append(arg_portal);
-        }
+//        QString additional = "?waitingloader=yes&lang=" + CLangater::getCurrentLangCode();
+//        QString _portal = reg_user.value("portal").value<QString>();
+//        if (!_portal.isEmpty()) {
+//            QString arg_portal = (additional.isEmpty() ? "?portal=" : "&portal=") + _portal;
+//            additional.append(arg_portal);
+//        }
 
-        std::wstring start_path = ("file:///" + data_path + additional).toStdWString();
-        m_pStartPanel->GetCefView()->load(start_path);
-    }
+//        std::wstring start_path = ("file:///" + data_path + additional).toStdWString();
+//        m_pStartPanel->GetCefView()->load(start_path);
+//    }
 
     auto sendOpenFolderEvent(int id) -> void {
         if (!mainWindow() || mainWindow()->startPanelId() != id) {   // Ignore start page
