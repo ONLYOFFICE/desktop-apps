@@ -801,7 +801,7 @@ CMainWindow * CAscApplicationManagerWrapper::prepareMainWindow(const QRect& r)
     if ( r.isEmpty() )
         _start_rect = reg_user.value("position").toRect();
 
-    QPointer<QCefView> _startPanel = AscAppManager::createViewer(nullptr);
+    QPointer<QCefView> _startPanel = AscAppManager::createViewer(nullptr, CWindowBase::expectedContentSize(_start_rect));
     _startPanel->Create(&_app, cvwtSimple);
     _startPanel->setObjectName("startPanel");
     //_startPanel->resize(_start_rect.width(), _start_rect.height());
@@ -966,7 +966,7 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
         //    open_in_new_window = std::find(vargs.begin(), vargs.end(), L"--force-use-tab") == std::end(vargs);
         //
 
-        CTabPanel * panel = CEditorTools::createEditorPanel(open_opts);
+        CTabPanel * panel = CEditorTools::createEditorPanel(open_opts, CWindowBase::expectedContentSize(_start_rect, open_in_new_window));
         if ( panel ) {
             if ( open_in_new_window ) {
                 CEditorWindow * editor_win = new CEditorWindow(_start_rect, panel);
@@ -1265,9 +1265,6 @@ CPresenterWindow * CAscApplicationManagerWrapper::createReporterWindow(void * da
     CAscReporterData * pCreateData = reinterpret_cast<CAscReporterData *>(pData->get_Data());
     pData->put_Data(NULL);
 
-    QCefView * pView = createViewer(NULL);
-    pView->CreateReporter(this, pCreateData);
-
     QString _doc_name;
     QWindow *wnd = nullptr;
     if ( m_pMainWindow && m_pMainWindow->holdView(parentid) ) {
@@ -1298,6 +1295,9 @@ CPresenterWindow * CAscApplicationManagerWrapper::createReporterWindow(void * da
 
     QRect _window_rect{QPoint(0,0), _saved_rect.size()};
     _window_rect.moveCenter(_scr_rect.center());
+
+    QCefView * pView = createViewer(nullptr, CWindowBase::expectedContentSize(_window_rect));
+    pView->CreateReporter(this, pCreateData);
 
     CPresenterWindow * reporterWindow = new CPresenterWindow(_window_rect, tr("Presenter View") + " - " + _doc_name, pView);
     m_winsReporter[pView->GetCefView()->GetId()] = reporterWindow;
@@ -1934,12 +1934,12 @@ bool CAscApplicationManagerWrapper::canAppClose()
     return true;
 }
 
-QCefView * CAscApplicationManagerWrapper::createViewer(QWidget * parent)
+QCefView * CAscApplicationManagerWrapper::createViewer(QWidget * parent, const QSize& size)
 {
     APP_CAST(_app);
 
     ++_app.m_countViews;
-    return _app.m_private->createView(parent);
+    return _app.m_private->createView(parent, size);
 }
 
 void CAscApplicationManagerWrapper::destroyViewer(int id)

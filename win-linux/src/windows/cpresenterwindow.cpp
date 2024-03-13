@@ -153,7 +153,7 @@ QWidget * CPresenterWindow::createMainPanel(QWidget * parent, const QString& tit
     }
     mainGridLayout->addWidget(m_boxTitleBtns, 0, 0, Qt::AlignTop);
     if (!view) {
-        QCefView * pMainWidget = AscAppManager::createViewer(mainPanel);
+        QCefView * pMainWidget = AscAppManager::createViewer(mainPanel, mainPanel->size());
         pMainWidget->Create(&AscAppManager::getInstance(), cvwtSimple);
         pMainWidget->setObjectName("mainPanel");
         pMainWidget->setHidden(false);

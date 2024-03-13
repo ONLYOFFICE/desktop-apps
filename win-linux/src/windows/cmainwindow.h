@@ -70,6 +70,7 @@ public:
     void close();
     bool isAboutToClose() const;
     void cancelClose();
+    QSize contentSize();
 
 signals:
     void aboutToClose();
