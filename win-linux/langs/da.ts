@@ -362,12 +362,12 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="66"/>
         <source>DOCX Document</source>
-        <translation>DOCX-dokument</translation>
+        <translation>Office Open XML-dokument</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="70"/>
         <source>OpenDocument Document template</source>
-        <translation>OpenDocument dokumentskabelon</translation>
+        <translation>OpenDocument Dokumentskabelon</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="78"/>
@@ -377,7 +377,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="85"/>
         <source>OpenDocument Presentation Template</source>
-        <translation>OpenDocument præsentationsskabelon</translation>
+        <translation>OpenDocument Præsentationsskabelon</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="91"/>
@@ -387,7 +387,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="94"/>
         <source>OpenDocument Spreadsheet Template</source>
-        <translation>OpenDocument regnearksskabelon</translation>
+        <translation>OpenDocument Regnearksskabelon</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="95"/>
@@ -501,19 +501,19 @@
         <location filename="../src/ceditortools.cpp" line="211"/>
         <location filename="../src/components/cfiledialog.cpp" line="90"/>
         <source>Spreadsheet template</source>
-        <translation>Regnearkskabelon</translation>
+        <translation>Excel Open XML Regnearksskabelon</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="214"/>
         <location filename="../src/components/cfiledialog.cpp" line="83"/>
         <source>Presentation template</source>
-        <translation>Præsentationsskabelon</translation>
+        <translation>PowerPoint Open XML Præsentationsskabelon</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="216"/>
         <location filename="../src/components/cfiledialog.cpp" line="67"/>
         <source>Document template</source>
-        <translation>Dokumentskabelon</translation>
+        <translation>Word Open XML Dokumentskabelon</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="237"/>

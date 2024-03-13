@@ -77,7 +77,7 @@ int main(int argc, char *argv[])
             "New document",
             "New spreadsheet",
             "New presentation",
-            "New form template"
+            "New PDF form"
         };
         CreateJumpList(_cmdArgs.size() > MIN_TASK_NUM ? _cmdArgs.mid(1) : defaultTitles);
         return 0;

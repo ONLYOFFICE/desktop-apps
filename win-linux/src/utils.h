@@ -102,6 +102,7 @@ public:
     static double getScreenDpiRatioByWidget(QWidget*);
     static QScreen * screenAt(const QPoint&);
     static QString replaceBackslash(const QString&);
+    static void replaceAll(std::wstring& subject, const std::wstring& search, const std::wstring& replace);
     static bool isFileLocal(const QString&);
     static QString uniqFileName(const QString& path);
     static bool setAppUserModelId(const QString&);
@@ -127,6 +128,9 @@ public:
     static WinVer getWinVersion();
     static bool isSessionInProgress();
     static void setSessionInProgress(bool);
+#else
+    static void setInstAppPort(int);
+    static int getInstAppPort();
 #endif
 };
 
@@ -159,6 +163,7 @@ namespace WindowHelper {
     auto adjustWindowRect(HWND, double, LPRECT) -> void;
     auto bringToTop(HWND) -> void;
     auto getColorizationColor(bool isActive = true) -> QColor;
+    auto toggleLayoutDirection(HWND hwnd) -> void;
 #endif
 
     auto correctWindowMinimumSize(const QRect&, const QSize&) -> QSize;

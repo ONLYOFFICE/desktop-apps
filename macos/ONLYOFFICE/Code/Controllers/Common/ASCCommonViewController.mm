@@ -363,7 +363,7 @@
             tab.params      = [@{
                 @"action": @(ASCTabActionOpenUrl),
                 @"title": [NSString stringWithFormat:@"%@...", NSLocalizedString(@"Opening", nil)],
-                @"url": link.absoluteString
+                @"url": [link.absoluteString stringByRemovingPercentEncoding]
             } mutableCopy];
 
             [self.tabsControl addTab:tab selected:YES];
@@ -583,14 +583,15 @@
         
         [self.tabsControl selectTab:tab];
         
-        __block NSInteger fileType = [params[@"fileType"] intValue];
+//        __block NSInteger fileType = [params[@"fileType"] intValue];
         
         __block ASCSavePanelWithFormatController * saveController = [ASCSavePanelWithFormatController new];
         
         NSSavePanel * savePanel = [saveController savePanel];
         
         saveController.filters = formats;
-        saveController.filterType = fileType;
+        saveController.original = params[@"original"];
+//        saveController.filterType = fileType;
         
         if (!path || path.length < 1) {
             path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
@@ -1033,6 +1034,9 @@
 - (void)printOperationDidRun:(NSPrintOperation *)printOperation success:(BOOL)success contextInfo:(void *)contextInfo {
     if (m_pContext) {
         m_pContext->EndPaint();
+        
+        m_pContext->Release();
+        m_pContext = nullptr;
     }
 }
 
@@ -1047,12 +1051,16 @@
         NSLog(@"options: %@", nameLocales);
 
         CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
-        
-        if (appManager) {
-            m_pContext = new ASCPrinterContext(appManager);
-//            m_pContext->BeginPaint([viewId intValue], [pagesCount intValue], self, @selector(printOperationDidRun:success:contextInfo:));
-            m_pContext->BeginPaint(notification.userInfo, self, @selector(printOperationDidRun:success:contextInfo:));
-        }
+
+        // using synchronization to be sure that flag `ASCPrinterContext::isCurrentlyPrinting` is correctly handled
+        static dispatch_queue_t printQueue = dispatch_queue_create(NULL, NULL);
+        dispatch_sync(printQueue, ^{
+            if (appManager && !ASCPrinterContext::isCurrentlyPrinting) {
+                m_pContext = new ASCPrinterContext(appManager);
+                //            m_pContext->BeginPaint([viewId intValue], [pagesCount intValue], self, @selector(printOperationDidRun:success:contextInfo:));
+                m_pContext->BeginPaint(notification.userInfo, self, @selector(printOperationDidRun:success:contextInfo:));
+            }
+        });
     }
 }
 
@@ -1491,7 +1499,8 @@
     NSString * uiTheme = [[NSUserDefaults standardUserDefaults] valueForKey:ASCUserUITheme] ?: @"theme-classic-light";
 
     NSMutableDictionary * json_langs = @{
-        @"uitheme": uiTheme
+        @"uitheme": uiTheme,
+        @"rtl": @([ASCLinguist isUILayoutDirectionRtl])
     }.mutableCopy;
 
     NSDictionary * langs = [ASCLinguist availableLanguages];
@@ -1904,9 +1913,14 @@
             }
             case ASCTabActionOpenLocalRecentFile: {
                 NSInteger docId = [tab.params[@"fileId"] intValue];
-//                NSString * filePath = tab.params[@"path"];
                 
-                [cefView openRecentFileWithId:docId];
+                if ( !(docId < 0) )
+                    [cefView openRecentFileWithId:docId];
+                else {
+                    NSString * filePath = tab.params[@"path"];
+                    if ( filePath && filePath.length )
+                        [cefView loadWithUrl:filePath];
+                }
                     
                 [[AnalyticsHelper sharedInstance] recordCachedEventWithCategory:ASCAnalyticsCategoryApplication
                                                                              action:@"Open local file"

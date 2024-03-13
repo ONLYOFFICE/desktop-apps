@@ -52,12 +52,12 @@ namespace NS_Utils
 {
 string GetLastErrorAsString();
 int ShowMessage(string str, bool showError = false);
-string GetSysLanguage();
+//string GetSysLanguage();
+string GetAppLanguage();
 }
 
 namespace NS_File
 {
-void setAppPath(const string &path);
 bool GetFilesList(const string &path, list<string> *lst, string &error, bool ignore_locked = false, bool folders_only = false);
 bool readFile(const string &filePath, list<string> &linesList);
 bool writeToFile(const string &filePath, list<string> &linesList);

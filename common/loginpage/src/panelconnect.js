@@ -72,7 +72,7 @@
         args.id&&(args.id=`id=${args.id}`)||(args.id='');
 
         var _html_empty_panel_with_carousel =
-                        `<div id="box-empty-portals" class="empty flex-center">
+                        `<div id="box-empty-portals" class="empty flex-center offcet-center">
                             <section class="center-box">
                               <h3 class="empty-title" l10n style="margin:0 0 60px;">${_lang.portalEmptyTitle}</h3>
                               <div class='carousel'>
@@ -549,11 +549,16 @@
                 }
 
 
-                let _p;
                 !obj.provider && (obj.provider = 'onlyoffice');
-                if ( !config.portals.checklist.find(i => i.provider == obj.provider) &&
-                            (_p = config.portals.checklist.find(i => i.name.toLowerCase() == obj.provider.toLowerCase())) )
-                    obj.provider = _p.provider;
+                if ( !config.portals.checklist.find(i => i.provider == obj.provider) ) {
+                    let _p = config.portals.checklist.find(i => i.name.toLowerCase() == obj.provider.toLowerCase());
+                    if ( _p )
+                        obj.provider = _p.provider;
+                    else {
+                        console.warn(`login: "${obj.provider}" is unknown provider. please, check provider id.`);
+                        return;
+                    }
+                }
 
                 let info = {
                     portal: obj.domain,

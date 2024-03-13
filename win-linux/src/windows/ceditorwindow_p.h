@@ -864,16 +864,17 @@ public:
     {
         if ( m_panel->data()->features().empty() ) return true;
         else if ( m_panel->data()->hasFeature(L"uitype\":\"fillform") ) return true;
+        else if ( m_panel->data()->hasFrame() ) return false;
         else return !viewerMode() && (m_panel->data()->isLocal() || m_panel->data()->hasFeature(L"titlebuttons\":"));
     }
 
     auto viewerMode() const -> bool {
+        if ( m_panel->data()->hasFrame() ) return true;
         return m_panel->data()->hasFeature(L"viewmode\":true");
     }
 
     auto fillformMode() -> bool {
-        QFileInfo i{QString::fromStdWString(m_panel->data()->url())};
-        return i.suffix() == "oform" || m_panel->data()->hasFeature(L"uitype\":\"fillform");
+        return m_panel->data()->hasFeature(L"uitype\":\"fillform");
     }
 
     auto calcTitleLabelWidth(int basewidth) const -> int {

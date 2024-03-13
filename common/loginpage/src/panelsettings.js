@@ -181,7 +181,8 @@
                                         <div class='settings-field' style='display:none;'>
                                             <section class='switch-labeled hbox' id='sett-box-rtl-mode'>
                                                 <input type="checkbox" class="checkbox" id="sett-rtl-mode">
-                                                <label for="sett-rtl-mode" class='sett__caption' l10n>${_lang.settRtlMode} (Beta) *</label>
+                                                <label for="sett-rtl-mode" class='sett__caption' l10n>${_lang.settRtlMode} *</label>
+                                                <span class='sett__caption sett__caption-beta'>Beta</span>
                                             </section>
                                         </div>
                                         <div class='settings-field' id='opts-ui-scaling' style='display:none'>
@@ -213,7 +214,7 @@
                                                     <select class='combobox'>
                                                         <option data-subtext="${_lang.settOptDescAUpdateSilent}" value='silent' l10n>${_lang.settOptAUpdateSilent}</option>
                                                         <option data-subtext="${_lang.settOptDescAUpdateAsk}" value='ask' l10n>${_lang.settOptAUpdateAsk}</option>
-                                                        <option data-subtext="${_lang.settOptDescDisabled}" value='disabled' l10n>${_lang.settOptDisabled}</option>
+                                                        <option data-subtext="${_lang.settOptDescDisabled}" value='disabled' l10n>${_lang.settOptAUpdateDisabled}</option>
                                                     </select>
                                                 </section>
                                             </div>
@@ -462,6 +463,7 @@
                 $chRtl.prop("checked", _is_lang_rtl(l));
             }
 
+            $(document.body).toggleClass('rtl-font', _is_lang_rtl(l));
             $optsLang.toggleClass('notted', true);
         };
 
@@ -519,6 +521,8 @@
                                 $panel.find('.settings-field-lang label[l10n]').after(`<label class='sett__caption'>*</label>`);
                                 $('#caption-restart', $panel).show();
                             }
+
+                            $(document.body).toggleClass('rtl-font', _is_lang_rtl(opts.locale.current));
                         }
 
                         if ( opts.uiscaling != undefined && !$optsUIScaling ) {
@@ -634,15 +638,20 @@
                     }
 
                     if ( opts.rtl !== undefined ) {
-                        $chRtl = $('#sett-box-rtl-mode', $panel).parent().show().find('#sett-rtl-mode');
-                        $chRtl.prop('checked', !!opts.rtl)
-                            .on('change', e => {
-                                $btnApply.prop('disabled') && $btnApply.prop('disabled', false);
-                            });
+                        if ( !$chRtl || $chRtl.prop('checked') != opts.rtl ) {
+                            $chRtl = $('#sett-box-rtl-mode', $panel).parent().show().find('#sett-rtl-mode');
+                            $chRtl.prop('checked', !!opts.rtl)
+                                .on('change', e => {
+                                    $btnApply.prop('disabled') && $btnApply.prop('disabled', false);
+                                });
 
-                        if ( opts.rtl ) {
-                            document.body.setAttribute('dir', 'rtl');
-                            document.body.classList.add('rtl');
+                            if ( opts.rtl ) {
+                                document.body.setAttribute('dir', 'rtl');
+                                document.body.classList.add('rtl');
+
+                                $userName.css('direction', 'rtl');
+                            }
+
                         }
                     }
 

@@ -44,4 +44,5 @@
 @property (nonatomic) NSSavePanel *savePanel;
 @property (nonatomic) NSArray * filters;
 @property (nonatomic) NSInteger filterType;
+@property (nonatomic) NSDictionary * original;
 @end

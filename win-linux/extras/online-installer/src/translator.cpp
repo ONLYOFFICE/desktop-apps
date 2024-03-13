@@ -5,6 +5,7 @@
 #include "utils.h"
 #include <Windows.h>
 #include <cwctype>
+#include <sstream>
 
 
 bool isSeparator(wchar_t c)
@@ -22,20 +23,20 @@ bool isValidLocaleCharacter(wchar_t c)
     return iswalpha(c) || c == L'_';
 }
 
-wstring getPrimaryLang(const wstring &lang)
+wstring getPrimaryLang(const wstring &lang, bool withScript = false)
 {
     if (lang.empty()) {
         NS_Logger::WriteLog(_T("An error occurred: ") + wstring(_T(__FUNCTION__)));
         return L"en";
     }
-    size_t pos = lang.find(L'_');
-    if (pos == wstring::npos) {
-        if (lang.length() == 2)
-            return lang;
-    } else {
-        wstring _lang = lang.substr(0, pos);
-        if (_lang.length() == 2)
-            return _lang;
+    std::wistringstream iss(lang);
+    wstring primlang, script;
+    std::getline(iss, primlang, L'_');
+    if (primlang.length() == 2 || primlang.length() == 3) {
+        if (!withScript)
+            return primlang;
+        std::getline(iss, script, L'_');
+        return (script.length() == 4) ? primlang + L"_" + script : primlang;
     }
     NS_Logger::WriteLog(_T("An error occurred: ") + wstring(_T(__FUNCTION__)));
     return L"en";
@@ -119,9 +120,14 @@ wstring Translator::tr(const char *str)
                     if (strIdPair.second.find(langName) != strIdPair.second.end())
                         translatedStr = strIdPair.second[langName];
                     else {
-                        wstring primaryLang = getPrimaryLang(langName);
-                        if (strIdPair.second.find(primaryLang) != strIdPair.second.end())
-                            translatedStr = strIdPair.second[primaryLang];
+                        wstring primaryLangAndScript = getPrimaryLang(langName, true);
+                        if (strIdPair.second.find(primaryLangAndScript) != strIdPair.second.end())
+                            translatedStr = strIdPair.second[primaryLangAndScript];
+                        else {
+                            wstring primaryLang = getPrimaryLang(langName);
+                            if (strIdPair.second.find(primaryLang) != strIdPair.second.end())
+                                translatedStr = strIdPair.second[primaryLang];
+                        }
                     }
                     break;
                 }
@@ -156,7 +162,7 @@ void Translator::parseTranslations()
                             break;
                     }
                     size_t locale_len = end - pos;
-                    if (locale_len == 2 || locale_len == 5) {
+                    if (locale_len < 12 && locale_len != 0 && locale_len != 1 && locale_len != 4 && locale_len != 9) {
                         token = TOKEN_BEGIN_LOCALE;
                         continue;
                     } else {

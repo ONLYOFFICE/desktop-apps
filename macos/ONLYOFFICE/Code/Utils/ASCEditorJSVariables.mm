@@ -101,6 +101,10 @@
     [_jsVariables setValue:value forKey:name];
 }
 
+- (void)setVariable: (NSString*)name withBool:(BOOL)value {
+    [_jsVariables setValue:@(value) forKey:name];
+}
+
 - (void)setVariable: (NSString*)name withObject:(NSDictionary *)object {
     [_jsVariables setObject:object forKey:name];
 }

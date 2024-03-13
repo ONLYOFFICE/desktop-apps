@@ -32,6 +32,7 @@
 
 #include "windows/cmainwindow.h"
 #include "ceditortools.h"
+#include "clangater.h"
 #include "defines.h"
 #include "utils.h"
 #include "components/cfiledialog.h"
@@ -375,6 +376,12 @@ QWidget* CMainWindow::createMainPanel(QWidget *parent)
     QWidget *mainPanel = new QWidget(parent);
     mainPanel->setObjectName("mainPanel");
     mainPanel->setProperty("rtl", AscAppManager::isRtlEnabled());
+    mainPanel->setProperty("rtl-font", CLangater::isRtlLanguage(CLangater::getCurrentLangCode()));
+#ifdef _WIN32
+    mainPanel->setProperty("unix", false);
+#else
+    mainPanel->setProperty("unix", true);
+#endif
     QGridLayout *_pMainGridLayout = new QGridLayout(mainPanel);
     _pMainGridLayout->setSpacing(0);
     _pMainGridLayout->setObjectName(QString::fromUtf8("mainGridLayout"));
@@ -500,7 +507,7 @@ void CMainWindow::toggleButtonMain(bool toggle, bool delay)
     };
 
     if ( delay ) {
-        QTimer::singleShot(200, [=]{ _toggle(toggle); });
+        QTimer::singleShot(200, this, [=]{ _toggle(toggle); });
     } else {
         _toggle(toggle);
     }
@@ -790,7 +797,7 @@ void CMainWindow::onLocalFileRecent(void * d)
 
 void CMainWindow::onLocalFileRecent(const COpenOptions& opts)
 {
-    QRegularExpression re(rePortalName);
+    static QRegularExpression re(rePortalName);
     QRegularExpressionMatch match = re.match(opts.url);
 
     bool forcenew = false;
@@ -859,7 +866,7 @@ void CMainWindow::onFileLocation(int uid, QString param)
             CMessage::info(this, tr("Document must be saved firstly."));
         }
     } else {
-        QRegularExpression _re("^((?:https?:\\/{2})?[^\\s\\/]+)", QRegularExpression::CaseInsensitiveOption);
+        static QRegularExpression _re("^((?:https?:\\/{2})?[^\\s\\/]+)", QRegularExpression::CaseInsensitiveOption);
         QRegularExpressionMatch _re_match = _re.match(param);
 
         if ( _re_match.hasMatch() ) {
@@ -870,7 +877,8 @@ void CMainWindow::onFileLocation(int uid, QString param)
                 if ( _folder.contains("?") )
                     _folder.append("&desktop=true");
                 else {
-                    int pos = _folder.indexOf(QRegularExpression("#\\d+"));
+                    static QRegularExpression _re_dig("#\\d+");
+                    int pos = _folder.indexOf(_re_dig);
                     !(pos < 0) ? _folder.insert(pos, "?desktop=true&") : _folder.append("?desktop=true");
                 }
             }
@@ -956,6 +964,12 @@ void CMainWindow::onDocumentReady(int uid)
 {
     if ( uid < 0 ) {
         QTimer::singleShot(20, this, [=]{
+            m_isStartPageReady = true;
+            if ( !m_keepedAction.empty() ) {
+                handleWindowAction(m_keepedAction);
+                m_keepedAction.clear();
+            }
+
             refreshAboutVersion();
             AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, L"app:ready");
             focus(); // TODO: move to app manager
@@ -1494,6 +1508,10 @@ void CMainWindow::showEvent(QShowEvent * e)
 {
     CWindowPlatform::showEvent(e);
     cancelClose();
+    if (e->type() == QEvent::Show) {
+        m_pMainWidget->resize(m_pMainPanel->size() - QSize(0, m_boxTitleBtns->height()));
+        static_cast<QCefView*>(m_pMainWidget)->GetCefView()->resizeEvent();
+    }
 }
 
 bool CMainWindow::isAboutToClose() const
@@ -1512,5 +1530,19 @@ void CMainWindow::onLayoutDirectionChanged()
     if (m_pWidgetDownload && m_pWidgetDownload->toolButton()) {
         m_pWidgetDownload->onLayoutDirectionChanged();
         m_pWidgetDownload->toolButton()->style()->polish(m_pWidgetDownload->toolButton());
+    }
+}
+
+void CMainWindow::handleWindowAction(const std::wstring& action)
+{
+    if ( !m_isStartPageReady ) {
+        m_keepedAction = action;
+    } else {
+        if ( action.rfind(L"panel|") == 0 ) {
+            const std::wstring _panel_to_select = action.substr(std::wstring(L"panel|").size());
+
+            if ( !_panel_to_select.empty() )
+                AscAppManager::sendCommandTo(0, L"panel:select", _panel_to_select);
+        }
     }
 }

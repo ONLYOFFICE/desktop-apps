@@ -31,16 +31,16 @@
  */
 
 #include "singleapplication.h"
-#include "defines.h"
+#include "utils.h"
 #include <QThread>
 
 #define RETRIES_DELAY_MS 100
 
 
 SingleApplication::SingleApplication(int &argc, char *argv[], const QString&) :
-    QApplication(argc, argv),
-    m_socket(new CSocket(0, INSTANCE_APP_PORT))
+    QApplication(argc, argv)
 {
+    m_socket = new CSocket(0, Utils::getInstAppPort(), false, true);
     if (m_socket->isPrimaryInstance()) {
         m_isPrimary = true;
         m_socket->onMessageReceived([=](void *buff, size_t size) {
@@ -67,7 +67,7 @@ bool SingleApplication::sendMessage(const QByteArray &msg)
         return false;
 
     QThread::msleep(RETRIES_DELAY_MS);
-    CSocket socket(INSTANCE_APP_PORT, 0);
+    CSocket socket(Utils::getInstAppPort(), 0, false, true);
     return socket.sendMessage((void*)msg.data(), msg.size());
 }
 

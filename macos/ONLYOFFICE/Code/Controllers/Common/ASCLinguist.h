@@ -47,6 +47,8 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSDictionary *)availableLanguages;
 + (NSString *)appLanguageCode;
 + (void)setAppLanguageCode:(NSString *)code;
++ (void)setUILayoutDirectionRtl:(BOOL)value;
++ (BOOL)isUILayoutDirectionRtl;
 
 @end
 

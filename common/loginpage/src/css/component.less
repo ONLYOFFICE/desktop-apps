@@ -119,6 +119,12 @@ input[type=checkbox] {
         top: 3px;
         left: 7px;
     }
+    &:focus-visible {
+        outline: 0;
+        &:before {
+            border-color: @border-control-focus;
+        }
+    }
 }
 
 input[type="radio"] {

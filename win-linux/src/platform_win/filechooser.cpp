@@ -36,6 +36,7 @@
 # include <Shobjidl.h>
 #endif
 #include "filechooser.h"
+#include "utils.h"
 
 using std::wstring;
 #ifndef __OS_WIN_XP
@@ -248,6 +249,7 @@ QStringList Win::openWinFileChooser(QWidget *parent,
 
     QStringList filenames;
     HWND parent_hwnd = (parent) ? (HWND)parent->winId() : nullptr;
+    WindowHelper::toggleLayoutDirection(parent_hwnd);
     nativeFileDialog(parent_hwnd,
                      mode,
                      filenames,
@@ -258,5 +260,6 @@ QStringList Win::openWinFileChooser(QWidget *parent,
                      sel_filter,
                      sel_multiple);
 
+    WindowHelper::toggleLayoutDirection(parent_hwnd);
     return filenames;
 }

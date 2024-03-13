@@ -65,6 +65,7 @@ private:
     void unzipIfNeeded(const tstring &filePath, const tstring &newVersion);
     void clearTempFiles(const tstring &prefix, const tstring &except = tstring());
     void startReplacingFiles(const tstring &packageType, const bool restartAfterUpdate);
+    void startReplacingService(const bool restartAfterUpdate);
 
     FnVoidVoid   m_quit_callback = nullptr;
     tstring      m_newVersion;

@@ -313,7 +313,7 @@ bool CWindowPlatform::nativeEvent(const QByteArray &eventType, void *message, lo
 //    static uchar movParam = 0;
     switch (msg->message)
     {
-    case WM_ACTIVATE: {           
+    case WM_ACTIVATE: {
         SetWindowPos(msg->hwnd, 0, 0, 0, 0, 0, SWP_NOCOPYBITS | SWP_NOMOVE | SWP_NOSIZE | SWP_NOACTIVATE | SWP_NOZORDER | SWP_FRAMECHANGED);
         if (LOWORD(msg->wParam) == WA_ACTIVE) {
             if (Utils::getWinVersion() == WinVer::Win10)

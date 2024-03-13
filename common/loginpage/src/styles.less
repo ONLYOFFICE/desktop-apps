@@ -59,6 +59,12 @@ button {
     /*@media(min-width: 1200) {}*/
 }
 
+.rtl-font {
+    #placeholder, input, button {
+        font-family: system-ui, -apple-system, "Geeza Pro", "Segoe UI", "Traditional Arabic", "Noto Sans";
+    }
+}
+
 h3, caption {
     font-weight: 100;
     font-size: 24px;
@@ -90,6 +96,11 @@ h4 {
     max-width: @col-width;
     float: left;
     border-right: @scaled-one-px solid @border-tabbar;
+
+    .rtl & {
+        border-right: 0 none;
+        border-left: @scaled-one-px solid @border-tabbar;
+    }
 
     @media screen and (max-width: 1000px) {
         /*width: 32%;*/
@@ -230,8 +241,8 @@ h4 {
 .img-el, .img-before-el:before,
     .crypted .icon:before
 {
-    background: -webkit-image-set(data-uri('sprite.png') 1x, data-uri('sprite@1.25x.png') 1.25x,
-        data-uri('sprite@1.5x.png') 1.5x, data-uri('sprite@1.75x.png') 1.75x, data-uri('sprite@2x.png') 2x) no-repeat;
+    background: -webkit-image-set(data-uri('sprite@1.25x.png') 1.25x,
+        data-uri('sprite@1.5x.png') 1.5x, data-uri('sprite@1.75x.png') 1.75x) no-repeat;
     background-size: 144px auto;
 }
 
@@ -242,8 +253,8 @@ h4 {
 }
 
 .img-format {
-    background: -webkit-image-set(data-uri('formats.png') 1x, data-uri('formats@1.25x.png') 1.25x,
-        data-uri('formats@1.5x.png') 1.5x, data-uri('formats@1.75x.png') 1.75x, data-uri('formats@2x.png') 2x) no-repeat;
+    background: -webkit-image-set( data-uri('formats@1.25x.png') 1.25x,
+        data-uri('formats@1.5x.png') 1.5x, data-uri('formats@1.75x.png') 1.75x) no-repeat;
     background-size: 1056px auto;
 }
 
@@ -890,7 +901,7 @@ li.menu-item {
         color: @text-normal;
 
         a {
-            margin: 0 0 0 10px;
+            margin: 0 10px;
         }
     }
 }
@@ -927,9 +938,11 @@ li.menu-item {
     .img-welcome {
         margin: 48px 0;
     }
-
+    &.offcet-center, .flex-center {
+        margin-top: -2vh;
+    }
     .center-box {
-        margin-top: -4vh;
+        margin: auto;
     }
 }
 
@@ -1196,10 +1209,22 @@ li.menu-item {
     color: @text-normal;
     font-size: 14px;
 
+    .rtl & {
+        padding-right: 2px;
+    }
+
     &[disabled] {
         opacity: 0.4;
         /*cursor: default;*/
         /*pointer-events: none;*/
+    }
+
+    &-beta {
+        background-color: #ffb400;
+        padding: 2px 7px;
+        border-radius: 3px;
+        margin-left: 10px;
+        color: #6e4e00 !important;
     }
 }
 
@@ -1323,8 +1348,8 @@ li.menu-item {
 }
 
 #idx-about-appname {
-/*    font-weight: bold;*/
-    text-shadow: 1px 0 0 @text-normal;
+    font-family: sans-serif;
+    font-weight: bold;
     font-size: 18px;
     margin: -8px 0 0 0;
 }

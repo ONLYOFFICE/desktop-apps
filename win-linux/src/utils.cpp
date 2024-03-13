@@ -762,11 +762,40 @@ void Utils::setSessionInProgress(bool state)
 {
     sessionInProgress = state;
 }
+#else
+void Utils::setInstAppPort(int port)
+{
+    GET_REGISTRY_USER(reg_user);
+    if (port == -1) {
+        reg_user.remove("instAppPort");
+    } else
+    if (port > 1023 && port < 65536) {
+        reg_user.setValue("instAppPort", port);
+    } else {
+        qWarning() << "Value not applied: port must be in the range 1024 - 65535";
+    }
+}
+
+int Utils::getInstAppPort()
+{
+    GET_REGISTRY_USER(reg_user);
+    return reg_user.value("instAppPort", INSTANCE_APP_PORT).toInt();
+}
 #endif
 
 QString Utils::replaceBackslash(const QString& path)
 {
     return QString(path).replace(QRegularExpression("\\\\"), "/");
+}
+
+void Utils::replaceAll(std::wstring& subject, const std::wstring& search, const std::wstring& replace)
+{
+    size_t pos = 0;
+    while ((pos = subject.find(search, pos)) != std::wstring::npos)
+    {
+        subject.replace(pos, search.length(), replace);
+        pos += replace.length();
+    }
 }
 
 bool Utils::setAppUserModelId(const QString& modelid)
@@ -1006,6 +1035,16 @@ namespace WindowHelper {
             }
         }
         return color;
+    }
+
+    auto toggleLayoutDirection(HWND hwnd) -> void
+    {
+        LONG exstyle = GetWindowLong(hwnd, GWL_EXSTYLE);
+        if (exstyle & WS_EX_LAYOUTRTL)
+            SetWindowLong(hwnd, GWL_EXSTYLE, exstyle & ~WS_EX_LAYOUTRTL);
+        else
+        if (AscAppManager::isRtlEnabled())
+            SetWindowLong(hwnd, GWL_EXSTYLE, exstyle | WS_EX_LAYOUTRTL);
     }
 #endif
 

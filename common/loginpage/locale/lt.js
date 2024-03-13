@@ -48,7 +48,7 @@ l10n.lt = {
     newDoc: 'Dokumentas',
     newXlsx: 'Skaičiuoklė',
     newPptx: 'Prezentacija',
-    newForm: 'Anketos šablonas',
+    newForm: 'PDF forma',
     actCreateNew: 'Sukurti naują',
     actRecentFiles: 'Naujausi failai',
     actOpenLocal: 'Atidayti vietinį failą',

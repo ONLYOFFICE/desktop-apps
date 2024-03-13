@@ -48,7 +48,7 @@ l10n.hi = {
     newDoc: 'दस्तावेज़',
     newXlsx: 'स्प्रेडशीट',
     newPptx: 'प्रस्तुति',
-    newForm: 'फॉर्म टेम्पलेट',
+    newForm: 'पीडीएफ फॉर्म',
     actCreateNew: 'नया बनाएँ',
     actRecentFiles: 'हालिया फ़ाइलें',
     actOpenLocal: 'लोकल फ़ाइल खोलें',

@@ -66,6 +66,7 @@ public:
     void    setFeatures(const std::wstring&);
     std::wstring features() const;
     bool    hasFeature(const std::wstring&) const;
+    bool    hasFrame() const;
 
     AscEditorType   contentType() const;
     void            setContentType(AscEditorType);
@@ -76,6 +77,7 @@ private:
             _has_changes = false;
     bool    _is_closed = false;
     bool    _is_local;
+    bool    _has_frame = false;
     CefType _vtype;
     std::wstring _url;
     bool    _event_load_supported = false;

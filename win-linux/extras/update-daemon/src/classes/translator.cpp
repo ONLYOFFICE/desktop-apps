@@ -1,4 +1,5 @@
 #include "translator.h"
+#include <sstream>
 #ifdef _WIN32
 # include "platform_win/resource.h"
 # include "platform_win/utils.h"
@@ -6,12 +7,14 @@
 # include <cwctype>
 # define istalnum(c) std::iswalnum(c)
 # define istalpha(c) std::iswalpha(c)
+# define tistringstream std::wistringstream
 #else
 # include "platform_linux/utils.h"
 # include "res/gresource.c"
 # include <cctype>
 # define istalnum(c) std::isalnum(c)
 # define istalpha(c) std::isalpha(c)
+# define tistringstream std::istringstream
 #endif
 
 
@@ -30,20 +33,20 @@ bool isValidLocaleCharacter(tchar c)
     return istalpha(c) || c == _T('_');
 }
 
-tstring getPrimaryLang(const tstring &lang)
+tstring getPrimaryLang(const tstring &lang, bool withScript = false)
 {
     if (lang.empty()) {
         NS_Logger::WriteLog(_T("An error occurred: ") + FUNCTION_INFO);
         return _T("en");
     }
-    size_t pos = lang.find(_T('_'));
-    if (pos == tstring::npos) {
-        if (lang.length() == 2)
-            return lang;
-    } else {
-        tstring _lang = lang.substr(0, pos);
-        if (_lang.length() == 2)
-            return _lang;
+    tistringstream iss(lang);
+    tstring primlang, script;
+    std::getline(iss, primlang, _T('_'));
+    if (primlang.length() == 2 || primlang.length() == 3) {
+        if (!withScript)
+            return primlang;
+        std::getline(iss, script, _T('_'));
+        return (script.length() == 4) ? primlang + _T("_") + script : primlang;
     }
     NS_Logger::WriteLog(_T("An error occurred: ") + FUNCTION_INFO);
     return _T("en");
@@ -146,9 +149,14 @@ tstring Translator::tr(const char *str)
                     if (strIdPair.second.find(langName) != strIdPair.second.end())
                         translatedStr = strIdPair.second[langName];
                     else {
-                        tstring primaryLang = getPrimaryLang(langName);
-                        if (strIdPair.second.find(primaryLang) != strIdPair.second.end())
-                            translatedStr = strIdPair.second[primaryLang];
+                        tstring primaryLangAndScript = getPrimaryLang(langName, true);
+                        if (strIdPair.second.find(primaryLangAndScript) != strIdPair.second.end())
+                            translatedStr = strIdPair.second[primaryLangAndScript];
+                        else {
+                            tstring primaryLang = getPrimaryLang(langName);
+                            if (strIdPair.second.find(primaryLang) != strIdPair.second.end())
+                                translatedStr = strIdPair.second[primaryLang];
+                        }
                     }
                     break;
                 }
@@ -189,7 +197,7 @@ void Translator::parseTranslations()
                             break;
                     }
                     size_t locale_len = end - pos;
-                    if (locale_len == 2 || locale_len == 5) {
+                    if (locale_len < 12 && locale_len != 0 && locale_len != 1 && locale_len != 4 && locale_len != 9) {
                         token = TOKEN_BEGIN_LOCALE;
                         continue;
                     } else {

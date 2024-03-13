@@ -65,13 +65,14 @@
                         <div id="recovery-sep"></div>
                         <div id="box-recent" class="flex-item flex-fill">
                           <div class="flexbox">
-                            <div>
+                            <div style="display:none;">
                               <h3 class="table-caption" l10n>${_lang.listRecentFileTitle}</h3>
                               <input type="text" id="idx-recent-filter" style="display:none;">
                             </div>
+                            <h3 class="table-caption" l10n>${_lang.listRecentFileTitle}</h3>
                             <div class="table-box flex-fill">
                               <table class="table-files list"></table>
-                              <h4 class="text-emptylist${isSvgIcons? '-svg' : ''} img-before-el" l10n>                                
+                              <h4 class="text-emptylist${isSvgIcons? '-svg' : ''} img-before-el" l10n>
                                   ${isSvgIcons? '<svg><use xlink:href="#folder-big"></use></svg>':''}
                                   ${_lang.textNoFiles}
                               </h4>
