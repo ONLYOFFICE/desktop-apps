@@ -143,7 +143,7 @@ static NSTouchBarItemIdentifier const kNewItemsItemIdentifier = @"com.onlyoffice
         bar.customizationIdentifier = kScrubberCustomizationIdentifier;
 
         // Set the default ordering of items.
-        NSArray * items = !(_tabs.count > 0) ? @[kNewItemsItemIdentifier, NSTouchBarItemIdentifierOtherItemsProxy] :
+        NSArray * items = !(_tabs.count > 0) ? @[kNewItemsItemIdentifier, NSTouchBarItemIdentifierOtherItemsProxy, NSTouchBarItemIdentifierFlexibleSpace] :
                                 @[kStartPageItemIdentifier, kScrubbedItemIdentifier, NSTouchBarItemIdentifierOtherItemsProxy];
 
         if ([self.viewController.view userInterfaceLayoutDirection] == NSUserInterfaceLayoutDirectionRightToLeft) {
@@ -280,6 +280,8 @@ NSString *tabScrubberItemIdentifier = @"tabItem";
                                                   customizationLabel:NSLocalizedStringWithDefaultValue(@"new-presentation", @"Localizable", [NSBundle mainBundle], @"New Presentation", nil)],
                                       ];
         
+        if ([self.viewController.view userInterfaceLayoutDirection] == NSUserInterfaceLayoutDirectionRightToLeft)
+            creationButtons = [[creationButtons reverseObjectEnumerator] allObjects];
         NSGroupTouchBarItem * createonGroup = [NSGroupTouchBarItem groupItemWithIdentifier:kNewItemsItemIdentifier items:creationButtons];
         return createonGroup;
     }
