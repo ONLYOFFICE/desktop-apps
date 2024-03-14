@@ -325,6 +325,8 @@ void CEditorWindow::onMoveEvent(const QRect&)
 void CEditorWindow::captureMouse()
 {
 #ifdef _WIN32
+    ReleaseCapture();
+    PROCESSEVENTS();
     POINT cursor{0,0};
     if (GetCursorPos(&cursor)) {
 //        QRect _g{geometry()};
@@ -337,7 +339,6 @@ void CEditorWindow::captureMouse()
 //        else _window_offset_x = cursor.x - _g.x();
         SetWindowPos((HWND)winId(), NULL, cursor.x - CAPTURED_WINDOW_OFFSET_X, cursor.y - CAPTURED_WINDOW_OFFSET_Y,
                         0, 0, SWP_NOZORDER | SWP_NOSIZE | SWP_NOACTIVATE);
-        ReleaseCapture();
         PostMessage((HWND)winId(), WM_NCLBUTTONDOWN, HTCAPTION, MAKELPARAM(cursor.x, cursor.y));
     }
 #else
