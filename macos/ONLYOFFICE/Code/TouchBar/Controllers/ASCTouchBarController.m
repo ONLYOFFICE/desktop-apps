@@ -143,11 +143,14 @@ static NSTouchBarItemIdentifier const kNewItemsItemIdentifier = @"com.onlyoffice
         bar.customizationIdentifier = kScrubberCustomizationIdentifier;
 
         // Set the default ordering of items.
-        if (_tabs.count > 0) {
-            bar.defaultItemIdentifiers = @[kStartPageItemIdentifier, kScrubbedItemIdentifier, NSTouchBarItemIdentifierOtherItemsProxy];
-        } else {
-            bar.defaultItemIdentifiers = @[kNewItemsItemIdentifier, NSTouchBarItemIdentifierOtherItemsProxy];
+        NSArray * items = !(_tabs.count > 0) ? @[kNewItemsItemIdentifier, NSTouchBarItemIdentifierOtherItemsProxy] :
+                                @[kStartPageItemIdentifier, kScrubbedItemIdentifier, NSTouchBarItemIdentifierOtherItemsProxy];
+
+        if ([self.viewController.view userInterfaceLayoutDirection] == NSUserInterfaceLayoutDirectionRightToLeft) {
+            items = [[items reverseObjectEnumerator] allObjects];
         }
+        bar.defaultItemIdentifiers = items;
+
         //    bar.customizationAllowedItemIdentifiers = @[kScrubbedItemIdentifier];
         //    bar.principalItemIdentifier = kScrubbedItemIdentifier;
 
