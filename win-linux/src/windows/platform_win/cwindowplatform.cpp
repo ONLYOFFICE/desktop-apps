@@ -584,7 +584,8 @@ bool CWindowPlatform::nativeEvent(const QByteArray &eventType, void *message, lo
             } else
             if (Utils::getWinVersion() == WinVer::Win10) {
                 CWindowBase::setWindowColors(m_bkgColor, m_brdColor, LOWORD(msg->wParam));
-                RedrawWindow(msg->hwnd, NULL, NULL, RDW_ALLCHILDREN | RDW_INVALIDATE | RDW_UPDATENOW);
+                InvalidateRect(msg->hwnd, NULL, FALSE);
+//                RedrawWindow(msg->hwnd, NULL, NULL, RDW_ALLCHILDREN | RDW_INVALIDATE | RDW_UPDATENOW);
             }
         }
         break;
