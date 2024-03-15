@@ -65,10 +65,24 @@ static double GetLogicalDpi(QWidget *wgt)
 static void GetFrameMetricsForDpi(FRAME &frame, double dpi, bool maximized = false)
 {
     WinVer ver = Utils::getWinVersion();
-    int index = (ver == WinVer::WinXP) ? 0 :
-                    (ver <= WinVer::Win7) ? 1 :
-                    (ver <= WinVer::Win8_1) ? 2 :
-                    (ver <= WinVer::Win10) ? 3 : 4;
+    int row = ver == WinVer::WinXP ? 0 :
+              ver <= WinVer::Win7 ? 1 :
+              ver <= WinVer::Win8_1 ? 2 :
+              ver <= WinVer::Win10 ? 3 : 4;
+
+    int column = dpi <= 1.0 ? 0 :
+                 dpi <= 1.25 ? 1 :
+                 dpi <= 1.5 ? 2 :
+                 dpi <= 1.75 ? 3 :
+                 dpi <= 2.0 ? 4 :
+                 dpi <= 2.25 ? 5 :
+                 dpi <= 2.5 ? 6 :
+                 dpi <= 3.0 ? 7 :
+                 dpi <= 3.5 ? 8 :
+                 dpi <= 4.0 ? 9 :
+                 dpi <= 4.5 ? 10 :
+                 dpi <= 5.0 ? 11 : 12;
+
     const int left[5][13] = { // Left margin for scales 100-500%
         {0, 0, 0,  0,  0,  1,  1,  1,  2,  2,  2,  2,  1}, // WinXp: for NC width 3px
         {4, 5, 7,  8,  9,  10, 12, 14, 17, 19, 22, 24, 5}, // WinVista - Win7: for NC width 3px
@@ -76,18 +90,7 @@ static void GetFrameMetricsForDpi(FRAME &frame, double dpi, bool maximized = fal
         {0, 0, 0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0}, // Win10
         {0, 0, 0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0}  // Win11
     };
-    frame.left = (dpi <= 1.0) ? left[index][0] :
-                 (dpi <= 1.25) ? left[index][1] :
-                 (dpi <= 1.5) ? left[index][2] :
-                 (dpi <= 1.75) ? left[index][3] :
-                 (dpi <= 2.0) ? left[index][4] :
-                 (dpi <= 2.25) ? left[index][5] :
-                 (dpi <= 2.5) ? left[index][6] :
-                 (dpi <= 3.0) ? left[index][7] :
-                 (dpi <= 3.5) ? left[index][8] :
-                 (dpi <= 4.0) ? left[index][9] :
-                 (dpi <= 4.5) ? left[index][10] :
-                 (dpi <= 5.0) ? left[index][11] : left[index][12] * dpi;
+    frame.left = left[row][column];
 
     const int top[5][13] = { // Top margin for scales 100-500%
         {0,  0,  0,  0,  0,  1,  1,  1,  2,  2,   2,   2,   1}, // WinXp: for NC width 3px
@@ -96,18 +99,7 @@ static void GetFrameMetricsForDpi(FRAME &frame, double dpi, bool maximized = fal
         {31, 38, 45, 52, 58, 65, 72, 85, 99, 112, 126, 139, 28}, // Win10
         {30, 37, 43, 50, 56, 63, 69, 82, 95, 108, 121, 134, 27}  // Win11
     };
-    frame.top = (dpi <= 1.0) ? top[index][0] :
-                (dpi <= 1.25) ? top[index][1] :
-                (dpi <= 1.5) ? top[index][2] :
-                (dpi <= 1.75) ? top[index][3] :
-                (dpi <= 2.0) ? top[index][4] :
-                (dpi <= 2.25) ? top[index][5] :
-                (dpi <= 2.5) ? top[index][6] :
-                (dpi <= 3.0) ? top[index][7] :
-                (dpi <= 3.5) ? top[index][8] :
-                (dpi <= 4.0) ? top[index][9] :
-                (dpi <= 4.5) ? top[index][10] :
-                (dpi <= 5.0) ? top[index][11] : top[index][12] * dpi;
+    frame.top = top[row][column];
 
     if (!maximized)
         return;
@@ -119,18 +111,7 @@ static void GetFrameMetricsForDpi(FRAME &frame, double dpi, bool maximized = fal
         {0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0}, // Win10
         {0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0}  // Win11
     };
-    frame.left -= (dpi <= 1.0) ? left_ofs[index][0] :
-                  (dpi <= 1.25) ? left_ofs[index][1] :
-                  (dpi <= 1.5) ? left_ofs[index][2] :
-                  (dpi <= 1.75) ? left_ofs[index][3] :
-                  (dpi <= 2.0) ? left_ofs[index][4] :
-                  (dpi <= 2.25) ? left_ofs[index][5] :
-                  (dpi <= 2.5) ? left_ofs[index][6] :
-                  (dpi <= 3.0) ? left_ofs[index][7] :
-                  (dpi <= 3.5) ? left_ofs[index][8] :
-                  (dpi <= 4.0) ? left_ofs[index][9] :
-                  (dpi <= 4.5) ? left_ofs[index][10] :
-                  (dpi <= 5.0) ? left_ofs[index][11] : left_ofs[index][12] * dpi;
+    frame.left -= left_ofs[row][column];
 
     const int top_ofs[5][13] = { // Top offset for scales 100-500%
         {-3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -1}, // WinXp
@@ -139,18 +120,7 @@ static void GetFrameMetricsForDpi(FRAME &frame, double dpi, bool maximized = fal
         {8,  9,  11, 12, 13, 14, 16, 18, 21, 24, 27, 30, 6}, // Win10
         {7,  8,  9,  10, 11, 12, 13, 15, 17, 19, 21, 23, 5}  // Win11
     };
-    frame.top -= (dpi <= 1.0) ? top_ofs[index][0] :
-                 (dpi <= 1.25) ? top_ofs[index][1] :
-                 (dpi <= 1.5) ? top_ofs[index][2] :
-                 (dpi <= 1.75) ? top_ofs[index][3] :
-                 (dpi <= 2.0) ? top_ofs[index][4] :
-                 (dpi <= 2.25) ? top_ofs[index][5] :
-                 (dpi <= 2.5) ? top_ofs[index][6] :
-                 (dpi <= 3.0) ? top_ofs[index][7] :
-                 (dpi <= 3.5) ? top_ofs[index][8] :
-                 (dpi <= 4.0) ? top_ofs[index][9] :
-                 (dpi <= 4.5) ? top_ofs[index][10] :
-                 (dpi <= 5.0) ? top_ofs[index][11] : top_ofs[index][12] * dpi;
+    frame.top -= top_ofs[row][column];
 }
 
 static bool isTaskbarAutoHideOn()
