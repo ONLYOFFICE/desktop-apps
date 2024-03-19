@@ -810,7 +810,7 @@
                 });
 
                 window.sdk.on('on_native_message', _on_app_message.bind(this));
-                window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', on_system_theme_dark.bind(this));
+                // window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', on_system_theme_dark.bind(this));
                 // on_system_theme_dark({target: window.matchMedia('(prefers-color-scheme: dark)')});
 
                 $(window).on('resize', on_window_resize.bind(this));
