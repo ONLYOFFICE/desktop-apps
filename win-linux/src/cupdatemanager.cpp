@@ -43,6 +43,7 @@
 #include "clangater.h"
 #include "clogger.h"
 #include "cascapplicationmanagerwrapper.h"
+#include "components/cnotification.h"
 #include <QCryptographicHash>
 #ifdef _WIN32
 # include "platform_win/updatedialog.h"
@@ -138,7 +139,7 @@ CUpdateManager::DialogSchedule::DialogSchedule(QObject *owner) :
     m_timer->setSingleShot(false);
     connect(m_timer, &QTimer::timeout, this, [=] {
         QWidget *wnd = WindowHelper::currentTopWindow();
-        if (wnd && !m_shedule_vec.isEmpty()) {
+        if (/*wnd &&*/ !m_shedule_vec.isEmpty()) {
             QByteArray method = m_shedule_vec.first().method.toLocal8Bit();
             QString text = m_shedule_vec.first().text;
             if (text.isEmpty())
@@ -946,6 +947,11 @@ void CUpdateManager::showUpdateMessage(QWidget *parent) {
     QString text = m_packageData->isInstallable ? tr("Would you like to download update now?") :
                        tr("The current version does not support installing this update directly. "
                           "To install updates, you can download the required package from the official website.");
+    if (!parent) {
+        CNotification::showNotification(text);
+        __UNLOCK
+        return;
+    }
     int result = WinDlg::showDialog(parent, tr("Update is available"),
                         QString("%1\n%2: %3\n%4: %5\n%6 (%7 MB)").arg(name, tr("Current version"),
                         curr_version, tr("New version"), getVersion(),
@@ -975,6 +981,11 @@ void CUpdateManager::showStartInstallMessage(QWidget *parent)
     QString name = (m_packageData->object == "app") ? QString(WINDOW_NAME) : QString(SERVICE_NAME);
     QString curr_version = (m_packageData->object == "app") ? QString(VER_FILEVERSION_STR) :
                                getFileVersion(QStrToTStr(qApp->applicationDirPath()) + DAEMON_NAME);
+    if (!parent) {
+        CNotification::showNotification(curr_version);
+        __UNLOCK
+        return;
+    }
     int result = WinDlg::showDialog(parent, tr("Update is ready to install"),
                         QString("%1\n%2: %3\n%4: %5\n%6").arg(name, tr("Current version"),
                         curr_version, tr("New version"), getVersion(),
