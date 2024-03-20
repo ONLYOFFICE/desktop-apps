@@ -92,7 +92,7 @@ l10n.uk = {
     settOptLaunchInTab: 'У вкладці',
     settOptLaunchInWindow: 'У вікні',
     settSpellcheckDetection: 'Визначення мови перевірки правопису',
-    settOptDisabled: 'Не перевіряти оновлення',
+    settOptDisabled: 'Заблокован',
     settOptEnabled: 'Увімкнено',
     aboutChangelog: 'Журнал змін',
     updateNoUpdates: 'Застосунок актуальний',

@@ -92,7 +92,7 @@ l10n.sl = {
     settOptLaunchInTab: 'V zavihku',
     settOptLaunchInWindow: 'V oknu',
     settSpellcheckDetection: 'Zaznavanje črkovanja jezika',
-    settOptDisabled: 'Ne preverjaj posodobitev',
+    settOptDisabled: 'Onemogočeno',
     settOptEnabled: 'Omogočeno',
     aboutChangelog: 'Dnevnik sprememb',
     updateNoUpdates: 'Aplikacija je posodobljena',

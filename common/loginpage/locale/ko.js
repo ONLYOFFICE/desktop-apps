@@ -92,7 +92,7 @@ l10n.ko = {
     settOptLaunchInTab: '탭에서',
     settOptLaunchInWindow: '창에서',
     settSpellcheckDetection: '맞춤법 감지',
-    settOptDisabled: '업데이트 확인 안 함',
+    settOptDisabled: '사용 안 함',
     settOptEnabled: '활성화됨',
     aboutChangelog: '체인지로그',
     updateNoUpdates: '앱이 최신 상태입니다',

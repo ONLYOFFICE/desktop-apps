@@ -92,7 +92,7 @@ l10n.pt_PT = {
     settOptLaunchInTab: 'Em separador',
     settOptLaunchInWindow: 'Em janela',
     settSpellcheckDetection: 'Deteção de idioma de ortografia',
-    settOptDisabled: 'Não verifique se há atualizações',
+    settOptDisabled: 'Desativado',
     settOptEnabled: 'Ativado',
     aboutChangelog: 'Registo de alterações',
     updateNoUpdates: 'A aplicação está atualizada',

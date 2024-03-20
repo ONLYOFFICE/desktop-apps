@@ -92,7 +92,7 @@ l10n.tr = {
     settOptLaunchInTab: 'Sekmede',
     settOptLaunchInWindow: 'Pencerede',
     settSpellcheckDetection: 'Yazım dili algılama',
-    settOptDisabled: 'Güncellemeleri kontrol etme',
+    settOptDisabled: 'Devre Dışı',
     settOptEnabled: 'Devrede',
     aboutChangelog: 'Değişiklik günlüğü',
     updateNoUpdates: 'Uygulama güncel',
