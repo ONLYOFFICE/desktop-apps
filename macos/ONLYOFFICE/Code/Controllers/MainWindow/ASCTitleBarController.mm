@@ -108,6 +108,9 @@ static float kASCWindowMinTitleWidth = 0;
     self.miniaturizeButtonImageViewFullscreen.image = miniaturizeButtonImage;
 
     self.standardButtonsFullscreen = @[self.closeButtonFullscreen, self.miniaturizeButtonImageViewFullscreen, self.fullscreenButtonFullscreen];
+    if ( [self.view userInterfaceLayoutDirection] == NSUserInterfaceLayoutDirectionRightToLeft )
+        self.standardButtonsFullscreen = [[self.standardButtonsFullscreen reverseObjectEnumerator] allObjects];
+
     [self.standardButtonsFullscreen enumerateObjectsUsingBlock:^(NSView *standardButtonView, NSUInteger idx, BOOL *stop) {
         [self.view addSubview:standardButtonView];
     }];
