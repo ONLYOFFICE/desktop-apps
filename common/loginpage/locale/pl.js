@@ -92,7 +92,7 @@ l10n.pl = {
     settOptLaunchInTab: 'W nowej zakładce',
     settOptLaunchInWindow: 'W nowym oknie',
     settSpellcheckDetection: 'Wykrywanie języka pisowni',
-    settOptDisabled: 'Nie sprawdzaj dostępności aktualizacji',
+    settOptDisabled: 'Wyłączony',
     settOptEnabled: 'Włączone',
     aboutChangelog: 'Dziennik zmian',
     updateNoUpdates: 'Aplikacja jest aktualna',

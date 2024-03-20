@@ -92,7 +92,7 @@
     settOptLaunchInTab: 'In tabblad',
     settOptLaunchInWindow: 'In venster',
     settSpellcheckDetection: 'Spelling taal detectie',
-    settOptDisabled: 'Niet controleren op updates',
+    settOptDisabled: 'Gedeactiveerd',
     settOptEnabled: 'Ingeschakeld',
     aboutChangelog: 'Changelog',
     updateNoUpdates: 'App is up-to-date',

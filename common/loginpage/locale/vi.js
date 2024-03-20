@@ -92,7 +92,7 @@ l10n.vi = {
     settOptLaunchInTab: 'Trong tab',
     settOptLaunchInWindow: 'Trong window',
     settSpellcheckDetection: 'Phát hiện ngôn ngữ chính tả',
-    settOptDisabled: 'Không kiểm tra cập nhật',
+    settOptDisabled: 'Không hoạt động',
     settOptEnabled: 'Đã kích hoạt',
     aboutChangelog: 'Nhật ký thay đổi',
     updateNoUpdates: 'Ứng dụng được cập nhật',

@@ -92,7 +92,7 @@ l10n.fi = {
     settOptLaunchInTab: 'Välilehdessä',
     settOptLaunchInWindow: 'Ikkunassa',
     settSpellcheckDetection: 'Oikeinkirjoituksen tarkistus',
-    settOptDisabled: 'Älä hae päivityksiä',
+    settOptDisabled: 'Ei käytössä',
     settOptEnabled: 'Käytössä',
     aboutChangelog: 'Muutosloki',
     updateNoUpdates: 'Sovellus on ajan tasalla',

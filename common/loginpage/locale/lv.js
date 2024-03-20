@@ -92,7 +92,7 @@ l10n.lv = {
     settOptLaunchInTab: 'Cilnē',
     settOptLaunchInWindow: 'Logā',
     settSpellcheckDetection: 'Pareizrakstības valodas noteikšana',
-    settOptDisabled: 'Nemeklēt atjauninājumus',
+    settOptDisabled: 'Atspējots',
     settOptEnabled: 'Iespējots',
     aboutChangelog: 'Izmaiņu žurnāls',
     updateNoUpdates: 'Lietotne ir atjaunināta',

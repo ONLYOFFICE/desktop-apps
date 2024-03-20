@@ -92,7 +92,7 @@ l10n.el = {
     settOptLaunchInTab: 'Σε καρτέλα',
     settOptLaunchInWindow: 'Σε παράθυρο',
     settSpellcheckDetection: 'Εντοπισμός ορθογραφικής γλώσσας',
-    settOptDisabled: 'Να μη γίνεται έλεγχος για ενημερώσεις',
+    settOptDisabled: 'Απενεργοποιημένο',
     settOptEnabled: 'Ενεργοποιημένος',
     aboutChangelog: 'Καταγραφή αλλαγών',
     updateNoUpdates: 'Η εφαρμογή είναι ενημερωμένη',

@@ -92,7 +92,7 @@ l10n.bg = {
     settOptLaunchInTab: 'В раздела',
     settOptLaunchInWindow: 'В прозореца',
     settSpellcheckDetection: 'Откриване на езиково спелуване',
-    settOptDisabled: 'Не проверявай за актуализации',
+    settOptDisabled: 'Хора с увреждания',
     settOptEnabled: 'Активирано',
     aboutChangelog: 'Дневник за промени',
     updateNoUpdates: 'Приложението е актуално',

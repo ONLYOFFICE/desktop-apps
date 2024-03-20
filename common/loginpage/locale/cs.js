@@ -92,7 +92,7 @@ l10n.cs = {
     settOptLaunchInTab: 'Na kartě',
     settOptLaunchInWindow: 'V okně',
     settSpellcheckDetection: 'Detekce pravopisu jazyka',
-    settOptDisabled: 'Nekontrolovat aktualizace',
+    settOptDisabled: 'Zakázáno',
     settOptEnabled: 'Povoleno',
     aboutChangelog: 'Log změny',
     updateNoUpdates: 'Aplikace je aktuální',
