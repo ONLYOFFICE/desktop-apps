@@ -236,7 +236,11 @@ void CWindowPlatform::adjustGeometry()
         if (Utils::getWinVersion() == WinVer::Win10) {
             int brdWidth = 0;
             SystemParametersInfo(SPI_GETBORDER, 0, &brdWidth, 0);
-            mrg = QMargins(0, brdWidth, 0, 0);
+            int brd = qRound(1 * MAIN_WINDOW_BORDER_WIDTH * m_dpiRatio);
+            mrg = QMargins(brd, brd + brdWidth, brd, brd);
+        } else {
+            int brd = qRound(1 * MAIN_WINDOW_BORDER_WIDTH * m_dpiRatio);
+            mrg = QMargins(brd, brd, brd, brd);
         }
         m_resAreaWidth = mrg.top();
     }
