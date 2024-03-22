@@ -48,6 +48,18 @@ $ENV:Path = "$AdvInstPath;$ENV:Path"
 
 
 
+Write-Host "`n[ Download VCRedist 2015+ $Arch ]"
+$VCRedist = "data\vcredist_$Arch.exe", "https://aka.ms/vs/17/release/vc_redist.$Arch.exe"
+if (-not (Get-Item $VCRedist[0]).VersionInfo.ProductVersion) {
+    Write-Host "Downloading: $($VCRedist[1])"
+    $WebClient = New-Object System.Net.WebClient
+    $WebClient.DownloadFile($VCRedist[1], $VCRedist[0])
+}
+Write-Host "Version: $((Get-Item $VCRedist[0]).VersionInfo.ProductVersion)"
+if (-not (Get-Item $VCRedist[0]).VersionInfo.ProductVersion) { throw }
+
+
+
 Write-Host "`n[ Create package.config ]"
 Write-Output "package=msi" `
     | Out-File -Encoding ASCII "$BuildDir\$DesktopDir\converter\package.config"
