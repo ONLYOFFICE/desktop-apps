@@ -2,6 +2,7 @@ param (
     [System.Version]$Version = "0.0.0.0",
     [string]$Arch = "x64",
     [switch]$Sign,
+    [string]$BuildDir = "build",
     [string]$BrandingDir = "."
 )
 
@@ -9,11 +10,11 @@ $ErrorActionPreference = "Stop"
 
 Set-Location $PSScriptRoot
 
-if ( Test-Path "$BrandingDir\branding.ps1" ) {
+if (Test-Path "$BrandingDir\branding.ps1") {
     Import-Module "$BrandingDir\branding.ps1"
 }
 $VersionShort = "$($Version.Major).$($Version.Minor).$($Version.Build)"
-switch ( $Arch ) {
+switch ($Arch) {
     "x64" { $MsiBuild = 'MsiBuild64' }
     "x86" { $MsiBuild = 'MsiBuild32' }
 }
@@ -27,6 +28,7 @@ PackageName = $PackageName
 Version     = $Version
 Arch        = $Arch
 Sign        = $Sign
+BuildDir    = $BuildDir
 BrandingDir = $BrandingDir
 MsiBuild    = $MsiBuild
 ProductCode = $ProductCode
@@ -35,11 +37,9 @@ ProductCode = $ProductCode
 
 
 Write-Host "`n[ Get Advanced Installer path ]"
-if ( $ENV:ADVINSTPATH ) {
+if ($ENV:ADVINSTPATH) {
     $AdvInstPath = $ENV:ADVINSTPATH
-}
-else
-{
+} else {
     $RegPath = "HKLM:\SOFTWARE\WOW6432Node\Caphyon\Advanced Installer"
     $AdvInstPath = (Get-ItemProperty $RegPath)."InstallRoot" + "bin\x86"
 }
@@ -58,7 +58,7 @@ Write-Host "$BuildDir\$DesktopDir\converter\package.config"
 Write-Host "`n[ Create Advanced Installer config ]"
 $AdvInstConfig = @()
 $AdvInstConfig += BrandingAdvInstConfig
-if ( $Arch -eq "x86" ) {
+if ($Arch -eq "x86") {
     $AdvInstConfig += `
         "SetComponentAttribute -feature_name MainFeature -unset -64bit_component", `
         "SetComponentAttribute -feature_name Files -unset -64bit_component", `
@@ -95,13 +95,15 @@ if ( $Arch -eq "x86" ) {
         "SetComponentAttribute -feature_name ft_fa_ext__xml -unset -64bit_component", `
         "SetComponentAttribute -feature_name ft_fa_ext__xps -unset -64bit_component"
 }
-if ( ! $Sign ) {
+if (-not $Sign) {
     $AdvInstConfig += "ResetSig"
 }
 $AdvInstConfig += `
     "SetProperty Version=$VersionShort", `
     "SetVersion $Version -noprodcode", `
     "SetCurrentFeature MainFeature", `
+    "UpdateFile APPDIR\DesktopEditors.exe $BuildDir\$DesktopDir\DesktopEditors.exe", `
+    "UpdateFile APPDIR\updatesvc.exe $BuildDir\$DesktopDir\updatesvc.exe", `
     "NewSync APPDIR $BuildDir\$DesktopDir -existingfiles keep -feature Files", `
     # "GenerateReport -buildname $MsiBuild -output_path .\report.pdf", `
     "Rebuild -buildslist $MsiBuild"
@@ -115,3 +117,4 @@ Write-Host "`n[ Build Advanced Installer project ]"
 AdvancedInstaller.com /? | Select-Object -First 1
 Write-Host "AdvancedInstaller.com /execute DesktopEditors.aip DesktopEditors.aic"
 AdvancedInstaller.com /execute DesktopEditors.aip DesktopEditors.aic
+if ($LastExitCode -ne 0) { throw }
