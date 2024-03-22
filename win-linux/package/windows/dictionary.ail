@@ -108,15 +108,15 @@
     <STRING lang="sl" value="en-US"/>
   </ENTRY>
   <ENTRY id="Property.JUMP_LIST_ARG">
-    <STRING lang="cs" value="Nový_dokument Nový_sešit Nová_prezentace Nová_šablona_formuláře"/>
-    <STRING lang="de" value="Neues_Dokument Neue_Tabelle Neue_Präsentation Neue_Formularvorlage"/>
-    <STRING lang="es" value="Nuevo_Documento Nueva_Hoja_de_Cálculo Nueva_Presentación Nueva_plantilla_de_formulario"/>
-    <STRING lang="fr" value="Nouveau_document Nouvelle_feuille_de_calcul Nouvelle_présentation Nouveau_modèle_de_formulaire"/>
-    <STRING lang="ja" value="新しいドキュメント 新しいスプレッドシート 新しいプレゼンテーション 新しいフォームテンプレート"/>
-    <STRING lang="pt" value=""/>
-    <STRING lang="pt_BR" value="Novo_Documento Nova_planilha Nova_apresentação Novo_Formulário_Mestre"/>
-    <STRING lang="ru" value="Новый_документ Новая_таблица Новая_презентация Новый_шаблон_формы"/>
-    <STRING lang="sl" value="Nov_dokument Nova_razpredelnica Nova_predstavitev Nova_predloga_za_obrazec"/>
+    <STRING lang="cs" value="Nový_dokument Nový_sešit Nová_prezentace Nový_PDF_formulář"/>
+    <STRING lang="de" value="Neues_Dokument Neue_Tabelle Neue_Präsentation Neues_PDF-Formular"/>
+    <STRING lang="es" value="Nuevo_Documento Nueva_Hoja_de_Cálculo Nueva_Presentación Nuevo_formulario_PDF"/>
+    <STRING lang="fr" value="Nouveau_document Nouvelle_feuille_de_calcul Nouvelle_présentation Nouveau_formulaire_PDF"/>
+    <STRING lang="ja" value="新しいドキュメント 新しいスプレッドシート 新しいプレゼンテーション 新しいPDFフォーム"/>
+    <STRING lang="pt" value="Novo_documento Nova_folha_de_cálculo Nova_apresentação Novo_formulário_PDF"/>
+    <STRING lang="pt_BR" value="Novo_documento Nova_planilha Nova_apresentação Novo_formulário_PDF"/>
+    <STRING lang="ru" value="Новый_документ Новая_таблица Новая_презентация Новая_PDF-форма"/>
+    <STRING lang="sl" value="Nov_dokument Nova_razpredelnica Nova_predstavitev Novi_PDF_obrazec"/>
   </ENTRY>
   <ENTRY id="Property.LOCALE">
     <STRING lang="cs" value="cs"/>
@@ -136,7 +136,7 @@
     <STRING lang="fr" value="Nouveau document"/>
     <STRING lang="ja" value="新しいドキュメント"/>
     <STRING lang="pt" value="Novo documento"/>
-    <STRING lang="pt_BR" value="Novo Documento"/>
+    <STRING lang="pt_BR" value="Novo documento"/>
     <STRING lang="ru" value="Новый документ"/>
     <STRING lang="sl" value="Nov dokument"/>
   </ENTRY>
@@ -157,7 +157,7 @@
     <STRING lang="es" value="Nueva Presentación"/>
     <STRING lang="fr" value="Nouvelle présentation"/>
     <STRING lang="ja" value="新しいプレゼンテーション"/>
-    <STRING lang="pt" value="Nova Apresentação"/>
+    <STRING lang="pt" value="Nova apresentação"/>
     <STRING lang="pt_BR" value="Nova apresentação"/>
     <STRING lang="ru" value="Новая презентация"/>
     <STRING lang="sl" value="Nova predstavitev"/>
