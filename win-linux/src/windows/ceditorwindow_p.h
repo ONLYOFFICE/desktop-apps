@@ -422,8 +422,8 @@ public:
             window->m_pMainPanel->setProperty("uitheme", QString::fromStdWString(GetActualTheme(theme)));
             window->m_pMainPanel->setProperty("uithemetype", GetCurrentTheme().stype());
             if (!viewerMode()) {
-                    foreach (auto btn, m_mapTitleButtons)
-                        btn->setIconOpacity(GetColorByRole(ecrButtonNormalOpacity));
+                foreach (auto btn, m_mapTitleButtons)
+                    btn->setIconOpacity(GetColorByRole(ecrButtonNormalOpacity));
             } else {
                 window->m_pMainPanel->setProperty("window", "pretty");
                 if ( m_mapTitleButtons.contains("home") )
@@ -924,9 +924,8 @@ public:
         QHBoxLayout * _layout = qobject_cast<QHBoxLayout *>(window->m_boxTitleBtns->layout());
         _layout->removeWidget(window->m_labelTitle);
 
-            QLayoutItem *stretch = _layout->takeAt(0);
-            if (stretch)
-                delete stretch;
+        if (QLayoutItem *stretch = _layout->takeAt(0))
+            delete stretch;
         boxtitlelabel = new QWidget(window->m_boxTitleBtns);
         boxtitlelabel->setLayout(new QHBoxLayout(boxtitlelabel));
         boxtitlelabel->layout()->setSpacing(0);
@@ -936,7 +935,7 @@ public:
         if ( m_panel->data()->hasFeature(L"crypted\":true") && !iconcrypted ) {
             iconCrypted();
         }
-            _layout->insertWidget(0, boxtitlelabel);
+        _layout->insertWidget(0, boxtitlelabel);
     }
 
     auto ffWindowCustomize() -> void {

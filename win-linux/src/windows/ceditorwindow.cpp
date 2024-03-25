@@ -205,7 +205,7 @@ QWidget * CEditorWindow::createMainPanel(QWidget * parent, const QString& title)
         if ( d_ptr->panel()->data()->hasError()) {
             mainGridLayout->addWidget(m_boxTitleBtns, 0, 0);
             m_labelTitle->setText(APP_TITLE);
-                mainPanel->setProperty("window", "pretty");
+            mainPanel->setProperty("window", "pretty");
         } else {
             if (d_ptr->panel()->data()->contentType() != AscEditorType::etUndefined)
                 mainPanel->setProperty("window", "pretty");
@@ -245,7 +245,7 @@ QWidget * CEditorWindow::createMainPanel(QWidget * parent, const QString& title)
     }
 
     d_ptr.get()->onScreenScalingFactor(m_dpiRatio);
-        mainGridLayout->addWidget(m_pMainView, 1, 0, 1, 2);
+    mainGridLayout->addWidget(m_pMainView, 1, 0, 1, 2);
     mainGridLayout->setRowStretch(1,1);
 
     if (isCustomWindowStyle() && !d_ptr->panel()->data()->hasError()) {
