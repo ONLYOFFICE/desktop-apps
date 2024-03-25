@@ -62,7 +62,7 @@ CEditorWindow::CEditorWindow(const QRect& rect, CTabPanel* panel)
     AscAppManager::bindReceiver(panel->cef()->GetId(), d_ptr.get());
     AscAppManager::sendCommandTo(panel->cef(), L"editor:config", L"request");
 
-    if (d_ptr->fillformMode())
+    if (d_ptr->fillformMode() || d_ptr->panel()->data()->hasError())
         d_ptr->ffWindowCustomize();
 
     QTimer::singleShot(200, this, [=]() {
@@ -195,23 +195,21 @@ QWidget * CEditorWindow::createMainPanel(QWidget * parent, const QString& title)
 
         m_labelTitle = new CElipsisLabel(title, m_boxTitleBtns);
         m_labelTitle->setObjectName("labelTitle");
+        m_labelTitle->setVisible(false);
         m_labelTitle->setMouseTracking(true);
         m_labelTitle->setEllipsisMode(Qt::ElideMiddle);
         m_labelTitle->setAlignment(Qt::AlignCenter);
         m_labelTitle->setMinimumWidth(100);
         static_cast<QHBoxLayout*>(m_boxTitleBtns->layout())->insertWidget(0, m_labelTitle);
-        if (d_ptr->usedOldEditorVersion)  // For old editors only
-            static_cast<QHBoxLayout*>(m_boxTitleBtns->layout())->insertStretch(0);
 
-        if ( !d_ptr->canExtendTitle() || d_ptr->panel()->data()->hasError()) {
+        if ( d_ptr->panel()->data()->hasError()) {
             mainGridLayout->addWidget(m_boxTitleBtns, 0, 0);
             m_labelTitle->setText(APP_TITLE);
-            if (d_ptr->panel()->data()->hasError())
                 mainPanel->setProperty("window", "pretty");
         } else {
             if (d_ptr->panel()->data()->contentType() != AscEditorType::etUndefined)
                 mainPanel->setProperty("window", "pretty");
-            int pos = (d_ptr->usedOldEditorVersion) ? 3 : 2;  // For old editors only
+            int pos = 2;
             auto *pIconSpacer = new QSpacerItem(ICON_SPACER_WIDTH, 5, QSizePolicy::Fixed, QSizePolicy::Fixed);
             auto *pTopLayout = static_cast<QHBoxLayout*>(m_boxTitleBtns->layout());
             pTopLayout->insertWidget(pos, d_ptr->iconUser());
@@ -247,21 +245,11 @@ QWidget * CEditorWindow::createMainPanel(QWidget * parent, const QString& title)
     }
 
     d_ptr.get()->onScreenScalingFactor(m_dpiRatio);
-    if (d_ptr->usedOldEditorVersion)  // For old editors only
-        mainGridLayout->addWidget(m_pMainView, 1, 0);
-    else
         mainGridLayout->addWidget(m_pMainView, 1, 0, 1, 2);
     mainGridLayout->setRowStretch(1,1);
 
-    if (d_ptr->canExtendTitle() && !d_ptr->panel()->data()->hasError()) {
-        if (d_ptr->usedOldEditorVersion)  // For old editors only
-            mainGridLayout->addWidget(m_boxTitleBtns, 1, 0, Qt::AlignTop);
-        else {
-            m_pSpacer = new QSpacerItem(int(TOP_PANEL_OFFSET*m_dpiRatio), 5,
-                                        QSizePolicy::Fixed, QSizePolicy::Fixed);
-            mainGridLayout->addItem(m_pSpacer, 1, 0, Qt::AlignTop);
-            mainGridLayout->addWidget(m_boxTitleBtns, 1, 1, Qt::AlignTop);
-        }
+    if (isCustomWindowStyle() && !d_ptr->panel()->data()->hasError()) {
+        mainGridLayout->addWidget(m_boxTitleBtns, 1, 1, Qt::AlignTop);
     }
     return mainPanel;
 }
@@ -411,7 +399,7 @@ void CEditorWindow::setScreenScalingFactor(double factor, bool resize)
     CWindowPlatform::setScreenScalingFactor(factor, resize);
     if (isCustomWindowStyle()) {
         m_boxTitleBtns->setFixedHeight(int(TOOLBTN_HEIGHT * factor));
-        if (m_pSpacer && !d_ptr->usedOldEditorVersion) {
+        if (m_pSpacer) {
             m_pSpacer->changeSize(int(TOP_PANEL_OFFSET*m_dpiRatio), 5,
                                   QSizePolicy::Fixed, QSizePolicy::Fixed);
         }
