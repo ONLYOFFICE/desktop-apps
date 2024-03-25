@@ -945,16 +945,14 @@ public:
     {
         if ( m_panel->data()->features().empty() ) return true;
         else if ( m_panel->data()->hasFeature(L"uitype\":\"fillform") ) return true;
-        else if ( m_panel->data()->hasFrame() ) return false;
         else return !viewerMode() && (m_panel->data()->isLocal() || m_panel->data()->hasFeature(L"titlebuttons\":"));
     }
 
     auto viewerMode() const -> bool {
-        if ( m_panel->data()->hasFrame() ) return true;
-        return m_panel->data()->hasFeature(L"viewmode\":true");
+        return m_panel->data()->hasFeature(L"viewmode\":true") || m_panel->data()->hasFrame();
     }
 
-    auto fillformMode() -> bool {
+    auto fillformMode() const -> bool {
         return m_panel->data()->hasFeature(L"uitype\":\"fillform");
     }
 
