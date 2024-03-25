@@ -232,7 +232,7 @@ void CCefEventsTransformer::OnEvent(QObject * target, NSEditorApi::CAscCefMenuEv
         } else
         /* webapps:events is deprecated. used for back compatibility for awhile */
         if ( !(cmd.find(L"webapps:events") == std::wstring::npos) ) {
-            QMetaObject::invokeMethod( target, "onWebAppsFeatures", Qt::QueuedConnection, Q_ARG(int, event->get_SenderId()), Q_ARG(std::wstring, L"eventloading:true") );
+            QMetaObject::invokeMethod( target, "onWebAppsFeatures", Qt::QueuedConnection, Q_ARG(int, event->get_SenderId()), Q_ARG(std::wstring, L"{\"eventloading\":true}") );
         } else
         if ( !(cmd.find(L"webapps:features") == std::wstring::npos) ) {
             QMetaObject::invokeMethod(target, "onWebAppsFeatures", Qt::QueuedConnection,
