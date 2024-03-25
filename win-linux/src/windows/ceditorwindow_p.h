@@ -320,39 +320,39 @@ public:
         }
     }
 
-    void adjustToNewEditorVersion()  // For old editors only
-    {
-        if (window->isCustomWindowStyle()) {
-            leftboxbuttons->hide();
-            auto layout = qobject_cast<QHBoxLayout*>(window->m_boxTitleBtns->layout());
-            if (canExtendTitle()) {
-                auto icon = layout->takeAt(3);
-                if (icon && icon->widget())
-                    layout->insertWidget(2, icon->widget());
-            }
-            auto stretch = layout->takeAt(1);
-            if (stretch)
-                delete stretch;
-            auto mainGridLayout = dynamic_cast<QGridLayout*>(window->m_pMainPanel->layout());
-            if (mainGridLayout) {
-                auto mainView = mainGridLayout->itemAtPosition(1, 0);
-                if (mainView)
-                    mainGridLayout->removeItem(mainView);
-                QLayoutItem *boxTitleBtns = canExtendTitle() ? mainGridLayout->itemAtPosition(1, 0) : nullptr;
-                if (boxTitleBtns)
-                    mainGridLayout->removeItem(boxTitleBtns);
+//    void adjustToNewEditorVersion()  // For old editors only
+//    {
+//        if (window->isCustomWindowStyle()) {
+//            leftboxbuttons->hide();
+//            auto layout = qobject_cast<QHBoxLayout*>(window->m_boxTitleBtns->layout());
+//            if (canExtendTitle()) {
+//                auto icon = layout->takeAt(3);
+//                if (icon && icon->widget())
+//                    layout->insertWidget(2, icon->widget());
+//            }
+//            auto stretch = layout->takeAt(1);
+//            if (stretch)
+//                delete stretch;
+//            auto mainGridLayout = dynamic_cast<QGridLayout*>(window->m_pMainPanel->layout());
+//            if (mainGridLayout) {
+//                auto mainView = mainGridLayout->itemAtPosition(1, 0);
+//                if (mainView)
+//                    mainGridLayout->removeItem(mainView);
+//                QLayoutItem *boxTitleBtns = canExtendTitle() ? mainGridLayout->itemAtPosition(1, 0) : nullptr;
+//                if (boxTitleBtns)
+//                    mainGridLayout->removeItem(boxTitleBtns);
 
-                if (mainView && mainView->widget())
-                    mainGridLayout->addWidget(mainView->widget(), 1, 0, 1, 2);
-                if (boxTitleBtns && boxTitleBtns->widget()) {
-                    mainGridLayout->addWidget(boxTitleBtns->widget(), 1, 1, Qt::AlignTop);
-                    window->m_pSpacer = new QSpacerItem(int(TOP_PANEL_OFFSET*window->m_dpiRatio), 5,
-                                                QSizePolicy::Fixed, QSizePolicy::Fixed);
-                    mainGridLayout->addItem(window->m_pSpacer, 1, 0, Qt::AlignTop);
-                }
-            }
-        }
-    }
+//                if (mainView && mainView->widget())
+//                    mainGridLayout->addWidget(mainView->widget(), 1, 0, 1, 2);
+//                if (boxTitleBtns && boxTitleBtns->widget()) {
+//                    mainGridLayout->addWidget(boxTitleBtns->widget(), 1, 1, Qt::AlignTop);
+//                    window->m_pSpacer = new QSpacerItem(int(TOP_PANEL_OFFSET*window->m_dpiRatio), 5,
+//                                                QSizePolicy::Fixed, QSizePolicy::Fixed);
+//                    mainGridLayout->addItem(window->m_pSpacer, 1, 0, Qt::AlignTop);
+//                }
+//            }
+//        }
+//    }
 
     void onDocumentReady(int uid) override
     {
