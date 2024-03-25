@@ -212,7 +212,7 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
 
                 if ( !((pData->get_Param()).find(L"fillform") == std::wstring::npos) ) {
                     if ( m_receivers.find(sid) != m_receivers.end() )
-                        m_receivers[sid]->onWebAppsFeatures(sid,L"\"uitype\":\"fillform\"");
+                        m_receivers[sid]->onWebAppsFeatures(sid,L"{\"uitype\":\"fillform\"}");
                 }
 
                 if ( !((pData->get_Param()).find(L"framesize") == std::wstring::npos) ) {
@@ -230,7 +230,7 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
                             const QSize s = view->geometry().size() / Utils::getScreenDpiRatioByWidget(view);
 
                             if ( abs(s.width() - _frame_w) > 1 || abs(s.height() - _frame_h) > 1 ) {
-                                const std::wstring feature = L"\"hasframe\":true";
+                                const std::wstring feature = L"{\"hasframe\":true}";
                                 if ( m_receivers.find(sid) != m_receivers.end() )
                                     m_receivers[sid]->onWebAppsFeatures(sid, feature);
                                 else m_pMainWindow->onWebAppsFeatures(sid, feature);
