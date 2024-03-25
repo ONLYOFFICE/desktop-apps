@@ -908,18 +908,18 @@ public:
         return m_panel->data()->hasFeature(L"uitype\":\"fillform");
     }
 
-    auto calcTitleLabelWidth(int basewidth) const -> int {
-        if ( iconuser )
-            basewidth -= iconuser->width();
+//    auto calcTitleLabelWidth(int basewidth) const -> int {
+//        if ( iconuser )
+//            basewidth -= iconuser->width();
 
-        basewidth -= boxtitlelabel->contentsMargins().left() + boxtitlelabel->contentsMargins().right();
-        if ( iconcrypted )
-            basewidth -= iconcrypted->width();
+//        basewidth -= boxtitlelabel->contentsMargins().left() + boxtitlelabel->contentsMargins().right();
+//        if ( iconcrypted )
+//            basewidth -= iconcrypted->width();
 
-        basewidth -= m_mapTitleButtons.count() * (TITLEBTN_WIDTH + 1) * window->m_dpiRatio;
+//        basewidth -= m_mapTitleButtons.count() * (TITLEBTN_WIDTH + 1) * window->m_dpiRatio;
 
-        return basewidth;
-    }
+//        return basewidth;
+//    }
 
     auto customizeTitleLabel() -> void {
         Q_ASSERT(window->m_boxTitleBtns != nullptr);

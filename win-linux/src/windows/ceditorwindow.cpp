@@ -354,12 +354,12 @@ void CEditorWindow::captureMouse()
 #endif
 }
 
-int CEditorWindow::calcTitleCaptionWidth()
-{
-    int base_width = (isCustomWindowStyle()) ? m_boxTitleBtns->width() -
-                     (m_pTopButtons[BtnType::Btn_Maximize]->width() * 3) : 0;
-    return d_ptr->calcTitleLabelWidth(base_width);
-}
+//int CEditorWindow::calcTitleCaptionWidth()
+//{
+//    int base_width = (isCustomWindowStyle()) ? m_boxTitleBtns->width() -
+//                     (m_pTopButtons[BtnType::Btn_Maximize]->width() * 3) : 0;
+//    return d_ptr->calcTitleLabelWidth(base_width);
+//}
 
 void CEditorWindow::focus()
 {
