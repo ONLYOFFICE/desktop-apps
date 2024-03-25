@@ -901,11 +901,11 @@ void CUpdateManager::onCheckFinished(bool error, bool updateExist, const QString
 {
     if ( !error) {
         if ( updateExist ) {
-            if (m_packageData->object == "svc") {
-                __UNLOCK
-                loadUpdates();
-                return;
-            } else
+//            if (m_packageData->object == "svc") {
+//                __UNLOCK
+//                loadUpdates();
+//                return;
+//            } else
             if (!m_packageData->isInstallable) {
                 refreshStartPage({"lastcheck", {TXT_AVAILABLE_UPD, version}, BTN_TXT_CHECK, "check", "false"});
                 m_dialogSchedule->addToSchedule("showUpdateMessage");

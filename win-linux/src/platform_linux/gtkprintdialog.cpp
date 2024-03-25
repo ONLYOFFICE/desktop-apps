@@ -300,7 +300,7 @@ QDialog::DialogCode GtkPrintDialog::exec()
             GTK_PAGE_SET_ODD
         };
         gtk_print_settings_set_page_set(settings, page_set_arr[0]);
-        gtk_print_settings_set_collate(settings, FALSE);
+        gtk_print_settings_set_collate(settings, m_printer->collateCopies() ? TRUE : FALSE);
 
         // Qt-Duplex:
         // DuplexNone = 0
