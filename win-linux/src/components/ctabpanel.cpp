@@ -8,16 +8,16 @@
 
 using namespace NSEditorApi;
 
-CTabPanel * CTabPanel::createEditorPanel(QWidget *parent)
+CTabPanel * CTabPanel::createEditorPanel(QWidget *parent, const QSize& s)
 {
-    CTabPanel * panel = new CTabPanel(parent);
+    CTabPanel * panel = new CTabPanel(parent, s);
     panel->initAsEditor();
     return panel;
 }
 
-CTabPanel::CTabPanel(QWidget *parent)
+CTabPanel::CTabPanel(QWidget *parent, const QSize& s)
     : QWidget(parent)
-    , m_pViewer(AscAppManager::createViewer(this))
+    , m_pViewer(AscAppManager::createViewer(this, s))
 {
     QHBoxLayout *_layout = new QHBoxLayout(this);
     _layout->setSpacing(0);

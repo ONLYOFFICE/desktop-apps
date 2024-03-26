@@ -140,6 +140,7 @@ private:
     void sendSettings(const std::wstring& opts);
     void applyTheme(const std::wstring&, bool force = false);
     void handleDeeplinkActions(const std::vector<std::wstring>& actions);
+    void setHasFrameFeature(CCefView*, const std::wstring&, int);
 
     CMainWindow * prepareMainWindow(const QRect& r = QRect());
     CMainWindow * mainWindowFromViewId(int uid) const;
@@ -190,7 +191,7 @@ public:
     static QString          getWindowStylesheets(double);
     static QString          getWindowStylesheets(CScalingFactor);
     static bool             canAppClose();
-    static QCefView *       createViewer(QWidget * parent);
+    static QCefView *       createViewer(QWidget * parent, const QSize& size);
     static QString          newFileName(int format);
     static QString          newFileName(const std::wstring& format);
     static CThemes &        themes();

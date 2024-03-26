@@ -88,6 +88,23 @@ CWindowBase::~CWindowBase()
 
 /** Public **/
 
+QRect CWindowBase::startRect(const QRect &rc, double &dpi)
+{
+    dpi = Utils::getScreenDpiRatio(rc.isEmpty() ? qApp->primaryScreen()->geometry().topLeft() : rc.topLeft());
+    QRect def_rc = QRect(QPoint(100, 100) * dpi, MAIN_WINDOW_DEFAULT_SIZE * dpi),
+          out_rc = rc.isEmpty() ? def_rc : rc,
+          scr_rc = Utils::getScreenGeometry(out_rc.topLeft());
+    return scr_rc.intersects(out_rc) ? scr_rc.intersected(out_rc) : def_rc;
+}
+
+QSize CWindowBase::expectedContentSize(const QRect &rc, bool extended)
+{
+    double dpi = 1.0;
+    QRect win_rc = startRect(rc, dpi);
+    int brd = MAIN_WINDOW_BORDER_WIDTH * dpi;
+    return win_rc.adjusted(brd, extended ? brd : TITLE_HEIGHT * dpi + brd, -brd, -brd).size();
+}
+
 QWidget * CWindowBase::handle() const
 {
     return qobject_cast<QWidget *>(const_cast<CWindowBase*>(this));

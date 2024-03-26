@@ -12,10 +12,10 @@ class CTabPanel : public QWidget
     Q_OBJECT
 
 public:
-    explicit CTabPanel(QWidget *parent = nullptr);
+    explicit CTabPanel(QWidget *parent, const QSize& s);
     ~CTabPanel();
 
-    static CTabPanel * createEditorPanel(QWidget *parent = nullptr);
+    static CTabPanel * createEditorPanel(QWidget *parent, const QSize& size);
 
     QCefView * view() const;
     CCefView * cef() const;

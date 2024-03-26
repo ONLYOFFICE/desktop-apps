@@ -70,6 +70,7 @@ public:
     void close();
     bool isAboutToClose() const;
     void cancelClose();
+    QSize contentSize();
 
 signals:
     void aboutToClose();
@@ -147,6 +148,7 @@ public slots:
     void onWebTitleChanged(int, std::wstring json) {}
     void onDocumentPrint(void *);
     void onReporterMode(int, bool);
+    void onErrorPage(int, const std::wstring&);
     virtual void onDocumentReady(int);
 
 private:

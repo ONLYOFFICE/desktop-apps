@@ -1424,6 +1424,15 @@ void CMainWindow::onReporterMode(int id, bool status)
     }
 }
 
+void CMainWindow::onErrorPage(int id, const std::wstring& action)
+{
+    CCefView * view = AscAppManager::getInstance().GetViewById(id);
+    if ( view && cvwtEditor == view->GetType() && action.compare(L"open") == 0 ) {
+        int ind = m_pTabs->tabIndexByView(id);
+        m_pTabs->panel(ind)->data()->setHasError();
+    }
+}
+
 void CMainWindow::updateScalingFactor(double dpiratio)
 {
     CScalingWrapper::updateScalingFactor(dpiratio);
@@ -1522,6 +1531,11 @@ bool CMainWindow::isAboutToClose() const
 void CMainWindow::cancelClose()
 {
     m_isCloseAll && (m_isCloseAll = false);
+}
+
+QSize CMainWindow::contentSize()
+{
+    return m_pMainWidget ? m_pMainWidget->size() : QSize();
 }
 
 void CMainWindow::onLayoutDirectionChanged()

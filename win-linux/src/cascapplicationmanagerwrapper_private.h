@@ -78,9 +78,9 @@ public:
         m_appmanager.addStylesheets(f, s);
     }
 
-    virtual QCefView * createView(QWidget * parent)
+    virtual QCefView * createView(QWidget * parent, const QSize& s)
     {
-        return new QCefView_Media(parent);
+        return new QCefView_Media(parent, s);
     }
 
     bool allowedCreateLocalFile()
@@ -92,31 +92,31 @@ public:
     {
     }
 
-    auto createStartPanel() -> void {
-        GET_REGISTRY_USER(reg_user)
+//    auto createStartPanel() -> void {
+//        GET_REGISTRY_USER(reg_user)
 
-        m_pStartPanel = AscAppManager::createViewer(nullptr);
-        m_pStartPanel->Create(&m_appmanager, cvwtSimple);
-        m_pStartPanel->setObjectName("mainPanel");
+//        m_pStartPanel = AscAppManager::createViewer(nullptr, QSize());
+//        m_pStartPanel->Create(&m_appmanager, cvwtSimple);
+//        m_pStartPanel->setObjectName("mainPanel");
 
-        QString data_path;
-#if defined(QT_DEBUG)
-        data_path = reg_user.value("startpage").value<QString>();
-#endif
+//        QString data_path;
+//#if defined(QT_DEBUG)
+//        data_path = reg_user.value("startpage").value<QString>();
+//#endif
 
-        if ( data_path.isEmpty() )
-            data_path = qApp->applicationDirPath() + "/index.html";
+//        if ( data_path.isEmpty() )
+//            data_path = qApp->applicationDirPath() + "/index.html";
 
-        QString additional = "?waitingloader=yes&lang=" + CLangater::getCurrentLangCode();
-        QString _portal = reg_user.value("portal").value<QString>();
-        if (!_portal.isEmpty()) {
-            QString arg_portal = (additional.isEmpty() ? "?portal=" : "&portal=") + _portal;
-            additional.append(arg_portal);
-        }
+//        QString additional = "?waitingloader=yes&lang=" + CLangater::getCurrentLangCode();
+//        QString _portal = reg_user.value("portal").value<QString>();
+//        if (!_portal.isEmpty()) {
+//            QString arg_portal = (additional.isEmpty() ? "?portal=" : "&portal=") + _portal;
+//            additional.append(arg_portal);
+//        }
 
-        std::wstring start_path = ("file:///" + data_path + additional).toStdWString();
-        m_pStartPanel->GetCefView()->load(start_path);
-    }
+//        std::wstring start_path = ("file:///" + data_path + additional).toStdWString();
+//        m_pStartPanel->GetCefView()->load(start_path);
+//    }
 
     auto sendOpenFolderEvent(int id) -> void {
         if (!mainWindow() || mainWindow()->startPanelId() != id) {   // Ignore start page
@@ -319,7 +319,7 @@ public:
         if ( !(viewid < 0) ) {
             CEditorWindow * editor = m_appmanager.editorWindowFromViewId(viewid);
             if ( editor )
-                return editor->geometry();
+                return editor->normalGeometry();
             else
             if ( m_appmanager.mainWindow() && m_appmanager.mainWindow()->holdView(viewid) )
                 return m_appmanager.mainWindow()->windowRect();
@@ -335,7 +335,23 @@ public:
 
     auto openDocument(const COpenOptions& opts) -> bool
     {
-        CTabPanel * panel = CEditorTools::createEditorPanel(opts);
+        bool isMaximized = false;
+        QRect rect;
+        QSize panel_size;
+        if ( preferOpenEditorWindow() ) {
+            GET_REGISTRY_USER(reg_user);
+            isMaximized = mainWindow() ? mainWindow()->windowState().testFlag(Qt::WindowMaximized) : reg_user.value("maximized", false).toBool();
+            if ( !isMaximized )
+                rect = windowRectFromViewId(opts.parent_id);
+            if ( !rect.isEmpty() )
+                rect.adjust(50,50,50,50);
+            panel_size = CWindowBase::expectedContentSize(rect, true);
+        } else {
+            m_appmanager.gotoMainWindow(size_t(m_appmanager.editorWindowFromViewId(opts.parent_id)));
+            panel_size = mainWindow()->contentSize();
+        }
+
+        CTabPanel * panel = CEditorTools::createEditorPanel(opts, panel_size);
         if ( panel ) {
             CAscTabData * panel_data = panel->data();
             QRegularExpression re("^ascdesktop:\\/\\/(?:compare|merge|template)");
@@ -346,13 +362,6 @@ public:
             }
 
             if ( preferOpenEditorWindow() ) {
-                GET_REGISTRY_USER(reg_user);
-                bool isMaximized = mainWindow() ? mainWindow()->windowState().testFlag(Qt::WindowMaximized) :
-                                                  reg_user.value("maximized", false).toBool();
-                QRect rect = isMaximized ? QRect() : windowRectFromViewId(opts.parent_id);
-                if ( !rect.isEmpty() )
-                    rect.adjust(50,50,50,50);
-
                 CEditorWindow * editor_win = new CEditorWindow(rect, panel);
                 editor_win->show(isMaximized);
 
@@ -361,7 +370,7 @@ public:
                     m_appmanager.sendCommandTo(panel->cef(), L"window:features",
                             Utils::stringifyJson(QJsonObject{{"skiptoparea", TOOLBTN_HEIGHT},{"singlewindow",true}}).toStdWString());
             } else {
-                m_appmanager.gotoMainWindow(size_t(m_appmanager.editorWindowFromViewId(opts.parent_id)));
+//                m_appmanager.gotoMainWindow(size_t(m_appmanager.editorWindowFromViewId(opts.parent_id)));
                 mainWindow()->attachEditor(panel);
             }
 
