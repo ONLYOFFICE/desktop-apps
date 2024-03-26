@@ -156,7 +156,7 @@ CAscTabWidget::CAscTabWidget(QWidget *parent, CTabBar *_pBar)
 
         const CTabPanel * _panel = panel(index);
 
-        if ( _panel->data()->viewType() == cvwtEditor ) {
+        if ( _panel && _panel->data()->viewType() == cvwtEditor ) {
             CTabUndockEvent event(index);
             QObject * obj = qobject_cast<QObject*>(&AscAppManager::getInstance());
             if ( QApplication::sendEvent(obj, &event) && event.isAccepted() ) {
