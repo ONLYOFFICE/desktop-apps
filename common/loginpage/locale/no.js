@@ -91,4 +91,5 @@ l10n.no = {
     settOptLaunchMode: 'Åpne fil',
     settOptLaunchInTab: 'I fanegruppe',
     settOptLaunchInWindow: 'I vindu',
+    settOptDisabled: 'Deaktivert',
 }
