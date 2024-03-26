@@ -79,7 +79,6 @@ private:
             _has_changes = false;
     bool    _is_closed = false;
     bool    _is_local;
-    bool    _has_frame = false;
     bool    _has_error = false;
     CefType _vtype;
     std::wstring _url;
