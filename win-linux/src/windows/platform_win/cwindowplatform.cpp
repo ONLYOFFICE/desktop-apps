@@ -172,6 +172,8 @@ CWindowPlatform::CWindowPlatform(const QRect &rect) :
     m_isMaximized = IsZoomed(m_hWnd);
     m_dpi = GetLogicalDpi(this);
     GetFrameMetricsForDpi(m_frame, m_dpi, m_isMaximized);
+    SetWindowPos(m_hWnd, 0, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOMOVE | SWP_NOZORDER | SWP_NOACTIVATE | SWP_FRAMECHANGED);
+    setGeometry(m_window_rect);
 }
 
 CWindowPlatform::~CWindowPlatform()
@@ -288,18 +290,10 @@ bool CWindowPlatform::nativeEvent(const QByteArray &eventType, void *message, lo
     switch (msg->message)
     {
     case WM_ACTIVATE: {
-        SetWindowPos(msg->hwnd, 0, 0, 0, 0, 0, SWP_NOCOPYBITS | SWP_NOMOVE | SWP_NOSIZE | SWP_NOACTIVATE | SWP_NOZORDER | SWP_FRAMECHANGED);
         if (LOWORD(msg->wParam) == WA_ACTIVE) {
+            SetWindowPos(msg->hwnd, 0, 0, 0, 0, 0, SWP_NOCOPYBITS | SWP_NOMOVE | SWP_NOSIZE | SWP_NOACTIVATE | SWP_NOZORDER | SWP_FRAMECHANGED);
             if (Utils::getWinVersion() == WinVer::Win10)
                 CWindowBase::setWindowColors(m_bkgColor, m_brdColor, true);
-            if (!m_isActivated) {
-                m_isActivated = true;
-                if (m_borderless && !m_isMaximized) {
-                    SKIP_EVENTS_QUEUE([=]() {
-                        setGeometry(m_window_rect);
-                    });
-                }
-            }
         }
         break;
     }

@@ -72,13 +72,10 @@ CWindowBase::CWindowBase(const QRect& rc)
     , m_windowActivated(false)
 {
     setWindowIcon(Utils::appIcon());
-    m_dpiRatio = !rc.isEmpty() ? Utils::getScreenDpiRatio(rc.topLeft()) :
-                     Utils::getScreenDpiRatio(qApp->primaryScreen()->geometry().topLeft());
-    QRect def_rc = QRect(QPoint(100, 100) * m_dpiRatio, MAIN_WINDOW_DEFAULT_SIZE * m_dpiRatio);
-    QRect out_rc = !rc.isEmpty() ? rc : def_rc;
-    QRect scr_rc = Utils::getScreenGeometry(out_rc.topLeft());
-    m_window_rect = scr_rc.intersects(out_rc) ? scr_rc.intersected(out_rc) : def_rc;
-    setGeometry(m_window_rect);
+    m_window_rect = startRect(rc, m_dpiRatio);
+#ifdef __linux__
+    setGeometry(m_window_rect); // for Windows is set in CWindowPlatform
+#endif
 }
 
 CWindowBase::~CWindowBase()
