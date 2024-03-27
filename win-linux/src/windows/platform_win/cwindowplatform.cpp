@@ -155,6 +155,7 @@ CWindowPlatform::CWindowPlatform(const QRect &rect) :
     m_borderless = isCustomWindowStyle();
     if (AscAppManager::isRtlEnabled())
         setLayoutDirection(Qt::RightToLeft);
+    setGeometry(m_window_rect);
     m_hWnd = (HWND)winId();
     if (m_borderless && Utils::getWinVersion() < WinVer::Win10) {
         LONG style = ::GetWindowLong(m_hWnd, GWL_STYLE) & ~WS_CAPTION;
@@ -173,7 +174,6 @@ CWindowPlatform::CWindowPlatform(const QRect &rect) :
     m_dpi = GetLogicalDpi(this);
     GetFrameMetricsForDpi(m_frame, m_dpi, m_isMaximized);
     SetWindowPos(m_hWnd, 0, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOMOVE | SWP_NOZORDER | SWP_NOACTIVATE | SWP_FRAMECHANGED);
-    setGeometry(m_window_rect);
 }
 
 CWindowPlatform::~CWindowPlatform()
