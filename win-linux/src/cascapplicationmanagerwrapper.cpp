@@ -301,12 +301,15 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
 //            RELEASEINTERFACE(event);
             return true;
         } else
-#ifdef Q_OS_WIN
         if ( cmd.find(L"app:onready") != std::wstring::npos ) {
-            if ( !IsWindowsVistaOrGreater() && !InputArgs::contains(L"--xp-unlock-portals"))    // TODO: remove --xp-unlock-portals in ver 7.4, for tests only
+            GET_REGISTRY_USER(reg_user)
+            if (reg_user.value("lockPortals", false).toBool()
+#ifdef Q_OS_WIN
+                    || !IsWindowsVistaOrGreater()
+#endif
+            )
                 sendCommandTo(SEND_TO_ALL_START_PAGE, "panel:hide", "connect");
         } else
-#endif
         if ( cmd.compare(0, 8, L"settings") == 0 ) {
             if ( cmd.rfind(L"apply") != wstring::npos ) {
                 applySettings(pData->get_Param());

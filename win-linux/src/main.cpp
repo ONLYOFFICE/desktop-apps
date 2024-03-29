@@ -125,6 +125,14 @@ int main( int argc, char *argv[] )
         reg_user.remove("maximized");
         reg_user.remove("position");
     }
+    if ( InputArgs::contains(L"--lock-portals") ) {
+        GET_REGISTRY_USER(reg_user)
+        reg_user.setValue("lockPortals", true);
+    } else
+    if ( InputArgs::contains(L"--unlock-portals") ) {
+        GET_REGISTRY_USER(reg_user)
+        reg_user.remove("lockPortals");
+    }
 
     SingleApplication app(argc, argv, QString(APP_MUTEX_NAME));
 
