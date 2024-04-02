@@ -45,7 +45,7 @@ public:
 
     void bringToTop();
     void show(bool);
-    virtual void setWindowColors(const QColor&, const QColor& border = QColor()) final;
+    virtual void setWindowColors(const QColor&, const QColor& border = QColor(), bool isActive = false) final;
     virtual void adjustGeometry() final;
 
 protected:
