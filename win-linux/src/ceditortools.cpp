@@ -277,7 +277,7 @@ namespace CEditorTools
             }
         }
 
-        CTabPanel * panel = CTabPanel::createEditorPanel(nullptr, s);
+        CTabPanel * panel = CTabPanel::createEditorPanel(WindowHelper::activeWindow(), s);
 
         bool result = true;
         if (opts.srctype == etLocalFile) {
