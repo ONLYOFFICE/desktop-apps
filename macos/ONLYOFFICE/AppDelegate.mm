@@ -92,12 +92,13 @@
 //    }];
 
     NSArray * arguments = [[NSProcessInfo processInfo] arguments];
+    NSArray * keysCreateNew{@[@"word",@"cell",@"slide",@"form"]};
     for (NSString * arg in arguments) {
         if ( [arg hasPrefix:@"--new:"] || [arg hasPrefix:@"--new="] ) {
             NSString * param = [arg substringFromIndex:6];
             NSLog(@"input arg new: %@", param);
 
-            if ( [@[@"word",@"cell",@"slide",@"form"] containsObject:param] ) {
+            if ( [keysCreateNew containsObject:param] ) {
                 [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameCreateTab
                                                                     object:nil
                                                                   userInfo:@{ @"action"  : @(ASCTabActionCreateLocalFile),
