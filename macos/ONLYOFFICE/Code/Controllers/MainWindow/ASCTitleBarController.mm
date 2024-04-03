@@ -270,18 +270,28 @@ static float kASCRTLTabsRightMargin = 0;
 
 - (void)doLayout {
     NSWindow * mainWindow = [NSWindow titleWindowOrMain];
+
+    // Layout title and tabs
+    CGFloat containerWidth  = CGRectGetWidth(self.titleContainerView.frame);
+    CGFloat maxTabsWidth    = containerWidth - kASCWindowMinTitleWidth - 100;
+    CGFloat actualTabsWidth = self.tabsControl.maxTabWidth * [self.tabsControl.tabs count];
+
     int btnSpacing = 6.0;
     CGFloat btnContainerWidth = CGRectGetWidth([self.standardButtonsDefaults[0] frame]) + btnSpacing;
-    CGFloat leftOffset = kASCWindowDefaultTrafficButtonsLeftMargin;
+    CGFloat leftOffsetForTrafficLightButtons = kASCWindowDefaultTrafficButtonsLeftMargin;
+    int rtlDependedTabsLeftOffset = 0;
     if ( [ASCLinguist isUILayoutDirectionRtl] ) {
         CGFloat windowWidth = CGRectGetWidth([mainWindow frame]);
-        leftOffset = windowWidth - kASCWindowDefaultTrafficButtonsLeftMargin - btnContainerWidth * 3 + btnSpacing;
+        leftOffsetForTrafficLightButtons = windowWidth - kASCWindowDefaultTrafficButtonsLeftMargin - btnContainerWidth * 3 + btnSpacing;
+
+        NSRect rect = [[self.tabsControl superview] frame];
+        rtlDependedTabsLeftOffset = windowWidth - kASCRTLTabsRightMargin - CGRectGetMinX(rect) - MIN(actualTabsWidth, maxTabsWidth);
     }
 
     void (^layoutStandartButtons)(NSArray *, BOOL) = ^ (NSArray *views, BOOL hidden) {
         [views enumerateObjectsUsingBlock:^(NSView *view, NSUInteger idx, BOOL *stop) {
             NSRect frame = view.frame;
-            frame.origin.x = leftOffset + idx * btnContainerWidth;
+            frame.origin.x = leftOffsetForTrafficLightButtons + idx * btnContainerWidth;
             frame.origin.y = (int)((NSHeight(view.superview.frame) - NSHeight(view.frame)) / 2.0);
             
             [view setFrame:frame];
@@ -293,19 +303,7 @@ static float kASCRTLTabsRightMargin = 0;
     layoutStandartButtons(self.standardButtonsDefaults, [self isFullScreen]);
     layoutStandartButtons(self.standardButtonsFullscreen, ![self isFullScreen]);
 
-    // Layout title and tabs
-    CGFloat containerWidth  = CGRectGetWidth(self.titleContainerView.frame);
-    CGFloat maxTabsWidth    = containerWidth - kASCWindowMinTitleWidth - 100;
-    CGFloat actualTabsWidth = self.tabsControl.maxTabWidth * [self.tabsControl.tabs count];
-    
-    int rtlDependedLeftOffset = 0;
-    if ([self.view userInterfaceLayoutDirection] == NSUserInterfaceLayoutDirectionRightToLeft) {
-        NSRect rect = [[self.tabsControl superview] frame];
-        CGFloat windowWidth = CGRectGetWidth([mainWindow frame]);
-        rtlDependedLeftOffset = windowWidth - kASCRTLTabsRightMargin - CGRectGetMinX(rect) - MIN(actualTabsWidth, maxTabsWidth);
-    }
-    
-    self.tabsControl.frame  = CGRectMake(rtlDependedLeftOffset, 0, MIN(actualTabsWidth, maxTabsWidth), CGRectGetHeight(self.tabsControl.frame));
+    self.tabsControl.frame  = CGRectMake(rtlDependedTabsLeftOffset, 0, MIN(actualTabsWidth, maxTabsWidth), CGRectGetHeight(self.tabsControl.frame));
 }
 
 - (void)viewWillTransitionToSize:(NSSize)newSize {
