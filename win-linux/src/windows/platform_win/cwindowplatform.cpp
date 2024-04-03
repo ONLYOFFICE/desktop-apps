@@ -39,6 +39,7 @@
 #include <QWindow>
 #include <QScreen>
 #include <QJsonObject>
+#include <windowsx.h>
 #include <shellapi.h>
 
 //#define UM_SNAPPING 0x02
@@ -230,7 +231,7 @@ void CWindowPlatform::adjustGeometry()
         }
     } else {
         if (Utils::getWinVersion() < WinVer::Win10) {
-            int border = qRound(3 * MAIN_WINDOW_BORDER_WIDTH * m_dpiRatio);
+            int border = qRound(MAIN_WINDOW_BORDER_WIDTH * m_dpiRatio);
             if (Utils::getWinVersion() <= WinVer::Win7)
                 border -= NC_AREA_WIDTH;
             mrg = QMargins(border, border, border, border);

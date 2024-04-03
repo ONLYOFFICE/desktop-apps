@@ -98,7 +98,11 @@ QSize CWindowBase::expectedContentSize(const QRect &rc, bool extended)
 {
     double dpi = 1.0;
     QRect win_rc = startRect(rc, dpi);
+#ifdef _WIN32
+    int brd = Utils::getWinVersion() < Utils::WinVer::Win10 ? MAIN_WINDOW_BORDER_WIDTH * dpi : 0;
+#else
     int brd = MAIN_WINDOW_BORDER_WIDTH * dpi;
+#endif
     return win_rc.adjusted(brd, extended ? brd : TITLE_HEIGHT * dpi + brd, -brd, -brd).size();
 }
 

@@ -42,7 +42,7 @@
 #define EDITOR_WINDOW_MIN_WIDTH  920
 
 #define BUTTON_MAIN_WIDTH   112
-#define MAIN_WINDOW_BORDER_WIDTH 1
+#define MAIN_WINDOW_BORDER_WIDTH 3
 #define WINDOW_TITLE_MIN_WIDTH 200
 #define TOOLBTN_HEIGHT      28
 #define TOOLBTN_WIDTH       40
@@ -57,12 +57,6 @@
 #include <QPushButton>
 #include <memory>
 #include "components/celipsislabel.h"
-
-#ifdef _WIN32
-# include <windows.h>
-# include <windowsx.h>
-# include <dwmapi.h>
-#endif
 
 
 class CWindowBase : public QMainWindow
