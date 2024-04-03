@@ -105,6 +105,10 @@
                                                                               @"type"    : param,
                                                                               @"active"  : @(YES) }];
             }
+        } else if ([arg isEqualToString:@"--lock-portals"]) {
+            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:ASCUserLockPageConnections];
+        } else if ([arg isEqualToString:@"--unlock-portals"]) {
+            [[NSUserDefaults standardUserDefaults] removeObjectForKey:ASCUserLockPageConnections];
         }
     }
 }

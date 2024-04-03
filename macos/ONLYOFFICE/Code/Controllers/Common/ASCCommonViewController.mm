@@ -1524,6 +1524,14 @@
 
     [self.cefStartPageView apply:pEvent];
 
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:ASCUserLockPageConnections]) {
+        pCommand->put_Command(L"panel:hide");
+        pCommand->put_Param(L"connect");
+
+        pEvent->AddRef();
+        [self.cefStartPageView apply:pEvent];
+    }
+
     pCommand->put_Command(L"app:ready");
     pCommand->put_Param(L"");
 
