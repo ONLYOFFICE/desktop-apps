@@ -1217,6 +1217,7 @@ en.extOXPS =Open XML Paper Specification
 ar_SA.extOXPS =مستند أوبن إكس بي إس
 sr_Latn_RS.extOXPS =Open XML Papir Specifikacija
 
+en.extXLSB =Excel Binary File Format
 ;======================================================================================================
 
 en.jumpDOCX =New document
@@ -1623,9 +1624,9 @@ var
   prefix: string;
 begin
 #ifdef _ONLYOFFICE
-  SetArrayLength(AudioExts, 23);
+  SetArrayLength(AudioExts, 24);
 #else
-  SetArrayLength(AudioExts, 22);
+  SetArrayLength(AudioExts, 23);
 #endif
   SetArrayLength(AudioExtEnabled,  GetArrayLength(AudioExts));
 
@@ -1652,8 +1653,9 @@ begin
   AudioExts[19] := 'FB2';
   AudioExts[20] := 'DOTX';
   AudioExts[21] := 'OXPS';
+  AudioExts[22] := 'XLSB';
 #ifdef _ONLYOFFICE
-  AudioExts[22] := 'DOCXF';
+  AudioExts[23] := 'DOCXF';
 #endif
   
   SetArrayLength(ExtensionRegistryInfo,  GetArrayLength(AudioExts));
@@ -1683,8 +1685,9 @@ begin
   ExtensionRegistryInfo[19] := prefix + 'Fb2:'          + ExpandConstant('{cm:extFB2}')             + ':' + '29';
   ExtensionRegistryInfo[20] := prefix + 'Dotx:'         + ExpandConstant('{cm:extDOTX}')            + ':' + '30';
   ExtensionRegistryInfo[21] := prefix + 'Oxps:'         + ExpandConstant('{cm:extOXPS}')            + ':' + '31';
+  ExtensionRegistryInfo[22] := prefix + 'Xlsb:'         + ExpandConstant('{cm:extXLSB}')            + ':' + '32';
 #ifdef _ONLYOFFICE
-  ExtensionRegistryInfo[22] := prefix + 'Docxf:'        + ExpandConstant('{cm:extDOCXF}')           + ':' + '13';
+  ExtensionRegistryInfo[23] := prefix + 'Docxf:'        + ExpandConstant('{cm:extDOCXF}')           + ':' + '13';
 #endif
 end;
 
