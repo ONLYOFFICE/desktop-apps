@@ -39,12 +39,33 @@
 #define CAPTURED_WINDOW_OFFSET_Y  15 * m_dpiRatio
 
 
-CEditorWindow::CEditorWindow(const QRect& rect, CTabPanel* panel)
+CEditorWindow::CEditorWindow(const QRect& rect, CTabPanel* panel, const COpenOptions& opts)
     : CWindowPlatform(rect)
     , d_ptr(new CEditorWindowPrivate(this))
 {
     setObjectName("editorWindow");
     setWindowTitle("_");
+    if (!panel) {
+        QSize panel_size = CWindowBase::expectedContentSize(rect, true);
+        panel = CEditorTools::createEditorPanel(opts, panel_size, this);
+        if ( panel ) {
+            CAscTabData * panel_data = panel->data();
+            QRegularExpression re("^ascdesktop:\\/\\/(?:compare|merge|template)");
+            if ( re.match(QString::fromStdWString(panel_data->url())).hasMatch() ) {
+                panel_data->setIsLocal(true);
+                panel_data->setUrl("");
+            }
+        } else {
+           panel = new CTabPanel(this, panel_size);
+           panel->initAsSimple();
+           QString url = QUrl::fromUserInput("/editors/webext/noconnect.html", qApp->applicationDirPath()).toString();
+           panel->cef()->load(url.toStdWString());
+           CAscTabData * data = new CAscTabData("Empty");
+           data->setUrl(url);
+           data->setHasError();
+           panel->setData(data);
+        }
+    }
     d_ptr.get()->init(panel);
     m_pMainPanel = createMainPanel(this, d_ptr->panel()->data()->title());
     setCentralWidget(m_pMainPanel);

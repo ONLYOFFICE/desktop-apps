@@ -61,7 +61,7 @@ namespace CEditorTools
     QString getlocaltheme(int parentid);
     std::wstring getFolder(const std::wstring&, int parentid = -1);
 
-    auto createEditorPanel(const COpenOptions& opts, const QSize& s) -> CTabPanel *;
+    auto createEditorPanel(const COpenOptions& opts, const QSize& s, QWidget *parent = nullptr) -> CTabPanel *;
     auto editorTypeFromFormat(int format) -> AscEditorType;
     auto processLocalFileSaveAs(const NSEditorApi::CAscCefMenuEvent * event) -> void;
 }

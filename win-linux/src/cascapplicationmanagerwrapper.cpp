@@ -973,27 +973,25 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
         //    open_in_new_window = std::find(vargs.begin(), vargs.end(), L"--force-use-tab") == std::end(vargs);
         //
 
-        CTabPanel * panel = CEditorTools::createEditorPanel(open_opts, CWindowBase::expectedContentSize(_start_rect, open_in_new_window));
-        if ( panel ) {
-            if ( open_in_new_window ) {
-                CEditorWindow * editor_win = new CEditorWindow(_start_rect, panel);
-                bool isMaximized = mainWindow() ? mainWindow()->windowState().testFlag(Qt::WindowMaximized) :
-                                                      reg_user.value("maximized", false).toBool();
-                editor_win->show(isMaximized);
-                editor_win->bringToTop();
+        if ( open_in_new_window ) {
+            CEditorWindow * editor_win = new CEditorWindow(_start_rect, nullptr, open_opts);
+            bool isMaximized = mainWindow() ? mainWindow()->windowState().testFlag(Qt::WindowMaximized) : reg_user.value("maximized", false).toBool();
+            editor_win->show(isMaximized);
+            editor_win->bringToTop();
 
-                _app.m_vecEditors.push_back(size_t(editor_win));
-                if ( editor_win->isCustomWindowStyle() )
-                    sendCommandTo(panel->cef(), L"window:features",
-                              Utils::stringifyJson(QJsonObject{{"skiptoparea", TOOLBTN_HEIGHT},{"singlewindow",true}}).toStdWString());
-            } else {
-                if ( !_app.m_pMainWindow ) {
-                    _app.m_pMainWindow = _app.prepareMainWindow(_start_rect);
-                    _app.m_pMainWindow->show(reg_user.value("maximized", false).toBool());
-                } else
-                if (!_app.m_pMainWindow->isVisible())
-                    _app.m_pMainWindow->show(_app.m_pMainWindow->windowState().testFlag(Qt::WindowMaximized));
+            _app.m_vecEditors.push_back(size_t(editor_win));
+            if ( editor_win->isCustomWindowStyle() )
+                sendCommandTo(editor_win->mainView()->cef(), L"window:features",
+                          Utils::stringifyJson(QJsonObject{{"skiptoparea", TOOLBTN_HEIGHT},{"singlewindow",true}}).toStdWString());
+        } else {
+            if ( !_app.m_pMainWindow ) {
+                _app.m_pMainWindow = _app.prepareMainWindow(_start_rect);
+                _app.m_pMainWindow->show(reg_user.value("maximized", false).toBool());
+            } else
+            if (!_app.m_pMainWindow->isVisible())
+                _app.m_pMainWindow->show(_app.m_pMainWindow->windowState().testFlag(Qt::WindowMaximized));
 
+            if (CTabPanel * panel = CEditorTools::createEditorPanel(open_opts, _app.m_pMainWindow->contentSize(), _app.m_pMainWindow)) {
                 _app.mainWindow()->attachEditor(panel);
                 QTimer::singleShot(100, &_app, [&]{
                     _app.mainWindow()->bringToTop();
