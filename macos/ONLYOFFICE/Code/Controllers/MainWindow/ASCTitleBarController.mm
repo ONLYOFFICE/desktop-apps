@@ -53,10 +53,12 @@
 #import "ASCThemesController.h"
 #import "ASCApplicationManager.h"
 #import "ASCLinguist.h"
+#import "NSWindow+Extensions.h"
 
 
 static float kASCWindowDefaultTrafficButtonsLeftMargin = 0;
 static float kASCWindowMinTitleWidth = 0;
+static float kASCRTLTabsRightMargin = 0;
 
 @interface ASCTitleBarController ()  <ASCTabsControlDelegate, ASCDownloadControllerDelegate>
 @property (nonatomic) NSArray *standardButtonsDefaults;
@@ -209,6 +211,8 @@ static float kASCWindowMinTitleWidth = 0;
     if ( [self.view userInterfaceLayoutDirection] == NSUserInterfaceLayoutDirectionRightToLeft ) {
         self.buttonPortalLeadingConstraint.constant = -1;
         self.buttonPortalTrailingConstraint.constant = 0;
+
+        kASCRTLTabsRightMargin = CGRectGetMinX([[self.tabsControl superview] frame]);
     }
     
     [self.tabsControl removeAllConstraints];
@@ -265,11 +269,12 @@ static float kASCWindowMinTitleWidth = 0;
 }
 
 - (void)doLayout {
+    NSWindow * mainWindow = [NSWindow titleWindowOrMain];
     int btnSpacing = 6.0;
     CGFloat btnContainerWidth = CGRectGetWidth([self.standardButtonsDefaults[0] frame]) + btnSpacing;
     CGFloat leftOffset = kASCWindowDefaultTrafficButtonsLeftMargin;
     if ( [ASCLinguist isUILayoutDirectionRtl] ) {
-        CGFloat windowWidth = CGRectGetWidth([[self view] frame]);
+        CGFloat windowWidth = CGRectGetWidth([mainWindow frame]);
         leftOffset = windowWidth - kASCWindowDefaultTrafficButtonsLeftMargin - btnContainerWidth * 3 + btnSpacing;
     }
 
@@ -296,7 +301,8 @@ static float kASCWindowMinTitleWidth = 0;
     int rtlDependedLeftOffset = 0;
     if ([self.view userInterfaceLayoutDirection] == NSUserInterfaceLayoutDirectionRightToLeft) {
         NSRect rect = [[self.tabsControl superview] frame];
-        rtlDependedLeftOffset = rect.size.width - MIN(actualTabsWidth, maxTabsWidth);
+        CGFloat windowWidth = CGRectGetWidth([mainWindow frame]);
+        rtlDependedLeftOffset = windowWidth - kASCRTLTabsRightMargin - CGRectGetMinX(rect) - MIN(actualTabsWidth, maxTabsWidth);
     }
     
     self.tabsControl.frame  = CGRectMake(rtlDependedLeftOffset, 0, MIN(actualTabsWidth, maxTabsWidth), CGRectGetHeight(self.tabsControl.frame));
