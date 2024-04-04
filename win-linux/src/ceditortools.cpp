@@ -271,6 +271,7 @@ namespace CEditorTools
             if (CFileInspector::isLocalFile(QString::fromStdWString(opts.wurl))) {
                 QFileInfo info(opts.url);
                 if (!info.isReadable()) {
+                    AscAppManager::gotoMainWindow();
                     CMessage::error(AscAppManager::getInstance().mainWindow(), QObject::tr("Access to file '%1' is denied!").arg(opts.url));
                     return nullptr;
                 }
