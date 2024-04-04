@@ -96,7 +96,6 @@
     for (NSString * arg in arguments) {
         if ( [arg hasPrefix:@"--new:"] || [arg hasPrefix:@"--new="] ) {
             NSString * param = [arg substringFromIndex:6];
-            NSLog(@"input arg new: %@", param);
 
             if ( [keysCreateNew containsObject:param] ) {
                 [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameCreateTab
