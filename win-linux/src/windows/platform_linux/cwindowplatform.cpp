@@ -91,11 +91,11 @@ void CWindowPlatform::show(bool maximized)
     }
 }
 
-void CWindowPlatform::setWindowColors(const QColor& background, const QColor& border)
+void CWindowPlatform::setWindowColors(const QColor& background, const QColor& border, bool isActive)
 {
     Q_UNUSED(border)
     if (!CX11Decoration::isDecorated()) {
-        CWindowBase::setWindowColors(background, border);
+        CWindowBase::setWindowColors(background, border, isActive);
     }
 }
 

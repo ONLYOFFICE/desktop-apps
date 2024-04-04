@@ -42,6 +42,8 @@
 #include <QCoreApplication>
 #include "utils.h"
 
+#define RESIZE_AREA_PART 0.14
+
 
 class Caption: public QWidget
 {
@@ -61,6 +63,14 @@ private:
         BOOL arranging = FALSE;
         SystemParametersInfoA(SPI_GETWINARRANGING, 0, &arranging, 0);
         return (arranging == TRUE);
+    }
+
+    bool isResizingAvailable() {
+        return Utils::getWinVersion() >= Utils::WinVer::Win10 && !IsZoomed(hwnd_root);
+    }
+
+    bool isPointInResizeArea(int posY) {
+        return posY <= RESIZE_AREA_PART * height();
     }
 
     QPoint cursorPos() {
@@ -85,7 +95,7 @@ private:
         QPoint pos = mapFromGlobal(QPoint(int(pt.x), int(pt.y)));
         if (!buttonAtPos(pos)) {
             ::ReleaseCapture();
-            ::PostMessage(hwnd_root, cmd, HTCAPTION, POINTTOPOINTS(pt));
+            ::PostMessage(hwnd_root, cmd, isResizingAvailable() && isPointInResizeArea(pos.y()) ? HTTOP : HTCAPTION, POINTTOPOINTS(pt));
             QCoreApplication::postEvent(parent(), new QEvent(QEvent::MouseButtonPress));
             return true;
         }
@@ -110,6 +120,13 @@ private:
         case WM_LBUTTONDBLCLK: {
             if (postMsg(WM_NCLBUTTONDBLCLK))
                 return true;
+            break;
+        }
+        case WM_MOUSEMOVE: {
+            if (isResizingAvailable()) {
+                int y = GET_Y_LPARAM(msg->lParam);
+                setCursor(!buttonAtPos(QPoint(GET_X_LPARAM(msg->lParam), y)) && isPointInResizeArea(y) ? Qt::SizeVerCursor : Qt::ArrowCursor);
+            }
             break;
         }
         case WM_NCLBUTTONDOWN: {

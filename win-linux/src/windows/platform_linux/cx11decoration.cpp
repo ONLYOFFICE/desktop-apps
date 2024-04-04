@@ -31,6 +31,7 @@
 */
 
 #include "cx11decoration.h"
+#include "windows/cwindowbase.h"
 #include "utils.h"
 #include <QX11Info>
 #include <QTimer>
@@ -40,7 +41,7 @@
 #include <X11/Xutil.h>
 #include "platform_linux/xcbutils.h"
 
-#define CUSTOM_BORDER_WIDTH 4
+#define CUSTOM_BORDER_WIDTH MAIN_WINDOW_BORDER_WIDTH
 #define MOTION_TIMER_MS 250
 
 const int k_NET_WM_MOVERESIZE_SIZE_TOPLEFT =     0;

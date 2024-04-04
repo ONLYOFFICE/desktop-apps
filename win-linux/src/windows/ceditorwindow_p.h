@@ -459,7 +459,7 @@ public:
             border = GetColorValueByRole(ecrWindowBorder);
         }
 
-        window->setWindowColors(QColor(QString::fromStdWString(background)), QColor(QString::fromStdWString(border)));
+        window->setWindowColors(QColor(QString::fromStdWString(background)), QColor(QString::fromStdWString(border)), window->isActiveWindow());
     }
 
     void changeTheme(const std::wstring& theme)
