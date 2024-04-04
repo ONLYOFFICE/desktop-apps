@@ -40,6 +40,7 @@
 #endif
 
 #include "components/ctabpanel.h"
+#include "components/asctabwidget.h"
 #include <memory>
 #include <QCoreApplication>
 #include <QSpacerItem>
@@ -53,8 +54,10 @@ public:
     CEditorWindow(const QRect& rect, CTabPanel* view);
     ~CEditorWindow();
 
+    static CEditorWindow* create(const QRect& rect, const COpenOptions& opts);
     const QObject * receiver();
     CTabPanel * releaseEditorView() const;
+    CTabPanel * mainView() const;
     AscEditorType editorType() const;
     QString documentName() const;
     double scaling() const;
@@ -70,8 +73,10 @@ protected:
     virtual void onLayoutDirectionChanged() final;
 
 private:
+    CEditorWindow(const QRect& rect, const COpenOptions& opts);
+
     QWidget * createMainPanel(QWidget *, const QString&);
-    CTabPanel * mainView() const;
+    void init(CTabPanel *panel);
     void recalculatePlaces();
     void updateTitleCaption();
     void onSizeEvent(int);

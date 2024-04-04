@@ -259,7 +259,7 @@ namespace CEditorTools
         return dlg.selectFolder(sel_path).toStdWString();
     }
 
-    auto createEditorPanel(const COpenOptions& opts, const QSize& s) -> CTabPanel *
+    auto createEditorPanel(const COpenOptions& opts, const QSize& s, QWidget *parent) -> CTabPanel *
     {
         int _file_format{0};
         if ( opts.srctype == etLocalFile ) {
@@ -277,7 +277,7 @@ namespace CEditorTools
             }
         }
 
-        CTabPanel * panel = CTabPanel::createEditorPanel(nullptr, s);
+        CTabPanel * panel = CTabPanel::createEditorPanel(parent, s);
 
         bool result = true;
         if (opts.srctype == etLocalFile) {

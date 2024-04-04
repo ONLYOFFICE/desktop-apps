@@ -335,46 +335,35 @@ public:
 
     auto openDocument(const COpenOptions& opts) -> bool
     {
-        bool isMaximized = false;
-        QRect rect;
-        QSize panel_size;
         if ( preferOpenEditorWindow() ) {
             GET_REGISTRY_USER(reg_user);
-            isMaximized = mainWindow() ? mainWindow()->windowState().testFlag(Qt::WindowMaximized) : reg_user.value("maximized", false).toBool();
-            if ( !isMaximized )
-                rect = windowRectFromViewId(opts.parent_id);
+            bool isMaximized = mainWindow() ? mainWindow()->windowState().testFlag(Qt::WindowMaximized) : reg_user.value("maximized", false).toBool();
+            QRect rect = /*isMaximized ? QRect() :*/ windowRectFromViewId(opts.parent_id);
             if ( !rect.isEmpty() )
                 rect.adjust(50,50,50,50);
-            panel_size = CWindowBase::expectedContentSize(rect, true);
-        } else {
-            m_appmanager.gotoMainWindow(size_t(m_appmanager.editorWindowFromViewId(opts.parent_id)));
-            panel_size = mainWindow()->contentSize();
-        }
 
-        CTabPanel * panel = CEditorTools::createEditorPanel(opts, panel_size);
-        if ( panel ) {
-            CAscTabData * panel_data = panel->data();
-            QRegularExpression re("^ascdesktop:\\/\\/(?:compare|merge|template)");
-
-            if ( re.match(QString::fromStdWString(panel_data->url())).hasMatch() ) {
-                 panel_data->setIsLocal(true);
-                 panel_data->setUrl("");
-            }
-
-            if ( preferOpenEditorWindow() ) {
-                CEditorWindow * editor_win = new CEditorWindow(rect, panel);
+            if (CEditorWindow * editor_win = CEditorWindow::create(rect, opts)) {
                 editor_win->show(isMaximized);
 
                 m_appmanager.m_vecEditors.push_back(size_t(editor_win));
-                if ( editor_win->isCustomWindowStyle() )
-                    m_appmanager.sendCommandTo(panel->cef(), L"window:features",
-                            Utils::stringifyJson(QJsonObject{{"skiptoparea", TOOLBTN_HEIGHT},{"singlewindow",true}}).toStdWString());
-            } else {
-//                m_appmanager.gotoMainWindow(size_t(m_appmanager.editorWindowFromViewId(opts.parent_id)));
-                mainWindow()->attachEditor(panel);
+                if ( editor_win->isCustomWindowStyle() ) {
+                    m_appmanager.sendCommandTo(editor_win->mainView()->cef(), L"window:features",
+                                               Utils::stringifyJson(QJsonObject{{"skiptoparea", TOOLBTN_HEIGHT},{"singlewindow",true}}).toStdWString());
+                }
+                return true;
             }
-
-            return true;
+        } else {
+            m_appmanager.gotoMainWindow(size_t(m_appmanager.editorWindowFromViewId(opts.parent_id)));
+            if (CTabPanel * panel = CEditorTools::createEditorPanel(opts, mainWindow()->contentSize(), mainWindow())) {
+                CAscTabData * panel_data = panel->data();
+                QRegularExpression re("^ascdesktop:\\/\\/(?:compare|merge|template)");
+                if ( re.match(QString::fromStdWString(panel_data->url())).hasMatch() ) {
+                    panel_data->setIsLocal(true);
+                    panel_data->setUrl("");
+                }
+                mainWindow()->attachEditor(panel);
+                return true;
+            }
         }
 
         return false;
