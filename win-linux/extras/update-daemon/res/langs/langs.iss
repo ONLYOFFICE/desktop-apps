@@ -1,7 +1,7 @@
 
 en.CAPTION_TEXT =ONLYOFFICE Update Service
 ru.CAPTION_TEXT =Сервис обновлений ONLYOFFICE
-ar_SA.CAPTION_TEXT =خدمة تحديث أونلي أوفيس
+ar_SA.CAPTION_TEXT =خدمة تحديث ONLYOFFICE
 de.CAPTION_TEXT =Aktualisierungsdienst von ONLYOFFICE
 es.CAPTION_TEXT =Servicio de actualización de ONLYOFFICE
 fr.CAPTION_TEXT =Service de mise à jour ONLYOFFICE
@@ -457,7 +457,7 @@ fi.MESSAGE_TEXT_ERR17 =ServiceCtrlDispatcher palautti virheen:
 hy.MESSAGE_TEXT_ERR17 =ServiceCtrlDispatcher-ը վերադարձրեց սխալը.
 ko.MESSAGE_TEXT_ERR17 =ServiceCtrlDispatcher가 오류를 반환했습니다:
 lv.MESSAGE_TEXT_ERR17 =ServiceCtrlDispatcher atgrieza kļūdu:
-nl.MESSAGE_TEXT_ERR17 =ONLYOFFICE Update Service
+nl.MESSAGE_TEXT_ERR17 =ServiceCtrlDispatcher retourneerde fout:
 pl.MESSAGE_TEXT_ERR17 =Funkcja ServiceCtrlDispatcher odesłała błąd:
 pt_PT.MESSAGE_TEXT_ERR17 =ServiceCtrlDispatcher retornou erro:
 sk.MESSAGE_TEXT_ERR17 =ServiceCtrlDispatcher vrátil chybu:
