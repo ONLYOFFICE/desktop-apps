@@ -228,7 +228,6 @@ static NSUInteger const kASTabViewCloseButtonSize = 12;
     ASCTabViewCell * tabViewCell = (ASCTabViewCell *)self.cell;
 
     if (type == ASCTabViewTypePortal) {
-        tabViewCell.activeColor = [ASCThemesController currentThemeColor:btnPortalActiveBackgroundColor];
         tabViewCell.activeColor     = [ASCThemesController currentThemeColor:btnPortalActiveBackgroundColor];
         tabViewCell.activeTextColor = [tabViewCell.activeColor isLight] ? NSColor.blackColor : NSColor.whiteColor;
     } else if (type == ASCTabViewTypeDocument) {
