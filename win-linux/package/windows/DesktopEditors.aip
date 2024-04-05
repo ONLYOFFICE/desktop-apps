@@ -255,6 +255,35 @@
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatsComponent">
     <ROW Feature="ExtendedFeature" Title="ExtendedFeature" Display="0" Level="1" Directory_="CUSTOM_PATH" Attributes="0"/>
+    <ROW Feature="FA_CSV" Feature_Parent="RegFileTypeAssociations" Title=".csv" Display="3" Level="4" Directory_="APPDIR" Attributes="0"/>
+    <ROW Feature="FA_DJVU" Feature_Parent="RegFileTypeAssociations" Title=".djvu" Display="5" Level="4" Directory_="APPDIR" Attributes="0"/>
+    <ROW Feature="FA_DOC" Feature_Parent="RegFileTypeAssociations" Title=".doc" Display="7" Level="4" Directory_="APPDIR" Attributes="0"/>
+    <ROW Feature="FA_DOCX" Feature_Parent="RegFileTypeAssociations" Title=".docx" Display="9" Level="4" Directory_="APPDIR" Attributes="0"/>
+    <ROW Feature="FA_DOCXF" Feature_Parent="RegFileTypeAssociations" Title=".docxf" Display="11" Level="4" Directory_="APPDIR" Attributes="0"/>
+    <ROW Feature="FA_DOTX" Feature_Parent="RegFileTypeAssociations" Title=".dotx" Display="13" Level="4" Directory_="APPDIR" Attributes="0"/>
+    <ROW Feature="FA_EPUB" Feature_Parent="RegFileTypeAssociations" Title=".epub" Display="15" Level="4" Directory_="APPDIR" Attributes="0"/>
+    <ROW Feature="FA_FB2" Feature_Parent="RegFileTypeAssociations" Title=".fb2" Display="17" Level="4" Directory_="APPDIR" Attributes="0"/>
+    <ROW Feature="FA_HTML" Feature_Parent="RegFileTypeAssociations" Title=".html" Display="19" Level="4" Directory_="APPDIR" Attributes="0"/>
+    <ROW Feature="FA_ODP" Feature_Parent="RegFileTypeAssociations" Title=".odp" Display="21" Level="4" Directory_="APPDIR" Attributes="0"/>
+    <ROW Feature="FA_ODS" Feature_Parent="RegFileTypeAssociations" Title=".ods" Display="23" Level="4" Directory_="APPDIR" Attributes="0"/>
+    <ROW Feature="FA_ODT" Feature_Parent="RegFileTypeAssociations" Title=".odt" Display="25" Level="4" Directory_="APPDIR" Attributes="0"/>
+    <ROW Feature="FA_OFORM" Feature_Parent="RegFileTypeAssociations" Title=".oform" Display="27" Level="4" Directory_="APPDIR" Attributes="0"/>
+    <ROW Feature="FA_OTP" Feature_Parent="RegFileTypeAssociations" Title=".otp" Display="29" Level="4" Directory_="APPDIR" Attributes="0"/>
+    <ROW Feature="FA_OTS" Feature_Parent="RegFileTypeAssociations" Title=".ots" Display="31" Level="4" Directory_="APPDIR" Attributes="0"/>
+    <ROW Feature="FA_OTT" Feature_Parent="RegFileTypeAssociations" Title=".ott" Display="33" Level="4" Directory_="APPDIR" Attributes="0"/>
+    <ROW Feature="FA_PDF" Feature_Parent="RegFileTypeAssociations" Title=".pdf" Display="35" Level="4" Directory_="APPDIR" Attributes="0"/>
+    <ROW Feature="FA_POTX" Feature_Parent="RegFileTypeAssociations" Title=".potx" Display="37" Level="4" Directory_="APPDIR" Attributes="0"/>
+    <ROW Feature="FA_PPS" Feature_Parent="RegFileTypeAssociations" Title=".pps" Display="39" Level="4" Directory_="APPDIR" Attributes="0"/>
+    <ROW Feature="FA_PPSX" Feature_Parent="RegFileTypeAssociations" Title=".ppsx" Display="41" Level="4" Directory_="APPDIR" Attributes="0"/>
+    <ROW Feature="FA_PPT" Feature_Parent="RegFileTypeAssociations" Title=".ppt" Display="43" Level="4" Directory_="APPDIR" Attributes="0"/>
+    <ROW Feature="FA_PPTX" Feature_Parent="RegFileTypeAssociations" Title=".pptx" Display="45" Level="4" Directory_="APPDIR" Attributes="0"/>
+    <ROW Feature="FA_RTF" Feature_Parent="RegFileTypeAssociations" Title=".rtf" Display="47" Level="4" Directory_="APPDIR" Attributes="0"/>
+    <ROW Feature="FA_TXT" Feature_Parent="RegFileTypeAssociations" Title=".txt" Display="49" Level="4" Directory_="APPDIR" Attributes="0"/>
+    <ROW Feature="FA_XLS" Feature_Parent="RegFileTypeAssociations" Title=".xls" Display="51" Level="4" Directory_="APPDIR" Attributes="0"/>
+    <ROW Feature="FA_XLSX" Feature_Parent="RegFileTypeAssociations" Title=".xlsx" Display="53" Level="4" Directory_="APPDIR" Attributes="0"/>
+    <ROW Feature="FA_XLTX" Feature_Parent="RegFileTypeAssociations" Title=".xltx" Display="55" Level="4" Directory_="APPDIR" Attributes="0"/>
+    <ROW Feature="FA_XML" Feature_Parent="RegFileTypeAssociations" Title=".xml" Display="57" Level="4" Directory_="APPDIR" Attributes="0"/>
+    <ROW Feature="FA_XPS" Feature_Parent="RegFileTypeAssociations" Title=".xps" Display="59" Level="4" Directory_="APPDIR" Attributes="0"/>
     <ROW Feature="Files" Feature_Parent="MainFeature" Title="Files" Display="5" Level="1" Directory_="APPDIR" Attributes="0"/>
     <ROW Feature="MainFeature" Title="MainFeature" Display="0" Level="1" Directory_="APPDIR" Attributes="0"/>
     <ROW Feature="MicrosoftVisualC_2015_x64" Title="Microsoft Visual C++ 2015-2022 Redistributable (x64)" Description="Microsoft Visual C++ 2015-2022 Redistributable (x64)" Display="10" Level="1" Attributes="0" Builds="MsiBuild64"/>
@@ -262,35 +291,6 @@
     <ROW Feature="RegFileTypeAssociations" Title="File Type Associations" Display="6" Level="1" Directory_="APPDIR" Attributes="0"/>
     <ROW Feature="Registry" Feature_Parent="MainFeature" Title="Registry" Display="7" Level="1" Directory_="APPDIR" Attributes="0"/>
     <ROW Feature="UpdateService" Title="Update Service" Display="2" Level="4" Directory_="APPDIR" Attributes="0"/>
-    <ROW Feature="ft_fa_ext__csv" Feature_Parent="RegFileTypeAssociations" Title=".csv" Display="3" Level="4" Directory_="APPDIR" Attributes="0"/>
-    <ROW Feature="ft_fa_ext__djvu" Feature_Parent="RegFileTypeAssociations" Title=".djvu" Display="5" Level="4" Directory_="APPDIR" Attributes="0"/>
-    <ROW Feature="ft_fa_ext__doc" Feature_Parent="RegFileTypeAssociations" Title=".doc" Display="7" Level="4" Directory_="APPDIR" Attributes="0"/>
-    <ROW Feature="ft_fa_ext__docx" Feature_Parent="RegFileTypeAssociations" Title=".docx" Display="9" Level="4" Directory_="APPDIR" Attributes="0"/>
-    <ROW Feature="ft_fa_ext__docxf" Feature_Parent="RegFileTypeAssociations" Title=".docxf" Display="11" Level="4" Directory_="APPDIR" Attributes="0"/>
-    <ROW Feature="ft_fa_ext__dotx" Feature_Parent="RegFileTypeAssociations" Title=".dotx" Display="13" Level="4" Directory_="APPDIR" Attributes="0"/>
-    <ROW Feature="ft_fa_ext__epub" Feature_Parent="RegFileTypeAssociations" Title=".epub" Display="15" Level="4" Directory_="APPDIR" Attributes="0"/>
-    <ROW Feature="ft_fa_ext__fb2" Feature_Parent="RegFileTypeAssociations" Title=".fb2" Display="17" Level="4" Directory_="APPDIR" Attributes="0"/>
-    <ROW Feature="ft_fa_ext__html" Feature_Parent="RegFileTypeAssociations" Title=".html" Display="19" Level="4" Directory_="APPDIR" Attributes="0"/>
-    <ROW Feature="ft_fa_ext__odp" Feature_Parent="RegFileTypeAssociations" Title=".odp" Display="21" Level="4" Directory_="APPDIR" Attributes="0"/>
-    <ROW Feature="ft_fa_ext__ods" Feature_Parent="RegFileTypeAssociations" Title=".ods" Display="23" Level="4" Directory_="APPDIR" Attributes="0"/>
-    <ROW Feature="ft_fa_ext__odt" Feature_Parent="RegFileTypeAssociations" Title=".odt" Display="25" Level="4" Directory_="APPDIR" Attributes="0"/>
-    <ROW Feature="ft_fa_ext__oform" Feature_Parent="RegFileTypeAssociations" Title=".oform" Display="27" Level="4" Directory_="APPDIR" Attributes="0"/>
-    <ROW Feature="ft_fa_ext__otp" Feature_Parent="RegFileTypeAssociations" Title=".otp" Display="29" Level="4" Directory_="APPDIR" Attributes="0"/>
-    <ROW Feature="ft_fa_ext__ots" Feature_Parent="RegFileTypeAssociations" Title=".ots" Display="31" Level="4" Directory_="APPDIR" Attributes="0"/>
-    <ROW Feature="ft_fa_ext__ott" Feature_Parent="RegFileTypeAssociations" Title=".ott" Display="33" Level="4" Directory_="APPDIR" Attributes="0"/>
-    <ROW Feature="ft_fa_ext__pdf" Feature_Parent="RegFileTypeAssociations" Title=".pdf" Display="35" Level="4" Directory_="APPDIR" Attributes="0"/>
-    <ROW Feature="ft_fa_ext__potx" Feature_Parent="RegFileTypeAssociations" Title=".potx" Display="37" Level="4" Directory_="APPDIR" Attributes="0"/>
-    <ROW Feature="ft_fa_ext__pps" Feature_Parent="RegFileTypeAssociations" Title=".pps" Display="39" Level="4" Directory_="APPDIR" Attributes="0"/>
-    <ROW Feature="ft_fa_ext__ppsx" Feature_Parent="RegFileTypeAssociations" Title=".ppsx" Display="41" Level="4" Directory_="APPDIR" Attributes="0"/>
-    <ROW Feature="ft_fa_ext__ppt" Feature_Parent="RegFileTypeAssociations" Title=".ppt" Display="43" Level="4" Directory_="APPDIR" Attributes="0"/>
-    <ROW Feature="ft_fa_ext__pptx" Feature_Parent="RegFileTypeAssociations" Title=".pptx" Display="45" Level="4" Directory_="APPDIR" Attributes="0"/>
-    <ROW Feature="ft_fa_ext__rtf" Feature_Parent="RegFileTypeAssociations" Title=".rtf" Display="47" Level="4" Directory_="APPDIR" Attributes="0"/>
-    <ROW Feature="ft_fa_ext__txt" Feature_Parent="RegFileTypeAssociations" Title=".txt" Display="49" Level="4" Directory_="APPDIR" Attributes="0"/>
-    <ROW Feature="ft_fa_ext__xls" Feature_Parent="RegFileTypeAssociations" Title=".xls" Display="51" Level="4" Directory_="APPDIR" Attributes="0"/>
-    <ROW Feature="ft_fa_ext__xlsx" Feature_Parent="RegFileTypeAssociations" Title=".xlsx" Display="53" Level="4" Directory_="APPDIR" Attributes="0"/>
-    <ROW Feature="ft_fa_ext__xltx" Feature_Parent="RegFileTypeAssociations" Title=".xltx" Display="55" Level="4" Directory_="APPDIR" Attributes="0"/>
-    <ROW Feature="ft_fa_ext__xml" Feature_Parent="RegFileTypeAssociations" Title=".xml" Display="57" Level="4" Directory_="APPDIR" Attributes="0"/>
-    <ROW Feature="ft_fa_ext__xps" Feature_Parent="RegFileTypeAssociations" Title=".xps" Display="59" Level="4" Directory_="APPDIR" Attributes="0"/>
     <ATTRIBUTE name="CurrentFeature" value="MainFeature"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFilesComponent">
@@ -440,35 +440,35 @@
     <ROW Feature_="ExtendedFeature" Level="4" Condition="GALLERY &lt;&gt; 1 AND PLAYER &lt;&gt; 1"/>
     <ROW Feature_="UpdateService" Level="1" Condition="UPDATE_SERVICE = 1"/>
     <ROW Feature_="RegFileTypeAssociations" Level="4" Condition="REGISTER_NONE = 1"/>
-    <ROW Feature_="ft_fa_ext__csv" Level="1" Condition="REGISTER_CSV = 1"/>
-    <ROW Feature_="ft_fa_ext__djvu" Level="1" Condition="REGISTER_DJVU = 1"/>
-    <ROW Feature_="ft_fa_ext__doc" Level="1" Condition="REGISTER_DOC = 1"/>
-    <ROW Feature_="ft_fa_ext__docx" Level="1" Condition="REGISTER_DOCX = 1"/>
-    <ROW Feature_="ft_fa_ext__docxf" Level="1" Condition="FORMS = 1 AND REGISTER_DOCXF = 1"/>
-    <ROW Feature_="ft_fa_ext__dotx" Level="1" Condition="REGISTER_DOTX = 1"/>
-    <ROW Feature_="ft_fa_ext__epub" Level="1" Condition="REGISTER_EPUB = 1"/>
-    <ROW Feature_="ft_fa_ext__fb2" Level="1" Condition="REGISTER_FB2 = 1"/>
-    <ROW Feature_="ft_fa_ext__html" Level="1" Condition="REGISTER_HTML = 1"/>
-    <ROW Feature_="ft_fa_ext__odp" Level="1" Condition="REGISTER_ODP = 1"/>
-    <ROW Feature_="ft_fa_ext__ods" Level="1" Condition="REGISTER_ODS = 1"/>
-    <ROW Feature_="ft_fa_ext__odt" Level="1" Condition="REGISTER_ODT = 1"/>
-    <ROW Feature_="ft_fa_ext__oform" Level="1" Condition="FORMS = 1 AND REGISTER_OFORM = 1"/>
-    <ROW Feature_="ft_fa_ext__otp" Level="1" Condition="REGISTER_OTP = 1"/>
-    <ROW Feature_="ft_fa_ext__ots" Level="1" Condition="REGISTER_OTS = 1"/>
-    <ROW Feature_="ft_fa_ext__ott" Level="1" Condition="REGISTER_OTT = 1"/>
-    <ROW Feature_="ft_fa_ext__pdf" Level="1" Condition="REGISTER_PDF = 1"/>
-    <ROW Feature_="ft_fa_ext__potx" Level="1" Condition="REGISTER_POTX = 1"/>
-    <ROW Feature_="ft_fa_ext__pps" Level="1" Condition="REGISTER_PPS = 1"/>
-    <ROW Feature_="ft_fa_ext__ppsx" Level="1" Condition="REGISTER_PPSX = 1"/>
-    <ROW Feature_="ft_fa_ext__ppt" Level="1" Condition="REGISTER_PPT = 1"/>
-    <ROW Feature_="ft_fa_ext__pptx" Level="1" Condition="REGISTER_PPTX = 1"/>
-    <ROW Feature_="ft_fa_ext__rtf" Level="1" Condition="REGISTER_RTF = 1"/>
-    <ROW Feature_="ft_fa_ext__txt" Level="1" Condition="REGISTER_TXT = 1"/>
-    <ROW Feature_="ft_fa_ext__xls" Level="1" Condition="REGISTER_XLS = 1"/>
-    <ROW Feature_="ft_fa_ext__xlsx" Level="1" Condition="REGISTER_XLSX = 1"/>
-    <ROW Feature_="ft_fa_ext__xltx" Level="1" Condition="REGISTER_XLTX = 1"/>
-    <ROW Feature_="ft_fa_ext__xml" Level="1" Condition="REGISTER_XML = 1"/>
-    <ROW Feature_="ft_fa_ext__xps" Level="1" Condition="REGISTER_XPS = 1"/>
+    <ROW Feature_="FA_CSV" Level="1" Condition="REGISTER_CSV = 1"/>
+    <ROW Feature_="FA_DJVU" Level="1" Condition="REGISTER_DJVU = 1"/>
+    <ROW Feature_="FA_DOC" Level="1" Condition="REGISTER_DOC = 1"/>
+    <ROW Feature_="FA_DOCX" Level="1" Condition="REGISTER_DOCX = 1"/>
+    <ROW Feature_="FA_DOCXF" Level="1" Condition="FORMS = 1 AND REGISTER_DOCXF = 1"/>
+    <ROW Feature_="FA_DOTX" Level="1" Condition="REGISTER_DOTX = 1"/>
+    <ROW Feature_="FA_EPUB" Level="1" Condition="REGISTER_EPUB = 1"/>
+    <ROW Feature_="FA_FB2" Level="1" Condition="REGISTER_FB2 = 1"/>
+    <ROW Feature_="FA_HTML" Level="1" Condition="REGISTER_HTML = 1"/>
+    <ROW Feature_="FA_ODP" Level="1" Condition="REGISTER_ODP = 1"/>
+    <ROW Feature_="FA_ODS" Level="1" Condition="REGISTER_ODS = 1"/>
+    <ROW Feature_="FA_ODT" Level="1" Condition="REGISTER_ODT = 1"/>
+    <ROW Feature_="FA_OFORM" Level="1" Condition="FORMS = 1 AND REGISTER_OFORM = 1"/>
+    <ROW Feature_="FA_OTP" Level="1" Condition="REGISTER_OTP = 1"/>
+    <ROW Feature_="FA_OTS" Level="1" Condition="REGISTER_OTS = 1"/>
+    <ROW Feature_="FA_OTT" Level="1" Condition="REGISTER_OTT = 1"/>
+    <ROW Feature_="FA_PDF" Level="1" Condition="REGISTER_PDF = 1"/>
+    <ROW Feature_="FA_POTX" Level="1" Condition="REGISTER_POTX = 1"/>
+    <ROW Feature_="FA_PPS" Level="1" Condition="REGISTER_PPS = 1"/>
+    <ROW Feature_="FA_PPSX" Level="1" Condition="REGISTER_PPSX = 1"/>
+    <ROW Feature_="FA_PPT" Level="1" Condition="REGISTER_PPT = 1"/>
+    <ROW Feature_="FA_PPTX" Level="1" Condition="REGISTER_PPTX = 1"/>
+    <ROW Feature_="FA_RTF" Level="1" Condition="REGISTER_RTF = 1"/>
+    <ROW Feature_="FA_TXT" Level="1" Condition="REGISTER_TXT = 1"/>
+    <ROW Feature_="FA_XLS" Level="1" Condition="REGISTER_XLS = 1"/>
+    <ROW Feature_="FA_XLSX" Level="1" Condition="REGISTER_XLSX = 1"/>
+    <ROW Feature_="FA_XLTX" Level="1" Condition="REGISTER_XLTX = 1"/>
+    <ROW Feature_="FA_XML" Level="1" Condition="REGISTER_XML = 1"/>
+    <ROW Feature_="FA_XPS" Level="1" Condition="REGISTER_XPS = 1"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiControlComponent">
     <ROW Dialog_="AdminBrowseDlg" Control="OK" Type="PushButton" X="304" Y="243" Width="56" Height="17" Attributes="3" Text="[ButtonText_OK]" Order="300" TextLocId="-" MsiKey="AdminBrowseDlg#OK"/>
@@ -839,35 +839,35 @@
     <ROW Feature_="MicrosoftVisualC_2015_x64" Component_="MicrosoftVisualC_2015_x64"/>
     <ROW Feature_="MicrosoftVisualC_2015_x86" Component_="MicrosoftVisualC_2015_x86"/>
     <ROW Feature_="UpdateService" Component_="c_exe_updatesvc"/>
-    <ROW Feature_="ft_fa_ext__csv" Component_="c_reg_fa_ext__csv"/>
-    <ROW Feature_="ft_fa_ext__djvu" Component_="c_reg_fa_ext__djvu"/>
-    <ROW Feature_="ft_fa_ext__doc" Component_="c_reg_fa_ext__doc"/>
-    <ROW Feature_="ft_fa_ext__docx" Component_="c_reg_fa_ext__docx"/>
-    <ROW Feature_="ft_fa_ext__docxf" Component_="c_reg_fa_ext__docxf"/>
-    <ROW Feature_="ft_fa_ext__dotx" Component_="c_reg_fa_ext__dotx"/>
-    <ROW Feature_="ft_fa_ext__epub" Component_="c_reg_fa_ext__epub"/>
-    <ROW Feature_="ft_fa_ext__fb2" Component_="c_reg_fa_ext__fb2"/>
-    <ROW Feature_="ft_fa_ext__html" Component_="c_reg_fa_ext__html"/>
-    <ROW Feature_="ft_fa_ext__odp" Component_="c_reg_fa_ext__odp"/>
-    <ROW Feature_="ft_fa_ext__ods" Component_="c_reg_fa_ext__ods"/>
-    <ROW Feature_="ft_fa_ext__odt" Component_="c_reg_fa_ext__odt"/>
-    <ROW Feature_="ft_fa_ext__oform" Component_="c_reg_fa_ext__oform"/>
-    <ROW Feature_="ft_fa_ext__otp" Component_="c_reg_fa_ext__otp"/>
-    <ROW Feature_="ft_fa_ext__ots" Component_="c_reg_fa_ext__ots"/>
-    <ROW Feature_="ft_fa_ext__ott" Component_="c_reg_fa_ext__ott"/>
-    <ROW Feature_="ft_fa_ext__pdf" Component_="c_reg_fa_ext__pdf"/>
-    <ROW Feature_="ft_fa_ext__potx" Component_="c_reg_fa_ext__potx"/>
-    <ROW Feature_="ft_fa_ext__pps" Component_="c_reg_fa_ext__pps"/>
-    <ROW Feature_="ft_fa_ext__ppsx" Component_="c_reg_fa_ext__ppsx"/>
-    <ROW Feature_="ft_fa_ext__ppt" Component_="c_reg_fa_ext__ppt"/>
-    <ROW Feature_="ft_fa_ext__pptx" Component_="c_reg_fa_ext__pptx"/>
-    <ROW Feature_="ft_fa_ext__rtf" Component_="c_reg_fa_ext__rtf"/>
-    <ROW Feature_="ft_fa_ext__txt" Component_="c_reg_fa_ext__txt"/>
-    <ROW Feature_="ft_fa_ext__xls" Component_="c_reg_fa_ext__xls"/>
-    <ROW Feature_="ft_fa_ext__xlsx" Component_="c_reg_fa_ext__xlsx"/>
-    <ROW Feature_="ft_fa_ext__xltx" Component_="c_reg_fa_ext__xltx"/>
-    <ROW Feature_="ft_fa_ext__xml" Component_="c_reg_fa_ext__xml"/>
-    <ROW Feature_="ft_fa_ext__xps" Component_="c_reg_fa_ext__xps"/>
+    <ROW Feature_="FA_CSV" Component_="c_reg_fa_ext__csv"/>
+    <ROW Feature_="FA_DJVU" Component_="c_reg_fa_ext__djvu"/>
+    <ROW Feature_="FA_DOC" Component_="c_reg_fa_ext__doc"/>
+    <ROW Feature_="FA_DOCX" Component_="c_reg_fa_ext__docx"/>
+    <ROW Feature_="FA_DOCXF" Component_="c_reg_fa_ext__docxf"/>
+    <ROW Feature_="FA_DOTX" Component_="c_reg_fa_ext__dotx"/>
+    <ROW Feature_="FA_EPUB" Component_="c_reg_fa_ext__epub"/>
+    <ROW Feature_="FA_FB2" Component_="c_reg_fa_ext__fb2"/>
+    <ROW Feature_="FA_HTML" Component_="c_reg_fa_ext__html"/>
+    <ROW Feature_="FA_ODP" Component_="c_reg_fa_ext__odp"/>
+    <ROW Feature_="FA_ODS" Component_="c_reg_fa_ext__ods"/>
+    <ROW Feature_="FA_ODT" Component_="c_reg_fa_ext__odt"/>
+    <ROW Feature_="FA_OFORM" Component_="c_reg_fa_ext__oform"/>
+    <ROW Feature_="FA_OTP" Component_="c_reg_fa_ext__otp"/>
+    <ROW Feature_="FA_OTS" Component_="c_reg_fa_ext__ots"/>
+    <ROW Feature_="FA_OTT" Component_="c_reg_fa_ext__ott"/>
+    <ROW Feature_="FA_PDF" Component_="c_reg_fa_ext__pdf"/>
+    <ROW Feature_="FA_POTX" Component_="c_reg_fa_ext__potx"/>
+    <ROW Feature_="FA_PPS" Component_="c_reg_fa_ext__pps"/>
+    <ROW Feature_="FA_PPSX" Component_="c_reg_fa_ext__ppsx"/>
+    <ROW Feature_="FA_PPT" Component_="c_reg_fa_ext__ppt"/>
+    <ROW Feature_="FA_PPTX" Component_="c_reg_fa_ext__pptx"/>
+    <ROW Feature_="FA_RTF" Component_="c_reg_fa_ext__rtf"/>
+    <ROW Feature_="FA_TXT" Component_="c_reg_fa_ext__txt"/>
+    <ROW Feature_="FA_XLS" Component_="c_reg_fa_ext__xls"/>
+    <ROW Feature_="FA_XLSX" Component_="c_reg_fa_ext__xlsx"/>
+    <ROW Feature_="FA_XLTX" Component_="c_reg_fa_ext__xltx"/>
+    <ROW Feature_="FA_XML" Component_="c_reg_fa_ext__xml"/>
+    <ROW Feature_="FA_XPS" Component_="c_reg_fa_ext__xps"/>
     <ROW Feature_="Registry" Component_="c_reg_fa_progid__csv"/>
     <ROW Feature_="Registry" Component_="c_reg_fa_progid__djvu"/>
     <ROW Feature_="Registry" Component_="c_reg_fa_progid__doc"/>
