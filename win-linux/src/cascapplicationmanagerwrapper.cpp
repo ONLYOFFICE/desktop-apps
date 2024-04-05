@@ -114,6 +114,29 @@ std::wstring CAscApplicationManagerWrapper::GetExternalSchemeName()
     return !scheme.empty() ? scheme.back() != L':' ? scheme + L":" : scheme : L"";
 }
 
+void CAscApplicationManagerWrapper::setHasFrameFeature(CCefView *cef, const wstring &param, int sid)
+{
+    if (param.find(L"framesize") != std::wstring::npos) {
+        if (CCefViewWidgetImpl * _impl = cef->GetWidgetImpl()) {
+            QJsonParseError err;
+            const QJsonDocument doc = QJsonDocument::fromJson(QString::fromStdWString(param).toUtf8(), &err);
+            if ( err.error == QJsonParseError::NoError ) {
+                const QJsonObject obj = doc.object()["framesize"].toObject();
+                int _frame_w = obj["width"].toInt(),
+                    _frame_h = obj["height"].toInt();
+
+                QCefView * view = static_cast<QCefView *>(_impl);
+                const QSize s = view->size() / Utils::getScreenDpiRatioByWidget(view);
+                std::wstring feature = L"{\"hasframe\":";
+                feature += ( abs(s.width() - _frame_w) > 1 || abs(s.height() - _frame_h) > 1 ) ? L"true}" : L"false}";
+                if ( m_receivers.find(sid) != m_receivers.end() )
+                    m_receivers[sid]->onWebAppsFeatures(sid, feature);
+                else m_pMainWindow->onWebAppsFeatures(sid, feature);
+            }
+        }
+    }
+}
+
 void CAscApplicationManagerWrapper::OnEvent(CAscCefMenuEvent * event)
 {
     if ( event->m_nType == ASC_MENU_EVENT_TYPE_CEF_EXECUTE_COMMAND ) {
@@ -212,32 +235,10 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
 
                 if ( !((pData->get_Param()).find(L"fillform") == std::wstring::npos) ) {
                     if ( m_receivers.find(sid) != m_receivers.end() )
-                        m_receivers[sid]->onWebAppsFeatures(sid,L"\"uitype\":\"fillform\"");
+                        m_receivers[sid]->onWebAppsFeatures(sid,L"{\"uitype\":\"fillform\"}");
                 }
 
-                if ( !((pData->get_Param()).find(L"framesize") == std::wstring::npos) ) {
-                    CCefViewWidgetImpl * _impl = ptr->GetWidgetImpl();
-                    if ( _impl ) {
-                        QJsonParseError jerror;
-                        const QJsonDocument jdoc = QJsonDocument::fromJson(QString::fromStdWString(pData->get_Param()).toUtf8(), &jerror);
-
-                        if( jerror.error == QJsonParseError::NoError ) {
-                            const QJsonObject obj = jdoc.object()["framesize"].toObject();
-                            int _frame_w = obj["width"].toInt(),
-                                _frame_h = obj["height"].toInt();
-
-                            QCefView * view = static_cast<QCefView *>(_impl);
-                            const QSize s = view->geometry().size() / Utils::getScreenDpiRatioByWidget(view);
-
-                            if ( abs(s.width() - _frame_w) > 1 || abs(s.height() - _frame_h) > 1 ) {
-                                const std::wstring feature = L"\"hasframe\":true";
-                                if ( m_receivers.find(sid) != m_receivers.end() )
-                                    m_receivers[sid]->onWebAppsFeatures(sid, feature);
-                                else m_pMainWindow->onWebAppsFeatures(sid, feature);
-                            }
-                        }
-                    }
-                }
+                setHasFrameFeature(ptr, pData->get_Param(), sid);
 
                 auto * editor = editorWindowFromViewId(event->get_SenderId());
                 if ( editor && editor->isCustomWindowStyle() ) {
@@ -253,6 +254,12 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
                 }
             }
             return true;
+        } else
+        if ( cmd.compare(L"webapps:features") == 0 ) {
+            int sid = event->get_SenderId();
+            if (CCefView * ptr = GetViewById(sid))
+                setHasFrameFeature(ptr, pData->get_Param(), sid);
+            return false;
         } else
         if ( cmd.compare(L"portal:login") == 0 ) {
             AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, L"portal:login", pData->get_Param());
@@ -801,7 +808,7 @@ CMainWindow * CAscApplicationManagerWrapper::prepareMainWindow(const QRect& r)
     if ( r.isEmpty() )
         _start_rect = reg_user.value("position").toRect();
 
-    QPointer<QCefView> _startPanel = AscAppManager::createViewer(nullptr);
+    QPointer<QCefView> _startPanel = AscAppManager::createViewer(nullptr, CWindowBase::expectedContentSize(_start_rect));
     _startPanel->Create(&_app, cvwtSimple);
     _startPanel->setObjectName("startPanel");
     //_startPanel->resize(_start_rect.width(), _start_rect.height());
@@ -966,27 +973,26 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
         //    open_in_new_window = std::find(vargs.begin(), vargs.end(), L"--force-use-tab") == std::end(vargs);
         //
 
-        CTabPanel * panel = CEditorTools::createEditorPanel(open_opts);
-        if ( panel ) {
-            if ( open_in_new_window ) {
-                CEditorWindow * editor_win = new CEditorWindow(_start_rect, panel);
-                bool isMaximized = mainWindow() ? mainWindow()->windowState().testFlag(Qt::WindowMaximized) :
-                                                      reg_user.value("maximized", false).toBool();
+        if ( open_in_new_window ) {
+            if (CEditorWindow * editor_win = CEditorWindow::create(_start_rect, open_opts)) {
+                bool isMaximized = mainWindow() ? mainWindow()->windowState().testFlag(Qt::WindowMaximized) : reg_user.value("maximized", false).toBool();
                 editor_win->show(isMaximized);
                 editor_win->bringToTop();
 
                 _app.m_vecEditors.push_back(size_t(editor_win));
                 if ( editor_win->isCustomWindowStyle() )
-                    sendCommandTo(panel->cef(), L"window:features",
-                              Utils::stringifyJson(QJsonObject{{"skiptoparea", TOOLBTN_HEIGHT},{"singlewindow",true}}).toStdWString());
-            } else {
-                if ( !_app.m_pMainWindow ) {
-                    _app.m_pMainWindow = _app.prepareMainWindow(_start_rect);
-                    _app.m_pMainWindow->show(reg_user.value("maximized", false).toBool());
-                } else
-                if (!_app.m_pMainWindow->isVisible())
-                    _app.m_pMainWindow->show(_app.m_pMainWindow->windowState().testFlag(Qt::WindowMaximized));
+                    sendCommandTo(editor_win->mainView()->cef(), L"window:features",
+                                  Utils::stringifyJson(QJsonObject{{"skiptoparea", TOOLBTN_HEIGHT},{"singlewindow",true}}).toStdWString());
+            }
+        } else {
+            if ( !_app.m_pMainWindow ) {
+                _app.m_pMainWindow = _app.prepareMainWindow(_start_rect);
+                _app.m_pMainWindow->show(reg_user.value("maximized", false).toBool());
+            } else
+            if (!_app.m_pMainWindow->isVisible())
+                _app.m_pMainWindow->show(_app.m_pMainWindow->windowState().testFlag(Qt::WindowMaximized));
 
+            if (CTabPanel * panel = CEditorTools::createEditorPanel(open_opts, _app.m_pMainWindow->contentSize(), _app.m_pMainWindow)) {
                 _app.mainWindow()->attachEditor(panel);
                 QTimer::singleShot(100, &_app, [&]{
                     _app.mainWindow()->bringToTop();
@@ -1265,9 +1271,6 @@ CPresenterWindow * CAscApplicationManagerWrapper::createReporterWindow(void * da
     CAscReporterData * pCreateData = reinterpret_cast<CAscReporterData *>(pData->get_Data());
     pData->put_Data(NULL);
 
-    QCefView * pView = createViewer(NULL);
-    pView->CreateReporter(this, pCreateData);
-
     QString _doc_name;
     QWindow *wnd = nullptr;
     if ( m_pMainWindow && m_pMainWindow->holdView(parentid) ) {
@@ -1298,6 +1301,9 @@ CPresenterWindow * CAscApplicationManagerWrapper::createReporterWindow(void * da
 
     QRect _window_rect{QPoint(0,0), _saved_rect.size()};
     _window_rect.moveCenter(_scr_rect.center());
+
+    QCefView * pView = createViewer(nullptr, CWindowBase::expectedContentSize(_window_rect));
+    pView->CreateReporter(this, pCreateData);
 
     CPresenterWindow * reporterWindow = new CPresenterWindow(_window_rect, tr("Presenter View") + " - " + _doc_name, pView);
     m_winsReporter[pView->GetCefView()->GetId()] = reporterWindow;
@@ -1934,12 +1940,12 @@ bool CAscApplicationManagerWrapper::canAppClose()
     return true;
 }
 
-QCefView * CAscApplicationManagerWrapper::createViewer(QWidget * parent)
+QCefView * CAscApplicationManagerWrapper::createViewer(QWidget * parent, const QSize& size)
 {
     APP_CAST(_app);
 
     ++_app.m_countViews;
-    return _app.m_private->createView(parent);
+    return _app.m_private->createView(parent, size);
 }
 
 void CAscApplicationManagerWrapper::destroyViewer(int id)

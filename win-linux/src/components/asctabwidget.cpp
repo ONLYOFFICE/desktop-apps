@@ -115,8 +115,12 @@ auto createTabPanel(QWidget * parent, CTabPanel * panel = nullptr) -> QWidget * 
     layout->setSpacing(0);
     layout->setContentsMargins(0,0,0,0);
     panelwidget->setLayout(layout);
-    panelwidget->layout()->addWidget(panel ? panel : new CTabPanel);
-
+    if (!panel) {
+        // workaround for determining the size of a CAscTabWidget that does not contain widgets
+        CMainWindow *w = parent ? qobject_cast<CMainWindow*>(parent->topLevelWidget()) : nullptr;
+        panel = new CTabPanel(nullptr, w ? w->contentSize() : QSize());
+    }
+    panelwidget->layout()->addWidget(panel);
     return panelwidget;
 }
 
@@ -152,7 +156,7 @@ CAscTabWidget::CAscTabWidget(QWidget *parent, CTabBar *_pBar)
 
         const CTabPanel * _panel = panel(index);
 
-        if ( _panel->data()->viewType() == cvwtEditor ) {
+        if ( _panel && _panel->data()->viewType() == cvwtEditor ) {
             CTabUndockEvent event(index);
             QObject * obj = qobject_cast<QObject*>(&AscAppManager::getInstance());
             if ( QApplication::sendEvent(obj, &event) && event.isAccepted() ) {

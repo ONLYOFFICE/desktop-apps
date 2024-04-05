@@ -72,19 +72,10 @@ CWindowBase::CWindowBase(const QRect& rect)
     , m_windowActivated(false)
 {
     setWindowIcon(Utils::appIcon());
-    if ( !rect.isEmpty() ) {
-        m_dpiRatio = Utils::getScreenDpiRatio(rect.topLeft());
-        m_window_rect = rect;
-    } else {
-        QScreen * _screen = QApplication::primaryScreen();
-        m_dpiRatio = Utils::getScreenDpiRatio(_screen->geometry().topLeft());
-        m_window_rect = QRect(QPoint(100, 100)*m_dpiRatio, MAIN_WINDOW_DEFAULT_SIZE * m_dpiRatio);
-    }
-    QRect _screen_size = Utils::getScreenGeometry(m_window_rect.topLeft());
-    if (_screen_size.intersects(m_window_rect))
-        m_window_rect = _screen_size.intersected(m_window_rect);
-    else
-        m_window_rect = QRect(QPoint(100, 100)*m_dpiRatio, MAIN_WINDOW_DEFAULT_SIZE * m_dpiRatio);
+    m_window_rect = startRect(rect, m_dpiRatio);
+#ifdef __linux__
+    setGeometry(m_window_rect); // for Windows is set in CWindowPlatform
+#endif
 }
 
 CWindowBase::~CWindowBase()
@@ -93,6 +84,27 @@ CWindowBase::~CWindowBase()
 }
 
 /** Public **/
+
+QRect CWindowBase::startRect(const QRect &rc, double &dpi)
+{
+    dpi = Utils::getScreenDpiRatio(rc.isEmpty() ? qApp->primaryScreen()->geometry().topLeft() : rc.topLeft());
+    QRect def_rc = QRect(QPoint(100, 100) * dpi, MAIN_WINDOW_DEFAULT_SIZE * dpi),
+          out_rc = rc.isEmpty() ? def_rc : rc,
+          scr_rc = Utils::getScreenGeometry(out_rc.topLeft());
+    return scr_rc.intersects(out_rc) ? scr_rc.intersected(out_rc) : def_rc;
+}
+
+QSize CWindowBase::expectedContentSize(const QRect &rc, bool extended)
+{
+    double dpi = 1.0;
+    QRect win_rc = startRect(rc, dpi);
+#ifdef _WIN32
+    int brd = Utils::getWinVersion() < Utils::WinVer::Win10 ? MAIN_WINDOW_BORDER_WIDTH * dpi : 0;
+#else
+    int brd = MAIN_WINDOW_BORDER_WIDTH * dpi;
+#endif
+    return win_rc.adjusted(brd, extended ? brd : TITLE_HEIGHT * dpi + brd, -brd, -brd).size();
+}
 
 QWidget * CWindowBase::handle() const
 {
@@ -113,15 +125,30 @@ void CWindowBase::updateScaling(bool resize)
     }
 }
 
-void CWindowBase::setWindowColors(const QColor& background, const QColor& border)
+void CWindowBase::setWindowColors(const QColor& background, const QColor& border, bool isActive)
 {
     m_brdColor = border;
-    setStyleSheet(QString("QMainWindow{border:1px solid %1;"
+    m_bkgColor = background;
 #ifdef _WIN32
-                          "border-bottom:2px solid %1;"
+    QString css;
+    if (Utils::getWinVersion() <= Utils::WinVer::Win7) {
+        css = QString("QMainWindow{background-color: %1;}").arg(background.name());
+    } else
+    if (Utils::getWinVersion() < Utils::WinVer::Win10) {
+        css = QString("QMainWindow{border:1px solid %1; background-color: %2;}").arg(border.name(), background.name());
+    } else
+    if (Utils::getWinVersion() == Utils::WinVer::Win10) {
+        int brdWidth = 0;
+        SystemParametersInfo(SPI_GETBORDER, 0, &brdWidth, 0);
+        QColor brdColor = WindowHelper::getColorizationColor(isActive);
+        css = QString("QMainWindow{border-top: %1px solid %2; background-color: %3;}").arg(QString::number(brdWidth), brdColor.name(), background.name());
+    } else {
+        css = QString("QMainWindow{background-color: %1;}").arg(background.name());
+    }
+#else
+    QString css = QString("QMainWindow{border:1px solid %1; background-color: %2;}").arg(border.name(), background.name());
 #endif
-                          "background-color: %2;"
-                          "}").arg(border.name(), background.name()));
+    setStyleSheet(css);
 }
 
 void CWindowBase::applyTheme(const std::wstring& theme)
@@ -129,7 +156,7 @@ void CWindowBase::applyTheme(const std::wstring& theme)
     Q_UNUSED(theme)
     QColor background = GetColorByRole(ecrWindowBackground);
     QColor border = GetColorByRole(ecrWindowBorder);
-    setWindowColors(background, border);
+    setWindowColors(background, border, isActiveWindow());
 }
 
 /** Protected **/
@@ -293,7 +320,6 @@ void CWindowBase::showEvent(QShowEvent *event)
     QMainWindow::showEvent(event);
     if (!m_windowActivated) {
         m_windowActivated = true;
-        setGeometry(m_window_rect);
         adjustGeometry();
         applyTheme(GetCurrentTheme().id());
     }

@@ -232,7 +232,7 @@ void CCefEventsTransformer::OnEvent(QObject * target, NSEditorApi::CAscCefMenuEv
         } else
         /* webapps:events is deprecated. used for back compatibility for awhile */
         if ( !(cmd.find(L"webapps:events") == std::wstring::npos) ) {
-            QMetaObject::invokeMethod( target, "onWebAppsFeatures", Qt::QueuedConnection, Q_ARG(int, event->get_SenderId()), Q_ARG(std::wstring, L"eventloading:true") );
+            QMetaObject::invokeMethod( target, "onWebAppsFeatures", Qt::QueuedConnection, Q_ARG(int, event->get_SenderId()), Q_ARG(std::wstring, L"{\"eventloading\":true}") );
         } else
         if ( !(cmd.find(L"webapps:features") == std::wstring::npos) ) {
             QMetaObject::invokeMethod(target, "onWebAppsFeatures", Qt::QueuedConnection,
@@ -245,6 +245,9 @@ void CCefEventsTransformer::OnEvent(QObject * target, NSEditorApi::CAscCefMenuEv
         if ( cmd.compare(L"encrypt:isneedbuild") == 0 ) {
             bool isFragmented = pData->get_Param() == L"true" ? true : false;
             QMetaObject::invokeMethod(target, "onDocumentFragmented", Qt::QueuedConnection, Q_ARG(int, event->get_SenderId()), Q_ARG(bool, isFragmented));
+        } else
+        if ( cmd.compare(L"error:page") == 0 ) {
+            QMetaObject::invokeMethod(target, "onErrorPage", Qt::QueuedConnection, Q_ARG(int, event->get_SenderId()), Q_ARG(std::wstring, pData->get_Param()));
         } else {
 //            std::wregex _re_appcmd(L"^app\\:(\\w+)", std::tr1::wregex::icase);
 //            auto _iter_cmd = std::wsregex_iterator(cmd.begin(), cmd.end(), _re_appcmd);

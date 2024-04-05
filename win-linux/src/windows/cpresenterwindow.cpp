@@ -85,15 +85,6 @@ bool CPresenterWindow::holdView(int id) const
     return ((QCefView *)m_pMainView)->GetCefView()->GetId() == id;
 }
 
-void CPresenterWindow::showEvent(QShowEvent *ev)
-{
-    CWindowPlatform::showEvent(ev);
-    if (ev->type() == QShowEvent::Show) {
-        m_pMainView->resize(m_pMainPanel->size() - QSize(0, m_boxTitleBtns->height()));
-        static_cast<QCefView*>(m_pMainView)->GetCefView()->resizeEvent();
-    }
-}
-
 void CPresenterWindow::closeEvent(QCloseEvent *e)
 {
     onCloseEvent();
@@ -162,7 +153,7 @@ QWidget * CPresenterWindow::createMainPanel(QWidget * parent, const QString& tit
     }
     mainGridLayout->addWidget(m_boxTitleBtns, 0, 0, Qt::AlignTop);
     if (!view) {
-        QCefView * pMainWidget = AscAppManager::createViewer(mainPanel);
+        QCefView * pMainWidget = AscAppManager::createViewer(mainPanel, mainPanel->size());
         pMainWidget->Create(&AscAppManager::getInstance(), cvwtSimple);
         pMainWidget->setObjectName("mainPanel");
         pMainWidget->setHidden(false);
