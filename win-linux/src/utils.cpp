@@ -1018,9 +1018,11 @@ namespace WindowHelper {
         ::AttachThreadInput(frgID, appID, FALSE);
     }
 
-    auto getColorizationColor(bool isActive) -> QColor
+    auto getColorizationColor(bool isActive, const QColor &bkgColor) -> QColor
     {
-        QColor color = GetColorByRole(ecrWindowBorder);
+        bool isBkgDark = AscAppManager::themes().isColorDark(bkgColor.name());
+        QColor color(GetCurrentTheme().isDark() ? (isActive ? "#2f2f2f" : "#3a3a3a") :
+                         (isActive ? (isBkgDark ? "#585858" : "#777777") : (isBkgDark ? "#606060" : "#aaaaaa")));
         QSettings reg("HKEY_CURRENT_USER\\SOFTWARE\\Microsoft\\Windows\\DWM", QSettings::NativeFormat);
         if (isActive && reg.value("ColorPrevalence", 0).toInt() != 0) {
             DWORD dwcolor = 0;

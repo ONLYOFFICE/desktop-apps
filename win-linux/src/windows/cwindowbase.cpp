@@ -140,7 +140,7 @@ void CWindowBase::setWindowColors(const QColor& background, const QColor& border
     if (Utils::getWinVersion() == Utils::WinVer::Win10) {
         int brdWidth = 0;
         SystemParametersInfo(SPI_GETBORDER, 0, &brdWidth, 0);
-        QColor brdColor = WindowHelper::getColorizationColor(isActive);
+        QColor brdColor = WindowHelper::getColorizationColor(isActive, background);
         css = QString("QMainWindow{border-top: %1px solid %2; background-color: %3;}").arg(QString::number(brdWidth), brdColor.name(), background.name());
     } else {
         css = QString("QMainWindow{background-color: %1;}").arg(background.name());
