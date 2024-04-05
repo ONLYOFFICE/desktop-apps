@@ -39,6 +39,8 @@
 		5ACC12852BC033080089A585 /* file-xlsb.icns in Resources */ = {isa = PBXBuildFile; fileRef = 5ACC12842BC033080089A585 /* file-xlsb.icns */; };
 		5ACC12862BC033080089A585 /* file-xlsb.icns in Resources */ = {isa = PBXBuildFile; fileRef = 5ACC12842BC033080089A585 /* file-xlsb.icns */; };
 		5ACC12872BC033080089A585 /* file-xlsb.icns in Resources */ = {isa = PBXBuildFile; fileRef = 5ACC12842BC033080089A585 /* file-xlsb.icns */; };
+		5ACC12882BC036B20089A585 /* file-ots.icns in Resources */ = {isa = PBXBuildFile; fileRef = FCA3F3002570EC9500DCAB12 /* file-ots.icns */; };
+		5ACC12892BC036B30089A585 /* file-ots.icns in Resources */ = {isa = PBXBuildFile; fileRef = FCA3F3002570EC9500DCAB12 /* file-ots.icns */; };
 		5AD24E2A2902AE3C00748926 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AD24E292902AE3C00748926 /* Sparkle.framework */; };
 		5AD24E2B2902AE3C00748926 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AD24E292902AE3C00748926 /* Sparkle.framework */; };
 		5AD24E2C2902AE3C00748926 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AD24E292902AE3C00748926 /* Sparkle.framework */; };
@@ -215,7 +217,6 @@
 		FCA3F3072570EC9500DCAB12 /* file-fobs.icns in Resources */ = {isa = PBXBuildFile; fileRef = FCA3F2FD2570EC9400DCAB12 /* file-fobs.icns */; };
 		FCA3F3082570EC9500DCAB12 /* file-fodt.icns in Resources */ = {isa = PBXBuildFile; fileRef = FCA3F2FE2570EC9400DCAB12 /* file-fodt.icns */; };
 		FCA3F3092570EC9500DCAB12 /* file-otp.icns in Resources */ = {isa = PBXBuildFile; fileRef = FCA3F2FF2570EC9500DCAB12 /* file-otp.icns */; };
-		FCA3F30A2570EC9500DCAB12 /* file-ots.icns in Resources */ = {isa = PBXBuildFile; fileRef = FCA3F3002570EC9500DCAB12 /* file-ots.icns */; };
 		FCA3F30B2570EC9500DCAB12 /* file-ott.icns in Resources */ = {isa = PBXBuildFile; fileRef = FCA3F3012570EC9500DCAB12 /* file-ott.icns */; };
 		FCA3F30C2570EC9500DCAB12 /* file-fb2.icns in Resources */ = {isa = PBXBuildFile; fileRef = FCA3F3022570EC9500DCAB12 /* file-fb2.icns */; };
 		FCA3F30D2570EC9500DCAB12 /* file-xml.icns in Resources */ = {isa = PBXBuildFile; fileRef = FCA3F3032570EC9500DCAB12 /* file-xml.icns */; };
@@ -330,7 +331,6 @@
 		FCB4C72226DD018B0012C20D /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = FCD2B9161BC64F0C00F54560 /* Localizable.stringsdict */; };
 		FCB4C72326DD018B0012C20D /* file-ppt.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF071E94E16A00718A12 /* file-ppt.icns */; };
 		FCB4C72426DD018B0012C20D /* MoveApplication.strings in Resources */ = {isa = PBXBuildFile; fileRef = FC6718441BD91B3A0028600F /* MoveApplication.strings */; };
-		FCB4C72526DD018B0012C20D /* file-ots.icns in Resources */ = {isa = PBXBuildFile; fileRef = FCA3F3002570EC9500DCAB12 /* file-ots.icns */; };
 		FCB4C72626DD018B0012C20D /* file-ott.icns in Resources */ = {isa = PBXBuildFile; fileRef = FCA3F3012570EC9500DCAB12 /* file-ott.icns */; };
 		FCB4C72726DD018B0012C20D /* file-xls.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF0B1E94E16A00718A12 /* file-xls.icns */; };
 		FCB4C72826DD018B0012C20D /* file-html.icns in Resources */ = {isa = PBXBuildFile; fileRef = FC98AF001E94E16A00718A12 /* file-html.icns */; };
@@ -2029,6 +2029,7 @@
 				FCB4C71426DD018B0012C20D /* file-fodt.icns in Resources */,
 				FCB4C71526DD018B0012C20D /* Document-Sign.storyboard in Resources */,
 				FCB4C71626DD018B0012C20D /* file-djvu.icns in Resources */,
+				5ACC12892BC036B30089A585 /* file-ots.icns in Resources */,
 				FCB4C71726DD018B0012C20D /* file-csv.icns in Resources */,
 				FCB4C71826DD018B0012C20D /* file-xps.icns in Resources */,
 				FCB4C71926DD018B0012C20D /* dictionaries in Resources */,
@@ -2081,6 +2082,7 @@
 				FCA3F3082570EC9500DCAB12 /* file-fodt.icns in Resources */,
 				FCDDD602208F3C25008AF573 /* Document-Sign.storyboard in Resources */,
 				FC98AF111E94E16A00718A12 /* file-djvu.icns in Resources */,
+				5ACC12882BC036B20089A585 /* file-ots.icns in Resources */,
 				FC98AF0E1E94E16A00718A12 /* file-csv.icns in Resources */,
 				FC98AF411E94E16A00718A12 /* file-xps.icns in Resources */,
 				BE6251BA22BD089100656116 /* dictionaries in Resources */,
