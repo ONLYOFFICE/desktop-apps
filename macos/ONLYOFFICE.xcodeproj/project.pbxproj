@@ -36,6 +36,9 @@
 		5AAE526F28B53B9A001E31F4 /* ASCThemesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AAE526C28B53B9A001E31F4 /* ASCThemesController.m */; };
 		5AB20F60274D35F3003732A0 /* file-docxf.icns in Resources */ = {isa = PBXBuildFile; fileRef = 5AB20F5D274D35F2003732A0 /* file-docxf.icns */; };
 		5AB20F62274D360A003732A0 /* file-oform.icns in Resources */ = {isa = PBXBuildFile; fileRef = 5AB20F61274D360A003732A0 /* file-oform.icns */; };
+		5ACC12852BC033080089A585 /* file-xlsb.icns in Resources */ = {isa = PBXBuildFile; fileRef = 5ACC12842BC033080089A585 /* file-xlsb.icns */; };
+		5ACC12862BC033080089A585 /* file-xlsb.icns in Resources */ = {isa = PBXBuildFile; fileRef = 5ACC12842BC033080089A585 /* file-xlsb.icns */; };
+		5ACC12872BC033080089A585 /* file-xlsb.icns in Resources */ = {isa = PBXBuildFile; fileRef = 5ACC12842BC033080089A585 /* file-xlsb.icns */; };
 		5AD24E2A2902AE3C00748926 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AD24E292902AE3C00748926 /* Sparkle.framework */; };
 		5AD24E2B2902AE3C00748926 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AD24E292902AE3C00748926 /* Sparkle.framework */; };
 		5AD24E2C2902AE3C00748926 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AD24E292902AE3C00748926 /* Sparkle.framework */; };
@@ -790,6 +793,7 @@
 		5ABE02572B22699F0031328E /* ar-SA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ar-SA"; path = "ar-SA.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		5ABE02582B22699F0031328E /* ar-SA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ar-SA"; path = "ar-SA.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		5ABE02592B22699F0031328E /* ar-SA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ar-SA"; path = "ar-SA.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		5ACC12842BC033080089A585 /* file-xlsb.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "file-xlsb.icns"; sourceTree = "<group>"; };
 		5AD24E292902AE3C00748926 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = Vendor/Sparkle/Sparkle.framework; sourceTree = SOURCE_ROOT; };
 		BE6251B922BD089100656116 /* dictionaries */ = {isa = PBXFileReference; lastKnownFileType = folder; name = dictionaries; path = ../../../../dictionaries; sourceTree = "<group>"; };
 		BE95F0A623E9FF590045E0CB /* mac_cefview.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mac_cefview.h; sourceTree = "<group>"; };
@@ -1162,6 +1166,7 @@
 		FC081EBC1C325E8400F9881C /* file-formats */ = {
 			isa = PBXGroup;
 			children = (
+				5ACC12842BC033080089A585 /* file-xlsb.icns */,
 				5A9F8D382848AA06007CA93F /* file-xlsm.icns */,
 				5AB20F61274D360A003732A0 /* file-oform.icns */,
 				5AB20F5D274D35F2003732A0 /* file-docxf.icns */,
@@ -1969,6 +1974,7 @@
 				FC0BD6D7258B63F700C47F95 /* file-fobs.icns in Resources */,
 				FC0BD6D8258B63F700C47F95 /* file-fodt.icns in Resources */,
 				FC0BD6D9258B63F700C47F95 /* Document-Sign.storyboard in Resources */,
+				5ACC12872BC033080089A585 /* file-xlsb.icns in Resources */,
 				FC0BD6DA258B63F700C47F95 /* file-djvu.icns in Resources */,
 				FC0BD6DB258B63F700C47F95 /* file-csv.icns in Resources */,
 				FC0BD6DC258B63F700C47F95 /* file-xps.icns in Resources */,
@@ -2028,6 +2034,7 @@
 				FCB4C71926DD018B0012C20D /* dictionaries in Resources */,
 				FCB4C71A26DD018B0012C20D /* file-docx.icns in Resources */,
 				FCB4C71B26DD018B0012C20D /* login in Resources */,
+				5ACC12852BC033080089A585 /* file-xlsb.icns in Resources */,
 				FCB4C71C26DD018B0012C20D /* file-doc.icns in Resources */,
 				FCB4C71D26DD018B0012C20D /* file-pps.icns in Resources */,
 				FCB4C71E26DD018B0012C20D /* converter in Resources */,
@@ -2079,6 +2086,7 @@
 				BE6251BA22BD089100656116 /* dictionaries in Resources */,
 				FC98AF171E94E16A00718A12 /* file-docx.icns in Resources */,
 				FC3B777B1BB28CE900DB9705 /* login in Resources */,
+				5ACC12862BC033080089A585 /* file-xlsb.icns in Resources */,
 				FC98AF141E94E16A00718A12 /* file-doc.icns in Resources */,
 				FC98AF291E94E16A00718A12 /* file-pps.icns in Resources */,
 				FC0907411C186A7A00D9E881 /* converter in Resources */,
