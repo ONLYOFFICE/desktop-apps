@@ -256,6 +256,7 @@ NSString *tabScrubberItemIdentifier = @"tabItem";
                                               target:blockHolder
                                               action:@selector(invoke:)];
         startPageItem.view = _startPageButton;
+        [startPageItem.view setUserInterfaceLayoutDirection:NSUserInterfaceLayoutDirectionLeftToRight];
 
         return startPageItem;
     }
