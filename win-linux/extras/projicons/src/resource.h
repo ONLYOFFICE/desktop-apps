@@ -30,3 +30,4 @@
 #define IDI_ICON30  130
 #define IDI_ICON31  131
 #define IDI_ICON32  132
+#define IDI_ICON33  133
