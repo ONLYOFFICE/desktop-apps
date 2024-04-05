@@ -55,11 +55,15 @@ static BOOL uiLayoutDirectionRTL = NO;
         uiLayoutDirectionRTL = [direction isEqualToString:@"rtl"];
     
     if ( uiLayoutDirectionRTL ) {
-         [[NSUserDefaults standardUserDefaults] setObject:@"YES" forKey:@"AppleTextDirection"];
-         [[NSUserDefaults standardUserDefaults] setObject:@"YES" forKey:@"NSForceRightToLeftWritingDirection"];
+        [[NSUserDefaults standardUserDefaults] setObject:@"YES" forKey:@"AppleTextDirection"];
+        [[NSUserDefaults standardUserDefaults] setObject:@"YES" forKey:@"NSForceRightToLeftWritingDirection"];
+
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"NSForceLeftToRightWritingDirection"];
     } else {
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"AppleTextDirection"];
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"NSForceRightToLeftWritingDirection"];
+
+        [[NSUserDefaults standardUserDefaults] setObject:@"YES" forKey:@"NSForceLeftToRightWritingDirection"];
     }
 }
 
