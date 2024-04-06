@@ -92,7 +92,7 @@ static bool initSocket(u_short port, SOCKET &tmpd, SockAddr &addr, int &ret, std
     if ((tmpd = socket(AF_INET, SOCK_DGRAM, 0)) == INVALID_SOCKET) {
 #else
     tmpd = -1;
-    if ((tmpd = socket(AF_INET, SOCK_DGRAM, 0)) < 0) {
+    if ((tmpd = socket(AF_INET, SOCK_DGRAM | SOCK_CLOEXEC, 0)) < 0) {
 #endif
         error = "Init socket: socket not valid!";
         return false;

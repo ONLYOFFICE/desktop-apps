@@ -225,11 +225,7 @@ auto runProcess(const tstring &fileName, const tstring &args, bool runAsAdmin = 
         _args[i++] = arg.toLocal8Bit().data();
     _args[i] = NULL;
     pid_t pid;
-    posix_spawn_file_actions_t acts;
-    posix_spawn_file_actions_init(&acts);
-    posix_spawn_file_actions_addclosefrom_np(&acts, 0);
-    int res = posix_spawn(&pid, fileName.c_str(), &acts, NULL, _args, environ);
-    posix_spawn_file_actions_destroy(&acts);
+    int res = posix_spawn(&pid, fileName.c_str(), NULL, NULL, _args, environ);
     delete[] _args;
     return res == 0;
 #endif
