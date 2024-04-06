@@ -80,7 +80,7 @@ public:
 
     virtual QCefView * createView(QWidget * parent, const QSize& s)
     {
-        return new QCefView_Media(parent, s);
+        return new QCefView_Media(parent/*, s*/);
     }
 
     bool allowedCreateLocalFile()
