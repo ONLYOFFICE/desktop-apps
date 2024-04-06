@@ -159,15 +159,18 @@ namespace NS_Utils
 
     string GetAppLanguage()
     {
-        string lang = "en_US", value = "locale=", path = string("/home/") + getlogin() + APP_CONFIG_PATH;
-        list<string> lst;
-        NS_File::readFile(path, lst);
-        for (const auto &str : lst) {
-            size_t pos = str.find(value);
-            if (pos != string::npos) {
-                lang = str.substr(pos + value.length());
-                std::replace(lang.begin(), lang.end(), '-', '_');
-                return lang;
+        string lang = "en_US";
+        if (char *uname = getlogin()) {
+            string value = "locale=", path = string("/home/") + uname + APP_CONFIG_PATH;
+            list<string> lst;
+            NS_File::readFile(path, lst);
+            for (const auto &str : lst) {
+                size_t pos = str.find(value);
+                if (pos != string::npos) {
+                    lang = str.substr(pos + value.length());
+                    std::replace(lang.begin(), lang.end(), '-', '_');
+                    return lang;
+                }
             }
         }
         return lang;
