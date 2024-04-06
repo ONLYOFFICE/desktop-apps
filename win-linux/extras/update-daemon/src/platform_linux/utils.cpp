@@ -37,6 +37,7 @@
 #include <algorithm>
 #include <sys/stat.h>
 #include <gtk/gtk.h>
+#include <string.h>
 //#include <openssl/md5.h>
 #include <fcntl.h>
 #include "../../src/defines.h"
