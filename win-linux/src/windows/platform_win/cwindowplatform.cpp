@@ -106,7 +106,7 @@ static void GetFrameMetricsForDpi(FRAME &frame, double dpi, bool maximized = fal
         return;
 
     const int left_ofs[5][13] = { // Left offset for scales 100-500%
-        {-3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3}, // WinXp
+        {0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0}, // WinXp
         {-3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3}, // WinVista - Win7
         {0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0}, // Win8 - Win8.1
         {0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0}, // Win10
@@ -115,7 +115,7 @@ static void GetFrameMetricsForDpi(FRAME &frame, double dpi, bool maximized = fal
     frame.left -= left_ofs[row][column];
 
     const int top_ofs[5][13] = { // Top offset for scales 100-500%
-        {-3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3}, // WinXp
+        {0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0}, // WinXp
         {-3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3}, // WinVista - Win7
         {0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0}, // Win8 - Win8.1
         {8,  9,  11, 12, 13, 14, 16, 18, 21, 24, 27, 30, 36}, // Win10
@@ -156,11 +156,13 @@ CWindowPlatform::CWindowPlatform(const QRect &rect) :
     m_borderless = isCustomWindowStyle();
     if (AscAppManager::isRtlEnabled())
         setLayoutDirection(Qt::RightToLeft);
+    if (m_borderless && Utils::getWinVersion() == WinVer::WinXP)
+        setWindowFlags(windowFlags() | Qt::FramelessWindowHint);
     setGeometry(m_window_rect);
     m_hWnd = (HWND)winId();
     if (m_borderless && Utils::getWinVersion() < WinVer::Win10) {
-        LONG style = ::GetWindowLong(m_hWnd, GWL_STYLE) & ~WS_CAPTION;
-        ::SetWindowLong(m_hWnd, GWL_STYLE, style);
+        LONG style = ::GetWindowLong(m_hWnd, GWL_STYLE) | WS_OVERLAPPEDWINDOW;
+        ::SetWindowLong(m_hWnd, GWL_STYLE, style & ~WS_CAPTION);
     }
 
     setProperty("stabilized", true);
@@ -224,7 +226,10 @@ void CWindowPlatform::adjustGeometry()
                 int offset = 0;
                 if (Utils::getWinVersion() > WinVer::WinXP && isTaskbarAutoHideOn())
                     offset += 2;
-                SetWindowPos(m_hWnd, NULL, rc.x(), rc.y(), rc.width(), rc.height() - offset, SWP_NOZORDER | SWP_NOOWNERZORDER | SWP_NOSENDCHANGING);
+                if (Utils::getWinVersion() == WinVer::WinXP)
+                    setGeometry(rc);
+                else
+                    SetWindowPos(m_hWnd, NULL, rc.x(), rc.y(), rc.width(), rc.height() - offset, SWP_NOZORDER | SWP_NOOWNERZORDER | SWP_NOSENDCHANGING);
             });
         }
     } else {
@@ -261,6 +266,21 @@ bool CWindowPlatform::event(QEvent * event)
     }
     return CWindowBase::event(event);
 }
+
+#ifdef __OS_WIN_XP
+void CWindowPlatform::resizeEvent(QResizeEvent *ev)
+{
+    CWindowBase::resizeEvent(ev);
+    if (Utils::getWinVersion() == WinVer::WinXP) {
+        RECT rc;
+        GetClientRect(m_hWnd, &rc);
+        if (centralWidget()) {
+            centralWidget()->setMaximumSize(rc.right - rc.left, rc.bottom - rc.top);
+            centralWidget()->resize(rc.right - rc.left, rc.bottom - rc.top);
+        }
+    }
+}
+#endif
 
 /** Private **/
 

@@ -63,6 +63,9 @@ protected:
     bool isSessionInProgress();
     virtual bool event(QEvent *event) override;
     virtual void onLayoutDirectionChanged() = 0;
+#ifdef __OS_WIN_XP
+    virtual void resizeEvent(QResizeEvent *ev) override;
+#endif
 
 private:
     virtual void changeEvent(QEvent*) final;
