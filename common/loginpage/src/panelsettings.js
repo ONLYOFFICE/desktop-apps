@@ -460,7 +460,15 @@
             }
 
             if ( $chRtl ) {
-                $chRtl.prop("checked", _is_lang_rtl(l));
+                const _is_rtl = _is_lang_rtl(l);
+                $chRtl.prop("checked", _is_rtl);
+                if ( !_is_rtl ) {
+                    $chRtl.prop("disabled", "disabled");
+                    $chRtl.next().attr("disabled", "disabled");
+                } else {
+                    $chRtl.removeAttr("disabled");
+                    $chRtl.next().removeAttr("disabled");
+                }
             }
 
             $(document.body).toggleClass('rtl-font', _is_lang_rtl(l));
@@ -650,6 +658,10 @@
                                 document.body.classList.add('rtl');
 
                                 $userName.css('direction', 'rtl');
+                            } else {
+                                if ( !_is_lang_rtl(opts.locale.current) )
+                                    $chRtl.attr('disabled', 'disabled')
+                                        .next().attr('disabled', 'disabled');
                             }
 
                         }
