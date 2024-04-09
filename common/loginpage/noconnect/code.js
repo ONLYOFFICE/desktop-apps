@@ -26,7 +26,7 @@ const error_box = function() {
         "def": ["msgNoConn", "msgNoConnDesc"],
         "cloudfile": ["msgFileNoConn", "msgFileNoConnDesc"],
         "templates": ["msgTemplatesNoConn", "msgTemplatesNoConnDesc"],
-        "fileerr": ["msgFileError", "msgFileErrorDesc"],
+        "fileerr": ["msgFileError", "msgFileErrorDesc", "something_wrong"],
     };
 
     const _fix_lang = l => {
@@ -45,10 +45,12 @@ const error_box = function() {
     return {
         render: function(args = {}) {
             _page = args.page || 'def';
+            const svg_id = page_config[_page] && page_config[_page][2] ? page_config[_page][2] : "connection_error";
+
             const html_ = `
                 <section class="box-connection-error center">
                     <svg class="icon">
-                        <use href="#connection_error"></use>
+                        <use href="#${svg_id}"></use>
                     </svg>
                     <label id="idx-msg-short" class="description description__short"></label>
                     <label id="idx-msg-long" class="description description__long"></label>
