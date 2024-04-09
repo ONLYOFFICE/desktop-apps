@@ -131,7 +131,7 @@ void CWindowBase::setWindowColors(const QColor& background, const QColor& border
     m_bkgColor = background;
 #ifdef _WIN32
     QString css;
-    if (Utils::getWinVersion() <= Utils::WinVer::Win7) {
+    if (Utils::getWinVersion() == Utils::WinVer::WinXP) {
         css = QString("QMainWindow{background-color: %1;}").arg(background.name());
     } else
     if (Utils::getWinVersion() < Utils::WinVer::Win10) {
