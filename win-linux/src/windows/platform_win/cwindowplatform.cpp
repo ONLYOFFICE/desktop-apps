@@ -224,12 +224,14 @@ void CWindowPlatform::adjustGeometry()
             QTimer::singleShot(25, this, [=]() {
                 auto rc = QApplication::desktop()->availableGeometry(this);
                 int offset = 0;
+                if (Utils::getWinVersion() == WinVer::WinXP) {
+                    if (isTaskbarAutoHideOn())
+                        offset += NC_AREA_WIDTH + 1;
+                    rc.adjust(-NC_AREA_WIDTH, -NC_AREA_WIDTH, NC_AREA_WIDTH, NC_AREA_WIDTH);
+                } else
                 if (Utils::getWinVersion() > WinVer::WinXP && isTaskbarAutoHideOn())
                     offset += 2;
-                if (Utils::getWinVersion() == WinVer::WinXP)
-                    setGeometry(rc);
-                else
-                    SetWindowPos(m_hWnd, NULL, rc.x(), rc.y(), rc.width(), rc.height() - offset, SWP_NOZORDER | SWP_NOOWNERZORDER | SWP_NOSENDCHANGING);
+                SetWindowPos(m_hWnd, NULL, rc.x(), rc.y(), rc.width(), rc.height() - offset, SWP_NOZORDER | SWP_NOOWNERZORDER | SWP_NOSENDCHANGING);
             });
         }
     } else {
