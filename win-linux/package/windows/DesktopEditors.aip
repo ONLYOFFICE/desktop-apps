@@ -33,7 +33,7 @@
     <ROW Property="FORMS" Value="0" ValueLocId="-"/>
     <ROW Property="GALLERY" Value="0" Type="4" ValueLocId="-"/>
     <ROW Property="ImageViewerName" Value="Gallery" ValueLocId="-"/>
-    <ROW Property="JUMP_LIST_ARG" Value="New_document New_spreadsheet New_presentation New_form_template"/>
+    <ROW Property="JUMP_LIST_ARG" Value="New_document New_spreadsheet New_presentation New_PDF_Form"/>
     <ROW Property="LOCALE" Value="en"/>
     <ROW Property="MSIFASTINSTALL" MultiBuildValue="MsiBuild64:7#MsiBuild32:7"/>
     <ROW Property="Manufacturer" Value="Ascensio System SIA" ValueLocId="-"/>
