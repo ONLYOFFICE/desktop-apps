@@ -15,30 +15,6 @@ Function RegistryExist(Path)
 End Function
 
 
-Function UninstallOlderVersion
-  On Error Resume Next
-
-  Set objShell = CreateObject("WScript.Shell")
-  
-  Dim Button, regPath
-
-  regPath = "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\" + Session.Property("ProductName") + "_is1\UninstallString"
-
-  If (RegistryExist(regPath) = True) Then
-    RegistryPath = objShell.RegRead(regPath)
-    If Session.Property("UILevel") <> 2 Then 
-      Button = MsgBox(Session.Property("UninstallPrevDlg_MsgBox"), 1, Session.Property("Setup") + " " + Session.Property("ProductName"))
-    End If
-    If Button = 1 Then
-      objShell.Run RegistryPath, 0, True
-    ElseIf Session.Property("UILevel") = 2 Then
-      objShell.Run RegistryPath + " /VERYSILENT", 0, True
-    Else 
-      Session.Property("UninstallOlderVersion") = "1"
-    End If
-  End If
-End Function
-
 Function SetLocaleProperty
   On Error Resume Next
 

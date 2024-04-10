@@ -107,6 +107,17 @@
     <STRING lang="ru" value="ru-RU"/>
     <STRING lang="sl" value="en-US"/>
   </ENTRY>
+  <ENTRY id="Property.IncompatibleVersion_ErrorText">
+    <STRING lang="cs" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
+    <STRING lang="de" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
+    <STRING lang="es" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
+    <STRING lang="fr" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
+    <STRING lang="ja" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
+    <STRING lang="pt" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
+    <STRING lang="pt_BR" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
+    <STRING lang="ru" value="Уже установлена другая версия приложения, несовместимая с этой установкой. Пожалуйста, сначала удалите текущую версию или загрузите правильную версию для установки."/>
+    <STRING lang="sl" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
+  </ENTRY>
   <ENTRY id="Property.JUMP_LIST_ARG">
     <STRING lang="cs" value="Nový_dokument Nový_sešit Nová_prezentace Nový_PDF_formulář"/>
     <STRING lang="de" value="Neues_Dokument Neue_Tabelle Neue_Präsentation Neues_PDF-Formular"/>
@@ -183,28 +194,6 @@
     <STRING lang="pt_BR" value="Serviço para atualização [PackageName]"/>
     <STRING lang="ru" value="Сервис обновлений [PackageName]"/>
     <STRING lang="sl" value="Storitev za posodobitev [PackageName]"/>
-  </ENTRY>
-  <ENTRY id="Property.UninstallPrevDlg_ErrorText">
-    <STRING lang="cs" value="To install [ProductName], the previous version must be uninstalled."/>
-    <STRING lang="de" value="To install [ProductName], the previous version must be uninstalled."/>
-    <STRING lang="es" value="To install [ProductName], the previous version must be uninstalled."/>
-    <STRING lang="fr" value="To install [ProductName], the previous version must be uninstalled."/>
-    <STRING lang="ja" value="To install [ProductName], the previous version must be uninstalled."/>
-    <STRING lang="pt" value="To install [ProductName], the previous version must be uninstalled."/>
-    <STRING lang="pt_BR" value="To install [ProductName], the previous version must be uninstalled."/>
-    <STRING lang="ru" value="Для установки [ProductName] необходимо удалить предыдущую версию."/>
-    <STRING lang="sl" value="To install [ProductName], the previous version must be uninstalled."/>
-  </ENTRY>
-  <ENTRY id="Property.UninstallPrevDlg_MsgBox">
-    <STRING lang="cs" value="The previous version of [ProductName] detected, please click &apos;OK&apos; button to uninstall it, or &apos;Cancel&apos; to quit setup."/>
-    <STRING lang="de" value="The previous version of [ProductName] detected, please click &apos;OK&apos; button to uninstall it, or &apos;Cancel&apos; to quit setup."/>
-    <STRING lang="es" value="The previous version of [ProductName] detected, please click &apos;OK&apos; button to uninstall it, or &apos;Cancel&apos; to quit setup."/>
-    <STRING lang="fr" value="The previous version of [ProductName] detected, please click &apos;OK&apos; button to uninstall it, or &apos;Cancel&apos; to quit setup."/>
-    <STRING lang="ja" value="The previous version of [ProductName] detected, please click &apos;OK&apos; button to uninstall it, or &apos;Cancel&apos; to quit setup."/>
-    <STRING lang="pt" value="The previous version of [ProductName] detected, please click &apos;OK&apos; button to uninstall it, or &apos;Cancel&apos; to quit setup."/>
-    <STRING lang="pt_BR" value="The previous version of [ProductName] detected, please click &apos;OK&apos; button to uninstall it, or &apos;Cancel&apos; to quit setup."/>
-    <STRING lang="ru" value="Обнаружена предыдущая версия [ProductName], нажмите кнопку &apos;OK&apos; чтобы удалить её, или &apos;Отмена&apos; чтобы выйти из программы инсталляции."/>
-    <STRING lang="sl" value="The previous version of [ProductName] detected, please click &apos;OK&apos; button to uninstall it, or &apos;Cancel&apos; to quit setup."/>
   </ENTRY>
   <!-- -->
   <ENTRY id="ButtonText_DeselectAll">
