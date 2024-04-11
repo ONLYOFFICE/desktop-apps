@@ -277,8 +277,10 @@ void CWindowPlatform::resizeEvent(QResizeEvent *ev)
         RECT rc;
         GetClientRect(m_hWnd, &rc);
         if (centralWidget()) {
-            centralWidget()->setMaximumSize(rc.right - rc.left, rc.bottom - rc.top);
-            centralWidget()->resize(rc.right - rc.left, rc.bottom - rc.top);
+            QMargins mrg = contentsMargins();
+            QSize s(rc.right - rc.left - mrg.left() - mrg.right(), rc.bottom - rc.top - mrg.top() - mrg.bottom());
+            centralWidget()->setMaximumSize(s);
+            centralWidget()->resize(s);
         }
     }
 }
