@@ -68,16 +68,20 @@
     <ROW Property="REGISTER_OTP" Value="1" Type="4" ValueLocId="-"/>
     <ROW Property="REGISTER_OTS" Value="1" Type="4" ValueLocId="-"/>
     <ROW Property="REGISTER_OTT" Value="1" Type="4" ValueLocId="-"/>
+    <ROW Property="REGISTER_OXPS" Value="1" Type="4" ValueLocId="-"/>
     <ROW Property="REGISTER_PDF" Value="1" Type="4" ValueLocId="-"/>
+    <ROW Property="REGISTER_POT" Value="1" Type="4" ValueLocId="-"/>
     <ROW Property="REGISTER_POTX" Value="1" Type="4" ValueLocId="-"/>
     <ROW Property="REGISTER_PPS" Value="1" Type="4" ValueLocId="-"/>
     <ROW Property="REGISTER_PPSX" Value="1" Type="4" ValueLocId="-"/>
     <ROW Property="REGISTER_PPT" Value="1" Type="4" ValueLocId="-"/>
+    <ROW Property="REGISTER_PPTM" Value="1" Type="4" ValueLocId="-"/>
     <ROW Property="REGISTER_PPTX" Value="1" Type="4" ValueLocId="-"/>
     <ROW Property="REGISTER_PROTOCOL" Value="1" Type="4" ValueLocId="-"/>
     <ROW Property="REGISTER_RTF" Value="1" Type="4" ValueLocId="-"/>
     <ROW Property="REGISTER_TXT" Value="1" Type="4" ValueLocId="-"/>
     <ROW Property="REGISTER_XLS" Value="1" Type="4" ValueLocId="-"/>
+    <ROW Property="REGISTER_XLSB" Value="1" Type="4" ValueLocId="-"/>
     <ROW Property="REGISTER_XLSX" Value="1" Type="4" ValueLocId="-"/>
     <ROW Property="REGISTER_XLTX" Value="1" Type="4" ValueLocId="-"/>
     <ROW Property="REGISTER_XML" Value="1" Type="4" ValueLocId="-"/>
@@ -142,15 +146,19 @@
     <ROW Component="c_reg_fa_cap__otp" ComponentId="{2002F0B0-5A49-49BE-B243-D9C04F2B33B2}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_cap__otp"/>
     <ROW Component="c_reg_fa_cap__ots" ComponentId="{D57EEDC4-606C-40DF-9223-A51A61AE23DA}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_cap__ots"/>
     <ROW Component="c_reg_fa_cap__ott" ComponentId="{2CD4D98C-C08F-414E-AC50-F9D03EAA9427}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_cap__ott"/>
+    <ROW Component="c_reg_fa_cap__oxps" ComponentId="{C81E92FF-0D66-4A7B-8DFB-A6841555F52E}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_cap__oxps"/>
     <ROW Component="c_reg_fa_cap__pdf" ComponentId="{AE697DF3-E395-4908-B924-FB37397384BF}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_cap__pdf"/>
+    <ROW Component="c_reg_fa_cap__pot" ComponentId="{E341B303-C7A9-43EF-8DFB-C64EE8053760}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_cap__pot"/>
     <ROW Component="c_reg_fa_cap__potx" ComponentId="{AA22C46B-8AF6-46CC-88D4-8543562FA3BD}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_cap__potx"/>
     <ROW Component="c_reg_fa_cap__pps" ComponentId="{6C7EBE4C-5F09-43A5-A47F-245163F3DA47}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_cap__pps"/>
     <ROW Component="c_reg_fa_cap__ppsx" ComponentId="{C15E1AE2-E3CF-4AFB-B76B-29E1B3CBF2F4}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_cap__ppsx"/>
     <ROW Component="c_reg_fa_cap__ppt" ComponentId="{382C40C4-8E43-49F7-A696-51647C48E420}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_cap__ppt"/>
+    <ROW Component="c_reg_fa_cap__pptm" ComponentId="{A95CBB84-B11A-44FD-995C-F7CF1775C820}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_cap__pptm"/>
     <ROW Component="c_reg_fa_cap__pptx" ComponentId="{324F9DB4-5BFF-423D-8BB5-C7B15BB1E232}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_cap__pptx"/>
     <ROW Component="c_reg_fa_cap__rtf" ComponentId="{7D603190-62DA-4825-9452-9B5ED94678BC}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_cap__rtf"/>
     <ROW Component="c_reg_fa_cap__txt" ComponentId="{5513A73B-3B4F-465E-977C-A43066F6889D}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_cap__txt"/>
     <ROW Component="c_reg_fa_cap__xls" ComponentId="{63A28E1B-CCC3-4B52-B237-37BAC45ACF53}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_cap__xls"/>
+    <ROW Component="c_reg_fa_cap__xlsb" ComponentId="{4519B465-3161-4675-AF39-4136C97E98C2}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_cap__xlsb"/>
     <ROW Component="c_reg_fa_cap__xlsx" ComponentId="{2669FDA4-D749-4AE4-A804-7CFEFA5E5566}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_cap__xlsx"/>
     <ROW Component="c_reg_fa_cap__xltx" ComponentId="{34E34196-2AA3-46CC-BD78-3772AAF600D8}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_cap__xltx"/>
     <ROW Component="c_reg_fa_cap__xml" ComponentId="{F6549CA8-52A0-4B94-AA5E-100A78E81AF0}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_cap__xml"/>
@@ -171,15 +179,19 @@
     <ROW Component="c_reg_fa_ext__otp" ComponentId="{DAA04DC1-C05D-4FC9-9D0A-F1D75E564A43}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_ext__otp"/>
     <ROW Component="c_reg_fa_ext__ots" ComponentId="{31BA4CC0-3067-4014-A494-D21E2610D5AE}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_ext__ots"/>
     <ROW Component="c_reg_fa_ext__ott" ComponentId="{EB4A7FF8-356F-4AD5-BD03-90A9CDDCF898}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_ext__ott"/>
+    <ROW Component="c_reg_fa_ext__oxps" ComponentId="{01562AC6-A24F-425B-BA60-CC2F82386AE1}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_ext__oxps"/>
     <ROW Component="c_reg_fa_ext__pdf" ComponentId="{76CFDB08-36FD-43D1-A0AC-11785FEE8021}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_ext__pdf"/>
+    <ROW Component="c_reg_fa_ext__pot" ComponentId="{10837E84-629A-476F-A71C-3029925B4B5E}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_ext__pot"/>
     <ROW Component="c_reg_fa_ext__potx" ComponentId="{33E74BD3-4AAA-4744-ADC7-850B7AA504AB}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_ext__potx"/>
     <ROW Component="c_reg_fa_ext__pps" ComponentId="{E1D38A5D-B0D7-4C01-8A8F-7F6E90E7387C}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_ext__pps"/>
     <ROW Component="c_reg_fa_ext__ppsx" ComponentId="{D4175C8C-AD8B-46EB-97AF-4ECD7EDE15D1}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_ext__ppsx"/>
     <ROW Component="c_reg_fa_ext__ppt" ComponentId="{08C0D3ED-B1F9-40AC-882A-D62E989C7968}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_ext__ppt"/>
+    <ROW Component="c_reg_fa_ext__pptm" ComponentId="{F40C3C3F-48A5-4E84-BD15-E2EA6E83C945}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_ext__pptm"/>
     <ROW Component="c_reg_fa_ext__pptx" ComponentId="{2DF6E02E-B417-4D65-90D2-B4AA5D2039F2}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_ext__pptx"/>
     <ROW Component="c_reg_fa_ext__rtf" ComponentId="{F17EBC15-C85C-46B2-AA83-34E829030530}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_ext__rtf"/>
     <ROW Component="c_reg_fa_ext__txt" ComponentId="{6F1014BE-83A1-430C-AB38-3278506FDF4A}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_ext__txt"/>
     <ROW Component="c_reg_fa_ext__xls" ComponentId="{8F908E39-27BF-439D-A904-37FAFCB6D22F}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_ext__xls"/>
+    <ROW Component="c_reg_fa_ext__xlsb" ComponentId="{F74F44C3-B5EB-4431-BD2B-559A2F1E79B7}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_ext__xlsb"/>
     <ROW Component="c_reg_fa_ext__xlsx" ComponentId="{1BFC4890-BBFD-422F-9AAE-5EAE1CCFEBFF}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_ext__xlsx"/>
     <ROW Component="c_reg_fa_ext__xltx" ComponentId="{34BA886A-53E1-4718-B137-AC21A4A0F98E}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_ext__xltx"/>
     <ROW Component="c_reg_fa_ext__xml" ComponentId="{95107AD0-08FB-4A92-A44F-7D57D019945E}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_ext__xml"/>
@@ -204,15 +216,19 @@
     <ROW Component="c_reg_fa_openwith__otp" ComponentId="{029821C4-8E13-485A-B85F-01675C9E246F}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_openwith__otp"/>
     <ROW Component="c_reg_fa_openwith__ots" ComponentId="{FC8EA7C8-D17A-4AF9-A3DD-0FFFC5073C91}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_openwith__ots"/>
     <ROW Component="c_reg_fa_openwith__ott" ComponentId="{45780246-3567-4C84-85F5-DD98DAEFE7A9}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_openwith__ott"/>
+    <ROW Component="c_reg_fa_openwith__oxps" ComponentId="{0C14EA1F-3214-4000-99EA-5B3E1BFB08CD}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_openwith__oxps"/>
     <ROW Component="c_reg_fa_openwith__pdf" ComponentId="{5677597C-8B8F-4A6F-B6B3-8377099546FF}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_openwith__pdf"/>
+    <ROW Component="c_reg_fa_openwith__pot" ComponentId="{67132353-B31B-40C4-8AB7-2F659E448594}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_openwith__pot"/>
     <ROW Component="c_reg_fa_openwith__potx" ComponentId="{1D755193-4652-45A5-858E-127302DBB3D0}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_openwith__potx"/>
     <ROW Component="c_reg_fa_openwith__pps" ComponentId="{E4342ACF-485A-4AD8-AF98-A77297167411}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_openwith__pps"/>
     <ROW Component="c_reg_fa_openwith__ppsx" ComponentId="{AD76BF9B-56C2-41F7-987E-5D6450F71629}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_openwith__ppsx"/>
     <ROW Component="c_reg_fa_openwith__ppt" ComponentId="{07E633E8-1D16-462C-915C-7755768ACACF}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_openwith__ppt"/>
+    <ROW Component="c_reg_fa_openwith__pptm" ComponentId="{6CEA95EC-A6C9-4B20-BEB4-2174D1EE02F0}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_openwith__pptm"/>
     <ROW Component="c_reg_fa_openwith__pptx" ComponentId="{B1D81FBF-0C84-4492-9969-B2153B63D3D7}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_openwith__pptx"/>
     <ROW Component="c_reg_fa_openwith__rtf" ComponentId="{597C5103-6F6D-4192-90E7-DF0BCC4277DA}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_openwith__rtf"/>
     <ROW Component="c_reg_fa_openwith__txt" ComponentId="{EE56AEF4-DA95-4D28-98DA-BE770775B1D0}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_openwith__txt"/>
     <ROW Component="c_reg_fa_openwith__xls" ComponentId="{37774A51-F421-40B6-B414-36A9C00E9EB5}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_openwith__xls"/>
+    <ROW Component="c_reg_fa_openwith__xlsb" ComponentId="{0E96EC94-04A3-4B72-8591-B054D239DB65}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_openwith__xlsb"/>
     <ROW Component="c_reg_fa_openwith__xlsx" ComponentId="{9E1656B9-8D3C-4855-B04E-72EF39EA6585}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_openwith__xlsx"/>
     <ROW Component="c_reg_fa_openwith__xltx" ComponentId="{3E830735-FC9D-401B-937E-D7B1094B01C4}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_openwith__xltx"/>
     <ROW Component="c_reg_fa_openwith__xml" ComponentId="{DC2741E3-110C-4A96-834E-6DD7BEBEA59C}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_openwith__xml"/>
@@ -233,15 +249,19 @@
     <ROW Component="c_reg_fa_progid__otp" ComponentId="{0EBD3A24-1AE4-4906-8316-A1A5E8070694}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_progid__otp"/>
     <ROW Component="c_reg_fa_progid__ots" ComponentId="{9F4165D7-B7DB-4CEE-9621-B9A5E1F0AF21}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_progid__ots"/>
     <ROW Component="c_reg_fa_progid__ott" ComponentId="{453B9579-DAB6-4D8F-A396-E9A0BDBCEB4D}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_progid__ott"/>
+    <ROW Component="c_reg_fa_progid__oxps" ComponentId="{259A78B1-A08E-404C-96A5-F5BC93D6BBDD}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_progid__oxps"/>
     <ROW Component="c_reg_fa_progid__pdf" ComponentId="{30E2FC54-E705-40A7-B0EA-B5E6A31CE599}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_progid__pdf"/>
+    <ROW Component="c_reg_fa_progid__pot" ComponentId="{20AF2844-4507-4E4C-B4E9-022B52DFB9C5}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_progid__pot"/>
     <ROW Component="c_reg_fa_progid__potx" ComponentId="{39B18356-D1EE-410C-8BD2-EEDB90E5546F}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_progid__potx"/>
     <ROW Component="c_reg_fa_progid__pps" ComponentId="{8BF28C6A-98B4-409B-9911-C97B0F35F9EF}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_progid__pps"/>
     <ROW Component="c_reg_fa_progid__ppsx" ComponentId="{E51D562D-0FA6-4B2C-AE76-28BBF47B2736}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_progid__ppsx"/>
     <ROW Component="c_reg_fa_progid__ppt" ComponentId="{0DB272DA-2F26-472C-BD0B-2FF1EE6435E5}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_progid__ppt"/>
+    <ROW Component="c_reg_fa_progid__pptm" ComponentId="{B881FA54-1EF5-4BBE-B497-BBAD62CF6A2E}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_progid__pptm"/>
     <ROW Component="c_reg_fa_progid__pptx" ComponentId="{E313F9AA-0710-440D-8008-E70001D6B01F}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_progid__pptx"/>
     <ROW Component="c_reg_fa_progid__rtf" ComponentId="{D5829591-7F55-4505-996F-88E1DC415777}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_progid__rtf"/>
     <ROW Component="c_reg_fa_progid__txt" ComponentId="{1F1867B1-258B-43AE-8DF7-9235585BA09B}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_progid__txt"/>
     <ROW Component="c_reg_fa_progid__xls" ComponentId="{E49C212F-5A5F-413B-9E04-C5EDB3CA4570}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_progid__xls"/>
+    <ROW Component="c_reg_fa_progid__xlsb" ComponentId="{10FEC295-A80E-4667-94C0-2A6957D606CA}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_progid__xlsb"/>
     <ROW Component="c_reg_fa_progid__xlsx" ComponentId="{BDDF080A-C3BA-40A7-8C58-98DF2A706E75}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_progid__xlsx"/>
     <ROW Component="c_reg_fa_progid__xltx" ComponentId="{AE5E4E29-AFC5-4432-845D-39938D29D30F}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_progid__xltx"/>
     <ROW Component="c_reg_fa_progid__xml" ComponentId="{1BDE6040-0CCB-4A9A-B497-7DAAC9C40704}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_progid__xml"/>
@@ -270,24 +290,28 @@
     <ROW Feature="FA_OTP" Feature_Parent="RegFileTypeAssociations" Title=".otp" Display="29" Level="4" Directory_="APPDIR" Attributes="0"/>
     <ROW Feature="FA_OTS" Feature_Parent="RegFileTypeAssociations" Title=".ots" Display="31" Level="4" Directory_="APPDIR" Attributes="0"/>
     <ROW Feature="FA_OTT" Feature_Parent="RegFileTypeAssociations" Title=".ott" Display="33" Level="4" Directory_="APPDIR" Attributes="0"/>
-    <ROW Feature="FA_PDF" Feature_Parent="RegFileTypeAssociations" Title=".pdf" Display="35" Level="4" Directory_="APPDIR" Attributes="0"/>
-    <ROW Feature="FA_POTX" Feature_Parent="RegFileTypeAssociations" Title=".potx" Display="37" Level="4" Directory_="APPDIR" Attributes="0"/>
-    <ROW Feature="FA_PPS" Feature_Parent="RegFileTypeAssociations" Title=".pps" Display="39" Level="4" Directory_="APPDIR" Attributes="0"/>
-    <ROW Feature="FA_PPSX" Feature_Parent="RegFileTypeAssociations" Title=".ppsx" Display="41" Level="4" Directory_="APPDIR" Attributes="0"/>
-    <ROW Feature="FA_PPT" Feature_Parent="RegFileTypeAssociations" Title=".ppt" Display="43" Level="4" Directory_="APPDIR" Attributes="0"/>
-    <ROW Feature="FA_PPTX" Feature_Parent="RegFileTypeAssociations" Title=".pptx" Display="45" Level="4" Directory_="APPDIR" Attributes="0"/>
-    <ROW Feature="FA_RTF" Feature_Parent="RegFileTypeAssociations" Title=".rtf" Display="47" Level="4" Directory_="APPDIR" Attributes="0"/>
-    <ROW Feature="FA_TXT" Feature_Parent="RegFileTypeAssociations" Title=".txt" Display="49" Level="4" Directory_="APPDIR" Attributes="0"/>
-    <ROW Feature="FA_XLS" Feature_Parent="RegFileTypeAssociations" Title=".xls" Display="51" Level="4" Directory_="APPDIR" Attributes="0"/>
-    <ROW Feature="FA_XLSX" Feature_Parent="RegFileTypeAssociations" Title=".xlsx" Display="53" Level="4" Directory_="APPDIR" Attributes="0"/>
-    <ROW Feature="FA_XLTX" Feature_Parent="RegFileTypeAssociations" Title=".xltx" Display="55" Level="4" Directory_="APPDIR" Attributes="0"/>
-    <ROW Feature="FA_XML" Feature_Parent="RegFileTypeAssociations" Title=".xml" Display="57" Level="4" Directory_="APPDIR" Attributes="0"/>
-    <ROW Feature="FA_XPS" Feature_Parent="RegFileTypeAssociations" Title=".xps" Display="59" Level="4" Directory_="APPDIR" Attributes="0"/>
+    <ROW Feature="FA_OXPS" Feature_Parent="RegFileTypeAssociations" Title=".oxps" Display="35" Level="4" Directory_="APPDIR" Attributes="0"/>
+    <ROW Feature="FA_PDF" Feature_Parent="RegFileTypeAssociations" Title=".pdf" Display="37" Level="4" Directory_="APPDIR" Attributes="0"/>
+    <ROW Feature="FA_POT" Feature_Parent="RegFileTypeAssociations" Title=".pot" Display="39" Level="4" Directory_="APPDIR" Attributes="0"/>
+    <ROW Feature="FA_POTX" Feature_Parent="RegFileTypeAssociations" Title=".potx" Display="41" Level="4" Directory_="APPDIR" Attributes="0"/>
+    <ROW Feature="FA_PPS" Feature_Parent="RegFileTypeAssociations" Title=".pps" Display="43" Level="4" Directory_="APPDIR" Attributes="0"/>
+    <ROW Feature="FA_PPSX" Feature_Parent="RegFileTypeAssociations" Title=".ppsx" Display="45" Level="4" Directory_="APPDIR" Attributes="0"/>
+    <ROW Feature="FA_PPT" Feature_Parent="RegFileTypeAssociations" Title=".ppt" Display="47" Level="4" Directory_="APPDIR" Attributes="0"/>
+    <ROW Feature="FA_PPTM" Feature_Parent="RegFileTypeAssociations" Title=".pptm" Display="49" Level="4" Directory_="APPDIR" Attributes="0"/>
+    <ROW Feature="FA_PPTX" Feature_Parent="RegFileTypeAssociations" Title=".pptx" Display="51" Level="4" Directory_="APPDIR" Attributes="0"/>
+    <ROW Feature="FA_RTF" Feature_Parent="RegFileTypeAssociations" Title=".rtf" Display="53" Level="4" Directory_="APPDIR" Attributes="0"/>
+    <ROW Feature="FA_TXT" Feature_Parent="RegFileTypeAssociations" Title=".txt" Display="55" Level="4" Directory_="APPDIR" Attributes="0"/>
+    <ROW Feature="FA_XLS" Feature_Parent="RegFileTypeAssociations" Title=".xls" Display="57" Level="4" Directory_="APPDIR" Attributes="0"/>
+    <ROW Feature="FA_XLSB" Feature_Parent="RegFileTypeAssociations" Title=".xlsb" Display="59" Level="4" Directory_="APPDIR" Attributes="0"/>
+    <ROW Feature="FA_XLSX" Feature_Parent="RegFileTypeAssociations" Title=".xlsx" Display="61" Level="4" Directory_="APPDIR" Attributes="0"/>
+    <ROW Feature="FA_XLTX" Feature_Parent="RegFileTypeAssociations" Title=".xltx" Display="63" Level="4" Directory_="APPDIR" Attributes="0"/>
+    <ROW Feature="FA_XML" Feature_Parent="RegFileTypeAssociations" Title=".xml" Display="65" Level="4" Directory_="APPDIR" Attributes="0"/>
+    <ROW Feature="FA_XPS" Feature_Parent="RegFileTypeAssociations" Title=".xps" Display="67" Level="4" Directory_="APPDIR" Attributes="0"/>
     <ROW Feature="Files" Feature_Parent="MainFeature" Title="Files" Display="5" Level="1" Directory_="APPDIR" Attributes="0"/>
     <ROW Feature="MainFeature" Title="MainFeature" Display="0" Level="1" Directory_="APPDIR" Attributes="0"/>
-    <ROW Feature="MicrosoftVisualC_2015_x64" Title="Microsoft Visual C++ 2015-2022 Redistributable (x64)" Description="Microsoft Visual C++ 2015-2022 Redistributable (x64)" Display="10" Level="1" Attributes="0" Builds="MsiBuild64"/>
+    <ROW Feature="MicrosoftVisualC_2015_x64" Title="Microsoft Visual C++ 2015-2022 Redistributable (x64)" Description="Microsoft Visual C++ 2015-2022 Redistributable (x64)" Display="6" Level="1" Attributes="0" Builds="MsiBuild64"/>
     <ROW Feature="MicrosoftVisualC_2015_x86" Title="Microsoft Visual C++ 2015-2022 Redistributable (x86)" Description="Microsoft Visual C++ 2015-2022 Redistributable (x86)" Display="8" Level="1" Attributes="0" Builds="MsiBuild32"/>
-    <ROW Feature="RegFileTypeAssociations" Title="File Type Associations" Display="6" Level="1" Directory_="APPDIR" Attributes="0"/>
+    <ROW Feature="RegFileTypeAssociations" Title="File Type Associations" Display="4" Level="1" Directory_="APPDIR" Attributes="0"/>
     <ROW Feature="Registry" Feature_Parent="MainFeature" Title="Registry" Display="7" Level="1" Directory_="APPDIR" Attributes="0"/>
     <ROW Feature="UpdateService" Title="Update Service" Display="2" Level="4" Directory_="APPDIR" Attributes="0"/>
     <ATTRIBUTE name="CurrentFeature" value="MainFeature"/>
@@ -421,15 +445,19 @@
     <ROW Property="REGISTER_OTP" Value="1"/>
     <ROW Property="REGISTER_OTS" Value="1"/>
     <ROW Property="REGISTER_OTT" Value="1"/>
+    <ROW Property="REGISTER_OXPS" Value="1"/>
     <ROW Property="REGISTER_PDF" Value="1"/>
+    <ROW Property="REGISTER_POT" Value="1"/>
     <ROW Property="REGISTER_POTX" Value="1"/>
     <ROW Property="REGISTER_PPS" Value="1"/>
     <ROW Property="REGISTER_PPSX" Value="1"/>
     <ROW Property="REGISTER_PPT" Value="1"/>
+    <ROW Property="REGISTER_PPTM" Value="1"/>
     <ROW Property="REGISTER_PPTX" Value="1"/>
     <ROW Property="REGISTER_RTF" Value="1"/>
     <ROW Property="REGISTER_TXT" Value="1"/>
     <ROW Property="REGISTER_XLS" Value="1"/>
+    <ROW Property="REGISTER_XLSB" Value="1"/>
     <ROW Property="REGISTER_XLSX" Value="1"/>
     <ROW Property="REGISTER_XLTX" Value="1"/>
     <ROW Property="REGISTER_XML" Value="1"/>
@@ -455,15 +483,19 @@
     <ROW Feature_="FA_OTP" Level="1" Condition="REGISTER_OTP = 1"/>
     <ROW Feature_="FA_OTS" Level="1" Condition="REGISTER_OTS = 1"/>
     <ROW Feature_="FA_OTT" Level="1" Condition="REGISTER_OTT = 1"/>
+    <ROW Feature_="FA_OXPS" Level="1" Condition="REGISTER_OXPS = 1"/>
     <ROW Feature_="FA_PDF" Level="1" Condition="REGISTER_PDF = 1"/>
+    <ROW Feature_="FA_POT" Level="1" Condition="REGISTER_POT = 1"/>
     <ROW Feature_="FA_POTX" Level="1" Condition="REGISTER_POTX = 1"/>
     <ROW Feature_="FA_PPS" Level="1" Condition="REGISTER_PPS = 1"/>
     <ROW Feature_="FA_PPSX" Level="1" Condition="REGISTER_PPSX = 1"/>
     <ROW Feature_="FA_PPT" Level="1" Condition="REGISTER_PPT = 1"/>
+    <ROW Feature_="FA_PPTM" Level="1" Condition="REGISTER_PPTM = 1"/>
     <ROW Feature_="FA_PPTX" Level="1" Condition="REGISTER_PPTX = 1"/>
     <ROW Feature_="FA_RTF" Level="1" Condition="REGISTER_RTF = 1"/>
     <ROW Feature_="FA_TXT" Level="1" Condition="REGISTER_TXT = 1"/>
     <ROW Feature_="FA_XLS" Level="1" Condition="REGISTER_XLS = 1"/>
+    <ROW Feature_="FA_XLSB" Level="1" Condition="REGISTER_XLSB = 1"/>
     <ROW Feature_="FA_XLSX" Level="1" Condition="REGISTER_XLSX = 1"/>
     <ROW Feature_="FA_XLTX" Level="1" Condition="REGISTER_XLTX = 1"/>
     <ROW Feature_="FA_XML" Level="1" Condition="REGISTER_XML = 1"/>
@@ -577,8 +609,12 @@
     <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_xps" Type="CheckBox" X="275" Y="180" Width="50" Height="13" Attributes="3" Property="REGISTER_XPS" Text=".xps" Order="3600" TextLocId="-"/>
     <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_docxf" Type="CheckBox" X="35" Y="200" Width="50" Height="13" Attributes="3" Property="REGISTER_DOCXF" Text=".docxf" Order="3700" TextLocId="-"/>
     <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_oform" Type="CheckBox" X="95" Y="200" Width="50" Height="13" Attributes="3" Property="REGISTER_OFORM" Text=".oform" Order="3800" TextLocId="-"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control="PushButton_SelectAll" Type="PushButton" X="200" Y="210" Width="80" Height="17" Attributes="3" Text="Select All" Order="3900" TextLocId="ButtonText_SelectAll"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control="PushButton_DeselectAll" Type="PushButton" X="280" Y="210" Width="80" Height="17" Attributes="3" Text="Deselect All" Order="4000" TextLocId="ButtonText_DeselectAll"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_oxps" Type="CheckBox" X="155" Y="200" Width="50" Height="13" Attributes="3" Property="REGISTER_OXPS" Text=".oxps" Order="3900" TextLocId="-"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_pot" Type="CheckBox" X="215" Y="200" Width="50" Height="13" Attributes="3" Property="REGISTER_POT" Text=".pot" Order="4000" TextLocId="-"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_pptm" Type="CheckBox" X="275" Y="200" Width="50" Height="13" Attributes="3" Property="REGISTER_PPTM" Text=".pptm" Order="4100" TextLocId="-"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_xlsb" Type="CheckBox" X="35" Y="221" Width="50" Height="13" Attributes="3" Property="REGISTER_XLSB" Text=".xlsb" Order="4200" TextLocId="-"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control="PushButton_SelectAll" Type="PushButton" X="200" Y="210" Width="80" Height="17" Attributes="3" Text="Select All" Order="4300" TextLocId="ButtonText_SelectAll"/>
+    <ROW Dialog_="FileAssociationsCustomDlg" Control="PushButton_DeselectAll" Type="PushButton" X="280" Y="210" Width="80" Height="17" Attributes="3" Text="Deselect All" Order="4400" TextLocId="ButtonText_DeselectAll"/>
     <ROW Dialog_="FilesInUse" Control="BannerBitmap" Type="Bitmap" X="0" Y="0" Width="370" Height="44" Attributes="1048577" Text="banner.png" Order="400" MsiKey="FilesInUse#BannerBitmap"/>
     <ROW Dialog_="FilesInUse" Control="Title" Type="Text" X="15" Y="6" Width="200" Height="15" Attributes="196611" Text="Files in Use" TextStyle="[DlgTitleFont]" Order="600" TextLocId="Control.Text.FilesInUse#Title" MsiKey="FilesInUse#Title"/>
     <ROW Dialog_="FilesInUse" Control="Text" Type="Text" X="20" Y="55" Width="330" Height="30" Attributes="3" Text="The following applications are using files that need to be updated by this setup. You can either close the applications and then click &quot;Retry&quot;, or click &quot;Ignore&quot; so that the installer continues the installation and replaces these files when your system restarts." Order="700" TextLocId="Control.Text.FilesInUse#Text" MsiKey="FilesInUse#Text"/>
@@ -829,13 +865,8 @@
     <ROW Dialog="FileAssociationsCustomDlg" HCentering="50" VCentering="50" Width="370" Height="270" Attributes="3" Title="[ProductName] [Setup]" Control_Default="Next" Control_Cancel="Cancel" TitleLocId="Control.Text.FileAssociationsDlg#Title"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatCompsComponent">
-    <ROW Feature_="MainFeature" Component_="AI_CustomARPName"/>
-    <ROW Feature_="MainFeature" Component_="AI_DisableModify"/>
-    <ROW Feature_="ExtendedFeature" Component_="c_exe_videoplayer"/>
     <ROW Feature_="ExtendedFeature" Component_="c_exe_imageviewer"/>
-    <ROW Feature_="MicrosoftVisualC_2015_x64" Component_="MicrosoftVisualC_2015_x64"/>
-    <ROW Feature_="MicrosoftVisualC_2015_x86" Component_="MicrosoftVisualC_2015_x86"/>
-    <ROW Feature_="UpdateService" Component_="c_exe_updatesvc"/>
+    <ROW Feature_="ExtendedFeature" Component_="c_exe_videoplayer"/>
     <ROW Feature_="FA_CSV" Component_="c_reg_fa_ext__csv"/>
     <ROW Feature_="FA_DJVU" Component_="c_reg_fa_ext__djvu"/>
     <ROW Feature_="FA_DOC" Component_="c_reg_fa_ext__doc"/>
@@ -852,48 +883,69 @@
     <ROW Feature_="FA_OTP" Component_="c_reg_fa_ext__otp"/>
     <ROW Feature_="FA_OTS" Component_="c_reg_fa_ext__ots"/>
     <ROW Feature_="FA_OTT" Component_="c_reg_fa_ext__ott"/>
+    <ROW Feature_="FA_OXPS" Component_="c_reg_fa_ext__oxps"/>
     <ROW Feature_="FA_PDF" Component_="c_reg_fa_ext__pdf"/>
+    <ROW Feature_="FA_POT" Component_="c_reg_fa_ext__pot"/>
     <ROW Feature_="FA_POTX" Component_="c_reg_fa_ext__potx"/>
     <ROW Feature_="FA_PPS" Component_="c_reg_fa_ext__pps"/>
     <ROW Feature_="FA_PPSX" Component_="c_reg_fa_ext__ppsx"/>
     <ROW Feature_="FA_PPT" Component_="c_reg_fa_ext__ppt"/>
+    <ROW Feature_="FA_PPTM" Component_="c_reg_fa_ext__pptm"/>
     <ROW Feature_="FA_PPTX" Component_="c_reg_fa_ext__pptx"/>
     <ROW Feature_="FA_RTF" Component_="c_reg_fa_ext__rtf"/>
     <ROW Feature_="FA_TXT" Component_="c_reg_fa_ext__txt"/>
     <ROW Feature_="FA_XLS" Component_="c_reg_fa_ext__xls"/>
+    <ROW Feature_="FA_XLSB" Component_="c_reg_fa_ext__xlsb"/>
     <ROW Feature_="FA_XLSX" Component_="c_reg_fa_ext__xlsx"/>
     <ROW Feature_="FA_XLTX" Component_="c_reg_fa_ext__xltx"/>
     <ROW Feature_="FA_XML" Component_="c_reg_fa_ext__xml"/>
     <ROW Feature_="FA_XPS" Component_="c_reg_fa_ext__xps"/>
-    <ROW Feature_="Registry" Component_="c_reg_fa_progid__csv"/>
-    <ROW Feature_="Registry" Component_="c_reg_fa_progid__djvu"/>
-    <ROW Feature_="Registry" Component_="c_reg_fa_progid__doc"/>
-    <ROW Feature_="Registry" Component_="c_reg_fa_progid__docx"/>
-    <ROW Feature_="Registry" Component_="c_reg_fa_progid__docxf"/>
-    <ROW Feature_="Registry" Component_="c_reg_fa_progid__dotx"/>
-    <ROW Feature_="Registry" Component_="c_reg_fa_progid__epub"/>
-    <ROW Feature_="Registry" Component_="c_reg_fa_progid__fb2"/>
-    <ROW Feature_="Registry" Component_="c_reg_fa_progid__html"/>
-    <ROW Feature_="Registry" Component_="c_reg_fa_progid__odp"/>
-    <ROW Feature_="Registry" Component_="c_reg_fa_progid__ods"/>
-    <ROW Feature_="Registry" Component_="c_reg_fa_progid__odt"/>
-    <ROW Feature_="Registry" Component_="c_reg_fa_progid__oform"/>
-    <ROW Feature_="Registry" Component_="c_reg_fa_progid__otp"/>
-    <ROW Feature_="Registry" Component_="c_reg_fa_progid__ots"/>
-    <ROW Feature_="Registry" Component_="c_reg_fa_progid__ott"/>
-    <ROW Feature_="Registry" Component_="c_reg_fa_progid__pdf"/>
-    <ROW Feature_="Registry" Component_="c_reg_fa_progid__potx"/>
-    <ROW Feature_="Registry" Component_="c_reg_fa_progid__pps"/>
-    <ROW Feature_="Registry" Component_="c_reg_fa_progid__ppsx"/>
-    <ROW Feature_="Registry" Component_="c_reg_fa_progid__ppt"/>
-    <ROW Feature_="Registry" Component_="c_reg_fa_progid__pptx"/>
-    <ROW Feature_="Registry" Component_="c_reg_fa_progid__rtf"/>
-    <ROW Feature_="Registry" Component_="c_reg_fa_progid__txt"/>
-    <ROW Feature_="Registry" Component_="c_reg_fa_progid__xls"/>
-    <ROW Feature_="Registry" Component_="c_reg_fa_progid__xlsx"/>
-    <ROW Feature_="Registry" Component_="c_reg_fa_progid__xltx"/>
-    <ROW Feature_="Registry" Component_="c_reg_fa_progid__xml"/>
-    <ROW Feature_="Registry" Component_="c_reg_fa_progid__xps"/>
+    <ROW Feature_="Files" Component_="c_dir_app"/>
+    <ROW Feature_="Files" Component_="c_dir_shortcut"/>
+    <ROW Feature_="Files" Component_="c_exe_desktopeditors"/>
+    <ROW Feature_="MainFeature" Component_="AI_CustomARPName"/>
+    <ROW Feature_="MainFeature" Component_="AI_DisableModify"/>
+    <ROW Feature_="MicrosoftVisualC_2015_x64" Component_="MicrosoftVisualC_2015_x64"/>
+    <ROW Feature_="MicrosoftVisualC_2015_x86" Component_="MicrosoftVisualC_2015_x86"/>
+    <ROW Feature_="Registry" Component_="AIShRegAnswer"/>
+    <ROW Feature_="Registry" Component_="c_reg_cu_sw_app"/>
+    <ROW Feature_="Registry" Component_="c_reg_fa_cap__csv"/>
+    <ROW Feature_="Registry" Component_="c_reg_fa_cap__djvu"/>
+    <ROW Feature_="Registry" Component_="c_reg_fa_cap__doc"/>
+    <ROW Feature_="Registry" Component_="c_reg_fa_cap__docx"/>
+    <ROW Feature_="Registry" Component_="c_reg_fa_cap__docxf"/>
+    <ROW Feature_="Registry" Component_="c_reg_fa_cap__dotx"/>
+    <ROW Feature_="Registry" Component_="c_reg_fa_cap__epub"/>
+    <ROW Feature_="Registry" Component_="c_reg_fa_cap__fb2"/>
+    <ROW Feature_="Registry" Component_="c_reg_fa_cap__html"/>
+    <ROW Feature_="Registry" Component_="c_reg_fa_cap__odp"/>
+    <ROW Feature_="Registry" Component_="c_reg_fa_cap__ods"/>
+    <ROW Feature_="Registry" Component_="c_reg_fa_cap__odt"/>
+    <ROW Feature_="Registry" Component_="c_reg_fa_cap__oform"/>
+    <ROW Feature_="Registry" Component_="c_reg_fa_cap__otp"/>
+    <ROW Feature_="Registry" Component_="c_reg_fa_cap__ots"/>
+    <ROW Feature_="Registry" Component_="c_reg_fa_cap__ott"/>
+    <ROW Feature_="Registry" Component_="c_reg_fa_cap__oxps"/>
+    <ROW Feature_="Registry" Component_="c_reg_fa_cap__pdf"/>
+    <ROW Feature_="Registry" Component_="c_reg_fa_cap__pot"/>
+    <ROW Feature_="Registry" Component_="c_reg_fa_cap__potx"/>
+    <ROW Feature_="Registry" Component_="c_reg_fa_cap__pps"/>
+    <ROW Feature_="Registry" Component_="c_reg_fa_cap__ppsx"/>
+    <ROW Feature_="Registry" Component_="c_reg_fa_cap__ppt"/>
+    <ROW Feature_="Registry" Component_="c_reg_fa_cap__pptm"/>
+    <ROW Feature_="Registry" Component_="c_reg_fa_cap__pptx"/>
+    <ROW Feature_="Registry" Component_="c_reg_fa_cap__rtf"/>
+    <ROW Feature_="Registry" Component_="c_reg_fa_cap__txt"/>
+    <ROW Feature_="Registry" Component_="c_reg_fa_cap__xls"/>
+    <ROW Feature_="Registry" Component_="c_reg_fa_cap__xlsb"/>
+    <ROW Feature_="Registry" Component_="c_reg_fa_cap__xlsx"/>
+    <ROW Feature_="Registry" Component_="c_reg_fa_cap__xltx"/>
+    <ROW Feature_="Registry" Component_="c_reg_fa_cap__xml"/>
+    <ROW Feature_="Registry" Component_="c_reg_fa_cap__xps"/>
+    <ROW Feature_="Registry" Component_="c_reg_fa_new__docx"/>
+    <ROW Feature_="Registry" Component_="c_reg_fa_new__docxf"/>
+    <ROW Feature_="Registry" Component_="c_reg_fa_new__pptx"/>
+    <ROW Feature_="Registry" Component_="c_reg_fa_new__xlsx"/>
     <ROW Feature_="Registry" Component_="c_reg_fa_openwith__csv"/>
     <ROW Feature_="Registry" Component_="c_reg_fa_openwith__djvu"/>
     <ROW Feature_="Registry" Component_="c_reg_fa_openwith__doc"/>
@@ -910,62 +962,62 @@
     <ROW Feature_="Registry" Component_="c_reg_fa_openwith__otp"/>
     <ROW Feature_="Registry" Component_="c_reg_fa_openwith__ots"/>
     <ROW Feature_="Registry" Component_="c_reg_fa_openwith__ott"/>
+    <ROW Feature_="Registry" Component_="c_reg_fa_openwith__oxps"/>
     <ROW Feature_="Registry" Component_="c_reg_fa_openwith__pdf"/>
+    <ROW Feature_="Registry" Component_="c_reg_fa_openwith__pot"/>
     <ROW Feature_="Registry" Component_="c_reg_fa_openwith__potx"/>
     <ROW Feature_="Registry" Component_="c_reg_fa_openwith__pps"/>
     <ROW Feature_="Registry" Component_="c_reg_fa_openwith__ppsx"/>
     <ROW Feature_="Registry" Component_="c_reg_fa_openwith__ppt"/>
+    <ROW Feature_="Registry" Component_="c_reg_fa_openwith__pptm"/>
     <ROW Feature_="Registry" Component_="c_reg_fa_openwith__pptx"/>
     <ROW Feature_="Registry" Component_="c_reg_fa_openwith__rtf"/>
     <ROW Feature_="Registry" Component_="c_reg_fa_openwith__txt"/>
     <ROW Feature_="Registry" Component_="c_reg_fa_openwith__xls"/>
+    <ROW Feature_="Registry" Component_="c_reg_fa_openwith__xlsb"/>
     <ROW Feature_="Registry" Component_="c_reg_fa_openwith__xlsx"/>
     <ROW Feature_="Registry" Component_="c_reg_fa_openwith__xltx"/>
     <ROW Feature_="Registry" Component_="c_reg_fa_openwith__xml"/>
     <ROW Feature_="Registry" Component_="c_reg_fa_openwith__xps"/>
-    <ROW Feature_="Registry" Component_="c_reg_fa_cap__csv"/>
-    <ROW Feature_="Registry" Component_="c_reg_fa_new__xlsx"/>
-    <ROW Feature_="Registry" Component_="c_reg_fa_new__pptx"/>
-    <ROW Feature_="Registry" Component_="c_reg_fa_new__docxf"/>
-    <ROW Feature_="Registry" Component_="c_reg_fa_new__docx"/>
-    <ROW Feature_="Registry" Component_="c_reg_ua_cap__protocol"/>
-    <ROW Feature_="Registry" Component_="c_reg_fa_cap__xps"/>
-    <ROW Feature_="Registry" Component_="c_reg_fa_cap__xml"/>
-    <ROW Feature_="Registry" Component_="c_reg_fa_cap__xltx"/>
-    <ROW Feature_="Registry" Component_="c_reg_fa_cap__xlsx"/>
-    <ROW Feature_="Registry" Component_="c_reg_fa_cap__xls"/>
-    <ROW Feature_="Registry" Component_="c_reg_fa_cap__txt"/>
-    <ROW Feature_="Registry" Component_="c_reg_fa_cap__rtf"/>
-    <ROW Feature_="Registry" Component_="c_reg_fa_cap__pptx"/>
-    <ROW Feature_="Registry" Component_="c_reg_fa_cap__ppt"/>
-    <ROW Feature_="Registry" Component_="c_reg_fa_cap__ppsx"/>
-    <ROW Feature_="Registry" Component_="c_reg_fa_cap__pps"/>
-    <ROW Feature_="Registry" Component_="c_reg_fa_cap__potx"/>
-    <ROW Feature_="Registry" Component_="c_reg_fa_cap__ott"/>
-    <ROW Feature_="Registry" Component_="c_reg_fa_cap__pdf"/>
-    <ROW Feature_="Registry" Component_="c_reg_fa_cap__ots"/>
-    <ROW Feature_="Registry" Component_="c_reg_fa_cap__otp"/>
-    <ROW Feature_="Registry" Component_="c_reg_fa_cap__oform"/>
-    <ROW Feature_="Registry" Component_="c_reg_fa_cap__odt"/>
-    <ROW Feature_="Registry" Component_="c_reg_fa_cap__ods"/>
-    <ROW Feature_="Registry" Component_="c_reg_fa_cap__odp"/>
-    <ROW Feature_="Registry" Component_="c_reg_fa_cap__html"/>
-    <ROW Feature_="Registry" Component_="c_reg_fa_cap__fb2"/>
-    <ROW Feature_="Registry" Component_="c_reg_fa_cap__epub"/>
-    <ROW Feature_="Registry" Component_="c_reg_fa_cap__dotx"/>
-    <ROW Feature_="Registry" Component_="c_reg_fa_cap__docxf"/>
-    <ROW Feature_="Registry" Component_="c_reg_fa_cap__docx"/>
-    <ROW Feature_="Registry" Component_="c_reg_fa_cap__doc"/>
-    <ROW Feature_="Registry" Component_="c_reg_fa_cap__djvu"/>
-    <ROW Feature_="Registry" Component_="c_reg_cu_sw_app"/>
-    <ROW Feature_="Registry" Component_="AIShRegAnswer"/>
-    <ROW Feature_="Files" Component_="c_dir_app"/>
-    <ROW Feature_="Files" Component_="c_exe_desktopeditors"/>
-    <ROW Feature_="Files" Component_="c_dir_shortcut"/>
+    <ROW Feature_="Registry" Component_="c_reg_fa_progid__csv"/>
+    <ROW Feature_="Registry" Component_="c_reg_fa_progid__djvu"/>
+    <ROW Feature_="Registry" Component_="c_reg_fa_progid__doc"/>
+    <ROW Feature_="Registry" Component_="c_reg_fa_progid__docx"/>
+    <ROW Feature_="Registry" Component_="c_reg_fa_progid__docxf"/>
+    <ROW Feature_="Registry" Component_="c_reg_fa_progid__dotx"/>
+    <ROW Feature_="Registry" Component_="c_reg_fa_progid__epub"/>
+    <ROW Feature_="Registry" Component_="c_reg_fa_progid__fb2"/>
+    <ROW Feature_="Registry" Component_="c_reg_fa_progid__html"/>
+    <ROW Feature_="Registry" Component_="c_reg_fa_progid__odp"/>
+    <ROW Feature_="Registry" Component_="c_reg_fa_progid__ods"/>
+    <ROW Feature_="Registry" Component_="c_reg_fa_progid__odt"/>
+    <ROW Feature_="Registry" Component_="c_reg_fa_progid__oform"/>
+    <ROW Feature_="Registry" Component_="c_reg_fa_progid__otp"/>
+    <ROW Feature_="Registry" Component_="c_reg_fa_progid__ots"/>
+    <ROW Feature_="Registry" Component_="c_reg_fa_progid__ott"/>
+    <ROW Feature_="Registry" Component_="c_reg_fa_progid__oxps"/>
+    <ROW Feature_="Registry" Component_="c_reg_fa_progid__pdf"/>
+    <ROW Feature_="Registry" Component_="c_reg_fa_progid__pot"/>
+    <ROW Feature_="Registry" Component_="c_reg_fa_progid__potx"/>
+    <ROW Feature_="Registry" Component_="c_reg_fa_progid__pps"/>
+    <ROW Feature_="Registry" Component_="c_reg_fa_progid__ppsx"/>
+    <ROW Feature_="Registry" Component_="c_reg_fa_progid__ppt"/>
+    <ROW Feature_="Registry" Component_="c_reg_fa_progid__pptm"/>
+    <ROW Feature_="Registry" Component_="c_reg_fa_progid__pptx"/>
+    <ROW Feature_="Registry" Component_="c_reg_fa_progid__rtf"/>
+    <ROW Feature_="Registry" Component_="c_reg_fa_progid__txt"/>
+    <ROW Feature_="Registry" Component_="c_reg_fa_progid__xls"/>
+    <ROW Feature_="Registry" Component_="c_reg_fa_progid__xlsb"/>
+    <ROW Feature_="Registry" Component_="c_reg_fa_progid__xlsx"/>
+    <ROW Feature_="Registry" Component_="c_reg_fa_progid__xltx"/>
+    <ROW Feature_="Registry" Component_="c_reg_fa_progid__xml"/>
+    <ROW Feature_="Registry" Component_="c_reg_fa_progid__xps"/>
     <ROW Feature_="Registry" Component_="c_reg_progid"/>
     <ROW Feature_="Registry" Component_="c_reg_protocol"/>
     <ROW Feature_="Registry" Component_="c_reg_sw_app"/>
     <ROW Feature_="Registry" Component_="c_reg_sw_registeredapps"/>
+    <ROW Feature_="Registry" Component_="c_reg_ua_cap__protocol"/>
+    <ROW Feature_="UpdateService" Component_="c_exe_updatesvc"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiIconsComponent">
     <ROW Name="i_desktopeditors" SourcePath="..\..\extras\projicons\res\icons\desktopeditors.ico" Index="0"/>
@@ -1096,15 +1148,19 @@
     <ROW Registry="reg_fa_cap__otp" Root="-1" Key="Software\[VendorShortName]\[AppShortName]\Capabilities\FileAssociations" Name=".otp" Value="[ExtPfx].Otp" Component_="c_reg_fa_cap__otp"/>
     <ROW Registry="reg_fa_cap__ots" Root="-1" Key="Software\[VendorShortName]\[AppShortName]\Capabilities\FileAssociations" Name=".ots" Value="[ExtPfx].Ots" Component_="c_reg_fa_cap__ots"/>
     <ROW Registry="reg_fa_cap__ott" Root="-1" Key="Software\[VendorShortName]\[AppShortName]\Capabilities\FileAssociations" Name=".ott" Value="[ExtPfx].Ott" Component_="c_reg_fa_cap__ott"/>
+    <ROW Registry="reg_fa_cap__oxps" Root="-1" Key="Software\[VendorShortName]\[AppShortName]\Capabilities\FileAssociations" Name=".oxps" Value="[ExtPfx].Oxps" Component_="c_reg_fa_cap__oxps"/>
     <ROW Registry="reg_fa_cap__pdf" Root="-1" Key="Software\[VendorShortName]\[AppShortName]\Capabilities\FileAssociations" Name=".pdf" Value="[ExtPfx].Pdf" Component_="c_reg_fa_cap__pdf"/>
+    <ROW Registry="reg_fa_cap__pot" Root="-1" Key="Software\[VendorShortName]\[AppShortName]\Capabilities\FileAssociations" Name=".pot" Value="[ExtPfx].Pot" Component_="c_reg_fa_cap__pot"/>
     <ROW Registry="reg_fa_cap__potx" Root="-1" Key="Software\[VendorShortName]\[AppShortName]\Capabilities\FileAssociations" Name=".potx" Value="[ExtPfx].Potx" Component_="c_reg_fa_cap__potx"/>
     <ROW Registry="reg_fa_cap__pps" Root="-1" Key="Software\[VendorShortName]\[AppShortName]\Capabilities\FileAssociations" Name=".pps" Value="[ExtPfx].SlideShow.1" Component_="c_reg_fa_cap__pps"/>
     <ROW Registry="reg_fa_cap__ppsx" Root="-1" Key="Software\[VendorShortName]\[AppShortName]\Capabilities\FileAssociations" Name=".ppsx" Value="[ExtPfx].SlideShow.12" Component_="c_reg_fa_cap__ppsx"/>
     <ROW Registry="reg_fa_cap__ppt" Root="-1" Key="Software\[VendorShortName]\[AppShortName]\Capabilities\FileAssociations" Name=".ppt" Value="[ExtPfx].Show.1" Component_="c_reg_fa_cap__ppt"/>
+    <ROW Registry="reg_fa_cap__pptm" Root="-1" Key="Software\[VendorShortName]\[AppShortName]\Capabilities\FileAssociations" Name=".pptm" Value="[ExtPfx].Pptm" Component_="c_reg_fa_cap__pptm"/>
     <ROW Registry="reg_fa_cap__pptx" Root="-1" Key="Software\[VendorShortName]\[AppShortName]\Capabilities\FileAssociations" Name=".pptx" Value="[ExtPfx].Show.12" Component_="c_reg_fa_cap__pptx"/>
     <ROW Registry="reg_fa_cap__rtf" Root="-1" Key="Software\[VendorShortName]\[AppShortName]\Capabilities\FileAssociations" Name=".rtf" Value="[ExtPfx].Rtf" Component_="c_reg_fa_cap__rtf"/>
     <ROW Registry="reg_fa_cap__txt" Root="-1" Key="Software\[VendorShortName]\[AppShortName]\Capabilities\FileAssociations" Name=".txt" Value="[ExtPfx].Txt" Component_="c_reg_fa_cap__txt"/>
     <ROW Registry="reg_fa_cap__xls" Root="-1" Key="Software\[VendorShortName]\[AppShortName]\Capabilities\FileAssociations" Name=".xls" Value="[ExtPfx].Sheet.1" Component_="c_reg_fa_cap__xls"/>
+    <ROW Registry="reg_fa_cap__xlsb" Root="-1" Key="Software\[VendorShortName]\[AppShortName]\Capabilities\FileAssociations" Name=".xlsb" Value="[ExtPfx].Xlsb" Component_="c_reg_fa_cap__xlsb"/>
     <ROW Registry="reg_fa_cap__xlsx" Root="-1" Key="Software\[VendorShortName]\[AppShortName]\Capabilities\FileAssociations" Name=".xlsx" Value="[ExtPfx].Sheet.12" Component_="c_reg_fa_cap__xlsx"/>
     <ROW Registry="reg_fa_cap__xltx" Root="-1" Key="Software\[VendorShortName]\[AppShortName]\Capabilities\FileAssociations" Name=".xltx" Value="[ExtPfx].Xltx" Component_="c_reg_fa_cap__xltx"/>
     <ROW Registry="reg_fa_cap__xml" Root="-1" Key="Software\[VendorShortName]\[AppShortName]\Capabilities\FileAssociations" Name=".xml" Value="[ExtPfx].Xml" Component_="c_reg_fa_cap__xml"/>
@@ -1125,15 +1181,19 @@
     <ROW Registry="reg_fa_ext__otp" Root="0" Key=".otp" Value="[ExtPfx].Otp" Component_="c_reg_fa_ext__otp"/>
     <ROW Registry="reg_fa_ext__ots" Root="0" Key=".ots" Value="[ExtPfx].Ots" Component_="c_reg_fa_ext__ots"/>
     <ROW Registry="reg_fa_ext__ott" Root="0" Key=".ott" Value="[ExtPfx].Ott" Component_="c_reg_fa_ext__ott"/>
+    <ROW Registry="reg_fa_ext__oxps" Root="0" Key=".oxps" Value="[ExtPfx].Oxps" Component_="c_reg_fa_ext__oxps"/>
     <ROW Registry="reg_fa_ext__pdf" Root="0" Key=".pdf" Value="[ExtPfx].Pdf" Component_="c_reg_fa_ext__pdf"/>
+    <ROW Registry="reg_fa_ext__pot" Root="0" Key=".pot" Value="[ExtPfx].Pot" Component_="c_reg_fa_ext__pot"/>
     <ROW Registry="reg_fa_ext__potx" Root="0" Key=".potx" Value="[ExtPfx].Potx" Component_="c_reg_fa_ext__potx"/>
     <ROW Registry="reg_fa_ext__pps" Root="0" Key=".pps" Value="[ExtPfx].SlideShow.1" Component_="c_reg_fa_ext__pps"/>
     <ROW Registry="reg_fa_ext__ppsx" Root="0" Key=".ppsx" Value="[ExtPfx].SlideShow.12" Component_="c_reg_fa_ext__ppsx"/>
     <ROW Registry="reg_fa_ext__ppt" Root="0" Key=".ppt" Value="[ExtPfx].Show.1" Component_="c_reg_fa_ext__ppt"/>
+    <ROW Registry="reg_fa_ext__pptm" Root="0" Key=".pptm" Value="[ExtPfx].Pptm" Component_="c_reg_fa_ext__pptm"/>
     <ROW Registry="reg_fa_ext__pptx" Root="0" Key=".pptx" Value="[ExtPfx].Show.12" Component_="c_reg_fa_ext__pptx"/>
     <ROW Registry="reg_fa_ext__rtf" Root="0" Key=".rtf" Value="[ExtPfx].Rtf" Component_="c_reg_fa_ext__rtf"/>
     <ROW Registry="reg_fa_ext__txt" Root="0" Key=".txt" Value="[ExtPfx].Txt" Component_="c_reg_fa_ext__txt"/>
     <ROW Registry="reg_fa_ext__xls" Root="0" Key=".xls" Value="[ExtPfx].Sheet.1" Component_="c_reg_fa_ext__xls"/>
+    <ROW Registry="reg_fa_ext__xlsb" Root="0" Key=".xlsb" Value="[ExtPfx].Xlsb" Component_="c_reg_fa_ext__xlsb"/>
     <ROW Registry="reg_fa_ext__xlsx" Root="0" Key=".xlsx" Value="[ExtPfx].Sheet.12" Component_="c_reg_fa_ext__xlsx"/>
     <ROW Registry="reg_fa_ext__xltx" Root="0" Key=".xltx" Value="[ExtPfx].Xltx" Component_="c_reg_fa_ext__xltx"/>
     <ROW Registry="reg_fa_ext__xml" Root="0" Key=".xml" Value="[ExtPfx].Xml" Component_="c_reg_fa_ext__xml"/>
@@ -1154,15 +1214,19 @@
     <ROW Registry="reg_fa_openwith__otp" Root="0" Key=".otp\OpenWithProgIds" Name="[ExtPfx].Otp" Component_="c_reg_fa_openwith__otp"/>
     <ROW Registry="reg_fa_openwith__ots" Root="0" Key=".ots\OpenWithProgIds" Name="[ExtPfx].Ots" Component_="c_reg_fa_openwith__ots"/>
     <ROW Registry="reg_fa_openwith__ott" Root="0" Key=".ott\OpenWithProgIds" Name="[ExtPfx].Ott" Component_="c_reg_fa_openwith__ott"/>
+    <ROW Registry="reg_fa_openwith__oxps" Root="0" Key=".oxps\OpenWithProgIds" Name="[ExtPfx].Oxps" Component_="c_reg_fa_openwith__oxps"/>
     <ROW Registry="reg_fa_openwith__pdf" Root="0" Key=".pdf\OpenWithProgIds" Name="[ExtPfx].Pdf" Component_="c_reg_fa_openwith__pdf"/>
+    <ROW Registry="reg_fa_openwith__pot" Root="0" Key=".pot\OpenWithProgIds" Name="[ExtPfx].Pot" Component_="c_reg_fa_openwith__pot"/>
     <ROW Registry="reg_fa_openwith__potx" Root="0" Key=".potx\OpenWithProgIds" Name="[ExtPfx].Potx" Component_="c_reg_fa_openwith__potx"/>
     <ROW Registry="reg_fa_openwith__pps" Root="0" Key=".pps\OpenWithProgIds" Name="[ExtPfx].SlideShow.1" Component_="c_reg_fa_openwith__pps"/>
     <ROW Registry="reg_fa_openwith__ppsx" Root="0" Key=".ppsx\OpenWithProgIds" Name="[ExtPfx].SlideShow.12" Component_="c_reg_fa_openwith__ppsx"/>
     <ROW Registry="reg_fa_openwith__ppt" Root="0" Key=".ppt\OpenWithProgIds" Name="[ExtPfx].Show.1" Component_="c_reg_fa_openwith__ppt"/>
+    <ROW Registry="reg_fa_openwith__pptm" Root="0" Key=".pptm\OpenWithProgIds" Name="[ExtPfx].Pptm" Component_="c_reg_fa_openwith__pptm"/>
     <ROW Registry="reg_fa_openwith__pptx" Root="0" Key=".pptx\OpenWithProgIds" Name="[ExtPfx].Show.12" Component_="c_reg_fa_openwith__pptx"/>
     <ROW Registry="reg_fa_openwith__rtf" Root="0" Key=".rtf\OpenWithProgIds" Name="[ExtPfx].Rtf" Component_="c_reg_fa_openwith__rtf"/>
     <ROW Registry="reg_fa_openwith__txt" Root="0" Key=".txt\OpenWithProgIds" Name="[ExtPfx].Txt" Component_="c_reg_fa_openwith__txt"/>
     <ROW Registry="reg_fa_openwith__xls" Root="0" Key=".xls\OpenWithProgIds" Name="[ExtPfx].Sheet.1" Component_="c_reg_fa_openwith__xls"/>
+    <ROW Registry="reg_fa_openwith__xlsb" Root="0" Key=".xlsb\OpenWithProgIds" Name="[ExtPfx].Xlsb" Component_="c_reg_fa_openwith__xlsb"/>
     <ROW Registry="reg_fa_openwith__xlsx" Root="0" Key=".xlsx\OpenWithProgIds" Name="[ExtPfx].Sheet.12" Component_="c_reg_fa_openwith__xlsx"/>
     <ROW Registry="reg_fa_openwith__xltx" Root="0" Key=".xltx\OpenWithProgIds" Name="[ExtPfx].Xltx" Component_="c_reg_fa_openwith__xltx"/>
     <ROW Registry="reg_fa_openwith__xml" Root="0" Key=".xml\OpenWithProgIds" Name="[ExtPfx].Xml" Component_="c_reg_fa_openwith__xml"/>
@@ -1183,15 +1247,19 @@
     <ROW Registry="reg_fa_openwith_k__otp" Root="0" Key=".otp\OpenWithProgIds" Name="\"/>
     <ROW Registry="reg_fa_openwith_k__ots" Root="0" Key=".ots\OpenWithProgIds" Name="\"/>
     <ROW Registry="reg_fa_openwith_k__ott" Root="0" Key=".ott\OpenWithProgIds" Name="\"/>
+    <ROW Registry="reg_fa_openwith_k__oxps" Root="0" Key=".oxps\OpenWithProgIds" Name="\"/>
     <ROW Registry="reg_fa_openwith_k__pdf" Root="0" Key=".pdf\OpenWithProgIds" Name="\"/>
+    <ROW Registry="reg_fa_openwith_k__pot" Root="0" Key=".pot\OpenWithProgIds" Name="\"/>
     <ROW Registry="reg_fa_openwith_k__potx" Root="0" Key=".potx\OpenWithProgIds" Name="\"/>
     <ROW Registry="reg_fa_openwith_k__pps" Root="0" Key=".pps\OpenWithProgIds" Name="\"/>
     <ROW Registry="reg_fa_openwith_k__ppsx" Root="0" Key=".ppsx\OpenWithProgIds" Name="\"/>
     <ROW Registry="reg_fa_openwith_k__ppt" Root="0" Key=".ppt\OpenWithProgIds" Name="\"/>
+    <ROW Registry="reg_fa_openwith_k__pptm" Root="0" Key=".pptm\OpenWithProgIds" Name="\"/>
     <ROW Registry="reg_fa_openwith_k__pptx" Root="0" Key=".pptx\OpenWithProgIds" Name="\"/>
     <ROW Registry="reg_fa_openwith_k__rtf" Root="0" Key=".rtf\OpenWithProgIds" Name="\"/>
     <ROW Registry="reg_fa_openwith_k__txt" Root="0" Key=".txt\OpenWithProgIds" Name="\"/>
     <ROW Registry="reg_fa_openwith_k__xls" Root="0" Key=".xls\OpenWithProgIds" Name="\"/>
+    <ROW Registry="reg_fa_openwith_k__xlsb" Root="0" Key=".xlsb\OpenWithProgIds" Name="\"/>
     <ROW Registry="reg_fa_openwith_k__xlsx" Root="0" Key=".xlsx\OpenWithProgIds" Name="\"/>
     <ROW Registry="reg_fa_openwith_k__xltx" Root="0" Key=".xltx\OpenWithProgIds" Name="\"/>
     <ROW Registry="reg_fa_openwith_k__xml" Root="0" Key=".xml\OpenWithProgIds" Name="\"/>
@@ -1212,15 +1280,19 @@
     <ROW Registry="reg_fa_progid__otp" Root="0" Key="[ExtPfx].Otp" Value="OpenDocument Presentation Template" Component_="c_reg_fa_progid__otp"/>
     <ROW Registry="reg_fa_progid__ots" Root="0" Key="[ExtPfx].Ots" Value="OpenDocument Spreadsheet Template" Component_="c_reg_fa_progid__ots"/>
     <ROW Registry="reg_fa_progid__ott" Root="0" Key="[ExtPfx].Ott" Value="OpenDocument Text Template" Component_="c_reg_fa_progid__ott"/>
+    <ROW Registry="reg_fa_progid__oxps" Root="0" Key="[ExtPfx].Oxps" Value="///////////////WIP//////////////" Component_="c_reg_fa_progid__oxps"/>
     <ROW Registry="reg_fa_progid__pdf" Root="0" Key="[ExtPfx].Pdf" Value="Adobe Portable Document Format" Component_="c_reg_fa_progid__pdf"/>
+    <ROW Registry="reg_fa_progid__pot" Root="0" Key="[ExtPfx].Pot" Value="///////////////WIP//////////////" Component_="c_reg_fa_progid__pot"/>
     <ROW Registry="reg_fa_progid__potx" Root="0" Key="[ExtPfx].Potx" Value="Microsoft PowerPoint Presentation Template" Component_="c_reg_fa_progid__potx"/>
     <ROW Registry="reg_fa_progid__pps" Root="0" Key="[ExtPfx].SlideShow.1" Value="PowerPoint 97-2003 Slideshow" Component_="c_reg_fa_progid__pps"/>
     <ROW Registry="reg_fa_progid__ppsx" Root="0" Key="[ExtPfx].SlideShow.12" Value="Microsoft PowerPoint Slideshow" Component_="c_reg_fa_progid__ppsx"/>
     <ROW Registry="reg_fa_progid__ppt" Root="0" Key="[ExtPfx].Show.1" Value="PowerPoint 97-2003 Presentation" Component_="c_reg_fa_progid__ppt"/>
+    <ROW Registry="reg_fa_progid__pptm" Root="0" Key="[ExtPfx].Pptm" Value="///////////////WIP//////////////" Component_="c_reg_fa_progid__pptm"/>
     <ROW Registry="reg_fa_progid__pptx" Root="0" Key="[ExtPfx].Show.12" Value="Microsoft PowerPoint Presentation" Component_="c_reg_fa_progid__pptx"/>
     <ROW Registry="reg_fa_progid__rtf" Root="0" Key="[ExtPfx].Rtf" Value="Rich Text Format" Component_="c_reg_fa_progid__rtf"/>
     <ROW Registry="reg_fa_progid__txt" Root="0" Key="[ExtPfx].Txt" Value="Text" Component_="c_reg_fa_progid__txt"/>
     <ROW Registry="reg_fa_progid__xls" Root="0" Key="[ExtPfx].Sheet.1" Value="Excel 97-2003 Spreadsheet" Component_="c_reg_fa_progid__xls"/>
+    <ROW Registry="reg_fa_progid__xlsb" Root="0" Key="[ExtPfx].Xlsb" Value="///////////////WIP//////////////" Component_="c_reg_fa_progid__xlsb"/>
     <ROW Registry="reg_fa_progid__xlsx" Root="0" Key="[ExtPfx].Sheet.12" Value="Microsoft Excel Spreadsheet" Component_="c_reg_fa_progid__xlsx"/>
     <ROW Registry="reg_fa_progid__xltx" Root="0" Key="[ExtPfx].Xltx" Value="Microsoft Excel Spreadsheet Template" Component_="c_reg_fa_progid__xltx"/>
     <ROW Registry="reg_fa_progid__xml" Root="0" Key="[ExtPfx].Xml" Value="Extensible Markup Language" Component_="c_reg_fa_progid__xml"/>
@@ -1235,14 +1307,18 @@
     <ROW Registry="reg_fa_progid_icon__ods" Root="0" Key="[ExtPfx].Sheet.2\DefaultIcon" Value="[#DesktopEditors.exe],23" Component_="c_reg_fa_progid__ods"/>
     <ROW Registry="reg_fa_progid_icon__odt" Root="0" Key="[ExtPfx].Document.2\DefaultIcon" Value="[#DesktopEditors.exe],18" Component_="c_reg_fa_progid__odt"/>
     <ROW Registry="reg_fa_progid_icon__oform" Root="0" Key="[ExtPfx].Oform\DefaultIcon" Value="[#DesktopEditors.exe],12" Component_="c_reg_fa_progid__oform"/>
+    <ROW Registry="reg_fa_progid_icon__oxps" Root="0" Key="[ExtPfx].Oxps\DefaultIcon" Value="[#DesktopEditors.exe],0" Component_="c_reg_fa_progid__oxps"/>
     <ROW Registry="reg_fa_progid_icon__pdf" Root="0" Key="[ExtPfx].Pdf\DefaultIcon" Value="[#DesktopEditors.exe],5" Component_="c_reg_fa_progid__pdf"/>
+    <ROW Registry="reg_fa_progid_icon__pot" Root="0" Key="[ExtPfx].Pot\DefaultIcon" Value="[#DesktopEditors.exe],0" Component_="c_reg_fa_progid__pot"/>
     <ROW Registry="reg_fa_progid_icon__pps" Root="0" Key="[ExtPfx].SlideShow.1\DefaultIcon" Value="[#DesktopEditors.exe],2" Component_="c_reg_fa_progid__pps"/>
     <ROW Registry="reg_fa_progid_icon__ppsx" Root="0" Key="[ExtPfx].SlideShow.12\DefaultIcon" Value="[#DesktopEditors.exe],8" Component_="c_reg_fa_progid__ppsx"/>
     <ROW Registry="reg_fa_progid_icon__ppt" Root="0" Key="[ExtPfx].Show.1\DefaultIcon" Value="[#DesktopEditors.exe],1" Component_="c_reg_fa_progid__ppt"/>
+    <ROW Registry="reg_fa_progid_icon__pptm" Root="0" Key="[ExtPfx].Pptm\DefaultIcon" Value="[#DesktopEditors.exe],0" Component_="c_reg_fa_progid__pptm"/>
     <ROW Registry="reg_fa_progid_icon__pptx" Root="0" Key="[ExtPfx].Show.12\DefaultIcon" Value="[#DesktopEditors.exe],9" Component_="c_reg_fa_progid__pptx"/>
     <ROW Registry="reg_fa_progid_icon__rtf" Root="0" Key="[ExtPfx].Rtf\DefaultIcon" Value="[#DesktopEditors.exe],19" Component_="c_reg_fa_progid__rtf"/>
     <ROW Registry="reg_fa_progid_icon__txt" Root="0" Key="[ExtPfx].Txt\DefaultIcon" Value="[#DesktopEditors.exe],20" Component_="c_reg_fa_progid__txt"/>
     <ROW Registry="reg_fa_progid_icon__xls" Root="0" Key="[ExtPfx].Sheet.1\DefaultIcon" Value="[#DesktopEditors.exe],22" Component_="c_reg_fa_progid__xls"/>
+    <ROW Registry="reg_fa_progid_icon__xlsb" Root="0" Key="[ExtPfx].Xlsb\DefaultIcon" Value="[#DesktopEditors.exe],0" Component_="c_reg_fa_progid__xlsb"/>
     <ROW Registry="reg_fa_progid_icon__xlsx" Root="0" Key="[ExtPfx].Sheet.12\DefaultIcon" Value="[#DesktopEditors.exe],10" Component_="c_reg_fa_progid__xlsx"/>
     <ROW Registry="reg_fa_progid_icon__xps" Root="0" Key="[ExtPfx].Xps\DefaultIcon" Value="[#DesktopEditors.exe],6" Component_="c_reg_fa_progid__xps"/>
     <ROW Registry="reg_fa_progid_icon_k__csv" Root="0" Key="[ExtPfx].Csv\DefaultIcon" Name="\"/>
@@ -1255,14 +1331,18 @@
     <ROW Registry="reg_fa_progid_icon_k__ods" Root="0" Key="[ExtPfx].Sheet.2\DefaultIcon" Name="\"/>
     <ROW Registry="reg_fa_progid_icon_k__odt" Root="0" Key="[ExtPfx].Document.2\DefaultIcon" Name="\"/>
     <ROW Registry="reg_fa_progid_icon_k__oform" Root="0" Key="[ExtPfx].Oform\DefaultIcon" Name="\"/>
+    <ROW Registry="reg_fa_progid_icon_k__oxps" Root="0" Key="[ExtPfx].Oxps\DefaultIcon" Name="\"/>
     <ROW Registry="reg_fa_progid_icon_k__pdf" Root="0" Key="[ExtPfx].Pdf\DefaultIcon" Name="\"/>
+    <ROW Registry="reg_fa_progid_icon_k__pot" Root="0" Key="[ExtPfx].Pot\DefaultIcon" Name="\"/>
     <ROW Registry="reg_fa_progid_icon_k__pps" Root="0" Key="[ExtPfx].SlideShow.1\DefaultIcon" Name="\"/>
     <ROW Registry="reg_fa_progid_icon_k__ppsx" Root="0" Key="[ExtPfx].SlideShow.12\DefaultIcon" Name="\"/>
     <ROW Registry="reg_fa_progid_icon_k__ppt" Root="0" Key="[ExtPfx].Show.1\DefaultIcon" Name="\"/>
+    <ROW Registry="reg_fa_progid_icon_k__pptm" Root="0" Key="[ExtPfx].Pptm\DefaultIcon" Name="\"/>
     <ROW Registry="reg_fa_progid_icon_k__pptx" Root="0" Key="[ExtPfx].Show.12\DefaultIcon" Name="\"/>
     <ROW Registry="reg_fa_progid_icon_k__rtf" Root="0" Key="[ExtPfx].Rtf\DefaultIcon" Name="\"/>
     <ROW Registry="reg_fa_progid_icon_k__txt" Root="0" Key="[ExtPfx].Txt\DefaultIcon" Name="\"/>
     <ROW Registry="reg_fa_progid_icon_k__xls" Root="0" Key="[ExtPfx].Sheet.1\DefaultIcon" Name="\"/>
+    <ROW Registry="reg_fa_progid_icon_k__xlsb" Root="0" Key="[ExtPfx].Xlsb\DefaultIcon" Name="\"/>
     <ROW Registry="reg_fa_progid_icon_k__xlsx" Root="0" Key="[ExtPfx].Sheet.12\DefaultIcon" Name="\"/>
     <ROW Registry="reg_fa_progid_icon_k__xps" Root="0" Key="[ExtPfx].Xps\DefaultIcon" Name="\"/>
     <ROW Registry="reg_fa_progid_k__csv" Root="0" Key="[ExtPfx].Csv" Name="\"/>
@@ -1281,15 +1361,19 @@
     <ROW Registry="reg_fa_progid_k__otp" Root="0" Key="[ExtPfx].Otp" Name="\"/>
     <ROW Registry="reg_fa_progid_k__ots" Root="0" Key="[ExtPfx].Ots" Name="\"/>
     <ROW Registry="reg_fa_progid_k__ott" Root="0" Key="[ExtPfx].Ott" Name="\"/>
+    <ROW Registry="reg_fa_progid_k__oxps" Root="0" Key="[ExtPfx].Oxps" Name="\"/>
     <ROW Registry="reg_fa_progid_k__pdf" Root="0" Key="[ExtPfx].Pdf" Name="\"/>
+    <ROW Registry="reg_fa_progid_k__pot" Root="0" Key="[ExtPfx].Pot" Name="\"/>
     <ROW Registry="reg_fa_progid_k__potx" Root="0" Key="[ExtPfx].Potx" Name="\"/>
     <ROW Registry="reg_fa_progid_k__pps" Root="0" Key="[ExtPfx].SlideShow.1" Name="\"/>
     <ROW Registry="reg_fa_progid_k__ppsx" Root="0" Key="[ExtPfx].SlideShow.12" Name="\"/>
     <ROW Registry="reg_fa_progid_k__ppt" Root="0" Key="[ExtPfx].Show.1" Name="\"/>
+    <ROW Registry="reg_fa_progid_k__pptm" Root="0" Key="[ExtPfx].Pptm" Name="\"/>
     <ROW Registry="reg_fa_progid_k__pptx" Root="0" Key="[ExtPfx].Show.12" Name="\"/>
     <ROW Registry="reg_fa_progid_k__rtf" Root="0" Key="[ExtPfx].Rtf" Name="\"/>
     <ROW Registry="reg_fa_progid_k__txt" Root="0" Key="[ExtPfx].Txt" Name="\"/>
     <ROW Registry="reg_fa_progid_k__xls" Root="0" Key="[ExtPfx].Sheet.1" Name="\"/>
+    <ROW Registry="reg_fa_progid_k__xlsb" Root="0" Key="[ExtPfx].Xlsb" Name="\"/>
     <ROW Registry="reg_fa_progid_k__xlsx" Root="0" Key="[ExtPfx].Sheet.12" Name="\"/>
     <ROW Registry="reg_fa_progid_k__xltx" Root="0" Key="[ExtPfx].Xltx" Name="\"/>
     <ROW Registry="reg_fa_progid_k__xml" Root="0" Key="[ExtPfx].Xml" Name="\"/>
@@ -1310,15 +1394,19 @@
     <ROW Registry="reg_fa_progid_shell_k__otp" Root="0" Key="[ExtPfx].Otp\shell" Name="\"/>
     <ROW Registry="reg_fa_progid_shell_k__ots" Root="0" Key="[ExtPfx].Ots\shell" Name="\"/>
     <ROW Registry="reg_fa_progid_shell_k__ott" Root="0" Key="[ExtPfx].Ott\shell" Name="\"/>
+    <ROW Registry="reg_fa_progid_shell_k__oxps" Root="0" Key="[ExtPfx].Oxps\shell" Name="\"/>
     <ROW Registry="reg_fa_progid_shell_k__pdf" Root="0" Key="[ExtPfx].Pdf\shell" Name="\"/>
+    <ROW Registry="reg_fa_progid_shell_k__pot" Root="0" Key="[ExtPfx].Pot\shell" Name="\"/>
     <ROW Registry="reg_fa_progid_shell_k__potx" Root="0" Key="[ExtPfx].Potx\shell" Name="\"/>
     <ROW Registry="reg_fa_progid_shell_k__pps" Root="0" Key="[ExtPfx].SlideShow.1\shell" Name="\"/>
     <ROW Registry="reg_fa_progid_shell_k__ppsx" Root="0" Key="[ExtPfx].SlideShow.12\shell" Name="\"/>
     <ROW Registry="reg_fa_progid_shell_k__ppt" Root="0" Key="[ExtPfx].Show.1\shell" Name="\"/>
+    <ROW Registry="reg_fa_progid_shell_k__pptm" Root="0" Key="[ExtPfx].Pptm\shell" Name="\"/>
     <ROW Registry="reg_fa_progid_shell_k__pptx" Root="0" Key="[ExtPfx].Show.12\shell" Name="\"/>
     <ROW Registry="reg_fa_progid_shell_k__rtf" Root="0" Key="[ExtPfx].Rtf\shell" Name="\"/>
     <ROW Registry="reg_fa_progid_shell_k__txt" Root="0" Key="[ExtPfx].Txt\shell" Name="\"/>
     <ROW Registry="reg_fa_progid_shell_k__xls" Root="0" Key="[ExtPfx].Sheet.1\shell" Name="\"/>
+    <ROW Registry="reg_fa_progid_shell_k__xlsb" Root="0" Key="[ExtPfx].Xlsb\shell" Name="\"/>
     <ROW Registry="reg_fa_progid_shell_k__xlsx" Root="0" Key="[ExtPfx].Sheet.12\shell" Name="\"/>
     <ROW Registry="reg_fa_progid_shell_k__xltx" Root="0" Key="[ExtPfx].Xltx\shell" Name="\"/>
     <ROW Registry="reg_fa_progid_shell_k__xml" Root="0" Key="[ExtPfx].Xml\shell" Name="\"/>
@@ -1339,15 +1427,19 @@
     <ROW Registry="reg_fa_progid_shell_open_command__otp" Root="0" Key="[ExtPfx].Otp\shell\open\command" Value="&quot;[#DesktopEditors.exe]&quot; &quot;%1&quot;" Component_="c_reg_fa_progid__otp"/>
     <ROW Registry="reg_fa_progid_shell_open_command__ots" Root="0" Key="[ExtPfx].Ots\shell\open\command" Value="&quot;[#DesktopEditors.exe]&quot; &quot;%1&quot;" Component_="c_reg_fa_progid__ots"/>
     <ROW Registry="reg_fa_progid_shell_open_command__ott" Root="0" Key="[ExtPfx].Ott\shell\open\command" Value="&quot;[#DesktopEditors.exe]&quot; &quot;%1&quot;" Component_="c_reg_fa_progid__ott"/>
+    <ROW Registry="reg_fa_progid_shell_open_command__oxps" Root="0" Key="[ExtPfx].Oxps\shell\open\command" Value="&quot;[#DesktopEditors.exe]&quot; &quot;%1&quot;" Component_="c_reg_fa_progid__oxps"/>
     <ROW Registry="reg_fa_progid_shell_open_command__pdf" Root="0" Key="[ExtPfx].Pdf\shell\open\command" Value="&quot;[#DesktopEditors.exe]&quot; &quot;%1&quot;" Component_="c_reg_fa_progid__pdf"/>
+    <ROW Registry="reg_fa_progid_shell_open_command__pot" Root="0" Key="[ExtPfx].Pot\shell\open\command" Value="&quot;[#DesktopEditors.exe]&quot; &quot;%1&quot;" Component_="c_reg_fa_progid__pot"/>
     <ROW Registry="reg_fa_progid_shell_open_command__potx" Root="0" Key="[ExtPfx].Potx\shell\open\command" Value="&quot;[#DesktopEditors.exe]&quot; &quot;%1&quot;" Component_="c_reg_fa_progid__potx"/>
     <ROW Registry="reg_fa_progid_shell_open_command__pps" Root="0" Key="[ExtPfx].SlideShow.1\shell\open\command" Value="&quot;[#DesktopEditors.exe]&quot; &quot;%1&quot;" Component_="c_reg_fa_progid__pps"/>
     <ROW Registry="reg_fa_progid_shell_open_command__ppsx" Root="0" Key="[ExtPfx].SlideShow.12\shell\open\command" Value="&quot;[#DesktopEditors.exe]&quot; &quot;%1&quot;" Component_="c_reg_fa_progid__ppsx"/>
     <ROW Registry="reg_fa_progid_shell_open_command__ppt" Root="0" Key="[ExtPfx].Show.1\shell\open\command" Value="&quot;[#DesktopEditors.exe]&quot; &quot;%1&quot;" Component_="c_reg_fa_progid__ppt"/>
+    <ROW Registry="reg_fa_progid_shell_open_command__pptm" Root="0" Key="[ExtPfx].Pptm\shell\open\command" Value="&quot;[#DesktopEditors.exe]&quot; &quot;%1&quot;" Component_="c_reg_fa_progid__pptm"/>
     <ROW Registry="reg_fa_progid_shell_open_command__pptx" Root="0" Key="[ExtPfx].Show.12\shell\open\command" Value="&quot;[#DesktopEditors.exe]&quot; &quot;%1&quot;" Component_="c_reg_fa_progid__pptx"/>
     <ROW Registry="reg_fa_progid_shell_open_command__rtf" Root="0" Key="[ExtPfx].Rtf\shell\open\command" Value="&quot;[#DesktopEditors.exe]&quot; &quot;%1&quot;" Component_="c_reg_fa_progid__rtf"/>
     <ROW Registry="reg_fa_progid_shell_open_command__txt" Root="0" Key="[ExtPfx].Txt\shell\open\command" Value="&quot;[#DesktopEditors.exe]&quot; &quot;%1&quot;" Component_="c_reg_fa_progid__txt"/>
     <ROW Registry="reg_fa_progid_shell_open_command__xls" Root="0" Key="[ExtPfx].Sheet.1\shell\open\command" Value="&quot;[#DesktopEditors.exe]&quot; &quot;%1&quot;" Component_="c_reg_fa_progid__xls"/>
+    <ROW Registry="reg_fa_progid_shell_open_command__xlsb" Root="0" Key="[ExtPfx].Xlsb\shell\open\command" Value="&quot;[#DesktopEditors.exe]&quot; &quot;%1&quot;" Component_="c_reg_fa_progid__xlsb"/>
     <ROW Registry="reg_fa_progid_shell_open_command__xlsx" Root="0" Key="[ExtPfx].Sheet.12\shell\open\command" Value="&quot;[#DesktopEditors.exe]&quot; &quot;%1&quot;" Component_="c_reg_fa_progid__xlsx"/>
     <ROW Registry="reg_fa_progid_shell_open_command__xltx" Root="0" Key="[ExtPfx].Xltx\shell\open\command" Value="&quot;[#DesktopEditors.exe]&quot; &quot;%1&quot;" Component_="c_reg_fa_progid__xltx"/>
     <ROW Registry="reg_fa_progid_shell_open_command__xml" Root="0" Key="[ExtPfx].Xml\shell\open\command" Value="&quot;[#DesktopEditors.exe]&quot; &quot;%1&quot;" Component_="c_reg_fa_progid__xml"/>
@@ -1368,15 +1460,19 @@
     <ROW Registry="reg_fa_progid_shell_open_command_k__otp" Root="0" Key="[ExtPfx].Otp\shell\open\command" Name="\"/>
     <ROW Registry="reg_fa_progid_shell_open_command_k__ots" Root="0" Key="[ExtPfx].Ots\shell\open\command" Name="\"/>
     <ROW Registry="reg_fa_progid_shell_open_command_k__ott" Root="0" Key="[ExtPfx].Ott\shell\open\command" Name="\"/>
+    <ROW Registry="reg_fa_progid_shell_open_command_k__oxps" Root="0" Key="[ExtPfx].Oxps\shell\open\command" Name="\"/>
     <ROW Registry="reg_fa_progid_shell_open_command_k__pdf" Root="0" Key="[ExtPfx].Pdf\shell\open\command" Name="\"/>
+    <ROW Registry="reg_fa_progid_shell_open_command_k__pot" Root="0" Key="[ExtPfx].Pot\shell\open\command" Name="\"/>
     <ROW Registry="reg_fa_progid_shell_open_command_k__potx" Root="0" Key="[ExtPfx].Potx\shell\open\command" Name="\"/>
     <ROW Registry="reg_fa_progid_shell_open_command_k__pps" Root="0" Key="[ExtPfx].SlideShow.1\shell\open\command" Name="\"/>
     <ROW Registry="reg_fa_progid_shell_open_command_k__ppsx" Root="0" Key="[ExtPfx].SlideShow.12\shell\open\command" Name="\"/>
     <ROW Registry="reg_fa_progid_shell_open_command_k__ppt" Root="0" Key="[ExtPfx].Show.1\shell\open\command" Name="\"/>
+    <ROW Registry="reg_fa_progid_shell_open_command_k__pptm" Root="0" Key="[ExtPfx].Pptm\shell\open\command" Name="\"/>
     <ROW Registry="reg_fa_progid_shell_open_command_k__pptx" Root="0" Key="[ExtPfx].Show.12\shell\open\command" Name="\"/>
     <ROW Registry="reg_fa_progid_shell_open_command_k__rtf" Root="0" Key="[ExtPfx].Rtf\shell\open\command" Name="\"/>
     <ROW Registry="reg_fa_progid_shell_open_command_k__txt" Root="0" Key="[ExtPfx].Txt\shell\open\command" Name="\"/>
     <ROW Registry="reg_fa_progid_shell_open_command_k__xls" Root="0" Key="[ExtPfx].Sheet.1\shell\open\command" Name="\"/>
+    <ROW Registry="reg_fa_progid_shell_open_command_k__xlsb" Root="0" Key="[ExtPfx].Xlsb\shell\open\command" Name="\"/>
     <ROW Registry="reg_fa_progid_shell_open_command_k__xlsx" Root="0" Key="[ExtPfx].Sheet.12\shell\open\command" Name="\"/>
     <ROW Registry="reg_fa_progid_shell_open_command_k__xltx" Root="0" Key="[ExtPfx].Xltx\shell\open\command" Name="\"/>
     <ROW Registry="reg_fa_progid_shell_open_command_k__xml" Root="0" Key="[ExtPfx].Xml\shell\open\command" Name="\"/>
@@ -1397,15 +1493,19 @@
     <ROW Registry="reg_fa_progid_shell_open_k__otp" Root="0" Key="[ExtPfx].Otp\shell\open" Name="\"/>
     <ROW Registry="reg_fa_progid_shell_open_k__ots" Root="0" Key="[ExtPfx].Ots\shell\open" Name="\"/>
     <ROW Registry="reg_fa_progid_shell_open_k__ott" Root="0" Key="[ExtPfx].Ott\shell\open" Name="\"/>
+    <ROW Registry="reg_fa_progid_shell_open_k__oxps" Root="0" Key="[ExtPfx].Oxps\shell\open" Name="\"/>
     <ROW Registry="reg_fa_progid_shell_open_k__pdf" Root="0" Key="[ExtPfx].Pdf\shell\open" Name="\"/>
+    <ROW Registry="reg_fa_progid_shell_open_k__pot" Root="0" Key="[ExtPfx].Pot\shell\open" Name="\"/>
     <ROW Registry="reg_fa_progid_shell_open_k__potx" Root="0" Key="[ExtPfx].Potx\shell\open" Name="\"/>
     <ROW Registry="reg_fa_progid_shell_open_k__pps" Root="0" Key="[ExtPfx].SlideShow.1\shell\open" Name="\"/>
     <ROW Registry="reg_fa_progid_shell_open_k__ppsx" Root="0" Key="[ExtPfx].SlideShow.12\shell\open" Name="\"/>
     <ROW Registry="reg_fa_progid_shell_open_k__ppt" Root="0" Key="[ExtPfx].Show.1\shell\open" Name="\"/>
+    <ROW Registry="reg_fa_progid_shell_open_k__pptm" Root="0" Key="[ExtPfx].Pptm\shell\open" Name="\"/>
     <ROW Registry="reg_fa_progid_shell_open_k__pptx" Root="0" Key="[ExtPfx].Show.12\shell\open" Name="\"/>
     <ROW Registry="reg_fa_progid_shell_open_k__rtf" Root="0" Key="[ExtPfx].Rtf\shell\open" Name="\"/>
     <ROW Registry="reg_fa_progid_shell_open_k__txt" Root="0" Key="[ExtPfx].Txt\shell\open" Name="\"/>
     <ROW Registry="reg_fa_progid_shell_open_k__xls" Root="0" Key="[ExtPfx].Sheet.1\shell\open" Name="\"/>
+    <ROW Registry="reg_fa_progid_shell_open_k__xlsb" Root="0" Key="[ExtPfx].Xlsb\shell\open" Name="\"/>
     <ROW Registry="reg_fa_progid_shell_open_k__xlsx" Root="0" Key="[ExtPfx].Sheet.12\shell\open" Name="\"/>
     <ROW Registry="reg_fa_progid_shell_open_k__xltx" Root="0" Key="[ExtPfx].Xltx\shell\open" Name="\"/>
     <ROW Registry="reg_fa_progid_shell_open_k__xml" Root="0" Key="[ExtPfx].Xml\shell\open" Name="\"/>
@@ -1426,15 +1526,19 @@
     <ROW Registry="reg_fa_type_k__otp" Root="0" Key=".otp" Name="\"/>
     <ROW Registry="reg_fa_type_k__ots" Root="0" Key=".ots" Name="\"/>
     <ROW Registry="reg_fa_type_k__ott" Root="0" Key=".ott" Name="\"/>
+    <ROW Registry="reg_fa_type_k__oxps" Root="0" Key=".oxps" Name="\"/>
     <ROW Registry="reg_fa_type_k__pdf" Root="0" Key=".pdf" Name="\"/>
+    <ROW Registry="reg_fa_type_k__pot" Root="0" Key=".pot" Name="\"/>
     <ROW Registry="reg_fa_type_k__potx" Root="0" Key=".potx" Name="\"/>
     <ROW Registry="reg_fa_type_k__pps" Root="0" Key=".pps" Name="\"/>
     <ROW Registry="reg_fa_type_k__ppsx" Root="0" Key=".ppsx" Name="\"/>
     <ROW Registry="reg_fa_type_k__ppt" Root="0" Key=".ppt" Name="\"/>
+    <ROW Registry="reg_fa_type_k__pptm" Root="0" Key=".pptm" Name="\"/>
     <ROW Registry="reg_fa_type_k__pptx" Root="0" Key=".pptx" Name="\"/>
     <ROW Registry="reg_fa_type_k__rtf" Root="0" Key=".rtf" Name="\"/>
     <ROW Registry="reg_fa_type_k__txt" Root="0" Key=".txt" Name="\"/>
     <ROW Registry="reg_fa_type_k__xls" Root="0" Key=".xls" Name="\"/>
+    <ROW Registry="reg_fa_type_k__xlsb" Root="0" Key=".xlsb" Name="\"/>
     <ROW Registry="reg_fa_type_k__xlsx" Root="0" Key=".xlsx" Name="\"/>
     <ROW Registry="reg_fa_type_k__xltx" Root="0" Key=".xltx" Name="\"/>
     <ROW Registry="reg_fa_type_k__xml" Root="0" Key=".xml" Name="\"/>
