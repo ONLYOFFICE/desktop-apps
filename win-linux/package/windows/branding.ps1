@@ -1,5 +1,4 @@
 $PackageName = "ONLYOFFICE Desktop Editors"
-$BuildDir = "build"
 $DesktopDir = "DesktopEditors"
 
 Function BrandingAdvInstConfig {
