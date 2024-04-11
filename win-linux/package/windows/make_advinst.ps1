@@ -50,7 +50,8 @@ $ENV:Path = "$AdvInstPath;$ENV:Path"
 
 Write-Host "`n[ Download VCRedist 2015+ $Arch ]"
 $VCRedist = "data\vcredist_$Arch.exe", "https://aka.ms/vs/17/release/vc_redist.$Arch.exe"
-if (-not (Get-Item $VCRedist[0]).VersionInfo.ProductVersion) {
+if ((-not (Test-Path $VCRedist[0])) -or `
+    (-not (Get-Item $VCRedist[0]).VersionInfo.ProductVersion)) {
     Write-Host "Downloading: $($VCRedist[1])"
     $WebClient = New-Object System.Net.WebClient
     $WebClient.DownloadFile($VCRedist[1], $VCRedist[0])
