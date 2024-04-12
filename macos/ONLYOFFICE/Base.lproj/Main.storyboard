@@ -91,6 +91,12 @@
                                                             <action selector="onMenuNew:" target="Voe-Tx-rLC" id="csS-Nz-KxR"/>
                                                         </connections>
                                                     </menuItem>
+                                                    <menuItem title="PDF Form" tag="3" keyEquivalent="T" id="ne5-Gy-5by">
+                                                        <modifierMask key="keyEquivalentModifierMask" control="YES"/>
+                                                        <connections>
+                                                            <action selector="onMenuNew:" target="Voe-Tx-rLC" id="rkK-jz-jVG"/>
+                                                        </connections>
+                                                    </menuItem>
                                                 </items>
                                             </menu>
                                             <connections>

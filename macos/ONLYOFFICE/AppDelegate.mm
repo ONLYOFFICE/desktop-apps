@@ -236,6 +236,13 @@
                                      keyEquivalent:@""];
     [itemNewDoc setTag: 1];
     [menu addItem: itemNewDoc];
+    
+    item_text = NSLocalizedStringWithDefaultValue(@"new-pdfform", @"Localizable", [NSBundle mainBundle], @"New PDF Form", nil);
+    itemNewDoc = [[NSMenuItem alloc] initWithTitle:item_text
+                                            action:@selector(onMenuNew:)
+                                     keyEquivalent:@""];
+    [itemNewDoc setTag: 3];
+    [menu addItem: itemNewDoc];
 
     return menu;
 }

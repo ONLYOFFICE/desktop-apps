@@ -415,6 +415,14 @@
                                                                          @"type"    : @(int(AscEditorType::etPresentation)),
                                                                          @"active"  : @(YES)
                                                                          }];
+        } else if ([senderId isEqualToString:[NSString stringWithFormat:kCreationButtonIdentifier, @"pdfform"]]) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameCreateTab
+                                                                object:nil
+                                                              userInfo:@{
+                                                                         @"action"  : @(ASCTabActionCreateLocalFile),
+                                                                         @"type"    : @(int(AscEditorType::etDocumentMasterForm)),
+                                                                         @"active"  : @(YES)
+                                                                         }];
         } else {
             ASCTabView * tab = [self.tabsControl tabWithUUID:senderId];
             if (tab) {

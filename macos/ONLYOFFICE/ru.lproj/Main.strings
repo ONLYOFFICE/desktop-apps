@@ -190,6 +190,9 @@
 /* Class = "NSMenuItem"; title = "Presentation"; ObjectID = "hkB-TU-Ps1"; */
 "hkB-TU-Ps1.title" = "Презентацию";
 
+/* Class = "NSMenuItem"; title = "PDF Form"; ObjectID = "ne5-Gy-5by"; */
+"ne5-Gy-5by.title" = "PDF форму";
+
 /* Class = "NSMenuItem"; title = "Smart Quotes"; ObjectID = "hQb-2v-fYv"; */
 "hQb-2v-fYv.title" = "Умные дефисы";
 

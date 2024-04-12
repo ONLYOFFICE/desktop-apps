@@ -428,20 +428,20 @@ static float kASCRTLTabsRightMargin = 0;
 
             [ASCThemesController isSystemDarkMode] ? [self.portalButton setImage:[NSImage imageNamed:@"logo-tab-light"]] :
                                                         [self.portalButton setImage:[NSImage imageNamed:@"logo-tab-dark"]];
-
-            for (ASCTabView * tab in self.tabsControl.tabs) {
-                if ( [tab state] == NSControlStateValueOn ) {
-                    [tab setNeedsDisplay];
-                }
-                [tab setType:tab.type];
-                [self.tabsControl updateTab:tab];
-            }
         }
     } else {
         if ( [self.portalButton state] != NSControlStateValueOn ) {
             [ASCThemesController isSystemDarkMode] ? [self.portalButton setImage:[NSImage imageNamed:@"logo-tab-light"]] :
                                                         [self.portalButton setImage:[NSImage imageNamed:@"logo-tab-dark"]];
         }
+    }
+
+    for (ASCTabView * tab in self.tabsControl.tabs) {
+        if ( [tab state] == NSControlStateValueOn ) {
+            [tab setNeedsDisplay];
+        }
+        [tab setType:tab.type];
+        [self.tabsControl updateTab:tab];
     }
 }
 
