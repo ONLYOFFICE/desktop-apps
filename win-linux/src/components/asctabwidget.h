@@ -70,6 +70,7 @@ struct COpenOptions {
     int id, format = 0;
     std::wstring wurl;
     int parent_id = -1;
+    QSize panel_size;
 
     enum class eOpenMode {edit, view, review};
     eOpenMode mode = eOpenMode::edit;

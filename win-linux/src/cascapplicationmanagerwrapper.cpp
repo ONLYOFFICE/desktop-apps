@@ -971,8 +971,10 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
                 continue;
         }
 
+        open_opts.panel_size = CWindowBase::expectedContentSize(_start_rect, open_in_new_window);
+        open_opts.parent_widget = open_in_new_window ? COpenOptions::eWidgetType::window : COpenOptions::eWidgetType::tab;
 
-        CTabPanel * panel = CEditorTools::createEditorPanel(open_opts, CWindowBase::expectedContentSize(_start_rect, open_in_new_window));
+        CTabPanel * panel = CEditorTools::createEditorPanel(open_opts);
         if ( panel ) {
             if ( open_in_new_window ) {
                 CEditorWindow * editor_win = new CEditorWindow(_start_rect, panel);
