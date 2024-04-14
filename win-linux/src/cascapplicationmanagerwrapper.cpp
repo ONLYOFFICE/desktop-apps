@@ -258,6 +258,9 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
                 setHasFrameFeature(ptr, pData->get_Param(), sid);
             return false;
         } else
+        if ( cmd.compare(L"provider:list") == 0 ) {
+            qDebug() << "provider:list" << pData->get_Param();
+        } else
         if ( cmd.compare(L"portal:login") == 0 ) {
             AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, L"portal:login", pData->get_Param());
             if ( m_pMainWindow ) {
