@@ -42,6 +42,7 @@
 #include "components/cmessage.h"
 #include <QApplication>
 #include <QDir>
+#include <QJsonObject>
 
 using namespace NSEditorApi;
 
@@ -278,6 +279,12 @@ namespace CEditorTools
         }
 
         CTabPanel * panel = CTabPanel::createEditorPanel(nullptr, opts.panel_size);
+        QJsonObject json_opts;
+        if ( opts.parent_widget == COpenOptions::eWidgetType::window ) {
+            json_opts = {{"widgetType","window"}, {"captionHeight",TOOLBTN_HEIGHT}};
+        } else {
+            json_opts = {{"widgetType","tab"}, {"captionHeight",0}};
+        }
 
         bool result = true;
         if (opts.srctype == etLocalFile) {

@@ -346,9 +346,11 @@ public:
             if ( !rect.isEmpty() )
                 rect.adjust(50,50,50,50);
             opts_ext.panel_size = CWindowBase::expectedContentSize(rect, true);
+            opts_ext.parent_widget = COpenOptions::eWidgetType::window;
         } else {
             m_appmanager.gotoMainWindow(size_t(m_appmanager.editorWindowFromViewId(opts.parent_id)));
             opts_ext.panel_size = mainWindow()->contentSize();
+            opts_ext.parent_widget = COpenOptions::eWidgetType::tab;
         }
 
         CTabPanel * panel = CEditorTools::createEditorPanel(opts_ext);
