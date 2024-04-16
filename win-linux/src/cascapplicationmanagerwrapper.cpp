@@ -67,6 +67,7 @@ CAscApplicationManagerWrapper::CAscApplicationManagerWrapper(CAscApplicationMana
     , m_queueToClose(new CWindowsQueue<sWinTag>)
     , m_private(ptrprivate)
 {
+    qRegisterMetaType<sWinTag>("sWinTag");
     m_private->init();
     CAscApplicationManager::SetEventListener(this);
 
