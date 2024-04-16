@@ -227,8 +227,8 @@ void CWindowPlatform::adjustGeometry()
                 if (Utils::getWinVersion() == WinVer::WinXP) {
                     if (isTaskbarAutoHideOn())
                         offset += NC_AREA_WIDTH + 1;
-                    int dsp = m_isThemeActive ? 0 : NC_AREA_WIDTH;
-                    rc.adjust(dsp - NC_AREA_WIDTH, dsp - NC_AREA_WIDTH, dsp + NC_AREA_WIDTH, dsp + NC_AREA_WIDTH);
+                    if (m_isThemeActive)
+                        rc.adjust(-NC_AREA_WIDTH, -NC_AREA_WIDTH, NC_AREA_WIDTH, NC_AREA_WIDTH);
                 } else
                 if (Utils::getWinVersion() > WinVer::WinXP && isTaskbarAutoHideOn())
                     offset += 2;
