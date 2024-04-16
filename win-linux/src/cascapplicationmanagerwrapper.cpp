@@ -1379,7 +1379,6 @@ void CAscApplicationManagerWrapper::launchAppClose()
             emit aboutToQuit();
             QTimer::singleShot(0, this, [=]() {
                 DestroyCefView(-1);
-                CLogger::log(FUNCTION_INFO);
             });
         }
     } else {
@@ -2167,7 +2166,6 @@ void CAscApplicationManagerWrapper::onEditorWidgetClosed()
 
 void CAscApplicationManagerWrapper::onMainWindowClose()
 {
-    CLogger::log(FUNCTION_INFO);
     if ( !m_vecEditors.empty() ) {
         mainWindow()->hide();
     } else {

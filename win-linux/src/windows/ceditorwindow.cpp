@@ -461,7 +461,6 @@ void CEditorWindow::closeEvent(QCloseEvent * e)
 {
     AscAppManager::getInstance().closeQueue().enter(sWinTag{CLOSE_QUEUE_WIN_TYPE_EDITOR, size_t(this)});
     e->ignore();
-    CLogger::log(FUNCTION_INFO);
 }
 
 void CEditorWindow::onLayoutDirectionChanged()

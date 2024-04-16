@@ -40,7 +40,6 @@
 #include <utility>
 #include <vector>
 #include <atomic>
-#include "clogger.h"
 
 
 #define THREAD_WAIT_INTERVAL 10
@@ -68,7 +67,6 @@ public:
     }
 
     void start_queue() {
-        CLogger::log(FUNCTION_INFO);
         if ( !m_wintoclose.empty() ) {
             trigger_callback(*m_wintoclose.begin());
         }
@@ -76,7 +74,6 @@ public:
 
     void enter(const T& iter)
     {
-        CLogger::log(FUNCTION_INFO);
         m_wintoclose.push_back(iter);
         if ( !(m_wintoclose.size() > 1) ) {
             m_queueCanceled.store(false);
@@ -92,19 +89,16 @@ public:
 
     void leave(T iter)
     {
-        CLogger::log(FUNCTION_INFO);
         m_threads.push_back(std::thread(&CWindowsQueue::leave_thread_func, this, iter));
     }
 
     void cancel()
     {
-        CLogger::log(FUNCTION_INFO);
         m_threads.push_back(std::thread(&CWindowsQueue::cancel_thread_func, this));
     }
 
     void setcallback(std::function<void(T)>& fn)
     {
-        CLogger::log(FUNCTION_INFO);
         m_callback = fn;
     }
 
@@ -112,7 +106,6 @@ public:
 private:
     void leave_thread_func(T iter)
     {
-        CLogger::log(FUNCTION_INFO);
         std::lock_guard<std::mutex> lock{m_mutex};
 
         const auto& it = std::find_if(m_wintoclose.begin(), m_wintoclose.end(), [&](T i){ return i == iter; });
@@ -127,7 +120,6 @@ private:
 
     void cancel_thread_func()
     {
-        CLogger::log(FUNCTION_INFO);
         std::lock_guard<std::mutex> lock(m_mutex);
 
         m_wintoclose.clear();
@@ -136,7 +128,6 @@ private:
 
     void trigger_callback(const T& iter)
     {
-        CLogger::log(FUNCTION_INFO);
         if ( m_callback )
             m_callback(iter);
     }
