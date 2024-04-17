@@ -92,7 +92,10 @@ button {
 
 input[type=checkbox] {
     position: relative;
-    cursor: pointer;
+
+    &:not(:disabled) {
+        cursor: pointer;
+    }
 
     &:before {
         content: "";
