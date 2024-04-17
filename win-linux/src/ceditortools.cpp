@@ -279,12 +279,11 @@ namespace CEditorTools
         }
 
         CTabPanel * panel = CTabPanel::createEditorPanel(nullptr, opts.panel_size);
-        QJsonObject json_opts;
-        if ( opts.parent_widget == COpenOptions::eWidgetType::window ) {
-            json_opts = {{"widgetType","window"}, {"captionHeight",TOOLBTN_HEIGHT}};
-        } else {
-            json_opts = {{"widgetType","tab"}, {"captionHeight",0}};
-        }
+        QJsonObject json_opts = opts.parent_widget == COpenOptions::eWidgetType::window ?
+                            QJsonObject{{"widgetType","window"}, {"captionHeight",TOOLBTN_HEIGHT}} :
+                            QJsonObject{{"widgetType","tab"}, {"captionHeight",0}};
+
+        panel->cef()->SetParentWidgetInfo(Utils::stringifyJson(json_opts).toStdWString());
 
         bool result = true;
         if (opts.srctype == etLocalFile) {

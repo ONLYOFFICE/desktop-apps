@@ -1474,6 +1474,9 @@ namespace Drop {
         if ( editor ) {
             CTabPanel * tabpanel = editor->releaseEditorView();
 
+            QJsonObject json_opts{{"widgetType","tab"}, {"captionHeight",0}};
+            tabpanel->cef()->SetParentWidgetInfo(Utils::stringifyJson(json_opts).toStdWString());
+
             CAscApplicationManagerWrapper::mainWindow()->attachEditor(tabpanel, QCursor::pos());
             CAscApplicationManagerWrapper::closeEditorWindow(size_t(editor));
 
@@ -1702,6 +1705,9 @@ bool CAscApplicationManagerWrapper::event(QEvent *event)
                 e->accept();
 //                SKIP_EVENTS_QUEUE([=]{
                     if ( _main_window ) {
+                        QJsonObject json_opts{{"widgetType","window"}, {"captionHeight",TOOLBTN_HEIGHT}};
+                        _editor->cef()->SetParentWidgetInfo(Utils::stringifyJson(json_opts).toStdWString());
+
                         QRect rect = _main_window->windowState().testFlag(Qt::WindowMaximized) ?
                                      _main_window->normalGeometry() : _main_window->windowRect();
 
