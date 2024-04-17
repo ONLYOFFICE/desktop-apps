@@ -971,8 +971,10 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
                 continue;
         }
 
+        open_opts.panel_size = CWindowBase::expectedContentSize(_start_rect, open_in_new_window);
+        open_opts.parent_widget = open_in_new_window ? COpenOptions::eWidgetType::window : COpenOptions::eWidgetType::tab;
 
-        CTabPanel * panel = CEditorTools::createEditorPanel(open_opts, CWindowBase::expectedContentSize(_start_rect, open_in_new_window));
+        CTabPanel * panel = CEditorTools::createEditorPanel(open_opts);
         if ( panel ) {
             if ( open_in_new_window ) {
                 CEditorWindow * editor_win = new CEditorWindow(_start_rect, panel);
@@ -1472,6 +1474,9 @@ namespace Drop {
         if ( editor ) {
             CTabPanel * tabpanel = editor->releaseEditorView();
 
+            QJsonObject json_opts{{"widgetType","tab"}, {"captionHeight",0}};
+            tabpanel->cef()->SetParentWidgetInfo(Utils::stringifyJson(json_opts).toStdWString());
+
             CAscApplicationManagerWrapper::mainWindow()->attachEditor(tabpanel, QCursor::pos());
             CAscApplicationManagerWrapper::closeEditorWindow(size_t(editor));
 
@@ -1700,6 +1705,9 @@ bool CAscApplicationManagerWrapper::event(QEvent *event)
                 e->accept();
 //                SKIP_EVENTS_QUEUE([=]{
                     if ( _main_window ) {
+                        QJsonObject json_opts{{"widgetType","window"}, {"captionHeight",TOOLBTN_HEIGHT}};
+                        _editor->cef()->SetParentWidgetInfo(Utils::stringifyJson(json_opts).toStdWString());
+
                         QRect rect = _main_window->windowState().testFlag(Qt::WindowMaximized) ?
                                      _main_window->normalGeometry() : _main_window->windowRect();
 

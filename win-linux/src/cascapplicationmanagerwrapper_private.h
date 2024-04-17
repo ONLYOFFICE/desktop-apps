@@ -337,7 +337,7 @@ public:
     {
         bool isMaximized = false;
         QRect rect;
-        QSize panel_size;
+        COpenOptions opts_ext{opts};
         if ( preferOpenEditorWindow() ) {
             GET_REGISTRY_USER(reg_user);
             isMaximized = mainWindow() ? mainWindow()->windowState().testFlag(Qt::WindowMaximized) : reg_user.value("maximized", false).toBool();
@@ -345,13 +345,15 @@ public:
                 rect = windowRectFromViewId(opts.parent_id);
             if ( !rect.isEmpty() )
                 rect.adjust(50,50,50,50);
-            panel_size = CWindowBase::expectedContentSize(rect, true);
+            opts_ext.panel_size = CWindowBase::expectedContentSize(rect, true);
+            opts_ext.parent_widget = COpenOptions::eWidgetType::window;
         } else {
             m_appmanager.gotoMainWindow(size_t(m_appmanager.editorWindowFromViewId(opts.parent_id)));
-            panel_size = mainWindow()->contentSize();
+            opts_ext.panel_size = mainWindow()->contentSize();
+            opts_ext.parent_widget = COpenOptions::eWidgetType::tab;
         }
 
-        CTabPanel * panel = CEditorTools::createEditorPanel(opts, panel_size);
+        CTabPanel * panel = CEditorTools::createEditorPanel(opts_ext);
         if ( panel ) {
             CAscTabData * panel_data = panel->data();
             QRegularExpression re("^ascdesktop:\\/\\/(?:compare|merge|template)");

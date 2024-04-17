@@ -42,6 +42,7 @@
 #include "components/cmessage.h"
 #include <QApplication>
 #include <QDir>
+#include <QJsonObject>
 
 using namespace NSEditorApi;
 
@@ -259,7 +260,7 @@ namespace CEditorTools
         return dlg.selectFolder(sel_path).toStdWString();
     }
 
-    auto createEditorPanel(const COpenOptions& opts, const QSize& s) -> CTabPanel *
+    auto createEditorPanel(const COpenOptions& opts) -> CTabPanel *
     {
         int _file_format{0};
         if ( opts.srctype == etLocalFile ) {
@@ -277,7 +278,12 @@ namespace CEditorTools
             }
         }
 
-        CTabPanel * panel = CTabPanel::createEditorPanel(nullptr, s);
+        CTabPanel * panel = CTabPanel::createEditorPanel(nullptr, opts.panel_size);
+        QJsonObject json_opts = opts.parent_widget == COpenOptions::eWidgetType::window ?
+                            QJsonObject{{"widgetType","window"}, {"captionHeight",TOOLBTN_HEIGHT}} :
+                            QJsonObject{{"widgetType","tab"}, {"captionHeight",0}};
+
+        panel->cef()->SetParentWidgetInfo(Utils::stringifyJson(json_opts).toStdWString());
 
         bool result = true;
         if (opts.srctype == etLocalFile) {
