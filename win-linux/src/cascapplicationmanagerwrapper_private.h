@@ -219,21 +219,18 @@ public:
                 std::wstring file_path = CEditorTools::getlocalfile(data.get_Param(), event.m_nSenderId).toStdWString();
 
                 if ( !file_path.empty() ) {
-                    CCefView * _view = m_appmanager.GetViewByUrl(file_path);
+                    if ( bringEditorToFront(QString::fromStdWString(file_path)) )
+                        return true;
 
-                    if ( _view ) {
-                        bringEditorToFront(_view->GetId());
-                    } else {
-                        COpenOptions opts{file_path, etLocalFile};
-                        opts.parent_id = event.m_nSenderId;
+                    COpenOptions opts{file_path, etLocalFile};
+                    opts.parent_id = event.m_nSenderId;
 
-                        if ( !openDocument(opts) ) {
-                            QFileInfo _info(QString::fromStdWString(file_path));
-                            CMessage::error(m_appmanager.mainWindow()->handle(),
-                                            QObject::tr("File %1 cannot be opened or doesn't exists.").arg(_info.fileName()));
-                        }
-                        else Utils::addToRecent(file_path);
+                    if ( !openDocument(opts) ) {
+                        QFileInfo _info(QString::fromStdWString(file_path));
+                        CMessage::error(m_appmanager.mainWindow()->handle(),
+                                        QObject::tr("File %1 cannot be opened or doesn't exists.").arg(_info.fileName()));
                     }
+                    else Utils::addToRecent(file_path);
                 }
 
                 return true;
