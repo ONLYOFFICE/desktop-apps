@@ -128,7 +128,7 @@ void CAscApplicationManagerWrapper::setHasFrameFeature(CCefView *cef, const wstr
                 QCefView * view = static_cast<QCefView *>(_impl);
                 const QSize s = view->size() / Utils::getScreenDpiRatioByWidget(view);
                 std::wstring feature = L"{\"hasframe\":";
-                feature += ( abs(s.width() - _frame_w) > 1 || abs(s.height() - _frame_h) > 1 ) ? L"true}" : L"false}";
+                feature += ( abs(s.width() - _frame_w) > 4 || abs(s.height() - _frame_h) > 4 ) ? L"true}" : L"false}";
                 if ( m_receivers.find(sid) != m_receivers.end() )
                     m_receivers[sid]->onWebAppsFeatures(sid, feature);
                 else m_pMainWindow->onWebAppsFeatures(sid, feature);

@@ -899,7 +899,7 @@ public:
     }
 
     auto viewerMode() const -> bool {
-        return m_panel->data()->hasFeature(L"viewmode\":true") || m_panel->data()->hasFrame();
+        return m_panel->data()->hasFeature(L"viewmode\":true") || (!m_panel->data()->isLocal() && m_panel->data()->hasFrame());
     }
 
     auto fillformMode() const -> bool {
