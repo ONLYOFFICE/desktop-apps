@@ -233,10 +233,10 @@ bool CAscTabData::hasFeature(const wstring& f) const
     return false;
 }
 
-// bool CAscTabData::hasFrame() const
-// {
-//     return hasFeature(L"hasframe\":true");
-// }
+bool CAscTabData::hasFrame() const
+{
+    return hasFeature(L"hasframe\":true");
+}
 
 bool CAscTabData::hasError() const
 {

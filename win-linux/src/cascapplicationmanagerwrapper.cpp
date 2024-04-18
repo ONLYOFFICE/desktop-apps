@@ -120,28 +120,28 @@ CProviders* CAscApplicationManagerWrapper::providers() const
     return m_providers.get();
 }
 
-// void CAscApplicationManagerWrapper::setHasFrameFeature(CCefView *cef, const wstring &param, int sid)
-// {
-//     if (param.find(L"framesize") != std::wstring::npos) {
-//         if (CCefViewWidgetImpl * _impl = cef->GetWidgetImpl()) {
-//             QJsonParseError err;
-//             const QJsonDocument doc = QJsonDocument::fromJson(QString::fromStdWString(param).toUtf8(), &err);
-//             if ( err.error == QJsonParseError::NoError ) {
-//                 const QJsonObject obj = doc.object()["framesize"].toObject();
-//                 int _frame_w = obj["width"].toInt(),
-//                     _frame_h = obj["height"].toInt();
+void CAscApplicationManagerWrapper::setHasFrameFeature(CCefView *cef, const wstring &param, int sid)
+{
+    if (param.find(L"framesize") != std::wstring::npos) {
+        if (CCefViewWidgetImpl * _impl = cef->GetWidgetImpl()) {
+            QJsonParseError err;
+            const QJsonDocument doc = QJsonDocument::fromJson(QString::fromStdWString(param).toUtf8(), &err);
+            if ( err.error == QJsonParseError::NoError ) {
+                const QJsonObject obj = doc.object()["framesize"].toObject();
+                int _frame_w = obj["width"].toInt(),
+                    _frame_h = obj["height"].toInt();
 
-//                 QCefView * view = static_cast<QCefView *>(_impl);
-//                 const QSize s = view->size() / Utils::getScreenDpiRatioByWidget(view);
-//                 std::wstring feature = L"{\"hasframe\":";
-//                 feature += ( abs(s.width() - _frame_w) > 1 || abs(s.height() - _frame_h) > 1 ) ? L"true}" : L"false}";
-//                 if ( m_receivers.find(sid) != m_receivers.end() )
-//                     m_receivers[sid]->onWebAppsFeatures(sid, feature);
-//                 else m_pMainWindow->onWebAppsFeatures(sid, feature);
-//             }
-//         }
-//     }
-// }
+                QCefView * view = static_cast<QCefView *>(_impl);
+                const QSize s = view->size() / Utils::getScreenDpiRatioByWidget(view);
+                std::wstring feature = L"{\"hasframe\":";
+                feature += ( abs(s.width() - _frame_w) > 1 || abs(s.height() - _frame_h) > 1 ) ? L"true}" : L"false}";
+                if ( m_receivers.find(sid) != m_receivers.end() )
+                    m_receivers[sid]->onWebAppsFeatures(sid, feature);
+                else m_pMainWindow->onWebAppsFeatures(sid, feature);
+            }
+        }
+    }
+}
 
 void CAscApplicationManagerWrapper::OnEvent(CAscCefMenuEvent * event)
 {
@@ -244,7 +244,7 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
                         m_receivers[sid]->onWebAppsFeatures(sid,L"{\"uitype\":\"fillform\"}");
                 }
 
-//                setHasFrameFeature(ptr, pData->get_Param(), sid);
+                setHasFrameFeature(ptr, pData->get_Param(), sid);
 
                 auto * editor = editorWindowFromViewId(event->get_SenderId());
                 if ( editor && editor->isCustomWindowStyle() ) {
@@ -262,9 +262,9 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
             return true;
         } else
         if ( cmd.compare(L"webapps:features") == 0 ) {
-//            int sid = event->get_SenderId();
-//            if (CCefView * ptr = GetViewById(sid))
-//                setHasFrameFeature(ptr, pData->get_Param(), sid);
+            int sid = event->get_SenderId();
+            if (CCefView * ptr = GetViewById(sid))
+                setHasFrameFeature(ptr, pData->get_Param(), sid);
             return false;
         } else
         if ( cmd.compare(L"provider:list") == 0 ) {

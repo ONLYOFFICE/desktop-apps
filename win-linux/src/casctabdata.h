@@ -67,7 +67,7 @@ public:
     void    setFeatures(const std::wstring&);
     std::wstring features() const;
     bool    hasFeature(const std::wstring&) const;
-//    bool    hasFrame() const;
+    bool    hasFrame() const;
     bool    hasError() const;
 
     AscEditorType   contentType() const;
