@@ -901,7 +901,7 @@ public:
     auto viewerMode() const -> bool {
         if (AscAppManager::getInstance().providers()->isSpecialProvider(QString::fromStdWString(m_panel->data()->url())))
             return true;
-        return m_panel->data()->hasFeature(L"viewmode\":true");
+        return m_panel->data()->hasFeature(L"viewmode\":true") || m_panel->data()->hasFrame();
     }
 
     auto fillformMode() const -> bool {
