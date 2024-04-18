@@ -73,7 +73,7 @@
                             <div class="table-box flex-fill">
                               <table class="table-files list"></table>
                               <h4 class="text-emptylist${isSvgIcons? '-svg' : ''} img-before-el" l10n>
-                                  ${isSvgIcons? '<svg><use xlink:href="#folder-big"></use></svg>':''}
+                                  ${isSvgIcons? '<svg class="icon"><use xlink:href="#folder-big"></use></svg>':''}
                                   ${_lang.textNoFiles}
                               </h4>
                             </div>
@@ -130,7 +130,7 @@
             emptylist.toggleClass('text-emptylist text-emptylist-svg');
 
             if(pasteSvg && !emptylist.find('svg').length)
-                emptylist.prepend($('<svg class = "empty-folder"><use xlink:href="#folder-big"></use></svg>'));
+                emptylist.prepend($('<svg class = "icon"><use xlink:href="#folder-big"></use></svg>'));
 
             $('#box-recent .cicon').each(function () {
                  elm = $(this);
