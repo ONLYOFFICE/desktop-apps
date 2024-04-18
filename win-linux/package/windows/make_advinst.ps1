@@ -90,7 +90,6 @@ if ($Arch -eq "x86") {
         "SetComponentAttribute -feature_name FA_ODP -unset -64bit_component", `
         "SetComponentAttribute -feature_name FA_ODS -unset -64bit_component", `
         "SetComponentAttribute -feature_name FA_ODT -unset -64bit_component", `
-        "SetComponentAttribute -feature_name FA_OFORM -unset -64bit_component", `
         "SetComponentAttribute -feature_name FA_OTP -unset -64bit_component", `
         "SetComponentAttribute -feature_name FA_OTS -unset -64bit_component", `
         "SetComponentAttribute -feature_name FA_OTT -unset -64bit_component", `

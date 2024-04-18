@@ -64,7 +64,6 @@
     <ROW Property="REGISTER_ODP" Value="1" Type="4" ValueLocId="-"/>
     <ROW Property="REGISTER_ODS" Value="1" Type="4" ValueLocId="-"/>
     <ROW Property="REGISTER_ODT" Value="1" Type="4" ValueLocId="-"/>
-    <ROW Property="REGISTER_OFORM" Value="1" Type="4" ValueLocId="-"/>
     <ROW Property="REGISTER_OTP" Value="1" Type="4" ValueLocId="-"/>
     <ROW Property="REGISTER_OTS" Value="1" Type="4" ValueLocId="-"/>
     <ROW Property="REGISTER_OTT" Value="1" Type="4" ValueLocId="-"/>
@@ -142,7 +141,6 @@
     <ROW Component="c_reg_fa_cap__odp" ComponentId="{A7351BB4-FC0B-4E1C-AAE5-3C9F0CD64112}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_cap__odp"/>
     <ROW Component="c_reg_fa_cap__ods" ComponentId="{5B7FF0A3-A1D0-4201-BF66-9A15317D776A}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_cap__ods"/>
     <ROW Component="c_reg_fa_cap__odt" ComponentId="{058E3D94-AA48-43F6-82E5-F2EF3B81D256}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_cap__odt"/>
-    <ROW Component="c_reg_fa_cap__oform" ComponentId="{4AC1BA7F-9010-4118-9362-5887A70F72F6}" Directory_="APPDIR" Attributes="260" Condition="FORMS = 1" KeyPath="reg_fa_cap__oform"/>
     <ROW Component="c_reg_fa_cap__otp" ComponentId="{2002F0B0-5A49-49BE-B243-D9C04F2B33B2}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_cap__otp"/>
     <ROW Component="c_reg_fa_cap__ots" ComponentId="{D57EEDC4-606C-40DF-9223-A51A61AE23DA}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_cap__ots"/>
     <ROW Component="c_reg_fa_cap__ott" ComponentId="{2CD4D98C-C08F-414E-AC50-F9D03EAA9427}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_cap__ott"/>
@@ -175,7 +173,6 @@
     <ROW Component="c_reg_fa_ext__odp" ComponentId="{D7F8ADC4-D7A3-4467-909E-855D37A1767D}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_ext__odp"/>
     <ROW Component="c_reg_fa_ext__ods" ComponentId="{1788A9EE-81E9-4AA5-8C36-D753C90D175A}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_ext__ods"/>
     <ROW Component="c_reg_fa_ext__odt" ComponentId="{C07FDB24-7A99-46AE-BBFA-F183F3DE4771}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_ext__odt"/>
-    <ROW Component="c_reg_fa_ext__oform" ComponentId="{10D44B9F-937B-4E65-9F0B-20CDCA3B514F}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_ext__oform"/>
     <ROW Component="c_reg_fa_ext__otp" ComponentId="{DAA04DC1-C05D-4FC9-9D0A-F1D75E564A43}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_ext__otp"/>
     <ROW Component="c_reg_fa_ext__ots" ComponentId="{31BA4CC0-3067-4014-A494-D21E2610D5AE}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_ext__ots"/>
     <ROW Component="c_reg_fa_ext__ott" ComponentId="{EB4A7FF8-356F-4AD5-BD03-90A9CDDCF898}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_ext__ott"/>
@@ -212,7 +209,6 @@
     <ROW Component="c_reg_fa_openwith__odp" ComponentId="{06137067-9117-4F4F-AE02-3595A60EF731}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_openwith__odp"/>
     <ROW Component="c_reg_fa_openwith__ods" ComponentId="{FC781295-BB6D-4953-9165-C3FCDA0BB90F}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_openwith__ods"/>
     <ROW Component="c_reg_fa_openwith__odt" ComponentId="{41D59FAE-7FA3-47B2-A38F-D468860225AF}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_openwith__odt"/>
-    <ROW Component="c_reg_fa_openwith__oform" ComponentId="{8A8680F4-2E46-421B-80CE-945DE1089462}" Directory_="APPDIR" Attributes="260" Condition="FORMS = 1" KeyPath="reg_fa_openwith__oform"/>
     <ROW Component="c_reg_fa_openwith__otp" ComponentId="{029821C4-8E13-485A-B85F-01675C9E246F}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_openwith__otp"/>
     <ROW Component="c_reg_fa_openwith__ots" ComponentId="{FC8EA7C8-D17A-4AF9-A3DD-0FFFC5073C91}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_openwith__ots"/>
     <ROW Component="c_reg_fa_openwith__ott" ComponentId="{45780246-3567-4C84-85F5-DD98DAEFE7A9}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_openwith__ott"/>
@@ -245,7 +241,6 @@
     <ROW Component="c_reg_fa_progid__odp" ComponentId="{519DCBE2-12B3-4C0F-AE01-16605DCC5E34}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_progid__odp"/>
     <ROW Component="c_reg_fa_progid__ods" ComponentId="{ECBAFA1F-196A-43EC-8C1E-755DB82229FF}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_progid__ods"/>
     <ROW Component="c_reg_fa_progid__odt" ComponentId="{EDA62FF1-A573-44F6-850D-4F692EF8D7D2}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_progid__odt"/>
-    <ROW Component="c_reg_fa_progid__oform" ComponentId="{AB31CDC8-8846-4DDC-A14E-9FD3B96F643C}" Directory_="APPDIR" Attributes="260" Condition="FORMS = 1" KeyPath="reg_fa_progid__oform"/>
     <ROW Component="c_reg_fa_progid__otp" ComponentId="{0EBD3A24-1AE4-4906-8316-A1A5E8070694}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_progid__otp"/>
     <ROW Component="c_reg_fa_progid__ots" ComponentId="{9F4165D7-B7DB-4CEE-9621-B9A5E1F0AF21}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_progid__ots"/>
     <ROW Component="c_reg_fa_progid__ott" ComponentId="{453B9579-DAB6-4D8F-A396-E9A0BDBCEB4D}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_progid__ott"/>
@@ -286,7 +281,6 @@
     <ROW Feature="FA_ODP" Feature_Parent="RegFileTypeAssociations" Title=".odp" Display="21" Level="4" Directory_="APPDIR" Attributes="0"/>
     <ROW Feature="FA_ODS" Feature_Parent="RegFileTypeAssociations" Title=".ods" Display="23" Level="4" Directory_="APPDIR" Attributes="0"/>
     <ROW Feature="FA_ODT" Feature_Parent="RegFileTypeAssociations" Title=".odt" Display="25" Level="4" Directory_="APPDIR" Attributes="0"/>
-    <ROW Feature="FA_OFORM" Feature_Parent="RegFileTypeAssociations" Title=".oform" Display="27" Level="4" Directory_="APPDIR" Attributes="0"/>
     <ROW Feature="FA_OTP" Feature_Parent="RegFileTypeAssociations" Title=".otp" Display="29" Level="4" Directory_="APPDIR" Attributes="0"/>
     <ROW Feature="FA_OTS" Feature_Parent="RegFileTypeAssociations" Title=".ots" Display="31" Level="4" Directory_="APPDIR" Attributes="0"/>
     <ROW Feature="FA_OTT" Feature_Parent="RegFileTypeAssociations" Title=".ott" Display="33" Level="4" Directory_="APPDIR" Attributes="0"/>
@@ -441,7 +435,6 @@
     <ROW Property="REGISTER_ODP" Value="1"/>
     <ROW Property="REGISTER_ODS" Value="1"/>
     <ROW Property="REGISTER_ODT" Value="1"/>
-    <ROW Property="REGISTER_OFORM" Value="1"/>
     <ROW Property="REGISTER_OTP" Value="1"/>
     <ROW Property="REGISTER_OTS" Value="1"/>
     <ROW Property="REGISTER_OTT" Value="1"/>
@@ -479,7 +472,6 @@
     <ROW Feature_="FA_ODP" Level="1" Condition="REGISTER_ODP = 1"/>
     <ROW Feature_="FA_ODS" Level="1" Condition="REGISTER_ODS = 1"/>
     <ROW Feature_="FA_ODT" Level="1" Condition="REGISTER_ODT = 1"/>
-    <ROW Feature_="FA_OFORM" Level="1" Condition="FORMS = 1 AND REGISTER_OFORM = 1"/>
     <ROW Feature_="FA_OTP" Level="1" Condition="REGISTER_OTP = 1"/>
     <ROW Feature_="FA_OTS" Level="1" Condition="REGISTER_OTS = 1"/>
     <ROW Feature_="FA_OTT" Level="1" Condition="REGISTER_OTT = 1"/>
@@ -608,7 +600,6 @@
     <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_xml" Type="CheckBox" X="215" Y="180" Width="50" Height="13" Attributes="3" Property="REGISTER_XML" Text=".xml" Order="3500" TextLocId="-"/>
     <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_xps" Type="CheckBox" X="275" Y="180" Width="50" Height="13" Attributes="3" Property="REGISTER_XPS" Text=".xps" Order="3600" TextLocId="-"/>
     <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_docxf" Type="CheckBox" X="35" Y="200" Width="50" Height="13" Attributes="3" Property="REGISTER_DOCXF" Text=".docxf" Order="3700" TextLocId="-"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_oform" Type="CheckBox" X="95" Y="200" Width="50" Height="13" Attributes="3" Property="REGISTER_OFORM" Text=".oform" Order="3800" TextLocId="-"/>
     <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_oxps" Type="CheckBox" X="155" Y="200" Width="50" Height="13" Attributes="3" Property="REGISTER_OXPS" Text=".oxps" Order="3900" TextLocId="-"/>
     <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_pot" Type="CheckBox" X="215" Y="200" Width="50" Height="13" Attributes="3" Property="REGISTER_POT" Text=".pot" Order="4000" TextLocId="-"/>
     <ROW Dialog_="FileAssociationsCustomDlg" Control="CheckBox_pptm" Type="CheckBox" X="275" Y="200" Width="50" Height="13" Attributes="3" Property="REGISTER_PPTM" Text=".pptm" Order="4100" TextLocId="-"/>
@@ -699,7 +690,6 @@
     <ROW Dialog_="ShortcutsDlg" Control_="StartupShorcutsCheckBox" Action="Hide" Condition="(Not Installed)"/>
     <ROW Dialog_="ShortcutsDlg" Control_="StartmenuShortcutsCheckBox" Action="Show" Condition="(Not Installed)"/>
     <ROW Dialog_="FileAssociationsCustomDlg" Control_="CheckBox_docxf" Action="Hide" Condition="FORMS &lt;&gt; 1"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control_="CheckBox_oform" Action="Hide" Condition="FORMS &lt;&gt; 1"/>
     <ATTRIBUTE name="DeletedRows" value="ExitDialog#ViewReadmeText#Hide#(((NOT AI_INSTALL) AND (NOT AI_PATCH)) OR ((CTRLS &lt;&gt; 1) AND (CTRLS &lt;&gt; 3))) OR AiReadmeLink@ShortcutsDlg#StartmenuShortcutsCheckBox#Show#(Not Installed)@ShortcutsDlg#StartupShorcutsCheckBox#Show#(Not Installed)"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiControlEventComponent">
@@ -774,7 +764,6 @@
     <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_XML]" Argument="1" Condition="AI_INSTALL" Ordering="25"/>
     <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_XPS]" Argument="1" Condition="AI_INSTALL" Ordering="26"/>
     <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_DOCXF]" Argument="1" Condition="AI_INSTALL" Ordering="27"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_SelectAll" Event="[REGISTER_OFORM]" Argument="1" Condition="AI_INSTALL" Ordering="28"/>
     <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_DOC]" Argument="{}" Condition="AI_INSTALL" Ordering="0"/>
     <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_DOCX]" Argument="{}" Condition="AI_INSTALL" Ordering="1"/>
     <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_DOTX]" Argument="{}" Condition="AI_INSTALL" Ordering="2"/>
@@ -803,7 +792,6 @@
     <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_XML]" Argument="{}" Condition="AI_INSTALL" Ordering="25"/>
     <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_XPS]" Argument="{}" Condition="AI_INSTALL" Ordering="26"/>
     <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_DOCXF]" Argument="{}" Condition="AI_INSTALL" Ordering="27"/>
-    <ROW Dialog_="FileAssociationsCustomDlg" Control_="PushButton_DeselectAll" Event="[REGISTER_OFORM]" Argument="{}" Condition="AI_INSTALL" Ordering="28"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCreateFolderComponent">
     <ROW Directory_="APPDIR" Component_="c_dir_app" ManualDelete="true"/>
@@ -879,7 +867,6 @@
     <ROW Feature_="FA_ODP" Component_="c_reg_fa_ext__odp"/>
     <ROW Feature_="FA_ODS" Component_="c_reg_fa_ext__ods"/>
     <ROW Feature_="FA_ODT" Component_="c_reg_fa_ext__odt"/>
-    <ROW Feature_="FA_OFORM" Component_="c_reg_fa_ext__oform"/>
     <ROW Feature_="FA_OTP" Component_="c_reg_fa_ext__otp"/>
     <ROW Feature_="FA_OTS" Component_="c_reg_fa_ext__ots"/>
     <ROW Feature_="FA_OTT" Component_="c_reg_fa_ext__ott"/>
@@ -921,7 +908,6 @@
     <ROW Feature_="Registry" Component_="c_reg_fa_cap__odp"/>
     <ROW Feature_="Registry" Component_="c_reg_fa_cap__ods"/>
     <ROW Feature_="Registry" Component_="c_reg_fa_cap__odt"/>
-    <ROW Feature_="Registry" Component_="c_reg_fa_cap__oform"/>
     <ROW Feature_="Registry" Component_="c_reg_fa_cap__otp"/>
     <ROW Feature_="Registry" Component_="c_reg_fa_cap__ots"/>
     <ROW Feature_="Registry" Component_="c_reg_fa_cap__ott"/>
@@ -958,7 +944,6 @@
     <ROW Feature_="Registry" Component_="c_reg_fa_openwith__odp"/>
     <ROW Feature_="Registry" Component_="c_reg_fa_openwith__ods"/>
     <ROW Feature_="Registry" Component_="c_reg_fa_openwith__odt"/>
-    <ROW Feature_="Registry" Component_="c_reg_fa_openwith__oform"/>
     <ROW Feature_="Registry" Component_="c_reg_fa_openwith__otp"/>
     <ROW Feature_="Registry" Component_="c_reg_fa_openwith__ots"/>
     <ROW Feature_="Registry" Component_="c_reg_fa_openwith__ott"/>
@@ -991,7 +976,6 @@
     <ROW Feature_="Registry" Component_="c_reg_fa_progid__odp"/>
     <ROW Feature_="Registry" Component_="c_reg_fa_progid__ods"/>
     <ROW Feature_="Registry" Component_="c_reg_fa_progid__odt"/>
-    <ROW Feature_="Registry" Component_="c_reg_fa_progid__oform"/>
     <ROW Feature_="Registry" Component_="c_reg_fa_progid__otp"/>
     <ROW Feature_="Registry" Component_="c_reg_fa_progid__ots"/>
     <ROW Feature_="Registry" Component_="c_reg_fa_progid__ott"/>
@@ -1144,7 +1128,6 @@
     <ROW Registry="reg_fa_cap__odp" Root="-1" Key="Software\[VendorShortName]\[AppShortName]\Capabilities\FileAssociations" Name=".odp" Value="[ExtPfx].Show.2" Component_="c_reg_fa_cap__odp"/>
     <ROW Registry="reg_fa_cap__ods" Root="-1" Key="Software\[VendorShortName]\[AppShortName]\Capabilities\FileAssociations" Name=".ods" Value="[ExtPfx].Sheet.2" Component_="c_reg_fa_cap__ods"/>
     <ROW Registry="reg_fa_cap__odt" Root="-1" Key="Software\[VendorShortName]\[AppShortName]\Capabilities\FileAssociations" Name=".odt" Value="[ExtPfx].Document.2" Component_="c_reg_fa_cap__odt"/>
-    <ROW Registry="reg_fa_cap__oform" Root="-1" Key="Software\[VendorShortName]\[AppShortName]\Capabilities\FileAssociations" Name=".oform" Value="[ExtPfx].Oform" Component_="c_reg_fa_cap__oform"/>
     <ROW Registry="reg_fa_cap__otp" Root="-1" Key="Software\[VendorShortName]\[AppShortName]\Capabilities\FileAssociations" Name=".otp" Value="[ExtPfx].Otp" Component_="c_reg_fa_cap__otp"/>
     <ROW Registry="reg_fa_cap__ots" Root="-1" Key="Software\[VendorShortName]\[AppShortName]\Capabilities\FileAssociations" Name=".ots" Value="[ExtPfx].Ots" Component_="c_reg_fa_cap__ots"/>
     <ROW Registry="reg_fa_cap__ott" Root="-1" Key="Software\[VendorShortName]\[AppShortName]\Capabilities\FileAssociations" Name=".ott" Value="[ExtPfx].Ott" Component_="c_reg_fa_cap__ott"/>
@@ -1177,7 +1160,6 @@
     <ROW Registry="reg_fa_ext__odp" Root="0" Key=".odp" Value="[ExtPfx].Show.2" Component_="c_reg_fa_ext__odp"/>
     <ROW Registry="reg_fa_ext__ods" Root="0" Key=".ods" Value="[ExtPfx].Sheet.2" Component_="c_reg_fa_ext__ods"/>
     <ROW Registry="reg_fa_ext__odt" Root="0" Key=".odt" Value="[ExtPfx].Document.2" Component_="c_reg_fa_ext__odt"/>
-    <ROW Registry="reg_fa_ext__oform" Root="0" Key=".oform" Value="[ExtPfx].Oform" Component_="c_reg_fa_ext__oform"/>
     <ROW Registry="reg_fa_ext__otp" Root="0" Key=".otp" Value="[ExtPfx].Otp" Component_="c_reg_fa_ext__otp"/>
     <ROW Registry="reg_fa_ext__ots" Root="0" Key=".ots" Value="[ExtPfx].Ots" Component_="c_reg_fa_ext__ots"/>
     <ROW Registry="reg_fa_ext__ott" Root="0" Key=".ott" Value="[ExtPfx].Ott" Component_="c_reg_fa_ext__ott"/>
@@ -1210,7 +1192,6 @@
     <ROW Registry="reg_fa_openwith__odp" Root="0" Key=".odp\OpenWithProgIds" Name="[ExtPfx].Show.2" Component_="c_reg_fa_openwith__odp"/>
     <ROW Registry="reg_fa_openwith__ods" Root="0" Key=".ods\OpenWithProgIds" Name="[ExtPfx].Sheet.2" Component_="c_reg_fa_openwith__ods"/>
     <ROW Registry="reg_fa_openwith__odt" Root="0" Key=".odt\OpenWithProgIds" Name="[ExtPfx].Document.2" Component_="c_reg_fa_openwith__odt"/>
-    <ROW Registry="reg_fa_openwith__oform" Root="0" Key=".oform\OpenWithProgIds" Name="[ExtPfx].Oform" Component_="c_reg_fa_openwith__oform"/>
     <ROW Registry="reg_fa_openwith__otp" Root="0" Key=".otp\OpenWithProgIds" Name="[ExtPfx].Otp" Component_="c_reg_fa_openwith__otp"/>
     <ROW Registry="reg_fa_openwith__ots" Root="0" Key=".ots\OpenWithProgIds" Name="[ExtPfx].Ots" Component_="c_reg_fa_openwith__ots"/>
     <ROW Registry="reg_fa_openwith__ott" Root="0" Key=".ott\OpenWithProgIds" Name="[ExtPfx].Ott" Component_="c_reg_fa_openwith__ott"/>
@@ -1243,7 +1224,6 @@
     <ROW Registry="reg_fa_openwith_k__odp" Root="0" Key=".odp\OpenWithProgIds" Name="\"/>
     <ROW Registry="reg_fa_openwith_k__ods" Root="0" Key=".ods\OpenWithProgIds" Name="\"/>
     <ROW Registry="reg_fa_openwith_k__odt" Root="0" Key=".odt\OpenWithProgIds" Name="\"/>
-    <ROW Registry="reg_fa_openwith_k__oform" Root="0" Key=".oform\OpenWithProgIds" Name="\"/>
     <ROW Registry="reg_fa_openwith_k__otp" Root="0" Key=".otp\OpenWithProgIds" Name="\"/>
     <ROW Registry="reg_fa_openwith_k__ots" Root="0" Key=".ots\OpenWithProgIds" Name="\"/>
     <ROW Registry="reg_fa_openwith_k__ott" Root="0" Key=".ott\OpenWithProgIds" Name="\"/>
@@ -1276,7 +1256,6 @@
     <ROW Registry="reg_fa_progid__odp" Root="0" Key="[ExtPfx].Show.2" Value="OpenDocument Presentation" Component_="c_reg_fa_progid__odp"/>
     <ROW Registry="reg_fa_progid__ods" Root="0" Key="[ExtPfx].Sheet.2" Value="OpenDocument Spreadsheet" Component_="c_reg_fa_progid__ods"/>
     <ROW Registry="reg_fa_progid__odt" Root="0" Key="[ExtPfx].Document.2" Value="OpenDocument Text" Component_="c_reg_fa_progid__odt"/>
-    <ROW Registry="reg_fa_progid__oform" Root="0" Key="[ExtPfx].Oform" Value="ONLYOFFICE Fillable Online Form" Component_="c_reg_fa_progid__oform"/>
     <ROW Registry="reg_fa_progid__otp" Root="0" Key="[ExtPfx].Otp" Value="OpenDocument Presentation Template" Component_="c_reg_fa_progid__otp"/>
     <ROW Registry="reg_fa_progid__ots" Root="0" Key="[ExtPfx].Ots" Value="OpenDocument Spreadsheet Template" Component_="c_reg_fa_progid__ots"/>
     <ROW Registry="reg_fa_progid__ott" Root="0" Key="[ExtPfx].Ott" Value="OpenDocument Text Template" Component_="c_reg_fa_progid__ott"/>
@@ -1306,7 +1285,6 @@
     <ROW Registry="reg_fa_progid_icon__odp" Root="0" Key="[ExtPfx].Show.2\DefaultIcon" Value="[#DesktopEditors.exe],3" Component_="c_reg_fa_progid__odp"/>
     <ROW Registry="reg_fa_progid_icon__ods" Root="0" Key="[ExtPfx].Sheet.2\DefaultIcon" Value="[#DesktopEditors.exe],23" Component_="c_reg_fa_progid__ods"/>
     <ROW Registry="reg_fa_progid_icon__odt" Root="0" Key="[ExtPfx].Document.2\DefaultIcon" Value="[#DesktopEditors.exe],18" Component_="c_reg_fa_progid__odt"/>
-    <ROW Registry="reg_fa_progid_icon__oform" Root="0" Key="[ExtPfx].Oform\DefaultIcon" Value="[#DesktopEditors.exe],12" Component_="c_reg_fa_progid__oform"/>
     <ROW Registry="reg_fa_progid_icon__oxps" Root="0" Key="[ExtPfx].Oxps\DefaultIcon" Value="[#DesktopEditors.exe],0" Component_="c_reg_fa_progid__oxps"/>
     <ROW Registry="reg_fa_progid_icon__pdf" Root="0" Key="[ExtPfx].Pdf\DefaultIcon" Value="[#DesktopEditors.exe],5" Component_="c_reg_fa_progid__pdf"/>
     <ROW Registry="reg_fa_progid_icon__pot" Root="0" Key="[ExtPfx].Pot\DefaultIcon" Value="[#DesktopEditors.exe],0" Component_="c_reg_fa_progid__pot"/>
@@ -1330,7 +1308,6 @@
     <ROW Registry="reg_fa_progid_icon_k__odp" Root="0" Key="[ExtPfx].Show.2\DefaultIcon" Name="\"/>
     <ROW Registry="reg_fa_progid_icon_k__ods" Root="0" Key="[ExtPfx].Sheet.2\DefaultIcon" Name="\"/>
     <ROW Registry="reg_fa_progid_icon_k__odt" Root="0" Key="[ExtPfx].Document.2\DefaultIcon" Name="\"/>
-    <ROW Registry="reg_fa_progid_icon_k__oform" Root="0" Key="[ExtPfx].Oform\DefaultIcon" Name="\"/>
     <ROW Registry="reg_fa_progid_icon_k__oxps" Root="0" Key="[ExtPfx].Oxps\DefaultIcon" Name="\"/>
     <ROW Registry="reg_fa_progid_icon_k__pdf" Root="0" Key="[ExtPfx].Pdf\DefaultIcon" Name="\"/>
     <ROW Registry="reg_fa_progid_icon_k__pot" Root="0" Key="[ExtPfx].Pot\DefaultIcon" Name="\"/>
@@ -1357,7 +1334,6 @@
     <ROW Registry="reg_fa_progid_k__odp" Root="0" Key="[ExtPfx].Show.2" Name="\"/>
     <ROW Registry="reg_fa_progid_k__ods" Root="0" Key="[ExtPfx].Sheet.2" Name="\"/>
     <ROW Registry="reg_fa_progid_k__odt" Root="0" Key="[ExtPfx].Document.2" Name="\"/>
-    <ROW Registry="reg_fa_progid_k__oform" Root="0" Key="[ExtPfx].Oform" Name="\"/>
     <ROW Registry="reg_fa_progid_k__otp" Root="0" Key="[ExtPfx].Otp" Name="\"/>
     <ROW Registry="reg_fa_progid_k__ots" Root="0" Key="[ExtPfx].Ots" Name="\"/>
     <ROW Registry="reg_fa_progid_k__ott" Root="0" Key="[ExtPfx].Ott" Name="\"/>
@@ -1390,7 +1366,6 @@
     <ROW Registry="reg_fa_progid_shell_k__odp" Root="0" Key="[ExtPfx].Show.2\shell" Name="\"/>
     <ROW Registry="reg_fa_progid_shell_k__ods" Root="0" Key="[ExtPfx].Sheet.2\shell" Name="\"/>
     <ROW Registry="reg_fa_progid_shell_k__odt" Root="0" Key="[ExtPfx].Document.2\shell" Name="\"/>
-    <ROW Registry="reg_fa_progid_shell_k__oform" Root="0" Key="[ExtPfx].Oform\shell" Name="\"/>
     <ROW Registry="reg_fa_progid_shell_k__otp" Root="0" Key="[ExtPfx].Otp\shell" Name="\"/>
     <ROW Registry="reg_fa_progid_shell_k__ots" Root="0" Key="[ExtPfx].Ots\shell" Name="\"/>
     <ROW Registry="reg_fa_progid_shell_k__ott" Root="0" Key="[ExtPfx].Ott\shell" Name="\"/>
@@ -1423,7 +1398,6 @@
     <ROW Registry="reg_fa_progid_shell_open_command__odp" Root="0" Key="[ExtPfx].Show.2\shell\open\command" Value="&quot;[#DesktopEditors.exe]&quot; &quot;%1&quot;" Component_="c_reg_fa_progid__odp"/>
     <ROW Registry="reg_fa_progid_shell_open_command__ods" Root="0" Key="[ExtPfx].Sheet.2\shell\open\command" Value="&quot;[#DesktopEditors.exe]&quot; &quot;%1&quot;" Component_="c_reg_fa_progid__ods"/>
     <ROW Registry="reg_fa_progid_shell_open_command__odt" Root="0" Key="[ExtPfx].Document.2\shell\open\command" Value="&quot;[#DesktopEditors.exe]&quot; &quot;%1&quot;" Component_="c_reg_fa_progid__odt"/>
-    <ROW Registry="reg_fa_progid_shell_open_command__oform" Root="0" Key="[ExtPfx].Oform\shell\open\command" Value="&quot;[#DesktopEditors.exe]&quot; &quot;%1&quot;" Component_="c_reg_fa_progid__oform"/>
     <ROW Registry="reg_fa_progid_shell_open_command__otp" Root="0" Key="[ExtPfx].Otp\shell\open\command" Value="&quot;[#DesktopEditors.exe]&quot; &quot;%1&quot;" Component_="c_reg_fa_progid__otp"/>
     <ROW Registry="reg_fa_progid_shell_open_command__ots" Root="0" Key="[ExtPfx].Ots\shell\open\command" Value="&quot;[#DesktopEditors.exe]&quot; &quot;%1&quot;" Component_="c_reg_fa_progid__ots"/>
     <ROW Registry="reg_fa_progid_shell_open_command__ott" Root="0" Key="[ExtPfx].Ott\shell\open\command" Value="&quot;[#DesktopEditors.exe]&quot; &quot;%1&quot;" Component_="c_reg_fa_progid__ott"/>
@@ -1456,7 +1430,6 @@
     <ROW Registry="reg_fa_progid_shell_open_command_k__odp" Root="0" Key="[ExtPfx].Show.2\shell\open\command" Name="\"/>
     <ROW Registry="reg_fa_progid_shell_open_command_k__ods" Root="0" Key="[ExtPfx].Sheet.2\shell\open\command" Name="\"/>
     <ROW Registry="reg_fa_progid_shell_open_command_k__odt" Root="0" Key="[ExtPfx].Document.2\shell\open\command" Name="\"/>
-    <ROW Registry="reg_fa_progid_shell_open_command_k__oform" Root="0" Key="[ExtPfx].Oform\shell\open\command" Name="\"/>
     <ROW Registry="reg_fa_progid_shell_open_command_k__otp" Root="0" Key="[ExtPfx].Otp\shell\open\command" Name="\"/>
     <ROW Registry="reg_fa_progid_shell_open_command_k__ots" Root="0" Key="[ExtPfx].Ots\shell\open\command" Name="\"/>
     <ROW Registry="reg_fa_progid_shell_open_command_k__ott" Root="0" Key="[ExtPfx].Ott\shell\open\command" Name="\"/>
@@ -1489,7 +1462,6 @@
     <ROW Registry="reg_fa_progid_shell_open_k__odp" Root="0" Key="[ExtPfx].Show.2\shell\open" Name="\"/>
     <ROW Registry="reg_fa_progid_shell_open_k__ods" Root="0" Key="[ExtPfx].Sheet.2\shell\open" Name="\"/>
     <ROW Registry="reg_fa_progid_shell_open_k__odt" Root="0" Key="[ExtPfx].Document.2\shell\open" Name="\"/>
-    <ROW Registry="reg_fa_progid_shell_open_k__oform" Root="0" Key="[ExtPfx].Oform\shell\open" Name="\"/>
     <ROW Registry="reg_fa_progid_shell_open_k__otp" Root="0" Key="[ExtPfx].Otp\shell\open" Name="\"/>
     <ROW Registry="reg_fa_progid_shell_open_k__ots" Root="0" Key="[ExtPfx].Ots\shell\open" Name="\"/>
     <ROW Registry="reg_fa_progid_shell_open_k__ott" Root="0" Key="[ExtPfx].Ott\shell\open" Name="\"/>
@@ -1522,7 +1494,6 @@
     <ROW Registry="reg_fa_type_k__odp" Root="0" Key=".odp" Name="\"/>
     <ROW Registry="reg_fa_type_k__ods" Root="0" Key=".ods" Name="\"/>
     <ROW Registry="reg_fa_type_k__odt" Root="0" Key=".odt" Name="\"/>
-    <ROW Registry="reg_fa_type_k__oform" Root="0" Key=".oform" Name="\"/>
     <ROW Registry="reg_fa_type_k__otp" Root="0" Key=".otp" Name="\"/>
     <ROW Registry="reg_fa_type_k__ots" Root="0" Key=".ots" Name="\"/>
     <ROW Registry="reg_fa_type_k__ott" Root="0" Key=".ott" Name="\"/>
