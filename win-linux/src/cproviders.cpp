@@ -111,14 +111,14 @@ void CProviders::addRootUrl(const QString &login_json)
     }
 }
 
-bool CProviders::isSpecialProvider(const QString &url)
+bool CProviders::providerIsIntegrator(const QString &url)
 {
     QString root_url = QUrl(url).toString(QUrl::RemovePath | QUrl::RemoveQuery | QUrl::RemoveFragment);
     if (!root_url.isEmpty()) {
-        const QStringList special_prvds({"moodle"});
+        const QStringList integrators({"moodle"});
         GET_REGISTRY_USER(reg_user)
         const QJsonObject prvds = reg_user.value("providers").toJsonObject();
-        for (const auto &pvd : special_prvds) {
+        for (const auto &pvd : integrators) {
             if (prvds.contains(pvd)) {
                 QJsonObject val = prvds[pvd].toObject();
                 if (val.contains("domain")) {

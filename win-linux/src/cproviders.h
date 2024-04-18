@@ -44,7 +44,7 @@ public:
 
     void updateProviders(const QString &prvds_json);
     void addRootUrl(const QString &login_json);
-    bool isSpecialProvider(const QString &url);
+    bool providerIsIntegrator(const QString &url);
 };
 
 #endif // CPROVIDERS_H

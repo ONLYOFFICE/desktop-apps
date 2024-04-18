@@ -899,7 +899,7 @@ public:
     }
 
     auto viewerMode() const -> bool {
-        if (AscAppManager::getInstance().providers()->isSpecialProvider(QString::fromStdWString(m_panel->data()->url())))
+        if (!m_panel->data()->isLocal() && AscAppManager::getInstance().providers()->providerIsIntegrator(QString::fromStdWString(m_panel->data()->url())))
             return true;
         return m_panel->data()->hasFeature(L"viewmode\":true") || m_panel->data()->hasFrame();
     }
