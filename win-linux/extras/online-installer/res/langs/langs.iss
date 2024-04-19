@@ -30,7 +30,7 @@ en.LABEL_MESSAGE_TEXT_ERR5 =An error occurred while running the package.\nPlease
 ru.LABEL_MESSAGE_TEXT_ERR5 =Произошла ошибка при запуске установщика.\nПопробуйте перезапустить приложение позже.
 
 en.LABEL_MESSAGE_TEXT_ERR6 =An error occurred during initialization: Url not set.
-ru.LABEL_MESSAGE_TEXT_ERR6 =Произошла ошибка при инициализации: Не задан Url.
+ru.LABEL_MESSAGE_TEXT_ERR6 =Произошла ошибка при инициализации: Не задан URL.
 
 en.LABEL_MESSAGE_TEXT_ERR7 =An error occurred during initialization: File name not specified.
 ru.LABEL_MESSAGE_TEXT_ERR7 =Произошла ошибка при инициализации: Не задано имя файла.
