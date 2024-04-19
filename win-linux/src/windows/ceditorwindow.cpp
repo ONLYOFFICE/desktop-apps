@@ -267,7 +267,7 @@ void CEditorWindow::recalculatePlaces()
         d_ptr->panel()->view()->SetCaptionMaskSize(int(TITLE_HEIGHT * m_dpiRatio));
     }
 
-    if ( d_ptr->canExtendTitle() && !d_ptr->panel()->data()->hasError() ) {
+    if ( /*d_ptr->canExtendTitle() &&*/ !d_ptr->panel()->data()->hasError() ) {
         m_pMainView->lower();
     }
 }
