@@ -825,7 +825,8 @@ public:
     void onWebAppsFeatures(int, std::wstring f) override
     {
         bool is_read_only = panel()->data()->hasFeature(L"readonly\":true");
-        panel()->data()->setFeatures(f);
+        if (f != L"{\"hasframe\":true}" || !panel()->data()->hasFeature(L"hasframe\":false"))
+            panel()->data()->setFeatures(f);
 
         if ( !layoutIsSet && fillformMode() ) {
             ffWindowCustomize();
