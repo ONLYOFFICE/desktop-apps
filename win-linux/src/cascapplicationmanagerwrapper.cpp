@@ -942,6 +942,7 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
 
 
             if ( _app.m_pMainWindow && _app.m_private->bringEditorToFront(str_url) ) {
+                qDebug() << "found document";
                 continue;
             } else
             if ( CFileInspector::isLocalFile(str_url) ) {
