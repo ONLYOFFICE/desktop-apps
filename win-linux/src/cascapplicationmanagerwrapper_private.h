@@ -286,7 +286,7 @@ public:
         if ( _view ) {
             int _view_id = _view->GetId();
 
-            if ( mainWindow()->holdUid(_view_id) ) {
+            if ( mainWindow() && mainWindow()->holdUid(_view_id) ) {
                 mainWindow()->bringToTop();
                 mainWindow()->selectView(_view_id);
                 return true;
@@ -296,7 +296,7 @@ public:
             QString _n_url = Utils::replaceBackslash(url);
 
             qDebug() << "check mainwindow hold url";
-            if ( mainWindow()->holdUrl(_n_url, etLocalFile) ) {
+            if ( mainWindow() && mainWindow()->holdUrl(_n_url, etLocalFile) ) {
                 mainWindow()->bringToTop();
                 mainWindow()->selectView(_n_url);
                 return true;
