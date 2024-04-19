@@ -931,7 +931,6 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
         } else {
             open_opts.wurl = arg;
         }
-        qDebug() << "handle input cmd";
 
         if (open_opts.srctype == AscEditorType::etUndefined) {
             QString str_url = QString::fromStdWString(open_opts.wurl);
@@ -943,7 +942,6 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
 #endif
 
             if ( _app.m_private->bringEditorToFront(str_url) ) {
-                qDebug() << "found document";
                 continue;
             } else
             if ( CFileInspector::isLocalFile(str_url) ) {
@@ -1006,7 +1004,6 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
                     _app.m_pMainWindow->show(_app.m_pMainWindow->windowState().testFlag(Qt::WindowMaximized));
 
                 _app.mainWindow()->attachEditor(panel);
-                qDebug() << "attachEditor to tab" << open_opts.wurl;
 
                 QTimer::singleShot(100, &_app, [&]{
                     _app.mainWindow()->bringToTop();

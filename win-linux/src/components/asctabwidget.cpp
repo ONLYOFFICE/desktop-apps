@@ -632,7 +632,6 @@ int CAscTabWidget::tabIndexByUrl(const wstring& url)
         for (int i(count()); !(--i < 0);) {
             doc = panel(i)->data();
 
-            qDebug() << "compare doc url" << doc->url() << url;
             if (doc && doc->url().compare(url) == 0)
                 return i;
         }
