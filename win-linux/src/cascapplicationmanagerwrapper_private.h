@@ -295,12 +295,19 @@ public:
         } else {
             QString _n_url = Utils::replaceBackslash(url);
 
+            qDebug() << "check mainwindow hold url";
             if ( mainWindow()->holdUrl(_n_url, etLocalFile) ) {
                 mainWindow()->bringToTop();
                 mainWindow()->selectView(_n_url);
                 return true;
-            } else
+            } else {
                 _editor = m_appmanager.editorWindowFromUrl(_n_url);
+                qDebug() << "mainwindow doesn't hold url";
+
+                if ( !_editor ) {
+                    qDebug() << "editorwindow doesn't hold url";
+                }
+            }
         }
 
         if ( _editor ) {

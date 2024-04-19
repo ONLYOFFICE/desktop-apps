@@ -153,6 +153,7 @@ bool CEditorWindow::closed() const
 
 bool CEditorWindow::holdView(const std::wstring& portal) const
 {
+    qDebug() << "compare editor's window url" << qobject_cast<CTabPanel *>(m_pMainView)->data()->url() << portal;
     return qobject_cast<CTabPanel *>(m_pMainView)->data()->url().find(portal) != std::wstring::npos;
 }
 

@@ -931,12 +931,20 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
         } else {
             open_opts.wurl = arg;
         }
+        qDebug() << "handle input cmd";
 
         if (open_opts.srctype == AscEditorType::etUndefined) {
-            if ( _app.m_pMainWindow && _app.m_private->bringEditorToFront(QString::fromStdWString(open_opts.wurl)) ) {
+            QString str_url = QString::fromStdWString(open_opts.wurl);
+            if ( CFileInspector::isLocalFile(str_url) ) {
+                str_url = Utils::replaceBackslash(str_url);
+                open_opts.wurl = str_url.toStdWString();
+            }
+
+
+            if ( _app.m_pMainWindow && _app.m_private->bringEditorToFront(str_url) ) {
                 continue;
             } else
-            if ( CFileInspector::isLocalFile(QString::fromStdWString(open_opts.wurl)) ) {
+            if ( CFileInspector::isLocalFile(str_url) ) {
                 open_opts.srctype = etLocalFile;
 #ifdef Q_OS_WIN
                 int _error = _waccess(open_opts.wurl.c_str(), 0);
@@ -996,6 +1004,8 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
                     _app.m_pMainWindow->show(_app.m_pMainWindow->windowState().testFlag(Qt::WindowMaximized));
 
                 _app.mainWindow()->attachEditor(panel);
+                qDebug() << "attachEditor to tab" << open_opts.wurl;
+
                 QTimer::singleShot(100, &_app, [&]{
                     _app.mainWindow()->bringToTop();
                 });
