@@ -935,11 +935,12 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
 
         if (open_opts.srctype == AscEditorType::etUndefined) {
             QString str_url = QString::fromStdWString(open_opts.wurl);
+#ifdef _WIN32
             if ( CFileInspector::isLocalFile(str_url) ) {
                 str_url = Utils::replaceBackslash(str_url);
                 open_opts.wurl = str_url.toStdWString();
             }
-
+#endif
 
             if ( _app.m_private->bringEditorToFront(str_url) ) {
                 qDebug() << "found document";
