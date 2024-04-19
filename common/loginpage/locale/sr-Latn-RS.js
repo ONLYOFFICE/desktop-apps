@@ -98,6 +98,7 @@ l10n.sr_Latn_RS = {
     updateNoUpdates: 'Aplikacija je ažurirana',
     updateAvialable: 'Verzija $1 je slobodna. Kliknite da preuzmete.',
     settOptThemeSystem: 'Isto kao Sistem',
+    settOptThemeAddLocal: 'Dodaj lokalnu temu',
     settOptThemeContrastDark: 'Kontrast Tamno',
     settAUpdateMode: 'Auto-ažuriranje režim',
     settOptAUpdateSilent: 'Auto',
@@ -109,4 +110,5 @@ l10n.sr_Latn_RS = {
     settOptDescDisabled: "Auto proveravanje ažuriranja će biti onemogućeno",
     settOptDescAUpdateSilent: "Preuzmite ažuriranja i pitajte pre instaliranja",
     settOptDescAUpdateAsk: "Bićete obavešteni pre svakog koraka ažuriranja",
+    settRtlMode: "RTL Interfejs",
 }
