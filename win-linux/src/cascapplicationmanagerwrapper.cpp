@@ -40,9 +40,6 @@
 # endif
 #endif
 
-#include "../../../desktop-sdk/ChromiumBasedEditors/videoplayerlib/qascvideoview.h"
-
-
 #define APP_CAST(app) \
     CAscApplicationManagerWrapper & app = static_cast<CAscApplicationManagerWrapper &>(AscAppManager::getInstance());
 
@@ -637,6 +634,19 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
 
         return true;
     }
+
+	case ASC_MENU_EVENT_TYPE_SYSTEM_EXTERNAL_MEDIA_PLAYER_COMMAND: {
+		CCefView * _cef = GetViewById(event->get_SenderId());
+		if (_cef)
+		{
+			CCefViewWidgetImpl * _impl = _cef->GetWidgetImpl();
+			if (_impl)
+			{
+				static_cast<QCefView*>(_impl)->OnMediaPlayerCommand(static_cast<CAscExternalMediaPlayerCommand*>(event->m_pData));
+			}
+		}
+		return true;
+	}
 
     case ASC_MENU_EVENT_TYPE_CEF_LOCALFILES_OPEN: {
         CAscLocalOpenFiles * pData = (CAscLocalOpenFiles *)event->m_pData;
