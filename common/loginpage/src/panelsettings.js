@@ -260,6 +260,12 @@
                                                 </section>
                                             </div>
                                         </div>
+                                        <div class='settings-field' style='display:none;'>
+                                            <section class='switch-labeled hbox' id='sett-box-gpu-mode'>
+                                                <input type="checkbox" class="checkbox" id="sett-gpu-mode">
+                                                <label for="sett-gpu-mode" class='sett__caption' l10n>${_lang.settGpuUseMode} *</label>
+                                            </section>
+                                        </div>
                                         <!-- temporary elements section -->
                                         <div class='settings-field' style='display:none;'>
                                             <section class='switch-labeled hbox' id='sett-box-preview-mode'>
@@ -308,7 +314,8 @@
             $optsSpellcheckMode,
             $optsLaunchMode,
             $optsAutoupdateMode;
-        let $chRtl;
+        let $chRtl,
+            $chGpu;
 
         function _set_user_name(name) {
             let me = this;
@@ -379,7 +386,8 @@
                 let _doc_open_mode = $chOpenMode.prop('checked') ? 'view' : 'edit';
                 let _new_settings = {
                     username:_user_new_name,
-                    docopenmode: _doc_open_mode
+                    docopenmode: _doc_open_mode,
+                    restart: false,
                 };
 
                 if ( $optsLang.is(':visible') ) {
@@ -426,6 +434,10 @@
 
                 if ( $chRtl ) {
                     _new_settings.rtl = $chRtl.prop("checked");
+                }
+
+                if ( $chGpu ) {
+                    _new_settings.usegpu = $chGpu.prop("checked");
                 }
 
                 sdk.command("settings:apply", JSON.stringify(_new_settings));
@@ -619,9 +631,6 @@
 
                         if ( !!opts.updates ) {
                             if ( opts.updates.mode !== undefined ) {
-                                // if ( !['ask', 'disabled'].includes(opts.updates.mode) )
-                                    // opts.updates.mode = 'ask';                          // for 7.3. to workaround 'silent' mode
-
                                 ($optsAutoupdateMode = ($('#opts-autoupdate-mode', $panel).show().find('select')))
                                 // ($optsAutoupdateMode = ($('#opts-autoupdate', $panel).show().find('select')))
                                     .val(opts.updates.mode)
@@ -642,6 +651,14 @@
                                         });
                                 }
                             }
+                        }
+
+                        if ( opts.usegpu !== undefined ) {
+                            $chGpu = $('#sett-box-gpu-mode', $panel).parent().show().find('#sett-gpu-mode');
+                            $chGpu.prop('checked', !!opts.usegpu)
+                                .on('change', e => {
+                                    $btnApply.isdisabled() && $btnApply.disable(false);
+                                });
                         }
                     }
 

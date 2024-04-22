@@ -1844,6 +1844,12 @@ bool CAscApplicationManagerWrapper::applySettings(const wstring& wstrjson)
             m_private->m_openEditorWindow = objRoot["editorwindowmode"].toBool();
             _reg_user.setValue("editorWindowMode", m_private->m_openEditorWindow);
         }
+
+        if ( objRoot.contains("usegpu") ) {
+            bool use_gpu = objRoot["usegpu"].toBool(true);
+            setUserSettings(L"disable-gpu", use_gpu ? L"0" : L"1");
+        }
+
 #ifdef _UPDMODULE
         if ( objRoot.contains("autoupdatemode") ) {
             if (m_pUpdateManager)
