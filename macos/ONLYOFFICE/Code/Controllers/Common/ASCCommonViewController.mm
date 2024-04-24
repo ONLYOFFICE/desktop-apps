@@ -972,6 +972,16 @@
                         [alert runModal];
                     }
                 }];
+            } else if ( pData->get_KeyCode() == 9 ) {
+                if ( pData->get_IsCtrl() ) {
+                    if ( pData->get_IsShift() ) {
+                        NSLog(@"back direction");
+                        [self.tabsControl selectPreviouseTab];
+                    } else {
+                        NSLog(@"right direction");
+                        [self.tabsControl selectNextTab];
+                    }
+                }
             }
         }
     }
@@ -1819,6 +1829,11 @@
     
     if (tab) {
         [self.tabView selectTabViewItemWithIdentifier:tab.uuid];
+    } else {
+        NSTabViewItem * item = [self.tabView selectedTabViewItem];
+        if ( ![[item identifier]  isEqual:rootTabId] ) {
+            [self.tabView selectTabViewItemWithIdentifier:rootTabId];
+        }
     }
 }
 

@@ -752,6 +752,28 @@ static NSString * const kASCTabsMulticastDelegateKey = @"asctabsmulticastDelegat
     [self selectTab:nil];
 }
 
+- (void)selectNextTab {
+    NSInteger tabsCount = [self.tabs count];
+    if ( tabsCount ) {
+        ASCTabView * tab = self.selectedTab;
+        NSInteger tabIndex = tab ? tab.tag : -1;
+        ASCTabView * tabToSelect = ++tabIndex < tabsCount ? [self.tabs objectAtIndex:tabIndex] : nil;
+
+        [self selectTab:tabToSelect];
+    }
+}
+
+- (void)selectPreviouseTab {
+    NSInteger tabsCount = [self.tabs count];
+    if ( tabsCount ) {
+        ASCTabView * tab = self.selectedTab;
+        NSInteger tabIndex = tab ? tab.tag : tabsCount;
+        ASCTabView * tabToSelect = !(--tabIndex < 0) ? [self.tabs objectAtIndex:tabIndex] : nil;
+
+        [self selectTab:tabToSelect];
+    }
+}
+
 #pragma mark -
 #pragma mark ASCTabView Delegate
 
