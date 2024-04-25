@@ -975,10 +975,8 @@
             } else if ( pData->get_KeyCode() == 9 ) {
                 if ( pData->get_IsCtrl() ) {
                     if ( pData->get_IsShift() ) {
-                        NSLog(@"back direction");
                         [self.tabsControl selectPreviouseTab];
                     } else {
-                        NSLog(@"right direction");
                         [self.tabsControl selectNextTab];
                     }
                 }
