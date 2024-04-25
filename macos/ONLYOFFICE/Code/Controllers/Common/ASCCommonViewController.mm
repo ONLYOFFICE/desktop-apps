@@ -80,6 +80,7 @@
     NSUInteger documentNameCounter;
     NSUInteger spreadsheetNameCounter;
     NSUInteger presentationNameCounter;
+    NSUInteger pdfNameCounter;
 }
 @property (weak) ASCTabsControl *tabsControl;
 @property (nonatomic) NSCefView * cefStartPageView;
@@ -1904,7 +1905,7 @@
                         break;
                     case AscEditorType::etDocumentMasterOForm:
                     case AscEditorType::etDocumentMasterForm:
-                        docName = [NSString stringWithFormat:NSLocalizedString(@"Document %ld.docxf", nil), ++documentNameCounter];
+                        docName = [NSString stringWithFormat:NSLocalizedString(@"Document %ld.pdf", nil), ++pdfNameCounter];
                         break;
                     default: break;
                 }
