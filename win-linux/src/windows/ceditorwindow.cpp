@@ -400,7 +400,7 @@ void CEditorWindow::setScreenScalingFactor(double factor, bool resize)
     if (isCustomWindowStyle()) {
         m_boxTitleBtns->setFixedHeight(int(TOOLBTN_HEIGHT * factor));
         if (m_pSpacer) {
-            m_pSpacer->changeSize(int(TOP_PANEL_OFFSET*m_dpiRatio), 5,
+            m_pSpacer->changeSize(int(TOOLBTN_WIDTH*d_ptr->leftButtonsCount()*m_dpiRatio), 5,
                                   QSizePolicy::Fixed, QSizePolicy::Fixed);
         }
     }

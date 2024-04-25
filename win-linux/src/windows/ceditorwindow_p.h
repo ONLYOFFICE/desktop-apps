@@ -51,7 +51,7 @@
 # include "platform_win/printdialog.h"
 #endif
 
-#define TOP_PANEL_OFFSET 6*TOOLBTN_WIDTH
+#define DEFAULT_BTNS_COUNT 6
 #define ICON_SPACER_WIDTH 9
 #define ICON_SIZE QSize(20,20)
 #define MARGINS 6
@@ -98,9 +98,7 @@ class CEditorWindowPrivate : public CCefEventsGate
             * leftboxbuttons = nullptr;
 
     QMap<QString, CSVGPushButton*> m_mapTitleButtons;
-
-public:
-    int titleLeftOffset = 0;
+    int leftBtnsCount = DEFAULT_BTNS_COUNT;
 
 public:
     CEditorWindowPrivate(CEditorWindow * w) : window(w) {}
@@ -213,7 +211,7 @@ public:
 
     auto centerTitle(double dpiRatio)->void
     {
-        int left_btns = m_mapTitleButtons.size() != 0 ? m_mapTitleButtons.size() : 6;
+        int left_btns = m_mapTitleButtons.size() != 0 ? m_mapTitleButtons.size() : leftBtnsCount;
         int right_btns = 3;
         int spacing = window->m_boxTitleBtns->layout()->spacing();
         int left_offset = left_btns*TOOLBTN_WIDTH + 3*spacing; // added extra spacing
@@ -299,8 +297,19 @@ public:
                         if ( _layout->itemAt(0)->widget() != leftboxbuttons )
                             _layout->insertWidget(0, leftboxbuttons);
                     } else {
+                        leftBtnsCount = 0;
+                        bool usedQuickaccess = false;
+                        for (const auto &jv: _btns) {
+                            const QJsonObject obj = jv.toObject();
+                            if (obj["action"].toString() == "quickaccess")
+                                usedQuickaccess = true;
+                            if (obj.contains("visible") && obj["visible"].toBool())
+                                ++leftBtnsCount;
+                        }
+                        if (!usedQuickaccess)
+                            leftBtnsCount = DEFAULT_BTNS_COUNT;
                         if (auto mainGridLayout = qobject_cast<QGridLayout*>(window->m_pMainPanel->layout())) {
-                            window->m_pSpacer = new QSpacerItem(int(TOP_PANEL_OFFSET*window->m_dpiRatio), 5, QSizePolicy::Fixed, QSizePolicy::Fixed);
+                            window->m_pSpacer = new QSpacerItem(int(leftBtnsCount*TOOLBTN_WIDTH*window->m_dpiRatio), 5, QSizePolicy::Fixed, QSizePolicy::Fixed);
                             mainGridLayout->addItem(window->m_pSpacer, 1, 0, Qt::AlignTop);
                         }
                     }
@@ -888,6 +897,12 @@ public:
                 if ( _btns_changed == "home" ) {
                     window->onClickButtonHome();
                 }
+            } else
+            if ( objRoot.contains("quickaccesschanged") ) {
+                leftBtnsCount = leftBtnsCount + (json.find(L"true") != std::wstring::npos ? 1 : -1);
+                if (window->m_pSpacer)
+                    window->m_pSpacer->changeSize(int(TOOLBTN_WIDTH*leftBtnsCount*window->m_dpiRatio), 5, QSizePolicy::Fixed, QSizePolicy::Fixed);
+                centerTitle(window->m_dpiRatio);
             }
         }
     }
@@ -919,6 +934,10 @@ public:
 
 //        return basewidth;
 //    }
+
+    auto leftButtonsCount() -> int {
+        return leftBtnsCount;
+    }
 
     auto customizeTitleLabel() -> void {
         Q_ASSERT(window->m_boxTitleBtns != nullptr);

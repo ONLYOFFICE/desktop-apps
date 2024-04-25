@@ -463,6 +463,14 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
             }
 
             return true;
+        } else
+        if ( !(cmd.find(L"quickaccess:changed") == std::wstring::npos) ) {
+            int sid = event->get_SenderId();
+            map<int, CCefEventsGate *>::const_iterator it = m_receivers.find(sid);
+            if ( it != m_receivers.cend() ) {
+                std::wstring param = L"{\"quickaccesschanged\":" + pData->get_Param() + L"}";
+                QMetaObject::invokeMethod(it->second, "onWebTitleChanged", Qt::QueuedConnection, Q_ARG(int, sid), Q_ARG(std::wstring, param));
+            }
         }
 
         break; }
