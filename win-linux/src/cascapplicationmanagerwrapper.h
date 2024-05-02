@@ -45,7 +45,6 @@
 #include "cwindowsqueue.h"
 #include "ceventdriver.h"
 #include "cprintdata.h"
-#include "cproviders.h"
 
 #include "cmainwindowimpl.h"
 #include "windows/cpresenterwindow.h"
@@ -211,7 +210,6 @@ public:
     std::wstring GetExternalSchemeName();
     using CAscApplicationManager::GetExternalSchemeName;
 
-    CProviders* providers() const;
     uint logoutCount(const std::wstring& portal) const;
     void Logout(const std::wstring& portal);
     void launchAppClose();
@@ -221,7 +219,6 @@ public:
 private:
     friend class CAscApplicationManagerWrapper_Private;
     std::unique_ptr<CAscApplicationManagerWrapper_Private> m_private;
-    std::unique_ptr<CProviders> m_providers;
 
     CAscApplicationManagerWrapper(CAscApplicationManagerWrapper_Private *);
 

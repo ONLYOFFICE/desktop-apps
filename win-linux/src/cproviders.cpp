@@ -31,102 +31,75 @@
 */
 
 #include "cproviders.h"
-#include "defines.h"
-#include <QSettings>
+#include <QVector>
+#include <QRegularExpression>
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QJsonArray>
 #include <QJsonParseError>
 
 
-CProviders::CProviders()
+struct ProviderData {
+    QString provider, editorPage;
+    bool hasFrame = false,
+         useRegex = false;
+};
+
+class CProviders::CProvidersPrivate
+{
+public:
+    QVector<ProviderData> m_provid_vec;
+};
+
+CProviders::CProviders() :
+    pimpl(new CProvidersPrivate)
 {}
 
 CProviders::~CProviders()
-{}
+{
+    delete pimpl, pimpl = nullptr;
+}
 
-void CProviders::updateProviders(const QString &prvds_json)
+CProviders& CProviders::instance()
+{
+    static CProviders inst;
+    return inst;
+}
+
+void CProviders::init(const QString &prvds_json)
 {
     QJsonParseError err;
     QJsonDocument doc = QJsonDocument::fromJson(prvds_json.toUtf8(), &err);
     if (err.error == QJsonParseError::NoError) {
         const QJsonArray arr = doc.array();
-        GET_REGISTRY_USER(reg_user)
-        if (!reg_user.contains("providers")) {
-            QJsonObject prvds;
-            for (const auto &val : arr) {
-                QJsonObject obj = val.toObject();
-                prvds.insert(obj["provider"].toString().toLower(), QJsonObject({{"path", obj["path"]}}));
+        for (const auto &val : arr) {
+            QJsonObject obj = val.toObject();
+            ProviderData pd;
+            pd.provider = obj["provider"].toString();
+            pd.hasFrame = obj["hasFrame"].toBool(false);
+            pd.editorPage = obj["editorPage"].toString();
+            QString reg("regex:");
+            int ind = pd.editorPage.indexOf(reg);
+            if (ind != -1) {
+                pd.useRegex = true;
+                pd.editorPage = pd.editorPage.mid(ind + reg.length());
             }
-            if (!prvds.isEmpty())
-                reg_user.setValue("providers", prvds);
-        } else {
-            bool need_update = false;
-            QJsonObject prvds = reg_user.value("providers").toJsonObject();
-            for (const auto &val : arr) {
-                QJsonObject obj = val.toObject();
-                QString pvd = obj["provider"].toString().toLower();
-                if (!prvds.contains(pvd)) {
-                    prvds.insert(pvd, QJsonObject({{"path", obj["path"]}}));
-                    if (!need_update)
-                        need_update = true;
-                }
-            }
-            if (need_update)
-                reg_user.setValue("providers", prvds);
+            pimpl->m_provid_vec.push_back(std::move(pd));
         }
     }
 }
 
-void CProviders::addRootUrl(const QString &login_json)
+bool CProviders::hasFrame(const QString &url)
 {
-    QJsonParseError err;
-    QJsonDocument doc = QJsonDocument::fromJson(login_json.toUtf8(), &err);
-    if (err.error == QJsonParseError::NoError) {
-        QJsonObject obj = doc.object();
-        if (obj.contains("provider") && obj.contains("domain")) {
-            QString pvd = obj["provider"].toString().toLower();
-            GET_REGISTRY_USER(reg_user)
-            QJsonObject prvds = reg_user.value("providers").toJsonObject();
-            if (prvds.contains(pvd)) {
-                QString domain = obj["domain"].toString();
-                QJsonObject val = prvds[pvd].toObject();
-                if (!val.contains("domain")) {
-                    QJsonArray arr;
-                    arr.append(domain);
-                    val.insert("domain", arr);
-                    prvds[pvd] = val;
-                    reg_user.setValue("providers", prvds);
-                } else {
-                    QJsonArray arr = val["domain"].toArray();
-                    if (!arr.contains(domain)) {
-                        arr.append(domain);
-                        val["domain"] = arr;
-                        prvds[pvd] = val;
-                        reg_user.setValue("providers", prvds);
-                    }
-                }
-            }
-        }
-    }
-}
-
-bool CProviders::providerIsIntegrator(const QString &url)
-{
-    QString root_url = QUrl(url).toString(QUrl::RemovePath | QUrl::RemoveQuery | QUrl::RemoveFragment);
-    if (!root_url.isEmpty()) {
-        const QStringList integrators({"moodle"});
-        GET_REGISTRY_USER(reg_user)
-        const QJsonObject prvds = reg_user.value("providers").toJsonObject();
-        for (const auto &pvd : integrators) {
-            if (prvds.contains(pvd)) {
-                QJsonObject val = prvds[pvd].toObject();
-                if (val.contains("domain")) {
-                    const QJsonArray arr = val["domain"].toArray();
-                    if (arr.contains(root_url))
-                        return true;
-                }
-            }
+    foreach (const auto &pd, pimpl->m_provid_vec) {
+        if (!pd.editorPage.isEmpty()) {
+            if (pd.useRegex) {
+                QRegularExpression rgx(pd.editorPage, QRegularExpression::CaseInsensitiveOption);
+                if (rgx.match(url).hasMatch())
+                    return pd.hasFrame;
+            } else
+            if (url.indexOf(pd.editorPage) != -1)
+                return pd.hasFrame;
         }
     }
     return false;

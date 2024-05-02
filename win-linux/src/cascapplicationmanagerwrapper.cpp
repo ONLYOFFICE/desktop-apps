@@ -27,6 +27,7 @@
 #include "ceditortools.h"
 #include "cfilechecker.h"
 #include "OfficeFileFormats.h"
+#include "cproviders.h"
 
 #ifdef _WIN32
 # include <io.h>
@@ -66,7 +67,6 @@ CAscApplicationManagerWrapper::CAscApplicationManagerWrapper(CAscApplicationMana
     , CCefEventsTransformer(nullptr)
     , m_queueToClose(new CWindowsQueue<sWinTag>)
     , m_private(ptrprivate)
-    , m_providers(new CProviders)
 {
     m_private->init();
     CAscApplicationManager::SetEventListener(this);
@@ -113,11 +113,6 @@ std::wstring CAscApplicationManagerWrapper::GetExternalSchemeName()
 {
     std::wstring scheme = CAscApplicationManager::GetExternalSchemeName();
     return !scheme.empty() ? scheme.back() != L':' ? scheme + L":" : scheme : L"";
-}
-
-CProviders* CAscApplicationManagerWrapper::providers() const
-{
-    return m_providers.get();
 }
 
 void CAscApplicationManagerWrapper::setHasFrameFeature(CCefView *cef, const wstring &param, int sid)
@@ -268,10 +263,9 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
             return false;
         } else
         if ( cmd.compare(L"provider:list") == 0 ) {
-            m_providers->updateProviders(QString::fromStdWString(pData->get_Param()));
+            CProviders::instance().init(QString::fromStdWString(pData->get_Param()));
         } else
         if ( cmd.compare(L"portal:login") == 0 ) {
-            m_providers->addRootUrl(QString::fromStdWString(pData->get_Param()));
             AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, L"portal:login", pData->get_Param());
             if ( m_pMainWindow ) {
                 m_pMainWindow->onPortalLogin(event->get_SenderId(), pData->get_Param());

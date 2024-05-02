@@ -39,12 +39,19 @@
 class CProviders
 {
 public:
+    CProviders(const CProviders&) = delete;
+    CProviders& operator=(const CProviders&) = delete;
+    static CProviders& instance();
+
+    void init(const QString &prvds_json);
+    bool hasFrame(const QString &url);
+
+private:
     CProviders();
     ~CProviders();
 
-    void updateProviders(const QString &prvds_json);
-    void addRootUrl(const QString &login_json);
-    bool providerIsIntegrator(const QString &url);
+    class CProvidersPrivate;
+    CProvidersPrivate *pimpl = nullptr;
 };
 
 #endif // CPROVIDERS_H

@@ -39,6 +39,7 @@
 #include "ceditortools.h"
 #include "components/cfullscrwidget.h"
 #include "components/cprintdialog.h"
+#include "cproviders.h"
 #include <QJsonDocument>
 #include <QJsonArray>
 #include <QJsonObject>
@@ -899,9 +900,9 @@ public:
     }
 
     auto viewerMode() const -> bool {
-        if (!m_panel->data()->isLocal() && AscAppManager::getInstance().providers()->providerIsIntegrator(QString::fromStdWString(m_panel->data()->url())))
+        if (!m_panel->data()->isLocal() && CProviders::instance().hasFrame(QString::fromStdWString(m_panel->data()->url())))
             return true;
-        return m_panel->data()->hasFeature(L"viewmode\":true") || m_panel->data()->hasFrame();
+        return m_panel->data()->hasFeature(L"viewmode\":true") /*|| m_panel->data()->hasFrame()*/;
     }
 
     auto fillformMode() const -> bool {
