@@ -31,6 +31,7 @@
 */
 
 #include "casctabdata.h"
+#include "cproviders.h"
 #include <QJsonDocument>
 #include <QJsonObject>
 
@@ -235,7 +236,7 @@ bool CAscTabData::hasFeature(const wstring& f) const
 
 bool CAscTabData::hasFrame() const
 {
-    return hasFeature(L"hasframe\":true");
+    return CProviders::instance().hasFrame(QString::fromStdWString(_url));
 }
 
 bool CAscTabData::hasError() const
