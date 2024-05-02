@@ -76,7 +76,7 @@ void CProviders::init(const QString &prvds_json)
             QJsonObject obj = val.toObject();
             ProviderData pd;
             pd.provider = obj["provider"].toString();
-            pd.hasFrame = obj["hasFrame"].toBool(false);
+            pd.hasFrame = obj["editorFrameSize"].toString() == "finite";
             pd.editorPage = obj["editorPage"].toString();
             QString reg("regex:");
             int ind = pd.editorPage.indexOf(reg);
