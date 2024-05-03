@@ -78,35 +78,46 @@ if ($Arch -eq "x86") {
         "SetComponentAttribute -feature_name Registry -unset -64bit_component", `
         "SetComponentAttribute -feature_name UpdateService -unset -64bit_component", `
         "SetComponentAttribute -feature_name RegFileTypeAssociations -unset -64bit_component", `
-        "SetComponentAttribute -feature_name FA_CSV -unset -64bit_component", `
-        "SetComponentAttribute -feature_name FA_DJVU -unset -64bit_component", `
         "SetComponentAttribute -feature_name FA_DOC -unset -64bit_component", `
+        "SetComponentAttribute -feature_name FA_DOT -unset -64bit_component", `
+        "SetComponentAttribute -feature_name FA_DOCM -unset -64bit_component", `
+        "SetComponentAttribute -feature_name FA_DOTM -unset -64bit_component", `
         "SetComponentAttribute -feature_name FA_DOCX -unset -64bit_component", `
-        "SetComponentAttribute -feature_name FA_DOCXF -unset -64bit_component", `
         "SetComponentAttribute -feature_name FA_DOTX -unset -64bit_component", `
-        "SetComponentAttribute -feature_name FA_EPUB -unset -64bit_component", `
-        "SetComponentAttribute -feature_name FA_FB2 -unset -64bit_component", `
-        "SetComponentAttribute -feature_name FA_HTML -unset -64bit_component", `
-        "SetComponentAttribute -feature_name FA_ODP -unset -64bit_component", `
-        "SetComponentAttribute -feature_name FA_ODS -unset -64bit_component", `
-        "SetComponentAttribute -feature_name FA_ODT -unset -64bit_component", `
-        "SetComponentAttribute -feature_name FA_OFORM -unset -64bit_component", `
-        "SetComponentAttribute -feature_name FA_OTP -unset -64bit_component", `
-        "SetComponentAttribute -feature_name FA_OTS -unset -64bit_component", `
-        "SetComponentAttribute -feature_name FA_OTT -unset -64bit_component", `
-        "SetComponentAttribute -feature_name FA_PDF -unset -64bit_component", `
-        "SetComponentAttribute -feature_name FA_POTX -unset -64bit_component", `
-        "SetComponentAttribute -feature_name FA_PPS -unset -64bit_component", `
-        "SetComponentAttribute -feature_name FA_PPSX -unset -64bit_component", `
-        "SetComponentAttribute -feature_name FA_PPT -unset -64bit_component", `
-        "SetComponentAttribute -feature_name FA_PPTX -unset -64bit_component", `
-        "SetComponentAttribute -feature_name FA_RTF -unset -64bit_component", `
-        "SetComponentAttribute -feature_name FA_TXT -unset -64bit_component", `
         "SetComponentAttribute -feature_name FA_XLS -unset -64bit_component", `
+        # "SetComponentAttribute -feature_name FA_XLT -unset -64bit_component", `
+        "SetComponentAttribute -feature_name FA_XLSM -unset -64bit_component", `
+        "SetComponentAttribute -feature_name FA_XLTM -unset -64bit_component", `
+        "SetComponentAttribute -feature_name FA_XLSB -unset -64bit_component", `
         "SetComponentAttribute -feature_name FA_XLSX -unset -64bit_component", `
         "SetComponentAttribute -feature_name FA_XLTX -unset -64bit_component", `
+        "SetComponentAttribute -feature_name FA_PPT -unset -64bit_component", `
+        "SetComponentAttribute -feature_name FA_POT -unset -64bit_component", `
+        "SetComponentAttribute -feature_name FA_PPS -unset -64bit_component", `
+        "SetComponentAttribute -feature_name FA_PPTM -unset -64bit_component", `
+        "SetComponentAttribute -feature_name FA_POTM -unset -64bit_component", `
+        "SetComponentAttribute -feature_name FA_PPSM -unset -64bit_component", `
+        "SetComponentAttribute -feature_name FA_PPTX -unset -64bit_component", `
+        "SetComponentAttribute -feature_name FA_POTX -unset -64bit_component", `
+        "SetComponentAttribute -feature_name FA_PPSX -unset -64bit_component", `
+        "SetComponentAttribute -feature_name FA_ODT -unset -64bit_component", `
+        "SetComponentAttribute -feature_name FA_OTT -unset -64bit_component", `
+        "SetComponentAttribute -feature_name FA_ODS -unset -64bit_component", `
+        "SetComponentAttribute -feature_name FA_OTS -unset -64bit_component", `
+        "SetComponentAttribute -feature_name FA_ODP -unset -64bit_component", `
+        "SetComponentAttribute -feature_name FA_OTP -unset -64bit_component", `
+        "SetComponentAttribute -feature_name FA_DJVU -unset -64bit_component", `
+        "SetComponentAttribute -feature_name FA_FB2 -unset -64bit_component", `
+        "SetComponentAttribute -feature_name FA_PDF -unset -64bit_component", `
+        "SetComponentAttribute -feature_name FA_RTF -unset -64bit_component", `
+        "SetComponentAttribute -feature_name FA_XPS -unset -64bit_component", `
+        "SetComponentAttribute -feature_name FA_OXPS -unset -64bit_component", `
+        "SetComponentAttribute -feature_name FA_EPUB -unset -64bit_component", `
+        "SetComponentAttribute -feature_name FA_HTML -unset -64bit_component", `
         "SetComponentAttribute -feature_name FA_XML -unset -64bit_component", `
-        "SetComponentAttribute -feature_name FA_XPS -unset -64bit_component"
+        "SetComponentAttribute -feature_name FA_CSV -unset -64bit_component", `
+        "SetComponentAttribute -feature_name FA_TXT -unset -64bit_component", `
+        "SetComponentAttribute -feature_name FA_DOCXF -unset -64bit_component"
 }
 if (-not $Sign) {
     $AdvInstConfig += "ResetSig"
