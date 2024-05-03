@@ -1531,6 +1531,10 @@
             } forKey:@"locale"];
     }
 
+    CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
+    bool usegpu = !(appManager->GetUserSettings()->Get(L"disable-gpu") == L"1");
+    [json_langs setValue:@(usegpu) forKey:@"usegpu"];
+
     NSEditorApi::CAscExecCommandJS * pCommand = new NSEditorApi::CAscExecCommandJS;
     pCommand->put_Command(L"settings:init");
     pCommand->put_Param([[json_langs jsonString] stdwstring]);

@@ -676,6 +676,11 @@ public:
                                     [ASCLinguist setUILayoutDirectionRtl:[json[@"rtl"] boolValue]];
                                 }
 
+                                if ( [json objectForKey:@"usegpu"] != nil ) {
+                                    CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
+                                    appManager->GetUserSettings()->Set(L"disable-gpu", [json[@"usegpu"] boolValue] ? L"0" : L"1");
+                                }
+
                                 [[ASCEditorJSVariables instance] applyParameters];
                             }
                         } else if (cmd.find(L"encrypt:isneedbuild") != std::wstring::npos) {
