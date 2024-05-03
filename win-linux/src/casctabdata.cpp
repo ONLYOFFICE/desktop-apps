@@ -236,7 +236,7 @@ bool CAscTabData::hasFeature(const wstring& f) const
 
 bool CAscTabData::hasFrame() const
 {
-    return CProviders::instance().hasFrame(QString::fromStdWString(_url));
+    return CProviders::instance().editorsHasFrame(QString::fromStdWString(_url));
 }
 
 bool CAscTabData::hasError() const

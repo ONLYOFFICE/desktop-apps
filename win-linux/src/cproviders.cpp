@@ -89,7 +89,7 @@ void CProviders::init(const QString &prvds_json)
     }
 }
 
-bool CProviders::hasFrame(const QString &url)
+bool CProviders::editorsHasFrame(const QString &url)
 {
     foreach (const auto &pd, pimpl->m_provid_vec) {
         if (!pd.editorPage.isEmpty()) {

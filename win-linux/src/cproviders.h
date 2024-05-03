@@ -44,7 +44,7 @@ public:
     static CProviders& instance();
 
     void init(const QString &prvds_json);
-    bool hasFrame(const QString &url);
+    bool editorsHasFrame(const QString &url);
 
 private:
     CProviders();
