@@ -1426,7 +1426,7 @@
     <ROW Registry="reg_fa_progid__pdf" Root="0" Key="[ExtPfx].Pdf" Value="Adobe Portable Document Format" Component_="c_reg_fa_progid__pdf"/>
     <ROW Registry="reg_fa_progid__pot" Root="0" Key="[ExtPfx].Pot" Value="PowerPoint 97-2003 Template" Component_="c_reg_fa_progid__pot"/>
     <ROW Registry="reg_fa_progid__potm" Root="0" Key="[ExtPfx].Potm" Value="PowerPoint 97-2003 Macro-Enabled Template" Component_="c_reg_fa_progid__potm"/>
-    <ROW Registry="reg_fa_progid__potx" Root="0" Key="[ExtPfx].Potx" Value="Microsoft PowerPoint Presentation Template" Component_="c_reg_fa_progid__potx"/>
+    <ROW Registry="reg_fa_progid__potx" Root="0" Key="[ExtPfx].Potx" Value="Microsoft PowerPoint Template" Component_="c_reg_fa_progid__potx"/>
     <ROW Registry="reg_fa_progid__pps" Root="0" Key="[ExtPfx].SlideShow.1" Value="PowerPoint 97-2003 Slideshow" Component_="c_reg_fa_progid__pps"/>
     <ROW Registry="reg_fa_progid__ppsm" Root="0" Key="[ExtPfx].Ppsm" Value="PowerPoint 97-2003 Macro-Enabled Slideshow" Component_="c_reg_fa_progid__ppsm"/>
     <ROW Registry="reg_fa_progid__ppsx" Root="0" Key="[ExtPfx].SlideShow.12" Value="Microsoft PowerPoint Slideshow" Component_="c_reg_fa_progid__ppsx"/>
@@ -1435,13 +1435,13 @@
     <ROW Registry="reg_fa_progid__pptx" Root="0" Key="[ExtPfx].Show.12" Value="Microsoft PowerPoint Presentation" Component_="c_reg_fa_progid__pptx"/>
     <ROW Registry="reg_fa_progid__rtf" Root="0" Key="[ExtPfx].Rtf" Value="Rich Text Format" Component_="c_reg_fa_progid__rtf"/>
     <ROW Registry="reg_fa_progid__txt" Root="0" Key="[ExtPfx].Txt" Value="Text" Component_="c_reg_fa_progid__txt"/>
-    <ROW Registry="reg_fa_progid__xls" Root="0" Key="[ExtPfx].Sheet.1" Value="Excel 97-2003 Spreadsheet" Component_="c_reg_fa_progid__xls"/>
+    <ROW Registry="reg_fa_progid__xls" Root="0" Key="[ExtPfx].Sheet.1" Value="Excel 97-2003 Workbook" Component_="c_reg_fa_progid__xls"/>
     <ROW Registry="reg_fa_progid__xlsb" Root="0" Key="[ExtPfx].Xlsb" Value="Excel Binary Workbook" Component_="c_reg_fa_progid__xlsb"/>
     <ROW Registry="reg_fa_progid__xlsm" Root="0" Key="[ExtPfx].Xlsm" Value="Excel 97-2003 Macro-Enabled Workbook" Component_="c_reg_fa_progid__xlsm"/>
-    <ROW Registry="reg_fa_progid__xlsx" Root="0" Key="[ExtPfx].Sheet.12" Value="Microsoft Excel Spreadsheet" Component_="c_reg_fa_progid__xlsx"/>
+    <ROW Registry="reg_fa_progid__xlsx" Root="0" Key="[ExtPfx].Sheet.12" Value="Microsoft Excel Workbook" Component_="c_reg_fa_progid__xlsx"/>
     <ROW Registry="reg_fa_progid__xlt" Root="0" Key="[ExtPfx].Xlt" Value="Excel 97-2003 Template" Component_="c_reg_fa_progid__xlt"/>
     <ROW Registry="reg_fa_progid__xltm" Root="0" Key="[ExtPfx].Xltm" Value="Excel 97-2003 Macro-Enabled Template" Component_="c_reg_fa_progid__xltm"/>
-    <ROW Registry="reg_fa_progid__xltx" Root="0" Key="[ExtPfx].Xltx" Value="Microsoft Excel Spreadsheet Template" Component_="c_reg_fa_progid__xltx"/>
+    <ROW Registry="reg_fa_progid__xltx" Root="0" Key="[ExtPfx].Xltx" Value="Microsoft Excel Template" Component_="c_reg_fa_progid__xltx"/>
     <ROW Registry="reg_fa_progid__xml" Root="0" Key="[ExtPfx].Xml" Value="Extensible Markup Language" Component_="c_reg_fa_progid__xml"/>
     <ROW Registry="reg_fa_progid__xps" Root="0" Key="[ExtPfx].Xps" Value="Microsoft XML Paper Specification" Component_="c_reg_fa_progid__xps"/>
     <ROW Registry="reg_fa_progid_icon__csv" Root="0" Key="[ExtPfx].Csv\DefaultIcon" Value="[#DesktopEditors.exe],24" Component_="c_reg_fa_progid__csv"/>
