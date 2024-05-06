@@ -312,8 +312,9 @@ utils.fn.parseRecent = function(arr, out = 'files') {
                 format: utils.parseFileFormat(_f_.type),
                 name: name,
                 descr: path,
-                date: _f_.modifyed
-                , path: fn
+                date: _f_.modifyed,
+                path: fn,
+                cloud: _f_.cloud,
             });
 
             _dirs_arr.indexOf(path) < 0 && _dirs_arr.push(path);

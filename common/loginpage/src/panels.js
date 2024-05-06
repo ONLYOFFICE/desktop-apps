@@ -260,7 +260,8 @@ function openFile(from, model) {
                     id: model.fileid,
                     name: utils.fn.decodeHtml(model.name),
                     path: utils.fn.decodeHtml(model.path),
-                    type: model.type
+                    type: model.type,
+                    cloud: model.cloud,
                 };
 
             if ( from == OPEN_FILE_RECOVERY ) {
