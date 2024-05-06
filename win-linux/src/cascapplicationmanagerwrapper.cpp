@@ -40,9 +40,6 @@
 # endif
 #endif
 
-#include "../../../desktop-sdk/ChromiumBasedEditors/videoplayerlib/qascvideoview.h"
-
-
 #define APP_CAST(app) \
     CAscApplicationManagerWrapper & app = static_cast<CAscApplicationManagerWrapper &>(AscAppManager::getInstance());
 
@@ -631,15 +628,21 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
         return true;}
 
     case ASC_MENU_EVENT_TYPE_SYSTEM_EXTERNAL_MEDIA_START:
-    case ASC_MENU_EVENT_TYPE_SYSTEM_EXTERNAL_MEDIA_END: {
+    case ASC_MENU_EVENT_TYPE_SYSTEM_EXTERNAL_MEDIA_END:
+    case ASC_MENU_EVENT_TYPE_SYSTEM_EXTERNAL_MEDIA_PLAYER_COMMAND: {
         CCefView * _cef = GetViewById(event->get_SenderId());
         if ( _cef ) {
             CCefViewWidgetImpl * _impl = _cef->GetWidgetImpl();
 
             if ( _impl ) {
-                event->m_nType == ASC_MENU_EVENT_TYPE_SYSTEM_EXTERNAL_MEDIA_START ?
-                    static_cast<QCefView *>(_impl)->OnMediaStart(static_cast<CAscExternalMedia *>(event->m_pData)) :
-                        static_cast<QCefView *>(_impl)->OnMediaEnd();
+                QCefView* pQCefView = static_cast<QCefView *>(_impl);
+
+                if (ASC_MENU_EVENT_TYPE_SYSTEM_EXTERNAL_MEDIA_PLAYER_COMMAND == event->m_nType)
+                    pQCefView->OnMediaPlayerCommand(static_cast<CAscExternalMediaPlayerCommand*>(event->m_pData));
+                else if (ASC_MENU_EVENT_TYPE_SYSTEM_EXTERNAL_MEDIA_START == event->m_nType)
+                    pQCefView->OnMediaStart(static_cast<CAscExternalMedia *>(event->m_pData));
+                else
+                    pQCefView->OnMediaEnd();
             }
         }
 
