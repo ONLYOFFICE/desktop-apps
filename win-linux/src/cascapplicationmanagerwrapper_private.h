@@ -177,6 +177,7 @@ public:
                     opts.format = objRoot["type"].toInt();
                     opts.parent_id = event.m_nSenderId;
                     opts.name = objRoot["name"].toString();
+                    opts.cloud = objRoot["cloud"].toString();
 
                     QRegularExpression re(rePortalName);
                     QRegularExpressionMatch match = re.match(opts.url);

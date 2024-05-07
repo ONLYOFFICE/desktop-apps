@@ -5,6 +5,7 @@
         "url": "/admin/cli/checks.php"
     },
     "editorPage": "/mod/onlyofficeeditor/view.php",
+    "editorFrameSize": "finite",
     "cryptoSupport": "true",
     "icons": {
         "themeLight":{
