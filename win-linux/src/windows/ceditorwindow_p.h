@@ -90,8 +90,8 @@ class CEditorWindowPrivate : public CCefEventsGate
     CEditorWindow * window = nullptr;
     QLabel * iconuser = nullptr;
     bool isPrinting = false,
-         layoutIsSet = false,
         isFullScreen = false;
+    int layoutType = LayoutNone;
     CFullScrWidget * fs_parent = nullptr;
     QLabel * iconcrypted = nullptr;
     QWidget * boxtitlelabel = nullptr,
@@ -99,6 +99,12 @@ class CEditorWindowPrivate : public CCefEventsGate
 
     QMap<QString, CSVGPushButton*> m_mapTitleButtons;
     int leftBtnsCount = DEFAULT_BTNS_COUNT;
+
+    enum LayoutType {
+        LayoutNone = 0,
+        LayoutViewer,
+        LayoutEditor
+    };
 
 public:
     CEditorWindowPrivate(CEditorWindow * w) : window(w) {}
@@ -196,6 +202,24 @@ public:
         leftboxbuttons->show();
     }
 
+    auto resetSimpleTitleToDefault() -> void {
+        Q_ASSERT(window->m_boxTitleBtns != nullptr);
+        for (auto it = m_mapTitleButtons.begin(); it != m_mapTitleButtons.end();) {
+            delete it.value();
+            it = m_mapTitleButtons.erase(it);
+            continue;
+        }
+        QHBoxLayout *lut = qobject_cast<QHBoxLayout*>(window->m_boxTitleBtns->layout());
+        lut->removeWidget(leftboxbuttons);
+        delete leftboxbuttons, leftboxbuttons = nullptr;
+
+        QGridLayout * const _layout = static_cast<QGridLayout*>(window->m_pMainPanel->layout());
+        _layout->removeWidget(window->m_boxTitleBtns);
+        _layout->addWidget(window->m_boxTitleBtns, 1, 1, Qt::AlignTop);
+        if (!m_panel->data()->title().isEmpty())
+            window->m_labelTitle->setText(m_panel->data()->title());
+    }
+
     auto getInitials(const QString &name) -> QString {
         auto fio = name.split(' ');
         QString initials = !fio[0].isEmpty() ? fio[0].mid(0, 1).toUpper() : "";
@@ -257,17 +281,22 @@ public:
     void onEditorConfig(int, std::wstring cfg) override
     {
 //        if ( id == window->holdView(id) )
-        if ( layoutIsSet || !window->isCustomWindowStyle() )
+        if ( !window->isCustomWindowStyle() )
             return;
-        layoutIsSet = true;
-
-        if (window->m_labelTitle)
-            window->m_labelTitle->setVisible(true);
 
         if ( viewerMode() || panel()->data()->features().empty() ) {
+            if (layoutType == LayoutViewer)
+                return;
+            layoutType = LayoutViewer;
             extendableTitleToSimple();
         } else
         if ( canExtendTitle() ) {
+            if (layoutType == LayoutViewer) {
+                resetSimpleTitleToDefault();
+            } else
+            if (layoutType == LayoutEditor)
+                return;
+            layoutType = LayoutEditor;
             QJsonParseError jerror;
             QJsonDocument jdoc = QJsonDocument::fromJson(QString::fromStdWString(cfg).toUtf8(), &jerror);
             if ( jerror.error == QJsonParseError::NoError ) {
@@ -319,6 +348,8 @@ public:
                 window->updateTitleCaption();
             }
         }
+        if (window->m_labelTitle)
+            window->m_labelTitle->setVisible(true);
         centerTitle(window->m_dpiRatio);
     }
 
@@ -644,7 +675,8 @@ public:
     {
         if (m_panel->data()->viewType() == cvwtEditor && action.compare(L"open") == 0) {
             m_panel->data()->setHasError();
-            if (window->isCustomWindowStyle() && canExtendTitle()) {
+            if (window->isCustomWindowStyle() && layoutType != LayoutViewer) {
+                layoutType = LayoutViewer;
                 extendableTitleToSimple(false);
                 centerTitle(window->m_dpiRatio);
             }
@@ -675,7 +707,7 @@ public:
                 btn->setFixedSize(QSize(int(TITLEBTN_WIDTH*f), int(TOOLBTN_HEIGHT*f)));
                 btn->setIconSize(QSize(20,20) * f);
             }
-            if (layoutIsSet)
+            if (layoutType != LayoutNone)
                 centerTitle(f);
         }
     }
@@ -837,7 +869,7 @@ public:
         if (f != L"{\"hasframe\":true}" || !panel()->data()->hasFeature(L"hasframe\":false"))
             panel()->data()->setFeatures(f);
 
-        if ( !layoutIsSet && fillformMode() ) {
+        if ( layoutType == LayoutNone && fillformMode() ) {
             ffWindowCustomize();
         }
 
@@ -959,9 +991,9 @@ public:
     }
 
     auto ffWindowCustomize() -> void {
-        if ( layoutIsSet || !window->isCustomWindowStyle() )
+        if ( layoutType == LayoutViewer || !window->isCustomWindowStyle() )
             return;
-        layoutIsSet = true;
+        layoutType = LayoutViewer;
         if (window->m_labelTitle)
             window->m_labelTitle->setVisible(true);
         extendableTitleToSimple(false);
