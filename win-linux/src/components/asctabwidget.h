@@ -77,6 +77,7 @@ struct COpenOptions {
 
     enum class eWidgetType {window, tab};
     eWidgetType parent_widget = eWidgetType::tab;
+    QString cloud;
 };
 
 class CAscTabWidget : public QStackedWidget, public CScalingWrapper

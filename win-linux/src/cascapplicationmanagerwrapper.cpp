@@ -27,6 +27,7 @@
 #include "ceditortools.h"
 #include "cfilechecker.h"
 #include "OfficeFileFormats.h"
+#include "cproviders.h"
 
 #ifdef _WIN32
 # include <io.h>
@@ -259,7 +260,7 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
             return false;
         } else
         if ( cmd.compare(L"provider:list") == 0 ) {
-            qDebug() << "provider:list" << pData->get_Param();
+            CProviders::instance().init(QString::fromStdWString(pData->get_Param()));
         } else
         if ( cmd.compare(L"portal:login") == 0 ) {
             AscAppManager::sendCommandTo(SEND_TO_ALL_START_PAGE, L"portal:login", pData->get_Param());
