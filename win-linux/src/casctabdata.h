@@ -51,6 +51,7 @@ public:
     void    setIsLocal(bool);
     void    setUrl(const std::wstring&);
     void    setUrl(const QString&);
+    void    setCloudName(const QString&);
     void    close();
     void    reuse();
     QString title(bool orig = false) const;
@@ -85,6 +86,7 @@ private:
     bool    _event_load_supported = false;
     std::wstring _features;
     QString _str_readonly;
+    QString _cloud;
 
     AscEditorType _typeContent;
 };

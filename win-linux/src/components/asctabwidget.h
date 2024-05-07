@@ -73,6 +73,7 @@ struct COpenOptions {
 
     enum class eOpenMode {edit, view, review};
     eOpenMode mode = eOpenMode::edit;
+    QString cloud;
 };
 
 class CAscTabWidget : public QStackedWidget, public CScalingWrapper

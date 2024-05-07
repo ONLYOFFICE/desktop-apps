@@ -75,7 +75,7 @@ void CProviders::init(const QString &prvds_json)
         for (const auto &val : arr) {
             QJsonObject obj = val.toObject();
             ProviderData pd;
-            pd.provider = obj["provider"].toString();
+            pd.provider = obj["provider"].toString().toLower();
             pd.hasFrame = obj["editorFrameSize"].toString() == "finite";
             pd.editorPage = obj["editorPage"].toString();
             QString reg("regex:");
@@ -89,9 +89,11 @@ void CProviders::init(const QString &prvds_json)
     }
 }
 
-bool CProviders::editorsHasFrame(const QString &url)
+bool CProviders::editorsHasFrame(const QString &url, const QString &cloud)
 {
     foreach (const auto &pd, pimpl->m_provid_vec) {
+        if (!pd.provider.isEmpty() && pd.provider == cloud)
+            return pd.hasFrame;
         if (!pd.editorPage.isEmpty()) {
             if (pd.useRegex) {
                 QRegularExpression rgx(pd.editorPage, QRegularExpression::CaseInsensitiveOption);
