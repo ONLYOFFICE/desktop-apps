@@ -1218,7 +1218,8 @@ bool CTabBar::eventFilter(QObject *watched, QEvent *event)
             setCursor(QCursor(Qt::ArrowCursor));
             break;
         case QEvent::Leave:
-            QApplication::postEvent(d->tabArea, new QMouseEvent(QEvent::MouseButtonRelease, QCursor::pos(), Qt::LeftButton, Qt::LeftButton, Qt::NoModifier));
+            if (d->tabList.size() > 0)
+                QApplication::postEvent(d->tabArea, new QMouseEvent(QEvent::MouseButtonRelease, QCursor::pos(), Qt::LeftButton, Qt::LeftButton, Qt::NoModifier));
             break;
         case QEvent::LayoutDirectionChange: {
             SKIP_EVENTS_QUEUE([=]() {
