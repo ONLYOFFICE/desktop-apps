@@ -317,10 +317,10 @@ public:
                     if (!m_panel->data()->hasFeature(L"btnhome")) {  // For old editors only
                         if (!leftboxbuttons)
                             createHomeButton();
-                        for (const auto jv: _btns) {
+                        for (const auto &jv: _btns) {
                             const QJsonObject obj = jv.toObject();
                             if ( !m_mapTitleButtons.contains(obj["action"].toString()) )
-                                leftboxbuttons->layout()->addWidget(cloneEditorHeaderButton(jv.toObject()));
+                                leftboxbuttons->layout()->addWidget(cloneEditorHeaderButton(obj));
                         }
 
                         if ( _layout->itemAt(0)->widget() != leftboxbuttons )
