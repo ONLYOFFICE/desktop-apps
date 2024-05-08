@@ -58,6 +58,9 @@ private:
     HANDLE      m_hMutex = nullptr;
     HWND        m_hWnd = nullptr;
     bool        m_isPrimary;
+
+private slots:
+    void invokeSignal(const QString&);
 };
 
 #endif // SINGLEAPPLICATION_H
