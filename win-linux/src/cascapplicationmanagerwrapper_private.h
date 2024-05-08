@@ -414,8 +414,6 @@ public:
     QPointer<QCefView> m_pStartPanel;
     bool m_openEditorWindow = false;
     std::shared_ptr<CPrintData> m_printData;
-    QMutex m_docOpenMutex;
-    std::vector<std::wstring> m_vecUrlToOpen;
 };
 
 //CAscApplicationManagerWrapper::CAscApplicationManagerWrapper()

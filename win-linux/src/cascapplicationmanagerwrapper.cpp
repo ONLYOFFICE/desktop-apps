@@ -849,13 +849,6 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
         return -1;
     };
 
-    auto vec_check_remove_item = [] (const std::wstring& s, std::vector<std::wstring>& v) {
-        auto iter = std::find(v.begin(), v.end(), s);
-        if ( iter != v.end() ) {
-            v.erase(iter);
-        }
-    };
-
     QRect _start_rect = reg_user.value("position").toRect();
 
     const wstring prefix{L"--"};
@@ -929,18 +922,10 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
             if ( CFileInspector::isLocalFile(str_url) ) {
                 str_url = Utils::replaceBackslash(str_url);
                 open_opts.wurl = str_url.toStdWString();
-
-                if ( std::find(_app.m_private->m_vecUrlToOpen.begin(), _app.m_private->m_vecUrlToOpen.end(),
-                              open_opts.wurl) != _app.m_private->m_vecUrlToOpen.end() )
-                    continue;
-
-                QMutexLocker locker(&_app.m_private->m_docOpenMutex);
-                _app.m_private->m_vecUrlToOpen.push_back(open_opts.wurl);
             }
 #endif
 
             if ( _app.m_private->bringEditorToFront(str_url) ) {
-                vec_check_remove_item(open_opts.wurl, _app.m_private->m_vecUrlToOpen);
                 continue;
             } else
             if ( CFileInspector::isLocalFile(str_url) ) {
@@ -1009,8 +994,6 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
                 });
             }
         }
-
-        vec_check_remove_item(open_opts.wurl, _app.m_private->m_vecUrlToOpen);
     }
 
     if ( !list_failed.empty() && !open_in_new_window ) {
