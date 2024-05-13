@@ -666,6 +666,8 @@ int CTabBar::addTab(const QString &text)
     while (d->animationInProgress)
         PROCESSEVENTS();
 
+    d->movedTab = nullptr;
+    d->movedTabIndex = -1;
     const int lastIndex = d->tabList.size() - 1;
     const int posX = (lastIndex == -1) ? 0 : d->nextTabPosByPrev(lastIndex);
     Tab *tab = d->createTab(posX, text);
@@ -711,6 +713,8 @@ int CTabBar::insertTab(int index, const QString &text)
     if (!d->indexIsValid(index))
         return addTab(text);
 
+    d->movedTab = nullptr;
+    d->movedTabIndex = -1;
     int posX = d->_tabRect(index).left();
     d->slide(index, d->tabList.size() - 1, d->cellWidth(), ANIMATION_DEFAULT_MS);
     while (d->animationInProgress)
@@ -738,6 +742,8 @@ void CTabBar::swapTabs(int from, int to)
         PROCESSEVENTS();
     if (from == to || !d->indexIsValid(from) || !d->indexIsValid(to))
         return;
+    d->movedTab = nullptr;
+    d->movedTabIndex = -1;
     int posX = d->_tabRect(from).x();
     d->tabList[from]->move(d->_tabRect(to).x(), 0);
     d->tabList[to]->move(posX, 0);
@@ -761,6 +767,8 @@ void CTabBar::removeTab(int index)
     if (!d->indexIsValid(index))
         return;
 
+    d->movedTab = nullptr;
+    d->movedTabIndex = -1;
     d->tabList[index]->hide();
     if (d->_tabRect(0).x() <= d->tabArea->x() - d->cellWidth()) {
         const int prevIndex = index - 1;
@@ -1218,7 +1226,7 @@ bool CTabBar::eventFilter(QObject *watched, QEvent *event)
             setCursor(QCursor(Qt::ArrowCursor));
             break;
         case QEvent::Leave:
-            if (d->tabList.size() > 0)
+            if (d->movedTab && d->tabList.size() > 0)
                 QApplication::postEvent(d->tabArea, new QMouseEvent(QEvent::MouseButtonRelease, QCursor::pos(), Qt::LeftButton, Qt::LeftButton, Qt::NoModifier));
             break;
         case QEvent::LayoutDirectionChange: {
