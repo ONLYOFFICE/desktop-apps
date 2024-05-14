@@ -1232,7 +1232,7 @@ void CMainWindow::onDocumentPrint(void * opts)
                 break;
             }
 
-            CEditorTools::print({pView, pContext, &page_ranges, this});
+            CEditorTools::print({pView, pContext, &page_ranges, parent});
         }
 
         pContext->Release();

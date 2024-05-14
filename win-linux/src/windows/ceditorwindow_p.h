@@ -653,7 +653,7 @@ public:
                     break;
                 }
 
-                CEditorTools::print({m_panel->cef(), pContext, &page_ranges, window->handle()});
+                CEditorTools::print({m_panel->cef(), pContext, &page_ranges, parent});
             }
 
             pContext->Release();
