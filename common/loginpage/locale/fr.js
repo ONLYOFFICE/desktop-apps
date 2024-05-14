@@ -111,4 +111,5 @@ l10n.fr = {
     settOptDescAUpdateSilent: "Télécharger et installer la mise à jour en arrière-plan",
     settOptDescAUpdateAsk: "Vous serez averti de toutes les étapes de mise à jour",
     settRtlMode: "Interface RTL",
+    settGpuUseMode: "Utiliser l'accélération graphique lorsqu'elle est disponible",
 }

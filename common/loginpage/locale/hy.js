@@ -111,4 +111,5 @@ l10n.hy = {
     settOptDescAUpdateSilent: "Ներբեռնեք և տեղադրեք թարմացումը հետին պլանում։",
     settOptDescAUpdateAsk: "Դուք կտեղեկացվեք թարմացումների բոլոր քայլերի մասին։",
     settRtlMode: "RTL ինտերֆեյս",
+    settGpuUseMode: "Օգտագործեք գրաֆիկական արագացում, երբ առկա է",
 }

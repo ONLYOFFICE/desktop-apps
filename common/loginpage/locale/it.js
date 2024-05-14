@@ -111,4 +111,5 @@ l10n.it_IT = {
     settOptDescAUpdateSilent: "Scarica e installa l'aggiornamento in background",
     settOptDescAUpdateAsk: "Riceverai una notifica su tutte le fasi di aggiornamento",
     settRtlMode: "Interfaccia RTL",
+    settGpuUseMode: "Utilizzare l'accelerazione grafica quando disponibile",
 }

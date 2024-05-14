@@ -111,4 +111,5 @@ l10n.pt_BR = {
     settOptDescAUpdateSilent: "Baixe e instale a atualização em segundo plano",
     settOptDescAUpdateAsk: "Você será notificado sobre todas as etapas de atualização",
     settRtlMode: "Interface RTL",
+    settGpuUseMode: "Use aceleração gráfica quando disponível",
 }
