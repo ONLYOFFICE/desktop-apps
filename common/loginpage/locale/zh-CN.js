@@ -111,4 +111,5 @@ l10n.zh_CN = {
     settOptDescAUpdateSilent: "后台下载并安装更新",
     settOptDescAUpdateAsk: "您将获得所有更新步骤的通知",
     settRtlMode: "RTL 界面",
+    settGpuUseMode: "如果可能，使用图形加速功能",
 }

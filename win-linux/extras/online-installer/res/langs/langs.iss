@@ -25,6 +25,7 @@ tr.CAPTION_TEXT =ONLYOFFICE Çevrimiçi Yükleyici
 uk.CAPTION_TEXT =Онлайн-інсталятор ONLYOFFICE
 vi.CAPTION_TEXT =Trình cài đặt trực tuyến ONLYOFFICE
 sr-latn-RS.CAPTION_TEXT =ONLYOFFICE Onlajn Instalater
+si.CAPTION_TEXT =ඔන්ලිඔෆිස් මාර්ගගත ස්ථාපකය
 
 en.MESSAGE_TEXT_ERR1 =The application cannot continue because this architecture is not supported.
 ru.MESSAGE_TEXT_ERR1 =Приложение не может продолжить работу, так как эта архитектура не поддерживается.
@@ -52,6 +53,7 @@ tr.MESSAGE_TEXT_ERR1 =Bu mimari desteklenmediği için uygulama devam edemiyor.
 uk.MESSAGE_TEXT_ERR1 =Застосунок не може продовжити роботу, оскільки ця архітектура не підтримується.
 vi.MESSAGE_TEXT_ERR1 =Ứng dụng không thể tiếp tục vì cấu trúc này không được hỗ trợ.
 sr-latn-RS.MESSAGE_TEXT_ERR1 =Aplikacija ne može nastaviti jer ova arhitektura nije podržana.
+si.MESSAGE_TEXT_ERR1 =මෙම නිර්මාණ ශිල්පයට සහාය නොදක්වන නිසා මෘදුකාංගයට ඉදිරියට යාමට නොහැකිය.
 
 en.MESSAGE_TEXT_ERR2 =The application is already running.
 ru.MESSAGE_TEXT_ERR2 =Приложение уже запущено.
@@ -79,6 +81,7 @@ tr.MESSAGE_TEXT_ERR2 =Uygulama zaten çalışıyor.
 uk.MESSAGE_TEXT_ERR2 =Застосунок вже запущений.
 vi.MESSAGE_TEXT_ERR2 =Ứng dụng đang chạy.
 sr-latn-RS.MESSAGE_TEXT_ERR2 =Aplikacija već radi.
+si.MESSAGE_TEXT_ERR2 =මෘදුකාංගය දැනටමත් ධාවනය වේ.
 
 en.LABEL_TITLE_TEXT =Preparing for installation
 ru.LABEL_TITLE_TEXT =Подготовка к установке
@@ -106,6 +109,7 @@ tr.LABEL_TITLE_TEXT =Kurulum için hazırlanıyor
 uk.LABEL_TITLE_TEXT =Підготовка до інсталювання
 vi.LABEL_TITLE_TEXT =Chuẩn bị cho cài đặt
 sr-latn-RS.LABEL_TITLE_TEXT =Priprema za instalaciju
+si.LABEL_TITLE_TEXT =ස්ථාපනයට සූදානම් වෙමින්
 
 en.LABEL_MESSAGE_TEXT =Downloading a package
 ru.LABEL_MESSAGE_TEXT =Загрузка пакета
@@ -134,6 +138,7 @@ tr.LABEL_MESSAGE_TEXT =Paket indiriliyor
 uk.LABEL_MESSAGE_TEXT =Завантаження пакету
 vi.LABEL_MESSAGE_TEXT =Đang tải xuống gói
 sr-latn-RS.LABEL_MESSAGE_TEXT =Preuzimanje paketa
+si.LABEL_MESSAGE_TEXT =ඇසුරුමක් බාගැනෙමින්
 
 en.LABEL_MESSAGE_TEXT_ERR1 =An error occurred during initialization.\nPlease try restarting the app later.
 ru.LABEL_MESSAGE_TEXT_ERR1 =Произошла ошибка при инициализации.\nПопробуйте перезапустить приложение позже.
@@ -161,6 +166,7 @@ tr.LABEL_MESSAGE_TEXT_ERR1 =Başlatma sırasında bir hata oluştu.\nLütfen uyg
 uk.LABEL_MESSAGE_TEXT_ERR1 =Під час ініціалізації сталася помилка.\nСпробуйте перезапустити застосунок пізніше.
 vi.LABEL_MESSAGE_TEXT_ERR1 =Đã xảy ra lỗi trong quá trình khởi tạo.\nVui lòng thử khởi động lại ứng dụng sau.
 sr-latn-RS.LABEL_MESSAGE_TEXT_ERR1 =Pojavila se greška prilikom inicijalizacije.\nMolimo pokušajte da restartujete aplikaciju kasnije.
+si.LABEL_MESSAGE_TEXT_ERR1 =ආරම්භයේ දී දෝෂයක් සිදු විය.\nකරුණාකර මෘදුකාංගය නැවත ආරම්භ කර බලන්න.
 
 en.LABEL_MESSAGE_TEXT_ERR2 =Package download failed: Not enough memory!\nPlease try restarting the app later.
 ru.LABEL_MESSAGE_TEXT_ERR2 =Ошибка при загрузке пакета: Недостаточно памяти!\nПопробуйте перезапустить приложение позже.
@@ -187,7 +193,8 @@ sl.LABEL_MESSAGE_TEXT_ERR2 =Prenos paketa ni uspel: premalo pomnilnika!\nPoskusi
 tr.LABEL_MESSAGE_TEXT_ERR2 =Paket indirme başarısız oldu: Yeterli bellek yok!\nLütfen uygulamayı daha sonra yeniden başlatmayı deneyin.
 uk.LABEL_MESSAGE_TEXT_ERR2 =Не вдалося завантажити пакет: недостатньо пам'яті!\nСпробуйте перезапустити застосунок пізніше.
 vi.LABEL_MESSAGE_TEXT_ERR2 =Tải xuống gói không thành công: Không đủ bộ nhớ!\nVui lòng thử khởi động lại ứng dụng sau.
-sr-latn-RS.LABEL_MESSAGE_TEXT_ERR2 =Preuzimanje paketa neuspešno: Nedovoljno memorije!\n Molimo pokušajte da restartujete aplikaciju kasnije.
+sr-latn-RS.LABEL_MESSAGE_TEXT_ERR2 =Preuzimanje paketa neuspešno: Nedovoljno memorije!\nMolimo pokušajte da restartujete aplikaciju kasnije.
+si.LABEL_MESSAGE_TEXT_ERR2 =ඇසුරුම් බාගැනීමට අසමත් විය: ප්‍රමාණවත් මතකයක් නැත!\nකරුණාකර පසුව මෘදුකාංගය ආරම්භ කරන්න.
 
 en.LABEL_MESSAGE_TEXT_ERR3 =Package download failed: Server connection error!\nPlease try restarting the app later.
 ru.LABEL_MESSAGE_TEXT_ERR3 =Ошибка при загрузке пакета: Ошибка соединения!\nПопробуйте перезапустить приложение позже.
@@ -215,6 +222,7 @@ tr.LABEL_MESSAGE_TEXT_ERR3 =Paket indirme başarısız oldu: Sunucu bağlantı h
 uk.LABEL_MESSAGE_TEXT_ERR3 =Не вдалося завантажити пакет: помилка з'єднання з сервером!\nСпробуйте перезапустити застосунок пізніше.
 vi.LABEL_MESSAGE_TEXT_ERR3 =Tải xuống gói không thành công: Lỗi kết nối máy chủ!\nVui lòng thử khởi động lại ứng dụng sau.
 sr-latn-RS.LABEL_MESSAGE_TEXT_ERR3 =Preuzimanje paketa neuspešno: Greška u vezi sa povezivanjem na server!\nMolimo pokušajte da restartujete aplikaciju kasnije.
+si.LABEL_MESSAGE_TEXT_ERR3 =ඇසුරුම් බාගැනීමට අසමත් විය: සේවාදායකට සම්බන්ධතාවේ දෝෂයකි!\nකරුණාකර මෘදුකාංගය නැවත ආරම්භ කර බලන්න.
 
 en.LABEL_MESSAGE_TEXT_ERR4 =Package download failed: Network error!\nPlease try restarting the app later.
 ru.LABEL_MESSAGE_TEXT_ERR4 =Ошибка при загрузке пакета: Ошибка сети!\nПопробуйте перезапустить приложение позже.
@@ -242,6 +250,7 @@ tr.LABEL_MESSAGE_TEXT_ERR4 =Paket indirme başarısız oldu: Ağ hatası!\nLütf
 uk.LABEL_MESSAGE_TEXT_ERR4 =Не вдалося завантажити пакет: помилка мережі!\nСпробуйте перезапустити застосунок пізніше.
 vi.LABEL_MESSAGE_TEXT_ERR4 =Tải xuống gói không thành công: Lỗi mạng!\nVui lòng thử khởi động lại ứng dụng sau.
 sr-latn-RS.LABEL_MESSAGE_TEXT_ERR4 =Preuzimanje paketa neuspešno: Greška u mreži!\nMolimo pokušajte da restartujete aplikaciju kasnije.
+si.LABEL_MESSAGE_TEXT_ERR4 =ඇසුරුම් බාගැනීමට අසමත් විය: ජාලයේ දෝෂයකි!\nකරුණාකර මෘදුකාංගය නැවත ආරම්භ කර බලන්න.
 
 en.LABEL_MESSAGE_TEXT_ERR5 =An error occurred while running the package.\nPlease try restarting the app later.
 ru.LABEL_MESSAGE_TEXT_ERR5 =Произошла ошибка при запуске установщика.\nПопробуйте перезапустить приложение позже.
@@ -269,6 +278,7 @@ tr.LABEL_MESSAGE_TEXT_ERR5 =Paket çalıştırılırken bir hata oluştu.\nLütf
 uk.LABEL_MESSAGE_TEXT_ERR5 =Під час запуску пакету сталася помилка. \nСпробуйте перезапустити застосунок пізніше.
 vi.LABEL_MESSAGE_TEXT_ERR5 =Đã xảy ra lỗi khi chạy gói.\nVui lòng thử khởi động lại ứng dụng sau.
 sr-latn-RS.LABEL_MESSAGE_TEXT_ERR5 =Došlo je do greške prilikom pokretanja paketa.\nMolimo pokušajte da restartujete aplikaciju kasnije.
+si.LABEL_MESSAGE_TEXT_ERR5 =ඇසුරුම ධාවනයේ දී දෝෂයක් සිදු විය.\nකරුණාකර මෘදුකාංගය නැවත ආරම්භ කර බලන්න.
 
 en.LABEL_MESSAGE_TEXT_ERR6 =An error occurred during initialization: URL not set.
 ru.LABEL_MESSAGE_TEXT_ERR6 =Произошла ошибка при инициализации: Не задан URL.
@@ -296,6 +306,7 @@ tr.LABEL_MESSAGE_TEXT_ERR6 =Başlatma sırasında bir hata oluştu: URL ayarlanm
 uk.LABEL_MESSAGE_TEXT_ERR6 =Під час ініціалізації сталася помилка: не задано URL-адресу.
 vi.LABEL_MESSAGE_TEXT_ERR6 =Đã xảy ra lỗi trong quá trình khởi tạo: URL chưa được đặt.
 sr-latn-RS.LABEL_MESSAGE_TEXT_ERR6 =Došlo je do greške prilikom inicijalizacije: URL nike postavljen.
+si.LABEL_MESSAGE_TEXT_ERR6 =ආරම්භයේ දී දෝෂයක් සිදු විය: ඒ.ස.නි. සකසා නැත.
 
 en.LABEL_MESSAGE_TEXT_ERR7 =An error occurred during initialization: File name not specified.
 ru.LABEL_MESSAGE_TEXT_ERR7 =Произошла ошибка при инициализации: Не задано имя файла.
@@ -323,6 +334,7 @@ tr.LABEL_MESSAGE_TEXT_ERR7 =Başlatma sırasında bir hata oluştu: Dosya adı b
 uk.LABEL_MESSAGE_TEXT_ERR7 =Під час ініціалізації сталася помилка: не вказано ім’я файлу.
 vi.LABEL_MESSAGE_TEXT_ERR7 =Đã xảy ra lỗi trong quá trình khởi tạo: Tên tập tin chưa được chỉ định.
 sr-latn-RS.LABEL_MESSAGE_TEXT_ERR7 =Došlo je do greške prilikom inicijalizacije: Ime datoteke nije navedeno.
+si.LABEL_MESSAGE_TEXT_ERR7 =ආරම්භයේ දී දෝෂයක් සිදු විය: ගොනුවේ නම සඳහන් කර නැත.
 
 en.BUTTON_CANCEL_TEXT =Cancel
 ru.BUTTON_CANCEL_TEXT =Отмена
@@ -350,6 +362,7 @@ tr.BUTTON_CANCEL_TEXT =İptal
 uk.BUTTON_CANCEL_TEXT =Скасувати
 vi.BUTTON_CANCEL_TEXT =Hủy
 sr-latn-RS.BUTTON_CANCEL_TEXT =Otkaži
+si.BUTTON_CANCEL_TEXT =අවලංගු
 
 en.SILENT_CHECK_TEXT =Silent Installation
 ru.SILENT_CHECK_TEXT =Тихая установка
@@ -377,3 +390,4 @@ tr.SILENT_CHECK_TEXT =Sessiz Kurulum
 uk.SILENT_CHECK_TEXT =Автоматичне інсталювання
 vi.SILENT_CHECK_TEXT =Cài đặt im lặng
 sr-latn-RS.SILENT_CHECK_TEXT =Tiha Instalacija
+si.SILENT_CHECK_TEXT =නිහඬ ස්ථාපනය

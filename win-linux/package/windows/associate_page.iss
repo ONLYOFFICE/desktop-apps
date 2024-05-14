@@ -1196,28 +1196,35 @@ sr_Latn_RS.extXPS =OpenXPS Dokument
 en.extPOT =PowerPoint Template
 ar_SA.extPOT =قالب بوربوينت
 sr_Latn_RS.extPOT =PowerPoint Šablon
+si.extPOT =පවර්පොයින්ට් අච්චුව
 
 en.extPPTM =PowerPoint Open XML Macro-Enabled Presentation
 ar_SA.extPPTM =عرض بوربوينت مع خاصية الماكرو
 sr_Latn_RS.extPPTM =PowerPoint Open XML Makro-omogućena Prezentacija
+si.extPPTM =පවර්පොයින්ට් විවෘත XML සාර්ව-සබල සමර්පණය
 
 en.extEPUB =Open eBook File
 ar_SA.extEPUB =كتاب النشر الإلكتروني
 sr_Latn_RS.extEPUB =Open eBook Fajl
+si.extEPUB =වි-පොත් ගොනුව අරින්න
 
 en.extFB2 =FictionBook 2.0 File
 ar_SA.extFB2 =ملف فكشنبوك 2.0
 sr_Latn_RS.extFB2 =KnjigaFikcije 2.0 Fajl
+si.extFB2 =ෆික්ෂන්බුක් 2.0 ගොනුව
 
 en.extDOTX =Word Open XML Document Template
 ar_SA.extDOTX =قالب وورد
 sr_Latn_RS.extDOTX =Word Open XML Dokument Šablon
+si.extDOTX =වර්ඩ් විවෘත XML ලේඛන අච්චුව
 
 en.extOXPS =Open XML Paper Specification
 ar_SA.extOXPS =مستند أوبن إكس بي إس
 sr_Latn_RS.extOXPS =Open XML Papir Specifikacija
+si.extOXPS =විවෘත XML කොළයේ පිරිවිතර
 
 en.extXLSB =Excel Binary File Format
+si.extXLSB =එක්සෙල් ද්විමය ගොනු ආකෘතිය
 ;======================================================================================================
 
 en.jumpDOCX =New document

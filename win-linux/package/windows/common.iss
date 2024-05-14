@@ -175,6 +175,11 @@ ar_SA.LanguageName=الْعَرَبِيَّة
 ;======================================================================================================
 en.PrevVer=The previous version of {#sAppName} detected, please click 'OK' button to uninstall it, or 'Cancel' to quit setup.
 ru.PrevVer=Обнаружена предыдущая версия {#sAppName}, нажмите кнопку 'OK', чтобы удалить её, или 'Отмена', чтобы выйти из программы инсталляции.
+it_IT.PrevVer=È stata rilevata la versione precedente di {#sAppName}. Fai clic sul pulsante "OK" per disinstallarla oppure su "Annulla" per uscire dalla configurazione.
+fr.PrevVer=La version précédente de {#sAppName} a été détectée. Cliquez sur le bouton 'OK' pour la désinstaller ou sur 'Annuler' pour quitter l'installation.
+si.PrevVer={#sAppName} පරණ අනුවාදයක් අනාවරණය විය. කරුණාකර එය අස්ථාපනයට 'හරි' බොත්තම ඔබන්න හෝ ඉවත් වීමට 'අවලංගු' ඔබන්න.
+pt_BR.PrevVer=A versão anterior do {#sAppName} foi detectada, clique no botão 'OK' para desinstalá-lo ou em 'Cancelar' para sair da configuração.
+zh_CN.PrevVer=检测到以前版本的 {#sAppName}，请单击 ”确定“按钮卸载旧版本，或单击“取消”按钮退出。
 ;======================================================================================================
 en.Launch =Launch %1
 ar_SA.Launch =بدء تشغيل %1

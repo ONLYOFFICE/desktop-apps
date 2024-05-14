@@ -380,7 +380,6 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="78"/>
         <source>ONLYOFFICE Form Document (*.pdf)</source>
-feature/new_ts_01-24
          <translation>Документ ONLYOFFICE Form (*.pdf)</translation>
     </message>
     <message>

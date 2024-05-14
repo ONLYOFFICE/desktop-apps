@@ -111,4 +111,5 @@ l10n.de = {
     settOptDescAUpdateSilent: "Update im Hintergrund herunterladen und installieren",
     settOptDescAUpdateAsk: "Sie werden über alle Aktualisierungsschritte benachrichtigt",
     settRtlMode: "RTL-Benutzeroberfläche",
+    settGpuUseMode: "Grafikbeschleunigung verwenden, wenn verfügbar",
 }
