@@ -1197,34 +1197,84 @@ en.extPOT =PowerPoint Template
 ar_SA.extPOT =قالب بوربوينت
 sr_Latn_RS.extPOT =PowerPoint Šablon
 si.extPOT =පවර්පොයින්ට් අච්චුව
+es.extPOT =Plantilla de PowerPoint
+fr.extPOT =Modèle PowerPoint
+ja.extPOT =PowerPointのテンプレート
+zh_CN.extPOT =PowerPoint 模板
+pt_BR.extPOT =Modelo do PowerPoint
+ro.extPOT =Șablon PowerPoint
+ru.extPOT =Шаблон PowerPoint
 
 en.extPPTM =PowerPoint Open XML Macro-Enabled Presentation
 ar_SA.extPPTM =عرض بوربوينت مع خاصية الماكرو
 sr_Latn_RS.extPPTM =PowerPoint Open XML Makro-omogućena Prezentacija
 si.extPPTM =පවර්පොයින්ට් විවෘත XML සාර්ව-සබල සමර්පණය
+es.extPPTM =Presentación Open XML de PowerPoint compatible con macros
+fr.extPPTM =Présentation PowerPoint Open XML contenant des macros
+ja.extPPTM =PowerPoint オープン XML マクロ対応プレゼンテーション
+zh_CN.extPPTM =启用宏的 PowerPoint Open XML 演示文稿
+pt_BR.extPPTM =Apresentação habilitada para macro XML aberto do PowerPoint
+ro.extPPTM =Prezentarea activată pentru macro PowerPoint Open XML
+ru.extPPTM =Презентация PowerPoint Open XML с поддержкой макросов
 
 en.extEPUB =Open eBook File
 ar_SA.extEPUB =كتاب النشر الإلكتروني
 sr_Latn_RS.extEPUB =Open eBook Fajl
 si.extEPUB =වි-පොත් ගොනුව අරින්න
+es.extEPUB =Archivo Open eBook
+fr.extEPUB =Ouvrir un fichier de livre électronique
+ja.extEPUB =オープン電子書籍ファイル
+zh_CN.extEPUB =Open eBook 电子书文件
+pt_BR.extEPUB =Abrir arquivo de e-book
+ro.extEPUB =Fișier Open eBook
+ru.extEPUB =Файл Open eBook
 
 en.extFB2 =FictionBook 2.0 File
 ar_SA.extFB2 =ملف فكشنبوك 2.0
 sr_Latn_RS.extFB2 =KnjigaFikcije 2.0 Fajl
 si.extFB2 =ෆික්ෂන්බුක් 2.0 ගොනුව
+es.extFB2 =Archivo FictionBook 2.0
+fr.extFB2 =Fichier FictionBook 2.0
+ja.extFB2 =FictionBook 2.0ファイル
+zh_CN.extFB2 =FictionBook 2.0 文件
+pt_BR.extFB2 =Ficheiro FictionBook 2.0
+ro.extFB2 =Fișier FictionBook 2.0
+ru.extFB2 =Файл FictionBook 2.0
 
 en.extDOTX =Word Open XML Document Template
 ar_SA.extDOTX =قالب وورد
 sr_Latn_RS.extDOTX =Word Open XML Dokument Šablon
 si.extDOTX =වර්ඩ් විවෘත XML ලේඛන අච්චුව
+es.extDOTX =Plantilla de documento Open XML de Word
+fr.extDOTX =Modèle de document Word Open XML
+ja.extDOTX =WordオープンXML文書テンプレート
+zh_CN.extDOTX =Word Open XML 文档模板
+pt_BR.extDOTX =Modelo de documento XML aberto do Word
+ro.extDOTX =Document șablon Word Open XML
+ru.extDOTX =Шаблон документа Word Open XML
 
 en.extOXPS =Open XML Paper Specification
 ar_SA.extOXPS =مستند أوبن إكس بي إس
 sr_Latn_RS.extOXPS =Open XML Papir Specifikacija
 si.extOXPS =විවෘත XML කොළයේ පිරිවිතර
+es.extOXPS =Open XML Paper Specification
+fr.extOXPS =Spécification Open XML Paper
+ja.extOXPS =オープンXML Paper Specification
+zh_CN.extOXPS =Open XML 文件规格书
+pt_BR.extOXPS =Especificação de papel XML aberto
+ro.extOXPS =Open XML Paper Specification
+ru.extOXPS =Спецификация Open XML Paper
 
 en.extXLSB =Excel Binary File Format
 si.extXLSB =එක්සෙල් ද්විමය ගොනු ආකෘතිය
+es.extXLSB =Formato de archivo binario de Excel
+fr.extXLSB =Format de fichier binaire Excel
+ja.extXLSB =Excelバイナリファイル形式
+zh_CN.extXLSB =Excel 二进制文件格式
+pt_BR.extXLSB =Formato de arquivo binário do Excel
+ro.extXLSB =Format de fișier binar Excel
+ru.extXLSB =Бинарный формат файла Excel
+
 ;======================================================================================================
 
 en.jumpDOCX =New document

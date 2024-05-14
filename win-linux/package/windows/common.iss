@@ -180,6 +180,9 @@ fr.PrevVer=La version précédente de {#sAppName} a été détectée. Cliquez su
 si.PrevVer={#sAppName} පරණ අනුවාදයක් අනාවරණය විය. කරුණාකර එය අස්ථාපනයට 'හරි' බොත්තම ඔබන්න හෝ ඉවත් වීමට 'අවලංගු' ඔබන්න.
 pt_BR.PrevVer=A versão anterior do {#sAppName} foi detectada, clique no botão 'OK' para desinstalá-lo ou em 'Cancelar' para sair da configuração.
 zh_CN.PrevVer=检测到以前版本的 {#sAppName}，请单击 ”确定“按钮卸载旧版本，或单击“取消”按钮退出。
+ja.PrevVer=旧バージョンの{#sAppName}が検出されました。「OK」ボタンをクリックしてアンインストールするか、「キャンセル」ボタンをクリックしてセットアップを終了してください。
+es.PrevVer=Se ha detectado la versión anterior de {#sAppName}. Por favor, haga clic en el botón 'OK' para desinstalarla, o en 'Cancelar' para salir de la instalación.
+de.PrevVer=Die vorherige Version von {#sAppName} wurde erkannt. Bitte klicken Sie auf 'OK', um sie zu deinstallieren, oder auf 'Abbrechen', um das Setup zu beenden.
 ;======================================================================================================
 en.Launch =Launch %1
 ar_SA.Launch =بدء تشغيل %1
@@ -582,6 +585,7 @@ ko.UpdateService ={#sAppName} 업데이트 서비스
 lv.UpdateService =Pakalpojums atjauninājumam {#sAppName}
 uk.UpdateService =Сервіс для оновлення {#sAppName}
 sr_Latn_RS.UpdateService =Ažuriraj uslugu za {#sAppName}
+si.UpdateService ={#sAppName} සඳහා යාවත්කාල සේවාව
 
 [Code]
 const
