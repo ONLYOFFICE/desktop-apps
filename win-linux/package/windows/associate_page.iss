@@ -1911,7 +1911,7 @@ begin
            'new.pptx:.pptx:.Show.12:9', 
            'new.xlsx:.xlsx:.Sheet.12:10' 
 #ifdef _ONLYOFFICE
-           ,'new.docxf:.docxf:.Docxf:13'
+           ,'new.pdf:.pdf:.Pdf:5'
 #endif
            ];
 
