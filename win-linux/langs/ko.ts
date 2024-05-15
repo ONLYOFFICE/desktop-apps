@@ -289,7 +289,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="79"/>
         <source>DOCXF Document (*.docxf)</source>
-        <translation>ONLYOFFICE 문서 양식 템플릿(*.docxf)</translation>
+        <translation>ONLYOFFICE 문서 양식 템플릿 (*.docxf)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="81"/>

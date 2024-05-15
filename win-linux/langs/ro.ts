@@ -309,7 +309,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="79"/>
         <source>DOCXF Document (*.docxf)</source>
-        <translation>Șablon Formă ONLYOFFICE Document (*.docxf)</translation>
+        <translation>Șablon Formă ONLYOFFICE (*.docxf)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="81"/>

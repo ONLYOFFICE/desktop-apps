@@ -111,4 +111,5 @@ l10n.si = {
     settOptDescAUpdateSilent: "පසුබිමෙන් යාවත්කාල බාගෙන ස්ථාපනය කරන්න",
     settOptDescAUpdateAsk: "යළුම යාවත්කාල පියවර ගැන ඔබට දැනුම් දෙනු ඇත",
     settRtlMode: "RTL අතුරුමුහුණත",
+    settGpuUseMode: "චිත්‍රණ ත්වරණය තිබෙන විට භාවිතා කරන්න",
 }

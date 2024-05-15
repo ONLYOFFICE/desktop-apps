@@ -143,7 +143,7 @@
     <message>
         <location filename="../src/components/cdownloadwidget.cpp" line="178"/>
         <source>Clear</source>
-        <translation type="unfinished"></translation>
+        <translation>مسح</translation>
     </message>
     <message>
         <location filename="../src/components/cdownloadwidget.cpp" line="259"/>
@@ -164,7 +164,7 @@
     <message>
         <location filename="../src/components/cdownloadwidget.cpp" line="343"/>
         <source>Open</source>
-        <translation type="unfinished"></translation>
+        <translation>فتح</translation>
     </message>
     <message>
         <location filename="../src/components/cdownloadwidget.cpp" line="359"/>
@@ -289,7 +289,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="79"/>
         <source>DOCXF Document (*.docxf)</source>
-        <translation>قالب استبيان أونلي أوفيس (*.docxf)</translation>
+        <translation>قالب استبيان ONLYOFFICE (*.docxf)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="81"/>
@@ -356,7 +356,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="78"/>
         <source>ONLYOFFICE Form Document (*.pdf)</source>
-        <translation type="unfinished"></translation>
+        <translation>مستند نموذج ONLYOFFICE (*.pdf)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="85"/>
@@ -776,17 +776,17 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="103"/>
         <source>An error occurred while check updates: the Update Service is not installed or is not running!</source>
-        <translation type="unfinished"></translation>
+        <translation>حدث خطأ أثناء التحقق من التحديثات: خدمة التحديث غير مثبتة أو لا تعمل!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="104"/>
         <source>An error occurred while loading updates: the Update Service is not installed or is not running!</source>
-        <translation type="unfinished"></translation>
+        <translation>حدث خطأ أثناء تحميل التحديثات: لم يتم تثبيت خدمة التحديث أو لا يعمل!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="105"/>
         <source>An error occurred while unzip updates: the Update Service is not installed or is not running!</source>
-        <translation type="unfinished"></translation>
+        <translation>حدث خطأ أثناء فك ضغط التحديثات: خدمة التحديث غير مثبتة أو لا تعمل!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="106"/>
@@ -812,7 +812,7 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="981"/>
         <source>To finish updating, restart the app</source>
-        <translation type="unfinished"></translation>
+        <translation>لإنهاء التحديث، أعد تشغيل التطبيق</translation>
     </message>
     <message>
         <source>Update version</source>
@@ -827,7 +827,7 @@
         <location filename="../src/cupdatemanager.cpp" line="951"/>
         <location filename="../src/cupdatemanager.cpp" line="980"/>
         <source>New version</source>
-        <translation type="unfinished"></translation>
+        <translation>نسخة جديدة</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="978"/>
@@ -895,13 +895,13 @@
         <location filename="../src/platform_linux/updatedialog.cpp" line="47"/>
         <location filename="../src/platform_win/updatedialog.cpp" line="52"/>
         <source>Later</source>
-        <translation type="unfinished"></translation>
+        <translation>لاحقًا</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/updatedialog.cpp" line="48"/>
         <location filename="../src/platform_win/updatedialog.cpp" line="53"/>
         <source>Restart Now</source>
-        <translation type="unfinished"></translation>
+        <translation>أعد التشغيل الآن</translation>
     </message>
     <message>
         <source>Install later</source>
@@ -1027,7 +1027,7 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="347"/>
         <source>File %1 is already loaded. Replace it?</source>
-        <translation type="unfinished"></translation>
+        <translation>تم تحميل الملف 1% بالفعل. تود استبداله؟</translation>
     </message>
 </context>
 </TS>
