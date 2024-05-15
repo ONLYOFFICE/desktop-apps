@@ -301,6 +301,9 @@ utils.fn.parseRecent = function(arr, out = 'files') {
     const _is_win = /Win/.test(navigator.platform);
     const _re_name = !_is_win ? /([^/]+\.[a-zA-Z0-9]{1,})$/ : /([^\\/]+\.[a-zA-Z0-9]{1,})$/;
     for (let _f_ of arr) {
+        if ( /(?:\\{2,})+/.test(_f_.path) )
+            _f_.path = _f_.path.replace(/(?:\\{2,})+/g,"\\");
+
         let fn = _f_.path;
         if ( _re_name.test(fn) ) {
             let name = _re_name.exec(_f_.path)[1],
