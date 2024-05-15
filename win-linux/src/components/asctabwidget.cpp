@@ -519,7 +519,7 @@ void CAscTabWidget::reloadTabIcons()
 {
     m_mapTabIcons.clear();
     const char *icons[] = {":/tabbar/icons/newdoc.svg", ":/tabbar/icons/de.svg", ":/tabbar/icons/pe.svg",
-                           ":/tabbar/icons/docxf.svg",  ":/tabbar/icons/se.svg", ":/tabbar/icons/portal_light.svg",
+                           ":/tabbar/icons/pdf-form.svg",  ":/tabbar/icons/se.svg", ":/tabbar/icons/portal_light.svg",
                            ":/tabbar/icons/portal.svg", ":/tabbar/icons/pdf.svg"};
     int portal_icon = GetCurrentTheme().isDark() ? 5 : 6;
     m_mapTabIcons.insert({
