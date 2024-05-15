@@ -393,6 +393,10 @@
 
                 if ( $optsLang.is(':visible') ) {
                     _new_settings.langid = $optsLang.find('select').val();
+                    if ( appSettings.locale.restart && appSettings.locale.current != _new_settings.langid ) {
+                        _new_settings.restart = true;
+                        appSettings.locale.current = _new_settings.langid;
+                    }
 
                     utils.Lang.change(_new_settings.langid);
                 }
@@ -409,6 +413,11 @@
                 if ( $optsUIScaling ) {
                     _new_settings.uiscaling = $optsUIScaling.val();
                     $optsUIScaling.selectpicker('refresh');
+
+                    if ( appSettings.uiscaling != _new_settings.uiscaling ) {
+                        appSettings.uiscaling = _new_settings.uiscaling;
+                        _new_settings.restart = true;
+                    }
                 }
 
                 if ( $optsUITheme ) {
@@ -439,6 +448,11 @@
 
                 if ( $chGpu ) {
                     _new_settings.usegpu = $chGpu.prop("checked");
+
+                    if ( appSettings.usegpu != _new_settings.usegpu ) {
+                        _new_settings.restart = true;
+                        appSettings.usegpu = _new_settings.usegpu;
+                    }
                 }
 
                 sdk.command("settings:apply", JSON.stringify(_new_settings));
