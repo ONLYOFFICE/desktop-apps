@@ -1204,6 +1204,7 @@ zh_CN.extPOT =PowerPoint 模板
 pt_BR.extPOT =Modelo do PowerPoint
 ro.extPOT =Șablon PowerPoint
 ru.extPOT =Шаблон PowerPoint
+hy.extPOT =PowerPoint ձևանմուշ
 
 en.extPPTM =PowerPoint Open XML Macro-Enabled Presentation
 ar_SA.extPPTM =عرض بوربوينت مع خاصية الماكرو
@@ -1216,6 +1217,7 @@ zh_CN.extPPTM =启用宏的 PowerPoint Open XML 演示文稿
 pt_BR.extPPTM =Apresentação habilitada para macro XML aberto do PowerPoint
 ro.extPPTM =Prezentarea activată pentru macro PowerPoint Open XML
 ru.extPPTM =Презентация PowerPoint Open XML с поддержкой макросов
+hy.extPPTM =PowerPoint Open XML ներկայացում մակրո աջակցությամբ
 
 en.extEPUB =Open eBook File
 ar_SA.extEPUB =كتاب النشر الإلكتروني
@@ -1228,6 +1230,7 @@ zh_CN.extEPUB =Open eBook 电子书文件
 pt_BR.extEPUB =Abrir arquivo de e-book
 ro.extEPUB =Fișier Open eBook
 ru.extEPUB =Файл Open eBook
+hy.extEPUB =Բացեք eBook ֆայլը
 
 en.extFB2 =FictionBook 2.0 File
 ar_SA.extFB2 =ملف فكشنبوك 2.0
@@ -1240,6 +1243,7 @@ zh_CN.extFB2 =FictionBook 2.0 文件
 pt_BR.extFB2 =Ficheiro FictionBook 2.0
 ro.extFB2 =Fișier FictionBook 2.0
 ru.extFB2 =Файл FictionBook 2.0
+hy.extFB2 =FictionBook 2.0 ֆայլ
 
 en.extDOTX =Word Open XML Document Template
 ar_SA.extDOTX =قالب وورد
@@ -1252,6 +1256,7 @@ zh_CN.extDOTX =Word Open XML 文档模板
 pt_BR.extDOTX =Modelo de documento XML aberto do Word
 ro.extDOTX =Document șablon Word Open XML
 ru.extDOTX =Шаблон документа Word Open XML
+hy.extDOTX =Word Open XML փաստաթղթի ձևանմուշ
 
 en.extOXPS =Open XML Paper Specification
 ar_SA.extOXPS =مستند أوبن إكس بي إس
@@ -1264,6 +1269,7 @@ zh_CN.extOXPS =Open XML 文件规格书
 pt_BR.extOXPS =Especificação de papel XML aberto
 ro.extOXPS =Open XML Paper Specification
 ru.extOXPS =Спецификация Open XML Paper
+hy.extOXPS =Open XML թղթի բնութագրերը
 
 en.extXLSB =Excel Binary File Format
 si.extXLSB =එක්සෙල් ද්විමය ගොනු ආකෘතිය
@@ -1274,6 +1280,7 @@ zh_CN.extXLSB =Excel 二进制文件格式
 pt_BR.extXLSB =Formato de arquivo binário do Excel
 ro.extXLSB =Format de fișier binar Excel
 ru.extXLSB =Бинарный формат файла Excel
+hy.extXLSB =Excel Երկուական ֆայլի ձևաչափ
 
 ;======================================================================================================
 

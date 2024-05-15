@@ -586,6 +586,7 @@ lv.UpdateService =Pakalpojums atjauninājumam {#sAppName}
 uk.UpdateService =Сервіс для оновлення {#sAppName}
 sr_Latn_RS.UpdateService =Ažuriraj uslugu za {#sAppName}
 si.UpdateService ={#sAppName} සඳහා යාවත්කාල සේවාව
+hy.UpdateService =Թարմացրեք ծառայությունը {#sAppName}-ի համար
 
 [Code]
 const
