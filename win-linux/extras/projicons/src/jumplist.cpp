@@ -154,8 +154,8 @@ void CreateJumpList(const QStringList &list)
                 hr = _AddTasksToList(pcdl, list);
                 if (SUCCEEDED(hr))
                     hr = pcdl->CommitList();
+                poaRemoved->Release();
             }
-            poaRemoved->Release();
             pcdl->Release();
         }
         CoUninitialize();
