@@ -86,11 +86,6 @@ int main(int argc, char *argv[])
         ClearHistory();
         DeleteJumpList();
         return 0;
-    } else
-    if (_cmdArgs.contains("--add-to-recent") && _cmdArgs.size() > 1) {
-        std::wstring path = _cmdArgs.at(1).toStdWString();
-        SHAddToRecentDocs(SHARD_PATHW, path.c_str());
-        return 0;
     }
 #endif
 
