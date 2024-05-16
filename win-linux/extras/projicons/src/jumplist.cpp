@@ -101,6 +101,7 @@ HRESULT _CreateShellLink(PCWSTR pszArguments, PCWSTR pszTitle, IShellLink **ppsl
 
 HRESULT _AddTasksToList(ICustomDestinationList *pcdl, QStringList list)
 {
+    pcdl->AppendKnownCategory(KDC_RECENT);
     IObjectCollection *poc;
     HRESULT hr = CoCreateInstance(CLSID_EnumerableObjectCollection, NULL, CLSCTX_INPROC, IID_PPV_ARGS(&poc));
     if (SUCCEEDED(hr))
@@ -145,6 +146,7 @@ void CreateJumpList(const QStringList &list)
         ICustomDestinationList *pcdl;
         hr = CoCreateInstance(CLSID_DestinationList, NULL, CLSCTX_INPROC_SERVER, IID_PPV_ARGS(&pcdl));
         if (SUCCEEDED(hr)) {
+            pcdl->SetAppID(TEXT(APP_USER_MODEL_ID));
             UINT cMinSlots;
             IObjectArray *poaRemoved;
             hr = pcdl->BeginList(&cMinSlots, IID_PPV_ARGS(&poaRemoved));
