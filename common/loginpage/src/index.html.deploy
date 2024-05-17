@@ -83,7 +83,7 @@
                 <li class="menu-item">
                   <a action="new:docx">
                     <svg class="icon" data-iconname="docx" data-precls="img-el">
-                        <use href="#docx-big"></use>
+                        <use href="#pdf-big"></use>
                     </svg>
                     <span class="text" l10n>DOCUMENT</span>
                   </a>
