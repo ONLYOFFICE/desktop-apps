@@ -395,7 +395,7 @@ int CAscTabWidget::addPortal(const QString& url, const QString& name, const QStr
     m_pBar->setTabToolTip(tab_index, _url);
     m_pBar->setTabThemeType(tab_index, GetCurrentTheme().isDark() ? CTabBar::DarkTab : CTabBar::LightTab);
     m_pBar->setTabThemeIcons(tab_index, std::make_pair(":/tabbar/icons/portal.svg", ":/tabbar/icons/portal_light.svg"));
-    m_pBar->setActiveTabColor(tab_index, QString::fromStdWString(GetColorValueByRole(ecrTabDefaultActiveBackground)));
+    m_pBar->setActiveTabColor(tab_index, QString::fromStdWString(GetColorValueByRole(ecrTabSimpleActiveBackground)));
     m_pBar->tabStartLoading(tab_index);
 //    updateTabIcon(tabIndexByView(id));
 
@@ -436,7 +436,7 @@ int CAscTabWidget::addOAuthPortal(const QString& portal, const QString& type, co
     m_pBar->setTabToolTip(tab_index, portal);
     m_pBar->setTabThemeType(tab_index, GetCurrentTheme().isDark() ? CTabBar::DarkTab : CTabBar::LightTab);
     m_pBar->setTabThemeIcons(tab_index, std::make_pair(":/tabbar/icons/portal.svg", ":/tabbar/icons/portal_light.svg"));
-    m_pBar->setActiveTabColor(tab_index, QString::fromStdWString(GetColorValueByRole(ecrTabDefaultActiveBackground)));
+    m_pBar->setActiveTabColor(tab_index, QString::fromStdWString(GetColorValueByRole(ecrTabSimpleActiveBackground)));
 //    m_pBar->tabStartLoading(tab_index);
 
     return tab_index;
@@ -480,6 +480,9 @@ int CAscTabWidget::insertPanel(QWidget * panel, int index)
             tabcolor =  QString::fromStdWString(ui_theme.value(CTheme::ColorRole::ecrTabViewerActive));
             m_pBar->setTabThemeType(tabindex, CTabBar::DarkTab);
             break;
+        case etPortal:
+            tabcolor =  QString::fromStdWString(ui_theme.value(CTheme::ColorRole::ecrTabSimpleActiveBackground));
+            m_pBar->setTabThemeType(tabindex, /*ui_theme.isDark() ? CTabBar::DarkTab :*/ CTabBar::LightTab);
         default:
             tabcolor =  QString::fromStdWString(ui_theme.value(CTheme::ColorRole::ecrTabDefaultActiveBackground));
             m_pBar->setTabThemeType(tabindex, /*ui_theme.isDark() ? CTabBar::DarkTab :*/ CTabBar::LightTab);
@@ -1226,6 +1229,10 @@ void CAscTabWidget::applyUITheme(const std::wstring& theme)
             break;
         case AscEditorType::etPdf:
             m_pBar->setActiveTabColor(i, QString::fromStdWString(ui_theme.value(CTheme::ColorRole::ecrTabViewerActive)));
+            break;
+        case etPortal:
+            m_pBar->setTabThemeType(i, ui_theme.isDark() ? CTabBar::DarkTab : CTabBar::LightTab);
+            m_pBar->setActiveTabColor(i, QString::fromStdWString(ui_theme.value(CTheme::ColorRole::ecrTabSimpleActiveBackground)));
             break;
         default:
             m_pBar->setTabThemeType(i, ui_theme.isDark() ? CTabBar::DarkTab : CTabBar::LightTab);
