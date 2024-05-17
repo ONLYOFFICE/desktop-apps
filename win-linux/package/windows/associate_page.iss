@@ -1204,7 +1204,7 @@ zh_CN.extPOT =PowerPoint 模板
 pt_BR.extPOT =Modelo do PowerPoint
 ro.extPOT =Șablon PowerPoint
 ru.extPOT =Шаблон PowerPoint
-hy.extPOT =PowerPoint ձևանմուշ
+hy_AM.extPOT =PowerPoint ձևանմուշ
 de.extPOT =PowerPoint-Vorlage
 
 en.extPPTM =PowerPoint Open XML Macro-Enabled Presentation
@@ -1218,7 +1218,7 @@ zh_CN.extPPTM =启用宏的 PowerPoint Open XML 演示文稿
 pt_BR.extPPTM =Apresentação habilitada para macro XML aberto do PowerPoint
 ro.extPPTM =Prezentarea activată pentru macro PowerPoint Open XML
 ru.extPPTM =Презентация PowerPoint Open XML с поддержкой макросов
-hy.extPPTM =PowerPoint Open XML ներկայացում մակրո աջակցությամբ
+hy_AM.extPPTM =PowerPoint Open XML ներկայացում մակրո աջակցությամբ
 de.extPPTM =PowerPoint Open XML-Makro-fähige Präsentation
 
 en.extEPUB =Open eBook File
@@ -1232,7 +1232,7 @@ zh_CN.extEPUB =Open eBook 电子书文件
 pt_BR.extEPUB =Abrir arquivo de e-book
 ro.extEPUB =Fișier Open eBook
 ru.extEPUB =Файл Open eBook
-hy.extEPUB =Բացեք eBook ֆայլը
+hy_AM.extEPUB =Բացեք eBook ֆայլը
 de.extEPUB =eBook-Datei öffnen
 
 en.extFB2 =FictionBook 2.0 File
@@ -1246,7 +1246,7 @@ zh_CN.extFB2 =FictionBook 2.0 文件
 pt_BR.extFB2 =Ficheiro FictionBook 2.0
 ro.extFB2 =Fișier FictionBook 2.0
 ru.extFB2 =Файл FictionBook 2.0
-hy.extFB2 =FictionBook 2.0 ֆայլ
+hy_AM.extFB2 =FictionBook 2.0 ֆայլ
 de.extFB2 =FictionBook 2.0-Datei
 
 en.extDOTX =Word Open XML Document Template
@@ -1260,7 +1260,7 @@ zh_CN.extDOTX =Word Open XML 文档模板
 pt_BR.extDOTX =Modelo de documento XML aberto do Word
 ro.extDOTX =Document șablon Word Open XML
 ru.extDOTX =Шаблон документа Word Open XML
-hy.extDOTX =Word Open XML փաստաթղթի ձևանմուշ
+hy_AM.extDOTX =Word Open XML փաստաթղթի ձևանմուշ
 de.extDOTX =Word Open XML Dokumentvorlage
 
 en.extOXPS =Open XML Paper Specification
@@ -1315,7 +1315,7 @@ zh_CN.extXLSB =Excel 二进制文件格式
 pt_BR.extXLSB =Formato de arquivo binário do Excel
 ro.extXLSB =Format de fișier binar Excel
 ru.extXLSB =Бинарный формат файла Excel
-hy.extXLSB =Excel Երկուական ֆայլի ձևաչափ
+hy_AM.extXLSB =Excel Երկուական ֆայլի ձևաչափ
 de.extXLSB =Excel-Binärdateiformat
 
 ;======================================================================================================
