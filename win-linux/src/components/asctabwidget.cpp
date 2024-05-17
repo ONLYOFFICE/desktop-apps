@@ -395,8 +395,7 @@ int CAscTabWidget::addPortal(const QString& url, const QString& name, const QStr
     m_pBar->setTabToolTip(tab_index, _url);
     m_pBar->setTabThemeType(tab_index, GetCurrentTheme().isDark() ? CTabBar::DarkTab : CTabBar::LightTab);
     m_pBar->setTabThemeIcons(tab_index, std::make_pair(":/tabbar/icons/portal.svg", ":/tabbar/icons/portal_light.svg"));
-    m_pBar->setActiveTabColor(tab_index, QString::fromStdWString(GetCurrentTheme().isDark() ? GetColorValueByRole(ecrTabWordActive) :
-                                                                     GetColorValueByRole(ecrTabDefaultActiveBackground)));
+    m_pBar->setActiveTabColor(tab_index, QString::fromStdWString(GetColorValueByRole(ecrTabDefaultActiveBackground)));
     m_pBar->tabStartLoading(tab_index);
 //    updateTabIcon(tabIndexByView(id));
 
@@ -437,8 +436,7 @@ int CAscTabWidget::addOAuthPortal(const QString& portal, const QString& type, co
     m_pBar->setTabToolTip(tab_index, portal);
     m_pBar->setTabThemeType(tab_index, GetCurrentTheme().isDark() ? CTabBar::DarkTab : CTabBar::LightTab);
     m_pBar->setTabThemeIcons(tab_index, std::make_pair(":/tabbar/icons/portal.svg", ":/tabbar/icons/portal_light.svg"));
-    m_pBar->setActiveTabColor(tab_index, QString::fromStdWString(GetCurrentTheme().isDark() ? GetColorValueByRole(ecrTabWordActive) :
-                                                                     GetColorValueByRole(ecrTabDefaultActiveBackground)));
+    m_pBar->setActiveTabColor(tab_index, QString::fromStdWString(GetColorValueByRole(ecrTabDefaultActiveBackground)));
 //    m_pBar->tabStartLoading(tab_index);
 
     return tab_index;
@@ -1231,8 +1229,7 @@ void CAscTabWidget::applyUITheme(const std::wstring& theme)
             break;
         default:
             m_pBar->setTabThemeType(i, ui_theme.isDark() ? CTabBar::DarkTab : CTabBar::LightTab);
-            m_pBar->setActiveTabColor(i, QString::fromStdWString(ui_theme.isDark() ? ui_theme.value(CTheme::ColorRole::ecrTabWordActive) :
-                                                                     ui_theme.value(CTheme::ColorRole::ecrTabDefaultActiveBackground)));
+            m_pBar->setActiveTabColor(i, QString::fromStdWString(ui_theme.value(CTheme::ColorRole::ecrTabDefaultActiveBackground)));
             break;
         }
     }

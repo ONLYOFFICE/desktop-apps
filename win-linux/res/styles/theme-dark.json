@@ -17,9 +17,9 @@
         "tool-button-pressed-background": "#606060",
 
         "tab-active-background": "#333",
-        "tab-simple-active-background": "#fff",
+        "tab-simple-active-background": "#333",
         "tab-simple-active-text": "#fff",
-        "tab-default-active-background": "#fff",
+        "tab-default-active-background": "#333",
         "tab-default-active-text": "#fff",
         "tab-divider": "#505050",
 
