@@ -98,6 +98,7 @@ l10n.hr = {
     updateNoUpdates: 'Aplikacija je ažurirana',
     updateAvialable: 'Verzija $1 je dostupna. Kliknite za preuzimanje.',
     settOptThemeSystem: 'Isto kao u sustavu',
+    settOptThemeAddLocal: 'Dodajte lokalnu temu',
     settOptThemeContrastDark: 'Kontrastno tamno',
     settAUpdateMode: 'Način automatskog ažuriranja',
     settOptAUpdateSilent: 'Automatski',
@@ -109,4 +110,6 @@ l10n.hr = {
     settOptDescDisabled: "Automatska provjera ažuriranja bit će onemogućena",
     settOptDescAUpdateSilent: "Preuzmi ažuriranja i pitaj prije instalacije",
     settOptDescAUpdateAsk: "Bit ćete obaviješteni o svim koracima ažuriranja",
+    settRtlMode: "RTL sučelje",
+    settGpuUseMode: "Koristite grafičko ubrzanje ako je dostupno",
 }

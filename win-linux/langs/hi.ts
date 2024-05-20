@@ -219,7 +219,7 @@
     <message>
         <location filename="../src/windows/ceditorwindow_p.h" line="669"/>
         <source>There are no pages set to print.</source>
-        <translation type="unfinished"></translation>
+        <translation>प्रिंट करने के लिए कोई पेज सेट नहीं है।</translation>
     </message>
 </context>
 <context>
@@ -364,7 +364,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="78"/>
         <source>ONLYOFFICE Form Document (*.pdf)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">ओनलीऑफिस फॉर्म दस्तावेज़ (*.पीडीएफ)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="85"/>
@@ -516,7 +516,7 @@
     <message>
         <location filename="../src/ceditortools.cpp" line="238"/>
         <source>Theme file</source>
-        <translation type="unfinished"></translation>
+        <translation>थीम फाइल</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="270"/>
@@ -603,7 +603,7 @@
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="1248"/>
         <source>There are no pages set to print.</source>
-        <translation type="unfinished"></translation>
+        <translation>प्रिंट करने के लिए कोई पेज सेट नहीं है।</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="1384"/>
@@ -807,17 +807,17 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="103"/>
         <source>An error occurred while check updates: the Update Service is not installed or is not running!</source>
-        <translation type="unfinished"></translation>
+        <translation>अपडेटों की जाँच करते समय एक त्रुटि उत्पन्न हुई: अपडेट सेवा इंस्टॉल नहीं है या चल नहीं रही है!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="104"/>
         <source>An error occurred while loading updates: the Update Service is not installed or is not running!</source>
-        <translation type="unfinished"></translation>
+        <translation>अपडेटों को लोड करते समय एक त्रुटि उत्पन्न हुई: अपडेट सेवा इंस्टॉल नहीं है या चल नहीं रही है!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="105"/>
         <source>An error occurred while unzip updates: the Update Service is not installed or is not running!</source>
-        <translation type="unfinished"></translation>
+        <translation>अपडेटों को अनज़िप करते समय एक त्रुटि उत्पन्न हुई: अपडेट सेवा इंस्टॉल नहीं है या चल नहीं रही है!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="106"/>
@@ -827,7 +827,7 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="947"/>
         <source>The current version does not support installing this update directly. To install updates, you can download the required package from the official website.</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="949"/>
@@ -844,22 +844,22 @@
         <location filename="../src/cupdatemanager.cpp" line="951"/>
         <location filename="../src/cupdatemanager.cpp" line="980"/>
         <source>New version</source>
-        <translation>संस्करण को अपडेट करें</translation>
+        <translation>नया संस्करण</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="981"/>
         <source>To finish updating, restart the app</source>
-        <translation>क्या आप अभी अपडेट डाउनलोड करना चाहेंगे?</translation>
+        <translation>अपडेट पूरा करने के लिए, ऐप को पुनरारंभ करें</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="946"/>
         <source>Would you like to download update now?</source>
-        <translation>अपडेट इंस्टॉल करने के लिए तैयार है</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="978"/>
         <source>Update is ready to install</source>
-        <translation>क्या आप अब ऐप को पुनः आरंभ करना चाहेंगे?</translation>
+        <translation>अपडेट इंस्टॉल करने के लिए तैयार है</translation>
     </message>
 </context>
 <context>
@@ -918,13 +918,13 @@
         <location filename="../src/platform_linux/updatedialog.cpp" line="47"/>
         <location filename="../src/platform_win/updatedialog.cpp" line="52"/>
         <source>Later</source>
-        <translation>बाद में इंस्टॉल करें</translation>
+        <translation>बाद में</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/updatedialog.cpp" line="48"/>
         <location filename="../src/platform_win/updatedialog.cpp" line="53"/>
         <source>Restart Now</source>
-        <translation>सहेजें और अभी पुनः आरंभ करें</translation>
+        <translation>अभी रीस्टार्ट करें</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/updatedialog.cpp" line="49"/>
@@ -1011,38 +1011,38 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="347"/>
         <source>File %1 is already loaded. Replace it?</source>
-        <translation type="unfinished"></translation>
+        <translation>फाइल %1 पहले ही लोड हो चुकी है। इसे बदलें?</translation>
     </message>
     <message>
         <location filename="../src/components/cdownloadwidget.cpp" line="124"/>
         <source>B</source>
-        <translation type="unfinished"></translation>
+        <translation>बी</translation>
     </message>
     <message>
         <location filename="../src/components/cdownloadwidget.cpp" line="127"/>
         <source>kB</source>
-        <translation type="unfinished"></translation>
+        <translation>केबी</translation>
     </message>
     <message>
         <location filename="../src/components/cdownloadwidget.cpp" line="129"/>
         <source>MB</source>
-        <translation type="unfinished"></translation>
+        <translation>एमबी</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/gtkprintdialog.cpp" line="547"/>
         <source>The syntaxis for the page range is invalid.&lt;br&gt;Enter one or more page ranges, for example: 1-3,7,11.</source>
-        <translation type="unfinished"></translation>
+        <translation>पेज रेंज के लिए सिंटैक्सिस अमान्य है।&lt;br&gt;एक या अधिक पेज रेंजों को दर्ज करें, उदाहरण के लिए: 1-3,7,11।</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/gtkprintdialog.cpp" line="587"/>
         <location filename="../src/platform_win/printdialog.cpp" line="527"/>
         <source>Specified range %1-%2 exceeds document limits: maximum number of pages is %3</source>
-        <translation type="unfinished"></translation>
+        <translation>निर्दिष्ट रेंज %1-%2 दस्तावेज़ सीमा से अधिक है: पेजों की अधिकतम संख्या %3 है</translation>
     </message>
     <message>
         <location filename="../src/platform_win/printdialog.cpp" line="485"/>
         <source>Unable to open print dialog:&lt;br&gt;%1</source>
-        <translation type="unfinished"></translation>
+        <translation>प्रिंट संवाद खोलने में असमर्थ हैं:&lt;br&gt;%1</translation>
     </message>
 </context>
 <context>
