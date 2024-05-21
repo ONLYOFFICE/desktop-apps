@@ -845,17 +845,17 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="981"/>
         <source>To finish updating, restart the app</source>
-        <translation>지금 업데이트를 다운로드하시겠습니까?</translation>
+        <translation>업데이트를 완료하려면 앱을 다시 시작하세요</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="946"/>
         <source>Would you like to download update now?</source>
-        <translation>업데이트 설치가 준비되었습니다</translation>
+        <translation>지금 업데이트를 다운로드하시겠습니까?</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="978"/>
         <source>Update is ready to install</source>
-        <translation>지금 앱을 다시 시작하시겠습니까?</translation>
+        <translation>업데이트 설치가 준비되었습니다</translation>
     </message>
 </context>
 <context>

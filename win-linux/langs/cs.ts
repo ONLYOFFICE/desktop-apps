@@ -869,17 +869,17 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="981"/>
         <source>To finish updating, restart the app</source>
-        <translation>Chcete si nyní stáhnout aktualizaci?</translation>
+        <translation>Chcete-li dokončit aktualizaci, restartujte aplikaci</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="946"/>
         <source>Would you like to download update now?</source>
-        <translation>Aktualizace je připravena k instalaci</translation>
+        <translation>Chcete nyní stáhnout aktualizaci?</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="978"/>
         <source>Update is ready to install</source>
-        <translation>Chcete nyní aplikaci restartovat?</translation>
+        <translation>Aktualizace je připravena k instalaci</translation>
     </message>
     <message>
         <source>A new version of %1 is available!</source>

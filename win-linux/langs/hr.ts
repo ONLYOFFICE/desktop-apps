@@ -854,7 +854,7 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="946"/>
         <source>Would you like to download update now?</source>
-        <translation type="unfinished"></translation>
+        <translation>Želite li preuzeti ažuriranje sada?</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="978"/>

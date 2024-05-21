@@ -857,17 +857,17 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="981"/>
         <source>To finish updating, restart the app</source>
-        <translation>දැන් යාවත්කාලය බාගැනීමට කැමතිද?</translation>
+        <translation>යාවත්කාලය අවසන් වීමට යෙදුම යළි අරඹන්න</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="946"/>
         <source>Would you like to download update now?</source>
-        <translation>යාවත්කාලය ස්ථාපනය සඳහා සූදානම්</translation>
+        <translation>දැන් යාවත්කාලය බාගැනීමට කැමතිද?</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="978"/>
         <source>Update is ready to install</source>
-        <translation>දැන් යෙදුම නැවත ආරම්භයට කැමතිද?</translation>
+        <translation>යාවත්කාලය ස්ථාපනය සඳහා සූදානම්</translation>
     </message>
     <message>
         <source>A new version of %1 is available!</source>

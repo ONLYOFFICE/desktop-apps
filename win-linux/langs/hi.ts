@@ -364,7 +364,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="78"/>
         <source>ONLYOFFICE Form Document (*.pdf)</source>
-        <translation type="unfinished">ओनलीऑफिस फॉर्म दस्तावेज़ (*.पीडीएफ)</translation>
+        <translation>ओनलीऑफिस फॉर्म दस्तावेज़ (*.pdf)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="85"/>
@@ -854,7 +854,7 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="946"/>
         <source>Would you like to download update now?</source>
-        <translation type="unfinished"></translation>
+        <translation>क्या आप अभी अपडेट डाउनलोड करना चाहेंगे?</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="978"/>
