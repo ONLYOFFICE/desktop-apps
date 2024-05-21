@@ -98,6 +98,7 @@ l10n.be = {
     updateNoUpdates: 'Праграма абноўленая',
     updateAvialable: 'Даступна версія $1. Пстрыкніце, каб спампаваць.',
     settOptThemeSystem: 'Сістэмная',
+    settOptThemeAddLocal: 'Дадайце лакальную тэму',
     settOptThemeContrastDark: 'Кантрасная цёмная',
     settAUpdateMode: 'Рэжым аўтаабнаўлення',
     settOptAUpdateSilent: 'Аўта',
@@ -109,4 +110,6 @@ l10n.be = {
     settOptDescDisabled: "Аўтаматычная праверка абнаўленняў будзе адключана",
     settOptDescAUpdateSilent: "Спампоўваць абнаўленні і пытацца перад уста-ноўкай",
     settOptDescAUpdateAsk: "Вы будзеце ведаць пра ўсе этапы абнаўлення",
+    settRtlMode: "Інтэрфейс RTL",
+    settGpuUseMode: "Выкарыстоўвайце графічнае паскарэнне, калі яно даступна",
 }

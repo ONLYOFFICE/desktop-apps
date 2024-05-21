@@ -98,6 +98,7 @@ l10n.lt = {
     updateNoUpdates: 'Programa atnaujinta',
     updateAvialable: 'Galima versija už 1 JAV dolerį. Spustelėkite norėdami atsisiųsti.',
     settOptThemeSystem: 'Tokia pati kaip sistema',
+    settOptThemeAddLocal: 'Pridėti vietinę temą',
     settOptThemeContrastDark: 'Tamsus kontrastas',
     settAUpdateMode: 'Automatinio atnaujinimo režimas',
     settOptAUpdateSilent: 'Auto',
@@ -109,4 +110,6 @@ l10n.lt = {
     settOptDescDisabled: "Automatinis naujinimų tikrinimas bus išjungtas",
     settOptDescAUpdateSilent: "Atsisiųsti naujinimus ir klausti prieš įdiegiant",
     settOptDescAUpdateAsk: "Jums bus pranešta apie visus atnaujinimo žingsnius",
+    settRtlMode: "RTL Sąsaja",
+    settGpuUseMode: "Kai įmanoma, naudokite grafinį pagreitį",
 }

@@ -219,7 +219,7 @@
     <message>
         <location filename="../src/windows/ceditorwindow_p.h" line="669"/>
         <source>There are no pages set to print.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nijedna stranica nije postavljena za ispis.</translation>
     </message>
 </context>
 <context>
@@ -364,7 +364,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="78"/>
         <source>ONLYOFFICE Form Document (*.pdf)</source>
-        <translation type="unfinished"></translation>
+        <translation>Dokument obrasca ONLYOFFICE (*.pdf)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="85"/>
@@ -516,7 +516,7 @@
     <message>
         <location filename="../src/ceditortools.cpp" line="238"/>
         <source>Theme file</source>
-        <translation type="unfinished"></translation>
+        <translation>Datoteka teme</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="270"/>
@@ -603,7 +603,7 @@
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="1248"/>
         <source>There are no pages set to print.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nijedna stranica nije postavljena za ispis.</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="1384"/>
@@ -807,17 +807,17 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="103"/>
         <source>An error occurred while check updates: the Update Service is not installed or is not running!</source>
-        <translation type="unfinished"></translation>
+        <translation>Došlo je do pogreške prilikom provjere ažuriranja: usluga ažuriranja nije instalirana ili ne radi!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="104"/>
         <source>An error occurred while loading updates: the Update Service is not installed or is not running!</source>
-        <translation type="unfinished"></translation>
+        <translation>Došlo je do pogreške prilikom učitavanja ažuriranja: usluga ažuriranja nije instalirana ili ne radi!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="105"/>
         <source>An error occurred while unzip updates: the Update Service is not installed or is not running!</source>
-        <translation type="unfinished"></translation>
+        <translation>Došlo je do pogreške prilikom raspakiranja ažuriranja: usluga ažuriranja nije instalirana ili ne radi!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="106"/>
@@ -849,17 +849,17 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="981"/>
         <source>To finish updating, restart the app</source>
-        <translation>Želite li sada preuzeti ažuriranje?</translation>
+        <translation>Ponovno pokrenite aplikaciju kako biste dovršili ažuriranje</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="946"/>
         <source>Would you like to download update now?</source>
-        <translation>Ažuriranje je spremno za instalaciju</translation>
+        <translation>Želite li preuzeti ažuriranje sada?</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="978"/>
         <source>Update is ready to install</source>
-        <translation>Želite li sada ponovno pokrenuti aplikaciju?</translation>
+        <translation>Ažuriranje je spremno za instalaciju</translation>
     </message>
 </context>
 <context>
@@ -918,13 +918,13 @@
         <location filename="../src/platform_linux/updatedialog.cpp" line="47"/>
         <location filename="../src/platform_win/updatedialog.cpp" line="52"/>
         <source>Later</source>
-        <translation>Instaliraj kasnije</translation>
+        <translation>Kasnije</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/updatedialog.cpp" line="48"/>
         <location filename="../src/platform_win/updatedialog.cpp" line="53"/>
         <source>Restart Now</source>
-        <translation>Spremi i odmah ponovno pokreni</translation>
+        <translation>Ponovno pokreni sada</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/updatedialog.cpp" line="49"/>
@@ -1011,38 +1011,38 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="347"/>
         <source>File %1 is already loaded. Replace it?</source>
-        <translation type="unfinished"></translation>
+        <translation>Datoteka %1 već je učitana. Želite li je zamijeniti?</translation>
     </message>
     <message>
         <location filename="../src/components/cdownloadwidget.cpp" line="124"/>
         <source>B</source>
-        <translation type="unfinished"></translation>
+        <translation>B</translation>
     </message>
     <message>
         <location filename="../src/components/cdownloadwidget.cpp" line="127"/>
         <source>kB</source>
-        <translation type="unfinished"></translation>
+        <translation>kB</translation>
     </message>
     <message>
         <location filename="../src/components/cdownloadwidget.cpp" line="129"/>
         <source>MB</source>
-        <translation type="unfinished"></translation>
+        <translation>MB</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/gtkprintdialog.cpp" line="547"/>
         <source>The syntaxis for the page range is invalid.&lt;br&gt;Enter one or more page ranges, for example: 1-3,7,11.</source>
-        <translation type="unfinished"></translation>
+        <translation>Sintaksa za raspon stranica nije valjana.&lt;br&gt;Unesite jedan ili više raspona stranica, na primjer: 1-3,7,11.</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/gtkprintdialog.cpp" line="587"/>
         <location filename="../src/platform_win/printdialog.cpp" line="527"/>
         <source>Specified range %1-%2 exceeds document limits: maximum number of pages is %3</source>
-        <translation type="unfinished"></translation>
+        <translation>Navedeni raspon %1-%2 premašuje ograničenja dokumenta: maksimalan broj stranica je %3</translation>
     </message>
     <message>
         <location filename="../src/platform_win/printdialog.cpp" line="485"/>
         <source>Unable to open print dialog:&lt;br&gt;%1</source>
-        <translation type="unfinished"></translation>
+        <translation>Nije moguće otvoriti dijaloški okvir za ispis:&lt;br&gt;%1</translation>
     </message>
 </context>
 <context>

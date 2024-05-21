@@ -98,6 +98,7 @@ l10n.gl = {
     updateNoUpdates: 'A aplicación está actualizada',
     updateAvialable: 'A versión $1 está dispoñible. Faga clic para descargar.',
     settOptThemeSystem: 'Igual que o sistema',
+    settOptThemeAddLocal: 'Engadir tema local',
     settOptThemeContrastDark: 'Contraste escuro',
     settAUpdateMode: 'Modo de actualización automática',
     settOptAUpdateSilent: 'Automático',
@@ -109,4 +110,6 @@ l10n.gl = {
     settOptDescDisabled: "A verificación automática de actualizacións estará desactivada",
     settOptDescAUpdateSilent: "Descargar actualizacións e preguntar antes de instalalas",
     settOptDescAUpdateAsk: "Notificaráselle sobre todos os pasos de actualización",
+    settRtlMode: "Interface RTL",
+    settGpuUseMode: "Utilizar a aceleración de gráficos cando estea dispoñible",
 }

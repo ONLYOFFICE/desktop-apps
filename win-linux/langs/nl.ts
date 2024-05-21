@@ -849,17 +849,17 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="981"/>
         <source>To finish updating, restart the app</source>
-        <translation>Wilt u update nu downloaden?</translation>
+        <translation>Start de app opnieuw op om het bijwerken af te ronden</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="946"/>
         <source>Would you like to download update now?</source>
-        <translation>Update is klaar om te installeren</translation>
+        <translation>Wilt u update nu downloaden?</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="978"/>
         <source>Update is ready to install</source>
-        <translation>Wilt u de app nu opnieuw starten?</translation>
+        <translation>Update is klaar om te installeren</translation>
     </message>
 </context>
 <context>

@@ -873,17 +873,17 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="981"/>
         <source>To finish updating, restart the app</source>
-        <translation>Möchten Sie das Update jetzt herunterladen?</translation>
+        <translation>Um die Aktualisierung zu beenden, starten Sie die App neu</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="946"/>
         <source>Would you like to download update now?</source>
-        <translation>Update ist bereit zur Installation</translation>
+        <translation>Möchten Sie das Update jetzt herunterladen?</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="978"/>
         <source>Update is ready to install</source>
-        <translation>Möchten Sie die Anwendung jetzt neu starten?</translation>
+        <translation>Update ist bereit zur Installation</translation>
     </message>
     <message>
         <source>A new version of %1 is available!</source>

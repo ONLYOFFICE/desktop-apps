@@ -214,12 +214,12 @@
     <message>
         <location filename="../src/windows/ceditorwindow_p.h" line="554"/>
         <source>There are no printers available</source>
-        <translation type="unfinished"></translation>
+        <translation>Det er ingen tilgjengelige skrivere</translation>
     </message>
     <message>
         <location filename="../src/windows/ceditorwindow_p.h" line="669"/>
         <source>There are no pages set to print.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ingen sider er sendt til utskrift.</translation>
     </message>
 </context>
 <context>
@@ -326,7 +326,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="87"/>
         <source>Macro-enabled Presentation File (*.pptm)</source>
-        <translation type="unfinished"></translation>
+        <translation>Makroaktivert PowerPoint-presentasjon (*.pptm)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="89"/>
@@ -364,7 +364,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="78"/>
         <source>ONLYOFFICE Form Document (*.pdf)</source>
-        <translation type="unfinished"></translation>
+        <translation>ONLYOFFICE skjemadokument (*.pdf)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="85"/>
@@ -414,12 +414,12 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="102"/>
         <source>SVG Image (*.svg)</source>
-        <translation type="unfinished"></translation>
+        <translation>SVG-bilde (*.svg)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="104"/>
         <source>JPG Image (*.jpg *.jpeg)</source>
-        <translation type="unfinished"></translation>
+        <translation>JPG-bilde (*.jpg *.jpeg)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="105"/>
@@ -493,7 +493,7 @@
         <location filename="../src/components/cfiledialog.cpp" line="255"/>
         <location filename="../src/components/cfiledialog.cpp" line="370"/>
         <source>All supported files</source>
-        <translation type="unfinished"></translation>
+        <translation>Alle støttede filer</translation>
     </message>
     <message>
         <location filename="../src/ceditortools.cpp" line="212"/>
@@ -516,7 +516,7 @@
     <message>
         <location filename="../src/ceditortools.cpp" line="238"/>
         <source>Theme file</source>
-        <translation type="unfinished"></translation>
+        <translation>Temafil</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="270"/>
@@ -554,7 +554,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="409"/>
         <source>Select Folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Velg mappe</translation>
     </message>
 </context>
 <context>
@@ -562,12 +562,12 @@
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="265"/>
         <source>More than one document is open.&lt;br&gt;Close the window anyway?</source>
-        <translation type="unfinished"></translation>
+        <translation>Mer enn ett dokument er åpent.&lt;br&gt;Vil du lukke vinduet likevel?</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="267"/>
         <source>Don&apos;t ask again.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ikke spør igjen.</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="783"/>
@@ -593,7 +593,7 @@
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="1122"/>
         <source>There are no printers available</source>
-        <translation type="unfinished"></translation>
+        <translation>Det er ingen tilgjengelige skrivere</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="1182"/>
@@ -603,7 +603,7 @@
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="1248"/>
         <source>There are no pages set to print.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ingen sider er sendt til utskrift.</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="1384"/>
@@ -675,42 +675,42 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="109"/>
         <source>Check for updates</source>
-        <translation type="unfinished"></translation>
+        <translation>Se etter oppdateringer</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="101"/>
         <source>Unable to check update: URL not defined.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kan ikke sjekke oppdateringer: URL er ikke definert.</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="99"/>
         <source>To finish updating, restart app</source>
-        <translation type="unfinished"></translation>
+        <translation>Start appen på nytt for å fullføre oppdateringen</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="111"/>
         <source>Restart</source>
-        <translation type="unfinished"></translation>
+        <translation>Start på nytt</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="94"/>
         <source>Checking for updates...</source>
-        <translation type="unfinished"></translation>
+        <translation>Ser etter oppdateringer...</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="100"/>
         <source>Updates are not allowed!</source>
-        <translation type="unfinished"></translation>
+        <translation>Oppdateringer er ikke tillatt!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="501"/>
         <source>This folder configuration does not allow for updates! The folder name should be: </source>
-        <translation type="unfinished"></translation>
+        <translation>Denne mappekonfigurasjonen tillater ikke oppdateringer! Mappenavnet skal være: </translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="96"/>
         <source>Downloading new version %1 (%2%)</source>
-        <translation type="unfinished"></translation>
+        <translation>Laster ned ny versjon %1 (%2%)</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="112"/>
@@ -720,72 +720,72 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="102"/>
         <source>An error occurred while loading updates: package Url is empty!</source>
-        <translation type="unfinished"></translation>
+        <translation>Det oppstod en feil under lasting av oppdateringer: pakkens URL er tom!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="107"/>
         <source>Update package error: md5 sum does not match the original.</source>
-        <translation type="unfinished"></translation>
+        <translation>Oppdateringspakkefeil: md5 sum samsvarer ikke med originalen.</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="97"/>
         <source>Preparing update...</source>
-        <translation type="unfinished"></translation>
+        <translation>Forbereder oppdatering...</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="95"/>
         <source>Update is available (version %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Oppdatering er tilgjengelig (versjon %1)</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="110"/>
         <source>Download update</source>
-        <translation type="unfinished"></translation>
+        <translation>Last ned oppdatering</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="93"/>
         <source>Current version is up to date</source>
-        <translation type="unfinished"></translation>
+        <translation>Nåværende versjon er oppdatert</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="84"/>
         <source>An error occured while unpacking the archive</source>
-        <translation type="unfinished"></translation>
+        <translation>Det oppstod en feil under utpakking av arkivet</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="85"/>
         <source>Update download failed: out of memory!</source>
-        <translation type="unfinished"></translation>
+        <translation>Nedlasting av oppdateringer mislyktes: tom for minne!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="86"/>
         <source>Update download failed: server connection error!</source>
-        <translation type="unfinished"></translation>
+        <translation>Nedlasting av oppdateringer mislyktes: servertilkoblingsfeil!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="87"/>
         <source>Update download failed: wrong URL!</source>
-        <translation type="unfinished"></translation>
+        <translation>Nedlasting av oppdateringer mislyktes: feil URL!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="88"/>
         <source>Update download failed: unable to create file!</source>
-        <translation type="unfinished"></translation>
+        <translation>Nedlasting av oppdateringer mislyktes: kan ikke opprette fil!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="89"/>
         <source>Update download failed: network error!</source>
-        <translation type="unfinished"></translation>
+        <translation>Nedlasting av oppdateringer mislyktes: nettverksfeil!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="90"/>
         <source>A service error has occurred!</source>
-        <translation type="unfinished"></translation>
+        <translation>Det har oppstått en servicefeil!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="92"/>
         <source>Last check performed %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Siste sjekk ble utført %1</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="98"/>
@@ -795,22 +795,22 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="103"/>
         <source>An error occurred while check updates: the Update Service is not installed or is not running!</source>
-        <translation type="unfinished"></translation>
+        <translation>Det oppstod en feil under sjekk av oppdateringer: oppdateringstjenesten er ikke installert eller kjører ikke!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="104"/>
         <source>An error occurred while loading updates: the Update Service is not installed or is not running!</source>
-        <translation type="unfinished"></translation>
+        <translation>Det oppstod en feil under lasting av oppdateringer: oppdateringstjenesten er ikke installert eller kjører ikke!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="105"/>
         <source>An error occurred while unzip updates: the Update Service is not installed or is not running!</source>
-        <translation type="unfinished"></translation>
+        <translation>Det oppstod en feil under utpakking av oppdateringer: oppdateringstjenesten er ikke installert eller kjører ikke!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="106"/>
         <source>Error opening JSON file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Feil ved åpning av JSON-fil.</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="947"/>
@@ -820,34 +820,34 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="949"/>
         <source>Update is available</source>
-        <translation type="unfinished"></translation>
+        <translation>Oppdatering er tilgjengelig</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="950"/>
         <location filename="../src/cupdatemanager.cpp" line="979"/>
         <source>Current version</source>
-        <translation type="unfinished"></translation>
+        <translation>Nåværende versjon</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="951"/>
         <location filename="../src/cupdatemanager.cpp" line="980"/>
         <source>New version</source>
-        <translation type="unfinished"></translation>
+        <translation>Ny versjon</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="981"/>
         <source>To finish updating, restart the app</source>
-        <translation type="unfinished"></translation>
+        <translation>Start appen på nytt for å fullføre oppdateringen</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="946"/>
         <source>Would you like to download update now?</source>
-        <translation type="unfinished"></translation>
+        <translation>Vil du laste ned oppdateringen nå?</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="978"/>
         <source>Update is ready to install</source>
-        <translation type="unfinished"></translation>
+        <translation>Oppdateringen er klar til å installeres</translation>
     </message>
 </context>
 <context>
@@ -966,27 +966,27 @@
     <message>
         <location filename="../src/defines.h" line="133"/>
         <source>Skip</source>
-        <translation type="unfinished"></translation>
+        <translation>Hopp over</translation>
     </message>
     <message>
         <location filename="../src/defines.h" line="134"/>
         <source>Buy Now</source>
-        <translation type="unfinished"></translation>
+        <translation>Kjøp nå</translation>
     </message>
     <message>
         <location filename="../src/defines.h" line="135"/>
         <source>Activate</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktiver</translation>
     </message>
     <message>
         <location filename="../src/defines.h" line="136"/>
         <source>Continue</source>
-        <translation type="unfinished"></translation>
+        <translation>Fortsett</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/xdgdesktopportal.cpp" line="1221"/>
         <source>An error occurred while opening the portal:&lt;br&gt;%1</source>
-        <translation type="unfinished"></translation>
+        <translation>Det oppstod en feil under åpning av portalen:&lt;br&gt;%1</translation>
     </message>
     <message>
         <source>&amp;OK</source>
@@ -995,38 +995,38 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="347"/>
         <source>File %1 is already loaded. Replace it?</source>
-        <translation type="unfinished"></translation>
+        <translation>Filen %1 er allerede lastet. Erstatt den?</translation>
     </message>
     <message>
         <location filename="../src/components/cdownloadwidget.cpp" line="124"/>
         <source>B</source>
-        <translation type="unfinished"></translation>
+        <translation>B</translation>
     </message>
     <message>
         <location filename="../src/components/cdownloadwidget.cpp" line="127"/>
         <source>kB</source>
-        <translation type="unfinished"></translation>
+        <translation>kB</translation>
     </message>
     <message>
         <location filename="../src/components/cdownloadwidget.cpp" line="129"/>
         <source>MB</source>
-        <translation type="unfinished"></translation>
+        <translation>MB</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/gtkprintdialog.cpp" line="547"/>
         <source>The syntaxis for the page range is invalid.&lt;br&gt;Enter one or more page ranges, for example: 1-3,7,11.</source>
-        <translation type="unfinished"></translation>
+        <translation>Syntaksen for sideområdet er ugyldig.&lt;br&gt;Skriv inn ett eller flere sideintervaller, for eksempel: 1-3,7,11.</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/gtkprintdialog.cpp" line="587"/>
         <location filename="../src/platform_win/printdialog.cpp" line="527"/>
         <source>Specified range %1-%2 exceeds document limits: maximum number of pages is %3</source>
-        <translation type="unfinished"></translation>
+        <translation>Det spesifiserte intervallet %1-%2 overskrider dokumentgrensene: maksimalt antall sider er %3</translation>
     </message>
     <message>
         <location filename="../src/platform_win/printdialog.cpp" line="485"/>
         <source>Unable to open print dialog:&lt;br&gt;%1</source>
-        <translation type="unfinished"></translation>
+        <translation>Kan ikke åpne utskriftsdialogen:&lt;br&gt;%1</translation>
     </message>
 </context>
 <context>

@@ -98,6 +98,7 @@ l10n.da = {
     updateNoUpdates: 'Appen er opdateret',
     updateAvialable: 'Version $1 er tilgængelig. Klik for at downloade.',
     settOptThemeSystem: 'Samme som system',
+    settOptThemeAddLocal: 'Tilføj lokalt tema',
     settOptThemeContrastDark: 'Kontrast Mørk',
     settAUpdateMode: 'Autoopdateringstilstand',
     settOptAUpdateSilent: 'Automatisk',
@@ -109,4 +110,6 @@ l10n.da = {
     settOptDescDisabled: 'Automatisk kontrol af opdateringer vil deaktiveres',
     settOptDescAUpdateSilent: 'Download opdateringer og anmod før installation',
     settOptDescAUpdateAsk: 'Du vil blive underrettet om alle opdateringstrin',
+    settRtlMode: "RTL-interface",
+    settGpuUseMode: "Benyt grafikacceleration når det er muligt",
 }

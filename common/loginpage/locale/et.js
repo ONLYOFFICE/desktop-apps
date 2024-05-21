@@ -98,6 +98,7 @@ l10n.et = {
     updateNoUpdates: 'Rakendus on ajakohane',
     updateAvialable: 'Versioon $1 on saadaval. Allalaadimiseks kliki siia.',
     settOptThemeSystem: 'Süsteemiga sama',
+    settOptThemeAddLocal: 'Lisage kohalik teema',
     settOptThemeContrastDark: 'Kontrastne tume',
     settAUpdateMode: 'Automaatsete uuenduste režiim',
     settOptAUpdateSilent: 'Automaatne',
@@ -109,4 +110,6 @@ l10n.et = {
     settOptDescDisabled: "Automaatne uuenduste kontrollimine keelatakse",
     settOptDescAUpdateSilent: "Uuenduste allalaadimine ja küsimine enne paigaldamist",
     settOptDescAUpdateAsk: "Teid teavitatakse kõikidest uuenduste sammudest",
+    settRtlMode: "RTL liides",
+    settGpuUseMode: "Kasutage võimalusel graafikakiirendust",
 }
