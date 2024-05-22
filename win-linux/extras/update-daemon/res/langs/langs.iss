@@ -36,6 +36,7 @@ et.CAPTION_TEXT =ONLYOFFICE värskendusteenus
 lt.CAPTION_TEXT =ONLYOFFICE atnaujinimo paslauga
 hr.CAPTION_TEXT =Usluga ažuriranja ONLYOFFICE
 hi.CAPTION_TEXT =ओनलीऑफिस अपडेट सेवा
+sv.CAPTION_TEXT =ONLYOFFICE uppdateringstjänst
 
 en.MESSAGE_TEXT_ERR1 =An error occurred:
 ru.MESSAGE_TEXT_ERR1 =Произошла ошибка:
@@ -74,6 +75,7 @@ et.MESSAGE_TEXT_ERR1 =Tekkis viga:
 lt.MESSAGE_TEXT_ERR1 =Įvyko klaida:
 hr.MESSAGE_TEXT_ERR1 =Došlo je do pogreške:
 hi.MESSAGE_TEXT_ERR1 =एक त्रुटि उत्पन्न हुई:
+sv.MESSAGE_TEXT_ERR1 =Ett fel inträffade:
 
 en.MESSAGE_TEXT_ERR2 =An error occurred while deleting:
 ru.MESSAGE_TEXT_ERR2 =Произошла ошибка при удалении:
@@ -112,6 +114,7 @@ et.MESSAGE_TEXT_ERR2 =Kustutamisel tekkis viga:
 lt.MESSAGE_TEXT_ERR2 =Trinant, įvyko klaida:
 hr.MESSAGE_TEXT_ERR2 =Došlo je do pogreške prilikom brisanja:
 hi.MESSAGE_TEXT_ERR2 =मिटाते समय एक त्रुटि उत्पन्न हुई:
+sv.MESSAGE_TEXT_ERR2 =Ett fel inträffade vid borttagning av:
 
 en.MESSAGE_TEXT_ERR3 =An error occurred while creating:
 ru.MESSAGE_TEXT_ERR3 =Произошла ошибка при создании:
@@ -150,6 +153,7 @@ et.MESSAGE_TEXT_ERR3 =Loomisel tekkis viga:
 lt.MESSAGE_TEXT_ERR3 =Kuriant, įvyko klaida:
 hr.MESSAGE_TEXT_ERR3 =Došlo je do pogreške prilikom stvaranja:
 hi.MESSAGE_TEXT_ERR3 =बनाते समय एक त्रुटि उत्पन्न हुई:
+sv.MESSAGE_TEXT_ERR3 =Ett fel inträffade vid skapande av:
 
 en.MESSAGE_TEXT_ERR4 =An error occurred while restarting the service!
 ru.MESSAGE_TEXT_ERR4 =Произошла ошибка при перезапуске сервиса!
@@ -188,6 +192,7 @@ et.MESSAGE_TEXT_ERR4 =Teenuse taaskäivitamisel tekkis viga!
 lt.MESSAGE_TEXT_ERR4 =Iš naujo paleidžiant paslaugą, įvyko klaida!
 hr.MESSAGE_TEXT_ERR4 =Došlo je do pogreške prilikom ponovnog pokretanja usluge!
 hi.MESSAGE_TEXT_ERR4 =सेवा को रीस्टार्ट करते समय एक त्रुटि उत्पन्न हुई!
+sv.MESSAGE_TEXT_ERR4 =Ett fel inträffade vid omstart av tjänsten!
 
 en.MESSAGE_TEXT_ERR5 =Update cancelled. Can't find folder:
 ru.MESSAGE_TEXT_ERR5 =Обновление отменено. Не удалось найти папку:
@@ -226,6 +231,7 @@ et.MESSAGE_TEXT_ERR5 =Uuendamine tühistati. Ei leia kausta:
 lt.MESSAGE_TEXT_ERR5 =Atnaujinimas atšauktas. Nepavyko rasti aplanko:
 hr.MESSAGE_TEXT_ERR5 =Ažuriranje je otkazano. Nije moguće pronaći mapu:
 hi.MESSAGE_TEXT_ERR5 =अपडेट रद्द किया गया। फ़ोल्डर नहीं मिल सका:
+sv.MESSAGE_TEXT_ERR5 =Uppdatering avbruten. Kan inte hitta mapp:
 
 en.MESSAGE_TEXT_ERR6 =Update cancelled. The file signature is missing:
 ru.MESSAGE_TEXT_ERR6 =Обновление отменено. Отсутствует подпись файла:
@@ -264,6 +270,7 @@ et.MESSAGE_TEXT_ERR6 =Uuendamine tühistatud. Faili allkiri puudub:
 lt.MESSAGE_TEXT_ERR6 =Atnaujinimas atšauktas. Trūksta failo parašo:
 hr.MESSAGE_TEXT_ERR6 =Ažuriranje je otkazano. Nedostaje potpis datoteke:
 hi.MESSAGE_TEXT_ERR6 =अपडेट रद्द किया गया। फाइल हस्ताक्षर गुम है:
+sv.MESSAGE_TEXT_ERR6 =Uppdatering avbruten. Filsignaturen saknas:
 
 en.MESSAGE_TEXT_ERR7 =Update cancelled. Can't delete folder:
 ru.MESSAGE_TEXT_ERR7 =Обновление отменено. Не удалось удалить папку:
@@ -302,6 +309,7 @@ et.MESSAGE_TEXT_ERR7 =Uuendus tühistatud. Ei saa kausta kustutada:
 lt.MESSAGE_TEXT_ERR7 =Atnaujinimas atšauktas. Nepavyksta ištrinti aplanko:
 hr.MESSAGE_TEXT_ERR7 =Ažuriranje je otkazano. Nije moguće izbrisati mapu:
 hi.MESSAGE_TEXT_ERR7 =अपडेट रद्द किया गया। फोल्डर मिटाया नहीं जा सकता:
+sv.MESSAGE_TEXT_ERR7 =Uppdatering avbruten. Kan inte ta bort mapp:
 
 en.MESSAGE_TEXT_ERR8 =Update cancelled. The program is not closed:
 ru.MESSAGE_TEXT_ERR8 =Обновление отменено. Приложение не закрыто:
@@ -340,6 +348,7 @@ et.MESSAGE_TEXT_ERR8 =Uuendus tühistatud. Programm ei ole suletud:
 lt.MESSAGE_TEXT_ERR8 =Atnaujinimas atšauktas. Programa neuždaryta:
 hr.MESSAGE_TEXT_ERR8 =Ažuriranje je otkazano. Program nije zatvoren:
 hi.MESSAGE_TEXT_ERR8 =अपडेट रद्द किया गया। प्रोग्राम बंद नहीं हुआ है:
+sv.MESSAGE_TEXT_ERR8 =Uppdatering avbruten. Programmet är inte stängt:
 
 en.MESSAGE_TEXT_ERR9 =Update cancelled. Can't create folder:
 ru.MESSAGE_TEXT_ERR9 =Обновление отменено. Не удалось создать папку:
@@ -378,6 +387,7 @@ et.MESSAGE_TEXT_ERR9 =Uuendus tühistatud. Ei saa luua kausta:
 lt.MESSAGE_TEXT_ERR9 =Atnaujinimas atšauktas. Nepavyko sukurti aplanko:
 hr.MESSAGE_TEXT_ERR9 =Ažuriranje je otkazano. Nije moguće stvoriti mapu:
 hi.MESSAGE_TEXT_ERR9 =अपडेट रद्द किया गया। फोल्डर नहीं बनाया जा सकता:
+sv.MESSAGE_TEXT_ERR9 =Uppdatering avbruten. Kan inte skapa mapp:
 
 en.MESSAGE_TEXT_ERR10 =Update cancelled. Can't replace files to backup:
 ru.MESSAGE_TEXT_ERR10 =Обновление отменено. Не удалось переместить файлы в резервную копию:
@@ -416,6 +426,7 @@ et.MESSAGE_TEXT_ERR10 =Uuendus tühistatud. Ei saa asendada faile varukoopiaga:
 lt.MESSAGE_TEXT_ERR10 =Atnaujinimas atšauktas. Nepavyksta pakeisti failų į atsarginę kopiją:
 hr.MESSAGE_TEXT_ERR10 =Ažuriranje je otkazano. Nije moguće zamijeniti datoteke za sigurnosno kopiranje:
 hi.MESSAGE_TEXT_ERR10 =अपडेट रद्द किया गया। फाइलों को बैकअप में रिप्लेस (प्रतिस्थापित) नहीं किया जा सकता:
+sv.MESSAGE_TEXT_ERR10 =Uppdatering avbruten. Kan inte ersätta filer för säkerhetskopia:
 
 en.MESSAGE_TEXT_ERR11 =Can't restore files from backup!
 ru.MESSAGE_TEXT_ERR11 =Не удалось восстановить файлы из резервной копии!
@@ -454,6 +465,7 @@ et.MESSAGE_TEXT_ERR11 =Ei saa faile varukoopiast taastada!
 lt.MESSAGE_TEXT_ERR11 =Nepavyko atkurti failų iš atsarginės kopijos!
 hr.MESSAGE_TEXT_ERR11 =Nije moguće vratiti datoteke iz sigurnosne kopije!
 hi.MESSAGE_TEXT_ERR11 =बैकअप से फ़ाइलों को रिस्टोर (पुनर्स्थापित) नहीं कर सकते!
+sv.MESSAGE_TEXT_ERR11 =Kan inte återställa filer från säkerhetskopia!
 
 en.MESSAGE_TEXT_ERR12 =Update cancelled. Can't move updates to App path:
 ru.MESSAGE_TEXT_ERR12 =Обновление отменено. Не удалось переместить обновления в папку приложения:
@@ -492,6 +504,7 @@ et.MESSAGE_TEXT_ERR12 =Uuendus tühistatud. Ei saa värskendusi App path'i viia:
 lt.MESSAGE_TEXT_ERR12 =Atnaujinimas atšauktas. Negalima perkelti naujinimų į programos kelią:
 hr.MESSAGE_TEXT_ERR12 =Ažuriranje je otkazano. Nije moguće premjestiti ažuriranja na put aplikacije:
 hi.MESSAGE_TEXT_ERR12 =अपडेट रद्द किया गया। अपडेट को ऐप पाथ पर नहीं ले जाया जा सकता:
+sv.MESSAGE_TEXT_ERR12 =Uppdatering avbruten. Kan inte flytta uppdateringar till applikationens sökväg:
 
 en.MESSAGE_TEXT_ERR13 =An error occurred while remove App path:
 ru.MESSAGE_TEXT_ERR13 =Произошла ошибка при удалении папки приложения:
@@ -530,6 +543,7 @@ et.MESSAGE_TEXT_ERR13 =App path eemaldamisel tekkis viga:
 lt.MESSAGE_TEXT_ERR13 =Pašalinant programos kelią, įvyko klaida:
 hr.MESSAGE_TEXT_ERR13 =Došlo je do pogreške prilikom uklanjanja puta aplikacije:
 hi.MESSAGE_TEXT_ERR13 =ऐप पाथ हटाते समय एक त्रुटि उत्पन्न हुई:
+sv.MESSAGE_TEXT_ERR13 =Ett fel inträffade vid borttagning av applikationens sökväg:
 
 en.MESSAGE_TEXT_ERR14 =An error occurred while restore files from backup:
 ru.MESSAGE_TEXT_ERR14 =Произошла ошибка при восстановлении файлов из резервной копии:
@@ -568,6 +582,7 @@ et.MESSAGE_TEXT_ERR14 =Failide taastamisel varukoopiast tekkis viga:
 lt.MESSAGE_TEXT_ERR14 =Atkuriant failus iš atsarginės kopijos, įvyko klaida:
 hr.MESSAGE_TEXT_ERR14 =Došlo je do pogreške prilikom vraćanja datoteka iz sigurnosne kopije:
 hi.MESSAGE_TEXT_ERR14 =बैकअप से फाइलों को रिस्टोर (पुनर्स्थापित) करते समय एक त्रुटि उत्पन्न हुई:
+sv.MESSAGE_TEXT_ERR14 =Ett fel inträffade vid återställning av filer från säkerhetskopia:
 
 en.MESSAGE_TEXT_ERR15 =An error occurred while restarting the program!
 ru.MESSAGE_TEXT_ERR15 =Произошла ошибка при перезапуске приложения!
@@ -606,6 +621,7 @@ et.MESSAGE_TEXT_ERR15 =Programmi taaskäivitamisel tekkis viga!
 lt.MESSAGE_TEXT_ERR15 =Iš naujo paleidžiant programą, įvyko klaida!
 hr.MESSAGE_TEXT_ERR15 =Došlo je do pogreške prilikom ponovnog pokretanja programa!
 hi.MESSAGE_TEXT_ERR15 =प्रोग्राम को रीस्टार्ट करते समय एक त्रुटि उत्पन्न हुई!
+sv.MESSAGE_TEXT_ERR15 =Ett fel inträffade vid omstart av programmet!
 
 en.MESSAGE_TEXT_ERR16 =SDL init error:
 ru.MESSAGE_TEXT_ERR16 =Ошибка инициализации SDL:
@@ -644,6 +660,7 @@ et.MESSAGE_TEXT_ERR16 =SDLi käivitamisviga:
 lt.MESSAGE_TEXT_ERR16 =SDL inicijavimo klaida:
 hr.MESSAGE_TEXT_ERR16 =Pogreška pri pokretanju SDL-a:
 hi.MESSAGE_TEXT_ERR16 =एसडीएल इनइट त्रुटि:
+sv.MESSAGE_TEXT_ERR16 =SDL-initieringsfel:
 
 en.MESSAGE_TEXT_ERR17 =ServiceCtrlDispatcher returned error:
 ru.MESSAGE_TEXT_ERR17 =ServiceCtrlDispatcher вернул ошибку:
@@ -682,3 +699,4 @@ et.MESSAGE_TEXT_ERR17 =ServiceCtrlDispatcher tagastas vea:
 lt.MESSAGE_TEXT_ERR17 =ServiceCtrlDispatcher išmetė klaidą:
 hr.MESSAGE_TEXT_ERR17 =ServiceCtrlDispatcher naišao je na pogrešku:
 hi.MESSAGE_TEXT_ERR17 =सर्विसकंट्रोलडिसपैचर ने त्रुटि दी:
+sv.MESSAGE_TEXT_ERR17 =ServiceCtrlDispatcher returnerade fel:
