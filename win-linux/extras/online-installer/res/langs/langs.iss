@@ -37,6 +37,7 @@ et.CAPTION_TEXT =ONLYOFFICE veebipaigaldus
 lt.CAPTION_TEXT =ONLYOFFICE diegimas internetu
 hr.CAPTION_TEXT =Mrežni instalacijski program ONLYOFFICE
 hi.CAPTION_TEXT =ओनलीऑफिस ऑनलाइन इंस्टॉलर
+sv.CAPTION_TEXT =ONLYOFFICE onlineinstallationsprogram
 
 en.MESSAGE_TEXT_ERR1 =The application cannot continue because this architecture is not supported.
 ru.MESSAGE_TEXT_ERR1 =Приложение не может продолжить работу, так как эта архитектура не поддерживается.
@@ -76,6 +77,7 @@ et.MESSAGE_TEXT_ERR1 =Rakendusega ei saa jätkata, sest seda arhitektuuri ei toe
 lt.MESSAGE_TEXT_ERR1 =Programa negali būti tęsiama, nes ši architektūra nepalaikoma.
 hr.MESSAGE_TEXT_ERR1 =Aplikacija ne može nastaviti jer ova arhitektura nije podržana.
 hi.MESSAGE_TEXT_ERR1 =यह एप्लिकेशन जारी नहीं रह सकती क्योंकि यह आर्किटेक्चर समर्थित नहीं है।
+sv.MESSAGE_TEXT_ERR1 =Applikationen kan inte fortsätta eftersom denna arkitektur inte stöds.
 
 en.MESSAGE_TEXT_ERR2 =The application is already running.
 ru.MESSAGE_TEXT_ERR2 =Приложение уже запущено.
@@ -115,6 +117,7 @@ et.MESSAGE_TEXT_ERR2 =Rakendus juba töötab.
 lt.MESSAGE_TEXT_ERR2 =Programa jau paleista.
 hr.MESSAGE_TEXT_ERR2 =Aplikacija je već pokrenuta.
 hi.MESSAGE_TEXT_ERR2 =एप्लीकेशन पहले से ही चल रही है।
+sv.MESSAGE_TEXT_ERR2 =Applikationen körs redan.
 
 en.LABEL_TITLE_TEXT =Preparing for installation
 ru.LABEL_TITLE_TEXT =Подготовка к установке
@@ -154,6 +157,7 @@ et.LABEL_TITLE_TEXT =Ettevalmistus paigaldamiseks
 lt.LABEL_TITLE_TEXT =Pasiruošimas diegimui
 hr.LABEL_TITLE_TEXT =Priprema za instalaciju
 hi.LABEL_TITLE_TEXT =इंस्टॉलेशन की तैयारी कर रहे हैं
+sv.LABEL_TITLE_TEXT =Förbereder för installation
 
 en.LABEL_MESSAGE_TEXT =Downloading a package
 ru.LABEL_MESSAGE_TEXT =Загрузка пакета
@@ -194,6 +198,7 @@ et.LABEL_MESSAGE_TEXT =Paketi allalaadimine
 lt.LABEL_MESSAGE_TEXT =Atsisiunčiamas paketas
 hr.LABEL_MESSAGE_TEXT =Preuzimanje paketa
 hi.LABEL_MESSAGE_TEXT =एक पैकेज डाउनलोड कर रहे हैं
+sv.LABEL_MESSAGE_TEXT =Laddar ner ett paket
 
 en.LABEL_MESSAGE_TEXT_ERR1 =An error occurred during initialization.\nPlease try restarting the app later.
 ru.LABEL_MESSAGE_TEXT_ERR1 =Произошла ошибка при инициализации.\nПопробуйте перезапустить приложение позже.
@@ -233,6 +238,7 @@ et.LABEL_MESSAGE_TEXT_ERR1 =Käivitamisel tekkis viga.\nPalun proovige rakendust
 lt.LABEL_MESSAGE_TEXT_ERR1 =Inicijuojant įvyko klaida.\nPabandykite kiek vėliau iš naujo paleisti programą.
 hr.LABEL_MESSAGE_TEXT_ERR1 =Došlo je do pogreške tijekom inicijalizacije.\nPokušajte ponovno pokrenuti aplikaciju kasnije.
 hi.LABEL_MESSAGE_TEXT_ERR1 =इनिशियलाइज़ेशन (आरंभीकरण) के दौरान एक त्रुटि उत्पन्न हुई।\nकृपया बाद में ऐप को रीस्टार्ट करने का प्रयास करें।
+sv.LABEL_MESSAGE_TEXT_ERR1 =Ett fel inträffade under initiering.\nFörsök starta om appen senare.
 
 en.LABEL_MESSAGE_TEXT_ERR2 =Package download failed: Not enough memory!\nPlease try restarting the app later.
 ru.LABEL_MESSAGE_TEXT_ERR2 =Ошибка при загрузке пакета: Недостаточно памяти!\nПопробуйте перезапустить приложение позже.
@@ -272,6 +278,7 @@ et.LABEL_MESSAGE_TEXT_ERR2 =Paketi allalaadimine ebaõnnestus: puudub piisav mä
 lt.LABEL_MESSAGE_TEXT_ERR2 =Nepavyko atsisiųsti paketo: nepakanka atminties!\nPabandykite kiek vėliau iš naujo paleisti programą.
 hr.LABEL_MESSAGE_TEXT_ERR2 =Preuzimanje paketa nije uspjelo: Nema dovoljno memorije!\nPokušajte ponovno pokrenuti aplikaciju kasnije.
 hi.LABEL_MESSAGE_TEXT_ERR2 =पैकेज डाउनलोड विफल रहा: पर्याप्त मेमोरी नहीं है!\nकृपया बाद में ऐप को रीस्टार्ट करने का प्रयास करें।
+sv.LABEL_MESSAGE_TEXT_ERR2 =Nedladdning av paketet misslyckades: Inte tillräckligt med minne!\nFörsök starta om appen senare.
 
 en.LABEL_MESSAGE_TEXT_ERR3 =Package download failed: Server connection error!\nPlease try restarting the app later.
 ru.LABEL_MESSAGE_TEXT_ERR3 =Ошибка при загрузке пакета: Ошибка соединения!\nПопробуйте перезапустить приложение позже.
@@ -311,6 +318,7 @@ et.LABEL_MESSAGE_TEXT_ERR3 =Paketi allalaadimine ebaõnnestus: serveri ühenduse
 lt.LABEL_MESSAGE_TEXT_ERR3 =Nepavyko atsisiųsti paketo: serverio ryšio klaida!\nPabandykite kiek vėliau iš naujo paleisti programą.
 hr.LABEL_MESSAGE_TEXT_ERR3 =Preuzimanje paketa nije uspjelo: Pogreška veze s poslužiteljem!\nPokušajte ponovno pokrenuti aplikaciju kasnije.
 hi.LABEL_MESSAGE_TEXT_ERR3 =पैकेज डाउनलोड विफल रहा: सर्वर कनेक्शन त्रुटि!\nकृपया बाद में ऐप को रीस्टार्ट करने का प्रयास करें।
+sv.LABEL_MESSAGE_TEXT_ERR3 =Nedladdning av paketet misslyckades: Serveranslutningsfel!\nFörsök starta om appen senare.
 
 en.LABEL_MESSAGE_TEXT_ERR4 =Package download failed: Network error!\nPlease try restarting the app later.
 ru.LABEL_MESSAGE_TEXT_ERR4 =Ошибка при загрузке пакета: Ошибка сети!\nПопробуйте перезапустить приложение позже.
@@ -350,6 +358,7 @@ et.LABEL_MESSAGE_TEXT_ERR4 =Paketi allalaadimine ebaõnnestus: võrguviga!\nPalu
 lt.LABEL_MESSAGE_TEXT_ERR4 =Nepavyko atsisiųsti paketo: tinklo klaida!\nPabandykite kiek vėliau iš naujo paleisti programą.
 hr.LABEL_MESSAGE_TEXT_ERR4 =Preuzimanje paketa nije uspjelo: Pogreška mreže!\nPokušajte ponovno pokrenuti aplikaciju kasnije.
 hi.LABEL_MESSAGE_TEXT_ERR4 =पैकेज डाउनलोड विफल रहा: नेटवर्क त्रुटि!\nकृपया बाद में ऐप को रीस्टार्ट करने का प्रयास करें।
+sv.LABEL_MESSAGE_TEXT_ERR4 =Nedladdning av paketet misslyckades: Nätverksfel!\nFörsök starta om appen senare.
 
 en.LABEL_MESSAGE_TEXT_ERR5 =An error occurred while running the package.\nPlease try restarting the app later.
 ru.LABEL_MESSAGE_TEXT_ERR5 =Произошла ошибка при запуске установщика.\nПопробуйте перезапустить приложение позже.
@@ -389,6 +398,7 @@ et.LABEL_MESSAGE_TEXT_ERR5 =Paketi käivitamisel tekkis viga.\nPalun proovige ra
 lt.LABEL_MESSAGE_TEXT_ERR5 =Paleidus paketą, įvyko klaida.\nPabandykite kiek vėliau iš naujo paleisti programą.
 hr.LABEL_MESSAGE_TEXT_ERR5 =Došlo je do pogreške prilikom pokretanja paketa.\nPokušajte ponovno pokrenuti aplikaciju kasnije.
 hi.LABEL_MESSAGE_TEXT_ERR5 =पैकेज चलाने के दौरान एक त्रुटि उत्पन्न हुई।\nकृपया बाद में ऐप को रीस्टार्ट करने का प्रयास करें।
+sv.LABEL_MESSAGE_TEXT_ERR5 =Ett fel inträffade vid körning av paketet.\nFörsök starta om appen senare.
 
 en.LABEL_MESSAGE_TEXT_ERR6 =An error occurred during initialization: URL not set.
 ru.LABEL_MESSAGE_TEXT_ERR6 =Произошла ошибка при инициализации: Не задан URL.
@@ -428,6 +438,7 @@ et.LABEL_MESSAGE_TEXT_ERR6 =Käivitamisel tekkis viga: URL ei ole määratud.
 lt.LABEL_MESSAGE_TEXT_ERR6 =Inicijuojant įvyko klaida: URL nenustatytas.
 hr.LABEL_MESSAGE_TEXT_ERR6 =Došlo je do pogreške prilikom inicijalizacije: URL nije postavljen.
 hi.LABEL_MESSAGE_TEXT_ERR6 =इनिशियलाइज़ेशन (आरंभीकरण) के दौरान एक त्रुटि उत्पन्न हुई: यूआरएल सेट नहीं है।
+sv.LABEL_MESSAGE_TEXT_ERR6 =Ett fel inträffade under initiering: URL inte angiven.
 
 en.LABEL_MESSAGE_TEXT_ERR7 =An error occurred during initialization: File name not specified.
 ru.LABEL_MESSAGE_TEXT_ERR7 =Произошла ошибка при инициализации: Не задано имя файла.
@@ -467,6 +478,7 @@ et.LABEL_MESSAGE_TEXT_ERR7 =Käivitamisel ajal tekkis viga: faili nimi ei ole m�
 lt.LABEL_MESSAGE_TEXT_ERR7 =Inicijuojant įvyko klaida: failo pavadinimas nenurodytas.
 hr.LABEL_MESSAGE_TEXT_ERR7 =Došlo je do pogreške prilikom inicijalizacije: Naziv datoteke nije naveden.
 hi.LABEL_MESSAGE_TEXT_ERR7 =इनिशियलाइज़ेशन (आरंभीकरण) के दौरान एक त्रुटि उत्पन्न हुई: फाइल का नाम निर्दिष्ट नहीं किया गया।
+sv.LABEL_MESSAGE_TEXT_ERR7 =Ett fel inträffade under initiering: Filnamn inte angivet.
 
 en.BUTTON_CANCEL_TEXT =Cancel
 ru.BUTTON_CANCEL_TEXT =Отмена
@@ -506,6 +518,7 @@ et.BUTTON_CANCEL_TEXT =Tühista
 lt.BUTTON_CANCEL_TEXT =Atšaukti
 hr.BUTTON_CANCEL_TEXT =Otkaži
 hi.BUTTON_CANCEL_TEXT =रद्द करें
+sv.BUTTON_CANCEL_TEXT =Avbryt
 
 en.SILENT_CHECK_TEXT =Silent Installation
 ru.SILENT_CHECK_TEXT =Тихая установка
@@ -545,3 +558,4 @@ et.SILENT_CHECK_TEXT =Vaikne paigaldus
 lt.SILENT_CHECK_TEXT =Tylus diegimas
 hr.SILENT_CHECK_TEXT =Tiha instalacija
 hi.SILENT_CHECK_TEXT =मौन इंस्टॉलेशन
+sv.SILENT_CHECK_TEXT =Obevakad installation
