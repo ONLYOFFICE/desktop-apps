@@ -414,6 +414,9 @@ public:
     QPointer<QCefView> m_pStartPanel;
     bool m_openEditorWindow = false;
     std::shared_ptr<CPrintData> m_printData;
+#ifndef _CAN_SCALE_IMMEDIATELY
+    std::wstring uiscaling;
+#endif
 };
 
 //CAscApplicationManagerWrapper::CAscApplicationManagerWrapper()

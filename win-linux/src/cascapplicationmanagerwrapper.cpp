@@ -82,6 +82,12 @@ CAscApplicationManagerWrapper::CAscApplicationManagerWrapper(CAscApplicationMana
 
 CAscApplicationManagerWrapper::~CAscApplicationManagerWrapper()
 {
+#ifndef _CAN_SCALE_IMMEDIATELY
+    if (!m_private->uiscaling.empty()) {
+        setUserSettings(L"system-scale", m_private->uiscaling != L"0" ? L"0" : L"1");
+        setUserSettings(L"force-scale", m_private->uiscaling == L"0" ? L"default" : m_private->uiscaling);
+    }
+#endif
     delete m_queueToClose, m_queueToClose = nullptr;
 
     if ( m_pMainWindow ) {
@@ -1788,6 +1794,9 @@ bool CAscApplicationManagerWrapper::applySettings(const wstring& wstrjson)
         }
 
         if ( objRoot.contains("uiscaling") ) {
+#ifndef _CAN_SCALE_IMMEDIATELY
+            m_private->uiscaling = Scaling::scalingToFactor(objRoot["uiscaling"].toString());
+#else
             const wstring sets = Scaling::scalingToFactor(objRoot["uiscaling"].toString());
 
             setUserSettings(L"system-scale", sets != L"0" ? L"0" : L"1");
@@ -1803,6 +1812,7 @@ bool CAscApplicationManagerWrapper::applySettings(const wstring& wstrjson)
             for (auto const& r : m_winsReporter) {
                 r.second->updateScaling();
             }
+#endif
         }
 
         if ( objRoot.contains("spellcheckdetect") ) {
