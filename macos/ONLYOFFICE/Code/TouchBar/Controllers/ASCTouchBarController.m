@@ -280,8 +280,7 @@ NSString *tabScrubberItemIdentifier = @"tabItem";
                                                                image:[NSImage imageNamed:NSImageNameTouchBarAddDetailTemplate]
                                                   customizationLabel:NSLocalizedStringWithDefaultValue(@"new-presentation", @"Localizable", [NSBundle mainBundle], @"New Presentation", nil)],
                                       [self makeButtonWithIdentifier:[NSString stringWithFormat:kCreationButtonIdentifier, @"pdfform"]
-//                                                               color:[NSColor brandPdfEditor]
-                                                               color:UIColorFromRGB(0x27aba3)
+                                                               color:[NSColor brandPdfEditor]
                                                                title:NSLocalizedStringWithDefaultValue(@"new-pdfform", @"Localizable", [NSBundle mainBundle], @"New PDF Form", nil)
                                                                image:[NSImage imageNamed:NSImageNameTouchBarAddDetailTemplate]
                                                   customizationLabel:NSLocalizedStringWithDefaultValue(@"new-pdfform", @"Localizable", [NSBundle mainBundle], @"New PDF Form", nil)],
