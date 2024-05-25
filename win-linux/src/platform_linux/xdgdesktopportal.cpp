@@ -1128,6 +1128,20 @@ void Free(void* p) {
     }
 }
 
+void parseFilterString(Xdg::Mode mode, const QString &filter, FilterItem &filterItem) {
+    int pos = filter.indexOf('(');
+    QString flt_name = (mode == Xdg::Mode::OPEN && filter.length() > 255 && pos > 1) ? filter.mid(0, pos - 1) : filter;
+    filterItem.name = strdup(flt_name.toUtf8().data());
+    auto parse = filter.split('(');
+    if (parse.size() == 1) {
+        filterItem.pattern = strdup("");
+    } else
+    if (parse.size() == 2) {
+        const QString pattern = parse[1].replace(")", "");
+        filterItem.pattern = strdup(pattern.toUtf8().data());
+    }
+}
+
 QStringList Xdg::openXdgPortal(QWidget *parent,
                                Mode mode,
                                const QString &title,
@@ -1153,35 +1167,13 @@ QStringList Xdg::openXdgPortal(QWidget *parent,
     FilterItem filterItem[filterSize];
     int index = 0;
     foreach (const QString &flt, filterList) {
-        QString flt_name = (mode == Mode::OPEN && flt.length() > 255 && flt.indexOf('(') > 1) ?
-                               flt.mid(0, flt.indexOf('(') - 1) : flt;
-        filterItem[index].name = strdup(flt_name.toUtf8().data());
-        auto parse = flt.split('(');        
-        if (parse.size() == 1) {
-            filterItem[index].pattern = strdup("");
-        } else
-        if (parse.size() == 2) {
-            const QString pattern = parse[1].replace(")", "");
-            filterItem[index].pattern = strdup(pattern.toUtf8().data());
-        }
+        parseFilterString(mode, flt, filterItem[index]);
         index++;
     }
 
-    FilterItem selFilterItem;
-    selFilterItem.name = NULL;
-    selFilterItem.pattern = NULL;
+    FilterItem selFilterItem = {nullptr, nullptr};
     if (mode != Mode::FOLDER && sel_filter) {
-        QString flt_name = (mode == Mode::OPEN && sel_filter->length() > 255 && sel_filter->indexOf('(') > 1) ?
-                               sel_filter->mid(0, sel_filter->indexOf('(') - 1) : *sel_filter;
-        selFilterItem.name = strdup(flt_name.toUtf8().data());
-        auto parse = sel_filter->split('(');
-        if (parse.size() == 1) {
-            selFilterItem.pattern = strdup("");
-        } else
-        if (parse.size() == 2) {
-            const QString pattern = parse[1].replace(")", "");
-            selFilterItem.pattern = strdup(pattern.toUtf8().data());
-        }
+        parseFilterString(mode, *sel_filter, selFilterItem);
     }
 
     char* outPaths;
