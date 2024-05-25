@@ -271,12 +271,14 @@ void setFilters(DBusMessageIter &msg_iter, const FilterItem *filterList,
         __dbusClose(&msg_iter, &dict_iter);
 
         // set current filter
-        __dbusOpen(&msg_iter, DBUS_TYPE_DICT_ENTRY, nullptr, &dict_iter);
-        __dbusAppend(&dict_iter, DBUS_TYPE_STRING, &CURRENT_FILTER);
-        __dbusOpen(&dict_iter, DBUS_TYPE_VARIANT, "(sa(us))", &var_iter);
-        setFilter(var_iter, *selFilter);
-        __dbusClose(&dict_iter, &var_iter);
-        __dbusClose(&msg_iter, &dict_iter);
+        if (selFilter && selFilter->name && selFilter->pattern) {
+            __dbusOpen(&msg_iter, DBUS_TYPE_DICT_ENTRY, nullptr, &dict_iter);
+            __dbusAppend(&dict_iter, DBUS_TYPE_STRING, &CURRENT_FILTER);
+            __dbusOpen(&dict_iter, DBUS_TYPE_VARIANT, "(sa(us))", &var_iter);
+            setFilter(var_iter, *selFilter);
+            __dbusClose(&dict_iter, &var_iter);
+            __dbusClose(&msg_iter, &dict_iter);
+        }
     }
 }
 
