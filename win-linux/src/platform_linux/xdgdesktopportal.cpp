@@ -1178,6 +1178,7 @@ QStringList Xdg::openXdgPortal(QWidget *parent,
         }
 
         if (mode != Mode::FOLDER && sel_filter) {
+            sel_filter->replace("/", " \u2044 ");
             parseFilterString(mode, *sel_filter, selFilterItem);
         }
     }
@@ -1224,8 +1225,10 @@ QStringList Xdg::openXdgPortal(QWidget *parent,
 
     Free((void*)selFilterItem.pattern);
     if (selFilterItem.name != NULL) {
-        if (sel_filter)
+        if (sel_filter) {
             *sel_filter = QString::fromUtf8(selFilterItem.name);
+            sel_filter->replace(" \u2044 ", "/");
+        }
         Free((void*)selFilterItem.name);
     }
 
