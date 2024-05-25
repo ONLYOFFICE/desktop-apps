@@ -1163,19 +1163,23 @@ QStringList Xdg::openXdgPortal(QWidget *parent,
     const QString _path = (path.isEmpty() && pos != -1) ?
                 file_name.mid(0, pos) : path;
 
-    filter.replace("/", " \u2044 ");
-    QStringList filterList = filter.split(";;");
-    int filterSize = filterList.size();
-    FilterItem filterItem[filterSize];
-    int index = 0;
-    foreach (const QString &flt, filterList) {
-        parseFilterString(mode, flt, filterItem[index]);
-        index++;
-    }
-
+    int filterSize = 0;
+    FilterItem *filterItem = nullptr;
     FilterItem selFilterItem = {nullptr, nullptr};
-    if (mode != Mode::FOLDER && sel_filter) {
-        parseFilterString(mode, *sel_filter, selFilterItem);
+    if (!filter.isEmpty()) {
+        filter.replace("/", " \u2044 ");
+        QStringList filterList = filter.split(";;");
+        filterSize = filterList.size();
+        filterItem = new FilterItem[filterSize];
+        int index = 0;
+        foreach (const QString &flt, filterList) {
+            parseFilterString(mode, flt, filterItem[index]);
+            index++;
+        }
+
+        if (mode != Mode::FOLDER && sel_filter) {
+            parseFilterString(mode, *sel_filter, selFilterItem);
+        }
     }
 
     char* outPaths;
@@ -1225,9 +1229,12 @@ QStringList Xdg::openXdgPortal(QWidget *parent,
         Free((void*)selFilterItem.name);
     }
 
-    for (int i = 0; i < filterSize; i++) {
-        Free((void*)filterItem[i].pattern);
-        Free((void*)filterItem[i].name);
+    if (filterItem) {
+        for (int i = 0; i < filterSize; i++) {
+            Free((void*)filterItem[i].pattern);
+            Free((void*)filterItem[i].name);
+        }
+        delete[] filterItem;
     }
 
     return files;
