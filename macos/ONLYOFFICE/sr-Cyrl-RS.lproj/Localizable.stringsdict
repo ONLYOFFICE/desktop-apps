@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>%d days are left until the license expiration.</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@дани@</string>
+		<key>days</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>few</key>
+			<string>%d days are left until the license expiration.</string>
+			<key>many</key>
+			<string>%d days are left until the license expiration.</string>
+			<key>one</key>
+			<string>%d дан је преостао до истека лиценце.</string>
+			<key>other</key>
+			<string>%d дана је преостало до истека лиценце.</string>
+			<key>two</key>
+			<string>%d days are left until the license expiration.</string>
+			<key>zero</key>
+			<string>%d days are left until the license expiration.</string>
+		</dict>
+	</dict>
+	<key>You are using a trial version of the application.
+The trial period will end in %d days, after that you will not be able to create and edit documents.</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@дани@</string>
+		<key>days</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>few</key>
+			<string>You are using a trial version of the application.
+The trial period will end in %d days, after that you will not be able to create and edit documents.</string>
+			<key>many</key>
+			<string>You are using a trial version of the application.
+The trial period will end in %d days, after that you will not be able to create and edit documents.</string>
+			<key>one</key>
+			<string>Користите пробну верзију апликације.
+Пробни период ће се завршити за %d дан, након тога нећете моћи да креирате и уређујете документе.</string>
+			<key>other</key>
+			<string>Користите пробну верзију апликације.
+Пробни период ће се завршити за %d дана, након тога нећете моћи да креирате и уређујете документе.</string>
+			<key>two</key>
+			<string>You are using a trial version of the application.
+The trial period will end in %d days, after that you will not be able to create and edit documents.</string>
+			<key>zero</key>
+			<string>You are using a trial version of the application.
+The trial period will end in %d days, after that you will not be able to create and edit documents.</string>
+		</dict>
+	</dict>
+	<key>You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@документи@</string>
+		<key>documents</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>ld</string>
+			<key>few</key>
+			<string>You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?</string>
+			<key>many</key>
+			<string>You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?</string>
+			<key>one</key>
+			<string>Имате %ld %@ докумената са непотврђеним променама. Желите ли да прегледате ове промене пре одустајања?</string>
+			<key>other</key>
+			<string>Имате %ld %@ докумената са непотврђеним променама. Желите ли да прегледате ове промене пре одустајања?</string>
+			<key>two</key>
+			<string>You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?</string>
+			<key>zero</key>
+			<string>You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?</string>
+		</dict>
+	</dict>
+</dict>
+</plist>
