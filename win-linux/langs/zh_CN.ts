@@ -582,12 +582,12 @@
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="265"/>
         <source>More than one document is open.&lt;br&gt;Close the window anyway?</source>
-        <translation>您还有其他已打开的文档。&lt;br&gt;无论如何都要关闭？</translation>
+        <translation>您当前打开了多个文档。&lt;br&gt;您确定要关闭窗口吗？</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="267"/>
         <source>Don&apos;t ask again.</source>
-        <translation>别再问了。</translation>
+        <translation>不再询问。</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="783"/>
@@ -641,7 +641,7 @@
     <message>
         <location filename="../src/prop/cmainwindowimpl.cpp" line="52"/>
         <source>Licensed under</source>
-        <translation>许可来自</translation>
+        <translation>许可证：</translation>
     </message>
 </context>
 <context>

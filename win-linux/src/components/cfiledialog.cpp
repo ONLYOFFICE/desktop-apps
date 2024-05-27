@@ -238,7 +238,7 @@ QString CFileDialogWrapper::getFilter(const QString& extension) const
 QStringList CFileDialogWrapper::modalOpen(const QString& path, const QString& filter, QString * selected, bool multi)
 {
     QString _filter_ = filter;
-    QString _all_sup_files;
+    QString _sel_filter = m_mapFilters[AVS_OFFICESTUDIO_FILE_UNKNOWN];
     if ( _filter_.isEmpty() ) {
 //        _filter_ = joinFilters();
         _filter_ =  tr("Text documents") +
@@ -252,14 +252,17 @@ QStringList CFileDialogWrapper::modalOpen(const QString& path, const QString& fi
                     tr("Web Page") + " (*.html *.htm *.mht *.mhtml *.epub);;" +
                     tr("Text files") + " (*.txt *.csv)";
 //#ifdef __linux__
-        _all_sup_files = tr("All supported files") + " " + joinExtentions(_filter_);
-        _filter_.prepend(_all_sup_files + ";;");
+        _sel_filter = tr("All supported files") + " " + joinExtentions(_filter_);
+        _filter_.prepend(_sel_filter + ";;");
 //#endif
         _filter_.append(";;" + m_mapFilters[AVS_OFFICESTUDIO_FILE_UNKNOWN]);
+    } else
+    if (!_filter_.contains(_sel_filter)) {
+        int pos = _filter_.indexOf(";;");
+        _sel_filter = (pos == -1) ? _filter_ : _filter_.mid(0, pos);
     }
-    const QString _default_sel_filter = _all_sup_files.isEmpty() ?
-                m_mapFilters[AVS_OFFICESTUDIO_FILE_UNKNOWN] : _all_sup_files;
-    QString _sel_filter = selected ? *selected : _default_sel_filter;
+    if (selected && _filter_.contains(*selected))
+        _sel_filter = *selected;
 
     QWidget * _parent = CFileDialogHelper::useModalDialog() ?
                 (QWidget *)parent() : nullptr;
