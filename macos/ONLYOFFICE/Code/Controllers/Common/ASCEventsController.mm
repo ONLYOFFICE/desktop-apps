@@ -280,20 +280,20 @@ public:
                     }
 
 //                    case ASC_MENU_EVENT_TYPE_CEF_LOCALFILE_RECENTOPEN:
-                    case ASC_MENU_EVENT_TYPE_CEF_LOCALFILE_RECOVEROPEN: {
-                        NSEditorApi::CAscLocalOpenFileRecent_Recover* pData = (NSEditorApi::CAscLocalOpenFileRecent_Recover*)pEvent->m_pData;
-                        
-                        
-                        [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameCreateTab
-                                                                            object:nil
-                                                                          userInfo:@{
-                                                                                     @"action"  : @(ASCTabActionOpenLocalRecoverFile),
-                                                                                     @"active"  : @(YES),
-                                                                                     @"fileId"  : @(pData->get_Id()),
-                                                                                     @"path"    : [NSString stringWithstdwstring:pData->get_Path()]
-                                                                                     }];
-                        break;
-                    }
+//                    case ASC_MENU_EVENT_TYPE_CEF_LOCALFILE_RECOVEROPEN: {
+//                        NSEditorApi::CAscLocalOpenFileRecent_Recover* pData = (NSEditorApi::CAscLocalOpenFileRecent_Recover*)pEvent->m_pData;
+//
+//
+//                        [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameCreateTab
+//                                                                            object:nil
+//                                                                          userInfo:@{
+//                                                                                     @"action"  : @(ASCTabActionOpenLocalRecoverFile),
+//                                                                                     @"active"  : @(YES),
+//                                                                                     @"fileId"  : @(pData->get_Id()),
+//                                                                                     @"path"    : [NSString stringWithstdwstring:pData->get_Path()]
+//                                                                                     }];
+//                        break;
+//                    }
 
                     case ASC_MENU_EVENT_TYPE_CEF_LOCALFILE_SAVE: {
                         NSEditorApi::CAscLocalSaveFileDialog* pData = (NSEditorApi::CAscLocalSaveFileDialog*)pEvent->m_pData;
@@ -767,10 +767,11 @@ public:
                             }
                         } else if (cmd.find(L"open:recent") != std::wstring::npos) {
                             if (NSDictionary * json = [[NSString stringWithstdwstring:param] dictionary]) {
+                                bool fromRecovery  = [json objectForKey:@"recovery"] && [json[@"recovery"] boolValue];
                                 [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameCreateTab
                                                                                     object:nil
                                                                                   userInfo:@{
-                                                                                             @"action"  : @(ASCTabActionOpenLocalRecentFile),
+                                                                                             @"action"  : !fromRecovery ? @(ASCTabActionOpenLocalRecentFile) : @(ASCTabActionOpenLocalRecentFile),
                                                                                              @"active"  : @(YES),
                                                                                              @"fileId"  : json[@"id"],
                                                                                              @"path"    : json[@"path"]
