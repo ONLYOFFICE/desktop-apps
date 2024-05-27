@@ -444,6 +444,11 @@
 
                 if ( $chRtl ) {
                     _new_settings.rtl = $chRtl.prop("checked");
+
+                    if ( appSettings.rtl != _new_settings.rtl ) {
+                        _new_settings.restart = true;
+                        appSettings.rtl = _new_settings.rtl;
+                    }
                 }
 
                 if ( $chGpu ) {
