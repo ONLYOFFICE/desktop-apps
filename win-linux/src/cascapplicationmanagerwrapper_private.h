@@ -173,7 +173,8 @@ public:
                     if ( bringEditorToFront( _path ) )
                         return true;
 
-                    COpenOptions opts{_path.toStdWString(), etRecentFile, objRoot["id"].toInt()};
+                    bool _from_recovery = objRoot["recovery"].toBool(false);
+                    COpenOptions opts{_path.toStdWString(), _from_recovery ? etRecoveryFile : etRecentFile, objRoot["id"].toInt()};
                     opts.format = objRoot["type"].toInt();
                     opts.parent_id = event.m_nSenderId;
                     opts.name = objRoot["name"].toString();
@@ -182,7 +183,7 @@ public:
                     QRegularExpression re(rePortalName);
                     QRegularExpressionMatch match = re.match(opts.url);
 
-                    if ( !match.hasMatch() ) {
+                    if ( !_from_recovery && !match.hasMatch() ) {
                         QFileInfo _info(opts.url);
                         if ( /*!data->get_IsRecover() &&*/ !_info.exists() ) {
                             int res = CMessage::showMessage(m_appmanager.mainWindow()->handle(),
