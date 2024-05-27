@@ -160,7 +160,7 @@ function loadLocale(lang) {
 };
 
 function correctLang(lang) {
-    return lang.replace('-', '_');
+    return lang.replaceAll('-', '_');
 }
 
 function translate(str, lang) {
