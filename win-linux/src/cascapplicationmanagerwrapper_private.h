@@ -43,7 +43,17 @@
 #include "utils.h"
 #include "components/cmessage.h"
 #include "cprintdata.h"
+#include "clogger.h"
+#include "common/File.h"
 #include <QApplication>
+#ifdef _WIN32
+# define APP_LAUNCH_NAME "\\DesktopEditors.exe"
+# define RESTART_BATCH "/apprestart.bat"
+#else
+# include <QProcess>
+# define APP_LAUNCH_NAME "/DesktopEditors"
+# define RESTART_BATCH "/apprestart.sh"
+#endif
 
 #ifdef DOCUMENTSCORE_OPENSSL_SUPPORT
 # include "platform_linux/cdialogopenssl.h"
@@ -90,6 +100,55 @@ public:
 
     virtual void init()
     {
+    }
+
+    void restartApp()
+    {
+        const QString fileName = QDir::tempPath() + RESTART_BATCH;
+        if (QFile::exists(fileName) && !QFile::remove(fileName)) {
+            CLogger::log("An error occurred while deleting: " + fileName);
+            return;
+        }
+        QFile f(fileName);
+        if (f.open(QIODevice::WriteOnly | QIODevice::Text)) {
+            QTextStream ts(&f);
+#ifdef _WIN32
+            ts << "@chcp 65001>nul\n";
+            ts << "@echo off\n";
+            ts << "start " << QString::fromStdWString(NSFile::GetProcessDirectory()) << APP_LAUNCH_NAME << "\n";
+            ts << "del \"%~f0\"&exit\n";
+#else
+            ts << "#!/bin/bash\n";
+            ts << QString::fromStdWString(NSFile::GetProcessDirectory()) << APP_LAUNCH_NAME << " &\n";
+            ts << "rm -- \"$0\"\n";
+#endif
+            if (!f.flush()) {
+                CLogger::log("An error occurred while writing: " + fileName);
+                f.close();
+                return;
+            }
+            f.close();
+        } else {
+            CLogger::log("An error occurred while creating: " + fileName);
+            return;
+        }
+#ifdef _WIN32
+        STARTUPINFO si;
+        PROCESS_INFORMATION pi;
+        ZeroMemory(&si, sizeof(si));
+        ZeroMemory(&pi, sizeof(pi));
+        si.cb = sizeof(si);
+        if (!CreateProcess(NULL, const_cast<LPWSTR>(fileName.toStdWString().c_str()), NULL, NULL, FALSE,
+                           CREATE_NO_WINDOW | CREATE_UNICODE_ENVIRONMENT, NULL, NULL, &si, &pi)) {
+            CLogger::log("An error occurred while restarting the app!");
+            return;
+        }
+        CloseHandle(pi.hProcess);
+        CloseHandle(pi.hThread);
+#else
+        if (!QProcess::startDetached("/bin/sh", QStringList{fileName}))
+            CLogger::log("An error occurred while restarting the app!");
+#endif
     }
 
 //    auto createStartPanel() -> void {
@@ -414,6 +473,7 @@ public:
     CAscApplicationManagerWrapper& m_appmanager;    
     QPointer<QCefView> m_pStartPanel;
     bool m_openEditorWindow = false;
+    bool m_needRestart = false;
     std::shared_ptr<CPrintData> m_printData;
 #ifndef _CAN_SCALE_IMMEDIATELY
     std::wstring uiscaling;
