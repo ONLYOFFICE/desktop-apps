@@ -1207,6 +1207,7 @@ ru.extPOT =Шаблон PowerPoint
 hy_AM.extPOT =PowerPoint ձևանմուշ
 de.extPOT =PowerPoint-Vorlage
 it_IT.extPOT =Modello PowerPoint
+sr_Latn_RS.extPOT =PowerPoint Šablon
 
 en.extPPTM =PowerPoint Open XML Macro-Enabled Presentation
 ar_SA.extPPTM =عرض بوربوينت مع خاصية الماكرو
@@ -1222,6 +1223,7 @@ ru.extPPTM =Презентация PowerPoint Open XML с поддержкой �
 hy_AM.extPPTM =PowerPoint Open XML ներկայացում մակրո աջակցությամբ
 de.extPPTM =PowerPoint Open XML-Makro-fähige Präsentation
 it_IT.extPPTM =Presentazione PowerPoint Open XML con attivazione macro
+sr_Latn_RS.extPPTM =PowerPoint Prezentacija sa Makroima u Otvorenom XML formatu
 
 en.extEPUB =Open eBook File
 ar_SA.extEPUB =كتاب النشر الإلكتروني
@@ -1237,6 +1239,7 @@ ru.extEPUB =Файл Open eBook
 hy_AM.extEPUB =Բացեք eBook ֆայլը
 de.extEPUB =eBook-Datei öffnen
 it_IT.extEPUB =File Open eBook
+sr_Latn_RS.extEPUB =Otvorena eKnjiga
 
 en.extFB2 =FictionBook 2.0 File
 ar_SA.extFB2 =ملف فكشنبوك 2.0
@@ -1252,6 +1255,7 @@ ru.extFB2 =Файл FictionBook 2.0
 hy_AM.extFB2 =FictionBook 2.0 ֆայլ
 de.extFB2 =FictionBook 2.0-Datei
 it_IT.extFB2 =File FictionBook 2.0
+sr_Latn_RS.extFB2 =FictionBook 2.0 Datoteka
 
 en.extDOTX =Word Open XML Document Template
 ar_SA.extDOTX =قالب وورد
@@ -1267,6 +1271,7 @@ ru.extDOTX =Шаблон документа Word Open XML
 hy_AM.extDOTX =Word Open XML փաստաթղթի ձևանմուշ
 de.extDOTX =Word Open XML Dokumentvorlage
 it_IT.extDOTX =Modello di documento Word Open XML
+sr_Latn_RS.extDOTX =Word Šablon Dokumenta u Otvorenom XML formatu
 
 en.extOXPS =Open XML Paper Specification
 ar_SA.extOXPS =مستند أوبن إكس بي إس
@@ -1323,6 +1328,7 @@ ru.extXLSB =Бинарный формат файла Excel
 hy_AM.extXLSB =Excel Երկուական ֆայլի ձևաչափ
 de.extXLSB =Excel-Binärdateiformat
 it_IT.extXLSB =Formato di file binario Excel
+sr_Latn_RS.extXLSB =Excel Binarni Format Datoteke
 
 ;======================================================================================================
 

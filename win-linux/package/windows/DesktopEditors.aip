@@ -218,7 +218,7 @@
     <ROW Component="c_reg_fa_ext__xml" ComponentId="{95107AD0-08FB-4A92-A44F-7D57D019945E}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_ext__xml"/>
     <ROW Component="c_reg_fa_ext__xps" ComponentId="{63EC416C-ADB8-4148-B5C6-AC64F707D605}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_ext__xps"/>
     <ROW Component="c_reg_fa_new__docx" ComponentId="{F05C6909-8124-4C86-BEAE-89373FF4BE07}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_type_progid__docx"/>
-    <ROW Component="c_reg_fa_new__docxf" ComponentId="{CEF19BD3-1039-4290-8E67-FA7A9DCAF5D9}" Directory_="APPDIR" Attributes="260" Condition="FORMS = 1" KeyPath="reg_fa_type_progid__docxf"/>
+    <ROW Component="c_reg_fa_new__pdf" ComponentId="{CEF19BD3-1039-4290-8E67-FA7A9DCAF5D9}" Directory_="APPDIR" Attributes="260" Condition="FORMS = 1" KeyPath="reg_fa_type_progid__pdf"/>
     <ROW Component="c_reg_fa_new__pptx" ComponentId="{60295DF1-6BD2-4B1C-8075-99690858B4F6}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_type_progid__pptx"/>
     <ROW Component="c_reg_fa_new__xlsx" ComponentId="{3444FDB3-CA06-4150-8790-92DDB9C5E0F4}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_type_progid__xlsx"/>
     <ROW Component="c_reg_fa_openwith__csv" ComponentId="{8B453AFC-A678-4034-8460-2EFFECD13529}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_openwith__csv"/>
@@ -1041,7 +1041,7 @@
     <ROW Feature_="Registry" Component_="c_reg_fa_cap__xml"/>
     <ROW Feature_="Registry" Component_="c_reg_fa_cap__xps"/>
     <ROW Feature_="Registry" Component_="c_reg_fa_new__docx"/>
-    <ROW Feature_="Registry" Component_="c_reg_fa_new__docxf"/>
+    <ROW Feature_="Registry" Component_="c_reg_fa_new__pdf"/>
     <ROW Feature_="Registry" Component_="c_reg_fa_new__pptx"/>
     <ROW Feature_="Registry" Component_="c_reg_fa_new__xlsx"/>
     <ROW Feature_="Registry" Component_="c_reg_fa_openwith__csv"/>
@@ -1409,7 +1409,7 @@
     <ROW Registry="reg_fa_progid__doc" Root="0" Key="[ExtPfx].Document.1" Value="Word 97-2003 Document" Component_="c_reg_fa_progid__doc"/>
     <ROW Registry="reg_fa_progid__docm" Root="0" Key="[ExtPfx].Docm" Value="Word 97-2003 Macro-Enabled Document" Component_="c_reg_fa_progid__docm"/>
     <ROW Registry="reg_fa_progid__docx" Root="0" Key="[ExtPfx].Document.12" Value="Microsoft Word Document" Component_="c_reg_fa_progid__docx"/>
-    <ROW Registry="reg_fa_progid__docxf" Root="0" Key="[ExtPfx].Docxf" Value="ONLYOFFICE PDF Form" Component_="c_reg_fa_progid__docxf"/>
+    <ROW Registry="reg_fa_progid__docxf" Root="0" Key="[ExtPfx].Docxf" Value="ONLYOFFICE Form Template" Component_="c_reg_fa_progid__docxf"/>
     <ROW Registry="reg_fa_progid__dot" Root="0" Key="[ExtPfx].Dot" Value="Word 97-2003 Template" Component_="c_reg_fa_progid__dot"/>
     <ROW Registry="reg_fa_progid__dotm" Root="0" Key="[ExtPfx].Dotm" Value="Word 97-2003 Macro-Enabled Template" Component_="c_reg_fa_progid__dotm"/>
     <ROW Registry="reg_fa_progid__dotx" Root="0" Key="[ExtPfx].Dotx" Value="Microsoft Word Document Template" Component_="c_reg_fa_progid__dotx"/>
@@ -1444,6 +1444,46 @@
     <ROW Registry="reg_fa_progid__xltx" Root="0" Key="[ExtPfx].Xltx" Value="Microsoft Excel Template" Component_="c_reg_fa_progid__xltx"/>
     <ROW Registry="reg_fa_progid__xml" Root="0" Key="[ExtPfx].Xml" Value="Extensible Markup Language" Component_="c_reg_fa_progid__xml"/>
     <ROW Registry="reg_fa_progid__xps" Root="0" Key="[ExtPfx].Xps" Value="Microsoft XML Paper Specification" Component_="c_reg_fa_progid__xps"/>
+    <ROW Registry="reg_fa_progid_appusermodelid__csv" Root="0" Key="[ExtPfx].Csv" Name="AppUserModelID" Value="[AppUserModelID]" Component_="c_reg_fa_progid__csv"/>
+    <ROW Registry="reg_fa_progid_appusermodelid__djvu" Root="0" Key="[ExtPfx].DjVu" Name="AppUserModelID" Value="[AppUserModelID]" Component_="c_reg_fa_progid__djvu"/>
+    <ROW Registry="reg_fa_progid_appusermodelid__doc" Root="0" Key="[ExtPfx].Document.1" Name="AppUserModelID" Value="[AppUserModelID]" Component_="c_reg_fa_progid__doc"/>
+    <ROW Registry="reg_fa_progid_appusermodelid__docm" Root="0" Key="[ExtPfx].Docm" Name="AppUserModelID" Value="[AppUserModelID]" Component_="c_reg_fa_progid__docm"/>
+    <ROW Registry="reg_fa_progid_appusermodelid__docx" Root="0" Key="[ExtPfx].Document.12" Name="AppUserModelID" Value="[AppUserModelID]" Component_="c_reg_fa_progid__docx"/>
+    <ROW Registry="reg_fa_progid_appusermodelid__docxf" Root="0" Key="[ExtPfx].Docxf" Name="AppUserModelID" Value="[AppUserModelID]" Component_="c_reg_fa_progid__docxf"/>
+    <ROW Registry="reg_fa_progid_appusermodelid__dot" Root="0" Key="[ExtPfx].Dot" Name="AppUserModelID" Value="[AppUserModelID]" Component_="c_reg_fa_progid__dot"/>
+    <ROW Registry="reg_fa_progid_appusermodelid__dotm" Root="0" Key="[ExtPfx].Dotm" Name="AppUserModelID" Value="[AppUserModelID]" Component_="c_reg_fa_progid__dotm"/>
+    <ROW Registry="reg_fa_progid_appusermodelid__dotx" Root="0" Key="[ExtPfx].Dotx" Name="AppUserModelID" Value="[AppUserModelID]" Component_="c_reg_fa_progid__dotx"/>
+    <ROW Registry="reg_fa_progid_appusermodelid__epub" Root="0" Key="[ExtPfx].Epub" Name="AppUserModelID" Value="[AppUserModelID]" Component_="c_reg_fa_progid__epub"/>
+    <ROW Registry="reg_fa_progid_appusermodelid__fb2" Root="0" Key="[ExtPfx].Fb2" Name="AppUserModelID" Value="[AppUserModelID]" Component_="c_reg_fa_progid__fb2"/>
+    <ROW Registry="reg_fa_progid_appusermodelid__html" Root="0" Key="[ExtPfx].Html" Name="AppUserModelID" Value="[AppUserModelID]" Component_="c_reg_fa_progid__html"/>
+    <ROW Registry="reg_fa_progid_appusermodelid__odp" Root="0" Key="[ExtPfx].Show.2" Name="AppUserModelID" Value="[AppUserModelID]" Component_="c_reg_fa_progid__odp"/>
+    <ROW Registry="reg_fa_progid_appusermodelid__ods" Root="0" Key="[ExtPfx].Sheet.2" Name="AppUserModelID" Value="[AppUserModelID]" Component_="c_reg_fa_progid__ods"/>
+    <ROW Registry="reg_fa_progid_appusermodelid__odt" Root="0" Key="[ExtPfx].Document.2" Name="AppUserModelID" Value="[AppUserModelID]" Component_="c_reg_fa_progid__odt"/>
+    <ROW Registry="reg_fa_progid_appusermodelid__otp" Root="0" Key="[ExtPfx].Otp" Name="AppUserModelID" Value="[AppUserModelID]" Component_="c_reg_fa_progid__otp"/>
+    <ROW Registry="reg_fa_progid_appusermodelid__ots" Root="0" Key="[ExtPfx].Ots" Name="AppUserModelID" Value="[AppUserModelID]" Component_="c_reg_fa_progid__ots"/>
+    <ROW Registry="reg_fa_progid_appusermodelid__ott" Root="0" Key="[ExtPfx].Ott" Name="AppUserModelID" Value="[AppUserModelID]" Component_="c_reg_fa_progid__ott"/>
+    <ROW Registry="reg_fa_progid_appusermodelid__oxps" Root="0" Key="[ExtPfx].Oxps" Name="AppUserModelID" Value="[AppUserModelID]" Component_="c_reg_fa_progid__oxps"/>
+    <ROW Registry="reg_fa_progid_appusermodelid__pdf" Root="0" Key="[ExtPfx].Pdf" Name="AppUserModelID" Value="[AppUserModelID]" Component_="c_reg_fa_progid__pdf"/>
+    <ROW Registry="reg_fa_progid_appusermodelid__pot" Root="0" Key="[ExtPfx].Pot" Name="AppUserModelID" Value="[AppUserModelID]" Component_="c_reg_fa_progid__pot"/>
+    <ROW Registry="reg_fa_progid_appusermodelid__potm" Root="0" Key="[ExtPfx].Potm" Name="AppUserModelID" Value="[AppUserModelID]" Component_="c_reg_fa_progid__potm"/>
+    <ROW Registry="reg_fa_progid_appusermodelid__potx" Root="0" Key="[ExtPfx].Potx" Name="AppUserModelID" Value="[AppUserModelID]" Component_="c_reg_fa_progid__potx"/>
+    <ROW Registry="reg_fa_progid_appusermodelid__pps" Root="0" Key="[ExtPfx].SlideShow.1" Name="AppUserModelID" Value="[AppUserModelID]" Component_="c_reg_fa_progid__pps"/>
+    <ROW Registry="reg_fa_progid_appusermodelid__ppsm" Root="0" Key="[ExtPfx].Ppsm" Name="AppUserModelID" Value="[AppUserModelID]" Component_="c_reg_fa_progid__ppsm"/>
+    <ROW Registry="reg_fa_progid_appusermodelid__ppsx" Root="0" Key="[ExtPfx].SlideShow.12" Name="AppUserModelID" Value="[AppUserModelID]" Component_="c_reg_fa_progid__ppsx"/>
+    <ROW Registry="reg_fa_progid_appusermodelid__ppt" Root="0" Key="[ExtPfx].Show.1" Name="AppUserModelID" Value="[AppUserModelID]" Component_="c_reg_fa_progid__ppt"/>
+    <ROW Registry="reg_fa_progid_appusermodelid__pptm" Root="0" Key="[ExtPfx].Pptm" Name="AppUserModelID" Value="[AppUserModelID]" Component_="c_reg_fa_progid__pptm"/>
+    <ROW Registry="reg_fa_progid_appusermodelid__pptx" Root="0" Key="[ExtPfx].Show.12" Name="AppUserModelID" Value="[AppUserModelID]" Component_="c_reg_fa_progid__pptx"/>
+    <ROW Registry="reg_fa_progid_appusermodelid__rtf" Root="0" Key="[ExtPfx].Rtf" Name="AppUserModelID" Value="[AppUserModelID]" Component_="c_reg_fa_progid__rtf"/>
+    <ROW Registry="reg_fa_progid_appusermodelid__txt" Root="0" Key="[ExtPfx].Txt" Name="AppUserModelID" Value="[AppUserModelID]" Component_="c_reg_fa_progid__txt"/>
+    <ROW Registry="reg_fa_progid_appusermodelid__xls" Root="0" Key="[ExtPfx].Sheet.1" Name="AppUserModelID" Value="[AppUserModelID]" Component_="c_reg_fa_progid__xls"/>
+    <ROW Registry="reg_fa_progid_appusermodelid__xlsb" Root="0" Key="[ExtPfx].Xlsb" Name="AppUserModelID" Value="[AppUserModelID]" Component_="c_reg_fa_progid__xlsb"/>
+    <ROW Registry="reg_fa_progid_appusermodelid__xlsm" Root="0" Key="[ExtPfx].Xlsm" Name="AppUserModelID" Value="[AppUserModelID]" Component_="c_reg_fa_progid__xlsm"/>
+    <ROW Registry="reg_fa_progid_appusermodelid__xlsx" Root="0" Key="[ExtPfx].Sheet.12" Name="AppUserModelID" Value="[AppUserModelID]" Component_="c_reg_fa_progid__xlsx"/>
+    <ROW Registry="reg_fa_progid_appusermodelid__xlt" Root="0" Key="[ExtPfx].Xlt" Name="AppUserModelID" Value="[AppUserModelID]" Component_="c_reg_fa_progid__xlt"/>
+    <ROW Registry="reg_fa_progid_appusermodelid__xltm" Root="0" Key="[ExtPfx].Xltm" Name="AppUserModelID" Value="[AppUserModelID]" Component_="c_reg_fa_progid__xltm"/>
+    <ROW Registry="reg_fa_progid_appusermodelid__xltx" Root="0" Key="[ExtPfx].Xltx" Name="AppUserModelID" Value="[AppUserModelID]" Component_="c_reg_fa_progid__xltx"/>
+    <ROW Registry="reg_fa_progid_appusermodelid__xml" Root="0" Key="[ExtPfx].Xml" Name="AppUserModelID" Value="[AppUserModelID]" Component_="c_reg_fa_progid__xml"/>
+    <ROW Registry="reg_fa_progid_appusermodelid__xps" Root="0" Key="[ExtPfx].Xps" Name="AppUserModelID" Value="[AppUserModelID]" Component_="c_reg_fa_progid__xps"/>
     <ROW Registry="reg_fa_progid_icon__csv" Root="0" Key="[ExtPfx].Csv\DefaultIcon" Value="[#DesktopEditors.exe],24" Component_="c_reg_fa_progid__csv"/>
     <ROW Registry="reg_fa_progid_icon__djvu" Root="0" Key="[ExtPfx].DjVu\DefaultIcon" Value="[#DesktopEditors.exe],4" Component_="c_reg_fa_progid__djvu"/>
     <ROW Registry="reg_fa_progid_icon__doc" Root="0" Key="[ExtPfx].Document.1\DefaultIcon" Value="[#DesktopEditors.exe],11" Component_="c_reg_fa_progid__doc"/>
@@ -1735,15 +1775,15 @@
     <ROW Registry="reg_fa_type_k__xml" Root="0" Key=".xml" Name="\"/>
     <ROW Registry="reg_fa_type_k__xps" Root="0" Key=".xps" Name="\"/>
     <ROW Registry="reg_fa_type_progid__docx" Root="0" Key=".docx\[ExtPfx].Document.12" Name="*" Component_="c_reg_fa_new__docx"/>
-    <ROW Registry="reg_fa_type_progid__docxf" Root="0" Key=".docxf\[ExtPfx].Docxf" Name="*" Component_="c_reg_fa_new__docxf"/>
+    <ROW Registry="reg_fa_type_progid__pdf" Root="0" Key=".pdf\[ExtPfx].Pdf" Name="*" Component_="c_reg_fa_new__pdf"/>
     <ROW Registry="reg_fa_type_progid__pptx" Root="0" Key=".pptx\[ExtPfx].Show.12" Name="*" Component_="c_reg_fa_new__pptx"/>
     <ROW Registry="reg_fa_type_progid__xlsx" Root="0" Key=".xlsx\[ExtPfx].Sheet.12" Name="*" Component_="c_reg_fa_new__xlsx"/>
     <ROW Registry="reg_fa_type_progid_shellnew__docx" Root="0" Key=".docx\[ExtPfx].Document.12\ShellNew" Name="\"/>
-    <ROW Registry="reg_fa_type_progid_shellnew__docxf" Root="0" Key=".docxf\[ExtPfx].Docxf\ShellNew" Name="\"/>
+    <ROW Registry="reg_fa_type_progid_shellnew__pdf" Root="0" Key=".pdf\[ExtPfx].Pdf\ShellNew" Name="\"/>
     <ROW Registry="reg_fa_type_progid_shellnew__pptx" Root="0" Key=".pptx\[ExtPfx].Show.12\ShellNew" Name="\"/>
     <ROW Registry="reg_fa_type_progid_shellnew__xlsx" Root="0" Key=".xlsx\[ExtPfx].Sheet.12\ShellNew" Name="\"/>
     <ROW Registry="reg_fa_type_progid_shellnew_filename__docx" Root="0" Key=".docx\[ExtPfx].Document.12\ShellNew" Name="FileName" Value="[APPDIR]converter\empty\[EMPTY_LANG_DIR]\new.docx" Component_="c_reg_fa_new__docx"/>
-    <ROW Registry="reg_fa_type_progid_shellnew_filename__docxf" Root="0" Key=".docxf\[ExtPfx].Docxf\ShellNew" Name="FileName" Value="[APPDIR]converter\empty\[EMPTY_LANG_DIR]\new.docxf" Component_="c_reg_fa_new__docxf"/>
+    <ROW Registry="reg_fa_type_progid_shellnew_filename__pdf" Root="0" Key=".pdf\[ExtPfx].Pdf\ShellNew" Name="FileName" Value="[APPDIR]converter\empty\[EMPTY_LANG_DIR]\new.pdf" Component_="c_reg_fa_new__pdf"/>
     <ROW Registry="reg_fa_type_progid_shellnew_filename__pptx" Root="0" Key=".pptx\[ExtPfx].Show.12\ShellNew" Name="FileName" Value="[APPDIR]converter\empty\[EMPTY_LANG_DIR]\new.pptx" Component_="c_reg_fa_new__pptx"/>
     <ROW Registry="reg_fa_type_progid_shellnew_filename__xlsx" Root="0" Key=".xlsx\[ExtPfx].Sheet.12\ShellNew" Name="FileName" Value="[APPDIR]converter\empty\[EMPTY_LANG_DIR]\new.xlsx" Component_="c_reg_fa_new__xlsx"/>
     <ROW Registry="reg_progid" Root="0" Key="[ProgID]" Value="[DesktopEditorsName]" Component_="c_reg_progid"/>
