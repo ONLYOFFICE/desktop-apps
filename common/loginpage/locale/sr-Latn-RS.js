@@ -111,4 +111,5 @@ l10n.sr_Latn_RS = {
     settOptDescAUpdateSilent: "Preuzmite ažuriranja i pitajte pre instaliranja",
     settOptDescAUpdateAsk: "Bićete obavešteni pre svakog koraka ažuriranja",
     settRtlMode: "RTL Interfejs",
+    settGpuUseMode: "Koristi grafičko ubrzanje kada je dostupno",
 }

@@ -138,7 +138,7 @@
     <message>
         <location filename="../src/components/cdownloadwidget.cpp" line="175"/>
         <source>Downloads</source>
-        <translation type="unfinished"></translation>
+        <translation>Preuzimanja</translation>
     </message>
     <message>
         <location filename="../src/components/cdownloadwidget.cpp" line="178"/>
@@ -159,7 +159,7 @@
     <message>
         <location filename="../src/components/cdownloadwidget.cpp" line="306"/>
         <source>Canceled</source>
-        <translation type="unfinished"></translation>
+        <translation>Otkazano</translation>
     </message>
     <message>
         <location filename="../src/components/cdownloadwidget.cpp" line="343"/>
@@ -169,7 +169,7 @@
     <message>
         <location filename="../src/components/cdownloadwidget.cpp" line="359"/>
         <source>Show in folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Prikaži u folderu</translation>
     </message>
 </context>
 <context>
@@ -215,7 +215,7 @@
     <message>
         <location filename="../src/windows/ceditorwindow_p.h" line="669"/>
         <source>There are no pages set to print.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nema postavljenih stranica za štampanje.</translation>
     </message>
 </context>
 <context>
@@ -356,7 +356,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="78"/>
         <source>ONLYOFFICE Form Document (*.pdf)</source>
-        <translation type="unfinished"></translation>
+        <translation>ONLYOFFICE Form Dokument (*.pdf)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="85"/>
@@ -371,7 +371,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="92"/>
         <source>XLSB File (*.xlsb)</source>
-        <translation type="unfinished"></translation>
+        <translation>Excel Binarna Datoteka (*.xlsb)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="95"/>
@@ -595,7 +595,7 @@
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="1248"/>
         <source>There are no pages set to print.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nema postavljenih stranica za štampanje.</translation>
     </message>
     <message>
         <location filename="../src/windows/cmainwindow.cpp" line="1384"/>
@@ -759,22 +759,22 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="98"/>
         <source>Preparing update (%1%)</source>
-        <translation type="unfinished"></translation>
+        <translation>Priprema za ažuriranje (%1%)</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="103"/>
         <source>An error occurred while check updates: the Update Service is not installed or is not running!</source>
-        <translation type="unfinished"></translation>
+        <translation>Pojavila se greška u toku provere ažuriranja: Servis za Ažuriranja nije instaliran ili ne radi!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="104"/>
         <source>An error occurred while loading updates: the Update Service is not installed or is not running!</source>
-        <translation type="unfinished"></translation>
+        <translation>Pojavila se greška u toku učitavanja ažuriranja: Servis za Ažuriranja nije instaliran ili ne radi!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="105"/>
         <source>An error occurred while unzip updates: the Update Service is not installed or is not running!</source>
-        <translation type="unfinished"></translation>
+        <translation>Došlo je do greške prilikom otpakivanja ažuriranja: Servis za Ažuriranja nije instaliran ili ne radi!</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="106"/>
@@ -784,7 +784,7 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="947"/>
         <source>The current version does not support installing this update directly. To install updates, you can download the required package from the official website.</source>
-        <translation type="unfinished"></translation>
+        <translation>Trenutna verzija ne podržava instaliranje ovog ažuriranja direktno. Da biste instalirali ažuriranja, možete preuzeti potreban paket sa zvaničnog sajta.</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="949"/>
@@ -964,7 +964,7 @@
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="347"/>
         <source>File %1 is already loaded. Replace it?</source>
-        <translation type="unfinished"></translation>
+        <translation>Datoteka %1 je već učitana. Zamenite je?</translation>
     </message>
     <message>
         <location filename="../src/components/cdownloadwidget.cpp" line="124"/>
@@ -984,18 +984,18 @@
     <message>
         <location filename="../src/platform_linux/gtkprintdialog.cpp" line="547"/>
         <source>The syntaxis for the page range is invalid.&lt;br&gt;Enter one or more page ranges, for example: 1-3,7,11.</source>
-        <translation type="unfinished"></translation>
+        <translation>Sintaksa za opseg stranice je nevažeća.&lt;br&gt;Unesite jedan ili više opsega stranice, na primer: 1-3,7,11.</translation>
     </message>
     <message>
         <location filename="../src/platform_linux/gtkprintdialog.cpp" line="587"/>
         <location filename="../src/platform_win/printdialog.cpp" line="527"/>
         <source>Specified range %1-%2 exceeds document limits: maximum number of pages is %3</source>
-        <translation type="unfinished"></translation>
+        <translation>Navedeni opseg %1-%2 premašuje ograničenja dokumenta: maksimalan broj stranica je %3</translation>
     </message>
     <message>
         <location filename="../src/platform_win/printdialog.cpp" line="485"/>
         <source>Unable to open print dialog:&lt;br&gt;%1</source>
-        <translation type="unfinished"></translation>
+        <translation>Nije moguće otvoriti dijalog za štampanje:&lt;br&gt;%1</translation>
     </message>
 </context>
 </TS>
