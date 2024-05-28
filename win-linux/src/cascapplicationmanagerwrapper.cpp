@@ -1240,8 +1240,12 @@ void CAscApplicationManagerWrapper::initializeApp()
         EditorJSVariables::setVariable("localthemes", local_themes_array);
 
 #if !defined(__OS_WIN_XP)
-    const bool _is_rtl = reg_user.contains("forcedRtl") ? reg_user.value("forcedRtl", false).toBool() :
-                       CLangater::isRtlLanguage(CLangater::getCurrentLangCode());
+    bool _is_rtl = CLangater::isRtlLanguage(CLangater::getCurrentLangCode());
+    if ( reg_user.contains("forcedRtl") ) {
+        if ( _is_rtl )
+            _is_rtl = reg_user.value("forcedRtl", false).toBool();
+        else reg_user.setValue("forcedRtl", false);
+    }
 #else
     const bool _is_rtl = false;
 #endif
