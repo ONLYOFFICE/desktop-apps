@@ -180,7 +180,7 @@ public:
                     opts.name = objRoot["name"].toString();
                     opts.cloud = objRoot["cloud"].toString();
 
-                    QRegularExpression re(rePortalName);
+                    static const QRegularExpression re(rePortalName);
                     QRegularExpressionMatch match = re.match(opts.url);
 
                     if ( !_from_recovery && !match.hasMatch() ) {
