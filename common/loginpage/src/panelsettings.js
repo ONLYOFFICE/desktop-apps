@@ -394,7 +394,9 @@
                 if ( $optsLang.is(':visible') ) {
                     _new_settings.langid = $optsLang.find('select').val();
 
-                    utils.Lang.change(_new_settings.langid);
+                    if ( !appSettings.locale.restart ) {
+                        utils.Lang.change(_new_settings.langid);
+                    }
                 }
 
                 let $optsupdatesrate = $('#opts-checkupdate', $panel);
@@ -539,7 +541,9 @@
                             $combo.selectpicker();
 
                             if ( appSettings.locale.restart ) {
-                                $panel.find('.settings-field-lang label[l10n]').after(`<label class='sett__caption'>*</label>`);
+                                if ( !$panel.find('.settings-field-lang label[l10n] + .sett__caption-restart').length ) 
+                                    $panel.find('.settings-field-lang label[l10n]').after(`<label class='sett__caption sett__caption-restart'> *</label>`);
+
                                 $('#caption-restart', $panel).show();
                             }
 
