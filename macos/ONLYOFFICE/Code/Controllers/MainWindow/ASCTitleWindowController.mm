@@ -56,6 +56,8 @@
     self.window.title = productName;
     
     [super windowDidLoad];
+    [self.window setFrameAutosaveName:@"MainWindow"];
+    [self setShouldCascadeWindows:NO];
     
     [self setupToolbar];
     
