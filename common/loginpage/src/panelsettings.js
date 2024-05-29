@@ -474,8 +474,8 @@
                 $btnApply.disable(false);
             }
 
+            const _is_rtl = _is_lang_rtl(l);
             if ( $chRtl ) {
-                const _is_rtl = _is_lang_rtl(l);
                 $chRtl.prop("checked", _is_rtl);
                 if ( !_is_rtl ) {
                     $chRtl.prop("disabled", "disabled");
@@ -486,7 +486,8 @@
                 }
             }
 
-            $(document.body).toggleClass('rtl-font', _is_lang_rtl(l));
+            $btnApply.parent().toggleClass('rtl-font', _is_rtl);
+            $btnApply.toggleClass('rtl-font--skip', !_is_rtl);
             $optsLang.toggleClass('notted', true);
         };
 
