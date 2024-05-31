@@ -71,7 +71,6 @@ int WinDlg::showDialog(QWidget *parent,
     WindowHelper::CParentDisable oDisabler(parent);
     Window parent_xid = (parent) ? (Window)parent->winId() : 0L;
 
-    gtk_init(NULL, NULL);
     GtkDialogFlags flags;
     flags = (GtkDialogFlags)(GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT);
 
