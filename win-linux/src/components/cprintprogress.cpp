@@ -31,91 +31,94 @@
 */
 
 #include "components/cprintprogress.h"
+#include <QDialog>
+#include <QLabel>
 #include <QHBoxLayout>
 #include <QPushButton>
-#include "common/Types.h"
 #include "utils.h"
 
 #ifdef __linux__
 #endif
 
 
-class CDialogEventFilter : public QObject
+class CPrintProgress::CPrintProgressPrivate
 {
-public:
-    CDialogEventFilter(QObject * parent = 0) : QObject(parent)
-    {}
-
-    bool eventFilter(QObject * obj, QEvent * event) {
-        QDialog * dlg = dynamic_cast<QDialog *>(obj);
-
-        if (!dlg)
-            return false;
-
-        if (event->type() == QEvent::KeyPress) {
-            QKeyEvent * keyEvent = static_cast<QKeyEvent *>(event);
-
-            if (keyEvent->key() == Qt::Key_Escape) {
-                return true;
+    class CDialog : public QDialog
+    {
+    public:
+        CDialog(QWidget *parent = nullptr) : QDialog(parent)
+        {}
+    private:
+        virtual bool event(QEvent *ev) override
+        {
+            if (ev->type() == QEvent::KeyPress) {
+                QKeyEvent *kev = static_cast<QKeyEvent*>(ev);
+                if (kev->key() == Qt::Key_Escape)
+                    return true;
             }
+            return QDialog::event(ev);
         }
+    };
 
-        return false;
+public:
+    CPrintProgressPrivate(QWidget *parent = nullptr) {
+        const QString primaryText = QObject::tr("Printing...", "CPrintProgress");
+        const QString secondaryText = QObject::tr("Document is preparing", "CPrintProgress");
+        auto _dpi_ratio = Utils::getScreenDpiRatioByWidget(parent);
+        qtDlg = new CDialog(parent);
+        qtDlg->setWindowFlags(Qt::Dialog | Qt::CustomizeWindowHint | Qt::WindowTitleHint | Qt::MSWindowsFixedSizeDialogHint);
+        qtDlg->setMinimumWidth(400*_dpi_ratio);
+        qtDlg->setWindowTitle(primaryText);
+
+        QVBoxLayout * layout = new QVBoxLayout;
+        layout->setSizeConstraint(QLayout::SetMaximumSize);
+
+        qtProgressLabel = new QLabel;
+        qtProgressLabel->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Preferred);
+        qtProgressLabel->setText(secondaryText);
+        qtProgressLabel->setStyleSheet(QString("margin-bottom: %1px;").arg(8*_dpi_ratio));
+        layout->addWidget(qtProgressLabel);
+
+        QPushButton * btn_cancel = new QPushButton(QObject::tr("&Cancel", "CPrintProgress"));
+        QWidget * box = new QWidget;
+        box->setLayout(new QHBoxLayout);
+        box->layout()->addWidget(btn_cancel);
+        box->layout()->setContentsMargins(0,8*_dpi_ratio,0,0);
+        layout->addWidget(box, 0, Qt::AlignCenter);
+
+        qtDlg->setLayout(layout);
+        qtDlg->setResult(QDialog::Accepted);
+        QObject::connect(btn_cancel, &QPushButton::clicked, qtDlg, &QDialog::reject);
     }
-};
 
+    ~CPrintProgressPrivate() {
+        if (qtDlg)
+            qtDlg->deleteLater();
+    }
+
+    CDialog  *qtDlg = nullptr;
+    QLabel   *qtProgressLabel = nullptr;
+};
 
 CPrintProgress::CPrintProgress(QWidget * parent)
     : QObject(parent),
-      m_Dlg(parent),
-    m_eventFilter(new CDialogEventFilter(this))
-{
-    m_Dlg.setWindowFlags(Qt::Dialog | Qt::CustomizeWindowHint | Qt::WindowTitleHint
-                          | Qt::MSWindowsFixedSizeDialogHint);
-
-    QVBoxLayout * layout = new QVBoxLayout;
-    layout->setSizeConstraint(QLayout::SetMaximumSize);
-
-
-    auto _dpi_ratio = Utils::getScreenDpiRatioByWidget(parent);
-
-    m_progressLabel.setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Preferred);
-    m_progressLabel.setText(tr("Document is preparing"));
-
-    m_progressLabel.setStyleSheet(QString("margin-bottom: %1px;").arg(8*_dpi_ratio));
-    layout->addWidget(&m_progressLabel);
-
-    QPushButton * btn_cancel    = new QPushButton(tr("&Cancel"));
-    QWidget * box = new QWidget;
-    box->setLayout(new QHBoxLayout);
-    box->layout()->addWidget(btn_cancel);
-    box->layout()->setContentsMargins(0,8*_dpi_ratio,0,0);
-    layout->addWidget(box, 0, Qt::AlignCenter);
-
-    m_Dlg.setLayout(layout);
-    m_Dlg.setMinimumWidth(400*_dpi_ratio);
-    m_Dlg.setWindowTitle(tr("Printing..."));
-
-    m_Dlg.installEventFilter(m_eventFilter);
-
-    m_Dlg.setResult(QDialog::Accepted);
-    QObject::connect(btn_cancel, &QPushButton::clicked, &m_Dlg, &QDialog::reject);
-}
+    pimpl(new CPrintProgressPrivate(parent))
+{}
 
 CPrintProgress::~CPrintProgress()
 {
-    RELEASEOBJECT(m_eventFilter)
+    delete pimpl, pimpl = nullptr;
 }
 
 void CPrintProgress::setProgress(int current, int count)
 {
     QString line = tr("Document is printing: page %1 of %2").arg(QString::number(current), QString::number(count));
-    m_progressLabel.setText(line);
+    pimpl->qtProgressLabel->setText(line);
 }
 
 void CPrintProgress::startProgress()
 {
-    m_Dlg.show();
+    pimpl->qtDlg->show();
 #ifdef __linux
     Utils::processMoreEvents(100);
 #endif
@@ -123,5 +126,5 @@ void CPrintProgress::startProgress()
 
 bool CPrintProgress::isRejected()
 {
-    return m_Dlg.result() == QDialog::Rejected;
+    return pimpl->qtDlg->result() == QDialog::Rejected;
 }

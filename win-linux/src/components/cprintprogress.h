@@ -33,8 +33,7 @@
 #ifndef CPRINTPROGRESS_H
 #define CPRINTPROGRESS_H
 
-#include <QDialog>
-#include <QLabel>
+#include <QWidget>
 
 
 class CPrintProgress : public QObject
@@ -49,9 +48,8 @@ public:
     bool isRejected();
 
 private:
-    QDialog         m_Dlg;
-    QLabel          m_progressLabel;
-    QObject *       m_eventFilter;
+    class CPrintProgressPrivate;
+    CPrintProgressPrivate *pimpl;
 };
 
 #endif // CPRINTPROGRESS_H
