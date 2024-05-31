@@ -37,17 +37,13 @@
 #include "utils.h"
 
 #ifdef __linux__
-# include "cascapplicationmanagerwrapper.h"
 #endif
 
 
 class CDialogEventFilter : public QObject
 {
-    CPrintProgress * m_parent;
-
 public:
     CDialogEventFilter(QObject * parent = 0) : QObject(parent)
-      , m_parent(qobject_cast<CPrintProgress*>(parent))
     {}
 
     bool eventFilter(QObject * obj, QEvent * event) {
@@ -62,9 +58,6 @@ public:
             if (keyEvent->key() == Qt::Key_Escape) {
                 return true;
             }
-        } else
-        if ( event->type() == QEvent::Paint ) {
-            emit m_parent->signal(18);
         }
 
         return false;
@@ -75,7 +68,7 @@ public:
 CPrintProgress::CPrintProgress(QWidget * parent)
     : QObject(parent),
       m_Dlg(parent),
-    m_eventFilter(new CDialogEventFilter(this)), m_isRejected(false)
+    m_eventFilter(new CDialogEventFilter(this))
 {
     m_Dlg.setWindowFlags(Qt::Dialog | Qt::CustomizeWindowHint | Qt::WindowTitleHint
                           | Qt::MSWindowsFixedSizeDialogHint);
@@ -86,7 +79,6 @@ CPrintProgress::CPrintProgress(QWidget * parent)
 
     auto _dpi_ratio = Utils::getScreenDpiRatioByWidget(parent);
 
-    m_progressText = tr("Document is printing: page %1 of %2");
     m_progressLabel.setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Preferred);
     m_progressLabel.setText(tr("Document is preparing"));
 
@@ -106,8 +98,8 @@ CPrintProgress::CPrintProgress(QWidget * parent)
 
     m_Dlg.installEventFilter(m_eventFilter);
 
-    connect(btn_cancel, SIGNAL(clicked()), this, SLOT(onCancelClicked()));
-    connect(this, &CPrintProgress::signal, [=](int){ if ( !m_showed ) m_showed = true;});
+    m_Dlg.setResult(QDialog::Accepted);
+    QObject::connect(btn_cancel, &QPushButton::clicked, &m_Dlg, &QDialog::reject);
 }
 
 CPrintProgress::~CPrintProgress()
@@ -117,26 +109,19 @@ CPrintProgress::~CPrintProgress()
 
 void CPrintProgress::setProgress(int current, int count)
 {
-    m_progressLabel.setText(m_progressText.arg(current).arg(count));
+    QString line = tr("Document is printing: page %1 of %2").arg(QString::number(current), QString::number(count));
+    m_progressLabel.setText(line);
 }
 
 void CPrintProgress::startProgress()
 {
     m_Dlg.show();
 #ifdef __linux
-    while ( !m_showed ) {
-        PROCESSEVENTS();
-    }
+    Utils::processMoreEvents(100);
 #endif
-}
-
-void CPrintProgress::onCancelClicked()
-{
-    m_isRejected = true;
-    m_Dlg.reject();
 }
 
 bool CPrintProgress::isRejected()
 {
-    return m_isRejected;
+    return m_Dlg.result() == QDialog::Rejected;
 }

@@ -51,16 +51,7 @@ public:
 private:
     QDialog         m_Dlg;
     QLabel          m_progressLabel;
-    QString         m_progressText;
     QObject *       m_eventFilter;
-    bool            m_isRejected;
-    bool            m_showed = false;
-
-signals:
-    void signal(int);
-
-public slots:
-    void onCancelClicked();
 };
 
 #endif // CPRINTPROGRESS_H
