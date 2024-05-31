@@ -43,7 +43,15 @@ void CFileInspector::run()
 
 bool CFileInspector::isLocalFile(const QString& path)
 {
-    return Utils::isFileLocal(path);
+    if (Utils::isFileLocal(path))
+        return true;
+    QUrl url = QUrl::fromUserInput(path);
+    if (!url.isValid()) {
+        QFileInfo info(path);
+        if (info.isFile())
+            return QUrl::fromUserInput(info.absoluteFilePath()).isLocalFile();
+    }
+    return url.isLocalFile();
 }
 
 /**/
