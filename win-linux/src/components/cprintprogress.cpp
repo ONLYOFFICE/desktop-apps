@@ -67,7 +67,6 @@ public:
             emit m_parent->signal(18);
         }
 
-//        return QDialog::eventFilter(obj, event);
         return false;
     }
 };
@@ -76,7 +75,6 @@ public:
 CPrintProgress::CPrintProgress(QWidget * parent)
     : QObject(parent),
       m_Dlg(parent),
-    m_fLayout(new QFormLayout),
     m_eventFilter(new CDialogEventFilter(this)), m_isRejected(false)
 {
     m_Dlg.setWindowFlags(Qt::Dialog | Qt::CustomizeWindowHint | Qt::WindowTitleHint
@@ -85,10 +83,6 @@ CPrintProgress::CPrintProgress(QWidget * parent)
     QVBoxLayout * layout = new QVBoxLayout;
     layout->setSizeConstraint(QLayout::SetMaximumSize);
 
-//    QLabel * icon = new QLabel;
-//    icon->setProperty("class","msg-icon");
-//    icon->setProperty("type","msg-question");
-//    icon->setFixedSize(35*g_dpi_ratio, 35*g_dpi_ratio);
 
     auto _dpi_ratio = Utils::getScreenDpiRatioByWidget(parent);
 
@@ -97,7 +91,6 @@ CPrintProgress::CPrintProgress(QWidget * parent)
     m_progressLabel.setText(tr("Document is preparing"));
 
     m_progressLabel.setStyleSheet(QString("margin-bottom: %1px;").arg(8*_dpi_ratio));
-//    m_progressLabel.setStyleSheet("background: red;");
     layout->addWidget(&m_progressLabel);
 
     QPushButton * btn_cancel    = new QPushButton(tr("&Cancel"));
@@ -105,7 +98,6 @@ CPrintProgress::CPrintProgress(QWidget * parent)
     box->setLayout(new QHBoxLayout);
     box->layout()->addWidget(btn_cancel);
     box->layout()->setContentsMargins(0,8*_dpi_ratio,0,0);
-//    h_layout1->addWidget(box, 0, Qt::AlignCenter);
     layout->addWidget(box, 0, Qt::AlignCenter);
 
     m_Dlg.setLayout(layout);
@@ -115,18 +107,11 @@ CPrintProgress::CPrintProgress(QWidget * parent)
     m_Dlg.installEventFilter(m_eventFilter);
 
     connect(btn_cancel, SIGNAL(clicked()), this, SLOT(onCancelClicked()));
-//#ifdef __linux
     connect(this, &CPrintProgress::signal, [=](int){ if ( !m_showed ) m_showed = true;});
-//#endif
 }
 
 CPrintProgress::~CPrintProgress()
 {
-/*#if defined(_WIN32)
-    EnableWindow(parentWindow(), TRUE);
-#endif*/
-
-    RELEASEOBJECT(m_fLayout)
     RELEASEOBJECT(m_eventFilter)
 }
 
@@ -137,21 +122,7 @@ void CPrintProgress::setProgress(int current, int count)
 
 void CPrintProgress::startProgress()
 {
-//    m_Dlg.adjustSize();
-
-/*#ifdef _WIN32
-    EnableWindow(parentWindow(), FALSE);
-
-    RECT rc;
-    ::GetWindowRect(parentWindow(), &rc);
-
-    int x = rc.left + (rc.right - rc.left - m_Dlg.width())/2;
-    int y = (rc.bottom - rc.top - m_Dlg.height())/2;
-
-    m_Dlg.move(x, y);
-#endif*/
     m_Dlg.show();
-
 #ifdef __linux
     while ( !m_showed ) {
         PROCESSEVENTS();

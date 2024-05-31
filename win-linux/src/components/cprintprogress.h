@@ -35,14 +35,13 @@
 
 #include <QDialog>
 #include <QLabel>
-#include <QFormLayout>
 
 
 class CPrintProgress : public QObject
 {
     Q_OBJECT
 public:
-    explicit CPrintProgress(QWidget * p = 0);
+    explicit CPrintProgress(QWidget *parent = nullptr);
     ~CPrintProgress();
 
     void startProgress();
@@ -53,7 +52,6 @@ private:
     QDialog         m_Dlg;
     QLabel          m_progressLabel;
     QString         m_progressText;
-    QFormLayout *   m_fLayout;
     QObject *       m_eventFilter;
     bool            m_isRejected;
     bool            m_showed = false;
