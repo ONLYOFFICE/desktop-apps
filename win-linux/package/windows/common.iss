@@ -165,6 +165,7 @@ Name: si; MessagesFile: compiler:Languages\Sinhala.islu;     LicenseFile: {#sBra
 Name: zh_TW; MessagesFile: compiler:Languages\ChineseTraditional.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 Name: ar_SA; MessagesFile: compiler:Languages\Arabic.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 Name: sr_Latn_RS; MessagesFile: compiler:Languages\SerbianLatin.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
+Name: sr_Cyrl_RS; MessagesFile: compiler:Languages\SerbianCyrillic.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
 
 [LangOptions]
 lo.LanguageName=ພາສາລາວ
@@ -180,6 +181,9 @@ fr.PrevVer=La version précédente de {#sAppName} a été détectée. Cliquez su
 si.PrevVer={#sAppName} පරණ අනුවාදයක් අනාවරණය විය. කරුණාකර එය අස්ථාපනයට 'හරි' බොත්තම ඔබන්න හෝ ඉවත් වීමට 'අවලංගු' ඔබන්න.
 pt_BR.PrevVer=A versão anterior do {#sAppName} foi detectada, clique no botão 'OK' para desinstalá-lo ou em 'Cancelar' para sair da configuração.
 zh_CN.PrevVer=检测到以前版本的 {#sAppName}，请单击 ”确定“按钮卸载旧版本，或单击“取消”按钮退出。
+ja.PrevVer=旧バージョンの{#sAppName}が検出されました。「OK」ボタンをクリックしてアンインストールするか、「キャンセル」ボタンをクリックしてセットアップを終了してください。
+es.PrevVer=Se ha detectado la versión anterior de {#sAppName}. Por favor, haga clic en el botón 'OK' para desinstalarla, o en 'Cancelar' para salir de la instalación.
+de.PrevVer=Die vorherige Version von {#sAppName} wurde erkannt. Bitte klicken Sie auf 'OK', um sie zu deinstallieren, oder auf 'Abbrechen', um das Setup zu beenden.
 ;======================================================================================================
 en.Launch =Launch %1
 ar_SA.Launch =بدء تشغيل %1
@@ -224,6 +228,7 @@ gl.Launch =Iniciar %1
 si.Launch =%1 දියත් කරන්න
 zh_TW.Launch =啓動 %1
 sr_Latn_RS.Launch =Lansiraj %1
+sr_Cyrl_RS.Launch =Лансирај %1
 ;======================================================================================================
 en.CreateDesktopIcon =Create %1 &desktop icon
 ar_SA.CreateDesktopIcon =إنشاء %1 &أيقونة سطح المكتب
@@ -268,6 +273,7 @@ gl.CreateDesktopIcon =Crear unha icona de escritorio& %1
 si.CreateDesktopIcon =%1 වැඩතල නිරූපකය සාදන්න
 zh_TW.CreateDesktopIcon =建立 %1 和桌面圖示
 sr_Latn_RS.CreateDesktopIcon =Kreiraj %1 &desktop ikonicu
+sr_Cyrl_RS.CreateDesktopIcon =Креирај %1 &десктоп иконицу
 ;======================================================================================================
 en.InstallAdditionalComponents =Installing additional system components. Please wait...
 ar_SA.InstallAdditionalComponents =جاري تثبيت مكونات نظام إضافية. الرجاء الانتظار...
@@ -312,6 +318,7 @@ gl.InstallAdditionalComponents =Estase a instalar compoñentes adicionais do sis
 si.InstallAdditionalComponents =අතිරේක පද්ධති සංරචක ස්ථාපනය වෙමින්. රැඳී සිටින්න...
 zh_TW.InstallAdditionalComponents =正在安裝附加系統元件，請稍候...
 sr_Latn_RS.InstallAdditionalComponents =Instaliranje dodatnih sistemskih komponenti. Molimo sačekajte...
+sr_Cyrl_RS.InstallAdditionalComponents =Инсталирање додатних системских компоненти. Молимо сачекајте...
 ;======================================================================================================
 en.AdditionalTasks =Tasks:
 ar_SA.AdditionalTasks =المهام:
@@ -356,6 +363,7 @@ gl.AdditionalTasks =Tarefas:
 si.AdditionalTasks =කාර්යන්:
 zh_TW.AdditionalTasks =工作：
 sr_Latn_RS.AdditionalTasks =Zadaci:
+sr_Cyrl_RS.AdditionalTasks =Задаци:
 ;======================================================================================================
 en.Uninstall =Uninstall
 ar_SA.Uninstall =إزالة التثبيت
@@ -400,6 +408,7 @@ gl.Uninstall =Desinstalar
 si.Uninstall =අස්ථාපනය
 zh_TW.Uninstall =解除安裝
 sr_Latn_RS.Uninstall =Deinstaliraj
+sr_Cyrl_RS.Uninstall =Деинсталирај
 ;======================================================================================================
 en.WarningWrongArchitecture =You are trying to install the %1-bit application version over the %2-bit version installed. Please uninstall the previous version first or download the correct version for installation.
 ar_SA.WarningWrongArchitecture =أنت تحاول تثبيت نسخة %1-bit من التطبيق على نسخة %2-bit المثبتة. فضلًا قم بإزالة النسخة السابقة أولًا أو قم بتحميل النسخة الصحيحة ليتم تثبيتها.
@@ -444,6 +453,7 @@ gl.WarningWrongArchitecture =Está a intentar instalar a versión do aplicativo 
 si.WarningWrongArchitecture =ඔබ ස්ථාපිත බිටු-%2 අනුවාදයට උඩින්ග යෙදුමේ බිටු-%1 අනුවාදය ස්ථාපනයට තැත් කරයි. කරුණාකර පෙර අනුවාදය අස්ථාපනය කරන්න හෝ ස්ථාපනය සඳහා නිවැරදි අනුවාදය බාගන්න.
 zh_TW.WarningWrongArchitecture =您正在嘗試安裝 %1-bit 應用程式版本超過 %2-bit 目前已安裝的版本。 請先解除安裝先前的版本或下載正確的版本再進行安裝。
 sr_Latn_RS.WarningWrongArchitecture =Pokušavate da instalirate %1-bit aplikacija verziju preko %2-bit instalirane verzije. Molimo prvo deinstalirajte prethodnu verziju ili preuzmite tačnu verziju za instalaciju.
+sr_Cyrl_RS.WarningWrongArchitecture =Покушавате да инсталирате %1-бит апликација верзију преко %2-бит инсталиране верзије. Молимо прво деинсталирајте претходну верзију или преузмите тачну верзију за инсталацију.
 ;======================================================================================================
 
 en.UpdateAppRunning=Setup has detected that %1 is currently running.%n%nIt'll be closed automatically. Click OK to continue, or Cancel to exit.
@@ -489,6 +499,7 @@ gl.UpdateAppRunning=A instalación detectou que %1 está en execución.%En% Pech
 si.UpdateAppRunning=%1 දැනට ධාවනය වන බව පිහිටුමට අනාවරණය වී ඇත.%n%nඑය ස්වයංක්‍රීයව වසා දමනු ඇත. ඉදිරියට යාමට හරි ද, හෝ පිටවීමට අවලංගු ද ඔබන්න.
 zh_TW.UpdateAppRunning=安裝程式偵測到 %1 正在執行中。%n%n將會自動關閉。 點擊 確認 繼續，或 取消 離開。
 sr_Latn_RS.UpdateAppRunning=Setup je detektovao da %1 se trenutno izvršava.%n%nBiće zatvoreno automatski. Kliknite OK da nastavite, ili Otkaži da izađete.
+sr_Cyrl_RS.UpdateAppRunning =Сетуп је детектовао да %1 се тренутно извршава.%n%nБиће затворено аутоматски. Кликните ОК да наставите, или Откажи да изађете.
 ;======================================================================================================
 en.WarningClearAppData =Do you want to clear the user settings and application cached data?
 ar_SA.WarningClearAppData =هل تريد مسح إعدادات المستخدم وبيانات التطبيق المؤقتة؟
@@ -533,6 +544,7 @@ gl.WarningClearAppData =Quere borrar a configuración do usuario e os datos da c
 si.WarningClearAppData =ඔබට පරිශ්‍රීලක සැකසුම් හා යෙදුමේ නිහිතගත දත්ත හිස් කිරීමට වුවමනාද?
 zh_TW.WarningClearAppData =您想要清除使用者設定和應用程式內的快取資料嗎?
 sr_Latn_RS.WarningClearAppData =Da li želite da obrišete korisničke postavke i keširane podatke aplikacije?
+sr_Cyrl_RS.WarningClearAppData =Да ли желите да обришете корисничке поставке и кеширане податке апликације?
 ;======================================================================================================
 
 
@@ -559,6 +571,7 @@ sr_Latn_RS.WarningClearAppData =Da li želite da obrišete korisničke postavke 
 ;si.AssociateDescription =%1 සමඟ කාර්යාල ලේඛන ගොනු වර්ග සම්බන්ධ කරන්න
 ;zh_TW.AssociateDescription =與文書處理檔案類型聯結 %1
 ;sr_Latn_RS.AssociateDescription =Poveži vrste ofis fajl dokumenata sa %1
+;sr_Cyrl_RS.AssociateDescription =Повежи врсте офис фајл докумената са %1
 ;======================================================================================================
 en.UpdateService =Update service for {#sAppName}
 ar_SA.UpdateService =خدمة التحديث لـ {#sAppName}
@@ -582,6 +595,9 @@ ko.UpdateService ={#sAppName} 업데이트 서비스
 lv.UpdateService =Pakalpojums atjauninājumam {#sAppName}
 uk.UpdateService =Сервіс для оновлення {#sAppName}
 sr_Latn_RS.UpdateService =Ažuriraj uslugu za {#sAppName}
+si.UpdateService ={#sAppName} සඳහා යාවත්කාල සේවාව
+hy_AM.UpdateService =Թարմացրեք ծառայությունը {#sAppName}-ի համար
+sr_Cyrl_RS.UpdateService =Ажурирај услугу за {#sAppName}
 
 [Code]
 const

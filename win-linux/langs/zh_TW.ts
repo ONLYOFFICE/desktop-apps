@@ -869,17 +869,17 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="981"/>
         <source>To finish updating, restart the app</source>
-        <translation>要立即下載更新嗎？</translation>
+        <translation>完成更新，請重新啟動該應用程式</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="946"/>
         <source>Would you like to download update now?</source>
-        <translation>已準備好安裝更新</translation>
+        <translation>要立即下載更新嗎？</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="978"/>
         <source>Update is ready to install</source>
-        <translation>要立即重新啟動應用程式嗎？</translation>
+        <translation>已準備好安裝更新</translation>
     </message>
     <message>
         <source>A new version of %1 is available!</source>

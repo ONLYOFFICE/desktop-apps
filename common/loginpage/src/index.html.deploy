@@ -107,7 +107,7 @@
                 <li class="menu-item" style="padding-bottom:0;">
                   <a action="new:form">
                     <svg class="icon" data-iconname="form" data-precls="img-el">
-                        <use href="#docxf-big"></use>
+                        <use href="#pdf-big"></use>
                     </svg>
                     <span class="text" l10n="newForm">MASTER FORM</span>
                   </a>

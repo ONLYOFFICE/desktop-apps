@@ -98,6 +98,7 @@ l10n.ca = {
     updateNoUpdates: 'App actualitzada',
     updateAvialable: 'La versió $1 està disponible. Feu clic per descarregar-la.',
     settOptThemeSystem: 'Igual que el sistema',
+    settOptThemeAddLocal: 'Afegeix un tema local',
     settOptThemeContrastDark: 'Contrast fosc',
     settAUpdateMode: 'Mode d\'actualització automàtica',
     settOptAUpdateSilent: 'Automàtic',
@@ -109,4 +110,6 @@ l10n.ca = {
     settOptDescDisabled: "S'inhabilitarà la comprovació d'actualitzacions automàtiques",
     settOptDescAUpdateSilent: "Descarregar actualitzacions i preguntar abans d'instal·lar-les",
     settOptDescAUpdateAsk: "Se li notificaran tots els passos de les actualitzacions",
+    settRtlMode: "Interfície RTL",
+    settGpuUseMode: "Utilitza gràfics d’acceleració quan estiguin disponibles",
 }

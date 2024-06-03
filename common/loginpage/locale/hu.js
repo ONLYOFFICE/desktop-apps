@@ -98,6 +98,7 @@ l10n.hu = {
     updateNoUpdates: 'Az alkalmazás naprakész',
     updateAvialable: '$1 verzió elérhető. Kattintson a letöltéshez.',
     settOptThemeSystem: 'Ugyanaz, mint a rendszerben',
+    settOptThemeAddLocal: 'Helyi téma hozzáadása',
     settOptThemeContrastDark: 'Sötét kontraszt',
     settAUpdateMode: 'Automatikus frissítés mód',
     settOptAUpdateSilent: 'Automatikus',
@@ -109,4 +110,6 @@ l10n.hu = {
     settOptDescDisabled: "A frissítések automatikus ellenőrzése le lesz tiltva",
     settOptDescAUpdateSilent: "Frissítések letöltése és jóváhagyás kérése telepítés előtt",
     settOptDescAUpdateAsk: "A frissítés minden lépéséről értesítést fog kapni",
+    settRtlMode: "RTL-interfész",
+    settGpuUseMode: "Használjon grafikai gyorsítást, amennyiben elérhető",
 }

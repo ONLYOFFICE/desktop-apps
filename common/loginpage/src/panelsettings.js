@@ -398,7 +398,9 @@
                         appSettings.locale.current = _new_settings.langid;
                     }
 
-                    utils.Lang.change(_new_settings.langid);
+                    if ( !appSettings.locale.restart ) {
+                        utils.Lang.change(_new_settings.langid);
+                    }
                 }
 
                 let $optsupdatesrate = $('#opts-checkupdate', $panel);
@@ -491,8 +493,8 @@
                 $btnApply.disable(false);
             }
 
+            const _is_rtl = _is_lang_rtl(l);
             if ( $chRtl ) {
-                const _is_rtl = _is_lang_rtl(l);
                 $chRtl.prop("checked", _is_rtl);
                 if ( !_is_rtl ) {
                     $chRtl.prop("disabled", "disabled");
@@ -503,7 +505,8 @@
                 }
             }
 
-            $(document.body).toggleClass('rtl-font', _is_lang_rtl(l));
+            $btnApply.parent().toggleClass('rtl-font', _is_rtl);
+            $btnApply.toggleClass('rtl-font--skip', !_is_rtl);
             $optsLang.toggleClass('notted', true);
         };
 
@@ -558,7 +561,9 @@
                             $combo.selectpicker();
 
                             if ( appSettings.locale.restart ) {
-                                $panel.find('.settings-field-lang label[l10n]').after(`<label class='sett__caption'>*</label>`);
+                                if ( !$panel.find('.settings-field-lang label[l10n] + .sett__caption-restart').length ) 
+                                    $panel.find('.settings-field-lang label[l10n]').after(`<label class='sett__caption sett__caption-restart'> *</label>`);
+
                                 $('#caption-restart', $panel).show();
                             }
 

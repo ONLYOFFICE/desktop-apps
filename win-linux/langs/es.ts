@@ -399,7 +399,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="92"/>
         <source>XLSB File (*.xlsb)</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivo binario de Excel (*.xlsb)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="95"/>
@@ -873,7 +873,7 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="98"/>
         <source>Preparing update (%1%)</source>
-        <translation type="unfinished"></translation>
+        <translation>Preparando actualización (%1%)</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="103"/>
@@ -898,7 +898,7 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="947"/>
         <source>The current version does not support installing this update directly. To install updates, you can download the required package from the official website.</source>
-        <translation type="unfinished"></translation>
+        <translation>La versión actual no permite instalar esta actualización directamente. Para instalar actualizaciones, puede descargar el paquete necesario desde el sitio web oficial.</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="949"/>

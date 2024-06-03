@@ -51,8 +51,6 @@
 int main( int argc, char *argv[] )
 {
 #ifdef _WIN32
-    if (argc > 1 && strcmp(argv[1], "--add-to-recent") == 0)
-        return 0;
     Core_SetProcessDpiAwareness();
     Utils::setAppUserModelId(APP_USER_MODEL_ID);
     WCHAR * cm_line = GetCommandLine();

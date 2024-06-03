@@ -714,11 +714,22 @@ bool Utils::updatesAllowed()
 
 void Utils::addToRecent(const std::wstring &path)
 {
-    QString _path = QString::fromStdWString(path);
 #ifdef _WIN32
-    QString appPath = qApp->applicationDirPath();
-    QProcess::startDetached(appPath + "/" + QString(REG_APP_NAME), {"--add-to-recent", QDir::toNativeSeparators(_path)}, appPath);
+    std::wstring _path(path);
+    std::replace(_path.begin(), _path.end(), '/', '\\');
+# ifdef __OS_WIN_XP
+    SHAddToRecentDocs(SHARD_PATH, _path.c_str());
+# else
+    if (LPITEMIDLIST idl = ILCreateFromPath(_path.c_str())) {
+        SHARDAPPIDINFOIDLIST inf;
+        inf.pidl = static_cast<PCIDLIST_ABSOLUTE>(idl);
+        inf.pszAppID = TEXT(APP_USER_MODEL_ID);
+        SHAddToRecentDocs(SHARD_APPIDINFOIDLIST, &inf);
+        ILFree(idl);
+    }
+# endif
 #else
+    QString _path = QString::fromStdWString(path);
     std::string uri = "file://" + _path.toStdString();
     add_to_recent(uri.c_str());
 #endif

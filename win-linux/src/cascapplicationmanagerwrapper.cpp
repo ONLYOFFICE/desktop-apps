@@ -82,6 +82,12 @@ CAscApplicationManagerWrapper::CAscApplicationManagerWrapper(CAscApplicationMana
 
 CAscApplicationManagerWrapper::~CAscApplicationManagerWrapper()
 {
+#ifndef _CAN_SCALE_IMMEDIATELY
+    if (!m_private->uiscaling.empty()) {
+        setUserSettings(L"system-scale", m_private->uiscaling != L"0" ? L"0" : L"1");
+        setUserSettings(L"force-scale", m_private->uiscaling == L"0" ? L"default" : m_private->uiscaling);
+    }
+#endif
     delete m_queueToClose, m_queueToClose = nullptr;
 
     if ( m_pMainWindow ) {
@@ -92,6 +98,8 @@ CAscApplicationManagerWrapper::~CAscApplicationManagerWrapper()
     if (m_pUpdateManager)
         m_pUpdateManager->handleAppClose();
 #endif
+    if (m_private.get()->m_needRestart)
+        m_private.get()->restartApp();
 }
 
 void CAscApplicationManagerWrapper::StartSaveDialog(const std::wstring& sName, unsigned int nId)
@@ -1234,8 +1242,12 @@ void CAscApplicationManagerWrapper::initializeApp()
         EditorJSVariables::setVariable("localthemes", local_themes_array);
 
 #if !defined(__OS_WIN_XP)
-    const bool _is_rtl = reg_user.contains("forcedRtl") ? reg_user.value("forcedRtl", false).toBool() :
-                       CLangater::isRtlLanguage(CLangater::getCurrentLangCode());
+    bool _is_rtl = CLangater::isRtlLanguage(CLangater::getCurrentLangCode());
+    if ( reg_user.contains("forcedRtl") ) {
+        if ( _is_rtl )
+            _is_rtl = reg_user.value("forcedRtl", false).toBool();
+        else reg_user.setValue("forcedRtl", false);
+    }
 #else
     const bool _is_rtl = false;
 #endif
@@ -1755,6 +1767,11 @@ bool CAscApplicationManagerWrapper::applySettings(const wstring& wstrjson)
         _reg_user.setValue("appdata", stringdata.toBase64());
 
         QJsonObject objRoot = jdoc.object();
+        int res = MODAL_RESULT_NO;
+        if (objRoot.contains("restart") && objRoot["restart"].toBool())
+            res = CMessage::showMessage(mainWindow(), tr("You must restart the application for the settings to take effect."),
+                                            MsgType::MSG_INFO, MsgBtns::mbYesDefNo);
+
         QString _user_newname = objRoot["username"].toString();
         if ( _user_newname.isEmpty() )
             _user_newname = QString::fromStdWString(Utils::systemUserName());
@@ -1788,6 +1805,9 @@ bool CAscApplicationManagerWrapper::applySettings(const wstring& wstrjson)
         }
 
         if ( objRoot.contains("uiscaling") ) {
+#ifndef _CAN_SCALE_IMMEDIATELY
+            m_private->uiscaling = Scaling::scalingToFactor(objRoot["uiscaling"].toString());
+#else
             const wstring sets = Scaling::scalingToFactor(objRoot["uiscaling"].toString());
 
             setUserSettings(L"system-scale", sets != L"0" ? L"0" : L"1");
@@ -1803,6 +1823,7 @@ bool CAscApplicationManagerWrapper::applySettings(const wstring& wstrjson)
             for (auto const& r : m_winsReporter) {
                 r.second->updateScaling();
             }
+#endif
         }
 
         if ( objRoot.contains("spellcheckdetect") ) {
@@ -1840,6 +1861,12 @@ bool CAscApplicationManagerWrapper::applySettings(const wstring& wstrjson)
                 m_pUpdateManager->setNewUpdateSetting(objRoot["autoupdatemode"].toString());
         }
 #endif
+        if (res == MODAL_RESULT_YES) {
+            QTimer::singleShot(500, this, [=]() {
+                m_private.get()->m_needRestart = true;
+                AscAppManager::closeAppWindows();
+            });
+        }
     } else {
         /* parse settings error */
     }

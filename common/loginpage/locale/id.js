@@ -98,6 +98,7 @@ l10n.id = {
     updateNoUpdates: 'App sudah versi terbaru',
     updateAvialable: 'Versi $1 tersedia. Klik untuk download.',
     settOptThemeSystem: 'Sama seperti sistem',
+    settOptThemeAddLocal: 'Tambah tema lokal',
     settOptThemeContrastDark: 'Kontras Gelap',
     settAUpdateMode: 'Mode Autoupdate',
     settOptAUpdateSilent: 'Otomatis',
@@ -109,4 +110,6 @@ l10n.id = {
     settOptDescDisabled: "Cek update otomatis akan dihentikan",
     settOptDescAUpdateSilent: "Download update dan tanya sebelum instalasi",
     settOptDescAUpdateAsk: "Anda akan mendapatkan notifikasi langkah untuk melakukan update",
+    settRtlMode: "RTL Interface",
+    settGpuUseMode: "Gunakan akselerasi grafik jika tersedia",
 }

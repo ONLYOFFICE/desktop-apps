@@ -383,7 +383,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="92"/>
         <source>XLSB File (*.xlsb)</source>
-        <translation type="unfinished"></translation>
+        <translation>Excel Երկուական ֆայլ (*.xlsb)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="95"/>
@@ -814,7 +814,7 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="98"/>
         <source>Preparing update (%1%)</source>
-        <translation type="unfinished"></translation>
+        <translation>Թարմացման պատրաստում (%1%)</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="103"/>
@@ -839,7 +839,7 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="947"/>
         <source>The current version does not support installing this update directly. To install updates, you can download the required package from the official website.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ընթացիկ տարբերակը չի աջակցում ուղղակիորեն այս թարմացման տեղադրմանը: Թարմացումները տեղադրելու համար կարող եք ներբեռնել անհրաժեշտ փաթեթը պաշտոնական կայքից:</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="949"/>

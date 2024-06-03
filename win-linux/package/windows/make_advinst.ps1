@@ -1,9 +1,11 @@
 param (
     [System.Version]$Version = "0.0.0.0",
     [string]$Arch = "x64",
-    [switch]$Sign,
     [string]$BuildDir = "build",
-    [string]$BrandingDir = "."
+    [string]$BrandingDir = ".",
+    [switch]$Sign,
+    [string]$CertName = "Ascensio System SIA",
+    [string]$TimestampServer = "http://timestamp.digicert.com"
 )
 
 $ErrorActionPreference = "Stop"
@@ -141,4 +143,18 @@ Write-Host "`n[ Build Advanced Installer project ]"
 AdvancedInstaller.com /? | Select-Object -First 1
 Write-Host "AdvancedInstaller.com /execute DesktopEditors.aip DesktopEditors.aic"
 AdvancedInstaller.com /execute DesktopEditors.aip DesktopEditors.aic
+if ($LastExitCode -ne 0) { throw }
+
+
+
+Write-Host "`n[ Fix Summary Info Properties ]"
+$MsiFile = (Get-ChildItem "*-$Version-$Arch.msi")[0].Name
+$Template = ";1033,1049,1029,1031,3082,1036,2070,1046,1060,1041,0"
+switch ($Arch) {
+    "x64" { $Template = "x64" + $Template }
+    "x86" { $Template = "Intel" + $Template }
+}
+& MsiInfo $MsiFile /p $Template
+if ($LastExitCode -ne 0) { throw }
+& signtool sign /a /n $CertName /t $TimestampServer /v $MsiFile
 if ($LastExitCode -ne 0) { throw }

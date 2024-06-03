@@ -128,6 +128,8 @@ static BOOL uiLayoutDirectionRTL = NO;
         @"ro-RO": @"Romanian",
         @"sl-SI": @"Slovene",
         @"sv-SE": @"Svenska",
+        @"sr-Latn-RS": @"Srpski (Latin)",
+        @"sr-Cyrl-RS": @"Српски (ћирилица)",
         @"tr-TR": @"Türkçe",
         @"ja-JP": @"日本語",
         @"ko-KR": @"한국어",

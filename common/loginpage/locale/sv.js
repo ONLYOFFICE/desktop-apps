@@ -98,6 +98,7 @@ l10n.sv = {
     updateNoUpdates: 'Appen är uppdaterad',
     updateAvialable: 'Version $1 är tillgänglig. Klicka för att ladda ner.',
     settOptThemeSystem: 'Samma som systemet',
+    settOptThemeAddLocal: 'Lägg till lokalt tema',
     settOptThemeContrastDark: 'Mörkt tema',
     settAUpdateMode: 'Automatisk uppdatering',
     settOptAUpdateSilent: 'Auto',
@@ -109,4 +110,6 @@ l10n.sv = {
     settOptDescDisabled: "Automatisk sökning efter uppdateringar kommer att inaktiveras",
     settOptDescAUpdateSilent: "Ladda ner uppdateringar och fråga innan installation",
     settOptDescAUpdateAsk: "Du kommer att meddelas om alla steg i uppdateringen",
+    settRtlMode: "RTL-gränssnitt",
+    settGpuUseMode: "Använd grafikacceleration om tillgängligt",
 }

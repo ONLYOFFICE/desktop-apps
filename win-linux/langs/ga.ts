@@ -293,7 +293,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="79"/>
         <source>DOCXF Document (*.docxf)</source>
-        <translation>Documéid DOCXF (*.docxf)</translation>
+        <translation>Teimpléad Foirm ONLYOFFICE (*.docxf)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="81"/>
