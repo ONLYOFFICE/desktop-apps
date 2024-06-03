@@ -1,9 +1,11 @@
 param (
     [System.Version]$Version = "0.0.0.0",
     [string]$Arch = "x64",
-    [switch]$Sign,
     [string]$BuildDir = "build",
-    [string]$BrandingDir = "."
+    [string]$BrandingDir = ".",
+    [switch]$Sign,
+    [string]$CertName = "Ascensio System SIA",
+    [string]$TimestampServer = "http://timestamp.digicert.com"
 )
 
 $ErrorActionPreference = "Stop"
@@ -153,4 +155,6 @@ switch ($Arch) {
     "x86" { $Template = "Intel" + $Template }
 }
 & MsiInfo $MsiFile /p $Template
+if ($LastExitCode -ne 0) { throw }
+& signtool sign /a /n $CertName /t $TimestampServer /v $MsiFile
 if ($LastExitCode -ne 0) { throw }
