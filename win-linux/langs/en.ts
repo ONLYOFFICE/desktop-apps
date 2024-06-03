@@ -18,8 +18,8 @@
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1772"/>
-        <source>You need to restart the application for the settings to take effect. Restart now?</source>
-        <translation type="unfinished"></translation>
+        <source>You must restart the application for the settings to take effect.</source>
+        <translation>You need to restart the application for the settings to take effect. Restart now?</translation>
     </message>
     <message>
         <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2151"/>
