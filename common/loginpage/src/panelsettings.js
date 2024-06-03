@@ -393,6 +393,10 @@
 
                 if ( $optsLang.is(':visible') ) {
                     _new_settings.langid = $optsLang.find('select').val();
+                    if ( appSettings.locale.restart && appSettings.locale.current != _new_settings.langid ) {
+                        _new_settings.restart = true;
+                        appSettings.locale.current = _new_settings.langid;
+                    }
 
                     if ( !appSettings.locale.restart ) {
                         utils.Lang.change(_new_settings.langid);
@@ -411,6 +415,11 @@
                 if ( $optsUIScaling ) {
                     _new_settings.uiscaling = $optsUIScaling.val();
                     $optsUIScaling.selectpicker('refresh');
+
+                    if ( appSettings.uiscaling != _new_settings.uiscaling ) {
+                        appSettings.uiscaling = _new_settings.uiscaling;
+                        _new_settings.restart = true;
+                    }
                 }
 
                 if ( $optsUITheme ) {
@@ -437,10 +446,20 @@
 
                 if ( $chRtl ) {
                     _new_settings.rtl = $chRtl.prop("checked");
+
+                    if ( appSettings.rtl != _new_settings.rtl ) {
+                        _new_settings.restart = true;
+                        appSettings.rtl = _new_settings.rtl;
+                    }
                 }
 
                 if ( $chGpu ) {
                     _new_settings.usegpu = $chGpu.prop("checked");
+
+                    if ( appSettings.usegpu != _new_settings.usegpu ) {
+                        _new_settings.restart = true;
+                        appSettings.usegpu = _new_settings.usegpu;
+                    }
                 }
 
                 sdk.command("settings:apply", JSON.stringify(_new_settings));
@@ -474,8 +493,8 @@
                 $btnApply.disable(false);
             }
 
+            const _is_rtl = _is_lang_rtl(l);
             if ( $chRtl ) {
-                const _is_rtl = _is_lang_rtl(l);
                 $chRtl.prop("checked", _is_rtl);
                 if ( !_is_rtl ) {
                     $chRtl.prop("disabled", "disabled");
@@ -486,7 +505,8 @@
                 }
             }
 
-            $(document.body).toggleClass('rtl-font', _is_lang_rtl(l));
+            $btnApply.parent().toggleClass('rtl-font', _is_rtl);
+            $btnApply.toggleClass('rtl-font--skip', !_is_rtl);
             $optsLang.toggleClass('notted', true);
         };
 

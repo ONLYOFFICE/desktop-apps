@@ -17,8 +17,13 @@
         <translation type="vanished">All the editor windows will be closed. Do you want to continue?</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2124"/>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2126"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1772"/>
+        <source>You must restart the application for the settings to take effect.</source>
+        <translation>You need to restart the application for the settings to take effect. Restart now?</translation>
+    </message>
+    <message>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2151"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2153"/>
         <source>Document%1.docx</source>
         <translation></translation>
     </message>
