@@ -110,9 +110,9 @@
         <source>Document %ld.docx</source>
         <target>Dokumentas %ld.docx</target>
       </trans-unit>
-      <trans-unit id="Document %ld.docxf">
-        <source>Document %ld.docxf</source>
-        <target>Dokumentas %ld.docxf</target>
+      <trans-unit id="Document %ld.pdf">
+        <source>Document %ld.pdf</source>
+        <target>Dokumentas %ld.pdf</target>
       </trans-unit>
       <trans-unit id="Document template">
         <source>Document template</source>
