@@ -33,16 +33,14 @@
 #ifndef CPRINTPROGRESS_H
 #define CPRINTPROGRESS_H
 
-#include <QDialog>
-#include <QLabel>
-#include <QFormLayout>
+#include <QWidget>
 
 
 class CPrintProgress : public QObject
 {
     Q_OBJECT
 public:
-    explicit CPrintProgress(QWidget * p = 0);
+    explicit CPrintProgress(QWidget *parent = nullptr);
     ~CPrintProgress();
 
     void startProgress();
@@ -50,19 +48,8 @@ public:
     bool isRejected();
 
 private:
-    QDialog         m_Dlg;
-    QLabel          m_progressLabel;
-    QString         m_progressText;
-    QFormLayout *   m_fLayout;
-    QObject *       m_eventFilter;
-    bool            m_isRejected;
-    bool            m_showed = false;
-
-signals:
-    void signal(int);
-
-public slots:
-    void onCancelClicked();
+    class CPrintProgressPrivate;
+    CPrintProgressPrivate *pimpl;
 };
 
 #endif // CPRINTPROGRESS_H

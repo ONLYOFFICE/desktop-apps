@@ -77,7 +77,6 @@ int GtkMsg::showMessage(QWidget *parent,
     default:                   img_name = "dialog-information"; break;
     }
 
-    gtk_init(NULL, NULL);   
     GtkWidget *image = NULL;
     image = gtk_image_new();
     gtk_image_set_from_icon_name(GTK_IMAGE(image), img_name, GTK_ICON_SIZE_DIALOG);

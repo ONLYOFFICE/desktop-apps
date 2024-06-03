@@ -763,6 +763,13 @@ void Utils::setSessionInProgress(bool state)
     sessionInProgress = state;
 }
 #else
+void Utils::processMoreEvents(uint timeout)
+{
+    QEventLoop loop;
+    QTimer::singleShot(timeout, &loop, SLOT(quit()));
+    loop.exec();
+}
+
 void Utils::setInstAppPort(int port)
 {
     GET_REGISTRY_USER(reg_user);
@@ -879,9 +886,7 @@ namespace WindowHelper {
             Qt::WindowFlags flags = Qt::FramelessWindowHint;
             if (!QX11Info::isCompositingManagerRunning()) {
                 flags |= (Qt::SubWindow | Qt::BypassWindowManagerHint);
-                QEventLoop loop;  // Fixed Cef rendering before reopening the dialog
-                QTimer::singleShot(60, &loop, SLOT(quit()));
-                loop.exec();
+                Utils::processMoreEvents(); // Fixed Cef rendering before reopening the dialog
             } else
                 flags |= Qt::Dialog;
             m_pChild = new QWidget(parent, flags);

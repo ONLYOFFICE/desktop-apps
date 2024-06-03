@@ -129,6 +129,7 @@ public:
     static bool isSessionInProgress();
     static void setSessionInProgress(bool);
 #else
+    static void processMoreEvents(uint timeout = 60);
     static void setInstAppPort(int);
     static int getInstAppPort();
 #endif

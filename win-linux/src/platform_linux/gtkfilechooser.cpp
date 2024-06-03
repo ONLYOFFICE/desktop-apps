@@ -77,7 +77,6 @@ static void nativeFileDialog(const Window &parent_xid,
                       char** sel_filter,
                       bool sel_multiple)
 {
-    gtk_init(NULL, NULL);
     GtkFileChooserAction actions[] = {
         GTK_FILE_CHOOSER_ACTION_OPEN,
         GTK_FILE_CHOOSER_ACTION_SAVE,
