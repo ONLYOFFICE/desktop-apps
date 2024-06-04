@@ -38,6 +38,7 @@
 # include "defines.h"
 #else
 # include <shlobj_core.h>
+# include <shlguid.h>
 # include <combaseapi.h>
 #endif
 #include "components/cprintprogress.h"
