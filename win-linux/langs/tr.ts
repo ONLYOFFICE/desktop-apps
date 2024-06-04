@@ -4,7 +4,7 @@
 <context>
     <name>CAscApplicationManagerWrapper</name>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1303"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1315"/>
         <source>Presenter View</source>
         <translation>Sunucu Görünümü</translation>
     </message>
@@ -25,18 +25,23 @@
         <translation type="obsolete">Farklı Kaydet</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2124"/>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2126"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1772"/>
+        <source>You must restart the application for the settings to take effect.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2151"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2153"/>
         <source>Document%1.docx</source>
         <translation>Belge%1.docx</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2129"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2156"/>
         <source>Book%1.xlsx</source>
         <translation>Kitap%1.xlsx</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2130"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2157"/>
         <source>Presentation%1.pptx</source>
         <translation>Sunum%1.pptx</translation>
     </message>
@@ -44,8 +49,8 @@
 <context>
     <name>CAscTabWidget</name>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="870"/>
-        <location filename="../src/components/asctabwidget.cpp" line="651"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="878"/>
+        <location filename="../src/components/asctabwidget.cpp" line="653"/>
         <source>Document</source>
         <translation>Açılıyor...</translation>
     </message>
@@ -458,23 +463,23 @@
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="244"/>
-        <location filename="../src/components/cfiledialog.cpp" line="339"/>
-        <location filename="../src/components/cfiledialog.cpp" line="363"/>
-        <location filename="../src/components/cfiledialog.cpp" line="365"/>
+        <location filename="../src/components/cfiledialog.cpp" line="342"/>
+        <location filename="../src/components/cfiledialog.cpp" line="366"/>
+        <location filename="../src/components/cfiledialog.cpp" line="368"/>
         <source>Text documents</source>
         <translation>Metin Belgeleri</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="250"/>
-        <location filename="../src/components/cfiledialog.cpp" line="347"/>
-        <location filename="../src/components/cfiledialog.cpp" line="367"/>
+        <location filename="../src/components/cfiledialog.cpp" line="350"/>
+        <location filename="../src/components/cfiledialog.cpp" line="370"/>
         <source>Spreadsheets</source>
         <translation>Tablolar</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="251"/>
-        <location filename="../src/components/cfiledialog.cpp" line="355"/>
-        <location filename="../src/components/cfiledialog.cpp" line="368"/>
+        <location filename="../src/components/cfiledialog.cpp" line="358"/>
+        <location filename="../src/components/cfiledialog.cpp" line="371"/>
         <source>Presentations</source>
         <translation>Sunumlar</translation>
     </message>
@@ -491,7 +496,7 @@
     <message>
         <location filename="../src/ceditortools.cpp" line="137"/>
         <location filename="../src/components/cfiledialog.cpp" line="255"/>
-        <location filename="../src/components/cfiledialog.cpp" line="370"/>
+        <location filename="../src/components/cfiledialog.cpp" line="373"/>
         <source>All supported files</source>
         <translation>Desteklenen tüm dosyalar</translation>
     </message>
@@ -519,40 +524,40 @@
         <translation>Tema dosyası</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="270"/>
+        <location filename="../src/components/cfiledialog.cpp" line="273"/>
         <source>Open Document</source>
         <translation>Belge Aç</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="300"/>
-        <location filename="../src/components/cfiledialog.cpp" line="310"/>
+        <location filename="../src/components/cfiledialog.cpp" line="303"/>
+        <location filename="../src/components/cfiledialog.cpp" line="313"/>
         <source>All Images</source>
         <translation>Tüm Resimler</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="302"/>
-        <location filename="../src/components/cfiledialog.cpp" line="312"/>
+        <location filename="../src/components/cfiledialog.cpp" line="305"/>
+        <location filename="../src/components/cfiledialog.cpp" line="315"/>
         <source>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp)</source>
         <translation>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp)</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="321"/>
-        <location filename="../src/components/cfiledialog.cpp" line="330"/>
+        <location filename="../src/components/cfiledialog.cpp" line="324"/>
+        <location filename="../src/components/cfiledialog.cpp" line="333"/>
         <source>Plugin file (*.plugin)</source>
         <translation>Plugin Dosyası (*.plugin)</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="387"/>
+        <location filename="../src/components/cfiledialog.cpp" line="390"/>
         <source>Video file</source>
         <translation>Video Dosyası</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="392"/>
+        <location filename="../src/components/cfiledialog.cpp" line="395"/>
         <source>Audio file</source>
         <translation>Ses Dosyası</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="409"/>
+        <location filename="../src/components/cfiledialog.cpp" line="412"/>
         <source>Select Folder</source>
         <translation>Dosya Seç</translation>
     </message>
@@ -873,12 +878,12 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper_private.h" line="189"/>
+        <location filename="../src/cascapplicationmanagerwrapper_private.h" line="249"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
         <translation>%1 mevcut değil. Yeniden isimlendirilmiş, taşınmış veya silimiş olabilir.&lt;br&gt;Dosyayı listeden kaldırmak istediğinize emin misiniz?</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper_private.h" line="232"/>
+        <location filename="../src/cascapplicationmanagerwrapper_private.h" line="292"/>
         <source>File %1 cannot be opened or doesn&apos;t exists.</source>
         <translation>%1 dosyası açılamıyor veya mevcut değil.</translation>
     </message>
@@ -1020,7 +1025,7 @@
         <translation>Devam Et</translation>
     </message>
     <message>
-        <location filename="../src/platform_linux/xdgdesktopportal.cpp" line="1221"/>
+        <location filename="../src/platform_linux/xdgdesktopportal.cpp" line="1220"/>
         <source>An error occurred while opening the portal:&lt;br&gt;%1</source>
         <translation>Portal açılırken bir hata oluştu:&lt;br&gt;%1</translation>
     </message>
@@ -1029,7 +1034,7 @@
         <translation type="obsolete">&amp;Tamam</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="347"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="355"/>
         <source>File %1 is already loaded. Replace it?</source>
         <translation>%1 dosyası zaten yüklendi. Değiştirilsin mi?</translation>
     </message>
