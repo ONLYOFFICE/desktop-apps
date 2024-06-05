@@ -1629,44 +1629,21 @@ void CAscApplicationManagerWrapper::sendEvent(int type, void * data)
 //    delete pEvent;
 }
 
-QString CAscApplicationManagerWrapper::getWindowStylesheets(double dpifactor)
+QString CAscApplicationManagerWrapper::getWindowStylesheets(double dpi)
 {
-    if ( dpifactor > 4.5 )
-        return getWindowStylesheets(CScalingFactor::SCALING_FACTOR_5);
-    else
-    if ( dpifactor > 4.0 )
-        return getWindowStylesheets(CScalingFactor::SCALING_FACTOR_4_5);
-    else
-    if ( dpifactor > 3.5 )
-        return getWindowStylesheets(CScalingFactor::SCALING_FACTOR_4);
-    else
-    if ( dpifactor > 3.0 )
-        return getWindowStylesheets(CScalingFactor::SCALING_FACTOR_3_5);
-    else
-    if ( dpifactor > 2.75 )
-        return getWindowStylesheets(CScalingFactor::SCALING_FACTOR_3);
-    else
-    if ( dpifactor > 2.5 )
-        return getWindowStylesheets(CScalingFactor::SCALING_FACTOR_2_75);
-    else
-    if ( dpifactor > 2.25 )
-        return getWindowStylesheets(CScalingFactor::SCALING_FACTOR_2_5);
-    else
-    if ( dpifactor > 2.0 )
-        return getWindowStylesheets(CScalingFactor::SCALING_FACTOR_2_25);
-    else
-    if ( dpifactor > 1.75 )
-        return getWindowStylesheets(CScalingFactor::SCALING_FACTOR_2);
-    else
-    if ( dpifactor > 1.5 )
-        return getWindowStylesheets(CScalingFactor::SCALING_FACTOR_1_75);
-    else
-    if ( dpifactor > 1.25 )
-        return getWindowStylesheets(CScalingFactor::SCALING_FACTOR_1_5);
-    else
-    if ( dpifactor > 1 )
-        return getWindowStylesheets(CScalingFactor::SCALING_FACTOR_1_25);
-    else return getWindowStylesheets(CScalingFactor::SCALING_FACTOR_1);
+    CScalingFactor f = dpi > 4.5 ? CScalingFactor::SCALING_FACTOR_5 :
+                       dpi > 4.0 ? CScalingFactor::SCALING_FACTOR_4_5 :
+                       dpi > 3.5 ? CScalingFactor::SCALING_FACTOR_4 :
+                       dpi > 3.0 ? CScalingFactor::SCALING_FACTOR_3_5 :
+                       dpi > 2.75 ? CScalingFactor::SCALING_FACTOR_3 :
+                       dpi > 2.5 ? CScalingFactor::SCALING_FACTOR_2_75 :
+                       dpi > 2.25 ? CScalingFactor::SCALING_FACTOR_2_5 :
+                       dpi > 2.0 ? CScalingFactor::SCALING_FACTOR_2_25 :
+                       dpi > 1.75 ? CScalingFactor::SCALING_FACTOR_2 :
+                       dpi > 1.5 ? CScalingFactor::SCALING_FACTOR_1_75 :
+                       dpi > 1.25 ? CScalingFactor::SCALING_FACTOR_1_5 :
+                       dpi > 1 ? CScalingFactor::SCALING_FACTOR_1_25 : CScalingFactor::SCALING_FACTOR_1;
+    return getWindowStylesheets(f);
 }
 
 QString CAscApplicationManagerWrapper::getWindowStylesheets(CScalingFactor factor)
