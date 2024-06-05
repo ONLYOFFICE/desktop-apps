@@ -65,7 +65,6 @@ typedef HRESULT (__stdcall *SetCurrentProcessExplicitAppUserModelIDProc)(PCWSTR 
 #include <stdlib.h>
 #endif
 
-//extern QStringList g_cmdArgs;
 
 namespace InputArgs {
     std::vector<std::wstring> in_args;
@@ -234,20 +233,19 @@ namespace Scaling {
 
     auto factorToScaling(const std::wstring& value) -> QString
     {
-        if ( value == L"1" ) return "100"; else
-        if ( value == L"1.25" ) return "125"; else
-        if ( value == L"1.5" ) return "150"; else
-        if ( value == L"1.75" ) return "175"; else
-        if ( value == L"2" ) return "200"; else
-        if ( value == L"2.25" ) return "225"; else
-        if ( value == L"2.5" ) return "250"; else
-        if ( value == L"2.75" ) return "275"; else
-        if ( value == L"3" ) return "300"; else
-        if ( value == L"3.5" ) return "350"; else
-        if ( value == L"4" ) return "400"; else
-        if ( value == L"4.5" ) return "450"; else
-        if ( value == L"5" ) return "500";
-        else return "0";
+        return value == L"1" ? "100" :
+               value == L"1.25" ? "125" :
+               value == L"1.5" ? "150" :
+               value == L"1.75" ? "175" :
+               value == L"2" ? "200" :
+               value == L"2.25" ? "225" :
+               value == L"2.5" ? "250" :
+               value == L"2.75" ? "275" :
+               value == L"3" ? "300" :
+               value == L"3.5" ? "350" :
+               value == L"4" ? "400" :
+               value == L"4.5" ? "450" :
+               value == L"5" ? "500" : "0";
     }
 }
 
@@ -736,15 +734,18 @@ Utils::WinVer Utils::getWinVersion()
                 OSVERSIONINFOEXW os = {0};
                 os.dwOSVersionInfoSize = sizeof(os);
                 RtlGetVersion(&os);
-                winVer = os.dwMajorVersion == 5L && (os.dwMinorVersion == 1L || os.dwMinorVersion == 2L) ? WinVer::WinXP :
-                         os.dwMajorVersion == 6L && os.dwMinorVersion == 0L ? WinVer::WinVista :
-                         os.dwMajorVersion == 6L && os.dwMinorVersion == 1L ? WinVer::Win7 :
-                         os.dwMajorVersion == 6L && os.dwMinorVersion == 2L ? WinVer::Win8 :
-                         os.dwMajorVersion == 6L && os.dwMinorVersion == 3L ? WinVer::Win8_1 :
-                         os.dwMajorVersion == 10L && os.dwMinorVersion == 0L && os.dwBuildNumber < 22000 ? WinVer::Win10 :
-                         os.dwMajorVersion == 10L && os.dwMinorVersion == 0L && os.dwBuildNumber >= 22000 ? WinVer::Win11 :
-                         os.dwMajorVersion == 10L && os.dwMinorVersion > 0L ? WinVer::Win11 :
-                         os.dwMajorVersion > 10L ? WinVer::Win11 : WinVer::Undef;
+#define MjrVer os.dwMajorVersion
+#define MinVer os.dwMinorVersion
+#define BldVer os.dwBuildNumber
+                winVer = MjrVer == 5L && (MinVer == 1L || MinVer == 2L) ? WinVer::WinXP :
+                         MjrVer == 6L && MinVer == 0L ? WinVer::WinVista :
+                         MjrVer == 6L && MinVer == 1L ? WinVer::Win7 :
+                         MjrVer == 6L && MinVer == 2L ? WinVer::Win8 :
+                         MjrVer == 6L && MinVer == 3L ? WinVer::Win8_1 :
+                         MjrVer == 10L && MinVer == 0L && BldVer < 22000 ? WinVer::Win10 :
+                         MjrVer == 10L && MinVer == 0L && BldVer >= 22000 ? WinVer::Win11 :
+                         MjrVer == 10L && MinVer > 0L ? WinVer::Win11 :
+                         MjrVer > 10L ? WinVer::Win11 : WinVer::Undef;
             }
         }
     }
@@ -1025,9 +1026,6 @@ namespace WindowHelper {
 
     auto getColorizationColor(bool isActive, const QColor &bkgColor) -> QColor
     {
-        bool isBkgDark = AscAppManager::themes().isColorDark(bkgColor.name());
-        QColor color(GetCurrentTheme().isDark() ? (isActive ? "#2f2f2f" : "#3a3a3a") :
-                         (isActive ? (isBkgDark ? "#585858" : "#777777") : (isBkgDark ? "#606060" : "#aaaaaa")));
         QSettings reg("HKEY_CURRENT_USER\\SOFTWARE\\Microsoft\\Windows\\DWM", QSettings::NativeFormat);
         if (isActive && reg.value("ColorPrevalence", 0).toInt() != 0) {
             DWORD dwcolor = 0;
@@ -1038,10 +1036,19 @@ namespace WindowHelper {
                     *(FARPROC*)&DwmGetColorizationColor = GetProcAddress(module, "DwmGetColorizationColor");
             }
             if (DwmGetColorizationColor && SUCCEEDED(DwmGetColorizationColor(&dwcolor, &opaque))) {
-                color = QColor((dwcolor & 0xff0000) >> 16, (dwcolor & 0xff00) >> 8, dwcolor & 0xff);
+                return QColor((dwcolor & 0xff0000) >> 16, (dwcolor & 0xff00) >> 8, dwcolor & 0xff);
             }
         }
-        return color;
+#define BORDER_ACTIVE_DARK       "#2f2f2f" // Dark theme
+#define BORDER_INACTIVE_DARK     "#3a3a3a"
+#define BORDER_ACTIVE_LIGHT_V1   "#585858" // Light theme and colored background
+#define BORDER_ACTIVE_LIGHT_V2   "#777777" // Light theme and white background
+#define BORDER_INACTIVE_LIGHT_V1 "#606060"
+#define BORDER_INACTIVE_LIGHT_V2 "#aaaaaa"
+        bool isBkgDark = AscAppManager::themes().isColorDark(bkgColor.name());
+        return QColor(GetCurrentTheme().isDark() ? (isActive ? BORDER_ACTIVE_DARK : BORDER_INACTIVE_DARK) :
+                      (isActive ? (isBkgDark ? BORDER_ACTIVE_LIGHT_V1 : BORDER_ACTIVE_LIGHT_V2) :
+                                  (isBkgDark ? BORDER_INACTIVE_LIGHT_V1 : BORDER_INACTIVE_LIGHT_V2)));
     }
 
     auto toggleLayoutDirection(HWND hwnd) -> void
