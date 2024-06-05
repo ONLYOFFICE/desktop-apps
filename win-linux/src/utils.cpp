@@ -57,7 +57,6 @@
 #include <windowsx.h>
 #include "shlobj.h"
 #include "lmcons.h"
-typedef HRESULT (__stdcall *SetCurrentProcessExplicitAppUserModelIDProc)(PCWSTR AppID);
 #else
 # include <QEventLoop>
 # include <QX11Info>
@@ -763,6 +762,17 @@ void Utils::setSessionInProgress(bool state)
 {
     sessionInProgress = state;
 }
+
+void Utils::setAppUserModelId()
+{
+    if (HMODULE lib = LoadLibrary(L"shell32")) {
+        HRESULT (WINAPI *SetAppUserModelID)(PCWSTR AppID);
+        *(FARPROC*)&SetAppUserModelID = GetProcAddress(lib, "SetCurrentProcessExplicitAppUserModelID");
+        if (SetAppUserModelID)
+            SetAppUserModelID(TEXT(APP_USER_MODEL_ID));
+        FreeLibrary(lib);
+    }
+}
 #else
 void Utils::processMoreEvents(uint timeout)
 {
@@ -804,27 +814,6 @@ void Utils::replaceAll(std::wstring& subject, const std::wstring& search, const 
         subject.replace(pos, search.length(), replace);
         pos += replace.length();
     }
-}
-
-bool Utils::setAppUserModelId(const QString& modelid)
-{
-    bool _result = false;
-
-#ifdef Q_OS_WIN
-    HMODULE _lib_shell32 = ::LoadLibrary(L"shell32.dll");
-    if ( _lib_shell32 != NULL ) {
-        SetCurrentProcessExplicitAppUserModelIDProc setCurrentProcessExplicitAppUserModelId =
-            reinterpret_cast<SetCurrentProcessExplicitAppUserModelIDProc>(GetProcAddress(_lib_shell32, "SetCurrentProcessExplicitAppUserModelID"));
-
-        if ( setCurrentProcessExplicitAppUserModelId != NULL ) {
-            _result = setCurrentProcessExplicitAppUserModelId(modelid.toStdWString().c_str()) == S_OK;
-        }
-
-        ::FreeLibrary(_lib_shell32);
-    }
-#endif
-
-    return _result;
 }
 
 std::wstring Utils::systemUserName()

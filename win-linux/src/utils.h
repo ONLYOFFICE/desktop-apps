@@ -106,8 +106,6 @@ public:
     static void replaceAll(std::wstring& subject, const std::wstring& search, const std::wstring& replace);
     static bool isFileLocal(const QString&);
     static QString uniqFileName(const QString& path);
-    static bool setAppUserModelId(const QString&);
-
     static bool makepath(const QString&);
 
     static QString systemLocationCode();
@@ -129,6 +127,7 @@ public:
     static WinVer getWinVersion();
     static bool isSessionInProgress();
     static void setSessionInProgress(bool);
+    static void setAppUserModelId();
 #else
     static void processMoreEvents(uint timeout = 60);
     static void setInstAppPort(int);
