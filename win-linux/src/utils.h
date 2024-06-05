@@ -42,6 +42,7 @@
 #include "components/cfullscrwidget.h"
 
 #define PROCESSEVENTS() AscAppManager::getInstance().processEvents()
+#define IsPackage(type) (AppOptions::packageType() == AppOptions::AppPackageType::type)
 
 namespace InputArgs {
     auto init(int argc, char** const argv) -> void;
