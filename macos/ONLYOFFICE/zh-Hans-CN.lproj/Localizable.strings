@@ -41,7 +41,7 @@
 "Document %ld.docx" = "文档%ld.docx";
 
 /* No comment provided by engineer. */
-"Document %ld.docxf" = "文档%ld.docxf";
+"Document %ld.pdf" = "文档%ld.pdf";
 
 /* No comment provided by engineer. */
 "Document template" = "Word开放式XML文档模板 (*.dotx)";
@@ -96,9 +96,6 @@
 
 /* No comment provided by engineer. */
 "new-spreadsheet" = "新建表格";
-
-/* No comment provided by engineer. */
-"new-pdfform" = "新建 PDF 表单";
 
 /* No comment provided by engineer. */
 "No" = "否";
@@ -201,9 +198,6 @@
 
 /* No comment provided by engineer. */
 "Untitled" = "无标题";
-
-/* No comment provided by engineer. */
-"Version %@ (%@)" = "版本 %1$@ (%2$@)";
 
 /* No comment provided by engineer. */
 "Web Page" = "网页";

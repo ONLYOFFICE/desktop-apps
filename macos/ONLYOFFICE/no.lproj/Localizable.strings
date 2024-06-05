@@ -41,7 +41,7 @@
 "Document %ld.docx" = "Dokument %ld.docx";
 
 /* No comment provided by engineer. */
-"Document %ld.docxf" = "Dokument %ld.docxf";
+"Document %ld.pdf" = "Dokument %ld.pdf";
 
 /* No comment provided by engineer. */
 "Document template" = "Word Open XML-dokumentmal (*.dotx)";
@@ -81,9 +81,6 @@
 
 /* No comment provided by engineer. */
 "new-spreadsheet" = "Nytt regneark";
-
-/* No comment provided by engineer. */
-"new-pdfform" = "Nytt PDF-skjema";
 
 /* No comment provided by engineer. */
 "No" = "Nei";
@@ -180,9 +177,6 @@
 
 /* No comment provided by engineer. */
 "Untitled" = "Uten tittel";
-
-/* No comment provided by engineer. */
-"Version %@ (%@)" = "Versjon %1$@ (%2$@)";
 
 /* No comment provided by engineer. */
 "Web Page" = "Nettsted";

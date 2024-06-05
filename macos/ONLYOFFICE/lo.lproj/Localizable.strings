@@ -41,7 +41,7 @@
 "Document %ld.docx" = "ເອກະສານ %ld.docx";
 
 /* No comment provided by engineer. */
-"Document %ld.docxf" = "ເອກະສານ %ld.docxf";
+"Document %ld.pdf" = "ເອກະສານ %ld.pdf";
 
 /* No comment provided by engineer. */
 "Document template" = "ເປີດໄຟລ໌ XML ໃນຮູບແບບເອກະສານ Word (*.dotx)";
@@ -84,9 +84,6 @@
 
 /* No comment provided by engineer. */
 "new-spreadsheet" = "ຕາຕະລາງໃໝ່";
-
-/* No comment provided by engineer. */
-"new-pdfform" = "ແບບຟອມ PDF ໃໝ່";
 
 /* No comment provided by engineer. */
 "No" = "ບໍ່";
@@ -183,9 +180,6 @@
 
 /* No comment provided by engineer. */
 "Untitled" = "ບໍ່ມີຊື່";
-
-/* No comment provided by engineer. */
-"Version %@ (%@)" = "ເວີຊັນ %1$@ (%2$@)";
 
 /* No comment provided by engineer. */
 "Web Page" = "ໜ້າເວັບ";

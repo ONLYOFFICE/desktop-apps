@@ -41,7 +41,7 @@
 "Document %ld.docx" = "Document %ld.docx";
 
 /* No comment provided by engineer. */
-"Document %ld.docxf" = "Document %ld.docxf";
+"Document %ld.pdf" = "Document %ld.pdf";
 
 /* No comment provided by engineer. */
 "Document template" = "Șablon document Word Open XML (*.dotx)";
@@ -90,9 +90,6 @@
 
 /* No comment provided by engineer. */
 "new-spreadsheet" = "Foaie de calcul nouă";
-
-/* No comment provided by engineer. */
-"new-pdfform" = "Noul formular PDF";
 
 /* No comment provided by engineer. */
 "No" = "Nu";
@@ -189,9 +186,6 @@
 
 /* No comment provided by engineer. */
 "Untitled" = "Fără titlu";
-
-/* No comment provided by engineer. */
-"Version %@ (%@)" = "Versiunea %1$@ (%2$@)";
 
 /* No comment provided by engineer. */
 "Web Page" = "Pagină web";

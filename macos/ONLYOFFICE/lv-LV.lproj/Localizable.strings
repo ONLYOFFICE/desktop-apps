@@ -41,7 +41,7 @@
 "Document %ld.docx" = "Dokuments %ld.docx";
 
 /* No comment provided by engineer. */
-"Document %ld.docxf" = "Dokuments %ld.docxf";
+"Document %ld.pdf" = "Dokuments %ld.pdf";
 
 /* No comment provided by engineer. */
 "Document template" = "Word Open XML Dokumenta veidne (*.dotx)";
@@ -177,9 +177,6 @@
 
 /* No comment provided by engineer. */
 "Untitled" = "Bez nosaukuma";
-
-/* No comment provided by engineer. */
-"Version %@ (%@)" = "Versija %1$@ (%2$@)";
 
 /* No comment provided by engineer. */
 "Web Page" = "Web Lapa";

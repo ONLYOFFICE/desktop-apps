@@ -38,7 +38,7 @@
 "Do you want to save the changes made to the document \"%@\"?" = "Bạn có muốn lưu những thay đổi đã thực hiện đối với tài liệu \"%@\"?";
 
 /* No comment provided by engineer. */
-"Document %ld.docxf" = "Văn bản %ld.docxf";
+"Document %ld.pdf" = "Văn bản %ld.pdf";
 
 /* No comment provided by engineer. */
 "Document template" = "Word Open XML Mẫu văn bản (*.dotx)";
@@ -189,9 +189,6 @@
 
 /* No comment provided by engineer. */
 "Untitled" = "Untitled";
-
-/* No comment provided by engineer. */
-"Version %@ (%@)" = "Phiên bản %1$@ (%2$@)";
 
 /* No comment provided by engineer. */
 "Web Page" = "Trang Web";

@@ -41,7 +41,7 @@
 "Document %ld.docx" = "Documento %ld.docx";
 
 /* No comment provided by engineer. */
-"Document %ld.docxf" = "Documento %ld.docxf";
+"Document %ld.pdf" = "Documento %ld.pdf";
 
 /* No comment provided by engineer. */
 "Document template" = "Modelo de documento do Open XML do Word (*.dotx)";
@@ -90,9 +90,6 @@
 
 /* No comment provided by engineer. */
 "new-spreadsheet" = "Nova planilha";
-
-/* No comment provided by engineer. */
-"new-pdfform" = "Novo formulário PDF";
 
 /* No comment provided by engineer. */
 "No" = "Não";
@@ -195,9 +192,6 @@
 
 /* No comment provided by engineer. */
 "Untitled" = "Sem título";
-
-/* No comment provided by engineer. */
-"Version %@ (%@)" = "Versão %1$@ (%2$@)";
 
 /* No comment provided by engineer. */
 "Web Page" = "Página Web";

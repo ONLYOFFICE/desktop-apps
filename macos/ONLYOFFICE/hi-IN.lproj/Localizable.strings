@@ -80,9 +80,6 @@
 "new-spreadsheet" = "नई स्प्रेडशीट";
 
 /* No comment provided by engineer. */
-"new-pdfform" = "नया पीडीएफ फॉर्म";
-
-/* No comment provided by engineer. */
 "No" = "नहीं";
 
 /* No comment provided by engineer. */
@@ -177,9 +174,6 @@
 
 /* No comment provided by engineer. */
 "Untitled" = "शीर्षकहीन";
-
-/* No comment provided by engineer. */
-"Version %@ (%@)" = "संस्करण %1$@ (%2$@)";
 
 /* No comment provided by engineer. */
 "Web Page" = "वेब पेज";

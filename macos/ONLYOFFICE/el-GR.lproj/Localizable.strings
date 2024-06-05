@@ -41,7 +41,7 @@
 "Document %ld.docx" = "Έγγραφο %ld.docx";
 
 /* No comment provided by engineer. */
-"Document %ld.docxf" = "Έγγραφο %ld.docxf";
+"Document %ld.pdf" = "Έγγραφο %ld.pdf";
 
 /* No comment provided by engineer. */
 "Document template" = "Πρότυπο εγγράφου Word με ανοιχτή μορφή XML (*.dotx)";
@@ -180,9 +180,6 @@
 
 /* No comment provided by engineer. */
 "Untitled" = "Χωρίς τίτλο";
-
-/* No comment provided by engineer. */
-"Version %@ (%@)" = "Έκδοση %1$@ (%2$@)";
 
 /* No comment provided by engineer. */
 "Web Page" = "Ιστοσελίδα";

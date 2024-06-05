@@ -41,7 +41,7 @@
 "Document %ld.docx" = "Doiciméad %ld.docx";
 
 /* No comment provided by engineer. */
-"Document %ld.docxf" = "Doiciméad %ld.docxf";
+"Document %ld.pdf" = "Doiciméad %ld.pdf";
 
 /* No comment provided by engineer. */
 "Document template" = "Teimpléad doiciméad Word Open XML (*.dotx)";
@@ -81,9 +81,6 @@
 
 /* No comment provided by engineer. */
 "new-spreadsheet" = "Scarbhileog Nua";
-
-/* No comment provided by engineer. */
-"new-pdfform" = "Foirm PDF nua";
 
 /* No comment provided by engineer. */
 "No" = "Níl";
@@ -180,9 +177,6 @@
 
 /* No comment provided by engineer. */
 "Untitled" = "Gan ainm";
-
-/* No comment provided by engineer. */
-"Version %@ (%@)" = "Leagan %1$@ (%2$@)";
 
 /* No comment provided by engineer. */
 "Web Page" = "Leathanach Gréasáin";

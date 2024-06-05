@@ -41,7 +41,7 @@
 "Document %ld.docx" = "문서 %ld.docx";
 
 /* No comment provided by engineer. */
-"Document %ld.docxf" = "문서 %ld.docxf";
+"Document %ld.pdf" = "문서 %ld.pdf";
 
 /* No comment provided by engineer. */
 "Document template" = "Word Open XML 문서 템플릿(*.dotx)";
@@ -177,9 +177,6 @@
 
 /* No comment provided by engineer. */
 "Untitled" = "제목 없음";
-
-/* No comment provided by engineer. */
-"Version %@ (%@)" = "버전 %1$@ (%2$@)";
 
 /* No comment provided by engineer. */
 "Web Page" = "웹 페이지";

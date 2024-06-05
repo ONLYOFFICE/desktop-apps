@@ -41,6 +41,9 @@
 "Document %ld.docx" = "مستند %ld.docx";
 
 /* No comment provided by engineer. */
+"Document %ld.pdf" = "مستند %ld.pdf";
+
+/* No comment provided by engineer. */
 "Document template" = "قالب وورد (*.dotx)";
 
 /* No comment provided by engineer. */

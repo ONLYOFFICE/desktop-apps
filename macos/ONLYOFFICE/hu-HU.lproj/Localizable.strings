@@ -41,7 +41,7 @@
 "Document %ld.docx" = "Dokumentum %ld.docx";
 
 /* No comment provided by engineer. */
-"Document %ld.docxf" = "Dokumentum %ld.docxf";
+"Document %ld.pdf" = "Dokumentum %ld.pdf";
 
 /* No comment provided by engineer. */
 "Document template" = "Word Open XML Dokumentumsablon (*.dotx)";
@@ -81,9 +81,6 @@
 
 /* No comment provided by engineer. */
 "new-spreadsheet" = "Új Táblázat";
-
-/* No comment provided by engineer. */
-"new-pdfform" = "Új PDF űrlap";
 
 /* No comment provided by engineer. */
 "No" = "Nem";
@@ -180,9 +177,6 @@
 
 /* No comment provided by engineer. */
 "Untitled" = "Névtelen";
-
-/* No comment provided by engineer. */
-"Version %@ (%@)" = "%1$@ (%2$@) verzió";
 
 /* No comment provided by engineer. */
 "Web Page" = "Weboldal";

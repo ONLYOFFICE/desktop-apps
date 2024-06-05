@@ -26,7 +26,7 @@
 "Document %ld.docx" = "Dokument %ld.docx";
 
 /* No comment provided by engineer. */
-"Document %ld.docxf" = "Dokument %ld.docxf";
+"Document %ld.pdf" = "Dokument %ld.pdf";
 
 /* No comment provided by engineer. */
 "Excel 97-2003 Spreadsheet" = "Excel 97-2003-kalkylblad (*.xls)";
@@ -57,18 +57,6 @@
 
 /* No comment provided by engineer. */
 "Mobipocket e-book" = "Mobipocket e-bokl (*.mobi)";
-
-/* No comment provided by engineer. */
-"new-document" = "Nytt dokument";
-
-/* No comment provided by engineer. */
-"new-presentation" = "Ny presentation";
-
-/* No comment provided by engineer. */
-"new-spreadsheet" = "Nytt kalkylblad";
-
-/* No comment provided by engineer. */
-"new-pdfform" = "Nytt PDF-formulär";
 
 /* No comment provided by engineer. */
 "No" = "Nej";

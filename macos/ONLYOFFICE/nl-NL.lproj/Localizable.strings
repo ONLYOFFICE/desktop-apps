@@ -41,7 +41,7 @@
 "Document %ld.docx" = "Document %ld.docx";
 
 /* No comment provided by engineer. */
-"Document %ld.docxf" = "Document %ld.docxf";
+"Document %ld.pdf" = "Document %ld.pdf";
 
 /* No comment provided by engineer. */
 "Document template" = "Word Open XML Document Sjabloon (*.dotx)";
@@ -84,9 +84,6 @@
 
 /* No comment provided by engineer. */
 "new-spreadsheet" = "Nieuwe Spreadsheet";
-
-/* No comment provided by engineer. */
-"new-pdfform" = "Nieuw PDF-formulier";
 
 /* No comment provided by engineer. */
 "No" = "Nee";
@@ -183,9 +180,6 @@
 
 /* No comment provided by engineer. */
 "Untitled" = "Zonder titel";
-
-/* No comment provided by engineer. */
-"Version %@ (%@)" = "Versie %1$@ (%2$@)";
 
 /* No comment provided by engineer. */
 "Web Page" = "Webpagina";
