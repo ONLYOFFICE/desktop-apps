@@ -158,16 +158,16 @@ namespace WindowHelper {
     auto getEnvInfo() -> int;
     auto useGtkDialog() -> bool;
 #else
-    auto isWindowSystemDocked(HWND handle) -> bool;
-    auto correctWindowMinimumSize(HWND handle) -> void;
-    auto correctModalOrder(HWND windowhandle, HWND modalhandle) -> void;
-    auto adjustWindowRect(HWND, double, LPRECT) -> void;
+//    auto isWindowSystemDocked(HWND handle) -> bool;
+//    auto correctWindowMinimumSize(HWND handle) -> void;
+//    auto correctModalOrder(HWND windowhandle, HWND modalhandle) -> void;
+//    auto adjustWindowRect(HWND, double, LPRECT) -> void;
     auto bringToTop(HWND) -> void;
     auto getColorizationColor(bool isActive = true, const QColor &bkgColor = QColor()) -> QColor;
     auto toggleLayoutDirection(HWND hwnd) -> void;
 #endif
 
-    auto correctWindowMinimumSize(const QRect&, const QSize&) -> QSize;
+//    auto correctWindowMinimumSize(const QRect&, const QSize&) -> QSize;
     auto isLeftButtonPressed() -> bool;
     auto constructFullscreenWidget(QWidget * panel) -> CFullScrWidget *;
     auto useNativeDialog() -> bool;

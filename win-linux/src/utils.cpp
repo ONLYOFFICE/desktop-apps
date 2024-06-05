@@ -951,64 +951,64 @@ namespace WindowHelper {
         return use_gtk_dialog;
     }
 #else
-    auto isWindowSystemDocked(HWND handle) -> bool {
-        RECT windowrect;
-        WINDOWPLACEMENT wp; wp.length = sizeof(WINDOWPLACEMENT);
-        if ( GetWindowRect(handle, &windowrect) && GetWindowPlacement(handle, &wp) && wp.showCmd == SW_SHOWNORMAL ) {
-            return (wp.rcNormalPosition.right - wp.rcNormalPosition.left != windowrect.right - windowrect.left) ||
-                        (wp.rcNormalPosition.bottom - wp.rcNormalPosition.top != windowrect.bottom - windowrect.top);
-        }
+//    auto isWindowSystemDocked(HWND handle) -> bool {
+//        RECT windowrect;
+//        WINDOWPLACEMENT wp; wp.length = sizeof(WINDOWPLACEMENT);
+//        if ( GetWindowRect(handle, &windowrect) && GetWindowPlacement(handle, &wp) && wp.showCmd == SW_SHOWNORMAL ) {
+//            return (wp.rcNormalPosition.right - wp.rcNormalPosition.left != windowrect.right - windowrect.left) ||
+//                        (wp.rcNormalPosition.bottom - wp.rcNormalPosition.top != windowrect.bottom - windowrect.top);
+//        }
 
-        return false;
-    }
+//        return false;
+//    }
 
-    auto correctWindowMinimumSize(HWND handle) -> void {
-        WINDOWPLACEMENT wp; wp.length = sizeof(WINDOWPLACEMENT);
-        if ( GetWindowPlacement(handle, &wp) ) {
-            int dpi_ratio = Utils::getScreenDpiRatioByHWND((int)handle);
-            QSize _min_windowsize{MAIN_WINDOW_MIN_WIDTH * dpi_ratio,MAIN_WINDOW_MIN_HEIGHT * dpi_ratio};
-            QRect windowRect{QPoint(wp.rcNormalPosition.left, wp.rcNormalPosition.top),
-                                    QPoint(wp.rcNormalPosition.right, wp.rcNormalPosition.bottom)};
+//     auto correctWindowMinimumSize(HWND handle) -> void {
+//         WINDOWPLACEMENT wp; wp.length = sizeof(WINDOWPLACEMENT);
+//         if ( GetWindowPlacement(handle, &wp) ) {
+//             int dpi_ratio = Utils::getScreenDpiRatioByHWND((int)handle);
+//             QSize _min_windowsize{MAIN_WINDOW_MIN_WIDTH * dpi_ratio,MAIN_WINDOW_MIN_HEIGHT * dpi_ratio};
+//             QRect windowRect{QPoint(wp.rcNormalPosition.left, wp.rcNormalPosition.top),
+//                                     QPoint(wp.rcNormalPosition.right, wp.rcNormalPosition.bottom)};
 
-            if ( windowRect.width() < _min_windowsize.width() ||
-                    windowRect.height() < _min_windowsize.height() )
-            {
-//                if ( windowRect.width() < _min_windowsize.width() )
-                    wp.rcNormalPosition.right = wp.rcNormalPosition.left + _min_windowsize.width();
+//             if ( windowRect.width() < _min_windowsize.width() ||
+//                     windowRect.height() < _min_windowsize.height() )
+//             {
+// //                if ( windowRect.width() < _min_windowsize.width() )
+//                     wp.rcNormalPosition.right = wp.rcNormalPosition.left + _min_windowsize.width();
 
-//                if ( windowRect.height() < _min_windowsize.height() )
-                    wp.rcNormalPosition.bottom = wp.rcNormalPosition.top + _min_windowsize.height();
+// //                if ( windowRect.height() < _min_windowsize.height() )
+//                     wp.rcNormalPosition.bottom = wp.rcNormalPosition.top + _min_windowsize.height();
 
-                SetWindowPlacement(handle, &wp);
-            }
-        }
-    }
+//                 SetWindowPlacement(handle, &wp);
+//             }
+//         }
+//     }
 
-    auto correctModalOrder(HWND windowhandle, HWND modalhandle) -> void
-    {
-        if ( !IsWindowEnabled(windowhandle) && modalhandle && modalhandle != windowhandle ) {
-            SetActiveWindow(modalhandle);
-            SetWindowPos(windowhandle, modalhandle, 0, 0, 0, 0, SWP_NOACTIVATE | SWP_NOMOVE | SWP_NOSIZE);
-        }
-    }
+//    auto correctModalOrder(HWND windowhandle, HWND modalhandle) -> void
+//    {
+//        if ( !IsWindowEnabled(windowhandle) && modalhandle && modalhandle != windowhandle ) {
+//            SetActiveWindow(modalhandle);
+//            SetWindowPos(windowhandle, modalhandle, 0, 0, 0, 0, SWP_NOACTIVATE | SWP_NOMOVE | SWP_NOSIZE);
+//        }
+//    }
 
-    typedef BOOL (__stdcall *AdjustWindowRectExForDpiW)(LPRECT lpRect, DWORD dwStyle, BOOL bMenu, DWORD dwExStyle, UINT dpi);
-    auto adjustWindowRect(HWND handle, double dpiratio, LPRECT rect) -> void
-    {
-        static AdjustWindowRectExForDpiW _adjustWindowRectEx = nullptr;
-        static bool _is_read = false;
-        if ( !_is_read && !_adjustWindowRectEx ) {
-            HMODULE _lib = ::LoadLibrary(L"user32.dll");
-            _adjustWindowRectEx = reinterpret_cast<AdjustWindowRectExForDpiW>(GetProcAddress(_lib, "AdjustWindowRectExForDpi"));
-            FreeLibrary(_lib);
+//    typedef BOOL (__stdcall *AdjustWindowRectExForDpiW)(LPRECT lpRect, DWORD dwStyle, BOOL bMenu, DWORD dwExStyle, UINT dpi);
+//    auto adjustWindowRect(HWND handle, double dpiratio, LPRECT rect) -> void
+//    {
+//        static AdjustWindowRectExForDpiW _adjustWindowRectEx = nullptr;
+//        static bool _is_read = false;
+//        if ( !_is_read && !_adjustWindowRectEx ) {
+//            HMODULE _lib = ::LoadLibrary(L"user32.dll");
+//            _adjustWindowRectEx = reinterpret_cast<AdjustWindowRectExForDpiW>(GetProcAddress(_lib, "AdjustWindowRectExForDpi"));
+//            FreeLibrary(_lib);
 
-            _is_read = true;
-        }
+//            _is_read = true;
+//        }
 
-        if ( _adjustWindowRectEx ) {
-            _adjustWindowRectEx(rect, (GetWindowStyle(handle) & ~WS_DLGFRAME), FALSE, 0, 96*dpiratio);
-        } else AdjustWindowRectEx(rect, (GetWindowStyle(handle) & ~WS_DLGFRAME), FALSE, 0);
-    }
+//        if ( _adjustWindowRectEx ) {
+//            _adjustWindowRectEx(rect, (GetWindowStyle(handle) & ~WS_DLGFRAME), FALSE, 0, 96*dpiratio);
+//        } else AdjustWindowRectEx(rect, (GetWindowStyle(handle) & ~WS_DLGFRAME), FALSE, 0);
+//    }
 
     auto bringToTop(HWND hwnd) -> void
     {
@@ -1055,15 +1055,15 @@ namespace WindowHelper {
     }
 #endif
 
-    auto correctWindowMinimumSize(const QRect& windowrect, const QSize& minsize) -> QSize
-    {
-        QRect _screen_size = Utils::getScreenGeometry(windowrect.topLeft());
-        QSize _window_min_size{minsize};
-        if ( _window_min_size.width() > _screen_size.size().width() || _window_min_size.height() > _screen_size.size().height() )
-            _window_min_size.scale(_screen_size.size() - QSize(50,50), Qt::KeepAspectRatio);
+//    auto correctWindowMinimumSize(const QRect& windowrect, const QSize& minsize) -> QSize
+//    {
+//        QRect _screen_size = Utils::getScreenGeometry(windowrect.topLeft());
+//        QSize _window_min_size{minsize};
+//        if ( _window_min_size.width() > _screen_size.size().width() || _window_min_size.height() > _screen_size.size().height() )
+//            _window_min_size.scale(_screen_size.size() - QSize(50,50), Qt::KeepAspectRatio);
 
-        return _window_min_size;
-    }
+//        return _window_min_size;
+//    }
 
     auto isLeftButtonPressed() -> bool {
 #ifdef Q_OS_LINUX
