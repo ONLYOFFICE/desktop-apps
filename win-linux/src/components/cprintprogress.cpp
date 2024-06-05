@@ -37,8 +37,7 @@
 # include <gdk/gdkx.h>
 # include "defines.h"
 #else
-# include <shlobj_core.h>
-# include <shlguid.h>
+# include <shlobj.h>
 # include <combaseapi.h>
 #endif
 #include "components/cprintprogress.h"
