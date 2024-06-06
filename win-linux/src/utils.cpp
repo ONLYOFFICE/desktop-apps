@@ -57,7 +57,6 @@
 #include <windowsx.h>
 #include "shlobj.h"
 #include "lmcons.h"
-typedef HRESULT (__stdcall *SetCurrentProcessExplicitAppUserModelIDProc)(PCWSTR AppID);
 #else
 # include <QEventLoop>
 # include <QX11Info>
@@ -65,7 +64,6 @@ typedef HRESULT (__stdcall *SetCurrentProcessExplicitAppUserModelIDProc)(PCWSTR 
 #include <stdlib.h>
 #endif
 
-//extern QStringList g_cmdArgs;
 
 namespace InputArgs {
     std::vector<std::wstring> in_args;
@@ -234,20 +232,19 @@ namespace Scaling {
 
     auto factorToScaling(const std::wstring& value) -> QString
     {
-        if ( value == L"1" ) return "100"; else
-        if ( value == L"1.25" ) return "125"; else
-        if ( value == L"1.5" ) return "150"; else
-        if ( value == L"1.75" ) return "175"; else
-        if ( value == L"2" ) return "200"; else
-        if ( value == L"2.25" ) return "225"; else
-        if ( value == L"2.5" ) return "250"; else
-        if ( value == L"2.75" ) return "275"; else
-        if ( value == L"3" ) return "300"; else
-        if ( value == L"3.5" ) return "350"; else
-        if ( value == L"4" ) return "400"; else
-        if ( value == L"4.5" ) return "450"; else
-        if ( value == L"5" ) return "500";
-        else return "0";
+        return value == L"1" ? "100" :
+               value == L"1.25" ? "125" :
+               value == L"1.5" ? "150" :
+               value == L"1.75" ? "175" :
+               value == L"2" ? "200" :
+               value == L"2.25" ? "225" :
+               value == L"2.5" ? "250" :
+               value == L"2.75" ? "275" :
+               value == L"3" ? "300" :
+               value == L"3.5" ? "350" :
+               value == L"4" ? "400" :
+               value == L"4.5" ? "450" :
+               value == L"5" ? "500" : "0";
     }
 }
 
@@ -736,15 +733,18 @@ Utils::WinVer Utils::getWinVersion()
                 OSVERSIONINFOEXW os = {0};
                 os.dwOSVersionInfoSize = sizeof(os);
                 RtlGetVersion(&os);
-                winVer = os.dwMajorVersion == 5L && (os.dwMinorVersion == 1L || os.dwMinorVersion == 2L) ? WinVer::WinXP :
-                         os.dwMajorVersion == 6L && os.dwMinorVersion == 0L ? WinVer::WinVista :
-                         os.dwMajorVersion == 6L && os.dwMinorVersion == 1L ? WinVer::Win7 :
-                         os.dwMajorVersion == 6L && os.dwMinorVersion == 2L ? WinVer::Win8 :
-                         os.dwMajorVersion == 6L && os.dwMinorVersion == 3L ? WinVer::Win8_1 :
-                         os.dwMajorVersion == 10L && os.dwMinorVersion == 0L && os.dwBuildNumber < 22000 ? WinVer::Win10 :
-                         os.dwMajorVersion == 10L && os.dwMinorVersion == 0L && os.dwBuildNumber >= 22000 ? WinVer::Win11 :
-                         os.dwMajorVersion == 10L && os.dwMinorVersion > 0L ? WinVer::Win11 :
-                         os.dwMajorVersion > 10L ? WinVer::Win11 : WinVer::Undef;
+#define MjrVer os.dwMajorVersion
+#define MinVer os.dwMinorVersion
+#define BldVer os.dwBuildNumber
+                winVer = MjrVer == 5L && (MinVer == 1L || MinVer == 2L) ? WinVer::WinXP :
+                         MjrVer == 6L && MinVer == 0L ? WinVer::WinVista :
+                         MjrVer == 6L && MinVer == 1L ? WinVer::Win7 :
+                         MjrVer == 6L && MinVer == 2L ? WinVer::Win8 :
+                         MjrVer == 6L && MinVer == 3L ? WinVer::Win8_1 :
+                         MjrVer == 10L && MinVer == 0L && BldVer < 22000 ? WinVer::Win10 :
+                         MjrVer == 10L && MinVer == 0L && BldVer >= 22000 ? WinVer::Win11 :
+                         MjrVer == 10L && MinVer > 0L ? WinVer::Win11 :
+                         MjrVer > 10L ? WinVer::Win11 : WinVer::Undef;
             }
         }
     }
@@ -761,6 +761,17 @@ bool Utils::isSessionInProgress()
 void Utils::setSessionInProgress(bool state)
 {
     sessionInProgress = state;
+}
+
+void Utils::setAppUserModelId()
+{
+    if (HMODULE lib = LoadLibrary(L"shell32")) {
+        HRESULT (WINAPI *SetAppUserModelID)(PCWSTR AppID);
+        *(FARPROC*)&SetAppUserModelID = GetProcAddress(lib, "SetCurrentProcessExplicitAppUserModelID");
+        if (SetAppUserModelID)
+            SetAppUserModelID(TEXT(APP_USER_MODEL_ID));
+        FreeLibrary(lib);
+    }
 }
 #else
 void Utils::processMoreEvents(uint timeout)
@@ -803,27 +814,6 @@ void Utils::replaceAll(std::wstring& subject, const std::wstring& search, const 
         subject.replace(pos, search.length(), replace);
         pos += replace.length();
     }
-}
-
-bool Utils::setAppUserModelId(const QString& modelid)
-{
-    bool _result = false;
-
-#ifdef Q_OS_WIN
-    HMODULE _lib_shell32 = ::LoadLibrary(L"shell32.dll");
-    if ( _lib_shell32 != NULL ) {
-        SetCurrentProcessExplicitAppUserModelIDProc setCurrentProcessExplicitAppUserModelId =
-            reinterpret_cast<SetCurrentProcessExplicitAppUserModelIDProc>(GetProcAddress(_lib_shell32, "SetCurrentProcessExplicitAppUserModelID"));
-
-        if ( setCurrentProcessExplicitAppUserModelId != NULL ) {
-            _result = setCurrentProcessExplicitAppUserModelId(modelid.toStdWString().c_str()) == S_OK;
-        }
-
-        ::FreeLibrary(_lib_shell32);
-    }
-#endif
-
-    return _result;
 }
 
 std::wstring Utils::systemUserName()
@@ -951,64 +941,64 @@ namespace WindowHelper {
         return use_gtk_dialog;
     }
 #else
-    auto isWindowSystemDocked(HWND handle) -> bool {
-        RECT windowrect;
-        WINDOWPLACEMENT wp; wp.length = sizeof(WINDOWPLACEMENT);
-        if ( GetWindowRect(handle, &windowrect) && GetWindowPlacement(handle, &wp) && wp.showCmd == SW_SHOWNORMAL ) {
-            return (wp.rcNormalPosition.right - wp.rcNormalPosition.left != windowrect.right - windowrect.left) ||
-                        (wp.rcNormalPosition.bottom - wp.rcNormalPosition.top != windowrect.bottom - windowrect.top);
-        }
+//    auto isWindowSystemDocked(HWND handle) -> bool {
+//        RECT windowrect;
+//        WINDOWPLACEMENT wp; wp.length = sizeof(WINDOWPLACEMENT);
+//        if ( GetWindowRect(handle, &windowrect) && GetWindowPlacement(handle, &wp) && wp.showCmd == SW_SHOWNORMAL ) {
+//            return (wp.rcNormalPosition.right - wp.rcNormalPosition.left != windowrect.right - windowrect.left) ||
+//                        (wp.rcNormalPosition.bottom - wp.rcNormalPosition.top != windowrect.bottom - windowrect.top);
+//        }
 
-        return false;
-    }
+//        return false;
+//    }
 
-    auto correctWindowMinimumSize(HWND handle) -> void {
-        WINDOWPLACEMENT wp; wp.length = sizeof(WINDOWPLACEMENT);
-        if ( GetWindowPlacement(handle, &wp) ) {
-            int dpi_ratio = Utils::getScreenDpiRatioByHWND((int)handle);
-            QSize _min_windowsize{MAIN_WINDOW_MIN_WIDTH * dpi_ratio,MAIN_WINDOW_MIN_HEIGHT * dpi_ratio};
-            QRect windowRect{QPoint(wp.rcNormalPosition.left, wp.rcNormalPosition.top),
-                                    QPoint(wp.rcNormalPosition.right, wp.rcNormalPosition.bottom)};
+//     auto correctWindowMinimumSize(HWND handle) -> void {
+//         WINDOWPLACEMENT wp; wp.length = sizeof(WINDOWPLACEMENT);
+//         if ( GetWindowPlacement(handle, &wp) ) {
+//             int dpi_ratio = Utils::getScreenDpiRatioByHWND((int)handle);
+//             QSize _min_windowsize{MAIN_WINDOW_MIN_WIDTH * dpi_ratio,MAIN_WINDOW_MIN_HEIGHT * dpi_ratio};
+//             QRect windowRect{QPoint(wp.rcNormalPosition.left, wp.rcNormalPosition.top),
+//                                     QPoint(wp.rcNormalPosition.right, wp.rcNormalPosition.bottom)};
 
-            if ( windowRect.width() < _min_windowsize.width() ||
-                    windowRect.height() < _min_windowsize.height() )
-            {
-//                if ( windowRect.width() < _min_windowsize.width() )
-                    wp.rcNormalPosition.right = wp.rcNormalPosition.left + _min_windowsize.width();
+//             if ( windowRect.width() < _min_windowsize.width() ||
+//                     windowRect.height() < _min_windowsize.height() )
+//             {
+// //                if ( windowRect.width() < _min_windowsize.width() )
+//                     wp.rcNormalPosition.right = wp.rcNormalPosition.left + _min_windowsize.width();
 
-//                if ( windowRect.height() < _min_windowsize.height() )
-                    wp.rcNormalPosition.bottom = wp.rcNormalPosition.top + _min_windowsize.height();
+// //                if ( windowRect.height() < _min_windowsize.height() )
+//                     wp.rcNormalPosition.bottom = wp.rcNormalPosition.top + _min_windowsize.height();
 
-                SetWindowPlacement(handle, &wp);
-            }
-        }
-    }
+//                 SetWindowPlacement(handle, &wp);
+//             }
+//         }
+//     }
 
-    auto correctModalOrder(HWND windowhandle, HWND modalhandle) -> void
-    {
-        if ( !IsWindowEnabled(windowhandle) && modalhandle && modalhandle != windowhandle ) {
-            SetActiveWindow(modalhandle);
-            SetWindowPos(windowhandle, modalhandle, 0, 0, 0, 0, SWP_NOACTIVATE | SWP_NOMOVE | SWP_NOSIZE);
-        }
-    }
+//    auto correctModalOrder(HWND windowhandle, HWND modalhandle) -> void
+//    {
+//        if ( !IsWindowEnabled(windowhandle) && modalhandle && modalhandle != windowhandle ) {
+//            SetActiveWindow(modalhandle);
+//            SetWindowPos(windowhandle, modalhandle, 0, 0, 0, 0, SWP_NOACTIVATE | SWP_NOMOVE | SWP_NOSIZE);
+//        }
+//    }
 
-    typedef BOOL (__stdcall *AdjustWindowRectExForDpiW)(LPRECT lpRect, DWORD dwStyle, BOOL bMenu, DWORD dwExStyle, UINT dpi);
-    auto adjustWindowRect(HWND handle, double dpiratio, LPRECT rect) -> void
-    {
-        static AdjustWindowRectExForDpiW _adjustWindowRectEx = nullptr;
-        static bool _is_read = false;
-        if ( !_is_read && !_adjustWindowRectEx ) {
-            HMODULE _lib = ::LoadLibrary(L"user32.dll");
-            _adjustWindowRectEx = reinterpret_cast<AdjustWindowRectExForDpiW>(GetProcAddress(_lib, "AdjustWindowRectExForDpi"));
-            FreeLibrary(_lib);
+//    typedef BOOL (__stdcall *AdjustWindowRectExForDpiW)(LPRECT lpRect, DWORD dwStyle, BOOL bMenu, DWORD dwExStyle, UINT dpi);
+//    auto adjustWindowRect(HWND handle, double dpiratio, LPRECT rect) -> void
+//    {
+//        static AdjustWindowRectExForDpiW _adjustWindowRectEx = nullptr;
+//        static bool _is_read = false;
+//        if ( !_is_read && !_adjustWindowRectEx ) {
+//            HMODULE _lib = ::LoadLibrary(L"user32.dll");
+//            _adjustWindowRectEx = reinterpret_cast<AdjustWindowRectExForDpiW>(GetProcAddress(_lib, "AdjustWindowRectExForDpi"));
+//            FreeLibrary(_lib);
 
-            _is_read = true;
-        }
+//            _is_read = true;
+//        }
 
-        if ( _adjustWindowRectEx ) {
-            _adjustWindowRectEx(rect, (GetWindowStyle(handle) & ~WS_DLGFRAME), FALSE, 0, 96*dpiratio);
-        } else AdjustWindowRectEx(rect, (GetWindowStyle(handle) & ~WS_DLGFRAME), FALSE, 0);
-    }
+//        if ( _adjustWindowRectEx ) {
+//            _adjustWindowRectEx(rect, (GetWindowStyle(handle) & ~WS_DLGFRAME), FALSE, 0, 96*dpiratio);
+//        } else AdjustWindowRectEx(rect, (GetWindowStyle(handle) & ~WS_DLGFRAME), FALSE, 0);
+//    }
 
     auto bringToTop(HWND hwnd) -> void
     {
@@ -1025,9 +1015,6 @@ namespace WindowHelper {
 
     auto getColorizationColor(bool isActive, const QColor &bkgColor) -> QColor
     {
-        bool isBkgDark = AscAppManager::themes().isColorDark(bkgColor.name());
-        QColor color(GetCurrentTheme().isDark() ? (isActive ? "#2f2f2f" : "#3a3a3a") :
-                         (isActive ? (isBkgDark ? "#585858" : "#777777") : (isBkgDark ? "#606060" : "#aaaaaa")));
         QSettings reg("HKEY_CURRENT_USER\\SOFTWARE\\Microsoft\\Windows\\DWM", QSettings::NativeFormat);
         if (isActive && reg.value("ColorPrevalence", 0).toInt() != 0) {
             DWORD dwcolor = 0;
@@ -1038,10 +1025,19 @@ namespace WindowHelper {
                     *(FARPROC*)&DwmGetColorizationColor = GetProcAddress(module, "DwmGetColorizationColor");
             }
             if (DwmGetColorizationColor && SUCCEEDED(DwmGetColorizationColor(&dwcolor, &opaque))) {
-                color = QColor((dwcolor & 0xff0000) >> 16, (dwcolor & 0xff00) >> 8, dwcolor & 0xff);
+                return QColor((dwcolor & 0xff0000) >> 16, (dwcolor & 0xff00) >> 8, dwcolor & 0xff);
             }
         }
-        return color;
+#define BORDER_ACTIVE_DARK       "#2f2f2f" // Dark theme
+#define BORDER_INACTIVE_DARK     "#3a3a3a"
+#define BORDER_ACTIVE_LIGHT_V1   "#585858" // Light theme and colored background
+#define BORDER_ACTIVE_LIGHT_V2   "#777777" // Light theme and white background
+#define BORDER_INACTIVE_LIGHT_V1 "#606060"
+#define BORDER_INACTIVE_LIGHT_V2 "#aaaaaa"
+        bool isBkgDark = AscAppManager::themes().isColorDark(bkgColor.name());
+        return QColor(GetCurrentTheme().isDark() ? (isActive ? BORDER_ACTIVE_DARK : BORDER_INACTIVE_DARK) :
+                      (isActive ? (isBkgDark ? BORDER_ACTIVE_LIGHT_V1 : BORDER_ACTIVE_LIGHT_V2) :
+                                  (isBkgDark ? BORDER_INACTIVE_LIGHT_V1 : BORDER_INACTIVE_LIGHT_V2)));
     }
 
     auto toggleLayoutDirection(HWND hwnd) -> void
@@ -1055,15 +1051,15 @@ namespace WindowHelper {
     }
 #endif
 
-    auto correctWindowMinimumSize(const QRect& windowrect, const QSize& minsize) -> QSize
-    {
-        QRect _screen_size = Utils::getScreenGeometry(windowrect.topLeft());
-        QSize _window_min_size{minsize};
-        if ( _window_min_size.width() > _screen_size.size().width() || _window_min_size.height() > _screen_size.size().height() )
-            _window_min_size.scale(_screen_size.size() - QSize(50,50), Qt::KeepAspectRatio);
+//    auto correctWindowMinimumSize(const QRect& windowrect, const QSize& minsize) -> QSize
+//    {
+//        QRect _screen_size = Utils::getScreenGeometry(windowrect.topLeft());
+//        QSize _window_min_size{minsize};
+//        if ( _window_min_size.width() > _screen_size.size().width() || _window_min_size.height() > _screen_size.size().height() )
+//            _window_min_size.scale(_screen_size.size() - QSize(50,50), Qt::KeepAspectRatio);
 
-        return _window_min_size;
-    }
+//        return _window_min_size;
+//    }
 
     auto isLeftButtonPressed() -> bool {
 #ifdef Q_OS_LINUX

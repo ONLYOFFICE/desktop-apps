@@ -81,7 +81,6 @@
     GetCurrentTheme().color(CTheme::ColorRole::role)
 #define GetColorValueByRole(role) \
     GetCurrentTheme().value(CTheme::ColorRole::role)
-#define IsPackage(type) (AppOptions::packageType() == AppOptions::AppPackageType::type)
 
 #define LOCAL_PATH_OPEN         1
 #define LOCAL_PATH_SAVE         2
