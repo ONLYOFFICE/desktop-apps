@@ -4,7 +4,7 @@
 <context>
     <name>CAscApplicationManagerWrapper</name>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1303"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1315"/>
         <source>Presenter View</source>
         <translation>演示者视图</translation>
     </message>
@@ -25,18 +25,23 @@
         <translation type="obsolete">另存为</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2124"/>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2126"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1772"/>
+        <source>You must restart the application for the settings to take effect.</source>
+        <translation>需要重新启动应用程序设置才能生效。 要立即重启吗？</translation>
+    </message>
+    <message>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2151"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2153"/>
         <source>Document%1.docx</source>
         <translation>文档%1.docx</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2129"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2156"/>
         <source>Book%1.xlsx</source>
         <translation>工作簿%1.xlsx</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2130"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2157"/>
         <source>Presentation%1.pptx</source>
         <translation>演示文稿%1.pptx</translation>
     </message>
@@ -60,8 +65,8 @@
 <context>
     <name>CAscTabWidget</name>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="870"/>
-        <location filename="../src/components/asctabwidget.cpp" line="651"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="878"/>
+        <location filename="../src/components/asctabwidget.cpp" line="653"/>
         <source>Document</source>
         <translation>打开中...</translation>
     </message>
@@ -478,23 +483,23 @@
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="244"/>
-        <location filename="../src/components/cfiledialog.cpp" line="339"/>
-        <location filename="../src/components/cfiledialog.cpp" line="363"/>
-        <location filename="../src/components/cfiledialog.cpp" line="365"/>
+        <location filename="../src/components/cfiledialog.cpp" line="342"/>
+        <location filename="../src/components/cfiledialog.cpp" line="366"/>
+        <location filename="../src/components/cfiledialog.cpp" line="368"/>
         <source>Text documents</source>
         <translation>文本文档</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="250"/>
-        <location filename="../src/components/cfiledialog.cpp" line="347"/>
-        <location filename="../src/components/cfiledialog.cpp" line="367"/>
+        <location filename="../src/components/cfiledialog.cpp" line="350"/>
+        <location filename="../src/components/cfiledialog.cpp" line="370"/>
         <source>Spreadsheets</source>
         <translation>电子表格</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="251"/>
-        <location filename="../src/components/cfiledialog.cpp" line="355"/>
-        <location filename="../src/components/cfiledialog.cpp" line="368"/>
+        <location filename="../src/components/cfiledialog.cpp" line="358"/>
+        <location filename="../src/components/cfiledialog.cpp" line="371"/>
         <source>Presentations</source>
         <translation>演示文稿</translation>
     </message>
@@ -511,7 +516,7 @@
     <message>
         <location filename="../src/ceditortools.cpp" line="137"/>
         <location filename="../src/components/cfiledialog.cpp" line="255"/>
-        <location filename="../src/components/cfiledialog.cpp" line="370"/>
+        <location filename="../src/components/cfiledialog.cpp" line="373"/>
         <source>All supported files</source>
         <translation>所有支持的文件</translation>
     </message>
@@ -539,40 +544,40 @@
         <translation>主题文件</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="270"/>
+        <location filename="../src/components/cfiledialog.cpp" line="273"/>
         <source>Open Document</source>
         <translation>打开文档</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="300"/>
-        <location filename="../src/components/cfiledialog.cpp" line="310"/>
+        <location filename="../src/components/cfiledialog.cpp" line="303"/>
+        <location filename="../src/components/cfiledialog.cpp" line="313"/>
         <source>All Images</source>
         <translation>打开文档</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="302"/>
-        <location filename="../src/components/cfiledialog.cpp" line="312"/>
+        <location filename="../src/components/cfiledialog.cpp" line="305"/>
+        <location filename="../src/components/cfiledialog.cpp" line="315"/>
         <source>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp)</source>
         <translation>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp)</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="321"/>
-        <location filename="../src/components/cfiledialog.cpp" line="330"/>
+        <location filename="../src/components/cfiledialog.cpp" line="324"/>
+        <location filename="../src/components/cfiledialog.cpp" line="333"/>
         <source>Plugin file (*.plugin)</source>
         <translation>插件文件（*.plugin)</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="387"/>
+        <location filename="../src/components/cfiledialog.cpp" line="390"/>
         <source>Video file</source>
         <translation>視訊檔案</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="392"/>
+        <location filename="../src/components/cfiledialog.cpp" line="395"/>
         <source>Audio file</source>
         <translation>音訊檔案</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="409"/>
+        <location filename="../src/components/cfiledialog.cpp" line="412"/>
         <source>Select Folder</source>
         <translation>选择文件夹</translation>
     </message>
@@ -917,12 +922,12 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper_private.h" line="189"/>
+        <location filename="../src/cascapplicationmanagerwrapper_private.h" line="249"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
         <translation>%1不可用。它可能被重命名、移动或删除。&lt;br&gt;您要从列表中删除该文件吗？</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper_private.h" line="232"/>
+        <location filename="../src/cascapplicationmanagerwrapper_private.h" line="292"/>
         <source>File %1 cannot be opened or doesn&apos;t exists.</source>
         <translation>文件%1无法打开或不存在。</translation>
     </message>
@@ -1084,7 +1089,7 @@
         <translation>继续</translation>
     </message>
     <message>
-        <location filename="../src/platform_linux/xdgdesktopportal.cpp" line="1221"/>
+        <location filename="../src/platform_linux/xdgdesktopportal.cpp" line="1220"/>
         <source>An error occurred while opening the portal:&lt;br&gt;%1</source>
         <translation>打开门户网站时发生错误： &lt;br&gt;%1</translation>
     </message>
@@ -1097,7 +1102,7 @@
         <translation type="obsolete">&amp;确定</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="347"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="355"/>
         <source>File %1 is already loaded. Replace it?</source>
         <translation>%1 文件已加载。要替换它吗？</translation>
     </message>

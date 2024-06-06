@@ -4,7 +4,7 @@
 <context>
     <name>CAscApplicationManagerWrapper</name>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1303"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1315"/>
         <source>Presenter View</source>
         <translation>प्रस्तुतकर्ता दृश्य</translation>
     </message>
@@ -25,18 +25,23 @@
         <translation type="obsolete">इस रूप में सहेजें</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2124"/>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2126"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1772"/>
+        <source>You must restart the application for the settings to take effect.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2151"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2153"/>
         <source>Document%1.docx</source>
         <translation>दस्तावेज़%1.डॉक्स</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2129"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2156"/>
         <source>Book%1.xlsx</source>
         <translation>बुक%1.एक्सएलएसएक्स</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2130"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2157"/>
         <source>Presentation%1.pptx</source>
         <translation>प्रस्तुति%1.पीपीटीएक्स</translation>
     </message>
@@ -44,8 +49,8 @@
 <context>
     <name>CAscTabWidget</name>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="870"/>
-        <location filename="../src/components/asctabwidget.cpp" line="651"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="878"/>
+        <location filename="../src/components/asctabwidget.cpp" line="653"/>
         <source>Document</source>
         <translation>खुल रहा है...</translation>
     </message>
@@ -458,23 +463,23 @@
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="244"/>
-        <location filename="../src/components/cfiledialog.cpp" line="339"/>
-        <location filename="../src/components/cfiledialog.cpp" line="363"/>
-        <location filename="../src/components/cfiledialog.cpp" line="365"/>
+        <location filename="../src/components/cfiledialog.cpp" line="342"/>
+        <location filename="../src/components/cfiledialog.cpp" line="366"/>
+        <location filename="../src/components/cfiledialog.cpp" line="368"/>
         <source>Text documents</source>
         <translation>टेक्स्ट दस्तावेज़</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="250"/>
-        <location filename="../src/components/cfiledialog.cpp" line="347"/>
-        <location filename="../src/components/cfiledialog.cpp" line="367"/>
+        <location filename="../src/components/cfiledialog.cpp" line="350"/>
+        <location filename="../src/components/cfiledialog.cpp" line="370"/>
         <source>Spreadsheets</source>
         <translation>स्प्रेडशीटों</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="251"/>
-        <location filename="../src/components/cfiledialog.cpp" line="355"/>
-        <location filename="../src/components/cfiledialog.cpp" line="368"/>
+        <location filename="../src/components/cfiledialog.cpp" line="358"/>
+        <location filename="../src/components/cfiledialog.cpp" line="371"/>
         <source>Presentations</source>
         <translation>प्रस्तुतियाँ</translation>
     </message>
@@ -491,7 +496,7 @@
     <message>
         <location filename="../src/ceditortools.cpp" line="137"/>
         <location filename="../src/components/cfiledialog.cpp" line="255"/>
-        <location filename="../src/components/cfiledialog.cpp" line="370"/>
+        <location filename="../src/components/cfiledialog.cpp" line="373"/>
         <source>All supported files</source>
         <translation>सभी सहायक फ़ाइलें</translation>
     </message>
@@ -519,40 +524,40 @@
         <translation>थीम फाइल</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="270"/>
+        <location filename="../src/components/cfiledialog.cpp" line="273"/>
         <source>Open Document</source>
         <translation>दस्तावेज़ खोलें</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="300"/>
-        <location filename="../src/components/cfiledialog.cpp" line="310"/>
+        <location filename="../src/components/cfiledialog.cpp" line="303"/>
+        <location filename="../src/components/cfiledialog.cpp" line="313"/>
         <source>All Images</source>
         <translation>सभी छवियाँ</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="302"/>
-        <location filename="../src/components/cfiledialog.cpp" line="312"/>
+        <location filename="../src/components/cfiledialog.cpp" line="305"/>
+        <location filename="../src/components/cfiledialog.cpp" line="315"/>
         <source>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp)</source>
         <translation>जेपीइजी (*.jpeg *.jpg);;पीएनजी (*.png);;जिफ़ (*.gif);;बीएमपी (*.bmp)</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="321"/>
-        <location filename="../src/components/cfiledialog.cpp" line="330"/>
+        <location filename="../src/components/cfiledialog.cpp" line="324"/>
+        <location filename="../src/components/cfiledialog.cpp" line="333"/>
         <source>Plugin file (*.plugin)</source>
         <translation>प्लगइन फ़ाइल (*.plugin)</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="387"/>
+        <location filename="../src/components/cfiledialog.cpp" line="390"/>
         <source>Video file</source>
         <translation>वीडियो फ़ाइल</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="392"/>
+        <location filename="../src/components/cfiledialog.cpp" line="395"/>
         <source>Audio file</source>
         <translation>ऑडियो फ़ाइल</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="409"/>
+        <location filename="../src/components/cfiledialog.cpp" line="412"/>
         <source>Select Folder</source>
         <translation>फोल्डर चुनें</translation>
     </message>
@@ -865,12 +870,12 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper_private.h" line="189"/>
+        <location filename="../src/cascapplicationmanagerwrapper_private.h" line="249"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
         <translation>%1 यह उपलब्ध नहीं है। शायद इसका नाम बदला गया है, इसे कहीं और डाला गया है या इसे डिलीट कर दिया गया है।&lt;br&gt;क्या आप सूची से यह फ़ाइल को हटाना चाहते हैं?</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper_private.h" line="232"/>
+        <location filename="../src/cascapplicationmanagerwrapper_private.h" line="292"/>
         <source>File %1 cannot be opened or doesn&apos;t exists.</source>
         <translation>%1 फ़ाइल को खोला नहीं जा सकता है या यह मौजूद नहीं है।.</translation>
     </message>
@@ -1000,7 +1005,7 @@
         <translation>जारी रखें</translation>
     </message>
     <message>
-        <location filename="../src/platform_linux/xdgdesktopportal.cpp" line="1221"/>
+        <location filename="../src/platform_linux/xdgdesktopportal.cpp" line="1220"/>
         <source>An error occurred while opening the portal:&lt;br&gt;%1</source>
         <translation>पोर्टल को खोलते समय कोई त्रुटि हुई है:&lt;br&gt;%1</translation>
     </message>
@@ -1009,7 +1014,7 @@
         <translation type="obsolete">&amp;ठीक है</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="347"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="355"/>
         <source>File %1 is already loaded. Replace it?</source>
         <translation>फाइल %1 पहले ही लोड हो चुकी है। इसे बदलें?</translation>
     </message>

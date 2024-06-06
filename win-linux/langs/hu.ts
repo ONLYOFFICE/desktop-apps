@@ -4,7 +4,7 @@
 <context>
     <name>CAscApplicationManagerWrapper</name>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1303"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1315"/>
         <source>Presenter View</source>
         <translation>Előadói nézet</translation>
     </message>
@@ -25,18 +25,23 @@
         <translation type="obsolete">Mentés másként</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2124"/>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2126"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1772"/>
+        <source>You must restart the application for the settings to take effect.</source>
+        <translation>Դուք պետք է վերագործարկեք ծրագիրը, որպեսզի կարգավորումները ուժի մեջ մտնեն: Վերագործարկե՞լ հիմա։</translation>
+    </message>
+    <message>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2151"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2153"/>
         <source>Document%1.docx</source>
         <translation>Dokumentum%1.docx</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2129"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2156"/>
         <source>Book%1.xlsx</source>
         <translation>Munkafüzet%1.xlsx</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2130"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2157"/>
         <source>Presentation%1.pptx</source>
         <translation>Bemutató%1.pptx</translation>
     </message>
@@ -44,8 +49,8 @@
 <context>
     <name>CAscTabWidget</name>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="870"/>
-        <location filename="../src/components/asctabwidget.cpp" line="651"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="878"/>
+        <location filename="../src/components/asctabwidget.cpp" line="653"/>
         <source>Document</source>
         <translation>Megnyitás...</translation>
     </message>
@@ -379,7 +384,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="92"/>
         <source>XLSB File (*.xlsb)</source>
-        <translation type="unfinished"></translation>
+        <translation>Excel Երկուական ֆայլ (*.xlsb)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="95"/>
@@ -458,23 +463,23 @@
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="244"/>
-        <location filename="../src/components/cfiledialog.cpp" line="339"/>
-        <location filename="../src/components/cfiledialog.cpp" line="363"/>
-        <location filename="../src/components/cfiledialog.cpp" line="365"/>
+        <location filename="../src/components/cfiledialog.cpp" line="342"/>
+        <location filename="../src/components/cfiledialog.cpp" line="366"/>
+        <location filename="../src/components/cfiledialog.cpp" line="368"/>
         <source>Text documents</source>
         <translation>Szöveges dokumentumok</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="250"/>
-        <location filename="../src/components/cfiledialog.cpp" line="347"/>
-        <location filename="../src/components/cfiledialog.cpp" line="367"/>
+        <location filename="../src/components/cfiledialog.cpp" line="350"/>
+        <location filename="../src/components/cfiledialog.cpp" line="370"/>
         <source>Spreadsheets</source>
         <translation>Számolótáblák</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="251"/>
-        <location filename="../src/components/cfiledialog.cpp" line="355"/>
-        <location filename="../src/components/cfiledialog.cpp" line="368"/>
+        <location filename="../src/components/cfiledialog.cpp" line="358"/>
+        <location filename="../src/components/cfiledialog.cpp" line="371"/>
         <source>Presentations</source>
         <translation>Bemutatók</translation>
     </message>
@@ -491,7 +496,7 @@
     <message>
         <location filename="../src/ceditortools.cpp" line="137"/>
         <location filename="../src/components/cfiledialog.cpp" line="255"/>
-        <location filename="../src/components/cfiledialog.cpp" line="370"/>
+        <location filename="../src/components/cfiledialog.cpp" line="373"/>
         <source>All supported files</source>
         <translation>Összes támogatott fájl</translation>
     </message>
@@ -519,40 +524,40 @@
         <translation>Téma fájl</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="270"/>
+        <location filename="../src/components/cfiledialog.cpp" line="273"/>
         <source>Open Document</source>
         <translation>Dokumentum megnyitása</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="300"/>
-        <location filename="../src/components/cfiledialog.cpp" line="310"/>
+        <location filename="../src/components/cfiledialog.cpp" line="303"/>
+        <location filename="../src/components/cfiledialog.cpp" line="313"/>
         <source>All Images</source>
         <translation>Összes kép</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="302"/>
-        <location filename="../src/components/cfiledialog.cpp" line="312"/>
+        <location filename="../src/components/cfiledialog.cpp" line="305"/>
+        <location filename="../src/components/cfiledialog.cpp" line="315"/>
         <source>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp)</source>
         <translation>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp)</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="321"/>
-        <location filename="../src/components/cfiledialog.cpp" line="330"/>
+        <location filename="../src/components/cfiledialog.cpp" line="324"/>
+        <location filename="../src/components/cfiledialog.cpp" line="333"/>
         <source>Plugin file (*.plugin)</source>
         <translation>Pluginfájl (*.plugin)</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="387"/>
+        <location filename="../src/components/cfiledialog.cpp" line="390"/>
         <source>Video file</source>
         <translation>Videofájl</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="392"/>
+        <location filename="../src/components/cfiledialog.cpp" line="395"/>
         <source>Audio file</source>
         <translation>Audiofájl</translation>
     </message>
     <message>
-        <location filename="../src/components/cfiledialog.cpp" line="409"/>
+        <location filename="../src/components/cfiledialog.cpp" line="412"/>
         <source>Select Folder</source>
         <translation>Mappa kiválasztása</translation>
     </message>
@@ -802,7 +807,7 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="98"/>
         <source>Preparing update (%1%)</source>
-        <translation type="unfinished"></translation>
+        <translation>Թարմացման պատրաստում (%1%)</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="103"/>
@@ -827,7 +832,7 @@
     <message>
         <location filename="../src/cupdatemanager.cpp" line="947"/>
         <source>The current version does not support installing this update directly. To install updates, you can download the required package from the official website.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ընթացիկ տարբերակը չի աջակցում ուղղակիորեն այս թարմացման տեղադրմանը: Թարմացումները տեղադրելու համար կարող եք ներբեռնել անհրաժեշտ փաթեթը պաշտոնական կայքից:</translation>
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="949"/>
@@ -865,12 +870,12 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper_private.h" line="189"/>
+        <location filename="../src/cascapplicationmanagerwrapper_private.h" line="249"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
         <translation>%1 nem elérhető. Lehet, hogy átnevezésre, áthelyezésre vagy törlésre került.&lt;br&gt;Eltávolítja a fájlt a listáról?</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper_private.h" line="232"/>
+        <location filename="../src/cascapplicationmanagerwrapper_private.h" line="292"/>
         <source>File %1 cannot be opened or doesn&apos;t exists.</source>
         <translation>%1 fájl nem nyitható meg vagy nem létezik.</translation>
     </message>
@@ -1000,7 +1005,7 @@
         <translation>Folytatás</translation>
     </message>
     <message>
-        <location filename="../src/platform_linux/xdgdesktopportal.cpp" line="1221"/>
+        <location filename="../src/platform_linux/xdgdesktopportal.cpp" line="1220"/>
         <source>An error occurred while opening the portal:&lt;br&gt;%1</source>
         <translation>Hiba történt a &lt;br&gt;%1 portál megnyitása közben</translation>
     </message>
@@ -1009,7 +1014,7 @@
         <translation type="obsolete">&amp;OK</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="347"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="355"/>
         <source>File %1 is already loaded. Replace it?</source>
         <translation>A fájl %1-a betöltődött. Lecseréli?</translation>
     </message>
