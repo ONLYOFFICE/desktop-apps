@@ -115,11 +115,11 @@ public:
 #ifdef _WIN32
             ts << "@chcp 65001>nul\n";
             ts << "@echo off\n";
-            ts << "start " << QString::fromStdWString(NSFile::GetProcessDirectory()) << APP_LAUNCH_NAME << "\n";
+            ts << "start \"\" \"" << QString::fromStdWString(NSFile::GetProcessDirectory()) << APP_LAUNCH_NAME << "\"\n";
             ts << "del \"%~f0\"&exit\n";
 #else
             ts << "#!/bin/bash\n";
-            ts << QString::fromStdWString(NSFile::GetProcessDirectory()) << APP_LAUNCH_NAME << " &\n";
+            ts << "\"" << QString::fromStdWString(NSFile::GetProcessDirectory()) << APP_LAUNCH_NAME << "\" &\n";
             ts << "rm -- \"$0\"\n";
 #endif
             if (!f.flush()) {
