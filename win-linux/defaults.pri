@@ -87,6 +87,7 @@ HEADERS += \
     $$PWD/src/components/ctooltip.h \
     $$PWD/src/version.h \
     $$PWD/src/defines.h \
+    $$PWD/src/singleapplication.h \
     $$PWD/src/ccefeventstransformer.h \
     $$PWD/src/cascapplicationmanagerwrapper.h \
     $$PWD/src/cascapplicationmanagerwrapper_private.h \
@@ -126,6 +127,7 @@ SOURCES += \
     $$PWD/src/components/cprintdialog.cpp \
     $$PWD/src/components/ctooltip.cpp \
     $$PWD/src/main.cpp \
+    $$PWD/src/singleapplication.cpp \
     $$PWD/src/ccefeventstransformer.cpp \
     $$PWD/src/cascapplicationmanagerwrapper.cpp \
     $$PWD/src/casctabdata.cpp \
@@ -194,7 +196,6 @@ core_linux {
                 $$PWD/src/windows/platform_linux/cwindowplatform.h \
                 $$PWD/src/platform_linux/cdialogopenssl.h \
                 $$PWD/src/platform_linux/cdialogcertificateinfo.h \
-                $$PWD/src/platform_linux/singleapplication.h \
                 $$PWD/src/platform_linux/xdgdesktopportal.h \
                 $$PWD/src/platform_linux/gtkfilechooser.h \
                 $$PWD/src/platform_linux/gtkprintdialog.h \
@@ -207,7 +208,6 @@ core_linux {
                 $$PWD/src/windows/platform_linux/cwindowplatform.cpp \
                 $$PWD/src/platform_linux/cdialogopenssl.cpp \
                 $$PWD/src/platform_linux/cdialogcertificateinfo.cpp \
-                $$PWD/src/platform_linux/singleapplication.cpp \
                 $$PWD/src/platform_linux/xdgdesktopportal.cpp \
                 $$PWD/src/platform_linux/gtkfilechooser.cpp \
                 $$PWD/src/platform_linux/gtkprintdialog.cpp \
@@ -245,14 +245,12 @@ core_windows {
 
     HEADERS += $$PWD/src/windows/platform_win/cwindowplatform.h \
                $$PWD/src/windows/platform_win/caption.h \
-               $$PWD/src/platform_win/singleapplication.h \
                $$PWD/src/platform_win/filechooser.h \
                $$PWD/src/platform_win/printdialog.h \
                $$PWD/src/platform_win/message.h \
                $$PWD/src/platform_win/resource.h
 
     SOURCES += $$PWD/src/windows/platform_win/cwindowplatform.cpp \
-               $$PWD/src/platform_win/singleapplication.cpp \
                $$PWD/src/platform_win/filechooser.cpp \
                $$PWD/src/platform_win/printdialog.cpp \
                $$PWD/src/platform_win/message.cpp

@@ -30,14 +30,12 @@
  *
 */
 
-#ifdef _WIN32
-# include "platform_win/singleapplication.h"
-#else
+#ifdef __linux__
 # include <gtk/gtk.h>
-# include "platform_linux/singleapplication.h"
 # include "components/cmessage.h"
 # include <unistd.h>
 #endif
+#include "singleapplication.h"
 #include "cascapplicationmanagerwrapper.h"
 #include "defines.h"
 #include "clangater.h"
@@ -66,11 +64,11 @@ int main( int argc, char *argv[] )
         CMessage::warning(nullptr, WARNING_LAUNCH_WITH_ADMIN_RIGHTS);
         return 0;
     }
+#endif
     if ( InputArgs::contains(L"--set-instapp-port") ) {
         Utils::setInstAppPort(std::stoi(InputArgs::argument_value(L"--set-instapp-port")));
         return 0;
     }
-#endif
     QCoreApplication::setAttribute(Qt::AA_DisableHighDpiScaling);
     QCoreApplication::setAttribute(Qt::AA_Use96Dpi);
     QCoreApplication::setApplicationName(QString::fromUtf8(WINDOW_NAME));
@@ -127,7 +125,7 @@ int main( int argc, char *argv[] )
         reg_user.remove("position");
     }
 
-    SingleApplication app(argc, argv, QString(APP_MUTEX_NAME));
+    SingleApplication app(argc, argv);
 
     if (!app.isPrimary() && !InputArgs::contains(L"--single-window-app")) {
         QString _out_args;

@@ -724,6 +724,25 @@ void Utils::addToRecent(const std::wstring &path)
 #endif
 }
 
+void Utils::setInstAppPort(int port)
+{
+    GET_REGISTRY_USER(reg_user);
+    if (port == -1) {
+        reg_user.remove("instAppPort");
+    } else
+    if (port > 1023 && port < 65536) {
+        reg_user.setValue("instAppPort", port);
+    } else {
+        qWarning() << "Value not applied: port must be in the range 1024 - 65535";
+    }
+}
+
+int Utils::getInstAppPort()
+{
+    GET_REGISTRY_USER(reg_user);
+    return reg_user.value("instAppPort", INSTANCE_APP_PORT).toInt();
+}
+
 #ifdef _WIN32
 Utils::WinVer Utils::getWinVersion()
 {
@@ -768,25 +787,6 @@ void Utils::processMoreEvents(uint timeout)
     QEventLoop loop;
     QTimer::singleShot(timeout, &loop, SLOT(quit()));
     loop.exec();
-}
-
-void Utils::setInstAppPort(int port)
-{
-    GET_REGISTRY_USER(reg_user);
-    if (port == -1) {
-        reg_user.remove("instAppPort");
-    } else
-    if (port > 1023 && port < 65536) {
-        reg_user.setValue("instAppPort", port);
-    } else {
-        qWarning() << "Value not applied: port must be in the range 1024 - 65535";
-    }
-}
-
-int Utils::getInstAppPort()
-{
-    GET_REGISTRY_USER(reg_user);
-    return reg_user.value("instAppPort", INSTANCE_APP_PORT).toInt();
 }
 #endif
 

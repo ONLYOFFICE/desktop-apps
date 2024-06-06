@@ -27,14 +27,13 @@
 #include "ceditortools.h"
 #include "cfilechecker.h"
 #include "OfficeFileFormats.h"
+#include "singleapplication.h"
 
 #ifdef _WIN32
 # include <io.h>
 # include <VersionHelpers.h>
-# include "platform_win/singleapplication.h"
 #else
 # include <unistd.h>
-# include "platform_linux/singleapplication.h"
 # ifdef DOCUMENTSCORE_OPENSSL_SUPPORT
 #  include "platform_linux/cdialogcertificateinfo.h"
 # endif
