@@ -127,7 +127,7 @@ int main( int argc, char *argv[] )
         reg_user.remove("position");
     }
 
-    SingleApplication app(argc, argv, QString(APP_MUTEX_NAME));
+    SingleApplication app(argc, argv);
 
     if (!app.isPrimary() && !InputArgs::contains(L"--single-window-app")) {
         QString _out_args;
