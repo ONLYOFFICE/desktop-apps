@@ -16,15 +16,11 @@
 #define APP_PATH                        str(sIntCompanyName + "\" + sIntProductName)
 #define UPD_PATH                        str(sIntProductName + "Updates")
 #define APP_REG_PATH                    str("Software\" + APP_PATH)
-#ifndef DEPLOY_PATH
-  #define DEPLOY_PATH                   str("..\..\..\..\build_tools\out\" + sPlatformFull + "\" + APP_PATH)
-#endif
 #define APP_USER_MODEL_ID               "ASC.Documents.5"
 #define APP_MUTEX_NAME                  "TEAMLAB"
 #define APPWND_CLASS_NAME               "DocEditorsWindowClass"
 
 #define iconsExe                        "DesktopEditors.exe"
-#define NAME_EXE_IN                     str("DesktopEditors_" + sWinArch + ".exe")
 #define NAME_EXE_OUT                    "editors.exe"
 #define VISEFFECTS_MANIFEST_NAME        ChangeFileExt(iconsExe, "VisualElementsManifest.xml")
 #define LIC_FILE                        "agpl-3.0"
