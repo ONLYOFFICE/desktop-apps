@@ -1,42 +1,35 @@
 ﻿; -- Installer Common --
 
-#if str(_ARCH) == "64"
-  #define sWinArch                  "x64"
-  #define sPlatform                 "win_64"
-#elif str(_ARCH) == "32"
-  #define sWinArch                  "x86"
-  #define sPlatform                 "win_32"
+#ifndef BRANDING_DIR
+#define BRANDING_DIR '.'
 #endif
-#ifndef _WIN_XP
-  #define sWinArchFull              sWinArch
-  #define sPlatformFull             sPlatform
-#else
-  #define sWinArchFull              sWinArch + "-xp"
-  #define sPlatformFull             sPlatform + "-xp"
+#include BRANDING_DIR + '\defines.iss'
+
+#ifndef VERSION
+#define VERSION '0.0.0.0'
 #endif
-
-#ifndef sBrandingFolder
-  #define sBrandingFolder           "..\..\.."
+#define sAppVerShort Copy(VERSION,1,RPos('.',VERSION)-1)
+#ifndef ARCH
+#define ARCH 'x64'
 #endif
-
-#include sBrandingFolder + "\win-linux\package\windows\defines.iss"
-
-#ifndef sAppVersion
-  #define sAppVersion             GetFileVersion(AddBackslash(DEPLOY_PATH) + NAME_EXE_OUT)
+#ifndef BUILD_DIR
+#define BUILD_DIR '.\build.' + ARCH
 #endif
-#define sAppVerShort                Copy(sAppVersion, 0, 3)
-
-#ifdef sPackageEdition
-  #define sPackageName sPackageName + "-" + sPackageEdition
+#ifdef PACKAGE_EDITION
+#define sPackageName sPackageName + '-' + PACKAGE_EDITION
+#endif
+#ifndef OUTPUT_DIR
+#define OUTPUT_DIR '.'
+#endif
+#ifndef OUTPUT_FILE
+#define OUTPUT_FILE sPackageName + '-' + VERSION + '-' + ARCH
+#ifdef _WIN_XP
+#define OUTPUT_FILE OUTPUT_FILE + '-xp'
+#endif
 #endif
 
-#ifndef sOutputFileName
-  #define sOutputFileName           sPackageName + "-" + sAppVersion + "-" + sWinArchFull
-#endif
-
-#define sBrandingFile               sBrandingFolder + "\win-linux\package\windows\branding.iss"
-#if FileExists(sBrandingFile)
-  #include sBrandingFile
+#if FileExists(BRANDING_DIR + '\branding.iss')
+#include BRANDING_DIR + '\branding.iss'
 #endif
 
 #define sUpgradeCode                 "607FEE744E0B34C449B45E9F419BB297"
@@ -52,8 +45,8 @@
 [Setup]
 AppName                   ={#sAppName}
 AppVerName                ={#sAppName} {#sAppVerShort}
-AppVersion                ={#sAppVersion}
-VersionInfoVersion        ={#sAppVersion}
+AppVersion                ={#VERSION}
+VersionInfoVersion        ={#VERSION}
 
 AppPublisher              = {#sAppPublisher}
 AppPublisherURL           = {#sAppPublisherURL}
@@ -73,14 +66,14 @@ DisableDirPage            = auto
 AllowNoIcons              = yes
 AlwaysShowDirOnReadyPage  = yes
 UninstallDisplayIcon      = {app}\app.ico
-UninstallDisplayName      = {#sAppName} {#sAppVerShort} ({#sWinArch})
-OutputDir                 =.\
+UninstallDisplayName      = {#sAppName} {#sAppVerShort} ({#ARCH})
+OutputDir                 ={#OUTPUT_DIR}
 PrivilegesRequired        =admin
 AppMutex                  ={code:getAppMutex}
 ChangesEnvironment        =yes
 SetupMutex                =ASC
 
-#if str(_ARCH) == "64"
+#if str(ARCH) == "x64"
 #if Int(DecodeVer(PREPROCVER,1)) >= 6
 ArchitecturesAllowed              = x64 arm64
 ArchitecturesInstallIn64BitMode   = x64 arm64
@@ -96,76 +89,77 @@ MinVersion                        = 6.1
 MinVersion                        = 5.0
 OnlyBelowVersion                  = 6.1
 #endif
-OutputBaseFileName                = {#sOutputFileName}
+OutputBaseFileName                ={#OUTPUT_FILE}
 
-#ifdef ENABLE_SIGNING
+#ifdef SIGN
 SignTool                  =byparam $p
 #endif
 
-SetupIconFile                     = {#sBrandingFolder}\win-linux\extras\projicons\res\icons\desktopeditors.ico
-WizardImageFile                   = {#sBrandingFolder}\win-linux\package\windows\data\dialogpicture*.bmp
-WizardSmallImageFile              = {#sBrandingFolder}\win-linux\package\windows\data\dialogicon*.bmp
+SetupIconFile={#BRANDING_DIR}\..\..\extras\projicons\res\icons\desktopeditors.ico
+WizardImageFile={#BRANDING_DIR}\data\dialogpicture*.bmp
+WizardSmallImageFile={#BRANDING_DIR}\data\dialogicon*.bmp
 
 SolidCompression=yes
 Compression=lzma2/ultra64
 LZMAUseSeparateProcess=yes
 
 [Languages]
+#define sLicenseFile BRANDING_DIR + "\..\..\..\common\package\license\" + LIC_FILE + ".rtf"
 #ifdef _ONLYOFFICE
-Name: en; MessagesFile: compiler:Default.isl;              LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
-Name: ru; MessagesFile: compiler:Languages\Russian.isl;    LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
+Name: en; MessagesFile: compiler:Default.isl; LicenseFile: {#sLicenseFile};
+Name: ru; MessagesFile: compiler:Languages\Russian.isl; LicenseFile: {#sLicenseFile};
 #else
-Name: ru; MessagesFile: compiler:Languages\Russian.isl;    LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
-Name: en; MessagesFile: compiler:Default.isl;              LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
+Name: ru; MessagesFile: compiler:Languages\Russian.isl; LicenseFile: {#sLicenseFile};
+Name: en; MessagesFile: compiler:Default.isl; LicenseFile: {#sLicenseFile};
 #endif
-Name: bg; MessagesFile: compiler:Languages\Bulgarian.isl;   LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
-Name: ca; MessagesFile: compiler:Languages\Catalan.isl;   LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
-Name: cs; MessagesFile: compiler:Languages\Czech.isl;   LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
-Name: el; MessagesFile: compiler:Languages\Greek.isl;   LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
-;Name: et; MessagesFile: compiler:Languages\Estonian.isl;   LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
-Name: fi; MessagesFile: compiler:Languages\Finnish.isl;   LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
-;Name: lt; MessagesFile: compiler:Languages\Lithuanian.isl;   LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
-Name: lo; MessagesFile: compiler:Default.isl;           LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
-Name: nl; MessagesFile: compiler:Languages\Dutch.isl;   LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
-Name: de; MessagesFile: compiler:Languages\German.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
-Name: fr; MessagesFile: compiler:Languages\French.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
-Name: es; MessagesFile: compiler:Languages\Spanish.isl;    LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
-Name: pt_BR; MessagesFile: compiler:Languages\BrazilianPortuguese.isl; LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
-Name: pt_PT; MessagesFile: compiler:Languages\Portuguese.isl; LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
-Name: id; MessagesFile: compiler:Languages\Indonesian.isl; LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
-Name: it_IT; MessagesFile: compiler:Languages\Italian.isl; LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
-Name: pl; MessagesFile: compiler:Languages\Polish.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
-Name: ro; MessagesFile: compiler:Languages\Romanian.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
-Name: sk; MessagesFile: compiler:Languages\Slovak.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
-Name: sl; MessagesFile: compiler:Languages\Slovenian.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
-Name: sv; MessagesFile: compiler:Languages\Swedish.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
-Name: tr; MessagesFile: compiler:Languages\Turkish.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
+Name: bg; MessagesFile: compiler:Languages\Bulgarian.isl; LicenseFile: {#sLicenseFile};
+Name: ca; MessagesFile: compiler:Languages\Catalan.isl; LicenseFile: {#sLicenseFile};
+Name: cs; MessagesFile: compiler:Languages\Czech.isl; LicenseFile: {#sLicenseFile};
+Name: el; MessagesFile: compiler:Languages\Greek.isl; LicenseFile: {#sLicenseFile};
+;Name: et; MessagesFile: compiler:Languages\Estonian.isl; LicenseFile: {#sLicenseFile};
+Name: fi; MessagesFile: compiler:Languages\Finnish.isl; LicenseFile: {#sLicenseFile};
+;Name: lt; MessagesFile: compiler:Languages\Lithuanian.isl; LicenseFile: {#sLicenseFile};
+Name: lo; MessagesFile: compiler:Default.isl; LicenseFile: {#sLicenseFile};
+Name: nl; MessagesFile: compiler:Languages\Dutch.isl; LicenseFile: {#sLicenseFile};
+Name: de; MessagesFile: compiler:Languages\German.isl; LicenseFile: {#sLicenseFile};
+Name: fr; MessagesFile: compiler:Languages\French.isl; LicenseFile: {#sLicenseFile};
+Name: es; MessagesFile: compiler:Languages\Spanish.isl; LicenseFile: {#sLicenseFile};
+Name: pt_BR; MessagesFile: compiler:Languages\BrazilianPortuguese.isl; LicenseFile: {#sLicenseFile};
+Name: pt_PT; MessagesFile: compiler:Languages\Portuguese.isl; LicenseFile: {#sLicenseFile};
+Name: id; MessagesFile: compiler:Languages\Indonesian.isl; LicenseFile: {#sLicenseFile};
+Name: it_IT; MessagesFile: compiler:Languages\Italian.isl; LicenseFile: {#sLicenseFile};
+Name: pl; MessagesFile: compiler:Languages\Polish.isl; LicenseFile: {#sLicenseFile};
+Name: ro; MessagesFile: compiler:Languages\Romanian.isl; LicenseFile: {#sLicenseFile};
+Name: sk; MessagesFile: compiler:Languages\Slovak.isl; LicenseFile: {#sLicenseFile};
+Name: sl; MessagesFile: compiler:Languages\Slovenian.isl; LicenseFile: {#sLicenseFile};
+Name: sv; MessagesFile: compiler:Languages\Swedish.isl; LicenseFile: {#sLicenseFile};
+Name: tr; MessagesFile: compiler:Languages\Turkish.isl; LicenseFile: {#sLicenseFile};
 #if Int(DecodeVer(PREPROCVER,1)) < 6
-Name: vi; MessagesFile: compiler:Languages\Vietnamese.islu; LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
-Name: hy_AM; MessagesFile: compiler:Languages\Armenian.islu;    LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
+Name: vi; MessagesFile: compiler:Languages\Vietnamese.islu; LicenseFile: {#sLicenseFile};
+Name: hy_AM; MessagesFile: compiler:Languages\Armenian.islu; LicenseFile: {#sLicenseFile};
 #else
-Name: vi; MessagesFile: compiler:Languages\Vietnamese.isl; LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
-Name: hy_AM; MessagesFile: compiler:Languages\Armenian.isl;    LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
+Name: vi; MessagesFile: compiler:Languages\Vietnamese.isl; LicenseFile: {#sLicenseFile};
+Name: hy_AM; MessagesFile: compiler:Languages\Armenian.isl; LicenseFile: {#sLicenseFile};
 #endif
-Name: zh_CN; MessagesFile: compiler:Languages\ChineseSimplified.isl;  LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
-;Name: hy_AM; MessagesFile: compiler:Languages\Armenian.islu;    LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
-;Name: hr; MessagesFile: compiler:Languages\Croatian.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
-Name: da; MessagesFile: compiler:Languages\Danish.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
-;Name: hi; MessagesFile: compiler:Languages\Hindi.islu;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
-Name: hu; MessagesFile: compiler:Languages\Hungarian.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
-;Name: ga_IE; MessagesFile: compiler:Default.isl;              LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
-Name: ja; MessagesFile: compiler:Languages\Japanese.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
-Name: ko; MessagesFile: compiler:Languages\Korean.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
-Name: lv; MessagesFile: compiler:Languages\Latvian.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
-Name: no; MessagesFile: compiler:Languages\Norwegian.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
-Name: uk; MessagesFile: compiler:Languages\Ukrainian.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
-Name: be; MessagesFile: compiler:Languages\Belarusian.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
-Name: gl; MessagesFile: compiler:Languages\Galician.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
-Name: si; MessagesFile: compiler:Languages\Sinhala.islu;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
-Name: zh_TW; MessagesFile: compiler:Languages\ChineseTraditional.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
-Name: ar_SA; MessagesFile: compiler:Languages\Arabic.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
-Name: sr_Latn_RS; MessagesFile: compiler:Languages\SerbianLatin.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
-Name: sr_Cyrl_RS; MessagesFile: compiler:Languages\SerbianCyrillic.isl;     LicenseFile: {#sBrandingFolder}\common\package\license\{#LIC_FILE}.rtf;
+Name: zh_CN; MessagesFile: compiler:Languages\ChineseSimplified.isl;  LicenseFile: {#sLicenseFile};
+;Name: hy_AM; MessagesFile: compiler:Languages\Armenian.islu; LicenseFile: {#sLicenseFile};
+;Name: hr; MessagesFile: compiler:Languages\Croatian.isl; LicenseFile: {#sLicenseFile};
+Name: da; MessagesFile: compiler:Languages\Danish.isl; LicenseFile: {#sLicenseFile};
+;Name: hi; MessagesFile: compiler:Languages\Hindi.islu; LicenseFile: {#sLicenseFile};
+Name: hu; MessagesFile: compiler:Languages\Hungarian.isl; LicenseFile: {#sLicenseFile};
+;Name: ga_IE; MessagesFile: compiler:Default.isl; LicenseFile: {#sLicenseFile};
+Name: ja; MessagesFile: compiler:Languages\Japanese.isl; LicenseFile: {#sLicenseFile};
+Name: ko; MessagesFile: compiler:Languages\Korean.isl; LicenseFile: {#sLicenseFile};
+Name: lv; MessagesFile: compiler:Languages\Latvian.isl; LicenseFile: {#sLicenseFile};
+Name: no; MessagesFile: compiler:Languages\Norwegian.isl; LicenseFile: {#sLicenseFile};
+Name: uk; MessagesFile: compiler:Languages\Ukrainian.isl; LicenseFile: {#sLicenseFile};
+Name: be; MessagesFile: compiler:Languages\Belarusian.isl; LicenseFile: {#sLicenseFile};
+Name: gl; MessagesFile: compiler:Languages\Galician.isl; LicenseFile: {#sLicenseFile};
+Name: si; MessagesFile: compiler:Languages\Sinhala.islu; LicenseFile: {#sLicenseFile};
+Name: zh_TW; MessagesFile: compiler:Languages\ChineseTraditional.isl; LicenseFile: {#sLicenseFile};
+Name: ar_SA; MessagesFile: compiler:Languages\Arabic.isl; LicenseFile: {#sLicenseFile};
+Name: sr_Latn_RS; MessagesFile: compiler:Languages\SerbianLatin.isl; LicenseFile: {#sLicenseFile};
+Name: sr_Cyrl_RS; MessagesFile: compiler:Languages\SerbianCyrillic.isl; LicenseFile: {#sLicenseFile};
 
 [LangOptions]
 lo.LanguageName=ພາສາລາວ
@@ -1032,27 +1026,27 @@ Name: {commonappdata}\{#APP_PATH}\webdata\cloud; Flags: uninsalwaysuninstall;
 
 [Files]
 #ifndef _WIN_XP
-Source: data\vcredist_{#sWinArch}.exe; DestDir: {app}; Flags: deleteafterinstall; \
-  AfterInstall: installVCRedist(ExpandConstant('{app}\vcredist_{#sWinArch}.exe'), ExpandConstant('{cm:InstallAdditionalComponents}')); \
+Source: "data\vcredist_{#ARCH}.exe"; DestDir: {app}; Flags: deleteafterinstall; \
+  AfterInstall: installVCRedist(ExpandConstant('{app}\vcredist_{#ARCH}.exe'), ExpandConstant('{cm:InstallAdditionalComponents}')); \
   Check: not checkVCRedist2022;
 #else
-Source: data\vcredist_{#sWinArch}.exe; DestDir: {app}; Flags: deleteafterinstall; \
-  AfterInstall: installVCRedist(ExpandConstant('{app}\vcredist_{#sWinArch}.exe'), ExpandConstant('{cm:InstallAdditionalComponents}')); \
+Source: "data\vcredist_{#ARCH}.exe"; DestDir: {app}; Flags: deleteafterinstall; \
+  AfterInstall: installVCRedist(ExpandConstant('{app}\vcredist_{#ARCH}.exe'), ExpandConstant('{cm:InstallAdditionalComponents}')); \
   Check: not checkVCRedist2019;
 #endif
 
-Source: {#sBrandingFolder}\win-linux\package\windows\data\VisualElementsManifest.xml;        DestDir: {app}; DestName: {#VISEFFECTS_MANIFEST_NAME}; MinVersion: 6.3;
-Source: {#sBrandingFolder}\win-linux\package\windows\data\visual_elements_icon_*;            DestDir: {app}\browser;   MinVersion: 6.3;
+Source: "{#BRANDING_DIR}\data\VisualElementsManifest.xml"; DestDir: {app}; DestName: {#VISEFFECTS_MANIFEST_NAME}; MinVersion: 6.3;
+Source: "{#BRANDING_DIR}\data\visual_elements_icon_*"; DestDir: {app}\browser;   MinVersion: 6.3;
 
-Source: {#DEPLOY_PATH}\*;                               DestDir: {app}; Flags: recursesubdirs;
+Source: "{#BUILD_DIR}\desktop\*"; DestDir: {app}; Flags: recursesubdirs;
 #if defined(_WIN_XP) | defined(EMBED_HELP)
-Source: "{#DEPLOY_PATH}-Help\*";                        DestDir: {app}; Flags: recursesubdirs;
+Source: "{#BUILD_DIR}\help\*"; DestDir: {app}; Flags: recursesubdirs;
 #endif
-Source: {#DEPLOY_PATH}\*.exe;                           DestDir: {app}; Flags: signonce;
-Source: {#DEPLOY_PATH}\*.dll;                           DestDir: {app}; Flags: signonce;
-Source: {#DEPLOY_PATH}\converter\*.exe;                 DestDir: {app}\converter; Flags: signonce;
-Source: {#DEPLOY_PATH}\converter\*.dll;                 DestDir: {app}\converter; Flags: signonce;
-Source: ..\..\..\common\converter\package.config;       DestDir: {app}\converter;
+Source: "{#BUILD_DIR}\desktop\*.exe"; DestDir: {app}; Flags: signonce;
+Source: "{#BUILD_DIR}\desktop\*.dll"; DestDir: {app}; Flags: signonce;
+Source: "{#BUILD_DIR}\desktop\converter\*.exe"; DestDir: {app}\converter; Flags: signonce;
+Source: "{#BUILD_DIR}\desktop\converter\*.dll"; DestDir: {app}\converter; Flags: signonce;
+Source: "..\..\..\common\converter\package.config"; DestDir: {app}\converter;
 
 [InstallDelete]
 Type: filesandordirs; Name: {app}\editors\sdkjs-plugins

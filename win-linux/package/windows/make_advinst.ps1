@@ -1,8 +1,9 @@
-param (
+﻿param (
     [System.Version]$Version = "0.0.0.0",
     [string]$Arch = "x64",
-    [string]$BuildDir = "build",
-    [string]$BrandingDir = ".",
+    [string]$CompanyName = "ONLYOFFICE",
+    [string]$ProductName = "DesktopEditors",
+    [string]$BuildDir,
     [switch]$Sign,
     [string]$CertName = "Ascensio System SIA",
     [string]$TimestampServer = "http://timestamp.digicert.com"
@@ -12,54 +13,72 @@ $ErrorActionPreference = "Stop"
 
 Set-Location $PSScriptRoot
 
-if (Test-Path "$BrandingDir\branding.ps1") {
-    Import-Module "$BrandingDir\branding.ps1"
+if (-not $BuildDir) {
+    $BuildDir = ".build.$Arch"
 }
+$MsiFile = "$CompanyName-$ProductName-$Version-$Arch.msi"
 $VersionShort = "$($Version.Major).$($Version.Minor).$($Version.Build)"
-switch ($Arch) {
-    "x64" { $MsiBuild = 'MsiBuild64' }
-    "x86" { $MsiBuild = 'MsiBuild32' }
+$MsiBuild = switch ($Arch) {
+    "x64" { "MsiBuild64" }
+    "x86" { "MsiBuild32" }
 }
 $MD5 = New-Object -TypeName System.Security.Cryptography.MD5CryptoServiceProvider
 $ASCII = New-Object -TypeName System.Text.ASCIIEncoding
-[guid]$GUID = $MD5.ComputeHash($ASCII.GetBytes("$PackageName $VersionShort $Arch"))
+[guid]$GUID = $MD5.ComputeHash($ASCII.GetBytes(`
+    "$CompanyName $ProductName $VersionShort $Arch"))
 $ProductCode = "{" + $GUID.ToString().ToUpper() + "}"
 
 Write-Host @"
-PackageName = $PackageName
 Version     = $Version
 Arch        = $Arch
-Sign        = $Sign
+CompanyName = $CompanyName
+ProductName = $ProductName
 BuildDir    = $BuildDir
-BrandingDir = $BrandingDir
+Sign        = $Sign
+MsiFile     = $MsiFile
 MsiBuild    = $MsiBuild
 ProductCode = $ProductCode
 "@
 
-
+####
 
 Write-Host "`n[ Get Advanced Installer path ]"
-if ($ENV:ADVINSTPATH) {
-    $AdvInstPath = $ENV:ADVINSTPATH
+
+if ($env:ADVINSTPATH) {
+    $AdvInstPath = $env:ADVINSTPATH
 } else {
     $RegPath = "HKLM:\SOFTWARE\WOW6432Node\Caphyon\Advanced Installer"
     $AdvInstPath = (Get-ItemProperty $RegPath)."InstallRoot" + "bin\x86"
 }
 $AdvInstPath
-$ENV:Path = "$AdvInstPath;$ENV:Path"
+$env:Path = "$AdvInstPath;$env:Path"
 
-
+####
 
 Write-Host "`n[ Create package.config ]"
+
+Write-Host "WRITE: $BuildDir\desktop\converter\package.config"
 Write-Output "package=msi" `
-    | Out-File -Encoding ASCII "$BuildDir\$DesktopDir\converter\package.config"
-Write-Host "$BuildDir\$DesktopDir\converter\package.config"
+    | Out-File -Encoding ASCII "$BuildDir\desktop\converter\package.config"
 
-
+####
 
 Write-Host "`n[ Create Advanced Installer config ]"
-$AdvInstConfig = @()
-$AdvInstConfig += BrandingAdvInstConfig
+
+$AdvInstConfig = @(
+    "DelFolder CUSTOM_PATH", `
+    "SetProductCode -langid 1029 -guid $ProductCode", `
+    "SetProductCode -langid 1031 -guid $ProductCode", `
+    "SetProductCode -langid 1033 -guid $ProductCode", `
+    "SetProductCode -langid 1036 -guid $ProductCode", `
+    "SetProductCode -langid 1041 -guid $ProductCode", `
+    "SetProductCode -langid 1046 -guid $ProductCode", `
+    "SetProductCode -langid 1049 -guid $ProductCode", `
+    "SetProductCode -langid 1060 -guid $ProductCode", `
+    "SetProductCode -langid 2070 -guid $ProductCode", `
+    "SetProductCode -langid 3082 -guid $ProductCode", `
+    "SetProperty FORMS=1"
+)
 if ($Arch -eq "x86") {
     $AdvInstConfig += `
         "SetComponentAttribute -feature_name MainFeature -unset -64bit_component", `
@@ -115,33 +134,40 @@ $AdvInstConfig += `
     "SetProperty Version=$VersionShort", `
     "SetVersion $Version -noprodcode", `
     "SetCurrentFeature MainFeature", `
-    "UpdateFile APPDIR\DesktopEditors.exe $BuildDir\$DesktopDir\DesktopEditors.exe", `
-    "UpdateFile APPDIR\updatesvc.exe $BuildDir\$DesktopDir\updatesvc.exe", `
-    "NewSync APPDIR $BuildDir\$DesktopDir -existingfiles keep -feature Files", `
+    "UpdateFile APPDIR\DesktopEditors.exe $BuildDir\desktop\DesktopEditors.exe", `
+    "UpdateFile APPDIR\updatesvc.exe $BuildDir\desktop\updatesvc.exe", `
+    "NewSync APPDIR $BuildDir\desktop -existingfiles keep -feature Files", `
     # "GenerateReport -buildname $MsiBuild -output_path .\report.pdf", `
     "Rebuild -buildslist $MsiBuild"
 $AdvInstConfig = ";aic", $AdvInstConfig
 $AdvInstConfig
 Write-Output $AdvInstConfig | Out-File -Encoding UTF8 "DesktopEditors.aic"
 
-
+####
 
 Write-Host "`n[ Build Advanced Installer project ]"
-AdvancedInstaller.com /? | Select-Object -First 1
+
 Write-Host "AdvancedInstaller.com /execute DesktopEditors.aip DesktopEditors.aic"
-AdvancedInstaller.com /execute DesktopEditors.aip DesktopEditors.aic
+& AdvancedInstaller.com /? | Select-Object -First 1
+& AdvancedInstaller.com /execute DesktopEditors.aip DesktopEditors.aic
 if ($LastExitCode -ne 0) { throw }
 
+####
 
+Write-Host "`n[ Fix Summary Information Properties ]"
 
-Write-Host "`n[ Fix Summary Info Properties ]"
-$MsiFile = (Get-ChildItem "*-$Version-$Arch.msi")[0].Name
 $Template = ";1033,1049,1029,1031,3082,1036,2070,1046,1060,1041,0"
 switch ($Arch) {
     "x64" { $Template = "x64" + $Template }
     "x86" { $Template = "Intel" + $Template }
 }
+
+Write-Host "MsiInfo $MsiFile /p $Template"
 & MsiInfo $MsiFile /p $Template
 if ($LastExitCode -ne 0) { throw }
-& signtool sign /a /n $CertName /t $TimestampServer /v $MsiFile
-if ($LastExitCode -ne 0) { throw }
+
+if ($Sign) {
+    Write-Host "signtool sign /a /n $CertName /t $TimestampServer /v $MsiFile"
+    & signtool sign /a /n $CertName /t $TimestampServer /v $MsiFile
+    if ($LastExitCode -ne 0) { throw }
+}
