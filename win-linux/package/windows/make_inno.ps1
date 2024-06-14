@@ -48,11 +48,11 @@ Write-Host "`n[ Get Inno Setup path ]"
 if ($env:INNOPATH) {
     $InnoPath = $env:INNOPATH
 }
-elseif ($Target -ne "xp") {
+elseif ($Target -notlike "xp*") {
     $RegPath = "HKLM:\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\Inno Setup 6_is1"
     $InnoPath = (Get-ItemProperty $RegPath)."Inno Setup: App Path"
 }
-elseif ($Target -eq "xp") {
+elseif ($Target -like "xp*") {
     $RegPath = "HKLM:\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\Inno Setup 5_is1"
     $InnoPath = (Get-ItemProperty $RegPath)."Inno Setup: App Path"
 }
@@ -66,11 +66,11 @@ if ($Target -notlike "*update") {
 
     $VCRedist = "data\vcredist_$Arch.exe"
     $VCRedistUrl = switch -Wildcard ("$Arch-$Target") {
-        "x64*"   { "https://aka.ms/vs/17/release/vc_redist.x64.exe" }
-        "x86*"   { "https://aka.ms/vs/17/release/vc_redist.x86.exe" }
         # Microsoft Visual C++ 2015-2019 Redistributable - 14.27.29114
-        "x64-xp" { "https://download.visualstudio.microsoft.com/download/pr/722d59e4-0671-477e-b9b1-b8da7d4bd60b/591CBE3A269AFBCC025681B968A29CD191DF3C6204712CBDC9BA1CB632BA6068/VC_redist.x64.exe" }
-        "x86-xp" { "https://download.visualstudio.microsoft.com/download/pr/c168313d-1754-40d4-8928-18632c2e2a71/D305BAA965C9CD1B44EBCD53635EE9ECC6D85B54210E2764C8836F4E9DEFA345/VC_redist.x86.exe" }
+        "x64-xp" { "https://download.visualstudio.microsoft.com/download/pr/722d59e4-0671-477e-b9b1-b8da7d4bd60b/591CBE3A269AFBCC025681B968A29CD191DF3C6204712CBDC9BA1CB632BA6068/VC_redist.x64.exe"; Break }
+        "x86-xp" { "https://download.visualstudio.microsoft.com/download/pr/c168313d-1754-40d4-8928-18632c2e2a71/D305BAA965C9CD1B44EBCD53635EE9ECC6D85B54210E2764C8836F4E9DEFA345/VC_redist.x86.exe"; Break }
+        # Microsoft Visual C++ 2015-2022 Redistributable
+        default  { "https://aka.ms/vs/17/release/vc_redist.$Arch.exe" }
     }
     if ((-not (Test-Path "$VCRedist")) -or `
         (-not (Get-Item "$VCRedist").VersionInfo.ProductVersion)) {
