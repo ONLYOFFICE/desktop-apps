@@ -32,6 +32,7 @@
 # include <io.h>
 # include <VersionHelpers.h>
 # include "platform_win/singleapplication.h"
+# include "platform_win/association.h"
 #else
 # include <unistd.h>
 # include "platform_linux/singleapplication.h"
@@ -1053,6 +1054,10 @@ void CAscApplicationManagerWrapper::onDocumentReady(int uid)
             m_pUpdateManager->refreshStartPage();
         });
     }
+#endif
+
+#ifdef _WIN32
+    Association::instance().chekForAssociations(uid);
 #endif
 }
 
