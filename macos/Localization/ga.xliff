@@ -451,6 +451,11 @@ Tá tairiscint speisialta againn duit.</target>
         <target state="translated">Scarbhileog Nua</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="new-pdfform" xml:space="preserve">
+        <source>New PDF Form</source>
+        <target>Foirm PDF nua</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
     </body>
   </file>
   <file original="ONLYOFFICE/Base.lproj/Localizable.stringsdict" source-language="en" target-language="ga-IE" datatype="plaintext">

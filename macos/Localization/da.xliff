@@ -451,6 +451,11 @@ Vi har et specielt tilbud til dig.</target>
         <target state="translated">Nyt regneark</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="new-pdfform" xml:space="preserve">
+        <source>New PDF Form</source>
+        <target>Ny PDF-formular</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
     </body>
   </file>
   <file original="ONLYOFFICE/Base.lproj/Localizable.stringsdict" source-language="en" target-language="da-DK" datatype="plaintext">

@@ -501,6 +501,11 @@ Wir haben ein Sonderangebot für Sie.</target>
         <target state="translated">Neue Tabelle</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="new-pdfform" xml:space="preserve">
+        <source>New PDF Form</source>
+        <target>Neues PDF-Formular</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
     </body>
   </file>
   <file original="ONLYOFFICE/Base.lproj/Localizable.stringsdict" source-language="en" target-language="de" datatype="plaintext">

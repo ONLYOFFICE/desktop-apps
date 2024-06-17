@@ -490,6 +490,11 @@ Nós temos uma oferta especial para você.</target>
         <target state="translated">Nova planilha</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="new-pdfform" xml:space="preserve">
+        <source>New PDF Form</source>
+        <target>Novo formulário PDF</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
     </body>
   </file>
   <file original="ONLYOFFICE/Base.lproj/Localizable.stringsdict" source-language="en" target-language="pt-BR" datatype="plaintext">
