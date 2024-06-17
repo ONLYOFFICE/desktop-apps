@@ -883,8 +883,9 @@ namespace WindowHelper {
             m_pChild->setAttribute(Qt::WA_TranslucentBackground);
             if (QX11Info::isCompositingManagerRunning()) {
                 m_pChild->setWindowModality(Qt::ApplicationModal);
-                m_pChild->move(parent->pos() - QPoint(10,10));
-                m_pChild->setFixedSize(parent->size() + QSize(20,20));
+                int offset = parent->isMaximized() ? 0 : 10;
+                m_pChild->move(parent->pos() - QPoint(offset, offset));
+                m_pChild->setFixedSize(parent->size() + 2 * QSize(offset, offset));
                 parent = m_pChild;
             } else
                 m_pChild->setGeometry(parent->rect());
