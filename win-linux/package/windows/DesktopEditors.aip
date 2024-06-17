@@ -26,13 +26,10 @@
     <ROW Property="AppUserModelID" Value="ASC.Documents.5" ValueLocId="-"/>
     <ROW Property="Arch" Value="x64" MultiBuildValue="MsiBuild32:x86" ValueLocId="-"/>
     <ROW Property="CTRLS" Value="2"/>
-    <ROW Property="CUSTOM_PATH" Value="C:\[|ProgramFilesFolder][|Manufacturer]MediaViewer" ValueLocId="-"/>
     <ROW Property="DesktopEditorsName" Value="ONLYOFFICE Editors" ValueLocId="-"/>
     <ROW Property="EMPTY_LANG_DIR" Value="en-US"/>
     <ROW Property="ExtPfx" Value="ASC" ValueLocId="-"/>
-    <ROW Property="FORMS" Value="0" ValueLocId="-"/>
-    <ROW Property="GALLERY" Value="0" Type="4" ValueLocId="-"/>
-    <ROW Property="ImageViewerName" Value="Gallery" ValueLocId="-"/>
+    <ROW Property="FORMS" Value="1" ValueLocId="-"/>
     <ROW Property="IncompatibleVersion_ErrorText" Value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
     <ROW Property="JUMP_LIST_ARG" Value="New_document New_spreadsheet New_presentation New_PDF_Form"/>
     <ROW Property="LOCALE" Value="en"/>
@@ -43,7 +40,6 @@
     <ROW Property="NewForm" Value="New PDF Form"/>
     <ROW Property="NewPresentation" Value="New presentation"/>
     <ROW Property="NewSpreadsheet" Value="New spreadsheet"/>
-    <ROW Property="PLAYER" Value="0" Type="4" ValueLocId="-"/>
     <ROW Property="PackageName" Value="[|VendorName] [|AppName]" ValueLocId="-"/>
     <ROW Property="PackageShortName" Value="[|VendorShortName]-[|AppShortName]" ValueLocId="-"/>
     <ROW Property="ProductCode" Value="1029:{00000000-0000-0000-0000-000000000000} 1031:{00000000-0000-0000-0000-000000000000} 1033:{00000000-0000-0000-0000-000000000000} 1036:{00000000-0000-0000-0000-000000000000} 1041:{00000000-0000-0000-0000-000000000000} 1046:{00000000-0000-0000-0000-000000000000} 1049:{00000000-0000-0000-0000-000000000000} 1060:{00000000-0000-0000-0000-000000000000} 2070:{00000000-0000-0000-0000-000000000000} 3082:{00000000-0000-0000-0000-000000000000} " Type="16"/>
@@ -104,7 +100,6 @@
     <ROW Property="VendorName" Value="ONLYOFFICE" ValueLocId="-"/>
     <ROW Property="VendorShortName" Value="[|VendorName]" ValueLocId="-"/>
     <ROW Property="Version" Value="0.0.0" ValueLocId="-"/>
-    <ROW Property="VideoPlayerName" Value="Media" ValueLocId="-"/>
     <ROW Property="WindowsType9X" MultiBuildValue="MsiBuild64:Windows 9x/ME#MsiBuild32:Windows 9x/ME" ValueLocId="-"/>
     <ROW Property="WindowsType9XDisplay" MultiBuildValue="MsiBuild64:Windows 9x/ME#MsiBuild32:Windows 9x/ME" ValueLocId="-"/>
     <ROW Property="WindowsTypeNT" MultiBuildValue="MsiBuild64:Windows 9x/ME/NT/2000/XP/Vista/Windows 7/Windows 8 x86/Windows 8.1 x86/Windows 10 x86" ValueLocId="-"/>
@@ -120,7 +115,6 @@
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiDirsComponent">
     <ROW Directory="APPDIR" Directory_Parent="TARGETDIR" DefaultDir="APPDIR:." IsPseudoRoot="1"/>
-    <ROW Directory="CUSTOM_PATH" Directory_Parent="TARGETDIR" DefaultDir="CUSTOM~1|CUSTOM_PATH" IsPseudoRoot="1"/>
     <ROW Directory="DesktopFolder" Directory_Parent="TARGETDIR" DefaultDir="DESKTO~1|DesktopFolder" IsPseudoRoot="1"/>
     <ROW Directory="SHORTCUTDIR" Directory_Parent="TARGETDIR" DefaultDir="SHORTC~1|SHORTCUTDIR" IsPseudoRoot="1"/>
     <ROW Directory="TARGETDIR" DefaultDir="SourceDir"/>
@@ -131,9 +125,7 @@
     <ROW Component="c_dir_app" ComponentId="{967A56B9-E2F1-42F8-869D-7791391AFB48}" Directory_="APPDIR" Attributes="256"/>
     <ROW Component="c_dir_shortcut" ComponentId="{CB73F99E-8C5E-4F7A-9E2F-25EDC9FBDFC0}" Directory_="SHORTCUTDIR" Attributes="256"/>
     <ROW Component="c_exe_desktopeditors" ComponentId="{FA0F79B8-DC4D-49BC-808A-1821966D6C0C}" Directory_="APPDIR" Attributes="256" KeyPath="DesktopEditors.exe"/>
-    <ROW Component="c_exe_imageviewer" ComponentId="{E8DFAC60-5575-4D64-AD43-FF684A2FAE8F}" Directory_="CUSTOM_PATH" Attributes="256" Condition="GALLERY = &quot;1&quot;" KeyPath="ImageViewer.exe"/>
     <ROW Component="c_exe_updatesvc" ComponentId="{954103D0-8D21-42C9-A924-247FCB9653F9}" Directory_="APPDIR" Attributes="256" KeyPath="updatesvc.exe"/>
-    <ROW Component="c_exe_videoplayer" ComponentId="{39F3F737-40E8-42F0-9342-BF8232F34B72}" Directory_="CUSTOM_PATH" Attributes="256" Condition="PLAYER = &quot;1&quot;" KeyPath="VideoPlayer.exe"/>
     <ROW Component="c_reg_cu_sw_app" ComponentId="{BF7B083D-CB31-42CC-89EB-912C4461A8D0}" Directory_="APPDIR" Attributes="260" KeyPath="reg_cu_sw_company"/>
     <ROW Component="c_reg_fa_cap__csv" ComponentId="{2002B59E-DC3A-4307-B9BF-B4ADBC6890DC}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_cap__csv"/>
     <ROW Component="c_reg_fa_cap__djvu" ComponentId="{214A8DA3-552D-42C3-9252-C936958AED65}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_cap__djvu"/>
@@ -300,13 +292,12 @@
     <ROW Component="c_reg_fa_progid__xml" ComponentId="{1BDE6040-0CCB-4A9A-B497-7DAAC9C40704}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_progid__xml"/>
     <ROW Component="c_reg_fa_progid__xps" ComponentId="{8AEB6A27-8564-4F09-86CA-A5832BEC7461}" Directory_="APPDIR" Attributes="260" KeyPath="reg_fa_progid__xps"/>
     <ROW Component="c_reg_progid" ComponentId="{9D33C055-B150-47B2-AB67-51C8FECB3260}" Directory_="APPDIR" Attributes="260" KeyPath="reg_progid"/>
-    <ROW Component="c_reg_protocol" ComponentId="{C28686D3-D274-4005-93D2-EC95B27607E3}" Directory_="APPDIR" Attributes="260" Condition="(REGISTER_PROTOCOL = 1) AND (VendorShortName = &quot;ONLYOFFICE&quot;)" KeyPath="reg_protocol"/>
+    <ROW Component="c_reg_protocol" ComponentId="{C28686D3-D274-4005-93D2-EC95B27607E3}" Directory_="APPDIR" Attributes="260" Condition="REGISTER_PROTOCOL = 1" KeyPath="reg_protocol"/>
     <ROW Component="c_reg_sw_app" ComponentId="{86375F1D-EF9C-44F1-B331-7545DA000717}" Directory_="APPDIR" Attributes="260" KeyPath="reg_sw_company"/>
     <ROW Component="c_reg_sw_registeredapps" ComponentId="{2637A7F2-DBD3-45D4-AE10-ADD61BFC4414}" Directory_="APPDIR" Attributes="260" KeyPath="reg_sw_registeredapps"/>
-    <ROW Component="c_reg_ua_cap__protocol" ComponentId="{CA2760F1-FCC1-40EE-A062-CE77301F668D}" Directory_="APPDIR" Attributes="260" Condition="VendorShortName = &quot;ONLYOFFICE&quot;" KeyPath="reg_ua_cap__protocol"/>
+    <ROW Component="c_reg_ua_cap__protocol" ComponentId="{CA2760F1-FCC1-40EE-A062-CE77301F668D}" Directory_="APPDIR" Attributes="260" KeyPath="reg_ua_cap__protocol"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatsComponent">
-    <ROW Feature="ExtendedFeature" Title="ExtendedFeature" Display="0" Level="1" Directory_="CUSTOM_PATH" Attributes="0"/>
     <ROW Feature="FA_CSV" Feature_Parent="RegFileTypeAssociations" Title=".csv" Display="77" Level="4" Directory_="APPDIR" Attributes="0"/>
     <ROW Feature="FA_DJVU" Feature_Parent="RegFileTypeAssociations" Title=".djvu" Display="59" Level="4" Directory_="APPDIR" Attributes="0"/>
     <ROW Feature="FA_DOC" Feature_Parent="RegFileTypeAssociations" Title=".doc" Display="3" Level="4" Directory_="APPDIR" Attributes="0"/>
@@ -358,8 +349,6 @@
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFilesComponent">
     <ROW File="DesktopEditors.exe" Component_="c_exe_desktopeditors" FileName="DESKTO~1.EXE|DesktopEditors.exe" Attributes="0" SourcePath="build\DesktopEditors\DesktopEditors.exe" SelfReg="false"/>
-    <ROW File="VideoPlayer.exe" Component_="c_exe_videoplayer" FileName="VIDEOP~1.EXE|VideoPlayer.exe" Attributes="0" SourcePath="build\MediaViewer\VideoPlayer.exe" SelfReg="false"/>
-    <ROW File="ImageViewer.exe" Component_="c_exe_imageviewer" FileName="IMAGEV~1.EXE|ImageViewer.exe" Attributes="0" SourcePath="build\MediaViewer\ImageViewer.exe" SelfReg="false"/>
     <ROW File="updatesvc.exe" Component_="c_exe_updatesvc" FileName="UPDATE~1.EXE|updatesvc.exe" Attributes="0" SourcePath="build\DesktopEditors\updatesvc.exe" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.custcomp.AiRegistryAliasComponent">
@@ -457,12 +446,9 @@
     <ROW Name="background.bmp" SourcePath="data\background.bmp"/>
     <ROW Name="banner.png" SourcePath="data\banner.png"/>
     <ROW Name="lzmaextractor.dll" SourcePath="&lt;AI_CUSTACTS&gt;lzmaextractor.dll"/>
-    <ROW Name="utils.vbs" SourcePath="utils.vbs"/>
     <ROW Name="viewer.exe" SourcePath="&lt;AI_CUSTACTS&gt;viewer.exe" DigSign="true"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCheckBoxComponent">
-    <ROW Property="GALLERY" Value="1"/>
-    <ROW Property="PLAYER" Value="1"/>
     <ROW Property="REGISTER_CSV" Value="1"/>
     <ROW Property="REGISTER_DJVU" Value="1"/>
     <ROW Property="REGISTER_DOC" Value="1"/>
@@ -505,7 +491,6 @@
     <ROW Property="REGISTER_XPS" Value="1"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiConditionComponent">
-    <ROW Feature_="ExtendedFeature" Level="4" Condition="GALLERY &lt;&gt; 1 AND PLAYER &lt;&gt; 1"/>
     <ROW Feature_="UpdateService" Level="1" Condition="UPDATE_SERVICE = 1"/>
     <ROW Feature_="RegFileTypeAssociations" Level="4" Condition="REGISTER_NONE = 1"/>
     <ROW Feature_="FA_CSV" Level="1" Condition="REGISTER_CSV = 1"/>
@@ -609,17 +594,6 @@
     <ROW Dialog_="ExitDialog" Control="LaunchProdText" Type="Text" X="148" Y="120" Width="220" Height="20" Attributes="196611" Text="Launch [ProductName]" Order="800" TextLocId="Control.Text.ExitDialog#LaunchProdText" MsiKey="ExitDialog#LaunchProdText"/>
     <ROW Dialog_="ExitDialog" Control="LaunchProdCheckBox" Type="CheckBox" X="135" Y="120" Width="10" Height="10" Attributes="3" Property="RUNAPPLICATION" Order="900" MsiKey="ExitDialog#LaunchProdCheckBox" Options="1"/>
     <ROW Dialog_="ExitDialog" Control="Hyperlink" Type="Hyperlink" X="135" Y="140" Width="220" Height="20" Attributes="65538" Property="AiReadmeLink" Text="&lt;a href=&quot;[AiReadmeLink]&quot;&gt;View readme&lt;/a&gt;" Order="1200" TextLocId="Control.Text.ExitDialog#ViewReadmeHyperlink" MsiKey="ExitDialog#Hyperlink"/>
-    <ROW Dialog_="ExtendedInstallDlg" Control="Next" Type="PushButton" X="236" Y="243" Width="56" Height="17" Attributes="3" Text="[ButtonText_Next]" Order="100" Options="1"/>
-    <ROW Dialog_="ExtendedInstallDlg" Control="Cancel" Type="PushButton" X="304" Y="243" Width="56" Height="17" Attributes="3" Text="[ButtonText_Cancel]" Order="200" Options="1"/>
-    <ROW Dialog_="ExtendedInstallDlg" Control="Back" Type="PushButton" X="180" Y="243" Width="56" Height="17" Attributes="3" Text="[ButtonText_Back]" Order="300" Options="1"/>
-    <ROW Dialog_="ExtendedInstallDlg" Control="BannerBitmap" Type="Bitmap" X="0" Y="0" Width="370" Height="44" Attributes="1048577" Text="banner.png" Order="400"/>
-    <ROW Dialog_="ExtendedInstallDlg" Control="BannerLine" Type="Line" X="0" Y="44" Width="372" Height="0" Attributes="1" Order="500"/>
-    <ROW Dialog_="ExtendedInstallDlg" Control="BottomLine" Type="Line" X="5" Y="234" Width="368" Height="0" Attributes="1" Order="600"/>
-    <ROW Dialog_="ExtendedInstallDlg" Control="Description" Type="Text" X="25" Y="23" Width="280" Height="15" Attributes="196611" Text="Select additional tasks" Order="700"/>
-    <ROW Dialog_="ExtendedInstallDlg" Control="Title" Type="Text" X="15" Y="6" Width="200" Height="15" Attributes="196611" Text="Select additional tasks" TextStyle="[DlgTitleFont]" Order="800" TextLocId="Control.Text.ExtendedInstallDlg#Title"/>
-    <ROW Dialog_="ExtendedInstallDlg" Control="ExtendedDlgText" Type="Text" X="25" Y="70" Width="314" Height="30" Attributes="65539" Property="ExtendedDlgText" Text="Select additional tasks to be performed during installation [ProductName]:" Order="900" TextLocId="Control.Text.ExtendedInstallDlg#ExtendedDlgText"/>
-    <ROW Dialog_="ExtendedInstallDlg" Control="MediaButtonCheckBox" Type="CheckBox" X="53" Y="109" Width="162" Height="11" Attributes="3" Property="PLAYER" Text="Install Media" Order="1000" TextLocId="Control.Text.ExtendedInstallDlg#MediaButtonCheckBox"/>
-    <ROW Dialog_="ExtendedInstallDlg" Control="GalleryButtonCheckBox" Type="CheckBox" X="53" Y="131" Width="162" Height="11" Attributes="3" Property="GALLERY" Text="Install Gallery" Order="1100" TextLocId="Control.Text.ExtendedInstallDlg#GalleryButtonCheckBox"/>
     <ROW Dialog_="FatalError" Control="Bitmap" Type="Bitmap" X="0" Y="0" Width="370" Height="234" Attributes="1048577" Text="background.bmp" Order="300" MsiKey="FatalError#Bitmap"/>
     <ROW Dialog_="FileAssociationsCustomDlg" Control="Next" Type="PushButton" X="236" Y="243" Width="56" Height="17" Attributes="3" Text="[ButtonText_Next]" Order="100" TextLocId="-" Options="1"/>
     <ROW Dialog_="FileAssociationsCustomDlg" Control="Cancel" Type="PushButton" X="304" Y="243" Width="56" Height="17" Attributes="3" Text="[ButtonText_Cancel]" Order="200" TextLocId="-" Options="1"/>
@@ -779,19 +753,14 @@
     <ROW Dialog_="VerifyReadyDlg" Control_="Back" Event="NewDialog" Argument="PatchWelcomeDlg" Condition="AI_PATCH" Ordering="203"/>
     <ROW Dialog_="FolderDlg" Control_="Browse" Event="[_BrowseProperty]" Argument="APPDIR" Condition="1" Ordering="100" MsiKey="FolderDlg#Browse#[_BrowseProperty]#APPDIR#1"/>
     <ROW Dialog_="FolderDlg" Control_="Next" Event="SetTargetPath" Argument="APPDIR" Condition="1" Ordering="199" MsiKey="FolderDlg#Next#SetTargetPath#APPDIR#1"/>
-    <ROW Dialog_="FolderDlg" Control_="Next" Event="NewDialog" Argument="ExtendedInstallDlg" Condition="AI_INSTALL AND ( VendorShortName &lt;&gt; &quot;ONLYOFFICE&quot; )" Ordering="203"/>
     <ROW Dialog_="FolderDlg" Control_="Back" Event="NewDialog" Argument="LicenseAgreementDlg" Condition="AI_INSTALL" Ordering="1"/>
     <ROW Dialog_="VerifyReadyDlg" Control_="Install" Event="EndDialog" Argument="Return" Condition="AI_INSTALL" Ordering="199"/>
     <ROW Dialog_="VerifyReadyDlg" Control_="Back" Event="NewDialog" Argument="FileAssociationsCustomDlg" Condition="AI_INSTALL" Ordering="204"/>
     <ROW Dialog_="LicenseAgreementDlg" Control_="Next" Event="NewDialog" Argument="FolderDlg" Condition="AI_INSTALL" Ordering="1"/>
     <ROW Dialog_="LicenseAgreementDlg" Control_="Back" Event="NewDialog" Argument="WelcomeDlg" Condition="AI_INSTALL" Ordering="1"/>
     <ROW Dialog_="ShortcutsDlg" Control_="Next" Event="NewDialog" Argument="FileAssociationsCustomDlg" Condition="AI_INSTALL" Ordering="1"/>
-    <ROW Dialog_="ShortcutsDlg" Control_="Back" Event="NewDialog" Argument="ExtendedInstallDlg" Condition="AI_INSTALL AND ( VendorShortName &lt;&gt; &quot;ONLYOFFICE&quot; )" Ordering="2"/>
-    <ROW Dialog_="ExtendedInstallDlg" Control_="Cancel" Event="SpawnDialog" Argument="CancelDlg" Condition="1" Ordering="100"/>
-    <ROW Dialog_="ExtendedInstallDlg" Control_="Next" Event="NewDialog" Argument="ShortcutsDlg" Condition="AI_INSTALL" Ordering="1"/>
-    <ROW Dialog_="ExtendedInstallDlg" Control_="Back" Event="NewDialog" Argument="FolderDlg" Condition="AI_INSTALL" Ordering="1"/>
-    <ROW Dialog_="FolderDlg" Control_="Next" Event="NewDialog" Argument="ShortcutsDlg" Condition="AI_INSTALL AND ( VendorShortName = &quot;ONLYOFFICE&quot; )" Ordering="202"/>
-    <ROW Dialog_="ShortcutsDlg" Control_="Back" Event="NewDialog" Argument="FolderDlg" Condition="AI_INSTALL AND ( VendorShortName = &quot;ONLYOFFICE&quot; )" Ordering="1"/>
+    <ROW Dialog_="FolderDlg" Control_="Next" Event="NewDialog" Argument="ShortcutsDlg" Condition="AI_INSTALL" Ordering="202"/>
+    <ROW Dialog_="ShortcutsDlg" Control_="Back" Event="NewDialog" Argument="FolderDlg" Condition="AI_INSTALL" Ordering="1"/>
     <ROW Dialog_="FatalError" Control_="Finish" Event="DoAction" Argument="AI_RollbackPrePrereq" Condition="1" Ordering="103"/>
     <ROW Dialog_="ExitDialog" Control_="Finish" Event="DoAction" Argument="AI_CleanPrePrereq" Condition="1" Ordering="302"/>
     <ROW Dialog_="FatalError" Control_="Finish" Event="DoAction" Argument="AI_CleanPrePrereq" Condition="1" Ordering="104"/>
@@ -925,17 +894,11 @@
     <ROW Action="SET_APPDIR" Type="307" Source="APPDIR" Target="[ProgramFilesFolder][Manufacturer]\[ProductName]" MultiBuildTarget="MsiBuild64:[ProgramFiles64Folder][VendorShortName]\[AppShortName]#MsiBuild32:[ProgramFilesFolder][VendorShortName]\[AppShortName]"/>
     <ROW Action="SET_SHORTCUTDIR" Type="307" Source="SHORTCUTDIR" Target="[ProgramMenuFolder][VendorName]"/>
     <ROW Action="SET_TARGETDIR_TO_APPDIR" Type="51" Source="TARGETDIR" Target="[APPDIR]"/>
-    <ROW Action="SetCustomPath" Type="6" Source="utils.vbs" Target="SetCustomPath"/>
-    <ROW Action="SetLocaleProperty32" Type="6" Source="utils.vbs" Target="SetLocaleProperty"/>
-    <ROW Action="SetLocaleProperty64" Type="4102" Source="utils.vbs" Target="SetLocaleProperty"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiDialogComponent">
-    <ROW Dialog="ExtendedInstallDlg" HCentering="50" VCentering="50" Width="370" Height="270" Attributes="3" Title="[ProductName] [Setup]" Control_Default="Next" Control_Cancel="Cancel"/>
     <ROW Dialog="FileAssociationsCustomDlg" HCentering="50" VCentering="50" Width="370" Height="270" Attributes="3" Title="[ProductName] [Setup]" Control_Default="Next" Control_Cancel="Cancel" TitleLocId="Control.Text.FileAssociationsDlg#Title"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatCompsComponent">
-    <ROW Feature_="ExtendedFeature" Component_="c_exe_imageviewer"/>
-    <ROW Feature_="ExtendedFeature" Component_="c_exe_videoplayer"/>
     <ROW Feature_="FA_CSV" Component_="c_reg_fa_ext__csv"/>
     <ROW Feature_="FA_DJVU" Component_="c_reg_fa_ext__djvu"/>
     <ROW Feature_="FA_DOC" Component_="c_reg_fa_ext__doc"/>
@@ -1119,26 +1082,21 @@
     <ROW Name="i_desktopeditors_form" SourcePath="..\..\extras\projicons\res\icons\form.ico" Index="0"/>
     <ROW Name="i_desktopeditors_slide" SourcePath="..\..\extras\projicons\res\icons\slide.ico" Index="0"/>
     <ROW Name="i_desktopeditors_word" SourcePath="..\..\extras\projicons\res\icons\cell.ico" Index="0"/>
-    <ROW Name="i_imageviewer" SourcePath="..\..\extras\projicons\res\icons\gallery.ico" Index="0"/>
-    <ROW Name="i_videoplayer" SourcePath="..\..\extras\projicons\res\icons\media.ico" Index="0"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiInstExSeqComponent">
     <ROW Action="AI_DOWNGRADE" Condition="AI_NEWERPRODUCTFOUND AND (UILevel &lt;&gt; 5)" Sequence="210"/>
-    <ROW Action="AI_DETECT_MODERNWIN" Condition="(VersionNT &gt;= 603)" Sequence="57" MsiKey="AI_DETECT_MODERNWIN"/>
+    <ROW Action="AI_DETECT_MODERNWIN" Condition="(VersionNT &gt;= 603)" Sequence="56" MsiKey="AI_DETECT_MODERNWIN"/>
     <ROW Action="AI_RESTORE_LOCATION" Condition="APPDIR=&quot;&quot;" Sequence="747"/>
     <ROW Action="AI_STORE_LOCATION" Condition="(Not Installed) OR REINSTALL" Sequence="1502"/>
     <ROW Action="AI_PREPARE_UPGRADE" Condition="AI_UPGRADE=&quot;No&quot; AND (Not Installed)" Sequence="1397"/>
-    <ROW Action="AI_ResolveKnownFolders" Sequence="56"/>
-    <ROW Action="AI_EnableDebugLog" Sequence="54"/>
+    <ROW Action="AI_ResolveKnownFolders" Sequence="55"/>
+    <ROW Action="AI_EnableDebugLog" Sequence="53"/>
     <ROW Action="AI_GetArpIconPath" Sequence="1402"/>
     <ROW Action="AI_RemoveExternalUIStub" Condition="(REMOVE=&quot;ALL&quot;) AND ((VersionNT &gt; 500) OR((VersionNT = 500) AND (ServicePackLevel &gt;= 4)))" Sequence="1501"/>
     <ROW Action="AI_DELETE_SHORTCUTS" Condition="NOT (REMOVE=&quot;ALL&quot;)" Sequence="1401"/>
     <ROW Action="AI_DEL_EMPTY_SHORTCUTDIR" Condition="NOT (REMOVE=&quot;ALL&quot;)" Sequence="6402"/>
     <ROW Action="AI_DATA_SETTER" Condition="NOT (REMOVE=&quot;ALL&quot;)" Sequence="6401"/>
     <ROW Action="AI_AppSearchEx" Sequence="102"/>
-    <ROW Action="SetLocaleProperty32" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) ) AND ( NOT VersionNT64 )" Sequence="51"/>
-    <ROW Action="SetLocaleProperty64" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) ) AND ( VersionNT64 )" Sequence="53"/>
-    <ROW Action="SetCustomPath" Condition="( NOT Installed )" Sequence="951"/>
     <ROW Action="RemoveJumpList" Condition="( Installed AND ( REMOVE = &quot;ALL&quot; OR AI_INSTALL_MODE = &quot;Remove&quot; ) )" Sequence="6602"/>
     <ROW Action="CreateJumpList" Condition="( NOT Installed )" Sequence="6601"/>
     <ROW Action="AI_BACKUP_AI_SETUPEXEPATH" Sequence="99" Builds="MsiBuild64;MsiBuild32"/>
@@ -1150,7 +1108,7 @@
     <ROW Action="AI_ExtractLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;) AND (NOT PATCH)" Sequence="1549" Builds="MsiBuild64;MsiBuild32"/>
     <ROW Action="AI_DeleteRLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;) AND (NOT PATCH)" Sequence="1548" Builds="MsiBuild64;MsiBuild32"/>
     <ROW Action="AI_DeleteLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;) AND (NOT PATCH)" Sequence="6597" Builds="MsiBuild64;MsiBuild32"/>
-    <ROW Action="AI_DETECT_WINTHEME" Condition="(VersionNT &gt;= 603)" Sequence="55" MsiKey="AI_DETECT_WINTHEME"/>
+    <ROW Action="AI_DETECT_WINTHEME" Condition="(VersionNT &gt;= 603)" Sequence="54" MsiKey="AI_DETECT_WINTHEME"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiInstallUISequenceComponent">
     <ROW Action="AI_RESTORE_LOCATION" Condition="APPDIR=&quot;&quot;" Sequence="747"/>
@@ -1801,8 +1759,6 @@
     <ROW Shortcut="sc_menu_exe_desktopeditors_form" Directory_="SHORTCUTDIR" Name="NEWPDF~1|[|NewForm]" Component_="c_exe_desktopeditors" Target="[#DesktopEditors.exe]" Arguments="--new:form" Hotkey="0" Icon_="i_desktopeditors_form" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
     <ROW Shortcut="sc_menu_exe_desktopeditors_slide" Directory_="SHORTCUTDIR" Name="NEWPRE~1|[|NewPresentation]" Component_="c_exe_desktopeditors" Target="[#DesktopEditors.exe]" Arguments="--new:slide" Hotkey="0" Icon_="i_desktopeditors_slide" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
     <ROW Shortcut="sc_menu_exe_desktopeditors_word" Directory_="SHORTCUTDIR" Name="NEWDOC~1|[|NewDocument]" Component_="c_exe_desktopeditors" Target="[#DesktopEditors.exe]" Arguments="--new:word" Hotkey="0" Icon_="i_desktopeditors_word" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
-    <ROW Shortcut="sc_menu_exe_imageviewer" Directory_="SHORTCUTDIR" Name="ONLYOF~1|[|ImageViewerName]" Component_="c_exe_imageviewer" Target="[#ImageViewer.exe]" Hotkey="0" Icon_="i_imageviewer" IconIndex="0" ShowCmd="1" WkDir="CUSTOM_PATH"/>
-    <ROW Shortcut="sc_menu_exe_videoplayer" Directory_="SHORTCUTDIR" Name="ONLYOF~1|[|VideoPlayerName]" Component_="c_exe_videoplayer" Target="[#VideoPlayer.exe]" Hotkey="0" Icon_="i_videoplayer" IconIndex="0" ShowCmd="1" WkDir="CUSTOM_PATH"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiThemeComponent">
     <ATTRIBUTE name="UsedTheme" value="classic"/>
