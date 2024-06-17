@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <DICTIONARY type="multilanguage">
   <!-- Dialog table -->
-  <ENTRY id="Dialog.ExtendedInstallDlg">
-    <STRING lang="ru" value="[ProductName] [Setup]"/>
-  </ENTRY>
   <ENTRY id="Dialog.FileAssociationsDlg">
     <STRING lang="cs" value="[Setup] [ProductName]"/>
     <STRING lang="de" value="[ProductName] [Setup]"/>
@@ -22,30 +19,6 @@
     <STRING lang="sl" value="[Setup] [ProductName]"/>
   </ENTRY>
   <!-- Control table -->
-  <ENTRY id="Control.Text.ExtendedInstallDlg#Back">
-    <STRING lang="ru" value="[ButtonText_Back]"/>
-  </ENTRY>
-  <ENTRY id="Control.Text.ExtendedInstallDlg#Cancel">
-    <STRING lang="ru" value="[ButtonText_Cancel]"/>
-  </ENTRY>
-  <ENTRY id="Control.Text.ExtendedInstallDlg#Description">
-    <STRING lang="ru" value="Какие дополнительные задачи необходимо выполнить?"/>
-  </ENTRY>
-  <ENTRY id="Control.Text.ExtendedInstallDlg#ExtendedDlgText">
-    <STRING lang="ru" value="Выберите дополнительные задачи, которые необходимо выполнить при установке [ProductName]:"/>
-  </ENTRY>
-  <ENTRY id="Control.Text.ExtendedInstallDlg#GalleryButtonCheckBox">
-    <STRING lang="ru" value="Install Gallery"/>
-  </ENTRY>
-  <ENTRY id="Control.Text.ExtendedInstallDlg#MediaButtonCheckBox">
-    <STRING lang="ru" value="Install Media"/>
-  </ENTRY>
-  <ENTRY id="Control.Text.ExtendedInstallDlg#Next">
-    <STRING lang="ru" value="[ButtonText_Next]"/>
-  </ENTRY>
-  <ENTRY id="Control.Text.ExtendedInstallDlg#Title">
-    <STRING lang="ru" value="Выберите дополнительные задачи"/>
-  </ENTRY>
   <ENTRY id="Control.Text.FileAssociationsDlg#Description">
     <STRING lang="cs" value="Vyberte přípony, které chcete přidružit k aplikaci [ProductName]"/>
     <STRING lang="pt" value="Selecione as extensões que pretende associar ao [ProductName]"/>
