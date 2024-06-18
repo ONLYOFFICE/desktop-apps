@@ -1543,8 +1543,8 @@ be.jumpDOCXF =Новая форма PDF
 gl.jumpDOCXF =Novo formulario PDF
 si.jumpDOCXF =නව PDF පෝරමය
 zh_TW.jumpDOCXF =新的 PDF 表格
-sr_Latn_RS.jumpDOCXF =Novi formular šablon
-sr_Cyrl_RS.jumpDOCXF =Нови формулар шаблон
+sr_Latn_RS.jumpDOCXF =Novi PDF formular
+sr_Cyrl_RS.jumpDOCXF =Нови PDF формулар
 
 en.defprogAppDescription=Free desktop office suite for document editing and collaboration
 ar_SA.defprogAppDescription=حزمة برامج مكتبية مجانية لتحرير المستندات والتعاون لإنجازها مع رفقائك

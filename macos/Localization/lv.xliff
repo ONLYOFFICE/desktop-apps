@@ -451,6 +451,11 @@ Mums jums ir īpašs piedāvājums.</target>
         <target state="translated">Jauna Izklājlapa</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="new-pdfform" xml:space="preserve">
+        <source>New PDF Form</source>
+        <target>Jauna PDF veidlapa</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
     </body>
   </file>
   <file original="ONLYOFFICE/Base.lproj/Localizable.stringsdict" source-language="en" target-language="lv-LV" datatype="plaintext">

@@ -356,6 +356,11 @@ Mes jums turime specialų pasiūlymą.</target>
         <source>New Spreadsheet</source>
         <target>Nauja Skaičiuoklė</target>
       </trans-unit>
+      <trans-unit id="new-pdfform" xml:space="preserve">
+        <source>New PDF Form</source>
+        <target>Nauja PDF forma</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="/%d days are left until the license expiration.:dict/NSStringLocalizedFormatKey:dict/:string">
         <source>%#@days@</source>
         <target>%#@dienos@</target>

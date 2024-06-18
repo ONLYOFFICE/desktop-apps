@@ -407,6 +407,11 @@ Chúng tôi có ưu đãi đặc biệt dành cho bạn.</target>
         <source>New Spreadsheet</source>
         <target state="translated">Bảng tính mới</target>
       </trans-unit>
+      <trans-unit id="new-pdfform" xml:space="preserve">
+        <source>New PDF Form</source>
+        <target>Mẫu PDF mới</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
     </body>
   </file>
   <file original="ONLYOFFICE/Base.lproj/Localizable.stringsdict" source-language="en" target-language="vi-VN" datatype="plaintext">
