@@ -38,8 +38,8 @@ define('VIDEOPLAYER[GenericName[ru]]', 'Видео проигрыватель')d
 define('VIDEOPLAYER[Comment[en]]', 'Play video file')dnl
 define('VIDEOPLAYER[Comment[ru]]', 'Проиграть видео файл')dnl
 dnl
-define('NEWFORM[Name[en]]', 'New form template')dnl
-define('NEWFORM[Name[de]]', 'Neue Formularvorlage')dnl
-define('NEWFORM[Name[fr]]', 'Nouveau modèle de formulaire')dnl
-define('NEWFORM[Name[es]]', 'Nueva plantilla de formulario')dnl
-define('NEWFORM[Name[ru]]', 'Создать шаблон формы')dnl
+define('NEWFORM[Name[en]]', 'New PDF form')dnl
+define('NEWFORM[Name[de]]', 'Neues PDF-Formular')dnl
+define('NEWFORM[Name[fr]]', 'Nouveau formulaire PDF')dnl
+define('NEWFORM[Name[es]]', 'Nuevo formulario PDF')dnl
+define('NEWFORM[Name[ru]]', 'Новая PDF-форма')dnl

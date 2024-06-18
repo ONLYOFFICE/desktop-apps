@@ -9,7 +9,7 @@ set_names() {
       NEW_DOCX_NAME="Nový dokument"
       NEW_XLSX_NAME="Nový sešit"
       NEW_PPTX_NAME="Nová prezentace"
-      NEW_DOCXF_NAME="Nová šablona formuláře"
+      NEW_DOCXF_NAME="Nový PDF formulář"
       ;;
     de*`)'
       SOURCE_DOC_DIR="$SOURCE_DOC_DIR/de-DE"
@@ -17,7 +17,7 @@ set_names() {
       NEW_DOCX_NAME="Neues Dokument"
       NEW_XLSX_NAME="Neues Tabellendokument"
       NEW_PPTX_NAME="Neue Präsentation"
-      NEW_DOCXF_NAME="Neue Formularvorlage"
+      NEW_DOCXF_NAME="Neues PDF-Formular"
       ;;
     es*`)'
       SOURCE_DOC_DIR="$SOURCE_DOC_DIR/es-ES"
@@ -25,7 +25,7 @@ set_names() {
       NEW_DOCX_NAME="Documento nuevo"
       NEW_XLSX_NAME="Hoja de cálculo nueva"
       NEW_PPTX_NAME="Presentación nueva"
-      NEW_DOCXF_NAME="Nueva plantilla de formulario"
+      NEW_DOCXF_NAME="Nuevo formulario PDF"
       ;;
     fr*`)'
       SOURCE_DOC_DIR="$SOURCE_DOC_DIR/fr-FR"
@@ -33,7 +33,7 @@ set_names() {
       NEW_DOCX_NAME="Nouveau document"
       NEW_XLSX_NAME="Nouveau classeur"
       NEW_PPTX_NAME="Nouvelle présentation"
-      NEW_DOCXF_NAME="Nouveau modèle de formulaire"
+      NEW_DOCXF_NAME="Nouveau formulaire PDF"
       ;;
     it*`)'
       SOURCE_DOC_DIR="$SOURCE_DOC_DIR/it-IT"
@@ -41,7 +41,7 @@ set_names() {
       NEW_DOCX_NAME="Nuovo documento"
       NEW_XLSX_NAME="Nuovo foglio di calcolo"
       NEW_PPTX_NAME="Nuova presentazione"
-      NEW_DOCXF_NAME="Nuovo modello di modulo"
+      NEW_DOCXF_NAME="Nuovo modulo PDF"
       ;;
     pt*`)'
       SOURCE_DOC_DIR="$SOURCE_DOC_DIR/pt-BR"
@@ -49,7 +49,7 @@ set_names() {
       NEW_DOCX_NAME="Novo Documento"
       NEW_XLSX_NAME="Nova planilha"
       NEW_PPTX_NAME="Nova apresentação"
-      NEW_DOCXF_NAME="Novo Formulário Mestre"
+      NEW_DOCXF_NAME="Novo formulário PDF"
       ;;
     ru*`)'
       SOURCE_DOC_DIR="$SOURCE_DOC_DIR/ru-RU"
@@ -57,7 +57,7 @@ set_names() {
       NEW_DOCX_NAME="Новый документ"
       NEW_XLSX_NAME="Новая эл.таблица"
       NEW_PPTX_NAME="Новая презентация"
-      NEW_DOCXF_NAME="Новый шаблон формы"
+      NEW_DOCXF_NAME="Новая PDF-форма"
       ;;
     *`)'
       SOURCE_DOC_DIR="$SOURCE_DOC_DIR/en-US"
@@ -65,7 +65,7 @@ set_names() {
       NEW_DOCX_NAME="New Document"
       NEW_XLSX_NAME="New Spreadsheet"
       NEW_PPTX_NAME="New Presentation"
-      NEW_DOCXF_NAME="New form template"
+      NEW_DOCXF_NAME="New PDF form"
       ;;
   esac
 },
