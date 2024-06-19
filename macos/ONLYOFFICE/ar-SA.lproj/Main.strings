@@ -8,7 +8,7 @@
 "1UK-8n-QPP.title" = "تخصيص شريط الأدوات";
 
 /* Class = "NSMenuItem"; title = "ONLYOFFICE"; ObjectID = "1Xt-HY-uBw"; */
-"1Xt-HY-uBw.title" = "أونلي أوفيس";
+"1Xt-HY-uBw.title" = "ONLYOFFICE";
 
 /* Class = "NSMenuItem"; title = "Raise"; ObjectID = "2h7-ER-AoG"; */
 "2h7-ER-AoG.title" = "رفع";
@@ -32,10 +32,10 @@
 "4et-TX-a4m.title" = "الموافقة على الترخيص";
 
 /* Class = "NSMenuItem"; title = "Quit ONLYOFFICE"; ObjectID = "4sb-4s-VLi"; */
-"4sb-4s-VLi.title" = "خروج من أونلي أوفيس";
+"4sb-4s-VLi.title" = "خروج منONLYOFFICE";
 
 /* Class = "NSMenuItem"; title = "About ONLYOFFICE"; ObjectID = "5kV-Vb-QxS"; */
-"5kV-Vb-QxS.title" = "عن أونلي أوفيس";
+"5kV-Vb-QxS.title" = "عن ONLYOFFICE";
 
 /* Class = "NSMenuItem"; title = "Edit"; ObjectID = "5QF-Oa-p0T"; */
 "5QF-Oa-p0T.title" = "تعديل";
@@ -215,7 +215,7 @@
 "ijk-EB-dga.title" = "على السطر";
 
 /* Class = "NSWindow"; title = "ONLYOFFICE"; ObjectID = "IQv-IB-iLA"; */
-"IQv-IB-iLA.title" = "أونلي أوفيس";
+"IQv-IB-iLA.title" = "ONLYOFFICE";
 
 /* Class = "NSMenuItem"; title = "Justify"; ObjectID = "J5U-5w-g23"; */
 "J5U-5w-g23.title" = "ضبط النص";
@@ -236,7 +236,7 @@
 "KaW-ft-85H.title" = "الرجوع إلى ما تم حفظه";
 
 /* Class = "NSTabViewItem"; label = "ONLYOFFICE"; ObjectID = "kcg-El-49G"; */
-"kcg-El-49G.label" = "أونلي أوفيس";
+"kcg-El-49G.label" = "ONLYOFFICE";
 
 /* Class = "NSMenuItem"; title = "Show All"; ObjectID = "Kd2-mp-pUS"; */
 "Kd2-mp-pUS.title" = "إظهار الكل";
@@ -278,7 +278,7 @@
 "ogc-rX-tC1.title" = "توسيع";
 
 /* Class = "NSMenuItem"; title = "Hide ONLYOFFICE"; ObjectID = "Olw-nP-bQN"; */
-"Olw-nP-bQN.title" = "إخفاء أونلي أوفيس";
+"Olw-nP-bQN.title" = "إخفاء ONLYOFFICE";
 
 /* Class = "NSMenuItem"; title = "Find Previous"; ObjectID = "OwM-mh-QMV"; */
 "OwM-mh-QMV.title" = "بحث للسابق";
@@ -365,7 +365,7 @@
 "UEZ-Bs-lqG.title" = "تكبير الحروف الإنجليزية الأولى من كل كلمة";
 
 /* Class = "NSMenu"; title = "ONLYOFFICE"; ObjectID = "uQy-DD-JDr"; */
-"uQy-DD-JDr.title" = "أونلي أوفيس";
+"uQy-DD-JDr.title" = "ONLYOFFICE";
 
 /* Class = "NSMenuItem"; title = "Cut"; ObjectID = "uRl-iY-unG"; */
 "uRl-iY-unG.title" = "قص";

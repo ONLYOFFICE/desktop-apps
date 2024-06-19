@@ -31,6 +31,9 @@
 */
 
 #include "casctabdata.h"
+#include "cproviders.h"
+#include <QJsonDocument>
+#include <QJsonObject>
 
 using namespace std;
 
@@ -127,6 +130,11 @@ void CAscTabData::setUrl(const QString& u)
     setUrl(u.toStdWString());
 }
 
+void CAscTabData::setCloudName(const QString &cloud)
+{
+    _cloud = cloud;
+}
+
 wstring CAscTabData::url() const
 {
     return _url;
@@ -162,6 +170,11 @@ bool CAscTabData::eventLoadSupported() const
     return _event_load_supported;
 }
 
+void CAscTabData::setHasError()
+{
+    _has_error = true;
+}
+
 void CAscTabData::setEventLoadSupported(bool value)
 {
     _event_load_supported = value;
@@ -169,7 +182,35 @@ void CAscTabData::setEventLoadSupported(bool value)
 
 void CAscTabData::setFeatures(const wstring& fs)
 {
-    _features = fs;
+    QJsonParseError err;
+    QJsonDocument doc = QJsonDocument::fromJson(QString::fromStdWString(fs).toUtf8(), &err);
+    if (err.error == QJsonParseError::NoError) {
+        QJsonObject obj = doc.object();
+        if (_features.empty()) {
+            _features = QString(QJsonDocument(obj).toJson(QJsonDocument::Compact)).toStdWString();
+//            qDebug() << QString::fromStdWString(_features);
+        } else {
+            QJsonDocument src_doc = QJsonDocument::fromJson(QString::fromStdWString(_features).toUtf8(), &err);
+            if (err.error == QJsonParseError::NoError) {
+                QJsonObject src_obj = src_doc.object();
+                QVariantMap map = src_obj.toVariantMap();
+#if (QT_VERSION < QT_VERSION_CHECK(5,15,0))
+                QVariantMap fs_map = obj.toVariantMap();
+                for (QVariantMap::iterator it = fs_map.begin(); it != fs_map.end(); it++)
+                    map.insert(it.key(), it.value());
+#else
+                map.insert(obj.toVariantMap());
+#endif
+                QJsonObject res = QJsonObject::fromVariantMap(map);
+                _features = QString(QJsonDocument(res).toJson(QJsonDocument::Compact)).toStdWString();
+//                qDebug() << QString::fromStdWString(_features);
+            } else {
+//                qDebug() << "JSON has error: " << QString::fromStdWString(_features);
+            }
+        }
+    } else {
+//        qDebug() << "JSON has error: " << QString::fromStdWString(fs);
+    }
 
     if ( hasFeature(L"readonly\":true") ) {
         _is_readonly = true;
@@ -179,13 +220,6 @@ void CAscTabData::setFeatures(const wstring& fs)
     } else
     if ( hasFeature(L"readonly\":false") ) {
         _is_readonly = false;
-    }
-
-    if ( hasFeature(L"hasframe\":true") ) {
-        _has_frame = true;
-    } else
-    if ( hasFeature(L"hasframe\":false") ) {
-        _has_frame = false;
     }
 }
 
@@ -207,5 +241,10 @@ bool CAscTabData::hasFeature(const wstring& f) const
 
 bool CAscTabData::hasFrame() const
 {
-    return _has_frame;
+    return CProviders::instance().editorsHasFrame(QString::fromStdWString(_url), _cloud);
+}
+
+bool CAscTabData::hasError() const
+{
+    return _has_error;
 }

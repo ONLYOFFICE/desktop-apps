@@ -3,9 +3,9 @@ include(common.pri)
 
 DEFINES += COPYRIGHT_YEAR=$${CURRENT_YEAR}
 DEFINES += APP_ICON_PATH=\"./icons/desktopeditors.ico\"
-DEFINES += APP_LANG_PATH=\"./langs/langs.txt\"
+DEFINES += APP_LANG_PATH=\"./langs/langs.iss\"
 
-OTHER_FILES += $$PWD/res/langs/langs.txt
+OTHER_FILES += $$PWD/res/langs/langs.iss
 
 ENV_URL_INSTALL_X64 = $$(DESKTOP_URL_INSTALL_CHANNEL_X64)
 !isEmpty(ENV_URL_INSTALL_X64) {

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gresources>
+  <gresource prefix="/">
+    <file>langs/langs.iss</file>
+  </gresource>
+</gresources>
+
+<!--
+Compiling:
+$ glib-compile-resources --target=gresource.c --generate-source gresource.xml
+$ glib-compile-resources --target=gresource.h --generate-header gresource.xml
+-->

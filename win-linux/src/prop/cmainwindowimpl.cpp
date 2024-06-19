@@ -98,6 +98,7 @@ void CMainWindowImpl::refreshAboutVersion()
 
     GET_REGISTRY_USER(reg_user);
     _json_obj["editorwindowmode"] = reg_user.value("editorWindowMode",false).toBool();
+    _json_obj["usegpu"] = !(AscAppManager::userSettings(L"disable-gpu") == L"1");
 
 #ifndef __OS_WIN_XP
     _json_obj["rtl"] = reg_user.contains("forcedRtl") ? reg_user.value("forcedRtl", false).toBool() :

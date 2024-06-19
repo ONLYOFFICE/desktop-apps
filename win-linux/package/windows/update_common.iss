@@ -1,44 +1,37 @@
 ; -- Update Common --
 
-#if str(_ARCH) == "64"
-  #define sWinArch                      "x64"
-  #define sPlatform                     "win_64"
-#elif str(_ARCH) == "32"
-  #define sWinArch                      "x86"
-  #define sPlatform                     "win_32"
+#ifndef BRANDING_DIR
+#define BRANDING_DIR '.'
 #endif
-#ifndef _WIN_XP
-  #define sWinArchFull                  sWinArch
-  #define sPlatformFull                 sPlatform
-#else
-  #define sWinArchFull                  sWinArch + "_xp"
-  #define sPlatformFull                 sPlatform + "_xp"
+#include BRANDING_DIR + '\defines.iss'
+
+#ifndef VERSION
+#define VERSION '0.0.0.0'
 #endif
-
-#ifndef sBrandingFolder
-  #define sBrandingFolder               "..\..\.."
+#ifndef ARCH
+#define ARCH 'x64'
 #endif
-
-#include sBrandingFolder + "\win-linux\package\windows\defines.iss"
-
-#ifndef sAppVersion
-  #define sAppVersion                   GetFileVersion(AddBackslash(DEPLOY_PATH) + NAME_EXE_OUT)
+#ifndef OUTPUT_DIR
+#define OUTPUT_DIR '.'
 #endif
-#define sAppVerShort                    Copy(sAppVersion, 0, 3)
-
+#ifndef OUTPUT_FILE
+#define OUTPUT_FILE sPackageName + '-Update-' + VERSION + '-' + ARCH
+#ifdef _WIN_XP
+#define OUTPUT_FILE OUTPUT_FILE + '-xp'
+#endif
+#endif
 #ifndef TARGET_NAME
-# define TARGET_NAME                    str(sPackageName + "-" + sAppVersion + "-" + sWinArchFull + ".exe")
+#define TARGET_NAME sPackageName + '-' + VERSION + '-' + ARCH
+#ifdef _WIN_XP
+#define TARGET_NAME TARGET_NAME + '-xp'
 #endif
-
-#ifndef sOutputFileName
-  #define sOutputFileName               str("editors_update_" + sWinArchFull)
 #endif
 
 [Setup]
 AppName                   ={#sAppName}
-AppVerName                ={#sAppName} {#sAppVerShort}
-AppVersion                ={#sAppVersion}
-VersionInfoVersion        ={#sAppVersion}
+AppVerName                ={#sAppName} {#Copy(VERSION,1,RPos('.',VERSION)-1)}
+AppVersion                ={#VERSION}
+VersionInfoVersion        ={#VERSION}
 
 AppPublisher              ={#sAppPublisher}
 AppPublisherURL           ={#sAppPublisherURL}
@@ -54,13 +47,13 @@ DisableReadyPage          =true
 ;DisableWelcomePage        =Yes
 
 DefaultDirName            ={pf}\{#APP_PATH}\update
-OutputDir                 =update
-OutputBaseFileName        ={#sOutputFileName}
+OutputDir                 ={#OUTPUT_DIR}
+OutputBaseFileName        ={#OUTPUT_FILE}
 
 Uninstallable             =false
 PrivilegesRequired        =lowest
 
-#ifdef ENABLE_SIGNING
+#ifdef SIGN
 SignTool                  =byparam $p
 #endif
 
@@ -106,7 +99,7 @@ begin
 end;
 
 [Files]
-Source: {#TARGET_NAME}; Flags: dontcopy;
+Source: "{#TARGET_NAME}.exe"; Flags: dontcopy;
 
 [Run]
 ;Filename: DesktopEditors_x64.exe; Parameters: "C:\test.txt"; Description: MyApp;

@@ -32,24 +32,18 @@
 
 #include "platform_linux/utils.h"
 #include "version.h"
-#include <cstring>
-#include <iostream>
 #include <fstream>
-#include <regex>
-#include <cstdio>
-#include <cerrno>
-#include <vector>
-#include <unistd.h>
-#include <sstream>
-#include <stdlib.h>
+#include <stack>
+#include <algorithm>
 #include <sys/stat.h>
-#include <dirent.h>
 #include <gtk/gtk.h>
-#include <openssl/md5.h>
-#include <libgen.h>
+//#include <openssl/md5.h>
 #include <fcntl.h>
+#include "../../src/defines.h"
+#include "../../src/prop/defines_p.h"
 
-#define BUFSIZE 1024
+#define APP_CONFIG_PATH "/.config/" REG_GROUP_KEY "/" REG_APP_NAME ".conf"
+//#define BUFSIZE 1024
 
 
 static void replace(string &str, const string &from, const string &to)
@@ -142,24 +136,45 @@ namespace NS_Utils
         gtk_init(NULL, NULL);
         GtkWidget *dialog = gtk_message_dialog_new(NULL, GTK_DIALOG_MODAL, GTK_MESSAGE_ERROR, GTK_BUTTONS_OK,
                                                       "%s", str.c_str());
-        gtk_window_set_title(GTK_WINDOW(dialog), VER_PRODUCTNAME_STR);
+        string prod_name = _TR(VER_PRODUCTNAME_STR);
+        gtk_window_set_title(GTK_WINDOW(dialog), prod_name.c_str());
         int res = gtk_dialog_run(GTK_DIALOG(dialog));
         gtk_widget_destroy(dialog);
         while (gtk_events_pending())
             gtk_main_iteration_do(FALSE);
         return res;
     }
+
+//    string GetSysLanguage()
+//    {
+//        string lang("en_EN");
+//        size_t pos = std::string::npos;
+//        if (char *_lang = getenv("LANG")) {
+//            lang = _lang;
+//            pos = lang.find('.');
+//        }
+//        return (pos == std::string::npos) ? lang : lang.substr(0, pos);
+//    }
+
+    string GetAppLanguage()
+    {
+        string lang = "en_US", value = "locale=", path = string("/home/") + getlogin() + APP_CONFIG_PATH;
+        list<string> lst;
+        NS_File::readFile(path, lst);
+        for (const auto &str : lst) {
+            size_t pos = str.find(value);
+            if (pos != string::npos) {
+                lang = str.substr(pos + value.length());
+                std::replace(lang.begin(), lang.end(), '-', '_');
+                return lang;
+            }
+        }
+        return lang;
+    }
 }
 
 namespace NS_File
 {
-    string app_path;
-
-    void setAppPath(const std::string &path)
-    {
-        app_path = parentPath(path);
-    }
-
     bool GetFilesList(const string &path, list<string> *lst, string &error, bool ignore_locked, bool folders_only)
     {
         DIR *dir = opendir(path.c_str());
@@ -303,15 +318,16 @@ namespace NS_File
 
     bool makePath(const string &path)
     {
-        list<string> pathsList;
+        std::stack<string> pathsList;
         string last_path(path);
         while (!last_path.empty() && !dirExists(last_path)) {
-            pathsList.push_front(last_path);
+            pathsList.push(last_path);
             last_path = parentPath(last_path);
         }
-        for (list<string>::iterator it = pathsList.begin(); it != pathsList.end(); ++it) {
-            if (mkdir(it->c_str(), S_IRWXU | S_IRWXG | S_IRWXO) != 0)
+        while(!pathsList.empty()) {
+            if (mkdir(pathsList.top().c_str(), S_IRWXU | S_IRWXG | S_IRWXO) != 0)
                 return false;
+            pathsList.pop();
         }
         return true;
     }
@@ -428,34 +444,36 @@ namespace NS_File
 
     string appPath()
     {
-        return app_path;
+        char path[PATH_MAX] = {0};
+        ssize_t count = readlink("/proc/self/exe", path, PATH_MAX);
+        return (count > 0) ? parentPath(string(path, count)) : "";
     }
 
-    string getFileHash(const string &fileName)
-    {
-        FILE *file = fopen(fileName.c_str(), "rb");
-        if (!file)
-            return "";
+//    string getFileHash(const string &fileName)
+//    {
+//        FILE *file = fopen(fileName.c_str(), "rb");
+//        if (!file)
+//            return "";
 
-        int bytes;
-        unsigned char data[1024];
-        unsigned char digest[MD5_DIGEST_LENGTH];
-        MD5_CTX mdContext;
-        MD5_Init(&mdContext);
-        while ((bytes = fread(data, 1, 1024, file)) != 0)
-            MD5_Update(&mdContext, data, bytes);
+//        int bytes;
+//        unsigned char data[1024];
+//        unsigned char digest[MD5_DIGEST_LENGTH];
+//        MD5_CTX mdContext;
+//        MD5_Init(&mdContext);
+//        while ((bytes = fread(data, 1, 1024, file)) != 0)
+//            MD5_Update(&mdContext, data, bytes);
 
-        MD5_Final(digest, &mdContext);
-        fclose(file);
+//        MD5_Final(digest, &mdContext);
+//        fclose(file);
 
-        std::ostringstream oss;
-        for (int i = 0; i < MD5_DIGEST_LENGTH; i++) {
-            oss.fill('0');
-            oss.width(2);
-            oss << std::hex << static_cast<const int>(digest[i]);
-        }
-        return oss.str();
-    }
+//        std::ostringstream oss;
+//        for (int i = 0; i < MD5_DIGEST_LENGTH; i++) {
+//            oss.fill('0');
+//            oss.width(2);
+//            oss << std::hex << static_cast<const int>(digest[i]);
+//        }
+//        return oss.str();
+//    }
 
 //    bool verifyEmbeddedSignature(const string &fileName)
 //    {

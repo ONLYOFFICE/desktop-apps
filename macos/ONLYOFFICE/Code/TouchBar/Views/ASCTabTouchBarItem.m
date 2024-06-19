@@ -66,7 +66,8 @@
         _textField.font = [NSFont systemFontOfSize: 14];
         _textField.textColor = [NSColor alternateSelectedControlTextColor];
         
-        _textField.alignment = NSTextAlignmentLeft;
+        _textField.alignment = [self userInterfaceLayoutDirection] == NSUserInterfaceLayoutDirectionLeftToRight ?
+                                    NSTextAlignmentLeft : NSTextAlignmentRight;
         _textField.lineBreakMode = NSLineBreakByTruncatingTail;
         
         [self addSubview:_imageView];

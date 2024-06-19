@@ -76,9 +76,9 @@ private:
     void updateTitleCaption();
     void onSizeEvent(int);
     void onMoveEvent(const QRect&);
-    void onExitSizeMove();
+//    void onExitSizeMove();
     void captureMouse();
-    virtual int calcTitleCaptionWidth() final;
+//    virtual int calcTitleCaptionWidth() final;
     virtual void focus() final;
     virtual void onCloseEvent() final;
     virtual void onMinimizeEvent() final;

@@ -121,6 +121,11 @@ void SingleApplication::startPrimary()
     ShowWindow(m_hWnd, SW_HIDE);
 }
 
+void SingleApplication::invokeSignal(const QString &data)
+{
+    emit receivedMessage(data.toUtf8());
+}
+
 LRESULT SingleApplication::WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
     SingleApplication *app = reinterpret_cast<SingleApplication*>(GetWindowLongPtr(hWnd, GWLP_USERDATA));
@@ -142,12 +147,8 @@ LRESULT SingleApplication::WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lP
     case WM_COPYDATA: {
         if (app->m_isPrimary) {
             COPYDATASTRUCT* pcds = (COPYDATASTRUCT*)lParam;
-            if (pcds->dwData == 1) {
-                WCHAR *args = (WCHAR*)pcds->lpData;
-                if (args != nullptr) {
-                    emit app->receivedMessage(QString::fromWCharArray(args).toUtf8());
-                }
-            }
+            if (pcds->dwData == 1 && pcds->lpData)
+                QMetaObject::invokeMethod(app, "invokeSignal", Qt::QueuedConnection, Q_ARG(QString, QString::fromWCharArray((WCHAR*)pcds->lpData)));
         }
         break;
     }

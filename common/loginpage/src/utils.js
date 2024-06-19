@@ -301,6 +301,9 @@ utils.fn.parseRecent = function(arr, out = 'files') {
     const _is_win = /Win/.test(navigator.platform);
     const _re_name = !_is_win ? /([^/]+\.[a-zA-Z0-9]{1,})$/ : /([^\\/]+\.[a-zA-Z0-9]{1,})$/;
     for (let _f_ of arr) {
+        if ( _is_win && /^\w:[\\\/]/.test(_f_.path) && /(?:\\{2,})+/.test(_f_.path) )
+            _f_.path = _f_.path.replace(/(?:\\{2,})+/g,"\\");
+
         let fn = _f_.path;
         if ( _re_name.test(fn) ) {
             let name = _re_name.exec(_f_.path)[1],
@@ -312,8 +315,9 @@ utils.fn.parseRecent = function(arr, out = 'files') {
                 format: utils.parseFileFormat(_f_.type),
                 name: name,
                 descr: path,
-                date: _f_.modifyed
-                , path: fn
+                date: _f_.modifyed,
+                path: fn,
+                cloud: _f_.cloud,
             });
 
             _dirs_arr.indexOf(path) < 0 && _dirs_arr.push(path);

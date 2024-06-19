@@ -41,7 +41,7 @@
 "Document %ld.docx" = "文件 %ld.docx";
 
 /* No comment provided by engineer. */
-"Document %ld.docxf" = "文件 %ld.docxf";
+"Document %ld.pdf" = "文件 %ld.pdf";
 
 /* No comment provided by engineer. */
 "Document template" = "Word Open XML 文件範本(*.dotx)";
@@ -75,6 +75,9 @@
 
 /* No comment provided by engineer. */
 "new-document" = "新文件";
+
+/* No comment provided by engineer. */
+"new-pdfform" = "新的 PDF 表格";
 
 /* No comment provided by engineer. */
 "new-presentation" = "新簡報";
@@ -177,9 +180,6 @@
 
 /* No comment provided by engineer. */
 "Untitled" = "未命名";
-
-/* No comment provided by engineer. */
-"Version %@ (%@)" = "版本 %1$@ (%2$@)";
 
 /* No comment provided by engineer. */
 "Web Page" = "網頁";

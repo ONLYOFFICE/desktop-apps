@@ -32,7 +32,6 @@
 
 #include "components/cdownloadwidget.h"
 #include "components/celipsislabel.h"
-#include "components/cmessage.h"
 #include "cascapplicationmanagerwrapper.h"
 #include "clangater.h"
 #include "utils.h"
@@ -350,9 +349,7 @@ void CDownloadWidget::downloadProcess(void * info)
                         Utils::openUrl(QUrl::fromLocalFile(path).toString());
                     } else {
                         AscAppManager::handleInputCmd({path.toStdWString()});
-#ifdef _WIN32
                         Utils::addToRecent(path.toStdWString());
-#endif
                     }
                 });
 

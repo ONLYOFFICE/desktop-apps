@@ -54,3 +54,8 @@ CDialogCertificateInfo::CDialogCertificateInfo(QWidget * p, const std::wstring &
     m_priv->textInfo->setText(QString::fromStdWString(info));
 }
 
+CDialogCertificateInfo::~CDialogCertificateInfo()
+{
+    delete m_priv, m_priv = nullptr;
+}
+

@@ -34,11 +34,17 @@
 #include "classes/platform_linux/capplication.h"
 #include "classes/platform_linux/ctimer.h"
 #include "classes/csvcmanager.h"
+#include "classes/translator.h"
+#include "version.h"
 #include "../../src/defines.h"
 #include "../../src/prop/defines_p.h"
 #include <csignal>
 #include <cstring>
+#include <locale>
 
+#define DECL_VERSION __attribute__((section(".version_info"), unused))
+
+volatile static const char DECL_VERSION version[] = VER_STRING;
 
 void strToNum(const char *str, int &num)
 {
@@ -50,10 +56,10 @@ void strToNum(const char *str, int &num)
 
 int main(int argc, char *argv[])
 {
-    NS_File::setAppPath(argv[0]);
-
     if (argc > 1) {
         if (strcmp(argv[1], "--run-as-app") == 0) {
+            std::locale::global(std::locale(""));
+            Translator lang(NS_Utils::GetAppLanguage(), "/langs/langs.iss");
             CSocket socket(0, INSTANCE_SVC_PORT);
             if (!socket.isPrimaryInstance())
                 return 0;
@@ -71,11 +77,9 @@ int main(int argc, char *argv[])
                     strToNum((const char*)buff, pid);
             });
 
-            // Checking for the completion of the main application:
-            // updatevc needs to be terminated when the main application is using a socket
-            // with the same address in the SingleApplication implementation and has been terminated incorrectly.
+            // Termination on crash of the main application
             CTimer tmr;
-            tmr.start(5000, [&app, &pid]() {
+            tmr.start(30000, [&app, &pid]() {
                 if (pid != -1 && kill(pid, 0) != 0)
                     app.exit(0);
             });

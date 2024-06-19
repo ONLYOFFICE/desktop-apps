@@ -41,7 +41,7 @@
 "Document %ld.docx" = "Document %ld.docx";
 
 /* No comment provided by engineer. */
-"Document %ld.docxf" = "Document %ld.docxf";
+"Document %ld.pdf" = "Document %ld.pdf";
 
 /* No comment provided by engineer. */
 "Document template" = "Plantilla de document Word Open XML (*.dotx)";
@@ -78,6 +78,9 @@
 
 /* No comment provided by engineer. */
 "new-document" = "Document nou";
+
+/* No comment provided by engineer. */
+"new-pdfform" = "Nou formulari PDF";
 
 /* No comment provided by engineer. */
 "new-presentation" = "Presentació nova";
@@ -183,9 +186,6 @@
 
 /* No comment provided by engineer. */
 "Untitled" = "Sense títol";
-
-/* No comment provided by engineer. */
-"Version %@ (%@)" = "Versió %1$@ (%2$@)";
 
 /* No comment provided by engineer. */
 "Web Page" = "Pàgina web";

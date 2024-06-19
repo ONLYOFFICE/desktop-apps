@@ -596,7 +596,8 @@ static NSString * const kASCTabsMulticastDelegateKey = @"asctabsmulticastDelegat
         
         newRect.origin.x = nextX;
         draggingTab.frame = CGRectOffset(newRect, -scrollPosition, 0);
-        
+        NSLog(@"tab dragging copy %@", NSStringFromRect(draggingTab.frame));
+
         BOOL movingLeft = (nextPoint.x < prevPoint.x);
         BOOL movingRight = (nextPoint.x > prevPoint.x);
         
@@ -620,7 +621,10 @@ static NSString * const kASCTabsMulticastDelegateKey = @"asctabsmulticastDelegat
 - (void)addTab:(ASCTabView *)tab selected:(BOOL)selected {
     if (tab) {
         tab.hidden = YES;
-        [self.tabs addObject:tab];
+        if ( [self userInterfaceLayoutDirection] != NSUserInterfaceLayoutDirectionRightToLeft )
+            [self.tabs addObject:tab];
+        else
+            [self.tabs insertObject:tab atIndex:0];
         
         if (_delegate && [_delegate respondsToSelector:@selector(tabs:didResize:)]) {
             [_delegate tabs:self didResize:CGRectZero];
@@ -631,8 +635,9 @@ static NSString * const kASCTabsMulticastDelegateKey = @"asctabsmulticastDelegat
         tab.hidden = NO;
         tab.frame = CGRectOffset(tab.frame, 0, -CGRectGetHeight(self.scrollView.frame));
         
-        [self.tabsView setFrame:CGRectMake(0.0, 0.0, CGRectGetMaxX(tab.frame), CGRectGetHeight(self.scrollView.frame))];
-        
+        if ( [self userInterfaceLayoutDirection] != NSUserInterfaceLayoutDirectionRightToLeft )
+            [self.tabsView setFrame:CGRectMake(0.0, 0.0, CGRectGetMaxX(tab.frame), CGRectGetHeight(self.scrollView.frame))];
+
         tab.delegate    = self;
         tab.target      = self;
         tab.action      = @selector(handleSelectTab:);
@@ -644,6 +649,7 @@ static NSString * const kASCTabsMulticastDelegateKey = @"asctabsmulticastDelegat
             [context setAllowsImplicitAnimation:YES];
             tab.animator.frame = CGRectOffset(tab.frame, 0, CGRectGetHeight(self.scrollView.frame));
             [tab.superview scrollRectToVisible:tab.frame];
+            NSLog(@"tab animation %@", NSStringFromRect(tab.animator.frame));
         } completionHandler:^{
             [self layoutTabs:nil animated:NO];
             [self updateAuxiliaryButtons];
@@ -702,15 +708,27 @@ static NSString * const kASCTabsMulticastDelegateKey = @"asctabsmulticastDelegat
             if (selected) {                
                 NSInteger tabsCount = [self.tabs count];
                 
-                if (tabsCount > tabIndex) {
-                    [self selectTab:[self.tabs objectAtIndex:tabIndex]];
-                } else if (tabsCount > tabIndex - 1 && tabIndex - 1 >= 0) {
-                    [self selectTab:[self.tabs objectAtIndex:tabIndex - 1]];
-                } else if (tabsCount > 0) {
-                    [self selectTab:[self.tabs objectAtIndex:tabsCount - 1]];
-                } else {
-                    [self selectTab:nil];
+                ASCTabView * tabToSelect = nil;
+                if ( tabsCount ) {
+                    if ( [self userInterfaceLayoutDirection] != NSUserInterfaceLayoutDirectionRightToLeft ) {
+                        if (tabsCount > tabIndex) {
+                            tabToSelect = [self.tabs objectAtIndex:tabIndex];
+//                        } else if (tabsCount > tabIndex - 1 && tabIndex - 1 >= 0) {
+//                            tabToSelect = [self.tabs objectAtIndex:tabIndex - 1];
+//                        } else if (tabsCount > 0) {
+                        } else {
+                            tabToSelect = [self.tabs objectAtIndex:tabsCount - 1];
+                        }
+                    } else {
+                        if ( tabIndex > 0 ) {
+                            tabToSelect = [self.tabs objectAtIndex:tabIndex - 1];
+                        } else {
+                            tabToSelect = [self.tabs objectAtIndex:tabIndex];
+                        }
+                    }
                 }
+
+                [self selectTab:tabToSelect];
             }
         }];
     }
@@ -732,6 +750,28 @@ static NSString * const kASCTabsMulticastDelegateKey = @"asctabsmulticastDelegat
     [self invalidateRestorableState];
     
     [self selectTab:nil];
+}
+
+- (void)selectNextTab {
+    NSInteger tabsCount = [self.tabs count];
+    if ( tabsCount ) {
+        ASCTabView * tab = self.selectedTab;
+        NSInteger tabIndex = tab ? tab.tag : -1;
+        ASCTabView * tabToSelect = ++tabIndex < tabsCount ? [self.tabs objectAtIndex:tabIndex] : nil;
+
+        [self selectTab:tabToSelect];
+    }
+}
+
+- (void)selectPreviouseTab {
+    NSInteger tabsCount = [self.tabs count];
+    if ( tabsCount ) {
+        ASCTabView * tab = self.selectedTab;
+        NSInteger tabIndex = tab ? tab.tag : tabsCount;
+        ASCTabView * tabToSelect = !(--tabIndex < 0) ? [self.tabs objectAtIndex:tabIndex] : nil;
+
+        [self selectTab:tabToSelect];
+    }
 }
 
 #pragma mark -

@@ -40,6 +40,7 @@
 #endif
 #include "defines.h"
 #include "clangater.h"
+#include "clogger.h"
 #include "version.h"
 #include "utils.h"
 #include "chelp.h"
@@ -50,19 +51,20 @@
 int main( int argc, char *argv[] )
 {
 #ifdef _WIN32
-    if (argc > 1 && strcmp(argv[1], "--add-to-recent") == 0)
-        return 0;
     Core_SetProcessDpiAwareness();
     Utils::setAppUserModelId(APP_USER_MODEL_ID);
     WCHAR * cm_line = GetCommandLine();
     InputArgs::init(cm_line);
 #else
-    //qputenv("LC_ALL", "en_US.UTF8");
     qputenv("QT_QPA_PLATFORM", "xcb");
     qputenv("GDK_BACKEND", "x11");
     InputArgs::init(argc, argv);
     if (geteuid() == 0) {
         CMessage::warning(nullptr, WARNING_LAUNCH_WITH_ADMIN_RIGHTS);
+        return 0;
+    }
+    if ( InputArgs::contains(L"--set-instapp-port") ) {
+        Utils::setInstAppPort(std::stoi(InputArgs::argument_value(L"--set-instapp-port")));
         return 0;
     }
 #endif
@@ -121,6 +123,14 @@ int main( int argc, char *argv[] )
         reg_user.remove("maximized");
         reg_user.remove("position");
     }
+    if ( InputArgs::contains(L"--lock-portals") ) {
+        GET_REGISTRY_USER(reg_user)
+        reg_user.setValue("lockPortals", true);
+    } else
+    if ( InputArgs::contains(L"--unlock-portals") ) {
+        GET_REGISTRY_USER(reg_user)
+        reg_user.remove("lockPortals");
+    }
 
     SingleApplication app(argc, argv, QString(APP_MUTEX_NAME));
 
@@ -137,7 +147,8 @@ int main( int argc, char *argv[] )
                     _out_args.append(arg + ";");
             }
         }
-        app.sendMessage(_out_args.toUtf8());
+        bool res = app.sendMessage(_out_args.toUtf8());
+        CLogger::log("The instance is not primary and will be closed. Parameter sending status: " + QString::number(res));
         return 0;
     }
 

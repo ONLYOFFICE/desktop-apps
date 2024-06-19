@@ -30,6 +30,9 @@
  *
 */
 
+#ifdef __linux__
+# include "platform_linux/gtkutils.h"
+#endif
 #include "utils.h"
 #include "defines.h"
 #include <QSettings>
@@ -393,10 +396,10 @@ void Utils::openUrl(const QString& url)
 void Utils::openFileLocation(const QString& path)
 {
 #if defined(Q_OS_WIN)
-    ITEMIDLIST * idl = ILCreateFromPath(QDir::toNativeSeparators(path).toStdWString().c_str());
-    if ( idl ) {
-        SHOpenFolderAndSelectItems(idl, 0, 0, 0);
-        ILFree(const_cast<LPITEMIDLIST>(idl));
+    auto _path = QDir::toNativeSeparators(path).toStdWString();
+    if (LPITEMIDLIST idl = ILCreateFromPath(_path.c_str())) {
+        SHOpenFolderAndSelectItems(static_cast<LPCITEMIDLIST>(idl), 0, 0, 0);
+        ILFree(idl);
     }
 #else
     static QString _file_browser;
@@ -519,19 +522,18 @@ QString Utils::stringifyJson(const QJsonObject& obj)
 
 inline double choose_scaling(double s)
 {
-    if ( s > 4.5 ) return 5;
-    else if ( s > 4 ) return 4.5;
-    else if ( s > 3.5 ) return 4;
-    else if ( s > 3 ) return 3.5;
-    else if ( s > 2.75 ) return 3;
-    else if ( s > 2.5 ) return 2.75;
-    else if ( s > 2.25 ) return 2.5;
-    else if ( s > 2 ) return 2.25;
-    else if ( s > 1.75 ) return 2;
-    else if ( s > 1.5 ) return 1.75;
-    else if ( s > 1.25 ) return 1.5;
-    else if ( s > 1 ) return 1.25;
-    else return 1;
+    return s > 4.5 ? 5 :
+           s > 4 ? 4.5 :
+           s > 3.5 ? 4 :
+           s > 3 ? 3.5 :
+           s > 2.75 ? 3 :
+           s > 2.5 ? 2.75 :
+           s > 2.25 ? 2.5 :
+           s > 2 ? 2.25 :
+           s > 1.75 ? 2 :
+           s > 1.5 ? 1.75 :
+           s > 1.25 ? 1.5 :
+           s > 1 ? 1.25 : 1;
 }
 
 double Utils::getScreenDpiRatio(int scrnum)
@@ -710,51 +712,54 @@ bool Utils::updatesAllowed()
     return false;
 }
 
+void Utils::addToRecent(const std::wstring &path)
+{
+#ifdef _WIN32
+    std::wstring _path(path);
+    std::replace(_path.begin(), _path.end(), '/', '\\');
+# ifdef __OS_WIN_XP
+    SHAddToRecentDocs(SHARD_PATH, _path.c_str());
+# else
+    if (LPITEMIDLIST idl = ILCreateFromPath(_path.c_str())) {
+        SHARDAPPIDINFOIDLIST inf;
+        inf.pidl = static_cast<PCIDLIST_ABSOLUTE>(idl);
+        inf.pszAppID = TEXT(APP_USER_MODEL_ID);
+        SHAddToRecentDocs(SHARD_APPIDINFOIDLIST, &inf);
+        ILFree(idl);
+    }
+# endif
+#else
+    QString _path = QString::fromStdWString(path);
+    std::string uri = "file://" + _path.toStdString();
+    add_to_recent(uri.c_str());
+#endif
+}
+
 #ifdef _WIN32
 Utils::WinVer Utils::getWinVersion()
 {
-    NTSTATUS(WINAPI *RtlGetVersion)(LPOSVERSIONINFOEXW);
-    *(FARPROC*)&RtlGetVersion = GetProcAddress(GetModuleHandleA("ntdll"), "RtlGetVersion");
-    if (RtlGetVersion != NULL) {
-        OSVERSIONINFOEXW osInfo;
-        osInfo.dwOSVersionInfoSize = sizeof(osInfo);
-        RtlGetVersion(&osInfo);
-
-        if (osInfo.dwMajorVersion == 5L && (osInfo.dwMinorVersion == 1L || osInfo.dwMinorVersion == 2L))
-            return WinVer::WinXP;
-        else
-        if (osInfo.dwMajorVersion == 6L && osInfo.dwMinorVersion == 0L)
-            return  WinVer::WinVista;
-        else
-        if (osInfo.dwMajorVersion == 6L && osInfo.dwMinorVersion == 1L)
-            return  WinVer::Win7;
-        else
-        if (osInfo.dwMajorVersion == 6L && osInfo.dwMinorVersion == 2L)
-            return  WinVer::Win8;
-        else
-        if (osInfo.dwMajorVersion == 6L && osInfo.dwMinorVersion == 3L)
-            return  WinVer::Win8_1;
-        else
-        if (osInfo.dwMajorVersion == 10L) {
-            if (osInfo.dwMinorVersion == 0L) {
-                if (osInfo.dwBuildNumber < 22000)
-                    return  WinVer::Win10;
-                else
-                    return  WinVer::Win11;
-            } else
-                return  WinVer::Win11;
-        } else
-        if (osInfo.dwMajorVersion > 10L)
-            return  WinVer::Win11;
+    static WinVer winVer = WinVer::Undef;
+    if (winVer == WinVer::Undef) {
+        if (HMODULE module = GetModuleHandleA("ntdll")) {
+            NTSTATUS(WINAPI *RtlGetVersion)(LPOSVERSIONINFOEXW);
+            *(FARPROC*)&RtlGetVersion = GetProcAddress(module, "RtlGetVersion");
+            if (RtlGetVersion) {
+                OSVERSIONINFOEXW os = {0};
+                os.dwOSVersionInfoSize = sizeof(os);
+                RtlGetVersion(&os);
+                winVer = os.dwMajorVersion == 5L && (os.dwMinorVersion == 1L || os.dwMinorVersion == 2L) ? WinVer::WinXP :
+                         os.dwMajorVersion == 6L && os.dwMinorVersion == 0L ? WinVer::WinVista :
+                         os.dwMajorVersion == 6L && os.dwMinorVersion == 1L ? WinVer::Win7 :
+                         os.dwMajorVersion == 6L && os.dwMinorVersion == 2L ? WinVer::Win8 :
+                         os.dwMajorVersion == 6L && os.dwMinorVersion == 3L ? WinVer::Win8_1 :
+                         os.dwMajorVersion == 10L && os.dwMinorVersion == 0L && os.dwBuildNumber < 22000 ? WinVer::Win10 :
+                         os.dwMajorVersion == 10L && os.dwMinorVersion == 0L && os.dwBuildNumber >= 22000 ? WinVer::Win11 :
+                         os.dwMajorVersion == 10L && os.dwMinorVersion > 0L ? WinVer::Win11 :
+                         os.dwMajorVersion > 10L ? WinVer::Win11 : WinVer::Undef;
+            }
+        }
     }
-    return WinVer::Undef;
-}
-
-void Utils::addToRecent(const std::wstring &path)
-{
-    QString _path = QString::fromStdWString(path);
-    QString appPath = qApp->applicationDirPath();
-    QProcess::startDetached(appPath + "/" + QString(REG_APP_NAME), {"--add-to-recent", QDir::toNativeSeparators(_path)}, appPath);
+    return winVer;
 }
 
 std::atomic_bool sessionInProgress{true};
@@ -767,6 +772,25 @@ bool Utils::isSessionInProgress()
 void Utils::setSessionInProgress(bool state)
 {
     sessionInProgress = state;
+}
+#else
+void Utils::setInstAppPort(int port)
+{
+    GET_REGISTRY_USER(reg_user);
+    if (port == -1) {
+        reg_user.remove("instAppPort");
+    } else
+    if (port > 1023 && port < 65536) {
+        reg_user.setValue("instAppPort", port);
+    } else {
+        qWarning() << "Value not applied: port must be in the range 1024 - 65535";
+    }
+}
+
+int Utils::getInstAppPort()
+{
+    GET_REGISTRY_USER(reg_user);
+    return reg_user.value("instAppPort", INSTANCE_APP_PORT).toInt();
 }
 #endif
 

@@ -101,9 +101,9 @@ l10n.it_IT = {
     settOptThemeAddLocal: 'Aggiungere un tema locale',
     settOptThemeContrastDark: 'Contrasto scuro',
     settAUpdateMode: 'Aggiornamenti',
-    settOptAUpdateSilent: 'Aggiornamento automatico',
-    settOptAUpdateAsk: 'Verifica la disponibilità di aggiornamenti',
-    settOptAUpdateDisabled: 'Non verificare la disponibilità di aggiornamenti',
+    settOptAUpdateSilent: 'Auto',
+    settOptAUpdateAsk: 'Notifica',
+    settOptAUpdateDisabled: 'Manuale',
     updateDownloadFinished: 'Download completato. Clicca per installare',
     updateDownloadCanceled: 'Download annullato',
     updateDownloadProgress: 'Scaricamento $ 1%. Clicca per interrompere',
@@ -111,4 +111,5 @@ l10n.it_IT = {
     settOptDescAUpdateSilent: "Scarica e installa l'aggiornamento in background",
     settOptDescAUpdateAsk: "Riceverai una notifica su tutte le fasi di aggiornamento",
     settRtlMode: "Interfaccia RTL",
+    settGpuUseMode: "Utilizzare l'accelerazione grafica quando disponibile",
 }

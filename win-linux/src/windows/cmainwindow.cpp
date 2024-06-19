@@ -299,17 +299,17 @@ void CMainWindow::close()
     }
 }
 
-void CMainWindow::captureMouse(int tabindex)
-{
-    if (tabindex >= 0 && tabindex < tabWidget()->count()) {
-        QPoint spt = tabWidget()->tabBar()->tabRect(tabindex).topLeft() + QPoint(30, 10);
-        QTimer::singleShot(0, this, [=] {
-            QMouseEvent event(QEvent::MouseButtonPress, spt, Qt::LeftButton, Qt::MouseButton::NoButton, Qt::NoModifier);
-            QCoreApplication::sendEvent((QWidget *)tabWidget()->tabBar(), &event);
-            tabWidget()->tabBar()->grabMouse();
-        });
-    }
-}
+//void CMainWindow::captureMouse(int tabindex)
+//{
+//    if (tabindex >= 0 && tabindex < tabWidget()->count()) {
+//        QPoint spt = tabWidget()->tabBar()->tabRect(tabindex).topLeft() + QPoint(30, 10);
+//        QTimer::singleShot(0, this, [=] {
+//            QMouseEvent event(QEvent::MouseButtonPress, spt, Qt::LeftButton, Qt::MouseButton::NoButton, Qt::NoModifier);
+//            QCoreApplication::sendEvent((QWidget *)tabWidget()->tabBar(), &event);
+//            tabWidget()->tabBar()->grabMouse();
+//        });
+//    }
+//}
 
 #ifdef __linux__
 void CMainWindow::dragEnterEvent(QDragEnterEvent *event)
@@ -776,9 +776,7 @@ void CMainWindow::doOpenLocalFile(COpenOptions& opts)
     int result = m_pTabs->openLocalDocument(opts, true);
     if ( !(result < 0) ) {
         toggleButtonMain(false, true);
-#ifdef _WIN32
         Utils::addToRecent(opts.wurl);
-#endif
     } else
     if (result == -255) {
         QTimer::singleShot(0, this, [=] {
@@ -1234,7 +1232,7 @@ void CMainWindow::onDocumentPrint(void * opts)
                 break;
             }
 
-            CEditorTools::print({pView, pContext, &page_ranges, this});
+            CEditorTools::print({pView, pContext, &page_ranges, parent});
         }
 
         pContext->Release();
@@ -1426,6 +1424,15 @@ void CMainWindow::onReporterMode(int id, bool status)
     }
 }
 
+void CMainWindow::onErrorPage(int id, const std::wstring& action)
+{
+    CCefView * view = AscAppManager::getInstance().GetViewById(id);
+    if ( view && cvwtEditor == view->GetType() && action.compare(L"open") == 0 ) {
+        int ind = m_pTabs->tabIndexByView(id);
+        m_pTabs->panel(ind)->data()->setHasError();
+    }
+}
+
 void CMainWindow::updateScalingFactor(double dpiratio)
 {
     CScalingWrapper::updateScalingFactor(dpiratio);
@@ -1520,6 +1527,11 @@ bool CMainWindow::isAboutToClose() const
 void CMainWindow::cancelClose()
 {
     m_isCloseAll && (m_isCloseAll = false);
+}
+
+QSize CMainWindow::contentSize()
+{
+    return m_pMainWidget ? m_pMainWidget->size() : QSize();
 }
 
 void CMainWindow::onLayoutDirectionChanged()

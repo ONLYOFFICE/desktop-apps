@@ -52,10 +52,13 @@
 #import "ASCMenuButtonCell.h"
 #import "ASCThemesController.h"
 #import "ASCApplicationManager.h"
+#import "ASCLinguist.h"
+#import "NSWindow+Extensions.h"
 
 
 static float kASCWindowDefaultTrafficButtonsLeftMargin = 0;
 static float kASCWindowMinTitleWidth = 0;
+static float kASCRTLTabsRightMargin = 0;
 
 @interface ASCTitleBarController ()  <ASCTabsControlDelegate, ASCDownloadControllerDelegate>
 @property (nonatomic) NSArray *standardButtonsDefaults;
@@ -70,6 +73,8 @@ static float kASCWindowMinTitleWidth = 0;
 @property (weak) IBOutlet NSButton *portalButton;
 @property (weak) IBOutlet NSButton *userProfileButton;
 @property (weak) IBOutlet NSLayoutConstraint *downloadWidthConstraint;
+@property (weak) IBOutlet NSLayoutConstraint *buttonPortalLeadingConstraint;
+@property (weak) IBOutlet NSLayoutConstraint *buttonPortalTrailingConstraint;
 @property (weak) IBOutlet NSImageView *downloadImageView;
 @property (weak) IBOutlet NSView *downloadBackgroundView;
 @property (nonatomic) SFBPopover * popover;
@@ -105,6 +110,9 @@ static float kASCWindowMinTitleWidth = 0;
     self.miniaturizeButtonImageViewFullscreen.image = miniaturizeButtonImage;
 
     self.standardButtonsFullscreen = @[self.closeButtonFullscreen, self.miniaturizeButtonImageViewFullscreen, self.fullscreenButtonFullscreen];
+    if ( [self.view userInterfaceLayoutDirection] == NSUserInterfaceLayoutDirectionRightToLeft )
+        self.standardButtonsFullscreen = [[self.standardButtonsFullscreen reverseObjectEnumerator] allObjects];
+
     [self.standardButtonsFullscreen enumerateObjectsUsingBlock:^(NSView *standardButtonView, NSUInteger idx, BOOL *stop) {
         [self.view addSubview:standardButtonView];
     }];
@@ -115,6 +123,10 @@ static float kASCWindowMinTitleWidth = 0;
         self.standardButtonsDefaults = @[[mainWindow standardWindowButton:NSWindowCloseButton],
                                          [mainWindow standardWindowButton:NSWindowMiniaturizeButton],
                                          [mainWindow standardWindowButton:NSWindowZoomButton]];
+        
+        if ( [self.view userInterfaceLayoutDirection] == NSUserInterfaceLayoutDirectionRightToLeft ) {
+            self.standardButtonsDefaults = [[self.standardButtonsDefaults reverseObjectEnumerator] allObjects];
+        }
     }
     
     [self.standardButtonsDefaults enumerateObjectsUsingBlock:^(NSButton *standardButton, NSUInteger idx, BOOL *stop) {
@@ -196,6 +208,12 @@ static float kASCWindowMinTitleWidth = 0;
 //    [self.userProfileButton setHidden:YES];
         [self.userProfileButton setHidden:NO];
     [self.portalButton setState:NSControlStateValueOn];
+    if ( [self.view userInterfaceLayoutDirection] == NSUserInterfaceLayoutDirectionRightToLeft ) {
+        self.buttonPortalLeadingConstraint.constant = -1;
+        self.buttonPortalTrailingConstraint.constant = 0;
+
+        kASCRTLTabsRightMargin = CGRectGetMinX([[self.tabsControl superview] frame]);
+    }
     
     [self.tabsControl removeAllConstraints];
 
@@ -224,6 +242,7 @@ static float kASCWindowMinTitleWidth = 0;
         }
     }
 
+
     [self doLayout];
 }
 
@@ -250,10 +269,29 @@ static float kASCWindowMinTitleWidth = 0;
 }
 
 - (void)doLayout {
+    NSWindow * mainWindow = [NSWindow titleWindowOrMain];
+
+    // Layout title and tabs
+    CGFloat containerWidth  = CGRectGetWidth(self.titleContainerView.frame);
+    CGFloat maxTabsWidth    = containerWidth - kASCWindowMinTitleWidth - 100;
+    CGFloat actualTabsWidth = self.tabsControl.maxTabWidth * [self.tabsControl.tabs count];
+
+    int btnSpacing = 6.0;
+    CGFloat btnContainerWidth = CGRectGetWidth([self.standardButtonsDefaults[0] frame]) + btnSpacing;
+    CGFloat leftOffsetForTrafficLightButtons = kASCWindowDefaultTrafficButtonsLeftMargin;
+    int rtlDependedTabsLeftOffset = 0;
+    if ( [ASCLinguist isUILayoutDirectionRtl] ) {
+        CGFloat windowWidth = CGRectGetWidth([mainWindow frame]);
+        leftOffsetForTrafficLightButtons = windowWidth - kASCWindowDefaultTrafficButtonsLeftMargin - btnContainerWidth * 3 + btnSpacing;
+
+        NSRect rect = [[self.tabsControl superview] frame];
+        rtlDependedTabsLeftOffset = windowWidth - kASCRTLTabsRightMargin - CGRectGetMinX(rect) - MIN(actualTabsWidth, maxTabsWidth);
+    }
+
     void (^layoutStandartButtons)(NSArray *, BOOL) = ^ (NSArray *views, BOOL hidden) {
         [views enumerateObjectsUsingBlock:^(NSView *view, NSUInteger idx, BOOL *stop) {
             NSRect frame = view.frame;
-            frame.origin.x = kASCWindowDefaultTrafficButtonsLeftMargin + idx * (NSWidth(frame) + 6.0);
+            frame.origin.x = leftOffsetForTrafficLightButtons + idx * btnContainerWidth;
             frame.origin.y = (int)((NSHeight(view.superview.frame) - NSHeight(view.frame)) / 2.0);
             
             [view setFrame:frame];
@@ -265,12 +303,7 @@ static float kASCWindowMinTitleWidth = 0;
     layoutStandartButtons(self.standardButtonsDefaults, [self isFullScreen]);
     layoutStandartButtons(self.standardButtonsFullscreen, ![self isFullScreen]);
 
-    // Layout title and tabs
-    CGFloat containerWidth  = CGRectGetWidth(self.titleContainerView.frame);
-    CGFloat maxTabsWidth    = containerWidth - kASCWindowMinTitleWidth - 100;
-    CGFloat actualTabsWidth = self.tabsControl.maxTabWidth * [self.tabsControl.tabs count];
-    
-    self.tabsControl.frame  = CGRectMake(0, 0, MIN(actualTabsWidth, maxTabsWidth), CGRectGetHeight(self.tabsControl.frame));
+    self.tabsControl.frame  = CGRectMake(rtlDependedTabsLeftOffset, 0, MIN(actualTabsWidth, maxTabsWidth), CGRectGetHeight(self.tabsControl.frame));
 }
 
 - (void)viewWillTransitionToSize:(NSSize)newSize {
@@ -395,20 +428,20 @@ static float kASCWindowMinTitleWidth = 0;
 
             [ASCThemesController isSystemDarkMode] ? [self.portalButton setImage:[NSImage imageNamed:@"logo-tab-light"]] :
                                                         [self.portalButton setImage:[NSImage imageNamed:@"logo-tab-dark"]];
-
-            for (ASCTabView * tab in self.tabsControl.tabs) {
-                if ( [tab state] == NSControlStateValueOn ) {
-                    [tab setNeedsDisplay];
-                }
-                [tab setType:tab.type];
-                [self.tabsControl updateTab:tab];
-            }
         }
     } else {
         if ( [self.portalButton state] != NSControlStateValueOn ) {
             [ASCThemesController isSystemDarkMode] ? [self.portalButton setImage:[NSImage imageNamed:@"logo-tab-light"]] :
                                                         [self.portalButton setImage:[NSImage imageNamed:@"logo-tab-dark"]];
         }
+    }
+
+    for (ASCTabView * tab in self.tabsControl.tabs) {
+        if ( [tab state] == NSControlStateValueOn ) {
+            [tab setNeedsDisplay];
+        }
+        [tab setType:tab.type];
+        [self.tabsControl updateTab:tab];
     }
 }
 

@@ -80,6 +80,7 @@
     NSUInteger documentNameCounter;
     NSUInteger spreadsheetNameCounter;
     NSUInteger presentationNameCounter;
+    NSUInteger pdfNameCounter;
 }
 @property (weak) ASCTabsControl *tabsControl;
 @property (nonatomic) NSCefView * cefStartPageView;
@@ -415,6 +416,14 @@
                                                                          @"type"    : @(int(AscEditorType::etPresentation)),
                                                                          @"active"  : @(YES)
                                                                          }];
+        } else if ([senderId isEqualToString:[NSString stringWithFormat:kCreationButtonIdentifier, @"pdfform"]]) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameCreateTab
+                                                                object:nil
+                                                              userInfo:@{
+                                                                         @"action"  : @(ASCTabActionCreateLocalFile),
+                                                                         @"type"    : @(int(AscEditorType::etDocumentMasterForm)),
+                                                                         @"active"  : @(YES)
+                                                                         }];
         } else {
             ASCTabView * tab = [self.tabsControl tabWithUUID:senderId];
             if (tab) {
@@ -583,14 +592,15 @@
         
         [self.tabsControl selectTab:tab];
         
-        __block NSInteger fileType = [params[@"fileType"] intValue];
+//        __block NSInteger fileType = [params[@"fileType"] intValue];
         
         __block ASCSavePanelWithFormatController * saveController = [ASCSavePanelWithFormatController new];
         
         NSSavePanel * savePanel = [saveController savePanel];
         
         saveController.filters = formats;
-        saveController.filterType = fileType;
+        saveController.original = params[@"original"];
+//        saveController.filterType = fileType;
         
         if (!path || path.length < 1) {
             path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
@@ -963,6 +973,14 @@
                         [alert runModal];
                     }
                 }];
+            } else if ( pData->get_KeyCode() == 9 ) {
+                if ( pData->get_IsCtrl() ) {
+                    if ( pData->get_IsShift() ) {
+                        [self.tabsControl selectPreviouseTab];
+                    } else {
+                        [self.tabsControl selectNextTab];
+                    }
+                }
             }
         }
     }
@@ -1033,6 +1051,9 @@
 - (void)printOperationDidRun:(NSPrintOperation *)printOperation success:(BOOL)success contextInfo:(void *)contextInfo {
     if (m_pContext) {
         m_pContext->EndPaint();
+        
+        m_pContext->Release();
+        m_pContext = nullptr;
     }
 }
 
@@ -1047,12 +1068,16 @@
         NSLog(@"options: %@", nameLocales);
 
         CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
-        
-        if (appManager) {
-            m_pContext = new ASCPrinterContext(appManager);
-//            m_pContext->BeginPaint([viewId intValue], [pagesCount intValue], self, @selector(printOperationDidRun:success:contextInfo:));
-            m_pContext->BeginPaint(notification.userInfo, self, @selector(printOperationDidRun:success:contextInfo:));
-        }
+
+        // using synchronization to be sure that flag `ASCPrinterContext::isCurrentlyPrinting` is correctly handled
+        static dispatch_queue_t printQueue = dispatch_queue_create(NULL, NULL);
+        dispatch_sync(printQueue, ^{
+            if (appManager && !ASCPrinterContext::isCurrentlyPrinting) {
+                m_pContext = new ASCPrinterContext(appManager);
+                //            m_pContext->BeginPaint([viewId intValue], [pagesCount intValue], self, @selector(printOperationDidRun:success:contextInfo:));
+                m_pContext->BeginPaint(notification.userInfo, self, @selector(printOperationDidRun:success:contextInfo:));
+            }
+        });
     }
 }
 
@@ -1164,6 +1189,8 @@
             allowedFileTypes = [ASCConstants cancryptformats];
         } else if ([fileTypes isEqualToString:CEFOpenFileFilterXML]) {
             allowedFileTypes = [ASCConstants xmldata];
+        } else if ([fileTypes isEqualToString:@"any"] || [fileTypes isEqualToString:@"*.*"]) {
+//            allowedFileTypes = @[@"*.*"];
         } else {
             // filters come in view "*.docx *.pptx *.xlsx"
             NSError *error = nil;
@@ -1491,7 +1518,8 @@
     NSString * uiTheme = [[NSUserDefaults standardUserDefaults] valueForKey:ASCUserUITheme] ?: @"theme-classic-light";
 
     NSMutableDictionary * json_langs = @{
-        @"uitheme": uiTheme
+        @"uitheme": uiTheme,
+        @"rtl": @([ASCLinguist isUILayoutDirectionRtl])
     }.mutableCopy;
 
     NSDictionary * langs = [ASCLinguist availableLanguages];
@@ -1503,6 +1531,10 @@
             } forKey:@"locale"];
     }
 
+    CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
+    bool usegpu = !(appManager->GetUserSettings()->Get(L"disable-gpu") == L"1");
+    [json_langs setValue:@(usegpu) forKey:@"usegpu"];
+
     NSEditorApi::CAscExecCommandJS * pCommand = new NSEditorApi::CAscExecCommandJS;
     pCommand->put_Command(L"settings:init");
     pCommand->put_Param([[json_langs jsonString] stdwstring]);
@@ -1512,6 +1544,14 @@
     pEvent->AddRef();
 
     [self.cefStartPageView apply:pEvent];
+
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:ASCUserLockPageConnections]) {
+        pCommand->put_Command(L"panel:hide");
+        pCommand->put_Param(L"connect");
+
+        pEvent->AddRef();
+        [self.cefStartPageView apply:pEvent];
+    }
 
     pCommand->put_Command(L"app:ready");
     pCommand->put_Param(L"");
@@ -1792,6 +1832,11 @@
     
     if (tab) {
         [self.tabView selectTabViewItemWithIdentifier:tab.uuid];
+    } else {
+        NSTabViewItem * item = [self.tabView selectedTabViewItem];
+        if ( ![[item identifier]  isEqual:rootTabId] ) {
+            [self.tabView selectTabViewItemWithIdentifier:rootTabId];
+        }
     }
 }
 
@@ -1864,7 +1909,7 @@
                         break;
                     case AscEditorType::etDocumentMasterOForm:
                     case AscEditorType::etDocumentMasterForm:
-                        docName = [NSString stringWithFormat:NSLocalizedString(@"Document %ld.docxf", nil), ++documentNameCounter];
+                        docName = [NSString stringWithFormat:NSLocalizedString(@"Document %ld.pdf", nil), ++pdfNameCounter];
                         break;
                     default: break;
                 }

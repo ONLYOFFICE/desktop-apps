@@ -35,9 +35,6 @@
 
 #include "windows/cwindowbase.h"
 #include <QtWidgets/QApplication>
-#include <QShowEvent>
-#include <QMargins>
-#include <QRect>
 
 
 class CWindowPlatform : public CWindowBase
@@ -46,8 +43,8 @@ public:
     explicit CWindowPlatform(const QRect&);
     virtual ~CWindowPlatform();
 
-    void toggleBorderless(bool);
-    void toggleResizeable();
+//    void toggleBorderless(bool);
+//    void toggleResizeable();
     void bringToTop();
     virtual void show(bool);
     virtual void adjustGeometry() final;
@@ -58,8 +55,6 @@ protected:
     virtual void onLayoutDirectionChanged() = 0;
 
 private:
-    bool isTaskbarAutoHideOn();
-    void setResizeableAreaWidth(int);
     virtual void changeEvent(QEvent*) final;
     virtual bool nativeEvent(const QByteArray&, void*, long*) final;
 
@@ -69,7 +64,7 @@ private:
     bool m_borderless,
          m_closed,
          m_isResizeable,
-         m_allowMaximize,
+//         m_allowMaximize,
          m_scaleChanged = false,
          m_isSessionInProgress = true;
 };

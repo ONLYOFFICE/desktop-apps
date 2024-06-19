@@ -101,9 +101,9 @@ l10n.hy = {
     settOptThemeAddLocal: 'Ավելացնել տեղական թեմա',
     settOptThemeContrastDark: 'Մութ հակադրություն',
     settAUpdateMode: 'Թարմացումներ',
-    settOptAUpdateSilent: 'Ավտոմատ թարմացում',
-    settOptAUpdateAsk: 'Ստուգել թարմացումները',
-    settOptAUpdateDisabled: 'Մի ստուգեք թարմացումները',
+    settOptAUpdateSilent: 'Ինքնաշխատ',
+    settOptAUpdateAsk: 'Ծանուցում',
+    settOptAUpdateDisabled: 'Ձեռնադիր',
     updateDownloadFinished: 'Ներբեռնումն ավարտված է։ Սեղմեք՝ տեղադրելու համար',
     updateDownloadCanceled: 'Ներբեռնումը չեղարկվել է',
     updateDownloadProgress: 'Ներբեռնվում է $1%: Սեղմեք դադարեցնելու համար',
@@ -111,4 +111,5 @@ l10n.hy = {
     settOptDescAUpdateSilent: "Ներբեռնեք և տեղադրեք թարմացումը հետին պլանում։",
     settOptDescAUpdateAsk: "Դուք կտեղեկացվեք թարմացումների բոլոր քայլերի մասին։",
     settRtlMode: "RTL ինտերֆեյս",
+    settGpuUseMode: "Օգտագործեք գրաֆիկական արագացում, երբ առկա է",
 }

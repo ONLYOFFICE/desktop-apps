@@ -41,7 +41,7 @@
 "Document %ld.docx" = "Dokument %ld.docx";
 
 /* No comment provided by engineer. */
-"Document %ld.docxf" = "Dokument %ld.docxf";
+"Document %ld.pdf" = "Dokument %ld.pdf";
 
 /* No comment provided by engineer. */
 "Document template" = "Word Open XML Predložak dokumenta (*.dotx)";
@@ -75,6 +75,9 @@
 
 /* No comment provided by engineer. */
 "new-document" = "Novi dokument";
+
+/* No comment provided by engineer. */
+"new-pdfform" = "Novi PDF obrazac";
 
 /* No comment provided by engineer. */
 "new-presentation" = "Nova prezentacija";
@@ -177,9 +180,6 @@
 
 /* No comment provided by engineer. */
 "Untitled" = "Bez naslova";
-
-/* No comment provided by engineer. */
-"Version %@ (%@)" = "Verzija %1$@ (%2$@)";
 
 /* No comment provided by engineer. */
 "Web Page" = "Web stranica";

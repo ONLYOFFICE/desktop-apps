@@ -70,12 +70,13 @@ public:
     void close();
     bool isAboutToClose() const;
     void cancelClose();
+    QSize contentSize();
 
 signals:
     void aboutToClose();
 
 private:
-    void captureMouse(int);
+//    void captureMouse(int);
 #ifdef __linux__
     virtual void dragEnterEvent(QDragEnterEvent *event) final;
     virtual void dropEvent(QDropEvent *event) final;
@@ -147,6 +148,7 @@ public slots:
     void onWebTitleChanged(int, std::wstring json) {}
     void onDocumentPrint(void *);
     void onReporterMode(int, bool);
+    void onErrorPage(int, const std::wstring&);
     virtual void onDocumentReady(int);
 
 private:

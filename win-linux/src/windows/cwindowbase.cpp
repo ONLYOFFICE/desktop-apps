@@ -34,19 +34,11 @@
 #include "cascapplicationmanagerwrapper.h"
 #include "components/ctooltip.h"
 #include "utils.h"
-#include "ccefeventsgate.h"
-#include "clangater.h"
 #include "defines.h"
 #ifdef _WIN32
 # include "windows/platform_win/caption.h"
-# ifndef __OS_WIN_XP
-#  include "windows/platform_win/csnap.h"
-# endif
 #endif
 #include <QApplication>
-#include <QDesktopWidget>
-#include <QVariant>
-#include <QSettings>
 #include <QHBoxLayout>
 #include <QScreen>
 #include <functional>
@@ -80,19 +72,7 @@ CWindowBase::CWindowBase(const QRect& rect)
     , m_windowActivated(false)
 {
     setWindowIcon(Utils::appIcon());
-    if ( !rect.isEmpty() ) {
-        m_dpiRatio = Utils::getScreenDpiRatio(rect.topLeft());
-        m_window_rect = rect;
-    } else {
-        QScreen * _screen = QApplication::primaryScreen();
-        m_dpiRatio = Utils::getScreenDpiRatio(_screen->geometry().topLeft());
-        m_window_rect = QRect(QPoint(100, 100)*m_dpiRatio, MAIN_WINDOW_DEFAULT_SIZE * m_dpiRatio);
-    }
-    QRect _screen_size = Utils::getScreenGeometry(m_window_rect.topLeft());
-    if (_screen_size.intersects(m_window_rect))
-        m_window_rect = _screen_size.intersected(m_window_rect);
-    else
-        m_window_rect = QRect(QPoint(100, 100)*m_dpiRatio, MAIN_WINDOW_DEFAULT_SIZE * m_dpiRatio);
+    m_window_rect = startRect(rect, m_dpiRatio);
 }
 
 CWindowBase::~CWindowBase()
@@ -101,6 +81,23 @@ CWindowBase::~CWindowBase()
 }
 
 /** Public **/
+
+QRect CWindowBase::startRect(const QRect &rc, double &dpi)
+{
+    dpi = Utils::getScreenDpiRatio(rc.isEmpty() ? qApp->primaryScreen()->geometry().topLeft() : rc.topLeft());
+    QRect def_rc = QRect(QPoint(100, 100) * dpi, MAIN_WINDOW_DEFAULT_SIZE * dpi),
+          out_rc = rc.isEmpty() ? def_rc : rc,
+          scr_rc = Utils::getScreenGeometry(out_rc.topLeft());
+    return scr_rc.intersects(out_rc) ? scr_rc.intersected(out_rc) : def_rc;
+}
+
+QSize CWindowBase::expectedContentSize(const QRect &rc, bool extended)
+{
+    double dpi = 1.0;
+    QRect win_rc = startRect(rc, dpi);
+    int brd = MAIN_WINDOW_BORDER_WIDTH * dpi;
+    return win_rc.adjusted(brd, extended ? brd : TITLE_HEIGHT * dpi + brd, -brd, -brd).size();
+}
 
 QWidget * CWindowBase::handle() const
 {
@@ -123,8 +120,7 @@ void CWindowBase::updateScaling(bool resize)
 
 void CWindowBase::setWindowColors(const QColor& background, const QColor& border)
 {
-    Q_UNUSED(border)
-    setProperty("borderColor", border);
+    m_brdColor = border;
     setStyleSheet(QString("QMainWindow{border:1px solid %1;"
 #ifdef _WIN32
                           "border-bottom:2px solid %1;"
@@ -187,12 +183,6 @@ QWidget* CWindowBase::createTopPanel(QWidget *parent)
             m_pTopButtons.push_back(btn);
             layoutBtns->addWidget(btn);
         }
-#if defined (_WIN32) && !defined (__OS_WIN_XP)
-        if (Utils::getWinVersion() >= Utils::WinVer::Win11) {
-            CWin11Snap *snap = new CWin11Snap(m_pTopButtons[BtnType::Btn_Maximize]);
-            Q_UNUSED(snap)
-        }
-#endif
     }
     return _boxTitleBtns;
 }

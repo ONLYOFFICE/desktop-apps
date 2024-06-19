@@ -33,11 +33,8 @@
 #ifndef CX11DECORATION_H
 #define CX11DECORATION_H
 
-#include "qtextstream.h"
-
 #include <QWidget>
 #include <QMouseEvent>
-#include <QTimer>
 
 #define FORCE_LINUX_CUSTOMWINDOW_MARGINS
 

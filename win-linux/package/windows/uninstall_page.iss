@@ -17,6 +17,8 @@ si.UninstallPageLabel=අස්ථාපනය සඳහා ඉදිරිය�
 zh_TW.UninstallPageLabel=按解除安裝以進行解除安裝。
 da.UninstallPageLabel=Tryk Afinstaller for at fortsætte med afinstallationen.
 ar_SA.UninstallPageLabel=اضغط إزالة التثبيت للاستمرار بذلك
+sr_Latn_RS.UninstallPageLabel=Pritisnite Deinstaliraj da nastavite da deinstalacijom
+sr_Cyrl_RS.UninstallPageLabel=Притисните Деинсталирај да наставите да деинсталацијом
 
 
 en.UninstallOptionClearData=Clear all user settings and application cached data
@@ -36,6 +38,8 @@ si.UninstallOptionClearData=සියළුම පරිශ්‍රීලක �
 zh_TW.UninstallOptionClearData=清除所有使用者戶設定和應用程序暫存資料
 da.UninstallOptionClearData=Slet alle brugerdata og applikationens cachede data
 ar_SA.UninstallOptionClearData=مسح جميع بيانات المستخدم وبيانات التطبيق المؤقتة
+sr_Latn_RS.UninstallOptionClearData=Obriši sva korisnička podešavanja i keširane podatke aplikacije
+sr_Cyrl_RS.UninstallOptionClearData=Обриши сва корисничка подешавања и кеширане податке апликације
 
 
 

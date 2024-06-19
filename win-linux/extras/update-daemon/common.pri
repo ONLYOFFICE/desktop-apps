@@ -17,10 +17,12 @@ INCLUDEPATH += $$PWD/../../src/prop
 
 HEADERS += $$PWD/src/version.h \
            $$PWD/src/classes/csocket.h \
-           $$PWD/src/classes/csvcmanager.h
+           $$PWD/src/classes/csvcmanager.h \
+           $$PWD/src/classes/translator.h
 
 SOURCES += $$PWD/src/classes/csocket.cpp \
-           $$PWD/src/classes/csvcmanager.cpp
+           $$PWD/src/classes/csvcmanager.cpp \
+           $$PWD/src/classes/translator.cpp
 
 ENV_PRODUCT_VERSION = $$(PRODUCT_VERSION)
 !isEmpty(ENV_PRODUCT_VERSION) {
@@ -102,19 +104,13 @@ core_windows {
     }
 
     LIBS += -luser32 \
-            -lkernel32 \
             -lshell32 \
             -lshlwapi \
-            -lole32 \
-            -loleaut32 \
-            -lcomsuppw \
             -ladvapi32 \
             -lwinhttp \
-            -lwininet \
             -lws2_32 \
             -lrpcrt4 \
             -lwtsapi32 \
-            -lcrypt32 \
             -lwintrust \
             -luserenv
 }
@@ -135,7 +131,7 @@ core_linux {
 
     CONFIG += link_pkgconfig
     PKGCONFIG += gtk+-3.0
-    LIBS += -lSDL2 -lcurl -lssl -lcrypto -luuid -larchive -lpthread
+    LIBS += -lSDL2 -lcurl -luuid -larchive -lpthread
 }
 
 OBJECTS_DIR = $$DESTDIR/obj

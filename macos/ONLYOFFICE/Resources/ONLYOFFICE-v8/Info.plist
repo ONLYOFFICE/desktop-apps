@@ -508,6 +508,18 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>xlsb</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>Microsoft Excel binary workbook (.xlsb)</string>
+			<key>CFBundleTypeIconFile</key>
+			<string>file-xlsb</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+		</dict>
 	</array>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>

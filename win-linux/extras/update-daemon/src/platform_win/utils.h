@@ -41,8 +41,10 @@ using std::wstring;
 using std::to_wstring;
 using std::list;
 
+#define _TR(str) Translator::tr(str)
+
 #define FUNCTION_INFO wstring(TEXT(__FUNCTION__)) + L" Line: " + to_wstring(__LINE__)
-#define DEFAULT_ERROR_MESSAGE L"An error occurred: " + FUNCTION_INFO
+#define DEFAULT_ERROR_MESSAGE _TR("An error occurred:") + L" " + FUNCTION_INFO
 #define ADVANCED_ERROR_MESSAGE DEFAULT_ERROR_MESSAGE + \
     L" " + NS_Utils::GetLastErrorAsString()
 
@@ -52,6 +54,7 @@ void setRunAsApp();
 bool isRunAsApp();
 wstring GetLastErrorAsString();
 int ShowMessage(wstring str, bool showError = false);
+wstring GetAppLanguage();
 }
 
 namespace NS_File
@@ -76,7 +79,7 @@ wstring toNativeSeparators(const wstring &path);
 wstring parentPath(const wstring &path);
 wstring tempPath();
 wstring appPath();
-string getFileHash(const wstring &fileName);
+//string getFileHash(const wstring &fileName);
 bool verifyEmbeddedSignature(const wstring &fileName);
 }
 

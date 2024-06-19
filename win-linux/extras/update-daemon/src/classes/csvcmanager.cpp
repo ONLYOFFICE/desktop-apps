@@ -44,6 +44,7 @@
 #  define WIN32_LEAN_AND_MEAN
 # endif
 # include "platform_win/utils.h"
+# include "classes/translator.h"
 # include <codecvt>
 # include <Windows.h>
 # include <WinInet.h>
@@ -67,6 +68,7 @@
 # define APP_LAUNCH_NAME  "/DesktopEditors"
 # define APP_HELPER       "/editors_helper"
 # define DAEMON_NAME      "/updatesvc"
+# define DAEMON_NAME_OLD  "/~updatesvc"
 # define SUBFOLDER        "/desktopeditors"
 # define ARCHIVE_EXT      _T(".tar.xz")
 # define ARCHIVE_PATTERN  _T("*.tar.xz")
@@ -132,7 +134,7 @@ auto restartService()->void
 {
     const wstring fileName = NS_File::appPath() + RESTART_BATCH;
     if (NS_File::fileExists(fileName) && !NS_File::removeFile(fileName)) {
-        NS_Logger::WriteLog(L"An error occurred while deleting: " + fileName, true);
+        NS_Logger::WriteLog(_TR("An error occurred while deleting:") + _T(" ") + fileName, true);
         return;
     }
 
@@ -146,7 +148,7 @@ auto restartService()->void
     };
 
     if (!NS_File::writeToFile(fileName, batch)) {
-        NS_Logger::WriteLog(L"An error occurred while creating: " + fileName, true);
+        NS_Logger::WriteLog(_TR("An error occurred while creating:") + _T(" ") + fileName, true);
         return;
     }
 
@@ -158,7 +160,7 @@ auto restartService()->void
     if (!CreateProcess(NULL, const_cast<LPWSTR>(fileName.c_str()), NULL, NULL, FALSE,
                           CREATE_NO_WINDOW | CREATE_UNICODE_ENVIRONMENT, NULL, NULL, &si, &pi))
     {
-        NS_Logger::WriteLog(L"An error occurred while restarting the service!", true);
+        NS_Logger::WriteLog(_TR("An error occurred while restarting the service!"), true);
         return;
     }
     CloseHandle(pi.hProcess);
@@ -223,6 +225,9 @@ void CSvcManager::init()
     m_pUnzip->onComplete([=](int error) {
         onCompleteUnzip(error);
     });
+    m_pUnzip->onProgress([=](int percent) {
+        m_socket->sendMessage(MSG_UnzipProgress, to_tstring(percent));
+    });
     m_socket->onMessageReceived([=](void *data, size_t) {
         vector<tstring> params;
         if (m_socket->parseMessage(data, params) == 3) {
@@ -270,8 +275,18 @@ void CSvcManager::init()
                 __UNLOCK
                 break;
 
+            case MSG_StartReplacingService:
+                __GLOBAL_LOCK
+                startReplacingService(params[2] == _T("true"));
+                __UNLOCK
+                break;
+
             case MSG_ClearTempFiles:
                 clearTempFiles(params[1], params[2]);
+                break;
+
+            case MSG_SetLanguage:
+                Translator::setLanguage(params[1]);
                 break;
 
             default:
@@ -463,7 +478,7 @@ void CSvcManager::startReplacingFiles(const tstring &packageType, const bool res
     tstring updSubPath = NS_File::fileExists(updPath + SUBFOLDER + APP_LAUNCH_NAME) ? updPath + SUBFOLDER : updPath;
     tstring tmpPath = NS_File::parentPath(appPath) + BACKUP_PATH;
     if (!NS_File::dirExists(updPath)) {
-        NS_Logger::WriteLog(_T("Update cancelled. Can't find folder: ") + updPath, true);
+        NS_Logger::WriteLog(_TR("Update cancelled. Can't find folder:") + _T(" ") + updPath, true);
         return;
     }
 
@@ -474,7 +489,7 @@ void CSvcManager::startReplacingFiles(const tstring &packageType, const bool res
         tstring apps[] = {APP_LAUNCH_NAME, APP_LAUNCH_NAME2, APP_HELPER, DAEMON_NAME};
         for (int i = 0; i < sizeof(apps) / sizeof(apps[0]); i++) {
             if (!NS_File::verifyEmbeddedSignature(updSubPath + apps[i])) {
-                NS_Logger::WriteLog(L"Update cancelled. The file signature is missing: " + updSubPath + apps[i], true);
+                NS_Logger::WriteLog(_TR("Update cancelled. The file signature is missing:") + _T(" ") + updSubPath + apps[i], true);
                 return;
             }
         }
@@ -484,7 +499,7 @@ void CSvcManager::startReplacingFiles(const tstring &packageType, const bool res
 
     // Check backup folder
     if (NS_File::dirExists(tmpPath) && !NS_File::removeDirRecursively(tmpPath)) {
-        NS_Logger::WriteLog(_T("Update cancelled. Can't delete folder: ") + tmpPath, true);
+        NS_Logger::WriteLog(_TR("Update cancelled. Can't delete folder:") + _T(" ") + tmpPath, true);
         return;
     }
 
@@ -503,38 +518,38 @@ void CSvcManager::startReplacingFiles(const tstring &packageType, const bool res
                 sleep(500);
 
             if (NS_File::isProcessRunning(app)) {
-                NS_Logger::WriteLog(_T("Update cancelled. The ") + app + _T(" is not closed!"), true);
+                NS_Logger::WriteLog(_TR("Update cancelled. The program is not closed:") + _T(" ") + app, true);
                 return;
             }
         }
     }
 
     // Replace app path to Backup
-#ifdef _WIN32
+#ifdef _WIN32_UNUSED
     if (!NS_File::dirExists(tmpPath) && !NS_File::makePath(tmpPath)) {
-        NS_Logger::WriteLog(L"Update cancelled. Can't create folder: " + tmpPath, true);
+        NS_Logger::WriteLog(_TR("Update cancelled. Can't create folder:") + _T(" ") + tmpPath, true);
         return;
     }
     if (!NS_File::replaceFolder(appPath, tmpPath, false)) {
 #else
     if (!NS_File::replaceFolder(appPath, tmpPath, true)) {
 #endif
-        NS_Logger::WriteLog(_T("Update cancelled. Can't replace files to backup: ") + NS_Utils::GetLastErrorAsString(), true);
+        NS_Logger::WriteLog(_TR("Update cancelled. Can't replace files to backup:") + _T(" ") + NS_Utils::GetLastErrorAsString(), true);
         if (NS_File::dirExists(tmpPath) && !NS_File::dirIsEmpty(tmpPath) && !NS_File::replaceFolder(tmpPath, appPath))
-            NS_Logger::WriteLog(_T("Can't restore files from backup!"), true);
+            NS_Logger::WriteLog(_TR("Can't restore files from backup!"), true);
         return;
     }
 
     // Move update path to app path
     if (!NS_File::replaceFolder(updSubPath, appPath, true)) {
-        NS_Logger::WriteLog(_T("Update cancelled. Can't move updates to App path: ") + NS_Utils::GetLastErrorAsString(), true);
+        NS_Logger::WriteLog(_TR("Update cancelled. Can't move updates to App path:") + _T(" ") + NS_Utils::GetLastErrorAsString(), true);
 
         if (NS_File::dirExists(appPath) && !NS_File::removeDirRecursively(appPath)) {
-            NS_Logger::WriteLog(_T("An error occurred while remove App path: ") + NS_Utils::GetLastErrorAsString(), true);
+            NS_Logger::WriteLog(_TR("An error occurred while remove App path:") + _T(" ") + NS_Utils::GetLastErrorAsString(), true);
             return;
         }
         if (!NS_File::replaceFolder(tmpPath, appPath, true))
-            NS_Logger::WriteLog(_T("An error occurred while restore files from backup: ") + NS_Utils::GetLastErrorAsString(), true);
+            NS_Logger::WriteLog(_TR("An error occurred while restore files from backup:") + _T(" ") + NS_Utils::GetLastErrorAsString(), true);
 
         NS_File::removeDirRecursively(updPath);
         return;
@@ -610,11 +625,81 @@ void CSvcManager::startReplacingFiles(const tstring &packageType, const bool res
     // Restart program
     if (restartAfterUpdate) {
         if (!NS_File::runProcess(appPath + APP_LAUNCH_NAME, _T("")))
-            NS_Logger::WriteLog(_T("An error occurred while restarting the program!"), true);
+            NS_Logger::WriteLog(_TR("An error occurred while restarting the program!"), true);
     }
 
     // Remove Backup dir
     NS_File::removeDirRecursively(tmpPath);
+
+    // Restart service
+#ifdef _WIN32
+    restartService();
+#endif
+}
+
+void CSvcManager::startReplacingService(const bool restartAfterUpdate)
+{
+    tstring appPath = NS_File::appPath();
+    tstring updPath = NS_File::parentPath(appPath) + UPDATE_PATH;
+    tstring updSubPath = NS_File::fileExists(updPath + SUBFOLDER + APP_LAUNCH_NAME) ? updPath + SUBFOLDER : updPath;
+    if (!NS_File::dirExists(updPath)) {
+        NS_Logger::WriteLog(_TR("Update cancelled. Can't find folder:") + _T(" ") + updPath, true);
+        return;
+    }
+
+#ifdef _WIN32
+# ifndef DONT_VERIFY_SIGNATURE
+    // Verify the signature of executable files
+    if (!NS_File::verifyEmbeddedSignature(updSubPath + DAEMON_NAME)) {
+        NS_Logger::WriteLog(_TR("Update cancelled. The file signature is missing:") + _T(" ") + updSubPath + DAEMON_NAME, true);
+        return;
+    }
+# endif
+#endif
+
+    // Wait until the main app closes
+    {
+#ifdef _WIN32
+        tstring apps[] = {APP_LAUNCH_NAME2, APP_HELPER};
+#else
+        tstring apps[] = {APP_LAUNCH_NAME, APP_HELPER};
+#endif
+        for (int i = 0; i < sizeof(apps) / sizeof(apps[0]); i++) {
+            int retries = 10;
+            tstring app(apps[i]);
+            app = app.substr(1);
+            while (NS_File::isProcessRunning(app) && retries-- > 0)
+                sleep(500);
+
+            if (NS_File::isProcessRunning(app)) {
+                NS_Logger::WriteLog(_TR("Update cancelled. The program is not closed:") + _T(" ") + app, true);
+                return;
+            }
+        }
+    }
+
+    // Rename updatesvc.exe to ~updatesvc.exe
+    if (NS_File::fileExists(appPath + DAEMON_NAME) && !NS_File::replaceFile(appPath + DAEMON_NAME, appPath + DAEMON_NAME_OLD)) {
+        NS_Logger::WriteLog(_TR("Update cancelled. Can't rename updatesvc.exe to ~updatesvc.exe:") + _T(" ") + NS_Utils::GetLastErrorAsString(), true);
+        return;
+    }
+
+    // Move updatesvc.exe to app path
+    if (!NS_File::replaceFile(updSubPath + DAEMON_NAME, appPath + DAEMON_NAME)) {
+        NS_Logger::WriteLog(_TR("Update cancelled. Can't replace file updatesvc.exe to app path:") + _T(" ") + NS_Utils::GetLastErrorAsString(), true);
+        if (NS_File::fileExists(appPath + DAEMON_NAME_OLD) && !NS_File::replaceFile(appPath + DAEMON_NAME_OLD, appPath + DAEMON_NAME))
+            NS_Logger::WriteLog(_TR("Can't restore file updatesvc.exe!"), true);
+        return;
+    }
+
+    // Restart program
+    if (restartAfterUpdate) {
+        if (!NS_File::runProcess(appPath + APP_LAUNCH_NAME, _T("")))
+            NS_Logger::WriteLog(_TR("An error occurred while restarting the program!"), true);
+    }
+
+    // Remove Update dir
+    NS_File::removeDirRecursively(updPath);
 
     // Restart service
 #ifdef _WIN32

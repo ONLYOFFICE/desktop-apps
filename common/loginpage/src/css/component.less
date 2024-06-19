@@ -92,7 +92,10 @@ button {
 
 input[type=checkbox] {
     position: relative;
-    cursor: pointer;
+
+    &:not(:disabled) {
+        cursor: pointer;
+    }
 
     &:before {
         content: "";
@@ -118,6 +121,12 @@ input[type=checkbox] {
         position: absolute;
         top: 3px;
         left: 7px;
+    }
+    &:focus-visible {
+        outline: 0;
+        &:before {
+            border-color: @border-control-focus;
+        }
     }
 }
 
@@ -347,6 +356,13 @@ input[type="radio"] {
     .dropdown-menu li small {
         padding-left: 0;
         display: block;
+    }
+
+    .rtl & {
+        .dropdown-menu {
+            right: 0;
+            left: auto;
+        }
     }
 }
 

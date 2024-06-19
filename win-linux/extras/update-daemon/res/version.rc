@@ -3,6 +3,7 @@
 #include "../src/platform_win/resource.h"
 
 IDI_MAINICON   ICON    DISCARDABLE APP_ICON_PATH
+IDT_TRANSLATIONS   RCDATA APP_LANG_PATH
 CREATEPROCESS_MANIFEST_RESOURCE_ID RT_MANIFEST "./manifest/updatesvc.exe.manifest"
 
 #include "../src/version.h"

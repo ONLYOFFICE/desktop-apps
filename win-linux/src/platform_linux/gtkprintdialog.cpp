@@ -300,7 +300,7 @@ QDialog::DialogCode GtkPrintDialog::exec()
             GTK_PAGE_SET_ODD
         };
         gtk_print_settings_set_page_set(settings, page_set_arr[0]);
-        gtk_print_settings_set_collate(settings, FALSE);
+        gtk_print_settings_set_collate(settings, m_printer->collateCopies() ? TRUE : FALSE);
 
         // Qt-Duplex:
         // DuplexNone = 0
@@ -375,6 +375,7 @@ QDialog::DialogCode GtkPrintDialog::exec()
     GtkWidget *dialog;
     dialog = gtk_print_unix_dialog_new(m_title.toUtf8().data(), NULL);   
     gtk_window_set_type_hint(GTK_WINDOW(dialog), GDK_WINDOW_TYPE_HINT_DIALOG);
+    gtk_window_set_skip_taskbar_hint(GTK_WINDOW(dialog), TRUE);
 
     GtkEntry *page_ranges_entry = NULL;
     g_signal_connect(G_OBJECT(dialog), "map", G_CALLBACK(get_page_ranges_entry), (gpointer)&page_ranges_entry);

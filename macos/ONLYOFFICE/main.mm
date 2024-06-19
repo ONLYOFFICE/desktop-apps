@@ -88,8 +88,9 @@ int main(int argc, const char * argv[]) {
     fontsDirectories.push_back([[resourcePath stringByAppendingPathComponent:@"login/fonts"] stdwstring]);
     appManager->m_oSettings.additional_fonts_folder = fontsDirectories;
     
-    if( [[NSFileManager defaultManager] fileExistsAtPath:@"login/noconnect.html"] ) {
-        appManager->m_oSettings.connection_error_path = [[resourcePath stringByAppendingPathComponent:@"login/noconnect.html"] stdwstring];
+    NSString * error_page = [resourcePath stringByAppendingPathComponent:@"login/noconnect.html"];
+    if( [[NSFileManager defaultManager] fileExistsAtPath:error_page] ) {
+        appManager->m_oSettings.connection_error_path = [error_page stdwstring];
     }
     
     // setup username
@@ -117,6 +118,7 @@ int main(int argc, const char * argv[]) {
     [[ASCEditorJSVariables instance] setVariable:@"theme" withObject:@{@"id":uiTheme,
                                                                        @"system":systemColorScheme,
                                                                        @"type":systemColorScheme}];
+    [[ASCEditorJSVariables instance] setVariable:@"rtl" withBool:[ASCLinguist isUILayoutDirectionRtl]];
     [[ASCEditorJSVariables instance] apply];
 
     // setup doc sign

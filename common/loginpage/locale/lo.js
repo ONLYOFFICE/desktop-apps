@@ -91,4 +91,5 @@ l10n.lo = {
     settOptLaunchMode: 'ເປີດແຟ້ມທ',
     settOptLaunchInTab: 'ໃນຊ່ອງ',
     settOptLaunchInWindow: 'ໃນປ່ອງ',
+    settOptDisabled: 'ປິດ',
 }

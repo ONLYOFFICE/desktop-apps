@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <DICTIONARY type="multilanguage">
   <!-- Dialog table -->
-  <ENTRY id="Dialog.ExtendedInstallDlg">
-    <STRING lang="ru" value="[ProductName] [Setup]"/>
-  </ENTRY>
   <ENTRY id="Dialog.FileAssociationsDlg">
     <STRING lang="cs" value="[Setup] [ProductName]"/>
     <STRING lang="de" value="[ProductName] [Setup]"/>
@@ -15,9 +12,6 @@
     <STRING lang="ru" value="[Setup] [ProductName]"/>
     <STRING lang="sl" value="[Setup] [ProductName]"/>
   </ENTRY>
-  <ENTRY id="Dialog.NewDialog">
-    <STRING lang="ru" value="[ProductName] [Setup]"/>
-  </ENTRY>
   <ENTRY id="Dialog.ShortcutsDlg">
     <STRING lang="cs" value="[Setup] [ProductName]"/>
     <STRING lang="pt" value="[Setup] do [ProductName]"/>
@@ -25,30 +19,6 @@
     <STRING lang="sl" value="[Setup] [ProductName]"/>
   </ENTRY>
   <!-- Control table -->
-  <ENTRY id="Control.Text.ExtendedInstallDlg#Back">
-    <STRING lang="ru" value="[ButtonText_Back]"/>
-  </ENTRY>
-  <ENTRY id="Control.Text.ExtendedInstallDlg#Cancel">
-    <STRING lang="ru" value="[ButtonText_Cancel]"/>
-  </ENTRY>
-  <ENTRY id="Control.Text.ExtendedInstallDlg#Description">
-    <STRING lang="ru" value="Какие дополнительные задачи необходимо выполнить?"/>
-  </ENTRY>
-  <ENTRY id="Control.Text.ExtendedInstallDlg#ExtendedDlgText">
-    <STRING lang="ru" value="Выберите дополнительные задачи, которые необходимо выполнить при установке [ProductName]:"/>
-  </ENTRY>
-  <ENTRY id="Control.Text.ExtendedInstallDlg#GalleryButtonCheckBox">
-    <STRING lang="ru" value="Install Gallery"/>
-  </ENTRY>
-  <ENTRY id="Control.Text.ExtendedInstallDlg#MediaButtonCheckBox">
-    <STRING lang="ru" value="Install Media"/>
-  </ENTRY>
-  <ENTRY id="Control.Text.ExtendedInstallDlg#Next">
-    <STRING lang="ru" value="[ButtonText_Next]"/>
-  </ENTRY>
-  <ENTRY id="Control.Text.ExtendedInstallDlg#Title">
-    <STRING lang="ru" value="Выберите дополнительные задачи"/>
-  </ENTRY>
   <ENTRY id="Control.Text.FileAssociationsDlg#Description">
     <STRING lang="cs" value="Vyberte přípony, které chcete přidružit k aplikaci [ProductName]"/>
     <STRING lang="pt" value="Selecione as extensões que pretende associar ao [ProductName]"/>
@@ -66,27 +36,6 @@
     <STRING lang="pt" value="Selecionar Associações de Ficheiros"/>
     <STRING lang="pt_BR" value="Selecione Associações de Arquivo"/>
     <STRING lang="sl" value="Izberite povezave datoteke"/>
-  </ENTRY>
-  <ENTRY id="Control.Text.NewDialog#Back">
-    <STRING lang="ru" value="[ButtonText_Back]"/>
-  </ENTRY>
-  <ENTRY id="Control.Text.NewDialog#Cancel">
-    <STRING lang="ru" value="[ButtonText_Cancel]"/>
-  </ENTRY>
-  <ENTRY id="Control.Text.NewDialog#CheckBox_2">
-    <STRING lang="ru" value="CheckBox"/>
-  </ENTRY>
-  <ENTRY id="Control.Text.NewDialog#Description">
-    <STRING lang="ru" value="Выберите типы файлов, которые нужно автоматически открыть с помощью [ProductName]:"/>
-  </ENTRY>
-  <ENTRY id="Control.Text.NewDialog#Next">
-    <STRING lang="ru" value="[ButtonText_Next]"/>
-  </ENTRY>
-  <ENTRY id="Control.Text.NewDialog#Text_1">
-    <STRING lang="ru" value="All types"/>
-  </ENTRY>
-  <ENTRY id="Control.Text.NewDialog#Title">
-    <STRING lang="ru" value="Сопоставление типов файлов"/>
   </ENTRY>
   <ENTRY id="Control.Text.ShortcutsDlg#Description">
     <STRING lang="cs" value="Vytvoření zástupců aplikací"/>
@@ -109,28 +58,6 @@
     <STRING lang="pt" value="Configure atalhos"/>
   </ENTRY>
   <!-- Property table -->
-  <ENTRY id="Property.APP_PROTOCOL">
-    <STRING lang="cs" value="oo-office"/>
-    <STRING lang="de" value="oo-office"/>
-    <STRING lang="es" value="oo-office"/>
-    <STRING lang="fr" value="oo-office"/>
-    <STRING lang="ja" value="oo-office"/>
-    <STRING lang="pt" value="oo-office"/>
-    <STRING lang="pt_BR" value="oo-office"/>
-    <STRING lang="ru" value="oo-office"/>
-    <STRING lang="sl" value="oo-office"/>
-  </ENTRY>
-  <ENTRY id="Property.APP_USER_MODEL_ID">
-    <STRING lang="cs" value="ASC.Documents.5"/>
-    <STRING lang="de" value="ASC.Documents.5"/>
-    <STRING lang="es" value="ASC.Documents.5"/>
-    <STRING lang="fr" value="ASC.Documents.5"/>
-    <STRING lang="ja" value="ASC.Documents.5"/>
-    <STRING lang="pt" value="ASC.Documents.5"/>
-    <STRING lang="pt_BR" value="ASC.Documents.5"/>
-    <STRING lang="ru" value="ASC.Documents.5"/>
-    <STRING lang="sl" value="ASC.Documents.5"/>
-  </ENTRY>
   <ENTRY id="Property.ARPCOMMENTS">
     <STRING lang="cs" value="Volně dostupný desktopový balíček pro úpravu dokumentů a spolupráci"/>
     <STRING lang="de" value="Kostenlose Desktop-Office-Suite für Dokumentenbearbeitung und Zusammenarbeit"/>
@@ -142,270 +69,106 @@
     <STRING lang="ru" value="Бесплатный десктопный офисный пакет для редактирования документов и совместной работы"/>
     <STRING lang="sl" value="Brezplačen paket za namizje za urejanje dokumentov in sodelovanje z drugimi"/>
   </ENTRY>
-  <ENTRY id="Property.ARPCONTACT">
-    <STRING lang="cs" value="20A-6, Ernesta Birznieka-Upisha str., Riga, LV-1050"/>
-    <STRING lang="de" value="20A-6, Ernesta Birznieka-Upisha str., Riga, LV-1050"/>
-    <STRING lang="es" value="20A-6, Ernesta Birznieka-Upisha str., Riga, LV-1050"/>
-    <STRING lang="fr" value="20A-6, Ernesta Birznieka-Upisha str., Riga, LV-1050"/>
-    <STRING lang="ja" value="20A-6, Ernesta Birznieka-Upisha str., Riga, LV-1050"/>
-    <STRING lang="pt" value="20A-6, Ernesta Birznieka-Upisha str., Riga, LV-1050"/>
-    <STRING lang="pt_BR" value="20A-6, Ernesta Birznieka-Upisha str., Riga, LV-1050"/>
-    <STRING lang="ru" value="20A-6, Ernesta Birznieka-Upisha str., Riga, LV-1050"/>
-    <STRING lang="sl" value="20A-6, Ernesta Birznieka-Upisha str., Riga, LV-1050"/>
+  <ENTRY id="Property.EMPTY_LANG_DIR">
+    <STRING lang="cs" value="cs-CZ"/>
+    <STRING lang="de" value="de-DE"/>
+    <STRING lang="es" value="es-ES"/>
+    <STRING lang="fr" value="fr-FR"/>
+    <STRING lang="ja" value="ja-JP"/>
+    <STRING lang="pt" value="pt-PT"/>
+    <STRING lang="pt_BR" value="pt-BR"/>
+    <STRING lang="ru" value="ru-RU"/>
+    <STRING lang="sl" value="en-US"/>
   </ENTRY>
-  <ENTRY id="Property.ARPHELPLINK">
-    <STRING lang="cs" value="http://dev.onlyoffice.org/"/>
-    <STRING lang="de" value="http://dev.onlyoffice.org/"/>
-    <STRING lang="es" value="http://dev.onlyoffice.org/"/>
-    <STRING lang="fr" value="http://dev.onlyoffice.org/"/>
-    <STRING lang="ja" value="http://dev.onlyoffice.org/"/>
-    <STRING lang="pt" value="http://dev.onlyoffice.org/"/>
-    <STRING lang="pt_BR" value="http://dev.onlyoffice.org/"/>
-    <STRING lang="ru" value="http://dev.onlyoffice.org/"/>
-    <STRING lang="sl" value="http://dev.onlyoffice.org/"/>
-  </ENTRY>
-  <ENTRY id="Property.ARPHELPTELEPHONE">
-    <STRING lang="cs" value="+371 66016425"/>
-    <STRING lang="de" value="+371 66016425"/>
-    <STRING lang="es" value="+371 66016425"/>
-    <STRING lang="fr" value="+371 66016425"/>
-    <STRING lang="ja" value="+371 66016425"/>
-    <STRING lang="pt" value="+371 66016425"/>
-    <STRING lang="pt_BR" value="+371 66016425"/>
-    <STRING lang="ru" value="+371 66016425"/>
-    <STRING lang="sl" value="+371 66016425"/>
-  </ENTRY>
-  <ENTRY id="Property.ARPURLINFOABOUT">
-    <STRING lang="cs" value="http://www.onlyoffice.com"/>
-    <STRING lang="de" value="http://www.onlyoffice.com"/>
-    <STRING lang="es" value="http://www.onlyoffice.com"/>
-    <STRING lang="fr" value="http://www.onlyoffice.com"/>
-    <STRING lang="ja" value="http://www.onlyoffice.com"/>
-    <STRING lang="pt" value="http://www.onlyoffice.com"/>
-    <STRING lang="pt_BR" value="http://www.onlyoffice.com"/>
-    <STRING lang="ru" value="http://www.onlyoffice.com"/>
-    <STRING lang="sl" value="http://www.onlyoffice.com"/>
-  </ENTRY>
-  <ENTRY id="Property.ARPURLUPDATEINFO">
-    <STRING lang="cs" value="http://www.onlyoffice.com/download.aspx"/>
-    <STRING lang="de" value="http://www.onlyoffice.com/download.aspx"/>
-    <STRING lang="es" value="http://www.onlyoffice.com/download.aspx"/>
-    <STRING lang="fr" value="http://www.onlyoffice.com/download.aspx"/>
-    <STRING lang="ja" value="http://www.onlyoffice.com/download.aspx"/>
-    <STRING lang="pt" value="http://www.onlyoffice.com/download.aspx"/>
-    <STRING lang="pt_BR" value="http://www.onlyoffice.com/download.aspx"/>
-    <STRING lang="ru" value="http://www.onlyoffice.com/download.aspx"/>
-    <STRING lang="sl" value="http://www.onlyoffice.com/download.aspx"/>
-  </ENTRY>
-  <ENTRY id="Property.ASCC_REG_PREFIX">
-    <STRING lang="cs" value="ASC"/>
-    <STRING lang="de" value="ASC"/>
-    <STRING lang="es" value="ASC"/>
-    <STRING lang="fr" value="ASC"/>
-    <STRING lang="ja" value="ASC"/>
-    <STRING lang="pt" value="ASC"/>
-    <STRING lang="pt_BR" value="ASC"/>
-    <STRING lang="ru" value="ASC"/>
-    <STRING lang="sl" value="ASC"/>
-  </ENTRY>
-  <ENTRY id="Property.ASCC_REG_REGISTERED_APP_NAME">
-    <STRING lang="cs" value="ONLYOFFICE Editors"/>
-    <STRING lang="de" value="ONLYOFFICE Editors"/>
-    <STRING lang="es" value="ONLYOFFICE Editors"/>
-    <STRING lang="fr" value="ONLYOFFICE Editors"/>
-    <STRING lang="ja" value="ONLYOFFICE Editors"/>
-    <STRING lang="pt" value="ONLYOFFICE Editors"/>
-    <STRING lang="pt_BR" value="ONLYOFFICE Editors"/>
-    <STRING lang="ru" value="ONLYOFFICE Editors"/>
-    <STRING lang="sl" value="ONLYOFFICE Editors"/>
-  </ENTRY>
-  <ENTRY id="Property.ASSOC_APP_FRIENDLY_NAME">
-    <STRING lang="cs" value="ONLYOFFICE Editors"/>
-    <STRING lang="de" value="ONLYOFFICE Editors"/>
-    <STRING lang="es" value="ONLYOFFICE Editors"/>
-    <STRING lang="fr" value="ONLYOFFICE Editors"/>
-    <STRING lang="ja" value="ONLYOFFICE Editors"/>
-    <STRING lang="pt" value="ONLYOFFICE Editors"/>
-    <STRING lang="pt_BR" value="ONLYOFFICE Editors"/>
-    <STRING lang="ru" value="ONLYOFFICE Editors"/>
-    <STRING lang="sl" value="ONLYOFFICE Editors"/>
-  </ENTRY>
-  <ENTRY id="Property.ASSOC_PROG_ID">
-    <STRING lang="cs" value="[|ASCC_REG_PREFIX].Editors"/>
-    <STRING lang="de" value="[|ASCC_REG_PREFIX].Editors"/>
-    <STRING lang="es" value="[|ASCC_REG_PREFIX].Editors"/>
-    <STRING lang="fr" value="[|ASCC_REG_PREFIX].Editors"/>
-    <STRING lang="ja" value="[|ASCC_REG_PREFIX].Editors"/>
-    <STRING lang="pt" value="[|ASCC_REG_PREFIX].Editors"/>
-    <STRING lang="pt_BR" value="[|ASCC_REG_PREFIX].Editors"/>
-    <STRING lang="ru" value="[|ASCC_REG_PREFIX].Editors"/>
-    <STRING lang="sl" value="[|ASCC_REG_PREFIX].Editors"/>
-  </ENTRY>
-  <ENTRY id="Property.COMMON_SHORTCUT_NAME">
-    <STRING lang="cs" value="ONLYOFFICE Editors"/>
-    <STRING lang="de" value="ONLYOFFICE Editors"/>
-    <STRING lang="es" value="ONLYOFFICE Editors"/>
-    <STRING lang="fr" value="ONLYOFFICE Editors"/>
-    <STRING lang="ja" value="ONLYOFFICE Editors"/>
-    <STRING lang="pt" value="ONLYOFFICE Editors"/>
-    <STRING lang="pt_BR" value="ONLYOFFICE Editors"/>
-    <STRING lang="ru" value="ONLYOFFICE Editors"/>
-    <STRING lang="sl" value="ONLYOFFICE Editors"/>
-  </ENTRY>
-  <ENTRY id="Property.CUSTOM_PATH">
-    <STRING lang="cs" value="C:\[|ProgramFilesFolder][|Manufacturer]MediaViewer"/>
-    <STRING lang="de" value="C:\[|ProgramFilesFolder][|Manufacturer]MediaViewer"/>
-    <STRING lang="es" value="C:\[|ProgramFilesFolder][|Manufacturer]MediaViewer"/>
-    <STRING lang="fr" value="C:\[|ProgramFilesFolder][|Manufacturer]MediaViewer"/>
-    <STRING lang="ja" value="C:\[|ProgramFilesFolder][|Manufacturer]MediaViewer"/>
-    <STRING lang="pt" value="C:\[|ProgramFilesFolder][|Manufacturer]MediaViewer"/>
-    <STRING lang="pt_BR" value="C:\[|ProgramFilesFolder][|Manufacturer]MediaViewer"/>
-    <STRING lang="ru" value="C:\[|ProgramFilesFolder][|Manufacturer]MediaViewer"/>
-    <STRING lang="sl" value="C:\[|ProgramFilesFolder][|Manufacturer]MediaViewer"/>
-  </ENTRY>
-  <ENTRY id="Property.DeUpdateSvc_DescriptionName">
-    <STRING lang="cs" value="Služba aktualizace ONLYOFFICE Desktop Editors"/>
-    <STRING lang="de" value="Update service for ONLYOFFICE Desktop Editors"/>
-    <STRING lang="es" value="Update service for ONLYOFFICE Desktop Editors"/>
-    <STRING lang="fr" value="Service de mise à jour ONLYOFFICE Desktop Editors"/>
-    <STRING lang="ja" value="アップデートサービスONLYOFFICE Desktop Editors"/>
-    <STRING lang="pt" value="Update service for ONLYOFFICE Desktop Editors"/>
-    <STRING lang="pt_BR" value="Serviço para atualização ONLYOFFICE Desktop Editors"/>
-    <STRING lang="ru" value="Сервис обновлений ONLYOFFICE Desktop Editors"/>
-    <STRING lang="sl" value="Storitev za posodobitev ONLYOFFICE Desktop Editors"/>
-  </ENTRY>
-  <ENTRY id="Property.DeUpdateSvc_DispalyName">
-    <STRING lang="cs" value="ONLYOFFICE Update Service"/>
-    <STRING lang="de" value="ONLYOFFICE Update Service"/>
-    <STRING lang="es" value="ONLYOFFICE Update Service"/>
-    <STRING lang="fr" value="ONLYOFFICE Update Service"/>
-    <STRING lang="ja" value="ONLYOFFICE Update Service"/>
-    <STRING lang="pt" value="ONLYOFFICE Update Service"/>
-    <STRING lang="pt_BR" value="ONLYOFFICE Update Service"/>
-    <STRING lang="ru" value="ONLYOFFICE Update Service"/>
-    <STRING lang="sl" value="ONLYOFFICE Update Service"/>
-  </ENTRY>
-  <ENTRY id="Property.DeUpdateSvc_ServiceName">
-    <STRING lang="cs" value="ONLYOFFICE Update Service"/>
-    <STRING lang="de" value="ONLYOFFICE Update Service"/>
-    <STRING lang="es" value="ONLYOFFICE Update Service"/>
-    <STRING lang="fr" value="ONLYOFFICE Update Service"/>
-    <STRING lang="ja" value="ONLYOFFICE Update Service"/>
-    <STRING lang="pt" value="ONLYOFFICE Update Service"/>
-    <STRING lang="pt_BR" value="ONLYOFFICE Update Service"/>
-    <STRING lang="ru" value="ONLYOFFICE Update Service"/>
-    <STRING lang="sl" value="ONLYOFFICE Update Service"/>
-  </ENTRY>
-  <ENTRY id="Property.GALLERY_SHORTCUT_NAME">
-    <STRING lang="cs" value="Gallery"/>
-    <STRING lang="de" value="Gallery"/>
-    <STRING lang="es" value="Gallery"/>
-    <STRING lang="fr" value="Gallery"/>
-    <STRING lang="ja" value="Gallery"/>
-    <STRING lang="pt" value="Gallery"/>
-    <STRING lang="pt_BR" value="Gallery"/>
-    <STRING lang="ru" value="Gallery"/>
-    <STRING lang="sl" value="Gallery"/>
+  <ENTRY id="Property.IncompatibleVersion_ErrorText">
+    <STRING lang="cs" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
+    <STRING lang="de" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
+    <STRING lang="es" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
+    <STRING lang="fr" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
+    <STRING lang="ja" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
+    <STRING lang="pt" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
+    <STRING lang="pt_BR" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
+    <STRING lang="ru" value="Уже установлена другая версия приложения, несовместимая с этой установкой. Пожалуйста, сначала удалите текущую версию или загрузите правильную версию для установки."/>
+    <STRING lang="sl" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
   </ENTRY>
   <ENTRY id="Property.JUMP_LIST_ARG">
-    <STRING lang="cs" value="Nový_dokument Nový_sešit Nová_prezentace Nová_šablona_formuláře"/>
-    <STRING lang="de" value="Neues_Dokument Neue_Tabelle Neue_Präsentation Neue_Formularvorlage"/>
-    <STRING lang="es" value="Nuevo_Documento Nueva_Hoja_de_Cálculo Nueva_Presentación Nueva_plantilla_de_formulario"/>
-    <STRING lang="fr" value="Nouveau_document Nouvelle_feuille_de_calcul Nouvelle_présentation Nouveau_modèle_de_formulaire"/>
-    <STRING lang="ja" value="新しいドキュメント 新しいスプレッドシート 新しいプレゼンテーション 新しいフォームテンプレート"/>
-    <STRING lang="pt" value=""/>
-    <STRING lang="pt_BR" value="Novo_Documento Nova_planilha Nova_apresentação Novo_Formulário_Mestre"/>
-    <STRING lang="ru" value="Новый_документ Новая_таблица Новая_презентация Новый_шаблон_формы"/>
-    <STRING lang="sl" value="Nov_dokument Nova_razpredelnica Nova_predstavitev Nova_predloga_za_obrazec"/>
+    <STRING lang="cs" value="Nový_dokument Nový_sešit Nová_prezentace Nový_PDF_formulář"/>
+    <STRING lang="de" value="Neues_Dokument Neue_Tabelle Neue_Präsentation Neues_PDF-Formular"/>
+    <STRING lang="es" value="Nuevo_Documento Nueva_Hoja_de_Cálculo Nueva_Presentación Nuevo_formulario_PDF"/>
+    <STRING lang="fr" value="Nouveau_document Nouvelle_feuille_de_calcul Nouvelle_présentation Nouveau_formulaire_PDF"/>
+    <STRING lang="ja" value="新しいドキュメント 新しいスプレッドシート 新しいプレゼンテーション 新しいPDFフォーム"/>
+    <STRING lang="pt" value="Novo_documento Nova_folha_de_cálculo Nova_apresentação Novo_formulário_PDF"/>
+    <STRING lang="pt_BR" value="Novo_documento Nova_planilha Nova_apresentação Novo_formulário_PDF"/>
+    <STRING lang="ru" value="Новый_документ Новая_таблица Новая_презентация Новая_PDF-форма"/>
+    <STRING lang="sl" value="Nov_dokument Nova_razpredelnica Nova_predstavitev Novi_PDF_obrazec"/>
   </ENTRY>
-  <ENTRY id="Property.Manufacturer">
-    <STRING lang="cs" value="Ascensio System SIA"/>
-    <STRING lang="de" value="Ascensio System SIA"/>
-    <STRING lang="es" value="Ascensio System SIA"/>
-    <STRING lang="fr" value="Ascensio System SIA"/>
-    <STRING lang="ja" value="Ascensio System SIA"/>
-    <STRING lang="pt" value="Ascensio System SIA"/>
-    <STRING lang="pt_BR" value="Ascensio System SIA"/>
-    <STRING lang="ru" value="Ascensio System SIA"/>
-    <STRING lang="sl" value="Ascensio System SIA"/>
+  <ENTRY id="Property.LOCALE">
+    <STRING lang="cs" value="cs"/>
+    <STRING lang="de" value="de"/>
+    <STRING lang="es" value="es"/>
+    <STRING lang="fr" value="fr"/>
+    <STRING lang="ja" value="ja"/>
+    <STRING lang="pt" value="pt-PT"/>
+    <STRING lang="pt_BR" value="pt-BR"/>
+    <STRING lang="ru" value="ru"/>
+    <STRING lang="sl" value="sl"/>
   </ENTRY>
-  <ENTRY id="Property.MANUFACTURER_INSTALL_FOLDER">
-    <STRING lang="cs" value="ONLYOFFICE"/>
-    <STRING lang="de" value="ONLYOFFICE"/>
-    <STRING lang="es" value="ONLYOFFICE"/>
-    <STRING lang="fr" value="ONLYOFFICE"/>
-    <STRING lang="ja" value="ONLYOFFICE"/>
-    <STRING lang="pt" value="ONLYOFFICE"/>
-    <STRING lang="pt_BR" value="ONLYOFFICE"/>
-    <STRING lang="ru" value="ONLYOFFICE"/>
-    <STRING lang="sl" value="ONLYOFFICE"/>
+  <ENTRY id="Property.NewDocument">
+    <STRING lang="cs" value="Nový dokument"/>
+    <STRING lang="de" value="Neues Dokument"/>
+    <STRING lang="es" value="Nuevo Documento"/>
+    <STRING lang="fr" value="Nouveau document"/>
+    <STRING lang="ja" value="新しいドキュメント"/>
+    <STRING lang="pt" value="Novo documento"/>
+    <STRING lang="pt_BR" value="Novo documento"/>
+    <STRING lang="ru" value="Новый документ"/>
+    <STRING lang="sl" value="Nov dokument"/>
   </ENTRY>
-  <ENTRY id="Property.MEDIA_SHORTCUT_NAME">
-    <STRING lang="cs" value="Media"/>
-    <STRING lang="de" value="Media"/>
-    <STRING lang="es" value="Media"/>
-    <STRING lang="fr" value="Media"/>
-    <STRING lang="ja" value="Media"/>
-    <STRING lang="pt" value="Media"/>
-    <STRING lang="pt_BR" value="Media"/>
-    <STRING lang="ru" value="Media"/>
-    <STRING lang="sl" value="Media"/>
+  <ENTRY id="Property.NewForm">
+    <STRING lang="cs" value="Nový PDF formulář"/>
+    <STRING lang="de" value="Neues PDF-Formular"/>
+    <STRING lang="es" value="Nuevo formulario PDF"/>
+    <STRING lang="fr" value="Nouveau formulaire PDF"/>
+    <STRING lang="ja" value="新しいPDFフォーム"/>
+    <STRING lang="pt" value="Novo formulário PDF"/>
+    <STRING lang="pt_BR" value="Novo formulário PDF"/>
+    <STRING lang="ru" value="Новая PDF-форма"/>
+    <STRING lang="sl" value="Novi PDF obrazec"/>
   </ENTRY>
-  <ENTRY id="Property.PRODUCT_INSTALL_FOLDER">
-    <STRING lang="cs" value="DesktopEditors"/>
-    <STRING lang="de" value="DesktopEditors"/>
-    <STRING lang="es" value="DesktopEditors"/>
-    <STRING lang="fr" value="DesktopEditors"/>
-    <STRING lang="ja" value="DesktopEditors"/>
-    <STRING lang="pt" value="DesktopEditors"/>
-    <STRING lang="pt_BR" value="DesktopEditors"/>
-    <STRING lang="ru" value="DesktopEditors"/>
-    <STRING lang="sl" value="DesktopEditors"/>
+  <ENTRY id="Property.NewPresentation">
+    <STRING lang="cs" value="Nová prezentace"/>
+    <STRING lang="de" value="Neue Präsentation"/>
+    <STRING lang="es" value="Nueva Presentación"/>
+    <STRING lang="fr" value="Nouvelle présentation"/>
+    <STRING lang="ja" value="新しいプレゼンテーション"/>
+    <STRING lang="pt" value="Nova apresentação"/>
+    <STRING lang="pt_BR" value="Nova apresentação"/>
+    <STRING lang="ru" value="Новая презентация"/>
+    <STRING lang="sl" value="Nova predstavitev"/>
   </ENTRY>
-  <ENTRY id="Property.ProductName">
-    <STRING lang="cs" value="ONLYOFFICE Desktop Editors"/>
-    <STRING lang="de" value="ONLYOFFICE Desktop Editors"/>
-    <STRING lang="es" value="ONLYOFFICE Desktop Editors"/>
-    <STRING lang="fr" value="ONLYOFFICE Desktop Editors"/>
-    <STRING lang="ja" value="ONLYOFFICE Desktop Editors"/>
-    <STRING lang="pt" value="ONLYOFFICE Desktop Editors"/>
-    <STRING lang="pt_BR" value="ONLYOFFICE Desktop Editors"/>
-    <STRING lang="ru" value="ONLYOFFICE Desktop Editors"/>
-    <STRING lang="sl" value="ONLYOFFICE Desktop Editors"/>
+  <ENTRY id="Property.NewSpreadsheet">
+    <STRING lang="cs" value="Nový sešit"/>
+    <STRING lang="de" value="Neue Tabelle"/>
+    <STRING lang="es" value="Nueva Hoja de Cálculo"/>
+    <STRING lang="fr" value="Nouvelle feuille de calcul"/>
+    <STRING lang="ja" value="新しいスプレッドシート"/>
+    <STRING lang="pt" value="Nova folha de cálculo"/>
+    <STRING lang="pt_BR" value="Nova planilha"/>
+    <STRING lang="ru" value="Новая таблица"/>
+    <STRING lang="sl" value="Nova razpredelnica"/>
   </ENTRY>
-  <ENTRY id="Property.SHORTCUT_FOLDER_NAME">
-    <STRING lang="cs" value="ONLYOFFICE"/>
-    <STRING lang="de" value="ONLYOFFICE"/>
-    <STRING lang="es" value="ONLYOFFICE"/>
-    <STRING lang="fr" value="ONLYOFFICE"/>
-    <STRING lang="ja" value="ONLYOFFICE"/>
-    <STRING lang="pt" value="ONLYOFFICE"/>
-    <STRING lang="pt_BR" value="ONLYOFFICE"/>
-    <STRING lang="ru" value="ONLYOFFICE"/>
-    <STRING lang="sl" value="ONLYOFFICE"/>
+  <ENTRY id="Property.ServiceDescription">
+    <STRING lang="cs" value="Služba aktualizace [PackageName]"/>
+    <STRING lang="de" value="Update service for [PackageName]"/>
+    <STRING lang="es" value="Update service for [PackageName]"/>
+    <STRING lang="fr" value="Service de mise à jour [PackageName]"/>
+    <STRING lang="ja" value="アップデートサービス[PackageName]"/>
+    <STRING lang="pt" value="Update service for [PackageName]"/>
+    <STRING lang="pt_BR" value="Serviço para atualização [PackageName]"/>
+    <STRING lang="ru" value="Сервис обновлений [PackageName]"/>
+    <STRING lang="sl" value="Storitev za posodobitev [PackageName]"/>
   </ENTRY>
-  <ENTRY id="Property.UNINSTALL_PREV_ERROR_TEXT">
-    <STRING lang="cs" value="To install [|ProductName], the previous version must be uninstalled."/>
-    <STRING lang="de" value="To install [|ProductName], the previous version must be uninstalled."/>
-    <STRING lang="es" value="To install [|ProductName], the previous version must be uninstalled."/>
-    <STRING lang="fr" value="To install [|ProductName], the previous version must be uninstalled."/>
-    <STRING lang="ja" value="To install [|ProductName], the previous version must be uninstalled."/>
-    <STRING lang="pt" value="To install [|ProductName], the previous version must be uninstalled."/>
-    <STRING lang="pt_BR" value="To install [|ProductName], the previous version must be uninstalled."/>
-    <STRING lang="ru" value="Для установки [|ProductName] необходимо удалить предыдущую версию."/>
-    <STRING lang="sl" value="To install [|ProductName], the previous version must be uninstalled."/>
-  </ENTRY>
-  <ENTRY id="Property.UNINSTALL_PREV_MSGBOX">
-    <STRING lang="cs" value="The previous version of [|ProductName] detected, please click &apos;OK&apos; button to uninstall it, or &apos;Cancel&apos; to quit setup."/>
-    <STRING lang="de" value="The previous version of [|ProductName] detected, please click &apos;OK&apos; button to uninstall it, or &apos;Cancel&apos; to quit setup."/>
-    <STRING lang="es" value="The previous version of [|ProductName] detected, please click &apos;OK&apos; button to uninstall it, or &apos;Cancel&apos; to quit setup."/>
-    <STRING lang="fr" value="The previous version of [|ProductName] detected, please click &apos;OK&apos; button to uninstall it, or &apos;Cancel&apos; to quit setup."/>
-    <STRING lang="ja" value="The previous version of [|ProductName] detected, please click &apos;OK&apos; button to uninstall it, or &apos;Cancel&apos; to quit setup."/>
-    <STRING lang="pt" value="The previous version of [|ProductName] detected, please click &apos;OK&apos; button to uninstall it, or &apos;Cancel&apos; to quit setup."/>
-    <STRING lang="pt_BR" value="The previous version of [|ProductName] detected, please click &apos;OK&apos; button to uninstall it, or &apos;Cancel&apos; to quit setup."/>
-    <STRING lang="ru" value="Обнаружена предыдущая версия [|ProductName], нажмите кнопку &apos;OK&apos; чтобы удалить её, или &apos;Отмена&apos; чтобы выйти из программы инсталляции."/>
-    <STRING lang="sl" value="The previous version of [|ProductName] detected, please click &apos;OK&apos; button to uninstall it, or &apos;Cancel&apos; to quit setup."/>
-  </ENTRY>
+  <!-- -->
   <ENTRY id="ButtonText_DeselectAll">
     <STRING lang="cs" value="Zrušit výběr všech"/>
     <STRING lang="de" value="Alle abwählen"/>

@@ -33,18 +33,12 @@
 #include "components/cprintprogress.h"
 #include <QHBoxLayout>
 #include <QPushButton>
-#include <QKeyEvent>
-#include <QCoreApplication>
 #include "common/Types.h"
 #include "utils.h"
 
-#ifdef _WIN32
-//#define WINVER 0x0500
-# include <windows.h>
-#else
+#ifdef __linux__
 # include "cascapplicationmanagerwrapper.h"
-# include "windows/platform_linux/cx11decoration.h"
-#endif // Q_WS_WIN32
+#endif
 
 
 class CDialogEventFilter : public QObject

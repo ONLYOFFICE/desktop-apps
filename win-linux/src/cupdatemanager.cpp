@@ -51,6 +51,9 @@
 #else
 # include <QProcess>
 # include <unistd.h>
+# include <spawn.h>
+# include <fcntl.h>
+# include <elf.h>
 # include "components/cmessage.h"
 # include "platform_linux/updatedialog.h"
 # define DAEMON_NAME "/updatesvc"
@@ -65,6 +68,7 @@
 #define CHECK_ON_STARTUP_MS 9000
 #define CMD_ARGUMENT_UPDATES_CHANNEL L"--updates-appcast-channel"
 #define CMD_ARGUMENT_UPDATES_INTERVAL L"--updates-interval"
+#define SERVICE_NAME APP_TITLE " Update Service"
 #ifndef URL_APPCAST_UPDATES
 # define URL_APPCAST_UPDATES ""
 #endif
@@ -91,6 +95,7 @@ const char *SVC_TXT_ERR_UNPACKING   = QT_TRANSLATE_NOOP("CUpdateManager", "An er
            *TXT_AVAILABLE_UPD   = QT_TRANSLATE_NOOP("CUpdateManager", "Update is available (version %1)"),
            *TXT_DOWNLOADING_UPD = QT_TRANSLATE_NOOP("CUpdateManager", "Downloading new version %1 (%2%)"),
            *TXT_PREPARING_UPD   = QT_TRANSLATE_NOOP("CUpdateManager", "Preparing update..."),
+           *TXT_UNZIP_UPD       = QT_TRANSLATE_NOOP("CUpdateManager", "Preparing update (%1%)"),
            *TXT_RESTART_TO_UPD  = QT_TRANSLATE_NOOP("CUpdateManager", "To finish updating, restart app"),
            *TXT_ERR_NOT_ALLOWED = QT_TRANSLATE_NOOP("CUpdateManager", "Updates are not allowed!"),
            *TXT_ERR_URL         = QT_TRANSLATE_NOOP("CUpdateManager", "Unable to check update: URL not defined."),
@@ -209,31 +214,103 @@ auto runProcess(const tstring &fileName, const tstring &args, bool runAsAdmin = 
         CloseHandle(shExInfo.hProcess);
         return true;
     }
+    return false;
 #else
     Q_UNUSED(runAsAdmin)
-    QStringList _args = QString::fromStdString(args).split(" ");
-    if (QProcess::startDetached(QString::fromStdString(fileName), _args))
-        return true;
+    const QStringList args_list = args.empty() ? QStringList() : QString::fromStdString(args).split(" ");
+    char **_args = new char*[args_list.size() + 2];
+    int i = 0;
+    _args[i++] = const_cast<char*>(fileName.c_str());
+    for (const auto &arg : args_list)
+        _args[i++] = arg.toLocal8Bit().data();
+    _args[i] = NULL;
+    pid_t pid;
+    posix_spawn_file_actions_t acts;
+    posix_spawn_file_actions_init(&acts);
+    posix_spawn_file_actions_addclosefrom_np(&acts, 0);
+    int res = posix_spawn(&pid, fileName.c_str(), &acts, NULL, _args, environ);
+    posix_spawn_file_actions_destroy(&acts);
+    delete[] _args;
+    return res == 0;
 #endif
-    return false;
+}
+
+auto getFileVersion(const tstring &filePath)->QString
+{
+    QString ver;
+#ifdef _WIN32
+    DWORD handle, size = GetFileVersionInfoSize(filePath.c_str(), &handle);
+    if (size > 0) {
+        BYTE *data = new BYTE[size];
+        if (GetFileVersionInfo(filePath.c_str(), handle, size, (LPVOID)data)) {
+            UINT len = 0;
+            VS_FIXEDFILEINFO *verInfo = NULL;
+            if (VerQueryValue((LPCVOID)data, L"\\", (LPVOID*)&verInfo, &len)) {
+                if (verInfo->dwSignature == 0xfeef04bd) {
+                    ver = QString("%1.%2.%3.%4").arg(QString::number(HIWORD(verInfo->dwFileVersionMS)),
+                                                     QString::number(LOWORD(verInfo->dwFileVersionMS)),
+                                                     QString::number(HIWORD(verInfo->dwFileVersionLS)),
+                                                     QString::number(LOWORD(verInfo->dwFileVersionLS)));
+                }
+            }
+        }
+        delete[] data;
+    }
+#else
+    int fd = open(filePath.c_str(), O_RDONLY);
+    if (fd != -1) {
+        Elf64_Ehdr header;
+        if (read(fd, &header, sizeof(header)) == sizeof(header)) {
+            Elf64_Shdr section;
+            off_t ofset = header.e_shoff + header.e_shentsize * header.e_shstrndx;
+            if (lseek(fd, ofset, SEEK_SET) == ofset && read(fd, &section, sizeof(section)) == sizeof(section)) {
+                char *shstrtab = new char[section.sh_size];
+                if (lseek(fd, section.sh_offset, SEEK_SET) == (off_t)section.sh_offset &&
+                        read(fd, shstrtab, section.sh_size) == (ssize_t)section.sh_size) {
+                    for (int i = 0; i < header.e_shnum; ++i) {
+                        ofset = header.e_shoff + i * header.e_shentsize;
+                        if (lseek(fd, ofset, SEEK_SET) == ofset && read(fd, &section, sizeof(section)) == sizeof(section)) {
+                            if (strcmp(".version_info", shstrtab + section.sh_name) == 0) {
+                                if (lseek(fd, section.sh_offset, SEEK_SET) == (off_t)section.sh_offset) {
+                                    char *version = new char[section.sh_size];
+                                    if (read(fd, version, section.sh_size) == (ssize_t)section.sh_size)
+                                        ver = QString(version);
+                                    delete[] version;
+                                }
+                                break;
+                            }
+                        }
+                    }
+                }
+                delete[] shstrtab;
+            }
+        }
+        close(fd);
+    }
+#endif
+    return ver;
 }
 
 struct CUpdateManager::PackageData {
     QString fileName,
             fileType,
             fileSize,
+            object,
             hash,
             version;
     wstring packageUrl,
             packageArgs;
+    bool    isInstallable = true;
     void clear() {
         fileName.clear();
         fileType.clear();
         fileSize.clear();
+        object.clear();
         hash.clear();
         version.clear();
         packageUrl.clear();
         packageArgs.clear();
+        isInstallable = true;
     }
 };
 
@@ -351,6 +428,10 @@ void CUpdateManager::init()
                 QMetaObject::invokeMethod(this, "onProgressSlot", Qt::QueuedConnection, Q_ARG(int, std::stoi(params[1])));
                 break;
 
+            case MSG_UnzipProgress:
+                QMetaObject::invokeMethod(this, "onUnzipProgressSlot", Qt::QueuedConnection, Q_ARG(int, std::stoi(params[1])));
+                break;
+
             case MSG_RequestContentLenght: {
                 double fileSize = std::stod(params[1])/1024/1024;
                 m_packageData->fileSize = (fileSize == 0) ? "--" : QString::number(fileSize, 'f', 1);
@@ -448,6 +529,11 @@ void CUpdateManager::updateNeededCheking()
 void CUpdateManager::onProgressSlot(const int percent)
 {
     refreshStartPage({"", {TXT_DOWNLOADING_UPD, m_packageData->version, QString::number(percent)}});
+}
+
+void CUpdateManager::onUnzipProgressSlot(const int percent)
+{
+    refreshStartPage({"", {TXT_UNZIP_UPD, QString::number(percent)}});
 }
 
 void CUpdateManager::onError(const QString &error)
@@ -613,6 +699,15 @@ void CUpdateManager::launchIntervalStartTimer()
         m_pIntervalStartTimer->start();
 }
 
+void CUpdateManager::setServiceLang(QString lang)
+{
+    if (lang.isEmpty())
+        lang = CLangater::getLangName();
+    lang.replace('-', '_');
+    if (!m_socket->sendMessage(MSG_SetLanguage, QStrToTStr(lang)))
+        CLogger::log("Cannot set service language to: " + lang);
+}
+
 QString CUpdateManager::getVersion() const
 {
     return m_packageData->version;
@@ -669,7 +764,8 @@ void CUpdateManager::handleAppClose()
                 return;
             }
 #endif
-            if (!m_socket->sendMessage(MSG_StartReplacingFiles, IsPackage(ISS) ? _T("iss") : IsPackage(MSI) ? _T("msi") :
+            int cmd = (m_packageData->object == "app") ? MSG_StartReplacingFiles : MSG_StartReplacingService;
+            if (!m_socket->sendMessage(cmd, IsPackage(ISS) ? _T("iss") : IsPackage(MSI) ? _T("msi") :
                    IsPackage(Portable) ? _T("portable") : _T("other"), m_restartAfterUpdate ? _T("true") : _T("false"))) {
                 criticalMsg(nullptr, QObject::tr("An error occurred while start replacing files: Update Service not found!"));
             }
@@ -729,19 +825,24 @@ void CUpdateManager::onLoadCheckFinished(const QString &filePath)
 
         QString version = root.value("version").toString();
         QString curr_version = QString::fromLatin1(VER_FILEVERSION_STR);
-
-        if (isVersionBHigherThanA(curr_version, version) && (version != ignoredVersion())) {
-            m_packageData->version = version;
-            // parse package
-            QJsonObject package = root.value("package").toObject();
+        QString svc_version = root.value("serviceVersion").toString();
+        QString curr_svc_version = getFileVersion(QStrToTStr(qApp->applicationDirPath()) + DAEMON_NAME);
+        QJsonObject package = root.value("package").toObject();
 #ifdef _WIN32
 # ifdef _WIN64
-            QJsonObject win = package.value("win_64").toObject();
+        QJsonObject win = package.value("win_64").toObject();
 # else
-            QJsonObject win = package.value("win_32").toObject();
+        QJsonObject win = package.value("win_32").toObject();
 # endif
-            QJsonObject package_type = win.value("archive").toObject();
+#else
+        QJsonObject win = package.value("linux_64").toObject();
+#endif
+        if (isVersionBHigherThanA(curr_version, version) && (version != ignoredVersion())) {
+            m_packageData->object = "app";
+            m_packageData->version = version;
             m_packageData->fileType = "archive";
+            QJsonObject package_type = win.value("archive").toObject();
+#ifdef _WIN32
             if (!IsPackage(Portable)) {
                 const QString install_key = IsPackage(MSI) ? "msi" : "iss";
                 if (win.contains(install_key)) {
@@ -756,10 +857,6 @@ void CUpdateManager::onLoadCheckFinished(const QString &filePath)
                     }
                 }
             }
-#else
-            QJsonObject win = package.value("linux_64").toObject();
-            QJsonObject package_type = win.value("archive").toObject();
-            m_packageData->fileType = "archive";
 #endif
             m_packageData->packageUrl = package_type.value("url").toString().toStdWString();
             m_packageData->hash = package_type.value("md5").toString().toLower();
@@ -768,6 +865,23 @@ void CUpdateManager::onLoadCheckFinished(const QString &filePath)
             QJsonObject release_notes = root.value("releaseNotes").toObject();
             const QString lang = CLangater::getCurrentLangCode() == "ru-RU" ? "ru-RU" : "en-EN";
             QJsonValue changelog = release_notes.value(lang);
+
+            QString min_version = root.value("minVersion").toString();
+            if (!min_version.isEmpty() && isVersionBHigherThanA(curr_version, min_version))
+                m_packageData->isInstallable = false;
+            clearTempFiles(m_packageData->isInstallable && isSavedPackageValid() ? m_savedPackageData->fileName : "");
+            if (m_packageData->packageUrl.empty() || !m_socket->sendMessage(MSG_RequestContentLenght, WStrToTStr(m_packageData->packageUrl))) {
+                m_packageData->fileSize = "--";
+                onCheckFinished(false, true, m_packageData->version, "");
+            }
+        } else
+        if (isVersionBHigherThanA(curr_svc_version, svc_version)) {
+            m_packageData->object = "svc";
+            m_packageData->version = svc_version;
+            m_packageData->fileType = "archive";
+            QJsonObject package_type = win.value("serviceArchive").toObject();
+            m_packageData->packageUrl = package_type.value("url").toString().toStdWString();
+            m_packageData->hash = package_type.value("md5").toString().toLower();
 
             clearTempFiles(isSavedPackageValid() ? m_savedPackageData->fileName : "");
             if (m_packageData->packageUrl.empty() || !m_socket->sendMessage(MSG_RequestContentLenght, WStrToTStr(m_packageData->packageUrl))) {
@@ -787,6 +901,16 @@ void CUpdateManager::onCheckFinished(bool error, bool updateExist, const QString
 {
     if ( !error) {
         if ( updateExist ) {
+//            if (m_packageData->object == "svc") {
+//                __UNLOCK
+//                loadUpdates();
+//                return;
+//            } else
+            if (!m_packageData->isInstallable) {
+                refreshStartPage({"lastcheck", {TXT_AVAILABLE_UPD, version}, BTN_TXT_CHECK, "check", "false"});
+                m_dialogSchedule->addToSchedule("showUpdateMessage");
+                return;
+            }
             switch (getUpdateMode()) {
             case UpdateMode::SILENT:
                 __UNLOCK
@@ -816,15 +940,24 @@ void CUpdateManager::onCheckFinished(bool error, bool updateExist, const QString
 }
 
 void CUpdateManager::showUpdateMessage(QWidget *parent) {
+    QString name = (m_packageData->object == "app") ? QString(WINDOW_NAME) : QString(SERVICE_NAME);
+    QString curr_version = (m_packageData->object == "app") ? QString(VER_FILEVERSION_STR) :
+                               getFileVersion(QStrToTStr(qApp->applicationDirPath()) + DAEMON_NAME);
+    QString text = m_packageData->isInstallable ? tr("Would you like to download update now?") :
+                       tr("The current version does not support installing this update directly. "
+                          "To install updates, you can download the required package from the official website.");
     int result = WinDlg::showDialog(parent, tr("Update is available"),
-                        QString("%1\n%2: %3\n%4: %5\n%6 (%7 MB)").arg(QString(WINDOW_NAME), tr("Current version"),
-                        QString(VER_FILEVERSION_STR), tr("New version"), getVersion(),
-                        tr("Would you like to download update now?"), m_packageData->fileSize),
+                        QString("%1\n%2: %3\n%4: %5\n%6 (%7 MB)").arg(name, tr("Current version"),
+                        curr_version, tr("New version"), getVersion(),
+                        text, m_packageData->fileSize),
                         WinDlg::DlgBtns::mbSkipRemindDownload);
     __UNLOCK
     switch (result) {
     case WinDlg::DLG_RESULT_DOWNLOAD:
-        loadUpdates();
+        if (m_packageData->isInstallable)
+            loadUpdates();
+        else
+            Utils::openUrl(DOWNLOAD_PAGE);
         break;
     case WinDlg::DLG_RESULT_SKIP: {
         skipVersion();
@@ -839,9 +972,12 @@ void CUpdateManager::showUpdateMessage(QWidget *parent) {
 
 void CUpdateManager::showStartInstallMessage(QWidget *parent)
 {
+    QString name = (m_packageData->object == "app") ? QString(WINDOW_NAME) : QString(SERVICE_NAME);
+    QString curr_version = (m_packageData->object == "app") ? QString(VER_FILEVERSION_STR) :
+                               getFileVersion(QStrToTStr(qApp->applicationDirPath()) + DAEMON_NAME);
     int result = WinDlg::showDialog(parent, tr("Update is ready to install"),
-                        QString("%1: %2\n%3: %4\n%5").arg(tr("Current version"),
-                        QString(VER_FILEVERSION_STR), tr("New version"), getVersion(),
+                        QString("%1\n%2: %3\n%4: %5\n%6").arg(name, tr("Current version"),
+                        curr_version, tr("New version"), getVersion(),
                         tr("To finish updating, restart the app")),
                         WinDlg::DlgBtns::mbInslaterRestart);
     __UNLOCK

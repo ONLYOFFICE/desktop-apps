@@ -41,7 +41,7 @@
 "Document %ld.docx" = "ドキュメント %ld.docx";
 
 /* No comment provided by engineer. */
-"Document %ld.docxf" = "ドキュメント %ld.docxf";
+"Document %ld.pdf" = "ドキュメント %ld.pdf";
 
 /* No comment provided by engineer. */
 "Document template" = "Word オープン XMLドキュメントテンプレート (*.dotx)";
@@ -87,6 +87,9 @@
 
 /* No comment provided by engineer. */
 "new-document" = "新規ドキュメント";
+
+/* No comment provided by engineer. */
+"new-pdfform" = "新しいPDFフォーム";
 
 /* No comment provided by engineer. */
 "new-presentation" = "新規プレゼンテーション";
@@ -195,9 +198,6 @@
 
 /* No comment provided by engineer. */
 "Untitled" = "無題";
-
-/* No comment provided by engineer. */
-"Version %@ (%@)" = "バージョン%1$@ (%2$@)";
 
 /* No comment provided by engineer. */
 "Web Page" = "ホームページ";

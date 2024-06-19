@@ -88,7 +88,8 @@ static NSUInteger const kASTabViewCloseButtonSize = 12;
 
 - (instancetype)copyWithZone:(NSZone *)zone
 {
-    ASCTabView * copy = [[ASCTabView allocWithZone:zone] initWithFrame:self.frame];
+//    ASCTabView * copy = [[ASCTabView allocWithZone:zone] initWithFrame:self.frame];
+    ASCTabView * copy = [[ASCTabView allocWithZone:zone] initWithFrame:CGRectZero];
     copy.type = self.type;
 
     ASCTabViewCell * cellCopy = [self.cell copy];
@@ -96,7 +97,15 @@ static NSUInteger const kASTabViewCloseButtonSize = 12;
     [copy setState:[self state]];
     [copy setNeedsDisplay];
 
+    copy.frame = self.frame;
     return copy;
+}
+
+- (void)refreshPortalTabIconset {
+    NSString * normalIcon = [NSApplication isSystemDarkMode] ? @"icon_tab_portal_inactive" : @"icon_tab_portal_active",
+            * activeIcon = [ASCThemesController isCurrentThemeDark] ? @"icon_tab_portal_inactive" : @"icon_tab_portal_active";
+
+    _icons[ASCTabViewTypePortal] = @{@"normal": normalIcon, @"active": activeIcon};
 }
 
 - (void)initialize {   
@@ -120,15 +129,13 @@ static NSUInteger const kASTabViewCloseButtonSize = 12;
                ]
     ];
 
-    if ([NSApplication isSystemDarkMode]) {
-        _icons[ASCTabViewTypePortal] = @{@"normal": @"icon_tab_portal_inactive", @"active": @"icon_tab_portal_active"};
-    }
+    [self refreshPortalTabIconset];
 
     ASCTabViewCell * tabCell = [[ASCTabViewCell alloc] initTextCell:self.title];
     [self setBordered:NO];
     [self setCell:tabCell];
     [self setState:NSControlStateValueOn];
-    [self.cell setImagePosition:NSImageLeft];
+//    [self.cell setImagePosition:NSImageLeft];
     [self.cell setBordered:NO];
         
     self.close = [[ASCButton alloc] initWithFrame:CGRectZero];
@@ -141,12 +148,9 @@ static NSUInteger const kASTabViewCloseButtonSize = 12;
     [self.cell setCloseButton:self.close];
     
     [self.close setAutoresizingMask:NSViewMinXMargin | NSViewMaxYMargin];
-    [self.close setFrame:CGRectMake(
-                                    CGRectGetWidth(self.frame) - kASTabViewCloseButtonSize * 1.5,
-                                    kASTabViewCloseButtonSize / 1.5,
-                                    kASTabViewCloseButtonSize,
-                                    kASTabViewCloseButtonSize
-                                    )];
+
+    if ( CGRectGetWidth(self.frame) )
+        [self setButtonCloseOrigin:self.frame];
 
     __weak __typeof__(self) weakSelf = self;
     tabCell.updateState = ^{
@@ -167,7 +171,13 @@ static NSUInteger const kASTabViewCloseButtonSize = 12;
 }
 
 - (void)setFrame:(NSRect)frame {
+    bool needUpdateCloseOrigin = self.frame.size.width != frame.size.width;
+
     [super setFrame:frame];
+
+    if ( needUpdateCloseOrigin ) {
+        [self setButtonCloseOrigin:frame];
+    }
 }
 
 - (void)setState:(NSInteger)state {
@@ -205,6 +215,7 @@ static NSUInteger const kASTabViewCloseButtonSize = 12;
     _type = type;
     
     if (type > ASCTabViewTypeUnknown && type < [_icons count]) {
+        [self refreshPortalTabIconset];
         NSString * iconName = (self.state)
             ? _icons[type][@"active"]
             : _icons[type][@"normal"];
@@ -217,11 +228,7 @@ static NSUInteger const kASTabViewCloseButtonSize = 12;
     ASCTabViewCell * tabViewCell = (ASCTabViewCell *)self.cell;
 
     if (type == ASCTabViewTypePortal) {
-        if (@available(macOS 10.13, *)) {
-            tabViewCell.activeColor = [NSColor colorNamed:@"tab-portal-activeColor"];
-        } else {
-            tabViewCell.activeColor = UIColorFromRGB(0xffffff);
-        }
+        tabViewCell.activeColor     = [ASCThemesController currentThemeColor:btnPortalActiveBackgroundColor];
         tabViewCell.activeTextColor = [tabViewCell.activeColor isLight] ? NSColor.blackColor : NSColor.whiteColor;
     } else if (type == ASCTabViewTypeDocument) {
         tabViewCell.activeColor = [ASCThemesController currentThemeColor:tabWordActiveBackgroundColor];
@@ -274,6 +281,17 @@ static NSUInteger const kASTabViewCloseButtonSize = 12;
             [_delegate tabDidUpdate:self];
         }
     }
+}
+
+- (void)setButtonCloseOrigin:(NSRect)rect {
+    CGFloat btnCloseOriginLeft = [self userInterfaceLayoutDirection] != NSUserInterfaceLayoutDirectionRightToLeft ?
+                                        CGRectGetWidth(rect) - kASTabViewCloseButtonSize * 1.5 : kASTabViewCloseButtonSize / 1.5;
+
+    [self.close setFrame:CGRectMake(btnCloseOriginLeft,
+                                    kASTabViewCloseButtonSize / 1.5,
+                                    kASTabViewCloseButtonSize,
+                                    kASTabViewCloseButtonSize
+                                    )];
 }
 
 - (NSString *)title {

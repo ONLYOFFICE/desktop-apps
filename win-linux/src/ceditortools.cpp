@@ -42,6 +42,7 @@
 #include "components/cmessage.h"
 #include <QApplication>
 #include <QDir>
+#include <QJsonObject>
 
 using namespace NSEditorApi;
 
@@ -259,7 +260,7 @@ namespace CEditorTools
         return dlg.selectFolder(sel_path).toStdWString();
     }
 
-    auto createEditorPanel(const COpenOptions& opts, const QRect& rect) -> CTabPanel *
+    auto createEditorPanel(const COpenOptions& opts) -> CTabPanel *
     {
         int _file_format{0};
         if ( opts.srctype == etLocalFile ) {
@@ -277,7 +278,12 @@ namespace CEditorTools
             }
         }
 
-        CTabPanel * panel = CTabPanel::createEditorPanel();
+        CTabPanel * panel = CTabPanel::createEditorPanel(nullptr, opts.panel_size);
+        QJsonObject json_opts = opts.parent_widget == COpenOptions::eWidgetType::window ?
+                            QJsonObject{{"widgetType","window"}, {"captionHeight",TOOLBTN_HEIGHT}} :
+                            QJsonObject{{"widgetType","tab"}, {"captionHeight",0}};
+
+        panel->cef()->SetParentWidgetInfo(Utils::stringifyJson(json_opts).toStdWString());
 
         bool result = true;
         if (opts.srctype == etLocalFile) {
@@ -313,6 +319,7 @@ namespace CEditorTools
         if ( result ) {
             CAscTabData * data = new CAscTabData(opts.name);
             data->setUrl(opts.wurl);
+            data->setCloudName(opts.cloud);
             data->setIsLocal( opts.srctype == etLocalFile || opts.srctype == etNewFile || opts.srctype == etTemplateFile ||
                            (opts.srctype == etRecentFile && !CExistanceController::isFileRemote(opts.url)) );
 
@@ -407,9 +414,7 @@ namespace CEditorTools
                             AscAppManager::GetFileFormatByExtentionForSave(pSaveData->get_Path());
 
                     pSaveData->put_FileType(format > -1 ? format : 0);
-#ifdef _WIN32
                     Utils::addToRecent(_full_path.toStdWString());
-#endif
                 }
             }
 

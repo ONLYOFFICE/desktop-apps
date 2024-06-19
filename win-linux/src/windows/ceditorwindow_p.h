@@ -33,28 +33,16 @@
 #ifndef CEDITORWINDOW_P_H
 #define CEDITORWINDOW_P_H
 
-#include "ccefeventsgate.h"
-#include "ceditorwindow.h"
-#include "cascapplicationmanagerwrapper.h"
-#include "cascapplicationmanagerwrapper_private.h"
-#include "applicationmanager_events.h"
 #include "utils.h"
 #include "common/Types.h"
 #include "components/cmessage.h"
-#include "qascprinter.h"
 #include "ceditortools.h"
-#include "components/csvgpushbutton.h"
-#include "defines.h"
 #include "components/cfullscrwidget.h"
 #include "components/cprintdialog.h"
-
-#include <QPrinterInfo>
-#include <QDesktopWidget>
 #include <QJsonDocument>
 #include <QJsonArray>
 #include <QJsonObject>
 #include <QGridLayout>
-#include <QStandardPaths>
 #include <QPrintEngine>
 
 #ifdef __linux__
@@ -63,7 +51,7 @@
 # include "platform_win/printdialog.h"
 #endif
 
-#define TOP_PANEL_OFFSET 6*TOOLBTN_WIDTH
+#define DEFAULT_BTNS_COUNT 6
 #define ICON_SPACER_WIDTH 9
 #define ICON_SIZE QSize(20,20)
 #define MARGINS 6
@@ -103,16 +91,20 @@ class CEditorWindowPrivate : public CCefEventsGate
     QLabel * iconuser = nullptr;
     bool isPrinting = false,
         isFullScreen = false;
+    int layoutType = LayoutNone;
     CFullScrWidget * fs_parent = nullptr;
     QLabel * iconcrypted = nullptr;
     QWidget * boxtitlelabel = nullptr,
             * leftboxbuttons = nullptr;
 
     QMap<QString, CSVGPushButton*> m_mapTitleButtons;
+    int leftBtnsCount = DEFAULT_BTNS_COUNT;
 
-public:
-    int titleLeftOffset = 0;
-    bool usedOldEditorVersion = false;
+    enum LayoutType {
+        LayoutNone = 0,
+        LayoutViewer,
+        LayoutEditor
+    };
 
 public:
     CEditorWindowPrivate(CEditorWindow * w) : window(w) {}
@@ -121,29 +113,29 @@ public:
             leftboxbuttons->deleteLater();
     }
 
+    void createHomeButton() {
+        leftboxbuttons = new QWidget;
+        leftboxbuttons->setLayout(new QHBoxLayout);
+        leftboxbuttons->layout()->setSpacing(0);
+        leftboxbuttons->layout()->setMargin(0);
+
+        CSVGPushButton * btnHome = new CSVGPushButton;
+        btnHome->setProperty("class", "normal");
+        btnHome->setProperty("act", "tool");
+        btnHome->setFixedSize(QSize(TOOLBTN_WIDTH,TOOLBTN_HEIGHT) * window->m_dpiRatio);
+        btnHome->setIconSize(QSize(20,20) * window->m_dpiRatio);
+        btnHome->setMouseTracking(true);
+        btnHome->setIcon(":/title/icons/buttons.svg", "svg-btn-home");
+        //btnHome->setToolTip(CEditorWindow::tr("Open main window"));
+        btnHome->setProperty("ToolTip", CEditorWindow::tr("Open main window"));
+        btnHome->setIconOpacity(GetColorByRole(ecrButtonNormalOpacity));
+        m_mapTitleButtons["home"] = btnHome;
+        connect(btnHome, &QPushButton::clicked, std::bind(&CEditorWindow::onClickButtonHome, window));
+        leftboxbuttons->layout()->addWidget(btnHome);
+    }
+
     void init(CTabPanel * const p) override {
         CCefEventsGate::init(p);
-        if (!m_panel->data()->hasFeature(L"btnhome") || viewerMode() || fillformMode()) {  // For old editors only
-            usedOldEditorVersion = true;
-            leftboxbuttons = new QWidget;
-            leftboxbuttons->setLayout(new QHBoxLayout);
-            leftboxbuttons->layout()->setSpacing(0);
-            leftboxbuttons->layout()->setMargin(0);
-
-            CSVGPushButton * btnHome = new CSVGPushButton;
-            btnHome->setProperty("class", "normal");
-            btnHome->setProperty("act", "tool");
-            btnHome->setFixedSize(QSize(TOOLBTN_WIDTH,TOOLBTN_HEIGHT) * window->m_dpiRatio);
-            btnHome->setIconSize(QSize(20,20) * window->m_dpiRatio);
-            btnHome->setMouseTracking(true);
-            btnHome->setIcon(":/title/icons/buttons.svg", "svg-btn-home");
-            //btnHome->setToolTip(CEditorWindow::tr("Open main window"));
-            btnHome->setProperty("ToolTip", CEditorWindow::tr("Open main window"));
-            btnHome->setIconOpacity(GetColorByRole(ecrButtonNormalOpacity));
-            m_mapTitleButtons["home"] = btnHome;
-            connect(btnHome, &QPushButton::clicked, std::bind(&CEditorWindow::onClickButtonHome, window));
-            leftboxbuttons->layout()->addWidget(btnHome);
-        }
     }
 
     QPushButton * cloneEditorHeaderButton(const QJsonObject& jsonobj)  // For old editors only
@@ -180,16 +172,52 @@ public:
         return btn;
     }
 
-    auto extendableTitleToSimple() -> void {
+    auto extendableTitleToSimple(bool set_title = true) -> void {
         Q_ASSERT(window->m_boxTitleBtns != nullptr);
         QGridLayout * const _layout = static_cast<QGridLayout*>(window->m_pMainPanel->layout());
         if ( !_layout->itemAtPosition(0,0) && !_layout->findChild<QWidget*>(window->m_boxTitleBtns->objectName()) ) {
             _layout->addWidget(window->m_boxTitleBtns,0,0,Qt::AlignTop);
             if (iconuser)
                 iconuser->hide();
-            window->m_labelTitle->setText(APP_TITLE);
+            if (set_title)
+                window->m_labelTitle->setText(APP_TITLE);
             changeTheme(GetCurrentTheme().id());
         }
+
+        if (!leftboxbuttons)
+            createHomeButton();
+        else {
+            for (auto it = m_mapTitleButtons.begin(); it != m_mapTitleButtons.end();) {
+                if (it.key() != "home") {
+                    delete it.value();
+                    it = m_mapTitleButtons.erase(it);
+                    continue;
+                }
+                ++it;
+            }
+        }
+        QHBoxLayout *lut = qobject_cast<QHBoxLayout*>(window->m_boxTitleBtns->layout());
+        if (lut->itemAt(0)->widget() != leftboxbuttons)
+            lut->insertWidget(0, leftboxbuttons);
+        leftboxbuttons->show();
+    }
+
+    auto resetSimpleTitleToDefault() -> void {
+        Q_ASSERT(window->m_boxTitleBtns != nullptr);
+        for (auto it = m_mapTitleButtons.begin(); it != m_mapTitleButtons.end();) {
+            delete it.value();
+            it = m_mapTitleButtons.erase(it);
+            continue;
+        }
+        QHBoxLayout *lut = qobject_cast<QHBoxLayout*>(window->m_boxTitleBtns->layout());
+        lut->removeWidget(leftboxbuttons);
+        delete leftboxbuttons, leftboxbuttons = nullptr;
+
+        QGridLayout * const _layout = static_cast<QGridLayout*>(window->m_pMainPanel->layout());
+        _layout->removeWidget(window->m_boxTitleBtns);
+        _layout->addWidget(window->m_boxTitleBtns, 1, 1, Qt::AlignTop);
+        if (!m_panel->data()->title().isEmpty())
+            window->m_labelTitle->setText(m_panel->data()->title());
     }
 
     auto getInitials(const QString &name) -> QString {
@@ -207,7 +235,7 @@ public:
 
     auto centerTitle(double dpiRatio)->void
     {
-        int left_btns = (viewerMode() || fillformMode()) ? 1 : 6;
+        int left_btns = m_mapTitleButtons.size() != 0 ? m_mapTitleButtons.size() : leftBtnsCount;
         int right_btns = 3;
         int spacing = window->m_boxTitleBtns->layout()->spacing();
         int left_offset = left_btns*TOOLBTN_WIDTH + 3*spacing; // added extra spacing
@@ -215,7 +243,7 @@ public:
         int diffW = (left_offset - right_offset)*dpiRatio;
         if (iconuser) {
             diffW -= ICON_SPACER_WIDTH + spacing*dpiRatio;
-            if (!viewerMode() && !fillformMode()) {
+            if (!viewerMode() && !fillformMode() && !m_panel->data()->hasError()) {
                 diffW -= iconuser->width() + spacing*dpiRatio;
             }
         }
@@ -253,46 +281,76 @@ public:
     void onEditorConfig(int, std::wstring cfg) override
     {
 //        if ( id == window->holdView(id) )
-        if ( !window->isCustomWindowStyle() ) return;
+        if ( !window->isCustomWindowStyle() )
+            return;
 
-        QJsonParseError jerror;
-        QJsonDocument jdoc = QJsonDocument::fromJson(QString::fromStdWString(cfg).toUtf8(), &jerror);
-        if( jerror.error == QJsonParseError::NoError ) {
-            QJsonObject objRoot = jdoc.object();
-
-            if ( viewerMode() && !fillformMode())
-                extendableTitleToSimple();
-
-            if ( canExtendTitle() ) {
+        if ( viewerMode() || panel()->data()->features().empty() ) {
+            if (layoutType == LayoutViewer)
+                return;
+            layoutType = LayoutViewer;
+            extendableTitleToSimple();
+        } else
+        if ( canExtendTitle() ) {
+            if (layoutType == LayoutViewer) {
+                resetSimpleTitleToDefault();
+            } else
+            if (layoutType == LayoutEditor)
+                return;
+            layoutType = LayoutEditor;
+            QJsonParseError jerror;
+            QJsonDocument jdoc = QJsonDocument::fromJson(QString::fromStdWString(cfg).toUtf8(), &jerror);
+            if ( jerror.error == QJsonParseError::NoError ) {
+                QJsonObject objRoot = jdoc.object();
                 if ( objRoot.contains("user") ) {
                     QString _user_name = objRoot["user"].toObject().value("name").toString();
                     //iconUser()->setToolTip(_user_name);
                     iconUser()->setProperty("ToolTip", _user_name);
                     adjustIconUser();
                     iconuser->setText(getInitials(_user_name));
+                    iconuser->setVisible(true);
                 }
 
                 if ( objRoot.contains("title") /*&& m_mapTitleButtons.empty()*/ ) {
-                    QJsonArray _btns = objRoot["title"].toObject().value("buttons").toArray();
+                    const QJsonArray _btns = objRoot["title"].toObject().value("buttons").toArray();
                     QHBoxLayout * _layout = qobject_cast<QHBoxLayout *>(window->m_boxTitleBtns->layout());
 
-                    if (usedOldEditorVersion) {  // For old editors only
-                        for (const auto jv: _btns) {
+                    if (!m_panel->data()->hasFeature(L"btnhome")) {  // For old editors only
+                        if (!leftboxbuttons)
+                            createHomeButton();
+                        for (const auto &jv: _btns) {
                             const QJsonObject obj = jv.toObject();
                             if ( !m_mapTitleButtons.contains(obj["action"].toString()) )
-                                leftboxbuttons->layout()->addWidget(cloneEditorHeaderButton(jv.toObject()));
+                                leftboxbuttons->layout()->addWidget(cloneEditorHeaderButton(obj));
                         }
 
                         if ( _layout->itemAt(0)->widget() != leftboxbuttons )
                             _layout->insertWidget(0, leftboxbuttons);
+                    } else {
+                        leftBtnsCount = 0;
+                        bool usedQuickaccess = false;
+                        for (const auto &jv: _btns) {
+                            const QJsonObject obj = jv.toObject();
+                            if (obj["action"].toString() == "quickaccess")
+                                usedQuickaccess = true;
+                            if (obj.contains("visible") && obj["visible"].toBool())
+                                ++leftBtnsCount;
+                        }
+                        if (!usedQuickaccess)
+                            leftBtnsCount = DEFAULT_BTNS_COUNT;
+                        if (auto mainGridLayout = qobject_cast<QGridLayout*>(window->m_pMainPanel->layout())) {
+                            window->m_pSpacer = new QSpacerItem(int(leftBtnsCount*TOOLBTN_WIDTH*window->m_dpiRatio), 5, QSizePolicy::Fixed, QSizePolicy::Fixed);
+                            mainGridLayout->addItem(window->m_pSpacer, 1, 0, Qt::AlignTop);
+                        }
                     }
                 }
 
                 // update title caption for elipsis
                 window->updateTitleCaption();
             }
-            centerTitle(window->m_dpiRatio);
         }
+        if (window->m_labelTitle)
+            window->m_labelTitle->setVisible(true);
+        centerTitle(window->m_dpiRatio);
     }
 
     void onEditorActionRequest(int, const QString& json) override
@@ -302,51 +360,43 @@ public:
         }
     }
 
-    void adjustToNewEditorVersion()  // For old editors only
-    {
-        if (window->isCustomWindowStyle()) {
-            leftboxbuttons->hide();
-            auto layout = qobject_cast<QHBoxLayout*>(window->m_boxTitleBtns->layout());
-            if (canExtendTitle()) {
-                auto icon = layout->takeAt(3);
-                if (icon && icon->widget())
-                    layout->insertWidget(2, icon->widget());
-            }
-            auto stretch = layout->takeAt(1);
-            if (stretch)
-                delete stretch;
-            auto mainGridLayout = dynamic_cast<QGridLayout*>(window->m_pMainPanel->layout());
-            if (mainGridLayout) {
-                auto mainView = mainGridLayout->itemAtPosition(1, 0);
-                if (mainView)
-                    mainGridLayout->removeItem(mainView);
-                QLayoutItem *boxTitleBtns = canExtendTitle() ? mainGridLayout->itemAtPosition(1, 0) : nullptr;
-                if (boxTitleBtns)
-                    mainGridLayout->removeItem(boxTitleBtns);
+//    void adjustToNewEditorVersion()  // For old editors only
+//    {
+//        if (window->isCustomWindowStyle()) {
+//            leftboxbuttons->hide();
+//            auto layout = qobject_cast<QHBoxLayout*>(window->m_boxTitleBtns->layout());
+//            if (canExtendTitle()) {
+//                auto icon = layout->takeAt(3);
+//                if (icon && icon->widget())
+//                    layout->insertWidget(2, icon->widget());
+//            }
+//            auto stretch = layout->takeAt(1);
+//            if (stretch)
+//                delete stretch;
+//            auto mainGridLayout = dynamic_cast<QGridLayout*>(window->m_pMainPanel->layout());
+//            if (mainGridLayout) {
+//                auto mainView = mainGridLayout->itemAtPosition(1, 0);
+//                if (mainView)
+//                    mainGridLayout->removeItem(mainView);
+//                QLayoutItem *boxTitleBtns = canExtendTitle() ? mainGridLayout->itemAtPosition(1, 0) : nullptr;
+//                if (boxTitleBtns)
+//                    mainGridLayout->removeItem(boxTitleBtns);
 
-                if (mainView && mainView->widget())
-                    mainGridLayout->addWidget(mainView->widget(), 1, 0, 1, 2);
-                if (boxTitleBtns && boxTitleBtns->widget()) {
-                    mainGridLayout->addWidget(boxTitleBtns->widget(), 1, 1, Qt::AlignTop);
-                    window->m_pSpacer = new QSpacerItem(int(TOP_PANEL_OFFSET*window->m_dpiRatio), 5,
-                                                QSizePolicy::Fixed, QSizePolicy::Fixed);
-                    mainGridLayout->addItem(window->m_pSpacer, 1, 0, Qt::AlignTop);
-                }
-            }
-        }
-    }
+//                if (mainView && mainView->widget())
+//                    mainGridLayout->addWidget(mainView->widget(), 1, 0, 1, 2);
+//                if (boxTitleBtns && boxTitleBtns->widget()) {
+//                    mainGridLayout->addWidget(boxTitleBtns->widget(), 1, 1, Qt::AlignTop);
+//                    window->m_pSpacer = new QSpacerItem(int(TOP_PANEL_OFFSET*window->m_dpiRatio), 5,
+//                                                QSizePolicy::Fixed, QSizePolicy::Fixed);
+//                    mainGridLayout->addItem(window->m_pSpacer, 1, 0, Qt::AlignTop);
+//                }
+//            }
+//        }
+//    }
 
     void onDocumentReady(int uid) override
     {
 //        if (window->holdView(uid))
-            if ( panel()->data()->features().empty() ) {
-                panel()->data()->setFeatures(L"old version of editor");
-                extendableTitleToSimple();
-            }
-            if (m_panel->data()->hasFeature(L"btnhome") && usedOldEditorVersion && !viewerMode() && !fillformMode()) {  // For old editors only
-                usedOldEditorVersion = false;
-                adjustToNewEditorVersion();
-            }
             panel()->setReady();
             if (window->isActiveWindow())
                 window->focus();
@@ -358,7 +408,7 @@ public:
         CCefEventsGate::onDocumentName(data);
 
         if ( window->isCustomWindowStyle() ) {
-            if ( !canExtendTitle() /*|| !window->isCustomWindowStyle()*/ ) {
+            if ( !canExtendTitle() && !fillformMode() ) {
                 window->m_labelTitle->setText(APP_TITLE);
             } else {
                 window->setWindowTitle(m_panel->data()->title());
@@ -371,7 +421,7 @@ public:
     {
         CCefEventsGate::onDocumentType(id, type);
 
-        if ( canExtendTitle() && window->isCustomWindowStyle() ) {
+        if ( /*canExtendTitle() &&*/ window->isCustomWindowStyle() ) {
             window->m_pMainPanel->setProperty("window", "pretty");
             changeTheme(GetCurrentTheme().id());
         }
@@ -412,10 +462,8 @@ public:
             window->m_pMainPanel->setProperty("uitheme", QString::fromStdWString(GetActualTheme(theme)));
             window->m_pMainPanel->setProperty("uithemetype", GetCurrentTheme().stype());
             if (!viewerMode()) {
-                if (usedOldEditorVersion) {   // For old editors only
-                    foreach (auto btn, m_mapTitleButtons)
-                        btn->setIconOpacity(GetColorByRole(ecrButtonNormalOpacity));
-                }
+                foreach (auto btn, m_mapTitleButtons)
+                    btn->setIconOpacity(GetColorByRole(ecrButtonNormalOpacity));
             } else {
                 window->m_pMainPanel->setProperty("window", "pretty");
                 if ( m_mapTitleButtons.contains("home") )
@@ -438,7 +486,7 @@ public:
     {
         CCefEventsGate::onDocumentChanged(id, state);
         if ( panel()->data()->hasChanges() != state ) {
-            if ( canExtendTitle() && window->isCustomWindowStyle() ) {
+            if ( (canExtendTitle() || fillformMode()) && window->isCustomWindowStyle() ) {
                 window->setWindowTitle(m_panel->data()->title());
                 window->m_boxTitleBtns->repaint();
             }
@@ -465,7 +513,7 @@ public:
                                           CEditorWindow::tr("Document must be saved to continue.<br>Save the document?"),
                                           MsgType::MSG_CONFIRM, MsgBtns::mbYesDefNo);
         CAscEditorSaveQuestion * pData = new CAscEditorSaveQuestion;
-        pData->put_Value((reply == MODAL_RESULT_YES) ? true : false);
+        pData->put_Value(reply == MODAL_RESULT_YES);
 
         CAscMenuEvent * pEvent = new CAscMenuEvent(ASC_MENU_EVENT_TYPE_DOCUMENTEDITORS_SAVE_YES_NO);
         pEvent->m_pData = pData;
@@ -605,7 +653,7 @@ public:
                     break;
                 }
 
-                CEditorTools::print({m_panel->cef(), pContext, &page_ranges, window->handle()});
+                CEditorTools::print({m_panel->cef(), pContext, &page_ranges, parent});
             }
 
             pContext->Release();
@@ -623,6 +671,17 @@ public:
         isPrinting = false;
     }
 
+    void onErrorPage(int id, const std::wstring& action) override
+    {
+        if (m_panel->data()->viewType() == cvwtEditor && action.compare(L"open") == 0) {
+            m_panel->data()->setHasError();
+            if (window->isCustomWindowStyle() && layoutType != LayoutViewer) {
+                layoutType = LayoutViewer;
+                extendableTitleToSimple(false);
+                centerTitle(window->m_dpiRatio);
+            }
+        }
+    }
 
     void onEditorAllowedClose(int) override
     {
@@ -648,7 +707,8 @@ public:
                 btn->setFixedSize(QSize(int(TITLEBTN_WIDTH*f), int(TOOLBTN_HEIGHT*f)));
                 btn->setIconSize(QSize(20,20) * f);
             }
-            centerTitle(f);
+            if (layoutType != LayoutNone)
+                centerTitle(f);
         }
     }
 
@@ -674,7 +734,7 @@ public:
             window->show(false);
 
 //            _fs_widget->view()->resize(_fs_widget->size().width(), _fs_widget->size().height()-1);
-            if (usedOldEditorVersion) {  // For old editors only
+            if (m_mapTitleButtons.size() > 1) {  // For old editors only
                 qobject_cast<QGridLayout *>(window->m_pMainPanel->layout())->addWidget(_fs_widget, 1, 0);
             } else {
                 qobject_cast<QGridLayout *>(window->m_pMainPanel->layout())->addWidget(_fs_widget, 1, 0, 1, 2);
@@ -761,6 +821,7 @@ public:
         if ( !iconuser ) {
             iconuser = new QLabel(window->m_boxTitleBtns);
             iconuser->setObjectName("iconuser");
+            iconuser->setVisible(false);
             iconuser->setContentsMargins(0,0,0,0);
             iconuser->setAlignment(Qt::AlignCenter);
         }
@@ -805,11 +866,11 @@ public:
     void onWebAppsFeatures(int, std::wstring f) override
     {
         bool is_read_only = panel()->data()->hasFeature(L"readonly\":true");
-        panel()->data()->setFeatures(f);
+        if (f != L"{\"hasframe\":true}" || !panel()->data()->hasFeature(L"hasframe\":false"))
+            panel()->data()->setFeatures(f);
 
-        if ( m_panel->data()->hasFeature(L"uitype\":\"fillform") ) {
-             ffWindowCustomize();
-             centerTitle(window->m_dpiRatio);
+        if ( layoutType == LayoutNone && fillformMode() ) {
+            ffWindowCustomize();
         }
 
         if ( panel()->data()->hasFeature(L"crypted\":true") && boxtitlelabel && !iconcrypted ) {
@@ -829,7 +890,7 @@ public:
 
         if( jerror.error == QJsonParseError::NoError ) {
             QJsonObject objRoot = jdoc.object();
-            if ( usedOldEditorVersion ) {  // For old editors only
+            if ( m_mapTitleButtons.size() > 0 ) {  // For old editors only
                 if (objRoot.contains("disabled")) {
                     QJsonObject _disabled = objRoot["disabled"].toObject();
 
@@ -868,6 +929,12 @@ public:
                 if ( _btns_changed == "home" ) {
                     window->onClickButtonHome();
                 }
+            } else
+            if ( objRoot.contains("quickaccesschanged") ) {
+                leftBtnsCount = leftBtnsCount + (json.find(L"true") != std::wstring::npos ? 1 : -1);
+                if (window->m_pSpacer)
+                    window->m_pSpacer->changeSize(int(TOOLBTN_WIDTH*leftBtnsCount*window->m_dpiRatio), 5, QSizePolicy::Fixed, QSizePolicy::Fixed);
+                centerTitle(window->m_dpiRatio);
             }
         }
     }
@@ -875,31 +942,33 @@ public:
     bool canExtendTitle() const
     {
         if ( m_panel->data()->features().empty() ) return true;
-        else if ( m_panel->data()->hasFeature(L"uitype\":\"fillform") ) return true;
-        else if ( m_panel->data()->hasFrame() ) return false;
+        else if ( fillformMode() ) return false;
         else return !viewerMode() && (m_panel->data()->isLocal() || m_panel->data()->hasFeature(L"titlebuttons\":"));
     }
 
     auto viewerMode() const -> bool {
-        if ( m_panel->data()->hasFrame() ) return true;
-        return m_panel->data()->hasFeature(L"viewmode\":true");
+        return m_panel->data()->hasFeature(L"viewmode\":true") || (!m_panel->data()->isLocal() && m_panel->data()->hasFrame());
     }
 
-    auto fillformMode() -> bool {
+    auto fillformMode() const -> bool {
         return m_panel->data()->hasFeature(L"uitype\":\"fillform");
     }
 
-    auto calcTitleLabelWidth(int basewidth) const -> int {
-        if ( iconuser )
-            basewidth -= iconuser->width();
+//    auto calcTitleLabelWidth(int basewidth) const -> int {
+//        if ( iconuser )
+//            basewidth -= iconuser->width();
 
-        basewidth -= boxtitlelabel->contentsMargins().left() + boxtitlelabel->contentsMargins().right();
-        if ( iconcrypted )
-            basewidth -= iconcrypted->width();
+//        basewidth -= boxtitlelabel->contentsMargins().left() + boxtitlelabel->contentsMargins().right();
+//        if ( iconcrypted )
+//            basewidth -= iconcrypted->width();
 
-        basewidth -= m_mapTitleButtons.count() * (TITLEBTN_WIDTH + 1) * window->m_dpiRatio;
+//        basewidth -= m_mapTitleButtons.count() * (TITLEBTN_WIDTH + 1) * window->m_dpiRatio;
 
-        return basewidth;
+//        return basewidth;
+//    }
+
+    auto leftButtonsCount() -> int {
+        return leftBtnsCount;
     }
 
     auto customizeTitleLabel() -> void {
@@ -907,11 +976,8 @@ public:
         QHBoxLayout * _layout = qobject_cast<QHBoxLayout *>(window->m_boxTitleBtns->layout());
         _layout->removeWidget(window->m_labelTitle);
 
-        if (!usedOldEditorVersion) {
-            QLayoutItem *stretch = _layout->takeAt(0);
-            if (stretch)
-                delete stretch;
-        }
+        if (QLayoutItem *stretch = _layout->takeAt(0))
+            delete stretch;
         boxtitlelabel = new QWidget(window->m_boxTitleBtns);
         boxtitlelabel->setLayout(new QHBoxLayout(boxtitlelabel));
         boxtitlelabel->layout()->setSpacing(0);
@@ -921,31 +987,17 @@ public:
         if ( m_panel->data()->hasFeature(L"crypted\":true") && !iconcrypted ) {
             iconCrypted();
         }
-
-        if (usedOldEditorVersion) {  // For old editors only
-            _layout->insertWidget(1, boxtitlelabel);
-             if ( _layout->itemAt(0)->widget() != leftboxbuttons )
-                 _layout->insertWidget(0, leftboxbuttons);
-        } else {
-            _layout->insertWidget(0, boxtitlelabel);
-        }
+        _layout->insertWidget(0, boxtitlelabel);
     }
 
     auto ffWindowCustomize() -> void {
-        Q_ASSERT(window->m_boxTitleBtns != nullptr);
-        QGridLayout * const _layout = static_cast<QGridLayout*>(window->m_pMainPanel->layout());
-        if ( !_layout->itemAtPosition(0,0) && !_layout->findChild<QWidget*>(window->m_boxTitleBtns->objectName()) ) {
-            _layout->addWidget(window->m_boxTitleBtns,0,0,Qt::AlignTop);
-            if (iconuser)
-                 iconuser->hide();
-            auto layout = qobject_cast<QHBoxLayout*>(window->m_boxTitleBtns->layout());
-            auto stretch = layout->takeAt(1);
-            if (stretch)
-                 delete stretch;
-            stretch = layout->takeAt(2);
-            if (stretch)
-                 delete stretch;
-        }
+        if ( layoutType == LayoutViewer || !window->isCustomWindowStyle() )
+            return;
+        layoutType = LayoutViewer;
+        if (window->m_labelTitle)
+            window->m_labelTitle->setVisible(true);
+        extendableTitleToSimple(false);
+        centerTitle(window->m_dpiRatio);
     }
 };
 

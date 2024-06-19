@@ -5,7 +5,7 @@ QFrame#mainFrame,
 QFrame#titleFrame,
 QFrame#downloadItem {background: #ffffff;}
 
-QPushButton {border: none; color: #3a83db; background: transparent; padding: 0px; margin: 0px; font-weight: normal; font-family: "Open Sans", sans-serif, "Arial";}
+QPushButton {border: none; color: #3a83db; background: transparent; padding: 0px; margin: 0px; font-weight: normal; font-family: "Arial", "Helvetica", "Helvetica Neue", sans-serif;}
 CDownloadWidget[rtl-font=true] QPushButton {font-family: "Segoe UI", "Traditional Arabic", "Noto Sans";}
 QPushButton::menu-indicator {width: 0px; height: 0px;}
 QPushButton#buttonCancel {color: #ffffff;}
@@ -15,14 +15,16 @@ QPushButton:pressed {color: #a5a5a5;}
 QProgressBar {background-color: #e6e6e6; border-color: #e6e6e6; margin: 0px;}
 QProgressBar::chunk {background-color: #3a83db;}
 
-QLabel {color: #444444; font-family: "Open Sans", sans-serif, "Arial";}
+QLabel {color: #444444; font-family: "Arial", "Helvetica", "Helvetica Neue", sans-serif;}
 CDownloadWidget[rtl-font=true] QLabel {font-family: "Segoe UI", "Traditional Arabic", "Noto Sans";}
 QLabel#labelSize,
 QLabel#labelInfo {color: #a5a5a5;}
 
 QFrame#downloadItem[hovered=true] {background: #e0e0e0;}
 QFrame#downloadItem[hovered=true] #buttonCancel {color: #3a83db;}
+QFrame#downloadItem[hovered=true] QPushButton:hover,
 QFrame#downloadItem[hovered=true] #buttonCancel:hover {color: #444444;}
+QFrame#downloadItem[hovered=true] QPushButton:pressed,
 QFrame#downloadItem[hovered=true] #buttonCancel:pressed {color: #868686;}
 QFrame#downloadItem[hovered=true] QProgressBar {background-color: #cacaca; border-color: #cacaca;}
 QFrame#downloadItem[hovered=true] #labelSize,
@@ -42,12 +44,80 @@ QScrollBar::add-page:vertical,
 QScrollBar::sub-page:vertical {background: none;}
 QAbstractScrollArea::corner {background: transparent;}
 
+/* dark theme */
+CDownloadWidget[uitheme="theme-dark"] QWidget#contentArea,
+CDownloadWidget[uitheme="theme-dark"] QFrame#mainFrame,
+CDownloadWidget[uitheme="theme-dark"] QFrame#titleFrame,
+CDownloadWidget[uitheme="theme-dark"] QFrame#downloadItem {background: #333333;}
+CDownloadWidget[uitheme="theme-dark"] QFrame#mainFrame,
+CDownloadWidget[uitheme="theme-dark"] QFrame#titleFrame {border-color: #666666;}
+
+CDownloadWidget[uitheme="theme-dark"] QPushButton {color: #96c8fd;}
+CDownloadWidget[uitheme="theme-dark"] QPushButton#buttonCancel {color: #333333;}
+CDownloadWidget[uitheme="theme-dark"] QPushButton:hover {color: #d6d6d6;}
+CDownloadWidget[uitheme="theme-dark"] QPushButton:pressed {color: #858585;}
+
+CDownloadWidget[uitheme="theme-dark"] QProgressBar {background-color: #858585; border-color: #858585;}
+CDownloadWidget[uitheme="theme-dark"] QProgressBar::chunk {background-color: #96c8fd;}
+
+CDownloadWidget[uitheme="theme-dark"] QLabel {color: #d6d6d6;}
+CDownloadWidget[uitheme="theme-dark"] QLabel#labelSize,
+CDownloadWidget[uitheme="theme-dark"] QLabel#labelInfo {color: #858585;}
+
+CDownloadWidget[uitheme="theme-dark"] QFrame#downloadItem[hovered=true] {background: #555555;}
+CDownloadWidget[uitheme="theme-dark"] QFrame#downloadItem[hovered=true] #buttonCancel {color: #96c8fd;}
+CDownloadWidget[uitheme="theme-dark"] QFrame#downloadItem[hovered=true] QPushButton:hover,
+CDownloadWidget[uitheme="theme-dark"] QFrame#downloadItem[hovered=true] #buttonCancel:hover {color: #d6d6d6;}
+CDownloadWidget[uitheme="theme-dark"] QFrame#downloadItem[hovered=true] QPushButton:pressed,
+CDownloadWidget[uitheme="theme-dark"] QFrame#downloadItem[hovered=true] #buttonCancel:pressed {color: #999999;}
+CDownloadWidget[uitheme="theme-dark"] QFrame#downloadItem[hovered=true] QProgressBar {background-color: #999999; border-color: #999999;}
+CDownloadWidget[uitheme="theme-dark"] QFrame#downloadItem[hovered=true] #labelSize,
+CDownloadWidget[uitheme="theme-dark"] QFrame#downloadItem[hovered=true] #labelInfo {color: #999999;}
+
+CDownloadWidget[uitheme="theme-dark"] QScrollArea,
+CDownloadWidget[uitheme="theme-dark"] QScrollBar {background: #333333;}
+CDownloadWidget[uitheme="theme-dark"] QScrollBar::handle:vertical {background: #999999;}
+
+/* contrast theme */
+CDownloadWidget[uitheme="theme-contrast-dark"] QWidget#contentArea,
+CDownloadWidget[uitheme="theme-contrast-dark"] QFrame#mainFrame,
+CDownloadWidget[uitheme="theme-contrast-dark"] QFrame#titleFrame,
+CDownloadWidget[uitheme="theme-contrast-dark"] QFrame#downloadItem {background: #2a2a2a;}
+CDownloadWidget[uitheme="theme-contrast-dark"] QFrame#mainFrame,
+CDownloadWidget[uitheme="theme-contrast-dark"] QFrame#titleFrame {border-color: #666666;}
+
+CDownloadWidget[uitheme="theme-contrast-dark"] QPushButton {color: #96c8fd;}
+CDownloadWidget[uitheme="theme-contrast-dark"] QPushButton#buttonCancel {color: #2a2a2a;}
+CDownloadWidget[uitheme="theme-contrast-dark"] QPushButton:hover {color: #d6d6d6;}
+CDownloadWidget[uitheme="theme-contrast-dark"] QPushButton:pressed {color: #858585;}
+
+CDownloadWidget[uitheme="theme-contrast-dark"] QProgressBar {background-color: #858585; border-color: #858585;}
+CDownloadWidget[uitheme="theme-contrast-dark"] QProgressBar::chunk {background-color: #96c8fd;}
+
+CDownloadWidget[uitheme="theme-contrast-dark"] QLabel {color: #d6d6d6;}
+CDownloadWidget[uitheme="theme-contrast-dark"] QLabel#labelSize,
+CDownloadWidget[uitheme="theme-contrast-dark"] QLabel#labelInfo {color: #858585;}
+
+CDownloadWidget[uitheme="theme-contrast-dark"] QFrame#downloadItem[hovered=true] {background: #555555;}
+CDownloadWidget[uitheme="theme-contrast-dark"] QFrame#downloadItem[hovered=true] #buttonCancel {color: #96c8fd;}
+CDownloadWidget[uitheme="theme-contrast-dark"] QFrame#downloadItem[hovered=true] QPushButton:hover,
+CDownloadWidget[uitheme="theme-contrast-dark"] QFrame#downloadItem[hovered=true] #buttonCancel:hover {color: #d6d6d6;}
+CDownloadWidget[uitheme="theme-contrast-dark"] QFrame#downloadItem[hovered=true] QPushButton:pressed,
+CDownloadWidget[uitheme="theme-contrast-dark"] QFrame#downloadItem[hovered=true] #buttonCancel:pressed {color: #999999;}
+CDownloadWidget[uitheme="theme-contrast-dark"] QFrame#downloadItem[hovered=true] QProgressBar {background-color: #999999; border-color: #999999;}
+CDownloadWidget[uitheme="theme-contrast-dark"] QFrame#downloadItem[hovered=true] #labelSize,
+CDownloadWidget[uitheme="theme-contrast-dark"] QFrame#downloadItem[hovered=true] #labelInfo {color: #999999;}
+
+CDownloadWidget[uitheme="theme-contrast-dark"] QScrollArea,
+CDownloadWidget[uitheme="theme-contrast-dark"] QScrollBar {background: #2a2a2a;}
+CDownloadWidget[uitheme="theme-contrast-dark"] QScrollBar::handle:vertical {background: #999999;}
+
 /* 1.0x */
 QPushButton {height: 14px; font-size: 11px; icon-size: 12px;}
 QPushButton#buttonClear {max-height: 22px;}
 QPushButton#buttonOpenFolder,
 QPushButton#buttonOpen {margin-top: 2px;}
-QProgressBar {border-radius: 2px; max-height: 5px; margin-top: 4px; margin-bottom: 5px;}
+QProgressBar {border-radius: 2px; min-height: 5px; max-height: 5px; margin-top: 4px; margin-bottom: 5px;}
 QProgressBar::chunk {border-radius: 2px;}
 QLabel {font-size: 11px; max-height: 14px; min-height: 14px;}
 QLabel#labelTitle {font-size: 14px; max-height: 22px;}
@@ -61,7 +131,7 @@ CDownloadWidget[zoom="1.25x"] QPushButton {height: 18px; font-size: 14px; icon-s
 CDownloadWidget[zoom="1.25x"] QPushButton#buttonClear {max-height: 28px;}
 CDownloadWidget[zoom="1.25x"] QPushButton#buttonOpenFolder,
 CDownloadWidget[zoom="1.25x"] QPushButton#buttonOpen {margin-top: 3px;}
-CDownloadWidget[zoom="1.25x"] QProgressBar {border-radius: 3px; max-height: 6px; margin-top: 6px; margin-bottom: 6px;}
+CDownloadWidget[zoom="1.25x"] QProgressBar {border-radius: 3px; min-height: 6px; max-height: 6px; margin-top: 6px; margin-bottom: 6px;}
 CDownloadWidget[zoom="1.25x"] QProgressBar::chunk {border-radius: 3px;}
 CDownloadWidget[zoom="1.25x"] QLabel {font-size: 14px; max-height: 18px; min-height: 18px;}
 CDownloadWidget[zoom="1.25x"] QLabel#labelTitle {font-size: 18px; max-height: 28px;}
@@ -75,7 +145,7 @@ CDownloadWidget[zoom="1.5x"] QPushButton {height: 21px; font-size: 17px; icon-si
 CDownloadWidget[zoom="1.5x"] QPushButton#buttonClear {max-height: 33px;}
 CDownloadWidget[zoom="1.5x"] QPushButton#buttonOpenFolder,
 CDownloadWidget[zoom="1.5x"] QPushButton#buttonOpen {margin-top: 3px;}
-CDownloadWidget[zoom="1.5x"] QProgressBar {border-radius: 3px; max-height: 8px; margin-top: 6px; margin-bottom: 7px;}
+CDownloadWidget[zoom="1.5x"] QProgressBar {border-radius: 3px; min-height: 8px; max-height: 8px; margin-top: 6px; margin-bottom: 7px;}
 CDownloadWidget[zoom="1.5x"] QProgressBar::chunk {border-radius: 3px;}
 CDownloadWidget[zoom="1.5x"] QLabel {font-size: 17px; max-height: 21px; min-height: 21px;}
 CDownloadWidget[zoom="1.5x"] QLabel#labelTitle {font-size: 21px; max-height: 33px;}
@@ -89,7 +159,7 @@ CDownloadWidget[zoom="1.75x"] QPushButton {height: 25px; font-size: 19px; icon-s
 CDownloadWidget[zoom="1.75x"] QPushButton#buttonClear {max-height: 39px;}
 CDownloadWidget[zoom="1.75x"] QPushButton#buttonOpenFolder,
 CDownloadWidget[zoom="1.75x"] QPushButton#buttonOpen {margin-top: 4px;}
-CDownloadWidget[zoom="1.75x"] QProgressBar {border-radius: 4px; max-height: 9px; margin-top: 8px; margin-bottom: 8px;}
+CDownloadWidget[zoom="1.75x"] QProgressBar {border-radius: 4px; min-height: 9px; max-height: 9px; margin-top: 8px; margin-bottom: 8px;}
 CDownloadWidget[zoom="1.75x"] QProgressBar::chunk {border-radius: 4px;}
 CDownloadWidget[zoom="1.75x"] QLabel {font-size: 19px; max-height: 25px; min-height: 25px;}
 CDownloadWidget[zoom="1.75x"] QLabel#labelTitle {font-size: 25px; max-height: 39px;}
@@ -103,7 +173,7 @@ CDownloadWidget[zoom="2x"] QPushButton {height: 28px; font-size: 22px; icon-size
 CDownloadWidget[zoom="2x"] QPushButton#buttonClear {max-height: 44px;}
 CDownloadWidget[zoom="2x"] QPushButton#buttonOpenFolder,
 CDownloadWidget[zoom="2x"] QPushButton#buttonOpen {margin-top: 4px;}
-CDownloadWidget[zoom="2x"] QProgressBar {border-radius: 4px; max-height: 10px; margin-top: 9px; margin-bottom: 9px;}
+CDownloadWidget[zoom="2x"] QProgressBar {border-radius: 4px; min-height: 10px; max-height: 10px; margin-top: 9px; margin-bottom: 9px;}
 CDownloadWidget[zoom="2x"] QProgressBar::chunk {border-radius: 4px;}
 CDownloadWidget[zoom="2x"] QLabel {font-size: 22px; max-height: 28px; min-height: 28px;}
 CDownloadWidget[zoom="2x"] QLabel#labelTitle {font-size: 28px; max-height: 44px;}
@@ -117,7 +187,7 @@ CDownloadWidget[zoom="2.25x"] QPushButton {height: 32px; font-size: 25px; icon-s
 CDownloadWidget[zoom="2.25x"] QPushButton#buttonClear {max-height: 50px;}
 CDownloadWidget[zoom="2.25x"] QPushButton#buttonOpenFolder,
 CDownloadWidget[zoom="2.25x"] QPushButton#buttonOpen {margin-top: 5px;}
-CDownloadWidget[zoom="2.25x"] QProgressBar {border-radius: 5px; max-height: 11px; margin-top: 10px; margin-bottom: 11px;}
+CDownloadWidget[zoom="2.25x"] QProgressBar {border-radius: 5px; min-height: 11px; max-height: 11px; margin-top: 10px; margin-bottom: 11px;}
 CDownloadWidget[zoom="2.25x"] QProgressBar::chunk {border-radius: 5px;}
 CDownloadWidget[zoom="2.25x"] QLabel {font-size: 25px; max-height: 32px; min-height: 32px;}
 CDownloadWidget[zoom="2.25x"] QLabel#labelTitle {font-size: 32px; max-height: 50px;}
@@ -131,7 +201,7 @@ CDownloadWidget[zoom="2.5x"] QPushButton {height: 35px; font-size: 28px; icon-si
 CDownloadWidget[zoom="2.5x"] QPushButton#buttonClear {max-height: 55px;}
 CDownloadWidget[zoom="2.5x"] QPushButton#buttonOpenFolder,
 CDownloadWidget[zoom="2.5x"] QPushButton#buttonOpen {margin-top: 5px;}
-CDownloadWidget[zoom="2.5x"] QProgressBar {border-radius: 5px; max-height: 13px; margin-top: 11px; margin-bottom: 11px;}
+CDownloadWidget[zoom="2.5x"] QProgressBar {border-radius: 5px; min-height: 13px; max-height: 13px; margin-top: 11px; margin-bottom: 11px;}
 CDownloadWidget[zoom="2.5x"] QProgressBar::chunk {border-radius: 5px;}
 CDownloadWidget[zoom="2.5x"] QLabel {font-size: 28px; max-height: 35px; min-height: 35px;}
 CDownloadWidget[zoom="2.5x"] QLabel#labelTitle {font-size: 35px; max-height: 55px;}
@@ -145,7 +215,7 @@ CDownloadWidget[zoom="2.75x"] QPushButton {height: 39px; font-size: 30px; icon-s
 CDownloadWidget[zoom="2.75x"] QPushButton#buttonClear {max-height: 61px;}
 CDownloadWidget[zoom="2.75x"] QPushButton#buttonOpenFolder,
 CDownloadWidget[zoom="2.75x"] QPushButton#buttonOpen {margin-top: 6px;}
-CDownloadWidget[zoom="2.75x"] QProgressBar {border-radius: 6px; max-height: 14px; margin-top: 12px; margin-bottom: 13px;}
+CDownloadWidget[zoom="2.75x"] QProgressBar {border-radius: 6px; min-height: 14px; max-height: 14px; margin-top: 12px; margin-bottom: 13px;}
 CDownloadWidget[zoom="2.75x"] QProgressBar::chunk {border-radius: 6px;}
 CDownloadWidget[zoom="2.75x"] QLabel {font-size: 30px; max-height: 39px; min-height: 39px;}
 CDownloadWidget[zoom="2.75x"] QLabel#labelTitle {font-size: 39px; max-height: 61px;}
@@ -159,7 +229,7 @@ CDownloadWidget[zoom="3x"] QPushButton {height: 42px; font-size: 33px; icon-size
 CDownloadWidget[zoom="3x"] QPushButton#buttonClear {max-height: 66px;}
 CDownloadWidget[zoom="3x"] QPushButton#buttonOpenFolder,
 CDownloadWidget[zoom="3x"] QPushButton#buttonOpen {margin-top: 6px;}
-CDownloadWidget[zoom="3x"] QProgressBar {border-radius: 6px; max-height: 15px; margin-top: 13px; margin-bottom: 14px;}
+CDownloadWidget[zoom="3x"] QProgressBar {border-radius: 6px; min-height: 15px; max-height: 15px; margin-top: 13px; margin-bottom: 14px;}
 CDownloadWidget[zoom="3x"] QProgressBar::chunk {border-radius: 6px;}
 CDownloadWidget[zoom="3x"] QLabel {font-size: 33px; max-height: 42px; min-height: 42px;}
 CDownloadWidget[zoom="3x"] QLabel#labelTitle {font-size: 42px; max-height: 66px;}
@@ -173,7 +243,7 @@ CDownloadWidget[zoom="3.5x"] QPushButton {height: 49px; font-size: 39px; icon-si
 CDownloadWidget[zoom="3.5x"] QPushButton#buttonClear {max-height: 77px;}
 CDownloadWidget[zoom="3.5x"] QPushButton#buttonOpenFolder,
 CDownloadWidget[zoom="3.5x"] QPushButton#buttonOpen {margin-top: 7px;}
-CDownloadWidget[zoom="3.5x"] QProgressBar {border-radius: 7px; max-height: 18px; margin-top: 15px; margin-bottom: 16px;}
+CDownloadWidget[zoom="3.5x"] QProgressBar {border-radius: 7px; min-height: 18px; max-height: 18px; margin-top: 15px; margin-bottom: 16px;}
 CDownloadWidget[zoom="3.5x"] QProgressBar::chunk {border-radius: 7px;}
 CDownloadWidget[zoom="3.5x"] QLabel {font-size: 39px; max-height: 49px; min-height: 49px;}
 CDownloadWidget[zoom="3.5x"] QLabel#labelTitle {font-size: 49px; max-height: 77px;}
@@ -187,7 +257,7 @@ CDownloadWidget[zoom="4x"] QPushButton {height: 56px; font-size: 44px; icon-size
 CDownloadWidget[zoom="4x"] QPushButton#buttonClear {max-height: 88px;}
 CDownloadWidget[zoom="4x"] QPushButton#buttonOpenFolder,
 CDownloadWidget[zoom="4x"] QPushButton#buttonOpen {margin-top: 8px;}
-CDownloadWidget[zoom="4x"] QProgressBar {border-radius: 8px; max-height: 20px; margin-top: 18px; margin-bottom: 18px;}
+CDownloadWidget[zoom="4x"] QProgressBar {border-radius: 8px; min-height: 20px; max-height: 20px; margin-top: 18px; margin-bottom: 18px;}
 CDownloadWidget[zoom="4x"] QProgressBar::chunk {border-radius: 8px;}
 CDownloadWidget[zoom="4x"] QLabel {font-size: 44px; max-height: 56px; min-height: 56px;}
 CDownloadWidget[zoom="4x"] QLabel#labelTitle {font-size: 56px; max-height: 88px;}
@@ -201,7 +271,7 @@ CDownloadWidget[zoom="4.5x"] QPushButton {height: 63px; font-size: 50px; icon-si
 CDownloadWidget[zoom="4.5x"] QPushButton#buttonClear {max-height: 99px;}
 CDownloadWidget[zoom="4.5x"] QPushButton#buttonOpenFolder,
 CDownloadWidget[zoom="4.5x"] QPushButton#buttonOpen {margin-top: 9px;}
-CDownloadWidget[zoom="4.5x"] QProgressBar {border-radius: 9px; max-height: 23px; margin-top: 20px; margin-bottom: 20px;}
+CDownloadWidget[zoom="4.5x"] QProgressBar {border-radius: 9px; min-height: 23px; max-height: 23px; margin-top: 20px; margin-bottom: 20px;}
 CDownloadWidget[zoom="4.5x"] QProgressBar::chunk {border-radius: 9px;}
 CDownloadWidget[zoom="4.5x"] QLabel {font-size: 50px; max-height: 63px; min-height: 63px;}
 CDownloadWidget[zoom="4.5x"] QLabel#labelTitle {font-size: 63px; max-height: 99px;}
@@ -215,7 +285,7 @@ CDownloadWidget[zoom="5x"] QPushButton {height: 70px; font-size: 55px; icon-size
 CDownloadWidget[zoom="5x"] QPushButton#buttonClear {max-height: 110px;}
 CDownloadWidget[zoom="5x"] QPushButton#buttonOpenFolder,
 CDownloadWidget[zoom="5x"] QPushButton#buttonOpen {margin-top: 10px;}
-CDownloadWidget[zoom="5x"] QProgressBar {border-radius: 10px; max-height: 25px; margin-top: 22px; margin-bottom: 23px;}
+CDownloadWidget[zoom="5x"] QProgressBar {border-radius: 10px; min-height: 25px; max-height: 25px; margin-top: 22px; margin-bottom: 23px;}
 CDownloadWidget[zoom="5x"] QProgressBar::chunk {border-radius: 10px;}
 CDownloadWidget[zoom="5x"] QLabel {font-size: 55px; max-height: 70px; min-height: 70px;}
 CDownloadWidget[zoom="5x"] QLabel#labelTitle {font-size: 70px; max-height: 110px;}

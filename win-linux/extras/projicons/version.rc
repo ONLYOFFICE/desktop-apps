@@ -33,6 +33,7 @@ IDI_ICON29      ICON    DISCARDABLE "./res/icons/epub.ico"
 IDI_ICON30      ICON    DISCARDABLE "./res/icons/fb2.ico"
 IDI_ICON31      ICON    DISCARDABLE "./res/icons/dotx.ico"
 IDI_ICON32      ICON    DISCARDABLE "./res/icons/oxps.ico"
+IDI_ICON33      ICON    DISCARDABLE "./res/icons/xlsb.ico"
 
 #include <windows.h>
 #include "src/version.h"

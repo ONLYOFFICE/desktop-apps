@@ -143,11 +143,14 @@ static NSTouchBarItemIdentifier const kNewItemsItemIdentifier = @"com.onlyoffice
         bar.customizationIdentifier = kScrubberCustomizationIdentifier;
 
         // Set the default ordering of items.
-        if (_tabs.count > 0) {
-            bar.defaultItemIdentifiers = @[kStartPageItemIdentifier, kScrubbedItemIdentifier, NSTouchBarItemIdentifierOtherItemsProxy];
-        } else {
-            bar.defaultItemIdentifiers = @[kNewItemsItemIdentifier, NSTouchBarItemIdentifierOtherItemsProxy];
+        NSArray * items = !(_tabs.count > 0) ? @[kNewItemsItemIdentifier, NSTouchBarItemIdentifierOtherItemsProxy, NSTouchBarItemIdentifierFlexibleSpace] :
+                                @[kStartPageItemIdentifier, kScrubbedItemIdentifier, NSTouchBarItemIdentifierOtherItemsProxy];
+
+        if ([self.viewController.view userInterfaceLayoutDirection] == NSUserInterfaceLayoutDirectionRightToLeft) {
+            items = [[items reverseObjectEnumerator] allObjects];
         }
+        bar.defaultItemIdentifiers = items;
+
         //    bar.customizationAllowedItemIdentifiers = @[kScrubbedItemIdentifier];
         //    bar.principalItemIdentifier = kScrubbedItemIdentifier;
 
@@ -253,6 +256,7 @@ NSString *tabScrubberItemIdentifier = @"tabItem";
                                               target:blockHolder
                                               action:@selector(invoke:)];
         startPageItem.view = _startPageButton;
+        [startPageItem.view setUserInterfaceLayoutDirection:NSUserInterfaceLayoutDirectionLeftToRight];
 
         return startPageItem;
     }
@@ -275,8 +279,15 @@ NSString *tabScrubberItemIdentifier = @"tabItem";
                                                                title:NSLocalizedStringWithDefaultValue(@"new-presentation", @"Localizable", [NSBundle mainBundle], @"New Presentation", nil)
                                                                image:[NSImage imageNamed:NSImageNameTouchBarAddDetailTemplate]
                                                   customizationLabel:NSLocalizedStringWithDefaultValue(@"new-presentation", @"Localizable", [NSBundle mainBundle], @"New Presentation", nil)],
+                                      [self makeButtonWithIdentifier:[NSString stringWithFormat:kCreationButtonIdentifier, @"pdfform"]
+                                                               color:[NSColor brandPdfEditor]
+                                                               title:NSLocalizedStringWithDefaultValue(@"new-pdfform", @"Localizable", [NSBundle mainBundle], @"New PDF Form", nil)
+                                                               image:[NSImage imageNamed:NSImageNameTouchBarAddDetailTemplate]
+                                                  customizationLabel:NSLocalizedStringWithDefaultValue(@"new-pdfform", @"Localizable", [NSBundle mainBundle], @"New PDF Form", nil)],
                                       ];
         
+        if ([self.viewController.view userInterfaceLayoutDirection] == NSUserInterfaceLayoutDirectionRightToLeft)
+            creationButtons = [[creationButtons reverseObjectEnumerator] allObjects];
         NSGroupTouchBarItem * createonGroup = [NSGroupTouchBarItem groupItemWithIdentifier:kNewItemsItemIdentifier items:creationButtons];
         return createonGroup;
     }

@@ -71,6 +71,8 @@ public:
     explicit CWindowBase(const QRect&);
     virtual ~CWindowBase();   
 
+    static QRect startRect(const QRect &rc, double &dpi);
+    static QSize expectedContentSize(const QRect &rc, bool extended = false);
     QWidget * handle() const;
     bool isCustomWindowStyle();
     void updateScaling(bool resize = true);
@@ -103,6 +105,7 @@ protected:
                   *m_boxTitleBtns = nullptr,
                   *m_pMainView = nullptr;
     double         m_dpiRatio;
+    QColor         m_brdColor;
 
     virtual void showEvent(QShowEvent *);
 

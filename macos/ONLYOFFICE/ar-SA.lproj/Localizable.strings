@@ -41,7 +41,7 @@
 "Document %ld.docx" = "مستند %ld.docx";
 
 /* No comment provided by engineer. */
-"Document %ld.docxf" = "مستند %ld.docxf";
+"Document %ld.pdf" = "مستند %ld.pdf";
 
 /* No comment provided by engineer. */
 "Document template" = "قالب وورد (*.dotx)";
@@ -92,6 +92,9 @@
 "new-document" = "مستند جديد";
 
 /* No comment provided by engineer. */
+"new-pdfform" = "نموذج PDF جديد";
+
+/* No comment provided by engineer. */
 "new-presentation" = "عرض تقديمي جديد";
 
 /* No comment provided by engineer. */
@@ -104,10 +107,10 @@
 "OK" = "حسنًا";
 
 /* No comment provided by engineer. */
-"ONLYOFFICE can not open the Digital Signature file. Try opening another file." = "أونلي أوفيس غير قادر على فتح ملف التوقيع الرقمي. جرّب ملفًّا آخر.";
+"ONLYOFFICE can not open the Digital Signature file. Try opening another file." = "ONLYOFFICE غير قادر على فتح ملف التوقيع الرقمي. جرّب ملفًّا آخر.";
 
 /* No comment provided by engineer. */
-"ONLYOFFICE can not open the Private Key. Try opening another file." = "أونلي أوفيس غير قادر على فتح مفتاح التشفير الخاص. جرّب ملفًّا آخر.";
+"ONLYOFFICE can not open the Private Key. Try opening another file." = "ONLYOFFICE غير قادر على فتح المفتاح الخاص، حاول فتح ملف آخر.";
 
 /* No comment provided by engineer. */
 "OpenDocument Document Template" = "مستند ليبري أوفس (*.ott)";

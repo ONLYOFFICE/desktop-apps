@@ -31,26 +31,25 @@
 */
 
 #include "platform_win/utils.h"
+#include "classes/translator.h"
 #include "version.h"
 #include <Windows.h>
-#include <shellapi.h>
 #include <shlwapi.h>
-#include <combaseapi.h>
-#include <comutil.h>
-#include <oleauto.h>
-#include <iostream>
 #include <fstream>
 #include <regex>
 #include <cstdio>
-#include <Wincrypt.h>
+//#include <Wincrypt.h>
 #include <WtsApi32.h>
 #include <Softpub.h>
 #include <TlHelp32.h>
 #include <userenv.h>
 #include <vector>
+#include <stack>
 #include <sstream>
+#include "../../src/defines.h"
+#include "../../src/prop/defines_p.h"
 
-#define BUFSIZE 1024
+//#define BUFSIZE 1024
 
 
 static DWORD GetActiveSessionId()
@@ -101,7 +100,8 @@ namespace NS_Utils
     {
         if (showError)
             str += L" " + GetLastErrorAsString();
-        wchar_t *title = const_cast<LPTSTR>(TEXT(VER_PRODUCTNAME_STR));
+        wstring prod_name = _TR(VER_PRODUCTNAME_STR);
+        wchar_t *title = const_cast<LPTSTR>(prod_name.c_str());
         if (isRunAsApp()) {
             MessageBox(NULL, str.c_str(), title, MB_ICONERROR | MB_SERVICE_NOTIFICATION_NT3X | MB_SETFOREGROUND);
             return 0;
@@ -113,6 +113,23 @@ namespace NS_Utils
                             const_cast<LPTSTR>(str.c_str()), (DWORD)str.size() * sizeof(wchar_t),
                             MB_OK | MB_ICONERROR | MB_SERVICE_NOTIFICATION_NT3X | MB_SETFOREGROUND, 30, &res, TRUE);
         return res;
+    }
+
+    wstring GetAppLanguage()
+    {
+        wstring lang = TEXT("en_US"), subkey = TEXT("SOFTWARE\\" REG_GROUP_KEY "\\" REG_APP_NAME);
+        HKEY hKey = NULL, hRootKey = isRunAsApp() ? HKEY_CURRENT_USER : HKEY_LOCAL_MACHINE;
+        if (RegOpenKeyEx(hRootKey, subkey.c_str(), 0, KEY_ALL_ACCESS, &hKey) == ERROR_SUCCESS) {
+            DWORD type = REG_SZ, cbData = 0;
+            if (RegGetValue(hKey, NULL, TEXT("locale"), RRF_RT_REG_SZ, &type, NULL, &cbData) == ERROR_SUCCESS) {
+                wchar_t *pvData = (wchar_t*)malloc(cbData);
+                if (RegGetValueW(hKey, NULL, TEXT("locale"), RRF_RT_REG_SZ, &type, (void*)pvData, &cbData) == ERROR_SUCCESS)
+                    lang = pvData;
+                free(pvData);
+            }
+            RegCloseKey(hKey);
+        }
+        return lang;
     }
 }
 
@@ -355,15 +372,16 @@ namespace NS_File
 
     bool makePath(const wstring &path)
     {
-        list<wstring> pathsList;
+        std::stack<wstring> pathsList;
         wstring last_path(path);
         while (!last_path.empty() && !dirExists(last_path)) {
-            pathsList.push_front(last_path);
+            pathsList.push(last_path);
             last_path = parentPath(last_path);
         }
-        for (list<wstring>::iterator it = pathsList.begin(); it != pathsList.end(); ++it) {
-            if (::CreateDirectory(it->c_str(), NULL) == 0)
+        while(!pathsList.empty()) {
+            if (::CreateDirectory(pathsList.top().c_str(), NULL) == 0)
                 return false;
+            pathsList.pop();
         }
         return true;
     }
@@ -371,7 +389,7 @@ namespace NS_File
     bool replaceFile(const wstring &oldFilePath, const wstring &newFilePath)
     {
         return MoveFileExW(oldFilePath.c_str(), newFilePath.c_str(), MOVEFILE_REPLACE_EXISTING |
-                              MOVEFILE_WRITE_THROUGH | MOVEFILE_COPY_ALLOWED) != 0 ? true : false;
+                              MOVEFILE_WRITE_THROUGH | MOVEFILE_COPY_ALLOWED) != 0;
     }
 
     bool replaceFolder(const wstring &from, const wstring &to, bool remove_existing)
@@ -386,10 +404,10 @@ namespace NS_File
             return false;
         }
 
-        WCHAR src_vol[MAX_PATH+1] = {0};
-        WCHAR dst_vol[MAX_PATH+1] = {0};
-        BOOL src_res = GetVolumePathName(from.c_str(), src_vol, sizeof(src_vol)/sizeof(WCHAR));
-        BOOL dst_res = GetVolumePathName(parentPath(to).c_str(), dst_vol, sizeof(dst_vol)/sizeof(WCHAR));
+        WCHAR src_vol[MAX_PATH] = {0};
+        WCHAR dst_vol[MAX_PATH] = {0};
+        BOOL src_res = GetVolumePathName(from.c_str(), src_vol, MAX_PATH);
+        BOOL dst_res = GetVolumePathName(parentPath(to).c_str(), dst_vol, MAX_PATH);
 
         bool can_use_rename = (src_res != 0 && dst_res != 0 && wcscmp(src_vol, dst_vol) == 0);
         if (!dirExists(to) && can_use_rename) {
@@ -434,7 +452,7 @@ namespace NS_File
     bool removeDirRecursively(const wstring &dir)
     {
         WCHAR pFrom[_MAX_PATH + 1] = {0};
-        swprintf_s(pFrom, sizeof(pFrom)/sizeof(WCHAR), L"%s%c", dir.c_str(), '\0');
+        swprintf_s(pFrom, sizeof(pFrom)/sizeof(WCHAR), L"%s%c", dir.c_str(), L'\0');
         SHFILEOPSTRUCT fop = {
             NULL,
             FO_DELETE,
@@ -523,86 +541,86 @@ namespace NS_File
         return (res != 0) ? fromNativeSeparators(parentPath(buff)) : L"";
     }
 
-    string getFileHash(const wstring &fileName)
-    {
-        HANDLE hFile = NULL;
-        hFile = CreateFile(fileName.c_str(),
-            GENERIC_READ,
-            FILE_SHARE_READ,
-            NULL,
-            OPEN_EXISTING,
-            FILE_FLAG_SEQUENTIAL_SCAN,
-            NULL);
+//    string getFileHash(const wstring &fileName)
+//    {
+//        HANDLE hFile = NULL;
+//        hFile = CreateFile(fileName.c_str(),
+//            GENERIC_READ,
+//            FILE_SHARE_READ,
+//            NULL,
+//            OPEN_EXISTING,
+//            FILE_FLAG_SEQUENTIAL_SCAN,
+//            NULL);
 
-        if (hFile == INVALID_HANDLE_VALUE) {
-            return "";
-        }
+//        if (hFile == INVALID_HANDLE_VALUE) {
+//            return "";
+//        }
 
-        // Get handle to the crypto provider
-        HCRYPTPROV hProv = 0;
-        if (!CryptAcquireContext(&hProv, NULL, NULL, PROV_RSA_FULL, CRYPT_VERIFYCONTEXT)) {
-            CloseHandle(hFile);
-            return "";
-        }
+//        // Get handle to the crypto provider
+//        HCRYPTPROV hProv = 0;
+//        if (!CryptAcquireContext(&hProv, NULL, NULL, PROV_RSA_FULL, CRYPT_VERIFYCONTEXT)) {
+//            CloseHandle(hFile);
+//            return "";
+//        }
 
-        HCRYPTHASH hHash = 0;
-        if (!CryptCreateHash(hProv, CALG_MD5, 0, 0, &hHash)) {
-            CloseHandle(hFile);
-            CryptReleaseContext(hProv, 0);
-            return "";
-        }
+//        HCRYPTHASH hHash = 0;
+//        if (!CryptCreateHash(hProv, CALG_MD5, 0, 0, &hHash)) {
+//            CloseHandle(hFile);
+//            CryptReleaseContext(hProv, 0);
+//            return "";
+//        }
 
-        DWORD cbRead = 0;
-        BYTE rgbFile[BUFSIZE];
-        BOOL bResult = FALSE;
-        while ((bResult = ReadFile(hFile, rgbFile, BUFSIZE, &cbRead, NULL))) {
-            if (cbRead == 0)
-                break;
+//        DWORD cbRead = 0;
+//        BYTE rgbFile[BUFSIZE];
+//        BOOL bResult = FALSE;
+//        while ((bResult = ReadFile(hFile, rgbFile, BUFSIZE, &cbRead, NULL))) {
+//            if (cbRead == 0)
+//                break;
 
-            if (!CryptHashData(hHash, rgbFile, cbRead, 0)) {
-                CryptReleaseContext(hProv, 0);
-                CryptDestroyHash(hHash);
-                CloseHandle(hFile);
-                return "";
-            }
-        }
+//            if (!CryptHashData(hHash, rgbFile, cbRead, 0)) {
+//                CryptReleaseContext(hProv, 0);
+//                CryptDestroyHash(hHash);
+//                CloseHandle(hFile);
+//                return "";
+//            }
+//        }
 
-        if (!bResult) {
-            CryptReleaseContext(hProv, 0);
-            CryptDestroyHash(hHash);
-            CloseHandle(hFile);
-            return "";
-        }
+//        if (!bResult) {
+//            CryptReleaseContext(hProv, 0);
+//            CryptDestroyHash(hHash);
+//            CloseHandle(hFile);
+//            return "";
+//        }
 
-        DWORD cbHashSize = 0,
-              dwCount = sizeof(DWORD);
-        if (!CryptGetHashParam( hHash, HP_HASHSIZE, (BYTE*)&cbHashSize, &dwCount, 0)) {
-            CryptReleaseContext(hProv, 0);
-            CryptDestroyHash(hHash);
-            CloseHandle(hFile);
-            return "";
-        }
+//        DWORD cbHashSize = 0,
+//              dwCount = sizeof(DWORD);
+//        if (!CryptGetHashParam( hHash, HP_HASHSIZE, (BYTE*)&cbHashSize, &dwCount, 0)) {
+//            CryptReleaseContext(hProv, 0);
+//            CryptDestroyHash(hHash);
+//            CloseHandle(hFile);
+//            return "";
+//        }
 
-        std::vector<BYTE> buffer(cbHashSize);
-        if (!CryptGetHashParam(hHash, HP_HASHVAL, reinterpret_cast<BYTE*>(&buffer[0]), &cbHashSize, 0)) {
-            CryptReleaseContext(hProv, 0);
-            CryptDestroyHash(hHash);
-            CloseHandle(hFile);
-            return "";
-        }
+//        std::vector<BYTE> buffer(cbHashSize);
+//        if (!CryptGetHashParam(hHash, HP_HASHVAL, reinterpret_cast<BYTE*>(&buffer[0]), &cbHashSize, 0)) {
+//            CryptReleaseContext(hProv, 0);
+//            CryptDestroyHash(hHash);
+//            CloseHandle(hFile);
+//            return "";
+//        }
 
-        std::ostringstream oss;
-        for (std::vector<BYTE>::const_iterator it = buffer.begin(); it != buffer.end(); ++it) {
-            oss.fill('0');
-            oss.width(2);
-            oss << std::hex << static_cast<const int>(*it);
-        }
+//        std::ostringstream oss;
+//        for (std::vector<BYTE>::const_iterator it = buffer.begin(); it != buffer.end(); ++it) {
+//            oss.fill('0');
+//            oss.width(2);
+//            oss << std::hex << static_cast<const int>(*it);
+//        }
 
-        CryptReleaseContext(hProv, 0);
-        CryptDestroyHash(hHash);
-        CloseHandle(hFile);
-        return oss.str();
-    }
+//        CryptReleaseContext(hProv, 0);
+//        CryptDestroyHash(hHash);
+//        CloseHandle(hFile);
+//        return oss.str();
+//    }
 
     bool verifyEmbeddedSignature(const wstring &fileName)
     {

@@ -1,0 +1,237 @@
+/* No comment provided by engineer. */
+"%@ Help" = "%@ Помоћ";
+
+/* No comment provided by engineer. */
+"About %@" = "У вези%@";
+
+/* No comment provided by engineer. */
+"Acknowledgments" = "Признања";
+
+/* No comment provided by engineer. */
+"Before signing the document, it must be saved." = "Пре потписивања документа, мора бити сачуван.";
+
+/* No comment provided by engineer. */
+"Cancel" = "Откажи";
+
+/* No comment provided by engineer. */
+"Cannot open file of Digital Signature" = "Немогуће отворити фајл Дигиталног потписа";
+
+/* No comment provided by engineer. */
+"Cannot open file of Private Key" = "Немогуће отворити фајл Приватног кључа";
+
+/* No comment provided by engineer. */
+"Cannot open folder of the file location." = "Немогуће отворити фолдер локације фајла.";
+
+/* No comment provided by engineer. */
+"Comma-Separated Values" = "Вредности одвојене зарезом (*.csv)";
+
+/* No comment provided by engineer. */
+"Create portal" = "Креирај портал";
+
+/* No comment provided by engineer. */
+"Delete and Quit" = "Обриши и одустани";
+
+/* No comment provided by engineer. */
+"DjVu File" = "Дигитални документ (*.djvu)";
+
+/* No comment provided by engineer. */
+"Do you want to save the changes made to the document \"%@\"?" = "Желите ли да сачувате промене направљене на документу \"%@\"?";
+
+/* No comment provided by engineer. */
+"Document %ld.docx" = "Документ %ld.docx";
+
+/* No comment provided by engineer. */
+"Document %ld.pdf" = "Документ %ld.pdf";
+
+/* No comment provided by engineer. */
+"Document template" = "Word Open XML документ шаблон (*.dotx)";
+
+/* No comment provided by engineer. */
+"Don't Save" = "Немој да сачуваш";
+
+/* No comment provided by engineer. */
+"Excel 97-2003 Spreadsheet" = "Excel 97-2003 прорачунска табела (*.xls)";
+
+/* No comment provided by engineer. */
+"Excel 2007 Spreadsheet" = "Office Open XML прорачунска табела (*.xlsx)";
+
+/* No comment provided by engineer. */
+"FictionBook File" = "КњигаФикције 2 Фајл (*.fb2)";
+
+/* No comment provided by engineer. */
+"File \"%@\" can not be open or not exist." = "Фајл \"%@\" не може бити отворен или не постоји.";
+
+/* No comment provided by engineer. */
+"File can not be open." = "Фајл не може бити отворен.";
+
+/* No comment provided by engineer. */
+"File Format:" = "Фајл формат:";
+
+/* No comment provided by engineer. */
+"Hide %@" = "Сакриј %@";
+
+/* No comment provided by engineer. */
+"If you don't review your documents, all your changeses will be lost." = "Ако не прегледате ваше документе, све ваше промене ће бити изгубљене.";
+
+/* No comment provided by engineer. */
+"If you have already purchased %@, you should find your activation key in an email confirmation." = "Ако сте већ купили %@, требало би да пронађете ваш активациони кључ у емаил конфирмацији.";
+
+/* No comment provided by engineer. */
+"License Agreement" = "Договор о лиценци";
+
+/* No comment provided by engineer. */
+"Macro-enabled Presentation" = "Макро-омогућена презентација (*.pptm)";
+
+/* No comment provided by engineer. */
+"Macro-enabled spreadsheet template" = "Макро-омогућени шаблон прорачунске табеле (*.xltm)";
+
+/* No comment provided by engineer. */
+"Mobipocket e-book" = "Mobipocket фајл (*.mobi)";
+
+/* No comment provided by engineer. */
+"new-document" = "Нови Документ";
+
+/* No comment provided by engineer. */
+"new-pdfform" = "Нови PDF формулар";
+
+/* No comment provided by engineer. */
+"new-presentation" = "Нова Презентација";
+
+/* No comment provided by engineer. */
+"new-spreadsheet" = "Нова Прорачунска табела";
+
+/* No comment provided by engineer. */
+"No" = "Не";
+
+/* No comment provided by engineer. */
+"OK" = "OK";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE can not open the Digital Signature file. Try opening another file." = "ONLYOFFICE не може отворити фајл Дигиталног потписа. Покушајте отворити други фајл.";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE can not open the Private Key. Try opening another file." = "ONLYOFFICE не може отворити Приватни кључ. Покушајте отворити други фајл.";
+
+/* No comment provided by engineer. */
+"OpenDocument Document Template" = "OpenDocument документ шаблон (*.ott)";
+
+/* No comment provided by engineer. */
+"OpenDocument Presentation Template" = "OpenDocument шаблон презентације (*.otp)";
+
+/* No comment provided by engineer. */
+"OpenDocument Spreadsheet Template" = "OpenDocument шаблон прорачунске табеле (*.ots)";
+
+/* No comment provided by engineer. */
+"Opening" = "Отварање";
+
+/* No comment provided by engineer. */
+"OpenOffice Document" = "OpenDocument текст фајл (*.odt)";
+
+/* No comment provided by engineer. */
+"OpenOffice Presentation" = "OpenDocument презентација (*.odp)";
+
+/* No comment provided by engineer. */
+"OpenOffice Spreadsheet" = "OpenDocument прорачунска табела (*.ods)";
+
+/* No comment provided by engineer. */
+"PDF File" = "Преносиви документ (*.pdf)";
+
+/* No comment provided by engineer. */
+"PDF/A File" = "Преносиви документ /A (*.pdf)";
+
+/* No comment provided by engineer. */
+"Plain Text" = "Обичан текст фајл (*.txt)";
+
+/* No comment provided by engineer. */
+"PowerPoint 97-2003 Presentation" = "PowerPoint 97-2003 презентација (*.ppt)";
+
+/* No comment provided by engineer. */
+"PowerPoint 2007 Presentation" = "Office Open XML презентација (*.pptx)";
+
+/* No comment provided by engineer. */
+"PowerPoint Slide Show" = "Office Open XML слајд шоу (*.ppsx)";
+
+/* No comment provided by engineer. */
+"Preparing..." = "Препаринг…";
+
+/* No comment provided by engineer. */
+"Presentation %ld.pptx" = "Презентација %ld.pptx";
+
+/* No comment provided by engineer. */
+"Presentation template" = "PowerPoint Open XML шаблон презентације (*.potx)";
+
+/* No comment provided by engineer. */
+"Presenter View" = "Приказ за Презентера";
+
+/* No comment provided by engineer. */
+"Quit %@" = "Одустани %@";
+
+/* No comment provided by engineer. */
+"Review Changes..." = "Прегледај промене…";
+
+/* No comment provided by engineer. */
+"Rich Text Document" = "Богати текст формат фајл (*.rtf)";
+
+/* No comment provided by engineer. */
+"Save" = "Сачувај";
+
+/* No comment provided by engineer. */
+"Save the document?" = "Сачувај документ?";
+
+/* No comment provided by engineer. */
+"Signature Details" = "Детаљи потписа";
+
+/* No comment provided by engineer. */
+"Spreadsheet %ld.xlsx" = "Прорачунска табела %ld.xlsx";
+
+/* No comment provided by engineer. */
+"Spreadsheet template" = "Excel Open XML шаблон прорачунске табеле (*.xltx)";
+
+/* No comment provided by engineer. */
+"Thank you for evaluating %@!" = "Хвала на евалуацији %@!";
+
+/* No comment provided by engineer. */
+"The document \"%@\" must be built. Continue?" = "Документ \"%@” мора бити изграђен. Наставити?";
+
+/* No comment provided by engineer. */
+"To open the file location, it must be saved." = "Да бисте отворили локацију фајла, мора бити сачуван.";
+
+/* No comment provided by engineer. */
+"Unconfirmed" = "Непотврђено";
+
+/* No comment provided by engineer. */
+"Untitled" = "Ненасловљено";
+
+/* No comment provided by engineer. */
+"Web Page" = "Веб страница";
+
+/* No comment provided by engineer. */
+"With access to pro features" = "Са приступом на про функције";
+
+/* No comment provided by engineer. */
+"Word 97-2003 Document" = "Word 97-2003 документ (*.doc)";
+
+/* No comment provided by engineer. */
+"Word 2007 Document" = "Office Open XML документ (*.docx)";
+
+/* No comment provided by engineer. */
+"XML Paper Specification" = "OpenXPS документ (*.xps)";
+
+/* No comment provided by engineer. */
+"Yes" = "Да";
+
+/* No comment provided by engineer. */
+"You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?" = "Имате %1$ld %2$@ докумената са непотврђеним променама. Желите ли да прегледате ове промене пре одустајања?";
+
+/* No comment provided by engineer. */
+"You have successfully activated %@." = "Успешно сте активирали %@.";
+
+/* No comment provided by engineer. */
+"Your changes will be lost if you don’t save them." = "Ваше промене ће бити изгубљене ако их не сачувате.";
+
+/* No comment provided by engineer. */
+"Your subscription has expired.\n\nThe program works in the non-activated mode.\n\nNow you can prolong or upgrade your subscription with a discount." = "Ваша претплата је истекла. \n\nПрограм ради у не-активираном режиму.\n\nСада можете да продужите или надоградите вашу претплату са попустом.";
+
+/* No comment provided by engineer. */
+"Your subscription is about to expire\n(%d days left).\n\nWe have a special offer for you." = "Ваша претплата ће ускоро да истекне\n(%d дана остало).\n\nИмамо специјалну понуду за вас.";
+

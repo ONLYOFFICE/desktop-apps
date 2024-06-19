@@ -35,16 +35,8 @@
 #include "cascapplicationmanagerwrapper.h"
 #include "defines.h"
 #include "utils.h"
-#include "csplash.h"
-#include "clogger.h"
-#include "clangater.h"
-#include <QDesktopWidget>
 #include <QGridLayout>
-#include <QTimer>
-#include <stdexcept>
-#include <functional>
-#include <QApplication>
-#include <QIcon>
+#include <clangater.h>
 
 using namespace std::placeholders;
 
@@ -147,12 +139,11 @@ QWidget * CPresenterWindow::createMainPanel(QWidget * parent, const QString& tit
         setAutoFillBackground(true);
         setPalette(_palette);
         setStyleSheet("QMainWindow{border:1px solid #888;}");*/
-#else
-        QSize small_btn_size(int(TOOLBTN_WIDTH*m_dpiRatio), int(TOOLBTN_HEIGHT*m_dpiRatio));
+#endif
+        QSize small_btn_size(int(TITLEBTN_WIDTH*m_dpiRatio), int(TOOLBTN_HEIGHT*m_dpiRatio));
         QWidget * _lb = new QWidget(m_boxTitleBtns);
         _lb->setFixedWidth( (small_btn_size.width() + static_cast<QHBoxLayout*>(m_boxTitleBtns->layout())->spacing()) * 3 );
         static_cast<QHBoxLayout*>(m_boxTitleBtns->layout())->insertWidget(0, _lb);
-#endif
     } else {
         QLinearGradient gradient(mainPanel->rect().topLeft(), QPoint(mainPanel->rect().left(), 29));
         gradient.setColorAt(0, QColor(0xeee));
@@ -162,7 +153,7 @@ QWidget * CPresenterWindow::createMainPanel(QWidget * parent, const QString& tit
     }
     mainGridLayout->addWidget(m_boxTitleBtns, 0, 0, Qt::AlignTop);
     if (!view) {
-        QCefView * pMainWidget = AscAppManager::createViewer(mainPanel);
+        QCefView * pMainWidget = AscAppManager::createViewer(mainPanel, mainPanel->size());
         pMainWidget->Create(&AscAppManager::getInstance(), cvwtSimple);
         pMainWidget->setObjectName("mainPanel");
         pMainWidget->setHidden(false);

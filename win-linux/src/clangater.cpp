@@ -10,6 +10,52 @@
 #include <list>
 #include <algorithm>
 
+#ifdef _WIN32
+# ifndef __OS_WIN_XP
+#  include <commctrl.h>
+
+
+bool resolveLocaleName(LPCWSTR nameToResolve, LPWSTR localeName, int localeNameSize)
+{
+    int(WINAPI *_ResolveLocaleName)(LPCWSTR, LPWSTR, int) = NULL;
+    if (HMODULE module = GetModuleHandleA("kernel32"))
+        *(FARPROC*)&_ResolveLocaleName = GetProcAddress(module, "ResolveLocaleName");
+    return _ResolveLocaleName ? _ResolveLocaleName(nameToResolve, localeName, localeNameSize) != 0 : false;
+}
+# endif
+
+void setNativeUILanguage(std::wstring localeTag)
+{
+    if (localeTag.empty())
+        return;
+#ifndef __OS_WIN_XP
+    WCHAR localeName[LOCALE_NAME_MAX_LENGTH] = {0};
+    if (resolveLocaleName(localeTag.c_str(), localeName, LOCALE_NAME_MAX_LENGTH) && wcslen(localeName) != 0)
+        localeTag = localeName;
+    if (!IsValidLocaleName(localeTag.c_str()))
+        return;
+    ULONG langCount = 1;
+    if (GetLocaleInfo(LOCALE_CUSTOM_UI_DEFAULT, LOCALE_SNAME, localeName, LOCALE_NAME_MAX_LENGTH) > 0) {
+        if (wcscmp(localeTag.c_str(), localeName) != 0) {
+            ++langCount;
+            localeTag.append(L";");
+            localeTag.append(localeName);
+        }
+    }
+    std::replace(localeTag.begin(), localeTag.end(), L';', L'\0');
+    localeTag.push_back(L'\0');
+    SetThreadPreferredUILanguages(MUI_LANGUAGE_NAME, (PCZZWSTR)localeTag.c_str(), &langCount);
+    LCID lcid = LocaleNameToLCID(localeTag.c_str(), 0);
+    if (lcid != 0)
+        InitMUILanguage(LANGIDFROMLCID(lcid));
+#else
+//    LCID lcid = LocaleNameToLCID(localeTag.c_str(), 0);
+//    if (lcid != 0 && IsValidLocale(lcid, LCID_INSTALLED) != 0)
+//        SetThreadUILanguage(LANGIDFROMLCID(lcid));
+#endif
+}
+#endif
+
 
 class CLangater::CLangaterIntf
 {
@@ -24,7 +70,7 @@ public:
     QTranslator * createTranslator(const QString& file)
     {
         QTranslator * t = nullptr;
-        for (auto d: m_dirs) {
+        for (const auto &d: m_dirs) {
             t = createTranslator(file, d);
             if ( t ) break;
         }
@@ -152,6 +198,8 @@ private:
         ,{"gl-ES", "Galego"}
         ,{"si-LK", "සිංහල"}
         ,{"ar-SA", "اَلْعَرَبِيَّة"}
+        ,{"sr-Latn-RS", "Srpski (Latin)"}
+        ,{"sr-Cyrl-RS", "Српски (Ћирилица)"}
     };
 };
 
@@ -241,6 +289,10 @@ void CLangater::init()
     if ( tr ) getInstance()->m_lang = _lang;
 
     QCoreApplication::installTranslator(tr);
+
+#ifdef _WIN32
+    setNativeUILanguage(_lang.toStdWString());
+#endif
 }
 
 void CLangater::reloadTranslations(const QString& lang)
@@ -259,6 +311,10 @@ void CLangater::reloadTranslations(const QString& lang)
 
         emit getInstance()->onLangChanged(lang);
     }
+
+#ifdef _WIN32
+    setNativeUILanguage(lang.toStdWString());
+#endif
 }
 
 void CLangater::refreshLangs(const QMap<QString,QString>& map)

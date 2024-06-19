@@ -115,8 +115,12 @@ auto createTabPanel(QWidget * parent, CTabPanel * panel = nullptr) -> QWidget * 
     layout->setSpacing(0);
     layout->setContentsMargins(0,0,0,0);
     panelwidget->setLayout(layout);
-    panelwidget->layout()->addWidget(panel ? panel : new CTabPanel);
-
+    if (!panel) {
+        // workaround for determining the size of a CAscTabWidget that does not contain widgets
+        CMainWindow *w = parent ? qobject_cast<CMainWindow*>(parent->topLevelWidget()) : nullptr;
+        panel = new CTabPanel(nullptr, w ? w->contentSize() : QSize());
+    }
+    panelwidget->layout()->addWidget(panel);
     return panelwidget;
 }
 
@@ -389,9 +393,9 @@ int CAscTabWidget::addPortal(const QString& url, const QString& name, const QStr
     tab_index = insertWidget(tab_index, panelwidget);
     m_pBar->insertTab(tab_index, portal);
     m_pBar->setTabToolTip(tab_index, _url);
-    m_pBar->setTabThemeType(tab_index, CTabBar::LightTab);
+    m_pBar->setTabThemeType(tab_index, GetCurrentTheme().isDark() ? CTabBar::DarkTab : CTabBar::LightTab);
     m_pBar->setTabThemeIcons(tab_index, std::make_pair(":/tabbar/icons/portal.svg", ":/tabbar/icons/portal_light.svg"));
-    m_pBar->setActiveTabColor(tab_index, QString::fromStdWString(AscAppManager::themes().current().value(CTheme::ColorRole::ecrTabSimpleActiveBackground)));
+    m_pBar->setActiveTabColor(tab_index, QString::fromStdWString(GetColorValueByRole(ecrTabSimpleActiveBackground)));
     m_pBar->tabStartLoading(tab_index);
 //    updateTabIcon(tabIndexByView(id));
 
@@ -430,9 +434,9 @@ int CAscTabWidget::addOAuthPortal(const QString& portal, const QString& type, co
     tab_index = insertWidget(tab_index, panelwidget);
     m_pBar->insertTab(tab_index, _portal);
     m_pBar->setTabToolTip(tab_index, portal);
-    m_pBar->setTabThemeType(tab_index, CTabBar::LightTab);
+    m_pBar->setTabThemeType(tab_index, GetCurrentTheme().isDark() ? CTabBar::DarkTab : CTabBar::LightTab);
     m_pBar->setTabThemeIcons(tab_index, std::make_pair(":/tabbar/icons/portal.svg", ":/tabbar/icons/portal_light.svg"));
-    m_pBar->setActiveTabColor(tab_index, QString::fromStdWString(AscAppManager::themes().current().value(CTheme::ColorRole::ecrTabSimpleActiveBackground)));
+    m_pBar->setActiveTabColor(tab_index, QString::fromStdWString(GetColorValueByRole(ecrTabSimpleActiveBackground)));
 //    m_pBar->tabStartLoading(tab_index);
 
     return tab_index;
@@ -476,6 +480,10 @@ int CAscTabWidget::insertPanel(QWidget * panel, int index)
             tabcolor =  QString::fromStdWString(ui_theme.value(CTheme::ColorRole::ecrTabViewerActive));
             m_pBar->setTabThemeType(tabindex, CTabBar::DarkTab);
             break;
+        case etPortal:
+            tabcolor =  QString::fromStdWString(ui_theme.value(CTheme::ColorRole::ecrTabSimpleActiveBackground));
+            m_pBar->setTabThemeType(tabindex, /*ui_theme.isDark() ? CTabBar::DarkTab :*/ CTabBar::LightTab);
+            break;
         default:
             tabcolor =  QString::fromStdWString(ui_theme.value(CTheme::ColorRole::ecrTabDefaultActiveBackground));
             m_pBar->setTabThemeType(tabindex, /*ui_theme.isDark() ? CTabBar::DarkTab :*/ CTabBar::LightTab);
@@ -513,7 +521,7 @@ void CAscTabWidget::reloadTabIcons()
 {
     m_mapTabIcons.clear();
     const char *icons[] = {":/tabbar/icons/newdoc.svg", ":/tabbar/icons/de.svg", ":/tabbar/icons/pe.svg",
-                           ":/tabbar/icons/docxf.svg",  ":/tabbar/icons/se.svg", ":/tabbar/icons/portal_light.svg",
+                           ":/tabbar/icons/pdf-form.svg",  ":/tabbar/icons/se.svg", ":/tabbar/icons/portal_light.svg",
                            ":/tabbar/icons/portal.svg", ":/tabbar/icons/pdf.svg"};
     int portal_icon = GetCurrentTheme().isDark() ? 5 : 6;
     m_mapTabIcons.insert({
@@ -621,7 +629,7 @@ int CAscTabWidget::tabIndexByUrl(const wstring& url)
     CCefView * view = AscAppManager::getInstance().GetViewByUrl(url);
     if ( view ) {
         return tabIndexByView(view->GetId());
-    } else {
+    } else {       
         const CAscTabData * doc;
         for (int i(count()); !(--i < 0);) {
             doc = panel(i)->data();
@@ -1223,7 +1231,14 @@ void CAscTabWidget::applyUITheme(const std::wstring& theme)
         case AscEditorType::etPdf:
             m_pBar->setActiveTabColor(i, QString::fromStdWString(ui_theme.value(CTheme::ColorRole::ecrTabViewerActive)));
             break;
-        default: break;
+        case etPortal:
+            m_pBar->setTabThemeType(i, ui_theme.isDark() ? CTabBar::DarkTab : CTabBar::LightTab);
+            m_pBar->setActiveTabColor(i, QString::fromStdWString(ui_theme.value(CTheme::ColorRole::ecrTabSimpleActiveBackground)));
+            break;
+        default:
+            m_pBar->setTabThemeType(i, ui_theme.isDark() ? CTabBar::DarkTab : CTabBar::LightTab);
+            m_pBar->setActiveTabColor(i, QString::fromStdWString(ui_theme.value(CTheme::ColorRole::ecrTabDefaultActiveBackground)));
+            break;
         }
     }
 

@@ -147,9 +147,9 @@
         <target state="translated">Dokumentum %ld.docx</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
-      <trans-unit id="Document %ld.docxf" xml:space="preserve">
-        <source>Document %ld.docxf</source>
-        <target state="translated">Dokumentum %ld.docxf</target>
+      <trans-unit id="Document %ld.pdf" xml:space="preserve">
+        <source>Document %ld.pdf</source>
+        <target state="translated">Dokumentum %ld.pdf</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Document template" xml:space="preserve">
@@ -449,6 +449,11 @@ Van egy speciális ajánlatunk az Ön számára.</target>
       <trans-unit id="new-spreadsheet" xml:space="preserve">
         <source>New Spreadsheet</source>
         <target state="translated">Új Táblázat</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="new-pdfform" xml:space="preserve">
+        <source>New PDF Form</source>
+        <target>Új PDF űrlap</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
     </body>
