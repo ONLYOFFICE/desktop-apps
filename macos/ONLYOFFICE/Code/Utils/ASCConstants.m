@@ -82,7 +82,7 @@
 }
 
 + (NSArray *)cancryptformats {
-    return @[@".docm", @".docx", @".docxf", @".dotm", @".dotx", @".oform", @".potm", @".potx", @".ppsm", @".pptm", @".ppsx", @".pptx", @".xlsm", @".xlsx", @".xltm", @".xltx"];
+    return @[@"docm", @"docx", @"docxf", @"dotm", @"dotx", @"oform", @"potm", @"potx", @"ppsm", @"pptm", @"ppsx", @"pptx", @"xlsm", @"xlsx", @"xltm", @"xltx"];
 }
 
 + (NSArray *)plugins {
