@@ -4,7 +4,7 @@
 <context>
     <name>CAscApplicationManagerWrapper</name>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1315"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1316"/>
         <source>Presenter View</source>
         <translation></translation>
     </message>
@@ -17,23 +17,23 @@
         <translation type="vanished">All the editor windows will be closed. Do you want to continue?</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1772"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1773"/>
         <source>You must restart the application for the settings to take effect.</source>
         <translation>You need to restart the application for the settings to take effect. Restart now?</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2151"/>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2153"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2152"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2154"/>
         <source>Document%1.docx</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2156"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2157"/>
         <source>Book%1.xlsx</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2157"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2158"/>
         <source>Presentation%1.pptx</source>
         <translation></translation>
     </message>
@@ -823,12 +823,12 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper_private.h" line="249"/>
+        <location filename="../src/cascapplicationmanagerwrapper_private.h" line="251"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
         <translation>%1 is not available. It might be renamed, moved or deleted.&lt;br&gt;Do you want to remove the file from the list?</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper_private.h" line="292"/>
+        <location filename="../src/cascapplicationmanagerwrapper_private.h" line="294"/>
         <source>File %1 cannot be opened or doesn&apos;t exists.</source>
         <translation>File %1 cannot be opened or doesn&apos;t exist.</translation>
     </message>

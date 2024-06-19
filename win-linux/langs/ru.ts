@@ -4,7 +4,7 @@
 <context>
     <name>CAscApplicationManagerWrapper</name>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1315"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1316"/>
         <source>Presenter View</source>
         <translation>Режим докладчика</translation>
     </message>
@@ -25,23 +25,23 @@
         <translation type="obsolete">Сохранить как</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1772"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1773"/>
         <source>You must restart the application for the settings to take effect.</source>
         <translation>Чтобы применить настройки, необходимо перезапустить приложение. Перезапустить сейчас?</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2151"/>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2153"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2152"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2154"/>
         <source>Document%1.docx</source>
         <translation>Документ%1.docx</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2156"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2157"/>
         <source>Book%1.xlsx</source>
         <translation>Книга%1.xlsx</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2157"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2158"/>
         <source>Presentation%1.pptx</source>
         <translation>Презентация%1.pptx</translation>
     </message>
@@ -926,12 +926,12 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper_private.h" line="249"/>
+        <location filename="../src/cascapplicationmanagerwrapper_private.h" line="251"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
         <translation>%1 недоступен. Возможно, он был переименован, перемещен или удален.&lt;br&gt;Хотите удалить его из списка?</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper_private.h" line="292"/>
+        <location filename="../src/cascapplicationmanagerwrapper_private.h" line="294"/>
         <source>File %1 cannot be opened or doesn&apos;t exists.</source>
         <translation>Файл %1 не может быть открыт или не существует.</translation>
     </message>
