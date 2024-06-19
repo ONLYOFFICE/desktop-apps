@@ -370,7 +370,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="78"/>
         <source>ONLYOFFICE Form Document (*.pdf)</source>
-        <translation>Έγγραφο με φόρμα ONLYOFFICE (*.pdf)</translation>
+        <translation>Φόρμα PDF (*.pdf)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="85"/>

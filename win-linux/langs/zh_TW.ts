@@ -385,7 +385,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="78"/>
         <source>ONLYOFFICE Form Document (*.pdf)</source>
-        <translation>ONLYOFFICE格式文件(*.pdf)</translation>
+        <translation type="unfinished">PDF 表格 (*.pdf)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="85"/>
@@ -405,7 +405,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="95"/>
         <source>OpenDocument Spreadsheet Template</source>
-        <translation type="unfinished">OpenDocument試算表範本</translation>
+        <translation>OpenDocument試算表範本</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="96"/>
