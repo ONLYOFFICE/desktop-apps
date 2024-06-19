@@ -140,7 +140,7 @@
         <h4>Forms</h4>
         <ul>
             <li>When adding a fixed form, now it is inserted without wrapping in front of the text</li>
-            <li>The color of the  Picture placeholder corresponds to the color of the role for this form</li>
+            <li>The color of the Picture placeholder corresponds to the color of the role for this form</li>
             <li>The thickness of the frame for required fields is now 2px with any zoom</li>
             <li>Added a button to switch to the editing mode (similar to the button in the editor header) for forms opened in the View or Fill forms mode</li>
             <li>The presence of this button depends on the integrator's subscription to the onRequestEditRights event and the permissions.edit rights (in case of a viewer)</li>
@@ -158,7 +158,6 @@
 
         <h4>Security</h4>
         <ul>
-            <li>Fixed the vulnerability in the fs.folderPath field which allows accessing the file system</li>
             <li>Fixed vulnerabilities in the PtgName::assemble, PtgNameX::assemble, PtgParen::assemble, PtgRef3d::assemble, PtgList::assemble and PtgArea3d::assemble methods which cause crash when converting <code>XLS</code> to <code>XLSX</code></li>
             <li>Fixed the vulnerability in the <code>CDataStream::ReadEmrTextBase</code> method which causes crash when converting <code>ODP</code> to <code>PDF</code></li>
             <li>Fixed the vulnerability in the <code>GlobalsSubstream::UpdateDefineNames</code> method which causes crash when converting <code>XLS</code> to <code>XLSX</code></li>
@@ -167,7 +166,6 @@
             <li>Fixed the vulnerability in the <code>CPPTUserInfo::LoadExternal</code> method which allows writing a file to a folder with restricted access when converting <code>PPT</code> to <code>PPTX</code></li>
             <li>Fixed vulnerabilities which allow reading data from a third-party file when converting <code>OOXML</code> to <code>ODF</code> and vice versa</li>
             <li>Fixed Heap Buffer Overflow in the <code>CSvmFile::Read_META_BMP</code> method when converting <code>ODP</code> to <code>PPTX</code></li>
-            <li>Fixed the vulnerability in the commandSetPassword method which allows setting a password for a document regardless of rights</li>
         </ul>
     </div>
 </body>
