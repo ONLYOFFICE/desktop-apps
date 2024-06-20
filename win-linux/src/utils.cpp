@@ -1035,10 +1035,10 @@ namespace WindowHelper {
 #define BORDER_ACTIVE_LIGHT_V2   "#777777" // Light theme and white background
 #define BORDER_INACTIVE_LIGHT_V1 "#606060"
 #define BORDER_INACTIVE_LIGHT_V2 "#aaaaaa"
-        bool isBkgDark = AscAppManager::themes().isColorDark(bkgColor.name());
-        return QColor(GetCurrentTheme().isDark() ? (isActive ? BORDER_ACTIVE_DARK : BORDER_INACTIVE_DARK) :
-                      (isActive ? (isBkgDark ? BORDER_ACTIVE_LIGHT_V1 : BORDER_ACTIVE_LIGHT_V2) :
-                                  (isBkgDark ? BORDER_INACTIVE_LIGHT_V1 : BORDER_INACTIVE_LIGHT_V2)));
+        int lum = int(0.299 * bkgColor.red() + 0.587 * bkgColor.green() + 0.114 * bkgColor.blue());
+        return QColor(lum < 85 ? (isActive ? BORDER_ACTIVE_DARK : BORDER_INACTIVE_DARK) :
+                      lum < 170 ? (isActive ? BORDER_ACTIVE_LIGHT_V1 : BORDER_INACTIVE_LIGHT_V1) :
+                                  (isActive ? BORDER_ACTIVE_LIGHT_V2 : BORDER_INACTIVE_LIGHT_V2));
     }
 
     auto toggleLayoutDirection(HWND hwnd) -> void
