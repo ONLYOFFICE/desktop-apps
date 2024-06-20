@@ -92,8 +92,8 @@ begin
   if Length(InArgs) > 0 then InArgs := InArgs + ' ';
   InArgs := InArgs + '/LANG='+getAppPrevLang() + ' /silent /update';
 
-  ExtractTemporaryFiles('{tmp}\{#TARGET_NAME}');
-  ExecAsOriginalUser(ExpandConstant('{tmp}\{#TARGET_NAME}'), InArgs, '', SW_SHOWNORMAL, ewNoWait, ResultCode);
+  ExtractTemporaryFiles('{tmp}\{#TARGET_NAME}.exe');
+  ExecAsOriginalUser(ExpandConstant('{tmp}\{#TARGET_NAME}.exe'), InArgs, '', SW_SHOWNORMAL, ewNoWait, ResultCode);
 
   Result := False;
 end;
