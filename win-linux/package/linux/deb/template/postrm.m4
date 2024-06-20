@@ -6,7 +6,8 @@ set -e 		# fail on any error
 case "$1" in
 	purge)
 		ifelse(M4_COMPANY_NAME, ONLYOFFICE,
-		rm -fr /home/*/.local/share/M4_DESKTOPEDITORS_PREFIX,
+		rm -fr /home/*/.local/share/M4_DESKTOPEDITORS_PREFIX
+		rm -fr /home/*/.config/onlyoffice/DesktopEditors.conf,
 		rm -fr /home/*/.local/share/M4_PACKAGE_NAME
 		if [ -f /etc/astra_version ] && [ -f /etc/X11/trusted ]; then
 			sed -i '\|/opt/M4_DESKTOPEDITORS_PREFIX/DesktopEditors|d' /etc/X11/trusted
