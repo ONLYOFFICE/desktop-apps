@@ -52,12 +52,12 @@ using namespace std;
  *
 */
 
-template <class T> class VPtr
-{
-public:
-    static T * asPtr(QVariant v) {return  (T *) v.value<void *>();}
-    static QVariant asQVariant(T * ptr){return qVariantFromValue((void *) ptr);}
-};
+//template <class T> class VPtr
+//{
+//public:
+//    static T * asPtr(QVariant v) {return  (T *) v.value<void *>();}
+//    static QVariant asQVariant(T * ptr){return qVariantFromValue((void *) ptr);}
+//};
 
 
 /*
@@ -662,11 +662,7 @@ int CAscTabWidget::openLocalDocument(const COpenOptions& options, bool select, b
     int tabIndex = -1;
     if ( !forcenew && options.srctype != etRecoveryFile ) {
         CCefView * view = AscAppManager::getInstance().GetViewByRecentId( options.id );
-        if ( view ) {
-            tabIndex = tabIndexByView(view->GetId());
-        } else {
-            tabIndex = tabIndexByUrl(options.wurl);
-        }
+        tabIndex = view ? tabIndexByView(view->GetId()) : tabIndexByUrl(options.wurl);
     }
 
     if (tabIndex < 0){
@@ -748,10 +744,8 @@ void CAscTabWidget::applyDocumentChanging(int viewId, const QString& name, const
     if (!(tabIndex < 0)) {
         CAscTabData * doc = panel(tabIndex)->data();
         doc->setTitle(name);
-        if ( doc->isLocal() && !path.isEmpty() ) {
-            QString _path(path);
-            doc->setUrl( Utils::replaceBackslash(_path) );
-        }
+        if ( doc->isLocal() && !path.isEmpty() )
+            doc->setUrl( Utils::replaceBackslash(path) );
 
         m_pBar->setTabText(tabIndex, doc->title());
         m_pBar->setTabToolTip(tabIndex, path.isEmpty() ? doc->title() : path);

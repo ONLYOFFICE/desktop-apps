@@ -45,9 +45,6 @@ public:
     int exec();
     void exit(int);
 
-    /* callback */
-    static LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
-
 private:
     DWORD  mainThreadId = 0;
 };

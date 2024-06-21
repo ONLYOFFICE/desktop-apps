@@ -31,6 +31,7 @@
  */
 
 #include "singleapplication.h"
+#include "csocket.h"
 #include "utils.h"
 
 

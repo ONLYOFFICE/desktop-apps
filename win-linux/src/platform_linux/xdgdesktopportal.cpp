@@ -1128,6 +1128,13 @@ void Free(void* p) {
     }
 }
 
+void onWindowFound(xcb_window_t w, void *user_data)
+{
+    if (QWidget *p = (QWidget*)user_data)
+        XcbUtils::moveWindow(w, p->x() + 20, p->y() + 80);
+    XcbUtils::setNativeFocusTo(w);
+}
+
 QStringList Xdg::openXdgPortal(QWidget *parent,
                                Mode mode,
                                const QString &title,
@@ -1185,9 +1192,7 @@ QStringList Xdg::openXdgPortal(QWidget *parent,
     }
 
     char* outPaths;
-    XcbUtils::findWindowAsync("xdg-desktop-portal",
-                              3000,
-                              XcbUtils::setNativeFocusTo);
+    XcbUtils::findWindowAsync("xdg-desktop-portal", (void*)parent, 3000, onWindowFound);
     Result result;
     result = openDialog(parentWid, mode, title.toUtf8().data(),
                         &outPaths,

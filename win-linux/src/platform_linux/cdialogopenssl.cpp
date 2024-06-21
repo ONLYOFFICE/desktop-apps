@@ -1,8 +1,7 @@
 #include "cdialogopenssl.h"
 #include "components/cmessage.h"
 #include "utils.h"
-#include "platform_linux/xdgdesktopportal.h"
-#include "platform_linux/gtkfilechooser.h"
+#include "components/cfiledialog.h"
 #include <QPushButton>
 #include <QGridLayout>
 #include <QFileDialog>
@@ -179,26 +178,9 @@ CDialogOpenSsl::~CDialogOpenSsl()
 void CDialogOpenSsl::onBtnCertificateClick()
 {
     QString sDirectory = "~/";
-
-    QString _file_name;
-    QFileDialog::Options opts;
-    if (!WindowHelper::useNativeDialog())
-        opts |= QFileDialog::DontUseNativeDialog;
-
-    if (!opts.testFlag(QFileDialog::DontUseNativeDialog)) {
-        QStringList result;
-        if (WindowHelper::useGtkDialog()) {
-            result = Gtk::openGtkFileChooser(this, Gtk::Mode::OPEN, tr("Open Document"), "",
-                                           sDirectory, "", nullptr, false);
-        } else {
-            result = Xdg::openXdgPortal(this, Xdg::Mode::OPEN, tr("Open Document"), "",
-                                      sDirectory, "", nullptr, false);
-        }
-        _file_name = (result.size() > 0) ? result.at(0) : QString();
-    } else {
-        _file_name = QFileDialog::getOpenFileName(NULL, QString(), sDirectory, QString(), Q_NULLPTR, opts);
-    }
-
+    CFileDialogWrapper dlg(this);
+    QStringList result = dlg.modalOpenAny(sDirectory);
+    QString _file_name = (result.size() > 0) ? result.at(0) : QString();
     if ( !_file_name.isEmpty() ) {
         m_private->clearKey(true);
         m_private->setPassDisabled();
@@ -211,26 +193,9 @@ void CDialogOpenSsl::onBtnCertificateClick()
 void CDialogOpenSsl::onBtnKeyClick()
 {
     QString sDirectory = "~/";
-
-    QString _file_name;
-    QFileDialog::Options opts;
-    if (!WindowHelper::useNativeDialog())
-        opts |= QFileDialog::DontUseNativeDialog;
-
-    if (!opts.testFlag(QFileDialog::DontUseNativeDialog)) {
-        QStringList result;
-        if (WindowHelper::useGtkDialog()) {
-            result = Gtk::openGtkFileChooser(this, Gtk::Mode::OPEN, tr("Open Document"), "",
-                                           sDirectory, "", nullptr, false);
-        } else {
-            result = Xdg::openXdgPortal(this, Xdg::Mode::OPEN, tr("Open Document"), "",
-                                      sDirectory, "", nullptr, false);
-        }
-        _file_name = (result.size() > 0) ? result.at(0) : QString();
-    } else {
-        _file_name = QFileDialog::getOpenFileName(NULL, QString(), sDirectory, QString(), Q_NULLPTR, opts);
-    }
-
+    CFileDialogWrapper dlg(this);
+    QStringList result = dlg.modalOpenAny(sDirectory);
+    QString _file_name = (result.size() > 0) ? result.at(0) : QString();
     if ( !_file_name.isEmpty() ) {
         m_private->setPassDisabled("key");
         m_private->_txtKeyPath->setText(_file_name);

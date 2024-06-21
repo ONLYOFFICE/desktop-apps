@@ -35,9 +35,9 @@
 
 #include <QApplication>
 #include <QByteArray>
-#include "csocket.h"
 
 
+class CSocket;
 class SingleApplication : public QApplication
 {
     Q_OBJECT
