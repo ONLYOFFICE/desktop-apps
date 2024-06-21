@@ -721,6 +721,13 @@ void Utils::addToRecent(const std::wstring &path)
 #endif
 }
 
+void Utils::processMoreEvents(uint timeout)
+{
+    QEventLoop loop;
+    QTimer::singleShot(timeout, &loop, SLOT(quit()));
+    loop.exec();
+}
+
 #ifdef _WIN32
 Utils::WinVer Utils::getWinVersion()
 {
@@ -774,13 +781,6 @@ void Utils::setAppUserModelId()
     }
 }
 #else
-void Utils::processMoreEvents(uint timeout)
-{
-    QEventLoop loop;
-    QTimer::singleShot(timeout, &loop, SLOT(quit()));
-    loop.exec();
-}
-
 void Utils::setInstAppPort(int port)
 {
     GET_REGISTRY_USER(reg_user);
