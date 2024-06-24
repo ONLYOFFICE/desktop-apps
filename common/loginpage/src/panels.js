@@ -210,11 +210,13 @@ function onNewFileClick(e) {
     case 'new:docx': t = 'word'; break;
     case 'new:xlsx': t = 'cell'; break;
     case 'new:pptx': t = 'slide'; break;
-    case 'new:form': t = 'form'; break;
+    // case 'new:form': t = 'form'; break;
+    case 'new:form': t = 'pdfe'; break;
     default: break;
     }
 
-    if ( !!t ) window.sdk.command("create:new", t);
+    // if ( !!t ) window.sdk.command("create:new", t);
+    window.app.controller.recent.filterRecents(t);
 
     setTimeout(function(){
         me.click_lock = false;

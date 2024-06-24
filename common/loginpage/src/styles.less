@@ -442,6 +442,35 @@ li.menu-item {
             overflow-x: hidden;
         }
     }
+
+    .hide-format(@format) {
+        [data-editor-type=@{format}] {
+            display: none;
+        }
+    }
+
+    .table-files {
+        &.filter-word {
+            .hide-format('cell');
+            .hide-format('slide');
+            .hide-format('pdfe');
+        }
+        &.filter-cell {
+            .hide-format('word');
+            .hide-format('slide');
+            .hide-format('pdfe');
+        }
+        &.filter-slide {
+            .hide-format('word');
+            .hide-format('cell');
+            .hide-format('pdfe');
+        }
+        &.filter-pdfe {
+            .hide-format('word');
+            .hide-format('cell');
+            .hide-format('slide');
+        }
+    }
 }
 
 #box-portals {

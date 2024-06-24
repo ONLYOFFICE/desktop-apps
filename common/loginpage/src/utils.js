@@ -279,6 +279,59 @@ utils.parseFileFormat = function(format) {
     return '';
 };
 
+utils.editorByFileFormat = function(format) {
+    switch (format) {
+    case utils.defines.FileFormat.FILE_DOCUMENT_DOC:
+    case utils.defines.FileFormat.FILE_DOCUMENT_DOCX:
+    case utils.defines.FileFormat.FILE_DOCUMENT_ODT:
+    case utils.defines.FileFormat.FILE_DOCUMENT_RTF:
+    case utils.defines.FileFormat.FILE_DOCUMENT_TXT:
+    case utils.defines.FileFormat.FILE_DOCUMENT_HTML:
+    case utils.defines.FileFormat.FILE_DOCUMENT_MHT:
+    case utils.defines.FileFormat.FILE_DOCUMENT_EPUB:
+    case utils.defines.FileFormat.FILE_DOCUMENT_FB2:
+    case utils.defines.FileFormat.FILE_DOCUMENT_DOCM:
+    case utils.defines.FileFormat.FILE_DOCUMENT_DOTX:
+    case utils.defines.FileFormat.FILE_DOCUMENT_OTT:
+    case utils.defines.FileFormat.FILE_DOCUMENT_OFORM:
+    case utils.defines.FileFormat.FILE_DOCUMENT_DOCXF:
+    case utils.defines.FileFormat.FILE_DOCUMENT_ODT_FLAT:
+    case utils.defines.FileFormat.FILE_DOCUMENT_DOTM:
+    case utils.defines.FileFormat.FILE_DOCUMENT_DOTM:
+    case utils.defines.FileFormat.FILE_DOCUMENT_XML:        return 'word';
+
+    case utils.defines.FileFormat.FILE_SPREADSHEET_XLS:
+    case utils.defines.FileFormat.FILE_SPREADSHEET_XLTX:
+    case utils.defines.FileFormat.FILE_SPREADSHEET_XLSX:
+    case utils.defines.FileFormat.FILE_SPREADSHEET_XLSB:
+    case utils.defines.FileFormat.FILE_SPREADSHEET_ODS:
+    case utils.defines.FileFormat.FILE_SPREADSHEET_CSV:
+    case utils.defines.FileFormat.FILE_SPREADSHEET_OTS:
+    case utils.defines.FileFormat.FILE_SPREADSHEET_XLTM:
+    case utils.defines.FileFormat.FILE_SPREADSHEET_XLSM:
+    case utils.defines.FileFormat.FILE_SPREADSHEET_ODS_FLAT:return 'cell';
+
+    case utils.defines.FileFormat.FILE_PRESENTATION_PPT:
+    case utils.defines.FileFormat.FILE_PRESENTATION_POTX:
+    case utils.defines.FileFormat.FILE_PRESENTATION_PPTX:
+    case utils.defines.FileFormat.FILE_PRESENTATION_ODP:
+    case utils.defines.FileFormat.FILE_PRESENTATION_PPSX:
+    case utils.defines.FileFormat.FILE_PRESENTATION_OTP:
+    case utils.defines.FileFormat.FILE_PRESENTATION_PPTM:
+    case utils.defines.FileFormat.FILE_PRESENTATION_PPSM:
+    case utils.defines.FileFormat.FILE_PRESENTATION_POTM:
+    case utils.defines.FileFormat.FILE_PRESENTATION_ODP_FLAT: return 'slide';
+
+    case utils.defines.FileFormat.FILE_DOCUMENT_OFORM_PDF:
+    case utils.defines.FileFormat.FILE_CROSSPLATFORM_PDFA:
+    case utils.defines.FileFormat.FILE_CROSSPLATFORM_PDF:
+    case utils.defines.FileFormat.FILE_CROSSPLATFORM_DJVU:
+    case utils.defines.FileFormat.FILE_CROSSPLATFORM_XPS:   return 'pdfe';
+
+    default: return undefined;
+    }
+};
+
 utils.fn = {};
 utils.fn.extend = function(dest, src) {
     for (var prop in src) {
@@ -318,6 +371,7 @@ utils.fn.parseRecent = function(arr, out = 'files') {
                 date: _f_.modifyed,
                 path: fn,
                 cloud: _f_.cloud,
+                favorite: 0,
             });
 
             _dirs_arr.indexOf(path) < 0 && _dirs_arr.push(path);

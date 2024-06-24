@@ -103,8 +103,9 @@
         listitemtemplate: function(info) {
             let id = !!info.uid ? (` id="${info.uid}"`) : '';
             info.crypted == undefined && (info.crypted = false);
+            const editor_type = utils.editorByFileFormat(info.type);
 
-            var _tpl = `<tr${id} class="${info.crypted ? `crypted${isSvgIcons ?'-svg':''}` : ''}">
+            var _tpl = `<tr${id} class="${info.crypted ? `crypted${isSvgIcons ?'-svg':''}` : ''}" ${editor_type?`data-editor-type="${editor_type}"`:''}>
                           <td class="row-cell cicon">
                             <i class="icon ${info.type=='folder'?'img-el folder':`img-format ${info.format}`}" />
                         ${!isSvgIcons ?'':
@@ -112,7 +113,7 @@
                                 <use xlink:href="#${info.type=='folder'?'folder-small':`${info.format}`}"></use>
                             </svg>
                             ${info.crypted?'<svg class = "shield"> <use xlink:href="#shield"></use></svg>':''}`
-                        }                            
+                        }
                           </td>
                           <td class="row-cell cname">
                             <p class="name primary">${info.name}</p>
@@ -467,7 +468,11 @@
             },
             getRecovers: function() {
                 return collectionRecovers;
-            }
+            },
+            filterRecents: function(doctype) {
+                $('#box-recent .table-files').removeClass('filter-word filter-cell filter-slide filter-pdfe');
+                $('#box-recent .table-files').addClass(`filter-${doctype}`);
+            },
         };
     })());
 }();
