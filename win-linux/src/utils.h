@@ -119,6 +119,7 @@ public:
     static QJsonObject parseJsonFile(const QString&);
     static bool updatesAllowed();
     static void addToRecent(const std::wstring&);
+    static void processMoreEvents(uint timeout = 60);
 
 #ifdef _WIN32
     enum class WinVer : uchar {
@@ -128,8 +129,7 @@ public:
     static bool isSessionInProgress();
     static void setSessionInProgress(bool);
     static void setAppUserModelId();
-#else
-    static void processMoreEvents(uint timeout = 60);
+#else    
     static void setInstAppPort(int);
     static int getInstAppPort();
 #endif
