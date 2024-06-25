@@ -281,6 +281,7 @@ li.menu-item {
     display: flex;
     flex-direction: column;
     overflow: auto;
+    padding: 0 10px;
 
     /*background-color: #fff;*/
     &:not(.view--modal) {
@@ -293,9 +294,11 @@ li.menu-item {
         }
     }
 
-    > li.menu-item:not(.separator) {
+    > li.menu-item:not(.separator):not(.devider) {
         /*background-color: #fff;*/
         transition: background-color 300ms ease-out;
+        padding: 0 10px;
+        border-radius: 5px;
 
         &:hover {
             background-color: @highlight-button-hover;
@@ -306,8 +309,44 @@ li.menu-item {
         }
 
         a {
-            line-height: 55px;
+            line-height: 28px;
+            padding: 0 10px;
+            display: flex;
+            align-items: center;
+
+            .icon {
+/*                width: @new-doc-icon-width;*/
+                width: 20px;
+                height: 20px;
+                display: block;
+/*                margin-right: 10px;*/
+            }
+
+            .text {
+                padding: 0 10px;
+            }
+
+            .switch-svg();
         }
+
+        a[data-filter='cell'] {
+            .icon {
+/*                background-position-x:-36px;*/
+            }
+        }
+
+        a[data-filter='slide'] {
+            .icon {
+/*                background-position-x:-72px;*/
+            }
+        }
+
+        a[data-filter='pdfe'] {
+            .icon {
+/*                background-position-x: -3 * @new-doc-icon-width;*/
+            }
+        }
+
         
         &.bottom {
             /*width: 100%;*/
@@ -315,10 +354,13 @@ li.menu-item {
     }
 
     > li.menu-item.separator {
-        flex-grow: 1;
+        border-bottom: var(--scaled-one-px, 1px) solid var(--border-divider);
+        height: 1px;
+        margin: 10px 0;
+    }
 
-        /*@minus-one-px: calc(-1 * @scaled-one-px);*/
-        /*box-shadow: inset 0 @minus-one-px 0 0 @border-divider;*/
+    > li.menu-item.devider {
+        flex-grow: 1;
     }
 }
 

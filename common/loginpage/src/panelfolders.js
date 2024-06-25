@@ -39,7 +39,7 @@
     var ControllerFolders = function(args={}) {
         args.caption = 'Recent folders';
         args.action =
-        this.action = "open";
+        this.action = "folders";
         this.view = new ViewFolders(args);
     };
 
@@ -72,8 +72,9 @@
         args.tplPage = _html;
         args.menu = '.main-column.tool-menu';
         args.field = '.main-column.col-center';
-        args.itemindex = 1;
-        args.itemtext = _lang.actOpenLocal
+        args.itemindex = -1;
+        args.tplItem = 'nomenuitem';
+        // args.itemtext = _lang.actOpenLocal
 
         baseView.prototype.constructor.call(this, args);
     };

@@ -40,7 +40,7 @@
     var ControllerRecent = function(args={}) {
         args.caption = 'Recent files';
         args.action =
-        this.action = "recent";
+        this.action = "recents";
         this.view = new ViewRecent(args);
     };
 
@@ -85,8 +85,9 @@
         args.tplPage = _html;
         args.menu = '.main-column.tool-menu';
         args.field = '.main-column.col-center';
-        args.itemindex = 0;
-        args.itemtext = _lang.actRecentFiles;
+        args.itemindex = -1;
+        args.tplItem = 'nomenuitem';
+        // args.itemtext = _lang.actRecentFiles;
 
         baseView.prototype.constructor.call(this, args);
     };
@@ -471,7 +472,8 @@
             },
             filterRecents: function(doctype) {
                 $('#box-recent .table-files').removeClass('filter-word filter-cell filter-slide filter-pdfe');
-                $('#box-recent .table-files').addClass(`filter-${doctype}`);
+                if ( doctype )
+                    $('#box-recent .table-files').addClass(`filter-${doctype}`);
             },
         };
     })());

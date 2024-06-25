@@ -86,7 +86,43 @@
         </div>
         <div id="placeholder">
             <div class="main-column col-left tool-menu">
-              <div class="tool-quick-menu">
+              <li class="menu-item"><a l10n action="recents">Main</a></li>
+              <!-- <li class="menu-item"><a l10n action="templates">Templates</a></li> -->
+              <li class="menu-item"><a l10n action="folders">Open</a></li>
+              <li class="menu-item separator"></li>
+              <li class="menu-item">
+                <a action="recents" data-filter="word">
+                    <svg class="icon" data-iconname="docx" data-precls="img-el">
+                        <use href="#docx-big"></use>
+                    </svg>
+                    <span class="text" l10n>Documents</span>
+                </a>
+              </li>
+              <li class="menu-item">
+                <a action="recents" data-filter="cell">
+                    <svg class="icon" data-iconname="xlsx" data-precls="img-el">
+                        <use href="#xlsx-big"></use>
+                    </svg>
+                    <span class="text" l10n>Spreadsheets</span>
+                </a>
+              </li>
+              <li class="menu-item">
+                <a action="recents" data-filter="slide">
+                    <svg class="icon" data-iconname="pptx" data-precls="img-el">
+                        <use href="#pptx-big"></use>
+                    </svg>
+                    <span class="text" l10n>Presentations</span>
+                </a>
+              </li>
+              <li class="menu-item">
+                <a l10n action="recents" data-filter="pdfe">
+                    <svg class="icon" data-iconname="form" data-precls="img-el">
+                        <use href="#pdf-big"></use>
+                    </svg>
+                    <span class="text" l10n>PDF</span>
+                </a>
+              </li>
+              <div class="tool-quick-menu" style="display: none;">
                 <h3 class="createnew" l10n>Create new</h3>
                 <li class="menu-item">
                   <a action="new:docx">
@@ -123,7 +159,7 @@
               </div>
                 <!-- <button id="btn-add">Add</button> -->
                 <!-- <button id="btn-add2">Add 2</button> -->
-              <li class="menu-item separator"></li>
+              <li class="menu-item devider"></li>
             </div>
             <div class="main-column col-center after-left">
             </div>
@@ -204,7 +240,7 @@
     <script type="text/javascript" src="base.js"></script>
     <script type="text/javascript" src="panelrecent.js"></script>
     <script type="text/javascript" src="panelfolders.js"></script>
-    <script type="text/javascript" src="panelconnect.js"></script>
+    <!-- <script type="text/javascript" src="panelconnect.js"></script> -->
     <script type="text/javascript" src="panelabout.js"></script>
     <script type="text/javascript" src="panelwelcome.js"></script>
     <script type="text/javascript" src="paneltemplates.js"></script>

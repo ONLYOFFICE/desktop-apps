@@ -60,10 +60,6 @@ $(document).ready(function() {
     !!window.ControllerExternalPanel && (window.app.controller.externalpanel = (new ControllerExternalPanel({})).init());
 
     $('h3.createnew').text(utils.Lang.actCreateNew);
-    $('a[action="new:docx"] > .text').text(utils.Lang.newDoc);
-    $('a[action="new:xlsx"] > .text').text(utils.Lang.newXlsx);
-    $('a[action="new:pptx"] > .text').text(utils.Lang.newPptx);
-    $('a[action="new:form"] > .text').text(utils.Lang.newForm);
 
     if (!localStorage.welcome) {
         app.controller.welcome = (new ControllerWelcome).init();
@@ -80,7 +76,7 @@ $(document).ready(function() {
         CommonEvents.fire("portal:create");
     });
 
-    if (!window.config.portals.checklist) {
+    if (window.app.controller.portals && !window.config.portals.checklist) {
         $('.tools-connect').hide();
         hideAction('connect');
         console.log('There are no cloud providers');
@@ -131,7 +127,8 @@ function onActionClick(e) {
         $('.action-panel').hide();
         $('.action-panel.' + action).show(0,()=>{
             // bug: recent panel has the wrong height if 'wellcome' panel is showed firstly
-            if (action == 'recent') {
+            if (action == 'recents') {
+                app.controller.recent.filterRecents($el.data('filter'));
                 app.controller.recent.view.updatelistsize();
             }
         });

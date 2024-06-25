@@ -65,7 +65,8 @@
         args.tplPage = `<div class="action-panel ${args.action}">${this.emptyPanelContent}</div></div>`;
         args.menu = '.main-column.tool-menu';
         args.field = '.main-column.col-center';
-        args.itemindex = 0;
+        args.itemindex = -1;
+        args.tplItem = 'nomenuitem';
         args.itemtext = _lang.actTemplates;
 
         baseView.prototype.constructor.call(this, args);
