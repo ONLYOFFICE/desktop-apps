@@ -842,7 +842,16 @@ li.menu-item {
         top: 26px;
         left: 29px;
     }
-        .cdate {
+
+    .pinned {
+        .cpin {
+            button {
+                color: red;
+            }
+        }
+    }
+
+    .cdate {
         width: 110px;
         text-align: right;
         padding: 0 8px 0 0;
@@ -853,6 +862,18 @@ li.menu-item {
             margin: 0;
             text-overflow: ellipsis;
             overflow: hidden;
+        }
+    }
+
+    .cpin {
+        width: 24px;
+        button {
+            color: #000;
+            width: 24px;
+            height: 24px;
+            padding: 0;
+            border-radius: 2px;
+            background: transparent;
         }
     }
 

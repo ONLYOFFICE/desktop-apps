@@ -121,8 +121,14 @@
                             <p class="descr minor">${info.descr}</p>
                           </td>`;
 
-            if (info.type != 'folder')
+            if (info.type != 'folder') {
+                _tpl += `<td class="row-cell cpin">
+                    <button id="${info.uid}-btn">
+                        P
+                    </button>
+                </td>`;
                 _tpl += `<td class="row-cell cdate minor">${info.date}</td>`;
+            }
 
             return _tpl;
         },
@@ -300,13 +306,18 @@
 
             collectionRecents.events.contextmenu.attach(function(collection, model, e){
                 ppmenu.actionlist = 'recent';
+                ppmenu.hideItem('files:unpin', model.favorite === 0);
+                ppmenu.hideItem('files:pin', model.favorite === 1);
                 ppmenu.hideItem('files:explore', (!model.islocal && !model.dir) || !model.exist);
                 ppmenu.show({left: e.clientX, top: e.clientY}, model);
             });
 
             collectionRecents.events.changed.attach(function(collection, model){
                 let $el = collection.list.find('#' + model.uid);
-                if ( $el ) $el[model.exist ? 'removeClass' : 'addClass']('unavail');
+                if ( $el ) {
+                    $el[model.exist ? 'removeClass' : 'addClass']('unavail');
+                }
+                console.log('collection change event')
             });
 
             collectionRecents.empty();
@@ -325,6 +336,8 @@
             });
             collectionRecovers.events.contextmenu.attach((collection, model, e)=>{
                 ppmenu.actionlist = 'recovery';
+                ppmenu.hideItem('files:unpin', true);
+                ppmenu.hideItem('files:pin', true);
                 ppmenu.hideItem('files:explore', true);
                 ppmenu.show({left: e.clientX, top: e.clientY}, model);
             });
@@ -334,19 +347,32 @@
             ppmenu = new Menu({
                 id: 'pp-menu-files',
                 bottomlimitoffset: 10,
-                items: [{
-                    caption: utils.Lang.menuFileOpen,
-                    action: 'files:open'
-                },{
-                    caption: utils.Lang.menuFileExplore,
-                    action: 'files:explore'
-                },{
-                    caption: utils.Lang.menuRemoveModel,
-                    action: 'files:forget'
-                },{
-                    caption: utils.Lang.menuClear,
-                    action: 'files:clear'
-                }]
+                items: [
+                    {
+                        caption: utils.Lang.menuFileOpen,
+                        action: 'files:open'
+                    },
+                    {
+                        caption: utils.Lang.menuFilePin,
+                        action: 'files:pin'
+                    },
+                    {
+                        caption: utils.Lang.menuFileUnpin,
+                        action: 'files:unpin'
+                    },
+                    {
+                        caption: utils.Lang.menuFileExplore,
+                        action: 'files:explore'
+                    },
+                    {
+                        caption: utils.Lang.menuRemoveModel,
+                        action: 'files:forget'
+                    },
+                    {
+                        caption: utils.Lang.menuClear,
+                        action: 'files:clear'
+                    },
+                ]
             });
 
             ppmenu.init('#placeholder');
@@ -358,21 +384,32 @@
                 menu.actionlist == 'recent' ?
                     openFile(OPEN_FILE_RECENT, data) :
                     openFile(OPEN_FILE_RECOVERY, data);
-            } else
-            if (/\:clear/.test(action)) {
+            } else if (/\:pin/.test(action)) {
+                let model = collectionRecents.find('uid', data.uid);
+                if (model) {
+                    model.set('favorite', 1);
+                }
+
+                $('#' + data.uid, this.view.$panel).addClass('pinned');
+            } else if (/\:unpin/.test(action)) {
+                let model = collectionRecents.find('uid', data.uid);
+                if (model) {
+                    model.set('favorite', 0);
+                }
+
+                $('#' + data.uid, this.view.$panel).removeClass('pinned');
+            } else if (/\:clear/.test(action)) {
                 menu.actionlist == 'recent' ?
                     window.sdk.LocalFileRemoveAllRecents() :
                     window.sdk.LocalFileRemoveAllRecovers();
-            } else
-            if (/\:forget/.test(action)) {
+            } else if (/\:forget/.test(action)) {
                 $('#' + data.uid, this.view.$panel).addClass('lost');
                 setTimeout(e => {
                     menu.actionlist == 'recent' ?
                         window.sdk.LocalFileRemoveRecent(parseInt(data.fileid)) :
                         window.sdk.LocalFileRemoveRecover(parseInt(data.fileid));}
                 , 300); // 300ms - duration of item's 'collapse' transition
-            } else
-            if (/\:explore/.test(action)) {
+            } else if (/\:explore/.test(action)) {
                 if (menu.actionlist == 'recent') {
                     sdk.execCommand('files:explore', data.path);
                 }
