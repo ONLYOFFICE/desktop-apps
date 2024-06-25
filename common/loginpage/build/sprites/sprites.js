@@ -102,6 +102,20 @@ module.exports = (grunt, rootpathprefix) => {
                     },
                 }
             },
+            svgicons: {
+                src: [`${_path}res/img/icons/1x/*.svg`],
+                dest: `${_path}res/img/`,
+                options: {
+                    mode: {
+                        symbol: {
+                            inline: true,
+                            dest: './generated',
+                            sprite: `icons.svg`,
+                        },
+                    },
+                }
+            },
+        },
         },
         replace_allconnect: {                   //when fill =#fff the fill turns orange on the light theme page
             dist: {
