@@ -189,7 +189,8 @@
                 }
             }
 
-            /*$boxRecent.height() != _box_recent_height &&*/ this.$boxRecent.height(_box_recent_height);
+            /*$boxRecent.height() != _box_recent_height &&*/
+            this.$boxRecent.height(_box_recent_height);
         }
     });
 
@@ -291,7 +292,21 @@
             collectionRecents.events.inserted.attach((collection, model) => {
                 let $item = this.view.listitemtemplate(model);
 
-                collection.list.append($item);
+                if (model.pinned) {
+                    collection.list.prepend($item);
+                    $item.addClass('pinned');
+                } else {
+                    collection.list.append($item);
+                }
+
+                $(`#${model.uid}-btn`, this.view.$panel).click((e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+
+                    model.set('pinned', !model.pinned);
+                    model.set('pinnedBefore', true);
+                })
+
                 collection.list.parent().removeClass('empty');
             });
 
@@ -306,17 +321,34 @@
 
             collectionRecents.events.contextmenu.attach(function(collection, model, e){
                 ppmenu.actionlist = 'recent';
-                ppmenu.hideItem('files:unpin', model.favorite === 0);
-                ppmenu.hideItem('files:pin', model.favorite === 1);
+                ppmenu.hideItem('files:unpin', model.dir || !model.pinned || !model.exist);
+                ppmenu.hideItem('files:pin', model.dir || model.pinned || !model.exist);
                 ppmenu.hideItem('files:explore', (!model.islocal && !model.dir) || !model.exist);
                 ppmenu.show({left: e.clientX, top: e.clientY}, model);
             });
 
-            collectionRecents.events.changed.attach(function(collection, model){
+            collectionRecents.events.changed.attach((collection, model) => {
                 let $el = collection.list.find('#' + model.uid);
-                if ( $el ) {
+                if ($el) {
                     $el[model.exist ? 'removeClass' : 'addClass']('unavail');
+                    $el[model.pinned ? 'addClass' : 'removeClass']('pinned');
+
+                    if (model.pinned) {
+                        $el.parent().prepend($el);
+                    }
+
+                    if (model.pinnedBefore) {
+                        const unpinnedFiles = collection.items.filter(m => !m.pinned);
+                        const fileModelIndex = unpinnedFiles.findIndex(m => model.uid === m.uid);
+                        if (fileModelIndex > 0) {
+                            $el.parent().children().eq(collection.items.length - unpinnedFiles.length + fileModelIndex).after($el.detach());
+                        }
+
+                        model.set('pinnedBefore', false);
+                    }
+
                 }
+
                 console.log('collection change event')
             });
 
@@ -387,17 +419,14 @@
             } else if (/\:pin/.test(action)) {
                 let model = collectionRecents.find('uid', data.uid);
                 if (model) {
-                    model.set('favorite', 1);
+                    model.set('pinned', true);
                 }
-
-                $('#' + data.uid, this.view.$panel).addClass('pinned');
             } else if (/\:unpin/.test(action)) {
                 let model = collectionRecents.find('uid', data.uid);
                 if (model) {
-                    model.set('favorite', 0);
+                    model.set('pinned', false);
+                    model.set('pinnedBefore', true);
                 }
-
-                $('#' + data.uid, this.view.$panel).removeClass('pinned');
             } else if (/\:clear/.test(action)) {
                 menu.actionlist == 'recent' ?
                     window.sdk.LocalFileRemoveAllRecents() :

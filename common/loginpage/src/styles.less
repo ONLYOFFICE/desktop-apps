@@ -843,14 +843,6 @@ li.menu-item {
         left: 29px;
     }
 
-    .pinned {
-        .cpin {
-            button {
-                color: red;
-            }
-        }
-    }
-
     .cdate {
         width: 110px;
         text-align: right;
@@ -865,15 +857,38 @@ li.menu-item {
         }
     }
 
+    tr:not(.pinned) {
+        .cpin > button {
+            display: none;
+            opacity: 0.5;
+        }
+    }
+
+    tr:hover:not(.unavail) {
+        .cpin > button {
+            display: block;
+        }
+    }
+
+    .pinned {
+        .cpin > button {
+            opacity: 1;
+        }
+    }
+
     .cpin {
         width: 24px;
         button {
-            color: #000;
+            color: var(--icon-normal);
             width: 24px;
             height: 24px;
             padding: 0;
             border-radius: 2px;
             background: transparent;
+
+            &:active {
+                background: var(--highlight-button-pressed);
+            }
         }
     }
 

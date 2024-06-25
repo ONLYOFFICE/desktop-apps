@@ -371,7 +371,9 @@ utils.fn.parseRecent = function(arr, out = 'files') {
                 date: _f_.modifyed,
                 path: fn,
                 cloud: _f_.cloud,
-                favorite: 0,
+                pinned: false,
+                // note: pinnedBefore is used akin modelOld to minimize rendering calculations
+                pinnedBefore: false,
             });
 
             _dirs_arr.indexOf(path) < 0 && _dirs_arr.push(path);
