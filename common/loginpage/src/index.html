@@ -86,38 +86,52 @@
         </div>
         <div id="placeholder">
             <div class="main-column col-left tool-menu">
-              <li class="menu-item"><a l10n action="recents">Main</a></li>
+              <li class="menu-item">
+                <a action="recents">
+                    <svg class="icon" data-iconname="home" data-precls="img-el">
+                        <use href="#home"></use>
+                    </svg>
+                    <span class="text" l10n>Main</span>
+                </a>
+              </li>
               <!-- <li class="menu-item"><a l10n action="templates">Templates</a></li> -->
-              <li class="menu-item"><a l10n action="folders">Open</a></li>
+              <li class="menu-item">
+                <a action="folders">
+                    <svg class="icon" data-iconname="folder" data-precls="img-el">
+                        <use href="#folder"></use>
+                    </svg>
+                    <span class="text" l10n>Open</span>
+                </a>
+              </li>
               <li class="menu-item separator"></li>
               <li class="menu-item">
                 <a action="recents" data-filter="word">
-                    <svg class="icon" data-iconname="docx" data-precls="img-el">
-                        <use href="#docx-big"></use>
+                    <svg class="icon" data-iconname="word" data-precls="img-el">
+                        <use href="#word"></use>
                     </svg>
                     <span class="text" l10n>Documents</span>
                 </a>
               </li>
               <li class="menu-item">
                 <a action="recents" data-filter="cell">
-                    <svg class="icon" data-iconname="xlsx" data-precls="img-el">
-                        <use href="#xlsx-big"></use>
+                    <svg class="icon" data-iconname="cell" data-precls="img-el">
+                        <use href="#cell"></use>
                     </svg>
                     <span class="text" l10n>Spreadsheets</span>
                 </a>
               </li>
               <li class="menu-item">
                 <a action="recents" data-filter="slide">
-                    <svg class="icon" data-iconname="pptx" data-precls="img-el">
-                        <use href="#pptx-big"></use>
+                    <svg class="icon" data-iconname="slide" data-precls="img-el">
+                        <use href="#slide"></use>
                     </svg>
                     <span class="text" l10n>Presentations</span>
                 </a>
               </li>
               <li class="menu-item">
                 <a l10n action="recents" data-filter="pdfe">
-                    <svg class="icon" data-iconname="form" data-precls="img-el">
-                        <use href="#pdf-big"></use>
+                    <svg class="icon" data-iconname="pdfe" data-precls="img-el">
+                        <use href="#pdfe"></use>
                     </svg>
                     <span class="text" l10n>PDF</span>
                 </a>
@@ -160,6 +174,22 @@
                 <!-- <button id="btn-add">Add</button> -->
                 <!-- <button id="btn-add2">Add 2</button> -->
               <li class="menu-item devider"></li>
+              <li class="menu-item">
+                <a action="settings">
+                    <svg class="icon" data-iconname="settings" data-precls="img-el">
+                        <use href="#settings"></use>
+                    </svg>
+                    <span class="text" l10n>Settings</span>
+                </a>
+              </li>
+              <li class="menu-item">
+                <a action="about">
+                    <svg class="icon" data-iconname="about" data-precls="img-el">
+                        <use href="#about"></use>
+                    </svg>
+                    <span class="text" l10n>About</span>
+                </a>
+              </li>
             </div>
             <div class="main-column col-center after-left">
             </div>
@@ -173,7 +203,9 @@
     <img class="inline-svg" src="../res/img/generated/update_status.svg">
     <img class="inline-svg" src="../res/img/generated/formats.svg">
     <img class="inline-svg" src="../res/img/generated/common.svg">
+    <img class="inline-svg" src="../res/img/generated/icons.svg">
     <img class="inline-svg" src="../noconnect/connection_error.svg">
+
     <script>
         var svgpoints = document.querySelectorAll('img.inline-svg');
         SVGInjector(svgpoints, {evalScripts:'never'});

@@ -53,6 +53,7 @@
         args.field = '.main-column.col-center';
         // args.itemindex = 3;
         args.itemtext = _lang.actAbout;
+        args.tplItem = 'nomenuitem';
 
         baseView.prototype.constructor.call(this, args);
     };
@@ -151,7 +152,7 @@
                 if (!this.view) {
                     this.view = new ViewAbout(args);
                     this.view.render();
-                    this.view.$menuitem.removeClass('extra');
+                    this.view.$menuitem && this.view.$menuitem.removeClass('extra');
                     this.view.$panel.append(this.view.paneltemplate(args));
                 } else {
                     if ( !!args.opts && !!args.opts.edition ) {

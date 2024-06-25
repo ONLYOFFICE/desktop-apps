@@ -293,7 +293,8 @@
         args.itemcls = 'bottom';
         args.menu = '.main-column.tool-menu';
         args.field = '.main-column.col-center';
-        args.itemtext = _lang.actSettings;
+        // args.itemtext = _lang.actSettings;
+        args.tplItem = 'nomenuitem';
 
         baseView.prototype.constructor.call(this, args);
     };
