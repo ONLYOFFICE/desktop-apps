@@ -80,6 +80,7 @@
     NSUInteger documentNameCounter;
     NSUInteger spreadsheetNameCounter;
     NSUInteger presentationNameCounter;
+    NSUInteger pdfNameCounter;
 }
 @property (weak) ASCTabsControl *tabsControl;
 @property (nonatomic) NSCefView * cefStartPageView;
@@ -413,6 +414,14 @@
                                                               userInfo:@{
                                                                          @"action"  : @(ASCTabActionCreateLocalFile),
                                                                          @"type"    : @(int(AscEditorType::etPresentation)),
+                                                                         @"active"  : @(YES)
+                                                                         }];
+        } else if ([senderId isEqualToString:[NSString stringWithFormat:kCreationButtonIdentifier, @"pdfform"]]) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameCreateTab
+                                                                object:nil
+                                                              userInfo:@{
+                                                                         @"action"  : @(ASCTabActionCreateLocalFile),
+                                                                         @"type"    : @(int(AscEditorType::etDocumentMasterForm)),
                                                                          @"active"  : @(YES)
                                                                          }];
         } else {
@@ -964,6 +973,14 @@
                         [alert runModal];
                     }
                 }];
+            } else if ( pData->get_KeyCode() == 9 ) {
+                if ( pData->get_IsCtrl() ) {
+                    if ( pData->get_IsShift() ) {
+                        [self.tabsControl selectPreviouseTab];
+                    } else {
+                        [self.tabsControl selectNextTab];
+                    }
+                }
             }
         }
     }
@@ -1172,6 +1189,8 @@
             allowedFileTypes = [ASCConstants cancryptformats];
         } else if ([fileTypes isEqualToString:CEFOpenFileFilterXML]) {
             allowedFileTypes = [ASCConstants xmldata];
+        } else if ([fileTypes isEqualToString:@"any"] || [fileTypes isEqualToString:@"*.*"]) {
+//            allowedFileTypes = @[@"*.*"];
         } else {
             // filters come in view "*.docx *.pptx *.xlsx"
             NSError *error = nil;
@@ -1512,6 +1531,10 @@
             } forKey:@"locale"];
     }
 
+    CAscApplicationManager * appManager = [NSAscApplicationWorker getAppManager];
+    bool usegpu = !(appManager->GetUserSettings()->Get(L"disable-gpu") == L"1");
+    [json_langs setValue:@(usegpu) forKey:@"usegpu"];
+
     NSEditorApi::CAscExecCommandJS * pCommand = new NSEditorApi::CAscExecCommandJS;
     pCommand->put_Command(L"settings:init");
     pCommand->put_Param([[json_langs jsonString] stdwstring]);
@@ -1521,6 +1544,14 @@
     pEvent->AddRef();
 
     [self.cefStartPageView apply:pEvent];
+
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:ASCUserLockPageConnections]) {
+        pCommand->put_Command(L"panel:hide");
+        pCommand->put_Param(L"connect");
+
+        pEvent->AddRef();
+        [self.cefStartPageView apply:pEvent];
+    }
 
     pCommand->put_Command(L"app:ready");
     pCommand->put_Param(L"");
@@ -1801,6 +1832,11 @@
     
     if (tab) {
         [self.tabView selectTabViewItemWithIdentifier:tab.uuid];
+    } else {
+        NSTabViewItem * item = [self.tabView selectedTabViewItem];
+        if ( ![[item identifier]  isEqual:rootTabId] ) {
+            [self.tabView selectTabViewItemWithIdentifier:rootTabId];
+        }
     }
 }
 
@@ -1873,7 +1909,7 @@
                         break;
                     case AscEditorType::etDocumentMasterOForm:
                     case AscEditorType::etDocumentMasterForm:
-                        docName = [NSString stringWithFormat:NSLocalizedString(@"Document %ld.docxf", nil), ++documentNameCounter];
+                        docName = [NSString stringWithFormat:NSLocalizedString(@"Document %ld.pdf", nil), ++pdfNameCounter];
                         break;
                     default: break;
                 }

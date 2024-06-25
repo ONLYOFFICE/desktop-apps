@@ -147,9 +147,9 @@
         <target state="translated">مستند %ld.docx</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
-      <trans-unit id="Document %ld.docxf" xml:space="preserve">
-        <source>Document %ld.docxf</source>
-        <target state="translated">مستند %ld.docxf</target>
+      <trans-unit id="Document %ld.pdf" xml:space="preserve">
+        <source>Document %ld.pdf</source>
+        <target state="translated">مستند %ld.pdf</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Document template" xml:space="preserve">
@@ -249,12 +249,12 @@
       </trans-unit>
       <trans-unit id="ONLYOFFICE can not open the Digital Signature file. Try opening another file." xml:space="preserve">
         <source>ONLYOFFICE can not open the Digital Signature file. Try opening another file.</source>
-        <target state="translated">أونلي أوفيس غير قادر على فتح ملف التوقيع الرقمي. جرّب ملفًّا آخر.</target>
+        <target state="translated">ONLYOFFICE غير قادر على فتح ملف التوقيع الرقمي. جرّب ملفًّا آخر.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="ONLYOFFICE can not open the Private Key. Try opening another file." xml:space="preserve">
         <source>ONLYOFFICE can not open the Private Key. Try opening another file.</source>
-        <target state="translated">أونلي أوفيس غير قادر على فتح مفتاح التشفير الخاص. جرّب ملفًّا آخر.</target>
+        <target state="translated">ONLYOFFICE غير قادر على فتح المفتاح الخاص، حاول فتح ملف آخر.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="OpenDocument Document Template" xml:space="preserve">
@@ -501,6 +501,11 @@ We have a special offer for you.</source>
         <target state="translated">جدول بياني جديد</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="new-pdfform" xml:space="preserve">
+        <source>New PDF Form</source>
+        <target>نموذج PDF جديد</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
     </body>
   </file>
   <file original="ONLYOFFICE/Base.lproj/Localizable.stringsdict" source-language="en" target-language="ar-SA" datatype="plaintext">
@@ -571,7 +576,7 @@ The trial period will end in %d days, after that you will not be able to create 
       </trans-unit>
       <trans-unit id="1Xt-HY-uBw.title" xml:space="preserve">
         <source>ONLYOFFICE</source>
-        <target state="translated">أونلي أوفيس</target>
+        <target state="translated">ONLYOFFICE</target>
         <note>Class = "NSMenuItem"; title = "ONLYOFFICE"; ObjectID = "1Xt-HY-uBw";</note>
       </trans-unit>
       <trans-unit id="1b7-l0-nxx.title" xml:space="preserve">
@@ -621,7 +626,7 @@ The trial period will end in %d days, after that you will not be able to create 
       </trans-unit>
       <trans-unit id="4sb-4s-VLi.title" xml:space="preserve">
         <source>Quit ONLYOFFICE</source>
-        <target state="translated">خروج من أونلي أوفيس</target>
+        <target state="translated">خروج منONLYOFFICE</target>
         <note>Class = "NSMenuItem"; title = "Quit ONLYOFFICE"; ObjectID = "4sb-4s-VLi";</note>
       </trans-unit>
       <trans-unit id="5QF-Oa-p0T.title" xml:space="preserve">
@@ -636,7 +641,7 @@ The trial period will end in %d days, after that you will not be able to create 
       </trans-unit>
       <trans-unit id="5kV-Vb-QxS.title" xml:space="preserve">
         <source>About ONLYOFFICE</source>
-        <target state="translated">عن أونلي أوفيس</target>
+        <target state="translated">عن ONLYOFFICE</target>
         <note>Class = "NSMenuItem"; title = "About ONLYOFFICE"; ObjectID = "5kV-Vb-QxS";</note>
       </trans-unit>
       <trans-unit id="6dh-zS-Vam.title" xml:space="preserve">
@@ -806,7 +811,7 @@ The trial period will end in %d days, after that you will not be able to create 
       </trans-unit>
       <trans-unit id="IQv-IB-iLA.title" xml:space="preserve">
         <source>ONLYOFFICE</source>
-        <target state="translated">أونلي أوفيس</target>
+        <target state="translated">ONLYOFFICE</target>
         <note>Class = "NSWindow"; title = "ONLYOFFICE"; ObjectID = "IQv-IB-iLA";</note>
       </trans-unit>
       <trans-unit id="J5U-5w-g23.title" xml:space="preserve">
@@ -871,7 +876,7 @@ The trial period will end in %d days, after that you will not be able to create 
       </trans-unit>
       <trans-unit id="Olw-nP-bQN.title" xml:space="preserve">
         <source>Hide ONLYOFFICE</source>
-        <target state="translated">إخفاء أونلي أوفيس</target>
+        <target state="translated">إخفاء ONLYOFFICE</target>
         <note>Class = "NSMenuItem"; title = "Hide ONLYOFFICE"; ObjectID = "Olw-nP-bQN";</note>
       </trans-unit>
       <trans-unit id="OwM-mh-QMV.title" xml:space="preserve">
@@ -1156,7 +1161,7 @@ The trial period will end in %d days, after that you will not be able to create 
       </trans-unit>
       <trans-unit id="kcg-El-49G.label" xml:space="preserve">
         <source>ONLYOFFICE</source>
-        <target state="translated">أونلي أوفيس</target>
+        <target state="translated">ONLYOFFICE</target>
         <note>Class = "NSTabViewItem"; label = "ONLYOFFICE"; ObjectID = "kcg-El-49G";</note>
       </trans-unit>
       <trans-unit id="m0C-e9-0oc.title" xml:space="preserve">
@@ -1241,7 +1246,7 @@ The trial period will end in %d days, after that you will not be able to create 
       </trans-unit>
       <trans-unit id="uQy-DD-JDr.title" xml:space="preserve">
         <source>ONLYOFFICE</source>
-        <target state="translated">أونلي أوفيس</target>
+        <target state="translated">ONLYOFFICE</target>
         <note>Class = "NSMenu"; title = "ONLYOFFICE"; ObjectID = "uQy-DD-JDr";</note>
       </trans-unit>
       <trans-unit id="uRl-iY-unG.title" xml:space="preserve">
@@ -1392,12 +1397,12 @@ The trial period will end in %d days, after that you will not be able to create 
     <body>
       <trans-unit id="CFBundleName" xml:space="preserve">
         <source>ONLYOFFICE</source>
-        <target state="translated">أونلي أوفيس</target>
+        <target state="translated">ONLYOFFICE</target>
         <note>Bundle name</note>
       </trans-unit>
       <trans-unit id="NSHumanReadableCopyright" xml:space="preserve">
         <source>Copyright © 2024 Ascensio System SIA. All rights reserved.</source>
-        <target state="translated">الحقوق جميعها محفوظة 2024 © أسينسو سيستم.</target>
+        <target state="translated">الحقوق جميعها محفوظة 2024 © Ascensio System SIA</target>
         <note>Copyright (human-readable)</note>
       </trans-unit>
     </body>
@@ -1409,12 +1414,12 @@ The trial period will end in %d days, after that you will not be able to create 
     <body>
       <trans-unit id="CFBundleName" xml:space="preserve">
         <source>ONLYOFFICE</source>
-        <target state="translated">أونلي أوفيس</target>
+        <target state="translated">ONLYOFFICE</target>
         <note>Bundle name</note>
       </trans-unit>
       <trans-unit id="NSHumanReadableCopyright" xml:space="preserve">
         <source>Copyright © 2024 Ascensio System SIA. All rights reserved.</source>
-        <target state="translated">الحقوق جميعها محفوظة 2024 © أسينسو سيستم.</target>
+        <target state="translated">الحقوق جميعها محفوظة 2024 © Ascensio System SIA</target>
         <note>Copyright (human-readable)</note>
       </trans-unit>
     </body>
@@ -1426,12 +1431,12 @@ The trial period will end in %d days, after that you will not be able to create 
     <body>
       <trans-unit id="CFBundleName" xml:space="preserve">
         <source>ONLYOFFICE</source>
-        <target state="translated">أونلي أوفيس</target>
+        <target state="translated">ONLYOFFICE</target>
         <note>Bundle name</note>
       </trans-unit>
       <trans-unit id="NSHumanReadableCopyright" xml:space="preserve">
         <source>Copyright © 2024 Ascensio System SIA. All rights reserved.</source>
-        <target state="translated">الحقوق جميعها محفوظة 2024 © أسينسو سيستم.</target>
+        <target state="translated">الحقوق جميعها محفوظة 2024 © Ascensio System SIA</target>
         <note>Copyright (human-readable)</note>
       </trans-unit>
     </body>

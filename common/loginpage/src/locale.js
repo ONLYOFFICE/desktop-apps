@@ -134,9 +134,9 @@ l10n.en = {
     settOptThemeAddLocal: 'Add local theme',
     settOptThemeContrastDark: 'Contrast Dark',
     settAUpdateMode: 'Updates',
-    settOptAUpdateSilent: 'Auto-update',
-    settOptAUpdateAsk: 'Check for updates',
-    settOptAUpdateDisabled: 'Don\'t check for updates',
+    settOptAUpdateSilent: 'Auto',
+    settOptAUpdateAsk: 'Notify',
+    settOptAUpdateDisabled: 'Manual',
     updateDownloadFinished: 'Downloading finished. Click to install',
     updateDownloadCanceled: 'Downloading canceled',
     updateDownloadProgress: 'Downloading $1%. Click to stop',
@@ -144,6 +144,7 @@ l10n.en = {
     settOptDescAUpdateSilent: "Download and install update in background",
     settOptDescAUpdateAsk: "You will be notified about all updates steps",
     settRtlMode: "RTL Interface",
+    settGpuUseMode: "Use graphics acceleration when available",
 }
 
 
@@ -159,7 +160,7 @@ function loadLocale(lang) {
 };
 
 function correctLang(lang) {
-    return lang.replace('-', '_');
+    return lang.replaceAll('-', '_');
 }
 
 function translate(str, lang) {

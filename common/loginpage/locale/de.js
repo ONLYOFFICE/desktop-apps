@@ -101,9 +101,9 @@ l10n.de = {
     settOptThemeAddLocal: 'Lokales Thema hinzufügen',
     settOptThemeContrastDark: 'Dunkler Kontrast',
     settAUpdateMode: 'Updates',
-    settOptAUpdateSilent: 'Automatisches Update',
-    settOptAUpdateAsk: 'Auf Updates prüfen',
-    settOptAUpdateDisabled: 'Nicht auf Updates prüfen',
+    settOptAUpdateSilent: 'Automatisch',
+    settOptAUpdateAsk: 'Benachrichtigen',
+    settOptAUpdateDisabled: 'Manuell',
     updateDownloadFinished: 'Herunterladen abgeschlossen. Für Installation hier klicken',
     updateDownloadCanceled: 'Herunterladen abgebrochen',
     updateDownloadProgress: '$1% wird heruntergeladen. Zum Abbrechen hier klicken',
@@ -111,4 +111,5 @@ l10n.de = {
     settOptDescAUpdateSilent: "Update im Hintergrund herunterladen und installieren",
     settOptDescAUpdateAsk: "Sie werden über alle Aktualisierungsschritte benachrichtigt",
     settRtlMode: "RTL-Benutzeroberfläche",
+    settGpuUseMode: "Grafikbeschleunigung verwenden, wenn verfügbar",
 }

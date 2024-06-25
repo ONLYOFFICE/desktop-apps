@@ -271,12 +271,14 @@ void setFilters(DBusMessageIter &msg_iter, const FilterItem *filterList,
         __dbusClose(&msg_iter, &dict_iter);
 
         // set current filter
-        __dbusOpen(&msg_iter, DBUS_TYPE_DICT_ENTRY, nullptr, &dict_iter);
-        __dbusAppend(&dict_iter, DBUS_TYPE_STRING, &CURRENT_FILTER);
-        __dbusOpen(&dict_iter, DBUS_TYPE_VARIANT, "(sa(us))", &var_iter);
-        setFilter(var_iter, *selFilter);
-        __dbusClose(&dict_iter, &var_iter);
-        __dbusClose(&msg_iter, &dict_iter);
+        if (selFilter && selFilter->name && selFilter->pattern) {
+            __dbusOpen(&msg_iter, DBUS_TYPE_DICT_ENTRY, nullptr, &dict_iter);
+            __dbusAppend(&dict_iter, DBUS_TYPE_STRING, &CURRENT_FILTER);
+            __dbusOpen(&dict_iter, DBUS_TYPE_VARIANT, "(sa(us))", &var_iter);
+            setFilter(var_iter, *selFilter);
+            __dbusClose(&dict_iter, &var_iter);
+            __dbusClose(&msg_iter, &dict_iter);
+        }
     }
 }
 
@@ -1135,6 +1137,20 @@ void onWindowFound(xcb_window_t w, void *user_data)
     XcbUtils::setNativeFocusTo(w);
 }
 
+void parseFilterString(Xdg::Mode mode, const QString &filter, FilterItem &filterItem) {
+    int pos = filter.indexOf('(');
+    QString flt_name = (mode == Xdg::Mode::OPEN && filter.length() > 255 && pos > 1) ? filter.mid(0, pos - 1) : filter;
+    filterItem.name = strdup(flt_name.toUtf8().data());
+    auto parse = filter.split('(');
+    if (parse.size() == 1) {
+        filterItem.pattern = strdup("");
+    } else
+    if (parse.size() == 2) {
+        const QString pattern = parse[1].replace(")", "");
+        filterItem.pattern = strdup(pattern.toUtf8().data());
+    }
+}
+
 QStringList Xdg::openXdgPortal(QWidget *parent,
                                Mode mode,
                                const QString &title,
@@ -1154,40 +1170,23 @@ QStringList Xdg::openXdgPortal(QWidget *parent,
     const QString _path = (path.isEmpty() && pos != -1) ?
                 file_name.mid(0, pos) : path;
 
-    filter.replace("/", " \u2044 ");
-    QStringList filterList = filter.split(";;");
-    int filterSize = filterList.size();
-    FilterItem filterItem[filterSize];
-    int index = 0;
-    foreach (const QString &flt, filterList) {
-        QString flt_name = (mode == Mode::OPEN && flt.length() > 255 && flt.indexOf('(') > 1) ?
-                               flt.mid(0, flt.indexOf('(') - 1) : flt;
-        filterItem[index].name = strdup(flt_name.toUtf8().data());
-        auto parse = flt.split('(');        
-        if (parse.size() == 1) {
-            filterItem[index].pattern = strdup("");
-        } else
-        if (parse.size() == 2) {
-            const QString pattern = parse[1].replace(")", "");
-            filterItem[index].pattern = strdup(pattern.toUtf8().data());
+    int filterSize = 0;
+    FilterItem *filterItem = nullptr;
+    FilterItem selFilterItem = {nullptr, nullptr};
+    if (!filter.isEmpty()) {
+        filter.replace("/", " \u2044 ");
+        QStringList filterList = filter.split(";;");
+        filterSize = filterList.size();
+        filterItem = new FilterItem[filterSize];
+        int index = 0;
+        foreach (const QString &flt, filterList) {
+            parseFilterString(mode, flt, filterItem[index]);
+            index++;
         }
-        index++;
-    }
 
-    FilterItem selFilterItem;
-    selFilterItem.name = NULL;
-    selFilterItem.pattern = NULL;
-    if (mode != Mode::FOLDER && sel_filter) {
-        QString flt_name = (mode == Mode::OPEN && sel_filter->length() > 255 && sel_filter->indexOf('(') > 1) ?
-                               sel_filter->mid(0, sel_filter->indexOf('(') - 1) : *sel_filter;
-        selFilterItem.name = strdup(flt_name.toUtf8().data());
-        auto parse = sel_filter->split('(');
-        if (parse.size() == 1) {
-            selFilterItem.pattern = strdup("");
-        } else
-        if (parse.size() == 2) {
-            const QString pattern = parse[1].replace(")", "");
-            selFilterItem.pattern = strdup(pattern.toUtf8().data());
+        if (mode != Mode::FOLDER && sel_filter) {
+            sel_filter->replace("/", " \u2044 ");
+            parseFilterString(mode, *sel_filter, selFilterItem);
         }
     }
 
@@ -1231,14 +1230,19 @@ QStringList Xdg::openXdgPortal(QWidget *parent,
 
     Free((void*)selFilterItem.pattern);
     if (selFilterItem.name != NULL) {
-        if (sel_filter)
+        if (sel_filter) {
             *sel_filter = QString::fromUtf8(selFilterItem.name);
+            sel_filter->replace(" \u2044 ", "/");
+        }
         Free((void*)selFilterItem.name);
     }
 
-    for (int i = 0; i < filterSize; i++) {
-        Free((void*)filterItem[i].pattern);
-        Free((void*)filterItem[i].name);
+    if (filterItem) {
+        for (int i = 0; i < filterSize; i++) {
+            Free((void*)filterItem[i].pattern);
+            Free((void*)filterItem[i].name);
+        }
+        delete[] filterItem;
     }
 
     return files;

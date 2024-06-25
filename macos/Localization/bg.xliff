@@ -147,9 +147,9 @@
         <target state="translated">Документ %ld.docx</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
-      <trans-unit id="Document %ld.docxf" xml:space="preserve">
-        <source>Document %ld.docxf</source>
-        <target state="translated">Документ %ld.docxf</target>
+      <trans-unit id="Document %ld.pdf" xml:space="preserve">
+        <source>Document %ld.pdf</source>
+        <target state="translated">Документ %ld.pdf</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Document template" xml:space="preserve">
@@ -449,8 +449,13 @@ We have a special offer for you.</source>
       <trans-unit id="new-spreadsheet" xml:space="preserve">
         <source>New Spreadsheet</source>
         <target state="translated">Нова Електронна таблица</target>
-
-      <note>No comment provided by engineer.</note></trans-unit>
+      <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="new-pdfform" xml:space="preserve">
+        <source>New PDF Form</source>
+        <target>Нов PDF формуляр</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
     </body>
   </file>
   <file original="ONLYOFFICE/Base.lproj/Localizable.stringsdict" source-language="en" target-language="bg-BG" datatype="plaintext">

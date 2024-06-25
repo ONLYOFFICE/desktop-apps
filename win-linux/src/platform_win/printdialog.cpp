@@ -300,8 +300,8 @@ QDialog::DialogCode PrintDialog::exec()
                 if (pDevMode->dmFields & DM_COLOR)
                     pDevMode->dmColor = (qt_color_mode == QPrinter::Color) ? DMCOLOR_COLOR : DMCOLOR_MONOCHROME;
 
-//                if (pDevMode->dmFields & DM_COLLATE)
-//                    pDevMode->dmCollate = DMCOLLATE_TRUE;
+                if (pDevMode->dmFields & DM_COLLATE)
+                    pDevMode->dmCollate = m_printer->collateCopies() ? DMCOLLATE_TRUE : DMCOLLATE_FALSE;
 
                 if (pDevMode->dmFields & DM_DEFAULTSOURCE)
                     pDevMode->dmDefaultSource = (qt_paper_source == QPrinter::Auto) ? DMBIN_AUTO :
@@ -444,7 +444,7 @@ QDialog::DialogCode PrintDialog::exec()
                     if (i == 0)
                         m_printer->setFromTo(start > end ? end : start, start > end ? start : end);
                 }
-                m_printer->setCollateCopies(bool(dlg.Flags & PD_COLLATE));
+                m_printer->setCollateCopies(pDevmode->dmCollate == DMCOLLATE_TRUE);
                 m_printer->setDuplex(pDevmode->dmDuplex == DMDUP_VERTICAL ? QPrinter::DuplexLongSide :
                                          pDevmode->dmDuplex == DMDUP_HORIZONTAL ? QPrinter::DuplexShortSide : QPrinter::DuplexNone);
 

@@ -101,8 +101,9 @@ l10n.si = {
     settOptThemeAddLocal: 'ස්ථානීය තේමාවක් යොදන්න',
     settOptThemeContrastDark: 'අසමාන අඳුරු',
     settAUpdateMode: 'යාවත්කාල',
-    settOptAUpdateSilent: 'ස්වයං යාවත්කාලය',
-    settOptAUpdateAsk: 'යාවත්කාල බලන්න',
+    settOptAUpdateSilent: 'ස්වයං',
+    settOptAUpdateAsk: 'දන්වන්න',
+    settOptAUpdateDisabled: 'අතින්',
     updateDownloadFinished: 'බාගැනීම අහවරයි. ස්ථාපනයට ඔබන්න',
     updateDownloadCanceled: 'බාගැනීම අවලංගු කෙරිණි',
     updateDownloadProgress: '$1% බාගැනෙමින්. නැවතීමට ඔබන්න',
@@ -110,4 +111,5 @@ l10n.si = {
     settOptDescAUpdateSilent: "පසුබිමෙන් යාවත්කාල බාගෙන ස්ථාපනය කරන්න",
     settOptDescAUpdateAsk: "යළුම යාවත්කාල පියවර ගැන ඔබට දැනුම් දෙනු ඇත",
     settRtlMode: "RTL අතුරුමුහුණත",
+    settGpuUseMode: "චිත්‍රණ ත්වරණය තිබෙන විට භාවිතා කරන්න",
 }

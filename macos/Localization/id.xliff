@@ -152,9 +152,9 @@
         <target>Dokumen %ld.docx</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
-      <trans-unit id="Document %ld.docxf" xml:space="preserve">
-        <source>Document %ld.docxf</source>
-        <target>Dokumen %ld.docxf</target>
+      <trans-unit id="Document %ld.pdf" xml:space="preserve">
+        <source>Document %ld.pdf</source>
+        <target>Dokumen %ld.pdf</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Document template" xml:space="preserve">
@@ -474,6 +474,11 @@ Kami memiliki penawaran spesial untuk Anda.</target>
       <trans-unit id="new-spreadsheet" xml:space="preserve">
         <source>New Spreadsheet</source>
         <target state="translated">Lembar Bentang Baru</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="new-pdfform" xml:space="preserve">
+        <source>New PDF Form</source>
+        <target>Formulir PDF baru</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
     </body>

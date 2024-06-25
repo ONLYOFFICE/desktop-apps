@@ -41,7 +41,7 @@
 "Document %ld.docx" = "Дакумент %ld.docx";
 
 /* No comment provided by engineer. */
-"Document %ld.docxf" = "Дакумент %ld.docxf";
+"Document %ld.pdf" = "Дакумент %ld.pdf";
 
 /* No comment provided by engineer. */
 "Document template" = "Шаблон дакумента Word Open XML (*.dotx)";
@@ -78,6 +78,9 @@
 
 /* No comment provided by engineer. */
 "new-document" = "Новы дакумент";
+
+/* No comment provided by engineer. */
+"new-pdfform" = "Новая PDF форма";
 
 /* No comment provided by engineer. */
 "new-presentation" = "Новая прэзентацыя";
@@ -183,9 +186,6 @@
 
 /* No comment provided by engineer. */
 "Untitled" = "Без назвы";
-
-/* No comment provided by engineer. */
-"Version %@ (%@)" = "Версія %1$@ (%2 @)";
 
 /* No comment provided by engineer. */
 "Web Page" = "Вэб-старонка";

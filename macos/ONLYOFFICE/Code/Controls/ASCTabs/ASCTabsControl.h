@@ -71,6 +71,8 @@
 - (void)removeAllTabs;
 - (void)selectTab:(ASCTabView *)tab;
 - (void)updateTab:(ASCTabView *)tab;
+- (void)selectNextTab;
+- (void)selectPreviouseTab;
 
 - (ASCTabView *)tabWithUUID:(NSString *)uuid;
 - (ASCTabView *)selectedTab;

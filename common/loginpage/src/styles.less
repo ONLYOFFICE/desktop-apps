@@ -60,7 +60,7 @@ button {
 }
 
 .rtl-font {
-    #placeholder, input, button {
+    #placeholder, input, button:not(.rtl-font--skip) {
         font-family: system-ui, -apple-system, "Geeza Pro", "Segoe UI", "Traditional Arabic", "Noto Sans";
     }
 }
@@ -352,7 +352,7 @@ li.menu-item {
     }
 
     &.templates {
-        padding: 20px 0;
+        padding: 20px;
     }
 }
 

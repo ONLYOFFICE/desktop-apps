@@ -74,6 +74,8 @@ auto stringToFilters(const wstring& wstr) -> specvector {
             wstring filter_pattern = filter_name.substr(mid, filter_name.find(L")", mid) - mid);
 
             std::replace(begin(filter_pattern), end(filter_pattern), ' ', ';');
+            if (filter_name.length() > 255 && mid > 2)
+                filter_name = filter_name.substr(0, mid - 2) + L" (*.*)";
             return make_pair(filter_name, filter_pattern);
         };
 

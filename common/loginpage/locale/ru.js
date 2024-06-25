@@ -101,9 +101,9 @@ l10n.ru = {
     settOptThemeAddLocal: 'Добавить локальную тему',
     settOptThemeContrastDark: 'Контрастная темная',
     settAUpdateMode: 'Обновления',
-    settOptAUpdateSilent: 'Автоматическое обновление',
-    settOptAUpdateAsk: 'Проверка обновлений',
-    settOptAUpdateDisabled: 'Не проверять обновления',
+    settOptAUpdateSilent: 'Автоматически',
+    settOptAUpdateAsk: 'Оповестить',
+    settOptAUpdateDisabled: 'Вручную',
     updateDownloadFinished: 'Загрузка завершена. Нажмите, чтобы установить',
     updateDownloadCanceled: 'Загрузка отменена',
     updateDownloadProgress: 'Загрузка $1%. Нажмите, чтобы остановить',
@@ -111,4 +111,5 @@ l10n.ru = {
     settOptDescAUpdateSilent: "Загрузка и установка обновлений в фоновом режиме",
     settOptDescAUpdateAsk: "Будет запрос подтверждения перед каждым шагом обновления",
     settRtlMode: "Интерфейс RTL",
+    settGpuUseMode: "Использовать графическое ускорение, если оно доступно",
 }

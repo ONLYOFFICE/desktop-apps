@@ -41,7 +41,7 @@
 "Document %ld.docx" = "ලේඛනය %ld.docx";
 
 /* No comment provided by engineer. */
-"Document %ld.docxf" = "ලේඛනය %ld.docxf";
+"Document %ld.pdf" = "ලේඛනය %ld.pdf";
 
 /* No comment provided by engineer. */
 "Document template" = "වර්ඩ් විවෘත XML ලේඛන අච්චුව (*.dotx)";
@@ -84,6 +84,9 @@
 
 /* No comment provided by engineer. */
 "new-document" = "නව ලේඛනයක්";
+
+/* No comment provided by engineer. */
+"new-pdfform" = "නව PDF පෝරමය";
 
 /* No comment provided by engineer. */
 "new-presentation" = "නව සමර්පණයක්";
@@ -192,9 +195,6 @@
 
 /* No comment provided by engineer. */
 "Untitled" = "සිරැසියක් නැත";
-
-/* No comment provided by engineer. */
-"Version %@ (%@)" = "අනුවාදය %1$@ (%2$@)";
 
 /* No comment provided by engineer. */
 "Web Page" = "වියමන පිටුව";

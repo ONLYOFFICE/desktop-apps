@@ -68,7 +68,7 @@ bool SingleApplication::isPrimary() const
 bool SingleApplication::sendMessage(const QByteArray &message)
 {
     if (m_isPrimary)
-        return false;   
+        return false;
 
     HWND hwnd = NULL;
     int retries = RETRIES_COUNT;
@@ -106,6 +106,11 @@ void SingleApplication::startPrimary()
     SetWindowLongPtr(m_hWnd, GWLP_USERDATA, reinterpret_cast<LONG_PTR>(this));
 }
 
+void SingleApplication::invokeSignal(const QString &data)
+{
+    emit receivedMessage(data.toUtf8());
+}
+
 LRESULT SingleApplication::WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
     SingleApplication *app = reinterpret_cast<SingleApplication*>(GetWindowLongPtr(hWnd, GWLP_USERDATA));
@@ -115,12 +120,8 @@ LRESULT SingleApplication::WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lP
     switch (msg) {
     case WM_COPYDATA: {
         COPYDATASTRUCT* pcds = (COPYDATASTRUCT*)lParam;
-        if (pcds->dwData == 1) {
-            WCHAR *args = (WCHAR*)pcds->lpData;
-            if (args != nullptr) {
-                emit app->receivedMessage(QString::fromWCharArray(args).toUtf8());
-            }
-        }
+        if (pcds->dwData == 1 && pcds->lpData)
+            QMetaObject::invokeMethod(app, "invokeSignal", Qt::QueuedConnection, Q_ARG(QString, QString::fromWCharArray((WCHAR*)pcds->lpData)));
         break;
     }
     default:

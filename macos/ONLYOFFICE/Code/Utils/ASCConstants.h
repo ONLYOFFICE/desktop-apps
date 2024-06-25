@@ -89,6 +89,7 @@ static NSString * const ASCUserUILanguage                   = @"asc_user_ui_lang
 static NSString * const ASCUserUITheme                      = @"asc_user_ui_theme";
 static NSString * const ASCUserWebappsHelpUrl               = @"user_webapps_help_url";
 static NSString * const ASCUserUILayoutDirection            = @"asc_user_ui_layout_direction";
+static NSString * const ASCUserLockPageConnections          = @"asc_lock_page_connections";
 
 // Application event names
 static NSString * const ASCEventNameMainWindowSetFrame      = @"UI_mainWindowSetFrame";

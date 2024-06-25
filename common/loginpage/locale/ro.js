@@ -101,9 +101,9 @@ l10n.ro = {
     settOptThemeAddLocal: 'Adăugare temă locală',
     settOptThemeContrastDark: 'Contrast Întunecat',
     settAUpdateMode: 'Actualizări',
-    settOptAUpdateSilent: 'Actualizare automată',
-    settOptAUpdateAsk: 'Verificarea actualizărilor',
-    settOptAUpdateDisabled: 'Fără verificarea actualizărilor',
+    settOptAUpdateSilent: 'Auto',
+    settOptAUpdateAsk: 'Notifică',
+    settOptAUpdateDisabled: 'Manual',
     updateDownloadFinished: 'Descărcare încheiată. Faceți clic pentru a instala',
     updateDownloadCanceled: 'Descărcare anulată',
     updateDownloadProgress: 'Se descarcă $1%. Faceți clic pentru a opri descărcarea',
@@ -111,4 +111,5 @@ l10n.ro = {
     settOptDescAUpdateSilent: "Descărcarea și instalarea actualizării în fundal",
     settOptDescAUpdateAsk: "Veți primi notificări privind fiecare etapă de actualizare",
     settRtlMode: "Interfață de limbă de la dreapta la stânga",
+    settGpuUseMode: "Utilizați accelerator grafic dacă este cazul",
 }

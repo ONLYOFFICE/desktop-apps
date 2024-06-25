@@ -96,7 +96,7 @@
     </qresource>
     <qresource prefix="/tabbar/icons">
         <file alias="de.svg">res/icons/tabbar/tabicon_de_normal.svg</file>
-        <file alias="docxf.svg">res/icons/tabbar/tabicon_docxf_normal.svg</file>
+        <file alias="pdf-form.svg">res/icons/tabbar/tabicon_pdf_normal.svg</file>
         <file alias="pe.svg">res/icons/tabbar/tabicon_pe_normal.svg</file>
         <file alias="se.svg">res/icons/tabbar/tabicon_se_normal.svg</file>
         <file alias="pdf.svg">res/icons/tabbar/tabicon_pdf_normal.svg</file>
@@ -214,6 +214,7 @@
         <file alias="sk-SK.qm">langs/sk.qm</file>
         <file alias="sl-SI.qm">langs/sl.qm</file>
         <file alias="sr-Latn-RS.qm">langs/sr_Latn_RS.qm</file>
+        <file alias="sr-Cyrl-RS.qm">langs/sr_Cyrl_RS.qm</file>
         <file alias="sv-SE.qm">langs/sv.qm</file>
         <file alias="tr-TR.qm">langs/tr.qm</file>
         <file alias="uk-UA.qm">langs/uk.qm</file>

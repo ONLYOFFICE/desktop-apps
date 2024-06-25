@@ -41,7 +41,7 @@
 "Document %ld.docx" = "Փաստաթուղթ %ld.docx";
 
 /* No comment provided by engineer. */
-"Document %ld.docxf" = "Փաստաթուղթ %ld.docxf";
+"Document %ld.pdf" = "Փաստաթուղթ %ld.pdf";
 
 /* No comment provided by engineer. */
 "Document template" = "Word Open XML Փաստաթղթի ձևանմուշ (*.dotx)";
@@ -75,6 +75,9 @@
 
 /* No comment provided by engineer. */
 "new-document" = "Նոր փաստաթուղթ";
+
+/* No comment provided by engineer. */
+"new-pdfform" = "Նոր PDF Ֆորմ";
 
 /* No comment provided by engineer. */
 "new-presentation" = "Նոր ներկայացում";
@@ -177,9 +180,6 @@
 
 /* No comment provided by engineer. */
 "Untitled" = "Անվերնագիր";
-
-/* No comment provided by engineer. */
-"Version %@ (%@)" = "Տարբերակ %@ (%@)";
 
 /* No comment provided by engineer. */
 "Web Page" = "Վեբ էջ";

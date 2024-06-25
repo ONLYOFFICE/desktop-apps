@@ -54,6 +54,7 @@
     }};
 
     config.portals.update();
+    sdk.command("provider:list", JSON.stringify(config.portals.checklist));
 
     var ControllerPortals = function(args) {
         args.caption = 'Connect to portal';

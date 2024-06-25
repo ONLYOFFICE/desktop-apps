@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>История изменений ONLYOFFICE</title>
+    <style type="text/css">
+        /* variables */
+        :root {
+            --color-black: #141923;
+            --color-white: #fff;
+            --color-gray-100: #f7fafc;
+            --color-gray-200: #edf2f7;
+            --color-gray-300: #e2e8f0;
+            --color-gray-400: #cbd5e0;
+            --color-gray-500: #a0aec0;
+            --color-gray-600: #718096;
+            --color-gray-700: #4a5568;
+            --color-gray-800: #2d3748;
+            --color-gray-900: #1a202c;
+        }
+        body {
+            background: var(--color-white);
+            color: var(--color-gray-800);
+            font: 12px "Lucida Grande", "Lucida Sans Unicode", Verdana, Lucida, Helvetica, sans-serif;
+        }
+        h1, h2, h3 {
+            color: var(--color-gray-800);
+            font-weight: normal;
+            font-style: normal;
+        }
+        h1 {
+            font-size: 1.7em;
+        }
+        h2 {
+            font-size: 1.4em;
+            font-weight: lighter;
+        }
+        h4 {
+            font-size: 1.2em;
+            font-weight: lighter;
+        }
+        code {
+            background: var(--color-gray-200);
+            font-family: monospace;
+            padding: 1px 5px;
+        }
+        ul {
+            padding: 8.1.0 20px;
+        }
+        li {
+            margin-left: 20px;
+            margin-bottom: 0.2em;
+            padding: 0;
+        }
+        hr {
+            margin: 20px 0;
+            border: var(--color-gray-400) solid 0.5px;
+        }
+        .releasedate {
+            color: var(--color-gray-600);
+            font-weight: lighter;
+        }
+
+        /* prefers light mode */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background: var(--color-gray-900);
+                color: var(--color-gray-200);
+            }
+
+            h1, h2, h3 {
+                color: var(--color-white);
+            }
+
+            code {
+                background: var(--color-gray-800);
+                color: var(--color-gray-200);
+            }
+
+            .releasedate {
+                color: var(--color-gray-600);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="version">
+        <h1>ONLYOFFICE 8.1.0<span class="releasedate"> - {{DATE}}</span></h1>
+
+        <h2>New Features</h2>
+
+        <h4>All Editors</h4>
+        <ul>
+            <li>Switching to the creating forms in the <code>PDF</code> format</li>
+            <li>Added the ability to disable the <code>Connect to cloud</code> section via the <code>--lock-portals</code> key</li>
+            <li>Added the <code>Use graphics acceleration</code> option to the application settings</li>
+            <li>Updated images for the error pages</li>
+            <li>Added the translation into Serbian (sr-Latn-RS, Serbian (Latin, Serbia and Montenegro))</li>
+            <li>Added a button to select a local file in the hyperlink insertion dialog window</li>
+            <li>Changes in program interface: manageable functional buttons, Replace button is now on the Home tab, Copy style, Clear style, Select all</li>
+            <li>Autoshape shadowing settings</li>
+            <li>Updated the set of color themes available in editors</li>
+            <li>Added internal help in Portuguese (pt-BR)</li>
+            <li>Added Arabic to all regional settings</li>
+            <li>Added a title and a button to close the panel to the <code>Chat</code> panel</li>
+        </ul>
+        <h4>Document Editor</h4>
+        <ul>
+            <li>New button on the top toolbar for changing document editing mode: <code>Editing</code>, <code>Reviewing</code>, <code>Viewing</code></li>
+            <li>Added tooltips for new or updated functionality (displayed when loading the editor or when switching to the corresponding tab)</li>
+            <li>Implemented the ability to set the format for page numbering</li>
+            <li>Added support for the page color</li>
+            <li>Updated built-in paragraph styles</li>
+            <li>New items in the indents menu for opening the right panel and managing paragraph indents, the ability to manage paragraph indents via the top toolbar</li>
+            <li>Color theme button is now on the Layout tab</li>
+            <li>Mail merge button is now on the Collaboration tab</li>
+            <li>Line spacing options updated</li>
+            <li>Improved work of the algorithm for displaying numbers and punctuation in Arabic text for the Neutral and Weak classes</li>
+            <li>Improved fitting for paragraphs with main <code>RTL</code> direction</li>
+        </ul>
+        <h4>Spreadsheet Editor</h4>
+        <ul>
+            <li>New languages added: ligature support</li>
+            <li>Selected cells are highlighted on their respective row/column numbers</li>
+            <li>New functions: <code>GETPIVOTDATA</code>, <code>IMPORTRANGE</code></li>
+            <li>New function category: Custom based on jsdoc</li>
+            <li>Version history update: edited cells are highlighted</li>
+            <li>Users get custom protected range cells viewing rights</li>
+            <li>Implemented the ability to copy/move sheets between books in one browser</li>
+            <li>Changed the appearance of the sheet list in the embedded viewer in accordance with the styles of the main spreadsheet editor</li>
+        </ul>
+        <h4>Presentation Editor</h4>
+        <ul>
+            <li>New slide settings on the right panel: show background graphics, reset background to the theme background, apply settings to all slides</li>
+            <li>Added <code>Animation</code> pane</li>
+            <li>Added a mode for editing master slides and templates</li>
+        </ul>
+        <h4>Forms</h4>
+        <ul>
+            <li>When adding a fixed form, now it is inserted without wrapping in front of the text</li>
+            <li>The color of the Picture placeholder corresponds to the color of the role for this form</li>
+            <li>The thickness of the frame for required fields is now 2 px with any zoom</li>
+            <li>Added a button to switch to the editing mode (similar to the button in the editor header) for forms opened in the View or Fill forms mode</li>
+        </ul>
+        <h4>PDF Editor</h4>
+        <ul>
+            <li>Added buttons for switching editing/viewing (annotations) modes to the toolbar and the editor header</li>
+            <li>Added tooltips for new or updated functionality (displayed when loading the editor or when switching to the corresponding tab)</li>
+            <li>In the Edit mode, it's possible to add various objects (using the <code>Home</code> and <code>Insert</code> tabs) and configure them using the right panel and context menu</li>
+            <li>Added the ability to add, delete or rotate pages using the context menu and the toolbar</li>
+            <li>Added a mini toolbar for adding annotations when selecting text</li>
+        </ul>
+
+        <h2>Fixes</h2>
+
+        <h4>Security</h4>
+        <ul>
+            <li>Fixed vulnerabilities in the PtgName::assemble, PtgNameX::assemble, PtgParen::assemble, PtgRef3d::assemble, PtgList::assemble and PtgArea3d::assemble methods which cause crash when converting <code>XLS</code> to <code>XLSX</code></li>
+            <li>Fixed the vulnerability in the <code>CDataStream::ReadEmrTextBase</code> method which causes crash when converting <code>ODP</code> to <code>PDF</code></li>
+            <li>Fixed the vulnerability in the <code>GlobalsSubstream::UpdateDefineNames</code> method which causes crash when converting <code>XLS</code> to <code>XLSX</code></li>
+            <li>Fixed the vulnerability in the <code>WorkBookStream::UpdateXti</code>, <code>WorkBookStream::UpdateXti</code>, methods which causes crash when converting <code>XLS</code> to <code>XLSX</code></li>
+            <li>Fixed Heap Buffer Overflow when converting <code>EPUB</code> to <code>PDF</code></li>
+            <li>Fixed the vulnerability in the <code>CPPTUserInfo::LoadExternal</code> method which allows writing a file to a folder with restricted access when converting <code>PPT</code> to <code>PPTX</code></li>
+            <li>Fixed vulnerabilities which allow reading data from a third-party file when converting <code>OOXML</code> to <code>ODF</code> and vice versa</li>
+            <li>Fixed Heap Buffer Overflow in the <code>CSvmFile::Read_META_BMP</code> method when converting <code>ODP</code> to <code>PPTX</code></li>
+        </ul>
+    </div>
+</body>
+</html>

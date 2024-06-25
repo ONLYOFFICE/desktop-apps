@@ -31,6 +31,7 @@
 */
 
 #include "casctabdata.h"
+#include "cproviders.h"
 #include <QJsonDocument>
 #include <QJsonObject>
 
@@ -127,6 +128,11 @@ void CAscTabData::setUrl(const wstring& u)
 void CAscTabData::setUrl(const QString& u)
 {
     setUrl(u.toStdWString());
+}
+
+void CAscTabData::setCloudName(const QString &cloud)
+{
+    _cloud = cloud;
 }
 
 wstring CAscTabData::url() const
@@ -235,7 +241,7 @@ bool CAscTabData::hasFeature(const wstring& f) const
 
 bool CAscTabData::hasFrame() const
 {
-    return hasFeature(L"hasframe\":true");
+    return CProviders::instance().editorsHasFrame(QString::fromStdWString(_url), _cloud);
 }
 
 bool CAscTabData::hasError() const

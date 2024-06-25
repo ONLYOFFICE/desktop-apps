@@ -70,7 +70,7 @@
 + (NSArray *)documents {
     return @[@"docx", @"doc", @"odt", @"ott", @"rtf", @"docm", @"dot", @"dotx", @"dotm", @"docxf", @"fodt", @"wps", @"wpt",
              @"xml", @"pdf", @"epub", @"djv", @"djvu", @"txt", @"html", @"htm", @"mht", @"mhtml", @"xps", @"doctx",
-             @"fb2", @"oform", @"sxw", @"stw"];
+             @"fb2", @"oform", @"sxw", @"stw", @"md"];
 }
 
 + (NSArray *)spreadsheets {
@@ -82,7 +82,7 @@
 }
 
 + (NSArray *)cancryptformats {
-    return @[@".docm", @".docx", @".docxf", @".dotm", @".dotx", @".oform", @".potm", @".potx", @".ppsm", @".pptm", @".ppsx", @".pptx", @".xlsm", @".xlsx", @".xltm", @".xltx"];
+    return @[@"docm", @"docx", @"docxf", @"dotm", @"dotx", @"oform", @"potm", @"potx", @"ppsm", @"pptm", @"ppsx", @"pptx", @"xlsm", @"xlsx", @"xltm", @"xltx"];
 }
 
 + (NSArray *)plugins {
@@ -180,6 +180,10 @@
              @(AVS_OFFICESTUDIO_FILE_SPREADSHEET_XLSX): @{
                      @"description" : NSLocalizedString(@"Excel 2007 Spreadsheet", nil),
                      @"extension"   : @"xlsx"
+                     },
+             @(AVS_OFFICESTUDIO_FILE_SPREADSHEET_XLSB): @{
+                     @"description" : NSLocalizedString(@"Excel Binary Workbook", nil),
+                     @"extension"   : @"xlsb"
                      },
              @(AVS_OFFICESTUDIO_FILE_SPREADSHEET_XLS): @{
                      @"description" : NSLocalizedString(@"Excel 97-2003 Spreadsheet", nil),

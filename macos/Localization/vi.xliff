@@ -129,9 +129,9 @@
         <source>Do you want to save the changes made to the document "%@"?</source>
         <target state="translated">Bạn có muốn lưu những thay đổi đã thực hiện đối với tài liệu "%@"?</target>
       </trans-unit>
-      <trans-unit id="Document %ld.docxf" xml:space="preserve">
-        <source>Document %ld.docxf</source>
-        <target state="translated">Văn bản %ld.docxf</target>
+      <trans-unit id="Document %ld.pdf" xml:space="preserve">
+        <source>Document %ld.pdf</source>
+        <target state="translated">Văn bản %ld.pdf</target>
       </trans-unit>
       <trans-unit id="Document template" xml:space="preserve">
         <source>Document template</source>
@@ -406,6 +406,11 @@ Chúng tôi có ưu đãi đặc biệt dành cho bạn.</target>
       <trans-unit id="new-spreadsheet" xml:space="preserve">
         <source>New Spreadsheet</source>
         <target state="translated">Bảng tính mới</target>
+      </trans-unit>
+      <trans-unit id="new-pdfform" xml:space="preserve">
+        <source>New PDF Form</source>
+        <target>Mẫu PDF mới</target>
+        <note>No comment provided by engineer.</note>
       </trans-unit>
     </body>
   </file>

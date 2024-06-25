@@ -198,7 +198,8 @@ private:
         ,{"gl-ES", "Galego"}
         ,{"si-LK", "සිංහල"}
         ,{"ar-SA", "اَلْعَرَبِيَّة"}
-        ,{"sr-Latn-RS", "Srpski"}
+        ,{"sr-Latn-RS", "Srpski (Latin)"}
+        ,{"sr-Cyrl-RS", "Српски (Ћирилица)"}
     };
 };
 

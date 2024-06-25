@@ -101,9 +101,9 @@ l10n.es = {
     settOptThemeAddLocal: 'Añadir un tema local',
     settOptThemeContrastDark: 'Contraste oscuro',
     settAUpdateMode: 'Actualizaciones',
-    settOptAUpdateSilent: 'Actualización automática',
-    settOptAUpdateAsk: 'Buscar actualizaciones',
-    settOptAUpdateDisabled: 'No buscar actualizaciones',
+    settOptAUpdateSilent: 'Auto',
+    settOptAUpdateAsk: 'Notificar',
+    settOptAUpdateDisabled: 'Manualmente',
     updateDownloadFinished: 'Descarga finalizada. Haga clic para instalar',
     updateDownloadCanceled: 'Descarga cancelada',
     updateDownloadProgress: 'Descargando $1%. Haga clic para cancelar',
@@ -111,4 +111,5 @@ l10n.es = {
     settOptDescAUpdateSilent: "Descargar e instalar la actualización en el fondo",
     settOptDescAUpdateAsk: "Se le notificarán todos los pasos de las actualizaciones",
     settRtlMode: "Interfaz RTL",
+    settGpuUseMode: "Utilizar la aceleración gráfica cuando esté disponible",
 }

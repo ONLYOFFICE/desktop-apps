@@ -62,6 +62,8 @@ void CHelp::out()
         "    --xdg-desktop-portal use portals instead of gtk file chooser (the flag is saved for subsequent sessions)\n"
         "    --xdg-desktop-portal=default use portals instead of gtk file chooser for current session\n"
         "    --native-file-dialog use non Qt dialog\n"
+        "    --lock-portals force hide the Connect to the cloud button on the start page"
+        "    --unlock-portals disable forced hiding of the Connect to the cloud button on the start page"
         "    --updates-appcast-channel=dev set development URL for updates\n"
         "    --updates-interval=<time> set update check interval in seconds (minimum 30 sec)\n"
         "    --updates-reset reset all update options\n";

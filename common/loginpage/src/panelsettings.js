@@ -260,6 +260,12 @@
                                                 </section>
                                             </div>
                                         </div>
+                                        <div class='settings-field' style='display:none;'>
+                                            <section class='switch-labeled hbox' id='sett-box-gpu-mode'>
+                                                <input type="checkbox" class="checkbox" id="sett-gpu-mode">
+                                                <label for="sett-gpu-mode" class='sett__caption' l10n>${_lang.settGpuUseMode} *</label>
+                                            </section>
+                                        </div>
                                         <!-- temporary elements section -->
                                         <div class='settings-field' style='display:none;'>
                                             <section class='switch-labeled hbox' id='sett-box-preview-mode'>
@@ -308,7 +314,9 @@
             $optsSpellcheckMode,
             $optsLaunchMode,
             $optsAutoupdateMode;
-        let $chRtl;
+        let $chRtl,
+            $chGpu;
+        let appSettings;
 
         function _set_user_name(name) {
             let me = this;
@@ -379,13 +387,20 @@
                 let _doc_open_mode = $chOpenMode.prop('checked') ? 'view' : 'edit';
                 let _new_settings = {
                     username:_user_new_name,
-                    docopenmode: _doc_open_mode
+                    docopenmode: _doc_open_mode,
+                    restart: false,
                 };
 
                 if ( $optsLang.is(':visible') ) {
                     _new_settings.langid = $optsLang.find('select').val();
+                    if ( appSettings.locale.restart && appSettings.locale.current != _new_settings.langid ) {
+                        _new_settings.restart = true;
+                        appSettings.locale.current = _new_settings.langid;
+                    }
 
-                    utils.Lang.change(_new_settings.langid);
+                    if ( !appSettings.locale.restart ) {
+                        utils.Lang.change(_new_settings.langid);
+                    }
                 }
 
                 let $optsupdatesrate = $('#opts-checkupdate', $panel);
@@ -400,6 +415,11 @@
                 if ( $optsUIScaling ) {
                     _new_settings.uiscaling = $optsUIScaling.val();
                     $optsUIScaling.selectpicker('refresh');
+
+                    if ( appSettings.uiscaling != _new_settings.uiscaling ) {
+                        appSettings.uiscaling = _new_settings.uiscaling;
+                        _new_settings.restart = true;
+                    }
                 }
 
                 if ( $optsUITheme ) {
@@ -426,6 +446,20 @@
 
                 if ( $chRtl ) {
                     _new_settings.rtl = $chRtl.prop("checked");
+
+                    if ( appSettings.rtl != _new_settings.rtl ) {
+                        _new_settings.restart = true;
+                        appSettings.rtl = _new_settings.rtl;
+                    }
+                }
+
+                if ( $chGpu ) {
+                    _new_settings.usegpu = $chGpu.prop("checked");
+
+                    if ( appSettings.usegpu != _new_settings.usegpu ) {
+                        _new_settings.restart = true;
+                        appSettings.usegpu = _new_settings.usegpu;
+                    }
                 }
 
                 sdk.command("settings:apply", JSON.stringify(_new_settings));
@@ -459,11 +493,20 @@
                 $btnApply.disable(false);
             }
 
+            const _is_rtl = _is_lang_rtl(l);
             if ( $chRtl ) {
-                $chRtl.prop("checked", _is_lang_rtl(l));
+                $chRtl.prop("checked", _is_rtl);
+                if ( !_is_rtl ) {
+                    $chRtl.prop("disabled", "disabled");
+                    $chRtl.next().attr("disabled", "disabled");
+                } else {
+                    $chRtl.removeAttr("disabled");
+                    $chRtl.next().removeAttr("disabled");
+                }
             }
 
-            $(document.body).toggleClass('rtl-font', _is_lang_rtl(l));
+            $btnApply.parent().toggleClass('rtl-font', _is_rtl);
+            $btnApply.toggleClass('rtl-font--skip', !_is_rtl);
             $optsLang.toggleClass('notted', true);
         };
 
@@ -488,46 +531,48 @@
                     console.log('has opened editors');
                 } else
                 if (/init$/.test(cmd)) {
-                    let opts;
                     try {
-                        opts = JSON.parse( $('<div>').html(param).text() );
-                    } catch (e) { /*delete opts;*/ }
+                        appSettings = JSON.parse( $('<div>').html(param).text() );
+                    } catch (e) { appSettings = undefined; }
 
-                    if ( opts ) {
-                        if ( opts.langs === 0 ) {
+
+                    if ( appSettings ) {
+                        if ( appSettings.langs === 0 ) {
                             $panel.find('.settings-field-lang').hide();
                         } else
-                        if ( opts.locale ) {
+                        if ( appSettings.locale ) {
                             $panel.find('.settings-field-lang').show();
                             let $combo = $panel.find('.settings-field-lang select');
 
                             let def_lang;
-                            for (let lang in opts.locale.langs) {
+                            for (let lang in appSettings.locale.langs) {
                                 /^en/.test(lang) && (def_lang = lang);
-                                $combo.append(`<option value='${lang}'>${opts.locale.langs[lang]}</option>`);
+                                $combo.append(`<option value='${lang}'>${appSettings.locale.langs[lang]}</option>`);
                             }
 
-                            if ( !opts.locale.langs[opts.locale.current] ) {
-                                opts.locale.current = opts.locale.current.substring(0,2);
-                                if ( !opts.locale.langs[opts.locale.current] && !!def_lang ) {
-                                    opts.locale.current = def_lang;
+                            if ( !appSettings.locale.langs[appSettings.locale.current] ) {
+                                appSettings.locale.current = appSettings.locale.current.substring(0,2);
+                                if ( !appSettings.locale.langs[appSettings.locale.current] && !!def_lang ) {
+                                    appSettings.locale.current = def_lang;
                                 }
                             }
 
-                            $combo.val(opts.locale.current);
+                            $combo.val(appSettings.locale.current);
                             $combo.selectpicker();
 
-                            if ( opts.locale.restart ) {
-                                $panel.find('.settings-field-lang label[l10n]').after(`<label class='sett__caption'>*</label>`);
+                            if ( appSettings.locale.restart ) {
+                                if ( !$panel.find('.settings-field-lang label[l10n] + .sett__caption-restart').length ) 
+                                    $panel.find('.settings-field-lang label[l10n]').after(`<label class='sett__caption sett__caption-restart'> *</label>`);
+
                                 $('#caption-restart', $panel).show();
                             }
 
-                            $(document.body).toggleClass('rtl-font', _is_lang_rtl(opts.locale.current));
+                            $(document.body).toggleClass('rtl-font', _is_lang_rtl(appSettings.locale.current));
                         }
 
-                        if ( opts.uiscaling != undefined && !$optsUIScaling ) {
+                        if ( appSettings.uiscaling != undefined && !$optsUIScaling ) {
                             ($optsUIScaling = ($('#opts-ui-scaling', $panel).show().find('select')))
-                            .val(opts.uiscaling)
+                            .val(appSettings.uiscaling)
                             .selectpicker().on('change', e => {
                                 $btnApply.isdisabled() && $btnApply.disable(false);
                             });
@@ -535,8 +580,8 @@
                             $('#caption-restart', $panel).show();
                         }
 
-                        if ( !!opts.uitheme ) {
-                            opts.uitheme == 'canuse' && (opts.uitheme = 'theme-light');
+                        if ( !!appSettings.uitheme ) {
+                            appSettings.uitheme == 'canuse' && (appSettings.uitheme = 'theme-light');
 
                             const _themes = [{'theme-system': utils.Lang.settOptThemeSystem},
                                             {'theme-light': utils.Lang.settOptThemeLight},
@@ -564,7 +609,7 @@
 
                             if ( !$optsUITheme ) {
                                 ($optsUITheme = _combo)
-                                .val(opts.uitheme)
+                                .val(appSettings.uitheme)
                                 .selectpicker().on('changed.bs.select', (e, index, selected, previous) => {
                                     if ( selected && e.target.value == 'add' ) {
                                         sdk.command("uitheme:add", "local");
@@ -577,7 +622,7 @@
                                 })
                                 .parents('.settings-field').show();
                             } else {
-                                $optsUITheme.val(opts.uitheme)
+                                $optsUITheme.val(appSettings.uitheme)
                                             .selectpicker('refresh');
                             }
 
@@ -591,65 +636,74 @@
                                 }
                             }
                         }
-                        _apply_theme(!!opts.uitheme ? opts.uitheme : 'theme-classic-light');
+                        _apply_theme(!!appSettings.uitheme ? appSettings.uitheme : 'theme-classic-light');
 
-                        if ( opts.editorwindowmode !== undefined ) {
+                        if ( appSettings.editorwindowmode !== undefined ) {
                             ($optsLaunchMode = ($('#opts-launch-mode', $panel).show().find('select')))
-                            .val(opts.editorwindowmode ? 'inwindow' : 'intab')
+                            .val(appSettings.editorwindowmode ? 'inwindow' : 'intab')
                             .selectpicker().on('change', e => {
                                 $btnApply.isdisabled() && $btnApply.disable(false);
                             });
                         }
 
-                        if ( opts.spellcheckdetect !== undefined ) {
+                        if ( appSettings.spellcheckdetect !== undefined ) {
                             ($optsSpellcheckMode = ($('#opts-spellcheck-mode', $panel).show().find('select')))
-                            .val(opts.spellcheckdetect)
+                            .val(appSettings.spellcheckdetect)
                             .selectpicker().on('change', e => {
                                 $btnApply.isdisabled() && $btnApply.disable(false);
                             });
                         }
 
-                        if ( !!opts.updates ) {
-                            if ( opts.updates.mode !== undefined ) {
-                                // if ( !['ask', 'disabled'].includes(opts.updates.mode) )
-                                    // opts.updates.mode = 'ask';                          // for 7.3. to workaround 'silent' mode
-
+                        if ( !!appSettings.updates ) {
+                            if ( appSettings.updates.mode !== undefined ) {
                                 ($optsAutoupdateMode = ($('#opts-autoupdate-mode', $panel).show().find('select')))
                                 // ($optsAutoupdateMode = ($('#opts-autoupdate', $panel).show().find('select')))
-                                    .val(opts.updates.mode)
+                                    .val(appSettings.updates.mode)
                                     .selectpicker().on('change', e => {
                                         $btnApply.isdisabled() && $btnApply.disable(false);
                                     });
                             }
 
-                            if ( opts.updates.interval !== undefined ) {
+                            if ( appSettings.updates.interval !== undefined ) {
                                 let $settnode = $('#opts-checkupdate', $panel);
 
                                 if ( !$settnode.is(':visible') ) {
                                     $settnode.show();
                                     $('select', $settnode)
-                                        .val(opts.updates.interval)
+                                        .val(appSettings.updates.interval)
                                         .selectpicker().on('change', e => {
                                             $btnApply.isdisabled() && $btnApply.disable(false);
                                         });
                                 }
                             }
                         }
+
+                        if ( appSettings.usegpu !== undefined ) {
+                            $chGpu = $('#sett-box-gpu-mode', $panel).parent().show().find('#sett-gpu-mode');
+                            $chGpu.prop('checked', !!appSettings.usegpu)
+                                .on('change', e => {
+                                    $btnApply.isdisabled() && $btnApply.disable(false);
+                                });
+                        }
                     }
 
-                    if ( opts.rtl !== undefined ) {
-                        if ( !$chRtl || $chRtl.prop('checked') != opts.rtl ) {
+                    if ( appSettings.rtl !== undefined ) {
+                        if ( !$chRtl || $chRtl.prop('checked') != appSettings.rtl ) {
                             $chRtl = $('#sett-box-rtl-mode', $panel).parent().show().find('#sett-rtl-mode');
-                            $chRtl.prop('checked', !!opts.rtl)
+                            $chRtl.prop('checked', !!appSettings.rtl)
                                 .on('change', e => {
                                     $btnApply.prop('disabled') && $btnApply.prop('disabled', false);
                                 });
 
-                            if ( opts.rtl ) {
+                            if ( appSettings.rtl ) {
                                 document.body.setAttribute('dir', 'rtl');
                                 document.body.classList.add('rtl');
 
                                 $userName.css('direction', 'rtl');
+                            } else {
+                                if ( !_is_lang_rtl(appSettings.locale.current) )
+                                    $chRtl.attr('disabled', 'disabled')
+                                        .next().attr('disabled', 'disabled');
                             }
 
                         }
@@ -810,7 +864,7 @@
                 });
 
                 window.sdk.on('on_native_message', _on_app_message.bind(this));
-                window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', on_system_theme_dark.bind(this));
+                // window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', on_system_theme_dark.bind(this));
                 // on_system_theme_dark({target: window.matchMedia('(prefers-color-scheme: dark)')});
 
                 $(window).on('resize', on_window_resize.bind(this));

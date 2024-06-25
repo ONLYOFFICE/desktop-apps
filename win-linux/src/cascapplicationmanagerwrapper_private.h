@@ -43,7 +43,17 @@
 #include "utils.h"
 #include "components/cmessage.h"
 #include "cprintdata.h"
+#include "clogger.h"
+#include "common/File.h"
 #include <QApplication>
+#ifdef _WIN32
+# define APP_LAUNCH_NAME "\\DesktopEditors.exe"
+# define RESTART_BATCH "/apprestart.bat"
+#else
+# include <QProcess>
+# define APP_LAUNCH_NAME "/DesktopEditors"
+# define RESTART_BATCH "/apprestart.sh"
+#endif
 
 #ifdef DOCUMENTSCORE_OPENSSL_SUPPORT
 # include "platform_linux/cdialogopenssl.h"
@@ -80,7 +90,7 @@ public:
 
     virtual QCefView * createView(QWidget * parent, const QSize& s)
     {
-        return new QCefView_Media(parent/*, s*/);
+        return new QCefView_Media(parent, s + QSize(1,0));
     }
 
     bool allowedCreateLocalFile()
@@ -90,6 +100,55 @@ public:
 
     virtual void init()
     {
+    }
+
+    void restartApp()
+    {
+        const QString fileName = QDir::tempPath() + RESTART_BATCH;
+        if (QFile::exists(fileName) && !QFile::remove(fileName)) {
+            CLogger::log("An error occurred while deleting: " + fileName);
+            return;
+        }
+        QFile f(fileName);
+        if (f.open(QIODevice::WriteOnly | QIODevice::Text)) {
+            QTextStream ts(&f);
+#ifdef _WIN32
+            ts << "@chcp 65001>nul\n";
+            ts << "@echo off\n";
+            ts << "start \"\" \"" << QString::fromStdWString(NSFile::GetProcessDirectory()) << APP_LAUNCH_NAME << "\"\n";
+            ts << "del \"%~f0\"&exit\n";
+#else
+            ts << "#!/bin/bash\n";
+            ts << "\"" << QString::fromStdWString(NSFile::GetProcessDirectory()) << APP_LAUNCH_NAME << "\" &\n";
+            ts << "rm -- \"$0\"\n";
+#endif
+            if (!f.flush()) {
+                CLogger::log("An error occurred while writing: " + fileName);
+                f.close();
+                return;
+            }
+            f.close();
+        } else {
+            CLogger::log("An error occurred while creating: " + fileName);
+            return;
+        }
+#ifdef _WIN32
+        STARTUPINFO si;
+        PROCESS_INFORMATION pi;
+        ZeroMemory(&si, sizeof(si));
+        ZeroMemory(&pi, sizeof(pi));
+        si.cb = sizeof(si);
+        if (!CreateProcess(NULL, const_cast<LPWSTR>(fileName.toStdWString().c_str()), NULL, NULL, FALSE,
+                           CREATE_NO_WINDOW | CREATE_UNICODE_ENVIRONMENT, NULL, NULL, &si, &pi)) {
+            CLogger::log("An error occurred while restarting the app!");
+            return;
+        }
+        CloseHandle(pi.hProcess);
+        CloseHandle(pi.hThread);
+#else
+        if (!QProcess::startDetached("/bin/sh", QStringList{fileName}))
+            CLogger::log("An error occurred while restarting the app!");
+#endif
     }
 
 //    auto createStartPanel() -> void {
@@ -152,13 +211,15 @@ public:
 //            data.get_Active();
 
             COpenOptions opts{data.get_Url()};
-            opts.id = data.get_IdEqual();
+            //            opts.id = data.get_IdEqual();
             opts.parent_id = event.m_nSenderId;
             opts.name = QString::fromStdWString(data.get_Name());
 
-            if ( CCefView * _v = m_appmanager.GetViewById(opts.id) ) {
-                bringEditorToFront(_v->GetId());
-            } else openDocument(opts);
+            // TODO: remove for ver 8.2 if unused
+            //            if ( CCefView * _v = m_appmanager.GetViewById(opts.id) ) {
+            //                bringEditorToFront(_v->GetId());
+            //            } else openDocument(opts);
+            openDocument(opts);
 
             return true;
         }
@@ -173,15 +234,17 @@ public:
                     if ( bringEditorToFront( _path ) )
                         return true;
 
-                    COpenOptions opts{_path.toStdWString(), etRecentFile, objRoot["id"].toInt()};
+                    bool _from_recovery = objRoot["recovery"].toBool(false);
+                    COpenOptions opts{_path.toStdWString(), _from_recovery ? etRecoveryFile : etRecentFile, objRoot["id"].toInt()};
                     opts.format = objRoot["type"].toInt();
                     opts.parent_id = event.m_nSenderId;
                     opts.name = objRoot["name"].toString();
+                    opts.cloud = objRoot["cloud"].toString();
 
-                    QRegularExpression re(rePortalName);
+                    static const QRegularExpression re(rePortalName);
                     QRegularExpressionMatch match = re.match(opts.url);
 
-                    if ( !match.hasMatch() ) {
+                    if ( !_from_recovery && !match.hasMatch() ) {
                         QFileInfo _info(opts.url);
                         if ( /*!data->get_IsRecover() &&*/ !_info.exists() ) {
                             int res = CMessage::showMessage(m_appmanager.mainWindow()->handle(),
@@ -219,21 +282,18 @@ public:
                 std::wstring file_path = CEditorTools::getlocalfile(data.get_Param(), event.m_nSenderId).toStdWString();
 
                 if ( !file_path.empty() ) {
-                    CCefView * _view = m_appmanager.GetViewByUrl(file_path);
+                    if ( bringEditorToFront(QString::fromStdWString(file_path)) )
+                        return true;
 
-                    if ( _view ) {
-                        bringEditorToFront(_view->GetId());
-                    } else {
-                        COpenOptions opts{file_path, etLocalFile};
-                        opts.parent_id = event.m_nSenderId;
+                    COpenOptions opts{file_path, etLocalFile};
+                    opts.parent_id = event.m_nSenderId;
 
-                        if ( !openDocument(opts) ) {
-                            QFileInfo _info(QString::fromStdWString(file_path));
-                            CMessage::error(m_appmanager.mainWindow()->handle(),
-                                            QObject::tr("File %1 cannot be opened or doesn't exists.").arg(_info.fileName()));
-                        }
-                        else Utils::addToRecent(file_path);
+                    if ( !openDocument(opts) ) {
+                        QFileInfo _info(QString::fromStdWString(file_path));
+                        CMessage::error(m_appmanager.mainWindow()->handle(),
+                                        QObject::tr("File %1 cannot be opened or doesn't exists.").arg(_info.fileName()));
                     }
+                    else Utils::addToRecent(file_path);
                 }
 
                 return true;
@@ -289,7 +349,7 @@ public:
         if ( _view ) {
             int _view_id = _view->GetId();
 
-            if ( mainWindow()->holdUid(_view_id) ) {
+            if ( mainWindow() && mainWindow()->holdUid(_view_id) ) {
                 mainWindow()->bringToTop();
                 mainWindow()->selectView(_view_id);
                 return true;
@@ -298,12 +358,13 @@ public:
         } else {
             QString _n_url = Utils::replaceBackslash(url);
 
-            if ( mainWindow()->holdUrl(_n_url, etLocalFile) ) {
+            if ( mainWindow() && mainWindow()->holdUrl(_n_url, etLocalFile) ) {
                 mainWindow()->bringToTop();
                 mainWindow()->selectView(_n_url);
                 return true;
-            } else
+            } else {
                 _editor = m_appmanager.editorWindowFromUrl(_n_url);
+            }
         }
 
         if ( _editor ) {
@@ -335,14 +396,16 @@ public:
 
     auto openDocument(const COpenOptions& opts) -> bool
     {
+        COpenOptions opts_ext{opts};
         if ( preferOpenEditorWindow() ) {
             GET_REGISTRY_USER(reg_user);
             bool isMaximized = mainWindow() ? mainWindow()->windowState().testFlag(Qt::WindowMaximized) : reg_user.value("maximized", false).toBool();
             QRect rect = /*isMaximized ? QRect() :*/ windowRectFromViewId(opts.parent_id);
             if ( !rect.isEmpty() )
                 rect.adjust(50,50,50,50);
-
-            if (CEditorWindow * editor_win = CEditorWindow::create(rect, opts)) {
+            opts_ext.panel_size = CWindowBase::expectedContentSize(rect, true);
+            opts_ext.parent_widget = COpenOptions::eWidgetType::window;
+            if (CEditorWindow * editor_win = CEditorWindow::create(rect, opts_ext)) {
                 editor_win->show(isMaximized);
 
                 m_appmanager.m_vecEditors.push_back(size_t(editor_win));
@@ -354,7 +417,9 @@ public:
             }
         } else {
             m_appmanager.gotoMainWindow(size_t(m_appmanager.editorWindowFromViewId(opts.parent_id)));
-            if (CTabPanel * panel = CEditorTools::createEditorPanel(opts, mainWindow()->contentSize(), mainWindow())) {
+            opts_ext.panel_size = mainWindow()->contentSize();
+            opts_ext.parent_widget = COpenOptions::eWidgetType::tab;
+            if (CTabPanel * panel = CEditorTools::createEditorPanel(opts_ext, mainWindow())) {
                 CAscTabData * panel_data = panel->data();
                 QRegularExpression re("^ascdesktop:\\/\\/(?:compare|merge|template)");
                 if ( re.match(QString::fromStdWString(panel_data->url())).hasMatch() ) {
@@ -398,10 +463,14 @@ protected:
     }
 
 public:
-    CAscApplicationManagerWrapper& m_appmanager;    
+    CAscApplicationManagerWrapper& m_appmanager;
     QPointer<QCefView> m_pStartPanel;
     bool m_openEditorWindow = false;
+    bool m_needRestart = false;
     std::shared_ptr<CPrintData> m_printData;
+#ifndef _CAN_SCALE_IMMEDIATELY
+    std::wstring uiscaling;
+#endif
 };
 
 //CAscApplicationManagerWrapper::CAscApplicationManagerWrapper()

@@ -41,7 +41,7 @@
 "Document %ld.docx" = "Dokumentti %ld.docx";
 
 /* No comment provided by engineer. */
-"Document %ld.docxf" = "Dokumentti %ld.docxf";
+"Document %ld.pdf" = "Dokumentti %ld.pdf";
 
 /* No comment provided by engineer. */
 "Document template" = "Word Open XML-asiakirjamalli (*.dotx)";
@@ -75,6 +75,9 @@
 
 /* No comment provided by engineer. */
 "new-document" = "Uusi asiakirja";
+
+/* No comment provided by engineer. */
+"new-pdfform" = "Uusi PDF-lomake";
 
 /* No comment provided by engineer. */
 "new-presentation" = "Uusi esitys";
@@ -177,9 +180,6 @@
 
 /* No comment provided by engineer. */
 "Untitled" = "Nimetön";
-
-/* No comment provided by engineer. */
-"Version %@ (%@)" = "Versio %1$@ (%2$@)";
 
 /* No comment provided by engineer. */
 "Web Page" = "Verkkosivu";

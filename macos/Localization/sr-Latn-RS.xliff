@@ -22,7 +22,7 @@
       </trans-unit>
       <trans-unit id="4gA-s8-Lne.placeholderString" xml:space="preserve">
         <source>Enter Password</source>
-        <target state="translated">Unesi Lozinku</target>
+        <target state="translated">Unesi lozinku</target>
         <note>Class = "NSSecureTextFieldCell"; placeholderString = "Enter Password"; ObjectID = "4gA-s8-Lne";</note>
       </trans-unit>
       <trans-unit id="GOU-av-TC1.title" xml:space="preserve">
@@ -104,12 +104,12 @@
       </trans-unit>
       <trans-unit id="Cannot open file of Digital Signature" xml:space="preserve">
         <source>Cannot open file of Digital Signature</source>
-        <target state="translated">Nemoguće otvoriti fajl Digitalnog Potpisa</target>
+        <target state="translated">Nemoguće otvoriti fajl Digitalnog potpisa</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Cannot open file of Private Key" xml:space="preserve">
         <source>Cannot open file of Private Key</source>
-        <target state="translated">Nemoguće otvoriti fajl Privatnog Ključa</target>
+        <target state="translated">Nemoguće otvoriti fajl Privatnog ključa</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Cannot open folder of the file location." xml:space="preserve">
@@ -119,7 +119,7 @@
       </trans-unit>
       <trans-unit id="Comma-Separated Values" xml:space="preserve">
         <source>Comma-Separated Values</source>
-        <target state="translated">Vrednosti Odvojene Zarezom (*.csv)</target>
+        <target state="translated">Vrednosti odvojene zarezom (*.csv)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Create portal" xml:space="preserve">
@@ -134,7 +134,7 @@
       </trans-unit>
       <trans-unit id="DjVu File" xml:space="preserve">
         <source>DjVu File</source>
-        <target state="translated">Digitalni Dokument (*.djvu)</target>
+        <target state="translated">Digitalni dokument (*.djvu)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Do you want to save the changes made to the document &quot;%@&quot;?" xml:space="preserve">
@@ -147,14 +147,14 @@
         <target state="translated">Dokument %ld.docx</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
-      <trans-unit id="Document %ld.docxf" xml:space="preserve">
-        <source>Document %ld.docxf</source>
-        <target state="translated">Dokument %ld.docxf</target>
+      <trans-unit id="Document %ld.pdf" xml:space="preserve">
+        <source>Document %ld.pdf</source>
+        <target state="translated">Dokument %ld.pdf</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Document template" xml:space="preserve">
         <source>Document template</source>
-        <target state="translated">Word Open XML Dokument Šablon (*.dotx)</target>
+        <target state="translated">Word Open XML dokument šablon (*.dotx)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Don't Save" xml:space="preserve">
@@ -164,27 +164,27 @@
       </trans-unit>
       <trans-unit id="Electronic Publication" xml:space="preserve">
         <source>Electronic Publication</source>
-        <target state="translated">Elektronski Izdavački Fajl (*.epub)</target>
+        <target state="translated">Elektronski izdavački fajl (*.epub)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Excel 97-2003 Spreadsheet" xml:space="preserve">
         <source>Excel 97-2003 Spreadsheet</source>
-        <target state="translated">Excel 97-2003 Proračunska Tabela (*.xls)</target>
+        <target state="translated">Excel 97-2003 proračunska tabela (*.xls)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Excel 2007 Spreadsheet" xml:space="preserve">
         <source>Excel 2007 Spreadsheet</source>
-        <target state="translated">Office Open XML Proračunska Tabela (*.xlsx)</target>
+        <target state="translated">Office Open XML proračunska tabela (*.xlsx)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Macro-enabled spreadsheet template" xml:space="preserve">
         <source>Macro-enabled spreadsheet template</source>
-        <target state="translated">Makro-omogućeni šablon Proračunske Tabele (*.xltm)</target>
+        <target state="translated">Makro-omogućeni šablon proračunske tabele (*.xltm)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="FictionBook File" xml:space="preserve">
         <source>FictionBook File</source>
-        <target state="translated">KnjigaFikcije 2 Fajl (*.fb2)</target>
+        <target state="translated">KnjigaFikcije 2 fajl (*.fb2)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="File &quot;%@&quot; can not be open or not exist." xml:space="preserve">
@@ -204,7 +204,7 @@
       </trans-unit>
       <trans-unit id="HTML File" xml:space="preserve">
         <source>HTML File</source>
-        <target state="translated">HyperText Markup Language Fajl (*html)</target>
+        <target state="translated">HyperText Markup Language fajl (*html)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Hide %@" xml:space="preserve">
@@ -234,7 +234,7 @@
       </trans-unit>
       <trans-unit id="Mobipocket e-book" xml:space="preserve">
         <source>Mobipocket e-book</source>
-        <target state="translated">Mobipocket Fajl (*.mobi)</target>
+        <target state="translated">Mobipocket fajl (*.mobi)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="No" xml:space="preserve">
@@ -249,42 +249,42 @@
       </trans-unit>
       <trans-unit id="ONLYOFFICE can not open the Digital Signature file. Try opening another file." xml:space="preserve">
         <source>ONLYOFFICE can not open the Digital Signature file. Try opening another file.</source>
-        <target state="translated">ONLYOFFICE ne može otvoriti fajl Digitalnog Potpisa. Pokušajte otvoriti drugi fajl.</target>
+        <target state="translated">ONLYOFFICE ne može otvoriti fajl Digitalnog potpisa. Pokušajte otvoriti drugi fajl.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="ONLYOFFICE can not open the Private Key. Try opening another file." xml:space="preserve">
         <source>ONLYOFFICE can not open the Private Key. Try opening another file.</source>
-        <target state="translated">ONLYOFFICE ne može otvoriti Privatni Ključ. Pokušajte otvoriti drugi fajl.</target>
+        <target state="translated">ONLYOFFICE ne može otvoriti Privatni ključ. Pokušajte otvoriti drugi fajl.</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="OpenDocument Document Template" xml:space="preserve">
         <source>OpenDocument Document Template</source>
-        <target state="translated">OpenDocument Dokument Šablon (*.ott)</target>
+        <target state="translated">OpenDocument Dokument šablon (*.ott)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="OpenDocument Presentation Template" xml:space="preserve">
         <source>OpenDocument Presentation Template</source>
-        <target state="translated">OpenDocument Šablon Prezentacije (*.otp)</target>
+        <target state="translated">OpenDocument šablon prezentacije (*.otp)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="OpenDocument Spreadsheet Template" xml:space="preserve">
         <source>OpenDocument Spreadsheet Template</source>
-        <target state="translated">OpenDocument Šablon Proračunske Tabele (*.ots)</target>
+        <target state="translated">OpenDocument šablon proračunske tabele (*.ots)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="OpenOffice Document" xml:space="preserve">
         <source>OpenOffice Document</source>
-        <target state="translated">OpenDocument Tekst Fajl (*.odt)</target>
+        <target state="translated">OpenDocument tekst fajl (*.odt)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="OpenOffice Presentation" xml:space="preserve">
         <source>OpenOffice Presentation</source>
-        <target state="translated">OpenDocument Prezentacija (*.odp)</target>
+        <target state="translated">OpenDocument prezentacija (*.odp)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="OpenOffice Spreadsheet" xml:space="preserve">
         <source>OpenOffice Spreadsheet</source>
-        <target state="translated">OpenDocument Proračunska Tabela (*.ods)</target>
+        <target state="translated">OpenDocument proračunska tabela (*.ods)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Opening" xml:space="preserve">
@@ -294,37 +294,37 @@
       </trans-unit>
       <trans-unit id="PDF File" xml:space="preserve">
         <source>PDF File</source>
-        <target state="translated">Prenosivi Dokument (*.pdf)</target>
+        <target state="translated">Prenosivi dokument (*.pdf)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="PDF/A File" xml:space="preserve">
         <source>PDF/A File</source>
-        <target state="translated">Prenosivi Dokument /A (*.pdf)</target>
+        <target state="translated">Prenosivi dokument /A (*.pdf)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Plain Text" xml:space="preserve">
         <source>Plain Text</source>
-        <target state="translated">Običan Tekst Fajl (*.txt)</target>
+        <target state="translated">Običan tekst fajl (*.txt)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="PowerPoint 97-2003 Presentation" xml:space="preserve">
         <source>PowerPoint 97-2003 Presentation</source>
-        <target state="translated">PowerPoint 97-2003 Prezentacija (*.ppt)</target>
+        <target state="translated">PowerPoint 97-2003 prezentacija (*.ppt)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="PowerPoint 2007 Presentation" xml:space="preserve">
         <source>PowerPoint 2007 Presentation</source>
-        <target state="translated">Office Open XML Prezentacija (*.pptx)</target>
+        <target state="translated">Office Open XML prezentacija (*.pptx)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Macro-enabled Presentation" xml:space="preserve">
         <source>Macro-enabled Presentation</source>
-        <target state="translated">Makro-omogućena Prezentacija (*.pptm)</target>
+        <target state="translated">Makro-omogućena prezentacija (*.pptm)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="PowerPoint Slide Show" xml:space="preserve">
         <source>PowerPoint Slide Show</source>
-        <target state="translated">Office Open XML Slajd Šou (*.ppsx)</target>
+        <target state="translated">Office Open XML slajd šou (*.ppsx)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Preparing..." xml:space="preserve">
@@ -339,7 +339,7 @@
       </trans-unit>
       <trans-unit id="Presentation template" xml:space="preserve">
         <source>Presentation template</source>
-        <target state="translated">PowerPoint Open XML Šablon Prezentacije (*.potx)</target>
+        <target state="translated">PowerPoint Open XML šablon prezentacije (*.potx)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Presenter View" xml:space="preserve">
@@ -359,7 +359,7 @@
       </trans-unit>
       <trans-unit id="Rich Text Document" xml:space="preserve">
         <source>Rich Text Document</source>
-        <target state="translated">Bogati Tekst Format Fajl (*.rtf)</target>
+        <target state="translated">Bogati tekst format fajl (*.rtf)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Save" xml:space="preserve">
@@ -374,17 +374,17 @@
       </trans-unit>
       <trans-unit id="Signature Details" xml:space="preserve">
         <source>Signature Details</source>
-        <target state="translated">Detalji Potpisa</target>
+        <target state="translated">Detalji potpisa</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Spreadsheet %ld.xlsx" xml:space="preserve">
         <source>Spreadsheet %ld.xlsx</source>
-        <target state="translated">Proračunska Tabela %ld.xlsx</target>
+        <target state="translated">Proračunska tabela %ld.xlsx</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Spreadsheet template" xml:space="preserve">
         <source>Spreadsheet template</source>
-        <target state="translated">Excel Open XML Šablon Proračunske Tabele (*.xltx)</target>
+        <target state="translated">Excel Open XML šablon proračunske tabele (*.xltx)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Thank you for evaluating %@!" xml:space="preserve">
@@ -419,7 +419,7 @@
       </trans-unit>
       <trans-unit id="Web Page" xml:space="preserve">
         <source>Web Page</source>
-        <target state="translated">Veb Stranica</target>
+        <target state="translated">Web stranica</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="With access to pro features" xml:space="preserve">
@@ -429,17 +429,17 @@
       </trans-unit>
       <trans-unit id="Word 97-2003 Document" xml:space="preserve">
         <source>Word 97-2003 Document</source>
-        <target state="translated">Word 97-2003 Dokument (*.doc)</target>
+        <target state="translated">Word 97-2003 dokument (*.doc)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Word 2007 Document" xml:space="preserve">
         <source>Word 2007 Document</source>
-        <target state="translated">Office Open XML Dokument (*.docx)</target>
+        <target state="translated">Office Open XML dokument (*.docx)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="XML Paper Specification" xml:space="preserve">
         <source>XML Paper Specification</source>
-        <target state="translated">OpenXPS Dokument (*.xps)</target>
+        <target state="translated">OpenXPS dokument (*.xps)</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Yes" xml:space="preserve">
@@ -498,7 +498,12 @@ Imamo specijalnu ponudu za vas.</target>
       </trans-unit>
       <trans-unit id="new-spreadsheet" xml:space="preserve">
         <source>New Spreadsheet</source>
-        <target state="translated">Nova Proračunska Tabela</target>
+        <target state="translated">Nova Proračunska tabela</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="new-pdfform" xml:space="preserve">
+        <source>New PDF Form</source>
+        <target>Novi PDF formular</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
     </body>
@@ -711,7 +716,7 @@ Probni period će se završiti za %d dana, nakon toga nećete moći da kreirate 
       </trans-unit>
       <trans-unit id="DOj-j9-dza.title" xml:space="preserve">
         <source>Spreadsheet</source>
-        <target state="translated">Proračunska Tabela</target>
+        <target state="translated">Proračunska tabela</target>
         <note>Class = "NSMenuItem"; title = "Spreadsheet"; ObjectID = "DOj-j9-dza";</note>
       </trans-unit>
       <trans-unit id="DVo-aG-piG.title" xml:space="preserve">
@@ -721,7 +726,7 @@ Probni period će se završiti za %d dana, nakon toga nećete moći da kreirate 
       </trans-unit>
       <trans-unit id="Dv1-io-Yv7.title" xml:space="preserve">
         <source>Spelling and Grammar</source>
-        <target state="translated">Pravopis i Gramatika</target>
+        <target state="translated">Pravopis i gramatika</target>
         <note>Class = "NSMenuItem"; title = "Spelling and Grammar"; ObjectID = "Dv1-io-Yv7";</note>
       </trans-unit>
       <trans-unit id="F2S-fz-NVQ.title" xml:space="preserve">
@@ -786,7 +791,7 @@ Probni period će se završiti za %d dana, nakon toga nećete moći da kreirate 
       </trans-unit>
       <trans-unit id="HFo-cy-zxI.title" xml:space="preserve">
         <source>Show Spelling and Grammar</source>
-        <target state="translated">Prikaži Pravopis i Gramatiku</target>
+        <target state="translated">Prikaži Pravopis i gramatiku</target>
         <note>Class = "NSMenuItem"; title = "Show Spelling and Grammar"; ObjectID = "HFo-cy-zxI";</note>
       </trans-unit>
       <trans-unit id="HyV-fh-RgO.title" xml:space="preserve">
@@ -891,7 +896,7 @@ Probni period će se završiti za %d dana, nakon toga nećete moći da kreirate 
       </trans-unit>
       <trans-unit id="Q5e-8K-NDq.title" xml:space="preserve">
         <source>Show Fonts</source>
-        <target state="translated">Prikaži Fontove</target>
+        <target state="translated">Prikaži fontove</target>
         <note>Class = "NSMenuItem"; title = "Show Fonts"; ObjectID = "Q5e-8K-NDq";</note>
       </trans-unit>
       <trans-unit id="R4o-n2-Eq4.title" xml:space="preserve">
@@ -1353,7 +1358,7 @@ Probni period će se završiti za %d dana, nakon toga nećete moći da kreirate 
       </trans-unit>
       <trans-unit id="Move to Applications folder in your Home folder?" xml:space="preserve">
         <source>Move to Applications folder in your Home folder?</source>
-        <target state="translated">Pomeri u Aplikacije folder u tvom Home folderu?</target>
+        <target state="translated">Pomeri u Aplikacije folder u tvom Početna stranica folderu?</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Move to Applications folder?" xml:space="preserve">

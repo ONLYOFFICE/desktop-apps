@@ -92,18 +92,22 @@
 //    }];
 
     NSArray * arguments = [[NSProcessInfo processInfo] arguments];
+    NSArray * keysCreateNew{@[@"word",@"cell",@"slide",@"form"]};
     for (NSString * arg in arguments) {
         if ( [arg hasPrefix:@"--new:"] || [arg hasPrefix:@"--new="] ) {
             NSString * param = [arg substringFromIndex:6];
-            NSLog(@"input arg new: %@", param);
 
-            if ( [@[@"word",@"cell",@"slide",@"form"] containsObject:param] ) {
+            if ( [keysCreateNew containsObject:param] ) {
                 [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameCreateTab
                                                                     object:nil
                                                                   userInfo:@{ @"action"  : @(ASCTabActionCreateLocalFile),
                                                                               @"type"    : param,
                                                                               @"active"  : @(YES) }];
             }
+        } else if ([arg isEqualToString:@"--lock-portals"]) {
+            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:ASCUserLockPageConnections];
+        } else if ([arg isEqualToString:@"--unlock-portals"]) {
+            [[NSUserDefaults standardUserDefaults] removeObjectForKey:ASCUserLockPageConnections];
         }
     }
 }
@@ -231,6 +235,13 @@
                                             action:@selector(onMenuNew:)
                                      keyEquivalent:@""];
     [itemNewDoc setTag: 1];
+    [menu addItem: itemNewDoc];
+    
+    item_text = NSLocalizedStringWithDefaultValue(@"new-pdfform", @"Localizable", [NSBundle mainBundle], @"New PDF Form", nil);
+    itemNewDoc = [[NSMenuItem alloc] initWithTitle:item_text
+                                            action:@selector(onMenuNew:)
+                                     keyEquivalent:@""];
+    [itemNewDoc setTag: 3];
     [menu addItem: itemNewDoc];
 
     return menu;

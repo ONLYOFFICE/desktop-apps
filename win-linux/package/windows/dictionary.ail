@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <DICTIONARY type="multilanguage">
   <!-- Dialog table -->
-  <ENTRY id="Dialog.ExtendedInstallDlg">
-    <STRING lang="ru" value="[ProductName] [Setup]"/>
-  </ENTRY>
   <ENTRY id="Dialog.FileAssociationsDlg">
     <STRING lang="cs" value="[Setup] [ProductName]"/>
     <STRING lang="de" value="[ProductName] [Setup]"/>
@@ -22,30 +19,6 @@
     <STRING lang="sl" value="[Setup] [ProductName]"/>
   </ENTRY>
   <!-- Control table -->
-  <ENTRY id="Control.Text.ExtendedInstallDlg#Back">
-    <STRING lang="ru" value="[ButtonText_Back]"/>
-  </ENTRY>
-  <ENTRY id="Control.Text.ExtendedInstallDlg#Cancel">
-    <STRING lang="ru" value="[ButtonText_Cancel]"/>
-  </ENTRY>
-  <ENTRY id="Control.Text.ExtendedInstallDlg#Description">
-    <STRING lang="ru" value="Какие дополнительные задачи необходимо выполнить?"/>
-  </ENTRY>
-  <ENTRY id="Control.Text.ExtendedInstallDlg#ExtendedDlgText">
-    <STRING lang="ru" value="Выберите дополнительные задачи, которые необходимо выполнить при установке [ProductName]:"/>
-  </ENTRY>
-  <ENTRY id="Control.Text.ExtendedInstallDlg#GalleryButtonCheckBox">
-    <STRING lang="ru" value="Install Gallery"/>
-  </ENTRY>
-  <ENTRY id="Control.Text.ExtendedInstallDlg#MediaButtonCheckBox">
-    <STRING lang="ru" value="Install Media"/>
-  </ENTRY>
-  <ENTRY id="Control.Text.ExtendedInstallDlg#Next">
-    <STRING lang="ru" value="[ButtonText_Next]"/>
-  </ENTRY>
-  <ENTRY id="Control.Text.ExtendedInstallDlg#Title">
-    <STRING lang="ru" value="Выберите дополнительные задачи"/>
-  </ENTRY>
   <ENTRY id="Control.Text.FileAssociationsDlg#Description">
     <STRING lang="cs" value="Vyberte přípony, které chcete přidružit k aplikaci [ProductName]"/>
     <STRING lang="pt" value="Selecione as extensões que pretende associar ao [ProductName]"/>
@@ -107,16 +80,27 @@
     <STRING lang="ru" value="ru-RU"/>
     <STRING lang="sl" value="en-US"/>
   </ENTRY>
+  <ENTRY id="Property.IncompatibleVersion_ErrorText">
+    <STRING lang="cs" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
+    <STRING lang="de" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
+    <STRING lang="es" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
+    <STRING lang="fr" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
+    <STRING lang="ja" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
+    <STRING lang="pt" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
+    <STRING lang="pt_BR" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
+    <STRING lang="ru" value="Уже установлена другая версия приложения, несовместимая с этой установкой. Пожалуйста, сначала удалите текущую версию или загрузите правильную версию для установки."/>
+    <STRING lang="sl" value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
+  </ENTRY>
   <ENTRY id="Property.JUMP_LIST_ARG">
-    <STRING lang="cs" value="Nový_dokument Nový_sešit Nová_prezentace Nová_šablona_formuláře"/>
-    <STRING lang="de" value="Neues_Dokument Neue_Tabelle Neue_Präsentation Neue_Formularvorlage"/>
-    <STRING lang="es" value="Nuevo_Documento Nueva_Hoja_de_Cálculo Nueva_Presentación Nueva_plantilla_de_formulario"/>
-    <STRING lang="fr" value="Nouveau_document Nouvelle_feuille_de_calcul Nouvelle_présentation Nouveau_modèle_de_formulaire"/>
-    <STRING lang="ja" value="新しいドキュメント 新しいスプレッドシート 新しいプレゼンテーション 新しいフォームテンプレート"/>
-    <STRING lang="pt" value=""/>
-    <STRING lang="pt_BR" value="Novo_Documento Nova_planilha Nova_apresentação Novo_Formulário_Mestre"/>
-    <STRING lang="ru" value="Новый_документ Новая_таблица Новая_презентация Новый_шаблон_формы"/>
-    <STRING lang="sl" value="Nov_dokument Nova_razpredelnica Nova_predstavitev Nova_predloga_za_obrazec"/>
+    <STRING lang="cs" value="Nový_dokument Nový_sešit Nová_prezentace Nový_PDF_formulář"/>
+    <STRING lang="de" value="Neues_Dokument Neue_Tabelle Neue_Präsentation Neues_PDF-Formular"/>
+    <STRING lang="es" value="Nuevo_Documento Nueva_Hoja_de_Cálculo Nueva_Presentación Nuevo_formulario_PDF"/>
+    <STRING lang="fr" value="Nouveau_document Nouvelle_feuille_de_calcul Nouvelle_présentation Nouveau_formulaire_PDF"/>
+    <STRING lang="ja" value="新しいドキュメント 新しいスプレッドシート 新しいプレゼンテーション 新しいPDFフォーム"/>
+    <STRING lang="pt" value="Novo_documento Nova_folha_de_cálculo Nova_apresentação Novo_formulário_PDF"/>
+    <STRING lang="pt_BR" value="Novo_documento Nova_planilha Nova_apresentação Novo_formulário_PDF"/>
+    <STRING lang="ru" value="Новый_документ Новая_таблица Новая_презентация Новая_PDF-форма"/>
+    <STRING lang="sl" value="Nov_dokument Nova_razpredelnica Nova_predstavitev Novi_PDF_obrazec"/>
   </ENTRY>
   <ENTRY id="Property.LOCALE">
     <STRING lang="cs" value="cs"/>
@@ -136,7 +120,7 @@
     <STRING lang="fr" value="Nouveau document"/>
     <STRING lang="ja" value="新しいドキュメント"/>
     <STRING lang="pt" value="Novo documento"/>
-    <STRING lang="pt_BR" value="Novo Documento"/>
+    <STRING lang="pt_BR" value="Novo documento"/>
     <STRING lang="ru" value="Новый документ"/>
     <STRING lang="sl" value="Nov dokument"/>
   </ENTRY>
@@ -157,7 +141,7 @@
     <STRING lang="es" value="Nueva Presentación"/>
     <STRING lang="fr" value="Nouvelle présentation"/>
     <STRING lang="ja" value="新しいプレゼンテーション"/>
-    <STRING lang="pt" value="Nova Apresentação"/>
+    <STRING lang="pt" value="Nova apresentação"/>
     <STRING lang="pt_BR" value="Nova apresentação"/>
     <STRING lang="ru" value="Новая презентация"/>
     <STRING lang="sl" value="Nova predstavitev"/>
@@ -183,28 +167,6 @@
     <STRING lang="pt_BR" value="Serviço para atualização [PackageName]"/>
     <STRING lang="ru" value="Сервис обновлений [PackageName]"/>
     <STRING lang="sl" value="Storitev za posodobitev [PackageName]"/>
-  </ENTRY>
-  <ENTRY id="Property.UninstallPrevDlg_ErrorText">
-    <STRING lang="cs" value="To install [ProductName], the previous version must be uninstalled."/>
-    <STRING lang="de" value="To install [ProductName], the previous version must be uninstalled."/>
-    <STRING lang="es" value="To install [ProductName], the previous version must be uninstalled."/>
-    <STRING lang="fr" value="To install [ProductName], the previous version must be uninstalled."/>
-    <STRING lang="ja" value="To install [ProductName], the previous version must be uninstalled."/>
-    <STRING lang="pt" value="To install [ProductName], the previous version must be uninstalled."/>
-    <STRING lang="pt_BR" value="To install [ProductName], the previous version must be uninstalled."/>
-    <STRING lang="ru" value="Для установки [ProductName] необходимо удалить предыдущую версию."/>
-    <STRING lang="sl" value="To install [ProductName], the previous version must be uninstalled."/>
-  </ENTRY>
-  <ENTRY id="Property.UninstallPrevDlg_MsgBox">
-    <STRING lang="cs" value="The previous version of [ProductName] detected, please click &apos;OK&apos; button to uninstall it, or &apos;Cancel&apos; to quit setup."/>
-    <STRING lang="de" value="The previous version of [ProductName] detected, please click &apos;OK&apos; button to uninstall it, or &apos;Cancel&apos; to quit setup."/>
-    <STRING lang="es" value="The previous version of [ProductName] detected, please click &apos;OK&apos; button to uninstall it, or &apos;Cancel&apos; to quit setup."/>
-    <STRING lang="fr" value="The previous version of [ProductName] detected, please click &apos;OK&apos; button to uninstall it, or &apos;Cancel&apos; to quit setup."/>
-    <STRING lang="ja" value="The previous version of [ProductName] detected, please click &apos;OK&apos; button to uninstall it, or &apos;Cancel&apos; to quit setup."/>
-    <STRING lang="pt" value="The previous version of [ProductName] detected, please click &apos;OK&apos; button to uninstall it, or &apos;Cancel&apos; to quit setup."/>
-    <STRING lang="pt_BR" value="The previous version of [ProductName] detected, please click &apos;OK&apos; button to uninstall it, or &apos;Cancel&apos; to quit setup."/>
-    <STRING lang="ru" value="Обнаружена предыдущая версия [ProductName], нажмите кнопку &apos;OK&apos; чтобы удалить её, или &apos;Отмена&apos; чтобы выйти из программы инсталляции."/>
-    <STRING lang="sl" value="The previous version of [ProductName] detected, please click &apos;OK&apos; button to uninstall it, or &apos;Cancel&apos; to quit setup."/>
   </ENTRY>
   <!-- -->
   <ENTRY id="ButtonText_DeselectAll">

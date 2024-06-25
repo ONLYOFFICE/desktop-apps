@@ -101,6 +101,13 @@ static NSUInteger const kASTabViewCloseButtonSize = 12;
     return copy;
 }
 
+- (void)refreshPortalTabIconset {
+    NSString * normalIcon = [NSApplication isSystemDarkMode] ? @"icon_tab_portal_inactive" : @"icon_tab_portal_active",
+            * activeIcon = [ASCThemesController isCurrentThemeDark] ? @"icon_tab_portal_inactive" : @"icon_tab_portal_active";
+
+    _icons[ASCTabViewTypePortal] = @{@"normal": normalIcon, @"active": activeIcon};
+}
+
 - (void)initialize {   
     _uuid = [[NSUUID UUID] UUIDString];
     
@@ -122,9 +129,7 @@ static NSUInteger const kASTabViewCloseButtonSize = 12;
                ]
     ];
 
-    if ([NSApplication isSystemDarkMode]) {
-        _icons[ASCTabViewTypePortal] = @{@"normal": @"icon_tab_portal_inactive", @"active": @"icon_tab_portal_active"};
-    }
+    [self refreshPortalTabIconset];
 
     ASCTabViewCell * tabCell = [[ASCTabViewCell alloc] initTextCell:self.title];
     [self setBordered:NO];
@@ -210,6 +215,7 @@ static NSUInteger const kASTabViewCloseButtonSize = 12;
     _type = type;
     
     if (type > ASCTabViewTypeUnknown && type < [_icons count]) {
+        [self refreshPortalTabIconset];
         NSString * iconName = (self.state)
             ? _icons[type][@"active"]
             : _icons[type][@"normal"];
@@ -222,11 +228,7 @@ static NSUInteger const kASTabViewCloseButtonSize = 12;
     ASCTabViewCell * tabViewCell = (ASCTabViewCell *)self.cell;
 
     if (type == ASCTabViewTypePortal) {
-        if (@available(macOS 10.13, *)) {
-            tabViewCell.activeColor = [NSColor colorNamed:@"tab-portal-activeColor"];
-        } else {
-            tabViewCell.activeColor = UIColorFromRGB(0xffffff);
-        }
+        tabViewCell.activeColor     = [ASCThemesController currentThemeColor:btnPortalActiveBackgroundColor];
         tabViewCell.activeTextColor = [tabViewCell.activeColor isLight] ? NSColor.blackColor : NSColor.whiteColor;
     } else if (type == ASCTabViewTypeDocument) {
         tabViewCell.activeColor = [ASCThemesController currentThemeColor:tabWordActiveBackgroundColor];
