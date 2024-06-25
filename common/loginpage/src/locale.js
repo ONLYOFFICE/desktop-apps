@@ -50,6 +50,8 @@ l10n.en = {
     listRecentFileTitle:'Recent files',
     listRecentDirTitle:'Recent folders',
     menuFileOpen: 'Open',
+    menuFilePin: 'Pin',
+    menuFileUnpin: 'Unpin',
     menuFileExplore: 'Show in folder',
     menuRemoveModel: 'Remove from list',
     menuClear: 'Clear',
