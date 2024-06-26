@@ -15,6 +15,9 @@
 @import 'css/component';
 @import 'css/window';
 @import 'css/loader';
+@import 'css/toolicons@1.25x';
+@import 'css/toolicons@1.5x';
+@import 'css/toolicons@1.75x';
 
 * {
     box-sizing: border-box;
@@ -1485,5 +1488,11 @@ li.menu-item {
 .dropdown-menu {
     .divider {
         background-color: @border-divider;
+    }
+}
+
+.tool-icon {
+    .theme-type-dark & {
+        background-position-x: 24px;
     }
 }

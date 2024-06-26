@@ -181,7 +181,7 @@ var Scroll_offset = '16px';
 function replaceIcons(usesvg) {
     if ( usesvg ) {
     } else {
-        $('svg.icon', $('.tool-quick-menu')).each((i, el) => {
+        $('svg.icon', $('.tool-menu')).each((i, el) => {
             el = $(el);
             const p = el.parent();
             if ( $('i.icon', p).length == 0 ) {
