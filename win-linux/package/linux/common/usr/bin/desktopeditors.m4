@@ -130,7 +130,7 @@ if [ ! -z "$LD_LIBRARY_PATH" ]; then
 fi
 ifelse(M4_COMPANY_NAME, ONLYOFFICE,
 export XDG_CONFIG_HOME=$HOME/.local/share/M4_DESKTOPEDITORS_PREFIX
-#migreate config from old path
+#migrate config from old path
 OLD_CONFIG="$HOME/.config/onlyoffice/DesktopEditors.conf"
 NEW_CONFIG="$XDG_CONFIG_HOME/onlyoffice/DesktopEditors.conf"
 if [ -f $OLD_CONFIG ] && [ ! -f $NEW_CONFIG ]; then
