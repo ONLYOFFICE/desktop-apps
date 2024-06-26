@@ -135,7 +135,7 @@ OLD_CONFIG="$HOME/.config/onlyoffice/DesktopEditors.conf"
 NEW_CONFIG="$XDG_CONFIG_HOME/onlyoffice/DesktopEditors.conf"
 if [ -f $OLD_CONFIG ] && [ ! -f $NEW_CONFIG ]; then
   mkdir -p $(dirname $NEW_CONFIG)
-  cp -p $OLD_CONFIG $NEW_CONFIG
+  mv $OLD_CONFIG $NEW_CONFIG
 fi
 export LD_LIBRARY_PATH=$DIR$LDLPATH,
 DIR_MV=/opt/M4_MEDIAVIEWER_PREFIX
