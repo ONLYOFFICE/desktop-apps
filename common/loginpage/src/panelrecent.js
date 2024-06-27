@@ -53,7 +53,7 @@
         // args.id&&(args.id=`"id=${args.id}"`)||(args.id='');
 
         let _html = `<div class="action-panel ${args.action}">
-                      <div class="flexbox">
+                      <div class="flexbox gap-10">
                         <div id="box-recovery" class="flex-item">
                           <div class="flexbox">
                             <h3 class="table-caption" l10n>${_lang.listRecoveryTitle}</h3>
@@ -62,7 +62,6 @@
                             </div>
                           </div>
                         </div>
-                        <div id="recovery-sep" class="box-separator"/>
                         
                         <div id="box-pinned" class="recent-box-wrapper flex-item">
                             <div class="flexbox">
@@ -72,7 +71,6 @@
                                 </div>
                             </div>
                         </div>
-                        <div id="pinned-sep" class="box-separator"/>
 
                         <div id="box-today" class="recent-box-wrapper flex-item">
                             <div class="flexbox">
@@ -82,7 +80,6 @@
                                 </div>
                             </div>
                         </div>
-                        <div id="today-sep" class="box-separator"/>
 
                         <div id="box-recent" class="recent-box-wrapper flex-item flex-fill">
                           <div class="flexbox">
@@ -301,10 +298,7 @@
                 collectionPinned.empty();
 
                 this.view.$boxPinned.hide();
-                this.view.$panel.find('#pinned-sep').hide();
-
                 this.view.$boxToday.hide();
-                this.view.$panel.find('#today-sep').hide();
 
                 _add_recent_block.call(this);
             }, 10)
@@ -319,7 +313,6 @@
             }
 
             this.view.$boxRecovery[collectionRecovers.size() > 0 ? 'show' : 'hide']();
-            this.view.$panel.find('#recovery-sep')[collectionRecovers.size() > 0 ? 'show' : 'hide']();
             this.view.updatelistsize();
         };
 
@@ -360,7 +353,6 @@
                 bindPinButton(model, this.view.$panel);
 
                 this.view.$boxPinned.show();
-                this.view.$panel.find('#pinned-sep').show();
                 this.view.updatelistsize();
             });
 
@@ -369,7 +361,6 @@
 
                 if (collection.size() === 0) {
                     this.view.$boxPinned.hide();
-                    this.view.$panel.find('#pinned-sep').hide();
                     this.view.updatelistsize();
                 }
             });
@@ -469,7 +460,6 @@
                 bindPinButton(model, this.view.$panel);
 
                 this.view.$boxToday.show();
-                this.view.$panel.find('#today-sep').show();
                 this.view.updatelistsize();
             });
 
@@ -672,8 +662,14 @@
             },
             filterRecents: function(doctype) {
                 $('.recent-box-wrapper .table-files').removeClass('filter-word filter-cell filter-slide filter-pdfe');
-                if ( doctype )
+                if (doctype) {
                     $('.recent-box-wrapper .table-files').addClass(`filter-${doctype}`);
+                    $('.recent-box-wrapper').each(function() {
+                        const items = $(this).find(`tr[data-editor-type="${doctype}"]`);
+                        $(this)[items.size() === 0 ? 'hide' : 'show']();
+                    });
+
+                }
             },
         };
     })());
