@@ -126,14 +126,14 @@ module.exports = (grunt, rootpathprefix) => {
                 }
             },
             svgicons: {
-                src: [`${_path}res/img/icons/1x/*.svg`],
+                src: [`${_path}res/img/toolicons/1x/*.svg`],
                 dest: `${_path}res/img/`,
                 options: {
                     mode: {
                         symbol: {
                             inline: true,
                             dest: './generated',
-                            sprite: `icons.svg`,
+                            sprite: `toolicons.svg`,
                         },
                     },
                 }
