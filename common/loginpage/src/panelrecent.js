@@ -62,7 +62,28 @@
                             </div>
                           </div>
                         </div>
-                        <div id="recovery-sep"></div>
+                        <div id="recovery-sep" class="box-separator"/>
+                        
+                        <div id="box-pinned" class="flex-item">
+                            <div class="flexbox">
+                                <h3 class="table-caption" l10n>${_lang.listPinnedTitle}</h3>
+                                <div class="table-box flex-fill">
+                                    <table class="table-files list"></table>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="pinned-sep" class="box-separator"/>
+
+                        <div id="box-today" class="flex-item">
+                            <div class="flexbox">
+                                <h3 class="table-caption" l10n>${_lang.listToday}</h3>
+                                <div class="table-box flex-fill">
+                                    <table class="table-files list"></table>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="today-sep" class="box-separator"/>
+
                         <div id="box-recent" class="flex-item flex-fill">
                           <div class="flexbox">
                             <div style="display:none;">
@@ -100,6 +121,8 @@
 
             this.$boxRecovery = this.$panel.find('#box-recovery');
             this.$boxRecent = this.$panel.find('#box-recent');
+            this.$boxPinned = this.$panel.find('#box-pinned');
+            this.$boxToday = this.$panel.find('#box-today');
         },
         listitemtemplate: function(info) {
             let id = !!info.uid ? (` id="${info.uid}"`) : '';
@@ -169,25 +192,27 @@
         },
         updatelistsize: function() {
             // set fixed height for scrollbar appearing. 
-            var _available_height = this.$panel.height();
-            var _box_recent_height = _available_height;
+            let _available_height = this.$panel.height();
+            let _box_recent_height = _available_height;
 
-            if (!this.$boxRecovery.find('tr').size()) {
-                // $boxRecent.height($boxRecent.parent().height());
-            } else {
-                _available_height -= /*separatorHeight*/40;
-                _box_recent_height *= 0.5; 
+            const updateBoxHeight = (box) => {
+                if (box.find('tr').size() > 0) {
+                    _available_height -= /*separatorHeight*/40;
+                    _box_recent_height *= 0.5;
 
-                this.$boxRecovery.height(_available_height * 0.5);
+                    box.height(_available_height * 0.5);
 
-                var $table_box = this.$boxRecovery.find('.table-box');
-                if ( !$table_box.hasScrollBar() ) {
-                    let _new_recovery_height = $table_box.find('.table-files.list').height() + /*$headerRecovery.height()*/46;
-                    this.$boxRecovery.height(_new_recovery_height);
+                    const $tableBox = box.find('.table-box');
+                    if (!$tableBox.hasScrollBar()) {
+                        const newBoxHeight = $tableBox.find('.table-files.list').height() + /*$headerRecovery.height()*/46;
+                        box.height(newBoxHeight);
 
-                    _box_recent_height = _available_height - _new_recovery_height;
+                        _box_recent_height = _available_height - newBoxHeight;
+                    }
                 }
             }
+
+            [this.$boxPinned,this.$boxToday, this.$boxRecovery].map(el => updateBoxHeight(el));
 
             /*$boxRecent.height() != _box_recent_height &&*/
             this.$boxRecent.height(_box_recent_height);
@@ -210,9 +235,17 @@
     };
 
     utils.fn.extend(ControllerRecent.prototype, (function() {
-        let collectionRecents, collectionRecovers;
+        let collectionRecents, collectionRecovers, collectionPinned, collectionToday;
         let ppmenu;
         const ITEMS_LOAD_RANGE = 40;
+
+        const isToday = (dateString) => {
+            const [datePart, _] = dateString.split(' ');
+            const [day, month, year] = datePart.split('.').map(Number);
+            const date = new Date(year, month - 1, day);
+
+            return new Date().toDateString() === date.toDateString();
+        }
 
         const _add_recent_block = function() {
             if ( !this.rawRecents || !Object.keys(this.rawRecents).length ) return;
@@ -226,8 +259,13 @@
                 var model = new FileModel(item);
                 model.set('hash', item.path.hashCode());
 
-                if ( !!this.rawRecents ) {
-                    collectionRecents.add(model);
+                if (!!this.rawRecents) {
+                    if (isToday(model.date)) {
+                        collectionToday.add(model);
+                    } else {
+                        collectionRecents.add(model);
+                    }
+
                     _check_block[model.get('hash')] = item.path;
                 } else return;
             }
@@ -259,6 +297,15 @@
                 this.recentIndex = 0;
 
                 collectionRecents.empty();
+                collectionToday.empty();
+                collectionPinned.empty();
+
+                this.view.$boxPinned.hide();
+                this.view.$panel.find('#pinned-sep').hide();
+
+                this.view.$boxToday.hide();
+                this.view.$panel.find('#today-sep').hide();
+
                 _add_recent_block.call(this);
             }, 10)
         };
@@ -276,50 +323,58 @@
             this.view.updatelistsize();
         };
 
+        function bindPinButton(model, view) {
+            $(`#${model.uid}-btn`, view).click((e) => {
+                e.preventDefault();
+                e.stopPropagation();
+
+                model.set('pinned', !model.pinned);
+            })
+        }
+
         function _init_collections() {
             let _cl_rcbox = this.view.$panel.find('#box-recent'),
-                _cl_rvbox = this.view.$panel.find('#box-recovery');
+                _cl_rvbox = this.view.$panel.find('#box-recovery'),
+                boxPinned = this.view.$panel.find('#box-pinned'),
+                boxToday = this.view.$panel.find('#box-today');
 
-            collectionRecents = new Collection({
-                view: _cl_rcbox,
-                list: _cl_rcbox.find('.table-files.list')
+            // Pinned
+            //
+
+            collectionPinned = new Collection({
+                view: boxPinned,
+                list: boxPinned.find('.table-files.list')
             });
 
-            collectionRecents.events.erased.attach(collection => {
-                collection.list.parent().addClass('empty');
+            collectionPinned.events.click.attach((collection, model) => {
+                openFile(OPEN_FILE_RECENT, model);
             });
 
-            collectionRecents.events.inserted.attach((collection, model) => {
+            collectionPinned.events.inserted.attach((collection, model)=>{
                 let $item = this.view.listitemtemplate(model);
 
-                if (model.pinned) {
-                    collection.list.prepend($item);
-                    $item.addClass('pinned');
-                } else {
-                    collection.list.append($item);
+                collection.list.append($item);
+                let $el = collection.list.find('#' + model.uid);
+                $el.addClass('pinned');
+
+                bindPinButton(model, this.view.$panel);
+
+                this.view.$boxPinned.show();
+                this.view.$panel.find('#pinned-sep').show();
+                this.view.updatelistsize();
+            });
+
+            collectionPinned.events.deleted.attach((collection, model)=> {
+                collection.list.find('#' + model.uid)?.remove();
+
+                if (collection.size() === 0) {
+                    this.view.$boxPinned.hide();
+                    this.view.$panel.find('#pinned-sep').hide();
+                    this.view.updatelistsize();
                 }
-
-                $(`#${model.uid}-btn`, this.view.$panel).click((e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-
-                    model.set('pinned', !model.pinned);
-                    model.set('pinnedBefore', true);
-                })
-
-                collection.list.parent().removeClass('empty');
             });
 
-            collectionRecents.events.click.attach((collection, model) => {
-                // var _portal = model.descr;
-                // if ( !model.islocal && !app.controller.portals.isConnected(_portal) ) {
-                    // app.controller.portals.authorizeOn(_portal, {type: 'fileid', id: model.fileid});
-                // } else {
-                    openFile(OPEN_FILE_RECENT, model);
-                // }
-            });
-
-            collectionRecents.events.contextmenu.attach(function(collection, model, e){
+            collectionPinned.events.contextmenu.attach(function(collection, model, e){
                 ppmenu.actionlist = 'recent';
                 ppmenu.hideItem('files:unpin', model.dir || !model.pinned || !model.exist);
                 ppmenu.hideItem('files:pin', model.dir || model.pinned || !model.exist);
@@ -327,34 +382,119 @@
                 ppmenu.show({left: e.clientX, top: e.clientY}, model);
             });
 
-            collectionRecents.events.changed.attach((collection, model) => {
+            collectionPinned.events.changed.attach((collection, model) => {
+                if (!model.pinned) {
+                    collection.remove(model);
+
+                    if (isToday(model.date)) {
+                        collectionToday.add(model);
+                    } else {
+                        collectionRecents.add(model);
+                    }
+
+                    return;
+                }
+
                 let $el = collection.list.find('#' + model.uid);
                 if ($el) {
                     $el[model.exist ? 'removeClass' : 'addClass']('unavail');
-                    $el[model.pinned ? 'addClass' : 'removeClass']('pinned');
-
-                    if (model.pinned) {
-                        $el.parent().prepend($el);
-                    }
-
-                    if (model.pinnedBefore) {
-                        const unpinnedFiles = collection.items.filter(m => !m.pinned);
-                        const fileModelIndex = unpinnedFiles.findIndex(m => model.uid === m.uid);
-                        if (fileModelIndex > 0) {
-                            $el.parent().children().eq(collection.items.length - unpinnedFiles.length + fileModelIndex).after($el.detach());
-                        }
-
-                        model.set('pinnedBefore', false);
-                    }
-
                 }
-
-                console.log('collection change event')
             });
 
-            collectionRecents.empty();
+            collectionPinned.events.erased.attach(collection => {
+                collection.list.parent().addClass('empty');
+            });
 
-            /**/
+
+            const createRecentlyCollection = (box) => {
+                const collectionRecently = new Collection({
+                    view: box,
+                    list: box.find('.table-files.list')
+                });
+
+
+                collectionRecently.events.erased.attach(collection => {
+                    collection.list.parent().addClass('empty');
+                });
+
+                collectionRecently.events.deleted.attach((collection, model)=> {
+                    collection.list.find('#' + model.uid)?.remove();
+                });
+
+                collectionRecently.events.click.attach((collection, model) => {
+                    openFile(OPEN_FILE_RECENT, model);
+                });
+
+                collectionRecently.events.contextmenu.attach((collection, model, e) => {
+                    ppmenu.actionlist = 'recent';
+                    ppmenu.hideItem('files:unpin', model.dir || !model.pinned || !model.exist);
+                    ppmenu.hideItem('files:pin', model.dir || model.pinned || !model.exist);
+                    ppmenu.hideItem('files:explore', (!model.islocal && !model.dir) || !model.exist);
+                    ppmenu.show({left: e.clientX, top: e.clientY}, model);
+                });
+
+                collectionRecently.events.changed.attach((collection, model) => {
+                    if (model.pinned) {
+                        collection.remove(model);
+                        collectionPinned.add(model);
+                        return;
+                    }
+
+                    let $el = collection.list.find('#' + model.uid);
+                    if ($el) {
+                        $el[model.exist ? 'removeClass' : 'addClass']('unavail');
+                    }
+                });
+
+                collectionRecently.empty();
+
+                return collectionRecently;
+            }
+
+            // Today
+            //
+
+            collectionToday = createRecentlyCollection(boxToday);
+
+            collectionToday.events.inserted.attach((collection, model) => {
+                if (model.pinned) {
+                    collection.remove(model);
+                    collectionPinned.add(model);
+                    return;
+                }
+
+                let $item = this.view.listitemtemplate(model);
+                collection.list.append($item);
+
+                bindPinButton(model, this.view.$panel);
+
+                this.view.$boxToday.show();
+                this.view.$panel.find('#today-sep').show();
+                this.view.updatelistsize();
+            });
+
+            // Recents
+            //
+
+            collectionRecents = createRecentlyCollection(_cl_rcbox);
+
+            collectionRecents.events.inserted.attach((collection, model) => {
+                if (model.pinned) {
+                    collection.remove(model);
+                    collectionPinned.add(model);
+                    return;
+                }
+
+                let $item = this.view.listitemtemplate(model);
+                collection.list.append($item);
+
+                bindPinButton(model, this.view.$panel);
+
+                collection.list.parent().removeClass('empty');
+            });
+
+            // Recovers
+            //
 
             collectionRecovers = new Collection({
                 view: _cl_rvbox,
@@ -417,16 +557,10 @@
                     openFile(OPEN_FILE_RECENT, data) :
                     openFile(OPEN_FILE_RECOVERY, data);
             } else if (/\:pin/.test(action)) {
-                let model = collectionRecents.find('uid', data.uid);
-                if (model) {
-                    model.set('pinned', true);
-                }
+                collectionRecents.find('uid', data.uid)?.set('pinned', true);
+                collectionToday.find('uid', data.uid)?.set('pinned', true);
             } else if (/\:unpin/.test(action)) {
-                let model = collectionRecents.find('uid', data.uid);
-                if (model) {
-                    model.set('pinned', false);
-                    model.set('pinnedBefore', true);
-                }
+                collectionPinned.find('uid', data.uid)?.set('pinned', false);
             } else if (/\:clear/.test(action)) {
                 menu.actionlist == 'recent' ?
                     window.sdk.LocalFileRemoveAllRecents() :

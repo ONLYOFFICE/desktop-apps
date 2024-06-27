@@ -47,6 +47,8 @@ l10n.en = {
     portalListTitle: 'Connected clouds',
     textNoFiles: 'There are no files',
     listRecoveryTitle:'Recover files',
+    listPinnedTitle:'Pinned files',
+    listToday: 'Today',
     listRecentFileTitle:'Recent files',
     listRecentDirTitle:'Recent folders',
     menuFileOpen: 'Open',
