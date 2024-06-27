@@ -129,7 +129,7 @@ function onActionClick(e) {
             // bug: recent panel has the wrong height if 'wellcome' panel is showed firstly
             if (action == 'recents') {
                 app.controller.recent.filterRecents($el.data('filter'));
-                app.controller.recent.view.updatelistsize();
+                // app.controller.recent.view.updatelistsize();
             }
         });
 

@@ -54,7 +54,7 @@
 
         let _html = `<div class="action-panel ${args.action}">
                       <div class="flexbox gap-10">
-                        <div id="box-recovery" class="flex-item">
+                        <div id="box-recovery" class="recent-box-wrapper flex-item">
                           <div class="flexbox">
                             <h3 class="table-caption" l10n>${_lang.listRecoveryTitle}</h3>
                             <div class="table-box flex-fill">
@@ -313,7 +313,7 @@
             }
 
             this.view.$boxRecovery[collectionRecovers.size() > 0 ? 'show' : 'hide']();
-            this.view.updatelistsize();
+            // this.view.updatelistsize();
         };
 
         function bindPinButton(model, view) {
@@ -353,7 +353,7 @@
                 bindPinButton(model, this.view.$panel);
 
                 this.view.$boxPinned.show();
-                this.view.updatelistsize();
+                // this.view.updatelistsize();
             });
 
             collectionPinned.events.deleted.attach((collection, model)=> {
@@ -361,7 +361,7 @@
 
                 if (collection.size() === 0) {
                     this.view.$boxPinned.hide();
-                    this.view.updatelistsize();
+                    // this.view.updatelistsize();
                 }
             });
 
@@ -460,7 +460,7 @@
                 bindPinButton(model, this.view.$panel);
 
                 this.view.$boxToday.show();
-                this.view.updatelistsize();
+                // this.view.updatelistsize();
             });
 
             // Recents
@@ -633,7 +633,7 @@
                 });
 
                 $(window).resize(()=>{
-                    this.view.updatelistsize();
+                    // this.view.updatelistsize();
                 });
                 CommonEvents.on("icons:svg", this.view.onscale);
                 CommonEvents.on('portal:authorized', (data)=>{
