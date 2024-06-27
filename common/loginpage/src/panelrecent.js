@@ -64,7 +64,7 @@
                         </div>
                         <div id="recovery-sep" class="box-separator"/>
                         
-                        <div id="box-pinned" class="flex-item">
+                        <div id="box-pinned" class="recent-box-wrapper flex-item">
                             <div class="flexbox">
                                 <h3 class="table-caption" l10n>${_lang.listPinnedTitle}</h3>
                                 <div class="table-box flex-fill">
@@ -74,7 +74,7 @@
                         </div>
                         <div id="pinned-sep" class="box-separator"/>
 
-                        <div id="box-today" class="flex-item">
+                        <div id="box-today" class="recent-box-wrapper flex-item">
                             <div class="flexbox">
                                 <h3 class="table-caption" l10n>${_lang.listToday}</h3>
                                 <div class="table-box flex-fill">
@@ -84,7 +84,7 @@
                         </div>
                         <div id="today-sep" class="box-separator"/>
 
-                        <div id="box-recent" class="flex-item flex-fill">
+                        <div id="box-recent" class="recent-box-wrapper flex-item flex-fill">
                           <div class="flexbox">
                             <div style="display:none;">
                               <h3 class="table-caption" l10n>${_lang.listRecentFileTitle}</h3>
@@ -93,8 +93,8 @@
                             <h3 class="table-caption" l10n>${_lang.listRecentFileTitle}</h3>
                             <div class="table-box flex-fill">
                               <table class="table-files list"></table>
-                              <h4 class="text-emptylist${isSvgIcons? '-svg' : ''} img-before-el" l10n>
-                                  ${isSvgIcons? '<svg class="icon"><use xlink:href="#folder-big"></use></svg>':''}
+                              <h4 class="text-emptylist${isSvgIcons ? '-svg' : ''} img-before-el" l10n>
+                                  ${isSvgIcons ? '<svg class="icon"><use xlink:href="#folder-big"></use></svg>' : ''}
                                   ${_lang.textNoFiles}
                               </h4>
                             </div>
@@ -671,9 +671,9 @@
                 return collectionRecovers;
             },
             filterRecents: function(doctype) {
-                $('#box-recent .table-files').removeClass('filter-word filter-cell filter-slide filter-pdfe');
+                $('.recent-box-wrapper .table-files').removeClass('filter-word filter-cell filter-slide filter-pdfe');
                 if ( doctype )
-                    $('#box-recent .table-files').addClass(`filter-${doctype}`);
+                    $('.recent-box-wrapper .table-files').addClass(`filter-${doctype}`);
             },
         };
     })());
