@@ -129,14 +129,6 @@ if [ ! -z "$LD_LIBRARY_PATH" ]; then
   LDLPATH=:$LD_LIBRARY_PATH
 fi
 ifelse(M4_COMPANY_NAME, ONLYOFFICE,
-export XDG_CONFIG_HOME=$HOME/.local/share/M4_DESKTOPEDITORS_PREFIX
-#migrate config from old path
-OLD_CONFIG="$HOME/.config/onlyoffice/DesktopEditors.conf"
-NEW_CONFIG="$XDG_CONFIG_HOME/onlyoffice/DesktopEditors.conf"
-if [ -f $OLD_CONFIG ] && [ ! -f $NEW_CONFIG ]; then
-  mkdir -p $(dirname $NEW_CONFIG)
-  mv $OLD_CONFIG $NEW_CONFIG
-fi
 export LD_LIBRARY_PATH=$DIR$LDLPATH,
 DIR_MV=/opt/M4_MEDIAVIEWER_PREFIX
 export LD_LIBRARY_PATH=$DIR:$DIR/converter:$DIR_MV$LDLPATH
