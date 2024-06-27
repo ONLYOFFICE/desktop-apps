@@ -457,7 +457,9 @@ li.menu-item {
     height: 100%;
 }
 
-.gap-10 {
+.recent-flex-box {
+    display: flex;
+    flex-direction: column;
     gap: 40px;
 }
 
@@ -472,10 +474,14 @@ li.menu-item {
 #box-recovery {
     display: none;
 
-        .flex-fill {
-            overflow-y: auto;
-            overflow-x: hidden;
-        }
+    .flex-fill {
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    .cpin > button {
+        display: none;
+    }
 }
 
 .recent-box-wrapper {
@@ -867,12 +873,13 @@ li.menu-item {
 
     tr:hover:not(.unavail) {
         .cpin > button {
-            display: block;
+            display: flex;
         }
     }
 
     .pinned {
         .cpin > button {
+            display: flex;
             opacity: 1;
         }
     }
@@ -886,6 +893,7 @@ li.menu-item {
             padding: 0;
             border-radius: 2px;
             background: transparent;
+            align-items: center;
 
             &:active {
                 background: var(--highlight-button-pressed);

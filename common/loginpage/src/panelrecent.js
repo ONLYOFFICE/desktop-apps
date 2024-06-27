@@ -53,7 +53,7 @@
         // args.id&&(args.id=`"id=${args.id}"`)||(args.id='');
 
         let _html = `<div class="action-panel ${args.action}">
-                      <div class="flexbox gap-10">
+                      <div class="recent-flex-box">
                         <div id="box-recovery" class="recent-box-wrapper flex-item">
                           <div class="flexbox">
                             <h3 class="table-caption" l10n>${_lang.listRecoveryTitle}</h3>
@@ -144,7 +144,9 @@
             if (info.type != 'folder') {
                 _tpl += `<td class="row-cell cpin">
                     <button id="${info.uid}-btn">
-                        P
+                        <svg class="icon" data-iconname="pin" data-precls="tool-icon">
+                            <use href="#pin"/>
+                        </svg>
                     </button>
                 </td>`;
                 _tpl += `<td class="row-cell cdate minor">${info.date}</td>`;
