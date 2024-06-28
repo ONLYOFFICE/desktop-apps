@@ -64,6 +64,10 @@
             text: utils.Lang.settOptThemeContrastDark,
             type: 'dark',
         },
+        'theme-gray': {
+            text: 'Gray',
+            type: 'light',
+        },
     }
 
     const nativevars = window.RendererProcessVariable;
