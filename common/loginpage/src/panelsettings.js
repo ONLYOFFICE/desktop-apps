@@ -45,23 +45,23 @@
 
     const themes_map = {
         'theme-system': {
-            text: 'Same as system',
+            text: utils.Lang.settOptThemeSystem,
             type: THEME_TYPE_SYSTEM,
         },
         'theme-light': {
-            text: 'Light',
+            text: utils.Lang.settOptThemeLight,
             type: 'light',
         },
         'theme-classic-light': {
-            text: 'Classic Light',
+            text: utils.Lang.settOptThemeClassicLight,
             type: 'light',
         },
         'theme-dark': {
-            text: 'Dark',
+            text: utils.Lang.settOptThemeDark,
             type: 'dark',
         },
         'theme-contrast-dark': {
-            text: 'Dark Contrast',
+            text: utils.Lang.settOptThemeContrastDark,
             type: 'dark',
         },
     }
@@ -584,22 +584,17 @@
                         if ( !!appSettings.uitheme ) {
                             appSettings.uitheme == 'canuse' && (appSettings.uitheme = 'theme-light');
 
-                            const _themes = [{'theme-system': utils.Lang.settOptThemeSystem},
-                                            {'theme-light': utils.Lang.settOptThemeLight},
-                                            {'theme-classic-light': utils.Lang.settOptThemeClassicLight},
-                                            {'theme-dark': utils.Lang.settOptThemeDark},
-                                            {'theme-contrast-dark': utils.Lang.settOptThemeContrastDark}];
 
                             if ( nativevars.theme ) {
                                 if ( nativevars.theme.system == 'disabled' )
-                                    _themes.shift();
+                                    delete themes_map['theme-system'];
                             }
 
                             const _combo = $('#opts-ui-theme select', $panel).empty();
-                            _themes.forEach(item => {
-                                const entries = Object.entries(item)[0];
-                                _combo.append(`<option value=${entries[0]} l10n>${entries[1]}</option>`);
-                            });
+                            for (const [key, value] of Object.entries(themes_map)) {
+                                _combo.append(`<option value=${key} l10n>${value['text']}</option>`);
+                            }
+
 
                             if ( nativevars.localthemes ) {
                                 for ( const t of nativevars.localthemes ) {
