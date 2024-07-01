@@ -257,6 +257,7 @@
             for (let item of _files) {
                 var model = new FileModel(item);
                 model.set('hash', item.path.hashCode());
+                model.events.changed.attach(_on_pin_recent);
 
                 if (!!this.rawRecents) {
                     if (isToday(model.date)) {
@@ -325,6 +326,12 @@
 
                 model.set('pinned', !model.pinned);
             })
+        }
+
+        function _on_pin_recent(model, property) {
+            if ( property['pinned'] !== undefined ) {
+                sdk.setRecentFilePinned(model.get('fileid'), property['pinned']);
+            }
         }
 
         function _init_collections() {
