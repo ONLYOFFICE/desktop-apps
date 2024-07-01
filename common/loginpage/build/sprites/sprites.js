@@ -138,6 +138,19 @@ module.exports = (grunt, rootpathprefix) => {
                     },
                 }
             },
+            createnew: {
+                src: [`${_path}res/img/createnew/*.svg`],
+                dest: `${_path}res/img/`,
+                options: {
+                    mode: {
+                        symbol: {
+                            inline: true,
+                            dest: './generated',
+                            sprite: `createnew.svg`,
+                        },
+                    },
+                }
+            },
         },
         sprite: {
             'toolicon1.5x': configTemplate({

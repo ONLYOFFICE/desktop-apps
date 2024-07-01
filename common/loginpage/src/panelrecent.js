@@ -53,6 +53,8 @@
         // args.id&&(args.id=`"id=${args.id}"`)||(args.id='');
 
         let _html = `<div class="action-panel ${args.action}">
+                      <section id="box-create-new">
+                      </section>
                       <div class="recent-flex-box">
                         <div id="box-recovery" class="recent-box-wrapper flex-item">
                           <div class="flexbox">
@@ -236,6 +238,7 @@
     utils.fn.extend(ControllerRecent.prototype, (function() {
         let collectionRecents, collectionRecovers, collectionPinned, collectionToday;
         let ppmenu;
+        let panelCreateNew;
         const ITEMS_LOAD_RANGE = 40;
 
         const isToday = (dateString) => {
@@ -609,6 +612,9 @@
                 this.view.render();
                 this.check_list = {};
 
+                panelCreateNew = new PanelCreateNew();
+                panelCreateNew.render(this.view.$panel.find("#box-create-new"));
+
                 _init_collections.call(this);
                 _init_ppmenu.call(this);
 
@@ -671,6 +677,7 @@
             },
             filterRecents: function(doctype) {
                 $('.recent-box-wrapper .table-files').removeClass('filter-word filter-cell filter-slide filter-pdfe');
+                panelCreateNew.filter(doctype);
                 if (doctype) {
                     $('.recent-box-wrapper .table-files').addClass(`filter-${doctype}`);
                     $('.recent-box-wrapper').each(function() {
