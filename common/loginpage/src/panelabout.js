@@ -83,7 +83,6 @@
                                         </div>
                                     </section>`;
         let _html = `<div class="flexbox">
-                        <h3 class='table-caption' l10n>${_lang.actAbout}</h3>
                         <div class="box-ver">
                             <section class="hbox">
                                 <div id="idx-about-cut-logo" class="${_opts.logocls}">
@@ -154,6 +153,9 @@
                     this.view.render();
                     this.view.$menuitem && this.view.$menuitem.removeClass('extra');
                     this.view.$panel.append(this.view.paneltemplate(args));
+
+                    this.view.$body = this.view.paneltemplate(args);
+                    this.view.$dialog = new AboutDialog();
                 } else {
                     if ( !!args.opts && !!args.opts.edition ) {
                         $('#idx-ver-edition').html(args.opts.edition);
@@ -273,6 +275,13 @@
                 }
         }
 
+        const onPanelShow = function(panel) {
+            if (panel === this.action) {
+                this.view.$dialog.show();
+                this.view.$dialog.setBody(this.view.$body);
+            }
+        }
+
         return {
             init: function() {
                 baseController.prototype.init.apply(this, arguments);
@@ -286,6 +295,8 @@
 
                     sdk.on('onfeaturesavailable', _on_features_avalable.bind(this));
                 } else sdk.GetLocalFeatures = e => false;
+
+                CommonEvents.on('panel:show', onPanelShow.bind(this));
 
                 return this;
             },

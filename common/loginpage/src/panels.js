@@ -122,6 +122,10 @@ function onActionClick(e) {
     {
         openFile(OPEN_FILE_FOLDER, '');
     } else {
+        if (action === 'about') {
+            return CommonEvents.fire('panel:show', [action]);
+        }
+
         $('.tool-menu > .menu-item').removeClass('selected');
         $el.parent().addClass('selected');
         $('.action-panel').hide();
@@ -139,6 +143,10 @@ function onActionClick(e) {
 
 function selectAction(action) {
     if ( !$(`.action-panel.${action}`).length ) return;
+
+    if (action === 'about') {
+        return CommonEvents.fire('panel:show', [action]);
+    }
 
     $('.tool-menu > .menu-item').removeClass('selected');
     $('.tool-menu a[action='+action+']').parent().addClass('selected');
