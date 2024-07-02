@@ -464,7 +464,11 @@ li.menu-item {
 .recent-flex-box {
     display: flex;
     flex-direction: column;
-    gap: 40px;
+    gap: 24px;
+
+    h2 {
+        text-align: left;
+    }
 }
 
 .flex-fill {
@@ -621,16 +625,11 @@ li.menu-item {
     td, th {
         text-align: left;
         border: 0 none;
-        border-bottom: @scaled-one-px solid @border-divider;
         font-weight: normal;
 
         overflow: hidden;
         text-overflow:ellipsis;
         white-space: nowrap;
-    }
-
-    .column-title:not(.hidden) th, td {
-        height: 48px;
     }
 
     &.list tr {
@@ -640,6 +639,9 @@ li.menu-item {
 
         &:hover {
             background-color: @highlight-button-hover;
+            .descr {
+                color: @text-normal;
+            }
         }
     }
 
@@ -653,7 +655,17 @@ li.menu-item {
     }
 
     tr {
-        height: 48px;
+        height: 60px;
+        padding: 12px 16px 12px 12px;
+        display: flex;
+        gap: 16px;
+        align-items: center;
+        border-bottom: @scaled-one-px solid @border-divider;
+
+        td {
+            padding: 0;
+        }
+
         &.lost {
             transition: height .2s linear;
             height: 0;
@@ -662,7 +674,6 @@ li.menu-item {
 
             td {
                 height: 0;
-                padding: 0;
                 border: 0 none;
                 > * {
                     display: none;
@@ -672,9 +683,12 @@ li.menu-item {
     }
 
     .cicon {
-        position: relative;
-        padding: 0 0 0 16px;
-        width: 55px;
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
     }
 
     .icon {
@@ -854,18 +868,29 @@ li.menu-item {
         left: 29px;
     }
 
-    .cdate {
-        width: 110px;
-        text-align: right;
-        padding: 0 8px 0 0;
-    }
-
     .cname {
+        flex-grow: 1;
+        .name {
+            font-size: 14px;
+            line-height: 20px;
+        }
+
+        .descr {
+            font-size: 12px;
+            line-height: 16px;
+            color: @text-tertiary;
+        }
+
         .name, .descr {
             margin: 0;
             text-overflow: ellipsis;
             overflow: hidden;
         }
+    }
+
+    .cdate {
+        width: 128px;
+        flex-shrink: 0;
     }
 
     tr:not(.pinned) {
@@ -890,6 +915,8 @@ li.menu-item {
 
     .cpin {
         width: 24px;
+        height: 24px;
+        flex-shrink: 0;
         button {
             color: var(--icon-normal);
             width: 24px;
@@ -901,6 +928,7 @@ li.menu-item {
 
             &:active {
                 background: var(--highlight-button-pressed);
+                color: var(--icon-normal);
             }
         }
     }
@@ -922,12 +950,14 @@ li.menu-item {
 }
 
 .table-caption {
-    margin: 0 0 12px 0;
+    padding: 8px 0;
+    margin: 0;
     text-align: left;
-
-    &~.table-box {
-        border-top: @scaled-one-px solid @border-divider;
-    }
+    color: @text-tertiary;
+    position: sticky;
+    top: 0;
+    background: @background-normal;
+    z-index: 1;
 }
 
 .table-box {
@@ -1241,12 +1271,12 @@ li.menu-item {
         }
 
         &.pre-active {
-                opacity: .3;
-                transform: translateX(-50% - @preslide-shift) scale(@preslide-zoom);
+            opacity: .3;
+            transform: translateX(-50% - @preslide-shift) scale(@preslide-zoom);
         }
 
         &.migrate:not(.pro-active):not(.pre-active) {
-                transform: translateX(0%) scale(0.9);
+            transform: translateX(0%) scale(0.9);
         }
     }
 
@@ -1435,7 +1465,7 @@ li.menu-item {
         min-width: 28px;
         width: 28px;
         height: 28px;
-/*        display: block;*/
+        /*        display: block;*/
         margin-right: 8px;
 
         &[data-icon=success] {
@@ -1543,4 +1573,26 @@ svg.icon:not(.icon-colored) {
     .theme-type-dark & {
         fill: #fff;
     }
+}
+
+.text-headline-1 {
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: 600;
+}
+
+.text-headline-2 {
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 600;
+}
+
+.text-body {
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.text-caption {
+    font-size: 12px;
+    line-height: 16px;
 }
