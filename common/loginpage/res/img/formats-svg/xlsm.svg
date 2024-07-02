@@ -1,15 +1,5 @@
-<svg width="24" height="30" viewBox="0 0 24 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <g clip-path="url(#a)">
-        <path d="M1 1h14.3L23 8.703V29H1V1Z" fill="#fff"/>
-        <path d="M15 3H3v13h18V9H10V7h5V6h-5V4h5V3ZM9 4v2H4V4h5Zm0 3v2H4V7h5Zm0 3v2H4v-2h5Zm1 0h5v2h-5v-2Zm6 0h4v2h-4v-2ZM4 13h5v2H4v-2Zm11 0v2h-5v-2h5Zm5 0v2h-4v-2h4Z" fill="#BFBFBF"/>
-        <path d="M1 29V1h14.3L23 8.7V29H1ZM15.3 0H0v30h24V8.7L15.3 0Z" fill="#BFBFBF"/>
-        <path d="M2 19a1 1 0 0 1 1-1h18a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-7Z" fill="#6AAA1E"/>
-        <path d="M7 20h1v4h2v1H7v-5Zm-4 3h1v2H3v-2Zm1-1H3v-2h1v2Zm1 0H4v1h1v2h1v-2H5v-1Zm0 0h1v-2H5v2Zm9 0h-2v-1h2v-1h-2v1h-1v1h1v1h2v1h-3v1h3v-1h1v-1h-1v-1Zm2-2h1v1h1v2h-1v2h-1v-5Zm3 3v2h-1v-2h1Zm0 0v-2h1v-1h1v5h-1v-2h-1Z" fill="#fff"/>
-        <path opacity=".3" d="M14 10V1h1v8h8v1h-9Z" fill="#000"/>
-    </g>
-    <defs>
-        <clipPath id="a">
-            <path fill="#fff" d="M0 0h24v30H0z"/>
-        </clipPath>
-    </defs>
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M5 3a2 2 0 0 1 2-2h14l6 6v22a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2z" fill="#fff"/>
+    <path d="m21 1 6 6v22a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2zm-1 1H7a1 1 0 0 0-1 1v26a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1V8h-4a2 2 0 0 1-2-2zm5.586 5L21 2.414V6a1 1 0 0 0 1 1z" fill="#CFCFCF"/>
+    <path d="M11 12a1 1 0 0 0-1 1v3h4v-4zm10 0h-5v4h6v-3a1 1 0 0 0-1-1m-11 6h4v4h-3a1 1 0 0 1-1-1zm12 0h-6v4h5a1 1 0 0 0 1-1z" fill="#73C30D"/>
 </svg>
