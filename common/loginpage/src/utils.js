@@ -431,14 +431,14 @@ utils.fn.getToolMenuItemOrder = function(item) {
 
                 if ( $itemBefore.length ) return {item: $itemBefore, after: _is_top_group};
             }
-            return _is_top_group ? {item: $menu.find('.tool-quick-menu').get(0), after: true} : {item: undefined, after: true};
+            return _is_top_group ? {item: $menu.get(0), after: true} : {item: undefined, after: true};
         } else
         if ( _index == 0 ) {
-            return _is_top_group ? {item: $menu.find('.tool-quick-menu').get(0), after: true} : {item: undefined, after: true};
+            return _is_top_group ? {item: $menu.get(0), after: true} : {item: undefined, after: true};
         }
 
         let $items = $menu.find('.menu-item:not(.bottom)');
-        return { item: $items.length ? $items.last() : $menu.find('.tool-quick-menu').get(0), after: true };
+        return { item: $items.length ? $items.last() : $menu.get(0), after: true };
     }
 };
 

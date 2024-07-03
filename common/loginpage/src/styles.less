@@ -183,64 +183,6 @@ h4 {
     }
 }
 
-.tool-quick-menu {
-    border-bottom: @scaled-one-px solid @border-divider;
-    padding: 0 0 28px 27px;
-
-    h3 {
-        margin: 40px 0 12px;
-    }
-
-    > li {
-        @new-doc-icon-width: 36px;
-
-        &.menu-item{
-            padding: 5px 20px 5px 0;
-            a {
-                padding: 0;
-                display: flex;
-            }
-        }
-
-        a {
-            line-height: 48px;
-
-            .icon {
-                width: @new-doc-icon-width;
-                height: 48px;
-                display: block;
-                margin-right: 19px;
-            }
-            .switch-svg();
-        }
-
-        a[action='new:xlsx'] {
-            .icon {
-                background-position-x:-36px;
-            }
-        }
-
-        a[action='new:pptx'] {
-            .icon {
-                background-position-x:-72px;
-            }
-        }
-
-        a[action='new:form'] {
-            .icon {
-                background-position-x: -3 * @new-doc-icon-width;
-            }
-        }
-
-        &.disabled {
-            opacity: 0.6;
-            a {
-                cursor: default;
-            }
-        }
-    }
-}
-
 .img-el, .img-before-el:before,
     .crypted .icon:before
 {
