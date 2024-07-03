@@ -32,6 +32,115 @@
 
 'use strict';
 $(document).ready(function() {
+    const _toolmenu_tpl = `
+            <div class="main-column col-left tool-menu">
+              <li class="menu-item">
+                <a action="recents">
+                    <svg class="icon" data-iconname="home" data-precls="tool-icon">
+                        <use href="#home"></use>
+                    </svg>
+                    <span class="text" l10n>Main</span>
+                </a>
+              </li>
+              <!-- <li class="menu-item"><a l10n action="templates">Templates</a></li> -->
+              <li class="menu-item">
+                <a action="folders">
+                    <svg class="icon" data-iconname="folder" data-precls="tool-icon">
+                        <use href="#folder"></use>
+                    </svg>
+                    <span class="text" l10n>Open</span>
+                </a>
+              </li>
+              <li class="menu-item separator"></li>
+              <li class="menu-item">
+                <a action="recents" data-filter="word">
+                    <svg class="icon icon-colored" data-iconname="word" data-precls="tool-icon">
+                        <use href="#word"></use>
+                    </svg>
+                    <span class="text" l10n>Documents</span>
+                </a>
+              </li>
+              <li class="menu-item">
+                <a action="recents" data-filter="cell">
+                    <svg class="icon icon-colored" data-iconname="cell" data-precls="tool-icon">
+                        <use href="#cell"></use>
+                    </svg>
+                    <span class="text" l10n>Spreadsheets</span>
+                </a>
+              </li>
+              <li class="menu-item">
+                <a action="recents" data-filter="slide">
+                    <svg class="icon icon-colored" data-iconname="slide" data-precls="tool-icon">
+                        <use href="#slide"></use>
+                    </svg>
+                    <span class="text" l10n>Presentations</span>
+                </a>
+              </li>
+              <li class="menu-item">
+                <a l10n action="recents" data-filter="pdfe">
+                    <svg class="icon icon-colored" data-iconname="pdfe" data-precls="tool-icon">
+                        <use href="#pdfe"></use>
+                    </svg>
+                    <span class="text" l10n>PDF</span>
+                </a>
+              </li>
+              <div class="tool-quick-menu" style="display: none;">
+                <h3 class="createnew" l10n>Create new</h3>
+                <li class="menu-item">
+                  <a action="new:docx">
+                    <svg class="icon" data-iconname="docx" data-precls="img-el">
+                        <use href="#docx-big"></use>
+                    </svg>
+                    <span class="text" l10n>DOCUMENT</span>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a action="new:xlsx">
+                    <svg class="icon" data-iconname="xlsx" data-precls="img-el">
+                        <use href="#xlsx-big"></use>
+                    </svg>
+                    <span class="text" l10n>SPREADSHEET</span>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a action="new:pptx">
+                    <svg class="icon" data-iconname="pptx" data-precls="img-el">
+                        <use href="#pptx-big"></use>
+                    </svg>
+                    <span class="text" l10n>PRESENTATION</span>
+                  </a>
+                </li>
+                <li class="menu-item" style="padding-bottom:0;">
+                  <a action="new:form">
+                    <svg class="icon" data-iconname="form" data-precls="img-el">
+                        <use href="#pdf-big"></use>
+                    </svg>
+                    <span class="text" l10n="newForm">MASTER FORM</span>
+                  </a>
+                </li>
+              </div>
+              <li class="menu-item devider"></li>
+              <li class="menu-item">
+                <a action="settings">
+                    <svg class="icon" data-iconname="settings" data-precls="tool-icon">
+                        <use href="#settings"></use>
+                    </svg>
+                    <span class="text" l10n>Settings</span>
+                </a>
+              </li>
+              <li class="menu-item">
+                <a action="about">
+                    <svg class="icon" data-iconname="about" data-precls="tool-icon">
+                        <use href="#about"></use>
+                    </svg>
+                    <span class="text" l10n>About</span>
+                </a>
+              </li>
+            </div>
+            <div class="main-column col-center after-left">
+            </div>`;
+    $('#placeholder').html(_toolmenu_tpl);
+
     $('.tool-menu').on('click', '> .menu-item > a', onActionClick);
     $('.tool-quick-menu .menu-item a').click(onNewFileClick);
 
