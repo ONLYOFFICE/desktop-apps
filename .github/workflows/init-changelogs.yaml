@@ -1,12 +1,12 @@
 name: Initialize changelog files
 
-on: workflow_dispatch
+on: create
 
 jobs:
   changelogs:
     if: >-
-      ${{ contains(github.ref, 'refs/heads/hotfix/v') ||
-          contains(github.ref, 'refs/heads/release/v') }}
+      ${{ startsWith(github.ref, 'refs/heads/hotfix/v') ||
+          startsWith(github.ref, 'refs/heads/release/v') }}
     runs-on: ubuntu-latest
     steps:
 
