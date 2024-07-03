@@ -49,6 +49,7 @@ l10n.en = {
     listRecoveryTitle:'Recover files',
     listPinnedTitle:'Pinned files',
     listToday: 'Today',
+    listEarlier: 'Earlier',
     listRecentFileTitle:'Recent files',
     listRecentDirTitle:'Recent folders',
     menuFileOpen: 'Open',

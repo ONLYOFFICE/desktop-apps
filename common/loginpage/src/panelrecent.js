@@ -56,40 +56,41 @@
                       <section id="box-create-new">
                       </section>
                       <div class="recent-flex-box">
-                        <div id="box-recovery" class="recent-box-wrapper flex-item">
+                        <h2 class="text-headline-1">${_lang.listRecentFileTitle}</h2>
+                        <div id="box-recovery" class="recent-box-wrapper">
                           <div class="flexbox">
-                            <h3 class="table-caption" l10n>${_lang.listRecoveryTitle}</h3>
+                            <h3 class="table-caption text-headline-2" l10n>${_lang.listRecoveryTitle}</h3>
                             <div class="table-box flex-fill">
                               <table id="tbl-filesrcv" class="table-files list"></table>
                             </div>
                           </div>
                         </div>
                         
-                        <div id="box-pinned" class="recent-box-wrapper flex-item">
+                        <div id="box-pinned" class="recent-box-wrapper">
                             <div class="flexbox">
-                                <h3 class="table-caption" l10n>${_lang.listPinnedTitle}</h3>
+                                <h3 class="table-caption text-headline-2" l10n>${_lang.listPinnedTitle}</h3>
                                 <div class="table-box flex-fill">
                                     <table class="table-files list"></table>
                                 </div>
                             </div>
                         </div>
 
-                        <div id="box-today" class="recent-box-wrapper flex-item">
+                        <div id="box-today" class="recent-box-wrapper">
                             <div class="flexbox">
-                                <h3 class="table-caption" l10n>${_lang.listToday}</h3>
+                                <h3 class="table-caption text-headline-2" l10n>${_lang.listToday}</h3>
                                 <div class="table-box flex-fill">
                                     <table class="table-files list"></table>
                                 </div>
                             </div>
                         </div>
 
-                        <div id="box-recent" class="recent-box-wrapper flex-item flex-fill">
+                        <div id="box-recent" class="recent-box-wrapper flex-fill">
                           <div class="flexbox">
                             <div style="display:none;">
-                              <h3 class="table-caption" l10n>${_lang.listRecentFileTitle}</h3>
+                              <h3 class="table-caption" l10n>${_lang.listEarlier}</h3>
                               <input type="text" id="idx-recent-filter" style="display:none;">
                             </div>
-                            <h3 class="table-caption" l10n>${_lang.listRecentFileTitle}</h3>
+                            <h3 class="table-caption text-headline-2" l10n>${_lang.listEarlier}</h3>
                             <div class="table-box flex-fill">
                               <table class="table-files list"></table>
                               <h4 class="text-emptylist${isSvgIcons ? '-svg' : ''} img-before-el" l10n>
@@ -139,8 +140,8 @@
                         }
                           </td>
                           <td class="row-cell cname">
-                            <p class="name primary">${info.name}</p>
-                            <p class="descr minor">${info.descr}</p>
+                            <p class="name text-body">${info.name}</p>
+                            <p class="descr text-caption">${info.descr}</p>
                           </td>`;
 
             if (info.type != 'folder') {
@@ -151,7 +152,7 @@
                         </svg>
                     </button>
                 </td>`;
-                _tpl += `<td class="row-cell cdate minor">${info.date}</td>`;
+                _tpl += `<td class="row-cell cdate text-caption">${info.date}</td>`;
             }
 
             return _tpl;
@@ -612,8 +613,8 @@
                 this.view.render();
                 this.check_list = {};
 
-                panelCreateNew = new PanelCreateNew();
-                panelCreateNew.render(this.view.$panel.find("#box-create-new"));
+                // panelCreateNew = new PanelCreateNew();
+                // panelCreateNew.render(this.view.$panel.find("#box-create-new"));
 
                 _init_collections.call(this);
                 _init_ppmenu.call(this);
