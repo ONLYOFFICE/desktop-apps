@@ -52,22 +52,25 @@
 
         args.id&&(args.id=`"id=${args.id}"`)||(args.id='');
 
-        let _html = `<div ${args.id} class="action-panel ${args.action}">` +
-                        '<div id="box-recent-folders">' +
-                            '<div class="flexbox">'+
-                                `<h3 class="table-caption" l10n>${_lang.listRecentDirTitle}</h3>`+
-                                '<div class="table-box flex-fill">'+
-                                    `<table ${args.id} class="table-files list"></table>` +
-                                    `<h4 class="text-emptylist${isSvgIcons? '-svg': ''} img-before-el" l10n>
-                                        ${isSvgIcons? '<svg><use xlink:href="#folder-big"></use></svg>':''}
-                                        ${_lang.textNoFiles}</h4>` +
-                                '</div>' +
-                                '<div id="box-open-acts" class="lst-tools">'+
-                                    `<button id="btn-openlocal" class="btn btn--primary" l10n>${_lang.btnBrowse}</button>` +
-                                '</div>' +
-                            '</div>'+
-                        '</div>'+
-                    '</div>';
+        let _html = `
+        <div ${args.id} class="action-panel ${args.action}">
+            <div id="box-recent-folders">
+                <div class="flexbox">
+                    <h3 class="table-caption" l10n>${_lang.listRecentDirTitle}</h3>
+                    <section id="dnd-file-zone"></section>
+                    <div class="table-box flex-fill">
+                        <table ${args.id} class="table-files list"></table>
+                        <h4 class="text-emptylist${isSvgIcons ? '-svg' : ''} img-before-el" l10n>
+                            ${isSvgIcons ? '<svg><use xlink:href="#folder-big"></use></svg>' : ''}
+                            ${_lang.textNoFiles}
+                        </h4>
+                    </div>
+                    <div id="box-open-acts" class="lst-tools">
+                        <button id="btn-openlocal" class="btn btn--primary" l10n>${_lang.btnBrowse}</button>
+                    </div>
+                </div>
+            </div>
+        </div>`;
 
         args.tplPage = _html;
         args.menu = '.main-column.tool-menu';
@@ -112,6 +115,9 @@
                 baseController.prototype.init.apply(this, arguments);
 
                 this.view.render();
+
+                const dragAndDropZone = new DragAndDropFileZone();
+                dragAndDropZone.render(this.view.$panel.find("#dnd-file-zone"));
 
                 this.view.$panel.find('#btn-openlocal').click(()=>{
                     openFile(OPEN_FILE_FOLDER, '');

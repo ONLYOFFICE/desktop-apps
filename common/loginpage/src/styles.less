@@ -1590,8 +1590,12 @@ svg.icon:not(.icon-colored) {
     flex-direction: column;
 }
 
-.gap-0.5 {
+.gap-0\.5 {
     gap: 2px;
+}
+
+.gap-1 {
+    gap: 4px;
 }
 
 .gap-4 {
@@ -1624,4 +1628,30 @@ svg.icon:not(.icon-colored) {
 
 p {
     margin: 0;
+}
+
+.recent-box-empty-icon-wrapper {
+    width: 80px;
+    height: 45px;
+}
+
+.drag-and-drop-zone {
+    display: flex;
+    flex-direction: column;
+    padding: 24px 0;
+    align-items: center;
+    gap: 4px;
+    border-radius: 12px;
+    border: @scaled-one-px dashed @border-regular-control;
+
+    svg {
+        width: 80px;
+        height: 45px;
+    }
+
+    a {
+        cursor: pointer;
+        font-weight: 600;
+        color: @background-accent-button;
+    }
 }

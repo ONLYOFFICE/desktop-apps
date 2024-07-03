@@ -52,6 +52,8 @@ l10n.en = {
     listEarlier: 'Earlier',
     listRecentFileTitle:'Recent files',
     listRecentDirTitle:'Recent folders',
+    listRecentDropZone: 'Drop file here or',
+    menuFileSelect: 'Select file',
     menuFileOpen: 'Open',
     menuFilePin: 'Pin',
     menuFileUnpin: 'Unpin',

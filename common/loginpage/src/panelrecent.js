@@ -55,6 +55,8 @@
         let _html = `<div class="action-panel ${args.action}">
                       <section id="box-create-new">
                       </section>
+                      <section id="dnd-file-zone">
+                      </section>
                       <div class="recent-flex-box">
                         <h2 class="text-headline-1">${_lang.listRecentFileTitle}</h2>
                         <div id="box-recovery" class="recent-box-wrapper">
@@ -240,6 +242,7 @@
         let collectionRecents, collectionRecovers, collectionPinned, collectionToday;
         let ppmenu;
         let panelCreateNew;
+        let dragAndDropZone;
         const ITEMS_LOAD_RANGE = 40;
 
         const isToday = (dateString) => {
@@ -616,6 +619,9 @@
                 panelCreateNew = new PanelCreateNew();
                 panelCreateNew.render(this.view.$panel.find("#box-create-new"));
 
+                dragAndDropZone = new DragAndDropFileZone();
+                dragAndDropZone.render(this.view.$panel.find("#dnd-file-zone"));
+
                 _init_collections.call(this);
                 _init_ppmenu.call(this);
 
@@ -683,6 +689,7 @@
                     $('.recent-box-wrapper .table-files').addClass(`filter-${doctype}`);
                     $('.recent-box-wrapper').each(function() {
                         const items = $(this).find(`tr[data-editor-type="${doctype}"]`);
+                        dragAndDropZone[items.size() === 0 ? 'show' : 'hide']();
                         $(this)[items.size() === 0 ? 'hide' : 'show']();
                     });
 
