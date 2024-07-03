@@ -1160,7 +1160,7 @@ li.menu-item {
     }
 
     .ver-logo {
-        width: 52px;
+        width: 45px;
         height: 45px;
 
         .theme-type-dark & {
@@ -1491,21 +1491,9 @@ li.menu-item {
 }
 
 #idx-about-cut-logo {
-    width: 52px;
-    overflow: hidden;
-    margin-right: 15px;
+    width: 45px;
     height: 45px;
-}
-
-#idx-about-appname {
-    font-family: sans-serif;
-    font-weight: bold;
-    font-size: 18px;
-    margin: -8px 0 0 0;
-}
-
-#idx-about-version {
-    margin: 4px 0 -4px;
+    overflow: hidden;
 }
 
 #idx-btn-addtheme {
@@ -1515,10 +1503,6 @@ li.menu-item {
 #caption-restart {
     text-align:left;
     margin-block-start:0.5em;
-}
-
-.about-field {
-    margin-bottom: 10px;
 }
 
 .hidden {
@@ -1595,4 +1579,49 @@ svg.icon:not(.icon-colored) {
 .text-caption {
     font-size: 12px;
     line-height: 16px;
+}
+
+.flex {
+    display: flex;
+}
+
+.flex-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.gap-0.5 {
+    gap: 2px;
+}
+
+.gap-4 {
+    gap: 16px;
+}
+
+.gap-6 {
+    gap: 24px;
+}
+
+.box-version {}
+
+.box-checkupdate {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding: 24px 0;
+    background-color: @background-tabbar;
+}
+
+.box-copyright {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.text-secondary {
+    color: @text-secondary;
+}
+
+p {
+    margin: 0;
 }

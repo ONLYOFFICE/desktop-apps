@@ -82,33 +82,27 @@
                                             <button id="idx-update-btnaction" class="btn btn--landing"></button>
                                         </div>
                                     </section>`;
-        let _html = `<div class="flexbox">
-                        <div class="box-ver">
-                            <section class="hbox">
-                                <div id="idx-about-cut-logo" class="${_opts.logocls}">
-                                    <svg class="ver-logo">
-                                        <use id="idx-ver-logo--light" href="#idx-logo-light" />
-                                        <use id="idx-ver-logo--dark" href="#idx-logo-dark" />
-                                    </svg>
-                                </div>
-                                <div class="vbox">
-                                    <p id="idx-about-appname">${_opts.appname}</p>
-                                    <p id="idx-about-version"><span l10n>${_lang.strVersion}</span> ${_opts.version}</p>
-                                </div>
-                            </section><p></p>
-                            <div class="ver-version hidden" l10n>${_opts.appname} ${_lang.strVersion} ${_opts.version}</div>
-                            ${_updates_status}
-                            <div id='id-features-available' l10n>${_lang.aboutProFeaturesAvailable}</div>
+        let _html = `<div class="flex-col gap-6">
+                        <div class="box-version flex gap-4">
+                            <div id="idx-about-cut-logo" class="${_opts.logocls}">
+                                <svg class="ver-logo">
+                                    <use id="idx-ver-logo--light" href="#idx-logo-light" />
+                                    <use id="idx-ver-logo--dark" href="#idx-logo-dark" />
+                                </svg>
+                            </div>
+                            <div class="flex-col gap-0.5">
+                                <p id="idx-about-appname" class="text-headline-1">${_opts.appname}</p>
+                                <p id="idx-about-version" class="text-body text-secondary"><span l10n>${_lang.strVersion}</span> ${_opts.version}</p>
+                            </div>
+                        </div>
+<!--                        <div class="box-checkupdate">-->
+<!--                        </div>-->
+                        <div class="box-copyright text-secondary text-body">
                             ${_opts.edition}
-                            <a class="ver-checkupdate link hidden" draggable='false' data-state='check' href="#" l10n>${_lang.checkUpdates}</a>
-                            <div class="about-field"><a class="ver-changelog link" draggable='false' target="popup" href=${_opts.changelog} l10n>${_lang.aboutChangelog}</a></div>
                             <div class="ver-copyright about-field">${_opts.rights}</div>
                             <a class="ver-site link" target="popup" href="${_opts.link}">${_opts.site}</a>
-                        </div>`+
-                        // '<div class="box-license flex-fill">'+
-                        //   '<iframe id="framelicense" src="license.htm"></iframe>'+
-                        // '</div>'+
-                    '</div>';
+                        </div>
+                    </div>`;
 
         if (window.utils.inParams.osver == 'winxp' || /windows nt 5/i.test(navigator.appVersion)) {
             _html = _html.replace(' href=', ' xlink:href=');

@@ -30,14 +30,11 @@ dialog {
     }
 
     .title {
-        height: @title-height;
-        border-bottom: @scaled-one-px solid @border-tabbar;
         display: flex;
         color: @text-normal;
         align-items: center;
-        justify-content: flex-end;
-        padding: 5px 24px;
-        background: @background-tabbar;
+        justify-content: space-between;
+        padding: 16px 16px 16px 24px;
 
         .caption {
             flex-grow:1;
@@ -49,18 +46,14 @@ dialog {
     }
 
     .body {
-        /*position: absolute;*/
         width: 100%;
-        top: @title-height;
-        bottom: 0;
-        padding: 20px 30px 28px;
+        padding: 32px 24px;
     }
 
     .tool.close {
-        width:14px;
-        height:14px;
+        width: 24px;
+        height: 24px;
         cursor: pointer;
-        float: right;
         margin-left: 10px;
 
         .rtl & {
@@ -89,20 +82,6 @@ dialog {
 
         &:after {
             transform: rotate(-45deg);
-        }
-
-        &:hover {
-            transform: scale(1.1);
-
-            &:before {
-                opacity: 1;
-                /*transform: rotate(135deg);*/
-            }
-
-            &:after {
-                opacity: 1;
-                /*transform: rotate(45deg);*/
-            }
         }
     }
 

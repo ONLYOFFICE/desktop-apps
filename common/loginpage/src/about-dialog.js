@@ -9,7 +9,7 @@ window.AboutDialog = function(params) {
     const _template = `
         <dialog class="dlg dlg-about">
             <div class="title">
-                <label class="caption" l10n>${utils.Lang.actAbout}</label>
+                <label class="text-headline-1" l10n>${utils.Lang.actAbout}</label>
                 <span class="tool close"/>
             </div>
             <div class="body"/>
