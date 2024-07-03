@@ -613,8 +613,8 @@
                 this.view.render();
                 this.check_list = {};
 
-                // panelCreateNew = new PanelCreateNew();
-                // panelCreateNew.render(this.view.$panel.find("#box-create-new"));
+                panelCreateNew = new PanelCreateNew();
+                panelCreateNew.render(this.view.$panel.find("#box-create-new"));
 
                 _init_collections.call(this);
                 _init_ppmenu.call(this);
