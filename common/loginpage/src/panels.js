@@ -175,7 +175,7 @@ $(document).ready(function() {
     } else {
         if ( !!utils.inParams.panel && $(`.action-panel.${utils.inParams.panel}`).length )
             selectAction(utils.inParams.panel);
-        else selectAction('recent');
+        else selectAction('recents');
     }
 
     $('#placeholder').on('click', '.newportal', function(){
@@ -258,6 +258,11 @@ function selectAction(action) {
     $('.tool-menu a[action='+action+']').parent().addClass('selected');
     $('.action-panel').hide();
     $('.action-panel.' + action).show();
+
+    if (action === 'recents') {
+        $('.tool-menu a[data-filter]').parent().removeClass('selected');
+        app.controller.recent.filterRecents(null);
+    }
 
     CommonEvents.fire('panel:show', [action]);
 };
