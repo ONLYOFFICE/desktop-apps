@@ -53,12 +53,13 @@
         // args.id&&(args.id=`"id=${args.id}"`)||(args.id='');
 
         let _html = `<div class="action-panel ${args.action}">
+                      <h2 class="text-headline-1" l10n>${_lang.areaCreateFile}</h2>
                       <section id="box-create-new">
                       </section>
                       <section id="dnd-file-zone">
                       </section>
                       <div class="recent-flex-box">
-                        <h2 class="text-headline-1">${_lang.listRecentFileTitle}</h2>
+                        <h2 class="text-headline-1" l10n>${_lang.listRecentFileTitle}</h2>
                         <div id="box-recovery" class="recent-box-wrapper">
                           <div class="flexbox">
                             <h3 class="table-caption text-headline-2" l10n>${_lang.listRecoveryTitle}</h3>

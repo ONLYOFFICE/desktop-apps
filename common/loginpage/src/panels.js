@@ -39,16 +39,16 @@ $(document).ready(function() {
                     <svg class="icon" data-iconname="home" data-precls="tool-icon">
                         <use href="#home"></use>
                     </svg>
-                    <span class="text" l10n>Main</span>
+                    <span class="text" l10n>${utils.Lang.actMain}</span>
                 </a>
               </li>
-              <!-- <li class="menu-item"><a l10n action="templates">Templates</a></li> -->
+              <!-- <li class="menu-item"><a l10n action="templates">${utils.Lang.actTemplates}</a></li> -->
               <li class="menu-item">
                 <a action="folders">
                     <svg class="icon" data-iconname="folder" data-precls="tool-icon">
                         <use href="#folder"></use>
                     </svg>
-                    <span class="text" l10n>Open</span>
+                    <span class="text" l10n>${utils.Lang.actOpenLocal}</span>
                 </a>
               </li>
               <li class="menu-item separator"></li>
@@ -57,7 +57,7 @@ $(document).ready(function() {
                     <svg class="icon icon-colored" data-iconname="word" data-precls="tool-icon">
                         <use href="#word"></use>
                     </svg>
-                    <span class="text" l10n>Documents</span>
+                    <span class="text" l10n>${utils.Lang.actDocuments}</span>
                 </a>
               </li>
               <li class="menu-item">
@@ -65,7 +65,7 @@ $(document).ready(function() {
                     <svg class="icon icon-colored" data-iconname="cell" data-precls="tool-icon">
                         <use href="#cell"></use>
                     </svg>
-                    <span class="text" l10n>Spreadsheets</span>
+                    <span class="text" l10n>${utils.Lang.actSpreadsheets}</span>
                 </a>
               </li>
               <li class="menu-item">
@@ -73,7 +73,7 @@ $(document).ready(function() {
                     <svg class="icon icon-colored" data-iconname="slide" data-precls="tool-icon">
                         <use href="#slide"></use>
                     </svg>
-                    <span class="text" l10n>Presentations</span>
+                    <span class="text" l10n>${utils.Lang.actPresentations}</span>
                 </a>
               </li>
               <li class="menu-item">
@@ -81,7 +81,7 @@ $(document).ready(function() {
                     <svg class="icon icon-colored" data-iconname="pdfe" data-precls="tool-icon">
                         <use href="#pdfe"></use>
                     </svg>
-                    <span class="text" l10n>PDF</span>
+                    <span class="text" l10n>${utils.Lang.actPDFs}</span>
                 </a>
               </li>
               <div class="tool-quick-menu" style="display: none;">
@@ -125,7 +125,7 @@ $(document).ready(function() {
                     <svg class="icon" data-iconname="settings" data-precls="tool-icon">
                         <use href="#settings"></use>
                     </svg>
-                    <span class="text" l10n>Settings</span>
+                    <span class="text" l10n>${utils.Lang.actSettings}</span>
                 </a>
               </li>
               <li class="menu-item">
@@ -133,7 +133,7 @@ $(document).ready(function() {
                     <svg class="icon" data-iconname="about" data-precls="tool-icon">
                         <use href="#about"></use>
                     </svg>
-                    <span class="text" l10n>About</span>
+                    <span class="text" l10n>${utils.Lang.actAbout}</span>
                 </a>
               </li>
             </div>

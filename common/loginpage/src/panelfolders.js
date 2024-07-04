@@ -56,7 +56,7 @@
         <div ${args.id} class="action-panel ${args.action}">
             <div id="box-recent-folders">
                 <div class="flexbox">
-                    <h3 class="table-caption" l10n>Open File</h3>
+                    <h3 class="table-caption" l10n>${_lang.areaOpenFile}</h3>
                     <section id="area-dnd-file"></section>
                     <h3 class="table-caption" l10n>${_lang.listRecentDirTitle}</h3>
                     <div class="table-box flex-fill">

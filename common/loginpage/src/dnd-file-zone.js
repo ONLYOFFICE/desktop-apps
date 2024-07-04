@@ -8,8 +8,8 @@ window.DragAndDropFileZone = function() {
         <svg class="icon">
             <use xlink:href="#box-open"></use>
         </svg>
-        <p class="text-body text-secondary">${utils.Lang.listRecentDropZone}</p>
-        <a class="text-body">${utils.Lang.menuFileSelect}</a>
+        <p class="text-body text-secondary" l10n>${utils.Lang.labelDropFile}</p>
+        <a class="text-body" l10n>${utils.Lang.labelSelectFile}</a>
       </div>
     `;
 
