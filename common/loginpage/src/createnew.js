@@ -22,19 +22,19 @@
         const _arr_new_doc = [{
                             editor: 'word',
                             icon:'newword',
-                            title: 'Document'
+                            title: utils.Lang.newDoc,
                         },{
                             editor: 'cell',
                             icon:'newcell',
-                            title: 'Spreadsheet'
+                            title: utils.Lang.newXlsx,
                         },{
                             editor: 'slide',
                             icon:'newslide',
-                            title: 'Presentation'
+                            title: utils.Lang.newPptx,
                         },{
                             editor: 'pdfe',
                             icon:'newpdf',
-                            title: 'PDF form'
+                            title: utils.Lang.newForm,
                         // },{
                         //     editor: 'pdfopen',
                         //     icon:'openpdf',
