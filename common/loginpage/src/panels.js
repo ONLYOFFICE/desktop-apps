@@ -167,15 +167,10 @@ $(document).ready(function() {
         window.app.controller.portals = (new ControllerPortals({})).init();
     !!window.ControllerExternalPanel && (window.app.controller.externalpanel = (new ControllerExternalPanel({})).init());
 
-    if (!localStorage.welcome) {
-        app.controller.welcome = (new ControllerWelcome).init();
-        selectAction('welcome');
-
-        localStorage.setItem('welcome', 'have been');
+    if (!!utils.inParams.panel && $(`.action-panel.${utils.inParams.panel}`).length) {
+        selectAction(utils.inParams.panel);
     } else {
-        if ( !!utils.inParams.panel && $(`.action-panel.${utils.inParams.panel}`).length )
-            selectAction(utils.inParams.panel);
-        else selectAction('recents');
+        selectAction('recents');
     }
 
     $('#placeholder').on('click', '.newportal', function(){
@@ -228,6 +223,10 @@ function onActionClick(e) {
     {
         openFile(OPEN_FILE_FOLDER, '');
     } else {
+        if (!localStorage.welcome) {
+            localStorage.setItem('welcome', 'have been');
+        }
+
         if (action === 'about') {
             return CommonEvents.fire('panel:show', [action]);
         }

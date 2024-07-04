@@ -57,6 +57,8 @@
                       </section>
                       <section id="dnd-file-zone">
                       </section>
+                      <section id="welcome-box">
+                      </section>
                       <div class="recent-flex-box">
                         <h2 class="text-headline-1">${_lang.listRecentFileTitle}</h2>
                         <div id="box-recovery" class="recent-box-wrapper">
@@ -243,6 +245,7 @@
         let ppmenu;
         let panelCreateNew;
         let dragAndDropZone;
+        let welcomeComponent;
         const ITEMS_LOAD_RANGE = 40;
 
         const isToday = (dateString) => {
@@ -624,6 +627,11 @@
                 dragAndDropZone.render(this.view.$panel.find("#dnd-file-zone"));
                 dragAndDropZone.hide();
 
+                if (!localStorage.welcome) {
+                    welcomeComponent = new WelcomeComponent();
+                    welcomeComponent.render(this.view.$panel.find("#welcome-box"));
+                }
+
                 _init_collections.call(this);
                 _init_ppmenu.call(this);
 
@@ -686,6 +694,17 @@
                 return collectionRecovers;
             },
             filterRecents: function(doctype) {
+                if (welcomeComponent) {
+                    if (localStorage.welcome) {
+                        welcomeComponent.detach();
+                        welcomeComponent = null;
+                        $('.recent-flex-box').show();
+                    } else {
+                        $('.recent-flex-box').hide();
+                        return;
+                    }
+                }
+
                 $('.recent-box-wrapper .table-files').removeClass('filter-word filter-cell filter-slide filter-pdfe');
                 panelCreateNew.filter(doctype);
                 const $title = $('.recent-flex-box > .text-headline-1')
@@ -703,7 +722,6 @@
 
                 $title[totalItems === 0 ? 'hide' : 'show']();
                 dragAndDropZone[totalItems === 0 ? 'show' : 'hide']();
-
             },
         };
     })());
