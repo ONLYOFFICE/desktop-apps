@@ -2,18 +2,17 @@
     [System.Version]$Version = "0.0.0.0",
     [string]$Arch = "x64",
     [string]$Target,
-    [string]$CompanyName = "ONLYOFFICE",
-    [string]$ProductName = "DesktopEditors",
-    [string]$SourceDir,
-    [string]$BuildDir,
     [switch]$Sign,
-    [string]$CertName = "Ascensio System SIA",
-    [string]$TimestampServer = "http://timestamp.digicert.com"
+    [string]$BuildDir = ".build.$Arch",
+    [string]$SourceDir,
+    [string]$BrandingDir = "."
 )
 
 $ErrorActionPreference = "Stop"
 
 Set-Location $PSScriptRoot
+
+Import-Module "$BrandingDir\branding.ps1"
 
 if (-not $SourceDir) {
     $BuildPrefix = switch ($Arch) {
@@ -23,25 +22,23 @@ if (-not $SourceDir) {
     if ($Target -eq "xp") {
         $BuildPrefix += "_xp"
     }
-    $SourceDir = "$PSScriptRoot\..\..\..\..\build_tools\out\" `
-        + "$BuildPrefix\$CompanyName\$ProductName" | Resolve-Path
+    $SourceDir = "$PSScriptRoot\..\..\..\..\build_tools\out\$BuildPrefix\" `
+        + "$CompanyName\$($ProductName -replace '\s','')" | Resolve-Path
 }
 if (-not (Test-Path "$SourceDir")) {
     Write-Error "Path `"$SourceDir`" does not exist"
-}
-if (-not $BuildDir) {
-    $BuildDir = ".build.$Arch"
 }
 
 Write-Host @"
 Version     = $Version
 Arch        = $Arch
 Target      = $Target
+Sign        = $Sign
+BuildDir    = $BuildDir
+SourceDir   = $SourceDir
+BrandingDir = $BrandingDir
 CompanyName = $CompanyName
 ProductName = $ProductName
-SourceDir   = $SourceDir
-BuildDir    = $BuildDir
-Sign        = $Sign
 "@
 
 ####
@@ -85,17 +82,17 @@ Get-ChildItem -Directory `
 
 Write-Host "`n[ Add visual elements ]"
 
-Write-Host "COPY: data\VisualElementsManifest.xml > $BuildDir\desktop\DesktopEditors.VisualElementsManifest.xml"
+Write-Host "COPY: $BrandingDir\data\VisualElementsManifest.xml > $BuildDir\desktop\DesktopEditors.VisualElementsManifest.xml"
 Copy-Item -Force `
-    -Path "data\VisualElementsManifest.xml" `
+    -Path "$BrandingDir\data\VisualElementsManifest.xml" `
     -Destination "$BuildDir\desktop\DesktopEditors.VisualElementsManifest.xml"
 
 Write-Host "CREATE DIR: $BuildDir\desktop\browser"
 New-Item -ItemType Directory -Force -Path "$BuildDir\desktop\browser" | Out-Null
 
-Write-Host "COPY: data\visual_elements_icon_* > $BuildDir\desktop\browser"
+Write-Host "COPY: $BrandingDir\data\visual_elements_icon_* > $BuildDir\desktop\browser"
 Copy-Item -Force `
-    -Path "data\visual_elements_icon_*" `
+    -Path "$BrandingDir\data\visual_elements_icon_*" `
     -Destination "$BuildDir\desktop\browser"
 
 ####
@@ -103,6 +100,13 @@ Copy-Item -Force `
 Write-Host "`n[ Sign files ]"
 
 if ($Sign) {
+    if (-not $CertName) {
+        $CertName = $PublisherName
+    }
+    if (-not $TimestampServer) {
+        $TimestampServer = "http://timestamp.digicert.com"
+    }
+
     Set-Location "$BuildDir\desktop"
     $SignFiles = Get-ChildItem `
         *.exe, *.dll, converter\*.exe, converter\*.dll, plugins\*\*.dll `
