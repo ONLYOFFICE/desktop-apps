@@ -1492,6 +1492,7 @@ li.menu-item {
 
 #box-create-new {
     margin-bottom: 40px;
+    overflow: auto;
 }
 
 svg.icon:not(.icon-colored) {
@@ -1603,5 +1604,40 @@ p {
 #box-recent-folders {
     .drag-and-drop-zone {
         margin-bottom: 30px;
+    }
+}
+
+.welcome-component {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    max-width: 600px;
+    margin: 0 auto;
+
+    h1 {
+        font-size: 20px;
+        font-weight: 600;
+        line-height: 24px;
+    }
+
+    div {
+        * + * {
+            margin-top: 14px;
+        }
+    }
+
+    p, ul {
+        text-align: left;
+        font-size: 14px;
+        line-height: 22px;
+    }
+
+    ul {
+        margin-left: -40px;
+        margin-bottom: 0;
+
+        li {
+            margin-top: 0;
+        }
     }
 }

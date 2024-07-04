@@ -58,6 +58,8 @@
                       </section>
                       <section id="dnd-file-zone">
                       </section>
+                      <section id="welcome-box">
+                      </section>
                       <div class="recent-flex-box">
                         <h2 class="text-headline-1" l10n>${_lang.listRecentFileTitle}</h2>
                         <div id="box-recovery" class="recent-box-wrapper">
@@ -244,6 +246,7 @@
         let ppmenu;
         let panelCreateNew;
         let dragAndDropZone;
+        let welcomeComponent;
         const ITEMS_LOAD_RANGE = 40;
 
         const isToday = (dateString) => {
@@ -294,6 +297,7 @@
                 }, 10);
             } else {
                 this.rawRecents = undefined;
+                CommonEvents.fire('recent:filter', [null]);
             }
         };
 
@@ -622,6 +626,12 @@
 
                 dragAndDropZone = new DragAndDropFileZone();
                 dragAndDropZone.render(this.view.$panel.find("#dnd-file-zone"));
+                dragAndDropZone.hide();
+
+                if (!localStorage.welcome) {
+                    welcomeComponent = new WelcomeComponent();
+                    welcomeComponent.render(this.view.$panel.find("#welcome-box"));
+                }
 
                 _init_collections.call(this);
                 _init_ppmenu.call(this);
@@ -667,6 +677,7 @@
 
                     console.log('portal authorized');
                 });
+                CommonEvents.on('recent:filter', this.filterRecents);
 
                 $('#box-recent .table-box').scroll(e => {
                     if ( Menu.opened )
@@ -684,17 +695,34 @@
                 return collectionRecovers;
             },
             filterRecents: function(doctype) {
+                if (welcomeComponent) {
+                    if (localStorage.welcome) {
+                        welcomeComponent.detach();
+                        welcomeComponent = null;
+                        $('.recent-flex-box').show();
+                    } else {
+                        $('.recent-flex-box').hide();
+                        return;
+                    }
+                }
+
                 $('.recent-box-wrapper .table-files').removeClass('filter-word filter-cell filter-slide filter-pdfe');
                 panelCreateNew.filter(doctype);
+                const $title = $('.recent-flex-box > .text-headline-1')
                 if (doctype) {
                     $('.recent-box-wrapper .table-files').addClass(`filter-${doctype}`);
-                    $('.recent-box-wrapper').each(function() {
-                        const items = $(this).find(`tr[data-editor-type="${doctype}"]`);
-                        dragAndDropZone[items.size() === 0 ? 'show' : 'hide']();
-                        $(this)[items.size() === 0 ? 'hide' : 'show']();
-                    });
-
                 }
+
+                let totalItems = 0;
+                $('.recent-box-wrapper').each(function() {
+                    const items = $(this).find(`tr[data-editor-type${doctype ? `="${doctype}"` : ''}]`);
+                    $(this)[items.size() === 0 ? 'hide' : 'show']();
+
+                    totalItems+=items.size()
+                });
+
+                $title[totalItems === 0 ? 'hide' : 'show']();
+                dragAndDropZone[totalItems === 0 ? 'show' : 'hide']();
             },
         };
     })());

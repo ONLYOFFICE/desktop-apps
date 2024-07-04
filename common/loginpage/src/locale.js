@@ -32,6 +32,18 @@
 
 var l10n = l10n || {};
 l10n.en = {
+    welcomeTitle: '👋 Welcome to ONLYOFFICE!',
+    welcomeWeArePleasedToWelcomeYou: "We are pleased to welcome you to ONLYOFFICE - a universal platform for working with documents, spreadsheets, presentations and PDF files",
+    welcomeWhatYouCanDoWithOnlyOffice: "What you can do with ONLYOFFICE:",
+    welcomeDocumentsSpreadsheetsPresentationsTitle: "Documents, spreadsheets and presentations:",
+    welcomeDocumentsSpreadsheetsPresentationsDescription: "Create and edit text documents, spreadsheets and presentations with a rich set of formatting, computing and multimedia tools.",
+    welcomePdfTitle: "PDF:",
+    welcomePdfDescription: "Edit PDF files, add annotations, fill in forms, and convert documents to PDF.",
+    welcomeCloudTitle: "Cloud:",
+    welcomeCloudDescription: "Synchronize changes and share files with colleagues in real time.",
+    welcomeNeedHelp: "Need help? Visit our Help Center or contact our support team.",
+    welcomeSuccessfulCreativeWorkflow: "We wish you a successful creative workflow!",
+    welcomeOnlyOfficeTeam: "ONLYOFFICE Team",
     welWelcome: 'Welcome to ONLYOFFICE Desktop Editors!',
     welDescr: 'Work on documents offline or connect the suite to your cloud: ONLYOFFICE, ownCloud, Nextcloud.',
     btnConnect: 'Connect now',
