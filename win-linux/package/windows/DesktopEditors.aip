@@ -96,7 +96,7 @@
     <ROW Property="ServiceShortName" Value="[|ServiceName]" ValueLocId="-"/>
     <ROW Property="UPDATE_SERVICE" Value="0" ValueLocId="-"/>
     <ROW Property="UpgradeCode" Value="{47EEF706-B0E4-4C43-944B-E5F914B92B79}"/>
-    <ROW Property="VC_REDIST" Value="1"/>
+    <ROW Property="VC_REDIST" Value="1" ValueLocId="-"/>
     <ROW Property="VendorName" Value="ONLYOFFICE" ValueLocId="-"/>
     <ROW Property="VendorShortName" Value="[|VendorName]" ValueLocId="-"/>
     <ROW Property="Version" Value="0.0.0" ValueLocId="-"/>
