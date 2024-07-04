@@ -84,41 +84,6 @@ $(document).ready(function() {
                     <span class="text" l10n>${utils.Lang.actPDFs}</span>
                 </a>
               </li>
-              <div class="tool-quick-menu" style="display: none;">
-                <h3 class="createnew" l10n>Create new</h3>
-                <li class="menu-item">
-                  <a action="new:docx">
-                    <svg class="icon" data-iconname="docx" data-precls="img-el">
-                        <use href="#docx-big"></use>
-                    </svg>
-                    <span class="text" l10n>DOCUMENT</span>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a action="new:xlsx">
-                    <svg class="icon" data-iconname="xlsx" data-precls="img-el">
-                        <use href="#xlsx-big"></use>
-                    </svg>
-                    <span class="text" l10n>SPREADSHEET</span>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a action="new:pptx">
-                    <svg class="icon" data-iconname="pptx" data-precls="img-el">
-                        <use href="#pptx-big"></use>
-                    </svg>
-                    <span class="text" l10n>PRESENTATION</span>
-                  </a>
-                </li>
-                <li class="menu-item" style="padding-bottom:0;">
-                  <a action="new:form">
-                    <svg class="icon" data-iconname="form" data-precls="img-el">
-                        <use href="#pdf-big"></use>
-                    </svg>
-                    <span class="text" l10n="newForm">MASTER FORM</span>
-                  </a>
-                </li>
-              </div>
               <li class="menu-item devider"></li>
               <li class="menu-item">
                 <a action="settings">
