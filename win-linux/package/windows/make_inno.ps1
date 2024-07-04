@@ -2,42 +2,38 @@
     [System.Version]$Version = "0.0.0.0",
     [string]$Arch = "x64",
     [string]$Target,
-    [string]$CompanyName = "ONLYOFFICE",
-    [string]$ProductName = "DesktopEditors",
-    [string]$BuildDir,
-    [string]$BrandingDir,
     [switch]$Sign,
-    [string]$CertName = "Ascensio System SIA",
-    [string]$TimestampServer = "http://timestamp.digicert.com"
+    [string]$BuildDir = ".build.$Arch",
+    [string]$BrandingDir = "."
 )
 
 $ErrorActionPreference = "Stop"
 
 Set-Location $PSScriptRoot
 
-if (-not $BuildDir) {
-    $BuildDir = ".build.$Arch"
-}
+Import-Module "$BrandingDir\branding.ps1"
+
 if (-not (Test-Path "$BuildDir")) {
     Write-Error "Path `"$BuildDir`" does not exist"
 }
+
 $InnoFile = switch ($Target) {
-    "standalone" { "$CompanyName-$ProductName-Standalone-$Version-$Arch.exe" }
-    "xp"         { "$CompanyName-$ProductName-$Version-$Arch-xp.exe" }
-    "update"     { "$CompanyName-$ProductName-Update-$Version-$Arch.exe" }
-    "xp_update"  { "$CompanyName-$ProductName-Update-$Version-$Arch-xp.exe" }
-    default      { "$CompanyName-$ProductName-$Version-$Arch.exe" }
+    "standalone" { "$PackageName-Standalone-$Version-$Arch.exe" }
+    "xp"         { "$PackageName-$Version-$Arch-xp.exe" }
+    "update"     { "$PackageName-Update-$Version-$Arch.exe" }
+    "xp_update"  { "$PackageName-Update-$Version-$Arch-xp.exe" }
+    default      { "$PackageName-$Version-$Arch.exe" }
 }
 
 Write-Host @"
 Version     = $Version
 Arch        = $Arch
 Target      = $Target
-CompanyName = $CompanyName
-ProductName = $ProductName
+Sign        = $Sign
 BuildDir    = $BuildDir
 BrandingDir = $BrandingDir
-Sign        = $Sign
+CompanyName = $CompanyName
+ProductName = $ProductName
 InnoFile    = $InnoFile
 "@
 
@@ -116,16 +112,23 @@ switch ($Target) {
         $InnoArgs += "/D_WIN_XP"
     }
     "update" {
-        $InnoArgs += "/DTARGET_NAME=$CompanyName-$ProductName-$Version-$Arch"
+        $InnoArgs += "/DTARGET_NAME=$PackageName-$Version-$Arch"
         $IssFile = "update_common.iss"
     }
     "xp_update" {
         $InnoArgs += "/D_WIN_XP",
-            "/DTARGET_NAME=$CompanyName-$ProductName-$Version-$Arch-xp"
+            "/DTARGET_NAME=$PackageName-$Version-$Arch-xp"
         $IssFile = "update_common.iss"
     }
 }
 if ($Sign) {
+    if (-not $CertName) {
+        $CertName = $PublisherName
+    }
+    if (-not $TimestampServer) {
+        $TimestampServer = "http://timestamp.digicert.com"
+    }
+
     $InnoArgs += "/DSIGN",
         "/Sbyparam=signtool sign /a /v /n `$q$CertName`$q /t $TimestampServer `$f"
 }

@@ -2,33 +2,32 @@
     [System.Version]$Version = "0.0.0.0",
     [string]$Arch = "x64",
     [string]$Target,
-    [string]$CompanyName = "ONLYOFFICE",
-    [string]$ProductName = "DesktopEditors",
-    [string]$BuildDir
+    [string]$BuildDir = ".build.$Arch",
+    [string]$BrandingDir = "."
 )
 
 $ErrorActionPreference = "Stop"
 
 Set-Location $PSScriptRoot
 
+Import-Module "$BrandingDir\branding.ps1"
+
 if ($Target) {
     $Suffix = "-$Target"
-}
-if (-not $BuildDir) {
-    $BuildDir = ".build.$Arch"
 }
 if (-not (Test-Path "$BuildDir")) {
     Write-Error "Path `"$BuildDir`" does not exist"
 }
-$ZipFile = "$CompanyName-$ProductName-$Version-$Arch$Suffix.zip"
+$ZipFile = "$PackageName-$Version-$Arch$Suffix.zip"
 
 Write-Host @"
 Version     = $Version
 Arch        = $Arch
 Target      = $Target
+BuildDir    = $BuildDir
+BrandingDir = $BrandingDir
 CompanyName = $CompanyName
 ProductName = $ProductName
-BuildDir    = $BuildDir
 ZipFile     = $ZipFile
 "@
 

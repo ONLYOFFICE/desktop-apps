@@ -1,22 +1,18 @@
 ﻿param (
     [System.Version]$Version = "0.0.0.0",
     [string]$Arch = "x64",
-    [string]$CompanyName = "ONLYOFFICE",
-    [string]$ProductName = "DesktopEditors",
-    [string]$BuildDir,
     [switch]$Sign,
-    [string]$CertName = "Ascensio System SIA",
-    [string]$TimestampServer = "http://timestamp.digicert.com"
+    [string]$BuildDir = ".build.$Arch",
+    [string]$BrandingDir = "."
 )
 
 $ErrorActionPreference = "Stop"
 
 Set-Location $PSScriptRoot
 
-if (-not $BuildDir) {
-    $BuildDir = ".build.$Arch"
-}
-$MsiFile = "$CompanyName-$ProductName-$Version-$Arch.msi"
+Import-Module "$BrandingDir\branding.ps1"
+
+$MsiFile = "$PackageName-$Version-$Arch.msi"
 $VersionShort = "$($Version.Major).$($Version.Minor).$($Version.Build)"
 $MsiBuild = switch ($Arch) {
     "x64" { "MsiBuild64" }
@@ -42,10 +38,11 @@ $ProductCode = "{" + $GUID.ToString().ToUpper() + "}"
 Write-Host @"
 Version     = $Version
 Arch        = $Arch
+Sign        = $Sign
+BuildDir    = $BuildDir
+BrandingDir = $BrandingDir
 CompanyName = $CompanyName
 ProductName = $ProductName
-BuildDir    = $BuildDir
-Sign        = $Sign
 MsiFile     = $MsiFile
 MsiBuild    = $MsiBuild
 ProductCode = $ProductCode
@@ -91,6 +88,9 @@ if ($Arch -eq "x86") {
             "SetComponentAttribute -feature_name FA_$($_.ToUpper()) -unset -64bit_component"}
 }
 $LanguageCodes | % {$AdvInstConfig += "SetProductCode -langid $_ -guid $ProductCode"}
+if (Get-Command "BrandingAdvInstConfig" -ErrorAction SilentlyContinue) {
+    $AdvInstConfig += BrandingAdvInstConfig
+}
 $AdvInstConfig += `
     "SetProperty Version=$VersionShort", `
     "SetVersion $Version -noprodcode", `
