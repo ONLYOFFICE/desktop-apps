@@ -150,6 +150,7 @@ public:
             {"theme-classic-light", ":/themes/theme-classic-light.json"},
             {"theme-dark", ":/themes/theme-dark.json"},
             {"theme-contrast-dark", ":/themes/theme-contrast-dark.json"},
+            {"theme-gray", ":/themes/theme-light.json"},
         };
 
         GET_REGISTRY_USER(_reg_user);
