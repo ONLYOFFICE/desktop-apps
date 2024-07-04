@@ -186,43 +186,6 @@
                     }
                 }
             } else
-            if (/^updates:checking/.test(cmd)) {
-                // const $label = this.view.$panel.find('.ver-checkupdate');
-                // const opts = JSON.parse(param);
-                // if ( opts.version == 'no' ) {
-                //     $label.text(utils.Lang.updateNoUpdates);
-                // } else {
-                //     $label.text(utils.Lang.updateAvialable.replace('$1', opts.version));
-                //     $label.data('state', 'download');
-                // }
-                // $label.show();
-            } else
-            if (/updates:download/.test(cmd)) {
-                // const opts = JSON.parse(param);
-                // const $label = this.view.$panel.find('.ver-checkupdate');
-
-                // if ( opts.progress == 'done' ) {
-                //     $label.text(utils.Lang.updateDownloadFinished);
-                //     $label.data('state', 'install');
-                // } else
-                // if ( opts.progress == 'aborted' ) {
-                //     $label.text(utils.Lang.updateDownloadCanceled);
-                // } else {
-                //     $label.text(utils.Lang.updateDownloadProgress.replace('$1', opts.progress));
-                //     $label.data('state', 'abort');
-                // }
-            } else
-            if (/updates:link/.test(cmd)) {
-                // const $label = this.view.$panel.find('.ver-checkupdate');
-                // let opts = {};
-                // if ( param == 'lock' || param == 'unlock' )
-                //     opts.disabled = param == 'lock';
-                // else opts = JSON.parse(param);
-
-                // if ( opts.disabled != undefined ) {
-                    // $label.attr('disabled', opts.disabled ? 'disabled' : false);
-                // }
-            } else
             if (/updates:status/.test(cmd)) {
                 on_updates_info.call(this, JSON.parse(param))
             }
