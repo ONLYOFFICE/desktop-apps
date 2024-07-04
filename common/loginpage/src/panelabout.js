@@ -95,9 +95,9 @@
                                 <p id="idx-about-version" class="text-body text-secondary"><span l10n>${_lang.strVersion}</span> ${_opts.version}</p>
                             </div>
                         </div>
-<!--                        <div class="box-checkupdate">-->
-<!--                        </div>-->
+                        ${_updates_status}
                         <div class="box-copyright text-secondary text-body">
+                            <div id='id-features-available' l10n>${_lang.aboutProFeaturesAvailable}</div>
                             ${_opts.edition}
                             <div class="ver-copyright about-field">${_opts.rights}</div>
                             <a class="ver-site link" target="popup" href="${_opts.link}">${_opts.site}</a>
@@ -118,7 +118,7 @@
 
         let _on_features_avalable = function (params) {
             if ( !!this.view ) {
-                let _label = $('#id-features-available', this.view.$panel);
+                let _label = $('#id-features-available', this.view.$body);
                 if ( _label )
                     if ( !!params )
                         _label.show();
@@ -146,9 +146,9 @@
                     this.view = new ViewAbout(args);
                     this.view.render();
                     this.view.$menuitem && this.view.$menuitem.removeClass('extra');
-                    this.view.$panel.append(this.view.paneltemplate(args));
+                    // this.view.$panel.append(this.view.paneltemplate(args));
 
-                    this.view.$body = this.view.paneltemplate(args);
+                    this.view.$body = $(this.view.paneltemplate(args));
                     this.view.$dialog = new AboutDialog();
                 } else {
                     if ( !!args.opts && !!args.opts.edition ) {
@@ -165,7 +165,7 @@
                 // });
                 // $label[this.updates===true?'show':'hide']();
                 if ( args.opts ) {
-                    this.view.$panel.find('.ver-changelog')[!!args.opts.changelog?'show':'hide']();
+                    this.view.$body.find('.ver-changelog')[!!args.opts.changelog?'show':'hide']();
                 }
 
                 if ( !!features && features.length )
@@ -176,7 +176,7 @@
 
                 if ( this.view ) {
                     // this.view.$panel.find('.ver-checkupdate')[this.updates?'show':'hide']();
-                    this.view.$panel.find('#idx-update-cnt')[this.updates?'show':'hide']();
+                    this.view.$body.find('#idx-update-cnt')[this.updates?'show':'hide']();
 
                     if ( this.updates ) {
                         const $btn = $('#idx-update-btnaction')
@@ -230,11 +230,11 @@
 
         const on_updates_info = function(info) {
                 if ( info.text ) {
-                    $('#idx-update-status-text', this.view.$panel).text(info.text);
+                    $('#idx-update-status-text', this.view.$body).text(info.text);
                 }
 
                 if ( info.icon ) {
-                    const $icon = $('#idx-update-status-icon', this.view.$panel);
+                    const $icon = $('#idx-update-status-icon', this.view.$body);
 
                     let icon_id;
                     switch (info.icon) {
@@ -249,7 +249,7 @@
                 }
 
                 if ( info.button ) {
-                    const $button = $('#idx-update-btnaction', this.view.$panel);
+                    const $button = $('#idx-update-btnaction', this.view.$body);
                     if ( info.button.text ) {
                         $button.text(info.button.text);
                         $button.data("action", info.button.action);

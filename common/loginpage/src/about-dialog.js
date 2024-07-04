@@ -37,7 +37,7 @@ window.AboutDialog = function(params) {
         },
         show: function () {
             $el = $('#placeholder').append(_template).find('.dlg-about');
-            $el.width(450);
+            $el.width(550);
 
             $dialogTitle = $el.find('.title');
             $dialogTitle.find('.tool.close').bind('click', onCloseClick);
