@@ -338,7 +338,7 @@
             // this.view.updatelistsize();
         };
 
-        function bindButtons(model, view) {
+        function bindButtons(collection, model, view) {
             $(`#${model.uid}-pin-btn`, view).click((e) => {
                 e.preventDefault();
                 e.stopPropagation();
@@ -349,8 +349,7 @@
             $(`#${model.uid}-more-btn`, view).click((e) => {
                 e.preventDefault();
                 e.stopPropagation();
-
-                ppmenu.show({left: e.clientX, top: e.clientY}, model);
+                collection.events.contextmenu.notify(model, e);
             })
         }
 
@@ -385,7 +384,7 @@
                 let $el = collection.list.find('#' + model.uid);
                 $el.addClass('pinned');
 
-                bindButtons(model, this.view.$panel);
+                bindButtons(collection, model, this.view.$panel);
 
                 this.view.$boxPinned.show();
                 // this.view.updatelistsize();
@@ -493,7 +492,7 @@
                 let $item = this.view.listitemtemplate(model);
                 collection.list.append($item);
 
-                bindButtons(model, this.view.$panel);
+                bindButtons(collection, model, this.view.$panel);
 
                 this.view.$boxToday.show();
                 // this.view.updatelistsize();
@@ -514,7 +513,7 @@
                 let $item = this.view.listitemtemplate(model);
                 collection.list.append($item);
 
-                bindButtons(model, this.view.$panel);
+                bindButtons(collection, model, this.view.$panel);
 
                 collection.list.parent().removeClass('empty');
             });
@@ -528,7 +527,7 @@
             });
             collectionRecovers.events.inserted.attach((collection, model)=>{
                 collection.list.append( this.view.listitemtemplate(model) );
-                bindButtons(model, this.view.$panel);
+                bindButtons(collection, model, this.view.$panel);
             });
             collectionRecovers.events.click.attach((collection, model)=>{
                 openFile(OPEN_FILE_RECOVERY, model);
