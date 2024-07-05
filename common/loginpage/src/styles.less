@@ -58,6 +58,7 @@ button {
     /*min-height: 625px;*/
     display: flex;
     background-color: @background-normal;
+    padding: 8px 0;
 
     /*@media(min-width: 1200) {}*/
 }
@@ -98,7 +99,7 @@ h4 {
     min-width: @col-width;
     max-width: @col-width;
     float: left;
-    border-right: @scaled-one-px solid @border-tabbar;
+/*    border-right: @scaled-one-px solid @border-tabbar;*/
 
     .rtl & {
         border-right: 0 none;
@@ -113,6 +114,8 @@ h4 {
 
 .col-center {
     text-align: center;
+    background-color: @background-action-panel;
+    border-radius: 8px;
 }
 
 .after-left {
@@ -226,7 +229,7 @@ li.menu-item {
     display: flex;
     flex-direction: column;
     overflow: auto;
-    padding: 8px 16px 0;
+    padding: 0 8px 0;
 
     /*background-color: #fff;*/
     &:not(.view--modal) {
@@ -316,7 +319,7 @@ li.menu-item {
 .action-panel {
     display: none;
     height: 100%;
-    padding: 40px;
+    padding: 16px 24px;
     /*min-width: 664px;*/
 
     > label {
@@ -344,6 +347,13 @@ li.menu-item {
 
     &.templates {
         padding: 20px;
+    }
+
+    .tbox, .box-cmp-select .btn,
+        .dropdown-menu,
+        input[type=checkbox]:before 
+    {
+        background-color: @background-action-panel;
     }
 }
 
@@ -576,7 +586,7 @@ li.menu-item {
 
     &.list tr {
         cursor: pointer;
-        background-color: @background-normal;
+        background-color: @background-action-panel;
         transition: background-color 300ms ease-out;
 
         &:hover {
@@ -898,7 +908,7 @@ li.menu-item {
     color: @text-tertiary;
     position: sticky;
     top: 0;
-    background: @background-normal;
+    background: @background-action-panel;
     z-index: 1;
 }
 
@@ -1508,6 +1518,7 @@ svg.icon:not(.icon-colored) {
     line-height: 24px;
     font-weight: 600;
     text-align: left;
+    color: @text-normal;
 }
 
 .text-headline-2 {
