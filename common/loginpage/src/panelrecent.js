@@ -40,7 +40,7 @@
     var ControllerRecent = function(args={}) {
         args.caption = 'Recent files';
         args.action =
-        this.action = "recent";
+        this.action = "recents";
         this.view = new ViewRecent(args);
     };
 
@@ -53,27 +53,53 @@
         // args.id&&(args.id=`"id=${args.id}"`)||(args.id='');
 
         let _html = `<div class="action-panel ${args.action}">
-                      <div class="flexbox">
-                        <div id="box-recovery" class="flex-item">
+                      <h2 class="text-headline-1" l10n>${_lang.areaCreateFile}</h2>
+                      <section id="box-create-new">
+                      </section>
+                      <section id="dnd-file-zone">
+                      </section>
+                      <section id="welcome-box">
+                      </section>
+                      <div class="recent-flex-box">
+                        <h2 class="text-headline-1" l10n>${_lang.listRecentFileTitle}</h2>
+                        <div id="box-recovery" class="recent-box-wrapper">
                           <div class="flexbox">
-                            <h3 class="table-caption" l10n>${_lang.listRecoveryTitle}</h3>
+                            <h3 class="table-caption text-headline-2" l10n>${_lang.listRecoveryTitle}</h3>
                             <div class="table-box flex-fill">
                               <table id="tbl-filesrcv" class="table-files list"></table>
                             </div>
                           </div>
                         </div>
-                        <div id="recovery-sep"></div>
-                        <div id="box-recent" class="flex-item flex-fill">
+                        
+                        <div id="box-pinned" class="recent-box-wrapper">
+                            <div class="flexbox">
+                                <h3 class="table-caption text-headline-2" l10n>${_lang.listPinnedTitle}</h3>
+                                <div class="table-box flex-fill">
+                                    <table class="table-files list"></table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="box-today" class="recent-box-wrapper">
+                            <div class="flexbox">
+                                <h3 class="table-caption text-headline-2" l10n>${_lang.listToday}</h3>
+                                <div class="table-box flex-fill">
+                                    <table class="table-files list"></table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="box-recent" class="recent-box-wrapper flex-fill">
                           <div class="flexbox">
                             <div style="display:none;">
-                              <h3 class="table-caption" l10n>${_lang.listRecentFileTitle}</h3>
+                              <h3 class="table-caption" l10n>${_lang.listEarlier}</h3>
                               <input type="text" id="idx-recent-filter" style="display:none;">
                             </div>
-                            <h3 class="table-caption" l10n>${_lang.listRecentFileTitle}</h3>
+                            <h3 class="table-caption text-headline-2" l10n>${_lang.listEarlier}</h3>
                             <div class="table-box flex-fill">
                               <table class="table-files list"></table>
-                              <h4 class="text-emptylist${isSvgIcons? '-svg' : ''} img-before-el" l10n>
-                                  ${isSvgIcons? '<svg class="icon"><use xlink:href="#folder-big"></use></svg>':''}
+                              <h4 class="text-emptylist${isSvgIcons ? '-svg' : ''} img-before-el" l10n>
+                                  ${isSvgIcons ? '<svg class="icon"><use xlink:href="#folder-big"></use></svg>' : ''}
                                   ${_lang.textNoFiles}
                               </h4>
                             </div>
@@ -85,8 +111,9 @@
         args.tplPage = _html;
         args.menu = '.main-column.tool-menu';
         args.field = '.main-column.col-center';
-        args.itemindex = 0;
-        args.itemtext = _lang.actRecentFiles;
+        args.itemindex = -1;
+        args.tplItem = 'nomenuitem';
+        // args.itemtext = _lang.actRecentFiles;
 
         baseView.prototype.constructor.call(this, args);
     };
@@ -99,12 +126,15 @@
 
             this.$boxRecovery = this.$panel.find('#box-recovery');
             this.$boxRecent = this.$panel.find('#box-recent');
+            this.$boxPinned = this.$panel.find('#box-pinned');
+            this.$boxToday = this.$panel.find('#box-today');
         },
         listitemtemplate: function(info) {
             let id = !!info.uid ? (` id="${info.uid}"`) : '';
             info.crypted == undefined && (info.crypted = false);
+            const editor_type = utils.editorByFileFormat(info.type);
 
-            var _tpl = `<tr${id} class="${info.crypted ? `crypted${isSvgIcons ?'-svg':''}` : ''}">
+            var _tpl = `<tr${id} class="${info.crypted ? `crypted${isSvgIcons ?'-svg':''}` : ''}" ${editor_type?`data-editor-type="${editor_type}"`:''}>
                           <td class="row-cell cicon">
                             <i class="icon ${info.type=='folder'?'img-el folder':`img-format ${info.format}`}" />
                         ${!isSvgIcons ?'':
@@ -112,15 +142,30 @@
                                 <use xlink:href="#${info.type=='folder'?'folder-small':`${info.format}`}"></use>
                             </svg>
                             ${info.crypted?'<svg class = "shield"> <use xlink:href="#shield"></use></svg>':''}`
-                        }                            
+                        }
                           </td>
                           <td class="row-cell cname">
-                            <p class="name primary">${info.name}</p>
-                            <p class="descr minor">${info.descr}</p>
+                            <p class="name text-body">${info.name}</p>
+                            <p class="descr text-caption">${info.descr}</p>
                           </td>`;
 
-            if (info.type != 'folder')
-                _tpl += `<td class="row-cell cdate minor">${info.date}</td>`;
+            if (info.type != 'folder') {
+                _tpl += `<td class="row-cell cbutton cpin">
+                    <button id="${info.uid}-pin-btn">
+                        <svg class="icon" data-iconname="pin" data-precls="tool-icon">
+                            <use href="#pin"/>
+                        </svg>
+                    </button>
+                </td>`;
+                _tpl += `<td class="row-cell cdate text-caption">${info.date}</td>`;
+                _tpl += `<td class="row-cell cbutton">
+                    <button id="${info.uid}-more-btn">
+                        <svg class="icon" data-iconname="more" data-precls="tool-icon">
+                            <use href="#more"/>
+                        </svg>
+                    </button>
+                </td>`;
+            }
 
             return _tpl;
         },
@@ -161,27 +206,30 @@
         },
         updatelistsize: function() {
             // set fixed height for scrollbar appearing. 
-            var _available_height = this.$panel.height();
-            var _box_recent_height = _available_height;
+            let _available_height = this.$panel.height();
+            let _box_recent_height = _available_height;
 
-            if (!this.$boxRecovery.find('tr').size()) {
-                // $boxRecent.height($boxRecent.parent().height());
-            } else {
-                _available_height -= /*separatorHeight*/40;
-                _box_recent_height *= 0.5; 
+            const updateBoxHeight = (box) => {
+                if (box.find('tr').size() > 0) {
+                    _available_height -= /*separatorHeight*/40;
+                    _box_recent_height *= 0.5;
 
-                this.$boxRecovery.height(_available_height * 0.5);
+                    box.height(_available_height * 0.5);
 
-                var $table_box = this.$boxRecovery.find('.table-box');
-                if ( !$table_box.hasScrollBar() ) {
-                    let _new_recovery_height = $table_box.find('.table-files.list').height() + /*$headerRecovery.height()*/46;
-                    this.$boxRecovery.height(_new_recovery_height);
+                    const $tableBox = box.find('.table-box');
+                    if (!$tableBox.hasScrollBar()) {
+                        const newBoxHeight = $tableBox.find('.table-files.list').height() + /*$headerRecovery.height()*/46;
+                        box.height(newBoxHeight);
 
-                    _box_recent_height = _available_height - _new_recovery_height;
+                        _box_recent_height = _available_height - newBoxHeight;
+                    }
                 }
             }
 
-            /*$boxRecent.height() != _box_recent_height &&*/ this.$boxRecent.height(_box_recent_height);
+            [this.$boxPinned,this.$boxToday, this.$boxRecovery].map(el => updateBoxHeight(el));
+
+            /*$boxRecent.height() != _box_recent_height &&*/
+            this.$boxRecent.height(_box_recent_height);
         }
     });
 
@@ -201,9 +249,20 @@
     };
 
     utils.fn.extend(ControllerRecent.prototype, (function() {
-        let collectionRecents, collectionRecovers;
+        let collectionRecents, collectionRecovers, collectionPinned, collectionToday;
         let ppmenu;
+        let panelCreateNew;
+        let dragAndDropZone;
+        let welcomeComponent;
         const ITEMS_LOAD_RANGE = 40;
+
+        const isToday = (dateString) => {
+            const [datePart, _] = dateString.split(' ');
+            const [day, month, year] = datePart.split('.').map(Number);
+            const date = new Date(year, month - 1, day);
+
+            return new Date().toDateString() === date.toDateString();
+        }
 
         const _add_recent_block = function() {
             if ( !this.rawRecents || !Object.keys(this.rawRecents).length ) return;
@@ -216,9 +275,15 @@
             for (let item of _files) {
                 var model = new FileModel(item);
                 model.set('hash', item.path.hashCode());
+                model.events.changed.attach(_on_pin_recent);
 
-                if ( !!this.rawRecents ) {
-                    collectionRecents.add(model);
+                if (!!this.rawRecents) {
+                    if (isToday(model.date)) {
+                        collectionToday.add(model);
+                    } else {
+                        collectionRecents.add(model);
+                    }
+
                     _check_block[model.get('hash')] = item.path;
                 } else return;
             }
@@ -239,6 +304,7 @@
                 }, 10);
             } else {
                 this.rawRecents = undefined;
+                CommonEvents.fire('recent:filter', [null]);
             }
         };
 
@@ -250,6 +316,12 @@
                 this.recentIndex = 0;
 
                 collectionRecents.empty();
+                collectionToday.empty();
+                collectionPinned.empty();
+
+                this.view.$boxPinned.hide();
+                this.view.$boxToday.hide();
+
                 _add_recent_block.call(this);
             }, 10)
         };
@@ -263,53 +335,191 @@
             }
 
             this.view.$boxRecovery[collectionRecovers.size() > 0 ? 'show' : 'hide']();
-            this.view.$panel.find('#recovery-sep')[collectionRecovers.size() > 0 ? 'show' : 'hide']();
-            this.view.updatelistsize();
+            // this.view.updatelistsize();
         };
+
+        function bindButtons(collection, model, view) {
+            $(`#${model.uid}-pin-btn`, view).click((e) => {
+                e.preventDefault();
+                e.stopPropagation();
+
+                model.set('pinned', !model.pinned);
+            })
+
+            $(`#${model.uid}-more-btn`, view).click((e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                collection.events.contextmenu.notify(model, e);
+            })
+        }
+
+        function _on_pin_recent(model, property) {
+            if ( property['pinned'] !== undefined ) {
+                sdk.setRecentFilePinned(model.get('fileid'), property['pinned']);
+            }
+        }
 
         function _init_collections() {
             let _cl_rcbox = this.view.$panel.find('#box-recent'),
-                _cl_rvbox = this.view.$panel.find('#box-recovery');
+                _cl_rvbox = this.view.$panel.find('#box-recovery'),
+                boxPinned = this.view.$panel.find('#box-pinned'),
+                boxToday = this.view.$panel.find('#box-today');
 
-            collectionRecents = new Collection({
-                view: _cl_rcbox,
-                list: _cl_rcbox.find('.table-files.list')
+            // Pinned
+            //
+
+            collectionPinned = new Collection({
+                view: boxPinned,
+                list: boxPinned.find('.table-files.list')
             });
 
-            collectionRecents.events.erased.attach(collection => {
-                collection.list.parent().addClass('empty');
+            collectionPinned.events.click.attach((collection, model) => {
+                openFile(OPEN_FILE_RECENT, model);
             });
 
-            collectionRecents.events.inserted.attach((collection, model) => {
+            collectionPinned.events.inserted.attach((collection, model)=>{
                 let $item = this.view.listitemtemplate(model);
 
                 collection.list.append($item);
-                collection.list.parent().removeClass('empty');
+                let $el = collection.list.find('#' + model.uid);
+                $el.addClass('pinned');
+
+                bindButtons(collection, model, this.view.$panel);
+
+                this.view.$boxPinned.show();
+                // this.view.updatelistsize();
             });
 
-            collectionRecents.events.click.attach((collection, model) => {
-                // var _portal = model.descr;
-                // if ( !model.islocal && !app.controller.portals.isConnected(_portal) ) {
-                    // app.controller.portals.authorizeOn(_portal, {type: 'fileid', id: model.fileid});
-                // } else {
-                    openFile(OPEN_FILE_RECENT, model);
-                // }
+            collectionPinned.events.deleted.attach((collection, model)=> {
+                collection.list.find('#' + model.uid)?.remove();
+
+                if (collection.size() === 0) {
+                    this.view.$boxPinned.hide();
+                    // this.view.updatelistsize();
+                }
             });
 
-            collectionRecents.events.contextmenu.attach(function(collection, model, e){
+            collectionPinned.events.contextmenu.attach(function(collection, model, e){
                 ppmenu.actionlist = 'recent';
+                ppmenu.hideItem('files:unpin', model.dir || !model.pinned || !model.exist);
+                ppmenu.hideItem('files:pin', model.dir || model.pinned || !model.exist);
                 ppmenu.hideItem('files:explore', (!model.islocal && !model.dir) || !model.exist);
                 ppmenu.show({left: e.clientX, top: e.clientY}, model);
             });
 
-            collectionRecents.events.changed.attach(function(collection, model){
+            collectionPinned.events.changed.attach((collection, model) => {
+                if (!model.pinned) {
+                    collection.remove(model);
+
+                    if (isToday(model.date)) {
+                        collectionToday.add(model);
+                    } else {
+                        collectionRecents.add(model);
+                    }
+
+                    return;
+                }
+
                 let $el = collection.list.find('#' + model.uid);
-                if ( $el ) $el[model.exist ? 'removeClass' : 'addClass']('unavail');
+                if ($el) {
+                    $el[model.exist ? 'removeClass' : 'addClass']('unavail');
+                }
             });
 
-            collectionRecents.empty();
+            collectionPinned.events.erased.attach(collection => {
+                collection.list.parent().addClass('empty');
+            });
 
-            /**/
+
+            const createRecentlyCollection = (box) => {
+                const collectionRecently = new Collection({
+                    view: box,
+                    list: box.find('.table-files.list')
+                });
+
+
+                collectionRecently.events.erased.attach(collection => {
+                    collection.list.parent().addClass('empty');
+                });
+
+                collectionRecently.events.deleted.attach((collection, model)=> {
+                    collection.list.find('#' + model.uid)?.remove();
+                });
+
+                collectionRecently.events.click.attach((collection, model) => {
+                    openFile(OPEN_FILE_RECENT, model);
+                });
+
+                collectionRecently.events.contextmenu.attach((collection, model, e) => {
+                    ppmenu.actionlist = 'recent';
+                    ppmenu.hideItem('files:unpin', model.dir || !model.pinned || !model.exist);
+                    ppmenu.hideItem('files:pin', model.dir || model.pinned || !model.exist);
+                    ppmenu.hideItemAfter('files:unpin', model.dir || !model.exist);
+                    ppmenu.hideItem('files:explore', (!model.islocal && !model.dir) || !model.exist);
+                    ppmenu.show({left: e.clientX, top: e.clientY}, model);
+                });
+
+                collectionRecently.events.changed.attach((collection, model) => {
+                    if (model.pinned) {
+                        collection.remove(model);
+                        collectionPinned.add(model);
+                        return;
+                    }
+
+                    let $el = collection.list.find('#' + model.uid);
+                    if ($el) {
+                        $el[model.exist ? 'removeClass' : 'addClass']('unavail');
+                    }
+                });
+
+                collectionRecently.empty();
+
+                return collectionRecently;
+            }
+
+            // Today
+            //
+
+            collectionToday = createRecentlyCollection(boxToday);
+
+            collectionToday.events.inserted.attach((collection, model) => {
+                if (model.pinned) {
+                    collection.remove(model);
+                    collectionPinned.add(model);
+                    return;
+                }
+
+                let $item = this.view.listitemtemplate(model);
+                collection.list.append($item);
+
+                bindButtons(collection, model, this.view.$panel);
+
+                this.view.$boxToday.show();
+                // this.view.updatelistsize();
+            });
+
+            // Recents
+            //
+
+            collectionRecents = createRecentlyCollection(_cl_rcbox);
+
+            collectionRecents.events.inserted.attach((collection, model) => {
+                if (model.pinned) {
+                    collection.remove(model);
+                    collectionPinned.add(model);
+                    return;
+                }
+
+                let $item = this.view.listitemtemplate(model);
+                collection.list.append($item);
+
+                bindButtons(collection, model, this.view.$panel);
+
+                collection.list.parent().removeClass('empty');
+            });
+
+            // Recovers
+            //
 
             collectionRecovers = new Collection({
                 view: _cl_rvbox,
@@ -317,12 +527,16 @@
             });
             collectionRecovers.events.inserted.attach((collection, model)=>{
                 collection.list.append( this.view.listitemtemplate(model) );
+                bindButtons(collection, model, this.view.$panel);
             });
             collectionRecovers.events.click.attach((collection, model)=>{
                 openFile(OPEN_FILE_RECOVERY, model);
             });
             collectionRecovers.events.contextmenu.attach((collection, model, e)=>{
                 ppmenu.actionlist = 'recovery';
+                ppmenu.hideItem('files:unpin', true);
+                ppmenu.hideItem('files:pin', true);
+                ppmenu.hideItemAfter('files:unpin', true);
                 ppmenu.hideItem('files:explore', true);
                 ppmenu.show({left: e.clientX, top: e.clientY}, model);
             });
@@ -332,19 +546,45 @@
             ppmenu = new Menu({
                 id: 'pp-menu-files',
                 bottomlimitoffset: 10,
-                items: [{
-                    caption: utils.Lang.menuFileOpen,
-                    action: 'files:open'
-                },{
-                    caption: utils.Lang.menuFileExplore,
-                    action: 'files:explore'
-                },{
-                    caption: utils.Lang.menuRemoveModel,
-                    action: 'files:forget'
-                },{
-                    caption: utils.Lang.menuClear,
-                    action: 'files:clear'
-                }]
+                items: [
+                    {
+                        caption: utils.Lang.menuFileOpen,
+                        action: 'files:open'
+                    },
+                    {
+                        caption: '--',
+                    },
+                    {
+                        caption: utils.Lang.menuFilePin,
+                        action: 'files:pin',
+                        icon: 'pin'
+                    },
+                    {
+                        caption: utils.Lang.menuFileUnpin,
+                        action: 'files:unpin',
+                        icon: 'pin'
+                    },
+                    {
+                        caption: '--',
+                    },
+                    {
+                        caption: utils.Lang.menuFileExplore,
+                        action: 'files:explore',
+                        icon: 'folder'
+                    },
+                    {
+                        caption: utils.Lang.menuRemoveModel,
+                        action: 'files:forget',
+                        icon: 'remove'
+                    },
+                    {
+                        caption: '--',
+                    },
+                    {
+                        caption: utils.Lang.menuClear,
+                        action: 'files:clear'
+                    },
+                ]
             });
 
             ppmenu.init('#placeholder');
@@ -356,21 +596,23 @@
                 menu.actionlist == 'recent' ?
                     openFile(OPEN_FILE_RECENT, data) :
                     openFile(OPEN_FILE_RECOVERY, data);
-            } else
-            if (/\:clear/.test(action)) {
+            } else if (/\:pin/.test(action)) {
+                collectionRecents.find('uid', data.uid)?.set('pinned', true);
+                collectionToday.find('uid', data.uid)?.set('pinned', true);
+            } else if (/\:unpin/.test(action)) {
+                collectionPinned.find('uid', data.uid)?.set('pinned', false);
+            } else if (/\:clear/.test(action)) {
                 menu.actionlist == 'recent' ?
                     window.sdk.LocalFileRemoveAllRecents() :
                     window.sdk.LocalFileRemoveAllRecovers();
-            } else
-            if (/\:forget/.test(action)) {
+            } else if (/\:forget/.test(action)) {
                 $('#' + data.uid, this.view.$panel).addClass('lost');
                 setTimeout(e => {
                     menu.actionlist == 'recent' ?
                         window.sdk.LocalFileRemoveRecent(parseInt(data.fileid)) :
                         window.sdk.LocalFileRemoveRecover(parseInt(data.fileid));}
                 , 300); // 300ms - duration of item's 'collapse' transition
-            } else
-            if (/\:explore/.test(action)) {
+            } else if (/\:explore/.test(action)) {
                 if (menu.actionlist == 'recent') {
                     sdk.execCommand('files:explore', data.path);
                 }
@@ -408,6 +650,18 @@
                 this.view.render();
                 this.check_list = {};
 
+                panelCreateNew = new PanelCreateNew();
+                panelCreateNew.render(this.view.$panel.find("#box-create-new"));
+
+                dragAndDropZone = new DragAndDropFileZone();
+                dragAndDropZone.render(this.view.$panel.find("#dnd-file-zone"));
+                dragAndDropZone.hide();
+
+                if (!localStorage.welcome) {
+                    welcomeComponent = new WelcomeComponent();
+                    welcomeComponent.render(this.view.$panel.find("#welcome-box"));
+                }
+
                 _init_collections.call(this);
                 _init_ppmenu.call(this);
 
@@ -441,7 +695,7 @@
                 });
 
                 $(window).resize(()=>{
-                    this.view.updatelistsize();
+                    // this.view.updatelistsize();
                 });
                 CommonEvents.on("icons:svg", this.view.onscale);
                 CommonEvents.on('portal:authorized', (data)=>{
@@ -452,6 +706,7 @@
 
                     console.log('portal authorized');
                 });
+                CommonEvents.on('recent:filter', this.filterRecents);
 
                 $('#box-recent .table-box').scroll(e => {
                     if ( Menu.opened )
@@ -467,7 +722,37 @@
             },
             getRecovers: function() {
                 return collectionRecovers;
-            }
+            },
+            filterRecents: function(doctype) {
+                if (welcomeComponent) {
+                    if (localStorage.welcome) {
+                        welcomeComponent.detach();
+                        welcomeComponent = null;
+                        $('.recent-flex-box').show();
+                    } else {
+                        $('.recent-flex-box').hide();
+                        return;
+                    }
+                }
+
+                $('.recent-box-wrapper .table-files').removeClass('filter-word filter-cell filter-slide filter-pdfe');
+                panelCreateNew.filter(doctype);
+                const $title = $('.recent-flex-box > .text-headline-1')
+                if (doctype) {
+                    $('.recent-box-wrapper .table-files').addClass(`filter-${doctype}`);
+                }
+
+                let totalItems = 0;
+                $('.recent-box-wrapper').each(function() {
+                    const items = $(this).find(`tr[data-editor-type${doctype ? `="${doctype}"` : ''}]`);
+                    $(this)[items.size() === 0 ? 'hide' : 'show']();
+
+                    totalItems+=items.size()
+                });
+
+                $title[totalItems === 0 ? 'hide' : 'show']();
+                dragAndDropZone[totalItems === 0 ? 'show' : 'hide']();
+            },
         };
     })());
 }();

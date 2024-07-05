@@ -53,6 +53,7 @@
         args.field = '.main-column.col-center';
         // args.itemindex = 3;
         args.itemtext = _lang.actAbout;
+        args.tplItem = 'nomenuitem';
 
         baseView.prototype.constructor.call(this, args);
     };
@@ -81,34 +82,27 @@
                                             <button id="idx-update-btnaction" class="btn btn--landing"></button>
                                         </div>
                                     </section>`;
-        let _html = `<div class="flexbox">
-                        <h3 class='table-caption' l10n>${_lang.actAbout}</h3>
-                        <div class="box-ver">
-                            <section class="hbox">
-                                <div id="idx-about-cut-logo" class="${_opts.logocls}">
-                                    <svg class="ver-logo">
-                                        <use id="idx-ver-logo--light" href="#idx-logo-light" />
-                                        <use id="idx-ver-logo--dark" href="#idx-logo-dark" />
-                                    </svg>
-                                </div>
-                                <div class="vbox">
-                                    <p id="idx-about-appname">${_opts.appname}</p>
-                                    <p id="idx-about-version"><span l10n>${_lang.strVersion}</span> ${_opts.version}</p>
-                                </div>
-                            </section><p></p>
-                            <div class="ver-version hidden" l10n>${_opts.appname} ${_lang.strVersion} ${_opts.version}</div>
-                            ${_updates_status}
+        let _html = `<div class="flex-col gap-6">
+                        <div class="box-version flex gap-4">
+                            <div id="idx-about-cut-logo" class="${_opts.logocls}">
+                                <svg class="ver-logo">
+                                    <use id="idx-ver-logo--light" href="#idx-logo-light" />
+                                    <use id="idx-ver-logo--dark" href="#idx-logo-dark" />
+                                </svg>
+                            </div>
+                            <div class="flex-col gap-0.5">
+                                <p id="idx-about-appname" class="text-headline-1">${_opts.appname}</p>
+                                <p id="idx-about-version" class="text-body text-secondary"><span l10n>${_lang.strVersion}</span> ${_opts.version}</p>
+                            </div>
+                        </div>
+                        ${_updates_status}
+                        <div class="box-copyright text-secondary text-body">
                             <div id='id-features-available' l10n>${_lang.aboutProFeaturesAvailable}</div>
                             ${_opts.edition}
-                            <a class="ver-checkupdate link hidden" draggable='false' data-state='check' href="#" l10n>${_lang.checkUpdates}</a>
-                            <div class="about-field"><a class="ver-changelog link" draggable='false' target="popup" href=${_opts.changelog} l10n>${_lang.aboutChangelog}</a></div>
                             <div class="ver-copyright about-field">${_opts.rights}</div>
                             <a class="ver-site link" target="popup" href="${_opts.link}">${_opts.site}</a>
-                        </div>`+
-                        // '<div class="box-license flex-fill">'+
-                        //   '<iframe id="framelicense" src="license.htm"></iframe>'+
-                        // '</div>'+
-                    '</div>';
+                        </div>
+                    </div>`;
 
         if (window.utils.inParams.osver == 'winxp' || /windows nt 5/i.test(navigator.appVersion)) {
             _html = _html.replace(' href=', ' xlink:href=');
@@ -124,7 +118,7 @@
 
         let _on_features_avalable = function (params) {
             if ( !!this.view ) {
-                let _label = $('#id-features-available', this.view.$panel);
+                let _label = $('#id-features-available', this.view.$body);
                 if ( _label )
                     if ( !!params )
                         _label.show();
@@ -151,8 +145,11 @@
                 if (!this.view) {
                     this.view = new ViewAbout(args);
                     this.view.render();
-                    this.view.$menuitem.removeClass('extra');
-                    this.view.$panel.append(this.view.paneltemplate(args));
+                    this.view.$menuitem && this.view.$menuitem.removeClass('extra');
+                    // this.view.$panel.append(this.view.paneltemplate(args));
+
+                    this.view.$body = $(this.view.paneltemplate(args));
+                    this.view.$dialog = new AboutDialog();
                 } else {
                     if ( !!args.opts && !!args.opts.edition ) {
                         $('#idx-ver-edition').html(args.opts.edition);
@@ -168,7 +165,7 @@
                 // });
                 // $label[this.updates===true?'show':'hide']();
                 if ( args.opts ) {
-                    this.view.$panel.find('.ver-changelog')[!!args.opts.changelog?'show':'hide']();
+                    this.view.$body.find('.ver-changelog')[!!args.opts.changelog?'show':'hide']();
                 }
 
                 if ( !!features && features.length )
@@ -179,7 +176,7 @@
 
                 if ( this.view ) {
                     // this.view.$panel.find('.ver-checkupdate')[this.updates?'show':'hide']();
-                    this.view.$panel.find('#idx-update-cnt')[this.updates?'show':'hide']();
+                    this.view.$body.find('#idx-update-cnt')[this.updates?'show':'hide']();
 
                     if ( this.updates ) {
                         const $btn = $('#idx-update-btnaction')
@@ -189,43 +186,6 @@
                     }
                 }
             } else
-            if (/^updates:checking/.test(cmd)) {
-                // const $label = this.view.$panel.find('.ver-checkupdate');
-                // const opts = JSON.parse(param);
-                // if ( opts.version == 'no' ) {
-                //     $label.text(utils.Lang.updateNoUpdates);
-                // } else {
-                //     $label.text(utils.Lang.updateAvialable.replace('$1', opts.version));
-                //     $label.data('state', 'download');
-                // }
-                // $label.show();
-            } else
-            if (/updates:download/.test(cmd)) {
-                // const opts = JSON.parse(param);
-                // const $label = this.view.$panel.find('.ver-checkupdate');
-
-                // if ( opts.progress == 'done' ) {
-                //     $label.text(utils.Lang.updateDownloadFinished);
-                //     $label.data('state', 'install');
-                // } else
-                // if ( opts.progress == 'aborted' ) {
-                //     $label.text(utils.Lang.updateDownloadCanceled);
-                // } else {
-                //     $label.text(utils.Lang.updateDownloadProgress.replace('$1', opts.progress));
-                //     $label.data('state', 'abort');
-                // }
-            } else
-            if (/updates:link/.test(cmd)) {
-                // const $label = this.view.$panel.find('.ver-checkupdate');
-                // let opts = {};
-                // if ( param == 'lock' || param == 'unlock' )
-                //     opts.disabled = param == 'lock';
-                // else opts = JSON.parse(param);
-
-                // if ( opts.disabled != undefined ) {
-                    // $label.attr('disabled', opts.disabled ? 'disabled' : false);
-                // }
-            } else
             if (/updates:status/.test(cmd)) {
                 on_updates_info.call(this, JSON.parse(param))
             }
@@ -233,11 +193,11 @@
 
         const on_updates_info = function(info) {
                 if ( info.text ) {
-                    $('#idx-update-status-text', this.view.$panel).text(info.text);
+                    $('#idx-update-status-text', this.view.$body).text(info.text);
                 }
 
                 if ( info.icon ) {
-                    const $icon = $('#idx-update-status-icon', this.view.$panel);
+                    const $icon = $('#idx-update-status-icon', this.view.$body);
 
                     let icon_id;
                     switch (info.icon) {
@@ -252,7 +212,7 @@
                 }
 
                 if ( info.button ) {
-                    const $button = $('#idx-update-btnaction', this.view.$panel);
+                    const $button = $('#idx-update-btnaction', this.view.$body);
                     if ( info.button.text ) {
                         $button.text(info.button.text);
                         $button.data("action", info.button.action);
@@ -272,6 +232,13 @@
                 }
         }
 
+        const onPanelShow = function(panel) {
+            if (panel === this.action) {
+                this.view.$dialog.show();
+                this.view.$dialog.setBody(this.view.$body);
+            }
+        }
+
         return {
             init: function() {
                 baseController.prototype.init.apply(this, arguments);
@@ -285,6 +252,8 @@
 
                     sdk.on('onfeaturesavailable', _on_features_avalable.bind(this));
                 } else sdk.GetLocalFeatures = e => false;
+
+                CommonEvents.on('panel:show', onPanelShow.bind(this));
 
                 return this;
             },

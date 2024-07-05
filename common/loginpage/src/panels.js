@@ -32,8 +32,81 @@
 
 'use strict';
 $(document).ready(function() {
+    const _toolmenu_tpl = `
+            <div class="main-column col-left tool-menu">
+              <li class="menu-item">
+                <a action="recents">
+                    <svg class="icon" data-iconname="home" data-precls="tool-icon">
+                        <use href="#home"></use>
+                    </svg>
+                    <span class="text" l10n>${utils.Lang.actMain}</span>
+                </a>
+              </li>
+              <!-- <li class="menu-item"><a l10n action="templates">${utils.Lang.actTemplates}</a></li> -->
+              <li class="menu-item">
+                <a action="folders">
+                    <svg class="icon" data-iconname="folder" data-precls="tool-icon">
+                        <use href="#folder"></use>
+                    </svg>
+                    <span class="text" l10n>${utils.Lang.actOpenLocal}</span>
+                </a>
+              </li>
+              <li class="menu-item separator"></li>
+              <li class="menu-item">
+                <a action="recents" data-filter="word">
+                    <svg class="icon icon-colored" data-iconname="word" data-precls="tool-icon">
+                        <use href="#word"></use>
+                    </svg>
+                    <span class="text" l10n>${utils.Lang.actDocuments}</span>
+                </a>
+              </li>
+              <li class="menu-item">
+                <a action="recents" data-filter="cell">
+                    <svg class="icon icon-colored" data-iconname="cell" data-precls="tool-icon">
+                        <use href="#cell"></use>
+                    </svg>
+                    <span class="text" l10n>${utils.Lang.actSpreadsheets}</span>
+                </a>
+              </li>
+              <li class="menu-item">
+                <a action="recents" data-filter="slide">
+                    <svg class="icon icon-colored" data-iconname="slide" data-precls="tool-icon">
+                        <use href="#slide"></use>
+                    </svg>
+                    <span class="text" l10n>${utils.Lang.actPresentations}</span>
+                </a>
+              </li>
+              <li class="menu-item">
+                <a l10n action="recents" data-filter="pdfe">
+                    <svg class="icon icon-colored" data-iconname="pdfe" data-precls="tool-icon">
+                        <use href="#pdfe"></use>
+                    </svg>
+                    <span class="text" l10n>${utils.Lang.actPDFs}</span>
+                </a>
+              </li>
+              <li class="menu-item devider"></li>
+              <li class="menu-item">
+                <a action="settings">
+                    <svg class="icon" data-iconname="settings" data-precls="tool-icon">
+                        <use href="#settings"></use>
+                    </svg>
+                    <span class="text" l10n>${utils.Lang.actSettings}</span>
+                </a>
+              </li>
+              <li class="menu-item">
+                <a action="about">
+                    <svg class="icon" data-iconname="about" data-precls="tool-icon">
+                        <use href="#about"></use>
+                    </svg>
+                    <span class="text" l10n>${utils.Lang.actAbout}</span>
+                </a>
+              </li>
+            </div>
+            <div class="main-column col-center after-left">
+            </div>`;
+    $('#placeholder').html(_toolmenu_tpl);
+
     $('.tool-menu').on('click', '> .menu-item > a', onActionClick);
-    $('.tool-quick-menu .menu-item a').click(onNewFileClick);
 
     if ( window.utils.isWinXp ) {
         $('a[action] use').each((i, e) => {
@@ -59,28 +132,17 @@ $(document).ready(function() {
         window.app.controller.portals = (new ControllerPortals({})).init();
     !!window.ControllerExternalPanel && (window.app.controller.externalpanel = (new ControllerExternalPanel({})).init());
 
-    $('h3.createnew').text(utils.Lang.actCreateNew);
-    $('a[action="new:docx"] > .text').text(utils.Lang.newDoc);
-    $('a[action="new:xlsx"] > .text').text(utils.Lang.newXlsx);
-    $('a[action="new:pptx"] > .text').text(utils.Lang.newPptx);
-    $('a[action="new:form"] > .text').text(utils.Lang.newForm);
-
-    if (!localStorage.welcome) {
-        app.controller.welcome = (new ControllerWelcome).init();
-        selectAction('welcome');
-
-        localStorage.setItem('welcome', 'have been');
+    if (!!utils.inParams.panel && $(`.action-panel.${utils.inParams.panel}`).length) {
+        selectAction(utils.inParams.panel);
     } else {
-        if ( !!utils.inParams.panel && $(`.action-panel.${utils.inParams.panel}`).length )
-            selectAction(utils.inParams.panel);
-        else selectAction('recent');
+        selectAction('recents');
     }
 
     $('#placeholder').on('click', '.newportal', function(){
         CommonEvents.fire("portal:create");
     });
 
-    if (!window.config.portals.checklist) {
+    if (window.app.controller.portals && !window.config.portals.checklist) {
         $('.tools-connect').hide();
         hideAction('connect');
         console.log('There are no cloud providers');
@@ -126,13 +188,22 @@ function onActionClick(e) {
     {
         openFile(OPEN_FILE_FOLDER, '');
     } else {
+        if (!localStorage.welcome) {
+            localStorage.setItem('welcome', 'have been');
+        }
+
+        if (action === 'about') {
+            return CommonEvents.fire('panel:show', [action]);
+        }
+
         $('.tool-menu > .menu-item').removeClass('selected');
         $el.parent().addClass('selected');
         $('.action-panel').hide();
         $('.action-panel.' + action).show(0,()=>{
             // bug: recent panel has the wrong height if 'wellcome' panel is showed firstly
-            if (action == 'recent') {
-                app.controller.recent.view.updatelistsize();
+            if (action == 'recents') {
+                app.controller.recent.filterRecents($el.data('filter'));
+                // app.controller.recent.view.updatelistsize();
             }
         });
 
@@ -143,10 +214,19 @@ function onActionClick(e) {
 function selectAction(action) {
     if ( !$(`.action-panel.${action}`).length ) return;
 
+    if (action === 'about') {
+        return CommonEvents.fire('panel:show', [action]);
+    }
+
     $('.tool-menu > .menu-item').removeClass('selected');
     $('.tool-menu a[action='+action+']').parent().addClass('selected');
     $('.action-panel').hide();
     $('.action-panel.' + action).show();
+
+    if (action === 'recents') {
+        $('.tool-menu a[data-filter]').parent().removeClass('selected');
+        app.controller.recent.filterRecents(null);
+    }
 
     CommonEvents.fire('panel:show', [action]);
 };
@@ -184,7 +264,7 @@ var Scroll_offset = '16px';
 function replaceIcons(usesvg) {
     if ( usesvg ) {
     } else {
-        $('svg.icon', $('.tool-quick-menu')).each((i, el) => {
+        $('svg.icon', $('.tool-menu')).each((i, el) => {
             el = $(el);
             const p = el.parent();
             if ( $('i.icon', p).length == 0 ) {
@@ -210,11 +290,13 @@ function onNewFileClick(e) {
     case 'new:docx': t = 'word'; break;
     case 'new:xlsx': t = 'cell'; break;
     case 'new:pptx': t = 'slide'; break;
-    case 'new:form': t = 'form'; break;
+    // case 'new:form': t = 'form'; break;
+    case 'new:form': t = 'pdfe'; break;
     default: break;
     }
 
-    if ( !!t ) window.sdk.command("create:new", t);
+    // if ( !!t ) window.sdk.command("create:new", t);
+    window.app.controller.recent.filterRecents(t);
 
     setTimeout(function(){
         me.click_lock = false;

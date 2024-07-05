@@ -39,7 +39,7 @@
     var ControllerFolders = function(args={}) {
         args.caption = 'Recent folders';
         args.action =
-        this.action = "open";
+        this.action = "folders";
         this.view = new ViewFolders(args);
     };
 
@@ -52,28 +52,30 @@
 
         args.id&&(args.id=`"id=${args.id}"`)||(args.id='');
 
-        let _html = `<div ${args.id} class="action-panel ${args.action}">` +
-                        '<div id="box-recent-folders">' +
-                            '<div class="flexbox">'+
-                                `<h3 class="table-caption" l10n>${_lang.listRecentDirTitle}</h3>`+
-                                '<div class="table-box flex-fill">'+
-                                    `<table ${args.id} class="table-files list"></table>` +
-                                    `<h4 class="text-emptylist${isSvgIcons? '-svg': ''} img-before-el" l10n>
-                                        ${isSvgIcons? '<svg><use xlink:href="#folder-big"></use></svg>':''}
-                                        ${_lang.textNoFiles}</h4>` +
-                                '</div>' +
-                                '<div id="box-open-acts" class="lst-tools">'+
-                                    `<button id="btn-openlocal" class="btn btn--primary" l10n>${_lang.btnBrowse}</button>` +
-                                '</div>' +
-                            '</div>'+
-                        '</div>'+
-                    '</div>';
+        let _html = `
+        <div ${args.id} class="action-panel ${args.action}">
+            <div id="box-recent-folders">
+                <div class="flexbox">
+                    <h3 class="table-caption text-headline-1" l10n>${_lang.areaOpenFile}</h3>
+                    <section id="area-dnd-file"></section>
+                    <h3 class="table-caption text-headline-1" l10n>${_lang.listRecentDirTitle}</h3>
+                    <div class="table-box flex-fill">
+                        <table ${args.id} class="table-files list"></table>
+                        <h4 class="text-emptylist${isSvgIcons ? '-svg' : ''} img-before-el" l10n>
+                            ${isSvgIcons ? '<svg><use xlink:href="#folder-big"></use></svg>' : ''}
+                            ${_lang.textNoFiles}
+                        </h4>
+                    </div>
+                </div>
+            </div>
+        </div>`;
 
         args.tplPage = _html;
         args.menu = '.main-column.tool-menu';
         args.field = '.main-column.col-center';
-        args.itemindex = 1;
-        args.itemtext = _lang.actOpenLocal
+        args.itemindex = -1;
+        args.tplItem = 'nomenuitem';
+        // args.itemtext = _lang.actOpenLocal
 
         baseView.prototype.constructor.call(this, args);
     };
@@ -89,6 +91,8 @@
 
             var $boxRecentDirs = this.view.$panel.find('#box-recent-folders');
             var $listRecentDirs = $boxRecentDirs.find('.table-files.list');
+            !_dirs.length ? $listRecentDirs.parent().prev('.table-caption').hide() :
+                                $listRecentDirs.parent().prev('.table-caption').show();
 
             $listRecentDirs.empty();
             for (let dir of _dirs) {
@@ -112,9 +116,9 @@
 
                 this.view.render();
 
-                this.view.$panel.find('#btn-openlocal').click(()=>{
-                    openFile(OPEN_FILE_FOLDER, '');
-                });
+                const dragAndDropZone = new DragAndDropFileZone();
+                dragAndDropZone.render(this.view.$panel.find("#area-dnd-file"));
+
                 window.CommonEvents.on("icons:svg", (pasteSvg)=>{
                     let emptylist = $('[class*="text-emptylist"]', '#box-recent-folders');
                     emptylist.toggleClass('text-emptylist text-emptylist-svg');

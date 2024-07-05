@@ -297,7 +297,8 @@
         args.itemcls = 'bottom';
         args.menu = '.main-column.tool-menu';
         args.field = '.main-column.col-center';
-        args.itemtext = _lang.actSettings;
+        // args.itemtext = _lang.actSettings;
+        args.tplItem = 'nomenuitem';
 
         baseView.prototype.constructor.call(this, args);
     };
@@ -471,8 +472,6 @@
                 
                 localStorage.setItem('username', _user_new_name);
                 localStorage.setItem('docopenmode', _doc_open_mode);
-
-                _lock_createnew(_doc_open_mode == 'view');
             } else {
                 $userName.addClass('error');
             }
@@ -518,11 +517,6 @@
             if ( $btnApply.isdisabled() ) {
                 $btnApply.disable(false);
             }
-        };
-
-        function _lock_createnew(lock) {
-            lock === true ? $('.tool-quick-menu .menu-item').addClass('disabled') :
-                    $('.tool-quick-menu .menu-item').removeClass('disabled');
         };
 
         function _on_app_message(cmd, param) {
@@ -848,7 +842,6 @@
 
                 if ( _open_mode == 'view' ) {
                     $chOpenMode.prop('checked', true);
-                    _lock_createnew(true);
                 }
 
                 // if ( _open_mode == 'view' ) {

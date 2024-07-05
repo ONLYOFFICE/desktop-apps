@@ -96,6 +96,7 @@ function Collection(attributes) {
     this.events.changed = new ModelEvent(this);
     this.events.erased = new ModelEvent(this);
     this.events.inserted = new ModelEvent(this);
+    this.events.deleted = new ModelEvent(this);
     this.events.click = new ModelEvent(this);
     this.events.contextmenu = new ModelEvent(this);
 };
@@ -110,6 +111,15 @@ Collection.prototype.add = function(item) {
     $('#' + item.uid).on('click', item, this.on_item_click);
     $('#' + item.uid).on('contextmenu', item, this.on_item_ctxmenu);
 };
+
+Collection.prototype.remove = function(item) {
+    item.events.changed.detach(this.on_item_changed);
+
+    $('#' + item.uid).off('click contextmenu');
+
+    this.items.splice(this.items.indexOf(item), 1);
+    this.events.deleted.notify(item);
+}
 
 Collection.prototype.find = function(key, val) {
     return this.items.find(function(elem, i, arr){

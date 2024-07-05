@@ -85,59 +85,19 @@
             </div>
         </div>
         <div id="placeholder">
-            <div class="main-column col-left tool-menu">
-              <div class="tool-quick-menu">
-                <h3 class="createnew" l10n>Create new</h3>
-                <li class="menu-item">
-                  <a action="new:docx">
-                    <svg class="icon" data-iconname="docx" data-precls="img-el">
-                        <use href="#docx-big"></use>
-                    </svg>
-                    <span class="text" l10n>DOCUMENT</span>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a action="new:xlsx">
-                    <svg class="icon" data-iconname="xlsx" data-precls="img-el">
-                        <use href="#xlsx-big"></use>
-                    </svg>
-                    <span class="text" l10n>SPREADSHEET</span>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a action="new:pptx">
-                    <svg class="icon" data-iconname="pptx" data-precls="img-el">
-                        <use href="#pptx-big"></use>
-                    </svg>
-                    <span class="text" l10n>PRESENTATION</span>
-                  </a>
-                </li>
-                <li class="menu-item" style="padding-bottom:0;">
-                  <a action="new:form">
-                    <svg class="icon" data-iconname="form" data-precls="img-el">
-                        <use href="#pdf-big"></use>
-                    </svg>
-                    <span class="text" l10n="newForm">MASTER FORM</span>
-                  </a>
-                </li>
-              </div>
-                <!-- <button id="btn-add">Add</button> -->
-                <!-- <button id="btn-add2">Add 2</button> -->
-              <li class="menu-item separator"></li>
-            </div>
-            <div class="main-column col-center after-left">
-            </div>
         </div>
     </div>
 
     <script src="../vendor/svg-injector/svg-injector.min.js"></script>
     <img class="inline-svg" src="../res/img/generated/connect.svg">
-    <img class="inline-svg" src="../res/img/generated/welcome.svg">
     <img class="inline-svg" src="../res/img/generated/logo.svg">
     <img class="inline-svg" src="../res/img/generated/update_status.svg">
     <img class="inline-svg" src="../res/img/generated/formats.svg">
     <img class="inline-svg" src="../res/img/generated/common.svg">
+    <img class="inline-svg" src="../res/img/generated/toolicons.svg">
+    <img class="inline-svg" src="../res/img/generated/createnew.svg">
     <img class="inline-svg" src="../noconnect/connection_error.svg">
+
     <script>
         var svgpoints = document.querySelectorAll('img.inline-svg');
         SVGInjector(svgpoints, {evalScripts:'never'});
@@ -204,16 +164,19 @@
     <script type="text/javascript" src="base.js"></script>
     <script type="text/javascript" src="panelrecent.js"></script>
     <script type="text/javascript" src="panelfolders.js"></script>
-    <script type="text/javascript" src="panelconnect.js"></script>
+    <!-- <script type="text/javascript" src="panelconnect.js"></script> -->
     <script type="text/javascript" src="panelabout.js"></script>
-    <script type="text/javascript" src="panelwelcome.js"></script>
     <script type="text/javascript" src="paneltemplates.js"></script>
     <script src="panelsettings.js"></script>
     <script src="panelexternal.js"></script>
     <!-- TODO: remove after ver 8.0. login proc via portal's api isn't used any more -->
     <!-- <script type="text/javascript" src="dlglogin.js"></script> -->
     <script src="dialogconnect.js"></script>
+    <script src="createnew.js"></script>
+    <script type="text/javascript" src="about-dialog.js"></script>
+    <script type="text/javascript" src="dnd-file-zone.js"></script>
     <script type="text/javascript" src="panels.js"></script>
+    <script type="text/javascript" src="welcome-component.js"></script>
 
     <!-- debug begin -->
     <script type="text/javascript">var less=less||{};less.env='development';less.ieCompat=false;</script>

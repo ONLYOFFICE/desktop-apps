@@ -32,14 +32,25 @@
 
 var l10n = l10n || {};
 l10n.en = {
-    welWelcome: 'Welcome to ONLYOFFICE Desktop Editors!',
-    welDescr: 'Work on documents offline or connect the suite to your cloud: ONLYOFFICE, ownCloud, Nextcloud.',
+    welcomeTitle: '👋 Welcome to ONLYOFFICE!',
+    welcomeDescription: `
+        <p>We are pleased to welcome you to ONLYOFFICE - a universal platform for working with documents, spreadsheets, presentations and PDF files</p>
+        <p>What you can do with ONLYOFFICE:</p>
+        <ul>
+            <li><b>Documents, spreadsheets and presentations:</b> Create and edit text documents, spreadsheets and presentations with a rich set of formatting, computing and multimedia tools.</li>
+            <li><b>PDF:</b> Edit PDF files, add annotations, fill in forms, and convert documents to PDF.</li>
+            <li><b>Cloud:</b> Synchronize changes and share files with colleagues in real time.</li>
+        </ul>
+        <p>Need help? Visit our Help Center or contact our support team.</p>
+        <p>We wish you a successful creative workflow!</p>
+        <p>ONLYOFFICE Team</p>
+    `,
     btnConnect: 'Connect now',
     textHavePortal: 'Already use a cloud?',
     btnCreatePortal: 'Create an ONLYOFFICE cloud',
     btnAddPortal: 'Add сloud',
     btnLogin: 'Login',
-    btnBrowse: 'Browse',
+    // btnBrowse: 'Browse',
     btnNext: 'Next',
     portalEmptyTitle: 'Connect to your cloud',
     portalEmptyDescr: 'Store your documents in the cloud and access them any time, from anywhere. Share and collaborate on them. Chat in your doc, add comments or share it for review.',
@@ -47,12 +58,21 @@ l10n.en = {
     portalListTitle: 'Connected clouds',
     textNoFiles: 'There are no files',
     listRecoveryTitle:'Recover files',
+    listPinnedTitle:'Pinned files',
+    listToday: 'Today',
+    listEarlier: 'Earlier',
     listRecentFileTitle:'Recent files',
     listRecentDirTitle:'Recent folders',
+    areaCreateFile:'Create new file',
+    areaOpenFile:'Open file',
+    labelDropFile: 'Drop file here or',
+    labelSelectFile: 'Select file',
     menuFileOpen: 'Open',
-    menuFileExplore: 'Show in folder',
+    menuFilePin: 'Pin',
+    menuFileUnpin: 'Unpin',
+    menuFileExplore: 'File Location',
     menuRemoveModel: 'Remove from list',
-    menuClear: 'Clear',
+    menuClear: 'Clear all',
     menuLogout: 'Logout',
     textMyComputer: 'My Computer',
     textThrough: 'through',
@@ -82,14 +102,19 @@ l10n.en = {
     newXlsx: 'Spreadsheet',
     newPptx: 'Presentation',
     newForm: 'PDF Form',
-    actCreateNew: 'Create new',
-    actRecentFiles: 'Recent files',
-    actOpenLocal: 'Open local file',
+    // actCreateNew: 'Create new',
+    // actRecentFiles: 'Recent files',
+    actMain: 'Main',
+    actOpenLocal: 'Open',
     actConnectTo: 'Connect to cloud',
     actActivate: 'Activate',
     actAbout: 'About',
     actSettings: 'Settings',
     actTemplates: 'Templates',
+    actDocuments: 'Documents',
+    actSpreadsheets: 'Spreadsheets',
+    actPresentations: 'Presentations',
+    actPDFs: 'PDF',
     licKeyHolder: 'input activation key',
     btnActivate: 'Activate',
     licGetLicense: 'Get license now',
