@@ -557,12 +557,12 @@
                     {
                         caption: utils.Lang.menuFilePin,
                         action: 'files:pin',
-                        icon: 'pin'
+                        icon: 'pin20'
                     },
                     {
                         caption: utils.Lang.menuFileUnpin,
                         action: 'files:unpin',
-                        icon: 'pin'
+                        icon: 'unpin'
                     },
                     {
                         caption: '--',
@@ -570,7 +570,7 @@
                     {
                         caption: utils.Lang.menuFileExplore,
                         action: 'files:explore',
-                        icon: 'folder'
+                        icon: 'gofolder'
                     },
                     {
                         caption: utils.Lang.menuRemoveModel,

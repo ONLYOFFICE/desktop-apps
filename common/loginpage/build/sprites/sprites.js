@@ -112,7 +112,7 @@ module.exports = (grunt, rootpathprefix) => {
                     },
                 }
             },
-            svgicons: {
+            toolicons: {
                 src: [`${_path}res/img/toolicons/1x/*.svg`],
                 dest: `${_path}res/img/`,
                 options: {
@@ -121,6 +121,19 @@ module.exports = (grunt, rootpathprefix) => {
                             inline: true,
                             dest: './generated',
                             sprite: `toolicons.svg`,
+                        },
+                    },
+                }
+            },
+            toolicons20: {
+                src: [`${_path}res/img/toolicons20/1x/*.svg`],
+                dest: `${_path}res/img/`,
+                options: {
+                    mode: {
+                        symbol: {
+                            inline: true,
+                            dest: './generated',
+                            sprite: `toolicons20.svg`,
                         },
                     },
                 }
@@ -155,6 +168,21 @@ module.exports = (grunt, rootpathprefix) => {
                 spritename: sprite_toolicons_name,
                 scale: '1.75x'
             }),
+            // 'toolicon_20_1.5x': configTemplate({
+            //     iconsdir: `${sprite_toolicons_name}20`,
+            //     spritename: `${sprite_toolicons_name}20`,
+            //     scale: '1.5x'
+            // }),
+            // 'toolicon1.25x': configTemplate({
+            //     iconsdir: `${sprite_toolicons_name}20`,
+            //     spritename: `${sprite_toolicons_name}20`,
+            //     scale: '1.25x'
+            // }),
+            // 'toolicon1.75x': configTemplate({
+            //     iconsdir: `${sprite_toolicons_name}20`,
+            //     spritename: `${sprite_toolicons_name}20`,
+            //     scale: '1.75x'
+            // }),
         },
         replace_allconnect: {                   //when fill =#fff the fill turns orange on the light theme page
             dist: {
