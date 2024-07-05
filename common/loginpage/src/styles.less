@@ -25,6 +25,7 @@
 
 body {
     cursor: default;
+    color: @text-normal;
 }
 
 input,
@@ -851,12 +852,6 @@ li.menu-item {
         flex-shrink: 0;
     }
 
-    tr:not(.pinned) {
-        .cpin > button {
-            opacity: 0.5;
-        }
-    }
-
     tr:hover:not(.unavail) {
         .cbutton {
             opacity: 1;
@@ -886,6 +881,14 @@ li.menu-item {
             &:active {
                 background: var(--highlight-button-pressed);
                 color: var(--icon-normal);
+            }
+
+            svg {
+                opacity: 0.5;
+
+                &:hover {
+                    opacity: 1;
+                }
             }
         }
     }

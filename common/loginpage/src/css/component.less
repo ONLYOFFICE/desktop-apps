@@ -381,18 +381,21 @@ input[type="radio"] {
     }
 
     li > a {
-        display: flex;
-        align-items: center;
-        gap: 8px;
         padding: 8px 12px 8px 0;
         cursor: pointer;
         font-size: 12px;
         line-height: 16px;
         border-radius: 2px;
         position: relative;
+        color: @text-normal;
+
+        svg {
+            color: @text-normal;
+        }
 
         &:hover {
             background-color: @highlight-button-hover;
+            color: @text-normal;
         }
 
         &:active {
