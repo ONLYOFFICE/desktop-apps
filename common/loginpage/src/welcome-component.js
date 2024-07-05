@@ -5,7 +5,7 @@ window.WelcomeComponent = function() {
 
     const _template = `
       <div class="welcome-component">
-        <h1>${utils.Lang.welcomeTitle}</h1>
+        <h1 l10n>${utils.Lang.welcomeTitle}</h1>
         <div>
             <p>${utils.Lang.welcomeWeArePleasedToWelcomeYou}</p>
             <p>${utils.Lang.welcomeWhatYouCanDoWithOnlyOffice}</p>
