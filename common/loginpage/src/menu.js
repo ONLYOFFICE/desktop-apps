@@ -52,18 +52,39 @@ Menu.prototype.init = function(parent) {
     var $container = $(_tpl_.replace(/\%id/, this.id)).appendTo(parent);
     var $list = $container.find('ul');
 
-    var _tpl_item_ = '<li><a id="%id" class="dd-item" tabindex="-1" type="menuitem" l10n>%caption</a></li>',
-        _tpl_divider_ = '<li class="divider"></li>';
+    function itemTemplate(id, caption, icon) {
+        let iconTemplate = '';
+        if (icon) {
+            iconTemplate = `
+                <svg class="icon" data-iconname="${icon}" data-precls="tool-icon">
+                    <use href="#${icon}"/>
+                </svg>
+            `
+        }
+
+        return `
+            <li>
+                <a id="${id}" class="dd-item" tabindex="-1" type="menuitem" l10n>
+                    ${iconTemplate}
+                    <span l10n>${caption}</span>
+                </a>
+            </li>
+        `
+    }
+
+    function dividerTemplate(id) {
+        return `<li id="${id}" class="divider"></li>`;
+    }
+
     this.items.forEach(function(item) {
         let $item;
 
         !item.id && (item.id = me.prefix + ++nCounter);
-        if (item.caption == '--')
-            $item = $(_tpl_divider_);
-        else {
-            $item = $(_tpl_item_
-                .replace(/%caption/, item.caption)
-                .replace(/%id/, item.id));
+        if (item.caption == '--') {
+            $item = $(dividerTemplate(item.id));
+            item.isDivider = true;
+        } else {
+            $item = $(itemTemplate(item.id, item.caption, item.icon));
 
             $item.on('click', {'action': item.action}, function(e) {
                 if ( !e.target.hasAttribute('disabled') )
@@ -93,7 +114,7 @@ Menu.prototype.show = function(pos, data) {
     let _right = $dd.width() + pos.left,
         _rlimit = $(document).width();
     if (!!_right && _right > _rlimit) {
-        pos.left -= (_right - _rlimit + 4);
+        pos.left -= (_right - _rlimit + 24);
     }
 
     let _top = $dd.height() + pos.top,
@@ -133,6 +154,16 @@ Menu.prototype.hideItem = function(action, hide) {
         }
     }
 };
+
+Menu.prototype.hideItemAfter = function(action, hide) {
+    for (let item of this.items) {
+        if (item.action == action) {
+            const $elNext = $('#' + item.id).parent().next();
+            $elNext[hide ? 'hide' : 'show']();
+        }
+    }
+}
+
 
 Menu.opened = false;
 
