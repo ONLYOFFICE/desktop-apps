@@ -150,14 +150,21 @@
                           </td>`;
 
             if (info.type != 'folder') {
-                _tpl += `<td class="row-cell cpin">
-                    <button id="${info.uid}-btn">
+                _tpl += `<td class="row-cell cbutton cpin">
+                    <button id="${info.uid}-pin-btn">
                         <svg class="icon" data-iconname="pin" data-precls="tool-icon">
                             <use href="#pin"/>
                         </svg>
                     </button>
                 </td>`;
                 _tpl += `<td class="row-cell cdate text-caption">${info.date}</td>`;
+                _tpl += `<td class="row-cell cbutton">
+                    <button id="${info.uid}-more-btn">
+                        <svg class="icon" data-iconname="more" data-precls="tool-icon">
+                            <use href="#more"/>
+                        </svg>
+                    </button>
+                </td>`;
             }
 
             return _tpl;
@@ -331,12 +338,18 @@
             // this.view.updatelistsize();
         };
 
-        function bindPinButton(model, view) {
-            $(`#${model.uid}-btn`, view).click((e) => {
+        function bindButtons(collection, model, view) {
+            $(`#${model.uid}-pin-btn`, view).click((e) => {
                 e.preventDefault();
                 e.stopPropagation();
 
                 model.set('pinned', !model.pinned);
+            })
+
+            $(`#${model.uid}-more-btn`, view).click((e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                collection.events.contextmenu.notify(model, e);
             })
         }
 
@@ -371,7 +384,7 @@
                 let $el = collection.list.find('#' + model.uid);
                 $el.addClass('pinned');
 
-                bindPinButton(model, this.view.$panel);
+                bindButtons(collection, model, this.view.$panel);
 
                 this.view.$boxPinned.show();
                 // this.view.updatelistsize();
@@ -441,6 +454,7 @@
                     ppmenu.actionlist = 'recent';
                     ppmenu.hideItem('files:unpin', model.dir || !model.pinned || !model.exist);
                     ppmenu.hideItem('files:pin', model.dir || model.pinned || !model.exist);
+                    ppmenu.hideItemAfter('files:unpin', model.dir || !model.exist);
                     ppmenu.hideItem('files:explore', (!model.islocal && !model.dir) || !model.exist);
                     ppmenu.show({left: e.clientX, top: e.clientY}, model);
                 });
@@ -478,7 +492,7 @@
                 let $item = this.view.listitemtemplate(model);
                 collection.list.append($item);
 
-                bindPinButton(model, this.view.$panel);
+                bindButtons(collection, model, this.view.$panel);
 
                 this.view.$boxToday.show();
                 // this.view.updatelistsize();
@@ -499,7 +513,7 @@
                 let $item = this.view.listitemtemplate(model);
                 collection.list.append($item);
 
-                bindPinButton(model, this.view.$panel);
+                bindButtons(collection, model, this.view.$panel);
 
                 collection.list.parent().removeClass('empty');
             });
@@ -513,6 +527,7 @@
             });
             collectionRecovers.events.inserted.attach((collection, model)=>{
                 collection.list.append( this.view.listitemtemplate(model) );
+                bindButtons(collection, model, this.view.$panel);
             });
             collectionRecovers.events.click.attach((collection, model)=>{
                 openFile(OPEN_FILE_RECOVERY, model);
@@ -521,6 +536,7 @@
                 ppmenu.actionlist = 'recovery';
                 ppmenu.hideItem('files:unpin', true);
                 ppmenu.hideItem('files:pin', true);
+                ppmenu.hideItemAfter('files:unpin', true);
                 ppmenu.hideItem('files:explore', true);
                 ppmenu.show({left: e.clientX, top: e.clientY}, model);
             });
@@ -536,20 +552,33 @@
                         action: 'files:open'
                     },
                     {
+                        caption: '--',
+                    },
+                    {
                         caption: utils.Lang.menuFilePin,
-                        action: 'files:pin'
+                        action: 'files:pin',
+                        icon: 'pin'
                     },
                     {
                         caption: utils.Lang.menuFileUnpin,
-                        action: 'files:unpin'
+                        action: 'files:unpin',
+                        icon: 'pin'
+                    },
+                    {
+                        caption: '--',
                     },
                     {
                         caption: utils.Lang.menuFileExplore,
-                        action: 'files:explore'
+                        action: 'files:explore',
+                        icon: 'folder'
                     },
                     {
                         caption: utils.Lang.menuRemoveModel,
-                        action: 'files:forget'
+                        action: 'files:forget',
+                        icon: 'remove'
+                    },
+                    {
+                        caption: '--',
                     },
                     {
                         caption: utils.Lang.menuClear,

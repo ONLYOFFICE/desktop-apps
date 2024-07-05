@@ -33,19 +33,18 @@
 var l10n = l10n || {};
 l10n.en = {
     welcomeTitle: '👋 Welcome to ONLYOFFICE!',
-    welcomeWeArePleasedToWelcomeYou: "We are pleased to welcome you to ONLYOFFICE - a universal platform for working with documents, spreadsheets, presentations and PDF files",
-    welcomeWhatYouCanDoWithOnlyOffice: "What you can do with ONLYOFFICE:",
-    welcomeDocumentsSpreadsheetsPresentationsTitle: "Documents, spreadsheets and presentations:",
-    welcomeDocumentsSpreadsheetsPresentationsDescription: "Create and edit text documents, spreadsheets and presentations with a rich set of formatting, computing and multimedia tools.",
-    welcomePdfTitle: "PDF:",
-    welcomePdfDescription: "Edit PDF files, add annotations, fill in forms, and convert documents to PDF.",
-    welcomeCloudTitle: "Cloud:",
-    welcomeCloudDescription: "Synchronize changes and share files with colleagues in real time.",
-    welcomeNeedHelp: "Need help? Visit our Help Center or contact our support team.",
-    welcomeSuccessfulCreativeWorkflow: "We wish you a successful creative workflow!",
-    welcomeOnlyOfficeTeam: "ONLYOFFICE Team",
-    welWelcome: 'Welcome to ONLYOFFICE Desktop Editors!',
-    welDescr: 'Work on documents offline or connect the suite to your cloud: ONLYOFFICE, ownCloud, Nextcloud.',
+    welcomeDescription: `
+        <p>We are pleased to welcome you to ONLYOFFICE - a universal platform for working with documents, spreadsheets, presentations and PDF files</p>
+        <p>What you can do with ONLYOFFICE:</p>
+        <ul>
+            <li><b>Documents, spreadsheets and presentations:</b> Create and edit text documents, spreadsheets and presentations with a rich set of formatting, computing and multimedia tools.</li>
+            <li><b>PDF:</b> Edit PDF files, add annotations, fill in forms, and convert documents to PDF.</li>
+            <li><b>Cloud:</b> Synchronize changes and share files with colleagues in real time.</li>
+        </ul>
+        <p>Need help? Visit our Help Center or contact our support team.</p>
+        <p>We wish you a successful creative workflow!</p>
+        <p>ONLYOFFICE Team</p>
+    `,
     btnConnect: 'Connect now',
     textHavePortal: 'Already use a cloud?',
     btnCreatePortal: 'Create an ONLYOFFICE cloud',
@@ -71,9 +70,9 @@ l10n.en = {
     menuFileOpen: 'Open',
     menuFilePin: 'Pin',
     menuFileUnpin: 'Unpin',
-    menuFileExplore: 'Show in folder',
+    menuFileExplore: 'File Location',
     menuRemoveModel: 'Remove from list',
-    menuClear: 'Clear',
+    menuClear: 'Clear all',
     menuLogout: 'Logout',
     textMyComputer: 'My Computer',
     textThrough: 'through',

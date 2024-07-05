@@ -642,12 +642,17 @@ li.menu-item {
         align-items: center;
         justify-content: center;
         flex-shrink: 0;
+
+        .icon {
+            width: 32px;
+            height: 32px;
+        }
     }
 
     .icon {
         float: left;
         width: 24px;
-        height: 30px;
+        height: 24px;
         position: relative;
 
         &.docx {
@@ -848,28 +853,27 @@ li.menu-item {
 
     tr:not(.pinned) {
         .cpin > button {
-            display: none;
             opacity: 0.5;
         }
     }
 
     tr:hover:not(.unavail) {
-        .cpin > button {
-            display: flex;
-        }
-    }
-
-    .pinned {
-        .cpin > button {
-            display: flex;
+        .cbutton {
             opacity: 1;
         }
     }
 
-    .cpin {
+    .pinned {
+        .cpin {
+            opacity: 1;
+        }
+    }
+
+    .cbutton {
         width: 24px;
         height: 24px;
         flex-shrink: 0;
+        opacity: 0;
         button {
             color: var(--icon-normal);
             width: 24px;

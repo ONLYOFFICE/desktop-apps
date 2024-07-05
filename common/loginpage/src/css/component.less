@@ -371,22 +371,48 @@ input[type="radio"] {
 *
 */
 .dropdown-menu {
-    background-color: @background-normal;
-    border: @scaled-one-px solid @border-regular-control;
+    background-color: @background-action-panel;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px 0 rgba(0,0, 0, 0.2);
+    padding: 4px;
+
+    .divider {
+        margin: 4px 0;
+    }
 
     li > a {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 12px 8px 0;
         cursor: pointer;
-        font-size: 13px;
-        color: @text-normal;
+        font-size: 12px;
+        line-height: 16px;
+        border-radius: 2px;
+        position: relative;
 
-        &:hover, &:focus {
-            outline: none;
-            color: @text-normal-pressed;
+        &:hover {
             background-color: @highlight-button-hover;
         }
 
-        & small {
-            color: @text-secondary;
+        &:active {
+            background-color: @highlight-button-pressed;
+        }
+
+        span {
+            padding-left: 32px;
+        }
+
+        .icon {
+            width: 16px;
+            height: 16px;
+            position: absolute;
+            left: 8px;
+        }
+
+        .text {
+            font-size: 14px;
+            line-height: 20px;
         }
     }
 
