@@ -60,19 +60,6 @@ module.exports = (grunt, rootpathprefix) => {
                     },
                 },
             },
-            welcome: {
-                src: [`${_path}res/img/welcome*.svg`],
-                dest: `${_path}res/img/`,
-                options: {
-                    mode: {
-                        symbol: {
-                            inline: true,
-                            dest: './generated',
-                            sprite: `welcome.svg`,
-                        },
-                    },
-                }
-            },
             formats: {
                 src: [`${_path}res/img/formats-svg/*.svg`],
                 dest: `${_path}res/img/`,

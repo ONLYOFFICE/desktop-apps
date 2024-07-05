@@ -78,7 +78,6 @@
                     ,"../src/panelfolders.js"
                     ,"../src/panelconnect.js"
                     ,"../src/panelabout.js"
-                    ,"../src/panelwelcome.js"
                     ,"../src/panelsettings.js"
                     ,"../src/panelexternal.js"
                     ,"../src/dialogconnect.min.js"

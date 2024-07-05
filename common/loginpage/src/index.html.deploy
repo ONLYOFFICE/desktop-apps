@@ -122,7 +122,6 @@
 
     <div class="injected-svg">
     <inline src="../res/img/generated/connect.svg" />
-    <inline src="../res/img/generated/welcome.svg" />
     <inline src="../res/img/generated/logo.svg" />
     <inline src="../res/img/generated/update_status.svg" />
     <inline src="../res/img/generated/formats.svg" />
