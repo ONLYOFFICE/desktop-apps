@@ -58,7 +58,7 @@ button {
     /*min-height: 625px;*/
     display: flex;
     background-color: @background-normal;
-    padding: 8px 0;
+    padding: 8px;
 
     /*@media(min-width: 1200) {}*/
 }
@@ -229,7 +229,7 @@ li.menu-item {
     display: flex;
     flex-direction: column;
     overflow: auto;
-    padding: 0 8px 0;
+    padding: 0 16px 0 8px;
 
     /*background-color: #fff;*/
     &:not(.view--modal) {
@@ -338,6 +338,7 @@ li.menu-item {
     &.settings {
         overflow-x: hidden;
         min-width: 450px;
+        padding-bottom: 35px;
     }
 
     &.about {
