@@ -4,7 +4,7 @@
 <context>
     <name>CAscApplicationManagerWrapper</name>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1315"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1316"/>
         <source>Presenter View</source>
         <translation>プレゼンタービュー</translation>
     </message>
@@ -25,23 +25,23 @@
         <translation type="obsolete">名前を付けて保存</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1772"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1773"/>
         <source>You must restart the application for the settings to take effect.</source>
         <translation>設定を有効にするには、アプリケーションを再起動する必要があります。今すぐ再起動しますか？</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2151"/>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2153"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2152"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2154"/>
         <source>Document%1.docx</source>
         <translation>ドキュメント%1.docx</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2156"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2157"/>
         <source>Book%1.xlsx</source>
         <translation>ブック%1.xlsx</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2157"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2158"/>
         <source>Presentation%1.pptx</source>
         <translation>プレゼンテーション%1.pptx</translation>
     </message>
@@ -389,7 +389,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="78"/>
         <source>ONLYOFFICE Form Document (*.pdf)</source>
-        <translation>ONLYOFFICEフォームドキュメント (*.pdf)</translation>
+        <translation>PDFフォーム (*.pdf)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="85"/>
@@ -914,12 +914,12 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper_private.h" line="249"/>
+        <location filename="../src/cascapplicationmanagerwrapper_private.h" line="251"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
         <translation>%1 は利用できません。名前を変更したか、移動または削除された可能性があります。&lt;br&gt;リストからファイルを削除しますか?</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper_private.h" line="292"/>
+        <location filename="../src/cascapplicationmanagerwrapper_private.h" line="294"/>
         <source>File %1 cannot be opened or doesn&apos;t exists.</source>
         <translation>ファイル %1 を開くことができないか、存在しません。</translation>
     </message>
