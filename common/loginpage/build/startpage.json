@@ -83,6 +83,7 @@
                     ,"../src/createnew.js"
                     ,"../src/about-dialog.js"
                     ,"../src/dnd-file-zone.js"
+                    ,"../src/welcome-component.js"
                     ,"../src/dialogconnect.min.js"
                     ,"../src/panels.js"
                 ],
