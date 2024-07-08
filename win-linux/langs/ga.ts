@@ -413,7 +413,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="85"/>
         <source>OpenDocument Presentation Template</source>
-        <translation>Teimpléad cur i láthair OpenDocument (*.otp)</translation>
+        <translation>Teimpléad cur i láthair OpenDocument</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="91"/>
