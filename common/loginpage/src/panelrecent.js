@@ -172,6 +172,8 @@
             return _tpl;
         },
         onscale: function (pasteSvg) {
+            isSvgIcons = pasteSvg;
+
             let elm,icoName, elmIcon, parent,
                 emptylist = $('[class*="text-emptylist"]', '#box-recent');
             emptylist.toggleClass('text-emptylist text-emptylist-svg');
@@ -179,11 +181,19 @@
             if(pasteSvg && !emptylist.find('svg').length)
                 emptylist.prepend($('<svg class = "icon"><use xlink:href="#folder-big"></use></svg>'));
 
-            $('#box-recent .cicon').each(function () {
+            $('#box-recent, #box-pinned, #box-today, #box-recovery').find('.cicon').each(function () {
                  elm = $(this);
                  parent = elm.parent();
                  if(parent.hasClass('crypted-svg') || parent.hasClass('crypted'))
                      parent.toggleClass('crypted-svg crypted');
+
+                 parent.find('.cbutton').each(function(i, el) {
+                    const $el = $(el).find('button');
+                    if ( !pasteSvg && $('i.icon', $el).length == 0) {
+                        const $isvg = $('svg.icon', $el);
+                        $el.append(`<i class='icon tool-icon ${$isvg.data('iconname')}'></i>`);
+                    }
+                 });
 
                  if(!pasteSvg || !!$('svg',elm).length) return;
 
@@ -191,13 +201,6 @@
                  elm.append($(`<svg class = "icon"><use xlink:href="#${icoName}"></use></svg>`));
                  if(parent.hasClass('crypted-svg'))
                      elm.append($('<svg class = "shield"><use xlink:href="#shield"></use></svg>'));
-
-                 parent.find('.cbutton').each(function(i, el) {
-                    if ( !pasteSvg && $('i.icon', el).length == 0) {
-                        const $isvg = $('svg.icon');
-                        el.append(`<i class='icon tool-icon ${$svg.data('iconname')}'></i>`);
-                    }
-                 });
             });
 
             $('#box-recent-folders td.cicon').each(function (){
