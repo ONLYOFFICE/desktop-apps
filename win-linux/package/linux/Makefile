@@ -61,11 +61,8 @@ TAR = $(TAR_PACKAGE_DIR)/$(PACKAGE_NAME)-$(PACKAGE_VERSION)$(TAR_RELEASE_SUFFIX)
 HELP_TAR = $(TAR_PACKAGE_DIR)/$(PACKAGE_NAME)-help-$(PACKAGE_VERSION)$(TAR_RELEASE_SUFFIX)-any.tar.xz
 
 NEWS_RPM = common/usr/share/doc/$(PACKAGE_NAME)/NEWS
-NEWS_RPM_M4 = common/usr/share/doc/NEWS.m4
 CHANGELOG_RPM = common/usr/share/doc/$(PACKAGE_NAME)/ChangeLog
-CHANGELOG_RPM_M4 = common/usr/share/doc/ChangeLog.m4
 CHANGELOG_DEB = deb/build/debian/changelog
-CHANGELOG_DEB_M4 = deb/template/changelog.m4
 CHANGELOG_DEB_ASTRA = deb-astra/build/debian/changelog
 
 ifeq ($(COMPANY_NAME), ONLYOFFICE)
@@ -178,13 +175,10 @@ else
 endif
 RPM_PARAMS += --define '_binary_payload w7.xzdio'
 
-CHANGES_DIR = ../../../common/changes
-ifeq ($(COMPANY_NAME), ONLYOFFICE)
-	CHANGES_HTML = changes.html
-else
-	CHANGES_HTML = changes_ru.html
-endif
-CHANGES_DIR_LIST = $(shell ls -r $(CHANGES_DIR) | grep -v template)
+CHANGES_DIR ?= ../../../common/changes
+CHANGES_HTML = changes.html
+CHANGES_VERSIONS = $(shell echo $(PRODUCT_VERSION); { ls -1 $(CHANGES_DIR) \
+	| grep -E '^[0-9]+' | grep -v $(PRODUCT_VERSION) | sort -Vur; })
 
 all: tar deb deb-astra rpm apt-rpm suse-rpm urpmi
 
@@ -227,7 +221,7 @@ clean:
 		apt-rpm/$(PACKAGE_NAME).spec \
 		urpmi/$(PACKAGE_NAME).spec \
 		suse-rpm/$(PACKAGE_NAME).spec \
-		$(shell dirname $(CHANGELOG_RPM)) \
+		$(dir $(CHANGELOG_RPM)) \
 		$(CHANGES_DIR)/*/changes_??? \
 		$(CHANGES_DIR)/*/news_???
 
@@ -273,52 +267,114 @@ deb/build/debian/% : deb/template/%.m4
 	mkdir -pv $(@D) && m4 $(M4_DEB_PARAMS) $< > $@
 
 $(CHANGELOG_DEB_ASTRA) : $(CHANGELOG_DEB)
-	mkdir -p $(shell dirname $(CHANGELOG_DEB_ASTRA))
-	cp $(CHANGELOG_DEB) $(CHANGELOG_DEB_ASTRA)
+	mkdir -pv $(@D)
+	cp -v $(CHANGELOG_DEB) $@
 
-$(CHANGELOG_DEB) : $(CHANGELOG_DEB_M4) $(CHANGELOG_RPM)
-	$(foreach dir, \
-		$(CHANGES_DIR_LIST), \
-		$(shell \
-			sed 's/^[^ *]/* &/' $(CHANGES_DIR)/$(dir)/news_rpm | \
-			sed 's/^/  /' \
-			> $(CHANGES_DIR)/$(dir)/changes_deb; \
-			mkdir -p deb/build/debian; \
-			m4 $(M4_DEB_PARAMS) -D M4_PACKAGE_VERSION='$(dir)' -D M4_DATE='$(shell date -d "$(shell grep \"releasedate\" $(CHANGES_DIR)/$(dir)/$(CHANGES_HTML) | sed 's/.* - //' | sed 's/<\/span>.*//' | sed 's/{{DATE}}/$(shell date -R)/')" -R)' $(CHANGELOG_DEB_M4) | sed '2r $(CHANGES_DIR)/$(dir)/changes_deb' >> $(CHANGELOG_DEB)))
-	$(shell \
-		sed -i 's/$(PRODUCT_VERSION)/$(PACKAGE_VERSION)/' $(CHANGELOG_DEB))
+$(CHANGELOG_DEB) :
+	mkdir -pv $(@D)
+	for v in $(CHANGES_VERSIONS); do \
+		if [ -f $(CHANGES_DIR)/$$v/$(CHANGES_HTML) ]; then \
+			date=$$(sed -n $(CHANGES_DIR)/$$v/$(CHANGES_HTML) \
+				-e 's/{{DATE}}/'$$(date -I)'/' \
+				-e 's/.*<span class="releasedate"> - \(.*\)<\/span>.*/\1/p' \
+				| date -R -f -); \
+		else \
+			date=$$(date -R); \
+		fi; \
+		echo "VERSION: $$v; DATE: $$date"; \
+		mkdir -pv $(CHANGES_DIR)/$$v; \
+		if [ -f $(CHANGES_DIR)/$$v/$(CHANGES_HTML) ]; then \
+			sed $(CHANGES_DIR)/$$v/$(CHANGES_HTML) \
+				-e '/DOCTYPE/,/div class/d' \
+				-e '/div class/,/html/d' \
+				-e '/<h1>/d' \
+				-e '/<ul>/d' \
+				-e '/<\/ul>/d' \
+				-e 's/<\/li>//g' \
+				-e 's/<\/h4>/:/g' \
+				-e 's/<\/h2>/ ]/g' \
+				-e 's/<code>//g' \
+				-e 's/<\/code>//g' \
+				-e 's/ \{,\}<li>/    - /g' \
+				-e 's/ \{,\}<h4>/  * /g' \
+				-e 's/ \{,\}<h2>/\n  [ /g' \
+				-e '/^$$/d' \
+				| sed '1{/^$$/d}' \
+				> $(CHANGES_DIR)/$$v/changes_deb; \
+		else \
+			echo "  * $(PRODUCT_VERSION)" > $(CHANGES_DIR)/$$v/changes_deb; \
+		fi; \
+		if [ $$v = $(PRODUCT_VERSION) ]; then \
+			m4 $(M4_DEB_PARAMS) -D M4_DATE="$$date" \
+				deb/template/changelog.m4 \
+				| sed '2r '$(CHANGES_DIR)/$$v/changes_deb >> $@; \
+		else \
+			m4 $(M4_DEB_PARAMS) -D M4_PACKAGE_VERSION=$$v -D M4_DATE="$$date" \
+				deb/template/changelog.m4 \
+				| sed '2r '$(CHANGES_DIR)/$$v/changes_deb >> $@; \
+		fi; \
+	done
 
-$(CHANGELOG_RPM) :
-	$(foreach dir, \
-		$(CHANGES_DIR_LIST), \
-		$(shell \
-			sed '/DOCTYPE/,/div class/d' $(CHANGES_DIR)/$(dir)/$(CHANGES_HTML) | \
-			sed '/div class/,/html/d' | \
-			sed 's/<\/li>//g' | \
-			sed 's/<\/h4>//g' | \
-			sed 's/<\/h2>/:/g' | \
-			sed 's/<code>//g' | \
-			sed 's/<\/code>//g' | \
-			sed 's/ \{,\}<li>/  - /g' | \
-			sed 's/ \{,\}<h4>/* /g' | \
-			sed 's/ \{,\}<h2>//g' | \
-			sed '/<ul>/d' | \
-			sed '/<\/ul>/d' | \
-			sed '/<h1>/d' | \
-			sed '/^$$/d' \
-			> $(CHANGES_DIR)/$(dir)/news_rpm; \
-			mkdir -p $(shell dirname $(NEWS_RPM)); \
-			m4 $(M4_PARAMS) -D M4_VERSION='$(dir)' -D M4_DATE_SHORT='$(shell date -d "$(shell grep \"releasedate\" $(CHANGES_DIR)/$(dir)/$(CHANGES_HTML) | sed 's/.* - //' | sed 's/<\/span>.*//' | sed 's/{{DATE}}/$(shell date -R)/')" -I)' $(NEWS_RPM_M4) | sed '2r $(CHANGES_DIR)/$(dir)/news_rpm' >> $(NEWS_RPM)))
+$(NEWS_RPM) :
+	mkdir -pv $(@D)
+	for v in $(CHANGES_VERSIONS); do \
+		if [ -f $(CHANGES_DIR)/$$v/$(CHANGES_HTML) ]; then \
+			date=$$(sed -n $(CHANGES_DIR)/$$v/$(CHANGES_HTML) \
+				-e 's/{{DATE}}/'$$(date -I)'/' \
+				-e 's/.*<span class="releasedate"> - \(.*\)<\/span>.*/\1/p' \
+				| date -I -f -); \
+		else \
+			date=$$(date -I); \
+		fi; \
+		echo "VERSION: $$v; DATE: $$date"; \
+		mkdir -pv $(CHANGES_DIR)/$$v; \
+		if [ -f $(CHANGES_DIR)/$$v/$(CHANGES_HTML) ]; then \
+			sed $(CHANGES_DIR)/$$v/$(CHANGES_HTML) \
+				-e '/DOCTYPE/,/div class/d' \
+				-e '/div class/,/html/d' \
+				-e 's/<\/li>//g' \
+				-e 's/<\/h4>/:/g' \
+				-e 's/<\/h2>//g' \
+				-e 's/<code>//g' \
+				-e 's/<\/code>//g' \
+				-e 's/ \{,\}<li>/  - /g' \
+				-e 's/ \{,\}<h4>/- /g' \
+				-e 's/ \{,\}<h2>//g' \
+				-e '/<ul>/d' \
+				-e '/<\/ul>/d' \
+				-e '/<h1>/d' \
+				-e '/^$$/d' \
+				> $(CHANGES_DIR)/$$v/news_rpm; \
+		else \
+			echo "$(PRODUCT_VERSION)" > $(CHANGES_DIR)/$$v/news_rpm; \
+		fi; \
+		m4 $(M4_PARAMS) -D M4_VERSION=$$v -D M4_DATE_SHORT="$$date" \
+			common/usr/share/doc/NEWS.m4 \
+			| sed '2r '$(CHANGES_DIR)/$$v/news_rpm >> $@; \
+	done
 
-	$(foreach dir, \
-		$(CHANGES_DIR_LIST), \
-		$(shell \
-			sed 's/  - /    - /' $(CHANGES_DIR)/$(dir)/news_rpm | \
-			sed 's/* /  - /' | \
-			sed 's/^[^ *]/- &/' \
-			> $(CHANGES_DIR)/$(dir)/changes_rpm; \
-			mkdir -p $(shell dirname $(CHANGELOG_RPM)); \
-			m4 $(M4_PARAMS) -D M4_VERSION='$(dir)' -D M4_DATE='$(shell LC_TIME="en_US.UTF-8" date -d "$(shell grep \"releasedate\" $(CHANGES_DIR)/$(dir)/$(CHANGES_HTML) | sed 's/.* - //' | sed 's/<\/span>.*//' | sed 's/{{DATE}}/$(shell date -R)/')" +"%a %b %d %Y")' $(CHANGELOG_RPM_M4) | sed '1r $(CHANGES_DIR)/$(dir)/changes_rpm' >> $(CHANGELOG_RPM)))
+$(CHANGELOG_RPM) : $(NEWS_RPM)
+	mkdir -pv $(@D)
+	for v in $(CHANGES_VERSIONS); do \
+		if [ -f $(CHANGES_DIR)/$$v/$(CHANGES_HTML) ]; then \
+			date=$$(sed -n $(CHANGES_DIR)/$$v/$(CHANGES_HTML) \
+				-e 's/{{DATE}}/'$$(date -I)'/' \
+				-e 's/.*<span class="releasedate"> - \(.*\)<\/span>.*/\1/p' \
+				| date +'%a %b %d %Y' -f -); \
+		else \
+			date=$$(date +'%a %b %d %Y'); \
+		fi; \
+		echo "VERSION: $$v; DATE: $$date"; \
+		sed $(CHANGES_DIR)/$$v/news_rpm \
+			-e 's/^    - /      - /' \
+			-e 's/^  - /    - /' \
+			-e 's/^- /  - /' \
+			-e 's/^[^ *]/- &/' \
+			> $(CHANGES_DIR)/$$v/changes_rpm; \
+		m4 $(M4_PARAMS) -D M4_VERSION=$$v -D M4_DATE="$$date" \
+			common/usr/share/doc/ChangeLog.m4 \
+			| sed '1r '$(CHANGES_DIR)/$$v/changes_rpm >> $@; \
+	done
 
 deb/build/debian/$(PACKAGE_NAME).% : deb/template/package.%.m4
 	mkdir -pv $(@D) && m4 $(M4_DEB_PARAMS) $< > $@

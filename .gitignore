@@ -36,6 +36,7 @@ common/loginpage/deploy/*
 common/loginpage/src/dlglogin.min.js
 common/converter/*
 common/changes/*/changes_???
+common/changes/*/news_???
 */.svn/*
 
 .DS_Store
