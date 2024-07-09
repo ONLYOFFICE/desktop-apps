@@ -657,10 +657,6 @@
                 dragAndDropZone.render(this.view.$panel.find("#dnd-file-zone"));
                 dragAndDropZone.hide();
 
-                if (!localStorage.welcome) {
-                    welcomeComponent = new WelcomeComponent();
-                    welcomeComponent.render(this.view.$panel.find("#welcome-box"));
-                }
 
                 _init_collections.call(this);
                 _init_ppmenu.call(this);
@@ -724,16 +720,6 @@
                 return collectionRecovers;
             },
             filterRecents: function(doctype) {
-                if (welcomeComponent) {
-                    if (localStorage.welcome) {
-                        welcomeComponent.detach();
-                        welcomeComponent = null;
-                        $('.recent-flex-box').show();
-                    } else {
-                        $('.recent-flex-box').hide();
-                        return;
-                    }
-                }
 
                 $('.recent-box-wrapper .table-files').removeClass('filter-word filter-cell filter-slide filter-pdfe');
                 panelCreateNew.filter(doctype);
@@ -752,6 +738,21 @@
 
                 $title[totalItems === 0 ? 'hide' : 'show']();
                 dragAndDropZone[totalItems === 0 ? 'show' : 'hide']();
+            },
+            showWelcome: function() {
+                if ( !welcomeComponent ) {
+                    welcomeComponent = new WelcomeComponent();
+                    welcomeComponent.render(this.view.$panel.find("#welcome-box"));
+                }
+                $('.recent-flex-box').hide();
+            },
+            hideWelcome: function() {
+                if ( welcomeComponent ) {
+                    welcomeComponent.detach();
+                    welcomeComponent = null;
+
+                    $('.recent-flex-box').show();
+                }
             },
         };
     })());

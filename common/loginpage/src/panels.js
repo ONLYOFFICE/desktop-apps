@@ -136,6 +136,10 @@ $(document).ready(function() {
         selectAction(utils.inParams.panel);
     } else {
         selectAction('recents');
+
+        if ( !localStorage.welcome ) {
+            app.controller.recent.showWelcome();
+        }
     }
 
     $('#placeholder').on('click', '.newportal', function(){
@@ -189,6 +193,7 @@ function onActionClick(e) {
         openFile(OPEN_FILE_FOLDER, '');
     } else {
         if (!localStorage.welcome) {
+            app.controller.recent.hideWelcome();
             localStorage.setItem('welcome', 'have been');
         }
 
