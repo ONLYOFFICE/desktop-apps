@@ -41,13 +41,18 @@ window.AboutDialog = function(params) {
 
             $dialogTitle = $el.find('.title');
             $dialogTitle.find('.tool.close').bind('click', onCloseClick);
-            // _set_title( utils.Lang.loginTitleStart );
 
             $dialogBody = $el.find('.body');
 
             $el.get(0).showModal();
             $el.addClass('scaled');
             $el.on('close', onCloseClick);
+
+            $(document).on('click', function(e) {
+                if (e.target === $el.get(0)) {
+                    close();
+                }
+            });
         }
     }
 };
