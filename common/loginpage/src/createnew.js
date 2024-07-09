@@ -32,7 +32,7 @@
                             icon:'newslide',
                             title: utils.Lang.newPptx,
                         },{
-                            editor: 'pdfe',
+                            editor: 'form',
                             icon:'newpdf',
                             title: utils.Lang.newForm,
                         // },{
