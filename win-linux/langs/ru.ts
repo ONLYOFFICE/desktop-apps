@@ -394,7 +394,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="85"/>
         <source>OpenDocument Presentation Template</source>
-        <translation>Шаблон презентации OpenDocument (*.otp)</translation>
+        <translation>Шаблон презентации OpenDocument</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="91"/>
