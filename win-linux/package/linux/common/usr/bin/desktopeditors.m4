@@ -62,9 +62,9 @@ set_names() {
     *`)'
       SOURCE_DOC_DIR="$SOURCE_DOC_DIR/en-US"
       SOURCE_DOC_NAME="new"
-      NEW_DOCX_NAME="New Document"
-      NEW_XLSX_NAME="New Spreadsheet"
-      NEW_PPTX_NAME="New Presentation"
+      NEW_DOCX_NAME="New document"
+      NEW_XLSX_NAME="New spreadsheet"
+      NEW_PPTX_NAME="New presentation"
       NEW_DOCXF_NAME="New PDF form"
       ;;
   esac
