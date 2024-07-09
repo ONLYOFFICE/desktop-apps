@@ -186,12 +186,13 @@ function onActionClick(e) {
 
     if (/^custom/.test(action)) return;
 
-    if (action == 'open' && 
-            !app.controller.recent.getRecents().size() && 
-                !app.controller.recent.getRecovers().size()) 
+    // if (action == 'open' && 
+    //         !app.controller.recent.getRecents().size() && 
+    //             !app.controller.recent.getRecovers().size()) 
+    // {
+    //     openFile(OPEN_FILE_FOLDER, '');
+    // } else 
     {
-        openFile(OPEN_FILE_FOLDER, '');
-    } else {
         if (!localStorage.welcome) {
             app.controller.recent.hideWelcome();
             localStorage.setItem('welcome', 'have been');
