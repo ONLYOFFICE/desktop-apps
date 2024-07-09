@@ -178,7 +178,19 @@ $(document).ready(function() {
         } 
     }, 50);
 
+    const mq = "screen and (-webkit-min-device-pixel-ratio: 1.01) and (-webkit-max-device-pixel-ratio: 1.99), " +
+                                "screen and (min-resolution: 1.01dppx) and (max-resolution: 1.99dppx)";
+
+    const mql = window.matchMedia(mq);
+    mql.addEventListener('change', onScale);
+
+    if (mql.matches) onScale({target: mql});
 });
+
+function onScale(e) {
+    CommonEvents.fire("icons:svg", [!e.target.matches]);
+    replaceIcons(!e.target.matches);
+}
 
 function onActionClick(e) {
     var $el = $(this);
@@ -254,23 +266,10 @@ var OPEN_FILE_RECENT = 2;
 var OPEN_FILE_FOLDER = 3;
 var Scroll_offset = '16px';
 
-{
-    const mq = "screen and (-webkit-min-device-pixel-ratio: 1.01) and (-webkit-max-device-pixel-ratio: 1.99), " +
-                                "screen and (min-resolution: 1.01dppx) and (max-resolution: 1.99dppx)";
-
-    const mql = window.matchMedia(mq);
-    mql.addEventListener('change', e => {
-        CommonEvents.fire("icons:svg", [!e.target.matches]);
-        replaceIcons(!e.target.matches);
-    });
-
-    replaceIcons(!mql.matches);
-}
-
 function replaceIcons(usesvg) {
     if ( usesvg ) {
     } else {
-        $('svg.icon', $('.tool-menu')).each((i, el) => {
+        $('.tool-menu svg.icon').each((i, el) => {
             el = $(el);
             const p = el.parent();
             if ( $('i.icon', p).length == 0 ) {

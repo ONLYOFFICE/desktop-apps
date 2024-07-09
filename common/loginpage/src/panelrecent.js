@@ -155,6 +155,7 @@
                         <svg class="icon" data-iconname="pin" data-precls="tool-icon">
                             <use href="#pin"/>
                         </svg>
+                        ${!isSvgIcons ? '<i class="icon tool-icon pin"></i>' : ''}
                     </button>
                 </td>`;
                 _tpl += `<td class="row-cell cdate text-caption">${info.date}</td>`;
@@ -163,6 +164,7 @@
                         <svg class="icon" data-iconname="more" data-precls="tool-icon">
                             <use href="#more"/>
                         </svg>
+                        ${!isSvgIcons ? '<i class="icon tool-icon more"></i>' : ''}
                     </button>
                 </td>`;
             }
@@ -189,6 +191,13 @@
                  elm.append($(`<svg class = "icon"><use xlink:href="#${icoName}"></use></svg>`));
                  if(parent.hasClass('crypted-svg'))
                      elm.append($('<svg class = "shield"><use xlink:href="#shield"></use></svg>'));
+
+                 parent.find('.cbutton').each(function(i, el) {
+                    if ( !pasteSvg && $('i.icon', el).length == 0) {
+                        const $isvg = $('svg.icon');
+                        el.append(`<i class='icon tool-icon ${$svg.data('iconname')}'></i>`);
+                    }
+                 });
             });
 
             $('#box-recent-folders td.cicon').each(function (){
