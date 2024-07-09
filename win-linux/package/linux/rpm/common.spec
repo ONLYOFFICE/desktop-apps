@@ -65,7 +65,6 @@ cp -t $BIN_DIR \
 cp -t $DATA_DIR/applications \
   $COMMON/usr/share/applications/%{_imageviewer_exec}.desktop \
   $COMMON/usr/share/applications/%{_videoplayer_exec}.desktop
-ln -srf $BIN_DIR/%{_desktopeditors_exec} $BIN_DIR/%{_package_name}
 %endif
 
 %clean

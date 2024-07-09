@@ -18,11 +18,7 @@ PACKAGE_EDITION ?= cool
 
 BRANDING_DIR ?= $(PWD)/branding
 
-ifeq ($(COMPANY_NAME), ONLYOFFICE)
-	PACKAGE_NAME := $(COMPANY_NAME_LOW)-$(PRODUCT_NAME_LOW)
-else
-	PACKAGE_NAME := $(COMPANY_NAME_LOW)
-endif
+PACKAGE_NAME := $(COMPANY_NAME_LOW)-$(PRODUCT_NAME_LOW)
 PACKAGE_VERSION := $(PRODUCT_VERSION)-$(BUILD_NUMBER)
 
 UNAME_M ?= $(shell uname -m)
@@ -65,13 +61,10 @@ CHANGELOG_RPM = common/usr/share/doc/$(PACKAGE_NAME)/ChangeLog
 CHANGELOG_DEB = deb/build/debian/changelog
 CHANGELOG_DEB_ASTRA = deb-astra/build/debian/changelog
 
-ifeq ($(COMPANY_NAME), ONLYOFFICE)
-	DESKTOPEDITORS_PREFIX := $(COMPANY_NAME_LOW)/$(PRODUCT_NAME_LOW)
-	DESKTOPEDITORS_EXEC := $(PACKAGE_NAME)
-else
-	DESKTOPEDITORS_PREFIX := $(COMPANY_NAME_LOW)/desktopeditors
+DESKTOPEDITORS_PREFIX := $(COMPANY_NAME_LOW)/$(PRODUCT_NAME_LOW)
+DESKTOPEDITORS_EXEC := $(PACKAGE_NAME)
+ifneq ($(COMPANY_NAME), ONLYOFFICE)
 	MEDIAVIEWER_PREFIX := $(COMPANY_NAME_LOW)/mediaviewer
-	DESKTOPEDITORS_EXEC := $(COMPANY_NAME_LOW)-desktopeditors
 	IMAGEVIEWER_EXEC := $(COMPANY_NAME_LOW)-imageviewer
 	VIDEOPLAYER_EXEC := $(COMPANY_NAME_LOW)-videoplayer
 endif
@@ -79,14 +72,12 @@ endif
 LINUX_DEPS += common/usr/share/applications/variables.m4
 BIN_FILES += common/usr/bin/$(DESKTOPEDITORS_EXEC)
 DESKTOP_FILES += common/usr/share/applications/$(DESKTOPEDITORS_EXEC).desktop
-ifeq ($(COMPANY_NAME), ONLYOFFICE)
-	SYMLINK += common/usr/bin/desktopeditors
-else
+SYMLINK += common/usr/bin/desktopeditors
+ifneq ($(COMPANY_NAME), ONLYOFFICE)
 	BIN_FILES += common/usr/bin/$(IMAGEVIEWER_EXEC)
 	BIN_FILES += common/usr/bin/$(VIDEOPLAYER_EXEC)
 	DESKTOP_FILES += common/usr/share/applications/$(IMAGEVIEWER_EXEC).desktop
 	DESKTOP_FILES += common/usr/share/applications/$(VIDEOPLAYER_EXEC).desktop
-	SYMLINK += common/usr/bin/$(COMPANY_NAME_LOW)
 	DEB_DEPS += common/usr/share/flyfm/templates/desktopeditors.docx.desktop
 	DEB_DEPS += common/usr/share/flyfm/templates/desktopeditors.xlsx.desktop
 	DEB_DEPS += common/usr/share/flyfm/templates/desktopeditors.pptx.desktop
