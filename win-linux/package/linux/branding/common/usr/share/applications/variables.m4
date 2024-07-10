@@ -9,20 +9,20 @@ dnl
 define('NEWDOCUMENT[Name[en]]', 'New document')dnl
 define('NEWDOCUMENT[Name[de]]', 'Neues Dokument')dnl
 define('NEWDOCUMENT[Name[fr]]', 'Nouveau document')dnl
-define('NEWDOCUMENT[Name[es]]', 'Documento nuevo')dnl
-define('NEWDOCUMENT[Name[ru]]', 'Создать документ')dnl
+define('NEWDOCUMENT[Name[es]]', 'Nuevo documento')dnl
+define('NEWDOCUMENT[Name[ru]]', 'Новый документ')dnl
 dnl
 define('NEWSPREADSHEET[Name[en]]', 'New spreadsheet')dnl
-define('NEWSPREADSHEET[Name[de]]', 'Neues Tabellendokument')dnl
+define('NEWSPREADSHEET[Name[de]]', 'Neue Tabelle')dnl
 define('NEWSPREADSHEET[Name[fr]]', 'Nouveau classeur')dnl
-define('NEWSPREADSHEET[Name[es]]', 'Hoja de cálculo nueva')dnl
-define('NEWSPREADSHEET[Name[ru]]', 'Создать эл.таблицу')dnl
+define('NEWSPREADSHEET[Name[es]]', 'Nueva hoja de cálculo')dnl
+define('NEWSPREADSHEET[Name[ru]]', 'Новая таблица')dnl
 dnl
 define('NEWPRESENTATION[Name[en]]', 'New presentation')dnl
 define('NEWPRESENTATION[Name[de]]', 'Neue Präsentation')dnl
 define('NEWPRESENTATION[Name[fr]]', 'Nouvelle présentation')dnl
-define('NEWPRESENTATION[Name[es]]', 'Presentación nueva')dnl
-define('NEWPRESENTATION[Name[ru]]', 'Создать презентацию')dnl
+define('NEWPRESENTATION[Name[es]]', 'Nueva presentación')dnl
+define('NEWPRESENTATION[Name[ru]]', 'Новая презентация')dnl
 dnl
 define('IMAGEVIEWER[Name[en]]', 'ONLYOFFICE Image Viewer')dnl
 define('IMAGEVIEWER[Name[ru]]', 'Просмотр изображений ONLYOFFICE')dnl

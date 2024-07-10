@@ -7,7 +7,7 @@ set_names() {
       SOURCE_DOC_DIR="$SOURCE_DOC_DIR/cs-CZ"
       SOURCE_DOC_NAME="new"
       NEW_DOCX_NAME="Nový dokument"
-      NEW_XLSX_NAME="Nový sešit"
+      NEW_XLSX_NAME="Nová tabulka"
       NEW_PPTX_NAME="Nová prezentace"
       NEW_DOCXF_NAME="Nový PDF formulář"
       ;;
@@ -15,16 +15,16 @@ set_names() {
       SOURCE_DOC_DIR="$SOURCE_DOC_DIR/de-DE"
       SOURCE_DOC_NAME="new"
       NEW_DOCX_NAME="Neues Dokument"
-      NEW_XLSX_NAME="Neues Tabellendokument"
+      NEW_XLSX_NAME="Neue Tabelle"
       NEW_PPTX_NAME="Neue Präsentation"
       NEW_DOCXF_NAME="Neues PDF-Formular"
       ;;
     es*`)'
       SOURCE_DOC_DIR="$SOURCE_DOC_DIR/es-ES"
       SOURCE_DOC_NAME="new"
-      NEW_DOCX_NAME="Documento nuevo"
-      NEW_XLSX_NAME="Hoja de cálculo nueva"
-      NEW_PPTX_NAME="Presentación nueva"
+      NEW_DOCX_NAME="Nuevo documento"
+      NEW_XLSX_NAME="Nueva hoja de cálculo"
+      NEW_PPTX_NAME="Nueva presentación"
       NEW_DOCXF_NAME="Nuevo formulario PDF"
       ;;
     fr*`)'
@@ -46,7 +46,7 @@ set_names() {
     pt*`)'
       SOURCE_DOC_DIR="$SOURCE_DOC_DIR/pt-BR"
       SOURCE_DOC_NAME="new"
-      NEW_DOCX_NAME="Novo Documento"
+      NEW_DOCX_NAME="Novo documento"
       NEW_XLSX_NAME="Nova planilha"
       NEW_PPTX_NAME="Nova apresentação"
       NEW_DOCXF_NAME="Novo formulário PDF"
@@ -55,7 +55,7 @@ set_names() {
       SOURCE_DOC_DIR="$SOURCE_DOC_DIR/ru-RU"
       SOURCE_DOC_NAME="new"
       NEW_DOCX_NAME="Новый документ"
-      NEW_XLSX_NAME="Новая эл.таблица"
+      NEW_XLSX_NAME="Новая таблица"
       NEW_PPTX_NAME="Новая презентация"
       NEW_DOCXF_NAME="Новая PDF-форма"
       ;;
@@ -72,7 +72,7 @@ set_names() {
 set_names_ru() {
   SOURCE_DOC_NAME="new"
   NEW_DOCX_NAME="Новый документ"
-  NEW_XLSX_NAME="Новая эл.таблица"
+  NEW_XLSX_NAME="Новая таблица"
   NEW_PPTX_NAME="Новая презентация"
 })
 
