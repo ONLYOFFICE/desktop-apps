@@ -144,7 +144,7 @@
                         }
                           </td>
                           <td class="row-cell cname">
-                            <p class="name text-body">${info.name}</p>
+                            <p class="name text-body-medium">${info.name}</p>
                             <p class="descr text-caption">${info.descr}</p>
                           </td>`;
 

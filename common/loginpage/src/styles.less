@@ -9,6 +9,7 @@
 @import (inline) '../vendor/bootstrap-select/css/bootstrap-select.min.css';
 @import 'css/colors';
 @import 'css/colors_classic';
+@import 'css/colors_gray';
 @import 'css/colors_dark';
 @import 'css/colors_contrast_dark';
 @import 'css/variables';
@@ -420,10 +421,6 @@ li.menu-item {
     display: flex;
     flex-direction: column;
     gap: 24px;
-
-    h2 {
-        text-align: left;
-    }
 }
 
 .flex-fill {
@@ -837,10 +834,6 @@ li.menu-item {
 
     .cname {
         flex-grow: 1;
-        .name {
-            font-size: 14px;
-            line-height: 20px;
-        }
 
         .descr {
             font-size: 12px;
@@ -849,7 +842,6 @@ li.menu-item {
         }
 
         .name, .descr {
-            margin: 0;
             text-overflow: ellipsis;
             overflow: hidden;
         }
@@ -1569,6 +1561,11 @@ svg.icon:not(.icon-colored) {
 .text-body {
     font-size: 14px;
     line-height: 20px;
+}
+
+.text-body-medium {
+    .text-body();
+    font-weight: 500;
 }
 
 .text-caption {
