@@ -438,17 +438,17 @@ We hebben een speciale aanbieding voor u.</target>
       </trans-unit>
       <trans-unit id="new-document" xml:space="preserve">
         <source>New Document</source>
-        <target state="translated">Nieuw Document</target>
+        <target state="translated">Nieuw document</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="new-presentation" xml:space="preserve">
         <source>New Presentation</source>
-        <target state="translated">Nieuwe Presentatie</target>
+        <target state="translated">Nieuwe presentatie</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="new-spreadsheet" xml:space="preserve">
         <source>New Spreadsheet</source>
-        <target state="translated">Nieuwe Spreadsheet</target>
+        <target state="translated">Nieuwe spreadsheet</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="new-pdfform" xml:space="preserve">
