@@ -168,21 +168,21 @@ module.exports = (grunt, rootpathprefix) => {
                 spritename: sprite_toolicons_name,
                 scale: '1.75x'
             }),
-            // 'toolicon_20_1.5x': configTemplate({
-            //     iconsdir: `${sprite_toolicons_name}20`,
-            //     spritename: `${sprite_toolicons_name}20`,
-            //     scale: '1.5x'
-            // }),
-            // 'toolicon1.25x': configTemplate({
-            //     iconsdir: `${sprite_toolicons_name}20`,
-            //     spritename: `${sprite_toolicons_name}20`,
-            //     scale: '1.25x'
-            // }),
-            // 'toolicon1.75x': configTemplate({
-            //     iconsdir: `${sprite_toolicons_name}20`,
-            //     spritename: `${sprite_toolicons_name}20`,
-            //     scale: '1.75x'
-            // }),
+            'toolicon20_1.5x': configTemplate({
+                iconsdir: `${sprite_toolicons_name}20`,
+                spritename: `${sprite_toolicons_name}20`,
+                scale: '1.5x'
+            }),
+            'toolicon20_1.25x': configTemplate({
+                iconsdir: `${sprite_toolicons_name}20`,
+                spritename: `${sprite_toolicons_name}20`,
+                scale: '1.25x'
+            }),
+            'toolicon20_1.75x': configTemplate({
+                iconsdir: `${sprite_toolicons_name}20`,
+                spritename: `${sprite_toolicons_name}20`,
+                scale: '1.75x'
+            }),
         },
         replace_allconnect: {                   //when fill =#fff the fill turns orange on the light theme page
             dist: {

@@ -44,7 +44,7 @@ var Menu = function(args) {
 
 Menu.prototype.init = function(parent) {
     var me = this;
-    var _tpl_ = '<div id="%id" class="menu-container">'+
+    var _tpl_ = '<div id="%id" class="menu-container switch-svg">'+
                     '<div class="dropdown-toggle" data-toggle="dropdown"></div>'+
                     '<ul class="dropdown-menu" role="menu">' +
                     '</ul></div>';
@@ -52,11 +52,13 @@ Menu.prototype.init = function(parent) {
     var $container = $(_tpl_.replace(/\%id/, this.id)).appendTo(parent);
     var $list = $container.find('ul');
 
+    me.isSvgIcons = true;
+
     function itemTemplate(id, caption, icon) {
         let iconTemplate = '';
         if (icon) {
             iconTemplate = `
-                <svg class="icon" data-iconname="${icon}" data-precls="tool-icon">
+                <svg class="icon" data-iconname="${icon}" data-precls="tool-icon__20">
                     <use href="#${icon}"/>
                 </svg>
             `
@@ -107,10 +109,22 @@ Menu.prototype.init = function(parent) {
 };
 
 Menu.prototype.show = function(pos, data) {
-    $('.menu-container').removeClass('open');
-    let $el = $('#'+this.id);
+    const $el = $('#'+this.id);
+    const $dd = $el.find('.dropdown-menu');
 
-    let $dd = $el.find('.dropdown-menu');
+    const is_svg_icons = window.devicePixelRatio >= 2 || window.devicePixelRatio == 1;
+    if ( this.isSvgIcons != is_svg_icons ) {
+        $('.dd-item', $dd).each((i, el) => {
+            const $el =  $(el);
+            if ( !$el.find('> i.icon').length ) {
+                const $svgicon = $('svg.icon', $el);
+                $(`<i class="icon ${$svgicon.data('precls')} ${$svgicon.data('iconname')}">`).insertAfter($svgicon);
+            }
+        });
+    }
+
+    $('.menu-container').removeClass('open');
+
     let _right = $dd.width() + pos.left,
         _rlimit = $(document).width();
     if (!!_right && _right > _rlimit) {
