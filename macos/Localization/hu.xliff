@@ -438,17 +438,17 @@ Van egy speciális ajánlatunk az Ön számára.</target>
       </trans-unit>
       <trans-unit id="new-document" xml:space="preserve">
         <source>New Document</source>
-        <target state="translated">Új Dokumentum</target>
+        <target state="translated">Új dokumentum</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="new-presentation" xml:space="preserve">
         <source>New Presentation</source>
-        <target state="translated">Új Prezentáció</target>
+        <target state="translated">Új prezentáció</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="new-spreadsheet" xml:space="preserve">
         <source>New Spreadsheet</source>
-        <target state="translated">Új Táblázat</target>
+        <target state="translated">Új táblázat</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="new-pdfform" xml:space="preserve">

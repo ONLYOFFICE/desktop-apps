@@ -488,17 +488,17 @@ Imamo specijalnu ponudu za vas.</target>
       </trans-unit>
       <trans-unit id="new-document" xml:space="preserve">
         <source>New Document</source>
-        <target state="translated">Novi Dokument</target>
+        <target state="translated">Novi dokument</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="new-presentation" xml:space="preserve">
         <source>New Presentation</source>
-        <target state="translated">Nova Prezentacija</target>
+        <target state="translated">Nova prezentacija</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="new-spreadsheet" xml:space="preserve">
         <source>New Spreadsheet</source>
-        <target state="translated">Nova Proračunska tabela</target>
+        <target state="translated">Nova proračunska tabela</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="new-pdfform" xml:space="preserve">

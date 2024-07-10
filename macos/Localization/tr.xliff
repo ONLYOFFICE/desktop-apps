@@ -412,15 +412,15 @@ Size özel bir teklifimiz var.</target>
       <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="new-document" xml:space="preserve">
-        <source>New Document</source><target state="translated">Yeni Belge</target>
+        <source>New Document</source><target state="translated">Yeni belge</target>
       <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="new-presentation" xml:space="preserve">
-        <source>New Presentation</source><target state="translated">Yeni Sunum</target>
+        <source>New Presentation</source><target state="translated">Yeni sunum</target>
       <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="new-spreadsheet" xml:space="preserve">
-        <source>New Spreadsheet</source><target state="translated">Yeni Tablo</target>
+        <source>New Spreadsheet</source><target state="translated">Yeni tablo</target>
       <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="new-pdfform" xml:space="preserve">

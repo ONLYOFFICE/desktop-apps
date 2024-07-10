@@ -438,17 +438,17 @@ Mums jums ir īpašs piedāvājums.</target>
       </trans-unit>
       <trans-unit id="new-document" xml:space="preserve">
         <source>New Document</source>
-        <target state="translated">Jauns Dokuments</target>
+        <target state="translated">Jauns dokuments</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="new-presentation" xml:space="preserve">
         <source>New Presentation</source>
-        <target state="translated">Jauna Prezentācija</target>
+        <target state="translated">Jauna prezentācija</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="new-spreadsheet" xml:space="preserve">
         <source>New Spreadsheet</source>
-        <target state="translated">Jauna Izklājlapa</target>
+        <target state="translated">Jauna izklājlapa</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="new-pdfform" xml:space="preserve">
