@@ -53,7 +53,6 @@
         // args.id&&(args.id=`"id=${args.id}"`)||(args.id='');
 
         let _html = `<div class="action-panel ${args.action}">
-                      <h2 class="text-headline-1" l10n>${_lang.areaCreateFile}</h2>
                       <section id="box-create-new">
                       </section>
                       <section id="dnd-file-zone">
@@ -668,7 +667,7 @@
                 dragAndDropZone = new DragAndDropFileZone();
                 dragAndDropZone.render(this.view.$panel.find("#dnd-file-zone"));
                 dragAndDropZone.hide();
-
+                dragAndDropZone.hideTitle();
 
                 _init_collections.call(this);
                 _init_ppmenu.call(this);
@@ -732,9 +731,13 @@
                 return collectionRecovers;
             },
             filterRecents: function(doctype) {
-
                 $('.recent-box-wrapper .table-files').removeClass('filter-word filter-cell filter-slide filter-pdfe');
                 panelCreateNew.filter(doctype);
+                const hasTemplates = panelCreateNew.currentSize(doctype) !== 0;
+                console.log(hasTemplates, panelCreateNew.currentSize(doctype));
+                panelCreateNew[hasTemplates ? 'show' : 'hide']();
+                dragAndDropZone[!hasTemplates ? 'showTitle' : 'hideTitle']();
+
                 const $title = $('.recent-flex-box > .text-headline-1')
                 if (doctype) {
                     $('.recent-box-wrapper .table-files').addClass(`filter-${doctype}`);

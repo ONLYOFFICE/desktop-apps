@@ -33,7 +33,7 @@ button {
     font-family: 'Open Sans',sans-serif;
 }
 
-h1, h2, h3, h4, h5, h6, ul {
+h1, h2, h3, h4, h5, h6, ul, p {
     margin: 0;
 }
 
@@ -919,7 +919,6 @@ li.menu-item {
 
 .table-caption {
     padding: 8px 0;
-    margin: 0;
     text-align: left;
     color: @text-tertiary;
     position: sticky;
@@ -994,6 +993,17 @@ li.menu-item {
     .table-box {
         overflow-y: auto;
         flex-grow: 0;
+    }
+}
+
+#box-recent-folders {
+    display: flex;
+    gap: 40px;
+    flex-direction: column;
+
+    .table-caption {
+        padding: 0;
+        margin-bottom: 24px;
     }
 }
 
@@ -1500,6 +1510,16 @@ li.menu-item {
         margin-right: 20px;
         display: inline-block;
         cursor: pointer;
+        border-radius: 4px;
+        transition: background-color 300ms ease-out;
+
+        &:hover {
+            background-color: @highlight-button-hover;
+        }
+
+        &:active {
+            background-color: @highlight-button-pressed;
+        }
 
         .item-wrap {
             display: flex;
@@ -1518,12 +1538,6 @@ li.menu-item {
     }
 }
 
-#box-create-new {
-    margin-top: 24px;
-    margin-bottom: 64px;
-    overflow: auto;
-}
-
 svg.icon:not(.icon-colored) {
     fill: #000;
 
@@ -1538,7 +1552,6 @@ svg.icon:not(.icon-colored) {
     font-weight: 600;
     text-align: left;
     color: @text-normal;
-    margin: 0;
 }
 
 .text-headline-2 {
@@ -1608,39 +1621,47 @@ svg.icon:not(.icon-colored) {
     color: @text-secondary;
 }
 
-p {
-    margin: 0;
-}
+
 
 .recent-box-empty-icon-wrapper {
     width: 80px;
     height: 45px;
 }
 
-.drag-and-drop-zone {
-    display: flex;
-    flex-direction: column;
-    padding: 24px 0;
-    align-items: center;
-    gap: 4px;
-    border-radius: 12px;
-    border: @scaled-one-px dashed @border-regular-control;
-
-    svg {
-        width: 80px;
-        height: 48px;
+.create-new {
+    .text-headline-1 {
+        margin-bottom: 24px;
     }
 
-    a {
-        cursor: pointer;
-        font-weight: 600;
-        color: @background-accent-button;
+    .box {
+        margin-bottom: 64px;
+        overflow: auto;
     }
 }
 
-#box-recent-folders {
-    .drag-and-drop-zone {
-        margin-bottom: 30px;
+.drag-and-drop-zone {
+    .text-headline-1 {
+        margin-bottom: 24px;
+    }
+    .zone {
+        display: flex;
+        flex-direction: column;
+        padding: 24px 0;
+        align-items: center;
+        gap: 4px;
+        border-radius: 12px;
+        border: @scaled-one-px dashed @border-regular-control;
+
+        svg {
+            width: 80px;
+            height: 48px;
+        }
+
+        a {
+            cursor: pointer;
+            font-weight: 600;
+            color: @background-accent-button;
+        }
     }
 }
 
