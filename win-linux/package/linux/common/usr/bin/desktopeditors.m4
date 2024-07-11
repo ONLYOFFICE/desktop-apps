@@ -14,10 +14,10 @@ set_names() {
     de*`)'
       SOURCE_DOC_DIR="$SOURCE_DOC_DIR/de-DE"
       SOURCE_DOC_NAME="new"
-      NEW_DOCX_NAME="Neues dokument"
-      NEW_XLSX_NAME="Neue tabelle"
-      NEW_PPTX_NAME="Neue präsentation"
-      NEW_DOCXF_NAME="Neues PDF-formular"
+      NEW_DOCX_NAME="Neues Dokument"
+      NEW_XLSX_NAME="Neue Tabelle"
+      NEW_PPTX_NAME="Neue Präsentation"
+      NEW_DOCXF_NAME="Neues PDF-Formular"
       ;;
     es*`)'
       SOURCE_DOC_DIR="$SOURCE_DOC_DIR/es-ES"
