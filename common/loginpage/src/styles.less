@@ -587,7 +587,7 @@ li.menu-item {
 
         &:hover {
             background-color: @highlight-button-hover;
-            .descr {
+            .descr, .ext {
                 color: @text-normal;
             }
         }
@@ -832,14 +832,17 @@ li.menu-item {
         flex-grow: 1;
 
         .descr {
-            font-size: 12px;
-            line-height: 16px;
             color: @text-tertiary;
         }
 
         .name, .descr {
             text-overflow: ellipsis;
             overflow: hidden;
+
+            .ext {
+                color: @text-tertiary;
+                margin-left: -0.35ch;
+            }
         }
     }
 
@@ -1474,11 +1477,7 @@ li.menu-item {
 }
 
 svg.icon:not(.icon-colored) {
-    fill: #000;
-
-    .theme-type-dark & {
-        fill: #fff;
-    }
+    fill: currentColor;
 }
 
 .text-headline-1 {
@@ -1593,6 +1592,7 @@ svg.icon:not(.icon-colored) {
         svg {
             width: 80px;
             height: 48px;
+            filter: drop-shadow(0 0.96px 3.86px rgba(0,0,0,0.1));
         }
 
         a {
