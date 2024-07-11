@@ -8,6 +8,16 @@
 # include <windows.h>
 #endif
 
+#define GetCurrentTheme() \
+    AscAppManager::themes().current()
+#define GetActualTheme(theme) \
+    AscAppManager::themes().themeActualId(theme)
+#define GetColorByRole(role) \
+    GetCurrentTheme().color(CTheme::ColorRole::role)
+#define GetColorValueByRole(role) \
+    GetCurrentTheme().value(CTheme::ColorRole::role)
+#define GetColorQValueByRole(role) \
+    QString::fromStdWString(GetColorValueByRole(role))
 
 class CThemes;
 class CTheme {
@@ -16,7 +26,7 @@ public:
         ecrWindowBackground
         , ecrWindowBorder
         , ecrTextNormal
-        , ecrTextPressed
+        , ecrTextPretty
         , ecrLogoColor
         , ecrTabWordActive
         , ecrTabCellActive
@@ -27,6 +37,28 @@ public:
         , ecrTabDefaultActiveBackground
         , ecrTabDefaultActiveText
         , ecrButtonNormalOpacity
+        , ecrButtonBackground
+        , ecrButtonHoverBackground
+        , ecrButtonPressedBackground
+        , ecrButtonBackgroundActive
+        , ecrDownloadWidgetBackground
+        , ecrDownloadWidgetBorder
+        , ecrDownloadItemHoverBackground
+        , ecrDownloadGhostButtonText
+        , ecrDownloadGhostButtonTextHover
+        , ecrDownloadGhostButtonTextPressed
+        , ecrDownloadGhostButtonTextPressedItemHover
+        , ecrDownloadLabelText
+        , ecrDownloadLabelTextInfo
+        , ecrDownloadLabelTextInfoItemHover
+        , ecrDownloadProgressBarBackground
+        , ecrDownloadProgressBarBackgroundItemHover
+        , ecrDownloadProgressBarChunk
+        , ecrDownloadScrollBarHandle
+        , ecrToolTipText
+        , ecrToolTipBorder
+        , ecrToolTipBackground
+        , ecrTabDivider
     };
 
     auto fromFile(const QString&) -> bool;

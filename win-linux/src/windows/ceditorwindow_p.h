@@ -76,7 +76,7 @@ auto prepare_editor_css(AscEditorType type, const CTheme& theme) -> QString {
 #ifdef __linux__
     g_css.append(Utils::readStylesheets(":styles/editor_unix.qss"));
 #endif
-    return g_css.arg(QString::fromStdWString(c));
+    return g_css.arg(QString::fromStdWString(c), GetColorQValueByRole(ecrTextNormal), GetColorQValueByRole(ecrTextPretty));
 }
 
 auto editor_color(AscEditorType type) -> QColor {
