@@ -3,13 +3,18 @@
 
     const panelCreateNew = function(args={}) {
         let $html;
-        const _panel_tmpl = `<div class="box">
-                                <ul id="idx-list-create-blank" class="list-create-doc">
-                                </ul>
-                                <div class="separator"></div>
-                                <ul id="idx-list-create-from-template" class="list-create-doc">
-                                </ul>
-                            </div>`;
+        const _panel_tmpl = `
+        <div class="create-new">
+            <h2 class="text-headline-1" l10n>${utils.Lang.areaCreateFile}</h2>
+            <div class="box">
+                <ul id="idx-list-create-blank" class="list-create-doc">
+                </ul>
+                <div class="separator"></div>
+                <ul id="idx-list-create-from-template" class="list-create-doc">
+                </ul>
+            </div>
+        </div>
+        `;
 
         const _item_tmpl = info => `<li class="create-new-item" data-editor="${info.editor}">
                                         <a class="item-wrap">
@@ -78,7 +83,20 @@
         return {
             render: _render,
             filter: _filter_by_editor,
-            loadtemplates: function(array) {}
+            loadtemplates: function(array) {},
+            currentSize: function(editor) {
+                if (!$html) return 0;
+                let selector = !editor ? '.create-new-item' : `.create-new-item[data-editor=${editor}]`;
+                return $html.find(selector).filter(function() {
+                    return $(this).css('display') !== 'none';
+                }).length;
+            },
+            show: function() {
+                $html.show();
+            },
+            hide: function() {
+                $html.hide();
+            }
         }
     }
 

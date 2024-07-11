@@ -7,10 +7,10 @@
         "brand-cell": "#40865c",
         "brand-pdf": "#aa5252",
 
-        "window-background": "#f1f1f1",
+        "window-background": "#f7f7f7",
         "window-border": "#888",
 
-        "text-normal": "#444",
+        "text-normal": "rgba(0,0,0,.8)",
         "text-normal-pressed": "#fff",
 
         "tab-active-background": "#fff",
@@ -18,7 +18,7 @@
         "tab-simple-active-text": "#444",
         "tab-default-active-background": "#fff",
         "tab-default-active-text": "#444",
-        "tab-divider": "#a5a5a5",
+        "tab-divider": "#dfdfdf",
 
         "button-normal-opacity": "rgba(255,255,255,255)",
         "logo-type": "dark"

@@ -55,9 +55,8 @@
         let _html = `
         <div ${args.id} class="action-panel ${args.action}">
             <div id="box-recent-folders">
-                <div class="flexbox">
-                    <h3 class="table-caption text-headline-1" l10n>${_lang.areaOpenFile}</h3>
-                    <section id="area-dnd-file"></section>
+                <section id="area-dnd-file"></section>
+                <div>
                     <h3 class="table-caption text-headline-1" l10n>${_lang.listRecentDirTitle}</h3>
                     <div class="table-box flex-fill">
                         <table ${args.id} class="table-files list"></table>

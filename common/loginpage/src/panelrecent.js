@@ -53,7 +53,6 @@
         // args.id&&(args.id=`"id=${args.id}"`)||(args.id='');
 
         let _html = `<div class="action-panel ${args.action}">
-                      <h2 class="text-headline-1" l10n>${_lang.areaCreateFile}</h2>
                       <section id="box-create-new">
                       </section>
                       <section id="dnd-file-zone">
@@ -133,6 +132,13 @@
             let id = !!info.uid ? (` id="${info.uid}"`) : '';
             info.crypted == undefined && (info.crypted = false);
             const editor_type = utils.editorByFileFormat(info.type);
+            const dotIndex = info.name.lastIndexOf('.');
+            if (dotIndex !== -1) {
+                info.ext = info.name.substring(dotIndex);
+                info.name = info.name.substring(0, dotIndex);
+            } else {
+                info.ext = '';
+            }
 
             var _tpl = `<tr${id} class="${info.crypted ? `crypted${isSvgIcons ?'-svg':''}` : ''}" ${editor_type?`data-editor-type="${editor_type}"`:''}>
                           <td class="row-cell cicon">
@@ -145,7 +151,10 @@
                         }
                           </td>
                           <td class="row-cell cname">
-                            <p class="name text-body">${info.name}</p>
+                            <p class="name text-body-medium">
+                                ${info.name}
+                                <span class="ext">${info.ext}</span>
+                            </p>
                             <p class="descr text-caption">${info.descr}</p>
                           </td>`;
 
@@ -668,7 +677,7 @@
                 dragAndDropZone = new DragAndDropFileZone();
                 dragAndDropZone.render(this.view.$panel.find("#dnd-file-zone"));
                 dragAndDropZone.hide();
-
+                dragAndDropZone.hideTitle();
 
                 _init_collections.call(this);
                 _init_ppmenu.call(this);
@@ -732,9 +741,13 @@
                 return collectionRecovers;
             },
             filterRecents: function(doctype) {
-
                 $('.recent-box-wrapper .table-files').removeClass('filter-word filter-cell filter-slide filter-pdfe');
                 panelCreateNew.filter(doctype);
+                const hasTemplates = panelCreateNew.currentSize(doctype) !== 0;
+                console.log(hasTemplates, panelCreateNew.currentSize(doctype));
+                panelCreateNew[hasTemplates ? 'show' : 'hide']();
+                dragAndDropZone[!hasTemplates ? 'showTitle' : 'hideTitle']();
+
                 const $title = $('.recent-flex-box > .text-headline-1')
                 if (doctype) {
                     $('.recent-box-wrapper .table-files').addClass(`filter-${doctype}`);
