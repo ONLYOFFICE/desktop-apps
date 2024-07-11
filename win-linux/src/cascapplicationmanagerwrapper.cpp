@@ -1685,7 +1685,7 @@ QString CAscApplicationManagerWrapper::getWindowStylesheets(CScalingFactor facto
     APP_CAST(_app);
 
     QByteArray _out = Utils::readStylesheets(&_app.m_mapStyles[CScalingFactor::SCALING_FACTOR_1]);
-    _out.append(Utils::readStylesheets(":/themes/theme-contrast-dark.qss"));
+//    _out.append(Utils::readStylesheets(":/themes/theme-contrast-dark.qss"));
     if ( factor != CScalingFactor::SCALING_FACTOR_1 )
         _out.append(Utils::readStylesheets(&_app.m_mapStyles[factor]));
 

@@ -1,7 +1,7 @@
 #CX11Caption {min-width: 394px;}
 #labelAppTitle {margin-top: -5px; font-size: 25px;}
 
-QPushButton {border: 2px solid #cbcbcb; padding: 0 45px; height: 50px; border-radius: 5px; font-size: 25px;}
+QPushButton {border-width: 2px; padding: 0 45px; height: 50px; border-radius: 5px; font-size: 25px;}
 QPushButton#toolButtonMaximize,
 QPushButton#toolButtonMinimize,
 QPushButton#toolButtonClose {padding: 11px 0px 16px;}
@@ -27,7 +27,7 @@ QPushButton#toolButtonDownload {border-right-width: 2px; max-width: 90px; width:
     margin: 0px;
     padding-left: 23px; padding-right: 23px;
     font-size: 25px;
-    border: 2px solid #c0c0c0; border-radius: 10px;
+    border-width: 2px; border-radius: 10px;
 }
-#mainPanel[uitheme=theme-dark] #CToolTip>QLabel {border: 2px solid #666666;}
-#mainPanel[uitheme=theme-contrast-dark] #CToolTip>QLabel {border: 2px solid #696969;}
+#mainPanel[uitheme=theme-dark] #CToolTip>QLabel {border-width: 2px;}
+#mainPanel[uitheme=theme-contrast-dark] #CToolTip>QLabel {border-width: 2px;}

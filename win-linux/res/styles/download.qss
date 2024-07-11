@@ -137,8 +137,8 @@ CDownloadWidget[zoom="1.25x"] QLabel {font-size: 14px; max-height: 18px; min-hei
 CDownloadWidget[zoom="1.25x"] QLabel#labelTitle {font-size: 18px; max-height: 28px;}
 CDownloadWidget[zoom="1.25x"] QScrollBar:vertical {width: 10px;}
 CDownloadWidget[zoom="1.25x"] QScrollBar::handle:vertical {min-height: 31px; border-radius: 4px;}
-CDownloadWidget[zoom="1.25x"] QFrame#mainFrame {border: 1px solid #d1d1d1; border-radius: 4px;}
-CDownloadWidget[zoom="1.25x"] QFrame#titleFrame {border-bottom: 1px solid #d1d1d1; min-height: 38px;}
+CDownloadWidget[zoom="1.25x"] QFrame#mainFrame {border-width: 1px; border-radius: 4px;}
+CDownloadWidget[zoom="1.25x"] QFrame#titleFrame {border-bottom-width: 1px; min-height: 38px;}
 
 /* 1.5x */
 CDownloadWidget[zoom="1.5x"] QPushButton {height: 21px; font-size: 17px; icon-size: 18px;}
@@ -151,8 +151,8 @@ CDownloadWidget[zoom="1.5x"] QLabel {font-size: 17px; max-height: 21px; min-heig
 CDownloadWidget[zoom="1.5x"] QLabel#labelTitle {font-size: 21px; max-height: 33px;}
 CDownloadWidget[zoom="1.5x"] QScrollBar:vertical {width: 12px;}
 CDownloadWidget[zoom="1.5x"] QScrollBar::handle:vertical {min-height: 38px; border-radius: 5px;}
-CDownloadWidget[zoom="1.5x"] QFrame#mainFrame {border: 2px solid #d1d1d1; border-radius: 5px;}
-CDownloadWidget[zoom="1.5x"] QFrame#titleFrame {border-bottom: 2px solid #d1d1d1; min-height: 45px;}
+CDownloadWidget[zoom="1.5x"] QFrame#mainFrame {border-width: 2px; border-radius: 5px;}
+CDownloadWidget[zoom="1.5x"] QFrame#titleFrame {border-bottom-width: 2px; min-height: 45px;}
 
 /* 1.75x */
 CDownloadWidget[zoom="1.75x"] QPushButton {height: 25px; font-size: 19px; icon-size: 21px;}
@@ -165,8 +165,8 @@ CDownloadWidget[zoom="1.75x"] QLabel {font-size: 19px; max-height: 25px; min-hei
 CDownloadWidget[zoom="1.75x"] QLabel#labelTitle {font-size: 25px; max-height: 39px;}
 CDownloadWidget[zoom="1.75x"] QScrollBar:vertical {width: 14px;}
 CDownloadWidget[zoom="1.75x"] QScrollBar::handle:vertical {min-height: 44px; border-radius: 5px;}
-CDownloadWidget[zoom="1.75x"] QFrame#mainFrame {border: 2px solid #d1d1d1; border-radius: 5px;}
-CDownloadWidget[zoom="1.75x"] QFrame#titleFrame {border-bottom: 2px solid #d1d1d1; min-height: 53px;}
+CDownloadWidget[zoom="1.75x"] QFrame#mainFrame {border-width: 2px; border-radius: 5px;}
+CDownloadWidget[zoom="1.75x"] QFrame#titleFrame {border-bottom-width: 2px; min-height: 53px;}
 
 /* 2.0x */
 CDownloadWidget[zoom="2x"] QPushButton {height: 28px; font-size: 22px; icon-size: 24px;}
@@ -193,8 +193,8 @@ CDownloadWidget[zoom="2.25x"] QLabel {font-size: 25px; max-height: 32px; min-hei
 CDownloadWidget[zoom="2.25x"] QLabel#labelTitle {font-size: 32px; max-height: 50px;}
 CDownloadWidget[zoom="2.25x"] QScrollBar:vertical {width: 18px;}
 CDownloadWidget[zoom="2.25x"] QScrollBar::handle:vertical {min-height: 56px; border-radius: 7px;}
-CDownloadWidget[zoom="2.25x"] QFrame#mainFrame {border: 2px solid #d1d1d1; border-radius: 7px;}
-CDownloadWidget[zoom="2.25x"] QFrame#titleFrame {border-bottom: 2px solid #d1d1d1; min-height: 68px;}
+CDownloadWidget[zoom="2.25x"] QFrame#mainFrame {border-width: 2px; border-radius: 7px;}
+CDownloadWidget[zoom="2.25x"] QFrame#titleFrame {border-bottom-width: 2px; min-height: 68px;}
 
 /* 2.5x */
 CDownloadWidget[zoom="2.5x"] QPushButton {height: 35px; font-size: 28px; icon-size: 30px;}
@@ -207,8 +207,8 @@ CDownloadWidget[zoom="2.5x"] QLabel {font-size: 28px; max-height: 35px; min-heig
 CDownloadWidget[zoom="2.5x"] QLabel#labelTitle {font-size: 35px; max-height: 55px;}
 CDownloadWidget[zoom="2.5x"] QScrollBar:vertical {width: 20px;}
 CDownloadWidget[zoom="2.5x"] QScrollBar::handle:vertical {min-height: 63px; border-radius: 8px;}
-CDownloadWidget[zoom="2.5x"] QFrame#mainFrame {border: 3px solid #d1d1d1; border-radius: 8px;}
-CDownloadWidget[zoom="2.5x"] QFrame#titleFrame {border-bottom: 3px solid #d1d1d1; min-height: 75px;}
+CDownloadWidget[zoom="2.5x"] QFrame#mainFrame {border-width: 3px; border-radius: 8px;}
+CDownloadWidget[zoom="2.5x"] QFrame#titleFrame {border-bottom-width: 3px; min-height: 75px;}
 
 /* 2.75x */
 CDownloadWidget[zoom="2.75x"] QPushButton {height: 39px; font-size: 30px; icon-size: 33px;}
@@ -221,8 +221,8 @@ CDownloadWidget[zoom="2.75x"] QLabel {font-size: 30px; max-height: 39px; min-hei
 CDownloadWidget[zoom="2.75x"] QLabel#labelTitle {font-size: 39px; max-height: 61px;}
 CDownloadWidget[zoom="2.75x"] QScrollBar:vertical {width: 22px;}
 CDownloadWidget[zoom="2.75x"] QScrollBar::handle:vertical {min-height: 69px; border-radius: 8px;}
-CDownloadWidget[zoom="2.75x"] QFrame#mainFrame {border: 3px solid #d1d1d1; border-radius: 8px;}
-CDownloadWidget[zoom="2.75x"] QFrame#titleFrame {border-bottom: 3px solid #d1d1d1; min-height: 83px;}
+CDownloadWidget[zoom="2.75x"] QFrame#mainFrame {border-width: 3px; border-radius: 8px;}
+CDownloadWidget[zoom="2.75x"] QFrame#titleFrame {border-bottom-width: 3px; min-height: 83px;}
 
 /* 3.0x */
 CDownloadWidget[zoom="3x"] QPushButton {height: 42px; font-size: 33px; icon-size: 36px;}
@@ -235,8 +235,8 @@ CDownloadWidget[zoom="3x"] QLabel {font-size: 33px; max-height: 42px; min-height
 CDownloadWidget[zoom="3x"] QLabel#labelTitle {font-size: 42px; max-height: 66px;}
 CDownloadWidget[zoom="3x"] QScrollBar:vertical {width: 24px;}
 CDownloadWidget[zoom="3x"] QScrollBar::handle:vertical {min-height: 75px; border-radius: 9px;}
-CDownloadWidget[zoom="3x"] QFrame#mainFrame {border: 3px solid #d1d1d1; border-radius: 9px;}
-CDownloadWidget[zoom="3x"] QFrame#titleFrame {border-bottom: 3px solid #d1d1d1; min-height: 90px;}
+CDownloadWidget[zoom="3x"] QFrame#mainFrame {border-width: 3px; border-radius: 9px;}
+CDownloadWidget[zoom="3x"] QFrame#titleFrame {border-bottom-width: 3px; min-height: 90px;}
 
 /* 3.5x */
 CDownloadWidget[zoom="3.5x"] QPushButton {height: 49px; font-size: 39px; icon-size: 42px;}
@@ -249,8 +249,8 @@ CDownloadWidget[zoom="3.5x"] QLabel {font-size: 39px; max-height: 49px; min-heig
 CDownloadWidget[zoom="3.5x"] QLabel#labelTitle {font-size: 49px; max-height: 77px;}
 CDownloadWidget[zoom="3.5x"] QScrollBar:vertical {width: 28px;}
 CDownloadWidget[zoom="3.5x"] QScrollBar::handle:vertical {min-height: 88px; border-radius: 11px;}
-CDownloadWidget[zoom="3.5x"] QFrame#mainFrame {border: 4px solid #d1d1d1; border-radius: 11px;}
-CDownloadWidget[zoom="3.5x"] QFrame#titleFrame {border-bottom: 4px solid #d1d1d1; min-height: 105px;}
+CDownloadWidget[zoom="3.5x"] QFrame#mainFrame {border-width: 4px; border-radius: 11px;}
+CDownloadWidget[zoom="3.5x"] QFrame#titleFrame {border-bottom-width: 4px; min-height: 105px;}
 
 /* 4.0x */
 CDownloadWidget[zoom="4x"] QPushButton {height: 56px; font-size: 44px; icon-size: 48px;}
@@ -263,8 +263,8 @@ CDownloadWidget[zoom="4x"] QLabel {font-size: 44px; max-height: 56px; min-height
 CDownloadWidget[zoom="4x"] QLabel#labelTitle {font-size: 56px; max-height: 88px;}
 CDownloadWidget[zoom="4x"] QScrollBar:vertical {width: 32px;}
 CDownloadWidget[zoom="4x"] QScrollBar::handle:vertical {min-height: 100px; border-radius: 12px;}
-CDownloadWidget[zoom="4x"] QFrame#mainFrame {border: 4px solid #d1d1d1; border-radius: 12px;}
-CDownloadWidget[zoom="4x"] QFrame#titleFrame {border-bottom: 4px solid #d1d1d1; min-height: 120px;}
+CDownloadWidget[zoom="4x"] QFrame#mainFrame {border-width: 4px; border-radius: 12px;}
+CDownloadWidget[zoom="4x"] QFrame#titleFrame {border-bottom-width: 4px; min-height: 120px;}
 
 /* 4.5x */
 CDownloadWidget[zoom="4.5x"] QPushButton {height: 63px; font-size: 50px; icon-size: 54px;}
@@ -277,8 +277,8 @@ CDownloadWidget[zoom="4.5x"] QLabel {font-size: 50px; max-height: 63px; min-heig
 CDownloadWidget[zoom="4.5x"] QLabel#labelTitle {font-size: 63px; max-height: 99px;}
 CDownloadWidget[zoom="4.5x"] QScrollBar:vertical {width: 36px;}
 CDownloadWidget[zoom="4.5x"] QScrollBar::handle:vertical {min-height: 113px; border-radius: 14px;}
-CDownloadWidget[zoom="4.5x"] QFrame#mainFrame {border: 5px solid #d1d1d1; border-radius: 14px;}
-CDownloadWidget[zoom="4.5x"] QFrame#titleFrame {border-bottom: 5px solid #d1d1d1; min-height: 135px;}
+CDownloadWidget[zoom="4.5x"] QFrame#mainFrame {border-width: 5px; border-radius: 14px;}
+CDownloadWidget[zoom="4.5x"] QFrame#titleFrame {border-bottom-width: 5px; min-height: 135px;}
 
 /* 5.0x */
 CDownloadWidget[zoom="5x"] QPushButton {height: 70px; font-size: 55px; icon-size: 60px;}
@@ -291,5 +291,5 @@ CDownloadWidget[zoom="5x"] QLabel {font-size: 55px; max-height: 70px; min-height
 CDownloadWidget[zoom="5x"] QLabel#labelTitle {font-size: 70px; max-height: 110px;}
 CDownloadWidget[zoom="5x"] QScrollBar:vertical {width: 40px;}
 CDownloadWidget[zoom="5x"] QScrollBar::handle:vertical {min-height: 125px; border-radius: 15px;}
-CDownloadWidget[zoom="5x"] QFrame#mainFrame {border: 5px solid #d1d1d1; border-radius: 15px;}
-CDownloadWidget[zoom="5x"] QFrame#titleFrame {border-bottom: 5px solid #d1d1d1; min-height: 150px;}
+CDownloadWidget[zoom="5x"] QFrame#mainFrame {border-width: 5px; border-radius: 15px;}
+CDownloadWidget[zoom="5x"] QFrame#titleFrame {border-bottom-width: 5px; min-height: 150px;}
