@@ -39,6 +39,12 @@ CTabBar[active=false] Tab[selected=true][hovered=true] {background: #cecece;}
 #mainPanel[uitheme=theme-classic-light] Tab {border-right-color: #cbcbcb;}
 #mainPanel[uitheme=theme-classic-light][rtl=true] Tab {border-left-color: #cbcbcb;}
 
+/* gray */
+#mainPanel[uitheme=theme-gray] Tab {background: #d1d1d1; border-right-color: #ccc;}
+#mainPanel[uitheme=theme-gray][rtl=true] Tab {border-left-color: #ccc;}
+#mainPanel[uitheme=theme-gray] CTabBar {background: #d1d1d1;}
+#mainPanel[uitheme=theme-gray] Tab[selected=false][hovered=true]{background: #d8dadc;}
+
 /* dark */
 #mainPanel[uitheme=theme-dark] CTabBar {background: #404040;}
 #mainPanel[uitheme=theme-dark] CTabBar #tabScroll>QToolButton {background: #404040;}

@@ -37,7 +37,7 @@ QPushButton#toolButtonClose[class=normal][unix=false]:hover,
 QPushButton#toolButtonClose[class=normal][unix=false]:pressed {image: url(:/close_light.svg) center no-repeat;}
 
 QPushButton#toolButtonMain {
-    background: #f7f7f7;
+    background: #fff;
     font-size: 10px;
     font-family: 'Open Sans',sans-serif;
     font-weight: bold;
@@ -114,6 +114,13 @@ QPushButton#toolButtonDownload {border-left: 0px; border-right: 1px solid #dfdfd
 #mainPanel[uitheme=theme-classic-light] QPushButton#toolButtonMain {border-color: #f1f1f1;}
 #mainPanel[uitheme=theme-classic-light] QPushButton#toolButtonMain {background-color: #fff;}
 #mainPanel[uitheme=theme-classic-light] QPushButton#toolButtonMain[class=normal] {border-color: #cbcbcb;}
+
+/***********************************/
+/* gray theme definitions */
+/***********************************/
+
+#mainPanel[uitheme=theme-gray] QPushButton#toolButtonMain {background-color: #f1f1f1;}
+#mainPanel[uitheme=theme-gray] #CX11Caption {background-color: #d1d1d1;}
 
 
 /* ToolTip*/
