@@ -96,7 +96,7 @@
     <ROW Property="ServiceShortName" Value="[|ServiceName]" ValueLocId="-"/>
     <ROW Property="UPDATE_SERVICE" Value="0" ValueLocId="-"/>
     <ROW Property="UpgradeCode" Value="{47EEF706-B0E4-4C43-944B-E5F914B92B79}"/>
-    <ROW Property="VC_REDIST" Value="1"/>
+    <ROW Property="VC_REDIST" Value="1" ValueLocId="-"/>
     <ROW Property="VendorName" Value="ONLYOFFICE" ValueLocId="-"/>
     <ROW Property="VendorShortName" Value="[|VendorName]" ValueLocId="-"/>
     <ROW Property="Version" Value="0.0.0" ValueLocId="-"/>
@@ -1078,10 +1078,10 @@
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiIconsComponent">
     <ROW Name="i_desktopeditors" SourcePath="..\..\extras\projicons\res\icons\desktopeditors.ico" Index="0"/>
-    <ROW Name="i_desktopeditors_cell" SourcePath="..\..\extras\projicons\res\icons\word.ico" Index="0"/>
+    <ROW Name="i_desktopeditors_cell" SourcePath="..\..\extras\projicons\res\icons\cell.ico" Index="0"/>
     <ROW Name="i_desktopeditors_form" SourcePath="..\..\extras\projicons\res\icons\form.ico" Index="0"/>
     <ROW Name="i_desktopeditors_slide" SourcePath="..\..\extras\projicons\res\icons\slide.ico" Index="0"/>
-    <ROW Name="i_desktopeditors_word" SourcePath="..\..\extras\projicons\res\icons\cell.ico" Index="0"/>
+    <ROW Name="i_desktopeditors_word" SourcePath="..\..\extras\projicons\res\icons\word.ico" Index="0"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiInstExSeqComponent">
     <ROW Action="AI_DOWNGRADE" Condition="AI_NEWERPRODUCTFOUND AND (UILevel &lt;&gt; 5)" Sequence="210"/>
