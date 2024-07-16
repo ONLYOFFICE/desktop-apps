@@ -158,6 +158,7 @@ l10n.en = {
     settOptThemeSystem: 'Same as system',
     settOptThemeAddLocal: 'Add local theme',
     settOptThemeContrastDark: 'Contrast Dark',
+    settOptThemeGray: 'Gray',
     settAUpdateMode: 'Updates',
     settOptAUpdateSilent: 'Auto',
     settOptAUpdateAsk: 'Notify',

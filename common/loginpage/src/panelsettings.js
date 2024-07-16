@@ -65,7 +65,7 @@
             type: 'dark',
         },
         'theme-gray': {
-            text: 'Gray',
+            text: utils.Lang.settOptThemeGray,
             type: 'light',
         },
     }

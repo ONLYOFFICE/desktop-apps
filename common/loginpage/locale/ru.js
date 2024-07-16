@@ -112,6 +112,7 @@ l10n.ru = {
     settOptThemeSystem: 'Системная',
     settOptThemeAddLocal: 'Добавить локальную тему',
     settOptThemeContrastDark: 'Контрастная темная',
+    settOptThemeGray: 'Серая',
     settAUpdateMode: 'Обновления',
     settOptAUpdateSilent: 'Автоматически',
     settOptAUpdateAsk: 'Оповестить',
