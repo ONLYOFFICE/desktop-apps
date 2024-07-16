@@ -144,9 +144,7 @@
 
                 if (!this.view) {
                     this.view = new ViewAbout(args);
-                    this.view.render();
                     this.view.$menuitem && this.view.$menuitem.removeClass('extra');
-                    // this.view.$panel.append(this.view.paneltemplate(args));
 
                     this.view.$body = $(this.view.paneltemplate(args));
                     this.view.$dialog = new AboutDialog();
