@@ -744,7 +744,7 @@
                 $('.recent-box-wrapper .table-files').removeClass('filter-word filter-cell filter-slide filter-pdfe');
                 panelCreateNew.filter(doctype);
                 const hasTemplates = panelCreateNew.currentSize(doctype) !== 0;
-                console.log(hasTemplates, panelCreateNew.currentSize(doctype));
+
                 panelCreateNew[hasTemplates ? 'show' : 'hide']();
                 dragAndDropZone[!hasTemplates ? 'showTitle' : 'hideTitle']();
 
@@ -770,6 +770,7 @@
                     welcomeComponent.render(this.view.$panel.find("#welcome-box"));
                 }
                 $('.recent-flex-box').hide();
+                dragAndDropZone.hide();
             },
             hideWelcome: function() {
                 if ( welcomeComponent ) {
