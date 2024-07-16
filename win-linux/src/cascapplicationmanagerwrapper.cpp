@@ -1242,7 +1242,16 @@ void CAscApplicationManagerWrapper::initializeApp()
 #ifdef __linux__
     css.append(Utils::readStylesheets(":styles/styles_unix.qss"));
 #endif
-    qApp->setStyleSheet(css);
+    qApp->setStyleSheet(css.arg(GetColorQValueByRole(ecrWindowBackground),
+                                GetColorQValueByRole(ecrTextNormal),
+                                GetColorQValueByRole(ecrButtonHoverBackground),
+                                GetColorQValueByRole(ecrButtonPressedBackground),
+                                GetColorQValueByRole(ecrButtonBackground),
+                                GetColorQValueByRole(ecrTabDivider),
+                                GetColorQValueByRole(ecrButtonBackgroundActive),
+                                GetColorQValueByRole(ecrToolTipText))
+                           .arg(GetColorQValueByRole(ecrToolTipBorder),
+                                GetColorQValueByRole(ecrToolTipBackground)));
 
     // Font
     QFont mainFont = QApplication::font();
@@ -1684,8 +1693,18 @@ QString CAscApplicationManagerWrapper::getWindowStylesheets(CScalingFactor facto
 {
     APP_CAST(_app);
 
-    QByteArray _out = Utils::readStylesheets(&_app.m_mapStyles[CScalingFactor::SCALING_FACTOR_1]);
-    _out.append(Utils::readStylesheets(":/themes/theme-contrast-dark.qss"));
+    QString _out = Utils::readStylesheets(&_app.m_mapStyles[CScalingFactor::SCALING_FACTOR_1]);
+    _out = _out.arg(GetColorQValueByRole(ecrWindowBackground),
+                    GetColorQValueByRole(ecrTextNormal),
+                    GetColorQValueByRole(ecrButtonHoverBackground),
+                    GetColorQValueByRole(ecrButtonPressedBackground),
+                    GetColorQValueByRole(ecrButtonBackground),
+                    GetColorQValueByRole(ecrTabDivider),
+                    GetColorQValueByRole(ecrButtonBackgroundActive))
+               .arg(GetColorQValueByRole(ecrToolTipText),
+                    GetColorQValueByRole(ecrToolTipBorder),
+                    GetColorQValueByRole(ecrToolTipBackground));
+//    _out.append(Utils::readStylesheets(":/themes/theme-contrast-dark.qss"));
     if ( factor != CScalingFactor::SCALING_FACTOR_1 )
         _out.append(Utils::readStylesheets(&_app.m_mapStyles[factor]));
 

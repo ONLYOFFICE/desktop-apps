@@ -497,14 +497,28 @@ void CDownloadWidget::updateScalingFactor(double factor)
     polish();
 }
 
-void CDownloadWidget::applyTheme(const QString &theme)
+void CDownloadWidget::applyTheme()
 {
-    setProperty("uitheme", theme);
+    QString css = Utils::readStylesheets(":/styles/download.qss");
+    setStyleSheet(css.arg(GetColorQValueByRole(ecrDownloadWidgetBackground),
+                          GetColorQValueByRole(ecrDownloadWidgetBorder),
+                          GetColorQValueByRole(ecrDownloadItemHoverBackground),
+                          GetColorQValueByRole(ecrDownloadGhostButtonText),
+                          GetColorQValueByRole(ecrDownloadGhostButtonTextHover),
+                          GetColorQValueByRole(ecrDownloadGhostButtonTextPressed),
+                          GetColorQValueByRole(ecrDownloadGhostButtonTextPressedItemHover),
+                          GetColorQValueByRole(ecrDownloadLabelText),
+                          GetColorQValueByRole(ecrDownloadLabelTextInfo))
+                     .arg(GetColorQValueByRole(ecrDownloadLabelTextInfoItemHover),
+                          GetColorQValueByRole(ecrDownloadProgressBarChunk),
+                          GetColorQValueByRole(ecrDownloadProgressBarBackground),
+                          GetColorQValueByRole(ecrDownloadProgressBarBackgroundItemHover),
+                          GetColorQValueByRole(ecrDownloadScrollBarHandle)));
+
     if (m_pToolButton->isStarted())
         m_pToolButton->setAnimatedIcon(AscAppManager::themes().current().isDark() ? ":/loading_light.svg" : ":/loading.svg");
     else
         m_pToolButton->setStaticIcon(AscAppManager::themes().current().isDark() ? ":/loading_finished_light.svg" : ":/loading_finished.svg");
-    polish();
 }
 
 void CDownloadWidget::onLayoutDirectionChanged()

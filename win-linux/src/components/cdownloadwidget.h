@@ -51,7 +51,7 @@ public:
     void downloadProcess(void *);
     QPushButton * toolButton();
     void updateScalingFactor(double);
-    void applyTheme(const QString&);
+    void applyTheme();
     void onLayoutDirectionChanged();
 
 protected:

@@ -1,10 +1,19 @@
-CTabBar {background: #f1f1f1;}
+/*
+@window-background: %1;
+@tool-button-background: %2;
+@tool-button-hover-background: %3;
+@tool-button-pressed-background: %4;
+@tab-divider: %5;
+@brand-word: %6;
+*/
+
+CTabBar {background: %1;}
 CTabBar #tabArea {background: transparent;}
 
 CTabBar #tabScroll {border: none; background: transparent;}
-CTabBar #tabScroll>QToolButton {margin: 0px; border: none; background: #f1f1f1;}
-CTabBar #tabScroll>QToolButton:hover {background: #cecece;}
-CTabBar #tabScroll>QToolButton:pressed {background: #b7b7b7;}
+CTabBar #tabScroll>QToolButton {margin: 0px; border: none; background: %2;}
+CTabBar #tabScroll>QToolButton:hover {background: %3;}
+CTabBar #tabScroll>QToolButton:pressed {background: %4;}
 
 CTabBar #tabScroll>#leftButton {image: url(:/tabbar/icons/scrolltab_ln.svg);}
 CTabBar #tabScroll>#leftButton:disabled {image: url(:/tabbar/icons/scrolltab_ld.svg);}
@@ -16,54 +25,20 @@ CTabBar #tabScroll>#rightButton:disabled {image: url(:/tabbar/icons/scrolltab_rd
 CTabBar #tabScroll>#rightButton:hover {image: url(:/tabbar/icons/scrolltab_rh.svg);}
 CTabBar #tabScroll>#rightButton:pressed {image: url(:/tabbar/icons/scrolltab_rp.svg);}
 
-Tab {background: #f1f1f1; border: none; border-left: 0px; border-right: 1px solid #dfdfdf; margin: 0px; padding: 0px;}
+Tab {background: %1; border: none; border-left: 0px; border-right: 1px solid %5; margin: 0px; padding: 0px;}
 Tab #tabIcon {background: transparent;}
 Tab #tabText {background: transparent; font-family: "Arial", "Helvetica", "Helvetica Neue", sans-serif;}
 Tab #tabButton {border: none; margin-top: 0px; image: none; background: transparent;}
-#mainPanel[rtl=true] Tab {border-right: 0px; border-left: 1px solid #dfdfdf;}
+#mainPanel[rtl=true] Tab {border-right: 0px; border-left: 1px solid %5;}
 #mainPanel[rtl-font=true] Tab #tabText {font-family: "Segoe UI", "Traditional Arabic", "Noto Sans";}
 
-Tab[selected=true] {background: #446995; border-color: #446995;}
+Tab[selected=true] {background: %6; border-color: %6;}
 
-CTabBar[active=false] Tab[selected=true] {border-color: #dfdfdf;}
+CTabBar[active=false] Tab[selected=true] {border-color: %5;}
 CTabBar[active=false] Tab[selected=true] #tabButton {image: none;}
 
 Tab[selected=false][hovered=true],
-CTabBar[active=false] Tab[selected=true][hovered=true] {background: #cecece;}
-
-/* light */
-#mainPanel[uitheme=theme-light] Tab {border-right-color: #dfdfdf;}
-#mainPanel[uitheme=theme-light][rtl=true] Tab {border-left-color: #dfdfdf;}
-
-/* classic light */
-#mainPanel[uitheme=theme-classic-light] Tab {border-right-color: #cbcbcb;}
-#mainPanel[uitheme=theme-classic-light][rtl=true] Tab {border-left-color: #cbcbcb;}
-
-/* dark */
-#mainPanel[uitheme=theme-dark] CTabBar {background: #404040;}
-#mainPanel[uitheme=theme-dark] CTabBar #tabScroll>QToolButton {background: #404040;}
-#mainPanel[uitheme=theme-dark] CTabBar #tabScroll>QToolButton:hover {background: #555;}
-#mainPanel[uitheme=theme-dark] CTabBar #tabScroll>QToolButton:pressed {background: #606060;}
-#mainPanel[uitheme=theme-dark] Tab {background: #404040; border-right-color: #505050;}
-#mainPanel[uitheme=theme-dark] Tab[selected=true] {background: #2a2a2a; border-color: #2a2a2a;}
-#mainPanel[uitheme=theme-dark] CTabBar[active=false] Tab[selected=true] {background: #404040; border-color: #505050;}
-#mainPanel[uitheme=theme-dark] Tab[selected=false][hovered=true],
-#mainPanel[uitheme=theme-dark] CTabBar[active=false] Tab[selected=true][hovered=true] {background: #555;}
-#mainPanel[uitheme=theme-dark][rtl=true] Tab {border-left-color: #505050;}
-
-/* contrast-dark */
-#mainPanel[uitheme=theme-contrast-dark] CTabBar {background: #2a2a2a;}
-#mainPanel[uitheme=theme-contrast-dark] CTabBar #tabScroll>QToolButton {background: #2a2a2a;}
-#mainPanel[uitheme=theme-contrast-dark] CTabBar #tabScroll>QToolButton:hover {background: #525252;}
-#mainPanel[uitheme=theme-contrast-dark] CTabBar #tabScroll>QToolButton:pressed {background: #424242;}
-#mainPanel[uitheme=theme-contrast-dark] Tab {background: #2a2a2a; border-right-color: #414141;}
-#mainPanel[uitheme=theme-contrast-dark] Tab[selected=true] {background: #1e1e1e; border-color: #1e1e1e;}
-#mainPanel[uitheme=theme-contrast-dark] CTabBar[active=false] Tab[selected=true] {background: #2a2a2a; border-color: #414141;}
-#mainPanel[uitheme=theme-contrast-dark] Tab[selected=false][hovered=true],
-#mainPanel[uitheme=theme-contrast-dark] CTabBar[active=false] Tab[selected=true][hovered=true] {background: #424242;}
-#mainPanel[uitheme=theme-contrast-dark][rtl=true] Tab {border-left-color: #414141;}
-
-/* portal */
+CTabBar[active=false] Tab[selected=true][hovered=true] {background: %3;}
 
 /* dark, contrast-dark */
 #mainPanel[uitheme=theme-dark] CTabBar #tabScroll>#leftButton,

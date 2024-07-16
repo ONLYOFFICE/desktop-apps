@@ -85,6 +85,13 @@ CMainWindow::CMainWindow(const QRect &rect) :
     css.append(Utils::readStylesheets(":styles/styles_unix.qss"));
 #endif    
     m_pMainPanel->setStyleSheet(css);
+    QString tab_css = Utils::readStylesheets(":/styles/tabbar.qss");
+    m_pTabs->tabBar()->setStyleSheet(tab_css.arg(GetColorQValueByRole(ecrWindowBackground),
+                                                 GetColorQValueByRole(ecrButtonBackground),
+                                                 GetColorQValueByRole(ecrButtonHoverBackground),
+                                                 GetColorQValueByRole(ecrButtonPressedBackground),
+                                                 GetColorQValueByRole(ecrTabDivider),
+                                                 GetColorQValueByRole(ecrTabWordActive)));
     updateScalingFactor(m_dpiRatio);
     goStart();
 }
@@ -201,22 +208,30 @@ void CMainWindow::applyTheme(const std::wstring& theme)
             AscAppManager::sendCommandTo(m_pTabs->panel(i)->cef(), L"uitheme:changed", theme);
         }
     }
-    m_boxTitleBtns->style()->polish(m_boxTitleBtns);
-    m_pTabs->tabBar()->style()->polish(m_pTabs->tabBar());
-    m_pButtonMain->style()->polish(m_pButtonMain);
-    if (m_pTopButtons[BtnType::Btn_Minimize]) {
-        foreach (auto btn, m_pTopButtons)
-            btn->style()->polish(btn);
-    }
-    m_pTabs->applyUITheme(GetActualTheme(theme));
-    m_pMainPanel->style()->polish(m_pMainPanel);
-    m_pMainPanel->update();
+    // m_boxTitleBtns->style()->polish(m_boxTitleBtns);
+    // m_pButtonMain->style()->polish(m_pButtonMain);
+    // if (m_pTopButtons[BtnType::Btn_Minimize]) {
+    //     foreach (auto btn, m_pTopButtons)
+    //         btn->style()->polish(btn);
+    // }
 
+    QString css{AscAppManager::getWindowStylesheets(m_dpiRatio)};
+#ifdef __linux__
+    css.append(Utils::readStylesheets(":styles/styles_unix.qss"));
+#endif
+    m_pMainPanel->setStyleSheet(css);
+    QString tab_css = Utils::readStylesheets(":/styles/tabbar.qss");
+    m_pTabs->tabBar()->setStyleSheet(tab_css.arg(GetColorQValueByRole(ecrWindowBackground),
+                                                 GetColorQValueByRole(ecrButtonBackground),
+                                                 GetColorQValueByRole(ecrButtonHoverBackground),
+                                                 GetColorQValueByRole(ecrButtonPressedBackground),
+                                                 GetColorQValueByRole(ecrTabDivider),
+                                                 GetColorQValueByRole(ecrTabWordActive)));
+    m_pTabs->applyUITheme(GetActualTheme(theme));
     m_pButtonMain->setIcon(MAIN_ICON_PATH, GetCurrentTheme().isDark() ? "logo-light" : "logo-dark");
     m_pButtonMain->setIconSize(MAIN_ICON_SIZE * m_dpiRatio);
     if (m_pWidgetDownload && m_pWidgetDownload->toolButton()) {
-        m_pWidgetDownload->applyTheme(QString::fromStdWString(GetActualTheme(theme)));
-        m_pWidgetDownload->toolButton()->style()->polish(m_pWidgetDownload->toolButton());
+        m_pWidgetDownload->applyTheme();
     }
 }
 
@@ -1035,8 +1050,7 @@ void CMainWindow::onDocumentDownload(void * info)
         QHBoxLayout * layoutBtns = qobject_cast<QHBoxLayout *>(m_boxTitleBtns->layout());
         layoutBtns->insertWidget(1, m_pWidgetDownload->toolButton());
         m_pWidgetDownload->setLayoutDirection(AscAppManager::isRtlEnabled() ? Qt::RightToLeft : Qt::LeftToRight);
-        m_pWidgetDownload->setStyleSheet(Utils::readStylesheets(":/styles/download.qss"));
-        m_pWidgetDownload->applyTheme(m_pMainPanel->property("uitheme").toString());
+        m_pWidgetDownload->applyTheme();
         m_pWidgetDownload->updateScalingFactor(m_dpiRatio);
     }
     if (m_pWidgetDownload && !pData->get_FilePath().empty())
@@ -1447,10 +1461,14 @@ void CMainWindow::updateScalingFactor(double dpiratio)
     }*/
     m_pButtonMain->setFixedSize(int(BUTTON_MAIN_WIDTH * dpiratio), int(TITLE_HEIGHT * dpiratio));
     m_pMainPanel->setProperty("zoom", QString::number(dpiratio) + "x");
-    std::vector<std::string> _files{":/styles/tabbar.qss"};
-    QString _style = Utils::readStylesheets(&_files);
-    m_pTabs->tabBar()->setStyleSheet(_style);
-    m_pTabs->setStyleSheet(_style);
+    QString tab_css = Utils::readStylesheets(":/styles/tabbar.qss");
+    m_pTabs->tabBar()->setStyleSheet(tab_css.arg(GetColorQValueByRole(ecrWindowBackground),
+                                                 GetColorQValueByRole(ecrButtonBackground),
+                                                 GetColorQValueByRole(ecrButtonHoverBackground),
+                                                 GetColorQValueByRole(ecrButtonPressedBackground),
+                                                 GetColorQValueByRole(ecrTabDivider),
+                                                 GetColorQValueByRole(ecrTabWordActive)));
+    // m_pTabs->setStyleSheet(_style);
 //    m_pTabs->updateScalingFactor(dpiratio);
     m_pTabs->reloadTabIcons();
     m_pButtonMain->setIcon(MAIN_ICON_PATH, GetCurrentTheme().isDark() ? "logo-light" : "logo-dark");

@@ -44,14 +44,42 @@ namespace NSTheme {
             {CTheme::ColorRole::ecrWindowBorder, "window-border"},
 
             {CTheme::ColorRole::ecrTextNormal, "text-normal"},
-            {CTheme::ColorRole::ecrTextPressed, "text-normal-pressed"},
+            {CTheme::ColorRole::ecrTextPretty, "text-pretty"},
+
+            {CTheme::ColorRole::ecrButtonBackground, "tool-button-background"},
+            {CTheme::ColorRole::ecrButtonHoverBackground, "tool-button-hover-background"},
+            {CTheme::ColorRole::ecrButtonPressedBackground, "tool-button-pressed-background"},
+            {CTheme::ColorRole::ecrButtonBackgroundActive, "tool-button-active-background"},
+
+            {CTheme::ColorRole::ecrDownloadWidgetBackground, "download-widget-background"},
+            {CTheme::ColorRole::ecrDownloadWidgetBorder, "download-widget-border"},
+            {CTheme::ColorRole::ecrDownloadItemHoverBackground, "download-item-hover-background"},
+
+            {CTheme::ColorRole::ecrDownloadGhostButtonText, "download-ghost-button-text"},
+            {CTheme::ColorRole::ecrDownloadGhostButtonTextHover, "download-ghost-button-text-hover"},
+            {CTheme::ColorRole::ecrDownloadGhostButtonTextPressed, "download-ghost-button-text-pressed"},
+            {CTheme::ColorRole::ecrDownloadGhostButtonTextPressedItemHover, "download-ghost-button-text-pressed-item-hover"},
+
+            {CTheme::ColorRole::ecrDownloadLabelText, "download-label-text"},
+            {CTheme::ColorRole::ecrDownloadLabelTextInfo, "download-label-text-info"},
+            {CTheme::ColorRole::ecrDownloadLabelTextInfoItemHover, "download-label-text-info-item-hover"},
+
+            {CTheme::ColorRole::ecrDownloadProgressBarBackground, "download-progressbar-background"},
+            {CTheme::ColorRole::ecrDownloadProgressBarBackgroundItemHover, "download-progressbar-background-item-hover"},
+            {CTheme::ColorRole::ecrDownloadProgressBarChunk, "download-progressbar-chunk"},
+
+            {CTheme::ColorRole::ecrDownloadScrollBarHandle, "download-scrollbar-handle"},
+
+            {CTheme::ColorRole::ecrToolTipText, "tooltip-text"},
+            {CTheme::ColorRole::ecrToolTipBorder, "tooltip-border"},
+            {CTheme::ColorRole::ecrToolTipBackground, "tooltip-background"},
 
     //      {  "tab-active-background": "#fff",
             {CTheme::ColorRole::ecrTabSimpleActiveBackground, "tab-simple-active-background"},
             {CTheme::ColorRole::ecrTabSimpleActiveText, "tab-simple-active-text"},
             {CTheme::ColorRole::ecrTabDefaultActiveBackground, "tab-default-active-background"},
             {CTheme::ColorRole::ecrTabDefaultActiveText, "tab-default-active-text"},
-    //      {  "tab-divider": "#a5a5a5",
+            {CTheme::ColorRole::ecrTabDivider, "tab-divider"},
 
             {CTheme::ColorRole::ecrButtonNormalOpacity, "button-normal-opacity"},
             {CTheme::ColorRole::ecrLogoColor, "logo"}
