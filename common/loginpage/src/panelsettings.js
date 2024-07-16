@@ -40,7 +40,7 @@
     const THEME_TYPE_DARK = 'dark';
     const THEME_TYPE_SYSTEM = 'system';
 
-    const THEME_ID_DEFAULT_LIGHT = 'theme-classic-light';
+    const THEME_ID_DEFAULT_LIGHT = 'theme-gray';
     const THEME_ID_DEFAULT_DARK = 'theme-dark';
 
     const themes_map = {
