@@ -30,6 +30,8 @@ jobs:
           cp -fRTv $CHANGES_WIN/0.0.0 $CHANGES_WIN/$VERSION
           cp -fRTv $CHANGES_MAC/0.0.0 $CHANGES_MAC/$VERSION
           cp -fRTv $CHANGES_LINUX/template $CHANGES_LINUX/$VERSION
+          # for changelog files for win, mac and linux replace '0.0.0' with VERSION,
+          # and replace '000' in the row included 'CHANGELOG' with VERSION without dots
           find $CHANGES_WIN/$VERSION $CHANGES_MAC/$VERSION $CHANGES_LINUX/$VERSION -name "*.html" -print \
             -exec sed -e 's/0.0.0/'${VERSION}'/g' -e '/CHANGELOG/s/000/'${VERSION//./}'/g' -i {} \;
 
