@@ -11,12 +11,13 @@ PUBLISHER_NAME ?= Ascensio System SIA
 PUBLISHER_URL ?= http://onlyoffice.com
 SUPPORT_URL ?= http://support.onlyoffice.com
 SUPPORT_MAIL ?= support@onlyoffice.com
+SCHEME_HANDLER ?= oo-office
 
 PRODUCT_VERSION ?= 0.0.0
 BUILD_NUMBER ?= 0
 PACKAGE_EDITION ?= cool
 
-BRANDING_DIR ?= $(PWD)/branding
+BRANDING_DIR ?= .
 
 PACKAGE_NAME := $(COMPANY_NAME_LOW)-$(PRODUCT_NAME_LOW)
 PACKAGE_VERSION := $(PRODUCT_VERSION)-$(BUILD_NUMBER)
@@ -35,56 +36,29 @@ ifneq ($(filter aarch%,$(UNAME_M)),)
 	PLATFORM = linux_arm64
 endif
 
-RPM_BUILD_DIR = $(PWD)/rpm/builddir
-APT_RPM_BUILD_DIR = $(PWD)/apt-rpm/builddir
-URPMI_BUILD_DIR = $(PWD)/urpmi/builddir
-SUSE_RPM_BUILD_DIR = $(PWD)/suse-rpm/builddir
-TAR_BUILD_DIR = $(PWD)/tar
+RPM_BUILD_DIR = rpm/build
+RPM_SUSE_BUILD_DIR = rpm-suse/build
 
 RPM_PACKAGE_DIR = $(RPM_BUILD_DIR)/RPMS/$(RPM_ARCH)
-APT_RPM_PACKAGE_DIR = $(APT_RPM_BUILD_DIR)/RPMS/$(RPM_ARCH)
-URPMI_PACKAGE_DIR = $(URPMI_BUILD_DIR)/RPMS/$(RPM_ARCH)
-SUSE_RPM_PACKAGE_DIR = $(SUSE_RPM_BUILD_DIR)/RPMS/$(RPM_ARCH)
-TAR_PACKAGE_DIR = $(TAR_BUILD_DIR)
+RPM_SUSE_PACKAGE_DIR = $(RPM_SUSE_BUILD_DIR)/RPMS/$(RPM_ARCH)
 
-RPM = $(RPM_PACKAGE_DIR)/$(PACKAGE_NAME)-$(PACKAGE_VERSION)$(RPM_RELEASE_SUFFIX).$(RPM_ARCH).rpm
-APT_RPM = $(APT_RPM_PACKAGE_DIR)/$(PACKAGE_NAME)-$(PACKAGE_VERSION)$(APT_RPM_RELEASE_SUFFIX).$(RPM_ARCH).rpm
-URPMI = $(URPMI_PACKAGE_DIR)/$(PACKAGE_NAME)-$(PACKAGE_VERSION)$(URPMI_RELEASE_SUFFIX).$(RPM_ARCH).rpm
-SUSE_RPM = $(SUSE_RPM_PACKAGE_DIR)/$(PACKAGE_NAME)-$(PACKAGE_VERSION)$(SUSE_RPM_RELEASE_SUFFIX).$(RPM_ARCH).rpm
 DEB = deb/$(PACKAGE_NAME)_$(PACKAGE_VERSION)$(DEB_RELEASE_SUFFIX)_$(DEB_ARCH).deb
-DEB_ASTRA = deb-astra/$(PACKAGE_NAME)_$(PACKAGE_VERSION)$(DEB_ASTRA_RELEASE_SUFFIX)_$(DEB_ARCH).deb
-TAR = $(TAR_PACKAGE_DIR)/$(PACKAGE_NAME)-$(PACKAGE_VERSION)$(TAR_RELEASE_SUFFIX)-$(TAR_ARCH).tar.xz
-HELP_TAR = $(TAR_PACKAGE_DIR)/$(PACKAGE_NAME)-help-$(PACKAGE_VERSION)$(TAR_RELEASE_SUFFIX)-any.tar.xz
+RPM = $(RPM_PACKAGE_DIR)/$(PACKAGE_NAME)-$(PACKAGE_VERSION)$(RPM_RELEASE_SUFFIX).$(RPM_ARCH).rpm
+RPM_SUSE = $(RPM_SUSE_PACKAGE_DIR)/$(PACKAGE_NAME)-$(PACKAGE_VERSION)$(RPM_SUSE_RELEASE_SUFFIX).$(RPM_ARCH).rpm
+TAR = tar/$(PACKAGE_NAME)-$(PACKAGE_VERSION)$(TAR_RELEASE_SUFFIX)-$(TAR_ARCH).tar.xz
+TAR_HELP = tar/$(PACKAGE_NAME)-help-$(PACKAGE_VERSION)$(TAR_RELEASE_SUFFIX)-any.tar.xz
 
-NEWS_RPM = common/usr/share/doc/$(PACKAGE_NAME)/NEWS
-CHANGELOG_RPM = common/usr/share/doc/$(PACKAGE_NAME)/ChangeLog
+NEWS_RPM = build/main/usr/share/doc/$(PACKAGE_NAME)/NEWS
+CHANGELOG_RPM = build/main/usr/share/doc/$(PACKAGE_NAME)/ChangeLog
 CHANGELOG_DEB = deb/build/debian/changelog
-CHANGELOG_DEB_ASTRA = deb-astra/build/debian/changelog
 
 DESKTOPEDITORS_PREFIX := $(COMPANY_NAME_LOW)/$(PRODUCT_NAME_LOW)
 DESKTOPEDITORS_EXEC := $(PACKAGE_NAME)
-ifneq ($(COMPANY_NAME), ONLYOFFICE)
-	MEDIAVIEWER_PREFIX := $(COMPANY_NAME_LOW)/mediaviewer
-	IMAGEVIEWER_EXEC := $(COMPANY_NAME_LOW)-imageviewer
-	VIDEOPLAYER_EXEC := $(COMPANY_NAME_LOW)-videoplayer
-endif
 
-LINUX_DEPS += common/usr/share/applications/variables.m4
-BIN_FILES += common/usr/bin/$(DESKTOPEDITORS_EXEC)
-DESKTOP_FILES += common/usr/share/applications/$(DESKTOPEDITORS_EXEC).desktop
-SYMLINK += common/usr/bin/desktopeditors
-ifneq ($(COMPANY_NAME), ONLYOFFICE)
-	BIN_FILES += common/usr/bin/$(IMAGEVIEWER_EXEC)
-	BIN_FILES += common/usr/bin/$(VIDEOPLAYER_EXEC)
-	DESKTOP_FILES += common/usr/share/applications/$(IMAGEVIEWER_EXEC).desktop
-	DESKTOP_FILES += common/usr/share/applications/$(VIDEOPLAYER_EXEC).desktop
-	DEB_DEPS += common/usr/share/flyfm/templates/desktopeditors.docx.desktop
-	DEB_DEPS += common/usr/share/flyfm/templates/desktopeditors.xlsx.desktop
-	DEB_DEPS += common/usr/share/flyfm/templates/desktopeditors.pptx.desktop
-endif
+BIN_FILES += build/main/usr/bin/$(DESKTOPEDITORS_EXEC)
+DESKTOP_FILES += build/main/usr/share/applications/$(DESKTOPEDITORS_EXEC).desktop
 LINUX_DEPS += $(BIN_FILES)
 LINUX_DEPS += $(DESKTOP_FILES)
-LINUX_DEPS += $(SYMLINK)
 LINUX_DEPS += $(CHANGELOG_RPM)
 
 DEB_DEPS += $(CHANGELOG_DEB)
@@ -99,26 +73,9 @@ DEB_DEPS += deb/build/debian/$(PACKAGE_NAME).dirs
 DEB_DEPS += deb/build/debian/$(PACKAGE_NAME).install
 DEB_DEPS += deb/build/debian/$(PACKAGE_NAME).links
 DEB_DEPS += deb/build/debian/$(PACKAGE_NAME)-help.install
+DEB_DEPS += deb/build/package.config
 
-DEB_ASTRA_DEPS += $(CHANGELOG_DEB_ASTRA)
-DEB_ASTRA_DEPS += deb-astra/build/debian/compat
-DEB_ASTRA_DEPS += deb-astra/build/debian/control
-DEB_ASTRA_DEPS += deb-astra/build/debian/postinst
-DEB_ASTRA_DEPS += deb-astra/build/debian/postrm
-DEB_ASTRA_DEPS += deb-astra/build/debian/prerm
-DEB_ASTRA_DEPS += deb-astra/build/debian/rules
-DEB_ASTRA_DEPS += deb-astra/build/debian/source/format
-DEB_ASTRA_DEPS += deb-astra/build/debian/$(PACKAGE_NAME).dirs
-DEB_ASTRA_DEPS += deb-astra/build/debian/$(PACKAGE_NAME).install
-DEB_ASTRA_DEPS += deb-astra/build/debian/$(PACKAGE_NAME).links
-DEB_ASTRA_DEPS += common/usr/share/flyfm/templates/desktopeditors.docx.desktop
-DEB_ASTRA_DEPS += common/usr/share/flyfm/templates/desktopeditors.xlsx.desktop
-DEB_ASTRA_DEPS += common/usr/share/flyfm/templates/desktopeditors.pptx.desktop
-
-SRC += ../../../../build_tools/out/$(PLATFORM)/$(DESKTOPEDITORS_PREFIX)
-ifneq ($(COMPANY_NAME), ONLYOFFICE)
-	SRC += ../../../../build_tools/out/$(PLATFORM)/$(MEDIAVIEWER_PREFIX)
-endif
+SOURCE_DIR := ../../../../build_tools/out/$(PLATFORM)/$(COMPANY_NAME_LOW)
 
 M4_PARAMS += -D M4_COMPANY_NAME='$(COMPANY_NAME)'
 M4_PARAMS += -D M4_PRODUCT_NAME='$(PRODUCT_NAME)'
@@ -130,21 +87,11 @@ M4_PARAMS += -D M4_PACKAGE_NAME='$(PACKAGE_NAME)'
 M4_PARAMS += -D M4_PACKAGE_EDITION='$(PACKAGE_EDITION)'
 M4_PARAMS += -D M4_DESKTOPEDITORS_PREFIX='$(DESKTOPEDITORS_PREFIX)'
 M4_PARAMS += -D M4_DESKTOPEDITORS_EXEC='$(DESKTOPEDITORS_EXEC)'
-ifneq ($(COMPANY_NAME), ONLYOFFICE)
-	M4_PARAMS += -D M4_MEDIAVIEWER_PREFIX='$(MEDIAVIEWER_PREFIX)'
-	M4_PARAMS += -D M4_IMAGEVIEWER_EXEC='$(IMAGEVIEWER_EXEC)'
-	M4_PARAMS += -D M4_VIDEOPLAYER_EXEC='$(VIDEOPLAYER_EXEC)'
-	M4_PARAMS += -D M4_SCHEME_HANDLER='$(COMPANY_NAME_LOW)'
-else
-	M4_PARAMS += -D M4_SCHEME_HANDLER='oo-office'
-endif
+M4_PARAMS += -D M4_SCHEME_HANDLER='$(SCHEME_HANDLER)'
 M4_PARAMS += -D M4_DEB_ARCH='$(DEB_ARCH)'
+
 M4_DEB_PARAMS = $(M4_PARAMS)
 M4_DEB_PARAMS += -D M4_PACKAGE_VERSION='$(PACKAGE_VERSION)$(DEB_RELEASE_SUFFIX)'
-M4_DEB_ASTRA_PARAMS = $(M4_PARAMS)
-M4_DEB_ASTRA_PARAMS += -D M4_ASTRALINUX_KEYS_DIR='$(abspath $(ASTRALINUX_KEYS_DIR))'
-M4_DEB_ASTRA_PARAMS += -D M4_ASTRALINUX_SIGN_IMAGE='$(ASTRALINUX_SIGN_IMAGE)'
-M4_DEB_ASTRA_PARAMS += -D M4_PACKAGE_VERSION='$(PACKAGE_VERSION)$(DEB_ASTRA_RELEASE_SUFFIX)'
 
 RPM_PARAMS += --define '_company_name $(COMPANY_NAME)'
 RPM_PARAMS += --define '_product_name $(PRODUCT_NAME)'
@@ -156,110 +103,86 @@ RPM_PARAMS += --define '_package_edition $(PACKAGE_EDITION)'
 RPM_PARAMS += --define '_product_version $(PRODUCT_VERSION)'
 RPM_PARAMS += --define '_desktopeditors_prefix $(DESKTOPEDITORS_PREFIX)'
 RPM_PARAMS += --define '_desktopeditors_exec $(DESKTOPEDITORS_EXEC)'
-ifneq ($(COMPANY_NAME), ONLYOFFICE)
-	RPM_PARAMS += --define '_mediaviewer_prefix $(MEDIAVIEWER_PREFIX)'
-	RPM_PARAMS += --define '_imageviewer_exec $(IMAGEVIEWER_EXEC)'
-	RPM_PARAMS += --define '_videoplayer_exec $(VIDEOPLAYER_EXEC)'
-	RPM_PARAMS += --define '_scheme_handler $(COMPANY_NAME_LOW)'
-else
-	RPM_PARAMS += --define '_scheme_handler oo-office'
-endif
+RPM_PARAMS += --define '_scheme_handler $(SCHEME_HANDLER)'
 RPM_PARAMS += --define '_binary_payload w7.xzdio'
 
-CHANGES_DIR ?= ../../../common/changes
-CHANGES_HTML = changes.html
-CHANGES_VERSIONS = $(shell echo $(PRODUCT_VERSION); { ls -1 $(CHANGES_DIR) \
+CHANGES_DIR := $(BRANDING_DIR)/../../../common/changes
+CHANGES_HTML := changes.html
+CHANGES_VERSIONS := $(shell echo $(PRODUCT_VERSION); { ls -1 $(CHANGES_DIR) \
 	| grep -E '^[0-9]+' | grep -v $(PRODUCT_VERSION) | sort -Vur; })
 
-all: tar deb deb-astra rpm apt-rpm suse-rpm urpmi
+HELP_GLOB := opt/$(DESKTOPEDITORS_PREFIX)/editors/web-apps/apps/*/main/resources/help
 
-ifeq ($(COMPANY_NAME), ONLYOFFICE)
-tar: $(TAR) $(HELP_TAR)
-else
-tar: $(TAR)
-endif
+-include $(BRANDING_DIR)/branding.mk
 
-deb: $(DEB)
+all : deb rpm rpm-suse tar tar-help
+deb : $(DEB)
+rpm : $(RPM)
+rpm-suse : $(RPM_SUSE)
+tar : $(TAR)
+tar-help : $(TAR_HELP)
 
-deb-astra: $(DEB_ASTRA)
-
-rpm: $(RPM)
-
-apt-rpm: $(APT_RPM)
-
-suse-rpm: $(SUSE_RPM)
-
-urpmi: $(URPMI)
-
-clean:
-	rm -rfv \
-		common/etc \
-		common/opt \
-		common/help \
-		$(LINUX_DEPS) \
-		deb/build \
-		deb/*.buildinfo \
-		deb/*.changes \
-		deb/*.ddeb \
-		deb/*.deb \
-		deb-astra \
-		$(RPM_BUILD_DIR) \
-		$(APT_RPM_BUILD_DIR) \
-		$(URPMI_BUILD_DIR) \
-		$(SUSE_RPM_BUILD_DIR) \
-		$(TAR_BUILD_DIR) \
-		rpm/$(PACKAGE_NAME).spec \
-		apt-rpm/$(PACKAGE_NAME).spec \
-		urpmi/$(PACKAGE_NAME).spec \
-		suse-rpm/$(PACKAGE_NAME).spec \
-		$(dir $(CHANGELOG_RPM)) \
+clean :
+	rm -rf \
+		build \
+		deb*/build \
+		deb*/*.buildinfo \
+		deb*/*.changes \
+		deb*/*.ddeb \
+		deb*/*.deb \
+		rpm*/build \
+		rpm*/$(PACKAGE_NAME).spec \
+		tar \
 		$(CHANGES_DIR)/*/changes_??? \
 		$(CHANGES_DIR)/*/news_???
 
-branding: $(BRANDING_DIR)
-	cp -rf $(BRANDING_DIR)/* $(PWD)/
+build : $(LINUX_DEPS)
+	mkdir -p $@/main/opt/$(DESKTOPEDITORS_PREFIX)
+	cp -rft $@/main/opt/$(DESKTOPEDITORS_PREFIX) $(SOURCE_DIR)/desktopeditors/*
+	chmod 755 $@/main/opt/$(DESKTOPEDITORS_PREFIX)/DesktopEditors
 
-desktop: branding $(LINUX_DEPS)
-	mkdir -p common/opt
-	cp -rft common/opt $(SRC)
+	cp -rf $(BRANDING_DIR)/../../../common/package/license/*.htm \
+		$@/main/opt/$(DESKTOPEDITORS_PREFIX)/LICENSE.htm
+	cp -rf $(BRANDING_DIR)/../../../common/package/license/3dparty/3DPARTYLICENSE \
+		$@/main/opt/$(DESKTOPEDITORS_PREFIX)/
 
-	cp -rf ../../../common/package/license/agpl-3.0.htm common/opt/desktopeditors/LICENSE.htm
-	cp -rf ../../../common/package/license/3dparty/3DPARTYLICENSE common/opt/desktopeditors
+ifneq ($(wildcard $(BRANDING_DIR)/../../../common/package/mimetypes),)
+	cp -rf $(BRANDING_DIR)/../../../common/package/mimetypes \
+		$@/main/opt/$(DESKTOPEDITORS_PREFIX)
+endif
 
-	cp -rf ../../../common/package/mimetypes common/opt/desktopeditors
-
-ifeq ($(COMPANY_NAME), ONLYOFFICE)
-	for path in common/opt/desktopeditors/editors/web-apps/apps/*/main/resources/help; do \
-		path_new=$$(echo $$path | sed 's|/opt/|/help/|'); \
+	cd $@; \
+	for path in main/$(HELP_GLOB); do \
+		path_new=$$(echo $$path | sed 's|^main/|help/|'); \
 		mkdir -p $$path_new; \
 		mv -fT $$path $$path_new; \
 	done
+
+	for path in $(BRANDING_DIR)/common/icons/*.png; do \
+		cp -f $$path $@/main/opt/$(DESKTOPEDITORS_PREFIX)/asc-de-$${path##*/}; \
+	done
+
+ifdef MEDIAVIEWER_PREFIX
+	mkdir -p $@/main/opt/$(MEDIAVIEWER_PREFIX)
+	cp -rft $@/main/opt/$(MEDIAVIEWER_PREFIX) $(SOURCE_DIR)/mediaviewer/*
+	chmod 755 $@/main/opt/$(MEDIAVIEWER_PREFIX)/ImageViewer
+	chmod 755 $@/main/opt/$(MEDIAVIEWER_PREFIX)/VideoPlayer
 endif
 
-	chmod 755 common/opt/desktopeditors/DesktopEditors
-ifneq ($(COMPANY_NAME), ONLYOFFICE)
-	chmod 755 common/opt/mediaviewer/ImageViewer
-	chmod 755 common/opt/mediaviewer/VideoPlayer
-endif
-
-$(RPM): desktop rpm/$(PACKAGE_NAME).spec
+$(RPM) : build rpm/$(PACKAGE_NAME).spec
 	cd rpm && rpmbuild -bb \
-		--define "_topdir $(RPM_BUILD_DIR)" \
+		--define "_topdir $(PWD)/$(RPM_BUILD_DIR)" \
 		--define "_build_number $(BUILD_NUMBER)$(RPM_RELEASE_SUFFIX)" \
 		--define "_package_arch $(RPM_ARCH)" \
 		--target $(RPM_ARCH) \
 		$(RPM_PARAMS) \
-		package.spec
+		$(PACKAGE_NAME).spec
 
 deb/build/debian/% : deb/template/%
 	mkdir -pv $(@D) && cp -fv $< $@
 
 deb/build/debian/% : deb/template/%.m4
 	mkdir -pv $(@D) && m4 $(M4_DEB_PARAMS) $< > $@
-
-$(CHANGELOG_DEB_ASTRA) : $(CHANGELOG_DEB)
-	mkdir -pv $(@D)
-	cp -v $(CHANGELOG_DEB) $@
 
 $(CHANGELOG_DEB) :
 	mkdir -pv $(@D)
@@ -340,7 +263,7 @@ $(NEWS_RPM) :
 			echo "$(PRODUCT_VERSION)" > $(CHANGES_DIR)/$$v/news_rpm; \
 		fi; \
 		m4 $(M4_PARAMS) -D M4_VERSION=$$v -D M4_DATE_SHORT="$$date" \
-			common/usr/share/doc/NEWS.m4 \
+			common/NEWS.m4 \
 			| sed '2r '$(CHANGES_DIR)/$$v/news_rpm >> $@; \
 	done
 
@@ -363,7 +286,7 @@ $(CHANGELOG_RPM) : $(NEWS_RPM)
 			-e 's/^[^ *]/- &/' \
 			> $(CHANGES_DIR)/$$v/changes_rpm; \
 		m4 $(M4_PARAMS) -D M4_VERSION=$$v -D M4_DATE="$$date" \
-			common/usr/share/doc/ChangeLog.m4 \
+			common/ChangeLog.m4 \
 			| sed '1r '$(CHANGES_DIR)/$$v/changes_rpm >> $@; \
 	done
 
@@ -373,74 +296,40 @@ deb/build/debian/$(PACKAGE_NAME).% : deb/template/package.%.m4
 deb/build/debian/$(PACKAGE_NAME)-help.% : deb/template/package-help.%.m4
 	mkdir -pv $(@D) && m4 $(M4_DEB_PARAMS) $< > $@
 
-deb-astra/build/debian/% : deb/template/%
-	mkdir -pv $(@D) && cp -fv $< $@
+deb/build/package.config :
+	mkdir -p $(@D) && echo "package = deb" > $@
 
-deb-astra/build/debian/% : deb/template/%.m4
-	mkdir -pv $(@D) && \
-	m4 $(M4_DEB_ASTRA_PARAMS) $< > $@
-
-deb-astra/build/debian/$(PACKAGE_NAME).% : deb/template/package.%.m4
-	mkdir -pv $(@D) && \
-	m4 $(M4_DEB_ASTRA_PARAMS) $< > $@
-
-$(DEB): desktop $(DEB_DEPS)
+$(DEB) : build $(DEB_DEPS)
 	cd deb/build && dpkg-buildpackage -b -uc -us
 
-$(DEB_ASTRA): desktop $(DEB_ASTRA_DEPS)
-	cd deb-astra/build && dpkg-buildpackage -b -uc -us
-
-$(APT_RPM): desktop apt-rpm/$(PACKAGE_NAME).spec
-	cd apt-rpm && setarch $(RPM_ARCH) rpmbuild -bb \
-		--define "_topdir $(APT_RPM_BUILD_DIR)" \
-		--define "_build_number $(BUILD_NUMBER)$(APT_RPM_RELEASE_SUFFIX)" \
+$(RPM_SUSE) : build rpm-suse/$(PACKAGE_NAME).spec
+	cd rpm-suse && rpmbuild -bb \
+		--define "_topdir $(PWD)/$(RPM_SUSE_BUILD_DIR)" \
+		--define "_build_number $(BUILD_NUMBER)$(RPM_SUSE_RELEASE_SUFFIX)" \
 		--define "_package_arch $(RPM_ARCH)" \
 		--target $(RPM_ARCH) \
 		$(RPM_PARAMS) \
-		package.spec
+		$(PACKAGE_NAME).spec
 
-$(URPMI): desktop urpmi/$(PACKAGE_NAME).spec
-	cd urpmi && setarch $(RPM_ARCH) rpmbuild -bb \
-		--define "_topdir $(URPMI_BUILD_DIR)" \
-		--define "_build_number $(BUILD_NUMBER)$(URPMI_RELEASE_SUFFIX)" \
-		--define "_package_arch $(RPM_ARCH)" \
-		--target $(RPM_ARCH) \
-		$(RPM_PARAMS) \
-		package.spec
+$(TAR) : build
+	mkdir -p tar
+	tar --create --use-compress-program="xz -9T0" \
+		--owner=root --group=root \
+		--directory=build/main --file=$@ \
+		$(patsubst build/main/%,%,$(wildcard build/main/*))
 
-$(SUSE_RPM): desktop suse-rpm/$(PACKAGE_NAME).spec
-	cd suse-rpm && rpmbuild -bb \
-		--define "_topdir $(SUSE_RPM_BUILD_DIR)" \
-		--define "_build_number $(BUILD_NUMBER)$(SUSE_RPM_RELEASE_SUFFIX)" \
-		--define "_package_arch $(RPM_ARCH)" \
-		--target $(RPM_ARCH) \
-		$(RPM_PARAMS) \
-		package.spec
+$(TAR_HELP) : build
+	mkdir -p tar
+	tar --create --use-compress-program="xz -9T0" \
+		--owner=root --group=root \
+		--directory=build/help --file=$@ \
+		$(patsubst build/help/%,%,$(wildcard build/help/*))
 
-$(TAR): desktop
-	mkdir -p $(TAR_PACKAGE_DIR) common/opt/desktopeditors/app
-	cp -ft common/opt/desktopeditors/app $(DESKTOP_FILES)
-	tar -cI"xz -9T0" --owner=root --group=root -f"$@" -C common/opt desktopeditors
-
-$(HELP_TAR): desktop
-	mkdir -p $(TAR_PACKAGE_DIR)
-	tar -cI"xz -9T0" --owner=root --group=root -f"$@" -C common/help desktopeditors
-
-common/usr/bin/$(DESKTOPEDITORS_EXEC) : common/usr/bin/desktopeditors.m4
-common/usr/bin/$(IMAGEVIEWER_EXEC) : common/usr/bin/imageviewer.m4
-common/usr/bin/$(VIDEOPLAYER_EXEC) : common/usr/bin/videoplayer.m4
-common/usr/share/applications/variables.m4 : branding
-common/usr/share/applications/$(DESKTOPEDITORS_EXEC).desktop : common/usr/share/applications/desktopeditors.desktop.m4 common/usr/share/applications/variables.m4
-common/usr/share/applications/$(IMAGEVIEWER_EXEC).desktop : common/usr/share/applications/imageviewer.desktop.m4 common/usr/share/applications/variables.m4
-common/usr/share/applications/$(VIDEOPLAYER_EXEC).desktop : common/usr/share/applications/videoplayer.desktop.m4 common/usr/share/applications/variables.m4
-common/usr/bin/desktopeditors : common/usr/bin/$(DESKTOPEDITORS_EXEC)
-common/usr/bin/$(COMPANY_NAME_LOW) : common/usr/bin/$(DESKTOPEDITORS_EXEC)
+build/main/usr/bin/$(DESKTOPEDITORS_EXEC) : common/desktopeditors.sh.m4
+build/main/usr/share/applications/$(DESKTOPEDITORS_EXEC).desktop : common/desktopeditors.desktop.m4
 
 $(BIN_FILES) $(DESKTOP_FILES) :
-	m4 -I'common/usr/share/applications' $(M4_PARAMS) $< > $@
-
-$(SYMLINK) :
-	ln -srf $< $@
+	mkdir -p $(@D) && m4 -I "$(BRANDING_DIR)/common" $(M4_PARAMS) $< > $@
 
 % : %.m4
 	m4 $(M4_PARAMS)	$< > $@
@@ -448,4 +337,4 @@ $(SYMLINK) :
 %/$(PACKAGE_NAME).spec : %/package.spec 
 	cp $< $@
 
-.PHONY: all tar deb deb-astra rpm apt-rpm suse-rpm urpmi clean desktop branding
+.PHONY : all clean deb rpm rpm-suse tar tar-help
