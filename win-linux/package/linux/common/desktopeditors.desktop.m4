@@ -1,4 +1,4 @@
-include(variables.m4)dnl
+include(defines.m4)dnl
 [Desktop Entry]
 Version=1.0
 ifelse(M4_COMPANY_NAME, ONLYOFFICE,
