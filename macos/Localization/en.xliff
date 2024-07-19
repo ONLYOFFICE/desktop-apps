@@ -488,22 +488,22 @@ We have a special offer for you.</target>
       </trans-unit>
       <trans-unit id="new-document" xml:space="preserve">
         <source>New Document</source>
-        <target>New Document</target>
+        <target>New document</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="new-presentation" xml:space="preserve">
         <source>New Presentation</source>
-        <target>New Presentation</target>
+        <target>New presentation</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="new-spreadsheet" xml:space="preserve">
         <source>New Spreadsheet</source>
-        <target>New Spreadsheet</target>
+        <target>New spreadsheet</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="new-pdfform" xml:space="preserve">
         <source>New PDF Form</source>
-        <target>New PDF Form</target>
+        <target>New PDF form</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
     </body>

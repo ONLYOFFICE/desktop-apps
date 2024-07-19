@@ -420,6 +420,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5A0229392C4A54600011C6EC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5A18BAA3285B5BF6004625C7 /* CertificateCommon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CertificateCommon.h; sourceTree = "<group>"; };
 		5A417F722C05265E00758795 /* sr-Latn-RS */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sr-Latn-RS"; path = "sr-Latn-RS.lproj/Document-Sign.strings"; sourceTree = "<group>"; };
 		5A417F732C05265E00758795 /* sr-Latn-RS */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sr-Latn-RS"; path = "sr-Latn-RS.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -3100,6 +3101,7 @@
 				5ABE02522B22699F0031328E /* ar-SA */,
 				5A417F732C05265E00758795 /* sr-Latn-RS */,
 				5A417F7C2C05267F00758795 /* sr-RS */,
+				5A0229392C4A54600011C6EC /* en */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
