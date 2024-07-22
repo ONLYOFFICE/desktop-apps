@@ -45,7 +45,6 @@ message($$PLATFORM_BUILD)
 #}
 
 updmodule:core_linux {
-    SOURCES += $$PWD/res/gresource.c
     GLIB_RESOURCE_FILES += $$PWD/res/gresource.xml
 
     glib_resources.name = gresource

@@ -7,7 +7,6 @@ DEFINES += APP_ICON_PATH=\"./icons/desktopeditors.ico\"
 DEFINES += APP_LANG_PATH=\"./langs/langs.iss\"
 
 core_linux {
-    SOURCES += $$PWD/res/gresource.c
     GLIB_RESOURCE_FILES += $$PWD/res/gresource.xml
 
     glib_resources.name = gresource

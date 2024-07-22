@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-16"?>
+<?xml version="1.0" encoding="utf-8"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
   <file source-language="en" target-language="lt">
     <body>
@@ -346,15 +346,15 @@ Mes jums turime specialų pasiūlymą.</target>
       </trans-unit>
       <trans-unit id="new-document">
         <source>New Document</source>
-        <target>Naujas Dokumentas</target>
+        <target>Naujas dokumentas</target>
       </trans-unit>
       <trans-unit id="new-presentation">
         <source>New Presentation</source>
-        <target>Nauja Prezentacija</target>
+        <target>Nauja prezentacija</target>
       </trans-unit>
       <trans-unit id="new-spreadsheet">
         <source>New Spreadsheet</source>
-        <target>Nauja Skaičiuoklė</target>
+        <target>Nauja skaičiuoklė</target>
       </trans-unit>
       <trans-unit id="new-pdfform" xml:space="preserve">
         <source>New PDF Form</source>

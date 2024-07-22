@@ -477,7 +477,7 @@ Nós temos uma oferta especial para você.</target>
       </trans-unit>
       <trans-unit id="new-document" xml:space="preserve">
         <source>New Document</source>
-        <target state="translated">Novo Documento</target>
+        <target state="translated">Novo documento</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="new-presentation" xml:space="preserve">

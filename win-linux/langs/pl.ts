@@ -4,7 +4,7 @@
 <context>
     <name>CAscApplicationManagerWrapper</name>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1315"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1316"/>
         <source>Presenter View</source>
         <translation>Widok Prezentera</translation>
     </message>
@@ -25,23 +25,23 @@
         <translation type="obsolete">Zapisz jako</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1772"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1773"/>
         <source>You must restart the application for the settings to take effect.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2151"/>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2153"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2152"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2154"/>
         <source>Document%1.docx</source>
         <translation>Dokument%1.docx</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2156"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2157"/>
         <source>Book%1.xlsx</source>
         <translation>Skoroszyt%1.xlsx</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2157"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2158"/>
         <source>Presentation%1.pptx</source>
         <translation>Prezentacja%1.pptx</translation>
     </message>
@@ -369,7 +369,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="78"/>
         <source>ONLYOFFICE Form Document (*.pdf)</source>
-        <translation>Dokument formularza ONLYOFFICE (*.pdf)</translation>
+        <translation>Formularz PDF (*.pdf)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="85"/>
@@ -870,12 +870,12 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper_private.h" line="249"/>
+        <location filename="../src/cascapplicationmanagerwrapper_private.h" line="251"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
         <translation>%1 jest niedostępny. Został przeniesiony, usunięty lub zmieniono jego nazwę.&lt;br&gt;Czy chcesz usunąć plik z listy?</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper_private.h" line="292"/>
+        <location filename="../src/cascapplicationmanagerwrapper_private.h" line="294"/>
         <source>File %1 cannot be opened or doesn&apos;t exists.</source>
         <translation>Plik %1 nie może zostać otworzony lub nie istnieje.</translation>
     </message>

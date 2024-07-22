@@ -416,7 +416,7 @@ bool CWindowPlatform::nativeEvent(const QByteArray &eventType, void *message, lo
                 if (Utils::getWinVersion() < WinVer::Win10)
                     adjustGeometry();
             }
-        } else if (msg->wParam == 0) {
+        } else if (msg->wParam == 0 && msg->lParam) {
             const std::wstring param{(wchar_t*)msg->lParam};
             if (param == L"ImmersiveColorSet") {
                 QSettings _reg("HKEY_CURRENT_USER\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize", QSettings::NativeFormat);

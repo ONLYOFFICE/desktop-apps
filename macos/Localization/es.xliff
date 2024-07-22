@@ -488,12 +488,12 @@ Tenemos una oferta especial para usted.</target>
       </trans-unit>
       <trans-unit id="new-document" xml:space="preserve">
         <source>New Document</source>
-        <target state="translated">Nuevo Documento</target>
+        <target state="translated">Nuevo documento</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="new-presentation" xml:space="preserve">
         <source>New Presentation</source>
-        <target state="translated">Nueva Presentación</target>
+        <target state="translated">Nueva presentación</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="new-spreadsheet" xml:space="preserve">

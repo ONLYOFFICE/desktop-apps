@@ -1,12 +1,12 @@
 name: Initialize changelog files
 
-on: workflow_dispatch
+on: create
 
 jobs:
   changelogs:
     if: >-
-      ${{ contains(github.ref, 'refs/heads/hotfix/v') ||
-          contains(github.ref, 'refs/heads/release/v') }}
+      ${{ startsWith(github.ref, 'refs/heads/hotfix/v') ||
+          startsWith(github.ref, 'refs/heads/release/v') }}
     runs-on: ubuntu-latest
     steps:
 
@@ -30,8 +30,10 @@ jobs:
           cp -fRTv $CHANGES_WIN/0.0.0 $CHANGES_WIN/$VERSION
           cp -fRTv $CHANGES_MAC/0.0.0 $CHANGES_MAC/$VERSION
           cp -fRTv $CHANGES_LINUX/template $CHANGES_LINUX/$VERSION
+          # for changelog files for win, mac and linux replace '0.0.0' with VERSION,
+          # and replace '000' in the row included 'CHANGELOG' with VERSION without dots
           find $CHANGES_WIN/$VERSION $CHANGES_MAC/$VERSION $CHANGES_LINUX/$VERSION -name "*.html" -print \
-            -exec sed -e 's/0.0.0/'${VERSION}'/g' -e 's/000/'${VERSION//./}'/g' -i {} \;
+            -exec sed -e 's/0.0.0/'${VERSION}'/g' -e '/CHANGELOG/s/000/'${VERSION//./}'/g' -i {} \;
 
       - name: Commit changes
         uses: EndBug/add-and-commit@v9

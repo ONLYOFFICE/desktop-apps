@@ -4,7 +4,7 @@
 <context>
     <name>CAscApplicationManagerWrapper</name>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1315"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1316"/>
         <source>Presenter View</source>
         <translation>Amharc an Láithreora</translation>
     </message>
@@ -25,23 +25,23 @@
         <translation type="obsolete">Sábháil mar</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1772"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1773"/>
         <source>You must restart the application for the settings to take effect.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2151"/>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2153"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2152"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2154"/>
         <source>Document%1.docx</source>
         <translation>Doiciméad%1.docx</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2156"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2157"/>
         <source>Book%1.xlsx</source>
         <translation>Book%1.xlsx</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2157"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2158"/>
         <source>Presentation%1.pptx</source>
         <translation>Cur i láthair%1.pptx</translation>
     </message>
@@ -408,12 +408,12 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="78"/>
         <source>ONLYOFFICE Form Document (*.pdf)</source>
-        <translation type="unfinished"></translation>
+        <translation>Foirm PDF (*.pdf)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="85"/>
         <source>OpenDocument Presentation Template</source>
-        <translation>Teimpléad cur i láthair OpenDocument (*.otp)</translation>
+        <translation>Teimpléad cur i láthair OpenDocument</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="91"/>
@@ -882,12 +882,12 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper_private.h" line="249"/>
+        <location filename="../src/cascapplicationmanagerwrapper_private.h" line="251"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
         <translation>Níl %1 ar fáil.D’fhéadfaí é a athainmniú, a bhogadh nó a scriosadh.&lt;br&gt;Ar mhaith leat an comhad a bhaint den liosta?</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper_private.h" line="292"/>
+        <location filename="../src/cascapplicationmanagerwrapper_private.h" line="294"/>
         <source>File %1 cannot be opened or doesn&apos;t exists.</source>
         <translation>Ní féidir comhad %1 a oscailt nó níl sé ann.</translation>
     </message>
