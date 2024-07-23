@@ -29,7 +29,7 @@ ifelse(M4_PACKAGE_EDITION, full,
   fonts-liberation,
   fonts-crosextra-carlito,
   xdg-utils')
-Recommends: ttf-mscorefonts-installer, fonts-takao-gothic 
+Recommends: fonts-takao-gothic 
 ifelse(M4_COMPANY_NAME, ONLYOFFICE,Suggest: M4_PACKAGE_NAME-help
 ,)dnl
 Description: M4_COMPANY_NAME M4_PRODUCT_NAME installation package
