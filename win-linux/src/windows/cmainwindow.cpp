@@ -767,16 +767,16 @@ void CMainWindow::onPortalUITheme(int viewid, const std::wstring& json)
 
         if ( json.rfind(L"default-", 0) == 0 ) {
             if ( json.compare(L"default-dark") == 0 )
-                m_pTabs->setTabTheme(m_pTabs->tabIndexByView(viewid), "dark", "#333");
-            else m_pTabs->setTabTheme(m_pTabs->tabIndexByView(viewid), "light", "#fff");
+                m_pTabs->setTabTheme(index, "dark", "#333");
+            else m_pTabs->setTabTheme(index, "light", "#fff");
         } else {
             QJsonParseError jerror;
             QJsonDocument jdoc = QJsonDocument::fromJson(QString::fromStdWString(json).toLatin1(), &jerror);
 
             if( jerror.error == QJsonParseError::NoError ) {
                 QJsonObject objRoot = jdoc.object();
-                m_pTabs->setTabTheme(m_pTabs->tabIndexByView(viewid), objRoot["type"].toString(), objRoot["color"].toString());
-}
+                m_pTabs->setTabTheme(index, objRoot["type"].toString(), objRoot["color"].toString());
+            }
         }
     }
 }
