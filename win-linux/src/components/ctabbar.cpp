@@ -1099,7 +1099,7 @@ bool CTabBar::eventFilter(QObject *watched, QEvent *event)
     if (watched == d->tabArea) {
         switch (event->type()) {
         case QEvent::MouseMove: {
-            QMouseEvent* me = dynamic_cast<QMouseEvent*>(event);
+            QMouseEvent* me = static_cast<QMouseEvent*>(event);
             if (me->buttons().testFlag(Qt::LeftButton)) {
                 if (d->movedTab && !d->lock) {
                     int currPosX = d->movedTab->x();
@@ -1150,7 +1150,7 @@ bool CTabBar::eventFilter(QObject *watched, QEvent *event)
             break;
         }
         case QEvent::MouseButtonPress: {
-            QMouseEvent* me = dynamic_cast<QMouseEvent*>(event);
+            QMouseEvent* me = static_cast<QMouseEvent*>(event);
             if (me->button() == Qt::LeftButton) {
                 if (!d->animationInProgress) {
                     for (int i = 0; i < d->tabList.size(); i++) {
@@ -1185,7 +1185,7 @@ bool CTabBar::eventFilter(QObject *watched, QEvent *event)
             break;
         }
         case QEvent::MouseButtonRelease: {
-            QMouseEvent* mouse_event = dynamic_cast<QMouseEvent*>(event);
+            QMouseEvent* mouse_event = static_cast<QMouseEvent*>(event);
             if (mouse_event->button() == Qt::LeftButton) {
                 while (d->animationInProgress)
                     PROCESSEVENTS();
