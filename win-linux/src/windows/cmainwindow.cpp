@@ -761,6 +761,10 @@ void CMainWindow::onPortalLogin(int viewid, const std::wstring &json)
 void CMainWindow::onPortalUITheme(int viewid, const std::wstring& json)
 {
     if ( !json.empty() ) {
+        int index = m_pTabs->tabIndexByView(viewid);
+        if (m_pTabs->panel(index)->data()->isViewType(cvwtEditor))
+            return;
+
         if ( json.rfind(L"default-", 0) == 0 ) {
             if ( json.compare(L"default-dark") == 0 )
                 m_pTabs->setTabTheme(m_pTabs->tabIndexByView(viewid), "dark", "#333");
