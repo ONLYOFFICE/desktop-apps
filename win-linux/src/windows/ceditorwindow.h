@@ -43,8 +43,8 @@
 #include "components/asctabwidget.h"
 #include <memory>
 #include <QCoreApplication>
-#include <QSpacerItem>
 
+class QSpacerItem;
 class CEditorWindowPrivate;
 class CEditorWindow : public CWindowPlatform
 {
