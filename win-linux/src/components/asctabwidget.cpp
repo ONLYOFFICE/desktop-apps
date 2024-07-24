@@ -908,14 +908,7 @@ void CAscTabWidget::activate(bool a)
     this->setHidden(!a);
     if (property("active").toBool() != a) {
         this->setProperty("active", a);
-        m_pBar->setProperty("active", a);
-    }
-
-    if ( a ) {
-        if ( m_pBar->currentIndex() < 0 )
-            m_pBar->setCurrentIndex(currentIndex());
-    } else {
-        m_pBar->setCurrentIndex(-1);
+        m_pBar->activate(a);
     }
 //    m_pBar->polish();
 }
