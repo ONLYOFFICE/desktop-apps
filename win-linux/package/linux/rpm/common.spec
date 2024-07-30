@@ -32,40 +32,21 @@ rm -rf "%{buildroot}"
 %build
 
 %install
-COMMON=%{_builddir}/../../../common
-
+BUILD_DIR=../../../build
 BIN_DIR=%{buildroot}%{_bindir}
 DATA_DIR=%{buildroot}%{_datadir}
+OPT_DIR=%{buildroot}/opt
 
-DESKTOPEDITORS_PREFIX=%{buildroot}/opt/%{_desktopeditors_prefix}
-mkdir -p $BIN_DIR $DATA_DIR/applications $DESKTOPEDITORS_PREFIX
-
-cp -r $COMMON/opt/desktopeditors/* $DESKTOPEDITORS_PREFIX
-cp -t $BIN_DIR $COMMON/usr/bin/%{_desktopeditors_exec}
-cp -t $DATA_DIR/applications $COMMON/usr/share/applications/%{_desktopeditors_exec}.desktop
-echo "package = rpm" > $DESKTOPEDITORS_PREFIX/converter/package.config
-mkdir -p $DATA_DIR/doc/%{_package_name}
-cp $COMMON/usr/share/doc/%{_package_name}/NEWS $DATA_DIR/doc/%{_package_name}
+mkdir -p %{buildroot}
+cp -rt %{buildroot}/ $BUILD_DIR/main/*
+echo "package = rpm" > $OPT_DIR/%{_desktopeditors_prefix}/converter/package.config
 
 %if "%{_company_name}" == "ONLYOFFICE"
-# help
-cp -r $COMMON/help/desktopeditors/* $DESKTOPEDITORS_PREFIX/
-
 ln -srf $BIN_DIR/%{_desktopeditors_exec} $BIN_DIR/desktopeditors
+cp -rt %{buildroot}/ $BUILD_DIR/help/*
 %else
 ETC_DIR=%{buildroot}%{_sysconfdir}
 mkdir -p $ETC_DIR/%{_package_name}
-
-MEDIAVIEWER_PREFIX=%{buildroot}/opt/%{_mediaviewer_prefix}
-mkdir -p $MEDIAVIEWER_PREFIX
-cp -r $COMMON/opt/mediaviewer/* $MEDIAVIEWER_PREFIX/
-cp -t $BIN_DIR \
-  $COMMON/usr/bin/%{_imageviewer_exec} \
-  $COMMON/usr/bin/%{_videoplayer_exec}
-cp -t $DATA_DIR/applications \
-  $COMMON/usr/share/applications/%{_imageviewer_exec}.desktop \
-  $COMMON/usr/share/applications/%{_videoplayer_exec}.desktop
-ln -srf $BIN_DIR/%{_desktopeditors_exec} $BIN_DIR/%{_package_name}
 %endif
 
 %clean
@@ -181,4 +162,4 @@ done
 
 %changelog
 
-%include ../common/usr/share/doc/%{_package_name}/ChangeLog
+%include ../build/main/usr/share/doc/%{_package_name}/ChangeLog
