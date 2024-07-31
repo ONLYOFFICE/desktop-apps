@@ -124,6 +124,8 @@ xdg-mime install --mode system /opt/%{_desktopeditors_prefix}/mimetypes/onlyoffi
 update-mime-database /usr/share/mime
 update-desktop-database /usr/share/applications
 
+xdg-mime default %{_desktopeditors_exec}.desktop application/pdf
+
 # Update cache of .desktop file MIME types. Non-fatal since it's just a cache.
 #update-desktop-database > /dev/null 2>&1 || true
 
