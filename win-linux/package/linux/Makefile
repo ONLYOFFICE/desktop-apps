@@ -60,10 +60,9 @@ DESKTOP_FILES += build/main/usr/share/applications/$(DESKTOPEDITORS_EXEC).deskto
 LINUX_DEPS += $(BIN_FILES)
 LINUX_DEPS += $(DESKTOP_FILES)
 LINUX_DEPS += $(CHANGELOG_RPM)
-LINUX_DEPS += $(foreach i, \
-	$(patsubst $(BRANDING_DIR)/common/icons/%.png, %, \
-	$(wildcard $(BRANDING_DIR)/common/icons/*.png)), \
-	build/main/usr/share/icons/hicolor/$ix$i/apps/$(DESKTOPEDITORS_EXEC).png)
+LINUX_DEPS += $(patsubst $(BRANDING_DIR)/common/icons/%.png, \
+	build/main/usr/share/icons/hicolor/%/apps/$(DESKTOPEDITORS_EXEC).png, \
+	$(wildcard $(BRANDING_DIR)/common/icons/*.png))
 LINUX_DEPS += build/main/usr/share/licenses/$(PACKAGE_NAME)/LICENSE
 LINUX_DEPS += build/main/usr/share/licenses/$(PACKAGE_NAME)/3DPARTYLICENSE
 ifneq ($(wildcard $(BRANDING_DIR)/../../../common/package/mimetypes/*.xml),)
@@ -173,15 +172,7 @@ $(RPM) : build rpm/$(PACKAGE_NAME).spec
 		$(RPM_PARAMS) \
 		$(PACKAGE_NAME).spec
 
-build/main/usr/share/icons/hicolor/16x16/apps/$(DESKTOPEDITORS_EXEC).png : $(BRANDING_DIR)/common/icons/16.png
-build/main/usr/share/icons/hicolor/24x24/apps/$(DESKTOPEDITORS_EXEC).png : $(BRANDING_DIR)/common/icons/24.png
-build/main/usr/share/icons/hicolor/32x32/apps/$(DESKTOPEDITORS_EXEC).png : $(BRANDING_DIR)/common/icons/32.png
-build/main/usr/share/icons/hicolor/48x48/apps/$(DESKTOPEDITORS_EXEC).png : $(BRANDING_DIR)/common/icons/48.png
-build/main/usr/share/icons/hicolor/64x64/apps/$(DESKTOPEDITORS_EXEC).png : $(BRANDING_DIR)/common/icons/64.png
-build/main/usr/share/icons/hicolor/128x128/apps/$(DESKTOPEDITORS_EXEC).png : $(BRANDING_DIR)/common/icons/128.png
-build/main/usr/share/icons/hicolor/256x256/apps/$(DESKTOPEDITORS_EXEC).png : $(BRANDING_DIR)/common/icons/256.png
-
-build/main/usr/share/icons/% :
+build/main/usr/share/icons/hicolor/%/apps/$(DESKTOPEDITORS_EXEC).png : $(BRANDING_DIR)/common/icons/%.png
 	install -D $< $@
 
 build/main/usr/share/licenses/$(PACKAGE_NAME)/LICENSE : $(BRANDING_DIR)/../../../LICENSE.txt
