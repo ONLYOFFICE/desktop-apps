@@ -56,6 +56,9 @@ rm -rf "%{buildroot}"
 %attr(-, root, root) /opt/*
 %attr(-, root, root) %{_datadir}/applications/*
 %attr(-, root, root) %{_datadir}/doc/*
+%attr(-, root, root) %{_datadir}/icons/*
+%attr(-, root, root) %{_datadir}/licenses/*
+%attr(-, root, root) %{_datadir}/mime/*
 %attr(755, root, root) %{_bindir}/%{_desktopeditors_exec}
 %if "%{_company_name}" == "ONLYOFFICE"
 %attr(-, root, root) %{_bindir}/desktopeditors
@@ -72,93 +75,6 @@ rm -rf "%{buildroot}"
 %defattr(-, root, root, -)
 /opt/%{_desktopeditors_prefix}/editors/web-apps/apps/*/main/resources/help
 %endif
-
-%pre
-
-%post
-
-set -e 		# fail on any error
-set -u 		# treat unset variable as errors
-
-# Add icons to the system icons
-XDG_ICON_RESOURCE="`which xdg-icon-resource 2> /dev/null || true`"
-if [ ! -x "$XDG_ICON_RESOURCE" ]; then
-  echo "Error: Could not find xdg-icon-resource" >&2
-  exit 1
-fi
-for icon in "/opt/%{_desktopeditors_prefix}/asc-de-"*.png; do
-  size="${icon##*/asc-de-}"
-  if [ $1 == 2 ];then #upgrade (not install)
-    "$XDG_ICON_RESOURCE" uninstall --size "${size%.png}" "%{_package_name}"
-  fi
-  "$XDG_ICON_RESOURCE" install --size "${size%.png}" "$icon" "%{_package_name}"
-done
-
-UPDATE_MENUS="`which update-menus 2> /dev/null || true`"
-if [ -x "$UPDATE_MENUS" ]; then
-  update-menus
-fi
-
-xdg-mime install --mode system /opt/%{_desktopeditors_prefix}/mimetypes/onlyoffice-docxf.xml
-xdg-mime install --mode system /opt/%{_desktopeditors_prefix}/mimetypes/onlyoffice-oform.xml
-
-update-mime-database /usr/share/mime
-update-desktop-database /usr/share/applications
-
-# Update cache of .desktop file MIME types. Non-fatal since it's just a cache.
-#update-desktop-database > /dev/null 2>&1 || true
-
-%preun
-
-set -e
-
-action="$1"
-if [ "$2" = "in-favour" ]; then
-  # Treat conflict remove as an upgrade.
-  action="upgrade"
-fi
-# Don't clean-up just for an upgrade.`
-if [ "$action" = "upgrade" ] ; then
-  exit 0
-fi
-
-# Remove icons from the system icons
-if [ $1 == 0 ];then #uninstall (not upgrade)
-  XDG_ICON_RESOURCE="`which xdg-icon-resource 2> /dev/null || true`"
-  if [ ! -x "$XDG_ICON_RESOURCE" ]; then
-    echo "Error: Could not find xdg-icon-resource" >&2
-    exit 1
-  fi
-  for icon in "/opt/%{_desktopeditors_prefix}/asc-de-"*.png; do
-    size="${icon##*/asc-de-}"
-    "$XDG_ICON_RESOURCE" uninstall --size "${size%.png}" "%{_package_name}"
-  done
-fi
-
-UPDATE_MENUS="`which update-menus 2> /dev/null || true`"
-if [ -x "$UPDATE_MENUS" ]; then
-  update-menus
-fi
-
-# Update cache of .desktop file MIME types. Non-fatal since it's just a cache.
-#update-desktop-database > /dev/null 2>&1 || true
-
-%postun
-
-set -e 		# fail on any error
-
-%posttrans
-
-#for compatibility with old RPMs
-XDG_ICON_RESOURCE="`which xdg-icon-resource 2> /dev/null || true`"
-if [ ! -x "$XDG_ICON_RESOURCE" ]; then
-  echo "Error: Could not find xdg-icon-resource" >&2
-  exit 1
-fi
-for icon in "/opt/%{_desktopeditors_prefix}/asc-de-"*.png; do
-  size="${icon##*/asc-de-}"
-  "$XDG_ICON_RESOURCE" install --size "${size%.png}" "$icon" "%{_package_name}"
-done
 
 %changelog
 

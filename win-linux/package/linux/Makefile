@@ -60,13 +60,21 @@ DESKTOP_FILES += build/main/usr/share/applications/$(DESKTOPEDITORS_EXEC).deskto
 LINUX_DEPS += $(BIN_FILES)
 LINUX_DEPS += $(DESKTOP_FILES)
 LINUX_DEPS += $(CHANGELOG_RPM)
+LINUX_DEPS += $(patsubst $(BRANDING_DIR)/common/icons/%.png, \
+	build/main/usr/share/icons/hicolor/%/apps/$(DESKTOPEDITORS_EXEC).png, \
+	$(wildcard $(BRANDING_DIR)/common/icons/*.png))
+LINUX_DEPS += build/main/usr/share/licenses/$(PACKAGE_NAME)/LICENSE
+LINUX_DEPS += build/main/usr/share/licenses/$(PACKAGE_NAME)/3DPARTYLICENSE
+ifneq ($(wildcard $(BRANDING_DIR)/../../../common/package/mimetypes/*.xml),)
+LINUX_DEPS += $(patsubst $(BRANDING_DIR)/../../../common/package/mimetypes/%.xml, \
+	build/main/usr/share/mime/packages/%.xml, \
+	$(wildcard $(BRANDING_DIR)/../../../common/package/mimetypes/*.xml))
+endif
 
 DEB_DEPS += $(CHANGELOG_DEB)
 DEB_DEPS += deb/build/debian/compat
 DEB_DEPS += deb/build/debian/control
-DEB_DEPS += deb/build/debian/postinst
 DEB_DEPS += deb/build/debian/postrm
-DEB_DEPS += deb/build/debian/prerm
 DEB_DEPS += deb/build/debian/rules
 DEB_DEPS += deb/build/debian/source/format
 DEB_DEPS += deb/build/debian/$(PACKAGE_NAME).dirs
@@ -141,25 +149,11 @@ build : $(LINUX_DEPS)
 	cp -rft $@/main/opt/$(DESKTOPEDITORS_PREFIX) $(SOURCE_DIR)/desktopeditors/*
 	chmod 755 $@/main/opt/$(DESKTOPEDITORS_PREFIX)/DesktopEditors
 
-	cp -rf $(BRANDING_DIR)/../../../common/package/license/*.htm \
-		$@/main/opt/$(DESKTOPEDITORS_PREFIX)/LICENSE.htm
-	cp -rf $(BRANDING_DIR)/../../../common/package/license/3dparty/3DPARTYLICENSE \
-		$@/main/opt/$(DESKTOPEDITORS_PREFIX)/
-
-ifneq ($(wildcard $(BRANDING_DIR)/../../../common/package/mimetypes),)
-	cp -rf $(BRANDING_DIR)/../../../common/package/mimetypes \
-		$@/main/opt/$(DESKTOPEDITORS_PREFIX)
-endif
-
 	cd $@; \
 	for path in main/$(HELP_GLOB); do \
 		path_new=$$(echo $$path | sed 's|^main/|help/|'); \
 		mkdir -p $$path_new; \
 		mv -fT $$path $$path_new; \
-	done
-
-	for path in $(BRANDING_DIR)/common/icons/*.png; do \
-		cp -f $$path $@/main/opt/$(DESKTOPEDITORS_PREFIX)/asc-de-$${path##*/}; \
 	done
 
 ifdef MEDIAVIEWER_PREFIX
@@ -177,6 +171,18 @@ $(RPM) : build rpm/$(PACKAGE_NAME).spec
 		--target $(RPM_ARCH) \
 		$(RPM_PARAMS) \
 		$(PACKAGE_NAME).spec
+
+build/main/usr/share/icons/hicolor/%/apps/$(DESKTOPEDITORS_EXEC).png : $(BRANDING_DIR)/common/icons/%.png
+	install -D $< $@
+
+build/main/usr/share/licenses/$(PACKAGE_NAME)/LICENSE : $(BRANDING_DIR)/../../../LICENSE.txt
+build/main/usr/share/licenses/$(PACKAGE_NAME)/3DPARTYLICENSE : $(BRANDING_DIR)/../../../common/package/license/3dparty/3DPARTYLICENSE
+
+build/main/usr/share/licenses/% :
+	install -D $< $@
+
+build/main/usr/share/mime/packages/% : $(BRANDING_DIR)/../../../common/package/mimetypes/%
+	install -D $< $@
 
 deb/build/debian/% : deb/template/%
 	mkdir -pv $(@D) && cp -fv $< $@
