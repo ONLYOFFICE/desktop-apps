@@ -771,7 +771,7 @@ public:
                                 [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameCreateTab
                                                                                     object:nil
                                                                                   userInfo:@{
-                                                                                             @"action"  : !fromRecovery ? @(ASCTabActionOpenLocalRecentFile) : @(ASCTabActionOpenLocalRecentFile),
+                                                                                             @"action"  : !fromRecovery ? @(ASCTabActionOpenLocalRecentFile) : @(ASCTabActionOpenLocalRecoverFile),
                                                                                              @"active"  : @(YES),
                                                                                              @"fileId"  : json[@"id"],
                                                                                              @"path"    : json[@"path"]
