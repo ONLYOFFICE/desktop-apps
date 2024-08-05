@@ -599,9 +599,12 @@ void CTabBar::CTabBarPrivate::recalcWidth()
 void CTabBar::CTabBarPrivate::setActive(int index)
 {
     for (int i = 0; i < tabList.size(); i++) {
-        tabList[i]->setProperty("selected", i == index);
-        tabList[i]->setActive(i == index);
-        tabList[i]->polish();
+        bool state = (i == index);
+        if (tabList[i]->property("selected").toBool() != state) {
+            tabList[i]->setProperty("selected", state);
+            tabList[i]->polish();
+        }
+        tabList[i]->setActive(state);
     }
 }
 
