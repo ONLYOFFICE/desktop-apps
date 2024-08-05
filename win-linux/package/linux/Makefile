@@ -148,6 +148,7 @@ build : $(LINUX_DEPS)
 	mkdir -p $@/main/opt/$(DESKTOPEDITORS_PREFIX)
 	cp -rft $@/main/opt/$(DESKTOPEDITORS_PREFIX) $(SOURCE_DIR)/desktopeditors/*
 	chmod 755 $@/main/opt/$(DESKTOPEDITORS_PREFIX)/DesktopEditors
+	ln -s DesktopEditors $@/main/opt/$(DESKTOPEDITORS_PREFIX)/$(DESKTOPEDITORS_EXEC)
 
 	cd $@; \
 	for path in main/$(HELP_GLOB); do \
