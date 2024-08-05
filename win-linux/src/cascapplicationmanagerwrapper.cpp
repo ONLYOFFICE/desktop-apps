@@ -1788,10 +1788,6 @@ bool CAscApplicationManagerWrapper::applySettings(const wstring& wstrjson)
         _reg_user.setValue("appdata", stringdata.toBase64());
 
         QJsonObject objRoot = jdoc.object();
-        int res = MODAL_RESULT_NO;
-        if (objRoot.contains("restart") && objRoot["restart"].toBool())
-            res = CMessage::showMessage(mainWindow(), tr("You must restart the application for the settings to take effect."),
-                                            MsgType::MSG_INFO, MsgBtns::mbYesDefNo);
 
         QString _user_newname = objRoot["username"].toString();
         if ( _user_newname.isEmpty() )
@@ -1882,10 +1878,13 @@ bool CAscApplicationManagerWrapper::applySettings(const wstring& wstrjson)
                 m_pUpdateManager->setNewUpdateSetting(objRoot["autoupdatemode"].toString());
         }
 #endif
-        if (res == MODAL_RESULT_YES) {
+        if (objRoot.contains("restart") && objRoot["restart"].toBool()) {
             QTimer::singleShot(500, this, [=]() {
-                m_private.get()->m_needRestart = true;
-                AscAppManager::closeAppWindows();
+                if (MODAL_RESULT_YES == CMessage::showMessage(mainWindow(), tr("You must restart the application for the settings to take effect."),
+                                                              MsgType::MSG_INFO, MsgBtns::mbYesDefNo)) {
+                    m_private.get()->m_needRestart = true;
+                    AscAppManager::closeAppWindows();
+                }
             });
         }
     } else {

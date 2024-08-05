@@ -74,6 +74,7 @@ public:
     void setTabThemeIcons(int, const std::pair<QString, QString> &);
     void tabStartLoading(int, const QString& theme = QString());
     void polish();
+    void activate(bool);
     void refreshTheme();
     int tabIndexAt(const QPoint &pos) const;
     QWidget* tabIconLabel(int index) const;
