@@ -762,7 +762,7 @@
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="84"/>
-        <source>An error occured while unpacking the archive</source>
+        <source>An error occurred while unpacking the archive</source>
         <translation>아카이브 압축을 푸는 중 오류가 발생했습니다</translation>
     </message>
     <message>

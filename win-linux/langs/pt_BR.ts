@@ -798,7 +798,7 @@
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="84"/>
-        <source>An error occured while unpacking the archive</source>
+        <source>An error occurred while unpacking the archive</source>
         <translation>Ocorreu um erro ao descompactar o arquivo</translation>
     </message>
     <message>

@@ -790,7 +790,7 @@
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="84"/>
-        <source>An error occured while unpacking the archive</source>
+        <source>An error occurred while unpacking the archive</source>
         <translation>アーカイブの解凍中にエラーが発生しました</translation>
     </message>
     <message>
