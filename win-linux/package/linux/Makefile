@@ -174,16 +174,16 @@ $(RPM) : build rpm/$(PACKAGE_NAME).spec
 		$(PACKAGE_NAME).spec
 
 build/main/usr/share/icons/hicolor/%/apps/$(DESKTOPEDITORS_EXEC).png : $(BRANDING_DIR)/common/icons/%.png
-	install -D $< $@
+	install -m 644 -D $< $@
 
 build/main/usr/share/licenses/$(PACKAGE_NAME)/LICENSE : $(BRANDING_DIR)/../../../LICENSE.txt
 build/main/usr/share/licenses/$(PACKAGE_NAME)/3DPARTYLICENSE : $(BRANDING_DIR)/../../../common/package/license/3dparty/3DPARTYLICENSE
 
 build/main/usr/share/licenses/% :
-	install -D $< $@
+	install -m 644 -D $< $@
 
 build/main/usr/share/mime/packages/% : $(BRANDING_DIR)/../../../common/package/mimetypes/%
-	install -D $< $@
+	install -m 644 -D $< $@
 
 deb/build/debian/% : deb/template/%
 	mkdir -pv $(@D) && cp -fv $< $@
