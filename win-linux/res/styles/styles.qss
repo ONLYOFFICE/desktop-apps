@@ -119,8 +119,10 @@ QPushButton#toolButtonDownload {border-left: 0px; border-right: 1px solid #dfdfd
 /* gray theme definitions */
 /***********************************/
 
-#mainPanel[uitheme=theme-gray] QPushButton#toolButtonMain {background-color: #f1f1f1;}
-#mainPanel[uitheme=theme-gray] #CX11Caption {background-color: #d1d1d1;}
+#mainPanel[uitheme=theme-gray] QPushButton#toolButtonMain {background-color: #fff;}
+#mainPanel[uitheme=theme-gray] QPushButton#toolButtonMain {border-right: 1px solid #c0c0c0;}
+#mainPanel[uitheme=theme-gray] QPushButton#toolButtonMain[class=active] {background: #f3f3f3;}
+#mainPanel[uitheme=theme-gray] #CX11Caption {background-color: #fff;}
 
 
 /* ToolTip*/

@@ -2,12 +2,12 @@
     "id": "theme-gray",
     "type": "light",
     "values": {
-        "brand-word": "#446995",
-        "brand-slide": "#be664f",
-        "brand-cell": "#40865c",
-        "brand-pdf": "#aa5252",
+        "brand-word": "#f7f7f7",
+        "brand-slide": "#f7f7f7",
+        "brand-cell": "#f7f7f7",
+        "brand-pdf": "#f7f7f7",
 
-        "window-background": "#d1d1d1",
+        "window-background": "#fff",
         "window-border": "#cbcbcb",
 
         "text-normal": "#444",
@@ -21,6 +21,7 @@
         "tab-divider": "#cbcbcb",
 
         "button-normal-opacity": "rgba(255,255,255,255)",
-        "logo-type": "dark"
+        "logo-type": "dark",
+        "tab-editor-theme-type": "light"
     }
 }

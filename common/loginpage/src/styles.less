@@ -2,7 +2,7 @@
 
 @img-path: '../res/img';
 
-@col-width: 264px;
+@col-width: 240px;
 
 @import '../vendor/bootstrap/variables';
 @import '../vendor/bootstrap/dropdowns';
@@ -124,6 +124,7 @@ h4 {
     text-align: center;
     background-color: @background-action-panel;
     border-radius: 8px;
+    outline: 1px solid @border-sidebar-item;
 }
 
 .after-left {
@@ -254,7 +255,9 @@ li.menu-item {
         }
 
         &.selected {
-            background: @highlight-button-pressed;
+            background: @highlight-sidebar-item-pressed;
+            outline: 1px solid @border-sidebar-item;
+            outline-offset: -1px;
         }
 
         a {
@@ -320,7 +323,7 @@ li.menu-item {
 
 .action-panel {
     height: 100%;
-    padding: 16px 24px;
+    padding: 16px 39px;
     max-width: 1200px;
     margin: 0 auto;
 
@@ -1480,7 +1483,7 @@ li.menu-item {
 }
 
 svg.icon:not(.icon-colored) {
-    fill: currentColor;
+    fill: @icon-sidebar;
 }
 
 .text-headline-1 {

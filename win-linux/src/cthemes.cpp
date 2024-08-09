@@ -54,7 +54,8 @@ namespace NSTheme {
     //      {  "tab-divider": "#a5a5a5",
 
             {CTheme::ColorRole::ecrButtonNormalOpacity, "button-normal-opacity"},
-            {CTheme::ColorRole::ecrLogoColor, "logo"}
+            {CTheme::ColorRole::ecrLogoColor, "logo"},
+            {CTheme::ColorRole::ecrTabThemeType, "tab-editor-theme-type"}
         };
 
     static const std::map<QString, QString> map_alias_names = {
@@ -415,7 +416,7 @@ auto CTheme::stype() const -> QString
     }
 }
 
-auto CTheme::value(ColorRole r) const -> std::wstring
+auto CTheme::value(ColorRole r, const std::wstring& def) const -> std::wstring
 {
     if ( NSTheme::map_names.find(r) != NSTheme::map_names.end() ) {
         if ( m_priv->jsonValues.contains(NSTheme::map_names.at(r)) ) {
@@ -423,7 +424,7 @@ auto CTheme::value(ColorRole r) const -> std::wstring
         }
     }
 
-    return L"";
+    return def;
 }
 
 auto CTheme::color(ColorRole role) const -> QColor

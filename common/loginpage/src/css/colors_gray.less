@@ -1,14 +1,18 @@
 :root {
   .theme-gray {
-    --background-normal: #f1f1f1;
+    --background-normal: #f3f3f3;
     --background-action-panel: #fff;
 
-    --highlight-button-hover: #e0e0e0;
-    --highlight-button-pressed: #c8cacc;
+    --highlight-button-hover: fade(#bdbab8, 15%);
+    --highlight-button-pressed: fade(#bdbab8, 22%);
+    --highlight-button-pressed-hover: fade(#bdbab8, 22%);
+    --highlight-sidebar-item-pressed: #fff;
 
     --text-normal: fade(#000, 80%);
     --text-normal-pressed: fade(#000, 80%);
     --text-secondary: fade(#000, 60%);
     --text-tertiary: fade(#000, 40%);
+
+    --border-sidebar-item: var(--border-regular-control);
   }
 }
