@@ -82,7 +82,7 @@
 
 using std::vector;
 
-const char *SVC_TXT_ERR_UNPACKING   = QT_TRANSLATE_NOOP("CUpdateManager", "An error occured while unpacking the archive"),
+const char *SVC_TXT_ERR_UNPACKING   = QT_TRANSLATE_NOOP("CUpdateManager", "An error occurred while unpacking the archive"),
            *SVC_TXT_ERR_DNL_OUT_MEM = QT_TRANSLATE_NOOP("CUpdateManager", "Update download failed: out of memory!"),
            *SVC_TXT_ERR_DNL_CONN    = QT_TRANSLATE_NOOP("CUpdateManager", "Update download failed: server connection error!"),
            *SVC_TXT_ERR_DNL_URL     = QT_TRANSLATE_NOOP("CUpdateManager", "Update download failed: wrong URL!"),

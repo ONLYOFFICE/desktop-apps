@@ -774,7 +774,7 @@
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="84"/>
-        <source>An error occured while unpacking the archive</source>
+        <source>An error occurred while unpacking the archive</source>
         <translation>හැකිළුම දිග හැරීමේදී දෝෂයක් සිදු විය</translation>
     </message>
     <message>

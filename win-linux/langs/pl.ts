@@ -766,7 +766,7 @@
     </message>
     <message>
         <location filename="../src/cupdatemanager.cpp" line="84"/>
-        <source>An error occured while unpacking the archive</source>
+        <source>An error occurred while unpacking the archive</source>
         <translation>Wystąpił błąd podczas rozpakowywania archiwum</translation>
     </message>
     <message>

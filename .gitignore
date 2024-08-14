@@ -9,25 +9,15 @@ win-linux/extras/online-installer/build
 win-linux/ASCDocumentEditor.build/*
 win-linux/res/gresource.c
 
-win-linux/package/linux/index.html
-win-linux/package/windows/index.html
-
-win-linux/package/linux/common/opt
-win-linux/package/linux/common/usr/share/applications/variables.m4
-win-linux/package/linux/common/usr/share/flyfm/templates/desktopeditors.*.desktop
-win-linux/package/linux/common/usr/share/doc/*/*
-win-linux/package/linux/common/help
-/win-linux/package/linux/deb*/build
-/win-linux/package/linux/deb*/*.buildinfo
-/win-linux/package/linux/deb*/*.changes
-/win-linux/package/linux/deb*/*.ddeb
-/win-linux/package/linux/deb*/*.deb
-win-linux/package/linux/rpm/builddir
-win-linux/package/linux/apt-rpm/builddir
-win-linux/package/linux/urpmi/builddir
-win-linux/package/linux/suse-rpm/builddir
+win-linux/package/linux/build
+win-linux/package/linux/deb*/build
+win-linux/package/linux/deb*/*.buildinfo
+win-linux/package/linux/deb*/*.changes
+win-linux/package/linux/deb*/*.ddeb
+win-linux/package/linux/deb*/*.deb
+win-linux/package/linux/rpm*/build
+win-linux/package/linux/rpm*/*desktopeditors.spec
 win-linux/package/linux/tar
-
 
 common/loginpage/res/img/generated/*
 common/loginpage/build/plugins/*
@@ -36,6 +26,7 @@ common/loginpage/deploy/*
 common/loginpage/src/dlglogin.min.js
 common/converter/*
 common/changes/*/changes_???
+common/changes/*/news_???
 */.svn/*
 
 .DS_Store
