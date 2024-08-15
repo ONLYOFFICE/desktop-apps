@@ -85,24 +85,22 @@ $(document).ready(function() {
                 </a>
               </li>
               <li class="menu-item devider"></li>
-              <div class="menu-bottom-block tool-menu">
-                  <li class="menu-item">
-                    <a action="settings">
-                        <svg class="icon" data-iconname="settings" data-precls="tool-icon">
-                            <use href="#settings"></use>
-                        </svg>
-                        <span class="text" l10n>${utils.Lang.actSettings}</span>
-                    </a>
+              <li class="menu-item">
+                  <a action="settings">
+                      <svg class="icon" data-iconname="settings" data-precls="tool-icon">
+                          <use href="#settings"></use>
+                      </svg>
+                      <span class="text" l10n>${utils.Lang.actSettings}</span>
+                  </a>
                   </li>
                   <li class="menu-item">
-                    <a action="about">
-                        <svg class="icon" data-iconname="about" data-precls="tool-icon">
-                            <use href="#about"></use>
-                        </svg>
-                        <span class="text" l10n>${utils.Lang.actAbout}</span>
-                    </a>
-                  </li>
-              </div>
+                  <a action="about">
+                      <svg class="icon" data-iconname="about" data-precls="tool-icon">
+                          <use href="#about"></use>
+                      </svg>
+                      <span class="text" l10n>${utils.Lang.actAbout}</span>
+                  </a>
+              </li>
             </div>
             <div class="main-column col-center after-left">
             </div>`;
