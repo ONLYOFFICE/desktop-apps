@@ -258,6 +258,7 @@ li.menu-item {
             background: @highlight-sidebar-item-pressed;
             outline: 1px solid @border-sidebar-item;
             outline-offset: -1px;
+            font-weight: 500;
         }
 
         a {
@@ -302,7 +303,7 @@ li.menu-item {
     }
 
     > li.menu-item.separator {
-        border-bottom: var(--scaled-one-px, 1px) solid var(--border-divider);
+        border-bottom: var(--scaled-one-px, 1px) solid @background-normal;
         height: 1px;
         margin: 4px 0;
     }
@@ -422,7 +423,7 @@ li.menu-item {
 .recent-flex-box {
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: 7px;
 }
 
 .flex-fill {
@@ -481,6 +482,10 @@ li.menu-item {
             .hide-format('cell');
             .hide-format('slide');
         }
+    }
+
+    .table-caption {
+        padding-top: 17px;
     }
 }
 
@@ -596,6 +601,10 @@ li.menu-item {
             .descr, .ext {
                 color: @text-normal;
             }
+        }
+
+        &:active {
+            background-color: @highlight-button-pressed;
         }
     }
 
@@ -1451,25 +1460,33 @@ li.menu-item {
     padding-inline-start: 0;
 
     .create-new-item {
-        margin-right: 20px;
+        margin-right: 16px;
         display: inline-block;
         cursor: pointer;
-        border-radius: 4px;
+        border-radius: 8px;
         transition: background-color 300ms ease-out;
 
         &:hover {
             background-color: @highlight-button-hover;
+
+            .item-wrap {
+                .icon {
+                    opacity: 1;
+                }
+            }
         }
 
         &:active {
             background-color: @highlight-button-pressed;
+            outline: 1px solid @border-sidebar-item;
+            outline-offset: -1px;
         }
 
         .item-wrap {
             display: flex;
             flex-direction: column;
             align-items: center;
-            width: 142px;
+            width: 160px;
             padding-bottom: 8px;
             .text-subheader();
 
@@ -1477,6 +1494,7 @@ li.menu-item {
                 width: 132px;
                 height: 132px;
                 margin-bottom: 8px;
+                opacity: .5;
             }
         }
     }

@@ -63,7 +63,7 @@ l10n.en = {
     listEarlier: 'Earlier',
     listRecentFileTitle:'Recent files',
     listRecentDirTitle:'Recent folders',
-    areaCreateFile:'Create new file',
+    areaCreateFile:'Create',
     areaOpenFile:'Open file',
     labelDropFile: 'Drop file here or',
     labelSelectFile: 'Select file',
