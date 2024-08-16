@@ -1,0 +1,96 @@
+/* No comment provided by engineer. */
+"Comma-Separated Values" = "Comma Separated Values (*.csv)";
+
+/* No comment provided by engineer. */
+"DjVu File" = "Digital Document (*.djvu)";
+
+/* No comment provided by engineer. */
+"Document template" = "Word Open XML Document Template (*.dotx)";
+
+/* No comment provided by engineer. */
+"Excel 97-2003 Spreadsheet" = "Excel 97-2003 Spreadsheet (*.xls)";
+
+/* No comment provided by engineer. */
+"Excel 2007 Spreadsheet" = "Office Open XML Spreadsheet (*.xlsx)";
+
+/* No comment provided by engineer. */
+"FictionBook File" = "FictionBook 2 File (*.fb2)";
+
+/* No comment provided by engineer. */
+"If you don't review your documents, all your changeses will be lost." = "If you don't review your documents, all your changes will be lost.";
+
+/* No comment provided by engineer. */
+"Macro-enabled Presentation" = "Macro-enabled Presentation (*.pptm)";
+
+/* No comment provided by engineer. */
+"Macro-enabled spreadsheet template" = "Macro-enabled Spreadsheet template (*.xltm)";
+
+/* No comment provided by engineer. */
+"Mobipocket e-book" = "Mobipocket File (*.mobi)";
+
+/* No comment provided by engineer. */
+"new-document" = "New document";
+
+/* No comment provided by engineer. */
+"new-pdfform" = "New PDF form";
+
+/* No comment provided by engineer. */
+"new-presentation" = "New presentation";
+
+/* No comment provided by engineer. */
+"new-spreadsheet" = "New spreadsheet";
+
+/* No comment provided by engineer. */
+"OpenDocument Document Template" = "OpenDocument Document Template (*.ott)";
+
+/* No comment provided by engineer. */
+"OpenDocument Presentation Template" = "OpenDocument Presentation Template (*.otp)";
+
+/* No comment provided by engineer. */
+"OpenDocument Spreadsheet Template" = "OpenDocument Spreadsheet Template (*.ots)";
+
+/* No comment provided by engineer. */
+"OpenOffice Document" = "OpenDocument Text File (*.odt)";
+
+/* No comment provided by engineer. */
+"OpenOffice Presentation" = "OpenDocument Presentation (*.odp)";
+
+/* No comment provided by engineer. */
+"OpenOffice Spreadsheet" = "OpenDocument Spreadsheet (*.ods)";
+
+/* No comment provided by engineer. */
+"PDF File" = "Portable Document (*.pdf)";
+
+/* No comment provided by engineer. */
+"PDF/A File" = "Portable Document /A (*.pdf)";
+
+/* No comment provided by engineer. */
+"Plain Text" = "Plain Text File (*.txt)";
+
+/* No comment provided by engineer. */
+"PowerPoint 97-2003 Presentation" = "PowerPoint 97-2003 Presentation (*.ppt)";
+
+/* No comment provided by engineer. */
+"PowerPoint 2007 Presentation" = "Office Open XML Presentation (*.pptx)";
+
+/* No comment provided by engineer. */
+"PowerPoint Slide Show" = "Office Open XML Slide Show (*.ppsx)";
+
+/* No comment provided by engineer. */
+"Presentation template" = "PowerPoint Open XML Presentation Template (*.potx)";
+
+/* No comment provided by engineer. */
+"Rich Text Document" = "Rich Text Format File (*.rtf)";
+
+/* No comment provided by engineer. */
+"Spreadsheet template" = "Excel Open XML Spreadsheet Template (*.xltx)";
+
+/* No comment provided by engineer. */
+"Word 97-2003 Document" = "Word 97-2003 Document (*.doc)";
+
+/* No comment provided by engineer. */
+"Word 2007 Document" = "Office Open XML Document (*.docx)";
+
+/* No comment provided by engineer. */
+"XML Paper Specification" = "OpenXPS Document (*.xps)";
+

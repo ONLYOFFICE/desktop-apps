@@ -1,5 +1,6 @@
 
 en.CAPTION_TEXT =ONLYOFFICE Update Service
+en_GB.CAPTION_TEXT =ONLYOFFICE Update Service
 ru.CAPTION_TEXT =Сервис обновлений ONLYOFFICE
 ar_SA.CAPTION_TEXT =خدمة تحديث ONLYOFFICE
 de.CAPTION_TEXT =Aktualisierungsdienst von ONLYOFFICE
@@ -40,6 +41,7 @@ sv.CAPTION_TEXT =ONLYOFFICE uppdateringstjänst
 sr_Cyrl_RS.CAPTION_TEXT =ONLYOFFICE Сервис ажурирања
 
 en.MESSAGE_TEXT_ERR1 =An error occurred:
+en_GB.MESSAGE_TEXT_ERR1 =An error occurred:
 ru.MESSAGE_TEXT_ERR1 =Произошла ошибка:
 ar_SA.MESSAGE_TEXT_ERR1 =حصل خطأ:
 de.MESSAGE_TEXT_ERR1 =Ein Fehler ist aufgetreten:
@@ -80,6 +82,7 @@ sv.MESSAGE_TEXT_ERR1 =Ett fel inträffade:
 sr_Cyrl_RS.MESSAGE_TEXT_ERR1 =Грешка се појавила:
 
 en.MESSAGE_TEXT_ERR2 =An error occurred while deleting:
+en_GB.MESSAGE_TEXT_ERR2 =An error occurred while deleting:
 ru.MESSAGE_TEXT_ERR2 =Произошла ошибка при удалении:
 ar_SA.MESSAGE_TEXT_ERR2 =حصل خطأ أثناء الحذف:
 de.MESSAGE_TEXT_ERR2 =Beim Löschvorgang ist ein Fehler aufgetreten:
@@ -120,6 +123,7 @@ sv.MESSAGE_TEXT_ERR2 =Ett fel inträffade vid borttagning av:
 sr_Cyrl_RS.MESSAGE_TEXT_ERR2 =Грешка се појавила у току брисања:
 
 en.MESSAGE_TEXT_ERR3 =An error occurred while creating:
+en_GB.MESSAGE_TEXT_ERR3 =An error occurred while creating:
 ru.MESSAGE_TEXT_ERR3 =Произошла ошибка при создании:
 ar_SA.MESSAGE_TEXT_ERR3 =حصل خطأ أثناء الإنشاء:
 de.MESSAGE_TEXT_ERR3 =Beim Erstellen ist ein Fehler aufgetreten:
@@ -160,6 +164,7 @@ sv.MESSAGE_TEXT_ERR3 =Ett fel inträffade vid skapande av:
 sr_Cyrl_RS.MESSAGE_TEXT_ERR3 =Грешка се појавила у току креирања:
 
 en.MESSAGE_TEXT_ERR4 =An error occurred while restarting the service!
+en_GB.MESSAGE_TEXT_ERR4 =An error occurred while restarting the service!
 ru.MESSAGE_TEXT_ERR4 =Произошла ошибка при перезапуске сервиса!
 ar_SA.MESSAGE_TEXT_ERR4 =حصل خطأ أثناء إعادة تشغيل الخدمة:
 de.MESSAGE_TEXT_ERR4 =Beim Neustart des Dienstes ist ein Fehler aufgetreten!
@@ -200,6 +205,7 @@ sv.MESSAGE_TEXT_ERR4 =Ett fel inträffade vid omstart av tjänsten!
 sr_Cyrl_RS.MESSAGE_TEXT_ERR4 =Грешка се појавила у току рестартовања сервиса!
 
 en.MESSAGE_TEXT_ERR5 =Update cancelled. Can't find folder:
+en_GB.MESSAGE_TEXT_ERR5 =Update cancelled. Can't find folder:
 ru.MESSAGE_TEXT_ERR5 =Обновление отменено. Не удалось найти папку:
 ar_SA.MESSAGE_TEXT_ERR5 =تم الغاء التحديث. غير قادر على العثور على المجلد:
 de.MESSAGE_TEXT_ERR5 =Update abgebrochen. Ordner kann nicht gefunden werden:
@@ -240,6 +246,7 @@ sv.MESSAGE_TEXT_ERR5 =Uppdatering avbruten. Kan inte hitta mapp:
 sr_Cyrl_RS.MESSAGE_TEXT_ERR5 =Ажурирање отказано. Немогуће пронаћи фолдер:
 
 en.MESSAGE_TEXT_ERR6 =Update cancelled. The file signature is missing:
+en_GB.MESSAGE_TEXT_ERR6 =Update cancelled. The file signature is missing:
 ru.MESSAGE_TEXT_ERR6 =Обновление отменено. Отсутствует подпись файла:
 ar_SA.MESSAGE_TEXT_ERR6 =تم الغاء التحديث. توقيع الملف مفقود:
 de.MESSAGE_TEXT_ERR6 =Update abgebrochen. Die Dateisignatur fehlt:
@@ -280,6 +287,7 @@ sv.MESSAGE_TEXT_ERR6 =Uppdatering avbruten. Filsignaturen saknas:
 sr_Cyrl_RS.MESSAGE_TEXT_ERR6 =Ажурирање отказано. Потпис фајла недостаје:
 
 en.MESSAGE_TEXT_ERR7 =Update cancelled. Can't delete folder:
+en_GB.MESSAGE_TEXT_ERR7 =Update cancelled. Can't delete folder:
 ru.MESSAGE_TEXT_ERR7 =Обновление отменено. Не удалось удалить папку:
 ar_SA.MESSAGE_TEXT_ERR7 =تم الغاء التحديث. غير قادر على حذف المجلد:
 de.MESSAGE_TEXT_ERR7 =Update abgebrochen. Ordner kann nicht gelöscht werden:
@@ -320,6 +328,7 @@ sv.MESSAGE_TEXT_ERR7 =Uppdatering avbruten. Kan inte ta bort mapp:
 sr_Cyrl_RS.MESSAGE_TEXT_ERR7 =Ажурирање отказано. Немогуће избрисати фолдер:
 
 en.MESSAGE_TEXT_ERR8 =Update cancelled. The program is not closed:
+en_GB.MESSAGE_TEXT_ERR8 =Update cancelled. The program is not closed:
 ru.MESSAGE_TEXT_ERR8 =Обновление отменено. Приложение не закрыто:
 ar_SA.MESSAGE_TEXT_ERR8 =تم الغاء التحديث. البرنامج ليس مغلق:
 de.MESSAGE_TEXT_ERR8 =Update abgebrochen. Die App ist nicht geschlossen:
@@ -360,6 +369,7 @@ sv.MESSAGE_TEXT_ERR8 =Uppdatering avbruten. Programmet är inte stängt:
 sr_Cyrl_RS.MESSAGE_TEXT_ERR8 =Ажурирање отказано. Програм није затворен:
 
 en.MESSAGE_TEXT_ERR9 =Update cancelled. Can't create folder:
+en_GB.MESSAGE_TEXT_ERR9 =Update cancelled. Can't create folder:
 ru.MESSAGE_TEXT_ERR9 =Обновление отменено. Не удалось создать папку:
 ar_SA.MESSAGE_TEXT_ERR9 =تم الغاء التحديث. غير قادر على إنشاء المجلد:
 de.MESSAGE_TEXT_ERR9 =Update abgebrochen. Ordner kann nicht erstellt werden:
@@ -400,6 +410,7 @@ sv.MESSAGE_TEXT_ERR9 =Uppdatering avbruten. Kan inte skapa mapp:
 sr_Cyrl_RS.MESSAGE_TEXT_ERR9 =Ажурирање отказано. Немогуће креирати фолдер:
 
 en.MESSAGE_TEXT_ERR10 =Update cancelled. Can't replace files to backup:
+en_GB.MESSAGE_TEXT_ERR10 =Update cancelled. Can't replace files to backup:
 ru.MESSAGE_TEXT_ERR10 =Обновление отменено. Не удалось переместить файлы в резервную копию:
 ar_SA.MESSAGE_TEXT_ERR10 =تم الغاء التحديث. غير قادر على استبدال الملفات إلى النسخة احتياطية:
 de.MESSAGE_TEXT_ERR10 =Update abgebrochen. Die zu sichernden Dateien können nicht ersetzt werden:
@@ -440,6 +451,7 @@ sv.MESSAGE_TEXT_ERR10 =Uppdatering avbruten. Kan inte ersätta filer för säker
 sr_Cyrl_RS.MESSAGE_TEXT_ERR10 =Ажурирање отказано. Немогуће заменити фајлове за резервну копију:
 
 en.MESSAGE_TEXT_ERR11 =Can't restore files from backup!
+en_GB.MESSAGE_TEXT_ERR11 =Can't restore files from backup!
 ru.MESSAGE_TEXT_ERR11 =Не удалось восстановить файлы из резервной копии!
 ar_SA.MESSAGE_TEXT_ERR11 =غير قادر على استرجاع الملفات من النسخة الاحتياطية!
 de.MESSAGE_TEXT_ERR11 =Dateien können nicht aus dem Backup wiederhergestellt werden!
@@ -480,6 +492,7 @@ sv.MESSAGE_TEXT_ERR11 =Kan inte återställa filer från säkerhetskopia!
 sr_Cyrl_RS.MESSAGE_TEXT_ERR11 =Немогуће повратити фајлове из резервне копије!
 
 en.MESSAGE_TEXT_ERR12 =Update cancelled. Can't move updates to App path:
+en_GB.MESSAGE_TEXT_ERR12 =Update cancelled. Can't move updates to App path:
 ru.MESSAGE_TEXT_ERR12 =Обновление отменено. Не удалось переместить обновления в папку приложения:
 ar_SA.MESSAGE_TEXT_ERR12 =تم الغاء التحديث. غير قادر على نقل التحديثات إلى مسار البرنامج:
 de.MESSAGE_TEXT_ERR12 =Update abgebrochen. Updates können nicht in den App-Pfad verschoben werden:
@@ -520,6 +533,7 @@ sv.MESSAGE_TEXT_ERR12 =Uppdatering avbruten. Kan inte flytta uppdateringar till 
 sr_Cyrl_RS.MESSAGE_TEXT_ERR12 =Ажурирање отказано. Немогуће померити ажурирања на путању апликације:
 
 en.MESSAGE_TEXT_ERR13 =An error occurred while remove App path:
+en_GB.MESSAGE_TEXT_ERR13 =An error occurred while remove App path:
 ru.MESSAGE_TEXT_ERR13 =Произошла ошибка при удалении папки приложения:
 ar_SA.MESSAGE_TEXT_ERR13 =حصل خطأ أثاء إزالة مسار البرنامج:
 de.MESSAGE_TEXT_ERR13 =Beim Entfernen des App-Pfads ist ein Fehler aufgetreten:
@@ -560,6 +574,7 @@ sv.MESSAGE_TEXT_ERR13 =Ett fel inträffade vid borttagning av applikationens sö
 sr_Cyrl_RS.MESSAGE_TEXT_ERR13 =Грешка се појавила у току одстрањивања путање апликације:
 
 en.MESSAGE_TEXT_ERR14 =An error occurred while restore files from backup:
+en_GB.MESSAGE_TEXT_ERR14 =An error occurred while restore files from backup:
 ru.MESSAGE_TEXT_ERR14 =Произошла ошибка при восстановлении файлов из резервной копии:
 ar_SA.MESSAGE_TEXT_ERR14 =حصل خطأ أثناء استرجاع الملفات من النسخة الاحتياطية:
 de.MESSAGE_TEXT_ERR14 =Bei der Wiederherstellung von Dateien aus dem Backup ist ein Fehler aufgetreten:
@@ -600,6 +615,7 @@ sv.MESSAGE_TEXT_ERR14 =Ett fel inträffade vid återställning av filer från s�
 sr_Cyrl_RS.MESSAGE_TEXT_ERR14 =Грешка се појавила у току повратка фајлова из резервне копије:
 
 en.MESSAGE_TEXT_ERR15 =An error occurred while restarting the program!
+en_GB.MESSAGE_TEXT_ERR15 =An error occurred while restarting the program!
 ru.MESSAGE_TEXT_ERR15 =Произошла ошибка при перезапуске приложения!
 ar_SA.MESSAGE_TEXT_ERR15 =حصل خطأ أثناء إعادة تشغيل البرنامج!
 de.MESSAGE_TEXT_ERR15 =Beim Neustart der App ist ein Fehler aufgetreten!
@@ -640,6 +656,7 @@ sv.MESSAGE_TEXT_ERR15 =Ett fel inträffade vid omstart av programmet!
 sr_Cyrl_RS.MESSAGE_TEXT_ERR15 =Грешка се појавила у току рестартовања програма!
 
 en.MESSAGE_TEXT_ERR16 =SDL init error:
+en_GB.MESSAGE_TEXT_ERR16 =SDL init error:
 ru.MESSAGE_TEXT_ERR16 =Ошибка инициализации SDL:
 ar_SA.MESSAGE_TEXT_ERR16 =خطأ من SDL init:
 de.MESSAGE_TEXT_ERR16 =Fehler bei der SDL-Initialisierung:
@@ -680,6 +697,7 @@ sv.MESSAGE_TEXT_ERR16 =SDL-initieringsfel:
 sr_Cyrl_RS.MESSAGE_TEXT_ERR16 =SDL инит грешка:
 
 en.MESSAGE_TEXT_ERR17 =ServiceCtrlDispatcher returned error:
+en_GB.MESSAGE_TEXT_ERR17 =ServiceCtrlDispatcher returned error:
 ru.MESSAGE_TEXT_ERR17 =ServiceCtrlDispatcher вернул ошибку:
 ar_SA.MESSAGE_TEXT_ERR17 =خطأ من ServiceCtrlDispatcher:
 de.MESSAGE_TEXT_ERR17 =ServiceCtrlDispatcher hat einen Fehler zurückgegeben:
