@@ -177,6 +177,9 @@ CWindowPlatform::CWindowPlatform(const QRect &rect) :
     m_dpi = GetLogicalDpi(this);
     GetFrameMetricsForDpi(m_frame, m_dpi, m_isMaximized);
     SetWindowPos(m_hWnd, 0, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOMOVE | SWP_NOZORDER | SWP_NOACTIVATE | SWP_FRAMECHANGED);
+    connect(this->window()->windowHandle(), &QWindow::screenChanged, this, [=]() {
+        SetWindowPos(m_hWnd, 0, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOMOVE | SWP_NOZORDER | SWP_NOACTIVATE | SWP_FRAMECHANGED);
+    });
 }
 
 CWindowPlatform::~CWindowPlatform()
