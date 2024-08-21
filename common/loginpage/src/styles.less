@@ -302,6 +302,10 @@ li.menu-item {
         }
     }
 
+    svg.icon:not(.icon-colored) {
+        fill: @icon-sidebar;
+    }
+
     > li.menu-item.separator {
         border-bottom: var(--scaled-one-px, 1px) solid @background-normal;
         height: 1px;
@@ -1468,12 +1472,6 @@ li.menu-item {
 
         &:hover {
             background-color: @highlight-button-hover;
-
-            .item-wrap {
-                .icon {
-                    opacity: 1;
-                }
-            }
         }
 
         &:active {
@@ -1494,14 +1492,13 @@ li.menu-item {
                 width: 132px;
                 height: 132px;
                 margin-bottom: 8px;
-                opacity: .5;
             }
         }
     }
 }
 
-svg.icon:not(.icon-colored) {
-    fill: @icon-sidebar;
+svg.icon {
+    fill: @icon-normal;
 }
 
 .text-headline-1 {

@@ -19,7 +19,7 @@ l10n.ru = {
     listPinnedTitle:'Закрепленные',
     listToday: 'Сегодня',
     listEarlier: 'Раньше',
-    areaCreateFile:'Создать новый файл',
+    areaCreateFile:'Создать',
     areaOpenFile:'Открыть файл',
     labelDropFile: 'Перетащите ваш файл сюда или',
     labelSelectFile: 'Выберите файл',

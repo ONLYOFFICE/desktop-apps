@@ -583,7 +583,7 @@
                     {
                         caption: utils.Lang.menuFileUnpin,
                         action: 'files:unpin',
-                        icon: 'unpin'
+                        icon: 'unpin20'
                     },
                     {
                         caption: '--',
