@@ -107,7 +107,7 @@ public:
     }
 
     QString langName(const QString& code) {
-        return m_langs.value(code);
+        return m_langs.value(code).first;
     }
 
     bool reload(const QString& lang) {
@@ -140,7 +140,7 @@ public:
     }
 
     QString findCloseLang(const QString& n) {
-        QMap<QString, QString>::iterator i = m_langs.begin();
+        QMap<QString, std::pair<QString, QString>>::iterator i = m_langs.begin();
         while ( i != m_langs.end() ) {
             if ( i.key().startsWith(n) )
                 return i.key();
@@ -155,51 +155,51 @@ private:
     std::list<QTranslator *> m_list;
     std::list<QString> m_dirs;
 
-    QMap<QString, QString> m_langs{
-        {"en-US", "English"},
-        {"ru-RU", "Русский"},
-        {"de-DE", "Deutsch"},
-        {"fr-FR", "Français"},
-        {"es-ES", "Español"},
-        {"sk-SK", "Slovenčina"},
-        {"cs-CZ", "Čeština"},
-        {"it-IT", "Italiano"},
-        {"pt-BR", "Português Brasileiro"}
-        ,{"pt-PT", "Português (Portugal)"}
-        ,{"pl-PL", "Polski"}
-        ,{"zh-CN", "简体中文"}
-        ,{"zh-TW", "繁體中文"}
-        ,{"ca-ES", "Catalan"}
-        ,{"da-DK", "Dansk"}
-        ,{"el-GR", "Ελληνικά"}
+    QMap<QString, std::pair<QString, QString>> m_langs{
+        {"en-US", {"English", ""}},
+        {"ru-RU", {"Русский", "Russian"}},
+        {"de-DE", {"Deutsch", "German"}},
+        {"fr-FR", {"Français", "French"}},
+        {"es-ES", {"Español", "Spanish"}},
+        {"sk-SK", {"Slovenčina", "Slovak"}},
+        {"cs-CZ", {"Čeština", "Czech"}},
+        {"it-IT", {"Italiano", "Italian"}},
+        {"pt-BR", {"Português Brasileiro", "Portuguese (Brazil)"}}
+        ,{"pt-PT", {"Português (Portugal)", "Portuguese (Portugal)"}}
+        ,{"pl-PL", {"Polski", "Polish"}}
+        ,{"zh-CN", {"简体中文", "Chinese (Simplified)"}}
+        ,{"zh-TW", {"繁體中文", "Chinese (Traditional)"}}
+        ,{"ca-ES", {"Catalan", "Catalan"}}
+        ,{"da-DK", {"Dansk", "Danish"}}
+        ,{"el-GR", {"Ελληνικά", "Greek"}}
 //        ,{"et-EE", "Eesti"}
-        ,{"fi-FI", "Suomi"}
-//        ,{"ga-IE", "Gaeilge"}
+        ,{"fi-FI", {"Suomi", "Finnish"}}
+//        ,{"ga-IE", {"Gaeilge", "Galego"}}
 //        ,{"hi-IN", "हिन्दी"}
 //        ,{"hr-HR", "Hrvatska"}
-        ,{"hu-HU", "Magyar"}
-        ,{"hy-AM", "Հայերեն"}
-        ,{"id-ID", "Indonesian"}
-        ,{"no", "Norsk"}
-        ,{"ro-RO", "Romanian"}
-        ,{"sl-SI", "Slovene"}
-        ,{"sv-SE", "Svenska"}
-        ,{"tr-TR", "Türkçe"}
-        ,{"ja-JP", "日本語"}
-        ,{"ko-KR", "한국어"}
-        ,{"bg-BG", "Български"}
-        ,{"nl-NL", "Nederlands"}
-        ,{"vi-VN", "Tiếng Việt"}
-        ,{"lv-LV", "Latviešu valoda"}
+        ,{"hu-HU", {"Magyar", "Hungarian"}}
+        ,{"hy-AM", {"Հայերեն", "Armenian"}}
+        ,{"id-ID", {"Indonesian", "Indonesian"}}
+        ,{"no", {"Norsk", "Norwegian"}}
+        ,{"ro-RO", {"Romanian", "Romanian"}}
+        ,{"sl-SI", {"Slovene", "Slovenian"}}
+        ,{"sv-SE", {"Svenska", "Swedish"}}
+        ,{"tr-TR", {"Türkçe", "Turkish"}}
+        ,{"ja-JP", {"日本語", "Japanese"}}
+        ,{"ko-KR", {"한국어", "Korean"}}
+        ,{"bg-BG", {"Български", "Bulgarian"}}
+        ,{"nl-NL", {"Nederlands", "Dutch"}}
+        ,{"vi-VN", {"Tiếng Việt", "Vietnamese"}}
+        ,{"lv-LV", {"Latviešu valoda", "Latvian"}}
 //        ,{"lt-LT", "Lietuvių kalba"}
-        ,{"be-BY", "Беларуская мова"}
-        ,{"uk-UA", "Украї́нська мо́ва"}
-        ,{"lo-LA", "ພາສາລາວ"}
-        ,{"gl-ES", "Galego"}
-        ,{"si-LK", "සිංහල"}
-        ,{"ar-SA", "اَلْعَرَبِيَّة"}
-        ,{"sr-Latn-RS", "Srpski (Latin)"}
-        ,{"sr-Cyrl-RS", "Српски (Ћирилица)"}
+        ,{"be-BY", {"Беларуская мова", "Belarusian"}}
+        ,{"uk-UA", {"Украї́нська мо́ва", "Ukrainian"}}
+        ,{"lo-LA", {"ພາສາລາວ", "Lao"}}
+        ,{"gl-ES", {"Galego", "Galego"}}
+        ,{"si-LK", {"සිංහල", "Sinhala (Sri Lanka)"}}
+        ,{"ar-SA", {"اَلْعَرَبِيَّة", "Arabic"}}
+        ,{"sr-Latn-RS", {"Srpski (Latin)", "Serbian (Latin)"}}
+        ,{"sr-Cyrl-RS", {"Српски (Ћирилица)", "Serbian (Cyrillic)"}}
     };
 };
 
@@ -317,7 +317,7 @@ void CLangater::reloadTranslations(const QString& lang)
 #endif
 }
 
-void CLangater::refreshLangs(const QMap<QString,QString>& map)
+void CLangater::refreshLangs(const QMap<QString, std::pair<QString, QString>>& map)
 {
     getInstance()->m_intf->m_langs = {map};
 }
@@ -340,9 +340,9 @@ QJsonObject CLangater::availableLangsToJson()
 {
     QJsonObject _out_obj;
 
-    QMap<QString, QString>::const_iterator i = getInstance()->m_intf->m_langs.constBegin();
+    QMap<QString, std::pair<QString, QString>>::const_iterator i = getInstance()->m_intf->m_langs.constBegin();
     while ( i != getInstance()->m_intf->m_langs.constEnd() ) {
-        _out_obj.insert(i.key(), i.value());
+        _out_obj.insert(i.key(), QJsonObject{{"name", i.value().first},{"enname", i.value().second}});
         ++i;
     }
 

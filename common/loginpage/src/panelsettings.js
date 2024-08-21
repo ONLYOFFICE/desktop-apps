@@ -174,7 +174,7 @@
                                             <label class='sett__caption' l10n>${_lang.settLanguage}</label>
                                             <div class='sett--label-lift-top hbox'>
                                                 <section class='box-cmp-select'>
-                                                    <select class='combobox' data-size="10"></select>
+                                                    <select class='combobox subtext-right' data-size="10"></select>
                                                 </section>
                                             </div>
                                         </div>
@@ -547,7 +547,8 @@
                             let def_lang;
                             for (let lang in appSettings.locale.langs) {
                                 /^en/.test(lang) && (def_lang = lang);
-                                $combo.append(`<option value='${lang}'>${appSettings.locale.langs[lang]}</option>`);
+                                const n = appSettings.locale.langs[lang];
+                                $combo.append(`<option value='${lang}' data-subtext='${n['enname']}'>${n["name"]}</option>`);
                             }
 
                             if ( !appSettings.locale.langs[appSettings.locale.current] ) {
