@@ -211,7 +211,7 @@
                                             <label class='sett__caption' l10n>${_lang.settAUpdateMode}</label>
                                             <div class='sett--label-lift-top hbox'>
                                                 <section class='box-cmp-select'>
-                                                    <select class='combobox'>
+                                                    <select class='combobox subtext-bottom'>
                                                         <option data-subtext="${_lang.settOptDescAUpdateSilent}" value='silent' l10n>${_lang.settOptAUpdateSilent}</option>
                                                         <option data-subtext="${_lang.settOptDescAUpdateAsk}" value='ask' l10n>${_lang.settOptAUpdateAsk}</option>
                                                         <option data-subtext="${_lang.settOptDescDisabled}" value='disabled' l10n>${_lang.settOptAUpdateDisabled}</option>
