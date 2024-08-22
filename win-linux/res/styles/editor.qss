@@ -2,7 +2,7 @@
 #box-title-tools {background-color: %1;}
 #box-title-tools QLabel {font-family: "Arial", "Helvetica", "Helvetica Neue", sans-serif;}
 #mainPanel[rtl-font=true] #box-title-tools QLabel {font-family: "Segoe UI", "Traditional Arabic", "Noto Sans";}
-#labelTitle {color: #444; font-weight: normal;}
+#labelTitle {color: #444; font-size: 12px; font-weight: normal;}
 #iconuser {color: %1; background: #d9ffffff; font-size: 10px;}
 QPushButton[act=tool][hovered=true],
 QPushButton[act=tool]:hover {background-color: rgba(0,0,0,20%);}
@@ -18,11 +18,15 @@ QPushButton#toolButtonClose:pressed {background-color: #d75050;}
 #mainPanel[window=pretty] QPushButton#toolButtonMaximize {image: url(:/restore_light.svg);}
 #mainPanel[window=pretty] QPushButton#toolButtonMaximize[class=min] {image: url(:/maximize_light.svg);}
 #mainPanel[window=pretty] QPushButton#toolButtonMaximize[unix=false][pressed=true] {background-color: rgba(255,255,255,20%);}
-#mainPanel[window=pretty] #labelTitle {color: #fff; font-size: 12px;}
+#mainPanel[window=pretty] #labelTitle {color: #fff;}
 
 /* dark style */
 #mainPanel[uitheme=theme-dark] #labelTitle {color: rgba(255,255,255,80%);}
 #mainPanel[uitheme=theme-contrast-dark] #labelTitle {color: #e8e8e8;}
+
+/* gray style */
+#mainPanel[uitheme=theme-gray] #labelTitle {color: #444;}
+#mainPanel[uitheme=theme-gray] #iconuser {background: #676767;}
 
 /* 1.25x */
 #mainPanel[zoom="1.25x"] #toolButtonMinimize,

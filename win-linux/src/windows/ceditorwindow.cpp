@@ -205,9 +205,10 @@ QWidget * CEditorWindow::createMainPanel(QWidget * parent, const QString& title)
         if ( d_ptr->panel()->data()->hasError()) {
             mainGridLayout->addWidget(m_boxTitleBtns, 0, 0);
             m_labelTitle->setText(APP_TITLE);
-            mainPanel->setProperty("window", "pretty");
+            if (GetCurrentTheme().id() != L"theme-gray")
+                mainPanel->setProperty("window", "pretty");
         } else {
-            if (d_ptr->panel()->data()->contentType() != AscEditorType::etUndefined)
+            if (d_ptr->panel()->data()->contentType() != AscEditorType::etUndefined && GetCurrentTheme().id() != L"theme-gray")
                 mainPanel->setProperty("window", "pretty");
             int pos = 2;
             auto *pIconSpacer = new QSpacerItem(ICON_SPACER_WIDTH, 5, QSizePolicy::Fixed, QSizePolicy::Fixed);

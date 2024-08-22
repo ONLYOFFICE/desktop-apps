@@ -421,7 +421,7 @@ public:
     {
         CCefEventsGate::onDocumentType(id, type);
 
-        if ( /*canExtendTitle() &&*/ window->isCustomWindowStyle() ) {
+        if ( /*canExtendTitle() &&*/ window->isCustomWindowStyle() && GetCurrentTheme().id() != L"theme-gray") {
             window->m_pMainPanel->setProperty("window", "pretty");
             changeTheme(GetCurrentTheme().id());
         }
@@ -451,6 +451,8 @@ public:
             background = GetColorValueByRole(ecrWindowBackground);
             border = GetColorValueByRole(ecrWindowBorder);
         }
+        if (GetCurrentTheme().id() == L"theme-gray")
+            border = GetColorValueByRole(ecrWindowBorder);
 
         window->setWindowColors(QColor(QString::fromStdWString(background)), QColor(QString::fromStdWString(border)));
     }
@@ -461,11 +463,18 @@ public:
             Q_ASSERT(window->m_pMainPanel);
             window->m_pMainPanel->setProperty("uitheme", QString::fromStdWString(GetActualTheme(theme)));
             window->m_pMainPanel->setProperty("uithemetype", GetCurrentTheme().stype());
+            if (GetCurrentTheme().id() != L"theme-gray") {
+                if (panel()->data()->hasError() || panel()->data()->contentType() != AscEditorType::etUndefined)
+                    window->m_pMainPanel->setProperty("window", "pretty");
+            } else {
+                window->m_pMainPanel->setProperty("window", QVariant());
+            }
             if (!viewerMode()) {
                 foreach (auto btn, m_mapTitleButtons)
                     btn->setIconOpacity(GetColorByRole(ecrButtonNormalOpacity));
             } else {
-                window->m_pMainPanel->setProperty("window", "pretty");
+                if (GetCurrentTheme().id() != L"theme-gray")
+                    window->m_pMainPanel->setProperty("window", "pretty");
                 if ( m_mapTitleButtons.contains("home") )
                     m_mapTitleButtons["home"]->setIconOpacity(GetColorByRole(ecrButtonNormalOpacity));
             }
