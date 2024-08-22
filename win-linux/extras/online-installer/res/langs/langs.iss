@@ -1,5 +1,6 @@
 
 en.CAPTION_TEXT =ONLYOFFICE Online Installer
+en-GB.CAPTION_TEXT =ONLYOFFICE Online Installer
 ru.CAPTION_TEXT =ONLYOFFICE Онлайн Установщик
 de.CAPTION_TEXT =ONLYOFFICE Online-Installationsprogramm
 fr.CAPTION_TEXT =Programme d'installation ONLYOFFICE en ligne
@@ -41,6 +42,7 @@ sv.CAPTION_TEXT =ONLYOFFICE onlineinstallationsprogram
 sr-cyrl-RS.CAPTION_TEXT =ONLYOFFICE Онлајн Инсталатер
 
 en.MESSAGE_TEXT_ERR1 =The application cannot continue because this architecture is not supported.
+en-GB.MESSAGE_TEXT_ERR1 =The application cannot continue because this architecture is not supported.
 ru.MESSAGE_TEXT_ERR1 =Приложение не может продолжить работу, так как эта архитектура не поддерживается.
 de.MESSAGE_TEXT_ERR1 =Die Anwendung kann nicht fortgesetzt werden, da diese Architektur nicht unterstützt wird.
 fr.MESSAGE_TEXT_ERR1 =L'application ne peut pas continuer car cette architecture n'est pas prise en charge.
@@ -82,6 +84,7 @@ sv.MESSAGE_TEXT_ERR1 =Applikationen kan inte fortsätta eftersom denna arkitektu
 sr-cyrl-RS.MESSAGE_TEXT_ERR1 =Апликација не може наставити јер ова архитектура није подржана.
 
 en.MESSAGE_TEXT_ERR2 =The application is already running.
+en-GB.MESSAGE_TEXT_ERR2 =The application is already running.
 ru.MESSAGE_TEXT_ERR2 =Приложение уже запущено.
 de.MESSAGE_TEXT_ERR2 =Die Anwendung läuft bereits.
 fr.MESSAGE_TEXT_ERR2 =Cette application est déjà en cours d'exécution.
@@ -123,6 +126,7 @@ sv.MESSAGE_TEXT_ERR2 =Applikationen körs redan.
 sr-cyrl-RS.MESSAGE_TEXT_ERR2 =Апликација већ ради.
 
 en.LABEL_TITLE_TEXT =Preparing for installation
+en-GB.LABEL_TITLE_TEXT =Preparing for installation
 ru.LABEL_TITLE_TEXT =Подготовка к установке
 de.LABEL_TITLE_TEXT =Vorbereitung der Installation
 fr.LABEL_TITLE_TEXT =Préparation à l'installation
@@ -164,6 +168,7 @@ sv.LABEL_TITLE_TEXT =Förbereder för installation
 sr-cyrl-RS.LABEL_TITLE_TEXT =Припрема за инсталацију
 
 en.LABEL_MESSAGE_TEXT =Downloading a package
+en-GB.LABEL_MESSAGE_TEXT =Downloading a package
 ru.LABEL_MESSAGE_TEXT =Загрузка пакета
 de.LABEL_MESSAGE_TEXT =Herunterladen eines Pakets
 fr.LABEL_MESSAGE_TEXT =Télécharger un paquet
@@ -206,6 +211,7 @@ sv.LABEL_MESSAGE_TEXT =Laddar ner ett paket
 sr-cyrl-RS.LABEL_MESSAGE_TEXT =Преузимање пакета
 
 en.LABEL_MESSAGE_TEXT_ERR1 =An error occurred during initialization.\nPlease try restarting the app later.
+en-GB.LABEL_MESSAGE_TEXT_ERR1 =An error occurred during initialization.\nPlease try restarting the app later.
 ru.LABEL_MESSAGE_TEXT_ERR1 =Произошла ошибка при инициализации.\nПопробуйте перезапустить приложение позже.
 de.LABEL_MESSAGE_TEXT_ERR1 =Während der Initialisierung ist ein Fehler aufgetreten.\nBitte versuchen Sie, die App später neu zu starten.
 fr.LABEL_MESSAGE_TEXT_ERR1 =Une erreur s'est produit lors de l'initialisation.\nVeuillez réessayer de redémarrer l'application plus tard.
@@ -247,6 +253,7 @@ sv.LABEL_MESSAGE_TEXT_ERR1 =Ett fel inträffade under initiering.\nFörsök star
 sr-cyrl-RS.LABEL_MESSAGE_TEXT_ERR1 =Појавила се грешка приликом иницијализације.\nМолимо покушајте да рестартујете апликацију касније.
 
 en.LABEL_MESSAGE_TEXT_ERR2 =Package download failed: Not enough memory!\nPlease try restarting the app later.
+en-GB.LABEL_MESSAGE_TEXT_ERR2 =Package download failed: Not enough memory!\nPlease try restarting the app later.
 ru.LABEL_MESSAGE_TEXT_ERR2 =Ошибка при загрузке пакета: Недостаточно памяти!\nПопробуйте перезапустить приложение позже.
 de.LABEL_MESSAGE_TEXT_ERR2 =Paket-Download fehlgeschlagen: Nicht genügend Speicherplatz!\nBitte versuchen Sie, die App später neu zu starten.
 fr.LABEL_MESSAGE_TEXT_ERR2 =Échec du téléchargement du paquet: Mémoire insuffisante!\nVeuillez réessayer de redémarrer l'application plus tard.
@@ -288,6 +295,7 @@ sv.LABEL_MESSAGE_TEXT_ERR2 =Nedladdning av paketet misslyckades: Inte tillräckl
 sr-cyrl-RS.LABEL_MESSAGE_TEXT_ERR2 =Преузимање пакета неуспешно: Недовољно меморије!\nМолимо покушајте да рестартујете апликацију касније.
 
 en.LABEL_MESSAGE_TEXT_ERR3 =Package download failed: Server connection error!\nPlease try restarting the app later.
+en-GB.LABEL_MESSAGE_TEXT_ERR3 =Package download failed: Server connection error!\nPlease try restarting the app later.
 ru.LABEL_MESSAGE_TEXT_ERR3 =Ошибка при загрузке пакета: Ошибка соединения!\nПопробуйте перезапустить приложение позже.
 de.LABEL_MESSAGE_TEXT_ERR3 =Paket-Download fehlgeschlagen: Serververbindungsfehler!\nBitte versuchen Sie, die App später neu zu starten.
 fr.LABEL_MESSAGE_TEXT_ERR3 =Échec du téléchargement du paquet: Problème de connexion au serveur!\nVeuillez réessayer de redémarrer l'application plus tard.
@@ -329,6 +337,7 @@ sv.LABEL_MESSAGE_TEXT_ERR3 =Nedladdning av paketet misslyckades: Serveranslutnin
 sr-cyrl-RS.LABEL_MESSAGE_TEXT_ERR3 =Преузимање пакета неуспешно: Грешка у вези са повезивањем на сервер!\nМолимо покушајте да рестартујете апликацију касније.
 
 en.LABEL_MESSAGE_TEXT_ERR4 =Package download failed: Network error!\nPlease try restarting the app later.
+en-GB.LABEL_MESSAGE_TEXT_ERR4 =Package download failed: Network error!\nPlease try restarting the app later.
 ru.LABEL_MESSAGE_TEXT_ERR4 =Ошибка при загрузке пакета: Ошибка сети!\nПопробуйте перезапустить приложение позже.
 de.LABEL_MESSAGE_TEXT_ERR4 =Paket-Download fehlgeschlagen: Netzwerkfehler!\nBitte versuchen Sie, die App später neu zu starten.
 fr.LABEL_MESSAGE_TEXT_ERR4 =Échec du téléchargement du paquet: Problème de réseau!\nVeuillez réessayer de redémarrer l'application plus tard.
@@ -370,6 +379,7 @@ sv.LABEL_MESSAGE_TEXT_ERR4 =Nedladdning av paketet misslyckades: Nätverksfel!\n
 sr-cyrl-RS.LABEL_MESSAGE_TEXT_ERR4 =Преузимање пакета неуспешно: Грешка у мрежи!\nМолимо покушајте да рестартујете апликацију касније.
 
 en.LABEL_MESSAGE_TEXT_ERR5 =An error occurred while running the package.\nPlease try restarting the app later.
+en-GB.LABEL_MESSAGE_TEXT_ERR5 =An error occurred while running the package.\nPlease try restarting the app later.
 ru.LABEL_MESSAGE_TEXT_ERR5 =Произошла ошибка при запуске установщика.\nПопробуйте перезапустить приложение позже.
 de.LABEL_MESSAGE_TEXT_ERR5 =Beim Ausführen des Pakets ist ein Fehler aufgetreten.\nBitte versuchen Sie, die App später neu zu starten.
 fr.LABEL_MESSAGE_TEXT_ERR5 =Une erreur s'est produit lors de l'exécution du paquet.\nVeuillez réessayer de redémarrer l'application plus tard.
@@ -411,6 +421,7 @@ sv.LABEL_MESSAGE_TEXT_ERR5 =Ett fel inträffade vid körning av paketet.\nFörs�
 sr-cyrl-RS.LABEL_MESSAGE_TEXT_ERR5 =Дошло је до грешке приликом покретања пакета.\nМолимо покушајте да рестартујете апликацију касније.
 
 en.LABEL_MESSAGE_TEXT_ERR6 =An error occurred during initialization: URL not set.
+en-GB.LABEL_MESSAGE_TEXT_ERR6 =An error occurred during initialization: URL not set.
 ru.LABEL_MESSAGE_TEXT_ERR6 =Произошла ошибка при инициализации: Не задан URL.
 de.LABEL_MESSAGE_TEXT_ERR6 =Bei der Initialisierung ist ein Fehler aufgetreten: URL nicht gesetzt.
 fr.LABEL_MESSAGE_TEXT_ERR6 =Une erreur s'est produit lors de l'initialisation: Url non définie.
@@ -452,6 +463,7 @@ sv.LABEL_MESSAGE_TEXT_ERR6 =Ett fel inträffade under initiering: URL inte angiv
 sr-cyrl-RS.LABEL_MESSAGE_TEXT_ERR6 =Дошло је до грешке приликом иницијализације: URL нике постављен.
 
 en.LABEL_MESSAGE_TEXT_ERR7 =An error occurred during initialization: File name not specified.
+en-GB.LABEL_MESSAGE_TEXT_ERR7 =An error occurred during initialization: File name not specified.
 ru.LABEL_MESSAGE_TEXT_ERR7 =Произошла ошибка при инициализации: Не задано имя файла.
 de.LABEL_MESSAGE_TEXT_ERR7 =Bei der Initialisierung ist ein Fehler aufgetreten: Dateiname nicht angegeben.
 fr.LABEL_MESSAGE_TEXT_ERR7 =Une erreur s'est produit lors de l'initialisation: Le nom du fichier n'est pas spécifié.
@@ -493,6 +505,7 @@ sv.LABEL_MESSAGE_TEXT_ERR7 =Ett fel inträffade under initiering: Filnamn inte a
 sr-cyrl-RS.LABEL_MESSAGE_TEXT_ERR7 =Дошло је до грешке приликом иницијализације: име датотеке није наведено.
 
 en.BUTTON_CANCEL_TEXT =Cancel
+en-GB.BUTTON_CANCEL_TEXT =Cancel
 ru.BUTTON_CANCEL_TEXT =Отмена
 de.BUTTON_CANCEL_TEXT =Abbrechen
 fr.BUTTON_CANCEL_TEXT =Annuler
@@ -534,6 +547,7 @@ sv.BUTTON_CANCEL_TEXT =Avbryt
 sr-cyrl-RS.BUTTON_CANCEL_TEXT =Откажи
 
 en.SILENT_CHECK_TEXT =Silent Installation
+en-GB.SILENT_CHECK_TEXT =Silent Installation
 ru.SILENT_CHECK_TEXT =Тихая установка
 de.SILENT_CHECK_TEXT =Silent Installation
 fr.SILENT_CHECK_TEXT =Installation sans assistance

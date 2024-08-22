@@ -1,6 +1,7 @@
 ﻿
 [CustomMessages]
 en.UninstallPageLabel=Press Uninstall to proceed with uninstallation.
+en_GB.UninstallPageLabel=Press Uninstall to proceed with uninstallation.
 cs.UninstallPageLabel=Stisknutím Odinstalovat pokračujte v odinstalování.
 sk.UninstallPageLabel=Stlačením Odinštalovať pokračujte v odinštalácii.
 ru.UninstallPageLabel=Нажмите кнопку «Удалить», чтобы приступить к удалению.
@@ -22,6 +23,7 @@ sr_Cyrl_RS.UninstallPageLabel=Притисните Деинсталирај да
 
 
 en.UninstallOptionClearData=Clear all user settings and application cached data
+en_GB.UninstallOptionClearData=Clear all user settings and application cached data
 cs.UninstallOptionClearData=Vymažte všechna uživatelská nastavení a data uložená v paměti
 sk.UninstallOptionClearData=Vymazať všetky používateľské nastavenia a údaje uložené vo vyrovnávacej pamäti
 ru.UninstallOptionClearData=Очистить все пользовательские настройки и кэш приложения
