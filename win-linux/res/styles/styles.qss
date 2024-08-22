@@ -1,6 +1,6 @@
 
 #mainPanel {margin: 0; padding: 0; background: #f1f1f1;}
-#CX11Caption {min-width: 200px; background: #f1f1f1;}
+#CX11Caption {min-width: 200px; background: #f1f1f1; border-bottom: 1px solid #dfdfdf;}
 #labelAppTitle {color: #444; background: transparent; margin-top: -2px; font-size: 11px;}
 
 QPushButton {/*background-color:#d9d9d9;*/ padding:0 20px; font-weight: normal; height: 22px; font-size: 12px;}
@@ -42,14 +42,16 @@ QPushButton#toolButtonMain {
     font-family: 'Open Sans',sans-serif;
     font-weight: bold;
     border-left: 0px;
-    border-right: 1px solid #f1f1f1;
+    border-right: 1px solid #dfdfdf;
+    border-bottom: 1px solid #dfdfdf;
 }
-#mainPanel[rtl=true] QPushButton#toolButtonMain {border-right: 0px; border-left: 1px solid #f1f1f1;}
+#mainPanel[rtl=true] QPushButton#toolButtonMain {border-right: none; border-left: 1px solid #dfdfdf;}
 
+QPushButton#toolButtonMain[class=active] {border-bottom: none; padding-bottom: 1px;}
 QPushButton#toolButtonMain[class=active],
 QPushButton#toolButtonMain[class=active]:hover {color: #666666;}
 QPushButton#toolButtonMain[class=normal],
-QPushButton#toolButtonMain[class=normal]:hover {color: #fff; border-bottom: 0 none;}
+QPushButton#toolButtonMain[class=normal]:hover {color: #fff;}
 QPushButton#toolButtonMain[class=normal] {background: #f1f1f1; border-color: #dfdfdf;}
 QPushButton#toolButtonMain[class=normal]:hover {background: #cecece;}
 #mainPanel[rtl=true] QPushButton#toolButtonMain[class=normal] {border-color: #dfdfdf;}
@@ -69,10 +71,10 @@ QPushButton#toolButtonDownload {border-left: 0px; border-right: 1px solid #dfdfd
 #mainPanel[uithemetype=dark] QPushButton#toolButtonClose {image: url(:/close_light.svg) center no-repeat;}
 
 #mainPanel[uitheme=theme-dark],
-#mainPanel[uitheme=theme-dark] #CX11Caption {background-color: #404040;}
+#mainPanel[uitheme=theme-dark] #CX11Caption {background-color: #404040; border-color: #505050;}
 #mainPanel[uitheme=theme-dark] #labelAppTitle {color: #d9d9d9;}
 
-#mainPanel[uitheme=theme-dark] QPushButton#toolButtonMain {border-color: #333;}
+#mainPanel[uitheme=theme-dark] QPushButton#toolButtonMain {border-color: #505050;}
 #mainPanel[uitheme=theme-dark] QPushButton#toolButtonMain[class=active] {background: #333;}
 #mainPanel[uitheme=theme-dark] QPushButton#toolButtonMain[class=normal] {background: #404040; border-color: #505050;}
 #mainPanel[uitheme=theme-dark] QPushButton#toolButtonMain[class=normal]:hover {background: #555;}
@@ -91,10 +93,10 @@ QPushButton#toolButtonDownload {border-left: 0px; border-right: 1px solid #dfdfd
 /* Contrast-Dark*/
 
 #mainPanel[uitheme=theme-contrast-dark],
-#mainPanel[uitheme=theme-contrast-dark] #CX11Caption {background-color: #2a2a2a;}
+#mainPanel[uitheme=theme-contrast-dark] #CX11Caption {background-color: #2a2a2a; border-color: #414141;}
 #mainPanel[uitheme=theme-contrast-dark] #labelAppTitle {color: #d9d9d9;}
 
-#mainPanel[uitheme=theme-contrast-dark] QPushButton#toolButtonMain {border-color: #1e1e1e;}
+#mainPanel[uitheme=theme-contrast-dark] QPushButton#toolButtonMain {border-color: #414141;}
 #mainPanel[uitheme=theme-contrast-dark] QPushButton#toolButtonMain[class=active] {background: #1e1e1e;}
 #mainPanel[uitheme=theme-contrast-dark] QPushButton#toolButtonMain[class=normal] {background: #2a2a2a; border-color: #414141;}
 #mainPanel[uitheme=theme-contrast-dark] QPushButton#toolButtonMain[class=normal]:hover {background: #424242;}
@@ -109,21 +111,24 @@ QPushButton#toolButtonDownload {border-left: 0px; border-right: 1px solid #dfdfd
 /***********************************/
 /* classic light theme definitions */
 /***********************************/
+#mainPanel[uitheme=theme-classic-light] #CX11Caption {border-color: #cbcbcb;}
+
+#mainPanel[uitheme=theme-classic-light] QPushButton#toolButtonMain {/*background-color: #fff;*/ border-color: #cbcbcb;}
+#mainPanel[uitheme=theme-classic-light] QPushButton#toolButtonMain[class=normal] {border-color: #cbcbcb;}
 
 #mainPanel[uitheme=theme-classic-light] QPushButton#toolButtonDownload {border-color: #cbcbcb;}
-#mainPanel[uitheme=theme-classic-light] QPushButton#toolButtonMain {border-color: #f1f1f1;}
-#mainPanel[uitheme=theme-classic-light] QPushButton#toolButtonMain {background-color: #fff;}
-#mainPanel[uitheme=theme-classic-light] QPushButton#toolButtonMain[class=normal] {border-color: #cbcbcb;}
 
 /***********************************/
 /* gray theme definitions */
 /***********************************/
+#mainPanel[uitheme=theme-gray] #CX11Caption {background-color: #fff; border-color: #c0c0c0;}
 
-#mainPanel[uitheme=theme-gray] QPushButton#toolButtonMain {background-color: #fff;}
-#mainPanel[uitheme=theme-gray] QPushButton#toolButtonMain {border-right: 1px solid #c0c0c0;}
+#mainPanel[uitheme=theme-gray] QPushButton#toolButtonMain {background-color: #fff; border-color: #c0c0c0;}
 #mainPanel[uitheme=theme-gray] QPushButton#toolButtonMain[class=active] {background: #f3f3f3;}
-#mainPanel[uitheme=theme-gray] #CX11Caption {background-color: #fff;}
+#mainPanel[uitheme=theme-gray] QPushButton#toolButtonMain[class=normal]:hover {background: #fbfbfb;}
+#mainPanel[uitheme=theme-gray][rtl=true] QPushButton#toolButtonMain {border-color: #c0c0c0;}
 
+#mainPanel[uitheme=theme-gray] QPushButton#toolButtonDownload {border-color: #c0c0c0;}
 
 /* ToolTip*/
 

@@ -285,7 +285,8 @@ void Tab::paintEvent(QPaintEvent *ev)
 //        if (tabBar && tabBar->property("active").toBool())
         {
             QStylePainter p(this);
-            p.fillRect(rect().adjusted(0,0,-1,0), QBrush(QColor(tabcolor)));
+            int left = AscAppManager::isRtlEnabled() ? frameWidth() : 0;
+            p.fillRect(rect().adjusted(left, 0, left ? 0 : -frameWidth(), 0), QBrush(QColor(tabcolor)));
         }
     }
 }
