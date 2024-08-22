@@ -20,7 +20,7 @@
         "tab-default-active-text": "#444",
         "tab-divider": "#cbcbcb",
 
-        "button-normal-opacity": "rgba(255,255,255,255)",
+        "button-normal-opacity": "rgba(49,49,49,255)",
         "logo-type": "dark",
         "tab-editor-theme-type": "light"
     }
