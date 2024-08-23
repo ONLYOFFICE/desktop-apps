@@ -421,6 +421,15 @@
 
 /* Begin PBXFileReference section */
 		5A0229392C4A54600011C6EC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		5A02293A2C7770DF0011C6EC /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/Document-Sign.strings"; sourceTree = "<group>"; };
+		5A02293B2C7770E00011C6EC /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		5A02293C2C7770E00011C6EC /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "en-GB"; path = "en-GB.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
+		5A02293D2C7770E00011C6EC /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/Main.strings"; sourceTree = "<group>"; };
+		5A02293E2C7770E00011C6EC /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/MoveApplication.strings"; sourceTree = "<group>"; };
+		5A02293F2C7770E00011C6EC /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/Presentation-Reporter.strings"; sourceTree = "<group>"; };
+		5A0229402C7770E00011C6EC /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		5A0229412C7770E00011C6EC /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		5A0229422C7770E00011C6EC /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		5A18BAA3285B5BF6004625C7 /* CertificateCommon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CertificateCommon.h; sourceTree = "<group>"; };
 		5A417F722C05265E00758795 /* sr-Latn-RS */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sr-Latn-RS"; path = "sr-Latn-RS.lproj/Document-Sign.strings"; sourceTree = "<group>"; };
 		5A417F732C05265E00758795 /* sr-Latn-RS */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sr-Latn-RS"; path = "sr-Latn-RS.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -1955,6 +1964,7 @@
 				"ar-SA",
 				"sr-Latn-RS",
 				"sr-RS",
+				"en-GB",
 			);
 			mainGroup = FCBC425F1B9D650400405301;
 			productRefGroup = FCBC42691B9D650400405301 /* Products */;
@@ -2580,6 +2590,7 @@
 				5ABE02562B22699F0031328E /* ar-SA */,
 				5A417F772C05265E00758795 /* sr-Latn-RS */,
 				5A417F802C05267F00758795 /* sr-RS */,
+				5A02293F2C7770E00011C6EC /* en-GB */,
 			);
 			name = "Presentation-Reporter.storyboard";
 			sourceTree = "<group>";
@@ -2630,6 +2641,7 @@
 				5ABE02552B22699F0031328E /* ar-SA */,
 				5A417F762C05265E00758795 /* sr-Latn-RS */,
 				5A417F7F2C05267F00758795 /* sr-RS */,
+				5A02293E2C7770E00011C6EC /* en-GB */,
 			);
 			name = MoveApplication.strings;
 			sourceTree = "<group>";
@@ -2720,6 +2732,7 @@
 				5ABE02592B22699F0031328E /* ar-SA */,
 				5A417F7A2C05265E00758795 /* sr-Latn-RS */,
 				5A417F832C05267F00758795 /* sr-RS */,
+				5A0229422C7770E00011C6EC /* en-GB */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -2810,6 +2823,7 @@
 				5ABE02582B22699F0031328E /* ar-SA */,
 				5A417F792C05265E00758795 /* sr-Latn-RS */,
 				5A417F822C05267F00758795 /* sr-RS */,
+				5A0229412C7770E00011C6EC /* en-GB */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -2901,6 +2915,7 @@
 				5ABE02572B22699F0031328E /* ar-SA */,
 				5A417F782C05265E00758795 /* sr-Latn-RS */,
 				5A417F812C05267F00758795 /* sr-RS */,
+				5A0229402C7770E00011C6EC /* en-GB */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -2951,6 +2966,7 @@
 				5ABE02542B22699F0031328E /* ar-SA */,
 				5A417F752C05265E00758795 /* sr-Latn-RS */,
 				5A417F7E2C05267F00758795 /* sr-RS */,
+				5A02293D2C7770E00011C6EC /* en-GB */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -3001,6 +3017,7 @@
 				5ABE02532B22699F0031328E /* ar-SA */,
 				5A417F742C05265E00758795 /* sr-Latn-RS */,
 				5A417F7D2C05267F00758795 /* sr-RS */,
+				5A02293C2C7770E00011C6EC /* en-GB */,
 			);
 			name = Localizable.stringsdict;
 			sourceTree = "<group>";
@@ -3051,6 +3068,7 @@
 				5ABE02512B22699F0031328E /* ar-SA */,
 				5A417F722C05265E00758795 /* sr-Latn-RS */,
 				5A417F7B2C05267F00758795 /* sr-RS */,
+				5A02293A2C7770DF0011C6EC /* en-GB */,
 			);
 			name = "Document-Sign.storyboard";
 			sourceTree = "<group>";
@@ -3102,6 +3120,7 @@
 				5A417F732C05265E00758795 /* sr-Latn-RS */,
 				5A417F7C2C05267F00758795 /* sr-RS */,
 				5A0229392C4A54600011C6EC /* en */,
+				5A02293B2C7770E00011C6EC /* en-GB */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
