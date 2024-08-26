@@ -186,6 +186,7 @@
         <file alias="de-DE.qm">langs/de.qm</file>
         <file alias="el-GR.qm">langs/el_GR.qm</file>
         <file alias="en-US.qm">langs/en.qm</file>
+        <file alias="en-GB.qm">langs/en_GB.qm</file>
         <file alias="es-ES.qm">langs/es.qm</file>
         <file alias="et-EE.qm">langs/et.qm</file>
         <file alias="fi-FI.qm">langs/fi.qm</file>

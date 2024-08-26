@@ -156,7 +156,8 @@ private:
     std::list<QString> m_dirs;
 
     QMap<QString, std::pair<QString, QString>> m_langs{
-        {"en-US", {"English", ""}},
+        {"en-US", {"English (United States)", ""}},
+        {"en-GB", {"English (United Kingdom)", ""}},
         {"ru-RU", {"Русский", "Russian"}},
         {"de-DE", {"Deutsch", "German"}},
         {"fr-FR", {"Français", "French"}},
