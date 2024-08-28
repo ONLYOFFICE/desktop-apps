@@ -6,9 +6,7 @@
     [string]$ProductName = "DesktopEditors",
     [string]$SourceDir,
     [string]$BuildDir,
-    [switch]$Sign,
-    [string]$CertName = "Ascensio System SIA",
-    [string]$TimestampServer = "http://timestamp.digicert.com"
+    [switch]$Sign
 )
 
 $ErrorActionPreference = "Stop"
@@ -103,14 +101,18 @@ Copy-Item -Force `
 Write-Host "`n[ Sign files ]"
 
 if ($Sign) {
+    $CertFile = $env:WINDOWS_CERTIFICATE
+    $CertPass = $env:WINDOWS_CERTIFICATE_PASSWORD
+    $TimestampServer = "http://timestamp.digicert.com"
+
     Set-Location "$BuildDir\desktop"
     $SignFiles = Get-ChildItem `
         *.exe, *.dll, converter\*.exe, converter\*.dll, plugins\*\*.dll `
         | Resolve-Path -Relative
 
     # Sign
-    Write-Host "signtool sign /a /n $CertName /t $TimestampServer ..."
-    & signtool sign /a /n $CertName /t $TimestampServer /v $SignFiles
+    Write-Host "signtool sign /f $CertFile /p $CertPass /t $TimestampServer ..."
+    & signtool sign /f $CertFile /p $CertPass /t $TimestampServer $SignFiles
     if ($LastExitCode -ne 0) { throw }
 
     # Verify
