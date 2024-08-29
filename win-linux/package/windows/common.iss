@@ -57,7 +57,11 @@ AppComments               = {cm:defprogAppDescription}
 DefaultGroupName          = {#sCompanyName}
 ;UsePreviousAppDir         =no
 DirExistsWarning          =no
+#if Int(DecodeVer(PREPROCVER,1)) >= 6
+DefaultDirName            ={commonpf}\{#APP_PATH}
+#else
 DefaultDirName            ={pf}\{#APP_PATH}
+#endif
 DisableProgramGroupPage   = yes
 DisableWelcomePage        = no
 DEPCompatible             = no
