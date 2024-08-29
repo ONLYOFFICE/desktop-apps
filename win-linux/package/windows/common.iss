@@ -87,9 +87,7 @@ ArchitecturesInstallIn64BitMode   = x64
 #endif
 #endif
 
-#ifndef _WIN_XP
-MinVersion                        = 6.1
-#else
+#ifdef _WIN_XP
 MinVersion                        = 5.0
 OnlyBelowVersion                  = 6.1
 #endif
