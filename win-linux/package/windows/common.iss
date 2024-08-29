@@ -1052,9 +1052,9 @@ Source: "data\vcredist_{#ARCH}.exe"; DestDir: {app}; Flags: deleteafterinstall; 
 Source: "{#BRANDING_DIR}\data\VisualElementsManifest.xml"; DestDir: {app}; DestName: {#VISEFFECTS_MANIFEST_NAME}; MinVersion: 6.3;
 Source: "{#BRANDING_DIR}\data\visual_elements_icon_*"; DestDir: {app}\browser;   MinVersion: 6.3;
 
-Source: "{#BUILD_DIR}\desktop\*"; DestDir: {app}; Flags: recursesubdirs;
+Source: "{#BUILD_DIR}\desktop\*"; DestDir: {app}; Flags: ignoreversion recursesubdirs;
 #if defined(_WIN_XP) | defined(EMBED_HELP)
-Source: "{#BUILD_DIR}\help\*"; DestDir: {app}; Flags: recursesubdirs;
+Source: "{#BUILD_DIR}\help\*"; DestDir: {app}; Flags: ignoreversion recursesubdirs;
 #endif
 Source: "{#BUILD_DIR}\desktop\*.exe"; DestDir: {app}; Flags: signonce;
 Source: "{#BUILD_DIR}\desktop\*.dll"; DestDir: {app}; Flags: signonce;
