@@ -57,7 +57,11 @@ AppComments               = {cm:defprogAppDescription}
 DefaultGroupName          = {#sCompanyName}
 ;UsePreviousAppDir         =no
 DirExistsWarning          =no
+#if Int(DecodeVer(PREPROCVER,1)) >= 6
+DefaultDirName            ={commonpf}\{#APP_PATH}
+#else
 DefaultDirName            ={pf}\{#APP_PATH}
+#endif
 DisableProgramGroupPage   = yes
 DisableWelcomePage        = no
 DEPCompatible             = no
@@ -75,17 +79,15 @@ SetupMutex                =ASC
 
 #if str(ARCH) == "x64"
 #if Int(DecodeVer(PREPROCVER,1)) >= 6
-ArchitecturesAllowed              = x64 arm64
-ArchitecturesInstallIn64BitMode   = x64 arm64
+ArchitecturesAllowed              = x64compatible
+ArchitecturesInstallIn64BitMode   = x64compatible
 #else
 ArchitecturesAllowed              = x64
 ArchitecturesInstallIn64BitMode   = x64
 #endif
 #endif
 
-#ifndef _WIN_XP
-MinVersion                        = 6.1
-#else
+#ifdef _WIN_XP
 MinVersion                        = 5.0
 OnlyBelowVersion                  = 6.1
 #endif
@@ -1050,9 +1052,9 @@ Source: "data\vcredist_{#ARCH}.exe"; DestDir: {app}; Flags: deleteafterinstall; 
 Source: "{#BRANDING_DIR}\data\VisualElementsManifest.xml"; DestDir: {app}; DestName: {#VISEFFECTS_MANIFEST_NAME}; MinVersion: 6.3;
 Source: "{#BRANDING_DIR}\data\visual_elements_icon_*"; DestDir: {app}\browser;   MinVersion: 6.3;
 
-Source: "{#BUILD_DIR}\desktop\*"; DestDir: {app}; Flags: recursesubdirs;
+Source: "{#BUILD_DIR}\desktop\*"; DestDir: {app}; Flags: ignoreversion recursesubdirs;
 #if defined(_WIN_XP) | defined(EMBED_HELP)
-Source: "{#BUILD_DIR}\help\*"; DestDir: {app}; Flags: recursesubdirs;
+Source: "{#BUILD_DIR}\help\*"; DestDir: {app}; Flags: ignoreversion recursesubdirs;
 #endif
 Source: "{#BUILD_DIR}\desktop\*.exe"; DestDir: {app}; Flags: signonce;
 Source: "{#BUILD_DIR}\desktop\*.dll"; DestDir: {app}; Flags: signonce;
