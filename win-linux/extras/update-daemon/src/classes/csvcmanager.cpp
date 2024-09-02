@@ -367,7 +367,17 @@ void CSvcManager::init()
                 startReplacingService(params[2] == _T("true"));
                 __UNLOCK
                 break;
-
+#ifdef _WIN32
+            case MSG_StartInstallPackage:
+                if (!m_packageData->fileName.empty() && NS_File::getFileHash(m_packageData->fileName) == m_packageData->hash) {
+                    __GLOBAL_LOCK
+                    startInstallPackage(params[1]);
+                    __UNLOCK
+                } else {
+                    m_socket->sendMessage(MSG_OtherError, _T("SVC_TXT_ERR_MD5"));
+                }
+                break;
+#endif
             case MSG_ClearTempFiles:
                 clearTempFiles(params[1], params[2]);
                 break;
@@ -887,3 +897,22 @@ void CSvcManager::startReplacingService(const bool restartAfterUpdate)
     restartService();
 #endif
 }
+
+#ifdef _WIN32
+void CSvcManager::startInstallPackage(const tstring &advArgs)
+{
+    // Verify the signature of executable files
+    if (!NS_File::verifyEmbeddedSignature(m_packageData->fileName)) {
+        NS_Logger::WriteLog(_TR("Update cancelled. The file signature is missing:") + _T(" ") + m_packageData->fileName, true);
+        return;
+    }
+    tstring args = m_packageData->packageArgs;
+    if (!advArgs.empty()) {
+        if (!args.empty())
+            args += _T(" ");
+        args += advArgs;
+    }
+    if (!NS_File::runProcess(m_packageData->fileName, args))
+        NS_Logger::WriteLog(_TR("An error occurred while start install updates!"), true);
+}
+#endif

@@ -71,7 +71,8 @@ enum MsgCommands {
     MSG_RequestContentLenght,
     MSG_UnzipProgress,
     MSG_SetLanguage,
-    MSG_StartReplacingService
+    MSG_StartReplacingService,
+    MSG_StartInstallPackage
 };
 
 class CSocket

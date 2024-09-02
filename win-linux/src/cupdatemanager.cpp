@@ -305,8 +305,7 @@ struct CUpdateManager::PackageData {
             object,
             hash,
             version;
-    wstring packageUrl,
-            packageArgs;
+    wstring packageUrl;
     bool    isInstallable = true;
     void clear() {
         fileName.clear();
@@ -316,7 +315,6 @@ struct CUpdateManager::PackageData {
         hash.clear();
         version.clear();
         packageUrl.clear();
-        packageArgs.clear();
         isInstallable = true;
     }
 };
@@ -749,14 +747,14 @@ void CUpdateManager::handleAppClose()
     if ( m_startUpdateOnClose ) {
 #ifdef _WIN32
         if (m_packageData->fileType != "archive") {
-            wstring args = m_packageData->packageArgs;
+            wstring args;
             if (m_packageData->fileType == "iss") {
                 GET_REGISTRY_SYSTEM(reg_system)
-                QString prev_inst_lang = " /LANG=" + reg_system.value("locale", "en").toString();
+                QString prev_inst_lang = "/LANG=" + reg_system.value("locale", "en").toString();
                 args += prev_inst_lang.toStdWString();
             }
-            if (!runProcess(m_packageData->fileName.toStdWString(), args)) {
-                criticalMsg(nullptr, QObject::tr("An error occurred while start install updates!"));
+            if (!m_socket->sendMessage(MSG_StartInstallPackage, WStrToTStr(args))) {
+                criticalMsg(nullptr, QObject::tr("An error occurred while start install updates: Update Service not found!"));
             }
         } else {
             if (!Utils::isSessionInProgress()) {
@@ -824,7 +822,6 @@ void CUpdateManager::onLoadCheckFinished(const QString &json)
                 m_packageData->version = root.value("version").toString();
                 m_packageData->fileType = root.value("fileType").toString();
                 m_packageData->packageUrl = root.value("packageUrl").toString().toStdWString();
-                m_packageData->packageArgs = root.value("packageArgs").toString().toStdWString();
                 m_packageData->hash = root.value("hash").toString();
                 m_packageData->isInstallable = root.value("isInstallable").toBool();
 

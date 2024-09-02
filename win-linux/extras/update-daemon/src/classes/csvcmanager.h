@@ -66,6 +66,9 @@ private:
     void clearTempFiles(const tstring &prefix, const tstring &except = tstring());
     void startReplacingFiles(const tstring &packageType, const bool restartAfterUpdate);
     void startReplacingService(const bool restartAfterUpdate);
+#ifdef _WIN32
+    void startInstallPackage(const tstring &advArgs);
+#endif
 
     struct PackageData;
     struct SavedPackageData;
