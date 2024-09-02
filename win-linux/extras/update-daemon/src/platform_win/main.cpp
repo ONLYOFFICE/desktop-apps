@@ -98,6 +98,7 @@ int __cdecl _tmain (int argc, TCHAR *argv[])
         } else
         if (lstrcmpi(argv[1], _T("--run-as-app")) == 0) {
             NS_Utils::setRunAsApp();
+            NS_Utils::parseCmdArgs(argc, argv);
             std::locale::global(std::locale(""));
             Translator lang(NS_Utils::GetAppLanguage().c_str(), IDT_TRANSLATIONS);
             CSocket socket(0, INSTANCE_SVC_PORT);
@@ -158,6 +159,7 @@ int __cdecl _tmain (int argc, TCHAR *argv[])
 
 VOID WINAPI SvcMain(DWORD argc, LPTSTR *argv)
 {
+    NS_Utils::parseCmdArgs(argc, argv);
     if (argc > 1) {
         if (lstrcmpi(argv[1], _T("--log")) == 0) {
             NS_Logger::AllowWriteLog();

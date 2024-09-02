@@ -50,6 +50,9 @@ using std::list;
 
 namespace NS_Utils
 {
+void parseCmdArgs(int argc, char *argv[]);
+bool cmdArgContains(const string &param);
+string cmdArgValue(const string &param);
 string GetLastErrorAsString();
 int ShowMessage(string str, bool showError = false);
 //string GetSysLanguage();

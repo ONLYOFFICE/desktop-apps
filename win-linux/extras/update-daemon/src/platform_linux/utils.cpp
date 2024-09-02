@@ -39,6 +39,7 @@
 #include <gtk/gtk.h>
 #include <string.h>
 //#include <openssl/md5.h>
+#include <vector>
 #include <fcntl.h>
 #include "../../src/defines.h"
 #include "../../src/prop/defines_p.h"
@@ -122,6 +123,32 @@ static bool moving_folder_content(const string &from, const string &to, bool use
 
 namespace NS_Utils
 {
+    std::vector<string> cmd_args;
+
+    void parseCmdArgs(int argc, char *argv[])
+    {
+        for (int i = 0; i < argc; i++)
+            cmd_args.push_back(argv[i]);
+    }
+
+    bool cmdArgContains(const string &param)
+    {
+        auto len = param.length();
+        return std::any_of(cmd_args.cbegin(), cmd_args.cend(), [&param, len](const string &arg) {
+            return arg.find(param) == 0 && (len == arg.length() || arg[len] == '=' || arg[len] == ':' || arg[len] == '|');
+        });
+    }
+
+    string cmdArgValue(const string &param)
+    {
+        auto len = param.length();
+        for (const auto &arg : cmd_args) {
+            if (arg.find(param) == 0 && len < arg.length() && (arg[len] == '=' || arg[len] == ':' || arg[len] == '|'))
+                return arg.substr(len + 1);
+        }
+        return "";
+    }
+
     string GetLastErrorAsString()
     {        
         char buff[LINE_MAX] = {0};

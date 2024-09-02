@@ -52,6 +52,9 @@ namespace NS_Utils
 {
 void setRunAsApp();
 bool isRunAsApp();
+void parseCmdArgs(int argc, wchar_t *argv[]);
+bool cmdArgContains(const wstring &param);
+wstring cmdArgValue(const wstring &param);
 wstring GetLastErrorAsString();
 int ShowMessage(wstring str, bool showError = false);
 wstring GetAppLanguage();
