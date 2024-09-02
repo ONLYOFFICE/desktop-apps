@@ -59,6 +59,8 @@ int main(int argc, char *argv[])
     if (argc > 1) {
         if (strcmp(argv[1], "--run-as-app") == 0) {
             NS_Utils::parseCmdArgs(argc, argv);
+            if (NS_Utils::cmdArgContains("--log"))
+                NS_Logger::AllowWriteLog();
             std::locale::global(std::locale(""));
             Translator lang(NS_Utils::GetAppLanguage(), "/langs/langs.iss");
             CSocket socket(0, INSTANCE_SVC_PORT);
