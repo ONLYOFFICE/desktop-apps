@@ -88,7 +88,6 @@ public:
     void cancelLoading();
     void skipVersion();
     int  getUpdateMode();
-    QString getVersion() const;
     void handleAppClose();
     void loadUpdates();
     void installUpdates();

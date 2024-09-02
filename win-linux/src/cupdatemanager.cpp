@@ -721,11 +721,6 @@ void CUpdateManager::setServiceLang(QString lang)
         CLogger::log("Cannot set service language to: " + lang);
 }
 
-QString CUpdateManager::getVersion() const
-{
-    return m_packageData->version;
-}
-
 void CUpdateManager::onLoadUpdateFinished(const QString &filePath)
 {
     if (getFileHash(filePath) != m_packageData->hash) {
@@ -961,7 +956,7 @@ void CUpdateManager::showUpdateMessage(QWidget *parent) {
                           "To install updates, you can download the required package from the official website.");
     int result = WinDlg::showDialog(parent, tr("Update is available"),
                         QString("%1\n%2: %3\n%4: %5\n%6 (%7 MB)").arg(name, tr("Current version"),
-                        curr_version, tr("New version"), getVersion(),
+                        curr_version, tr("New version"), m_packageData->version,
                         text, m_packageData->fileSize),
                         WinDlg::DlgBtns::mbSkipRemindDownload);
     __UNLOCK
@@ -990,7 +985,7 @@ void CUpdateManager::showStartInstallMessage(QWidget *parent)
                                getFileVersion(QStrToTStr(qApp->applicationDirPath()) + DAEMON_NAME);
     int result = WinDlg::showDialog(parent, tr("Update is ready to install"),
                         QString("%1\n%2: %3\n%4: %5\n%6").arg(name, tr("Current version"),
-                        curr_version, tr("New version"), getVersion(),
+                        curr_version, tr("New version"), m_packageData->version,
                         tr("To finish updating, restart the app")),
                         WinDlg::DlgBtns::mbInslaterRestart);
     __UNLOCK
