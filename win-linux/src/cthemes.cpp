@@ -70,6 +70,14 @@ namespace NSTheme {
 
             {CTheme::ColorRole::ecrDownloadScrollBarHandle, "download-scrollbar-handle"},
 
+            {CTheme::ColorRole::ecrMenuBackground, "menu-background"},
+            {CTheme::ColorRole::ecrMenuBorder, "menu-border"},
+            {CTheme::ColorRole::ecrMenuItemHoverBackground, "menu-item-hover-background"},
+            {CTheme::ColorRole::ecrMenuText, "menu-text"},
+            {CTheme::ColorRole::ecrMenuTextItemHover, "menu-text-item-hover"},
+            {CTheme::ColorRole::ecrMenuTextItemDisabled, "menu-text-item-disabled"},
+            {CTheme::ColorRole::ecrMenuSeparator, "menu-separator"},
+
             {CTheme::ColorRole::ecrToolTipText, "tooltip-text"},
             {CTheme::ColorRole::ecrToolTipBorder, "tooltip-border"},
             {CTheme::ColorRole::ecrToolTipBackground, "tooltip-background"},

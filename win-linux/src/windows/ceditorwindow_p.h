@@ -39,6 +39,7 @@
 #include "ceditortools.h"
 #include "components/cfullscrwidget.h"
 #include "components/cprintdialog.h"
+#include "components/cmenu.h"
 #include "Network/FileTransporter/include/FileTransporter.h"
 #include <QDir>
 #include <QUuid>
@@ -47,6 +48,7 @@
 #include <QJsonObject>
 #include <QGridLayout>
 #include <QPrintEngine>
+#include <QAction>
 
 #ifdef __linux__
 # include "platform_linux/gtkprintdialog.h"
@@ -554,6 +556,8 @@ public:
                 window->hide();
             }
         } else {
+            if (!cancel)
+                window->menu()->setSectionEnabled(CMenu::ActionShowInFolder, true);
             AscAppManager::cancelClose();
         }
     }
@@ -1033,6 +1037,7 @@ public:
         if (QLayoutItem *stretch = _layout->takeAt(0))
             delete stretch;
         boxtitlelabel = new QWidget(window->m_boxTitleBtns);
+        boxtitlelabel->setObjectName("boxtitlelabel");
         boxtitlelabel->setLayout(new QHBoxLayout(boxtitlelabel));
         boxtitlelabel->layout()->setSpacing(0);
         boxtitlelabel->layout()->setMargin(0);

@@ -131,6 +131,14 @@
         <file alias="buttons.svg">res/icons/webeditor/buttons.svg</file>
         <file alias="secure.svg">res/icons/webeditor/secureicon.svg</file>
     </qresource>
+    <qresource prefix="/menu/icons">
+        <file alias="iconssmall_1x.png">res/icons/menu/iconssmall.png</file>
+        <file alias="iconssmall_1.25x.png">res/icons/menu/iconssmall@1.25x.png</file>
+        <file alias="iconssmall_1.5x.png">res/icons/menu/iconssmall@1.5x.png</file>
+        <file alias="iconssmall_1.75x.png">res/icons/menu/iconssmall@1.75x.png</file>
+        <file alias="iconssmall_2x.png">res/icons/menu/iconssmall@2x.png</file>
+        <file alias="iconssmall_2.5x.svg">res/icons/menu/iconssmall@2.5x.svg</file>
+    </qresource>
     <qresource prefix="/styles">
         <file alias="styles.qss">res/styles/styles.qss</file>
         <file alias="styles_unix.qss">res/styles/styles_unix.qss</file>

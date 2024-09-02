@@ -188,8 +188,24 @@ CAscTabWidget::CAscTabWidget(QWidget *parent, CTabBar *_pBar)
         if (from < 0 || from >= count() || to < 0 || to >= count() || from == to)
             return;
         auto wgt = widget(from);
+        blockSignals(true);
         removeWidget(wgt);
         insertWidget(to, wgt);
+        if (from < m_pBar->currentIndex()) {
+            if (to >= m_pBar->currentIndex()) {
+                if (m_pBar->currentIndex() - 1 != currentIndex())
+                    QStackedWidget::setCurrentIndex(m_pBar->currentIndex() - 1);
+            }
+        } else
+        if (from == m_pBar->currentIndex()) {
+            QStackedWidget::setCurrentIndex(to);
+        } else {
+            if (to <= m_pBar->currentIndex()) {
+                if (m_pBar->currentIndex() + 1 != currentIndex())
+                    QStackedWidget::setCurrentIndex(m_pBar->currentIndex() + 1);
+            }
+        }
+        blockSignals(false);
     });
     QObject::connect(m_pBar, &CTabBar::tabsSwapped, this, [=](int from, int to) {
         if (from == to || !indexIsValid(from) || !indexIsValid(to))

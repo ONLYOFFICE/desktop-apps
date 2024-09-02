@@ -46,7 +46,7 @@
 
 class QSpacerItem;
 class CEditorWindowPrivate;
-class CEditorWindow : public CWindowPlatform
+class CEditorWindow : public CWindowPlatform, public CScalingWrapper
 {
     Q_DECLARE_TR_FUNCTIONS(CEditorWindow)
 
@@ -76,7 +76,9 @@ private:
     CEditorWindow(const QRect& rect, const COpenOptions& opts);
 
     QWidget * createMainPanel(QWidget *, const QString&);
+    CMenu* menu();
     void init(CTabPanel *panel);
+    void setMenu();
     void recalculatePlaces();
     void updateTitleCaption();
     void onSizeEvent(int);
@@ -95,6 +97,7 @@ private:
     QString m_css;
     bool m_restoreMaximized = false;
     QSpacerItem *m_pSpacer = nullptr;
+    CMenu *m_pMenu = nullptr;
 
     friend class CEditorWindowPrivate;
     std::unique_ptr<CEditorWindowPrivate> d_ptr;

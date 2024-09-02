@@ -55,6 +55,13 @@ public:
         , ecrDownloadProgressBarBackgroundItemHover
         , ecrDownloadProgressBarChunk
         , ecrDownloadScrollBarHandle
+        , ecrMenuBackground
+        , ecrMenuBorder
+        , ecrMenuItemHoverBackground
+        , ecrMenuText
+        , ecrMenuTextItemHover
+        , ecrMenuTextItemDisabled
+        , ecrMenuSeparator
         , ecrToolTipText
         , ecrToolTipBorder
         , ecrToolTipBackground

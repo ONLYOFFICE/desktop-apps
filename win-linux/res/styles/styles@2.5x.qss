@@ -19,6 +19,17 @@ QPushButton#toolButtonMain[class=normal]:hover {border-bottom-width: 3px;}
 QPushButton#toolButtonDownload {border-right-width: 3px; max-width: 100px; width: 100px; max-height: 70px; height: 70px;}
 #mainPanel[rtl=true] QPushButton#toolButtonDownload {border-left-width: 3px;}
 
+/* Menu */
+
+#CMenuWidget #menuItem {
+    min-height: 65px;
+    padding-left: 63px; padding-right: 43px;
+    font-size: 28px;
+}
+#CMenuWidget #menuFrame {border-width: 3px; border-radius: 10px;}
+#CMenuWidget QFrame[frameShape="4"] {max-height: 3px;}
+#mainPanel[uithemetype=dark] #CMenuWidget #menuItem {font-weight: normal;}
+
 /* ToolTip*/
 
 #CToolTip>QLabel {

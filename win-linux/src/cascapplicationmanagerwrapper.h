@@ -177,6 +177,7 @@ public:
     static void             gotoMainWindow(size_t pw = 0);
     static void             handleInputCmd(const std::vector<std::wstring>&);
     static void             closeEditorWindow(const size_t);
+    static void             pinWindowToTab(CEditorWindow *editor, bool by_position = true);
 
     static void             editorWindowMoving(const size_t, const QPoint&);
     static CMainWindow *    mainWindow();

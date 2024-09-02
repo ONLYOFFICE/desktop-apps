@@ -1251,7 +1251,14 @@ void CAscApplicationManagerWrapper::initializeApp()
                                 GetColorQValueByRole(ecrButtonBackgroundActive),
                                 GetColorQValueByRole(ecrToolTipText))
                            .arg(GetColorQValueByRole(ecrToolTipBorder),
-                                GetColorQValueByRole(ecrToolTipBackground)));
+                                GetColorQValueByRole(ecrToolTipBackground),
+                                GetColorQValueByRole(ecrMenuBackground),
+                                GetColorQValueByRole(ecrMenuBorder),
+                                GetColorQValueByRole(ecrMenuItemHoverBackground),
+                                GetColorQValueByRole(ecrMenuText),
+                                GetColorQValueByRole(ecrMenuTextItemHover),
+                                GetColorQValueByRole(ecrMenuTextItemDisabled),
+                                GetColorQValueByRole(ecrMenuSeparator)));
 
     // Font
     QFont mainFont = QApplication::font();
@@ -1460,6 +1467,28 @@ void CAscApplicationManagerWrapper::closeEditorWindow(const size_t p)
     }
 }
 
+void CAscApplicationManagerWrapper::pinWindowToTab(CEditorWindow *editor, bool by_position)
+{
+    CTabPanel * tabpanel = editor->releaseEditorView();
+
+    QJsonObject json_opts{{"widgetType","tab"}, {"captionHeight",0}};
+    tabpanel->cef()->SetParentWidgetInfo(Utils::stringifyJson(json_opts).toStdWString());
+
+    if (by_position) {
+        CAscApplicationManagerWrapper::mainWindow()->attachEditor(tabpanel, QCursor::pos());
+    } else {
+        CAscApplicationManagerWrapper::mainWindow()->attachEditor(tabpanel, -1);
+    }
+    CAscApplicationManagerWrapper::closeEditorWindow(size_t(editor));
+
+    AscAppManager::sendCommandTo(tabpanel->cef(), L"window:features",
+              Utils::stringifyJson(QJsonObject{{"skiptoparea", 0},{"singlewindow",false}}).toStdWString());
+    CAscApplicationManagerWrapper::mainWindow()->bringToTop();
+
+    QTimer::singleShot(100, []{
+        CAscApplicationManagerWrapper::mainWindow()->focus();});
+}
+
 CMainWindow * CAscApplicationManagerWrapper::mainWindowFromViewId(int uid) const
 {
     return m_pMainWindow && m_pMainWindow->holdView(uid) ? m_pMainWindow : nullptr;
@@ -1511,20 +1540,7 @@ namespace Drop {
     const int drop_timeout = 300;
     auto callback_to_attach(const CEditorWindow * editor) -> void {
         if ( editor ) {
-            CTabPanel * tabpanel = editor->releaseEditorView();
-
-            QJsonObject json_opts{{"widgetType","tab"}, {"captionHeight",0}};
-            tabpanel->cef()->SetParentWidgetInfo(Utils::stringifyJson(json_opts).toStdWString());
-
-            CAscApplicationManagerWrapper::mainWindow()->attachEditor(tabpanel, QCursor::pos());
-            CAscApplicationManagerWrapper::closeEditorWindow(size_t(editor));
-
-            AscAppManager::sendCommandTo(tabpanel->cef(), L"window:features",
-                      Utils::stringifyJson(QJsonObject{{"skiptoparea", 0},{"singlewindow",false}}).toStdWString());
-            CAscApplicationManagerWrapper::mainWindow()->bringToTop();
-
-            QTimer::singleShot(100, []{
-                CAscApplicationManagerWrapper::mainWindow()->focus();});
+            AscAppManager::pinWindowToTab(const_cast<CEditorWindow*>(editor));
         }
     }
 
@@ -1700,10 +1716,17 @@ QString CAscApplicationManagerWrapper::getWindowStylesheets(CScalingFactor facto
                     GetColorQValueByRole(ecrButtonPressedBackground),
                     GetColorQValueByRole(ecrButtonBackground),
                     GetColorQValueByRole(ecrTabDivider),
-                    GetColorQValueByRole(ecrButtonBackgroundActive))
-               .arg(GetColorQValueByRole(ecrToolTipText),
-                    GetColorQValueByRole(ecrToolTipBorder),
-                    GetColorQValueByRole(ecrToolTipBackground));
+                    GetColorQValueByRole(ecrButtonBackgroundActive),
+                    GetColorQValueByRole(ecrToolTipText),
+                    GetColorQValueByRole(ecrToolTipBorder))
+               .arg(GetColorQValueByRole(ecrToolTipBackground),
+                    GetColorQValueByRole(ecrMenuBackground),
+                    GetColorQValueByRole(ecrMenuBorder),
+                    GetColorQValueByRole(ecrMenuItemHoverBackground),
+                    GetColorQValueByRole(ecrMenuText),
+                    GetColorQValueByRole(ecrMenuTextItemHover),
+                    GetColorQValueByRole(ecrMenuTextItemDisabled),
+                    GetColorQValueByRole(ecrMenuSeparator));
 //    _out.append(Utils::readStylesheets(":/themes/theme-contrast-dark.qss"));
     if ( factor != CScalingFactor::SCALING_FACTOR_1 )
         _out.append(Utils::readStylesheets(&_app.m_mapStyles[factor]));
