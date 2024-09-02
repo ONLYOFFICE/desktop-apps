@@ -175,7 +175,7 @@ CAscTabWidget::CAscTabWidget(QWidget *parent, CTabBar *_pBar)
         QTimer::singleShot(0, this, [=]() {
             setCurrentIndex(index);
         });
-        if (old_index > -1)
+        if (old_index > -1 && panel(old_index))
             AscAppManager::sendCommandTo(panel(old_index)->cef(), L"althints:show", L"false");
     };
     QObject::connect(m_pBar, &CTabBar::tabBarClicked, this, [=](int index) {
@@ -229,7 +229,7 @@ CAscTabWidget::CAscTabWidget(QWidget *parent, CTabBar *_pBar)
 CTabPanel * CAscTabWidget::panel(int index) const
 {
     QWidget * _w = widget(index);
-    return _w->children().count() ? static_cast<CTabPanel *>(_w->findChild<CTabPanel*>()) : nullptr;
+    return _w && _w->children().count() ? static_cast<CTabPanel *>(_w->findChild<CTabPanel*>()) : nullptr;
 }
 
 CTabBar *CAscTabWidget::tabBar() const
