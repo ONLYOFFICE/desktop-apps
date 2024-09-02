@@ -134,7 +134,7 @@ private:
 
 private slots:
     void onCheckFinished(bool error, bool updateExist, const QString &version, const QString &changelog);
-    void onLoadCheckFinished(const QString &filePath);
+    void onLoadCheckFinished(const QString &json);
     void showUpdateMessage(QWidget *parent);
     void onLoadUpdateFinished(const QString &filePath);
     void showStartInstallMessage(QWidget *parent);

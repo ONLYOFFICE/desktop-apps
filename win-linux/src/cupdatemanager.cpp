@@ -500,8 +500,10 @@ void CUpdateManager::checkUpdates(bool manualCheck)
         return;
     }
 #endif
-
-    if (!m_socket->sendMessage(MSG_CheckUpdates, WStrToTStr(m_checkUrl))) {
+    QString package = IsPackage(ISS) ? "iss" : IsPackage(MSI) ? "msi" : IsPackage(Portable) ? "portable" : "other";
+    QString json = QString("{\"currVersion\":\"%1\",\"ignVersion\":\"%2\",\"package\":\"%3\",\"fileName\":\"%4\"}").
+                   arg(QString::fromLatin1(VER_FILEVERSION_STR), ignoredVersion(), package, m_savedPackageData->fileName);
+    if (!m_socket->sendMessage(MSG_CheckUpdates, QStrToTStr(json))) {
         refreshStartPage({"error", {TXT_ERR_CHECK}, BTN_TXT_CHECK, "check", "false"});
         __UNLOCK
 //        m_dialogSchedule->addToSchedule("criticalMsg", QObject::tr("An error occurred while check updates: Update Service not found!"));
@@ -553,6 +555,9 @@ void CUpdateManager::onError(const QString &error)
     else
     if (error == "SVC_TXT_ERR_DNL_INET")
         _error = SVC_TXT_ERR_DNL_INET;
+    else
+    if (error == "SVC_TXT_ERR_MD5")
+        _error = TXT_ERR_MD5;
     else
     if (error == "SVC_TXT_ERR_URL")
         _error = TXT_ERR_URL;
@@ -622,7 +627,7 @@ void CUpdateManager::loadUpdates()
 
     } else
     if (!m_packageData->packageUrl.empty()) {
-        if (!m_socket->sendMessage(MSG_LoadUpdates, WStrToTStr(m_packageData->packageUrl), QStrToTStr(m_packageData->fileType))) {
+        if (!m_socket->sendMessage(MSG_LoadUpdates)) {
             refreshStartPage({"error", {TXT_ERR_LOAD}, BTN_TXT_CHECK, "check", "false"});
             __UNLOCK
 //            m_dialogSchedule->addToSchedule("criticalMsg", QObject::tr("An error occurred while loading updates: Update Service not found!"));
@@ -732,7 +737,7 @@ void CUpdateManager::unzipIfNeeded()
     __GLOBAL_LOCK
 
     refreshStartPage({"load", {TXT_PREPARING_UPD}, BTN_TXT_CANCEL, "abort", "true"});
-    if (!m_socket->sendMessage(MSG_UnzipIfNeeded, QStrToTStr(m_packageData->fileName), QStrToTStr(m_packageData->version))) {
+    if (!m_socket->sendMessage(MSG_UnzipIfNeeded)) {
         refreshStartPage({"error", {TXT_ERR_UNZIP}, BTN_TXT_CHECK, "check", "false"});
         __UNLOCK
 //        m_dialogSchedule->addToSchedule("criticalMsg", QObject::tr("An error occurred while unzip updates: Update Service not found!"));
@@ -807,85 +812,34 @@ int CUpdateManager::getUpdateMode()
     return modeToEnum(reg_user.value("autoUpdateMode", "ask").toString());
 }
 
-void CUpdateManager::onLoadCheckFinished(const QString &filePath)
+void CUpdateManager::onLoadCheckFinished(const QString &json)
 {
     m_manualCheck = true;
-    QFile jsonFile(filePath);
-    if ( jsonFile.open(QIODevice::ReadOnly) ) {
-        QByteArray ReplyText = jsonFile.readAll();
-        jsonFile.close();
+    if (!json.isEmpty()) {
+        QJsonParseError err;
+        QJsonDocument doc = QJsonDocument::fromJson(json.toUtf8(), &err);
+        if (err.error == QJsonParseError::NoError) {
+            QJsonObject root = doc.object();
+            if (!root.isEmpty()) {
+                m_packageData->object = root.value("object").toString();
+                m_packageData->version = root.value("version").toString();
+                m_packageData->fileType = root.value("fileType").toString();
+                m_packageData->packageUrl = root.value("packageUrl").toString().toStdWString();
+                m_packageData->packageArgs = root.value("packageArgs").toString().toStdWString();
+                m_packageData->hash = root.value("hash").toString();
+                m_packageData->isInstallable = root.value("isInstallable").toBool();
 
-        QJsonDocument doc = QJsonDocument::fromJson(ReplyText);
-        QJsonObject root = doc.object();
-
-        QString version = root.value("version").toString();
-        QString curr_version = QString::fromLatin1(VER_FILEVERSION_STR);
-        QString svc_version = root.value("serviceVersion").toString();
-        QString curr_svc_version = getFileVersion(QStrToTStr(qApp->applicationDirPath()) + DAEMON_NAME);
-        QJsonObject package = root.value("package").toObject();
-#ifdef _WIN32
-# ifdef _WIN64
-        QJsonObject win = package.value("win_64").toObject();
-# else
-        QJsonObject win = package.value("win_32").toObject();
-# endif
-#else
-        QJsonObject win = package.value("linux_64").toObject();
-#endif
-        if (isVersionBHigherThanA(curr_version, version) && (version != ignoredVersion())) {
-            m_packageData->object = "app";
-            m_packageData->version = version;
-            m_packageData->fileType = "archive";
-            QJsonObject package_type = win.value("archive").toObject();
-#ifdef _WIN32
-            if (!IsPackage(Portable)) {
-                const QString install_key = IsPackage(MSI) ? "msi" : "iss";
-                if (win.contains(install_key)) {
-                    QJsonObject install_type = win.value(install_key).toObject();
-                    if (install_type.contains("maxVersion")) {
-                        QString maxVersion = install_type.value("maxVersion").toString();
-                        if (!isVersionBHigherThanA(maxVersion, curr_version)) {
-                            package_type = install_type;
-                            m_packageData->fileType = install_key;
-                            m_packageData->packageArgs = package_type.value("arguments").toString().toStdWString();
-                        }
-                    }
+                clearTempFiles(m_packageData->isInstallable && isSavedPackageValid() ? m_savedPackageData->fileName : "");
+                if (m_packageData->packageUrl.empty() || !m_socket->sendMessage(MSG_RequestContentLenght, WStrToTStr(m_packageData->packageUrl))) {
+                    m_packageData->fileSize = "--";
+                    onCheckFinished(false, true, m_packageData->version, "");
                 }
-            }
-#endif
-            m_packageData->packageUrl = package_type.value("url").toString().toStdWString();
-            m_packageData->hash = package_type.value("md5").toString().toLower();
-
-            // parse release notes
-            QJsonObject release_notes = root.value("releaseNotes").toObject();
-            const QString lang = CLangater::getCurrentLangCode() == "ru-RU" ? "ru-RU" : "en-EN";
-            QJsonValue changelog = release_notes.value(lang);
-
-            QString min_version = root.value("minVersion").toString();
-            if (!min_version.isEmpty() && isVersionBHigherThanA(curr_version, min_version))
-                m_packageData->isInstallable = false;
-            clearTempFiles(m_packageData->isInstallable && isSavedPackageValid() ? m_savedPackageData->fileName : "");
-            if (m_packageData->packageUrl.empty() || !m_socket->sendMessage(MSG_RequestContentLenght, WStrToTStr(m_packageData->packageUrl))) {
-                m_packageData->fileSize = "--";
-                onCheckFinished(false, true, m_packageData->version, "");
-            }
-        } else
-        if (isVersionBHigherThanA(curr_svc_version, svc_version)) {
-            m_packageData->object = "svc";
-            m_packageData->version = svc_version;
-            m_packageData->fileType = "archive";
-            QJsonObject package_type = win.value("serviceArchive").toObject();
-            m_packageData->packageUrl = package_type.value("url").toString().toStdWString();
-            m_packageData->hash = package_type.value("md5").toString().toLower();
-
-            clearTempFiles(isSavedPackageValid() ? m_savedPackageData->fileName : "");
-            if (m_packageData->packageUrl.empty() || !m_socket->sendMessage(MSG_RequestContentLenght, WStrToTStr(m_packageData->packageUrl))) {
-                m_packageData->fileSize = "--";
-                onCheckFinished(false, true, m_packageData->version, "");
+            } else {
+                clearTempFiles();
+                onCheckFinished(false, false, "", "");
             }
         } else {
-            clearTempFiles();
-            onCheckFinished(false, false, "", "");
+            onCheckFinished(true, false, "", "");
         }
     } else {
         onCheckFinished(true, false, "", "");

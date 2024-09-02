@@ -77,7 +77,7 @@ bool removeDirRecursively(const string &dir);
 string parentPath(const string &path);
 string tempPath();
 string appPath();
-//string getFileHash(const string &fileName);
+string getFileHash(const string &fileName);
 //bool verifyEmbeddedSignature(const string &fileName);
 }
 

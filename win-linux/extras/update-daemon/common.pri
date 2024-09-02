@@ -134,7 +134,7 @@ core_linux {
 
     CONFIG += link_pkgconfig
     PKGCONFIG += gtk+-3.0
-    LIBS += -lSDL2 -lcurl -luuid -larchive -lpthread
+    LIBS += -lSDL2 -lcurl -luuid -larchive -lpthread -lcrypto
 }
 
 OBJECTS_DIR = $$DESTDIR/obj
