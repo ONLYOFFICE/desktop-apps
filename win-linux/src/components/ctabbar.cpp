@@ -1123,9 +1123,9 @@ bool CTabBar::eventFilter(QObject *watched, QEvent *event)
                                 d->slide(interIndex, interIndex, delta, ANIMATION_MOVE_TAB_MS);
                                 d->movedTab->index = interIndex;
                                 d->tabIndex(interIndex) = destIndex;
-                                d->currentIndex = interIndex;
                                 std::swap(d->tabList[interIndex], d->tabList[destIndex]);
                                 emit tabMoved(interIndex, destIndex);
+                                d->currentIndex = interIndex;
                                 emit currentChanged(interIndex);
                             }
                         }
