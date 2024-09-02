@@ -67,15 +67,8 @@
 #define MINIMUM_INTERVAL 30
 #define RESET_MESSAGE_MS 20000
 #define CHECK_ON_STARTUP_MS 9000
-#define CMD_ARGUMENT_UPDATES_CHANNEL L"--updates-appcast-channel"
 #define CMD_ARGUMENT_UPDATES_INTERVAL L"--updates-interval"
 #define SERVICE_NAME APP_TITLE " Update Service"
-#ifndef URL_APPCAST_UPDATES
-# define URL_APPCAST_UPDATES ""
-#endif
-#ifndef URL_APPCAST_DEV_CHANNEL
-# define URL_APPCAST_DEV_CHANNEL ""
-#endif
 #define __GLOBAL_LOCK if (m_lock) {CLogger::log("Blocked in: " + FUNCTION_INFO); return;} m_lock = true; \
                           CLogger::log("Locking and further execution:" + FUNCTION_INFO);
 #define __UNLOCK m_lock = false; CLogger::log("Unlocked in:" + FUNCTION_INFO);
@@ -337,18 +330,11 @@ CUpdateManager::CUpdateManager(QObject *parent):
     QObject(parent),
     m_packageData(new PackageData),
     m_savedPackageData(new SavedPackageData),
-    m_checkUrl(L""),
     m_dialogSchedule(new DialogSchedule(this)),
     m_socket(new CSocket(SVC_PORT, APP_PORT))
 {
     // =========== Set updates URL ============
     if ( Utils::updatesAllowed() ) {
-        if ( InputArgs::contains(CMD_ARGUMENT_UPDATES_CHANNEL) ) {
-            std::wstring ch_updates = InputArgs::argument_value(CMD_ARGUMENT_UPDATES_CHANNEL);
-            if ( ch_updates == L"dev" ) {
-                m_checkUrl = QString(URL_APPCAST_DEV_CHANNEL).toStdWString();
-            }
-        }
         if ( InputArgs::contains(CMD_ARGUMENT_UPDATES_INTERVAL) ) {
             int interval = QString::fromStdWString(InputArgs::argument_value(CMD_ARGUMENT_UPDATES_INTERVAL)).toInt();
             if (interval >= MINIMUM_INTERVAL) {
@@ -359,12 +345,7 @@ CUpdateManager::CUpdateManager(QObject *parent):
             }
         }
 
-        if ( m_checkUrl.empty() )
-            m_checkUrl = QString(URL_APPCAST_UPDATES).toStdWString();
-    }
-
-    if ( !m_checkUrl.empty()) {
-        CLogger::log("Updates is on, URL: " + QString::fromStdWString(m_checkUrl));
+        CLogger::log("Updates is on");
         m_pIntervalTimer = new QTimer(this);
         m_pIntervalTimer->setSingleShot(false);
         connect(m_pIntervalTimer, SIGNAL(timeout()), this, SLOT(checkUpdates()));
@@ -390,8 +371,8 @@ CUpdateManager::CUpdateManager(QObject *parent):
         }
         init();
     } else {
-        CLogger::log("Updates is off, URL is empty.");
-        refreshStartPage({"error", {TXT_ERR_URL}, BTN_TXT_CHECK, "", "true"});
+        CLogger::log("Updates is off");
+        refreshStartPage({"error", {TXT_ERR_NOT_ALLOWED}, BTN_TXT_CHECK, "", "true"});
     }
 }
 
@@ -572,6 +553,9 @@ void CUpdateManager::onError(const QString &error)
     else
     if (error == "SVC_TXT_ERR_DNL_INET")
         _error = SVC_TXT_ERR_DNL_INET;
+    else
+    if (error == "SVC_TXT_ERR_URL")
+        _error = TXT_ERR_URL;
 
     refreshStartPage({"error", {_error}, BTN_TXT_CHECK, "check", "false"});
     __UNLOCK

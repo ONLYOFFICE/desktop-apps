@@ -27,20 +27,7 @@ message($$PLATFORM_BUILD)
 #win32 {
     updmodule:!build_xp {
         DEFINES += _UPDMODULE
-
-        ENV_URL_APPCAST_MAIN = $$(DESKTOP_URL_UPDATES_MAIN_CHANNEL)
-        !isEmpty(ENV_URL_APPCAST_MAIN) {
-            DEFINES += URL_APPCAST_UPDATES=\\\"$${ENV_URL_APPCAST_MAIN}\\\"
-        }
-
-        ENV_URL_APPCAST_DEV = $$(DESKTOP_URL_UPDATES_DEV_CHANNEL)
-        !isEmpty(ENV_URL_APPCAST_DEV) {
-            DEFINES += URL_APPCAST_DEV_CHANNEL=\\\"$${ENV_URL_APPCAST_DEV}\\\"
-        }
-
         message(updates is turned on)
-        message(appcast url: $$ENV_URL_APPCAST_MAIN)
-        message(appcast dev url: \\\"$$ENV_URL_APPCAST_DEV\\\")
     }
 #}
 

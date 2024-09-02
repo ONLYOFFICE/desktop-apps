@@ -74,7 +74,13 @@
 # define ARCHIVE_PATTERN  _T("*.tar.xz")
 # define sleep(a) usleep(a*1000)
 #endif
-
+#ifndef URL_APPCAST_UPDATES
+# define URL_APPCAST_UPDATES ""
+#endif
+#ifndef URL_APPCAST_DEV_CHANNEL
+# define URL_APPCAST_DEV_CHANNEL ""
+#endif
+#define CMD_ARGUMENT_UPDATES_CHANNEL _T("--updates-appcast-channel")
 #define UPDATE_PATH      _T("/" REG_APP_NAME "Updates")
 #define BACKUP_PATH      _T("/" REG_APP_NAME "Backup")
 #define SUCCES_UNPACKED  _T("/success_unpacked.txt")
@@ -192,6 +198,9 @@ CSvcManager::CSvcManager():
     m_pDownloader(new CDownloader),
     m_pUnzip(new CUnzip)
 {
+    m_checkUrl = (NS_Utils::cmdArgContains(CMD_ARGUMENT_UPDATES_CHANNEL) && NS_Utils::cmdArgValue(CMD_ARGUMENT_UPDATES_CHANNEL) == _T("dev"))
+                    ? _T(URL_APPCAST_DEV_CHANNEL) : _T(URL_APPCAST_UPDATES);
+    NS_Logger::WriteLog(m_checkUrl.empty() ? _T("Updates is off, URL is empty.") : _T("Updates is on, URL: ") + m_checkUrl);
     init();
 }
 
@@ -235,10 +244,15 @@ void CSvcManager::init()
             case MSG_CheckUpdates: {
                 __GLOBAL_LOCK
                 //DeleteUrlCacheEntry(params[1].c_str());
-                m_downloadMode = Mode::CHECK_UPDATES;
-                if (m_pDownloader)
-                    m_pDownloader->downloadFile(params[1], generateTmpFileName(_T(".json")));
-                NS_Logger::WriteLog(_T("Received MSG_CheckUpdates, URL: ") + params[1]);
+                if (!m_checkUrl.empty()) {
+                    m_downloadMode = Mode::CHECK_UPDATES;
+                    if (m_pDownloader)
+                        m_pDownloader->downloadFile(m_checkUrl, generateTmpFileName(_T(".json")));
+                    NS_Logger::WriteLog(_T("Received MSG_CheckUpdates, URL: ") + m_checkUrl);
+                } else {
+                    m_socket->sendMessage(MSG_OtherError, _T("SVC_TXT_ERR_URL"));
+                    __UNLOCK
+                }
                 break;
             }
             case MSG_LoadUpdates: {

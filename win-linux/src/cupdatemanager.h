@@ -124,7 +124,6 @@ private:
     QTimer      *m_pIntervalStartTimer = nullptr,
                 *m_pLastCheckMsgTimer = nullptr,
                 *m_pIntervalTimer = nullptr;
-    wstring     m_checkUrl;
 
     Command     m_lastCommand;
 

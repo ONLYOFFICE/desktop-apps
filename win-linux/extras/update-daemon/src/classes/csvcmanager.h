@@ -68,7 +68,8 @@ private:
     void startReplacingService(const bool restartAfterUpdate);
 
     FnVoidVoid   m_quit_callback = nullptr;
-    tstring      m_newVersion;
+    tstring      m_checkUrl,
+                 m_newVersion;
     bool         m_lock = false;
     int          m_downloadMode;
     future<void> m_future_clear;
