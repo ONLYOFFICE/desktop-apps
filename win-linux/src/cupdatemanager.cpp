@@ -62,6 +62,7 @@
 #endif
 
 #define modeToEnum(mod) ((mod == "silent") ? UpdateMode::SILENT : (mod == "ask") ? UpdateMode::ASK : UpdateMode::DISABLE)
+#define packageToStr() QString(IsPackage(ISS) ? "iss" : IsPackage(MSI) ? "msi" : IsPackage(Portable) ? "portable" : "other")
 #define WStrToTStr(str) QStrToTStr(QString::fromStdWString(str))
 #define DAY_TO_SEC 24*3600
 #define MINIMUM_INTERVAL 30
@@ -500,9 +501,8 @@ void CUpdateManager::checkUpdates(bool manualCheck)
         return;
     }
 #endif
-    QString package = IsPackage(ISS) ? "iss" : IsPackage(MSI) ? "msi" : IsPackage(Portable) ? "portable" : "other";
     QString json = QString("{\"currVersion\":\"%1\",\"ignVersion\":\"%2\",\"package\":\"%3\",\"fileName\":\"%4\"}").
-                   arg(QString::fromLatin1(VER_FILEVERSION_STR), ignoredVersion(), package, m_savedPackageData->fileName);
+                   arg(QString::fromLatin1(VER_FILEVERSION_STR), ignoredVersion(), packageToStr(), m_savedPackageData->fileName);
     if (!m_socket->sendMessage(MSG_CheckUpdates, QStrToTStr(json))) {
         refreshStartPage({"error", {TXT_ERR_CHECK}, BTN_TXT_CHECK, "check", "false"});
         __UNLOCK
@@ -765,8 +765,7 @@ void CUpdateManager::handleAppClose()
             }
 #endif
             int cmd = (m_packageData->object == "app") ? MSG_StartReplacingFiles : MSG_StartReplacingService;
-            if (!m_socket->sendMessage(cmd, IsPackage(ISS) ? _T("iss") : IsPackage(MSI) ? _T("msi") :
-                   IsPackage(Portable) ? _T("portable") : _T("other"), m_restartAfterUpdate ? _T("true") : _T("false"))) {
+            if (!m_socket->sendMessage(cmd, QStrToTStr(packageToStr()), m_restartAfterUpdate ? _T("true") : _T("false"))) {
                 criticalMsg(nullptr, QObject::tr("An error occurred while start replacing files: Update Service not found!"));
             }
 #ifdef _WIN32
