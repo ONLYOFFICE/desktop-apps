@@ -292,13 +292,16 @@ namespace NS_File
 
     bool runProcess(const wstring &fileName, const wstring &args)
     {
+        wstring _args(L"\"" + fileName + L"\"");
+        if (!args.empty())
+            _args += L" " + args;
         if (NS_Utils::isRunAsApp()) {
             STARTUPINFO si;
             ZeroMemory(&si, sizeof(STARTUPINFO));
             si.cb = sizeof(STARTUPINFO);
             PROCESS_INFORMATION pi;
             ZeroMemory(&pi, sizeof(pi));
-            if (CreateProcess(fileName.c_str(), const_cast<LPWSTR>(args.c_str()),
+            if (CreateProcess(fileName.c_str(), &_args[0],
                                  NULL, NULL, FALSE, CREATE_UNICODE_ENVIRONMENT,
                                  NULL, NULL, &si, &pi))
             {
@@ -338,7 +341,7 @@ namespace NS_File
         si.lpDesktop = const_cast<LPWSTR>(L"Winsta0\\Default");
         PROCESS_INFORMATION pi;
         if (CreateProcessAsUser(hTokenDup, fileName.c_str(),
-                                const_cast<LPWSTR>(args.c_str()),
+                                &_args[0],
                                 NULL, NULL, FALSE,
                                 CREATE_UNICODE_ENVIRONMENT,
                                 lpvEnv, NULL, &si, &pi))
