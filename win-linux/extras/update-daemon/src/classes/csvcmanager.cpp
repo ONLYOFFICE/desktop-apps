@@ -716,12 +716,12 @@ void CSvcManager::startReplacingFiles(const tstring &packageType, const bool res
     }
 
     // Replace app path to Backup
-#ifdef _WIN32_UNUSED
-    if (!NS_File::dirExists(tmpPath) && !NS_File::makePath(tmpPath)) {
+#ifdef _WIN32
+    if (packageType == TEXT("portable") && !NS_File::dirExists(tmpPath) && !NS_File::makePath(tmpPath)) {
         NS_Logger::WriteLog(_TR("Update cancelled. Can't create folder:") + _T(" ") + tmpPath, true);
         return;
     }
-    if (!NS_File::replaceFolder(appPath, tmpPath, false)) {
+    if (!NS_File::replaceFolder(appPath, tmpPath, packageType != TEXT("portable"))) {
 #else
     if (!NS_File::replaceFolder(appPath, tmpPath, true)) {
 #endif
