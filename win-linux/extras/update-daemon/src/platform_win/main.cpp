@@ -162,11 +162,8 @@ int __cdecl _tmain (int argc, TCHAR *argv[])
 VOID WINAPI SvcMain(DWORD argc, LPTSTR *argv)
 {
     NS_Utils::parseCmdArgs(argc, argv);
-    if (argc > 1) {
-        if (lstrcmpi(argv[1], _T("--log")) == 0) {
-            NS_Logger::AllowWriteLog();
-        }
-    }
+    if (NS_Utils::cmdArgContains(_T("--log")))
+        NS_Logger::AllowWriteLog();
 
     gSvcStatusHandle = RegisterServiceCtrlHandler(SERVICE_NAME, SvcCtrlHandler);
     if (gSvcStatusHandle == NULL) {
