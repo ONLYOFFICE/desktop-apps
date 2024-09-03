@@ -30,68 +30,67 @@
  *
  */
 
-#ifndef CSOCKET_H
-#define CSOCKET_H
+#ifndef CJSON_H
+#define CJSON_H
 
 #include <string>
-#include <vector>
-#include <functional>
 #ifdef _WIN32
 # include <tchar.h>
-# define tchar wchar_t
-# define tstringstream std::wstringstream
 # define tstring std::wstring
-# define to_tstring to_wstring
 #else
 # define _T(str) str
-# define tchar char
-# define tstringstream std::stringstream
 # define tstring std::string
-# define to_tstring to_string
 #endif
 
-using std::size_t;
+class JsonObject;
+class JsonObjectPrivate;
+class JsonValuePrivate;
+class JsonDocumentPrivate;
 
-typedef std::function<void(void*, size_t)> FnVoidData;
-typedef std::function<void(const char*)> FnVoidCharPtr;
-
-
-enum MsgCommands {
-    MSG_CheckUpdates = 0,
-    MSG_LoadUpdates,
-    MSG_LoadCheckFinished,
-    MSG_LoadUpdateFinished,
-    MSG_UnzipIfNeeded,
-    MSG_ShowStartInstallMessage,
-    MSG_StartReplacingFiles,
-    MSG_ClearTempFiles,
-    MSG_Progress,
-    MSG_StopDownload,
-    MSG_OtherError,
-    MSG_RequestContentLenght,
-    MSG_UnzipProgress,
-    MSG_SetLanguage,
-    MSG_StartReplacingService,
-    MSG_StartInstallPackage
-};
-
-class CSocket
+class JsonValue
 {
 public:
-    CSocket(int sender_port, int receiver_port, bool retry_connect = true, bool use_unique_addr = false);
-    ~CSocket();
+    JsonValue();
+    JsonValue(const JsonValue&);
+    ~JsonValue();
 
-    /* callback */
-    bool isPrimaryInstance();
-    bool sendMessage(void *data, size_t size);
-    bool sendMessage(int cmd, const tstring &param1 = _T(""), const tstring &param2 = _T(""));
-    void onMessageReceived(FnVoidData callback);
-    void onError(FnVoidCharPtr callback);
-    int  parseMessage(void *data, std::vector<tstring> &params);
+    JsonValue& operator=(const JsonValue&);
+    JsonObject toObject();
+    tstring toTString();
 
 private:
-    class CSocketPrv;
-    CSocketPrv *pimpl = nullptr;
+    friend class JsonObject;
+    JsonValuePrivate *pimpl;
 };
 
-#endif // CSOCKET_H
+class JsonObject
+{
+public:
+    JsonObject();
+    JsonObject(const JsonObject&);
+    ~JsonObject();
+
+    JsonObject& operator=(const JsonObject&);
+    JsonValue value(const tstring&);
+    bool contains(const tstring&);
+
+private:
+    friend class JsonDocument;
+    friend class JsonValue;
+    JsonObjectPrivate *pimpl;
+};
+
+class JsonDocument
+{
+public:
+    JsonDocument(const tstring&);
+    ~JsonDocument();
+
+    JsonObject object();
+
+private:
+    JsonDocument();
+    JsonDocumentPrivate *pimpl;
+};
+
+#endif // CJSON_H

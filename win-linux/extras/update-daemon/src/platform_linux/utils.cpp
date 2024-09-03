@@ -33,18 +33,20 @@
 #include "platform_linux/utils.h"
 #include "version.h"
 #include <fstream>
+#include <sstream>
 #include <stack>
 #include <algorithm>
 #include <sys/stat.h>
 #include <gtk/gtk.h>
 #include <string.h>
-//#include <openssl/md5.h>
+#include <openssl/md5.h>
+#include <vector>
 #include <fcntl.h>
 #include "../../src/defines.h"
 #include "../../src/prop/defines_p.h"
 
 #define APP_CONFIG_PATH "/.config/" REG_GROUP_KEY "/" REG_APP_NAME ".conf"
-//#define BUFSIZE 1024
+#define BUFSIZE 1024
 
 
 static void replace(string &str, const string &from, const string &to)
@@ -122,6 +124,32 @@ static bool moving_folder_content(const string &from, const string &to, bool use
 
 namespace NS_Utils
 {
+    std::vector<string> cmd_args;
+
+    void parseCmdArgs(int argc, char *argv[])
+    {
+        for (int i = 0; i < argc; i++)
+            cmd_args.push_back(argv[i]);
+    }
+
+    bool cmdArgContains(const string &param)
+    {
+        auto len = param.length();
+        return std::any_of(cmd_args.cbegin(), cmd_args.cend(), [&param, len](const string &arg) {
+            return arg.find(param) == 0 && (len == arg.length() || arg[len] == '=' || arg[len] == ':' || arg[len] == '|');
+        });
+    }
+
+    string cmdArgValue(const string &param)
+    {
+        auto len = param.length();
+        for (const auto &arg : cmd_args) {
+            if (arg.find(param) == 0 && len < arg.length() && (arg[len] == '=' || arg[len] == ':' || arg[len] == '|'))
+                return arg.substr(len + 1);
+        }
+        return "";
+    }
+
     string GetLastErrorAsString()
     {        
         char buff[LINE_MAX] = {0};
@@ -453,31 +481,31 @@ namespace NS_File
         return (count > 0) ? parentPath(string(path, count)) : "";
     }
 
-//    string getFileHash(const string &fileName)
-//    {
-//        FILE *file = fopen(fileName.c_str(), "rb");
-//        if (!file)
-//            return "";
+   string getFileHash(const string &fileName)
+   {
+       FILE *file = fopen(fileName.c_str(), "rb");
+       if (!file)
+           return "";
 
-//        int bytes;
-//        unsigned char data[1024];
-//        unsigned char digest[MD5_DIGEST_LENGTH];
-//        MD5_CTX mdContext;
-//        MD5_Init(&mdContext);
-//        while ((bytes = fread(data, 1, 1024, file)) != 0)
-//            MD5_Update(&mdContext, data, bytes);
+       int bytes;
+       unsigned char data[1024];
+       unsigned char digest[MD5_DIGEST_LENGTH];
+       MD5_CTX mdContext;
+       MD5_Init(&mdContext);
+       while ((bytes = fread(data, 1, 1024, file)) != 0)
+           MD5_Update(&mdContext, data, bytes);
 
-//        MD5_Final(digest, &mdContext);
-//        fclose(file);
+       MD5_Final(digest, &mdContext);
+       fclose(file);
 
-//        std::ostringstream oss;
-//        for (int i = 0; i < MD5_DIGEST_LENGTH; i++) {
-//            oss.fill('0');
-//            oss.width(2);
-//            oss << std::hex << static_cast<const int>(digest[i]);
-//        }
-//        return oss.str();
-//    }
+       std::ostringstream oss;
+       for (int i = 0; i < MD5_DIGEST_LENGTH; i++) {
+           oss.fill('0');
+           oss.width(2);
+           oss << std::hex << static_cast<const int>(digest[i]);
+       }
+       return oss.str();
+   }
 
 //    bool verifyEmbeddedSignature(const string &fileName)
 //    {

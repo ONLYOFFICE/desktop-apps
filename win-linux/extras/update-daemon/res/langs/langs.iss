@@ -736,3 +736,5 @@ hr.MESSAGE_TEXT_ERR17 =ServiceCtrlDispatcher naišao je na pogrešku:
 hi.MESSAGE_TEXT_ERR17 =सर्विसकंट्रोलडिसपैचर ने त्रुटि दी:
 sv.MESSAGE_TEXT_ERR17 =ServiceCtrlDispatcher returnerade fel:
 sr_Cyrl_RS.MESSAGE_TEXT_ERR17 =ServiceCtrlDispatcher повратна грешка:
+
+en.MESSAGE_TEXT_ERR18 =An error occurred while start install updates!
