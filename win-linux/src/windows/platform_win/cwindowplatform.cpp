@@ -334,6 +334,14 @@ bool CWindowPlatform::nativeEvent(const QByteArray &eventType, void *message, lo
 //        break;
 //    }
 
+    case WM_SYSCOMMAND: {
+        if ((msg->wParam & 0xFFF0) == SC_KEYMENU) {
+            if (GetKeyState(VK_RETURN) & 0x8000)
+                return true;
+        }
+        break;
+    }
+
     case WM_NCCALCSIZE: {
         if (!m_borderless || !msg->wParam)
             break;
