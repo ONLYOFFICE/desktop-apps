@@ -175,7 +175,7 @@ CAscTabWidget::CAscTabWidget(QWidget *parent, CTabBar *_pBar)
         QTimer::singleShot(0, this, [=]() {
             setCurrentIndex(index);
         });
-        if (old_index > -1)
+        if (old_index > -1 && panel(old_index))
             AscAppManager::sendCommandTo(panel(old_index)->cef(), L"althints:show", L"false");
     };
     QObject::connect(m_pBar, &CTabBar::tabBarClicked, this, [=](int index) {
@@ -188,8 +188,24 @@ CAscTabWidget::CAscTabWidget(QWidget *parent, CTabBar *_pBar)
         if (from < 0 || from >= count() || to < 0 || to >= count() || from == to)
             return;
         auto wgt = widget(from);
+        blockSignals(true);
         removeWidget(wgt);
         insertWidget(to, wgt);
+        if (from < m_pBar->currentIndex()) {
+            if (to >= m_pBar->currentIndex()) {
+                if (m_pBar->currentIndex() - 1 != currentIndex())
+                    QStackedWidget::setCurrentIndex(m_pBar->currentIndex() - 1);
+            }
+        } else
+        if (from == m_pBar->currentIndex()) {
+            QStackedWidget::setCurrentIndex(to);
+        } else {
+            if (to <= m_pBar->currentIndex()) {
+                if (m_pBar->currentIndex() + 1 != currentIndex())
+                    QStackedWidget::setCurrentIndex(m_pBar->currentIndex() + 1);
+            }
+        }
+        blockSignals(false);
     });
     QObject::connect(m_pBar, &CTabBar::tabsSwapped, this, [=](int from, int to) {
         if (from == to || !indexIsValid(from) || !indexIsValid(to))
@@ -213,7 +229,7 @@ CAscTabWidget::CAscTabWidget(QWidget *parent, CTabBar *_pBar)
 CTabPanel * CAscTabWidget::panel(int index) const
 {
     QWidget * _w = widget(index);
-    return _w->children().count() ? static_cast<CTabPanel *>(_w->findChild<CTabPanel*>()) : nullptr;
+    return _w && _w->children().count() ? static_cast<CTabPanel *>(_w->findChild<CTabPanel*>()) : nullptr;
 }
 
 CTabBar *CAscTabWidget::tabBar() const

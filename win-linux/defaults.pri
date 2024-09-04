@@ -86,6 +86,7 @@ HEADERS += \
     $$PWD/src/components/cfullscrwidget.h \
     $$PWD/src/components/cprintdialog.h \
     $$PWD/src/components/ctooltip.h \
+    $$PWD/src/components/cmenu.h \
     $$PWD/src/version.h \
     $$PWD/src/defines.h \
     $$PWD/src/ccefeventstransformer.h \
@@ -106,6 +107,7 @@ HEADERS += \
     $$PWD/src/cwindowsqueue.h \
     $$PWD/src/ceventdriver.h \
     $$PWD/src/cappeventfilter.h \
+    $$PWD/src/iconfactory.h \
     $$PWD/src/cthemes.h
 
 SOURCES += \
@@ -127,6 +129,7 @@ SOURCES += \
     $$PWD/src/components/cfullscrwidget.cpp \
     $$PWD/src/components/cprintdialog.cpp \
     $$PWD/src/components/ctooltip.cpp \
+    $$PWD/src/components/cmenu.cpp \
     $$PWD/src/main.cpp \
     $$PWD/src/ccefeventstransformer.cpp \
     $$PWD/src/cascapplicationmanagerwrapper.cpp \
@@ -144,6 +147,7 @@ SOURCES += \
     $$PWD/src/ceditortools.cpp \
     $$PWD/src/ceventdriver.cpp \
     $$PWD/src/cappeventfilter.cpp \
+    $$PWD/src/iconfactory.cpp \
     $$PWD/src/cthemes.cpp
 
 updmodule:!build_xp {

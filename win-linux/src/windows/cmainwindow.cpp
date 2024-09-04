@@ -32,17 +32,21 @@
 
 #include "windows/cmainwindow.h"
 #include "ceditortools.h"
+#include "iconfactory.h"
 #include "clangater.h"
 #include "defines.h"
 #include "utils.h"
 #include "components/cfiledialog.h"
+#include "components/cmenu.h"
 #include "common/Types.h"
 #include "version.h"
 #include "components/cmessage.h"
+#include "ctabundockevent.h"
 #include <QDesktopWidget>
 #include <QGridLayout>
 #include <QTimer>
 #include <QApplication>
+#include <QAction>
 #include "components/cprintdialog.h"
 #include <QRegularExpression>
 #include <QJsonDocument>
@@ -148,6 +152,7 @@ int CMainWindow::attachEditor(QWidget * panel, int index)
     if ( !(_index < 0) ) {
         toggleButtonMain(false);
         tabWidget()->setCurrentIndex(_index);
+        setTabMenu(_index, qobject_cast<CTabPanel*>(panel));
     }
     return _index;
 }
@@ -206,6 +211,11 @@ void CMainWindow::applyTheme(const std::wstring& theme)
         CAscTabData& _doc = *m_pTabs->panel(i)->data();
         if ( _doc.isViewType(cvwtEditor) && !_doc.closed() ) {
             AscAppManager::sendCommandTo(m_pTabs->panel(i)->cef(), L"uitheme:changed", theme);
+        }
+        if (CMenu *menu = m_pTabs->tabBar()->tabMenu(i)) {
+            menu->setSectionIcon(CMenu::ActionCreateNew, IconFactory::icon(IconFactory::CreateNew, SMALL_ICON * m_dpiRatio));
+            menu->setSectionIcon(CMenu::ActionShowInFolder, IconFactory::icon(IconFactory::Browse, SMALL_ICON * m_dpiRatio));
+            // menu->setSectionIcon(CMenu::ActionUnpinTab, IconFactory::icon(IconFactory::Unpin, SMALL_ICON * m_dpiRatio));
         }
     }
     // m_boxTitleBtns->style()->polish(m_boxTitleBtns);
@@ -686,6 +696,108 @@ int CMainWindow::trySaveDocument(int index)
     return modal_res;
 }
 
+void CMainWindow::setTabMenu(int index, CTabPanel *panel)
+{
+    CMenu *menu = new CMenu(m_pTabs->tabBar()->tabAtIndex(index));
+    QAction* actClose = menu->addSection(CMenu::ActionClose);
+    connect(actClose, &QAction::triggered, this, [=]() {
+            onTabCloseRequest(m_pTabs->tabBar()->tabMenuIndex(menu));
+            Utils::processMoreEvents();
+        }, Qt::QueuedConnection);
+
+    QAction* actCloseSaved = menu->addSection(CMenu::ActionCloseSaved);
+    connect(actCloseSaved, &QAction::triggered, this, [=]() {
+            for (int i(m_pTabs->count()); !(--i < 0);) {
+                CAscTabData *doc = m_pTabs->panel(i)->data();
+                if (doc->isViewType(cvwtEditor) && !doc->closed() && doc->isLocal() && !doc->hasChanges() && !doc->url().empty()) {
+                    onTabCloseRequest(i);
+                    Utils::processMoreEvents();
+                }
+            }
+        }, Qt::QueuedConnection);
+
+    QAction* actCloseAll = menu->addSection(CMenu::ActionCloseAll);
+    connect(actCloseAll, &QAction::triggered, this, [=]() {
+            for (int i(m_pTabs->count()); !(--i < 0);) {
+                CAscTabData *doc = m_pTabs->panel(i)->data();
+                if (/*doc->isViewType(cvwtEditor) &&*/ !doc->closed()) {
+                    onTabCloseRequest(i);
+                    Utils::processMoreEvents();
+                }
+            }
+        }, Qt::QueuedConnection);
+
+    if (panel) {
+        menu->addSeparator();
+        QAction *actShowInFolder = menu->addSection(CMenu::ActionShowInFolder);
+        actShowInFolder->setIcon(IconFactory::icon(IconFactory::Browse, SMALL_ICON * m_dpiRatio));
+        actShowInFolder->setEnabled(panel->data()->isLocal() && !panel->data()->url().empty());
+        connect(actShowInFolder, &QAction::triggered, this, [=]() {
+                int index = m_pTabs->tabBar()->tabMenuIndex(menu);
+                if (CTabPanel *panel = m_pTabs->panel(index))
+                    Utils::openFileLocation(QString::fromStdWString(panel->data()->url()));
+            }, Qt::QueuedConnection);
+    }
+    menu->addSeparator();
+
+    QAction *actMoveToStart = menu->addSection(CMenu::ActionMoveToStart);
+    // actUnpinTab->setIcon(IconFactory::icon(IconFactory::Unpin, SMALL_ICON * m_dpiRatio));
+    connect(actMoveToStart, &QAction::triggered, this, [=]() {
+            int index = m_pTabs->tabBar()->tabMenuIndex(menu);
+            int destIndex = AscAppManager::isRtlEnabled() ? m_pTabs->count() - 1 : 0;
+            if (m_pTabs->count() > 1 && index != destIndex)
+                m_pTabs->tabBar()->moveTab(index, destIndex);
+        }, Qt::QueuedConnection);
+
+    QAction *actMoveToEnd = menu->addSection(CMenu::ActionMoveToEnd);
+    // actUnpinTab->setIcon(IconFactory::icon(IconFactory::Unpin, SMALL_ICON * m_dpiRatio));
+    connect(actMoveToEnd, &QAction::triggered, this, [=]() {
+            int index = m_pTabs->tabBar()->tabMenuIndex(menu);
+            int destIndex = AscAppManager::isRtlEnabled() ? 0 : m_pTabs->count() - 1;
+            if (m_pTabs->count() > 1 && index != destIndex)
+                m_pTabs->tabBar()->moveTab(index, destIndex);
+        }, Qt::QueuedConnection);
+
+    if (panel) {
+        QAction *actUnpinTab = menu->addSection(CMenu::ActionUnpinTab);
+        // actUnpinTab->setIcon(IconFactory::icon(IconFactory::Unpin, SMALL_ICON * m_dpiRatio));
+        connect(actUnpinTab, &QAction::triggered, this, [=]() {
+                int index = m_pTabs->tabBar()->tabMenuIndex(menu);
+                CTabPanel *panel = m_pTabs->panel(index);
+                if (panel && panel->data()->viewType() == cvwtEditor) {
+                    CTabUndockEvent event(index);
+                    QObject *obj = qobject_cast<QObject*>(&AscAppManager::getInstance());
+                    if (QApplication::sendEvent(obj, &event) && event.isAccepted()) {
+                        QTimer::singleShot(0, this, [=]() {
+                            QWidget *view = m_pTabs->widget(index);
+                            m_pTabs->removeWidget(view);
+                            view->deleteLater();
+                            m_pTabs->tabBar()->removeTab(index);
+                        });
+                    }
+                }
+            }, Qt::QueuedConnection);
+        menu->addSeparator();
+
+        QAction *actCreateNew = menu->addSection(CMenu::ActionCreateNew);
+        actCreateNew->setIcon(IconFactory::icon(IconFactory::CreateNew, SMALL_ICON * m_dpiRatio));
+        AscEditorType etype = panel->data()->contentType();
+        actCreateNew->setEnabled(panel->isReady() && (etype == AscEditorType::etDocument || etype == AscEditorType::etPresentation ||
+                                                      etype == AscEditorType::etSpreadsheet || etype == AscEditorType::etPdf));
+        connect(actCreateNew, &QAction::triggered, this, [=]() {
+                int index = m_pTabs->tabBar()->tabMenuIndex(menu);
+                AscEditorType etype = m_pTabs->panel(index)->data()->contentType();
+                std::wstring cmd = etype == AscEditorType::etDocument ? L"--new:word" :
+                                       etype == AscEditorType::etPresentation ? L"--new:slide" :
+                                       etype == AscEditorType::etSpreadsheet ? L"--new:cell" :
+                                       etype == AscEditorType::etPdf ? L"--new:form" : L"";
+                if (!cmd.empty())
+                    AscAppManager::handleInputCmd({cmd});
+            }, Qt::QueuedConnection);
+    }
+    m_pTabs->tabBar()->setTabMenu(index, menu);
+}
+
 void CMainWindow::onPortalLogout(std::wstring wjson)
 {
     const auto _is_url_starts_with = [](const QString& url, const std::vector<QString>& v) -> bool {
@@ -996,6 +1108,15 @@ void CMainWindow::onDocumentReady(int uid)
         });
     } else {
         m_pTabs->applyPageLoadingStatus(uid, DOCUMENT_CHANGED_LOADING_FINISH);
+
+        int index = m_pTabs->tabIndexByView(uid);
+        if (CMenu *menu = m_pTabs->tabBar()->tabMenu(index)) {
+            AscEditorType etype = m_pTabs->panel(index)->data()->contentType();
+            if (etype == AscEditorType::etDocument || etype == AscEditorType::etPresentation ||
+                    etype == AscEditorType::etSpreadsheet || etype == AscEditorType::etPdf) {
+                menu->setSectionEnabled(CMenu::ActionCreateNew, true);
+            }
+        }
     }
     AscAppManager::getInstance().onDocumentReady(uid);
 }
@@ -1022,6 +1143,9 @@ void CMainWindow::onDocumentSave(int id, bool cancel)
                 {
                     m_pTabs->closeEditorByIndex(_i);
                 }
+            else {
+                m_pTabs->tabBar()->tabMenu(_i)->setSectionEnabled(CMenu::ActionShowInFolder, true);
+            }
         } else {
             m_pTabs->cancelDocumentSaving(_i);
 
@@ -1366,6 +1490,7 @@ void CMainWindow::onPortalOpen(QString json)
             if (!(res < 0)) {
                 toggleButtonMain(false, true);
                 m_pTabs->setCurrentIndex(res);
+                setTabMenu(res);
             }
 
             QString _title = objRoot["title"].toString();
@@ -1390,6 +1515,7 @@ void CMainWindow::onPortalNew(QString in)
             m_pTabs->applyDocumentChanging(_uid, _name, _domain);
             m_pTabs->applyDocumentChanging(_uid, int(etPortal));
             onTabChanged(m_pTabs->currentIndex());
+            setTabMenu(_tab_index);
         }
     }
 }
@@ -1404,6 +1530,7 @@ void CMainWindow::onPortalCreate()
     if (!(res < 0)) {
         toggleButtonMain(false, true);
         m_pTabs->setCurrentIndex(res);
+        setTabMenu(res);
     }
 }
 
@@ -1423,6 +1550,7 @@ void CMainWindow::onOutsideAuth(QString json)
         if (!(_tab_index < 0)) {
             m_pTabs->setCurrentIndex(_tab_index);
             toggleButtonMain(false, true);
+            setTabMenu(_tab_index);
         }
     }
 }
@@ -1480,6 +1608,13 @@ void CMainWindow::updateScalingFactor(double dpiratio)
     if (m_pWidgetDownload && m_pWidgetDownload->toolButton()) {
         m_pWidgetDownload->updateScalingFactor(dpiratio);
         m_pWidgetDownload->toolButton()->style()->polish(m_pWidgetDownload->toolButton());
+    }
+    for (int i(m_pTabs->count()); !(--i < 0);) {
+        if (CMenu *menu = m_pTabs->tabBar()->tabMenu(i)) {
+            menu->setSectionIcon(CMenu::ActionCreateNew, IconFactory::icon(IconFactory::CreateNew, SMALL_ICON * m_dpiRatio));
+            menu->setSectionIcon(CMenu::ActionShowInFolder, IconFactory::icon(IconFactory::Browse, SMALL_ICON * m_dpiRatio));
+            // menu->setSectionIcon(CMenu::ActionUnpinTab, IconFactory::icon(IconFactory::Unpin, SMALL_ICON * m_dpiRatio));
+        }
     }
 }
 

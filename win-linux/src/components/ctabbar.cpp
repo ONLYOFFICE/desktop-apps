@@ -32,6 +32,7 @@
 
 #include "components/ctabbar.h"
 #include "components/canimatedicon.h"
+#include "components/cmenu.h"
 #include "cascapplicationmanagerwrapper.h"
 #include <QApplication>
 #include <QHBoxLayout>
@@ -80,6 +81,7 @@ public:
     CAnimatedIcon *icon_label = nullptr;
     QLabel *text_label = nullptr;
     QToolButton *close_btn = nullptr;
+    CMenu *menu = nullptr;
     QString text;
     QString tabcolor;
     int tab_width = -1;
@@ -138,6 +140,8 @@ Tab::~Tab()
 {
     if (tab_icon)
         delete tab_icon, tab_icon = nullptr;
+    if (menu)
+        delete menu, menu = nullptr;
 }
 
 void Tab::setText(const QString &text, Qt::TextElideMode mode)
@@ -767,6 +771,37 @@ void CTabBar::swapTabs(int from, int to)
         d->onCurrentChanged(from);
 }
 
+void CTabBar::moveTab(int from, int to)
+{
+    while (d->animationInProgress)
+        PROCESSEVENTS();
+    if (from == to || !d->indexIsValid(from) || !d->indexIsValid(to))
+        return;
+    d->movedTab = nullptr;
+    d->movedTabIndex = -1;
+    d->tabList[from]->move(d->_tabRect(to).x(), 0);
+    d->tabIndex(from) = d->tabIndex(to);
+    int start = (from < to) ? from + 1 : to;
+    int end = (from < to) ? to : from - 1;
+    int sign = signum(from < to);
+    for (int i = start; i <= end; i++) {
+        d->tabList[i]->move(d->tabList[i]->x() - sign * d->cellWidth(), 0);
+        d->tabIndex(i) = i - sign;
+    }
+    d->reorderIndexes();
+    emit tabMoved(from, to);
+    if (from < d->currentIndex) {
+        if (to >= d->currentIndex)
+            d->onCurrentChanged(d->currentIndex - 1);
+    } else
+    if (from == d->currentIndex) {
+        d->onCurrentChanged(to);
+    } else {
+        if (to <= d->currentIndex)
+            d->onCurrentChanged(d->currentIndex + 1);
+    }
+}
+
 void CTabBar::removeTab(int index)
 {
     while (d->animationInProgress)
@@ -880,6 +915,17 @@ void CTabBar::setTabButton(int index, QWidget *widget)
             lut->insertWidget(2, close_btn);
         close_btn->style()->polish(close_btn);
     }
+}
+
+void CTabBar::setTabMenu(int index, CMenu *menu)
+{
+    if (!d->indexIsValid(index))
+        return;
+    Tab *tab = d->tabList[index];
+    if (tab->menu)
+        delete tab->menu;
+    tab->menu = menu;
+    menu->setObjectName("tabMenu");
 }
 
 //void CTabBar::setTabData(int index, const QVariant &data)
@@ -1015,6 +1061,11 @@ int CTabBar::tabIndexAt(const QPoint &pos) const
     return -1;
 }
 
+QWidget *CTabBar::tabAtIndex(int index) const
+{
+    return d->indexIsValid(index) ? d->tabList[index] : nullptr;
+}
+
 QWidget *CTabBar::tabIconLabel(int index) const
 {
     return d->indexIsValid(index) ? d->tabList[index]->icon_label : nullptr;
@@ -1023,6 +1074,22 @@ QWidget *CTabBar::tabIconLabel(int index) const
 QWidget *CTabBar::tabButton(int index) const
 {
     return d->indexIsValid(index) ? d->tabList[index]->close_btn : nullptr;
+}
+
+CMenu *CTabBar::tabMenu(int index) const
+{
+    return d->indexIsValid(index) ? d->tabList[index]->menu : nullptr;
+}
+
+int CTabBar::tabMenuIndex(CMenu *menu) const
+{
+    if (menu) {
+        for (int i = 0; i < d->tabList.size(); i++) {
+            if (d->tabList[i]->menu == menu)
+                return d->tabList[i]->index;
+        }
+    }
+    return -1;
 }
 
 //QVariant CTabBar::tabData(int index) const
@@ -1123,9 +1190,9 @@ bool CTabBar::eventFilter(QObject *watched, QEvent *event)
                                 d->slide(interIndex, interIndex, delta, ANIMATION_MOVE_TAB_MS);
                                 d->movedTab->index = interIndex;
                                 d->tabIndex(interIndex) = destIndex;
-                                d->currentIndex = interIndex;
                                 std::swap(d->tabList[interIndex], d->tabList[destIndex]);
                                 emit tabMoved(interIndex, destIndex);
+                                d->currentIndex = interIndex;
                                 emit currentChanged(interIndex);
                             }
                         }
@@ -1210,6 +1277,21 @@ bool CTabBar::eventFilter(QObject *watched, QEvent *event)
                 for (int i = 0; i < d->tabList.size(); i++) {
                     if (d->_tabRect(i).contains(mouse_event->pos())) {
                         emit tabCloseRequested(i);
+                        return true;
+                    }
+                }
+            }
+            break;
+        }
+        case QEvent::ContextMenu: {
+            QContextMenuEvent* cm_event = static_cast<QContextMenuEvent*>(event);
+            for (int i = 0; i < d->tabList.size(); i++) {
+                if (d->_tabRect(i).contains(cm_event->pos())) {
+                    if (d->tabList[i]->menu) {
+                        QPoint pos = d->tabArea->mapToGlobal(cm_event->pos());
+                        SKIP_EVENTS_QUEUE([=]() {
+                            d->tabList[i]->menu->exec(pos);
+                        });
                         return true;
                     }
                 }
