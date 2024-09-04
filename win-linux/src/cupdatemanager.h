@@ -88,7 +88,6 @@ public:
     void cancelLoading();
     void skipVersion();
     int  getUpdateMode();
-    QString getVersion() const;
     void handleAppClose();
     void loadUpdates();
     void installUpdates();
@@ -125,7 +124,6 @@ private:
     QTimer      *m_pIntervalStartTimer = nullptr,
                 *m_pLastCheckMsgTimer = nullptr,
                 *m_pIntervalTimer = nullptr;
-    wstring     m_checkUrl;
 
     Command     m_lastCommand;
 
@@ -136,7 +134,7 @@ private:
 
 private slots:
     void onCheckFinished(bool error, bool updateExist, const QString &version, const QString &changelog);
-    void onLoadCheckFinished(const QString &filePath);
+    void onLoadCheckFinished(const QString &json);
     void showUpdateMessage(QWidget *parent);
     void onLoadUpdateFinished(const QString &filePath);
     void showStartInstallMessage(QWidget *parent);

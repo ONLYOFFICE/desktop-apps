@@ -52,6 +52,9 @@ namespace NS_Utils
 {
 void setRunAsApp();
 bool isRunAsApp();
+void parseCmdArgs(int argc, wchar_t *argv[]);
+bool cmdArgContains(const wstring &param);
+wstring cmdArgValue(const wstring &param);
 wstring GetLastErrorAsString();
 int ShowMessage(wstring str, bool showError = false);
 wstring GetAppLanguage();
@@ -79,7 +82,7 @@ wstring toNativeSeparators(const wstring &path);
 wstring parentPath(const wstring &path);
 wstring tempPath();
 wstring appPath();
-//string getFileHash(const wstring &fileName);
+wstring getFileHash(const wstring &fileName);
 bool verifyEmbeddedSignature(const wstring &fileName);
 }
 
