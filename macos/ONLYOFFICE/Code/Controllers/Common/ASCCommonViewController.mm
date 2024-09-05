@@ -944,7 +944,8 @@
         if (eventData) {
             NSEditorApi::CAscKeyboardDown * pData = (NSEditorApi::CAscKeyboardDown *)[eventData pointerValue];
 
-            if ( pData->get_KeyCode() == 112 /*kVK_F1*/ && pData->get_IsShift() && pData->get_IsCtrl() ) {
+            int keyCode = pData->get_KeyCode();
+            if ( keyCode == 112 /*kVK_F1*/ && pData->get_IsShift() && pData->get_IsCtrl() ) {
                 NSOpenPanel * openPanel = [NSOpenPanel openPanel];
 
                 openPanel.canChooseDirectories = YES;
@@ -973,7 +974,7 @@
                         [alert runModal];
                     }
                 }];
-            } else if ( pData->get_KeyCode() == 9 ) {
+            } else if ( keyCode == 9 ) {
                 if ( pData->get_IsCtrl() ) {
                     if ( pData->get_IsShift() ) {
                         [self.tabsControl selectPreviouseTab];
