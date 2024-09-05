@@ -918,6 +918,13 @@ begin
   if DirExists(path) then DelTree(path, true, true, true)
 end;
 
+#ifndef _WIN_XP
+function ShouldSkipPage(PageID: Integer): Boolean;
+begin
+  Result := (PageID = wpSelectDir) and not CheckCommandlineParam('/enabledirpage');
+end;
+#endif
+
 function getAppMutex(P: String): String;
 var
   hWnd: Longint;
