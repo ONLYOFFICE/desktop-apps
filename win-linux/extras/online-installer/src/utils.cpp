@@ -31,34 +31,57 @@
 */
 
 #include "utils.h"
+#include "baseutils.h"
 #include "resource.h"
 #include "translator.h"
-#include <Windows.h>
+#include <shlwapi.h>
 #include <fstream>
-#include <regex>
+#include <algorithm>
 #include <Softpub.h>
 #include <TlHelp32.h>
-#include <sstream>
+#include <Msi.h>
+#include <ShlObj.h>
+// #include <sstream>
+#include "../../src/defines.h"
+#include "../../src/prop/defines_p.h"
 
 #define _TR(str) Translator::tr(str).c_str()
+#define APP_REG_PATH "\\" REG_GROUP_KEY "\\" REG_APP_NAME
 #define BIT123_LAYOUTRTL 0x08000000
 #ifndef LOCALE_IREADINGLAYOUT
 # define LOCALE_IREADINGLAYOUT 0x70
 #endif
 
 
+static void RegQueryStringValue(HKEY rootKey, LPCWSTR subkey, REGSAM advFlags, LPCWSTR value, wstring &result)
+{
+    HKEY hKey;
+    if (RegOpenKeyExW(rootKey, subkey, 0, KEY_READ | advFlags, &hKey) == ERROR_SUCCESS) {
+        DWORD type = REG_SZ, cbData = 0;
+        if (SHGetValue(hKey, L"", value, &type, NULL, &cbData) == ERROR_SUCCESS) {
+            wchar_t *pvData = (wchar_t*)malloc(cbData);
+            if (SHGetValue(hKey, L"", value, &type, (void*)pvData, &cbData) == ERROR_SUCCESS)
+                result = pvData;
+            free(pvData);
+        }
+        RegCloseKey(hKey);
+    }
+}
+
 namespace NS_Utils
 {
-    wstring GetLastErrorAsString()
+    wstring GetLastErrorAsString(DWORD _errID)
     {
-        DWORD errID = ::GetLastError();
+        DWORD errID = _errID != 0 ? _errID : ::GetLastError();
         if (errID == 0)
             return _T("");
 
         LPTSTR msgBuff = NULL;
         size_t size = FormatMessage(FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS,
                                        NULL, errID, MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT), (LPTSTR)&msgBuff, 0, NULL);
-        wstring msg(msgBuff, (int)size);
+        wstring msg = _TR(LABEL_ERR_COMMON) + wstring(L" ") + std::to_wstring(errID);
+        if (size > 0)
+            msg.append(L"\n" + wstring(msgBuff, (int)size));
         LocalFree(msgBuff);
         return msg;
     }
@@ -68,13 +91,13 @@ namespace NS_Utils
         if (showError)
             str += _T(" ") + GetLastErrorAsString();
         wstring caption(_T("    "));
-        caption.append(_TR(CAPTION_TEXT));
+        caption.append(_TR(CAPTION));
         MessageBox(NULL, str.c_str(), caption.c_str(), MB_ICONERROR | MB_SERVICE_NOTIFICATION_NT3X | MB_SETFOREGROUND);
     }
 
     bool IsRtlLanguage(unsigned long lcid)
     {
-        if (NS_File::getWinVersion() >= WinVer::Win7) {
+        if (Utils::getWinVersion() >= Utils::WinVer::Win7) {
             DWORD layout = 0;
             if (GetLocaleInfo(lcid, LOCALE_IREADINGLAYOUT | LOCALE_RETURN_NUMBER, (LPWSTR)&layout, sizeof(layout)/sizeof(WCHAR)) > 0)
                 return layout == 1;
@@ -85,15 +108,123 @@ namespace NS_Utils
         }
         return false;
     }
+
+    bool IsWin64()
+    {
+#ifdef _WIN64
+        return true;
+#else
+        BOOL wow64 = FALSE;
+        return IsWow64Process(GetCurrentProcess(), &wow64) && wow64;
+#endif
+    }
+
+    bool IsAppInstalled(wstring &path, wstring *arch)
+    {
+        std::vector<REGSAM> flags{0};
+        if (NS_Utils::IsWin64()) {
+#ifdef _WIN64
+            flags.push_back(KEY_WOW64_32KEY);
+#else
+            flags.push_back(KEY_WOW64_64KEY);
+#endif
+        }
+        wstring subkey(L"Software");
+        subkey += _T(APP_REG_PATH);
+        for (auto &flag : flags) {
+            RegQueryStringValue(HKEY_LOCAL_MACHINE, subkey.c_str(), flag, L"AppPath", path);
+            if (!path.empty() /*&& NS_File::fileExists(path + _T(APP_LAUNCH_NAME))*/) {
+                if (arch) {
+#ifdef _WIN64
+                    *arch = (flag == 0) ? L"x64" : L"x86";
+#else
+                    *arch = (flag == 0) ? L"x86" : L"x64";
+#endif
+                }
+                return true;
+            }
+        }
+        return false;
+    }
+
+    void InstalledVerInfo(LPCWSTR value, wstring &name, wstring &arch)
+    {
+        if (!name.empty())
+            name.clear();
+        std::vector<REGSAM> flags{0};
+        if (NS_Utils::IsWin64()) {
+#ifdef _WIN64
+            flags.push_back(KEY_WOW64_32KEY);
+#else
+            flags.push_back(KEY_WOW64_64KEY);
+#endif
+        }
+        for (auto &flag : flags) {
+            wstring subkey(L"SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\");
+            subkey += _T(WINDOW_NAME);
+            for (int i = 0; i < 2; i++) {
+                RegQueryStringValue(HKEY_LOCAL_MACHINE, subkey.c_str(), flag, value, name);
+                if (!name.empty()) {
+                    if (arch.empty()) {
+#ifdef _WIN64
+                        arch = (flag == 0) ? L"x64" : L"x86";
+#else
+                        arch = (flag == 0) ? L"x86" : L"x64";
+#endif
+                    }
+                    return;
+                }
+                subkey += L"_is1";
+            }
+        }
+    }
+
+    void Replace(wstring &str, const wstring &from, const wstring &to) {
+        if (from.empty())
+            return;
+        size_t start_pos = 0;
+        while((start_pos = str.find(from, start_pos)) != std::wstring::npos) {
+            str.replace(start_pos, from.length(), to);
+            start_pos += to.length();
+        }
+    }
+
+    wstring MsiGetProperty(LPCWSTR prodCode, LPCWSTR propName)
+    {
+        DWORD buffSize = 0;
+        UINT res = MsiGetProductInfoW(prodCode, propName, NULL, &buffSize);
+        if ((res == ERROR_MORE_DATA || res == ERROR_SUCCESS) && buffSize > 0) {
+            ++buffSize;
+            wchar_t *value = new wchar_t[buffSize];
+            if (MsiGetProductInfoW(prodCode, propName, value, &buffSize) == ERROR_SUCCESS) {
+                wstring propValue = value;
+                delete[] value;
+                return propValue;
+            }
+            delete[] value;
+        }
+        return wstring();
+    }
+
+    wstring MsiProductCode(const wstring &prodName)
+    {
+        DWORD ind = 0;
+        WCHAR prodCode[39];
+        while (MsiEnumProductsEx(NULL, NULL, MSIINSTALLCONTEXT_MACHINE, ind++, prodCode, NULL, NULL, NULL) == ERROR_SUCCESS) {
+            if (MsiGetProperty(prodCode, INSTALLPROPERTY_PRODUCTNAME) == prodName)
+                return prodCode;
+        }
+        return wstring();
+    }
 }
 
 namespace NS_File
 {
-    bool runProcess(const wstring &fileName, const wstring &args, bool runAsAdmin)
+    bool runProcess(const wstring &fileName, const wstring &args, bool runAsAdmin, bool wait)
     {
         SHELLEXECUTEINFO shExInfo = {0};
         shExInfo.cbSize = sizeof(shExInfo);
-        shExInfo.fMask = SEE_MASK_NOCLOSEPROCESS | SEE_MASK_NO_CONSOLE | SEE_MASK_FLAG_NO_UI;
+        shExInfo.fMask = SEE_MASK_NOCLOSEPROCESS | SEE_MASK_NO_CONSOLE /*| SEE_MASK_FLAG_NO_UI*/;
         shExInfo.hwnd = NULL;
         shExInfo.lpVerb = runAsAdmin ? _T("runas") : _T("open");
         shExInfo.lpFile = fileName.c_str();
@@ -102,7 +233,8 @@ namespace NS_File
         shExInfo.nShow = SW_HIDE;
         shExInfo.hInstApp = NULL;
         if (ShellExecuteEx(&shExInfo)) {
-            WaitForSingleObject(shExInfo.hProcess, INFINITE);
+            if (wait)
+                WaitForSingleObject(shExInfo.hProcess, INFINITE);
             CloseHandle(shExInfo.hProcess);
             return true;
         }
@@ -144,14 +276,35 @@ namespace NS_File
         return DeleteFile(filePath.c_str()) != 0;
     }
 
+    bool removeDirRecursively(const wstring &dir)
+    {
+        WCHAR pFrom[_MAX_PATH + 1] = {0};
+        swprintf_s(pFrom, sizeof(pFrom)/sizeof(WCHAR), L"%s%c", dir.c_str(), L'\0');
+        SHFILEOPSTRUCT fop = {
+            NULL,
+            FO_DELETE,
+            pFrom,
+            NULL,
+            FOF_NOCONFIRMATION | FOF_NOERRORUI | FOF_SILENT,
+            FALSE,
+            0,
+            NULL
+        };
+        return SHFileOperation(&fop) == 0;
+    }
+
     wstring fromNativeSeparators(const wstring &path)
     {
-        return std::regex_replace(path, std::wregex(_T("\\\\")), _T("/"));
+        wstring _path(path);
+        std::replace(_path.begin(), _path.end(), L'\\', L'/');
+        return _path;
     }
 
     wstring toNativeSeparators(const wstring &path)
     {
-        return std::regex_replace(path, std::wregex(_T("\\/")), _T("\\"));
+        wstring _path(path);
+        std::replace(_path.begin(), _path.end(), L'/', L'\\');
+        return _path;
     }
 
     wstring parentPath(const wstring &path)
@@ -160,12 +313,12 @@ namespace NS_File
         return (delim == wstring::npos) ? _T("") : path.substr(0, delim);
     }
 
-//    wstring tempPath()
-//    {
-//        TCHAR buff[MAX_PATH] = {0};
-//        DWORD res = ::GetTempPath(MAX_PATH, buff);
-//        return (res != 0) ? fromNativeSeparators(parentPath(buff)) : _T("");
-//    }
+    wstring tempPath()
+    {
+        TCHAR buff[MAX_PATH] = {0};
+        DWORD res = ::GetTempPath(MAX_PATH, buff);
+        return (res != 0) ? fromNativeSeparators(parentPath(buff)) : _T("");
+    }
 
     wstring appPath()
     {
@@ -174,57 +327,56 @@ namespace NS_File
         return (res != 0) ? fromNativeSeparators(parentPath(buff)) : _T("");
     }
 
-    WinVer getWinVersion()
+    wstring generateTmpFileName(const wstring &ext)
     {
-        static WinVer winVer = WinVer::Undef;
-        if (winVer == WinVer::Undef) {
-            if (HMODULE module = GetModuleHandleA("ntdll")) {
-                NTSTATUS(WINAPI *RtlGetVersion)(LPOSVERSIONINFOEXW);
-                *(FARPROC*)&RtlGetVersion = GetProcAddress(module, "RtlGetVersion");
-                if (RtlGetVersion) {
-                    OSVERSIONINFOEXW os = {0};
-                    os.dwOSVersionInfoSize = sizeof(os);
-                    RtlGetVersion(&os);
-                    winVer = os.dwMajorVersion == 5L && (os.dwMinorVersion == 1L || os.dwMinorVersion == 2L) ? WinVer::WinXP :
-                             os.dwMajorVersion == 6L && os.dwMinorVersion == 0L ? WinVer::WinVista :
-                             os.dwMajorVersion == 6L && os.dwMinorVersion == 1L ? WinVer::Win7 :
-                             os.dwMajorVersion == 6L && os.dwMinorVersion == 2L ? WinVer::Win8 :
-                             os.dwMajorVersion == 6L && os.dwMinorVersion == 3L ? WinVer::Win8_1 :
-                             os.dwMajorVersion == 10L && os.dwMinorVersion == 0L && os.dwBuildNumber < 22000 ? WinVer::Win10 :
-                             os.dwMajorVersion == 10L && os.dwMinorVersion == 0L && os.dwBuildNumber >= 22000 ? WinVer::Win11 :
-                             os.dwMajorVersion == 10L && os.dwMinorVersion > 0L ? WinVer::Win11 :
-                             os.dwMajorVersion > 10L ? WinVer::Win11 : WinVer::Undef;
-                }
-            }
-        }
-        return winVer;
+        wstring uuid_tstr;
+        UUID uuid = {0};
+        RPC_WSTR wszUuid = NULL;
+        if (UuidCreate(&uuid) == RPC_S_OK && UuidToStringW(&uuid, &wszUuid) == RPC_S_OK) {
+            uuid_tstr = ((wchar_t*)wszUuid);
+            RpcStringFreeW(&wszUuid);
+        } else
+            uuid_tstr = L"00000000-0000-0000-0000-000000000000";
+        return NS_File::tempPath() + _T("/") + _T(FILE_PREFIX) + uuid_tstr + ext;
     }
 
-//    bool verifyEmbeddedSignature(const wstring &fileName)
-//    {
-//        WINTRUST_FILE_INFO fileInfo;
-//        ZeroMemory(&fileInfo, sizeof(fileInfo));
-//        fileInfo.cbStruct = sizeof(WINTRUST_FILE_INFO);
-//        fileInfo.pcwszFilePath = fileName.c_str();
-//        fileInfo.hFile = NULL;
-//        fileInfo.pgKnownSubject = NULL;
+    bool verifyEmbeddedSignature(const wstring &fileName)
+    {
+        WINTRUST_FILE_INFO wfi;
+        ZeroMemory(&wfi, sizeof(wfi));
+        wfi.cbStruct = sizeof(WINTRUST_FILE_INFO);
+        wfi.pcwszFilePath = fileName.c_str();
+        wfi.hFile = NULL;
+        wfi.pgKnownSubject = NULL;
 
-//        GUID guidAction = WINTRUST_ACTION_GENERIC_VERIFY_V2;
-//        WINTRUST_DATA winTrustData;
-//        ZeroMemory(&winTrustData, sizeof(winTrustData));
-//        winTrustData.cbStruct = sizeof(WINTRUST_DATA);
-//        winTrustData.pPolicyCallbackData = NULL;
-//        winTrustData.pSIPClientData = NULL;
-//        winTrustData.dwUIChoice = WTD_UI_NONE;
-//        winTrustData.fdwRevocationChecks = WTD_REVOKE_NONE;
-//        winTrustData.dwUnionChoice = WTD_CHOICE_FILE;
-//        winTrustData.dwStateAction = WTD_STATEACTION_VERIFY;
-//        winTrustData.hWVTStateData = NULL;
-//        winTrustData.pwszURLReference = NULL;
-//        winTrustData.dwUIContext = 0;
-//        winTrustData.pFile = &fileInfo;
-//        return WinVerifyTrust(NULL, &guidAction, &winTrustData) == ERROR_SUCCESS;
-//    }
+        GUID guidAction = WINTRUST_ACTION_GENERIC_VERIFY_V2;
+        WINTRUST_DATA wtd;
+        ZeroMemory(&wtd, sizeof(wtd));
+        wtd.cbStruct = sizeof(WINTRUST_DATA);
+        wtd.pPolicyCallbackData = NULL;
+        wtd.pSIPClientData = NULL;
+        wtd.dwUIChoice = WTD_UI_NONE;
+        wtd.fdwRevocationChecks = WTD_REVOKE_NONE;
+        wtd.dwUnionChoice = WTD_CHOICE_FILE;
+        wtd.dwStateAction = WTD_STATEACTION_VERIFY;
+        wtd.hWVTStateData = NULL;
+        wtd.pwszURLReference = NULL;
+        wtd.dwUIContext = 0;
+        wtd.pFile = &wfi;
+        return WinVerifyTrust(NULL, &guidAction, &wtd) == ERROR_SUCCESS;
+    }
+
+    wstring appDataPath()
+    {
+        TCHAR buff[MAX_PATH] = {0};
+        if (SUCCEEDED(SHGetFolderPathW(NULL, CSIDL_LOCAL_APPDATA, NULL, SHGFP_TYPE_CURRENT, buff))) {
+            wstring path(buff);
+            path.append(_T(APP_REG_PATH));
+            path.append(_T("\\data"));
+            return path;
+        }
+        return _T("");
+    }
 }
 
 namespace NS_Logger

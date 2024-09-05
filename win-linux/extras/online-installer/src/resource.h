@@ -1,29 +1,52 @@
 #include "version.h"
 
 #define IDI_MAINICON          101
-#define IDD_DIALOG            102
-#define IDD_DIALOG_RTL        103
-
-#define IDC_MAIN_ICON         1001
-#define IDC_LABEL_TITLE       1002
-#define IDC_LABEL_MESSAGE     1003
-#define IDC_PROGRESS          1004
-#define IDC_BUTTON_CANCEL     1005
-#define IDC_SILENT_CHECK      1006
+#define IDI_WELCOME           102
 
 #define IDT_TRANSLATIONS      10001
 
-#define CAPTION_TEXT              VER_PRODUCTNAME_STR
-#define MESSAGE_TEXT_ERR1         "The application cannot continue because this architecture is not supported.\0"
-#define MESSAGE_TEXT_ERR2         "The application is already running.\0"
-#define LABEL_TITLE_TEXT          "Preparing for installation\0"
-#define LABEL_MESSAGE_TEXT        "Downloading a package\0"
-#define LABEL_MESSAGE_TEXT_ERR1   "An error occurred during initialization.\nPlease try restarting the app later.\0"
-#define LABEL_MESSAGE_TEXT_ERR2   "Package download failed: Not enough memory!\nPlease try restarting the app later.\0"
-#define LABEL_MESSAGE_TEXT_ERR3   "Package download failed: Server connection error!\nPlease try restarting the app later.\0"
-#define LABEL_MESSAGE_TEXT_ERR4   "Package download failed: Network error!\nPlease try restarting the app later.\0"
-#define LABEL_MESSAGE_TEXT_ERR5   "An error occurred while running the package.\nPlease try restarting the app later.\0"
-#define LABEL_MESSAGE_TEXT_ERR6   "An error occurred during initialization: Url not set.\0"
-#define LABEL_MESSAGE_TEXT_ERR7   "An error occurred during initialization: File name not specified.\0"
-#define BUTTON_CANCEL_TEXT        "Cancel\0"
-#define SILENT_CHECK_TEXT         "Silent Installation\0"
+#define APP_LAUNCH_NAME           "\\DesktopEditors.exe"
+
+#define CAPTION                   VER_PRODUCTNAME_STR
+#define MSG_ERR_ARCH              "The application cannot continue because this architecture is not supported."
+#define MSG_ERR_ALREADY_RUNNING   "The application is already running."
+#define MSG_ERR_CLOSE_APP         "Setup has detected that %1 is currently running. Please close all instances of it."
+#define MSG_REMOVE                "This will remove %1 and its components."
+#define MSG_REPAIR                "This will repair the current version of %1."
+#define MSG_UPDATE                "This will update %1 to the latest version available."
+#define LABEL_DOWNLOAD            "Downloading"
+#define LABEL_INSTALL             "Installing"
+#define LABEL_UPDATING            "Updating"
+#define LABEL_REPAIRING           "Repairing"
+#define LABEL_UNINSTLING          "Uninstalling"
+#define LABEL_UPDATE_COMPL        "Update complete!"
+#define LABEL_REPAIR_COMPL        "Repairing completed!"
+#define LABEL_UNINST_COMPL        "Uninstalling completed!"
+#define LABEL_VERSION             "%1 %2 (%3 %4) is installed"
+#define LABEL_UNKN_VER            "unknown version"
+#define LABEL_UNKN_PACK           "unknown package"
+#define LABEL_NO_OPTIONS          "No additional options available."
+#define LABEL_NO_VER_AVAIL        "No version available"
+#define LABEL_WARN_CLOSE          "This will install ONLYOFFICE Desktop Editors on your computer.\nIt is reccomended that you close all other applications before continuing."
+#define LABEL_ALMOST_DONE         "Just a bit more and we're done"
+#define LABEL_INSTALL_COMPL       "%1 has been successfully installed on your computer.\nTo run the application after closing this installer, select the check box."
+#define LABEL_ERR_PROD_CODE       "Error while retrieving product code."
+#define LABEL_ERR_PACK_NAME       "Error while retrieving package name."
+#define LABEL_ERR_INSTALL         "An error occurred during installation."
+#define LABEL_ERR_UNINST          "An error occurred during uninstalling."
+#define LABEL_ERR_COMMON          "An error occurred:"
+#define LABEL_ERR_RUNNING         "An error occurred while running the package.\nPlease try restarting the app later."
+#define LABEL_ERR_CANCELLED       "Cancelled!"
+#define BUTTON_INSTALL            "Install"
+#define BUTTON_CANCEL             "Cancel"
+#define BUTTON_APPLY              "Apply"
+#define BUTTON_CLOSE              "Close"
+#define BUTTON_BACK               "Back"
+#define RADIO_UPDATE              "Update"
+#define RADIO_REPAIR              "Repair"
+#define RADIO_UNINST              "Uninstall"
+#define CHECK_SILENT              "Silent Installation"
+#define CHECK_LAUNCH              "Launch"
+#define CHECK_CLR_DATA            "Clear cached data"
+#define CHECK_CLR_STNGS           "Clear user settings"
+#define CHECK_CLR_ALL             "Clear user settings and cached data"

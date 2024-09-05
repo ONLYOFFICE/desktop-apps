@@ -33,14 +33,12 @@
 #ifndef UTILS_H
 #define UTILS_H
 
+#include <Windows.h>
 #include <string>
-#include <list>
-#include <tchar.h>
 
 using std::string;
 using std::wstring;
 using std::to_wstring;
-using std::list;
 
 #define DEFAULT_ERROR_MESSAGE _T("An error occurred: ") + \
     wstring(_T(__FUNCTION__)) + _T(" Line: ") + to_wstring(__LINE__)
@@ -48,30 +46,34 @@ using std::list;
     _T(" ") + NS_Utils::GetLastErrorAsString()
 
 
-enum class WinVer : unsigned char {
-    Undef, WinXP, WinVista, Win7, Win8, Win8_1, Win10, Win11
-};
-
 namespace NS_Utils
 {
-wstring GetLastErrorAsString();
+wstring GetLastErrorAsString(DWORD errID = 0);
 void ShowMessage(wstring str, bool showError = false);
 bool IsRtlLanguage(unsigned long lcid);
+bool IsWin64();
+bool IsAppInstalled(wstring &path, wstring *arch = nullptr);
+void InstalledVerInfo(LPCWSTR value, wstring &name, wstring &arch);
+void Replace(wstring &str, const wstring &from, const wstring &to);
+wstring MsiGetProperty(LPCWSTR prodCode, LPCWSTR propName);
+wstring MsiProductCode(const wstring &prodName);
 }
 
 namespace NS_File
 {
-bool runProcess(const wstring &fileName, const wstring &args, bool runAsAdmin = false);
-//bool isProcessRunning(const wstring &fileName);
+bool runProcess(const wstring &fileName, const wstring &args, bool runAsAdmin = false, bool wait = true);
+// bool isProcessRunning(const wstring &fileName);
 bool fileExists(const wstring &filePath);
 bool removeFile(const wstring &filePath);
+bool removeDirRecursively(const wstring &dir);
 wstring fromNativeSeparators(const wstring &path);
 wstring toNativeSeparators(const wstring &path);
 wstring parentPath(const wstring &path);
-//wstring tempPath();
+wstring tempPath();
 wstring appPath();
-WinVer getWinVersion();
-//bool verifyEmbeddedSignature(const wstring &fileName);
+wstring appDataPath();
+wstring generateTmpFileName(const wstring &ext);
+bool verifyEmbeddedSignature(const wstring &fileName);
 }
 
 namespace NS_Logger
