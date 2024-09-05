@@ -402,7 +402,7 @@ void MainWindow::startUpdate()
     CDownloader *dnl = startDownload(url, tmp_path, [=]() {
             m_bar->pulse(true);
             wstring args = L"/c \"" + tmp_path;
-            args += (m_package == L"msi") ? L" /qn\"" : L" /UPDATE /VERYSILENT\"";
+            args += (m_package == L"msi") ? L" /qn\"" : L" /UPDATE /VERYSILENT /NOLAUNCH\"";
             if (!NS_File::runProcess(L"cmd", args, true)) {
                 m_bar->pulse(false);
                 m_bar->setProgress(0);
