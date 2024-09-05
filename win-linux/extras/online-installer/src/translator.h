@@ -29,7 +29,7 @@ private:
     static wstring langName;
     static bool    is_translations_valid;
 
-    enum TokenType {
+    enum TokenType : unsigned char {
         TOKEN_BEGIN_DOCUMENT = 0,
         TOKEN_END_DOCUMENT,
         TOKEN_BEGIN_STRING_ID,
