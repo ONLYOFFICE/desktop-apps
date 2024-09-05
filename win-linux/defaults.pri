@@ -253,6 +253,7 @@ core_windows {
     HEADERS += $$PWD/src/windows/platform_win/cwindowplatform.h \
                $$PWD/src/windows/platform_win/caption.h \
                $$PWD/src/platform_win/singleapplication.h \
+               $$PWD/src/platform_win/association.h \
                $$PWD/src/platform_win/filechooser.h \
                $$PWD/src/platform_win/printdialog.h \
                $$PWD/src/platform_win/message.h \
@@ -260,6 +261,7 @@ core_windows {
 
     SOURCES += $$PWD/src/windows/platform_win/cwindowplatform.cpp \
                $$PWD/src/platform_win/singleapplication.cpp \
+               $$PWD/src/platform_win/association.cpp \
                $$PWD/src/platform_win/filechooser.cpp \
                $$PWD/src/platform_win/printdialog.cpp \
                $$PWD/src/platform_win/message.cpp
