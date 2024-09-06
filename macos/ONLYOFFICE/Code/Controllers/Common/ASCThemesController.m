@@ -95,7 +95,10 @@
     if ( [theme isEqualToString: uiThemeSystem] )
         theme = [self defaultThemeId:[NSApplication isSystemDarkMode]];
 
-    if ([name isEqualToString:btnPortalActiveBackgroundColor]) {
+    if ([name isEqualToString:tabActiveTextColor]) {
+        if ( [theme isEqualToString:uiThemeGray] ) return UIColorFromRGB(0x444);
+        else return NSColor.whiteColor;
+    } else if ([name isEqualToString:btnPortalActiveBackgroundColor]) {
         if ( [theme isEqualToString:uiThemeDark] ) return UIColorFromRGB(0x333333);
         else if ( [theme isEqualToString:uiThemeContrastDark] ) return UIColorFromRGB(0x1e1e1e);
         else {
@@ -106,6 +109,7 @@
     } else {
         if ( [theme isEqualToString:uiThemeDark] ) return UIColorFromRGB(0x2a2a2a);
         else if ( [theme isEqualToString:uiThemeContrastDark] ) return UIColorFromRGB(0x1e1e1e);
+        else if ( [theme isEqualToString:uiThemeGray] ) return UIColorFromRGB(0xf7f7f7);
         else {
             if ([name isEqualToString:tabWordActiveBackgroundColor]) {
                return [NSColor brendDocumentEditor];

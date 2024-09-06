@@ -22,7 +22,7 @@
 #define REGISTRY_THEME_KEY "UITheme"
 #define REGISTRY_THEME_KEY_7_2 "UITheme2"
 #define THEME_DEFAULT_DARK_ID "theme-dark"
-#define THEME_DEFAULT_LIGHT_ID "theme-classic-light"
+#define THEME_DEFAULT_LIGHT_ID "theme-gray"
 #define THEME_ID_SYSTEM "theme-system"
 
 namespace NSTheme {
@@ -82,7 +82,8 @@ namespace NSTheme {
             {CTheme::ColorRole::ecrTabDivider, "tab-divider"},
 
             {CTheme::ColorRole::ecrButtonNormalOpacity, "button-normal-opacity"},
-            {CTheme::ColorRole::ecrLogoColor, "logo"}
+            {CTheme::ColorRole::ecrLogoColor, "logo"},
+            {CTheme::ColorRole::ecrTabThemeType, "tab-editor-theme-type"}
         };
 
     static const std::map<QString, QString> map_alias_names = {
@@ -178,6 +179,7 @@ public:
             {"theme-classic-light", ":/themes/theme-classic-light.json"},
             {"theme-dark", ":/themes/theme-dark.json"},
             {"theme-contrast-dark", ":/themes/theme-contrast-dark.json"},
+            {"theme-gray", ":/themes/theme-gray.json"},
         };
 
         GET_REGISTRY_USER(_reg_user);
@@ -442,7 +444,7 @@ auto CTheme::stype() const -> QString
     }
 }
 
-auto CTheme::value(ColorRole r) const -> std::wstring
+auto CTheme::value(ColorRole r, const std::wstring& def) const -> std::wstring
 {
     if ( NSTheme::map_names.find(r) != NSTheme::map_names.end() ) {
         if ( m_priv->jsonValues.contains(NSTheme::map_names.at(r)) ) {
@@ -450,7 +452,7 @@ auto CTheme::value(ColorRole r) const -> std::wstring
         }
     }
 
-    return L"";
+    return def;
 }
 
 auto CTheme::color(ColorRole role) const -> QColor
