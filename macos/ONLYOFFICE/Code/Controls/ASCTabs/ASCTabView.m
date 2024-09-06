@@ -230,37 +230,21 @@ static NSUInteger const kASTabViewCloseButtonSize = 12;
     if (type == ASCTabViewTypePortal) {
         tabViewCell.activeColor     = [ASCThemesController currentThemeColor:btnPortalActiveBackgroundColor];
         tabViewCell.activeTextColor = [tabViewCell.activeColor isLight] ? NSColor.blackColor : NSColor.whiteColor;
-    } else if (type == ASCTabViewTypeDocument) {
-        tabViewCell.activeColor = [ASCThemesController currentThemeColor:tabWordActiveBackgroundColor];
-        tabViewCell.clickColor  = [ASCThemesController currentThemeColor:tabWordActiveBackgroundColor];
-        if (@available(macOS 10.13, *)) {
-            tabViewCell.activeTextColor = [NSColor colorNamed:@"tab-editorsActiveTextColor"];
-        } else {
-            tabViewCell.activeTextColor = UIColorFromRGB(0xffffff);
-        }
-    } else if (type == ASCTabViewTypeSpreadsheet) {
-        tabViewCell.activeColor = [ASCThemesController currentThemeColor:tabCellActiveBackgroundColor];
-        tabViewCell.clickColor  = [ASCThemesController currentThemeColor:tabCellActiveBackgroundColor];
-        if (@available(macOS 10.13, *)) {
-            tabViewCell.activeTextColor = [NSColor colorNamed:@"tab-editorsActiveTextColor"];
-        } else {
-            tabViewCell.activeTextColor = UIColorFromRGB(0xffffff);
-        }
-    } else if (type == ASCTabViewTypePresentation) {
-        tabViewCell.activeColor = [ASCThemesController currentThemeColor:tabSlideActiveBackgroundColor];
-        tabViewCell.clickColor  = [ASCThemesController currentThemeColor:tabSlideActiveBackgroundColor];
-        if (@available(macOS 10.13, *)) {
-            tabViewCell.activeTextColor = [NSColor colorNamed:@"tab-editorsActiveTextColor"];
-        } else {
-            tabViewCell.activeTextColor = UIColorFromRGB(0xffffff);
-        }
-    } else if (type == ASCTabViewTypePdf) {
-        tabViewCell.activeColor = [ASCThemesController currentThemeColor:tabPdfActiveBackgroundColor];
-        tabViewCell.clickColor  = [ASCThemesController currentThemeColor:tabPdfActiveBackgroundColor];
-        if (@available(macOS 10.13, *)) {
-            tabViewCell.activeTextColor = [NSColor colorNamed:@"tab-editorsActiveTextColor"];
-        } else {
-            tabViewCell.activeTextColor = UIColorFromRGB(0xffffff);
+    } else {
+        tabViewCell.activeTextColor = [ASCThemesController currentThemeColor:tabActiveTextColor];
+
+        if (type == ASCTabViewTypeDocument) {
+            tabViewCell.activeColor =
+            tabViewCell.clickColor  = [ASCThemesController currentThemeColor:tabWordActiveBackgroundColor];
+        } else if (type == ASCTabViewTypeSpreadsheet) {
+            tabViewCell.activeColor =
+            tabViewCell.clickColor  = [ASCThemesController currentThemeColor:tabCellActiveBackgroundColor];
+        } else if (type == ASCTabViewTypePresentation) {
+            tabViewCell.activeColor =
+            tabViewCell.clickColor  = [ASCThemesController currentThemeColor:tabSlideActiveBackgroundColor];
+        } else if (type == ASCTabViewTypePdf) {
+            tabViewCell.activeColor =
+            tabViewCell.clickColor  = [ASCThemesController currentThemeColor:tabPdfActiveBackgroundColor];
         }
     }
 
