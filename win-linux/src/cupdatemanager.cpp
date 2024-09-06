@@ -364,8 +364,8 @@ CUpdateManager::CUpdateManager(QObject *parent):
             CSocket sock(INSTANCE_SVC_PORT, 0);
             sock.sendMessage((void*)msg.c_str(), msg.length() + 1);
             tstring args = _T("--run-as-app ") + std::to_tstring(pid);
-            if (InputArgs::contains(L"--log"))
-                args.append(_T(" --log"));
+            for (const auto &arg : InputArgs::arguments())
+                args.append(_T(" ") + WStrToTStr(arg));
             runProcess(QStrToTStr(qApp->applicationDirPath()) + DAEMON_NAME, args);
         }
         init();
