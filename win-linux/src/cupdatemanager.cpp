@@ -747,13 +747,7 @@ void CUpdateManager::handleAppClose()
     if ( m_startUpdateOnClose ) {
 #ifdef _WIN32
         if (m_packageData->fileType != "archive") {
-            wstring args;
-            if (m_packageData->fileType == "iss") {
-                GET_REGISTRY_SYSTEM(reg_system)
-                QString prev_inst_lang = "/LANG=" + reg_system.value("locale", "en").toString();
-                args += prev_inst_lang.toStdWString();
-            }
-            if (!m_socket->sendMessage(MSG_StartInstallPackage, WStrToTStr(args))) {
+            if (!m_socket->sendMessage(MSG_StartInstallPackage)) {
                 criticalMsg(nullptr, QObject::tr("An error occurred while start install updates: Update Service not found!"));
             }
         } else {

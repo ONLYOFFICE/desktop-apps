@@ -371,7 +371,7 @@ void CSvcManager::init()
             case MSG_StartInstallPackage:
                 if (!m_packageData->fileName.empty() && NS_File::getFileHash(m_packageData->fileName) == m_packageData->hash) {
                     __GLOBAL_LOCK
-                    startInstallPackage(params[1]);
+                    startInstallPackage();
                     __UNLOCK
                 } else {
                     m_socket->sendMessage(MSG_OtherError, _T("SVC_TXT_ERR_MD5"));
@@ -899,7 +899,7 @@ void CSvcManager::startReplacingService(const bool restartAfterUpdate)
 }
 
 #ifdef _WIN32
-void CSvcManager::startInstallPackage(const tstring &advArgs)
+void CSvcManager::startInstallPackage()
 {
     // Verify the signature of executable files
     if (!NS_File::verifyEmbeddedSignature(m_packageData->fileName)) {
@@ -913,11 +913,9 @@ void CSvcManager::startInstallPackage(const tstring &advArgs)
             args += _T(" ") + m_packageData->packageArgs;
     } else {
         args = m_packageData->packageArgs;
-    }
-    if (!advArgs.empty()) {
         if (!args.empty())
             args += _T(" ");
-        args += advArgs;
+        args += _T("/LANG=") + NS_Utils::GetAppLanguage();
     }
     if (!NS_File::runProcess(m_packageData->fileType == _T("msi") ? _T("msiexec.exe") : m_packageData->fileName, args))
         NS_Logger::WriteLog(_TR("An error occurred while start install updates!"), true);
