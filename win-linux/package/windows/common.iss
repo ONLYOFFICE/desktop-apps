@@ -108,11 +108,11 @@ LZMAUseSeparateProcess=yes
 [Languages]
 #define sLicenseFile BRANDING_DIR + "\..\..\..\common\package\license\" + LIC_FILE + ".rtf"
 #ifdef _ONLYOFFICE
-Name: en; MessagesFile: compiler:Default.isl; LicenseFile: {#sLicenseFile};
+Name: en_US; MessagesFile: compiler:Default.isl; LicenseFile: {#sLicenseFile};
 Name: ru; MessagesFile: compiler:Languages\Russian.isl; LicenseFile: {#sLicenseFile};
 #else
 Name: ru; MessagesFile: compiler:Languages\Russian.isl; LicenseFile: {#sLicenseFile};
-Name: en; MessagesFile: compiler:Default.isl; LicenseFile: {#sLicenseFile};
+Name: en_US; MessagesFile: compiler:Default.isl; LicenseFile: {#sLicenseFile};
 #endif
 Name: bg; MessagesFile: compiler:Languages\Bulgarian.isl; LicenseFile: {#sLicenseFile};
 Name: ca; MessagesFile: compiler:Languages\Catalan.isl; LicenseFile: {#sLicenseFile};
