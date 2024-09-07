@@ -301,7 +301,7 @@ namespace NS_File
             si.cb = sizeof(STARTUPINFO);
             PROCESS_INFORMATION pi;
             ZeroMemory(&pi, sizeof(pi));
-            if (CreateProcess(fileName.c_str(), &_args[0],
+            if (CreateProcess(NULL, &_args[0],
                                  NULL, NULL, FALSE, CREATE_UNICODE_ENVIRONMENT,
                                  NULL, NULL, &si, &pi))
             {
@@ -340,7 +340,7 @@ namespace NS_File
         si.cb = sizeof(STARTUPINFO);
         si.lpDesktop = const_cast<LPWSTR>(L"Winsta0\\Default");
         PROCESS_INFORMATION pi;
-        if (CreateProcessAsUser(hTokenDup, fileName.c_str(),
+        if (CreateProcessAsUser(hTokenDup, NULL,
                                 &_args[0],
                                 NULL, NULL, FALSE,
                                 CREATE_UNICODE_ENVIRONMENT,

@@ -906,13 +906,20 @@ void CSvcManager::startInstallPackage(const tstring &advArgs)
         NS_Logger::WriteLog(_TR("Update cancelled. The file signature is missing:") + _T(" ") + m_packageData->fileName, true);
         return;
     }
-    tstring args = m_packageData->packageArgs;
+    tstring args;
+    if (m_packageData->fileType == _T("msi")) {
+        args = _T("/i \"") + NS_File::toNativeSeparators(m_packageData->fileName) + _T("\"");
+        if (!m_packageData->packageArgs.empty())
+            args += _T(" ") + m_packageData->packageArgs;
+    } else {
+        args = m_packageData->packageArgs;
+    }
     if (!advArgs.empty()) {
         if (!args.empty())
             args += _T(" ");
         args += advArgs;
     }
-    if (!NS_File::runProcess(m_packageData->fileName, args))
+    if (!NS_File::runProcess(m_packageData->fileType == _T("msi") ? _T("msiexec.exe") : m_packageData->fileName, args))
         NS_Logger::WriteLog(_TR("An error occurred while start install updates!"), true);
 }
 #endif
