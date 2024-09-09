@@ -145,7 +145,7 @@ namespace NS_Utils
     {
         wstring lang = TEXT("en_US"), subkey = TEXT("SOFTWARE\\" REG_GROUP_KEY "\\" REG_APP_NAME);
         HKEY hKey = NULL, hRootKey = isRunAsApp() ? HKEY_CURRENT_USER : HKEY_LOCAL_MACHINE;
-        if (RegOpenKeyEx(hRootKey, subkey.c_str(), 0, KEY_ALL_ACCESS, &hKey) == ERROR_SUCCESS) {
+        if (RegOpenKeyEx(hRootKey, subkey.c_str(), 0, KEY_READ, &hKey) == ERROR_SUCCESS) {
             DWORD type = REG_SZ, cbData = 0;
             if (RegGetValue(hKey, NULL, TEXT("locale"), RRF_RT_REG_SZ, &type, NULL, &cbData) == ERROR_SUCCESS) {
                 wchar_t *pvData = (wchar_t*)malloc(cbData);
@@ -301,7 +301,7 @@ namespace NS_File
             si.cb = sizeof(STARTUPINFO);
             PROCESS_INFORMATION pi;
             ZeroMemory(&pi, sizeof(pi));
-            if (CreateProcess(fileName.c_str(), &_args[0],
+            if (CreateProcess(NULL, &_args[0],
                                  NULL, NULL, FALSE, CREATE_UNICODE_ENVIRONMENT,
                                  NULL, NULL, &si, &pi))
             {
@@ -340,7 +340,7 @@ namespace NS_File
         si.cb = sizeof(STARTUPINFO);
         si.lpDesktop = const_cast<LPWSTR>(L"Winsta0\\Default");
         PROCESS_INFORMATION pi;
-        if (CreateProcessAsUser(hTokenDup, fileName.c_str(),
+        if (CreateProcessAsUser(hTokenDup, NULL,
                                 &_args[0],
                                 NULL, NULL, FALSE,
                                 CREATE_UNICODE_ENVIRONMENT,

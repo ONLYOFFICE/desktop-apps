@@ -364,8 +364,8 @@ CUpdateManager::CUpdateManager(QObject *parent):
             CSocket sock(INSTANCE_SVC_PORT, 0);
             sock.sendMessage((void*)msg.c_str(), msg.length() + 1);
             tstring args = _T("--run-as-app ") + std::to_tstring(pid);
-            if (InputArgs::contains(L"--log"))
-                args.append(_T(" --log"));
+            for (const auto &arg : InputArgs::arguments())
+                args.append(_T(" ") + WStrToTStr(arg));
             runProcess(QStrToTStr(qApp->applicationDirPath()) + DAEMON_NAME, args);
         }
         init();
@@ -747,13 +747,7 @@ void CUpdateManager::handleAppClose()
     if ( m_startUpdateOnClose ) {
 #ifdef _WIN32
         if (m_packageData->fileType != "archive") {
-            wstring args;
-            if (m_packageData->fileType == "iss") {
-                GET_REGISTRY_SYSTEM(reg_system)
-                QString prev_inst_lang = "/LANG=" + reg_system.value("locale", "en").toString();
-                args += prev_inst_lang.toStdWString();
-            }
-            if (!m_socket->sendMessage(MSG_StartInstallPackage, WStrToTStr(args))) {
+            if (!m_socket->sendMessage(MSG_StartInstallPackage)) {
                 criticalMsg(nullptr, QObject::tr("An error occurred while start install updates: Update Service not found!"));
             }
         } else {
