@@ -989,6 +989,10 @@
                         [self.tabsControl removeTab:tab];
                     }
                 }
+            } else if ( keyCode == 81 ) { // Q
+                if ( pData->get_IsCommandMac() ) {
+                    [NSApp terminate:self];
+                }
             }
         }
     }
