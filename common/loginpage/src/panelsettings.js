@@ -171,19 +171,12 @@
                                             </div>
                                         </div>
                                         <div class='settings-field settings-field-lang'>
-                                            <label class='sett__caption' l10n>${_lang.settLanguage}</label>
+                                            <label class='sett__caption' l10n>${_lang.settLanguage}</label><label class='sett__caption'> *</label>
                                             <div class='sett--label-lift-top hbox'>
                                                 <section class='box-cmp-select'>
                                                     <select class='combobox' data-size="10"></select>
                                                 </section>
                                             </div>
-                                        </div>
-                                        <div class='settings-field' style='display:none;'>
-                                            <section class='switch-labeled hbox' id='sett-box-rtl-mode'>
-                                                <input type="checkbox" class="checkbox" id="sett-rtl-mode">
-                                                <label for="sett-rtl-mode" class='sett__caption' l10n>${_lang.settRtlMode} *</label>
-                                                <span class='sett__caption sett__caption-beta'>Beta</span>
-                                            </section>
                                         </div>
                                         <div class='settings-field' id='opts-ui-scaling' style='display:none'>
                                             <label class='sett__caption' l10n>${_lang.settScaling}</label><label class='sett__caption'> *</label>
@@ -314,8 +307,7 @@
             $optsSpellcheckMode,
             $optsLaunchMode,
             $optsAutoupdateMode;
-        let $chRtl,
-            $chGpu;
+        let $chGpu;
         let appSettings;
 
         function _set_user_name(name) {
@@ -382,7 +374,7 @@
         function _on_btn_apply(e) {
             let _user_new_name = $userName.val();
             if ( _user_new_name && _user_new_name.length &&
-                    _validate_user_name(_user_new_name) ) 
+                    _validate_user_name(_user_new_name) )
             {
                 let _doc_open_mode = $chOpenMode.prop('checked') ? 'view' : 'edit';
                 let _new_settings = {
@@ -444,15 +436,6 @@
                     $optsSpellcheckMode.selectpicker('refresh');
                 }
 
-                if ( $chRtl ) {
-                    _new_settings.rtl = $chRtl.prop("checked");
-
-                    if ( appSettings.rtl != _new_settings.rtl ) {
-                        _new_settings.restart = true;
-                        appSettings.rtl = _new_settings.rtl;
-                    }
-                }
-
                 if ( $chGpu ) {
                     _new_settings.usegpu = $chGpu.prop("checked");
 
@@ -464,7 +447,7 @@
 
                 sdk.command("settings:apply", JSON.stringify(_new_settings));
                 $btnApply.disable(true);
-                
+
                 localStorage.setItem('username', _user_new_name);
                 localStorage.setItem('docopenmode', _doc_open_mode);
 
@@ -476,12 +459,13 @@
 
         function _on_txt_user_change(e) {
             $userName.removeClass('error');
-            
+
             if ( $btnApply.isdisabled() )
                 $btnApply.disable(false);
         };
 
         function _is_lang_rtl(code) {
+            // TODO: get rtl langs list for native code
             return code == 'ar-SA';
         }
 
@@ -494,17 +478,6 @@
             }
 
             const _is_rtl = _is_lang_rtl(l);
-            if ( $chRtl ) {
-                $chRtl.prop("checked", _is_rtl);
-                if ( !_is_rtl ) {
-                    $chRtl.prop("disabled", "disabled");
-                    $chRtl.next().attr("disabled", "disabled");
-                } else {
-                    $chRtl.removeAttr("disabled");
-                    $chRtl.next().removeAttr("disabled");
-                }
-            }
-
             $btnApply.parent().toggleClass('rtl-font', _is_rtl);
             $btnApply.toggleClass('rtl-font--skip', !_is_rtl);
             $optsLang.toggleClass('notted', true);
@@ -561,13 +534,20 @@
                             $combo.selectpicker();
 
                             if ( appSettings.locale.restart ) {
-                                if ( !$panel.find('.settings-field-lang label[l10n] + .sett__caption-restart').length ) 
+                                if ( !$panel.find('.settings-field-lang label[l10n] + .sett__caption-restart').length )
                                     $panel.find('.settings-field-lang label[l10n]').after(`<label class='sett__caption sett__caption-restart'> *</label>`);
 
                                 $('#caption-restart', $panel).show();
                             }
 
                             $(document.body).toggleClass('rtl-font', _is_lang_rtl(appSettings.locale.current));
+                        }
+
+                        if ( appSettings.rtl === true ) {
+                            document.body.setAttribute('dir', 'rtl');
+                            document.body.classList.add('rtl');
+
+                            $userName.css('direction', 'rtl');
                         }
 
                         if ( appSettings.uiscaling != undefined && !$optsUIScaling ) {
@@ -684,28 +664,6 @@
                                 .on('change', e => {
                                     $btnApply.isdisabled() && $btnApply.disable(false);
                                 });
-                        }
-                    }
-
-                    if ( appSettings.rtl !== undefined ) {
-                        if ( !$chRtl || $chRtl.prop('checked') != appSettings.rtl ) {
-                            $chRtl = $('#sett-box-rtl-mode', $panel).parent().show().find('#sett-rtl-mode');
-                            $chRtl.prop('checked', !!appSettings.rtl)
-                                .on('change', e => {
-                                    $btnApply.prop('disabled') && $btnApply.prop('disabled', false);
-                                });
-
-                            if ( appSettings.rtl ) {
-                                document.body.setAttribute('dir', 'rtl');
-                                document.body.classList.add('rtl');
-
-                                $userName.css('direction', 'rtl');
-                            } else {
-                                if ( !_is_lang_rtl(appSettings.locale.current) )
-                                    $chRtl.attr('disabled', 'disabled')
-                                        .next().attr('disabled', 'disabled');
-                            }
-
                         }
                     }
 

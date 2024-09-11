@@ -143,7 +143,6 @@ l10n.en = {
     settOptDescDisabled: "Auto checking updates will be disabled",
     settOptDescAUpdateSilent: "Download and install update in background",
     settOptDescAUpdateAsk: "You will be notified about all updates steps",
-    settRtlMode: "RTL Interface",
     settGpuUseMode: "Use graphics acceleration when available",
 }
 

@@ -1289,10 +1289,8 @@ void CAscApplicationManagerWrapper::initializeApp()
 
 #if !defined(__OS_WIN_XP)
     bool _is_rtl = CLangater::isRtlLanguage(CLangater::getCurrentLangCode());
-    if ( reg_user.contains("forcedRtl") ) {
-        if ( _is_rtl )
-            _is_rtl = reg_user.value("forcedRtl", false).toBool();
-        else reg_user.setValue("forcedRtl", false);
+    if ( InputArgs::contains(L"--text-direction") ) {
+        _is_rtl = InputArgs::argument_value(L"--text-direction") == L"rtl";
     }
 #else
     const bool _is_rtl = false;
@@ -1820,17 +1818,6 @@ bool CAscApplicationManagerWrapper::applySettings(const wstring& wstrjson)
         QString _user_newname = objRoot["username"].toString();
         if ( _user_newname.isEmpty() )
             _user_newname = QString::fromStdWString(Utils::systemUserName());
-
-        if ( objRoot.contains("rtl") ) {
-            _reg_user.setValue("forcedRtl", objRoot["rtl"].toBool(false));
-
-            /*
-             * show message and relaunch app
-            */
-        } else {
-            _reg_user.remove("forcedRtl");
-        }
-
 
         QString _lang_id = CLangater::getCurrentLangCode();
         if ( objRoot.contains("langid") ) {
