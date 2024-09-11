@@ -68,7 +68,7 @@
     
     // Remove 'Start Dictation' and 'Special Characters' from menu
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"NSDisabledDictationMenuItem"];
-    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"NSDisabledCharacterPaletteMenuItem"];
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"NSDisabledCharacterPaletteMenuItem"];
     [[NSUserDefaults standardUserDefaults] synchronize];
     
     
