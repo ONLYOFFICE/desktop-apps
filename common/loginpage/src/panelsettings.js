@@ -380,14 +380,17 @@
             *  that version has no support for unicode in regexp
             */
             if (window.utils.inParams.osver == 'winxp' || /windows nt 5/i.test(navigator.appVersion)) return true;
-            else return (new RegExp('^[\\p{L}\\p{M}\\p{N}\'"\\.\\- ]+$', 'iu')).test(name)
+            else return (new RegExp('^[\\p{L}\\p{M}\\p{N}\'"«»()_+=&^%$#@!~*\\/.\\- ]+$', 'iu')).test(name)
         };
 
         function _on_btn_apply(e) {
             let _user_new_name = $userName.val();
             if ( _user_new_name && _user_new_name.length &&
-                    _validate_user_name(_user_new_name) ) 
+                    _validate_user_name(_user_new_name) )
             {
+                _user_new_name = _user_new_name.trim();
+                $userName.val(_user_new_name);
+
                 let _doc_open_mode = $chOpenMode.prop('checked') ? 'view' : 'edit';
                 let _new_settings = {
                     username:_user_new_name,
