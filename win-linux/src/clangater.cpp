@@ -107,7 +107,11 @@ public:
     }
 
     QString langName(const QString& code) {
-        return m_langs.value(code).first;
+        foreach (const auto &lang, m_langs) {
+            if (lang.first == code)
+                return lang.second.first;
+        }
+        return "";
     }
 
     bool reload(const QString& lang) {
@@ -140,10 +144,10 @@ public:
     }
 
     QString findCloseLang(const QString& n) {
-        QMap<QString, std::pair<QString, QString>>::iterator i = m_langs.begin();
+        auto i = m_langs.begin();
         while ( i != m_langs.end() ) {
-            if ( i.key().startsWith(n) )
-                return i.key();
+            if ( i->first.startsWith(n) )
+                return i->first;
 
             ++i;
         }
@@ -155,7 +159,7 @@ private:
     std::list<QTranslator *> m_list;
     std::list<QString> m_dirs;
 
-    QMap<QString, std::pair<QString, QString>> m_langs{
+    QVector<std::pair<QString, std::pair<QString, QString>>> m_langs{
         {"en-US", {"English (United States)", ""}},
         {"en-GB", {"English (United Kingdom)", ""}},
         {"ru-RU", {"Русский", "Russian"}},
@@ -165,8 +169,8 @@ private:
         {"sk-SK", {"Slovenčina", "Slovak"}},
         {"cs-CZ", {"Čeština", "Czech"}},
         {"it-IT", {"Italiano", "Italian"}},
+        {"pt-PT", {"Português (Portugal)", "Portuguese (Portugal)"}},
         {"pt-BR", {"Português Brasileiro", "Portuguese (Brazil)"}}
-        ,{"pt-PT", {"Português (Portugal)", "Portuguese (Portugal)"}}
         ,{"pl-PL", {"Polski", "Polish"}}
         ,{"zh-CN", {"简体中文", "Chinese (Simplified)"}}
         ,{"zh-TW", {"繁體中文", "Chinese (Traditional)"}}
@@ -318,7 +322,7 @@ void CLangater::reloadTranslations(const QString& lang)
 #endif
 }
 
-void CLangater::refreshLangs(const QMap<QString, std::pair<QString, QString>>& map)
+void CLangater::refreshLangs(const QVector<std::pair<QString, std::pair<QString, QString>>>& map)
 {
     getInstance()->m_intf->m_langs = {map};
 }
@@ -340,9 +344,12 @@ QString CLangater::getLangName(const QString& code)
 QJsonObject CLangater::availableLangsToJson()
 {
     QJsonObject _out_obj;
+    QMap<QString, std::pair<QString, QString>> langMap;
+    foreach (const auto &lang, getInstance()->m_intf->m_langs)
+        langMap.insert(lang.first, lang.second);
 
-    QMap<QString, std::pair<QString, QString>>::const_iterator i = getInstance()->m_intf->m_langs.constBegin();
-    while ( i != getInstance()->m_intf->m_langs.constEnd() ) {
+    auto i = langMap.constBegin();
+    while ( i != langMap.constEnd() ) {
         _out_obj.insert(i.key(), QJsonObject{{"name", i.value().first},{"enname", i.value().second}});
         ++i;
     }
