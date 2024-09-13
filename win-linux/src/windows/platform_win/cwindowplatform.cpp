@@ -247,7 +247,9 @@ void CWindowPlatform::adjustGeometry()
         } else
         if (Utils::getWinVersion() == WinVer::Win10) {
             int brdWidth = 0;
-            SystemParametersInfo(SPI_GETBORDER, 0, &brdWidth, 0);
+            HDC hdc = GetDC(NULL);
+            brdWidth = GetSystemMetrics(SM_CXBORDER) * GetDeviceCaps(hdc, LOGPIXELSX)/96;
+            ReleaseDC(NULL, hdc);
             mrg = QMargins(0, brdWidth, 0, 0);
         }
         m_resAreaWidth = mrg.top();
