@@ -170,7 +170,7 @@ auto replace(tstring &str, const tstring &from, const tstring &to)->void {
 #ifdef _WIN32
 auto restartService()->void
 {
-    const wstring fileName = NS_File::appPath() + RESTART_BATCH;
+    wstring fileName = NS_File::appPath() + RESTART_BATCH;
     if (NS_File::fileExists(fileName) && !NS_File::removeFile(fileName)) {
         NS_Logger::WriteLog(_TR("An error occurred while deleting:") + _T(" ") + fileName, true);
         return;
@@ -195,7 +195,7 @@ auto restartService()->void
     ZeroMemory(&si, sizeof(si));
     ZeroMemory(&pi, sizeof(pi));
     si.cb = sizeof(si);
-    if (!CreateProcess(NULL, const_cast<LPWSTR>(fileName.c_str()), NULL, NULL, FALSE,
+    if (!CreateProcess(NULL, &fileName[0], NULL, NULL, FALSE,
                           CREATE_NO_WINDOW | CREATE_UNICODE_ENVIRONMENT, NULL, NULL, &si, &pi))
     {
         NS_Logger::WriteLog(_TR("An error occurred while restarting the service!"), true);
