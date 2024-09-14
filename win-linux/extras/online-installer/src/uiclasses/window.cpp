@@ -149,7 +149,9 @@ Window::Window(Widget *parent, const Rect &rc) :
     GetFrameMetricsForDpi(m_frame, m_dpi, m_isMaximized);
 
     if (m_borderless && Utils::getWinVersion() == WinVer::Win10) {
-        SystemParametersInfo(SPI_GETBORDER, 0, &m_brdWidth, 0);
+        HDC hdc = GetDC(NULL);
+        m_brdWidth = GetSystemMetrics(SM_CXBORDER) * GetDeviceCaps(hdc, LOGPIXELSX)/96;
+        ReleaseDC(NULL, hdc);
         m_brdColor = Utils::getColorizationColor(true, RGB(0xfe, 0xfe, 0xfe));
     }
     SetWindowPos(m_hWnd, NULL, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOMOVE | SWP_NOZORDER | SWP_NOACTIVATE | SWP_FRAMECHANGED);
@@ -443,7 +445,9 @@ bool Window::event(UINT msg, WPARAM wParam, LPARAM lParam, LRESULT *result)
                 if (isMaximized) {
                     m_brdWidth = 0;
                 } else {
-                    SystemParametersInfo(SPI_GETBORDER, 0, &m_brdWidth, 0);
+                    HDC hdc = GetDC(NULL);
+                    m_brdWidth = GetSystemMetrics(SM_CXBORDER) * GetDeviceCaps(hdc, LOGPIXELSX)/96;
+                    ReleaseDC(NULL, hdc);
                 }
             }
         }
