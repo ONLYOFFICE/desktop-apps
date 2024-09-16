@@ -1067,7 +1067,11 @@ namespace WindowHelper {
                         *(FARPROC*)&DwmGetColorizationColor = GetProcAddress(module, "DwmGetColorizationColor");
                 }
                 if (DwmGetColorizationColor && SUCCEEDED(DwmGetColorizationColor(&dwcolor, &opaque))) {
-                    return QColor((dwcolor & 0xff0000) >> 16, (dwcolor & 0xff00) >> 8, dwcolor & 0xff);
+                    float a = (float)((dwcolor >> 24) & 0xff)/255;
+                    int r = (int)(((dwcolor >> 16) & 0xff) * a + 255 * (1 - a));
+                    int g = (int)(((dwcolor >> 8) & 0xff) * a + 255 * (1 - a));
+                    int b = (int)((dwcolor & 0xff) * a + 255 * (1 - a));
+                    return QColor(r, g, b);
                 }
             } else {
                 QSettings reg_lt("HKEY_CURRENT_USER\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize", QSettings::NativeFormat);
