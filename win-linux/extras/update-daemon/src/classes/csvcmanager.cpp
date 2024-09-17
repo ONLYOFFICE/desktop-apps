@@ -82,7 +82,6 @@
 #ifndef URL_APPCAST_DEV_CHANNEL
 # define URL_APPCAST_DEV_CHANNEL ""
 #endif
-#define CMD_ARGUMENT_UPDATES_CHANNEL _T("--updates-appcast-channel")
 #define UPDATE_PATH      _T("/" REG_APP_NAME "Updates")
 #define BACKUP_PATH      _T("/" REG_APP_NAME "Backup")
 #define SUCCES_UNPACKED  _T("/success_unpacked.txt")
@@ -258,8 +257,7 @@ CSvcManager::CSvcManager():
     m_pDownloader(new CDownloader),
     m_pUnzip(new CUnzip)
 {
-    m_checkUrl = (NS_Utils::cmdArgContains(CMD_ARGUMENT_UPDATES_CHANNEL) && NS_Utils::cmdArgValue(CMD_ARGUMENT_UPDATES_CHANNEL) == _T("dev"))
-                    ? _T(URL_APPCAST_DEV_CHANNEL) : _T(URL_APPCAST_UPDATES);
+    m_checkUrl = NS_Utils::cmdArgContains(_T("--appcast-dev-channel")) ? _T(URL_APPCAST_DEV_CHANNEL) : _T(URL_APPCAST_UPDATES);
     NS_Logger::WriteLog(m_checkUrl.empty() ? _T("Updates is off, URL is empty.") : _T("Updates is on, URL: ") + m_checkUrl);
     init();
 }
