@@ -120,7 +120,7 @@ COLORREF Utils::getColorizationColor(bool isActive, COLORREF topColor)
     return RGB(res, res, res);
 }
 
-bool Utils::isColorDark(COLORREF color)
-{   
-    return int(0.299 * GetRValue(color) + 0.587 * GetGValue(color) + 0.114 * GetBValue(color)) < 128;
-}
+// bool Utils::isColorDark(COLORREF color)
+// {
+//     return int(0.299 * GetRValue(color) + 0.587 * GetGValue(color) + 0.114 * GetBValue(color)) < 128;
+// }
