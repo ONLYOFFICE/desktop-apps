@@ -142,6 +142,9 @@
         sdk.CryptoMode = e;
     };
 
+    sdk.GetLocalTemplates = () => {
+    }
+
     var notifySubscribers = function(action, type, arg, context) {
         var pubtype = type || 'any',
             pubsubscribers = subscribers[pubtype],

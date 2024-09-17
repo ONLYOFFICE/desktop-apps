@@ -84,6 +84,7 @@ int main( int argc, char *argv[] )
             Utils::makepath(user_data_path.append("/data"));
             manager->m_oSettings.cookie_path = (user_data_path + "/cookie").toStdWString();
             manager->m_oSettings.recover_path = (user_data_path + "/recover").toStdWString();
+            // manager->m_oSettings.templates_path = (user_data_path + "/templates").toStdWString();
             manager->m_oSettings.fonts_cache_info_path = (user_data_path + "/fonts").toStdWString();
 
             Utils::makepath(QString().fromStdWString(manager->m_oSettings.fonts_cache_info_path));

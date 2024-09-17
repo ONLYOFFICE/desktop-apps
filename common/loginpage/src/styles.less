@@ -352,7 +352,7 @@ li.menu-item {
     }
 
     &.templates {
-        padding: 20px;
+/*        padding: 20px;*/
     }
 }
 
@@ -1298,6 +1298,51 @@ li.menu-item {
         align-items: center;
         justify-content: center;
         position: relative;
+    }
+
+    &.local {
+        section[panel=cloud] {
+            display: none;
+        }
+    }
+
+    &.cloud {
+        section[panel=local] {
+            display: none;
+        }
+    }
+
+    section {
+        height: 100%;
+        overflow-y: auto;
+    }
+
+    .nav-item {
+        &.selected {
+            text-decoration: underline;
+        }
+    }
+
+    .item {
+        padding: 10px;
+        cursor: pointer;
+
+        .title {
+            color: @text-normal;
+        }
+
+        &:hover {
+            background-color: @highlight-button-hover;
+        }
+    }
+
+    .table-templates {
+        display: grid;
+        grid-auto-flow: row;
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        grid-template-rows: repeat(auto-fill, 1fr);
+        column-gap: 10px;
+        row-gap: 10px;
     }
 }
 

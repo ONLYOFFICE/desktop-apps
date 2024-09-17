@@ -46,6 +46,7 @@
 #include "clogger.h"
 #include "common/File.h"
 #include <QApplication>
+#include <QJsonParseError>
 #ifdef _WIN32
 # define APP_LAUNCH_NAME "\\DesktopEditors.exe"
 # define RESTART_BATCH "/apprestart.bat"
@@ -312,6 +313,19 @@ public:
                         opts.parent_id = event.m_nSenderId;
 
                         openDocument(opts);
+                    }
+                } else if ( format.rfind(L"{\"template", 0) == 0 ) {
+                    QJsonParseError jerror;
+                    QJsonDocument jdoc = QJsonDocument::fromJson(QString::fromStdWString(format).toUtf8(), &jerror);
+
+                    if( jerror.error == QJsonParseError::NoError ) {
+                        QJsonObject obj = jdoc.object().value("template").toObject();
+                        int _f = obj.value("type").toInt();
+
+                        COpenOptions opts{m_appmanager.newFileName(_f), etTemplateFile};
+                        opts.format = _f;
+
+                        CMessage::info(m_appmanager.mainWindow()->handle(), "create new file with name " + opts.name + ". format is " + QString::number(opts.format));
                     }
                 } else {
                     int _f = format == L"word" ? AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCX :
