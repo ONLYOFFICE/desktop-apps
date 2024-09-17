@@ -133,8 +133,8 @@ void DrawingEngine::DrawTopBorder(int brdWidth, COLORREF brdColor) const
 {
     HPEN pen = CreatePen(PS_SOLID, brdWidth, brdColor);
     HPEN oldPen = (HPEN)SelectObject(m_hdc, pen);
-    MoveToEx(m_hdc, m_rc->left, m_rc->top, NULL);
-    LineTo(m_hdc, m_rc->right, m_rc->top);
+    MoveToEx(m_hdc, m_rc->left - 1, m_rc->top + brdWidth - 1, NULL);
+    LineTo(m_hdc, m_rc->right, m_rc->top + brdWidth - 1);
     SelectObject(m_hdc, oldPen);
     DeleteObject(pen);
 }

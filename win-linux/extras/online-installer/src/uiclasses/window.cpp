@@ -25,7 +25,7 @@ static double GetLogicalDpi(HWND hWnd)
         UINT(WINAPI *_GetDpiForWindow)(HWND) = NULL;
         *(FARPROC*)&_GetDpiForWindow = GetProcAddress(module, "GetDpiForWindow");
         if (_GetDpiForWindow)
-            return _GetDpiForWindow(hWnd)/96;
+            return (double)_GetDpiForWindow(hWnd)/96;
     }
     HDC hdc = GetDC(NULL);
     double dpi = (double)GetDeviceCaps(hdc, LOGPIXELSX)/96;
