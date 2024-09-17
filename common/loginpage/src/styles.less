@@ -1318,8 +1318,15 @@ li.menu-item {
     }
 
     .nav-item {
+        border: 1px solid @highlight-button-pressed;
+        padding: 5px 10px;
+
         &.selected {
-            text-decoration: underline;
+            background-color: @highlight-button-pressed;
+        }
+
+        &[data-value=local] {
+            margin-right: -4px;
         }
     }
 
