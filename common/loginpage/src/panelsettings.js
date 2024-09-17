@@ -603,12 +603,6 @@
                             }
 
 
-                            if ( nativevars.localthemes ) {
-                                for ( const t of nativevars.localthemes ) {
-                                    const _theme_title = t.l10n[utils.Lang.id] || t.name;
-                                    _combo.append(`<option value=${t.id} ml10n>${_theme_title}</option>`);
-                                }
-                            }
 
                             if ( !$optsUITheme ) {
                                 ($optsUITheme = _combo)
