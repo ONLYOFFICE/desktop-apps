@@ -349,6 +349,7 @@
 
                 const _divider = _combo.find('[data-divider]');
                 objs.forEach(t => {
+                    t.l10n || (t.l10n = {});
                     const _css = create_colors_css(t.id, t.colors);
                     if ( _css ) {
                         const _$style = $(`style[data-theme-id=${t.id}]`);
