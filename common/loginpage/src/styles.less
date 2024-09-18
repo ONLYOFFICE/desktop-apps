@@ -1333,6 +1333,7 @@ li.menu-item {
     .item {
         padding: 10px;
         cursor: pointer;
+        width: 160px;
 
         .title {
             color: @text-normal;
@@ -1343,13 +1344,9 @@ li.menu-item {
         }
     }
 
-    .table-templates {
-        display: grid;
-        grid-auto-flow: row;
-        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-        grid-template-rows: repeat(auto-fill, 1fr);
-        column-gap: 10px;
-        row-gap: 10px;
+    .table-templates.list {
+        display: flex;
+        flex-wrap: wrap;
     }
 }
 
