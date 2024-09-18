@@ -1068,6 +1068,8 @@ namespace WindowHelper {
                 }
                 if (DwmGetColorizationColor && SUCCEEDED(DwmGetColorizationColor(&dwcolor, &opaque))) {
                     float a = (float)((dwcolor >> 24) & 0xff)/255;
+                    if (a < 0.8)
+                        a = 0.8;
                     int r = (int)(((dwcolor >> 16) & 0xff) * a + 255 * (1 - a));
                     int g = (int)(((dwcolor >> 8) & 0xff) * a + 255 * (1 - a));
                     int b = (int)((dwcolor & 0xff) * a + 255 * (1 - a));
