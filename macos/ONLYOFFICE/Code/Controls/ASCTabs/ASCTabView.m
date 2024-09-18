@@ -55,6 +55,7 @@ static NSUInteger const kASTabViewCloseButtonSize = 12;
 @implementation ASCTabView
 
 @synthesize isProcessing = _isProcessing;
+NSString * originalTitle;
 
 - (id)init {
     self = [super init];
@@ -278,8 +279,10 @@ static NSUInteger const kASTabViewCloseButtonSize = 12;
                                     )];
 }
 
-- (NSString *)title {
-    return _changed ? [NSString stringWithFormat:@"%@*", [super title]] : [super title];
+- (void)setTitle:(NSString *)title {
+    [super setTitle:title];
+    
+    originalTitle = title;
 }
 
 - (NSMutableDictionary *)params {
@@ -298,6 +301,15 @@ static NSUInteger const kASTabViewCloseButtonSize = 12;
 
 - (void)setChanged:(BOOL)changed {
     _changed = changed;
+    
+    unichar l = [[super title] characterAtIndex:0];
+    if ( changed ) {
+        if ( l != '*' )
+            [super setTitle:[NSString stringWithFormat:@"*%@", originalTitle]];
+    } else {
+        if ( l == '*' )
+            [super setTitle:originalTitle];
+    }
 }
 
 - (void)drawRect:(NSRect)dirtyRect {
