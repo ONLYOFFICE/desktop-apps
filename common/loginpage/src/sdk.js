@@ -40,6 +40,7 @@
                     'on_check_auth',
                     'onChangeCryptoMode',
                     'onfeaturesavailable',
+                    'onaddtemplates',
                 ];
 
     let subscribers = {
