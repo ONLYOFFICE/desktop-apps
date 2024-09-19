@@ -105,17 +105,6 @@ begin
   Result :=  msiproductupgrade(upgradecode, '14.27.29114.0');
 end;
 
-procedure CreateLaunchBatch();
-var
-   fileName: String;
-   lines: TArrayOfString;
-begin
-   SetArrayLength(lines, 1);
-   fileName := ExpandConstant('{app}\launch.bat');
-   lines[0] := ExpandConstant('start "" "{app}\{#iconsExe}" %*');
-   SaveStringsToFile(fileName, lines, False);
-end;
-
 function ReadBinFile(fileName: String; list: TStringList): Boolean;
 var
   fs: TFileStream;
