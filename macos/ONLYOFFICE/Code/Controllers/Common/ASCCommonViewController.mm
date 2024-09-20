@@ -834,12 +834,14 @@
 - (void)onCEFSave:(NSNotification *)notification {
     if (notification && notification.userInfo) {
         NSDictionary * params = (NSDictionary *)notification.userInfo;
-        NSString * viewId = params[@"viewId"];
         
-        ASCTabView * tab = [self.tabsControl tabWithUUID:viewId];
-        
-        if (tab && tab.params[@"shouldClose"] && [tab.params[@"shouldClose"] boolValue]) {
-            [self.tabsControl removeTab:tab];
+        if ( ![params[@"cancel"] boolValue] ) {
+            NSString * viewId = params[@"viewId"];
+            ASCTabView * tab = [self.tabsControl tabWithUUID:viewId];
+            
+            if (tab && tab.params[@"shouldClose"] && [tab.params[@"shouldClose"] boolValue]) {
+                [self.tabsControl removeTab:tab];
+            }
         }
     }
 }
