@@ -33,13 +33,14 @@
 
 +function() { "use strict"
     let _events = [
-                    'onchildframemessage'
-                    , 'onupdaterecents'
-                    , 'onupdaterecovers'
-                    , 'on_native_message'
-                    , 'on_check_auth'
-                    , 'onChangeCryptoMode'
-                    , 'onfeaturesavailable'
+                    'onchildframemessage',
+                    'onupdaterecents',
+                    'onupdaterecovers',
+                    'on_native_message',
+                    'on_check_auth',
+                    'onChangeCryptoMode',
+                    'onfeaturesavailable',
+                    'onaddtemplates',
                 ];
 
     let subscribers = {

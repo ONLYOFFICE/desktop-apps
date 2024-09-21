@@ -31,6 +31,17 @@
 */
 
 +function(){ 'use strict'
+    function FileTemplateModel(attributes) {
+        Model.prototype.constructor.call(this);
+        Object.assign(this, attributes);
+
+        this.name   = attributes.name || '';
+        this.descr  = attributes.descr || '';
+    };
+
+    FileTemplateModel.prototype = new Model();
+    FileTemplateModel.prototype.constructor = FileTemplateModel;
+
     const ControllerTemplates = function(args={}) {
         args.caption = 'Templates';
         args.action =
@@ -60,9 +71,27 @@
         var _lang = utils.Lang;
 
         const msg = 'Oops! Something went wrong :(<br>Check internet connection';
-        this.emptyPanelContent = `<div id="frame">`;
+        this.emptyPanelContent = `<div id="frame"></div>`;
 
-        args.tplPage = `<div class="action-panel ${args.action}">${this.emptyPanelContent}</div></div>`;
+        const _html = `<div class='action-panel ${args.action}'>
+                            <div class='flexbox content-box'>
+                                <div class='lr-flex'>
+                                    <h3 class='table-caption' l10n>${_lang.actTemplates}</h3>
+                                    <div>
+                                        <a data-value='local' class='nav-item'>Local</a>
+                                        <a data-value='cloud' class='nav-item'>Cloud</a>
+                                    </div>
+                                </div>
+                                <section panel='local'>
+                                    <div class='table-box flex-fill'>
+                                        <div class='table-templates list'></div>
+                                    </div>
+                                </section>
+                                <section panel='cloud'>${this.emptyPanelContent}</section>
+                            </div>
+                    </div>`;
+
+        args.tplPage = _html;
         args.menu = '.main-column.tool-menu';
         args.field = '.main-column.col-center';
         args.itemindex = 0;
@@ -74,8 +103,22 @@
     ViewTemplates.prototype = Object.create(baseView.prototype);
     ViewTemplates.prototype.constructor = ViewTemplates;
 
+    utils.fn.extend(ViewTemplates.prototype, {
+        listitemtemplate: function(info) {
+            return `<div id="${info.uid}" class='item'>
+                        <div class='icon'>
+                            <img src="${info.icon}"></img>
+                        </div>
+                        <span class='title'>${info.name}</span>
+                    </div>`;
+        }
+    });
+
     utils.fn.extend(ControllerTemplates.prototype, (function() {
         let iframe;
+        let panel_local,
+            panel_cloud;
+        let templates;
 
         // TODO: for tests only. uncomment static url before release
         let test_url = localStorage.templatesdomain ? localStorage.templatesdomain : 'https://oforms.onlyoffice.com';
@@ -101,6 +144,62 @@
             }
         }
 
+        const _on_nav_item_click = function(e) {
+            $('.nav-item', this.view.$panel).removeClass('selected');
+            const $item = $(e.target);
+            $item.addClass('selected');
+
+            this.view.$panel.removeClass('local cloud').addClass($item.data('value'));
+        }
+
+
+        function _init_collection() {
+            templates = new Collection({
+                view: $('section.local', this.view.$panel),
+                list: $('.table-templates.list', this.view.$panel),
+            });
+
+            templates.events.erased.attach(collection => {
+                collection.list.parent().addClass('empty');
+            });
+
+            templates.events.inserted.attach((collection, model) => {
+                let $item = this.view.listitemtemplate(model);
+
+                collection.list.append($item);
+                collection.list.parent().removeClass('empty');
+            });
+
+            templates.events.click.attach((collection, model) => {
+                sdk.command('create:new', JSON.stringify({'template': {id:model.id, type:model.type, path: model.path}}));
+            });
+
+            templates.events.contextmenu.attach(function(collection, model, e){
+                // ppmenu.actionlist = 'recent';
+                // ppmenu.hideItem('files:explore', (!model.islocal && !model.dir) || !model.exist);
+                // ppmenu.show({left: e.clientX, top: e.clientY}, model);
+            });
+
+            templates.events.changed.attach(function(collection, model){
+                // let $el = collection.list.find('#' + model.uid);
+                // if ( $el ) $el[model.exist ? 'removeClass' : 'addClass']('unavail');
+            });
+
+            templates.empty();
+        }
+
+        const _on_update_template = function(index) {
+
+        }
+
+        const _on_add_templates = function(tmpls) {
+            for (let item of tmpls) {
+                var model = new FileTemplateModel(item);
+
+                templates.add(model);
+            }
+        }
+
         return {
             init: function() {
                 baseController.prototype.init.apply(this, arguments);
@@ -110,6 +209,9 @@
                     lang: utils.Lang.id,
                     page: 'templates',
                 });
+
+                this.view.$panel.addClass('local');
+                $('.nav-item[data-value=local]', this.view.$panel).addClass('selected');
 
                 const _check_url_avail = () => {
                     if ( !iframe ) {
@@ -167,6 +269,13 @@
                 //         e.stopPropagation();
                 //     });
                 // }
+
+                $('.nav-item', this.view.$panel).click(_on_nav_item_click.bind(this));
+                window.sdk.on('onupdatetemplate', _on_update_template.bind(this));
+                window.sdk.on('onaddtemplates', _on_add_templates.bind(this));
+
+                _init_collection.call(this);
+                window.sdk.LocalFileTemplates();
 
                 return this;
             }
