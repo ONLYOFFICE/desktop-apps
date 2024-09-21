@@ -106,8 +106,10 @@
     utils.fn.extend(ViewTemplates.prototype, {
         listitemtemplate: function(info) {
             return `<div id="${info.uid}" class='item'>
-                        <img src=${info.icon}></img>
-                        <p class='title'>${info.name}</p>
+                        <div class='icon'>
+                            <img src="${info.icon}"></img>
+                        </div>
+                        <span class='title'>${info.name}</span>
                     </div>`;
         }
     });
@@ -169,7 +171,7 @@
             });
 
             templates.events.click.attach((collection, model) => {
-                sdk.command('create:new', JSON.stringify({'template': {'id':model.id, type:model.type}}));
+                sdk.command('create:new', JSON.stringify({'template': {id:model.id, type:model.type, path: model.path}}));
             });
 
             templates.events.contextmenu.attach(function(collection, model, e){
@@ -273,7 +275,7 @@
                 window.sdk.on('onaddtemplates', _on_add_templates.bind(this));
 
                 _init_collection.call(this);
-                window.sdk.GetLocalTemplates();
+                window.sdk.LocalFileTemplates();
 
                 return this;
             }

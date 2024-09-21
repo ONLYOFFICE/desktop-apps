@@ -80,11 +80,11 @@ int main( int argc, char *argv[] )
         QString common_data_path = Utils::getAppCommonPath();
         if ( !common_data_path.isEmpty() ) {
             manager->m_oSettings.SetUserDataPath(common_data_path.toStdWString());
+            manager->m_oSettings.user_templates_path = (common_data_path + "/templates").toStdWString();
 
             Utils::makepath(user_data_path.append("/data"));
             manager->m_oSettings.cookie_path = (user_data_path + "/cookie").toStdWString();
             manager->m_oSettings.recover_path = (user_data_path + "/recover").toStdWString();
-            // manager->m_oSettings.templates_path = (user_data_path + "/templates").toStdWString();
             manager->m_oSettings.fonts_cache_info_path = (user_data_path + "/fonts").toStdWString();
 
             Utils::makepath(QString().fromStdWString(manager->m_oSettings.fonts_cache_info_path));
@@ -100,6 +100,7 @@ int main( int argc, char *argv[] )
         manager->m_oSettings.recover_path               = (user_data_path + "/recover").toStdWString();
         manager->m_oSettings.user_plugins_path          = (user_data_path + "/sdkjs-plugins").toStdWString();
         manager->m_oSettings.local_editors_path         = app_path + L"/editors/web-apps/apps/api/documents/index.html";
+        manager->m_oSettings.system_templates_path      = app_path  + L"/converter/templates";
         manager->m_oSettings.additional_fonts_folder.push_back(app_path + L"/fonts");
         manager->m_oSettings.country = Utils::systemLocationCode().toStdString();
         manager->m_oSettings.connection_error_path      = app_path + L"/editors/webext/noconnect.html";

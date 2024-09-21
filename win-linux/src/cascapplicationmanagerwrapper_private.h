@@ -322,10 +322,10 @@ public:
                         QJsonObject obj = jdoc.object().value("template").toObject();
                         int _f = obj.value("type").toInt();
 
-                        COpenOptions opts{m_appmanager.newFileName(_f), etTemplateFile};
+                        COpenOptions opts{m_appmanager.newFileName(_f), etTemplateFile, obj.value("path").toString()};
                         opts.format = _f;
 
-                        CMessage::info(m_appmanager.mainWindow()->handle(), "create new file with name " + opts.name + ". format is " + QString::number(opts.format));
+                        openDocument(opts);
                     }
                 } else {
                     int _f = format == L"word" ? AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCX :

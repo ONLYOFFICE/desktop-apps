@@ -1334,9 +1334,20 @@ li.menu-item {
         padding: 10px;
         cursor: pointer;
         width: 160px;
+        height: 200px;
+        display: flex;
+        flex-direction: column;
 
         .title {
             color: @text-normal;
+            word-break: break-word;
+        }
+
+        .icon {
+            flex-grow: 1;
+            img {
+                width: 140px;
+            }
         }
 
         &:hover {
@@ -1347,6 +1358,7 @@ li.menu-item {
     .table-templates.list {
         display: flex;
         flex-wrap: wrap;
+        gap: 10px 5px;
     }
 }
 
