@@ -193,6 +193,7 @@
         }
 
         const _on_add_templates = function(tmpls) {
+            templates.empty();
             for (let item of tmpls) {
                 var model = new FileTemplateModel(item);
 
