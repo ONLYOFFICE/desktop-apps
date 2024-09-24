@@ -2096,11 +2096,11 @@ begin
     end;
   end;
 
-  args := ['new.docx:.docx:.Document.12:7',
-           'new.pptx:.pptx:.Show.12:9',
-           'new.xlsx:.xlsx:.Sheet.12:10'
+  args := ['new.docx:.docx:.Document.12:7:1000:1100',
+           'new.pptx:.pptx:.Show.12:9:1002:1102',
+           'new.xlsx:.xlsx:.Sheet.12:10:1001:1101'
 #ifdef _ONLYOFFICE
-           ,'new.pdf:.pdf:.Pdf:5'
+           ,'new.pdf:.pdf:.Pdf:5:1003:1103'
 #endif
            ];
 
@@ -2112,6 +2112,8 @@ begin
      if not RegKeyExists(HKEY_LOCAL_MACHINE, regpath) then begin
        RegWriteStringValue(HKEY_LOCAL_MACHINE, regpath, 'IconPath', ExpandConstant('{app}\{#iconsExe},' + values[3]));
        RegWriteStringValue(HKEY_LOCAL_MACHINE, regpath, 'FileName', progpath + '\' + values[0]);
+       RegWriteStringValue(HKEY_LOCAL_MACHINE, regpath, 'MenuText', ExpandConstant('@{app}\{#iconsExe},-' + values[4]));
+       RegWriteStringValue(HKEY_LOCAL_MACHINE, regpath, 'ItemName', ExpandConstant('@{app}\{#iconsExe},-' + values[5]));
      end;
      if version.Major = 10 then begin
        RegWriteStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\' + values[1], '', '{#ASCC_REG_PREFIX}' + values[2]);
