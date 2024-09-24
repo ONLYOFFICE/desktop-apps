@@ -42,6 +42,7 @@
 #include <ctime>
 
 #define DAY_TO_SEC 24*3600
+#define REG_FILE_ASSOC "SOFTWARE\\" REG_GROUP_KEY "\\" REG_APP_NAME "\\Capabilities\\FileAssociations"
 
 
 #ifdef __OS_WIN_XP
@@ -138,32 +139,28 @@ Association::AssociationPrivate::AssociationPrivate() : m_pDialogSchedule(new Di
     if (!m_ignoreAssocMsg)
         m_lastCheck = time_t(reg_user.value("lastAssocCheck", 0).toLongLong());
 
-    m_extMap = {
-        {L".doc",  L"ASC.Document.1"},
-        {L".docx", L"ASC.Document.12"},
-        {L".xls",  L"ASC.Sheet.1"},
-        {L".xlsx", L"ASC.Sheet.12"},
-        {L".ppt",  L"ASC.Show.1"},
-        {L".pptx", L"ASC.Show.12"},
-        {L".pps",  L"ASC.SlideShow.1"},
-        {L".ppsx", L"ASC.SlideShow.12"},
-        {L".odt",  L"ASC.Document.2"},
-        {L".ods",  L"ASC.Sheet.2"},
-        {L".odp",  L"ASC.Show.2"},
-        {L".rtf",  L"ASC.Rtf"},
-        {L".csv",  L"ASC.Csv"},
-        {L".pdf",  L"ASC.Pdf"},
-        {L".djvu", L"ASC.DjVu"},
-        {L".xps",  L"ASC.Xps"},
-        {L".pot",  L"ASC.Pot"},
-        {L".pptm", L"ASC.Pptm"},
-        {L".epub", L"ASC.Epub"},
-        {L".fb2",  L"ASC.Fb2"},
-        {L".dotx", L"ASC.Dotx"},
-        {L".oxps", L"ASC.Oxps"},
-        {L".xlsb", L"ASC.Xlsb"},
-        {L".docxf", L"ASC.Docxf"},
-    };
+    HKEY hKey;
+    if (RegOpenKeyEx(HKEY_LOCAL_MACHINE, TEXT(REG_FILE_ASSOC), 0, KEY_READ | KEY_QUERY_VALUE, &hKey) == ERROR_SUCCESS) {
+        DWORD cValues = 0, cbMaxValueNameLen = 0, cbMaxValueLen = 0;
+        if (RegQueryInfoKey(hKey, NULL, NULL, NULL, NULL, NULL, NULL, &cValues, &cbMaxValueNameLen, &cbMaxValueLen, NULL, NULL) == ERROR_SUCCESS) {
+            if (cValues > 0 && cbMaxValueLen > 0) {
+                DWORD cValueName = cbMaxValueNameLen + 1, cbData = cbMaxValueLen, pType = REG_SZ;
+                WCHAR *lpData = new WCHAR[cbData/sizeof(WCHAR)];
+                WCHAR *lpValueName = new WCHAR[cValueName];
+                for (int i = 0; i < cValues; i++) {
+                    if (RegEnumValue(hKey, i, lpValueName, &cValueName, NULL, &pType, (LPBYTE)lpData, &cbData) == ERROR_SUCCESS) {
+                        if (lpData[0] != '\0')
+                            m_extMap[lpValueName] = lpData;
+                    }
+                    cValueName = cbMaxValueNameLen + 1;
+                    cbData = cbMaxValueLen;
+                }
+                delete[] lpValueName;
+                delete[] lpData;
+            }
+        }
+        RegCloseKey(hKey);
+    }
 }
 
 Association::AssociationPrivate::~AssociationPrivate()
