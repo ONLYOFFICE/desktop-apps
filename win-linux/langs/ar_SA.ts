@@ -232,7 +232,7 @@
     </message>
     <message>
         <source>DOCX Document (*.docx)</source>
-        <translation type="vanished">مستند وورد (*.docx)</translation>
+        <translation type="vanished">Office Open XML مستند (*.docx)</translation>
     </message>
     <message>
         <source>Document template (*.dotx)</source>
@@ -299,7 +299,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="81"/>
         <source>PPTX File (*.pptx)</source>
-        <translation>عرض بوربوينت قابل للتعديل (*.pptx)</translation>
+        <translation>Office Open XML عرض تقديمي (*.pptx)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="82"/>
@@ -328,7 +328,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="89"/>
         <source>XLSX File (*.xlsx)</source>
-        <translation>جدول إكسل (*.xlsx)</translation>
+        <translation>Office Open XML جدول بياني (*.xlsx)</translation>
     </message>
     <message>
         <source>Spreadsheet template (*.xltx)</source>

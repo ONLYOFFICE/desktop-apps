@@ -34,14 +34,14 @@ END
 LANGUAGE LANG_ARABIC, SUBLANG_ARABIC_SAUDI_ARABIA
 STRINGTABLE
 BEGIN
-    IDS_DOCX  "مستند وورد"
-    IDS_XLSX  "جدول إكسل"
-    IDS_PPTX  "عرض بوربوينت قابل للتعديل"
+    IDS_DOCX  "Office Open XML مستند"
+    IDS_XLSX  "Office Open XML جدول بياني"
+    IDS_PPTX  "Office Open XML عرض تقديمي"
     IDS_PDF   "نموذج PDF"
 
-    IDS_NEW_DOCX  "مستند وورد جديد"
-    IDS_NEW_XLSX  "جدول إكسل جديد"
-    IDS_NEW_PPTX  "عرض بوربوينت قابل للتعديل جديد"
+    IDS_NEW_DOCX  "جديد Office Open XML مستند"
+    IDS_NEW_XLSX  "جديد Office Open XML جدول بياني"
+    IDS_NEW_PPTX  "جديد Office Open XML عرض تقديمي"
     IDS_NEW_PDF   "نموذج PDF جديد"
 END
 
