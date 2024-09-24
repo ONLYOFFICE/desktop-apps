@@ -160,7 +160,7 @@
 
         function _init_collection() {
             templates = new Collection({
-                view: $('section.local', this.view.$panel),
+                view: $('section[panel=local]', this.view.$panel),
                 list: $('.table-templates.list', this.view.$panel),
             });
 
