@@ -107,6 +107,7 @@ public:
     static bool isFileLocal(const QString&);
     static QString uniqFileName(const QString& path);
     static bool makepath(const QString&);
+    static bool writeFile(const QString &filePath, const QByteArray &data);
 
     static QString systemLocationCode();
     static QIcon appIcon();

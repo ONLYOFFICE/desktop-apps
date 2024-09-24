@@ -304,6 +304,17 @@ bool Utils::makepath(const QString& p)
     return QDir().mkpath(p);
 }
 
+bool Utils::writeFile(const QString &filePath, const QByteArray &data)
+{
+    QFile file(filePath);
+    if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+        auto bytes_written = file.write(data);
+        file.close();
+        return bytes_written == data.size();
+    }
+    return false;
+}
+
 QRect Utils::getScreenGeometry(const QPoint& leftTop)
 {
 //    int _scr_num = QApplication::desktop()->screenNumber(leftTop); - return the wrong number

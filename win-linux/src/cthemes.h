@@ -97,7 +97,7 @@ public:
     auto defaultLight() -> const CTheme&;
 
 //    auto addLocalTheme(const std::wstring&) -> bool;
-    auto addLocalTheme(const QJsonObject&, const QString& filepath) -> bool;
+    auto addLocalTheme(QJsonObject&, const QString& filepath) -> bool;
     auto setCurrentTheme(const std::wstring&) -> void;
     auto isThemeCurrent(const std::wstring& id) -> bool;
 //    auto isThemeDark(const std::wstring& id) -> bool;
