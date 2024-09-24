@@ -35,7 +35,12 @@
         Model.prototype.constructor.call(this);
         Object.assign(this, attributes);
 
-        this.name   = attributes.name || '';
+        const skip_file_extension = n => {
+            const p = n.search(/\.\w+$/);
+            return p < 0 ? n : n.substring(0, p)
+        }
+
+        this.name   = skip_file_extension(attributes.name) || 'Template';
         this.descr  = attributes.descr || '';
     };
 
