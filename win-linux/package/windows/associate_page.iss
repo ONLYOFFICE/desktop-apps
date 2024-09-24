@@ -982,7 +982,7 @@ el.extPPSX =Προβολή παρουσίασης Office με ανοιχτή μ�
 fi.extPPSX =Officen avoin XML-diaesitys
 ;lt.extPPSX =Office Atidaryti XML Skaidrių Demonstraciją
 lo.extPPSX =ເປີດສະແດງສະໄລ XML
-nl.extPPSX =Office Open XML Diavoorstelling
+nl.extPPSX =Office Open XML-diavoorstelling
 ru.extPPSX =Слайдшоу Office Open XML
 de.extPPSX =Office Open XML-Slideshow
 fr.extPPSX =Diaporama Office Open XML
