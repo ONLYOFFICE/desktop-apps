@@ -660,7 +660,7 @@ el.extDOCX =Έγγραφο Office με ανοιχτή μορφή XML
 fi.extDOCX =Officen avoin XML-asiakirja
 ;lt.extDOCX =Office Atidaryti XML Dokumentą
 lo.extDOCX =ເປີດເອກະສານ XML
-nl.extDOCX =Office Open XML Document
+nl.extDOCX =Office Open XML-document
 ru.extDOCX =Документ Office Open XML
 de.extDOCX =Office Open XML-Dokument
 fr.extDOCX =Document Office Open XML
@@ -798,7 +798,7 @@ el.extXLSX =Υπολογιστικό φύλλο Office με ανοιχτή μο�
 fi.extXLSX =Officen avoin XML-laskentataulukko
 ;lt.extXLSX =Office Atidaryti XML Skaičiuoklę
 lo.extXLSX =ເປີດຕາຕະລາງ XML
-nl.extXLSX =Office Open XML Spreadsheet
+nl.extXLSX =Office Open XML-spreadsheet
 ru.extXLSX =Электронная таблица Office Open XML
 de.extXLSX =Office Open XML-Tabellenkalkulation
 fr.extXLSX =Classeur Office Open XML
@@ -890,7 +890,7 @@ el.extPPTX =Παρουσίαση Office με ανοιχτή μορφή XML
 fi.extPPTX =Officen avoin XML-esitys
 ;lt.extPPTX =Office Atidaryti XML Prezentaxiją
 lo.extPPTX =ການນຳສະເໜີ XML
-nl.extPPTX =Office Open XML Presentatie
+nl.extPPTX =Office Open XML-presentatie
 ru.extPPTX =Презентация Office Open XML
 de.extPPTX =Office Open XML-Präsentation
 fr.extPPTX =Présentation Office Open XML
