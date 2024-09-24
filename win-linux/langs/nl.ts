@@ -236,7 +236,7 @@
     </message>
     <message>
         <source>DOCX Document (*.docx)</source>
-        <translation type="vanished">Office Open XML Document (*.docx)</translation>
+        <translation type="vanished">Office Open XML-document (*.docx)</translation>
     </message>
     <message>
         <source>Document template (*.dotx)</source>
@@ -303,7 +303,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="81"/>
         <source>PPTX File (*.pptx)</source>
-        <translation>Office Open XML Presentatie (*.pptx)</translation>
+        <translation>Office Open XML-presentatie (*.pptx)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="82"/>
@@ -326,7 +326,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="86"/>
         <source>PPSX File (*.ppsx)</source>
-        <translation>Office Open XML Diavoorstelling (*.ppsx)</translation>
+        <translation>Office Open XML-diavoorstelling (*.ppsx)</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="87"/>
@@ -336,7 +336,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="89"/>
         <source>XLSX File (*.xlsx)</source>
-        <translation>Office Open XML Spreadsheet (*.xlsx)</translation>
+        <translation>Office Open XML-spreadsheet (*.xlsx)</translation>
     </message>
     <message>
         <source>Spreadsheet template (*.xltx)</source>
@@ -359,7 +359,7 @@
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="66"/>
         <source>DOCX Document</source>
-        <translation>Office Open XML Document</translation>
+        <translation>Office Open XML-document</translation>
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="70"/>

@@ -660,7 +660,7 @@ el.extDOCX =Έγγραφο Office με ανοιχτή μορφή XML
 fi.extDOCX =Officen avoin XML-asiakirja
 ;lt.extDOCX =Office Atidaryti XML Dokumentą
 lo.extDOCX =ເປີດເອກະສານ XML
-nl.extDOCX =Office Open XML Document
+nl.extDOCX =Office Open XML-document
 ru.extDOCX =Документ Office Open XML
 de.extDOCX =Office Open XML-Dokument
 fr.extDOCX =Document Office Open XML
@@ -798,7 +798,7 @@ el.extXLSX =Υπολογιστικό φύλλο Office με ανοιχτή μο�
 fi.extXLSX =Officen avoin XML-laskentataulukko
 ;lt.extXLSX =Office Atidaryti XML Skaičiuoklę
 lo.extXLSX =ເປີດຕາຕະລາງ XML
-nl.extXLSX =Office Open XML Spreadsheet
+nl.extXLSX =Office Open XML-spreadsheet
 ru.extXLSX =Электронная таблица Office Open XML
 de.extXLSX =Office Open XML-Tabellenkalkulation
 fr.extXLSX =Classeur Office Open XML
@@ -890,7 +890,7 @@ el.extPPTX =Παρουσίαση Office με ανοιχτή μορφή XML
 fi.extPPTX =Officen avoin XML-esitys
 ;lt.extPPTX =Office Atidaryti XML Prezentaxiją
 lo.extPPTX =ການນຳສະເໜີ XML
-nl.extPPTX =Office Open XML Presentatie
+nl.extPPTX =Office Open XML-presentatie
 ru.extPPTX =Презентация Office Open XML
 de.extPPTX =Office Open XML-Präsentation
 fr.extPPTX =Présentation Office Open XML
@@ -900,7 +900,7 @@ it_IT.extPPTX =Presentazione Open Office XML
 pt_BR.extPPTX =Apresentação do Office Open XML
 pt_PT.extPPTX =Apresentação em XML Open Office
 pl.extPPTX =Prezentacja Open Office XML
-ro.extPPTX =Prezentare PowerPoint 97-2003
+ro.extPPTX =Prezentare Open Office XML
 sk.extPPTX =Prezentácia Office Open XML
 sl.extPPTX =Office Open XML predstavitev
 sv.extPPTX =Office Open XML-presentation
@@ -982,7 +982,7 @@ el.extPPSX =Προβολή παρουσίασης Office με ανοιχτή μ�
 fi.extPPSX =Officen avoin XML-diaesitys
 ;lt.extPPSX =Office Atidaryti XML Skaidrių Demonstraciją
 lo.extPPSX =ເປີດສະແດງສະໄລ XML
-nl.extPPSX =Office Open XML Diavoorstelling
+nl.extPPSX =Office Open XML-diavoorstelling
 ru.extPPSX =Слайдшоу Office Open XML
 de.extPPSX =Office Open XML-Slideshow
 fr.extPPSX =Diaporama Office Open XML
@@ -2096,11 +2096,11 @@ begin
     end;
   end;
 
-  args := ['new.docx:.docx:.Document.12:7',
-           'new.pptx:.pptx:.Show.12:9',
-           'new.xlsx:.xlsx:.Sheet.12:10'
+  args := ['new.docx:.docx:.Document.12:7:1000:1100',
+           'new.pptx:.pptx:.Show.12:9:1002:1102',
+           'new.xlsx:.xlsx:.Sheet.12:10:1001:1101'
 #ifdef _ONLYOFFICE
-           ,'new.pdf:.pdf:.Pdf:5'
+           ,'new.pdf:.pdf:.Pdf:5:1003:1103'
 #endif
            ];
 
@@ -2112,6 +2112,8 @@ begin
      if not RegKeyExists(HKEY_LOCAL_MACHINE, regpath) then begin
        RegWriteStringValue(HKEY_LOCAL_MACHINE, regpath, 'IconPath', ExpandConstant('{app}\{#iconsExe},' + values[3]));
        RegWriteStringValue(HKEY_LOCAL_MACHINE, regpath, 'FileName', progpath + '\' + values[0]);
+       RegWriteStringValue(HKEY_LOCAL_MACHINE, regpath, 'MenuText', ExpandConstant('@{app}\{#iconsExe},-' + values[4]));
+       RegWriteStringValue(HKEY_LOCAL_MACHINE, regpath, 'ItemName', ExpandConstant('@{app}\{#iconsExe},-' + values[5]));
      end;
      if version.Major = 10 then begin
        RegWriteStringValue(HKEY_LOCAL_MACHINE, 'Software\Classes\' + values[1], '', '{#ASCC_REG_PREFIX}' + values[2]);
