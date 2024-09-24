@@ -4,9 +4,7 @@
     [string]$CompanyName = "ONLYOFFICE",
     [string]$ProductName = "DesktopEditors",
     [string]$BuildDir,
-    [switch]$Sign,
-    [string]$CertName = "Ascensio System SIA",
-    [string]$TimestampServer = "http://timestamp.digicert.com"
+    [switch]$Sign
 )
 
 $ErrorActionPreference = "Stop"
@@ -77,8 +75,8 @@ Write-Output "package=msi" `
 Write-Host "`n[ Create Advanced Installer config ]"
 
 $AdvInstConfig = @()
-if (-not $Sign) {
-    $AdvInstConfig += "ResetSig"
+if ($Sign) {
+    $AdvInstConfig += "SetDigitalCertificateFile -file %WINDOWS_CERTIFICATE% -password %WINDOWS_CERTIFICATE_PASSWORD% -enable_signing"
 }
 if ($Arch -eq "x86") {
     $AdvInstConfig += `
@@ -128,7 +126,11 @@ Write-Host "MsiInfo $MsiFile /p $Template"
 if ($LastExitCode -ne 0) { throw }
 
 if ($Sign) {
-    Write-Host "signtool sign /a /n $CertName /t $TimestampServer /v $MsiFile"
-    & signtool sign /a /n $CertName /t $TimestampServer /v $MsiFile
+    $CertFile = $env:WINDOWS_CERTIFICATE
+    $CertPass = $env:WINDOWS_CERTIFICATE_PASSWORD
+    $TimestampServer = "http://timestamp.digicert.com"
+
+    Write-Host "signtool sign /f $CertFile /p $CertPass /t $TimestampServer $MsiFile"
+    & signtool sign /f $CertFile /p $CertPass /t $TimestampServer $MsiFile
     if ($LastExitCode -ne 0) { throw }
 }

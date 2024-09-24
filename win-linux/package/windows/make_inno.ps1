@@ -1,4 +1,4 @@
-﻿param (
+param (
     [System.Version]$Version = "0.0.0.0",
     [string]$Arch = "x64",
     [string]$Target,
@@ -6,9 +6,7 @@
     [string]$ProductName = "DesktopEditors",
     [string]$BuildDir,
     [string]$BrandingDir,
-    [switch]$Sign,
-    [string]$CertName = "Ascensio System SIA",
-    [string]$TimestampServer = "http://timestamp.digicert.com"
+    [switch]$Sign
 )
 
 $ErrorActionPreference = "Stop"
@@ -126,8 +124,10 @@ switch ($Target) {
     }
 }
 if ($Sign) {
-    $InnoArgs += "/DSIGN",
-        "/Sbyparam=signtool sign /a /v /n `$q$CertName`$q /t $TimestampServer `$f"
+    $CertFile = $env:WINDOWS_CERTIFICATE
+    $CertPass = $env:WINDOWS_CERTIFICATE_PASSWORD
+    $TimestampServer = "http://timestamp.digicert.com"
+    $InnoArgs += "/DSIGN", "/Sbyparam=signtool sign /f `$q$CertFile`$q /p `$q$CertPass`$q /t $TimestampServer `$f"
 }
 
 Write-Host "iscc $InnoArgs $IssFile"
