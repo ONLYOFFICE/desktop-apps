@@ -158,30 +158,6 @@
                     elm.append($('<svg class = "shield"><use xlink:href="#shield"></use></svg>'));
 
                 });
-        },
-        updatelistsize: function() {
-            // set fixed height for scrollbar appearing. 
-            var _available_height = this.$panel.height();
-            var _box_recent_height = _available_height;
-
-            if (!this.$boxRecovery.find('tr').size()) {
-                // $boxRecent.height($boxRecent.parent().height());
-            } else {
-                _available_height -= /*separatorHeight*/40;
-                _box_recent_height *= 0.5; 
-
-                this.$boxRecovery.height(_available_height * 0.5);
-
-                var $table_box = this.$boxRecovery.find('.table-box');
-                if ( !$table_box.hasScrollBar() ) {
-                    let _new_recovery_height = $table_box.find('.table-files.list').height() + /*$headerRecovery.height()*/46;
-                    this.$boxRecovery.height(_new_recovery_height);
-
-                    _box_recent_height = _available_height - _new_recovery_height;
-                }
-            }
-
-            /*$boxRecent.height() != _box_recent_height &&*/ this.$boxRecent.height(_box_recent_height);
         }
     });
 
@@ -264,7 +240,6 @@
 
             this.view.$boxRecovery[collectionRecovers.size() > 0 ? 'show' : 'hide']();
             this.view.$panel.find('#recovery-sep')[collectionRecovers.size() > 0 ? 'show' : 'hide']();
-            this.view.updatelistsize();
         };
 
         function _init_collections() {
@@ -440,9 +415,6 @@
                     }
                 });
 
-                $(window).resize(()=>{
-                    this.view.updatelistsize();
-                });
                 CommonEvents.on("icons:svg", this.view.onscale);
                 CommonEvents.on('portal:authorized', (data)=>{
                     if ( data.type == 'fileid' ) {
