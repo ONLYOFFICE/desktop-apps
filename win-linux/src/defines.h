@@ -50,6 +50,7 @@
 # define APP_MUTEX_NAME "asc:editors"
 #else
 # define APP_DATA_PATH "/ONLYOFFICE/DesktopEditors"
+# define APP_REG_NAME  "ONLYOFFICE Editors"
 # define REG_GROUP_KEY "ONLYOFFICE"
 # define APP_MUTEX_NAME "TEAMLAB"
 #endif
