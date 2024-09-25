@@ -90,6 +90,7 @@ namespace NSTheme {
             {"brand-word", "toolbar-header-document"},
             {"brand-slide", "toolbar-header-presentation"},
             {"brand-cell", "toolbar-header-spreadsheet"},
+            {"brand-pdf", "toolbar-header-pdf"},
 
             {"window-background", "background-toolbar"},
 //            {CTheme::ColorRole::ecrWindowBorder, "window-border"},
@@ -621,7 +622,7 @@ auto CThemes::parseThemeName(const std::wstring& wjson) -> std::wstring
 //    return false;
 //}
 
-auto CThemes::addLocalTheme(const QJsonObject& jsonobj, const QString& filepath) -> bool
+auto CThemes::addLocalTheme(QJsonObject& jsonobj, const QString& filepath) -> bool
 {
     if ( m_priv->validateTheme(jsonobj) ) {
         if ( !filepath.isEmpty() ) {
@@ -631,10 +632,26 @@ auto CThemes::addLocalTheme(const QJsonObject& jsonobj, const QString& filepath)
                 if ( QFile::exists(dest_file_path) )
                     QFile::remove(dest_file_path);
 
-                if (!QFile::copy(filepath, dest_file_path))
+                QJsonObject colors = jsonobj["colors"].toObject();
+                auto theme_template = (jsonobj.contains("type") && jsonobj["type"].toString() == NSTheme::theme_type_dark) ?
+                                          THEME_DEFAULT_DARK_ID : THEME_DEFAULT_LIGHT_ID;
+                QJsonObject template_obj = Utils::parseJsonFile(m_priv->rc_themes[theme_template]);
+                QJsonObject values = template_obj["values"].toObject();
+                for (auto it = values.begin(); it != values.end(); it++) {
+                    if (!colors.contains(it.key())) {
+                        const auto alias_it = NSTheme::map_alias_names.find(it.key());
+                        if (alias_it == NSTheme::map_alias_names.end()) {
+                            colors.insert(it.key(), it.value());
+                        } else
+                        if (!colors.contains(alias_it->second))
+                            colors.insert(alias_it->second, it.value());
+                    }
+                }
+                jsonobj["colors"] = colors;
+                QByteArray data = QJsonDocument(jsonobj).toJson(QJsonDocument::Compact);
+                if (!Utils::writeFile(dest_file_path, data))
                     return false;
                 else {
-                    QByteArray data = QJsonDocument(jsonobj).toJson(QJsonDocument::Compact);
 //                    m_priv->local_themes[jsonobj.value("id").toString()] = std::make_pair("", data);
                     m_priv->local_themes[jsonobj.value("id").toString()] = std::make_pair(dest_file_path, data);
 
