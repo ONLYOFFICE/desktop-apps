@@ -442,7 +442,9 @@
 
     [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameFullscreen
                                                         object:nil
-                                                      userInfo:@{@"fullscreen" : @(NO)}];
+                                                      userInfo:@{@"fullscreen" : @(NO),
+                                                                 @"terminate"  : @(YES)
+                                                               }];
 
     for (ASCTabView * tab in self.tabsControl.tabs) {
         if (tab.changed) {
@@ -881,8 +883,13 @@
         NSDictionary * params = (NSDictionary *)notification.userInfo;
 
         BOOL isFullscreen = [params[@"fullscreen"] boolValue];
-        int viewId = [params[@"viewId"] intValue];
-        ASCTabView * tab = [self tabViewWithId:viewId];
+        ASCTabView * tab= nil;
+        if ( [params objectForKey:@"viewId"] ) {
+            tab = [self tabViewWithId:[params[@"viewId"] intValue]];
+        } else if ( [params objectForKey:@"terminate"] and [params[@"terminate"] boolValue] ) {
+            if (self.tabsControl.tabs.count > 0)
+                tab = [self.tabsControl selectedTab];
+        }
 
         if ( tab ) {
             NSTabViewItem * item = [self.tabView tabViewItemAtIndex:[self.tabView indexOfTabViewItemWithIdentifier:tab.uuid]];
