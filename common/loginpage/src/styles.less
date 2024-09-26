@@ -420,22 +420,24 @@ li.menu-item {
     overflow: hidden;
 }
 
-#recovery-sep {
-    height: 40px;
-    display: none;
+.recent-panel-container {
+    display: grid;
+    gap: 40px;
+    height: 100%;
+    grid-template-rows: auto;
 }
 
 #box-recovery {
     display: none;
 
-        .flex-fill {
-            overflow-y: auto;
-            overflow-x: hidden;
-        }
+    .flex-fill {
+        overflow-y: auto;
+        overflow-x: hidden;
+        flex-grow: 0;
+    }
 }
 
 #box-recent {
-
     .flexbox {
         .flex-fill {
             overflow-y: auto;

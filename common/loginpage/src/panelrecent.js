@@ -53,7 +53,7 @@
         // args.id&&(args.id=`"id=${args.id}"`)||(args.id='');
 
         let _html = `<div class="action-panel ${args.action}">
-                      <div class="flexbox">
+                      <div class="recent-panel-container">
                         <div id="box-recovery" class="flex-item">
                           <div class="flexbox">
                             <h3 class="table-caption" l10n>${_lang.listRecoveryTitle}</h3>
@@ -62,7 +62,6 @@
                             </div>
                           </div>
                         </div>
-                        <div id="recovery-sep"></div>
                         <div id="box-recent" class="flex-item flex-fill">
                           <div class="flexbox">
                             <div style="display:none;">
@@ -99,6 +98,9 @@
 
             this.$boxRecovery = this.$panel.find('#box-recovery');
             this.$boxRecent = this.$panel.find('#box-recent');
+            this.$panelContainer = this.$panel.find('.recent-panel-container');
+            this.$tableBoxRecovery = this.$boxRecovery.find('.table-box').get(0);
+            this.$tableBoxRecent = this.$boxRecent.find('.table-box').get(0);
         },
         listitemtemplate: function(info) {
             let id = !!info.uid ? (` id="${info.uid}"`) : '';
@@ -158,7 +160,13 @@
                     elm.append($('<svg class = "shield"><use xlink:href="#shield"></use></svg>'));
 
                 });
-        }
+        },
+        updateListSize: function() {
+            const hasRecoveryScroll = this.$tableBoxRecovery.scrollHeight > this.$tableBoxRecovery.clientHeight;
+            const hasRecentScroll = this.$tableBoxRecent.scrollHeight > this.$tableBoxRecent.clientHeight;
+
+            this.$panelContainer.css('grid-template-rows', hasRecoveryScroll || hasRecentScroll ? '' : 'auto 1fr');
+        },
     });
 
     window.ControllerRecent = ControllerRecent;
@@ -216,6 +224,8 @@
             } else {
                 this.rawRecents = undefined;
             }
+
+            this.view.updateListSize();
         };
 
         var _on_recents = function(params) {
@@ -239,12 +249,12 @@
             }
 
             this.view.$boxRecovery[collectionRecovers.size() > 0 ? 'show' : 'hide']();
-            this.view.$panel.find('#recovery-sep')[collectionRecovers.size() > 0 ? 'show' : 'hide']();
+            this.view.updateListSize();
         };
 
         function _init_collections() {
-            let _cl_rcbox = this.view.$panel.find('#box-recent'),
-                _cl_rvbox = this.view.$panel.find('#box-recovery');
+            let _cl_rcbox = this.view.$boxRecent,
+                _cl_rvbox = this.view.$boxRecovery;
 
             collectionRecents = new Collection({
                 view: _cl_rcbox,
@@ -415,6 +425,9 @@
                     }
                 });
 
+                $(window).resize(()=>{
+                    this.view.updateListSize();
+                });
                 CommonEvents.on("icons:svg", this.view.onscale);
                 CommonEvents.on('portal:authorized', (data)=>{
                     if ( data.type == 'fileid' ) {
