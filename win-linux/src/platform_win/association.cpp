@@ -211,9 +211,9 @@ void Association::AssociationPrivate::tryProposeAssociation(QWidget *parent, con
         unassocFileExts.push_back(fileExt);
 
     if (!unassocFileExts.empty()) {
-        QString msg = unassocFileExts.size() == 1 ? QObject::tr("Do you want to make %1 your default application for extention: %2?")
+        QString msg = unassocFileExts.size() == 1 ? QObject::tr("Do you want to make %1 your default application for extension: %2?")
                                                         .arg(QString(WINDOW_NAME), QString::fromStdWString(unassocFileExts[0])) :
-                                                    QObject::tr("Do you want to make %1 your default application for all supported extentions?")
+                                                    QObject::tr("Do you want to make %1 your default application for all supported extensions?")
                                                         .arg(QString(WINDOW_NAME));
         int res = CMessage::showMessage(parent, msg, MsgType::MSG_INFO, MsgBtns::mbYesDefNo, &m_ignoreAssocMsg, QObject::tr("Do not show this message again"));
         if (m_ignoreAssocMsg) {
