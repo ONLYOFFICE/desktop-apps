@@ -78,7 +78,8 @@
       <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="%@ Reporter Window" xml:space="preserve">
-        <source>%@ Reporter Window</source><target state="translated">%@ Rapporteringsfönster</target><target state="needs-translation">%@ Rapporteringsfönster</target>
+        <source>%@ Reporter Window</source>
+        <target state="translated">%@ Rapporteringsfönster</target>
       <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="About %@" xml:space="preserve">
@@ -92,7 +93,8 @@
       <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Before signing the document, it must be saved." xml:space="preserve">
-        <source>Before signing the document, it must be saved.</source><target state="translated">Innan dokumentet signeras, måste det sparas.</target><target state="needs-translation">Innan dokumentet signeras, måste det sparas.</target>
+        <source>Before signing the document, it must be saved.</source>
+        <target state="translated">Innan dokumentet signeras, måste det sparas.</target>
       <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Cancel" xml:space="preserve">
@@ -101,24 +103,28 @@
       <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Cannot open file of Digital Signature" xml:space="preserve">
-        <source>Cannot open file of Digital Signature</source><target state="translated">Det går inte att öppna filen med digital signatur</target><target state="needs-translation">Det går inte att öppna filen med digital signatur</target>
+        <source>Cannot open file of Digital Signature</source>
+        <target state="translated">Det går inte att öppna filen med digital signatur</target>
       <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Cannot open file of Private Key" xml:space="preserve">
-        <source>Cannot open file of Private Key</source><target state="translated">Det går inte att öppna filen med privat nyckel</target><target state="needs-translation">Det går inte att öppna filen med privat nyckel</target>
+        <source>Cannot open file of Private Key</source>
+        <target state="translated">Det går inte att öppna filen med privat nyckel</target>
       <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Cannot open folder of the file location." xml:space="preserve">
-        <source>Cannot open folder of the file location.</source><target state="translated">Det går inte att öppna mappen med filsökvägen.</target><target state="needs-translation">Det går inte att öppna mappen med filsökvägen.</target>
+        <source>Cannot open folder of the file location.</source>
+        <target state="translated">Det går inte att öppna mappen med filsökvägen.</target>
       <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Comma-Separated Values" xml:space="preserve">
         <source>Comma-Separated Values</source>
-        <target state="translated">Kommaavgränsade värden (*.csv)</target>
+        <target state="translated">Kommaavgränsade värden</target>
       <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Create portal" xml:space="preserve">
-        <source>Create portal</source><target state="translated">Det går inte att öppna mappen med filsökvägen.</target><target state="needs-translation">Det går inte att öppna mappen med filsökvägen.</target>
+        <source>Create portal</source>
+        <target state="translated">Det går inte att öppna mappen med filsökvägen.</target>
       <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Delete and Quit" xml:space="preserve">
@@ -128,7 +134,7 @@
       </trans-unit>
       <trans-unit id="DjVu File" xml:space="preserve">
         <source>DjVu File</source>
-        <target state="translated">Digitalt document (*.djvu)</target>
+        <target state="translated">Digitalt document</target>
       <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Do you want to save the changes made to the document &quot;%@&quot;?" xml:space="preserve">
@@ -147,17 +153,18 @@
       <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Document template" xml:space="preserve">
-        <source>Document template</source><target state="translated">Word Open XML-dokumentmall (*.dotx)</target><target state="needs-translation">Dokumentmall</target>
+        <source>Document template</source>
+        <target state="translated">Word Open XML-dokumentmall</target>
       <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Excel 97-2003 Spreadsheet" xml:space="preserve">
         <source>Excel 97-2003 Spreadsheet</source>
-        <target state="translated">Excel 97-2003-kalkylblad (*.xls)</target>
+        <target state="translated">Excel 97-2003-kalkylblad</target>
       <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Excel 2007 Spreadsheet" xml:space="preserve">
         <source>Excel 2007 Spreadsheet</source>
-        <target state="translated">Office Open XML-kalkylblad (*.xlsx)</target>
+        <target state="translated">Office Open XML-kalkylblad</target>
       <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="File &quot;%@&quot; can not be open or not exist." xml:space="preserve">
@@ -197,7 +204,7 @@
       </trans-unit>
       <trans-unit id="Mobipocket e-book" xml:space="preserve">
         <source>Mobipocket e-book</source>
-        <target state="translated">Mobipocket e-bokl (*.mobi)</target>
+        <target state="translated">Mobipocket e-bokl</target>
       <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="No" xml:space="preserve">
@@ -211,38 +218,43 @@
       <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="ONLYOFFICE can not open the Digital Signature file. Try opening another file." xml:space="preserve">
-        <source>ONLYOFFICE can not open the Digital Signature file. Try opening another file.</source><target state="translated">ONLYOFFICE kan inte öppna filen med den digitala signaturen. Försök att öppna en annan fil.</target><target state="needs-translation">ONLYOFFICE kan inte öppna filen med den digitala signaturen. Försök att öppna en annan fil.</target>
+        <source>ONLYOFFICE can not open the Digital Signature file. Try opening another file.</source>
+        <target state="translated">ONLYOFFICE kan inte öppna filen med den digitala signaturen. Försök att öppna en annan fil.</target>
       <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="ONLYOFFICE can not open the Private Key. Try opening another file." xml:space="preserve">
-        <source>ONLYOFFICE can not open the Private Key. Try opening another file.</source><target state="translated">ONLYOFFICE kan inte öppna den privata nyckeln. Försök att öppna en annan fil.</target><target state="needs-translation">ONLYOFFICE kan inte öppna den privata nyckeln. Försök att öppna en annan fil.</target>
+        <source>ONLYOFFICE can not open the Private Key. Try opening another file.</source>
+        <target state="translated">ONLYOFFICE kan inte öppna den privata nyckeln. Försök att öppna en annan fil.</target>
       <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="OpenDocument Document Template" xml:space="preserve">
-        <source>OpenDocument Document Template</source><target state="translated">OpenDocument-dokumentmall (*.ott)</target><target state="needs-translation">OpenDocument Dokumentmall</target>
+        <source>OpenDocument Document Template</source>
+        <target state="translated">OpenDocument-dokumentmall</target>
       <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="OpenDocument Presentation Template" xml:space="preserve">
-        <source>OpenDocument Presentation Template</source><target state="translated">OpenDocument-presentationsmall (*.otp)</target><target state="needs-translation">OpenDocument Presentationsmall</target>
+        <source>OpenDocument Presentation Template</source>
+        <target state="translated">OpenDocument-presentationsmall</target>
       <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="OpenDocument Spreadsheet Template" xml:space="preserve">
-        <source>OpenDocument Spreadsheet Template</source><target state="translated">OpenDocument-kalkylbladsmall (*.ots)</target><target state="needs-translation">OpenDocument Kalkylbladsmall</target>
+        <source>OpenDocument Spreadsheet Template</source>
+        <target state="translated">OpenDocument-kalkylbladsmall</target>
       <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="OpenOffice Document" xml:space="preserve">
         <source>OpenOffice Document</source>
-        <target state="translated">OpenDocument-textfil (*.odt)</target>
+        <target state="translated">OpenDocument-textfil</target>
       <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="OpenOffice Presentation" xml:space="preserve">
         <source>OpenOffice Presentation</source>
-        <target state="translated">OpenDocument-presentation (*.odp)</target>
+        <target state="translated">OpenDocument-presentation</target>
       <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="OpenOffice Spreadsheet" xml:space="preserve">
         <source>OpenOffice Spreadsheet</source>
-        <target state="translated">OpenDocument-kalkylblad (*.ods)</target>
+        <target state="translated">OpenDocument-kalkylblad</target>
       <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Opening" xml:space="preserve">
@@ -252,31 +264,32 @@
       </trans-unit>
       <trans-unit id="PDF File" xml:space="preserve">
         <source>PDF File</source>
-        <target state="translated">Portabelt dokumentformat (*.pdf)</target>
+        <target state="translated">Portabelt dokumentformat</target>
       <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="PDF/A File" xml:space="preserve">
-        <source>PDF/A File</source><target state="translated">Portabelt dokumentformat /A-fil (*.pdf)</target><target state="needs-translation">PDF/A-fil</target>
+        <source>PDF/A File</source>
+        <target state="translated">Portabelt dokumentformat /A-fil</target>
       <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Plain Text" xml:space="preserve">
         <source>Plain Text</source>
-        <target state="translated">Oformaterad text (*.txt)</target>
+        <target state="translated">Oformaterad text</target>
       <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="PowerPoint 97-2003 Presentation" xml:space="preserve">
         <source>PowerPoint 97-2003 Presentation</source>
-        <target state="translated">PowerPoint 97-2003-presentation (*.ppt)</target>
+        <target state="translated">PowerPoint 97-2003-presentation</target>
       <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="PowerPoint 2007 Presentation" xml:space="preserve">
         <source>PowerPoint 2007 Presentation</source>
-        <target state="translated">Office Open XML-presentation (*.pptx)</target>
+        <target state="translated">Office Open XML-presentation</target>
       <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="PowerPoint Slide Show" xml:space="preserve">
         <source>PowerPoint Slide Show</source>
-        <target state="translated">Office Open XML-bildspel (*.ppsx)</target>
+        <target state="translated">Office Open XML-bildspel</target>
       <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Preparing..." xml:space="preserve">
@@ -290,7 +303,8 @@
       <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Presentation template" xml:space="preserve">
-        <source>Presentation template</source><target state="translated">PowerPoint Open XML-presentationsmall (*.potx)</target><target state="needs-translation">Presentationsmall</target>
+        <source>Presentation template</source>
+        <target state="translated">PowerPoint Open XML-presentationsmall</target>
       <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Quit %@" xml:space="preserve">
@@ -305,15 +319,17 @@
       </trans-unit>
       <trans-unit id="Rich Text Document" xml:space="preserve">
         <source>Rich Text Document</source>
-        <target state="translated">Rich Text Format-fil (*.rtf)</target>
+        <target state="translated">Rich Text Format-fil</target>
       <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Save" xml:space="preserve">
-        <source>Save</source><target state="translated">Spara</target><target state="needs-translation">Spara</target>
+        <source>Save</source>
+        <target state="translated">Spara</target>
       <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Save the document?" xml:space="preserve">
-        <source>Save the document?</source><target state="translated">Spara dokument?</target><target state="needs-translation">Spara dokument?</target>
+        <source>Save the document?</source>
+        <target state="translated">Spara dokument?</target>
       <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Spreadsheet %ld.xlsx" xml:space="preserve">
@@ -322,7 +338,8 @@
       <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Spreadsheet template" xml:space="preserve">
-        <source>Spreadsheet template</source><target state="translated">Excel Open XML-kalkylbladsmall (*.xltx)</target><target state="needs-translation">Kalkylbladsmall</target>
+        <source>Spreadsheet template</source>
+        <target state="translated">Excel Open XML-kalkylbladsmall</target>
       <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Thank you for evaluating %@!" xml:space="preserve">
@@ -331,11 +348,13 @@
       <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="The document &quot;%@&quot; must be built. Continue?" xml:space="preserve">
-        <source>The document "%@" must be built. Continue?</source><target state="translated">Dokumentet "%@" måste byggas. Fortsätt?</target><target state="needs-translation">Dokumentet "%@" måste byggas. Fortsätt?</target>
+        <source>The document "%@" must be built. Continue?</source>
+        <target state="translated">Dokumentet "%@" måste byggas. Fortsätt?</target>
       <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="To open the file location, it must be saved." xml:space="preserve">
-        <source>To open the file location, it must be saved.</source><target state="translated">För att öppna filsökvägen, måste den sparas.</target><target state="needs-translation">För att öppna filsökvägen, måste den sparas.</target>
+        <source>To open the file location, it must be saved.</source>
+        <target state="translated">För att öppna filsökvägen, måste den sparas.</target>
       <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Unconfirmed" xml:space="preserve">
@@ -349,7 +368,8 @@
       <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Version %@ (%@)" xml:space="preserve">
-        <source>Version %1$@ (%2$@)</source><target state="translated">Version %1$@ (%2$@)</target><target state="needs-translation">Version %1$@ (%2$@)</target>
+        <source>Version %1$@ (%2$@)</source>
+        <target state="translated">Version %1$@ (%2$@)</target>
       <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Web Page" xml:space="preserve">
@@ -359,17 +379,17 @@
       </trans-unit>
       <trans-unit id="Word 97-2003 Document" xml:space="preserve">
         <source>Word 97-2003 Document</source>
-        <target state="translated">Word 97-2003-dokument (*.doc)</target>
+        <target state="translated">Word 97-2003-dokument</target>
       <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Word 2007 Document" xml:space="preserve">
         <source>Word 2007 Document</source>
-        <target state="translated">Office Open XML-document (*.docx)</target>
+        <target state="translated">Office Open XML-document</target>
       <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="XML Paper Specification" xml:space="preserve">
         <source>XML Paper Specification</source>
-        <target state="translated">OpenXPS-dokument (*.xps)</target>
+        <target state="translated">OpenXPS-dokument)</target>
       <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Yes" xml:space="preserve">
@@ -417,15 +437,18 @@ Vi har ett särskilt erbjudande för dig.</target>
       <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="new-document" xml:space="preserve">
-        <source>New Document</source><target state="translated">Nytt dokument</target><target state="needs-translation">Nytt dokument</target>
+        <source>New Document</source>
+        <target state="translated">Nytt dokument</target>
       <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="new-presentation" xml:space="preserve">
-        <source>New Presentation</source><target state="translated">Ny presentation</target><target state="needs-translation">Ny presentation</target>
+        <source>New Presentation</source>
+        <target state="translated">Ny presentation</target>
       <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="new-spreadsheet" xml:space="preserve">
-        <source>New Spreadsheet</source><target state="translated">Nytt kalkylblad</target><target state="needs-translation">Nytt kalkylblad</target>
+        <source>New Spreadsheet</source>
+       <target state="translated">Nytt kalkylblad</target>
       <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="new-pdfform" xml:space="preserve">

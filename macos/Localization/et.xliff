@@ -119,7 +119,7 @@
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Comma-Separated Values" xml:space="preserve">
         <source>Comma-Separated Values</source>
-        <target state="translated">Komaga eraldatud väärtused (*.csv)</target>
+        <target state="translated">Komaga eraldatud väärtused</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Create portal" xml:space="preserve">
@@ -134,7 +134,7 @@
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="DjVu File" xml:space="preserve">
         <source>DjVu File</source>
-        <target state="translated">Digitaalne dokument (*.djvu)</target>
+        <target state="translated">Digitaalne dokument</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Do you want to save the changes made to the document &quot;%@&quot;?" xml:space="preserve">
@@ -154,17 +154,17 @@
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Document template" xml:space="preserve">
         <source>Document template</source>
-        <target state="translated">Word Open XML dokument šabloon (*.dotx)</target>
+        <target state="translated">Word Open XML dokument šabloon</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Excel 97-2003 Spreadsheet" xml:space="preserve">
         <source>Excel 97-2003 Spreadsheet</source>
-        <target state="translated">Excel 97-2003 arvutustabel (*.xls)</target>
+        <target state="translated">Excel 97-2003 arvutustabel</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Excel 2007 Spreadsheet" xml:space="preserve">
         <source>Excel 2007 Spreadsheet</source>
-        <target state="translated">Office avatud XML arvutustabel (*.xlsx)</target>
+        <target state="translated">Office avatud XML arvutustabel</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="File &quot;%@&quot; can not be open or not exist." xml:space="preserve">
@@ -204,7 +204,7 @@
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Mobipocket e-book" xml:space="preserve">
         <source>Mobipocket e-book</source>
-        <target state="translated">Mobipocket e-raamat (*.mobi)</target>
+        <target state="translated">Mobipocket e-raamat</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="No" xml:space="preserve">
@@ -229,32 +229,32 @@
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="OpenDocument Document Template" xml:space="preserve">
         <source>OpenDocument Document Template</source>
-        <target state="translated">OpenDocument dokumendi šabloon (*.ott)</target>
+        <target state="translated">OpenDocument dokumendi šabloon</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="OpenDocument Presentation Template" xml:space="preserve">
         <source>OpenDocument Presentation Template</source>
-        <target state="translated">OpenDocument esitluse šabloon(*.otp)</target>
+        <target state="translated">OpenDocument esitluse šabloon</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="OpenDocument Spreadsheet Template" xml:space="preserve">
         <source>OpenDocument Spreadsheet Template</source>
-        <target state="translated">OpenDocument arvutustabeli šabloon (*.ots)</target>
+        <target state="translated">OpenDocument arvutustabeli šabloon</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="OpenOffice Document" xml:space="preserve">
         <source>OpenOffice Document</source>
-        <target state="translated">OpenDocument teksti fail (*.odt)</target>
+        <target state="translated">OpenDocument teksti fail</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="OpenOffice Presentation" xml:space="preserve">
         <source>OpenOffice Presentation</source>
-        <target state="translated">OpenDocument esitlus (*.odp)</target>
+        <target state="translated">OpenDocument esitlus</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="OpenOffice Spreadsheet" xml:space="preserve">
         <source>OpenOffice Spreadsheet</source>
-        <target state="translated">OpenDocument arvutustabel (*.ods)</target>
+        <target state="translated">OpenDocument arvutustabel</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Opening" xml:space="preserve">
@@ -264,32 +264,32 @@
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="PDF File" xml:space="preserve">
         <source>PDF File</source>
-        <target state="translated">Porditav document (*.pdf)</target>
+        <target state="translated">Porditav document</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="PDF/A File" xml:space="preserve">
         <source>PDF/A File</source>
-        <target state="translated">Porditav document /A (*.pdf)</target>
+        <target state="translated">Porditav document /A</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Plain Text" xml:space="preserve">
         <source>Plain Text</source>
-        <target state="translated">Tavaline Tekst (*.txt)</target>
+        <target state="translated">Tavaline Tekst</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="PowerPoint 97-2003 Presentation" xml:space="preserve">
         <source>PowerPoint 97-2003 Presentation</source>
-        <target state="translated">PowerPoint 97-2003 esitlus (*.ppt)</target>
+        <target state="translated">PowerPoint 97-2003 esitlus</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="PowerPoint 2007 Presentation" xml:space="preserve">
         <source>PowerPoint 2007 Presentation</source>
-        <target state="translated">Office avatud XML esitlus (*.pptx)</target>
+        <target state="translated">Office avatud XML esitlus</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="PowerPoint Slide Show" xml:space="preserve">
         <source>PowerPoint Slide Show</source>
-        <target state="translated">Office Open XML pildiesitlus (*.ppsx)</target>
+        <target state="translated">Office Open XML pildiesitlus</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Preparing..." xml:space="preserve">
@@ -304,7 +304,7 @@
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Presentation template" xml:space="preserve">
         <source>Presentation template</source>
-        <target state="translated">PowerPoint Open XML esitluse šabloon (*.potx)</target>
+        <target state="translated">PowerPoint Open XML esitluse šabloon</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Quit %@" xml:space="preserve">
@@ -319,7 +319,7 @@
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Rich Text Document" xml:space="preserve">
         <source>Rich Text Document</source>
-        <target state="translated">Rikkaliku Teksti Dokument (*.rtf)</target>
+        <target state="translated">Rikkaliku Teksti Dokument</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Save" xml:space="preserve">
@@ -339,7 +339,7 @@
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Spreadsheet template" xml:space="preserve">
         <source>Spreadsheet template</source>
-        <target state="translated">Excel Open XML arvutustabeli šabloon (*.xltx)</target>
+        <target state="translated">Excel Open XML arvutustabeli šabloon</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Thank you for evaluating %@!" xml:space="preserve">
@@ -379,17 +379,17 @@
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Word 97-2003 Document" xml:space="preserve">
         <source>Word 97-2003 Document</source>
-        <target state="translated">Word 97-2003 dokument (*.doc)</target>
+        <target state="translated">Word 97-2003 dokument</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Word 2007 Document" xml:space="preserve">
         <source>Word 2007 Document</source>
-        <target state="translated">Office avatud XML dokument (*.docx)</target>
+        <target state="translated">Office avatud XML dokument</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="XML Paper Specification" xml:space="preserve">
         <source>XML Paper Specification</source>
-        <target state="translated">OpenXPS dokument (*.xps)</target>
+        <target state="translated">OpenXPS dokument</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Yes" xml:space="preserve">

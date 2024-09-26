@@ -88,7 +88,7 @@
       </trans-unit>
       <trans-unit id="Comma-Separated Values">
         <source>Comma-Separated Values</source>
-        <target state="translated">Kableliais atskirtos reikšmės (*.csv)</target>
+        <target state="translated">Kableliais atskirtos reikšmės</target>
       </trans-unit>
       <trans-unit id="Create portal">
         <source>Create portal</source>
@@ -100,7 +100,7 @@
       </trans-unit>
       <trans-unit id="DjVu File">
         <source>DjVu File</source>
-        <target state="translated">Skaitmeninis dokumentas (*.djvu)</target>
+        <target state="translated">Skaitmeninis dokumentas</target>
       </trans-unit>
       <trans-unit id="Do you want to save the changes made to the document &quot;%@&quot;?">
         <source>Do you want to save the changes made to the document "%@"?</source>
@@ -116,15 +116,15 @@
       </trans-unit>
       <trans-unit id="Document template">
         <source>Document template</source>
-        <target state="translated">Word Open XML Dokumento šablonas (*.dotx)</target>
+        <target state="translated">Word Open XML Dokumento šablonas</target>
       </trans-unit>
       <trans-unit id="Excel 97-2003 Spreadsheet">
         <source>Excel 97-2003 Spreadsheet</source>
-        <target state="translated">Excel 97-2003 Skaičiuoklė (*.xls)</target>
+        <target state="translated">Excel 97-2003 Skaičiuoklė</target>
       </trans-unit>
       <trans-unit id="Excel 2007 Spreadsheet">
         <source>Excel 2007 Spreadsheet</source>
-        <target state="translated">Office Atidaryti XML Skaičiuoklę (*.xlsx)</target>
+        <target state="translated">Office Atidaryti XML Skaičiuoklę</target>
       </trans-unit>
       <trans-unit id="File &quot;%@&quot; can not be open or not exist.">
         <source>File "%@" can not be open or not exist.</source>
@@ -156,7 +156,7 @@
       </trans-unit>
       <trans-unit id="Mobipocket e-book">
         <source>Mobipocket e-book</source>
-        <target state="translated">Mobipocket el. knyga (*.mobi)</target>
+        <target state="translated">Mobipocket el. knyga</target>
       </trans-unit>
       <trans-unit id="No">
         <source>No</source>
@@ -176,27 +176,27 @@
       </trans-unit>
       <trans-unit id="OpenDocument Document Template">
         <source>OpenDocument Document Template</source>
-        <target state="translated">OpenDocument Dokumento šablonas (*.ott)</target>
+        <target state="translated">OpenDocument Dokumento šablonas</target>
       </trans-unit>
       <trans-unit id="OpenDocument Presentation Template">
         <source>OpenDocument Presentation Template</source>
-        <target state="translated">OpenDocument Prezentacijos šablonas (*.otp)</target>
+        <target state="translated">OpenDocument Prezentacijos šablonas</target>
       </trans-unit>
       <trans-unit id="OpenDocument Spreadsheet Template">
         <source>OpenDocument Spreadsheet Template</source>
-        <target state="translated">OpenDocument Skaičiuoklės šablonas (*.ots)</target>
+        <target state="translated">OpenDocument Skaičiuoklės šablonas</target>
       </trans-unit>
       <trans-unit id="OpenOffice Document">
         <source>OpenOffice Document</source>
-        <target state="translated">OpenDocument Tekstinis failas (*.odt)</target>
+        <target state="translated">OpenDocument Tekstinis failas</target>
       </trans-unit>
       <trans-unit id="OpenOffice Presentation">
         <source>OpenOffice Presentation</source>
-        <target state="translated">OpenDocument Prezentacija (*.odp)</target>
+        <target state="translated">OpenDocument Prezentacija</target>
       </trans-unit>
       <trans-unit id="OpenOffice Spreadsheet">
         <source>OpenOffice Spreadsheet</source>
-        <target state="translated">OpenDocument Skaičiuoklė (*.ods)</target>
+        <target state="translated">OpenDocument Skaičiuoklė</target>
       </trans-unit>
       <trans-unit id="Opening">
         <source>Opening</source>
@@ -204,27 +204,27 @@
       </trans-unit>
       <trans-unit id="PDF File">
         <source>PDF File</source>
-        <target state="translated">Kilnojamas Dokumentas (*.pdf)</target>
+        <target state="translated">Kilnojamas Dokumentas</target>
       </trans-unit>
       <trans-unit id="PDF/A File">
         <source>PDF/A File</source>
-        <target state="translated">Kilnojamas Dokumentas /A (*.pdf)</target>
+        <target state="translated">Kilnojamas Dokumentas /A</target>
       </trans-unit>
       <trans-unit id="Plain Text">
         <source>Plain Text</source>
-        <target state="translated">Paprastas Tekstas (*.txt)</target>
+        <target state="translated">Paprastas Tekstas</target>
       </trans-unit>
       <trans-unit id="PowerPoint 97-2003 Presentation">
         <source>PowerPoint 97-2003 Presentation</source>
-        <target state="translated">PowerPoint 97-2003 Prezentacija (*.ppt)</target>
+        <target state="translated">PowerPoint 97-2003 Prezentacija</target>
       </trans-unit>
       <trans-unit id="PowerPoint 2007 Presentation">
         <source>PowerPoint 2007 Presentation</source>
-        <target state="translated">Office Atidaryti XML Prezentacija (*.pptx)</target>
+        <target state="translated">Office Atidaryti XML Prezentacija</target>
       </trans-unit>
       <trans-unit id="PowerPoint Slide Show">
         <source>PowerPoint Slide Show</source>
-        <target state="translated">Office Atidaryti XML Skaidrių Demonstraciją (*.ppsx)</target>
+        <target state="translated">Office Atidaryti XML Skaidrių Demonstraciją</target>
       </trans-unit>
       <trans-unit id="Preparing...">
         <source>Preparing...</source>
@@ -236,7 +236,7 @@
       </trans-unit>
       <trans-unit id="Presentation template">
         <source>Presentation template</source>
-        <target state="translated">PowerPoint Open XML Prezentacijos šablonas (*.potx)</target>
+        <target state="translated">PowerPoint Open XML Prezentacijos šablonas</target>
       </trans-unit>
       <trans-unit id="Quit %@">
         <source>Quit %@</source>
@@ -248,7 +248,7 @@
       </trans-unit>
       <trans-unit id="Rich Text Document">
         <source>Rich Text Document</source>
-        <target state="translated">Raiškiojo Teksto Formato Failas (*.rtf)</target>
+        <target state="translated">Raiškiojo Teksto Formato Failas</target>
       </trans-unit>
       <trans-unit id="Save">
         <source>Save</source>
@@ -264,7 +264,7 @@
       </trans-unit>
       <trans-unit id="Spreadsheet template">
         <source>Spreadsheet template</source>
-        <target state="translated">Excel Open XML Skaičiuoklės šablonas (*.xltx)</target>
+        <target state="translated">Excel Open XML Skaičiuoklės šablonas</target>
       </trans-unit>
       <trans-unit id="Thank you for evaluating %@!">
         <source>Thank you for evaluating %@!</source>
@@ -296,15 +296,15 @@
       </trans-unit>
       <trans-unit id="Word 97-2003 Document">
         <source>Word 97-2003 Document</source>
-        <target state="translated">Word 97-2003 Dokumentas (*.doc)</target>
+        <target state="translated">Word 97-2003 Dokumentas</target>
       </trans-unit>
       <trans-unit id="Word 2007 Document">
         <source>Word 2007 Document</source>
-        <target state="translated">Office Atidaryti XML Dokumentą (*.docx)</target>
+        <target state="translated">Office Atidaryti XML Dokumentą</target>
       </trans-unit>
       <trans-unit id="XML Paper Specification">
         <source>XML Paper Specification</source>
-        <target state="translated">Dokumentas OpenXPS (*.xps)</target>
+        <target state="translated">Dokumentas OpenXPS</target>
       </trans-unit>
       <trans-unit id="Yes">
         <source>Yes</source>
