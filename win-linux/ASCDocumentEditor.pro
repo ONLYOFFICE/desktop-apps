@@ -17,7 +17,6 @@ SOURCES += \
     src/prop/cmainwindowimpl.cpp \
     src/prop/utils.cpp
 
-RC_FILE = $$PWD/version.rc
 #DEFINES += _GLIBCXX_USE_CXX11_ABI=0
 DEFINES += __DONT_WRITE_IN_APP_TITLE
 DEFINES += APP_ICON_PATH=\"./res/icons/desktopeditors.ico\"
@@ -43,6 +42,11 @@ message($$PLATFORM_BUILD)
         message(appcast dev url: \\\"$$ENV_URL_APPCAST_DEV\\\")
     }
 #}
+
+core_windows {
+    RC_FILE = $$PWD/version.rc
+    OTHER_FILES += $$PWD/version.rc
+}
 
 updmodule:core_linux {
     GLIB_RESOURCE_FILES += $$PWD/res/gresource.xml
