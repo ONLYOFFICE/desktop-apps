@@ -69,7 +69,7 @@ bool isProcessRunning(const wstring &fileName);
 bool fileExists(const wstring &filePath);
 bool dirExists(const wstring &dirName);
 bool dirIsEmpty(const wstring &dirName);
-bool makePath(const wstring &path);
+bool makePath(const wstring &path, size_t root_offset = 3);
 bool replaceFile(const wstring &oldFilePath, const wstring &newFilePath);
 bool replaceFolder(const wstring &from, const wstring &to, bool remove_existing = false);
 bool removeFile(const wstring &filePath);
