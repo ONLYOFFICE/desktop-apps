@@ -315,9 +315,13 @@ namespace NS_File
 
     wstring tempPath()
     {
-        TCHAR buff[MAX_PATH] = {0};
-        DWORD res = ::GetTempPath(MAX_PATH, buff);
-        return (res != 0) ? fromNativeSeparators(parentPath(buff)) : _T("");
+        TCHAR buff[MAX_PATH + 1] = {0};
+        DWORD res = ::GetTempPath(MAX_PATH + 1, buff);
+        if (res != 0) {
+            buff[res - 1] = '\0';
+            return fromNativeSeparators(buff);
+        }
+        return _T("");
     }
 
     wstring appPath()
