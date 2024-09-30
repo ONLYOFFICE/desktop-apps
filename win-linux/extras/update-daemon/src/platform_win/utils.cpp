@@ -36,7 +36,7 @@
 #include <Windows.h>
 #include <shlwapi.h>
 #include <fstream>
-#include <regex>
+#include <algorithm>
 #include <cstdio>
 //#include <Wincrypt.h>
 #include <WtsApi32.h>
@@ -468,17 +468,21 @@ namespace NS_File
 
     wstring fromNativeSeparators(const wstring &path)
     {
-        return std::regex_replace(path, std::wregex(L"\\\\"), L"/");
+        wstring _path(path);
+        std::replace(_path.begin(), _path.end(), L'\\', L'/');
+        return _path;
     }
 
     wstring toNativeSeparators(const wstring &path)
     {
-        return std::regex_replace(path, std::wregex(L"\\/"), L"\\");
+        wstring _path(path);
+        std::replace(_path.begin(), _path.end(), L'/', L'\\');
+        return _path;
     }
 
     wstring parentPath(const wstring &path)
     {
-        wstring::size_type delim = path.find_last_of(L"\\/");
+        auto delim = (path.size() > 2) ? path.find_last_of(L"\\/", path.size() - 2) : wstring::npos;
         return (delim == wstring::npos) ? L"" : path.substr(0, delim);
     }
 

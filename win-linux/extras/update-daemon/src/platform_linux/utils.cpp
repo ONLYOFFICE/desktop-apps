@@ -430,8 +430,8 @@ namespace NS_File
 
     string parentPath(const string &path)
     {
-        string::size_type delim = path.find_last_of("\\/");
-        return (delim == string::npos) ? "" : path.substr(0, delim);
+        auto delim = (path.size() > 1) ? path.find_last_of('/', path.size() - 2) : string::npos;
+        return (delim == string::npos) ? "" : (delim == 0) ? "/" : path.substr(0, delim);
     }
 
     string tempPath()
