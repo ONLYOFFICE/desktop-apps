@@ -9,9 +9,9 @@
 
 namespace Xdg
 {
-typedef enum {
+enum Mode {
     OPEN = 0, SAVE = 1, FOLDER = 2
-} Mode;
+};
 
 QStringList openXdgPortal(QWidget *parent,
                           Mode mode,

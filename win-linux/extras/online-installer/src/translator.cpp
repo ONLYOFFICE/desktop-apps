@@ -5,6 +5,7 @@
 #include "utils.h"
 #include <Windows.h>
 #include <cwctype>
+#include <algorithm>
 #include <sstream>
 
 
@@ -42,20 +43,12 @@ wstring getPrimaryLang(const wstring &lang, bool withScript = false)
     return L"en";
 }
 
-wstring StrToWStr(const char* str)
+wstring StrToWStr(const string &str)
 {
-    wstring wstr;
-    {
-        size_t len = strlen(str), outSize = 0;
-        wchar_t *pDestBuf = new wchar_t[len + 1];
-        mbstowcs_s(&outSize, pDestBuf, len + 1, str, len);
-        if (outSize > 0)
-            wstr = pDestBuf;
-        else
-            NS_Logger::WriteLog(_T("An error occurred: ") + wstring(_T(__FUNCTION__)));
-        delete[] pDestBuf;
-    }
-    return wstr;
+    size_t len = str.length(), outSize = 0;
+    wstring wstr(len, '\0');
+    mbstowcs_s(&outSize, &wstr[0], len + 1, str.c_str(), len);
+    return wstr.c_str();
 }
 
 TranslationsMap Translator::translMap = TranslationsMap();
@@ -67,11 +60,7 @@ Translator::Translator(unsigned long langId, int resourceId)
     TCHAR _langName[LOCALE_NAME_MAX_LENGTH] = {0};
     if (GetLocaleInfo(langId, LOCALE_SNAME, _langName, LOCALE_NAME_MAX_LENGTH) > 0) {
         langName = _langName;
-        wstring::size_type pos = 0;
-        while ((pos = langName.find(L'-', pos)) != wstring::npos) {
-            langName.replace(pos, 1, L"_");
-            pos++;
-        }
+        std::replace(langName.begin(), langName.end(), L'-', L'_');
     } else
         NS_Logger::WriteLog(ADVANCED_ERROR_MESSAGE);
 
@@ -84,7 +73,7 @@ Translator::Translator(unsigned long langId, int resourceId)
                 DWORD dataSize = SizeofResource(hInst, hRes);
                 if (dataSize > 0) {
                     string text((const char*)pData, dataSize);
-                    translations = StrToWStr(text.c_str());
+                    translations = StrToWStr(text);
                 } else
                     NS_Logger::WriteLog(ADVANCED_ERROR_MESSAGE);
             } else

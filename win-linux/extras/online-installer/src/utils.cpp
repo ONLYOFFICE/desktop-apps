@@ -309,7 +309,7 @@ namespace NS_File
 
     wstring parentPath(const wstring &path)
     {
-        wstring::size_type delim = path.find_last_of(_T("\\/"));
+        auto delim = (path.size() > 2) ? path.find_last_of(_T("\\/"), path.size() - 2) : wstring::npos;
         return (delim == wstring::npos) ? _T("") : path.substr(0, delim);
     }
 

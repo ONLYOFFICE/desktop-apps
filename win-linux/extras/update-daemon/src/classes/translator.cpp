@@ -53,20 +53,12 @@ tstring getPrimaryLang(const tstring &lang, bool withScript = false)
 }
 
 #ifdef _WIN32
-wstring StrToWStr(const char* str)
+wstring StrToWStr(const string &str)
 {
-    wstring wstr;
-    {
-        size_t len = strlen(str), outSize = 0;
-        wchar_t *pDestBuf = new wchar_t[len + 1];
-        mbstowcs_s(&outSize, pDestBuf, len + 1, str, len);
-        if (outSize > 0)
-            wstr = pDestBuf;
-        else
-            NS_Logger::WriteLog(_T("An error occurred: ") + FUNCTION_INFO);
-        delete[] pDestBuf;
-    }
-    return wstr;
+    size_t len = str.length(), outSize = 0;
+    wstring wstr(len, '\0');
+    mbstowcs_s(&outSize, &wstr[0], len + 1, str.c_str(), len);
+    return wstr.c_str();
 }
 #endif
 
@@ -91,7 +83,7 @@ Translator::Translator(const tstring &lang, const char *resourcePath)
                 DWORD dataSize = SizeofResource(hInst, hRes);
                 if (dataSize > 0) {
                     string text((const char*)pData, dataSize);
-                    translations = StrToWStr(text.c_str());
+                    translations = StrToWStr(text);
                 } else
                     NS_Logger::WriteLog(ADVANCED_ERROR_MESSAGE);
             } else

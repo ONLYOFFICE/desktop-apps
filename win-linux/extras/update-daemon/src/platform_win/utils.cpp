@@ -36,7 +36,7 @@
 #include <Windows.h>
 #include <shlwapi.h>
 #include <fstream>
-#include <regex>
+#include <algorithm>
 #include <cstdio>
 //#include <Wincrypt.h>
 #include <WtsApi32.h>
@@ -44,7 +44,6 @@
 #include <TlHelp32.h>
 #include <userenv.h>
 #include <vector>
-#include <stack>
 #include <sstream>
 #include "../../src/defines.h"
 #include "../../src/prop/defines_p.h"
@@ -91,8 +90,11 @@ namespace NS_Utils
         LPWSTR msgBuff = NULL;
         size_t size = FormatMessage(FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS,
                                        NULL, errID, MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT), (LPWSTR)&msgBuff, 0, NULL);
-        wstring msg(msgBuff, size);
-        LocalFree(msgBuff);
+        wstring msg;
+        if (size > 0) {
+            msg.assign(msgBuff, size);
+            LocalFree(msgBuff);
+        }
         return msg;
     }
 
@@ -370,18 +372,31 @@ namespace NS_File
         return PathIsDirectoryEmpty(dirName.c_str());
     }
 
-    bool makePath(const wstring &path)
-    {
-        std::stack<wstring> pathsList;
-        wstring last_path(path);
-        while (!last_path.empty() && !dirExists(last_path)) {
-            pathsList.push(last_path);
-            last_path = parentPath(last_path);
-        }
-        while(!pathsList.empty()) {
-            if (::CreateDirectory(pathsList.top().c_str(), NULL) == 0)
+    bool makePath(const wstring &path, size_t root_offset) {
+        size_t len = path.length();
+        if (len == 0)
+            return false;
+        if (CreateDirectoryW(path.c_str(), NULL) != 0 || GetLastError() == ERROR_ALREADY_EXISTS)
+            return true;
+        if (len >= MAX_PATH || root_offset >= len)
+            return false;
+        wchar_t buf[MAX_PATH];
+        wcscpy(buf, path.c_str());
+        if (buf[len - 1] == '/' || buf[len - 1] == '\\')
+            buf[len - 1] = '\0';
+        wchar_t *it = buf + root_offset;
+        while (1) {
+            while (*it != '\0' && *it != '/' && *it != '\\')
+                it++;
+            wchar_t tmp = *it;
+            *it = '\0';
+            if (CreateDirectoryW(buf, NULL) == 0 && GetLastError() != ERROR_ALREADY_EXISTS) {
+                *it = tmp;
                 return false;
-            pathsList.pop();
+            }
+            if (tmp == '\0')
+                break;
+            *it++ = tmp;
         }
         return true;
     }
@@ -425,10 +440,11 @@ namespace NS_File
             }
 
             const size_t sourceLength = from.length();
+            const size_t rootOffset = parentPath(to).length() + 1;
             for (const wstring &sourcePath : filesList) {
                 if (!sourcePath.empty()) {
                     wstring dest = to + sourcePath.substr(sourceLength);
-                    if (!NS_File::dirExists(NS_File::parentPath(dest)) && !NS_File::makePath(NS_File::parentPath(dest))) {
+                    if (!NS_File::dirExists(NS_File::parentPath(dest)) && !NS_File::makePath(NS_File::parentPath(dest), rootOffset)) {
                         NS_Logger::WriteLog(L"Can't create path: " + NS_File::parentPath(dest));
                         return false;
                     }
@@ -468,17 +484,21 @@ namespace NS_File
 
     wstring fromNativeSeparators(const wstring &path)
     {
-        return std::regex_replace(path, std::wregex(L"\\\\"), L"/");
+        wstring _path(path);
+        std::replace(_path.begin(), _path.end(), L'\\', L'/');
+        return _path;
     }
 
     wstring toNativeSeparators(const wstring &path)
     {
-        return std::regex_replace(path, std::wregex(L"\\/"), L"\\");
+        wstring _path(path);
+        std::replace(_path.begin(), _path.end(), L'/', L'\\');
+        return _path;
     }
 
     wstring parentPath(const wstring &path)
     {
-        wstring::size_type delim = path.find_last_of(L"\\/");
+        auto delim = (path.size() > 2) ? path.find_last_of(L"\\/", path.size() - 2) : wstring::npos;
         return (delim == wstring::npos) ? L"" : path.substr(0, delim);
     }
 
