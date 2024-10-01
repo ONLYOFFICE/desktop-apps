@@ -27,6 +27,7 @@ TRANSLATIONS = ./langs/en.ts \
                 ./langs/fi.ts \
                 ./langs/ga.ts \
                 ./langs/gl.ts \
+                ./langs/he.ts \
                 ./langs/hi.ts \
                 ./langs/hr.ts \
                 ./langs/hu.ts \

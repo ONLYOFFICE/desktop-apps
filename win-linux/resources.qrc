@@ -193,6 +193,7 @@
         <file alias="fr-FR.qm">langs/fr.qm</file>
         <file alias="ga-IE.qm">langs/ga.qm</file>
         <file alias="gl-ES.qm">langs/gl.qm</file>
+        <file alias="he.qm">langs/he.qm</file>
         <file alias="hi-IN.qm">langs/hi.qm</file>
         <file alias="hr-HR.qm">langs/hr.qm</file>
         <file alias="hu-HU.qm">langs/hu.qm</file>
