@@ -163,6 +163,7 @@ Name: ar_SA; MessagesFile: compiler:Languages\Arabic.isl; LicenseFile: {#sLicens
 Name: sr_Latn_RS; MessagesFile: compiler:Languages\SerbianLatin.isl; LicenseFile: {#sLicenseFile};
 Name: sr_Cyrl_RS; MessagesFile: compiler:Languages\SerbianCyrillic.isl; LicenseFile: {#sLicenseFile};
 Name: en_GB; MessagesFile: compiler:Languages\EnglishBritish.isl; LicenseFile: {#sLicenseFile};
+Name: he; MessagesFile: compiler:Languages\Hebrew.isl; LicenseFile: {#sLicenseFile};
 
 [LangOptions]
 lo.LanguageName=ພາສາລາວ
@@ -229,6 +230,7 @@ si.Launch =%1 දියත් කරන්න
 zh_TW.Launch =啓動 %1
 sr_Latn_RS.Launch =Lansiraj %1
 sr_Cyrl_RS.Launch =Лансирај %1
+he.Launch =הפעל את %1
 ;======================================================================================================
 en_US.CreateDesktopIcon =Create %1 &desktop icon
 en_GB.CreateDesktopIcon =Create %1 &desktop icon
@@ -275,6 +277,7 @@ si.CreateDesktopIcon =%1 වැඩතල නිරූපකය සාදන්�
 zh_TW.CreateDesktopIcon =建立 %1 和桌面圖示
 sr_Latn_RS.CreateDesktopIcon =Kreiraj %1 &desktop ikonicu
 sr_Cyrl_RS.CreateDesktopIcon =Креирај %1 &десктоп иконицу
+he.CreateDesktopIcon =צור סמל &שולחן עבודה עבור %1
 ;======================================================================================================
 en_US.InstallAdditionalComponents =Installing additional system components. Please wait...
 en_GB.InstallAdditionalComponents =Installing additional system components. Please wait...
@@ -321,6 +324,7 @@ si.InstallAdditionalComponents =අතිරේක පද්ධති සංර�
 zh_TW.InstallAdditionalComponents =正在安裝附加系統元件，請稍候...
 sr_Latn_RS.InstallAdditionalComponents =Instaliranje dodatnih sistemskih komponenti. Molimo sačekajte...
 sr_Cyrl_RS.InstallAdditionalComponents =Инсталирање додатних системских компоненти. Молимо сачекајте...
+he.InstallAdditionalComponents =מתקין רכיבי מערכת נוספים. אנא המתן...
 ;======================================================================================================
 en_US.AdditionalTasks =Tasks:
 en_GB.AdditionalTasks =Tasks:
@@ -367,6 +371,7 @@ si.AdditionalTasks =කාර්යන්:
 zh_TW.AdditionalTasks =工作：
 sr_Latn_RS.AdditionalTasks =Zadaci:
 sr_Cyrl_RS.AdditionalTasks =Задаци:
+he.AdditionalTasks =משימות:
 ;======================================================================================================
 en_US.Uninstall =Uninstall
 en_GB.Uninstall =Uninstall
@@ -413,6 +418,7 @@ si.Uninstall =අස්ථාපනය
 zh_TW.Uninstall =解除安裝
 sr_Latn_RS.Uninstall =Deinstaliraj
 sr_Cyrl_RS.Uninstall =Деинсталирај
+he.Uninstall =הסר התקנה
 ;======================================================================================================
 en_US.WarningWrongArchitecture =You are trying to install the %1-bit application version over the %2-bit version installed. Please uninstall the previous version first or download the correct version for installation.
 en_GB.WarningWrongArchitecture =You are trying to install the %1-bit application version over the %2-bit version installed. Please uninstall the previous version first or download the correct version for installation.
@@ -459,6 +465,7 @@ si.WarningWrongArchitecture =ඔබ ස්ථාපිත බිටු-%2 අන
 zh_TW.WarningWrongArchitecture =您正在嘗試安裝 %1-bit 應用程式版本超過 %2-bit 目前已安裝的版本。 請先解除安裝先前的版本或下載正確的版本再進行安裝。
 sr_Latn_RS.WarningWrongArchitecture =Pokušavate da instalirate %1-bit aplikacija verziju preko %2-bit instalirane verzije. Molimo prvo deinstalirajte prethodnu verziju ili preuzmite tačnu verziju za instalaciju.
 sr_Cyrl_RS.WarningWrongArchitecture =Покушавате да инсталирате %1-бит апликација верзију преко %2-бит инсталиране верзије. Молимо прво деинсталирајте претходну верзију или преузмите тачну верзију за инсталацију.
+he.WarningWrongArchitecture =אתה מנסה להתקין את גרסת היישום %1-סיביות על גבי גרסת %2-סיביות מותקנת. אנא הסר תחילה את הגרסה הקודמת או הורד את הגרסה הנכונה להתקנה.
 ;======================================================================================================
 
 en_US.UpdateAppRunning=Setup has detected that %1 is currently running.%n%nIt'll be closed automatically. Click OK to continue, or Cancel to exit.
@@ -506,6 +513,7 @@ si.UpdateAppRunning=%1 දැනට ධාවනය වන බව පිහි�
 zh_TW.UpdateAppRunning=安裝程式偵測到 %1 正在執行中。%n%n將會自動關閉。 點擊 確認 繼續，或 取消 離開。
 sr_Latn_RS.UpdateAppRunning=Setup je detektovao da %1 se trenutno izvršava.%n%nBiće zatvoreno automatski. Kliknite OK da nastavite, ili Otkaži da izađete.
 sr_Cyrl_RS.UpdateAppRunning =Сетуп је детектовао да %1 се тренутно извршава.%n%nБиће затворено аутоматски. Кликните ОК да наставите, или Откажи да изађете.
+he.UpdateAppRunning=תוכנית ההתקנה זיהתה ש-%1 פועלת כרגע.%n%nהיא תיסגר אוטומטית. לחץ על אישור כדי להמשיך, או ביטול כדי לצאת.
 ;======================================================================================================
 en_US.WarningClearAppData =Do you want to clear the user settings and application cached data?
 en_GB.WarningClearAppData =Do you want to clear the user settings and application cached data?
@@ -552,6 +560,7 @@ si.WarningClearAppData =ඔබට පරිශ්‍රීලක සැකසු
 zh_TW.WarningClearAppData =您想要清除使用者設定和應用程式內的快取資料嗎?
 sr_Latn_RS.WarningClearAppData =Da li želite da obrišete korisničke postavke i keširane podatke aplikacije?
 sr_Cyrl_RS.WarningClearAppData =Да ли желите да обришете корисничке поставке и кеширане податке апликације?
+he.WarningClearAppData =האם ברצונך לנקות את הגדרות המשתמש ונתוני המטמון של היישום?
 ;======================================================================================================
 
 
@@ -580,6 +589,7 @@ sr_Cyrl_RS.WarningClearAppData =Да ли желите да обришете к�
 ;zh_TW.AssociateDescription =與文書處理檔案類型聯結 %1
 ;sr_Latn_RS.AssociateDescription =Poveži vrste ofis fajl dokumenata sa %1
 ;sr_Cyrl_RS.AssociateDescription =Повежи врсте офис фајл докумената са %1
+he.AssociateDescription =שייך סוגי קבצי מסמכי משרד ל-%1
 ;======================================================================================================
 en_US.UpdateService =Update service for {#sAppName}
 en_GB.UpdateService =Update service for {#sAppName}
@@ -607,6 +617,7 @@ sr_Latn_RS.UpdateService =Ažuriraj uslugu za {#sAppName}
 si.UpdateService ={#sAppName} සඳහා යාවත්කාල සේවාව
 hy_AM.UpdateService =Թարմացրեք ծառայությունը {#sAppName}-ի համար
 sr_Cyrl_RS.UpdateService =Ажурирај услугу за {#sAppName}
+he.UpdateService =שירות עדכון עבור {#sAppName}
 
 [Code]
 const
