@@ -1,0 +1,96 @@
+﻿/* No comment provided by engineer. */
+"Comma-Separated Values" = "ערכים מופרדים בפסיקים(*.csv)";
+
+/* No comment provided by engineer. */
+"DjVu File" = "מסמך דיגיטלי (*.djvu)";
+
+/* No comment provided by engineer. */
+"Document template" = "תבנית מסמך Word Open XML (*.dotx)";
+
+/* No comment provided by engineer. */
+"Excel 97-2003 Spreadsheet" = "גיליון אלקטרוני של Excel 97-2003 (*.xls)";
+
+/* No comment provided by engineer. */
+"Excel 2007 Spreadsheet" = "גיליון אלקטרוני Office Open XML (*.xlsx)";
+
+/* No comment provided by engineer. */
+"FictionBook File" = "קובץ FictionBook 2 (*.fb2)";
+
+/* No comment provided by engineer. */
+"If you don't review your documents, all your changeses will be lost." = "אם לא תסקור את המסמכים שלך, כל השינויים יאבדו.";
+
+/* No comment provided by engineer. */
+"Macro-enabled Presentation" = "מצגת מותאמת מאקרו (*.pptm)";
+
+/* No comment provided by engineer. */
+"Macro-enabled spreadsheet template" = "תבנית גיליון אלקטרוני מותאמת מאקרו (*.xltm)";
+
+/* No comment provided by engineer. */
+"Mobipocket e-book" = "קובץ Mobipocket (*.mobi)";
+
+/* No comment provided by engineer. */
+"new-document" = "מסמך חדש";
+
+/* No comment provided by engineer. */
+"new-pdfform" = "טופס PDF חדש";
+
+/* No comment provided by engineer. */
+"new-presentation" = "מצגת חדשה";
+
+/* No comment provided by engineer. */
+"new-spreadsheet" = "גיליון אלקטרוני חדש";
+
+/* No comment provided by engineer. */
+"OpenDocument Document Template" = "תבנית מסמך OpenDocument (*.ott)";
+
+/* No comment provided by engineer. */
+"OpenDocument Presentation Template" = "תבנית OpenDocument Presentation (*.otp)";
+
+/* No comment provided by engineer. */
+"OpenDocument Spreadsheet Template" = "תבנית גיליון אלקטרוני OpenDocument (*.ots)";
+
+/* No comment provided by engineer. */
+"OpenOffice Document" = "קובץ טקסט OpenDocument (*.odt)";
+
+/* No comment provided by engineer. */
+"OpenOffice Presentation" = "מצגת OpenDocument Presentation (*.odp)";
+
+/* No comment provided by engineer. */
+"OpenOffice Spreadsheet" = "גיליון נתונים OpenDocument Spreadsheet (*.ods)";
+
+/* No comment provided by engineer. */
+"PDF File" = "מסמך נייד (*.pdf)";
+
+/* No comment provided by engineer. */
+"PDF/A File" = "מסמך נייד /A (*.pdf)";
+
+/* No comment provided by engineer. */
+"Plain Text" = "קובץ טקסט רגיל (*.txt)";
+
+/* No comment provided by engineer. */
+"PowerPoint 97-2003 Presentation" = "מצגת PowerPoint 97-2003 (*.ppt)";
+
+/* No comment provided by engineer. */
+"PowerPoint 2007 Presentation" = "מצגת Office Open XML (*.pptx)";
+
+/* No comment provided by engineer. */
+"PowerPoint Slide Show" = "Office Open XML Slide Show (*.ppsx)";
+
+/* No comment provided by engineer. */
+"Presentation template" = "תבנית מצגת Open XML שלPowerPoint (*.potx)";
+
+/* No comment provided by engineer. */
+"Rich Text Document" = "קובץ בתבנית טקסט עשיר (*.rtf)";
+
+/* No comment provided by engineer. */
+"Spreadsheet template" = "תבנית גיליון אלקטרוני של Excel Open XML (*.xltx)";
+
+/* No comment provided by engineer. */
+"Word 97-2003 Document" = "מסמך Word 97-2003 (*.doc)";
+
+/* No comment provided by engineer. */
+"Word 2007 Document" = "מסמך Office Open XML (*.docx)";
+
+/* No comment provided by engineer. */
+"XML Paper Specification" = "מסמך OpenXPS (*.xps)";
+

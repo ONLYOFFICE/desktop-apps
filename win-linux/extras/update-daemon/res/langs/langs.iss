@@ -39,6 +39,7 @@ hr.CAPTION_TEXT =Usluga ažuriranja ONLYOFFICE
 hi.CAPTION_TEXT =ओनलीऑफिस अपडेट सेवा
 sv.CAPTION_TEXT =ONLYOFFICE uppdateringstjänst
 sr_Cyrl_RS.CAPTION_TEXT =ONLYOFFICE Сервис ажурирања
+he.CAPTION_TEXT =שירות העדכון של ONLYOFFICE
 
 en.MESSAGE_TEXT_ERR1 =An error occurred:
 en_GB.MESSAGE_TEXT_ERR1 =An error occurred:
@@ -80,6 +81,7 @@ hr.MESSAGE_TEXT_ERR1 =Došlo je do pogreške:
 hi.MESSAGE_TEXT_ERR1 =एक त्रुटि उत्पन्न हुई:
 sv.MESSAGE_TEXT_ERR1 =Ett fel inträffade:
 sr_Cyrl_RS.MESSAGE_TEXT_ERR1 =Грешка се појавила:
+he.MESSAGE_TEXT_ERR1 =אירעה שגיאה:
 
 en.MESSAGE_TEXT_ERR2 =An error occurred while deleting:
 en_GB.MESSAGE_TEXT_ERR2 =An error occurred while deleting:
@@ -121,6 +123,7 @@ hr.MESSAGE_TEXT_ERR2 =Došlo je do pogreške prilikom brisanja:
 hi.MESSAGE_TEXT_ERR2 =मिटाते समय एक त्रुटि उत्पन्न हुई:
 sv.MESSAGE_TEXT_ERR2 =Ett fel inträffade vid borttagning av:
 sr_Cyrl_RS.MESSAGE_TEXT_ERR2 =Грешка се појавила у току брисања:
+he.MESSAGE_TEXT_ERR2 =אירעה שגיאה בעת מחיקה:
 
 en.MESSAGE_TEXT_ERR3 =An error occurred while creating:
 en_GB.MESSAGE_TEXT_ERR3 =An error occurred while creating:
@@ -162,6 +165,7 @@ hr.MESSAGE_TEXT_ERR3 =Došlo je do pogreške prilikom stvaranja:
 hi.MESSAGE_TEXT_ERR3 =बनाते समय एक त्रुटि उत्पन्न हुई:
 sv.MESSAGE_TEXT_ERR3 =Ett fel inträffade vid skapande av:
 sr_Cyrl_RS.MESSAGE_TEXT_ERR3 =Грешка се појавила у току креирања:
+he.MESSAGE_TEXT_ERR3 =אירעה שגיאה בעת יצירה:
 
 en.MESSAGE_TEXT_ERR4 =An error occurred while restarting the service!
 en_GB.MESSAGE_TEXT_ERR4 =An error occurred while restarting the service!
@@ -203,6 +207,7 @@ hr.MESSAGE_TEXT_ERR4 =Došlo je do pogreške prilikom ponovnog pokretanja usluge
 hi.MESSAGE_TEXT_ERR4 =सेवा को रीस्टार्ट करते समय एक त्रुटि उत्पन्न हुई!
 sv.MESSAGE_TEXT_ERR4 =Ett fel inträffade vid omstart av tjänsten!
 sr_Cyrl_RS.MESSAGE_TEXT_ERR4 =Грешка се појавила у току рестартовања сервиса!
+he.MESSAGE_TEXT_ERR4 =אירעה שגיאה בעת הפעלה מחדש של השירות!
 
 en.MESSAGE_TEXT_ERR5 =Update cancelled. Can't find folder:
 en_GB.MESSAGE_TEXT_ERR5 =Update cancelled. Can't find folder:
@@ -244,6 +249,7 @@ hr.MESSAGE_TEXT_ERR5 =Ažuriranje je otkazano. Nije moguće pronaći mapu:
 hi.MESSAGE_TEXT_ERR5 =अपडेट रद्द किया गया। फ़ोल्डर नहीं मिल सका:
 sv.MESSAGE_TEXT_ERR5 =Uppdatering avbruten. Kan inte hitta mapp:
 sr_Cyrl_RS.MESSAGE_TEXT_ERR5 =Ажурирање отказано. Немогуће пронаћи фолдер:
+he.MESSAGE_TEXT_ERR5 =העדכון בוטל. לא ניתן למצוא את התיקייה:
 
 en.MESSAGE_TEXT_ERR6 =Update cancelled. The file signature is missing:
 en_GB.MESSAGE_TEXT_ERR6 =Update cancelled. The file signature is missing:
@@ -285,6 +291,7 @@ hr.MESSAGE_TEXT_ERR6 =Ažuriranje je otkazano. Nedostaje potpis datoteke:
 hi.MESSAGE_TEXT_ERR6 =अपडेट रद्द किया गया। फाइल हस्ताक्षर गुम है:
 sv.MESSAGE_TEXT_ERR6 =Uppdatering avbruten. Filsignaturen saknas:
 sr_Cyrl_RS.MESSAGE_TEXT_ERR6 =Ажурирање отказано. Потпис фајла недостаје:
+he.MESSAGE_TEXT_ERR6 =העדכון בוטל. חתימת הקובץ חסרה:
 
 en.MESSAGE_TEXT_ERR7 =Update cancelled. Can't delete folder:
 en_GB.MESSAGE_TEXT_ERR7 =Update cancelled. Can't delete folder:
@@ -326,6 +333,7 @@ hr.MESSAGE_TEXT_ERR7 =Ažuriranje je otkazano. Nije moguće izbrisati mapu:
 hi.MESSAGE_TEXT_ERR7 =अपडेट रद्द किया गया। फोल्डर मिटाया नहीं जा सकता:
 sv.MESSAGE_TEXT_ERR7 =Uppdatering avbruten. Kan inte ta bort mapp:
 sr_Cyrl_RS.MESSAGE_TEXT_ERR7 =Ажурирање отказано. Немогуће избрисати фолдер:
+he.MESSAGE_TEXT_ERR7 =העדכון בוטל. לא ניתן למחוק את התיקייה:
 
 en.MESSAGE_TEXT_ERR8 =Update cancelled. The program is not closed:
 en_GB.MESSAGE_TEXT_ERR8 =Update cancelled. The program is not closed:
@@ -367,6 +375,7 @@ hr.MESSAGE_TEXT_ERR8 =Ažuriranje je otkazano. Program nije zatvoren:
 hi.MESSAGE_TEXT_ERR8 =अपडेट रद्द किया गया। प्रोग्राम बंद नहीं हुआ है:
 sv.MESSAGE_TEXT_ERR8 =Uppdatering avbruten. Programmet är inte stängt:
 sr_Cyrl_RS.MESSAGE_TEXT_ERR8 =Ажурирање отказано. Програм није затворен:
+he.MESSAGE_TEXT_ERR8 =העדכון בוטל. התוכנית לא נסגרה:
 
 en.MESSAGE_TEXT_ERR9 =Update cancelled. Can't create folder:
 en_GB.MESSAGE_TEXT_ERR9 =Update cancelled. Can't create folder:
@@ -408,6 +417,7 @@ hr.MESSAGE_TEXT_ERR9 =Ažuriranje je otkazano. Nije moguće stvoriti mapu:
 hi.MESSAGE_TEXT_ERR9 =अपडेट रद्द किया गया। फोल्डर नहीं बनाया जा सकता:
 sv.MESSAGE_TEXT_ERR9 =Uppdatering avbruten. Kan inte skapa mapp:
 sr_Cyrl_RS.MESSAGE_TEXT_ERR9 =Ажурирање отказано. Немогуће креирати фолдер:
+he.MESSAGE_TEXT_ERR9 =העדכון בוטל. לא ניתן ליצור תיקייה:
 
 en.MESSAGE_TEXT_ERR10 =Update cancelled. Can't replace files to backup:
 en_GB.MESSAGE_TEXT_ERR10 =Update cancelled. Can't replace files to backup:
@@ -449,6 +459,7 @@ hr.MESSAGE_TEXT_ERR10 =Ažuriranje je otkazano. Nije moguće zamijeniti datoteke
 hi.MESSAGE_TEXT_ERR10 =अपडेट रद्द किया गया। फाइलों को बैकअप में रिप्लेस (प्रतिस्थापित) नहीं किया जा सकता:
 sv.MESSAGE_TEXT_ERR10 =Uppdatering avbruten. Kan inte ersätta filer för säkerhetskopia:
 sr_Cyrl_RS.MESSAGE_TEXT_ERR10 =Ажурирање отказано. Немогуће заменити фајлове за резервну копију:
+he.MESSAGE_TEXT_ERR10 =העדכון בוטל. לא ניתן להחליף קבצים לגיבוי:
 
 en.MESSAGE_TEXT_ERR11 =Can't restore files from backup!
 en_GB.MESSAGE_TEXT_ERR11 =Can't restore files from backup!
@@ -490,6 +501,7 @@ hr.MESSAGE_TEXT_ERR11 =Nije moguće vratiti datoteke iz sigurnosne kopije!
 hi.MESSAGE_TEXT_ERR11 =बैकअप से फ़ाइलों को रिस्टोर (पुनर्स्थापित) नहीं कर सकते!
 sv.MESSAGE_TEXT_ERR11 =Kan inte återställa filer från säkerhetskopia!
 sr_Cyrl_RS.MESSAGE_TEXT_ERR11 =Немогуће повратити фајлове из резервне копије!
+he.MESSAGE_TEXT_ERR11 =לא ניתן לשחזר קבצים מהגיבוי!
 
 en.MESSAGE_TEXT_ERR12 =Update cancelled. Can't move updates to App path:
 en_GB.MESSAGE_TEXT_ERR12 =Update cancelled. Can't move updates to App path:
@@ -531,6 +543,7 @@ hr.MESSAGE_TEXT_ERR12 =Ažuriranje je otkazano. Nije moguće premjestiti ažurir
 hi.MESSAGE_TEXT_ERR12 =अपडेट रद्द किया गया। अपडेट को ऐप पाथ पर नहीं ले जाया जा सकता:
 sv.MESSAGE_TEXT_ERR12 =Uppdatering avbruten. Kan inte flytta uppdateringar till applikationens sökväg:
 sr_Cyrl_RS.MESSAGE_TEXT_ERR12 =Ажурирање отказано. Немогуће померити ажурирања на путању апликације:
+he.MESSAGE_TEXT_ERR12 =העדכון בוטל. לא ניתן להעביר עדכונים לנתיב היישום:
 
 en.MESSAGE_TEXT_ERR13 =An error occurred while remove App path:
 en_GB.MESSAGE_TEXT_ERR13 =An error occurred while remove App path:
@@ -572,6 +585,7 @@ hr.MESSAGE_TEXT_ERR13 =Došlo je do pogreške prilikom uklanjanja puta aplikacij
 hi.MESSAGE_TEXT_ERR13 =ऐप पाथ हटाते समय एक त्रुटि उत्पन्न हुई:
 sv.MESSAGE_TEXT_ERR13 =Ett fel inträffade vid borttagning av applikationens sökväg:
 sr_Cyrl_RS.MESSAGE_TEXT_ERR13 =Грешка се појавила у току одстрањивања путање апликације:
+he.MESSAGE_TEXT_ERR13 =אירעה שגיאה בעת הסרת נתיב היישום:
 
 en.MESSAGE_TEXT_ERR14 =An error occurred while restore files from backup:
 en_GB.MESSAGE_TEXT_ERR14 =An error occurred while restore files from backup:
@@ -613,6 +627,7 @@ hr.MESSAGE_TEXT_ERR14 =Došlo je do pogreške prilikom vraćanja datoteka iz sig
 hi.MESSAGE_TEXT_ERR14 =बैकअप से फाइलों को रिस्टोर (पुनर्स्थापित) करते समय एक त्रुटि उत्पन्न हुई:
 sv.MESSAGE_TEXT_ERR14 =Ett fel inträffade vid återställning av filer från säkerhetskopia:
 sr_Cyrl_RS.MESSAGE_TEXT_ERR14 =Грешка се појавила у току повратка фајлова из резервне копије:
+he.MESSAGE_TEXT_ERR14 =אירעה שגיאה בעת שחזור קבצים מהגיבוי:
 
 en.MESSAGE_TEXT_ERR15 =An error occurred while restarting the program!
 en_GB.MESSAGE_TEXT_ERR15 =An error occurred while restarting the program!
@@ -654,6 +669,7 @@ hr.MESSAGE_TEXT_ERR15 =Došlo je do pogreške prilikom ponovnog pokretanja progr
 hi.MESSAGE_TEXT_ERR15 =प्रोग्राम को रीस्टार्ट करते समय एक त्रुटि उत्पन्न हुई!
 sv.MESSAGE_TEXT_ERR15 =Ett fel inträffade vid omstart av programmet!
 sr_Cyrl_RS.MESSAGE_TEXT_ERR15 =Грешка се појавила у току рестартовања програма!
+he.MESSAGE_TEXT_ERR15 =אירעה שגיאה בעת הפעלה מחדש של התוכנית!
 
 en.MESSAGE_TEXT_ERR16 =SDL init error:
 en_GB.MESSAGE_TEXT_ERR16 =SDL init error:
@@ -695,6 +711,7 @@ hr.MESSAGE_TEXT_ERR16 =Pogreška pri pokretanju SDL-a:
 hi.MESSAGE_TEXT_ERR16 =एसडीएल इनइट त्रुटि:
 sv.MESSAGE_TEXT_ERR16 =SDL-initieringsfel:
 sr_Cyrl_RS.MESSAGE_TEXT_ERR16 =SDL инит грешка:
+he.MESSAGE_TEXT_ERR16 =שגיאת אתחול SDL:
 
 en.MESSAGE_TEXT_ERR17 =ServiceCtrlDispatcher returned error:
 en_GB.MESSAGE_TEXT_ERR17 =ServiceCtrlDispatcher returned error:
@@ -736,5 +753,6 @@ hr.MESSAGE_TEXT_ERR17 =ServiceCtrlDispatcher naišao je na pogrešku:
 hi.MESSAGE_TEXT_ERR17 =सर्विसकंट्रोलडिसपैचर ने त्रुटि दी:
 sv.MESSAGE_TEXT_ERR17 =ServiceCtrlDispatcher returnerade fel:
 sr_Cyrl_RS.MESSAGE_TEXT_ERR17 =ServiceCtrlDispatcher повратна грешка:
+he.MESSAGE_TEXT_ERR17 =ServiceCtrlDispatcher החזיר שגיאה:
 
 en.MESSAGE_TEXT_ERR18 =An error occurred while start install updates!

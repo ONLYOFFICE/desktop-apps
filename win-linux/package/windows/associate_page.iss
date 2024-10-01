@@ -50,6 +50,7 @@ si.AssociateDescription ={#ASSC_APP_NAME} සමඟ කාර්යාල ලේ
 zh_TW.AssociateDescription =與文書處理檔案類型聯結{#ASSC_APP_NAME}
 sr_Latn_RS.AssociateDescription =Poveži ofis dokument fajl tipove sa {#ASSC_APP_NAME}
 sr_Cyrl_RS.AssociateDescription =Повежи офис документ фајл типове са {#ASSC_APP_NAME}
+he.AssociateDescription =שייך סוגי קבצי מסמכי משרד ל-{#ASSC_APP_NAME}
 
 en_US.AssociateCaption =File Associations
 en_GB.AssociateCaption =File Associations
@@ -96,6 +97,7 @@ si.AssociateCaption =ගොනු නිශ්‍රය
 zh_TW.AssociateCaption =檔案聯結
 sr_Latn_RS.AssociateCaption =Fajl povezivanja
 sr_Cyrl_RS.AssociateCaption =Фајл повезивања
+he.AssociateCaption =שיוכי קבצים
 
 en_US.AssociateDont =Do not associate
 en_GB.AssociateDont =Do not associate
@@ -142,6 +144,7 @@ si.AssociateDont =නිශ්‍ර කොකරන්න
 zh_TW.AssociateDont =不要聯結
 sr_Latn_RS.AssociateDont =Nemoj da povežeš
 sr_Cyrl_RS.AssociateDont =Немој да повежеш
+he.AssociateDont =אל תשייך
 
 en_US.AssociateAll =Associate all
 en_GB.AssociateAll =Associate all
@@ -188,6 +191,7 @@ si.AssociateAll =සියල්ල නිහ්ශ්‍රය
 zh_TW.AssociateAll =全部聯結
 sr_Latn_RS.AssociateAll =Poveži sve
 sr_Cyrl_RS.AssociateAll =Повежи све
+he.AssociateAll =שייך הכל
 
 en_US.AssociateSel =Associate selected
 en_GB.AssociateSel =Associate selected
@@ -234,6 +238,7 @@ si.AssociateSel =තේරූ දෑ නිහ්ශ්‍රය
 zh_TW.AssociateSel =聯結已選定
 sr_Latn_RS.AssociateSel =Poveži odabrano
 sr_Cyrl_RS.AssociateSel =Повежи одабрано
+he.AssociateSel =שייך נבחרים
 
 en_US.AssociateAudio =File types
 en_GB.AssociateAudio =File types
@@ -280,6 +285,7 @@ si.AssociateAudio =ගොනු වර්ග
 zh_TW.AssociateAudio =檔案類型
 sr_Latn_RS.AssociateAudio =Fajl tipovi
 sr_Cyrl_RS.AssociateAudio =Фајл типови
+he.AssociateAudio =סוגי קבצים
 
 en_US.extMSWord =Microsoft Word Document
 en_GB.extMSWord =Microsoft Word Document
@@ -326,6 +332,7 @@ si.extMSWord =මයික්‍රොසොෆ්ට් වර්ඩ් ලේ�
 zh_TW.extMSWord =Microsoft Word 文件
 sr_Cyrl_RS.extMSWord =Microsoft Word документ
 sr_Latn_RS.extMSWord =Microsoft Word dokument
+he.extMSWord =מסמך Microsoft Word
 
 en_US.extMSExcel =Microsoft Excel Workbook
 en_GB.extMSExcel =Microsoft Excel Workbook
@@ -372,6 +379,7 @@ si.extMSExcel =මයික්‍රොසොෆ්ට් එක්සෙල් 
 zh_TW.extMSExcel =Microsoft Excel 活頁簿
 sr_Cyrl_RS.extMSExcel =Microsoft Excel радна књига
 sr_Latn_RS.extMSExcel =Microsoft Excel radna knjiga
+he.extMSExcel =חוברת עבודה של Microsoft Excel
 
 en_US.extMSPresentation =Microsoft PowerPoint Presentation
 en_GB.extMSPresentation =Microsoft PowerPoint Presentation
@@ -418,6 +426,7 @@ si.extMSPresentation =මයික්‍රොසොෆ්ට් පවර්ප
 zh_TW.extMSPresentation =Microsoft PowerPoint 簡報
 sr_Cyrl_RS.extMSPresentation =Microsoft PowerPoint презентација
 sr_Latn_RS.extMSPresentation =Microsoft PowerPoint prezentacija
+he.extMSPresentation =מצגת Microsoft PowerPoint
 
 en_US.extMSSlideshow =Microsoft PowerPoint Slideshow
 en_GB.extMSSlideshow =Microsoft PowerPoint Slideshow
@@ -464,6 +473,7 @@ si.extMSSlideshow =මයික්‍රොසොෆ්ට් පවර්පො
 zh_TW.extMSSlideshow =Microsoft PowerPoint 投影片
 sr_Cyrl_RS.extMSSlideshow =Microsoft PowerPoint слајд-шоу
 sr_Latn_RS.extMSSlideshow =Microsoft PowerPoint slajd-šou
+he.extMSSlideshow =מצגת שקופיות של Microsoft PowerPoint
 
 en_US.extODT =OpenDocument Text File
 en_GB.extODT =OpenDocument Text File
@@ -510,6 +520,7 @@ si.extODT =ඕපන්ඩොකියුමන්ට් පෙළ ලේඛන�
 zh_TW.extODT =OpenDocument Text 文件
 sr_Cyrl_RS.extODT =OpenDocument текст фајл
 sr_Latn_RS.extODT =OpenDocument tekst fajl
+he.extODT =קובץ טקסט OpenDocument
 
 en_US.extODS =OpenDocument Spreadsheet
 en_GB.extODS =OpenDocument Spreadsheet
@@ -556,6 +567,7 @@ si.extODS =ඕපන්ඩොකියුමන්ට් පැතුරුම�
 zh_TW.extODS =OpenDocument 試算表
 sr_Cyrl_RS.extODS =OpenDocument прорачунска табела
 sr_Latn_RS.extODS =OpenDocument proračunska tabela
+he.extODS =גיליון אלקטרוני OpenDocument
 
 en_US.extODP =OpenDocument Presentation
 en_GB.extODP =OpenDocument Presentation
@@ -602,6 +614,7 @@ si.extODP =ඕපන්ඩොකියුමන්ට් සමර්පණය
 zh_TW.extODP =OpenDocument 簡報
 sr_Cyrl_RS.extODP =OpenDocument презентација
 sr_Latn_RS.extODP =OpenDocument prezentacija
+he.extODP =מצגת OpenDocument
 
 en_US.extDOC =Word 97-2003 Document
 en_GB.extDOC =Word 97-2003 Document
@@ -648,6 +661,7 @@ si.extDOC =වර්ඩ් 97-2003 ලේඛනය
 zh_TW.extDOC =Word 97-2003 文件
 sr_Cyrl_RS.extDOC =Word 97-2003 документ
 sr_Latn_RS.extDOC =Word 97-2003 dokument
+he.extDOC =מסמך Word 97-2003
 
 en_US.extDOCX =Office Open XML Document
 en_GB.extDOCX =Office Open XML Document
@@ -694,6 +708,7 @@ si.extDOCX =ඔෆිස් විවෘත XML ලේඛනය
 zh_TW.extDOCX =Office Open XML 文件
 sr_Cyrl_RS.extDOCX =Office Open XML документ
 sr_Latn_RS.extDOCX =Office Open XML dokument
+he.extDOCX =מסמך Office Open XML
 
 en_US.extDOCXF =ONLYOFFICE Form Template
 en_GB.extDOCXF =ONLYOFFICE Form Template
@@ -740,6 +755,7 @@ si.extDOCXF =ඔන්ලිඔෆිස් ආකෘතිපත්‍ර අ�
 zh_TW.extDOCXF =ONLYOFFICE 文档表单模板
 sr_Cyrl_RS.extDOCXF =ONLYOFFICE формулар шаблон
 sr_Latn_RS.extDOCXF =ONLYOFFICE formular šablon
+he.extDOCXF =תבנית טופס ONLYOFFICE
 
 en_US.extXLS =Excel 97-2003 Spreadsheet
 en_GB.extXLS =Excel 97-2003 Spreadsheet
@@ -786,6 +802,7 @@ si.extXLS =එක්සෙල් 97-2003 පැතුරුම්පත
 zh_TW.extXLS =Excel 97-2003 試算表
 sr_Cyrl_RS.extXLS =Excel 97-2003 прорачунска табела
 sr_Latn_RS.extXLS =Excel 97-2003 proračunska tabela
+he.extXLS =גיליון אלקטרוני Excel 97-2003
 
 en_US.extXLSX =Office Open XML Spreadsheet
 en_GB.extXLSX =Office Open XML Spreadsheet
@@ -832,6 +849,7 @@ si.extXLSX =ඔෆිස් විවෘත XML පැතුරුම්පත
 zh_TW.extXLSX =Office Open XML 試算表
 sr_Cyrl_RS.extXLSX =Office Open XML прорачунска табела
 sr_Latn_RS.extXLSX =Office Open XML proračunska tabela
+he.extXLSX =גיליון אלקטרוני Office Open XML
 
 en_US.extPPT =PowerPoint 97-2003 Presentation
 en_GB.extPPT =PowerPoint 97-2003 Presentation
@@ -878,6 +896,7 @@ si.extPPT =පවර්පොයින්ට් 97-2003 සමර්පණය
 zh_TW.extPPT =PowerPoint 97-2003 簡報
 sr_Cyrl_RS.extPPT =PowerPoint 97-2003 презентација
 sr_Latn_RS.extPPT =PowerPoint 97-2003 prezentacija
+he.extPPT =מצגת PowerPoint 97-2003
 
 en_US.extPPTX =Office Open XML Presentation
 en_GB.extPPTX =Office Open XML Presentation
@@ -924,6 +943,7 @@ si.extPPTX =ඔෆිස් විවෘත XML සමර්පණය
 zh_TW.extPPTX =Office Open XML 簡報
 sr_Cyrl_RS.extPPTX =Office Open XML презентација
 sr_Latn_RS.extPPTX =Office Open XML prezentacija
+he.extPPTX =מצגת Office Open XML
 
 en_US.extPPS =PowerPoint 97-2003 Slide Show
 en_GB.extPPS =PowerPoint 97-2003 Slide Show
@@ -970,6 +990,7 @@ si.extPPS =පවර්පොයින්ට් 97-2003 චිත්‍රකා
 zh_TW.extPPS =PowerPoint 97-2003投影片
 sr_Cyrl_RS.extPPS =PowerPoint 97-2003 слајд-шоу
 sr_Latn_RS.extPPS =PowerPoint 97-2003 slajd-šou
+he.extPPS =מצגת שקופיות PowerPoint 97-2003
 
 en_US.extPPSX =Office Open XML Slide Show
 en_GB.extPPSX =Office Open XML Slide Show
@@ -1016,6 +1037,7 @@ si.extPPSX =ඔෆිස් විවෘත XML චිත්‍රකාච ද�
 zh_TW.extPPSX =Office Open XML 投影片
 sr_Cyrl_RS.extPPSX =Office Open XML слајд-шоу
 sr_Latn_RS.extPPSX =Office Open XML slajd-šou
+he.extPPSX =מצגת שקופיות Office Open XML
 
 en_US.extRTF =Rich Text Format File
 en_GB.extRTF =Rich Text Format File
@@ -1062,6 +1084,7 @@ si.extRTF =පොහොසත් පෙළ ආකෘති ගොනුව
 zh_TW.extRTF =Rich Text Format 文件
 sr_Latn_RS.extRTF =Богати текст формат фајл
 sr_Latn_RS.extRTF =Bogati tekst format fajl
+he.extRTF =קובץ בפורמט טקסט עשיר
 
 en_US.extCSV =Comma Separated Values
 en_GB.extCSV =Comma Separated Values
@@ -1108,6 +1131,7 @@ si.extCSV =අල්පවිරාම මගින් වෙන්කළ අග
 zh_TW.extCSV =逗點分隔值
 sr_Cyrl_RS.extCSV =Вредности одвојене зарезом
 sr_Latn_RS.extCSV =Vrednosti odvojene zarezom
+he.extCSV =ערכים מופרדים בפסיקים
 
 en_US.extPDF =Portable Document
 en_GB.extPDF =Portable Document
@@ -1154,6 +1178,7 @@ si.extPDF =සුවහ ලේඛනය
 zh_TW.extPDF =PDF 檔案
 sr_Cyrl_RS.extPDF =Преносиви документ
 sr_Latn_RS.extPDF =Prenosivi dokument
+he.extPDF =מסמך נייד
 
 en_US.extDJVU =Digital Document
 en_GB.extDJVU =Digital Document
@@ -1200,6 +1225,7 @@ si.extDJVU =සංඛ්‍යාංක ලේඛනය
 zh_TW.extDJVU =DjVu 檔案
 sr_Cyrl_RS.extDJVU =Дигитални документ
 sr_Latn_RS.extDJVU =Digitalni dokument
+he.extDJVU =מסמך דיגיטלי
 
 en_US.extXPS =Open XML Paper Specification
 en_GB.extXPS =Open XML Paper Specification
@@ -1246,6 +1272,7 @@ si.extXPS =විවෘත XML කොළයේ පිරිවිතර
 zh_TW.extXPS =OpenXPS 檔案
 sr_Cyrl_RS.extXPS =Open XML папир спецификација
 sr_Latn_RS.extXPS =Open XML papir specifikacija
+he.extXPS =מפרט נייר XML פתוח
 
 en_US.extPOT =PowerPoint Template
 en_GB.extPOT =PowerPoint Template
@@ -1264,6 +1291,7 @@ de.extPOT =PowerPoint-Vorlage
 it_IT.extPOT =Modello PowerPoint
 sr_Cyrl_RS.extPOT =PowerPoint шаблон
 sr_Latn_RS.extPOT =PowerPoint šablon
+he.extPOT =תבנית PowerPoint
 
 en_US.extPPTM =PowerPoint Open XML Macro-Enabled Presentation
 en_GB.extPPTM =PowerPoint Open XML Macro-Enabled Presentation
@@ -1282,6 +1310,7 @@ de.extPPTM =PowerPoint Open XML-Makro-fähige Präsentation
 it_IT.extPPTM =Presentazione PowerPoint Open XML con attivazione macro
 sr_Cyrl_RS.extPPTM =PowerPoint презентација са макроима у отвореном XML формату
 sr_Latn_RS.extPPTM =PowerPoint prezentacija sa makroima u otvorenom XML formatu
+he.extPPTM =מצגת PowerPoint Open XML עם מאקרו
 
 en_US.extEPUB =Open eBook File
 en_GB.extEPUB =Open eBook File
@@ -1300,6 +1329,7 @@ de.extEPUB =eBook-Datei öffnen
 it_IT.extEPUB =File Open eBook
 sr_Cyrl_RS.extEPUB =Отворена еКњига
 sr_Latn_RS.extEPUB =Otvorena eKnjiga
+he.extEPUB =קובץ ספר אלקטרוני פתוח
 
 en_US.extFB2 =FictionBook 2.0 File
 en_GB.extFB2 =FictionBook 2.0 File
@@ -1318,6 +1348,7 @@ de.extFB2 =FictionBook 2.0-Datei
 it_IT.extFB2 =File FictionBook 2.0
 sr_Cyrl_RS.extFB2 =FictionBook 2.0 датотека
 sr_Latn_RS.extFB2 =FictionBook 2.0 datoteka
+he.extFB2 =קובץ FictionBook 2.0
 
 en_US.extDOTX =Word Open XML Document Template
 en_GB.extDOTX =Word Open XML Document Template
@@ -1336,6 +1367,7 @@ de.extDOTX =Word Open XML Dokumentvorlage
 it_IT.extDOTX =Modello di documento Word Open XML
 sr_Cyrl_RS.extDOTX =Word шаблон документа у отвореном XML формату
 sr_Latn_RS.extDOTX =Word šablon dokumenta u otvorenom XML formatu
+he.extDOTX =תבנית מסמך Word Open XML
 
 en_US.extOXPS =Open XML Paper Specification
 en_GB.extOXPS =Open XML Paper Specification
@@ -1381,6 +1413,7 @@ gl.extOXPS =Especificación do papel Open XML
 si.extOXPS =විවෘත XML කොළයේ පිරිවිතර
 sr_Cyrl_RS.extOXPS =Open XML папир спецификација
 sr_Latn_RS.extOXPS =Open XML papir specifikacija
+he.extOXPS =מפרט נייר XML פתוח
 
 en_US.extXLSB =Excel Binary File Format
 en_GB.extXLSB =Excel Binary File Format
@@ -1397,6 +1430,7 @@ de.extXLSB =Excel-Binärdateiformat
 it_IT.extXLSB =Formato di file binario Excel
 sr_Cyrl_RS.extXLSB =Excel бинарни формат датотеке
 sr_Latn_RS.extXLSB =Excel binarni format datoteke
+he.extXLSB =פורמט קובץ בינארי של Excel
 
 ;======================================================================================================
 
@@ -1445,6 +1479,7 @@ si.jumpDOCX =නව ලේඛනය
 zh_TW.jumpDOCX =新文件
 sr_Latn_RS.jumpDOCX =Novi dokument
 sr_Cyrl_RS.jumpDOCX =Нови документ
+he.jumpDOCX =מסמך חדש
 
 en_US.jumpXLSX =New spreadsheet
 en_GB.jumpXLSX =New spreadsheet
@@ -1491,6 +1526,7 @@ si.jumpXLSX =නව පැතුරුම්පත
 zh_TW.jumpXLSX =新試算表
 sr_Latn_RS.jumpXLSX =Nova proračunska tabela
 sr_Cyrl_RS.jumpXLSX =Нова прорачунска табела
+he.jumpXLSX =גיליון אלקטרוני חדש
 
 en_US.jumpPPTX =New presentation
 en_GB.jumpPPTX =New presentation
@@ -1537,6 +1573,7 @@ si.jumpPPTX =නව සමර්පණය
 zh_TW.jumpPPTX =新簡報
 sr_Latn_RS.jumpPPTX =Nova prezentacija
 sr_Cyrl_RS.jumpPPTX =Нова презентација
+he.jumpPPTX =מצגת חדשה
 
 en_US.jumpDOCXF =New PDF Form
 en_GB.jumpDOCXF =New PDF Form
@@ -1583,6 +1620,7 @@ si.jumpDOCXF =නව PDF පෝරමය
 zh_TW.jumpDOCXF =新的 PDF 表格
 sr_Latn_RS.jumpDOCXF =Novi PDF formular
 sr_Cyrl_RS.jumpDOCXF =Нови PDF формулар
+he.jumpDOCXF =טופס PDF חדש
 
 en_US.defprogAppDescription=Free desktop office suite for document editing and collaboration
 en_GB.defprogAppDescription=Free desktop office suite for document editing and collaboration
@@ -1629,6 +1667,7 @@ si.defprogAppDescription=ලේඛන සංස්කරණය සහ සහය�
 zh_TW.defprogAppDescription=使用於檔案編輯和協作的免費桌面辦公套件
 sr_Latn_RS.defprogAppDescription=Besplatni desktop ofis paket za uređivanje dokumenata i saradnju
 sr_Cyrl_RS.defprogAppDescription =Бесплатни десктоп офис пакет за уређивање докумената и сарадњу
+he.defprogAppDescription=חבילת תוכנות משרדיות חינמית לשולחן העבודה לעריכת מסמכים ושיתוף פעולה
 
 en_US.warnWin10FileAssociationDesc=To associate the files with the application, open the following window after the installation is complete:
 en_GB.warnWin10FileAssociationDesc=To associate the files with the application, open the following window after the installation is complete:
@@ -1675,6 +1714,7 @@ si.warnWin10FileAssociationDesc=යෙදුම සමඟ ගොනු නිහ
 zh_TW.warnWin10FileAssociationDesc=當安裝完成後，開啟以下的視窗將檔案與應用程式聯結：
 sr_Latn_RS.warnWin10FileAssociationDesc=Da biste povezali fajlove sa aplikacijom, otvorite predstojeći prozor nakon što se instalacija završi
 sr_Cyrl_RS.warnWin10FileAssociationDesc =Да бисте повезали фајлове са апликацијом, отворите предстојећи прозор након што се инсталација заврши
+he.warnWin10FileAssociationDesc=כדי לשייך את הקבצים ליישום, פתח את החלון הבא לאחר סיום ההתקנה:
 
 en_US.warnWin10FileAssociationPath=Settings > Apps > Default apps
 en_GB.warnWin10FileAssociationPath=Settings > Apps > Default apps
@@ -1721,6 +1761,7 @@ si.warnWin10FileAssociationPath=සැකසුම් > යෙදුම් > ප
 zh_TW.warnWin10FileAssociationPath=設定 > 應用程式 > 預設應用程式
 sr_Latn_RS.warnWin10FileAssociationPath=Podešavanja > Aplikacije > Podrazumevane aplikacije
 sr_Cyrl_RS.warnWin10FileAssociationPath =Подешавања > Апликације > Подразумеване апликације
+he.warnWin10FileAssociationPath=הגדרות > יישומים > יישומי ברירת מחדל
 
 en_US.runOpenDefaultApps=Open Default apps
 en_GB.runOpenDefaultApps=Open Default apps
@@ -1767,6 +1808,7 @@ si.runOpenDefaultApps=පෙරනිමි යෙදුම් අරින්�
 zh_TW.runOpenDefaultApps=開啟預設應用程式
 sr_Cyrl_RS.runOpenDefaultApps =Отвори подразумеване апликације
 sr_Latn_RS.runOpenDefaultApps=Otvori podrazumevane aplikacije
+he.runOpenDefaultApps=פתח יישומי ברירת מחדל
 
 [Run]
 Filename: ms-settings:defaultapps; Description: {cm:runOpenDefaultApps}; Flags:postinstall shellexec nowait unchecked; MinVersion: 10.0.10240;

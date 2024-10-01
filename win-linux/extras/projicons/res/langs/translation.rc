@@ -562,3 +562,17 @@ BEGIN
     IDS_NEW_PPTX  "Нова Office Open XML презентација"
     IDS_NEW_PDF   "Нови PDF формулар"
 END
+
+LANGUAGE LANG_HEBREW, SUBLANG_DEFAULT
+STRINGTABLE
+BEGIN
+    IDS_DOCX  "מסמך Office Open XML"
+    IDS_XLSX  "גיליון אלקטרוני Office Open XML"
+    IDS_PPTX  "מצגת Office Open XML"
+    IDS_PDF   "טופס PDF"
+
+    IDS_NEW_DOCX  "מסמך Office Open XML חדש"
+    IDS_NEW_XLSX  "גיליון אלקטרוני Office Open XML חדש"
+    IDS_NEW_PPTX  "מצגת Office Open XML חדש"
+    IDS_NEW_PDF   "טופס PDF חדש"
+END
