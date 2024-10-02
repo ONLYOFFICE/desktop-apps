@@ -180,6 +180,7 @@ private:
 //        ,{"et-EE", "Eesti"}
         ,{"fi-FI", {"Suomi", "Finnish"}}
 //        ,{"ga-IE", {"Gaeilge", "Galego"}}
+        ,{"he", {"עברית", "Hebrew"}}
 //        ,{"hi-IN", "हिन्दी"}
 //        ,{"hr-HR", "Hrvatska"}
         ,{"hu-HU", {"Magyar", "Hungarian"}}
