@@ -110,9 +110,11 @@
 
     utils.fn.extend(ViewTemplates.prototype, {
         listitemtemplate: function(info) {
+            const icon_el = !info.icon ? `<svg class='icon'><use xlink:href='#template-item'></use></svg>`:
+                                            `<img src="${info.icon}"></img>`
             return `<div id="${info.uid}" class='item'>
                         <div class='icon'>
-                            <img src="${info.icon}"></img>
+                            ${icon_el}
                         </div>
                         <span class='title'>${info.name}</span>
                     </div>`;
