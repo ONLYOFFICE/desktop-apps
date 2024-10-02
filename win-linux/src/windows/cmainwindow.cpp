@@ -146,8 +146,8 @@ int CMainWindow::attachEditor(QWidget * panel, int index)
     }
     int _index = tabWidget()->insertPanel(panel, index);
     if ( !(_index < 0) ) {
-        toggleButtonMain(false);
         tabWidget()->setCurrentIndex(_index);
+        toggleButtonMain(false);
     }
     return _index;
 }
