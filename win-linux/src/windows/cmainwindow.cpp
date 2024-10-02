@@ -452,7 +452,7 @@ QWidget* CMainWindow::createMainPanel(QWidget *parent)
     m_pTabs->applyUITheme(GetCurrentTheme().id());
 
     connect(m_pTabs, SIGNAL(currentChanged(int)), this, SLOT(onTabChanged(int)));
-    connect(pTabBar, SIGNAL(tabBarClicked(int)), this, SLOT(onTabClicked(int)));
+    connect(pTabBar, SIGNAL(tabBarClicked(int)), this, SLOT(onTabClicked(int)), Qt::QueuedConnection);
     connect(pTabBar, SIGNAL(tabCloseRequested(int)), this, SLOT(onTabCloseRequest(int)));
     connect(m_pTabs, &CAscTabWidget::editorInserted, bind(&CMainWindow::onTabsCountChanged, this, _2, _1, 1));
     connect(m_pTabs, &CAscTabWidget::editorRemoved, bind(&CMainWindow::onTabsCountChanged, this, _2, _1, -1));
@@ -524,7 +524,7 @@ void CMainWindow::toggleButtonMain(bool toggle, bool delay)
     if ( delay ) {
         QTimer::singleShot(200, this, [=]{ _toggle(toggle); });
     } else {
-        _toggle(toggle);
+        QTimer::singleShot(0, this, [=]{ _toggle(toggle); });
     }
 }
 
