@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<DOCUMENT Type="Advanced Installer" CreateVersion="18.6.1" version="21.5" Modules="enterprise" RootPath="." Language="en" Id="{B5BC1FE9-EBA1-4B6E-93EB-6D2DCEF2ED7F}">
-  <COMPONENT cid="caphyon.advinst.msicomp.ProjectOptionsComponent">
-    <ROW Name="HiddenItems" Value="ActSyncAppComponent;CPLAppletComponent;AutorunComponent;GameUxComponent;SilverlightSlnComponent;SharePointSlnComponent;AppXAppDetailsComponent;FixupComponent;AppXCapabilitiesComponent;AppXDependenciesComponent;AppXProductDetailsComponent;AppXVisualAssetsComponent;AppXAppDeclarationsComponent;AppXUriRulesComponent;MsiXDiffComponent;MsixManifestEditorComponent"/>
-  </COMPONENT>
+<DOCUMENT Type="Advanced Installer" CreateVersion="18.6.1" version="22.0" Modules="enterprise" RootPath="." Language="en" Id="{B5BC1FE9-EBA1-4B6E-93EB-6D2DCEF2ED7F}">
   <COMPONENT cid="caphyon.advinst.msicomp.MsiPropsComponent">
     <ROW Property="AI_APP_FILE" Value="[#DesktopEditors.exe]"/>
     <ROW Property="AI_BITMAP_DISPLAY_MODE" Value="0"/>
@@ -432,7 +429,7 @@
     <ROW Action="AI_DownloadPrereq" Description="Downloading prerequisite software" DescriptionLocId="ActionText.Description.AI_DownloadPrereq" Template="Downloading [1]{[2] completed}" TemplateLocId="ActionText.Template.AI_DownloadPrereq"/>
     <ROW Action="AI_ExtractLzma" Description="Extracting files from archive" DescriptionLocId="ActionText.Description.AI_ExtractLzma" TemplateLocId="-"/>
     <ROW Action="AI_ExtractPrereq" Description="Extracting prerequisite software" DescriptionLocId="ActionText.Description.AI_ExtractPrereq" Template="Extracting [1]{[2] completed}" TemplateLocId="ActionText.Template.AI_ExtractPrereq"/>
-    <ROW Action="AI_InstallPrePrerequisite" Description="Installing prerequisite software" DescriptionLocId="ActionText.Description.AI_InstallPrerequisite" Template="[1]" TemplateLocId="ActionText.Template.AI_InstallPrerequisite"/>
+    <ROW Action="AI_InstallPrePrerequisite" Description="Configuring prerequisite software" DescriptionLocId="ActionText.Description.AI_InstallPrerequisite" Template="[1]" TemplateLocId="ActionText.Template.AI_InstallPrerequisite"/>
     <ROW Action="AI_VerifyPrePrereq" Description="Verifying prerequisites" DescriptionLocId="ActionText.Description.AI_VerifyPrereq" Template="[1] was not installed correctly." TemplateLocId="ActionText.Template.AI_VerifyPrereq"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiAppSearchComponent">
@@ -1712,6 +1709,14 @@
     <ROW Registry="reg_fa_type_progid_shellnew_filename__pdf" Root="0" Key=".pdf\[ExtPfx].Pdf\ShellNew" Name="FileName" Value="[APPDIR]converter\empty\[EMPTY_LANG_DIR]\new.pdf" Component_="c_reg_fa_new__pdf"/>
     <ROW Registry="reg_fa_type_progid_shellnew_filename__pptx" Root="0" Key=".pptx\[ExtPfx].Show.12\ShellNew" Name="FileName" Value="[APPDIR]converter\empty\[EMPTY_LANG_DIR]\new.pptx" Component_="c_reg_fa_new__pptx"/>
     <ROW Registry="reg_fa_type_progid_shellnew_filename__xlsx" Root="0" Key=".xlsx\[ExtPfx].Sheet.12\ShellNew" Name="FileName" Value="[APPDIR]converter\empty\[EMPTY_LANG_DIR]\new.xlsx" Component_="c_reg_fa_new__xlsx"/>
+    <ROW Registry="reg_fa_type_progid_shellnew_itemname__docx" Root="0" Key=".docx\[ExtPfx].Document.12\ShellNew" Name="ItemName" Value="#%@[#DesktopEditors.exe],-1100" Component_="c_reg_fa_new__docx" VirtualValue="#%"/>
+    <ROW Registry="reg_fa_type_progid_shellnew_itemname__pdf"  Root="0" Key=".pdf\[ExtPfx].Pdf\ShellNew" Name="ItemName" Value="#%@[#DesktopEditors.exe],-1103" Component_="c_reg_fa_new__pdf" VirtualValue="#%"/>
+    <ROW Registry="reg_fa_type_progid_shellnew_itemname__pptx" Root="0" Key=".pptx\[ExtPfx].Show.12\ShellNew" Name="ItemName" Value="#%@[#DesktopEditors.exe],-1102" Component_="c_reg_fa_new__pptx" VirtualValue="#%"/>
+    <ROW Registry="reg_fa_type_progid_shellnew_itemname__xlsx" Root="0" Key=".xlsx\[ExtPfx].Sheet.12\ShellNew" Name="ItemName" Value="#%@[#DesktopEditors.exe],-1101" Component_="c_reg_fa_new__xlsx" VirtualValue="#%"/>
+    <ROW Registry="reg_fa_type_progid_shellnew_menutext__docx" Root="0" Key=".docx\[ExtPfx].Document.12\ShellNew" Name="MenuText" Value="#%@[#DesktopEditors.exe],-1000" Component_="c_reg_fa_new__docx" VirtualValue="#%"/>
+    <ROW Registry="reg_fa_type_progid_shellnew_menutext__pdf"  Root="0" Key=".pdf\[ExtPfx].Pdf\ShellNew" Name="MenuText" Value="#%@[#DesktopEditors.exe],-1003" Component_="c_reg_fa_new__pdf" VirtualValue="#%"/>
+    <ROW Registry="reg_fa_type_progid_shellnew_menutext__pptx" Root="0" Key=".pptx\[ExtPfx].Show.12\ShellNew" Name="MenuText" Value="#%@[#DesktopEditors.exe],-1002" Component_="c_reg_fa_new__pptx" VirtualValue="#%"/>
+    <ROW Registry="reg_fa_type_progid_shellnew_menutext__xlsx" Root="0" Key=".xlsx\[ExtPfx].Sheet.12\ShellNew" Name="MenuText" Value="#%@[#DesktopEditors.exe],-1001" Component_="c_reg_fa_new__xlsx" VirtualValue="#%"/>
     <ROW Registry="reg_progid" Root="0" Key="[ProgID]" Value="[DesktopEditorsName]" Component_="c_reg_progid"/>
     <ROW Registry="reg_progid_icon" Root="0" Key="[ProgID]\DefaultIcon" Value="[#DesktopEditors.exe],0" Component_="c_reg_progid"/>
     <ROW Registry="reg_progid_icon_k" Root="0" Key="[ProgID]\DefaultIcon" Name="\"/>

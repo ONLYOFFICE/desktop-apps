@@ -1,5 +1,6 @@
 
 en.CAPTION =ONLYOFFICE Online Installer
+en_GB.CAPTION =ONLYOFFICE Online Installer
 ru.CAPTION =ONLYOFFICE Онлайн Установщик
 de.CAPTION =ONLYOFFICE Online-Installationsprogramm
 fr.CAPTION =Programme d'installation ONLYOFFICE en ligne
@@ -24,7 +25,7 @@ sl.CAPTION =ONLYOFFICE Spletni namestitveni program
 tr.CAPTION =ONLYOFFICE Çevrimiçi Yükleyici
 uk.CAPTION =Онлайн-інсталятор ONLYOFFICE
 vi.CAPTION =Trình cài đặt trực tuyến ONLYOFFICE
-sr_latn_RS.CAPTION =ONLYOFFICE Onlajn Instalater
+sr_Latn_RS.CAPTION =ONLYOFFICE Onlajn Instalater
 si.CAPTION =ඔන්ලිඔෆිස් මාර්ගගත ස්ථාපකය
 be.CAPTION =Анлайн усталёўшчык ONLYOFFICE
 ca.CAPTION =Instal·lador online ONLYOFFICE
@@ -39,8 +40,10 @@ hr.CAPTION =Mrežni instalacijski program ONLYOFFICE
 hi.CAPTION =ओनलीऑफिस ऑनलाइन इंस्टॉलर
 sv.CAPTION =ONLYOFFICE onlineinstallationsprogram
 sr_Cyrl_RS.CAPTION =ONLYOFFICE Онлајн Инсталатер
+he.CAPTION_TEXT =תוכנת ההתקנה המקוונת של ONLYOFFICE
 
 en.MSG_ERR_ARCH =The application cannot continue because this architecture is not supported.
+en_GB.MSG_ERR_ARCH =The application cannot continue because this architecture is not supported.
 ru.MSG_ERR_ARCH =Приложение не может продолжить работу, так как эта архитектура не поддерживается.
 de.MSG_ERR_ARCH =Die Anwendung kann nicht fortgesetzt werden, da diese Architektur nicht unterstützt wird.
 fr.MSG_ERR_ARCH =L'application ne peut pas continuer car cette architecture n'est pas prise en charge.
@@ -80,8 +83,10 @@ hr.MSG_ERR_ARCH =Aplikacija ne može nastaviti jer ova arhitektura nije podržan
 hi.MSG_ERR_ARCH =यह एप्लिकेशन जारी नहीं रह सकती क्योंकि यह आर्किटेक्चर समर्थित नहीं है।
 sv.MSG_ERR_ARCH =Applikationen kan inte fortsätta eftersom denna arkitektur inte stöds.
 sr_Cyrl_RS.MSG_ERR_ARCH =Апликација не може наставити јер ова архитектура није подржана.
+he.MSG_ERR_ARCH =היישום אינו יכול להמשיך מכיוון שארכיטקטורה זו אינה נתמכת.
 
 en.MSG_ERR_ALREADY_RUNNING =The application is already running.
+en_GB.MSG_ERR_ALREADY_RUNNING =The application is already running.
 ru.MSG_ERR_ALREADY_RUNNING =Приложение уже запущено.
 de.MSG_ERR_ALREADY_RUNNING =Die Anwendung läuft bereits.
 fr.MSG_ERR_ALREADY_RUNNING =Cette application est déjà en cours d'exécution.
@@ -121,6 +126,7 @@ hr.MSG_ERR_ALREADY_RUNNING =Aplikacija je već pokrenuta.
 hi.MSG_ERR_ALREADY_RUNNING =एप्लीकेशन पहले से ही चल रही है।
 sv.MSG_ERR_ALREADY_RUNNING =Applikationen körs redan.
 sr_Cyrl_RS.MSG_ERR_ALREADY_RUNNING =Апликација већ ради.
+he.MSG_ERR_ALREADY_RUNNING =היישום כבר פועל.
 
 en.MSG_ERR_CLOSE_APP =Setup has detected that %1 is currently running. Please close all instances of it.
 ru.MSG_ERR_CLOSE_APP =Обнаружен запущенный экземпляр %1. Пожалуйста, закройте все экземпляры приложения.
@@ -198,6 +204,7 @@ en.LABEL_ERR_COMMON =An error occurred:
 ru.LABEL_ERR_COMMON =Произошла ошибка:
 
 en.LABEL_ERR_RUNNING =An error occurred while running the package.\nPlease try restarting the app later.
+en_GB.LABEL_ERR_RUNNING =An error occurred while running the package.\nPlease try restarting the app later.
 ru.LABEL_ERR_RUNNING =Произошла ошибка при запуске установщика.\nПопробуйте перезапустить приложение позже.
 de.LABEL_ERR_RUNNING =Beim Ausführen des Pakets ist ein Fehler aufgetreten.\nBitte versuchen Sie, die App später neu zu starten.
 fr.LABEL_ERR_RUNNING =Une erreur s'est produit lors de l'exécution du paquet.\nVeuillez réessayer de redémarrer l'application plus tard.
@@ -237,6 +244,7 @@ hr.LABEL_ERR_RUNNING =Došlo je do pogreške prilikom pokretanja paketa.\nPokuš
 hi.LABEL_ERR_RUNNING =पैकेज चलाने के दौरान एक त्रुटि उत्पन्न हुई।\nकृपया बाद में ऐप को रीस्टार्ट करने का प्रयास करें।
 sv.LABEL_ERR_RUNNING =Ett fel inträffade vid körning av paketet.\nFörsök starta om appen senare.
 sr_Cyrl_RS.LABEL_ERR_RUNNING =Дошло је до грешке приликом покретања пакета.\nМолимо покушајте да рестартујете апликацију касније.
+he.LABEL_ERR_RUNNING =אירעה שגיאה בעת הפעלת החבילה.\nאנא נסה להפעיל מחדש את היישום מאוחר יותר.
 
 en.LABEL_ERR_CANCELLED =Cancelled!
 ru.LABEL_ERR_CANCELLED =Отменено!
@@ -245,6 +253,7 @@ en.BUTTON_INSTALL =Install
 ru.BUTTON_INSTALL =Установить
 
 en.BUTTON_CANCEL =Cancel
+en_GB.BUTTON_CANCEL =Cancel
 ru.BUTTON_CANCEL =Отмена
 de.BUTTON_CANCEL =Abbrechen
 fr.BUTTON_CANCEL =Annuler
@@ -284,6 +293,7 @@ hr.BUTTON_CANCEL =Otkaži
 hi.BUTTON_CANCEL =रद्द करें
 sv.BUTTON_CANCEL =Avbryt
 sr_Cyrl_RS.BUTTON_CANCEL =Откажи
+he.BUTTON_CANCEL =ביטול
 
 en.BUTTON_APPLY =Apply
 ru.BUTTON_APPLY =Применить
@@ -304,6 +314,7 @@ en.RADIO_UNINST =Uninstall
 ru.RADIO_UNINST =Удалить
 
 en.CHECK_SILENT =Silent Installation
+en_GB.CHECK_SILENT =Silent Installation
 ru.CHECK_SILENT =Тихая установка
 de.CHECK_SILENT =Silent Installation
 fr.CHECK_SILENT =Installation sans assistance
@@ -343,6 +354,7 @@ hr.CHECK_SILENT =Tiha instalacija
 hi.CHECK_SILENT =मौन इंस्टॉलेशन
 sv.CHECK_SILENT =Obevakad installation
 sr_Cyrl_RS.CHECK_SILENT =Тиха инсталација
+he.CHECK_SILENT =התקנה שקטה
 
 en.CHECK_LAUNCH =Launch
 ru.CHECK_LAUNCH =Запустить

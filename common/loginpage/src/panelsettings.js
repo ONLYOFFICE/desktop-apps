@@ -45,24 +45,28 @@
 
     const themes_map = {
         'theme-system': {
-            text: 'Same as system',
+            text: utils.Lang.settOptThemeSystem,
             type: THEME_TYPE_SYSTEM,
         },
         'theme-light': {
-            text: 'Light',
+            text: utils.Lang.settOptThemeLight,
             type: 'light',
         },
         'theme-classic-light': {
-            text: 'Classic Light',
+            text: utils.Lang.settOptThemeClassicLight,
             type: 'light',
         },
         'theme-dark': {
-            text: 'Dark',
+            text: utils.Lang.settOptThemeDark,
             type: 'dark',
         },
         'theme-contrast-dark': {
-            text: 'Dark Contrast',
+            text: utils.Lang.settOptThemeContrastDark,
             type: 'dark',
+        },
+        'theme-gray': {
+            text: 'Gray',
+            type: 'light',
         },
     }
 
@@ -174,7 +178,7 @@
                                             <label class='sett__caption' l10n>${_lang.settLanguage}</label><label class='sett__caption'> *</label>
                                             <div class='sett--label-lift-top hbox'>
                                                 <section class='box-cmp-select'>
-                                                    <select class='combobox' data-size="10"></select>
+                                                    <select class='combobox subtext-right' data-size="10"></select>
                                                 </section>
                                             </div>
                                         </div>
@@ -204,7 +208,7 @@
                                             <label class='sett__caption' l10n>${_lang.settAUpdateMode}</label>
                                             <div class='sett--label-lift-top hbox'>
                                                 <section class='box-cmp-select'>
-                                                    <select class='combobox'>
+                                                    <select class='combobox subtext-bottom'>
                                                         <option data-subtext="${_lang.settOptDescAUpdateSilent}" value='silent' l10n>${_lang.settOptAUpdateSilent}</option>
                                                         <option data-subtext="${_lang.settOptDescAUpdateAsk}" value='ask' l10n>${_lang.settOptAUpdateAsk}</option>
                                                         <option data-subtext="${_lang.settOptDescDisabled}" value='disabled' l10n>${_lang.settOptAUpdateDisabled}</option>
@@ -337,6 +341,7 @@
 
                 const _divider = _combo.find('[data-divider]');
                 objs.forEach(t => {
+                    t.l10n || (t.l10n = {});
                     const _css = create_colors_css(t.id, t.colors);
                     if ( _css ) {
                         const _$style = $(`style[data-theme-id=${t.id}]`);
@@ -368,7 +373,7 @@
             *  that version has no support for unicode in regexp
             */
             if (window.utils.inParams.osver == 'winxp' || /windows nt 5/i.test(navigator.appVersion)) return true;
-            else return (new RegExp('^[\\p{L}\\p{M}\\p{N}\'"\\.\\- ]+$', 'iu')).test(name)
+            else return (new RegExp('^[\\p{L}\\p{M}\\p{N}\'"«»()_+=&^%$#@!~*\\/.\\- ]+$', 'iu')).test(name)
         };
 
         function _on_btn_apply(e) {
@@ -376,6 +381,9 @@
             if ( _user_new_name && _user_new_name.length &&
                     _validate_user_name(_user_new_name) )
             {
+                _user_new_name = _user_new_name.trim();
+                $userName.val(_user_new_name);
+
                 let _doc_open_mode = $chOpenMode.prop('checked') ? 'view' : 'edit';
                 let _new_settings = {
                     username:_user_new_name,
@@ -520,7 +528,8 @@
                             let def_lang;
                             for (let lang in appSettings.locale.langs) {
                                 /^en/.test(lang) && (def_lang = lang);
-                                $combo.append(`<option value='${lang}'>${appSettings.locale.langs[lang]}</option>`);
+                                const n = appSettings.locale.langs[lang];
+                                $combo.append(`<option value='${lang}' data-subtext='${n['enname']}'>${n["name"]}</option>`);
                             }
 
                             if ( !appSettings.locale.langs[appSettings.locale.current] ) {
@@ -563,29 +572,18 @@
                         if ( !!appSettings.uitheme ) {
                             appSettings.uitheme == 'canuse' && (appSettings.uitheme = 'theme-light');
 
-                            const _themes = [{'theme-system': utils.Lang.settOptThemeSystem},
-                                            {'theme-light': utils.Lang.settOptThemeLight},
-                                            {'theme-classic-light': utils.Lang.settOptThemeClassicLight},
-                                            {'theme-dark': utils.Lang.settOptThemeDark},
-                                            {'theme-contrast-dark': utils.Lang.settOptThemeContrastDark}];
 
                             if ( nativevars.theme ) {
                                 if ( nativevars.theme.system == 'disabled' )
-                                    _themes.shift();
+                                    delete themes_map['theme-system'];
                             }
 
                             const _combo = $('#opts-ui-theme select', $panel).empty();
-                            _themes.forEach(item => {
-                                const entries = Object.entries(item)[0];
-                                _combo.append(`<option value=${entries[0]} l10n>${entries[1]}</option>`);
-                            });
-
-                            if ( nativevars.localthemes ) {
-                                for ( const t of nativevars.localthemes ) {
-                                    const _theme_title = t.l10n[utils.Lang.id] || t.name;
-                                    _combo.append(`<option value=${t.id} ml10n>${_theme_title}</option>`);
-                                }
+                            for (const [key, value] of Object.entries(themes_map)) {
+                                _combo.append(`<option value=${key} l10n>${value['text']}</option>`);
                             }
+
+
 
                             if ( !$optsUITheme ) {
                                 ($optsUITheme = _combo)

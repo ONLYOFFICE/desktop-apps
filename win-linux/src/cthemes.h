@@ -66,6 +66,7 @@ public:
         , ecrToolTipBorder
         , ecrToolTipBackground
         , ecrTabDivider
+        , ecrTabThemeType
     };
 
     auto fromFile(const QString&) -> bool;
@@ -78,7 +79,7 @@ public:
 #ifdef Q_OS_WIN
     auto colorRef(ColorRole r) const -> COLORREF;
 #endif
-    auto value(ColorRole) const -> std::wstring;
+    auto value(ColorRole, const std::wstring& def = L"") const -> std::wstring;
     auto isDark() const -> bool;
     auto isSystem() const -> bool;
 
@@ -103,7 +104,7 @@ public:
     auto defaultLight() -> const CTheme&;
 
 //    auto addLocalTheme(const std::wstring&) -> bool;
-    auto addLocalTheme(const QJsonObject&, const QString& filepath) -> bool;
+    auto addLocalTheme(QJsonObject&, const QString& filepath) -> bool;
     auto setCurrentTheme(const std::wstring&) -> void;
     auto isThemeCurrent(const std::wstring& id) -> bool;
 //    auto isThemeDark(const std::wstring& id) -> bool;

@@ -194,12 +194,14 @@
         <file alias="de-DE.qm">langs/de.qm</file>
         <file alias="el-GR.qm">langs/el_GR.qm</file>
         <file alias="en-US.qm">langs/en.qm</file>
+        <file alias="en-GB.qm">langs/en_GB.qm</file>
         <file alias="es-ES.qm">langs/es.qm</file>
         <file alias="et-EE.qm">langs/et.qm</file>
         <file alias="fi-FI.qm">langs/fi.qm</file>
         <file alias="fr-FR.qm">langs/fr.qm</file>
         <file alias="ga-IE.qm">langs/ga.qm</file>
         <file alias="gl-ES.qm">langs/gl.qm</file>
+        <file alias="he.qm">langs/he.qm</file>
         <file alias="hi-IN.qm">langs/hi.qm</file>
         <file alias="hr-HR.qm">langs/hr.qm</file>
         <file alias="hu-HU.qm">langs/hu.qm</file>
@@ -236,5 +238,6 @@
         <file alias="theme-classic-light.json">res/styles/theme-classic-light.json</file>
         <file alias="theme-dark.json">res/styles/theme-dark.json</file>
         <file alias="theme-contrast-dark.json">res/styles/theme-contrast-dark.json</file>
+        <file alias="theme-gray.json">res/styles/theme-gray.json</file>
     </qresource>
 </RCC>

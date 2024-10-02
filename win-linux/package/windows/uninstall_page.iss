@@ -1,6 +1,7 @@
 ﻿
 [CustomMessages]
-en.UninstallPageLabel=Press Uninstall to proceed with uninstallation.
+en_US.UninstallPageLabel=Press Uninstall to proceed with uninstallation.
+en_GB.UninstallPageLabel=Press Uninstall to proceed with uninstallation.
 cs.UninstallPageLabel=Stisknutím Odinstalovat pokračujte v odinstalování.
 sk.UninstallPageLabel=Stlačením Odinštalovať pokračujte v odinštalácii.
 ru.UninstallPageLabel=Нажмите кнопку «Удалить», чтобы приступить к удалению.
@@ -19,9 +20,11 @@ da.UninstallPageLabel=Tryk Afinstaller for at fortsætte med afinstallationen.
 ar_SA.UninstallPageLabel=اضغط إزالة التثبيت للاستمرار بذلك
 sr_Latn_RS.UninstallPageLabel=Pritisnite Deinstaliraj da nastavite da deinstalacijom
 sr_Cyrl_RS.UninstallPageLabel=Притисните Деинсталирај да наставите да деинсталацијом
+he.UninstallPageLabel=לחץ על 'הסר התקנה' כדי להמשיך בתהליך הסרת ההתקנה.
 
 
-en.UninstallOptionClearData=Clear all user settings and application cached data
+en_US.UninstallOptionClearData=Clear all user settings and application cached data
+en_GB.UninstallOptionClearData=Clear all user settings and application cached data
 cs.UninstallOptionClearData=Vymažte všechna uživatelská nastavení a data uložená v paměti
 sk.UninstallOptionClearData=Vymazať všetky používateľské nastavenia a údaje uložené vo vyrovnávacej pamäti
 ru.UninstallOptionClearData=Очистить все пользовательские настройки и кэш приложения
@@ -40,6 +43,7 @@ da.UninstallOptionClearData=Slet alle brugerdata og applikationens cachede data
 ar_SA.UninstallOptionClearData=مسح جميع بيانات المستخدم وبيانات التطبيق المؤقتة
 sr_Latn_RS.UninstallOptionClearData=Obriši sva korisnička podešavanja i keširane podatke aplikacije
 sr_Cyrl_RS.UninstallOptionClearData=Обриши сва корисничка подешавања и кеширане податке апликације
+he.UninstallOptionClearData=נקה את כל הגדרות המשתמש ונתוני המטמון של הייש
 
 
 

@@ -353,9 +353,28 @@ input[type="radio"] {
         }
     }
 
-    .dropdown-menu li small {
-        padding-left: 0;
-        display: block;
+    &.subtext-bottom {
+        .dropdown-menu li small {
+            padding-left: 0;
+            display: block;
+        }
+    }
+
+    &.subtext-right {
+        .dropdown-menu li {
+            span.text {
+                width: 100%;
+            }
+
+            small {
+                float: right;
+                padding-top: 2px;
+
+                .rtl & {
+                    float: left;
+                }
+            }
+        }
     }
 
     .rtl & {
@@ -452,4 +471,14 @@ input[type="radio"] {
 
 ::-webkit-input-placeholder {
    color: @text-tertiary;
+}
+
+/*
+*   nav-item
+*/
+
+.nav-item {
+    color: @text-normal;
+    cursor: pointer;
+    font-size: 14px;
 }

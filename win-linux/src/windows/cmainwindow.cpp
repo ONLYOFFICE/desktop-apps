@@ -87,7 +87,7 @@ CMainWindow::CMainWindow(const QRect &rect) :
     }
     QMetaObject::connectSlotsByName(this);
     css.append(Utils::readStylesheets(":styles/styles_unix.qss"));
-#endif    
+#endif
     m_pMainPanel->setStyleSheet(css);
     QString tab_css = Utils::readStylesheets(":/styles/tabbar.qss");
     m_pTabs->tabBar()->setStyleSheet(tab_css.arg(GetColorQValueByRole(ecrWindowBackground),
@@ -150,8 +150,8 @@ int CMainWindow::attachEditor(QWidget * panel, int index)
     }
     int _index = tabWidget()->insertPanel(panel, index);
     if ( !(_index < 0) ) {
-        toggleButtonMain(false);
         tabWidget()->setCurrentIndex(_index);
+        toggleButtonMain(false);
         setTabMenu(_index, qobject_cast<CTabPanel*>(panel));
     }
     return _index;
@@ -462,7 +462,7 @@ QWidget* CMainWindow::createMainPanel(QWidget *parent)
     m_pTabs->applyUITheme(GetCurrentTheme().id());
 
     connect(m_pTabs, SIGNAL(currentChanged(int)), this, SLOT(onTabChanged(int)));
-    connect(pTabBar, SIGNAL(tabBarClicked(int)), this, SLOT(onTabClicked(int)));
+    connect(pTabBar, SIGNAL(tabBarClicked(int)), this, SLOT(onTabClicked(int)), Qt::QueuedConnection);
     connect(pTabBar, SIGNAL(tabCloseRequested(int)), this, SLOT(onTabCloseRequest(int)));
     connect(m_pTabs, &CAscTabWidget::editorInserted, bind(&CMainWindow::onTabsCountChanged, this, _2, _1, 1));
     connect(m_pTabs, &CAscTabWidget::editorRemoved, bind(&CMainWindow::onTabsCountChanged, this, _2, _1, -1));
@@ -534,7 +534,7 @@ void CMainWindow::toggleButtonMain(bool toggle, bool delay)
     if ( delay ) {
         QTimer::singleShot(200, this, [=]{ _toggle(toggle); });
     } else {
-        _toggle(toggle);
+        QTimer::singleShot(0, this, [=]{ _toggle(toggle); });
     }
 }
 

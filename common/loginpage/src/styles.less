@@ -352,7 +352,7 @@ li.menu-item {
     }
 
     &.templates {
-        padding: 20px;
+/*        padding: 20px;*/
     }
 }
 
@@ -420,22 +420,24 @@ li.menu-item {
     overflow: hidden;
 }
 
-#recovery-sep {
-    height: 40px;
-    display: none;
+.recent-panel-container {
+    display: grid;
+    gap: 40px;
+    height: 100%;
+    grid-template-rows: auto;
 }
 
 #box-recovery {
     display: none;
 
-        .flex-fill {
-            overflow-y: auto;
-            overflow-x: hidden;
-        }
+    .flex-fill {
+        overflow-y: auto;
+        overflow-x: hidden;
+        flex-grow: 0;
+    }
 }
 
 #box-recent {
-
     .flexbox {
         .flex-fill {
             overflow-y: auto;
@@ -879,14 +881,6 @@ li.menu-item {
     }
 }
 
-#box-settings {
-    #options-wrap {
-        overflow-y: auto;
-        flex-grow: 0;
-        height: 100%;
-    }
-}
-
 .menu-container {
     position: absolute;
 }
@@ -1284,7 +1278,20 @@ li.menu-item {
     > .content-box {
         overflow-y: auto;
     }
+
+    #options-wrap {
+        overflow-y: auto;
+        flex-grow: 0;
+        height: 100%;
+    }
+
+    .settings-field-lang {
+        .dropdown-menu:not(.inner) {
+            width: 350px;
+        }
+    }
 }
+
 
 .templates {
     #frame {
@@ -1293,6 +1300,72 @@ li.menu-item {
         align-items: center;
         justify-content: center;
         position: relative;
+    }
+
+    &.local {
+        section[panel=cloud] {
+            display: none;
+        }
+    }
+
+    &.cloud {
+        section[panel=local] {
+            display: none;
+        }
+    }
+
+    section {
+        height: 100%;
+        overflow-y: auto;
+    }
+
+    .nav-item {
+        border: 1px solid @highlight-button-pressed;
+        padding: 5px 10px;
+
+        &.selected {
+            background-color: @highlight-button-pressed;
+        }
+
+        &[data-value=local] {
+            margin-right: -4px;
+        }
+    }
+
+    .item {
+        padding: 10px;
+        cursor: pointer;
+        width: 160px;
+        height: 200px;
+        display: flex;
+        flex-direction: column;
+
+        .title {
+            color: @text-normal;
+            word-break: break-word;
+        }
+
+        .icon {
+            flex-grow: 1;
+            img {
+                width: 140px;
+            }
+            svg {
+                width: 140px;
+                height: 120px;
+                fill: @highlight-button-pressed;
+            }
+        }
+
+        &:hover {
+            background-color: @highlight-button-hover;
+        }
+    }
+
+    .table-templates.list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px 5px;
     }
 }
 

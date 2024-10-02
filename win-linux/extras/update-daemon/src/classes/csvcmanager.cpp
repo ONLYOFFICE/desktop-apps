@@ -36,7 +36,9 @@
 #include <locale>
 #include <vector>
 #include <sstream>
+#include <numeric>
 #include "version.h"
+#include "classes/cjson.h"
 #include "../../src/defines.h"
 #include "../../src/prop/defines_p.h"
 #ifdef _WIN32
@@ -74,7 +76,12 @@
 # define ARCHIVE_PATTERN  _T("*.tar.xz")
 # define sleep(a) usleep(a*1000)
 #endif
-
+#ifndef URL_APPCAST_UPDATES
+# define URL_APPCAST_UPDATES ""
+#endif
+#ifndef URL_APPCAST_DEV_CHANNEL
+# define URL_APPCAST_DEV_CHANNEL ""
+#endif
 #define UPDATE_PATH      _T("/" REG_APP_NAME "Updates")
 #define BACKUP_PATH      _T("/" REG_APP_NAME "Backup")
 #define SUCCES_UNPACKED  _T("/success_unpacked.txt")
@@ -129,10 +136,40 @@ auto isSuccessUnpacked(const tstring &successFilePath, const tstring &version)->
     return false;
 }
 
+auto isVersionBHigherThanA(const tstring &a, const tstring &b)->bool {
+    tstringstream old_ver(a), new_ver(b);
+    tstring old_part, new_part;
+    while (std::getline(old_ver, old_part, _T('.')) && std::getline(new_ver, new_part, _T('.'))) {
+        int old_num = 0, new_num = 0;
+        try {
+            old_num = std::stoi(old_part);
+        } catch (...) {};
+        try {
+            new_num = std::stoi(new_part);
+        } catch (...) {};
+        if (new_num > old_num)
+            return true;
+        else
+        if (new_num < old_num)
+            return false;
+    }
+    return false;
+}
+
+auto replace(tstring &str, const tstring &from, const tstring &to)->void {
+    if (from.empty())
+        return;
+    size_t start_pos = 0;
+    while ((start_pos = str.find(from, start_pos)) != tstring::npos) {
+        str.replace(start_pos, from.length(), to);
+        start_pos += to.length();
+    }
+}
+
 #ifdef _WIN32
 auto restartService()->void
 {
-    const wstring fileName = NS_File::appPath() + RESTART_BATCH;
+    wstring fileName = NS_File::appPath() + RESTART_BATCH;
     if (NS_File::fileExists(fileName) && !NS_File::removeFile(fileName)) {
         NS_Logger::WriteLog(_TR("An error occurred while deleting:") + _T(" ") + fileName, true);
         return;
@@ -157,7 +194,7 @@ auto restartService()->void
     ZeroMemory(&si, sizeof(si));
     ZeroMemory(&pi, sizeof(pi));
     si.cb = sizeof(si);
-    if (!CreateProcess(NULL, const_cast<LPWSTR>(fileName.c_str()), NULL, NULL, FALSE,
+    if (!CreateProcess(NULL, &fileName[0], NULL, NULL, FALSE,
                           CREATE_NO_WINDOW | CREATE_UNICODE_ENVIRONMENT, NULL, NULL, &si, &pi))
     {
         NS_Logger::WriteLog(_TR("An error occurred while restarting the service!"), true);
@@ -186,12 +223,42 @@ auto getCurrentDate()->wstring
 }
 #endif
 
+struct CSvcManager::PackageData {
+    tstring fileName,
+            fileType,
+            object,
+            hash,
+            version,
+            packageUrl,
+            packageArgs;
+    bool    isInstallable = true;
+    void clear() {
+        fileName.clear();
+        fileType.clear();
+        object.clear();
+        hash.clear();
+        version.clear();
+        packageUrl.clear();
+        packageArgs.clear();
+        isInstallable = true;
+    }
+};
+
+struct CSvcManager::SavedPackageData {
+    tstring fileName;
+};
+
 CSvcManager::CSvcManager():
+    m_packageData(new PackageData),
+    m_savedPackageData(new SavedPackageData),
     m_downloadMode(Mode::CHECK_UPDATES),
+    m_packageType(Package::Portable),
     m_socket(new CSocket(APP_PORT, SVC_PORT)),
     m_pDownloader(new CDownloader),
     m_pUnzip(new CUnzip)
 {
+    m_checkUrl = NS_Utils::cmdArgContains(_T("--appcast-dev-channel")) ? _T(URL_APPCAST_DEV_CHANNEL) : _T(URL_APPCAST_UPDATES);
+    NS_Logger::WriteLog(m_checkUrl.empty() ? _T("Updates is off, URL is empty.") : _T("Updates is on, URL: ") + m_checkUrl);
     init();
 }
 
@@ -199,6 +266,8 @@ CSvcManager::~CSvcManager()
 {
     if (m_future_clear.valid())
         m_future_clear.wait();
+    delete m_packageData, m_packageData = nullptr;
+    delete m_savedPackageData, m_savedPackageData = nullptr;
     delete m_pUnzip, m_pUnzip = nullptr;
     delete m_pDownloader, m_pDownloader = nullptr;
     delete m_socket, m_socket = nullptr;
@@ -235,19 +304,31 @@ void CSvcManager::init()
             case MSG_CheckUpdates: {
                 __GLOBAL_LOCK
                 //DeleteUrlCacheEntry(params[1].c_str());
-                m_downloadMode = Mode::CHECK_UPDATES;
-                if (m_pDownloader)
-                    m_pDownloader->downloadFile(params[1], generateTmpFileName(_T(".json")));
-                NS_Logger::WriteLog(_T("Received MSG_CheckUpdates, URL: ") + params[1]);
+                m_packageData->clear();
+                if (!m_checkUrl.empty()) {
+                    JsonDocument doc(params[1]);
+                    JsonObject root = doc.object();
+                    m_currVersion = root.value(_T("currVersion")).toTString();
+                    m_ignVersion = root.value(_T("ignVersion")).toTString();
+                    m_savedPackageData->fileName = root.value(_T("fileName")).toTString();
+                    tstring package_str = root.value(_T("package")).toTString();
+                    m_packageType = package_str == _T("iss") ? ISS : package_str == _T("msi") ? MSI : package_str == _T("portable") ? Portable : Other;
+                    m_downloadMode = Mode::CHECK_UPDATES;
+                    if (m_pDownloader)
+                        m_pDownloader->downloadFile(m_checkUrl, generateTmpFileName(_T(".json")));
+                    NS_Logger::WriteLog(_T("Received MSG_CheckUpdates, URL: ") + m_checkUrl);
+                } else {
+                    m_socket->sendMessage(MSG_OtherError, _T("SVC_TXT_ERR_URL"));
+                    __UNLOCK
+                }
                 break;
             }
             case MSG_LoadUpdates: {
                 __GLOBAL_LOCK
                 m_downloadMode = Mode::DOWNLOAD_UPDATES;
                 if (m_pDownloader) {
-                    tstring ext = (params[2] == _T("iss")) ? _T(".exe") :
-                                  (params[2] == _T("msi")) ? _T(".msi") : ARCHIVE_EXT;
-                    m_pDownloader->downloadFile(params[1], generateTmpFileName(ext));
+                    tstring ext = m_packageData->fileType == _T("iss") ? _T(".exe") : m_packageData->fileType == _T("msi") ? _T(".msi") : ARCHIVE_EXT;
+                    m_pDownloader->downloadFile(m_packageData->packageUrl, generateTmpFileName(ext));
                 }
                 NS_Logger::WriteLog(_T("Received MSG_LoadUpdates, URL: ") + params[1]);
                 break;
@@ -266,7 +347,11 @@ void CSvcManager::init()
                 break;
             }
             case MSG_UnzipIfNeeded:
-                unzipIfNeeded(params[1], params[2]);
+                if (!m_packageData->fileName.empty() && NS_File::getFileHash(m_packageData->fileName) == m_packageData->hash) {
+                    unzipIfNeeded(m_packageData->fileName, m_packageData->version);
+                } else {
+                    m_socket->sendMessage(MSG_OtherError, _T("SVC_TXT_ERR_MD5"));
+                }
                 break;
 
             case MSG_StartReplacingFiles:
@@ -280,7 +365,17 @@ void CSvcManager::init()
                 startReplacingService(params[2] == _T("true"));
                 __UNLOCK
                 break;
-
+#ifdef _WIN32
+            case MSG_StartInstallPackage:
+                if (!m_packageData->fileName.empty() && NS_File::getFileHash(m_packageData->fileName) == m_packageData->hash) {
+                    __GLOBAL_LOCK
+                    startInstallPackage();
+                    __UNLOCK
+                } else {
+                    m_socket->sendMessage(MSG_OtherError, _T("SVC_TXT_ERR_MD5"));
+                }
+                break;
+#endif
             case MSG_ClearTempFiles:
                 clearTempFiles(params[1], params[2]);
                 break;
@@ -373,11 +468,105 @@ void CSvcManager::onCompleteSlot(const int error, const tstring &filePath)
     __UNLOCK
     if (error == 0) {
         switch (m_downloadMode) {
-        case Mode::CHECK_UPDATES:
-            m_socket->sendMessage(MSG_LoadCheckFinished, filePath);
+        case Mode::CHECK_UPDATES: {
+            tstring out_json;
+            list<tstring> lst;
+            if (NS_File::readFile(filePath, lst)) {
+                tstring json = std::accumulate(lst.begin(), lst.end(), tstring());
+                JsonDocument doc(json);
+                JsonObject root = doc.object();
+
+                tstring version = root.value(_T("version")).toTString();
+                tstring curr_version = m_currVersion;
+                tstring svc_version = root.value(_T("serviceVersion")).toTString();
+                tstring curr_svc_version = _T(VER_FILEVERSION_STR);
+                JsonObject package = root.value(_T("package")).toObject();
+#ifdef _WIN32
+# ifdef _WIN64
+                JsonObject win = package.value(_T("win_64")).toObject();
+# else
+                JsonObject win = package.value(_T("win_32")).toObject();
+# endif
+#else
+                JsonObject win = package.value(_T("linux_64")).toObject();
+#endif
+                if (isVersionBHigherThanA(curr_version, version) && (version != m_ignVersion)) {
+                    m_packageData->object = _T("app");
+                    m_packageData->version = version;
+                    m_packageData->fileType = _T("archive");
+                    JsonObject package_type = win.value(_T("archive")).toObject();
+#ifdef _WIN32
+                    if (m_packageType != Portable) {
+                        const tstring install_key = m_packageType == MSI ? _T("msi") : _T("iss");
+                        if (win.contains(install_key)) {
+                            JsonObject install_type = win.value(install_key).toObject();
+                            if (install_type.contains(_T("maxVersion"))) {
+                                tstring maxVersion = install_type.value(_T("maxVersion")).toTString();
+                                if (!isVersionBHigherThanA(maxVersion, curr_version)) {
+                                    package_type = install_type;
+                                    m_packageData->fileType = install_key;
+                                    m_packageData->packageArgs = package_type.value(_T("arguments")).toTString();
+                                }
+                            }
+                        }
+                    }
+#endif
+                    m_packageData->packageUrl = package_type.value(_T("url")).toTString();
+                    tstring hash = package_type.value(_T("md5")).toTString();
+                    std::transform(hash.begin(), hash.end(), hash.begin(), ::tolower);
+                    m_packageData->hash = hash;
+
+                    // parse release notes
+                    // JsonObject release_notes = root.value(_T("releaseNotes")).toObject();
+                    // const tstring lang = CLangater::getCurrentLangCode() == "ru-RU" ? "ru-RU" : "en-EN";
+                    // JsonValue changelog = release_notes.value(lang);
+
+                    tstring min_version = root.value(_T("minVersion")).toTString();
+                    if (!min_version.empty() && isVersionBHigherThanA(curr_version, min_version))
+                        m_packageData->isInstallable = false;
+
+                } else
+                if (isVersionBHigherThanA(curr_svc_version, svc_version)) {
+                    m_packageData->object = _T("svc");
+                    m_packageData->version = svc_version;
+                    m_packageData->fileType = _T("archive");
+                    JsonObject package_type = win.value(_T("serviceArchive")).toObject();
+                    m_packageData->packageUrl = package_type.value(_T("url")).toTString();
+                    tstring hash = package_type.value(_T("md5")).toTString();
+                    std::transform(hash.begin(), hash.end(), hash.begin(), ::tolower);
+                    m_packageData->hash = hash;
+
+                } else {
+                    out_json = _T("{}");
+                }
+
+                if (out_json.empty()) {
+                    out_json = _T("{\"object\":\"%1\",\"version\":\"%2\",\"fileType\":\"%3\",\"packageUrl\":\"%4\",\"packageArgs\":\"%5\","
+                                  "\"hash\":\"%6\",\"isInstallable\":%7}");
+                    replace(out_json, _T("%1"), m_packageData->object);
+                    replace(out_json, _T("%2"), m_packageData->version);
+                    replace(out_json, _T("%3"), m_packageData->fileType);
+                    replace(out_json, _T("%4"), m_packageData->packageUrl);
+                    replace(out_json, _T("%5"), m_packageData->packageArgs);
+                    replace(out_json, _T("%6"), m_packageData->hash);
+                    replace(out_json, _T("%7"), m_packageData->isInstallable ? _T("true") : _T("false"));
+                    if (!m_savedPackageData->fileName.empty() && NS_File::getFileHash(m_savedPackageData->fileName) == m_packageData->hash)
+                        m_packageData->fileName = m_savedPackageData->fileName;
+                }
+
+            } else {
+                // read error
+            }
+            m_socket->sendMessage(MSG_LoadCheckFinished, out_json);
             break;
+        }
         case Mode::DOWNLOAD_UPDATES:
-            m_socket->sendMessage(MSG_LoadUpdateFinished, filePath);
+            if (!filePath.empty() && NS_File::getFileHash(filePath) == m_packageData->hash) {
+                m_packageData->fileName = filePath;
+                m_socket->sendMessage(MSG_LoadUpdateFinished, filePath);
+            } else {
+                m_socket->sendMessage(MSG_OtherError, _T("SVC_TXT_ERR_MD5"));
+            }
             break;
         default:
             break;
@@ -525,12 +714,12 @@ void CSvcManager::startReplacingFiles(const tstring &packageType, const bool res
     }
 
     // Replace app path to Backup
-#ifdef _WIN32_UNUSED
-    if (!NS_File::dirExists(tmpPath) && !NS_File::makePath(tmpPath)) {
+#ifdef _WIN32
+    if (packageType == TEXT("portable") && !NS_File::dirExists(tmpPath) && !NS_File::makePath(tmpPath)) {
         NS_Logger::WriteLog(_TR("Update cancelled. Can't create folder:") + _T(" ") + tmpPath, true);
         return;
     }
-    if (!NS_File::replaceFolder(appPath, tmpPath, false)) {
+    if (!NS_File::replaceFolder(appPath, tmpPath, packageType != TEXT("portable"))) {
 #else
     if (!NS_File::replaceFolder(appPath, tmpPath, true)) {
 #endif
@@ -706,3 +895,27 @@ void CSvcManager::startReplacingService(const bool restartAfterUpdate)
     restartService();
 #endif
 }
+
+#ifdef _WIN32
+void CSvcManager::startInstallPackage()
+{
+    // Verify the signature of executable files
+    if (!NS_File::verifyEmbeddedSignature(m_packageData->fileName)) {
+        NS_Logger::WriteLog(_TR("Update cancelled. The file signature is missing:") + _T(" ") + m_packageData->fileName, true);
+        return;
+    }
+    tstring args;
+    if (m_packageData->fileType == _T("msi")) {
+        args = _T("/i \"") + NS_File::toNativeSeparators(m_packageData->fileName) + _T("\"");
+        if (!m_packageData->packageArgs.empty())
+            args += _T(" ") + m_packageData->packageArgs;
+    } else {
+        args = m_packageData->packageArgs;
+        if (!args.empty())
+            args += _T(" ");
+        args += _T("/LANG=") + NS_Utils::GetAppLanguage();
+    }
+    if (!NS_File::runProcess(m_packageData->fileType == _T("msi") ? _T("msiexec.exe") : m_packageData->fileName, args))
+        NS_Logger::WriteLog(_TR("An error occurred while start install updates!"), true);
+}
+#endif

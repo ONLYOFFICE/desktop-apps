@@ -140,7 +140,9 @@ void CWindowBase::setWindowColors(const QColor& background, const QColor& border
     } else
     if (Utils::getWinVersion() == Utils::WinVer::Win10) {
         int brdWidth = 0;
-        SystemParametersInfo(SPI_GETBORDER, 0, &brdWidth, 0);
+        HDC hdc = GetDC(NULL);
+        brdWidth = GetSystemMetrics(SM_CXBORDER) * GetDeviceCaps(hdc, LOGPIXELSX)/96;
+        ReleaseDC(NULL, hdc);
         QColor brdColor = WindowHelper::getColorizationColor(isActive, background);
         css = QString("QMainWindow{border-top: %1px solid %2; background-color: %3;}").arg(QString::number(brdWidth), brdColor.name(), background.name());
     } else {

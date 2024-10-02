@@ -442,7 +442,9 @@
 
     [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameFullscreen
                                                         object:nil
-                                                      userInfo:@{@"fullscreen" : @(NO)}];
+                                                      userInfo:@{@"fullscreen" : @(NO),
+                                                                 @"terminate"  : @(YES)
+                                                               }];
 
     for (ASCTabView * tab in self.tabsControl.tabs) {
         if (tab.changed) {
@@ -834,12 +836,14 @@
 - (void)onCEFSave:(NSNotification *)notification {
     if (notification && notification.userInfo) {
         NSDictionary * params = (NSDictionary *)notification.userInfo;
-        NSString * viewId = params[@"viewId"];
         
-        ASCTabView * tab = [self.tabsControl tabWithUUID:viewId];
-        
-        if (tab && tab.params[@"shouldClose"] && [tab.params[@"shouldClose"] boolValue]) {
-            [self.tabsControl removeTab:tab];
+        if ( ![params[@"cancel"] boolValue] ) {
+            NSString * viewId = params[@"viewId"];
+            ASCTabView * tab = [self.tabsControl tabWithUUID:viewId];
+            
+            if (tab && tab.params[@"shouldClose"] && [tab.params[@"shouldClose"] boolValue]) {
+                [self.tabsControl removeTab:tab];
+            }
         }
     }
 }
@@ -879,8 +883,13 @@
         NSDictionary * params = (NSDictionary *)notification.userInfo;
 
         BOOL isFullscreen = [params[@"fullscreen"] boolValue];
-        int viewId = [params[@"viewId"] intValue];
-        ASCTabView * tab = [self tabViewWithId:viewId];
+        ASCTabView * tab= nil;
+        if ( [params objectForKey:@"viewId"] ) {
+            tab = [self tabViewWithId:[params[@"viewId"] intValue]];
+        } else if ( [params objectForKey:@"terminate"] and [params[@"terminate"] boolValue] ) {
+            if (self.tabsControl.tabs.count > 0)
+                tab = [self.tabsControl selectedTab];
+        }
 
         if ( tab ) {
             NSTabViewItem * item = [self.tabView tabViewItemAtIndex:[self.tabView indexOfTabViewItemWithIdentifier:tab.uuid]];
@@ -944,7 +953,8 @@
         if (eventData) {
             NSEditorApi::CAscKeyboardDown * pData = (NSEditorApi::CAscKeyboardDown *)[eventData pointerValue];
 
-            if ( pData->get_KeyCode() == 112 /*kVK_F1*/ && pData->get_IsShift() && pData->get_IsCtrl() ) {
+            int keyCode = pData->get_KeyCode();
+            if ( keyCode == 112 /*kVK_F1*/ && pData->get_IsShift() && pData->get_IsCtrl() ) {
                 NSOpenPanel * openPanel = [NSOpenPanel openPanel];
 
                 openPanel.canChooseDirectories = YES;
@@ -973,13 +983,24 @@
                         [alert runModal];
                     }
                 }];
-            } else if ( pData->get_KeyCode() == 9 ) {
+            } else if ( keyCode == 9 ) {
                 if ( pData->get_IsCtrl() ) {
                     if ( pData->get_IsShift() ) {
                         [self.tabsControl selectPreviouseTab];
                     } else {
                         [self.tabsControl selectNextTab];
                     }
+                }
+            } else if ( keyCode == 87 ) { // W
+                if ( pData->get_IsCommandMac() ) {
+                    ASCTabView * tab = [self.tabsControl selectedTab];
+                    if ( tab and [self tabs:self.tabsControl willRemovedTab:tab] ) {
+                        [self.tabsControl removeTab:tab];
+                    }
+                }
+            } else if ( keyCode == 81 ) { // Q
+                if ( pData->get_IsCommandMac() ) {
+                    [NSApp terminate:self];
                 }
             }
         }

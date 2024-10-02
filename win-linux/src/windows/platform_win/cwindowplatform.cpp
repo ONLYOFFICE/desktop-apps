@@ -177,6 +177,9 @@ CWindowPlatform::CWindowPlatform(const QRect &rect) :
     m_dpi = GetLogicalDpi(this);
     GetFrameMetricsForDpi(m_frame, m_dpi, m_isMaximized);
     SetWindowPos(m_hWnd, 0, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOMOVE | SWP_NOZORDER | SWP_NOACTIVATE | SWP_FRAMECHANGED);
+    connect(this->window()->windowHandle(), &QWindow::screenChanged, this, [=]() {
+        SetWindowPos(m_hWnd, 0, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOMOVE | SWP_NOZORDER | SWP_NOACTIVATE | SWP_FRAMECHANGED);
+    });
 }
 
 CWindowPlatform::~CWindowPlatform()
@@ -244,7 +247,9 @@ void CWindowPlatform::adjustGeometry()
         } else
         if (Utils::getWinVersion() == WinVer::Win10) {
             int brdWidth = 0;
-            SystemParametersInfo(SPI_GETBORDER, 0, &brdWidth, 0);
+            HDC hdc = GetDC(NULL);
+            brdWidth = GetSystemMetrics(SM_CXBORDER) * GetDeviceCaps(hdc, LOGPIXELSX)/96;
+            ReleaseDC(NULL, hdc);
             mrg = QMargins(0, brdWidth, 0, 0);
         }
         m_resAreaWidth = mrg.top();
@@ -330,6 +335,14 @@ bool CWindowPlatform::nativeEvent(const QByteArray &eventType, void *message, lo
 //        }
 //        break;
 //    }
+
+    case WM_SYSCOMMAND: {
+        if ((msg->wParam & 0xFFF0) == SC_KEYMENU) {
+            if (GetKeyState(VK_RETURN) & 0x8000)
+                return true;
+        }
+        break;
+    }
 
     case WM_NCCALCSIZE: {
         if (!m_borderless || !msg->wParam)

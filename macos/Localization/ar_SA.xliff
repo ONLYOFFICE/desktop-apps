@@ -119,7 +119,7 @@
       </trans-unit>
       <trans-unit id="Comma-Separated Values" xml:space="preserve">
         <source>Comma-Separated Values</source>
-        <target state="translated">قيم مفرّقة بفاصلة (*.csv)</target>
+        <target state="translated">قيم مفرّقة بفاصلة</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Create portal" xml:space="preserve">
@@ -134,7 +134,7 @@
       </trans-unit>
       <trans-unit id="DjVu File" xml:space="preserve">
         <source>DjVu File</source>
-        <target state="translated">مستند رقمي (*.djvu)</target>
+        <target state="translated">مستند رقمي</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Do you want to save the changes made to the document &quot;%@&quot;?" xml:space="preserve">
@@ -154,7 +154,7 @@
       </trans-unit>
       <trans-unit id="Document template" xml:space="preserve">
         <source>Document template</source>
-        <target state="translated">قالب وورد (*.dotx)</target>
+        <target state="translated">قالب وورد</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Don't Save" xml:space="preserve">
@@ -164,27 +164,27 @@
       </trans-unit>
       <trans-unit id="Electronic Publication" xml:space="preserve">
         <source>Electronic Publication</source>
-        <target state="translated">كتاب النشر الإلكتروني (*.epub)</target>
+        <target state="translated">كتاب النشر الإلكتروني</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Excel 97-2003 Spreadsheet" xml:space="preserve">
         <source>Excel 97-2003 Spreadsheet</source>
-        <target state="translated">جدول إكسل 97-2003 (*.xls)</target>
+        <target state="translated">جدول إكسل 97-2003</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Excel 2007 Spreadsheet" xml:space="preserve">
         <source>Excel 2007 Spreadsheet</source>
-        <target state="translated">جدول إكسل (*.xlsx)</target>
+        <target state="translated">جدول إكسل</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Macro-enabled spreadsheet template" xml:space="preserve">
         <source>Macro-enabled spreadsheet template</source>
-        <target state="translated">قالب جدول إكسيل مع خاصية الماكرو (*.xltm)</target>
+        <target state="translated">قالب جدول إكسيل مع خاصية الماكرو</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="FictionBook File" xml:space="preserve">
         <source>FictionBook File</source>
-        <target state="translated">ملف فكشنبوك 2 (*.fb2)</target>
+        <target state="translated">ملف فكشنبوك 2</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="File &quot;%@&quot; can not be open or not exist." xml:space="preserve">
@@ -204,7 +204,7 @@
       </trans-unit>
       <trans-unit id="HTML File" xml:space="preserve">
         <source>HTML File</source>
-        <target state="translated">ملف لغة توصيف النص الفائق (*.html)</target>
+        <target state="translated">ملف لغة توصيف النص الفائق</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Hide %@" xml:space="preserve">
@@ -229,12 +229,12 @@
       </trans-unit>
       <trans-unit id="MHT File" xml:space="preserve">
         <source>MHT File</source>
-        <target state="translated">ملف ويب مخزّن (*.mht)</target>
+        <target state="translated">ملف ويب مخزّن</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Mobipocket e-book" xml:space="preserve">
         <source>Mobipocket e-book</source>
-        <target state="translated">ملف موبي بوكيت (*.mobi)</target>
+        <target state="translated">ملف موبي بوكيت</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="No" xml:space="preserve">
@@ -259,32 +259,32 @@
       </trans-unit>
       <trans-unit id="OpenDocument Document Template" xml:space="preserve">
         <source>OpenDocument Document Template</source>
-        <target state="translated">مستند ليبري أوفس (*.ott)</target>
+        <target state="translated">مستند ليبري أوفس</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="OpenDocument Presentation Template" xml:space="preserve">
         <source>OpenDocument Presentation Template</source>
-        <target state="translated">قالب عرض ليبري أوفس (*.otp)</target>
+        <target state="translated">قالب عرض ليبري أوفس</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="OpenDocument Spreadsheet Template" xml:space="preserve">
         <source>OpenDocument Spreadsheet Template</source>
-        <target state="translated">قالب جدول ليبري أوفس (*.ots)</target>
+        <target state="translated">قالب جدول ليبري أوفس</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="OpenOffice Document" xml:space="preserve">
         <source>OpenOffice Document</source>
-        <target state="translated">ملف نصي ليبري أوفس (*.odt)</target>
+        <target state="translated">ملف نصي ليبري أوفس</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="OpenOffice Presentation" xml:space="preserve">
         <source>OpenOffice Presentation</source>
-        <target state="translated">عرض ليبري أوفس (*.odp)</target>
+        <target state="translated">عرض ليبري أوفس</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="OpenOffice Spreadsheet" xml:space="preserve">
         <source>OpenOffice Spreadsheet</source>
-        <target state="translated">جدول ليبري أوفس (*.ods)</target>
+        <target state="translated">جدول ليبري أوفس</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Opening" xml:space="preserve">
@@ -294,37 +294,37 @@
       </trans-unit>
       <trans-unit id="PDF File" xml:space="preserve">
         <source>PDF File</source>
-        <target state="translated">بي دي إف (*.pdf)</target>
+        <target state="translated">بي دي إف</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="PDF/A File" xml:space="preserve">
         <source>PDF/A File</source>
-        <target state="translated">بي دي إف طويل الأجل (*.pdf)</target>
+        <target state="translated">بي دي إف طويل الأجل</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Plain Text" xml:space="preserve">
         <source>Plain Text</source>
-        <target state="translated">ملف نصي (*.txt)</target>
+        <target state="translated">ملف نصي</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="PowerPoint 97-2003 Presentation" xml:space="preserve">
         <source>PowerPoint 97-2003 Presentation</source>
-        <target state="translated">عرض بوربوينت 97-2003 (*.ppt)</target>
+        <target state="translated">عرض بوربوينت 97-2003</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="PowerPoint 2007 Presentation" xml:space="preserve">
         <source>PowerPoint 2007 Presentation</source>
-        <target state="translated">عرض بوربوينت قابل للتعديل (*.pptx)</target>
+        <target state="translated">عرض بوربوينت قابل للتعديل</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Macro-enabled Presentation" xml:space="preserve">
         <source>Macro-enabled Presentation</source>
-        <target state="translated">عرض بوربوينت مع خاصية الماكرو (*.pptm)</target>
+        <target state="translated">عرض بوربوينت مع خاصية الماكرو</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="PowerPoint Slide Show" xml:space="preserve">
         <source>PowerPoint Slide Show</source>
-        <target state="translated">عرض بوربوينت غير قابل للتعديل (*.ppsx)</target>
+        <target state="translated">عرض بوربوينت غير قابل للتعديل</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Preparing..." xml:space="preserve">
@@ -339,7 +339,7 @@
       </trans-unit>
       <trans-unit id="Presentation template" xml:space="preserve">
         <source>Presentation template</source>
-        <target state="translated">قالب عرض بوربوينت (*.potx)</target>
+        <target state="translated">قالب عرض بوربوينت</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Presenter View" xml:space="preserve">
@@ -359,7 +359,7 @@
       </trans-unit>
       <trans-unit id="Rich Text Document" xml:space="preserve">
         <source>Rich Text Document</source>
-        <target state="translated">ملف نصي غني  (*.rtf)</target>
+        <target state="translated">ملف نصي غني</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Save" xml:space="preserve">
@@ -384,7 +384,7 @@
       </trans-unit>
       <trans-unit id="Spreadsheet template" xml:space="preserve">
         <source>Spreadsheet template</source>
-        <target state="translated">قالب جدول إكسل (*.xltx)</target>
+        <target state="translated">قالب جدول إكسل</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Thank you for evaluating %@!" xml:space="preserve">
@@ -429,17 +429,17 @@
       </trans-unit>
       <trans-unit id="Word 97-2003 Document" xml:space="preserve">
         <source>Word 97-2003 Document</source>
-        <target state="translated">مستند وورد 97-2003 (*.doc)</target>
+        <target state="translated">مستند وورد 97-2003</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Word 2007 Document" xml:space="preserve">
         <source>Word 2007 Document</source>
-        <target state="translated">مستند وورد (*.docx)</target>
+        <target state="translated">مستند وورد</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="XML Paper Specification" xml:space="preserve">
         <source>XML Paper Specification</source>
-        <target state="translated">مستند أوبن إكس بي إس (*.xps)</target>
+        <target state="translated">مستند أوبن إكس بي إس</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Yes" xml:space="preserve">

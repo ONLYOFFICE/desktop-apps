@@ -7,6 +7,7 @@ CONFIG += app_bundle
 CONFIG += c++11
 
 TRANSLATIONS = ./langs/en.ts \
+                ./langs/en_GB.ts \
                 ./langs/ru.ts \
                 ./langs/de.ts \
                 ./langs/es.ts \
@@ -26,6 +27,7 @@ TRANSLATIONS = ./langs/en.ts \
                 ./langs/fi.ts \
                 ./langs/ga.ts \
                 ./langs/gl.ts \
+                ./langs/he.ts \
                 ./langs/hi.ts \
                 ./langs/hr.ts \
                 ./langs/hu.ts \

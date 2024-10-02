@@ -504,6 +504,8 @@ public:
             background = GetColorValueByRole(ecrWindowBackground);
             border = GetColorValueByRole(ecrWindowBorder);
         }
+        if (GetCurrentTheme().id() == L"theme-gray")
+            border = GetColorValueByRole(ecrWindowBorder);
 
         window->setWindowColors(QColor(QString::fromStdWString(background)), QColor(QString::fromStdWString(border)), window->isActiveWindow());
     }

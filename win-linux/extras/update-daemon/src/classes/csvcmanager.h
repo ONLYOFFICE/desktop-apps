@@ -66,11 +66,23 @@ private:
     void clearTempFiles(const tstring &prefix, const tstring &except = tstring());
     void startReplacingFiles(const tstring &packageType, const bool restartAfterUpdate);
     void startReplacingService(const bool restartAfterUpdate);
+#ifdef _WIN32
+    void startInstallPackage();
+#endif
+
+    struct PackageData;
+    struct SavedPackageData;
+    PackageData      *m_packageData;
+    SavedPackageData *m_savedPackageData;
 
     FnVoidVoid   m_quit_callback = nullptr;
-    tstring      m_newVersion;
+    tstring      m_checkUrl,
+                 m_currVersion,
+                 m_ignVersion,
+                 m_newVersion;
     bool         m_lock = false;
-    int          m_downloadMode;
+    int          m_downloadMode,
+                 m_packageType;
     future<void> m_future_clear;
     CSocket     *m_socket = nullptr;
     CDownloader *m_pDownloader = nullptr;
@@ -78,6 +90,9 @@ private:
 
     enum Mode {
         CHECK_UPDATES=0, DOWNLOAD_CHANGELOG=1, DOWNLOAD_UPDATES=2
+    };
+    enum Package {
+        ISS = 0, MSI, Portable, Other
     };
 };
 

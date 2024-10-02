@@ -22,7 +22,6 @@
 
 #define iconsExe                        "DesktopEditors.exe"
 #define NAME_EXE_OUT                    "editors.exe"
-#define VISEFFECTS_MANIFEST_NAME        ChangeFileExt(iconsExe, "VisualElementsManifest.xml")
 #define LIC_FILE                        "agpl-3.0"
 
 #define ASSC_APP_NAME                   "ONLYOFFICE"

@@ -376,7 +376,7 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
                 if ( !json_obj.isEmpty() ) {
                     if ( json_obj.contains("id") ) {
                         if ( m_themes->checkDestinationThemeFileExist(file_path) ) {
-                            int res = CMessage::showMessage(WindowHelper::currentTopWindow(),
+                            int res = CMessage::showMessage(mainWindow(),
                                                             QObject::tr("File %1 is already loaded. Replace it?").arg(QFileInfo(file_path).fileName()),
                                                             MsgType::MSG_CONFIRM, MsgBtns::mbYesDefNo);
                             if ( res == MODAL_RESULT_NO )
@@ -385,7 +385,7 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
 
                         if ( !themes().validate(json_obj) ) {
                             qDebug() << "theme source is broken";
-                            CMessage::error(WindowHelper::currentTopWindow(), "Selected theme isn't valid");
+                            CMessage::error(mainWindow(), "Selected theme isn't valid");
                         } else {
                             if ( themes().addLocalTheme(json_obj, file_path) ) {
                                 QJsonArray local_themes_array = themes().localThemesToJson();
@@ -402,11 +402,11 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
                         }
                     } else {
                         qDebug() << "theme source is broken";
-                        CMessage::error(WindowHelper::currentTopWindow(), "This file doesn't contain theme");
+                        CMessage::error(mainWindow(), "This file doesn't contain theme");
                     }
                 } else {
                     qDebug() << "theme file is not valid";
-                    CMessage::error(WindowHelper::currentTopWindow(), "This theme file is not valid");
+                    CMessage::error(mainWindow(), "This theme file is not valid");
                 }
             }
 

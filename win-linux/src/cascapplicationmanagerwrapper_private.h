@@ -46,6 +46,7 @@
 #include "clogger.h"
 #include "common/File.h"
 #include <QApplication>
+#include <QJsonParseError>
 #ifdef _WIN32
 # define APP_LAUNCH_NAME "\\DesktopEditors.exe"
 # define RESTART_BATCH "/apprestart.bat"
@@ -310,6 +311,19 @@ public:
                         COpenOptions opts{file_path, etTemplateFile};
                         opts.name = m_appmanager.newFileName(type);
                         opts.parent_id = event.m_nSenderId;
+
+                        openDocument(opts);
+                    }
+                } else if ( format.rfind(L"{\"template", 0) == 0 ) {
+                    QJsonParseError jerror;
+                    QJsonDocument jdoc = QJsonDocument::fromJson(QString::fromStdWString(format).toUtf8(), &jerror);
+
+                    if( jerror.error == QJsonParseError::NoError ) {
+                        QJsonObject obj = jdoc.object().value("template").toObject();
+                        int _f = obj.value("type").toInt();
+
+                        COpenOptions opts{m_appmanager.newFileName(_f), etTemplateFile, obj.value("path").toString()};
+                        opts.format = _f;
 
                         openDocument(opts);
                     }
