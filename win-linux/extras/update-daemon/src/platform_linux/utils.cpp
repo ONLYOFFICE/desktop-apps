@@ -33,6 +33,7 @@
 #include "platform_linux/utils.h"
 #include "version.h"
 #include <fstream>
+#include <sstream>
 #include <algorithm>
 #include <sys/stat.h>
 #include <gtk/gtk.h>
