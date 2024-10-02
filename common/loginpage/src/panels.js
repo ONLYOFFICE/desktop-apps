@@ -131,9 +131,9 @@ function onActionClick(e) {
         $('.action-panel').hide();
         $('.action-panel.' + action).show(0,()=>{
             // bug: recent panel has the wrong height if 'wellcome' panel is showed firstly
-            if (action == 'recent') {
-                app.controller.recent.view.updatelistsize();
-            }
+            // if (action == 'recent') {
+            //     app.controller.recent.view.updateListSize();
+            // }
         });
 
         CommonEvents.fire('panel:show', [action]);
