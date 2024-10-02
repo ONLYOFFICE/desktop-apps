@@ -283,7 +283,20 @@
                 window.sdk.on('onaddtemplates', _on_add_templates.bind(this));
 
                 _init_collection.call(this);
-                window.sdk.LocalFileTemplates();
+
+                const _reload_templates = l => {
+                    let ls = [l];
+                    if (utils.Lang.id.length > 2) {
+                        ls.push(l[3] == '_' ? l.replaceAll('_', '-') : l.replaceAll('_', '-'), l.substring(0,2));
+                    }
+                    ls.push("en-US","en_US","en");
+                    window.sdk.LocalFileTemplates(ls);
+                };
+                _reload_templates(utils.Lang.id);
+
+                CommonEvents.on('lang:changed', (ol, nl) => {
+                    _reload_templates(nl);
+                });
 
                 return this;
             }
