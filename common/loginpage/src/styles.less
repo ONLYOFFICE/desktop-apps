@@ -1342,13 +1342,17 @@ li.menu-item {
 
         .title {
             color: @text-normal;
-            word-break: break-word;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            font-size: 14px;
         }
 
         .icon {
             flex-grow: 1;
             img {
-                width: 140px;
+                max-width: 140px;
+                max-height: 160px;
             }
             svg {
                 width: 140px;
