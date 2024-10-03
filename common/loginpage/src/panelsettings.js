@@ -489,9 +489,6 @@
                 $btnApply.disable(false);
         };
 
-        function _is_lang_rtl(code) {
-            return code == 'ar-SA';
-        }
 
         function _on_lang_change(e) {
             let l = $optsLang.find('select').val(),
@@ -501,7 +498,7 @@
                 $btnApply.disable(false);
             }
 
-            const _is_rtl = _is_lang_rtl(l);
+            const _is_rtl = utils.Lang.isLangRTL(l);
             if ( $chRtl ) {
                 $chRtl.prop("checked", _is_rtl);
                 if ( !_is_rtl ) {
@@ -576,7 +573,7 @@
                                 $('#caption-restart', $panel).show();
                             }
 
-                            $(document.body).toggleClass('rtl-font', _is_lang_rtl(appSettings.locale.current));
+                            $(document.body).toggleClass('rtl-font', utils.Lang.isLangRTL(appSettings.locale.current));
                         }
 
                         if ( appSettings.uiscaling != undefined && !$optsUIScaling ) {
@@ -699,7 +696,7 @@
 
                                 $userName.css('direction', 'rtl');
                             } else {
-                                if ( !_is_lang_rtl(appSettings.locale.current) )
+                                if ( !utils.Lang.isLangRTL(appSettings.locale.current) )
                                     $chRtl.attr('disabled', 'disabled')
                                         .next().attr('disabled', 'disabled');
                             }

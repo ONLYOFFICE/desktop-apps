@@ -222,10 +222,15 @@ function changelang(lang) {
     }
 };
 
+function is_lang_rtl(code) {
+    return code.startsWith('ar') || code.startsWith('he');
+}
+
 +function mixLocale(lang) {
     utils.Lang = Object.assign({}, l10n.en);
     utils.Lang.tr = translate;
     utils.Lang.change = changelang;
+    utils.Lang.isLangRTL = is_lang_rtl;
 
     if ( lang ) {
         lang = correctLang(lang);
