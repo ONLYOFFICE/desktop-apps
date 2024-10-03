@@ -51,6 +51,7 @@
 #import "NSDictionary+Extensions.h"
 #import "ASCEditorJSVariables.h"
 #import "ASCSharedSettings.h"
+#import "ASCThemesController.h"
 
 CAscApplicationManager * createASCApplicationManager() {
     return new ASCApplicationManager();
@@ -104,6 +105,7 @@ int main(int argc, const char * argv[]) {
     }
     
     // setup ui theme
+    [ASCThemesController sharedInstance];
     NSString * uiTheme = [[NSUserDefaults standardUserDefaults] valueForKey:ASCUserUITheme];
     if ( !uiTheme ) {
         uiTheme = uiThemeSystem;
@@ -115,9 +117,6 @@ int main(int argc, const char * argv[]) {
     [[ASCSharedSettings sharedInstance] setSetting:systemColorScheme forKey:kSettingsColorScheme];
     [[ASCEditorJSVariables instance] applyParameters];
 
-    [[ASCEditorJSVariables instance] setVariable:@"theme" withObject:@{@"id":uiTheme,
-                                                                       @"system":systemColorScheme,
-                                                                       @"type":systemColorScheme}];
     [[ASCEditorJSVariables instance] setVariable:@"rtl" withBool:[ASCLinguist isUILayoutDirectionRtl]];
     [[ASCEditorJSVariables instance] apply];
 
