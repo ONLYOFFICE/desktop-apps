@@ -729,12 +729,22 @@ void Utils::addToRecent(const std::wstring &path)
 # ifdef __OS_WIN_XP
     SHAddToRecentDocs(SHARD_PATH, _path.c_str());
 # else
-    if (LPITEMIDLIST idl = ILCreateFromPath(_path.c_str())) {
-        SHARDAPPIDINFOIDLIST inf;
-        inf.pidl = static_cast<PCIDLIST_ABSOLUTE>(idl);
-        inf.pszAppID = TEXT(APP_USER_MODEL_ID);
-        SHAddToRecentDocs(SHARD_APPIDINFOIDLIST, &inf);
-        ILFree(idl);
+    // if (LPITEMIDLIST idl = ILCreateFromPath(_path.c_str())) {
+    //     SHARDAPPIDINFOIDLIST inf;
+    //     inf.pidl = static_cast<PCIDLIST_ABSOLUTE>(idl);
+    //     inf.pszAppID = TEXT(APP_USER_MODEL_ID);
+    //     SHAddToRecentDocs(SHARD_APPIDINFOIDLIST, &inf);
+    //     ILFree(idl);
+    // }
+    HRESULT hr = CoInitializeEx(nullptr, COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE);
+    if (SUCCEEDED(hr)) {
+        IShellItem *pItem;
+        hr = SHCreateItemFromParsingName(_path.c_str(), nullptr, IID_PPV_ARGS(&pItem));
+        if (SUCCEEDED(hr)) {
+            SHAddToRecentDocs(SHARD_SHELLITEM, pItem);
+            pItem->Release();
+        }
+        CoUninitialize();
     }
 # endif
 #else

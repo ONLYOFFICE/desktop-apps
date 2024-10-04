@@ -34,6 +34,7 @@
 #define WIN32_LEAN_AND_MEAN
 #define STRICT_TYPED_ITEMIDS
 #define ICON_OFFSET 14
+#define APP_LAUNCH_NAME2 L"\\editors.exe"
 
 #include "jumplist.h"
 #include <QtGlobal>
@@ -58,13 +59,22 @@ HRESULT _CreateShellLink(PCWSTR pszArguments, PCWSTR pszTitle, IShellLink **ppsl
         WCHAR szAppPath[MAX_PATH];
         if (GetModuleFileName(NULL, szAppPath, ARRAYSIZE(szAppPath)))
         {
+            std::wstring iconPath(szAppPath);
+            if (!PathRemoveFileSpec(szAppPath)) {
+                hr = HRESULT_FROM_WIN32(ERROR_INVALID_PARAMETER);
+                goto cleanup;
+            }
+            if (wcscat_s(szAppPath, MAX_PATH, APP_LAUNCH_NAME2) != 0) {
+                hr = HRESULT_FROM_WIN32(ERROR_INSUFFICIENT_BUFFER);
+                goto cleanup;
+            }
             hr = psl->SetPath(szAppPath);
             if (SUCCEEDED(hr))
             {
                 hr = psl->SetArguments(pszArguments);
                 if (SUCCEEDED(hr))
                 {
-                    hr = psl->SetIconLocation(szAppPath, index + ICON_OFFSET);
+                    hr = psl->SetIconLocation(iconPath.c_str(), index + ICON_OFFSET);
                     Q_UNUSED(hr);
                     IPropertyStore *pps;
                     hr = psl->QueryInterface(IID_PPV_ARGS(&pps));
@@ -94,6 +104,7 @@ HRESULT _CreateShellLink(PCWSTR pszArguments, PCWSTR pszTitle, IShellLink **ppsl
         {
             hr = HRESULT_FROM_WIN32(GetLastError());
         }
+cleanup:
         psl->Release();
     }
     return hr;
