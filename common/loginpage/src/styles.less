@@ -1336,16 +1336,18 @@ li.menu-item {
         padding: 10px;
         cursor: pointer;
         width: 160px;
-        height: 200px;
+        height: 225px;
         display: flex;
         flex-direction: column;
 
         .title {
             color: @text-normal;
-            white-space: nowrap;
-            text-overflow: ellipsis;
             overflow: hidden;
             font-size: 14px;
+            height: 3em;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
         }
 
         .icon {
@@ -1353,6 +1355,9 @@ li.menu-item {
             img {
                 max-width: 140px;
                 max-height: 160px;
+                position: relative;
+                top: 50%;
+                transform: translateY(-50%);
             }
             svg {
                 width: 140px;
