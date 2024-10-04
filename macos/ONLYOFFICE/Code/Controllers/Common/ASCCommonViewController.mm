@@ -164,7 +164,6 @@
         
         // Create CEF event listener
         [ASCEventsController sharedInstance];
-        [ASCThemesController sharedInstance];
         
         [self setupTabControl];
         [self createStartPage];

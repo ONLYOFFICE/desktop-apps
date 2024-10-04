@@ -67,7 +67,12 @@
         [[NSUserDefaults standardUserDefaults] setObject:uiTheme forKey:ASCUserUITheme];
     }
     
+    [[ASCEditorJSVariables instance] setParameter:@"uitheme" withString:uiTheme];
+    [[ASCEditorJSVariables instance] applyParameters];
+    
     NSString * systemColorScheme = [[self class] isSystemDarkMode] ? @"dark" : @"light";
+    [[ASCSharedSettings sharedInstance] setSetting:systemColorScheme forKey:kSettingsColorScheme];
+
     [[ASCEditorJSVariables instance] setVariable:@"theme" withObject:@{@"id":uiTheme,
                                                                        @"system":systemColorScheme,
                                                                        @"type":[[self class] isCurrentThemeDark] ? @"dark" : @"light"}];
@@ -91,7 +96,7 @@
 + (BOOL)isCurrentThemeDark {
     NSString * theme = [[NSUserDefaults standardUserDefaults] valueForKey:ASCUserUITheme];
     if ([uiThemeSystem isEqualToString:theme]) {
-        return [@"dark" isEqualToString:[[ASCSharedSettings sharedInstance] settingByKey:kSettingsColorScheme]];
+        return [self isSystemDarkMode];
     } else return [uiThemeDark isEqualToString:theme] || [uiThemeContrastDark isEqualToString:theme];
 }
 

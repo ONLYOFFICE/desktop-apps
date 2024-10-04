@@ -106,16 +106,6 @@ int main(int argc, const char * argv[]) {
     
     // setup ui theme
     [ASCThemesController sharedInstance];
-    NSString * uiTheme = [[NSUserDefaults standardUserDefaults] valueForKey:ASCUserUITheme];
-    if ( !uiTheme ) {
-        uiTheme = uiThemeSystem;
-        [[NSUserDefaults standardUserDefaults] setObject:uiTheme forKey:ASCUserUITheme];
-    }
-
-    NSString * systemColorScheme = [NSApplication isSystemDarkMode] ? @"dark" : @"light";
-    [[ASCEditorJSVariables instance] setParameter:@"uitheme" withString:uiTheme];
-    [[ASCSharedSettings sharedInstance] setSetting:systemColorScheme forKey:kSettingsColorScheme];
-    [[ASCEditorJSVariables instance] applyParameters];
 
     [[ASCEditorJSVariables instance] setVariable:@"rtl" withBool:[ASCLinguist isUILayoutDirectionRtl]];
     [[ASCEditorJSVariables instance] apply];
