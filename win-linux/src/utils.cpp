@@ -726,27 +726,33 @@ void Utils::addToRecent(const std::wstring &path)
 #ifdef _WIN32
     std::wstring _path(path);
     std::replace(_path.begin(), _path.end(), '/', '\\');
-# ifdef __OS_WIN_XP
-    SHAddToRecentDocs(SHARD_PATH, _path.c_str());
-# else
-    // if (LPITEMIDLIST idl = ILCreateFromPath(_path.c_str())) {
-    //     SHARDAPPIDINFOIDLIST inf;
-    //     inf.pidl = static_cast<PCIDLIST_ABSOLUTE>(idl);
-    //     inf.pszAppID = TEXT(APP_USER_MODEL_ID);
-    //     SHAddToRecentDocs(SHARD_APPIDINFOIDLIST, &inf);
-    //     ILFree(idl);
-    // }
-    HRESULT hr = CoInitializeEx(nullptr, COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE);
-    if (SUCCEEDED(hr)) {
-        IShellItem *pItem;
-        hr = SHCreateItemFromParsingName(_path.c_str(), nullptr, IID_PPV_ARGS(&pItem));
-        if (SUCCEEDED(hr)) {
-            SHAddToRecentDocs(SHARD_SHELLITEM, pItem);
-            pItem->Release();
-        }
-        CoUninitialize();
-    }
-# endif
+    QString appPath = qApp->applicationDirPath();
+    QProcess prc;
+    prc.setWorkingDirectory(appPath);
+    prc.start(appPath + "/" + QString(REG_APP_NAME), {"--add-to-recent", QString::fromStdWString(_path)});
+    prc.waitForFinished(500);
+    processMoreEvents();
+// # ifdef __OS_WIN_XP
+//     SHAddToRecentDocs(SHARD_PATH, _path.c_str());
+// # else
+//     // if (LPITEMIDLIST idl = ILCreateFromPath(_path.c_str())) {
+//     //     SHARDAPPIDINFOIDLIST inf;
+//     //     inf.pidl = static_cast<PCIDLIST_ABSOLUTE>(idl);
+//     //     inf.pszAppID = TEXT(APP_USER_MODEL_ID);
+//     //     SHAddToRecentDocs(SHARD_APPIDINFOIDLIST, &inf);
+//     //     ILFree(idl);
+//     // }
+//     HRESULT hr = CoInitializeEx(nullptr, COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE);
+//     if (SUCCEEDED(hr)) {
+//         IShellItem *pItem;
+//         hr = SHCreateItemFromParsingName(_path.c_str(), nullptr, IID_PPV_ARGS(&pItem));
+//         if (SUCCEEDED(hr)) {
+//             SHAddToRecentDocs(SHARD_SHELLITEM, pItem);
+//             pItem->Release();
+//         }
+//         CoUninitialize();
+//     }
+// # endif
 #else
     QString _path = QString::fromStdWString(path);
     std::string uri = "file://" + _path.toStdString();

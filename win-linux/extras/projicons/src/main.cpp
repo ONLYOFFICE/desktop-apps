@@ -75,6 +75,20 @@ int main(int argc, char *argv[])
         ClearHistory();
         DeleteJumpList();
         return 0;
+    } else
+    if (_cmdArgs.contains("--add-to-recent") && _cmdArgs.size() > 1) {
+        std::wstring _path = _cmdArgs.at(1).toStdWString();
+        HRESULT hr = CoInitializeEx(nullptr, COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE);
+        if (SUCCEEDED(hr)) {
+            IShellItem *pItem;
+            hr = SHCreateItemFromParsingName(_path.c_str(), nullptr, IID_PPV_ARGS(&pItem));
+            if (SUCCEEDED(hr)) {
+                SHAddToRecentDocs(SHARD_SHELLITEM, pItem);
+                pItem->Release();
+            }
+            CoUninitialize();
+        }
+        return 0;
     }
 #endif
 
