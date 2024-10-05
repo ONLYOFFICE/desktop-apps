@@ -83,6 +83,7 @@ int main(int argc, const char * argv[]) {
     
     // setup Converter directory
     appManager->m_oSettings.file_converter_path = [[resourcePath stringByAppendingPathComponent:@"converter"] stdwstring];
+    appManager->m_oSettings.system_templates_path = [[resourcePath stringByAppendingPathComponent:@"converter/templates"] stdwstring];
     
     // setup editor fonts directory
     std::vector<std::wstring> fontsDirectories;
