@@ -781,6 +781,32 @@ Utils::WinVer Utils::getWinVersion()
     return winVer;
 }
 
+QString Utils::GetCurrentUserSID()
+{
+    static QString user_sid;
+    if (user_sid.isEmpty()) {
+        HANDLE hToken = NULL;
+        if (OpenProcessToken(GetCurrentProcess(), TOKEN_QUERY, &hToken)) {
+            DWORD tokenLen = 0;
+            GetTokenInformation(hToken, TokenUser, NULL, 0, &tokenLen);
+            if (GetLastError() == ERROR_INSUFFICIENT_BUFFER) {
+                if (PTOKEN_USER pTokenUser = (PTOKEN_USER)malloc(tokenLen)) {
+                    if (GetTokenInformation(hToken, TokenUser, pTokenUser, tokenLen, &tokenLen)) {
+                        LPWSTR sid = NULL;
+                        if (ConvertSidToStringSid(pTokenUser->User.Sid, &sid)) {
+                            user_sid = QString::fromWCharArray(sid);
+                            LocalFree(sid);
+                        }
+                    }
+                    free(pTokenUser);
+                }
+            }
+            CloseHandle(hToken);
+        }
+    }
+    return user_sid;
+}
+
 std::atomic_bool sessionInProgress{true};
 
 bool Utils::isSessionInProgress()
@@ -1024,33 +1050,6 @@ namespace WindowHelper {
 //        } else AdjustWindowRectEx(rect, (GetWindowStyle(handle) & ~WS_DLGFRAME), FALSE, 0);
 //    }
 
-    QString user_sid;
-
-    auto GetCurrentUserSID() -> QString
-    {
-        if (user_sid.isEmpty()) {
-            HANDLE hToken = NULL;
-            if (OpenProcessToken(GetCurrentProcess(), TOKEN_QUERY, &hToken)) {
-                DWORD tokenLen = 0;
-                GetTokenInformation(hToken, TokenUser, NULL, 0, &tokenLen);
-                if (GetLastError() == ERROR_INSUFFICIENT_BUFFER) {
-                    if (PTOKEN_USER pTokenUser = (PTOKEN_USER)malloc(tokenLen)) {
-                        if (GetTokenInformation(hToken, TokenUser, pTokenUser, tokenLen, &tokenLen)) {
-                            LPWSTR sid = NULL;
-                            if (ConvertSidToStringSid(pTokenUser->User.Sid, &sid)) {
-                                user_sid = QString::fromWCharArray(sid);
-                                LocalFree(sid);
-                            }
-                        }
-                        free(pTokenUser);
-                    }
-                }
-                CloseHandle(hToken);
-            }
-        }
-        return user_sid;
-    }
-
     auto bringToTop(HWND hwnd) -> void
     {
         DWORD appID = ::GetCurrentThreadId();
@@ -1089,7 +1088,7 @@ namespace WindowHelper {
             } else {
                 QSettings reg_lt("HKEY_CURRENT_USER\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize", QSettings::NativeFormat);
                 if (reg_lt.value("SystemUsesLightTheme", 0).toInt() != 0) {
-                    QString userSid = GetCurrentUserSID();
+                    QString userSid = Utils::GetCurrentUserSID();
                     if (!userSid.isEmpty()) {
                         QSettings reg_ac("HKEY_USERS\\" + userSid + "\\Control Panel\\Desktop", QSettings::NativeFormat);
                         if (reg_ac.value("AutoColorization", 0).toInt() != 0)

@@ -127,6 +127,7 @@ public:
         Undef, WinXP, WinVista, Win7, Win8, Win8_1, Win10, Win11
     };
     static WinVer getWinVersion();
+    static QString GetCurrentUserSID();
     static bool isSessionInProgress();
     static void setSessionInProgress(bool);
     static void setAppUserModelId();
