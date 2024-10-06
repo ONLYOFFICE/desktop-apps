@@ -232,7 +232,7 @@ void CWindowPlatform::setWindowColors(const QColor& background, const QColor& bo
         HDC hdc = GetDC(NULL);
         brdWidth = GetSystemMetrics(SM_CXBORDER) * GetDeviceCaps(hdc, LOGPIXELSX)/96;
         ReleaseDC(NULL, hdc);
-        QColor brdColor = WindowHelper::getColorizationColor(isActive, background);
+        QColor brdColor = WindowHelper::GetBorderColor(isActive, background);
         css = QString("QMainWindow{border-top: %1px solid %2; background-color: %3;}").arg(QString::number(brdWidth), brdColor.name(), background.name());
     } else {
         css = QString("QMainWindow{background-color: %1;}").arg(background.name());
