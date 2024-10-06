@@ -61,6 +61,7 @@
 # define SUBFOLDER        TEXT("/" REG_APP_NAME)
 # define ARCHIVE_EXT      TEXT(".zip")
 # define ARCHIVE_PATTERN  TEXT("*.zip")
+# define REG_FILE_ASSOC "SOFTWARE\\" REG_GROUP_KEY "\\" REG_APP_NAME "\\Capabilities\\FileAssociations"
 # define sleep(a) Sleep(a)
 #else
 # include "platform_linux/utils.h"
@@ -785,6 +786,41 @@ void CSvcManager::startReplacingFiles(const tstring &packageType, const bool res
                     if (RegSetValueEx(hAppKey, TEXT("InstallDate"), 0, REG_SZ, (const BYTE*)ins_date.c_str(), (DWORD)(ins_date.length() + 1) * sizeof(WCHAR)) != ERROR_SUCCESS)
                         NS_Logger::WriteLog(L"Can't update InstallDate in registry!");
                     RegCloseKey(hAppKey);
+                }
+                RegCloseKey(hKey);
+            }
+        }
+
+        // Additional registry actions
+        {
+            // Remove AppUserModelID from ProgId (causes the icon background to appear in the "Open With" menu)
+            HKEY hKey;
+            if (RegOpenKeyEx(HKEY_LOCAL_MACHINE, TEXT(REG_FILE_ASSOC), 0, KEY_READ | KEY_QUERY_VALUE, &hKey) == ERROR_SUCCESS) {
+                DWORD cValues = 0, cbMaxValueNameLen = 0, cbMaxValueLen = 0;
+                if (RegQueryInfoKey(hKey, NULL, NULL, NULL, NULL, NULL, NULL, &cValues, &cbMaxValueNameLen, &cbMaxValueLen, NULL, NULL) == ERROR_SUCCESS) {
+                    if (cValues > 0 && cbMaxValueLen > 0) {
+                        DWORD cValueName = cbMaxValueNameLen + 1, cbData = cbMaxValueLen, pType = REG_SZ;
+                        WCHAR *lpData = new WCHAR[cbData/sizeof(WCHAR)];
+                        WCHAR *lpValueName = new WCHAR[cValueName];
+                        for (int i = 0; i < cValues; i++) {
+                            if (RegEnumValue(hKey, i, lpValueName, &cValueName, NULL, &pType, (LPBYTE)lpData, &cbData) == ERROR_SUCCESS) {
+                                if (lpData[0] != '\0') {
+                                    wstring progId(TEXT("SOFTWARE\\Classes\\"));
+                                    progId.append(lpData);
+                                    HKEY hProgIdKey;
+                                    if (RegOpenKeyEx(HKEY_LOCAL_MACHINE, progId.c_str(), 0, KEY_ALL_ACCESS, &hProgIdKey) == ERROR_SUCCESS) {
+                                        if (RegDeleteValue(hProgIdKey, L"AppUserModelID") == ERROR_SUCCESS)
+                                            NS_Logger::WriteLog(L"Deleted value AppUserModelID in: " + progId);
+                                        RegCloseKey(hProgIdKey);
+                                    }
+                                }
+                            }
+                            cValueName = cbMaxValueNameLen + 1;
+                            cbData = cbMaxValueLen;
+                        }
+                        delete[] lpValueName;
+                        delete[] lpData;
+                    }
                 }
                 RegCloseKey(hKey);
             }
