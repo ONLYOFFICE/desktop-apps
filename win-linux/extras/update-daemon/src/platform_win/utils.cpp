@@ -67,6 +67,27 @@ static DWORD GetActiveSessionId()
     return sesId;
 }
 
+static bool GetDuplicateToken(HANDLE &hTokenDup)
+{
+    DWORD sesId = GetActiveSessionId();
+    if (sesId == 0xFFFFFFFF) {
+        NS_Logger::WriteLog(ADVANCED_ERROR_MESSAGE);
+        return false;
+    }
+    HANDLE hUserToken = NULL;
+    if (!WTSQueryUserToken(sesId, &hUserToken)) {
+        NS_Logger::WriteLog(ADVANCED_ERROR_MESSAGE);
+        return false;
+    }
+    if (!DuplicateTokenEx(hUserToken, MAXIMUM_ALLOWED, NULL, SecurityImpersonation, TokenPrimary, &hTokenDup)) {
+        CloseHandle(hUserToken);
+        NS_Logger::WriteLog(ADVANCED_ERROR_MESSAGE);
+        return false;
+    }
+    CloseHandle(hUserToken);
+    return true;
+}
+
 namespace NS_Utils
 {
     bool run_as_app = false;
@@ -314,26 +335,14 @@ namespace NS_File
             return false;
         }
 
-        DWORD dwSessionId = GetActiveSessionId();
-        if (dwSessionId == 0xFFFFFFFF) {
-            return false;
-        }
-
-        HANDLE hUserToken = NULL;
-        if (!WTSQueryUserToken(dwSessionId, &hUserToken)) {
-            return false;
-        }
-
         HANDLE hTokenDup = NULL;
-        if (!DuplicateTokenEx(hUserToken, MAXIMUM_ALLOWED, NULL, SecurityImpersonation, TokenPrimary, &hTokenDup)) {
-            CloseHandle(hUserToken);
+        if (!GetDuplicateToken(hTokenDup)) {
             return false;
         }
 
         LPVOID lpvEnv = NULL;
         if (!CreateEnvironmentBlock(&lpvEnv, hTokenDup, TRUE)) {
             CloseHandle(hTokenDup);
-            CloseHandle(hUserToken);
             return false;
         }
 
@@ -352,12 +361,10 @@ namespace NS_File
             CloseHandle(pi.hProcess);
             DestroyEnvironmentBlock(lpvEnv);
             CloseHandle(hTokenDup);
-            CloseHandle(hUserToken);
             return true;
         }
         DestroyEnvironmentBlock(lpvEnv);
         CloseHandle(hTokenDup);
-        CloseHandle(hUserToken);
         return false;
     }
 
@@ -554,33 +561,17 @@ namespace NS_File
             return fallbackTempPath();
         }
 
-        DWORD sesId = GetActiveSessionId();
-        if (sesId == 0xFFFFFFFF) {
-            NS_Logger::WriteLog(ADVANCED_ERROR_MESSAGE);
-            return fallbackTempPath();
-        }
-
-        HANDLE hUserToken = NULL;
-        if (!WTSQueryUserToken(sesId, &hUserToken)) {
-            NS_Logger::WriteLog(ADVANCED_ERROR_MESSAGE);
-            return fallbackTempPath();
-        }
-
         HANDLE hTokenDup = NULL;
-        if (!DuplicateTokenEx(hUserToken, MAXIMUM_ALLOWED, NULL, SecurityImpersonation, TokenPrimary, &hTokenDup)) {
-            CloseHandle(hUserToken);
-            NS_Logger::WriteLog(ADVANCED_ERROR_MESSAGE);
+        if (!GetDuplicateToken(hTokenDup)) {
             return fallbackTempPath();
         }
 
         WCHAR buff[MAX_PATH] = {0};
         if (ExpandEnvironmentStringsForUser(hTokenDup, L"%TEMP%", buff, MAX_PATH)) {
             CloseHandle(hTokenDup);
-            CloseHandle(hUserToken);
             return fromNativeSeparators(buff);
         }
         CloseHandle(hTokenDup);
-        CloseHandle(hUserToken);
         NS_Logger::WriteLog(ADVANCED_ERROR_MESSAGE);
         return fallbackTempPath();
     }
