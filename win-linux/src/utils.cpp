@@ -1063,46 +1063,6 @@ namespace WindowHelper {
         ::AttachThreadInput(frgID, appID, FALSE);
     }
 
-    auto GetBorderColor(bool isActive, const QColor &bkgColor) -> QColor
-    {
-        int lum = int(0.299 * bkgColor.red() + 0.587 * bkgColor.green() + 0.114 * bkgColor.blue());
-        if (isActive) {
-            QSettings reg("HKEY_CURRENT_USER\\SOFTWARE\\Microsoft\\Windows\\DWM", QSettings::NativeFormat);
-            if (reg.value("ColorPrevalence", 0).toInt() != 0) {
-                DWORD dwcolor = 0;
-                BOOL opaque = TRUE;
-                static HRESULT(WINAPI *GetColorizationColor)(DWORD*, BOOL*) = NULL;
-                if (!GetColorizationColor) {
-                    if (HMODULE module = GetModuleHandleA("dwmapi"))
-                        *(FARPROC*)&GetColorizationColor = GetProcAddress(module, "DwmGetColorizationColor");
-                }
-                if (GetColorizationColor && SUCCEEDED(GetColorizationColor(&dwcolor, &opaque))) {
-                    float a = (float)((dwcolor >> 24) & 0xff)/255;
-                    if (a < 0.8f)
-                        a = 0.8f;
-                    int r = (int)(((dwcolor >> 16) & 0xff) * a + 255 * (1 - a));
-                    int g = (int)(((dwcolor >> 8) & 0xff) * a + 255 * (1 - a));
-                    int b = (int)((dwcolor & 0xff) * a + 255 * (1 - a));
-                    return QColor(r, g, b);
-                }
-            } else {
-                QSettings reg_lt("HKEY_CURRENT_USER\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize", QSettings::NativeFormat);
-                if (reg_lt.value("SystemUsesLightTheme", 1).toInt() != 0) {
-                    QString userSid = Utils::GetCurrentUserSID();
-                    if (!userSid.isEmpty()) {
-                        QSettings reg_ac("HKEY_USERS\\" + userSid + "\\Control Panel\\Desktop", QSettings::NativeFormat);
-                        if (reg_ac.value("AutoColorization", 0).toInt() != 0)
-                            return bkgColor.lighter(95);
-                    }
-                }
-            }
-            int res = -0.002*lum*lum + 0.93*lum + 6;
-            return QColor(res, res, res);
-        }
-        int res = -0.0007*lum*lum + 0.78*lum + 25;
-        return QColor(res, res, res);
-    }
-
     auto toggleLayoutDirection(HWND hwnd) -> void
     {
         LONG exstyle = GetWindowLong(hwnd, GWL_EXSTYLE);

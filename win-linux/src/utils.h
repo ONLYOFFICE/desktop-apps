@@ -165,7 +165,6 @@ namespace WindowHelper {
 //    auto correctModalOrder(HWND windowhandle, HWND modalhandle) -> void;
 //    auto adjustWindowRect(HWND, double, LPRECT) -> void;
     auto bringToTop(HWND) -> void;
-    auto GetBorderColor(bool isActive, const QColor &bkgColor) -> QColor;
     auto toggleLayoutDirection(HWND hwnd) -> void;
 #endif
 
