@@ -125,35 +125,6 @@ void CWindowBase::updateScaling(bool resize)
     }
 }
 
-void CWindowBase::setWindowColors(const QColor& background, const QColor& border, bool isActive)
-{
-    m_brdColor = border;
-    m_bkgColor = background;
-#ifdef _WIN32
-    QString css;
-    if (Utils::getWinVersion() == Utils::WinVer::WinXP) {
-        css = QString("QMainWindow{background-color: %1;}").arg(background.name());
-        RedrawWindow((HWND)winId(), NULL, NULL, RDW_INVALIDATE | RDW_FRAME | RDW_UPDATENOW); // Apply colors to NC-area
-    } else
-    if (Utils::getWinVersion() < Utils::WinVer::Win10) {
-        css = QString("QMainWindow{border:1px solid %1; background-color: %2;}").arg(border.name(), background.name());
-    } else
-    if (Utils::getWinVersion() == Utils::WinVer::Win10) {
-        int brdWidth = 0;
-        HDC hdc = GetDC(NULL);
-        brdWidth = GetSystemMetrics(SM_CXBORDER) * GetDeviceCaps(hdc, LOGPIXELSX)/96;
-        ReleaseDC(NULL, hdc);
-        QColor brdColor = WindowHelper::getColorizationColor(isActive, background);
-        css = QString("QMainWindow{border-top: %1px solid %2; background-color: %3;}").arg(QString::number(brdWidth), brdColor.name(), background.name());
-    } else {
-        css = QString("QMainWindow{background-color: %1;}").arg(background.name());
-    }
-#else
-    QString css = QString("QMainWindow{border:1px solid %1; background-color: %2;}").arg(border.name(), background.name());
-#endif
-    setStyleSheet(css);
-}
-
 void CWindowBase::applyTheme(const std::wstring& theme)
 {
     Q_UNUSED(theme)
