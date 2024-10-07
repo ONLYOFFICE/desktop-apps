@@ -270,7 +270,6 @@ QWidget * CEditorWindow::createMainPanel(QWidget * parent, const QString& title)
     mainGridLayout->setRowStretch(1,1);
 
     if (isCustomWindowStyle() && !d_ptr->panel()->data()->hasError()) {
-        m_boxTitleBtns->setParent(nullptr);
         mainGridLayout->addWidget(m_boxTitleBtns, 1, 1, Qt::AlignTop);
     }
     return mainPanel;
