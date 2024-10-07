@@ -186,7 +186,7 @@ private:
         ,{"hu-HU", {"Magyar", "Hungarian"}}
         ,{"hy-AM", {"Հայերեն", "Armenian"}}
         ,{"id-ID", {"Indonesian", "Indonesian"}}
-        ,{"no", {"Norsk", "Norwegian"}}
+        ,{"no-NO", {"Norsk", "Norwegian"}}
         ,{"ro-RO", {"Romanian", "Romanian"}}
         ,{"sl-SI", {"Slovene", "Slovenian"}}
         ,{"sv-SE", {"Svenska", "Swedish"}}
