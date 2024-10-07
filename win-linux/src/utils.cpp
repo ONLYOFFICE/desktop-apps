@@ -781,6 +781,32 @@ Utils::WinVer Utils::getWinVersion()
     return winVer;
 }
 
+QString Utils::GetCurrentUserSID()
+{
+    static QString user_sid;
+    if (user_sid.isEmpty()) {
+        HANDLE hToken = NULL;
+        if (OpenProcessToken(GetCurrentProcess(), TOKEN_QUERY, &hToken)) {
+            DWORD tokenLen = 0;
+            GetTokenInformation(hToken, TokenUser, NULL, 0, &tokenLen);
+            if (GetLastError() == ERROR_INSUFFICIENT_BUFFER) {
+                if (PTOKEN_USER pTokenUser = (PTOKEN_USER)malloc(tokenLen)) {
+                    if (GetTokenInformation(hToken, TokenUser, pTokenUser, tokenLen, &tokenLen)) {
+                        LPWSTR sid = NULL;
+                        if (ConvertSidToStringSid(pTokenUser->User.Sid, &sid)) {
+                            user_sid = QString::fromWCharArray(sid);
+                            LocalFree(sid);
+                        }
+                    }
+                    free(pTokenUser);
+                }
+            }
+            CloseHandle(hToken);
+        }
+    }
+    return user_sid;
+}
+
 std::atomic_bool sessionInProgress{true};
 
 bool Utils::isSessionInProgress()
@@ -1024,33 +1050,6 @@ namespace WindowHelper {
 //        } else AdjustWindowRectEx(rect, (GetWindowStyle(handle) & ~WS_DLGFRAME), FALSE, 0);
 //    }
 
-    QString user_sid;
-
-    auto GetCurrentUserSID() -> QString
-    {
-        if (user_sid.isEmpty()) {
-            HANDLE hToken = NULL;
-            if (OpenProcessToken(GetCurrentProcess(), TOKEN_QUERY, &hToken)) {
-                DWORD tokenLen = 0;
-                GetTokenInformation(hToken, TokenUser, NULL, 0, &tokenLen);
-                if (GetLastError() == ERROR_INSUFFICIENT_BUFFER) {
-                    if (PTOKEN_USER pTokenUser = (PTOKEN_USER)malloc(tokenLen)) {
-                        if (GetTokenInformation(hToken, TokenUser, pTokenUser, tokenLen, &tokenLen)) {
-                            LPWSTR sid = NULL;
-                            if (ConvertSidToStringSid(pTokenUser->User.Sid, &sid)) {
-                                user_sid = QString::fromWCharArray(sid);
-                                LocalFree(sid);
-                            }
-                        }
-                        free(pTokenUser);
-                    }
-                }
-                CloseHandle(hToken);
-            }
-        }
-        return user_sid;
-    }
-
     auto bringToTop(HWND hwnd) -> void
     {
         DWORD appID = ::GetCurrentThreadId();
@@ -1062,46 +1061,6 @@ namespace WindowHelper {
         ::SetFocus(hwnd);
         ::SetActiveWindow(hwnd);
         ::AttachThreadInput(frgID, appID, FALSE);
-    }
-
-    auto getColorizationColor(bool isActive, const QColor &bkgColor) -> QColor
-    {
-        int lum = int(0.299 * bkgColor.red() + 0.587 * bkgColor.green() + 0.114 * bkgColor.blue());
-        if (isActive) {
-            QSettings reg("HKEY_CURRENT_USER\\SOFTWARE\\Microsoft\\Windows\\DWM", QSettings::NativeFormat);
-            if (reg.value("ColorPrevalence", 0).toInt() != 0) {
-                DWORD dwcolor = 0;
-                BOOL opaque = TRUE;
-                static HRESULT(WINAPI *DwmGetColorizationColor)(DWORD*, BOOL*) = NULL;
-                if (!DwmGetColorizationColor) {
-                    if (HMODULE module = GetModuleHandleA("dwmapi"))
-                        *(FARPROC*)&DwmGetColorizationColor = GetProcAddress(module, "DwmGetColorizationColor");
-                }
-                if (DwmGetColorizationColor && SUCCEEDED(DwmGetColorizationColor(&dwcolor, &opaque))) {
-                    float a = (float)((dwcolor >> 24) & 0xff)/255;
-                    if (a < 0.8)
-                        a = 0.8;
-                    int r = (int)(((dwcolor >> 16) & 0xff) * a + 255 * (1 - a));
-                    int g = (int)(((dwcolor >> 8) & 0xff) * a + 255 * (1 - a));
-                    int b = (int)((dwcolor & 0xff) * a + 255 * (1 - a));
-                    return QColor(r, g, b);
-                }
-            } else {
-                QSettings reg_lt("HKEY_CURRENT_USER\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize", QSettings::NativeFormat);
-                if (reg_lt.value("SystemUsesLightTheme", 0).toInt() != 0) {
-                    QString userSid = GetCurrentUserSID();
-                    if (!userSid.isEmpty()) {
-                        QSettings reg_ac("HKEY_USERS\\" + userSid + "\\Control Panel\\Desktop", QSettings::NativeFormat);
-                        if (reg_ac.value("AutoColorization", 0).toInt() != 0)
-                            return bkgColor.lighter(95);
-                    }
-                }
-            }
-            int res = -0.002*lum*lum + 0.93*lum + 6;
-            return QColor(res, res, res);
-        }
-        int res = -0.0007*lum*lum + 0.78*lum + 25;
-        return QColor(res, res, res);
     }
 
     auto toggleLayoutDirection(HWND hwnd) -> void

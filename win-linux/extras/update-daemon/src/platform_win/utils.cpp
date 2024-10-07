@@ -35,8 +35,10 @@
 #include "version.h"
 #include <Windows.h>
 #include <shlwapi.h>
+#include <ShlObj.h>
 #include <fstream>
 #include <algorithm>
+#include <functional>
 #include <cstdio>
 #include <Wincrypt.h>
 #include <WtsApi32.h>
@@ -65,6 +67,50 @@ static DWORD GetActiveSessionId()
         WTSFreeMemory(sesInfo);
     }
     return sesId;
+}
+
+static bool GetDuplicateToken(HANDLE &hTokenDup)
+{
+    DWORD sesId = GetActiveSessionId();
+    if (sesId == 0xFFFFFFFF) {
+        NS_Logger::WriteLog(ADVANCED_ERROR_MESSAGE);
+        return false;
+    }
+    HANDLE hUserToken = NULL;
+    if (!WTSQueryUserToken(sesId, &hUserToken)) {
+        NS_Logger::WriteLog(ADVANCED_ERROR_MESSAGE);
+        return false;
+    }
+    if (!DuplicateTokenEx(hUserToken, MAXIMUM_ALLOWED, NULL, SecurityImpersonation, TokenPrimary, &hTokenDup)) {
+        CloseHandle(hUserToken);
+        NS_Logger::WriteLog(ADVANCED_ERROR_MESSAGE);
+        return false;
+    }
+    CloseHandle(hUserToken);
+    return true;
+}
+
+static HRESULT PerformFileOperation(const wstring &pFrom, const std::function<HRESULT(IFileOperation *pfo, IShellItem *pSrcItem)> &callback)
+{
+    HRESULT hr = CoInitializeEx(NULL, COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE);
+    if (SUCCEEDED(hr)) {
+        IFileOperation *pfo;
+        hr = CoCreateInstance(CLSID_FileOperation, NULL, CLSCTX_ALL, IID_PPV_ARGS(&pfo));
+        if (SUCCEEDED(hr)) {
+            hr = pfo->SetOperationFlags(FOF_NOCONFIRMATION | FOF_NOCONFIRMMKDIR | FOF_SILENT);
+            if (SUCCEEDED(hr)) {
+                IShellItem *pSrcItem;
+                hr = SHCreateItemFromParsingName(pFrom.c_str(), NULL, IID_PPV_ARGS(&pSrcItem));
+                if (SUCCEEDED(hr)) {
+                    hr = callback(pfo, pSrcItem);
+                    pSrcItem->Release();
+                }
+            }
+            pfo->Release();
+        }
+        CoUninitialize();
+    }
+    return hr;
 }
 
 namespace NS_Utils
@@ -314,26 +360,14 @@ namespace NS_File
             return false;
         }
 
-        DWORD dwSessionId = GetActiveSessionId();
-        if (dwSessionId == 0xFFFFFFFF) {
-            return false;
-        }
-
-        HANDLE hUserToken = NULL;
-        if (!WTSQueryUserToken(dwSessionId, &hUserToken)) {
-            return false;
-        }
-
         HANDLE hTokenDup = NULL;
-        if (!DuplicateTokenEx(hUserToken, MAXIMUM_ALLOWED, NULL, SecurityImpersonation, TokenPrimary, &hTokenDup)) {
-            CloseHandle(hUserToken);
+        if (!GetDuplicateToken(hTokenDup)) {
             return false;
         }
 
         LPVOID lpvEnv = NULL;
         if (!CreateEnvironmentBlock(&lpvEnv, hTokenDup, TRUE)) {
             CloseHandle(hTokenDup);
-            CloseHandle(hUserToken);
             return false;
         }
 
@@ -352,12 +386,10 @@ namespace NS_File
             CloseHandle(pi.hProcess);
             DestroyEnvironmentBlock(lpvEnv);
             CloseHandle(hTokenDup);
-            CloseHandle(hUserToken);
             return true;
         }
         DestroyEnvironmentBlock(lpvEnv);
         CloseHandle(hTokenDup);
-        CloseHandle(hUserToken);
         return false;
     }
 
@@ -448,45 +480,25 @@ namespace NS_File
             return false;
         }
 
-        WCHAR src_vol[MAX_PATH] = {0};
-        WCHAR dst_vol[MAX_PATH] = {0};
-        BOOL src_res = GetVolumePathName(from.c_str(), src_vol, MAX_PATH);
-        BOOL dst_res = GetVolumePathName(parentPath(to).c_str(), dst_vol, MAX_PATH);
-
-        bool can_use_rename = (src_res != 0 && dst_res != 0 && wcscmp(src_vol, dst_vol) == 0);
-        if (!dirExists(to) && can_use_rename) {
-            if (MoveFileEx(from.c_str(), to.c_str(), MOVEFILE_REPLACE_EXISTING |
-                              MOVEFILE_WRITE_THROUGH | MOVEFILE_COPY_ALLOWED) == 0) {
-                NS_Logger::WriteLog(L"Can't move dir from " + from + L" to " + to + L". " + NS_Utils::GetLastErrorAsString());
-                return false;
-            }
-        } else {
-            list<wstring> filesList;
-            wstring error;
-            if (!NS_File::GetFilesList(from, &filesList, error)) {
-                NS_Logger::WriteLog(L"Can't get files list: " + error);
-                return false;
-            }
-
-            const size_t sourceLength = from.length();
-            const size_t rootOffset = parentPath(to).length() + 1;
-            for (const wstring &sourcePath : filesList) {
-                if (!sourcePath.empty()) {
-                    wstring dest = to + sourcePath.substr(sourceLength);
-                    if (!NS_File::dirExists(NS_File::parentPath(dest)) && !NS_File::makePath(NS_File::parentPath(dest), rootOffset)) {
-                        NS_Logger::WriteLog(L"Can't create path: " + NS_File::parentPath(dest));
-                        return false;
-                    }
-                    if (MoveFileEx(sourcePath.c_str(), dest.c_str(), MOVEFILE_REPLACE_EXISTING |
-                                      MOVEFILE_WRITE_THROUGH | MOVEFILE_COPY_ALLOWED) == 0) {
-                        NS_Logger::WriteLog(L"Can't move file from " + sourcePath + L" to " + dest + L". " + NS_Utils::GetLastErrorAsString());
-                        return false;
-                    }
+        wstring pFrom = toNativeSeparators(from);
+        HRESULT hr = PerformFileOperation(pFrom, [&to](IFileOperation *pfo, IShellItem *pSrcItem) -> HRESULT {
+            IShellItem *pDstItem;
+            wstring pTo = toNativeSeparators(to);
+            wstring pParentTo = parentPath(pTo);
+            HRESULT hr = SHCreateItemFromParsingName(pParentTo.c_str(), NULL, IID_PPV_ARGS(&pDstItem));
+            if (SUCCEEDED(hr)) {
+                LPWSTR folderName = PathFindFileName(pTo.c_str());
+                hr = pfo->MoveItem(pSrcItem, pDstItem, folderName, NULL);
+                if (SUCCEEDED(hr)) {
+                    hr = pfo->PerformOperations();
                 }
+                pDstItem->Release();
             }
-        }
-        removeDirRecursively(from);
-        return true;
+            return hr;
+        });
+        if (FAILED(hr))
+            NS_Logger::WriteLog(L"Can't move file from " + from + L" to " + to + L". HRESULT: " + std::to_wstring(hr));
+        return SUCCEEDED(hr);
     }
 
     bool removeFile(const wstring &filePath)
@@ -496,19 +508,22 @@ namespace NS_File
 
     bool removeDirRecursively(const wstring &dir)
     {
-        WCHAR pFrom[_MAX_PATH + 1] = {0};
-        swprintf_s(pFrom, sizeof(pFrom)/sizeof(WCHAR), L"%s%c", dir.c_str(), L'\0');
-        SHFILEOPSTRUCT fop = {
-            NULL,
-            FO_DELETE,
-            pFrom,
-            NULL,
-            FOF_NOCONFIRMATION | FOF_NOERRORUI | FOF_SILENT,
-            FALSE,
-            0,
-            NULL
-        };
-        return (SHFileOperation(&fop) == 0);
+        if (!dirExists(dir)) {
+            NS_Logger::WriteLog(DEFAULT_ERROR_MESSAGE);
+            return false;
+        }
+
+        wstring pFrom = toNativeSeparators(dir);
+        HRESULT hr = PerformFileOperation(pFrom, [](IFileOperation *pfo, IShellItem *pSrcItem) -> HRESULT {
+            HRESULT hr = pfo->DeleteItem(pSrcItem, NULL);
+            if (SUCCEEDED(hr)) {
+                hr = pfo->PerformOperations();
+            }
+            return hr;
+        });
+        if (FAILED(hr))
+            NS_Logger::WriteLog(L"Can't remove file from " + dir + L". HRESULT: " + std::to_wstring(hr));
+        return SUCCEEDED(hr);
     }
 
     wstring fromNativeSeparators(const wstring &path)
@@ -554,33 +569,17 @@ namespace NS_File
             return fallbackTempPath();
         }
 
-        DWORD sesId = GetActiveSessionId();
-        if (sesId == 0xFFFFFFFF) {
-            NS_Logger::WriteLog(ADVANCED_ERROR_MESSAGE);
-            return fallbackTempPath();
-        }
-
-        HANDLE hUserToken = NULL;
-        if (!WTSQueryUserToken(sesId, &hUserToken)) {
-            NS_Logger::WriteLog(ADVANCED_ERROR_MESSAGE);
-            return fallbackTempPath();
-        }
-
         HANDLE hTokenDup = NULL;
-        if (!DuplicateTokenEx(hUserToken, MAXIMUM_ALLOWED, NULL, SecurityImpersonation, TokenPrimary, &hTokenDup)) {
-            CloseHandle(hUserToken);
-            NS_Logger::WriteLog(ADVANCED_ERROR_MESSAGE);
+        if (!GetDuplicateToken(hTokenDup)) {
             return fallbackTempPath();
         }
 
         WCHAR buff[MAX_PATH] = {0};
         if (ExpandEnvironmentStringsForUser(hTokenDup, L"%TEMP%", buff, MAX_PATH)) {
             CloseHandle(hTokenDup);
-            CloseHandle(hUserToken);
             return fromNativeSeparators(buff);
         }
         CloseHandle(hTokenDup);
-        CloseHandle(hUserToken);
         NS_Logger::WriteLog(ADVANCED_ERROR_MESSAGE);
         return fallbackTempPath();
     }

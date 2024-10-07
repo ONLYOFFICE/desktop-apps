@@ -71,7 +71,7 @@ public:
     bool isCustomWindowStyle();
     void updateScaling(bool resize = true);
     virtual void adjustGeometry() = 0;
-    virtual void setWindowColors(const QColor&, const QColor& border = QColor(), bool isActive = false);
+    virtual void setWindowColors(const QColor&, const QColor& border = QColor(), bool isActive = false) = 0;
     virtual void applyTheme(const std::wstring&);
 
 protected:

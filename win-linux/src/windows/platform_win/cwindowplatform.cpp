@@ -124,6 +124,46 @@ static void GetFrameMetricsForDpi(FRAME &frame, double dpi, bool maximized = fal
     frame.top -= top_ofs[row][column];
 }
 
+static QColor GetBorderColor(bool isActive, const QColor &bkgColor)
+{
+    int lum = int(0.299 * bkgColor.red() + 0.587 * bkgColor.green() + 0.114 * bkgColor.blue());
+    if (isActive) {
+        QSettings reg("HKEY_CURRENT_USER\\SOFTWARE\\Microsoft\\Windows\\DWM", QSettings::NativeFormat);
+        if (reg.value("ColorPrevalence", 0).toInt() != 0) {
+            DWORD dwcolor = 0;
+            BOOL opaque = TRUE;
+            static HRESULT(WINAPI *GetColorizationColor)(DWORD*, BOOL*) = NULL;
+            if (!GetColorizationColor) {
+                if (HMODULE module = GetModuleHandleA("dwmapi"))
+                    *(FARPROC*)&GetColorizationColor = GetProcAddress(module, "DwmGetColorizationColor");
+            }
+            if (GetColorizationColor && SUCCEEDED(GetColorizationColor(&dwcolor, &opaque))) {
+                float a = (float)((dwcolor >> 24) & 0xff)/255;
+                if (a < 0.8f)
+                    a = 0.8f;
+                int r = (int)(((dwcolor >> 16) & 0xff) * a + 255 * (1 - a));
+                int g = (int)(((dwcolor >> 8) & 0xff) * a + 255 * (1 - a));
+                int b = (int)((dwcolor & 0xff) * a + 255 * (1 - a));
+                return QColor(r, g, b);
+            }
+        } else {
+            QSettings reg_lt("HKEY_CURRENT_USER\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize", QSettings::NativeFormat);
+            if (reg_lt.value("SystemUsesLightTheme", 1).toInt() != 0) {
+                QString userSid = Utils::GetCurrentUserSID();
+                if (!userSid.isEmpty()) {
+                    QSettings reg_ac("HKEY_USERS\\" + userSid + "\\Control Panel\\Desktop", QSettings::NativeFormat);
+                    if (reg_ac.value("AutoColorization", 0).toInt() != 0)
+                        return bkgColor.lighter(95);
+                }
+            }
+        }
+        int res = -0.002*lum*lum + 0.93*lum + 6;
+        return QColor(res, res, res);
+    }
+    int res = -0.0007*lum*lum + 0.78*lum + 25;
+    return QColor(res, res, res);
+}
+
 static bool isTaskbarAutoHideOn()
 {
     APPBARDATA ABData;
@@ -213,6 +253,31 @@ void CWindowPlatform::bringToTop()
 void CWindowPlatform::show(bool maximized)
 {
     maximized ? CWindowBase::showMaximized() : CWindowBase::show();
+}
+
+void CWindowPlatform::setWindowColors(const QColor& background, const QColor& border, bool isActive)
+{
+    m_brdColor = border;
+    m_bkgColor = background;
+    QString css;
+    if (Utils::getWinVersion() == Utils::WinVer::WinXP) {
+        css = QString("QMainWindow{background-color: %1;}").arg(background.name());
+        RedrawWindow((HWND)winId(), NULL, NULL, RDW_INVALIDATE | RDW_FRAME | RDW_UPDATENOW); // Apply colors to NC-area
+    } else
+    if (Utils::getWinVersion() < Utils::WinVer::Win10) {
+        css = QString("QMainWindow{border:1px solid %1; background-color: %2;}").arg(border.name(), background.name());
+    } else
+    if (Utils::getWinVersion() == Utils::WinVer::Win10) {
+        int brdWidth = 0;
+        HDC hdc = GetDC(NULL);
+        brdWidth = GetSystemMetrics(SM_CXBORDER) * GetDeviceCaps(hdc, LOGPIXELSX)/96;
+        ReleaseDC(NULL, hdc);
+        QColor brdColor = GetBorderColor(isActive, background);
+        css = QString("QMainWindow{border-top: %1px solid %2; background-color: %3;}").arg(QString::number(brdWidth), brdColor.name(), background.name());
+    } else {
+        css = QString("QMainWindow{background-color: %1;}").arg(background.name());
+    }
+    setStyleSheet(css);
 }
 
 void CWindowPlatform::adjustGeometry()
@@ -578,7 +643,7 @@ bool CWindowPlatform::nativeEvent(const QByteArray &eventType, void *message, lo
                 return true;
             } else
             if (Utils::getWinVersion() == WinVer::Win10) {
-                CWindowBase::setWindowColors(m_bkgColor, m_brdColor, LOWORD(msg->wParam));
+                setWindowColors(m_bkgColor, m_brdColor, LOWORD(msg->wParam));
                 repaint();
             }
         }

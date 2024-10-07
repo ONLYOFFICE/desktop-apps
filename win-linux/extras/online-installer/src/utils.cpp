@@ -80,9 +80,10 @@ namespace NS_Utils
         size_t size = FormatMessage(FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS,
                                        NULL, errID, MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT), (LPTSTR)&msgBuff, 0, NULL);
         wstring msg = _TR(LABEL_ERR_COMMON) + wstring(L" ") + std::to_wstring(errID);
-        if (size > 0)
+        if (size > 0) {
             msg.append(L"\n" + wstring(msgBuff, (int)size));
-        LocalFree(msgBuff);
+            LocalFree(msgBuff);
+        }
         return msg;
     }
 

@@ -95,7 +95,8 @@ void CWindowPlatform::setWindowColors(const QColor& background, const QColor& bo
 {
     Q_UNUSED(border)
     if (!CX11Decoration::isDecorated()) {
-        CWindowBase::setWindowColors(background, border, isActive);
+        m_brdColor = border;
+        setStyleSheet(QString("QMainWindow{border:1px solid %1; background-color: %2;}").arg(border.name(), background.name()));
     }
 }
 
