@@ -715,6 +715,27 @@ public:
                                                                                       @"type"    : @(int(docType)),
                                                                                       @"active"  : @(YES)
                                                                                   }];
+                            } else if ([nsParam hasPrefix:@"{\"template\":"]) {
+                                NSDictionary * json = [[NSString stringWithstdwstring:param] dictionary][@"template"];
+
+                                AscEditorType docType = AscEditorType::etDocument;
+                                if ( [json objectForKey:@"type"] ) {
+                                    int tplType = [json[@"type"] intValue];
+//                                    if ( tplType > AVS_OFFICESTUDIO_FILE_DOCUMENT and tplType < AVS_OFFICESTUDIO_FILE_PRESENTATION ) docType = AscEditorType::etDocument; else
+                                    if ( tplType > AVS_OFFICESTUDIO_FILE_PRESENTATION and tplType < AVS_OFFICESTUDIO_FILE_SPREADSHEET ) docType = AscEditorType::etPresentation; else
+                                    if ( tplType > AVS_OFFICESTUDIO_FILE_SPREADSHEET and tplType < AVS_OFFICESTUDIO_FILE_CROSSPLATFORM ) docType = AscEditorType::etSpreadsheet;
+//                                    else if ( tplType > AVS_OFFICESTUDIO_FILE_CROSSPLATFORM and tplType < AVS_OFFICESTUDIO_FILE_IMAGE ) {}
+                                }
+
+                                [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameCreateTab
+                                                                                    object:nil
+                                                                                  userInfo:@{
+                                                                                        @"action"  : @(ASCTabActionCreateLocalFileFromTemplate),
+                                                                                        @"type"    : @(int(docType)),
+                                                                                        @"active"  : @(YES),
+                                                                                        @"path"    : json[@"path"],
+                                                                                        @"id"      : json[@"id"],
+                                                                                    }];
                             } else {
                                 if ([nsParam isEqualToString:@"word"]) {
                                     docType = AscEditorType::etDocument;
