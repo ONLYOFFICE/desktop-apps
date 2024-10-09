@@ -522,8 +522,7 @@ void CTabBar::CTabBarPrivate::onCurrentChanged(int index)
 
     currentIndex = index;
 
-    if (isActive)
-        setActive(index);
+    setActive(index);
 
     emit owner->currentChanged(index);
 }
@@ -601,8 +600,8 @@ void CTabBar::CTabBarPrivate::setActive(int index)
 {
     for (int i = 0; i < tabList.size(); i++) {
         bool state = (i == index);
-        if (tabList[i]->property("selected").toBool() != state) {
-            tabList[i]->setProperty("selected", state);
+        if (tabList[i]->property("selected").toBool() != (state && isActive)) {
+            tabList[i]->setProperty("selected", state && isActive);
             tabList[i]->polish();
         }
         tabList[i]->setActive(state);
