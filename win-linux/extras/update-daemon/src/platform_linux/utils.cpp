@@ -41,6 +41,7 @@
 #include <openssl/md5.h>
 #include <vector>
 #include <fcntl.h>
+#include <ftw.h>
 #include <linux/limits.h>
 #include "../../src/defines.h"
 #include "../../src/prop/defines_p.h"
@@ -123,6 +124,11 @@ static bool moving_folder_content(const string &from, const string &to, bool use
     return true;
 }
 
+int remove_callback(const char *path, const struct stat*, int type, struct FTW*)
+{
+    return (type == FTW_DNR) ? EACCES : remove(path);
+}
+
 namespace NS_Utils
 {
     std::vector<string> cmd_args;
@@ -164,8 +170,7 @@ namespace NS_Utils
             str += " " + GetLastErrorAsString();
 
         gtk_init(NULL, NULL);
-        GtkWidget *dialog = gtk_message_dialog_new(NULL, GTK_DIALOG_MODAL, GTK_MESSAGE_ERROR, GTK_BUTTONS_OK,
-                                                      "%s", str.c_str());
+        GtkWidget *dialog = gtk_message_dialog_new(NULL, GTK_DIALOG_MODAL, GTK_MESSAGE_ERROR, GTK_BUTTONS_OK, "%s", str.c_str());
         string prod_name = _TR(VER_PRODUCTNAME_STR);
         gtk_window_set_title(GTK_WINDOW(dialog), prod_name.c_str());
         int res = gtk_dialog_run(GTK_DIALOG(dialog));
@@ -295,15 +300,28 @@ namespace NS_File
 
         struct dirent* entry;
         while ((entry = readdir(proc_dir)) != NULL) {
-            if (entry->d_type == DT_DIR && strtol(entry->d_name, NULL, 10) > 0) {
-                char cmd_file[256];
-                snprintf(cmd_file, sizeof(cmd_file), "/proc/%s/cmdline", entry->d_name);
+            if (strcmp(entry->d_name, ".") == 0 || strcmp(entry->d_name, "..") == 0)
+                continue;
 
-                FILE* cmd_file_ptr = fopen(cmd_file, "r");
+            char pid_path[PATH_MAX];
+            snprintf(pid_path, sizeof(pid_path), "%s/%s", "/proc", entry->d_name);
+            unsigned int d_type = entry->d_type;
+            if (d_type == DT_UNKNOWN) {
+                struct stat info;
+                if (lstat(pid_path, &info) != 0)
+                    continue;
+                if (S_ISDIR(info.st_mode))
+                    d_type = DT_DIR;
+            }
+
+            if (d_type == DT_DIR && strtol(entry->d_name, NULL, 10) > 0) {
+                strcat(pid_path, "/cmdline");
+
+                FILE* cmd_file_ptr = fopen(pid_path, "r");
                 if (!cmd_file_ptr)
                     continue;
 
-                char cmd_line[256];
+                char cmd_line[NAME_MAX];
                 fgets(cmd_line, sizeof(cmd_line), cmd_file_ptr);
                 fclose(cmd_file_ptr);
 
@@ -321,16 +339,12 @@ namespace NS_File
     bool fileExists(const string &filePath)
     {
         struct stat st;
-        if (stat(filePath.c_str(), &st) != 0)
-            return false;
-        return S_ISREG(st.st_mode);
+        return stat(filePath.c_str(), &st) == 0 && S_ISREG(st.st_mode);
     }
 
     bool dirExists(const string &dirName) {
         struct stat st;
-        if (stat(dirName.c_str(), &st) != 0)
-            return false;
-        return S_ISDIR(st.st_mode);
+        return stat(dirName.c_str(), &st) == 0 && S_ISDIR(st.st_mode);
     }
 
     bool dirIsEmpty(const string &dirName)
@@ -429,45 +443,12 @@ namespace NS_File
 
     bool removeFile(const string &filePath)
     {
-        return (remove(filePath.c_str()) == 0) ? true: false;
+        return remove(filePath.c_str()) == 0;
     }
 
     bool removeDirRecursively(const string &dir)
     {
-        DIR *_dir = opendir(dir.c_str());
-        if (!_dir)
-            return false;
-
-        struct dirent *entry;
-        while ((entry = readdir(_dir)) != NULL) {
-            if (strcmp(entry->d_name, ".") == 0 || strcmp(entry->d_name, "..") == 0)
-                continue;
-
-            char path[PATH_MAX] = {0};
-            snprintf(path, sizeof(path), "%s/%s", dir.c_str(), entry->d_name);
-            struct stat info;
-            if (stat(path, &info) != 0) {
-                closedir(_dir);
-                return false;
-            }
-
-            if (S_ISDIR(info.st_mode)) {
-                if (!removeDirRecursively(path)) {
-                    closedir(_dir);
-                    return false;
-                }
-            } else {
-                if (remove(path) != 0) {
-                    closedir(_dir);
-                    return false;
-                }
-            }
-        }
-
-        closedir(_dir);
-        if (rmdir(dir.c_str()) != 0)
-            return false;
-        return true;
+        return nftw(dir.c_str(), remove_callback, 20, FTW_PHYS | FTW_DEPTH) == 0;
     }
 
     string parentPath(const string &path)
@@ -490,7 +471,7 @@ namespace NS_File
 
     string appPath()
     {
-        char path[PATH_MAX] = {0};
+        char path[PATH_MAX];
         ssize_t count = readlink("/proc/self/exe", path, PATH_MAX);
         return (count > 0) ? parentPath(string(path, count)) : "";
     }
