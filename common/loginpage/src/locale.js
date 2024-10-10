@@ -146,6 +146,8 @@ l10n.en = {
     settOptDescAUpdateAsk: "You will be notified about all updates steps",
     settRtlMode: "RTL Interface",
     settGpuUseMode: "Use graphics acceleration when available",
+    tplPanelLocal: "Local",
+    tplPanelCloud: "Cloud",
 }
 
 
