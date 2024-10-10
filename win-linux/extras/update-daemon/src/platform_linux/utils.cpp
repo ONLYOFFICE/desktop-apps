@@ -65,15 +65,20 @@ static bool moving_through_copy(const string &oldFile, const string &newFile)
     if (stat(oldFile.c_str(), &st) != 0)
         return false;
 
-    char buf[4096];
+    char buf[BUFSIZ];
     int fd_src = -1, fd_dst = -1, n_read = 0;
-    fd_src = open(oldFile.c_str(), O_RDONLY);
-    if (fd_src < 0)
+    if ((fd_src = open(oldFile.c_str(), O_RDONLY)) < 0)
         return false;
 
-    fd_dst = open(newFile.c_str(), O_WRONLY | O_CREAT, st.st_mode);
-    if (fd_dst < 0)
+    if ((fd_dst = creat(newFile.c_str(), 0666)) < 0) {
+        close(fd_src);
         return false;
+    }
+    if (fchmod(fd_dst, st.st_mode) != 0) {
+        close(fd_src);
+        close(fd_dst);
+        return false;
+    }
 
     while ((n_read = read(fd_src, buf, sizeof(buf))) > 0) {
         if (write(fd_dst, buf, n_read) != n_read) {
@@ -82,12 +87,10 @@ static bool moving_through_copy(const string &oldFile, const string &newFile)
             return false;
         }
     }
-    if (close(fd_src) != 0 || close(fd_dst) != 0)
+    if (close(fd_src) != 0 || close(fd_dst) != 0 || n_read == -1)
         return false;
 
-    if (unlink(oldFile.c_str()) != 0)
-        return false;
-    return true;
+    return unlink(oldFile.c_str()) == 0;
 };
 
 static bool moving_folder_content(const string &from, const string &to, bool use_rename)
@@ -173,10 +176,11 @@ namespace NS_Utils
         GtkWidget *dialog = gtk_message_dialog_new(NULL, GTK_DIALOG_MODAL, GTK_MESSAGE_ERROR, GTK_BUTTONS_OK, "%s", str.c_str());
         string prod_name = _TR(VER_PRODUCTNAME_STR);
         gtk_window_set_title(GTK_WINDOW(dialog), prod_name.c_str());
+        gtk_window_set_keep_above(GTK_WINDOW(dialog), true);
+        gtk_window_set_default_size(GTK_WINDOW(dialog), 400, 150);
+        gtk_window_set_skip_taskbar_hint(GTK_WINDOW(dialog), false);
         int res = gtk_dialog_run(GTK_DIALOG(dialog));
         gtk_widget_destroy(dialog);
-        while (gtk_events_pending())
-            gtk_main_iteration_do(FALSE);
         return res;
     }
 
@@ -228,14 +232,22 @@ namespace NS_File
 
             char _path[PATH_MAX];
             snprintf(_path, sizeof(_path), "%s/%s", path.c_str(), entry->d_name);
-            struct stat info;
-            if (stat(_path, &info) != 0) {
-                error = string("Error getting file information: ") + _path;
-                closedir(dir);
-                return false;
+            unsigned int d_type = entry->d_type;
+            if (d_type == DT_UNKNOWN) {
+                struct stat info;
+                if (lstat(_path, &info) != 0) {
+                    error = string("Error getting file information: ") + _path;
+                    closedir(dir);
+                    return false;
+                }
+                if (S_ISDIR(info.st_mode))
+                    d_type = DT_DIR;
+                else
+                if (S_ISREG(info.st_mode))
+                    d_type = DT_REG;
             }
 
-            if (S_ISDIR(info.st_mode)) {
+            if (d_type == DT_DIR) {
                 if (ignore_locked && access(_path, R_OK) != 0)
                     continue;
                 if (folders_only) {
@@ -247,7 +259,7 @@ namespace NS_File
                     return false;
                 }
             } else
-            if (!folders_only && S_ISREG(info.st_mode))
+            if (!folders_only && d_type == DT_REG)
                 lst->push_back(_path);
 
         }
