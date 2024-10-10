@@ -232,7 +232,7 @@ namespace NS_File
 
             char _path[PATH_MAX];
             snprintf(_path, sizeof(_path), "%s/%s", path.c_str(), entry->d_name);
-            unsigned int d_type = entry->d_type;
+            unsigned char d_type = entry->d_type;
             if (d_type == DT_UNKNOWN) {
                 struct stat info;
                 if (lstat(_path, &info) != 0) {
@@ -317,7 +317,7 @@ namespace NS_File
 
             char pid_path[PATH_MAX];
             snprintf(pid_path, sizeof(pid_path), "%s/%s", "/proc", entry->d_name);
-            unsigned int d_type = entry->d_type;
+            unsigned char d_type = entry->d_type;
             if (d_type == DT_UNKNOWN) {
                 struct stat info;
                 if (lstat(pid_path, &info) != 0)
@@ -406,31 +406,18 @@ namespace NS_File
 
     bool replaceFile(const string &oldFilePath, const string &newFilePath)
     {
-        struct stat src, dst;
-        if (stat(oldFilePath.c_str(), &src) != 0)
+        struct stat src;
+        if (stat(oldFilePath.c_str(), &src) != 0 || !S_ISREG(src.st_mode))
             return false;
-        if (!S_ISREG(src.st_mode))
-            return false;
-        if (stat(parentPath(newFilePath).c_str(), &dst) != 0)
-            return false;
-        if (src.st_dev == dst.st_dev) {
-            if (rename(oldFilePath.c_str(), newFilePath.c_str()) != 0)
-                return false;
-        } else {
-            if (!moving_through_copy(oldFilePath, newFilePath))
-                return false;
-        }
-        return true;
+        return rename(oldFilePath.c_str(), newFilePath.c_str()) == 0 || moving_through_copy(oldFilePath, newFilePath);
     }
 
     bool replaceFolder(const string &from, const string &to, bool remove_existing)
     {
         struct stat src, dst;
-        if (stat(from.c_str(), &src) != 0)
+        if (stat(from.c_str(), &src) != 0 || !S_ISDIR(src.st_mode))
             return false;
-        if (stat(parentPath(to).c_str(), &dst) != 0)
-            return false;
-        if (!S_ISDIR(src.st_mode) || !S_ISDIR(dst.st_mode))
+        if (stat(parentPath(to).c_str(), &dst) != 0 || !S_ISDIR(dst.st_mode))
             return false;
 
         if(remove_existing && !dirIsEmpty(to) && !removeDirRecursively(to))
@@ -495,11 +482,11 @@ namespace NS_File
            return "";
 
        int bytes;
-       unsigned char data[1024];
+       unsigned char data[BUFSIZ];
        unsigned char digest[MD5_DIGEST_LENGTH];
        MD5_CTX mdContext;
        MD5_Init(&mdContext);
-       while ((bytes = fread(data, 1, 1024, file)) != 0)
+       while ((bytes = fread(data, 1, sizeof(data), file)) != 0)
            MD5_Update(&mdContext, data, bytes);
 
        MD5_Final(digest, &mdContext);
