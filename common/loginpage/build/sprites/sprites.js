@@ -102,6 +102,19 @@ module.exports = (grunt, rootpathprefix) => {
                     },
                 }
             },
+            tpltype: {
+                src: [`${_path}res/img/template-type/*.svg`],
+                dest: `${_path}res/img/`,
+                options: {
+                    mode: {
+                        symbol: {
+                            inline: true,
+                            dest: './generated',
+                            sprite: `templatetype.svg`,
+                        },
+                    },
+                }
+            },
         },
         replace_allconnect: {                   //when fill =#fff the fill turns orange on the light theme page
             dist: {

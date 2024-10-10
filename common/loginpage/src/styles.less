@@ -1348,18 +1348,49 @@ li.menu-item {
         }
 
         .icon {
+            @badge-size: 16px;
+
             flex-grow: 1;
+            .box {
+                position: relative;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%,-50%);
+                width: fit-content;
+            }
             img {
                 max-width: 140px;
                 max-height: 160px;
-                position: relative;
-                top: 50%;
-                transform: translateY(-50%);
             }
             svg {
                 width: 140px;
                 height: 120px;
                 fill: @highlight-button-pressed;
+            }
+            .badge {
+                width: @badge-size;
+                height: @badge-size;
+                position: absolute;
+                left: 4px;
+                bottom: 8px;
+            }
+            i.badge {
+                background: -webkit-image-set(data-uri('../res/img/tpltype@1.25x.png') 1.25x,
+                        data-uri('../res/img/tpltype@1.5x.png') 1.5x, data-uri('../res/img/tpltype@1.75x.png') 1.75x) no-repeat;
+                background-size: 16px auto;
+
+                &.word {
+/*                    background-position-y: -@badge-size*0;*/
+                }
+                &.slide {
+                    background-position-y: -@badge-size*1;
+                }
+                &.cell {
+                    background-position-y: -@badge-size*2;
+                }
+                &.pdf {
+                    background-position-y: -@badge-size*3;
+                }
             }
         }
 

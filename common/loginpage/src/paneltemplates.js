@@ -110,8 +110,11 @@
 
     utils.fn.extend(ViewTemplates.prototype, {
         listitemtemplate: function(info) {
+            const type = utils.formatToEditor(info.type);
+            const badge = !this.svgicons ? `<i class="badge ${type}"></i>` : 
+                                `<svg class="badge"><use xlink:href="#tpltype-${type}"></use></svg>`;
             const icon_el = !info.icon ? `<svg class='icon'><use xlink:href='#template-item'></use></svg>`:
-                                            `<img src="${info.icon}"></img>`
+                                            `<div class="box"><img src="${info.icon}">${badge}</div>`
             return `<div id="${info.uid}" class='item'>
                         <div class='icon'>
                             ${icon_el}
@@ -277,6 +280,15 @@
                 //         e.stopPropagation();
                 //     });
                 // }
+
+                const mq = "screen and (-webkit-min-device-pixel-ratio: 1.01) and (-webkit-max-device-pixel-ratio: 1.99), " +
+                                            "screen and (min-resolution: 1.01dppx) and (max-resolution: 1.99dppx)";
+
+                const mql = window.matchMedia(mq);
+                this.view.svgicons = !mql.matches;
+                mql.addEventListener('change', e => {
+                    this.view.svgicons = !e.target.matches;
+                });
 
                 $('.nav-item', this.view.$panel).click(_on_nav_item_click.bind(this));
                 window.sdk.on('onupdatetemplate', _on_update_template.bind(this));
