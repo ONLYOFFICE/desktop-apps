@@ -88,6 +88,7 @@ l10n.sl = {
     settOptThemeLight: 'Svetla',
     settOptThemeClassicLight: 'Klasična svetla',
     settOptThemeDark: 'Temna',
+    settOptThemeGray: 'Siva',
     settOptLaunchMode: 'Odpri datoteko',
     settOptLaunchInTab: 'V zavihku',
     settOptLaunchInWindow: 'V oknu',
@@ -111,4 +112,6 @@ l10n.sl = {
     settOptDescAUpdateSilent: "Prenesite in namestite posodobitev v ozadju",
     settOptDescAUpdateAsk: "O vseh korakih posodobitve boste obveščeni",
     settRtlMode: "RTL vmesnik",
+    tplPanelLocal: "Lokalne",
+    tplPanelCloud: "V oblaku",
 }

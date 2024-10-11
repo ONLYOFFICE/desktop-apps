@@ -88,6 +88,7 @@ l10n.pl = {
     settOptThemeLight: 'Jasny',
     settOptThemeClassicLight: 'Klasyczny',
     settOptThemeDark: 'Ciemny',
+    settOptThemeGray: 'Szary',
     settOptLaunchMode: 'Otwórz plik',
     settOptLaunchInTab: 'W nowej zakładce',
     settOptLaunchInWindow: 'W nowym oknie',
@@ -111,4 +112,6 @@ l10n.pl = {
     settOptDescAUpdateSilent: "Pobieraj i instaluj aktualizacje w tle",
     settOptDescAUpdateAsk: "Otrzymasz powiadomienie na temat wszystkich kroków aktualizacji",
     settRtlMode: "Interfejs RTL",
+    tplPanelLocal: "Lokalne",
+    tplPanelCloud: "W chmurze",
 }

@@ -88,6 +88,7 @@ l10n.ca = {
     settOptThemeLight: 'Clar',
     settOptThemeClassicLight: 'Clar clàssic',
     settOptThemeDark: 'Fosc',
+    settOptThemeGray: 'Gris',
     settOptLaunchMode: 'Obre fitxer',
     settOptLaunchInTab: 'En una pestanya',
     settOptLaunchInWindow: 'En una finestra',
@@ -112,4 +113,6 @@ l10n.ca = {
     settOptDescAUpdateAsk: "Se li notificaran tots els passos de les actualitzacions",
     settRtlMode: "Interfície RTL",
     settGpuUseMode: "Utilitza gràfics d’acceleració quan estiguin disponibles",
+    tplPanelLocal: "Locals",
+    tplPanelCloud: "De núvol",
 }

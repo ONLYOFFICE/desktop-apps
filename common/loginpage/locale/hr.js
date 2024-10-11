@@ -88,6 +88,7 @@ l10n.hr = {
     settOptThemeLight: 'Svijetla',
     settOptThemeClassicLight: 'Klasična svijetla',
     settOptThemeDark: 'Tamna',
+    settOptThemeGray: 'Siva',
     settOptLaunchMode: 'Otvori datoteku',
     settOptLaunchInTab: 'U kartici',
     settOptLaunchInWindow: 'U prozoru',
@@ -112,4 +113,6 @@ l10n.hr = {
     settOptDescAUpdateAsk: "Bit ćete obaviješteni o svim koracima ažuriranja",
     settRtlMode: "RTL sučelje",
     settGpuUseMode: "Koristite grafičko ubrzanje ako je dostupno",
+    tplPanelLocal: "Lokalni",
+    tplPanelCloud: "Oblačni",
 }

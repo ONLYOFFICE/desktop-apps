@@ -88,6 +88,7 @@ l10n.sr_Cyrl_RS = {
     settOptThemeLight: 'Светла',
     settOptThemeClassicLight: 'Класична светла',
     settOptThemeDark: 'Тамна',
+    settOptThemeGray: 'Сива',
     settOptLaunchMode: 'Отвори фајл',
     settOptLaunchInTab: 'У својој картици',
     settOptLaunchInWindow: 'У свом прозору',
@@ -112,4 +113,6 @@ l10n.sr_Cyrl_RS = {
     settOptDescAUpdateAsk: "Бићете обавештени пре сваког корака ажурирања",
     settRtlMode: "RTL интерфејс",
     settGpuUseMode: "Користи графичко убрзање када је доступно",
+    tplPanelLocal: "Локални",
+    tplPanelCloud: "Облачни",
 }

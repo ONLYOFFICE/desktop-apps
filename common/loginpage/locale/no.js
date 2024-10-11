@@ -88,6 +88,7 @@ l10n.no = {
     settOptThemeLight: 'Lyst',
     settOptThemeClassicLight: 'Klassisk lyst',
     settOptThemeDark: 'Mørskt',
+    settOptThemeGray: 'Grått',
     settOptLaunchMode: 'Åpne fil',
     settOptLaunchInTab: 'I fanegruppe',
     settOptLaunchInWindow: 'I vindu',
@@ -112,4 +113,6 @@ l10n.no = {
     settOptDescAUpdateAsk: "Du vil bli varslet om alle oppdateringstrinn",
     settRtlMode: "RTL-grensesnitt",
     settGpuUseMode: "Bruk grafikkakselerasjon når tilgjengelig",
+    tplPanelLocal: "Lokale",
+    tplPanelCloud: "Cloud",
 }

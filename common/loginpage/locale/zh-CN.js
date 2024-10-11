@@ -88,6 +88,7 @@ l10n.zh_CN = {
     settOptThemeLight: '浅色',
     settOptThemeClassicLight: '经典浅色',
     settOptThemeDark: '深色',
+    settOptThemeGray: '灰色',
     settOptLaunchMode: '文件打开方式',
     settOptLaunchInTab: '在新标签页中打开',
     settOptLaunchInWindow: '在新窗口中打开',
@@ -112,4 +113,6 @@ l10n.zh_CN = {
     settOptDescAUpdateAsk: "您将获得所有更新步骤的通知",
     settRtlMode: "RTL 界面 (文字从右到左)",
     settGpuUseMode: "如果可能，使用图形加速功能",
+    tplPanelLocal: "本地",
+    tplPanelCloud: "云端",
 }

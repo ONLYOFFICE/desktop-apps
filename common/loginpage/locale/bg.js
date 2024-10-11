@@ -88,6 +88,7 @@ l10n.bg = {
     settOptThemeLight: 'Светъл',
     settOptThemeClassicLight: 'Класически светъл',
     settOptThemeDark: 'Тъмен',
+    settOptThemeGray: 'Сива',
     settOptLaunchMode: 'Отвори файл',
     settOptLaunchInTab: 'В раздела',
     settOptLaunchInWindow: 'В прозореца',
@@ -111,4 +112,6 @@ l10n.bg = {
     settOptDescAUpdateSilent: "Изтеглете и инсталирайте актуализацията във фонов режим",
     settOptDescAUpdateAsk: "Ще бъдете известени за всички стъпки на актуализирането",
     settRtlMode: "RTL Интерфейс",
+    tplPanelLocal: "Локални",
+    tplPanelCloud: "Облачни",
 }

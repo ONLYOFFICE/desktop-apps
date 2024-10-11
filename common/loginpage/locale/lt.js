@@ -88,6 +88,7 @@ l10n.lt = {
     settOptThemeLight: 'Šviesus',
     settOptThemeClassicLight: 'Klasikinis Šviesus',
     settOptThemeDark: 'Tamsus',
+    settOptThemeGray: 'Pilka',
     settOptLaunchMode: 'Atidayti failą',
     settOptLaunchInTab: 'Skirtuke',
     settOptLaunchInWindow: 'Lange',
@@ -112,4 +113,6 @@ l10n.lt = {
     settOptDescAUpdateAsk: "Jums bus pranešta apie visus atnaujinimo žingsnius",
     settRtlMode: "RTL Sąsaja",
     settGpuUseMode: "Kai įmanoma, naudokite grafinį pagreitį",
+    tplPanelLocal: "Vietiniai",
+    tplPanelCloud: "Debesų",
 }
