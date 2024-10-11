@@ -21,6 +21,8 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		5A02294D2CB9C0410011C6EC /* QuickLookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A02294C2CB9C0410011C6EC /* QuickLookUI.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		5A02294E2CB9C3260011C6EC /* QuickLookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A02294C2CB9C0410011C6EC /* QuickLookUI.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		5A452E4B257688C700C58E01 /* providers in Resources */ = {isa = PBXBuildFile; fileRef = 5A452E4A257688C700C58E01 /* providers */; };
 		5A9D7AE8289336130069EE5A /* ASCEditorJSVariables.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5A9D7AE7289336130069EE5A /* ASCEditorJSVariables.mm */; };
 		5A9D7AE92893D86C0069EE5A /* ASCEditorJSVariables.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5A9D7AE7289336130069EE5A /* ASCEditorJSVariables.mm */; };
@@ -439,6 +441,7 @@
 		5A0229492CAC14940011C6EC /* he */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = he; path = he.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5A02294A2CAC14940011C6EC /* he */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = he; path = he.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5A02294B2CAC14940011C6EC /* he */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = he; path = he.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		5A02294C2CB9C0410011C6EC /* QuickLookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickLookUI.framework; path = System/Library/Frameworks/QuickLookUI.framework; sourceTree = SDKROOT; };
 		5A18BAA3285B5BF6004625C7 /* CertificateCommon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CertificateCommon.h; sourceTree = "<group>"; };
 		5A417F722C05265E00758795 /* sr-Latn-RS */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sr-Latn-RS"; path = "sr-Latn-RS.lproj/Document-Sign.strings"; sourceTree = "<group>"; };
 		5A417F732C05265E00758795 /* sr-Latn-RS */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sr-Latn-RS"; path = "sr-Latn-RS.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -1157,6 +1160,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5A02294D2CB9C0410011C6EC /* QuickLookUI.framework in Frameworks */,
 				FC0BD6C3258B63F700C47F95 /* libascdocumentscore.dylib in Frameworks */,
 				FC0BD6C4258B63F700C47F95 /* libooxmlsignature.dylib in Frameworks */,
 				5AD24E2C2902AE3C00748926 /* Sparkle.framework in Frameworks */,
@@ -1181,6 +1185,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5A02294E2CB9C3260011C6EC /* QuickLookUI.framework in Frameworks */,
 				FCF2762122C10DA400984E83 /* libascdocumentscore.dylib in Frameworks */,
 				FCF2762022C10D9400984E83 /* libooxmlsignature.dylib in Frameworks */,
 				5AD24E2B2902AE3C00748926 /* Sparkle.framework in Frameworks */,
@@ -1691,6 +1696,7 @@
 		FCF2761F22C10D9300984E83 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5A02294C2CB9C0410011C6EC /* QuickLookUI.framework */,
 				FCB4C78A26DE3CBB0012C20D /* libascdocumentscore.dylib */,
 				FCB4C78926DE3CBB0012C20D /* libooxmlsignature.dylib */,
 			);
