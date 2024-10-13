@@ -88,6 +88,7 @@ l10n.et = {
     settOptThemeLight: 'Hele',
     settOptThemeClassicLight: 'Klassikaline hele',
     settOptThemeDark: 'Tume',
+    settOptThemeGray: 'Hall',
     settOptLaunchMode: 'Ava fail',
     settOptLaunchInTab: 'Vahekaardil',
     settOptLaunchInWindow: 'Eraldi aknas',
@@ -112,4 +113,6 @@ l10n.et = {
     settOptDescAUpdateAsk: "Teid teavitatakse kõikidest uuenduste sammudest",
     settRtlMode: "RTL liides",
     settGpuUseMode: "Kasutage võimalusel graafikakiirendust",
+    tplPanelLocal: "Kohalikud",
+    tplPanelCloud: "Pilve",
 }

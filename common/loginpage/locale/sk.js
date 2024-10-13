@@ -88,6 +88,7 @@ l10n.sk = {
     settOptThemeLight: 'Svetlá',
     settOptThemeClassicLight: 'Klasická svetlá',
     settOptThemeDark: 'Temná',
+    settOptThemeGray: 'Šedý',
     settOptLaunchMode: 'Otvoriť súbor',
     settOptLaunchInTab: 'V tabuľke',
     settOptLaunchInWindow: 'V okne',
@@ -111,4 +112,6 @@ l10n.sk = {
     settOptDescAUpdateSilent: "Stiahnuť a inštalovať aktualizáciu na pozadí",
     settOptDescAUpdateAsk: "Budete upozornení na všetky kroky aktualizácií",
     settRtlMode: "Rozhranie RTL",
+    tplPanelLocal: "Miestne",
+    tplPanelCloud: "Cloudové",
 }

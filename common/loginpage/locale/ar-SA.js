@@ -88,6 +88,7 @@ l10n.ar_SA = {
     settOptThemeLight: 'أبيض',
     settOptThemeClassicLight: 'أبيض كلاسيكي',
     settOptThemeDark: 'أسود',
+    settOptThemeGray: 'رمادي',
     settOptLaunchMode: 'فتح ملف',
     settOptLaunchInTab: 'في علامة تبويب جديدة',
     settOptLaunchInWindow: 'في نافذة جديدة',
@@ -111,4 +112,6 @@ l10n.ar_SA = {
     settOptDescAUpdateSilent: "تنزيل التحديث وتثبيته في الخلفية",
     settOptDescAUpdateAsk: "سيتم إبلاغك عن كل خطوات التحديثات",
     settRtlMode: "واجهة RTL",
+    tplPanelLocal: "محلي",
+    tplPanelCloud: "سحابي",
 }

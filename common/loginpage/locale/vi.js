@@ -88,6 +88,7 @@ l10n.vi = {
     settOptThemeLight: 'Sáng',
     settOptThemeClassicLight: 'Sáng truyền thống',
     settOptThemeDark: 'Tối',
+    settOptThemeGray: 'Xám',
     settOptLaunchMode: 'Mở tập tin',
     settOptLaunchInTab: 'Trong tab',
     settOptLaunchInWindow: 'Trong window',
@@ -111,4 +112,6 @@ l10n.vi = {
     settOptDescAUpdateSilent: "Tải xuống và cài đặt bản cập nhật ở chế độ nền",
     settOptDescAUpdateAsk: "Bạn sẽ được thông báo về tất cả các bước cập nhật",
     settRtlMode: "Giao diện RTL",
+    tplPanelLocal: "Địa phương",
+    tplPanelCloud: "Đám mây",
 }

@@ -121,6 +121,7 @@ l10n.en = {
     settOptThemeLight: 'Light',
     settOptThemeClassicLight: 'Classic Light',
     settOptThemeDark: 'Dark',
+    settOptThemeGray: 'Gray',
     settOptLaunchMode: 'Open file',
     settOptLaunchInTab: 'In its own tab',
     settOptLaunchInWindow: 'In its own window',
@@ -145,6 +146,8 @@ l10n.en = {
     settOptDescAUpdateAsk: "You will be notified about all updates steps",
     settRtlMode: "RTL Interface",
     settGpuUseMode: "Use graphics acceleration when available",
+    tplPanelLocal: "Local",
+    tplPanelCloud: "Cloud",
 }
 
 

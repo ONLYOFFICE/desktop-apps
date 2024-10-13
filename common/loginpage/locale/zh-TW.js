@@ -88,6 +88,7 @@ l10n.zh_TW = {
     settOptThemeLight: '明亮',
     settOptThemeClassicLight: '經典明亮',
     settOptThemeDark: '黑暗',
+    settOptThemeGray: '灰色',
     settOptLaunchMode: '開啟檔案',
     settOptLaunchInTab: '標籤中',
     settOptLaunchInWindow: '視窗中',
@@ -111,4 +112,6 @@ l10n.zh_TW = {
     settOptDescAUpdateSilent: "於背景中下載並安裝更新檔",
     settOptDescAUpdateAsk: "您將收到所有更新步驟的相關通知",
     settRtlMode: "RTL介面",
+    tplPanelLocal: "本地",
+    tplPanelCloud: "雲",
 }

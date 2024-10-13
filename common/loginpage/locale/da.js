@@ -88,6 +88,7 @@ l10n.da = {
     settOptThemeLight: 'Lys',
     settOptThemeClassicLight: 'Klassisk lys',
     settOptThemeDark: 'Mørk',
+    settOptThemeGray: 'Gråt',
     settOptLaunchMode: 'Åben fil',
     settOptLaunchInTab: 'I fane',
     settOptLaunchInWindow: 'I vindue',
@@ -112,4 +113,6 @@ l10n.da = {
     settOptDescAUpdateAsk: 'Du vil blive underrettet om alle opdateringstrin',
     settRtlMode: "RTL-interface",
     settGpuUseMode: "Benyt grafikacceleration når det er muligt",
+    tplPanelLocal: "Lokale",
+    tplPanelCloud: "Cloud",
 }

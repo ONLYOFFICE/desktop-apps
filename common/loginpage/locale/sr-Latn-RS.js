@@ -88,6 +88,7 @@ l10n.sr_Latn_RS = {
     settOptThemeLight: 'Svetla',
     settOptThemeClassicLight: 'Klasična svetla',
     settOptThemeDark: 'Tamna',
+    settOptThemeGray: 'Siva',
     settOptLaunchMode: 'Otvori fajl',
     settOptLaunchInTab: 'U svojoj kartici',
     settOptLaunchInWindow: 'U svom prozoru',
@@ -112,4 +113,6 @@ l10n.sr_Latn_RS = {
     settOptDescAUpdateAsk: "Bićete obavešteni pre svakog koraka ažuriranja",
     settRtlMode: "RTL Interfejs",
     settGpuUseMode: "Koristi grafičko ubrzanje kada je dostupno",
+    tplPanelLocal: "Lokalni",
+    tplPanelCloud: "Oblačni",
 }

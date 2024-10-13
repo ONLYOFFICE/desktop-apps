@@ -88,6 +88,7 @@ l10n.ru = {
     settOptThemeLight: 'Светлая',
     settOptThemeClassicLight: 'Классическая светлая',
     settOptThemeDark: 'Темная',
+    settOptThemeGray: 'Серая',
     settOptLaunchMode: 'Открыть файл',
     settOptLaunchInTab: 'Во вкладке',
     settOptLaunchInWindow: 'В окне',
@@ -112,4 +113,6 @@ l10n.ru = {
     settOptDescAUpdateAsk: "Будет запрос подтверждения перед каждым шагом обновления",
     settRtlMode: "Интерфейс RTL",
     settGpuUseMode: "Использовать графическое ускорение, если оно доступно",
+    tplPanelLocal: "Локальные",
+    tplPanelCloud: "Облачные",
 }

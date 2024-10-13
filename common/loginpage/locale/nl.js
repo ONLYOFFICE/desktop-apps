@@ -88,6 +88,7 @@
     settOptThemeLight: 'Licht',
     settOptThemeClassicLight: 'Klassiek Licht',
     settOptThemeDark: 'Dark',
+    settOptThemeGray: 'Grijs',
     settOptLaunchMode: 'Open bestand',
     settOptLaunchInTab: 'In tabblad',
     settOptLaunchInWindow: 'In venster',
@@ -111,4 +112,6 @@
     settOptDescAUpdateSilent: "Update downloaden en installeren op de achtergrond",
     settOptDescAUpdateAsk: "U krijgt bericht over alle update stappen",
     settRtlMode: "RTL Interface",
+    tplPanelLocal: "Lokale",
+    tplPanelCloud: "Cloud",
 }

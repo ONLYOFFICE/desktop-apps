@@ -88,6 +88,7 @@ l10n.el = {
     settOptThemeLight: 'Ανοιχτόχρωμο',
     settOptThemeClassicLight: 'Κλασικό ανοιχτόχρωμο',
     settOptThemeDark: 'Σκουρόχρωμο',
+    settOptThemeGray: 'Γκρι',
     settOptLaunchMode: 'Άνοιγμα αρχείου',
     settOptLaunchInTab: 'Σε καρτέλα',
     settOptLaunchInWindow: 'Σε παράθυρο',
@@ -111,4 +112,6 @@ l10n.el = {
     settOptDescAUpdateSilent: "Λήψη και εγκατάσταση ενημέρωσης στο παρασκήνιο",
     settOptDescAUpdateAsk: "Θα ειδοποιηθείτε για όλα τα βήματα ενημέρωσης",
     settRtlMode: "Διεπαφή RTL",
+    tplPanelLocal: "Τοπικά",
+    tplPanelCloud: "Cloud",
 }
