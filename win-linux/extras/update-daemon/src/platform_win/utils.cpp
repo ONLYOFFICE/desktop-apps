@@ -542,8 +542,25 @@ namespace NS_File
 
     wstring parentPath(const wstring &path)
     {
-        auto delim = (path.size() > 2) ? path.find_last_of(L"\\/", path.size() - 2) : wstring::npos;
-        return (delim == wstring::npos) ? L"" : path.substr(0, delim);
+        size_t len = path.length();
+        if (len > 1) {
+            const wchar_t *buf = path.c_str();
+            const wchar_t *it = buf + len - 1;
+            while (*it == '/' || *it == '\\') {
+                if (it == buf)
+                    return L"";
+                it--;
+            }
+            while (*it != '/' && *it != '\\') {
+                if (it == buf)
+                    return L"";
+                it--;
+            }
+            if (it == buf)
+                return L"";
+            return wstring(buf, it - buf);
+        }
+        return L"";
     }
 
     wstring fallbackTempPath()
