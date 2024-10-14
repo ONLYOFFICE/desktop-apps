@@ -349,21 +349,13 @@ namespace NS_File
 
     bool replaceFile(const string &oldFilePath, const string &newFilePath)
     {
-        struct stat src, dst;
-        if (stat(oldFilePath.c_str(), &src) != 0)
-            return false;
-        if (!S_ISREG(src.st_mode))
-            return false;
-        if (stat(parentPath(newFilePath).c_str(), &dst) != 0)
-            return false;
-        if (src.st_dev == dst.st_dev) {
-            if (rename(oldFilePath.c_str(), newFilePath.c_str()) != 0)
-                return false;
-        } else {
-            if (!copyFile(oldFilePath, newFilePath) || unlink(oldFilePath.c_str()) != 0)
-                return false;
+        if (rename(oldFilePath.c_str(), newFilePath.c_str()) == 0)
+            return true;
+        if (errno == EXDEV) {
+            errno = 0;
+            return copyFile(oldFilePath, newFilePath) && unlink(oldFilePath.c_str()) == 0;
         }
-        return true;
+        return false;
     }
 
     bool replaceFolder(const string &from, const string &to, bool remove_existing)
@@ -506,8 +498,25 @@ namespace NS_File
 
     string parentPath(const string &path)
     {
-        auto delim = (path.size() > 1) ? path.find_last_of('/', path.size() - 2) : string::npos;
-        return (delim == string::npos) ? "" : (delim == 0) ? "/" : path.substr(0, delim);
+        size_t len = path.length();
+        if (len > 1) {
+            const char *buf = path.c_str();
+            const char *it = buf + len - 1;
+            while (*it == '/') {
+                if (it == buf)
+                    return "";
+                it--;
+            }
+            while (*it != '/') {
+                if (it == buf)
+                    return "";
+                it--;
+            }
+            if (it == buf)
+                return "/";
+            return string(buf, it - buf);
+        }
+        return "";
     }
 
     string tempPath()
