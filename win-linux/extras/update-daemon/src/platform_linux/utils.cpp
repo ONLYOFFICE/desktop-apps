@@ -61,7 +61,7 @@ static void replace(string &str, const string &from, const string &to)
 static bool copyFile(const string &oldFile, const string &newFile)
 {
     struct stat st;
-    if (stat(oldFile.c_str(), &st) != 0)
+    if (lstat(oldFile.c_str(), &st) != 0)
         return false;
 
     char buf[BUFSIZ];
@@ -69,9 +69,15 @@ static bool copyFile(const string &oldFile, const string &newFile)
     if ((fd_src = open(oldFile.c_str(), O_RDONLY)) < 0)
         return false;
 
-    fd_dst = open(newFile.c_str(), O_WRONLY | O_CREAT, st.st_mode);
-    if (fd_dst < 0)
+    if ((fd_dst = creat(newFile.c_str(), 0666)) < 0) {
+        close(fd_src);
         return false;
+    }
+    if (fchmod(fd_dst, st.st_mode) != 0) {
+        close(fd_src);
+        close(fd_dst);
+        return false;
+    }
 
     while ((n_read = read(fd_src, buf, sizeof(buf))) > 0) {
         if (write(fd_dst, buf, n_read) != n_read) {
@@ -80,10 +86,12 @@ static bool copyFile(const string &oldFile, const string &newFile)
             return false;
         }
     }
-    if (close(fd_src) != 0 || close(fd_dst) != 0)
+    if (close(fd_src) != 0)
+        return false;
+    if (close(fd_dst) != 0)
         return false;
 
-    return true;
+    return n_read == 0;
 };
 
 static bool moving_folder_content(const string &from, const string &to, bool use_rename)
@@ -318,19 +326,19 @@ namespace NS_File
     bool fileExists(const string &filePath)
     {
         struct stat st;
-        return stat(filePath.c_str(), &st) == 0 && S_ISREG(st.st_mode);
+        return lstat(filePath.c_str(), &st) == 0 && S_ISREG(st.st_mode);
     }
 
     bool dirExists(const string &dirName) {
         struct stat st;
-        return stat(dirName.c_str(), &st) == 0 && S_ISDIR(st.st_mode);
+        return lstat(dirName.c_str(), &st) == 0 && S_ISDIR(st.st_mode);
     }
 
     bool dirIsEmpty(const string &dirName)
     {
         DIR *dir = opendir(dirName.c_str());
         if (!dir)
-            return true;
+            return (errno == ENOENT);
 
         struct dirent *entry;
         while ((entry = readdir(dir)) != NULL) {
