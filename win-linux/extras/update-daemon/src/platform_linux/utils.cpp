@@ -41,6 +41,7 @@
 #include <openssl/md5.h>
 #include <vector>
 #include <fcntl.h>
+#include <fts.h>
 #include <linux/limits.h>
 #include "../../src/defines.h"
 #include "../../src/prop/defines_p.h"
@@ -93,40 +94,6 @@ static bool copyFile(const string &oldFile, const string &newFile)
 
     return n_read == 0;
 };
-
-static bool moving_folder_content(const string &from, const string &to, bool use_rename)
-{
-    list<string> filesList;
-    string error;
-    if (!NS_File::GetFilesList(from, &filesList, error, false)) {
-        NS_Logger::WriteLog(DEFAULT_ERROR_MESSAGE + " "+ error);
-        return false;
-    }
-
-    const size_t sourceLength = from.length();
-    const size_t rootOffset = NS_File::parentPath(to).length() + 1;
-    for (const string &sourcePath : filesList) {
-        if (!sourcePath.empty()) {
-            string dest = to + sourcePath.substr(sourceLength);
-            if (!NS_File::dirExists(NS_File::parentPath(dest)) && !NS_File::makePath(NS_File::parentPath(dest), rootOffset)) {
-                NS_Logger::WriteLog("Can't create path: " + NS_File::parentPath(dest));
-                return false;
-            }
-            if (use_rename) {
-                if (rename(sourcePath.c_str(), dest.c_str()) != 0) {
-                    NS_Logger::WriteLog("Can't move file from " + sourcePath + " to " + dest + ". " + NS_Utils::GetLastErrorAsString());
-                    return false;
-                }
-            } else {
-                if (!copyFile(sourcePath, dest) || unlink(sourcePath.c_str()) != 0) {
-                    NS_Logger::WriteLog("Can't move file from " + sourcePath + " to " + dest + ". " + NS_Utils::GetLastErrorAsString());
-                    return false;
-                }
-            }
-        }
-    }
-    return true;
-}
 
 namespace NS_Utils
 {
@@ -401,32 +368,91 @@ namespace NS_File
 
     bool replaceFolder(const string &from, const string &to, bool remove_existing)
     {
-        struct stat src, dst;
-        if (stat(from.c_str(), &src) != 0)
-            return false;
-        if (stat(parentPath(to).c_str(), &dst) != 0)
-            return false;
-        if (!S_ISDIR(src.st_mode) || !S_ISDIR(dst.st_mode))
+        if (remove_existing && !dirIsEmpty(to) && !removeDirRecursively(to))
             return false;
 
-        if(remove_existing && !dirIsEmpty(to) && !removeDirRecursively(to))
-            return false;
+        if (rename(from.c_str(), to.c_str()) == 0)
+            return true;
 
-        bool can_use_rename = (src.st_dev == dst.st_dev);
-        if (!dirExists(to) || dirIsEmpty(to)) {
-            if (can_use_rename) {
-                if (rename(from.c_str(), to.c_str()) != 0)
-                    return false;
-            } else {
-                if (!moving_folder_content(from, to, false))
-                    return false;
-            }
-        } else {
-            if (!moving_folder_content(from, to, can_use_rename))
+        if (errno == EXDEV || errno == EEXIST || errno == ENOTEMPTY) {
+            size_t srcLen = from.length(); // rename() will return a higher priority errno ENOENT
+            size_t dstLen = to.length();   // if length == 0 or ENAMETOOLONG if lenght >= PATH_MAX
+
+            bool can_use_rename = !(errno == EXDEV); // EXDEV has higher priority than EEXIST and ENOTEMPTY
+            errno = 0;
+
+            char dstPath[PATH_MAX];
+            snprintf(dstPath, sizeof(dstPath), "%s", to.c_str());
+
+            string src(from);
+            char * const paths[] = {&src[0], NULL};
+            FTS *fts = fts_open(paths, FTS_PHYSICAL | FTS_XDEV /*| FTS_NOSTAT*/, NULL);
+            if (fts == NULL)
                 return false;
+
+            bool res = true;
+            FTSENT *ent;
+            while (res && (ent = fts_read(fts)) != NULL) {
+                switch (ent->fts_info) {
+                case FTS_DOT:       // "." or ".."
+                    break;
+                case FTS_D:         // preorder directory
+                    if (strlcat(dstPath, ent->fts_path + srcLen, PATH_MAX) >= PATH_MAX) {
+                        errno = ENAMETOOLONG;
+                        res = false;
+                        break;
+                    }
+                    if (can_use_rename && ent->fts_level != 0 && rename(ent->fts_path, dstPath) == 0) {
+                        dstPath[dstLen] = '\0';
+                        fts_set(fts, ent, FTS_SKIP);
+                        // Ensure that we do not process FTS_DP
+                        (void)(fts_read(fts));
+                        break;
+                    }
+
+                    if (mkdir(dstPath, ent->fts_statp->st_mode) != 0 && errno != EEXIST)
+                        res = false;
+                    dstPath[dstLen] = '\0';
+                    break;
+                case FTS_DP:		// postorder directory
+                    if (rmdir(ent->fts_path) != 0)
+                        res = false;
+                    break;
+                case FTS_F:			// regular file
+                case FTS_SL:		// symbolic link
+                case FTS_SLNONE:	// symbolic link without target
+                case FTS_DEFAULT:   // file type not described by any other value
+                    if (strlcat(dstPath, ent->fts_path + srcLen, PATH_MAX) >= PATH_MAX) {
+                        errno = ENAMETOOLONG;
+                        res = false;
+                        break;
+                    }
+                    if (can_use_rename) {
+                        if (rename(ent->fts_path, dstPath) != 0)
+                            res = false;
+                    } else
+                    if (!copyFile(ent->fts_path, dstPath) || unlink(ent->fts_path) != 0)
+                        res = false;
+                    dstPath[dstLen] = '\0';
+                    break;
+                case FTS_NSOK:      // stat(2) information was not requested
+                case FTS_NS:		// stat(2) information was not available
+                case FTS_DC:		// directory that causes cycles
+                case FTS_DNR:		// unreadable directory
+                case FTS_ERR:
+                default:
+                    res = false;
+                    break;
+                }
+            }
+
+            if (fts_close(fts) != 0)
+                return false;
+
+            return res;
         }
-        removeDirRecursively(from);
-        return true;
+
+        return false;
     }
 
     bool removeFile(const string &filePath)
@@ -436,40 +462,46 @@ namespace NS_File
 
     bool removeDirRecursively(const string &dir)
     {
-        DIR *_dir = opendir(dir.c_str());
-        if (!_dir)
+        string _dir = dir;
+        char * const paths[] = {&_dir[0], NULL};
+        FTS *fts = fts_open(paths, FTS_PHYSICAL | FTS_XDEV /*| FTS_NOSTAT*/, NULL);
+        if (fts == NULL)
             return false;
 
-        struct dirent *entry;
-        while ((entry = readdir(_dir)) != NULL) {
-            if (strcmp(entry->d_name, ".") == 0 || strcmp(entry->d_name, "..") == 0)
-                continue;
-
-            char path[PATH_MAX] = {0};
-            snprintf(path, sizeof(path), "%s/%s", dir.c_str(), entry->d_name);
-            struct stat info;
-            if (stat(path, &info) != 0) {
-                closedir(_dir);
-                return false;
-            }
-
-            if (S_ISDIR(info.st_mode)) {
-                if (!removeDirRecursively(path)) {
-                    closedir(_dir);
-                    return false;
-                }
-            } else {
-                if (remove(path) != 0) {
-                    closedir(_dir);
-                    return false;
-                }
+        bool res = true;
+        FTSENT *ent;
+        while (res && (ent = fts_read(fts)) != NULL) {
+            switch (ent->fts_info) {
+            case FTS_DOT:       // "." or ".."
+                break;
+            case FTS_D:         // preorder directory
+                break;
+            case FTS_DP:		// postorder directory
+                if (rmdir(ent->fts_path) != 0)
+                    res = false;
+                break;
+            case FTS_F:			// regular file
+            case FTS_SL:		// symbolic link
+            case FTS_SLNONE:	// symbolic link without target
+            case FTS_DEFAULT:   // file type not described by any other value
+                if (unlink(ent->fts_path) != 0)
+                    res = false;
+                break;
+            case FTS_NSOK:      // stat(2) information was not requested
+            case FTS_NS:		// stat(2) information was not available
+            case FTS_DC:		// directory that causes cycles
+            case FTS_DNR:		// unreadable directory
+            case FTS_ERR:
+            default:
+                res = false;
+                break;
             }
         }
 
-        closedir(_dir);
-        if (rmdir(dir.c_str()) != 0)
+        if (fts_close(fts) != 0)
             return false;
-        return true;
+
+        return res;
     }
 
     string parentPath(const string &path)
