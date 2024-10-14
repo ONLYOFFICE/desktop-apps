@@ -50,7 +50,9 @@
 - (void)tabDidUpdate:(ASCTabView *)tab;
 @end
 
-@interface ASCTabView : ASCButton
+@interface ASCTabView : ASCButton {
+    NSString * originalTitle;
+}
 @property (nonatomic) ASCTabViewType type;
 @property (nonatomic) NSString *uuid;
 @property (nonatomic) NSMutableDictionary *params;
