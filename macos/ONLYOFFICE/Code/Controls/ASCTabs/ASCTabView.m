@@ -55,7 +55,6 @@ static NSUInteger const kASTabViewCloseButtonSize = 12;
 @implementation ASCTabView
 
 @synthesize isProcessing = _isProcessing;
-NSString * originalTitle;
 
 - (id)init {
     self = [super init];
