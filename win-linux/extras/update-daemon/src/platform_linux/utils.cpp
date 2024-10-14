@@ -58,16 +58,15 @@ static void replace(string &str, const string &from, const string &to)
     }
 }
 
-static bool moving_through_copy(const string &oldFile, const string &newFile)
+static bool copyFile(const string &oldFile, const string &newFile)
 {
     struct stat st;
     if (stat(oldFile.c_str(), &st) != 0)
         return false;
 
-    char buf[4096];
+    char buf[BUFSIZ];
     int fd_src = -1, fd_dst = -1, n_read = 0;
-    fd_src = open(oldFile.c_str(), O_RDONLY);
-    if (fd_src < 0)
+    if ((fd_src = open(oldFile.c_str(), O_RDONLY)) < 0)
         return false;
 
     fd_dst = open(newFile.c_str(), O_WRONLY | O_CREAT, st.st_mode);
@@ -84,8 +83,6 @@ static bool moving_through_copy(const string &oldFile, const string &newFile)
     if (close(fd_src) != 0 || close(fd_dst) != 0)
         return false;
 
-    if (unlink(oldFile.c_str()) != 0)
-        return false;
     return true;
 };
 
@@ -113,7 +110,7 @@ static bool moving_folder_content(const string &from, const string &to, bool use
                     return false;
                 }
             } else {
-                if (!moving_through_copy(sourcePath, dest)) {
+                if (!copyFile(sourcePath, dest) || unlink(sourcePath.c_str()) != 0) {
                     NS_Logger::WriteLog("Can't move file from " + sourcePath + " to " + dest + ". " + NS_Utils::GetLastErrorAsString());
                     return false;
                 }
@@ -164,14 +161,14 @@ namespace NS_Utils
             str += " " + GetLastErrorAsString();
 
         gtk_init(NULL, NULL);
-        GtkWidget *dialog = gtk_message_dialog_new(NULL, GTK_DIALOG_MODAL, GTK_MESSAGE_ERROR, GTK_BUTTONS_OK,
-                                                      "%s", str.c_str());
+        GtkWidget *dialog = gtk_message_dialog_new(NULL, GTK_DIALOG_MODAL, GTK_MESSAGE_ERROR, GTK_BUTTONS_OK, "%s", str.c_str());
         string prod_name = _TR(VER_PRODUCTNAME_STR);
         gtk_window_set_title(GTK_WINDOW(dialog), prod_name.c_str());
+        gtk_window_set_keep_above(GTK_WINDOW(dialog), true);
+        gtk_window_set_default_size(GTK_WINDOW(dialog), 400, 150);
+        gtk_window_set_skip_taskbar_hint(GTK_WINDOW(dialog), false);
         int res = gtk_dialog_run(GTK_DIALOG(dialog));
         gtk_widget_destroy(dialog);
-        while (gtk_events_pending())
-            gtk_main_iteration_do(FALSE);
         return res;
     }
 
@@ -321,16 +318,12 @@ namespace NS_File
     bool fileExists(const string &filePath)
     {
         struct stat st;
-        if (stat(filePath.c_str(), &st) != 0)
-            return false;
-        return S_ISREG(st.st_mode);
+        return stat(filePath.c_str(), &st) == 0 && S_ISREG(st.st_mode);
     }
 
     bool dirExists(const string &dirName) {
         struct stat st;
-        if (stat(dirName.c_str(), &st) != 0)
-            return false;
-        return S_ISDIR(st.st_mode);
+        return stat(dirName.c_str(), &st) == 0 && S_ISDIR(st.st_mode);
     }
 
     bool dirIsEmpty(const string &dirName)
@@ -339,14 +332,15 @@ namespace NS_File
         if (!dir)
             return true;
 
-        int count = 0;
         struct dirent *entry;
-        while (count == 0 && (entry = readdir(dir)) != NULL) {
-            if (strcmp(entry->d_name, ".") != 0 && strcmp(entry->d_name, "..") != 0)
-                count++;
+        while ((entry = readdir(dir)) != NULL) {
+            if (strcmp(entry->d_name, ".") != 0 && strcmp(entry->d_name, "..") != 0) {
+                closedir(dir);
+                return false;
+            }
         }
         closedir(dir);
-        return (count == 0);
+        return true;
     }
 
     bool makePath(const string &path, size_t root_offset) {
@@ -391,7 +385,7 @@ namespace NS_File
             if (rename(oldFilePath.c_str(), newFilePath.c_str()) != 0)
                 return false;
         } else {
-            if (!moving_through_copy(oldFilePath, newFilePath))
+            if (!copyFile(oldFilePath, newFilePath) || unlink(oldFilePath.c_str()) != 0)
                 return false;
         }
         return true;
@@ -429,7 +423,7 @@ namespace NS_File
 
     bool removeFile(const string &filePath)
     {
-        return (remove(filePath.c_str()) == 0) ? true: false;
+        return unlink(filePath.c_str()) == 0;
     }
 
     bool removeDirRecursively(const string &dir)
@@ -490,7 +484,7 @@ namespace NS_File
 
     string appPath()
     {
-        char path[PATH_MAX] = {0};
+        char path[PATH_MAX];
         ssize_t count = readlink("/proc/self/exe", path, PATH_MAX);
         return (count > 0) ? parentPath(string(path, count)) : "";
     }
@@ -502,11 +496,11 @@ namespace NS_File
            return "";
 
        int bytes;
-       unsigned char data[1024];
+       unsigned char data[BUFSIZ];
        unsigned char digest[MD5_DIGEST_LENGTH];
        MD5_CTX mdContext;
        MD5_Init(&mdContext);
-       while ((bytes = fread(data, 1, 1024, file)) != 0)
+       while ((bytes = fread(data, 1, sizeof(data), file)) != 0)
            MD5_Update(&mdContext, data, bytes);
 
        MD5_Final(digest, &mdContext);
