@@ -5,7 +5,7 @@ set -e
 case "$1" in
   purge)
     rm -fr /home/*/.local/share/M4_DESKTOPEDITORS_PREFIX
-    rm -fr /home/*/.config/M4_COMPANY_NAME/DesktopEditors.conf
+    rm -fr /home/*/.config/M4_COMPANY_NAME_LOW/DesktopEditors.conf
   ;;
 
   remove|upgrade|failed-upgrade|abort-install|abort-upgrade|disappear)
