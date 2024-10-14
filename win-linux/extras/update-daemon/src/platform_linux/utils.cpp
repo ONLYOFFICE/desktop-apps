@@ -195,14 +195,22 @@ namespace NS_File
 
             char _path[PATH_MAX];
             snprintf(_path, sizeof(_path), "%s/%s", path.c_str(), entry->d_name);
-            struct stat info;
-            if (stat(_path, &info) != 0) {
-                error = string("Error getting file information: ") + _path;
-                closedir(dir);
-                return false;
+            unsigned char d_type = entry->d_type;
+            if (d_type == DT_UNKNOWN) {
+                struct stat info;
+                if (lstat(_path, &info) != 0) {
+                    error = string("Error getting file information: ") + _path;
+                    closedir(dir);
+                    return false;
+                }
+                if (S_ISDIR(info.st_mode))
+                    d_type = DT_DIR;
+                else
+                if (S_ISREG(info.st_mode))
+                    d_type = DT_REG;
             }
 
-            if (S_ISDIR(info.st_mode)) {
+            if (d_type == DT_DIR) {
                 if (ignore_locked && access(_path, R_OK) != 0)
                     continue;
                 if (folders_only) {
@@ -214,7 +222,7 @@ namespace NS_File
                     return false;
                 }
             } else
-            if (!folders_only && S_ISREG(info.st_mode))
+            if (!folders_only && d_type == DT_REG)
                 lst->push_back(_path);
 
         }
@@ -267,19 +275,37 @@ namespace NS_File
 
         struct dirent* entry;
         while ((entry = readdir(proc_dir)) != NULL) {
-            if (entry->d_type == DT_DIR && strtol(entry->d_name, NULL, 10) > 0) {
-                char cmd_file[256];
-                snprintf(cmd_file, sizeof(cmd_file), "/proc/%s/cmdline", entry->d_name);
+            if (strcmp(entry->d_name, ".") == 0 || strcmp(entry->d_name, "..") == 0)
+                continue;
+            if (entry->d_type != DT_DIR && entry->d_type != DT_UNKNOWN)
+                continue;
 
-                FILE* cmd_file_ptr = fopen(cmd_file, "r");
+            char path[PATH_MAX];
+            snprintf(path, sizeof(path), "%s/%s", "/proc", entry->d_name);
+            unsigned char d_type = entry->d_type;
+            if (d_type == DT_UNKNOWN) {
+                struct stat info;
+                if (lstat(path, &info) != 0)
+                    continue;
+                if (S_ISDIR(info.st_mode))
+                    d_type = DT_DIR;
+            }
+
+            if (d_type == DT_DIR && strtol(entry->d_name, NULL, 10) > 0) {
+                if (strlcat(path, "/cmdline", sizeof(path)) >= sizeof(path))
+                    continue;
+
+                FILE* cmd_file_ptr = fopen(path, "r");
                 if (!cmd_file_ptr)
                     continue;
 
-                char cmd_line[256];
-                fgets(cmd_line, sizeof(cmd_line), cmd_file_ptr);
+                if (fgets(path, sizeof(path), cmd_file_ptr) == NULL) {
+                    fclose(cmd_file_ptr);
+                    continue;
+                }
                 fclose(cmd_file_ptr);
 
-                if (strstr(basename(cmd_line), fileName.c_str()) != NULL) {
+                if (strcmp(basename(path), fileName.c_str()) == 0) {
                     closedir(proc_dir);
                     return true;
                 }
