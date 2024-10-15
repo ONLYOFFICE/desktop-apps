@@ -118,7 +118,7 @@ MainWindow::MainWindow(Widget *parent, const Rect &rc) :
 {
     setWindowTitle(_TR(CAPTION));
     setResizable(false);
-    // setIcon(IDI_MAINICON);
+    setIcon(IDI_MAINICON);
     palette()->setColor(Palette::Background, Palette::Normal, 0xfefefe);
     palette()->setColor(Palette::Border, Palette::Normal, 0x888888);
     if (Utils::getWinVersion() > Utils::WinXP && Utils::getWinVersion() < Utils::Win10)
