@@ -524,7 +524,7 @@ void MainWindow::startUninstall()
 void MainWindow::createSelectionPage()
 {
     /* Check box section*/
-    m_is_clear_checked = false;
+    m_is_clear_checked = m_checkState & ClrDataCheck;
     CheckBox *clrChkBox = new CheckBox(m_cenPanel, _TR(CHECK_CLR_DATA));
     clrChkBox->setDisabled(!(m_checkState & RepairRadio));
     clrChkBox->setChecked(m_checkState & ClrDataCheck);
@@ -535,7 +535,7 @@ void MainWindow::createSelectionPage()
         m_checkState = (m_checkState & ~ClrDataCheck) | (m_is_clear_checked * ClrDataCheck);
     });
 
-    m_is_sttgs_checked = false;
+    m_is_sttgs_checked = m_checkState & ClrStnCheck;
     CheckBox *stnChkBox = new CheckBox(m_cenPanel, _TR(CHECK_CLR_STNGS));
     stnChkBox->setDisabled(!(m_checkState & RepairRadio));
     stnChkBox->setChecked(m_checkState & ClrStnCheck);
@@ -546,7 +546,7 @@ void MainWindow::createSelectionPage()
         m_checkState = (m_checkState & ~ClrStnCheck) | (m_is_sttgs_checked * ClrStnCheck);
     });
 
-    m_is_checked = false;
+    m_is_checked = m_checkState & ClrAllCheck;
     CheckBox *clrAllChkBox = new CheckBox(m_cenPanel, _TR(CHECK_CLR_ALL));
     clrAllChkBox->setDisabled(!(m_checkState & UninstRadio));
     clrAllChkBox->setChecked(m_checkState & ClrAllCheck);
