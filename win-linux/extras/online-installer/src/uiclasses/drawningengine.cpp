@@ -258,13 +258,18 @@ void DrawingEngine::DrawCheckBox(const std::wstring &text, bool checked)
 
     SetLayout(m_memDC, LAYOUT_BITMAPORIENTATIONPRESERVED);
     m_graphics = new Gdiplus::Graphics(m_memDC);
-    m_graphics->SetSmoothingMode(Gdiplus::SmoothingModeDefault);
+    m_graphics->SetSmoothingMode(Gdiplus::SmoothingModeAntiAlias);
     m_graphics->Clear(ColorFromColorRef(m_ds->palette()->color(Palette::Background)));
 
     Gdiplus::Pen pen(ColorFromColorRef(m_ds->palette()->color(Palette::Primitive)), m_ds->metrics()->value(Metrics::PrimitiveWidth));
     Gdiplus::Rect rc(x, y, m_ds->metrics()->value(Metrics::IconWidth) - 1, m_ds->metrics()->value(Metrics::IconHeight) - 1);
-    m_graphics->DrawRectangle(&pen, rc);
+    // m_graphics->DrawRectangle(&pen, rc);
+    Gdiplus::GraphicsPath ph;
+    RoundedPath(ph, rc.X, rc.Y, rc.Width, rc.Height, m_ds->metrics()->value(Metrics::PrimitiveRadius));
+    m_graphics->DrawPath(&pen, &ph);
     if (checked) {
+        pen.SetWidth(m_ds->metrics()->value(Metrics::AlternatePrimitiveWidth));
+        pen.SetColor(ColorFromColorRef(m_ds->palette()->color(Palette::AlternatePrimitive)));
         Gdiplus::PointF pts[3] = {
             Gdiplus::PointF(float(x + 2), float(y + m_ds->metrics()->value(Metrics::IconHeight)/2 - 1)),
             Gdiplus::PointF(float(x + m_ds->metrics()->value(Metrics::IconWidth)/2 - 2), float(y + m_ds->metrics()->value(Metrics::IconHeight) - 5)),
@@ -323,8 +328,8 @@ void DrawingEngine::DrawRadioButton(const std::wstring &text, bool checked)
     Gdiplus::Pen pen(ColorFromColorRef(m_ds->palette()->color(Palette::Primitive)), m_ds->metrics()->value(Metrics::PrimitiveWidth));
     m_graphics->DrawEllipse(&pen, x, y, m_ds->metrics()->value(Metrics::IconHeight) - 1, m_ds->metrics()->value(Metrics::IconHeight) - 1);
     if (checked) {
-        Gdiplus::SolidBrush chunkBrush(ColorFromColorRef(m_ds->palette()->color(Palette::Primitive)));
-        m_graphics->FillEllipse(&chunkBrush, x + 2, y + 2, m_ds->metrics()->value(Metrics::IconHeight) - 4 - 1, m_ds->metrics()->value(Metrics::IconHeight) - 4 - 1);
+        Gdiplus::SolidBrush chunkBrush(ColorFromColorRef(m_ds->palette()->color(Palette::AlternatePrimitive)));
+        m_graphics->FillEllipse(&chunkBrush, float(x) + 2.7f, float(y) + 2.7f, float(m_ds->metrics()->value(Metrics::IconHeight)) - 5.4f - 1.0f, float(m_ds->metrics()->value(Metrics::IconHeight)) - 5.4f - 1.0f);
     }    
     if (!text.empty()) {
         RECT rc;

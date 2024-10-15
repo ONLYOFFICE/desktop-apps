@@ -27,6 +27,10 @@ Palette::Palette()
     palette[Primitive][Normal]    = 0xeeeeee;
     palette[Primitive][Hover]     = 0xeeeeee;
     palette[Primitive][Pressed]   = 0xeeeeee;
+    palette[AlternatePrimitive][Disabled]  = 0x888888;
+    palette[AlternatePrimitive][Normal]    = 0x333333;
+    palette[AlternatePrimitive][Hover]     = 0x333333;
+    palette[AlternatePrimitive][Pressed]   = 0x333333;
 
     setCurrentState(Normal);
 }
@@ -55,5 +59,6 @@ void Palette::setCurrentState(State state)
     currentColors[AlternateBase] = palette[AlternateBase][state];
     currentColors[Text]       = palette[Text][state];
     currentColors[Primitive]  = palette[Primitive][state];
+    currentColors[AlternatePrimitive]  = palette[AlternatePrimitive][state];
     currentState = state;
 }

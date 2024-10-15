@@ -15,6 +15,8 @@ Metrics::Metrics()
     metrics[FontWidth]      = 0;
     metrics[FontHeight]     = 18;
     metrics[PrimitiveWidth] = 1;
+    metrics[PrimitiveRadius] = 0;
+    metrics[AlternatePrimitiveWidth] = 1;
     metrics[ShadowWidth]    = 10;
     metrics[ShadowRadius]   = 10;
     metrics[TextMarginLeft] = 0;
