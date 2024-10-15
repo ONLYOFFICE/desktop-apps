@@ -59,9 +59,7 @@ private:
     Mode m_mode;
     int  m_resize_conn;
     BYTE m_checkState;
-    bool m_is_clear_checked,
-         m_is_sttgs_checked,
-         m_is_checked;
+    bool m_is_checked;
 };
 
 #endif // MAINWINDOW_H

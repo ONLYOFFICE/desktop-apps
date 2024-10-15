@@ -112,8 +112,6 @@ MainWindow::MainWindow(Widget *parent, const Rect &rc) :
     m_mode(Mode::Install),
     m_resize_conn(0),
     m_checkState(UpdateRadio),
-    m_is_clear_checked(false),
-    m_is_sttgs_checked(false),
     m_is_checked(false)
 {
     setWindowTitle(_TR(CAPTION));
@@ -470,12 +468,12 @@ void MainWindow::startRepair()
                 m_bar->setProgress(0);
                 m_comntInfoLbl->setText(_TR(LABEL_ERR_RUNNING), true);
             } else {
-                if (m_is_clear_checked) {
+                if (m_checkState & ClrDataCheck) {
                     wstring dataPath = NS_File::appDataPath();
                     if (!dataPath.empty())
                         NS_File::removeDirRecursively(dataPath);
                 }
-                if (m_is_sttgs_checked) {
+                if (m_checkState & ClrStnCheck) {
                     wstring key(L"SOFTWARE\\");
                     key.append(_T(REG_GROUP_KEY));
                     SHDeleteKey(HKEY_CURRENT_USER, key.c_str());
@@ -504,7 +502,7 @@ void MainWindow::startUninstall()
             m_comntInfoLbl->setText(_TR(LABEL_ERR_UNINST));
             createCloseAndBackButtons();
         } else {
-            if (m_is_checked) {
+            if (m_checkState & ClrAllCheck) {
                 wstring dataPath = NS_File::appDataPath();
                 if (!dataPath.empty())
                     NS_File::removeDirRecursively(dataPath);
@@ -524,37 +522,31 @@ void MainWindow::startUninstall()
 void MainWindow::createSelectionPage()
 {
     /* Check box section*/
-    m_is_clear_checked = m_checkState & ClrDataCheck;
     CheckBox *clrChkBox = new CheckBox(m_cenPanel, _TR(CHECK_CLR_DATA));
     clrChkBox->setDisabled(!(m_checkState & RepairRadio));
     clrChkBox->setChecked(m_checkState & ClrDataCheck);
     clrChkBox->setGeometry(79, 114, 450, 18);
     setSelectorStyle(clrChkBox);
     clrChkBox->onClick([=]() {
-        m_is_clear_checked = clrChkBox->isChecked();
-        m_checkState = (m_checkState & ~ClrDataCheck) | (m_is_clear_checked * ClrDataCheck);
+        m_checkState = (m_checkState & ~ClrDataCheck) | (clrChkBox->isChecked() * ClrDataCheck);
     });
 
-    m_is_sttgs_checked = m_checkState & ClrStnCheck;
     CheckBox *stnChkBox = new CheckBox(m_cenPanel, _TR(CHECK_CLR_STNGS));
     stnChkBox->setDisabled(!(m_checkState & RepairRadio));
     stnChkBox->setChecked(m_checkState & ClrStnCheck);
     stnChkBox->setGeometry(79, 146, 450, 18);
     setSelectorStyle(stnChkBox);
     stnChkBox->onClick([stnChkBox, this]() {
-        m_is_sttgs_checked = stnChkBox->isChecked();
-        m_checkState = (m_checkState & ~ClrStnCheck) | (m_is_sttgs_checked * ClrStnCheck);
+        m_checkState = (m_checkState & ~ClrStnCheck) | (stnChkBox->isChecked() * ClrStnCheck);
     });
 
-    m_is_checked = m_checkState & ClrAllCheck;
     CheckBox *clrAllChkBox = new CheckBox(m_cenPanel, _TR(CHECK_CLR_ALL));
     clrAllChkBox->setDisabled(!(m_checkState & UninstRadio));
     clrAllChkBox->setChecked(m_checkState & ClrAllCheck);
     clrAllChkBox->setGeometry(79, 216, 450, 18);
     setSelectorStyle(clrAllChkBox);
     clrAllChkBox->onClick([clrAllChkBox, this]() {
-        m_is_checked = clrAllChkBox->isChecked();
-        m_checkState = (m_checkState & ~ClrAllCheck) | (m_is_checked * ClrAllCheck);
+        m_checkState = (m_checkState & ~ClrAllCheck) | (clrAllChkBox->isChecked() * ClrAllCheck);
     });
 
     /* Update radio button section*/
