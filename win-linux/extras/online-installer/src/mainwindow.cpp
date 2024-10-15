@@ -105,14 +105,16 @@ MainWindow::MainWindow(Widget *parent, const Rect &rc) :
     m_versionLbl(nullptr),
     m_comntInfoLbl(nullptr),
     m_bar(nullptr),
+    m_launchCheck(nullptr),
     m_updRadio(nullptr),
     m_repRadio(nullptr),
     m_uninsRadio(nullptr),
     m_cancelBtn(nullptr),
     m_mode(Mode::Install),
     m_resize_conn(0),
-    m_checkState(UpdateRadio),
-    m_is_checked(false)
+    m_checkState(UpdateRadio | LaunchCheck),
+    m_is_checked(false),
+    m_is_completed(false)
 {
     setWindowTitle(_TR(CAPTION));
     setResizable(false);
@@ -412,6 +414,7 @@ void MainWindow::startUpdate()
                 m_bar->setProgress(100);
                 m_comntLbl->setText(_TR(LABEL_UPDATE_COMPL));
                 m_versionLbl->setText(fillInstalledVerInfo());
+                m_is_completed = true;
             }
         });
 
@@ -481,6 +484,7 @@ void MainWindow::startRepair()
                 m_bar->pulse(false);
                 m_bar->setProgress(100);
                 m_comntLbl->setText(_TR(LABEL_REPAIR_COMPL));
+                m_is_completed = true;
             }
         });
 
@@ -514,6 +518,7 @@ void MainWindow::startUninstall()
             m_bar->pulse(false);
             m_bar->setProgress(100);
             m_comntLbl->setText(_TR(LABEL_UNINST_COMPL));
+            // m_is_completed = true;
             createCloseButton();
         }
     });
@@ -521,6 +526,7 @@ void MainWindow::startUninstall()
 
 void MainWindow::createSelectionPage()
 {
+    m_is_completed = false;
     /* Check box section*/
     CheckBox *clrChkBox = new CheckBox(m_cenPanel, _TR(CHECK_CLR_DATA));
     clrChkBox->setDisabled(!(m_checkState & RepairRadio));
@@ -616,6 +622,16 @@ void MainWindow::createSelectionPage()
             applyBtn->close();
             msg = m_uninsRadio->isChecked() ? _TR(LABEL_UNINSTLING) : m_repRadio->isChecked() ? _TR(LABEL_REPAIRING) : _TR(LABEL_UPDATING);
             createProgressPage(msg);
+            if (m_updRadio->isChecked() || m_repRadio->isChecked()) {
+                /* Check box section*/
+                m_launchCheck = new CheckBox(m_cenPanel, _TR(CHECK_LAUNCH));
+                m_launchCheck->setChecked(m_checkState & LaunchCheck);
+                m_launchCheck->setGeometry(42, 100, 450, 18);
+                setSelectorStyle(m_launchCheck);
+                m_launchCheck->onClick([this]() {
+                    m_checkState = (m_checkState & ~LaunchCheck) | (m_launchCheck->isChecked() * LaunchCheck);
+                });
+            }
             if (m_uninsRadio->isChecked())
                 startUninstall();
             else
@@ -694,12 +710,28 @@ void MainWindow::createCloseAndBackButtons()
     invokeMethod([=]() {
         m_cenPanel->disconnect(m_resize_conn);
         m_cancelBtn->close();
+
+        if (m_launchCheck) {
+            if (m_is_completed) {
+                m_comntInfoLbl->hide();
+                m_launchCheck->show();
+            } else {
+                m_launchCheck->close();
+                m_launchCheck = nullptr;
+            }
+        }
+
         Button *closeBtn = new Button(m_cenPanel);
         closeBtn->setText(_TR(BUTTON_CLOSE));
         closeBtn->setGeometry(m_cenPanel->size().width - 100 - 12, m_cenPanel->size().height - 28 - 12, 100, 28);
         setButtonStyle(closeBtn);
         closeBtn->onClick([=]() {
             m_cenPanel->disconnect(m_resize_conn);
+            if (m_launchCheck && m_is_completed && (m_checkState & LaunchCheck)) {
+                wstring app_path;
+                if (NS_Utils::IsAppInstalled(app_path))
+                    NS_File::runProcess(app_path + _T(APP_LAUNCH_NAME), L"", false);
+            }
             close();
         });
 
@@ -709,6 +741,10 @@ void MainWindow::createCloseAndBackButtons()
         setButtonStyle(backBtn);
         backBtn->onClick([=]() {
             m_cenPanel->disconnect(m_resize_conn);
+            if (m_launchCheck) {
+                m_launchCheck->close();
+                m_launchCheck = nullptr;
+            }
             m_comntLbl->close();
             m_comntInfoLbl->close();
             m_bar->close();
