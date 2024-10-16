@@ -356,8 +356,8 @@ sv.CHECK_SILENT =Obevakad installation
 sr_Cyrl_RS.CHECK_SILENT =Тиха инсталација
 he.CHECK_SILENT =התקנה שקטה
 
-en.CHECK_LAUNCH =Launch
-ru.CHECK_LAUNCH =Запустить
+en.CHECK_LAUNCH =Launch app
+ru.CHECK_LAUNCH =Запустить приложение
 
 en.CHECK_CLR_DATA =Clear cached data
 ru.CHECK_CLR_DATA =Очистить кэшированные данные

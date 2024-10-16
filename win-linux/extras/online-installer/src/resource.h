@@ -46,7 +46,7 @@
 #define RADIO_REPAIR              "Repair"
 #define RADIO_UNINST              "Uninstall"
 #define CHECK_SILENT              "Silent Installation"
-#define CHECK_LAUNCH              "Launch"
+#define CHECK_LAUNCH              "Launch app"
 #define CHECK_CLR_DATA            "Clear cached data"
 #define CHECK_CLR_STNGS           "Clear user settings"
 #define CHECK_CLR_ALL             "Clear user settings and cached data"
