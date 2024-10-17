@@ -45,6 +45,8 @@ template <class T>
 static void setSelectorStyle(T *sel) // style for CheckBox and RadioButton
 {
     sel->metrics()->setMetrics(Metrics::TextMarginLeft, 6);
+    sel->metrics()->setMetrics(Metrics::PrimitiveRadius, 1);
+    sel->metrics()->setMetrics(Metrics::AlternatePrimitiveWidth, 2);
     sel->palette()->setColor(Palette::Text, Palette::Disabled, 0x888888);
     sel->palette()->setColor(Palette::Text, Palette::Normal, 0x333333);
     sel->palette()->setColor(Palette::Text, Palette::Hover, 0x333333);
@@ -54,7 +56,7 @@ static void setSelectorStyle(T *sel) // style for CheckBox and RadioButton
     sel->palette()->setColor(Palette::Background, Palette::Hover, 0xfefefe);
     sel->palette()->setColor(Palette::Background, Palette::Pressed, 0xfefefe);
     sel->palette()->setColor(Palette::Primitive, Palette::Disabled, 0x888888);
-    sel->palette()->setColor(Palette::Primitive, Palette::Normal, 0x333333);
+    sel->palette()->setColor(Palette::Primitive, Palette::Normal, 0x888888);
     sel->palette()->setColor(Palette::Primitive, Palette::Hover, 0x0055ff);
     sel->palette()->setColor(Palette::Primitive, Palette::Pressed, 0x0055ff);
 }
@@ -103,20 +105,20 @@ MainWindow::MainWindow(Widget *parent, const Rect &rc) :
     m_versionLbl(nullptr),
     m_comntInfoLbl(nullptr),
     m_bar(nullptr),
+    m_launchCheck(nullptr),
     m_updRadio(nullptr),
     m_repRadio(nullptr),
     m_uninsRadio(nullptr),
     m_cancelBtn(nullptr),
     m_mode(Mode::Install),
     m_resize_conn(0),
-    m_checkState(UpdateRadio),
-    m_is_clear_checked(false),
-    m_is_sttgs_checked(false),
-    m_is_checked(false)
+    m_checkState(UpdateRadio | LaunchCheck),
+    m_is_checked(false),
+    m_is_completed(false)
 {
     setWindowTitle(_TR(CAPTION));
     setResizable(false);
-    // setIcon(IDI_MAINICON);
+    setIcon(IDI_MAINICON);
     palette()->setColor(Palette::Background, Palette::Normal, 0xfefefe);
     palette()->setColor(Palette::Border, Palette::Normal, 0x888888);
     if (Utils::getWinVersion() > Utils::WinXP && Utils::getWinVersion() < Utils::Win10)
@@ -412,6 +414,7 @@ void MainWindow::startUpdate()
                 m_bar->setProgress(100);
                 m_comntLbl->setText(_TR(LABEL_UPDATE_COMPL));
                 m_versionLbl->setText(fillInstalledVerInfo());
+                m_is_completed = true;
             }
         });
 
@@ -468,12 +471,12 @@ void MainWindow::startRepair()
                 m_bar->setProgress(0);
                 m_comntInfoLbl->setText(_TR(LABEL_ERR_RUNNING), true);
             } else {
-                if (m_is_clear_checked) {
+                if (m_checkState & ClrDataCheck) {
                     wstring dataPath = NS_File::appDataPath();
                     if (!dataPath.empty())
                         NS_File::removeDirRecursively(dataPath);
                 }
-                if (m_is_sttgs_checked) {
+                if (m_checkState & ClrStnCheck) {
                     wstring key(L"SOFTWARE\\");
                     key.append(_T(REG_GROUP_KEY));
                     SHDeleteKey(HKEY_CURRENT_USER, key.c_str());
@@ -481,6 +484,7 @@ void MainWindow::startRepair()
                 m_bar->pulse(false);
                 m_bar->setProgress(100);
                 m_comntLbl->setText(_TR(LABEL_REPAIR_COMPL));
+                m_is_completed = true;
             }
         });
 
@@ -502,7 +506,7 @@ void MainWindow::startUninstall()
             m_comntInfoLbl->setText(_TR(LABEL_ERR_UNINST));
             createCloseAndBackButtons();
         } else {
-            if (m_is_checked) {
+            if (m_checkState & ClrAllCheck) {
                 wstring dataPath = NS_File::appDataPath();
                 if (!dataPath.empty())
                     NS_File::removeDirRecursively(dataPath);
@@ -514,6 +518,7 @@ void MainWindow::startUninstall()
             m_bar->pulse(false);
             m_bar->setProgress(100);
             m_comntLbl->setText(_TR(LABEL_UNINST_COMPL));
+            // m_is_completed = true;
             createCloseButton();
         }
     });
@@ -521,38 +526,33 @@ void MainWindow::startUninstall()
 
 void MainWindow::createSelectionPage()
 {
+    m_is_completed = false;
     /* Check box section*/
-    m_is_clear_checked = false;
     CheckBox *clrChkBox = new CheckBox(m_cenPanel, _TR(CHECK_CLR_DATA));
     clrChkBox->setDisabled(!(m_checkState & RepairRadio));
     clrChkBox->setChecked(m_checkState & ClrDataCheck);
     clrChkBox->setGeometry(79, 114, 450, 18);
     setSelectorStyle(clrChkBox);
     clrChkBox->onClick([=]() {
-        m_is_clear_checked = clrChkBox->isChecked();
-        m_checkState = (m_checkState & ~ClrDataCheck) | (m_is_clear_checked * ClrDataCheck);
+        m_checkState = (m_checkState & ~ClrDataCheck) | (clrChkBox->isChecked() * ClrDataCheck);
     });
 
-    m_is_sttgs_checked = false;
     CheckBox *stnChkBox = new CheckBox(m_cenPanel, _TR(CHECK_CLR_STNGS));
     stnChkBox->setDisabled(!(m_checkState & RepairRadio));
     stnChkBox->setChecked(m_checkState & ClrStnCheck);
     stnChkBox->setGeometry(79, 146, 450, 18);
     setSelectorStyle(stnChkBox);
     stnChkBox->onClick([stnChkBox, this]() {
-        m_is_sttgs_checked = stnChkBox->isChecked();
-        m_checkState = (m_checkState & ~ClrStnCheck) | (m_is_sttgs_checked * ClrStnCheck);
+        m_checkState = (m_checkState & ~ClrStnCheck) | (stnChkBox->isChecked() * ClrStnCheck);
     });
 
-    m_is_checked = false;
     CheckBox *clrAllChkBox = new CheckBox(m_cenPanel, _TR(CHECK_CLR_ALL));
     clrAllChkBox->setDisabled(!(m_checkState & UninstRadio));
     clrAllChkBox->setChecked(m_checkState & ClrAllCheck);
     clrAllChkBox->setGeometry(79, 216, 450, 18);
     setSelectorStyle(clrAllChkBox);
     clrAllChkBox->onClick([clrAllChkBox, this]() {
-        m_is_checked = clrAllChkBox->isChecked();
-        m_checkState = (m_checkState & ~ClrAllCheck) | (m_is_checked * ClrAllCheck);
+        m_checkState = (m_checkState & ~ClrAllCheck) | (clrAllChkBox->isChecked() * ClrAllCheck);
     });
 
     /* Update radio button section*/
@@ -622,6 +622,16 @@ void MainWindow::createSelectionPage()
             applyBtn->close();
             msg = m_uninsRadio->isChecked() ? _TR(LABEL_UNINSTLING) : m_repRadio->isChecked() ? _TR(LABEL_REPAIRING) : _TR(LABEL_UPDATING);
             createProgressPage(msg);
+            if (m_updRadio->isChecked() || m_repRadio->isChecked()) {
+                /* Check box section*/
+                m_launchCheck = new CheckBox(m_cenPanel, _TR(CHECK_LAUNCH));
+                m_launchCheck->setChecked(m_checkState & LaunchCheck);
+                m_launchCheck->setGeometry(42, 100, 450, 18);
+                setSelectorStyle(m_launchCheck);
+                m_launchCheck->onClick([this]() {
+                    m_checkState = (m_checkState & ~LaunchCheck) | (m_launchCheck->isChecked() * LaunchCheck);
+                });
+            }
             if (m_uninsRadio->isChecked())
                 startUninstall();
             else
@@ -700,12 +710,28 @@ void MainWindow::createCloseAndBackButtons()
     invokeMethod([=]() {
         m_cenPanel->disconnect(m_resize_conn);
         m_cancelBtn->close();
+
+        if (m_launchCheck) {
+            if (m_is_completed) {
+                m_comntInfoLbl->hide();
+                m_launchCheck->show();
+            } else {
+                m_launchCheck->close();
+                m_launchCheck = nullptr;
+            }
+        }
+
         Button *closeBtn = new Button(m_cenPanel);
         closeBtn->setText(_TR(BUTTON_CLOSE));
         closeBtn->setGeometry(m_cenPanel->size().width - 100 - 12, m_cenPanel->size().height - 28 - 12, 100, 28);
         setButtonStyle(closeBtn);
         closeBtn->onClick([=]() {
             m_cenPanel->disconnect(m_resize_conn);
+            if (m_launchCheck && m_is_completed && (m_checkState & LaunchCheck)) {
+                wstring app_path;
+                if (NS_Utils::IsAppInstalled(app_path))
+                    NS_File::runProcess(app_path + _T(APP_LAUNCH_NAME), L"", false);
+            }
             close();
         });
 
@@ -715,6 +741,10 @@ void MainWindow::createCloseAndBackButtons()
         setButtonStyle(backBtn);
         backBtn->onClick([=]() {
             m_cenPanel->disconnect(m_resize_conn);
+            if (m_launchCheck) {
+                m_launchCheck->close();
+                m_launchCheck = nullptr;
+            }
             m_comntLbl->close();
             m_comntInfoLbl->close();
             m_bar->close();

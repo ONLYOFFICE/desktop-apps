@@ -9,6 +9,7 @@ class Label;
 class ProgressBar;
 class Widget;
 class BoxLayout;
+class CheckBox;
 class RadioButton;
 class Button;
 class CDownloader;
@@ -40,7 +41,7 @@ private:
     void invokeMethod(Fn&& fn, Args&&... args);
 
     enum class Mode : BYTE {Install, Control};
-    enum Selectors : BYTE {UpdateRadio = 1, RepairRadio = 2, UninstRadio = 4, ClrDataCheck = 8, ClrStnCheck = 16, ClrAllCheck = 32};
+    enum Selectors : BYTE {UpdateRadio = 1, RepairRadio = 2, UninstRadio = 4, ClrDataCheck = 8, ClrStnCheck = 16, ClrAllCheck = 32, LaunchCheck = 64};
     std::future<void> m_future;
     std::wstring m_uninst_cmd,
                  m_ver,
@@ -52,6 +53,7 @@ private:
     ProgressBar *m_bar;
     Widget      *m_cenPanel;
     BoxLayout   *m_cenPanelVlut;
+    CheckBox    *m_launchCheck;
     RadioButton *m_updRadio,
                 *m_repRadio,
                 *m_uninsRadio;
@@ -59,9 +61,8 @@ private:
     Mode m_mode;
     int  m_resize_conn;
     BYTE m_checkState;
-    bool m_is_clear_checked,
-         m_is_sttgs_checked,
-         m_is_checked;
+    bool m_is_checked,
+         m_is_completed;
 };
 
 #endif // MAINWINDOW_H

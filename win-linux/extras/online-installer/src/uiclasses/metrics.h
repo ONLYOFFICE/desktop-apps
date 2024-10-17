@@ -31,6 +31,8 @@ public:
         FontWidth,
         FontHeight,
         PrimitiveWidth,
+        AlternatePrimitiveWidth,
+        PrimitiveRadius,
         ShadowWidth,
         ShadowRadius,
         TextMarginLeft,

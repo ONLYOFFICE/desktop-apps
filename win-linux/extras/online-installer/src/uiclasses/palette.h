@@ -17,6 +17,7 @@ public:
         AlternateBase,
         Text,
         Primitive,
+        AlternatePrimitive,
         PALETTE_ROLE_COUNT
     };
 
