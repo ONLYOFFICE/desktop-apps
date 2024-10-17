@@ -998,10 +998,11 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
         }
 
         if ( open_in_new_window ) {
+            bool isMaximized = false;
+            _app.m_private->editorWindowGeometry(_start_rect, isMaximized, open_opts.wurl);
             open_opts.panel_size = CWindowBase::expectedContentSize(_start_rect, true);
             open_opts.parent_widget = COpenOptions::eWidgetType::window;
             if (CEditorWindow * editor_win = CEditorWindow::create(_start_rect, open_opts)) {
-                bool isMaximized = mainWindow() ? mainWindow()->windowState().testFlag(Qt::WindowMaximized) : reg_user.value("maximized", false).toBool();
                 editor_win->show(isMaximized);
                 editor_win->bringToTop();
 

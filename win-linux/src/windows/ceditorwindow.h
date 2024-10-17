@@ -48,7 +48,7 @@ class QSpacerItem;
 class CEditorWindowPrivate;
 class CEditorWindow : public CWindowPlatform, public CScalingWrapper
 {
-    Q_DECLARE_TR_FUNCTIONS(CEditorWindow)
+    Q_OBJECT
 
 public:
     CEditorWindow(const QRect& rect, CTabPanel* view);

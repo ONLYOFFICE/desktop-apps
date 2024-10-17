@@ -432,7 +432,7 @@ void CEditorWindow::onCloseEvent()
 {
     if ( m_pMainView ) {
         if ( closeWindow() == MODAL_RESULT_YES ) {
-            CWindowBase::saveWindowState();
+            CWindowBase::saveWindowState(d_ptr->panel()->data()->contentType());
             hide();
         }
     }

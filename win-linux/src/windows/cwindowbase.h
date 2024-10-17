@@ -56,6 +56,7 @@
 #include <QMainWindow>
 #include <QPushButton>
 #include <memory>
+#include "cefview.h"
 #include "components/celipsislabel.h"
 
 
@@ -81,7 +82,7 @@ protected:
 
     QPushButton* createToolButton(QWidget * parent, const QString& name);
     QWidget* createTopPanel(QWidget *parent);
-    void saveWindowState();
+    void saveWindowState(AscEditorType editorType = AscEditorType::etUndefined);
     void moveToPrimaryScreen();
     void setIsCustomWindowStyle(bool);
     virtual bool event(QEvent*);
