@@ -4,7 +4,7 @@
 <context>
     <name>CAscApplicationManagerWrapper</name>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1316"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1354"/>
         <source>Presenter View</source>
         <translation>Pogled predstavitelja</translation>
     </message>
@@ -25,23 +25,23 @@
         <translation type="obsolete">Shrani kot</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1773"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1888"/>
         <source>You must restart the application for the settings to take effect.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2152"/>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2154"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2176"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2178"/>
         <source>Document%1.docx</source>
         <translation>Dokument%1.docx</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2157"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2181"/>
         <source>Book%1.xlsx</source>
         <translation>Knjiga%1.xlsx</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2158"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2182"/>
         <source>Presentation%1.pptx</source>
         <translation>Predstavitev%1.pptx</translation>
     </message>
@@ -49,8 +49,8 @@
 <context>
     <name>CAscTabWidget</name>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="878"/>
-        <location filename="../src/components/asctabwidget.cpp" line="653"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="903"/>
+        <location filename="../src/components/asctabwidget.cpp" line="661"/>
         <source>Document</source>
         <translation>Odpiranje...</translation>
     </message>
@@ -74,70 +74,66 @@
 <context>
     <name>CDialogOpenSsl</name>
     <message>
-        <location filename="../src/platform_linux/cdialogopenssl.cpp" line="102"/>
+        <location filename="../src/platform_linux/cdialogopenssl.cpp" line="101"/>
         <source>Select certificate</source>
         <translation>Izberi certifikat</translation>
     </message>
     <message>
-        <location filename="../src/platform_linux/cdialogopenssl.cpp" line="106"/>
+        <location filename="../src/platform_linux/cdialogopenssl.cpp" line="105"/>
         <source>select certificate file...</source>
         <translation>izberi datoteko certifikata...</translation>
     </message>
     <message>
-        <location filename="../src/platform_linux/cdialogopenssl.cpp" line="107"/>
+        <location filename="../src/platform_linux/cdialogopenssl.cpp" line="106"/>
         <source>Certificate password:</source>
         <translation>Geslo certifikata:</translation>
     </message>
     <message>
-        <location filename="../src/platform_linux/cdialogopenssl.cpp" line="108"/>
+        <location filename="../src/platform_linux/cdialogopenssl.cpp" line="107"/>
         <source>select key file...</source>
         <translation>izberi datoteko ključa...</translation>
     </message>
     <message>
-        <location filename="../src/platform_linux/cdialogopenssl.cpp" line="109"/>
+        <location filename="../src/platform_linux/cdialogopenssl.cpp" line="108"/>
         <source>Key password:</source>
         <translation>Geslo ključa:</translation>
     </message>
     <message>
-        <location filename="../src/platform_linux/cdialogopenssl.cpp" line="191"/>
-        <location filename="../src/platform_linux/cdialogopenssl.cpp" line="194"/>
-        <location filename="../src/platform_linux/cdialogopenssl.cpp" line="223"/>
-        <location filename="../src/platform_linux/cdialogopenssl.cpp" line="226"/>
         <source>Open Document</source>
-        <translation>Odpri dokument</translation>
+        <translation type="vanished">Odpri dokument</translation>
     </message>
     <message>
-        <location filename="../src/platform_linux/cdialogopenssl.cpp" line="245"/>
+        <location filename="../src/platform_linux/cdialogopenssl.cpp" line="210"/>
         <source>Enter certificate path</source>
         <translation>Vnesi pot do certifikata</translation>
     </message>
     <message>
-        <location filename="../src/platform_linux/cdialogopenssl.cpp" line="254"/>
+        <location filename="../src/platform_linux/cdialogopenssl.cpp" line="219"/>
         <source>Certificate is not supported</source>
         <translation>Certifikat ni podprt</translation>
     </message>
     <message>
-        <location filename="../src/platform_linux/cdialogopenssl.cpp" line="260"/>
+        <location filename="../src/platform_linux/cdialogopenssl.cpp" line="225"/>
         <source>Enter certificate password</source>
         <translation>Vnesi geslo certifikata</translation>
     </message>
     <message>
-        <location filename="../src/platform_linux/cdialogopenssl.cpp" line="261"/>
+        <location filename="../src/platform_linux/cdialogopenssl.cpp" line="226"/>
         <source>Wrong certificate password.&lt;br&gt;Please enter again</source>
         <translation>Napačno geslo certifikata.&lt;br&gt;Poskusi znova</translation>
     </message>
     <message>
-        <location filename="../src/platform_linux/cdialogopenssl.cpp" line="270"/>
+        <location filename="../src/platform_linux/cdialogopenssl.cpp" line="235"/>
         <source>Enter valid private key</source>
         <translation>Vnesi veljaven zasebni ključ</translation>
     </message>
     <message>
-        <location filename="../src/platform_linux/cdialogopenssl.cpp" line="280"/>
+        <location filename="../src/platform_linux/cdialogopenssl.cpp" line="245"/>
         <source>Key is not supported</source>
         <translation>Ključ ni podprt</translation>
     </message>
     <message>
-        <location filename="../src/platform_linux/cdialogopenssl.cpp" line="285"/>
+        <location filename="../src/platform_linux/cdialogopenssl.cpp" line="250"/>
         <source>Enter key password</source>
         <translation>Vnesi geslo ključa</translation>
     </message>
@@ -184,32 +180,32 @@
 <context>
     <name>CEditorWindow</name>
     <message>
-        <location filename="../src/windows/ceditorwindow.cpp" line="121"/>
+        <location filename="../src/windows/ceditorwindow.cpp" line="122"/>
         <source>%1 has been changed. Save changes?</source>
         <translation>%1 je bil spremenjen.&lt;br&gt;Želite shraniti spremembe?</translation>
     </message>
     <message>
-        <location filename="../src/ceditortools.cpp" line="404"/>
+        <location filename="../src/ceditortools.cpp" line="405"/>
         <source>Some data will lost.&lt;br&gt;Continue?</source>
         <translation>Če želite nadaljevati s shranjevanjem v tem formatu, bodo izgubljene vse lastnosti, razen teksta.&lt;br&gt;Ste prepričani, da želite nadaljevati?</translation>
     </message>
     <message>
-        <location filename="../src/windows/ceditorwindow_p.h" line="130"/>
+        <location filename="../src/windows/ceditorwindow_p.h" line="150"/>
         <source>Open main window</source>
         <translation>Odpri glavno okno</translation>
     </message>
     <message>
-        <location filename="../src/windows/ceditorwindow_p.h" line="513"/>
+        <location filename="../src/windows/ceditorwindow_p.h" line="566"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
         <translation>Dokument mora biti shranjen pred nadaljevanjem.&lt;br&gt;Želiš shraniti dokument?</translation>
     </message>
     <message>
-        <location filename="../src/windows/ceditorwindow_p.h" line="603"/>
+        <location filename="../src/windows/ceditorwindow_p.h" line="656"/>
         <source>Print Document</source>
         <translation>Natisni dokument</translation>
     </message>
     <message>
-        <location filename="../src/windows/ceditorwindow_p.h" line="809"/>
+        <location filename="../src/windows/ceditorwindow_p.h" line="865"/>
         <source>Document must be saved firstly.</source>
         <translation>Dokument mora biti najprej shranjen.</translation>
     </message>
@@ -217,12 +213,12 @@
 <context>
     <name>CEditorWindowPrivate</name>
     <message>
-        <location filename="../src/windows/ceditorwindow_p.h" line="554"/>
+        <location filename="../src/windows/ceditorwindow_p.h" line="607"/>
         <source>There are no printers available</source>
         <translation>Na voljo ni nobenega tiskalnika</translation>
     </message>
     <message>
-        <location filename="../src/windows/ceditorwindow_p.h" line="669"/>
+        <location filename="../src/windows/ceditorwindow_p.h" line="722"/>
         <source>There are no pages set to print.</source>
         <translation>Ni nastavljenih strani za tiskanje.</translation>
     </message>
@@ -536,6 +532,10 @@
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="305"/>
+        <source>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp);;Tiff (*.tiff *.tif)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../src/components/cfiledialog.cpp" line="315"/>
         <source>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp)</source>
         <translation>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp)</translation>
@@ -565,58 +565,58 @@
 <context>
     <name>CMainWindow</name>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="265"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="280"/>
         <source>More than one document is open.&lt;br&gt;Close the window anyway?</source>
         <translation>Odprtih je več dokumentov.&lt;br&gt;Želite vseeno zapreti okno?</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="267"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="282"/>
         <source>Don&apos;t ask again.</source>
         <translation>Ne vprašaj ponovno.</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="783"/>
-        <location filename="../src/windows/cmainwindow.cpp" line="823"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="803"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="843"/>
         <source>File format not supported.</source>
         <translation>Format datoteke ni podprt.</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="807"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="827"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
         <translation>%1 ni na voljo. Lahko je bil preimenovan, premaknjen ali izbrisan.&lt;br&gt;Ali želite, da ga izbrišemo iz seznama?</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="866"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="886"/>
         <source>Document must be saved firstly.</source>
         <translation>Dokument mora biti najprej shranjen.</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="1015"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="1035"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
         <translation>Dokument mora biti shranjen pred nadaljevanjem.&lt;br&gt;Želiš shraniti dokument?</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="1122"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="1141"/>
         <source>There are no printers available</source>
         <translation>Na voljo ni nobenega tiskalnika</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="1182"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="1201"/>
         <source>Print Document</source>
         <translation>Natisni dokument</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="1248"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="1267"/>
         <source>There are no pages set to print.</source>
         <translation>Ni nastavljenih strani za tiskanje.</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="1384"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="1403"/>
         <source>Sign Up</source>
         <translation>Ustvari portal</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="1479"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="1502"/>
         <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
         <translation>%1 je bil spremenjen.&lt;br&gt;Želite shraniti spremembe?</translation>
     </message>
@@ -655,60 +655,57 @@
 <context>
     <name>CPrintProgress</name>
     <message>
-        <location filename="../src/components/cprintprogress.cpp" line="95"/>
+        <location filename="../src/components/cprintprogress.cpp" line="224"/>
         <source>Document is printing: page %1 of %2</source>
         <translation>Tiskanje dokumenta: stran %1 od %2</translation>
     </message>
     <message>
-        <location filename="../src/components/cprintprogress.cpp" line="97"/>
         <source>Document is preparing</source>
-        <translation>Pripravljanje dokumenta</translation>
+        <translation type="vanished">Pripravljanje dokumenta</translation>
     </message>
     <message>
-        <location filename="../src/components/cprintprogress.cpp" line="103"/>
         <source>&amp;Cancel</source>
-        <translation>&amp;Prekliči</translation>
+        <translation type="vanished">&amp;Prekliči</translation>
     </message>
     <message>
-        <location filename="../src/components/cprintprogress.cpp" line="113"/>
         <source>Printing...</source>
-        <translation>Tiskanje...</translation>
+        <translation type="vanished">Tiskanje...</translation>
     </message>
 </context>
 <context>
     <name>CUpdateManager</name>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="109"/>
+        <location filename="../src/cupdatemanager.cpp" line="104"/>
         <source>Check for updates</source>
         <translation>Preverite posodobitve</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="101"/>
+        <location filename="../src/cupdatemanager.cpp" line="96"/>
         <source>Unable to check update: URL not defined.</source>
         <translation>Ni mogoče preveriti posodobitev: URL ni definiran.</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="99"/>
+        <location filename="../src/cupdatemanager.cpp" line="94"/>
         <source>To finish updating, restart app</source>
         <translation>Za dokončanje posodabljanja znova zaženite aplikacijo</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="111"/>
+        <location filename="../src/cupdatemanager.cpp" line="106"/>
         <source>Restart</source>
         <translation>Ponovno zaženi</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="94"/>
+        <location filename="../src/cupdatemanager.cpp" line="89"/>
         <source>Checking for updates...</source>
         <translation>Preverjanje posodobitev…</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="100"/>
+        <location filename="../src/cupdatemanager.cpp" line="95"/>
         <source>Updates are not allowed!</source>
         <translation>Posodobitve niso dovoljene!</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="501"/>
+        <location filename="../src/cupdatemanager.cpp" line="497"/>
         <source>This folder configuration does not allow for updates! The folder name should be: </source>
         <translation>Ta konfiguracija mape ne dovoljuje posodobitev! Ime mape mora biti: </translation>
     </message>
@@ -717,7 +714,7 @@
         <translation type="vanished">Med preverjanjem posodobitev je prišlo do napake: Storitve posodabljanja ni bilo mogoče najti!</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="96"/>
+        <location filename="../src/cupdatemanager.cpp" line="91"/>
         <source>Downloading new version %1 (%2%)</source>
         <translation>Prenos nove verzije %1 (%2%)</translation>
     </message>
@@ -726,22 +723,22 @@
         <translation type="vanished">Med nalaganjem posodobitev je prišlo do napake: Storitve posodabljanja ni bilo mogoče najti!</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="112"/>
+        <location filename="../src/cupdatemanager.cpp" line="107"/>
         <source>Cancel</source>
         <translation>Prekliči</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="102"/>
+        <location filename="../src/cupdatemanager.cpp" line="97"/>
         <source>An error occurred while loading updates: package Url is empty!</source>
         <translation>Med nalaganjem posodobitev je prišlo do napake: URL paketa je prazen!</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="107"/>
+        <location filename="../src/cupdatemanager.cpp" line="102"/>
         <source>Update package error: md5 sum does not match the original.</source>
         <translation>Napaka paketa posodobitve: vsota md5 se ne ujema z originalom.</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="97"/>
+        <location filename="../src/cupdatemanager.cpp" line="92"/>
         <source>Preparing update...</source>
         <translation>Pripravljanje posodobitev…</translation>
     </message>
@@ -750,109 +747,109 @@
         <translation type="vanished">Med razpakiranjem posodobitev je prišlo do napake: storitve posodobitve ni bilo mogoče najti!</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="95"/>
+        <location filename="../src/cupdatemanager.cpp" line="90"/>
         <source>Update is available (version %1)</source>
         <translation>Posodobitev je na voljo (verzija %1)</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="110"/>
+        <location filename="../src/cupdatemanager.cpp" line="105"/>
         <source>Download update</source>
         <translation>Prenos posodobitev</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="93"/>
+        <location filename="../src/cupdatemanager.cpp" line="88"/>
         <source>Current version is up to date</source>
         <translation>Trenutna verzija je posodobljena</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="84"/>
-        <source>An error occured while unpacking the archive</source>
+        <location filename="../src/cupdatemanager.cpp" line="79"/>
+        <source>An error occurred while unpacking the archive</source>
         <translation>Med razpakiranjem arhiva je prišlo do napake</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="85"/>
+        <location filename="../src/cupdatemanager.cpp" line="80"/>
         <source>Update download failed: out of memory!</source>
         <translation>Prenos posodobitve ni uspel: premalo je pomnilnika!</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="86"/>
+        <location filename="../src/cupdatemanager.cpp" line="81"/>
         <source>Update download failed: server connection error!</source>
         <translation>Prenos posodobitve ni uspel: napaka v povezavi s strežnikom!</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="87"/>
+        <location filename="../src/cupdatemanager.cpp" line="82"/>
         <source>Update download failed: wrong URL!</source>
         <translation>Prenos posodobitve ni uspel: napačen URL!</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="88"/>
+        <location filename="../src/cupdatemanager.cpp" line="83"/>
         <source>Update download failed: unable to create file!</source>
         <translation>Prenos posodobitve ni uspel: ni mogoče ustvariti datoteke!</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="89"/>
+        <location filename="../src/cupdatemanager.cpp" line="84"/>
         <source>Update download failed: network error!</source>
         <translation>Prenos posodobitve ni uspel: omrežna napaka!</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="90"/>
+        <location filename="../src/cupdatemanager.cpp" line="85"/>
         <source>A service error has occurred!</source>
         <translation>Prišlo je do servisne napake!</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="92"/>
+        <location filename="../src/cupdatemanager.cpp" line="87"/>
         <source>Last check performed %1</source>
         <translation>Zadnje preverjanje opravljeno %1</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="98"/>
+        <location filename="../src/cupdatemanager.cpp" line="93"/>
         <source>Preparing update (%1%)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="103"/>
+        <location filename="../src/cupdatemanager.cpp" line="98"/>
         <source>An error occurred while check updates: the Update Service is not installed or is not running!</source>
         <translation>Med preverjanjem posodobitev je prišlo do napake: storitev posodabljanja ni nameščena ali se ne izvaja!</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="104"/>
+        <location filename="../src/cupdatemanager.cpp" line="99"/>
         <source>An error occurred while loading updates: the Update Service is not installed or is not running!</source>
         <translation>Med nalaganjem posodobitev je prišlo do napake: storitev posodabljanja ni nameščena ali se ne izvaja!</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="105"/>
+        <location filename="../src/cupdatemanager.cpp" line="100"/>
         <source>An error occurred while unzip updates: the Update Service is not installed or is not running!</source>
         <translation>Pri razpakiranju posodobitev je prišlo do napake: storitev posodabljanja ni nameščena ali se ne izvaja!</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="106"/>
+        <location filename="../src/cupdatemanager.cpp" line="101"/>
         <source>Error opening JSON file.</source>
         <translation>Napaka pri odpiranju datoteke JSON.</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="947"/>
+        <location filename="../src/cupdatemanager.cpp" line="886"/>
         <source>The current version does not support installing this update directly. To install updates, you can download the required package from the official website.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="949"/>
+        <location filename="../src/cupdatemanager.cpp" line="888"/>
         <source>Update is available</source>
         <translation>Posodobitev je na voljo</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="950"/>
-        <location filename="../src/cupdatemanager.cpp" line="979"/>
+        <location filename="../src/cupdatemanager.cpp" line="889"/>
+        <location filename="../src/cupdatemanager.cpp" line="918"/>
         <source>Current version</source>
         <translation>Trenutna verzija</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="951"/>
-        <location filename="../src/cupdatemanager.cpp" line="980"/>
+        <location filename="../src/cupdatemanager.cpp" line="890"/>
+        <location filename="../src/cupdatemanager.cpp" line="919"/>
         <source>New version</source>
         <translation>Nova verzija</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="981"/>
+        <location filename="../src/cupdatemanager.cpp" line="920"/>
         <source>To finish updating, restart the app</source>
         <translation>Za dokončanje posodabljanja znova zaženite aplikacijo</translation>
     </message>
@@ -861,12 +858,12 @@
         <translation type="vanished">Posodobi verzijo</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="946"/>
+        <location filename="../src/cupdatemanager.cpp" line="885"/>
         <source>Would you like to download update now?</source>
         <translation>Ali želite zdaj prenesti posodobitve?</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="978"/>
+        <location filename="../src/cupdatemanager.cpp" line="917"/>
         <source>Update is ready to install</source>
         <translation>Posodobitev je pripravljena za namestitev</translation>
     </message>
@@ -878,12 +875,12 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper_private.h" line="251"/>
+        <location filename="../src/cascapplicationmanagerwrapper_private.h" line="252"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
         <translation>%1 ni na voljo. Lahko je bil preimenovan, premaknjen ali izbrisan.&lt;br&gt;Ali želite, da ga izbrišemo iz seznama?</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper_private.h" line="294"/>
+        <location filename="../src/cascapplicationmanagerwrapper_private.h" line="295"/>
         <source>File %1 cannot be opened or doesn&apos;t exists.</source>
         <translation>Datoteka %1 ne more biti odprta ali ne obstaja.</translation>
     </message>
@@ -903,8 +900,8 @@
         <translation>XML Datoteka (*.xml)</translation>
     </message>
     <message>
-        <location filename="../src/ceditortools.cpp" line="275"/>
-        <location filename="../src/windows/cmainwindow.cpp" line="771"/>
+        <location filename="../src/ceditortools.cpp" line="276"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="791"/>
         <source>Access to file &apos;%1&apos; is denied!</source>
         <translation>Dostop do datoteke &apos;%1&apos; je zavrnjen!</translation>
     </message>
@@ -974,58 +971,62 @@
         <translation>Opombe ob izdaji</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="759"/>
         <source>An error occurred while start install updates!</source>
-        <translation>Med začetkom nameščanja posodobitev je prišlo do napake!</translation>
+        <translation type="vanished">Med začetkom nameščanja posodobitev je prišlo do napake!</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="770"/>
+        <location filename="../src/cupdatemanager.cpp" line="751"/>
+        <source>An error occurred while start install updates: Update Service not found!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/cupdatemanager.cpp" line="761"/>
         <source>An error occurred while start replacing files: Update Service not found!</source>
         <translation>Med začetkom zamenjave datotek je prišlo do napake: storitve posodobitve ni bilo mogoče najti!</translation>
     </message>
     <message>
-        <location filename="../src/defines.h" line="129"/>
+        <location filename="../src/defines.h" line="121"/>
         <source>Cancel</source>
         <translation>Prekliči</translation>
     </message>
     <message>
-        <location filename="../src/defines.h" line="130"/>
+        <location filename="../src/defines.h" line="122"/>
         <source>Yes</source>
         <translation>Da</translation>
     </message>
     <message>
-        <location filename="../src/defines.h" line="131"/>
+        <location filename="../src/defines.h" line="123"/>
         <source>No</source>
         <translation>Ne</translation>
     </message>
     <message>
         <location filename="../src/components/cmessage.cpp" line="198"/>
-        <location filename="../src/defines.h" line="132"/>
+        <location filename="../src/defines.h" line="124"/>
         <source>OK</source>
         <translation>V redu</translation>
     </message>
     <message>
-        <location filename="../src/defines.h" line="133"/>
+        <location filename="../src/defines.h" line="125"/>
         <source>Skip</source>
         <translation>Preskoči</translation>
     </message>
     <message>
-        <location filename="../src/defines.h" line="134"/>
+        <location filename="../src/defines.h" line="126"/>
         <source>Buy Now</source>
         <translation>Kupi zdaj</translation>
     </message>
     <message>
-        <location filename="../src/defines.h" line="135"/>
+        <location filename="../src/defines.h" line="127"/>
         <source>Activate</source>
         <translation>Aktivacija</translation>
     </message>
     <message>
-        <location filename="../src/defines.h" line="136"/>
+        <location filename="../src/defines.h" line="128"/>
         <source>Continue</source>
         <translation>Nadaljuj</translation>
     </message>
     <message>
-        <location filename="../src/platform_linux/xdgdesktopportal.cpp" line="1220"/>
+        <location filename="../src/platform_linux/xdgdesktopportal.cpp" line="1225"/>
         <source>An error occurred while opening the portal:&lt;br&gt;%1</source>
         <translation>Med odpiranjem portala je prišlo do napake:&lt;br&gt;%1</translation>
     </message>
@@ -1034,7 +1035,7 @@
         <translation type="obsolete">&amp;V redu</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="355"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="380"/>
         <source>File %1 is already loaded. Replace it?</source>
         <translation>Datoteka %1 je že naložena. Jo želite zamenjati?</translation>
     </message>
@@ -1054,12 +1055,12 @@
         <translation>MB</translation>
     </message>
     <message>
-        <location filename="../src/platform_linux/gtkprintdialog.cpp" line="547"/>
+        <location filename="../src/platform_linux/gtkprintdialog.cpp" line="546"/>
         <source>The syntaxis for the page range is invalid.&lt;br&gt;Enter one or more page ranges, for example: 1-3,7,11.</source>
         <translation>Sintaksa za obseg strani ni veljavna.&lt;br&gt;Vnesite enega ali več obsegov strani, na primer: 1-3,7,11.</translation>
     </message>
     <message>
-        <location filename="../src/platform_linux/gtkprintdialog.cpp" line="587"/>
+        <location filename="../src/platform_linux/gtkprintdialog.cpp" line="586"/>
         <location filename="../src/platform_win/printdialog.cpp" line="527"/>
         <source>Specified range %1-%2 exceeds document limits: maximum number of pages is %3</source>
         <translation>Podani obseg %1-%2 presega omejitve dokumenta: največje število strani je %3</translation>
@@ -1068,6 +1069,39 @@
         <location filename="../src/platform_win/printdialog.cpp" line="485"/>
         <source>Unable to open print dialog:&lt;br&gt;%1</source>
         <translation>Ni mogoče odpreti pogovornega okna za tiskanje:&lt;br&gt;%1</translation>
+    </message>
+    <message>
+        <location filename="../src/components/cprintprogress.cpp" line="96"/>
+        <source>Printing...</source>
+        <comment>CPrintProgress</comment>
+        <translation type="unfinished">Tiskanje...</translation>
+    </message>
+    <message>
+        <location filename="../src/components/cprintprogress.cpp" line="97"/>
+        <source>Document is preparing</source>
+        <comment>CPrintProgress</comment>
+        <translation type="unfinished">Pripravljanje dokumenta</translation>
+    </message>
+    <message>
+        <location filename="../src/components/cprintprogress.cpp" line="160"/>
+        <source>&amp;Cancel</source>
+        <comment>CPrintProgress</comment>
+        <translation type="unfinished">&amp;Prekliči</translation>
+    </message>
+    <message>
+        <location filename="../src/platform_win/association.cpp" line="214"/>
+        <source>Do you want to make %1 your default application for extension: %2?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/platform_win/association.cpp" line="216"/>
+        <source>Do you want to make %1 your default application for all supported extensions?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/platform_win/association.cpp" line="218"/>
+        <source>Do not show this message again</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

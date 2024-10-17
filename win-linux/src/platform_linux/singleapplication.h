@@ -35,14 +35,14 @@
 
 #include <QApplication>
 #include <QByteArray>
-#include "csocket.h"
 
 
+class CSocket;
 class SingleApplication : public QApplication
 {
     Q_OBJECT
 public:
-    explicit SingleApplication( int &argc, char *argv[], const QString& servername = QString());
+    explicit SingleApplication( int &argc, char *argv[]);
     ~SingleApplication();
 
     bool isPrimary();

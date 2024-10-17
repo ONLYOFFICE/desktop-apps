@@ -33,6 +33,7 @@
 # include <io.h>
 # include <VersionHelpers.h>
 # include "platform_win/singleapplication.h"
+# include "platform_win/association.h"
 #else
 # include <unistd.h>
 # include "platform_linux/singleapplication.h"
@@ -65,6 +66,7 @@ CAscApplicationManagerWrapper::CAscApplicationManagerWrapper(CAscApplicationMana
     , m_queueToClose(new CWindowsQueue<sWinTag>)
     , m_private(ptrprivate)
 {
+    qRegisterMetaType<sWinTag>("sWinTag");
     m_private->init();
     CAscApplicationManager::SetEventListener(this);
 
@@ -118,6 +120,29 @@ std::wstring CAscApplicationManagerWrapper::GetExternalSchemeName()
 {
     std::wstring scheme = CAscApplicationManager::GetExternalSchemeName();
     return !scheme.empty() ? scheme.back() != L':' ? scheme + L":" : scheme : L"";
+}
+
+void CAscApplicationManagerWrapper::setHasFrameFeature(CCefView *cef, const wstring &param, int sid)
+{
+    if (param.find(L"framesize") != std::wstring::npos) {
+        if (CCefViewWidgetImpl * _impl = cef->GetWidgetImpl()) {
+            QJsonParseError err;
+            const QJsonDocument doc = QJsonDocument::fromJson(QString::fromStdWString(param).toUtf8(), &err);
+            if ( err.error == QJsonParseError::NoError ) {
+                const QJsonObject obj = doc.object()["framesize"].toObject();
+                int _frame_w = obj["width"].toInt(),
+                    _frame_h = obj["height"].toInt();
+
+                QCefView * view = static_cast<QCefView *>(_impl);
+                const QSize s = view->size() / Utils::getScreenDpiRatioByWidget(view);
+                std::wstring feature = L"{\"hasframe\":";
+                feature += ( abs(s.width() - _frame_w) > 1 || abs(s.height() - _frame_h) > 1 ) ? L"true}" : L"false}";
+                if ( m_receivers.find(sid) != m_receivers.end() )
+                    m_receivers[sid]->onWebAppsFeatures(sid, feature);
+                else m_pMainWindow->onWebAppsFeatures(sid, feature);
+            }
+        }
+    }
 }
 
 void CAscApplicationManagerWrapper::OnEvent(CAscCefMenuEvent * event)
@@ -351,7 +376,7 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
                 if ( !json_obj.isEmpty() ) {
                     if ( json_obj.contains("id") ) {
                         if ( m_themes->checkDestinationThemeFileExist(file_path) ) {
-                            int res = CMessage::showMessage(WindowHelper::currentTopWindow(),
+                            int res = CMessage::showMessage(mainWindow(),
                                                             QObject::tr("File %1 is already loaded. Replace it?").arg(QFileInfo(file_path).fileName()),
                                                             MsgType::MSG_CONFIRM, MsgBtns::mbYesDefNo);
                             if ( res == MODAL_RESULT_NO )
@@ -360,7 +385,7 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
 
                         if ( !themes().validate(json_obj) ) {
                             qDebug() << "theme source is broken";
-                            CMessage::error(WindowHelper::currentTopWindow(), "Selected theme isn't valid");
+                            CMessage::error(mainWindow(), "Selected theme isn't valid");
                         } else {
                             if ( themes().addLocalTheme(json_obj, file_path) ) {
                                 QJsonArray local_themes_array = themes().localThemesToJson();
@@ -377,11 +402,11 @@ bool CAscApplicationManagerWrapper::processCommonEvent(NSEditorApi::CAscCefMenuE
                         }
                     } else {
                         qDebug() << "theme source is broken";
-                        CMessage::error(WindowHelper::currentTopWindow(), "This file doesn't contain theme");
+                        CMessage::error(mainWindow(), "This file doesn't contain theme");
                     }
                 } else {
                     qDebug() << "theme file is not valid";
-                    CMessage::error(WindowHelper::currentTopWindow(), "This theme file is not valid");
+                    CMessage::error(mainWindow(), "This theme file is not valid");
                 }
             }
 
@@ -972,30 +997,30 @@ void CAscApplicationManagerWrapper::handleInputCmd(const std::vector<wstring>& v
                 continue;
         }
 
-        open_opts.panel_size = CWindowBase::expectedContentSize(_start_rect, open_in_new_window);
-        open_opts.parent_widget = open_in_new_window ? COpenOptions::eWidgetType::window : COpenOptions::eWidgetType::tab;
-
-        CTabPanel * panel = CEditorTools::createEditorPanel(open_opts);
-        if ( panel ) {
-            if ( open_in_new_window ) {
-                CEditorWindow * editor_win = new CEditorWindow(_start_rect, panel);
-                bool isMaximized = mainWindow() ? mainWindow()->windowState().testFlag(Qt::WindowMaximized) :
-                                                      reg_user.value("maximized", false).toBool();
+        if ( open_in_new_window ) {
+            open_opts.panel_size = CWindowBase::expectedContentSize(_start_rect, true);
+            open_opts.parent_widget = COpenOptions::eWidgetType::window;
+            if (CEditorWindow * editor_win = CEditorWindow::create(_start_rect, open_opts)) {
+                bool isMaximized = mainWindow() ? mainWindow()->windowState().testFlag(Qt::WindowMaximized) : reg_user.value("maximized", false).toBool();
                 editor_win->show(isMaximized);
                 editor_win->bringToTop();
 
                 _app.m_vecEditors.push_back(size_t(editor_win));
                 if ( editor_win->isCustomWindowStyle() )
-                    sendCommandTo(panel->cef(), L"window:features",
-                              Utils::stringifyJson(QJsonObject{{"skiptoparea", TOOLBTN_HEIGHT},{"singlewindow",true}}).toStdWString());
-            } else {
-                if ( !_app.m_pMainWindow ) {
-                    _app.m_pMainWindow = _app.prepareMainWindow(_start_rect);
-                    _app.m_pMainWindow->show(reg_user.value("maximized", false).toBool());
-                } else
-                if (!_app.m_pMainWindow->isVisible())
-                    _app.m_pMainWindow->show(_app.m_pMainWindow->windowState().testFlag(Qt::WindowMaximized));
+                    sendCommandTo(editor_win->mainView()->cef(), L"window:features",
+                                  Utils::stringifyJson(QJsonObject{{"skiptoparea", TOOLBTN_HEIGHT},{"singlewindow",true}}).toStdWString());
+            }
+        } else {
+            if ( !_app.m_pMainWindow ) {
+                _app.m_pMainWindow = _app.prepareMainWindow(_start_rect);
+                _app.m_pMainWindow->show(reg_user.value("maximized", false).toBool());
+            } else
+            if (!_app.m_pMainWindow->isVisible())
+                _app.m_pMainWindow->show(_app.m_pMainWindow->windowState().testFlag(Qt::WindowMaximized));
 
+            open_opts.panel_size = _app.m_pMainWindow->contentSize();
+            open_opts.parent_widget = COpenOptions::eWidgetType::tab;
+            if (CTabPanel * panel = CEditorTools::createEditorPanel(open_opts, _app.m_pMainWindow)) {
                 _app.mainWindow()->attachEditor(panel);
 
                 QTimer::singleShot(100, &_app, [&]{
@@ -1056,6 +1081,10 @@ void CAscApplicationManagerWrapper::onDocumentReady(int uid)
             m_pUpdateManager->refreshStartPage();
         });
     }
+#endif
+
+#ifdef _WIN32
+    Association::instance().chekForAssociations(uid);
 #endif
 }
 
@@ -1218,7 +1247,16 @@ void CAscApplicationManagerWrapper::initializeApp()
 #ifdef __linux__
     css.append(Utils::readStylesheets(":styles/styles_unix.qss"));
 #endif
-    qApp->setStyleSheet(css);
+    qApp->setStyleSheet(css.arg(GetColorQValueByRole(ecrWindowBackground),
+                                GetColorQValueByRole(ecrTextNormal),
+                                GetColorQValueByRole(ecrButtonHoverBackground),
+                                GetColorQValueByRole(ecrButtonPressedBackground),
+                                GetColorQValueByRole(ecrButtonBackground),
+                                GetColorQValueByRole(ecrTabDivider),
+                                GetColorQValueByRole(ecrButtonBackgroundActive),
+                                GetColorQValueByRole(ecrToolTipText))
+                           .arg(GetColorQValueByRole(ecrToolTipBorder),
+                                GetColorQValueByRole(ecrToolTipBackground)));
 
     // Font
     QFont mainFont = QApplication::font();
@@ -1639,52 +1677,39 @@ void CAscApplicationManagerWrapper::sendEvent(int type, void * data)
 //    delete pEvent;
 }
 
-QString CAscApplicationManagerWrapper::getWindowStylesheets(double dpifactor)
+QString CAscApplicationManagerWrapper::getWindowStylesheets(double dpi)
 {
-    if ( dpifactor > 4.5 )
-        return getWindowStylesheets(CScalingFactor::SCALING_FACTOR_5);
-    else
-    if ( dpifactor > 4.0 )
-        return getWindowStylesheets(CScalingFactor::SCALING_FACTOR_4_5);
-    else
-    if ( dpifactor > 3.5 )
-        return getWindowStylesheets(CScalingFactor::SCALING_FACTOR_4);
-    else
-    if ( dpifactor > 3.0 )
-        return getWindowStylesheets(CScalingFactor::SCALING_FACTOR_3_5);
-    else
-    if ( dpifactor > 2.75 )
-        return getWindowStylesheets(CScalingFactor::SCALING_FACTOR_3);
-    else
-    if ( dpifactor > 2.5 )
-        return getWindowStylesheets(CScalingFactor::SCALING_FACTOR_2_75);
-    else
-    if ( dpifactor > 2.25 )
-        return getWindowStylesheets(CScalingFactor::SCALING_FACTOR_2_5);
-    else
-    if ( dpifactor > 2.0 )
-        return getWindowStylesheets(CScalingFactor::SCALING_FACTOR_2_25);
-    else
-    if ( dpifactor > 1.75 )
-        return getWindowStylesheets(CScalingFactor::SCALING_FACTOR_2);
-    else
-    if ( dpifactor > 1.5 )
-        return getWindowStylesheets(CScalingFactor::SCALING_FACTOR_1_75);
-    else
-    if ( dpifactor > 1.25 )
-        return getWindowStylesheets(CScalingFactor::SCALING_FACTOR_1_5);
-    else
-    if ( dpifactor > 1 )
-        return getWindowStylesheets(CScalingFactor::SCALING_FACTOR_1_25);
-    else return getWindowStylesheets(CScalingFactor::SCALING_FACTOR_1);
+    CScalingFactor f = dpi > 4.5 ? CScalingFactor::SCALING_FACTOR_5 :
+                       dpi > 4.0 ? CScalingFactor::SCALING_FACTOR_4_5 :
+                       dpi > 3.5 ? CScalingFactor::SCALING_FACTOR_4 :
+                       dpi > 3.0 ? CScalingFactor::SCALING_FACTOR_3_5 :
+                       dpi > 2.75 ? CScalingFactor::SCALING_FACTOR_3 :
+                       dpi > 2.5 ? CScalingFactor::SCALING_FACTOR_2_75 :
+                       dpi > 2.25 ? CScalingFactor::SCALING_FACTOR_2_5 :
+                       dpi > 2.0 ? CScalingFactor::SCALING_FACTOR_2_25 :
+                       dpi > 1.75 ? CScalingFactor::SCALING_FACTOR_2 :
+                       dpi > 1.5 ? CScalingFactor::SCALING_FACTOR_1_75 :
+                       dpi > 1.25 ? CScalingFactor::SCALING_FACTOR_1_5 :
+                       dpi > 1 ? CScalingFactor::SCALING_FACTOR_1_25 : CScalingFactor::SCALING_FACTOR_1;
+    return getWindowStylesheets(f);
 }
 
 QString CAscApplicationManagerWrapper::getWindowStylesheets(CScalingFactor factor)
 {
     APP_CAST(_app);
 
-    QByteArray _out = Utils::readStylesheets(&_app.m_mapStyles[CScalingFactor::SCALING_FACTOR_1]);
-    _out.append(Utils::readStylesheets(":/themes/theme-contrast-dark.qss"));
+    QString _out = Utils::readStylesheets(&_app.m_mapStyles[CScalingFactor::SCALING_FACTOR_1]);
+    _out = _out.arg(GetColorQValueByRole(ecrWindowBackground),
+                    GetColorQValueByRole(ecrTextNormal),
+                    GetColorQValueByRole(ecrButtonHoverBackground),
+                    GetColorQValueByRole(ecrButtonPressedBackground),
+                    GetColorQValueByRole(ecrButtonBackground),
+                    GetColorQValueByRole(ecrTabDivider),
+                    GetColorQValueByRole(ecrButtonBackgroundActive))
+               .arg(GetColorQValueByRole(ecrToolTipText),
+                    GetColorQValueByRole(ecrToolTipBorder),
+                    GetColorQValueByRole(ecrToolTipBackground));
+//    _out.append(Utils::readStylesheets(":/themes/theme-contrast-dark.qss"));
     if ( factor != CScalingFactor::SCALING_FACTOR_1 )
         _out.append(Utils::readStylesheets(&_app.m_mapStyles[factor]));
 
@@ -1768,10 +1793,6 @@ bool CAscApplicationManagerWrapper::applySettings(const wstring& wstrjson)
         _reg_user.setValue("appdata", stringdata.toBase64());
 
         QJsonObject objRoot = jdoc.object();
-        int res = MODAL_RESULT_NO;
-        if (objRoot.contains("restart") && objRoot["restart"].toBool())
-            res = CMessage::showMessage(mainWindow(), tr("You must restart the application for the settings to take effect."),
-                                            MsgType::MSG_INFO, MsgBtns::mbYesDefNo);
 
         QString _user_newname = objRoot["username"].toString();
         if ( _user_newname.isEmpty() )
@@ -1862,10 +1883,13 @@ bool CAscApplicationManagerWrapper::applySettings(const wstring& wstrjson)
                 m_pUpdateManager->setNewUpdateSetting(objRoot["autoupdatemode"].toString());
         }
 #endif
-        if (res == MODAL_RESULT_YES) {
+        if (objRoot.contains("restart") && objRoot["restart"].toBool()) {
             QTimer::singleShot(500, this, [=]() {
-                m_private.get()->m_needRestart = true;
-                AscAppManager::closeAppWindows();
+                if (MODAL_RESULT_YES == CMessage::showMessage(mainWindow(), tr("You must restart the application for the settings to take effect."),
+                                                              MsgType::MSG_INFO, MsgBtns::mbYesDefNo)) {
+                    m_private.get()->m_needRestart = true;
+                    AscAppManager::closeAppWindows();
+                }
             });
         }
     } else {
@@ -2149,12 +2173,15 @@ QString CAscApplicationManagerWrapper::newFileName(int format)
                  pdf_count = 0;
 
     switch ( format ) {
+    case AVS_OFFICESTUDIO_FILE_DOCUMENT_DOTX:
     case AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCX:        return tr("Document%1.docx").arg(++docx_count);
     case AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCXF: {
         QString docname = tr("Document%1.docx").arg(++pdf_count);
         return docname.replace("docx", "pdf");
     }
+    case AVS_OFFICESTUDIO_FILE_SPREADSHEET_XLTX:
     case AVS_OFFICESTUDIO_FILE_SPREADSHEET_XLSX:     return tr("Book%1.xlsx").arg(++xlsx_count);
+    case AVS_OFFICESTUDIO_FILE_PRESENTATION_POTX:
     case AVS_OFFICESTUDIO_FILE_PRESENTATION_PPTX:    return tr("Presentation%1.pptx").arg(++pptx_count);
     default:                                         return "Document.asc";
     }

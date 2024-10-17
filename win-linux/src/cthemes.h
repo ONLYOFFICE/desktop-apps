@@ -8,6 +8,16 @@
 # include <windows.h>
 #endif
 
+#define GetCurrentTheme() \
+    AscAppManager::themes().current()
+#define GetActualTheme(theme) \
+    AscAppManager::themes().themeActualId(theme)
+#define GetColorByRole(role) \
+    GetCurrentTheme().color(CTheme::ColorRole::role)
+#define GetColorValueByRole(role) \
+    GetCurrentTheme().value(CTheme::ColorRole::role)
+#define GetColorQValueByRole(role) \
+    QString::fromStdWString(GetColorValueByRole(role))
 
 class CThemes;
 class CTheme {
@@ -16,7 +26,7 @@ public:
         ecrWindowBackground
         , ecrWindowBorder
         , ecrTextNormal
-        , ecrTextPressed
+        , ecrTextPretty
         , ecrLogoColor
         , ecrTabWordActive
         , ecrTabCellActive
@@ -27,6 +37,29 @@ public:
         , ecrTabDefaultActiveBackground
         , ecrTabDefaultActiveText
         , ecrButtonNormalOpacity
+        , ecrButtonBackground
+        , ecrButtonHoverBackground
+        , ecrButtonPressedBackground
+        , ecrButtonBackgroundActive
+        , ecrDownloadWidgetBackground
+        , ecrDownloadWidgetBorder
+        , ecrDownloadItemHoverBackground
+        , ecrDownloadGhostButtonText
+        , ecrDownloadGhostButtonTextHover
+        , ecrDownloadGhostButtonTextPressed
+        , ecrDownloadGhostButtonTextPressedItemHover
+        , ecrDownloadLabelText
+        , ecrDownloadLabelTextInfo
+        , ecrDownloadLabelTextInfoItemHover
+        , ecrDownloadProgressBarBackground
+        , ecrDownloadProgressBarBackgroundItemHover
+        , ecrDownloadProgressBarChunk
+        , ecrDownloadScrollBarHandle
+        , ecrToolTipText
+        , ecrToolTipBorder
+        , ecrToolTipBackground
+        , ecrTabDivider
+        , ecrTabThemeType
     };
 
     auto fromFile(const QString&) -> bool;
@@ -39,7 +72,7 @@ public:
 #ifdef Q_OS_WIN
     auto colorRef(ColorRole r) const -> COLORREF;
 #endif
-    auto value(ColorRole) const -> std::wstring;
+    auto value(ColorRole, const std::wstring& def = L"") const -> std::wstring;
     auto isDark() const -> bool;
     auto isSystem() const -> bool;
 
@@ -64,7 +97,7 @@ public:
     auto defaultLight() -> const CTheme&;
 
 //    auto addLocalTheme(const std::wstring&) -> bool;
-    auto addLocalTheme(const QJsonObject&, const QString& filepath) -> bool;
+    auto addLocalTheme(QJsonObject&, const QString& filepath) -> bool;
     auto setCurrentTheme(const std::wstring&) -> void;
     auto isThemeCurrent(const std::wstring& id) -> bool;
 //    auto isThemeDark(const std::wstring& id) -> bool;

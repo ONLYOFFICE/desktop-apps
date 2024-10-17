@@ -7,6 +7,7 @@ CONFIG += app_bundle
 CONFIG += c++11
 
 TRANSLATIONS = ./langs/en.ts \
+                ./langs/en_GB.ts \
                 ./langs/ru.ts \
                 ./langs/de.ts \
                 ./langs/es.ts \
@@ -26,6 +27,7 @@ TRANSLATIONS = ./langs/en.ts \
                 ./langs/fi.ts \
                 ./langs/ga.ts \
                 ./langs/gl.ts \
+                ./langs/he.ts \
                 ./langs/hi.ts \
                 ./langs/hr.ts \
                 ./langs/hu.ts \
@@ -249,6 +251,7 @@ core_windows {
     HEADERS += $$PWD/src/windows/platform_win/cwindowplatform.h \
                $$PWD/src/windows/platform_win/caption.h \
                $$PWD/src/platform_win/singleapplication.h \
+               $$PWD/src/platform_win/association.h \
                $$PWD/src/platform_win/filechooser.h \
                $$PWD/src/platform_win/printdialog.h \
                $$PWD/src/platform_win/message.h \
@@ -256,6 +259,7 @@ core_windows {
 
     SOURCES += $$PWD/src/windows/platform_win/cwindowplatform.cpp \
                $$PWD/src/platform_win/singleapplication.cpp \
+               $$PWD/src/platform_win/association.cpp \
                $$PWD/src/platform_win/filechooser.cpp \
                $$PWD/src/platform_win/printdialog.cpp \
                $$PWD/src/platform_win/message.cpp
@@ -301,8 +305,6 @@ core_windows {
 
     build_xp {
         DEFINES += __OS_WIN_XP
-    } else {
-        LIBS += -ldwmapi
     }
 }
 

@@ -83,23 +83,6 @@ Get-ChildItem -Directory `
 
 ####
 
-Write-Host "`n[ Add visual elements ]"
-
-Write-Host "COPY: data\VisualElementsManifest.xml > $BuildDir\desktop\DesktopEditors.VisualElementsManifest.xml"
-Copy-Item -Force `
-    -Path "data\VisualElementsManifest.xml" `
-    -Destination "$BuildDir\desktop\DesktopEditors.VisualElementsManifest.xml"
-
-Write-Host "CREATE DIR: $BuildDir\desktop\browser"
-New-Item -ItemType Directory -Force -Path "$BuildDir\desktop\browser" | Out-Null
-
-Write-Host "COPY: data\visual_elements_icon_* > $BuildDir\desktop\browser"
-Copy-Item -Force `
-    -Path "data\visual_elements_icon_*" `
-    -Destination "$BuildDir\desktop\browser"
-
-####
-
 Write-Host "`n[ Sign files ]"
 
 if ($Sign) {

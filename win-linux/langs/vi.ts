@@ -4,7 +4,7 @@
 <context>
     <name>CAscApplicationManagerWrapper</name>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1316"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1354"/>
         <source>Presenter View</source>
         <translation>Chế độ xem của người thuyết trình</translation>
     </message>
@@ -25,23 +25,23 @@
         <translation type="obsolete">Lưu thành</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1773"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="1888"/>
         <source>You must restart the application for the settings to take effect.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2152"/>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2154"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2176"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2178"/>
         <source>Document%1.docx</source>
         <translation>Document%1.docx</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2157"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2181"/>
         <source>Book%1.xlsx</source>
         <translation>Book%1.xlsx</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2158"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="2182"/>
         <source>Presentation%1.pptx</source>
         <translation>Presentation%1.pptx</translation>
     </message>
@@ -49,8 +49,8 @@
 <context>
     <name>CAscTabWidget</name>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="878"/>
-        <location filename="../src/components/asctabwidget.cpp" line="653"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="903"/>
+        <location filename="../src/components/asctabwidget.cpp" line="661"/>
         <source>Document</source>
         <translation>Đang mở...</translation>
     </message>
@@ -74,70 +74,66 @@
 <context>
     <name>CDialogOpenSsl</name>
     <message>
-        <location filename="../src/platform_linux/cdialogopenssl.cpp" line="102"/>
+        <location filename="../src/platform_linux/cdialogopenssl.cpp" line="101"/>
         <source>Select certificate</source>
         <translation>Chọn chứng nhận</translation>
     </message>
     <message>
-        <location filename="../src/platform_linux/cdialogopenssl.cpp" line="106"/>
+        <location filename="../src/platform_linux/cdialogopenssl.cpp" line="105"/>
         <source>select certificate file...</source>
         <translation>chọn tập tin chứng nhận...</translation>
     </message>
     <message>
-        <location filename="../src/platform_linux/cdialogopenssl.cpp" line="107"/>
+        <location filename="../src/platform_linux/cdialogopenssl.cpp" line="106"/>
         <source>Certificate password:</source>
         <translation>Mật khẩu của chứng nhận:</translation>
     </message>
     <message>
-        <location filename="../src/platform_linux/cdialogopenssl.cpp" line="108"/>
+        <location filename="../src/platform_linux/cdialogopenssl.cpp" line="107"/>
         <source>select key file...</source>
         <translation>chọn tập tin mã khóa...</translation>
     </message>
     <message>
-        <location filename="../src/platform_linux/cdialogopenssl.cpp" line="109"/>
+        <location filename="../src/platform_linux/cdialogopenssl.cpp" line="108"/>
         <source>Key password:</source>
         <translation>Mật khẩu mã khóa:</translation>
     </message>
     <message>
-        <location filename="../src/platform_linux/cdialogopenssl.cpp" line="191"/>
-        <location filename="../src/platform_linux/cdialogopenssl.cpp" line="194"/>
-        <location filename="../src/platform_linux/cdialogopenssl.cpp" line="223"/>
-        <location filename="../src/platform_linux/cdialogopenssl.cpp" line="226"/>
         <source>Open Document</source>
-        <translation>Mở tài liệu</translation>
+        <translation type="vanished">Mở tài liệu</translation>
     </message>
     <message>
-        <location filename="../src/platform_linux/cdialogopenssl.cpp" line="245"/>
+        <location filename="../src/platform_linux/cdialogopenssl.cpp" line="210"/>
         <source>Enter certificate path</source>
         <translation>Nhập đường dẫn đến chứng nhận</translation>
     </message>
     <message>
-        <location filename="../src/platform_linux/cdialogopenssl.cpp" line="254"/>
+        <location filename="../src/platform_linux/cdialogopenssl.cpp" line="219"/>
         <source>Certificate is not supported</source>
         <translation>Chứng nhận không được hỗ trợ</translation>
     </message>
     <message>
-        <location filename="../src/platform_linux/cdialogopenssl.cpp" line="260"/>
+        <location filename="../src/platform_linux/cdialogopenssl.cpp" line="225"/>
         <source>Enter certificate password</source>
         <translation>Nhập mật khẩu của chứng nhận</translation>
     </message>
     <message>
-        <location filename="../src/platform_linux/cdialogopenssl.cpp" line="261"/>
+        <location filename="../src/platform_linux/cdialogopenssl.cpp" line="226"/>
         <source>Wrong certificate password.&lt;br&gt;Please enter again</source>
         <translation>Mật khẩu chứng nhận bị sai.&lt;br&gt;Vui lòng nhập lại</translation>
     </message>
     <message>
-        <location filename="../src/platform_linux/cdialogopenssl.cpp" line="270"/>
+        <location filename="../src/platform_linux/cdialogopenssl.cpp" line="235"/>
         <source>Enter valid private key</source>
         <translation>Hãy nhập mã khóa riêng hợp lệ</translation>
     </message>
     <message>
-        <location filename="../src/platform_linux/cdialogopenssl.cpp" line="280"/>
+        <location filename="../src/platform_linux/cdialogopenssl.cpp" line="245"/>
         <source>Key is not supported</source>
         <translation>Mã khóa không được hỗ trợ</translation>
     </message>
     <message>
-        <location filename="../src/platform_linux/cdialogopenssl.cpp" line="285"/>
+        <location filename="../src/platform_linux/cdialogopenssl.cpp" line="250"/>
         <source>Enter key password</source>
         <translation>Nhập mật khẩu mã khóa</translation>
     </message>
@@ -184,32 +180,32 @@
 <context>
     <name>CEditorWindow</name>
     <message>
-        <location filename="../src/windows/ceditorwindow.cpp" line="121"/>
+        <location filename="../src/windows/ceditorwindow.cpp" line="122"/>
         <source>%1 has been changed. Save changes?</source>
         <translation>%1 đã được chỉnh sửa.&lt;br&gt;Bạn có muốn lưu thay đổi không?</translation>
     </message>
     <message>
-        <location filename="../src/ceditortools.cpp" line="404"/>
+        <location filename="../src/ceditortools.cpp" line="405"/>
         <source>Some data will lost.&lt;br&gt;Continue?</source>
         <translation>Nếu bạn tiếp tục lưu theo định dạng này, tất cả các tính năng ngoại trừ văn bản sẽ bị mất đi.&lt;br&gt;Bạn có chắc muốn tiếp tục không?</translation>
     </message>
     <message>
-        <location filename="../src/windows/ceditorwindow_p.h" line="130"/>
+        <location filename="../src/windows/ceditorwindow_p.h" line="150"/>
         <source>Open main window</source>
         <translation>Mở cửa sổ chính</translation>
     </message>
     <message>
-        <location filename="../src/windows/ceditorwindow_p.h" line="513"/>
+        <location filename="../src/windows/ceditorwindow_p.h" line="566"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
         <translation>Phải lưu tài liệu để tiếp tục.&lt;br&gt;Lưu tài liệu?</translation>
     </message>
     <message>
-        <location filename="../src/windows/ceditorwindow_p.h" line="603"/>
+        <location filename="../src/windows/ceditorwindow_p.h" line="656"/>
         <source>Print Document</source>
         <translation>In tài liệu</translation>
     </message>
     <message>
-        <location filename="../src/windows/ceditorwindow_p.h" line="809"/>
+        <location filename="../src/windows/ceditorwindow_p.h" line="865"/>
         <source>Document must be saved firstly.</source>
         <translation>Cần lưu tài liệu trước.</translation>
     </message>
@@ -217,12 +213,12 @@
 <context>
     <name>CEditorWindowPrivate</name>
     <message>
-        <location filename="../src/windows/ceditorwindow_p.h" line="554"/>
+        <location filename="../src/windows/ceditorwindow_p.h" line="607"/>
         <source>There are no printers available</source>
         <translation>Không có máy in nào</translation>
     </message>
     <message>
-        <location filename="../src/windows/ceditorwindow_p.h" line="669"/>
+        <location filename="../src/windows/ceditorwindow_p.h" line="722"/>
         <source>There are no pages set to print.</source>
         <translation>Không có trang nào được thiết lập để in.</translation>
     </message>
@@ -536,6 +532,10 @@
     </message>
     <message>
         <location filename="../src/components/cfiledialog.cpp" line="305"/>
+        <source>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp);;Tiff (*.tiff *.tif)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../src/components/cfiledialog.cpp" line="315"/>
         <source>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp)</source>
         <translation>Jpeg (*.jpeg *.jpg);;Png (*.png);;Gif (*.gif);;Bmp (*.bmp)</translation>
@@ -565,58 +565,58 @@
 <context>
     <name>CMainWindow</name>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="265"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="280"/>
         <source>More than one document is open.&lt;br&gt;Close the window anyway?</source>
         <translation>Hơn một tài liệu đang mở.&lt;br&gt;Bạn vẫn muốn đóng cửa sổ?</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="267"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="282"/>
         <source>Don&apos;t ask again.</source>
         <translation>Không hỏi lại.</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="783"/>
-        <location filename="../src/windows/cmainwindow.cpp" line="823"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="803"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="843"/>
         <source>File format not supported.</source>
         <translation>Định dạng tập tin không được hỗ trợ.</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="807"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="827"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
         <translation>Không có %1. Có thể nó đã được đổi tên, chuyển đi hay xóa.&lt;br&gt;Bạn có muốn xóa tập tin này khỏi danh sách không?</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="866"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="886"/>
         <source>Document must be saved firstly.</source>
         <translation>Cần lưu tài liệu trước.</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="1015"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="1035"/>
         <source>Document must be saved to continue.&lt;br&gt;Save the document?</source>
         <translation>Phải lưu tài liệu để tiếp tục.&lt;br&gt;Lưu tài liệu?</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="1122"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="1141"/>
         <source>There are no printers available</source>
         <translation>Không có máy in nào</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="1182"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="1201"/>
         <source>Print Document</source>
         <translation>In tài liệu</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="1248"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="1267"/>
         <source>There are no pages set to print.</source>
         <translation>Không có trang nào được thiết lập để in.</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="1384"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="1403"/>
         <source>Sign Up</source>
         <translation>Tạo cổng</translation>
     </message>
     <message>
-        <location filename="../src/windows/cmainwindow.cpp" line="1479"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="1502"/>
         <source>%1 is modified.&lt;br&gt;Do you want to keep changes?</source>
         <translation>%1 đã được chỉnh sửa.&lt;br&gt;Bạn có muốn lưu thay đổi không??</translation>
     </message>
@@ -655,60 +655,57 @@
 <context>
     <name>CPrintProgress</name>
     <message>
-        <location filename="../src/components/cprintprogress.cpp" line="95"/>
+        <location filename="../src/components/cprintprogress.cpp" line="224"/>
         <source>Document is printing: page %1 of %2</source>
         <translation>Đang in tài liệu: trang %1 trên %2</translation>
     </message>
     <message>
-        <location filename="../src/components/cprintprogress.cpp" line="97"/>
         <source>Document is preparing</source>
-        <translation>Đang chuẩn bị tài liệu</translation>
+        <translation type="vanished">Đang chuẩn bị tài liệu</translation>
     </message>
     <message>
-        <location filename="../src/components/cprintprogress.cpp" line="103"/>
         <source>&amp;Cancel</source>
-        <translation>&amp;Hủy</translation>
+        <translation type="vanished">&amp;Hủy</translation>
     </message>
     <message>
-        <location filename="../src/components/cprintprogress.cpp" line="113"/>
         <source>Printing...</source>
-        <translation>Đang in...</translation>
+        <translation type="vanished">Đang in...</translation>
     </message>
 </context>
 <context>
     <name>CUpdateManager</name>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="109"/>
+        <location filename="../src/cupdatemanager.cpp" line="104"/>
         <source>Check for updates</source>
         <translation>Kiểm tra bản cập nhật</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="101"/>
+        <location filename="../src/cupdatemanager.cpp" line="96"/>
         <source>Unable to check update: URL not defined.</source>
         <translation>Không thể kiểm tra cập nhật: URL không được xác định.</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="99"/>
+        <location filename="../src/cupdatemanager.cpp" line="94"/>
         <source>To finish updating, restart app</source>
         <translation>Để hoàn tất cập nhật, hãy khởi động lại ứng dụng</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="111"/>
+        <location filename="../src/cupdatemanager.cpp" line="106"/>
         <source>Restart</source>
         <translation>Khởi động lại</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="94"/>
+        <location filename="../src/cupdatemanager.cpp" line="89"/>
         <source>Checking for updates...</source>
         <translation>Đang kiểm tra bản cập nhật…</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="100"/>
+        <location filename="../src/cupdatemanager.cpp" line="95"/>
         <source>Updates are not allowed!</source>
         <translation>Không được phép cập nhật!</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="501"/>
+        <location filename="../src/cupdatemanager.cpp" line="497"/>
         <source>This folder configuration does not allow for updates! The folder name should be: </source>
         <translation>Cấu hình thư mục này không cho phép cập nhật! Tên thư mục phải là: </translation>
     </message>
@@ -717,7 +714,7 @@
         <translation type="vanished">Đã xảy ra lỗi khi kiểm tra cập nhật: Không tìm thấy Dịch vụ Cập nhật!</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="96"/>
+        <location filename="../src/cupdatemanager.cpp" line="91"/>
         <source>Downloading new version %1 (%2%)</source>
         <translation>Đang tải xuống phiên bản mới %1 (%2%)</translation>
     </message>
@@ -726,22 +723,22 @@
         <translation type="vanished">Đã xảy ra lỗi khi tải cập nhật: Không tìm thấy Dịch vụ Cập nhật!</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="112"/>
+        <location filename="../src/cupdatemanager.cpp" line="107"/>
         <source>Cancel</source>
         <translation>Hủy</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="102"/>
+        <location filename="../src/cupdatemanager.cpp" line="97"/>
         <source>An error occurred while loading updates: package Url is empty!</source>
         <translation>Đã xảy ra lỗi khi tải cập nhật: URL gói trống!</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="107"/>
+        <location filename="../src/cupdatemanager.cpp" line="102"/>
         <source>Update package error: md5 sum does not match the original.</source>
         <translation>Lỗi gói cập nhật: tổng md5 không khớp với bản gốc.</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="97"/>
+        <location filename="../src/cupdatemanager.cpp" line="92"/>
         <source>Preparing update...</source>
         <translation>Đang chuẩn bị cập nhật...</translation>
     </message>
@@ -750,119 +747,119 @@
         <translation type="vanished">Đã xảy ra lỗi khi giải nén cập nhật: Không tìm thấy Dịch vụ Cập nhật!</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="95"/>
+        <location filename="../src/cupdatemanager.cpp" line="90"/>
         <source>Update is available (version %1)</source>
         <translation>Đã có bản cập nhật (phiên bản %1)</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="110"/>
+        <location filename="../src/cupdatemanager.cpp" line="105"/>
         <source>Download update</source>
         <translation>Tải xuống bản cập nhật</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="93"/>
+        <location filename="../src/cupdatemanager.cpp" line="88"/>
         <source>Current version is up to date</source>
         <translation>Phiên bản hiện tại đã được cập nhật</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="84"/>
-        <source>An error occured while unpacking the archive</source>
+        <location filename="../src/cupdatemanager.cpp" line="79"/>
+        <source>An error occurred while unpacking the archive</source>
         <translation>Đã xảy ra lỗi khi giải nén kho lưu trữ</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="85"/>
+        <location filename="../src/cupdatemanager.cpp" line="80"/>
         <source>Update download failed: out of memory!</source>
         <translation>Tải xuống cập nhật không thành công: hết bộ nhớ!</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="86"/>
+        <location filename="../src/cupdatemanager.cpp" line="81"/>
         <source>Update download failed: server connection error!</source>
         <translation>Tải xuống cập nhật không thành công: lỗi kết nối máy chủ!</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="87"/>
+        <location filename="../src/cupdatemanager.cpp" line="82"/>
         <source>Update download failed: wrong URL!</source>
         <translation>Tải xuống cập nhật không thành công: URL sai!</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="88"/>
+        <location filename="../src/cupdatemanager.cpp" line="83"/>
         <source>Update download failed: unable to create file!</source>
         <translation>Tải xuống cập nhật không thành công: không thể tạo tập tin!</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="89"/>
+        <location filename="../src/cupdatemanager.cpp" line="84"/>
         <source>Update download failed: network error!</source>
         <translation>Tải xuống cập nhật không thành công: lỗi mạng!</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="90"/>
+        <location filename="../src/cupdatemanager.cpp" line="85"/>
         <source>A service error has occurred!</source>
         <translation>Đã xảy ra lỗi dịch vụ!</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="92"/>
+        <location filename="../src/cupdatemanager.cpp" line="87"/>
         <source>Last check performed %1</source>
         <translation>Lần kiểm tra cuối cùng được thực hiện %1</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="98"/>
+        <location filename="../src/cupdatemanager.cpp" line="93"/>
         <source>Preparing update (%1%)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="103"/>
+        <location filename="../src/cupdatemanager.cpp" line="98"/>
         <source>An error occurred while check updates: the Update Service is not installed or is not running!</source>
         <translation>Đã xảy ra lỗi khi kiểm tra cập nhật: Dịch Vụ Cập Nhật chưa được cài đặt hoặc không chạy!</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="104"/>
+        <location filename="../src/cupdatemanager.cpp" line="99"/>
         <source>An error occurred while loading updates: the Update Service is not installed or is not running!</source>
         <translation>Đã xảy ra lỗi khi tải bản cập nhật: Dịch Vụ Cập Nhật chưa được cài đặt hoặc không chạy!</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="105"/>
+        <location filename="../src/cupdatemanager.cpp" line="100"/>
         <source>An error occurred while unzip updates: the Update Service is not installed or is not running!</source>
         <translation>Đã xảy ra lỗi khi giải nén bản cập nhật: Dịch Vụ Cập Nhật chưa được cài đặt hoặc không chạy!</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="106"/>
+        <location filename="../src/cupdatemanager.cpp" line="101"/>
         <source>Error opening JSON file.</source>
         <translation>Lỗi mở tập tin JSON.</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="947"/>
+        <location filename="../src/cupdatemanager.cpp" line="886"/>
         <source>The current version does not support installing this update directly. To install updates, you can download the required package from the official website.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="949"/>
+        <location filename="../src/cupdatemanager.cpp" line="888"/>
         <source>Update is available</source>
         <translation>Đã có bản cập nhật</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="950"/>
-        <location filename="../src/cupdatemanager.cpp" line="979"/>
+        <location filename="../src/cupdatemanager.cpp" line="889"/>
+        <location filename="../src/cupdatemanager.cpp" line="918"/>
         <source>Current version</source>
         <translation>Phiên bản hiện tại</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="951"/>
-        <location filename="../src/cupdatemanager.cpp" line="980"/>
+        <location filename="../src/cupdatemanager.cpp" line="890"/>
+        <location filename="../src/cupdatemanager.cpp" line="919"/>
         <source>New version</source>
         <translation>Phiên bản cập nhật</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="981"/>
+        <location filename="../src/cupdatemanager.cpp" line="920"/>
         <source>To finish updating, restart the app</source>
         <translation>Để hoàn tất cập nhật, hãy khởi động lại ứng dụng</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="946"/>
+        <location filename="../src/cupdatemanager.cpp" line="885"/>
         <source>Would you like to download update now?</source>
         <translation>Bạn có muốn tải xuống ngay bây giờ không?</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="978"/>
+        <location filename="../src/cupdatemanager.cpp" line="917"/>
         <source>Update is ready to install</source>
         <translation>Bản cập nhật đã sẵn sàng để được cài đặt</translation>
     </message>
@@ -870,12 +867,12 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper_private.h" line="251"/>
+        <location filename="../src/cascapplicationmanagerwrapper_private.h" line="252"/>
         <source>%1 doesn&apos;t exists!&lt;br&gt;Remove file from the list?</source>
         <translation>Không có %1. Có thể nó đã được đổi tên, chuyển đi hay xóa.&lt;br&gt;Bạn có muốn xóa tập tin này khỏi danh sách không?</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper_private.h" line="294"/>
+        <location filename="../src/cascapplicationmanagerwrapper_private.h" line="295"/>
         <source>File %1 cannot be opened or doesn&apos;t exists.</source>
         <translation>Không thê ̉ mở tập tin %1 hoặc tập tin không tồn tại.</translation>
     </message>
@@ -895,8 +892,8 @@
         <translation>Tập tin XML (*.xml)</translation>
     </message>
     <message>
-        <location filename="../src/ceditortools.cpp" line="275"/>
-        <location filename="../src/windows/cmainwindow.cpp" line="771"/>
+        <location filename="../src/ceditortools.cpp" line="276"/>
+        <location filename="../src/windows/cmainwindow.cpp" line="791"/>
         <source>Access to file &apos;%1&apos; is denied!</source>
         <translation>Truy cập vào tập tin &apos;%1&apos; bị từ chối!</translation>
     </message>
@@ -958,58 +955,62 @@
         <translation>Ghi chú phát hành</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="759"/>
         <source>An error occurred while start install updates!</source>
-        <translation>Đã xảy ra lỗi khi bắt đầu cài đặt bản cập nhật!</translation>
+        <translation type="vanished">Đã xảy ra lỗi khi bắt đầu cài đặt bản cập nhật!</translation>
     </message>
     <message>
-        <location filename="../src/cupdatemanager.cpp" line="770"/>
+        <location filename="../src/cupdatemanager.cpp" line="751"/>
+        <source>An error occurred while start install updates: Update Service not found!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/cupdatemanager.cpp" line="761"/>
         <source>An error occurred while start replacing files: Update Service not found!</source>
         <translation>Đã xảy ra lỗi khi bắt đầu thay thế các tập tin: Không tìm thấy Dịch vụ cập nhật!</translation>
     </message>
     <message>
-        <location filename="../src/defines.h" line="129"/>
+        <location filename="../src/defines.h" line="121"/>
         <source>Cancel</source>
         <translation>Hủy</translation>
     </message>
     <message>
-        <location filename="../src/defines.h" line="130"/>
+        <location filename="../src/defines.h" line="122"/>
         <source>Yes</source>
         <translation>Có</translation>
     </message>
     <message>
-        <location filename="../src/defines.h" line="131"/>
+        <location filename="../src/defines.h" line="123"/>
         <source>No</source>
         <translation>Không</translation>
     </message>
     <message>
         <location filename="../src/components/cmessage.cpp" line="198"/>
-        <location filename="../src/defines.h" line="132"/>
+        <location filename="../src/defines.h" line="124"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
     <message>
-        <location filename="../src/defines.h" line="133"/>
+        <location filename="../src/defines.h" line="125"/>
         <source>Skip</source>
         <translation>Bỏ qua</translation>
     </message>
     <message>
-        <location filename="../src/defines.h" line="134"/>
+        <location filename="../src/defines.h" line="126"/>
         <source>Buy Now</source>
         <translation>Mua ngay</translation>
     </message>
     <message>
-        <location filename="../src/defines.h" line="135"/>
+        <location filename="../src/defines.h" line="127"/>
         <source>Activate</source>
         <translation>Kích Hoạt</translation>
     </message>
     <message>
-        <location filename="../src/defines.h" line="136"/>
+        <location filename="../src/defines.h" line="128"/>
         <source>Continue</source>
         <translation>Tiếp tục</translation>
     </message>
     <message>
-        <location filename="../src/platform_linux/xdgdesktopportal.cpp" line="1220"/>
+        <location filename="../src/platform_linux/xdgdesktopportal.cpp" line="1225"/>
         <source>An error occurred while opening the portal:&lt;br&gt;%1</source>
         <translation>Đã xảy ra lỗi khi mở cổng thông tin:&lt;br&gt; %1</translation>
     </message>
@@ -1018,7 +1019,7 @@
         <translation type="obsolete">&amp;OK</translation>
     </message>
     <message>
-        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="355"/>
+        <location filename="../src/cascapplicationmanagerwrapper.cpp" line="380"/>
         <source>File %1 is already loaded. Replace it?</source>
         <translation>Tập tin %1 đã được tải. Bạn có muốn thay thế nó?</translation>
     </message>
@@ -1038,12 +1039,12 @@
         <translation>MB</translation>
     </message>
     <message>
-        <location filename="../src/platform_linux/gtkprintdialog.cpp" line="547"/>
+        <location filename="../src/platform_linux/gtkprintdialog.cpp" line="546"/>
         <source>The syntaxis for the page range is invalid.&lt;br&gt;Enter one or more page ranges, for example: 1-3,7,11.</source>
         <translation>Cú pháp cho các trang không hợp lệ.&lt;br&gt;Nhập một hoặc nhiều trang, ví dụ: 1-3,7,11.</translation>
     </message>
     <message>
-        <location filename="../src/platform_linux/gtkprintdialog.cpp" line="587"/>
+        <location filename="../src/platform_linux/gtkprintdialog.cpp" line="586"/>
         <location filename="../src/platform_win/printdialog.cpp" line="527"/>
         <source>Specified range %1-%2 exceeds document limits: maximum number of pages is %3</source>
         <translation>Các trang được chọn %1-%2 vượt quá giới hạn tài liệu: số trang tối đa là %3</translation>
@@ -1052,6 +1053,39 @@
         <location filename="../src/platform_win/printdialog.cpp" line="485"/>
         <source>Unable to open print dialog:&lt;br&gt;%1</source>
         <translation>Không thể mở hộp thoại in:&lt;br&gt; %1</translation>
+    </message>
+    <message>
+        <location filename="../src/components/cprintprogress.cpp" line="96"/>
+        <source>Printing...</source>
+        <comment>CPrintProgress</comment>
+        <translation type="unfinished">Đang in...</translation>
+    </message>
+    <message>
+        <location filename="../src/components/cprintprogress.cpp" line="97"/>
+        <source>Document is preparing</source>
+        <comment>CPrintProgress</comment>
+        <translation type="unfinished">Đang chuẩn bị tài liệu</translation>
+    </message>
+    <message>
+        <location filename="../src/components/cprintprogress.cpp" line="160"/>
+        <source>&amp;Cancel</source>
+        <comment>CPrintProgress</comment>
+        <translation type="unfinished">&amp;Hủy</translation>
+    </message>
+    <message>
+        <location filename="../src/platform_win/association.cpp" line="214"/>
+        <source>Do you want to make %1 your default application for extension: %2?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/platform_win/association.cpp" line="216"/>
+        <source>Do you want to make %1 your default application for all supported extensions?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/platform_win/association.cpp" line="218"/>
+        <source>Do not show this message again</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

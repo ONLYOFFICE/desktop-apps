@@ -46,6 +46,7 @@
 #include "clogger.h"
 #include "common/File.h"
 #include <QApplication>
+#include <QJsonParseError>
 #ifdef _WIN32
 # define APP_LAUNCH_NAME "\\DesktopEditors.exe"
 # define RESTART_BATCH "/apprestart.bat"
@@ -313,6 +314,19 @@ public:
 
                         openDocument(opts);
                     }
+                } else if ( format.rfind(L"{\"template", 0) == 0 ) {
+                    QJsonParseError jerror;
+                    QJsonDocument jdoc = QJsonDocument::fromJson(QString::fromStdWString(format).toUtf8(), &jerror);
+
+                    if( jerror.error == QJsonParseError::NoError ) {
+                        QJsonObject obj = jdoc.object().value("template").toObject();
+                        int _f = obj.value("type").toInt();
+
+                        COpenOptions opts{m_appmanager.newFileName(_f), etTemplateFile, obj.value("path").toString()};
+                        opts.format = _f;
+
+                        openDocument(opts);
+                    }
                 } else {
                     int _f = format == L"word" ? AVS_OFFICESTUDIO_FILE_DOCUMENT_DOCX :
                                  format == L"cell" ? AVS_OFFICESTUDIO_FILE_SPREADSHEET_XLSX :
@@ -396,48 +410,39 @@ public:
 
     auto openDocument(const COpenOptions& opts) -> bool
     {
-        bool isMaximized = false;
-        QRect rect;
         COpenOptions opts_ext{opts};
         if ( preferOpenEditorWindow() ) {
             GET_REGISTRY_USER(reg_user);
-            isMaximized = mainWindow() ? mainWindow()->windowState().testFlag(Qt::WindowMaximized) : reg_user.value("maximized", false).toBool();
-            if ( !isMaximized )
-                rect = windowRectFromViewId(opts.parent_id);
+            bool isMaximized = mainWindow() ? mainWindow()->windowState().testFlag(Qt::WindowMaximized) : reg_user.value("maximized", false).toBool();
+            QRect rect = /*isMaximized ? QRect() :*/ windowRectFromViewId(opts.parent_id);
             if ( !rect.isEmpty() )
                 rect.adjust(50,50,50,50);
             opts_ext.panel_size = CWindowBase::expectedContentSize(rect, true);
             opts_ext.parent_widget = COpenOptions::eWidgetType::window;
+            if (CEditorWindow * editor_win = CEditorWindow::create(rect, opts_ext)) {
+                editor_win->show(isMaximized);
+
+                m_appmanager.m_vecEditors.push_back(size_t(editor_win));
+                if ( editor_win->isCustomWindowStyle() ) {
+                    m_appmanager.sendCommandTo(editor_win->mainView()->cef(), L"window:features",
+                                               Utils::stringifyJson(QJsonObject{{"skiptoparea", TOOLBTN_HEIGHT},{"singlewindow",true}}).toStdWString());
+                }
+                return true;
+            }
         } else {
             m_appmanager.gotoMainWindow(size_t(m_appmanager.editorWindowFromViewId(opts.parent_id)));
             opts_ext.panel_size = mainWindow()->contentSize();
             opts_ext.parent_widget = COpenOptions::eWidgetType::tab;
-        }
-
-        CTabPanel * panel = CEditorTools::createEditorPanel(opts_ext);
-        if ( panel ) {
-            CAscTabData * panel_data = panel->data();
-            QRegularExpression re("^ascdesktop:\\/\\/(?:compare|merge|template)");
-
-            if ( re.match(QString::fromStdWString(panel_data->url())).hasMatch() ) {
-                 panel_data->setIsLocal(true);
-                 panel_data->setUrl("");
-            }
-
-            if ( preferOpenEditorWindow() ) {
-                CEditorWindow * editor_win = new CEditorWindow(rect, panel);
-                editor_win->show(isMaximized);
-
-                m_appmanager.m_vecEditors.push_back(size_t(editor_win));
-                if ( editor_win->isCustomWindowStyle() )
-                    m_appmanager.sendCommandTo(panel->cef(), L"window:features",
-                            Utils::stringifyJson(QJsonObject{{"skiptoparea", TOOLBTN_HEIGHT},{"singlewindow",true}}).toStdWString());
-            } else {
-//                m_appmanager.gotoMainWindow(size_t(m_appmanager.editorWindowFromViewId(opts.parent_id)));
+            if (CTabPanel * panel = CEditorTools::createEditorPanel(opts_ext, mainWindow())) {
+                CAscTabData * panel_data = panel->data();
+                QRegularExpression re("^ascdesktop:\\/\\/(?:compare|merge|template)");
+                if ( re.match(QString::fromStdWString(panel_data->url())).hasMatch() ) {
+                    panel_data->setIsLocal(true);
+                    panel_data->setUrl("");
+                }
                 mainWindow()->attachEditor(panel);
+                return true;
             }
-
-            return true;
         }
 
         return false;
@@ -472,7 +477,7 @@ protected:
     }
 
 public:
-    CAscApplicationManagerWrapper& m_appmanager;    
+    CAscApplicationManagerWrapper& m_appmanager;
     QPointer<QCefView> m_pStartPanel;
     bool m_openEditorWindow = false;
     bool m_needRestart = false;

@@ -57,7 +57,11 @@ AppComments               = {cm:defprogAppDescription}
 DefaultGroupName          = {#sCompanyName}
 ;UsePreviousAppDir         =no
 DirExistsWarning          =no
+#if Int(DecodeVer(PREPROCVER,1)) >= 6
+DefaultDirName            ={commonpf}\{#APP_PATH}
+#else
 DefaultDirName            ={pf}\{#APP_PATH}
+#endif
 DisableProgramGroupPage   = yes
 DisableWelcomePage        = no
 DEPCompatible             = no
@@ -75,17 +79,15 @@ SetupMutex                =ASC
 
 #if str(ARCH) == "x64"
 #if Int(DecodeVer(PREPROCVER,1)) >= 6
-ArchitecturesAllowed              = x64 arm64
-ArchitecturesInstallIn64BitMode   = x64 arm64
+ArchitecturesAllowed              = x64compatible
+ArchitecturesInstallIn64BitMode   = x64compatible
 #else
 ArchitecturesAllowed              = x64
 ArchitecturesInstallIn64BitMode   = x64
 #endif
 #endif
 
-#ifndef _WIN_XP
-MinVersion                        = 6.1
-#else
+#ifdef _WIN_XP
 MinVersion                        = 5.0
 OnlyBelowVersion                  = 6.1
 #endif
@@ -106,11 +108,11 @@ LZMAUseSeparateProcess=yes
 [Languages]
 #define sLicenseFile BRANDING_DIR + "\..\..\..\common\package\license\" + LIC_FILE + ".rtf"
 #ifdef _ONLYOFFICE
-Name: en; MessagesFile: compiler:Default.isl; LicenseFile: {#sLicenseFile};
+Name: en_US; MessagesFile: compiler:Default.isl; LicenseFile: {#sLicenseFile};
 Name: ru; MessagesFile: compiler:Languages\Russian.isl; LicenseFile: {#sLicenseFile};
 #else
 Name: ru; MessagesFile: compiler:Languages\Russian.isl; LicenseFile: {#sLicenseFile};
-Name: en; MessagesFile: compiler:Default.isl; LicenseFile: {#sLicenseFile};
+Name: en_US; MessagesFile: compiler:Default.isl; LicenseFile: {#sLicenseFile};
 #endif
 Name: bg; MessagesFile: compiler:Languages\Bulgarian.isl; LicenseFile: {#sLicenseFile};
 Name: ca; MessagesFile: compiler:Languages\Catalan.isl; LicenseFile: {#sLicenseFile};
@@ -160,15 +162,19 @@ Name: zh_TW; MessagesFile: compiler:Languages\ChineseTraditional.isl; LicenseFil
 Name: ar_SA; MessagesFile: compiler:Languages\Arabic.isl; LicenseFile: {#sLicenseFile};
 Name: sr_Latn_RS; MessagesFile: compiler:Languages\SerbianLatin.isl; LicenseFile: {#sLicenseFile};
 Name: sr_Cyrl_RS; MessagesFile: compiler:Languages\SerbianCyrillic.isl; LicenseFile: {#sLicenseFile};
+Name: en_GB; MessagesFile: compiler:Languages\EnglishBritish.isl; LicenseFile: {#sLicenseFile};
+Name: he; MessagesFile: compiler:Languages\Hebrew.isl; LicenseFile: {#sLicenseFile};
 
 [LangOptions]
 lo.LanguageName=ພາສາລາວ
 ;ga_IE.LanguageName=Gaeilge
 ar_SA.LanguageName=الْعَرَبِيَّة
+en_US.LanguageName=English (United States)
 
 [CustomMessages]
 ;======================================================================================================
-en.PrevVer=The previous version of {#sAppName} detected, please click 'OK' button to uninstall it, or 'Cancel' to quit setup.
+en_US.PrevVer=The previous version of {#sAppName} detected, please click 'OK' button to uninstall it, or 'Cancel' to quit setup.
+en_GB.PrevVer=The previous version of {#sAppName} detected, please click 'OK' button to uninstall it, or 'Cancel' to quit setup.
 ru.PrevVer=Обнаружена предыдущая версия {#sAppName}, нажмите кнопку 'OK', чтобы удалить её, или 'Отмена', чтобы выйти из программы инсталляции.
 it_IT.PrevVer=È stata rilevata la versione precedente di {#sAppName}. Fai clic sul pulsante "OK" per disinstallarla oppure su "Annulla" per uscire dalla configurazione.
 fr.PrevVer=La version précédente de {#sAppName} a été détectée. Cliquez sur le bouton 'OK' pour la désinstaller ou sur 'Annuler' pour quitter l'installation.
@@ -179,7 +185,8 @@ ja.PrevVer=旧バージョンの{#sAppName}が検出されました。「OK」�
 es.PrevVer=Se ha detectado la versión anterior de {#sAppName}. Por favor, haga clic en el botón 'OK' para desinstalarla, o en 'Cancelar' para salir de la instalación.
 de.PrevVer=Die vorherige Version von {#sAppName} wurde erkannt. Bitte klicken Sie auf 'OK', um sie zu deinstallieren, oder auf 'Abbrechen', um das Setup zu beenden.
 ;======================================================================================================
-en.Launch =Launch %1
+en_US.Launch =Launch %1
+en_GB.Launch =Launch %1
 ar_SA.Launch =بدء تشغيل %1
 bg.Launch =Пускане %1
 ca.Launch =Llança %1
@@ -223,8 +230,10 @@ si.Launch =%1 දියත් කරන්න
 zh_TW.Launch =啓動 %1
 sr_Latn_RS.Launch =Lansiraj %1
 sr_Cyrl_RS.Launch =Лансирај %1
+he.Launch =הפעל את %1
 ;======================================================================================================
-en.CreateDesktopIcon =Create %1 &desktop icon
+en_US.CreateDesktopIcon =Create %1 &desktop icon
+en_GB.CreateDesktopIcon =Create %1 &desktop icon
 ar_SA.CreateDesktopIcon =إنشاء %1 &أيقونة سطح المكتب
 bg.CreateDesktopIcon =Създаване на %1 &икона на работния плот
 ca.CreateDesktopIcon =Crea una icona d'escriptori per a %1
@@ -268,8 +277,10 @@ si.CreateDesktopIcon =%1 වැඩතල නිරූපකය සාදන්�
 zh_TW.CreateDesktopIcon =建立 %1 和桌面圖示
 sr_Latn_RS.CreateDesktopIcon =Kreiraj %1 &desktop ikonicu
 sr_Cyrl_RS.CreateDesktopIcon =Креирај %1 &десктоп иконицу
+he.CreateDesktopIcon =צור סמל &שולחן עבודה עבור %1
 ;======================================================================================================
-en.InstallAdditionalComponents =Installing additional system components. Please wait...
+en_US.InstallAdditionalComponents =Installing additional system components. Please wait...
+en_GB.InstallAdditionalComponents =Installing additional system components. Please wait...
 ar_SA.InstallAdditionalComponents =جاري تثبيت مكونات نظام إضافية. الرجاء الانتظار...
 ca.InstallAdditionalComponents =Instal·lació de components de sistema addicionals. Si us plau, espereu...
 bg.InstallAdditionalComponents =Инсталиране на допълнителни системни компоненти. Моля, изчакайте...
@@ -313,8 +324,10 @@ si.InstallAdditionalComponents =අතිරේක පද්ධති සංර�
 zh_TW.InstallAdditionalComponents =正在安裝附加系統元件，請稍候...
 sr_Latn_RS.InstallAdditionalComponents =Instaliranje dodatnih sistemskih komponenti. Molimo sačekajte...
 sr_Cyrl_RS.InstallAdditionalComponents =Инсталирање додатних системских компоненти. Молимо сачекајте...
+he.InstallAdditionalComponents =מתקין רכיבי מערכת נוספים. אנא המתן...
 ;======================================================================================================
-en.AdditionalTasks =Tasks:
+en_US.AdditionalTasks =Tasks:
+en_GB.AdditionalTasks =Tasks:
 ar_SA.AdditionalTasks =المهام:
 bg.AdditionalTasks =Задачи:
 ca.AdditionalTasks =Tasques:
@@ -358,8 +371,10 @@ si.AdditionalTasks =කාර්යන්:
 zh_TW.AdditionalTasks =工作：
 sr_Latn_RS.AdditionalTasks =Zadaci:
 sr_Cyrl_RS.AdditionalTasks =Задаци:
+he.AdditionalTasks =משימות:
 ;======================================================================================================
-en.Uninstall =Uninstall
+en_US.Uninstall =Uninstall
+en_GB.Uninstall =Uninstall
 ar_SA.Uninstall =إزالة التثبيت
 bg.AdditionalTasks =Деинсталиране
 ca.AdditionalTasks =Desinstal·lar
@@ -403,8 +418,10 @@ si.Uninstall =අස්ථාපනය
 zh_TW.Uninstall =解除安裝
 sr_Latn_RS.Uninstall =Deinstaliraj
 sr_Cyrl_RS.Uninstall =Деинсталирај
+he.Uninstall =הסר התקנה
 ;======================================================================================================
-en.WarningWrongArchitecture =You are trying to install the %1-bit application version over the %2-bit version installed. Please uninstall the previous version first or download the correct version for installation.
+en_US.WarningWrongArchitecture =You are trying to install the %1-bit application version over the %2-bit version installed. Please uninstall the previous version first or download the correct version for installation.
+en_GB.WarningWrongArchitecture =You are trying to install the %1-bit application version over the %2-bit version installed. Please uninstall the previous version first or download the correct version for installation.
 ar_SA.WarningWrongArchitecture =أنت تحاول تثبيت نسخة %1-bit من التطبيق على نسخة %2-bit المثبتة. فضلًا قم بإزالة النسخة السابقة أولًا أو قم بتحميل النسخة الصحيحة ليتم تثبيتها.
 bg.WarningWrongArchitecture =Опитвате се да инсталирате %1-битовата версия на приложението над инсталираната %2-битова версия. Моля, деинсталирайте първо предишната версия или изтеглете правилната версия за инсталиране.
 ca.WarningWrongArchitecture =Estau provant a instal·lar la versió de l'aplicació %1-bit amb la versió %2-bit instal·lada. Si us plau, desintaleu primer la versió anterior o descarregeu la versió correcta per a la instal·lació.
@@ -448,9 +465,11 @@ si.WarningWrongArchitecture =ඔබ ස්ථාපිත බිටු-%2 අන
 zh_TW.WarningWrongArchitecture =您正在嘗試安裝 %1-bit 應用程式版本超過 %2-bit 目前已安裝的版本。 請先解除安裝先前的版本或下載正確的版本再進行安裝。
 sr_Latn_RS.WarningWrongArchitecture =Pokušavate da instalirate %1-bit aplikacija verziju preko %2-bit instalirane verzije. Molimo prvo deinstalirajte prethodnu verziju ili preuzmite tačnu verziju za instalaciju.
 sr_Cyrl_RS.WarningWrongArchitecture =Покушавате да инсталирате %1-бит апликација верзију преко %2-бит инсталиране верзије. Молимо прво деинсталирајте претходну верзију или преузмите тачну верзију за инсталацију.
+he.WarningWrongArchitecture =אתה מנסה להתקין את גרסת היישום %1-סיביות על גבי גרסת %2-סיביות מותקנת. אנא הסר תחילה את הגרסה הקודמת או הורד את הגרסה הנכונה להתקנה.
 ;======================================================================================================
 
-en.UpdateAppRunning=Setup has detected that %1 is currently running.%n%nIt'll be closed automatically. Click OK to continue, or Cancel to exit.
+en_US.UpdateAppRunning=Setup has detected that %1 is currently running.%n%nIt'll be closed automatically. Click OK to continue, or Cancel to exit.
+en_GB.UpdateAppRunning=Setup has detected that %1 is currently running.%n%nIt'll be closed automatically. Click OK to continue, or Cancel to exit.
 ar_SA.UpdateAppRunning=تم اكتشاف أن %1 قيد التشغيل.%n%nسيتم إغلاقه بشكل تلقائي. اضغط حسنًا للإكمال، أو إلغاء.
 bg.UpdateAppRunning=Настройката установи, че %1 в момента работи.%n%nТова ще бъде затворено автоматично. Щракнете върху OK, за да продължите, или Отказ, за да излезете.
 ca.UpdateAppRunning=La configuració ha detectat que actualment s'està executant %1.%n%n Es tancarà automàticament. Feu clic a D'acord per continuar o Cancel·la per sortir.
@@ -494,8 +513,10 @@ si.UpdateAppRunning=%1 දැනට ධාවනය වන බව පිහි�
 zh_TW.UpdateAppRunning=安裝程式偵測到 %1 正在執行中。%n%n將會自動關閉。 點擊 確認 繼續，或 取消 離開。
 sr_Latn_RS.UpdateAppRunning=Setup je detektovao da %1 se trenutno izvršava.%n%nBiće zatvoreno automatski. Kliknite OK da nastavite, ili Otkaži da izađete.
 sr_Cyrl_RS.UpdateAppRunning =Сетуп је детектовао да %1 се тренутно извршава.%n%nБиће затворено аутоматски. Кликните ОК да наставите, или Откажи да изађете.
+he.UpdateAppRunning=תוכנית ההתקנה זיהתה ש-%1 פועלת כרגע.%n%nהיא תיסגר אוטומטית. לחץ על אישור כדי להמשיך, או ביטול כדי לצאת.
 ;======================================================================================================
-en.WarningClearAppData =Do you want to clear the user settings and application cached data?
+en_US.WarningClearAppData =Do you want to clear the user settings and application cached data?
+en_GB.WarningClearAppData =Do you want to clear the user settings and application cached data?
 ar_SA.WarningClearAppData =هل تريد مسح إعدادات المستخدم وبيانات التطبيق المؤقتة؟
 bg.WarningClearAppData =Искате ли да изчистите потребителските настройки и кешираните данни на приложението?
 ca.WarningClearAppData =Voleu esborrar la configuració de l'usuari i les dades de la memòria cau de l'aplicació?
@@ -539,10 +560,12 @@ si.WarningClearAppData =ඔබට පරිශ්‍රීලක සැකසු
 zh_TW.WarningClearAppData =您想要清除使用者設定和應用程式內的快取資料嗎?
 sr_Latn_RS.WarningClearAppData =Da li želite da obrišete korisničke postavke i keširane podatke aplikacije?
 sr_Cyrl_RS.WarningClearAppData =Да ли желите да обришете корисничке поставке и кеширане податке апликације?
+he.WarningClearAppData =האם ברצונך לנקות את הגדרות המשתמש ונתוני המטמון של היישום?
 ;======================================================================================================
 
 
-;en.AssociateDescription =Associate office document file types with %1
+;en_US.AssociateDescription =Associate office document file types with %1
+;en_GB.AssociateDescription =Associate office document file types with %1
 ;ar_SA.AssociateDescription =هل تريد ربط صيغة المستند بـ %1
 ;bg.AssociateDescription =Свържете типовете файлове на офис документи с %1
 ;it_IT.AssociateDescription =Associa i file documentodi Office con %1
@@ -566,8 +589,10 @@ sr_Cyrl_RS.WarningClearAppData =Да ли желите да обришете к�
 ;zh_TW.AssociateDescription =與文書處理檔案類型聯結 %1
 ;sr_Latn_RS.AssociateDescription =Poveži vrste ofis fajl dokumenata sa %1
 ;sr_Cyrl_RS.AssociateDescription =Повежи врсте офис фајл докумената са %1
+he.AssociateDescription =שייך סוגי קבצי מסמכי משרד ל-%1
 ;======================================================================================================
-en.UpdateService =Update service for {#sAppName}
+en_US.UpdateService =Update service for {#sAppName}
+en_GB.UpdateService =Update service for {#sAppName}
 ar_SA.UpdateService =خدمة التحديث لـ {#sAppName}
 cs.UpdateService =Služba aktualizace {#sAppName}
 fi.UpdateService =Palvelu päivitystä varten {#sAppName}
@@ -592,6 +617,7 @@ sr_Latn_RS.UpdateService =Ažuriraj uslugu za {#sAppName}
 si.UpdateService ={#sAppName} සඳහා යාවත්කාල සේවාව
 hy_AM.UpdateService =Թարմացրեք ծառայությունը {#sAppName}-ի համար
 sr_Cyrl_RS.UpdateService =Ажурирај услугу за {#sAppName}
+he.UpdateService =שירות עדכון עבור {#sAppName}
 
 [Code]
 const
@@ -904,6 +930,13 @@ begin
   if DirExists(path) then DelTree(path, true, true, true)
 end;
 
+#ifndef _WIN_XP
+function ShouldSkipPage(PageID: Integer): Boolean;
+begin
+  Result := (PageID = wpSelectDir) and not CheckCommandlineParam('/enabledirpage');
+end;
+#endif
+
 function getAppMutex(P: String): String;
 var
   hWnd: Longint;
@@ -1035,12 +1068,9 @@ Source: "data\vcredist_{#ARCH}.exe"; DestDir: {app}; Flags: deleteafterinstall; 
   Check: not checkVCRedist2019;
 #endif
 
-Source: "{#BRANDING_DIR}\data\VisualElementsManifest.xml"; DestDir: {app}; DestName: {#VISEFFECTS_MANIFEST_NAME}; MinVersion: 6.3;
-Source: "{#BRANDING_DIR}\data\visual_elements_icon_*"; DestDir: {app}\browser;   MinVersion: 6.3;
-
-Source: "{#BUILD_DIR}\desktop\*"; DestDir: {app}; Flags: recursesubdirs;
+Source: "{#BUILD_DIR}\desktop\*"; DestDir: {app}; Flags: ignoreversion recursesubdirs;
 #if defined(_WIN_XP) | defined(EMBED_HELP)
-Source: "{#BUILD_DIR}\help\*"; DestDir: {app}; Flags: recursesubdirs;
+Source: "{#BUILD_DIR}\help\*"; DestDir: {app}; Flags: ignoreversion recursesubdirs;
 #endif
 Source: "{#BUILD_DIR}\desktop\*.exe"; DestDir: {app}; Flags: signonce;
 Source: "{#BUILD_DIR}\desktop\*.dll"; DestDir: {app}; Flags: signonce;

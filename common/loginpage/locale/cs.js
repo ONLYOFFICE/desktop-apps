@@ -88,6 +88,7 @@ l10n.cs = {
     settOptThemeLight: 'Světlý',
     settOptThemeClassicLight: 'Klasický světlý',
     settOptThemeDark: 'Tmavý',
+    settOptThemeGray: 'Šedé',
     settOptLaunchMode: 'Otevřít soubor',
     settOptLaunchInTab: 'Na kartě',
     settOptLaunchInWindow: 'V okně',
@@ -111,4 +112,6 @@ l10n.cs = {
     settOptDescAUpdateSilent: "Stažení a instalace aktualizace na pozadí",
     settOptDescAUpdateAsk: "O všech krocích aktualizace budete informováni.",
     settRtlMode: "Rozhraní RTL",
+    tplPanelLocal: "Místní",
+    tplPanelCloud: "Cloudové",
 }

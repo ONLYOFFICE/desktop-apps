@@ -68,3 +68,4 @@ BEGIN
     END
 END
 
+#include "res/langs/translation.rc"

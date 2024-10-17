@@ -44,23 +44,53 @@ namespace NSTheme {
             {CTheme::ColorRole::ecrWindowBorder, "window-border"},
 
             {CTheme::ColorRole::ecrTextNormal, "text-normal"},
-            {CTheme::ColorRole::ecrTextPressed, "text-normal-pressed"},
+            {CTheme::ColorRole::ecrTextPretty, "text-pretty"},
+
+            {CTheme::ColorRole::ecrButtonBackground, "tool-button-background"},
+            {CTheme::ColorRole::ecrButtonHoverBackground, "tool-button-hover-background"},
+            {CTheme::ColorRole::ecrButtonPressedBackground, "tool-button-pressed-background"},
+            {CTheme::ColorRole::ecrButtonBackgroundActive, "tool-button-active-background"},
+
+            {CTheme::ColorRole::ecrDownloadWidgetBackground, "download-widget-background"},
+            {CTheme::ColorRole::ecrDownloadWidgetBorder, "download-widget-border"},
+            {CTheme::ColorRole::ecrDownloadItemHoverBackground, "download-item-hover-background"},
+
+            {CTheme::ColorRole::ecrDownloadGhostButtonText, "download-ghost-button-text"},
+            {CTheme::ColorRole::ecrDownloadGhostButtonTextHover, "download-ghost-button-text-hover"},
+            {CTheme::ColorRole::ecrDownloadGhostButtonTextPressed, "download-ghost-button-text-pressed"},
+            {CTheme::ColorRole::ecrDownloadGhostButtonTextPressedItemHover, "download-ghost-button-text-pressed-item-hover"},
+
+            {CTheme::ColorRole::ecrDownloadLabelText, "download-label-text"},
+            {CTheme::ColorRole::ecrDownloadLabelTextInfo, "download-label-text-info"},
+            {CTheme::ColorRole::ecrDownloadLabelTextInfoItemHover, "download-label-text-info-item-hover"},
+
+            {CTheme::ColorRole::ecrDownloadProgressBarBackground, "download-progressbar-background"},
+            {CTheme::ColorRole::ecrDownloadProgressBarBackgroundItemHover, "download-progressbar-background-item-hover"},
+            {CTheme::ColorRole::ecrDownloadProgressBarChunk, "download-progressbar-chunk"},
+
+            {CTheme::ColorRole::ecrDownloadScrollBarHandle, "download-scrollbar-handle"},
+
+            {CTheme::ColorRole::ecrToolTipText, "tooltip-text"},
+            {CTheme::ColorRole::ecrToolTipBorder, "tooltip-border"},
+            {CTheme::ColorRole::ecrToolTipBackground, "tooltip-background"},
 
     //      {  "tab-active-background": "#fff",
             {CTheme::ColorRole::ecrTabSimpleActiveBackground, "tab-simple-active-background"},
             {CTheme::ColorRole::ecrTabSimpleActiveText, "tab-simple-active-text"},
             {CTheme::ColorRole::ecrTabDefaultActiveBackground, "tab-default-active-background"},
             {CTheme::ColorRole::ecrTabDefaultActiveText, "tab-default-active-text"},
-    //      {  "tab-divider": "#a5a5a5",
+            {CTheme::ColorRole::ecrTabDivider, "tab-divider"},
 
             {CTheme::ColorRole::ecrButtonNormalOpacity, "button-normal-opacity"},
-            {CTheme::ColorRole::ecrLogoColor, "logo"}
+            {CTheme::ColorRole::ecrLogoColor, "logo"},
+            {CTheme::ColorRole::ecrTabThemeType, "tab-editor-theme-type"}
         };
 
     static const std::map<QString, QString> map_alias_names = {
             {"brand-word", "toolbar-header-document"},
             {"brand-slide", "toolbar-header-presentation"},
             {"brand-cell", "toolbar-header-spreadsheet"},
+            {"brand-pdf", "toolbar-header-pdf"},
 
             {"window-background", "background-toolbar"},
 //            {CTheme::ColorRole::ecrWindowBorder, "window-border"},
@@ -150,6 +180,7 @@ public:
             {"theme-classic-light", ":/themes/theme-classic-light.json"},
             {"theme-dark", ":/themes/theme-dark.json"},
             {"theme-contrast-dark", ":/themes/theme-contrast-dark.json"},
+            {"theme-gray", ":/themes/theme-gray.json"},
         };
 
         GET_REGISTRY_USER(_reg_user);
@@ -414,7 +445,7 @@ auto CTheme::stype() const -> QString
     }
 }
 
-auto CTheme::value(ColorRole r) const -> std::wstring
+auto CTheme::value(ColorRole r, const std::wstring& def) const -> std::wstring
 {
     if ( NSTheme::map_names.find(r) != NSTheme::map_names.end() ) {
         if ( m_priv->jsonValues.contains(NSTheme::map_names.at(r)) ) {
@@ -422,7 +453,7 @@ auto CTheme::value(ColorRole r) const -> std::wstring
         }
     }
 
-    return L"";
+    return def;
 }
 
 auto CTheme::color(ColorRole role) const -> QColor
@@ -591,7 +622,7 @@ auto CThemes::parseThemeName(const std::wstring& wjson) -> std::wstring
 //    return false;
 //}
 
-auto CThemes::addLocalTheme(const QJsonObject& jsonobj, const QString& filepath) -> bool
+auto CThemes::addLocalTheme(QJsonObject& jsonobj, const QString& filepath) -> bool
 {
     if ( m_priv->validateTheme(jsonobj) ) {
         if ( !filepath.isEmpty() ) {
@@ -601,10 +632,26 @@ auto CThemes::addLocalTheme(const QJsonObject& jsonobj, const QString& filepath)
                 if ( QFile::exists(dest_file_path) )
                     QFile::remove(dest_file_path);
 
-                if (!QFile::copy(filepath, dest_file_path))
+                QJsonObject colors = jsonobj["colors"].toObject();
+                auto theme_template = (jsonobj.contains("type") && jsonobj["type"].toString() == NSTheme::theme_type_dark) ?
+                                          THEME_DEFAULT_DARK_ID : THEME_DEFAULT_LIGHT_ID;
+                QJsonObject template_obj = Utils::parseJsonFile(m_priv->rc_themes[theme_template]);
+                QJsonObject values = template_obj["values"].toObject();
+                for (auto it = values.begin(); it != values.end(); it++) {
+                    if (!colors.contains(it.key())) {
+                        const auto alias_it = NSTheme::map_alias_names.find(it.key());
+                        if (alias_it == NSTheme::map_alias_names.end()) {
+                            colors.insert(it.key(), it.value());
+                        } else
+                        if (!colors.contains(alias_it->second))
+                            colors.insert(alias_it->second, it.value());
+                    }
+                }
+                jsonobj["colors"] = colors;
+                QByteArray data = QJsonDocument(jsonobj).toJson(QJsonDocument::Compact);
+                if (!Utils::writeFile(dest_file_path, data))
                     return false;
                 else {
-                    QByteArray data = QJsonDocument(jsonobj).toJson(QJsonDocument::Compact);
 //                    m_priv->local_themes[jsonobj.value("id").toString()] = std::make_pair("", data);
                     m_priv->local_themes[jsonobj.value("id").toString()] = std::make_pair(dest_file_path, data);
 

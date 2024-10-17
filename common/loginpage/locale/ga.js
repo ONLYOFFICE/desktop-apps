@@ -88,6 +88,7 @@ l10n.ga = {
     settOptThemeLight: 'Solas',
     settOptThemeClassicLight: 'Solas Clasaiceach',
     settOptThemeDark: 'Dorcha',
+    settOptThemeGray: 'Liath',
     settOptLaunchMode: 'Oscail comhad',
     settOptLaunchInTab: 'Sa chluaisín',
     settOptLaunchInWindow: 'I bhfuinneog',
@@ -109,4 +110,6 @@ l10n.ga = {
     settOptDescDisabled: "Díchumasófar nuashonruithe atá le uathsheiceáil",
     settOptDescAUpdateSilent: "Íoslódáil na nuashonruithe agus fiafraigh roimh iad a shuiteáil",
     settOptDescAUpdateAsk: "Cuirfear ar an eolas thú faoi gach céim nuashonruithe",
+    tplPanelLocal: "Áitiúla",
+    tplPanelCloud: "Cloud",
 }

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>%d days are left until the license expiration.</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@ימים@</string>
+		<key>days</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>many</key>
+			<string>%d days are left until the license expiration.</string>
+			<key>one</key>
+			<string>%d ימים נותרים עד לפקיעת תוקף הרישיון.</string>
+			<key>other</key>
+			<string>%d ימים נותרו עד לפקיעת תוקף הרישיון.</string>
+			<key>two</key>
+			<string>%d days are left until the license expiration.</string>
+		</dict>
+	</dict>
+	<key>You are using a trial version of the application.
+The trial period will end in %d days, after that you will not be able to create and edit documents.</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@ימים@</string>
+		<key>days</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>many</key>
+			<string>You are using a trial version of the application.
+The trial period will end in %d days, after that you will not be able to create and edit documents.</string>
+			<key>one</key>
+			<string>אתה משתמש בגירסת ניסיון של היישום.
+תקופת הניסיון תסתיים ביום %d, ולאחר מכן לא תוכל ליצור ולערוך מסמכים.</string>
+			<key>other</key>
+			<string>אתה משתמש בגירסת ניסיון של היישום.
+תקופת הניסיון תסתיים ב- %d ימים, לאחר מכן לא תוכל ליצור ולערוך מסמכים.</string>
+			<key>two</key>
+			<string>You are using a trial version of the application.
+The trial period will end in %d days, after that you will not be able to create and edit documents.</string>
+		</dict>
+	</dict>
+	<key>You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@מסמכים@</string>
+		<key>documents</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>ld</string>
+			<key>many</key>
+			<string>You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?</string>
+			<key>one</key>
+			<string>יש לך %ld %@ מסמך עם שינויים שלא אושרו. האם ברצונך לסקור שינויים אלה לפני שתפסיק?</string>
+			<key>other</key>
+			<string>יש לך %ld %@ מסמכים עם שינויים שלא אושרו. האם ברצונך לסקור שינויים אלה לפני שתפסיק?</string>
+			<key>two</key>
+			<string>You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?</string>
+		</dict>
+	</dict>
+</dict>
+</plist>

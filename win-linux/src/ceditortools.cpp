@@ -260,7 +260,7 @@ namespace CEditorTools
         return dlg.selectFolder(sel_path).toStdWString();
     }
 
-    auto createEditorPanel(const COpenOptions& opts) -> CTabPanel *
+    auto createEditorPanel(const COpenOptions& opts, QWidget *parent) -> CTabPanel *
     {
         int _file_format{0};
         if ( opts.srctype == etLocalFile ) {
@@ -272,13 +272,14 @@ namespace CEditorTools
             if (CFileInspector::isLocalFile(QString::fromStdWString(opts.wurl))) {
                 QFileInfo info(opts.url);
                 if (!info.isReadable()) {
+                    AscAppManager::gotoMainWindow();
                     CMessage::error(AscAppManager::getInstance().mainWindow(), QObject::tr("Access to file '%1' is denied!").arg(opts.url));
                     return nullptr;
                 }
             }
         }
 
-        CTabPanel * panel = CTabPanel::createEditorPanel(nullptr, opts.panel_size);
+        CTabPanel * panel = CTabPanel::createEditorPanel(parent, opts.panel_size);
         QJsonObject json_opts = opts.parent_widget == COpenOptions::eWidgetType::window ?
                             QJsonObject{{"widgetType","window"}, {"captionHeight",TOOLBTN_HEIGHT}} :
                             QJsonObject{{"widgetType","tab"}, {"captionHeight",0}};

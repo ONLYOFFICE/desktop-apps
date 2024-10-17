@@ -1,0 +1,237 @@
+/* No comment provided by engineer. */
+"%@ Help" = "%@ Help";
+
+/* No comment provided by engineer. */
+"About %@" = "About %@";
+
+/* No comment provided by engineer. */
+"Acknowledgments" = "Acknowledgments";
+
+/* No comment provided by engineer. */
+"Before signing the document, it must be saved." = "Before signing the document, it must be saved.";
+
+/* No comment provided by engineer. */
+"Cancel" = "Cancel";
+
+/* No comment provided by engineer. */
+"Cannot open file of Digital Signature" = "Cannot open file of Digital Signature";
+
+/* No comment provided by engineer. */
+"Cannot open file of Private Key" = "Cannot open file of Private Key";
+
+/* No comment provided by engineer. */
+"Cannot open folder of the file location." = "Cannot open folder of the file location.";
+
+/* No comment provided by engineer. */
+"Comma-Separated Values" = "Comma Separated Values (*.csv)";
+
+/* No comment provided by engineer. */
+"Create portal" = "Create portal";
+
+/* No comment provided by engineer. */
+"Delete and Quit" = "Delete and Quit";
+
+/* No comment provided by engineer. */
+"DjVu File" = "Digital Document (*.djvu)";
+
+/* No comment provided by engineer. */
+"Do you want to save the changes made to the document \"%@\"?" = "Do you want to save the changes made to the document \"%@\"?";
+
+/* No comment provided by engineer. */
+"Document %ld.docx" = "Document %ld.docx";
+
+/* No comment provided by engineer. */
+"Document %ld.pdf" = "Document %ld.pdf";
+
+/* No comment provided by engineer. */
+"Document template" = "Word Open XML Document Template (*.dotx)";
+
+/* No comment provided by engineer. */
+"Don't Save" = "Don't Save";
+
+/* No comment provided by engineer. */
+"Excel 97-2003 Spreadsheet" = "Excel 97-2003 Spreadsheet (*.xls)";
+
+/* No comment provided by engineer. */
+"Excel 2007 Spreadsheet" = "Office Open XML Spreadsheet (*.xlsx)";
+
+/* No comment provided by engineer. */
+"FictionBook File" = "FictionBook 2 File (*.fb2)";
+
+/* No comment provided by engineer. */
+"File \"%@\" can not be open or not exist." = "File \"%@\" can not be open or not exist.";
+
+/* No comment provided by engineer. */
+"File can not be open." = "File can not be open.";
+
+/* No comment provided by engineer. */
+"File Format:" = "File Format:";
+
+/* No comment provided by engineer. */
+"Hide %@" = "Hide %@";
+
+/* No comment provided by engineer. */
+"If you don't review your documents, all your changeses will be lost." = "If you don't review your documents, all your changes will be lost.";
+
+/* No comment provided by engineer. */
+"If you have already purchased %@, you should find your activation key in an email confirmation." = "If you have already purchased %@, you should find your activation key in an email confirmation.";
+
+/* No comment provided by engineer. */
+"License Agreement" = "License Agreement";
+
+/* No comment provided by engineer. */
+"Macro-enabled Presentation" = "Macro-enabled Presentation (*.pptm)";
+
+/* No comment provided by engineer. */
+"Macro-enabled spreadsheet template" = "Macro-enabled Spreadsheet template (*.xltm)";
+
+/* No comment provided by engineer. */
+"Mobipocket e-book" = "Mobipocket File (*.mobi)";
+
+/* No comment provided by engineer. */
+"new-document" = "New document";
+
+/* No comment provided by engineer. */
+"new-pdfform" = "New PDF form";
+
+/* No comment provided by engineer. */
+"new-presentation" = "New presentation";
+
+/* No comment provided by engineer. */
+"new-spreadsheet" = "New spreadsheet";
+
+/* No comment provided by engineer. */
+"No" = "No";
+
+/* No comment provided by engineer. */
+"OK" = "OK";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE can not open the Digital Signature file. Try opening another file." = "ONLYOFFICE can not open the Digital Signature file. Try opening another file.";
+
+/* No comment provided by engineer. */
+"ONLYOFFICE can not open the Private Key. Try opening another file." = "ONLYOFFICE can not open the Private Key. Try opening another file.";
+
+/* No comment provided by engineer. */
+"OpenDocument Document Template" = "OpenDocument Document Template (*.ott)";
+
+/* No comment provided by engineer. */
+"OpenDocument Presentation Template" = "OpenDocument Presentation Template (*.otp)";
+
+/* No comment provided by engineer. */
+"OpenDocument Spreadsheet Template" = "OpenDocument Spreadsheet Template (*.ots)";
+
+/* No comment provided by engineer. */
+"Opening" = "Opening";
+
+/* No comment provided by engineer. */
+"OpenOffice Document" = "OpenDocument Text File (*.odt)";
+
+/* No comment provided by engineer. */
+"OpenOffice Presentation" = "OpenDocument Presentation (*.odp)";
+
+/* No comment provided by engineer. */
+"OpenOffice Spreadsheet" = "OpenDocument Spreadsheet (*.ods)";
+
+/* No comment provided by engineer. */
+"PDF File" = "Portable Document (*.pdf)";
+
+/* No comment provided by engineer. */
+"PDF/A File" = "Portable Document /A (*.pdf)";
+
+/* No comment provided by engineer. */
+"Plain Text" = "Plain Text File (*.txt)";
+
+/* No comment provided by engineer. */
+"PowerPoint 97-2003 Presentation" = "PowerPoint 97-2003 Presentation (*.ppt)";
+
+/* No comment provided by engineer. */
+"PowerPoint 2007 Presentation" = "Office Open XML Presentation (*.pptx)";
+
+/* No comment provided by engineer. */
+"PowerPoint Slide Show" = "Office Open XML Slide Show (*.ppsx)";
+
+/* No comment provided by engineer. */
+"Preparing..." = "Preparing...";
+
+/* No comment provided by engineer. */
+"Presentation %ld.pptx" = "Presentation %ld.pptx";
+
+/* No comment provided by engineer. */
+"Presentation template" = "PowerPoint Open XML Presentation Template (*.potx)";
+
+/* No comment provided by engineer. */
+"Presenter View" = "Presenter View";
+
+/* No comment provided by engineer. */
+"Quit %@" = "Quit %@";
+
+/* No comment provided by engineer. */
+"Review Changes..." = "Review Changes...";
+
+/* No comment provided by engineer. */
+"Rich Text Document" = "Rich Text Format File (*.rtf)";
+
+/* No comment provided by engineer. */
+"Save" = "Save";
+
+/* No comment provided by engineer. */
+"Save the document?" = "Save the document?";
+
+/* No comment provided by engineer. */
+"Signature Details" = "Signature Details";
+
+/* No comment provided by engineer. */
+"Spreadsheet %ld.xlsx" = "Spreadsheet %ld.xlsx";
+
+/* No comment provided by engineer. */
+"Spreadsheet template" = "Excel Open XML Spreadsheet Template (*.xltx)";
+
+/* No comment provided by engineer. */
+"Thank you for evaluating %@!" = "Thank you for evaluating %@!";
+
+/* No comment provided by engineer. */
+"The document \"%@\" must be built. Continue?" = "The document \"%@\" must be built. Continue?";
+
+/* No comment provided by engineer. */
+"To open the file location, it must be saved." = "To open the file location, it must be saved.";
+
+/* No comment provided by engineer. */
+"Unconfirmed" = "Unconfirmed";
+
+/* No comment provided by engineer. */
+"Untitled" = "Untitled";
+
+/* No comment provided by engineer. */
+"Web Page" = "Web Page";
+
+/* No comment provided by engineer. */
+"With access to pro features" = "With access to pro features";
+
+/* No comment provided by engineer. */
+"Word 97-2003 Document" = "Word 97-2003 Document (*.doc)";
+
+/* No comment provided by engineer. */
+"Word 2007 Document" = "Office Open XML Document (*.docx)";
+
+/* No comment provided by engineer. */
+"XML Paper Specification" = "OpenXPS Document (*.xps)";
+
+/* No comment provided by engineer. */
+"Yes" = "Yes";
+
+/* No comment provided by engineer. */
+"You have %ld %@ documents with unconfirmed changes. Do you want to review these changes before quitting?" = "You have %1$ld %2$@ documents with unconfirmed changes. Do you want to review these changes before quitting?";
+
+/* No comment provided by engineer. */
+"You have successfully activated %@." = "You have successfully activated %@.";
+
+/* No comment provided by engineer. */
+"Your changes will be lost if you don’t save them." = "Your changes will be lost if you don’t save them.";
+
+/* No comment provided by engineer. */
+"Your subscription has expired.\n\nThe program works in the non-activated mode.\n\nNow you can prolong or upgrade your subscription with a discount." = "Your subscription has expired.\n\nThe program works in the non-activated mode.\n\nNow you can prolong or upgrade your subscription with a discount.";
+
+/* No comment provided by engineer. */
+"Your subscription is about to expire\n(%d days left).\n\nWe have a special offer for you." = "Your subscription is about to expire\n(%d days left).\n\nWe have a special offer for you.";
+

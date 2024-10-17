@@ -11,14 +11,42 @@
         "window-border": "#888",
 
         "text-normal": "#444",
-        "text-normal-pressed": "#fff",
+        "text-pretty": "#fff",
+
+        "tool-button-background": "#f1f1f1",
+        "tool-button-hover-background": "#cecece",
+        "tool-button-pressed-background": "#b7b7b7",
+        "tool-button-active-background": "#fff",
+
+        "download-widget-background": "#fff",
+        "download-widget-border": "#d1d1d1",
+        "download-item-hover-background": "#e0e0e0",
+
+        "download-ghost-button-text": "#3a83db",
+        "download-ghost-button-text-hover": "#444444",
+        "download-ghost-button-text-pressed": "#a5a5a5",
+        "download-ghost-button-text-pressed-item-hover": "#868686",
+
+        "download-label-text": "#444",
+        "download-label-text-info": "#a5a5a5",
+        "download-label-text-info-item-hover": "#868686",
+
+        "download-progressbar-chunk": "#3a83db",
+        "download-progressbar-background": "#e6e6e6",
+        "download-progressbar-background-item-hover": "#cacaca",
+
+        "download-scrollbar-handle": "#cacaca",
+
+        "tooltip-text": "#373737",
+        "tooltip-border": "#c0c0c0",
+        "tooltip-background": "#fff",
 
         "tab-active-background": "#fff",
         "tab-simple-active-background": "#fff",
         "tab-simple-active-text": "#444",
         "tab-default-active-background": "#fff",
         "tab-default-active-text": "#444",
-        "tab-divider": "#a5a5a5",
+        "tab-divider": "#cbcbcb",
 
         "button-normal-opacity": "rgba(255,255,255,255)",
         "logo-type": "dark"

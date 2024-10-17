@@ -43,32 +43,24 @@ CEditorWindow::CEditorWindow(const QRect& rect, CTabPanel* panel)
     : CWindowPlatform(rect)
     , d_ptr(new CEditorWindowPrivate(this))
 {
-    setObjectName("editorWindow");
-    setWindowTitle("_");
-    d_ptr.get()->init(panel);
-    m_pMainPanel = createMainPanel(this, d_ptr->panel()->data()->title());
-    setCentralWidget(m_pMainPanel);
-#ifdef __linux__
-    if (isCustomWindowStyle()) {
-        CX11Decoration::setTitleWidget(m_boxTitleBtns);
-        m_pMainPanel->setMouseTracking(true);
-        setMouseTracking(true);
+    init(panel);
+}
+
+CEditorWindow::CEditorWindow(const QRect &rect, const COpenOptions &opts)
+    : CWindowPlatform(rect)
+{
+    if (CTabPanel *panel = CEditorTools::createEditorPanel(opts, this)) {
+        d_ptr = std::unique_ptr<CEditorWindowPrivate>(new CEditorWindowPrivate(this));
+        CAscTabData * panel_data = panel->data();
+        QRegularExpression re("^ascdesktop:\\/\\/(?:compare|merge|template)");
+        if ( re.match(QString::fromStdWString(panel_data->url())).hasMatch() ) {
+            panel_data->setIsLocal(true);
+            panel_data->setUrl("");
+        }
+        init(panel);
+    } else {
+        throw std::invalid_argument("Cannot create panel");
     }
-#else
-    recalculatePlaces();
-#endif
-
-    QTimer::singleShot(0, this, [=]{m_pMainView->show();});
-    AscAppManager::bindReceiver(panel->cef()->GetId(), d_ptr.get());
-    AscAppManager::sendCommandTo(panel->cef(), L"editor:config", L"request");
-
-    if (d_ptr->fillformMode() || d_ptr->panel()->data()->hasError())
-        d_ptr->ffWindowCustomize();
-
-    QTimer::singleShot(200, this, [=]() {
-        if (d_ptr->canExtendTitle())
-            setWindowTitle(panel->data()->title());
-    });
 }
 
 CEditorWindow::~CEditorWindow()
@@ -77,6 +69,15 @@ CEditorWindow::~CEditorWindow()
 }
 
 /** Public **/
+
+CEditorWindow* CEditorWindow::create(const QRect &rect, const COpenOptions &opts)
+{
+    CEditorWindow * editor_win = nullptr;
+    try {
+        editor_win = new CEditorWindow(rect, opts);
+    } catch (const std::exception&) {}
+    return editor_win;
+}
 
 const QObject * CEditorWindow::receiver()
 {
@@ -254,6 +255,36 @@ QWidget * CEditorWindow::createMainPanel(QWidget * parent, const QString& title)
     return mainPanel;
 }
 
+void CEditorWindow::init(CTabPanel *panel)
+{
+    setObjectName("editorWindow");
+    setWindowTitle("_");
+    d_ptr.get()->init(panel);
+    m_pMainPanel = createMainPanel(this, d_ptr->panel()->data()->title());
+    setCentralWidget(m_pMainPanel);
+#ifdef __linux__
+    if (isCustomWindowStyle()) {
+        CX11Decoration::setTitleWidget(m_boxTitleBtns);
+        m_pMainPanel->setMouseTracking(true);
+        setMouseTracking(true);
+    }
+#else
+    recalculatePlaces();
+#endif
+
+    QTimer::singleShot(0, this, [=]{m_pMainView->show();});
+    AscAppManager::bindReceiver(panel->cef()->GetId(), d_ptr.get());
+    AscAppManager::sendCommandTo(panel->cef(), L"editor:config", L"request");
+
+    if (d_ptr->fillformMode() || d_ptr->panel()->data()->hasError())
+        d_ptr->ffWindowCustomize();
+
+    QTimer::singleShot(200, this, [=]() {
+        if (d_ptr->canExtendTitle())
+            setWindowTitle(panel->data()->title());
+    });
+}
+
 CTabPanel * CEditorWindow::mainView() const
 {
     return qobject_cast<CTabPanel *>(m_pMainView);
@@ -315,6 +346,8 @@ void CEditorWindow::onMoveEvent(const QRect&)
 void CEditorWindow::captureMouse()
 {
 #ifdef _WIN32
+    ReleaseCapture();
+    PROCESSEVENTS();
     POINT cursor{0,0};
     if (GetCursorPos(&cursor)) {
 //        QRect _g{geometry()};
@@ -325,8 +358,8 @@ void CEditorWindow::captureMouse()
 //        if ( cursor.x > _g.right() - dpiCorr(150) )
 //            _window_offset_x = _g.right() - dpiCorr(150);
 //        else _window_offset_x = cursor.x - _g.x();
-        move(cursor.x - CAPTURED_WINDOW_OFFSET_X, cursor.y - CAPTURED_WINDOW_OFFSET_Y);
-        ReleaseCapture();
+        SetWindowPos((HWND)winId(), NULL, cursor.x - CAPTURED_WINDOW_OFFSET_X, cursor.y - CAPTURED_WINDOW_OFFSET_Y,
+                        0, 0, SWP_NOZORDER | SWP_NOSIZE | SWP_NOACTIVATE);
         PostMessage((HWND)winId(), WM_NCLBUTTONDOWN, HTCAPTION, MAKELPARAM(cursor.x, cursor.y));
     }
 #else

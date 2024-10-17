@@ -140,6 +140,7 @@ private:
     void sendSettings(const std::wstring& opts);
     void applyTheme(const std::wstring&, bool force = false);
     void handleDeeplinkActions(const std::vector<std::wstring>& actions);
+    void setHasFrameFeature(CCefView*, const std::wstring&, int);
 
     CMainWindow * prepareMainWindow(const QRect& r = QRect());
     CMainWindow * mainWindowFromViewId(int uid) const;
@@ -216,6 +217,7 @@ public:
     void OnEvent(NSEditorApi::CAscCefMenuEvent *);
     bool event(QEvent *event);
 private:
+    friend class Association;
     friend class CAscApplicationManagerWrapper_Private;
     std::unique_ptr<CAscApplicationManagerWrapper_Private> m_private;
 

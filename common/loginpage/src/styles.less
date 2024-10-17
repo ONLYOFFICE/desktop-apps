@@ -255,7 +255,7 @@ h4 {
 .img-format {
     background: -webkit-image-set( data-uri('formats@1.25x.png') 1.25x,
         data-uri('formats@1.5x.png') 1.5x, data-uri('formats@1.75x.png') 1.75x) no-repeat;
-    background-size: 1056px auto;
+    background-size: 1032px auto;
 }
 
 li.menu-item {
@@ -352,7 +352,7 @@ li.menu-item {
     }
 
     &.templates {
-        padding: 20px;
+/*        padding: 20px;*/
     }
 }
 
@@ -420,22 +420,24 @@ li.menu-item {
     overflow: hidden;
 }
 
-#recovery-sep {
-    height: 40px;
-    display: none;
+.recent-panel-container {
+    display: grid;
+    gap: 40px;
+    height: 100%;
+    grid-template-rows: auto;
 }
 
 #box-recovery {
     display: none;
 
-        .flex-fill {
-            overflow-y: auto;
-            overflow-x: hidden;
-        }
+    .flex-fill {
+        overflow-y: auto;
+        overflow-x: hidden;
+        flex-grow: 0;
+    }
 }
 
 #box-recent {
-
     .flexbox {
         .flex-fill {
             overflow-y: auto;
@@ -648,98 +650,95 @@ li.menu-item {
         &.odp {
             .format-from-index(12);
         }
-        &.pps {
+        &.pdf {
             .format-from-index(13);
         }
-        &.pdf {
+        &.djvu {
             .format-from-index(14);
         }
-        &.djvu {
+        &.xps {
             .format-from-index(15);
         }
-        &.xps {
+        &.xml {
             .format-from-index(16);
         }
-        &.xml {
+        &.mht {
             .format-from-index(17);
         }
-        &.mht {
+        &.epub {
             .format-from-index(18);
         }
-        &.epub {
+        &.fb2 {
             .format-from-index(19);
         }
-        &.fb2 {
+        &.dotx {
             .format-from-index(20);
         }
-        &.dotx {
+        &.xltx {
             .format-from-index(21);
         }
-        &.xltx {
+        &.potx {
             .format-from-index(22);
         }
-        &.potx {
+        &.ott {
             .format-from-index(23);
         }
-        &.ott {
+        &.ots {
             .format-from-index(24);
         }
-        &.ots {
+        &.otp {
             .format-from-index(25);
         }
-        &.otp {
+        &.pps {
             .format-from-index(26);
         }
-/*        &.pps {
+        &.ppsx {
             .format-from-index(27);
         }
-*/        &.ppsx {
+        &.docxf {
             .format-from-index(28);
         }
-        &.docxf {
+        &.oform {
             .format-from-index(29);
         }
-        &.oform {
+        &.xlsb {
             .format-from-index(30);
         }
-        &.xlsb {
+        &.docm {
             .format-from-index(31);
         }
-        &.docm {
+        &.dotm {
             .format-from-index(32);
         }
-        &.dotm {
+        &.fodt {
             .format-from-index(33);
         }
-        &.fodt {
+        &.xltm {
             .format-from-index(34);
         }
-        &.xltm {
+        &.xlsm {
             .format-from-index(35);
         }
-        &.xlsm {
+        &.fods {
             .format-from-index(36);
         }
-        &.fods {
+        &.pptm {
             .format-from-index(37);
         }
-        &.pptm {
+        &.ppsm {
             .format-from-index(38);
         }
-        &.ppsm {
+        &.potm {
             .format-from-index(39);
         }
-        &.potm {
+        &.fodp {
             .format-from-index(40);
         }
-        &.fodp {
+        &.md {
             .format-from-index(41);
         }
-        &.md {
-            .format-from-index(42);
-        }
         &.neutral {
-            .format-from-index(43);
+            .format-from-index(42);
         }
 
         &.folder {
@@ -876,14 +875,6 @@ li.menu-item {
     .table-box {
         overflow-y: auto;
         flex-grow: 0;
-    }
-}
-
-#box-settings {
-    #options-wrap {
-        overflow-y: auto;
-        flex-grow: 0;
-        height: 100%;
     }
 }
 
@@ -1284,7 +1275,20 @@ li.menu-item {
     > .content-box {
         overflow-y: auto;
     }
+
+    #options-wrap {
+        overflow-y: auto;
+        flex-grow: 0;
+        height: 100%;
+    }
+
+    .settings-field-lang {
+        .dropdown-menu:not(.inner) {
+            width: 350px;
+        }
+    }
 }
+
 
 .templates {
     #frame {
@@ -1293,6 +1297,125 @@ li.menu-item {
         align-items: center;
         justify-content: center;
         position: relative;
+    }
+
+    &.local {
+        section[panel=cloud] {
+            display: none;
+        }
+    }
+
+    &.cloud {
+        section[panel=local] {
+            display: none;
+        }
+    }
+
+    section {
+        height: 100%;
+        overflow-y: auto;
+    }
+
+    .nav-item {
+        border: 1px solid @highlight-button-pressed;
+        padding: 5px 10px;
+
+        &.selected {
+            background-color: @highlight-button-pressed;
+        }
+
+        &[data-value=local] {
+            margin-right: -4px;
+        }
+    }
+
+    .item {
+        padding: 10px;
+        cursor: pointer;
+        width: 160px;
+        height: 225px;
+        display: flex;
+        flex-direction: column;
+
+        .title {
+            color: @text-normal;
+            overflow: hidden;
+            font-size: 14px;
+            height: 3em;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+
+        .icon {
+            @badge-size: 16px;
+
+            flex-grow: 1;
+            .box {
+                position: relative;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%,-50%);
+                width: fit-content;
+            }
+            img {
+                max-width: 140px;
+                max-height: 160px;
+            }
+            svg {
+                width: 140px;
+                height: 120px;
+                fill: @highlight-button-pressed;
+            }
+            .badge {
+                width: @badge-size;
+                height: @badge-size;
+                position: absolute;
+                left: 4px;
+                bottom: 8px;
+            }
+            i.badge {
+                background: -webkit-image-set(data-uri('../res/img/tpltype@1.25x.png') 1.25x,
+                        data-uri('../res/img/tpltype@1.5x.png') 1.5x, data-uri('../res/img/tpltype@1.75x.png') 1.75x) no-repeat;
+                background-size: 16px auto;
+
+                &.word {
+/*                    background-position-y: -@badge-size*0;*/
+                }
+                &.slide {
+                    background-position-y: -@badge-size*1;
+                }
+                &.cell {
+                    background-position-y: -@badge-size*2;
+                }
+                &.pdf {
+                    background-position-y: -@badge-size*3;
+                }
+            }
+        }
+
+        &:hover {
+            background-color: @highlight-button-hover;
+        }
+    }
+
+    .table-templates.list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px 5px;
+    }
+
+    &.win_xp {
+        .icon {
+            .box {
+                left: 0;
+                transform: none;
+            }
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
     }
 }
 

@@ -38,6 +38,8 @@
 #include "filechooser.h"
 #include "utils.h"
 
+#define IsOpeningMode(mode) (mode == Win::Mode::OPEN || mode == Win::Mode::FOLDER)
+
 using std::wstring;
 #ifndef __OS_WIN_XP
 using std::vector;
@@ -94,58 +96,49 @@ auto stringToFilters(const wstring& wstr) -> specvector {
 }
 #endif
 
-void nativeFileDialog(HWND parent_hwnd,
-                      Win::Mode mode,
-                      QStringList &filenames,
-                      const wchar_t* title,
-                      const wstring &file,
-                      const wstring &path,
-                      const wstring &flt,
-                      QString* sel_filter,
-                      bool sel_multiple)
+QStringList Win::openWinFileChooser(QWidget *parent, Mode mode, const QString &title, const QString &file, const QString &path,
+                                        const QString &filter, QString *sel_filter, bool sel_multiple)
 {
-#ifndef __OS_WIN_XP
-    const CLSID rclsid = (mode == Win::Mode::OPEN || mode == Win::Mode::FOLDER) ?
-            CLSID_FileOpenDialog : CLSID_FileSaveDialog;
-    const IID riid = (mode == Win::Mode::OPEN || mode == Win::Mode::FOLDER) ?
-            IID_IFileOpenDialog : IID_IFileSaveDialog;
+    const int pos = file.lastIndexOf('/');
+    const wstring _file = (pos != -1) ? file.mid(pos + 1).toStdWString() : file.toStdWString();
+//    _file = _file.left(_file.lastIndexOf("."));
+    const wstring _path = (path.isEmpty() && pos != -1) ? QDir::toNativeSeparators(file.mid(0, pos)).toStdWString() :
+                              QDir::toNativeSeparators(path).toStdWString();
 
+    QStringList filenames;
+    HWND parent_hwnd = (parent) ? (HWND)parent->winId() : nullptr;
+    WindowHelper::toggleLayoutDirection(parent_hwnd);
+#ifndef __OS_WIN_XP
     HRESULT hr = CoInitializeEx(nullptr, COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE);
     if (SUCCEEDED(hr)) {
-        IFileOpenDialog * pOpenDialog = nullptr;
-        IFileSaveDialog * pSaveDialog = nullptr;
-        LPVOID *ppv = (mode == Win::Mode::OPEN || mode == Win::Mode::FOLDER) ?
-                reinterpret_cast<void**>(&pOpenDialog) : reinterpret_cast<void**>(&pSaveDialog);
-        hr = CoCreateInstance(rclsid,
-                              nullptr,
-                              CLSCTX_INPROC_SERVER,
-                              riid,
-                              ppv);
-
+        IFileDialog *pDialog;
+        hr = CoCreateInstance(IsOpeningMode(mode) ? CLSID_FileOpenDialog : CLSID_FileSaveDialog, nullptr, CLSCTX_INPROC_SERVER,
+                              IsOpeningMode(mode) ? IID_IFileOpenDialog : IID_IFileSaveDialog, (void**)&pDialog);
         if (SUCCEEDED(hr)) {
-            hr = (mode == Win::Mode::OPEN || mode == Win::Mode::FOLDER) ?
-                    pOpenDialog->SetTitle(title) : pSaveDialog->SetTitle(title);
-
+            pDialog->SetTitle(title.toStdWString().c_str());
             FILEOPENDIALOGOPTIONS dwFlags = FOS_PATHMUSTEXIST;
-            hr = (mode == Win::Mode::OPEN || mode == Win::Mode::FOLDER) ?
-                pOpenDialog->GetOptions(&dwFlags) : pSaveDialog->GetOptions(&dwFlags);
+            hr = pDialog->GetOptions(&dwFlags);
             if (SUCCEEDED(hr)) {
                 if (sel_multiple && mode != Win::Mode::SAVE)
                     dwFlags |= FOS_ALLOWMULTISELECT;
-
-                if (mode == Win::Mode::FOLDER)
-                    dwFlags |= FOS_PICKFOLDERS;
 
                 QSettings _r("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced", QSettings::NativeFormat);
                 if ( _r.value("Hidden", 1) == 1 )
                     dwFlags |= FOS_FORCESHOWHIDDEN;
 
-                hr = (mode == Win::Mode::OPEN || mode == Win::Mode::FOLDER) ?
-                        pOpenDialog->SetOptions(dwFlags | FOS_FILEMUSTEXIST) :
-                        pSaveDialog->SetOptions(dwFlags & !FOS_OVERWRITEPROMPT);
+                if (mode == Win::Mode::FOLDER)
+                    dwFlags |= FOS_PICKFOLDERS;
+                else
+                if (mode == Win::Mode::OPEN)
+                    dwFlags |= FOS_FILEMUSTEXIST;
+                else
+                if (mode == Win::Mode::SAVE)
+                    dwFlags &= ~FOS_OVERWRITEPROMPT;
+
+                pDialog->SetOptions(dwFlags);
             }
 
-            specvector filters{stringToFilters(flt)};
+            specvector filters{stringToFilters(filter.toStdWString())};
             uint typeIndex = 1;
             COMDLG_FILTERSPEC * specOpenTypes = new COMDLG_FILTERSPEC[filters.size()];
             for (uint i{0}; i < filters.size(); ++i) {
@@ -157,35 +150,29 @@ void nativeFileDialog(HWND parent_hwnd,
                 }
             }
 
-            hr = (mode == Win::Mode::OPEN || mode == Win::Mode::FOLDER) ?
-                pOpenDialog->SetFileTypes(filters.size(), specOpenTypes) :
-                pSaveDialog->SetFileTypes(filters.size(), specOpenTypes);
+            pDialog->SetFileTypes(filters.size(), specOpenTypes);
             delete [] specOpenTypes;
-            (mode == Win::Mode::OPEN || mode == Win::Mode::FOLDER) ?
-                    pOpenDialog->SetFileTypeIndex(typeIndex) :
-                    pSaveDialog->SetFileTypeIndex(typeIndex);
+            pDialog->SetFileTypeIndex(typeIndex);
 
-            if (!path.empty()) {
+            if (!_path.empty()) {
                 IShellItem * pItem = nullptr;
-                hr = SHCreateItemFromParsingName(path.c_str(), nullptr, IID_PPV_ARGS(&pItem));
+                hr = SHCreateItemFromParsingName(_path.c_str(), nullptr, IID_PPV_ARGS(&pItem));
                 if (SUCCEEDED(hr)) {
-                    (mode == Win::Mode::OPEN || mode == Win::Mode::FOLDER) ?
-                            pOpenDialog->SetFolder(pItem) : pSaveDialog->SetFolder(pItem);
+                    pDialog->SetFolder(pItem);
                     pItem->Release();
                 }
             }
 
-            if (!file.empty() && mode == Win::Mode::SAVE) {
-                pSaveDialog->SetFileName(file.c_str());
-                pSaveDialog->SetDefaultExtension(L"");
+            if (!_file.empty() && mode == Win::Mode::SAVE) {
+                pDialog->SetFileName(_file.c_str());
+                pDialog->SetDefaultExtension(L"");
             }
 
-            hr = (mode == Win::Mode::OPEN || mode == Win::Mode::FOLDER) ?
-                    pOpenDialog->Show(parent_hwnd) : pSaveDialog->Show(parent_hwnd);
+            hr = pDialog->Show(parent_hwnd);
             if (SUCCEEDED(hr)) {
-                if (mode == Win::Mode::OPEN || mode == Win::Mode::FOLDER) {
+                if (IsOpeningMode(mode)) {
                     IShellItemArray * items = nullptr;
-                    hr = pOpenDialog->GetResults(&items);
+                    hr = ((IFileOpenDialog*)pDialog)->GetResults(&items);
                     if (SUCCEEDED(hr) && items) {
                         VectorShellItems iarray = itemsFromItemArray(items);
                         for (IShellItem * item : iarray) {
@@ -203,7 +190,7 @@ void nativeFileDialog(HWND parent_hwnd,
                     }
                 } else {
                     IShellItem * item;
-                    hr = pSaveDialog->GetResult(&item);
+                    hr = pDialog->GetResult(&item);
                     if (SUCCEEDED(hr) && item) {
                         PWSTR pszFilePath;
                         hr = item->GetDisplayName(SIGDN_FILESYSPATH, &pszFilePath);
@@ -216,52 +203,19 @@ void nativeFileDialog(HWND parent_hwnd,
                 }
                 if (mode != Win::Mode::FOLDER) {
                     uint typeIndex;
-                    (mode == Win::Mode::OPEN) ? pOpenDialog->GetFileTypeIndex(&typeIndex) :
-                                                pSaveDialog->GetFileTypeIndex(&typeIndex);
+                    pDialog->GetFileTypeIndex(&typeIndex);
                     if (sel_filter && typeIndex > 0 && typeIndex <= filters.size()) {
                         specvector::const_reference iter = filters.at(typeIndex - 1);
                         *sel_filter = QString::fromStdWString(iter.first);
                     }
                 }
             }
-            (mode == Win::Mode::OPEN || mode == Win::Mode::FOLDER) ?
-                    pOpenDialog->Release() : pSaveDialog->Release();
+            pDialog->Release();
         }
         CoUninitialize();
     }
 #else
 #endif
-}
-
-QStringList Win::openWinFileChooser(QWidget *parent,
-                                    Mode mode,
-                                    const QString &title,
-                                    const QString &file,
-                                    const QString &path,
-                                    const QString &filter,
-                                    QString *sel_filter,
-                                    bool sel_multiple)
-{
-    const int pos = file.lastIndexOf('/');
-    QString _file = (pos != -1) ?
-                file.mid(pos + 1) : file;
-    const QString _path = (path.isEmpty() && pos != -1) ?
-                file.mid(0, pos) : path;
-//    _file = _file.left(_file.lastIndexOf("."));
-
-    QStringList filenames;
-    HWND parent_hwnd = (parent) ? (HWND)parent->winId() : nullptr;
-    WindowHelper::toggleLayoutDirection(parent_hwnd);
-    nativeFileDialog(parent_hwnd,
-                     mode,
-                     filenames,
-                     title.toStdWString().c_str(),
-                     _file.toStdWString(),
-                     QDir::toNativeSeparators(_path).toStdWString(),
-                     filter.toStdWString(),
-                     sel_filter,
-                     sel_multiple);
-
     WindowHelper::toggleLayoutDirection(parent_hwnd);
     return filenames;
 }

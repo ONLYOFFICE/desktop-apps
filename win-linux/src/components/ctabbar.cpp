@@ -285,7 +285,8 @@ void Tab::paintEvent(QPaintEvent *ev)
 //        if (tabBar && tabBar->property("active").toBool())
         {
             QStylePainter p(this);
-            p.fillRect(rect(), QBrush(QColor(tabcolor)));
+            int left = AscAppManager::isRtlEnabled() ? frameWidth() : 0;
+            p.fillRect(rect().adjusted(left, 0, left ? 0 : -frameWidth(), 0), QBrush(QColor(tabcolor)));
         }
     }
 }
@@ -333,6 +334,7 @@ public:
     void changeScrollerState();
     void reorderIndexes();
     void recalcWidth();
+    void setActive(int index);
     bool indexIsValid(int index);
 
     CTabBar*     owner = nullptr;
@@ -345,6 +347,7 @@ public:
     Qt::TextElideMode elideMode;
     Tab* movedTab = nullptr;
     bool lock = false;
+    bool isActive = false;
     int animationInProgress = 0;
     int movedTabPosX = 0;
     int movedTabPressPosX = 0;
@@ -515,18 +518,11 @@ void CTabBar::CTabBarPrivate::onCurrentChanged(int index)
         PROCESSEVENTS();
 
     recalcWidth();
-
-    if ( !(index < 0) )
-        scrollTo(index);
+    scrollTo(index);
 
     currentIndex = index;
 
-    for (int i = 0; i < tabList.size(); i++) {
-        tabList[i]->setProperty("selected", i == index);
-
-        tabList[i]->setActive(i == index);
-        tabList[i]->polish();
-    }
+    setActive(index);
 
     emit owner->currentChanged(index);
 }
@@ -598,6 +594,18 @@ void CTabBar::CTabBarPrivate::recalcWidth()
     tabArea->setMaximumWidth(minWidth * tabList.size());
     owner->setMaximumWidth(tabArea->maximumWidth() + scrollFrame->maximumWidth());
     PROCESSEVENTS();
+}
+
+void CTabBar::CTabBarPrivate::setActive(int index)
+{
+    for (int i = 0; i < tabList.size(); i++) {
+        bool state = (i == index);
+        if (tabList[i]->property("selected").toBool() != (state && isActive)) {
+            tabList[i]->setProperty("selected", state && isActive);
+            tabList[i]->polish();
+        }
+        tabList[i]->setActive(state);
+    }
 }
 
 bool CTabBar::CTabBarPrivate::indexIsValid(int index)
@@ -809,12 +817,8 @@ void CTabBar::removeTab(int index)
         if (index > 0) {
             d->recalcWidth();
         } else {
-            if ( property("active").toBool() ) {
-                const int initialMaxIndex = d->tabList.size(); // max index before deletion
-                d->onCurrentChanged(index < initialMaxIndex ? index : -1);
-            } else {
-                d->recalcWidth();
-            }
+            const int initialMaxIndex = d->tabList.size(); // max index before deletion
+            d->onCurrentChanged(index < initialMaxIndex ? index : -1);
         }
     }
 }
@@ -911,7 +915,7 @@ void CTabBar::setCurrentIndex(int index)
     while (d->animationInProgress)
         PROCESSEVENTS();
 
-    if (/*!d->indexIsValid(index) ||*/ index == d->currentIndex)
+    if (!d->indexIsValid(index) || index == d->currentIndex)
         return;
 
     d->onCurrentChanged(index);
@@ -974,6 +978,14 @@ void CTabBar::polish()
     d->scrollFrame->style()->polish(d->scrollFrame);
     d->leftButton->style()->polish(d->leftButton);
     d->rightButton->style()->polish(d->rightButton);
+}
+
+void CTabBar::activate(bool isActive)
+{
+    if (d->isActive != isActive) {
+        d->isActive = isActive;
+        d->setActive(isActive ? d->currentIndex : -1);
+    }
 }
 
 void CTabBar::refreshTheme()

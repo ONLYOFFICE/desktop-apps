@@ -88,6 +88,7 @@ l10n.lv = {
     settOptThemeLight: 'Gaisma',
     settOptThemeClassicLight: 'Klasiska gaisma',
     settOptThemeDark: 'Tumšs',
+    settOptThemeGray: 'Pelēkā',
     settOptLaunchMode: 'Atvērt failu',
     settOptLaunchInTab: 'Cilnē',
     settOptLaunchInWindow: 'Logā',
@@ -111,4 +112,6 @@ l10n.lv = {
     settOptDescAUpdateSilent: "Lejupielādēt un instalēt atjauninājumu fonā",
     settOptDescAUpdateAsk: "Jums tiks paziņots par visām atjaunināšanas darbībām",
     settRtlMode: "RTL interfeiss",
+    tplPanelLocal: "Vietējās",
+    tplPanelCloud: "Mākoņu",
 }

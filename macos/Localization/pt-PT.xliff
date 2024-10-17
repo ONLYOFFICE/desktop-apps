@@ -114,7 +114,7 @@
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Comma-Separated Values" xml:space="preserve">
         <source>Comma-Separated Values</source>
-        <target state="translated">Ficheiro de valores separados por vírgulas (*.csv)</target>
+        <target state="translated">Ficheiro de valores separados por vírgulas</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Create portal" xml:space="preserve">
@@ -128,7 +128,7 @@
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="DjVu File" xml:space="preserve">
         <source>DjVu File</source>
-        <target state="translated">Documento Digital (*.djvu)</target>
+        <target state="translated">Documento Digital</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Do you want to save the changes made to the document &quot;%@&quot;?" xml:space="preserve">
@@ -147,17 +147,17 @@
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Document template" xml:space="preserve">
-        <source>Document template</source><target state="translated">Modelo de documento Word Open XML (*.dotx)</target>
+        <source>Document template</source><target state="translated">Modelo de documento Word Open XML</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Excel 97-2003 Spreadsheet" xml:space="preserve">
         <source>Excel 97-2003 Spreadsheet</source>
-        <target state="translated">Folha de cálculo do Excel 97-2003 (*.xls)</target>
+        <target state="translated">Folha de cálculo do Excel 97-2003</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Excel 2007 Spreadsheet" xml:space="preserve">
         <source>Excel 2007 Spreadsheet</source>
-        <target state="translated">Folha de cálculo XML Open Office (*.xlsx)</target>
+        <target state="translated">Folha de cálculo XML Open Office</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="File &quot;%@&quot; can not be open or not exist." xml:space="preserve">
@@ -197,7 +197,7 @@
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Mobipocket e-book" xml:space="preserve">
         <source>Mobipocket e-book</source>
-        <target state="translated">Mobipocket e-book (*.mobi)</target>
+        <target state="translated">Mobipocket e-book</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="No" xml:space="preserve">
@@ -219,30 +219,30 @@
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="OpenDocument Document Template" xml:space="preserve">
-        <source>OpenDocument Document Template</source><target state="translated">Modelo de documento OpenDocument (*.ott)</target>
+        <source>OpenDocument Document Template</source><target state="translated">Modelo de documento OpenDocument</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="OpenDocument Presentation Template" xml:space="preserve">
-        <source>OpenDocument Presentation Template</source><target state="translated">Modelo de Apresentação OpenDocument (*.otp)</target>
+        <source>OpenDocument Presentation Template</source><target state="translated">Modelo de Apresentação OpenDocument</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="OpenDocument Spreadsheet Template" xml:space="preserve">
-        <source>OpenDocument Spreadsheet Template</source><target state="translated">Modelo de Folha de Cálculo OpenDocument (*.ots)</target>
+        <source>OpenDocument Spreadsheet Template</source><target state="translated">Modelo de Folha de Cálculo OpenDocument</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="OpenOffice Document" xml:space="preserve">
         <source>OpenOffice Document</source>
-        <target state="translated">Ficheiro de texto OpenDocument (*.odt)</target>
+        <target state="translated">Ficheiro de texto OpenDocument</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="OpenOffice Presentation" xml:space="preserve">
         <source>OpenOffice Presentation</source>
-        <target state="translated">Apresentação OpenDocument (*.odp)</target>
+        <target state="translated">Apresentação OpenDocument</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="OpenOffice Spreadsheet" xml:space="preserve">
         <source>OpenOffice Spreadsheet</source>
-        <target state="translated">Folha de Cálculo OpenDocument (*.ods)</target>
+        <target state="translated">Folha de Cálculo OpenDocument</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Opening" xml:space="preserve">
@@ -252,31 +252,31 @@
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="PDF File" xml:space="preserve">
         <source>PDF File</source>
-        <target state="translated">Documento portátil (*.pdf)</target>
+        <target state="translated">Documento portátil</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="PDF/A File" xml:space="preserve">
-        <source>PDF/A File</source><target state="translated">Documento portátil /A (*.pdf)</target>
+        <source>PDF/A File</source><target state="translated">Documento portátil /A</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Plain Text" xml:space="preserve">
         <source>Plain Text</source>
-        <target state="translated">Documento de Texto Simples (*.txt)</target>
+        <target state="translated">Documento de Texto Simples</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="PowerPoint 97-2003 Presentation" xml:space="preserve">
         <source>PowerPoint 97-2003 Presentation</source>
-        <target state="translated">Apresentação em PowerPoint 97-2003 (*.ppt)</target>
+        <target state="translated">Apresentação em PowerPoint 97-2003</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="PowerPoint 2007 Presentation" xml:space="preserve">
         <source>PowerPoint 2007 Presentation</source>
-        <target state="translated">Apresentação em XML Open Office (*.pptx)</target>
+        <target state="translated">Apresentação em XML Open Office</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="PowerPoint Slide Show" xml:space="preserve">
         <source>PowerPoint Slide Show</source>
-        <target state="translated">Apresentação de diapositivos XML Open Office (*.ppsx)</target>
+        <target state="translated">Apresentação de diapositivos XML Open Office</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Preparing..." xml:space="preserve">
@@ -290,7 +290,7 @@
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Presentation template" xml:space="preserve">
-        <source>Presentation template</source><target state="translated">Modelo de Apresentação PowerPoint Open XML (*.potx)</target>
+        <source>Presentation template</source><target state="translated">Modelo de Apresentação PowerPoint Open XML</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Quit %@" xml:space="preserve">
@@ -305,7 +305,7 @@
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Rich Text Document" xml:space="preserve">
         <source>Rich Text Document</source>
-        <target state="translated">Ficheiro de Rich Text Format (*.rtf)</target>
+        <target state="translated">Ficheiro de Rich Text Format</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Save" xml:space="preserve">
@@ -322,7 +322,7 @@
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Spreadsheet template" xml:space="preserve">
-        <source>Spreadsheet template</source><target state="translated">Modelo de planilha Excel Open XML (*.xltx)</target>
+        <source>Spreadsheet template</source><target state="translated">Modelo de planilha Excel Open XML</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Thank you for evaluating %@!" xml:space="preserve">
@@ -359,17 +359,17 @@
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Word 97-2003 Document" xml:space="preserve">
         <source>Word 97-2003 Document</source>
-        <target state="translated">Documento Word 97-2003 (*.doc)</target>
+        <target state="translated">Documento Word 97-2003</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Word 2007 Document" xml:space="preserve">
         <source>Word 2007 Document</source>
-        <target state="translated">Documento Office Open XML (*.docx)</target>
+        <target state="translated">Documento Office Open XML</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="XML Paper Specification" xml:space="preserve">
         <source>XML Paper Specification</source>
-        <target state="translated">Documento OpenXPS (*.xps)</target>
+        <target state="translated">Documento OpenXPS</target>
         
       <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Yes" xml:space="preserve">

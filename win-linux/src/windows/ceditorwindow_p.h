@@ -39,6 +39,9 @@
 #include "ceditortools.h"
 #include "components/cfullscrwidget.h"
 #include "components/cprintdialog.h"
+#include "Network/FileTransporter/include/FileTransporter.h"
+#include <QDir>
+#include <QUuid>
 #include <QJsonDocument>
 #include <QJsonArray>
 #include <QJsonObject>
@@ -57,6 +60,7 @@
 #define MARGINS 6
 
 using namespace NSEditorApi;
+using namespace NSNetwork::NSFileTransport;
 
 
 auto prepare_editor_css(AscEditorType type, const CTheme& theme) -> QString {
@@ -72,7 +76,7 @@ auto prepare_editor_css(AscEditorType type, const CTheme& theme) -> QString {
 #ifdef __linux__
     g_css.append(Utils::readStylesheets(":styles/editor_unix.qss"));
 #endif
-    return g_css.arg(QString::fromStdWString(c));
+    return g_css.arg(QString::fromStdWString(c), GetColorQValueByRole(ecrTextNormal), GetColorQValueByRole(ecrTextPretty));
 }
 
 auto editor_color(AscEditorType type) -> QColor {
@@ -85,17 +89,30 @@ auto editor_color(AscEditorType type) -> QColor {
     }
 }
 
+auto rounded_pixmap(const QPixmap &px, int size) -> QPixmap {
+    int diam = qMin(px.width(), px.height());
+    QPixmap pxm(diam, diam);
+    pxm.fill(Qt::transparent);
+    QPainter p(&pxm);
+    p.setBrush(QBrush(px));
+    p.drawEllipse(0, 0, diam, diam);
+    p.end();
+    return pxm.scaled(size, size, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+}
+
 class CEditorWindowPrivate : public CCefEventsGate
 {
     CEditorWindow * window = nullptr;
     QLabel * iconuser = nullptr;
     bool isPrinting = false,
+         layoutIsSet = false,
         isFullScreen = false;
     int layoutType = LayoutNone;
     CFullScrWidget * fs_parent = nullptr;
     QLabel * iconcrypted = nullptr;
     QWidget * boxtitlelabel = nullptr,
             * leftboxbuttons = nullptr;
+    QPixmap   avatar;
 
     QMap<QString, CSVGPushButton*> m_mapTitleButtons;
     int leftBtnsCount = DEFAULT_BTNS_COUNT;
@@ -105,6 +122,9 @@ class CEditorWindowPrivate : public CCefEventsGate
         LayoutViewer,
         LayoutEditor
     };
+
+public:
+    int titleLeftOffset = 0;
 
 public:
     CEditorWindowPrivate(CEditorWindow * w) : window(w) {}
@@ -278,6 +298,18 @@ public:
         }
     }
 
+    virtual void onImageLoadFinished(void* fdl, int err) override
+    {
+        CFileDownloader *_fdl = (CFileDownloader*)fdl;
+        if (err == 0) {
+            QString path = QString::fromStdWString(_fdl->GetFilePath());
+            if (!(avatar = QPixmap(path)).isNull())
+                iconuser->setPixmap(rounded_pixmap(avatar, iconuser->width()));
+            QFile::remove(path);
+        }
+        delete _fdl;
+    }
+
     void onEditorConfig(int, std::wstring cfg) override
     {
 //        if ( id == window->holdView(id) )
@@ -302,11 +334,30 @@ public:
             if ( jerror.error == QJsonParseError::NoError ) {
                 QJsonObject objRoot = jdoc.object();
                 if ( objRoot.contains("user") ) {
-                    QString _user_name = objRoot["user"].toObject().value("name").toString();
+                    QJsonObject objUser = objRoot["user"].toObject();
+                    QString _user_name = objUser.value("name").toString();
                     //iconUser()->setToolTip(_user_name);
                     iconUser()->setProperty("ToolTip", _user_name);
                     adjustIconUser();
                     iconuser->setText(getInitials(_user_name));
+                    if (objUser.contains("image")) {
+                        QString img_url = objUser["image"].toString();
+                        if (QUrl(img_url).scheme() == "data") {
+                            auto list = img_url.split(";base64,");
+                            if (list.size() == 2 && !list[1].isEmpty()) {
+                                if (avatar.loadFromData(QByteArray::fromBase64(list[1].toLocal8Bit())))
+                                    iconuser->setPixmap(rounded_pixmap(avatar, iconuser->width()));
+                            }
+                        } else {
+                            QString tmp_name = QString("/avatar_%1.png").arg(QUuid::createUuid().toString().remove('{').remove('}'));
+                            CFileDownloader *fdl = new CFileDownloader(img_url.toStdWString(), false);
+                            fdl->SetFilePath((QDir::tempPath() + tmp_name).toStdWString());
+                            fdl->SetEvent_OnComplete([=](int err) {
+                                QMetaObject::invokeMethod(this, "onImageLoadFinished", Qt::QueuedConnection, Q_ARG(void*, fdl), Q_ARG(int, err));
+                            });
+                            fdl->Start(0);
+                        }
+                    }
                     iconuser->setVisible(true);
                 }
 
@@ -451,8 +502,10 @@ public:
             background = GetColorValueByRole(ecrWindowBackground);
             border = GetColorValueByRole(ecrWindowBorder);
         }
+        if (GetCurrentTheme().id() == L"theme-gray")
+            border = GetColorValueByRole(ecrWindowBorder);
 
-        window->setWindowColors(QColor(QString::fromStdWString(background)), QColor(QString::fromStdWString(border)));
+        window->setWindowColors(QColor(QString::fromStdWString(background)), QColor(QString::fromStdWString(border)), window->isActiveWindow());
     }
 
     void changeTheme(const std::wstring& theme)
@@ -696,6 +749,9 @@ public:
         if ( window->isCustomWindowStyle() ) {
             if ( iconuser ) {
                 adjustIconUser();
+
+                if (!avatar.isNull())
+                    iconuser->setPixmap(rounded_pixmap(avatar, iconuser->width()));
             }
 
             if ( iconcrypted ) {

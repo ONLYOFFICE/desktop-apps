@@ -88,6 +88,7 @@ l10n.hu = {
     settOptThemeLight: 'Világos',
     settOptThemeClassicLight: 'Klasszikus világos',
     settOptThemeDark: 'Sötét',
+    settOptThemeGray: 'Szürke',
     settOptLaunchMode: 'Fájl megnyitása',
     settOptLaunchInTab: 'Lapon',
     settOptLaunchInWindow: 'Ablakban',
@@ -112,4 +113,6 @@ l10n.hu = {
     settOptDescAUpdateAsk: "A frissítés minden lépéséről értesítést fog kapni",
     settRtlMode: "RTL-interfész",
     settGpuUseMode: "Használjon grafikai gyorsítást, amennyiben elérhető",
+    tplPanelLocal: "Helyi",
+    tplPanelCloud: "Felhő",
 }

@@ -30,14 +30,15 @@
  *
 */
 
-#include "cascapplicationmanagerwrapper.h"
 #ifdef _WIN32
 # include "platform_win/singleapplication.h"
 #else
+# include <gtk/gtk.h>
 # include "platform_linux/singleapplication.h"
 # include "components/cmessage.h"
 # include <unistd.h>
 #endif
+#include "cascapplicationmanagerwrapper.h"
 #include "defines.h"
 #include "clangater.h"
 #include "clogger.h"
@@ -52,7 +53,7 @@ int main( int argc, char *argv[] )
 {
 #ifdef _WIN32
     Core_SetProcessDpiAwareness();
-    Utils::setAppUserModelId(APP_USER_MODEL_ID);
+    Utils::setAppUserModelId();
     WCHAR * cm_line = GetCommandLine();
     InputArgs::init(cm_line);
 #else
@@ -79,6 +80,7 @@ int main( int argc, char *argv[] )
         QString common_data_path = Utils::getAppCommonPath();
         if ( !common_data_path.isEmpty() ) {
             manager->m_oSettings.SetUserDataPath(common_data_path.toStdWString());
+            manager->m_oSettings.user_templates_path = (common_data_path + "/templates").toStdWString();
 
             Utils::makepath(user_data_path.append("/data"));
             manager->m_oSettings.cookie_path = (user_data_path + "/cookie").toStdWString();
@@ -98,6 +100,7 @@ int main( int argc, char *argv[] )
         manager->m_oSettings.recover_path               = (user_data_path + "/recover").toStdWString();
         manager->m_oSettings.user_plugins_path          = (user_data_path + "/sdkjs-plugins").toStdWString();
         manager->m_oSettings.local_editors_path         = app_path + L"/editors/web-apps/apps/api/documents/index.html";
+        manager->m_oSettings.system_templates_path      = app_path  + L"/converter/templates";
         manager->m_oSettings.additional_fonts_folder.push_back(app_path + L"/fonts");
         manager->m_oSettings.country = Utils::systemLocationCode().toStdString();
         manager->m_oSettings.connection_error_path      = app_path + L"/editors/webext/noconnect.html";
@@ -132,7 +135,7 @@ int main( int argc, char *argv[] )
         reg_user.remove("lockPortals");
     }
 
-    SingleApplication app(argc, argv, QString(APP_MUTEX_NAME));
+    SingleApplication app(argc, argv);
 
     if (!app.isPrimary() && !InputArgs::contains(L"--single-window-app")) {
         QString _out_args;
@@ -156,6 +159,9 @@ int main( int argc, char *argv[] )
     app.setStyle(QStyleFactory::create("Fusion"));
 
     /* the order is important */
+#ifdef __linux
+    gtk_init(&argc, &argv);
+#endif
     CApplicationCEF::Prepare(argc, argv);
     CApplicationCEF* application_cef = new CApplicationCEF();
     setup_paths(&AscAppManager::getInstance());

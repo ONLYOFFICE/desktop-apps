@@ -88,6 +88,7 @@ l10n.it_IT = {
     settOptThemeLight: 'Chiaro',
     settOptThemeClassicLight: 'Classic Light',
     settOptThemeDark: 'Scuro',
+    settOptThemeGray: 'Grigio',
     settOptLaunchMode: 'Apri file',
     settOptLaunchInTab: 'Nella scheda',
     settOptLaunchInWindow: 'Nella finestra',
@@ -112,4 +113,6 @@ l10n.it_IT = {
     settOptDescAUpdateAsk: "Riceverai una notifica su tutte le fasi di aggiornamento",
     settRtlMode: "Interfaccia RTL",
     settGpuUseMode: "Utilizzare l'accelerazione grafica quando disponibile",
+    tplPanelLocal: "Locali",
+    tplPanelCloud: "Cloud",
 }

@@ -88,6 +88,7 @@ l10n.be = {
     settOptThemeLight: 'Светлая',
     settOptThemeClassicLight: 'Класічная светлая',
     settOptThemeDark: 'Цёмная',
+    settOptThemeGray: 'Серая',
     settOptLaunchMode: 'Адкрыць файл',
     settOptLaunchInTab: 'Ва ўкладцы',
     settOptLaunchInWindow: 'У акне',
@@ -112,4 +113,6 @@ l10n.be = {
     settOptDescAUpdateAsk: "Вы будзеце ведаць пра ўсе этапы абнаўлення",
     settRtlMode: "Інтэрфейс RTL",
     settGpuUseMode: "Выкарыстоўвайце графічнае паскарэнне, калі яно даступна",
+    tplPanelLocal: "Лакальныя",
+    tplPanelCloud: "Хмарныя",
 }

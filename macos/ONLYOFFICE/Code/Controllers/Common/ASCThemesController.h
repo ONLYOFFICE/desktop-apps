@@ -49,6 +49,7 @@ static NSString * const tabWordActiveBackgroundColor    = @"tab-word-background-
 static NSString * const tabCellActiveBackgroundColor    = @"tab-cell-background-active-color";
 static NSString * const tabSlideActiveBackgroundColor   = @"tab-slide-background-active-color";
 static NSString * const tabPdfActiveBackgroundColor     = @"tab-pdf-background-active-color";
+static NSString * const tabActiveTextColor              = @"tab-editor-text-active-color";
 
 @interface ASCThemesController : NSObject
 

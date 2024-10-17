@@ -224,6 +224,13 @@ utils.defines.links = {
     restorepass: 'https://www.onlyoffice.com/signin.aspx'
 };
 
+utils.formatToEditor = function(f) {
+    if ( f > FILE_PRESENTATION && f < FILE_SPREADSHEET ) return 'slide'; else
+    if ( f > FILE_SPREADSHEET && f < FILE_CROSSPLATFORM ) return 'cell'; else
+    if ( f > FILE_CROSSPLATFORM ) return 'pdf'; 
+    else return 'word';
+}
+
 utils.parseFileFormat = function(format) {
     switch (format) {
     case utils.defines.FileFormat.FILE_DOCUMENT_DOC:        return 'doc';

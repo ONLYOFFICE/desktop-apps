@@ -88,6 +88,7 @@ l10n.pt_PT = {
     settOptThemeLight: 'Claro',
     settOptThemeClassicLight: 'Claro clássico',
     settOptThemeDark: 'Escuro',
+    settOptThemeGray: 'Cinzento',
     settOptLaunchMode: 'Abrir ficheiro',
     settOptLaunchInTab: 'Em separador',
     settOptLaunchInWindow: 'Em janela',
@@ -111,4 +112,6 @@ l10n.pt_PT = {
     settOptDescAUpdateSilent: "Transfira e instale a atualização em segundo plano",
     settOptDescAUpdateAsk: "Será notificado sobre todas as etapas de atualização",
     settRtlMode: "Interface RTL",
+    tplPanelLocal: "Locais",
+    tplPanelCloud: "Cloud",
 }

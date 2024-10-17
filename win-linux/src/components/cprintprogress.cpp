@@ -30,142 +30,262 @@
  *
 */
 
+#ifdef __linux__
+# include <gtk/gtk.h>
+# include "cascapplicationmanagerwrapper.h"
+# include "platform_linux/gtkutils.h"
+# include <gdk/gdkx.h>
+# include "defines.h"
+#else
+# include <shlobj.h>
+# include <combaseapi.h>
+#endif
 #include "components/cprintprogress.h"
+#include <QDialog>
+#include <QLabel>
 #include <QHBoxLayout>
 #include <QPushButton>
-#include "common/Types.h"
 #include "utils.h"
 
 #ifdef __linux__
-# include "cascapplicationmanagerwrapper.h"
+static void on_response(GtkDialog*, gint resp_id, gpointer data) {
+    switch (resp_id) {
+    case GTK_RESPONSE_DELETE_EVENT:
+    case GTK_RESPONSE_CANCEL: {
+        bool *isRejected = (bool*)data;
+        *isRejected = true;
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+static gboolean on_key_press(GtkWidget*, GdkEventKey *ev, gpointer) {
+    if (ev->keyval == GDK_KEY_Escape || ev->keyval == GDK_KEY_space)
+        return TRUE;
+    return FALSE;
+}
 #endif
 
-
-class CDialogEventFilter : public QObject
+class CPrintProgress::CPrintProgressPrivate
 {
-    CPrintProgress * m_parent;
+#pragma push_macro("KeyPress")
+#undef KeyPress
+    class CDialog : public QDialog
+    {
+    public:
+        CDialog(QWidget *parent = nullptr) : QDialog(parent)
+        {}
+    private:
+        virtual bool event(QEvent *ev) override
+        {
+            if (ev->type() == QEvent::KeyPress) {
+                QKeyEvent *kev = static_cast<QKeyEvent*>(ev);
+                if (kev->key() == Qt::Key_Escape)
+                    return true;
+            }
+            return QDialog::event(ev);
+        }
+    };
+#pragma pop_macro("KeyPress")
 
 public:
-    CDialogEventFilter(QObject * parent = 0) : QObject(parent)
-      , m_parent(qobject_cast<CPrintProgress*>(parent))
-    {}
-
-    bool eventFilter(QObject * obj, QEvent * event) {
-        QDialog * dlg = dynamic_cast<QDialog *>(obj);
-
-        if (!dlg)
-            return false;
-
-        if (event->type() == QEvent::KeyPress) {
-            QKeyEvent * keyEvent = static_cast<QKeyEvent *>(event);
-
-            if (keyEvent->key() == Qt::Key_Escape) {
-                return true;
+    CPrintProgressPrivate(QWidget *parent = nullptr) {
+        useNativeDialog = WindowHelper::useNativeDialog();
+        const QString primaryText = QObject::tr("Printing...", "CPrintProgress");
+        const QString secondaryText = QObject::tr("Document is preparing", "CPrintProgress");
+        if (useNativeDialog) {
+#ifdef _WIN32
+            parentHwnd = parent ? (HWND)parent->winId() : NULL;
+            HRESULT hr = CoInitializeEx(NULL, COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE);
+            if (SUCCEEDED(hr)) {
+                hr = CoCreateInstance(CLSID_ProgressDialog, NULL, CLSCTX_INPROC_SERVER, IID_IProgressDialog, (void**)&winDlg);
+                if (SUCCEEDED(hr)) {
+                    winDlg->SetTitle(primaryText.toStdWString().c_str());
+                    //winDlg->SetLine(1, L"Processing", FALSE, NULL);
+                    winDlg->SetLine(2, secondaryText.toStdWString().c_str(), FALSE, NULL);
+                } else {
+                    CoUninitialize();
+                }
             }
-        } else
-        if ( event->type() == QEvent::Paint ) {
-            emit m_parent->signal(18);
+#else
+            Window parent_xid = (parent) ? (Window)parent->winId() : 0L;
+            if (AscAppManager::isRtlEnabled())
+                gtk_widget_set_default_direction(GTK_TEXT_DIR_RTL);
+            GtkDialogFlags flags = (GtkDialogFlags)(GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT);
+            gtkDlg = gtk_message_dialog_new(NULL, flags, GTK_MESSAGE_OTHER, GTK_BUTTONS_NONE, "%s", primaryText.toLocal8Bit().data());
+            gtk_window_set_type_hint(GTK_WINDOW(gtkDlg), GDK_WINDOW_TYPE_HINT_DIALOG);
+            gtk_window_set_default_size(GTK_WINDOW(gtkDlg), 350, 150);
+            if (GtkWidget *img = gtk_message_dialog_get_image(GTK_MESSAGE_DIALOG(gtkDlg)))
+                gtk_widget_destroy(img);
+            g_signal_connect(G_OBJECT(gtkDlg), "realize", G_CALLBACK(set_parent), (gpointer)&parent_xid);
+            g_signal_connect(G_OBJECT(gtkDlg), "map_event", G_CALLBACK(set_focus), NULL);
+            g_signal_connect(G_OBJECT(gtkDlg), "response", G_CALLBACK(on_response), (gpointer)&isRejected);
+            g_signal_connect(G_OBJECT(gtkDlg), "key-press-event", G_CALLBACK(on_key_press), NULL);
+            tag.dialog = gtkDlg; // unable to send parent_xid via g_signal_connect and "focus_out_event"
+            tag.parent_xid = (ulong)parent_xid;
+            g_signal_connect_swapped(G_OBJECT(gtkDlg), "focus_out_event", G_CALLBACK(focus_out), (gpointer)&tag);
+            //gtk_window_set_title(GTK_WINDOW(dialog), APP_TITLE);
+            gtk_message_dialog_format_secondary_text(GTK_MESSAGE_DIALOG(gtkDlg), "%s", secondaryText.toLocal8Bit().data());
+
+            gtk_dialog_add_button(GTK_DIALOG(gtkDlg), BTN_TEXT_CANCEL.toLocal8Bit().data(), GTK_RESPONSE_CANCEL);
+            gtk_widget_grab_focus(gtk_dialog_get_widget_for_response(GTK_DIALOG(gtkDlg), GTK_RESPONSE_CANCEL));
+            gtkProgressBar = gtk_progress_bar_new();
+            gtk_progress_bar_set_pulse_step(GTK_PROGRESS_BAR(gtkProgressBar), 0.05);
+            //GtkWidget *cont_area = gtk_dialog_get_content_area(GTK_DIALOG(gtkDlg));
+            GtkWidget *msg_area = gtk_message_dialog_get_message_area(GTK_MESSAGE_DIALOG(gtkDlg));
+            gtk_container_add(GTK_CONTAINER(msg_area), gtkProgressBar);
+
+            gtk_widget_realize(gtkDlg);
+            while (gtk_events_pending())
+                gtk_main_iteration_do(FALSE);
+#endif
+        } else {
+            auto _dpi_ratio = Utils::getScreenDpiRatioByWidget(parent);
+            qtDlg = new CDialog(parent);
+            qtDlg->setWindowFlags(Qt::Dialog | Qt::CustomizeWindowHint | Qt::WindowTitleHint | Qt::MSWindowsFixedSizeDialogHint);
+            qtDlg->setMinimumWidth(400*_dpi_ratio);
+            qtDlg->setWindowTitle(primaryText);
+
+            QVBoxLayout * layout = new QVBoxLayout;
+            layout->setSizeConstraint(QLayout::SetMaximumSize);
+
+            qtProgressLabel = new QLabel;
+            qtProgressLabel->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Preferred);
+            qtProgressLabel->setText(secondaryText);
+            qtProgressLabel->setStyleSheet(QString("margin-bottom: %1px;").arg(8*_dpi_ratio));
+            layout->addWidget(qtProgressLabel);
+
+            QPushButton * btn_cancel = new QPushButton(QObject::tr("&Cancel", "CPrintProgress"));
+            QWidget * box = new QWidget;
+            box->setLayout(new QHBoxLayout);
+            box->layout()->addWidget(btn_cancel);
+            box->layout()->setContentsMargins(0,8*_dpi_ratio,0,0);
+            layout->addWidget(box, 0, Qt::AlignCenter);
+
+            qtDlg->setLayout(layout);
+            qtDlg->setResult(QDialog::Accepted);
+            QObject::connect(btn_cancel, &QPushButton::clicked, qtDlg, &QDialog::reject);
         }
-
-//        return QDialog::eventFilter(obj, event);
-        return false;
     }
-};
 
+    ~CPrintProgressPrivate() {
+        if (useNativeDialog) {
+#ifdef _WIN32
+            if (winDlg) {
+                winDlg->StopProgressDialog();
+                winDlg->Release();
+                CoUninitialize();
+                if (parentHwnd) {
+                    SetForegroundWindow(parentHwnd);
+                }
+            }
+#else
+            if (gtkDlg && !gtk_widget_in_destruction(gtkDlg))
+                gtk_widget_destroy(gtkDlg);
+#endif
+        } else {
+            if (qtDlg)
+                qtDlg->deleteLater();
+        }
+    }
+
+#ifdef _WIN32
+    IProgressDialog *winDlg = nullptr;
+    HWND       parentHwnd = nullptr;
+#else
+    GtkWidget *gtkDlg = nullptr;
+    GtkWidget *gtkProgressBar = nullptr;
+    bool       isRejected = false;
+#endif
+    CDialog  *qtDlg = nullptr;
+    QLabel   *qtProgressLabel = nullptr;
+    bool      useNativeDialog = true;
+
+private:
+#ifdef __linux
+    DialogTag tag;
+#endif
+};
 
 CPrintProgress::CPrintProgress(QWidget * parent)
     : QObject(parent),
-      m_Dlg(parent),
-    m_fLayout(new QFormLayout),
-    m_eventFilter(new CDialogEventFilter(this)), m_isRejected(false)
-{
-    m_Dlg.setWindowFlags(Qt::Dialog | Qt::CustomizeWindowHint | Qt::WindowTitleHint
-                          | Qt::MSWindowsFixedSizeDialogHint);
-
-    QVBoxLayout * layout = new QVBoxLayout;
-    layout->setSizeConstraint(QLayout::SetMaximumSize);
-
-//    QLabel * icon = new QLabel;
-//    icon->setProperty("class","msg-icon");
-//    icon->setProperty("type","msg-question");
-//    icon->setFixedSize(35*g_dpi_ratio, 35*g_dpi_ratio);
-
-    auto _dpi_ratio = Utils::getScreenDpiRatioByWidget(parent);
-
-    m_progressText = tr("Document is printing: page %1 of %2");
-    m_progressLabel.setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Preferred);
-    m_progressLabel.setText(tr("Document is preparing"));
-
-    m_progressLabel.setStyleSheet(QString("margin-bottom: %1px;").arg(8*_dpi_ratio));
-//    m_progressLabel.setStyleSheet("background: red;");
-    layout->addWidget(&m_progressLabel);
-
-    QPushButton * btn_cancel    = new QPushButton(tr("&Cancel"));
-    QWidget * box = new QWidget;
-    box->setLayout(new QHBoxLayout);
-    box->layout()->addWidget(btn_cancel);
-    box->layout()->setContentsMargins(0,8*_dpi_ratio,0,0);
-//    h_layout1->addWidget(box, 0, Qt::AlignCenter);
-    layout->addWidget(box, 0, Qt::AlignCenter);
-
-    m_Dlg.setLayout(layout);
-    m_Dlg.setMinimumWidth(400*_dpi_ratio);
-    m_Dlg.setWindowTitle(tr("Printing..."));
-
-    m_Dlg.installEventFilter(m_eventFilter);
-
-    connect(btn_cancel, SIGNAL(clicked()), this, SLOT(onCancelClicked()));
-//#ifdef __linux
-    connect(this, &CPrintProgress::signal, [=](int){ if ( !m_showed ) m_showed = true;});
-//#endif
-}
+    pimpl(new CPrintProgressPrivate(parent))
+{}
 
 CPrintProgress::~CPrintProgress()
 {
-/*#if defined(_WIN32)
-    EnableWindow(parentWindow(), TRUE);
-#endif*/
-
-    RELEASEOBJECT(m_fLayout)
-    RELEASEOBJECT(m_eventFilter)
+    delete pimpl, pimpl = nullptr;
 }
 
 void CPrintProgress::setProgress(int current, int count)
 {
-    m_progressLabel.setText(m_progressText.arg(current).arg(count));
+    QString line = tr("Document is printing: page %1 of %2").arg(QString::number(current), QString::number(count));
+    if (pimpl->useNativeDialog) {
+#ifdef _WIN32
+        if (pimpl->winDlg) {
+            pimpl->winDlg->SetLine(2, line.toStdWString().c_str(), FALSE, NULL);
+            pimpl->winDlg->SetProgress(current, count);
+        }
+#else
+        gtk_message_dialog_format_secondary_text(GTK_MESSAGE_DIALOG(pimpl->gtkDlg), "%s", line.toLocal8Bit().data());
+        gtk_progress_bar_set_fraction(GTK_PROGRESS_BAR(pimpl->gtkProgressBar), (gdouble)current/count);
+        while (gtk_events_pending())
+            gtk_main_iteration_do(FALSE);
+#endif
+    } else {
+        pimpl->qtProgressLabel->setText(line);
+    }
 }
 
 void CPrintProgress::startProgress()
 {
-//    m_Dlg.adjustSize();
+    if (pimpl->useNativeDialog) {
+#ifdef _WIN32
+        if (pimpl->winDlg) {
+            pimpl->winDlg->StartProgressDialog(pimpl->parentHwnd, NULL, PROGDLG_NORMAL /*| PROGDLG_NOTIME | PROGDLG_AUTOTIME*/ | PROGDLG_MODAL | PROGDLG_NOMINIMIZE, NULL);
 
-/*#ifdef _WIN32
-    EnableWindow(parentWindow(), FALSE);
-
-    RECT rc;
-    ::GetWindowRect(parentWindow(), &rc);
-
-    int x = rc.left + (rc.right - rc.left - m_Dlg.width())/2;
-    int y = (rc.bottom - rc.top - m_Dlg.height())/2;
-
-    m_Dlg.move(x, y);
-#endif*/
-    m_Dlg.show();
-
-#ifdef __linux
-    while ( !m_showed ) {
-        PROCESSEVENTS();
-    }
+            HWND winDlgHwnd = nullptr;
+            IOleWindow *oleWnd = nullptr;
+            HRESULT hr = pimpl->winDlg->QueryInterface(IID_IOleWindow, (LPVOID*)&oleWnd);
+            if (SUCCEEDED(hr)) {
+                hr = oleWnd->GetWindow(&winDlgHwnd);
+                if (FAILED(hr))
+                    winDlgHwnd = nullptr;
+                oleWnd->Release();
+            }
+            if (winDlgHwnd) {
+                RECT parentRc, dlgRc;
+                GetWindowRect(pimpl->parentHwnd, &parentRc);
+                GetWindowRect(winDlgHwnd, &dlgRc);
+                int x = parentRc.left + (parentRc.right - parentRc.left - dlgRc.right + dlgRc.left) / 2;
+                int y = parentRc.top + (parentRc.bottom - parentRc.top - dlgRc.bottom + dlgRc.top) / 2;
+                SetWindowPos(winDlgHwnd, HWND_TOP, x, y, 0, 0, SWP_NOSIZE | SWP_NOZORDER);
+                ShowWindow(winDlgHwnd, SW_SHOW);
+            }
+        }
+#else
+        gtk_widget_show_all(pimpl->gtkDlg);
+        Utils::processMoreEvents(100);
 #endif
-}
-
-void CPrintProgress::onCancelClicked()
-{
-    m_isRejected = true;
-    m_Dlg.reject();
+    } else {
+        pimpl->qtDlg->show();
+#ifdef __linux
+        Utils::processMoreEvents(100);
+#endif
+    }
 }
 
 bool CPrintProgress::isRejected()
 {
-    return m_isRejected;
+    if (pimpl->useNativeDialog) {
+#ifdef _WIN32
+        return pimpl->winDlg && pimpl->winDlg->HasUserCancelled();
+#else
+        return pimpl->isRejected;
+#endif
+    } else {
+        return pimpl->qtDlg->result() == QDialog::Rejected;
+    }
 }

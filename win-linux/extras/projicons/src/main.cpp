@@ -39,27 +39,16 @@
 # include <shlobj_core.h>
 #endif
 
-typedef HRESULT (__stdcall *SetCurrentProcessExplicitAppUserModelIDProc)(PCWSTR AppID);
 
-bool SetAppUserModelId()
+void SetAppUserModelId()
 {
-    bool result = false;
-
-    // try to load Shell32.dll
-    HMODULE _lib_shell32 = LoadLibrary(L"shell32.dll");
-    if ( _lib_shell32 != NULL ) {
-        // see if the function is exposed by the current OS
-        SetCurrentProcessExplicitAppUserModelIDProc setCurrentProcessExplicitAppUserModelId =
-            reinterpret_cast<SetCurrentProcessExplicitAppUserModelIDProc>(GetProcAddress(_lib_shell32, "SetCurrentProcessExplicitAppUserModelID"));
-
-        if ( setCurrentProcessExplicitAppUserModelId != NULL ) {
-            result = setCurrentProcessExplicitAppUserModelId(QString(APP_USER_MODEL_ID).toStdWString().c_str()) == S_OK;
-        }
-
-        FreeLibrary(_lib_shell32);
+    if (HMODULE lib = LoadLibrary(L"shell32")) {
+        HRESULT (WINAPI *SetAppUserModelID)(PCWSTR AppID);
+        *(FARPROC*)&SetAppUserModelID = GetProcAddress(lib, "SetCurrentProcessExplicitAppUserModelID");
+        if (SetAppUserModelID)
+            SetAppUserModelID(TEXT(APP_USER_MODEL_ID));
+        FreeLibrary(lib);
     }
-
-    return result;
 }
 
 

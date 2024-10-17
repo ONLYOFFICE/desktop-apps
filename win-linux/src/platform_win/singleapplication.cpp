@@ -40,11 +40,11 @@
 #define RETRIES_DELAY_MS 500
 
 
-SingleApplication::SingleApplication(int &argc, char *argv[], const QString &instanceName) :
+SingleApplication::SingleApplication(int &argc, char *argv[]) :
     QApplication(argc, argv),
     m_isPrimary(false)
 {
-    m_hMutex = CreateMutex(NULL, FALSE, (LPCTSTR)instanceName.data());
+    m_hMutex = CreateMutex(NULL, FALSE, TEXT(APP_MUTEX_NAME));
     if (GetLastError() != ERROR_ALREADY_EXISTS) {
         m_isPrimary = true;
         startPrimary();
@@ -68,7 +68,7 @@ bool SingleApplication::isPrimary() const
 bool SingleApplication::sendMessage(const QByteArray &message)
 {
     if (m_isPrimary)
-        return false;   
+        return false;
 
     HWND hwnd = NULL;
     int retries = RETRIES_COUNT;
@@ -97,28 +97,13 @@ void SingleApplication::startPrimary()
 {
     HINSTANCE hInstance = GetModuleHandle(nullptr);
     WNDCLASSEX wcx{sizeof(WNDCLASSEX)};
-    wcx.style = CS_HREDRAW | CS_VREDRAW;
     wcx.hInstance = hInstance;
     wcx.lpfnWndProc = WndProc;
-    wcx.cbClsExtra	= 0;
-    wcx.cbWndExtra	= 0;
     wcx.lpszClassName = RECEIVER_WINDOW;
-    wcx.hbrBackground = CreateSolidBrush(0x00ffffff);
-    wcx.hCursor = LoadCursor(hInstance, IDC_ARROW);
     RegisterClassEx(&wcx);
 
-    m_hWnd = CreateWindowEx(
-                WS_EX_TOOLWINDOW | WS_EX_LAYERED,
-                RECEIVER_WINDOW,
-                L"",
-                WS_MAXIMIZEBOX | WS_THICKFRAME,
-                0, 0, 0, 0,
-                nullptr,
-                nullptr,
-                hInstance,
-                nullptr);
+    m_hWnd = CreateWindowEx(0, RECEIVER_WINDOW, nullptr, 0, 0, 0, 0, 0, HWND_MESSAGE, nullptr, hInstance, nullptr);
     SetWindowLongPtr(m_hWnd, GWLP_USERDATA, reinterpret_cast<LONG_PTR>(this));
-    ShowWindow(m_hWnd, SW_HIDE);
 }
 
 void SingleApplication::invokeSignal(const QString &data)
@@ -133,29 +118,14 @@ LRESULT SingleApplication::WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lP
         return DefWindowProc(hWnd, msg, wParam, lParam);
 
     switch (msg) {
-    case WM_NCCALCSIZE: {
-        if (wParam == TRUE) {
-            SetWindowLong(hWnd, DWLP_MSGRESULT, 0);
-            return TRUE;
-        }
-        return FALSE;
-    }
-
-    case WM_NCACTIVATE:
-        return TRUE;
-
     case WM_COPYDATA: {
-        if (app->m_isPrimary) {
-            COPYDATASTRUCT* pcds = (COPYDATASTRUCT*)lParam;
-            if (pcds->dwData == 1 && pcds->lpData)
-                QMetaObject::invokeMethod(app, "invokeSignal", Qt::QueuedConnection, Q_ARG(QString, QString::fromWCharArray((WCHAR*)pcds->lpData)));
-        }
+        COPYDATASTRUCT* pcds = (COPYDATASTRUCT*)lParam;
+        if (pcds->dwData == 1 && pcds->lpData)
+            QMetaObject::invokeMethod(app, "invokeSignal", Qt::QueuedConnection, Q_ARG(QString, QString::fromWCharArray((WCHAR*)pcds->lpData)));
         break;
     }
-
     default:
         break;
     }
-
     return DefWindowProc(hWnd, msg, wParam, lParam);
 }

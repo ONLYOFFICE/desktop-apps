@@ -88,6 +88,7 @@ l10n.fi = {
     settOptThemeLight: 'Vaalea',
     settOptThemeClassicLight: 'Klassinen vaalea',
     settOptThemeDark: 'Tumma',
+    settOptThemeGray: 'Harmaa',
     settOptLaunchMode: 'Avaa tiedosto',
     settOptLaunchInTab: 'Välilehdessä',
     settOptLaunchInWindow: 'Ikkunassa',
@@ -111,4 +112,6 @@ l10n.fi = {
     settOptDescAUpdateSilent: "Lataa ja asenna päivitys taustalla",
     settOptDescAUpdateAsk: "Sinulle ilmoitetaan kaikista päivitysvaiheista",
     settRtlMode: "RTL-käyttöliittymä",
+    tplPanelLocal: "Paikalliset",
+    tplPanelCloud: "Cloud",
 }
