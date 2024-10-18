@@ -51,6 +51,7 @@
 # define APP_LAUNCH_NAME "\\DesktopEditors.exe"
 # define RESTART_BATCH "/apprestart.bat"
 #else
+# include "platform_linux/xcbutils.h"
 # include <QProcess>
 # define APP_LAUNCH_NAME "/DesktopEditors"
 # define RESTART_BATCH "/apprestart.sh"
@@ -409,7 +410,14 @@ public:
 #ifdef _WIN32
         if (HWND hWnd = GetTopWindow(GetDesktopWindow())) {
             do {
-                QWidget *wgt = QWidget::find((WId)hWnd);
+                WId wid = (WId)hWnd;
+#else
+        std::vector<xcb_window_t> winStack;
+        XcbUtils::getWindowStack(winStack);
+        for (auto it = winStack.rbegin(); it != winStack.rend(); it++) {
+            WId wid = (WId)(*it);
+#endif
+                QWidget *wgt = QWidget::find(wid);
                 if (wgt && wgt->isWindow()) {
                     if (CEditorWindow *editor = qobject_cast<CEditorWindow*>(wgt)) {
                         if (editor->editorType() == etype) {
@@ -420,11 +428,10 @@ public:
                         }
                     }
                 }
+#ifdef _WIN32
             } while ((hWnd = GetWindow(hWnd, GW_HWNDNEXT)) != nullptr);
-        }
-#else
-
 #endif
+        }
 
         GET_REGISTRY_USER(reg_user);
         if (etype == AscEditorType::etUndefined) {

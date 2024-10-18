@@ -106,7 +106,7 @@ static void GetWindowList(Display *disp, Window **list, unsigned long *len) {
     unsigned long remain;
     unsigned char *win_list;
     Atom type;
-    Atom prop = XInternAtom(disp, "_NET_CLIENT_LIST", true);
+    Atom prop = XInternAtom(disp, "_NET_CLIENT_LIST_STACKING", true);
     Window root = XDefaultRootWindow(disp);
     int res = XGetWindowProperty(disp, root, prop, 0, 1024, false, XA_WINDOW,
                                  &type, &form, len, &remain, &win_list);
@@ -169,4 +169,19 @@ void XcbUtils::findWindowAsync(const char *window_name, void *user_data,
         } while (--RETRIES > 0 && win_found == None);
         XCloseDisplay(disp);
     });
+}
+
+void XcbUtils::getWindowStack(std::vector<xcb_window_t> &winStack)
+{
+    Display *disp = XOpenDisplay(NULL);
+    if (!disp)
+        return;
+    Window *win_list = NULL;
+    unsigned long win_list_size = 0;
+    GetWindowList(disp, &win_list, &win_list_size);
+    if (win_list) {
+        for (int i = 0; i < (int)win_list_size; i++)
+            winStack.push_back((xcb_window_t)win_list[i]);
+        XFree(win_list);
+    }
 }
