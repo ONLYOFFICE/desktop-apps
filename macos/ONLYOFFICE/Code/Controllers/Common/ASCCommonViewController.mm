@@ -164,7 +164,6 @@
         
         // Create CEF event listener
         [ASCEventsController sharedInstance];
-        [ASCThemesController sharedInstance];
         
         [self setupTabControl];
         [self createStartPage];
@@ -749,25 +748,28 @@
         NSMutableDictionary * params = [notification.userInfo mutableCopy];
 
         if ([params[@"action"] isEqualToNumber:@(ASCTabActionCreateLocalFileFromTemplate)]) {
-            NSOpenPanel * openPanel = [NSOpenPanel openPanel];
-            NSMutableArray * filter = [NSMutableArray array];
-
-            if ( [params[@"type"] isEqualToNumber:@((int)AscEditorType::etPresentation)] ) {
-                [filter addObjectsFromArray:@[@"potx", @"otp"]];
-            } else if ( [params[@"type"] isEqualToNumber:@((int)AscEditorType::etSpreadsheet)] ) {
-                [filter addObjectsFromArray:@[@"xltx", @"xltm", @"ots"]];
-            } else {
-                [filter addObjectsFromArray:@[@"dotx", @"ott"]];
+            if ( [params objectForKey:@"path"] or [params objectForKey:@"id"] ) {}
+            else {
+                NSOpenPanel * openPanel = [NSOpenPanel openPanel];
+                NSMutableArray * filter = [NSMutableArray array];
+                
+                if ( [params[@"type"] isEqualToNumber:@((int)AscEditorType::etPresentation)] ) {
+                    [filter addObjectsFromArray:@[@"potx", @"otp"]];
+                } else if ( [params[@"type"] isEqualToNumber:@((int)AscEditorType::etSpreadsheet)] ) {
+                    [filter addObjectsFromArray:@[@"xltx", @"xltm", @"ots"]];
+                } else {
+                    [filter addObjectsFromArray:@[@"dotx", @"ott"]];
+                }
+                
+                openPanel.canChooseDirectories = NO;
+                openPanel.allowsMultipleSelection = NO;
+                openPanel.canChooseFiles = YES;
+                openPanel.allowedFileTypes = filter;
+                
+                if ([openPanel runModal] == NSModalResponseOK) {
+                    [params setValue:[[openPanel URL] path] forKey:@"path"];
+                } else return;
             }
-
-            openPanel.canChooseDirectories = NO;
-            openPanel.allowsMultipleSelection = NO;
-            openPanel.canChooseFiles = YES;
-            openPanel.allowedFileTypes = filter;
-
-            if ([openPanel runModal] == NSModalResponseOK) {
-                [params setValue:[[openPanel URL] path] forKey:@"template"];
-            } else return;
         } else
         if ([params[@"action"] isEqualToNumber:@(ASCTabActionOpenLocalRecentFile)] ||
                 [params[@"action"] isEqualToNumber:@(ASCTabActionOpenLocalFile)])
@@ -1938,7 +1940,7 @@
                 if (action == ASCTabActionCreateLocalFile ) {
                     [cefView createFileWithName:docName type:docType];
                 } else {
-                    [cefView createFileWithNameFromTemplate:docName tplpath:tab.params[@"template"]];
+                    [cefView createFileWithNameFromTemplate:docName tplpath:tab.params[@"path"]];
                 }
 
                 break;

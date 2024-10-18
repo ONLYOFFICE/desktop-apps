@@ -88,6 +88,7 @@ l10n.ja = {
     settOptThemeLight: 'ライト',
     settOptThemeClassicLight: '標準ライト',
     settOptThemeDark: 'ダーク',
+    settOptThemeGray: '灰色',
     settOptLaunchMode: 'ファイルを開く',
     settOptLaunchInTab: 'タブで',
     settOptLaunchInWindow: 'ウィンドウで',
@@ -111,4 +112,6 @@ l10n.ja = {
     settOptDescAUpdateSilent: "アップデートのダウンロードとインストールをバックグラウンドで行う",
     settOptDescAUpdateAsk: "すべてのアップデート手順が通知されます",
     settRtlMode: "右横書きのインターフェース",
+    tplPanelLocal: "ローカル",
+    tplPanelCloud: "クラウド",
 }

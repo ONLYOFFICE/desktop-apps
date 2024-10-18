@@ -180,13 +180,13 @@ private:
 //        ,{"et-EE", "Eesti"}
         ,{"fi-FI", {"Suomi", "Finnish"}}
 //        ,{"ga-IE", {"Gaeilge", "Galego"}}
-        ,{"he", {"עברית", "Hebrew"}}
+        ,{"he-IL", {"עברית", "Hebrew"}}
 //        ,{"hi-IN", "हिन्दी"}
 //        ,{"hr-HR", "Hrvatska"}
         ,{"hu-HU", {"Magyar", "Hungarian"}}
         ,{"hy-AM", {"Հայերեն", "Armenian"}}
         ,{"id-ID", {"Indonesian", "Indonesian"}}
-        ,{"no", {"Norsk", "Norwegian"}}
+        ,{"no-NO", {"Norsk", "Norwegian"}}
         ,{"ro-RO", {"Romanian", "Romanian"}}
         ,{"sl-SI", {"Slovene", "Slovenian"}}
         ,{"sv-SE", {"Svenska", "Swedish"}}

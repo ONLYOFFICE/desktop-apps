@@ -88,6 +88,7 @@ l10n.de = {
     settOptThemeLight: 'Hell',
     settOptThemeClassicLight: 'Klassisch Hell',
     settOptThemeDark: 'Dunkel',
+    settOptThemeGray: 'Grau',
     settOptLaunchMode: 'Datei öffnen',
     settOptLaunchInTab: 'in einer Registerkarte',
     settOptLaunchInWindow: 'in einem Fenster',
@@ -112,4 +113,6 @@ l10n.de = {
     settOptDescAUpdateAsk: "Sie werden über alle Aktualisierungsschritte benachrichtigt",
     settRtlMode: "RTL-Benutzeroberfläche",
     settGpuUseMode: "Grafikbeschleunigung verwenden, wenn verfügbar",
+    tplPanelLocal: "Lokal",
+    tplPanelCloud: "Cloud",
 }

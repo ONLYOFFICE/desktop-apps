@@ -711,6 +711,27 @@ public:
                                                                                       @"type"    : @(int(docType)),
                                                                                       @"active"  : @(YES)
                                                                                   }];
+                            } else if ([nsParam hasPrefix:@"{\"template\":"]) {
+                                NSDictionary * json = [[NSString stringWithstdwstring:param] dictionary][@"template"];
+
+                                AscEditorType docType = AscEditorType::etDocument;
+                                if ( [json objectForKey:@"type"] ) {
+                                    int tplType = [json[@"type"] intValue];
+//                                    if ( tplType > AVS_OFFICESTUDIO_FILE_DOCUMENT and tplType < AVS_OFFICESTUDIO_FILE_PRESENTATION ) docType = AscEditorType::etDocument; else
+                                    if ( tplType > AVS_OFFICESTUDIO_FILE_PRESENTATION and tplType < AVS_OFFICESTUDIO_FILE_SPREADSHEET ) docType = AscEditorType::etPresentation; else
+                                    if ( tplType > AVS_OFFICESTUDIO_FILE_SPREADSHEET and tplType < AVS_OFFICESTUDIO_FILE_CROSSPLATFORM ) docType = AscEditorType::etSpreadsheet;
+//                                    else if ( tplType > AVS_OFFICESTUDIO_FILE_CROSSPLATFORM and tplType < AVS_OFFICESTUDIO_FILE_IMAGE ) {}
+                                }
+
+                                [[NSNotificationCenter defaultCenter] postNotificationName:CEFEventNameCreateTab
+                                                                                    object:nil
+                                                                                  userInfo:@{
+                                                                                        @"action"  : @(ASCTabActionCreateLocalFileFromTemplate),
+                                                                                        @"type"    : @(int(docType)),
+                                                                                        @"active"  : @(YES),
+                                                                                        @"path"    : json[@"path"],
+                                                                                        @"id"      : json[@"id"],
+                                                                                    }];
                             } else {
                                 if ([nsParam isEqualToString:@"word"]) {
                                     docType = AscEditorType::etDocument;
@@ -791,34 +812,34 @@ public:
                                 pCefView->Apply(pEvent);
                             }
                         } else if (cmd.find(L"system:changed") != std::wstring::npos) {
-                            NSLog(@"nstheme: system changed %@", [NSString stringWithstdwstring:param]);
-                            if ( [[ASCThemesController currentThemeId] isEqualToString:uiThemeSystem] ) {
-                                NSError * error = NULL;
-                                NSRegularExpression * regex = [NSRegularExpression regularExpressionWithPattern: @":\\s?\\\"(light|dark)"
-                                                                                                       options: NSRegularExpressionCaseInsensitive
-                                                                                                         error: &error];
-                                if ( !error ) {
-                                    NSString * json = [NSString stringWithstdwstring:param];
-                                    NSTextCheckingResult * match = [regex firstMatchInString:json options:0 range:NSMakeRange(0, [json length])];
-                                    if (match) {
-                                        NSRange range = [match rangeAtIndex:1];
-                                        NSString * new_theme_type = [json substringWithRange:range];
-
-                                        if ( [ASCThemesController isCurrentThemeDark] != [new_theme_type isEqualToString:@"dark"] ) {
-                                            [[ASCSharedSettings sharedInstance] setSetting:new_theme_type forKey:kSettingsColorScheme];
-                                            [[NSNotificationCenter defaultCenter] postNotificationName:ASCEventNameChangedUITheme
-                                                                                                object:nil
-                                                                                              userInfo:@{@"uitheme": uiThemeSystem}];
-                                        }
-                                    }
-                                }
-                            } else {
-                                if (NSDictionary * json = [[NSString stringWithstdwstring:param] dictionary]) {
-                                    if ( NSString * colors = json[@"colorscheme"] ) {
-                                        [[ASCSharedSettings sharedInstance] setSetting:colors forKey:kSettingsColorScheme];
-                                    }
-                                }
-                            }
+//                            NSLog(@"nstheme: system changed %@", [NSString stringWithstdwstring:param]);
+//                            if ( [[ASCThemesController currentThemeId] isEqualToString:uiThemeSystem] ) {
+//                                NSError * error = NULL;
+//                                NSRegularExpression * regex = [NSRegularExpression regularExpressionWithPattern: @":\\s?\\\"(light|dark)"
+//                                                                                                       options: NSRegularExpressionCaseInsensitive
+//                                                                                                         error: &error];
+//                                if ( !error ) {
+//                                    NSString * json = [NSString stringWithstdwstring:param];
+//                                    NSTextCheckingResult * match = [regex firstMatchInString:json options:0 range:NSMakeRange(0, [json length])];
+//                                    if (match) {
+//                                        NSRange range = [match rangeAtIndex:1];
+//                                        NSString * new_theme_type = [json substringWithRange:range];
+//
+//                                        if ( [ASCThemesController isCurrentThemeDark] != [new_theme_type isEqualToString:@"dark"] ) {
+//                                            [[ASCSharedSettings sharedInstance] setSetting:new_theme_type forKey:kSettingsColorScheme];
+//                                            [[NSNotificationCenter defaultCenter] postNotificationName:ASCEventNameChangedUITheme
+//                                                                                                object:nil
+//                                                                                              userInfo:@{@"uitheme": uiThemeSystem}];
+//                                        }
+//                                    }
+//                                }
+//                            } else {
+//                                if (NSDictionary * json = [[NSString stringWithstdwstring:param] dictionary]) {
+//                                    if ( NSString * colors = json[@"colorscheme"] ) {
+//                                        [[ASCSharedSettings sharedInstance] setSetting:colors forKey:kSettingsColorScheme];
+//                                    }
+//                                }
+//                            }
                         } else if (cmd.find(L"uitheme:changed") != std::wstring::npos) {
                             if (NSDictionary * json = [[NSString stringWithstdwstring:param] dictionary]) {
                                 if ( NSString * newTheme = json[@"name"] ) {
@@ -830,15 +851,15 @@ public:
                                         [[NSNotificationCenter defaultCenter] postNotificationName:ASCEventNameChangedUITheme
                                                                                             object:nil
                                                                                           userInfo:@{@"uitheme":newTheme}];
-                                    } else if ( [curTheme isEqualToString:uiThemeSystem] ) {
-                                        NSString * colorScheme = [[ASCSharedSettings sharedInstance] settingByKey:kSettingsColorScheme];
-                                        if ( [NSApplication isSystemDarkMode] != [colorScheme isEqualToString:@"dark"] ) {
-                                            [[ASCSharedSettings sharedInstance] setSetting:([NSApplication isSystemDarkMode] ? @"dark" : @"light")                                          forKey:kSettingsColorScheme];
-
-                                            [[NSNotificationCenter defaultCenter] postNotificationName:ASCEventNameChangedUITheme
-                                                                                                object:nil
-                                                                                              userInfo:@{@"uitheme":newTheme}];
-                                        }
+//                                    } else if ( [curTheme isEqualToString:uiThemeSystem] ) {
+//                                        NSString * colorScheme = [[ASCSharedSettings sharedInstance] settingByKey:kSettingsColorScheme];
+//                                        if ( [NSApplication isSystemDarkMode] != [colorScheme isEqualToString:@"dark"] ) {
+//                                            [[ASCSharedSettings sharedInstance] setSetting:([NSApplication isSystemDarkMode] ? @"dark" : @"light") forKey:kSettingsColorScheme];
+//
+//                                            [[NSNotificationCenter defaultCenter] postNotificationName:ASCEventNameChangedUITheme
+//                                                                                                object:nil
+//                                                                                              userInfo:@{@"uitheme":newTheme}];
+//                                        }
                                     }
                                 }
                             }

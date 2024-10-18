@@ -88,6 +88,7 @@ l10n.gl = {
     settOptThemeLight: 'Claro',
     settOptThemeClassicLight: 'Claro clásico',
     settOptThemeDark: 'Escuro',
+    settOptThemeGray: 'Gris',
     settOptLaunchMode: 'Abrir ficheiro',
     settOptLaunchInTab: 'Na lapela',
     settOptLaunchInWindow: 'Na xanela',
@@ -112,4 +113,6 @@ l10n.gl = {
     settOptDescAUpdateAsk: "Notificaráselle sobre todos os pasos de actualización",
     settRtlMode: "Interface RTL",
     settGpuUseMode: "Utilizar a aceleración de gráficos cando estea dispoñible",
+    tplPanelLocal: "Locais",
+    tplPanelCloud: "De nube",
 }

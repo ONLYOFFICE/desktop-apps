@@ -29,7 +29,7 @@
     <ROW Property="FORMS" Value="1" ValueLocId="-"/>
     <ROW Property="IncompatibleVersion_ErrorText" Value="Another version of the application is already installed that is incompatible with this installation. Please uninstall the current version first or download the correct version to install."/>
     <ROW Property="JUMP_LIST_ARG" Value="New_document New_spreadsheet New_presentation New_PDF_Form"/>
-    <ROW Property="LOCALE" Value="en"/>
+    <ROW Property="LOCALE" Value="en-US"/>
     <ROW Property="MSIFASTINSTALL" MultiBuildValue="MsiBuild64:7#MsiBuild32:7"/>
     <ROW Property="Manufacturer" Value="Ascensio System SIA" ValueLocId="-"/>
     <ROW Property="MsiLogging" MultiBuildValue="MsiBuild64:vp#MsiBuild32:vp"/>

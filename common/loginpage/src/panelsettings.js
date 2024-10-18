@@ -65,7 +65,7 @@
             type: 'dark',
         },
         'theme-gray': {
-            text: 'Gray',
+            text: utils.Lang.settOptThemeGray,
             type: 'light',
         },
     }
@@ -472,10 +472,6 @@
                 $btnApply.disable(false);
         };
 
-        function _is_lang_rtl(code) {
-            // TODO: get rtl langs list for native code
-            return code == 'ar-SA';
-        }
 
         function _on_lang_change(e) {
             let l = $optsLang.find('select').val(),
@@ -485,7 +481,7 @@
                 $btnApply.disable(false);
             }
 
-            const _is_rtl = _is_lang_rtl(l);
+            const _is_rtl = utils.Lang.isLangRTL(l);
             $btnApply.parent().toggleClass('rtl-font', _is_rtl);
             $btnApply.toggleClass('rtl-font--skip', !_is_rtl);
             $optsLang.toggleClass('notted', true);
@@ -549,7 +545,7 @@
                                 $('#caption-restart', $panel).show();
                             }
 
-                            $(document.body).toggleClass('rtl-font', _is_lang_rtl(appSettings.locale.current));
+                            $(document.body).toggleClass('rtl-font', utils.Lang.isLangRTL(appSettings.locale.current));
                         }
 
                         if ( appSettings.rtl === true ) {
@@ -662,6 +658,28 @@
                                 .on('change', e => {
                                     $btnApply.isdisabled() && $btnApply.disable(false);
                                 });
+                        }
+                    }
+
+                    if ( appSettings.rtl !== undefined ) {
+                        if ( !$chRtl || $chRtl.prop('checked') != appSettings.rtl ) {
+                            $chRtl = $('#sett-box-rtl-mode', $panel).parent().show().find('#sett-rtl-mode');
+                            $chRtl.prop('checked', !!appSettings.rtl)
+                                .on('change', e => {
+                                    $btnApply.prop('disabled') && $btnApply.prop('disabled', false);
+                                });
+
+                            if ( appSettings.rtl ) {
+                                document.body.setAttribute('dir', 'rtl');
+                                document.body.classList.add('rtl');
+
+                                $userName.css('direction', 'rtl');
+                            } else {
+                                if ( !utils.Lang.isLangRTL(appSettings.locale.current) )
+                                    $chRtl.attr('disabled', 'disabled')
+                                        .next().attr('disabled', 'disabled');
+                            }
+
                         }
                     }
 

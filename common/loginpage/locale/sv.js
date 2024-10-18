@@ -88,6 +88,7 @@ l10n.sv = {
     settOptThemeLight: 'Ljust',
     settOptThemeClassicLight: 'Klassiskt ljust',
     settOptThemeDark: 'Mörkt',
+    settOptThemeGray: 'Grått',
     settOptLaunchMode: 'Öppna fil',
     settOptLaunchInTab: 'I flik',
     settOptLaunchInWindow: 'I fönster',
@@ -112,4 +113,6 @@ l10n.sv = {
     settOptDescAUpdateAsk: "Du kommer att meddelas om alla steg i uppdateringen",
     settRtlMode: "RTL-gränssnitt",
     settGpuUseMode: "Använd grafikacceleration om tillgängligt",
+    tplPanelLocal: "Lokala",
+    tplPanelCloud: "Moln",
 }

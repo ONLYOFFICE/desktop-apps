@@ -82,9 +82,9 @@
                             <div class='flexbox content-box'>
                                 <div class='lr-flex'>
                                     <h3 class='table-caption' l10n>${_lang.actTemplates}</h3>
-                                    <div>
-                                        <a data-value='local' class='nav-item'>Local</a>
-                                        <a data-value='cloud' class='nav-item'>Cloud</a>
+                                    <div id='idx-nav-templates'>
+                                        <a data-value='local' class='nav-item'>${_lang.tplPanelLocal}</a>
+                                        <a data-value='cloud' class='nav-item'>${_lang.tplPanelCloud}</a>
                                     </div>
                                 </div>
                                 <section panel='local'>
@@ -110,8 +110,11 @@
 
     utils.fn.extend(ViewTemplates.prototype, {
         listitemtemplate: function(info) {
+            const type = utils.formatToEditor(info.type);
+            const badge = !this.svgicons ? `<i class="badge ${type}"></i>` : 
+                                `<svg class="badge"><use xlink:href="#tpltype-${type}"></use></svg>`;
             const icon_el = !info.icon ? `<svg class='icon'><use xlink:href='#template-item'></use></svg>`:
-                                            `<img src="${info.icon}"></img>`
+                                            `<div class="box"><img src="${info.icon}">${badge}</div>`
             return `<div id="${info.uid}" class='item'>
                         <div class='icon'>
                             ${icon_el}
@@ -221,43 +224,48 @@
                 this.view.$panel.addClass('local');
                 $('.nav-item[data-value=local]', this.view.$panel).addClass('selected');
 
-                const _check_url_avail = () => {
-                    if ( !iframe ) {
-                        fetch(_url_templates.replace('{0}', 'en'), {mode: 'no-cors'}).
-                            then(r => {
-                                if ( r.status == 200 || r.type == 'opaque' ) {
-                                    iframe = _create_and_inject_iframe();
-                                }
-                            }).
-                            catch(e => console.error('error on check templates url', e));
+                if ( window.utils.isWinXp ) {
+                    $('#idx-nav-templates', this.view.$panel).hide();
+                    this.view.$panel.addClass('win_xp');
+                } else {
+                    const _check_url_avail = () => {
+                        if ( !iframe ) {
+                            fetch(_url_templates.replace('{0}', 'en'), {mode: 'no-cors'}).
+                                then(r => {
+                                    if ( r.status == 200 || r.type == 'opaque' ) {
+                                        iframe = _create_and_inject_iframe();
+                                    }
+                                }).
+                                catch(e => console.error('error on check templates url', e));
+                        }
                     }
+
+                    _check_url_avail();
+
+                    CommonEvents.on('panel:show', panel => {
+                        if ( !iframe && panel == this.action ) {
+                            _check_url_avail();
+                        }
+                    });
+
+                    CommonEvents.on('lang:changed', (old, newlang) => {
+                        window.errorBox.translate(newlang);
+
+                        if ( !!iframe ) {
+                            // iframe.contentWindow.postMessage(JSON.stringify({lang: newlang}));
+                            _remove_frame(this.view.emptyPanelContent);
+                            _check_url_avail();
+                        }
+                    });
+
+                    CommonEvents.on('theme:changed', (theme, type) => {
+                        if ( !!iframe ) {
+                            // iframe.contentWindow.postMessage(JSON.stringify({theme: {name: theme, type: type}}));
+                            _remove_frame(this.view.emptyPanelContent);
+                            _check_url_avail();
+                        }
+                    });
                 }
-
-                _check_url_avail();
-
-                CommonEvents.on('panel:show', panel => {
-                    if ( !iframe && panel == this.action ) {
-                        _check_url_avail();
-                    }
-                });
-
-                CommonEvents.on('lang:changed', (old, newlang) => {
-                    window.errorBox.translate(newlang);
-
-                    if ( !!iframe ) {
-                        // iframe.contentWindow.postMessage(JSON.stringify({lang: newlang}));
-                        _remove_frame(this.view.emptyPanelContent);
-                        _check_url_avail();
-                    }
-                });
-
-                CommonEvents.on('theme:changed', (theme, type) => {
-                    if ( !!iframe ) {
-                        // iframe.contentWindow.postMessage(JSON.stringify({theme: {name: theme, type: type}}));
-                        _remove_frame(this.view.emptyPanelContent);
-                        _check_url_avail();
-                    }
-                });
 
                 // if ( !!localStorage.templatespanel ) {
                     // let iframe;
@@ -278,12 +286,34 @@
                 //     });
                 // }
 
+                const mq = "screen and (-webkit-min-device-pixel-ratio: 1.01) and (-webkit-max-device-pixel-ratio: 1.99), " +
+                                            "screen and (min-resolution: 1.01dppx) and (max-resolution: 1.99dppx)";
+
+                const mql = window.matchMedia(mq);
+                this.view.svgicons = !mql.matches;
+                mql.addEventListener('change', e => {
+                    this.view.svgicons = !e.target.matches;
+                });
+
                 $('.nav-item', this.view.$panel).click(_on_nav_item_click.bind(this));
                 window.sdk.on('onupdatetemplate', _on_update_template.bind(this));
                 window.sdk.on('onaddtemplates', _on_add_templates.bind(this));
 
                 _init_collection.call(this);
-                window.sdk.LocalFileTemplates();
+
+                const _reload_templates = l => {
+                    let ls = [l];
+                    if (utils.Lang.id.length > 2) {
+                        ls.push(l[3] == '_' ? l.replaceAll('_', '-') : l.replaceAll('_', '-'), l.substring(0,2));
+                    }
+                    ls.push("en-US","en_US","en");
+                    window.sdk.LocalFileTemplates(ls);
+                };
+                _reload_templates(utils.Lang.id);
+
+                CommonEvents.on('lang:changed', (ol, nl) => {
+                    _reload_templates(nl);
+                });
 
                 return this;
             }

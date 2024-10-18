@@ -88,6 +88,7 @@ l10n.tr = {
     settOptThemeLight: 'Aydınlık',
     settOptThemeClassicLight: 'Klasik Aydınlık',
     settOptThemeDark: 'Karanlık',
+    settOptThemeGray: 'Gri',
     settOptLaunchMode: 'Dosya aç',
     settOptLaunchInTab: 'Sekmede',
     settOptLaunchInWindow: 'Pencerede',
@@ -111,4 +112,6 @@ l10n.tr = {
     settOptDescAUpdateSilent: "Arka planda güncellemeyi indirin ve yükleyin",
     settOptDescAUpdateAsk: "Tüm güncelleme adımları hakkında bilgilendirileceksiniz",
     settRtlMode: "RTL Arayüzü",
+    tplPanelLocal: "Yerel",
+    tplPanelCloud: "Cloud",
 }

@@ -88,6 +88,7 @@ l10n.uk = {
     settOptThemeLight: 'Світла',
     settOptThemeClassicLight: 'Класична світла',
     settOptThemeDark: 'Темна',
+    settOptThemeGray: 'Сіра',
     settOptLaunchMode: 'Відкрити файл',
     settOptLaunchInTab: 'У вкладці',
     settOptLaunchInWindow: 'У вікні',
@@ -111,4 +112,6 @@ l10n.uk = {
     settOptDescAUpdateSilent: "Завантажити й інсталювати оновлення у фоновому режимі",
     settOptDescAUpdateAsk: "Ви будете сповіщені про всі етапи оновлення",
     settRtlMode: "Інтерфейс RTL",
+    tplPanelLocal: "Локальні",
+    tplPanelCloud: "Хмарні",
 }

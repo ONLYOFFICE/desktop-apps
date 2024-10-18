@@ -88,6 +88,7 @@ l10n.pt_BR = {
     settOptThemeLight: 'Claro',
     settOptThemeClassicLight: 'Claro clássico',
     settOptThemeDark: 'Escuro',
+    settOptThemeGray: 'Cinza',
     settOptLaunchMode: 'Abrir arquivo',
     settOptLaunchInTab: 'Na guia',
     settOptLaunchInWindow: 'Na janela',
@@ -112,4 +113,6 @@ l10n.pt_BR = {
     settOptDescAUpdateAsk: "Você será notificado sobre todas as etapas de atualização",
     settRtlMode: "Interface RTL",
     settGpuUseMode: "Use aceleração gráfica quando disponível",
+    tplPanelLocal: "Locais",
+    tplPanelCloud: "De nuvem",
 }

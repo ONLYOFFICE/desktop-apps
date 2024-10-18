@@ -43,6 +43,7 @@
 #import "ASCSharedSettings.h"
 #import "NSColor+Extensions.h"
 #import "NSApplication+Extensions.h"
+#import "ASCEditorJSVariables.h"
 
 
 @implementation ASCThemesController
@@ -59,6 +60,22 @@
 
 - (id)init {
     self = [super init];
+
+    NSString * uiTheme = [[NSUserDefaults standardUserDefaults] valueForKey:ASCUserUITheme];
+    if ( !uiTheme ) {
+        uiTheme = uiThemeSystem;
+        [[NSUserDefaults standardUserDefaults] setObject:uiTheme forKey:ASCUserUITheme];
+    }
+    
+    [[ASCEditorJSVariables instance] setParameter:@"uitheme" withString:uiTheme];
+    [[ASCEditorJSVariables instance] applyParameters];
+    
+    NSString * systemColorScheme = [[self class] isSystemDarkMode] ? @"dark" : @"light";
+    [[ASCSharedSettings sharedInstance] setSetting:systemColorScheme forKey:kSettingsColorScheme];
+
+    [[ASCEditorJSVariables instance] setVariable:@"theme" withObject:@{@"id":uiTheme,
+                                                                       @"system":systemColorScheme,
+                                                                       @"type":[[self class] isCurrentThemeDark] ? @"dark" : @"light"}];
 
     [NSDistributedNotificationCenter.defaultCenter addObserver:self selector:@selector(onSystemThemeChanged:) name:@"AppleInterfaceThemeChangedNotification" object: nil];
 
@@ -79,7 +96,7 @@
 + (BOOL)isCurrentThemeDark {
     NSString * theme = [[NSUserDefaults standardUserDefaults] valueForKey:ASCUserUITheme];
     if ([uiThemeSystem isEqualToString:theme]) {
-        return [@"dark" isEqualToString:[[ASCSharedSettings sharedInstance] settingByKey:kSettingsColorScheme]];
+        return [self isSystemDarkMode];
     } else return [uiThemeDark isEqualToString:theme] || [uiThemeContrastDark isEqualToString:theme];
 }
 

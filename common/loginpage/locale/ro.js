@@ -88,6 +88,7 @@ l10n.ro = {
     settOptThemeLight: 'Luminos',
     settOptThemeClassicLight: 'Clasic Luminos',
     settOptThemeDark: 'Întunecat',
+    settOptThemeGray: 'Gri',
     settOptLaunchMode: 'Deschidere fișie',
     settOptLaunchInTab: 'În filă',
     settOptLaunchInWindow: 'În fereastră',
@@ -112,4 +113,6 @@ l10n.ro = {
     settOptDescAUpdateAsk: "Veți primi notificări privind fiecare etapă de actualizare",
     settRtlMode: "Interfață de limbă de la dreapta la stânga",
     settGpuUseMode: "Utilizați accelerator grafic dacă este cazul",
+    tplPanelLocal: "Locale",
+    tplPanelCloud: "Cloud",
 }
