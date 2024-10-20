@@ -56,6 +56,42 @@ void setNativeUILanguage(std::wstring localeTag)
 }
 #endif
 
+QString getPrimaryLang(const QString &lang, bool withScript = false)
+{
+    int len = lang.length();
+    if (len > 1) {
+        int prim = -1;
+        for (int i = 0; i < len; ++i) {
+            if (lang[i] == '-' || lang[i] == '_') {
+                prim = i;
+                break;
+            }
+        }
+        if (prim == -1) {
+            if (len <= 3)
+                return lang;
+        } else
+        if (prim == 2 || prim == 3) {
+            if (withScript) {
+                int scnd = -1;
+                for (int i = prim + 1; i < len; ++i) {
+                    if (lang[i] == '-' || lang[i] == '_') {
+                        scnd = i;
+                        break;
+                    }
+                }
+                if (scnd == -1) {
+                    if (len - prim == 5)
+                        return lang;
+                } else
+                if (scnd - prim == 5)
+                    return lang.mid(0, scnd);
+            }
+            return lang.mid(0, prim);
+        }
+    }
+    return "en";
+}
 
 class CLangater::CLangaterIntf
 {
@@ -272,8 +308,13 @@ void CLangater::init()
     };
 
     bool _exist = _check_lang(getInstance()->m_intf->m_dirs, _lang);
-    if ( !_exist && _lang.length() == 2 ) {
-        QString _close_lang = getInstance()->m_intf->findCloseLang(_lang);
+    if ( !_exist ) {
+        QString prim_lang = getPrimaryLang(_lang, true);
+        QString _close_lang = getInstance()->m_intf->findCloseLang(prim_lang);
+        if (_close_lang.isEmpty() && prim_lang.length() > 3) {
+            prim_lang = getPrimaryLang(_lang);
+            _close_lang = getInstance()->m_intf->findCloseLang(prim_lang);
+        }
         if ( !_close_lang.isEmpty() )
             _lang = _close_lang,
             _exist = _check_lang(getInstance()->m_intf->m_dirs, _lang);
