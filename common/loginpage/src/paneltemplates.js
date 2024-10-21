@@ -87,7 +87,7 @@
                                         <a data-value='cloud' class='nav-item'>${_lang.tplPanelCloud}</a>
                                     </div>
                                 </div>
-                                <section panel='local'>
+                                <section class='themed-sroll' panel='local'>
                                     <div class='table-box flex-fill'>
                                         <div class='table-templates list'></div>
                                     </div>
