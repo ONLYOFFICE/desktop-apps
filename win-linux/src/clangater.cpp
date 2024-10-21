@@ -56,30 +56,57 @@ void setNativeUILanguage(std::wstring localeTag)
 }
 #endif
 
+QString normalizeLocale(const QString &locale)
+{
+    int len = locale.length();
+    if (len > 1) {
+        int prim = locale.indexOf(QRegExp("[-_]"));
+        if (prim == -1) {
+            if (len <= 3)
+                return locale.toLower();
+        } else
+        if (prim == 2 || prim == 3) {
+            QString prim_lang = locale.mid(0, prim).toLower();
+            int scnd = locale.indexOf(QRegExp("[-_]"), prim + 1);
+            if (scnd == -1) {
+                if (len - prim == 3)
+                    return prim_lang + "-" + locale.mid(prim + 1, 2).toUpper();
+                else
+                if (len - prim == 5)
+                    return prim_lang + "-" + locale.at(prim + 1).toUpper() + locale.mid(prim + 2, 3).toLower();
+            } else
+            if (scnd - prim == 3) {
+                return prim_lang + "-" + locale.mid(prim + 1, 2).toUpper();
+            } else
+            if (scnd - prim == 5) {
+                QString prim_lang_script = prim_lang + "-" + locale.at(prim + 1).toUpper() + locale.mid(prim + 2, 3).toLower();
+                int thrd = locale.indexOf(QRegExp("[-_]"), scnd + 1);
+                if (thrd == -1) {
+                    if (len - scnd == 3)
+                        return prim_lang_script + "-" + locale.mid(scnd + 1, 2).toUpper();
+                } else
+                if (thrd - scnd == 3)
+                    return prim_lang_script + "-" + locale.mid(scnd + 1, 2).toUpper();
+                return prim_lang_script;
+            }
+            return prim_lang;
+        }
+    }
+    return "en";
+}
+
 QString getPrimaryLang(const QString &lang, bool withScript = false)
 {
     int len = lang.length();
     if (len > 1) {
-        int prim = -1;
-        for (int i = 0; i < len; ++i) {
-            if (lang[i] == '-' || lang[i] == '_') {
-                prim = i;
-                break;
-            }
-        }
+        int prim = lang.indexOf('-');
         if (prim == -1) {
             if (len <= 3)
                 return lang;
         } else
         if (prim == 2 || prim == 3) {
             if (withScript) {
-                int scnd = -1;
-                for (int i = prim + 1; i < len; ++i) {
-                    if (lang[i] == '-' || lang[i] == '_') {
-                        scnd = i;
-                        break;
-                    }
-                }
+                int scnd = lang.indexOf('-', prim + 1);
                 if (scnd == -1) {
                     if (len - prim == 5)
                         return lang;
@@ -296,7 +323,7 @@ void CLangater::init()
     _lang.isEmpty() &&
         !((_lang = reg_system.value("locale").value<QString>()).size()) && (_lang = APP_DEFAULT_LOCALE).size();
 #endif
-
+    _lang = normalizeLocale(_lang);
     getInstance()->m_intf->addSearchPath({"./langs", ":/i18n/langs", ":/i18n"});
 
     auto _check_lang = [=](const std::list<QString>& dirs, const QString& l) {
